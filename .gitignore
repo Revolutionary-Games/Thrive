@@ -16,8 +16,6 @@ Thumbs.db
 *.cache
 *.ilk
 *.log
-[Bb]in
-[Dd]ebug*/
 *.sbr
 obj/
 [Rr]elease*/
@@ -25,6 +23,10 @@ _ReSharper*/
 [Tt]est[Rr]esult*
 *.vssscc
 $tf*/
+
+# Do not ignore the following, some resources are stored in these folders in the res/dist/ tree
+# [Bb]in
+# [Dd]ebug*/
 
 # Libraries
 *.lib
