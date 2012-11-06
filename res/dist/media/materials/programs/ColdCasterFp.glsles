@@ -1,0 +1,11 @@
+#version 100
+
+precision mediump int;
+precision mediump float;
+
+varying vec2 NDotV;
+
+void main()
+{
+   gl_FragColor = vec4(NDotV.x / 2.0);
+}
