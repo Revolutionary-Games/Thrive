@@ -57,8 +57,6 @@ endfunction(add_sources)
 
 if(WIN32)
 	set(CMAKE_MODULE_PATH "$ENV{OGRE_HOME}/CMake/;${CMAKE_MODULE_PATH}")
-    set(Boost_INCLUDE_DIR "C:/boost/lib")
-	message("cm = ${Boost_INCLUDE_DIR}")
 	set(OGRE_SAMPLES_INCLUDEPATH
 		$ENV{OGRE_HOME}/Samples/include
 	)
@@ -146,16 +144,9 @@ set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake_modules")
 #set(OGRE_LIRARIES ${OGRE_LIBRARIES} ${CEGUI_LIBRARY})
 
 # Find MyGUI
-set(MYGUI_COMPONENTS MyGUIEngine MyGUI.OgrePlatform)
+set(MYGUI_COMPONENTS Common MyGUIEngine MyGUI.OgrePlatform)
 find_package(MyGUI REQUIRED ${MYGUI_COMPONENTS})
-# set(OGRE_LIBRARIES ${OGRE_LIBRARIES} ${MYGUI_LIBRARIES})
-
-
-# set(HDRS
-# )
-
-# set(SRCS
-# )
+set(OGRE_LIBRARIES ${OGRE_LIBRARIES} ${MYGUI_LIBRARIES} ${MYGUI_PLATFORM_LIBRARIES})
 
 # add subdirectories
 add_subdirectory(src)
@@ -179,7 +170,8 @@ endforeach()
 include_directories( ${OIS_INCLUDE_DIRS}
 	${OGRE_INCLUDE_DIRS}
 	${OGRE_SAMPLES_INCLUDEPATH}
-	${CEGUI_INCLUDE_DIR}
+	${MYGUI_INCLUDE_DIRS}
+	${MYGUI_PLATFORM_INCLUDE_DIRS}
 	)
 
 add_executable(Thrive WIN32 ${PREP_SRCS}) #${HDRS} ${SRCS})

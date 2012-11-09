@@ -23,6 +23,9 @@ This source file is part of the
 #include <OISKeyboard.h>
 #include <OISMouse.h>
 #include <OgreWindowEventUtilities.h>
+
+#include <MyGUI.h>
+#include <MyGUI_OgrePlatform.h>
  
 class BasicTutorial6 : public Ogre::WindowEventListener, public Ogre::FrameListener
 {
@@ -51,6 +54,8 @@ private:
     OIS::InputManager* mInputManager;
     OIS::Mouse*    mMouse;
     OIS::Keyboard* mKeyboard;
+    
+    MyGUI::Gui* mGUI;
 };
  
 #endif // #ifndef __BasicTutorial6_h_
