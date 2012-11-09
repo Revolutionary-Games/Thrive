@@ -27,7 +27,8 @@ This source file is part of the
 #include <MyGUI.h>
 #include <MyGUI_OgrePlatform.h>
  
-class BasicTutorial6 : public Ogre::WindowEventListener, public Ogre::FrameListener
+class BasicTutorial6 : public Ogre::WindowEventListener, public Ogre::FrameListener,
+        public OIS::MouseListener, public OIS::KeyListener
 {
 public:
     BasicTutorial6(void);
@@ -42,6 +43,12 @@ protected:
     // Ogre::FrameListener
     virtual bool frameRenderingQueued(const Ogre::FrameEvent& evt);
  
+    // OIS Listeners
+    bool mouseMoved( const OIS::MouseEvent &arg );
+    bool mousePressed( const OIS::MouseEvent &arg, OIS::MouseButtonID id );
+    bool mouseReleased( const OIS::MouseEvent &arg, OIS::MouseButtonID id );
+    bool keyPressed( const OIS::KeyEvent &arg );
+    bool keyReleased( const OIS::KeyEvent &arg );
 private:
     Ogre::Root* mRoot;
     Ogre::String mResourcesCfg;

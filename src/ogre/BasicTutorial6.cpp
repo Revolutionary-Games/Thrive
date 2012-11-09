@@ -109,6 +109,12 @@ bool BasicTutorial6::go(void)
     Ogre::Viewport* vp = mWindow->addViewport(mCamera);
     vp->setBackgroundColour(Ogre::ColourValue(0,0,0));
  
+    // Setup MyGUI
+    MyGUI::OgrePlatform* mPlatform = new MyGUI::OgrePlatform();
+    mPlatform->initialise(mWindow,mSceneMgr);
+    mGUI = new MyGUI::Gui();
+    mGUI->initialise();
+    
     // Alter the camera aspect ratio to match the viewport
     mCamera->setAspectRatio(
         Ogre::Real(vp->getActualWidth()) / Ogre::Real(vp->getActualHeight()));
@@ -196,7 +202,36 @@ bool BasicTutorial6::frameRenderingQueued(const Ogre::FrameEvent& evt)
  
     return true;
 }
+
+bool BasicTutorial6::mouseMoved( const OIS::MouseEvent &arg )
+{
+    MyGUI::InputManager::getInstance().injectMouseMove(arg.state.X.abs, arg.state.Y.abs, arg.state.Z.abs);
+    //...
+}
  
+bool BasicTutorial6::mousePressed( const OIS::MouseEvent &arg, OIS::MouseButtonID id )
+{
+    MyGUI::InputManager::getInstance().injectMousePress(arg.state.X.abs, arg.state.Y.abs, MyGUI::MouseButton::Enum(id));
+    //...
+}
+ 
+bool BasicTutorial6::mouseReleased( const OIS::MouseEvent &arg, OIS::MouseButtonID id )
+{
+    MyGUI::InputManager::getInstance().injectMouseRelease(arg.state.X.abs, arg.state.Y.abs, MyGUI::MouseButton::Enum(id));
+    //...
+}
+ 
+bool BasicTutorial6::keyPressed( const OIS::KeyEvent &arg )
+{
+    MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::Enum(arg.key), arg.text);
+    //...
+}
+ 
+bool BasicTutorial6::keyReleased( const OIS::KeyEvent &arg )
+{
+    MyGUI::InputManager::getInstance().injectKeyRelease(MyGUI::KeyCode::Enum(arg.key));
+    //...
+} 
  
 #if OGRE_PLATFORM == OGRE_PLATFORM_WIN32
 #define WIN32_LEAN_AND_MEAN
