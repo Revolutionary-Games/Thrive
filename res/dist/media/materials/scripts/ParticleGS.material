@@ -1,0 +1,200 @@
+vertex_program Ogre/ParticleGS/GenerateVScg cg
+{
+	source ParticleGS.cg
+	entry_point GenerateParticles_VS
+	profiles vs_1_1 arbvp1
+}
+
+geometry_program Ogre/ParticleGS/GenerateGScg cg
+{
+	source ParticleGS.cg
+	entry_point GenerateParticles_GS
+	profiles gp4gp gpu_gp
+}
+
+vertex_program Ogre/ParticleGS/DisplayVScg cg
+{
+	source ParticleGS.cg
+	entry_point DisplayParticles_VS
+	profiles vs_1_1 arbvp1
+}
+
+geometry_program Ogre/ParticleGS/DisplayGScg cg
+{
+	source ParticleGS.cg
+	entry_point DisplayParticles_GS
+	profiles gp4gp gpu_gp
+}
+
+fragment_program Ogre/ParticleGS/DisplayPScg cg
+{
+	source ParticleGS.cg
+	entry_point DisplayParticles_PS
+	profiles ps_2_0 arbfp1
+}
+
+vertex_program Ogre/ParticleGS/GenerateVShlsl4 hlsl
+{
+	source ParticleGS.hlsl
+	entry_point GenerateParticles_VS
+	enable_backwards_compatibility no
+	target vs_4_0
+}
+
+geometry_program Ogre/ParticleGS/GenerateGShlsl4 hlsl
+{
+	source ParticleGS.hlsl
+	entry_point GenerateParticles_GS
+	enable_backwards_compatibility no
+	target gs_4_0
+}
+
+vertex_program Ogre/ParticleGS/DisplayVShlsl4 hlsl
+{
+	source ParticleGS.hlsl
+	entry_point DisplayParticles_VS
+	enable_backwards_compatibility no
+	target vs_4_0
+}
+
+geometry_program Ogre/ParticleGS/DisplayGShlsl4 hlsl
+{
+	source ParticleGS.hlsl
+	entry_point DisplayParticles_GS
+	enable_backwards_compatibility no
+	target gs_4_0
+}
+
+fragment_program Ogre/ParticleGS/DisplayPShlsl4 hlsl
+{
+	source ParticleGS.hlsl
+	entry_point DisplayParticles_PS
+	enable_backwards_compatibility no
+	target ps_4_0
+}
+
+//The material used to generate the particle system geometry
+material Ogre/ParticleGS/Generate
+{
+	technique cg
+	{
+		pass
+		{
+			vertex_program_ref Ogre/ParticleGS/GenerateVScg
+			{
+				
+			}
+			
+			geometry_program_ref Ogre/ParticleGS/GenerateGScg
+			{
+				param_named frameGravity float3 0 -0.1 0
+				param_named globalTime float 0.0
+				param_named elapsedTime float 0.1
+				param_named secondsPerFirework float 0.3
+			}
+			
+			//This texture unit will be filled at runtime
+			texture_unit RandomTexture
+			{
+				tex_address_mode wrap
+				filtering none
+			}
+		}
+	}
+	technique hlsl4
+	{
+		pass
+		{
+			vertex_program_ref Ogre/ParticleGS/GenerateVShlsl4
+			{
+				
+			}
+			
+			geometry_program_ref Ogre/ParticleGS/GenerateGShlsl4
+			{
+				param_named frameGravity float3 0 -0.1 0
+				param_named globalTime float 0.0
+				param_named elapsedTime float 0.1
+				param_named secondsPerFirework float 0.3
+			}
+			
+			//This texture unit will be filled at runtime
+			texture_unit RandomTexture
+			{
+				tex_address_mode wrap
+				filtering none
+			}
+			// This is needed if you render to a stream out buffer, otherwise, atleast DX 11 complains
+			depth_write off
+			depth_check off
+		}
+	}
+}
+
+//The material used to display the generated particle system geometry
+material Ogre/ParticleGS/Display
+{
+	technique cg
+	{
+		pass
+		{
+			depth_write off
+			
+			vertex_program_ref Ogre/ParticleGS/DisplayVScg
+			{
+				
+			}
+			
+			geometry_program_ref Ogre/ParticleGS/DisplayGScg
+			{
+				param_named_auto inverseView inverse_view_matrix
+				param_named_auto worldViewProj worldviewproj_matrix
+			}
+			
+			fragment_program_ref Ogre/ParticleGS/DisplayPScg
+			{
+				
+			}
+			
+			texture_unit
+			{
+				tex_coord_set 0
+				texture particle.dds
+			}
+			
+			scene_blend alpha_blend
+		}
+	}
+	technique hlsl4
+	{
+		pass
+		{
+			depth_write off
+			
+			vertex_program_ref Ogre/ParticleGS/DisplayVShlsl4
+			{
+				
+			}
+			
+			geometry_program_ref Ogre/ParticleGS/DisplayGShlsl4
+			{
+				param_named_auto inverseView inverse_view_matrix
+				param_named_auto worldViewProj worldviewproj_matrix
+			}
+			
+			fragment_program_ref Ogre/ParticleGS/DisplayPShlsl4
+			{
+				
+			}
+			
+			texture_unit
+			{
+				tex_coord_set 0
+				texture particle.dds
+			}
+			
+			scene_blend alpha_blend
+		}
+	}
+}
+
