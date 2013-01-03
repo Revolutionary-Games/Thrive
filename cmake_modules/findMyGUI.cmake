@@ -24,7 +24,8 @@ IF (WIN32) #Windows
         findpkg_begin("MYGUI")
         MESSAGE(STATUS "Using MyGUI in MyGUI SDK")
         STRING(REGEX REPLACE "[\\]" "/" MYGUISDK "${MYGUISDK}")
-
+		message("${MYGUISDK}")
+		
         find_path(MYGUI_INCLUDE_DIRS
                   MyGUI.h
                   "${MYGUISDK}/MyGUIEngine/include"
@@ -34,29 +35,41 @@ IF (WIN32) #Windows
                   MyGUI_OgrePlatform.h
                   "${MYGUISDK}/Platforms/Ogre/OgrePlatform/include"
                   NO_DEFAULT_PATH)
-
+				  
         SET(MYGUI_LIB_DIR ${MYGUISDK}/lib ${MYGUISDK}/*/lib)
 		
-			find_library(MYGUI_LIBRARIES_REL
-                     NAMES MyGUIEngine MyGUI.OgrePlatform
-                     HINTS ${MYGUI_LIB_DIR}
-                     PATH_SUFFIXES "" release relwithdebinfo minsizerel)
+		find_library(MYGUI_LIBRARIES_REL
+				 NAMES MyGUIEngine MyGUI.OgrePlatform
+				 HINTS ${MYGUI_LIB_DIR}
+				 PATH_SUFFIXES "" release relwithdebinfo minsizerel)
 
-			find_library(MYGUI_LIBRARIES_DBG
-                     NAMES MyGUIEngine_d MyGUI.OgrePlatform_d
-                     HINTS ${MYGUI_LIB_DIR}
-                     PATH_SUFFIXES "" debug)
-		
-			find_library(MYGUI_PLATFORM_LIBRARIES_REL
-                     NAMES MyGUI.OgrePlatform
-                     HINTS ${MYGUI_LIB_DIR}
-                     PATH_SUFFIXES "" release relwithdebinfo minsizerel)
+		find_library(MYGUI_LIBRARIES_DBG
+				 NAMES MyGUIEngine_d MyGUI.OgrePlatform_d
+				 HINTS ${MYGUI_LIB_DIR}
+				 PATH_SUFFIXES "" debug)
+	
+		find_library(MYGUI_PLATFORM_LIBRARIES_REL
+				 NAMES MyGUI.OgrePlatform
+				 HINTS ${MYGUI_LIB_DIR}
+				 PATH_SUFFIXES "" release relwithdebinfo minsizerel)
 
-			find_library(MYGUI_PLATFORM_LIBRARIES_DBG
-                     NAMES MyGUI.OgrePlatform_d
-                     HINTS ${MYGUI_LIB_DIR}
-                     PATH_SUFFIXES "" debug)
-					 		
+		find_library(MYGUI_PLATFORM_LIBRARIES_DBG
+				 NAMES MyGUI.OgrePlatform_d
+				 HINTS ${MYGUI_LIB_DIR}
+				 PATH_SUFFIXES "" debug)
+				 
+		## Following needs equivelant section for Unix
+		find_library(MYGUI_LIBRARIES_FREETYPE
+				 NAMES freetype
+				 HINTS "$ENV{OGRE_DEPENDENCIES_DIR}/lib"
+				 PATH_SUFFIXES "" Release relwithdebinfo minsizerel)
+
+		# find_library(MYGUI_FREETYPE_LIBRARIES_DBG
+				 # NAMES freetype_d
+				 # HINTS "$ENV{OGRE_DEPENDENCIES_DIR}/lib"
+				 # PATH_SUFFIXES "" Debug)
+		##
+					 
 		make_library_set(MYGUI_LIBRARIES)
         make_library_set(MYGUI_PLATFORM_LIBRARIES)
 
