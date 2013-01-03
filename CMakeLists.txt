@@ -1,40 +1,18 @@
-#/*
-#-----------------------------------------------------------------------------
-#Filename:    CMakeLists.txt
-#-----------------------------------------------------------------------------
-#
-#This source file is part of the
-#   ___                 __    __ _ _    _
-#  /___\__ _ _ __ ___  / / /\ \ (_) | _(_)
-# //  // _` | '__/ _ \ \ \/  \/ / | |/ / |
-#/ \_// (_| | | |  __/  \  /\  /| |   <| |
-#\___/ \__, |_|  \___|   \/  \/ |_|_|\_\_|
-#      |___/
-#      Tutorial Framework
+# Based on a file from the Ogre Wiki Tutorial Framework
 #      http://www.ogre3d.org/tikiwiki/
+#
+# Modified as part of the Thrive project
 #-----------------------------------------------------------------------------
-#*/
+
 cmake_minimum_required(VERSION 2.6)
 
 project(Thrive)
 
-# macro (add_sources)
-    # file (RELATIVE_PATH _relPath "${CMAKE_SOURCE_DIR}" "${CMAKE_CURRENT_SOURCE_DIR}")
-    # foreach (_src ${ARGN})
-        # if (_relPath)
-            # list (APPEND SRCS "${_relPath}/${_src}")
-        # else()
-            # list (APPEND SRCS "${_src}")
-        # endif()
-    # endforeach()
-    # if (_relPath)
-        # # propagate SRCS to parent directory
-        # set (SRCS ${SRCS} PARENT_SCOPE)
-    # endif()
-# endmacro()
+####################
+# Define functions #
+####################
 
-# function to collect all the sources from sub-directories
-# into a single list
+# function to collect all the sources from sub-directories into a single list
 function(add_sources)
   get_property(is_defined GLOBAL PROPERTY SRCS_LIST DEFINED)
   if(NOT is_defined)
@@ -90,17 +68,15 @@ set(CMAKE_INSTALL_PREFIX "${CMAKE_CURRENT_BINARY_DIR}/dist")
 
 find_package(OGRE REQUIRED)
 
-#if(NOT "${OGRE_VERSION_NAME}" STREQUAL "Cthugha")
-#  message(SEND_ERROR "You need Ogre 1.7 Cthugha to build this.")
-#endif()
-
 find_package(OIS REQUIRED)
 
 if(NOT OIS_FOUND)
 	message(SEND_ERROR "Failed to find OIS.")
 endif()
 
-# Find Boost
+##############
+# Find Boost #
+##############
 set(Boost_Dir $ENV{BOOST_ROOT})
 if (NOT OGRE_BUILD_PLATFORM_IPHONE)
 	if (WIN32 OR APPLE)
@@ -118,7 +94,7 @@ if (NOT OGRE_BUILD_PLATFORM_IPHONE)
 
 	set(Boost_ADDITIONAL_VERSIONS "1.44" "1.44.0" "1.42" "1.42.0" "1.41.0" "1.41" "1.40.0" "1.40" "1.39.0" "1.39" "1.38.0" "1.38" "1.37.0" "1.37" )
 	# Components that need linking (NB does not include header-only components like bind)
-	set(OGRE_BOOST_COMPONENTS thread date_time system) # <--
+	set(OGRE_BOOST_COMPONENTS thread date_time system)
 	find_package(Boost 1.51 COMPONENTS ${OGRE_BOOST_COMPONENTS} REQUIRED)
 
 	if (NOT Boost_FOUND)
@@ -136,26 +112,40 @@ if (NOT OGRE_BUILD_PLATFORM_IPHONE)
 	set(OGRE_LIBRARIES ${OGRE_LIBRARIES} ${Boost_LIBRARIES})
 endif()
 
-# Find CEGUI
+################################
+# Load additional dependencies #
+################################
+
+### CEGUI
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake_modules")
 #set(CEGUI_COMPONENTS Base Ogre)
 #message("${CEGUIDIR}")
 #Find_Package(CEGUI REQUIRED ${CEGUI_COMPONENTS} OGRE)
 #set(OGRE_LIRARIES ${OGRE_LIBRARIES} ${CEGUI_LIBRARY})
 
-# Find MyGUI
+### MyGUI
 set(MYGUI_COMPONENTS Common MyGUIEngine MyGUI.OgrePlatform)
-find_package(MyGUI REQUIRED ${MYGUI_COMPONENTS})
+# add_definitions(-DMYGUI_STATIC)
+# set(MYGUI_STATIC TRUE)
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DMYGUI_STATIC")
+# set(MYGUI_USE_STATIC_LIBS TRUE)
+find_package(MYGUI REQUIRED ${MYGUI_COMPONENTS})
 find_library(MYGUI_LIBRARIES_FREETYPE
 	NAMES freetype
 	HINTS "${OGRE_MEDIA_DIR}/../Dependencies/lib"
 	PATH_SUFFIXES "" release debug)
-set(OGRE_LIBRARIES ${OGRE_LIBRARIES} ${MYGUI_LIBRARIES} ${MYGUI_PLATFORM_LIBRARIES} ${MYGUI_LIBRARIES_FREETYPE})
+find_package(Freetype REQUIRED)
+include_directories(${MYGUI_INCLUDE_DIRS} ${MYGUI_PLATFORM_INCLUDE_DIRS})
+set(OGRE_LIBRARIES ${OGRE_LIBRARIES} ${MYGUI_LIBRARIES_FREETYPE} ${MYGUI_LIBRARIES} ${MYGUI_PLATFORM_LIBRARIES} )
 	
+################
+# Finish setup # 
+################
+
 # add subdirectories
 add_subdirectory(src)
 
-# preprocess sources
+# Collect sources from sub directories
 set(PREP_SRCS)
 get_property(SRCS GLOBAL PROPERTY SRCS_LIST)
 foreach(s IN LISTS SRCS)
@@ -174,8 +164,6 @@ endforeach()
 include_directories( ${OIS_INCLUDE_DIRS}
 	${OGRE_INCLUDE_DIRS}
 	${OGRE_SAMPLES_INCLUDEPATH}
-	${MYGUI_INCLUDE_DIRS}
-	${MYGUI_PLATFORM_INCLUDE_DIRS}
 	)
 
 add_executable(Thrive WIN32 ${PREP_SRCS}) #${HDRS} ${SRCS})
