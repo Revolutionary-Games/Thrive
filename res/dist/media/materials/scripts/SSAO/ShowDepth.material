@@ -1,0 +1,47 @@
+fragment_program SSAO/ShowDepth_fp_hlsl hlsl
+{
+    source ShowDepth.cg
+    entry_point ShowDepth_fp
+    target ps_3_0
+}
+
+fragment_program SSAO/ShowDepth_fp_cg cg
+{
+    source ShowDepth.cg
+    entry_point ShowDepth_fp
+    profiles ps_2_x arbfp1
+}
+
+fragment_program SSAO/ShowDepth_fp unified
+{
+	delegate SSAO/ShowDepth_fp_hlsl 
+	delegate SSAO/ShowDepth_fp_cg
+}
+
+material SSAO/ShowDepth
+{
+    technique
+    {
+        pass
+        {
+            depth_check off
+
+			vertex_program_ref Ogre/Compositor/StdQuad_vp {}			
+            fragment_program_ref SSAO/ShowDepth_fp {}
+
+            texture_unit 
+            {
+                content_type compositor SSAO/GBuffer mrt 1
+                tex_address_mode clamp
+                filtering none
+            }
+
+            texture_unit
+            {
+                texture gray256.png
+                tex_address_mode wrap
+                filtering none
+            }
+        }
+    }
+}
