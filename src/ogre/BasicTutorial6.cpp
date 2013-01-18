@@ -79,7 +79,7 @@ bool BasicTutorial6::go(void)
                 archName, typeName, secName);
         }
     }
-    // configure
+
     // Show the configuration dialog and initialise the system
     if(!(mRoot->restoreConfig() || mRoot->showConfigDialog()))
     {
@@ -98,30 +98,20 @@ bool BasicTutorial6::go(void)
  
     // Create the camera
     mCamera = mSceneMgr->createCamera("PlayerCam");
- 
-    // Position it at 500 in Z direction
     mCamera->setPosition(Ogre::Vector3(0,0,80));
-    // Look back along -Z
     mCamera->lookAt(Ogre::Vector3(0,0,-300));
     mCamera->setNearClipDistance(5);
  
     // Create one viewport, entire window
     Ogre::Viewport* vp = mWindow->addViewport(mCamera);
     vp->setBackgroundColour(Ogre::ColourValue(0,0,0));
- 
-    // Setup MyGUI
-    MyGUI::OgrePlatform* mPlatform = new MyGUI::OgrePlatform();
-    mPlatform->initialise(mWindow,mSceneMgr);
-    mGUI = new MyGUI::Gui();
-    mGUI->initialise();
-    
+     
     // Alter the camera aspect ratio to match the viewport
     mCamera->setAspectRatio(
         Ogre::Real(vp->getActualWidth()) / Ogre::Real(vp->getActualHeight()));
- 
- 
+
+    // Ogre head for testing
     Ogre::Entity* ogreHead = mSceneMgr->createEntity("Head", "ogrehead.mesh");
- 
     Ogre::SceneNode* headNode = mSceneMgr->getRootSceneNode()->createChildSceneNode();
     headNode->attachObject(ogreHead);
  
@@ -201,6 +191,11 @@ bool BasicTutorial6::frameRenderingQueued(const Ogre::FrameEvent& evt)
         return false;
  
     return true;
+}
+
+bool BasicTutorial6::switchBackground()
+{
+    
 }
 
 //bool BasicTutorial6::mouseMoved( const OIS::MouseEvent &arg )
