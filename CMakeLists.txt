@@ -116,27 +116,31 @@ endif()
 # Load additional dependencies #
 ################################
 
-### CEGUI
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake_modules")
+
+### CEGUI
 #set(CEGUI_COMPONENTS Base Ogre)
 #message("${CEGUIDIR}")
 #Find_Package(CEGUI REQUIRED ${CEGUI_COMPONENTS} OGRE)
 #set(OGRE_LIRARIES ${OGRE_LIBRARIES} ${CEGUI_LIBRARY})
 
 ### MyGUI
-set(MYGUI_COMPONENTS Common MyGUIEngine MyGUI.OgrePlatform)
-# add_definitions(-DMYGUI_STATIC)
-# set(MYGUI_STATIC TRUE)
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DMYGUI_STATIC")
-# set(MYGUI_USE_STATIC_LIBS TRUE)
-find_package(MYGUI REQUIRED ${MYGUI_COMPONENTS})
-find_library(MYGUI_LIBRARIES_FREETYPE
-	NAMES freetype
-	HINTS "${OGRE_MEDIA_DIR}/../Dependencies/lib"
-	PATH_SUFFIXES "" release debug)
-find_package(Freetype REQUIRED)
-include_directories(${MYGUI_INCLUDE_DIRS} ${MYGUI_PLATFORM_INCLUDE_DIRS})
-set(OGRE_LIBRARIES ${OGRE_LIBRARIES} ${MYGUI_LIBRARIES_FREETYPE} ${MYGUI_LIBRARIES} ${MYGUI_PLATFORM_LIBRARIES} )
+## Removed for now - double commented lines were already commented
+#set(MYGUI_COMPONENTS Common MyGUIEngine MyGUI.OgrePlatform)
+## add_definitions(-DMYGUI_STATIC)
+## set(MYGUI_STATIC TRUE)
+#set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DMYGUI_STATIC -DMYGUI_OGRE_PLATFORM")
+## set(MYGUI_USE_STATIC_LIBS TRUE)
+#find_package(MYGUI REQUIRED ${MYGUI_COMPONENTS})
+#find_library(MYGUI_LIBRARIES_FREETYPE
+#	NAMES freetype
+#	HINTS "${OGRE_MEDIA_DIR}/../Dependencies/lib"
+#	PATH_SUFFIXES "" release debug)
+#find_package(Freetype REQUIRED)
+#add_dependencies(${PROJECTNAME} MyGUIEngine Common MyGUI.OgrePlatform)
+## target_link_libraries(${PROJECTNAME} MyGUIEngine Common MyGUI.OgrePlatform)
+#include_directories(${MYGUI_INCLUDE_DIRS} ${MYGUI_PLATFORM_INCLUDE_DIRS})
+#set(OGRE_LIBRARIES ${OGRE_LIBRARIES} ${MYGUI_LIBRARIES_FREETYPE} ${MYGUI_LIBRARIES} ${MYGUI_PLATFORM_LIBRARIES} )
 	
 ################
 # Finish setup # 
