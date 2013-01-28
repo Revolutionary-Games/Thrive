@@ -101,8 +101,10 @@ bool Main::go(void)
  
     // Create the camera
     mCamera = mSceneMgr->createCamera("PlayerCam");
-    mCamera->setPosition(Ogre::Vector3(0,0,80));
-    mCamera->lookAt(Ogre::Vector3(0,0,-300));
+    mCamera->setPosition(Ogre::Vector3(0,10,0));
+    Ogre::Quaternion Quat = Ogre::Quaternion::IDENTITY;
+    Quat.FromAngleAxis(Ogre::Radian(-1.157), Ogre::Vector3::UNIT_X);
+    mCamera->setOrientation(Quat);
     mCamera->setNearClipDistance(5);
  
     // Create one viewport, entire window
@@ -112,11 +114,6 @@ bool Main::go(void)
     // Alter the camera aspect ratio to match the viewport
     mCamera->setAspectRatio(
         Ogre::Real(vp->getActualWidth()) / Ogre::Real(vp->getActualHeight()));
-//
-//    // Ogre head for testing
-//    Ogre::Entity* ogreHead = mSceneMgr->createEntity("Head", "ogrehead.mesh");
-//    Ogre::SceneNode* headNode = mSceneMgr->getRootSceneNode()->createChildSceneNode();
-//    headNode->attachObject(ogreHead);
     
     // Set ambient light
     mSceneMgr->setAmbientLight(Ogre::ColourValue(0.5, 0.5, 0.5));
@@ -126,13 +123,6 @@ bool Main::go(void)
     l->setPosition(20,80,50);
  
     Ogre::LogManager::getSingletonPtr()->logMessage("*** Initializing OIS ***");
-//    std::shared_ptr<Ogre::String> abc(new Ogre::String("hi"));
-//    Ogre::LogManager::getSingletonPtr()->logMessage(*abc);
-//    *abc = "bye";
-//    Ogre::LogManager::getSingletonPtr()->logMessage(*abc);
-//    abc = new Ogre::String("foobar");
-//    Ogre::LogManager::getSingletonPtr()->logMessage(*abc);
-    Ogre::LogManager::getSingletonPtr()->logMessage("...............");
     OIS::ParamList pl;
     size_t windowHnd = 0;
     std::ostringstream windowHndStr;
@@ -152,6 +142,7 @@ bool Main::go(void)
     //Register as a Window listener
     Ogre::WindowEventUtilities::addWindowEventListener(mWindow, this);
  
+    // Create our World.  All this does right now is set the background (a sky plane)
     mWorld = new World(mSceneMgr);
     
     mRoot->addFrameListener(this);

@@ -1,5 +1,4 @@
 #include "World.h"
-#include <memory>
 
 World::World(Ogre::SceneManager* sceneMgr)
         :   mSceneMgr(sceneMgr)
@@ -14,12 +13,5 @@ World::~World()
 
 bool World::setBackground(Ogre::String materialName)
 {
-    mSceneMgr->setSkyPlane(true,mBackgroundPlane,materialName,10,15);
+    mSceneMgr->setSkyPlane(true,mBackgroundPlane,materialName,1,10);
 }
-
-//bool World::mousePressed(const OIS::MouseEvent& arg, OIS::MouseButtonID id)
-//{
-//    if (id == OIS::MouseButtonID::MB_Right)
-//    {
-//    }
-//}
