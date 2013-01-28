@@ -1,6 +1,7 @@
 add_subdirectory(CellStage)
 
 add_sources(
-	Main.h 
+	Thrive.h 
+        Thrive.cpp
 	Main.cpp
 	)
