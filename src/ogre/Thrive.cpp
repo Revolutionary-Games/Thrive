@@ -25,6 +25,8 @@ This source file is part of the
 #include <OgreRenderWindow.h>
 #include <OgreEntity.h>
 #include <OgreWindowEventUtilities.h>
+
+#include <math.h>
  
 //-------------------------------------------------------------------------------------
 Thrive::Thrive(void)
@@ -130,6 +132,9 @@ bool Thrive::go(void)
     l->setPosition(20,80,50);
  
     Ogre::LogManager::getSingletonPtr()->logMessage("*** Initializing OIS ***");
+    Ogre::LogManager::getSingletonPtr()->logMessage(Ogre::StringConverter::toString(fmodf(.4f,-1.0f)));
+    Ogre::LogManager::getSingletonPtr()->logMessage(Ogre::StringConverter::toString(fmodf(-1.4f,-1.0f)));
+    Ogre::LogManager::getSingletonPtr()->logMessage(Ogre::StringConverter::toString(fmodf(-.4f,-1.0f)));
     OIS::ParamList pl;
     size_t windowHnd = 0;
     std::ostringstream windowHndStr;
@@ -217,7 +222,7 @@ bool Thrive::frameRenderingQueued(const Ogre::FrameEvent& evt)
 
     Ogre::Vector3 abc = mCamNode->getPosition();
     Ogre::LogManager::getSingletonPtr()->logMessage(Ogre::StringConverter::toString(abc));
-    mWorld->Update(abc);
+    mWorld->Update(mCamNode->getPosition());
 
     if(mKeyboard->isKeyDown(OIS::KC_ESCAPE))
         return false;

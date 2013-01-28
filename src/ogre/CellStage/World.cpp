@@ -31,6 +31,10 @@ bool World::Update(Ogre::Vector3 camNodePosition)
     Ogre::Real x = fmodf(scaledCamPos.x, 1.0f);
     Ogre::Real y = fmodf(scaledCamPos.y, 1.0f);
     
+    // Correct negative modulos
+    x = x < 0 ? 1 + x : x;
+    y = y < 0 ? 1 + y : y;
+    
     Ogre::Vector3 basePos(scaledCamPos.x - x, scaledCamPos.y - y, 0);
     basePos.x += 0.5f;
     basePos.y += 0.5f;
