@@ -13,5 +13,5 @@ World::~World()
 
 bool World::setBackground(Ogre::String materialName)
 {
-    mSceneMgr->setSkyPlane(true,mBackgroundPlane,materialName,2,20);
+    mSceneMgr->setSkyPlane(true,mBackgroundPlane,materialName,10,10);
 }

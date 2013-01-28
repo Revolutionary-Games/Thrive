@@ -198,7 +198,19 @@ bool Thrive::frameRenderingQueued(const Ogre::FrameEvent& evt)
     //Need to capture/update each device
     mKeyboard->capture();
     mMouse->capture();
-     
+    
+    Ogre::Vector3 Move;
+    if(mKeyboard->isKeyDown(OIS::KC_LEFT))
+        Move += Ogre::Vector3::NEGATIVE_UNIT_X;
+    if(mKeyboard->isKeyDown(OIS::KC_RIGHT))
+        Move += Ogre::Vector3::UNIT_X;
+    if(mKeyboard->isKeyDown(OIS::KC_UP))
+        Move += Ogre::Vector3::NEGATIVE_UNIT_Z;
+    if(mKeyboard->isKeyDown(OIS::KC_DOWN))
+        Move += Ogre::Vector3::UNIT_Z;
+    mCamNode->translate(Move * evt.timeSinceLastFrame, Ogre::SceneNode::TransformSpace::TS_WORLD);
+
+ 
     if(mKeyboard->isKeyDown(OIS::KC_ESCAPE))
         return false;
  
