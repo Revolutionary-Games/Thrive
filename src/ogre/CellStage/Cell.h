@@ -14,10 +14,12 @@ class Cell  : public Ogre::FrameListener
     protected:
         // Ogre::FrameListener
         virtual bool frameRenderingQueued(const Ogre::FrameEvent& evt);
-
+        virtual bool Update(Ogre::Real deltaTime);
+        
     private:
         Ogre::Entity*           mEntity;
         Ogre::SceneNode*        mNode;
+        Ogre::Vector3           mVelocity;
 };
 
 
