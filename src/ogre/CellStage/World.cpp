@@ -11,7 +11,7 @@ World::World(Ogre::SceneManager* sceneMgr)
         mBackgroundEnt[i] = mSceneMgr->createEntity(Ogre::SceneManager::PrefabType::PT_PLANE);
         mBackgroundNode[i] = mSceneMgr->getRootSceneNode()->createChildSceneNode();
         mBackgroundNode[i]->attachObject(mBackgroundEnt[i]);
-        mBackgroundNode[i]->setScale(0.1f * Ogre::Vector3::UNIT_SCALE);
+        mBackgroundNode[i]->setScale(Ogre::Vector3::UNIT_SCALE);
     }
     setBackground("Background/Blue1");
     Update(Ogre::Vector3::ZERO);
@@ -25,13 +25,15 @@ World::~World()
 
 bool World::Update(Ogre::Vector3 camNodePosition)
 {
-    Ogre::Real Spacing = 21.0f;
+    Ogre::Real Spacing = 200.0f;
     
     Ogre::Vector3 scaledCamPos = camNodePosition / Spacing;
     Ogre::Real x = fmodf(scaledCamPos.x, 1.0f);
     Ogre::Real y = fmodf(scaledCamPos.y, 1.0f);
     
     Ogre::Vector3 basePos(scaledCamPos.x - x, scaledCamPos.y - y, 0);
+    basePos.x += 0.5f;
+    basePos.y += 0.5f;
     basePos *= Spacing;
     
     mBackgroundNode[0]->setPosition(basePos);
@@ -74,6 +76,8 @@ bool World::Update(Ogre::Vector3 camNodePosition)
 
 bool World::setBackground(Ogre::String materialName)
 {
+//    for (int i = 0; i < 4; i++)
+//        mBackgroundEnt[i]->setMaterialName(materialName);
     mBackgroundEnt[0]->setMaterialName(materialName);
     mBackgroundEnt[1]->setMaterialName("Background/Brown1");
     mBackgroundEnt[2]->setMaterialName("Background/Red1");
