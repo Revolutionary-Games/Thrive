@@ -10,11 +10,11 @@
 #include <OISMouse.h>
 #include <OgreWindowEventUtilities.h>
  
-class Main : public Ogre::WindowEventListener, public Ogre::FrameListener
+class Thrive : public Ogre::WindowEventListener, public Ogre::FrameListener
 {
 public:
-    Main(void);
-    virtual ~Main(void);
+    Thrive(void);
+    virtual ~Thrive(void);
     bool go(void);
     
 protected:
