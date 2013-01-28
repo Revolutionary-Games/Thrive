@@ -28,7 +28,6 @@ bool Cell::Update(Ogre::Real deltaTime)
     mVelocity.x += Ogre::Math::SymmetricRandom() * 5 * deltaTime;
     mVelocity.y += Ogre::Math::SymmetricRandom() * 5 * deltaTime;
     
-//    Ogre::Vector3 Move(Ogre::Math::SymmetricRandom(),0,Ogre::Math::SymmetricRandom());
     mNode->translate(mVelocity * 5 * deltaTime, Ogre::SceneNode::TransformSpace::TS_WORLD);
     
     return true;
