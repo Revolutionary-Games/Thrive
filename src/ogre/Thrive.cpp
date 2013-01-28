@@ -103,9 +103,9 @@ bool Thrive::go(void)
     // Create the camera
     mCamera = mSceneMgr->createCamera("PlayerCam");
     mCamNode = mSceneMgr->getRootSceneNode()->createChildSceneNode(
-            "MainCameraNode", Ogre::Vector3(0,20,0),Ogre::Quaternion::IDENTITY);
+            "MainCameraNode", Ogre::Vector3(0,0,30),Ogre::Quaternion::IDENTITY);
     mCamNode->attachObject(mCamera);
-    mCamNode->lookAt(Ogre::Vector3::ZERO,Ogre::SceneNode::TransformSpace::TS_WORLD);
+//    mCamNode->lookAt(Ogre::Vector3::ZERO,Ogre::SceneNode::TransformSpace::TS_WORLD);
 //    mCamera->setPosition(Ogre::Vector3(0,20,0));
 //    mCamera->lookAt(Ogre::Vector3::NEGATIVE_UNIT_Y);
 //    Ogre::Quaternion Quat = Ogre::Quaternion::IDENTITY;
@@ -152,8 +152,9 @@ bool Thrive::go(void)
     // Create our World.  All this does right now is set the background (a sky plane)
     mWorld = new World(mSceneMgr);
     
-    mTestCell = new Cell(mSceneMgr);
-    
+    mTestCell = new Cell(mSceneMgr, Ogre::Vector3::ZERO);
+    mTestCell2 = new Cell(mSceneMgr, Ogre::Vector3(10,0,0));
+
     mRoot->addFrameListener(this);
  
     mRoot->startRendering();
@@ -200,17 +201,24 @@ bool Thrive::frameRenderingQueued(const Ogre::FrameEvent& evt)
     mMouse->capture();
     
     Ogre::Vector3 Move;
-    if(mKeyboard->isKeyDown(OIS::KC_LEFT))
+    if(mKeyboard->isKeyDown(OIS::KC_A))
         Move += Ogre::Vector3::NEGATIVE_UNIT_X;
-    if(mKeyboard->isKeyDown(OIS::KC_RIGHT))
+    if(mKeyboard->isKeyDown(OIS::KC_D))
         Move += Ogre::Vector3::UNIT_X;
-    if(mKeyboard->isKeyDown(OIS::KC_UP))
+    if(mKeyboard->isKeyDown(OIS::KC_W))
+        Move += Ogre::Vector3::UNIT_Y;
+    if(mKeyboard->isKeyDown(OIS::KC_S))
+        Move += Ogre::Vector3::NEGATIVE_UNIT_Y;
+    if(mKeyboard->isKeyDown(OIS::KC_R))
         Move += Ogre::Vector3::NEGATIVE_UNIT_Z;
-    if(mKeyboard->isKeyDown(OIS::KC_DOWN))
+    if(mKeyboard->isKeyDown(OIS::KC_F))
         Move += Ogre::Vector3::UNIT_Z;
-    mCamNode->translate(Move * evt.timeSinceLastFrame, Ogre::SceneNode::TransformSpace::TS_WORLD);
+    mCamNode->translate(Move * 8 * evt.timeSinceLastFrame, Ogre::SceneNode::TransformSpace::TS_WORLD);
 
- 
+    Ogre::Vector3 abc = mCamNode->getPosition();
+    Ogre::LogManager::getSingletonPtr()->logMessage(Ogre::StringConverter::toString(abc));
+    mWorld->Update(abc);
+
     if(mKeyboard->isKeyDown(OIS::KC_ESCAPE))
         return false;
  
