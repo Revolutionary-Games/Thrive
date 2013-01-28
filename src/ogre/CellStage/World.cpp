@@ -11,7 +11,7 @@ World::World(Ogre::SceneManager* sceneMgr)
         mBackgroundEnt[i] = mSceneMgr->createEntity(Ogre::SceneManager::PrefabType::PT_PLANE);
         mBackgroundNode[i] = mSceneMgr->getRootSceneNode()->createChildSceneNode();
         mBackgroundNode[i]->attachObject(mBackgroundEnt[i]);
-        mBackgroundNode[i]->setScale(Ogre::Vector3::UNIT_SCALE);
+        mBackgroundNode[i]->setScale(0.1f * Ogre::Vector3::UNIT_SCALE);
     }
     setBackground("Background/Blue1");
     Update(Ogre::Vector3::ZERO);
@@ -25,7 +25,7 @@ World::~World()
 
 bool World::Update(Ogre::Vector3 camNodePosition)
 {
-    Ogre::Real Spacing = 200.0f;
+    Ogre::Real Spacing = 20.0f;
     
     Ogre::Vector3 scaledCamPos = camNodePosition / Spacing;
     Ogre::Real x = fmodf(scaledCamPos.x, 1.0f);
