@@ -201,11 +201,12 @@ bool Thrive::frameRenderingQueued(const Ogre::FrameEvent& evt)
     if(mWindow->isClosed())
         return false;
  
-    //Need to capture/update each device
+    // Capture/update each device
     mKeyboard->capture();
     mMouse->capture();
     
-    Ogre::Vector3 Move;
+    // Move camera
+    Ogre::Vector3 Move = Ogre::Vector3::ZERO;
     if(mKeyboard->isKeyDown(OIS::KC_A))
         Move += Ogre::Vector3::NEGATIVE_UNIT_X;
     if(mKeyboard->isKeyDown(OIS::KC_D))
@@ -219,9 +220,8 @@ bool Thrive::frameRenderingQueued(const Ogre::FrameEvent& evt)
     if(mKeyboard->isKeyDown(OIS::KC_F))
         Move += Ogre::Vector3::UNIT_Z;
     mCamNode->translate(Move * 8 * evt.timeSinceLastFrame, Ogre::SceneNode::TransformSpace::TS_WORLD);
-
-    Ogre::Vector3 abc = mCamNode->getPosition();
-    Ogre::LogManager::getSingletonPtr()->logMessage(Ogre::StringConverter::toString(abc));
+    
+    // Reposition background planes
     mWorld->Update(mCamNode->getPosition());
 
     if(mKeyboard->isKeyDown(OIS::KC_ESCAPE))
