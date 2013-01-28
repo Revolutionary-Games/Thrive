@@ -2,7 +2,8 @@
 #define __BasicTutorial6_h_
 
 #include "CellStage/World.h"
- 
+#include "CellStage/Cell.h"
+
 #include <OgreRoot.h>
 #include <OISEvents.h>
 #include <OISInputManager.h>
@@ -32,6 +33,7 @@ private:
     Ogre::RenderWindow* mWindow;
     Ogre::SceneManager* mSceneMgr;
     Ogre::Camera*       mCamera;
+    Ogre::SceneNode*    mCamNode;
  
     // OIS Input devices26
     OIS::InputManager*  mInputManager;
@@ -40,6 +42,7 @@ private:
     
     // World
     World*              mWorld;
+    Cell*               mTestCell;
 };
  
 #endif // #ifndef __BasicTutorial6_h_
