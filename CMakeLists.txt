@@ -146,6 +146,9 @@ set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake_modules")
 # Finish setup # 
 ################
 
+# Compile using c++11
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=gnu++0x")
+
 # add subdirectories
 add_subdirectory(src)
 

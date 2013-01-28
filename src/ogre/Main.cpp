@@ -14,7 +14,7 @@ This source file is part of the
       http://www.ogre3d.org/tikiwiki/
 -----------------------------------------------------------------------------
 */
-#include "BasicTutorial6.h"
+#include "Main.h"
  
 #include <OgreException.h>
 #include <OgreConfigFile.h>
@@ -26,7 +26,7 @@ This source file is part of the
 #include <OgreWindowEventUtilities.h>
  
 //-------------------------------------------------------------------------------------
-BasicTutorial6::BasicTutorial6(void)
+Main::Main(void)
     : mRoot(0),
     mResourcesCfg(Ogre::StringUtil::BLANK),
     mPluginsCfg(Ogre::StringUtil::BLANK),
@@ -36,15 +36,16 @@ BasicTutorial6::BasicTutorial6(void)
 {
 }
 //-------------------------------------------------------------------------------------
-BasicTutorial6::~BasicTutorial6(void)
+Main::~Main(void)
 {
     //Remove ourself as a Window listener
     Ogre::WindowEventUtilities::removeWindowEventListener(mWindow, this);
     windowClosed(mWindow);
     delete mRoot;
+    delete mWorld;
 }
  
-bool BasicTutorial6::go(void)
+bool Main::go(void)
 {
 #ifdef _DEBUG
     mResourcesCfg = "resources_d.cfg";
@@ -86,13 +87,15 @@ bool BasicTutorial6::go(void)
         return false;
     }
  
-    mWindow = mRoot->initialise(true, "BasicTutorial6 Render Window");
+    mWindow = mRoot->initialise(true, "Thrive");
  
     // Set default mipmap level (NB some APIs ignore this)
     Ogre::TextureManager::getSingleton().setDefaultNumMipmaps(5);
     // initialise all resource groups
     Ogre::ResourceGroupManager::getSingleton().initialiseAllResourceGroups();
  
+    /////////////////////////////////////////////////////////////////
+    
     // Create the SceneManager, in this case a generic one
     mSceneMgr = mRoot->createSceneManager("DefaultSceneManager");
  
@@ -109,12 +112,12 @@ bool BasicTutorial6::go(void)
     // Alter the camera aspect ratio to match the viewport
     mCamera->setAspectRatio(
         Ogre::Real(vp->getActualWidth()) / Ogre::Real(vp->getActualHeight()));
-
-    // Ogre head for testing
-    Ogre::Entity* ogreHead = mSceneMgr->createEntity("Head", "ogrehead.mesh");
-    Ogre::SceneNode* headNode = mSceneMgr->getRootSceneNode()->createChildSceneNode();
-    headNode->attachObject(ogreHead);
- 
+//
+//    // Ogre head for testing
+//    Ogre::Entity* ogreHead = mSceneMgr->createEntity("Head", "ogrehead.mesh");
+//    Ogre::SceneNode* headNode = mSceneMgr->getRootSceneNode()->createChildSceneNode();
+//    headNode->attachObject(ogreHead);
+    
     // Set ambient light
     mSceneMgr->setAmbientLight(Ogre::ColourValue(0.5, 0.5, 0.5));
  
@@ -123,6 +126,13 @@ bool BasicTutorial6::go(void)
     l->setPosition(20,80,50);
  
     Ogre::LogManager::getSingletonPtr()->logMessage("*** Initializing OIS ***");
+//    std::shared_ptr<Ogre::String> abc(new Ogre::String("hi"));
+//    Ogre::LogManager::getSingletonPtr()->logMessage(*abc);
+//    *abc = "bye";
+//    Ogre::LogManager::getSingletonPtr()->logMessage(*abc);
+//    abc = new Ogre::String("foobar");
+//    Ogre::LogManager::getSingletonPtr()->logMessage(*abc);
+    Ogre::LogManager::getSingletonPtr()->logMessage("...............");
     OIS::ParamList pl;
     size_t windowHnd = 0;
     std::ostringstream windowHndStr;
@@ -142,15 +152,17 @@ bool BasicTutorial6::go(void)
     //Register as a Window listener
     Ogre::WindowEventUtilities::addWindowEventListener(mWindow, this);
  
+    mWorld = new World(mSceneMgr);
+    
     mRoot->addFrameListener(this);
  
     mRoot->startRendering();
- 
+        
     return true;
 }
  
 //Adjust mouse clipping area
-void BasicTutorial6::windowResized(Ogre::RenderWindow* rw)
+void Main::windowResized(Ogre::RenderWindow* rw)
 {
     unsigned int width, height, depth;
     int left, top;
@@ -162,7 +174,7 @@ void BasicTutorial6::windowResized(Ogre::RenderWindow* rw)
 }
  
 //Unattach OIS before window shutdown (very important under Linux)
-void BasicTutorial6::windowClosed(Ogre::RenderWindow* rw)
+void Main::windowClosed(Ogre::RenderWindow* rw)
 {
     //Only close for window that created OIS (the main window in these demos)
     if( rw == mWindow )
@@ -178,7 +190,7 @@ void BasicTutorial6::windowClosed(Ogre::RenderWindow* rw)
     }
 }
  
-bool BasicTutorial6::frameRenderingQueued(const Ogre::FrameEvent& evt)
+bool Main::frameRenderingQueued(const Ogre::FrameEvent& evt)
 {
     if(mWindow->isClosed())
         return false;
@@ -192,41 +204,6 @@ bool BasicTutorial6::frameRenderingQueued(const Ogre::FrameEvent& evt)
  
     return true;
 }
-
-bool BasicTutorial6::switchBackground()
-{
-    
-}
-
-//bool BasicTutorial6::mouseMoved( const OIS::MouseEvent &arg )
-//{
-//    MyGUI::InputManager::getInstance().injectMouseMove(arg.state.X.abs, arg.state.Y.abs, arg.state.Z.abs);
-//    //...
-//}
-// 
-//bool BasicTutorial6::mousePressed( const OIS::MouseEvent &arg, OIS::MouseButtonID id )
-//{
-//    MyGUI::InputManager::getInstance().injectMousePress(arg.state.X.abs, arg.state.Y.abs, MyGUI::MouseButton::Enum(id));
-//    //...
-//}
-// 
-//bool BasicTutorial6::mouseReleased( const OIS::MouseEvent &arg, OIS::MouseButtonID id )
-//{
-//    MyGUI::InputManager::getInstance().injectMouseRelease(arg.state.X.abs, arg.state.Y.abs, MyGUI::MouseButton::Enum(id));
-//    //...
-//}
-// 
-//bool BasicTutorial6::keyPressed( const OIS::KeyEvent &arg )
-//{
-//    MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::Enum(arg.key), arg.text);
-//    //...
-//}
-// 
-//bool BasicTutorial6::keyReleased( const OIS::KeyEvent &arg )
-//{
-//    MyGUI::InputManager::getInstance().injectKeyRelease(MyGUI::KeyCode::Enum(arg.key));
-//    //...
-//} 
  
 #if OGRE_PLATFORM == OGRE_PLATFORM_WIN32
 #define WIN32_LEAN_AND_MEAN
@@ -244,7 +221,7 @@ extern "C" {
 #endif
     {
         // Create application object
-        BasicTutorial6 app;
+        Main app;
  
         try {
             app.go();

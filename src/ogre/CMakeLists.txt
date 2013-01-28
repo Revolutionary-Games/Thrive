@@ -1,4 +1,6 @@
+add_subdirectory(CellStage)
+
 add_sources(
-	BasicTutorial6.h 
-	BasicTutorial6.cpp
+	Main.h 
+	Main.cpp
 	)
