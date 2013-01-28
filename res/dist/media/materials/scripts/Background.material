@@ -24,7 +24,71 @@ material Background/Blue2
 
                         texture_unit
                         {
-                                texture "Background Blue #2.png"
+                                texture "background/Background Blue #2.png"
+                        }
+                }
+        }
+}
+
+material Background/Brown1
+{
+        technique
+        {  
+                pass
+                {
+                        ambient 1.0 1.0 1.0
+
+                        texture_unit
+                        {
+                                texture "background/Background Brown #1.png"
+                        }
+                }
+        }
+}
+
+material Background/Brown2
+{
+        technique
+        {  
+                pass
+                {
+                        ambient 1.0 1.0 1.0
+
+                        texture_unit
+                        {
+                                texture "background/Background Brown #2.png"
+                        }
+                }
+        }
+}
+
+material Background/Green1
+{
+        technique
+        {  
+                pass
+                {
+                        ambient 1.0 1.0 1.0
+
+                        texture_unit
+                        {
+                                texture "background/Background Green #1.png"
+                        }
+                }
+        }
+}
+
+material Background/Red1
+{
+        technique
+        {  
+                pass
+                {
+                        ambient 1.0 1.0 1.0
+
+                        texture_unit
+                        {
+                                texture "background/Background Red #1.png"
                         }
                 }
         }
