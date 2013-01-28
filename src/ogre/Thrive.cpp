@@ -99,14 +99,20 @@ bool Thrive::go(void)
     
     // Create the SceneManager, in this case a generic one
     mSceneMgr = mRoot->createSceneManager("DefaultSceneManager");
- 
+    
     // Create the camera
     mCamera = mSceneMgr->createCamera("PlayerCam");
-    mCamera->setPosition(Ogre::Vector3(0,10,0));
-    Ogre::Quaternion Quat = Ogre::Quaternion::IDENTITY;
-    Quat.FromAngleAxis(Ogre::Radian(-1.157), Ogre::Vector3::UNIT_X);
-    mCamera->setOrientation(Quat);
+    mCamNode = mSceneMgr->getRootSceneNode()->createChildSceneNode(
+            "MainCameraNode", Ogre::Vector3(0,20,0),Ogre::Quaternion::IDENTITY);
+    mCamNode->attachObject(mCamera);
+    mCamNode->lookAt(Ogre::Vector3::ZERO,Ogre::SceneNode::TransformSpace::TS_WORLD);
+//    mCamera->setPosition(Ogre::Vector3(0,20,0));
+//    mCamera->lookAt(Ogre::Vector3::NEGATIVE_UNIT_Y);
+//    Ogre::Quaternion Quat = Ogre::Quaternion::IDENTITY;
+//    Quat.FromAngleAxis(Ogre::Radian(-1.157), Ogre::Vector3::UNIT_X);
+//    mCamera->setOrientation(Quat);
     mCamera->setNearClipDistance(5);
+    mCamera->setFarClipDistance(2000);
  
     // Create one viewport, entire window
     Ogre::Viewport* vp = mWindow->addViewport(mCamera);
@@ -145,6 +151,8 @@ bool Thrive::go(void)
  
     // Create our World.  All this does right now is set the background (a sky plane)
     mWorld = new World(mSceneMgr);
+    
+    mTestCell = new Cell(mSceneMgr);
     
     mRoot->addFrameListener(this);
  
