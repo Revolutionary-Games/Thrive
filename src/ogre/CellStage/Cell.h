@@ -8,7 +8,7 @@
 class Cell  : public Ogre::FrameListener
 {
     public:
-        Cell(Ogre::SceneManager*);
+        Cell(Ogre::SceneManager*, Ogre::Vector3);
         ~Cell(void);
 
     protected:

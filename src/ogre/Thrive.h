@@ -43,6 +43,7 @@ private:
     // World
     World*              mWorld;
     Cell*               mTestCell;
+    Cell*               mTestCell2;
 };
  
 #endif // #ifndef __BasicTutorial6_h_
