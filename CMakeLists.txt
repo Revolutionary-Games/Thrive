@@ -223,6 +223,7 @@ if(WIN32)
 		# ${OGRE_PLUGIN_DIR_REL}/RenderSystem_Direct3D9.dll
 		${OGRE_PLUGIN_DIR_REL}/RenderSystem_GL.dll
 		${OGRE_PLUGIN_DIR_REL}/OIS.dll
+		${OGRE_PLUGIN_DIR_REL}/cg.dll
 		DESTINATION bin
 		CONFIGURATIONS Release RelWithDebInfo
 	)
@@ -231,9 +232,33 @@ if(WIN32)
 		# ${OGRE_PLUGIN_DIR_DBG}/RenderSystem_Direct3D9_d.dll
 		${OGRE_PLUGIN_DIR_DBG}/RenderSystem_GL_d.dll
 		${OGRE_PLUGIN_DIR_DBG}/OIS_d.dll
+		${OGRE_PLUGIN_DIR_DBG}/cg.dll
 		DESTINATION bin
 		CONFIGURATIONS Debug
 	)
+
+        # Install plugins
+        install(FILES ${OGRE_PLUGIN_DIR_REL}/Plugin_BSPSceneManager.dll
+            ${OGRE_PLUGIN_DIR_REL}/Plugin_CgProgramManager.dll
+            ${OGRE_PLUGIN_DIR_REL}/Plugin_OctreeSceneManager.dll
+            ${OGRE_PLUGIN_DIR_REL}/Plugin_OctreeZone.dll
+            ${OGRE_PLUGIN_DIR_REL}/Plugin_ParticleFX.dll
+            ${OGRE_PLUGIN_DIR_REL}/Plugin_PCZSceneManager.dll
+            ${OGRE_PLUGIN_DIR_REL}/RenderSystem_GL.dll
+            DESTINATION bin/plugins
+            CONFIGURATIONS Release RelWithDebInfo
+        )
+
+        install(FILES ${OGRE_PLUGIN_DIR_DBG}/Plugin_BSPSceneManager_d.dll
+            ${OGRE_PLUGIN_DIR_DBG}/Plugin_CgProgramManager_d.dll
+            ${OGRE_PLUGIN_DIR_DBG}/Plugin_OctreeSceneManager_d.dll
+            ${OGRE_PLUGIN_DIR_DBG}/Plugin_OctreeZone_d.dll
+            ${OGRE_PLUGIN_DIR_DBG}/Plugin_ParticleFX_d.dll
+            ${OGRE_PLUGIN_DIR_DBG}/Plugin_PCZSceneManager_d.dll
+            ${OGRE_PLUGIN_DIR_DBG}/RenderSystem_GL_d.dll
+            DESTINATION bin/plugins
+            CONFIGURATIONS Debug
+        )
 
    # as of sdk 1.7.2 we need to copy the boost dll's as well
    # because they're not linked statically (it worked with 1.7.1 though)
