@@ -198,7 +198,7 @@ bool Thrive::frameRenderingQueued(const Ogre::FrameEvent& evt)
     //Need to capture/update each device
     mKeyboard->capture();
     mMouse->capture();
- 
+     
     if(mKeyboard->isKeyDown(OIS::KC_ESCAPE))
         return false;
  
