@@ -1,0 +1,31 @@
+material Background/Blue1
+{
+        technique
+        {  
+                pass
+                {
+                        ambient 1.0 1.0 1.0
+
+                        texture_unit
+                        {
+                                texture "background/Background Blue #1.png"
+                        }
+                }
+        }
+}
+
+material Background/Blue2
+{
+        technique
+        {  
+                pass
+                {
+                        ambient 1.0 1.0 1.0
+
+                        texture_unit
+                        {
+                                texture "Background Blue #2.png"
+                        }
+                }
+        }
+}
