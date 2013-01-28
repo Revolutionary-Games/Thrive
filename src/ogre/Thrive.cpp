@@ -221,6 +221,10 @@ bool Thrive::frameRenderingQueued(const Ogre::FrameEvent& evt)
         Move += Ogre::Vector3::UNIT_Z;
     mCamNode->translate(Move * 8 * evt.timeSinceLastFrame, Ogre::SceneNode::TransformSpace::TS_WORLD);
     
+    OIS::MouseState ms = mMouse->getMouseState();
+    if(ms.buttonDown(OIS::MouseButtonID::MB_Left))
+        mWorld->setBackground("Background/Blue1");
+    
     // Reposition background planes
     mWorld->Update(mCamNode->getPosition());
 
