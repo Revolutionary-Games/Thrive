@@ -10,14 +10,16 @@ class World
         World(Ogre::SceneManager*);
         virtual ~World(void);
         virtual bool Update(Ogre::Vector3 camNodePosition);
-        
-    protected:
         bool setBackground(Ogre::String materialName);
+
+    protected:
         
     private:
         Ogre::SceneManager*     mSceneMgr;
-        Ogre::Entity**           mBackgroundEnt;
-        Ogre::SceneNode**        mBackgroundNode;
+        Ogre::Entity**          mBackgroundEnt;
+        Ogre::SceneNode**       mBackgroundNode;
+        int                     mBgIndex;
+        Ogre::String*          mBgList;
 };
 
 #endif	/* WORLD_H */
