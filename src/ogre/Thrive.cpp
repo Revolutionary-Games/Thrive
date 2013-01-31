@@ -231,8 +231,8 @@ bool Thrive::frameRenderingQueued(const Ogre::FrameEvent& evt)
 			mWorld->setBackground("Background/Blue1");
 			isMousePressed = true;
 		}
-	}
-
+	}mTestCell->Update(evt.timeSinceLastFrame);
+	mTestCell2->Update(evt.timeSinceLastFrame);
     // Reposition background planes
     mWorld->Update(mCamNode->getPosition());
 
