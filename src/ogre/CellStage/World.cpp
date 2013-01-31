@@ -5,9 +5,9 @@ World::World(Ogre::SceneManager* sceneMgr)
         :   mSceneMgr(sceneMgr),
         mBgIndex(0)
 {
-    mBackgroundEnt = new Ogre::Entity*[4];
-    mBackgroundNode = new Ogre::SceneNode*[4];
-    for(int i = 0; i < 4; i++)
+    mBackgroundEnt = new Ogre::Entity*[9];
+    mBackgroundNode = new Ogre::SceneNode*[9];
+    for(int i = 0; i < 9; i++)
     {
         mBackgroundEnt[i] = mSceneMgr->createEntity(Ogre::SceneManager::PrefabType::PT_PLANE);
         mBackgroundNode[i] = mSceneMgr->getRootSceneNode()->createChildSceneNode();
@@ -16,7 +16,7 @@ World::World(Ogre::SceneManager* sceneMgr)
         // 1:1 scaling (y=3 for 4:3 scaling).  A plane primitive appears to be 200x200 units before scaling.
         scale.x *= 4.0f;
         scale.y *= 4.0f;
-        scale *= 0.025f;
+        scale *= 0.25f;
         mBackgroundNode[i]->setScale(scale);
     }
     setBackground("Background/Blue1");
@@ -32,8 +32,8 @@ World::~World()
 bool World::Update(Ogre::Vector3 camNodePosition)
 {
     // 1:1 scaling
-    Ogre::Real SpacingX = 20.0f;
-    Ogre::Real SpacingY = 20.0f;
+    Ogre::Real SpacingX = 200.0f;
+    Ogre::Real SpacingY = 200.0f;
     
     Ogre::Vector3 scaledCamPos = camNodePosition;
     scaledCamPos.x /= SpacingX;
@@ -46,12 +46,21 @@ bool World::Update(Ogre::Vector3 camNodePosition)
     x = x < 0 ? 1 + x : x;
     y = y < 0 ? 1 + y : y;
     
-    Ogre::Vector3 basePos(scaledCamPos.x - x, scaledCamPos.y - y, 0);
+    Ogre::Vector3 basePos(scaledCamPos.x - x, scaledCamPos.y - y, -270);
     basePos.x += 0.5f;
     basePos.y += 0.5f;
     basePos.x *= SpacingX;
     basePos.y *= SpacingY;
     
+    for(int i=-1;i<=1;i++)
+    {
+        for (int j = -1; j <= 1; j++)
+        {
+            mBackgroundNode[3*(i+1)+(j+1)]->setPosition(basePos + i * SpacingX * Ogre::Vector3::UNIT_X
+                                                        + j * SpacingY * Ogre::Vector3::UNIT_Y);
+        }
+    }
+    /*
     mBackgroundNode[0]->setPosition(basePos);
     
     if(x > .5f)
@@ -85,7 +94,7 @@ bool World::Update(Ogre::Vector3 camNodePosition)
             mBackgroundNode[3]->setPosition(basePos - SpacingX * Ogre::Vector3::UNIT_X
                                                     - SpacingY * Ogre::Vector3::UNIT_Y);
         }
-    }
+    }*/
     
     return true;
 }
@@ -118,7 +127,7 @@ bool World::setBackground(Ogre::String materialName)
         default:
             break;
     }
-    for (int i = 0; i < 4; i++)
+    for (int i = 0; i < 9; i++)
         mBackgroundEnt[i]->setMaterialName(Mat);
 //    mBackgroundEnt[0]->setMaterialName(materialName);
 //    mBackgroundEnt[1]->setMaterialName("Background/Brown2");
