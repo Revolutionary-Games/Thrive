@@ -129,7 +129,7 @@ bool Thrive::go(void)
 
     // Create a light
     Ogre::Light* l = mSceneMgr->createLight("MainLight");
-    l->setPosition(20,80,50);
+    l->setPosition(0,0,10);
 
     Ogre::LogManager::getSingletonPtr()->logMessage("*** Initializing OIS ***");
     Ogre::LogManager::getSingletonPtr()->logMessage(Ogre::StringConverter::toString(fmodf(.4f,-1.0f)));
@@ -159,6 +159,8 @@ bool Thrive::go(void)
 
     mTestCell = new Cell(mSceneMgr, Ogre::Vector3::ZERO);
     mTestCell2 = new Cell(mSceneMgr, Ogre::Vector3(10,0,0));
+    mPlayerCell = new Cell (mSceneMgr, Ogre::Vector3(-10,0,0));
+    mPlayerCell->mEntity->setMaterialName("Examples/SphereMappedWater");
 
     mRoot->addFrameListener(this);
 
@@ -204,7 +206,7 @@ bool Thrive::frameRenderingQueued(const Ogre::FrameEvent& evt)
     // Capture/update each device
     mKeyboard->capture();
     mMouse->capture();
-    if (!isMousePressed){
+    //if (!isMousePressed){
     // Move camera
     Ogre::Vector3 Move = Ogre::Vector3::ZERO;
     if(mKeyboard->isKeyDown(OIS::KC_A))
@@ -219,10 +221,11 @@ bool Thrive::frameRenderingQueued(const Ogre::FrameEvent& evt)
         Move += Ogre::Vector3::NEGATIVE_UNIT_Z;
     if(mKeyboard->isKeyDown(OIS::KC_F))
         Move += Ogre::Vector3::UNIT_Z;
-    mCamNode->translate(Move * 8 * evt.timeSinceLastFrame, Ogre::SceneNode::TransformSpace::TS_WORLD);
-    }else{
-    	mCamNode->setPosition(mTestCell->mNode->getPosition()+Ogre::Vector3(0,0,30));
-    }
+    mPlayerCell->mVelocity+=Move*0.025;
+    //mCamNode->translate(Move * 8 * evt.timeSinceLastFrame, Ogre::SceneNode::TransformSpace::TS_WORLD);
+    //}else{
+    	//mCamNode->setPosition(mPlayerCell->mNode->getPosition()+Ogre::Vector3(0,0,30));
+    //}
     OIS::MouseState ms = mMouse->getMouseState();
 	if (isMousePressed) {
 		if (!ms.buttonDown(OIS::MouseButtonID::MB_Left)) {
@@ -235,6 +238,8 @@ bool Thrive::frameRenderingQueued(const Ogre::FrameEvent& evt)
 		}
 	}mTestCell->Update(evt.timeSinceLastFrame);
 	mTestCell2->Update(evt.timeSinceLastFrame);
+        mPlayerCell->Update(evt.timeSinceLastFrame);
+        mCamNode->setPosition(mPlayerCell->mNode->getPosition()+Ogre::Vector3(0,0,30));
     // Reposition background planes
     mWorld->Update(mCamNode->getPosition());
 
