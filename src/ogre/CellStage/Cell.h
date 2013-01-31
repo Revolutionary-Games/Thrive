@@ -10,15 +10,15 @@ class Cell  : public Ogre::FrameListener
     public:
         Cell(Ogre::SceneManager*, Ogre::Vector3);
         ~Cell(void);
+        Ogre::SceneNode*        mNode;
+        virtual bool Update(Ogre::Real deltaTime);
 
     protected:
         // Ogre::FrameListener
-        virtual bool frameRenderingQueued(const Ogre::FrameEvent& evt);
-        virtual bool Update(Ogre::Real deltaTime);
-        
+        //virtual bool frameRenderingQueued(const Ogre::FrameEvent& evt);
+           
     private:
-        Ogre::Entity*           mEntity;
-        Ogre::SceneNode*        mNode;
+        Ogre::Entity*           mEntity;  
         Ogre::Vector3           mVelocity;
 };
 
