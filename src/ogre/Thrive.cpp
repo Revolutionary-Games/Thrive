@@ -204,7 +204,7 @@ bool Thrive::frameRenderingQueued(const Ogre::FrameEvent& evt)
     // Capture/update each device
     mKeyboard->capture();
     mMouse->capture();
-
+    if (!isMousePressed){
     // Move camera
     Ogre::Vector3 Move = Ogre::Vector3::ZERO;
     if(mKeyboard->isKeyDown(OIS::KC_A))
@@ -220,7 +220,9 @@ bool Thrive::frameRenderingQueued(const Ogre::FrameEvent& evt)
     if(mKeyboard->isKeyDown(OIS::KC_F))
         Move += Ogre::Vector3::UNIT_Z;
     mCamNode->translate(Move * 8 * evt.timeSinceLastFrame, Ogre::SceneNode::TransformSpace::TS_WORLD);
-
+    }else{
+    	mCamNode->setPosition(mTestCell->mNode->getPosition()+Ogre::Vector3(0,0,30));
+    }
     OIS::MouseState ms = mMouse->getMouseState();
 	if (isMousePressed) {
 		if (!ms.buttonDown(OIS::MouseButtonID::MB_Left)) {
