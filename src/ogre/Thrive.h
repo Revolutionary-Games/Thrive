@@ -47,6 +47,7 @@ private:
     World*              mWorld;
     Cell*               mTestCell;
     Cell*               mTestCell2;
+    Cell*               mPlayerCell;
 };
 
 #endif // #ifndef __BasicTutorial6_h_
