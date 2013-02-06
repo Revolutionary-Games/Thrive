@@ -4,6 +4,11 @@
 #include "CellStage/World.h"
 #include "CellStage/Cell.h"
 
+#include "entityframework/Engine.h"
+#include "entityframework/Entity.h"
+#include "entityframework/System.h"
+#include "entityframework/Component.h"
+
 #include <OgreRoot.h>
 #include <OISEvents.h>
 #include <OISInputManager.h>
@@ -34,6 +39,8 @@ private:
     Ogre::SceneManager* mSceneMgr;
     Ogre::Camera*       mCamera;
     Ogre::SceneNode*    mCamNode;
+    
+    
 
     // OIS Input devices26
     OIS::InputManager*  mInputManager;
@@ -48,6 +55,7 @@ private:
     Cell*               mTestCell;
     Cell*               mTestCell2;
     Cell*               mPlayerCell;
+    Engine*             engine;
 };
 
 #endif // #ifndef __BasicTutorial6_h_

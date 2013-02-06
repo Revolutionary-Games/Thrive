@@ -156,11 +156,55 @@ bool Thrive::go(void)
 
     // Create our World.  All this does right now is set the background (a sky plane)
     mWorld = new World(mSceneMgr);
-
+    /*
     mTestCell = new Cell(mSceneMgr, Ogre::Vector3::ZERO);
     mTestCell2 = new Cell(mSceneMgr, Ogre::Vector3(10,0,0));
     mPlayerCell = new Cell (mSceneMgr, Ogre::Vector3(-10,0,0));
     mPlayerCell->mEntity->setMaterialName("Examples/SphereMappedWater");
+    */
+    //create the engine object
+    engine = new Engine();
+    //create a cell object
+    Entity* mEntityCell = new Entity();
+    //create and fill components
+    OgreNodeComponent* oNComponent = new OgreNodeComponent();
+    oNComponent->node = mSceneMgr->getRootSceneNode()->createChildSceneNode(Ogre::Vector3::ZERO, Ogre::Quaternion::IDENTITY);
+    VelocityComponent* vComponent = new VelocityComponent();
+    vComponent->velocity = Ogre::Vector3::ZERO;
+    OgreEntityComponent* oEComponent = new OgreEntityComponent();
+    oEComponent->entity = mSceneMgr->createEntity(Ogre::SceneManager::PrefabType::PT_SPHERE);
+    oEComponent->entity->setMaterialName("Examples/SphereMappedRustySteel");
+    oNComponent->node->attachObject(oEComponent->entity);
+    oNComponent->node->setScale(0.1f * Ogre::Vector3::UNIT_SCALE);
+    //add components to the Entity
+    mEntityCell->add(oNComponent);
+    mEntityCell->add(vComponent);
+    mEntityCell->add(oEComponent);
+    //add component to engine
+    engine->addEntity(mEntityCell);
+    
+    //create a cel object
+    Entity* mEntityCell2 = new Entity();
+    //create and fill components
+    OgreNodeComponent* oNComponent2 = new OgreNodeComponent();
+    oNComponent2->node = mSceneMgr->getRootSceneNode()->createChildSceneNode(15.0f*Ogre::Vector3::NEGATIVE_UNIT_X, Ogre::Quaternion::IDENTITY);
+    VelocityComponent* vComponent2 = new VelocityComponent();
+    vComponent2->velocity = Ogre::Vector3::UNIT_X*1.0f;
+    OgreEntityComponent* oEComponent2 = new OgreEntityComponent();
+    oEComponent2->entity = mSceneMgr->createEntity(Ogre::SceneManager::PrefabType::PT_SPHERE);
+    oEComponent2->entity->setMaterialName("Examples/SphereMappedRustySteel");
+    oNComponent2->node->attachObject(oEComponent2->entity);
+    oNComponent2->node->setScale(0.1f * Ogre::Vector3::UNIT_SCALE);
+    //add components to the Entity
+    mEntityCell2->add(oNComponent2);
+    mEntityCell2->add(vComponent2);
+    mEntityCell2->add(oEComponent2);
+    //add component to engine
+    engine->addEntity(mEntityCell2);
+    
+    engine->addSystem(new MoveSystem(engine));
+    
+    
 
     mRoot->addFrameListener(this);
 
@@ -221,7 +265,7 @@ bool Thrive::frameRenderingQueued(const Ogre::FrameEvent& evt)
         Move += Ogre::Vector3::NEGATIVE_UNIT_Z;
     if(mKeyboard->isKeyDown(OIS::KC_F))
         Move += Ogre::Vector3::UNIT_Z;
-    mPlayerCell->mVelocity+=Move*0.025;
+    //mPlayerCell->mVelocity+=Move*0.025;
     //mCamNode->translate(Move * 8 * evt.timeSinceLastFrame, Ogre::SceneNode::TransformSpace::TS_WORLD);
     //}else{
     	//mCamNode->setPosition(mPlayerCell->mNode->getPosition()+Ogre::Vector3(0,0,30));
@@ -236,10 +280,12 @@ bool Thrive::frameRenderingQueued(const Ogre::FrameEvent& evt)
 			mWorld->setBackground("Background/Blue1");
 			isMousePressed = true;
 		}
-	}mTestCell->Update(evt.timeSinceLastFrame);
+	}
+      /*mTestCell->Update(evt.timeSinceLastFrame);
 	mTestCell2->Update(evt.timeSinceLastFrame);
-        mPlayerCell->Update(evt.timeSinceLastFrame);
-        mCamNode->setPosition(mPlayerCell->mNode->getPosition()+Ogre::Vector3(0,0,30));
+        mPlayerCell->Update(evt.timeSinceLastFrame);*/
+        engine->update(evt.timeSinceLastFrame);
+        //mCamNode->setPosition(mPlayerCell->mNode->getPosition()+Ogre::Vector3(0,0,30));
     // Reposition background planes
     mWorld->Update(mCamNode->getPosition());
 
