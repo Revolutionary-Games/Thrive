@@ -7,6 +7,7 @@ class Node
 {
 public:
     virtual ~Node(){}
+    virtual std::string getType() = 0;
 };
 
 class MoveNode : public Node
@@ -15,6 +16,7 @@ public:
     MoveNode();
     OgreNodeComponent* ogreNode;
     VelocityComponent* velocity;
+    std::string getType();  
 };
 
 class RenderNode : public Node
@@ -22,6 +24,7 @@ class RenderNode : public Node
 public:
     RenderNode();
     OgreEntityComponent* entity;
+    std::string getType();
 };
 
 
