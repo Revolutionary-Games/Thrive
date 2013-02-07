@@ -169,6 +169,7 @@ bool Thrive::go(void)
     //create and fill components
     OgreNodeComponent* oNComponent = new OgreNodeComponent();
     oNComponent->node = mSceneMgr->getRootSceneNode()->createChildSceneNode(Ogre::Vector3::ZERO, Ogre::Quaternion::IDENTITY);
+    playerNode = oNComponent->node;
     VelocityComponent* vComponent = new VelocityComponent();
     vComponent->velocity = Ogre::Vector3::ZERO;
     OgreEntityComponent* oEComponent = new OgreEntityComponent();
@@ -180,6 +181,10 @@ bool Thrive::go(void)
     mEntityCell->add(oNComponent);
     mEntityCell->add(vComponent);
     mEntityCell->add(oEComponent);
+    //create and add an AgentComponent
+    AgentComponent* aComponent = new AgentComponent();
+    aComponent->agent = (Agent*) new KeyboardAgent(mKeyboard);
+    mEntityCell->add(aComponent);
     //add component to engine
     engine->addEntity(mEntityCell);
     
@@ -203,6 +208,7 @@ bool Thrive::go(void)
     engine->addEntity(mEntityCell2);
     
     engine->addSystem(new MoveSystem(engine));
+    engine->addSystem(new ControllSystem(engine));
     
     
 
@@ -252,7 +258,7 @@ bool Thrive::frameRenderingQueued(const Ogre::FrameEvent& evt)
     mMouse->capture();
     //if (!isMousePressed){
     // Move camera
-    Ogre::Vector3 Move = Ogre::Vector3::ZERO;
+    /*Ogre::Vector3 Move = Ogre::Vector3::ZERO;
     if(mKeyboard->isKeyDown(OIS::KC_A))
         Move += Ogre::Vector3::NEGATIVE_UNIT_X;
     if(mKeyboard->isKeyDown(OIS::KC_D))
@@ -264,7 +270,7 @@ bool Thrive::frameRenderingQueued(const Ogre::FrameEvent& evt)
     if(mKeyboard->isKeyDown(OIS::KC_R))
         Move += Ogre::Vector3::NEGATIVE_UNIT_Z;
     if(mKeyboard->isKeyDown(OIS::KC_F))
-        Move += Ogre::Vector3::UNIT_Z;
+        Move += Ogre::Vector3::UNIT_Z;*/
     //mPlayerCell->mVelocity+=Move*0.025;
     //mCamNode->translate(Move * 8 * evt.timeSinceLastFrame, Ogre::SceneNode::TransformSpace::TS_WORLD);
     //}else{
@@ -285,7 +291,7 @@ bool Thrive::frameRenderingQueued(const Ogre::FrameEvent& evt)
 	mTestCell2->Update(evt.timeSinceLastFrame);
         mPlayerCell->Update(evt.timeSinceLastFrame);*/
         engine->update(evt.timeSinceLastFrame);
-        //mCamNode->setPosition(mPlayerCell->mNode->getPosition()+Ogre::Vector3(0,0,30));
+        mCamNode->setPosition(playerNode->getPosition()+Ogre::Vector3(0,0,30));
     // Reposition background planes
     mWorld->Update(mCamNode->getPosition());
 

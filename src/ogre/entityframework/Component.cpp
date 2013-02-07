@@ -26,3 +26,12 @@ std::string OgreNodeComponent::getType()
 {
     return "OgreNode";
 }
+
+AgentComponent::AgentComponent()
+{
+    
+}
+std::string AgentComponent::getType()
+{
+    return "Agent";
+}

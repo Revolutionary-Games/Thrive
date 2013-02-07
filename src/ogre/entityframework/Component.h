@@ -3,6 +3,7 @@
 
 #include <OgreRoot.h>
 #include <OgreEntity.h>
+#include "../Agents/Agent.h"
 
 class Component
 {
@@ -32,6 +33,14 @@ class OgreNodeComponent : public Component
 public:
     OgreNodeComponent();
     Ogre::SceneNode* node;
+    std::string getType();
+};
+
+class AgentComponent : public Component
+{
+public:
+    AgentComponent();
+    Agent* agent;
     std::string getType();
 };
 

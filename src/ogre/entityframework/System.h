@@ -22,15 +22,15 @@ public:
 private:
     std::vector<MoveNode*>* targets;
 };
-/*
-class RenderSystem : ISystem
+
+class ControllSystem : public ISystem
 {
 public:
-    RenderSystem();
+    ControllSystem(Engine* e);
     void update(Ogre::Real);
 private:
-    std::vector<MoveNode> targets;
-};*/
+    std::vector<ControllerNode*>* targets;
+};
 
 
 #endif	/* SYSTEM_H */
