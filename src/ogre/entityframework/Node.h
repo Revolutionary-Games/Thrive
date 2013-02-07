@@ -6,7 +6,7 @@
 class Node
 {
 public:
-    virtual ~Node(){}
+    virtual ~Node(){};
     virtual std::string getType() = 0;
 };
 
@@ -24,6 +24,15 @@ class RenderNode : public Node
 public:
     RenderNode();
     OgreEntityComponent* entity;
+    std::string getType();
+};
+
+class ControllerNode : public Node
+{
+public:
+    ControllerNode();
+    VelocityComponent* velocity;
+    AgentComponent* agent;
     std::string getType();
 };
 

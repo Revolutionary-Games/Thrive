@@ -10,6 +10,7 @@ public:
 	Entity(void);
 	virtual ~Entity(void);
 	void add(Component*);
+        bool has(std::vector<std::string>);
         Component* get(std::string);
 private:
 	std::map<std::string, Component*>	componentMap;

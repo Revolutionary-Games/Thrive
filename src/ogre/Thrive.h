@@ -9,6 +9,9 @@
 #include "entityframework/System.h"
 #include "entityframework/Component.h"
 
+#include "Agents/Agent.h"
+#include "Agents/KeyboardAgent.h"
+
 #include <OgreRoot.h>
 #include <OISEvents.h>
 #include <OISInputManager.h>
@@ -39,6 +42,7 @@ private:
     Ogre::SceneManager* mSceneMgr;
     Ogre::Camera*       mCamera;
     Ogre::SceneNode*    mCamNode;
+    Ogre::Node*         playerNode;
     
     
 

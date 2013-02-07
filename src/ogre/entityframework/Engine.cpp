@@ -5,7 +5,7 @@
 
 Engine::Engine()
 {
-    nodeMap;
+    //nodeMap;
 }
 
 void Engine::addEntity(Entity* entity)
@@ -14,13 +14,23 @@ void Engine::addEntity(Entity* entity)
     //Here we have to see what components the entity contains, create nodes
     //containing them and add the nodes to the nodeLists
     //For now, just create a MoveNode. This should be done dinamically
-    //MessageBox( NULL,/*boost::lexical_cast<char*>(*/"adding Entity"/*+node)*/, "An exception has occured!", MB_OK | MB_ICONERROR | MB_TASKMODAL);
+    if (entity->has({"OgreNode","Velocity"}))
+    {
         MoveNode* moveNode = new MoveNode();
-    moveNode->ogreNode = (OgreNodeComponent*) entity->get("OgreNode");
-    moveNode->velocity = (VelocityComponent*) entity->get("Velocity");
-    std::vector<Node*>* nodeList = getNodeList("Move");
-    nodeList->push_back(moveNode);
+        moveNode->ogreNode = (OgreNodeComponent*) entity->get("OgreNode");
+        moveNode->velocity = (VelocityComponent*) entity->get("Velocity");
+        std::vector<Node*>* nodeList = getNodeList("Move");
+        nodeList->push_back(moveNode);
+    }
     
+    if (entity->has({"Agent","Velocity"}))
+    {
+        ControllerNode* controllerNode = new ControllerNode();
+        controllerNode->velocity = (VelocityComponent*) entity->get("Velocity");
+        controllerNode->agent = (AgentComponent*) entity->get("Agent");
+        std::vector<Node*>* nodeList = getNodeList("Controller");
+        nodeList->push_back(controllerNode);
+    }
     
 }
 
@@ -55,7 +65,7 @@ std::vector<Node*>* Engine::getNodeList(std::string node)
     if (nodeMap.count(node)==0)
     {
         // the [] operator is suposed to create a new element if the key passed doesen't match any result
-        // but whatever it returns i can't call any vector methods on.
+        // but whatever it returns i can't call any vector's method on.
         std::pair<std::string,std::vector<Node*>*> p = std::pair<std::string,std::vector<Node*>*>(node,new std::vector<Node*>());
         nodeMap.insert(p);
     }
