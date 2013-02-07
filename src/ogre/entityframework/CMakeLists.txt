@@ -1,0 +1,12 @@
+add_sources(
+	Entity.h 
+	Entity.cpp
+        Component.h
+        Component.cpp
+        Engine.h
+        Engine.cpp
+        Node.h
+        Node.cpp
+        System.cpp
+        System.h
+	)
