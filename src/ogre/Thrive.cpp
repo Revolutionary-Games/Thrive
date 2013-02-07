@@ -165,7 +165,7 @@ bool Thrive::go(void)
     //create the engine object
     engine = new Engine();
     //create a cell object
-    Entity* mEntityCell = new Entity();
+    mEntityCell = new Entity();
     //create and fill components
     OgreNodeComponent* oNComponent = new OgreNodeComponent();
     oNComponent->node = mSceneMgr->getRootSceneNode()->createChildSceneNode(Ogre::Vector3::ZERO, Ogre::Quaternion::IDENTITY);
@@ -183,7 +183,9 @@ bool Thrive::go(void)
     mEntityCell->add(oEComponent);
     //create and add an AgentComponent
     AgentComponent* aComponent = new AgentComponent();
-    aComponent->agent = (Agent*) new KeyboardAgent(mKeyboard);
+    KeyboardAgent* agent = new KeyboardAgent(Move);
+    //agent->move = Move;
+    aComponent->agent = (Agent*) agent;
     mEntityCell->add(aComponent);
     //add component to engine
     engine->addEntity(mEntityCell);
@@ -204,6 +206,10 @@ bool Thrive::go(void)
     mEntityCell2->add(oNComponent2);
     mEntityCell2->add(vComponent2);
     mEntityCell2->add(oEComponent2);
+    //Adding random controller
+    AgentComponent* aComponent2 = new AgentComponent();
+    aComponent2->agent = (Agent*)new RandomAgent();
+    mEntityCell2->add(aComponent2);
     //add component to engine
     engine->addEntity(mEntityCell2);
     
@@ -258,7 +264,7 @@ bool Thrive::frameRenderingQueued(const Ogre::FrameEvent& evt)
     mMouse->capture();
     //if (!isMousePressed){
     // Move camera
-    /*Ogre::Vector3 Move = Ogre::Vector3::ZERO;
+    Ogre::Vector3 Move = Ogre::Vector3::ZERO;
     if(mKeyboard->isKeyDown(OIS::KC_A))
         Move += Ogre::Vector3::NEGATIVE_UNIT_X;
     if(mKeyboard->isKeyDown(OIS::KC_D))
@@ -270,8 +276,8 @@ bool Thrive::frameRenderingQueued(const Ogre::FrameEvent& evt)
     if(mKeyboard->isKeyDown(OIS::KC_R))
         Move += Ogre::Vector3::NEGATIVE_UNIT_Z;
     if(mKeyboard->isKeyDown(OIS::KC_F))
-        Move += Ogre::Vector3::UNIT_Z;*/
-    //mPlayerCell->mVelocity+=Move*0.025;
+        Move += Ogre::Vector3::UNIT_Z;
+    ((VelocityComponent*)mEntityCell->get("Velocity"))->velocity += Move*0.025;
     //mCamNode->translate(Move * 8 * evt.timeSinceLastFrame, Ogre::SceneNode::TransformSpace::TS_WORLD);
     //}else{
     	//mCamNode->setPosition(mPlayerCell->mNode->getPosition()+Ogre::Vector3(0,0,30));

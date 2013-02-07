@@ -14,11 +14,12 @@
 class KeyboardAgent : public Agent
 {
 public:
-    KeyboardAgent(OIS::Keyboard*);
+    KeyboardAgent(Ogre::Vector3&);
     std::string getType();
     Ogre::Vector3 update();
+    OIS::Keyboard*      mKeyboard; 
+    Ogre::Vector3       move;
 private:
-    OIS::Keyboard*      mKeyboard;  
     OIS::InputManager*  mInputManager;
 };
 

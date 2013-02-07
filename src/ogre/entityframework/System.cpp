@@ -2,6 +2,7 @@
 #include "Engine.h"
 #include "../Agents/Agent.h"
 #include "../Agents/KeyboardAgent.h"
+#include "../Agents/RandomAgent.h"
 #include <vector>
 
 MoveSystem::MoveSystem(Engine* e)
@@ -14,6 +15,7 @@ void MoveSystem::update(Ogre::Real deltaTime){
     {
         MoveNode* target = (*i);
         target->ogreNode->node->translate(deltaTime*target->velocity->velocity, Ogre::SceneNode::TransformSpace::TS_WORLD);
+        target->velocity->velocity*=0.995f;
     }
 }
 
@@ -26,13 +28,15 @@ void ControllSystem::update(Ogre::Real deltaTime){
     for (std::vector<ControllerNode*>::iterator i = targets->begin(); i!=targets->end(); i++)
     {
         ControllerNode* target = (*i);
+        //MessageBox( NULL, "Updating controller", target->agent->agent->getType().c_str() , MB_OK | MB_ICONERROR | MB_TASKMODAL);
+       
         if (target->agent->agent->getType()=="Keyboard")
         {
             KeyboardAgent* agent = (KeyboardAgent*)target->agent;
             Ogre::Vector3 direction= agent->update();
             target->velocity->velocity+=direction*0.025f;//Should change for performAction(action) or something
         }
-        else if (target->agent->getType()=="LearningAI")
+        else if (target->agent->agent->getType()=="LearningAI")
         {
             /*
              // More-or-less the code that will need to be called on a learning AI agent
@@ -42,6 +46,15 @@ void ControllSystem::update(Ogre::Real deltaTime){
              int reward = performAction(action);
              agent->onActionCompleted(action,reward); // Agent will see the resoulting state to update its weights, no need to pass
              */
+        }
+        else if (target->agent->agent->getType()=="Random")
+        {
+            //MessageBox( NULL, "Updating controller random", target->agent->agent->getType().c_str() , MB_OK | MB_ICONERROR | MB_TASKMODAL);
+       
+            RandomAgent* agent = (RandomAgent*)target->agent->agent;
+            Ogre::Vector3 direction= agent->update();
+            target->velocity->velocity+=direction*0.025f;//Should change for performAction(action) or something
+        
         }
     }
 }
