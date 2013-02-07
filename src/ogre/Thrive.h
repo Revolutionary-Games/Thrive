@@ -11,6 +11,7 @@
 
 #include "Agents/Agent.h"
 #include "Agents/KeyboardAgent.h"
+#include "Agents/RandomAgent.h"
 
 #include <OgreRoot.h>
 #include <OISEvents.h>
@@ -53,6 +54,7 @@ private:
 
     // OIS Variables
     bool                isMousePressed = false;
+    Ogre::Vector3       Move;
 
     // World
     World*              mWorld;
@@ -60,6 +62,7 @@ private:
     Cell*               mTestCell2;
     Cell*               mPlayerCell;
     Engine*             engine;
+    Entity*             mEntityCell;
 };
 
 #endif // #ifndef __BasicTutorial6_h_
