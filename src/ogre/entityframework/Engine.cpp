@@ -1,4 +1,5 @@
 #include <vector>
+#include <sstream>
 
 #include "Engine.h"
 
@@ -15,10 +16,12 @@ void Engine::addEntity(Entity* entity)
     //For now, just create a MoveNode. This should be done dinamically
     //MessageBox( NULL,/*boost::lexical_cast<char*>(*/"adding Entity"/*+node)*/, "An exception has occured!", MB_OK | MB_ICONERROR | MB_TASKMODAL);
         MoveNode* moveNode = new MoveNode();
-    moveNode->ogreNode = (OgreNodeComponent*) entity->get(typeid(OgreNodeComponent).name());
-    moveNode->velocity = (VelocityComponent*) entity->get(typeid(VelocityComponent).name());
-    std::vector<Node*>* nodeList = getNodeList(typeid(MoveNode).name());
+    moveNode->ogreNode = (OgreNodeComponent*) entity->get("OgreNode");
+    moveNode->velocity = (VelocityComponent*) entity->get("Velocity");
+    std::vector<Node*>* nodeList = getNodeList("Move");
     nodeList->push_back(moveNode);
+    
+    
 }
 
 void Engine::removeEntity(Entity* entity)
@@ -51,6 +54,8 @@ std::vector<Node*>* Engine::getNodeList(std::string node)
 {
     if (nodeMap.count(node)==0)
     {
+        // the [] operator is suposed to create a new element if the key passed doesen't match any result
+        // but whatever it returns i can't call any vector methods on.
         std::pair<std::string,std::vector<Node*>*> p = std::pair<std::string,std::vector<Node*>*>(node,new std::vector<Node*>());
         nodeMap.insert(p);
     }

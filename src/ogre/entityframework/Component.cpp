@@ -4,13 +4,25 @@ OgreEntityComponent::OgreEntityComponent()
 {
         
 }
+std::string OgreEntityComponent::getType()
+{
+    return "OgreEntity";
+}
 
 VelocityComponent::VelocityComponent()
 {
         
 }
+std::string VelocityComponent::getType()
+{
+    return "Velocity";
+}
 
 OgreNodeComponent::OgreNodeComponent()
 {
-        
+
+}
+std::string OgreNodeComponent::getType()
+{
+    return "OgreNode";
 }

@@ -8,7 +8,7 @@ Entity::~Entity(void) {
 }
 
 void Entity::add(Component* component){
-        std::string name  = typeid(component).name();
+        std::string name  = component->getType();
 	componentMap[name] = component;
 }
 
