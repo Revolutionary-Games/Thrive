@@ -184,9 +184,13 @@ bool Thrive::go(void)
     //create and add an AgentComponent
     AgentComponent* aComponent = new AgentComponent();
     KeyboardAgent* agent = new KeyboardAgent(Move);
-    //agent->move = Move;
     aComponent->agent = (Agent*) agent;
     mEntityCell->add(aComponent);
+    //create and add ColisionGroup
+    ColisionGroupComponent* cGComponent = new ColisionGroupComponent();
+    cGComponent->colisionGroup = "Cell";
+    cGComponent->radius=5;
+    mEntityCell->add(cGComponent);
     //add component to engine
     engine->addEntity(mEntityCell);
     
@@ -210,12 +214,19 @@ bool Thrive::go(void)
     AgentComponent* aComponent2 = new AgentComponent();
     aComponent2->agent = (Agent*)new RandomAgent();
     mEntityCell2->add(aComponent2);
+    //create and add colisionGroup
+    ColisionGroupComponent* cGComponent2 = new ColisionGroupComponent();
+    cGComponent2->colisionGroup = "Cell";
+    cGComponent2->radius=5;
+    mEntityCell2->add(cGComponent2);
     //add component to engine
     engine->addEntity(mEntityCell2);
     
     engine->addSystem(new MoveSystem(engine));
     engine->addSystem(new ControllSystem(engine));
-    
+    ColisionSystem* cSystem = new ColisionSystem(engine);
+    //add what colides with what to cSystem
+    engine->addSystem(cSystem);
     
 
     mRoot->addFrameListener(this);

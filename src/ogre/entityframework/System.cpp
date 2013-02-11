@@ -4,6 +4,7 @@
 #include "../Agents/KeyboardAgent.h"
 #include "../Agents/RandomAgent.h"
 #include <vector>
+#include <boost/lexical_cast.hpp>
 
 MoveSystem::MoveSystem(Engine* e)
 {
@@ -55,6 +56,39 @@ void ControllSystem::update(Ogre::Real deltaTime){
             Ogre::Vector3 direction= agent->update();
             target->velocity->velocity+=direction*0.025f;//Should change for performAction(action) or something
         
+        }
+    }
+}
+
+ColisionSystem::ColisionSystem(Engine* e)
+{
+    engine = e;
+}
+
+void ColisionSystem::update(Ogre::Real)
+{
+    targets = (std::vector<ColisionNode*>*)engine->getNodeList("Colision");
+    for (std::vector<ColisionNode*>::iterator i = targets->begin(); i!=targets->end()-1;i++)
+    {
+        for (std::vector<ColisionNode*>::iterator j = i+1; j!=targets->end();j++)
+        {
+            if (true)//colidesWith.count({(*i)->colisionGroup->colisionGroup,(*j)->colisionGroup->colisionGroup})==1||colidesWith.count({(*j)->colisionGroup->colisionGroup,(*i)->colisionGroup->colisionGroup})==1)
+            {
+                //MessageBox( NULL, boost::lexical_cast<std::string>((*i)->ogreNode->node->getPosition()).c_str(), "An exception has occured!", MB_OK | MB_ICONERROR | MB_TASKMODAL);
+                //MessageBox( NULL, boost::lexical_cast<std::string>((*j)->ogreNode->node->getPosition()).c_str(), "An exception has occured!", MB_OK | MB_ICONERROR | MB_TASKMODAL);
+                
+                Ogre::Vector3 posI = (*i)->ogreNode->node->getPosition();
+                Ogre::Vector3 posJ = (*j)->ogreNode->node->getPosition();
+                Ogre::Real combinedRadius = (*i)->colisionGroup->radius+(*j)->colisionGroup->radius;
+                if (posI.distance(posJ)<combinedRadius)
+                {
+                    //MessageBox( NULL, "coliding", "An exception has occured!", MB_OK | MB_ICONERROR | MB_TASKMODAL);
+                        //MessageBox( NULL, boost::lexical_cast<std::string>(1/(posI-posJ)).c_str(), "An exception has occured!", MB_OK | MB_ICONERROR | MB_TASKMODAL);
+                    Ogre::Real sDistance = (posI-posJ).squaredLength();
+                    (*i)->velocity->velocity+=(posI-posJ)*1/sDistance;
+                    (*j)->velocity->velocity+=(posJ-posI)*1/sDistance;
+                }
+            }
         }
     }
 }
