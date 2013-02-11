@@ -11,9 +11,7 @@ Engine::Engine()
 void Engine::addEntity(Entity* entity)
 {
     entityList.insert(entityList.end(),entity);
-    //Here we have to see what components the entity contains, create nodes
-    //containing them and add the nodes to the nodeLists
-    //For now, just create a MoveNode. This should be done dinamically
+    //This part is getting long. Maybe we should move it somewhere else
     if (entity->has({"OgreNode","Velocity"}))
     {
         MoveNode* moveNode = new MoveNode();
@@ -32,6 +30,15 @@ void Engine::addEntity(Entity* entity)
         nodeList->push_back(controllerNode);
     }
     
+    if (entity->has({"OgreNode","Velocity", "ColisionGroup"}))
+    {
+        ColisionNode* colisionNode = new ColisionNode();
+        colisionNode->ogreNode = (OgreNodeComponent*) entity->get("OgreNode"); 
+        colisionNode->velocity = (VelocityComponent*) entity->get("Velocity");
+        colisionNode->colisionGroup = (ColisionGroupComponent*) entity->get("ColisionGroup");
+        std::vector<Node*>* nodeList = getNodeList("Colision");
+        nodeList->push_back(colisionNode);
+    }
 }
 
 void Engine::removeEntity(Entity* entity)
