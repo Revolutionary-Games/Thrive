@@ -35,3 +35,12 @@ std::string AgentComponent::getType()
 {
     return "Agent";
 }
+
+ColisionGroupComponent::ColisionGroupComponent()
+{
+    
+}
+std::string ColisionGroupComponent::getType()
+{
+    return "ColisionGroup";
+}

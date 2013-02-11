@@ -44,6 +44,14 @@ public:
     std::string getType();
 };
 
+class ColisionGroupComponent : public Component
+{
+public:
+    ColisionGroupComponent();
+    std::string colisionGroup;
+    int radius;         //should be changed to something that works for any shape
+    std::string getType();
+};
 
 
 #endif /* COMPONENT_H_ */

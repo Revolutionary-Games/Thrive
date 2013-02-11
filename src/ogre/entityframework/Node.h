@@ -36,6 +36,15 @@ public:
     std::string getType();
 };
 
+class ColisionNode : public Node
+{
+public:
+    ColisionNode();
+    OgreNodeComponent* ogreNode;
+    VelocityComponent* velocity;
+    ColisionGroupComponent* colisionGroup;
+    std::string getType();
+};
 
 #endif	/* NODE_H */
 
