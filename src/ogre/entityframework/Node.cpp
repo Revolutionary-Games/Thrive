@@ -23,3 +23,13 @@ std::string ControllerNode::getType()
 {
     return "Controller";
 }
+
+ColisionNode::ColisionNode()
+{
+    
+}
+
+std::string ColisionNode::getType()
+{
+    return "Colision";
+}
