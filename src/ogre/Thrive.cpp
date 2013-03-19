@@ -162,8 +162,42 @@ bool Thrive::go(void)
     mPlayerCell = new Cell (mSceneMgr, Ogre::Vector3(-10,0,0));
     mPlayerCell->mEntity->setMaterialName("Examples/SphereMappedWater");
     */
+    
+    
+    
+    
+    //This probably needs to go somewhere else
     //create the engine object
     engine = new Engine();
+    //create a few species
+    
+    Entity* firstSpeciesEntity = new Entity();
+    SpecieInfoComponent* fSIC = new SpecieInfoComponent();
+    std::vector<Organelle*>* fSOL = new std::vector<Organelle*>;
+    fSOL->push_back(new NucleusOrganelle());
+    fSOL->push_back(new FlagelaOrganelle());
+    fSOL->push_back(new MitochondriaOrganelle());
+    fSIC->organelleList = fSOL;
+    //fSIC->entity = mSceneMgr->createEntity(Ogre::SceneManager::PrefabType::PT_SPHERE);
+    fSIC->entity = mSceneMgr->createEntity("Head","Sinbad.mesh");
+    fSIC->entity->setMaterialName("Examples/SphereMappedRustySteel");
+    firstSpeciesEntity->add(fSIC);
+    engine->addEntity(firstSpeciesEntity);
+    
+    
+    Entity* secondSpeciesEntity = new Entity();
+    SpecieInfoComponent* sSIC = new SpecieInfoComponent();
+    std::vector<Organelle*>* sSOL = new std::vector<Organelle*>;
+    sSOL->push_back(new NucleusOrganelle());
+    sSOL->push_back(new FlagelaOrganelle());
+    sSOL->push_back(new MitochondriaOrganelle());
+    sSIC->organelleList = sSOL;
+    sSIC->entity = mSceneMgr->createEntity(Ogre::SceneManager::PrefabType::PT_SPHERE);
+    //sSIC->entity = mSceneMgr->createEntity("Head","Sinbad.mesh");
+    sSIC->entity->setMaterialName("Examples/SphereMappedRustySteel");
+    secondSpeciesEntity->add(sSIC);
+    engine->addEntity(secondSpeciesEntity);
+    
     //create a cell object
     mEntityCell = new Entity();
     //create and fill components
@@ -172,15 +206,14 @@ bool Thrive::go(void)
     playerNode = oNComponent->node;
     VelocityComponent* vComponent = new VelocityComponent();
     vComponent->velocity = Ogre::Vector3::ZERO;
-    OgreEntityComponent* oEComponent = new OgreEntityComponent();
-    oEComponent->entity = mSceneMgr->createEntity(Ogre::SceneManager::PrefabType::PT_SPHERE);
-    oEComponent->entity->setMaterialName("Examples/SphereMappedRustySteel");
-    oNComponent->node->attachObject(oEComponent->entity);
-    oNComponent->node->setScale(0.1f * Ogre::Vector3::UNIT_SCALE);
+    SpecieComponent* specieComponent = new SpecieComponent();
+    specieComponent->specie = fSIC;
+    oNComponent->node->attachObject(specieComponent->specie->entity->clone("a"));
+    oNComponent->node->setScale(1.0f * Ogre::Vector3::UNIT_SCALE);
     //add components to the Entity
     mEntityCell->add(oNComponent);
     mEntityCell->add(vComponent);
-    mEntityCell->add(oEComponent);
+    mEntityCell->add(specieComponent);
     //create and add an AgentComponent
     AgentComponent* aComponent = new AgentComponent();
     KeyboardAgent* agent = new KeyboardAgent(Move);
@@ -194,22 +227,21 @@ bool Thrive::go(void)
     //add component to engine
     engine->addEntity(mEntityCell);
     
-    //create a cel object
+    //create a cell object
     Entity* mEntityCell2 = new Entity();
     //create and fill components
     OgreNodeComponent* oNComponent2 = new OgreNodeComponent();
     oNComponent2->node = mSceneMgr->getRootSceneNode()->createChildSceneNode(15.0f*Ogre::Vector3::NEGATIVE_UNIT_X, Ogre::Quaternion::IDENTITY);
     VelocityComponent* vComponent2 = new VelocityComponent();
     vComponent2->velocity = Ogre::Vector3::UNIT_X*1.0f;
-    OgreEntityComponent* oEComponent2 = new OgreEntityComponent();
-    oEComponent2->entity = mSceneMgr->createEntity(Ogre::SceneManager::PrefabType::PT_SPHERE);
-    oEComponent2->entity->setMaterialName("Examples/SphereMappedRustySteel");
-    oNComponent2->node->attachObject(oEComponent2->entity);
+    SpecieComponent* sComponent2 = new SpecieComponent();
+    sComponent2->specie = sSIC;
+    oNComponent2->node->attachObject(sComponent2->specie->entity->clone("b"));
     oNComponent2->node->setScale(0.1f * Ogre::Vector3::UNIT_SCALE);
     //add components to the Entity
     mEntityCell2->add(oNComponent2);
     mEntityCell2->add(vComponent2);
-    mEntityCell2->add(oEComponent2);
+    mEntityCell2->add(sComponent2);
     //Adding random controller
     AgentComponent* aComponent2 = new AgentComponent();
     aComponent2->agent = (Agent*)new RandomAgent();
@@ -227,6 +259,11 @@ bool Thrive::go(void)
     ColisionSystem* cSystem = new ColisionSystem(engine);
     //add what colides with what to cSystem
     engine->addSystem(cSystem);
+    
+    
+    
+    
+    
     
 
     mRoot->addFrameListener(this);
