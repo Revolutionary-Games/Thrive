@@ -18,14 +18,14 @@ public:
     VelocityComponent* velocity;
     std::string getType();  
 };
-
+/*
 class RenderNode : public Node
 {
 public:
     RenderNode();
     OgreEntityComponent* entity;
     std::string getType();
-};
+};*/
 
 class ControllerNode : public Node
 {
@@ -46,5 +46,11 @@ public:
     std::string getType();
 };
 
+class SpeciesNode : public Node
+{
+public:
+    SpeciesNode();
+    std::string getType();
+};
 #endif	/* NODE_H */
 

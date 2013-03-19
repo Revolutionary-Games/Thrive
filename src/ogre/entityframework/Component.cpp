@@ -1,5 +1,5 @@
 #include "Component.h"
-
+/*
 OgreEntityComponent::OgreEntityComponent()
 {
         
@@ -7,7 +7,7 @@ OgreEntityComponent::OgreEntityComponent()
 std::string OgreEntityComponent::getType()
 {
     return "OgreEntity";
-}
+}*/
 
 VelocityComponent::VelocityComponent()
 {
@@ -43,4 +43,22 @@ ColisionGroupComponent::ColisionGroupComponent()
 std::string ColisionGroupComponent::getType()
 {
     return "ColisionGroup";
+}
+
+SpecieInfoComponent::SpecieInfoComponent()
+{
+    
+}
+std::string SpecieInfoComponent::getType()
+{
+    return "SpecieInfo";
+}
+
+SpecieComponent::SpecieComponent()
+{
+    
+}
+std::string SpecieComponent::getType()
+{
+    return "Specie";
 }
