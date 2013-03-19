@@ -4,6 +4,7 @@
 #include <OgreRoot.h>
 #include <OgreEntity.h>
 #include "../Agents/Agent.h"
+#include "../CellStage/Organelle.h"
 
 class Component
 {
@@ -11,7 +12,7 @@ public:
 	//virtual ~Component() = 0;
     virtual std::string getType();
 };
-
+/*
 class OgreEntityComponent : public Component
 {
 public:
@@ -19,7 +20,7 @@ public:
     Ogre::Entity* entity;
     std::string getType();
 };
-
+*/
 class VelocityComponent : public Component
 {
 public:
@@ -53,5 +54,25 @@ public:
     std::string getType();
 };
 
+class SpecieInfoComponent : public Component
+{
+public:
+    SpecieInfoComponent();
+    std::string specieName;
+    Ogre::Entity* entity; //Model
+    std::vector<Organelle*>* organelleList;
+    //Attributes
+    Ogre::Real mass;
+    Ogre::Real acceleration;
+    std::string getType();
+};
+
+class SpecieComponent : public Component
+{
+public:
+    SpecieComponent();
+    SpecieInfoComponent* specie;
+    std::string getType();
+};
 
 #endif /* COMPONENT_H_ */
