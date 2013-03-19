@@ -49,6 +49,7 @@ void Engine::removeEntity(Entity* entity)
             entityList.erase(i);
             break;
     }
+    //We need to delete the nodes that the entity has as well
     
 }
 
