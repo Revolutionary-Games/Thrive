@@ -52,11 +52,9 @@ if (NOT CMAKE_BUILD_TYPE)
     )
 endif ()
 
-set(CMAKE_DEBUG_POSTFIX "_d")
+set(CMAKE_INSTALL_PREFIX "${CMAKE_CURRENT_BINARY_DIR}/dist" CACHE STRING "Install path" FORCE)
 
-set(CMAKE_INSTALL_PREFIX "${CMAKE_CURRENT_BINARY_DIR}/dist")
-
-set(RUNTIME_LIBRARIES)
+set(RUNTIME_LIBRARIES ${SYSTEM_DLLS})
 
 
 #############
@@ -65,10 +63,13 @@ set(RUNTIME_LIBRARIES)
 
 find_package(OGRE REQUIRED)
 
-message("ogre libs: ${OGRE_LIBRARIES}")
+if(CMAKE_BUILD_TYPE STREQUAL "Debug")
+    set(OGRE_LIB_SUFFIX DBG)
+else()
+    set(OGRE_LIB_SUFFIX REL)
+endif()
 
-GetLibForCurrentBuildType("${OGRE_LIBRARIES}" OGRE_RUNTIME_LIB)
-list(APPEND RUNTIME_LIBRARIES ${OGRE_RUNTIME_LIB})
+list(APPEND RUNTIME_LIBRARIES ${OGRE_BINARY_${OGRE_LIB_SUFFIX}})
 
 # Gather OGRE plugin files
 set(OGRE_COMPONENTS
@@ -81,15 +82,9 @@ set(OGRE_COMPONENTS
     RenderSystem_GL
 )
 
-if(CMAKE_BUILD_TYPE STREQUAL "Release")
-    set(OGRE_LIB_SUFFIX REL)
-else()
-    set(OGRE_LIB_SUFFIX DBG)
-endif()
-
 set(OGRE_PLUGIN_LIBS)
 foreach(OGRE_COMPONENT ${OGRE_COMPONENTS})
-    set(LIB_VAR OGRE_${OGRE_COMPONENT}_LIBRARY_${OGRE_LIB_SUFFIX})
+    set(LIB_VAR OGRE_${OGRE_COMPONENT}_BINARY_${OGRE_LIB_SUFFIX})
     list(APPEND OGRE_PLUGIN_LIBS ${${LIB_VAR}})
 endforeach()
 
@@ -115,6 +110,8 @@ set(BOOST_COMPONENTS
 
 find_package(Boost 1.51 COMPONENTS ${BOOST_COMPONENTS} REQUIRED)
 
+message("Boost: ${Boost_LIBRARIES}")
+
 list(APPEND RUNTIME_LIBRARIES ${Boost_LIBRARIES})
 
 ######################
@@ -129,9 +126,6 @@ include_directories(
 
 # Compile using c++11
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=gnu++0x")
-
-# Statically link libgcc
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -static-libgcc -static-libstdc++")
 
 # add subdirectories
 add_subdirectory(src)
@@ -260,3 +254,4 @@ if(UNIX)
 
 endif(UNIX)
 
+message("Runtime libs: ${RUNTIME_LIBRARIES}")
