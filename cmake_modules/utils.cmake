@@ -1,29 +1,55 @@
 
-function(GetLibForCurrentBuildType LIB_LIST OUTPUT_VAR)
-    if(CMAKE_BUILD_TYPE STREQUAL "Debug")
+function(SeparateLibrariesByBuildType LIB_LIST OUT_DEBUG OUT_RELEASE)
+    GetLibraryForBuildType(
+        "${LIB_LIST}"
+        "Release"
+        RELEASE_LIB
+    )
+    set(${OUT_RELEASE} ${RELEASE_LIB} PARENT_SCOPE)
+    GetLibraryForBuildType(
+        "${LIB_LIST}"
+        "Debug"
+        DEBUG_LIB
+    )
+    set(${OUT_DEBUG} ${DEBUG_LIB} PARENT_SCOPE)
+endfunction()
+
+
+
+function(GetLibraryForBuildType LIB_LIST BUILD_TYPE OUT_LIB)
+    if(BUILD_TYPE STREQUAL "Debug")
         list(FIND LIB_LIST "debug" LIB_INDEX_MINUS_ONE)
     else()
         list(FIND LIB_LIST "optimized" LIB_INDEX_MINUS_ONE)
     endif()
-    if(LIB_INDEX LESS 0)
-        set(${OUTPUT_VAR} ${LIB_LIST} PARENT_SCOPE)
+    if(LIB_INDEX_MINUS_ONE LESS 0)
+        set(${OUT_LIB} ${LIB_LIST} PARENT_SCOPE)
     else()
         math(EXPR LIB_INDEX "${LIB_INDEX_MINUS_ONE} + 1")
         list(GET LIB_LIST ${LIB_INDEX} LIB_NAME)
-        set(${OUTPUT_VAR} ${LIB_NAME} PARENT_SCOPE)
+        set(${OUT_LIB} ${LIB_NAME} PARENT_SCOPE)
     endif()
 endfunction()
 
 
-function(InstallRuntimeFiles FILE_LIST DESTINATION RENAME)
+function(InstallFollowingSymlink FILE_LIST DESTINATION CONFIGURATIONS RENAME)
     foreach(FILE_NAME ${FILE_LIST})
         get_filename_component(RESOLVED_FILE ${FILE_NAME} REALPATH)
         if(EXISTS ${RESOLVED_FILE})
             if(RENAME)
                 get_filename_component(NAME ${FILE_NAME} NAME)
-                install(FILES ${RESOLVED_FILE} DESTINATION ${DESTINATION} RENAME ${NAME})
+                install(FILES 
+                    ${RESOLVED_FILE} 
+                    DESTINATION ${DESTINATION} 
+                    CONFIGURATIONS ${CONFIGURATIONS} 
+                    RENAME ${NAME}
+                )
             else()
-                install(FILES ${RESOLVED_FILE} DESTINATION ${DESTINATION})
+                install(FILES 
+                    ${RESOLVED_FILE} 
+                    DESTINATION ${DESTINATION}
+                    CONFIGURATIONS ${CONFIGURATIONS} 
+                )
             endif()
         endif()
     endforeach()
