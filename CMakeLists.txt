@@ -46,11 +46,17 @@ set(CMAKE_INSTALL_RPATH ".")
 # Assure a proper build type
 if (NOT CMAKE_BUILD_TYPE)
   set(CMAKE_BUILD_TYPE
-      "RelWithDebInfo" 
-      CACHE STRING "Choose the type of build, options are: None (CMAKE_CXX_FLAGS or CMAKE_C_FLAGS used) Debug Release RelWithDebInfo MinSizeRel." 
+      "Debug" 
+      CACHE STRING "Choose the type of build, options are: None (CMAKE_CXX_FLAGS or CMAKE_C_FLAGS used) Debug Release." 
       FORCE
     )
 endif ()
+
+if (CMAKE_BUILD_TYPE STREQUAL "Debug")
+    set(IS_DEBUG_BUILD True)
+else()
+    set(IS_DEBUG_BUILD False)
+endif()
 
 set(CMAKE_INSTALL_PREFIX "${CMAKE_CURRENT_BINARY_DIR}/dist" CACHE STRING "Install path" FORCE)
 
@@ -61,42 +67,23 @@ set(RUNTIME_LIBRARIES ${SYSTEM_DLLS})
 # Find OGRE #
 #############
 
-find_package(OGRE REQUIRED)
+find_package(OGRE REQUIRED QUIET)
 
-if(CMAKE_BUILD_TYPE STREQUAL "Debug")
-    set(OGRE_LIB_SUFFIX DBG)
-else()
-    set(OGRE_LIB_SUFFIX REL)
-endif()
-
-list(APPEND RUNTIME_LIBRARIES ${OGRE_BINARY_${OGRE_LIB_SUFFIX}})
-
-# Gather OGRE plugin files
-set(OGRE_COMPONENTS
+# OGRE Plugins used
+set(OGRE_PLUGINS
     Plugin_BSPSceneManager
-    Plugin_CgProgramManager
-    Plugin_OctreeZone
     Plugin_OctreeSceneManager
+    Plugin_OctreeZone
     Plugin_ParticleFX
     Plugin_PCZSceneManager
     RenderSystem_GL
 )
 
-set(OGRE_PLUGIN_LIBS)
-foreach(OGRE_COMPONENT ${OGRE_COMPONENTS})
-    set(LIB_VAR OGRE_${OGRE_COMPONENT}_BINARY_${OGRE_LIB_SUFFIX})
-    list(APPEND OGRE_PLUGIN_LIBS ${${LIB_VAR}})
-endforeach()
-
-
 #######
 # OIS #
 #######
 
-find_package(OIS REQUIRED)
-
-GetLibForCurrentBuildType("${OIS_LIBRARIES}" OIS_RUNTIME_LIB)
-list(APPEND RUNTIME_LIBRARIES ${OIS_RUNTIME_LIB})
+find_package(OIS REQUIRED QUIET)
 
 ##############
 # Find Boost #
@@ -108,11 +95,7 @@ set(BOOST_COMPONENTS
     system      # Required by OGRE
 )
 
-find_package(Boost 1.51 COMPONENTS ${BOOST_COMPONENTS} REQUIRED)
-
-message("Boost: ${Boost_LIBRARIES}")
-
-list(APPEND RUNTIME_LIBRARIES ${Boost_LIBRARIES})
+find_package(Boost 1.51 COMPONENTS ${BOOST_COMPONENTS} REQUIRED QUIET)
 
 ######################
 # Configure Compiler # 
@@ -167,10 +150,14 @@ install(TARGETS Thrive
 # OGRE config
 
 install(FILES 
-    ${CMAKE_SOURCE_DIR}/res/dist/bin/plugins.cfg
     ${CMAKE_SOURCE_DIR}/res/dist/bin/resources.cfg
     DESTINATION bin
-    CONFIGURATIONS Release RelWithDebInfo
+)
+
+install(FILES 
+    ${CMAKE_SOURCE_DIR}/res/dist/bin/plugins.cfg
+    DESTINATION bin
+    CONFIGURATIONS Release 
 )
 
 install(FILES 
@@ -180,38 +167,50 @@ install(FILES
     RENAME plugins.cfg
 )
 
-install(FILES 
-    ${CMAKE_SOURCE_DIR}/res/dist/bin/resources_d.cfg
-    DESTINATION bin
-    CONFIGURATIONS Debug
-    resources.cfg
-)
-
 install(DIRECTORY ${CMAKE_SOURCE_DIR}/res/dist/media
     DESTINATION ./
-    CONFIGURATIONS Release RelWithDebInfo Debug
+    CONFIGURATIONS Release  Debug
 )
 
-
-InstallRuntimeFiles("${RUNTIME_LIBRARIES}" bin FALSE)
-InstallRuntimeFiles("${OGRE_PLUGIN_LIBS}" bin TRUE)
-
-
-
-
-
+# Install Runtime Libraries
 if(WIN32)
-    # NOTE: for the 1.7.1 sdk the OIS dll is called OIS.dll instead of libOIS.dll
-    # so you'll have to change that to make it work with 1.7.1
-    install(FILES ${OGRE_PLUGIN_LIBS}
+    
+    INSTALL(FILES
+        ${SYSTEM_DLLS}
+        DESTINATION bin
+    )
+
+    INSTALL(FILES
+        ${Boost_LIBRARIES}
+        DESTINATION bin
+    )
+
+    foreach(OGRE_PLUGIN ${OGRE_PLUGINS})
+        # Release
+        install(FILES 
+            ${OGRE_PLUGIN_DIR_REL}/${OGRE_PLUGIN}.dll
+            DESTINATION bin/plugins
+            CONFIGURATIONS Release
+        )
+        # Debug
+        install(FILES 
+            ${OGRE_PLUGIN_DIR_DBG}/${OGRE_PLUGIN}_d.dll
+            DESTINATION bin/plugins
+            CONFIGURATIONS Debug
+        )
+    endforeach()
+
+    install(FILES
+        ${OGRE_PLUGIN_DIR_REL}/OgreMain.dll
 		${OGRE_PLUGIN_DIR_REL}/RenderSystem_GL.dll
 		${OGRE_PLUGIN_DIR_REL}/OIS.dll
 		${OGRE_PLUGIN_DIR_REL}/cg.dll
 		DESTINATION bin
-		CONFIGURATIONS Release RelWithDebInfo
+		CONFIGURATIONS Release
 	)
 
-	install(FILES ${OGRE_PLUGIN_DIR_DBG}/OgreMain_d.dll
+	install(FILES 
+        ${OGRE_PLUGIN_DIR_DBG}/OgreMain_d.dll
 		${OGRE_PLUGIN_DIR_DBG}/RenderSystem_GL_d.dll
 		${OGRE_PLUGIN_DIR_DBG}/OIS_d.dll
 		${OGRE_PLUGIN_DIR_DBG}/cg.dll
@@ -219,39 +218,47 @@ if(WIN32)
 		CONFIGURATIONS Debug
 	)
 
-    # Install plugins
-    install(FILES ${OGRE_PLUGIN_DIR_REL}/Plugin_BSPSceneManager.dll
-        ${OGRE_PLUGIN_DIR_REL}/Plugin_CgProgramManager.dll
-        ${OGRE_PLUGIN_DIR_REL}/Plugin_OctreeSceneManager.dll
-        ${OGRE_PLUGIN_DIR_REL}/Plugin_OctreeZone.dll
-        ${OGRE_PLUGIN_DIR_REL}/Plugin_ParticleFX.dll
-        ${OGRE_PLUGIN_DIR_REL}/Plugin_PCZSceneManager.dll
-        ${OGRE_PLUGIN_DIR_REL}/RenderSystem_GL.dll
-        DESTINATION bin/plugins
-        CONFIGURATIONS Release RelWithDebInfo
+elseif(UNIX)
+
+    SeparateLibrariesByBuildType(
+        "${OGRE_LIBRARIES}"
+        OGRE_MAIN_DBG
+        OGRE_MAIN_REL
+    )
+    InstallFollowingSymlink( 
+        ${OGRE_MAIN_REL}
+        bin
+        Release
+        False
+    )
+    InstallFollowingSymlink( 
+        ${OGRE_MAIN_DBG}
+        bin
+        Debug
+        False
     )
 
-    install(FILES ${OGRE_PLUGIN_DIR_DBG}/Plugin_BSPSceneManager_d.dll
-        ${OGRE_PLUGIN_DIR_DBG}/Plugin_CgProgramManager_d.dll
-        ${OGRE_PLUGIN_DIR_DBG}/Plugin_OctreeSceneManager_d.dll
-        ${OGRE_PLUGIN_DIR_DBG}/Plugin_OctreeZone_d.dll
-        ${OGRE_PLUGIN_DIR_DBG}/Plugin_ParticleFX_d.dll
-        ${OGRE_PLUGIN_DIR_DBG}/Plugin_PCZSceneManager_d.dll
-        ${OGRE_PLUGIN_DIR_DBG}/RenderSystem_GL_d.dll
-        DESTINATION bin/plugins
-        CONFIGURATIONS Debug
-    )
+    foreach(OGRE_PLUGIN ${OGRE_PLUGINS})
+        SeparateLibrariesByBuildType(
+            "${OGRE_${OGRE_PLUGIN}_LIBRARIES}" 
+            OGRE_PLUGIN_LIB_DBG
+            OGRE_PLUGIN_LIB_REL
+        )
+        # Release
+        InstallFollowingSymlink( 
+            ${OGRE_PLUGIN_LIB_REL}
+            bin/plugins
+            Release
+            True
+        )
+        # Debug
+        InstallFollowingSymlink( 
+            ${OGRE_PLUGIN_LIB_DBG}
+            bin/plugins
+            Debug
+            True
+        )
+    endforeach()
 
-endif(WIN32)
+endif()
 
-if(UNIX)
-
-	install(FILES ${CMAKE_SOURCE_DIR}/res/dist/bin/plugins.cfg
-		${CMAKE_SOURCE_DIR}/res/dist/bin/resources.cfg
-		DESTINATION bin
-		CONFIGURATIONS Release RelWithDebInfo Debug
-	)
-
-endif(UNIX)
-
-message("Runtime libs: ${RUNTIME_LIBRARIES}")
