@@ -55,6 +55,18 @@ function getScriptDirectory() {
     echo "$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 }
 
+# Converts a posix path to windows
+#
+# Usage:
+#
+#    # Note the back quotes
+#    WIN_DIR=`posixToWinPath $POSIX_DIR`
+#
+function posixToWinPath() {
+    POSIX_PATH=$1
+    echo $POSIX_PATH | sed 's/^\///' | sed 's/\//\\/g' | sed 's/^./\0:/'
+}
+
 # Makes a path absolute
 # Usage:
 #
@@ -71,3 +83,39 @@ function runCMakeString() {
     local string=$1
     cmake -P <(echo "$string")
 }
+
+################################################################################
+# Windows or Linux?
+################################################################################
+KERNEL=`uname -s`
+
+IS_LINUX=false
+IS_WINDOWS=false
+
+case "$KERNEL" in
+    Linux)
+        IS_LINUX=true
+    ;;
+    *MSYS* | *NT*)
+        IS_WINDOWS=true
+    ;;
+esac
+
+################################################################################
+# Check for 64 or 32 bit environment
+################################################################################
+ARCH=`uname -m`
+
+case "$ARCH" in
+    "x86_64")
+        IS_64_ENV=true
+    ;;
+    "i686")
+        IS_64_ENV=false
+    ;;
+    *)
+        echo "Unknown architecture \"$ARCH\", aborting"
+        exit 1
+    ;;
+esac
+
