@@ -44,6 +44,7 @@ fi
 # Make paths absolute
 ################################################################################
 make_absolute MINGW_ENV
+echo "Mingw: $MINGW_ENV"
 
 ################################################################################
 # Prepare directories
@@ -57,12 +58,8 @@ mkdir -p $MINGW_ENV/cmake
 ################################################################################
 # Configure CMake toolchain file
 ################################################################################
-CONFIGURE_TOOLCHAIN_SCRIPT="\
-set(MINGW_ENV $MINGW_ENV) 
-configure_file($TOOLCHAIN_TEMPLATE $MINGW_ENV/cmake/toolchain.cmake @ONLY)
-"
-
-runCMakeString "$CONFIGURE_TOOLCHAIN_SCRIPT"
+echo "Mingw ENv: $MINGW_ENV"
+cmake -DTOOLCHAIN_TEMPLATE=$TOOLCHAIN_TEMPLATE -DMINGW_ENV=$MINGW_ENV -P $DIR/configure_toolchain.cmake
 
 ################################################################################
 # Install libraries

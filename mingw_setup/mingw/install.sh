@@ -2,47 +2,14 @@
 
 # Import utilities
 . utils.sh
+echo "Kernel: $KERNEL"
+
 
 MINGW_ENV=$1
 
 WORKING_DIR=$MINGW_ENV/temp/mingw
 
 mkdir -p $WORKING_DIR
-
-################################################################################
-# Check for 64 or 32 bit environment
-################################################################################
-ARCH=`uname -m`
-
-case "$ARCH" in
-    "x86_64")
-        IS_64_ENV=true
-    ;;
-    "i686")
-        IS_64_ENV=false
-    ;;
-    *)
-        echo "Unknown architecture \"$ARCH\", aborting"
-        exit 1
-    ;;
-esac
-
-################################################################################
-# Windows or Linux?
-################################################################################
-KERNEL=`uname -s`
-
-IS_LINUX=false
-IS_WINDOWS=false
-
-case "$KERNEL" in
-    "Linux")
-        IS_LINUX=true
-    ;;
-    "*MSYS*")
-        IS_WINDOWS=true
-    ;;
-esac
 
 
 ################################################################################
@@ -53,7 +20,7 @@ if [[ $IS_LINUX && ! `commandExists tar` ]]; then
     exit 1
 fi
 
-if [[ $IS_WINDOWS && ! `commandExists 7z` ]]; then
+if [[ $IS_WINDOWS && ! `commandExists 7za` ]]; then
     echo "Please install 7zip and try again."
     exit 1
 fi
@@ -63,11 +30,13 @@ fi
 ################################################################################
 
 # Download mingw
-if [[ IS_LINUX && IS_64_ENV ]]; then
+if $IS_LINUX && $IS_64_ENV ; then
+    echo "Linux"
     OS="linux64"
     ARCHIVE_FORMAT="tar.xz"
     UNPACK_CMD="tar --directory $WORKING_DIR -xf"
-elif IS_WINDOWS; then
+elif $IS_WINDOWS; then
+    echo "Windows"
     OS="win32"
     ARCHIVE_FORMAT="7z"
     UNPACK_CMD="7za x -o$WORKING_DIR"
@@ -92,6 +61,7 @@ else
 fi
 
 # Unpack mingw
+echo "Unpacking with $UNPACK_CMD $WORKING_DIR/$ARCHIVE"
 $UNPACK_CMD $WORKING_DIR/$ARCHIVE
 if [ $? -ne 0 ]; then
     echo "Error unpacking archive. Try deleting $WORKING_DIR/$ARCHIVE and redownloading."
