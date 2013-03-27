@@ -38,6 +38,5 @@ list(APPEND CMAKE_MODULE_PATH
 )
 
 set(SYSTEM_DLLS
-    ${MINGW_ENV}/i686-w64-mingw32/lib/libgcc_s_dw2-1.dll
-    ${MINGW_ENV}/i686-w64-mingw32/lib/libstdc++-6.dll
+    # None, native windows doesn't seem to need libgcc and so on
 )

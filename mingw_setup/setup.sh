@@ -9,14 +9,10 @@
 DIR=`getScriptDirectory`
 
 # The toolchain template
-TOOLCHAIN_TEMPLATE="$DIR/toolchain.cmake.in"
+TOOLCHAIN_TEMPLATE="$DIR/toolchain_linux.cmake.in"
 
 # The default root directory of the mingw environment
-DEFAULT_MINGW_ENV="/opt/mingw-w64"
-
-################################################################################
-# Logging
-################################################################################
+DEFAULT_MINGW_ENV="/opt/mingw"
 
 ################################################################################
 # Usage
@@ -44,7 +40,6 @@ fi
 # Make paths absolute
 ################################################################################
 make_absolute MINGW_ENV
-echo "Mingw: $MINGW_ENV"
 
 ################################################################################
 # Prepare directories
@@ -58,7 +53,6 @@ mkdir -p $MINGW_ENV/cmake
 ################################################################################
 # Configure CMake toolchain file
 ################################################################################
-echo "Mingw ENv: $MINGW_ENV"
 cmake -DTOOLCHAIN_TEMPLATE=$TOOLCHAIN_TEMPLATE -DMINGW_ENV=$MINGW_ENV -P $DIR/configure_toolchain.cmake
 
 ################################################################################

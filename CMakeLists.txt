@@ -175,10 +175,12 @@ install(DIRECTORY ${CMAKE_SOURCE_DIR}/res/dist/media
 # Install Runtime Libraries
 if(WIN32)
     
-    #INSTALL(FILES
-    #    ${SYSTEM_DLLS}
-    #    DESTINATION bin
-    #)
+    if (SYSTEM_DLLS)
+        INSTALL(FILES
+            ${SYSTEM_DLLS}
+            DESTINATION bin
+        )
+    endif()
 
     INSTALL(FILES
         ${Boost_LIBRARIES}
