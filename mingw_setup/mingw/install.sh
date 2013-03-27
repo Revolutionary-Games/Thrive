@@ -2,7 +2,6 @@
 
 # Import utilities
 . utils.sh
-echo "Kernel: $KERNEL"
 
 
 MINGW_ENV=$1
@@ -15,13 +14,8 @@ mkdir -p $WORKING_DIR
 ################################################################################
 # Check for necessary commands
 ################################################################################
-if [[ $IS_LINUX && ! `commandExists tar` ]]; then
+if [[ ! `commandExists tar` ]]; then
     echo "No suitable command to unpack archive found. Aborting."
-    exit 1
-fi
-
-if [[ $IS_WINDOWS && ! `commandExists 7za` ]]; then
-    echo "Please install 7zip and try again."
     exit 1
 fi
 
@@ -30,11 +24,9 @@ fi
 ################################################################################
 
 # Download mingw
-if $IS_LINUX && $IS_64_ENV ; then
-    echo "Linux"
-    OS="linux64"
-    ARCHIVE_FORMAT="tar.xz"
-    UNPACK_CMD="tar --directory $WORKING_DIR -xf"
+OS="linux64"
+ARCHIVE_FORMAT="tar.xz"
+UNPACK_CMD="tar --directory $WORKING_DIR -xf"
 elif $IS_WINDOWS; then
     echo "Windows"
     OS="win32"
@@ -46,7 +38,7 @@ else
 fi
 
 REMOTE_DIR="http://downloads.sourceforge.net/project/mingw-w64/Toolchains%20targetting%20Win32/Personal%20Builds/rubenvb/gcc-4.8-dw2-release"
-ARCHIVE="i686-w64-mingw32-gcc-dw2-4.8.0-${OS}_rubenvb.${ARCHIVE_FORMAT}"
+ARCHIVE="i686-w64-mingw32-gcc-dw2-4.8.0-linux64_rubenvb.tar.xz"
 
 if [ -e $WORKING_DIR/$ARCHIVE ]; then
     echo "Archive file found, skipping download. If you want to redownload it, please delete ${WORKING_DIR}/${ARCHIVE}."
