@@ -3,7 +3,6 @@
 . utils.sh
 
 MINGW_ENV=$1
-make_absolute MINGW_ENV
 
 WORKING_DIR=$MINGW_ENV/temp/boost
 
@@ -34,7 +33,7 @@ fi
 ################################################################################
 
 # untar the boost sources
-# tar -x --directory=$WORKING_DIR -f $WORKING_DIR/$ARCHIVE
+tar -x --directory=$WORKING_DIR -f $WORKING_DIR/$ARCHIVE
 if [ $? -ne 0 ]; then
     echo "Could not unpack boost. If the archive is corrupted, delete \n \
     \n \
@@ -43,25 +42,16 @@ if [ $? -ne 0 ]; then
     to force a new download.
     "
 fi
+
 cd $WORKING_DIR/boost_1_51_0/
 
 # build the bjam program provided with Boost
-if $IS_LINUX; then
-    ./bootstrap.sh --without-icu
-    BIN_EXTENSION=""
-    MINGW_BIN_DIR=$MINGW_ENV/bin/
-elif $IS_WINDOWS; then
-    BIN_EXTENSION=".exe"
-    MINGW_BIN_DIR=`posixToWinPath $MINGW_ENV/bin/ | sed 's/\\\\/\\\\\\\\/g'`
-    echo "Dir: $MINGW_BIN_DIR"
-    ./bootstrap.sh --with-toolset=mingw --without-icu
-    sed -e s/gcc/mingw/ project-config.jam > project-config.jam
-fi
+./bootstrap.sh --without-icu
 
-echo "using gcc : 4.8 : ${MINGW_BIN_DIR}i686-w64-mingw32-g++$BIN_EXTENSION
+echo "using gcc : 4.8 : $MINGW_ENV/bin/i686-w64-mingw32-g++
         :
-        <rc>${MINGW_BIN_DIR}i686-w64-mingw32-windres$BIN_EXTENSION
-        <archiver>${MINGW_BIN_DIR}i686-w64-mingw32-ar$BIN_EXTENSION
+        <rc>$MINGW_ENV/bin/i686-w64-mingw32-windres
+        <archiver>$MINGW_ENV/bin/i686-w64-mingw32-ar
 ;" > $WORKING_DIR/user-config.jam
 
 # build boost
