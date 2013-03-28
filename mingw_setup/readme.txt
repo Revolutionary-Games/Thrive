@@ -35,7 +35,7 @@ points.
 0. Requirements
 ---------------
 
-* At least 1.5 GB of free hard drive space
+* At least 5 GB of free hard drive space
 
 * About 30-60 minutes, depending on the speed of your PC and your internet
   connection
@@ -75,11 +75,12 @@ why we need to add it to the PATH environment variable.
 
 * Right-click on "setup.ps1" and select "Run with Powershell"
 
-* In the file dialog that should pop up, select C:\MinGW. Read the note below
-  if you want to install to another directory.
+* In the file dialog that should pop up, select a directory of your choice.
+  C:\MinGW is recommended if you don't have another MinGW installation there
+  already.
 
-* Depending on your PC and the speed of your internet connection, this might
-  take 10-30 minutes, so go get your beverage of choice.
+* This will take quite a while, so be patient. When the script is complete, 
+  a message box will inform you.
 
 If you want to install the build environment to another directory, you need to
 have another compiler installed. A standard mingw installation in C:\MinGW or 
