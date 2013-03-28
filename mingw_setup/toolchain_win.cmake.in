@@ -7,12 +7,14 @@ SET(MINGW_ENV @MINGW_ENV@)
 SET(CMAKE_MAKE_PROGRAM ${MINGW_ENV}/bin/mingw32-make.exe
     CACHE FILEPATH "Make program used for make-based generators"
 )
+SET(CMAKE_AR ${MINGW_ENV}/bin/ar.exe
+    CACHE FILEPATH "Archiver"
+)
 
 # which compilers to use for C and C++
 SET(CMAKE_C_COMPILER ${MINGW_ENV}/bin/gcc.exe)
 SET(CMAKE_CXX_COMPILER ${MINGW_ENV}/bin/g++.exe)
 SET(CMAKE_RC_COMPILER ${MINGW_ENV}/bin/windres.exe)
-SET(CMAKE_AR ${MINGW_ENV}/bin/ar.exe)
 SET(CMAKE_RANLIB ${MINGW_ENV}/bin/ranlib.exe)
 
 # here is the target environment located
