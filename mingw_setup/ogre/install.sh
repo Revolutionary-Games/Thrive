@@ -4,8 +4,6 @@
 
 MINGW_ENV=$1
 
-make_absolute MINGW_ENV
-
 WORKING_DIR=$MINGW_ENV/temp/ogre
 
 REMOTE_DIR="http://downloads.sourceforge.net/project/ogre/ogre/1.8/1.8.1"
