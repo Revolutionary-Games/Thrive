@@ -1,3 +1,9 @@
+What's this?
+============
+
+In this directory, you will find some scripts that will help you setting up a
+system for building Thrive.
+
 Important Note: If you run into any trouble with the setup scripts, please 
 post them at
 
@@ -14,9 +20,25 @@ you would like to use another Windows version, please refer to the "Other
 Windows Platforms" section. If you prefer another IDE, go to "Other Windows 
 IDEs".
 
+The setup script will install:
+
+* MinGW-w64 with GCC 4.8
+
+* Boost libraries 1.51.0
+
+* Ogre SDK 1.8.1
+
 To set up the build system follow the steps listed below. If you are not 
-interested in the gory details, you can skip ignore everything but the bullet
+interested in the gory details, you can ignore everything but the bullet
 points.
+
+0. Requirements
+---------------
+
+* At least 1.5 GB of free hard drive space
+
+* About 30-60 minutes, depending on the speed of your PC and your internet
+  connection
 
 1. Enabling Powershell to run the setup script
 ----------------------------------------------
