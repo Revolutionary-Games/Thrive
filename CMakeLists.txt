@@ -112,7 +112,11 @@ include_directories(
 # Compile using c++11
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=gnu++0x")
 
-# add subdirectories
+
+##################
+# Compile Thrive # 
+##################
+
 # Collect sources from sub directories
 add_subdirectory(src)
 get_property(SOURCE_FILES GLOBAL PROPERTY SOURCE_FILES)
