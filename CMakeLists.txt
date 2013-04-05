@@ -18,25 +18,6 @@ SET(OGRE_SDK ""
 )
 
 
-# function to collect all the sources from sub-directories into a single list
-function(add_sources)
-  get_property(is_defined GLOBAL PROPERTY SRCS_LIST DEFINED)
-  if(NOT is_defined)
-    define_property(GLOBAL PROPERTY SRCS_LIST
-      BRIEF_DOCS "List of source files"
-      FULL_DOCS "List of source files to be compiled in one library")
-  endif()
-  # make absolute paths
-  set(SRCS)
-  foreach(s IN LISTS ARGN)
-    if(NOT IS_ABSOLUTE "${s}")
-      get_filename_component(s "${s}" ABSOLUTE)
-    endif()
-    list(APPEND SRCS "${s}")
-  endforeach()
-  # append to global list
-  set_property(GLOBAL APPEND PROPERTY SRCS_LIST "${SRCS}")
-endfunction(add_sources)
 
 ###############
 # CMake Setup #
@@ -47,6 +28,7 @@ list(APPEND CMAKE_MODULE_PATH
 )
 
 include(GetPrerequisites)
+include(add_to_project)
 include(utils)
 set(CMAKE_INSTALL_RPATH ".")
 # Assure a proper build type
@@ -117,23 +99,10 @@ include_directories(
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=gnu++0x")
 
 # add subdirectories
-add_subdirectory(src)
-
 # Collect sources from sub directories
-set(PREP_SRCS)
-get_property(SRCS GLOBAL PROPERTY SRCS_LIST)
-foreach(s IN LISTS SRCS)
-  file(RELATIVE_PATH rs "${CMAKE_CURRENT_SOURCE_DIR}" "${s}")
-  string(REGEX REPLACE "r$" "" o "${CMAKE_CURRENT_BINARY_DIR}/${rs}")
-  add_custom_command(
-    OUTPUT "${o}"
-    COMMAND ${CMAKE_COMMAND} -E copy "${s}" "${o}"
-    DEPENDS "${s}"
-    COMMENT "Creating ${o}"
-    VERBATIM
-    )
-  list(APPEND PREP_SRCS "${o}")
-endforeach()
+add_subdirectory(src)
+get_property(SOURCE_FILES GLOBAL PROPERTY SOURCE_FILES)
+
 
 add_executable(Thrive WIN32 ${PREP_SRCS}) #${HDRS} ${SRCS})
 
