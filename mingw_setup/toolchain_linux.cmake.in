@@ -23,6 +23,10 @@ SET(OGRE_SDK ${MINGW_ENV}/OgreSDK
     CACHE STRING "Path to the Ogre SDK"
 )
 
+# Google test
+set(GOOGLE_TEST_DIR ${MINGW_ENV}/gtest
+    CACHE STRING "Path to Google Test"
+)
 
 # Boost
 set(Boost_THREADAPI win32)
