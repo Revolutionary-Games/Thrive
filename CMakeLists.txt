@@ -8,9 +8,15 @@ cmake_minimum_required(VERSION 2.6)
 
 project(Thrive)
 
-####################
-# Define functions #
-####################
+###################
+# Cache Variables #
+###################
+
+# Ogre SDK
+SET(OGRE_SDK ""
+    CACHE STRING "Path to the Ogre SDK"
+)
+
 
 # function to collect all the sources from sub-directories into a single list
 function(add_sources)
