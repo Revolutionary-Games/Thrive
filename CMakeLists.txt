@@ -104,6 +104,7 @@ endif()
 ######################
 
 include_directories( 
+    ${CMAKE_CURRENT_SOURCE_DIR}/src
     ${Boost_INCLUDE_DIRS}
     ${OIS_INCLUDE_DIRS}
 	${OGRE_INCLUDE_DIRS}
