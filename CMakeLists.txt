@@ -17,6 +17,10 @@ SET(OGRE_SDK ""
     CACHE STRING "Path to the Ogre SDK"
 )
 
+# Google test
+set(GOOGLE_TEST_DIR ""
+    CACHE STRING "Path to Google Test"
+)
 
 
 ###############
@@ -86,6 +90,15 @@ set(BOOST_COMPONENTS
 
 find_package(Boost 1.51 COMPONENTS ${BOOST_COMPONENTS} REQUIRED QUIET)
 
+###############
+# Google Test #
+###############
+
+if (GOOGLE_TEST_DIR)
+    add_subdirectory(${GOOGLE_TEST_DIR})
+    include_directories(${GOOGLE_TEST_DIR}/include)
+endif()
+
 ######################
 # Configure Compiler # 
 ######################
@@ -104,26 +117,48 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=gnu++0x")
 add_subdirectory(src)
 get_property(SOURCE_FILES GLOBAL PROPERTY SOURCE_FILES)
 
+# Compile library
+add_library(ThriveLib SHARED ${SOURCE_FILES})
 
-add_executable(Thrive WIN32 ${PREP_SRCS}) #${HDRS} ${SRCS})
-
-target_link_libraries(Thrive 
+target_link_libraries(ThriveLib
     ${Boost_LIBRARIES}
     ${OGRE_LIBRARIES} 
     ${OIS_LIBRARIES}
 )
 
+set_target_properties(ThriveLib PROPERTIES
+    OUTPUT_NAME Thrive
+)
+
+# Compile executable
+add_executable(Thrive WIN32 ${CMAKE_CURRENT_SOURCE_DIR}/src/Main.cpp)
+
+target_link_libraries(Thrive ThriveLib)
+
+
+#################
+# Compile tests #
+#################
+
+# Collect sources from sub directories
+get_property(TEST_SOURCE_FILES GLOBAL PROPERTY TEST_SOURCE_FILES)
+
+if (TEST_SOURCE_FILES)
+    add_executable(RunTests ${TEST_SOURCE_FILES})
+    target_link_libraries(RunTests ThriveLib gtest_main)
+endif()
 
 ###########
 # Install #
 ###########
 
 # Executable
-install(TARGETS Thrive
+install(TARGETS Thrive ThriveLib
     RUNTIME DESTINATION bin
+    LIBRARY DESTINATION bin
 )
 
-# OGRE config
+# OGRE config and media
 
 install(FILES 
     ${CMAKE_SOURCE_DIR}/res/dist/bin/resources.cfg
