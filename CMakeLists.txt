@@ -23,14 +23,18 @@ SET(OGRE_SDK ""
 # CMake Setup #
 ###############
 
+# Configure search path for cmake modules
 list(APPEND CMAKE_MODULE_PATH
     ${CMAKE_SOURCE_DIR}/cmake_modules
 )
 
-include(GetPrerequisites)
+# Import utility functions
 include(add_to_project)
 include(utils)
+
+# Search path for dynamic libraries at runtime. Only relevant for Linux.
 set(CMAKE_INSTALL_RPATH ".")
+
 # Assure a proper build type
 if (NOT CMAKE_BUILD_TYPE)
   set(CMAKE_BUILD_TYPE
@@ -40,15 +44,11 @@ if (NOT CMAKE_BUILD_TYPE)
     )
 endif ()
 
-if (CMAKE_BUILD_TYPE STREQUAL "Debug")
-    set(IS_DEBUG_BUILD True)
-else()
-    set(IS_DEBUG_BUILD False)
-endif()
-
-set(CMAKE_INSTALL_PREFIX "${CMAKE_CURRENT_BINARY_DIR}/dist" CACHE STRING "Install path" FORCE)
-
-set(RUNTIME_LIBRARIES ${SYSTEM_DLLS})
+# Install into dist subdirectory
+set(CMAKE_INSTALL_PREFIX 
+    "${CMAKE_CURRENT_BINARY_DIR}/dist" 
+    CACHE STRING "Install path" FORCE
+)
 
 
 #############
@@ -72,6 +72,7 @@ set(OGRE_PLUGINS
 #######
 
 find_package(OIS REQUIRED QUIET)
+
 
 ##############
 # Find Boost #
