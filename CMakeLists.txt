@@ -8,41 +8,37 @@ cmake_minimum_required(VERSION 2.6)
 
 project(Thrive)
 
-####################
-# Define functions #
-####################
+###################
+# Cache Variables #
+###################
 
-# function to collect all the sources from sub-directories into a single list
-function(add_sources)
-  get_property(is_defined GLOBAL PROPERTY SRCS_LIST DEFINED)
-  if(NOT is_defined)
-    define_property(GLOBAL PROPERTY SRCS_LIST
-      BRIEF_DOCS "List of source files"
-      FULL_DOCS "List of source files to be compiled in one library")
-  endif()
-  # make absolute paths
-  set(SRCS)
-  foreach(s IN LISTS ARGN)
-    if(NOT IS_ABSOLUTE "${s}")
-      get_filename_component(s "${s}" ABSOLUTE)
-    endif()
-    list(APPEND SRCS "${s}")
-  endforeach()
-  # append to global list
-  set_property(GLOBAL APPEND PROPERTY SRCS_LIST "${SRCS}")
-endfunction(add_sources)
+# Ogre SDK
+SET(OGRE_SDK ""
+    CACHE STRING "Path to the Ogre SDK"
+)
+
+# Google test
+set(GOOGLE_TEST_DIR ""
+    CACHE STRING "Path to Google Test"
+)
+
 
 ###############
 # CMake Setup #
 ###############
 
+# Configure search path for cmake modules
 list(APPEND CMAKE_MODULE_PATH
     ${CMAKE_SOURCE_DIR}/cmake_modules
 )
 
-include(GetPrerequisites)
+# Import utility functions
+include(add_to_project)
 include(utils)
+
+# Search path for dynamic libraries at runtime. Only relevant for Linux.
 set(CMAKE_INSTALL_RPATH ".")
+
 # Assure a proper build type
 if (NOT CMAKE_BUILD_TYPE)
   set(CMAKE_BUILD_TYPE
@@ -52,15 +48,11 @@ if (NOT CMAKE_BUILD_TYPE)
     )
 endif ()
 
-if (CMAKE_BUILD_TYPE STREQUAL "Debug")
-    set(IS_DEBUG_BUILD True)
-else()
-    set(IS_DEBUG_BUILD False)
-endif()
-
-set(CMAKE_INSTALL_PREFIX "${CMAKE_CURRENT_BINARY_DIR}/dist" CACHE STRING "Install path" FORCE)
-
-set(RUNTIME_LIBRARIES ${SYSTEM_DLLS})
+# Install into dist subdirectory
+set(CMAKE_INSTALL_PREFIX 
+    "${CMAKE_CURRENT_BINARY_DIR}/dist" 
+    CACHE STRING "Install path" FORCE
+)
 
 
 #############
@@ -85,6 +77,7 @@ set(OGRE_PLUGINS
 
 find_package(OIS REQUIRED QUIET)
 
+
 ##############
 # Find Boost #
 ##############
@@ -97,11 +90,21 @@ set(BOOST_COMPONENTS
 
 find_package(Boost 1.51 COMPONENTS ${BOOST_COMPONENTS} REQUIRED QUIET)
 
+###############
+# Google Test #
+###############
+
+if (GOOGLE_TEST_DIR)
+    add_subdirectory(${GOOGLE_TEST_DIR})
+    include_directories(${GOOGLE_TEST_DIR}/include)
+endif()
+
 ######################
 # Configure Compiler # 
 ######################
 
 include_directories( 
+    ${CMAKE_CURRENT_SOURCE_DIR}/src
     ${Boost_INCLUDE_DIRS}
     ${OIS_INCLUDE_DIRS}
 	${OGRE_INCLUDE_DIRS}
@@ -110,44 +113,57 @@ include_directories(
 # Compile using c++11
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=gnu++0x")
 
-# add subdirectories
-add_subdirectory(src)
+
+##################
+# Compile Thrive # 
+##################
 
 # Collect sources from sub directories
-set(PREP_SRCS)
-get_property(SRCS GLOBAL PROPERTY SRCS_LIST)
-foreach(s IN LISTS SRCS)
-  file(RELATIVE_PATH rs "${CMAKE_CURRENT_SOURCE_DIR}" "${s}")
-  string(REGEX REPLACE "r$" "" o "${CMAKE_CURRENT_BINARY_DIR}/${rs}")
-  add_custom_command(
-    OUTPUT "${o}"
-    COMMAND ${CMAKE_COMMAND} -E copy "${s}" "${o}"
-    DEPENDS "${s}"
-    COMMENT "Creating ${o}"
-    VERBATIM
-    )
-  list(APPEND PREP_SRCS "${o}")
-endforeach()
+add_subdirectory(src)
+get_property(SOURCE_FILES GLOBAL PROPERTY SOURCE_FILES)
 
-add_executable(Thrive WIN32 ${PREP_SRCS}) #${HDRS} ${SRCS})
+# Compile library
+add_library(ThriveLib SHARED ${SOURCE_FILES})
 
-target_link_libraries(Thrive 
+target_link_libraries(ThriveLib
     ${Boost_LIBRARIES}
     ${OGRE_LIBRARIES} 
     ${OIS_LIBRARIES}
 )
 
+set_target_properties(ThriveLib PROPERTIES
+    OUTPUT_NAME Thrive
+)
+
+# Compile executable
+add_executable(Thrive WIN32 ${CMAKE_CURRENT_SOURCE_DIR}/src/Main.cpp)
+
+target_link_libraries(Thrive ThriveLib)
+
+
+#################
+# Compile tests #
+#################
+
+# Collect sources from sub directories
+get_property(TEST_SOURCE_FILES GLOBAL PROPERTY TEST_SOURCE_FILES)
+
+if (TEST_SOURCE_FILES)
+    add_executable(RunTests ${TEST_SOURCE_FILES})
+    target_link_libraries(RunTests ThriveLib gtest_main)
+endif()
 
 ###########
 # Install #
 ###########
 
 # Executable
-install(TARGETS Thrive
+install(TARGETS Thrive ThriveLib
     RUNTIME DESTINATION bin
+    LIBRARY DESTINATION bin
 )
 
-# OGRE config
+# OGRE config and media
 
 install(FILES 
     ${CMAKE_SOURCE_DIR}/res/dist/bin/resources.cfg
