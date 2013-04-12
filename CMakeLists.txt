@@ -95,7 +95,7 @@ find_package(Boost 1.51 COMPONENTS ${BOOST_COMPONENTS} REQUIRED QUIET)
 ###############
 
 if (GOOGLE_TEST_DIR)
-    add_subdirectory(${GOOGLE_TEST_DIR})
+    add_subdirectory(${GOOGLE_TEST_DIR} ${CMAKE_CURRENT_BINARY_DIR}/gtest)
     include_directories(${GOOGLE_TEST_DIR}/include)
 endif()
 

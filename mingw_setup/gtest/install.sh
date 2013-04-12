@@ -4,7 +4,7 @@
 
 MINGW_ENV=$1
 
-WORKING_DIR=$MINGW_ENV/temp/gmock
+WORKING_DIR=$MINGW_ENV/temp/gtest
 
 REMOTE_DIR="http://googletest.googlecode.com/files"
 
