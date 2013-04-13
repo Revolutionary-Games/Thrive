@@ -2,7 +2,7 @@
 
 #include <memory>
 
-namespace thrive { namespace signals {
+namespace thrive {
 
 class Guardian {
 public:
@@ -27,7 +27,12 @@ public:
         Guardian* guardian
     );
 
+    GuardianLock(const GuardianLock&) = delete;
+
     ~GuardianLock();
+
+    GuardianLock&
+    operator= (const GuardianLock&) = delete;
 
     operator bool() const;
 
@@ -92,4 +97,4 @@ createSharedPtrGuardian(
 }
 
 
-}}
+}
