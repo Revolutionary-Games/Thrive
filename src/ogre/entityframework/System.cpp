@@ -11,7 +11,7 @@ MoveSystem::MoveSystem(Engine* e)
     engine = e;
 }
 void MoveSystem::update(Ogre::Real deltaTime){
-    targets = (std::vector<MoveNode*>*)engine->getNodeList("Move");
+    targets = reinterpret_cast<std::vector<MoveNode*>*>(engine->getNodeList("Move"));
     for (std::vector<MoveNode*>::iterator i = targets->begin(); i!=targets->end(); i++)
     {
         MoveNode* target = (*i);
@@ -24,8 +24,8 @@ ControllSystem::ControllSystem(Engine* e)
 {
     engine = e;
 }
-void ControllSystem::update(Ogre::Real deltaTime){
-    targets = (std::vector<ControllerNode*>*)engine->getNodeList("Controller");
+void ControllSystem::update(Ogre::Real){
+    targets = reinterpret_cast<std::vector<ControllerNode*>*>(engine->getNodeList("Controller"));
     for (std::vector<ControllerNode*>::iterator i = targets->begin(); i!=targets->end(); i++)
     {
         ControllerNode* target = (*i);
@@ -33,7 +33,7 @@ void ControllSystem::update(Ogre::Real deltaTime){
        
         if (target->agent->agent->getType()=="Keyboard")
         {
-            KeyboardAgent* agent = (KeyboardAgent*)target->agent;
+            KeyboardAgent* agent = dynamic_cast<KeyboardAgent*>(target->agent);
             Ogre::Vector3 direction= agent->update();
             target->velocity->velocity+=direction*0.025f;//Should change for performAction(action) or something
         }
@@ -52,7 +52,7 @@ void ControllSystem::update(Ogre::Real deltaTime){
         {
             //MessageBox( NULL, "Updating controller random", target->agent->agent->getType().c_str() , MB_OK | MB_ICONERROR | MB_TASKMODAL);
        
-            RandomAgent* agent = (RandomAgent*)target->agent->agent;
+            RandomAgent* agent = dynamic_cast<RandomAgent*>(target->agent->agent);
             Ogre::Vector3 direction= agent->update();
             target->velocity->velocity+=direction*0.025f;//Should change for performAction(action) or something
         
@@ -67,7 +67,7 @@ ColisionSystem::ColisionSystem(Engine* e)
 
 void ColisionSystem::update(Ogre::Real)
 {
-    targets = (std::vector<ColisionNode*>*)engine->getNodeList("Colision");
+    targets = reinterpret_cast<std::vector<ColisionNode*>*>(engine->getNodeList("Colision"));
     for (std::vector<ColisionNode*>::iterator i = targets->begin(); i!=targets->end()-1;i++)
     {
         for (std::vector<ColisionNode*>::iterator j = i+1; j!=targets->end();j++)

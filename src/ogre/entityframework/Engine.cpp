@@ -15,8 +15,8 @@ void Engine::addEntity(Entity* entity)
     if (entity->has({"OgreNode","Velocity"}))
     {
         MoveNode* moveNode = new MoveNode();
-        moveNode->ogreNode = (OgreNodeComponent*) entity->get("OgreNode");
-        moveNode->velocity = (VelocityComponent*) entity->get("Velocity");
+        moveNode->ogreNode = static_cast<OgreNodeComponent*>(entity->get("OgreNode"));
+        moveNode->velocity = static_cast<VelocityComponent*>(entity->get("Velocity"));
         std::vector<Node*>* nodeList = getNodeList("Move");
         nodeList->push_back(moveNode);
     }
@@ -24,8 +24,8 @@ void Engine::addEntity(Entity* entity)
     if (entity->has({"Agent","Velocity"}))
     {
         ControllerNode* controllerNode = new ControllerNode();
-        controllerNode->velocity = (VelocityComponent*) entity->get("Velocity");
-        controllerNode->agent = (AgentComponent*) entity->get("Agent");
+        controllerNode->velocity = static_cast<VelocityComponent*>(entity->get("Velocity"));
+        controllerNode->agent = static_cast<AgentComponent*>(entity->get("Agent"));
         std::vector<Node*>* nodeList = getNodeList("Controller");
         nodeList->push_back(controllerNode);
     }
@@ -33,9 +33,9 @@ void Engine::addEntity(Entity* entity)
     if (entity->has({"OgreNode","Velocity", "ColisionGroup"}))
     {
         ColisionNode* colisionNode = new ColisionNode();
-        colisionNode->ogreNode = (OgreNodeComponent*) entity->get("OgreNode"); 
-        colisionNode->velocity = (VelocityComponent*) entity->get("Velocity");
-        colisionNode->colisionGroup = (ColisionGroupComponent*) entity->get("ColisionGroup");
+        colisionNode->ogreNode = static_cast<OgreNodeComponent*>(entity->get("OgreNode")); 
+        colisionNode->velocity = static_cast<VelocityComponent*>(entity->get("Velocity"));
+        colisionNode->colisionGroup = static_cast<ColisionGroupComponent*>(entity->get("ColisionGroup"));
         std::vector<Node*>* nodeList = getNodeList("Colision");
         nodeList->push_back(colisionNode);
     }

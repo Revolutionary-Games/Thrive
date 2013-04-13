@@ -217,7 +217,7 @@ bool Thrive::go(void)
     //create and add an AgentComponent
     AgentComponent* aComponent = new AgentComponent();
     KeyboardAgent* agent = new KeyboardAgent(Move);
-    aComponent->agent = (Agent*) agent;
+    aComponent->agent = agent;
     mEntityCell->add(aComponent);
     //create and add ColisionGroup
     ColisionGroupComponent* cGComponent = new ColisionGroupComponent();
@@ -244,7 +244,7 @@ bool Thrive::go(void)
     mEntityCell2->add(sComponent2);
     //Adding random controller
     AgentComponent* aComponent2 = new AgentComponent();
-    aComponent2->agent = (Agent*)new RandomAgent();
+    aComponent2->agent = new RandomAgent();
     mEntityCell2->add(aComponent2);
     //create and add colisionGroup
     ColisionGroupComponent* cGComponent2 = new ColisionGroupComponent();
@@ -325,7 +325,7 @@ bool Thrive::frameRenderingQueued(const Ogre::FrameEvent& evt)
         Move += Ogre::Vector3::NEGATIVE_UNIT_Z;
     if(mKeyboard->isKeyDown(OIS::KC_F))
         Move += Ogre::Vector3::UNIT_Z;
-    ((VelocityComponent*)mEntityCell->get("Velocity"))->velocity += Move*0.025;
+    static_cast<VelocityComponent*>(mEntityCell->get("Velocity"))->velocity += Move*0.025;
     //mCamNode->translate(Move * 8 * evt.timeSinceLastFrame, Ogre::SceneNode::TransformSpace::TS_WORLD);
     //}else{
     	//mCamNode->setPosition(mPlayerCell->mNode->getPosition()+Ogre::Vector3(0,0,30));
