@@ -17,11 +17,6 @@ SET(OGRE_SDK ""
     CACHE STRING "Path to the Ogre SDK"
 )
 
-# Google test
-set(GOOGLE_TEST_DIR ""
-    CACHE STRING "Path to Google Test"
-)
-
 
 ###############
 # CMake Setup #
@@ -94,20 +89,40 @@ find_package(Boost 1.51 COMPONENTS ${BOOST_COMPONENTS} REQUIRED QUIET)
 # Google Test #
 ###############
 
-if (GOOGLE_TEST_DIR)
-    add_subdirectory(${GOOGLE_TEST_DIR})
-    include_directories(${GOOGLE_TEST_DIR}/include)
-endif()
+add_subdirectory(
+    ${CMAKE_CURRENT_SOURCE_DIR}/contrib/googletest
+)
+
+include_directories(
+    SYSTEM
+    ${CMAKE_CURRENT_SOURCE_DIR}/contrib/googletest/include
+)
+
+#######
+# Lua #
+#######
+
+add_subdirectory(
+    ${CMAKE_CURRENT_SOURCE_DIR}/contrib/lua/
+)
+
+include_directories(
+    SYSTEM
+    ${CMAKE_CURRENT_SOURCE_DIR}/contrib/lua/lua/src
+)
 
 ######################
 # Configure Compiler # 
 ######################
 
-include_directories( 
-    ${CMAKE_CURRENT_SOURCE_DIR}/src
+include_directories(SYSTEM
     ${Boost_INCLUDE_DIRS}
     ${OIS_INCLUDE_DIRS}
-	${OGRE_INCLUDE_DIRS}
+    ${OGRE_INCLUDE_DIRS}
+)
+
+include_directories( 
+    ${CMAKE_CURRENT_SOURCE_DIR}/src
 )
 
 # Compile using c++11
@@ -122,6 +137,13 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=gnu++0x")
 add_subdirectory(src)
 get_property(SOURCE_FILES GLOBAL PROPERTY SOURCE_FILES)
 
+# Set extensive warning flags
+include(compiler_flags)
+set_source_files_properties(
+    ${SOURCE_FILES}
+    PROPERTIES COMPILE_FLAGS ${WARNING_FLAGS}
+)
+
 # Compile library
 add_library(ThriveLib SHARED ${SOURCE_FILES})
 
@@ -129,6 +151,7 @@ target_link_libraries(ThriveLib
     ${Boost_LIBRARIES}
     ${OGRE_LIBRARIES} 
     ${OIS_LIBRARIES}
+    lua
 )
 
 set_target_properties(ThriveLib PROPERTIES
@@ -147,6 +170,11 @@ target_link_libraries(Thrive ThriveLib)
 
 # Collect sources from sub directories
 get_property(TEST_SOURCE_FILES GLOBAL PROPERTY TEST_SOURCE_FILES)
+
+set_source_files_properties(
+    ${TEST_SOURCE_FILES}
+    PROPERTIES COMPILE_FLAGS ${WARNING_FLAGS}
+)
 
 if (TEST_SOURCE_FILES)
     add_executable(RunTests ${TEST_SOURCE_FILES})
