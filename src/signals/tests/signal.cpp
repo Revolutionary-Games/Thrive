@@ -4,7 +4,7 @@
 
 #include <gtest/gtest.h>
 
-using namespace thrive::signals;
+using namespace thrive;
 
 
 TEST (SignalDeathTest, SelfDeletion) {

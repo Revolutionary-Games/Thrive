@@ -1,5 +1,6 @@
 #pragma once
 
+#include "engine/scripting.h"
 #include "signals/connection.h"
 #include "signals/guardian.h"
 #include "util/scope_guard.h"
@@ -8,14 +9,69 @@
 #include <list>
 #include <functional>
 #include <memory>
+#include <unordered_map>
 
-namespace thrive { namespace signals {
+namespace thrive {
 
 class Connection;
 class Guardian;
+class PropertyBase;
+
+class SignalBase {
+
+public:
+
+    virtual ~SignalBase() = 0;
+
+    static SignalBase*
+    getFromLua(
+        lua_State* L,
+        int index
+    );
+
+    int
+    connectToLua(
+        lua_State* L
+    );
+
+    void
+    disconnectFromLua(
+        lua_State* L,
+        int slotReference
+    );
+
+    template<typename... Args>
+    void
+    emitToLua(Args&&... args) {
+        this->removeStaleLuaSlots();
+        for (auto pair : m_luaSlots) {
+            lua_State* L = pair.first;
+            int slotReference = pair.second;
+            lua_rawgeti(L, LUA_REGISTRYINDEX, slotReference);
+            LuaStack<Args...>::push(L, std::forward<Args>(args)...);
+            lua_call(L, sizeof...(Args), 0);
+        }
+    }
+
+    int
+    pushToLua(
+        lua_State* L
+    );
+
+private:
+
+    void removeStaleLuaSlots();
+
+    std::list< std::pair<lua_State*, int> > m_luaSlots;
+
+    std::unordered_map<lua_State*, int> m_luaReferences;
+
+    std::list< std::pair<lua_State*, int> > m_removedLuaSlots;
+
+};
 
 template<typename... Args>
-class Signal {
+class Signal : public SignalBase {
 
 public:
 
@@ -61,10 +117,9 @@ public:
                 lock.unlock(); 
                 iter = m_slots.erase(iter);
             }
-
         }
+        this->emitToLua(arguments...);
     }
-
 
 private:
 
@@ -82,9 +137,9 @@ private:
         
         std::function<void(Args...)> m_callback;
 
-        std::unique_ptr<Guardian> m_guardian;
-
         std::shared_ptr<Connection> m_connection;
+
+        std::unique_ptr<Guardian> m_guardian;
 
     };
 
@@ -97,4 +152,4 @@ private:
 
 };
 
-}}
+}

@@ -1,6 +1,6 @@
 #include "signals/guardian.h"
 
-using namespace thrive::signals;
+using namespace thrive;
 
 
 Guardian::~Guardian() {}

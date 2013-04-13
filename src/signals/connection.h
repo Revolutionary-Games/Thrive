@@ -2,7 +2,7 @@
 
 #include <memory>
 
-namespace thrive { namespace signals {
+namespace thrive {
 
 class Connection {
 public:
@@ -20,4 +20,4 @@ private:
     bool m_isConnected = true;
 };
 
-}}
+}

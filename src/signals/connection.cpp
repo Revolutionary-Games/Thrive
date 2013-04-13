@@ -1,6 +1,6 @@
 #include "signals/connection.h"
 
-using namespace thrive::signals;
+using namespace thrive;
 
 void
 Connection::disconnect() {
