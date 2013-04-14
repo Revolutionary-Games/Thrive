@@ -8,6 +8,7 @@ add_sources(
     ${CMAKE_CURRENT_SOURCE_DIR}/engine.h
     ${CMAKE_CURRENT_SOURCE_DIR}/entity.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/entity.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/entity_filter.h
     ${CMAKE_CURRENT_SOURCE_DIR}/property.cpp 
     ${CMAKE_CURRENT_SOURCE_DIR}/property.h 
     ${CMAKE_CURRENT_SOURCE_DIR}/scripting.cpp 
@@ -19,5 +20,6 @@ add_sources(
 add_test_sources(
     ${CMAKE_CURRENT_SOURCE_DIR}/tests/component.cpp 
     ${CMAKE_CURRENT_SOURCE_DIR}/tests/engine.cpp 
+    ${CMAKE_CURRENT_SOURCE_DIR}/tests/entity_filter.cpp 
     ${CMAKE_CURRENT_SOURCE_DIR}/tests/test_component.h
 )

@@ -4,6 +4,7 @@
 #include "signals/signal.h"
 
 #include <memory>
+#include <unordered_set>
 
 namespace thrive {
 
@@ -30,16 +31,31 @@ public:
         std::shared_ptr<System> system
     );
 
+    std::unordered_set<Entity::Id>
+    entities() const;
+
     Component*
     getComponent(
         Entity::Id entityId,
         Component::TypeId typeId
     ) const;
 
+    template<typename ComponentType>
+    ComponentType*
+    getComponent(
+        Entity::Id entityId
+    ) {
+        Component* component = this->getComponent(
+            entityId,
+            ComponentType::TYPE_ID
+        );
+        return dynamic_cast<ComponentType*>(component);
+    }
+
     const ComponentCollection&
     getComponentCollection(
         Component::TypeId typeId
-    );
+    ) const;
 
     std::shared_ptr<System>
     getSystem(
