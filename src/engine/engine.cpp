@@ -140,6 +140,16 @@ Engine::addSystem(
 }
 
 
+std::unordered_set<Entity::Id>
+Engine::entities() const {
+    std::unordered_set<Entity::Id> entities;
+    for(auto& pair : m_impl->m_entities) {
+        entities.insert(pair.first);
+    }
+    return entities;
+}
+
+
 Component*
 Engine::getComponent(
     Entity::Id entityId,
@@ -147,6 +157,14 @@ Engine::getComponent(
 ) const {
     ComponentCollection& collection = m_impl->getComponentCollection(typeId);
     return collection.get(entityId);
+}
+
+
+const ComponentCollection&
+Engine::getComponentCollection(
+    Component::TypeId typeId
+) const {
+    return m_impl->getComponentCollection(typeId);
 }
 
 

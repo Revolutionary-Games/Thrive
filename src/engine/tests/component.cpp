@@ -11,7 +11,7 @@
 using namespace thrive;
 
 TEST (Property, Set) {
-    TestComponent component;
+    TestComponent<0> component;
     bool emittedValue = false;
     EXPECT_FALSE(component.p_bool);
     component.p_bool.sig_valueChanged.connect(
@@ -27,7 +27,7 @@ TEST (Property, Set) {
 
 TEST (Property, Lua) {
     LuaState L;
-    TestComponent component;
+    TestComponent<0> component;
     lua_pushboolean(L, true);
     component.p_bool.getFromLua(L, -1);
     EXPECT_TRUE(component.p_bool);
@@ -36,7 +36,7 @@ TEST (Property, Lua) {
 
 TEST (Component, LuaProperties) {
     LuaState L;
-    TestComponent component;
+    TestComponent<0> component;
     LuaStack<Component>::push(L, component);
     lua_setglobal(L, "component");
     // C++ => Lua
@@ -53,7 +53,7 @@ TEST (Component, LuaProperties) {
 
 TEST(Component, LuaSignals) {
     LuaState L;
-    TestComponent component;
+    TestComponent<0> component;
     LuaStack<Component>::push(L, component);
     lua_setglobal(L, "component");
     // C++ => Lua
@@ -68,7 +68,7 @@ TEST(Component, LuaSignals) {
 
 TEST (Component, ReadUnknownProperty) {
     LuaState L;
-    TestComponent component;
+    TestComponent<0> component;
     LuaStack<Component>::push(L, component);
     lua_setglobal(L, "component");
     // C++ => Lua
@@ -78,7 +78,7 @@ TEST (Component, ReadUnknownProperty) {
 
 TEST (Component, WriteUnknownProperty) {
     LuaState L;
-    TestComponent component;
+    TestComponent<0> component;
     LuaStack<Component>::push(L, component);
     lua_setglobal(L, "component");
     // C++ => Lua
@@ -88,7 +88,7 @@ TEST (Component, WriteUnknownProperty) {
 
 TEST (Component, TypeMismatch) {
     LuaState L;
-    TestComponent component;
+    TestComponent<0> component;
     LuaStack<Component>::push(L, component);
     lua_setglobal(L, "component");
     // C++ => Lua
@@ -98,7 +98,7 @@ TEST (Component, TypeMismatch) {
 
 TEST (Component, DisconnectSignal) {
     LuaState L;
-    TestComponent component;
+    TestComponent<0> component;
     LuaStack<Component>::push(L, component);
     lua_setglobal(L, "component");
     // Connect signal

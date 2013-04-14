@@ -31,13 +31,13 @@ TEST (Engine, AddComponent) {
         }
     );
     Entity::Id id = Entity::generateNewId();
-    auto component = make_unique<TestComponent>();
-    TestComponent* rawComponent = component.get();
+    auto component = make_unique<TestComponent<0>>();
+    TestComponent<0>* rawComponent = component.get();
     engine.addComponent(id, std::move(component));
     EXPECT_EQ(Entity::NULL_ID, addedEntityId);
     engine.update();
     EXPECT_EQ(id, addedEntityId);
-    EXPECT_EQ(rawComponent, engine.getComponent(id, TestComponent::TYPE_ID));
+    EXPECT_EQ(rawComponent, engine.getComponent(id, TestComponent<0>::TYPE_ID));
 }
 
 
@@ -50,14 +50,14 @@ TEST (Engine, RemoveComponent) {
         }
     );
     Entity::Id id = Entity::generateNewId();
-    engine.addComponent(id, make_unique<TestComponent>());
+    engine.addComponent(id, make_unique<TestComponent<0>>());
     engine.update();
     EXPECT_EQ(Entity::NULL_ID, removedEntityId);
-    engine.removeComponent(id, TestComponent::TYPE_ID);
+    engine.removeComponent(id, TestComponent<0>::TYPE_ID);
     EXPECT_EQ(Entity::NULL_ID, removedEntityId);
     engine.update();
     EXPECT_EQ(id, removedEntityId);
-    EXPECT_EQ(nullptr, engine.getComponent(id, TestComponent::TYPE_ID));
+    EXPECT_EQ(nullptr, engine.getComponent(id, TestComponent<0>::TYPE_ID));
 }
 
 
@@ -70,7 +70,7 @@ TEST (Engine, RemoveEntity) {
         }
     );
     Entity::Id id = Entity::generateNewId();
-    engine.addComponent(id, make_unique<TestComponent>());
+    engine.addComponent(id, make_unique<TestComponent<0>>());
     engine.update();
     EXPECT_EQ(Entity::NULL_ID, removedEntityId);
     engine.removeEntity(id);
@@ -83,5 +83,5 @@ TEST (Engine, RemoveEntity) {
 TEST (Engine, GetNullComponent) {
     TestEngine engine;
     Entity::Id id = Entity::generateNewId();
-    EXPECT_EQ(nullptr, engine.getComponent(id, TestComponent::TYPE_ID));
+    EXPECT_EQ(nullptr, engine.getComponent(id, TestComponent<0>::TYPE_ID));
 }
