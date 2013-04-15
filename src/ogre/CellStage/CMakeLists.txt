@@ -3,4 +3,6 @@ add_sources(
 	World.cpp
         Cell.h
         Cell.cpp
+        Organelle.h
+        Organelle.cpp
 	)
