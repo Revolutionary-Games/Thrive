@@ -6,8 +6,8 @@
 class Organelle
 {
 public:
-    virtual std::string getType();
-    virtual bool canFit(std::vector<Organelle*>*);
+    virtual std::string getType() = 0;
+    virtual bool canFit(std::vector<Organelle*>*) = 0;
 };
 
 class NucleusOrganelle : public Organelle
