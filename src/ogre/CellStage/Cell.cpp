@@ -11,23 +11,23 @@ Cell::Cell(Ogre::SceneManager* sceneMgr, Ogre::Vector3 startPosition)
     mNode->attachObject(mEntity);
     mNode->setScale(0.1f * Ogre::Vector3::UNIT_SCALE);
     
-    Ogre::Root::getSingletonPtr()->addFrameListener(this);
+    //Ogre::Root::getSingletonPtr()->addFrameListener(this);
 }
 
 Cell::~Cell()
 {}
-
+/*
 bool Cell::frameRenderingQueued(const Ogre::FrameEvent& evt)
 {
     Update(evt.timeSinceLastFrame);
     return true;
-}
+}*/
 
 bool Cell::Update(Ogre::Real deltaTime)
 {
     mVelocity.x += Ogre::Math::SymmetricRandom() * 5 * deltaTime;
     mVelocity.y += Ogre::Math::SymmetricRandom() * 5 * deltaTime;
-    
+    mVelocity*=0.995;
     mNode->translate(mVelocity * 5 * deltaTime, Ogre::SceneNode::TransformSpace::TS_WORLD);
     
     return true;
