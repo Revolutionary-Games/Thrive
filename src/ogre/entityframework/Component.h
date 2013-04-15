@@ -10,7 +10,7 @@ class Component
 {
 public:
 	//virtual ~Component() = 0;
-    virtual std::string getType();
+    virtual std::string getType() = 0;
 };
 /*
 class OgreEntityComponent : public Component
