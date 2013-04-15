@@ -1,1 +1,0 @@
-Please avoid pushing compiled binaries as these take up disk space and bandwidth.

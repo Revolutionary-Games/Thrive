@@ -4,6 +4,5 @@ add_subdirectory(Agents)
 
 add_sources(
 	Thrive.h 
-        Thrive.cpp
-	Main.cpp
-	)
+    Thrive.cpp
+)
