@@ -1,5 +1,6 @@
 #include "engine/engine.h"
 
+#include "engine/entity_manager.h"
 #include "engine/tests/test_component.h"
 #include "util/make_unique.h"
 
@@ -10,20 +11,14 @@ using namespace thrive;
 
 namespace {
 
-class TestEngine : public Engine {
-
-public:
-
-    void init() override {
-        // Nothing
-    }
-};
+class TestEngine : public Engine { };
 
 }
 
 
 TEST (Engine, AddComponent) {
     TestEngine engine;
+    engine.init();
     Entity::Id addedEntityId = Entity::NULL_ID;
     engine.sig_entityAdded.connect(
         [&addedEntityId] (Entity::Id entityId) {
@@ -31,9 +26,9 @@ TEST (Engine, AddComponent) {
         }
     );
     Entity::Id id = Entity::generateNewId();
-    auto component = make_unique<TestComponent<0>>();
+    auto component = std::make_shared<TestComponent<0>>();
     TestComponent<0>* rawComponent = component.get();
-    engine.addComponent(id, std::move(component));
+    EntityManager::instance().addComponent(id, std::move(component));
     EXPECT_EQ(Entity::NULL_ID, addedEntityId);
     engine.update();
     EXPECT_EQ(id, addedEntityId);
@@ -43,6 +38,7 @@ TEST (Engine, AddComponent) {
 
 TEST (Engine, RemoveComponent) {
     TestEngine engine;
+    engine.init();
     Entity::Id removedEntityId = Entity::NULL_ID;
     engine.sig_entityRemoved.connect(
         [&removedEntityId] (Entity::Id entityId) {
@@ -50,10 +46,10 @@ TEST (Engine, RemoveComponent) {
         }
     );
     Entity::Id id = Entity::generateNewId();
-    engine.addComponent(id, make_unique<TestComponent<0>>());
+    EntityManager::instance().addComponent(id, std::make_shared<TestComponent<0>>());
     engine.update();
     EXPECT_EQ(Entity::NULL_ID, removedEntityId);
-    engine.removeComponent(id, TestComponent<0>::TYPE_ID);
+    EntityManager::instance().removeComponent(id, TestComponent<0>::TYPE_ID);
     EXPECT_EQ(Entity::NULL_ID, removedEntityId);
     engine.update();
     EXPECT_EQ(id, removedEntityId);
@@ -63,6 +59,7 @@ TEST (Engine, RemoveComponent) {
 
 TEST (Engine, RemoveEntity) {
     TestEngine engine;
+    engine.init();
     Entity::Id removedEntityId = Entity::NULL_ID;
     engine.sig_entityRemoved.connect(
         [&removedEntityId] (Entity::Id entityId) {
@@ -70,10 +67,10 @@ TEST (Engine, RemoveEntity) {
         }
     );
     Entity::Id id = Entity::generateNewId();
-    engine.addComponent(id, make_unique<TestComponent<0>>());
+    EntityManager::instance().addComponent(id, make_unique<TestComponent<0>>());
     engine.update();
     EXPECT_EQ(Entity::NULL_ID, removedEntityId);
-    engine.removeEntity(id);
+    EntityManager::instance().removeEntity(id);
     EXPECT_EQ(Entity::NULL_ID, removedEntityId);
     engine.update();
     EXPECT_EQ(id, removedEntityId);

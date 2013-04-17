@@ -8,7 +8,7 @@
 
 using namespace thrive;
 
-using ComponentPtr = std::unique_ptr<Component>;
+using ComponentPtr = std::shared_ptr<Component>;
 
 struct ComponentCollection::Implementation {
 

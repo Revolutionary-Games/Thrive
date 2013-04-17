@@ -9,6 +9,8 @@ add_sources(
     ${CMAKE_CURRENT_SOURCE_DIR}/entity.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/entity.h
     ${CMAKE_CURRENT_SOURCE_DIR}/entity_filter.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/entity_manager.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/entity_manager.h
     ${CMAKE_CURRENT_SOURCE_DIR}/property.cpp 
     ${CMAKE_CURRENT_SOURCE_DIR}/property.h 
     ${CMAKE_CURRENT_SOURCE_DIR}/scripting.cpp 

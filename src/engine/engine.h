@@ -9,6 +9,7 @@
 namespace thrive {
 
 class ComponentCollection;
+class EntityManager;
 class System;
 
 class Engine {
@@ -18,12 +19,6 @@ public:
     Engine();
 
     virtual ~Engine() = 0;
-
-    void
-    addComponent(
-        Entity::Id entityId,
-        std::unique_ptr<Component> component
-    );
 
     void
     addSystem(
@@ -63,18 +58,7 @@ public:
     ) const;
 
     virtual void
-    init() = 0;
-
-    void
-    removeComponent(
-        Entity::Id entityId,
-        Component::TypeId typeId
-    );
-
-    void
-    removeEntity(
-        Entity::Id entityId
-    );
+    init();
 
     void
     removeSystem(
@@ -94,6 +78,20 @@ public:
     sig_entityRemoved;
 
 private:
+    
+    friend class EntityManager;
+
+    void
+    addComponent(
+        Entity::Id entityId,
+        std::shared_ptr<Component> component
+    );
+
+    void
+    removeComponent(
+        Entity::Id entityId,
+        Component::TypeId typeId
+    );
 
     struct Implementation;
     std::unique_ptr<Implementation> m_impl;

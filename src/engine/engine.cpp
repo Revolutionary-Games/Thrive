@@ -1,6 +1,7 @@
 #include "engine/engine.h"
 
 #include "engine/component_collection.h"
+#include "engine/entity_manager.h"
 #include "engine/system.h"
 #include "util/contains.h"
 #include "util/pair_hash.h"
@@ -9,6 +10,8 @@
 #include <forward_list>
 #include <set>
 #include <unordered_map>
+
+#include <iostream>
 
 using namespace thrive;
 
@@ -96,6 +99,8 @@ struct Engine::Implementation {
 
     std::set<System::Ptr, SystemCompare> m_activeSystems;
 
+    bool m_isInitialized = false;
+
     Clock::time_point m_lastUpdate;
 
     std::unordered_map<std::string, System::Ptr> m_systems;
@@ -113,13 +118,17 @@ Engine::Engine()
 }
 
 
-Engine::~Engine() {}
+Engine::~Engine() {
+    if (m_impl->m_isInitialized) {
+        this->shutdown();
+    }
+}
 
 
 void
 Engine::addComponent(
     Entity::Id entityId,
-    std::unique_ptr<Component> component
+    std::shared_ptr<Component> component
 ) {
     Component::TypeId typeId = component->typeId();
     ComponentCollection& collection = m_impl->getComponentCollection(typeId);
@@ -184,6 +193,8 @@ Engine::getSystem(
 
 void
 Engine::init() {
+    m_impl->m_isInitialized = true;
+    EntityManager::instance().registerEngine(this);
     m_impl->m_lastUpdate = Implementation::Clock::now();
 }
 
@@ -199,16 +210,6 @@ Engine::removeComponent(
 
 
 void
-Engine::removeEntity(
-    Entity::Id entityId
-) {
-    for (auto& pair : m_impl->m_components) {
-        pair.second->queueComponentRemoval(entityId);
-    }
-}
-
-
-void
 Engine::removeSystem(
     std::string name
 ) {
@@ -218,7 +219,8 @@ Engine::removeSystem(
 
 void
 Engine::shutdown() {
-
+    EntityManager::instance().unregisterEngine(this);
+    m_impl->m_isInitialized = false;
 }
 
 
