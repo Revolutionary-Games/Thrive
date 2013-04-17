@@ -13,10 +13,35 @@ public:
     TestComponent() 
       : thrive::Component(),
         p_bool(*this, "boolean"),
+        p_boundedValue(*this, "boundedValue", *this),
         p_double(*this, "double"),
         p_int(*this, "integer"),
         p_text(*this, "text")
     {
+    }
+
+    int
+    getBoundedValue() const {
+        return m_boundedValue;
+    }
+
+    bool
+    setBoundedValue(
+        int value
+    ) {
+        if (value < -10) {
+            value = -10;
+        }
+        else if (value > 10) {
+            value = 10;
+        }
+        if (value != m_boundedValue) {
+            m_boundedValue = value;
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 
     TypeId
@@ -30,17 +55,24 @@ public:
         return string;
     };
 
-    thrive::Property<bool>
+    thrive::SimpleProperty<bool>
     p_bool;
 
-    thrive::Property<double>
+    thrive::Property<int, TestComponent, &TestComponent::getBoundedValue, &TestComponent::setBoundedValue>
+    p_boundedValue;
+
+    thrive::SimpleProperty<double>
     p_double;
 
-    thrive::Property<int>
+    thrive::SimpleProperty<int>
     p_int;
 
-    thrive::Property<const char*>
+    thrive::SimpleProperty<const char*>
     p_text;
+
+private:
+
+    int m_boundedValue = 0;
 
 };
 
