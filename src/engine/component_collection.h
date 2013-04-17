@@ -48,7 +48,7 @@ private:
     void
     queueComponentAddition(
         Entity::Id entityId,
-        std::unique_ptr<Component> component
+        std::shared_ptr<Component> component
     );
 
     void

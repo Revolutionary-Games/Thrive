@@ -1,5 +1,6 @@
 #include "engine/entity_filter.h"
 
+#include "engine/entity_manager.h"
 #include "engine/tests/test_component.h"
 #include "util/make_unique.h"
 
@@ -9,22 +10,16 @@ using namespace thrive;
 
 namespace {
 
-class TestEngine : public Engine {
-
-public:
-
-    void init() override {
-        // Nothing
-    }
-};
+class TestEngine : public Engine { };
 
 }
 
 TEST(EntityFilter, Initialization) {
     TestEngine engine;
+    engine.init();
     // Add component
     Entity::Id entityId = Entity::generateNewId();
-    engine.addComponent(
+    EntityManager::instance().addComponent(
         entityId,
         make_unique<TestComponent<0>>()
     );
@@ -40,12 +35,13 @@ TEST(EntityFilter, Initialization) {
 
 TEST(EntityFilter, Single) {
     TestEngine engine;
+    engine.init();
     // Set up filter
     EntityFilter<TestComponent<0>> filter;
     filter.setEngine(&engine);
     // Add component
     Entity::Id entityId = Entity::generateNewId();
-    engine.addComponent(
+    EntityManager::instance().addComponent(
         entityId,
         make_unique<TestComponent<0>>()
     );
@@ -55,7 +51,7 @@ TEST(EntityFilter, Single) {
     EXPECT_EQ(1, filteredEntities.count(entityId));
     EXPECT_EQ(1, filteredEntities.size());
     // Remove component
-    engine.removeComponent(
+    EntityManager::instance().removeComponent(
         entityId,
         TestComponent<0>::TYPE_ID
     );
@@ -69,6 +65,7 @@ TEST(EntityFilter, Single) {
 
 TEST(EntityFilter, Multiple) {
     TestEngine engine;
+    engine.init();
     // Set up filter
     EntityFilter<
         TestComponent<0>,
@@ -78,7 +75,7 @@ TEST(EntityFilter, Multiple) {
     auto filteredEntities = filter.entities();
     // Add first component
     Entity::Id entityId = Entity::generateNewId();
-    engine.addComponent(
+    EntityManager::instance().addComponent(
         entityId,
         make_unique<TestComponent<0>>()
     );
@@ -89,7 +86,7 @@ TEST(EntityFilter, Multiple) {
     EXPECT_EQ(0, filteredEntities.count(entityId));
     EXPECT_EQ(0, filteredEntities.size());
     // Add second component
-    engine.addComponent(
+    EntityManager::instance().addComponent(
         entityId,
         make_unique<TestComponent<1>>()
     );
@@ -99,7 +96,7 @@ TEST(EntityFilter, Multiple) {
     EXPECT_EQ(1, filteredEntities.count(entityId));
     EXPECT_EQ(1, filteredEntities.size());
     // Remove component
-    engine.removeComponent(
+    EntityManager::instance().removeComponent(
         entityId,
         TestComponent<1>::TYPE_ID
     );
@@ -113,6 +110,7 @@ TEST(EntityFilter, Multiple) {
 
 TEST(EntityFilter, Optional) {
     TestEngine engine;
+    engine.init();
     using TestFilter = EntityFilter<
         TestComponent<0>,
         Optional<TestComponent<1>>
@@ -123,7 +121,7 @@ TEST(EntityFilter, Optional) {
     TestFilter::EntityMap filteredEntities = filter.entities();
     // Add first component
     Entity::Id entityId = Entity::generateNewId();
-    engine.addComponent(
+    EntityManager::instance().addComponent(
         entityId,
         make_unique<TestComponent<0>>()
     );
@@ -137,7 +135,7 @@ TEST(EntityFilter, Optional) {
     EXPECT_TRUE(std::get<0>(group) != nullptr);
     EXPECT_TRUE(std::get<1>(group) == nullptr);
     // Add second component
-    engine.addComponent(
+    EntityManager::instance().addComponent(
         entityId,
         make_unique<TestComponent<1>>()
     );
@@ -151,7 +149,7 @@ TEST(EntityFilter, Optional) {
     EXPECT_TRUE(std::get<0>(group) != nullptr);
     EXPECT_TRUE(std::get<1>(group) != nullptr);
     // Remove component
-    engine.removeComponent(
+    EntityManager::instance().removeComponent(
         entityId,
         TestComponent<1>::TYPE_ID
     );
@@ -168,6 +166,7 @@ TEST(EntityFilter, Optional) {
 
 TEST(EntityFilter, OptionalOnly) {
     TestEngine engine;
+    engine.init();
     using TestFilter = EntityFilter<
         Optional<TestComponent<0>>
     >;
@@ -177,7 +176,7 @@ TEST(EntityFilter, OptionalOnly) {
     TestFilter::EntityMap filteredEntities = filter.entities();
     // Add first component
     Entity::Id entityId = Entity::generateNewId();
-    engine.addComponent(
+    EntityManager::instance().addComponent(
         entityId,
         make_unique<TestComponent<1>>()
     );
