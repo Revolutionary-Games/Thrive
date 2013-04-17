@@ -17,15 +17,6 @@ public:
     static Id
     generateNewId();
 
-    Entity();
-
-    ~Entity();
-
-private:
-
-    struct Implementation;
-    std::unique_ptr<Implementation> impl_;
-
 };
 
 }
