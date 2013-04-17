@@ -10,7 +10,27 @@
 
 using namespace thrive;
 
-TEST (Property, Set) {
+TEST (Property, GetSet) {
+    TestComponent<0> component;
+    int emittedValue = 0;
+    EXPECT_EQ(0, component.p_boundedValue);
+    component.p_boundedValue.sig_valueChanged.connect(
+        [&emittedValue](int value) {
+            emittedValue = value;
+        }
+    );
+    // In bounds
+    component.p_boundedValue = 5;
+    EXPECT_EQ(5, emittedValue);
+    EXPECT_EQ(5, component.p_boundedValue);
+    // Out of bounds
+    component.p_boundedValue = -14;
+    EXPECT_EQ(-10, emittedValue);
+    EXPECT_EQ(-10, component.p_boundedValue);
+}
+
+
+TEST (SimpleProperty, Set) {
     TestComponent<0> component;
     bool emittedValue = false;
     EXPECT_FALSE(component.p_bool);
@@ -25,7 +45,7 @@ TEST (Property, Set) {
 }
 
 
-TEST (Property, Lua) {
+TEST (SimpleProperty, Lua) {
     LuaState L;
     TestComponent<0> component;
     lua_pushboolean(L, true);
