@@ -2,6 +2,8 @@
 
 #include "util/contains.h"
 
+#include <boost/thread/locks.hpp>
+#include <boost/thread/recursive_mutex.hpp>
 #include <unordered_set>
 
 using namespace thrive;
@@ -67,6 +69,8 @@ struct ComponentCollection::Implementation {
 
     std::unordered_set<Entity::Id> m_componentsToRemove;
 
+    mutable boost::recursive_mutex m_queueMutex;
+
     Component::TypeId m_type;
 
 };
@@ -106,6 +110,7 @@ ComponentCollection::get(
 
 void
 ComponentCollection::processQueue() {
+    boost::lock_guard<boost::recursive_mutex> lock(m_impl->m_queueMutex);
     m_impl->removeQueuedComponents();
     m_impl->addQueuedComponents();
 }
@@ -116,6 +121,7 @@ ComponentCollection::queueComponentAddition(
     Entity::Id entityId,
     ComponentPtr component
 ) {
+    boost::lock_guard<boost::recursive_mutex> lock(m_impl->m_queueMutex);
     m_impl->m_componentsToAdd[entityId] = std::move(component);
 }
 
@@ -124,6 +130,7 @@ void
 ComponentCollection::queueComponentRemoval(
     Entity::Id entityId
 ) {
+    boost::lock_guard<boost::recursive_mutex> lock(m_impl->m_queueMutex);
     m_impl->m_componentsToRemove.insert(entityId);
 }
 
