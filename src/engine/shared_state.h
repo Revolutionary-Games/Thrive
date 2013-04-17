@@ -147,21 +147,12 @@ public:
         }
     }
 
-    Data&
-    getBuffer(
-        StateBuffer buffer
-    ) const {
-        State& state = State::instance();
-        short bufferIndex = state.getBufferIndex(buffer);
-        return *(m_buffers[bufferIndex]);
-    }
-
-    Data&
+    const Data&
     latest() const {
         return this->getBuffer(StateBuffer::Latest);
     }
 
-    Data&
+    const Data&
     stable() const {
         return this->getBuffer(StateBuffer::Stable);
     }
@@ -172,6 +163,15 @@ public:
     }
 
 private:
+
+    Data&
+    getBuffer(
+        StateBuffer buffer
+    ) const {
+        State& state = State::instance();
+        short bufferIndex = state.getBufferIndex(buffer);
+        return *(m_buffers[bufferIndex]);
+    }
 
     std::array<std::unique_ptr<Data>, 3> m_buffers;
 };
