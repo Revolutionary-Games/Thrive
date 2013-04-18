@@ -106,22 +106,22 @@ TEST(SharedState, Interweaving) {
 TEST(SharedData, DataTransfer) {
     using Shared = SharedData<int, StateGroup::RenderInput>;
     State& state = State::instance();
-    auto data = Shared::create(1);
+    Shared data(1);
     // Check for correct initialization
-    EXPECT_EQ(1, data->latest());
+    EXPECT_EQ(1, data.latest());
     // Change some data
     state.lockWorkingCopy();
-    EXPECT_EQ(1, data->workingCopy());
-    data->workingCopy() = 10;
+    EXPECT_EQ(1, data.workingCopy());
+    data.workingCopy() = 10;
     // Freeze stable, should be unchanged
     state.lockStable();
-    EXPECT_EQ(1, data->stable());
+    EXPECT_EQ(1, data.stable());
     // Commit working copy, stable should stay unchanged
     state.releaseWorkingCopy();
-    EXPECT_EQ(10, data->latest());
-    EXPECT_EQ(1, data->stable());
+    EXPECT_EQ(10, data.latest());
+    EXPECT_EQ(1, data.stable());
     // Relock stable to get new value
     state.releaseStable();
     state.lockStable();
-    EXPECT_EQ(10, data->stable());
+    EXPECT_EQ(10, data.stable());
 }
