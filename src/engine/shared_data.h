@@ -112,34 +112,14 @@ extern template class SharedState<StateGroup::RenderInput>;
 ////////////////////////////////////////////////////////////////////////////////
 
 template<typename Data, StateGroup group>
-class StableSharedData;
-
-template<typename Data, StateGroup group>
 class SharedData {
-    // A small trick to enable std::make_shared with "private" constructor
-    struct private_dummy{};
 
 public:
 
     using State = SharedState<group>;
 
-    using Stable = StableSharedData<Data, group>;
-
-    template<typename... Args>
-    static std::shared_ptr<SharedData>
-    create(
-        const Args&... args
-    ) {
-        return std::make_shared<SharedData>(
-            private_dummy(),
-            args...
-        );
-    }
-
-    // Use SharedData::create() to construct an object
     template<typename... Args>
     SharedData(
-        const private_dummy&,
         const Args&... args
     ) {
         for (int i=0; i < 3; ++i) {
@@ -176,39 +156,5 @@ private:
     std::array<std::unique_ptr<Data>, 3> m_buffers;
 };
 
-
-template<typename Data, StateGroup group>
-class StableSharedData {
-
-public:
-
-    using Shared = SharedData<Data, group>;
-
-    StableSharedData(
-        std::shared_ptr<Shared> master
-    ) : m_master(master)
-    {
-    }
-
-    Data*
-    operator-> () {
-        return &(m_master->stable());
-    }
-
-    const Data*
-    operator-> () const {
-        return &(m_master->stable());
-    }
-
-    bool
-    isStale() const {
-        return m_master.unique();
-    }
-
-private:
-
-    std::shared_ptr<Shared> m_master;
-
-};
 
 }
