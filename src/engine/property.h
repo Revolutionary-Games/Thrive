@@ -1,7 +1,8 @@
 #pragma once
 
-#include "engine/scripting.h"
 #include "engine/component.h"
+#include "engine/scripting.h"
+#include "engine/shared_data.h"
 #include "signals/signal.h"
 
 #include <string>
@@ -123,6 +124,7 @@ private:
 };
 
 
+
 template<typename Value>
 class SimpleProperty : public PropertyBase {
 
@@ -141,7 +143,7 @@ public:
         );
     }
 
-    SimpleProperty<Value>&
+    SimpleProperty&
     operator= (Value value) {
         this->set(value);
         return *this;
