@@ -55,19 +55,19 @@ public:
         return string;
     };
 
-    thrive::SimpleProperty<bool>
+    thrive::Property<bool>
     p_bool;
 
     thrive::Property<int, TestComponent, &TestComponent::getBoundedValue, &TestComponent::setBoundedValue>
     p_boundedValue;
 
-    thrive::SimpleProperty<double>
+    thrive::Property<double>
     p_double;
 
-    thrive::SimpleProperty<int>
+    thrive::Property<int>
     p_int;
 
-    thrive::SimpleProperty<const char*>
+    thrive::Property<const char*>
     p_text;
 
 private:

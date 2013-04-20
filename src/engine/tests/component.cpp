@@ -30,7 +30,7 @@ TEST (Property, GetSet) {
 }
 
 
-TEST (SimpleProperty, Set) {
+TEST (Property, Set) {
     TestComponent<0> component;
     bool emittedValue = false;
     EXPECT_FALSE(component.p_bool);
@@ -45,7 +45,7 @@ TEST (SimpleProperty, Set) {
 }
 
 
-TEST (SimpleProperty, Lua) {
+TEST (Property, Lua) {
     LuaState L;
     TestComponent<0> component;
     lua_pushboolean(L, true);
