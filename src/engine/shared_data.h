@@ -4,6 +4,8 @@
 #include <assert.h>
 #include <memory>
 
+#include <iostream>
+
 namespace thrive {
 
 enum class StateGroup {
@@ -43,6 +45,15 @@ public:
         }
     }
 
+    unsigned long
+    getBufferVersion(
+        StateBuffer buffer
+    ) const {
+        short index = this->getBufferIndex(buffer);
+        assert(index >= 0 && "Invalid buffer specified. How did you manage that?!");
+        return m_bufferVersions[index];
+    }
+
     void
     lockStable() {
         assert(m_stableBuffer == -1 && "Double locking stable buffer");
@@ -74,8 +85,8 @@ public:
 
     void
     releaseWorkingCopy() {
-        m_bufferVersions[m_workingCopyBuffer] += m_frameIndex;
         m_frameIndex += 1;
+        m_bufferVersions[m_workingCopyBuffer] = m_frameIndex;
         m_latestBuffer = m_workingCopyBuffer;
         m_workingCopyBuffer = -1;
     }
@@ -111,7 +122,11 @@ extern template class SharedState<StateGroup::RenderInput>;
 // SharedData
 ////////////////////////////////////////////////////////////////////////////////
 
-template<typename Data, StateGroup group>
+template<
+    typename Data, 
+    StateGroup group, 
+    bool updateWorkingCopy = true
+>
 class SharedData {
 
 public:
@@ -137,6 +152,14 @@ public:
 
     Data&
     workingCopy() {
+        if (updateWorkingCopy) { 
+            State& state = State::instance();
+            unsigned long latestVersion = state.getBufferVersion(StateBuffer::Latest);
+            if (m_workingCopyVersion < latestVersion) {
+                this->getBuffer(StateBuffer::WorkingCopy) = this->getBuffer(StateBuffer::Latest);
+                m_workingCopyVersion = latestVersion;
+            }
+        }
         return this->getBuffer(StateBuffer::WorkingCopy);
     }
 
@@ -159,6 +182,8 @@ private:
         short bufferIndex = state.getBufferIndex(buffer);
         return m_buffers[bufferIndex];
     }
+
+    unsigned long m_workingCopyVersion = 0;
 
     std::array<Data, 3> m_buffers;
 };
