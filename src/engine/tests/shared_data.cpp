@@ -103,6 +103,23 @@ TEST(SharedState, Interweaving) {
 }
 
 
+TEST(SharedData, UpdateWorkingCopy) {
+    using Shared = SharedData<int, StateGroup::RenderInput>;
+    State& state = State::instance();
+    Shared data(1);
+    // Change some data
+    state.lockWorkingCopy();
+    data.workingCopy() = 10;
+    state.releaseWorkingCopy();
+    // Just to make sure
+    EXPECT_EQ(10, data.latest());
+    // Relock working copy, should be 10
+    state.lockWorkingCopy();
+    EXPECT_EQ(10, data.workingCopy());
+    state.reset();
+}
+
+
 TEST(SharedData, DataTransfer) {
     using Shared = SharedData<int, StateGroup::RenderInput>;
     State& state = State::instance();
@@ -125,3 +142,6 @@ TEST(SharedData, DataTransfer) {
     state.lockStable();
     EXPECT_EQ(10, data.stable());
 }
+
+
+
