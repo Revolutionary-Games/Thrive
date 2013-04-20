@@ -121,10 +121,8 @@ public:
     template<typename... Args>
     SharedData(
         const Args&... args
-    ) {
-        for (int i=0; i < 3; ++i) {
-            m_buffers[i].reset(new Data{args...});
-        }
+    ) : m_buffers{{Data{args...}, Data{args...}, Data{args...}}}
+    {
     }
 
     const Data&
@@ -138,7 +136,7 @@ public:
     }
 
     Data&
-    workingCopy() const {
+    workingCopy() {
         return this->getBuffer(StateBuffer::WorkingCopy);
     }
 
@@ -147,13 +145,22 @@ private:
     Data&
     getBuffer(
         StateBuffer buffer
+    ) {
+        State& state = State::instance();
+        short bufferIndex = state.getBufferIndex(buffer);
+        return m_buffers[bufferIndex];
+    }
+
+    const Data&
+    getBuffer(
+        StateBuffer buffer
     ) const {
         State& state = State::instance();
         short bufferIndex = state.getBufferIndex(buffer);
-        return *(m_buffers[bufferIndex]);
+        return m_buffers[bufferIndex];
     }
 
-    std::array<std::unique_ptr<Data>, 3> m_buffers;
+    std::array<Data, 3> m_buffers;
 };
 
 
