@@ -47,6 +47,92 @@ private:
 
 };
 
+namespace detail {
+
+    template<typename T>
+    struct dummy {
+
+            T get() const;
+
+            bool set(T);
+
+    };
+}
+
+
+template<
+    typename Value,
+    typename ValueOwner = detail::dummy<Value>,
+    Value (ValueOwner::*Getter)(void) const = &ValueOwner::get,
+    bool (ValueOwner::*Setter)(Value) = &ValueOwner::set,
+    bool = std::is_same<ValueOwner, detail::dummy<Value>>::value
+>
+class Property : public PropertyBase {
+
+public:
+
+    Property(
+        Component& owner,
+        std::string name,
+        Value initialValue = Value()
+    ) : PropertyBase(owner, name),
+        m_value(initialValue)
+    {
+        owner.registerSignal(
+            "sig_" + name + "Changed",
+            sig_valueChanged
+        );
+    }
+
+    Property&
+    operator= (Value value) {
+        this->set(value);
+        return *this;
+    }
+
+    operator Value() const {
+        return this->get();
+    }
+
+    Value
+    get() const {
+        return m_value;
+    }
+
+    int
+    getFromLua(
+        lua_State* L,
+        int index
+    ) override {
+        this->set(LuaStack<Value>::get(L, index));
+        return 0;
+    }
+
+    int
+    pushToLua(
+        lua_State* L
+    ) const override {
+        return LuaStack<Value>::push(L, this->get());
+    }
+
+    void
+    set(
+        Value value
+    ) {
+        m_value = value;
+        sig_valueChanged(value);
+    }
+
+    Signal<const Value&>
+    sig_valueChanged;
+
+private:
+
+    Value m_value;
+
+};
+
+
 
 template<
     typename Value,
@@ -54,7 +140,7 @@ template<
     Value (ValueOwner::*Getter)(void) const,
     bool (ValueOwner::*Setter)(Value)
 >
-class Property : public PropertyBase {
+class Property<Value, ValueOwner, Getter, Setter, false> : public PropertyBase {
 
 public:
 
@@ -123,72 +209,5 @@ private:
 
 };
 
-
-
-template<typename Value>
-class SimpleProperty : public PropertyBase {
-
-public:
-
-    SimpleProperty(
-        Component& owner,
-        std::string name,
-        Value initialValue = Value()
-    ) : PropertyBase(owner, name),
-        m_value(initialValue)
-    {
-        owner.registerSignal(
-            "sig_" + name + "Changed",
-            sig_valueChanged
-        );
-    }
-
-    SimpleProperty&
-    operator= (Value value) {
-        this->set(value);
-        return *this;
-    }
-
-    operator Value() const {
-        return this->get();
-    }
-
-    Value
-    get() const {
-        return m_value;
-    }
-
-    int
-    getFromLua(
-        lua_State* L,
-        int index
-    ) override {
-        this->set(LuaStack<Value>::get(L, index));
-        return 0;
-    }
-
-    int
-    pushToLua(
-        lua_State* L
-    ) const override {
-        return LuaStack<Value>::push(L, this->get());
-    }
-
-    void
-    set(
-        Value value
-    ) {
-        m_value = value;
-        sig_valueChanged(value);
-    }
-
-    Signal<const Value&>
-    sig_valueChanged;
-
-private:
-
-    Value m_value;
-
-};
 
 }
