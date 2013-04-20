@@ -6,6 +6,7 @@
 #include "util/contains.h"
 #include "util/pair_hash.h"
 
+#include <boost/thread.hpp>
 #include <chrono>
 #include <forward_list>
 #include <set>
@@ -15,9 +16,9 @@
 
 using namespace thrive;
 
-using ComponentPtr = std::unique_ptr<Component>;
-
-using ComponentCollectionPtr = std::unique_ptr<ComponentCollection>;
+////////////////////////////////////////////////////////////////////////////////
+// Engine
+////////////////////////////////////////////////////////////////////////////////
 
 struct SystemCompare {
 
@@ -44,7 +45,7 @@ struct Engine::Implementation {
     getComponentCollection(
         Component::TypeId typeId
     ) {
-        ComponentCollectionPtr& collection = m_components[typeId];
+        std::unique_ptr<ComponentCollection>& collection = m_components[typeId];
         if (not collection) {
             collection.reset(new ComponentCollection(typeId));
             collection->sig_componentAdded.connect(
@@ -91,7 +92,10 @@ struct Engine::Implementation {
         }
     }
 
-    std::unordered_map<Component::TypeId, ComponentCollectionPtr> m_components;
+    std::unordered_map<
+        Component::TypeId, 
+        std::unique_ptr<ComponentCollection>
+    > m_components;
 
     Engine& m_engine;
 
@@ -240,3 +244,69 @@ Engine::update() {
 }
 
 
+////////////////////////////////////////////////////////////////////////////////
+// EngineRunner
+////////////////////////////////////////////////////////////////////////////////
+
+struct EngineRunner::Implementation {
+
+    Implementation(
+        Engine& engine
+    ) : m_engine(engine)
+    {
+    }
+
+    void
+    run() {
+        m_keepRunning = true;
+        m_engine.init();
+        while (m_keepRunning) {
+            m_engine.update();
+        }
+        m_engine.shutdown();
+    }
+
+    Engine& m_engine;
+
+    bool m_keepRunning = false;
+
+    std::unique_ptr<boost::thread> m_thread;
+
+};
+
+
+EngineRunner::EngineRunner(
+    Engine& engine
+) : m_impl(new Implementation(engine))
+{
+}
+
+
+EngineRunner::~EngineRunner() {
+    this->stop();
+}
+
+
+bool
+EngineRunner::isRunning() const {
+    return m_impl->m_thread != nullptr;
+}
+
+
+void
+EngineRunner::start() {
+    assert(m_impl->m_thread == nullptr && "Double start of engine");
+    m_impl->m_thread.reset(new boost::thread(
+        std::bind(&Implementation::run, m_impl.get())
+    ));
+}
+
+
+void
+EngineRunner::stop() {
+    if (m_impl->m_thread) {
+        m_impl->m_keepRunning = false;
+        m_impl->m_thread->join();
+        m_impl->m_thread.reset();
+    }
+}

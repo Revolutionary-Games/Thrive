@@ -98,4 +98,27 @@ private:
 
 };
 
+
+class EngineRunner {
+
+public:
+
+    EngineRunner(
+        Engine& engine
+    );
+
+    ~EngineRunner();
+
+    bool isRunning() const;
+
+    void start();
+
+    void stop();
+
+private:
+
+    struct Implementation;
+    std::unique_ptr<Implementation> m_impl;
+};
+
 }
