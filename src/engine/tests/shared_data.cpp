@@ -4,7 +4,7 @@
 
 using namespace thrive;
 
-using State = SharedState<StateGroup::RenderInput>;
+using State = RenderState;
 
 TEST(SharedStateDeathTest, DoubleLockStable) {
     State& state = State::instance();
@@ -104,9 +104,8 @@ TEST(SharedState, Interweaving) {
 
 
 TEST(SharedData, UpdateWorkingCopy) {
-    using Shared = SharedData<int, StateGroup::RenderInput>;
     State& state = State::instance();
-    Shared data(1);
+    RenderData<int> data(1);
     // Change some data
     state.lockWorkingCopy();
     data.workingCopy() = 10;
@@ -121,9 +120,8 @@ TEST(SharedData, UpdateWorkingCopy) {
 
 
 TEST(SharedData, DataTransfer) {
-    using Shared = SharedData<int, StateGroup::RenderInput>;
     State& state = State::instance();
-    Shared data(1);
+    RenderData<int> data(1);
     // Check for correct initialization
     EXPECT_EQ(1, data.latest());
     // Change some data

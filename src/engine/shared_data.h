@@ -1,5 +1,7 @@
 #pragma once
 
+#include "engine/threads.h"
+
 #include <array>
 #include <assert.h>
 #include <memory>
@@ -8,17 +10,13 @@
 
 namespace thrive {
 
-enum class StateGroup {
-    RenderInput
-};
-
 enum class StateBuffer {
     Stable,     // Read-only
     Latest,     // Read-only
     WorkingCopy // Writable
 };
 
-template<StateGroup group>
+template<Thread Writer, Thread Reader>
 class SharedState {
 
 public:
@@ -116,22 +114,20 @@ private:
 
 };
 
-extern template class SharedState<StateGroup::RenderInput>;
-
 ////////////////////////////////////////////////////////////////////////////////
 // SharedData
 ////////////////////////////////////////////////////////////////////////////////
 
 template<
     typename Data, 
-    StateGroup group, 
+    Thread Writer, Thread Reader, 
     bool updateWorkingCopy = true
 >
 class SharedData {
 
 public:
 
-    using State = SharedState<group>;
+    using State = SharedState<Writer, Reader>;
 
     template<typename... Args>
     SharedData(
@@ -188,5 +184,12 @@ private:
     std::array<Data, 3> m_buffers;
 };
 
+
+// Some predefined states and data for convenience
+extern template class SharedState<Thread::Script, Thread::Render>;
+using RenderState = SharedState<Thread::Script, Thread::Render>;
+
+template<typename Data, bool updateWorkingCopy=true>
+using RenderData = SharedData<Data, Thread::Script, Thread::Render, updateWorkingCopy>;
 
 }
