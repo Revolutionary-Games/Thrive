@@ -79,3 +79,8 @@ add_library(lua SHARED
     ${LIB_HEADERS}
 )
 
+install(TARGETS lua 
+    RUNTIME DESTINATION bin
+    LIBRARY DESTINATION bin
+)
+
