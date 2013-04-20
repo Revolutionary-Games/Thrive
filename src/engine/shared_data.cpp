@@ -3,4 +3,5 @@
 using namespace thrive;
 
 
-template class SharedState<StateGroup::RenderInput>;
+template class SharedState<Thread::Script, Thread::Render>;
+
