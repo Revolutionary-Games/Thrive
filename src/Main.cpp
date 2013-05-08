@@ -1,6 +1,6 @@
 #include <OgreRoot.h>
 
-#include "ogre/ogre_engine.h"
+#include "game.h"
 
 #include <boost/thread.hpp>
 
@@ -20,12 +20,8 @@ extern "C" {
 #endif
     {
         using namespace thrive;
-        // Graphics engine
-        OgreEngine ogreEngine;
-        EngineRunner ogreRunner(ogreEngine);
-        ogreRunner.start();
-        boost::this_thread::sleep(boost::posix_time::seconds(3));
-        ogreRunner.stop();
+        Game& game = Game::instance();
+        game.run();
         return 0;
     }
  

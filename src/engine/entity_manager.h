@@ -1,6 +1,7 @@
 #pragma once
 
-#include "engine/entity.h"
+#include "engine/component.h"
+#include "engine/typedefs.h"
 
 #include <memory>
 
@@ -13,14 +14,39 @@ class EntityManager {
 
 public:
 
-    static EntityManager&
-    instance();
+    static const EntityId NULL_ID;
+
+    EntityManager();
+
+    ~EntityManager();
 
     void
     addComponent(
-        Entity::Id entityId,
+        EntityId entityId,
         std::shared_ptr<Component> component
     );
+
+    void
+    clear();
+
+    EntityId
+    generateNewId();
+
+    Component*
+    getComponent(
+        EntityId entityId,
+        Component::TypeId typeId
+    );
+
+    EntityId
+    getNamedId(
+        const std::string& name
+    );
+
+    bool
+    exists(
+        EntityId
+    ) const;
 
     void
     registerEngine(
@@ -29,13 +55,13 @@ public:
 
     void
     removeComponent(
-        Entity::Id entityId,
+        EntityId entityId,
         Component::TypeId typeId
     );
 
     void
     removeEntity(
-        Entity::Id entityId
+        EntityId entityId
     );
 
     void
@@ -44,10 +70,6 @@ public:
     );
 
 private:
-
-    EntityManager();
-
-    ~EntityManager();
 
     struct Implementation;
     std::unique_ptr<Implementation> m_impl;

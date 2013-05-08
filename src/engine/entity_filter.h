@@ -1,7 +1,6 @@
 #pragma once
 
 #include "engine/engine.h"
-#include "engine/entity.h"
 #include "engine/component_collection.h"
 
 #include <forward_list>
@@ -79,7 +78,7 @@ struct ComponentGroupBuilder {
     static bool 
     build(
         Engine* engine,
-        Entity::Id entityId,
+        EntityId entityId,
         ComponentGroup& group
     ) {
         using ComponentType = typename std::tuple_element<index, std::tuple<ComponentTypes...>>::type;
@@ -102,7 +101,7 @@ struct ComponentGroupBuilder<0, ComponentTypes...> {
     static bool 
     build(
         Engine* engine,
-        Entity::Id entityId,
+        EntityId entityId,
         std::tuple<typename ExtractComponentType<ComponentTypes>::PointerType...>& group
     ) {
         using ComponentType = typename std::tuple_element<0, std::tuple<ComponentTypes...>>::type;
@@ -148,12 +147,30 @@ public:
         typename ExtractComponentType<ComponentTypes>::PointerType...
     >;
 
-    using EntityMap = std::unordered_map<Entity::Id, ComponentGroup>;
+    using EntityMap = std::unordered_map<EntityId, ComponentGroup>;
 
-    EntityMap
+    EntityFilter(
+        bool recordChanges = false
+    ) : m_recordChanges(recordChanges)
+    {
+    }
+
+    std::unordered_set<EntityId>&
+    addedEntities() {
+        assert(m_recordChanges && "Added entities are not recorded by this filter");
+        return m_addedEntities;
+    }
+
+    const EntityMap&
     entities() const {
         return m_entities;
     };
+
+    std::unordered_set<EntityId>&
+    removedEntities() {
+        assert(m_recordChanges && "Removed entities are not recorded by this filter");
+        return m_removedEntities;
+    }
 
     void
     setEngine(
@@ -161,10 +178,12 @@ public:
     ) {
         this->unregisterForSignals();
         m_entities.clear();
+        m_addedEntities.clear();
+        m_removedEntities.clear();
         m_engine = engine;
         if (engine) {
-            this->initEntities();
             this->registerForSignal<sizeof...(ComponentTypes)-1>();
+            this->initEntities();
         }
     }
 
@@ -174,14 +193,14 @@ private:
 
     void
     initEntities() {
-        for (Entity::Id id : m_engine->entities()) {
+        for (EntityId id : m_engine->entities()) {
             this->initEntity(id);
         }
     }
 
     void
     initEntity(
-        Entity::Id id
+        EntityId id
     ) {
         ComponentGroup group;
         bool isComplete = ComponentGroupBuilder<sizeof...(ComponentTypes) - 1, ComponentTypes...>::build(
@@ -191,12 +210,15 @@ private:
         );
         if (isComplete) {
             m_entities[id] = group;
+            if (m_recordChanges) {
+                m_addedEntities.insert(id);
+            }
         }
     }
 
     void
     onComponentAdded(
-        Entity::Id entityId
+        EntityId entityId
     ) {
         this->initEntity(entityId);
     }
@@ -204,19 +226,28 @@ private:
     template<int tupleIndex>
     void
     onOptionalComponentRemoved(
-        Entity::Id entityId
+        EntityId entityId
     ) {
         auto iter = m_entities.find(entityId);
         if (iter != m_entities.end()) {
             std::get<tupleIndex>(iter->second) = nullptr;
+            if (iter->second == ComponentGroup()) {
+                m_entities.erase(entityId);
+                if (m_recordChanges) {
+                    m_removedEntities.insert(entityId);
+                }
+            }
         }
     }
 
     void
     onRequiredComponentRemoved(
-        Entity::Id entityId
+        EntityId entityId
     ) {
         m_entities.erase(entityId);
+        if (m_recordChanges) {
+            m_removedEntities.insert(entityId);
+        }
     }
 
     template<int tupleIndex>
@@ -227,29 +258,28 @@ private:
             std::tuple<ComponentTypes...>
         >::type;
         using RawType = typename ExtractComponentType<ComponentType>::Type;
-        using namespace std::placeholders;
         bool isRequired = IsRequired<ComponentType>::value;
         Connection::Ptr connection;
         const auto& collection = m_engine->getComponentCollection(
-            RawType::TYPE_ID
+            RawType::TYPE_ID()
         );
         // Added
         connection = collection.sig_componentAdded.connect(std::bind(
             &EntityFilter<ComponentTypes...>::onComponentAdded,
-            this, _1
+            this, std::placeholders::_1
         ));
         m_connections.push_front(connection);
         // Removed
         if (isRequired) {
             connection = collection.sig_componentRemoved.connect(std::bind(
                 &EntityFilter<ComponentTypes...>::onRequiredComponentRemoved,
-                this, _1
+                this, std::placeholders::_1
             ));
         }
         else {
             connection = collection.sig_componentRemoved.connect(std::bind(
                 &EntityFilter<ComponentTypes...>::onOptionalComponentRemoved<tupleIndex>,
-                this, _1
+                this, std::placeholders::_1
             ));
         }
         m_connections.push_front(connection);
@@ -264,11 +294,17 @@ private:
         m_connections.clear();
     }
 
+    std::unordered_set<EntityId> m_addedEntities;
+
     std::forward_list<Connection::Ptr> m_connections;
 
     Engine* m_engine = nullptr;
 
     EntityMap m_entities;
+
+    bool m_recordChanges;
+
+    std::unordered_set<EntityId> m_removedEntities;
 
 };
 

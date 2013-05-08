@@ -1,13 +1,21 @@
 #include "ogre/ogre_engine.h"
 
+#include "game.h"
+#include "ogre/keyboard_system.h"
+#include "ogre/mesh_system.h"
+#include "ogre/render_system.h"
+#include "ogre/sky_system.h"
+
 #include <OgreConfigFile.h>
+#include <OgreLogManager.h>
 #include <OgreRenderWindow.h>
 #include <OgreRoot.h>
 #include <OgreWindowEventUtilities.h>
 #include <OISInputManager.h>
-#include <OISKeyboard.h>
 #include <OISMouse.h>
 #include <stdlib.h>
+
+#include <iostream>
 
 using namespace thrive;
 
@@ -20,6 +28,11 @@ using namespace thrive;
 #endif
 
 struct OgreEngine::Implementation : public Ogre::WindowEventListener {
+
+    Implementation()
+      : m_keyboardSystem(new KeyboardSystem())
+    {
+    }
 
     ~Implementation() {
         Ogre::WindowEventUtilities::removeWindowEventListener(
@@ -61,7 +74,7 @@ struct OgreEngine::Implementation : public Ogre::WindowEventListener {
     setupCamera() {
         m_camera = m_sceneManager->createCamera("PlayerCam");
         m_camera->setNearClipDistance(5);
-        m_camera->setFarClipDistance(2000);
+        m_camera->setFarClipDistance(10000);
         m_camera->setAutoAspectRatio(true);
         // Create node
         m_cameraNode = m_sceneManager->getRootSceneNode()->createChildSceneNode(
@@ -83,14 +96,6 @@ struct OgreEngine::Implementation : public Ogre::WindowEventListener {
             std::to_string(windowHandle)
         ));
         m_inputManager = OIS::InputManager::createInputSystem(parameters);
-        // Keyboard
-        m_keyboard = static_cast<OIS::Keyboard*>(
-            m_inputManager->createInputObject( OIS::OISKeyboard, false)
-        );
-        // Mouse
-        m_mouse = static_cast<OIS::Mouse*>(
-            m_inputManager->createInputObject( OIS::OISMouse, false)
-        );
     }
 
     void
@@ -98,6 +103,12 @@ struct OgreEngine::Implementation : public Ogre::WindowEventListener {
         m_sceneManager->setAmbientLight(Ogre::ColourValue(0.5, 0.5, 0.5));
         Ogre::Light* light = m_sceneManager->createLight("MainLight");
         light->setPosition(0,0,10);
+    }
+
+    void
+    setupLog() {
+        static auto logManager = new Ogre::LogManager();
+        logManager->createLog("default", true, true, false);
     }
 
     void
@@ -117,29 +128,17 @@ struct OgreEngine::Implementation : public Ogre::WindowEventListener {
         if (not m_inputManager) {
             return;
         }
-        m_inputManager->destroyInputObject(m_mouse);
-        m_inputManager->destroyInputObject(m_keyboard);
         OIS::InputManager::destroyInputSystem(m_inputManager);
         m_inputManager = nullptr;
     }
 
-    void windowClosed(
+    bool windowClosing(
         Ogre::RenderWindow* window
-    ) {
+    ) override {
         if (window == m_window) {
-            this->shutdownInputManager();
+            Game::instance().quit();
         }
-    }
-
-    void windowResized(
-        Ogre::RenderWindow* window
-    ) {
-        unsigned int width, height, colourDepth;
-        int top, left;
-        window->getMetrics(width, height, colourDepth, top, left);
-        const OIS::MouseState &mouseState = m_mouse->getMouseState();
-        mouseState.width = width;
-        mouseState.height = height;
+        return true;
     }
 
     std::unique_ptr<Ogre::Root> m_root;
@@ -150,9 +149,7 @@ struct OgreEngine::Implementation : public Ogre::WindowEventListener {
 
     OIS::InputManager* m_inputManager = nullptr;
 
-    OIS::Keyboard* m_keyboard = nullptr;
-
-    OIS::Mouse* m_mouse = nullptr;
+    std::shared_ptr<KeyboardSystem> m_keyboardSystem = nullptr;
 
     Ogre::SceneManager* m_sceneManager = nullptr;
 
@@ -162,7 +159,8 @@ struct OgreEngine::Implementation : public Ogre::WindowEventListener {
 
 
 OgreEngine::OgreEngine()
-  : m_impl(new Implementation())
+  : Engine(),
+    m_impl(new Implementation())
 {
 }
 
@@ -171,12 +169,19 @@ OgreEngine::~OgreEngine() {}
 
 
 void
-OgreEngine::init() {
-    Engine::init();
+OgreEngine::init(
+    EntityManager* entityManager
+) {
+    Engine::init(entityManager);
+    m_impl->setupLog();
     m_impl->m_root.reset(new Ogre::Root(PLUGINS_CFG));
     m_impl->loadResources();
     m_impl->loadConfig();
     m_impl->m_window = m_impl->m_root->initialise(true, "Thrive");
+    Ogre::WindowEventUtilities::addWindowEventListener(
+        m_impl->m_window, 
+        m_impl.get()
+    );
     // Set default mipmap level (NB some APIs ignore this)
     Ogre::TextureManager::getSingleton().setDefaultNumMipmaps(5);
     // initialise all resource groups
@@ -187,12 +192,45 @@ OgreEngine::init() {
     m_impl->setupViewport();
     m_impl->setupLighting();
     m_impl->setupInputManager();
+    // Create essential systems
+    this->addSystem(
+        "keyboard",
+        -100,
+        m_impl->m_keyboardSystem
+    );
+    this->addSystem(
+        "sky",
+        0,
+        std::make_shared<SkySystem>()
+    );
+    this->addSystem(
+        "meshes",
+        0,
+        std::make_shared<MeshSystem>()
+    );
+    this->addSystem(
+        "rendering",
+        1000,
+        std::make_shared<RenderSystem>()
+    );
 }
 
 
-OIS::Keyboard*
-OgreEngine::keyboard() const {
-    return m_impl->m_keyboard;
+OIS::InputManager*
+OgreEngine::inputManager() const {
+    return m_impl->m_inputManager;
+}
+
+
+std::shared_ptr<KeyboardSystem>
+OgreEngine::keyboardSystem() const {
+    return m_impl->m_keyboardSystem;
+}
+
+
+Ogre::Root*
+OgreEngine::root() const {
+    return m_impl->m_root.get();
 }
 
 
@@ -208,6 +246,21 @@ OgreEngine::shutdown() {
     m_impl->m_window->destroy();
     m_impl->m_root.reset();
     Engine::shutdown();
+}
+
+
+void
+OgreEngine::update() {
+    // Lock shared state
+    InputState::instance().lockWorkingCopy();
+    RenderState::instance().lockStable();
+    // Handle events
+    Ogre::WindowEventUtilities::messagePump();
+    // Update systems
+    Engine::update();
+    // Release shared state
+    RenderState::instance().releaseStable();
+    InputState::instance().releaseWorkingCopy();
 }
 
 

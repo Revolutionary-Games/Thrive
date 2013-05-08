@@ -1,6 +1,7 @@
 #pragma once
 
-#include "engine/entity.h"
+#include "engine/component.h"
+#include "engine/typedefs.h"
 #include "signals/signal.h"
 
 #include <memory>
@@ -17,21 +18,21 @@ public:
 
     Component*
     operator[] (
-        Entity::Id entityId
+        EntityId entityId
     ) const;
 
     Component*
     get(
-        Entity::Id entityId
+        EntityId entityId
     ) const;
 
     Component::TypeId
     type() const;
 
-    mutable Signal<Entity::Id, Component&>
+    mutable Signal<EntityId, Component&>
     sig_componentAdded;
 
-    mutable Signal<Entity::Id, Component&>
+    mutable Signal<EntityId, Component&>
     sig_componentRemoved;
 
 private:
@@ -47,13 +48,13 @@ private:
 
     void
     queueComponentAddition(
-        Entity::Id entityId,
+        EntityId entityId,
         std::shared_ptr<Component> component
     );
 
     void
     queueComponentRemoval(
-        Entity::Id entityId
+        EntityId entityId
     );
 
     struct Implementation;

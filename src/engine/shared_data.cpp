@@ -3,5 +3,6 @@
 using namespace thrive;
 
 
-template class SharedState<Thread::Script, Thread::Render>;
+template class SharedState<ThreadId::Script, ThreadId::Render>;
+template class SharedState<ThreadId::Render, ThreadId::Script>;
 

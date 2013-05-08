@@ -14,9 +14,7 @@ public:
 
     using Ptr = std::shared_ptr<System>;
 
-    System(
-        Order order
-    );
+    System();
 
     virtual ~System() = 0;
 
@@ -30,9 +28,6 @@ public:
 
     bool
     isSuspended() const;
-
-    Order
-    order() const;
 
     virtual void
     resume();

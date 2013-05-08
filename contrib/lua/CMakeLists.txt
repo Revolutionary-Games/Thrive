@@ -74,13 +74,13 @@ include_directories(
     ${SOURCE_DIR}
 )
 
-add_library(lua SHARED 
+add_library(lua SHARED
     ${LIB_SOURCES} 
     ${LIB_HEADERS}
 )
 
-install(TARGETS lua 
+install(TARGETS lua
+    EXPORT lua
     RUNTIME DESTINATION bin
     LIBRARY DESTINATION bin
 )
-
