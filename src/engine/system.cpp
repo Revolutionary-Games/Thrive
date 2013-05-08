@@ -7,24 +7,15 @@ using namespace thrive;
 
 struct System::Implementation {
 
-    Implementation(
-        System::Order order
-    ) : m_order(order)
-    {
-    }
-
     Engine* m_engine = nullptr;
-
-    System::Order m_order;
 
     bool m_suspended = false;
 
 };
 
 
-System::System(
-    Order order
-) : m_impl(new Implementation(order))
+System::System()
+  : m_impl(new Implementation())
 {
 }
 
@@ -50,12 +41,6 @@ System::init(
 bool
 System::isSuspended() const {
     return m_impl->m_suspended;
-}
-
-
-System::Order
-System::order() const {
-    return m_impl->m_order;
 }
 
 

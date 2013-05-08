@@ -8,6 +8,7 @@ using State = RenderState;
 
 TEST(SharedStateDeathTest, DoubleLockStable) {
     State& state = State::instance();
+    state.reset();
     state.lockStable();
     EXPECT_DEATH(
         {state.lockStable();}, 
@@ -19,6 +20,7 @@ TEST(SharedStateDeathTest, DoubleLockStable) {
 
 TEST(SharedStateDeathTest, DoubleLockWorkingCopy) {
     State& state = State::instance();
+    state.reset();
     state.lockWorkingCopy();
     EXPECT_DEATH(
         {state.lockWorkingCopy();}, 
@@ -30,6 +32,7 @@ TEST(SharedStateDeathTest, DoubleLockWorkingCopy) {
 
 TEST(SharedState, SequentialSwitch) {
     State& state = State::instance();
+    state.reset();
     EXPECT_EQ(0, state.getBufferIndex(StateBuffer::Latest));
     // Do work
     state.lockWorkingCopy();
@@ -39,14 +42,13 @@ TEST(SharedState, SequentialSwitch) {
     // Read stuff
     state.lockStable();
     EXPECT_EQ(1, state.getBufferIndex(StateBuffer::Stable));
-    state.releaseStable();
-    // Clean up
     state.reset();
 }
 
 
 TEST(SharedState, FastWorkingCopy) {
     State& state = State::instance();
+    state.reset();
     state.lockStable();
     EXPECT_EQ(0, state.getBufferIndex(StateBuffer::Stable));
     // Check if working copy oscillates between buffers
@@ -61,13 +63,13 @@ TEST(SharedState, FastWorkingCopy) {
     state.releaseWorkingCopy();
     EXPECT_EQ(1, state.getBufferIndex(StateBuffer::Latest));
     // Clean up
-    state.releaseStable();
     state.reset();
 }
 
 
 TEST(SharedState, FastReader) {
     State& state = State::instance();
+    state.reset();
     state.lockWorkingCopy();
     EXPECT_EQ(1, state.getBufferIndex(StateBuffer::WorkingCopy));
     // Stable should always get 0 (latest)
@@ -77,13 +79,13 @@ TEST(SharedState, FastReader) {
         state.releaseStable();
     }
     // Cleanup
-    state.releaseWorkingCopy();
     state.reset();
 }
 
 
 TEST(SharedState, Interweaving) {
     State& state = State::instance();
+    state.reset();
     // Start work
     state.lockWorkingCopy();
     EXPECT_EQ(1, state.getBufferIndex(StateBuffer::WorkingCopy));
@@ -105,10 +107,12 @@ TEST(SharedState, Interweaving) {
 
 TEST(SharedData, UpdateWorkingCopy) {
     State& state = State::instance();
+    state.reset();
     RenderData<int> data(1);
     // Change some data
     state.lockWorkingCopy();
     data.workingCopy() = 10;
+    data.touch();
     state.releaseWorkingCopy();
     // Just to make sure
     EXPECT_EQ(10, data.latest());
@@ -121,6 +125,7 @@ TEST(SharedData, UpdateWorkingCopy) {
 
 TEST(SharedData, DataTransfer) {
     State& state = State::instance();
+    state.reset();
     RenderData<int> data(1);
     // Check for correct initialization
     EXPECT_EQ(1, data.latest());
@@ -139,7 +144,43 @@ TEST(SharedData, DataTransfer) {
     state.releaseStable();
     state.lockStable();
     EXPECT_EQ(10, data.stable());
+    state.reset();
 }
 
 
-
+TEST(SharedQueue, Push) {
+    State& state = State::instance();
+    state.reset();
+    RenderQueue<int> queue;
+    // Push some values
+    state.lockWorkingCopy();
+    queue.push(1);
+    queue.push(2);
+    // Freeze stable, should be empty
+    state.lockStable();
+    EXPECT_EQ(0, queue.entries().size());
+    // Commit working copy, stable should stay unchanged
+    state.releaseWorkingCopy();
+    EXPECT_EQ(0, queue.entries().size());
+    // Relock stable to get new values
+    state.releaseStable();
+    state.lockStable();
+    EXPECT_EQ(2, queue.entries().size());
+    EXPECT_EQ(1, queue.entries().front());
+    EXPECT_EQ(2, queue.entries().back());
+    // Push some more values
+    state.lockWorkingCopy();
+    queue.push(3);
+    queue.push(4);
+    queue.push(5);
+    state.releaseWorkingCopy();
+    // Stable should remain unchanged
+    EXPECT_EQ(2, queue.entries().size());
+    // Relock stable
+    state.releaseStable();
+    state.lockStable();
+    EXPECT_EQ(3, queue.entries().size());
+    EXPECT_EQ(3, queue.entries().front());
+    EXPECT_EQ(5, queue.entries().back());
+    state.reset();
+}

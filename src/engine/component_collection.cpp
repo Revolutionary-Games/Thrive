@@ -28,7 +28,7 @@ struct ComponentCollection::Implementation {
         m_components.reserve(m_components.size() + m_componentsToAdd.size());
         auto iter = m_componentsToAdd.begin();
         while (iter != m_componentsToAdd.end()) {
-            Entity::Id entityId = iter->first;
+            EntityId entityId = iter->first;
             // Check if we are overwriting any old components
             auto foundIter = m_components.find(entityId);
             if (foundIter != m_components.end()) {
@@ -49,7 +49,7 @@ struct ComponentCollection::Implementation {
     removeQueuedComponents() {
         auto iter = m_components.begin();
         while (iter != m_components.end()) {
-            Entity::Id entityId = iter->first;
+            EntityId entityId = iter->first;
             if (contains(m_componentsToRemove, entityId)) {
                 m_collection.sig_componentRemoved(entityId, *iter->second);
                 iter = m_components.erase(iter);
@@ -63,11 +63,11 @@ struct ComponentCollection::Implementation {
 
     ComponentCollection& m_collection;
 
-    std::unordered_map<Entity::Id, ComponentPtr> m_components;
+    std::unordered_map<EntityId, ComponentPtr> m_components;
 
-    std::unordered_map<Entity::Id, ComponentPtr> m_componentsToAdd;
+    std::unordered_map<EntityId, ComponentPtr> m_componentsToAdd;
 
-    std::unordered_set<Entity::Id> m_componentsToRemove;
+    std::unordered_set<EntityId> m_componentsToRemove;
 
     mutable boost::recursive_mutex m_queueMutex;
 
@@ -76,6 +76,11 @@ struct ComponentCollection::Implementation {
 };
 
 
+/**
+* @brief Constructor
+*
+* @param type The type id of the components held by this collection.
+*/
 ComponentCollection::ComponentCollection(
     Component::TypeId type
 ) : m_impl(new Implementation(*this, type))
@@ -83,20 +88,37 @@ ComponentCollection::ComponentCollection(
 }
 
 
+/**
+* @brief Destructor
+*/
 ComponentCollection::~ComponentCollection() {}
 
 
+/**
+* @see
+*   ComponentCollection::get
+*/
 Component*
 ComponentCollection::operator[] (
-    Entity::Id entityId
+    EntityId entityId
 ) const {
     return this->get(entityId);
 }
 
 
+/**
+* @brief Retrieves a component from the collection
+*
+* @param entityId The entity the component belongs to
+*
+* @return 
+*   A non-owning pointer to the component or \c nullptr if no such 
+*   component exists
+*
+*/
 Component*
 ComponentCollection::get(
-    Entity::Id entityId
+    EntityId entityId
 ) const {
     auto iter = m_impl->m_components.find(entityId);
     if (iter != m_impl->m_components.end()) {
@@ -108,6 +130,9 @@ ComponentCollection::get(
 }
 
 
+/**
+* @brief Processes the queues for added and removed components
+*/
 void
 ComponentCollection::processQueue() {
     boost::lock_guard<boost::recursive_mutex> lock(m_impl->m_queueMutex);
@@ -116,9 +141,25 @@ ComponentCollection::processQueue() {
 }
 
 
+/**
+* @brief Queues a component for addition
+*
+* The component will be available after the next call to 
+* \c ComponentCollection::processQueue.
+*
+* Any existing component of the same type will be overwritten.
+*
+* This method is thread-safe.
+*
+* @param entityId
+*   The entity the component belongs to
+*
+* @param component
+*   The component to add
+*/
 void
 ComponentCollection::queueComponentAddition(
-    Entity::Id entityId,
+    EntityId entityId,
     ComponentPtr component
 ) {
     boost::lock_guard<boost::recursive_mutex> lock(m_impl->m_queueMutex);
@@ -126,15 +167,31 @@ ComponentCollection::queueComponentAddition(
 }
 
 
+/**
+* @brief Queues a component for removal
+*
+* The component will be removed after the next call to 
+* \c ComponentCollection::processQueue.
+*
+* If no such component exists, does nothing.
+*
+* This method is thread-safe.
+*
+* @param entityId
+*   The entity the component belongs to
+*/
 void
 ComponentCollection::queueComponentRemoval(
-    Entity::Id entityId
+    EntityId entityId
 ) {
     boost::lock_guard<boost::recursive_mutex> lock(m_impl->m_queueMutex);
     m_impl->m_componentsToRemove.insert(entityId);
 }
 
 
+/**
+* @brief The type id of the collection's components
+*/
 Component::TypeId
 ComponentCollection::type() const {
     return m_impl->m_type;

@@ -1,14 +1,16 @@
 #pragma once
 
-#include "engine/scripting.h"
+#include "engine/typedefs.h"
 
+#include <memory>
 #include <string>
 #include <unordered_map>
 
-namespace thrive {
+namespace luabind {
+class scope;
+}
 
-class PropertyBase;
-class SignalBase;
+namespace thrive {
 
 class Component {
 
@@ -16,76 +18,46 @@ public:
 
     using TypeId = size_t;
 
-    using PropertyMap = std::unordered_map<
-        std::string, 
-        PropertyBase&
-    >;
+    static TypeId
+    generateTypeId();
 
-    using SignalMap = std::unordered_map<
-        std::string, 
-        SignalBase&
-    >;
-
-    static Component*
-    getFromLua(
-        lua_State* L,
-        int index
-    );
+    static luabind::scope
+    luaBindings();
 
     virtual ~Component() = 0;
-
-    const PropertyMap&
-    properties() const;
-
-    virtual int
-    pushToLua(
-        lua_State* L
-    );
-
-    void 
-    registerProperty(
-        PropertyBase& property
-    );
-
-    void 
-    registerSignal(
-        std::string name,
-        SignalBase& signal
-    );
-
-    const SignalMap&
-    signals() const;
 
     virtual TypeId
     typeId() const = 0;
 
     virtual const std::string&
-    typeString() const = 0;
+    typeName() const = 0;
 
-private:
-
-    PropertyMap m_properties;
-
-    SignalMap m_signals;
 
 };
 
+}
 
-#define COMPONENT(type_)  \
+#define COMPONENT(name)  \
     public: \
         \
-        static const TypeId TYPE_ID = __COUNTER__; \
-        \
-        TypeId typeId() const override { \
-            return TYPE_ID; \
+        static TypeId TYPE_ID() { \
+            static TypeId id = Component::generateTypeId(); \
+            return id; \
         } \
         \
-        const std::string& typeString() const override { \
-            static std::string string(#type_); \
+        TypeId typeId() const override { \
+            return TYPE_ID(); \
+        } \
+        \
+        static const std::string& TYPE_NAME() { \
+            static std::string string(#name); \
             return string; \
         } \
         \
-    private:
+        const std::string& typeName() const override { \
+            return TYPE_NAME(); \
+        } \
+        \
+    private: \
 
 
-}

@@ -11,11 +11,12 @@ namespace Ogre {
 }
 
 namespace OIS {
-    class Keyboard;
-    class Mouse;
+    class InputManager;
 }
 
 namespace thrive {
+
+class KeyboardSystem;
 
 class OgreEngine : public Engine {
 
@@ -25,10 +26,15 @@ public:
 
     ~OgreEngine();
 
-    void init() override;
+    void init(
+        EntityManager* entityManager
+    ) override;
 
-    OIS::Keyboard*
-    keyboard() const;
+    OIS::InputManager*
+    inputManager() const;
+
+    std::shared_ptr<KeyboardSystem>
+    keyboardSystem() const;
 
     Ogre::Root*
     root() const;
@@ -36,7 +42,11 @@ public:
     Ogre::SceneManager*
     sceneManager() const;
 
-    void shutdown() override;
+    void 
+    shutdown() override;
+
+    void
+    update() override;
 
     Ogre::RenderWindow*
     window() const;

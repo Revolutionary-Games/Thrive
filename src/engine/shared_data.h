@@ -1,10 +1,13 @@
 #pragma once
 
-#include "engine/threads.h"
+#include "engine/typedefs.h"
 
 #include <array>
 #include <assert.h>
+#include <boost/thread.hpp>
+#include <deque>
 #include <memory>
+#include <unordered_set>
 
 #include <iostream>
 
@@ -16,7 +19,15 @@ enum class StateBuffer {
     WorkingCopy // Writable
 };
 
-template<Thread Writer, Thread Reader>
+
+namespace detail {
+    template<ThreadId Writer, ThreadId Reader>
+    struct SharedDataBase {
+        virtual void updateBuffer(short bufferIndex) = 0;
+    };
+}
+
+template<ThreadId Writer, ThreadId Reader>
 class SharedState {
 
 public:
@@ -43,7 +54,7 @@ public:
         }
     }
 
-    unsigned long
+    FrameIndex
     getBufferVersion(
         StateBuffer buffer
     ) const {
@@ -74,6 +85,16 @@ public:
         else {
             m_workingCopyBuffer = secondOldestBuffer;
         }
+        for (auto sharedData : m_registeredSharedData) {
+            sharedData->updateBuffer(m_workingCopyBuffer);
+        }
+    }
+
+    void
+    registerSharedData(
+        detail::SharedDataBase<Writer, Reader>* sharedData
+    ) {
+        m_registeredSharedData.insert(sharedData);
     }
 
     void
@@ -100,18 +121,63 @@ public:
         }
     }
 
+    void
+    unregisterSharedData(
+        detail::SharedDataBase<Writer, Reader>* sharedData
+    ) {
+        m_registeredSharedData.erase(sharedData);
+    }
+
 private:
 
-    unsigned long m_frameIndex = 0;
+    std::array<FrameIndex, 3> m_bufferVersions = {{0, 0, 0}};
+
+    FrameIndex m_frameIndex = 0;
 
     short m_latestBuffer = 0;
 
     short m_stableBuffer = -1;
 
+    std::unordered_set<detail::SharedDataBase<Writer, Reader>*> m_registeredSharedData;
+
     short m_workingCopyBuffer = -1;
 
-    std::array<unsigned long, 3> m_bufferVersions = {{0, 0, 0}};
+};
 
+
+template<
+    typename State,
+    StateBuffer Buffer
+>
+class StateLock { };
+
+
+template<typename State>
+class StateLock<State, StateBuffer::Stable> {
+
+public:
+
+    StateLock() {
+        State::instance().lockStable();
+    };
+
+    ~StateLock() {
+        State::instance().releaseStable();
+    }
+};
+
+template<typename State>
+class StateLock<State, StateBuffer::WorkingCopy> {
+
+public:
+
+    StateLock() {
+        State::instance().lockWorkingCopy();
+    };
+
+    ~StateLock() {
+        State::instance().releaseWorkingCopy();
+    }
 };
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -119,13 +185,15 @@ private:
 ////////////////////////////////////////////////////////////////////////////////
 
 template<
-    typename Data, 
-    Thread Writer, Thread Reader, 
-    bool updateWorkingCopy = true
+    typename Data_, 
+    ThreadId Writer, ThreadId Reader, 
+    bool copyBuffers = true
 >
-class SharedData {
+class SharedData : public detail::SharedDataBase<Writer, Reader> {
 
 public:
+
+    using Data = Data_;
 
     using State = SharedState<Writer, Reader>;
 
@@ -134,7 +202,16 @@ public:
         const Args&... args
     ) : m_buffers{{Data{args...}, Data{args...}, Data{args...}}}
     {
+        State::instance().registerSharedData(this);
     }
+
+    SharedData(const SharedData&) = delete;
+
+    ~SharedData() {
+        State::instance().unregisterSharedData(this);
+    }
+
+    SharedData& operator= (const SharedData&) = delete;
 
     const Data&
     latest() const {
@@ -146,16 +223,31 @@ public:
         return this->getBuffer(StateBuffer::Stable);
     }
 
+    FrameIndex
+    stableVersion() const {
+        State& state = State::instance();
+        short bufferIndex = state.getBufferIndex(StateBuffer::Stable);
+        return m_bufferVersions[bufferIndex];
+    }
+
+    void
+    touch() {
+        m_touchedVersion += 1;
+    }
+
+    void
+    updateBuffer(
+        short bufferIndex
+    ) override {
+        if (m_bufferVersions[bufferIndex] < m_touchedVersion) {
+            m_buffers[bufferIndex] = this->latest();
+            m_bufferVersions[bufferIndex] = m_touchedVersion;
+        }
+    }
+
+
     Data&
     workingCopy() {
-        if (updateWorkingCopy) { 
-            State& state = State::instance();
-            unsigned long latestVersion = state.getBufferVersion(StateBuffer::Latest);
-            if (m_workingCopyVersion < latestVersion) {
-                this->getBuffer(StateBuffer::WorkingCopy) = this->getBuffer(StateBuffer::Latest);
-                m_workingCopyVersion = latestVersion;
-            }
-        }
         return this->getBuffer(StateBuffer::WorkingCopy);
     }
 
@@ -179,17 +271,104 @@ private:
         return m_buffers[bufferIndex];
     }
 
-    unsigned long m_workingCopyVersion = 0;
+    FrameIndex m_touchedVersion = 0;
 
     std::array<Data, 3> m_buffers;
+
+    std::array<FrameIndex, 3> m_bufferVersions = {{0, 0, 0}};
 };
 
 
-// Some predefined states and data for convenience
-extern template class SharedState<Thread::Script, Thread::Render>;
-using RenderState = SharedState<Thread::Script, Thread::Render>;
+template<
+    typename Data, 
+    ThreadId Writer, ThreadId Reader
+>
+class SharedQueue {
+
+public:
+
+    using State = SharedState<Writer, Reader>;
+
+    typename std::deque<Data>::const_iterator
+    begin() {
+        return this->entries().cbegin();
+    }
+
+    typename std::deque<Data>::const_iterator
+    end() {
+        return this->entries().cend();
+    }
+
+    void
+    push(
+        Data data
+    ) {
+        FrameIndex frameIndex = State::instance().getBufferVersion(StateBuffer::WorkingCopy);
+        boost::lock_guard<boost::mutex> lock(m_mutex);
+        m_workingQueue.emplace_back(frameIndex, std::forward<Data>(data));
+        assert(m_workingQueue.size() < 1000 && "Queue is pretty full. Is there a consumer?");
+    }
+
+    const std::deque<Data>&
+    entries() {
+        this->updateStableQueue();
+        return m_stableQueue;
+    }
+
+private:
+
+    void updateStableQueue() {
+        FrameIndex stableVersion = State::instance().getBufferVersion(StateBuffer::Stable);
+        if (m_lastStableUpdate == stableVersion) {
+            return;
+        }
+        m_lastStableUpdate = stableVersion;
+        m_stableQueue.clear();
+        boost::lock_guard<boost::mutex> lock(m_mutex);
+        while (
+            not m_workingQueue.empty() 
+            and m_workingQueue.front().first <= stableVersion
+        ) {
+            m_stableQueue.emplace_back(
+                std::move(m_workingQueue.front().second)
+            );
+            m_workingQueue.pop_front();
+        }
+    }
+
+    FrameIndex m_lastStableUpdate = 0;
+
+    boost::mutex m_mutex;
+
+    std::deque<std::pair<FrameIndex, Data>> m_workingQueue;
+
+    std::deque<Data> m_stableQueue;
+};
+
+
+////////////////////////////////////////////////////////////////////////////////
+// Render State (Script => Render)
+////////////////////////////////////////////////////////////////////////////////
+extern template class SharedState<ThreadId::Script, ThreadId::Render>;
+using RenderState = SharedState<ThreadId::Script, ThreadId::Render>;
 
 template<typename Data, bool updateWorkingCopy=true>
-using RenderData = SharedData<Data, Thread::Script, Thread::Render, updateWorkingCopy>;
+using RenderData = SharedData<Data, ThreadId::Script, ThreadId::Render, updateWorkingCopy>;
+
+template<typename Data>
+using RenderQueue = SharedQueue<Data, ThreadId::Script, ThreadId::Render>;
+
+////////////////////////////////////////////////////////////////////////////////
+// Input State (Render => Script)
+////////////////////////////////////////////////////////////////////////////////
+extern template class SharedState<ThreadId::Render, ThreadId::Script>;
+using InputState = SharedState<ThreadId::Render, ThreadId::Script>;
+
+template<typename Data, bool updateWorkingCopy=true>
+using InputData = SharedData<Data, ThreadId::Render, ThreadId::Script, updateWorkingCopy>;
+
+template<typename Data>
+using InputQueue = SharedQueue<Data, ThreadId::Render, ThreadId::Script>;
+
 
 }

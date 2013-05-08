@@ -78,12 +78,14 @@ find_package(OIS REQUIRED QUIET)
 ##############
 
 set(BOOST_COMPONENTS
-    date_time   # Required by OGRE
-    thread      # Required by OGRE
-    system      # Required by OGRE
+    chrono   
+    date_time
+    filesystem
+    thread  
+    system 
 )
 
-find_package(Boost 1.51 COMPONENTS ${BOOST_COMPONENTS} REQUIRED QUIET)
+find_package(Boost COMPONENTS ${BOOST_COMPONENTS} REQUIRED QUIET)
 
 ###############
 # Google Test #
@@ -102,13 +104,30 @@ include_directories(
 # Lua #
 #######
 
+include_directories(
+    SYSTEM
+    ${CMAKE_CURRENT_SOURCE_DIR}/contrib/lua/lua/src
+    ${CMAKE_CURRENT_SOURCE_DIR}/contrib/luabind/
+)
+
+if(WIN32)
+    add_definitions(-DLUA_BUILD_AS_DLL)
+endif()
+
 add_subdirectory(
     ${CMAKE_CURRENT_SOURCE_DIR}/contrib/lua/
 )
 
-include_directories(
-    SYSTEM
-    ${CMAKE_CURRENT_SOURCE_DIR}/contrib/lua/lua/src
+set(LUA_FOUND TRUE)
+set(LUA_INCLUDE_DIRS ${CMAKE_CURRENT_SOURCE_DIR}/contrib/lua/lua/src)
+set(LUA_LIBRARIES lua)
+set(BUILD_SHARED_LUABIND ON)
+set(INSTALL_LUABIND ON)
+set(LIB_DIR bin)
+add_definitions(-DLUABIND_CPLUSPLUS_LUA)
+
+add_subdirectory(
+    ${CMAKE_CURRENT_SOURCE_DIR}/contrib/luabind/
 )
 
 ######################
@@ -128,6 +147,8 @@ include_directories(
 # Compile using c++11
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=gnu++0x")
 
+
+find_package(Threads)
 
 ##################
 # Compile Thrive # 
@@ -151,7 +172,8 @@ target_link_libraries(ThriveLib
     ${Boost_LIBRARIES}
     ${OGRE_LIBRARIES} 
     ${OIS_LIBRARIES}
-    lua
+    ${CMAKE_THREAD_LIBS_INIT}
+    luabind
 )
 
 set_target_properties(ThriveLib PROPERTIES
@@ -162,7 +184,6 @@ set_target_properties(ThriveLib PROPERTIES
 add_executable(Thrive WIN32 ${CMAKE_CURRENT_SOURCE_DIR}/src/Main.cpp)
 
 target_link_libraries(Thrive ThriveLib)
-
 
 #################
 # Compile tests #
@@ -176,10 +197,8 @@ set_source_files_properties(
     PROPERTIES COMPILE_FLAGS ${WARNING_FLAGS}
 )
 
-if (TEST_SOURCE_FILES)
-    add_executable(RunTests ${TEST_SOURCE_FILES})
-    target_link_libraries(RunTests ThriveLib gtest_main)
-endif()
+add_executable(RunTests ${TEST_SOURCE_FILES})
+target_link_libraries(RunTests ThriveLib gtest_main)
 
 ###########
 # Install #
@@ -189,6 +208,15 @@ endif()
 install(TARGETS Thrive ThriveLib
     RUNTIME DESTINATION bin
     LIBRARY DESTINATION bin
+)
+
+install(EXPORT lua
+    DESTINATION bin
+)
+
+install(EXPORT luabind
+    DESTINATION bin
+    COMPONENT runtime
 )
 
 # OGRE config and media
@@ -212,6 +240,12 @@ install(FILES
 )
 
 install(DIRECTORY ${CMAKE_SOURCE_DIR}/res/dist/media
+    DESTINATION ./
+    CONFIGURATIONS Release  Debug
+)
+
+install(DIRECTORY 
+    ${CMAKE_SOURCE_DIR}/res/dist/scripts
     DESTINATION ./
     CONFIGURATIONS Release  Debug
 )
