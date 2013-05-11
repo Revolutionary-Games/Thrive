@@ -28,7 +28,7 @@ player:addComponent(playerMovable)
 
 playerInput = OnKeyComponent()
 player:addComponent(playerInput)
-MOVEMENT_SPEED = 0.5
+MOVEMENT_SPEED = 10
 playerInput.onPressed = function (entityId, event)
     if event.key == KeyEvent.KC_W then
         playerMovable.velocity.y = playerMovable.velocity.y + MOVEMENT_SPEED
