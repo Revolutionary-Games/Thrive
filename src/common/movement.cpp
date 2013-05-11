@@ -69,12 +69,13 @@ MovementSystem::shutdown() {
 
 
 void
-MovementSystem::update(int) {
+MovementSystem::update(int milliseconds) {
     for (auto& value : m_impl->m_entities.entities()) {
         MovableComponent* movable = std::get<0>(value.second);
         TransformComponent* transform = std::get<1>(value.second);
         if (not movable->m_velocity.isZeroLength()) {
-            transform->m_properties.workingCopy().position += movable->m_velocity;
+            Ogre::Vector3 delta = movable->m_velocity * milliseconds / 1000.0;
+            transform->m_properties.workingCopy().position += delta;
             transform->m_properties.touch();
         }
     }
