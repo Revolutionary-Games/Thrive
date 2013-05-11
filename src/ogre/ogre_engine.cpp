@@ -6,6 +6,7 @@
 #include "ogre/render_system.h"
 #include "ogre/sky_system.h"
 
+#include <boost/lexical_cast.hpp>
 #include <OgreConfigFile.h>
 #include <OgreLogManager.h>
 #include <OgreRenderWindow.h>
@@ -93,7 +94,7 @@ struct OgreEngine::Implementation : public Ogre::WindowEventListener {
         OIS::ParamList parameters;
         parameters.insert(std::make_pair(
             HANDLE_NAME, 
-            std::to_string(windowHandle)
+            boost::lexical_cast<std::string>(windowHandle)
         ));
         m_inputManager = OIS::InputManager::createInputSystem(parameters);
     }

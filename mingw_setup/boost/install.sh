@@ -6,9 +6,9 @@ MINGW_ENV=$1
 
 WORKING_DIR=$MINGW_ENV/temp/boost
 
-REMOTE_DIR="http://downloads.sourceforge.net/project/boost/boost/1.51.0"
+REMOTE_DIR="http://downloads.sourceforge.net/project/boost/boost/1.53.0"
 
-ARCHIVE="boost_1_51_0.tar.gz"
+ARCHIVE="boost_1_53_0.tar.gz"
 
 mkdir -p $WORKING_DIR
 
@@ -43,20 +43,35 @@ if [ $? -ne 0 ]; then
     "
 fi
 
-cd $WORKING_DIR/boost_1_51_0/
+cd $WORKING_DIR/boost_1_53_0/
 
 # build the bjam program provided with Boost
 ./bootstrap.sh --without-icu
 
-echo "using gcc : 4.8 : $MINGW_ENV/bin/i686-w64-mingw32-g++
+echo "using gcc : 4.7 : $MINGW_ENV/bin/i686-w64-mingw32-g++
         :
         <rc>$MINGW_ENV/bin/i686-w64-mingw32-windres
         <archiver>$MINGW_ENV/bin/i686-w64-mingw32-ar
 ;" > $WORKING_DIR/user-config.jam
 
 # build boost
-./bjam address-model=32 toolset=gcc target-os=windows variant=release threading=multi threadapi=win32\
-    link=shared runtime-link=shared --prefix=$MINGW_ENV/install --user-config=$WORKING_DIR/user-config.jam -j 2\
-    --without-mpi --without-python -sNO_BZIP2=1 -sNO_ZLIB=1 --layout=tagged install
+./bjam \
+    address-model=32 \
+    toolset=gcc \
+    target-os=windows \
+    variant=release \
+    threading=multi \
+    threadapi=win32\
+    link=shared \
+    runtime-link=shared \
+    --prefix=$MINGW_ENV/install \
+    --user-config=$WORKING_DIR/user-config.jam \
+    -j 2 \
+    --without-mpi \
+    --without-python \
+    -sNO_BZIP2=1 \
+    -sNO_ZLIB=1 \
+    --layout=tagged \
+    install
 
 cd -
