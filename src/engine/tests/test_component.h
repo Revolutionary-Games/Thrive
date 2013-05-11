@@ -2,6 +2,8 @@
 
 #include "engine/component.h"
 
+#include <boost/lexical_cast.hpp>
+
 template<int ID>
 class TestComponent : public thrive::Component {
 
@@ -20,7 +22,7 @@ public:
 
     static const std::string&
     TYPE_NAME() {
-        static std::string string = "TestComponent" + std::to_string(ID);
+        static std::string string = "TestComponent" + boost::lexical_cast<std::string>(ID);
         return string;
     }
 

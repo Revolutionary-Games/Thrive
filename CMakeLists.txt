@@ -54,7 +54,7 @@ set(CMAKE_INSTALL_PREFIX
 # Find OGRE #
 #############
 
-find_package(OGRE REQUIRED QUIET)
+find_package(OGRE REQUIRED)
 
 # OGRE Plugins used
 set(OGRE_PLUGINS
@@ -121,8 +121,8 @@ add_subdirectory(
 set(LUA_FOUND TRUE)
 set(LUA_INCLUDE_DIRS ${CMAKE_CURRENT_SOURCE_DIR}/contrib/lua/lua/src)
 set(LUA_LIBRARIES lua)
-set(BUILD_SHARED_LUABIND ON)
-set(INSTALL_LUABIND ON)
+#set(BUILD_SHARED_LUABIND ON)
+#set(INSTALL_LUABIND ON)
 set(LIB_DIR bin)
 add_definitions(-DLUABIND_CPLUSPLUS_LUA)
 
@@ -166,7 +166,7 @@ set_source_files_properties(
 )
 
 # Compile library
-add_library(ThriveLib SHARED ${SOURCE_FILES})
+add_library(ThriveLib STATIC ${SOURCE_FILES})
 
 target_link_libraries(ThriveLib
     ${Boost_LIBRARIES}
@@ -175,6 +175,7 @@ target_link_libraries(ThriveLib
     ${CMAKE_THREAD_LIBS_INIT}
     luabind
 )
+
 
 set_target_properties(ThriveLib PROPERTIES
     OUTPUT_NAME Thrive
@@ -205,18 +206,13 @@ target_link_libraries(RunTests ThriveLib gtest_main)
 ###########
 
 # Executable
-install(TARGETS Thrive ThriveLib
+install(TARGETS Thrive
     RUNTIME DESTINATION bin
     LIBRARY DESTINATION bin
 )
 
 install(EXPORT lua
     DESTINATION bin
-)
-
-install(EXPORT luabind
-    DESTINATION bin
-    COMPONENT runtime
 )
 
 # OGRE config and media
@@ -284,7 +280,7 @@ if(WIN32)
         ${OGRE_PLUGIN_DIR_REL}/OgreMain.dll
 		${OGRE_PLUGIN_DIR_REL}/RenderSystem_GL.dll
 		${OGRE_PLUGIN_DIR_REL}/OIS.dll
-		${OGRE_PLUGIN_DIR_REL}/cg.dll
+        #${OGRE_PLUGIN_DIR_REL}/cg.dll
 		DESTINATION bin
 		CONFIGURATIONS Release
 	)
@@ -293,7 +289,7 @@ if(WIN32)
         ${OGRE_PLUGIN_DIR_DBG}/OgreMain_d.dll
 		${OGRE_PLUGIN_DIR_DBG}/RenderSystem_GL_d.dll
 		${OGRE_PLUGIN_DIR_DBG}/OIS_d.dll
-		${OGRE_PLUGIN_DIR_DBG}/cg.dll
+        #${OGRE_PLUGIN_DIR_DBG}/cg.dll
 		DESTINATION bin
 		CONFIGURATIONS Debug
 	)

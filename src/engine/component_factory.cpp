@@ -1,6 +1,7 @@
 #include "engine/component_factory.h"
 
 #include <assert.h>
+#include <boost/lexical_cast.hpp>
 #include <stdexcept>
 #include <unordered_map>
 
@@ -75,7 +76,7 @@ ComponentFactory::create(
 ) {
     auto iter = m_impl->m_constructors.find(typeId);
     if (iter == m_impl->m_constructors.end()) {
-        throw std::invalid_argument("Component not found: " + std::to_string(typeId));
+        throw std::invalid_argument("Component not found: " + boost::lexical_cast<std::string>(typeId));
     }
     return iter->second();
 }
@@ -172,7 +173,7 @@ ComponentFactory::typeIdToName(
 ) {
     auto iter = m_impl->m_typeIdToName.find(typeId);
     if (iter == m_impl->m_typeIdToName.end()) {
-        throw std::invalid_argument("Component not found: " + std::to_string(typeId));
+        throw std::invalid_argument("Component not found: " + boost::lexical_cast<std::string>(typeId));
     }
     return iter->second;
 }
