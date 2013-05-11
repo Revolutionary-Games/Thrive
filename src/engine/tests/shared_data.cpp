@@ -182,5 +182,9 @@ TEST(SharedQueue, Push) {
     EXPECT_EQ(3, queue.entries().size());
     EXPECT_EQ(3, queue.entries().front());
     EXPECT_EQ(5, queue.entries().back());
+    // One more relock, queue should be empty
+    state.releaseStable();
+    state.lockStable();
+    EXPECT_EQ(0, queue.entries().size());
     state.reset();
 }

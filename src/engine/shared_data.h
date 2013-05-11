@@ -99,26 +99,38 @@ public:
 
     void
     releaseStable() {
+        m_stableFrame += 1;
         m_stableBuffer = -1;
     }
 
     void
     releaseWorkingCopy() {
-        m_frameIndex += 1;
-        m_bufferVersions[m_workingCopyBuffer] = m_frameIndex;
+        m_workingCopyFrame += 1;
+        m_bufferVersions[m_workingCopyBuffer] = m_workingCopyFrame;
         m_latestBuffer = m_workingCopyBuffer;
         m_workingCopyBuffer = -1;
     }
 
     void
     reset() {
-        m_frameIndex = 0;
+        m_workingCopyFrame = 0;
+        m_stableFrame = 0;
         m_latestBuffer = 0;
         m_stableBuffer = -1;
         m_workingCopyBuffer = -1;
         for (int i=0; i < 3; ++i) {
             m_bufferVersions[i] = 0;
         }
+    }
+
+    FrameIndex
+    stableFrame() const {
+        return m_stableFrame;
+    }
+
+    FrameIndex
+    workingCopyFrame() const {
+        return m_workingCopyFrame;
     }
 
     void
@@ -132,15 +144,17 @@ private:
 
     std::array<FrameIndex, 3> m_bufferVersions = {{0, 0, 0}};
 
-    FrameIndex m_frameIndex = 0;
-
     short m_latestBuffer = 0;
 
     short m_stableBuffer = -1;
 
+    FrameIndex m_stableFrame = 0;
+
     std::unordered_set<detail::SharedDataBase<Writer, Reader>*> m_registeredSharedData;
 
     short m_workingCopyBuffer = -1;
+
+    FrameIndex m_workingCopyFrame = 0;
 
 };
 
@@ -318,11 +332,12 @@ public:
 private:
 
     void updateStableQueue() {
-        FrameIndex stableVersion = State::instance().getBufferVersion(StateBuffer::Stable);
-        if (m_lastStableUpdate == stableVersion) {
+        FrameIndex stableFrame = State::instance().stableFrame();
+        if (m_lastStableUpdate == stableFrame) {
             return;
         }
-        m_lastStableUpdate = stableVersion;
+        m_lastStableUpdate = stableFrame;
+        FrameIndex stableVersion = State::instance().getBufferVersion(StateBuffer::Stable);
         m_stableQueue.clear();
         boost::lock_guard<boost::mutex> lock(m_mutex);
         while (
