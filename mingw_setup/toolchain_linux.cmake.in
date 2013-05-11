@@ -29,11 +29,6 @@ list(APPEND CMAKE_MODULE_PATH
 # DirectX SDK
 set(DXSDK_DIR ${MINGW_ENV}/i686-w64-mingw32)
 
-# Google test
-set(GOOGLE_TEST_DIR ${MINGW_ENV}/gtest
-    CACHE STRING "Path to Google Test"
-)
-
 # Boost
 set(Boost_THREADAPI win32)
 
