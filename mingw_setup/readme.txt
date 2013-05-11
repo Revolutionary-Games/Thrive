@@ -22,9 +22,9 @@ IDEs".
 
 The setup script will install:
 
-* MinGW-w64 with GCC 4.8
+* MinGW-w64 with GCC 4.7
 
-* Boost libraries 1.51.0
+* Boost libraries 1.53.0
 
 * Ogre SDK 1.8.1
 
@@ -202,5 +202,5 @@ know how. A few quick pointers:
 * Ogre is required, ideally version 1.8+. An older version from your package 
   manager might work, it might not.
 
-* Use the latest GCC you can get your hands on, ideally 4.8.
+* gcc 4.7 recommended
 
