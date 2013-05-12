@@ -116,7 +116,7 @@ SkySystem::shutdown() {
 
 void
 SkySystem::update(int) {
-    for (auto& value : m_impl->m_skyEntities.entities()) {
+    for (auto& value : m_impl->m_skyEntities) {
         SkyPlaneComponent* plane = std::get<0>(value.second);
         if (plane) {
             const SkyPlaneComponent::Properties& properties = plane->m_properties.stable();

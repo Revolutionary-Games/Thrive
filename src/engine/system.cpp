@@ -9,8 +9,6 @@ struct System::Implementation {
 
     Engine* m_engine = nullptr;
 
-    bool m_suspended = false;
-
 };
 
 
@@ -38,26 +36,9 @@ System::init(
 }
 
 
-bool
-System::isSuspended() const {
-    return m_impl->m_suspended;
-}
-
-
-void
-System::resume() {
-    m_impl->m_suspended = false;
-}
-
 
 void
 System::shutdown() {
     m_impl->m_engine = nullptr;
-}
-
-
-void
-System::suspend() {
-    m_impl->m_suspended = true;
 }
 

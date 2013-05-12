@@ -48,7 +48,7 @@ public:
     /**
     * @brief Creates a component by type id
     *
-    * @param name The component's type id
+    * @param typeId The component's type id
     *
     * @return A new component
     *

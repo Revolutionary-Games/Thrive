@@ -62,7 +62,7 @@ public:
     *
     * Creates a new unnamed entity
     *
-    * @param manager
+    * @param entityManager
     *   The entity manager to use
     */
     Entity(
@@ -90,7 +90,7 @@ public:
     *
     * @param id
     *   The entity id to interface to
-    * @param manager
+    * @param entityManager
     *   The entity manager to use
     */
     Entity(
@@ -119,7 +119,7 @@ public:
     *
     * @param name
     *   The name of the entity to interface to
-    * @param manager
+    * @param entityManager
     *   The entity manager to use
     */
     Entity(
@@ -265,7 +265,7 @@ public:
     *
     * If no such component was found, does nothing.
     *
-    * @param typeName
+    * @param name
     *   The component's type name
     */
     void

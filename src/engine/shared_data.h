@@ -11,12 +11,47 @@
 
 #include <iostream>
 
+/**
+ * @page shared_data_scripts SharedData in Lua
+ *
+ * How you can access shared data from Lua depends on whether the script
+ * thread is the reader or writer. If it's the reader, the class holding
+ * the shared data should expose a \c stable property to Lua. So a C++
+ * class like this:
+ * \code
+ * struct MyClass {
+ *      struct Properties {
+ *          int number;
+ *          std::string string;
+ *      };
+ *
+ *      SharedData<Properties, Thread::Render, Thread::Script> m_sharedData;
+ * };
+ * \endcode
+ *
+ * Should be accessible from Lua like this:
+ * \code
+ * obj = MyClass()
+ * print(obj.stable.number)
+ * print(obj.stable.string)
+ * \endcode
+ *
+ * If the script thread is the writer, the class should expose three members:
+ * - \c workingCopy: A writable reference to the working copy
+ * - \c latest: A read-only reference to the latest buffer
+ * - \c touch(): A function that calls SharedData::touch()
+ * 
+ */
+
 namespace thrive {
 
+/**
+* @brief Enumeration naming the three state buffers
+*/
 enum class StateBuffer {
-    Stable,     // Read-only
-    Latest,     // Read-only
-    WorkingCopy // Writable
+    Stable,     /**< Read-only buffer used by the reading thread */
+    Latest,     /**< Read-only buffer that was last updated */
+    WorkingCopy /**< Writable buffer that is currently begin updated by the writing thread */
 };
 
 
@@ -27,17 +62,44 @@ namespace detail {
     };
 }
 
+/**
+* @brief Manages the state transitions
+*
+* SharedState works together with SharedData and keeps track of which data 
+* buffer is stable, latest or working copy.
+*
+* Each SharedState has exactly one writing thread and one reading thread. If 
+* you need more writers or readers, they will have to be synchronized by 
+* other means.
+*
+* @tparam Writer
+*   The reading thread
+* @tparam Reader
+*   The writing thread
+*/
 template<ThreadId Writer, ThreadId Reader>
 class SharedState {
 
 public:
 
+    /**
+    * @brief The singleton instance
+    */
     static SharedState&
     instance() {
         static SharedState instance;
         return instance;
     }
 
+    /**
+    * @brief Returns the current data buffer index for the state buffer
+    *
+    * @param buffer
+    *   The state buffer whose data buffer index you want to know
+    *
+    * @return 
+    *   The data buffer index
+    */
     short
     getBufferIndex(
         StateBuffer buffer
@@ -54,6 +116,17 @@ public:
         }
     }
 
+    /**
+    * @brief The version of the state buffer
+    *
+    * The buffer version is incremented with each call to releaseWorkingCopy().
+    *
+    * @param buffer
+    *   The state buffer whose version you'd like to know
+    *
+    * @return 
+    *   The buffer version
+    */
     FrameIndex
     getBufferVersion(
         StateBuffer buffer
@@ -63,12 +136,28 @@ public:
         return m_bufferVersions[index];
     }
 
+    /**
+    * @brief Locks the stable buffer for reading
+    *
+    * The new stable buffer will be the last fully updated data buffer.
+    *
+    * Calling this twice without a call to releaseStable() in between is an 
+    * error.
+    */
     void
     lockStable() {
         assert(m_stableBuffer == -1 && "Double locking stable buffer");
         m_stableBuffer = m_latestBuffer;
     }
 
+    /**
+    * @brief Locks the working copy for writing
+    *
+    * The new working copy will be the data buffer with the oldest version.
+    *
+    * Calling this twice without a call to releaseWorkingCopy() in between is
+    * an error.
+    */
     void
     lockWorkingCopy() {
         assert(m_workingCopyBuffer == -1 && "Double locking working copy buffer");
@@ -90,6 +179,15 @@ public:
         }
     }
 
+    /**
+    * @brief Registers shared data with this state
+    *
+    * You usually don't have to call this yourself, SharedData does it
+    * for you.
+    *
+    * @param sharedData
+    *   The shared data to register
+    */
     void
     registerSharedData(
         detail::SharedDataBase<Writer, Reader>* sharedData
@@ -97,12 +195,26 @@ public:
         m_registeredSharedData.insert(sharedData);
     }
 
+    /**
+    * @brief Releases the stable buffer
+    *
+    * The stable buffer becomes available for updating again.
+    *
+    * Also increments the stable frame index.
+    */
     void
     releaseStable() {
         m_stableFrame += 1;
         m_stableBuffer = -1;
     }
 
+    /**
+    * @brief Releases the working copy
+    *
+    * The working copy becomes the latest buffer.
+    *
+    * Also increments the working copy frame.
+    */
     void
     releaseWorkingCopy() {
         m_workingCopyFrame += 1;
@@ -111,6 +223,12 @@ public:
         m_workingCopyBuffer = -1;
     }
 
+    /**
+    * @brief Resets this shared state
+    *
+    * This resets the frame indices and buffer indices to their initial
+    * values. Only useful for testing.
+    */
     void
     reset() {
         m_workingCopyFrame = 0;
@@ -123,16 +241,40 @@ public:
         }
     }
 
+    /**
+    * @brief The current stable frame
+    *
+    * The stable frame is incremented for each call to releaseStable().
+    *
+    * @return 
+    *   The current stable frame
+    */
     FrameIndex
     stableFrame() const {
         return m_stableFrame;
     }
 
+    /**
+    * @brief The current working copy frame
+    *
+    * The frame is incremented for each call to releaseWorkingCopy().
+    *
+    * @return 
+    *   The working copy frame
+    */
     FrameIndex
     workingCopyFrame() const {
         return m_workingCopyFrame;
     }
 
+    /**
+    * @brief Unregisters shared data from this state
+    *
+    * You don't have to call this yourself, SharedData does it for you.
+    *
+    * @param sharedData
+    *   The shared data to unregister
+    */
     void
     unregisterSharedData(
         detail::SharedDataBase<Writer, Reader>* sharedData
@@ -159,6 +301,17 @@ private:
 };
 
 
+/**
+* @brief A RAII helper for locking a data buffer
+*
+* The specializations of this template will lock the respective buffer
+* on construction and release it on destruction.
+*
+* @tparam State
+*   The SharedState to lock
+* @tparam Buffer
+*   The data buffer to lock
+*/
 template<
     typename State,
     StateBuffer Buffer
@@ -166,6 +319,11 @@ template<
 class StateLock { };
 
 
+/**
+* @brief Template specialization for locking the stable buffer
+*
+* @tparam State
+*/
 template<typename State>
 class StateLock<State, StateBuffer::Stable> {
 
@@ -180,6 +338,11 @@ public:
     }
 };
 
+/**
+* @brief Template specialization for locking the working copy buffer
+*
+* @tparam State
+*/
 template<typename State>
 class StateLock<State, StateBuffer::WorkingCopy> {
 
@@ -198,6 +361,23 @@ public:
 // SharedData
 ////////////////////////////////////////////////////////////////////////////////
 
+/**
+* @brief Triple buffers data for fast, thread-safe sharing
+*
+* @tparam Data_
+*   The data structure to triple-buffer
+*
+* @tparam Writer
+*   The writing thread
+*
+* @tparam Reader
+*   The reading thread
+*
+* @tparam copyBuffers
+*   Whether to overwrite a new working copy with the last version. If your
+*   writing thread only ever writes to the data structure and doesn't care 
+*   about previous values, set this to \c false for improved performance.
+*/
 template<
     typename Data_, 
     ThreadId Writer, ThreadId Reader, 
@@ -207,10 +387,29 @@ class SharedData : public detail::SharedDataBase<Writer, Reader> {
 
 public:
 
+    /**
+    * @brief Typedef for the triple-buffered data structure
+    */
     using Data = Data_;
 
+    /**
+    * @brief Typedef for the SharedState this data belongs to
+    */
     using State = SharedState<Writer, Reader>;
 
+    /**
+    * @brief Constructor
+    *
+    * This initializes all three buffers according to the passed
+    * arguments. Since we are initializing three objects, there's
+    * no move constructor available.
+    *
+    * @tparam Args
+    *   Constructor signature of the data
+    * @param args
+    *   Constructor arguments for the buffered data
+    *   
+    */
     template<typename... Args>
     SharedData(
         const Args&... args
@@ -219,24 +418,44 @@ public:
         State::instance().registerSharedData(this);
     }
 
+    /**
+    * @brief Non-copiable
+    *
+    */
     SharedData(const SharedData&) = delete;
 
+    /**
+    * @brief Destructor
+    */
     ~SharedData() {
         State::instance().unregisterSharedData(this);
     }
 
+    /**
+    * @brief Non-copy-assignable
+    *
+    */
     SharedData& operator= (const SharedData&) = delete;
 
+    /**
+    * @brief Returns the latest data buffer
+    */
     const Data&
     latest() const {
         return this->getBuffer(StateBuffer::Latest);
     }
 
+    /**
+    * @brief Returns the stable data buffer
+    */
     const Data&
     stable() const {
         return this->getBuffer(StateBuffer::Stable);
     }
 
+    /**
+    * @brief Returns the last frame the stable buffer was changed
+    */
     FrameIndex
     stableVersion() const {
         State& state = State::instance();
@@ -244,11 +463,20 @@ public:
         return m_bufferVersions[bufferIndex];
     }
 
+    /**
+    * @brief Marks the working copy as changed
+    */
     void
     touch() {
         m_touchedVersion += 1;
     }
 
+    /**
+    * @brief Updates a data buffer from the latest data
+    *
+    * @param bufferIndex
+    *   The data buffer index to update
+    */
     void
     updateBuffer(
         short bufferIndex
@@ -260,6 +488,9 @@ public:
     }
 
 
+    /**
+    * @brief Returns the working copy data buffer
+    */
     Data&
     workingCopy() {
         return this->getBuffer(StateBuffer::WorkingCopy);
@@ -293,6 +524,26 @@ private:
 };
 
 
+/**
+* @brief Provides a thread-safe queue
+*
+* With SharedQueue, you can safely share anything that SharedData is not
+* suited for, e.g. events. Both the reader and the writer have separate
+* queues. The writer thread appends to its own queue. Each time the 
+* reader thread calls entries(), the reader-side queue flushes the
+* write-side entries to the reader side. Previous entries on the
+* reader side are discarded.
+*
+* It is safe to call entries() multiple times per frame, the update
+* only occurs at most once per frame.
+*
+* @tparam Data
+*   The data structure to queue
+* @tparam Writer
+*   The writing thread
+* @tparam Reader
+*   The reading thread
+*/
 template<
     typename Data, 
     ThreadId Writer, ThreadId Reader
@@ -301,18 +552,45 @@ class SharedQueue {
 
 public:
 
+    /**
+    * @brief The SharedState this queue belongs to
+    */
     using State = SharedState<Writer, Reader>;
 
+    /**
+    * @brief Iterator
+    *
+    * Equivalent to
+    * \code
+    * entries().cbegin();
+    * \endcode
+    */
     typename std::deque<Data>::const_iterator
     begin() {
         return this->entries().cbegin();
     }
 
+    /**
+    * @brief Iterator
+    *
+    * Equivalent to
+    * \code
+    * entries().cend();
+    * \endcode
+    */
     typename std::deque<Data>::const_iterator
     end() {
         return this->entries().cend();
     }
 
+    /**
+    * @brief Pushes data to the end of the queue
+    *
+    * Only the writer thread may call this.
+    *
+    * @param data
+    *   The data to push
+    */
     void
     push(
         Data data
@@ -323,6 +601,9 @@ public:
         assert(m_workingQueue.size() < 1000 && "Queue is pretty full. Is there a consumer?");
     }
 
+    /**
+    * @brief Updates the reader-side queue and returns it
+    */
     const std::deque<Data>&
     entries() {
         this->updateStableQueue();

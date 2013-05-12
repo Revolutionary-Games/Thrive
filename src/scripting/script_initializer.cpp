@@ -23,42 +23,8 @@ debug(
     std::cout << msg << std::endl;
 }
 
-struct ScriptInitializer::Implementation {
-
-    luabind::scope m_bindings;
-
-};
-
-
-ScriptInitializer&
-ScriptInitializer::instance() {
-    static ScriptInitializer instance;
-    return instance;
-}
-
-
-ScriptInitializer::ScriptInitializer()
-  : m_impl(new Implementation())
-{
-}
-
-
-ScriptInitializer::~ScriptInitializer() {}
-
-
-bool
-ScriptInitializer::addBindings(
-    luabind::scope bindings
-) {
-    // It looks weird, but works. 
-    // luabind::scope has an overloaded comma operator
-    m_impl->m_bindings, bindings;
-    return true;
-}
-
-
 void
-ScriptInitializer::initialize(
+initializeLua(
     lua_State* L
 ) {
     luabind::open(L);

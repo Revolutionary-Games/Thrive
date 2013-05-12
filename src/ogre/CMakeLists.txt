@@ -1,12 +1,3 @@
-add_subdirectory(CellStage)
-add_subdirectory(entityframework)
-add_subdirectory(Agents)
-
-add_sources(
-	Thrive.h 
-    Thrive.cpp
-)
-
 add_sources(
     ${CMAKE_CURRENT_SOURCE_DIR}/keyboard_system.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/keyboard_system.h
