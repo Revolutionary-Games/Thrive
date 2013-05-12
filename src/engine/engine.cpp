@@ -57,7 +57,7 @@ struct Engine::Implementation {
         // Remove systems
         while (not m_systemsToRemove.empty()) {
             std::string name = m_systemsToRemove.front();
-            System::Ptr system = m_systems[name];
+            std::shared_ptr<System> system = m_systems[name];
             system->shutdown();
             for (auto iter = m_activeSystems.begin(); iter != m_activeSystems.end(); ++iter) {
                 if (system == iter->second) {
@@ -73,7 +73,7 @@ struct Engine::Implementation {
             std::string name;
             System::Order order;
             std::tie(name, order) = m_systemsToActivate.front();
-            System::Ptr system = m_systems[name];
+            std::shared_ptr<System> system = m_systems[name];
             m_activeSystems.insert(std::make_pair(order, system));
             system->init(&m_engine);
             m_systemsToActivate.pop_front();
@@ -89,7 +89,7 @@ struct Engine::Implementation {
 
     std::unordered_map<EntityId, int> m_entities;
 
-    std::multimap<System::Order, System::Ptr> m_activeSystems;
+    std::multimap<System::Order, std::shared_ptr<System>> m_activeSystems;
 
     EntityManager* m_entityManager = nullptr;
 
@@ -99,7 +99,7 @@ struct Engine::Implementation {
 
     Clock::time_point m_lastUpdate;
 
-    std::unordered_map<std::string, System::Ptr> m_systems;
+    std::unordered_map<std::string, std::shared_ptr<System>> m_systems;
 
     std::forward_list<
         std::pair<std::string, System::Order>
@@ -143,7 +143,7 @@ void
 Engine::addSystem(
     std::string name,
     System::Order order,
-    System::Ptr system
+    std::shared_ptr<System> system
 ) {
     m_impl->m_systems[name] = system;
     m_impl->m_systemsToActivate.push_front(std::make_pair(name, order));
@@ -178,7 +178,7 @@ Engine::getComponentCollection(
 }
 
 
-System::Ptr
+std::shared_ptr<System>
 Engine::getSystem(
     std::string name
 ) const {

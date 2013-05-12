@@ -1,42 +1,20 @@
 #pragma once
 
-#include "engine/component.h"
-
-#include <memory>
-
 class lua_State;
-
-namespace luabind {
-class scope;
-}
 
 namespace thrive {
 
-class ScriptInitializer {
-
-public:
-
-    static ScriptInitializer&
-    instance();
-
-    void
-    initialize(
-        lua_State* L
-    );
-
-    bool
-    addBindings(
-        luabind::scope bindings
-    );
-
-private:
-
-    ScriptInitializer();
-
-    ~ScriptInitializer();
-
-    struct Implementation;
-    std::unique_ptr<Implementation> m_impl;
-};
+/**
+* @brief Initializes a Lua state for use with the script engine
+*
+* This will register the known classes in the Lua state
+*
+* @param L
+*   The state to initialize
+*/
+void
+initializeLua(
+    lua_State* L
+);
 
 }

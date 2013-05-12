@@ -94,7 +94,7 @@ ScriptEngine::init(
     Engine::init(entityManager);
     StateLock<InputState, StateBuffer::Stable> inputLock;
     StateLock<RenderState, StateBuffer::WorkingCopy> renderLock;
-    ScriptInitializer::instance().initialize(m_impl->m_luaState);
+    initializeLua(m_impl->m_luaState);
     this->addSystem(
         "onUpdate",
         -100,

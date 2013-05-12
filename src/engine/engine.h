@@ -13,6 +13,13 @@ namespace thrive {
 class ComponentCollection;
 class EntityManager;
 
+/**
+* @brief An engine with a single purpose
+*
+* The game consists of several engines. At the time of this writing, they
+* are the graphics engine and the script engine. Each engine runs in its
+* own thread.
+*/
 class Engine {
 
 public:
@@ -22,6 +29,10 @@ public:
     */
     Engine();
 
+    /**
+    * @brief Non-copyable
+    *
+    */
     Engine(const Engine& other) = delete;
 
     /**
@@ -123,7 +134,7 @@ public:
     */
     std::shared_ptr<System>
     getSystem(
-        std::string key
+        std::string name
     ) const;
 
     /**

@@ -2,9 +2,22 @@
 
 namespace std {
 
+/**
+* @brief Template specialization for std::pair
+*
+*/
 template<typename A, typename B>
 struct hash<std::pair<A, B>> {
 
+    /**
+    * @brief Computes a combined hash from the pair's elements and returns it
+    *
+    * @param pair
+    *   The pair to hash
+    *
+    * @return 
+    *   The hash
+    */
     std::size_t
     operator() (
         const std::pair<A, B>& pair

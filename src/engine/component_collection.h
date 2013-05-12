@@ -58,7 +58,7 @@ public:
     *
     * @param onComponentAdded
     *   Called when a component has been added
-    * @param 
+    * @param onComponentRemoved
     *   Called when a component has been removed
     *
     * @return 
