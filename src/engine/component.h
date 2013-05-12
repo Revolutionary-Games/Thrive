@@ -103,6 +103,14 @@ protected:
 * @param name 
 *   The component's name
 *
+* Example:
+* \code
+* class MyComponent : public Component {
+*     COMPONENT(MyComponent)
+* public:
+*     // ...
+* };
+* \endcode
 */
 #define COMPONENT(name)  \
     public: \

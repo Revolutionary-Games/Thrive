@@ -21,10 +21,6 @@ struct ComponentFactory::Implementation {
 };
 
 
-/**
-* @brief Returns the singleton instance
-*
-*/
 ComponentFactory&
 ComponentFactory::instance() {
     static ComponentFactory instance;
@@ -41,17 +37,6 @@ ComponentFactory::ComponentFactory()
 ComponentFactory::~ComponentFactory() {}
 
 
-/**
-* @brief Creates a component by name
-*
-* @param name The component's type name
-*
-* @return A new component
-*
-* @throws std::invalid_argument if the name is unknown
-*
-* @note The type id overload should be preferred for performance reasons
-*/
 std::shared_ptr<Component>
 ComponentFactory::create(
     const std::string& name
@@ -61,15 +46,6 @@ ComponentFactory::create(
 }
 
 
-/**
-* @brief Creates a component by type id
-*
-* @param name The component's type id
-*
-* @return A new component
-*
-* @throws std::invalid_argument if the id is unknown
-*/
 std::shared_ptr<Component>
 ComponentFactory::create(
     Component::TypeId typeId
@@ -82,22 +58,6 @@ ComponentFactory::create(
 }
 
 
-/**
-* @brief Registers a component type
-*
-* @param typeId
-*   The component's type id
-* @param name
-*   The component's name (e.g. for scripts)
-* @param constructor
-*   An \c std::function taking \c void and returning a shared
-*   pointer to a new component.
-*
-* @return \c true if the registration was successful, false otherwise
-*
-* @note
-*   Use the REGISTER_COMPONENT macro for easier registration
-*/
 bool
 ComponentFactory::registerComponent(
     Component::TypeId typeId,
@@ -131,18 +91,6 @@ ComponentFactory::registerComponent(
 }
 
 
-/**
-* @brief Converts a component type name to the type id
-*
-* @param name
-*   The component type name
-*
-* @return 
-*   The component type id
-*
-* @throws
-*   std::invalid_argument if the name could not be found
-*/
 Component::TypeId
 ComponentFactory::typeNameToId(
     const std::string& name
@@ -155,18 +103,6 @@ ComponentFactory::typeNameToId(
 }
 
 
-/**
-* @brief Converts a component type id to the type name
-*
-* @param typeId
-*   The component type id
-*
-* @return 
-*   The component type name
-*
-* @throws
-*   std::invalid_argument if the typeId could not be found
-*/
 std::string
 ComponentFactory::typeIdToName(
     Component::TypeId typeId
