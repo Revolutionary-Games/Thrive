@@ -39,23 +39,13 @@ struct Engine::Implementation {
         std::unique_ptr<ComponentCollection>& collection = m_components[typeId];
         if (not collection) {
             collection.reset(new ComponentCollection(typeId));
-            collection->sig_componentAdded.connect(
+            collection->registerChangeCallbacks(
                 [this] (EntityId entityId, Component&) {
                     m_entities[entityId] += 1;
-                    if (m_entities[entityId] == 1) {
-                        m_engine.sig_entityAdded(entityId);
-                    }
-                }
-            );
-            collection->sig_componentRemoved.connect(
+                },
                 [this] (EntityId entityId, Component&) {
                     m_entities[entityId] -= 1;
-                    if (m_entities[entityId] == 0) {
-                        m_engine.sig_entityRemoved(entityId);
-                    }
-                    else {
-                        assert(m_entities[entityId] > 0 && "Removed component from non-existent entity");
-                    }
+                    assert(m_entities[entityId] >= 0 && "Removed component from non-existent entity");
                 }
             );
         }
@@ -235,7 +225,7 @@ Engine::getComponent(
 *   The component type the collection is holding
 *
 */
-const ComponentCollection&
+ComponentCollection&
 Engine::getComponentCollection(
     Component::TypeId typeId
 ) const {

@@ -25,6 +25,7 @@ TEST(EntityFilter, Initialization) {
         make_unique<TestComponent<0>>()
     );
     engine.update();
+    EXPECT_TRUE(nullptr != engine.getComponent(entityId, TestComponent<0>::TYPE_ID()));
     // Set up filter
     EntityFilter<TestComponent<0>> filter;
     filter.setEngine(&engine);

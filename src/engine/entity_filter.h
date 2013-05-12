@@ -3,6 +3,7 @@
 #include "engine/engine.h"
 #include "engine/component_collection.h"
 
+#include <assert.h>
 #include <forward_list>
 #include <functional>
 #include <tuple>
@@ -118,23 +119,23 @@ struct ComponentGroupBuilder<0, ComponentTypes...> {
 };
 
 template<size_t tupleIndex>
-struct RegisterForNextSignal {
+struct RegisterNextCallback {
     
     template<typename Filter>
-    static void registerForNextSignal(
+    static void registerNextCallback(
         Filter& filter
     ) {
         // May the programming gods have mercy for the poor souls
         // who will have to read this.
-        filter.template registerForSignal<tupleIndex-1>();
+        filter.template registerCallback<tupleIndex-1>();
     }
 };
 
 template<>
-struct RegisterForNextSignal<0> {
+struct RegisterNextCallback<0> {
 
     template<typename Filter>
-    static void registerForNextSignal(Filter&) {}
+    static void registerNextCallback(Filter&) {}
 };
 
 
@@ -176,20 +177,20 @@ public:
     setEngine(
         Engine* engine
     ) {
-        this->unregisterForSignals();
+        this->unregisterCallbacks();
         m_entities.clear();
         m_addedEntities.clear();
         m_removedEntities.clear();
         m_engine = engine;
         if (engine) {
-            this->registerForSignal<sizeof...(ComponentTypes)-1>();
+            this->registerCallback<sizeof...(ComponentTypes)-1>();
             this->initEntities();
         }
     }
 
 private:
 
-    template<size_t> friend class RegisterForNextSignal;
+    template<size_t> friend class RegisterNextCallback;
 
     void
     initEntities() {
@@ -252,57 +253,61 @@ private:
 
     template<int tupleIndex>
     void
-    registerForSignal() {
+    registerCallback() {
         using ComponentType = typename std::tuple_element<
             tupleIndex, 
             std::tuple<ComponentTypes...>
         >::type;
         using RawType = typename ExtractComponentType<ComponentType>::Type;
         bool isRequired = IsRequired<ComponentType>::value;
-        Connection::Ptr connection;
-        const auto& collection = m_engine->getComponentCollection(
+        auto& collection = m_engine->getComponentCollection(
             RawType::TYPE_ID()
         );
-        // Added
-        connection = collection.sig_componentAdded.connect(std::bind(
-            &EntityFilter<ComponentTypes...>::onComponentAdded,
-            this, std::placeholders::_1
-        ));
-        m_connections.push_front(connection);
-        // Removed
+        // Callbacks
+        auto onAdded = [this] (EntityId id, Component&) {
+            this->onComponentAdded(id);
+        };
+        ComponentCollection::ChangeCallback onRemoved;
         if (isRequired) {
-            connection = collection.sig_componentRemoved.connect(std::bind(
-                &EntityFilter<ComponentTypes...>::onRequiredComponentRemoved,
-                this, std::placeholders::_1
-            ));
+            onRemoved = [this] (EntityId id, Component&) {
+                this->onRequiredComponentRemoved(id);
+            };
         }
         else {
-            connection = collection.sig_componentRemoved.connect(std::bind(
-                &EntityFilter<ComponentTypes...>::onOptionalComponentRemoved<tupleIndex>,
-                this, std::placeholders::_1
-            ));
+            onRemoved = [this] (EntityId id, Component&) {
+                this->onOptionalComponentRemoved<tupleIndex>(id);
+            };
         }
-        m_connections.push_front(connection);
-        RegisterForNextSignal<tupleIndex>::registerForNextSignal(*this);
+        unsigned int id = collection.registerChangeCallbacks(
+            onAdded,
+            onRemoved
+        );
+        m_registeredCallbacks.push_front(
+            std::make_pair(std::ref(collection), id)
+        );
+        RegisterNextCallback<tupleIndex>::registerNextCallback(*this);
     }
 
     void
-    unregisterForSignals() {
-        for(auto& connection : m_connections) {
-            connection->disconnect();
+    unregisterCallbacks() {
+        for(auto& pair : m_registeredCallbacks) {
+            pair.first.get().unregisterChangeCallbacks(pair.second);
         }
-        m_connections.clear();
+        m_registeredCallbacks.clear();
     }
 
     std::unordered_set<EntityId> m_addedEntities;
-
-    std::forward_list<Connection::Ptr> m_connections;
 
     Engine* m_engine = nullptr;
 
     EntityMap m_entities;
 
     bool m_recordChanges;
+
+    std::forward_list<std::pair<
+        std::reference_wrapper<ComponentCollection>, 
+        unsigned int
+    >> m_registeredCallbacks;
 
     std::unordered_set<EntityId> m_removedEntities;
 
