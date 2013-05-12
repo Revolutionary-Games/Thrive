@@ -114,37 +114,17 @@ struct Engine::Implementation {
 };
 
 
-/**
-* @brief Constructor
-*/
 Engine::Engine() 
   : m_impl(new Implementation(*this))
 {
 }
 
 
-/**
-* @brief Destructor
-*
-* @note
-*   If the engine is still running, this will assert
-*/
 Engine::~Engine() {
     assert(not m_impl->m_isInitialized && "Engine still running during destruction");
 }
 
 
-/**
-* @brief Adds a component to this engine's collections
-*
-* The component will be added to the appropriate collection's queue.
-*
-* @param entityId
-*   The component's entity
-*
-* @param component
-*   The component to add
-*/
 void
 Engine::addComponent(
     EntityId entityId,
@@ -159,16 +139,6 @@ Engine::addComponent(
 }
 
 
-/**
-* @brief Adds a system to this engine
-*
-* @param name
-*   The system's name
-* @param order
-*   The system's priority in the process queue. The lower, the earlier.
-* @param system
-*   The system to add
-*/
 void
 Engine::addSystem(
     std::string name,
@@ -180,12 +150,6 @@ Engine::addSystem(
 }
 
 
-/**
-* @brief Returns a set of entities present in the engine
-*
-* @note
-*   Don't call this repeatedly, it's expensive.
-*/
 std::unordered_set<EntityId>
 Engine::entities() const {
     std::unordered_set<EntityId> entities;
@@ -196,18 +160,6 @@ Engine::entities() const {
 }
 
 
-/**
-* @brief Retrieves a component from this engine's collections
-*
-* @param entityId
-*   The component's entity
-* @param typeId
-*   The component's type id
-*
-* @return 
-*   A non-owning pointer to the component or \c nullptr if no such
-*   component was found
-*/
 Component*
 Engine::getComponent(
     EntityId entityId,
@@ -218,13 +170,6 @@ Engine::getComponent(
 }
 
 
-/**
-* @brief Returns a component collection
-*
-* @param typeId
-*   The component type the collection is holding
-*
-*/
 ComponentCollection&
 Engine::getComponentCollection(
     Component::TypeId typeId
@@ -233,15 +178,6 @@ Engine::getComponentCollection(
 }
 
 
-/**
-* @brief Returns one of the engine's systems
-*
-* @param name
-*   The system's name
-*
-* @return 
-*   The system or \c nullptr if no such system was found
-*/
 System::Ptr
 Engine::getSystem(
     std::string name
@@ -256,19 +192,6 @@ Engine::getSystem(
 }
 
 
-/**
-* @brief Initializes the engine
-*
-* Override this in your subclass to initialize data structures
-* and add essential systems. 
-*
-* @warning
-*   Do not forget to call Engine::init in your overriding implementation!
-*
-* @param entityManager
-*   The entity manager supplying the engine's entities
-*   
-*/
 void
 Engine::init(
     EntityManager* entityManager
@@ -280,16 +203,6 @@ Engine::init(
 }
 
 
-/**
-* @brief Removes a component from this engine's collections
-*
-* If no such component exists, does nothing.
-*
-* @param entityId
-*   The component's entity
-* @param typeId
-*   The component's type id
-*/
 void
 Engine::removeComponent(
     EntityId entityId,
@@ -300,17 +213,6 @@ Engine::removeComponent(
 }
 
 
-/**
-* @brief Removes a system from the engine by name
-*
-* The system is removed at the beginning of the next frame
-*
-* If no such system is found, does nothing.
-*
-* @param name
-*   The system's name
-*   
-*/
 void
 Engine::removeSystem(
     std::string name
@@ -319,15 +221,6 @@ Engine::removeSystem(
 }
 
 
-/**
-* @brief Sets the target frame rate
-*
-* @note
-*   Asserts if \c fps is 0.
-*
-* @param fps
-*   The target frame rate in frames per second
-*/
 void
 Engine::setTargetFrameRate(
     unsigned short fps
@@ -338,15 +231,6 @@ Engine::setTargetFrameRate(
 }
 
 
-/**
-* @brief Shuts down the engine
-*
-* Override this in your subclass to unwind the stuff your init function
-* has set up.
-*
-* @warning
-*   Do not forget to call Engine::shutdown in your overriding implementation!
-*/
 void
 Engine::shutdown() {
     m_impl->m_entityManager->unregisterEngine(this);
@@ -355,36 +239,18 @@ Engine::shutdown() {
 }
 
 
-/**
-* @brief Returns the target frame duration
-*/
 std::chrono::microseconds
 Engine::targetFrameDuration() const {
     return m_impl->m_targetFrameDuration;
 }
 
 
-/**
-* @brief Returns the target frame rate in fps
-*/
 unsigned short
 Engine::targetFrameRate() const {
     return m_impl->m_targetFrameRate;
 }
 
 
-/**
-* @brief Renders a single frame
-*
-* The update procedure is as follows:
-*
-* 1. Process components queued for adding / removing
-* 2. Process systems queued for adding / removing
-* 3. Iterate through systems in their order, calling System::update on them
-*
-* Note that this does not include the idling for maintaining the 
-* target frame rate.
-*/
 void
 Engine::update() {
     m_impl->m_frameIndex += 1;
@@ -460,12 +326,6 @@ struct EngineRunner::Implementation {
 };
 
 
-/**
-* @brief Constructor
-*
-* @param engine
-*   The engine to run
-*/
 EngineRunner::EngineRunner(
     Engine& engine
 ) : m_impl(new Implementation(*this, engine))
@@ -473,48 +333,23 @@ EngineRunner::EngineRunner(
 }
 
 
-/**
-* @brief Destructor
-*
-* If the engine is still running, stops it
-*/
 EngineRunner::~EngineRunner() {
     this->stop();
 }
 
 
-/**
-* @brief Returns the engine runner of the current thread
-*/
 EngineRunner*
 EngineRunner::current() {
     return Implementation::threadLocalStorage().get();
 }
 
 
-/**
-* @brief Returns whether the engine is currently running
-*/
 bool
 EngineRunner::isRunning() const {
     return m_impl->m_thread != nullptr;
 }
 
 
-/**
-* @brief Starts the engine
-*
-* This starts a new thread. In this thread, the following is executed:
-*
-* 1. Call Engine::init()
-* 2. While the engine is kept running, call Engine::update repeatedly
-* 3. If necessary, sleep between frames to maintain the engine's
-*    target framerate
-* 4. When the engine is stopped, call Engine::shutdown()
-*
-* @param entityManager
-*   The entity manager to supply the engine's components
-*/
 void
 EngineRunner::start(
     EntityManager* entityManager
@@ -526,12 +361,6 @@ EngineRunner::start(
 }
 
 
-/**
-* @brief Stops the engine if it's running
-*
-* This function blocks until the engine is done rendering its current
-* frame.
-*/
 void
 EngineRunner::stop() {
     if (m_impl->m_thread) {

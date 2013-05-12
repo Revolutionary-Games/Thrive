@@ -27,9 +27,6 @@ struct Entity::Implementation {
 };
 
 
-/**
-* @brief Returns Lua bindings for the Entity class
-*/
 luabind::scope
 Entity::luaBindings() {
     using namespace luabind;
@@ -56,27 +53,12 @@ Entity::luaBindings() {
 }
 
 
-/**
-* @brief Constructor
-*
-* Creates a new unnamed entity
-*
-* Uses the Game's global entity manager
-*/
 Entity::Entity() 
   : Entity(Game::instance().entityManager())
 {
 }
 
 
-/**
-* @brief Constructor
-*
-* Creates a new unnamed entity
-*
-* @param manager
-*   The entity manager to use
-*/
 Entity::Entity(
     EntityManager& manager
 ) : Entity(manager.generateNewId(), manager)
@@ -84,16 +66,6 @@ Entity::Entity(
 }
 
 
-/**
-* @brief Constructor
-*
-* Interfaces to an existing entity
-*
-* Uses the Game's global entity manager
-*
-* @param id
-*   The entity id to interface to
-*/
 Entity::Entity(
     EntityId id
 ) : Entity(id, Game::instance().entityManager())
@@ -101,16 +73,6 @@ Entity::Entity(
 }
 
 
-/**
-* @brief Constructor
-*
-* Interfaces to an existing entity
-*
-* @param id
-*   The entity id to interface to
-* @param manager
-*   The entity manager to use
-*/
 Entity::Entity(
     EntityId id,
     EntityManager& manager
@@ -119,16 +81,6 @@ Entity::Entity(
 }
 
 
-/**
-* @brief Constructor
-*
-* Interfaces to a named entity
-*
-* Uses the Game's global entity manager
-*
-* @param name
-*   The name of the entity to interface to
-*/
 Entity::Entity(
     const std::string& name
 ) : Entity(name, Game::instance().entityManager())
@@ -136,16 +88,6 @@ Entity::Entity(
 }
 
 
-/**
-* @brief Constructor
-*
-* Interfaces to a named entity
-*
-* @param name
-*   The name of the entity to interface to
-* @param manager
-*   The entity manager to use
-*/
 Entity::Entity(
     const std::string& name,
     EntityManager& manager
@@ -154,11 +96,6 @@ Entity::Entity(
 }
 
 
-/**
-* @brief Copy constructor
-*
-* @param other
-*/
 Entity::Entity(
     const Entity& other
 ) : Entity(
@@ -169,19 +106,9 @@ Entity::Entity(
 }
 
 
-/**
-* @brief Destructor
-*/
 Entity::~Entity() {}
 
 
-/**
-* @brief Compares two entities
-*
-* Entities compare to \c true if their entity ids are equal
-* and they use the same entity manager.
-*
-*/
 bool
 Entity::operator == (
     const Entity& other
@@ -193,9 +120,6 @@ Entity::operator == (
 }
 
 
-/**
-* @brief Copy assignment
-*/
 Entity&
 Entity::operator = (
     const Entity& other
@@ -208,11 +132,6 @@ Entity::operator = (
 }
 
 
-/**
-* @brief Adds a component to this entity
-*
-* @param component
-*/
 void
 Entity::addComponent(
     std::shared_ptr<Component> component
