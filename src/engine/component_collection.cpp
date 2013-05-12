@@ -32,16 +32,20 @@ struct ComponentCollection::Implementation {
             // Check if we are overwriting any old components
             auto foundIter = m_components.find(entityId);
             if (foundIter != m_components.end()) {
-                m_collection.sig_componentRemoved(
-                    entityId, 
-                    *foundIter->second
-                );
+                for (auto& value : m_changeCallbacks) {
+                    value.second.second(entityId, *iter->second);
+                }
             }
             // Insert new component
-            Component& componentRef = *iter->second;
-            m_components[entityId] = std::move(iter->second);
+            Component& componentRef = *iter->second; // We move the pointer, making it invalid
+            m_components.insert(std::make_pair(
+                entityId, 
+                std::move(iter->second)
+            ));
             iter = m_componentsToAdd.erase(iter);
-            m_collection.sig_componentAdded(entityId, componentRef);
+            for (auto& value : m_changeCallbacks) {
+                value.second.first(entityId, componentRef);
+            }
         }
     }
 
@@ -51,7 +55,9 @@ struct ComponentCollection::Implementation {
         while (iter != m_components.end()) {
             EntityId entityId = iter->first;
             if (contains(m_componentsToRemove, entityId)) {
-                m_collection.sig_componentRemoved(entityId, *iter->second);
+                for (auto& value : m_changeCallbacks) {
+                    value.second.second(entityId, *iter->second);
+                }
                 iter = m_components.erase(iter);
             }
             else {
@@ -61,6 +67,11 @@ struct ComponentCollection::Implementation {
         m_componentsToRemove.clear();
     }
 
+    std::unordered_map<
+        unsigned int, 
+        std::pair<ChangeCallback, ChangeCallback>
+    > m_changeCallbacks;
+
     ComponentCollection& m_collection;
 
     std::unordered_map<EntityId, ComponentPtr> m_components;
@@ -69,6 +80,8 @@ struct ComponentCollection::Implementation {
 
     std::unordered_set<EntityId> m_componentsToRemove;
 
+    unsigned int m_nextChangeCallbackId = 0;
+
     mutable boost::recursive_mutex m_queueMutex;
 
     Component::TypeId m_type;
@@ -76,11 +89,6 @@ struct ComponentCollection::Implementation {
 };
 
 
-/**
-* @brief Constructor
-*
-* @param type The type id of the components held by this collection.
-*/
 ComponentCollection::ComponentCollection(
     Component::TypeId type
 ) : m_impl(new Implementation(*this, type))
@@ -88,16 +96,9 @@ ComponentCollection::ComponentCollection(
 }
 
 
-/**
-* @brief Destructor
-*/
 ComponentCollection::~ComponentCollection() {}
 
 
-/**
-* @see
-*   ComponentCollection::get
-*/
 Component*
 ComponentCollection::operator[] (
     EntityId entityId
@@ -106,16 +107,6 @@ ComponentCollection::operator[] (
 }
 
 
-/**
-* @brief Retrieves a component from the collection
-*
-* @param entityId The entity the component belongs to
-*
-* @return 
-*   A non-owning pointer to the component or \c nullptr if no such 
-*   component exists
-*
-*/
 Component*
 ComponentCollection::get(
     EntityId entityId
@@ -130,9 +121,6 @@ ComponentCollection::get(
 }
 
 
-/**
-* @brief Processes the queues for added and removed components
-*/
 void
 ComponentCollection::processQueue() {
     boost::lock_guard<boost::recursive_mutex> lock(m_impl->m_queueMutex);
@@ -141,22 +129,6 @@ ComponentCollection::processQueue() {
 }
 
 
-/**
-* @brief Queues a component for addition
-*
-* The component will be available after the next call to 
-* \c ComponentCollection::processQueue.
-*
-* Any existing component of the same type will be overwritten.
-*
-* This method is thread-safe.
-*
-* @param entityId
-*   The entity the component belongs to
-*
-* @param component
-*   The component to add
-*/
 void
 ComponentCollection::queueComponentAddition(
     EntityId entityId,
@@ -167,19 +139,6 @@ ComponentCollection::queueComponentAddition(
 }
 
 
-/**
-* @brief Queues a component for removal
-*
-* The component will be removed after the next call to 
-* \c ComponentCollection::processQueue.
-*
-* If no such component exists, does nothing.
-*
-* This method is thread-safe.
-*
-* @param entityId
-*   The entity the component belongs to
-*/
 void
 ComponentCollection::queueComponentRemoval(
     EntityId entityId
@@ -189,11 +148,30 @@ ComponentCollection::queueComponentRemoval(
 }
 
 
-/**
-* @brief The type id of the collection's components
-*/
+unsigned int
+ComponentCollection::registerChangeCallbacks(
+    ChangeCallback onComponentAdded,
+    ChangeCallback onComponentRemoved
+) {
+    unsigned int id = m_impl->m_nextChangeCallbackId++;
+    m_impl->m_changeCallbacks.insert(std::make_pair(
+        id,
+        std::make_pair(onComponentAdded, onComponentRemoved)
+    ));
+    return id;
+}
+
+
 Component::TypeId
 ComponentCollection::type() const {
     return m_impl->m_type;
+}
+
+
+void
+ComponentCollection::unregisterChangeCallbacks(
+    unsigned int id
+) {
+    m_impl->m_changeCallbacks.erase(id);
 }
 

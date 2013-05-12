@@ -20,19 +20,12 @@ TEST (Engine, AddComponent) {
     EntityManager entityManager;
     TestEngine engine;
     engine.init(&entityManager);
-    EntityId addedEntityId = EntityManager::NULL_ID;
-    engine.sig_entityAdded.connect(
-        [&addedEntityId] (EntityId entityId) {
-            addedEntityId = entityId;
-        }
-    );
     EntityId id = entityManager.generateNewId();
     auto component = std::make_shared<TestComponent<0>>();
     TestComponent<0>* rawComponent = component.get();
     entityManager.addComponent(id, std::move(component));
-    EXPECT_EQ(EntityManager::NULL_ID, addedEntityId);
+    EXPECT_EQ(nullptr, engine.getComponent(id, TestComponent<0>::TYPE_ID()));
     engine.update();
-    EXPECT_EQ(id, addedEntityId);
     EXPECT_EQ(rawComponent, engine.getComponent(id, TestComponent<0>::TYPE_ID()));
     engine.shutdown();
 }
@@ -42,20 +35,19 @@ TEST (Engine, RemoveComponent) {
     EntityManager entityManager;
     TestEngine engine;
     engine.init(&entityManager);
-    EntityId removedEntityId = EntityManager::NULL_ID;
-    engine.sig_entityRemoved.connect(
-        [&removedEntityId] (EntityId entityId) {
-            removedEntityId = entityId;
-        }
-    );
     EntityId id = entityManager.generateNewId();
-    entityManager.addComponent(id, std::make_shared<TestComponent<0>>());
+    auto component = std::make_shared<TestComponent<0>>();
+    TestComponent<0>* rawComponent = component.get();
+    // Add a component
+    entityManager.addComponent(id, component);
     engine.update();
-    EXPECT_EQ(EntityManager::NULL_ID, removedEntityId);
+    EXPECT_EQ(rawComponent, engine.getComponent(id, TestComponent<0>::TYPE_ID()));
+    // Schedule it for removal
     entityManager.removeComponent(id, TestComponent<0>::TYPE_ID());
-    EXPECT_EQ(EntityManager::NULL_ID, removedEntityId);
+    // Shouldn't be removed yet
+    EXPECT_EQ(rawComponent, engine.getComponent(id, TestComponent<0>::TYPE_ID()));
+    // Actually remove it
     engine.update();
-    EXPECT_EQ(id, removedEntityId);
     EXPECT_EQ(nullptr, engine.getComponent(id, TestComponent<0>::TYPE_ID()));
     engine.shutdown();
 }
@@ -65,20 +57,20 @@ TEST (Engine, RemoveEntity) {
     EntityManager entityManager;
     TestEngine engine;
     engine.init(&entityManager);
-    EntityId removedEntityId = EntityManager::NULL_ID;
-    engine.sig_entityRemoved.connect(
-        [&removedEntityId] (EntityId entityId) {
-            removedEntityId = entityId;
-        }
-    );
+    // Add two components
     EntityId id = entityManager.generateNewId();
     entityManager.addComponent(id, make_unique<TestComponent<0>>());
+    entityManager.addComponent(id, make_unique<TestComponent<1>>());
     engine.update();
-    EXPECT_EQ(EntityManager::NULL_ID, removedEntityId);
+    // Remove both of them
     entityManager.removeEntity(id);
-    EXPECT_EQ(EntityManager::NULL_ID, removedEntityId);
+    // Shouldn't be removed yet
+    EXPECT_TRUE(nullptr != engine.getComponent(id, TestComponent<0>::TYPE_ID()));
+    EXPECT_TRUE(nullptr != engine.getComponent(id, TestComponent<1>::TYPE_ID()));
+    // Actually remove them
     engine.update();
-    EXPECT_EQ(id, removedEntityId);
+    EXPECT_EQ(nullptr, engine.getComponent(id, TestComponent<0>::TYPE_ID()));
+    EXPECT_EQ(nullptr, engine.getComponent(id, TestComponent<1>::TYPE_ID()));
     engine.shutdown();
 }
 

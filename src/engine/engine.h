@@ -3,7 +3,6 @@
 #include "engine/component.h"
 #include "engine/system.h"
 #include "engine/typedefs.h"
-#include "signals/signal.h"
 
 #include <chrono>
 #include <memory>
@@ -52,7 +51,7 @@ public:
         return dynamic_cast<ComponentType*>(component);
     }
 
-    const ComponentCollection&
+    ComponentCollection&
     getComponentCollection(
         Component::TypeId typeId
     ) const;
@@ -88,12 +87,6 @@ public:
 
     virtual void 
     update();
-
-    Signal<EntityId>
-    sig_entityAdded;
-
-    Signal<EntityId>
-    sig_entityRemoved;
 
 private:
     
