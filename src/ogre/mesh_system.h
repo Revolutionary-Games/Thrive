@@ -21,7 +21,7 @@ public:
     /**
     * @brief Lua bindings
     *
-    * This component exposes the following \ref shared_data_scripts shared properties:
+    * This component exposes the following \ref shared_data_lua shared properties:
     * - \c meshName (string): Properties::meshName
     *
     * @return 

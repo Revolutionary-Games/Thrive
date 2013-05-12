@@ -10,6 +10,62 @@
 
 namespace thrive {
 
+/**
+ * @page entity_component Entities, Components and Systems
+ *
+ * Introductions to the entity / component approach can be found here:
+ *  - <a href="http://piemaster.net/2011/07/entity-component-primer/">Entity / Component Game Design: A Primer</a>
+ *  - <a href="http://www.gamasutra.com/blogs/MeganFox/20101208/88590/Game_Engines_101_The_EntityComponent_Model.php">Game Engines 101: The Entity / Component Model</a>
+ *  - <a href="http://www.richardlord.net/blog/what-is-an-entity-framework">What is an entity system framework?</a>
+ *
+ * The following gives an overview of the implementation of entities, 
+ * components and systems in Thrive.
+ *
+ * @section entity_manager Entity Manager
+ *
+ * Entities and their components are managed by an EntityManager. The
+ * EntityManager identifies each entity by its unique id. You can use
+ * either EntityManager::generateNewId() or EntityManager::getNamedId()
+ * to obtain an id.
+ *
+ * An entity can at most one component of each type. Component types are
+ * distinguished primarily by their <em>component id</em> (see also 
+ * Component::generateTypeId()). This component id is generated dynamically
+ * at application startup and may change between executions. To identify a
+ * component type across executions, use the <em>component name</em>, which
+ * should be constant between executions. To convert between component id
+ * and component name, use ComponentFactory::typeNameToId() and 
+ * ComponentFactory::typeIdToName().
+ *
+ * For convenience, there's an Entity class that wraps the API of 
+ * EntityManager in an entity-centric way.
+ *
+ * @section system Systems
+ *
+ * The absolute minimum a system has to implement is the System::update()
+ * function. You can also override System::init() and System::shutdown() for
+ * setup and teardown procedures.
+ *
+ * Usually, a system operates on entities that have a specific combination of
+ * components. The EntityFilter template can filter out entities that have
+ * such a component makeup.
+ *
+ * @section engine Engine
+ *
+ * Systems are managed by Engines. Each engine runs in its own thread and is 
+ * responsible for specific part of the game. At the time of this writing,
+ * there are the OgreEngine for rendering graphics and the ScriptEngine for
+ * interfacing to Lua.
+ *
+ * All engines share the same EntityManager. When a component is added or 
+ * removed from the EntityManager, the engines are notified. The changes are
+ * applied at the beginning of the engine's next frame. This way, an the 
+ * engine's systems can safely iterate over the components without one 
+ * component suddenly being destroyed by another thread.
+ *
+ *
+ */
+
 class ComponentCollection;
 class EntityManager;
 

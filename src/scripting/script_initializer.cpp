@@ -14,8 +14,6 @@
 #include <forward_list>
 #include <iostream>
 
-using namespace thrive;
-
 static void
 debug(
     const std::string& msg
@@ -24,7 +22,7 @@ debug(
 }
 
 void
-initializeLua(
+thrive::initializeLua(
     lua_State* L
 ) {
     luabind::open(L);
