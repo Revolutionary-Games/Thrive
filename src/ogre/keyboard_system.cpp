@@ -14,7 +14,6 @@ struct KeyboardSystem::Implementation : public OIS::KeyListener{
     keyPressed(
         const OIS::KeyEvent& event
     ) {
-        std::cout << "Key pressed: " << int(event.key) << std::endl;
         this->queueEvent(event, true);
         return true;
     }
