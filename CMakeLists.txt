@@ -201,6 +201,30 @@ set_source_files_properties(
 add_executable(RunTests ${TEST_SOURCE_FILES})
 target_link_libraries(RunTests ThriveLib gtest_main)
 
+#################
+# Documentation #
+#################
+
+set(DOC_OUTPUT_DIR ${CMAKE_CURRENT_BINARY_DIR}/doc CACHE PATH "Documentation output directory.")
+set(DOC_INPUT ${CMAKE_CURRENT_SOURCE_DIR}/src)
+
+set( DOXYGEN_CONFIG_FILE
+    ${CMAKE_CURRENT_SOURCE_DIR}/doc/doxygen.cfg.in
+)
+
+find_package(Doxygen)
+
+if(DOXYGEN_FOUND)
+    configure_file(${DOXYGEN_CONFIG_FILE} ${CMAKE_CURRENT_BINARY_DIR}/doxygen.cfg @ONLY)
+    add_custom_target(doc
+        ${DOXYGEN_EXECUTABLE} ${CMAKE_CURRENT_BINARY_DIR}/doxygen.cfg
+        WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/doc
+        COMMENT "Generating API documentation with Doxygen" VERBATIM
+        SOURCES ${DOXYGEN_CONFIG_FILE}
+    )
+endif()
+
+
 ###########
 # Install #
 ###########
