@@ -77,7 +77,7 @@ public:
     /**
     * @brief Lua bindings
     *
-    * Exposes the following \ref shared_data_scripts shared properties:
+    * Exposes the following \ref shared_data_lua shared properties:
     * - \c enabled (bool): Properties::enabled
     * - \c plane (Ogre::Plane): Properties::plane
     * - \c materialName (string): Properties::materialName

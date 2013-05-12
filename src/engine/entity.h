@@ -53,7 +53,7 @@ public:
     *
     * Creates a new unnamed entity
     *
-    * Uses the Game's global entity manager
+    * Uses the Game's global EntityManager
     */
     Entity();
 
@@ -74,7 +74,7 @@ public:
     *
     * Interfaces to an existing entity
     *
-    * Uses the Game's global entity manager
+    * Uses the Game's global EntityManager
     *
     * @param id
     *   The entity id to interface to
@@ -103,7 +103,7 @@ public:
     *
     * Interfaces to a named entity
     *
-    * Uses the Game's global entity manager
+    * Uses the Game's EntityManager
     *
     * @param name
     *   The name of the entity to interface to

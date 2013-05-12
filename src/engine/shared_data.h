@@ -11,8 +11,104 @@
 
 #include <iostream>
 
+namespace thrive {
+
 /**
- * @page shared_data_scripts SharedData in Lua
+ * @page shared_data Sharing Data across Threads
+ *
+ * To avoid lock contention, Thrive uses triple-buffering for 
+ * synchronization of shared data. You can read up on triple-buffering
+ * here:
+ *  - http://blog.slapware.eu/game-engine/programming/multithreaded-renderloop-part1/
+ *  - http://www.altdevblogaday.com/2011/07/03/threading-and-your-game-loop/
+ *  - http://www.gamasutra.com/view/feature/1830/multithreaded_game_engine_.php
+ *
+ * As a quick recap, triple buffering uses three buffers to synchronize a 
+ * writing thread and a reading thread:
+ *  - Working Copy: This buffer is updated by the writing thread
+ *  - Latest: This is the last buffer that was updated
+ *  - Stable: This is the buffer the reading thread reads from
+ * Only the working copy is writable. Stable and latest are read-only.
+ *
+ * There are two main classes handling shared state in Thrive: SharedState and
+ * SharedData. SharedState handles the locking and release of the three 
+ * buffers. SharedData is where the data is actually buffered.
+ *
+ * There is a distinction between \a state and \a data buffers. State buffers
+ * are one of working copy, latest or stable. Data buffers are one of the
+ * three that a SharedData object holds, indexed by 0, 1 or 2. The SharedState
+ * handles the mapping between state and data buffers.
+ *
+ * SharedState keeps track of several frame counters. First, there's the 
+ * working copy frame and the stable frame. Those are incremented after each
+ * call to SharedState::releaseWorkingCopy() and SharedState::releaseStable(),
+ * respectively. They effectively keep track of how many frames the writer /
+ * reader threads have rendered each.
+ *
+ * For each data buffer, SharedState also keeps track of the last frame the
+ * data buffer was the working copy. This is necessary for selecting the next
+ * working copy (which should be the oldest data buffer that's not locked by
+ * the reading thread).
+ *
+ * Inside a SharedData object, each data buffer has a version. The version is 
+ * incremented each time SharedData::touch() is called, which should be done
+ * whenever the data changes.
+ *
+ * @section using_shared_data Using SharedData
+ *
+ * If you need to share data across threads, you first have to identify which
+ * thread is supposed to write the data and which one is supposed to read.
+ * Triple-buffering only supports exactly one writer and one reader. If you 
+ * need to synchronize more threads than that, you will either have to use
+ * several SharedData instances with one central thread to synchronize them 
+ * all or you will have to share the data over a different mechanism.
+ *
+ * There are some predefined SharedState and SharedData aliases at the bottom
+ * of this header file. At the time of this writing, they are
+ *  - RenderState / RenderData: Script thread writes, render thread reads
+ *  - InputState / InputData: Render thread writes, script thread reads
+ *
+ * Once you have decided on reader and writer, you need to identify the
+ * data you want to share. In the simplest case, it can be just an integer
+ * or some other POD. You can also define your own data structure.
+ *
+ * After that, all you have to do is add a member of type SharedData to 
+ * your class:
+ * \code
+ * class MyClass {
+ *  public:
+ *  
+ *      struct Properties {
+ *          int number;
+ *          std::string text;
+ *      };
+ *
+ *      RenderData<Properties>
+ *      m_sharedProperties;
+ * };
+ * \endcode
+ *
+ * To access the shared properties, the reader thread has to call 
+ * SharedData::stable(), which returns a const reference to the data in the
+ * stable buffer:
+ * \code
+ * MyClass obj;
+ * const MyClass::Properties& stable = obj.m_sharedProperties.stable();
+ * \endcode
+ *
+ * The writer thread may access both the latest and the working copy buffer.
+ * SharedData::workingCopy() returns a non-const reference so it can be 
+ * changed. <b>Don't forget to call SharedData::touch() to let the system know
+ * that you changed something!</b>
+ * \code
+ * MyClass obj;
+ * const MyClass::Properties& latest = obj.m_sharedProperties.latest();
+ * MyClass::Properties& workingCopy = obj.m_sharedProperties.workingCopy();
+ * workingCopy.text = "New text";
+ * obj.m_sharedProperties.touch();
+ * \endcode
+ *
+ * @section shared_data_lua SharedData in Lua
  *
  * How you can access shared data from Lua depends on whether the script
  * thread is the reader or writer. If it's the reader, the class holding
@@ -43,7 +139,7 @@
  * 
  */
 
-namespace thrive {
+using DataVersion = unsigned int;
 
 /**
 * @brief Enumeration naming the three state buffers
@@ -117,23 +213,23 @@ public:
     }
 
     /**
-    * @brief The version of the state buffer
+    * @brief The frame of the state buffer
     *
-    * The buffer version is incremented with each call to releaseWorkingCopy().
+    * The buffer frame is incremented with each call to releaseWorkingCopy().
     *
     * @param buffer
-    *   The state buffer whose version you'd like to know
+    *   The state buffer whose frame you'd like to know
     *
     * @return 
-    *   The buffer version
+    *   The buffer frame
     */
     FrameIndex
-    getBufferVersion(
+    getBufferFrame(
         StateBuffer buffer
     ) const {
         short index = this->getBufferIndex(buffer);
         assert(index >= 0 && "Invalid buffer specified. How did you manage that?!");
-        return m_bufferVersions[index];
+        return m_bufferFrames[index];
     }
 
     /**
@@ -153,7 +249,7 @@ public:
     /**
     * @brief Locks the working copy for writing
     *
-    * The new working copy will be the data buffer with the oldest version.
+    * The new working copy will be the data buffer with the oldest frame.
     *
     * Calling this twice without a call to releaseWorkingCopy() in between is
     * an error.
@@ -163,7 +259,7 @@ public:
         assert(m_workingCopyBuffer == -1 && "Double locking working copy buffer");
         short oldestBuffer = (m_latestBuffer + 1) % 3;
         short secondOldestBuffer = (m_latestBuffer + 2) % 3;
-        if (m_bufferVersions[secondOldestBuffer] < m_bufferVersions[oldestBuffer]) {
+        if (m_bufferFrames[secondOldestBuffer] < m_bufferFrames[oldestBuffer]) {
             // Oops, we need to swap
             std::swap(oldestBuffer, secondOldestBuffer);
         }
@@ -218,7 +314,7 @@ public:
     void
     releaseWorkingCopy() {
         m_workingCopyFrame += 1;
-        m_bufferVersions[m_workingCopyBuffer] = m_workingCopyFrame;
+        m_bufferFrames[m_workingCopyBuffer] = m_workingCopyFrame;
         m_latestBuffer = m_workingCopyBuffer;
         m_workingCopyBuffer = -1;
     }
@@ -237,7 +333,7 @@ public:
         m_stableBuffer = -1;
         m_workingCopyBuffer = -1;
         for (int i=0; i < 3; ++i) {
-            m_bufferVersions[i] = 0;
+            m_bufferFrames[i] = 0;
         }
     }
 
@@ -284,7 +380,7 @@ public:
 
 private:
 
-    std::array<FrameIndex, 3> m_bufferVersions = {{0, 0, 0}};
+    std::array<FrameIndex, 3> m_bufferFrames = {{0, 0, 0}};
 
     short m_latestBuffer = 0;
 
@@ -374,7 +470,7 @@ public:
 *   The reading thread
 *
 * @tparam copyBuffers
-*   Whether to overwrite a new working copy with the last version. If your
+*   Whether to overwrite a new working copy with the last frame. If your
 *   writing thread only ever writes to the data structure and doesn't care 
 *   about previous values, set this to \c false for improved performance.
 */
@@ -456,7 +552,7 @@ public:
     /**
     * @brief Returns the last frame the stable buffer was changed
     */
-    FrameIndex
+    DataVersion
     stableVersion() const {
         State& state = State::instance();
         short bufferIndex = state.getBufferIndex(StateBuffer::Stable);
@@ -516,11 +612,11 @@ private:
         return m_buffers[bufferIndex];
     }
 
-    FrameIndex m_touchedVersion = 0;
+    DataVersion m_touchedVersion = 0;
 
     std::array<Data, 3> m_buffers;
 
-    std::array<FrameIndex, 3> m_bufferVersions = {{0, 0, 0}};
+    std::array<DataVersion, 3> m_bufferVersions = {{0, 0, 0}};
 };
 
 
@@ -595,7 +691,7 @@ public:
     push(
         Data data
     ) {
-        FrameIndex frameIndex = State::instance().getBufferVersion(StateBuffer::WorkingCopy);
+        FrameIndex frameIndex = State::instance().getBufferFrame(StateBuffer::WorkingCopy);
         boost::lock_guard<boost::mutex> lock(m_mutex);
         m_workingQueue.emplace_back(frameIndex, std::forward<Data>(data));
         assert(m_workingQueue.size() < 1000 && "Queue is pretty full. Is there a consumer?");
@@ -618,12 +714,12 @@ private:
             return;
         }
         m_lastStableUpdate = stableFrame;
-        FrameIndex stableVersion = State::instance().getBufferVersion(StateBuffer::Stable);
+        FrameIndex stableBufferFrame = State::instance().getBufferFrame(StateBuffer::Stable);
         m_stableQueue.clear();
         boost::lock_guard<boost::mutex> lock(m_mutex);
         while (
             not m_workingQueue.empty() 
-            and m_workingQueue.front().first <= stableVersion
+            and m_workingQueue.front().first <= stableBufferFrame
         ) {
             m_stableQueue.emplace_back(
                 std::move(m_workingQueue.front().second)
