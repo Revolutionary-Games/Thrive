@@ -22,13 +22,11 @@ IDEs".
 
 The setup script will install:
 
-* MinGW-w64 with GCC 4.8
+* MinGW-w64 with GCC 4.7
 
-* Boost libraries 1.51.0
+* Boost libraries 1.53.0
 
 * Ogre SDK 1.8.1
-
-* Google Test Framework
 
 To set up the build system follow the steps listed below. If you are not 
 interested in the gory details, you can ignore everything but the bullet
@@ -39,7 +37,7 @@ points.
 
 * At least 5 GB of free hard drive space
 
-* About 30-120 minutes, depending on the speed of your PC and your internet
+* About 30-60 minutes, depending on the speed of your PC and your internet
   connection
 
 1. Enabling Powershell to run the setup script
@@ -79,12 +77,17 @@ why we need to add it to the PATH environment variable.
 
 * In the file dialog that should pop up, select a directory of your choice.
   C:\MinGW is recommended if you don't have another MinGW installation there
-  already. If you select a directory different from C:\MinGW, please read
-  the instructions in Step 6 carefully.
+  already.
 
 * This will take quite a while, so be patient. When the script is complete, 
   a message box will inform you.
 
+If you want to install the build environment to another directory, you need to
+have another compiler installed. A standard mingw installation in C:\MinGW or 
+a Visual Studio installation (so that msvc.exe is in the system path) should
+do the trick.
+
+You will also have to point Code::Blocks to your custom directory in step (7).
 
 4. Optional, but recommended: Reset Powershell Execution Policy
 ---------------------------------------------------------------
@@ -125,10 +128,6 @@ file in the next step.
 * On the next page, browse to C:\MinGW\cmake\toolchain.cmake (or wherever you
   installed the build environment) and click "Finish"
 
-* If CMake throws an error about not being able to find CMAKE_MAKE_PROGRAM,
-  please set this variable to "$MINGW_ENV\bin\mingw32-make.exe" where 
-  $MINGW_ENV is the path you selected in step 3.
-
 * Click "Generate" to generate the Code::Blocks project files
 
 The toolchain file was configured during the setup script to contain paths to 
@@ -161,35 +160,6 @@ cross-compiling, but it's convenient for us, too.
 
 Unfortunately, I haven't yet found a clean way to start (and debug) Thrive
 from within Code::Blocks due to the way Windows finds its shared libraries.
-
-
-Troubleshooting
-===============
-
-If the installation doesn't go as smoothly as the instructions suggest, try
-and find a solution in this section. If you can't find your particular
-problem here, go to
-
-    http://thrivegame.forum-free.ca/t1101-build-system-discussion
-
-and report it.
-
-
-CMake cannot find boost / "failed common.copy"
-----------------------------------------------
-
-If during installation, you see error messages like this:
-
-
-    common.copy C:\mingw\install\include\boost\tr1\tr1\type_traits
-
-    copy /b "boost\tr1\tr1\type_traits" + this-file-does-not-exist-A698EE7806899E69 \
-    "C:\mingw\install\include\boost\tr1\tr1\type_traits"
-
-    ...failed common.copy C:\mingw\install\include\boost\tr1\tr1\type_traits...
-
-then try and disable virus scanners and similar security. Remember to re-enable them
-when you are done!
 
 
 Other IDEs
@@ -232,5 +202,5 @@ know how. A few quick pointers:
 * Ogre is required, ideally version 1.8+. An older version from your package 
   manager might work, it might not.
 
-* GCC 4.8 or later required. Clang might also work, but is not tested.
+* gcc 4.7 recommended
 

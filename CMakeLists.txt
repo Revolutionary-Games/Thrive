@@ -17,11 +17,6 @@ SET(OGRE_SDK ""
     CACHE STRING "Path to the Ogre SDK"
 )
 
-# Google test
-set(GOOGLE_TEST_DIR ""
-    CACHE STRING "Path to Google Test"
-)
-
 
 ###############
 # CMake Setup #
@@ -59,7 +54,7 @@ set(CMAKE_INSTALL_PREFIX
 # Find OGRE #
 #############
 
-find_package(OGRE REQUIRED QUIET)
+find_package(OGRE REQUIRED)
 
 # OGRE Plugins used
 set(OGRE_PLUGINS
@@ -83,36 +78,77 @@ find_package(OIS REQUIRED QUIET)
 ##############
 
 set(BOOST_COMPONENTS
-    date_time   # Required by OGRE
-    thread      # Required by OGRE
-    system      # Required by OGRE
+    chrono   
+    date_time
+    filesystem
+    thread  
+    system 
 )
 
-find_package(Boost 1.51 COMPONENTS ${BOOST_COMPONENTS} REQUIRED QUIET)
+find_package(Boost COMPONENTS ${BOOST_COMPONENTS} REQUIRED QUIET)
 
 ###############
 # Google Test #
 ###############
 
-if (GOOGLE_TEST_DIR)
-    add_subdirectory(${GOOGLE_TEST_DIR} ${CMAKE_CURRENT_BINARY_DIR}/gtest)
-    include_directories(${GOOGLE_TEST_DIR}/include)
+add_subdirectory(
+    ${CMAKE_CURRENT_SOURCE_DIR}/contrib/googletest
+)
+
+include_directories(
+    SYSTEM
+    ${CMAKE_CURRENT_SOURCE_DIR}/contrib/googletest/include
+)
+
+#######
+# Lua #
+#######
+
+include_directories(
+    SYSTEM
+    ${CMAKE_CURRENT_SOURCE_DIR}/contrib/lua/lua/src
+    ${CMAKE_CURRENT_SOURCE_DIR}/contrib/luabind/
+)
+
+if(WIN32)
+    add_definitions(-DLUA_BUILD_AS_DLL)
 endif()
+
+add_subdirectory(
+    ${CMAKE_CURRENT_SOURCE_DIR}/contrib/lua/
+)
+
+set(LUA_FOUND TRUE)
+set(LUA_INCLUDE_DIRS ${CMAKE_CURRENT_SOURCE_DIR}/contrib/lua/lua/src)
+set(LUA_LIBRARIES lua)
+#set(BUILD_SHARED_LUABIND ON)
+#set(INSTALL_LUABIND ON)
+set(LIB_DIR bin)
+add_definitions(-DLUABIND_CPLUSPLUS_LUA)
+
+add_subdirectory(
+    ${CMAKE_CURRENT_SOURCE_DIR}/contrib/luabind/
+)
 
 ######################
 # Configure Compiler # 
 ######################
 
-include_directories( 
-    ${CMAKE_CURRENT_SOURCE_DIR}/src
+include_directories(SYSTEM
     ${Boost_INCLUDE_DIRS}
     ${OIS_INCLUDE_DIRS}
-	${OGRE_INCLUDE_DIRS}
+    ${OGRE_INCLUDE_DIRS}
+)
+
+include_directories( 
+    ${CMAKE_CURRENT_SOURCE_DIR}/src
 )
 
 # Compile using c++11
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=gnu++0x")
 
+
+find_package(Threads)
 
 ##################
 # Compile Thrive # 
@@ -122,14 +158,24 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=gnu++0x")
 add_subdirectory(src)
 get_property(SOURCE_FILES GLOBAL PROPERTY SOURCE_FILES)
 
+# Set extensive warning flags
+include(compiler_flags)
+set_source_files_properties(
+    ${SOURCE_FILES}
+    PROPERTIES COMPILE_FLAGS ${WARNING_FLAGS}
+)
+
 # Compile library
-add_library(ThriveLib SHARED ${SOURCE_FILES})
+add_library(ThriveLib STATIC ${SOURCE_FILES})
 
 target_link_libraries(ThriveLib
     ${Boost_LIBRARIES}
     ${OGRE_LIBRARIES} 
     ${OIS_LIBRARIES}
+    ${CMAKE_THREAD_LIBS_INIT}
+    luabind
 )
+
 
 set_target_properties(ThriveLib PROPERTIES
     OUTPUT_NAME Thrive
@@ -140,7 +186,6 @@ add_executable(Thrive WIN32 ${CMAKE_CURRENT_SOURCE_DIR}/src/Main.cpp)
 
 target_link_libraries(Thrive ThriveLib)
 
-
 #################
 # Compile tests #
 #################
@@ -148,19 +193,50 @@ target_link_libraries(Thrive ThriveLib)
 # Collect sources from sub directories
 get_property(TEST_SOURCE_FILES GLOBAL PROPERTY TEST_SOURCE_FILES)
 
-if (TEST_SOURCE_FILES)
-    add_executable(RunTests ${TEST_SOURCE_FILES})
-    target_link_libraries(RunTests ThriveLib gtest_main)
+set_source_files_properties(
+    ${TEST_SOURCE_FILES}
+    PROPERTIES COMPILE_FLAGS ${WARNING_FLAGS}
+)
+
+add_executable(RunTests ${TEST_SOURCE_FILES})
+target_link_libraries(RunTests ThriveLib gtest_main)
+
+#################
+# Documentation #
+#################
+
+set(DOC_OUTPUT_DIR ${CMAKE_CURRENT_BINARY_DIR}/doc CACHE PATH "Documentation output directory.")
+set(DOC_INPUT ${CMAKE_CURRENT_SOURCE_DIR}/src)
+
+set( DOXYGEN_CONFIG_FILE
+    ${CMAKE_CURRENT_SOURCE_DIR}/doc/doxygen.cfg.in
+)
+
+find_package(Doxygen)
+
+if(DOXYGEN_FOUND)
+    configure_file(${DOXYGEN_CONFIG_FILE} ${CMAKE_CURRENT_BINARY_DIR}/doxygen.cfg @ONLY)
+    add_custom_target(doc
+        ${DOXYGEN_EXECUTABLE} ${CMAKE_CURRENT_BINARY_DIR}/doxygen.cfg
+        WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/doc
+        COMMENT "Generating API documentation with Doxygen" VERBATIM
+        SOURCES ${DOXYGEN_CONFIG_FILE}
+    )
 endif()
+
 
 ###########
 # Install #
 ###########
 
 # Executable
-install(TARGETS Thrive ThriveLib
+install(TARGETS Thrive
     RUNTIME DESTINATION bin
     LIBRARY DESTINATION bin
+)
+
+install(EXPORT lua
+    DESTINATION bin
 )
 
 # OGRE config and media
@@ -184,6 +260,12 @@ install(FILES
 )
 
 install(DIRECTORY ${CMAKE_SOURCE_DIR}/res/dist/media
+    DESTINATION ./
+    CONFIGURATIONS Release  Debug
+)
+
+install(DIRECTORY 
+    ${CMAKE_SOURCE_DIR}/res/dist/scripts
     DESTINATION ./
     CONFIGURATIONS Release  Debug
 )
@@ -222,7 +304,7 @@ if(WIN32)
         ${OGRE_PLUGIN_DIR_REL}/OgreMain.dll
 		${OGRE_PLUGIN_DIR_REL}/RenderSystem_GL.dll
 		${OGRE_PLUGIN_DIR_REL}/OIS.dll
-		${OGRE_PLUGIN_DIR_REL}/cg.dll
+        #${OGRE_PLUGIN_DIR_REL}/cg.dll
 		DESTINATION bin
 		CONFIGURATIONS Release
 	)
@@ -231,7 +313,7 @@ if(WIN32)
         ${OGRE_PLUGIN_DIR_DBG}/OgreMain_d.dll
 		${OGRE_PLUGIN_DIR_DBG}/RenderSystem_GL_d.dll
 		${OGRE_PLUGIN_DIR_DBG}/OIS_d.dll
-		${OGRE_PLUGIN_DIR_DBG}/cg.dll
+        #${OGRE_PLUGIN_DIR_DBG}/cg.dll
 		DESTINATION bin
 		CONFIGURATIONS Debug
 	)
