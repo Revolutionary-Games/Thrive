@@ -58,7 +58,7 @@ cmake -DTOOLCHAIN_TEMPLATE=$TOOLCHAIN_TEMPLATE -DMINGW_ENV=$MINGW_ENV -P $DIR/co
 ################################################################################
 # Install libraries
 ################################################################################
-LIBRARIES=('mingw' 'boost' 'ogre' 'gtest')
+LIBRARIES=('mingw' 'boost' 'ogre_dependencies' 'ogre')
 
 for LIBRARY in ${LIBRARIES[@]}
 do

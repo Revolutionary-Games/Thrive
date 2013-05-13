@@ -1,0 +1,29 @@
+
+add_sources(
+    ${CMAKE_CURRENT_SOURCE_DIR}/component.cpp 
+    ${CMAKE_CURRENT_SOURCE_DIR}/component.h 
+    ${CMAKE_CURRENT_SOURCE_DIR}/component_collection.cpp 
+    ${CMAKE_CURRENT_SOURCE_DIR}/component_collection.h 
+    ${CMAKE_CURRENT_SOURCE_DIR}/component_factory.cpp 
+    ${CMAKE_CURRENT_SOURCE_DIR}/component_factory.h 
+    ${CMAKE_CURRENT_SOURCE_DIR}/engine.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/engine.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/entity.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/entity.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/entity_filter.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/entity_manager.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/entity_manager.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/shared_data.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/shared_data.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/system.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/system.h
+)
+
+add_test_sources(
+    ${CMAKE_CURRENT_SOURCE_DIR}/tests/component_factory.cpp 
+    ${CMAKE_CURRENT_SOURCE_DIR}/tests/engine.cpp 
+    ${CMAKE_CURRENT_SOURCE_DIR}/tests/entity.cpp 
+    ${CMAKE_CURRENT_SOURCE_DIR}/tests/entity_filter.cpp 
+    ${CMAKE_CURRENT_SOURCE_DIR}/tests/shared_data.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/tests/test_component.h
+)
