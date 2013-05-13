@@ -100,6 +100,14 @@ include_directories(
     ${CMAKE_CURRENT_SOURCE_DIR}/contrib/googletest/include
 )
 
+##########
+# Bullet #
+##########
+
+find_package(Bullet REQUIRED QUIET)
+
+include_directories(SYSTEM ${BULLET_INCLUDE_DIRS})
+
 #######
 # Lua #
 #######
@@ -173,6 +181,10 @@ target_link_libraries(ThriveLib
     ${OGRE_LIBRARIES} 
     ${OIS_LIBRARIES}
     ${CMAKE_THREAD_LIBS_INIT}
+    ${BULLET_DYNAMICS_LIBRARY}
+    ${BULLET_COLLISION_LIBRARY}
+    ${BULLET_MATH_LIBRARY}
+    ${BULLET_SOFTBODY_LIBRARY}
     luabind
 )
 
