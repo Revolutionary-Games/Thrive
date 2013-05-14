@@ -247,6 +247,14 @@ EntityFilter<ComponentTypes...>::begin() const {
 
 
 template<typename... ComponentTypes>
+void
+EntityFilter<ComponentTypes...>::clearChanges() {
+    m_impl->m_addedEntities.clear();
+    m_impl->m_removedEntities.clear();
+}
+
+
+template<typename... ComponentTypes>
 typename EntityFilter<ComponentTypes...>::EntityMap::const_iterator
 EntityFilter<ComponentTypes...>::end() const {
     return m_impl->m_entities.cend();
