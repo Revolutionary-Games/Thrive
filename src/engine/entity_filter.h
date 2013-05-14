@@ -158,6 +158,12 @@ public:
     begin() const;
 
     /**
+    * @brief Clears the lists for added and removed entities
+    */
+    void
+    clearChanges();
+
+    /**
     * @brief Iterator
     *
     * Equivalent to
