@@ -4,6 +4,7 @@
 #include "ogre/keyboard_system.h"
 #include "ogre/entity_system.h"
 #include "ogre/render_system.h"
+#include "ogre/scene_node_system.h"
 #include "ogre/sky_system.h"
 
 #include <boost/lexical_cast.hpp>
@@ -109,7 +110,7 @@ struct OgreEngine::Implementation : public Ogre::WindowEventListener {
     void
     setupLog() {
         static auto logManager = new Ogre::LogManager();
-        logManager->createLog("default", true, true, false);
+        logManager->createLog("default", true, false, false);
     }
 
     void
@@ -200,6 +201,16 @@ OgreEngine::init(
         m_impl->m_keyboardSystem
     );
     this->addSystem(
+        "addSceneNodes",
+        -100,
+        std::make_shared<OgreAddSceneNodeSystem>()
+    );
+    this->addSystem(
+        "updateSceneNodes",
+        0,
+        std::make_shared<OgreUpdateSceneNodeSystem>()
+    );
+    this->addSystem(
         "sky",
         0,
         std::make_shared<SkySystem>()
@@ -208,6 +219,11 @@ OgreEngine::init(
         "entities",
         0,
         std::make_shared<OgreEntitySystem>()
+    );
+    this->addSystem(
+        "removeSceneNodes",
+        100,
+        std::make_shared<OgreRemoveSceneNodeSystem>()
     );
     this->addSystem(
         "rendering",

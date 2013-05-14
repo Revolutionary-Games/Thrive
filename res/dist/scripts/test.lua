@@ -15,10 +15,9 @@ end
 player = Entity("player")
 playerTransform = TransformComponent()
 player:addComponent(playerTransform)
-playerMesh = MeshComponent()
-player:addComponent(playerMesh)
-playerMesh.workingCopy.meshName = "Sinbad.mesh"
-playerMesh:touch()
+playerSceneNode = OgreSceneNodeComponent()
+player:addComponent(playerSceneNode)
+player:addComponent(OgreEntityComponent("Sinbad.mesh"))
 
 playerTransform.position = Vector3(0, 0, 0)
 playerTransform:touch()

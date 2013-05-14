@@ -76,7 +76,7 @@ public:
     void shutdown() override;
 
     /**
-    * @brief Updates the sky components
+    * @brief Adds new scene nodes
     */
     void update(int) override;
 
@@ -118,7 +118,48 @@ public:
     void shutdown() override;
 
     /**
-    * @brief Updates the sky components
+    * @brief Removes stale scene nodes
+    */
+    void update(int) override;
+
+private:
+
+    struct Implementation;
+    std::unique_ptr<Implementation> m_impl;
+};
+
+/**
+* @brief Updates scene node transformations
+*/
+class OgreUpdateSceneNodeSystem : public System {
+    
+public:
+
+    /**
+    * @brief Constructor
+    */
+    OgreUpdateSceneNodeSystem();
+
+    /**
+    * @brief Destructor
+    */
+    ~OgreUpdateSceneNodeSystem();
+
+    /**
+    * @brief Initializes the system
+    *
+    * @param engine
+    *   Must be an OgreEngine
+    */
+    void init(Engine* engine) override;
+
+    /**
+    * @brief Shuts the system down
+    */
+    void shutdown() override;
+
+    /**
+    * @brief Updates the scene nodes
     */
     void update(int) override;
 
@@ -129,4 +170,5 @@ private:
 };
 
 }
+
 
