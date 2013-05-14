@@ -1,11 +1,19 @@
-#include "ogre/scene_node.h"
+#include "ogre/scene_node_system.h"
+
+#include "common/transform.h"
+#include "engine/component_registry.h"
+#include "engine/entity_filter.h"
+#include "ogre/ogre_engine.h"
+#include "scripting/luabind.h"
+
+#include <OgreSceneManager.h>
 
 using namespace thrive;
 
 luabind::scope
 OgreSceneNodeComponent::luaBindings() {
     using namespace luabind;
-    return class_<OgreSceneNodeComponent, Component, std::shared_ptr<Component>>("SkyPlaneComponent")
+    return class_<OgreSceneNodeComponent, Component, std::shared_ptr<Component>>("OgreSceneNodeComponent")
         .scope [
             def("TYPE_NAME", &OgreSceneNodeComponent::TYPE_NAME),
             def("TYPE_ID", &OgreSceneNodeComponent::TYPE_ID)
@@ -13,6 +21,8 @@ OgreSceneNodeComponent::luaBindings() {
         .def(constructor<>())
     ;
 }
+
+REGISTER_COMPONENT(OgreSceneNodeComponent)
 
 ////////////////////////////////////////////////////////////////////////////////
 // OgreAddSceneNodeSystem
@@ -60,7 +70,7 @@ OgreAddSceneNodeSystem::shutdown() {
 
 void
 OgreAddSceneNodeSystem::update(int) {
-    auto& added = m_entities.addedEntities();
+    auto& added = m_impl->m_entities.addedEntities();
     for (const auto& entry : added) {
         EntityId entityId = entry.first;
         OgreSceneNodeComponent* component = std::get<0>(entry.second);
@@ -69,6 +79,7 @@ OgreAddSceneNodeSystem::update(int) {
         m_impl->m_sceneNodes[entityId] = node;
         component->m_sceneNode = node;
     }
+    m_impl->m_entities.removedEntities().clear();
     added.clear();
 }
 
@@ -119,13 +130,73 @@ OgreRemoveSceneNodeSystem::shutdown() {
 
 void
 OgreRemoveSceneNodeSystem::update(int) {
-    auto& removed = m_entities.removedEntities();
+    auto& removed = m_impl->m_entities.removedEntities();
     for (EntityId entityId : removed) {
-        SceneNode* node = m_impl->m_sceneNodes[entityId];
+        Ogre::SceneNode* node = m_impl->m_sceneNodes[entityId];
         m_impl->m_sceneManager->destroySceneNode(node);
         m_impl->m_sceneNodes.erase(entityId);
     }
+    m_impl->m_entities.addedEntities().clear();
     removed.clear();
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// OgreUpdateSceneNodeSystem
+////////////////////////////////////////////////////////////////////////////////
+
+struct OgreUpdateSceneNodeSystem::Implementation {
+
+    EntityFilter<
+        OgreSceneNodeComponent,
+        TransformComponent
+    > m_entities;
+
+};
+
+
+OgreUpdateSceneNodeSystem::OgreUpdateSceneNodeSystem()
+  : m_impl(new Implementation())
+{
+}
+
+
+OgreUpdateSceneNodeSystem::~OgreUpdateSceneNodeSystem() {}
+
+
+void
+OgreUpdateSceneNodeSystem::init(
+    Engine* engine
+) {
+    System::init(engine);
+    OgreEngine* ogreEngine = dynamic_cast<OgreEngine*>(engine);
+    assert(ogreEngine != nullptr && "System requires an OgreEngine");
+    m_impl->m_entities.setEngine(engine);
+}
+
+
+void
+OgreUpdateSceneNodeSystem::shutdown() {
+    m_impl->m_entities.setEngine(nullptr);
+    System::shutdown();
+}
+
+
+void
+OgreUpdateSceneNodeSystem::update(int) {
+    for (const auto& entry : m_impl->m_entities) {
+        OgreSceneNodeComponent* sceneNodeComponent = std::get<0>(entry.second);
+        TransformComponent* transformComponent = std::get<1>(entry.second);
+        sceneNodeComponent->m_sceneNode->setOrientation(
+            transformComponent->m_properties.stable().orientation
+        );
+        sceneNodeComponent->m_sceneNode->setPosition(
+            transformComponent->m_properties.stable().position
+        );
+        sceneNodeComponent->m_sceneNode->setScale(
+            transformComponent->m_properties.stable().scale
+        );
+    }
 }
 
 

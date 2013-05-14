@@ -99,6 +99,7 @@ OgreEntitySystem::update(int) {
         sceneNodeComponent->m_sceneNode->attachObject(ogreEntity);
         m_impl->m_ogreEntities.emplace(entityId, ogreEntity);
     }
+    m_impl->m_entities.clearChanges();
     for (EntityId entityId : m_impl->m_entities.removedEntities()) {
         Ogre::Entity* ogreEntity = m_impl->m_ogreEntities.at(entityId);
         ogreEntity->detachFromParent();
