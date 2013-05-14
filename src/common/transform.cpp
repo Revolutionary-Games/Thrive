@@ -1,6 +1,6 @@
 #include "common/transform.h"
 
-#include "engine/component_factory.h"
+#include "engine/component_registry.h"
 #include "scripting/luabind.h"
 
 

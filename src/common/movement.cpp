@@ -1,7 +1,7 @@
 #include "common/movement.h"
 
 #include "common/transform.h"
-#include "engine/component_factory.h"
+#include "engine/component_registry.h"
 #include "engine/entity_filter.h"
 #include "scripting/luabind.h"
 

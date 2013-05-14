@@ -1,8 +1,6 @@
 add_sources(
     ${CMAKE_CURRENT_SOURCE_DIR}/keyboard_system.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/keyboard_system.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/mesh_system.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/mesh_system.h
     ${CMAKE_CURRENT_SOURCE_DIR}/ogre_engine.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/ogre_engine.h
     ${CMAKE_CURRENT_SOURCE_DIR}/on_key.cpp
