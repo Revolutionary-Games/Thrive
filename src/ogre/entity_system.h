@@ -13,10 +13,14 @@ namespace thrive {
 /**
 * @brief Component for an entity that has a 3D mesh
 */
-class MeshComponent : public Component {
+class OgreEntityComponent : public Component {
     COMPONENT(Mesh)
 
 public:
+
+    OgreEntityComponent(
+        std::string meshName
+    );
 
     /**
     * @brief Lua bindings
@@ -29,41 +33,27 @@ public:
     static luabind::scope
     luaBindings();
 
-    /**
-    * @brief Properties to be shared
-    */
-    struct Properties {
-        /**
-        * @brief The mesh path
-        */
-        Ogre::String meshName = "";
-    };
-
-    /**
-    * @brief Shared properties
-    */
-    RenderData<Properties>
-    m_properties;
+    const std::string m_meshName;
 
 };
 
 
 /**
-* @brief Updates meshes of MeshComponents
+* @brief Updates meshes of OgreEntityComponents
 */
-class MeshSystem : public System {
+class OgreEntitySystem : public System {
 
 public:
 
     /**
     * @brief Constructor
     */
-    MeshSystem();
+    OgreEntitySystem();
 
     /**
     * @brief Destructor
     */
-    ~MeshSystem();
+    ~OgreEntitySystem();
 
     /**
     * @brief Initializes the system
@@ -81,7 +71,7 @@ public:
     /**
     * @brief Updates the graphics engine's data
     *
-    * All MeshComponents whose MeshComponent::Properties::meshName has changed
+    * All OgreEntityComponents whose OgreEntityComponent::Properties::meshName has changed
     * will be updated.
     *
     */
@@ -94,4 +84,5 @@ private:
 };
 
 }
+
 
