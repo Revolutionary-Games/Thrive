@@ -2,7 +2,7 @@
 
 #include "game.h"
 #include "ogre/keyboard_system.h"
-#include "ogre/mesh_system.h"
+#include "ogre/entity_system.h"
 #include "ogre/render_system.h"
 #include "ogre/sky_system.h"
 
@@ -205,9 +205,9 @@ OgreEngine::init(
         std::make_shared<SkySystem>()
     );
     this->addSystem(
-        "meshes",
+        "entities",
         0,
-        std::make_shared<MeshSystem>()
+        std::make_shared<OgreEntitySystem>()
     );
     this->addSystem(
         "rendering",

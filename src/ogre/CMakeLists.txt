@@ -1,4 +1,6 @@
 add_sources(
+    ${CMAKE_CURRENT_SOURCE_DIR}/entity_system.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/entity_system.h
     ${CMAKE_CURRENT_SOURCE_DIR}/keyboard_system.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/keyboard_system.h
     ${CMAKE_CURRENT_SOURCE_DIR}/ogre_engine.cpp
