@@ -108,6 +108,14 @@ find_package(Bullet REQUIRED QUIET)
 
 include_directories(SYSTEM ${BULLET_INCLUDE_DIRS})
 
+############
+# irrKlang #
+############
+
+find_package(irrKlang REQUIRED QUIET)
+
+include_directories(SYSTEM ${IRRKLANG_INCLUDE_DIRS})
+
 #######
 # Lua #
 #######
@@ -185,6 +193,7 @@ target_link_libraries(ThriveLib
     ${BULLET_COLLISION_LIBRARY}
     ${BULLET_MATH_LIBRARY}
     ${BULLET_SOFTBODY_LIBRARY}
+    ${IRRKLANG_LIBRARIES}
     luabind
 )
 

@@ -53,7 +53,7 @@ Game::instance() {
 }
 
 
-Game::Game() 
+Game::Game()
   : m_impl(new Implementation())
 {
 }
@@ -86,6 +86,11 @@ Game::quit() {
 
 void
 Game::run() {
+    irrengine = irrklang::createIrrKlangDevice();
+    if (!irrengine)
+        return;
+    irrengine->play2D("/../media/music/Thrive_Main.mp3",false,false,true);
+
     // Make sure we're not running
     assert(m_impl->m_engineRunners.size() == 0 && "Can't start Game twice");
     // Initialize engine runners
