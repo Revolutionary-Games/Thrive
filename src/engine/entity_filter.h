@@ -141,7 +141,7 @@ public:
     * it.
     *
     */
-    std::unordered_set<EntityId>&
+    EntityMap&
     addedEntities();
 
     /**
