@@ -1,4 +1,4 @@
-#include "engine/component_factory.h"
+#include "engine/component_registry.h"
 
 #include <assert.h>
 #include <boost/lexical_cast.hpp>
@@ -10,9 +10,7 @@
 using namespace thrive;
 
 
-struct ComponentFactory::Implementation {
-
-    std::unordered_map<Component::TypeId, ComponentConstructor> m_constructors;
+struct ComponentRegistry::Implementation {
 
     std::unordered_map<Component::TypeId, std::string> m_typeIdToName;
 
@@ -21,50 +19,27 @@ struct ComponentFactory::Implementation {
 };
 
 
-ComponentFactory&
-ComponentFactory::instance() {
-    static ComponentFactory instance;
+ComponentRegistry&
+ComponentRegistry::instance() {
+    static ComponentRegistry instance;
     return instance;
 }
 
 
-ComponentFactory::ComponentFactory()
+ComponentRegistry::ComponentRegistry()
   : m_impl(new Implementation())
 {
 }
 
 
-ComponentFactory::~ComponentFactory() {}
-
-
-std::shared_ptr<Component>
-ComponentFactory::create(
-    const std::string& name
-) {
-    Component::TypeId typeId = this->typeNameToId(name);
-    return this->create(typeId);
-}
-
-
-std::shared_ptr<Component>
-ComponentFactory::create(
-    Component::TypeId typeId
-) {
-    auto iter = m_impl->m_constructors.find(typeId);
-    if (iter == m_impl->m_constructors.end()) {
-        throw std::invalid_argument("Component not found: " + boost::lexical_cast<std::string>(typeId));
-    }
-    return iter->second();
-}
+ComponentRegistry::~ComponentRegistry() {}
 
 
 bool
-ComponentFactory::registerComponent(
+ComponentRegistry::registerComponent(
     Component::TypeId typeId,
-    const std::string& name,
-    ComponentConstructor constructor
+    const std::string& name
 ) {
-    std::cout << "Registering " << name << std::endl;
     // Insert name
     auto nameInsertionResult = m_impl->m_typeNameToId.insert(
         std::make_pair(name, typeId)
@@ -82,17 +57,13 @@ ComponentFactory::registerComponent(
         std::cout << "Duplicate component id: " << name << std::endl;
         return false;
     }
-    // Insert constructor
-    auto constructorInsertionResult = m_impl->m_constructors.insert(
-        std::make_pair(typeId, constructor)
-    );
-    assert(constructorInsertionResult.second && "Name and type id are unique, but constructor is not?!");
+    // Success
     return true;
 }
 
 
 Component::TypeId
-ComponentFactory::typeNameToId(
+ComponentRegistry::typeNameToId(
     const std::string& name
 ) {
     auto iter = m_impl->m_typeNameToId.find(name);
@@ -104,7 +75,7 @@ ComponentFactory::typeNameToId(
 
 
 std::string
-ComponentFactory::typeIdToName(
+ComponentRegistry::typeIdToName(
     Component::TypeId typeId
 ) {
     auto iter = m_impl->m_typeIdToName.find(typeId);
@@ -113,7 +84,5 @@ ComponentFactory::typeIdToName(
     }
     return iter->second;
 }
-
-
 
 

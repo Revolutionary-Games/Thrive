@@ -1,6 +1,6 @@
 #include "ogre/sky_system.h"
 
-#include "engine/component_factory.h"
+#include "engine/component_registry.h"
 #include "engine/entity_filter.h"
 #include "ogre/ogre_engine.h"
 #include "scripting/luabind.h"
