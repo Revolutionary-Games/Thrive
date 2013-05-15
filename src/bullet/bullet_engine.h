@@ -3,17 +3,9 @@
 #include "engine/engine.h"
 #include <btBulletDynamicsCommon.h>
 
-/*
-namespace Ogre {
-    class RenderWindow;
-    class Root;
-    class SceneManager;
-}
+#include <memory>
 
-namespace OIS {
-    class InputManager;
-}
-*/
+
 namespace thrive {
 
 /**
