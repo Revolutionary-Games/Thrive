@@ -47,17 +47,8 @@ Game::instance() {
     // Make sure that shared states are instantiated first
     // to avoid problems with static destruction order
     RenderState::instance();
-    InputState::instance();////////////////////////////////////////////////////////////////////////////////
-// PhysicUpdate State (Physics => Render)
-////////////////////////////////////////////////////////////////////////////////
-extern template class SharedState<ThreadId::Physics, ThreadId::Render>;
-using PhysicUpdateState = SharedState<ThreadId::Physics, ThreadId::Render>;
-
-template<typename Data, bool updateWorkingCopy=true>
-using PhysicUpdateData = SharedData<Data, ThreadId::Physics, ThreadId::Render, updateWorkingCopy>;
-
-template<typename Data>
-using PhysicUpdateQueue = SharedQueue<Data, ThreadId::Physics, ThreadId::Render>;
+    InputState::instance();
+    PhysicUpdateState::instance();
     static Game instance;
     return instance;
 }
