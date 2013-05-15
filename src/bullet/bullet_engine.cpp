@@ -1,6 +1,7 @@
 #include "bullet/bullet_engine.h"
 
 #include "game.h"
+#include "engine/shared_data.cpp"
 
 #include <iostream>
 
@@ -16,7 +17,7 @@ struct BulletEngine::Implementation{
     void
     setupColisions() {
         m_collisionConfiguration = new btDefaultCollisionConfiguration();
-        m_dispatcher = new btCollisionDispatcher(collisionConfiguration);
+        m_dispatcher = new btCollisionDispatcher(m_collisionConfiguration);
     }
 
     void
@@ -26,7 +27,7 @@ struct BulletEngine::Implementation{
 
     void
     setupWorld() {
-        m_world = new btDiscreteDynamicsWorld(m_dispatcher,m_broadphase,m_solver,m_collisionConfiguration);
+        m_world.reset(new btDiscreteDynamicsWorld(m_dispatcher,m_broadphase,m_solver,m_collisionConfiguration));
     }
 
     std::unique_ptr<btDiscreteDynamicsWorld> m_world;
@@ -73,22 +74,19 @@ BulletEngine::shutdown() {
 
 
 void
-bulletEngine::update() {
+BulletEngine::update() {
     // Lock shared state
-    InputState::instance().lockWorkingCopy();
-    RenderState::instance().lockStable();
+    StateLock<PhysicUpdateState, StateBuffer::WorkingCopy> physicsUpdateLock;
     // Handle events
 
     // Update systems
     Engine::update();
     // Release shared state
-    RenderState::instance().releaseStable();
-    InputState::instance().releaseWorkingCopy();
 }
 
 btDiscreteDynamicsWorld*
 BulletEngine::world() const {
-    return m_impl->m_world;
+    return m_impl->m_world.get();
 }
 
 btSequentialImpulseConstraintSolver*
