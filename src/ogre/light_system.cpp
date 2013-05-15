@@ -15,6 +15,17 @@ using namespace thrive;
 // OgreLightComponent
 ////////////////////////////////////////////////////////////////////////////////
 
+
+void
+OgreLightComponent::Properties::setRange(
+    Ogre::Real range
+) {
+    this->attenuationRange = range;
+    this->attenuationConstant = 1.0f;
+    this->attenuationLinear = 4.5f / range;
+    this->attenuationQuadratic = 75.0f / (range * range);
+}
+
 static void
 OgreLightComponent_touch(
     OgreLightComponent* self
@@ -58,6 +69,7 @@ OgreLightComponent::luaBindings() {
                 .def_readwrite("spotlightOuterAngle", &Properties::spotlightOuterAngle)
                 .def_readwrite("spotlightFalloff", &Properties::spotlightFalloff)
                 .def_readwrite("spotlightNearClipDistance", &Properties::spotlightNearClipDistance)
+                .def("setRange", &Properties::setRange)
         ]
         .enum_("LightTypes") [
             value("LT_POINT", Ogre::Light::LT_POINT),
@@ -158,6 +170,7 @@ OgreLightSystem::update(int) {
         m_impl->m_sceneManager->destroyLight(light);
         m_impl->m_lights.erase(entityId);
     }
+    m_impl->m_entities.clearChanges();
 }
 
 

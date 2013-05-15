@@ -91,6 +91,20 @@ public:
         */
         Ogre::Real spotlightNearClipDistance = 10.0f;
 
+        /**
+        * @brief Convenience function for setting sensible attenuation values
+        *
+        * This function sets the attenuation range and attenuation coefficients
+        * to sensible values, as desribed <a href="http://www.ogre3d.org/tikiwiki/tiki-index.php?page=Light+Attenuation+Shortcut">
+        * here</a>.
+        *
+        * @param range
+        *   The light's range
+        */
+        void setRange(
+            Ogre::Real range
+        );
+
     };
 
     /**
