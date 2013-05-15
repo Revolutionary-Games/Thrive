@@ -306,6 +306,11 @@ if(WIN32)
         DESTINATION bin
     )
 
+    INSTALL(FILES
+        ${IRRKLANG_LIBRARIES_DLL}
+        DESTINATION bin
+    )
+
     foreach(OGRE_PLUGIN ${OGRE_PLUGINS})
         # Release
         install(FILES 

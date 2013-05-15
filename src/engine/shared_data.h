@@ -16,14 +16,14 @@ namespace thrive {
 /**
  * @page shared_data Sharing Data across Threads
  *
- * To avoid lock contention, Thrive uses triple-buffering for 
+ * To avoid lock contention, Thrive uses triple-buffering for
  * synchronization of shared data. You can read up on triple-buffering
  * here:
  *  - http://blog.slapware.eu/game-engine/programming/multithreaded-renderloop-part1/
  *  - http://www.altdevblogaday.com/2011/07/03/threading-and-your-game-loop/
  *  - http://www.gamasutra.com/view/feature/1830/multithreaded_game_engine_.php
  *
- * As a quick recap, triple buffering uses three buffers to synchronize a 
+ * As a quick recap, triple buffering uses three buffers to synchronize a
  * writing thread and a reading thread:
  *  - Working Copy: This buffer is updated by the writing thread
  *  - Latest: This is the last buffer that was updated
@@ -31,7 +31,7 @@ namespace thrive {
  * Only the working copy is writable. Stable and latest are read-only.
  *
  * There are two main classes handling shared state in Thrive: SharedState and
- * SharedData. SharedState handles the locking and release of the three 
+ * SharedData. SharedState handles the locking and release of the three
  * buffers. SharedData is where the data is actually buffered.
  *
  * There is a distinction between \a state and \a data buffers. State buffers
@@ -39,7 +39,7 @@ namespace thrive {
  * three that a SharedData object holds, indexed by 0, 1 or 2. The SharedState
  * handles the mapping between state and data buffers.
  *
- * SharedState keeps track of several frame counters. First, there's the 
+ * SharedState keeps track of several frame counters. First, there's the
  * working copy frame and the stable frame. Those are incremented after each
  * call to SharedState::releaseWorkingCopy() and SharedState::releaseStable(),
  * respectively. They effectively keep track of how many frames the writer /
@@ -50,7 +50,7 @@ namespace thrive {
  * working copy (which should be the oldest data buffer that's not locked by
  * the reading thread).
  *
- * Inside a SharedData object, each data buffer has a version. The version is 
+ * Inside a SharedData object, each data buffer has a version. The version is
  * incremented each time SharedData::touch() is called, which should be done
  * whenever the data changes.
  *
@@ -58,9 +58,9 @@ namespace thrive {
  *
  * If you need to share data across threads, you first have to identify which
  * thread is supposed to write the data and which one is supposed to read.
- * Triple-buffering only supports exactly one writer and one reader. If you 
+ * Triple-buffering only supports exactly one writer and one reader. If you
  * need to synchronize more threads than that, you will either have to use
- * several SharedData instances with one central thread to synchronize them 
+ * several SharedData instances with one central thread to synchronize them
  * all or you will have to share the data over a different mechanism.
  *
  * There are some predefined SharedState and SharedData aliases at the bottom
@@ -72,12 +72,12 @@ namespace thrive {
  * data you want to share. In the simplest case, it can be just an integer
  * or some other POD. You can also define your own data structure.
  *
- * After that, all you have to do is add a member of type SharedData to 
+ * After that, all you have to do is add a member of type SharedData to
  * your class:
  * \code
  * class MyClass {
  *  public:
- *  
+ *
  *      struct Properties {
  *          int number;
  *          std::string text;
@@ -88,7 +88,7 @@ namespace thrive {
  * };
  * \endcode
  *
- * To access the shared properties, the reader thread has to call 
+ * To access the shared properties, the reader thread has to call
  * SharedData::stable(), which returns a const reference to the data in the
  * stable buffer:
  * \code
@@ -97,7 +97,7 @@ namespace thrive {
  * \endcode
  *
  * The writer thread may access both the latest and the working copy buffer.
- * SharedData::workingCopy() returns a non-const reference so it can be 
+ * SharedData::workingCopy() returns a non-const reference so it can be
  * changed. <b>Don't forget to call SharedData::touch() to let the system know
  * that you changed something!</b>
  * \code
@@ -136,7 +136,7 @@ namespace thrive {
  * - \c workingCopy: A writable reference to the working copy
  * - \c latest: A read-only reference to the latest buffer
  * - \c touch(): A function that calls SharedData::touch()
- * 
+ *
  */
 
 using DataVersion = unsigned int;
@@ -161,11 +161,11 @@ namespace detail {
 /**
 * @brief Manages the state transitions
 *
-* SharedState works together with SharedData and keeps track of which data 
+* SharedState works together with SharedData and keeps track of which data
 * buffer is stable, latest or working copy.
 *
-* Each SharedState has exactly one writing thread and one reading thread. If 
-* you need more writers or readers, they will have to be synchronized by 
+* Each SharedState has exactly one writing thread and one reading thread. If
+* you need more writers or readers, they will have to be synchronized by
 * other means.
 *
 * @tparam Writer
@@ -193,7 +193,7 @@ public:
     * @param buffer
     *   The state buffer whose data buffer index you want to know
     *
-    * @return 
+    * @return
     *   The data buffer index
     */
     short
@@ -220,7 +220,7 @@ public:
     * @param buffer
     *   The state buffer whose frame you'd like to know
     *
-    * @return 
+    * @return
     *   The buffer frame
     */
     FrameIndex
@@ -237,7 +237,7 @@ public:
     *
     * The new stable buffer will be the last fully updated data buffer.
     *
-    * Calling this twice without a call to releaseStable() in between is an 
+    * Calling this twice without a call to releaseStable() in between is an
     * error.
     */
     void
@@ -342,7 +342,7 @@ public:
     *
     * The stable frame is incremented for each call to releaseStable().
     *
-    * @return 
+    * @return
     *   The current stable frame
     */
     FrameIndex
@@ -355,7 +355,7 @@ public:
     *
     * The frame is incremented for each call to releaseWorkingCopy().
     *
-    * @return 
+    * @return
     *   The working copy frame
     */
     FrameIndex
@@ -471,12 +471,12 @@ public:
 *
 * @tparam copyBuffers
 *   Whether to overwrite a new working copy with the last frame. If your
-*   writing thread only ever writes to the data structure and doesn't care 
+*   writing thread only ever writes to the data structure and doesn't care
 *   about previous values, set this to \c false for improved performance.
 */
 template<
-    typename Data_, 
-    ThreadId Writer, ThreadId Reader, 
+    typename Data_,
+    ThreadId Writer, ThreadId Reader,
     bool copyBuffers = true
 >
 class SharedData : public detail::SharedDataBase<Writer, Reader> {
@@ -504,7 +504,7 @@ public:
     *   Constructor signature of the data
     * @param args
     *   Constructor arguments for the buffered data
-    *   
+    *
     */
     template<typename... Args>
     SharedData(
@@ -625,7 +625,7 @@ private:
 *
 * With SharedQueue, you can safely share anything that SharedData is not
 * suited for, e.g. events. Both the reader and the writer have separate
-* queues. The writer thread appends to its own queue. Each time the 
+* queues. The writer thread appends to its own queue. Each time the
 * reader thread calls entries(), the reader-side queue flushes the
 * write-side entries to the reader side. Previous entries on the
 * reader side are discarded.
@@ -641,7 +641,7 @@ private:
 *   The reading thread
 */
 template<
-    typename Data, 
+    typename Data,
     ThreadId Writer, ThreadId Reader
 >
 class SharedQueue {
@@ -718,7 +718,7 @@ private:
         m_stableQueue.clear();
         boost::lock_guard<boost::mutex> lock(m_mutex);
         while (
-            not m_workingQueue.empty() 
+            not m_workingQueue.empty()
             and m_workingQueue.front().first <= stableBufferFrame
         ) {
             m_stableQueue.emplace_back(
@@ -762,5 +762,16 @@ using InputData = SharedData<Data, ThreadId::Render, ThreadId::Script, updateWor
 template<typename Data>
 using InputQueue = SharedQueue<Data, ThreadId::Render, ThreadId::Script>;
 
+////////////////////////////////////////////////////////////////////////////////
+// PhysicUpdate State (Physics => Script)
+////////////////////////////////////////////////////////////////////////////////
+extern template class SharedState<ThreadId::Physics, ThreadId::Script>;
+using PhysicUpdateState = SharedState<ThreadId::Physics, ThreadId::Script>;
+
+template<typename Data, bool updateWorkingCopy=true>
+using PhysicUpdateData = SharedData<Data, ThreadId::Physics, ThreadId::Script, updateWorkingCopy>;
+
+template<typename Data>
+using PhysicUpdateQueue = SharedQueue<Data, ThreadId::Physics, ThreadId::Script>;
 
 }
