@@ -38,7 +38,7 @@ struct OgreEngine::Implementation : public Ogre::WindowEventListener {
 
     ~Implementation() {
         Ogre::WindowEventUtilities::removeWindowEventListener(
-            m_window, 
+            m_window,
             this
         );
     }
@@ -80,7 +80,7 @@ struct OgreEngine::Implementation : public Ogre::WindowEventListener {
         m_camera->setAutoAspectRatio(true);
         // Create node
         m_cameraNode = m_sceneManager->getRootSceneNode()->createChildSceneNode(
-                "MainCameraNode", 
+                "MainCameraNode",
                 Ogre::Vector3(0,0,30),
                 Ogre::Quaternion::IDENTITY
         );
@@ -94,7 +94,7 @@ struct OgreEngine::Implementation : public Ogre::WindowEventListener {
         m_window->getCustomAttribute(HANDLE_NAME, &windowHandle);
         OIS::ParamList parameters;
         parameters.insert(std::make_pair(
-            HANDLE_NAME, 
+            HANDLE_NAME,
             boost::lexical_cast<std::string>(windowHandle)
         ));
         m_inputManager = OIS::InputManager::createInputSystem(parameters);
@@ -181,7 +181,7 @@ OgreEngine::init(
     m_impl->loadConfig();
     m_impl->m_window = m_impl->m_root->initialise(true, "Thrive");
     Ogre::WindowEventUtilities::addWindowEventListener(
-        m_impl->m_window, 
+        m_impl->m_window,
         m_impl.get()
     );
     // Set default mipmap level (NB some APIs ignore this)
