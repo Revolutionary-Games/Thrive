@@ -7,6 +7,7 @@
 #include "ogre/ogre_engine.h"
 #include "scripting/lua_state.h"
 #include "scripting/script_engine.h"
+#include "bullet/bullet_engine.h"
 #include "util/make_unique.h"
 
 #include <boost/thread.hpp>
@@ -32,6 +33,8 @@ struct Game::Implementation {
     OgreEngine m_ogreEngine;
 
     ScriptEngine m_scriptEngine;
+
+    BulletEngine m_bulletEngine;
 
     bool m_quit;
 
@@ -77,6 +80,12 @@ Game::ogreEngine() {
 }
 
 
+BulletEngine&
+Game::bulletEngine() {
+    return m_impl->m_bulletEngine;
+}
+
+
 void
 Game::quit() {
     boost::lock_guard<boost::mutex> lock(m_impl->m_quitMutex);
@@ -100,6 +109,9 @@ Game::run() {
     );
     m_impl->m_engineRunners.push_back(
         make_unique<EngineRunner>(m_impl->m_scriptEngine)
+    );
+    m_impl->m_engineRunners.push_back(
+        make_unique<EngineRunner>(m_impl->m_bulletEngine)
     );
     // Start runners
     boost::unique_lock<boost::mutex> lock(m_impl->m_quitMutex);
