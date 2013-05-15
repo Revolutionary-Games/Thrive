@@ -1,6 +1,6 @@
 #include "engine/entity.h"
 
-#include "engine/component_factory.h"
+#include "engine/component_registry.h"
 #include "engine/entity_manager.h"
 #include "game.h"
 #include "scripting/luabind.h"
@@ -165,7 +165,7 @@ Entity::getComponent(
     const std::string& typeName
 ) {
     return this->getComponent(
-        ComponentFactory::instance().typeNameToId(typeName)
+        ComponentRegistry::instance().typeNameToId(typeName)
     );
 }
 
@@ -187,7 +187,7 @@ Entity::hasComponent(
     const std::string& typeName
 ) {
     return this->hasComponent(
-        ComponentFactory::instance().typeNameToId(typeName)
+        ComponentRegistry::instance().typeNameToId(typeName)
     );
 }
 
@@ -208,6 +208,6 @@ Entity::removeComponent(
     const std::string& typeName
 ) {
     this->removeComponent(
-        ComponentFactory::instance().typeNameToId(typeName)
+        ComponentRegistry::instance().typeNameToId(typeName)
     );
 }

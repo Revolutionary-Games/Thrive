@@ -141,7 +141,7 @@ public:
     * it.
     *
     */
-    std::unordered_set<EntityId>&
+    EntityMap&
     addedEntities();
 
     /**
@@ -156,6 +156,12 @@ public:
     */
     typename EntityMap::const_iterator
     begin() const;
+
+    /**
+    * @brief Clears the lists for added and removed entities
+    */
+    void
+    clearChanges();
 
     /**
     * @brief Iterator

@@ -120,8 +120,9 @@ struct EntityFilter<ComponentTypes...>::Implementation {
         );
         if (isComplete) {
             m_entities[id] = group;
+            m_entities.insert(std::make_pair(id, group));
             if (m_recordChanges) {
-                m_addedEntities.insert(id);
+                m_addedEntities[id] = group;
             }
         }
     }
@@ -205,7 +206,7 @@ struct EntityFilter<ComponentTypes...>::Implementation {
         m_registeredCallbacks.clear();
     }
 
-    std::unordered_set<EntityId> m_addedEntities;
+    EntityMap m_addedEntities;
 
     Engine* m_engine = nullptr;
 
@@ -231,7 +232,7 @@ EntityFilter<ComponentTypes...>::EntityFilter(
 
 
 template<typename... ComponentTypes>
-std::unordered_set<EntityId>&
+typename EntityFilter<ComponentTypes...>::EntityMap&
 EntityFilter<ComponentTypes...>::addedEntities() {
     assert(m_impl->m_recordChanges && "Added entities are not recorded by this filter");
     return m_impl->m_addedEntities;
@@ -242,6 +243,14 @@ template<typename... ComponentTypes>
 typename EntityFilter<ComponentTypes...>::EntityMap::const_iterator
 EntityFilter<ComponentTypes...>::begin() const {
     return m_impl->m_entities.cbegin();
+}
+
+
+template<typename... ComponentTypes>
+void
+EntityFilter<ComponentTypes...>::clearChanges() {
+    m_impl->m_addedEntities.clear();
+    m_impl->m_removedEntities.clear();
 }
 
 
