@@ -39,6 +39,8 @@ class Game {
 
 public:
 
+
+    irrklang::ISoundEngine* irrengine;
     /**
     * @brief Singleton instance
     *
@@ -81,7 +83,6 @@ public:
     ScriptEngine&
     scriptEngine();
 
-    irrklang::ISoundEngine* irrengine;
 
 private:
 
