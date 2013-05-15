@@ -40,7 +40,7 @@ else
 fi
 
 # Unpack mingw
-tar --directory $WORKING_DIR -xf $WORKING_DIR/$ARCHIVE
+7za x -y  -o$WORKING_DIR $WORKING_DIR/$ARCHIVE
 if [ $? -ne 0 ]; then
     echo "Error unpacking archive. Try deleting $WORKING_DIR/$ARCHIVE and redownloading."
     exit 1
@@ -70,7 +70,7 @@ else
 fi
 
 # Unpack mingw
-tar --directory $WORKING_DIR -xf $WORKING_DIR/$ARCHIVE
+7za x -y  -o$WORKING_DIR $WORKING_DIR/$ARCHIVE
 if [ $? -ne 0 ]; then
     echo "Error unpacking archive. Try deleting $WORKING_DIR/$ARCHIVE and redownloading."
     exit 1
@@ -78,5 +78,5 @@ fi
 
 
 rsync -avh $WORKING_DIR/irrklang-1.4.0-gcc4.7/lib/Win32-gcc/* $MINGW_ENV/install/lib
-rsync -avh $WORKING_DIR/irrklang-1.4.0-gcc4.7/bin/Win32-gcc/*.dll $MINGW_ENV/install/lib
+rsync -avh $WORKING_DIR/irrklang-1.4.0-gcc4.7/bin/win32-gcc-4.7/*.dll $MINGW_ENV/install/lib
 
