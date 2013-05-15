@@ -47,7 +47,17 @@ Game::instance() {
     // Make sure that shared states are instantiated first
     // to avoid problems with static destruction order
     RenderState::instance();
-    InputState::instance();
+    InputState::instance();////////////////////////////////////////////////////////////////////////////////
+// PhysicUpdate State (Physics => Render)
+////////////////////////////////////////////////////////////////////////////////
+extern template class SharedState<ThreadId::Physics, ThreadId::Render>;
+using PhysicUpdateState = SharedState<ThreadId::Physics, ThreadId::Render>;
+
+template<typename Data, bool updateWorkingCopy=true>
+using PhysicUpdateData = SharedData<Data, ThreadId::Physics, ThreadId::Render, updateWorkingCopy>;
+
+template<typename Data>
+using PhysicUpdateQueue = SharedQueue<Data, ThreadId::Physics, ThreadId::Render>;
     static Game instance;
     return instance;
 }
@@ -89,7 +99,7 @@ Game::run() {
     irrengine = irrklang::createIrrKlangDevice();
     if (!irrengine)
         return;
-    irrengine->play2D("/../media/music/Thrive_Main.mp3",false,false,true);
+    irrengine->play2D("../media/music/Thrive_Main.mp3");
 
     // Make sure we're not running
     assert(m_impl->m_engineRunners.size() == 0 && "Can't start Game twice");
