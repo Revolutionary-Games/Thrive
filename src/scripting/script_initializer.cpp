@@ -5,7 +5,8 @@
 #include "engine/component.h"
 #include "engine/entity.h"
 #include "ogre/on_key.h"
-#include "ogre/mesh_system.h"
+#include "ogre/entity_system.h"
+#include "ogre/scene_node_system.h"
 #include "ogre/script_bindings.h"
 #include "ogre/sky_system.h"
 #include "scripting/luabind.h"
@@ -39,7 +40,8 @@ thrive::initializeLua(
         // Rendering Components
         OgreBindings::luaBindings(),
         OnKeyComponent::luaBindings(),
-        MeshComponent::luaBindings(),
+        OgreEntityComponent::luaBindings(),
+        OgreSceneNodeComponent::luaBindings(),
         SkyPlaneComponent::luaBindings()
     ];
 }

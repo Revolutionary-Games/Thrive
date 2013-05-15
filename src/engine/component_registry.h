@@ -3,61 +3,22 @@
 #include "engine/component.h"
 
 #include <memory>
+#include <stdexcept>
 
 namespace thrive {
 
 /**
-* @brief Produces components by name
+* @brief Central registry for component classes
 */
-class ComponentFactory {
+class ComponentRegistry {
 
 public:
 
     /**
-    * @brief Produces shared pointers of components
-    *
-    * shared_ptr was selected over unique_ptr here because the EntityManager
-    * and the ComponentCollection instances will need shared pointers. 
-    * Constructing a shared pointer from the start will allow us to use
-    * std::make_shared, improving cache coherency.
-    */
-    using ComponentConstructor = std::function<std::shared_ptr<Component>(void)>;
-
-    /**
     * @brief Returns the singleton instance
     */
-    static ComponentFactory&
+    static ComponentRegistry&
     instance();
-
-    /**
-    * @brief Creates a component by name
-    *
-    * @param name The component's type name
-    *
-    * @return A new component
-    *
-    * @throws std::invalid_argument if the name is unknown
-    *
-    * @note The type id overload should be preferred for performance reasons
-    */
-    std::shared_ptr<Component>
-    create(
-        const std::string& name
-    );
-
-    /**
-    * @brief Creates a component by type id
-    *
-    * @param typeId The component's type id
-    *
-    * @return A new component
-    *
-    * @throws std::invalid_argument if the id is unknown
-    */
-    std::shared_ptr<Component>
-    create(
-        Component::TypeId typeId
-    );
 
     /**
     * @brief Registers a component by class
@@ -73,10 +34,7 @@ public:
     registerClass() {
         return this->registerComponent(
             C::TYPE_ID(),
-            C::TYPE_NAME(),
-            []() -> std::shared_ptr<Component> {
-                return std::make_shared<C>();
-            }
+            C::TYPE_NAME()
         );
     }
 
@@ -87,9 +45,6 @@ public:
     *   The component's type id
     * @param name
     *   The component's name (e.g. for scripts)
-    * @param constructor
-    *   An \c std::function taking \c void and returning a shared
-    *   pointer to a new component.
     *
     * @return \c true if the registration was successful, false otherwise
     *
@@ -99,8 +54,7 @@ public:
     bool
     registerComponent(
         Component::TypeId typeId,
-        const std::string& name,
-        ComponentConstructor constructor
+        const std::string& name
     );
 
     /**
@@ -139,20 +93,20 @@ public:
 
 private:
 
-    ComponentFactory();
+    ComponentRegistry();
 
-    ~ComponentFactory();
+    ~ComponentRegistry();
 
     struct Implementation;
     std::unique_ptr<Implementation> m_impl;
 };
 
 /**
- * @brief Registers a component class with the ComponentFactory
+ * @brief Registers a component class with the ComponentRegistry
  *
  * Use this in the component's source file.
  */
 #define REGISTER_COMPONENT(cls) \
-    static const bool cls ## _REGISTERED = thrive::ComponentFactory::instance().registerClass<cls>();
+    static const bool cls ## _REGISTERED = thrive::ComponentRegistry::instance().registerClass<cls>();
 
 }
