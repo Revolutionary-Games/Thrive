@@ -766,12 +766,12 @@ using InputQueue = SharedQueue<Data, ThreadId::Render, ThreadId::Script>;
 // PhysicUpdate State (Physics => Script)
 ////////////////////////////////////////////////////////////////////////////////
 extern template class SharedState<ThreadId::Physics, ThreadId::Script>;
-using PhysicUpdateState = SharedState<ThreadId::Physics, ThreadId::Script>;
+using PhysicsUpdateState = SharedState<ThreadId::Physics, ThreadId::Script>;
 
 template<typename Data, bool updateWorkingCopy=true>
-using PhysicUpdateData = SharedData<Data, ThreadId::Physics, ThreadId::Script, updateWorkingCopy>;
+using PhysicsUpdateData = SharedData<Data, ThreadId::Physics, ThreadId::Script, updateWorkingCopy>;
 
 template<typename Data>
-using PhysicUpdateQueue = SharedQueue<Data, ThreadId::Physics, ThreadId::Script>;
+using PhysicsUpdateQueue = SharedQueue<Data, ThreadId::Physics, ThreadId::Script>;
 
 }
