@@ -3,6 +3,7 @@
 #include "game.h"
 #include "ogre/keyboard_system.h"
 #include "ogre/entity_system.h"
+#include "ogre/light_system.h"
 #include "ogre/render_system.h"
 #include "ogre/scene_node_system.h"
 #include "ogre/sky_system.h"
@@ -209,6 +210,11 @@ OgreEngine::init(
         "updateSceneNodes",
         0,
         std::make_shared<OgreUpdateSceneNodeSystem>()
+    );
+    this->addSystem(
+        "lights",
+        0,
+        std::make_shared<OgreLightSystem>()
     );
     this->addSystem(
         "sky",
