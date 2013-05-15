@@ -104,8 +104,6 @@ struct OgreEngine::Implementation : public Ogre::WindowEventListener {
     void
     setupLighting() {
         m_sceneManager->setAmbientLight(Ogre::ColourValue(0.5, 0.5, 0.5));
-        Ogre::Light* light = m_sceneManager->createLight("MainLight");
-        light->setPosition(0,0,10);
     }
 
     void
