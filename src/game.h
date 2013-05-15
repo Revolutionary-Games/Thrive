@@ -29,6 +29,7 @@ namespace thrive {
 class EntityManager;
 class OgreEngine;
 class ScriptEngine;
+class BulletEngine;
 
 /**
 * @brief The main entry point for the game
@@ -82,6 +83,13 @@ public:
     */
     ScriptEngine&
     scriptEngine();
+
+    /**
+    * @brief Returns the game's physics engine
+    */
+    BulletEngine&
+    bulletEngine();
+
 
 
 private:
