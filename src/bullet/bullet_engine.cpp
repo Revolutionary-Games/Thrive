@@ -1,7 +1,8 @@
 #include "bullet/bullet_engine.h"
 
 #include "game.h"
-#include "engine/shared_data.cpp"
+#include "engine/shared_data.h"
+#include "bullet/updatePhysics_system.h"
 
 #include <iostream>
 
@@ -57,13 +58,16 @@ BulletEngine::init(
     EntityManager* entityManager
 ) {
     Engine::init(entityManager);
-
+    m_impl->setupBroadphase();
+    m_impl->setupColisions();
+    m_impl->setupSolver();
+    m_impl->setupWorld();
     // Create essential systems
-    /*this->addSystem(
-        "keyboard",
-        -100,
-        m_impl->m_keyboardSystem
-    );*/
+    this->addSystem(
+        "updatePhysics",
+        -1000,
+        std::make_shared<UpdatePhysicsSystem>()
+    );
 }
 
 
@@ -76,7 +80,7 @@ BulletEngine::shutdown() {
 void
 BulletEngine::update() {
     // Lock shared state
-    StateLock<PhysicUpdateState, StateBuffer::WorkingCopy> physicsUpdateLock;
+    StateLock<PhysicsUpdateState, StateBuffer::WorkingCopy> physicsUpdateLock;
     // Handle events
 
     // Update systems
