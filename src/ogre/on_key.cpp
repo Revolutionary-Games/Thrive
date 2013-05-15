@@ -1,6 +1,6 @@
 #include "ogre/on_key.h"
 
-#include "engine/component_factory.h"
+#include "engine/component_registry.h"
 #include "engine/entity_filter.h"
 #include "game.h"
 #include "ogre/keyboard_system.h"

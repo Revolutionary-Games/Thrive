@@ -1,6 +1,6 @@
 #include "scripting/on_update.h"
 
-#include "engine/component_factory.h"
+#include "engine/component_registry.h"
 #include "engine/entity_filter.h"
 #include "game.h"
 #include "scripting/script_engine.h"
