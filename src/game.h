@@ -2,8 +2,6 @@
 
 #include <memory>
 
-#include <irrKlang.h>
-
 /**
  * @mainpage Thrive API documentation
  *
@@ -41,7 +39,6 @@ class Game {
 public:
 
 
-    irrklang::ISoundEngine* irrengine;
     /**
     * @brief Singleton instance
     *
