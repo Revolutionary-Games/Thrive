@@ -155,7 +155,6 @@ OnKeySystem::update(
         luabind::object& onReleased = component->m_onReleasedCallback;
         EntityId entityId = value.first;
         for (const KeyboardSystem::KeyEvent& keyEvent : m_impl->m_keyboardSystem->eventQueue()) {
-            std::cout << "Processing event" << std::endl;
             try {
                 if (keyEvent.pressed) {
                     onPressed(entityId, keyEvent);
