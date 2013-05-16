@@ -39,6 +39,11 @@ public:
     static luabind::scope
     luaBindings();
 
+    /**
+    * @brief Pointer to the underlying Ogre::SceneNode
+    *
+    * Be careful to only use this in the graphics thread
+    */
     Ogre::SceneNode* m_sceneNode = nullptr;
 
 
