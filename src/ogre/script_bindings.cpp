@@ -6,6 +6,7 @@
 #include <luabind/out_value_policy.hpp>
 
 #include <OgreAxisAlignedBox.h>
+#include <OgreColourValue.h>
 #include <OgreMath.h>
 #include <OgreMatrix3.h>
 #include <OgreSphere.h>
@@ -108,6 +109,29 @@ axisAlignedBoxBindings() {
         .def("contains", 
             static_cast<bool (AxisAlignedBox::*) (const AxisAlignedBox&) const>(&AxisAlignedBox::contains)
         )
+    ;
+}
+
+
+static luabind::scope
+colourValueBindings() {
+    return class_<ColourValue>("ColourValue")
+        .def(constructor<float, float, float, float>())
+        .def(const_self == other<ColourValue>())
+        .def(const_self + other<ColourValue>())
+        .def(const_self - other<ColourValue>())
+        .def(const_self * other<ColourValue>())
+        .def(const_self * other<ColourValue>())
+        .def(const_self * float())
+        .def("saturate", &ColourValue::saturate)
+        .def("setHSB", &ColourValue::setHSB)
+        .def("getHSB", &ColourValue::getHSB,
+            (pure_out_value(_2), pure_out_value(_3), pure_out_value(_4))
+        )
+        .def_readwrite("r", &ColourValue::r)
+        .def_readwrite("g", &ColourValue::g)
+        .def_readwrite("b", &ColourValue::b)
+        .def_readwrite("a", &ColourValue::a)
     ;
 }
 
@@ -362,6 +386,7 @@ luabind::scope
 thrive::OgreBindings::luaBindings() {
     return (
         axisAlignedBoxBindings(),
+        colourValueBindings(),
         matrix3Bindings(),
         planeBindings(),
         quaternionBindings(),
