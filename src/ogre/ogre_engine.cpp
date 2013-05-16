@@ -3,6 +3,7 @@
 #include "game.h"
 #include "ogre/keyboard_system.h"
 #include "ogre/entity_system.h"
+#include "ogre/light_system.h"
 #include "ogre/render_system.h"
 #include "ogre/scene_node_system.h"
 #include "ogre/sky_system.h"
@@ -103,8 +104,6 @@ struct OgreEngine::Implementation : public Ogre::WindowEventListener {
     void
     setupLighting() {
         m_sceneManager->setAmbientLight(Ogre::ColourValue(0.5, 0.5, 0.5));
-        Ogre::Light* light = m_sceneManager->createLight("MainLight");
-        light->setPosition(0,0,10);
     }
 
     void
@@ -209,6 +208,11 @@ OgreEngine::init(
         "updateSceneNodes",
         0,
         std::make_shared<OgreUpdateSceneNodeSystem>()
+    );
+    this->addSystem(
+        "lights",
+        0,
+        std::make_shared<OgreLightSystem>()
     );
     this->addSystem(
         "sky",
