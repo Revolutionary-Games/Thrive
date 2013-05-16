@@ -15,7 +15,16 @@ using namespace thrive;
 
 OgreEntityComponent::OgreEntityComponent(
     std::string meshName
-) : m_meshName(meshName)
+) : m_meshName(meshName),
+    m_prefabType(Ogre::SceneManager::PT_SPHERE)
+{
+}
+
+
+OgreEntityComponent::OgreEntityComponent(
+    Ogre::SceneManager::PrefabType prefabType
+) : m_meshName(""),
+    m_prefabType(prefabType)
 {
 }
 
@@ -28,8 +37,15 @@ OgreEntityComponent::luaBindings() {
             def("TYPE_NAME", &OgreEntityComponent::TYPE_NAME),
             def("TYPE_ID", &OgreEntityComponent::TYPE_ID)
         ]
+        .enum_("PrefabType") [
+            value("PT_PLANE", Ogre::SceneManager::PT_PLANE),
+            value("PT_CUBE", Ogre::SceneManager::PT_CUBE),
+            value("PT_SPHERE", Ogre::SceneManager::PT_SPHERE)
+        ]
         .def(constructor<std::string>())
+        .def(constructor<Ogre::SceneManager::PrefabType>())
         .def_readonly("meshName", &OgreEntityComponent::m_meshName)
+        .def_readonly("prefabType", &OgreEntityComponent::m_prefabType)
     ;
 }
 
@@ -93,19 +109,27 @@ OgreEntitySystem::update(int) {
         EntityId entityId = entry.first;
         OgreSceneNodeComponent* sceneNodeComponent = std::get<0>(entry.second);
         OgreEntityComponent* ogreEntityComponent = std::get<1>(entry.second);
-        Ogre::Entity* ogreEntity = m_impl->m_sceneManager->createEntity(
-            ogreEntityComponent->m_meshName
-        );
+        Ogre::Entity* ogreEntity = nullptr;
+        if (not ogreEntityComponent->m_meshName.empty()) {
+            ogreEntity = m_impl->m_sceneManager->createEntity(
+                ogreEntityComponent->m_meshName
+            );
+        }
+        else {
+            ogreEntity = m_impl->m_sceneManager->createEntity(
+                ogreEntityComponent->m_prefabType
+            );
+        }
         sceneNodeComponent->m_sceneNode->attachObject(ogreEntity);
         m_impl->m_ogreEntities.emplace(entityId, ogreEntity);
     }
-    m_impl->m_entities.clearChanges();
     for (EntityId entityId : m_impl->m_entities.removedEntities()) {
         Ogre::Entity* ogreEntity = m_impl->m_ogreEntities.at(entityId);
         ogreEntity->detachFromParent();
         m_impl->m_sceneManager->destroyEntity(ogreEntity);
         m_impl->m_ogreEntities.erase(entityId);
     }
+    m_impl->m_entities.clearChanges();
 }
 
 
