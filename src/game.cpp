@@ -14,6 +14,11 @@
 #include <type_traits>
 #include <unordered_map>
 
+#include <AL/al.h>
+#include <AL/alc.h>
+#include <AL/alext.h>
+
+
 using namespace thrive;
 
 struct Game::Implementation {
@@ -96,11 +101,6 @@ Game::quit() {
 
 void
 Game::run() {
-    irrengine = irrklang::createIrrKlangDevice();
-    if (!irrengine)
-        return;
-    irrengine->play2D("../media/music/Thrive_Main.mp3");
-
     // Make sure we're not running
     assert(m_impl->m_engineRunners.size() == 0 && "Can't start Game twice");
     // Initialize engine runners

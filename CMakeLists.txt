@@ -112,9 +112,20 @@ include_directories(SYSTEM ${BULLET_INCLUDE_DIRS})
 # irrKlang #
 ############
 
-find_package(irrKlang REQUIRED QUIET)
+#No longer used
 
-include_directories(SYSTEM ${IRRKLANG_INCLUDE_DIRS})
+#find_package(irrKlang REQUIRED QUIET)
+
+#include_directories(SYSTEM ${IRRKLANG_INCLUDE_DIRS})
+
+##########
+# OpenAL #
+##########
+
+find_package(OpenAL REQUIRED QUIET)
+
+include_directories(SYSTEM ${IRRKLANG_INCLUDE_DIR})
+
 
 #######
 # Lua #
@@ -306,10 +317,10 @@ if(WIN32)
         DESTINATION bin
     )
 
-    INSTALL(FILES
-        ${IRRKLANG_LIBRARIES_DLL}
-        DESTINATION bin
-    )
+#    INSTALL(FILES
+#        ${IRRKLANG_LIBRARIES_DLL}
+#        DESTINATION bin
+#    )
 
     foreach(OGRE_PLUGIN ${OGRE_PLUGINS})
         # Release
