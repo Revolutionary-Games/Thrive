@@ -5,7 +5,9 @@
 #include "engine/system.h"
 
 #include <memory>
-#include <btRigidBody.h>
+#include <btBulletCollisionCommon.h>
+#include <btBulletDynamicsCommon.h>
+#include <BulletDynamics/Dynamics/btRigidBody.h>
 
 #include <iostream>
 
@@ -31,21 +33,21 @@ public:
         /**
         * @brief The body's shape .
         */
-        btColisionShape shape = nullptr;
+        std::shared_ptr<btCollisionShape> shape = nullptr;
 
         /**
         * @brief The linear velocity
         *
         * Makes the rigid body move .
         */
-        btVector3 linearVelocity = (0,0,0);
+        btVector3 linearVelocity {0,0,0};
 
         /**
         * @brief The angular velocity
         *
         * Makes the rigid body spin .
         */
-        btVector3 angularVelocity = (0,0,0);
+        btVector3 angularVelocity {0,0,0};
 
         /**
         * @brief The restitution factor
@@ -57,12 +59,12 @@ public:
         /**
         * @brief Locks linear movement to specific axis
         */
-        btVector3 linearFactor = (0,0,0);
+        btVector3 linearFactor {0,0,0};
 
         /**
         * @brief Locks angular movement to specific axis
         */
-        btVector3 angularFactor = (0,0,0);
+        btVector3 angularFactor {0,0,0};
 
         /**
         * @brief The mass of the rigid body
@@ -72,7 +74,7 @@ public:
         /**
         * @brief The inertia of the rigid body
         */
-        btVector3 inertia = (0,0,0);
+        btVector3 inertia {0,0,0};
 
         /**
         * @brief The friction of the object

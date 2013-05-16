@@ -72,7 +72,7 @@ BulletEngine::init(
     this->addSystem(
         "rigidBodyBindings",
         1,
-        std::make_shared<RigidBodyComponent>()
+        std::make_shared<RigidBodySystem>()
     );
 }
 
