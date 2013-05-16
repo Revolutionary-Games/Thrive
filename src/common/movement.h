@@ -30,7 +30,7 @@ public:
     /**
     * @brief The entity's velocity in units per second
     */
-    Ogre::Vector3 m_velocity;
+    Ogre::Vector3 m_velocity = Ogre::Vector3::ZERO;
 
 };
 
