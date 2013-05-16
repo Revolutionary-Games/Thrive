@@ -36,6 +36,16 @@ public:
         std::shared_ptr<btCollisionShape> shape = nullptr;
 
         /**
+        * @brief The position
+        */
+        btVector3 position {0,0,0};
+
+        /**
+        * @brief The rotation.
+        */
+        btQuaternion rotation {0,0,0,1};
+
+        /**
         * @brief The linear velocity
         *
         * Makes the rigid body move .
@@ -70,6 +80,11 @@ public:
         * @brief The mass of the rigid body
         */
         btScalar mass = 1.f;
+
+        /**
+        * @brief The offset of the mass
+        */
+        btTransform comOffset =btTransform::getIdentity();
 
         /**
         * @brief The inertia of the rigid body
