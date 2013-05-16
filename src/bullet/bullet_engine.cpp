@@ -3,6 +3,7 @@
 #include "game.h"
 #include "engine/shared_data.h"
 #include "bullet/updatePhysics_system.h"
+#include "bullet/rigidBody_bindings.h"
 
 #include <iostream>
 
@@ -67,6 +68,11 @@ BulletEngine::init(
         "updatePhysics",
         -1000,
         std::make_shared<UpdatePhysicsSystem>()
+    );
+    this->addSystem(
+        "rigidBodyBindings",
+        1,
+        std::make_shared<RigidBodyComponent>()
     );
 }
 
