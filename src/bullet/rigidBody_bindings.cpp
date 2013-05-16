@@ -117,15 +117,17 @@ RigidBodySystem::update(int) {
     for (const auto& added : m_impl->m_entities.addedEntities()) {
         EntityId entityId = added.first;
         RigidBodyComponent* rigidBodyComponent = std::get<0>(added.second);
-        btRigidBody::btRigidBodyConstructionInfo* rigidBodyCI = btRigidBody::btRigidBodyConstructionInfo::btRigidBodyConstructionInfo(
-            rigidBodyComponent->m_properties.mass, btMotionState, rigidBodyComponent->m_properties.shape);
-        btRigidBody* rigidBody = btRigidBody(rigidBodyCI);
-        lightComponent->m_body = rigidBody;
-        m_impl->m_bodies[entityId] = body;
-        m_impl->m_world->addRigidBody(body);
+        btDefaultMotionState* motionState =
+                new btDefaultMotionState(btTransform(rigidBodyComponent->m_properties.stable().rotation,rigidBodyComponent->m_properties.stable().position),rigidBodyComponent->m_properties.stable().comOffset);
+        btRigidBody::btRigidBodyConstructionInfo rigidBodyCI = btRigidBody::btRigidBodyConstructionInfo(
+            rigidBodyComponent->m_properties.stable().mass, motionState, rigidBodyComponent->m_properties.stable().shape.get(),rigidBodyComponent->m_properties.stable().inertia);
+        btRigidBody* rigidBody = new btRigidBody(rigidBodyCI);
+        rigidBodyComponent->m_body = rigidBody;
+        m_impl->m_bodies[entityId] = rigidBody;
+        m_impl->m_world->addRigidBody(rigidBody);
     }
     for (const auto& value : m_impl->m_entities) {
-        RigidBodyComponent* rigidBody = std::get<0>(value.second);
+        RigidBodyComponent* rigidBodyComponent = std::get<0>(value.second);
         btRigidBody* body = rigidBodyComponent->m_body;
         const auto& properties = rigidBodyComponent->m_properties.stable();
         body->setMassProps(properties.mass, properties.inertia);
@@ -134,12 +136,12 @@ RigidBodySystem::update(int) {
         body->setLinearFactor(properties.linearFactor);
         body->setAngularFactor(properties.angularFactor);
         body->setRestitution(properties.restitution);
-        body->setColisionShape(properties.shape);
+        body->setCollisionShape(properties.shape.get());
         body->setFriction(properties.friction);
         body->setRollingFriction(properties.friction);
     }
     for (EntityId entityId : m_impl->m_entities.removedEntities()) {
-        Ogre::Light* light = m_impl->m_lights[entityId];
+        btRigidBody* body = m_impl->m_bodies[entityId];
         m_impl->m_world->removeRigidBody(body);
         m_impl->m_bodies.erase(entityId);
     }
