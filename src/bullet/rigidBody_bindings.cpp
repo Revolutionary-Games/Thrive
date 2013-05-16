@@ -2,8 +2,7 @@
 
 #include "engine/component_registry.h"
 #include "engine/entity_filter.h"
-#include "ogre/ogre_engine.h"
-#include "ogre/scene_node_system.h"
+#include "bullet/bullet_engine.h"
 #include "scripting/luabind.h"
 
 #include <iostream>
@@ -108,7 +107,7 @@ RigidBodySystem::init(
 void
 RigidBodySystem::shutdown() {
     m_impl->m_entities.setEngine(nullptr);
-    m_impl->m_sceneManager = nullptr;
+    m_impl->m_world = nullptr;
     System::shutdown();
 }
 
@@ -118,7 +117,7 @@ RigidBodySystem::update(int) {
     for (const auto& added : m_impl->m_entities.addedEntities()) {
         EntityId entityId = added.first;
         RigidBodyComponent* rigidBodyComponent = std::get<0>(added.second);
-        btRigidBodyConstructionInfo* rigidBodyCI = btRigidBody::btRigidBodyConstructionInfo::btRigidBodyConstructionInfo(
+        btRigidBody::btRigidBodyConstructionInfo* rigidBodyCI = btRigidBody::btRigidBodyConstructionInfo::btRigidBodyConstructionInfo(
             rigidBodyComponent->m_properties.mass, btMotionState, rigidBodyComponent->m_properties.shape);
         btRigidBody* rigidBody = btRigidBody(rigidBodyCI);
         lightComponent->m_body = rigidBody;
