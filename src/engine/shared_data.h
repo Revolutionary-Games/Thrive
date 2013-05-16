@@ -774,4 +774,16 @@ using PhysicsUpdateData = SharedData<Data, ThreadId::Physics, ThreadId::Script, 
 template<typename Data>
 using PhysicsUpdateQueue = SharedQueue<Data, ThreadId::Physics, ThreadId::Script>;
 
+////////////////////////////////////////////////////////////////////////////////
+// RigidBody State (Script => Physics)
+////////////////////////////////////////////////////////////////////////////////
+extern template class SharedState<ThreadId::Script, ThreadId::Physics>;
+using RigidBodyState = SharedState<ThreadId::Script, ThreadId::Physics>;
+
+template<typename Data, bool updateWorkingCopy=true>
+using RigidBodyData = SharedData<Data, ThreadId::Script, ThreadId::Physics, updateWorkingCopy>;
+
+template<typename Data>
+using RigidBodyQueue = SharedQueue<Data, ThreadId::Script, ThreadId::Physics>;
+
 }
