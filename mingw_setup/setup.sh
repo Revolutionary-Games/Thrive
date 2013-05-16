@@ -58,7 +58,9 @@ cmake -DTOOLCHAIN_TEMPLATE=$TOOLCHAIN_TEMPLATE -DMINGW_ENV=$MINGW_ENV -P $DIR/co
 ################################################################################
 # Install libraries
 ################################################################################
-LIBRARIES=('mingw' 'boost' 'ogre_dependencies' 'ogre' 'bullet' 'irrKlang')
+LIBRARIES=('mingw' 'boost' 'ogre_dependencies' 'ogre' 'bullet' 'OpenAL')
+# Not used anymore
+#'irrKlang')
 
 for LIBRARY in ${LIBRARIES[@]}
 do
