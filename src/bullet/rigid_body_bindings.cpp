@@ -7,6 +7,9 @@
 
 #include <iostream>
 
+#include <OgreVector3.h>
+#include <OgreQuaternion.h>
+
 using namespace thrive;
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -18,7 +21,22 @@ static void
 RigidBodyComponent_touch(
     RigidBodyComponent* self
 ) {
-    return self->m_properties.touch();
+    return self->m_staticProperties.touch();
+}
+
+static void
+RigidBodyComponent_setDinamicProperties(
+    RigidBodyComponent* self,
+    Ogre::Vector3 position,
+    Ogre::Quaternion rotation,
+    Ogre::Vector3 linearVelocity,
+    Ogre::Vector3 angularVelocity
+) {
+    self->m_dinamicProperties.position = position;
+    self->m_dinamicProperties.rotation = rotation;
+    self->m_dinamicProperties.linearVelocity = linearVelocity;
+    self->m_dinamicProperties.angularVelocity = angularVelocity;
+    return self->m_dinamicProperties.touch();
 }
 
 
@@ -45,23 +63,25 @@ RigidBodyComponent::luaBindings() {
         .scope [
             def("TYPE_NAME", &RigidBodyComponent::TYPE_NAME),
             def("TYPE_ID", &RigidBodyComponent::TYPE_ID),
-            class_<Properties>("Properties")
-                .def_readwrite("linearVelocity", &Properties::linearVelocity)
+            class_<StaticProperties>("StaticProperties")
+                .def_readwrite("shape", &StaticProperties::shape)
+                /*.def_readwrite("linearVelocity", &Properties::linearVelocity)
                 .def_readwrite("position", &Properties::position)
                 .def_readwrite("rotation", &Properties::rotation)
-                .def_readwrite("angularVelocity", &Properties::angularVelocity)
-                .def_readwrite("restitution", &Properties::restitution)
-                .def_readwrite("linearFactor", &Properties::linearFactor)
-                .def_readwrite("angularFactor", &Properties::angularFactor)
-                .def_readwrite("mass", &Properties::mass)
-                .def_readwrite("comOffset", &Properties::comOffset)
-                .def_readwrite("friction", &Properties::friction)
-                .def_readwrite("rollingFriction", &Properties::rollingFriction)
+                .def_readwrite("angularVelocity", &Properties::angularVelocity)*/
+                .def_readwrite("restitution", &StaticProperties::restitution)
+                .def_readwrite("linearFactor", &StaticProperties::linearFactor)
+                .def_readwrite("angularFactor", &StaticProperties::angularFactor)
+                .def_readwrite("mass", &StaticProperties::mass)
+                .def_readwrite("comOffset", &StaticProperties::comOffset)
+                .def_readwrite("friction", &StaticProperties::friction)
+                .def_readwrite("rollingFriction", &StaticProperties::rollingFriction)
         ]
         .def(constructor<>())
         .property("latest", RigidBodyComponent_getLatest)
         .property("workingCopy", RigidBodyComponent_getWorkingCopy)
         .def("touch", RigidBodyComponent_touch)
+        .def("setDinamicProperties", RigidBodyComponent_setDinamicProperties)
     ;
 }
 
@@ -69,10 +89,10 @@ REGISTER_COMPONENT(RigidBodyComponent)
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// RigidBodySystem
+// RigidBodyInputSystem
 ////////////////////////////////////////////////////////////////////////////////
 
-struct RigidBodySystem::Implementation {
+struct RigidBodyInputSystem::Implementation {
 
     EntityFilter<
         RigidBodyComponent
@@ -85,17 +105,17 @@ struct RigidBodySystem::Implementation {
 };
 
 
-RigidBodySystem::RigidBodySystem()
+RigidBodyInputSystem::RigidBodyInputSystem()
   : m_impl(new Implementation())
 {
 }
 
 
-RigidBodySystem::~RigidBodySystem() {}
+RigidBodyInputSystem::~RigidBodyInputSystem() {}
 
 
 void
-RigidBodySystem::init(
+RigidBodyInputSystem::init(
     Engine* engine
 ) {
     System::init(engine);
@@ -108,7 +128,7 @@ RigidBodySystem::init(
 
 
 void
-RigidBodySystem::shutdown() {
+RigidBodyInputSystem::shutdown() {
     m_impl->m_entities.setEngine(nullptr);
     m_impl->m_world = nullptr;
     System::shutdown();
@@ -116,7 +136,7 @@ RigidBodySystem::shutdown() {
 
 
 void
-RigidBodySystem::update(int) {
+RigidBodyInputSystem::update(int) {
     for (const auto& added : m_impl->m_entities.addedEntities()) {
         EntityId entityId = added.first;
         RigidBodyComponent* rigidBodyComponent = std::get<0>(added.second);
@@ -131,17 +151,20 @@ RigidBodySystem::update(int) {
     }
     for (const auto& value : m_impl->m_entities) {
         RigidBodyComponent* rigidBodyComponent = std::get<0>(value.second);
-        btRigidBody* body = rigidBodyComponent->m_body;
-        const auto& properties = rigidBodyComponent->m_properties.stable();
-        body->setMassProps(properties.mass, properties.inertia);
-        body->setLinearVelocity(properties.linearVelocity);
-        body->setAngularVelocity(properties.angularVelocity);
-        body->setLinearFactor(properties.linearFactor);
-        body->setAngularFactor(properties.angularFactor);
-        body->setRestitution(properties.restitution);
-        body->setCollisionShape(properties.shape.get());
-        body->setFriction(properties.friction);
-        body->setRollingFriction(properties.friction);
+        if (rigidBodyComponent->m_properties.hasChanges()) {
+            btRigidBody* body = rigidBodyComponent->m_body;
+            const auto& properties = rigidBodyComponent->m_properties.stable();
+            body->setMassProps(properties.mass, properties.inertia);
+            body->setLinearVelocity(properties.linearVelocity);
+            body->setAngularVelocity(properties.angularVelocity);
+            body->setLinearFactor(properties.linearFactor);
+            body->setAngularFactor(properties.angularFactor);
+            body->setRestitution(properties.restitution);
+            body->setCollisionShape(properties.shape.get());
+            body->setFriction(properties.friction);
+            body->setRollingFriction(properties.friction);
+        }
+        rigidBodyComponent->m_properties.untouch();
     }
     for (EntityId entityId : m_impl->m_entities.removedEntities()) {
         btRigidBody* body = m_impl->m_bodies[entityId];

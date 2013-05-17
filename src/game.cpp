@@ -56,7 +56,8 @@ Game::instance() {
     // to avoid problems with static destruction order
     RenderState::instance();
     InputState::instance();
-    PhysicsUpdateState::instance();
+    PhysicsOutputState::instance();
+    PhysicsInputState::instance();
     static Game instance;
     return instance;
 }
