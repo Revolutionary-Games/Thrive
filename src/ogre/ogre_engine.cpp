@@ -75,21 +75,6 @@ struct OgreEngine::Implementation : public Ogre::WindowEventListener {
     }
 
     void
-    setupCamera() {
-        m_camera = m_sceneManager->createCamera("PlayerCam");
-        m_camera->setNearClipDistance(5);
-        m_camera->setFarClipDistance(10000);
-        m_camera->setAutoAspectRatio(true);
-        // Create node
-        m_cameraNode = m_sceneManager->getRootSceneNode()->createChildSceneNode(
-                "MainCameraNode", 
-                Ogre::Vector3(0,0,30),
-                Ogre::Quaternion::IDENTITY
-        );
-        m_cameraNode->attachObject(m_camera);
-    }
-
-    void
     setupInputManager() {
         const std::string HANDLE_NAME = "WINDOW";
         size_t windowHandle = 0;
@@ -145,10 +130,6 @@ struct OgreEngine::Implementation : public Ogre::WindowEventListener {
 
     std::unique_ptr<Ogre::Root> m_root;
 
-    Ogre::Camera* m_camera = nullptr;
-
-    Ogre::SceneNode* m_cameraNode = nullptr;
-
     OIS::InputManager* m_inputManager = nullptr;
 
     std::shared_ptr<KeyboardSystem> m_keyboardSystem = nullptr;
@@ -192,7 +173,6 @@ OgreEngine::init(
     Ogre::ResourceGroupManager::getSingleton().initialiseAllResourceGroups();
     // Setup
     m_impl->setupSceneManager();
-    m_impl->setupCamera();
     m_impl->setupViewport();
     m_impl->setupLighting();
     m_impl->setupInputManager();
