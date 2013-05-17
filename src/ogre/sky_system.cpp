@@ -118,7 +118,7 @@ void
 SkySystem::update(int) {
     for (auto& value : m_impl->m_skyEntities) {
         SkyPlaneComponent* plane = std::get<0>(value.second);
-        if (plane) {
+        if (plane and plane->m_properties.hasChanges()) {
             const SkyPlaneComponent::Properties& properties = plane->m_properties.stable();
             m_impl->m_sceneManager->setSkyPlane(
                 properties.enabled,
@@ -132,6 +132,7 @@ SkySystem::update(int) {
                 properties.ysegments,
                 properties.groupName
             );
+            plane->m_properties.untouch();
         }
     }
 }

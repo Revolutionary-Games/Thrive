@@ -123,6 +123,78 @@ TEST(SharedData, UpdateWorkingCopy) {
 }
 
 
+TEST(SharedData, Untouch) {
+    State& state = State::instance();
+    state.reset();
+    RenderData<int> data(1);
+    // Touch
+    state.lockWorkingCopy();
+    data.touch();
+    state.releaseWorkingCopy();
+    // Lock stable, should have changes
+    state.lockStable();
+    EXPECT_TRUE(data.hasChanges());
+    state.releaseStable();
+    // Relock stable, should still have changes
+    state.lockStable();
+    EXPECT_TRUE(data.hasChanges());
+    // Untouch, no changes anymore
+    data.untouch();
+    EXPECT_FALSE(data.hasChanges());
+    state.releaseStable();
+    // Relocking, still no changes
+    state.lockStable();
+    EXPECT_FALSE(data.hasChanges());
+    state.releaseStable();
+    state.reset();
+}
+
+
+TEST(SharedData, TouchDuringUntouch) {
+    State& state = State::instance();
+    state.reset();
+    RenderData<int> data(1);
+    // Touch
+    state.lockWorkingCopy();
+    data.touch();
+    state.releaseWorkingCopy();
+    // Untouch (no release)
+    state.lockStable();
+    data.untouch();
+    EXPECT_FALSE(data.hasChanges());
+    // Touch again
+    state.lockWorkingCopy();
+    data.touch();
+    state.releaseWorkingCopy();
+    // Should still have no changes
+    EXPECT_FALSE(data.hasChanges());
+    state.releaseStable();
+    state.reset();
+}
+
+
+TEST(SharedData, UntouchDuringTouch) {
+    State& state = State::instance();
+    state.reset();
+    RenderData<int> data(1);
+    // Touch (no release)
+    state.lockWorkingCopy();
+    data.touch();
+    // Untouch
+    state.lockStable();
+    EXPECT_FALSE(data.hasChanges());
+    data.untouch();
+    state.releaseStable();
+    // Release working copy
+    state.releaseWorkingCopy();
+    // Now it should have changes
+    state.lockStable();
+    EXPECT_TRUE(data.hasChanges());
+    state.releaseStable();
+    state.reset();
+}
+
+
 TEST(SharedData, DataTransfer) {
     State& state = State::instance();
     state.reset();
