@@ -108,6 +108,14 @@ namespace thrive {
  * obj.m_sharedProperties.touch();
  * \endcode
  *
+ * @subsection touch() and untouch()
+ *
+ * When the writing thread has modified the data, it should call 
+ * SharedData::touch() to mark the buffer as changed. The reading thread can
+ * call SharedData::hasChanges() to query whether the current stable buffer
+ * has any changes. Once it has processed these changes, it should call
+ * SharedData::untouch() to mark them as such.
+ *
  * @section shared_data_lua SharedData in Lua
  *
  * How you can access shared data from Lua depends on whether the script
@@ -535,8 +543,8 @@ public:
     * @brief Whether the stable buffer is outdated
     *
     * @return 
-        \c true if there have been changes to the current stable buffer since 
-        the last call to untouch(), \c false otherwise
+    *   \c true if there have been changes to the current stable buffer since 
+    *   the last call to untouch(), \c false otherwise
     */
     bool
     hasChanges() const {
@@ -561,17 +569,21 @@ public:
 
     /**
     * @brief Marks the working copy as changed
+    *
+    * Only the writing thread should call this
     */
     void
     touch() {
         State& state = State::instance();
-        // +1 because we are rendering the *next* frame
+        // +1 because we are currently rendering the *next* frame
         m_lastTouch = state.getBufferFrame(StateBuffer::WorkingCopy) + 1;
         this->setLastBufferChange(StateBuffer::WorkingCopy, m_lastTouch);
     }
 
     /**
     * @brief Resets the hasChanges() flag
+    *
+    * Only the reading thread should call this.
     */
     void
     untouch() {
