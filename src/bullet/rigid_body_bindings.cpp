@@ -1,4 +1,4 @@
-#include "bullet/rigidBody_bindings.h"
+#include "bullet/rigid_body_bindings.h"
 
 #include "engine/component_registry.h"
 #include "engine/entity_filter.h"
