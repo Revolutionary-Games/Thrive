@@ -18,7 +18,7 @@ lightEntity = OgreEntityComponent(OgreEntityComponent.PT_SPHERE)
 light:addComponent(lightEntity)
 onupdate = OnUpdateComponent()
 light:addComponent(onupdate)
-time = 0
+local time = 0
 onupdate.callback = function(entityId, milliseconds)
     time = time + milliseconds / 1000
     light.transform.workingCopy.position.x = 5 * math.sin(time)
