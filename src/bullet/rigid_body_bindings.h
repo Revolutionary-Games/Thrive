@@ -7,7 +7,6 @@
 #include <memory>
 #include <btBulletCollisionCommon.h>
 #include <btBulletDynamicsCommon.h>
-#include <BulletDynamics/Dynamics/btRigidBody.h>
 
 #include <iostream>
 
