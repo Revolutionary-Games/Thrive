@@ -147,6 +147,9 @@ OgreLightSystem::update(int) {
     }
     for (const auto& value : m_impl->m_entities) {
         OgreLightComponent* lightComponent = std::get<0>(value.second);
+        if (not lightComponent->m_properties.hasChanges()) {
+            continue;
+        }
         Ogre::Light* light = lightComponent->m_light;
         const auto& properties = lightComponent->m_properties.stable();
         light->setType(properties.type);
@@ -164,6 +167,7 @@ OgreLightSystem::update(int) {
             properties.spotlightFalloff
         );
         light->setSpotlightNearClipDistance(properties.spotlightNearClipDistance);
+        lightComponent->m_properties.untouch();
     }
     for (EntityId entityId : m_impl->m_entities.removedEntities()) {
         Ogre::Light* light = m_impl->m_lights[entityId];
