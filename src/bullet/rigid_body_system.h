@@ -27,7 +27,7 @@ public:
     /**
     * @brief Properties that can be set individually
     */
-    struct Static_Properties {
+    struct StaticProperties {
 
         /**
         * @brief The body's shape .
@@ -80,7 +80,7 @@ public:
 
     };
 
-    struct Dinamic_Properties {
+    struct DynamicProperties {
         /**
         * @brief The position
         */
@@ -137,11 +137,11 @@ public:
     /**
     * @brief Shared properties
     */
-    PhysicsInputData<Static_Properties>
+    PhysicsInputData<StaticProperties>
     m_staticProperties;
 
-    PhysicsInputData<Dinamic_Properties>
-    m_dinamicProperties;
+    PhysicsInputData<DynamicProperties>
+    m_dynamicProperties;
 };
 
 
@@ -179,6 +179,38 @@ public:
     * @brief Updates the sky components
     */
     void update(int) override;
+
+private:
+
+    struct Implementation;
+    std::unique_ptr<Implementation> m_impl;
+};
+
+////////////////////////////////////////////////////////////////////////////////
+// RigidBodyOutputSystem
+////////////////////////////////////////////////////////////////////////////////
+
+
+/**
+* @brief Moves entities
+*
+* This system updates the PhysicsTransformComponent of all entities that also have a
+* RigidBodyComponent.
+*
+*/
+class RigidBodyOutputSystem : public System {
+
+public:
+
+    RigidBodyOutputSystem();
+
+    ~RigidBodyOutputSystem();
+
+    void init(Engine* engine) override;
+
+    void shutdown() override;
+
+    void update(int milliSeconds) override;
 
 private:
 

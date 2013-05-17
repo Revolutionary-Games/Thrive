@@ -1,9 +1,10 @@
-#include "bullet/rigid_body_bindings.h"
+#include "bullet/rigid_body_system.h"
 
 #include "engine/component_registry.h"
 #include "engine/entity_filter.h"
 #include "bullet/bullet_engine.h"
 #include "scripting/luabind.h"
+#include "common/transform.h"
 
 #include <iostream>
 
@@ -25,34 +26,33 @@ RigidBodyComponent_touch(
 }
 
 static void
-RigidBodyComponent_setDinamicProperties(
+RigidBodyComponent_setDynamicProperties(
     RigidBodyComponent* self,
     Ogre::Vector3 position,
     Ogre::Quaternion rotation,
     Ogre::Vector3 linearVelocity,
     Ogre::Vector3 angularVelocity
 ) {
-    self->m_dinamicProperties.position = position;
-    self->m_dinamicProperties.rotation = rotation;
-    self->m_dinamicProperties.linearVelocity = linearVelocity;
-    self->m_dinamicProperties.angularVelocity = angularVelocity;
-    return self->m_dinamicProperties.touch();
+    self->m_dynamicProperties.workingCopy().position = btVector3(position.x,position.y,position.z);
+    self->m_dynamicProperties.workingCopy().rotation = btQuaternion(rotation.x, rotation.y, rotation.z, rotation.w);
+    self->m_dynamicProperties.workingCopy().linearVelocity = btVector3(linearVelocity.x,linearVelocity.y,linearVelocity.z);
+    self->m_dynamicProperties.workingCopy().angularVelocity = btVector3(angularVelocity.x,angularVelocity.y,angularVelocity.z);
+    return self->m_dynamicProperties.touch();
 }
 
 
-static RigidBodyComponent::Properties&
+static RigidBodyComponent::StaticProperties&
 RigidBodyComponent_getWorkingCopy(
     RigidBodyComponent* self
 ) {
-    return self->m_properties.workingCopy();
+    return self->m_staticProperties.workingCopy();
 }
 
-
-static const RigidBodyComponent::Properties&
+static const RigidBodyComponent::StaticProperties&
 RigidBodyComponent_getLatest(
     RigidBodyComponent* self
 ) {
-    return self->m_properties.latest();
+    return self->m_staticProperties.latest();
 }
 
 
@@ -81,7 +81,7 @@ RigidBodyComponent::luaBindings() {
         .property("latest", RigidBodyComponent_getLatest)
         .property("workingCopy", RigidBodyComponent_getWorkingCopy)
         .def("touch", RigidBodyComponent_touch)
-        .def("setDinamicProperties", RigidBodyComponent_setDinamicProperties)
+        .def("setDynamicProperties", RigidBodyComponent_setDynamicProperties)
     ;
 }
 
@@ -141,9 +141,9 @@ RigidBodyInputSystem::update(int) {
         EntityId entityId = added.first;
         RigidBodyComponent* rigidBodyComponent = std::get<0>(added.second);
         btDefaultMotionState* motionState =
-                new btDefaultMotionState(btTransform(rigidBodyComponent->m_properties.stable().rotation,rigidBodyComponent->m_properties.stable().position),rigidBodyComponent->m_properties.stable().comOffset);
+                new btDefaultMotionState(btTransform(rigidBodyComponent->m_dynamicProperties.stable().rotation,rigidBodyComponent->m_dynamicProperties.stable().position),rigidBodyComponent->m_staticProperties.stable().comOffset);
         btRigidBody::btRigidBodyConstructionInfo rigidBodyCI = btRigidBody::btRigidBodyConstructionInfo(
-            rigidBodyComponent->m_properties.stable().mass, motionState, rigidBodyComponent->m_properties.stable().shape.get(),rigidBodyComponent->m_properties.stable().inertia);
+            rigidBodyComponent->m_staticProperties.stable().mass, motionState, rigidBodyComponent->m_staticProperties.stable().shape.get(),rigidBodyComponent->m_staticProperties.stable().inertia);
         btRigidBody* rigidBody = new btRigidBody(rigidBodyCI);
         rigidBodyComponent->m_body = rigidBody;
         m_impl->m_bodies[entityId] = rigidBody;
@@ -151,20 +151,31 @@ RigidBodyInputSystem::update(int) {
     }
     for (const auto& value : m_impl->m_entities) {
         RigidBodyComponent* rigidBodyComponent = std::get<0>(value.second);
-        if (rigidBodyComponent->m_properties.hasChanges()) {
+        if (rigidBodyComponent->m_staticProperties.hasChanges()) {
             btRigidBody* body = rigidBodyComponent->m_body;
-            const auto& properties = rigidBodyComponent->m_properties.stable();
+            const auto& properties = rigidBodyComponent->m_staticProperties.stable();
             body->setMassProps(properties.mass, properties.inertia);
-            body->setLinearVelocity(properties.linearVelocity);
-            body->setAngularVelocity(properties.angularVelocity);
             body->setLinearFactor(properties.linearFactor);
             body->setAngularFactor(properties.angularFactor);
             body->setRestitution(properties.restitution);
             body->setCollisionShape(properties.shape.get());
             body->setFriction(properties.friction);
             body->setRollingFriction(properties.friction);
+            rigidBodyComponent->m_staticProperties.untouch();
         }
-        rigidBodyComponent->m_properties.untouch();
+        if (rigidBodyComponent->m_dynamicProperties.hasChanges()) {
+            btRigidBody* body = rigidBodyComponent->m_body;
+            const auto& properties = rigidBodyComponent->m_dynamicProperties.stable();
+            btTransform transform;
+            transform.setIdentity();
+            transform.setOrigin(properties.position);
+            transform.setRotation(properties.rotation);
+            body->setWorldTransform(transform);
+            body->setLinearVelocity(properties.linearVelocity);
+            body->setAngularVelocity(properties.angularVelocity);
+            rigidBodyComponent->m_dynamicProperties.untouch();
+        }
+
     }
     for (EntityId entityId : m_impl->m_entities.removedEntities()) {
         btRigidBody* body = m_impl->m_bodies[entityId];
@@ -174,4 +185,54 @@ RigidBodyInputSystem::update(int) {
     m_impl->m_entities.clearChanges();
 }
 
+////////////////////////////////////////////////////////////////////////////////
+// RigidBodyOutputSystem
+////////////////////////////////////////////////////////////////////////////////
 
+struct RigidBodyOutputSystem::Implementation {
+
+    EntityFilter<
+        RigidBodyComponent,
+        PhysicsTransformComponent
+    > m_entities;
+};
+
+
+RigidBodyOutputSystem::RigidBodyOutputSystem()
+  : m_impl(new Implementation())
+{
+}
+
+
+RigidBodyOutputSystem::~RigidBodyOutputSystem() {}
+
+
+void
+RigidBodyOutputSystem::init(
+    Engine* engine
+) {
+    System::init(engine);
+    m_impl->m_entities.setEngine(engine);
+}
+
+
+void
+RigidBodyOutputSystem::shutdown() {
+    m_impl->m_entities.setEngine(nullptr);
+    System::shutdown();
+}
+
+
+void
+RigidBodyOutputSystem::update(int) {
+    for (auto& value : m_impl->m_entities.entities()) {
+        RigidBodyComponent* rigidBodyComponent = std::get<0>(value.second);
+        PhysicsTransformComponent* transform = std::get<1>(value.second);
+        btRigidBody* rigidBody = rigidBodyComponent->m_body;
+        btTransform trans = rigidBody->getWorldTransform();
+        transform->m_properties.workingCopy().position = trans.getOrigin();
+        transform->m_properties.workingCopy().rotation = trans.getRotation();
+        transform->m_properties.workingCopy().velocity = rigidBody->getLinearVelocity();
+        transform->m_properties.touch();
+    }
+}
