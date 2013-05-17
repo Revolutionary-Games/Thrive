@@ -77,7 +77,7 @@ struct SkySystem::Implementation {
 
     EntityFilter<
         Optional<SkyPlaneComponent>
-    > m_skyEntities;
+    > m_entities;
 };
 
 
@@ -99,13 +99,13 @@ SkySystem::init(
     OgreEngine* ogreEngine = dynamic_cast<OgreEngine*>(engine);
     assert(ogreEngine != nullptr && "System requires an OgreEngine");
     m_impl->m_sceneManager = ogreEngine->sceneManager();
-    m_impl->m_skyEntities.setEngine(engine);
+    m_impl->m_entities.setEngine(engine);
 }
 
 
 void
 SkySystem::shutdown() {
-    m_impl->m_skyEntities.setEngine(nullptr);
+    m_impl->m_entities.setEngine(nullptr);
     m_impl->m_sceneManager->setSkyBoxEnabled(false);
     m_impl->m_sceneManager->setSkyDomeEnabled(false);
     m_impl->m_sceneManager->setSkyPlaneEnabled(false);
@@ -116,7 +116,7 @@ SkySystem::shutdown() {
 
 void
 SkySystem::update(int) {
-    for (auto& value : m_impl->m_skyEntities) {
+    for (auto& value : m_impl->m_entities) {
         SkyPlaneComponent* plane = std::get<0>(value.second);
         if (plane and plane->m_properties.hasChanges()) {
             const SkyPlaneComponent::Properties& properties = plane->m_properties.stable();
