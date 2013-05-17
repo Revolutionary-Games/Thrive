@@ -47,11 +47,14 @@ RigidBodyComponent::luaBindings() {
             def("TYPE_ID", &RigidBodyComponent::TYPE_ID),
             class_<Properties>("Properties")
                 .def_readwrite("linearVelocity", &Properties::linearVelocity)
+                .def_readwrite("position", &Properties::position)
+                .def_readwrite("rotation", &Properties::rotation)
                 .def_readwrite("angularVelocity", &Properties::angularVelocity)
                 .def_readwrite("restitution", &Properties::restitution)
                 .def_readwrite("linearFactor", &Properties::linearFactor)
                 .def_readwrite("angularFactor", &Properties::angularFactor)
                 .def_readwrite("mass", &Properties::mass)
+                .def_readwrite("comOffset", &Properties::comOffset)
                 .def_readwrite("friction", &Properties::friction)
                 .def_readwrite("rollingFriction", &Properties::rollingFriction)
         ]

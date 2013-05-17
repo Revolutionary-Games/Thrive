@@ -110,12 +110,15 @@ public:
     *
     * Exposes the following \ref shared_data_lua shared properties:
     * - \c shape (btColisionShape): Properties::shape
+    * - \c position (btVector3): Properties::position
+    * - \c rotation (btVector3): Properties::rotation
     * - \c linearVelocity (btVector3): Properties::linearVelocity
     * - \c angularVelocity (btVector3): Properties::angularVelocity
     * - \c restitution (btScalar): Properties::restitution
     * - \c linearFactor (btVector3): Properties::linearFactor
     * - \c angularFactor (btVector3): Properties::angularFactor
     * - \c mass (btScalar): Properties::mass
+    * - \c comOffset (btTransform): Properties::comOffset
     * - \c inertia (btVector3): Properties::inertia
     * - \c friction (btScalar): Properties::friction
     * - \c rollingFriction (btScalar): Properties::rollingFriction
