@@ -260,16 +260,12 @@ OgreEngine::shutdown() {
 
 void
 OgreEngine::update() {
-    // Lock shared state
-    InputState::instance().lockWorkingCopy();
-    RenderState::instance().lockStable();
+    StateLock<InputState, StateBuffer::WorkingCopy> inputLock;
+    StateLock<RenderState, StateBuffer::Stable> renderLock;
     // Handle events
     Ogre::WindowEventUtilities::messagePump();
     // Update systems
     Engine::update();
-    // Release shared state
-    RenderState::instance().releaseStable();
-    InputState::instance().releaseWorkingCopy();
 }
 
 
