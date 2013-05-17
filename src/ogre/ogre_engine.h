@@ -8,6 +8,7 @@ namespace Ogre {
     class RenderWindow;
     class Root;
     class SceneManager;
+    class Viewport;
 }
 
 namespace OIS {
@@ -87,6 +88,11 @@ public:
     */
     void
     update() override;
+
+    // Test code for scriptable cameras
+    // TODO: Remove this when scriptable viewports are available (#24)
+    Ogre::Viewport*
+    viewport() const;
 
     /**
     * @brief The render window
