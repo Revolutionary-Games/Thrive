@@ -185,17 +185,21 @@ OgreUpdateSceneNodeSystem::shutdown() {
 void
 OgreUpdateSceneNodeSystem::update(int) {
     for (const auto& entry : m_impl->m_entities) {
-        OgreSceneNodeComponent* sceneNodeComponent = std::get<0>(entry.second);
         TransformComponent* transformComponent = std::get<1>(entry.second);
-        sceneNodeComponent->m_sceneNode->setOrientation(
-            transformComponent->m_properties.stable().orientation
-        );
-        sceneNodeComponent->m_sceneNode->setPosition(
-            transformComponent->m_properties.stable().position
-        );
-        sceneNodeComponent->m_sceneNode->setScale(
-            transformComponent->m_properties.stable().scale
-        );
+        if (transformComponent->m_properties.hasChanges()) {
+            Ogre::SceneNode* sceneNode = std::get<0>(entry.second)->m_sceneNode;
+            const auto& transformProperties = transformComponent->m_properties.stable();
+            sceneNode->setOrientation(
+                transformProperties.orientation
+            );
+            sceneNode->setPosition(
+                transformProperties.position
+            );
+            sceneNode->setScale(
+                transformProperties.scale
+            );
+            transformComponent->m_properties.untouch();
+        }
     }
 }
 
