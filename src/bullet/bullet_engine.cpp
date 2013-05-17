@@ -3,7 +3,7 @@
 #include "game.h"
 #include "engine/shared_data.h"
 #include "bullet/update_physics_system.h"
-#include "bullet/rigid_body_bindings.h"
+#include "bullet/rigid_body_system.h"
 
 #include <iostream>
 
