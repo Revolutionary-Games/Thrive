@@ -1,8 +1,9 @@
 #include "ogre/ogre_engine.h"
 
 #include "game.h"
-#include "ogre/keyboard_system.h"
+#include "ogre/camera_system.h"
 #include "ogre/entity_system.h"
+#include "ogre/keyboard_system.h"
 #include "ogre/light_system.h"
 #include "ogre/render_system.h"
 #include "ogre/scene_node_system.h"
@@ -119,9 +120,8 @@ struct OgreEngine::Implementation : public Ogre::WindowEventListener {
 
     void
     setupViewport() {
-        Ogre::Viewport* viewport = m_window->addViewport(m_camera);
-        viewport->setBackgroundColour(Ogre::ColourValue(0,0,0));
-        m_camera->setAutoAspectRatio(true);
+        m_viewport = m_window->addViewport(nullptr);
+        m_viewport->setBackgroundColour(Ogre::ColourValue(0,0,0));
     }
 
     void
@@ -133,7 +133,8 @@ struct OgreEngine::Implementation : public Ogre::WindowEventListener {
         m_inputManager = nullptr;
     }
 
-    bool windowClosing(
+    bool 
+    windowClosing(
         Ogre::RenderWindow* window
     ) override {
         if (window == m_window) {
@@ -153,6 +154,8 @@ struct OgreEngine::Implementation : public Ogre::WindowEventListener {
     std::shared_ptr<KeyboardSystem> m_keyboardSystem = nullptr;
 
     Ogre::SceneManager* m_sceneManager = nullptr;
+
+    Ogre::Viewport* m_viewport = nullptr;
 
     Ogre::RenderWindow* m_window = nullptr;
 
@@ -208,6 +211,11 @@ OgreEngine::init(
         "updateSceneNodes",
         0,
         std::make_shared<OgreUpdateSceneNodeSystem>()
+    );
+    this->addSystem(
+        "cameras",
+        0,
+        std::make_shared<OgreCameraSystem>()
     );
     this->addSystem(
         "lights",
@@ -282,6 +290,12 @@ OgreEngine::update() {
     // Release shared state
     RenderState::instance().releaseStable();
     InputState::instance().releaseWorkingCopy();
+}
+
+
+Ogre::Viewport*
+OgreEngine::viewport() const {
+    return m_impl->m_viewport;
 }
 
 
