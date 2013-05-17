@@ -139,8 +139,6 @@ namespace thrive {
  * 
  */
 
-using DataVersion = unsigned int;
-
 /**
 * @brief Enumeration naming the three state buffers
 */
@@ -534,6 +532,18 @@ public:
     SharedData& operator= (const SharedData&) = delete;
 
     /**
+    * @brief Whether the stable buffer is outdated
+    *
+    * @return 
+        \c true if there have been changes to the current stable buffer since 
+        the last call to untouch(), \c false otherwise
+    */
+    bool
+    hasChanges() const {
+        return m_lastUntouch < this->getLastBufferChange(StateBuffer::Stable);
+    }
+
+    /**
     * @brief Returns the latest data buffer
     */
     const Data&
@@ -550,21 +560,22 @@ public:
     }
 
     /**
-    * @brief Returns the last frame the stable buffer was changed
-    */
-    DataVersion
-    stableVersion() const {
-        State& state = State::instance();
-        short bufferIndex = state.getBufferIndex(StateBuffer::Stable);
-        return m_bufferVersions[bufferIndex];
-    }
-
-    /**
     * @brief Marks the working copy as changed
     */
     void
     touch() {
-        m_touchedVersion += 1;
+        State& state = State::instance();
+        // +1 because we are rendering the *next* frame
+        m_lastTouch = state.getBufferFrame(StateBuffer::WorkingCopy) + 1;
+        this->setLastBufferChange(StateBuffer::WorkingCopy, m_lastTouch);
+    }
+
+    /**
+    * @brief Resets the hasChanges() flag
+    */
+    void
+    untouch() {
+        m_lastUntouch = this->getLastBufferChange(StateBuffer::Stable);
     }
 
     /**
@@ -577,12 +588,11 @@ public:
     updateBuffer(
         short bufferIndex
     ) override {
-        if (m_bufferVersions[bufferIndex] < m_touchedVersion) {
+        if (m_lastBufferChanges[bufferIndex] < m_lastTouch) {
             m_buffers[bufferIndex] = this->latest();
-            m_bufferVersions[bufferIndex] = m_touchedVersion;
+            m_lastBufferChanges[bufferIndex] = m_lastTouch;
         }
     }
-
 
     /**
     * @brief Returns the working copy data buffer
@@ -612,11 +622,33 @@ private:
         return m_buffers[bufferIndex];
     }
 
-    DataVersion m_touchedVersion = 0;
+    FrameIndex
+    getLastBufferChange(
+        StateBuffer buffer
+    ) const {
+        State& state = State::instance();
+        short bufferIndex = state.getBufferIndex(buffer);
+        return m_lastBufferChanges[bufferIndex];
+    }
+
+    void
+    setLastBufferChange(
+        StateBuffer buffer,
+        FrameIndex lastChange
+    ) {
+        State& state = State::instance();
+        short bufferIndex = state.getBufferIndex(buffer);
+        m_lastBufferChanges[bufferIndex] = lastChange;
+    }
 
     std::array<Data, 3> m_buffers;
 
-    std::array<DataVersion, 3> m_bufferVersions = {{0, 0, 0}};
+    std::array<FrameIndex, 3> m_lastBufferChanges = {{0, 0, 0}};
+
+    FrameIndex m_lastTouch = 0;
+
+    FrameIndex m_lastUntouch = 0;
+
 };
 
 
