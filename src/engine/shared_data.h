@@ -110,7 +110,7 @@ namespace thrive {
  *
  * @subsection touch() and untouch()
  *
- * When the writing thread has modified the data, it should call 
+ * When the writing thread has modified the data, it should call
  * SharedData::touch() to mark the buffer as changed. The reading thread can
  * call SharedData::hasChanges() to query whether the current stable buffer
  * has any changes. Once it has processed these changes, it should call
@@ -542,8 +542,8 @@ public:
     /**
     * @brief Whether the stable buffer is outdated
     *
-    * @return 
-    *   \c true if there have been changes to the current stable buffer since 
+    * @return
+    *   \c true if there have been changes to the current stable buffer since
     *   the last call to untouch(), \c false otherwise
     */
     bool
@@ -810,24 +810,24 @@ using InputQueue = SharedQueue<Data, ThreadId::Render, ThreadId::Script>;
 // PhysicUpdate State (Physics => Script)
 ////////////////////////////////////////////////////////////////////////////////
 extern template class SharedState<ThreadId::Physics, ThreadId::Script>;
-using PhysicsUpdateState = SharedState<ThreadId::Physics, ThreadId::Script>;
+using PhysicsOutputState = SharedState<ThreadId::Physics, ThreadId::Script>;
 
 template<typename Data, bool updateWorkingCopy=true>
-using PhysicsUpdateData = SharedData<Data, ThreadId::Physics, ThreadId::Script, updateWorkingCopy>;
+using PhysicsOutputData = SharedData<Data, ThreadId::Physics, ThreadId::Script, updateWorkingCopy>;
 
 template<typename Data>
-using PhysicsUpdateQueue = SharedQueue<Data, ThreadId::Physics, ThreadId::Script>;
+using PhysicsOutputQueue = SharedQueue<Data, ThreadId::Physics, ThreadId::Script>;
 
 ////////////////////////////////////////////////////////////////////////////////
-// RigidBody State (Script => Physics)
+// PhysicsInputState (Script => Physics)
 ////////////////////////////////////////////////////////////////////////////////
 extern template class SharedState<ThreadId::Script, ThreadId::Physics>;
-using RigidBodyState = SharedState<ThreadId::Script, ThreadId::Physics>;
+using PhysicsInputState = SharedState<ThreadId::Script, ThreadId::Physics>;
 
 template<typename Data, bool updateWorkingCopy=true>
-using RigidBodyData = SharedData<Data, ThreadId::Script, ThreadId::Physics, updateWorkingCopy>;
+using PhysicsInputData = SharedData<Data, ThreadId::Script, ThreadId::Physics, updateWorkingCopy>;
 
 template<typename Data>
-using RigidBodyQueue = SharedQueue<Data, ThreadId::Script, ThreadId::Physics>;
+using PhysicsInputQueue = SharedQueue<Data, ThreadId::Script, ThreadId::Physics>;
 
 }

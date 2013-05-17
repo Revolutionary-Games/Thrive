@@ -72,7 +72,7 @@ BulletEngine::init(
     this->addSystem(
         "rigidBodyBindings",
         1,
-        std::make_shared<RigidBodySystem>()
+        std::make_shared<RigidBodyInputSystem>()
     );
 }
 
@@ -86,7 +86,8 @@ BulletEngine::shutdown() {
 void
 BulletEngine::update() {
     // Lock shared state
-    StateLock<PhysicsUpdateState, StateBuffer::WorkingCopy> physicsUpdateLock;
+    StateLock<PhysicsOutputState, StateBuffer::WorkingCopy> physicsOutputLock;
+    StateLock<PhysicsInputState, StateBuffer::Stable> physicsInputLock;
     // Handle events
 
     // Update systems

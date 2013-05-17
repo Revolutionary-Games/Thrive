@@ -3,16 +3,15 @@
 #include "engine/component.h"
 #include "engine/shared_data.h"
 
-#include <OgreVector3.h>
-#include <OgreQuaternion.h>
+#include <btBulletDynamicsCommon.h>
 
 namespace thrive {
 
 /**
 * @brief Holds position, scale and orientation
 */
-class TransformComponent : public Component {
-    COMPONENT(Transform)
+class PhysicsTransformComponent : public Component {
+    COMPONENT(PhysicsTransform)
 
 public:
 
@@ -22,33 +21,30 @@ public:
     struct Properties {
         /**
         * @brief Orientation
-        *
-        * Defaults to Ogre::Quaternion::IDENTITY.
         */
-        Ogre::Quaternion orientation = Ogre::Quaternion::IDENTITY;
+        btQuaternion orientation {0,0,0,1};
 
         /**
         * @brief Position
         *
         * Defaults to origin (0,0,0).
         */
-        Ogre::Vector3 position = {0, 0, 0};
+        btVector3 position = {0, 0, 0};
 
         /**
-        * @brief Scale
+        * @brief Velocity
         *
-        * Defaults to (1, 1, 1).
+        * Defaults to 0 (0,0,0).
         */
-        Ogre::Vector3 scale = {1, 1, 1};
+        btVector3 velocity = {0, 0, 0};
     };
 
     /**
     * @brief Lua bindings
     *
     * This component exposes the following \ref shared_data_lua shared properties:
-    * \arg \c orientation (Ogre.Quaternion): The component's orientation
-    * \arg \c position (Ogre.Vector3): The component's position
-    * \arg \c scale (Ogre.Vector3): The component's scale
+    * \arg \c orientation (btQuaternion): The component's orientation
+    * \arg \c position (btVector3): The component's position
     *
     * @return
     */
@@ -58,8 +54,9 @@ public:
     /**
     * @brief Shared properties
     */
-    RenderData<Properties>
+    PhysicsOutputData<Properties>
     m_properties;
+
 
 };
 

@@ -17,7 +17,7 @@ class scope;
 namespace thrive {
 
 /**
-* @brief A component for a light
+* @brief A component for a rigid body
 */
 class RigidBodyComponent : public Component {
     COMPONENT(RigidBody)
@@ -25,38 +25,14 @@ class RigidBodyComponent : public Component {
 public:
 
     /**
-    * @brief Properties
+    * @brief Properties that can be set individually
     */
-    struct Properties {
+    struct Static_Properties {
 
         /**
         * @brief The body's shape .
         */
         std::shared_ptr<btCollisionShape> shape = nullptr;
-
-        /**
-        * @brief The position
-        */
-        btVector3 position {0,0,0};
-
-        /**
-        * @brief The rotation.
-        */
-        btQuaternion rotation {0,0,0,1};
-
-        /**
-        * @brief The linear velocity
-        *
-        * Makes the rigid body move .
-        */
-        btVector3 linearVelocity {0,0,0};
-
-        /**
-        * @brief The angular velocity
-        *
-        * Makes the rigid body spin .
-        */
-        btVector3 angularVelocity {0,0,0};
 
         /**
         * @brief The restitution factor
@@ -104,6 +80,32 @@ public:
 
     };
 
+    struct Dinamic_Properties {
+        /**
+        * @brief The position
+        */
+        btVector3 position {0,0,0};
+
+        /**
+        * @brief The rotation.
+        */
+        btQuaternion rotation {0,0,0,1};
+
+        /**
+        * @brief The linear velocity
+        *
+        * Makes the rigid body move .
+        */
+        btVector3 linearVelocity {0,0,0};
+
+        /**
+        * @brief The angular velocity
+        *
+        * Makes the rigid body spin .
+        */
+        btVector3 angularVelocity {0,0,0};
+    };
+
     /**
     * @brief Lua bindings
     *
@@ -135,28 +137,30 @@ public:
     /**
     * @brief Shared properties
     */
-    RigidBodyData<Properties>
-    m_properties;
+    PhysicsInputData<Static_Properties>
+    m_staticProperties;
 
+    PhysicsInputData<Dinamic_Properties>
+    m_dinamicProperties;
 };
 
 
 /**
 * @brief Creates rigid bodies and updates its properties
 */
-class RigidBodySystem : public System {
+class RigidBodyInputSystem : public System {
 
 public:
 
     /**
     * @brief Constructor
     */
-    RigidBodySystem();
+    RigidBodyInputSystem();
 
     /**
     * @brief Destructor
     */
-    ~RigidBodySystem();
+    ~RigidBodyInputSystem();
 
     /**
     * @brief Initializes the system
