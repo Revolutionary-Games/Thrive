@@ -248,6 +248,12 @@ public:
     );
 
     /**
+    * @brief The entity's id
+    */
+    EntityId
+    id() const;
+
+    /**
     * @brief Removes a component by type id
     *
     * If no such component was found, does nothing.
