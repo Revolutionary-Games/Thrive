@@ -110,6 +110,11 @@ ScriptEngine::init(
         0,
         std::make_shared<TransformUpdateSystem>()
     );
+    this->addSystem(
+        "movement",
+        0,
+        std::make_shared<MovementSystem>()
+    );
     m_impl->loadScripts("../scripts/");
 }
 
