@@ -192,6 +192,12 @@ Entity::hasComponent(
 }
 
 
+EntityId
+Entity::id() const {
+    return m_impl->m_id;
+}
+
+
 void
 Entity::removeComponent(
     Component::TypeId typeId

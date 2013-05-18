@@ -19,6 +19,8 @@ add_sources(
     ${CMAKE_CURRENT_SOURCE_DIR}/script_bindings.h
     ${CMAKE_CURRENT_SOURCE_DIR}/sky_system.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/sky_system.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/viewport_system.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/viewport_system.h
 )
 
 add_test_sources(

@@ -8,6 +8,7 @@
 #include "ogre/render_system.h"
 #include "ogre/scene_node_system.h"
 #include "ogre/sky_system.h"
+#include "ogre/viewport_system.h"
 
 #include <boost/lexical_cast.hpp>
 #include <OgreConfigFile.h>
@@ -34,7 +35,8 @@ using namespace thrive;
 struct OgreEngine::Implementation : public Ogre::WindowEventListener {
 
     Implementation()
-      : m_keyboardSystem(new KeyboardSystem())
+      : m_keyboardSystem(new KeyboardSystem()),
+        m_viewportSystem(new OgreViewportSystem())
     {
     }
 
@@ -104,12 +106,6 @@ struct OgreEngine::Implementation : public Ogre::WindowEventListener {
     }
 
     void
-    setupViewport() {
-        m_viewport = m_window->addViewport(nullptr);
-        m_viewport->setBackgroundColour(Ogre::ColourValue(0,0,0));
-    }
-
-    void
     shutdownInputManager() {
         if (not m_inputManager) {
             return;
@@ -132,11 +128,11 @@ struct OgreEngine::Implementation : public Ogre::WindowEventListener {
 
     OIS::InputManager* m_inputManager = nullptr;
 
-    std::shared_ptr<KeyboardSystem> m_keyboardSystem = nullptr;
+    std::shared_ptr<KeyboardSystem> m_keyboardSystem;
 
     Ogre::SceneManager* m_sceneManager = nullptr;
 
-    Ogre::Viewport* m_viewport = nullptr;
+    std::shared_ptr<OgreViewportSystem> m_viewportSystem;
 
     Ogre::RenderWindow* m_window = nullptr;
 
@@ -173,7 +169,6 @@ OgreEngine::init(
     Ogre::ResourceGroupManager::getSingleton().initialiseAllResourceGroups();
     // Setup
     m_impl->setupSceneManager();
-    m_impl->setupViewport();
     m_impl->setupLighting();
     m_impl->setupInputManager();
     // Create essential systems
@@ -211,6 +206,11 @@ OgreEngine::init(
         "entities",
         0,
         std::make_shared<OgreEntitySystem>()
+    );
+    this->addSystem(
+        "viewports",
+        50, // Has to come *after* camera system
+        m_impl->m_viewportSystem
     );
     this->addSystem(
         "removeSceneNodes",
@@ -269,9 +269,9 @@ OgreEngine::update() {
 }
 
 
-Ogre::Viewport*
-OgreEngine::viewport() const {
-    return m_impl->m_viewport;
+OgreViewportSystem&
+OgreEngine::viewportSystem() {
+    return *(m_impl->m_viewportSystem);
 }
 
 
