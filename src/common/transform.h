@@ -5,7 +5,6 @@
 
 #include <OgreVector3.h>
 #include <OgreQuaternion.h>
-#include <btBulletDynamicsCommon.h>
 
 namespace thrive {
 
@@ -22,7 +21,7 @@ public:
     */
     struct Properties {
         /**
-        * @brief Orientation
+        * @brief Rotation
         *
         * Defaults to Ogre::Quaternion::IDENTITY.
         */
@@ -41,6 +40,14 @@ public:
         * Defaults to (1, 1, 1).
         */
         Ogre::Vector3 scale = {1, 1, 1};
+
+        /**
+        * @brief Velocity
+        *
+        * Defaults to (0,0,0).
+        * Used only for doppler effect, render blur or similars
+        */
+        Ogre::Vector3 velocity = {0,0,0};
     };
 
     /**
@@ -79,29 +86,29 @@ public:
         /**
         * @brief Orientation
         */
-        btQuaternion rotation {0,0,0,1};
+        Ogre::Quaternion rotation {0,0,0,1};
 
         /**
         * @brief Position
         *
         * Defaults to origin (0,0,0).
         */
-        btVector3 position = {0, 0, 0};
+        Ogre::Vector3 position = {0, 0, 0};
 
         /**
         * @brief Velocity
         *
         * Defaults to 0 (0,0,0).
         */
-        btVector3 velocity = {0, 0, 0};
+        Ogre::Vector3 velocity = {0, 0, 0};
     };
 
     /**
     * @brief Lua bindings
     *
     * This component exposes the following \ref shared_data_lua shared properties:
-    * \arg \c orientation (btQuaternion): The component's orientation
-    * \arg \c position (btVector3): The component's position
+    * \arg \c rotation (Ogre::Quaternion): The component's rotation
+    * \arg \c position (Ogre::Vector3): The component's position
     *
     * @return
     */

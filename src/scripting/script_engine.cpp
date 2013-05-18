@@ -106,9 +106,9 @@ ScriptEngine::init(
         std::make_shared<OnKeySystem>()
     );
     this->addSystem(
-        "movement",
+        "transformUpdate",
         0,
-        std::make_shared<MovementSystem>()
+        std::make_shared<TransformUpdateSystem>()
     );
     m_impl->loadScripts("../scripts/");
 }
