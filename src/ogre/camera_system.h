@@ -79,6 +79,9 @@ public:
         std::string name
     );
 
+    /**
+    * @brief Pointer to internal camera
+    */
     Ogre::Camera* m_camera = nullptr;
 
     /**

@@ -11,6 +11,7 @@
 #include "ogre/scene_node_system.h"
 #include "ogre/script_bindings.h"
 #include "ogre/sky_system.h"
+#include "ogre/viewport_system.h"
 #include "scripting/luabind.h"
 #include "scripting/on_update.h"
 
@@ -46,6 +47,8 @@ thrive::initializeLua(
         OgreEntityComponent::luaBindings(),
         OgreLightComponent::luaBindings(),
         OgreSceneNodeComponent::luaBindings(),
+        OgreViewport::luaBindings(),
+        OgreViewportSystem::luaBindings(),
         SkyPlaneComponent::luaBindings()
     ];
 }
