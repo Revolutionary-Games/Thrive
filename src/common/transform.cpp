@@ -3,6 +3,9 @@
 #include "engine/component_registry.h"
 #include "scripting/luabind.h"
 
+#include <OgreStringConverter.h>
+#include <boost/lexical_cast.hpp>
+
 
 using namespace thrive;
 
@@ -74,6 +77,14 @@ PhysicsTransformComponent_getLatest(
     return self->m_properties.latest();
 }
 
+static void PhysicsTransformComponent_printPosition(
+    PhysicsTransformComponent* self
+){
+    //std::puts(boost::lexical_cast<char*,Ogre::String>(Ogre::StringConverter::toString(self->m_properties.stable().position)));
+    Ogre::Vector3 p = self->m_properties.stable().position;
+    std::printf("Position: x:%f y:%f z:%f\n",p.x,p.y,p.z);
+}
+
 
 luabind::scope
 PhysicsTransformComponent::luaBindings() {
@@ -91,6 +102,7 @@ PhysicsTransformComponent::luaBindings() {
         .property("latest", PhysicsTransformComponent_getLatest)
         .property("workingCopy", PhysicsTransformComponent_getWorkingCopy)
         .def("touch", PhysicsTransformComponent_touch)
+        .def("printPosition",PhysicsTransformComponent_printPosition)
     ;
 }
 

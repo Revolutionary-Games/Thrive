@@ -12,6 +12,7 @@
 #include "ogre/sky_system.h"
 #include "scripting/luabind.h"
 #include "scripting/on_update.h"
+#include "bullet/rigid_body_system.h"
 
 #include <forward_list>
 #include <iostream>
@@ -36,6 +37,7 @@ thrive::initializeLua(
         // Common components
         MovableComponent::luaBindings(),
         TransformComponent::luaBindings(),
+        PhysicsTransformComponent::luaBindings(),
         // Script Components
         OnUpdateComponent::luaBindings(),
         // Rendering Components
@@ -44,7 +46,9 @@ thrive::initializeLua(
         OgreLightComponent::luaBindings(),
         OgreEntityComponent::luaBindings(),
         OgreSceneNodeComponent::luaBindings(),
-        SkyPlaneComponent::luaBindings()
+        SkyPlaneComponent::luaBindings(),
+        // Physics Components
+        RigidBodyComponent::luaBindings()
     ];
 }
 
