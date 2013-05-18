@@ -33,6 +33,7 @@ RigidBodyComponent_setDynamicProperties(
     Ogre::Vector3 linearVelocity,
     Ogre::Vector3 angularVelocity
 ) {
+    assert(true && "setDynamicsProperties");
     self->m_dynamicProperties.workingCopy().position = btVector3(position.x,position.y,position.z);
     self->m_dynamicProperties.workingCopy().rotation = btQuaternion(rotation.x, rotation.y, rotation.z, rotation.w);
     self->m_dynamicProperties.workingCopy().linearVelocity = btVector3(linearVelocity.x,linearVelocity.y,linearVelocity.z);
