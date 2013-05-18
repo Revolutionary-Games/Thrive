@@ -86,7 +86,7 @@ public:
         /**
         * @brief Orientation
         */
-        Ogre::Quaternion rotation {0,0,0,1};
+        Ogre::Quaternion rotation = Ogre::Quaternion::IDENTITY;
 
         /**
         * @brief Position

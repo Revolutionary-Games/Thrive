@@ -33,11 +33,10 @@ RigidBodyComponent_setDynamicProperties(
     Ogre::Vector3 linearVelocity,
     Ogre::Vector3 angularVelocity
 ) {
-    assert(true && "setDynamicsProperties");
-    self->m_dynamicProperties.workingCopy().position = btVector3(position.x,position.y,position.z);
-    self->m_dynamicProperties.workingCopy().rotation = btQuaternion(rotation.x, rotation.y, rotation.z, rotation.w);
-    self->m_dynamicProperties.workingCopy().linearVelocity = btVector3(linearVelocity.x,linearVelocity.y,linearVelocity.z);
-    self->m_dynamicProperties.workingCopy().angularVelocity = btVector3(angularVelocity.x,angularVelocity.y,angularVelocity.z);
+    self->m_dynamicProperties.workingCopy().position = position;
+    self->m_dynamicProperties.workingCopy().rotation = rotation;
+    self->m_dynamicProperties.workingCopy().linearVelocity = linearVelocity;
+    self->m_dynamicProperties.workingCopy().angularVelocity = angularVelocity;
     return self->m_dynamicProperties.touch();
 }
 
@@ -142,9 +141,13 @@ RigidBodyInputSystem::update(int) {
         EntityId entityId = added.first;
         RigidBodyComponent* rigidBodyComponent = std::get<0>(added.second);
         btDefaultMotionState* motionState =
-                new btDefaultMotionState(btTransform(rigidBodyComponent->m_dynamicProperties.stable().rotation,rigidBodyComponent->m_dynamicProperties.stable().position),rigidBodyComponent->m_staticProperties.stable().comOffset);
+                new btDefaultMotionState(btTransform(
+                        ogToBtQuaternion(rigidBodyComponent->m_dynamicProperties.stable().rotation),
+                        ogToBtVector3(rigidBodyComponent->m_dynamicProperties.stable().position)),
+                        rigidBodyComponent->m_staticProperties.stable().comOffset
+                                         );
         btRigidBody::btRigidBodyConstructionInfo rigidBodyCI = btRigidBody::btRigidBodyConstructionInfo(
-            rigidBodyComponent->m_staticProperties.stable().mass, motionState, rigidBodyComponent->m_staticProperties.stable().shape.get(),rigidBodyComponent->m_staticProperties.stable().inertia);
+            rigidBodyComponent->m_staticProperties.stable().mass, motionState, rigidBodyComponent->m_staticProperties.stable().shape.get(),ogToBtVector3(rigidBodyComponent->m_staticProperties.stable().inertia));
         btRigidBody* rigidBody = new btRigidBody(rigidBodyCI);
         rigidBodyComponent->m_body = rigidBody;
         m_impl->m_bodies[entityId] = rigidBody;
@@ -155,9 +158,9 @@ RigidBodyInputSystem::update(int) {
         if (rigidBodyComponent->m_staticProperties.hasChanges()) {
             btRigidBody* body = rigidBodyComponent->m_body;
             const auto& properties = rigidBodyComponent->m_staticProperties.stable();
-            body->setMassProps(properties.mass, properties.inertia);
-            body->setLinearFactor(properties.linearFactor);
-            body->setAngularFactor(properties.angularFactor);
+            body->setMassProps(properties.mass, ogToBtVector3(properties.inertia));
+            body->setLinearFactor(ogToBtVector3(properties.linearFactor));
+            body->setAngularFactor(ogToBtVector3(properties.angularFactor));
             body->setRestitution(properties.restitution);
             body->setCollisionShape(properties.shape.get());
             body->setFriction(properties.friction);
@@ -169,11 +172,11 @@ RigidBodyInputSystem::update(int) {
             const auto& properties = rigidBodyComponent->m_dynamicProperties.stable();
             btTransform transform;
             transform.setIdentity();
-            transform.setOrigin(properties.position);
-            transform.setRotation(properties.rotation);
+            transform.setOrigin(ogToBtVector3(properties.position));
+            transform.setRotation(ogToBtQuaternion(properties.rotation));
             body->setWorldTransform(transform);
-            body->setLinearVelocity(properties.linearVelocity);
-            body->setAngularVelocity(properties.angularVelocity);
+            body->setLinearVelocity(ogToBtVector3(properties.linearVelocity));
+            body->setAngularVelocity(ogToBtVector3(properties.angularVelocity));
             rigidBodyComponent->m_dynamicProperties.untouch();
         }
 

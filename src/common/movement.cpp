@@ -125,7 +125,7 @@ TransformUpdateSystem::update(int) {
         TransformComponent* transform = std::get<0>(value.second);
         PhysicsTransformComponent* physicsTransform = std::get<1>(value.second);
         transform->m_properties.workingCopy().position = physicsTransform->m_properties.stable().position;
-        transform->m_properties.workingCopy().orientation = physicsTransform->m_properties.stable().rotation;
+        //transform->m_properties.workingCopy().orientation = physicsTransform->m_properties.stable().rotation;
         transform->m_properties.workingCopy().velocity = physicsTransform->m_properties.stable().velocity;
         transform->m_properties.touch();
 

@@ -53,7 +53,7 @@ Entity::luaBindings() {
 }
 
 
-Entity::Entity() 
+Entity::Entity()
   : Entity(Game::instance().entityManager())
 {
 }
@@ -99,7 +99,7 @@ Entity::Entity(
 Entity::Entity(
     const Entity& other
 ) : Entity(
-        other.m_impl->m_id, 
+        other.m_impl->m_id,
         *(other.m_impl->m_entityManager)
     )
 {
@@ -113,7 +113,7 @@ bool
 Entity::operator == (
     const Entity& other
 ) const {
-    return 
+    return
         (m_impl->m_entityManager == other.m_impl->m_entityManager) and
         (m_impl->m_id == other.m_impl->m_id)
     ;

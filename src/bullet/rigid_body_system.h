@@ -3,10 +3,14 @@
 #include "engine/component.h"
 #include "engine/shared_data.h"
 #include "engine/system.h"
+#include "util/bullet_ogre_math.h"
 
 #include <memory>
 #include <btBulletCollisionCommon.h>
 #include <btBulletDynamicsCommon.h>
+
+#include <OgreVector3.h>
+#include <OgreQuaternion.h>
 
 #include <iostream>
 
@@ -44,12 +48,12 @@ public:
         /**
         * @brief Locks linear movement to specific axis
         */
-        btVector3 linearFactor {0,0,0};
+        Ogre::Vector3 linearFactor {0,0,0};
 
         /**
         * @brief Locks angular movement to specific axis
         */
-        btVector3 angularFactor {0,0,0};
+        Ogre::Vector3 angularFactor {0,0,0};
 
         /**
         * @brief The mass of the rigid body
@@ -59,12 +63,12 @@ public:
         /**
         * @brief The offset of the mass
         */
-        btTransform comOffset =btTransform::getIdentity();
+        btTransform comOffset = btTransform::getIdentity();
 
         /**
         * @brief The inertia of the rigid body
         */
-        btVector3 inertia {0,0,0};
+        Ogre::Vector3 inertia {0,0,0};
 
         /**
         * @brief The friction of the object
@@ -84,26 +88,26 @@ public:
         /**
         * @brief The position
         */
-        btVector3 position {0,0,0};
+        Ogre::Vector3 position {0,0,0};
 
         /**
         * @brief The rotation.
         */
-        btQuaternion rotation {0,0,0,1};
+        Ogre::Quaternion rotation = Ogre::Quaternion::IDENTITY;
 
         /**
         * @brief The linear velocity
         *
         * Makes the rigid body move .
         */
-        btVector3 linearVelocity {0,0,0};
+        Ogre::Vector3 linearVelocity {0,0,0};
 
         /**
         * @brief The angular velocity
         *
         * Makes the rigid body spin .
         */
-        btVector3 angularVelocity {0,0,0};
+        Ogre::Vector3 angularVelocity {0,0,0};
     };
 
     /**
