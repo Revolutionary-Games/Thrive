@@ -134,10 +134,6 @@ OgreCameraSystem::update(int) {
         cameraComponent->m_camera = camera;
         m_impl->m_cameras[entityId] = camera;
         sceneNodeComponent->m_sceneNode->attachObject(camera);
-        // Test code for scriptable cameras
-        // TODO: Remove this when scriptable viewports are available (#24)
-        OgreEngine* ogreEngine = dynamic_cast<OgreEngine*>(this->engine());
-        ogreEngine->viewport()->setCamera(camera);
     }
     for (EntityId entityId : m_impl->m_entities.removedEntities()) {
         Ogre::Camera* camera = m_impl->m_cameras[entityId];
