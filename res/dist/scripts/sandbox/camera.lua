@@ -25,3 +25,19 @@ playerCam.onUpdate.callback = function(entityId, milliseconds)
     playerCam.transform.workingCopy.position.z = 25 + 5 * math.sin(time)
     playerCam.transform:touch()
 end
+
+
+
+local viewport = OgreViewport(0)
+viewport.workingCopy.cameraEntity = playerCam
+viewport:touch()
+addViewport(viewport)
+
+
+-- Picture in Picture
+local pipViewport = OgreViewport(1)
+pipViewport.workingCopy.cameraEntity = playerCam
+pipViewport.workingCopy.width = 0.1
+pipViewport.workingCopy.height = 0.1
+pipViewport:touch()
+addViewport(pipViewport)

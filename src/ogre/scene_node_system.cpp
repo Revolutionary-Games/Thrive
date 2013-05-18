@@ -170,6 +170,7 @@ OgreUpdateSceneNodeSystem::init(
 ) {
     System::init(engine);
     OgreEngine* ogreEngine = dynamic_cast<OgreEngine*>(engine);
+    (void) ogreEngine; // Avoid unused variable warning in release build
     assert(ogreEngine != nullptr && "System requires an OgreEngine");
     m_impl->m_entities.setEngine(engine);
 }

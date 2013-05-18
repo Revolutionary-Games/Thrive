@@ -18,6 +18,7 @@ namespace OIS {
 namespace thrive {
 
 class KeyboardSystem;
+class OgreViewportSystem;
 
 /**
 * @brief Graphics engine
@@ -89,10 +90,11 @@ public:
     void
     update() override;
 
-    // Test code for scriptable cameras
-    // TODO: Remove this when scriptable viewports are available (#24)
-    Ogre::Viewport*
-    viewport() const;
+    /**
+    * @brief The viewport system
+    */
+    OgreViewportSystem&
+    viewportSystem();
 
     /**
     * @brief The render window
