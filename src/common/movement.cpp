@@ -81,3 +81,54 @@ MovementSystem::update(int milliseconds) {
     }
 }
 
+////////////////////////////////////////////////////////////////////////////////
+// TransformUpdateSystem
+////////////////////////////////////////////////////////////////////////////////
+
+struct TransformUpdateSystem::Implementation {
+
+    EntityFilter<
+        TransformComponent,
+        PhysicsTransformComponent
+    > m_entities;
+};
+
+
+TransformUpdateSystem::TransformUpdateSystem()
+  : m_impl(new Implementation())
+{
+}
+
+
+TransformUpdateSystem::~TransformUpdateSystem() {}
+
+
+void
+TransformUpdateSystem::init(
+    Engine* engine
+) {
+    System::init(engine);
+    m_impl->m_entities.setEngine(engine);
+}
+
+
+void
+TransformUpdateSystem::shutdown() {
+    m_impl->m_entities.setEngine(nullptr);
+    System::shutdown();
+}
+
+
+void
+TransformUpdateSystem::update(int) {
+    for (auto& value : m_impl->m_entities.entities()) {
+        TransformComponent* transform = std::get<0>(value.second);
+        PhysicsTransformComponent* physicsTransform = std::get<1>(value.second);
+        transform->m_properties.workingCopy().position = physicsTransform->m_properties.stable().position;
+        transform->m_properties.workingCopy().orientation = physicsTransform->m_properties.stable().rotation;
+        transform->m_properties.workingCopy().velocity = physicsTransform->m_properties.stable().velocity;
+        transform->m_properties.touch();
+
+    }
+}
+

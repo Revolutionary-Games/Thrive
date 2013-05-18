@@ -230,9 +230,12 @@ RigidBodyOutputSystem::update(int) {
         PhysicsTransformComponent* transform = std::get<1>(value.second);
         btRigidBody* rigidBody = rigidBodyComponent->m_body;
         btTransform trans = rigidBody->getWorldTransform();
-        transform->m_properties.workingCopy().position = trans.getOrigin();
-        transform->m_properties.workingCopy().rotation = trans.getRotation();
-        transform->m_properties.workingCopy().velocity = rigidBody->getLinearVelocity();
+        btVector3 position = trans.getOrigin();
+        btQuaternion rotation = trans.getRotation();
+        btVector3 velocity = rigidBody->getLinearVelocity();
+        transform->m_properties.workingCopy().position = Ogre::Vector3(position.x(),position.y(),position.z());
+        transform->m_properties.workingCopy().rotation = Ogre::Quaternion(rotation.w(),rotation.x(),rotation.y(),rotation.z());
+        transform->m_properties.workingCopy().velocity = Ogre::Vector3(velocity.x(),velocity.y(),velocity.z());
         transform->m_properties.touch();
     }
 }

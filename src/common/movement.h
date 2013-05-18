@@ -22,7 +22,7 @@ public:
     * This component exposes the following properties:
     * \arg \c velocity (Ogre.Vector3): The component's velocity in units per second
     *
-    * @return 
+    * @return
     */
     static luabind::scope
     luaBindings();
@@ -43,12 +43,33 @@ public:
 *
 */
 class MovementSystem : public System {
-    
+
 public:
 
     MovementSystem();
 
     ~MovementSystem();
+
+    void init(Engine* engine) override;
+
+    void shutdown() override;
+
+    void update(int milliSeconds) override;
+
+private:
+
+    struct Implementation;
+    std::unique_ptr<Implementation> m_impl;
+};
+
+
+class TransformUpdateSystem : public System {
+
+public:
+
+    TransformUpdateSystem();
+
+    ~TransformUpdateSystem();
 
     void init(Engine* engine) override;
 
