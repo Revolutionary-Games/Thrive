@@ -161,14 +161,21 @@ RigidBodyInputSystem::update(int) {
     for (const auto& added : m_impl->m_entities.addedEntities()) {
         EntityId entityId = added.first;
         RigidBodyComponent* rigidBodyComponent = std::get<0>(added.second);
-        btDefaultMotionState* motionState =
-                new btDefaultMotionState(btTransform(
-                        ogToBtQuaternion(rigidBodyComponent->m_dynamicProperties.stable().rotation),
-                        ogToBtVector3(rigidBodyComponent->m_dynamicProperties.stable().position)),
-                        rigidBodyComponent->m_staticProperties.stable().comOffset
-                                         );
-        btRigidBody::btRigidBodyConstructionInfo rigidBodyCI = btRigidBody::btRigidBodyConstructionInfo(
-            rigidBodyComponent->m_staticProperties.stable().mass, motionState, rigidBodyComponent->m_staticProperties.stable().shape.get(),ogToBtVector3(rigidBodyComponent->m_staticProperties.stable().inertia));
+        const auto& dynamicProperties = rigidBodyComponent->m_dynamicProperties.stable();
+        const auto& staticProperties = rigidBodyComponent->m_staticProperties.stable();
+        btDefaultMotionState* motionState = new btDefaultMotionState(
+            btTransform(
+                ogToBtQuaternion(dynamicProperties.rotation),
+                ogToBtVector3(dynamicProperties.position)
+            ),
+            staticProperties.comOffset
+        );
+        btRigidBody::btRigidBodyConstructionInfo rigidBodyCI(
+            staticProperties.mass, 
+            motionState, 
+            staticProperties.shape.get(),
+            ogToBtVector3(staticProperties.inertia)
+        );
         btRigidBody* rigidBody = new btRigidBody(rigidBodyCI);
         rigidBodyComponent->m_body = rigidBody;
         m_impl->m_bodies[entityId] = rigidBody;
@@ -208,7 +215,6 @@ RigidBodyInputSystem::update(int) {
             }
             rigidBodyComponent->m_dynamicProperties.untouch();
         }
-
     }
     for (EntityId entityId : m_impl->m_entities.removedEntities()) {
         btRigidBody* body = m_impl->m_bodies[entityId];
