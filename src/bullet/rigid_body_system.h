@@ -50,12 +50,18 @@ public:
         /**
         * @brief Locks linear movement to specific axis
         */
-        Ogre::Vector3 linearFactor {0,0,0};
+        Ogre::Vector3 linearFactor {1,1,1};
 
         /**
         * @brief Locks angular movement to specific axis
         */
-        Ogre::Vector3 angularFactor {0,0,0};
+        Ogre::Vector3 angularFactor {1,1,1};
+
+        /**
+        * @brief Inertia
+        */
+        btVector3 localInertia {0,0,0};
+
 
         /**
         * @brief The mass of the rigid body
@@ -68,14 +74,15 @@ public:
         btTransform comOffset = btTransform::getIdentity();
 
         /**
-        * @brief The inertia of the rigid body
+        * @brief The friction of the object
         */
-        Ogre::Vector3 inertia {1,1,1};
+        btScalar friction = 0.f;
 
         /**
         * @brief The friction of the object
         */
-        btScalar friction = 0.f;
+        btScalar linearDamping = 0.1f;
+        btScalar angularDamping = 1.f;
 
         /**
         * @brief The friction when rolling
@@ -132,7 +139,6 @@ public:
     * - \c angularFactor (btVector3): Properties::angularFactor
     * - \c mass (btScalar): Properties::mass
     * - \c comOffset (btTransform): Properties::comOffset
-    * - \c inertia (btVector3): Properties::inertia
     * - \c friction (btScalar): Properties::friction
     * - \c rollingFriction (btScalar): Properties::rollingFriction
     *

@@ -67,14 +67,14 @@ BulletEngine::init(
     // Create essential systems
 
     this->addSystem(
-        "rigidBodyInputSystem",
-        -10,
-        std::make_shared<RigidBodyInputSystem>()
+        "updatePhysics",
+        -20,
+        std::make_shared<UpdatePhysicsSystem>()
     );
     this->addSystem(
-        "updatePhysics",
+        "rigidBodyInputSystem",
         0,
-        std::make_shared<UpdatePhysicsSystem>()
+        std::make_shared<RigidBodyInputSystem>()
     );
     this->addSystem(
         "rigidBodyOutputSystem",
