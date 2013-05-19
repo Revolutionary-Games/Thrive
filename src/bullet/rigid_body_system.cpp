@@ -81,7 +81,7 @@ RigidBodyComponent::luaBindings() {
             def("TYPE_NAME", &RigidBodyComponent::TYPE_NAME),
             def("TYPE_ID", &RigidBodyComponent::TYPE_ID),
             class_<StaticProperties>("StaticProperties")
-                .def_readwrite("shape", &StaticProperties::shape)
+                //.def_readwrite("shape", &StaticProperties::shape)
                 /*.def_readwrite("linearVelocity", &Properties::linearVelocity)
                 .def_readwrite("position", &Properties::position)
                 .def_readwrite("rotation", &Properties::rotation)
