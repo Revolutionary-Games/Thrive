@@ -94,6 +94,8 @@ ScriptEngine::init(
     Engine::init(entityManager);
     StateLock<InputState, StateBuffer::Stable> inputLock;
     StateLock<RenderState, StateBuffer::WorkingCopy> renderLock;
+    StateLock<PhysicsInputState, StateBuffer::WorkingCopy> physicsInputLock;
+    StateLock<PhysicsOutputState, StateBuffer::Stable> physicsOutputLock;
     initializeLua(m_impl->m_luaState);
     this->addSystem(
         "onUpdate",
@@ -135,6 +137,8 @@ void
 ScriptEngine::update() {
     StateLock<InputState, StateBuffer::Stable> inputLock;
     StateLock<RenderState, StateBuffer::WorkingCopy> renderLock;
+    StateLock<PhysicsInputState, StateBuffer::WorkingCopy> physicsInputLock;
+    StateLock<PhysicsOutputState, StateBuffer::Stable> physicsOutputLock;
     if (m_impl->quitRequested()) {
         Game::instance().quit();
     }
