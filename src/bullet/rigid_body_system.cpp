@@ -40,6 +40,15 @@ RigidBodyComponent_setDynamicProperties(
     return self->m_dynamicProperties.touch();
 }
 
+static void
+RigidBodyComponent_printPosition(
+    RigidBodyComponent* self
+) {
+    btTransform t = btTransform::getIdentity();
+    self->m_body->getMotionState()->getWorldTransform(t);
+    Ogre::Vector3 p = btToOgVector3(t.getOrigin());
+    std::printf("Position: x:%f y:%f z:%f\n",p.x,p.y,p.z);
+}
 
 static RigidBodyComponent::StaticProperties&
 RigidBodyComponent_getWorkingCopy(
@@ -82,6 +91,7 @@ RigidBodyComponent::luaBindings() {
         .property("workingCopy", RigidBodyComponent_getWorkingCopy)
         .def("touch", RigidBodyComponent_touch)
         .def("setDynamicProperties", RigidBodyComponent_setDynamicProperties)
+        .def("printPosition",RigidBodyComponent_printPosition)
     ;
 }
 

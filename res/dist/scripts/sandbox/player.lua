@@ -14,13 +14,13 @@ player:addComponent(OgreEntityComponent("Mesh.mesh"))
 playerTransform.workingCopy.position = Vector3(0, 0, 0)
 playerTransform:touch()
 
---[[
-playerRigidBody.workingCopy:setDynamicProperties(
+
+playerRigidBody:setDynamicProperties(
 	Vector3(0,0,0),
 	Quaternion(1,0,0,0),
-	Vector3(1,0,0),
+	Vector3(0,0,0),
 	Vector3(0,0,0))
---]]
+
 playerMovable = MovableComponent()
 player:addComponent(playerMovable)
 
@@ -29,14 +29,35 @@ player:addComponent(playerInput)
 MOVEMENT_SPEED = 10
 playerInput.onPressed = function (entityId, event)
     playerPhysicsTransform:printPosition()
+    playerRigidBody:printPosition()
     if event.key == KeyEvent.KC_W then
         playerMovable.velocity.y = playerMovable.velocity.y + MOVEMENT_SPEED
+        playerRigidBody:setDynamicProperties(
+	Vector3(0,10,0),
+	Quaternion(1,0,0,0),
+	Vector3(0,0,0),
+	Vector3(0,0,0))
     elseif event.key == KeyEvent.KC_S then
         playerMovable.velocity.y = playerMovable.velocity.y - MOVEMENT_SPEED
+        playerRigidBody:setDynamicProperties(
+	Vector3(0,-10,0),
+	Quaternion(1,0,0,0),
+	Vector3(0,0,0),
+	Vector3(0,0,0))
     elseif event.key == KeyEvent.KC_A then
         playerMovable.velocity.x = playerMovable.velocity.x - MOVEMENT_SPEED
+        playerRigidBody:setDynamicProperties(
+	Vector3(-10,0,0),
+	Quaternion(1,0,0,0),
+	Vector3(0,0,0),
+	Vector3(0,0,0))
     elseif event.key == KeyEvent.KC_D then
         playerMovable.velocity.x = playerMovable.velocity.x + MOVEMENT_SPEED
+        playerRigidBody:setDynamicProperties(
+	Vector3(10,0,0),
+	Quaternion(1,0,0,0),
+	Vector3(0,0,0),
+	Vector3(0,0,0))
     end
 end
 
