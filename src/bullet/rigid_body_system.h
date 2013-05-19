@@ -36,7 +36,9 @@ public:
         /**
         * @brief The body's shape .
         */
-        std::shared_ptr<btCollisionShape> shape = nullptr;
+        //btCollisionShape* s = new btSphereShape(1);
+        std::shared_ptr<btCollisionShape> shape {new btSphereShape(1)};
+
 
         /**
         * @brief The restitution factor
@@ -68,7 +70,7 @@ public:
         /**
         * @brief The inertia of the rigid body
         */
-        Ogre::Vector3 inertia {0,0,0};
+        Ogre::Vector3 inertia {1,1,1};
 
         /**
         * @brief The friction of the object
@@ -82,6 +84,12 @@ public:
         */
         btScalar rollingFriction = 0.f;
 
+        /**
+        *@brief The force currently applied to the body
+        *
+        *
+        */
+        Ogre::Vector3 forceApplied = Ogre::Vector3::ZERO;
     };
 
     struct DynamicProperties {
