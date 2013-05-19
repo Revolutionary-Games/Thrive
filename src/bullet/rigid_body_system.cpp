@@ -58,6 +58,22 @@ RigidBodyComponent_printVelocity(
     std::printf("Velocity: x:%f y:%f z:%f\n",p.x,p.y,p.z);
 }
 
+static void
+RigidBodyComponent_printForce(
+    RigidBodyComponent* self
+) {
+    Ogre::Vector3 p = self->m_staticProperties.workingCopy().forceApplied;
+    std::printf("Force: x:%f y:%f z:%f\n",p.x,p.y,p.z);
+}
+
+static void
+RigidBodyComponent_addToForce(
+    RigidBodyComponent* self,
+    Ogre::Vector3 add
+) {
+    self->m_staticProperties.workingCopy().forceApplied+=add;
+}
+
 static RigidBodyComponent::StaticProperties&
 RigidBodyComponent_getWorkingCopy(
     RigidBodyComponent* self
@@ -102,7 +118,8 @@ RigidBodyComponent::luaBindings() {
         .def("setDynamicProperties", RigidBodyComponent_setDynamicProperties)
         .def("printPosition",RigidBodyComponent_printPosition)
         .def("printVelocity",RigidBodyComponent_printVelocity)
-
+        .def("addToForce",RigidBodyComponent_addToForce)
+        .def("printForce",RigidBodyComponent_printForce)
     ;
 }
 
@@ -157,7 +174,7 @@ RigidBodyInputSystem::shutdown() {
 
 
 void
-RigidBodyInputSystem::update(int) {
+RigidBodyInputSystem::update(int milliseconds) {
     for (const auto& added : m_impl->m_entities.addedEntities()) {
         EntityId entityId = added.first;
         RigidBodyComponent* rigidBodyComponent = std::get<0>(added.second);
@@ -170,11 +187,14 @@ RigidBodyInputSystem::update(int) {
             ),
             staticProperties.comOffset
         );
+        btVector3 localInertia = staticProperties.localInertia;
+        staticProperties.shape->calculateLocalInertia(staticProperties.mass,localInertia);
+        //staticProperties.localInertia = btToOgVector3(localInertia);
         btRigidBody::btRigidBodyConstructionInfo rigidBodyCI(
-            staticProperties.mass, 
-            motionState, 
+            staticProperties.mass,
+            motionState,
             staticProperties.shape.get(),
-            ogToBtVector3(staticProperties.inertia)
+            localInertia
         );
         btRigidBody* rigidBody = new btRigidBody(rigidBodyCI);
         rigidBodyComponent->m_body = rigidBody;
@@ -183,25 +203,29 @@ RigidBodyInputSystem::update(int) {
     }
     for (const auto& value : m_impl->m_entities) {
         RigidBodyComponent* rigidBodyComponent = std::get<0>(value.second);
+        btRigidBody* body = rigidBodyComponent->m_body;
         if (rigidBodyComponent->m_staticProperties.hasChanges()) {
-            btRigidBody* body = rigidBodyComponent->m_body;
             const auto& properties = rigidBodyComponent->m_staticProperties.stable();
-            body->setMassProps(properties.mass, ogToBtVector3(properties.inertia));
+            btVector3 localInertia = properties.localInertia;
+            properties.shape->calculateLocalInertia(properties.mass,localInertia);
+            body->setMassProps(properties.mass, localInertia);
+            //staticProperties.localInertia = btToOgVector3(localInertia);
             body->setLinearFactor(ogToBtVector3(properties.linearFactor));
             body->setAngularFactor(ogToBtVector3(properties.angularFactor));
+            body->setDamping(properties.linearDamping,properties.angularDamping);
             body->setRestitution(properties.restitution);
             body->setCollisionShape(properties.shape.get());
             body->setFriction(properties.friction);
-            body->setRollingFriction(properties.friction);
+            body->setRollingFriction(properties.rollingFriction);
             //body->clearForces();
-            body->applyCentralImpulse(ogToBtVector3(properties.forceApplied));
+
             if(!body->isActive()){
                body->activate();
             }
             rigidBodyComponent->m_staticProperties.untouch();
         }
         if (rigidBodyComponent->m_dynamicProperties.hasChanges()) {
-            btRigidBody* body = rigidBodyComponent->m_body;
+
             const auto& properties = rigidBodyComponent->m_dynamicProperties.stable();
             btTransform transform;
             transform.setIdentity();
@@ -215,7 +239,12 @@ RigidBodyInputSystem::update(int) {
             }
             rigidBodyComponent->m_dynamicProperties.untouch();
         }
-    }
+        if(!body->isActive()){
+               body->activate();
+            }
+        body->applyCentralForce(ogToBtVector3(rigidBodyComponent->m_staticProperties.stable().forceApplied));
+        body->applyDamping(milliseconds/1000);
+        }
     for (EntityId entityId : m_impl->m_entities.removedEntities()) {
         btRigidBody* body = m_impl->m_bodies[entityId];
         m_impl->m_world->removeRigidBody(body);
