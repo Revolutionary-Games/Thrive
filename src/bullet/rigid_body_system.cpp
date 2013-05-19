@@ -50,6 +50,14 @@ RigidBodyComponent_printPosition(
     std::printf("Position: x:%f y:%f z:%f\n",p.x,p.y,p.z);
 }
 
+static void
+RigidBodyComponent_printVelocity(
+    RigidBodyComponent* self
+) {
+    Ogre::Vector3 p = btToOgVector3(self->m_body->getLinearVelocity());
+    std::printf("Velocity: x:%f y:%f z:%f\n",p.x,p.y,p.z);
+}
+
 static RigidBodyComponent::StaticProperties&
 RigidBodyComponent_getWorkingCopy(
     RigidBodyComponent* self
@@ -85,6 +93,7 @@ RigidBodyComponent::luaBindings() {
                 .def_readwrite("comOffset", &StaticProperties::comOffset)
                 .def_readwrite("friction", &StaticProperties::friction)
                 .def_readwrite("rollingFriction", &StaticProperties::rollingFriction)
+                .def_readwrite("forceApplied", &StaticProperties::forceApplied)
         ]
         .def(constructor<>())
         .property("latest", RigidBodyComponent_getLatest)
@@ -92,6 +101,8 @@ RigidBodyComponent::luaBindings() {
         .def("touch", RigidBodyComponent_touch)
         .def("setDynamicProperties", RigidBodyComponent_setDynamicProperties)
         .def("printPosition",RigidBodyComponent_printPosition)
+        .def("printVelocity",RigidBodyComponent_printVelocity)
+
     ;
 }
 
@@ -175,6 +186,11 @@ RigidBodyInputSystem::update(int) {
             body->setCollisionShape(properties.shape.get());
             body->setFriction(properties.friction);
             body->setRollingFriction(properties.friction);
+            //body->clearForces();
+            body->applyCentralImpulse(ogToBtVector3(properties.forceApplied));
+            if(!body->isActive()){
+               body->activate();
+            }
             rigidBodyComponent->m_staticProperties.untouch();
         }
         if (rigidBodyComponent->m_dynamicProperties.hasChanges()) {
@@ -187,6 +203,9 @@ RigidBodyInputSystem::update(int) {
             body->setWorldTransform(transform);
             body->setLinearVelocity(ogToBtVector3(properties.linearVelocity));
             body->setAngularVelocity(ogToBtVector3(properties.angularVelocity));
+            if(!body->isActive()){
+               body->activate();
+            }
             rigidBodyComponent->m_dynamicProperties.untouch();
         }
 
