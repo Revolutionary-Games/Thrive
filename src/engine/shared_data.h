@@ -560,6 +560,7 @@ private:
     ) {
         State& state = State::instance();
         short bufferIndex = state.getBufferIndex(buffer);
+        assert(0 <= bufferIndex && bufferIndex <=2 && "Invalid buffer index. Did you forget to lock the state?");
         return m_buffers[bufferIndex];
     }
 
@@ -569,6 +570,7 @@ private:
     ) const {
         State& state = State::instance();
         short bufferIndex = state.getBufferIndex(buffer);
+        assert(0 <= bufferIndex && bufferIndex <=2 && "Invalid buffer index. Did you forget to lock the state?");
         return m_buffers[bufferIndex];
     }
 
