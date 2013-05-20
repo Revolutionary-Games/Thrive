@@ -1,12 +1,14 @@
 #include "ogre/ogre_engine.h"
 
 #include "game.h"
-#include "ogre/keyboard_system.h"
+#include "ogre/camera_system.h"
 #include "ogre/entity_system.h"
+#include "ogre/keyboard_system.h"
 #include "ogre/light_system.h"
 #include "ogre/render_system.h"
 #include "ogre/scene_node_system.h"
 #include "ogre/sky_system.h"
+#include "ogre/viewport_system.h"
 
 #include <boost/lexical_cast.hpp>
 #include <OgreConfigFile.h>
@@ -33,7 +35,8 @@ using namespace thrive;
 struct OgreEngine::Implementation : public Ogre::WindowEventListener {
 
     Implementation()
-      : m_keyboardSystem(new KeyboardSystem())
+      : m_keyboardSystem(new KeyboardSystem()),
+        m_viewportSystem(new OgreViewportSystem())
     {
     }
 
@@ -74,21 +77,6 @@ struct OgreEngine::Implementation : public Ogre::WindowEventListener {
     }
 
     void
-    setupCamera() {
-        m_camera = m_sceneManager->createCamera("PlayerCam");
-        m_camera->setNearClipDistance(5);
-        m_camera->setFarClipDistance(10000);
-        m_camera->setAutoAspectRatio(true);
-        // Create node
-        m_cameraNode = m_sceneManager->getRootSceneNode()->createChildSceneNode(
-                "MainCameraNode",
-                Ogre::Vector3(0,0,30),
-                Ogre::Quaternion::IDENTITY
-        );
-        m_cameraNode->attachObject(m_camera);
-    }
-
-    void
     setupInputManager() {
         const std::string HANDLE_NAME = "WINDOW";
         size_t windowHandle = 0;
@@ -118,13 +106,6 @@ struct OgreEngine::Implementation : public Ogre::WindowEventListener {
     }
 
     void
-    setupViewport() {
-        Ogre::Viewport* viewport = m_window->addViewport(m_camera);
-        viewport->setBackgroundColour(Ogre::ColourValue(0,0,0));
-        m_camera->setAutoAspectRatio(true);
-    }
-
-    void
     shutdownInputManager() {
         if (not m_inputManager) {
             return;
@@ -133,7 +114,8 @@ struct OgreEngine::Implementation : public Ogre::WindowEventListener {
         m_inputManager = nullptr;
     }
 
-    bool windowClosing(
+    bool 
+    windowClosing(
         Ogre::RenderWindow* window
     ) override {
         if (window == m_window) {
@@ -144,15 +126,13 @@ struct OgreEngine::Implementation : public Ogre::WindowEventListener {
 
     std::unique_ptr<Ogre::Root> m_root;
 
-    Ogre::Camera* m_camera = nullptr;
-
-    Ogre::SceneNode* m_cameraNode = nullptr;
-
     OIS::InputManager* m_inputManager = nullptr;
 
-    std::shared_ptr<KeyboardSystem> m_keyboardSystem = nullptr;
+    std::shared_ptr<KeyboardSystem> m_keyboardSystem;
 
     Ogre::SceneManager* m_sceneManager = nullptr;
+
+    std::shared_ptr<OgreViewportSystem> m_viewportSystem;
 
     Ogre::RenderWindow* m_window = nullptr;
 
@@ -189,8 +169,6 @@ OgreEngine::init(
     Ogre::ResourceGroupManager::getSingleton().initialiseAllResourceGroups();
     // Setup
     m_impl->setupSceneManager();
-    m_impl->setupCamera();
-    m_impl->setupViewport();
     m_impl->setupLighting();
     m_impl->setupInputManager();
     // Create essential systems
@@ -210,6 +188,11 @@ OgreEngine::init(
         std::make_shared<OgreUpdateSceneNodeSystem>()
     );
     this->addSystem(
+        "cameras",
+        0,
+        std::make_shared<OgreCameraSystem>()
+    );
+    this->addSystem(
         "lights",
         0,
         std::make_shared<OgreLightSystem>()
@@ -223,6 +206,11 @@ OgreEngine::init(
         "entities",
         0,
         std::make_shared<OgreEntitySystem>()
+    );
+    this->addSystem(
+        "viewports",
+        50, // Has to come *after* camera system
+        m_impl->m_viewportSystem
     );
     this->addSystem(
         "removeSceneNodes",
@@ -272,16 +260,18 @@ OgreEngine::shutdown() {
 
 void
 OgreEngine::update() {
-    // Lock shared state
-    InputState::instance().lockWorkingCopy();
-    RenderState::instance().lockStable();
+    StateLock<InputState, StateBuffer::WorkingCopy> inputLock;
+    StateLock<RenderState, StateBuffer::Stable> renderLock;
     // Handle events
     Ogre::WindowEventUtilities::messagePump();
     // Update systems
     Engine::update();
-    // Release shared state
-    RenderState::instance().releaseStable();
-    InputState::instance().releaseWorkingCopy();
+}
+
+
+OgreViewportSystem&
+OgreEngine::viewportSystem() {
+    return *(m_impl->m_viewportSystem);
 }
 
 

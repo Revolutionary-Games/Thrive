@@ -157,13 +157,6 @@ enum class StateBuffer {
 };
 
 
-namespace detail {
-    template<ThreadId Writer, ThreadId Reader>
-    struct SharedDataBase {
-        virtual void updateBuffer(short bufferIndex) = 0;
-    };
-}
-
 /**
 * @brief Manages the state transitions
 *
@@ -276,25 +269,6 @@ public:
         else {
             m_workingCopyBuffer = secondOldestBuffer;
         }
-        for (auto sharedData : m_registeredSharedData) {
-            sharedData->updateBuffer(m_workingCopyBuffer);
-        }
-    }
-
-    /**
-    * @brief Registers shared data with this state
-    *
-    * You usually don't have to call this yourself, SharedData does it
-    * for you.
-    *
-    * @param sharedData
-    *   The shared data to register
-    */
-    void
-    registerSharedData(
-        detail::SharedDataBase<Writer, Reader>* sharedData
-    ) {
-        m_registeredSharedData.insert(sharedData);
     }
 
     /**
@@ -369,21 +343,6 @@ public:
         return m_workingCopyFrame;
     }
 
-    /**
-    * @brief Unregisters shared data from this state
-    *
-    * You don't have to call this yourself, SharedData does it for you.
-    *
-    * @param sharedData
-    *   The shared data to unregister
-    */
-    void
-    unregisterSharedData(
-        detail::SharedDataBase<Writer, Reader>* sharedData
-    ) {
-        m_registeredSharedData.erase(sharedData);
-    }
-
 private:
 
     std::array<FrameIndex, 3> m_bufferFrames = {{0, 0, 0}};
@@ -393,8 +352,6 @@ private:
     short m_stableBuffer = -1;
 
     FrameIndex m_stableFrame = 0;
-
-    std::unordered_set<detail::SharedDataBase<Writer, Reader>*> m_registeredSharedData;
 
     short m_workingCopyBuffer = -1;
 
@@ -475,17 +432,17 @@ public:
 * @tparam Reader
 *   The reading thread
 *
-* @tparam copyBuffers
+* @tparam updateWorkingCopy
 *   Whether to overwrite a new working copy with the last frame. If your
 *   writing thread only ever writes to the data structure and doesn't care
 *   about previous values, set this to \c false for improved performance.
 */
 template<
-    typename Data_,
-    ThreadId Writer, ThreadId Reader,
-    bool copyBuffers = true
+    typename Data_, 
+    ThreadId Writer, ThreadId Reader, 
+    bool updateWorkingCopy = true
 >
-class SharedData : public detail::SharedDataBase<Writer, Reader> {
+class SharedData {
 
 public:
 
@@ -517,7 +474,6 @@ public:
         const Args&... args
     ) : m_buffers{{Data{args...}, Data{args...}, Data{args...}}}
     {
-        State::instance().registerSharedData(this);
     }
 
     /**
@@ -525,13 +481,6 @@ public:
     *
     */
     SharedData(const SharedData&) = delete;
-
-    /**
-    * @brief Destructor
-    */
-    ~SharedData() {
-        State::instance().unregisterSharedData(this);
-    }
 
     /**
     * @brief Non-copy-assignable
@@ -591,27 +540,16 @@ public:
     }
 
     /**
-    * @brief Updates a data buffer from the latest data
-    *
-    * @param bufferIndex
-    *   The data buffer index to update
-    */
-    void
-    updateBuffer(
-        short bufferIndex
-    ) override {
-        if (m_lastBufferChanges[bufferIndex] < m_lastTouch) {
-            m_buffers[bufferIndex] = this->latest();
-            m_lastBufferChanges[bufferIndex] = m_lastTouch;
-        }
-    }
-
-    /**
     * @brief Returns the working copy data buffer
     */
     Data&
     workingCopy() {
-        return this->getBuffer(StateBuffer::WorkingCopy);
+        State& state = State::instance();
+        short bufferIndex = state.getBufferIndex(StateBuffer::WorkingCopy);
+        if (updateWorkingCopy) {
+            this->updateBuffer(bufferIndex);
+        }
+        return m_buffers[bufferIndex];
     }
 
 private:
@@ -622,6 +560,7 @@ private:
     ) {
         State& state = State::instance();
         short bufferIndex = state.getBufferIndex(buffer);
+        assert(0 <= bufferIndex && bufferIndex <=2 && "Invalid buffer index. Did you forget to lock the state?");
         return m_buffers[bufferIndex];
     }
 
@@ -631,6 +570,7 @@ private:
     ) const {
         State& state = State::instance();
         short bufferIndex = state.getBufferIndex(buffer);
+        assert(0 <= bufferIndex && bufferIndex <=2 && "Invalid buffer index. Did you forget to lock the state?");
         return m_buffers[bufferIndex];
     }
 
@@ -651,6 +591,22 @@ private:
         State& state = State::instance();
         short bufferIndex = state.getBufferIndex(buffer);
         m_lastBufferChanges[bufferIndex] = lastChange;
+    }
+
+    /**
+    * @brief Updates a data buffer from the latest data
+    *
+    * @param bufferIndex
+    *   The data buffer index to update
+    */
+    void
+    updateBuffer(
+        short bufferIndex
+    ) {
+        if (m_lastBufferChanges[bufferIndex] < m_lastTouch) {
+            m_buffers[bufferIndex] = this->latest();
+            m_lastBufferChanges[bufferIndex] = m_lastTouch;
+        }
     }
 
     std::array<Data, 3> m_buffers;
