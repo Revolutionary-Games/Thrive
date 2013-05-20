@@ -18,6 +18,30 @@ TEST(SharedStateDeathTest, DoubleLockStable) {
 }
 
 
+TEST(SharedStateDeathTest, ForgotToLockStable) {
+    State& state = State::instance();
+    state.reset();
+    RenderData<int> data(1);
+    EXPECT_DEATH(
+        {data.stable();}, 
+        "Invalid buffer index"
+    );
+    state.reset();
+}
+
+
+TEST(SharedStateDeathTest, ForgotToLockWorkingCopy) {
+    State& state = State::instance();
+    state.reset();
+    RenderData<int> data(1);
+    EXPECT_DEATH(
+        {data.workingCopy();}, 
+        "Invalid buffer index"
+    );
+    state.reset();
+}
+
+
 TEST(SharedStateDeathTest, DoubleLockWorkingCopy) {
     State& state = State::instance();
     state.reset();
