@@ -59,14 +59,14 @@ BulletEngine::init(
     m_impl->setupWorld();
     // Create essential systems
     this->addSystem(
-        "updatePhysics",
-        -20,
-        std::make_shared<UpdatePhysicsSystem>()
+        "rigidBodyInputSystem",
+        -10,
+        std::make_shared<RigidBodyInputSystem>()
     );
     this->addSystem(
-        "rigidBodyInputSystem",
+        "updatePhysics",
         0,
-        std::make_shared<RigidBodyInputSystem>()
+        std::make_shared<UpdatePhysicsSystem>()
     );
     this->addSystem(
         "rigidBodyOutputSystem",
