@@ -1,7 +1,5 @@
 local player = Entity("player")
 
-playerPhysicsTransform = PhysicsTransformComponent()
-player:addComponent(playerPhysicsTransform)
 playerRigidBody = RigidBodyComponent()
 player:addComponent(playerRigidBody)
 

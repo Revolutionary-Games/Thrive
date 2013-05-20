@@ -1,7 +1,5 @@
 #include "scripting/script_initializer.h"
 
-#include "common/movement.h"
-#include "common/transform.h"
 #include "engine/component.h"
 #include "engine/entity.h"
 #include "ogre/camera_system.h"
@@ -36,8 +34,6 @@ thrive::initializeLua(
         // Base classes
         Component::luaBindings(),
         Entity::luaBindings(),
-        // Common components
-        PhysicsTransformComponent::luaBindings(),
         // Script Components
         OnUpdateComponent::luaBindings(),
         // Rendering Components

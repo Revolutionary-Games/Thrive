@@ -1,6 +1,6 @@
 #include "scripting/script_engine.h"
 
-#include "common/movement.h"
+#include "common/bullet_to_ogre_system.h"
 #include "engine/shared_data.h"
 #include "game.h"
 #include "ogre/ogre_engine.h"
@@ -108,15 +108,10 @@ ScriptEngine::init(
         std::make_shared<OnKeySystem>()
     );
     this->addSystem(
-        "transformUpdate",
+        "bulletToOgre",
         0,
-        std::make_shared<TransformUpdateSystem>()
+        std::make_shared<BulletToOgreSystem>()
     );
-    /*this->addSystem(
-        "movement",
-        0,
-        std::make_shared<MovementSystem>()
-    );*/
     m_impl->loadScripts("../scripts/");
 }
 
