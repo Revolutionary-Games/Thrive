@@ -37,8 +37,6 @@ thrive::initializeLua(
         Component::luaBindings(),
         Entity::luaBindings(),
         // Common components
-        MovableComponent::luaBindings(),
-        TransformComponent::luaBindings(),
         PhysicsTransformComponent::luaBindings(),
         // Script Components
         OnUpdateComponent::luaBindings(),
