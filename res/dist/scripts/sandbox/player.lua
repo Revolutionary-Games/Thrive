@@ -25,10 +25,6 @@ player:addComponent(playerInput)
 MOVEMENT_SPEED = 20
 ---[[
 playerInput.onPressed = function (entityId, event)
-    --playerPhysicsTransform:printPosition()
-    playerRigidBody:printPosition()
-    playerRigidBody:printVelocity()
-    playerRigidBody:printForce()
 
     if event.key == KeyEvent.KC_W then
         playerRigidBody:addToForce(Vector3(0, MOVEMENT_SPEED, 0));

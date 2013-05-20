@@ -31,37 +31,12 @@ RigidBodyComponent_setDynamicProperties(
     Ogre::Vector3 linearVelocity,
     Ogre::Vector3 angularVelocity
 ) {
-    self->m_dynamicProperties.workingCopy().position = position;
-    self->m_dynamicProperties.workingCopy().rotation = rotation;
-    self->m_dynamicProperties.workingCopy().linearVelocity = linearVelocity;
-    self->m_dynamicProperties.workingCopy().angularVelocity = angularVelocity;
-    return self->m_dynamicProperties.touch();
-}
-
-static void
-RigidBodyComponent_printPosition(
-    RigidBodyComponent* self
-) {
-    btTransform t = btTransform::getIdentity();
-    self->m_body->getMotionState()->getWorldTransform(t);
-    Ogre::Vector3 p = btToOgVector3(t.getOrigin());
-    std::printf("Position: x:%f y:%f z:%f\n",p.x,p.y,p.z);
-}
-
-static void
-RigidBodyComponent_printVelocity(
-    RigidBodyComponent* self
-) {
-    Ogre::Vector3 p = btToOgVector3(self->m_body->getLinearVelocity());
-    std::printf("Velocity: x:%f y:%f z:%f\n",p.x,p.y,p.z);
-}
-
-static void
-RigidBodyComponent_printForce(
-    RigidBodyComponent* self
-) {
-    Ogre::Vector3 p = self->m_staticProperties.workingCopy().forceApplied;
-    std::printf("Force: x:%f y:%f z:%f\n",p.x,p.y,p.z);
+    auto& properties = self->m_dynamicProperties.workingCopy();
+    properties.position = position;
+    properties.rotation = rotation;
+    properties.linearVelocity = linearVelocity;
+    properties.angularVelocity = angularVelocity;
+    self->m_dynamicProperties.touch();
 }
 
 static void
@@ -96,10 +71,6 @@ RigidBodyComponent::luaBindings() {
             def("TYPE_ID", &RigidBodyComponent::TYPE_ID),
             class_<StaticProperties>("StaticProperties")
                 //.def_readwrite("shape", &StaticProperties::shape)
-                /*.def_readwrite("linearVelocity", &Properties::linearVelocity)
-                .def_readwrite("position", &Properties::position)
-                .def_readwrite("rotation", &Properties::rotation)
-                .def_readwrite("angularVelocity", &Properties::angularVelocity)*/
                 .def_readwrite("restitution", &StaticProperties::restitution)
                 .def_readwrite("linearFactor", &StaticProperties::linearFactor)
                 .def_readwrite("angularFactor", &StaticProperties::angularFactor)
@@ -114,10 +85,7 @@ RigidBodyComponent::luaBindings() {
         .property("workingCopy", RigidBodyComponent_getWorkingCopy)
         .def("touch", RigidBodyComponent_touch)
         .def("setDynamicProperties", RigidBodyComponent_setDynamicProperties)
-        .def("printPosition",RigidBodyComponent_printPosition)
-        .def("printVelocity",RigidBodyComponent_printVelocity)
         .def("addToForce",RigidBodyComponent_addToForce)
-        .def("printForce",RigidBodyComponent_printForce)
     ;
 }
 
