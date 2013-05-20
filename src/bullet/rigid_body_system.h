@@ -23,7 +23,7 @@ namespace thrive {
 /**
 * @brief A component for a rigid body
 */
-class RigidBodyComponent : public Component {
+class RigidBodyComponent : public Component, public btMotionState {
     COMPONENT(RigidBody)
 
 public:
@@ -146,13 +146,20 @@ public:
     static luabind::scope
     luaBindings();
 
+    void
+    getWorldTransform(
+        btTransform& transform
+    ) const override;
+
+    void
+    setWorldTransform(
+        const btTransform& transform
+    ) override;
+
     /**
     * @brief Internal object, dont use this directly
     */
     btRigidBody* m_body = nullptr;
-
-    std::unique_ptr<btMotionState>
-    m_motionState;
 
     /**
     * @brief Shared properties
@@ -161,7 +168,10 @@ public:
     m_staticProperties;
 
     PhysicsInputData<DynamicProperties>
-    m_dynamicProperties;
+    m_dynamicInputProperties;
+
+    PhysicsOutputData<DynamicProperties>
+    m_dynamicOutputProperties;
 };
 
 
