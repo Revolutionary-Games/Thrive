@@ -1,10 +1,10 @@
 #include "bullet/rigid_body_system.h"
 
 #include "bullet/bullet_engine.h"
+#include "bullet/bullet_ogre_conversion.h"
 #include "engine/component_registry.h"
 #include "engine/entity_filter.h"
 #include "scripting/luabind.h"
-#include "util/bullet_ogre_math.h"
 
 #include <iostream>
 
@@ -95,10 +95,10 @@ RigidBodyComponent::getWorldTransform(
 ) const {
     const auto& properties = m_dynamicInputProperties.stable();
     transform.setOrigin(
-        ogToBtVector3(properties.position)
+        ogreToBullet(properties.position)
     );
     transform.setRotation(
-        ogToBtQuaternion(properties.rotation)
+        ogreToBullet(properties.rotation)
     );
         
 }
@@ -109,8 +109,8 @@ RigidBodyComponent::setWorldTransform(
     const btTransform& transform
 ) {
     auto& properties = m_dynamicOutputProperties.workingCopy();
-    properties.position = btToOgVector3(transform.getOrigin());
-    properties.rotation = btToOgQuaternion(transform.getRotation());
+    properties.position = bulletToOgre(transform.getOrigin());
+    properties.rotation = bulletToOgre(transform.getRotation());
     m_dynamicOutputProperties.touch();
 }
 
@@ -191,8 +191,8 @@ RigidBodyInputSystem::update(int milliseconds) {
             btVector3 localInertia = properties.localInertia;
             properties.shape->calculateLocalInertia(properties.mass,localInertia);
             body->setMassProps(properties.mass, localInertia);
-            body->setLinearFactor(ogToBtVector3(properties.linearFactor));
-            body->setAngularFactor(ogToBtVector3(properties.angularFactor));
+            body->setLinearFactor(ogreToBullet(properties.linearFactor));
+            body->setAngularFactor(ogreToBullet(properties.angularFactor));
             body->setDamping(properties.linearDamping,properties.angularDamping);
             body->setRestitution(properties.restitution);
             body->setCollisionShape(properties.shape.get());
@@ -207,11 +207,11 @@ RigidBodyInputSystem::update(int milliseconds) {
             const auto& properties = rigidBodyComponent->m_dynamicInputProperties.stable();
             btTransform transform;
             transform.setIdentity();
-            transform.setOrigin(ogToBtVector3(properties.position));
-            transform.setRotation(ogToBtQuaternion(properties.rotation));
+            transform.setOrigin(ogreToBullet(properties.position));
+            transform.setRotation(ogreToBullet(properties.rotation));
             body->setWorldTransform(transform);
-            body->setLinearVelocity(ogToBtVector3(properties.linearVelocity));
-            body->setAngularVelocity(ogToBtVector3(properties.angularVelocity));
+            body->setLinearVelocity(ogreToBullet(properties.linearVelocity));
+            body->setAngularVelocity(ogreToBullet(properties.angularVelocity));
             if(!body->isActive()){
                body->activate();
             }
@@ -220,7 +220,7 @@ RigidBodyInputSystem::update(int milliseconds) {
         if(!body->isActive()){
            body->activate();
         }
-        body->applyCentralForce(ogToBtVector3(rigidBodyComponent->m_staticProperties.stable().forceApplied));
+        body->applyCentralForce(ogreToBullet(rigidBodyComponent->m_staticProperties.stable().forceApplied));
         body->applyDamping(milliseconds/1000);
         }
     for (EntityId entityId : m_impl->m_entities.removedEntities()) {
@@ -275,8 +275,8 @@ RigidBodyOutputSystem::update(int) {
         btRigidBody* rigidBody = rigidBodyComponent->m_body;
         auto& properties = rigidBodyComponent->m_dynamicOutputProperties.workingCopy();
         if (rigidBody->isActive()) {
-            properties.linearVelocity = btToOgVector3(rigidBody->getLinearVelocity());
-            properties.angularVelocity = btToOgVector3(rigidBody->getAngularVelocity());
+            properties.linearVelocity = bulletToOgre(rigidBody->getLinearVelocity());
+            properties.angularVelocity = bulletToOgre(rigidBody->getAngularVelocity());
             rigidBodyComponent->m_dynamicOutputProperties.touch();
         }
         else if (
