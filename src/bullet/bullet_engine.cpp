@@ -5,7 +5,7 @@
 #include "bullet/update_physics_system.h"
 #include "bullet/rigid_body_system.h"
 
-#include <iostream>
+#include <btBulletDynamicsCommon.h>
 
 using namespace thrive;
 
@@ -58,7 +58,6 @@ BulletEngine::init(
     Engine::init(entityManager);
     m_impl->setupWorld();
     // Create essential systems
-
     this->addSystem(
         "updatePhysics",
         -20,

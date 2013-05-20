@@ -3,20 +3,20 @@
 #include "engine/component.h"
 #include "engine/shared_data.h"
 #include "engine/system.h"
-#include "util/bullet_ogre_math.h"
 
-#include <memory>
 #include <btBulletCollisionCommon.h>
 #include <btBulletDynamicsCommon.h>
-
-#include <OgreVector3.h>
+#include <memory>
 #include <OgreQuaternion.h>
+#include <OgreVector3.h>
 
 #include <iostream>
 
 namespace luabind {
 class scope;
 }
+
+class btCollisionShape;
 
 namespace thrive {
 
@@ -38,7 +38,6 @@ public:
         */
         //btCollisionShape* s = new btSphereShape(1);
         std::shared_ptr<btCollisionShape> shape {new btSphereShape(1)};
-
 
         /**
         * @brief The restitution factor
