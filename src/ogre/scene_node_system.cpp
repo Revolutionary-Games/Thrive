@@ -10,15 +10,46 @@
 
 using namespace thrive;
 
+static void
+OgreSceneNodeComponent_touch(
+    OgreSceneNodeComponent* self
+) {
+    return self->m_properties.touch();
+}
+
+
+static OgreSceneNodeComponent::Properties&
+OgreSceneNodeComponent_getWorkingCopy(
+    OgreSceneNodeComponent* self
+) {
+    return self->m_properties.workingCopy();
+}
+
+
+static const OgreSceneNodeComponent::Properties&
+OgreSceneNodeComponent_getLatest(
+    OgreSceneNodeComponent* self
+) {
+    return self->m_properties.latest();
+}
+
+
 luabind::scope
 OgreSceneNodeComponent::luaBindings() {
     using namespace luabind;
     return class_<OgreSceneNodeComponent, Component, std::shared_ptr<Component>>("OgreSceneNodeComponent")
         .scope [
             def("TYPE_NAME", &OgreSceneNodeComponent::TYPE_NAME),
-            def("TYPE_ID", &OgreSceneNodeComponent::TYPE_ID)
+            def("TYPE_ID", &OgreSceneNodeComponent::TYPE_ID),
+            class_<Properties>("Properties")
+                .def_readwrite("orientation", &Properties::orientation)
+                .def_readwrite("position", &Properties::position)
+                .def_readwrite("scale", &Properties::scale)
         ]
         .def(constructor<>())
+        .property("latest", OgreSceneNodeComponent_getLatest)
+        .property("workingCopy", OgreSceneNodeComponent_getWorkingCopy)
+        .def("touch", OgreSceneNodeComponent_touch)
     ;
 }
 
@@ -148,8 +179,7 @@ OgreRemoveSceneNodeSystem::update(int) {
 struct OgreUpdateSceneNodeSystem::Implementation {
 
     EntityFilter<
-        OgreSceneNodeComponent,
-        TransformComponent
+        OgreSceneNodeComponent
     > m_entities;
 
 };
@@ -186,20 +216,20 @@ OgreUpdateSceneNodeSystem::shutdown() {
 void
 OgreUpdateSceneNodeSystem::update(int) {
     for (const auto& entry : m_impl->m_entities) {
-        TransformComponent* transformComponent = std::get<1>(entry.second);
-        if (transformComponent->m_properties.hasChanges()) {
-            Ogre::SceneNode* sceneNode = std::get<0>(entry.second)->m_sceneNode;
-            const auto& transformProperties = transformComponent->m_properties.stable();
+        OgreSceneNodeComponent* sceneNodeComponent = std::get<0>(entry.second);
+        if (sceneNodeComponent->m_properties.hasChanges()) {
+            Ogre::SceneNode* sceneNode = sceneNodeComponent->m_sceneNode;
+            const auto& properties = sceneNodeComponent->m_properties.stable();
             sceneNode->setOrientation(
-                transformProperties.orientation
+                properties.orientation
             );
             sceneNode->setPosition(
-                transformProperties.position
+                properties.position
             );
             sceneNode->setScale(
-                transformProperties.scale
+                properties.scale
             );
-            transformComponent->m_properties.untouch();
+            sceneNodeComponent->m_properties.untouch();
         }
     }
 }

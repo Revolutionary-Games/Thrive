@@ -5,6 +5,8 @@
 #include "engine/system.h"
 
 #include <memory>
+#include <OgreVector3.h>
+#include <OgreQuaternion.h>
 
 
 #include <iostream>
@@ -29,15 +31,56 @@ class OgreSceneNodeComponent : public Component {
 public:
 
     /**
+    * @brief Properties that are shared across threads
+    */
+    struct Properties {
+        /**
+        * @brief Rotation
+        *
+        * Defaults to Ogre::Quaternion::IDENTITY.
+        */
+        Ogre::Quaternion orientation = Ogre::Quaternion::IDENTITY;
+
+        /**
+        * @brief Position
+        *
+        * Defaults to origin (0,0,0).
+        */
+        Ogre::Vector3 position = {0, 0, 0};
+
+        /**
+        * @brief Scale
+        *
+        * Defaults to (1, 1, 1).
+        */
+        Ogre::Vector3 scale = {1, 1, 1};
+
+        /**
+        * @brief Velocity
+        *
+        * Defaults to (0,0,0).
+        */
+        Ogre::Vector3 velocity = {0,0,0};
+    };
+
+    /**
     * @brief Lua bindings
     *
-    * Doesn't expose anything special, but this component is needed for many
-    * systems.
+    * This component exposes the following \ref shared_data_lua shared properties:
+    * \arg \c orientation (Ogre.Quaternion): The component's orientation
+    * \arg \c position (Ogre.Vector3): The component's position
+    * \arg \c scale (Ogre.Vector3): The component's scale
     *
-    * @return 
+    * @return
     */
     static luabind::scope
     luaBindings();
+
+    /**
+    * @brief Shared properties
+    */
+    RenderData<Properties>
+    m_properties;
 
     /**
     * @brief Pointer to the underlying Ogre::SceneNode
