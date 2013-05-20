@@ -1,15 +1,13 @@
 #include "bullet/rigid_body_system.h"
 
+#include "bullet/bullet_engine.h"
+#include "common/transform.h"
 #include "engine/component_registry.h"
 #include "engine/entity_filter.h"
-#include "bullet/bullet_engine.h"
 #include "scripting/luabind.h"
-#include "common/transform.h"
+#include "util/bullet_ogre_math.h"
 
 #include <iostream>
-
-#include <OgreVector3.h>
-#include <OgreQuaternion.h>
 
 using namespace thrive;
 

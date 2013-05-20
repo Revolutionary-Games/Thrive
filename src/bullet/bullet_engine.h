@@ -1,10 +1,10 @@
 #pragma once
 
 #include "engine/engine.h"
-#include <btBulletDynamicsCommon.h>
 
 #include <memory>
 
+class btDiscreteDynamicsWorld;
 
 namespace thrive {
 
