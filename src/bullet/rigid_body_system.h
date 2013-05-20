@@ -152,6 +152,9 @@ public:
     */
     btRigidBody* m_body = nullptr;
 
+    std::unique_ptr<btMotionState>
+    m_motionState;
+
     /**
     * @brief Shared properties
     */

@@ -136,7 +136,7 @@ struct RigidBodyInputSystem::Implementation {
         RigidBodyComponent
     > m_entities = {true};
 
-    std::unordered_map<EntityId, btRigidBody*> m_bodies;
+    std::unordered_map<EntityId, std::unique_ptr<btRigidBody>> m_bodies;
 
     btDiscreteDynamicsWorld* m_world = nullptr;
 
@@ -180,26 +180,26 @@ RigidBodyInputSystem::update(int milliseconds) {
         RigidBodyComponent* rigidBodyComponent = std::get<0>(added.second);
         const auto& dynamicProperties = rigidBodyComponent->m_dynamicProperties.stable();
         const auto& staticProperties = rigidBodyComponent->m_staticProperties.stable();
-        btDefaultMotionState* motionState = new btDefaultMotionState(
+        rigidBodyComponent->m_motionState.reset(new btDefaultMotionState(
             btTransform(
                 ogToBtQuaternion(dynamicProperties.rotation),
                 ogToBtVector3(dynamicProperties.position)
             ),
             staticProperties.comOffset
-        );
+        ));
         btVector3 localInertia = staticProperties.localInertia;
         staticProperties.shape->calculateLocalInertia(staticProperties.mass,localInertia);
         //staticProperties.localInertia = btToOgVector3(localInertia);
         btRigidBody::btRigidBodyConstructionInfo rigidBodyCI(
             staticProperties.mass,
-            motionState,
+            rigidBodyComponent->m_motionState.get(),
             staticProperties.shape.get(),
             localInertia
         );
-        btRigidBody* rigidBody = new btRigidBody(rigidBodyCI);
-        rigidBodyComponent->m_body = rigidBody;
-        m_impl->m_bodies[entityId] = rigidBody;
-        m_impl->m_world->addRigidBody(rigidBody);
+        std::unique_ptr<btRigidBody> rigidBody(new btRigidBody(rigidBodyCI));
+        rigidBodyComponent->m_body = rigidBody.get();
+        m_impl->m_world->addRigidBody(rigidBody.get());
+        m_impl->m_bodies[entityId] = std::move(rigidBody);
     }
     for (const auto& value : m_impl->m_entities) {
         RigidBodyComponent* rigidBodyComponent = std::get<0>(value.second);
@@ -246,7 +246,7 @@ RigidBodyInputSystem::update(int milliseconds) {
         body->applyDamping(milliseconds/1000);
         }
     for (EntityId entityId : m_impl->m_entities.removedEntities()) {
-        btRigidBody* body = m_impl->m_bodies[entityId];
+        btRigidBody* body = m_impl->m_bodies[entityId].get();
         m_impl->m_world->removeRigidBody(body);
         m_impl->m_bodies.erase(entityId);
     }
