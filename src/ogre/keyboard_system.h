@@ -5,6 +5,10 @@
 
 #include <OISKeyboard.h>
 
+namespace luabind {
+class scope;
+}
+
 namespace thrive {
 
 /**
@@ -46,6 +50,9 @@ public:
 
     };
 
+    static luabind::scope
+    luaBindings();
+
     /**
     * @brief Constructor
     */
@@ -55,6 +62,12 @@ public:
     * @brief Destructor
     */
     ~KeyboardSystem();
+
+    /**
+    * @brief A shared queue used for queueing up the key events
+    */
+    InputQueue<KeyEvent>&
+    eventQueue();
 
     /**
     * @brief Initializes the system
@@ -67,11 +80,10 @@ public:
         Engine* engine
     ) override;
 
-    /**
-    * @brief A shared queue used for queueing up the key events
-    */
-    InputQueue<KeyEvent>&
-    eventQueue();
+    bool
+    isKeyDown(
+        OIS::KeyCode key
+    ) const;
 
     /**
     * @brief Shuts down the system
