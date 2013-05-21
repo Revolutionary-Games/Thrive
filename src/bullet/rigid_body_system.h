@@ -68,11 +68,6 @@ public:
         btScalar mass = 1.f;
 
         /**
-        * @brief The offset of the mass
-        */
-        btTransform comOffset = btTransform::getIdentity();
-
-        /**
         * @brief The friction of the object
         */
         btScalar friction = 0.f;
@@ -137,7 +132,6 @@ public:
     * - \c linearFactor (btVector3): Properties::linearFactor
     * - \c angularFactor (btVector3): Properties::angularFactor
     * - \c mass (btScalar): Properties::mass
-    * - \c comOffset (btTransform): Properties::comOffset
     * - \c friction (btScalar): Properties::friction
     * - \c rollingFriction (btScalar): Properties::rollingFriction
     *
