@@ -75,7 +75,7 @@ public:
         /**
         * @brief The friction of the object
         */
-        btScalar linearDamping = 0.1f;
+        btScalar linearDamping = 0.0f;
         btScalar angularDamping = 1.f;
 
         /**
@@ -166,6 +166,10 @@ public:
 
     PhysicsOutputData<DynamicProperties>
     m_dynamicOutputProperties;
+
+    PhysicsInputQueue<
+        std::pair<Ogre::Vector3, Ogre::Vector3>
+    > m_impulseQueue;
 };
 
 

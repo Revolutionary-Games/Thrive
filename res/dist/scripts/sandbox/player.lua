@@ -1,6 +1,8 @@
 local player = Entity("player")
 
 playerRigidBody = RigidBodyComponent()
+playerRigidBody.workingCopy.friction = 0.2
+playerRigidBody:touch()
 player:addComponent(playerRigidBody)
 
 playerSceneNode = OgreSceneNodeComponent()
@@ -18,33 +20,23 @@ playerRigidBody:setDynamicProperties(
 	Vector3(0,0,0))
 --]]
 
-playerInput = OnKeyComponent()
-player:addComponent(playerInput)
-MOVEMENT_SPEED = 20
----[[
-playerInput.onPressed = function (entityId, event)
-
-    if event.key == KeyEvent.KC_W then
-        playerRigidBody:addToForce(Vector3(0, MOVEMENT_SPEED, 0));
-    elseif event.key == KeyEvent.KC_S then
-        playerRigidBody:addToForce(Vector3(0, -MOVEMENT_SPEED, 0));
-    elseif event.key == KeyEvent.KC_A then
-        playerRigidBody:addToForce(Vector3(-MOVEMENT_SPEED, 0, 0));
-    elseif event.key == KeyEvent.KC_D then
-        playerRigidBody:addToForce(Vector3(MOVEMENT_SPEED, 0, 0));
+ACCELERATION = 0.01
+player.onUpdate = OnUpdateComponent()
+player:addComponent(player.onUpdate)
+player.onUpdate.callback = function(entityId, milliseconds)
+    impulse = Vector3(0, 0, 0)
+    if (Keyboard:isKeyDown(KeyboardSystem.KC_W)) then
+        impulse = impulse + Vector3(0, 1, 0)
     end
-    --playerRigidBody:touch()
-end
-
-playerInput.onReleased = function (entityId, event)
-    if event.key == KeyEvent.KC_W then
-        playerRigidBody:addToForce(Vector3(0, -MOVEMENT_SPEED, 0));
-    elseif event.key == KeyEvent.KC_S then
-        playerRigidBody:addToForce(Vector3(0,MOVEMENT_SPEED, 0));
-    elseif event.key == KeyEvent.KC_A then
-        playerRigidBody:addToForce(Vector3(MOVEMENT_SPEED, 0, 0));
-    elseif event.key == KeyEvent.KC_D then
-        playerRigidBody:addToForce(Vector3(-MOVEMENT_SPEED, 0, 0));
+    if (Keyboard:isKeyDown(KeyboardSystem.KC_S)) then
+        impulse = impulse + Vector3(0, -1, 0)
     end
+    if (Keyboard:isKeyDown(KeyboardSystem.KC_A)) then
+        impulse = impulse + Vector3(-1, 0, 0)
+    end
+    if (Keyboard:isKeyDown(KeyboardSystem.KC_D)) then
+        impulse = impulse + Vector3(1, 0, 0)
+    end
+    impulse = impulse * ACCELERATION * milliseconds
+    playerRigidBody:applyCentralImpulse(impulse);
 end
---]]
