@@ -1,4 +1,6 @@
 add_sources(
+    ${CMAKE_CURRENT_SOURCE_DIR}/camera_system.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/camera_system.h
     ${CMAKE_CURRENT_SOURCE_DIR}/entity_system.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/entity_system.h
     ${CMAKE_CURRENT_SOURCE_DIR}/keyboard_system.cpp
@@ -17,6 +19,8 @@ add_sources(
     ${CMAKE_CURRENT_SOURCE_DIR}/script_bindings.h
     ${CMAKE_CURRENT_SOURCE_DIR}/sky_system.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/sky_system.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/viewport_system.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/viewport_system.h
 )
 
 add_test_sources(

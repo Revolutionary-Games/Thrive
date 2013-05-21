@@ -1,15 +1,15 @@
 #include "scripting/script_initializer.h"
 
-#include "common/movement.h"
-#include "common/transform.h"
 #include "engine/component.h"
 #include "engine/entity.h"
-#include "ogre/on_key.h"
+#include "ogre/camera_system.h"
 #include "ogre/entity_system.h"
 #include "ogre/light_system.h"
+#include "ogre/on_key.h"
 #include "ogre/scene_node_system.h"
 #include "ogre/script_bindings.h"
 #include "ogre/sky_system.h"
+#include "ogre/viewport_system.h"
 #include "scripting/luabind.h"
 #include "scripting/on_update.h"
 #include "bullet/rigid_body_system.h"
@@ -34,19 +34,18 @@ thrive::initializeLua(
         // Base classes
         Component::luaBindings(),
         Entity::luaBindings(),
-        // Common components
-        MovableComponent::luaBindings(),
-        TransformComponent::luaBindings(),
-        PhysicsTransformComponent::luaBindings(),
         // Script Components
         OnUpdateComponent::luaBindings(),
         // Rendering Components
         OgreBindings::luaBindings(),
         OnKeyComponent::luaBindings(),
-        OgreLightComponent::luaBindings(),
+        OgreCameraComponent::luaBindings(),
         OgreEntityComponent::luaBindings(),
+        OgreLightComponent::luaBindings(),
         OgreSceneNodeComponent::luaBindings(),
         SkyPlaneComponent::luaBindings(),
+        OgreViewport::luaBindings(),
+        OgreViewportSystem::luaBindings(),
         // Physics Components
         RigidBodyComponent::luaBindings()
     ];

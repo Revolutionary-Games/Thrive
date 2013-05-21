@@ -1,10 +1,10 @@
 #pragma once
 
 #include "engine/engine.h"
-#include <btBulletDynamicsCommon.h>
 
 #include <memory>
 
+class btDiscreteDynamicsWorld;
 
 namespace thrive {
 
@@ -59,23 +59,6 @@ public:
     */
     btDiscreteDynamicsWorld*
     world() const;
-
-
-    btSequentialImpulseConstraintSolver*
-    solver() const;
-
-
-    btCollisionDispatcher*
-    dispatcher() const;
-
-
-    btDefaultCollisionConfiguration*
-    collisionConfiguration() const;
-
-
-    btBroadphaseInterface*
-    broadphase() const;
-
 
 private:
 

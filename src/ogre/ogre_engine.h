@@ -8,6 +8,7 @@ namespace Ogre {
     class RenderWindow;
     class Root;
     class SceneManager;
+    class Viewport;
 }
 
 namespace OIS {
@@ -17,6 +18,7 @@ namespace OIS {
 namespace thrive {
 
 class KeyboardSystem;
+class OgreViewportSystem;
 
 /**
 * @brief Graphics engine
@@ -87,6 +89,12 @@ public:
     */
     void
     update() override;
+
+    /**
+    * @brief The viewport system
+    */
+    OgreViewportSystem&
+    viewportSystem();
 
     /**
     * @brief The render window

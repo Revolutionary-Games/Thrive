@@ -3,14 +3,12 @@
 #include "engine/component.h"
 #include "engine/shared_data.h"
 #include "engine/system.h"
-#include "util/bullet_ogre_math.h"
 
-#include <memory>
 #include <btBulletCollisionCommon.h>
 #include <btBulletDynamicsCommon.h>
-
-#include <OgreVector3.h>
+#include <memory>
 #include <OgreQuaternion.h>
+#include <OgreVector3.h>
 
 #include <iostream>
 
@@ -18,12 +16,14 @@ namespace luabind {
 class scope;
 }
 
+class btCollisionShape;
+
 namespace thrive {
 
 /**
 * @brief A component for a rigid body
 */
-class RigidBodyComponent : public Component {
+class RigidBodyComponent : public Component, public btMotionState {
     COMPONENT(RigidBody)
 
 public:
@@ -38,7 +38,6 @@ public:
         */
         //btCollisionShape* s = new btSphereShape(1);
         std::shared_ptr<btCollisionShape> shape {new btSphereShape(1)};
-
 
         /**
         * @brief The restitution factor
@@ -147,6 +146,16 @@ public:
     static luabind::scope
     luaBindings();
 
+    void
+    getWorldTransform(
+        btTransform& transform
+    ) const override;
+
+    void
+    setWorldTransform(
+        const btTransform& transform
+    ) override;
+
     /**
     * @brief Internal object, dont use this directly
     */
@@ -159,7 +168,10 @@ public:
     m_staticProperties;
 
     PhysicsInputData<DynamicProperties>
-    m_dynamicProperties;
+    m_dynamicInputProperties;
+
+    PhysicsOutputData<DynamicProperties>
+    m_dynamicOutputProperties;
 };
 
 
