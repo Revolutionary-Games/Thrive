@@ -5,43 +5,39 @@
 #include "bullet/update_physics_system.h"
 #include "bullet/rigid_body_system.h"
 
-#include <iostream>
+#include <btBulletDynamicsCommon.h>
 
 using namespace thrive;
 
 struct BulletEngine::Implementation{
 
     void
-    setupBroadphase() {
-        m_broadphase = new btDbvtBroadphase();
-    }
-
-    void
-    setupColisions() {
-        m_collisionConfiguration = new btDefaultCollisionConfiguration();
-        m_dispatcher = new btCollisionDispatcher(m_collisionConfiguration);
-    }
-
-    void
-    setupSolver() {
-        m_solver = new btSequentialImpulseConstraintSolver;
-    }
-
-    void
     setupWorld() {
-        m_world.reset(new btDiscreteDynamicsWorld(m_dispatcher,m_broadphase,m_solver,m_collisionConfiguration));
+        m_collisionConfiguration.reset(new btDefaultCollisionConfiguration());
+        m_dispatcher.reset(new btCollisionDispatcher(
+            m_collisionConfiguration.get()
+        ));
+        m_broadphase.reset(new btDbvtBroadphase());
+        m_solver.reset(new btSequentialImpulseConstraintSolver());
+        m_world.reset(new btDiscreteDynamicsWorld(
+            m_dispatcher.get(),
+            m_broadphase.get(),
+            m_solver.get(),
+            m_collisionConfiguration.get()
+        ));
         m_world->setGravity(btVector3(0,0,0));
     }
 
+    std::unique_ptr<btBroadphaseInterface> m_broadphase;
+
+    std::unique_ptr<btCollisionConfiguration> m_collisionConfiguration;
+
+    std::unique_ptr<btDispatcher> m_dispatcher;
+
+    std::unique_ptr<btConstraintSolver> m_solver;
+
     std::unique_ptr<btDiscreteDynamicsWorld> m_world;
 
-    btSequentialImpulseConstraintSolver* m_solver = nullptr;
-
-    btCollisionDispatcher* m_dispatcher = nullptr;
-
-    btDefaultCollisionConfiguration* m_collisionConfiguration = nullptr;
-
-    btBroadphaseInterface* m_broadphase = nullptr;
 };
 
 
@@ -60,21 +56,17 @@ BulletEngine::init(
     EntityManager* entityManager
 ) {
     Engine::init(entityManager);
-    m_impl->setupBroadphase();
-    m_impl->setupColisions();
-    m_impl->setupSolver();
     m_impl->setupWorld();
     // Create essential systems
-
-    this->addSystem(
-        "updatePhysics",
-        -20,
-        std::make_shared<UpdatePhysicsSystem>()
-    );
     this->addSystem(
         "rigidBodyInputSystem",
-        0,
+        -10,
         std::make_shared<RigidBodyInputSystem>()
+    );
+    this->addSystem(
+        "updatePhysics",
+        0,
+        std::make_shared<UpdatePhysicsSystem>()
     );
     this->addSystem(
         "rigidBodyOutputSystem",
@@ -105,25 +97,5 @@ BulletEngine::update() {
 btDiscreteDynamicsWorld*
 BulletEngine::world() const {
     return m_impl->m_world.get();
-}
-
-btSequentialImpulseConstraintSolver*
-BulletEngine::solver() const {
-    return m_impl->m_solver;
-}
-
-btCollisionDispatcher*
-BulletEngine::dispatcher() const {
-    return m_impl->m_dispatcher;
-}
-
-btDefaultCollisionConfiguration*
-BulletEngine::collisionConfiguration() const {
-    return m_impl->m_collisionConfiguration;
-}
-
-btBroadphaseInterface*
-BulletEngine::broadphase() const {
-    return m_impl->m_broadphase;
 }
 

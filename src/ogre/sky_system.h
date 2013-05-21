@@ -8,9 +8,6 @@
 #include <OgrePlane.h>
 #include <OgreResourceGroupManager.h>
 
-
-#include <iostream>
-
 namespace luabind {
 class scope;
 }

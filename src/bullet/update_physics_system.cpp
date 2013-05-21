@@ -3,6 +3,7 @@
 #include "bullet/bullet_engine.h"
 
 #include <assert.h>
+#include <btBulletDynamicsCommon.h>
 
 
 using namespace thrive;
