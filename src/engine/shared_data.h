@@ -763,7 +763,7 @@ template<typename Data>
 using InputQueue = SharedQueue<Data, ThreadId::Render, ThreadId::Script>;
 
 ////////////////////////////////////////////////////////////////////////////////
-// PhysicUpdate State (Physics => Script)
+// PhysicOutputState (Physics => Script)
 ////////////////////////////////////////////////////////////////////////////////
 extern template class SharedState<ThreadId::Physics, ThreadId::Script>;
 using PhysicsOutputState = SharedState<ThreadId::Physics, ThreadId::Script>;

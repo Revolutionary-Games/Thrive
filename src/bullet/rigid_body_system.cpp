@@ -39,11 +39,24 @@ RigidBodyComponent_setDynamicProperties(
 }
 
 static void
-RigidBodyComponent_addToForce(
+RigidBodyComponent_applyCentralImpulse(
     RigidBodyComponent* self,
-    Ogre::Vector3 add
+    const Ogre::Vector3& impulse
 ) {
-    self->m_staticProperties.workingCopy().forceApplied+=add;
+    self->m_impulseQueue.push(
+        std::make_pair(impulse, Ogre::Vector3::ZERO)
+    );
+}
+
+static void
+RigidBodyComponent_applyImpulse(
+    RigidBodyComponent* self,
+    const Ogre::Vector3& impulse,
+    const Ogre::Vector3& relativePosition
+) {
+    self->m_impulseQueue.push(
+        std::make_pair(impulse, relativePosition)
+    );
 }
 
 static RigidBodyComponent::StaticProperties&
@@ -83,7 +96,8 @@ RigidBodyComponent::luaBindings() {
         .property("workingCopy", RigidBodyComponent_getWorkingCopy)
         .def("touch", RigidBodyComponent_touch)
         .def("setDynamicProperties", RigidBodyComponent_setDynamicProperties)
-        .def("addToForce",RigidBodyComponent_addToForce)
+        .def("applyImpulse",RigidBodyComponent_applyImpulse)
+        .def("applyCentralImpulse",RigidBodyComponent_applyCentralImpulse)
     ;
 }
 
@@ -197,9 +211,6 @@ RigidBodyInputSystem::update(int milliseconds) {
             body->setCollisionShape(properties.shape.get());
             body->setFriction(properties.friction);
             body->setRollingFriction(properties.rollingFriction);
-            if(!body->isActive()){
-               body->activate();
-            }
             rigidBodyComponent->m_staticProperties.untouch();
         }
         if (rigidBodyComponent->m_dynamicInputProperties.hasChanges()) {
@@ -211,17 +222,17 @@ RigidBodyInputSystem::update(int milliseconds) {
             body->setWorldTransform(transform);
             body->setLinearVelocity(ogreToBullet(properties.linearVelocity));
             body->setAngularVelocity(ogreToBullet(properties.angularVelocity));
-            if(!body->isActive()){
-               body->activate();
-            }
             rigidBodyComponent->m_dynamicInputProperties.untouch();
         }
-        if(!body->isActive()){
-           body->activate();
+        for (const auto& impulsePair : rigidBodyComponent->m_impulseQueue) {
+            body->applyImpulse(
+                ogreToBullet(impulsePair.first),
+                ogreToBullet(impulsePair.second)
+            );
+            body->activate();
         }
-        body->applyCentralForce(ogreToBullet(rigidBodyComponent->m_staticProperties.stable().forceApplied));
-        body->applyDamping(milliseconds/1000);
-        }
+        (void) milliseconds;
+    }
     for (EntityId entityId : m_impl->m_entities.removedEntities()) {
         btRigidBody* body = m_impl->m_bodies[entityId].get();
         m_impl->m_world->removeRigidBody(body);
