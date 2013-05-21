@@ -2,9 +2,12 @@
 
 #include "engine/component.h"
 #include "engine/entity.h"
+#include "game.h"
 #include "ogre/camera_system.h"
 #include "ogre/entity_system.h"
+#include "ogre/keyboard_system.h"
 #include "ogre/light_system.h"
+#include "ogre/ogre_engine.h"
 #include "ogre/on_key.h"
 #include "ogre/scene_node_system.h"
 #include "ogre/script_bindings.h"
@@ -36,8 +39,9 @@ thrive::initializeLua(
         Entity::luaBindings(),
         // Script Components
         OnUpdateComponent::luaBindings(),
-        // Rendering Components
+        // Ogre Components
         OgreBindings::luaBindings(),
+        KeyboardSystem::luaBindings(),
         OnKeyComponent::luaBindings(),
         OgreCameraComponent::luaBindings(),
         OgreEntityComponent::luaBindings(),
@@ -49,6 +53,8 @@ thrive::initializeLua(
         // Physics Components
         RigidBodyComponent::luaBindings()
     ];
+    luabind::object globals = luabind::globals(L);
+    globals["Keyboard"] = Game::instance().ogreEngine().keyboardSystem().get();
 }
 
 
