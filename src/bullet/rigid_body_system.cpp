@@ -74,7 +74,6 @@ RigidBodyComponent::luaBindings() {
                 .def_readwrite("linearFactor", &StaticProperties::linearFactor)
                 .def_readwrite("angularFactor", &StaticProperties::angularFactor)
                 .def_readwrite("mass", &StaticProperties::mass)
-                .def_readwrite("comOffset", &StaticProperties::comOffset)
                 .def_readwrite("friction", &StaticProperties::friction)
                 .def_readwrite("rollingFriction", &StaticProperties::rollingFriction)
                 .def_readwrite("forceApplied", &StaticProperties::forceApplied)
