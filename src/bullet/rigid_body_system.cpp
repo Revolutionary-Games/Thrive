@@ -234,6 +234,7 @@ RigidBodyInputSystem::update(int milliseconds) {
             body->setLinearVelocity(ogreToBullet(properties.linearVelocity));
             body->setAngularVelocity(ogreToBullet(properties.angularVelocity));
             rigidBodyComponent->m_dynamicInputProperties.untouch();
+            body->activate();
         }
         for (const auto& impulsePair : rigidBodyComponent->m_impulseQueue) {
             body->applyImpulse(
