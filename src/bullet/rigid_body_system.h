@@ -73,9 +73,13 @@ public:
         btScalar friction = 0.f;
 
         /**
-        * @brief The friction of the object
+        * @brief The velocity dampening
         */
         btScalar linearDamping = 0.0f;
+
+        /**
+        * @brief Rotation dampening
+        */
         btScalar angularDamping = 1.f;
 
         /**
