@@ -94,6 +94,8 @@ RigidBodyComponent::luaBindings() {
                 .def_readwrite("restitution", &StaticProperties::restitution)
                 .def_readwrite("linearFactor", &StaticProperties::linearFactor)
                 .def_readwrite("angularFactor", &StaticProperties::angularFactor)
+                .def_readwrite("linearDamping", &StaticProperties::linearDamping)
+                .def_readwrite("angularDamping", &StaticProperties::angularDamping)
                 .def_readwrite("mass", &StaticProperties::mass)
                 .def_readwrite("friction", &StaticProperties::friction)
                 .def_readwrite("rollingFriction", &StaticProperties::rollingFriction)
@@ -215,7 +217,7 @@ RigidBodyInputSystem::update(int milliseconds) {
             body->setMassProps(properties.mass, localInertia);
             body->setLinearFactor(ogreToBullet(properties.linearFactor));
             body->setAngularFactor(ogreToBullet(properties.angularFactor));
-            body->setDamping(properties.linearDamping,properties.angularDamping);
+            body->setDamping(properties.linearDamping, properties.angularDamping);
             body->setRestitution(properties.restitution);
             body->setCollisionShape(properties.shape.get());
             body->setFriction(properties.friction);
@@ -240,7 +242,7 @@ RigidBodyInputSystem::update(int milliseconds) {
             );
             body->activate();
         }
-        (void) milliseconds;
+        body->applyDamping(milliseconds / 1000.0f);
     }
     for (EntityId entityId : m_impl->m_entities.removedEntities()) {
         btRigidBody* body = m_impl->m_bodies[entityId].get();
