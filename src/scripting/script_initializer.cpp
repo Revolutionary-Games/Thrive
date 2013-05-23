@@ -15,6 +15,7 @@
 #include "ogre/viewport_system.h"
 #include "scripting/luabind.h"
 #include "scripting/on_update.h"
+#include "bullet/bullet_lua_bindings.h"
 #include "bullet/rigid_body_system.h"
 
 #include <forward_list>
@@ -51,6 +52,7 @@ thrive::initializeLua(
         OgreViewport::luaBindings(),
         OgreViewportSystem::luaBindings(),
         // Physics Components
+        BulletBindings::luaBindings(),
         RigidBodyComponent::luaBindings()
     ];
     luabind::object globals = luabind::globals(L);
