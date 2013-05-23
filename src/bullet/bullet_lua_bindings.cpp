@@ -1,4 +1,4 @@
-#include "ogre/script_bindings.h"
+#include "bullet/bullet_lua_bindings.h"
 
 #include "scripting/luabind.h"
 
