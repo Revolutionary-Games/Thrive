@@ -1,9 +1,12 @@
 local player = Entity("player")
 
 playerRigidBody = RigidBodyComponent()
-playerRigidBody.workingCopy.friction = 0.2
-playerRigidBody:touch()
 player:addComponent(playerRigidBody)
+
+playerRigidBody.workingCopy.friction = 0.2
+playerShape = btSphereShape(10)
+playerRigidBody.workingCopy:setShape(playerShape)
+playerRigidBody:touch()
 
 playerSceneNode = OgreSceneNodeComponent()
 player:addComponent(playerSceneNode)
