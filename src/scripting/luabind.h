@@ -28,7 +28,7 @@ namespace boost {
     template<typename T>
     inline T* 
     get_pointer(
-        std::shared_ptr<T>& ptr
+        const std::shared_ptr<T>& ptr
     ) {
         return ptr.get();
     }
