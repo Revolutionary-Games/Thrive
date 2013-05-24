@@ -28,13 +28,6 @@ public:
     /**
     * @brief Initializes the engine
     *
-    * 1. Loads the resources
-    * 2. Loads the configuration
-    * 3. Creates a render window
-    * 4. Sets up basic lighting
-    * 5. Sets up user input
-    * 6. Creates essential systems
-    *
     * @param entityManager
     *   The entity manager to use
     */
@@ -49,7 +42,7 @@ public:
     shutdown() override;
 
     /**
-    * @brief Renders a frame
+    * @brief Steps the simulation
     */
     void
     update() override;

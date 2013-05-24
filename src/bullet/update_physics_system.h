@@ -5,7 +5,7 @@
 namespace thrive {
 
 /**
-* @brief System for updating physics
+* @brief Steps the physics simulation
 *
 * Requires a BulletEngine
 */
@@ -27,7 +27,7 @@ public:
     * @brief Initializes the system
     *
     * @param engine
-    *   Must be an OgreEngine
+    *   Must be a BulletEngine
     */
     void
     init(
@@ -41,9 +41,7 @@ public:
     shutdown() override;
 
     /**
-    * @brief Renders a single frame
-    *
-    * Calls OgreRoot::renderOneFrame(float).
+    * @brief Updates the system
     *
     * @param milliSeconds
     */

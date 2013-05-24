@@ -42,8 +42,8 @@ public:
     /**
     * @brief Lua bindings
     *
-    * This component exposes the following \ref shared_data_lua shared properties:
-    * - \c meshName (string): Properties::meshName
+    * This component exposes the following \ref shared_data_lua "shared properties":
+    * - Properties::meshName
     *
     * @return 
     */

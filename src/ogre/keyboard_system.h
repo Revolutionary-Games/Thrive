@@ -50,6 +50,16 @@ public:
 
     };
 
+    /**
+    * @brief Lua bindings
+    *
+    * Exposes the following functions to Lua:
+    * - KeyboardSystem::isKeydown
+    *
+    * Also exposes the OIS::KeyCode enumeration
+    *
+    * @return 
+    */
     static luabind::scope
     luaBindings();
 
@@ -80,6 +90,16 @@ public:
         Engine* engine
     ) override;
 
+    /**
+    * @brief Checks whether a key is pressed down
+    *
+    * @param key
+    *   The key to check for
+    *
+    * @return 
+    *   \c true if the key is pressed down during this frame, \c false 
+    *   otherwise
+    */
     bool
     isKeyDown(
         OIS::KeyCode key

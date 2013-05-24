@@ -97,6 +97,12 @@ public:
         Ogre::Vector3 forceApplied = Ogre::Vector3::ZERO;
     };
 
+    /**
+    * @brief Properties that are simulated by the physics engine
+    *
+    * If you do want to set those (after initialization), be aware that it 
+    * might introduce instabilities into the simulation.
+    */
     struct DynamicProperties {
         /**
         * @brief The position
@@ -126,29 +132,41 @@ public:
     /**
     * @brief Lua bindings
     *
-    * Exposes the following \ref shared_data_lua shared properties:
-    * - \c shape (btColisionShape): Properties::shape
-    * - \c position (btVector3): Properties::position
-    * - \c rotation (btVector3): Properties::rotation
-    * - \c linearVelocity (btVector3): Properties::linearVelocity
-    * - \c angularVelocity (btVector3): Properties::angularVelocity
-    * - \c restitution (btScalar): Properties::restitution
-    * - \c linearFactor (btVector3): Properties::linearFactor
-    * - \c angularFactor (btVector3): Properties::angularFactor
-    * - \c mass (btScalar): Properties::mass
-    * - \c friction (btScalar): Properties::friction
-    * - \c rollingFriction (btScalar): Properties::rollingFriction
+    * Exposes the following \ref shared_data_lua "shared properties":
+    * - \c StaticProperties::shape
+    * - \c StaticProperties::position
+    * - \c StaticProperties::rotation
+    * - \c StaticProperties::linearVelocity
+    * - \c StaticProperties::angularVelocity
+    * - \c StaticProperties::restitution
+    * - \c StaticProperties::linearFactor
+    * - \c StaticProperties::angularFactor
+    * - \c StaticProperties::mass
+    * - \c StaticProperties::friction
+    * - \c StaticProperties::rollingFriction
     *
     * @return
     */
     static luabind::scope
     luaBindings();
 
+    /**
+    * @brief Reimplemented from btMotionState
+    *
+    * @param[out] transform
+    *   The rigid body's position and orientation
+    */
     void
     getWorldTransform(
         btTransform& transform
     ) const override;
 
+    /**
+    * @brief Reimplemented from btMotionState
+    *
+    * @param transform
+    *   The rigid body's position and orientation
+    */
     void
     setWorldTransform(
         const btTransform& transform
@@ -165,12 +183,31 @@ public:
     PhysicsInputData<StaticProperties>
     m_staticProperties;
 
+    /**
+    * @brief Dynamic properties pushed to the physics engine
+    *
+    * Change these if you want to manually set position, orientation or
+    * velocity of the rigid body. They are applied before the next physics
+    * step.
+    */
     PhysicsInputData<DynamicProperties>
     m_dynamicInputProperties;
 
+    /**
+    * @brief Dynamic properties read from the physics engine
+    *
+    * The values pulled from the physics engine after the last simulation 
+    * step.
+    */
     PhysicsOutputData<DynamicProperties>
     m_dynamicOutputProperties;
 
+    /**
+    * @brief Queue of impulses applied from external sources
+    *
+    * The first vector is the impulse itself, the second one is the attack 
+    * point, relative to the rigid body's origin.
+    */
     PhysicsInputQueue<
         std::pair<Ogre::Vector3, Ogre::Vector3>
     > m_impulseQueue;
@@ -198,7 +235,7 @@ public:
     * @brief Initializes the system
     *
     * @param engine
-    *   Must be an BulletEngine
+    *   Must be a BulletEngine
     */
     void init(Engine* engine) override;
 
@@ -224,24 +261,44 @@ private:
 
 
 /**
-* @brief Moves entities
+* @brief Updates the RigidBodyComponent with new data from the simulation
 *
-* This system updates the PhysicsTransformComponent of all entities that also have a
-* RigidBodyComponent.
+* Copies the data from the simulation into 
+* RigidBodyComponent::m_dynamicOutputProperties.
 *
 */
 class RigidBodyOutputSystem : public System {
 
 public:
 
+    /**
+    * @brief Constructor
+    */
     RigidBodyOutputSystem();
 
+    /**
+    * @brief Destructor
+    */
     ~RigidBodyOutputSystem();
 
+    /**
+    * @brief Initializes the engine
+    *
+    * @param engine
+    *   Must be a BulletEngine
+    */
     void init(Engine* engine) override;
 
+    /**
+    * @brief Shuts the system down
+    */
     void shutdown() override;
 
+    /**
+    * @brief Updates the system
+    *
+    * @param milliSeconds
+    */
     void update(int milliSeconds) override;
 
 private:
