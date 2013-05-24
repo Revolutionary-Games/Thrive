@@ -59,6 +59,14 @@ RigidBodyComponent_applyImpulse(
     );
 }
 
+static void
+RigidBodyComponent_setShape(
+    RigidBodyComponent* self,
+    btCollisionShape* shape
+) {
+    self->m_staticProperties.workingCopy().shape.reset(shape);
+}
+
 static RigidBodyComponent::StaticProperties&
 RigidBodyComponent_getWorkingCopy(
     RigidBodyComponent* self
@@ -98,6 +106,7 @@ RigidBodyComponent::luaBindings() {
         .def("setDynamicProperties", RigidBodyComponent_setDynamicProperties)
         .def("applyImpulse",RigidBodyComponent_applyImpulse)
         .def("applyCentralImpulse",RigidBodyComponent_applyCentralImpulse)
+        .def("setShape",RigidBodyComponent_setShape)
     ;
 }
 
@@ -113,7 +122,7 @@ RigidBodyComponent::getWorldTransform(
     transform.setRotation(
         ogreToBullet(properties.rotation)
     );
-        
+
 }
 
 
@@ -290,7 +299,7 @@ RigidBodyOutputSystem::update(int) {
             rigidBodyComponent->m_dynamicOutputProperties.touch();
         }
         else if (
-            not properties.linearVelocity.isZeroLength() 
+            not properties.linearVelocity.isZeroLength()
             or not properties.angularVelocity.isZeroLength()
         ) {
             properties.linearVelocity = Ogre::Vector3::ZERO;

@@ -36,7 +36,7 @@ public:
         /**
         * @brief The body's shape .
         */
-        //btCollisionShape* s = new btSphereShape(1);
+        //btCollisionShape* shape = new btSphereShape(1);
         std::shared_ptr<btCollisionShape> shape {new btSphereShape(1)};
 
         /**
