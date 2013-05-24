@@ -59,14 +59,6 @@ RigidBodyComponent_applyImpulse(
     );
 }
 
-static void
-RigidBodyComponent_setShape(
-    RigidBodyComponent* self,
-    btCollisionShape* shape
-) {
-    self->m_staticProperties.workingCopy().shape.reset(shape);
-}
-
 static RigidBodyComponent::StaticProperties&
 RigidBodyComponent_getWorkingCopy(
     RigidBodyComponent* self
@@ -90,7 +82,7 @@ RigidBodyComponent::luaBindings() {
             def("TYPE_NAME", &RigidBodyComponent::TYPE_NAME),
             def("TYPE_ID", &RigidBodyComponent::TYPE_ID),
             class_<StaticProperties>("StaticProperties")
-                //.def_readwrite("shape", &StaticProperties::shape)
+                .def_readwrite("shape", &StaticProperties::shape)
                 .def_readwrite("restitution", &StaticProperties::restitution)
                 .def_readwrite("linearFactor", &StaticProperties::linearFactor)
                 .def_readwrite("angularFactor", &StaticProperties::angularFactor)
@@ -108,7 +100,6 @@ RigidBodyComponent::luaBindings() {
         .def("setDynamicProperties", RigidBodyComponent_setDynamicProperties)
         .def("applyImpulse",RigidBodyComponent_applyImpulse)
         .def("applyCentralImpulse",RigidBodyComponent_applyCentralImpulse)
-        .def("setShape",RigidBodyComponent_setShape)
     ;
 }
 
