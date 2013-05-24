@@ -4,8 +4,7 @@ playerRigidBody = RigidBodyComponent()
 player:addComponent(playerRigidBody)
 
 playerRigidBody.workingCopy.friction = 0.2
-playerShape = btSphereShape(10)
-playerRigidBody.workingCopy:setShape(playerShape)
+playerRigidBody.workingCopy.shape = btBoxShape(Vector3(10, 10, 10))
 playerRigidBody:touch()
 
 playerSceneNode = OgreSceneNodeComponent()
