@@ -1,43 +1,44 @@
 local player = Entity("player")
-playerTransform = TransformComponent()
-player:addComponent(playerTransform)
+
+playerRigidBody = RigidBodyComponent()
+player:addComponent(playerRigidBody)
+
+playerRigidBody.workingCopy.friction = 0.2
+playerRigidBody.workingCopy.shape = btBoxShape(Vector3(10, 10, 10))
+playerRigidBody:touch()
+
 playerSceneNode = OgreSceneNodeComponent()
 player:addComponent(playerSceneNode)
-player:addComponent(OgreEntityComponent("Sinbad.mesh"))
+player:addComponent(OgreEntityComponent("Mesh.mesh"))
 
-playerTransform.workingCopy.position = Vector3(0, 0, 0)
-playerTransform:touch()
+playerSceneNode.workingCopy.position = Vector3(0, 0, 0)
+playerSceneNode:touch()
 
-playerMovable = MovableComponent()
-player:addComponent(playerMovable)
+--[[
+playerRigidBody:setDynamicProperties(
+	Vector3(0,0,0),
+	Quaternion(1,0,0,0),
+	Vector3(1,0,0),
+	Vector3(0,0,0))
+--]]
 
-playerInput = OnKeyComponent()
-player:addComponent(playerInput)
-MOVEMENT_SPEED = 10
-playerInput.onPressed = function (entityId, event)
-    if event.key == KeyEvent.KC_W then
-        playerMovable.velocity.y = playerMovable.velocity.y + MOVEMENT_SPEED
-    elseif event.key == KeyEvent.KC_S then
-        playerMovable.velocity.y = playerMovable.velocity.y - MOVEMENT_SPEED
-    elseif event.key == KeyEvent.KC_A then
-        playerMovable.velocity.x = playerMovable.velocity.x - MOVEMENT_SPEED
-    elseif event.key == KeyEvent.KC_D then
-        playerMovable.velocity.x = playerMovable.velocity.x + MOVEMENT_SPEED
+ACCELERATION = 0.01
+player.onUpdate = OnUpdateComponent()
+player:addComponent(player.onUpdate)
+player.onUpdate.callback = function(entityId, milliseconds)
+    impulse = Vector3(0, 0, 0)
+    if (Keyboard:isKeyDown(KeyboardSystem.KC_W)) then
+        impulse = impulse + Vector3(0, 1, 0)
     end
-end
-
-playerInput.onReleased = function (entityId, event)
-    if event.key == KeyEvent.KC_W then
-        playerMovable.velocity.y = playerMovable.velocity.y - MOVEMENT_SPEED
-    elseif event.key == KeyEvent.KC_S then
-        playerMovable.velocity.y = playerMovable.velocity.y + MOVEMENT_SPEED
-    elseif event.key == KeyEvent.KC_A then
-        playerMovable.velocity.x = playerMovable.velocity.x + MOVEMENT_SPEED
-    elseif event.key == KeyEvent.KC_D then
-        playerMovable.velocity.x = playerMovable.velocity.x - MOVEMENT_SPEED
+    if (Keyboard:isKeyDown(KeyboardSystem.KC_S)) then
+        impulse = impulse + Vector3(0, -1, 0)
     end
+    if (Keyboard:isKeyDown(KeyboardSystem.KC_A)) then
+        impulse = impulse + Vector3(-1, 0, 0)
+    end
+    if (Keyboard:isKeyDown(KeyboardSystem.KC_D)) then
+        impulse = impulse + Vector3(1, 0, 0)
+    end
+    impulse = impulse * ACCELERATION * milliseconds
+    playerRigidBody:applyCentralImpulse(impulse);
 end
-
-
-
-

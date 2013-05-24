@@ -110,18 +110,18 @@ public:
     /**
     * @brief Lua bindings
     *
-    * Exposes the following \ref shared_data_lua shared properties:
-    * - \c type (Ogre::Light::LightTypes): Properties::type
-    * - \c diffuseColor (Ogre::ColourValue): Properties::diffuseColor
-    * - \c specularColor (Ogre::ColourValue): Properties::specularColor
-    * - \c attenuationRange (number): Properties::attenuationRange
-    * - \c attenuationConstant (number): Properties::attenuationConstant
-    * - \c attenuationLinear (number): Properties::attenuationLinear
-    * - \c attenuationQuadratic (number): Properties::attenuationQuadratic
-    * - \c spotlightInnerAngle (Ogre::Radian): Properties::spotlightInnerAngle
-    * - \c spotlightOuterAngle (Ogre::Radian): Properties::spotlightOuterAngle
-    * - \c spotlightFalloff (number): Properties::spotlightFalloff
-    * - \c spotlightNearClipDistance (number): Properties::spotlightNearClipDistance
+    * Exposes the following \ref shared_data_lua "shared properties":
+    * - \c Properties::type
+    * - \c Properties::diffuseColor
+    * - \c Properties::specularColor
+    * - \c Properties::attenuationRange
+    * - \c Properties::attenuationConstant
+    * - \c Properties::attenuationLinear
+    * - \c Properties::attenuationQuadratic
+    * - \c Properties::spotlightInnerAngle
+    * - \c Properties::spotlightOuterAngle
+    * - \c Properties::spotlightFalloff
+    * - \c Properties::spotlightNearClipDistance
     *
     * @return 
     */

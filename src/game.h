@@ -9,11 +9,11 @@
  * at new developers (both C++ and Lua) and old developers that tend to forget
  * what they have written a couple of weeks ago.
  *
- * When (not if) you find anything that is unclear or is missing, please post 
+ * When (not if) you find anything that is unclear or is missing, please post
  * a thread about it in the <a href="http://thrivegame.forum-free.ca/f20-programming">
  * Thrive development forums</a>.
  *
- * If you are still reading, chances are that you seek information on a 
+ * If you are still reading, chances are that you seek information on a
  * specific topic. Apart from the raw API, this documentation currently offers
  * advice on:
  * - @ref shared_data
@@ -27,6 +27,7 @@ namespace thrive {
 class EntityManager;
 class OgreEngine;
 class ScriptEngine;
+class BulletEngine;
 
 /**
 * @brief The main entry point for the game
@@ -36,6 +37,7 @@ class ScriptEngine;
 class Game {
 
 public:
+
 
     /**
     * @brief Singleton instance
@@ -78,6 +80,14 @@ public:
     */
     ScriptEngine&
     scriptEngine();
+
+    /**
+    * @brief Returns the game's physics engine
+    */
+    BulletEngine&
+    bulletEngine();
+
+
 
 private:
 

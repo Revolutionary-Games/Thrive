@@ -1,6 +1,6 @@
 #include "scripting/script_engine.h"
 
-#include "common/movement.h"
+#include "common/bullet_to_ogre_system.h"
 #include "engine/shared_data.h"
 #include "game.h"
 #include "ogre/ogre_engine.h"
@@ -94,6 +94,8 @@ ScriptEngine::init(
     Engine::init(entityManager);
     StateLock<InputState, StateBuffer::Stable> inputLock;
     StateLock<RenderState, StateBuffer::WorkingCopy> renderLock;
+    StateLock<PhysicsInputState, StateBuffer::WorkingCopy> physicsInputLock;
+    StateLock<PhysicsOutputState, StateBuffer::Stable> physicsOutputLock;
     initializeLua(m_impl->m_luaState);
     this->addSystem(
         "onUpdate",
@@ -106,9 +108,9 @@ ScriptEngine::init(
         std::make_shared<OnKeySystem>()
     );
     this->addSystem(
-        "movement",
+        "bulletToOgre",
         0,
-        std::make_shared<MovementSystem>()
+        std::make_shared<BulletToOgreSystem>()
     );
     m_impl->loadScripts("../scripts/");
 }
@@ -130,6 +132,8 @@ void
 ScriptEngine::update() {
     StateLock<InputState, StateBuffer::Stable> inputLock;
     StateLock<RenderState, StateBuffer::WorkingCopy> renderLock;
+    StateLock<PhysicsInputState, StateBuffer::WorkingCopy> physicsInputLock;
+    StateLock<PhysicsOutputState, StateBuffer::Stable> physicsOutputLock;
     if (m_impl->quitRequested()) {
         Game::instance().quit();
     }

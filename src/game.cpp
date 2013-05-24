@@ -7,11 +7,17 @@
 #include "ogre/ogre_engine.h"
 #include "scripting/lua_state.h"
 #include "scripting/script_engine.h"
+#include "bullet/bullet_engine.h"
 #include "util/make_unique.h"
 
 #include <boost/thread.hpp>
 #include <type_traits>
 #include <unordered_map>
+
+#include <AL/al.h>
+#include <AL/alc.h>
+#include <AL/alext.h>
+
 
 using namespace thrive;
 
@@ -33,6 +39,8 @@ struct Game::Implementation {
 
     ScriptEngine m_scriptEngine;
 
+    BulletEngine m_bulletEngine;
+
     bool m_quit;
 
     boost::condition_variable m_quitCondition;
@@ -48,12 +56,14 @@ Game::instance() {
     // to avoid problems with static destruction order
     RenderState::instance();
     InputState::instance();
+    PhysicsOutputState::instance();
+    PhysicsInputState::instance();
     static Game instance;
     return instance;
 }
 
 
-Game::Game() 
+Game::Game()
   : m_impl(new Implementation())
 {
 }
@@ -76,6 +86,12 @@ Game::ogreEngine() {
 }
 
 
+BulletEngine&
+Game::bulletEngine() {
+    return m_impl->m_bulletEngine;
+}
+
+
 void
 Game::quit() {
     boost::lock_guard<boost::mutex> lock(m_impl->m_quitMutex);
@@ -94,6 +110,9 @@ Game::run() {
     );
     m_impl->m_engineRunners.push_back(
         make_unique<EngineRunner>(m_impl->m_scriptEngine)
+    );
+    m_impl->m_engineRunners.push_back(
+        make_unique<EngineRunner>(m_impl->m_bulletEngine)
     );
     // Start runners
     boost::unique_lock<boost::mutex> lock(m_impl->m_quitMutex);
