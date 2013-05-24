@@ -74,17 +74,17 @@ public:
     /**
     * @brief Lua bindings
     *
-    * Exposes the following \ref shared_data_lua shared properties:
-    * - \c enabled (bool): Properties::enabled
-    * - \c plane (Ogre::Plane): Properties::plane
-    * - \c materialName (string): Properties::materialName
-    * - \c scale (number): Properties::scale
-    * - \c tiling (number): Properties::tiling
-    * - \c drawFirst (bool): Properties::drawFirst
-    * - \c bow (number): Properties::bow
-    * - \c xsegments (number): Properties::xsegments
-    * - \c ysegments (number): Properties::ysegments
-    * - \c groupName (string): Properties::groupName
+    * Exposes the following \ref shared_data_lua "shared properties":
+    * - \c Properties::enabled
+    * - \c Properties::plane
+    * - \c Properties::materialName
+    * - \c Properties::scale
+    * - \c Properties::tiling
+    * - \c Properties::drawFirst
+    * - \c Properties::bow
+    * - \c Properties::xsegments
+    * - \c Properties::ysegments
+    * - \c Properties::groupName
     *
     * @return 
     */

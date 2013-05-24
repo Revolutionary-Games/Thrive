@@ -66,10 +66,10 @@ public:
     /**
     * @brief Lua bindings
     *
-    * This component exposes the following \ref shared_data_lua shared properties:
-    * \arg \c orientation (Ogre.Quaternion): The component's orientation
-    * \arg \c position (Ogre.Vector3): The component's position
-    * \arg \c scale (Ogre.Vector3): The component's scale
+    * This component exposes the following \ref shared_data_lua "shared properties":
+    * - Properties::orientation
+    * - Properties::posiiton
+    * - Properties::scale
     *
     * @return
     */
