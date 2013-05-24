@@ -37,15 +37,15 @@ set(CMAKE_INSTALL_RPATH ".")
 # Assure a proper build type
 if (NOT CMAKE_BUILD_TYPE)
   set(CMAKE_BUILD_TYPE
-      "Debug" 
-      CACHE STRING "Choose the type of build, options are: None (CMAKE_CXX_FLAGS or CMAKE_C_FLAGS used) Debug Release." 
+      "Debug"
+      CACHE STRING "Choose the type of build, options are: None (CMAKE_CXX_FLAGS or CMAKE_C_FLAGS used) Debug Release."
       FORCE
     )
 endif ()
 
 # Install into dist subdirectory
-set(CMAKE_INSTALL_PREFIX 
-    "${CMAKE_CURRENT_BINARY_DIR}/dist" 
+set(CMAKE_INSTALL_PREFIX
+    "${CMAKE_CURRENT_BINARY_DIR}/dist"
     CACHE STRING "Install path" FORCE
 )
 
@@ -78,11 +78,11 @@ find_package(OIS REQUIRED QUIET)
 ##############
 
 set(BOOST_COMPONENTS
-    chrono   
+    chrono
     date_time
     filesystem
-    thread  
-    system 
+    thread
+    system
 )
 
 find_package(Boost COMPONENTS ${BOOST_COMPONENTS} REQUIRED QUIET)
@@ -99,6 +99,33 @@ include_directories(
     SYSTEM
     ${CMAKE_CURRENT_SOURCE_DIR}/contrib/googletest/include
 )
+
+##########
+# Bullet #
+##########
+
+find_package(Bullet REQUIRED QUIET)
+
+include_directories(SYSTEM ${BULLET_INCLUDE_DIRS})
+
+############
+# irrKlang #
+############
+
+#No longer used
+
+#find_package(irrKlang REQUIRED QUIET)
+
+#include_directories(SYSTEM ${IRRKLANG_INCLUDE_DIRS})
+
+##########
+# OpenAL #
+##########
+
+find_package(OpenAL REQUIRED QUIET)
+
+include_directories(SYSTEM ${IRRKLANG_INCLUDE_DIR})
+
 
 #######
 # Lua #
@@ -131,7 +158,7 @@ add_subdirectory(
 )
 
 ######################
-# Configure Compiler # 
+# Configure Compiler #
 ######################
 
 include_directories(SYSTEM
@@ -140,7 +167,7 @@ include_directories(SYSTEM
     ${OGRE_INCLUDE_DIRS}
 )
 
-include_directories( 
+include_directories(
     ${CMAKE_CURRENT_SOURCE_DIR}/src
 )
 
@@ -151,7 +178,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=gnu++0x")
 find_package(Threads)
 
 ##################
-# Compile Thrive # 
+# Compile Thrive #
 ##################
 
 # Collect sources from sub directories
@@ -170,9 +197,14 @@ add_library(ThriveLib STATIC ${SOURCE_FILES})
 
 target_link_libraries(ThriveLib
     ${Boost_LIBRARIES}
-    ${OGRE_LIBRARIES} 
+    ${OGRE_LIBRARIES}
     ${OIS_LIBRARIES}
     ${CMAKE_THREAD_LIBS_INIT}
+    ${BULLET_DYNAMICS_LIBRARY}
+    ${BULLET_COLLISION_LIBRARY}
+    ${BULLET_MATH_LIBRARY}
+    ${BULLET_SOFTBODY_LIBRARY}
+    ${IRRKLANG_LIBRARIES}
     luabind
 )
 
@@ -182,7 +214,9 @@ set_target_properties(ThriveLib PROPERTIES
 )
 
 # Compile executable
-add_executable(Thrive WIN32 ${CMAKE_CURRENT_SOURCE_DIR}/src/Main.cpp)
+add_executable(Thrive
+#WIN32
+ ${CMAKE_CURRENT_SOURCE_DIR}/src/Main.cpp)
 
 target_link_libraries(Thrive ThriveLib)
 
@@ -241,18 +275,18 @@ install(EXPORT lua
 
 # OGRE config and media
 
-install(FILES 
+install(FILES
     ${CMAKE_SOURCE_DIR}/res/dist/bin/resources.cfg
     DESTINATION bin
 )
 
-install(FILES 
+install(FILES
     ${CMAKE_SOURCE_DIR}/res/dist/bin/plugins.cfg
     DESTINATION bin
-    CONFIGURATIONS Release 
+    CONFIGURATIONS Release
 )
 
-install(FILES 
+install(FILES
     ${CMAKE_SOURCE_DIR}/res/dist/bin/plugins_d.cfg
     DESTINATION bin
     CONFIGURATIONS Debug
@@ -264,7 +298,7 @@ install(DIRECTORY ${CMAKE_SOURCE_DIR}/res/dist/media
     CONFIGURATIONS Release  Debug
 )
 
-install(DIRECTORY 
+install(DIRECTORY
     ${CMAKE_SOURCE_DIR}/res/dist/scripts
     DESTINATION ./
     CONFIGURATIONS Release  Debug
@@ -272,7 +306,7 @@ install(DIRECTORY
 
 # Install Runtime Libraries
 if(WIN32)
-    
+
     if (SYSTEM_DLLS)
         INSTALL(FILES
             ${SYSTEM_DLLS}
@@ -285,15 +319,20 @@ if(WIN32)
         DESTINATION bin
     )
 
+#    INSTALL(FILES
+#        ${IRRKLANG_LIBRARIES_DLL}
+#        DESTINATION bin
+#    )
+
     foreach(OGRE_PLUGIN ${OGRE_PLUGINS})
         # Release
-        install(FILES 
+        install(FILES
             ${OGRE_PLUGIN_DIR_REL}/${OGRE_PLUGIN}.dll
             DESTINATION bin/plugins
             CONFIGURATIONS Release
         )
         # Debug
-        install(FILES 
+        install(FILES
             ${OGRE_PLUGIN_DIR_DBG}/${OGRE_PLUGIN}_d.dll
             DESTINATION bin/plugins
             CONFIGURATIONS Debug
@@ -309,7 +348,7 @@ if(WIN32)
 		CONFIGURATIONS Release
 	)
 
-	install(FILES 
+	install(FILES
         ${OGRE_PLUGIN_DIR_DBG}/OgreMain_d.dll
 		${OGRE_PLUGIN_DIR_DBG}/RenderSystem_GL_d.dll
 		${OGRE_PLUGIN_DIR_DBG}/OIS_d.dll
@@ -325,13 +364,13 @@ elseif(UNIX)
         OGRE_MAIN_DBG
         OGRE_MAIN_REL
     )
-    InstallFollowingSymlink( 
+    InstallFollowingSymlink(
         ${OGRE_MAIN_REL}
         bin
         Release
         False
     )
-    InstallFollowingSymlink( 
+    InstallFollowingSymlink(
         ${OGRE_MAIN_DBG}
         bin
         Debug
@@ -340,19 +379,19 @@ elseif(UNIX)
 
     foreach(OGRE_PLUGIN ${OGRE_PLUGINS})
         SeparateLibrariesByBuildType(
-            "${OGRE_${OGRE_PLUGIN}_LIBRARIES}" 
+            "${OGRE_${OGRE_PLUGIN}_LIBRARIES}"
             OGRE_PLUGIN_LIB_DBG
             OGRE_PLUGIN_LIB_REL
         )
         # Release
-        InstallFollowingSymlink( 
+        InstallFollowingSymlink(
             ${OGRE_PLUGIN_LIB_REL}
             bin/plugins
             Release
             True
         )
         # Debug
-        InstallFollowingSymlink( 
+        InstallFollowingSymlink(
             ${OGRE_PLUGIN_LIB_DBG}
             bin/plugins
             Debug
