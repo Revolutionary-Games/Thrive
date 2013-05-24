@@ -57,7 +57,7 @@ public:
     /**
     * @brief Lua bindings
     *
-    * Exposes the following \ref shared_data_lua shared properties:
+    * Exposes the following \ref shared_data_lua "shared properties":
     * - \c Properties::polygonMode
     * - \c Properties::fovY
     * - \c Properties::nearClipDistance

@@ -5,6 +5,10 @@
 
 #include <OISKeyboard.h>
 
+namespace luabind {
+class scope;
+}
+
 namespace thrive {
 
 /**
@@ -47,6 +51,19 @@ public:
     };
 
     /**
+    * @brief Lua bindings
+    *
+    * Exposes the following functions to Lua:
+    * - KeyboardSystem::isKeydown
+    *
+    * Also exposes the OIS::KeyCode enumeration
+    *
+    * @return 
+    */
+    static luabind::scope
+    luaBindings();
+
+    /**
     * @brief Constructor
     */
     KeyboardSystem();
@@ -55,6 +72,12 @@ public:
     * @brief Destructor
     */
     ~KeyboardSystem();
+
+    /**
+    * @brief A shared queue used for queueing up the key events
+    */
+    InputQueue<KeyEvent>&
+    eventQueue();
 
     /**
     * @brief Initializes the system
@@ -68,10 +91,19 @@ public:
     ) override;
 
     /**
-    * @brief A shared queue used for queueing up the key events
+    * @brief Checks whether a key is pressed down
+    *
+    * @param key
+    *   The key to check for
+    *
+    * @return 
+    *   \c true if the key is pressed down during this frame, \c false 
+    *   otherwise
     */
-    InputQueue<KeyEvent>&
-    eventQueue();
+    bool
+    isKeyDown(
+        OIS::KeyCode key
+    ) const;
 
     /**
     * @brief Shuts down the system

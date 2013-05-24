@@ -13,6 +13,7 @@ namespace thrive {
     enum ThreadId : char {
         Render,
         Script,
+        Physics,
         Unknown
     };
 

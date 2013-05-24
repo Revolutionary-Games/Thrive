@@ -1,5 +1,6 @@
 #pragma once
 
+#include <boost/version.hpp>
 #include <memory>
 
 namespace luabind { namespace detail { namespace has_get_pointer_ {
@@ -23,16 +24,20 @@ namespace luabind { namespace detail { namespace has_get_pointer_ {
 
 }}}
 
+#if (BOOST_VERSION / 100 % 1000) < 53
+
 namespace boost {
 
     template<typename T>
     inline T* 
     get_pointer(
-        std::shared_ptr<T>& ptr
+        const std::shared_ptr<T>& ptr
     ) {
         return ptr.get();
     }
 
 }
+
+#endif // Boost version
 
 #include <luabind/luabind.hpp>
