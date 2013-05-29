@@ -401,3 +401,16 @@ elseif(UNIX)
 
 endif()
 
+###############################################################################
+# CPack
+###############################################################################
+
+configure_file(${CMAKE_SOURCE_DIR}/cpack/zip.cmake.in
+  "${CMAKE_CURRENT_BINARY_DIR}/cpack/zip.cmake" @ONLY
+)
+
+add_custom_target(zip
+    COMMAND cpack --config "${CMAKE_CURRENT_BINARY_DIR}/cpack/zip.cmake"
+    DEPENDS Thrive
+)
+
