@@ -1,18 +1,18 @@
 local player = Entity("player")
 
-playerRigidBody = RigidBodyComponent()
-player:addComponent(playerRigidBody)
+player.rigidBody = RigidBodyComponent()
+player.rigidBody.workingCopy.linearDamping = 0.5
+player.rigidBody.workingCopy.shape = btCylinderShape(Vector3(6.4, 1, 6.4))
+player.rigidBody.workingCopy.friction = 0.2
+player.rigidBody:touch()
+player:addComponent(player.rigidBody)
 
-playerRigidBody.workingCopy.friction = 0.2
-playerRigidBody.workingCopy.shape = btBoxShape(Vector3(10, 10, 10))
-playerRigidBody:touch()
-
-playerSceneNode = OgreSceneNodeComponent()
-player:addComponent(playerSceneNode)
+player.sceneNode = OgreSceneNodeComponent()
+player:addComponent(player.sceneNode)
 player:addComponent(OgreEntityComponent("Mesh.mesh"))
 
-playerSceneNode.workingCopy.position = Vector3(0, 0, 0)
-playerSceneNode:touch()
+player.sceneNode.workingCopy.position = Vector3(0, 0, 0)
+player.sceneNode:touch()
 
 --[[
 playerRigidBody:setDynamicProperties(
@@ -22,7 +22,7 @@ playerRigidBody:setDynamicProperties(
 	Vector3(0,0,0))
 --]]
 
-ACCELERATION = 0.01
+ACCELERATION = 0.05
 player.onUpdate = OnUpdateComponent()
 player:addComponent(player.onUpdate)
 player.onUpdate.callback = function(entityId, milliseconds)
@@ -40,5 +40,5 @@ player.onUpdate.callback = function(entityId, milliseconds)
         impulse = impulse + Vector3(1, 0, 0)
     end
     impulse = impulse * ACCELERATION * milliseconds
-    playerRigidBody:applyCentralImpulse(impulse);
+    player.rigidBody:applyCentralImpulse(impulse);
 end
