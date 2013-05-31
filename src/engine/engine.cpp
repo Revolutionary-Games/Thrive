@@ -234,6 +234,9 @@ Engine::setTargetFrameRate(
 void
 Engine::shutdown() {
     m_impl->m_entityManager->unregisterEngine(this);
+    for (auto& value : m_impl->m_activeSystems) {
+        value.second->shutdown();
+    }
     m_impl->m_entityManager = nullptr;
     m_impl->m_isInitialized = false;
 }
