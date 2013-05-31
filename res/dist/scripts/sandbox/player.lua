@@ -1,9 +1,20 @@
+Physics:setDebugMode(bit32.bor(
+    BulletEngine.DBG_DrawAabb,
+    BulletEngine.DBG_DrawWireframe
+))
+
 local player = Entity("player")
 
 player.rigidBody = RigidBodyComponent()
 player.rigidBody.workingCopy.linearDamping = 0.5
-player.rigidBody.workingCopy.shape = btCylinderShape(Vector3(6.4, 1, 6.4))
+player.rigidBody.workingCopy.shape = btCylinderShape(Vector3(3.75, 1, 3.75))
 player.rigidBody.workingCopy.friction = 0.2
+player.rigidBody:setDynamicProperties(
+    Vector3(0, 0, 0),
+    Quaternion(Radian(Degree(90)), Vector3(1, 0, 0)),
+    Vector3(0, 0, 0),
+    Vector3(0, 0, 0)
+)
 player.rigidBody:touch()
 player:addComponent(player.rigidBody)
 
@@ -13,14 +24,6 @@ player:addComponent(OgreEntityComponent("Mesh.mesh"))
 
 player.sceneNode.workingCopy.position = Vector3(0, 0, 0)
 player.sceneNode:touch()
-
---[[
-playerRigidBody:setDynamicProperties(
-	Vector3(0,0,0),
-	Quaternion(1,0,0,0),
-	Vector3(1,0,0),
-	Vector3(0,0,0))
---]]
 
 ACCELERATION = 0.05
 player.onUpdate = OnUpdateComponent()
