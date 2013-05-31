@@ -84,6 +84,11 @@ public:
     ) override;
 
     void
+    setDebugMode(
+        int mode
+    );
+
+    void
     shutdown() override;
 
     void

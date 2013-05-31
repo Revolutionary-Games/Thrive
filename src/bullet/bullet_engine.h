@@ -40,6 +40,11 @@ public:
         EntityManager* entityManager
     ) override;
 
+    void
+    setDebugMode(
+        int mode
+    );
+
     /**
     * @brief Shuts the engine down
     */
