@@ -1,5 +1,7 @@
 #include "ogre/ogre_engine.h"
 
+#include "bullet/bullet_engine.h"
+#include "bullet/debug_drawing.h"
 #include "game.h"
 #include "ogre/camera_system.h"
 #include "ogre/entity_system.h"
@@ -216,6 +218,12 @@ OgreEngine::init(
         "removeSceneNodes",
         100,
         std::make_shared<OgreRemoveSceneNodeSystem>()
+    );
+    BulletEngine& bulletEngine = Game::instance().bulletEngine();
+    this->addSystem(
+        "bulletDebugRenderSystem",
+        0,
+        std::make_shared<BulletDebugRenderSystem>(bulletEngine.debugSystem())
     );
     this->addSystem(
         "rendering",

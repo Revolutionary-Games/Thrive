@@ -2,6 +2,7 @@
 
 #include "game.h"
 #include "engine/shared_data.h"
+#include "bullet/debug_drawing.h"
 #include "bullet/update_physics_system.h"
 #include "bullet/rigid_body_system.h"
 
@@ -10,6 +11,11 @@
 using namespace thrive;
 
 struct BulletEngine::Implementation{
+
+    Implementation()
+      : m_debugSystem(std::make_shared<BulletDebugSystem>())
+    {
+    }
 
     void
     setupWorld() {
@@ -32,6 +38,8 @@ struct BulletEngine::Implementation{
 
     std::unique_ptr<btCollisionConfiguration> m_collisionConfiguration;
 
+    std::shared_ptr<BulletDebugSystem> m_debugSystem;
+
     std::unique_ptr<btDispatcher> m_dispatcher;
 
     std::unique_ptr<btConstraintSolver> m_solver;
@@ -49,6 +57,12 @@ BulletEngine::BulletEngine()
 
 
 BulletEngine::~BulletEngine() {}
+
+
+std::shared_ptr<BulletDebugSystem>
+BulletEngine::debugSystem() const {
+    return m_impl->m_debugSystem;
+}
 
 
 void
@@ -72,6 +86,11 @@ BulletEngine::init(
         "rigidBodyOutputSystem",
         10,
         std::make_shared<RigidBodyOutputSystem>()
+    );
+    this->addSystem(
+        "debugSystem",
+        100,
+        m_impl->m_debugSystem
     );
 }
 
