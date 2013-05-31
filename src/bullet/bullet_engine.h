@@ -8,6 +8,8 @@ class btDiscreteDynamicsWorld;
 
 namespace thrive {
 
+class BulletDebugSystem;
+
 /**
 * @brief Physics engine
 */
@@ -24,6 +26,9 @@ public:
     * @brief Destructor
     */
     ~BulletEngine();
+
+    std::shared_ptr<BulletDebugSystem>
+    debugSystem() const;
 
     /**
     * @brief Initializes the engine
