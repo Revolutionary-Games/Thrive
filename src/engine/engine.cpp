@@ -4,6 +4,7 @@
 #include "engine/entity_manager.h"
 #include "engine/system.h"
 #include "game.h"
+#include "scripting/luabind.h"
 #include "util/contains.h"
 #include "util/pair_hash.h"
 
@@ -114,6 +115,16 @@ struct Engine::Implementation {
     mutable boost::mutex m_targetFrameRateMutex;
 
 };
+
+
+luabind::scope
+Engine::luaBindings() {
+    using namespace luabind;
+    return class_<Engine>("Engine")
+        .def("setTargetFrameRate", &Engine::setTargetFrameRate)
+        .def("targetFrameRate", &Engine::targetFrameRate)
+    ;
+}
 
 
 Engine::Engine() 
