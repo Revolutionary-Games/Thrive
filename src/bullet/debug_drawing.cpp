@@ -4,6 +4,7 @@
 #include "bullet/bullet_ogre_conversion.h"
 #include "ogre/ogre_engine.h"
 
+#include <atomic>
 #include <btBulletCollisionCommon.h>
 #include <btBulletDynamicsCommon.h>
 #include <OgreManualObject.h>
@@ -134,7 +135,7 @@ struct BulletDebugSystem::Implementation : public btIDebugDraw {
 
     std::list<ContactPoint> m_contactPoints;
 
-    DebugDrawModes m_debugMode = DBG_DrawWireframe;
+    std::atomic<DebugDrawModes> m_debugMode;
 
     PhysicsOutputData<DebugFrame> m_recorded;
 
@@ -162,6 +163,14 @@ BulletDebugSystem::init(
     assert(bulletEngine != nullptr && "System requires a BulletEngine");
     m_impl->m_world = bulletEngine->world();
     m_impl->m_world->setDebugDrawer(m_impl.get());
+}
+
+
+void
+BulletDebugSystem::setDebugMode(
+    int mode
+) {
+    m_impl->setDebugMode(mode);
 }
 
 

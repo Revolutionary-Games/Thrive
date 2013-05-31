@@ -96,6 +96,14 @@ BulletEngine::init(
 
 
 void
+BulletEngine::setDebugMode(
+    int mode
+) {
+    m_impl->m_debugSystem->setDebugMode(mode);
+}
+
+
+void
 BulletEngine::shutdown() {
     Engine::shutdown();
 }
