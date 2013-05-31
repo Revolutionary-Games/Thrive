@@ -251,10 +251,10 @@ OgreEngine::sceneManager() const {
 
 void
 OgreEngine::shutdown() {
+    Engine::shutdown();
     m_impl->shutdownInputManager();
     m_impl->m_window->destroy();
     m_impl->m_root.reset();
-    Engine::shutdown();
 }
 
 
