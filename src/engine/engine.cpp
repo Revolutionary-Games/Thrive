@@ -111,6 +111,8 @@ struct Engine::Implementation {
 
     unsigned short m_targetFrameRate = 60;
 
+    mutable boost::mutex m_targetFrameRateMutex;
+
 };
 
 
@@ -226,6 +228,7 @@ Engine::setTargetFrameRate(
     unsigned short fps
 ) {
     assert(fps != 0 && "Can't set a 0 framerate");
+    boost::lock_guard<boost::mutex> lock(m_impl->m_targetFrameRateMutex);
     m_impl->m_targetFrameRate = fps;
     m_impl->m_targetFrameDuration = std::chrono::microseconds(1000000 / fps);
 }
@@ -244,12 +247,14 @@ Engine::shutdown() {
 
 std::chrono::microseconds
 Engine::targetFrameDuration() const {
+    boost::lock_guard<boost::mutex> lock(m_impl->m_targetFrameRateMutex);
     return m_impl->m_targetFrameDuration;
 }
 
 
 unsigned short
 Engine::targetFrameRate() const {
+    boost::lock_guard<boost::mutex> lock(m_impl->m_targetFrameRateMutex);
     return m_impl->m_targetFrameRate;
 }
 
