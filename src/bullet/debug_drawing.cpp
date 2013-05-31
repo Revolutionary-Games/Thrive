@@ -75,7 +75,6 @@ struct BulletDebugSystem::Implementation : public btIDebugDraw {
             to,
             color
         });
-        m_recorded.touch();
     }
 
     using btIDebugDraw::drawLine;
@@ -93,7 +92,6 @@ struct BulletDebugSystem::Implementation : public btIDebugDraw {
             v0, v1, v2,
             color
         });
-        m_recorded.touch();
     }
 
     using btIDebugDraw::drawTriangle;
@@ -114,7 +112,7 @@ struct BulletDebugSystem::Implementation : public btIDebugDraw {
     reportErrorWarning(
         const char* warningString
     ) override {
-        (void) warningString;
+        std::cout << "Bullet warning: " << warningString << std::endl;
     }
 
     void
@@ -188,6 +186,7 @@ BulletDebugSystem::update(
     m_impl->updateContactPoints(milliseconds);
     m_impl->m_recorded.workingCopy().m_lines.clear();
     m_impl->m_recorded.workingCopy().m_triangles.clear();
+    m_impl->m_world->debugDrawWorld();
     for (const auto& contactPoint : m_impl->m_contactPoints) {
         m_impl->drawLine(
             contactPoint.point,
@@ -196,7 +195,6 @@ BulletDebugSystem::update(
         );
     }
     m_impl->m_recorded.touch();
-    m_impl->m_world->debugDrawWorld();
 }
 
 
@@ -280,6 +278,7 @@ struct BulletDebugRenderSystem::Implementation {
     setupLines() {
         auto root = m_sceneManager->getRootSceneNode();
         m_lines.reset(new Ogre::ManualObject("Physics Debug Lines"));
+        m_lines->setDynamic(true);
         root->attachObject(m_lines.get());
         m_lines->begin(MATERIAL_NAME, Ogre::RenderOperation::OT_LINE_LIST);
         // Initialize to empty line
@@ -306,6 +305,7 @@ struct BulletDebugRenderSystem::Implementation {
     setupTriangles() {
         auto root = m_sceneManager->getRootSceneNode();
         m_triangles.reset(new Ogre::ManualObject("Physics Debug Triangles"));
+        m_triangles->setDynamic(true);
         root->attachObject(m_triangles.get());
         m_triangles->begin(MATERIAL_NAME, Ogre::RenderOperation::OT_TRIANGLE_LIST);
         // Initialize to empty triangle
@@ -362,6 +362,9 @@ BulletDebugRenderSystem::shutdown() {
 
 void
 BulletDebugRenderSystem::update(int) {
+    if (not m_impl->m_debugSystem->m_debugFrame.hasChanges()) {
+        return;
+    }
     const auto& frame = m_impl->m_debugSystem->m_debugFrame.stable();
     // Lines
     m_impl->m_lines->beginUpdate(0);
@@ -396,6 +399,7 @@ BulletDebugRenderSystem::update(int) {
 
     }
     m_impl->m_triangles->end();
+    m_impl->m_debugSystem->m_debugFrame.untouch();
 }
 
 
