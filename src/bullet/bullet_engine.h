@@ -6,6 +6,10 @@
 
 class btDiscreteDynamicsWorld;
 
+namespace luabind {
+class scope;
+}
+
 namespace thrive {
 
 class BulletDebugSystem;
@@ -16,6 +20,9 @@ class BulletDebugSystem;
 class BulletEngine : public Engine {
 
 public:
+
+    static luabind::scope
+    luaBindings();
 
     /**
     * @brief Constructor

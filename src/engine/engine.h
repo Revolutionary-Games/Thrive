@@ -8,6 +8,10 @@
 #include <memory>
 #include <unordered_set>
 
+namespace luabind {
+class scope;
+}
+
 namespace thrive {
 
 /**
@@ -69,6 +73,7 @@ namespace thrive {
 class ComponentCollection;
 class EntityManager;
 
+
 /**
 * @brief An engine with a single purpose
 *
@@ -79,6 +84,9 @@ class EntityManager;
 class Engine {
 
 public:
+
+    static luabind::scope
+    luaBindings();
 
     /**
     * @brief Constructor

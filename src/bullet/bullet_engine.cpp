@@ -5,6 +5,7 @@
 #include "bullet/debug_drawing.h"
 #include "bullet/update_physics_system.h"
 #include "bullet/rigid_body_system.h"
+#include "scripting/luabind.h"
 
 #include <btBulletDynamicsCommon.h>
 
@@ -47,6 +48,33 @@ struct BulletEngine::Implementation{
     std::unique_ptr<btDiscreteDynamicsWorld> m_world;
 
 };
+
+
+luabind::scope
+BulletEngine::luaBindings() {
+    using namespace luabind;
+    return class_<BulletEngine, Engine>("BulletEngine")
+        .enum_("DebugDrawModes") [
+            value("DBG_NoDebug", btIDebugDraw::DBG_NoDebug),
+            value("DBG_DrawWireframe", btIDebugDraw::DBG_DrawWireframe),
+            value("DBG_DrawAabb", btIDebugDraw::DBG_DrawAabb),
+            value("DBG_DrawFeaturesText", btIDebugDraw::DBG_DrawFeaturesText),
+            value("DBG_DrawContactPoints", btIDebugDraw::DBG_DrawContactPoints),
+            value("DBG_NoDeactivation", btIDebugDraw::DBG_NoDeactivation),
+            value("DBG_NoHelpText", btIDebugDraw::DBG_NoHelpText),
+            value("DBG_DrawText", btIDebugDraw::DBG_DrawText),
+            value("DBG_ProfileTimings", btIDebugDraw::DBG_ProfileTimings),
+            value("DBG_EnableSatComparison", btIDebugDraw::DBG_EnableSatComparison),
+            value("DBG_DisableBulletLCP", btIDebugDraw::DBG_DisableBulletLCP),
+            value("DBG_EnableCCD", btIDebugDraw::DBG_EnableCCD),
+            value("DBG_DrawConstraints", btIDebugDraw::DBG_DrawConstraints),
+            value("DBG_DrawConstraintLimits", btIDebugDraw::DBG_DrawConstraintLimits),
+            value("DBG_FastWireframe", btIDebugDraw::DBG_FastWireframe),
+            value("DBG_DrawNormals", btIDebugDraw::DBG_DrawNormals)
+        ]
+        .def("setDebugMode", &BulletEngine::setDebugMode)
+    ;
+}
 
 
 BulletEngine::BulletEngine()
