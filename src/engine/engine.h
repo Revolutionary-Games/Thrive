@@ -85,6 +85,14 @@ class Engine {
 
 public:
 
+    /**
+    * @brief Lua bindings
+    *
+    * Exposes the following functions:
+    * - Engine::setTargetFrameRate
+    *
+    * @return 
+    */
     static luabind::scope
     luaBindings();
 
