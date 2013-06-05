@@ -52,7 +52,7 @@ function download()
 #    DIR=`getScriptDirectory`
 #
 function getScriptDirectory() {
-    echo "$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+    echo "$( cd "$( dirname "${BASH_SOURCE[1]}" )" && pwd )"
 }
 
 # Converts a posix path to windows

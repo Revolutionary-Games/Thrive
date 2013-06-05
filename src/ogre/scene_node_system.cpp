@@ -8,6 +8,10 @@
 #include "engine/serialization.h"
 #include "scripting/luabind.h"
 
+#include "sound/sound_source_system.h"
+#include <OgreOggISound.h>
+#include <OgreOggSoundManager.h>
+
 #include <OgreSceneManager.h>
 #include <OgreEntity.h>
 
@@ -64,6 +68,8 @@ OgreSceneNodeComponent::luaBindings() {
                 .def_readwrite("scale", &Transform::scale)
         ]
         .def(constructor<>())
+        .def("attachObject", &OgreSceneNodeComponent::attachObject)
+        .def("attachSoundListener", &OgreSceneNodeComponent::attachSoundListener)
         .def_readonly("transform", &OgreSceneNodeComponent::m_transform)
         .def_readonly("entity", &OgreSceneNodeComponent::m_entity)
         .property("parent", OgreSceneNodeComponent_getParent, OgreSceneNodeComponent_setParent)
@@ -71,6 +77,7 @@ OgreSceneNodeComponent::luaBindings() {
     ;
 }
 
+bool OgreSceneNodeComponent::s_soundListenerAttached = false;
 
 void
 OgreSceneNodeComponent::load(
@@ -94,6 +101,27 @@ OgreSceneNodeComponent::storage() const {
     storage.set<Ogre::String>("meshName", m_meshName);
     storage.set<EntityId>("parentId", m_parentId);
     return storage;
+}
+
+void
+OgreSceneNodeComponent::attachObject(
+    Ogre::MovableObject* obj
+) {
+    m_objectsToAttach.get().push_back(obj);
+    m_objectsToAttach.touch();
+}
+
+void
+OgreSceneNodeComponent::_attachObject(
+    Ogre::MovableObject* obj
+) {
+    m_sceneNode->attachObject(obj);
+}
+
+void
+OgreSceneNodeComponent::attachSoundListener() {
+    m_attachToListener = true;
+    m_attachToListener.touch();
 }
 
 REGISTER_COMPONENT(OgreSceneNodeComponent)
@@ -365,7 +393,25 @@ OgreUpdateSceneNodeSystem::update(int) {
             }
             component->m_meshName.untouch();
         }
+        if(component->m_objectsToAttach.hasChanges()){
+            for (auto obj : component->m_objectsToAttach.get()){
+                component->_attachObject(obj);
+                component->m_objectsToAttach.get().clear();
+            }
+            component->m_objectsToAttach.untouch();
+        }
+        if(component->m_attachToListener.hasChanges()){
+            if (component->m_attachToListener.get()) {
+                OgreOggSound::OgreOggListener* listener = OgreOggSound::OgreOggSoundManager::getSingleton().getListener();
+                if (OgreSceneNodeComponent::s_soundListenerAttached){
+                    listener->detachFromParent();
+                }
+                else {
+                    OgreSceneNodeComponent::s_soundListenerAttached = true;
+                }
+                component->_attachObject(listener);
+            }
+            component->m_attachToListener.untouch();
+        }
     }
 }
-
-
