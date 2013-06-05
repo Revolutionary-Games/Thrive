@@ -122,24 +122,6 @@ find_package(Bullet REQUIRED QUIET)
 
 include_directories(SYSTEM ${BULLET_INCLUDE_DIRS})
 
-############
-# irrKlang #
-############
-
-#No longer used
-
-#find_package(irrKlang REQUIRED QUIET)
-
-#include_directories(SYSTEM ${IRRKLANG_INCLUDE_DIRS})
-
-##########
-# OpenAL #
-##########
-
-find_package(OpenAL REQUIRED QUIET)
-
-include_directories(SYSTEM ${IRRKLANG_INCLUDE_DIR})
-
 
 #######
 # Lua #
@@ -169,6 +151,28 @@ add_definitions(-DLUABIND_CPLUSPLUS_LUA)
 
 add_subdirectory(
     ${CMAKE_CURRENT_SOURCE_DIR}/contrib/luabind/
+)
+
+################
+# OgreOggSound #
+################
+
+find_package(OpenAL REQUIRED QUIET)
+find_package(Ogg REQUIRED)
+find_package(Vorbis REQUIRED)
+
+add_definitions(-DHAVE_EFX=0)
+
+add_subdirectory(
+    ${CMAKE_CURRENT_SOURCE_DIR}/contrib/ogre_ogg_sound
+)
+
+include_directories(
+    SYSTEM
+    ${CMAKE_CURRENT_SOURCE_DIR}/contrib/ogre_ogg_sound/include
+    ${OpenAL_INCLUDE_DIRS}
+    ${OGG_INCLUDE_DIRS}
+    ${VORBIS_INCLUDE_DIRS}
 )
 
 ######################
@@ -218,7 +222,10 @@ target_link_libraries(ThriveLib
     ${BULLET_COLLISION_LIBRARY}
     ${BULLET_MATH_LIBRARY}
     ${BULLET_SOFTBODY_LIBRARY}
-    ${IRRKLANG_LIBRARIES}
+    ${OpenAL_LIBRARIES}
+    ${Ogg_LIBRARIES}
+    ${Vorbis_LIBRARIES}
+    OgreOggSound
     luabind
 )
 
@@ -340,6 +347,15 @@ install(DIRECTORY
     CONFIGURATIONS Release  Debug
 )
 
+install(DIRECTORY
+    ${ASSET_DIRECTORY}/sounds
+    DESTINATION ./
+    CONFIGURATIONS Release  Debug
+    FILES_MATCHING
+        PATTERN "*.ogg"
+        PATTERN "*.wav"
+)
+
 # Install Runtime Libraries
 if(WIN32)
 
@@ -364,13 +380,13 @@ if(WIN32)
         # Release
         install(FILES
             ${OGRE_PLUGIN_DIR_REL}/${OGRE_PLUGIN}.dll
-            DESTINATION bin/plugins
+            DESTINATION bin
             CONFIGURATIONS Release
         )
         # Debug
         install(FILES
             ${OGRE_PLUGIN_DIR_DBG}/${OGRE_PLUGIN}_d.dll
-            DESTINATION bin/plugins
+            DESTINATION bin
             CONFIGURATIONS Debug
         )
     endforeach()
@@ -383,7 +399,7 @@ if(WIN32)
 		DESTINATION bin
 		CONFIGURATIONS Release
 	)
-
+    
 	install(FILES
         ${OGRE_PLUGIN_DIR_DBG}/OgreMain_d.dll
 		${OGRE_PLUGIN_DIR_DBG}/RenderSystem_GL_d.dll
@@ -392,6 +408,12 @@ if(WIN32)
 		DESTINATION bin
 		CONFIGURATIONS Debug
 	)
+    
+    install(FILES
+        ${MINGW_ENV}/install/bin/OpenAL32.dll
+        DESTINATION bin
+		CONFIGURATIONS Release debug
+    )
 
 elseif(UNIX)
 
@@ -422,14 +444,14 @@ elseif(UNIX)
         # Release
         InstallFollowingSymlink(
             ${OGRE_PLUGIN_LIB_REL}
-            bin/plugins
+            bin
             Release
             True
         )
         # Debug
         InstallFollowingSymlink(
             ${OGRE_PLUGIN_LIB_DBG}
-            bin/plugins
+            bin
             Debug
             True
         )
