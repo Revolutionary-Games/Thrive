@@ -49,6 +49,7 @@ Entity::luaBindings() {
         .def("removeComponent",
             static_cast<void (Entity::*) (const std::string&)>(&Entity::removeComponent)
         )
+        .property("id", &Entity::id)
     ;
 }
 
