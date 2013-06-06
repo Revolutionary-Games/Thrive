@@ -109,8 +109,7 @@ OgreAddSceneNodeSystem::update(int) {
         m_impl->m_sceneNodes[entityId] = node;
         component->m_sceneNode = node;
     }
-    m_impl->m_entities.removedEntities().clear();
-    added.clear();
+    m_impl->m_entities.clearChanges();
 }
 
 
@@ -160,14 +159,18 @@ OgreRemoveSceneNodeSystem::shutdown() {
 
 void
 OgreRemoveSceneNodeSystem::update(int) {
-    auto& removed = m_impl->m_entities.removedEntities();
-    for (EntityId entityId : removed) {
+    for (auto& value : m_impl->m_entities.addedEntities()) {
+        EntityId entityId = value.first;
+        OgreSceneNodeComponent* sceneNodeComponent = std::get<0>(value.second);
+        Ogre::SceneNode* sceneNode = sceneNodeComponent->m_sceneNode;
+        m_impl->m_sceneNodes[entityId] = sceneNode;
+    }
+    for (EntityId entityId : m_impl->m_entities.removedEntities()) {
         Ogre::SceneNode* node = m_impl->m_sceneNodes[entityId];
         m_impl->m_sceneManager->destroySceneNode(node);
         m_impl->m_sceneNodes.erase(entityId);
     }
-    m_impl->m_entities.addedEntities().clear();
-    removed.clear();
+    m_impl->m_entities.clearChanges();
 }
 
 
