@@ -36,6 +36,7 @@ Entity::luaBindings() {
         .def(constructor<const std::string&>())
         .def(const_self == other<Entity>())
         .def("addComponent", &Entity::addComponent)
+        .def("destroy", &Entity::destroy)
         .def("exists", &Entity::exists)
         .def("getComponent",
             static_cast<Component* (Entity::*) (Component::TypeId)>(&Entity::getComponent)
@@ -141,6 +142,12 @@ Entity::addComponent(
         m_impl->m_id,
         std::move(component)
     );
+}
+
+
+void
+Entity::destroy() {
+    m_impl->m_entityManager->removeEntity(m_impl->m_id);
 }
 
 
