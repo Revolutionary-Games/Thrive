@@ -1,14 +1,11 @@
-Physics:setDebugMode(bit32.bor(
-    BulletEngine.DBG_DrawAabb,
-    BulletEngine.DBG_DrawWireframe
-))
-
 local player = Entity("player")
 
 player.rigidBody = RigidBodyComponent()
 player.rigidBody.workingCopy.linearDamping = 0.5
 player.rigidBody.workingCopy.shape = btCylinderShape(Vector3(3.75, 1, 3.75))
 player.rigidBody.workingCopy.friction = 0.2
+player.rigidBody.workingCopy.linearFactor = Vector3(1, 1, 0)
+player.rigidBody.workingCopy.angularFactor = Vector3(0, 0, 1)
 player.rigidBody:setDynamicProperties(
     Vector3(0, 0, 0),
     Quaternion(Radian(Degree(90)), Vector3(1, 0, 0)),
@@ -42,6 +39,8 @@ player.onUpdate.callback = function(entityId, milliseconds)
     if (Keyboard:isKeyDown(KeyboardSystem.KC_D)) then
         impulse = impulse + Vector3(1, 0, 0)
     end
-    impulse = impulse * ACCELERATION * milliseconds
-    player.rigidBody:applyCentralImpulse(impulse);
+    if not impulse:isZeroLength() then
+        impulse = impulse:normalisedCopy() * ACCELERATION * milliseconds
+        player.rigidBody:applyCentralImpulse(impulse);
+    end
 end
