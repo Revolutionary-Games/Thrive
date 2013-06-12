@@ -101,6 +101,8 @@ public:
     */
     Engine();
 
+    Engine(const std::string& name);
+
     /**
     * @brief Non-copyable
     *
@@ -226,6 +228,9 @@ public:
     init(
         EntityManager* entityManager
     );
+
+    std::string
+    name() const;
 
     /**
     * @brief Removes a system from the engine by name

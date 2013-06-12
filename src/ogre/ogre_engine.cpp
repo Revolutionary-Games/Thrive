@@ -142,7 +142,7 @@ struct OgreEngine::Implementation : public Ogre::WindowEventListener {
 
 
 OgreEngine::OgreEngine()
-  : Engine(),
+  : Engine("Graphics"),
     m_impl(new Implementation())
 {
 }

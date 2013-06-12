@@ -78,7 +78,7 @@ BulletEngine::luaBindings() {
 
 
 BulletEngine::BulletEngine()
-  : Engine(),
+  : Engine("Physics"),
     m_impl(new Implementation())
 {
 }

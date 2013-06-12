@@ -82,7 +82,8 @@ struct ScriptEngine::Implementation {
 
 ScriptEngine::ScriptEngine(
     lua_State* luaState
-) : m_impl(new Implementation(luaState))
+) : Engine("Script"),
+    m_impl(new Implementation(luaState))
 {
 }
 

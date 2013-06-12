@@ -100,6 +100,8 @@ struct Engine::Implementation {
 
     Clock::time_point m_lastUpdate;
 
+    std::string m_name;
+
     std::unordered_map<std::string, std::shared_ptr<System>> m_systems;
 
     std::forward_list<
@@ -130,6 +132,14 @@ Engine::luaBindings() {
 Engine::Engine() 
   : m_impl(new Implementation(*this))
 {
+}
+
+
+Engine::Engine(
+    const std::string& name
+) : Engine()
+{
+    m_impl->m_name = name;
 }
 
 
@@ -213,6 +223,12 @@ Engine::init(
     m_impl->m_isInitialized = true;
     entityManager->registerEngine(this);
     m_impl->m_lastUpdate = Implementation::Clock::now();
+}
+
+
+std::string
+Engine::name() const {
+    return m_impl->m_name;
 }
 
 
@@ -315,6 +331,8 @@ struct EngineRunner::Implementation {
             m_engine.update();
             Clock::time_point stop = Clock::now();
             Clock::duration frameDuration = stop - start;
+            int frameUS = std::chrono::duration_cast<std::chrono::microseconds>(frameDuration).count();
+            std::cout << "Frame duration for " << m_engine.name() << ": " << frameUS << " us" << std::endl;
             Clock::duration sleepDuration = m_engine.targetFrameDuration() - frameDuration;
             if (sleepDuration.count() > 0) {
                 auto microseconds = std::chrono::duration_cast<std::chrono::microseconds>(sleepDuration).count();
