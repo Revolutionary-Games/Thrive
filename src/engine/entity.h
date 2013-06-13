@@ -172,6 +172,12 @@ public:
     );
 
     /**
+    * @brief Removes all components of this entity
+    */
+    void
+    destroy();
+
+    /**
     * @brief Checks if the entity has any components
     *
     * @return \c true if the entity has at least one component, \c false otherwise

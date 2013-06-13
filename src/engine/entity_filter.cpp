@@ -155,8 +155,8 @@ struct EntityFilter<ComponentTypes...>::Implementation {
     onRequiredComponentRemoved(
         EntityId entityId
     ) {
-        m_entities.erase(entityId);
-        if (m_recordChanges) {
+        
+        if (m_entities.erase(entityId) > 0 and m_recordChanges) {
             m_removedEntities.insert(entityId);
         }
     }

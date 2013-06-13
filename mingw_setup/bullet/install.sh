@@ -49,6 +49,7 @@ fi
 mkdir -p $WORKING_DIR/build
 cd $WORKING_DIR/build
 cmake \
+    -DCMAKE_TOOLCHAIN_FILE=$MINGW_ENV/cmake/toolchain.cmake \
     -DCMAKE_INSTALL_PREFIX=$MINGW_ENV/install \
     -DBUILD_CPU_DEMOS=OFF \
     -DBUILD_DEMOS=OFF \

@@ -6,7 +6,13 @@
 
 class btDiscreteDynamicsWorld;
 
+namespace luabind {
+class scope;
+}
+
 namespace thrive {
+
+class BulletDebugSystem;
 
 /**
 * @brief Physics engine
@@ -14,6 +20,18 @@ namespace thrive {
 class BulletEngine : public Engine {
 
 public:
+
+    /**
+    * @brief Lua bindings
+    *
+    * Exposes the following functions:
+    *
+    * - BulletEngine::setDebugMode
+    *
+    * @return 
+    */
+    static luabind::scope
+    luaBindings();
 
     /**
     * @brief Constructor
@@ -26,6 +44,17 @@ public:
     ~BulletEngine();
 
     /**
+    * @brief The debug system of the engine
+    *
+    * Use this in conjunction with BulletDebugScriptSystem and
+    * BulletDebugRenderSystem to draw debug information.
+    *
+    * @return 
+    */
+    std::shared_ptr<BulletDebugSystem>
+    debugSystem() const;
+
+    /**
     * @brief Initializes the engine
     *
     * @param entityManager
@@ -34,6 +63,17 @@ public:
     void init(
         EntityManager* entityManager
     ) override;
+
+    /**
+    * @brief Sets debug mode flags
+    *
+    * @param mode
+    *   See btIDebugDraw::DebugDrawModes for available values
+    */
+    void
+    setDebugMode(
+        int mode
+    );
 
     /**
     * @brief Shuts the engine down
