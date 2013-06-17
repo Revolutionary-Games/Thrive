@@ -1,28 +1,28 @@
 local player = Entity("player")
 
-playerRigidBody = RigidBodyComponent()
-player:addComponent(playerRigidBody)
+player.rigidBody = RigidBodyComponent()
+player.rigidBody.workingCopy.linearDamping = 0.5
+player.rigidBody.workingCopy.shape = btCylinderShape(Vector3(3.75, 1, 3.75))
+player.rigidBody.workingCopy.friction = 0.2
+player.rigidBody.workingCopy.linearFactor = Vector3(1, 1, 0)
+player.rigidBody.workingCopy.angularFactor = Vector3(0, 0, 1)
+player.rigidBody:setDynamicProperties(
+    Vector3(0, 0, 0),
+    Quaternion(Radian(Degree(90)), Vector3(1, 0, 0)),
+    Vector3(0, 0, 0),
+    Vector3(0, 0, 0)
+)
+player.rigidBody:touch()
+player:addComponent(player.rigidBody)
 
-playerRigidBody.workingCopy.friction = 0.2
-playerRigidBody.workingCopy.shape = btBoxShape(Vector3(10, 10, 10))
-playerRigidBody:touch()
-
-playerSceneNode = OgreSceneNodeComponent()
-player:addComponent(playerSceneNode)
+player.sceneNode = OgreSceneNodeComponent()
+player:addComponent(player.sceneNode)
 player:addComponent(OgreEntityComponent("Mesh.mesh"))
 
-playerSceneNode.workingCopy.position = Vector3(0, 0, 0)
-playerSceneNode:touch()
+player.sceneNode.workingCopy.position = Vector3(0, 0, 0)
+player.sceneNode:touch()
 
---[[
-playerRigidBody:setDynamicProperties(
-	Vector3(0,0,0),
-	Quaternion(1,0,0,0),
-	Vector3(1,0,0),
-	Vector3(0,0,0))
---]]
-
-ACCELERATION = 0.01
+ACCELERATION = 0.05
 player.onUpdate = OnUpdateComponent()
 player:addComponent(player.onUpdate)
 player.onUpdate.callback = function(entityId, milliseconds)
@@ -39,6 +39,8 @@ player.onUpdate.callback = function(entityId, milliseconds)
     if (Keyboard:isKeyDown(KeyboardSystem.KC_D)) then
         impulse = impulse + Vector3(1, 0, 0)
     end
-    impulse = impulse * ACCELERATION * milliseconds
-    playerRigidBody:applyCentralImpulse(impulse);
+    if not impulse:isZeroLength() then
+        impulse = impulse:normalisedCopy() * ACCELERATION * milliseconds
+        player.rigidBody:applyCentralImpulse(impulse);
+    end
 end

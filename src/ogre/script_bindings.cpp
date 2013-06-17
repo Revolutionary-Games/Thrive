@@ -137,6 +137,21 @@ colourValueBindings() {
 
 
 static luabind::scope
+degreeBindings() {
+    return class_<Degree>("Degree")
+        .def(constructor<Real>())
+        .def(constructor<const Radian&>())
+        .def(const_self == other<Degree>())
+        .def(const_self + other<Degree>())
+        .def(const_self - other<Degree>())
+        .def(const_self * other<Degree>())
+        .def(const_self * Real())
+        .def(const_self / Real())
+        .def(const_self < other<Degree>())
+    ;
+}
+
+static luabind::scope
 matrix3Bindings() {
     return class_<Matrix3>("Matrix3")
         .def(constructor<>())
@@ -300,6 +315,7 @@ static luabind::scope
 radianBindings() {
     return class_<Radian>("Radian")
         .def(constructor<Real>())
+        .def(constructor<const Degree&>())
         .def(const_self == other<Radian>())
         .def(const_self + other<Radian>())
         .def(const_self - other<Radian>())
@@ -387,6 +403,7 @@ thrive::OgreBindings::luaBindings() {
     return (
         axisAlignedBoxBindings(),
         colourValueBindings(),
+        degreeBindings(),
         matrix3Bindings(),
         planeBindings(),
         quaternionBindings(),

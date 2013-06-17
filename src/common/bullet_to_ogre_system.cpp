@@ -45,14 +45,14 @@ BulletToOgreSystem::update(int) {
     for (auto& value : m_impl->m_entities) {
         RigidBodyComponent* rigidBodyComponent = std::get<0>(value.second);
         OgreSceneNodeComponent* sceneNodeComponent = std::get<1>(value.second);
-        if (not rigidBodyComponent->m_dynamicOutputProperties.hasChanges()) {
-            continue;
+        if (rigidBodyComponent->m_dynamicOutputProperties.hasChanges()) {
+            const auto& physicsProperties = rigidBodyComponent->m_dynamicOutputProperties.stable();
+            auto& ogreProperties = sceneNodeComponent->m_properties.workingCopy();
+            ogreProperties.orientation = physicsProperties.rotation;
+            ogreProperties.position = physicsProperties.position;
+            sceneNodeComponent->m_properties.touch();
+            rigidBodyComponent->m_dynamicOutputProperties.untouch();
         }
-        const auto& physicsProperties = rigidBodyComponent->m_dynamicOutputProperties.stable();
-        auto& ogreProperties = sceneNodeComponent->m_properties.workingCopy();
-        ogreProperties.orientation = physicsProperties.rotation;
-        ogreProperties.position = physicsProperties.position;
-        sceneNodeComponent->m_properties.touch();
     }
 }
 

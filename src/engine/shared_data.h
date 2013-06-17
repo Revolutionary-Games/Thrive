@@ -177,6 +177,24 @@ class SharedState {
 
 public:
 
+    class SharedDataBase {
+
+        public:
+
+            virtual void updateBuffer(short bufferIndex) = 0;
+
+        protected:
+
+            void registerWithState() {
+                SharedState::instance().m_registeredSharedData.insert(this);
+            }
+
+            void unregisterWithState() {
+                SharedState::instance().m_registeredSharedData.erase(this);
+            }
+
+    };
+
     /**
     * @brief The singleton instance
     */
@@ -269,6 +287,9 @@ public:
         else {
             m_workingCopyBuffer = secondOldestBuffer;
         }
+        for (SharedDataBase* sharedData : m_registeredSharedData) {
+            sharedData->updateBuffer(m_workingCopyBuffer);
+        }
     }
 
     /**
@@ -348,6 +369,8 @@ private:
     std::array<FrameIndex, 3> m_bufferFrames = {{0, 0, 0}};
 
     short m_latestBuffer = 0;
+
+    std::unordered_set<SharedDataBase*> m_registeredSharedData;
 
     short m_stableBuffer = -1;
 
@@ -442,7 +465,7 @@ template<
     ThreadId Writer, ThreadId Reader, 
     bool updateWorkingCopy = true
 >
-class SharedData {
+class SharedData : public SharedState<Writer, Reader>::SharedDataBase {
 
 public:
 
@@ -474,6 +497,9 @@ public:
         const Args&... args
     ) : m_buffers{{Data{args...}, Data{args...}, Data{args...}}}
     {
+        if (updateWorkingCopy) {
+            this->registerWithState();
+        }
     }
 
     /**
@@ -487,6 +513,12 @@ public:
     *
     */
     SharedData& operator= (const SharedData&) = delete;
+
+    ~SharedData() {
+        if (updateWorkingCopy) {
+            this->unregisterWithState();
+        }
+    }
 
     /**
     * @brief Whether the stable buffer is outdated
@@ -544,12 +576,7 @@ public:
     */
     Data&
     workingCopy() {
-        State& state = State::instance();
-        short bufferIndex = state.getBufferIndex(StateBuffer::WorkingCopy);
-        if (updateWorkingCopy) {
-            this->updateBuffer(bufferIndex);
-        }
-        return m_buffers[bufferIndex];
+        return getBuffer(StateBuffer::WorkingCopy);
     }
 
 private:
@@ -602,7 +629,7 @@ private:
     void
     updateBuffer(
         short bufferIndex
-    ) {
+    ) override {
         if (m_lastBufferChanges[bufferIndex] < m_lastTouch) {
             m_buffers[bufferIndex] = this->latest();
             m_lastBufferChanges[bufferIndex] = m_lastTouch;

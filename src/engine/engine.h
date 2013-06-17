@@ -8,6 +8,10 @@
 #include <memory>
 #include <unordered_set>
 
+namespace luabind {
+class scope;
+}
+
 namespace thrive {
 
 /**
@@ -69,6 +73,7 @@ namespace thrive {
 class ComponentCollection;
 class EntityManager;
 
+
 /**
 * @brief An engine with a single purpose
 *
@@ -79,6 +84,17 @@ class EntityManager;
 class Engine {
 
 public:
+
+    /**
+    * @brief Lua bindings
+    *
+    * Exposes the following functions:
+    * - Engine::setTargetFrameRate
+    *
+    * @return 
+    */
+    static luabind::scope
+    luaBindings();
 
     /**
     * @brief Constructor

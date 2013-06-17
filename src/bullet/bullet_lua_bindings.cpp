@@ -45,6 +45,43 @@ public:
     {
     }
 };
+
+class CylinderShapeX : public btCylinderShapeX {
+public:
+
+    static luabind::scope
+    luaBindings() {
+        return class_<CylinderShapeX, btCollisionShape, std::shared_ptr<btCollisionShape>>("btCylinderShapeX")
+            .def(constructor<const Ogre::Vector3&>())
+        ;
+    }
+
+    CylinderShapeX(
+        const Ogre::Vector3& v
+    ) : btCylinderShapeX(btVector3(v.x, v.y, v.z))
+    {
+    }
+};
+
+
+class CylinderShapeZ : public btCylinderShapeZ {
+public:
+
+    static luabind::scope
+    luaBindings() {
+        return class_<CylinderShapeZ, btCollisionShape, std::shared_ptr<btCollisionShape>>("btCylinderShapeZ")
+            .def(constructor<const Ogre::Vector3&>())
+        ;
+    }
+
+    CylinderShapeZ(
+        const Ogre::Vector3& v
+    ) : btCylinderShapeZ(btVector3(v.x, v.y, v.z))
+    {
+    }
+};
+
+
 }
 
 
@@ -86,6 +123,8 @@ thrive::BulletBindings::luaBindings() {
         btSphereShapeBoxBindings(),
         BoxShape::luaBindings(),
         CylinderShape::luaBindings(),
+        CylinderShapeX::luaBindings(),
+        CylinderShapeZ::luaBindings(),
         btCapsuleShapeBindings(),
         btConeShapeBoxBindings()
     );

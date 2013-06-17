@@ -1,5 +1,7 @@
 #include "scripting/script_engine.h"
 
+#include "bullet/bullet_engine.h"
+#include "bullet/debug_drawing.h"
 #include "common/bullet_to_ogre_system.h"
 #include "engine/shared_data.h"
 #include "game.h"
@@ -111,6 +113,12 @@ ScriptEngine::init(
         "bulletToOgre",
         0,
         std::make_shared<BulletToOgreSystem>()
+    );
+    BulletEngine& bulletEngine = Game::instance().bulletEngine();
+    this->addSystem(
+        "bulletDebugScriptSystem",
+        0,
+        std::make_shared<BulletDebugScriptSystem>(bulletEngine.debugSystem())
     );
     m_impl->loadScripts("../scripts/");
 }
