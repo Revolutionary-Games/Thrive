@@ -17,36 +17,13 @@ using namespace thrive;
 
 
 void
-OgreLightComponent::Properties::setRange(
+OgreLightComponent::setRange(
     Ogre::Real range
 ) {
     this->attenuationRange = range;
     this->attenuationConstant = 1.0f;
     this->attenuationLinear = 4.5f / range;
     this->attenuationQuadratic = 75.0f / (range * range);
-}
-
-static void
-OgreLightComponent_touch(
-    OgreLightComponent* self
-) {
-    return self->m_properties.touch();
-}
-
-
-static OgreLightComponent::Properties&
-OgreLightComponent_getWorkingCopy(
-    OgreLightComponent* self
-) {
-    return self->m_properties.workingCopy();
-}
-
-
-static const OgreLightComponent::Properties&
-OgreLightComponent_getLatest(
-    OgreLightComponent* self
-) {
-    return self->m_properties.latest();
 }
 
 
@@ -56,20 +33,7 @@ OgreLightComponent::luaBindings() {
     return class_<OgreLightComponent, Component, std::shared_ptr<Component>>("OgreLightComponent")
         .scope [
             def("TYPE_NAME", &OgreLightComponent::TYPE_NAME),
-            def("TYPE_ID", &OgreLightComponent::TYPE_ID),
-            class_<Properties>("Properties")
-                .def_readwrite("type", &Properties::type)
-                .def_readwrite("diffuseColour", &Properties::diffuseColour)
-                .def_readwrite("specularColour", &Properties::specularColour)
-                .def_readwrite("attenuationRange", &Properties::attenuationRange)
-                .def_readwrite("attenuationConstant", &Properties::attenuationConstant)
-                .def_readwrite("attenuationLinear", &Properties::attenuationLinear)
-                .def_readwrite("attenuationQuadratic", &Properties::attenuationQuadratic)
-                .def_readwrite("spotlightInnerAngle", &Properties::spotlightInnerAngle)
-                .def_readwrite("spotlightOuterAngle", &Properties::spotlightOuterAngle)
-                .def_readwrite("spotlightFalloff", &Properties::spotlightFalloff)
-                .def_readwrite("spotlightNearClipDistance", &Properties::spotlightNearClipDistance)
-                .def("setRange", &Properties::setRange)
+            def("TYPE_ID", &OgreLightComponent::TYPE_ID)
         ]
         .enum_("LightTypes") [
             value("LT_POINT", Ogre::Light::LT_POINT),
@@ -77,9 +41,18 @@ OgreLightComponent::luaBindings() {
             value("LT_SPOTLIGHT", Ogre::Light::LT_SPOTLIGHT)
         ]
         .def(constructor<>())
-        .property("latest", OgreLightComponent_getLatest)
-        .property("workingCopy", OgreLightComponent_getWorkingCopy)
-        .def("touch", OgreLightComponent_touch)
+        .def_readwrite("type", &OgreLightComponent::type)
+        .def_readwrite("diffuseColour", &OgreLightComponent::diffuseColour)
+        .def_readwrite("specularColour", &OgreLightComponent::specularColour)
+        .def_readwrite("attenuationRange", &OgreLightComponent::attenuationRange)
+        .def_readwrite("attenuationConstant", &OgreLightComponent::attenuationConstant)
+        .def_readwrite("attenuationLinear", &OgreLightComponent::attenuationLinear)
+        .def_readwrite("attenuationQuadratic", &OgreLightComponent::attenuationQuadratic)
+        .def_readwrite("spotlightInnerAngle", &OgreLightComponent::spotlightInnerAngle)
+        .def_readwrite("spotlightOuterAngle", &OgreLightComponent::spotlightOuterAngle)
+        .def_readwrite("spotlightFalloff", &OgreLightComponent::spotlightFalloff)
+        .def_readwrite("spotlightNearClipDistance", &OgreLightComponent::spotlightNearClipDistance)
+        .def("setRange", &OgreLightComponent::setRange)
     ;
 }
 
@@ -122,13 +95,13 @@ OgreLightSystem::init(
     OgreEngine* ogreEngine = dynamic_cast<OgreEngine*>(engine);
     assert(ogreEngine != nullptr && "System requires an OgreEngine");
     m_impl->m_sceneManager = ogreEngine->sceneManager();
-    m_impl->m_entities.setEngine(engine);
+    m_impl->m_entities.setEntityManager(&engine->entityManager());
 }
 
 
 void
 OgreLightSystem::shutdown() {
-    m_impl->m_entities.setEngine(nullptr);
+    m_impl->m_entities.setEntityManager(nullptr);
     m_impl->m_sceneManager = nullptr;
     System::shutdown();
 }
@@ -147,27 +120,26 @@ OgreLightSystem::update(int) {
     }
     for (const auto& value : m_impl->m_entities) {
         OgreLightComponent* lightComponent = std::get<0>(value.second);
-        if (not lightComponent->m_properties.hasChanges()) {
+        if (not lightComponent->hasChanges()) {
             continue;
         }
         Ogre::Light* light = lightComponent->m_light;
-        const auto& properties = lightComponent->m_properties.stable();
-        light->setType(properties.type);
-        light->setDiffuseColour(properties.diffuseColour);
-        light->setSpecularColour(properties.specularColour);
+        light->setType(lightComponent->type);
+        light->setDiffuseColour(lightComponent->diffuseColour);
+        light->setSpecularColour(lightComponent->specularColour);
         light->setAttenuation(
-            properties.attenuationRange,
-            properties.attenuationConstant,
-            properties.attenuationLinear,
-            properties.attenuationQuadratic
+            lightComponent->attenuationRange,
+            lightComponent->attenuationConstant,
+            lightComponent->attenuationLinear,
+            lightComponent->attenuationQuadratic
         );
         light->setSpotlightRange(
-            properties.spotlightInnerAngle,
-            properties.spotlightOuterAngle,
-            properties.spotlightFalloff
+            lightComponent->spotlightInnerAngle,
+            lightComponent->spotlightOuterAngle,
+            lightComponent->spotlightFalloff
         );
-        light->setSpotlightNearClipDistance(properties.spotlightNearClipDistance);
-        lightComponent->m_properties.untouch();
+        light->setSpotlightNearClipDistance(lightComponent->spotlightNearClipDistance);
+        lightComponent->untouch();
     }
     for (EntityId entityId : m_impl->m_entities.removedEntities()) {
         Ogre::Light* light = m_impl->m_lights[entityId];

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "engine/engine.h"
+#include "engine/entity_manager.h"
 #include "engine/component_collection.h"
 
 #include <assert.h>
@@ -196,17 +196,9 @@ public:
     std::unordered_set<EntityId>&
     removedEntities();
 
-    /**
-    * @brief Attaches this filter to the engine
-    *
-    * If \a engine is \c nullptr, the filter is disabled.
-    *
-    * @param engine
-    *   The engine to attach to
-    */
     void
-    setEngine(
-        Engine* engine
+    setEntityManager(
+        EntityManager* entityManager
     );
 
 private:

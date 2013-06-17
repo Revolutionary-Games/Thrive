@@ -5,6 +5,7 @@
 #include "bullet/debug_drawing.h"
 #include "bullet/update_physics_system.h"
 #include "bullet/rigid_body_system.h"
+#include "common/bullet_to_ogre_system.h"
 #include "scripting/luabind.h"
 
 #include <btBulletDynamicsCommon.h>
@@ -53,7 +54,7 @@ struct BulletEngine::Implementation{
 luabind::scope
 BulletEngine::luaBindings() {
     using namespace luabind;
-    return class_<BulletEngine, Engine>("BulletEngine")
+    return class_<BulletEngine>("BulletEngine")
         .enum_("DebugDrawModes") [
             value("DBG_NoDebug", btIDebugDraw::DBG_NoDebug),
             value("DBG_DrawWireframe", btIDebugDraw::DBG_DrawWireframe),
@@ -77,8 +78,9 @@ BulletEngine::luaBindings() {
 }
 
 
-BulletEngine::BulletEngine()
-  : Engine("Physics"),
+BulletEngine::BulletEngine(
+    EntityManager& entityManager
+) : Engine(entityManager),
     m_impl(new Implementation())
 {
 }
@@ -94,32 +96,22 @@ BulletEngine::debugSystem() const {
 
 
 void
-BulletEngine::init(
-    EntityManager* entityManager
-) {
-    Engine::init(entityManager);
+BulletEngine::init() {
     m_impl->setupWorld();
     // Create essential systems
     this->addSystem(
-        "rigidBodyInputSystem",
-        -10,
         std::make_shared<RigidBodyInputSystem>()
     );
     this->addSystem(
-        "updatePhysics",
-        0,
         std::make_shared<UpdatePhysicsSystem>()
     );
     this->addSystem(
-        "rigidBodyOutputSystem",
-        10,
         std::make_shared<RigidBodyOutputSystem>()
     );
     this->addSystem(
-        "debugSystem",
-        100,
-        m_impl->m_debugSystem
+        std::make_shared<BulletToOgreSystem>()
     );
+    Engine::init();
 }
 
 
@@ -136,18 +128,6 @@ BulletEngine::shutdown() {
     Engine::shutdown();
 }
 
-
-void
-BulletEngine::update() {
-    // Lock shared state
-    StateLock<PhysicsOutputState, StateBuffer::WorkingCopy> physicsOutputLock;
-    StateLock<PhysicsInputState, StateBuffer::Stable> physicsInputLock;
-    // Handle events
-
-    // Update systems
-    Engine::update();
-    // Release shared state
-}
 
 btDiscreteDynamicsWorld*
 BulletEngine::world() const {

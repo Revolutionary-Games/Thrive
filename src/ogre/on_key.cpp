@@ -60,14 +60,14 @@ OnKeySystem::init(
     Engine* engine
 ) {
     System::init(engine);
-    m_impl->m_entities.setEngine(engine);
+    m_impl->m_entities.setEntityManager(&engine->entityManager());
     m_impl->m_keyboardSystem = Game::instance().ogreEngine().keyboardSystem();
 }
 
 
 void
 OnKeySystem::shutdown() {
-    m_impl->m_entities.setEngine(nullptr);
+    m_impl->m_entities.setEntityManager(nullptr);
     m_impl->m_keyboardSystem = nullptr;
     System::shutdown();
 }

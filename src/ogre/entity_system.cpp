@@ -91,13 +91,13 @@ OgreEntitySystem::init(
     OgreEngine* ogreEngine = dynamic_cast<OgreEngine*>(engine);
     assert(ogreEngine != nullptr && "System requires an OgreEngine");
     m_impl->m_sceneManager = ogreEngine->sceneManager();
-    m_impl->m_entities.setEngine(engine);
+    m_impl->m_entities.setEntityManager(&engine->entityManager());
 }
 
 
 void
 OgreEntitySystem::shutdown() {
-    m_impl->m_entities.setEngine(nullptr);
+    m_impl->m_entities.setEntityManager(nullptr);
     m_impl->m_sceneManager = nullptr;
     System::shutdown();
 }

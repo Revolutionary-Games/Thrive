@@ -57,6 +57,12 @@ public:
     */
     virtual ~Component() = 0;
 
+    bool
+    hasChanges() const;
+
+    void
+    touch();
+
     /**
     * @brief The component's type id
     */
@@ -68,6 +74,9 @@ public:
     */
     virtual const std::string&
     typeName() const = 0;
+
+    void
+    untouch();
 
 protected:
 
@@ -81,6 +90,8 @@ protected:
     */
     static TypeId
     generateTypeId();
+
+    bool m_hasChanges = true;
 
 };
 

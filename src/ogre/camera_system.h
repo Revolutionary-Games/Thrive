@@ -1,7 +1,6 @@
 #pragma once
 
 #include "engine/component.h"
-#include "engine/shared_data.h"
 #include "engine/system.h"
 
 #include <memory>
@@ -28,31 +27,26 @@ class OgreCameraComponent : public Component {
 public:
 
     /**
-    * @brief Properties
+    * @brief The level of rendering detail
     */
-    struct Properties {
-        /**
-        * @brief The level of rendering detail
-        */
-        Ogre::PolygonMode polygonMode = Ogre::PM_SOLID;
+    Ogre::PolygonMode polygonMode = Ogre::PM_SOLID;
 
-        /**
-        * @brief The y-dimension field of view
-        */
-        Ogre::Radian fovY = Ogre::Radian{45.0f};
-        /**
-        * @brief Near clip distance
-        */
-        Ogre::Real nearClipDistance = 100.0f;
-        /**
-        * @brief Far clip distance
-        */
-        Ogre::Real farClipDistance = 10000.0f;
-        /**
-        * @brief Aspect ratio of the frustum viewport
-        */
-        Ogre::Real aspectRatio = 1.3333f;
-    };
+    /**
+    * @brief The y-dimension field of view
+    */
+    Ogre::Radian fovY = Ogre::Radian{45.0f};
+    /**
+    * @brief Near clip distance
+    */
+    Ogre::Real nearClipDistance = 100.0f;
+    /**
+    * @brief Far clip distance
+    */
+    Ogre::Real farClipDistance = 10000.0f;
+    /**
+    * @brief Aspect ratio of the frustum viewport
+    */
+    Ogre::Real aspectRatio = 1.3333f;
 
     /**
     * @brief Lua bindings
@@ -88,12 +82,6 @@ public:
     * @brief The camera's name
     */
     const std::string m_name;
-
-    /**
-    * @brief Shared properties
-    */
-    RenderData<Properties>
-    m_properties;
 
 };
 

@@ -9,46 +9,18 @@
 
 using namespace thrive;
 
-static void
-OgreSceneNodeComponent_touch(
-    OgreSceneNodeComponent* self
-) {
-    return self->m_properties.touch();
-}
-
-
-static OgreSceneNodeComponent::Properties&
-OgreSceneNodeComponent_getWorkingCopy(
-    OgreSceneNodeComponent* self
-) {
-    return self->m_properties.workingCopy();
-}
-
-
-static const OgreSceneNodeComponent::Properties&
-OgreSceneNodeComponent_getLatest(
-    OgreSceneNodeComponent* self
-) {
-    return self->m_properties.latest();
-}
-
-
 luabind::scope
 OgreSceneNodeComponent::luaBindings() {
     using namespace luabind;
     return class_<OgreSceneNodeComponent, Component, std::shared_ptr<Component>>("OgreSceneNodeComponent")
         .scope [
             def("TYPE_NAME", &OgreSceneNodeComponent::TYPE_NAME),
-            def("TYPE_ID", &OgreSceneNodeComponent::TYPE_ID),
-            class_<Properties>("Properties")
-                .def_readwrite("orientation", &Properties::orientation)
-                .def_readwrite("position", &Properties::position)
-                .def_readwrite("scale", &Properties::scale)
+            def("TYPE_ID", &OgreSceneNodeComponent::TYPE_ID)
         ]
         .def(constructor<>())
-        .property("latest", OgreSceneNodeComponent_getLatest)
-        .property("workingCopy", OgreSceneNodeComponent_getWorkingCopy)
-        .def("touch", OgreSceneNodeComponent_touch)
+        .def_readwrite("orientation", &OgreSceneNodeComponent::orientation)
+        .def_readwrite("position", &OgreSceneNodeComponent::position)
+        .def_readwrite("scale", &OgreSceneNodeComponent::scale)
     ;
 }
 
@@ -86,13 +58,13 @@ OgreAddSceneNodeSystem::init(
     OgreEngine* ogreEngine = dynamic_cast<OgreEngine*>(engine);
     assert(ogreEngine != nullptr && "System requires an OgreEngine");
     m_impl->m_sceneManager = ogreEngine->sceneManager();
-    m_impl->m_entities.setEngine(engine);
+    m_impl->m_entities.setEntityManager(&engine->entityManager());
 }
 
 
 void
 OgreAddSceneNodeSystem::shutdown() {
-    m_impl->m_entities.setEngine(nullptr);
+    m_impl->m_entities.setEntityManager(nullptr);
     m_impl->m_sceneManager = nullptr;
     System::shutdown();
 }
@@ -145,13 +117,13 @@ OgreRemoveSceneNodeSystem::init(
     OgreEngine* ogreEngine = dynamic_cast<OgreEngine*>(engine);
     assert(ogreEngine != nullptr && "System requires an OgreEngine");
     m_impl->m_sceneManager = ogreEngine->sceneManager();
-    m_impl->m_entities.setEngine(engine);
+    m_impl->m_entities.setEntityManager(&engine->entityManager());
 }
 
 
 void
 OgreRemoveSceneNodeSystem::shutdown() {
-    m_impl->m_entities.setEngine(nullptr);
+    m_impl->m_entities.setEntityManager(nullptr);
     m_impl->m_sceneManager = nullptr;
     System::shutdown();
 }
@@ -204,13 +176,13 @@ OgreUpdateSceneNodeSystem::init(
     OgreEngine* ogreEngine = dynamic_cast<OgreEngine*>(engine);
     (void) ogreEngine; // Avoid unused variable warning in release build
     assert(ogreEngine != nullptr && "System requires an OgreEngine");
-    m_impl->m_entities.setEngine(engine);
+    m_impl->m_entities.setEntityManager(&engine->entityManager());
 }
 
 
 void
 OgreUpdateSceneNodeSystem::shutdown() {
-    m_impl->m_entities.setEngine(nullptr);
+    m_impl->m_entities.setEntityManager(nullptr);
     System::shutdown();
 }
 
@@ -219,19 +191,18 @@ void
 OgreUpdateSceneNodeSystem::update(int) {
     for (const auto& entry : m_impl->m_entities) {
         OgreSceneNodeComponent* sceneNodeComponent = std::get<0>(entry.second);
-        if (sceneNodeComponent->m_properties.hasChanges()) {
+        if (sceneNodeComponent->hasChanges()) {
             Ogre::SceneNode* sceneNode = sceneNodeComponent->m_sceneNode;
-            const auto& properties = sceneNodeComponent->m_properties.stable();
             sceneNode->setOrientation(
-                properties.orientation
+                sceneNodeComponent->orientation
             );
             sceneNode->setPosition(
-                properties.position
+                sceneNodeComponent->position
             );
             sceneNode->setScale(
-                properties.scale
+                sceneNodeComponent->scale
             );
-            sceneNodeComponent->m_properties.untouch();
+            sceneNodeComponent->untouch();
         }
     }
 }

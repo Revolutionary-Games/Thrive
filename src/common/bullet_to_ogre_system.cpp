@@ -1,6 +1,7 @@
 #include "common/bullet_to_ogre_system.h"
 
 #include "bullet/rigid_body_system.h"
+#include "engine/engine.h"
 #include "engine/entity_filter.h"
 #include "ogre/scene_node_system.h"
 
@@ -29,13 +30,13 @@ BulletToOgreSystem::init(
     Engine* engine
 ) {
     System::init(engine);
-    m_impl->m_entities.setEngine(engine);
+    m_impl->m_entities.setEntityManager(&engine->entityManager());
 }
 
 
 void
 BulletToOgreSystem::shutdown() {
-    m_impl->m_entities.setEngine(nullptr);
+    m_impl->m_entities.setEntityManager(nullptr);
     System::shutdown();
 }
 
@@ -45,14 +46,9 @@ BulletToOgreSystem::update(int) {
     for (auto& value : m_impl->m_entities) {
         RigidBodyComponent* rigidBodyComponent = std::get<0>(value.second);
         OgreSceneNodeComponent* sceneNodeComponent = std::get<1>(value.second);
-        if (rigidBodyComponent->m_dynamicOutputProperties.hasChanges()) {
-            const auto& physicsProperties = rigidBodyComponent->m_dynamicOutputProperties.stable();
-            auto& ogreProperties = sceneNodeComponent->m_properties.workingCopy();
-            ogreProperties.orientation = physicsProperties.rotation;
-            ogreProperties.position = physicsProperties.position;
-            sceneNodeComponent->m_properties.touch();
-            rigidBodyComponent->m_dynamicOutputProperties.untouch();
-        }
+        sceneNodeComponent->orientation = rigidBodyComponent->rotation;
+        sceneNodeComponent->position = rigidBodyComponent->position;
+        sceneNodeComponent->touch();
     }
 }
 

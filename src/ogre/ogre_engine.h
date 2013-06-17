@@ -30,7 +30,9 @@ public:
     /**
     * @brief Constructor
     */
-    OgreEngine();
+    OgreEngine(
+        EntityManager& entityManager
+    );
 
     /**
     * @brief Destructor
@@ -50,9 +52,7 @@ public:
     * @param entityManager
     *   The entity manager to use
     */
-    void init(
-        EntityManager* entityManager
-    ) override;
+    void init() override;
 
     /**
     * @brief The engine's input manager
@@ -88,7 +88,9 @@ public:
     * @brief Renders a frame
     */
     void
-    update() override;
+    update(
+        int milliseconds
+    ) override;
 
     /**
     * @brief The viewport system

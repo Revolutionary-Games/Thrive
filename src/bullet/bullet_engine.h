@@ -36,7 +36,9 @@ public:
     /**
     * @brief Constructor
     */
-    BulletEngine();
+    BulletEngine(
+        EntityManager& entityManager
+    );
 
     /**
     * @brief Destructor
@@ -60,9 +62,7 @@ public:
     * @param entityManager
     *   The entity manager to use
     */
-    void init(
-        EntityManager* entityManager
-    ) override;
+    void init() override;
 
     /**
     * @brief Sets debug mode flags
@@ -80,12 +80,6 @@ public:
     */
     void
     shutdown() override;
-
-    /**
-    * @brief Steps the simulation
-    */
-    void
-    update() override;
 
     /**
     * @brief The physics world

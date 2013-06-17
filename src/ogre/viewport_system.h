@@ -2,7 +2,6 @@
 
 #include "engine/component.h"
 #include "engine/entity_manager.h"
-#include "engine/shared_data.h"
 #include "engine/system.h"
 
 #include <memory>
@@ -28,65 +27,60 @@ class OgreViewport {
 public:
 
     /**
-    * @brief Properties
+    * @brief The camera entity to use
+    *
+    * If the given entity has no OgreCameraComponent, the viewport
+    * will stay black
     */
-    struct Properties {
-        /**
-        * @brief The camera entity to use
-        *
-        * If the given entity has no OgreCameraComponent, the viewport
-        * will stay black
-        */
-        EntityId cameraEntity = EntityManager::NULL_ID;
+    EntityId cameraEntity = EntityManager::NULL_ID;
 
-        /**
-        * @brief Left edge of the viewport within the window
-        *
-        * The coordinate system is relative, i.e. 0.0 is leftmost,
-        * 1.0 is rightmost.
-        */
-        Ogre::Real left = 0.0f;
+    /**
+    * @brief Left edge of the viewport within the window
+    *
+    * The coordinate system is relative, i.e. 0.0 is leftmost,
+    * 1.0 is rightmost.
+    */
+    Ogre::Real left = 0.0f;
 
-        /**
-        * @brief Top edge of the viewport within the window
-        *
-        * The coordinate system is relative, i.e. 0.0 is topmost,
-        * 1.0 is bottommost.
-        */
-        Ogre::Real top = 0.0f;
+    /**
+    * @brief Top edge of the viewport within the window
+    *
+    * The coordinate system is relative, i.e. 0.0 is topmost,
+    * 1.0 is bottommost.
+    */
+    Ogre::Real top = 0.0f;
 
-        /**
-        * @brief The viewport's width relative to the window
-        *
-        * The coordinate system is relative, i.e. 0.5 is half width,
-        * 1.0 is full width.
-        */
-        Ogre::Real width = 1.0f;
+    /**
+    * @brief The viewport's width relative to the window
+    *
+    * The coordinate system is relative, i.e. 0.5 is half width,
+    * 1.0 is full width.
+    */
+    Ogre::Real width = 1.0f;
 
-        /**
-        * @brief The viewport's height relative to the window
-        *
-        * The coordinate system is relative, i.e. 0.5 is half height,
-        * 1.0 is full height.
-        */
-        Ogre::Real height = 1.0f;
+    /**
+    * @brief The viewport's height relative to the window
+    *
+    * The coordinate system is relative, i.e. 0.5 is half height,
+    * 1.0 is full height.
+    */
+    Ogre::Real height = 1.0f;
 
-        /**
-        * @brief The viewport's background colour
-        */
-        Ogre::ColourValue backgroundColour;
-    };
+    /**
+    * @brief The viewport's background colour
+    */
+    Ogre::ColourValue backgroundColour;
 
     /**
     * @brief Lua bindings
     *
     * Exposes the following \ref shared_data_lua shared properties:
-    * - \c Properties::cameraEntity
-    * - \c Properties::left
-    * - \c Properties::top
-    * - \c Properties::width
-    * - \c Properties::height
-    * - \c Properties::backgroundColour
+    * - \c OgreViewport::cameraEntity
+    * - \c OgreViewport::left
+    * - \c OgreViewport::top
+    * - \c OgreViewport::width
+    * - \c OgreViewport::height
+    * - \c OgreViewport::backgroundColour
     *
     * @return 
     */
@@ -103,6 +97,14 @@ public:
         int zOrder = 0
     );
 
+    bool
+    hasChanges() const;
+
+    void
+    touch();
+
+    void untouch();
+
     /**
     * @brief Pointer to internal Ogre::Viewport
     */
@@ -113,11 +115,9 @@ public:
     */
     const int m_zOrder;
 
-    /**
-    * @brief Shared properties
-    */
-    RenderData<Properties>
-    m_properties;
+private:
+    
+    bool m_hasChanges;
 
 };
 

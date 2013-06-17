@@ -1,6 +1,6 @@
 #include "engine/entity_manager.h"
 
-#include "engine/engine.h"
+#include "engine/component_collection.h"
 
 #include <atomic>
 #include <boost/thread.hpp>
@@ -16,21 +16,36 @@ const EntityId EntityManager::NULL_ID = 0;
 
 struct EntityManager::Implementation {
 
-    using ComponentMap = std::unordered_map<Component::TypeId, std::shared_ptr<Component>>;
+    ComponentCollection&
+    getComponentCollection(
+        Component::TypeId typeId
+    ) {
+        std::unique_ptr<ComponentCollection>& collection = m_components[typeId];
+        if (not collection) {
+            collection.reset(new ComponentCollection(typeId));
+        }
+        return *collection;
+    }
 
-    static std::atomic<EntityId> currentId;
+    static EntityId currentId;
 
-    std::unordered_map<EntityId, ComponentMap> m_entities;
+    std::unordered_map<
+        Component::TypeId, 
+        std::unique_ptr<ComponentCollection>
+    > m_components;
 
-    std::unordered_set<Engine*> m_engines;
+    std::list<std::pair<EntityId, Component::TypeId>> m_componentsToRemove;
+
+    std::unordered_map<EntityId, int> m_entities;
+
+    std::list<EntityId> m_entitiesToRemove;
 
     std::unordered_map<std::string, EntityId> m_namedIds;
 
-    boost::mutex m_mutex;
-
 };
 
-std::atomic<EntityId> EntityManager::Implementation::currentId(EntityManager::NULL_ID + 1);
+EntityId EntityManager::Implementation::currentId = NULL_ID + 1;
+
 
 EntityManager::EntityManager() 
   : m_impl(new Implementation())
@@ -45,34 +60,43 @@ EntityManager::addComponent(
     EntityId entityId,
     std::shared_ptr<Component> component
 ) {
-    boost::lock_guard<boost::mutex> lock(m_impl->m_mutex);
     assert(entityId != NULL_ID);
     Component::TypeId typeId = component->typeId();
-    auto& componentMap = m_impl->m_entities[entityId];
-    componentMap[typeId] = component;
-    for(Engine* engine : m_impl->m_engines) {
-        engine->addComponent(entityId, component);
+    auto& componentCollection = m_impl->getComponentCollection(typeId);
+    bool isNew = componentCollection.addComponent(entityId, component);
+    if (isNew) {
+        m_impl->m_entities[entityId] += 1;
     }
 }
 
 
 void
 EntityManager::clear() {
-    m_impl->m_entities.clear();
+    m_impl->m_components.clear();
+}
+
+
+std::unordered_set<EntityId>
+EntityManager::entities() {
+    std::unordered_set<EntityId> entities;
+    for (const auto& pair : m_impl->m_entities) {
+        entities.insert(pair.first);
+    }
+    return entities;
 }
 
 
 bool
 EntityManager::exists(
-    EntityId id
+    EntityId entityId
 ) const {
-    return m_impl->m_entities.find(id) != m_impl->m_entities.cend();
+    return m_impl->m_entities.find(entityId) != m_impl->m_entities.end();
 }
 
 
 EntityId
 EntityManager::generateNewId() {
-    return Implementation::currentId.fetch_add(1);
+    return Implementation::currentId++;
 }
 
 
@@ -81,16 +105,16 @@ EntityManager::getComponent(
     EntityId entityId,
     Component::TypeId typeId
 ) {
-    boost::lock_guard<boost::mutex> lock(m_impl->m_mutex);
-    auto entityIter = m_impl->m_entities.find(entityId);
-    if (entityIter == m_impl->m_entities.cend()) {
-        return nullptr;
-    }
-    auto componentIter = entityIter->second.find(typeId);
-    if (componentIter == entityIter->second.cend()) {
-        return nullptr;
-    }
-    return componentIter->second.get();
+    auto& componentCollection = m_impl->getComponentCollection(typeId);
+    return componentCollection[entityId];
+}
+
+
+ComponentCollection&
+EntityManager::getComponentCollection(
+    Component::TypeId typeId
+) {
+    return m_impl->getComponentCollection(typeId);
 }
 
 
@@ -98,7 +122,6 @@ EntityId
 EntityManager::getNamedId(
     const std::string& name
 ) {
-    boost::lock_guard<boost::mutex> lock(m_impl->m_mutex);
     auto iter = m_impl->m_namedIds.find(name);
     if (iter != m_impl->m_namedIds.end()) {
         return iter->second;
@@ -112,55 +135,46 @@ EntityManager::getNamedId(
 
 
 void
-EntityManager::registerEngine(
-    Engine* engine
-) {
-    boost::lock_guard<boost::mutex> lock(m_impl->m_mutex);
-    m_impl->m_engines.insert(engine);
-    for (auto& entity : m_impl->m_entities) {
-        EntityId entityId = entity.first;
-        for (auto& component : entity.second) {
-            engine->addComponent(entityId, component.second);
-        }
-    }
-}
-
-
-void
 EntityManager::removeComponent(
     EntityId entityId,
     Component::TypeId typeId
 ) {
-    boost::lock_guard<boost::mutex> lock(m_impl->m_mutex);
-    auto& componentMap = m_impl->m_entities[entityId];
-    if (componentMap.erase(typeId) == 1) {
-        for (Engine* engine : m_impl->m_engines) {
-            engine->removeComponent(entityId, typeId);
-        }
-        if (componentMap.empty()) {
-            m_impl->m_entities.erase(entityId);
-        }
-    }
+    m_impl->m_componentsToRemove.emplace_back(entityId, typeId);
 }
 
 void
 EntityManager::removeEntity(
     EntityId entityId
 ) {
-    auto& componentMap = m_impl->m_entities[entityId];
-    for (auto iter = componentMap.begin(); iter != componentMap.end(); ++iter) {
-        for (Engine* engine : m_impl->m_engines) {
-            engine->removeComponent(entityId, iter->first);
-        }
-    }
-    m_impl->m_entities.erase(entityId);
+    m_impl->m_entitiesToRemove.push_back(entityId);
 }
 
 
 void
-EntityManager::unregisterEngine(
-    Engine* engine
-) {
-    boost::lock_guard<boost::mutex> lock(m_impl->m_mutex);
-    m_impl->m_engines.erase(engine);
+EntityManager::update() {
+    for (const auto& pair : m_impl->m_componentsToRemove) {
+        EntityId entityId = pair.first;
+        Component::TypeId typeId = pair.second;
+        auto& componentCollection = m_impl->getComponentCollection(typeId);
+        bool removed = componentCollection.removeComponent(entityId);
+        if (removed) {
+            auto iter = m_impl->m_entities.find(entityId);
+            iter->second -= 1;
+            if (iter->second == 0) {
+                m_impl->m_entities.erase(iter);
+            }
+            else {
+                assert(iter->second > 0 && "Removed component from non-existent entity");
+            }
+        }
+    }
+    m_impl->m_componentsToRemove.clear();
+    for (EntityId entityId : m_impl->m_entitiesToRemove) {
+        for (const auto& pair : m_impl->m_components) {
+            pair.second->removeComponent(entityId);
+        }
+    }
+    m_impl->m_entitiesToRemove.clear();
 }
+
+

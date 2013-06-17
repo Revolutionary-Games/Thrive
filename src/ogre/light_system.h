@@ -1,7 +1,6 @@
 #pragma once
 
 #include "engine/component.h"
-#include "engine/shared_data.h"
 #include "engine/system.h"
 
 #include <memory>
@@ -27,101 +26,101 @@ public:
     * @brief Properties
     */
     struct Properties {
-        /**
-        * @brief The light's type
-        *
-        * Can be
-        *   - \c Ogre::Light::LT_POINT (the default)
-        *   - \c Ogre::Light::LT_DIRECTIONAL
-        *   - \c Ogre::Light::LT_SPOTLIGHT
-        */
-        Ogre::Light::LightTypes type = Ogre::Light::LT_POINT;
-
-        /**
-        * @brief The diffuse colour
-        *
-        * Defaults to white.
-        */
-        Ogre::ColourValue diffuseColour = Ogre::ColourValue::White;
-
-        /**
-        * @brief The specular colour
-        *
-        * Defaults to white.
-        */
-        Ogre::ColourValue specularColour = Ogre::ColourValue::White;
-
-        /**
-        * @brief Attenuation range
-        */
-        Ogre::Real attenuationRange = 10.0f;
-
-        /**
-        * @brief Attenuation constant factor
-        */
-        Ogre::Real attenuationConstant = 1.0f;
-
-        /**
-        * @brief Attenuation linear factor
-        */
-        Ogre::Real attenuationLinear = 0.5f;
-
-        /**
-        * @brief Attenuation quadratic factor
-        */
-        Ogre::Real attenuationQuadratic = 0.75;
-
-        /**
-        * @brief Spotlight inner angle
-        */
-        Ogre::Radian spotlightInnerAngle = Ogre::Radian(0.5);
-
-        /**
-        * @brief Spotlight outer angle
-        */
-        Ogre::Radian spotlightOuterAngle = Ogre::Radian(1.0);
-
-        /**
-        * @brief Spotlight falloff
-        */
-        Ogre::Real spotlightFalloff = 1.0f;
-
-        /**
-        * @brief Spotlight near clip distance
-        */
-        Ogre::Real spotlightNearClipDistance = 10.0f;
-
-        /**
-        * @brief Convenience function for setting sensible attenuation values
-        *
-        * This function sets the attenuation range and attenuation coefficients
-        * to sensible values, as desribed <a href="http://www.ogre3d.org/tikiwiki/tiki-index.php?page=Light+Attenuation+Shortcut">
-        * here</a>.
-        *
-        * @param range
-        *   The light's range
-        */
-        void setRange(
-            Ogre::Real range
-        );
-
     };
+
+    /**
+    * @brief The light's type
+    *
+    * Can be
+    *   - \c Ogre::Light::LT_POINT (the default)
+    *   - \c Ogre::Light::LT_DIRECTIONAL
+    *   - \c Ogre::Light::LT_SPOTLIGHT
+    */
+    Ogre::Light::LightTypes type = Ogre::Light::LT_POINT;
+
+    /**
+    * @brief The diffuse colour
+    *
+    * Defaults to white.
+    */
+    Ogre::ColourValue diffuseColour = Ogre::ColourValue::White;
+
+    /**
+    * @brief The specular colour
+    *
+    * Defaults to white.
+    */
+    Ogre::ColourValue specularColour = Ogre::ColourValue::White;
+
+    /**
+    * @brief Attenuation range
+    */
+    Ogre::Real attenuationRange = 10.0f;
+
+    /**
+    * @brief Attenuation constant factor
+    */
+    Ogre::Real attenuationConstant = 1.0f;
+
+    /**
+    * @brief Attenuation linear factor
+    */
+    Ogre::Real attenuationLinear = 0.5f;
+
+    /**
+    * @brief Attenuation quadratic factor
+    */
+    Ogre::Real attenuationQuadratic = 0.75;
+
+    /**
+    * @brief Spotlight inner angle
+    */
+    Ogre::Radian spotlightInnerAngle = Ogre::Radian(0.5);
+
+    /**
+    * @brief Spotlight outer angle
+    */
+    Ogre::Radian spotlightOuterAngle = Ogre::Radian(1.0);
+
+    /**
+    * @brief Spotlight falloff
+    */
+    Ogre::Real spotlightFalloff = 1.0f;
+
+    /**
+    * @brief Spotlight near clip distance
+    */
+    Ogre::Real spotlightNearClipDistance = 10.0f;
+
+    /**
+    * @brief Convenience function for setting sensible attenuation values
+    *
+    * This function sets the attenuation range and attenuation coefficients
+    * to sensible values, as desribed <a href="http://www.ogre3d.org/tikiwiki/tiki-index.php?page=Light+Attenuation+Shortcut">
+    * here</a>.
+    *
+    * @param range
+    *   The light's range
+    */
+    void setRange(
+        Ogre::Real range
+    );
 
     /**
     * @brief Lua bindings
     *
     * Exposes the following \ref shared_data_lua "shared properties":
-    * - \c Properties::type
-    * - \c Properties::diffuseColor
-    * - \c Properties::specularColor
-    * - \c Properties::attenuationRange
-    * - \c Properties::attenuationConstant
-    * - \c Properties::attenuationLinear
-    * - \c Properties::attenuationQuadratic
-    * - \c Properties::spotlightInnerAngle
-    * - \c Properties::spotlightOuterAngle
-    * - \c Properties::spotlightFalloff
-    * - \c Properties::spotlightNearClipDistance
+    * - \c OgreLightComponent::type
+    * - \c OgreLightComponent::diffuseColor
+    * - \c OgreLightComponent::specularColor
+    * - \c OgreLightComponent::attenuationRange
+    * - \c OgreLightComponent::attenuationConstant
+    * - \c OgreLightComponent::attenuationLinear
+    * - \c OgreLightComponent::attenuationQuadratic
+    * - \c OgreLightComponent::spotlightInnerAngle
+    * - \c OgreLightComponent::spotlightOuterAngle
+    * - \c OgreLightComponent::spotlightFalloff
+    * - \c OgreLightComponent::spotlightNearClipDistance
     *
     * @return 
     */
@@ -132,12 +131,6 @@ public:
     * @brief Internal light, don't use this directly
     */
     Ogre::Light* m_light = nullptr;
-
-    /**
-    * @brief Shared properties
-    */
-    RenderData<Properties>
-    m_properties;
 
 };
 

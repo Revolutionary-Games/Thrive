@@ -1,5 +1,6 @@
 #pragma once
 
+#include <chrono>
 #include <memory>
 
 /**
@@ -52,6 +53,12 @@ public:
     ~Game();
 
     /**
+    * @brief Returns the game's physics engine
+    */
+    BulletEngine&
+    bulletEngine();
+
+    /**
     * @brief Returns the game's global entity manager
     */
     EntityManager&
@@ -81,13 +88,11 @@ public:
     ScriptEngine&
     scriptEngine();
 
-    /**
-    * @brief Returns the game's physics engine
-    */
-    BulletEngine&
-    bulletEngine();
+    std::chrono::microseconds
+    targetFrameDuration() const;
 
-
+    unsigned short
+    targetFrameRate() const;
 
 private:
 

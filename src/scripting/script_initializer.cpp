@@ -39,7 +39,6 @@ thrive::initializeLua(
         luabind::def("debug", debug),
         // Base classes
         Component::luaBindings(),
-        Engine::luaBindings(),
         Entity::luaBindings(),
         // Script Components
         OnUpdateComponent::luaBindings(),

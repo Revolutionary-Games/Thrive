@@ -67,13 +67,9 @@ struct ScriptEngine::Implementation {
         if (not ogreEngine.keyboardSystem()) {
             return false;
         }
-        auto& events = ogreEngine.keyboardSystem()->eventQueue();
-        for (const KeyboardSystem::KeyEvent& event : events.entries()) {
-            if (event.pressed and event.key == OIS::KeyCode::KC_ESCAPE) {
-                return true;
-            }
-        }
-        return false;
+        return ogreEngine.keyboardSystem()->isKeyDown(
+            OIS::KeyCode::KC_ESCAPE
+        );
     }
 
     lua_State* m_luaState;
@@ -81,8 +77,9 @@ struct ScriptEngine::Implementation {
 
 
 ScriptEngine::ScriptEngine(
+    EntityManager& entityManager,
     lua_State* luaState
-) : Engine("Script"),
+) : Engine(entityManager),
     m_impl(new Implementation(luaState))
 {
 }
@@ -91,37 +88,16 @@ ScriptEngine::~ScriptEngine() {}
 
 
 void
-ScriptEngine::init(
-    EntityManager* entityManager
-) {
-    Engine::init(entityManager);
-    StateLock<InputState, StateBuffer::Stable> inputLock;
-    StateLock<RenderState, StateBuffer::WorkingCopy> renderLock;
-    StateLock<PhysicsInputState, StateBuffer::WorkingCopy> physicsInputLock;
-    StateLock<PhysicsOutputState, StateBuffer::Stable> physicsOutputLock;
+ScriptEngine::init() {
     initializeLua(m_impl->m_luaState);
     this->addSystem(
-        "onUpdate",
-        -100,
         std::make_shared<OnUpdateSystem>()
     );
     this->addSystem(
-        "onKey",
-        -50,
         std::make_shared<OnKeySystem>()
     );
-    this->addSystem(
-        "bulletToOgre",
-        0,
-        std::make_shared<BulletToOgreSystem>()
-    );
-    BulletEngine& bulletEngine = Game::instance().bulletEngine();
-    this->addSystem(
-        "bulletDebugScriptSystem",
-        0,
-        std::make_shared<BulletDebugScriptSystem>(bulletEngine.debugSystem())
-    );
     m_impl->loadScripts("../scripts/");
+    Engine::init();
 }
 
 
@@ -138,13 +114,12 @@ ScriptEngine::shutdown() {
 
 
 void
-ScriptEngine::update() {
-    StateLock<InputState, StateBuffer::Stable> inputLock;
-    StateLock<RenderState, StateBuffer::WorkingCopy> renderLock;
-    StateLock<PhysicsInputState, StateBuffer::WorkingCopy> physicsInputLock;
-    StateLock<PhysicsOutputState, StateBuffer::Stable> physicsOutputLock;
+ScriptEngine::update(
+    int milliseconds
+) {
     if (m_impl->quitRequested()) {
         Game::instance().quit();
+        return;
     }
-    Engine::update();
+    Engine::update(milliseconds);
 }

@@ -49,13 +49,13 @@ OnUpdateSystem::init(
     Engine* engine
 ) {
     System::init(engine);
-    m_impl->m_entities.setEngine(engine);
+    m_impl->m_entities.setEntityManager(&engine->entityManager());
 }
 
 
 void
 OnUpdateSystem::shutdown() {
-    m_impl->m_entities.setEngine(nullptr);
+    m_impl->m_entities.setEntityManager(nullptr);
     System::shutdown();
 }
 
@@ -64,7 +64,7 @@ void
 OnUpdateSystem::update(
     int milliseconds
 ) {
-    for (auto& value : m_impl->m_entities.entities()) {
+    for (auto& value : m_impl->m_entities) {
         OnUpdateComponent* component = std::get<0>(value.second);
         luabind::object& callback = component->m_callback;
         if (callback.is_valid()) {
@@ -80,8 +80,8 @@ OnUpdateSystem::update(
                 // TODO: Log error
                 std::cerr << error_msg << std::endl;
             }
-            catch(std::exception&) {
-                std::cerr << "WTF?!" << std::endl;
+            catch(const std::exception& e) {
+                std::cerr << "Unexpected exception during Lua callback:" << e.what() << std::endl;
             }
         }
     }

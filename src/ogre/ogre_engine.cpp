@@ -141,8 +141,9 @@ struct OgreEngine::Implementation : public Ogre::WindowEventListener {
 };
 
 
-OgreEngine::OgreEngine()
-  : Engine("Graphics"),
+OgreEngine::OgreEngine(
+    EntityManager& entityManager
+) : Engine(entityManager),
     m_impl(new Implementation())
 {
 }
@@ -152,10 +153,7 @@ OgreEngine::~OgreEngine() {}
 
 
 void
-OgreEngine::init(
-    EntityManager* entityManager
-) {
-    Engine::init(entityManager);
+OgreEngine::init() {
     m_impl->setupLog();
     m_impl->m_root.reset(new Ogre::Root(PLUGINS_CFG));
     m_impl->loadResources();
@@ -175,61 +173,36 @@ OgreEngine::init(
     m_impl->setupInputManager();
     // Create essential systems
     this->addSystem(
-        "keyboard",
-        -100,
         m_impl->m_keyboardSystem
     );
     this->addSystem(
-        "addSceneNodes",
-        -100,
         std::make_shared<OgreAddSceneNodeSystem>()
     );
     this->addSystem(
-        "updateSceneNodes",
-        0,
         std::make_shared<OgreUpdateSceneNodeSystem>()
     );
     this->addSystem(
-        "cameras",
-        0,
         std::make_shared<OgreCameraSystem>()
     );
     this->addSystem(
-        "lights",
-        0,
         std::make_shared<OgreLightSystem>()
     );
     this->addSystem(
-        "sky",
-        0,
         std::make_shared<SkySystem>()
     );
     this->addSystem(
-        "entities",
-        0,
         std::make_shared<OgreEntitySystem>()
     );
     this->addSystem(
-        "viewports",
-        50, // Has to come *after* camera system
-        m_impl->m_viewportSystem
+        m_impl->m_viewportSystem // Has to come *after* camera system
     );
     this->addSystem(
-        "removeSceneNodes",
-        100,
         std::make_shared<OgreRemoveSceneNodeSystem>()
     );
-    BulletEngine& bulletEngine = Game::instance().bulletEngine();
     this->addSystem(
-        "bulletDebugRenderSystem",
-        0,
-        std::make_shared<BulletDebugRenderSystem>(bulletEngine.debugSystem())
-    );
-    this->addSystem(
-        "rendering",
-        1000,
         std::make_shared<RenderSystem>()
     );
+    Engine::init();
 }
 
 
@@ -267,13 +240,11 @@ OgreEngine::shutdown() {
 
 
 void
-OgreEngine::update() {
-    StateLock<InputState, StateBuffer::WorkingCopy> inputLock;
-    StateLock<RenderState, StateBuffer::Stable> renderLock;
+OgreEngine::update(int milliSeconds) {
     // Handle events
     Ogre::WindowEventUtilities::messagePump();
     // Update systems
-    Engine::update();
+    Engine::update(milliSeconds);
 }
 
 
