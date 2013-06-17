@@ -15,8 +15,8 @@ TEST(OnUpdate, NilCallback) {
     // Setup
     LuaState luaState;
     EntityManager entityManager;
-    ScriptEngine engine(luaState);
-    engine.init(&entityManager);
+    ScriptEngine engine(entityManager, luaState);
+    engine.init();
     // Add component
     EntityId entityId = entityManager.generateNewId();
     auto onUpdate = std::make_shared<OnUpdateComponent>();
@@ -25,7 +25,7 @@ TEST(OnUpdate, NilCallback) {
         onUpdate
     );
     // Update
-    engine.update();
+    engine.update(1);
     // I'm content with not crashing here
     engine.shutdown();
 }
@@ -34,8 +34,8 @@ TEST(OnUpdate, Callback) {
     // Setup
     LuaState luaState;
     EntityManager entityManager;
-    ScriptEngine engine(luaState);
-    engine.init(&entityManager);
+    ScriptEngine engine(entityManager, luaState);
+    engine.init();
     EXPECT_TRUE(luaState.doString(
         "called = 0\n"
         "function callback(entityId, milliseconds)\n"
@@ -55,7 +55,7 @@ TEST(OnUpdate, Callback) {
     int called = luabind::object_cast<int>(globals["called"]);
     EXPECT_EQ(0, called);
     // Update
-    engine.update();
+    engine.update(1);
     called = luabind::object_cast<int>(globals["called"]);
     EXPECT_EQ(1, called);
     engine.shutdown();
@@ -72,8 +72,8 @@ TEST(OnUpdate, SetCallbackFromLua) {
         OnUpdateComponent::luaBindings()
     ];
     EntityManager entityManager;
-    ScriptEngine engine(luaState);
-    engine.init(&entityManager);
+    ScriptEngine engine(entityManager, luaState);
+    engine.init();
     EXPECT_TRUE(luaState.doString(
         "called = 0\n"
         "function callback(entityId, milliseconds)\n"
@@ -97,7 +97,7 @@ TEST(OnUpdate, SetCallbackFromLua) {
     called = luabind::object_cast<int>(globals["called"]);
     EXPECT_EQ(0, called);
     // Update
-    engine.update();
+    engine.update(1);
     called = luabind::object_cast<int>(globals["called"]);
     EXPECT_EQ(1, called);
     // Unset callback
@@ -105,7 +105,7 @@ TEST(OnUpdate, SetCallbackFromLua) {
         "onUpdateComponent.callback = nil"
     ));
     // Update
-    engine.update();
+    engine.update(1);
     called = luabind::object_cast<int>(globals["called"]);
     EXPECT_EQ(1, called);
     engine.shutdown();

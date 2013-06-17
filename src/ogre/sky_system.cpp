@@ -14,29 +14,6 @@ using namespace thrive;
 // SkyPlaneComponent
 ////////////////////////////////////////////////////////////////////////////////
 
-static void
-SkyPlaneComponent_touch(
-    SkyPlaneComponent* self
-) {
-    return self->m_properties.touch();
-}
-
-
-static SkyPlaneComponent::Properties&
-SkyPlaneComponent_getWorkingCopy(
-    SkyPlaneComponent* self
-) {
-    return self->m_properties.workingCopy();
-}
-
-
-static const SkyPlaneComponent::Properties&
-SkyPlaneComponent_getLatest(
-    SkyPlaneComponent* self
-) {
-    return self->m_properties.latest();
-}
-
 
 luabind::scope
 SkyPlaneComponent::luaBindings() {
@@ -44,23 +21,19 @@ SkyPlaneComponent::luaBindings() {
     return class_<SkyPlaneComponent, Component, std::shared_ptr<Component>>("SkyPlaneComponent")
         .scope [
             def("TYPE_NAME", &SkyPlaneComponent::TYPE_NAME),
-            def("TYPE_ID", &SkyPlaneComponent::TYPE_ID),
-            class_<Properties>("Properties")
-                .def_readwrite("enabled", &Properties::enabled)
-                .def_readwrite("plane", &Properties::plane)
-                .def_readwrite("materialName", &Properties::materialName)
-                .def_readwrite("scale", &Properties::scale)
-                .def_readwrite("tiling", &Properties::tiling)
-                .def_readwrite("drawFirst", &Properties::drawFirst)
-                .def_readwrite("bow", &Properties::bow)
-                .def_readwrite("xsegments", &Properties::xsegments)
-                .def_readwrite("ysegments", &Properties::ysegments)
-                .def_readwrite("groupName", &Properties::groupName)
+            def("TYPE_ID", &SkyPlaneComponent::TYPE_ID)
         ]
         .def(constructor<>())
-        .property("latest", SkyPlaneComponent_getLatest)
-        .property("workingCopy", SkyPlaneComponent_getWorkingCopy)
-        .def("touch", SkyPlaneComponent_touch)
+        .def_readwrite("enabled", &SkyPlaneComponent::enabled)
+        .def_readwrite("plane", &SkyPlaneComponent::plane)
+        .def_readwrite("materialName", &SkyPlaneComponent::materialName)
+        .def_readwrite("scale", &SkyPlaneComponent::scale)
+        .def_readwrite("tiling", &SkyPlaneComponent::tiling)
+        .def_readwrite("drawFirst", &SkyPlaneComponent::drawFirst)
+        .def_readwrite("bow", &SkyPlaneComponent::bow)
+        .def_readwrite("xsegments", &SkyPlaneComponent::xsegments)
+        .def_readwrite("ysegments", &SkyPlaneComponent::ysegments)
+        .def_readwrite("groupName", &SkyPlaneComponent::groupName)
     ;
 }
 
@@ -99,13 +72,13 @@ SkySystem::init(
     OgreEngine* ogreEngine = dynamic_cast<OgreEngine*>(engine);
     assert(ogreEngine != nullptr && "System requires an OgreEngine");
     m_impl->m_sceneManager = ogreEngine->sceneManager();
-    m_impl->m_entities.setEngine(engine);
+    m_impl->m_entities.setEntityManager(&engine->entityManager());
 }
 
 
 void
 SkySystem::shutdown() {
-    m_impl->m_entities.setEngine(nullptr);
+    m_impl->m_entities.setEntityManager(nullptr);
     m_impl->m_sceneManager->setSkyBoxEnabled(false);
     m_impl->m_sceneManager->setSkyDomeEnabled(false);
     m_impl->m_sceneManager->setSkyPlaneEnabled(false);
@@ -118,21 +91,20 @@ void
 SkySystem::update(int) {
     for (auto& value : m_impl->m_entities) {
         SkyPlaneComponent* plane = std::get<0>(value.second);
-        if (plane and plane->m_properties.hasChanges()) {
-            const SkyPlaneComponent::Properties& properties = plane->m_properties.stable();
+        if (plane and plane->hasChanges()) {
             m_impl->m_sceneManager->setSkyPlane(
-                properties.enabled,
-                properties.plane,
-                properties.materialName,
-                properties.scale,
-                properties.tiling,
-                properties.drawFirst,
-                properties.bow,
-                properties.xsegments,
-                properties.ysegments,
-                properties.groupName
+                plane->enabled,
+                plane->plane,
+                plane->materialName,
+                plane->scale,
+                plane->tiling,
+                plane->drawFirst,
+                plane->bow,
+                plane->xsegments,
+                plane->ysegments,
+                plane->groupName
             );
-            plane->m_properties.untouch();
+            plane->untouch();
         }
     }
 }

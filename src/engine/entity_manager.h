@@ -4,11 +4,12 @@
 #include "engine/typedefs.h"
 
 #include <memory>
+#include <unordered_set>
 
 namespace thrive {
 
 class Component;
-class Engine;
+class ComponentCollection;
 
 /**
 * @brief Manages entities and their components
@@ -63,6 +64,9 @@ public:
     void
     clear();
 
+    std::unordered_set<EntityId>
+    entities();
+
     /**
     * @brief Generates a new, unique entity id
     *
@@ -88,6 +92,30 @@ public:
     Component*
     getComponent(
         EntityId entityId,
+        Component::TypeId typeId
+    );
+
+    template<class ComponentType>
+    ComponentType*
+    getComponent(
+        EntityId entityId
+    ) {
+        Component* component = this->getComponent(
+            entityId,
+            ComponentType::TYPE_ID()
+        );
+        return static_cast<ComponentType*>(component);
+    }
+
+    /**
+    * @brief Returns a component collection
+    *
+    * @param typeId
+    *   The component type the collection is holding
+    *
+    */
+    ComponentCollection&
+    getComponentCollection(
         Component::TypeId typeId
     );
 
@@ -123,19 +151,6 @@ public:
     ) const;
 
     /**
-    * @brief Registers an engine with this entity manager
-    *
-    * The engine will receive notifications about added and removed components.
-    *
-    * @param engine
-    *   The engine to register
-    */
-    void
-    registerEngine(
-        Engine* engine
-    );
-
-    /**
     * @brief Removes a component
     *
     * If the component doesn't exist, this function does nothing.
@@ -164,19 +179,8 @@ public:
         EntityId entityId
     );
 
-    /**
-    * @brief Unregisters an engine with this entity manager
-    *
-    * The engine will stop receiving notifications about added and
-    * removed components.
-    *
-    * @param engine
-    *   The engine to remove
-    */
     void
-    unregisterEngine(
-        Engine* engine
-    );
+    update();
 
 private:
 

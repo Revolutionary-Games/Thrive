@@ -20,7 +20,6 @@ add_sources(
 )
 
 add_test_sources(
-    ${CMAKE_CURRENT_SOURCE_DIR}/tests/engine.cpp 
     ${CMAKE_CURRENT_SOURCE_DIR}/tests/entity.cpp 
     ${CMAKE_CURRENT_SOURCE_DIR}/tests/entity_filter.cpp 
     ${CMAKE_CURRENT_SOURCE_DIR}/tests/shared_data.cpp

@@ -1,8 +1,8 @@
 #pragma once
 
-#include "engine/shared_data.h"
 #include "engine/system.h"
 
+#include <list>
 #include <OISKeyboard.h>
 
 namespace luabind {
@@ -73,10 +73,7 @@ public:
     */
     ~KeyboardSystem();
 
-    /**
-    * @brief A shared queue used for queueing up the key events
-    */
-    InputQueue<KeyEvent>&
+    const std::list<KeyEvent>&
     eventQueue();
 
     /**

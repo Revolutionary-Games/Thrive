@@ -51,6 +51,7 @@ public:
     *   The Lua state to use
     */
     ScriptEngine(
+        EntityManager& entityManager,
         lua_State* L
     );
 
@@ -68,9 +69,7 @@ public:
     *   The entity manager to use
     */
     void 
-    init(
-        EntityManager* entityManager
-    ) override;
+    init() override;
 
     /**
     * @brief The script engine's Lua state
@@ -88,7 +87,9 @@ public:
     * @brief Renders a frame
     */
     void
-    update() override;
+    update(
+        int milliseconds
+    ) override;
 
 private:
 

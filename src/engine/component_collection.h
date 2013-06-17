@@ -7,15 +7,8 @@
 
 namespace thrive {
 
-class Engine;
+class EntityManager;
 
-/**
-* @brief A collection of components of one particular type
-*
-* Component collections are used by Engine objects to keep
-* track of the components attached to an entity. Components
-* are 
-*/
 class ComponentCollection {
 
 public:
@@ -93,7 +86,7 @@ public:
 
 private:
 
-    friend class Engine;
+    friend class EntityManager;
 
     /**
     * @brief Constructor
@@ -104,49 +97,14 @@ private:
         Component::TypeId type
     );
 
-    /**
-    * @brief Processes the queues for added and removed components
-    */
-    void
-    processQueue();
-
-    /**
-    * @brief Queues a component for addition
-    *
-    * The component will be available after the next call to 
-    * \c ComponentCollection::processQueue.
-    *
-    * Any existing component of the same type will be overwritten.
-    *
-    * This method is thread-safe.
-    *
-    * @param entityId
-    *   The entity the component belongs to
-    *
-    * @param component
-    *   The component to add
-    */
-    void
-    queueComponentAddition(
+    bool
+    addComponent(
         EntityId entityId,
         std::shared_ptr<Component> component
     );
 
-    /**
-    * @brief Queues a component for removal
-    *
-    * The component will be removed after the next call to 
-    * \c ComponentCollection::processQueue.
-    *
-    * If no such component exists, does nothing.
-    *
-    * This method is thread-safe.
-    *
-    * @param entityId
-    *   The entity the component belongs to
-    */
-    void
-    queueComponentRemoval(
+    bool
+    removeComponent(
         EntityId entityId
     );
 

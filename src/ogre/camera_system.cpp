@@ -16,29 +16,6 @@ using namespace thrive;
 // OgreCameraComponent
 ////////////////////////////////////////////////////////////////////////////////
 
-static void
-OgreCameraComponent_touch(
-    OgreCameraComponent* self
-) {
-    return self->m_properties.touch();
-}
-
-
-static OgreCameraComponent::Properties&
-OgreCameraComponent_getWorkingCopy(
-    OgreCameraComponent* self
-) {
-    return self->m_properties.workingCopy();
-}
-
-
-static const OgreCameraComponent::Properties&
-OgreCameraComponent_getLatest(
-    OgreCameraComponent* self
-) {
-    return self->m_properties.latest();
-}
-
 
 luabind::scope
 OgreCameraComponent::luaBindings() {
@@ -46,13 +23,7 @@ OgreCameraComponent::luaBindings() {
     return class_<OgreCameraComponent, Component, std::shared_ptr<Component>>("OgreCameraComponent")
         .scope [
             def("TYPE_NAME", &OgreCameraComponent::TYPE_NAME),
-            def("TYPE_ID", &OgreCameraComponent::TYPE_ID),
-            class_<Properties>("Properties")
-                .def_readwrite("polygonMode", &Properties::polygonMode)
-                .def_readwrite("fovY", &Properties::fovY)
-                .def_readwrite("nearClipDistance", &Properties::nearClipDistance)
-                .def_readwrite("farClipDistance", &Properties::farClipDistance)
-                .def_readwrite("aspectRatio", &Properties::aspectRatio)
+            def("TYPE_ID", &OgreCameraComponent::TYPE_ID)
         ]
         .enum_("PolygonMode") [
             value("PM_POINTS", Ogre::PM_POINTS),
@@ -60,9 +31,11 @@ OgreCameraComponent::luaBindings() {
             value("PM_SOLID", Ogre::PM_SOLID)
         ]
         .def(constructor<std::string>())
-        .property("latest", OgreCameraComponent_getLatest)
-        .property("workingCopy", OgreCameraComponent_getWorkingCopy)
-        .def("touch", OgreCameraComponent_touch)
+        .def_readwrite("polygonMode", &OgreCameraComponent::polygonMode)
+        .def_readwrite("fovY", &OgreCameraComponent::fovY)
+        .def_readwrite("nearClipDistance", &OgreCameraComponent::nearClipDistance)
+        .def_readwrite("farClipDistance", &OgreCameraComponent::farClipDistance)
+        .def_readwrite("aspectRatio", &OgreCameraComponent::aspectRatio)
     ;
 }
 
@@ -110,13 +83,13 @@ OgreCameraSystem::init(
     OgreEngine* ogreEngine = dynamic_cast<OgreEngine*>(engine);
     assert(ogreEngine != nullptr && "System requires an OgreEngine");
     m_impl->m_sceneManager = ogreEngine->sceneManager();
-    m_impl->m_entities.setEngine(engine);
+    m_impl->m_entities.setEntityManager(&engine->entityManager());
 }
 
 
 void
 OgreCameraSystem::shutdown() {
-    m_impl->m_entities.setEngine(nullptr);
+    m_impl->m_entities.setEntityManager(nullptr);
     m_impl->m_sceneManager = nullptr;
     System::shutdown();
 }
@@ -145,17 +118,16 @@ OgreCameraSystem::update(int) {
     m_impl->m_entities.clearChanges();
     for (auto& value : m_impl->m_entities) {
         OgreCameraComponent* cameraComponent = std::get<1>(value.second);
-        if (cameraComponent->m_properties.hasChanges()) {
-            const auto& properties = cameraComponent->m_properties.stable();
+        if (cameraComponent->hasChanges()) {
             Ogre::Camera* camera = cameraComponent->m_camera;
             // Update camera
-            camera->setPolygonMode(properties.polygonMode);
-            camera->setFOVy(properties.fovY);
-            camera->setNearClipDistance(properties.nearClipDistance);
-            camera->setFarClipDistance(properties.farClipDistance);
-            camera->setAspectRatio(properties.aspectRatio);
+            camera->setPolygonMode(cameraComponent->polygonMode);
+            camera->setFOVy(cameraComponent->fovY);
+            camera->setNearClipDistance(cameraComponent->nearClipDistance);
+            camera->setFarClipDistance(cameraComponent->farClipDistance);
+            camera->setAspectRatio(cameraComponent->aspectRatio);
             // Untouch
-            cameraComponent->m_properties.untouch();
+            cameraComponent->untouch();
         }
     }
 }

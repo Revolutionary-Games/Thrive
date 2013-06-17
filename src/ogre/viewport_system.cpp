@@ -17,41 +17,17 @@ using namespace thrive;
 // OgreViewport
 ////////////////////////////////////////////////////////////////////////////////
 
-static void
-OgreViewport_touch(
-    OgreViewport* self
-) {
-    return self->m_properties.touch();
-}
-
-
-static OgreViewport::Properties&
-OgreViewport_getWorkingCopy(
-    OgreViewport* self
-) {
-    return self->m_properties.workingCopy();
-}
-
-
-static const OgreViewport::Properties&
-OgreViewport_getLatest(
-    OgreViewport* self
-) {
-    return self->m_properties.latest();
-}
-
-
 static Entity
-Properties_getCameraEntity(
-    const OgreViewport::Properties* self
+OgreViewport_getCameraEntity(
+    const OgreViewport* self
 ) {
     return Entity(self->cameraEntity);
 }
 
 
 static void
-Properties_setCameraEntity(
-    OgreViewport::Properties* self,
+OgreViewport_setCameraEntity(
+    OgreViewport* self,
     const Entity& entity
 ) {
     self->cameraEntity = entity.id();
@@ -62,20 +38,15 @@ luabind::scope
 OgreViewport::luaBindings() {
     using namespace luabind;
     return class_<OgreViewport, std::shared_ptr<OgreViewport>>("OgreViewport")
-        .scope [
-            class_<Properties>("Properties")
-                .property("cameraEntity", Properties_getCameraEntity, Properties_setCameraEntity)
-                .def_readwrite("left", &Properties::left)
-                .def_readwrite("top", &Properties::top)
-                .def_readwrite("width", &Properties::width)
-                .def_readwrite("height", &Properties::height)
-                .def_readwrite("backgroundColour", &Properties::backgroundColour)
-        ]
         .def(constructor<int>())
-        .property("latest", OgreViewport_getLatest)
-        .property("workingCopy", OgreViewport_getWorkingCopy)
+        .def("touch", &OgreViewport::touch)
+        .property("cameraEntity", OgreViewport_getCameraEntity, OgreViewport_setCameraEntity)
+        .def_readwrite("left", &OgreViewport::left)
+        .def_readwrite("top", &OgreViewport::top)
+        .def_readwrite("width", &OgreViewport::width)
+        .def_readwrite("height", &OgreViewport::height)
+        .def_readwrite("backgroundColour", &OgreViewport::backgroundColour)
         .def_readonly("zOrder", &OgreViewport::m_zOrder)
-        .def("touch", OgreViewport_touch)
     ;
 }
 
@@ -83,6 +54,22 @@ OgreViewport::OgreViewport(
     int zOrder
 ) : m_zOrder(zOrder)
 {
+}
+
+bool
+OgreViewport::hasChanges() const {
+    return m_hasChanges;
+}
+
+void
+OgreViewport::touch() {
+    m_hasChanges = true;
+}
+
+
+void
+OgreViewport::untouch() {
+    m_hasChanges = false;
 }
 
 
@@ -122,11 +109,11 @@ OgreViewportSystem::luaBindings() {
 
 struct OgreViewportSystem::Implementation {
 
-    RenderQueue<std::shared_ptr<OgreViewport>> m_addedViewports;
+    std::list<std::shared_ptr<OgreViewport>> m_addedViewports;
 
     OgreEngine* m_ogreEngine = nullptr;
 
-    RenderQueue<std::shared_ptr<OgreViewport>> m_removedViewports;
+    std::list<std::shared_ptr<OgreViewport>> m_removedViewports;
 
     Ogre::RenderWindow* m_renderWindow = nullptr;
 
@@ -148,7 +135,7 @@ void
 OgreViewportSystem::addViewport(
     std::shared_ptr<OgreViewport> viewport
 ) {
-    m_impl->m_addedViewports.push(std::move(viewport));
+    m_impl->m_addedViewports.push_back(std::move(viewport));
 }
 
 
@@ -169,7 +156,7 @@ void
 OgreViewportSystem::removeViewport(
     std::shared_ptr<OgreViewport> viewport
 ) {
-    m_impl->m_removedViewports.push(std::move(viewport));
+    m_impl->m_removedViewports.push_back(std::move(viewport));
 }
 
 
@@ -192,6 +179,7 @@ OgreViewportSystem::update(int) {
             std::move(addedViewport)
         );
     }
+    m_impl->m_addedViewports.clear();
     for (auto& removedViewport : m_impl->m_removedViewports) {
         for (
             auto iter = m_impl->m_viewports.begin(); 
@@ -204,13 +192,13 @@ OgreViewportSystem::update(int) {
             }
         }
     }
+    m_impl->m_removedViewports.clear();
     for (const auto& viewport : m_impl->m_viewports) {
-        if (not viewport->m_properties.hasChanges()) {
+        if (not viewport->hasChanges()) {
             continue;
         }
-        const auto& properties = viewport->m_properties.stable();
-        auto* cameraComponent = m_impl->m_ogreEngine->getComponent<OgreCameraComponent>(
-            properties.cameraEntity
+        auto* cameraComponent = m_impl->m_ogreEngine->entityManager().getComponent<OgreCameraComponent>(
+            viewport->cameraEntity
         );
         if (cameraComponent) {
             viewport->m_viewport->setCamera(cameraComponent->m_camera);
@@ -219,15 +207,15 @@ OgreViewportSystem::update(int) {
             viewport->m_viewport->setCamera(nullptr);
         }
         viewport->m_viewport->setDimensions(
-            properties.left,
-            properties.top,
-            properties.width,
-            properties.height
+            viewport->left,
+            viewport->top,
+            viewport->width,
+            viewport->height
         );
         viewport->m_viewport->setBackgroundColour(
-            properties.backgroundColour
+            viewport->backgroundColour
         );
-        viewport->m_properties.untouch();
+        viewport->untouch();
     }
 }
 
