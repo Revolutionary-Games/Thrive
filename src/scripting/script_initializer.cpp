@@ -1,6 +1,7 @@
 #include "scripting/script_initializer.h"
 
 #include "engine/component.h"
+#include "engine/engine.h"
 #include "engine/entity.h"
 #include "game.h"
 #include "ogre/camera_system.h"
@@ -16,6 +17,7 @@
 #include "scripting/luabind.h"
 #include "scripting/on_update.h"
 #include "bullet/bullet_lua_bindings.h"
+#include "bullet/bullet_engine.h"
 #include "bullet/rigid_body_system.h"
 
 #include <forward_list>
@@ -37,6 +39,7 @@ thrive::initializeLua(
         luabind::def("debug", debug),
         // Base classes
         Component::luaBindings(),
+        Engine::luaBindings(),
         Entity::luaBindings(),
         // Script Components
         OnUpdateComponent::luaBindings(),
@@ -53,10 +56,12 @@ thrive::initializeLua(
         OgreViewportSystem::luaBindings(),
         // Physics Components
         BulletBindings::luaBindings(),
+        BulletEngine::luaBindings(),
         RigidBodyComponent::luaBindings()
     ];
     luabind::object globals = luabind::globals(L);
     globals["Keyboard"] = Game::instance().ogreEngine().keyboardSystem().get();
+    globals["Physics"] = &(Game::instance().bulletEngine());
 }
 
 

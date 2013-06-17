@@ -4,6 +4,7 @@
 #include "engine/entity_manager.h"
 #include "engine/system.h"
 #include "game.h"
+#include "scripting/luabind.h"
 #include "util/contains.h"
 #include "util/pair_hash.h"
 
@@ -111,7 +112,19 @@ struct Engine::Implementation {
 
     unsigned short m_targetFrameRate = 60;
 
+    mutable boost::mutex m_targetFrameRateMutex;
+
 };
+
+
+luabind::scope
+Engine::luaBindings() {
+    using namespace luabind;
+    return class_<Engine>("Engine")
+        .def("setTargetFrameRate", &Engine::setTargetFrameRate)
+        .def("targetFrameRate", &Engine::targetFrameRate)
+    ;
+}
 
 
 Engine::Engine() 
@@ -226,6 +239,7 @@ Engine::setTargetFrameRate(
     unsigned short fps
 ) {
     assert(fps != 0 && "Can't set a 0 framerate");
+    boost::lock_guard<boost::mutex> lock(m_impl->m_targetFrameRateMutex);
     m_impl->m_targetFrameRate = fps;
     m_impl->m_targetFrameDuration = std::chrono::microseconds(1000000 / fps);
 }
@@ -234,6 +248,9 @@ Engine::setTargetFrameRate(
 void
 Engine::shutdown() {
     m_impl->m_entityManager->unregisterEngine(this);
+    for (auto& value : m_impl->m_activeSystems) {
+        value.second->shutdown();
+    }
     m_impl->m_entityManager = nullptr;
     m_impl->m_isInitialized = false;
 }
@@ -241,12 +258,14 @@ Engine::shutdown() {
 
 std::chrono::microseconds
 Engine::targetFrameDuration() const {
+    boost::lock_guard<boost::mutex> lock(m_impl->m_targetFrameRateMutex);
     return m_impl->m_targetFrameDuration;
 }
 
 
 unsigned short
 Engine::targetFrameRate() const {
+    boost::lock_guard<boost::mutex> lock(m_impl->m_targetFrameRateMutex);
     return m_impl->m_targetFrameRate;
 }
 
