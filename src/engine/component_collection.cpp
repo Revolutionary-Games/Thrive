@@ -71,7 +71,6 @@ ComponentCollection::addComponent(
     for (auto& value : m_impl->m_changeCallbacks) {
         value.second.first(entityId, *component);
     }
-    std::cout << "Component count: " << m_impl->m_components.size() << std::endl;
     return isNew;
 }
 

@@ -3,7 +3,7 @@ local PARTICLE_MASS = 0.02
 local MIN_PARTICLE_SPEED = 1
 local MAX_PARTICLE_SPEED = 10
 local PARTICLE_SCALE = 0.1
-local PARTICLE_LIFETIME = PARTICLE_INTERVAL * 20 -- Milliseconds
+local PARTICLE_LIFETIME = PARTICLE_INTERVAL * 500 -- Milliseconds
 
 function emitParticle(origin)
     local particle = Entity()
