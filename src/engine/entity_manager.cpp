@@ -135,23 +135,7 @@ EntityManager::getNamedId(
 
 
 void
-EntityManager::removeComponent(
-    EntityId entityId,
-    Component::TypeId typeId
-) {
-    m_impl->m_componentsToRemove.emplace_back(entityId, typeId);
-}
-
-void
-EntityManager::removeEntity(
-    EntityId entityId
-) {
-    m_impl->m_entitiesToRemove.push_back(entityId);
-}
-
-
-void
-EntityManager::update() {
+EntityManager::processRemovals() {
     for (const auto& pair : m_impl->m_componentsToRemove) {
         EntityId entityId = pair.first;
         Component::TypeId typeId = pair.second;
@@ -176,5 +160,22 @@ EntityManager::update() {
     }
     m_impl->m_entitiesToRemove.clear();
 }
+
+
+void
+EntityManager::removeComponent(
+    EntityId entityId,
+    Component::TypeId typeId
+) {
+    m_impl->m_componentsToRemove.emplace_back(entityId, typeId);
+}
+
+void
+EntityManager::removeEntity(
+    EntityId entityId
+) {
+    m_impl->m_entitiesToRemove.push_back(entityId);
+}
+
 
 
