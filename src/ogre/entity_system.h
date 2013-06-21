@@ -1,7 +1,6 @@
 #pragma once
 
 #include "engine/component.h"
-#include "engine/shared_data.h"
 #include "engine/system.h"
 
 #include <memory>
