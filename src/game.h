@@ -25,7 +25,6 @@
 
 namespace thrive {
 
-class EntityManager;
 class Engine;
 
 /**
@@ -55,12 +54,6 @@ public:
     */
     Engine&
     engine();
-
-    /**
-    * @brief Returns the game's global entity manager
-    */
-    EntityManager&
-    entityManager();
 
     /**
     * @brief Stops all engines and quits the application

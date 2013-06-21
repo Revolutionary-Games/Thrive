@@ -23,6 +23,7 @@
 
 // Scripting
 #include "scripting/luabind.h"
+#include "scripting/lua_state.h"
 #include "scripting/on_update.h"
 #include "scripting/script_initializer.h"
 
@@ -67,13 +68,9 @@ using namespace thrive;
 struct Engine::Implementation : public Ogre::WindowEventListener {
 
     Implementation(
-        Engine& engine,
-        EntityManager& entityManager,
-        lua_State* L
+        Engine& engine
     ) : m_engine(engine),
-        m_entityManager(entityManager),
         m_keyboardSystem(std::make_shared<KeyboardSystem>()),
-        m_luaState(L),
         m_viewportSystem(std::make_shared<OgreViewportSystem>())
     {
     }
@@ -277,9 +274,16 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
         return true;
     }
 
+    // Lua state must be one of the last to be destroyed, so keep it at top. 
+    // The reason for that is that some components keep luabind::object 
+    // instances around that rely on the lua state to still exist when they
+    // are destroyed. Since those components are destroyed with the entity 
+    // manager, the lua state has to live longer than the manager.
+    LuaState m_luaState;
+
     Engine& m_engine;
 
-    EntityManager& m_entityManager;
+    EntityManager m_entityManager;
 
     struct Graphics {
 
@@ -294,8 +298,6 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
     OIS::InputManager* m_inputManager = nullptr;
 
     std::shared_ptr<KeyboardSystem> m_keyboardSystem;
-
-    lua_State* m_luaState;
 
     struct Physics {
 
@@ -320,11 +322,8 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
 
 
 
-Engine::Engine(
-    EntityManager& entityManager,
-    lua_State* L
-) 
-  : m_impl(new Implementation(*this, entityManager, L))
+Engine::Engine() 
+  : m_impl(new Implementation(*this))
 {
 }
 
@@ -407,6 +406,7 @@ Engine::update(
     for(auto& system : m_impl->m_systems) {
         system->update(milliSeconds);
     }
+    m_impl->m_entityManager.processRemovals();
 }
 
 OgreViewportSystem&
