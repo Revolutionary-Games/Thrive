@@ -42,10 +42,11 @@ public:
     /**
     * @brief Lua bindings
     *
-    * A component exposes the following functions:
+    * Exposes:
     *
-    * - \c typeId: Returns the component's type id as a number
-    * - \c typeName: Returns the component's type name as a string
+    * - Component::typeId()
+    * - Component::typeName()
+    * - Component::touch()
     *
     * @return 
     */
@@ -57,9 +58,20 @@ public:
     */
     virtual ~Component() = 0;
 
+    /**
+    * @brief Whether this component has any unapplied changes
+    *
+    * @see touch(), untouch()
+    */
     bool
     hasChanges() const;
 
+    /**
+    * @brief Marks the component as changed
+    *
+    * Use this when you changed the component's data to notify an 
+    * interested System that it should update its internal state.
+    */
     void
     touch();
 
@@ -75,6 +87,12 @@ public:
     virtual const std::string&
     typeName() const = 0;
 
+    /**
+    * @brief Marks any changes as applied
+    *
+    * The system handling this component should call this function when it has
+    * updated its internal state.
+    */
     void
     untouch();
 
@@ -90,6 +108,8 @@ protected:
     */
     static TypeId
     generateTypeId();
+
+private:
 
     bool m_hasChanges = true;
 

@@ -9,6 +9,17 @@ namespace thrive {
 
 class EntityManager;
 
+/**
+* @brief Utility class for the EntityManager
+*
+* A component collection handles components of one specific type. It offers
+* functions to retrieve the component (if any) of a specific entity and
+* callbacks for when a component has been added or removed (mainly used by
+* the EntityFilter).
+*
+* Component collections are pretty much read-only for anything but the 
+* EntityManager. Use the manager to actually add or remove components.
+*/
 class ComponentCollection {
 
 public:
@@ -86,6 +97,9 @@ public:
 
 private:
 
+    /**
+    * @brief Only the EntityManager should be able to add / remove components.
+    */
     friend class EntityManager;
 
     /**
@@ -97,12 +111,38 @@ private:
         Component::TypeId type
     );
 
+    /**
+    * @brief Adds a component
+    *
+    * Also calls any callbacks registered for added components.
+    *
+    * @param entityId
+    *   The entity the component belongs to
+    * @param component
+    *   The component to add
+    *
+    * @return 
+    *   \c true if the component is new, i.e. does not overwrite an existing 
+    *   one, \c false otherwise
+    */
     bool
     addComponent(
         EntityId entityId,
         std::shared_ptr<Component> component
     );
 
+    /**
+    * @brief Removes a component
+    *
+    * Also calls any callbacks registered for removed components.
+    *
+    * @param entityId
+    *   The entity the component belongs to
+    *
+    * @return 
+    *   \c true if a component was removed, \c false if no component for
+    *   \a entityId was found.
+    */
     bool
     removeComponent(
         EntityId entityId
