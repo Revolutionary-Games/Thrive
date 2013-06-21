@@ -71,7 +71,7 @@ struct ExtractComponentType<Optional<ComponentType>> {
 *
 *   void init(Engine* engine) override {
 *       System::init(engine);
-*       m_entities.setEngine(engine);
+*       m_entities.setEntityFilter(&engine->entityManager());
 *   }
 *
 *   void update(int milliseconds) override {
@@ -87,7 +87,7 @@ struct ExtractComponentType<Optional<ComponentType>> {
 *   }
 *
 *   void shutdown() overrde {
-*       m_entities.setEngine(nullptr);
+*       m_entities.setEntityManager(nullptr);
 *       System::shutdown();
 *   }
 * };
@@ -124,6 +124,7 @@ public:
     *   If \a recordChanges is true, you are responsible for clearing the
     *   collections returned by addedEntities() and removedEntities().
     *   If you don't clear them regularly, it's a memory leak.
+    *   You can use EntityFilter::clearChanges() to clear both collections.
     */
     EntityFilter(
         bool recordChanges = false
