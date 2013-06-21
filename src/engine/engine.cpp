@@ -7,7 +7,6 @@
 
 // Bullet
 #include "bullet/bullet_to_ogre_system.h"
-#include "bullet/debug_drawing.h"
 #include "bullet/update_physics_system.h"
 #include "bullet/rigid_body_system.h"
 
@@ -303,8 +302,6 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
         std::unique_ptr<btBroadphaseInterface> broadphase;
 
         std::unique_ptr<btCollisionConfiguration> collisionConfiguration;
-
-        std::shared_ptr<BulletDebugSystem> debugSystem;
 
         std::unique_ptr<btDispatcher> dispatcher;
 
