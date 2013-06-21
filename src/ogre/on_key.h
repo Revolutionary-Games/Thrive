@@ -67,7 +67,6 @@ public:
     * @brief Initializes the system
     *
     * @param engine
-    *   Must be a ScriptEngine
     */
     void init(Engine* engine) override;
 

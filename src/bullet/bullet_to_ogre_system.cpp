@@ -1,4 +1,4 @@
-#include "common/bullet_to_ogre_system.h"
+#include "bullet/bullet_to_ogre_system.h"
 
 #include "bullet/rigid_body_system.h"
 #include "engine/engine.h"

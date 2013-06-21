@@ -1,6 +1,6 @@
 #include "ogre/render_system.h"
 
-#include "ogre/ogre_engine.h"
+#include "engine/engine.h"
 
 #include <OgreRoot.h>
 
@@ -27,10 +27,8 @@ RenderSystem::init(
     Engine* engine
 ) {
     System::init(engine);
-    OgreEngine* ogreEngine = dynamic_cast<OgreEngine*>(engine);
-    assert(ogreEngine != nullptr && "RenderSystem requires an OgreEngine");
-    m_impl->m_root = ogreEngine->root();
-    assert(m_impl->m_root != nullptr && "Root object is null. Initialize the OgreEngine first.");
+    m_impl->m_root = engine->ogreRoot();
+    assert(m_impl->m_root != nullptr && "Root object is null. Initialize the Engine first.");
 }
 
 

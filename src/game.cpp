@@ -4,10 +4,7 @@
 #include "engine/entity_manager.h"
 #include "engine/shared_data.h"
 #include "engine/typedefs.h"
-#include "ogre/ogre_engine.h"
 #include "scripting/lua_state.h"
-#include "scripting/script_engine.h"
-#include "bullet/bullet_engine.h"
 #include "util/make_unique.h"
 
 #include <boost/thread.hpp>
@@ -26,25 +23,22 @@ struct Game::Implementation {
     using Clock = std::chrono::high_resolution_clock;
 
     Implementation()
-      : m_bulletEngine(m_entityManager),
-        m_ogreEngine(m_entityManager),
-        m_scriptEngine(m_entityManager, m_luaState)
+      : m_engine(m_entityManager, m_luaState)
     {
         m_targetFrameDuration = std::chrono::microseconds(1000000 / m_targetFrameRate);
     }
-    // Lua state must be one of the last to be destroyed,
-    // so keep it at top.
+    // Lua state must be one of the last to be destroyed, so keep it at top. 
+    // The reason for that is that some components keep luabind::object 
+    // instances around that rely on the lua state to still exist when they
+    // are destroyed. Since those components are destroyed with the entity 
+    // manager, the lua state has to live longer than the manager.
     LuaState m_luaState;
 
     // EntityManager is required by the engine 
-    // constructors, so keep it at second place
+    // constructor, so keep it at second place
     EntityManager m_entityManager;
 
-    BulletEngine m_bulletEngine;
-
-    OgreEngine m_ogreEngine;
-
-    ScriptEngine m_scriptEngine;
+    Engine m_engine;
 
     std::chrono::microseconds m_targetFrameDuration;
 
@@ -77,15 +71,9 @@ Game::entityManager() {
 }
 
 
-OgreEngine&
-Game::ogreEngine() {
-    return m_impl->m_ogreEngine;
-}
-
-
-BulletEngine&
-Game::bulletEngine() {
-    return m_impl->m_bulletEngine;
+Engine&
+Game::engine() {
+    return m_impl->m_engine;
 }
 
 
@@ -100,10 +88,7 @@ Game::run() {
     unsigned int fpsCount = 0;
     int fpsTime = 0;
     auto lastUpdate = Implementation::Clock::now();
-    // Initialize engines
-    m_impl->m_ogreEngine.init();
-    m_impl->m_bulletEngine.init();
-    m_impl->m_scriptEngine.init();
+    m_impl->m_engine.init();
     // Start game loop
     m_impl->m_quit = false;
     while (not m_impl->m_quit) {
@@ -111,9 +96,7 @@ Game::run() {
         auto delta = now - lastUpdate;
         int milliSeconds = std::chrono::duration_cast<std::chrono::milliseconds>(delta).count();
         lastUpdate = now;
-        m_impl->m_bulletEngine.update(milliSeconds);
-        m_impl->m_scriptEngine.update(milliSeconds);
-        m_impl->m_ogreEngine.update(milliSeconds);
+        m_impl->m_engine.update(milliSeconds);
         m_impl->m_entityManager.update();
         auto frameDuration = Implementation::Clock::now() - now;
         auto sleepDuration = m_impl->m_targetFrameDuration - frameDuration;
@@ -131,16 +114,9 @@ Game::run() {
             fpsTime = 0;
         }
     }
-    m_impl->m_scriptEngine.shutdown();
-    m_impl->m_bulletEngine.shutdown();
-    m_impl->m_ogreEngine.shutdown();
+    m_impl->m_engine.shutdown();
 }
 
-
-ScriptEngine&
-Game::scriptEngine() {
-    return m_impl->m_scriptEngine;
-}
 
 std::chrono::microseconds
 Game::targetFrameDuration() const {
