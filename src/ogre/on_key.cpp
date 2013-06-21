@@ -1,10 +1,10 @@
 #include "ogre/on_key.h"
 
 #include "engine/component_registry.h"
+#include "engine/engine.h"
 #include "engine/entity_filter.h"
 #include "game.h"
 #include "ogre/keyboard_system.h"
-#include "ogre/ogre_engine.h"
 #include "scripting/luabind.h"
 
 
@@ -41,7 +41,7 @@ struct OnKeySystem::Implementation {
 
     EntityFilter<OnKeyComponent> m_entities;
 
-    std::shared_ptr<KeyboardSystem> m_keyboardSystem;
+    KeyboardSystem* m_keyboardSystem = nullptr;
 
 };
 
@@ -61,7 +61,7 @@ OnKeySystem::init(
 ) {
     System::init(engine);
     m_impl->m_entities.setEntityManager(&engine->entityManager());
-    m_impl->m_keyboardSystem = Game::instance().ogreEngine().keyboardSystem();
+    m_impl->m_keyboardSystem = &(Game::instance().engine().keyboardSystem());
 }
 
 

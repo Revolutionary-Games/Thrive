@@ -1,8 +1,8 @@
 #include "bullet/rigid_body_system.h"
 
-#include "bullet/bullet_engine.h"
 #include "bullet/bullet_ogre_conversion.h"
 #include "engine/component_registry.h"
+#include "engine/engine.h"
 #include "engine/entity_filter.h"
 #include "scripting/luabind.h"
 
@@ -129,9 +129,7 @@ RigidBodyInputSystem::init(
 ) {
     System::init(engine);
     assert(m_impl->m_world == nullptr && "Double init of system");
-    BulletEngine* bulletEngine = dynamic_cast<BulletEngine*>(engine);
-    assert(bulletEngine != nullptr && "System requires a BulletEngine");
-    m_impl->m_world = bulletEngine->world();
+    m_impl->m_world = engine->physicsWorld();
     m_impl->m_entities.setEntityManager(&engine->entityManager());
 }
 

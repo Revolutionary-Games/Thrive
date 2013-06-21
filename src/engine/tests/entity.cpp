@@ -40,8 +40,10 @@ TEST_F(EntityTest, RemoveComponent) {
     Entity entity(entityManager);
     EXPECT_FALSE(entity.hasComponent(OnUpdateComponent::TYPE_ID()));
     entity.addComponent(std::make_shared<OnUpdateComponent>());
+    entityManager.update();
     EXPECT_TRUE(entity.hasComponent(OnUpdateComponent::TYPE_ID()));
     entity.removeComponent(OnUpdateComponent::TYPE_ID());
+    entityManager.update();
     EXPECT_FALSE(entity.hasComponent(OnUpdateComponent::TYPE_ID()));
 }
 

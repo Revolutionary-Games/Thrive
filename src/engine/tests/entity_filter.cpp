@@ -16,6 +16,7 @@ TEST(EntityFilter, Initialization) {
         entityId,
         std::make_shared<TestComponent<0>>()
     );
+    entityManager.update();
     EXPECT_TRUE(nullptr != entityManager.getComponent(entityId, TestComponent<0>::TYPE_ID()));
     // Set up filter
     EntityFilter<TestComponent<0>> filter;
@@ -37,6 +38,7 @@ TEST(EntityFilter, Single) {
         entityId,
         make_unique<TestComponent<0>>()
     );
+    entityManager.update();
     // Check filter
     auto filteredEntities = filter.entities();
     EXPECT_EQ(1, filteredEntities.count(entityId));
@@ -46,6 +48,7 @@ TEST(EntityFilter, Single) {
         entityId,
         TestComponent<0>::TYPE_ID()
     );
+    entityManager.update();
     // Check filter
     filteredEntities = filter.entities();
     EXPECT_EQ(0, filteredEntities.count(entityId));
@@ -68,6 +71,7 @@ TEST(EntityFilter, Multiple) {
         entityId,
         make_unique<TestComponent<0>>()
     );
+    entityManager.update();
     // Check filter
     filteredEntities = filter.entities();
     // Add first component
@@ -78,6 +82,7 @@ TEST(EntityFilter, Multiple) {
         entityId,
         make_unique<TestComponent<1>>()
     );
+    entityManager.update();
     // Check filter
     filteredEntities = filter.entities();
     EXPECT_EQ(1, filteredEntities.count(entityId));
@@ -87,6 +92,7 @@ TEST(EntityFilter, Multiple) {
         entityId,
         TestComponent<1>::TYPE_ID()
     );
+    entityManager.update();
     // Check filter
     filteredEntities = filter.entities();
     EXPECT_EQ(0, filteredEntities.count(entityId));
@@ -110,6 +116,7 @@ TEST(EntityFilter, Optional) {
         entityId,
         make_unique<TestComponent<0>>()
     );
+    entityManager.update();
     // Check filter
     filteredEntities = filter.entities();
     EXPECT_EQ(1, filteredEntities.count(entityId));
@@ -123,6 +130,7 @@ TEST(EntityFilter, Optional) {
         entityId,
         make_unique<TestComponent<1>>()
     );
+    entityManager.update();
     // Check filter
     filteredEntities = filter.entities();
     EXPECT_EQ(1, filteredEntities.count(entityId));
@@ -136,6 +144,7 @@ TEST(EntityFilter, Optional) {
         entityId,
         TestComponent<1>::TYPE_ID()
     );
+    entityManager.update();
     // Check filter
     filteredEntities = filter.entities();
     EXPECT_EQ(1, filteredEntities.count(entityId));
@@ -161,6 +170,7 @@ TEST(EntityFilter, OptionalOnly) {
         entityId,
         make_unique<TestComponent<0>>()
     );
+    entityManager.update();
     // Check filter
     filteredEntities = filter.entities();
     EXPECT_EQ(1, filteredEntities.count(entityId));
@@ -173,6 +183,7 @@ TEST(EntityFilter, OptionalOnly) {
         entityId,
         TestComponent<0>::TYPE_ID()
     );
+    entityManager.update();
     // Check filter
     filteredEntities = filter.entities();
     EXPECT_EQ(0, filteredEntities.count(entityId));
@@ -195,6 +206,7 @@ TEST(EntityFilter, Record) {
         entityId,
         make_unique<TestComponent<0>>()
     );
+    entityManager.update();
     // Check added entities
     EXPECT_EQ(1, filter.addedEntities().count(entityId));
     // Remove component
@@ -202,6 +214,7 @@ TEST(EntityFilter, Record) {
         entityId,
         TestComponent<0>::TYPE_ID()
     );
+    entityManager.update();
     // Check removed entities
     EXPECT_EQ(1, filter.removedEntities().count(entityId));
 }

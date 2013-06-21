@@ -26,9 +26,7 @@
 namespace thrive {
 
 class EntityManager;
-class OgreEngine;
-class ScriptEngine;
-class BulletEngine;
+class Engine;
 
 /**
 * @brief The main entry point for the game
@@ -53,22 +51,16 @@ public:
     ~Game();
 
     /**
-    * @brief Returns the game's physics engine
+    * @brief Returns the game's engine
     */
-    BulletEngine&
-    bulletEngine();
+    Engine&
+    engine();
 
     /**
     * @brief Returns the game's global entity manager
     */
     EntityManager&
     entityManager();
-
-    /**
-    * @brief Returns the game's graphics engine
-    */
-    OgreEngine&
-    ogreEngine();
 
     /**
     * @brief Stops all engines and quits the application
@@ -81,12 +73,6 @@ public:
     */
     void
     run();
-
-    /**
-    * @brief Returns the game's script engine
-    */
-    ScriptEngine&
-    scriptEngine();
 
     std::chrono::microseconds
     targetFrameDuration() const;

@@ -1,6 +1,6 @@
 #include "ogre/keyboard_system.h"
 
-#include "ogre/ogre_engine.h"
+#include "engine/engine.h"
 #include "scripting/luabind.h"
 
 #include <iostream>
@@ -148,10 +148,8 @@ KeyboardSystem::init(
 ) {
     System::init(engine);
     assert(m_impl->m_keyboard == nullptr && "Double init of keyboard system");
-    OgreEngine* ogreEngine = dynamic_cast<OgreEngine*>(engine);
-    assert(ogreEngine != nullptr && "KeyboardSystem requires an OgreEngine");
     m_impl->m_keyboard = static_cast<OIS::Keyboard*>(
-        ogreEngine->inputManager()->createInputObject(OIS::OISKeyboard, true)
+        engine->inputManager()->createInputObject(OIS::OISKeyboard, true)
     );
     m_impl->m_keyboard->setEventCallback(m_impl.get());
 }
@@ -172,8 +170,7 @@ KeyboardSystem::isKeyDown(
 
 void
 KeyboardSystem::shutdown() {
-    OgreEngine* ogreEngine = dynamic_cast<OgreEngine*>(this->engine());
-    ogreEngine->inputManager()->destroyInputObject(m_impl->m_keyboard);
+    this->engine()->inputManager()->destroyInputObject(m_impl->m_keyboard);
     m_impl->m_keyboard = nullptr;
     System::shutdown();
 }

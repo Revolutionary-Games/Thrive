@@ -1,9 +1,9 @@
 #include "ogre/viewport_system.h"
 
+#include "engine/engine.h"
 #include "engine/entity.h"
 #include "game.h"
 #include "ogre/camera_system.h"
-#include "ogre/ogre_engine.h"
 #include "scripting/luabind.h"
 
 #include <OgreRenderWindow.h>
@@ -83,7 +83,7 @@ OgreViewportSystem_addViewport(
     std::shared_ptr<OgreViewport> viewport
 ) {
     Game& game = Game::instance();
-    OgreViewportSystem& viewportSystem = game.ogreEngine().viewportSystem();
+    OgreViewportSystem& viewportSystem = game.engine().viewportSystem();
     viewportSystem.addViewport(viewport);
 }
 
@@ -93,7 +93,7 @@ OgreViewportSystem_removeViewport(
     std::shared_ptr<OgreViewport> viewport
 ) {
     Game& game = Game::instance();
-    OgreViewportSystem& viewportSystem = game.ogreEngine().viewportSystem();
+    OgreViewportSystem& viewportSystem = game.engine().viewportSystem();
     viewportSystem.removeViewport(viewport);
 }
 
@@ -111,7 +111,7 @@ struct OgreViewportSystem::Implementation {
 
     std::list<std::shared_ptr<OgreViewport>> m_addedViewports;
 
-    OgreEngine* m_ogreEngine = nullptr;
+    Engine* m_engine = nullptr;
 
     std::list<std::shared_ptr<OgreViewport>> m_removedViewports;
 
@@ -144,11 +144,9 @@ OgreViewportSystem::init(
     Engine* engine
 ) {
     System::init(engine);
-    assert(m_impl->m_ogreEngine == nullptr && "Double init of system");
-    OgreEngine* ogreEngine = dynamic_cast<OgreEngine*>(engine);
-    assert(ogreEngine != nullptr && "System requires an OgreEngine");
-    m_impl->m_ogreEngine = ogreEngine;
-    m_impl->m_renderWindow = ogreEngine->window();
+    assert(m_impl->m_engine == nullptr && "Double init of system");
+    m_impl->m_engine = engine;
+    m_impl->m_renderWindow = engine->renderWindow();
 }
 
 
@@ -163,7 +161,7 @@ OgreViewportSystem::removeViewport(
 void
 OgreViewportSystem::shutdown() {
     m_impl->m_renderWindow = nullptr;
-    m_impl->m_ogreEngine = nullptr;
+    m_impl->m_engine = nullptr;
     System::shutdown();
 }
 
@@ -197,7 +195,7 @@ OgreViewportSystem::update(int) {
         if (not viewport->hasChanges()) {
             continue;
         }
-        auto* cameraComponent = m_impl->m_ogreEngine->entityManager().getComponent<OgreCameraComponent>(
+        auto* cameraComponent = m_impl->m_engine->entityManager().getComponent<OgreCameraComponent>(
             viewport->cameraEntity
         );
         if (cameraComponent) {

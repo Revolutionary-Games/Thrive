@@ -7,7 +7,6 @@ namespace thrive {
 /**
 * @brief System for rendering a single frame per update
 *
-* Requires an OgreEngine
 */
 class RenderSystem : public System {
 
@@ -27,7 +26,6 @@ public:
     * @brief Initializes the system
     *
     * @param engine
-    *   Must be an OgreEngine
     */
     void
     init(

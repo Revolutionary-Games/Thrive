@@ -101,7 +101,6 @@ public:
     * @brief Initializes the system
     *
     * @param engine
-    *   Must be an OgreEngine
     */
     void init(Engine* engine) override;
 
@@ -143,7 +142,6 @@ public:
     * @brief Initializes the system
     *
     * @param engine
-    *   Must be an OgreEngine
     */
     void init(Engine* engine) override;
 
@@ -184,7 +182,6 @@ public:
     * @brief Initializes the system
     *
     * @param engine
-    *   Must be an OgreEngine
     */
     void init(Engine* engine) override;
 

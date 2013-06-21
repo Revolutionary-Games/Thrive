@@ -1,8 +1,8 @@
 #include "ogre/sky_system.h"
 
 #include "engine/component_registry.h"
+#include "engine/engine.h"
 #include "engine/entity_filter.h"
-#include "ogre/ogre_engine.h"
 #include "scripting/luabind.h"
 
 #include <iostream>
@@ -69,9 +69,7 @@ SkySystem::init(
 ) {
     System::init(engine);
     assert(m_impl->m_sceneManager == nullptr && "Double init of system");
-    OgreEngine* ogreEngine = dynamic_cast<OgreEngine*>(engine);
-    assert(ogreEngine != nullptr && "System requires an OgreEngine");
-    m_impl->m_sceneManager = ogreEngine->sceneManager();
+    m_impl->m_sceneManager = engine->sceneManager();
     m_impl->m_entities.setEntityManager(&engine->entityManager());
 }
 
