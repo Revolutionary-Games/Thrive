@@ -1,10 +1,7 @@
 #include "game.h"
 
 #include "engine/engine.h"
-#include "engine/entity_manager.h"
-#include "engine/shared_data.h"
 #include "engine/typedefs.h"
-#include "scripting/lua_state.h"
 #include "util/make_unique.h"
 
 #include <boost/thread.hpp>
@@ -23,20 +20,9 @@ struct Game::Implementation {
     using Clock = std::chrono::high_resolution_clock;
 
     Implementation()
-      : m_engine(m_entityManager, m_luaState)
     {
         m_targetFrameDuration = std::chrono::microseconds(1000000 / m_targetFrameRate);
     }
-    // Lua state must be one of the last to be destroyed, so keep it at top. 
-    // The reason for that is that some components keep luabind::object 
-    // instances around that rely on the lua state to still exist when they
-    // are destroyed. Since those components are destroyed with the entity 
-    // manager, the lua state has to live longer than the manager.
-    LuaState m_luaState;
-
-    // EntityManager is required by the engine 
-    // constructor, so keep it at second place
-    EntityManager m_entityManager;
 
     Engine m_engine;
 
@@ -65,12 +51,6 @@ Game::Game()
 Game::~Game() { }
 
 
-EntityManager&
-Game::entityManager() {
-    return m_impl->m_entityManager;
-}
-
-
 Engine&
 Game::engine() {
     return m_impl->m_engine;
@@ -97,7 +77,6 @@ Game::run() {
         int milliSeconds = std::chrono::duration_cast<std::chrono::milliseconds>(delta).count();
         lastUpdate = now;
         m_impl->m_engine.update(milliSeconds);
-        m_impl->m_entityManager.update();
         auto frameDuration = Implementation::Clock::now() - now;
         auto sleepDuration = m_impl->m_targetFrameDuration - frameDuration;
         if (sleepDuration.count() > 0) {
