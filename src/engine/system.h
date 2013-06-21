@@ -7,18 +7,15 @@ namespace thrive {
 class Engine;
 
 /**
-* @brief A system can update entities' state
+* @brief A system handles one specific part of the game
+*
+* Systems can operate on entities and their components, but they can also 
+* handle tasks that don't require components at all, such as issuing a render
+* call to the graphics engine.
 */
 class System {
 
 public:
-
-    /**
-    * @brief Typedef for ordering of systems
-    *
-    * @see Engine::addSystem()
-    */
-    using Order = int;
 
     /**
     * @brief Constructor
@@ -34,8 +31,8 @@ public:
     * @brief The system's engine
     *
     * @return 
-    *   The system's engine or \c nullptr if the system hasn't been added to
-    *   an engine yet.
+    *   The system's engine or \c nullptr if the system hasn't been 
+    *   initialized yet.
     */
     Engine*
     engine() const;
@@ -66,10 +63,10 @@ public:
     /**
     * @brief Updates the system
     *
-    * Override this to update the relevant entities' states.
+    * Override this to update the systems's state.
     *
     * @param milliSeconds
-    *   The time the last frame took to render
+    *   The number of milliseconds to advance
     *
     * @note
     *   If you need to know the time since the last call to \a this system's
