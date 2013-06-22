@@ -15,12 +15,14 @@ OgreSceneNodeComponent::luaBindings() {
     return class_<OgreSceneNodeComponent, Component, std::shared_ptr<Component>>("OgreSceneNodeComponent")
         .scope [
             def("TYPE_NAME", &OgreSceneNodeComponent::TYPE_NAME),
-            def("TYPE_ID", &OgreSceneNodeComponent::TYPE_ID)
+            def("TYPE_ID", &OgreSceneNodeComponent::TYPE_ID),
+            class_<Properties, Touchable>("Properties")
+                .def_readwrite("orientation", &Properties::orientation)
+                .def_readwrite("position", &Properties::position)
+                .def_readwrite("scale", &Properties::scale)
         ]
         .def(constructor<>())
-        .def_readwrite("orientation", &OgreSceneNodeComponent::orientation)
-        .def_readwrite("position", &OgreSceneNodeComponent::position)
-        .def_readwrite("scale", &OgreSceneNodeComponent::scale)
+        .def_readonly("properties", &OgreSceneNodeComponent::m_properties)
     ;
 }
 
@@ -184,18 +186,19 @@ void
 OgreUpdateSceneNodeSystem::update(int) {
     for (const auto& entry : m_impl->m_entities) {
         OgreSceneNodeComponent* sceneNodeComponent = std::get<0>(entry.second);
-        if (sceneNodeComponent->hasChanges()) {
+        auto& properties = sceneNodeComponent->m_properties;
+        if (properties.hasChanges()) {
             Ogre::SceneNode* sceneNode = sceneNodeComponent->m_sceneNode;
             sceneNode->setOrientation(
-                sceneNodeComponent->orientation
+                properties.orientation
             );
             sceneNode->setPosition(
-                sceneNodeComponent->position
+                properties.position
             );
             sceneNode->setScale(
-                sceneNodeComponent->scale
+                properties.scale
             );
-            sceneNodeComponent->untouch();
+            properties.untouch();
         }
     }
 }

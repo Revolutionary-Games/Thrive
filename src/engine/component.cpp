@@ -17,7 +17,6 @@ Component::luaBindings() {
     return class_<Component, std::shared_ptr<Component>>("Component")
         .def("typeId", &Component::typeId)
         .def("typeName", &Component::typeName)
-        .def("touch", &Component::touch)
     ;
 }
 
@@ -25,19 +24,3 @@ Component::luaBindings() {
 Component::~Component() {}
 
 
-bool
-Component::hasChanges() const {
-    return m_hasChanges;
-}
-
-
-void
-Component::touch() {
-    m_hasChanges = true;
-}
-
-
-void
-Component::untouch() {
-    m_hasChanges = false;
-}

@@ -41,8 +41,11 @@ public:
     /**
     * @brief Lua bindings
     *
-    * This component exposes the following \ref shared_data_lua "shared properties":
-    * - Properties::meshName
+    * Exposes:
+    * - OgreEntityComponent::OgreEntityComponent(std::string)
+    * - OgreEntityComponent::OgreEntityComponent(Ogre::SceneManager::PrefabType)
+    * - @link OgreEntityComponent::m_meshName meshName @endlink
+    * - @link OgreEntityComponent::m_prefabType prefabType @endlink
     *
     * @return 
     */
@@ -98,10 +101,6 @@ public:
 
     /**
     * @brief Updates the graphics engine's data
-    *
-    * All OgreEntityComponents whose OgreEntityComponent::Properties::meshName has changed
-    * will be updated.
-    *
     */
     void update(int) override;
 

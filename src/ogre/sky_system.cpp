@@ -21,19 +21,21 @@ SkyPlaneComponent::luaBindings() {
     return class_<SkyPlaneComponent, Component, std::shared_ptr<Component>>("SkyPlaneComponent")
         .scope [
             def("TYPE_NAME", &SkyPlaneComponent::TYPE_NAME),
-            def("TYPE_ID", &SkyPlaneComponent::TYPE_ID)
+            def("TYPE_ID", &SkyPlaneComponent::TYPE_ID),
+            class_<Properties, Touchable>("Properties")
+                .def_readwrite("enabled", &Properties::enabled)
+                .def_readwrite("plane", &Properties::plane)
+                .def_readwrite("materialName", &Properties::materialName)
+                .def_readwrite("scale", &Properties::scale)
+                .def_readwrite("tiling", &Properties::tiling)
+                .def_readwrite("drawFirst", &Properties::drawFirst)
+                .def_readwrite("bow", &Properties::bow)
+                .def_readwrite("xsegments", &Properties::xsegments)
+                .def_readwrite("ysegments", &Properties::ysegments)
+                .def_readwrite("groupName", &Properties::groupName)
         ]
         .def(constructor<>())
-        .def_readwrite("enabled", &SkyPlaneComponent::enabled)
-        .def_readwrite("plane", &SkyPlaneComponent::plane)
-        .def_readwrite("materialName", &SkyPlaneComponent::materialName)
-        .def_readwrite("scale", &SkyPlaneComponent::scale)
-        .def_readwrite("tiling", &SkyPlaneComponent::tiling)
-        .def_readwrite("drawFirst", &SkyPlaneComponent::drawFirst)
-        .def_readwrite("bow", &SkyPlaneComponent::bow)
-        .def_readwrite("xsegments", &SkyPlaneComponent::xsegments)
-        .def_readwrite("ysegments", &SkyPlaneComponent::ysegments)
-        .def_readwrite("groupName", &SkyPlaneComponent::groupName)
+        .def_readonly("properties", &SkyPlaneComponent::m_properties)
     ;
 }
 
@@ -89,20 +91,21 @@ void
 SkySystem::update(int) {
     for (auto& value : m_impl->m_entities) {
         SkyPlaneComponent* plane = std::get<0>(value.second);
-        if (plane and plane->hasChanges()) {
+        if (plane and plane->m_properties.hasChanges()) {
+            auto& properties = plane->m_properties;
             m_impl->m_sceneManager->setSkyPlane(
-                plane->enabled,
-                plane->plane,
-                plane->materialName,
-                plane->scale,
-                plane->tiling,
-                plane->drawFirst,
-                plane->bow,
-                plane->xsegments,
-                plane->ysegments,
-                plane->groupName
+                properties.enabled,
+                properties.plane,
+                properties.materialName,
+                properties.scale,
+                properties.tiling,
+                properties.drawFirst,
+                properties.bow,
+                properties.xsegments,
+                properties.ysegments,
+                properties.groupName
             );
-            plane->untouch();
+            properties.untouch();
         }
     }
 }

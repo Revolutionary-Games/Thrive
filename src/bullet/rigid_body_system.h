@@ -2,6 +2,7 @@
 
 #include "engine/component.h"
 #include "engine/system.h"
+#include "engine/touchable.h"
 
 #include <btBulletCollisionCommon.h>
 #include <btBulletDynamicsCommon.h>
@@ -29,115 +30,146 @@ public:
 
 
     /**
-    * @brief The body's shape .
+    * @brief Properties
     */
-    std::shared_ptr<btCollisionShape> shape {new btSphereShape(1)};
+    struct Properties : public Touchable {
+
+        /**
+        * @brief The body's shape .
+        */
+        std::shared_ptr<btCollisionShape> shape {new btSphereShape(1)};
+
+        /**
+        * @brief The restitution factor
+        *
+        * The spring or bounciness of a rigid body
+        */
+        btScalar restitution = 0.f;
+
+        /**
+        * @brief Locks linear movement to specific axis
+        */
+        Ogre::Vector3 linearFactor {1,1,1};
+
+        /**
+        * @brief Locks angular movement to specific axis
+        */
+        Ogre::Vector3 angularFactor {1,1,1};
+
+        /**
+        * @brief Inertia
+        */
+        btVector3 localInertia {0,0,0};
+
+        /**
+        * @brief The mass of the rigid body
+        */
+        btScalar mass = 1.f;
+
+        /**
+        * @brief The friction of the object
+        */
+        btScalar friction = 0.f;
+
+        /**
+        * @brief The velocity dampening
+        */
+        btScalar linearDamping = 0.0f;
+
+        /**
+        * @brief Rotation dampening
+        */
+        btScalar angularDamping = 1.f;
+
+        /**
+        * @brief The friction when rolling
+        *
+        * The rollingFriction prevents rounded shapes, such as spheres, cylinders and capsules from rolling forever
+        */
+        btScalar rollingFriction = 0.f;
+
+        /**
+        *@brief The force currently applied to the body
+        *
+        */
+        Ogre::Vector3 forceApplied = Ogre::Vector3::ZERO;
+
+
+    };
 
     /**
-    * @brief The restitution factor
-    *
-    * The spring or bounciness of a rigid body
+    * @brief Dynamic properties (those the physics engine changes)
     */
-    btScalar restitution = 0.f;
+    struct DynamicProperties : public Touchable {
 
-    /**
-    * @brief Locks linear movement to specific axis
-    */
-    Ogre::Vector3 linearFactor {1,1,1};
+        /**
+        * @brief The position
+        */
+        Ogre::Vector3 position {0,0,0};
 
-    /**
-    * @brief Locks angular movement to specific axis
-    */
-    Ogre::Vector3 angularFactor {1,1,1};
+        /**
+        * @brief The rotation.
+        */
+        Ogre::Quaternion rotation = Ogre::Quaternion::IDENTITY;
 
-    /**
-    * @brief Inertia
-    */
-    btVector3 localInertia {0,0,0};
+        /**
+        * @brief The linear velocity
+        *
+        * Makes the rigid body move .
+        */
+        Ogre::Vector3 linearVelocity {0,0,0};
 
-    /**
-    * @brief The mass of the rigid body
-    */
-    btScalar mass = 1.f;
-
-    /**
-    * @brief The friction of the object
-    */
-    btScalar friction = 0.f;
-
-    /**
-    * @brief The velocity dampening
-    */
-    btScalar linearDamping = 0.0f;
-
-    /**
-    * @brief Rotation dampening
-    */
-    btScalar angularDamping = 1.f;
-
-    /**
-    * @brief The friction when rolling
-    *
-    * The rollingFriction prevents rounded shapes, such as spheres, cylinders and capsules from rolling forever
-    */
-    btScalar rollingFriction = 0.f;
-
-    /**
-    *@brief The force currently applied to the body
-    *
-    */
-    Ogre::Vector3 forceApplied = Ogre::Vector3::ZERO;
-
-    /**
-    * @brief The position
-    */
-    Ogre::Vector3 position {0,0,0};
-
-    /**
-    * @brief The rotation.
-    */
-    Ogre::Quaternion rotation = Ogre::Quaternion::IDENTITY;
-
-    /**
-    * @brief The linear velocity
-    *
-    * Makes the rigid body move .
-    */
-    Ogre::Vector3 linearVelocity {0,0,0};
-
-    /**
-    * @brief The angular velocity
-    *
-    * Makes the rigid body spin .
-    */
-    Ogre::Vector3 angularVelocity {0,0,0};
+        /**
+        * @brief The angular velocity
+        *
+        * Makes the rigid body spin .
+        */
+        Ogre::Vector3 angularVelocity {0,0,0};
+    };
 
     /**
     * @brief Lua bindings
     *
-    * Exposes the following properties:
-    * - \c RigidBodyComponent::shape
-    * - \c RigidBodyComponent::position
-    * - \c RigidBodyComponent::rotation
-    * - \c RigidBodyComponent::linearVelocity
-    * - \c RigidBodyComponent::angularVelocity
-    * - \c RigidBodyComponent::restitution
-    * - \c RigidBodyComponent::linearFactor
-    * - \c RigidBodyComponent::angularFactor
-    * - \c RigidBodyComponent::mass
-    * - \c RigidBodyComponent::friction
-    * - \c RigidBodyComponent::rollingFriction
+    * Exposes:
+    * - RigidBodyComponent()
+    * - @link m_properties properties @endlink
+    * - Properties
+    *   - Properties::shape
+    *   - Properties::position
+    *   - Properties::rotation
+    *   - Properties::linearVelocity
+    *   - Properties::angularVelocity
+    *   - Properties::restitution
+    *   - Properties::linearFactor
+    *   - Properties::angularFactor
+    *   - Properties::mass
+    *   - Properties::friction
+    *   - Properties::rollingFriction
     *
     * @return
     */
     static luabind::scope
     luaBindings();
 
+    /**
+    * @brief Applies an impulse to the center of mass
+    *
+    * @param impulse
+    *   The impulse
+    */
     void
     applyCentralImpulse(
         const Ogre::Vector3& impulse
     );
 
+    /**
+    * @brief Applies an impulse
+    *
+    * @param impulse
+    *   The impulse
+    * @param relativePosition
+    *   The attack point, relative to the center of mass 
+    */
     void
     applyImpulse(
         const Ogre::Vector3& impulse,
@@ -166,6 +198,22 @@ public:
         const btTransform& transform
     ) override;
 
+    /**
+    * @brief Overrides the physics engine
+    *
+    * @warning
+    *   May introduce instabilities. Use applyImpulse() if you want to move
+    *   the body.
+    *
+    * @param position
+    *   New position
+    * @param orientation
+    *   New orientation
+    * @param linearVelocity
+    *   New velocity
+    * @param angularVelocity
+    *   New rotation
+    */
     void
     setDynamicProperties(
         const Ogre::Vector3& position,
@@ -179,11 +227,24 @@ public:
     */
     btRigidBody* m_body = nullptr;
 
-    bool m_dynamicPropertiesChanged = true;
+    /**
+    * @brief Dynamic properties
+    */
+    DynamicProperties
+    m_dynamicProperties;
 
+    /**
+    * @brief Queue of impulses since the last frame
+    */
     std::list<
         std::pair<Ogre::Vector3, Ogre::Vector3>
     > m_impulseQueue;
+
+    /**
+    * @brief Properties
+    */
+    Properties
+    m_properties;
 };
 
 

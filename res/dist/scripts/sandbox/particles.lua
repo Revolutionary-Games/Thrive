@@ -9,11 +9,11 @@ function emitParticle(origin)
     local particle = Entity()
     -- Rigid Body
     particle.rigidBody = RigidBodyComponent()
-    particle.rigidBody.linearDamping = 0.5
-    particle.rigidBody.shape = btCylinderShape(
+    particle.rigidBody.properties.linearDamping = 0.5
+    particle.rigidBody.properties.shape = btCylinderShape(
         Vector3(3.75, 1, 3.75) * PARTICLE_SCALE
     )
-    particle.rigidBody.friction = 0.2
+    particle.rigidBody.properties.friction = 0.2
     local speed = math.random(MIN_PARTICLE_SPEED, MAX_PARTICLE_SPEED) * PARTICLE_MASS
     local direction = Vector3(
         math.random(-100, 100),
@@ -28,18 +28,18 @@ function emitParticle(origin)
         Vector3(0, 0, 0)
     )
     particle.rigidBody:applyCentralImpulse(direction * speed)
-    particle.rigidBody.mass = PARTICLE_MASS
-    particle.rigidBody.linearFactor = Vector3(1, 1, 0)
-    particle.rigidBody.angularFactor = Vector3(0, 0, 1)
-    particle.rigidBody:touch()
+    particle.rigidBody.properties.mass = PARTICLE_MASS
+    particle.rigidBody.properties.linearFactor = Vector3(1, 1, 0)
+    particle.rigidBody.properties.angularFactor = Vector3(0, 0, 1)
+    particle.rigidBody.properties:touch()
     particle:addComponent(particle.rigidBody)
     -- Scene Node and Mesh
     particle.sceneNode = OgreSceneNodeComponent()
     particle:addComponent(OgreEntityComponent("Mesh.mesh"))
-    particle.sceneNode.position = origin
+    particle.sceneNode.properties.position = origin
     --particle.sceneNode.orientation = Quaternion(Radian(Degree(90)), Vector3(1, 0, 0))
-    particle.sceneNode.scale = Vector3(PARTICLE_SCALE, PARTICLE_SCALE, PARTICLE_SCALE)
-    particle.sceneNode:touch()
+    particle.sceneNode.properties.scale = Vector3(PARTICLE_SCALE, PARTICLE_SCALE, PARTICLE_SCALE)
+    particle.sceneNode.properties:touch()
     particle:addComponent(particle.sceneNode)
     -- Handle despawn
     particle.onUpdate = OnUpdateComponent()

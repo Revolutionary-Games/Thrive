@@ -3,6 +3,7 @@
 #include "engine/component.h"
 #include "engine/entity_manager.h"
 #include "engine/system.h"
+#include "engine/touchable.h"
 
 #include <memory>
 #include <OgreCommon.h>
@@ -27,60 +28,71 @@ class OgreViewport {
 public:
 
     /**
-    * @brief The camera entity to use
-    *
-    * If the given entity has no OgreCameraComponent, the viewport
-    * will stay black
+    * @brief Properties
     */
-    EntityId cameraEntity = EntityManager::NULL_ID;
+    struct Properties : public Touchable {
 
-    /**
-    * @brief Left edge of the viewport within the window
-    *
-    * The coordinate system is relative, i.e. 0.0 is leftmost,
-    * 1.0 is rightmost.
-    */
-    Ogre::Real left = 0.0f;
+        /**
+        * @brief The viewport's background colour
+        */
+        Ogre::ColourValue backgroundColour;
 
-    /**
-    * @brief Top edge of the viewport within the window
-    *
-    * The coordinate system is relative, i.e. 0.0 is topmost,
-    * 1.0 is bottommost.
-    */
-    Ogre::Real top = 0.0f;
+        /**
+        * @brief The camera entity to use
+        *
+        * If the given entity has no OgreCameraComponent, the viewport
+        * will stay black
+        */
+        EntityId cameraEntity = EntityManager::NULL_ID;
 
-    /**
-    * @brief The viewport's width relative to the window
-    *
-    * The coordinate system is relative, i.e. 0.5 is half width,
-    * 1.0 is full width.
-    */
-    Ogre::Real width = 1.0f;
+        /**
+        * @brief The viewport's height relative to the window
+        *
+        * The coordinate system is relative, i.e. 0.5 is half height,
+        * 1.0 is full height.
+        */
+        Ogre::Real height = 1.0f;
 
-    /**
-    * @brief The viewport's height relative to the window
-    *
-    * The coordinate system is relative, i.e. 0.5 is half height,
-    * 1.0 is full height.
-    */
-    Ogre::Real height = 1.0f;
+        /**
+        * @brief Left edge of the viewport within the window
+        *
+        * The coordinate system is relative, i.e. 0.0 is leftmost,
+        * 1.0 is rightmost.
+        */
+        Ogre::Real left = 0.0f;
 
-    /**
-    * @brief The viewport's background colour
-    */
-    Ogre::ColourValue backgroundColour;
+        /**
+        * @brief Top edge of the viewport within the window
+        *
+        * The coordinate system is relative, i.e. 0.0 is topmost,
+        * 1.0 is bottommost.
+        */
+        Ogre::Real top = 0.0f;
+
+        /**
+        * @brief The viewport's width relative to the window
+        *
+        * The coordinate system is relative, i.e. 0.5 is half width,
+        * 1.0 is full width.
+        */
+        Ogre::Real width = 1.0f;
+
+    };
 
     /**
     * @brief Lua bindings
     *
-    * Exposes the following \ref shared_data_lua shared properties:
-    * - \c OgreViewport::cameraEntity
-    * - \c OgreViewport::left
-    * - \c OgreViewport::top
-    * - \c OgreViewport::width
-    * - \c OgreViewport::height
-    * - \c OgreViewport::backgroundColour
+    * Exposes:
+    * - OgreViewport(int)
+    * - @link m_properties properties @endlink
+    * - Properties
+    *   - Properties::backgroundColour
+    *   - Properties::cameraEntity
+    *   - Properties::height
+    *   - Properties::left
+    *   - Properties::top
+    *   - Properties::width
+    *   - Properties::zOrder
     *
     * @return 
     */
@@ -97,13 +109,11 @@ public:
         int zOrder = 0
     );
 
-    bool
-    hasChanges() const;
-
-    void
-    touch();
-
-    void untouch();
+    /**
+    * @brief Properties
+    */
+    Properties
+    m_properties;
 
     /**
     * @brief Pointer to internal Ogre::Viewport
@@ -115,9 +125,6 @@ public:
     */
     const int m_zOrder;
 
-private:
-    
-    bool m_hasChanges;
 
 };
 

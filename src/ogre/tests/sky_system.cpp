@@ -23,12 +23,12 @@ TEST(SkyPlaneComponent, ScriptBindings) {
     globals["skyPlane"] = skyPlane.get();
     // Enabled
     EXPECT_TRUE(LuaSuccess(L,
-        "skyPlane.enabled = false"
+        "skyPlane.properties.enabled = false"
     ));
-    EXPECT_FALSE(skyPlane->enabled);
+    EXPECT_FALSE(skyPlane->m_properties.enabled);
     // Plane.d
     EXPECT_TRUE(LuaSuccess(L,
-        "skyPlane.plane.d = 42.0"
+        "skyPlane.properties.plane.d = 42.0"
     ));
-    EXPECT_EQ(42.0f, skyPlane->plane.d);
+    EXPECT_EQ(42.0f, skyPlane->m_properties.plane.d);
 }
