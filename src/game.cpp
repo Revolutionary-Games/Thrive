@@ -8,10 +8,6 @@
 #include <type_traits>
 #include <unordered_map>
 
-#include <AL/al.h>
-#include <AL/alc.h>
-#include <AL/alext.h>
-
 
 using namespace thrive;
 

@@ -1,4 +1,4 @@
-local PARTICLE_INTERVAL = 30 -- Milliseconds
+local PARTICLE_INTERVAL = 50 -- Milliseconds
 local PARTICLE_MASS = 0.02
 local MIN_PARTICLE_SPEED = 1
 local MAX_PARTICLE_SPEED = 10
@@ -37,7 +37,6 @@ function emitParticle(origin)
     particle.sceneNode = OgreSceneNodeComponent()
     particle:addComponent(OgreEntityComponent("Mesh.mesh"))
     particle.sceneNode.properties.position = origin
-    --particle.sceneNode.orientation = Quaternion(Radian(Degree(90)), Vector3(1, 0, 0))
     particle.sceneNode.properties.scale = Vector3(PARTICLE_SCALE, PARTICLE_SCALE, PARTICLE_SCALE)
     particle.sceneNode.properties:touch()
     particle:addComponent(particle.sceneNode)
