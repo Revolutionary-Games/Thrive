@@ -17,7 +17,6 @@
  * If you are still reading, chances are that you seek information on a
  * specific topic. Apart from the raw API, this documentation currently offers
  * advice on:
- * - @ref shared_data
  * - @ref entity_component
  * - @ref script_primer
  *
@@ -67,9 +66,15 @@ public:
     void
     run();
 
+    /**
+    * @brief The target frame duration
+    */
     std::chrono::microseconds
     targetFrameDuration() const;
 
+    /**
+    * @brief The target frame rate
+    */
     unsigned short
     targetFrameRate() const;
 

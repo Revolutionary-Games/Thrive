@@ -197,6 +197,13 @@ public:
     std::unordered_set<EntityId>&
     removedEntities();
 
+    /**
+    * @brief Sets the entity manager this filter applies to
+    *
+    * @param entityManager
+    *   The new entity manager to listen to. If \c nullptr, the filter stays
+    *   empty.
+    */
     void
     setEntityManager(
         EntityManager* entityManager
