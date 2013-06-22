@@ -2,6 +2,7 @@
 
 #include "engine/component.h"
 #include "engine/system.h"
+#include "engine/touchable.h"
 
 #include <memory>
 #include <OgreVector3.h>
@@ -30,45 +31,54 @@ class OgreSceneNodeComponent : public Component {
 public:
 
     /**
-    * @brief Rotation
-    *
-    * Defaults to Ogre::Quaternion::IDENTITY.
+    * @brief Properties
     */
-    Ogre::Quaternion orientation = Ogre::Quaternion::IDENTITY;
+    struct Properties : public Touchable {
 
-    /**
-    * @brief Position
-    *
-    * Defaults to origin (0,0,0).
-    */
-    Ogre::Vector3 position = {0, 0, 0};
+        /**
+        * @brief Rotation
+        *
+        * Defaults to Ogre::Quaternion::IDENTITY.
+        */
+        Ogre::Quaternion orientation = Ogre::Quaternion::IDENTITY;
 
-    /**
-    * @brief Scale
-    *
-    * Defaults to (1, 1, 1).
-    */
-    Ogre::Vector3 scale = {1, 1, 1};
+        /**
+        * @brief Position
+        *
+        * Defaults to origin (0,0,0).
+        */
+        Ogre::Vector3 position = {0, 0, 0};
 
-    /**
-    * @brief Velocity
-    *
-    * Defaults to (0,0,0).
-    */
-    Ogre::Vector3 velocity = {0,0,0};
+        /**
+        * @brief Scale
+        *
+        * Defaults to (1, 1, 1).
+        */
+        Ogre::Vector3 scale = {1, 1, 1};
+
+    };
 
     /**
     * @brief Lua bindings
     *
-    * This component exposes the following \ref shared_data_lua "shared properties":
-    * - Properties::orientation
-    * - Properties::posiiton
-    * - Properties::scale
+    * Exposes:
+    * - OgreSceneNodeComponent()
+    * - @link m_properties properties @endlink
+    * - Properties
+    *   - Properties::orientation
+    *   - Properties::position
+    *   - Properties::scale
     *
     * @return
     */
     static luabind::scope
     luaBindings();
+
+    /**
+    * @brief Properties
+    */
+    Properties
+    m_properties;
 
     /**
     * @brief Pointer to the underlying Ogre::SceneNode

@@ -15,6 +15,8 @@ add_sources(
     ${CMAKE_CURRENT_SOURCE_DIR}/entity_manager.h
     ${CMAKE_CURRENT_SOURCE_DIR}/system.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/system.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/touchable.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/touchable.h
 )
 
 add_test_sources(

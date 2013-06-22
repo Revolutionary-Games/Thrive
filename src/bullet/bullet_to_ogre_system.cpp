@@ -46,9 +46,11 @@ BulletToOgreSystem::update(int) {
     for (auto& value : m_impl->m_entities) {
         RigidBodyComponent* rigidBodyComponent = std::get<0>(value.second);
         OgreSceneNodeComponent* sceneNodeComponent = std::get<1>(value.second);
-        sceneNodeComponent->orientation = rigidBodyComponent->rotation;
-        sceneNodeComponent->position = rigidBodyComponent->position;
-        sceneNodeComponent->touch();
+        auto& sceneNodeProperties = sceneNodeComponent->m_properties;
+        auto& rigidBodyProperties = rigidBodyComponent->m_dynamicProperties;
+        sceneNodeProperties.orientation = rigidBodyProperties.rotation;
+        sceneNodeProperties.position = rigidBodyProperties.position;
+        sceneNodeProperties.touch();
     }
 }
 

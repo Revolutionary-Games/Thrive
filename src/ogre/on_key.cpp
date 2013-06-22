@@ -20,14 +20,8 @@ OnKeyComponent::luaBindings() {
                 def("TYPE_ID", &OnKeyComponent::TYPE_ID)
             ]
             .def(constructor<>())
-            .def_readwrite("onPressed", &OnKeyComponent::m_onPressedCallback)
-            .def_readwrite("onReleased", &OnKeyComponent::m_onReleasedCallback)
-        ,
-        class_<KeyboardSystem::KeyEvent>("KeyEvent")
-            .def_readonly("key", &KeyboardSystem::KeyEvent::key)
-            .def_readonly("alt", &KeyboardSystem::KeyEvent::alt)
-            .def_readonly("ctrl", &KeyboardSystem::KeyEvent::ctrl)
-            .def_readonly("shift", &KeyboardSystem::KeyEvent::shift)
+            .def_readwrite("onPressed", &OnKeyComponent::onPressedCallback)
+            .def_readwrite("onReleased", &OnKeyComponent::onReleasedCallback)
     ;
 }
 
@@ -79,8 +73,8 @@ OnKeySystem::update(
 ) {
     for (auto& value : m_impl->m_entities.entities()) {
         OnKeyComponent* component = std::get<0>(value.second);
-        luabind::object& onPressed = component->m_onPressedCallback;
-        luabind::object& onReleased = component->m_onReleasedCallback;
+        luabind::object& onPressed = component->onPressedCallback;
+        luabind::object& onReleased = component->onReleasedCallback;
         EntityId entityId = value.first;
         for (const KeyboardSystem::KeyEvent& keyEvent : m_impl->m_keyboardSystem->eventQueue()) {
             try {

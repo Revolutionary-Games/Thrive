@@ -23,7 +23,13 @@ OgreCameraComponent::luaBindings() {
     return class_<OgreCameraComponent, Component, std::shared_ptr<Component>>("OgreCameraComponent")
         .scope [
             def("TYPE_NAME", &OgreCameraComponent::TYPE_NAME),
-            def("TYPE_ID", &OgreCameraComponent::TYPE_ID)
+            def("TYPE_ID", &OgreCameraComponent::TYPE_ID),
+            class_<Properties, Touchable>("Properties")
+                .def_readwrite("polygonMode", &Properties::polygonMode)
+                .def_readwrite("fovY", &Properties::fovY)
+                .def_readwrite("nearClipDistance", &Properties::nearClipDistance)
+                .def_readwrite("farClipDistance", &Properties::farClipDistance)
+                .def_readwrite("aspectRatio", &Properties::aspectRatio)
         ]
         .enum_("PolygonMode") [
             value("PM_POINTS", Ogre::PM_POINTS),
@@ -31,11 +37,7 @@ OgreCameraComponent::luaBindings() {
             value("PM_SOLID", Ogre::PM_SOLID)
         ]
         .def(constructor<std::string>())
-        .def_readwrite("polygonMode", &OgreCameraComponent::polygonMode)
-        .def_readwrite("fovY", &OgreCameraComponent::fovY)
-        .def_readwrite("nearClipDistance", &OgreCameraComponent::nearClipDistance)
-        .def_readwrite("farClipDistance", &OgreCameraComponent::farClipDistance)
-        .def_readwrite("aspectRatio", &OgreCameraComponent::aspectRatio)
+        .def_readonly("properties", &OgreCameraComponent::m_properties)
     ;
 }
 
@@ -116,16 +118,17 @@ OgreCameraSystem::update(int) {
     m_impl->m_entities.clearChanges();
     for (auto& value : m_impl->m_entities) {
         OgreCameraComponent* cameraComponent = std::get<1>(value.second);
-        if (cameraComponent->hasChanges()) {
+        auto& properties = cameraComponent->m_properties;
+        if (properties.hasChanges()) {
             Ogre::Camera* camera = cameraComponent->m_camera;
             // Update camera
-            camera->setPolygonMode(cameraComponent->polygonMode);
-            camera->setFOVy(cameraComponent->fovY);
-            camera->setNearClipDistance(cameraComponent->nearClipDistance);
-            camera->setFarClipDistance(cameraComponent->farClipDistance);
-            camera->setAspectRatio(cameraComponent->aspectRatio);
+            camera->setPolygonMode(properties.polygonMode);
+            camera->setFOVy(properties.fovY);
+            camera->setNearClipDistance(properties.nearClipDistance);
+            camera->setFarClipDistance(properties.farClipDistance);
+            camera->setAspectRatio(properties.aspectRatio);
             // Untouch
-            cameraComponent->untouch();
+            properties.untouch();
         }
     }
 }

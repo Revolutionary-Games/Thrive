@@ -2,6 +2,7 @@
 
 #include "engine/component.h"
 #include "engine/system.h"
+#include "engine/touchable.h"
 
 #include <memory>
 #include <OgreCommon.h>
@@ -26,37 +27,49 @@ class OgreCameraComponent : public Component {
 
 public:
 
-    /**
-    * @brief The level of rendering detail
-    */
-    Ogre::PolygonMode polygonMode = Ogre::PM_SOLID;
 
     /**
-    * @brief The y-dimension field of view
+    * @brief Properties
     */
-    Ogre::Radian fovY = Ogre::Radian{45.0f};
-    /**
-    * @brief Near clip distance
-    */
-    Ogre::Real nearClipDistance = 100.0f;
-    /**
-    * @brief Far clip distance
-    */
-    Ogre::Real farClipDistance = 10000.0f;
-    /**
-    * @brief Aspect ratio of the frustum viewport
-    */
-    Ogre::Real aspectRatio = 1.3333f;
+    struct Properties : public Touchable {
+
+        /**
+        * @brief Aspect ratio of the frustum viewport
+        */
+        Ogre::Real aspectRatio = 1.3333f;
+
+        /**
+        * @brief Far clip distance
+        */
+        Ogre::Real farClipDistance = 10000.0f;
+
+        /**
+        * @brief The y-dimension field of view
+        */
+        Ogre::Radian fovY = Ogre::Radian{45.0f};
+
+        /**
+        * @brief Near clip distance
+        */
+        Ogre::Real nearClipDistance = 100.0f;
+
+        /**
+        * @brief The level of rendering detail
+        */
+        Ogre::PolygonMode polygonMode = Ogre::PM_SOLID;
+    };
 
     /**
     * @brief Lua bindings
     *
-    * Exposes the following \ref shared_data_lua "shared properties":
-    * - \c Properties::polygonMode
-    * - \c Properties::fovY
-    * - \c Properties::nearClipDistance
-    * - \c Properties::farClipDistance
-    * - \c Properties::aspectRatio
+    * Exposes:
+    * - OgreCameraComponent(std::string)
+    * - Properties
+    *   - Properties::aspectRatio
+    *   - Properties::farClipDistance
+    *   - Properties::fovY
+    *   - Properties::nearClipDistance
+    *   - Properties::polygonMode
     *
     * @return 
     */
@@ -82,6 +95,12 @@ public:
     * @brief The camera's name
     */
     const std::string m_name;
+
+    /**
+    * @brief Properties
+    */
+    Properties
+    m_properties;
 
 };
 

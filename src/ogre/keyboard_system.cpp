@@ -51,6 +51,14 @@ KeyboardSystem::luaBindings() {
     using namespace luabind;
     return class_<KeyboardSystem>("KeyboardSystem")
         .def("isKeyDown", &KeyboardSystem::isKeyDown)
+        .scope [
+            class_<KeyboardSystem::KeyEvent>("KeyEvent")
+                .def_readonly("key", &KeyboardSystem::KeyEvent::key)
+                .def_readonly("alt", &KeyboardSystem::KeyEvent::alt)
+                .def_readonly("ctrl", &KeyboardSystem::KeyEvent::ctrl)
+                .def_readonly("shift", &KeyboardSystem::KeyEvent::shift)
+                .def_readonly("pressed", &KeyboardSystem::KeyEvent::pressed)
+        ]
         .enum_("KeyCode") [
             value("KC_UNASSIGNED", OIS::KC_UNASSIGNED),
             value("KC_ESCAPE", OIS::KC_ESCAPE),
