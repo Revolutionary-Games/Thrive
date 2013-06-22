@@ -53,7 +53,7 @@ public:
     *
     * Creates a new unnamed entity
     *
-    * Uses the Game's global EntityManager
+    * Uses the EntityManager of Game::engine()
     */
     Entity();
 
@@ -74,7 +74,7 @@ public:
     *
     * Interfaces to an existing entity
     *
-    * Uses the Game's global EntityManager
+    * Uses the EntityManager of Game::engine()
     *
     * @param id
     *   The entity id to interface to
@@ -103,7 +103,7 @@ public:
     *
     * Interfaces to a named entity
     *
-    * Uses the Game's EntityManager
+    * Uses the EntityManager of Game::engine()
     *
     * @param name
     *   The name of the entity to interface to
@@ -264,6 +264,10 @@ public:
     *
     * If no such component was found, does nothing.
     *
+    * @note
+    *   The component is only actually removed after the entity manager's
+    *   EntityManager::processRemovals() function is called.
+    *
     * @param typeId
     *   The component's type id
     */
@@ -276,6 +280,10 @@ public:
     * @brief Removes a component by type name
     *
     * If no such component was found, does nothing.
+    *
+    * @note
+    *   The component is only actually removed after the entity manager's
+    *   EntityManager::processRemovals() function is called.
     *
     * @param name
     *   The component's type name

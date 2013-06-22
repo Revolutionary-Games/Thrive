@@ -1,8 +1,8 @@
 #pragma once
 
-#include "engine/shared_data.h"
 #include "engine/system.h"
 
+#include <list>
 #include <OISKeyboard.h>
 
 namespace luabind {
@@ -53,12 +53,16 @@ public:
     /**
     * @brief Lua bindings
     *
-    * Exposes the following functions to Lua:
+    * Exposes:
     * - KeyboardSystem::isKeydown
+    * - KeyboardSystem::KeyEvent
+    *   - KeyboardSystem::KeyEvent::key
+    *   - KeyboardSystem::KeyEvent::alt
+    *   - KeyboardSystem::KeyEvent::ctrl
+    *   - KeyboardSystem::KeyEvent::shift
+    *   - KeyboardSystem::KeyEvent::pressed
+    * - <a href="http://code.joyridelabs.de/ois_api/OISKeyboard_8h_source.html#l00031">KeyCode</a>
     *
-    * Also exposes the OIS::KeyCode enumeration
-    *
-    * @return 
     */
     static luabind::scope
     luaBindings();
@@ -74,16 +78,19 @@ public:
     ~KeyboardSystem();
 
     /**
-    * @brief A shared queue used for queueing up the key events
+    * @brief A list of key events in the current frame
+    *
+    * The list is cleared and newly populated for each call to update().
+    *
+    * @return 
     */
-    InputQueue<KeyEvent>&
+    const std::list<KeyEvent>&
     eventQueue();
 
     /**
     * @brief Initializes the system
     *
     * @param engine
-    *   Must be an OgreEngine
     */
     void
     init(

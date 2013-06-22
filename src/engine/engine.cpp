@@ -4,127 +4,322 @@
 #include "engine/entity_manager.h"
 #include "engine/system.h"
 #include "game.h"
+
+// Bullet
+#include "bullet/bullet_to_ogre_system.h"
+#include "bullet/update_physics_system.h"
+#include "bullet/rigid_body_system.h"
+
+// Ogre
+#include "ogre/camera_system.h"
+#include "ogre/entity_system.h"
+#include "ogre/keyboard_system.h"
+#include "ogre/light_system.h"
+#include "ogre/on_key.h"
+#include "ogre/render_system.h"
+#include "ogre/scene_node_system.h"
+#include "ogre/sky_system.h"
+#include "ogre/viewport_system.h"
+
+// Scripting
 #include "scripting/luabind.h"
+#include "scripting/lua_state.h"
+#include "scripting/on_update.h"
+#include "scripting/script_initializer.h"
+
 #include "util/contains.h"
 #include "util/pair_hash.h"
 
-#include <boost/thread.hpp>
+#include <boost/algorithm/string.hpp>
+#include <boost/filesystem.hpp>
+#include <boost/lexical_cast.hpp>
+#include <btBulletDynamicsCommon.h>
 #include <chrono>
 #include <forward_list>
+#include <fstream>
+#include <iostream>
+#include <OgreConfigFile.h>
+#include <OgreLogManager.h>
+#include <OgreRenderWindow.h>
+#include <OgreRoot.h>
+#include <OgreWindowEventUtilities.h>
+#include <OISInputManager.h>
+#include <OISMouse.h>
 #include <set>
+#include <stdlib.h>
 #include <unordered_map>
 
 #include <iostream>
 
 using namespace thrive;
 
+#ifdef _DEBUG
+    static const char* RESOURCES_CFG = "resources_d.cfg";
+    static const char* PLUGINS_CFG   = "plugins_d.cfg";
+#else
+    static const char* RESOURCES_CFG = "resources.cfg";
+    static const char* PLUGINS_CFG   = "plugins.cfg";
+#endif
+
 ////////////////////////////////////////////////////////////////////////////////
 // Engine
 ////////////////////////////////////////////////////////////////////////////////
 
-struct Engine::Implementation {
-
-    using Clock = std::chrono::high_resolution_clock;
+struct Engine::Implementation : public Ogre::WindowEventListener {
 
     Implementation(
         Engine& engine
-    ) : m_engine(engine)
+    ) : m_engine(engine),
+        m_keyboardSystem(std::make_shared<KeyboardSystem>()),
+        m_viewportSystem(std::make_shared<OgreViewportSystem>())
     {
-        m_targetFrameDuration = std::chrono::microseconds(1000000 / m_targetFrameRate);
     }
 
-    ComponentCollection&
-    getComponentCollection(
-        Component::TypeId typeId
-    ) {
-        std::unique_ptr<ComponentCollection>& collection = m_components[typeId];
-        if (not collection) {
-            collection.reset(new ComponentCollection(typeId));
-            collection->registerChangeCallbacks(
-                [this] (EntityId entityId, Component&) {
-                    m_entities[entityId] += 1;
-                },
-                [this] (EntityId entityId, Component&) {
-                    m_entities[entityId] -= 1;
-                    assert(m_entities[entityId] >= 0 && "Removed component from non-existent entity");
-                }
-            );
-        }
-        return *collection;
+    ~Implementation() {
+        Ogre::WindowEventUtilities::removeWindowEventListener(
+            m_graphics.renderWindow,
+            this
+        );
     }
 
     void
-    processSystemsQueue() {
-        // Remove systems
-        while (not m_systemsToRemove.empty()) {
-            std::string name = m_systemsToRemove.front();
-            std::shared_ptr<System> system = m_systems[name];
-            system->shutdown();
-            for (auto iter = m_activeSystems.begin(); iter != m_activeSystems.end(); ++iter) {
-                if (system == iter->second) {
-                    m_activeSystems.erase(iter);
-                    break;
-                }
-            }
-            m_systems.erase(name);
-            m_systemsToRemove.pop_front();
-        }
-        // Activate systems
-        while (not m_systemsToActivate.empty()) {
-            std::string name;
-            System::Order order;
-            std::tie(name, order) = m_systemsToActivate.front();
-            std::shared_ptr<System> system = m_systems[name];
-            m_activeSystems.insert(std::make_pair(order, system));
-            system->init(&m_engine);
-            m_systemsToActivate.pop_front();
+    addSystem(
+        std::shared_ptr<System> system
+    ) {
+        m_systems.push_back(std::move(system));
+    }
+
+    void
+    loadOgreConfig() {
+        if(not (m_graphics.root->restoreConfig() or m_graphics.root->showConfigDialog()))
+        {
+            exit(EXIT_SUCCESS);
         }
     }
 
-    std::unordered_map<
-        Component::TypeId, 
-        std::unique_ptr<ComponentCollection>
-    > m_components;
+    void
+    loadResources() {
+        Ogre::ConfigFile config;
+        config.load(RESOURCES_CFG);
+        auto sectionIter = config.getSectionIterator();
+        auto& resourceManager = Ogre::ResourceGroupManager::getSingleton();
+        while (sectionIter.hasMoreElements()) {
+            std::string sectionName = sectionIter.peekNextKey();
+            Ogre::ConfigFile::SettingsMultiMap* sectionContent = sectionIter.getNext();
+            for(auto& setting : *sectionContent) {
+                std::string resourceType = setting.first;
+                std::string resourceLocation = setting.second;
+                resourceManager.addResourceLocation(
+                    resourceLocation,
+                    resourceType,
+                    sectionName
+                );
+            }
+        }
+    }
+
+    void
+    loadScripts(
+        const boost::filesystem::path& directory
+    ) {
+        namespace fs = boost::filesystem;
+        fs::path manifestPath = directory / "manifest.txt";
+        if (not fs::exists(manifestPath)) {
+            return;
+        }
+        std::ifstream manifest(manifestPath.string());
+        if (not manifest.is_open()) {
+            throw std::runtime_error("Could not open manifest file: " + manifestPath.string());
+        }
+        std::string line;
+        while(not manifest.eof()) {
+            std::getline(manifest, line);
+            boost::algorithm::trim(line);
+            if (line.empty() or line.find("//") == 0) {
+                continue;
+            }
+            fs::path manifestEntryPath = directory / line;
+            if (not fs::exists(manifestEntryPath)) {
+                std::cerr << "Warning: Could not find file " << manifestEntryPath.string() << std::endl;
+                continue;
+            }
+            else if (fs::is_directory(manifestEntryPath)) {
+                this->loadScripts(manifestEntryPath);
+            }
+            else if(luaL_dofile(m_luaState, manifestEntryPath.string().c_str())) {
+                const char* errorMessage = lua_tostring(m_luaState, -1);
+                std::cerr << "Error while parsing " << manifestEntryPath.string() << ": " << errorMessage << std::endl;
+            }
+        }
+    }
+
+    bool
+    quitRequested() {
+        return m_keyboardSystem->isKeyDown(
+            OIS::KeyCode::KC_ESCAPE
+        );
+    }
+
+    void
+    setupGraphics() {
+        this->setupLog();
+        m_graphics.root.reset(new Ogre::Root(PLUGINS_CFG));
+        this->loadResources();
+        this->loadOgreConfig();
+        this->m_graphics.renderWindow = m_graphics.root->initialise(true, "Thrive");
+        Ogre::WindowEventUtilities::addWindowEventListener(
+            m_graphics.renderWindow,
+            this
+        );
+        // Set default mipmap level (NB some APIs ignore this)
+        Ogre::TextureManager::getSingleton().setDefaultNumMipmaps(5);
+        // initialise all resource groups
+        Ogre::ResourceGroupManager::getSingleton().initialiseAllResourceGroups();
+        // Setup
+        m_graphics.sceneManager = m_graphics.root->createSceneManager(
+            "DefaultSceneManager"
+        );
+        m_graphics.sceneManager->setAmbientLight(
+            Ogre::ColourValue(0.5, 0.5, 0.5)
+        );
+        setupInputManager();
+    }
+
+    void
+    setupInputManager() {
+        const std::string HANDLE_NAME = "WINDOW";
+        size_t windowHandle = 0;
+        m_graphics.renderWindow->getCustomAttribute(HANDLE_NAME, &windowHandle);
+        OIS::ParamList parameters;
+        parameters.insert(std::make_pair(
+            HANDLE_NAME,
+            boost::lexical_cast<std::string>(windowHandle)
+        ));
+        m_inputManager = OIS::InputManager::createInputSystem(parameters);
+    }
+
+    void
+    setupLog() {
+        static Ogre::LogManager logManager;
+        logManager.createLog("default", true, false, false);
+    }
+
+    void
+    setupPhysics() {
+        m_physics.collisionConfiguration.reset(new btDefaultCollisionConfiguration());
+        m_physics.dispatcher.reset(new btCollisionDispatcher(
+            m_physics.collisionConfiguration.get()
+        ));
+        m_physics.broadphase.reset(new btDbvtBroadphase());
+        m_physics.solver.reset(new btSequentialImpulseConstraintSolver());
+        m_physics.world.reset(new btDiscreteDynamicsWorld(
+            m_physics.dispatcher.get(),
+            m_physics.broadphase.get(),
+            m_physics.solver.get(),
+            m_physics.collisionConfiguration.get()
+        ));
+        m_physics.world->setGravity(btVector3(0,0,0));
+    }
+
+    void
+    setupScripts() {
+        initializeLua(m_luaState);
+    }
+
+    void
+    setupSystems() {
+        std::shared_ptr<System> systems[] = {
+            // Input
+            m_keyboardSystem,
+            // Scripts
+            std::make_shared<OnUpdateSystem>(),
+            std::make_shared<OnKeySystem>(),
+            // Physics
+            std::make_shared<RigidBodyInputSystem>(),
+            std::make_shared<UpdatePhysicsSystem>(),
+            std::make_shared<RigidBodyOutputSystem>(),
+            std::make_shared<BulletToOgreSystem>(),
+            // Graphics
+            std::make_shared<OgreAddSceneNodeSystem>(),
+            std::make_shared<OgreUpdateSceneNodeSystem>(),
+            std::make_shared<OgreCameraSystem>(),
+            std::make_shared<OgreLightSystem>(),
+            std::make_shared<SkySystem>(),
+            std::make_shared<OgreEntitySystem>(),
+            m_viewportSystem, // Has to come *after* camera system
+            std::make_shared<OgreRemoveSceneNodeSystem>(),
+            std::make_shared<RenderSystem>()
+        };
+        for (auto system : systems) {
+            this->addSystem(system);
+        }
+    }
+
+    void
+    shutdownInputManager() {
+        if (not m_inputManager) {
+            return;
+        }
+        OIS::InputManager::destroyInputSystem(m_inputManager);
+        m_inputManager = nullptr;
+    }
+
+    bool 
+    windowClosing(
+        Ogre::RenderWindow* window
+    ) override {
+        if (window == m_graphics.renderWindow) {
+            Game::instance().quit();
+        }
+        return true;
+    }
+
+    // Lua state must be one of the last to be destroyed, so keep it at top. 
+    // The reason for that is that some components keep luabind::object 
+    // instances around that rely on the lua state to still exist when they
+    // are destroyed. Since those components are destroyed with the entity 
+    // manager, the lua state has to live longer than the manager.
+    LuaState m_luaState;
 
     Engine& m_engine;
 
-    std::unordered_map<EntityId, int> m_entities;
+    EntityManager m_entityManager;
 
-    std::multimap<System::Order, std::shared_ptr<System>> m_activeSystems;
+    struct Graphics {
 
-    EntityManager* m_entityManager = nullptr;
+        Ogre::SceneManager* sceneManager = nullptr;
 
-    FrameIndex m_frameIndex = 0;
+        std::unique_ptr<Ogre::Root> root;
 
-    bool m_isInitialized = false;
+        Ogre::RenderWindow* renderWindow = nullptr;
 
-    Clock::time_point m_lastUpdate;
+    } m_graphics;
 
-    std::unordered_map<std::string, std::shared_ptr<System>> m_systems;
+    OIS::InputManager* m_inputManager = nullptr;
 
-    std::forward_list<
-        std::pair<std::string, System::Order>
-    > m_systemsToActivate;
+    std::shared_ptr<KeyboardSystem> m_keyboardSystem;
 
-    std::forward_list<std::string> m_systemsToRemove;
+    struct Physics {
 
-    std::chrono::microseconds m_targetFrameDuration;
+        std::unique_ptr<btBroadphaseInterface> broadphase;
 
-    unsigned short m_targetFrameRate = 60;
+        std::unique_ptr<btCollisionConfiguration> collisionConfiguration;
 
-    mutable boost::mutex m_targetFrameRateMutex;
+        std::unique_ptr<btDispatcher> dispatcher;
+
+        std::unique_ptr<btConstraintSolver> solver;
+
+        std::unique_ptr<btDiscreteDynamicsWorld> world;
+
+    } m_physics;
+
+    std::list<std::shared_ptr<System>> m_systems;
+
+    std::shared_ptr<OgreViewportSystem> m_viewportSystem;
 
 };
 
 
-luabind::scope
-Engine::luaBindings() {
-    using namespace luabind;
-    return class_<Engine>("Engine")
-        .def("setTargetFrameRate", &Engine::setTargetFrameRate)
-        .def("targetFrameRate", &Engine::targetFrameRate)
-    ;
-}
 
 
 Engine::Engine() 
@@ -133,258 +328,90 @@ Engine::Engine()
 }
 
 
-Engine::~Engine() {
-    assert(not m_impl->m_isInitialized && "Engine still running during destruction");
+Engine::~Engine() { }
+
+
+EntityManager&
+Engine::entityManager() {
+    return m_impl->m_entityManager;
 }
 
 
 void
-Engine::addComponent(
-    EntityId entityId,
-    std::shared_ptr<Component> component
-) {
-    Component::TypeId typeId = component->typeId();
-    ComponentCollection& collection = m_impl->getComponentCollection(typeId);
-    collection.queueComponentAddition(
-        entityId, 
-        std::move(component)
-    );
-}
-
-
-void
-Engine::addSystem(
-    std::string name,
-    System::Order order,
-    std::shared_ptr<System> system
-) {
-    m_impl->m_systems[name] = system;
-    m_impl->m_systemsToActivate.push_front(std::make_pair(name, order));
-}
-
-
-std::unordered_set<EntityId>
-Engine::entities() const {
-    std::unordered_set<EntityId> entities;
-    for(auto& pair : m_impl->m_entities) {
-        entities.insert(pair.first);
-    }
-    return entities;
-}
-
-
-Component*
-Engine::getComponent(
-    EntityId entityId,
-    Component::TypeId typeId
-) const {
-    ComponentCollection& collection = m_impl->getComponentCollection(typeId);
-    return collection.get(entityId);
-}
-
-
-ComponentCollection&
-Engine::getComponentCollection(
-    Component::TypeId typeId
-) const {
-    return m_impl->getComponentCollection(typeId);
-}
-
-
-std::shared_ptr<System>
-Engine::getSystem(
-    std::string name
-) const {
-    auto iter = m_impl->m_systems.find(name);
-    if (iter != m_impl->m_systems.end()) {
-        return iter->second;
-    }
-    else {
-        return nullptr;
+Engine::init() {
+    m_impl->setupPhysics();
+    m_impl->setupScripts();
+    m_impl->setupGraphics();
+    m_impl->setupSystems();
+    m_impl->loadScripts("../scripts");
+    for (auto& system : m_impl->m_systems) {
+        system->init(this);
     }
 }
 
 
-void
-Engine::init(
-    EntityManager* entityManager
-) {
-    m_impl->m_entityManager = entityManager;
-    m_impl->m_isInitialized = true;
-    entityManager->registerEngine(this);
-    m_impl->m_lastUpdate = Implementation::Clock::now();
+OIS::InputManager*
+Engine::inputManager() const {
+    return m_impl->m_inputManager;
 }
 
 
-void
-Engine::removeComponent(
-    EntityId entityId,
-    Component::TypeId typeId
-) {
-    ComponentCollection& collection = m_impl->getComponentCollection(typeId);
-    collection.queueComponentRemoval(entityId);
+KeyboardSystem&
+Engine::keyboardSystem() const {
+    return *m_impl->m_keyboardSystem;
 }
 
 
-void
-Engine::removeSystem(
-    std::string name
-) {
-    m_impl->m_systemsToRemove.push_front(name);
+Ogre::Root*
+Engine::ogreRoot() const {
+    return m_impl->m_graphics.root.get();
+}
+
+btDiscreteDynamicsWorld*
+Engine::physicsWorld() const {
+    return m_impl->m_physics.world.get();
+}
+
+Ogre::RenderWindow*
+Engine::renderWindow() const {
+    return m_impl->m_graphics.renderWindow;
 }
 
 
-void
-Engine::setTargetFrameRate(
-    unsigned short fps
-) {
-    assert(fps != 0 && "Can't set a 0 framerate");
-    boost::lock_guard<boost::mutex> lock(m_impl->m_targetFrameRateMutex);
-    m_impl->m_targetFrameRate = fps;
-    m_impl->m_targetFrameDuration = std::chrono::microseconds(1000000 / fps);
+Ogre::SceneManager*
+Engine::sceneManager() const {
+    return m_impl->m_graphics.sceneManager;
 }
 
 
 void
 Engine::shutdown() {
-    m_impl->m_entityManager->unregisterEngine(this);
-    for (auto& value : m_impl->m_activeSystems) {
-        value.second->shutdown();
+    for (auto& system : m_impl->m_systems) {
+        system->shutdown();
     }
-    m_impl->m_entityManager = nullptr;
-    m_impl->m_isInitialized = false;
-}
-
-
-std::chrono::microseconds
-Engine::targetFrameDuration() const {
-    boost::lock_guard<boost::mutex> lock(m_impl->m_targetFrameRateMutex);
-    return m_impl->m_targetFrameDuration;
-}
-
-
-unsigned short
-Engine::targetFrameRate() const {
-    boost::lock_guard<boost::mutex> lock(m_impl->m_targetFrameRateMutex);
-    return m_impl->m_targetFrameRate;
+    m_impl->shutdownInputManager();
+    m_impl->m_graphics.renderWindow->destroy();
+    m_impl->m_graphics.root.reset();
 }
 
 
 void
-Engine::update() {
-    m_impl->m_frameIndex += 1;
-    for (auto& pair : m_impl->m_components) {
-        pair.second->processQueue();
-    }
-    m_impl->processSystemsQueue();
-    auto now = Implementation::Clock::now();
-    auto delta = (now - m_impl->m_lastUpdate);
-    int milliSeconds = std::chrono::duration_cast<std::chrono::milliseconds>(delta).count();
-    m_impl->m_lastUpdate = now;
-    for(auto& value : m_impl->m_activeSystems) {
-        value.second->update(milliSeconds);
-    }
-}
-
-
-////////////////////////////////////////////////////////////////////////////////
-// EngineRunner
-////////////////////////////////////////////////////////////////////////////////
-
-struct EngineRunner::Implementation {
-
-    using Clock = std::chrono::high_resolution_clock;
-
-    Implementation(
-        EngineRunner& engineRunner,
-        Engine& engine
-    ) : m_engine(engine),
-        m_engineRunner(engineRunner)
-    {
-    }
-
-    void
-    run(
-        EntityManager* entityManager
-    ) {
-        Implementation::threadLocalStorage().reset(&m_engineRunner);
-        m_keepRunning = true;
-        m_engine.init(entityManager);
-        while (m_keepRunning) {
-            Clock::time_point start = Clock::now();
-            m_engine.update();
-            Clock::time_point stop = Clock::now();
-            Clock::duration frameDuration = stop - start;
-            Clock::duration sleepDuration = m_engine.targetFrameDuration() - frameDuration;
-            if (sleepDuration.count() > 0) {
-                auto microseconds = std::chrono::duration_cast<std::chrono::microseconds>(sleepDuration).count();
-                boost::chrono::microseconds boostDuration = boost::chrono::microseconds(microseconds);
-                boost::this_thread::sleep_for(boostDuration);
-            }
-        }
-        m_engine.shutdown();
-        Implementation::threadLocalStorage().reset(nullptr);
-    }
-
-    Engine& m_engine;
-
-    EngineRunner& m_engineRunner;
-
-    bool m_keepRunning = false;
-
-    std::unique_ptr<boost::thread> m_thread;
-
-    static void cleanup(EngineRunner*) {}
-
-    static boost::thread_specific_ptr<EngineRunner>&
-    threadLocalStorage() {
-        static boost::thread_specific_ptr<EngineRunner> storage(cleanup);
-        return storage;
-    }
-
-};
-
-
-EngineRunner::EngineRunner(
-    Engine& engine
-) : m_impl(new Implementation(*this, engine))
-{
-}
-
-
-EngineRunner::~EngineRunner() {
-    this->stop();
-}
-
-
-EngineRunner*
-EngineRunner::current() {
-    return Implementation::threadLocalStorage().get();
-}
-
-
-bool
-EngineRunner::isRunning() const {
-    return m_impl->m_thread != nullptr;
-}
-
-
-void
-EngineRunner::start(
-    EntityManager* entityManager
+Engine::update(
+    int milliSeconds
 ) {
-    assert(m_impl->m_thread == nullptr && "Double start of engine");
-    m_impl->m_thread.reset(new boost::thread(
-        std::bind(&Implementation::run, m_impl.get(), entityManager)
-    ));
-}
-
-
-void
-EngineRunner::stop() {
-    if (m_impl->m_thread) {
-        m_impl->m_keepRunning = false;
-        m_impl->m_thread->join();
-        m_impl->m_thread.reset();
+    Ogre::WindowEventUtilities::messagePump();
+    if (m_impl->quitRequested()) {
+        Game::instance().quit();
     }
+    for(auto& system : m_impl->m_systems) {
+        system->update(milliSeconds);
+    }
+    m_impl->m_entityManager.processRemovals();
 }
+
+OgreViewportSystem&
+Engine::viewportSystem() {
+    return *(m_impl->m_viewportSystem);
+}
+
+

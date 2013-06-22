@@ -5,12 +5,12 @@ playerCam.camera = OgreCameraComponent("playerCam")
 playerCam:addComponent(playerCam.camera)
 -- Scene node
 playerCam.sceneNode = OgreSceneNodeComponent()
-playerCam.sceneNode.workingCopy.position.z = 30
-playerCam.sceneNode:touch()
+playerCam.sceneNode.properties.position.z = 30
+playerCam.sceneNode.properties:touch()
 playerCam:addComponent(playerCam.sceneNode)
 
-playerCam.camera.workingCopy.nearClipDistance = 5
-playerCam.camera:touch()
+playerCam.camera.properties.nearClipDistance = 5
+playerCam.camera.properties:touch()
 
 
 -- OnUpdate
@@ -21,22 +21,22 @@ OFFSET = Vector3(0, 0, 30)
 playerCam.onUpdate.callback = function(entityId, milliseconds)
     local player = Entity("player")
     local playerSceneNode = player:getComponent(OgreSceneNodeComponent.TYPE_ID())
-    playerCam.sceneNode.workingCopy.position = playerSceneNode.latest.position + OFFSET
-    playerCam.sceneNode:touch()
+    playerCam.sceneNode.properties.position = playerSceneNode.properties.position + OFFSET
+    playerCam.sceneNode.properties:touch()
 end
 
 
 
 local viewport = OgreViewport(0)
-viewport.workingCopy.cameraEntity = playerCam
-viewport:touch()
+viewport.properties.cameraEntity = playerCam
+viewport.properties:touch()
 addViewport(viewport)
 
 
 -- Picture in Picture
 local pipViewport = OgreViewport(1)
-pipViewport.workingCopy.cameraEntity = playerCam
-pipViewport.workingCopy.width = 0.1
-pipViewport.workingCopy.height = 0.1
-pipViewport:touch()
+pipViewport.properties.cameraEntity = playerCam
+pipViewport.properties.width = 0.1
+pipViewport.properties.height = 0.1
+pipViewport.properties:touch()
 addViewport(pipViewport)

@@ -1,14 +1,13 @@
-#include "bullet/bullet_lua_bindings.h"
+#include "bullet/script_bindings.h"
 
+#include "bullet/rigid_body_system.h"
 #include "scripting/luabind.h"
 
 #include <btBulletCollisionCommon.h>
 #include <memory>
 #include <OgreVector3.h>
 
-
 using namespace luabind;
-
 
 namespace {
 
@@ -126,8 +125,10 @@ thrive::BulletBindings::luaBindings() {
         CylinderShapeX::luaBindings(),
         CylinderShapeZ::luaBindings(),
         btCapsuleShapeBindings(),
-        btConeShapeBoxBindings()
+        btConeShapeBoxBindings(),
+        RigidBodyComponent::luaBindings()
     );
 
 
 }
+

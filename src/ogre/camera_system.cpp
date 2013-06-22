@@ -1,8 +1,8 @@
 #include "ogre/camera_system.h"
 
 #include "engine/component_registry.h"
+#include "engine/engine.h"
 #include "engine/entity_filter.h"
-#include "ogre/ogre_engine.h"
 #include "ogre/scene_node_system.h"
 #include "scripting/luabind.h"
 
@@ -16,29 +16,6 @@ using namespace thrive;
 // OgreCameraComponent
 ////////////////////////////////////////////////////////////////////////////////
 
-static void
-OgreCameraComponent_touch(
-    OgreCameraComponent* self
-) {
-    return self->m_properties.touch();
-}
-
-
-static OgreCameraComponent::Properties&
-OgreCameraComponent_getWorkingCopy(
-    OgreCameraComponent* self
-) {
-    return self->m_properties.workingCopy();
-}
-
-
-static const OgreCameraComponent::Properties&
-OgreCameraComponent_getLatest(
-    OgreCameraComponent* self
-) {
-    return self->m_properties.latest();
-}
-
 
 luabind::scope
 OgreCameraComponent::luaBindings() {
@@ -47,7 +24,7 @@ OgreCameraComponent::luaBindings() {
         .scope [
             def("TYPE_NAME", &OgreCameraComponent::TYPE_NAME),
             def("TYPE_ID", &OgreCameraComponent::TYPE_ID),
-            class_<Properties>("Properties")
+            class_<Properties, Touchable>("Properties")
                 .def_readwrite("polygonMode", &Properties::polygonMode)
                 .def_readwrite("fovY", &Properties::fovY)
                 .def_readwrite("nearClipDistance", &Properties::nearClipDistance)
@@ -60,9 +37,7 @@ OgreCameraComponent::luaBindings() {
             value("PM_SOLID", Ogre::PM_SOLID)
         ]
         .def(constructor<std::string>())
-        .property("latest", OgreCameraComponent_getLatest)
-        .property("workingCopy", OgreCameraComponent_getWorkingCopy)
-        .def("touch", OgreCameraComponent_touch)
+        .def_readonly("properties", &OgreCameraComponent::m_properties)
     ;
 }
 
@@ -107,16 +82,14 @@ OgreCameraSystem::init(
 ) {
     System::init(engine);
     assert(m_impl->m_sceneManager == nullptr && "Double init of system");
-    OgreEngine* ogreEngine = dynamic_cast<OgreEngine*>(engine);
-    assert(ogreEngine != nullptr && "System requires an OgreEngine");
-    m_impl->m_sceneManager = ogreEngine->sceneManager();
-    m_impl->m_entities.setEngine(engine);
+    m_impl->m_sceneManager = engine->sceneManager();
+    m_impl->m_entities.setEntityManager(&engine->entityManager());
 }
 
 
 void
 OgreCameraSystem::shutdown() {
-    m_impl->m_entities.setEngine(nullptr);
+    m_impl->m_entities.setEntityManager(nullptr);
     m_impl->m_sceneManager = nullptr;
     System::shutdown();
 }
@@ -145,8 +118,8 @@ OgreCameraSystem::update(int) {
     m_impl->m_entities.clearChanges();
     for (auto& value : m_impl->m_entities) {
         OgreCameraComponent* cameraComponent = std::get<1>(value.second);
-        if (cameraComponent->m_properties.hasChanges()) {
-            const auto& properties = cameraComponent->m_properties.stable();
+        auto& properties = cameraComponent->m_properties;
+        if (properties.hasChanges()) {
             Ogre::Camera* camera = cameraComponent->m_camera;
             // Update camera
             camera->setPolygonMode(properties.polygonMode);
@@ -155,7 +128,7 @@ OgreCameraSystem::update(int) {
             camera->setFarClipDistance(properties.farClipDistance);
             camera->setAspectRatio(properties.aspectRatio);
             // Untouch
-            cameraComponent->m_properties.untouch();
+            properties.untouch();
         }
     }
 }

@@ -21,16 +21,14 @@ TEST(SkyPlaneComponent, ScriptBindings) {
     luabind::object globals = luabind::globals(L);
     auto skyPlane = std::make_shared<SkyPlaneComponent>();
     globals["skyPlane"] = skyPlane.get();
-    RenderState::instance().reset();
-    StateLock<RenderState, StateBuffer::WorkingCopy> lock;
     // Enabled
     EXPECT_TRUE(LuaSuccess(L,
-        "skyPlane.workingCopy.enabled = false"
+        "skyPlane.properties.enabled = false"
     ));
-    EXPECT_FALSE(skyPlane->m_properties.workingCopy().enabled);
+    EXPECT_FALSE(skyPlane->m_properties.enabled);
     // Plane.d
     EXPECT_TRUE(LuaSuccess(L,
-        "skyPlane.workingCopy.plane.d = 42.0"
+        "skyPlane.properties.plane.d = 42.0"
     ));
-    EXPECT_EQ(42.0f, skyPlane->m_properties.workingCopy().plane.d);
+    EXPECT_EQ(42.0f, skyPlane->m_properties.plane.d);
 }

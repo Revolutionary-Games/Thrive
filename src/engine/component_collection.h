@@ -7,14 +7,18 @@
 
 namespace thrive {
 
-class Engine;
+class EntityManager;
 
 /**
-* @brief A collection of components of one particular type
+* @brief Utility class for the EntityManager
 *
-* Component collections are used by Engine objects to keep
-* track of the components attached to an entity. Components
-* are 
+* A component collection handles components of one specific type. It offers
+* functions to retrieve the component (if any) of a specific entity and
+* callbacks for when a component has been added or removed (mainly used by
+* the EntityFilter).
+*
+* Component collections are pretty much read-only for anything but the 
+* EntityManager. Use the manager to actually add or remove components.
 */
 class ComponentCollection {
 
@@ -93,7 +97,10 @@ public:
 
 private:
 
-    friend class Engine;
+    /**
+    * @brief Only the EntityManager should be able to add / remove components.
+    */
+    friend class EntityManager;
 
     /**
     * @brief Constructor
@@ -105,48 +112,39 @@ private:
     );
 
     /**
-    * @brief Processes the queues for added and removed components
-    */
-    void
-    processQueue();
-
-    /**
-    * @brief Queues a component for addition
+    * @brief Adds a component
     *
-    * The component will be available after the next call to 
-    * \c ComponentCollection::processQueue.
-    *
-    * Any existing component of the same type will be overwritten.
-    *
-    * This method is thread-safe.
+    * Also calls any callbacks registered for added components.
     *
     * @param entityId
     *   The entity the component belongs to
-    *
     * @param component
     *   The component to add
+    *
+    * @return 
+    *   \c true if the component is new, i.e. does not overwrite an existing 
+    *   one, \c false otherwise
     */
-    void
-    queueComponentAddition(
+    bool
+    addComponent(
         EntityId entityId,
         std::shared_ptr<Component> component
     );
 
     /**
-    * @brief Queues a component for removal
+    * @brief Removes a component
     *
-    * The component will be removed after the next call to 
-    * \c ComponentCollection::processQueue.
-    *
-    * If no such component exists, does nothing.
-    *
-    * This method is thread-safe.
+    * Also calls any callbacks registered for removed components.
     *
     * @param entityId
     *   The entity the component belongs to
+    *
+    * @return 
+    *   \c true if a component was removed, \c false if no component for
+    *   \a entityId was found.
     */
-    void
-    queueComponentRemoval(
+    bool
+    removeComponent(
         EntityId entityId
     );
 

@@ -1,6 +1,6 @@
 #include "ogre/keyboard_system.h"
 
-#include "ogre/ogre_engine.h"
+#include "engine/engine.h"
 #include "scripting/luabind.h"
 
 #include <iostream>
@@ -36,14 +36,12 @@ struct KeyboardSystem::Implementation : public OIS::KeyListener{
         bool ctrl = m_keyboard->isModifierDown(OIS::Keyboard::Ctrl);
         bool shift = m_keyboard->isModifierDown(OIS::Keyboard::Shift);
         KeyEvent keyEvent = {event.key, pressed, alt, ctrl, shift};
-        m_queue.push(keyEvent);
+        m_queue.push_back(keyEvent);
     }
 
-    OIS::Keyboard* m_keyboard;
+    OIS::Keyboard* m_keyboard = nullptr;
 
-    std::array<char, 256> m_keyStates;
-
-    InputQueue<KeyEvent> m_queue;
+    std::list<KeyEvent> m_queue;
 
 };
 
@@ -53,6 +51,14 @@ KeyboardSystem::luaBindings() {
     using namespace luabind;
     return class_<KeyboardSystem>("KeyboardSystem")
         .def("isKeyDown", &KeyboardSystem::isKeyDown)
+        .scope [
+            class_<KeyboardSystem::KeyEvent>("KeyEvent")
+                .def_readonly("key", &KeyboardSystem::KeyEvent::key)
+                .def_readonly("alt", &KeyboardSystem::KeyEvent::alt)
+                .def_readonly("ctrl", &KeyboardSystem::KeyEvent::ctrl)
+                .def_readonly("shift", &KeyboardSystem::KeyEvent::shift)
+                .def_readonly("pressed", &KeyboardSystem::KeyEvent::pressed)
+        ]
         .enum_("KeyCode") [
             value("KC_UNASSIGNED", OIS::KC_UNASSIGNED),
             value("KC_ESCAPE", OIS::KC_ESCAPE),
@@ -138,7 +144,7 @@ KeyboardSystem::KeyboardSystem()
 KeyboardSystem::~KeyboardSystem() {}
 
 
-InputQueue<KeyboardSystem::KeyEvent>&
+const std::list<KeyboardSystem::KeyEvent>&
 KeyboardSystem::eventQueue() {
     return m_impl->m_queue;
 }
@@ -150,10 +156,8 @@ KeyboardSystem::init(
 ) {
     System::init(engine);
     assert(m_impl->m_keyboard == nullptr && "Double init of keyboard system");
-    OgreEngine* ogreEngine = dynamic_cast<OgreEngine*>(engine);
-    assert(ogreEngine != nullptr && "KeyboardSystem requires an OgreEngine");
     m_impl->m_keyboard = static_cast<OIS::Keyboard*>(
-        ogreEngine->inputManager()->createInputObject(OIS::OISKeyboard, true)
+        engine->inputManager()->createInputObject(OIS::OISKeyboard, true)
     );
     m_impl->m_keyboard->setEventCallback(m_impl.get());
 }
@@ -163,14 +167,18 @@ bool
 KeyboardSystem::isKeyDown(
     OIS::KeyCode key
 ) const {
-    return m_impl->m_keyStates[key];
+    if (m_impl->m_keyboard) {
+        return m_impl->m_keyboard->isKeyDown(key);
+    }
+    else {
+        return false;
+    }
 }
 
 
 void
 KeyboardSystem::shutdown() {
-    OgreEngine* ogreEngine = dynamic_cast<OgreEngine*>(this->engine());
-    ogreEngine->inputManager()->destroyInputObject(m_impl->m_keyboard);
+    this->engine()->inputManager()->destroyInputObject(m_impl->m_keyboard);
     m_impl->m_keyboard = nullptr;
     System::shutdown();
 }
@@ -178,8 +186,8 @@ KeyboardSystem::shutdown() {
 
 void
 KeyboardSystem::update(int) {
+    m_impl->m_queue.clear();
     m_impl->m_keyboard->capture();
-    m_impl->m_keyboard->copyKeyStates(m_impl->m_keyStates.data());
 }
 
 
