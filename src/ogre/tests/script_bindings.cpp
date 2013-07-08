@@ -1,6 +1,7 @@
 #include "ogre/script_bindings.h"
 
 #include "scripting/lua_state.h"
+#include "scripting/script_initializer.h"
 
 #include <gtest/gtest.h>
 #include <luabind/luabind.hpp>
@@ -12,10 +13,7 @@ using namespace thrive;
 
 TEST(OgreVector3, Lua) {
     LuaState L;
-    open(L);
-    module(L) [
-        OgreBindings::luaBindings()
-    ];
+    initializeLua(L);
     object globals = luabind::globals(L);
     L.doString(
         "a = Vector3(1, 2, 3)\n"
