@@ -22,25 +22,26 @@ player:addComponent(OgreEntityComponent("Mesh.mesh"))
 player.sceneNode.properties.position = Vector3(0, 0, 0)
 player.sceneNode.properties:touch()
 
-ACCELERATION = 0.05
+player.microbeMovement = MicrobeMovementComponent()
+player:addComponent(player.microbeMovement)
+player.microbeMovement.force = 0.05
+
 player.onUpdate = OnUpdateComponent()
 player:addComponent(player.onUpdate)
 player.onUpdate.callback = function(entityId, milliseconds)
-    impulse = Vector3(0, 0, 0)
+    direction = Vector3(0, 0, 0)
     if (Keyboard:isKeyDown(KeyboardSystem.KC_W)) then
-        impulse = impulse + Vector3(0, 1, 0)
+        direction = direction + Vector3(0, 1, 0)
     end
     if (Keyboard:isKeyDown(KeyboardSystem.KC_S)) then
-        impulse = impulse + Vector3(0, -1, 0)
+        direction = direction + Vector3(0, -1, 0)
     end
     if (Keyboard:isKeyDown(KeyboardSystem.KC_A)) then
-        impulse = impulse + Vector3(-1, 0, 0)
+        direction = direction + Vector3(-1, 0, 0)
     end
     if (Keyboard:isKeyDown(KeyboardSystem.KC_D)) then
-        impulse = impulse + Vector3(1, 0, 0)
+        direction = direction + Vector3(1, 0, 0)
     end
-    if not impulse:isZeroLength() then
-        impulse = impulse:normalisedCopy() * ACCELERATION * milliseconds
-        player.rigidBody:applyCentralImpulse(impulse);
-    end
+    direction:normalise()
+    player.microbeMovement.direction = direction;
 end

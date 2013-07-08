@@ -4,6 +4,7 @@
 #include "engine/engine.h"
 #include "engine/script_bindings.h"
 #include "game.h"
+#include "microbe_stage/script_bindings.h"
 #include "ogre/keyboard_system.h"
 #include "ogre/script_bindings.h"
 #include "scripting/luabind.h"
@@ -29,7 +30,8 @@ thrive::initializeLua(
         EngineBindings::luaBindings(),
         OgreBindings::luaBindings(),
         BulletBindings::luaBindings(),
-        ScriptBindings::luaBindings()
+        ScriptBindings::luaBindings(),
+        MicrobeBindings::luaBindings()
     ];
     luabind::object globals = luabind::globals(L);
     globals["Keyboard"] = &(Game::instance().engine().keyboardSystem());
