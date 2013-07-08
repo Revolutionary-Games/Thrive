@@ -27,6 +27,10 @@
 #include "scripting/on_update.h"
 #include "scripting/script_initializer.h"
 
+
+// Microbe
+#include "microbe_stage/movement.h"
+
 #include "util/contains.h"
 #include "util/pair_hash.h"
 
@@ -234,6 +238,8 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
             // Scripts
             std::make_shared<OnUpdateSystem>(),
             std::make_shared<OnKeySystem>(),
+            // Microbe
+            std::make_shared<MicrobeMovementSystem>(),
             // Physics
             std::make_shared<RigidBodyInputSystem>(),
             std::make_shared<UpdatePhysicsSystem>(),
