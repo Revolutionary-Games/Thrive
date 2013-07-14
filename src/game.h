@@ -1,6 +1,6 @@
 #pragma once
 
-#include <chrono>
+#include <boost/chrono.hpp>
 #include <memory>
 
 /**
@@ -145,7 +145,7 @@ public:
     /**
     * @brief The target frame duration
     */
-    std::chrono::microseconds
+    boost::chrono::microseconds
     targetFrameDuration() const;
 
     /**
