@@ -56,4 +56,32 @@ private:
     bool m_hasChanges = true;
 };
 
+template<typename T>
+class TouchableValue : public Touchable {
+
+public:
+
+    TouchableValue(
+        const T& value
+    ) : m_value(value)
+    {
+    }
+
+    TouchableValue&
+    operator =(
+        const T& value
+    ) {
+        m_value = value;
+        return *this;
+    }
+
+    operator T() {
+        return m_value;
+    }
+
+private:
+    
+    T m_value;
+};
+
 }
