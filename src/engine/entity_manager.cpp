@@ -12,8 +12,6 @@
 
 using namespace thrive;
 
-const EntityId EntityManager::NULL_ID = 0;
-
 struct EntityManager::Implementation {
 
     ComponentCollection&
@@ -44,7 +42,7 @@ struct EntityManager::Implementation {
 
 };
 
-EntityId EntityManager::Implementation::currentId = NULL_ID + 1;
+EntityId EntityManager::Implementation::currentId = NULL_ENTITY + 1;
 
 
 EntityManager::EntityManager() 
@@ -60,7 +58,7 @@ EntityManager::addComponent(
     EntityId entityId,
     std::shared_ptr<Component> component
 ) {
-    assert(entityId != NULL_ID);
+    assert(entityId != NULL_ENTITY);
     Component::TypeId typeId = component->typeId();
     auto& componentCollection = m_impl->getComponentCollection(typeId);
     bool isNew = componentCollection.addComponent(entityId, component);

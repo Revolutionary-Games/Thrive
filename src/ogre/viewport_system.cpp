@@ -2,6 +2,7 @@
 
 #include "engine/engine.h"
 #include "engine/entity.h"
+#include "engine/entity_manager.h"
 #include "game.h"
 #include "ogre/camera_system.h"
 #include "scripting/luabind.h"
