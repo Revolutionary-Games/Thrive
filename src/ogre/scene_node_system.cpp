@@ -2,12 +2,32 @@
 
 #include "engine/component_registry.h"
 #include "engine/engine.h"
+#include "engine/entity.h"
 #include "engine/entity_filter.h"
+#include "engine/entity_manager.h"
 #include "scripting/luabind.h"
 
 #include <OgreSceneManager.h>
 
 using namespace thrive;
+
+static Entity
+OgreSceneNodeComponent_getParent(
+    const OgreSceneNodeComponent* self
+) {
+    return Entity(self->m_parentId.get());
+}
+
+
+static void
+OgreSceneNodeComponent_setParent(
+    OgreSceneNodeComponent* self,
+    const Entity& entity
+) {
+    self->m_parentId = entity.id();
+    self->m_parentId.touch();
+}
+
 
 luabind::scope
 OgreSceneNodeComponent::luaBindings() {
@@ -23,6 +43,7 @@ OgreSceneNodeComponent::luaBindings() {
         ]
         .def(constructor<>())
         .def_readonly("transform", &OgreSceneNodeComponent::m_transform)
+        .property("parent", OgreSceneNodeComponent_getParent, OgreSceneNodeComponent_setParent)
     ;
 }
 
@@ -76,8 +97,24 @@ OgreAddSceneNodeSystem::update(int) {
     for (const auto& entry : added) {
         EntityId entityId = entry.first;
         OgreSceneNodeComponent* component = std::get<0>(entry.second);
-        Ogre::SceneNode* rootNode = m_impl->m_sceneManager->getRootSceneNode();
-        Ogre::SceneNode* node = rootNode->createChildSceneNode();
+        Ogre::SceneNode* parentNode = nullptr;
+        EntityId parentId = component->m_parentId;
+        if (parentId == NULL_ENTITY) {
+            parentNode = m_impl->m_sceneManager->getRootSceneNode();
+        }
+        else {
+            auto parentComponent = this->engine()->entityManager().getComponent<OgreSceneNodeComponent>(parentId);
+            if (parentComponent and parentComponent->m_sceneNode) {
+                parentNode = parentComponent->m_sceneNode;
+                component->m_parentId.untouch();
+            }
+            else {
+                parentNode = m_impl->m_sceneManager->getRootSceneNode();
+                // Mark component for later reparenting
+                component->m_parentId.touch();
+            }
+        }
+        Ogre::SceneNode* node = parentNode->createChildSceneNode();
         m_impl->m_sceneNodes[entityId] = node;
         component->m_sceneNode = node;
     }
@@ -154,6 +191,8 @@ struct OgreUpdateSceneNodeSystem::Implementation {
         OgreSceneNodeComponent
     > m_entities;
 
+    Ogre::SceneManager* m_sceneManager = nullptr;
+
 };
 
 
@@ -171,6 +210,7 @@ OgreUpdateSceneNodeSystem::init(
     Engine* engine
 ) {
     System::init(engine);
+    m_impl->m_sceneManager = engine->sceneManager();
     m_impl->m_entities.setEntityManager(&engine->entityManager());
 }
 
@@ -178,6 +218,7 @@ OgreUpdateSceneNodeSystem::init(
 void
 OgreUpdateSceneNodeSystem::shutdown() {
     m_impl->m_entities.setEntityManager(nullptr);
+    m_impl->m_sceneManager = nullptr;
     System::shutdown();
 }
 
@@ -199,6 +240,30 @@ OgreUpdateSceneNodeSystem::update(int) {
                 transform.scale
             );
             transform.untouch();
+        }
+        if (component->m_parentId.hasChanges()) {
+            EntityId parentId = component->m_parentId;
+            Ogre::SceneNode* newParentNode = nullptr;
+            if (parentId == NULL_ENTITY) {
+                newParentNode = m_impl->m_sceneManager->getRootSceneNode();
+            }
+            else {
+                auto parentComponent = this->engine()->entityManager().getComponent<OgreSceneNodeComponent>(
+                    parentId
+                );
+                if (parentComponent and parentComponent->m_sceneNode) {
+                    newParentNode = parentComponent->m_sceneNode;
+                    component->m_parentId.untouch();
+                }
+                else {
+                    newParentNode = m_impl->m_sceneManager->getRootSceneNode();
+                    // Mark component for later reparenting
+                    component->m_parentId.touch();
+                }
+            }
+            Ogre::SceneNode* currentParentNode = sceneNode->getParentSceneNode();
+            currentParentNode->removeChild(sceneNode);
+            newParentNode->addChild(sceneNode);
         }
     }
 }

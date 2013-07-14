@@ -45,3 +45,13 @@ player.onUpdate.callback = function(entityId, milliseconds)
     direction:normalise()
     player.microbeMovement.direction = direction;
 end
+
+-- Satellite
+local satellite = Entity()
+satellite.sceneNode = OgreSceneNodeComponent()
+satellite:addComponent(satellite.sceneNode)
+satellite:addComponent(OgreEntityComponent("Mesh.mesh"))
+satellite.sceneNode.transform.position = Vector3(5, 0, 0)
+satellite.sceneNode.transform.scale = Vector3(0.2, 0.2, 0.2)
+satellite.sceneNode.transform:touch()
+satellite.sceneNode.parent = player

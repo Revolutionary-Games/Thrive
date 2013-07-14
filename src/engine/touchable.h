@@ -79,6 +79,11 @@ public:
         return m_value;
     }
 
+    T
+    get() const {
+        return m_value;
+    }
+
 private:
     
     T m_value;

@@ -74,6 +74,8 @@ public:
     static luabind::scope
     luaBindings();
 
+    TouchableValue<EntityId> m_parentId = NULL_ENTITY;
+
     /**
     * @brief Transform
     */
