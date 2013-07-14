@@ -17,6 +17,6 @@ object.sceneNode = OgreSceneNodeComponent()
 object:addComponent(object.sceneNode)
 object:addComponent(OgreEntityComponent("Mesh.mesh"))
 
-object.sceneNode.properties.position = Vector3(0, 0, 0)
-object.sceneNode.properties:touch()
+object.sceneNode.transform.position = Vector3(0, 0, 0)
+object.sceneNode.transform:touch()
 
