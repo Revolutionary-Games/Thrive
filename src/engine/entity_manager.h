@@ -22,13 +22,6 @@ class EntityManager {
 public:
 
     /**
-    * @brief Special entity id for "no entity"
-    *
-    * This entity id will never be returned by generateNewId()
-    */
-    static const EntityId NULL_ID;
-
-    /**
     * @brief Constructor
     */
     EntityManager();

@@ -1,7 +1,6 @@
 #pragma once
 
 #include "engine/component.h"
-#include "engine/entity_manager.h"
 #include "engine/system.h"
 #include "engine/touchable.h"
 
@@ -43,7 +42,7 @@ public:
         * If the given entity has no OgreCameraComponent, the viewport
         * will stay black
         */
-        EntityId cameraEntity = EntityManager::NULL_ID;
+        EntityId cameraEntity = NULL_ENTITY;
 
         /**
         * @brief The viewport's height relative to the window

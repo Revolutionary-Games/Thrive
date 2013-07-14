@@ -17,7 +17,7 @@ struct EntityTest : public ::testing::Test {
 
 TEST_F(EntityTest, Exists) {
     // Null Id should never exist
-    Entity nullEntity(EntityManager::NULL_ID, entityManager);
+    Entity nullEntity(NULL_ENTITY, entityManager);
     EXPECT_FALSE(nullEntity.exists());
     // Entity without components doesn't exist either
     Entity entity(entityManager);
