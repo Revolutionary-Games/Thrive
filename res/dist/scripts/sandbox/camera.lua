@@ -5,8 +5,8 @@ playerCam.camera = OgreCameraComponent("playerCam")
 playerCam:addComponent(playerCam.camera)
 -- Scene node
 playerCam.sceneNode = OgreSceneNodeComponent()
-playerCam.sceneNode.properties.position.z = 30
-playerCam.sceneNode.properties:touch()
+playerCam.sceneNode.transform.position.z = 30
+playerCam.sceneNode.transform:touch()
 playerCam:addComponent(playerCam.sceneNode)
 
 playerCam.camera.properties.nearClipDistance = 5
@@ -21,8 +21,8 @@ OFFSET = Vector3(0, 0, 30)
 playerCam.onUpdate.callback = function(entityId, milliseconds)
     local player = Entity("player")
     local playerSceneNode = player:getComponent(OgreSceneNodeComponent.TYPE_ID())
-    playerCam.sceneNode.properties.position = playerSceneNode.properties.position + OFFSET
-    playerCam.sceneNode.properties:touch()
+    playerCam.sceneNode.transform.position = playerSceneNode.transform.position + OFFSET
+    playerCam.sceneNode.transform:touch()
 end
 
 

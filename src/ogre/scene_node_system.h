@@ -33,7 +33,7 @@ public:
     /**
     * @brief Properties
     */
-    struct Properties : public Touchable {
+    struct Transform : public Touchable {
 
         /**
         * @brief Rotation
@@ -75,10 +75,10 @@ public:
     luaBindings();
 
     /**
-    * @brief Properties
+    * @brief Transform
     */
-    Properties
-    m_properties;
+    Transform
+    m_transform;
 
     /**
     * @brief Pointer to the underlying Ogre::SceneNode

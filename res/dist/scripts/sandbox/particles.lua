@@ -36,9 +36,9 @@ function emitParticle(origin)
     -- Scene Node and Mesh
     particle.sceneNode = OgreSceneNodeComponent()
     particle:addComponent(OgreEntityComponent("Mesh.mesh"))
-    particle.sceneNode.properties.position = origin
-    particle.sceneNode.properties.scale = Vector3(PARTICLE_SCALE, PARTICLE_SCALE, PARTICLE_SCALE)
-    particle.sceneNode.properties:touch()
+    particle.sceneNode.transform.position = origin
+    particle.sceneNode.transform.scale = Vector3(PARTICLE_SCALE, PARTICLE_SCALE, PARTICLE_SCALE)
+    particle.sceneNode.transform:touch()
     particle:addComponent(particle.sceneNode)
     -- Handle despawn
     particle.onUpdate = OnUpdateComponent()

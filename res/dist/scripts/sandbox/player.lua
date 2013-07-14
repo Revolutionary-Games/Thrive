@@ -19,8 +19,8 @@ player.sceneNode = OgreSceneNodeComponent()
 player:addComponent(player.sceneNode)
 player:addComponent(OgreEntityComponent("Mesh.mesh"))
 
-player.sceneNode.properties.position = Vector3(0, 0, 0)
-player.sceneNode.properties:touch()
+player.sceneNode.transform.position = Vector3(0, 0, 0)
+player.sceneNode.transform:touch()
 
 player.microbeMovement = MicrobeMovementComponent()
 player:addComponent(player.microbeMovement)

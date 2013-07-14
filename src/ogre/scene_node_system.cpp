@@ -16,13 +16,13 @@ OgreSceneNodeComponent::luaBindings() {
         .scope [
             def("TYPE_NAME", &OgreSceneNodeComponent::TYPE_NAME),
             def("TYPE_ID", &OgreSceneNodeComponent::TYPE_ID),
-            class_<Properties, Touchable>("Properties")
-                .def_readwrite("orientation", &Properties::orientation)
-                .def_readwrite("position", &Properties::position)
-                .def_readwrite("scale", &Properties::scale)
+            class_<Transform, Touchable>("Transform")
+                .def_readwrite("orientation", &Transform::orientation)
+                .def_readwrite("position", &Transform::position)
+                .def_readwrite("scale", &Transform::scale)
         ]
         .def(constructor<>())
-        .def_readonly("properties", &OgreSceneNodeComponent::m_properties)
+        .def_readonly("transform", &OgreSceneNodeComponent::m_transform)
     ;
 }
 
@@ -185,20 +185,20 @@ OgreUpdateSceneNodeSystem::shutdown() {
 void
 OgreUpdateSceneNodeSystem::update(int) {
     for (const auto& entry : m_impl->m_entities) {
-        OgreSceneNodeComponent* sceneNodeComponent = std::get<0>(entry.second);
-        auto& properties = sceneNodeComponent->m_properties;
-        if (properties.hasChanges()) {
-            Ogre::SceneNode* sceneNode = sceneNodeComponent->m_sceneNode;
+        OgreSceneNodeComponent* component = std::get<0>(entry.second);
+        Ogre::SceneNode* sceneNode = component->m_sceneNode;
+        auto& transform = component->m_transform;
+        if (transform.hasChanges()) {
             sceneNode->setOrientation(
-                properties.orientation
+                transform.orientation
             );
             sceneNode->setPosition(
-                properties.position
+                transform.position
             );
             sceneNode->setScale(
-                properties.scale
+                transform.scale
             );
-            properties.untouch();
+            transform.untouch();
         }
     }
 }
