@@ -164,8 +164,13 @@ RigidBodyInputSystem::update(int milliseconds) {
             localInertia
         );
         std::unique_ptr<btRigidBody> rigidBody(new btRigidBody(rigidBodyCI));
+        rigidBody->setUserPointer(reinterpret_cast<void*>(entityId));
         rigidBodyComponent->m_body = rigidBody.get();
-        m_impl->m_world->addRigidBody(rigidBody.get());
+        m_impl->m_world->addRigidBody(
+            rigidBody.get(),
+            rigidBodyComponent->m_collisionFilterGroup,
+            rigidBodyComponent->m_collisionFilterMask
+        );
         m_impl->m_bodies[entityId] = std::move(rigidBody);
     }
     for (EntityId entityId : m_impl->m_entities.removedEntities()) {
