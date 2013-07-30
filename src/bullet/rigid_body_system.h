@@ -154,6 +154,14 @@ public:
     static luabind::scope
     luaBindings();
 
+    RigidBodyComponent(
+        short int collisionFilterGroup = btBroadphaseProxy::DefaultFilter,
+        short int collisionFilterMask = btBroadphaseProxy::AllFilter
+    ) : m_collisionFilterGroup(collisionFilterGroup),
+        m_collisionFilterMask(collisionFilterMask)
+    {
+    }
+
     /**
     * @brief Applies an impulse to the center of mass
     *
@@ -229,6 +237,10 @@ public:
     * @brief Internal object, dont use this directly
     */
     btRigidBody* m_body = nullptr;
+
+    const short int m_collisionFilterGroup;
+
+    const short int m_collisionFilterMask;
 
     /**
     * @brief Dynamic properties
