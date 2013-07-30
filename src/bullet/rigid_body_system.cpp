@@ -65,6 +65,7 @@ RigidBodyComponent::luaBindings() {
                 .def_readwrite("rollingFriction", &Properties::rollingFriction)
                 .def_readwrite("forceApplied", &Properties::forceApplied)
                 .def_readwrite("hasContactResponse", &Properties::hasContactResponse)
+                .def_readwrite("kinematic", &Properties::kinematic)
         ]
         .def(constructor<>())
         .def("setDynamicProperties", &RigidBodyComponent::setDynamicProperties)
@@ -205,6 +206,16 @@ RigidBodyInputSystem::update(int milliseconds) {
             else {
                 body->setCollisionFlags(
                     body->getCollisionFlags() | btCollisionObject::CF_NO_CONTACT_RESPONSE
+                );
+            }
+            if (properties.kinematic) {
+                body->setCollisionFlags(
+                    body->getCollisionFlags() | btCollisionObject::CF_KINEMATIC_OBJECT
+                );
+            }
+            else {
+                body->setCollisionFlags(
+                    body->getCollisionFlags() & not btCollisionObject::CF_KINEMATIC_OBJECT
                 );
             }
             properties.untouch();
