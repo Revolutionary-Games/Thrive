@@ -101,6 +101,7 @@
 namespace thrive {
 
 class Engine;
+class EntityManager;
 
 /**
 * @brief The main entry point for the game
@@ -118,6 +119,9 @@ public:
     */
     static Game&
     instance();
+
+    static EntityManager&
+    globalEntityManager();
 
     /**
     * @brief Destructor
