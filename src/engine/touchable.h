@@ -76,8 +76,8 @@ public:
         return *this;
     }
 
-    operator T() {
-        return m_value;
+    operator T() const {
+        return this->get();
     }
 
     T
