@@ -64,6 +64,7 @@ RigidBodyComponent::luaBindings() {
                 .def_readwrite("friction", &Properties::friction)
                 .def_readwrite("rollingFriction", &Properties::rollingFriction)
                 .def_readwrite("forceApplied", &Properties::forceApplied)
+                .def_readwrite("hasContactResponse", &Properties::hasContactResponse)
         ]
         .def(constructor<>())
         .def("setDynamicProperties", &RigidBodyComponent::setDynamicProperties)
@@ -196,6 +197,16 @@ RigidBodyInputSystem::update(int milliseconds) {
             body->setCollisionShape(properties.shape.get());
             body->setFriction(properties.friction);
             body->setRollingFriction(properties.rollingFriction);
+            if (properties.hasContactResponse) {
+                body->setCollisionFlags(
+                    body->getCollisionFlags() & not btCollisionObject::CF_NO_CONTACT_RESPONSE
+                );
+            }
+            else {
+                body->setCollisionFlags(
+                    body->getCollisionFlags() | btCollisionObject::CF_NO_CONTACT_RESPONSE
+                );
+            }
             properties.untouch();
         }
         auto& dynamicProperties = rigidBodyComponent->m_dynamicProperties;
