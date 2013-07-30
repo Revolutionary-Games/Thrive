@@ -58,6 +58,18 @@ public:
     */
     virtual ~Component() = 0;
 
+    EntityId
+    owner() const {
+        return m_owner;
+    }
+
+    void
+    setOwner(
+        EntityId owner
+    ) {
+        m_owner = owner;
+    }
+
     /**
     * @brief The component's type id
     */
@@ -85,7 +97,7 @@ protected:
 
 private:
 
-    bool m_hasChanges = true;
+    EntityId m_owner = NULL_ENTITY;
 
 };
 
