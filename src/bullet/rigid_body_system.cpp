@@ -49,7 +49,7 @@ RigidBodyComponent::applyImpulse(
 luabind::scope
 RigidBodyComponent::luaBindings() {
     using namespace luabind;
-    return class_<RigidBodyComponent, Component, std::shared_ptr<Component>>("RigidBodyComponent")
+    return class_<RigidBodyComponent, Component>("RigidBodyComponent")
         .scope [
             def("TYPE_NAME", &RigidBodyComponent::TYPE_NAME),
             def("TYPE_ID", &RigidBodyComponent::TYPE_ID),

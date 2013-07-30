@@ -4,6 +4,7 @@
 #include "scripting/lua_state.h"
 #include "scripting/tests/do_string_assertion.h"
 #include "scripting/script_initializer.h"
+#include "util/make_unique.h"
 
 #include <gtest/gtest.h>
 #include <luabind/luabind.hpp>
@@ -15,7 +16,7 @@ TEST(SkyPlaneComponent, ScriptBindings) {
     LuaState L;
     initializeLua(L);
     luabind::object globals = luabind::globals(L);
-    auto skyPlane = std::make_shared<SkyPlaneComponent>();
+    auto skyPlane = make_unique<SkyPlaneComponent>();
     globals["skyPlane"] = skyPlane.get();
     // Enabled
     EXPECT_TRUE(LuaSuccess(L,

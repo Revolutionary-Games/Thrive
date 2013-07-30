@@ -128,7 +128,7 @@ private:
     bool
     addComponent(
         EntityId entityId,
-        std::shared_ptr<Component> component
+        std::unique_ptr<Component> component
     );
 
     /**

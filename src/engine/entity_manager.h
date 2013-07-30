@@ -39,10 +39,10 @@ public:
     * @param component
     *   The component to add
     */
-    void
+    Component*
     addComponent(
         EntityId entityId,
-        std::shared_ptr<Component> component
+        std::unique_ptr<Component> component
     );
 
     /**

@@ -165,7 +165,7 @@ public:
     */
     void
     addViewport(
-        std::shared_ptr<OgreViewport> viewport
+        std::unique_ptr<OgreViewport> viewport
     );
 
     /**
@@ -183,7 +183,7 @@ public:
     */
     void
     removeViewport(
-        std::shared_ptr<OgreViewport> viewport
+        OgreViewport* viewport
     );
 
     /**

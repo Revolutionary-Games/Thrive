@@ -49,7 +49,7 @@ OgreEntityComponent_setMaterialName(
 luabind::scope
 OgreEntityComponent::luaBindings() {
     using namespace luabind;
-    return class_<OgreEntityComponent, Component, std::shared_ptr<Component>>("OgreEntityComponent")
+    return class_<OgreEntityComponent, Component>("OgreEntityComponent")
         .scope [
             def("TYPE_NAME", &OgreEntityComponent::TYPE_NAME),
             def("TYPE_ID", &OgreEntityComponent::TYPE_ID)

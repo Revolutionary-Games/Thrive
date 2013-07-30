@@ -14,7 +14,7 @@ luabind::scope
 OnCollisionComponent::luaBindings() {
     using namespace luabind;
     return 
-        class_<OnCollisionComponent, Component, std::shared_ptr<Component>>("OnCollisionComponent")
+        class_<OnCollisionComponent, Component>("OnCollisionComponent")
             .scope[
                 def("TYPE_NAME", &OnCollisionComponent::TYPE_NAME),
                 def("TYPE_ID", &OnCollisionComponent::TYPE_ID)

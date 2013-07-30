@@ -53,18 +53,23 @@ EntityManager::EntityManager()
 EntityManager::~EntityManager() {
 }
 
-void
+Component*
 EntityManager::addComponent(
     EntityId entityId,
-    std::shared_ptr<Component> component
+    std::unique_ptr<Component> component
 ) {
     assert(entityId != NULL_ENTITY);
     Component::TypeId typeId = component->typeId();
     auto& componentCollection = m_impl->getComponentCollection(typeId);
-    bool isNew = componentCollection.addComponent(entityId, component);
+    Component* rawComponent = component.get();
+    bool isNew = componentCollection.addComponent(
+        entityId, 
+        std::move(component)
+    );
     if (isNew) {
         m_impl->m_entities[entityId] += 1;
     }
+    return rawComponent;
 }
 
 
