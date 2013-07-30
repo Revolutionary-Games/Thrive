@@ -1,5 +1,6 @@
 #include "bullet/script_bindings.h"
 
+#include "bullet/on_collision.h"
 #include "bullet/rigid_body_system.h"
 #include "scripting/luabind.h"
 
@@ -126,7 +127,8 @@ thrive::BulletBindings::luaBindings() {
         CylinderShapeZ::luaBindings(),
         btCapsuleShapeBindings(),
         btConeShapeBoxBindings(),
-        RigidBodyComponent::luaBindings()
+        RigidBodyComponent::luaBindings(),
+        OnCollisionComponent::luaBindings()
     );
 
 
