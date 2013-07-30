@@ -96,6 +96,8 @@ public:
 
         bool hasContactResponse = true;
 
+        bool kinematic = false;
+
     };
 
     /**
