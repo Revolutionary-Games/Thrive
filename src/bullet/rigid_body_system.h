@@ -94,6 +94,7 @@ public:
         */
         Ogre::Vector3 forceApplied = Ogre::Vector3::ZERO;
 
+        bool hasContactResponse = true;
 
     };
 
