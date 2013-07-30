@@ -31,7 +31,7 @@ OgreLightComponent::setRange(
 luabind::scope
 OgreLightComponent::luaBindings() {
     using namespace luabind;
-    return class_<OgreLightComponent, Component, std::shared_ptr<Component>>("OgreLightComponent")
+    return class_<OgreLightComponent, Component>("OgreLightComponent")
         .scope [
             def("TYPE_NAME", &OgreLightComponent::TYPE_NAME),
             def("TYPE_ID", &OgreLightComponent::TYPE_ID),

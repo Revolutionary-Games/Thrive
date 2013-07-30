@@ -20,7 +20,7 @@ using namespace thrive;
 luabind::scope
 OgreCameraComponent::luaBindings() {
     using namespace luabind;
-    return class_<OgreCameraComponent, Component, std::shared_ptr<Component>>("OgreCameraComponent")
+    return class_<OgreCameraComponent, Component>("OgreCameraComponent")
         .scope [
             def("TYPE_NAME", &OgreCameraComponent::TYPE_NAME),
             def("TYPE_ID", &OgreCameraComponent::TYPE_ID),

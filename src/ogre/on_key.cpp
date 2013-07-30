@@ -14,7 +14,7 @@ luabind::scope
 OnKeyComponent::luaBindings() {
     using namespace luabind;
     return 
-        class_<OnKeyComponent, Component, std::shared_ptr<Component>>("OnKeyComponent")
+        class_<OnKeyComponent, Component>("OnKeyComponent")
             .scope[
                 def("TYPE_NAME", &OnKeyComponent::TYPE_NAME),
                 def("TYPE_ID", &OnKeyComponent::TYPE_ID)

@@ -14,7 +14,7 @@ TEST(EntityFilter, Initialization) {
     EntityId entityId = entityManager.generateNewId();
     entityManager.addComponent(
         entityId,
-        std::make_shared<TestComponent<0>>()
+        make_unique<TestComponent<0>>()
     );
     EXPECT_TRUE(nullptr != entityManager.getComponent(entityId, TestComponent<0>::TYPE_ID()));
     // Set up filter

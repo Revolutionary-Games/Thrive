@@ -28,6 +28,17 @@ struct Entity::Implementation {
 };
 
 
+static void
+Entity_addComponent(
+    Entity* self,
+    Component* nakedComponent
+) {
+    self->addComponent(
+        std::unique_ptr<Component>(nakedComponent)
+    );
+}
+
+
 luabind::scope
 Entity::luaBindings() {
     using namespace luabind;
@@ -36,7 +47,7 @@ Entity::luaBindings() {
         .def(constructor<EntityId>())
         .def(constructor<const std::string&>())
         .def(const_self == other<Entity>())
-        .def("addComponent", &Entity::addComponent)
+        .def("addComponent", &Entity_addComponent, adopt(_2))
         .def("destroy", &Entity::destroy)
         .def("exists", &Entity::exists)
         .def("getComponent",
@@ -137,7 +148,7 @@ Entity::operator = (
 
 void
 Entity::addComponent(
-    std::shared_ptr<Component> component
+    std::unique_ptr<Component> component
 ) {
     m_impl->m_entityManager->addComponent(
         m_impl->m_id,

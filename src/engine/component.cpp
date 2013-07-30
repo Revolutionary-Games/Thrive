@@ -14,7 +14,7 @@ Component::generateTypeId() {
 luabind::scope
 Component::luaBindings() {
     using namespace luabind;
-    return class_<Component, std::shared_ptr<Component>>("Component")
+    return class_<Component>("Component")
         .def("typeId", &Component::typeId)
         .def("typeName", &Component::typeName)
     ;

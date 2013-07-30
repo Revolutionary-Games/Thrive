@@ -18,7 +18,7 @@ using namespace thrive;
 luabind::scope
 SkyPlaneComponent::luaBindings() {
     using namespace luabind;
-    return class_<SkyPlaneComponent, Component, std::shared_ptr<Component>>("SkyPlaneComponent")
+    return class_<SkyPlaneComponent, Component>("SkyPlaneComponent")
         .scope [
             def("TYPE_NAME", &SkyPlaneComponent::TYPE_NAME),
             def("TYPE_ID", &SkyPlaneComponent::TYPE_ID),

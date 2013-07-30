@@ -32,7 +32,7 @@ OgreSceneNodeComponent_setParent(
 luabind::scope
 OgreSceneNodeComponent::luaBindings() {
     using namespace luabind;
-    return class_<OgreSceneNodeComponent, Component, std::shared_ptr<Component>>("OgreSceneNodeComponent")
+    return class_<OgreSceneNodeComponent, Component>("OgreSceneNodeComponent")
         .scope [
             def("TYPE_NAME", &OgreSceneNodeComponent::TYPE_NAME),
             def("TYPE_ID", &OgreSceneNodeComponent::TYPE_ID),

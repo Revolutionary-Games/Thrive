@@ -12,7 +12,7 @@ using namespace thrive;
 luabind::scope
 OnUpdateComponent::luaBindings() {
     using namespace luabind;
-    return class_<OnUpdateComponent, Component, std::shared_ptr<Component>>("OnUpdateComponent")
+    return class_<OnUpdateComponent, Component>("OnUpdateComponent")
         .scope[
             def("TYPE_NAME", &OnUpdateComponent::TYPE_NAME),
             def("TYPE_ID", &OnUpdateComponent::TYPE_ID)

@@ -8,8 +8,6 @@
 
 using namespace thrive;
 
-using ComponentPtr = std::shared_ptr<Component>;
-
 struct ComponentCollection::Implementation {
 
     Implementation(
@@ -23,7 +21,7 @@ struct ComponentCollection::Implementation {
         std::pair<ChangeCallback, ChangeCallback>
     > m_changeCallbacks;
 
-    std::unordered_map<EntityId, ComponentPtr> m_components;
+    std::unordered_map<EntityId, std::unique_ptr<Component>> m_components;
 
     unsigned int m_nextChangeCallbackId = 0;
 
@@ -53,7 +51,7 @@ ComponentCollection::operator[] (
 bool
 ComponentCollection::addComponent(
     EntityId entityId,
-    std::shared_ptr<Component> component
+    std::unique_ptr<Component> component
 ) {
     bool isNew = true;
     // Check if we are overwriting an old component
@@ -64,13 +62,15 @@ ComponentCollection::addComponent(
         }
     }
     // Insert new component
+    Component* rawComponent = component.get();
     m_impl->m_components.insert(std::make_pair(
         entityId, 
-        component
+        std::move(component)
     ));
     for (auto& value : m_impl->m_changeCallbacks) {
-        value.second.first(entityId, *component);
+        value.second.first(entityId, *rawComponent);
     }
+    rawComponent->setOwner(entityId);
     return isNew;
 }
 
@@ -112,6 +112,7 @@ ComponentCollection::removeComponent(
         for (auto& value : m_impl->m_changeCallbacks) {
             value.second.second(entityId, *iter->second);
         }
+        iter->second->setOwner(NULL_ENTITY);
         m_impl->m_components.erase(iter);
         return true;
     }

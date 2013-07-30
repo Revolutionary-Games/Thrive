@@ -7,6 +7,7 @@
 #include "ogre/camera_system.h"
 #include "scripting/luabind.h"
 
+#include <luabind/adopt_policy.hpp>
 #include <OgreRenderWindow.h>
 #include <OgreViewport.h>
 
@@ -38,7 +39,7 @@ Properties_setCameraEntity(
 luabind::scope
 OgreViewport::luaBindings() {
     using namespace luabind;
-    return class_<OgreViewport, std::shared_ptr<OgreViewport>>("OgreViewport")
+    return class_<OgreViewport>("OgreViewport")
         .scope [
             class_<Properties, Touchable>("Properties")
                 .def_readwrite("backgroundColour", &Properties::backgroundColour)
@@ -67,17 +68,18 @@ OgreViewport::OgreViewport(
 
 static void
 OgreViewportSystem_addViewport(
-    std::shared_ptr<OgreViewport> viewport
+    OgreViewport* nakedViewport
 ) {
+    std::unique_ptr<OgreViewport> viewport(nakedViewport);
     Game& game = Game::instance();
     OgreViewportSystem& viewportSystem = game.engine().viewportSystem();
-    viewportSystem.addViewport(viewport);
+    viewportSystem.addViewport(std::move(viewport));
 }
 
 
 static void
 OgreViewportSystem_removeViewport(
-    std::shared_ptr<OgreViewport> viewport
+    OgreViewport* viewport
 ) {
     Game& game = Game::instance();
     OgreViewportSystem& viewportSystem = game.engine().viewportSystem();
@@ -89,22 +91,22 @@ luabind::scope
 OgreViewportSystem::luaBindings() {
     using namespace luabind;
     return 
-        def("addViewport", OgreViewportSystem_addViewport),
+        def("addViewport", OgreViewportSystem_addViewport, adopt(_1)),
         def("removeViewport", OgreViewportSystem_removeViewport)
     ;
 }
 
 struct OgreViewportSystem::Implementation {
 
-    std::list<std::shared_ptr<OgreViewport>> m_addedViewports;
+    std::list<std::unique_ptr<OgreViewport>> m_addedViewports;
 
     Engine* m_engine = nullptr;
 
-    std::list<std::shared_ptr<OgreViewport>> m_removedViewports;
+    std::list<OgreViewport*> m_removedViewports;
 
     Ogre::RenderWindow* m_renderWindow = nullptr;
 
-    std::list<std::shared_ptr<OgreViewport>> m_viewports;
+    std::list<std::unique_ptr<OgreViewport>> m_viewports;
 
 };
 
@@ -120,7 +122,7 @@ OgreViewportSystem::~OgreViewportSystem() {}
 
 void
 OgreViewportSystem::addViewport(
-    std::shared_ptr<OgreViewport> viewport
+    std::unique_ptr<OgreViewport> viewport
 ) {
     m_impl->m_addedViewports.push_back(std::move(viewport));
 }
@@ -139,9 +141,9 @@ OgreViewportSystem::init(
 
 void
 OgreViewportSystem::removeViewport(
-    std::shared_ptr<OgreViewport> viewport
+    OgreViewport* viewport
 ) {
-    m_impl->m_removedViewports.push_back(std::move(viewport));
+    m_impl->m_removedViewports.push_back(viewport);
 }
 
 
@@ -165,13 +167,13 @@ OgreViewportSystem::update(int) {
         );
     }
     m_impl->m_addedViewports.clear();
-    for (auto& removedViewport : m_impl->m_removedViewports) {
+    for (OgreViewport* removedViewport : m_impl->m_removedViewports) {
         for (
             auto iter = m_impl->m_viewports.begin(); 
             iter != m_impl->m_viewports.end(); 
             ++iter
         ) {
-            if (*iter == removedViewport) {
+            if (iter->get() == removedViewport) {
                 m_impl->m_viewports.erase(iter);
                 break;
             }

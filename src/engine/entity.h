@@ -36,7 +36,7 @@ public:
     * - \c Entity(string): Entity(const std::string&)
     *
     * Exposes the following \b functions:
-    * - \c addComponent(Component): addComponent(std::shared_ptr<Component>)
+    * - \c addComponent(Component): addComponent(std::unique_ptr<Component>)
     * - \c getComponent(number): getComponent(Component::TypeId)
     * - \c getComponent(string): getComponent(const std::string&)
     * - \c removeComponent(number): removeComponent(Component::TypeId)
@@ -168,7 +168,7 @@ public:
     */
     void
     addComponent(
-        std::shared_ptr<Component> component
+        std::unique_ptr<Component> component
     );
 
     /**
