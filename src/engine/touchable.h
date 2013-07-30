@@ -72,6 +72,7 @@ public:
         const T& value
     ) {
         m_value = value;
+        this->touch();
         return *this;
     }
 
