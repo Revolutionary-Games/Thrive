@@ -29,6 +29,23 @@ OgreEntityComponent::OgreEntityComponent(
 }
 
 
+static std::string
+OgreEntityComponent_getMaterialName(
+    const OgreEntityComponent* component
+) {
+    return component->m_materialName;
+}
+
+
+static void
+OgreEntityComponent_setMaterialName(
+    OgreEntityComponent* component,
+    const std::string& name
+) {
+    component->m_materialName = name;
+}
+
+
 luabind::scope
 OgreEntityComponent::luaBindings() {
     using namespace luabind;
@@ -44,6 +61,7 @@ OgreEntityComponent::luaBindings() {
         ]
         .def(constructor<std::string>())
         .def(constructor<Ogre::SceneManager::PrefabType>())
+        .property("materialName", &OgreEntityComponent_getMaterialName, &OgreEntityComponent_setMaterialName)
         .def_readonly("meshName", &OgreEntityComponent::m_meshName)
         .def_readonly("prefabType", &OgreEntityComponent::m_prefabType)
     ;
@@ -128,6 +146,18 @@ OgreEntitySystem::update(int) {
         m_impl->m_ogreEntities.erase(entityId);
     }
     m_impl->m_entities.clearChanges();
+    for (const auto& entry : m_impl->m_entities) {
+        EntityId entityId = entry.first;
+        OgreEntityComponent* ogreEntityComponent = std::get<1>(entry.second);
+        if (ogreEntityComponent->m_materialName.hasChanges()) {
+           std::string materialName = ogreEntityComponent->m_materialName;
+           if (not materialName.empty()) {
+                Ogre::Entity* ogreEntity = m_impl->m_ogreEntities.at(entityId);
+                ogreEntity->setMaterialName(materialName);
+                ogreEntityComponent->m_materialName.untouch();
+           }
+        }
+    }
 }
 
 

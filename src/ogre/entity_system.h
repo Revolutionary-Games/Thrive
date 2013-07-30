@@ -2,6 +2,7 @@
 
 #include "engine/component.h"
 #include "engine/system.h"
+#include "engine/touchable.h"
 
 #include <memory>
 #include <OgreSceneManager.h>
@@ -14,7 +15,7 @@ namespace thrive {
 * @brief Component for an entity that has a 3D mesh
 */
 class OgreEntityComponent : public Component {
-    COMPONENT(Mesh)
+    COMPONENT(OgreEntity)
 
 public:
 
@@ -44,6 +45,7 @@ public:
     * Exposes:
     * - OgreEntityComponent::OgreEntityComponent(std::string)
     * - OgreEntityComponent::OgreEntityComponent(Ogre::SceneManager::PrefabType)
+    * - @link OgreEntityComponent::m_materialName materialName @endlink
     * - @link OgreEntityComponent::m_meshName meshName @endlink
     * - @link OgreEntityComponent::m_prefabType prefabType @endlink
     *
@@ -51,6 +53,8 @@ public:
     */
     static luabind::scope
     luaBindings();
+
+    TouchableValue<std::string> m_materialName;
 
     /**
     * @brief The name of the entity's mesh
