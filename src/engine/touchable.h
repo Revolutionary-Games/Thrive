@@ -62,7 +62,7 @@ class TouchableValue : public Touchable {
 public:
 
     TouchableValue(
-        const T& value
+        const T& value = T()
     ) : m_value(value)
     {
     }
