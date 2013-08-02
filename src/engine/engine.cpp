@@ -17,6 +17,7 @@
 #include "ogre/entity_system.h"
 #include "ogre/keyboard_system.h"
 #include "ogre/light_system.h"
+#include "ogre/mouse_system.h"
 #include "ogre/on_key.h"
 #include "ogre/render_system.h"
 #include "ogre/scene_node_system.h"
@@ -77,6 +78,7 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
         Engine& engine
     ) : m_engine(engine),
         m_keyboardSystem(std::make_shared<KeyboardSystem>()),
+        m_mouseSystem(std::make_shared<MouseSystem>()),
         m_viewportSystem(std::make_shared<OgreViewportSystem>())
     {
     }
@@ -172,7 +174,11 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
         m_graphics.root.reset(new Ogre::Root(PLUGINS_CFG));
         this->loadResources();
         this->loadOgreConfig();
-        this->m_graphics.renderWindow = m_graphics.root->initialise(true, "Thrive");
+        m_graphics.renderWindow = m_graphics.root->initialise(true, "Thrive");
+        m_mouseSystem->setWindowSize(
+            m_graphics.renderWindow->getWidth(),
+            m_graphics.renderWindow->getHeight()
+        );
         Ogre::WindowEventUtilities::addWindowEventListener(
             m_graphics.renderWindow,
             this
@@ -237,6 +243,7 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
         std::shared_ptr<System> systems[] = {
             // Input
             m_keyboardSystem,
+            m_mouseSystem,
             // Scripts
             std::make_shared<OnUpdateSystem>(),
             std::make_shared<OnKeySystem>(),
@@ -284,6 +291,18 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
         return true;
     }
 
+    void
+    windowResized(
+        Ogre::RenderWindow* window
+    ) override {
+        if (window == m_graphics.renderWindow) {
+            m_mouseSystem->setWindowSize(
+                window->getWidth(),
+                window->getHeight()
+            );
+        }
+    }
+
     // Lua state must be one of the last to be destroyed, so keep it at top. 
     // The reason for that is that some components keep luabind::object 
     // instances around that rely on the lua state to still exist when they
@@ -308,6 +327,8 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
     OIS::InputManager* m_inputManager = nullptr;
 
     std::shared_ptr<KeyboardSystem> m_keyboardSystem;
+
+    std::shared_ptr<MouseSystem> m_mouseSystem;
 
     struct Physics {
 
@@ -369,6 +390,12 @@ Engine::inputManager() const {
 KeyboardSystem&
 Engine::keyboardSystem() const {
     return *m_impl->m_keyboardSystem;
+}
+
+
+MouseSystem&
+Engine::mouseSystem() const {
+    return *m_impl->m_mouseSystem;
 }
 
 

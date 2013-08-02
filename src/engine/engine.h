@@ -26,6 +26,7 @@ namespace thrive {
 
 class EntityManager;
 class KeyboardSystem;
+class MouseSystem;
 class OgreViewportSystem;
 class System;
 
@@ -90,6 +91,12 @@ public:
     */
     lua_State*
     luaState();
+
+    /**
+    * @brief The mouse system
+    */
+    MouseSystem&
+    mouseSystem() const;
 
     /**
     * @brief The physics world

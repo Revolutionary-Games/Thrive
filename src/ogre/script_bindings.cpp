@@ -5,6 +5,7 @@
 #include "ogre/entity_system.h"
 #include "ogre/keyboard_system.h"
 #include "ogre/light_system.h"
+#include "ogre/mouse_system.h"
 #include "ogre/on_key.h"
 #include "ogre/scene_node_system.h"
 #include "ogre/script_bindings.h"
@@ -422,6 +423,7 @@ thrive::OgreBindings::luaBindings() {
         sphereBindings(),
         vector3Bindings(),
         KeyboardSystem::luaBindings(),
+        MouseSystem::luaBindings(),
         OnKeyComponent::luaBindings(),
         OgreCameraComponent::luaBindings(),
         OgreEntityComponent::luaBindings(),
