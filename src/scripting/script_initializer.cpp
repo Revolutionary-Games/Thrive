@@ -6,6 +6,7 @@
 #include "game.h"
 #include "microbe_stage/script_bindings.h"
 #include "ogre/keyboard_system.h"
+#include "ogre/mouse_system.h"
 #include "ogre/script_bindings.h"
 #include "scripting/luabind.h"
 #include "scripting/script_bindings.h"
@@ -35,6 +36,7 @@ thrive::initializeLua(
     ];
     luabind::object globals = luabind::globals(L);
     globals["Keyboard"] = &(Game::instance().engine().keyboardSystem());
+    globals["Mouse"] = &(Game::instance().engine().mouseSystem());
 }
 
 
