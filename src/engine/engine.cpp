@@ -7,6 +7,7 @@
 
 // Bullet
 #include "bullet/bullet_to_ogre_system.h"
+#include "bullet/debug_drawing.h"
 #include "bullet/on_collision.h"
 #include "bullet/rigid_body_system.h"
 #include "bullet/update_physics_system.h"
@@ -247,6 +248,7 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
             std::make_shared<RigidBodyOutputSystem>(),
             std::make_shared<BulletToOgreSystem>(),
             std::make_shared<OnCollisionSystem>(),
+            std::make_shared<BulletDebugDrawSystem>(),
             // Graphics
             std::make_shared<OgreAddSceneNodeSystem>(),
             std::make_shared<OgreUpdateSceneNodeSystem>(),
