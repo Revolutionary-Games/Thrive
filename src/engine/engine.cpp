@@ -207,6 +207,17 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
             HANDLE_NAME,
             boost::lexical_cast<std::string>(windowHandle)
         ));
+#if defined OIS_WIN32_PLATFORM
+        parameters.insert(std::make_pair(std::string("w32_mouse"), std::string("DISCL_FOREGROUND" )));
+        parameters.insert(std::make_pair(std::string("w32_mouse"), std::string("DISCL_NONEXCLUSIVE")));
+        parameters.insert(std::make_pair(std::string("w32_keyboard"), std::string("DISCL_FOREGROUND")));
+        parameters.insert(std::make_pair(std::string("w32_keyboard"), std::string("DISCL_NONEXCLUSIVE")));
+#elif defined OIS_LINUX_PLATFORM
+        parameters.insert(std::make_pair(std::string("x11_mouse_grab"), std::string("false")));
+        parameters.insert(std::make_pair(std::string("x11_mouse_hide"), std::string("false")));
+        parameters.insert(std::make_pair(std::string("x11_keyboard_grab"), std::string("false")));
+        parameters.insert(std::make_pair(std::string("XAutoRepeatOn"), std::string("true")));
+#endif
         m_inputManager = OIS::InputManager::createInputSystem(parameters);
     }
 
