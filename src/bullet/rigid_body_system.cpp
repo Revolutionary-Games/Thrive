@@ -46,6 +46,14 @@ RigidBodyComponent::applyImpulse(
     );
 }
 
+
+void
+RigidBodyComponent::applyTorque(
+    const Ogre::Vector3& torque
+) {
+    m_torque += torque;
+}
+
 luabind::scope
 RigidBodyComponent::luaBindings() {
     using namespace luabind;
@@ -71,6 +79,7 @@ RigidBodyComponent::luaBindings() {
         .def("setDynamicProperties", &RigidBodyComponent::setDynamicProperties)
         .def("applyImpulse", &RigidBodyComponent::applyImpulse)
         .def("applyCentralImpulse", &RigidBodyComponent::applyCentralImpulse)
+        .def("applyTorque", &RigidBodyComponent::applyTorque)
         .def_readonly("properties", &RigidBodyComponent::m_properties)
     ;
 }
@@ -243,6 +252,12 @@ RigidBodyInputSystem::update(int milliseconds) {
             body->activate();
         }
         rigidBodyComponent->m_impulseQueue.clear();
+        if (not rigidBodyComponent->m_torque.isZeroLength()) {
+            body->applyTorque(
+                ogreToBullet(rigidBodyComponent->m_torque)
+            );
+            rigidBodyComponent->m_torque = Ogre::Vector3::ZERO;
+        }
         body->applyDamping(milliseconds / 1000.0f);
     }
 }
