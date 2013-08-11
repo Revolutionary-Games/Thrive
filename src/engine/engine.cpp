@@ -452,7 +452,9 @@ Engine::update(
         Game::instance().quit();
     }
     for(auto& system : m_impl->m_systems) {
-        system->update(milliSeconds);
+        if (system->active()) {
+            system->update(milliSeconds);
+        }
     }
     m_impl->m_entityManager.processRemovals();
 }
