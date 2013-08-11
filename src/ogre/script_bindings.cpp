@@ -21,6 +21,7 @@
 #include <OgreColourValue.h>
 #include <OgreMath.h>
 #include <OgreMatrix3.h>
+#include <OgreRay.h>
 #include <OgreSphere.h>
 #include <OgreVector3.h>
 
@@ -342,6 +343,33 @@ radianBindings() {
 }
 
 
+static bool
+Ray_intersects(
+    const Ray* self,
+    const Plane& plane,
+    Real& t
+) {
+    bool intersects = false;
+    std::tie(intersects, t) = self->intersects(plane);
+    return intersects;
+}
+
+static luabind::scope
+rayBindings() {
+    return class_<Ray>("Ray")
+        .def(constructor<>())
+        .def(constructor<const Vector3&, const Vector3&>())
+        .def(const_self * Real())
+        .def("setOrigin", &Ray::setOrigin)
+        .def("getOrigin", &Ray::getOrigin)
+        .def("setDirection", &Ray::setDirection)
+        .def("getDirection", &Ray::getDirection)
+        .def("getPoint", &Ray::getPoint)
+        .def("intersects", Ray_intersects, pure_out_value(_3))
+    ;
+}
+
+
 static luabind::scope
 sphereBindings() {
     return class_<Sphere>("Sphere")
@@ -420,6 +448,7 @@ thrive::OgreBindings::luaBindings() {
         planeBindings(),
         quaternionBindings(),
         radianBindings(),
+        rayBindings(),
         sphereBindings(),
         vector3Bindings(),
         KeyboardSystem::luaBindings(),

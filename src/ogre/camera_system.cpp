@@ -17,6 +17,20 @@ using namespace thrive;
 ////////////////////////////////////////////////////////////////////////////////
 
 
+static Ogre::Ray
+OgreCameraComponent_getCameraToViewportRay(
+    const OgreCameraComponent* self,
+    Ogre::Real x,
+    Ogre::Real y
+) {
+    if (self->m_camera) {
+        return self->m_camera->getCameraToViewportRay(x, y);
+    }
+    else {
+        return Ogre::Ray();
+    }
+}
+
 luabind::scope
 OgreCameraComponent::luaBindings() {
     using namespace luabind;
@@ -37,6 +51,7 @@ OgreCameraComponent::luaBindings() {
             value("PM_SOLID", Ogre::PM_SOLID)
         ]
         .def(constructor<std::string>())
+        .def("getCameraToViewportRay", OgreCameraComponent_getCameraToViewportRay)
         .def_readonly("properties", &OgreCameraComponent::m_properties)
     ;
 }
