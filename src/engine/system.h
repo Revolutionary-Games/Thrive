@@ -2,6 +2,10 @@
 
 #include <memory>
 
+namespace luabind {
+class scope;
+}
+
 namespace thrive {
 
 class Engine;
@@ -17,6 +21,9 @@ class System {
 
 public:
 
+    static luabind::scope
+    luaBindings();
+
     /**
     * @brief Constructor
     */
@@ -26,6 +33,9 @@ public:
     * @brief Destructor
     */
     virtual ~System() = 0;
+
+    bool
+    active() const;
 
     /**
     * @brief The system's engine
@@ -48,6 +58,11 @@ public:
     virtual void
     init(
         Engine* engine
+    );
+
+    void
+    setActive(
+        bool active
     );
 
     /**
