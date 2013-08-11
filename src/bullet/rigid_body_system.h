@@ -187,6 +187,11 @@ public:
         const Ogre::Vector3& relativePosition
     );
 
+    void
+    applyTorque(
+        const Ogre::Vector3& torque
+    );
+
     /**
     * @brief Reimplemented from btMotionState
     *
@@ -254,6 +259,8 @@ public:
     std::list<
         std::pair<Ogre::Vector3, Ogre::Vector3>
     > m_impulseQueue;
+
+    Ogre::Vector3 m_torque = Ogre::Vector3::ZERO;
 
     /**
     * @brief Properties
