@@ -33,6 +33,7 @@
 
 // Microbe
 #include "microbe_stage/movement.h"
+#include "microbe_stage/agent.h"
 
 #include "util/contains.h"
 #include "util/pair_hash.h"
@@ -260,6 +261,9 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
             std::make_shared<OnKeySystem>(),
             // Microbe
             std::make_shared<MicrobeMovementSystem>(),
+            std::make_shared<AgentLifetimeSystem>(),
+            std::make_shared<AgentMovementSystem>(),
+            std::make_shared<AgentEmitterSystem>(),
             // Physics
             std::make_shared<RigidBodyInputSystem>(),
             std::make_shared<UpdatePhysicsSystem>(),
@@ -381,6 +385,7 @@ Engine::entityManager() {
 
 void
 Engine::init() {
+    std::srand(unsigned(time(0)));
     m_impl->setupPhysics();
     m_impl->setupScripts();
     m_impl->setupGraphics();
