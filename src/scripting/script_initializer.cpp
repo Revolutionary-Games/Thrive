@@ -21,10 +21,37 @@ debug(
     std::cout << msg << std::endl;
 }
 
+static int 
+constructTraceback(
+    lua_State* L
+) {
+    lua_Debug d;
+    std::stringstream traceback;
+    // Error message
+    traceback << lua_tostring(L, -1) << ":" << std::endl;
+    lua_pop(L, 1);
+    // Stacktrace
+    for (
+        int stacklevel = 0;
+        lua_getstack(L, stacklevel, &d);
+        stacklevel++
+    ) {
+       lua_getinfo(L, "Sln", &d);
+       traceback << "    " << d.short_src << ":" << d.currentline;
+       if (d.name != nullptr) {
+           traceback << " (" << d.namewhat << " " << d.name << ")";
+       }
+       traceback << std::endl;
+    }
+    lua_pushstring(L, traceback.str().c_str());
+    return 1;
+}
+
 void
 thrive::initializeLua(
     lua_State* L
 ) {
+    luabind::set_pcall_callback(constructTraceback);
     luabind::open(L);
     luabind::module(L) [
         luabind::def("debug", debug),

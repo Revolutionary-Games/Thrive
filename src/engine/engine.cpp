@@ -155,9 +155,17 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
             else if (fs::is_directory(manifestEntryPath)) {
                 this->loadScripts(manifestEntryPath);
             }
-            else if(luaL_dofile(m_luaState, manifestEntryPath.string().c_str())) {
-                const char* errorMessage = lua_tostring(m_luaState, -1);
-                std::cerr << "Error while parsing " << manifestEntryPath.string() << ": " << errorMessage << std::endl;
+            else {
+                luaL_loadfile(
+                    m_luaState, 
+                    manifestEntryPath.string().c_str()
+                );
+                auto error = luabind::detail::pcall(m_luaState, 0, LUA_MULTRET);
+                if (error) {
+                    std::string errorMessage = lua_tostring(m_luaState, -1);
+                    lua_pop(m_luaState, 1);
+                    std::cerr << errorMessage << std::endl;
+                }
             }
         }
     }
