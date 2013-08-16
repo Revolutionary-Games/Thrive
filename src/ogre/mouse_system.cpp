@@ -95,7 +95,6 @@ MouseSystem::setWindowSize(
         m_impl->m_mouse->getMouseState().width = width;
         m_impl->m_mouse->getMouseState().height = height;
     }
-    std::cout << "Setting window size to " << width << " x " << height << std::endl;
     m_impl->m_windowWidth = width;
     m_impl->m_windowHeight = height;
 }

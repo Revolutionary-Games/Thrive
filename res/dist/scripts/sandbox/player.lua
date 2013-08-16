@@ -1,35 +1,20 @@
-local player = Entity("player")
+class 'PlayerMicrobe' (Microbe)
 
-player.rigidBody = RigidBodyComponent()
-player.rigidBody.properties.linearDamping = 0.5
-player.rigidBody.properties.shape = btCylinderShape(Vector3(3.75, 1, 3.75))
-player.rigidBody.properties.friction = 0.2
-player.rigidBody.properties.linearFactor = Vector3(1, 1, 0)
-player.rigidBody.properties.angularFactor = Vector3(0, 0, 1)
-player.rigidBody:setDynamicProperties(
-    Vector3(0, 0, 0),
-    Quaternion(Radian(Degree(90)), Vector3(1, 0, 0)),
-    Vector3(0, 0, 0),
-    Vector3(0, 0, 0)
-)
-player.rigidBody.properties:touch()
-player:addComponent(player.rigidBody)
+function PlayerMicrobe:__init()
+    Microbe.__init(self, "player")
+end
 
-player.sceneNode = OgreSceneNodeComponent()
-player:addComponent(player.sceneNode)
-player:addComponent(OgreEntityComponent("Mesh.mesh"))
-
-player.sceneNode.transform.position = Vector3(0, 0, 0)
-player.sceneNode.transform:touch()
-
-player.microbeMovement = MicrobeMovementComponent()
-player:addComponent(player.microbeMovement)
-player.microbeMovement.force = 0.05
-
-player.onUpdate = OnUpdateComponent()
-player:addComponent(player.onUpdate)
-player.onUpdate.callback = function(entityId, milliseconds)
-    direction = Vector3(0, 0, 0)
+function PlayerMicrobe:update(milliseconds)
+    -- Find mouse target point
+    local mousePosition = Mouse:normalizedPosition() 
+    local playerCam = Entity("playerCam")
+    local cameraComponent = playerCam:getComponent(OgreCameraComponent.TYPE_NAME())
+    local ray = cameraComponent:getCameraToViewportRay(mousePosition.x, mousePosition.y)
+    local plane = Plane(Vector3(0, 0, 1), 0)
+    local intersects, t = ray:intersects(plane)
+    self.facingTargetPoint = ray:getPoint(t)
+    -- Sum up movement commands
+    local direction = Vector3(0, 0, 0)
     if (Keyboard:isKeyDown(KeyboardSystem.KC_W)) then
         direction = direction + Vector3(0, 1, 0)
     end
@@ -43,15 +28,18 @@ player.onUpdate.callback = function(entityId, milliseconds)
         direction = direction + Vector3(1, 0, 0)
     end
     direction:normalise()
-    player.microbeMovement.direction = direction;
+    self.movementDirection = direction;
+    Microbe.update(self, milliseconds)
 end
 
--- Satellite
-local satellite = Entity()
-satellite.sceneNode = OgreSceneNodeComponent()
-satellite:addComponent(satellite.sceneNode)
-satellite:addComponent(OgreEntityComponent("Mesh.mesh"))
-satellite.sceneNode.transform.position = Vector3(5, 0, 0)
-satellite.sceneNode.transform.scale = Vector3(0.2, 0.2, 0.2)
-satellite.sceneNode.transform:touch()
-satellite.sceneNode.parent = player
+local player = PlayerMicrobe()
+
+local movementOrganelle = MovementOrganelle(
+    Vector3(10.0, 50.0, 0.0),
+    300
+)
+movementOrganelle:addHex(0, 0)
+movementOrganelle:addHex(-1, 0)
+movementOrganelle:addHex(1, -1)
+player:addOrganelle(0, 0, movementOrganelle)
+
