@@ -6,7 +6,7 @@ end
 
 function PlayerMicrobe:update(milliseconds)
     -- Find mouse target point
-    local mousePosition = Mouse:normalizedPosition() 
+    local mousePosition = Engine.mouse:normalizedPosition() 
     local playerCam = Entity("playerCam")
     local cameraComponent = playerCam:getComponent(OgreCameraComponent.TYPE_NAME())
     local ray = cameraComponent:getCameraToViewportRay(mousePosition.x, mousePosition.y)
@@ -15,16 +15,16 @@ function PlayerMicrobe:update(milliseconds)
     self.facingTargetPoint = ray:getPoint(t)
     -- Sum up movement commands
     local direction = Vector3(0, 0, 0)
-    if (Keyboard:isKeyDown(KeyboardSystem.KC_W)) then
+    if (Engine.keyboard:isKeyDown(KeyboardSystem.KC_W)) then
         direction = direction + Vector3(0, 1, 0)
     end
-    if (Keyboard:isKeyDown(KeyboardSystem.KC_S)) then
+    if (Engine.keyboard:isKeyDown(KeyboardSystem.KC_S)) then
         direction = direction + Vector3(0, -1, 0)
     end
-    if (Keyboard:isKeyDown(KeyboardSystem.KC_A)) then
+    if (Engine.keyboard:isKeyDown(KeyboardSystem.KC_A)) then
         direction = direction + Vector3(-1, 0, 0)
     end
-    if (Keyboard:isKeyDown(KeyboardSystem.KC_D)) then
+    if (Engine.keyboard:isKeyDown(KeyboardSystem.KC_D)) then
         direction = direction + Vector3(1, 0, 0)
     end
     direction:normalise()

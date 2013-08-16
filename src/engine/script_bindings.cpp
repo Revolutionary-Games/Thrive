@@ -1,6 +1,7 @@
 #include "engine/script_bindings.h"
 
 #include "engine/component.h"
+#include "engine/engine.h"
 #include "engine/entity.h"
 #include "engine/system.h"
 #include "engine/touchable.h"
@@ -12,6 +13,7 @@ thrive::EngineBindings::luaBindings() {
         System::luaBindings(),
         Component::luaBindings(),
         Entity::luaBindings(),
-        Touchable::luaBindings()
+        Touchable::luaBindings(),
+        Engine::luaBindings()
     );
 }

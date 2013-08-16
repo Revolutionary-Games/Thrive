@@ -252,6 +252,9 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
             m_physics.collisionConfiguration.get()
         ));
         m_physics.world->setGravity(btVector3(0,0,0));
+        // Debug drawing
+        m_physics.debugDrawSystem = std::make_shared<BulletDebugDrawSystem>();
+        m_physics.debugDrawSystem->setActive(false);
     }
 
     void
@@ -278,7 +281,7 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
             std::make_shared<RigidBodyOutputSystem>(),
             std::make_shared<BulletToOgreSystem>(),
             std::make_shared<OnCollisionSystem>(),
-            std::make_shared<BulletDebugDrawSystem>(),
+            m_physics.debugDrawSystem,
             // Graphics
             std::make_shared<OgreAddSceneNodeSystem>(),
             std::make_shared<OgreUpdateSceneNodeSystem>(),
@@ -359,6 +362,8 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
 
         std::unique_ptr<btCollisionConfiguration> collisionConfiguration;
 
+        std::shared_ptr<BulletDebugDrawSystem> debugDrawSystem;
+
         std::unique_ptr<btDispatcher> dispatcher;
 
         std::unique_ptr<btConstraintSolver> solver;
@@ -372,6 +377,17 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
     std::shared_ptr<OgreViewportSystem> m_viewportSystem;
 
 };
+
+
+luabind::scope
+Engine::luaBindings() {
+    using namespace luabind;
+    return class_<Engine>("__Engine")
+        .def("setPhysicsDebugDrawingEnabled", &Engine::setPhysicsDebugDrawingEnabled)
+        .property("keyboard", &Engine::keyboardSystem)
+        .property("mouse", &Engine::mouseSystem)
+    ;
+}
 
 
 
@@ -442,6 +458,14 @@ Engine::renderWindow() const {
 Ogre::SceneManager*
 Engine::sceneManager() const {
     return m_impl->m_graphics.sceneManager;
+}
+
+
+void
+Engine::setPhysicsDebugDrawingEnabled(
+    bool enabled
+) {
+    m_impl->m_physics.debugDrawSystem->setActive(enabled);
 }
 
 
