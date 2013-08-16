@@ -62,8 +62,7 @@ thrive::initializeLua(
         MicrobeBindings::luaBindings()
     ];
     luabind::object globals = luabind::globals(L);
-    globals["Keyboard"] = &(Game::instance().engine().keyboardSystem());
-    globals["Mouse"] = &(Game::instance().engine().mouseSystem());
+    globals["Engine"] = &(Game::instance().engine());
 }
 
 

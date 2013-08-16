@@ -40,6 +40,9 @@ class System;
 class Engine {
 
 public:
+    
+    static luabind::scope
+    luaBindings();
 
     /**
     * @brief Constructor
@@ -99,22 +102,27 @@ public:
     mouseSystem() const;
 
     /**
-    * @brief The physics world
-    */
-    btDiscreteDynamicsWorld*
-    physicsWorld() const;
-
-    /**
     * @brief The Ogre root object
     */
     Ogre::Root*
     ogreRoot() const;
 
     /**
+    * @brief The physics world
+    */
+    btDiscreteDynamicsWorld*
+    physicsWorld() const;
+
+    /**
     * @brief The Ogre scene manager
     */
     Ogre::SceneManager*
     sceneManager() const;
+
+    void
+    setPhysicsDebugDrawingEnabled(
+        bool enabled
+    );
 
     /**
     * @brief Shuts the engine down
