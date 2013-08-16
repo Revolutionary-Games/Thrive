@@ -1,5 +1,6 @@
 #include "bullet/script_bindings.h"
 
+#include "bullet/bullet_ogre_conversion.h"
 #include "bullet/on_collision.h"
 #include "bullet/rigid_body_system.h"
 #include "scripting/luabind.h"
@@ -9,6 +10,7 @@
 #include <OgreVector3.h>
 
 using namespace luabind;
+using namespace thrive;
 
 namespace {
 
@@ -27,6 +29,46 @@ public:
     ) : btBoxShape(btVector3(v.x, v.y, v.z))
     {
     }
+};
+
+
+class CompoundShape : public btCompoundShape {
+public:
+
+    static luabind::scope
+    luaBindings() {
+        return class_<CompoundShape, btCollisionShape, std::shared_ptr<btCollisionShape>>("btCompoundShape")
+            .def(constructor<>())
+            .def("addChildShape", &CompoundShape::addChildShape)
+            .def("clear", &CompoundShape::clear)
+            .def("removeChildShape", &CompoundShape::removeChildShape)
+            .def("removeChildShapeByIndex", &CompoundShape::removeChildShapeByIndex)
+        ;
+    }
+
+    void
+    addChildShape(
+        const Ogre::Quaternion& rotation,
+        const Ogre::Vector3& translation,
+        btCollisionShape* shape
+    ) {
+        btCompoundShape::addChildShape(
+            btTransform(
+                ogreToBullet(rotation),
+                ogreToBullet(translation)
+            ),
+            shape
+        );
+    }
+
+
+    void
+    clear() {
+        while (this->getNumChildShapes() > 0) {
+            this->removeChildShapeByIndex(0);
+        }
+    }
+
 };
 
 class CylinderShape : public btCylinderShape {
@@ -122,6 +164,7 @@ thrive::BulletBindings::luaBindings() {
         btCollisionShapeBindings(),
         btSphereShapeBoxBindings(),
         BoxShape::luaBindings(),
+        CompoundShape::luaBindings(),
         CylinderShape::luaBindings(),
         CylinderShapeX::luaBindings(),
         CylinderShapeZ::luaBindings(),
@@ -130,7 +173,5 @@ thrive::BulletBindings::luaBindings() {
         RigidBodyComponent::luaBindings(),
         OnCollisionComponent::luaBindings()
     );
-
-
 }
 
