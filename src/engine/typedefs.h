@@ -4,6 +4,8 @@ namespace thrive {
 
     using EntityId = unsigned int;
 
+    using Milliseconds = int;
+
     /**
     * @brief Special entity id for "no entity"
     *
