@@ -7,18 +7,17 @@ function MovementOrganelle:__init(force, torque)
 end
 
 local function moveMicrobe(microbe, force, milliseconds)
-    if microbe.movementDirection:isZeroLength() then
+    local direction = microbe.movementDirection
+    if direction:isZeroLength() then
         return
     end 
     if force:isZeroLength() then
         return
     end
-    local forceMagnitude = force:dotProduct(
-        microbe.movementDirection
-    )
+    local forceMagnitude = force:dotProduct(direction)
     if forceMagnitude > 0 then
         local impulseMagnitude = milliseconds * forceMagnitude / 1000
-        local impulse = impulseMagnitude * force:normalisedCopy()
+        local impulse = impulseMagnitude * direction
         microbe.rigidBody:applyCentralImpulse(
             microbe.sceneNode.transform.orientation * impulse
         )
@@ -30,7 +29,6 @@ local function turnMicrobe(microbe, torque)
     if torque == 0 then
         return
     end
-    debug("Target point: " .. tostring(microbe.facingTargetPoint))
     local transform = microbe.sceneNode.transform
     local targetDirection = microbe.facingTargetPoint - transform.position
     local localTargetDirection = transform.orientation:Inverse() * targetDirection
