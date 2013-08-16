@@ -32,7 +32,6 @@
 
 
 // Microbe
-#include "microbe_stage/movement.h"
 #include "microbe_stage/agent.h"
 
 #include "util/contains.h"
@@ -43,6 +42,7 @@
 #include <boost/lexical_cast.hpp>
 #include <btBulletDynamicsCommon.h>
 #include <chrono>
+#include <ctime>
 #include <forward_list>
 #include <fstream>
 #include <iostream>
@@ -53,6 +53,7 @@
 #include <OgreWindowEventUtilities.h>
 #include <OISInputManager.h>
 #include <OISMouse.h>
+#include <random>
 #include <set>
 #include <stdlib.h>
 #include <unordered_map>
@@ -268,7 +269,6 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
             std::make_shared<OnUpdateSystem>(),
             std::make_shared<OnKeySystem>(),
             // Microbe
-            std::make_shared<MicrobeMovementSystem>(),
             std::make_shared<AgentLifetimeSystem>(),
             std::make_shared<AgentMovementSystem>(),
             std::make_shared<AgentEmitterSystem>(),
