@@ -2,6 +2,7 @@
 
 #include "engine/component.h"
 #include "engine/typedefs.h"
+#include "util/make_unique.h"
 
 #include <memory>
 #include <unordered_set>
@@ -44,6 +45,20 @@ public:
         EntityId entityId,
         std::unique_ptr<Component> component
     );
+
+    template<typename C>
+    C*
+    addComponent(
+        EntityId entityId,
+        std::unique_ptr<C> component
+    ) {
+        return static_cast<C*>(
+            this->addComponent(
+                entityId, 
+                std::unique_ptr<Component>(std::move(component))
+            )
+        );
+    }
 
     /**
     * @brief Removes all components
@@ -147,6 +162,21 @@ public:
     getNamedId(
         const std::string& name
     );
+
+    template<typename C, typename... Args>
+    C*
+    getOrCreateComponent(
+        EntityId id,
+        Args&&... args
+    ) {
+        auto component = this->getComponent<C>(id);
+        if (not component) {
+            auto newComponent = make_unique<C>(args...);
+            component = newComponent.get();
+            this->addComponent(id, std::move(newComponent));
+        }
+        return component;
+    }
 
     /**
     * @brief Checks whether an entity exists
