@@ -11,6 +11,27 @@
 
 using namespace thrive;
 
+
+void
+OgreSceneNodeComponent::attachObject(
+    Ogre::MovableObject* object
+) {
+    bool isNew = m_attachedObjects.insert(object).second;
+    if (isNew and m_sceneNode) {
+        m_sceneNode->attachObject(object);
+    }
+}
+
+
+void
+OgreSceneNodeComponent::detachObject(
+    Ogre::MovableObject* object
+) {
+    if (m_attachedObjects.erase(object) > 0 and m_sceneNode) {
+        m_sceneNode->detachObject(object);
+    }
+}
+
 static Entity
 OgreSceneNodeComponent_getParent(
     const OgreSceneNodeComponent* self
@@ -42,6 +63,8 @@ OgreSceneNodeComponent::luaBindings() {
                 .def_readwrite("scale", &Transform::scale)
         ]
         .def(constructor<>())
+        .def("attachObject", &OgreSceneNodeComponent::attachObject)
+        .def("detachObject", &OgreSceneNodeComponent::detachObject)
         .def_readonly("transform", &OgreSceneNodeComponent::m_transform)
         .property("parent", OgreSceneNodeComponent_getParent, OgreSceneNodeComponent_setParent)
     ;
@@ -117,6 +140,9 @@ OgreAddSceneNodeSystem::update(int) {
         Ogre::SceneNode* node = parentNode->createChildSceneNode();
         m_impl->m_sceneNodes[entityId] = node;
         component->m_sceneNode = node;
+        for (Ogre::MovableObject* object : component->m_attachedObjects) {
+            node->attachObject(object);
+        }
     }
     m_impl->m_entities.clearChanges();
 }
