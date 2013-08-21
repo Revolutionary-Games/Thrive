@@ -299,6 +299,12 @@ install(DIRECTORY ${CMAKE_SOURCE_DIR}/res/dist/media
 )
 
 install(DIRECTORY
+    ${CMAKE_SOURCE_DIR}/res/fonts
+    DESTINATION ./
+    CONFIGURATIONS Release  Debug
+)
+
+install(DIRECTORY
     ${CMAKE_SOURCE_DIR}/res/dist/scripts
     DESTINATION ./
     CONFIGURATIONS Release  Debug
