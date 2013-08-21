@@ -157,11 +157,12 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
                 this->loadScripts(manifestEntryPath);
             }
             else {
-                luaL_loadfile(
+                int error = 0;
+                error = luaL_loadfile(
                     m_luaState, 
                     manifestEntryPath.string().c_str()
                 );
-                auto error = luabind::detail::pcall(m_luaState, 0, LUA_MULTRET);
+                error = error or luabind::detail::pcall(m_luaState, 0, LUA_MULTRET);
                 if (error) {
                     std::string errorMessage = lua_tostring(m_luaState, -1);
                     lua_pop(m_luaState, 1);
