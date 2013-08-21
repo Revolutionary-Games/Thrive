@@ -305,7 +305,7 @@ install(DIRECTORY
 )
 
 install(DIRECTORY
-    ${CMAKE_SOURCE_DIR}/res/dist/scripts
+    ${CMAKE_SOURCE_DIR}/res/scripts
     DESTINATION ./
     CONFIGURATIONS Release  Debug
 )
