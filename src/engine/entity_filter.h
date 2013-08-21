@@ -164,6 +164,11 @@ public:
     void
     clearChanges();
 
+    bool
+    containsEntity(
+        EntityId id
+    ) const;
+
     /**
     * @brief Iterator
     *

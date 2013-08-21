@@ -255,6 +255,15 @@ EntityFilter<ComponentTypes...>::clearChanges() {
 
 
 template<typename... ComponentTypes>
+bool
+EntityFilter<ComponentTypes...>::containsEntity(
+    EntityId id
+) const {
+    return m_impl->m_entities.find(id) != m_impl->m_entities.end();
+}
+
+
+template<typename... ComponentTypes>
 typename EntityFilter<ComponentTypes...>::EntityMap::const_iterator
 EntityFilter<ComponentTypes...>::end() const {
     return m_impl->m_entities.cend();
