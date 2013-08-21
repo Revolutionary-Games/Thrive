@@ -9,6 +9,7 @@
 #include <OgreCommon.h>
 #include <OgreMath.h>
 #include <OgreVector3.h>
+#include <unordered_set>
 
 namespace luabind {
 class scope;
@@ -17,10 +18,21 @@ class scope;
 
 namespace thrive {
 
+using AgentId = unsigned int;
+
+static const AgentId NULL_AGENT = 0;
+
+AgentId
+generateAgentId();
+
 class AgentComponent : public Component {
     COMPONENT(Agent)
 
 public:
+
+    AgentId m_agentId = NULL_AGENT;
+
+    float m_potency = 0.0f;
 
     Milliseconds m_timeToLive = 0;
 
@@ -37,7 +49,7 @@ public:
     static luabind::scope
     luaBindings();
 
-    luabind::object m_effectCallback;
+    AgentId m_agentId = NULL_AGENT;
 
     Ogre::Real m_emissionRadius = 0.0;
 
@@ -59,9 +71,48 @@ public:
 
     Ogre::Vector3 m_particleScale = Ogre::Vector3(1, 1, 1);
 
+    float m_potencyPerParticle = 1.0f;
+
     // For use by system
 
     Milliseconds m_timeSinceLastEmission = 0;
+
+};
+
+
+class AgentAbsorberComponent : public Component {
+    COMPONENT(AgentAbsorber)
+
+public:
+
+    static luabind::scope
+    luaBindings();
+
+    std::unordered_map<AgentId, float> m_absorbedAgents;
+
+    std::unordered_set<AgentId> m_canAbsorbAgent;
+
+    float
+    absorbedAgentAmount(
+        AgentId id
+    ) const;
+
+    bool
+    canAbsorbAgent(
+        AgentId id
+    ) const;
+
+    void
+    setAbsorbedAgentAmount(
+        AgentId id,
+        float amount
+    );
+
+    void
+    setCanAbsorbAgent(
+        AgentId id,
+        bool canAbsorb
+    );
 
 };
 
@@ -155,6 +206,44 @@ public:
     * @brief Destructor
     */
     ~AgentEmitterSystem();
+
+    /**
+    * @brief Initializes the system
+    *
+    * @param engine
+    */
+    void init(Engine* engine) override;
+
+    /**
+    * @brief Shuts the system down
+    */
+    void shutdown() override;
+
+    /**
+    * @brief Updates the system
+    */
+    void update(int) override;
+
+private:
+
+    struct Implementation;
+    std::unique_ptr<Implementation> m_impl;
+};
+
+
+class AgentAbsorberSystem : public System {
+    
+public:
+
+    /**
+    * @brief Constructor
+    */
+    AgentAbsorberSystem();
+
+    /**
+    * @brief Destructor
+    */
+    ~AgentAbsorberSystem();
 
     /**
     * @brief Initializes the system

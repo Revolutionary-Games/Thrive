@@ -5,14 +5,16 @@ light.sceneNode = OgreSceneNodeComponent()
 light.sceneNode.transform.scale = Vector3(0.01, 0.01, 0.01)
 light.sceneNode.transform.position.z = 2.0;
 light.sceneNode.transform:touch()
+light.sceneNode:attachObject(
+    Engine.sceneManager:createEntity(SceneManager.PT_SPHERE)
+)
 light:addComponent(light.sceneNode)
 
 
 lightComponent = OgreLightComponent()
 lightComponent:setRange(200)
 light:addComponent(lightComponent)
-lightEntity = OgreEntityComponent(OgreEntityComponent.PT_SPHERE)
-light:addComponent(lightEntity)
+
 onupdate = OnUpdateComponent()
 light:addComponent(onupdate)
 local time = 0

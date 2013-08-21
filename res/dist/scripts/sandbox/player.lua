@@ -34,12 +34,31 @@ end
 
 local player = PlayerMicrobe()
 
-local movementOrganelle = MovementOrganelle(
-    Vector3(10.0, 50.0, 0.0),
+local forwardOrganelle = MovementOrganelle(
+    Vector3(0.0, 50.0, 0.0),
     300
 )
-movementOrganelle:addHex(0, 0)
-movementOrganelle:addHex(-1, 0)
-movementOrganelle:addHex(1, -1)
-player:addOrganelle(0, 0, movementOrganelle)
+forwardOrganelle:addHex(0, 0)
+forwardOrganelle:addHex(-1, 0)
+forwardOrganelle:addHex(1, -1)
+forwardOrganelle:setColour(ColourValue(1, 0, 0, 1))
+player:addOrganelle(0, 1, forwardOrganelle)
+
+
+local storageOrganelle = StorageOrganelle(1, 100.0)
+storageOrganelle:addHex(0, 0)
+storageOrganelle:setColour(ColourValue(0, 1, 0, 1))
+player:addOrganelle(0, 0, storageOrganelle)
+
+local backwardOrganelle = MovementOrganelle(
+    Vector3(0.0, -50.0, 0.0),
+    300
+)
+backwardOrganelle:addHex(0, 0)
+backwardOrganelle:addHex(-1, 1)
+backwardOrganelle:addHex(1, 0)
+backwardOrganelle:setColour(ColourValue(1, 0, 0, 1))
+player:addOrganelle(0, -1, backwardOrganelle)
+
+
 

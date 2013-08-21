@@ -6,6 +6,7 @@
 luabind::scope
 thrive::MicrobeBindings::luaBindings() {
     return (
+        AgentAbsorberComponent::luaBindings(),
         AgentEmitterComponent::luaBindings()
     );
 }
