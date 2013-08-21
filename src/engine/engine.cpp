@@ -21,6 +21,7 @@
 #include "ogre/render_system.h"
 #include "ogre/scene_node_system.h"
 #include "ogre/sky_system.h"
+#include "ogre/text_overlay.h"
 #include "ogre/viewport_system.h"
 
 // Scripting
@@ -287,6 +288,7 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
             std::make_shared<OgreCameraSystem>(),
             std::make_shared<OgreLightSystem>(),
             std::make_shared<SkySystem>(),
+            std::make_shared<TextOverlaySystem>(),
             m_viewportSystem, // Has to come *after* camera system
             std::make_shared<OgreRemoveSceneNodeSystem>(),
             std::make_shared<RenderSystem>()
