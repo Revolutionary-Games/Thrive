@@ -276,18 +276,18 @@ install(EXPORT lua
 # OGRE config and media
 
 install(FILES
-    ${CMAKE_SOURCE_DIR}/res/dist/bin/resources.cfg
+    ${CMAKE_SOURCE_DIR}/res/ogre_cfg/resources.cfg
     DESTINATION bin
 )
 
 install(FILES
-    ${CMAKE_SOURCE_DIR}/res/dist/bin/plugins.cfg
+    ${CMAKE_SOURCE_DIR}/res/ogre_cfg/plugins.cfg
     DESTINATION bin
     CONFIGURATIONS Release
 )
 
 install(FILES
-    ${CMAKE_SOURCE_DIR}/res/dist/bin/plugins_d.cfg
+    ${CMAKE_SOURCE_DIR}/res/ogre_cfg/plugins_d.cfg
     DESTINATION bin
     CONFIGURATIONS Debug
     RENAME plugins.cfg

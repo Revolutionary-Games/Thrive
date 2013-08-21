@@ -62,13 +62,8 @@
 
 using namespace thrive;
 
-#ifdef _DEBUG
-    static const char* RESOURCES_CFG = "resources_d.cfg";
-    static const char* PLUGINS_CFG   = "plugins_d.cfg";
-#else
-    static const char* RESOURCES_CFG = "resources.cfg";
-    static const char* PLUGINS_CFG   = "plugins.cfg";
-#endif
+static const char* RESOURCES_CFG = "resources.cfg";
+static const char* PLUGINS_CFG   = "plugins.cfg";
 
 ////////////////////////////////////////////////////////////////////////////////
 // Engine
