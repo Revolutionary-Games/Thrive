@@ -275,6 +275,7 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
             std::make_shared<AgentLifetimeSystem>(),
             std::make_shared<AgentMovementSystem>(),
             std::make_shared<AgentEmitterSystem>(),
+            std::make_shared<AgentAbsorberSystem>(),
             // Physics
             std::make_shared<RigidBodyInputSystem>(),
             std::make_shared<UpdatePhysicsSystem>(),

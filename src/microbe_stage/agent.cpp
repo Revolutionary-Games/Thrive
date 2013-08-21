@@ -4,12 +4,18 @@
 #include "bullet/rigid_body_system.h"
 #include "engine/engine.h"
 #include "engine/entity_filter.h"
-#include "ogre/entity_system.h"
 #include "ogre/scene_node_system.h"
 #include "scripting/luabind.h"
 #include "util/random.h"
 
+#include <OgreEntity.h>
+#include <OgreSceneManager.h>
+
 using namespace thrive;
+
+////////////////////////////////////////////////////////////////////////////////
+// AgentEmitterComponent
+////////////////////////////////////////////////////////////////////////////////
 
 luabind::scope
 AgentEmitterComponent::luaBindings() {
@@ -20,7 +26,7 @@ AgentEmitterComponent::luaBindings() {
             def("TYPE_ID", &AgentEmitterComponent::TYPE_ID)
         ]
         .def(constructor<>())
-        .def_readwrite("effectCallback", &AgentEmitterComponent::m_effectCallback)
+        .def_readwrite("agentId", &AgentEmitterComponent::m_agentId)
         .def_readwrite("emissionRadius", &AgentEmitterComponent::m_emissionRadius)
         .def_readwrite("emitInterval", &AgentEmitterComponent::m_emitInterval)
         .def_readwrite("maxInitialSpeed", &AgentEmitterComponent::m_maxInitialSpeed)
@@ -31,7 +37,73 @@ AgentEmitterComponent::luaBindings() {
         .def_readwrite("particlesPerEmission", &AgentEmitterComponent::m_particlesPerEmission)
         .def_readwrite("particleLifeTime", &AgentEmitterComponent::m_particleLifeTime)
         .def_readwrite("particleScale", &AgentEmitterComponent::m_particleScale)
+        .def_readwrite("potencyPerParticle", &AgentEmitterComponent::m_potencyPerParticle)
     ;
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// AgentAbsorberComponent
+////////////////////////////////////////////////////////////////////////////////
+
+luabind::scope
+AgentAbsorberComponent::luaBindings() {
+    using namespace luabind;
+    return class_<AgentAbsorberComponent, Component>("AgentAbsorberComponent")
+        .scope [
+            def("TYPE_NAME", &AgentAbsorberComponent::TYPE_NAME),
+            def("TYPE_ID", &AgentAbsorberComponent::TYPE_ID)
+        ]
+        .def(constructor<>())
+        .def("absorbedAgentAmount", &AgentAbsorberComponent::absorbedAgentAmount)
+        .def("setAbsorbedAgentAmount", &AgentAbsorberComponent::setAbsorbedAgentAmount)
+        .def("setCanAbsorbAgent", &AgentAbsorberComponent::setCanAbsorbAgent)
+    ;
+}
+
+
+float
+AgentAbsorberComponent::absorbedAgentAmount(
+    AgentId id
+) const {
+    const auto& iter = m_absorbedAgents.find(id);
+    if (iter != m_absorbedAgents.cend()) {
+        return iter->second;
+    }
+    else {
+        return 0.0f;
+    }
+}
+
+
+bool
+AgentAbsorberComponent::canAbsorbAgent(
+    AgentId id
+) const {
+    return m_canAbsorbAgent.find(id) != m_canAbsorbAgent.end();
+}
+
+
+void
+AgentAbsorberComponent::setAbsorbedAgentAmount(
+    AgentId id,
+    float amount
+) {
+    m_absorbedAgents[id] = amount;
+}
+
+
+void
+AgentAbsorberComponent::setCanAbsorbAgent(
+    AgentId id,
+    bool canAbsorb
+) {
+    if (canAbsorb) {
+        m_canAbsorbAgent.insert(id);
+    }
+    else {
+        m_canAbsorbAgent.erase(id);
+    }
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -142,6 +214,8 @@ struct AgentEmitterSystem::Implementation {
         AgentEmitterComponent,
         OgreSceneNodeComponent
     > m_entities;
+
+    Ogre::SceneManager* m_sceneManager = nullptr;
 };
 
 
@@ -160,12 +234,14 @@ AgentEmitterSystem::init(
 ) {
     System::init(engine);
     m_impl->m_entities.setEntityManager(&engine->entityManager());
+    m_impl->m_sceneManager = engine->sceneManager();
 }
 
 
 void
 AgentEmitterSystem::shutdown() {
     m_impl->m_entities.setEntityManager(nullptr);
+    m_impl->m_sceneManager = nullptr;
     System::shutdown();
 }
 
@@ -205,6 +281,9 @@ AgentEmitterSystem::update(int milliseconds) {
                 // Scene Node
                 auto agentSceneNodeComponent = make_unique<OgreSceneNodeComponent>();
                 agentSceneNodeComponent->m_transform.scale = emitterComponent->m_particleScale; 
+                agentSceneNodeComponent->attachObject(
+                    m_impl->m_sceneManager->createEntity(emitterComponent->m_meshName)
+                );
                 // Collision Hull
                 auto agentRigidBodyComponent = make_unique<RigidBodyComponent>(
                     btBroadphaseProxy::SensorTrigger,
@@ -214,20 +293,17 @@ AgentEmitterSystem::update(int milliseconds) {
                 agentRigidBodyComponent->m_properties.hasContactResponse = false;
                 agentRigidBodyComponent->m_properties.kinematic = true;
                 agentRigidBodyComponent->m_dynamicProperties.position = sceneNodeComponent->m_transform.position + emissionPosition; 
-                // On Collision
-                auto agentOnCollisionComponent = make_unique<OnCollisionComponent>();
-                agentOnCollisionComponent->onCollisionCallback = emitterComponent->m_effectCallback;
                 // Agent Component
                 auto agentComponent = make_unique<AgentComponent>();
                 agentComponent->m_timeToLive = emitterComponent->m_particleLifeTime;
                 agentComponent->m_velocity = emissionVelocity;
+                agentComponent->m_agentId = emitterComponent->m_agentId;
+                agentComponent->m_potency = emitterComponent->m_potencyPerParticle;
                 // Build component list
                 std::list<std::unique_ptr<Component>> components;
                 components.emplace_back(std::move(agentSceneNodeComponent));
                 components.emplace_back(std::move(agentComponent));
-                components.emplace_back(make_unique<OgreEntityComponent>(emitterComponent->m_meshName));
                 components.emplace_back(std::move(agentRigidBodyComponent));
-                components.emplace_back(std::move(agentOnCollisionComponent));
                 for (auto& component : components) {
                     entityManager.addComponent(
                         agentEntityId,
@@ -235,6 +311,100 @@ AgentEmitterSystem::update(int milliseconds) {
                     );
                 }
             }
+        }
+    }
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// AgentAbsorberSystem
+////////////////////////////////////////////////////////////////////////////////
+
+struct AgentAbsorberSystem::Implementation {
+
+    EntityFilter<
+        AgentAbsorberComponent
+    > m_absorbers;
+
+    EntityFilter<
+        AgentComponent
+    > m_agents;
+
+    btDiscreteDynamicsWorld* m_world = nullptr;
+
+};
+
+
+AgentAbsorberSystem::AgentAbsorberSystem()
+  : m_impl(new Implementation())
+{
+}
+
+
+AgentAbsorberSystem::~AgentAbsorberSystem() {}
+
+
+void
+AgentAbsorberSystem::init(
+    Engine* engine
+) {
+    System::init(engine);
+    m_impl->m_absorbers.setEntityManager(&engine->entityManager());
+    m_impl->m_agents.setEntityManager(&engine->entityManager());
+    m_impl->m_world = engine->physicsWorld();
+}
+
+
+void
+AgentAbsorberSystem::shutdown() {
+    m_impl->m_absorbers.setEntityManager(nullptr);
+    m_impl->m_agents.setEntityManager(nullptr);
+    m_impl->m_world = nullptr;
+    System::shutdown();
+}
+
+
+void
+AgentAbsorberSystem::update(int) {
+    for (const auto& entry : m_impl->m_absorbers) {
+        AgentAbsorberComponent* absorber = std::get<0>(entry.second);
+        absorber->m_absorbedAgents.clear();
+    }
+    auto dispatcher = m_impl->m_world->getDispatcher();
+    int numManifolds = dispatcher->getNumManifolds();
+    for (int i = 0; i < numManifolds; i++) {
+        btPersistentManifold* contactManifold = dispatcher->getManifoldByIndexInternal(i);
+        auto objectA = static_cast<const btCollisionObject*>(contactManifold->getBody0());
+        auto objectB = static_cast<const btCollisionObject*>(contactManifold->getBody1());
+        EntityId entityA = reinterpret_cast<size_t>(objectA->getUserPointer());
+        EntityId entityB = reinterpret_cast<size_t>(objectB->getUserPointer());
+        AgentAbsorberComponent* absorber = nullptr;
+        AgentComponent* agent = nullptr;
+        if (
+            m_impl->m_agents.containsEntity(entityA) and
+            m_impl->m_absorbers.containsEntity(entityB)
+        ) {
+            agent = std::get<0>(
+                m_impl->m_agents.entities().at(entityA)
+            );
+            absorber = std::get<0>(
+                m_impl->m_absorbers.entities().at(entityB)
+            );
+        }
+        else if (
+            m_impl->m_absorbers.containsEntity(entityA) and
+            m_impl->m_agents.containsEntity(entityB)
+        ) {
+            absorber = std::get<0>(
+                m_impl->m_absorbers.entities().at(entityA)
+            );
+            agent = std::get<0>(
+                m_impl->m_agents.entities().at(entityB)
+            );
+        }
+        if (agent and absorber and absorber->canAbsorbAgent(agent->m_agentId)) {
+            absorber->m_absorbedAgents[agent->m_agentId] += agent->m_potency;
+            agent->m_timeToLive = 0;
         }
     }
 }
