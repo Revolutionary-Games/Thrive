@@ -293,7 +293,12 @@ install(FILES
     RENAME plugins.cfg
 )
 
-install(DIRECTORY ${CMAKE_SOURCE_DIR}/res/dist/media
+install(DIRECTORY ${CMAKE_SOURCE_DIR}/res/models
+    DESTINATION ./
+    CONFIGURATIONS Release  Debug
+)
+
+install(DIRECTORY ${CMAKE_SOURCE_DIR}/res/materials
     DESTINATION ./
     CONFIGURATIONS Release  Debug
 )
