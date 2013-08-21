@@ -42,7 +42,7 @@ public:
         /**
         * @brief The material path
         */
-        Ogre::String materialName = "Background/Blue1";
+        Ogre::String materialName = "background/blue_01";
 
         /**
         * @brief The bigger the scale, the bigger the sky plane
