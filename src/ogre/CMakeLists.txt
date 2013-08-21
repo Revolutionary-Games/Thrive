@@ -1,6 +1,8 @@
 add_sources(
     ${CMAKE_CURRENT_SOURCE_DIR}/camera_system.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/camera_system.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/colour_material.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/colour_material.h
     ${CMAKE_CURRENT_SOURCE_DIR}/keyboard_system.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/keyboard_system.h
     ${CMAKE_CURRENT_SOURCE_DIR}/light_system.cpp
@@ -17,6 +19,8 @@ add_sources(
     ${CMAKE_CURRENT_SOURCE_DIR}/script_bindings.h
     ${CMAKE_CURRENT_SOURCE_DIR}/sky_system.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/sky_system.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/text_overlay.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/text_overlay.h
     ${CMAKE_CURRENT_SOURCE_DIR}/viewport_system.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/viewport_system.h
 )
