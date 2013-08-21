@@ -88,6 +88,22 @@ public:
     */
     Ogre::SceneNode* m_sceneNode = nullptr;
 
+    void
+    attachObject(
+        Ogre::MovableObject* object
+    );
+
+    void
+    detachObject(
+        Ogre::MovableObject* object
+    );
+
+
+    /**
+     * @brief For use by the OgreAddSceneNodeSystem
+     */
+    std::set<Ogre::MovableObject*> m_attachedObjects;
+
 
 };
 

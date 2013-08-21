@@ -2,7 +2,7 @@
 
 #include "scripting/luabind.h"
 #include "ogre/camera_system.h"
-#include "ogre/entity_system.h"
+#include "ogre/colour_material.h"
 #include "ogre/keyboard_system.h"
 #include "ogre/light_system.h"
 #include "ogre/mouse_system.h"
@@ -22,6 +22,7 @@
 #include <OgreMath.h>
 #include <OgreMatrix3.h>
 #include <OgreRay.h>
+#include <OgreSceneManager.h>
 #include <OgreSphere.h>
 #include <OgreVector3.h>
 
@@ -164,6 +165,37 @@ degreeBindings() {
     ;
 }
 
+
+static luabind::scope
+entityBindings() {
+    return (
+        class_<SubEntity, MovableObject>("OgreSubEntity")
+            .def("setMaterial", &SubEntity::setMaterial)
+        ,
+        class_<Ogre::Entity, MovableObject>("OgreEntity")
+            .def("getSubEntity", static_cast<SubEntity*(Entity::*)(const String&) const>(&Entity::getSubEntity))
+            .def("getNumSubEntities", &Entity::getNumSubEntities)
+    );
+}
+
+
+namespace Ogre {
+
+static Material*
+get_pointer(MaterialPtr ptr) {
+    return ptr.get();
+}
+
+}
+
+
+static luabind::scope
+materialBindings() {
+    return class_<Material, MaterialPtr>("Material")
+    ;
+}
+
+
 static luabind::scope
 matrix3Bindings() {
     return class_<Matrix3>("Matrix3")
@@ -235,6 +267,12 @@ matrix3Bindings() {
         .def("FromEulerAnglesZYX", &Matrix3::FromEulerAnglesZYX)
         .def("hasScale", &Matrix3::hasScale)
     ;
+}
+
+
+static luabind::scope
+movableObjectBindings() {
+    return class_<MovableObject>("MovableObject");
 }
 
 
@@ -371,6 +409,24 @@ rayBindings() {
 
 
 static luabind::scope
+sceneManagerBindings() {
+    return class_<SceneManager>("SceneManager")
+        .enum_("PrefabType") [
+            value("PT_PLANE", SceneManager::PT_PLANE),
+            value("PT_CUBE", SceneManager::PT_CUBE),
+            value("PT_SPHERE", SceneManager::PT_SPHERE)
+        ]
+        .def("createEntity", 
+            static_cast<Entity* (SceneManager::*)(const String&)>(&SceneManager::createEntity)
+        )
+        .def("createEntity", 
+            static_cast<Entity* (SceneManager::*)(SceneManager::PrefabType)>(&SceneManager::createEntity)
+        )
+    ;
+}
+
+
+static luabind::scope
 sphereBindings() {
     return class_<Sphere>("Sphere")
         .def(constructor<>())
@@ -443,6 +499,7 @@ vector3Bindings() {
 luabind::scope
 thrive::OgreBindings::luaBindings() {
     return (
+        // Math
         axisAlignedBoxBindings(),
         colourValueBindings(),
         degreeBindings(),
@@ -453,14 +510,21 @@ thrive::OgreBindings::luaBindings() {
         rayBindings(),
         sphereBindings(),
         vector3Bindings(),
-        KeyboardSystem::luaBindings(),
-        MouseSystem::luaBindings(),
+        // Scene Manager
+        sceneManagerBindings(),
+        movableObjectBindings(),
+        entityBindings(),
+        materialBindings(),
+        def("getColourMaterial", getColourMaterial),
+        // Components
         OnKeyComponent::luaBindings(),
         OgreCameraComponent::luaBindings(),
-        OgreEntityComponent::luaBindings(),
         OgreLightComponent::luaBindings(),
         OgreSceneNodeComponent::luaBindings(),
         SkyPlaneComponent::luaBindings(),
+        // Other
+        KeyboardSystem::luaBindings(),
+        MouseSystem::luaBindings(),
         OgreViewport::luaBindings(),
         OgreViewportSystem::luaBindings()
     );

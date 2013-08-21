@@ -14,7 +14,6 @@
 
 // Ogre
 #include "ogre/camera_system.h"
-#include "ogre/entity_system.h"
 #include "ogre/keyboard_system.h"
 #include "ogre/light_system.h"
 #include "ogre/mouse_system.h"
@@ -288,7 +287,6 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
             std::make_shared<OgreCameraSystem>(),
             std::make_shared<OgreLightSystem>(),
             std::make_shared<SkySystem>(),
-            std::make_shared<OgreEntitySystem>(),
             m_viewportSystem, // Has to come *after* camera system
             std::make_shared<OgreRemoveSceneNodeSystem>(),
             std::make_shared<RenderSystem>()
@@ -386,6 +384,7 @@ Engine::luaBindings() {
         .def("setPhysicsDebugDrawingEnabled", &Engine::setPhysicsDebugDrawingEnabled)
         .property("keyboard", &Engine::keyboardSystem)
         .property("mouse", &Engine::mouseSystem)
+        .property("sceneManager", &Engine::sceneManager)
     ;
 }
 
