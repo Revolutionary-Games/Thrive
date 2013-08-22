@@ -94,8 +94,14 @@ public:
         */
         Ogre::Vector3 forceApplied = Ogre::Vector3::ZERO;
 
+        /**
+        * @brief Whether this rigid body reacts to collisions
+        */
         bool hasContactResponse = true;
 
+        /**
+        * @brief Whether this body is kinematic 
+        */
         bool kinematic = false;
 
     };
@@ -148,12 +154,22 @@ public:
     *   - Properties::mass
     *   - Properties::friction
     *   - Properties::rollingFriction
+    *   - Properties::hasContactResponse
+    *   - Properties::kinematic
     *
     * @return
     */
     static luabind::scope
     luaBindings();
 
+    /**
+    * @brief Constructor
+    *
+    * @param collisionFilterGroup
+    *   The collision group this body belongs to
+    * @param collisionFilterMask
+    *   The groups this body can collide with
+    */
     RigidBodyComponent(
         short int collisionFilterGroup = btBroadphaseProxy::DefaultFilter,
         short int collisionFilterMask = btBroadphaseProxy::AllFilter
@@ -187,6 +203,12 @@ public:
         const Ogre::Vector3& relativePosition
     );
 
+    /**
+    * @brief Applies a torque to the body
+    *
+    * @param torque
+    *   The torque to apply
+    */
     void
     applyTorque(
         const Ogre::Vector3& torque
@@ -243,8 +265,14 @@ public:
     */
     btRigidBody* m_body = nullptr;
 
+    /**
+    * @brief The body's collision group
+    */
     const short int m_collisionFilterGroup;
 
+    /**
+    * @brief The groups this body can collide with
+    */
     const short int m_collisionFilterMask;
 
     /**
@@ -260,6 +288,9 @@ public:
         std::pair<Ogre::Vector3, Ogre::Vector3>
     > m_impulseQueue;
 
+    /**
+    * @brief The torque that has been applied in this timestep
+    */
     Ogre::Vector3 m_torque = Ogre::Vector3::ZERO;
 
     /**

@@ -63,17 +63,23 @@ public:
     *
     * Exposes:
     * - OgreSceneNodeComponent()
-    * - @link m_properties properties @endlink
-    * - Properties
-    *   - Properties::orientation
-    *   - Properties::position
-    *   - Properties::scale
+    * - @link m_transform transform @endlink
+    * - Transform
+    *   - Transform::orientation
+    *   - Transform::position
+    *   - Transform::scale
+    * - OgreSceneNodeComponent::attachObject
+    * - OgreSceneNodeComponent::detachObject
+    * - OgreSceneNodeComponent::m_parentId (as "parent")
     *
     * @return
     */
     static luabind::scope
     luaBindings();
 
+    /**
+    * @brief The entity id of the parent scene node
+    */
     TouchableValue<EntityId> m_parentId = NULL_ENTITY;
 
     /**
@@ -88,11 +94,21 @@ public:
     */
     Ogre::SceneNode* m_sceneNode = nullptr;
 
+    /**
+    * @brief Attaches an object to the scene node
+    *
+    * @param object
+    */
     void
     attachObject(
         Ogre::MovableObject* object
     );
 
+    /**
+    * @brief Detaches an object to the scene node
+    *
+    * @param object
+    */
     void
     detachObject(
         Ogre::MovableObject* object

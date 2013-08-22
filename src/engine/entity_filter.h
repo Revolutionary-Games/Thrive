@@ -164,6 +164,15 @@ public:
     void
     clearChanges();
 
+    /**
+    * @brief Checks whether an entity id is contained in this filter
+    *
+    * @param id
+    *   The entity to check for
+    *
+    * @return 
+    *   \c true if this id can be found in this filter, \c false otherwise
+    */
     bool
     containsEntity(
         EntityId id

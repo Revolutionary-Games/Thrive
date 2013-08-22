@@ -58,11 +58,25 @@ public:
     */
     virtual ~Component() = 0;
 
+    /**
+    * @brief The entity this component belongs to
+    *
+    * @return 
+    *   The entity this component belongs to or NULL_ENTITY if this component
+    *   has not been added to an entity yet
+    */
     EntityId
     owner() const {
         return m_owner;
     }
 
+    /**
+    * @brief Sets the component's owner
+    *
+    * Used by the EntityManager
+    *
+    * @param owner
+    */
     void
     setOwner(
         EntityId owner
