@@ -423,6 +423,7 @@ sceneManagerBindings() {
         .def("createEntity", 
             static_cast<Entity* (SceneManager::*)(SceneManager::PrefabType)>(&SceneManager::createEntity)
         )
+        .def("setAmbientLight", &SceneManager::setAmbientLight)
     ;
 }
 
