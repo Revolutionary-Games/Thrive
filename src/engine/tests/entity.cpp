@@ -42,6 +42,7 @@ TEST_F(EntityTest, RemoveComponent) {
     entity.addComponent(std::make_shared<OnUpdateComponent>());
     EXPECT_TRUE(entity.hasComponent(OnUpdateComponent::TYPE_ID()));
     entity.removeComponent(OnUpdateComponent::TYPE_ID());
+    entityManager.processRemovals();
     EXPECT_FALSE(entity.hasComponent(OnUpdateComponent::TYPE_ID()));
 }
 

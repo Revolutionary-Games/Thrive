@@ -18,30 +18,33 @@ class OnKeyComponent : public Component {
 public:
 
     /**
-    * @brief Lua bindings
-    *
-    * Exposes the following properties:
-    * - \c onPressed: A function that takes a KeyEvent for pressed keys
-    * - \c onReleased: A function that takes a KeyEvent for released keys
-    *
-    * Exposes the type \c KeyEvent with the following properties:
-    * - \c key: KeyboardSystem::KeyEvent::key
-    * - \c alt: KeyboardSystem::KeyEvent::alt
-    * - \c ctrl: KeyboardSystem::KeyEvent::ctrl
-    * - \c shift: KeyboardSystem::KeyEvent::shift
-    */
-    static luabind::scope
-    luaBindings();
-
-    /**
     * @brief Called when a key was pressed
+    *
+    * Arguments:
+    * - EntityId: The entity of this component
+    * - KeyboardSystem::KeyEvent: The key event
     */
-    luabind::object m_onPressedCallback;
+    luabind::object onPressedCallback;
 
     /**
     * @brief Called when a key was released
+    *
+    * Arguments:
+    * - EntityId: The entity of this component
+    * - KeyboardSystem::KeyEvent: The key event
     */
-    luabind::object m_onReleasedCallback;
+    luabind::object onReleasedCallback;
+
+    /**
+    * @brief Lua bindings
+    *
+    * Exposes:
+    * - OnKeyComponent::OnKeyComponent()
+    * - OnKeyComponent::onPressedCallback
+    * - OnKeyComponent::onReleasedCallback
+    */
+    static luabind::scope
+    luaBindings();
 
 };
 
@@ -67,7 +70,6 @@ public:
     * @brief Initializes the system
     *
     * @param engine
-    *   Must be a ScriptEngine
     */
     void init(Engine* engine) override;
 

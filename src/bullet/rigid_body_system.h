@@ -1,8 +1,8 @@
 #pragma once
 
 #include "engine/component.h"
-#include "engine/shared_data.h"
 #include "engine/system.h"
+#include "engine/touchable.h"
 
 #include <btBulletCollisionCommon.h>
 #include <btBulletDynamicsCommon.h>
@@ -28,15 +28,15 @@ class RigidBodyComponent : public Component, public btMotionState {
 
 public:
 
+
     /**
-    * @brief Properties that can be set individually
+    * @brief Properties
     */
-    struct StaticProperties {
+    struct Properties : public Touchable {
 
         /**
         * @brief The body's shape .
         */
-        //btCollisionShape* shape = new btSphereShape(1);
         std::shared_ptr<btCollisionShape> shape {new btSphereShape(1)};
 
         /**
@@ -60,7 +60,6 @@ public:
         * @brief Inertia
         */
         btVector3 localInertia {0,0,0};
-
 
         /**
         * @brief The mass of the rigid body
@@ -92,18 +91,17 @@ public:
         /**
         *@brief The force currently applied to the body
         *
-        *
         */
         Ogre::Vector3 forceApplied = Ogre::Vector3::ZERO;
+
+
     };
 
     /**
-    * @brief Properties that are simulated by the physics engine
-    *
-    * If you do want to set those (after initialization), be aware that it 
-    * might introduce instabilities into the simulation.
+    * @brief Dynamic properties (those the physics engine changes)
     */
-    struct DynamicProperties {
+    struct DynamicProperties : public Touchable {
+
         /**
         * @brief The position
         */
@@ -132,23 +130,51 @@ public:
     /**
     * @brief Lua bindings
     *
-    * Exposes the following \ref shared_data_lua "shared properties":
-    * - \c StaticProperties::shape
-    * - \c StaticProperties::position
-    * - \c StaticProperties::rotation
-    * - \c StaticProperties::linearVelocity
-    * - \c StaticProperties::angularVelocity
-    * - \c StaticProperties::restitution
-    * - \c StaticProperties::linearFactor
-    * - \c StaticProperties::angularFactor
-    * - \c StaticProperties::mass
-    * - \c StaticProperties::friction
-    * - \c StaticProperties::rollingFriction
+    * Exposes:
+    * - RigidBodyComponent()
+    * - @link m_properties properties @endlink
+    * - Properties
+    *   - Properties::shape
+    *   - Properties::position
+    *   - Properties::rotation
+    *   - Properties::linearVelocity
+    *   - Properties::angularVelocity
+    *   - Properties::restitution
+    *   - Properties::linearFactor
+    *   - Properties::angularFactor
+    *   - Properties::mass
+    *   - Properties::friction
+    *   - Properties::rollingFriction
     *
     * @return
     */
     static luabind::scope
     luaBindings();
+
+    /**
+    * @brief Applies an impulse to the center of mass
+    *
+    * @param impulse
+    *   The impulse
+    */
+    void
+    applyCentralImpulse(
+        const Ogre::Vector3& impulse
+    );
+
+    /**
+    * @brief Applies an impulse
+    *
+    * @param impulse
+    *   The impulse
+    * @param relativePosition
+    *   The attack point, relative to the center of mass 
+    */
+    void
+    applyImpulse(
+        const Ogre::Vector3& impulse,
+        const Ogre::Vector3& relativePosition
+    );
 
     /**
     * @brief Reimplemented from btMotionState
@@ -173,44 +199,52 @@ public:
     ) override;
 
     /**
+    * @brief Overrides the physics engine
+    *
+    * @warning
+    *   May introduce instabilities. Use applyImpulse() if you want to move
+    *   the body.
+    *
+    * @param position
+    *   New position
+    * @param orientation
+    *   New orientation
+    * @param linearVelocity
+    *   New velocity
+    * @param angularVelocity
+    *   New rotation
+    */
+    void
+    setDynamicProperties(
+        const Ogre::Vector3& position,
+        const Ogre::Quaternion& orientation,
+        const Ogre::Vector3& linearVelocity,
+        const Ogre::Vector3& angularVelocity
+    );
+
+    /**
     * @brief Internal object, dont use this directly
     */
     btRigidBody* m_body = nullptr;
 
     /**
-    * @brief Shared properties
+    * @brief Dynamic properties
     */
-    PhysicsInputData<StaticProperties>
-    m_staticProperties;
+    DynamicProperties
+    m_dynamicProperties;
 
     /**
-    * @brief Dynamic properties pushed to the physics engine
-    *
-    * Change these if you want to manually set position, orientation or
-    * velocity of the rigid body. They are applied before the next physics
-    * step.
+    * @brief Queue of impulses since the last frame
     */
-    PhysicsInputData<DynamicProperties>
-    m_dynamicInputProperties;
-
-    /**
-    * @brief Dynamic properties read from the physics engine
-    *
-    * The values pulled from the physics engine after the last simulation 
-    * step.
-    */
-    PhysicsOutputData<DynamicProperties>
-    m_dynamicOutputProperties;
-
-    /**
-    * @brief Queue of impulses applied from external sources
-    *
-    * The first vector is the impulse itself, the second one is the attack 
-    * point, relative to the rigid body's origin.
-    */
-    PhysicsInputQueue<
+    std::list<
         std::pair<Ogre::Vector3, Ogre::Vector3>
     > m_impulseQueue;
+
+    /**
+    * @brief Properties
+    */
+    Properties
+    m_properties;
 };
 
 

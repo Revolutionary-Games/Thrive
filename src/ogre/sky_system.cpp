@@ -1,8 +1,8 @@
 #include "ogre/sky_system.h"
 
 #include "engine/component_registry.h"
+#include "engine/engine.h"
 #include "engine/entity_filter.h"
-#include "ogre/ogre_engine.h"
 #include "scripting/luabind.h"
 
 #include <iostream>
@@ -14,29 +14,6 @@ using namespace thrive;
 // SkyPlaneComponent
 ////////////////////////////////////////////////////////////////////////////////
 
-static void
-SkyPlaneComponent_touch(
-    SkyPlaneComponent* self
-) {
-    return self->m_properties.touch();
-}
-
-
-static SkyPlaneComponent::Properties&
-SkyPlaneComponent_getWorkingCopy(
-    SkyPlaneComponent* self
-) {
-    return self->m_properties.workingCopy();
-}
-
-
-static const SkyPlaneComponent::Properties&
-SkyPlaneComponent_getLatest(
-    SkyPlaneComponent* self
-) {
-    return self->m_properties.latest();
-}
-
 
 luabind::scope
 SkyPlaneComponent::luaBindings() {
@@ -45,7 +22,7 @@ SkyPlaneComponent::luaBindings() {
         .scope [
             def("TYPE_NAME", &SkyPlaneComponent::TYPE_NAME),
             def("TYPE_ID", &SkyPlaneComponent::TYPE_ID),
-            class_<Properties>("Properties")
+            class_<Properties, Touchable>("Properties")
                 .def_readwrite("enabled", &Properties::enabled)
                 .def_readwrite("plane", &Properties::plane)
                 .def_readwrite("materialName", &Properties::materialName)
@@ -58,9 +35,7 @@ SkyPlaneComponent::luaBindings() {
                 .def_readwrite("groupName", &Properties::groupName)
         ]
         .def(constructor<>())
-        .property("latest", SkyPlaneComponent_getLatest)
-        .property("workingCopy", SkyPlaneComponent_getWorkingCopy)
-        .def("touch", SkyPlaneComponent_touch)
+        .def_readonly("properties", &SkyPlaneComponent::m_properties)
     ;
 }
 
@@ -96,16 +71,14 @@ SkySystem::init(
 ) {
     System::init(engine);
     assert(m_impl->m_sceneManager == nullptr && "Double init of system");
-    OgreEngine* ogreEngine = dynamic_cast<OgreEngine*>(engine);
-    assert(ogreEngine != nullptr && "System requires an OgreEngine");
-    m_impl->m_sceneManager = ogreEngine->sceneManager();
-    m_impl->m_entities.setEngine(engine);
+    m_impl->m_sceneManager = engine->sceneManager();
+    m_impl->m_entities.setEntityManager(&engine->entityManager());
 }
 
 
 void
 SkySystem::shutdown() {
-    m_impl->m_entities.setEngine(nullptr);
+    m_impl->m_entities.setEntityManager(nullptr);
     m_impl->m_sceneManager->setSkyBoxEnabled(false);
     m_impl->m_sceneManager->setSkyDomeEnabled(false);
     m_impl->m_sceneManager->setSkyPlaneEnabled(false);
@@ -119,7 +92,7 @@ SkySystem::update(int) {
     for (auto& value : m_impl->m_entities) {
         SkyPlaneComponent* plane = std::get<0>(value.second);
         if (plane and plane->m_properties.hasChanges()) {
-            const SkyPlaneComponent::Properties& properties = plane->m_properties.stable();
+            auto& properties = plane->m_properties;
             m_impl->m_sceneManager->setSkyPlane(
                 properties.enabled,
                 properties.plane,
@@ -132,7 +105,7 @@ SkySystem::update(int) {
                 properties.ysegments,
                 properties.groupName
             );
-            plane->m_properties.untouch();
+            properties.untouch();
         }
     }
 }
