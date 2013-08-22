@@ -73,6 +73,18 @@ function Microbe:addVacuole(vacuole)
 end
 
 
+function Microbe:getAgentAmount(agentId)
+    local vacuoleList = self._vacuoles[agentId]
+    local totalAmount = 0.0
+    if vacuoleList then
+        for _, vacuole in ipairs(vacuoleList) do
+            totalAmount = totalAmount + vacuole.amount
+        end
+    end
+    return totalAmount
+end
+
+
 function Microbe:getOrganelleAt(q, r)
     for _, organelle in pairs(self._organelles) do
         local localQ = q - organelle.position.q
