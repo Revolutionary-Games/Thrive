@@ -23,13 +23,13 @@ public:
 
     struct Properties : public Touchable {
 
-        Ogre::Real charHeight = 1.0;
+        Ogre::Real charHeight = 16.0;
 
         Ogre::ColourValue colour = Ogre::ColourValue::White;
 
         Ogre::String fontName = "Thrive";
 
-        Ogre::Real height = 1.0;
+        Ogre::Real height = 100.0;
 
         Ogre::GuiHorizontalAlignment horizontalAlignment = Ogre::GHA_LEFT;
 
@@ -41,7 +41,7 @@ public:
 
         Ogre::GuiVerticalAlignment verticalAlignment = Ogre::GVA_TOP;
 
-        Ogre::Real width = 1.0;
+        Ogre::Real width = 100.0;
     };
 
     TextOverlayComponent(
