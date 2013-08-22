@@ -120,7 +120,7 @@ function Microbe:storeAgent(agentId, amount)
     local remainingAmount = amount
     if vacuoleList then
         for _, vacuole in ipairs(vacuoleList) do
-            local storedAmount = math.max(amount, vacuole.capacity - vacuole.amount)
+            local storedAmount = math.min(remainingAmount, vacuole.capacity - vacuole.amount)
             vacuole.amount = vacuole.amount + storedAmount
             remainingAmount = remainingAmount - storedAmount
             if remainingAmount <= 0.0 then
