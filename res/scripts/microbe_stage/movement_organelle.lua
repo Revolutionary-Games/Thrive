@@ -28,7 +28,6 @@ function MovementOrganelle:_moveMicrobe(milliseconds)
     local forceMagnitude = self.force:dotProduct(direction)
     local energy = math.abs(self.energyMultiplier * forceMagnitude * milliseconds / 1000)
     local availableEnergy = self.microbe:takeAgent(1, energy)
-    debug("Available energy: " .. tostring(energy) .. "  " .. tostring(availableEnergy))
     if availableEnergy < energy then
         forceMagnitude = sign(forceMagnitude) * availableEnergy * 1000 / milliseconds
     end
