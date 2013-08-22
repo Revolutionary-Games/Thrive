@@ -141,15 +141,15 @@ function Microbe:takeAgent(agentId, maxAmount)
     local totalTaken = 0.0
     if vacuoleList then
         for _, vacuole in ipairs(vacuoleList) do
-            local amountTaken = math.max(maxAmount - totalTaken, vacuole.capacity)
-            vacuole.amount = vacuole.amount - amountTaken
+            local amountTaken = math.min(maxAmount - totalTaken, vacuole.amount)
+            vacuole.amount = math.max(vacuole.amount - amountTaken, 0.0)
             totalTaken = totalTaken + amountTaken
             if totalTaken >= maxAmount then
                 break
             end
         end
     end
-    self:_updateAgentAbsorber(vacuole.agentId)
+    self:_updateAgentAbsorber(agentId)
     return totalTaken
 end
 
