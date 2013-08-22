@@ -25,89 +25,222 @@ static const AgentId NULL_AGENT = 0;
 AgentId
 generateAgentId();
 
+/**
+* @brief Component for entities that act as agent particles
+*/
 class AgentComponent : public Component {
     COMPONENT(Agent)
 
 public:
 
+    /**
+    * @brief The agent id
+    */
     AgentId m_agentId = NULL_AGENT;
 
+    /**
+    * @brief The potency of this particle
+    */
     float m_potency = 0.0f;
 
+    /**
+    * @brief The time until this particle despawns
+    */
     Milliseconds m_timeToLive = 0;
 
+    /**
+    * @brief The current velocity of the particle
+    */
     Ogre::Vector3 m_velocity = Ogre::Vector3::ZERO;
 
 };
 
 
+/**
+* @brief Emitter for agent particles
+*/
 class AgentEmitterComponent : public Component {
     COMPONENT(AgentEmitter)
 
 public:
 
+    /**
+    * @brief Lua bindings
+    *
+    * Exposes:
+    * - AgentEmitterComponent()
+    * - AgentEmitterComponent::m_agentId
+    * - AgentEmitterComponent::m_emissionRadius
+    * - AgentEmitterComponent::m_emitInterval
+    * - AgentEmitterComponent::m_maxInitialSpeed
+    * - AgentEmitterComponent::m_minInitialSpeed
+    * - AgentEmitterComponent::m_minEmissionAngle
+    * - AgentEmitterComponent::m_maxEmissionAngle
+    * - AgentEmitterComponent::m_meshName
+    * - AgentEmitterComponent::m_particlesPerEmission
+    * - AgentEmitterComponent::m_particleLifeTime
+    * - AgentEmitterComponent::m_particleScale
+    * - AgentEmitterComponent::m_potencyPerParticle
+    *
+    * @return 
+    */
     static luabind::scope
     luaBindings();
 
+    /**
+    * @brief The agent id to emit
+    */
     AgentId m_agentId = NULL_AGENT;
 
+    /**
+    * @brief How far away the particles are spawned
+    */
     Ogre::Real m_emissionRadius = 0.0;
 
+    /**
+    * @brief How often new particles are spawned
+    */
     Milliseconds m_emitInterval;
 
+    /**
+    * @brief The maximum initial speed of new particles
+    */
     Ogre::Real m_maxInitialSpeed = 0.0;
 
+    /**
+    * @brief The minimum initial speed of new particles
+    */
     Ogre::Real m_minInitialSpeed = 0.0;
 
+    /**
+    * @brief The maximum angle at which to emit particles
+    *
+    * Zero degrees is to the left, positive is counter-clockwise.
+    */
     Ogre::Degree m_maxEmissionAngle;
 
+    /**
+    * @brief The minimum angle at which to emit particles
+    *
+    * Zero degrees is to the left, positive is counter-clockwise.
+    */
     Ogre::Degree m_minEmissionAngle;
 
+    /**
+    * @brief The mesh that new particles are created with
+    */
     Ogre::String m_meshName;
 
+    /**
+    * @brief The number of particles created per emission interval
+    */
     unsigned int m_particlesPerEmission;
 
+    /**
+    * @brief How long new particles will stay alive
+    */
     Milliseconds m_particleLifeTime;
 
+    /**
+    * @brief The scale of new particles
+    */
     Ogre::Vector3 m_particleScale = Ogre::Vector3(1, 1, 1);
 
+    /**
+    * @brief The potency new particles will receive
+    */
     float m_potencyPerParticle = 1.0f;
 
-    // For use by system
-
+    /**
+    * @brief For use by AgentEmitterSystem
+    */
     Milliseconds m_timeSinceLastEmission = 0;
 
 };
 
 
+/**
+* @brief Absorbs agent particles
+*/
 class AgentAbsorberComponent : public Component {
     COMPONENT(AgentAbsorber)
 
 public:
 
+    /**
+    * @brief Lua bindings
+    *
+    * Exposes:
+    * - AgentAbsorberComponent::absorbedAgentAmount
+    * - AgentAbsorberComponent::canAbsorbAgent
+    * - AgentAbsorberComponent::setCanAbsorbAgent
+    *
+    * @return 
+    */
     static luabind::scope
     luaBindings();
 
+    /**
+    * @brief The agents absorbed in the last time step
+    */
     std::unordered_map<AgentId, float> m_absorbedAgents;
 
+    /**
+    * @brief Whether a particular agent id can be absorbed
+    */
     std::unordered_set<AgentId> m_canAbsorbAgent;
 
+    /**
+    * @brief The absorbed amount in the last time step
+    *
+    * @param id
+    *   The agent id to get the amount for
+    *
+    * @return 
+    */
     float
     absorbedAgentAmount(
         AgentId id
     ) const;
 
+    /**
+    * @brief Whether an agent can be absorbed
+    *
+    * @param id
+    *   The agent id to check
+    *
+    * @return 
+    */
     bool
     canAbsorbAgent(
         AgentId id
     ) const;
 
+    /**
+    * @brief Sets the amount of absorbed agents
+    *
+    * Use this for e.g. resetting the absorbed amount down
+    * to zero.
+    *
+    * @param id
+    *   The agent id to change the amount for
+    * @param amount
+    *   The new amount
+    */
     void
     setAbsorbedAgentAmount(
         AgentId id,
         float amount
     );
 
+    /**
+    * @brief Sets whether an agent can be absorbed
+    *
+    * @param id
+    *   The agent id to set the flag for
+    * @param canAbsorb
+    *   Whether to absorb the agent
+    */
     void
     setCanAbsorbAgent(
         AgentId id,
@@ -117,6 +250,9 @@ public:
 };
 
 
+/**
+* @brief Despawns agent particles after they've reached their lifetime
+*/
 class AgentLifetimeSystem : public System {
     
 public:
@@ -155,6 +291,9 @@ private:
 };
 
 
+/**
+* @brief Moves agent particles around
+*/
 class AgentMovementSystem : public System {
     
 public:
@@ -193,6 +332,9 @@ private:
 };
 
 
+/**
+* @brief Spawns agent particles for AgentEmitterComponent
+*/
 class AgentEmitterSystem : public System {
     
 public:
@@ -231,6 +373,9 @@ private:
 };
 
 
+/**
+* @brief Despawns agents for AgentAbsorberComponent
+*/
 class AgentAbsorberSystem : public System {
     
 public:

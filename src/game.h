@@ -95,7 +95,7 @@
  * The most important one is probably Entity. Then, there are the subclasses of
  * Component. If you want to know more about the script API of these classes,
  * look for the function \c luaBindings() (e.g. Entity::luaBindings()), it 
- * will explain how to use the class from a script.
+ * will list the functions and data members that are exposed to Lua.
  *
  */
 namespace thrive {
@@ -120,6 +120,11 @@ public:
     static Game&
     instance();
 
+    /**
+    * @brief Returns the entity manager of the global Game instance
+    *
+    * @return 
+    */
     static EntityManager&
     globalEntityManager();
 

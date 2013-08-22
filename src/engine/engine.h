@@ -41,6 +41,17 @@ class Engine {
 
 public:
     
+    /**
+    * @brief Lua bindings
+    *
+    * Exposes:
+    * - Engine::setPhysicsDebugDrawingEnabled
+    * - Engine::keyboard (as property)
+    * - Engine::mouse (as property)
+    * - Engine::sceneManager (as property)
+    *
+    * @return 
+    */
     static luabind::scope
     luaBindings();
 
@@ -119,6 +130,11 @@ public:
     Ogre::SceneManager*
     sceneManager() const;
 
+    /**
+    * @brief Enables or disables physics debug drawing
+    *
+    * @param enabled
+    */
     void
     setPhysicsDebugDrawingEnabled(
         bool enabled

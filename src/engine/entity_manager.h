@@ -39,6 +39,12 @@ public:
     *   The entity to add to
     * @param component
     *   The component to add
+    *
+    * @return
+    *   The component as a non-owning pointer
+    *
+    * @note:
+    *   Use the templated version to receive the proper type back
     */
     Component*
     addComponent(
@@ -46,6 +52,21 @@ public:
         std::unique_ptr<Component> component
     );
 
+    /**
+    * @brief Adds a component
+    *
+    * @tparam C
+    *   The component's class
+    *
+    * @param entityId
+    *   The entity to add to
+    *
+    * @param component
+    *   The component to add
+    *
+    * @return 
+    *   The component as a non-owning pointer
+    */
     template<typename C>
     C*
     addComponent(
@@ -163,6 +184,24 @@ public:
         const std::string& name
     );
 
+    /**
+    * @brief Retrieves a component, creating it if necessary
+    *
+    * @tparam C
+    *   The component class
+    *
+    * @tparam Args
+    *   Constructor arguments in case the component could not be found
+    *
+    * @param id
+    *   The entity the component belongs to
+    *
+    * @param args
+    *   Constructor arguments
+    *
+    * @return 
+    *   A non-owning pointer to the component
+    */
     template<typename C, typename... Args>
     C*
     getOrCreateComponent(

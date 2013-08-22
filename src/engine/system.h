@@ -21,6 +21,15 @@ class System {
 
 public:
 
+    /**
+    * @brief Lua bindings
+    *
+    * Exposes:
+    * - System::active
+    * - System::setActive
+    *
+    * @return 
+    */
     static luabind::scope
     luaBindings();
 
@@ -34,6 +43,13 @@ public:
     */
     virtual ~System() = 0;
 
+    /**
+    * @brief Whether this system is active
+    *
+    * Inactive systems are not being updated
+    *
+    * @return 
+    */
     bool
     active() const;
 
@@ -60,6 +76,13 @@ public:
         Engine* engine
     );
 
+    /**
+    * @brief Sets the active status of this system
+    *
+    * Inactive systems are not updated
+    *
+    * @param active
+    */
     void
     setActive(
         bool active
