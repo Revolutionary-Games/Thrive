@@ -21,7 +21,7 @@ object.agentEmitter = AgentEmitterComponent()
 object:addComponent(object.agentEmitter)
 object.agentEmitter.agentId = 1
 object.agentEmitter.emitInterval = 1000
-object.agentEmitter.emissionRadius = 4
+object.agentEmitter.emissionRadius = 1
 object.agentEmitter.maxInitialSpeed = 10
 object.agentEmitter.minInitialSpeed = 2
 object.agentEmitter.minEmissionAngle = Degree(0)
@@ -29,8 +29,8 @@ object.agentEmitter.maxEmissionAngle = Degree(360)
 object.agentEmitter.meshName = "molecule.mesh"
 object.agentEmitter.particlesPerEmission = 1
 object.agentEmitter.particleLifeTime = 5000
-object.agentEmitter.particleScale = Vector3(0.1, 0.1, 0.1)
-object.agentEmitter.potencyPerParticle = 30.0
+object.agentEmitter.particleScale = Vector3(0.3, 0.3, 0.3)
+object.agentEmitter.potencyPerParticle = 3.0
 object.agentEmitter.effectCallback = function(agentEntity, otherEntity)
     agentEntity:destroy()
 end
