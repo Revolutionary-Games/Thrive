@@ -2,16 +2,21 @@ local playerCam = Entity("playerCam")
 
 -- Camera
 playerCam.camera = OgreCameraComponent("playerCam")
+playerCam.camera.properties.nearClipDistance = 5
+playerCam.camera.properties:touch()
 playerCam:addComponent(playerCam.camera)
+
 -- Scene node
 playerCam.sceneNode = OgreSceneNodeComponent()
 playerCam.sceneNode.transform.position.z = 30
 playerCam.sceneNode.transform:touch()
 playerCam:addComponent(playerCam.sceneNode)
 
-playerCam.camera.properties.nearClipDistance = 5
-playerCam.camera.properties:touch()
 
+-- Light
+playerCam.light = OgreLightComponent()
+playerCam.light:setRange(200)
+playerCam:addComponent(playerCam.light)
 
 -- OnUpdate
 playerCam.onUpdate = OnUpdateComponent()
@@ -33,10 +38,3 @@ viewport.properties:touch()
 addViewport(viewport)
 
 
--- Picture in Picture
-local pipViewport = OgreViewport(1)
-pipViewport.properties.cameraEntity = playerCam
-pipViewport.properties.width = 0.1
-pipViewport.properties.height = 0.1
-pipViewport.properties:touch()
-addViewport(pipViewport)
