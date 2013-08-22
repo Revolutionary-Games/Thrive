@@ -5,7 +5,13 @@ function PlayerMicrobe:__init()
 end
 
 function PlayerMicrobe:update(milliseconds)
-    -- Find mouse target point
+    self:updateFacingTargetPoint()
+    self:updateMovementDirection()
+    Microbe.update(self, milliseconds)
+    setPlayerEnergyCount(self:getAgentAmount(1))
+end
+
+function PlayerMicrobe:updateFacingTargetPoint()
     local mousePosition = Engine.mouse:normalizedPosition() 
     local playerCam = Entity("playerCam")
     local cameraComponent = playerCam:getComponent(OgreCameraComponent.TYPE_NAME())
@@ -13,7 +19,9 @@ function PlayerMicrobe:update(milliseconds)
     local plane = Plane(Vector3(0, 0, 1), 0)
     local intersects, t = ray:intersects(plane)
     self.facingTargetPoint = ray:getPoint(t)
-    -- Sum up movement commands
+end
+
+function PlayerMicrobe:updateMovementDirection()
     local direction = Vector3(0, 0, 0)
     if (Engine.keyboard:isKeyDown(KeyboardSystem.KC_W)) then
         direction = direction + Vector3(0, 1, 0)
@@ -29,7 +37,6 @@ function PlayerMicrobe:update(milliseconds)
     end
     direction:normalise()
     self.movementDirection = direction;
-    Microbe.update(self, milliseconds)
 end
 
 local player = PlayerMicrobe()
@@ -62,3 +69,4 @@ player:addOrganelle(0, -1, backwardOrganelle)
 
 
 
+player:storeAgent(1, 10)
