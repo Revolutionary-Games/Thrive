@@ -144,7 +144,6 @@ TextOverlaySystem::update(int) {
         auto& properties = textOverlayComponent->m_properties;
         if (properties.hasChanges()) {
             Ogre::TextAreaOverlayElement* textOverlay = textOverlayComponent->m_overlayElement;
-            std::cout << "Updating text " << textOverlay->isVisible() << std::endl;
             textOverlay->setPosition(
                 properties.left,
                 properties.top
