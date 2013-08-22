@@ -13,16 +13,16 @@ add_sources(
     ${CMAKE_CURRENT_SOURCE_DIR}/entity_filter.h
     ${CMAKE_CURRENT_SOURCE_DIR}/entity_manager.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/entity_manager.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/shared_data.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/shared_data.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/script_bindings.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/script_bindings.h
     ${CMAKE_CURRENT_SOURCE_DIR}/system.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/system.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/touchable.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/touchable.h
 )
 
 add_test_sources(
-    ${CMAKE_CURRENT_SOURCE_DIR}/tests/engine.cpp 
     ${CMAKE_CURRENT_SOURCE_DIR}/tests/entity.cpp 
     ${CMAKE_CURRENT_SOURCE_DIR}/tests/entity_filter.cpp 
-    ${CMAKE_CURRENT_SOURCE_DIR}/tests/shared_data.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/tests/test_component.h
 )

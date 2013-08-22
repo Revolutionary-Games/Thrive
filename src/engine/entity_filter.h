@@ -1,6 +1,6 @@
 #pragma once
 
-#include "engine/engine.h"
+#include "engine/entity_manager.h"
 #include "engine/component_collection.h"
 
 #include <assert.h>
@@ -71,7 +71,7 @@ struct ExtractComponentType<Optional<ComponentType>> {
 *
 *   void init(Engine* engine) override {
 *       System::init(engine);
-*       m_entities.setEngine(engine);
+*       m_entities.setEntityFilter(&engine->entityManager());
 *   }
 *
 *   void update(int milliseconds) override {
@@ -87,7 +87,7 @@ struct ExtractComponentType<Optional<ComponentType>> {
 *   }
 *
 *   void shutdown() overrde {
-*       m_entities.setEngine(nullptr);
+*       m_entities.setEntityManager(nullptr);
 *       System::shutdown();
 *   }
 * };
@@ -124,6 +124,7 @@ public:
     *   If \a recordChanges is true, you are responsible for clearing the
     *   collections returned by addedEntities() and removedEntities().
     *   If you don't clear them regularly, it's a memory leak.
+    *   You can use EntityFilter::clearChanges() to clear both collections.
     */
     EntityFilter(
         bool recordChanges = false
@@ -197,16 +198,15 @@ public:
     removedEntities();
 
     /**
-    * @brief Attaches this filter to the engine
+    * @brief Sets the entity manager this filter applies to
     *
-    * If \a engine is \c nullptr, the filter is disabled.
-    *
-    * @param engine
-    *   The engine to attach to
+    * @param entityManager
+    *   The new entity manager to listen to. If \c nullptr, the filter stays
+    *   empty.
     */
     void
-    setEngine(
-        Engine* engine
+    setEntityManager(
+        EntityManager* entityManager
     );
 
 private:

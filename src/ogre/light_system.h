@@ -1,8 +1,8 @@
 #pragma once
 
 #include "engine/component.h"
-#include "engine/shared_data.h"
 #include "engine/system.h"
+#include "engine/touchable.h"
 
 #include <memory>
 #include <OgreLight.h>
@@ -26,36 +26,7 @@ public:
     /**
     * @brief Properties
     */
-    struct Properties {
-        /**
-        * @brief The light's type
-        *
-        * Can be
-        *   - \c Ogre::Light::LT_POINT (the default)
-        *   - \c Ogre::Light::LT_DIRECTIONAL
-        *   - \c Ogre::Light::LT_SPOTLIGHT
-        */
-        Ogre::Light::LightTypes type = Ogre::Light::LT_POINT;
-
-        /**
-        * @brief The diffuse colour
-        *
-        * Defaults to white.
-        */
-        Ogre::ColourValue diffuseColour = Ogre::ColourValue::White;
-
-        /**
-        * @brief The specular colour
-        *
-        * Defaults to white.
-        */
-        Ogre::ColourValue specularColour = Ogre::ColourValue::White;
-
-        /**
-        * @brief Attenuation range
-        */
-        Ogre::Real attenuationRange = 10.0f;
-
+    struct Properties : public Touchable {
         /**
         * @brief Attenuation constant factor
         */
@@ -72,14 +43,23 @@ public:
         Ogre::Real attenuationQuadratic = 0.75;
 
         /**
-        * @brief Spotlight inner angle
+        * @brief Attenuation range
         */
-        Ogre::Radian spotlightInnerAngle = Ogre::Radian(0.5);
+        Ogre::Real attenuationRange = 10.0f;
 
         /**
-        * @brief Spotlight outer angle
+        * @brief The diffuse colour
+        *
+        * Defaults to white.
         */
-        Ogre::Radian spotlightOuterAngle = Ogre::Radian(1.0);
+        Ogre::ColourValue diffuseColour = Ogre::ColourValue::White;
+
+        /**
+        * @brief The specular colour
+        *
+        * Defaults to white.
+        */
+        Ogre::ColourValue specularColour = Ogre::ColourValue::White;
 
         /**
         * @brief Spotlight falloff
@@ -87,41 +67,69 @@ public:
         Ogre::Real spotlightFalloff = 1.0f;
 
         /**
+        * @brief Spotlight inner angle
+        */
+        Ogre::Radian spotlightInnerAngle = Ogre::Radian(0.5);
+
+        /**
         * @brief Spotlight near clip distance
         */
         Ogre::Real spotlightNearClipDistance = 10.0f;
 
         /**
-        * @brief Convenience function for setting sensible attenuation values
-        *
-        * This function sets the attenuation range and attenuation coefficients
-        * to sensible values, as desribed <a href="http://www.ogre3d.org/tikiwiki/tiki-index.php?page=Light+Attenuation+Shortcut">
-        * here</a>.
-        *
-        * @param range
-        *   The light's range
+        * @brief Spotlight outer angle
         */
-        void setRange(
-            Ogre::Real range
-        );
+        Ogre::Radian spotlightOuterAngle = Ogre::Radian(1.0);
+
+        /**
+        * @brief The light's type
+        *
+        * Can be
+        *   - \c Ogre::Light::LT_POINT (the default)
+        *   - \c Ogre::Light::LT_DIRECTIONAL
+        *   - \c Ogre::Light::LT_SPOTLIGHT
+        */
+        Ogre::Light::LightTypes type = Ogre::Light::LT_POINT;
 
     };
 
     /**
+    * @brief Convenience function for setting sensible attenuation values
+    *
+    * This function sets the attenuation range and attenuation coefficients
+    * to sensible values, as desribed <a href="http://www.ogre3d.org/tikiwiki/tiki-index.php?page=Light+Attenuation+Shortcut">
+    * here</a>.
+    *
+    * @param range
+    *   The light's range
+    */
+    void setRange(
+        Ogre::Real range
+    );
+
+    /**
     * @brief Lua bindings
     *
-    * Exposes the following \ref shared_data_lua "shared properties":
-    * - \c Properties::type
-    * - \c Properties::diffuseColor
-    * - \c Properties::specularColor
-    * - \c Properties::attenuationRange
-    * - \c Properties::attenuationConstant
-    * - \c Properties::attenuationLinear
-    * - \c Properties::attenuationQuadratic
-    * - \c Properties::spotlightInnerAngle
-    * - \c Properties::spotlightOuterAngle
-    * - \c Properties::spotlightFalloff
-    * - \c Properties::spotlightNearClipDistance
+    * Exposes:
+    * - OgreLightComponent.LightTypes
+    *   - LT_POINT
+    *   - LT_DIRECTIONAL
+    *   - LT_SPOTLIGHT
+    * - OgreLightComponent()
+    * - setRange()
+    * - @link m_properties properties @endlink
+    * - Properties
+    *   - Properties::attenuationConstant
+    *   - Properties::attenuationLinear
+    *   - Properties::attenuationRange
+    *   - Properties::attenuationQuadratic
+    *   - Properties::diffuseColour
+    *   - Properties::specularColour
+    *   - Properties::spotlightFalloff
+    *   - Properties::spotlightInnerAngle
+    *   - Properties::spotlightNearClipDistance
+    *   - Properties::spotlightOuterAngle
+    *   - Properties::type
     *
     * @return 
     */
@@ -134,9 +142,9 @@ public:
     Ogre::Light* m_light = nullptr;
 
     /**
-    * @brief Shared properties
+    * @brief Properties
     */
-    RenderData<Properties>
+    Properties
     m_properties;
 
 };
@@ -163,7 +171,6 @@ public:
     * @brief Initializes the system
     *
     * @param engine
-    *   Must be an OgreEngine
     */
     void init(Engine* engine) override;
 

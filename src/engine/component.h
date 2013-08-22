@@ -42,10 +42,11 @@ public:
     /**
     * @brief Lua bindings
     *
-    * A component exposes the following functions:
+    * Exposes:
     *
-    * - \c typeId: Returns the component's type id as a number
-    * - \c typeName: Returns the component's type name as a string
+    * - Component::typeId()
+    * - Component::typeName()
+    * - Component::touch()
     *
     * @return 
     */
@@ -81,6 +82,10 @@ protected:
     */
     static TypeId
     generateTypeId();
+
+private:
+
+    bool m_hasChanges = true;
 
 };
 

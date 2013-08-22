@@ -3,17 +3,17 @@ local PARTICLE_MASS = 0.02
 local MIN_PARTICLE_SPEED = 1
 local MAX_PARTICLE_SPEED = 10
 local PARTICLE_SCALE = 0.1
-local PARTICLE_LIFETIME = 10000 -- Milliseconds
+local PARTICLE_LIFETIME = PARTICLE_INTERVAL * 500 -- Milliseconds
 
 function emitParticle(origin)
     local particle = Entity()
     -- Rigid Body
     particle.rigidBody = RigidBodyComponent()
-    particle.rigidBody.workingCopy.linearDamping = 0.5
-    particle.rigidBody.workingCopy.shape = btCylinderShape(
+    particle.rigidBody.properties.linearDamping = 0.5
+    particle.rigidBody.properties.shape = btCylinderShape(
         Vector3(3.75, 1, 3.75) * PARTICLE_SCALE
     )
-    particle.rigidBody.workingCopy.friction = 0.2
+    particle.rigidBody.properties.friction = 0.2
     local speed = math.random(MIN_PARTICLE_SPEED, MAX_PARTICLE_SPEED) * PARTICLE_MASS
     local direction = Vector3(
         math.random(-100, 100),
@@ -28,18 +28,17 @@ function emitParticle(origin)
         Vector3(0, 0, 0)
     )
     particle.rigidBody:applyCentralImpulse(direction * speed)
-    particle.rigidBody.workingCopy.mass = PARTICLE_MASS
-    particle.rigidBody.workingCopy.linearFactor = Vector3(1, 1, 0)
-    particle.rigidBody.workingCopy.angularFactor = Vector3(0, 0, 1)
-    particle.rigidBody:touch()
+    particle.rigidBody.properties.mass = PARTICLE_MASS
+    particle.rigidBody.properties.linearFactor = Vector3(1, 1, 0)
+    particle.rigidBody.properties.angularFactor = Vector3(0, 0, 1)
+    particle.rigidBody.properties:touch()
     particle:addComponent(particle.rigidBody)
     -- Scene Node and Mesh
     particle.sceneNode = OgreSceneNodeComponent()
     particle:addComponent(OgreEntityComponent("Mesh.mesh"))
-    particle.sceneNode.workingCopy.position = origin
-    --particle.sceneNode.workingCopy.orientation = Quaternion(Radian(Degree(90)), Vector3(1, 0, 0))
-    particle.sceneNode.workingCopy.scale = Vector3(PARTICLE_SCALE, PARTICLE_SCALE, PARTICLE_SCALE)
-    particle.sceneNode:touch()
+    particle.sceneNode.properties.position = origin
+    particle.sceneNode.properties.scale = Vector3(PARTICLE_SCALE, PARTICLE_SCALE, PARTICLE_SCALE)
+    particle.sceneNode.properties:touch()
     particle:addComponent(particle.sceneNode)
     -- Handle despawn
     particle.onUpdate = OnUpdateComponent()
@@ -58,7 +57,7 @@ local emitter = Entity()
 
 emitter.onUpdate = OnUpdateComponent()
 emitter:addComponent(emitter.onUpdate)
-emitter.timeSinceLastParticle = 0
+emitter.timeSinceLastParticle = PARTICLE_INTERVAL
 emitter.onUpdate.callback = function(entityId, milliseconds)
     emitter.timeSinceLastParticle = emitter.timeSinceLastParticle + milliseconds
     while emitter.timeSinceLastParticle >= PARTICLE_INTERVAL do

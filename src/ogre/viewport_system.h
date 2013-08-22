@@ -2,8 +2,8 @@
 
 #include "engine/component.h"
 #include "engine/entity_manager.h"
-#include "engine/shared_data.h"
 #include "engine/system.h"
+#include "engine/touchable.h"
 
 #include <memory>
 #include <OgreCommon.h>
@@ -30,7 +30,13 @@ public:
     /**
     * @brief Properties
     */
-    struct Properties {
+    struct Properties : public Touchable {
+
+        /**
+        * @brief The viewport's background colour
+        */
+        Ogre::ColourValue backgroundColour;
+
         /**
         * @brief The camera entity to use
         *
@@ -38,6 +44,14 @@ public:
         * will stay black
         */
         EntityId cameraEntity = EntityManager::NULL_ID;
+
+        /**
+        * @brief The viewport's height relative to the window
+        *
+        * The coordinate system is relative, i.e. 0.5 is half height,
+        * 1.0 is full height.
+        */
+        Ogre::Real height = 1.0f;
 
         /**
         * @brief Left edge of the viewport within the window
@@ -63,30 +77,22 @@ public:
         */
         Ogre::Real width = 1.0f;
 
-        /**
-        * @brief The viewport's height relative to the window
-        *
-        * The coordinate system is relative, i.e. 0.5 is half height,
-        * 1.0 is full height.
-        */
-        Ogre::Real height = 1.0f;
-
-        /**
-        * @brief The viewport's background colour
-        */
-        Ogre::ColourValue backgroundColour;
     };
 
     /**
     * @brief Lua bindings
     *
-    * Exposes the following \ref shared_data_lua shared properties:
-    * - \c Properties::cameraEntity
-    * - \c Properties::left
-    * - \c Properties::top
-    * - \c Properties::width
-    * - \c Properties::height
-    * - \c Properties::backgroundColour
+    * Exposes:
+    * - OgreViewport(int)
+    * - @link m_properties properties @endlink
+    * - Properties
+    *   - Properties::backgroundColour
+    *   - Properties::cameraEntity
+    *   - Properties::height
+    *   - Properties::left
+    *   - Properties::top
+    *   - Properties::width
+    *   - Properties::zOrder
     *
     * @return 
     */
@@ -104,6 +110,12 @@ public:
     );
 
     /**
+    * @brief Properties
+    */
+    Properties
+    m_properties;
+
+    /**
     * @brief Pointer to internal Ogre::Viewport
     */
     Ogre::Viewport* m_viewport = nullptr;
@@ -113,11 +125,6 @@ public:
     */
     const int m_zOrder;
 
-    /**
-    * @brief Shared properties
-    */
-    RenderData<Properties>
-    m_properties;
 
 };
 
@@ -166,7 +173,6 @@ public:
     * @brief Initializes the system
     *
     * @param engine
-    *   Must be an OgreEngine
     */
     void init(Engine* engine) override;
 

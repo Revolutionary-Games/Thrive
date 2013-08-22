@@ -1,6 +1,7 @@
 #include "engine/entity.h"
 
 #include "engine/component_registry.h"
+#include "engine/engine.h"
 #include "engine/entity_manager.h"
 #include "game.h"
 #include "scripting/luabind.h"
@@ -56,7 +57,7 @@ Entity::luaBindings() {
 
 
 Entity::Entity()
-  : Entity(Game::instance().entityManager())
+  : Entity(Game::instance().engine().entityManager())
 {
 }
 
@@ -70,7 +71,7 @@ Entity::Entity(
 
 Entity::Entity(
     EntityId id
-) : Entity(id, Game::instance().entityManager())
+) : Entity(id, Game::instance().engine().entityManager())
 {
 }
 
@@ -85,7 +86,7 @@ Entity::Entity(
 
 Entity::Entity(
     const std::string& name
-) : Entity(name, Game::instance().entityManager())
+) : Entity(name, Game::instance().engine().entityManager())
 {
 }
 

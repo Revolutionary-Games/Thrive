@@ -1,13 +1,7 @@
 #include "game.h"
 
 #include "engine/engine.h"
-#include "engine/entity_manager.h"
-#include "engine/shared_data.h"
 #include "engine/typedefs.h"
-#include "ogre/ogre_engine.h"
-#include "scripting/lua_state.h"
-#include "scripting/script_engine.h"
-#include "bullet/bullet_engine.h"
 #include "util/make_unique.h"
 
 #include <boost/thread.hpp>
@@ -19,41 +13,26 @@ using namespace thrive;
 
 struct Game::Implementation {
 
+    using Clock = std::chrono::high_resolution_clock;
+
     Implementation()
-      : m_scriptEngine(m_luaState)
     {
+        m_targetFrameDuration = std::chrono::microseconds(1000000 / m_targetFrameRate);
     }
-    // Lua state must be one of the last to be destroyed,
-    // so keep it at top.
-    LuaState m_luaState;
 
-    std::list< std::unique_ptr<EngineRunner> > m_engineRunners;
+    Engine m_engine;
 
-    EntityManager m_entityManager;
+    std::chrono::microseconds m_targetFrameDuration;
 
-    OgreEngine m_ogreEngine;
-
-    ScriptEngine m_scriptEngine;
-
-    BulletEngine m_bulletEngine;
+    unsigned short m_targetFrameRate = 60;
 
     bool m_quit;
-
-    boost::condition_variable m_quitCondition;
-
-    boost::mutex m_quitMutex;
 
 };
 
 
 Game&
 Game::instance() {
-    // Make sure that shared states are instantiated first
-    // to avoid problems with static destruction order
-    RenderState::instance();
-    InputState::instance();
-    PhysicsOutputState::instance();
-    PhysicsInputState::instance();
     static Game instance;
     return instance;
 }
@@ -65,72 +44,64 @@ Game::Game()
 }
 
 
-Game::~Game() {
-    assert(m_impl->m_engineRunners.size() == 0 && "Game still running on destruction");
-}
+Game::~Game() { }
 
 
-EntityManager&
-Game::entityManager() {
-    return m_impl->m_entityManager;
-}
-
-
-OgreEngine&
-Game::ogreEngine() {
-    return m_impl->m_ogreEngine;
-}
-
-
-BulletEngine&
-Game::bulletEngine() {
-    return m_impl->m_bulletEngine;
+Engine&
+Game::engine() {
+    return m_impl->m_engine;
 }
 
 
 void
 Game::quit() {
-    boost::lock_guard<boost::mutex> lock(m_impl->m_quitMutex);
     m_impl->m_quit = true;
-    m_impl->m_quitCondition.notify_one();
 }
 
 
 void
 Game::run() {
-    // Make sure we're not running
-    assert(m_impl->m_engineRunners.size() == 0 && "Can't start Game twice");
-    // Initialize engine runners
-    m_impl->m_engineRunners.push_back(
-        make_unique<EngineRunner>(m_impl->m_ogreEngine)
-    );
-    m_impl->m_engineRunners.push_back(
-        make_unique<EngineRunner>(m_impl->m_scriptEngine)
-    );
-    m_impl->m_engineRunners.push_back(
-        make_unique<EngineRunner>(m_impl->m_bulletEngine)
-    );
-    // Start runners
-    boost::unique_lock<boost::mutex> lock(m_impl->m_quitMutex);
+    unsigned int fpsCount = 0;
+    int fpsTime = 0;
+    auto lastUpdate = Implementation::Clock::now();
+    m_impl->m_engine.init();
+    // Start game loop
     m_impl->m_quit = false;
-    for (auto& runner : m_impl->m_engineRunners) {
-        runner->start(&m_impl->m_entityManager);
-    }
-    // Wait for quit
     while (not m_impl->m_quit) {
-        m_impl->m_quitCondition.wait(lock);
+        auto now = Implementation::Clock::now();
+        auto delta = now - lastUpdate;
+        int milliSeconds = std::chrono::duration_cast<std::chrono::milliseconds>(delta).count();
+        lastUpdate = now;
+        m_impl->m_engine.update(milliSeconds);
+        auto frameDuration = Implementation::Clock::now() - now;
+        auto sleepDuration = m_impl->m_targetFrameDuration - frameDuration;
+        if (sleepDuration.count() > 0) {
+            auto microseconds = std::chrono::duration_cast<std::chrono::microseconds>(sleepDuration).count();
+            boost::chrono::microseconds boostDuration = boost::chrono::microseconds(microseconds);
+            boost::this_thread::sleep_for(boostDuration);
+        }
+        fpsCount += 1;
+        fpsTime += std::chrono::duration_cast<std::chrono::milliseconds>(frameDuration).count();
+        if (fpsTime >= 1000) {
+            float fps = 1000 * float(fpsCount) / float(fpsTime);
+            std::cout << "FPS: " << fps << std::endl;
+            fpsCount = 0;
+            fpsTime = 0;
+        }
     }
-    // Stop all runners
-    for (auto& runner : m_impl->m_engineRunners) {
-        runner->stop();
-    }
-    m_impl->m_engineRunners.clear();
+    m_impl->m_engine.shutdown();
 }
 
 
-ScriptEngine&
-Game::scriptEngine() {
-    return m_impl->m_scriptEngine;
+std::chrono::microseconds
+Game::targetFrameDuration() const {
+    return m_impl->m_targetFrameDuration;
+}
+
+
+unsigned short
+Game::targetFrameRate() const {
+    return m_impl->m_targetFrameRate;
 }
 
 

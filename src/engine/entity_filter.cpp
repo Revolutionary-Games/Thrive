@@ -26,19 +26,19 @@ struct ComponentGroupBuilder {
 
     static bool 
     build(
-        Engine* engine,
+        EntityManager* entityManager,
         EntityId entityId,
         ComponentGroup& group
     ) {
         using ComponentType = typename std::tuple_element<index, std::tuple<ComponentTypes...>>::type;
         using RawType = typename ExtractComponentType<ComponentType>::Type;
         bool isRequired = IsRequired<ComponentType>::value;
-        RawType* component = engine->getComponent<RawType>(entityId);
+        RawType* component = entityManager->getComponent<RawType>(entityId);
         if (isRequired and not component) {
             return false;
         }
         std::get<index>(group) = component;
-        return ComponentGroupBuilder<index-1, ComponentTypes...>::build(engine, entityId, group);
+        return ComponentGroupBuilder<index-1, ComponentTypes...>::build(entityManager, entityId, group);
     }
         
 };
@@ -49,14 +49,14 @@ struct ComponentGroupBuilder<0, ComponentTypes...> {
 
     static bool 
     build(
-        Engine* engine,
+        EntityManager* entityManager,
         EntityId entityId,
         std::tuple<typename ExtractComponentType<ComponentTypes>::PointerType...>& group
     ) {
         using ComponentType = typename std::tuple_element<0, std::tuple<ComponentTypes...>>::type;
         using RawType = typename ExtractComponentType<ComponentType>::Type;
         bool isRequired = IsRequired<ComponentType>::value;
-        RawType* component = engine->getComponent<RawType>(entityId);
+        RawType* component = entityManager->getComponent<RawType>(entityId);
         if (isRequired and not component) {
             return false;
         }
@@ -103,7 +103,7 @@ struct EntityFilter<ComponentTypes...>::Implementation {
 
     void
     initEntities() {
-        for (EntityId id : m_engine->entities()) {
+        for (EntityId id : m_entityManager->entities()) {
             this->initEntity(id);
         }
     }
@@ -114,7 +114,7 @@ struct EntityFilter<ComponentTypes...>::Implementation {
     ) {
         ComponentGroup group;
         bool isComplete = detail::ComponentGroupBuilder<sizeof...(ComponentTypes) - 1, ComponentTypes...>::build(
-            m_engine,
+            m_entityManager,
             id,
             group
         );
@@ -170,7 +170,7 @@ struct EntityFilter<ComponentTypes...>::Implementation {
         >::type;
         using RawType = typename detail::ExtractComponentType<ComponentType>::Type;
         bool isRequired = detail::IsRequired<ComponentType>::value;
-        auto& collection = m_engine->getComponentCollection(
+        auto& collection = m_entityManager->getComponentCollection(
             RawType::TYPE_ID()
         );
         // Callbacks
@@ -208,9 +208,9 @@ struct EntityFilter<ComponentTypes...>::Implementation {
 
     EntityMap m_addedEntities;
 
-    Engine* m_engine = nullptr;
-
     EntityMap m_entities;
+
+    EntityManager* m_entityManager = nullptr;
 
     bool m_recordChanges;
 
@@ -278,15 +278,15 @@ EntityFilter<ComponentTypes...>::removedEntities() {
 
 template<typename... ComponentTypes>
 void
-EntityFilter<ComponentTypes...>::setEngine(
-    Engine* engine
+EntityFilter<ComponentTypes...>::setEntityManager(
+    EntityManager* entityManager
 ) {
     m_impl->unregisterCallbacks();
     m_impl->m_entities.clear();
     m_impl->m_addedEntities.clear();
     m_impl->m_removedEntities.clear();
-    m_impl->m_engine = engine;
-    if (engine) {
+    m_impl->m_entityManager = entityManager;
+    if (entityManager) {
         detail::RegisterNextCallback<sizeof...(ComponentTypes)>::registerNextCallback(*m_impl);
         m_impl->initEntities();
     }

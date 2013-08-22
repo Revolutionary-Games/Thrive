@@ -1,6 +1,6 @@
 #include "bullet/update_physics_system.h"
 
-#include "bullet/bullet_engine.h"
+#include "engine/engine.h"
 
 #include <assert.h>
 #include <btBulletDynamicsCommon.h>
@@ -29,10 +29,8 @@ UpdatePhysicsSystem::init(
     Engine* engine
 ) {
     System::init(engine);
-    BulletEngine* bulletEngine = dynamic_cast<BulletEngine*>(engine);
-    assert(bulletEngine != nullptr && "UpdatePhysicsSystem requires a BulletEngine");
-    m_impl->m_world = bulletEngine->world();
-    assert(m_impl->m_world != nullptr && "World object is null. Initialize the BulletEngine first.");
+    m_impl->m_world = engine->physicsWorld();
+    assert(m_impl->m_world != nullptr && "World object is null. Initialize the Engine first.");
 }
 
 

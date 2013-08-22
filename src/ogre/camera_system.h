@@ -1,8 +1,8 @@
 #pragma once
 
 #include "engine/component.h"
-#include "engine/shared_data.h"
 #include "engine/system.h"
+#include "engine/touchable.h"
 
 #include <memory>
 #include <OgreCommon.h>
@@ -27,42 +27,49 @@ class OgreCameraComponent : public Component {
 
 public:
 
+
     /**
     * @brief Properties
     */
-    struct Properties {
+    struct Properties : public Touchable {
+
         /**
-        * @brief The level of rendering detail
+        * @brief Aspect ratio of the frustum viewport
         */
-        Ogre::PolygonMode polygonMode = Ogre::PM_SOLID;
+        Ogre::Real aspectRatio = 1.3333f;
+
+        /**
+        * @brief Far clip distance
+        */
+        Ogre::Real farClipDistance = 10000.0f;
 
         /**
         * @brief The y-dimension field of view
         */
         Ogre::Radian fovY = Ogre::Radian{45.0f};
+
         /**
         * @brief Near clip distance
         */
         Ogre::Real nearClipDistance = 100.0f;
+
         /**
-        * @brief Far clip distance
+        * @brief The level of rendering detail
         */
-        Ogre::Real farClipDistance = 10000.0f;
-        /**
-        * @brief Aspect ratio of the frustum viewport
-        */
-        Ogre::Real aspectRatio = 1.3333f;
+        Ogre::PolygonMode polygonMode = Ogre::PM_SOLID;
     };
 
     /**
     * @brief Lua bindings
     *
-    * Exposes the following \ref shared_data_lua "shared properties":
-    * - \c Properties::polygonMode
-    * - \c Properties::fovY
-    * - \c Properties::nearClipDistance
-    * - \c Properties::farClipDistance
-    * - \c Properties::aspectRatio
+    * Exposes:
+    * - OgreCameraComponent(std::string)
+    * - Properties
+    *   - Properties::aspectRatio
+    *   - Properties::farClipDistance
+    *   - Properties::fovY
+    *   - Properties::nearClipDistance
+    *   - Properties::polygonMode
     *
     * @return 
     */
@@ -90,9 +97,9 @@ public:
     const std::string m_name;
 
     /**
-    * @brief Shared properties
+    * @brief Properties
     */
-    RenderData<Properties>
+    Properties
     m_properties;
 
 };
@@ -119,7 +126,6 @@ public:
     * @brief Initializes the system
     *
     * @param engine
-    *   Must be an OgreEngine
     */
     void init(Engine* engine) override;
 

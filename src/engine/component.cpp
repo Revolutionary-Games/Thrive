@@ -22,3 +22,5 @@ Component::luaBindings() {
 
 
 Component::~Component() {}
+
+

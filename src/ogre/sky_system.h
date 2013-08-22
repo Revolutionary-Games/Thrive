@@ -1,8 +1,8 @@
 #pragma once
 
 #include "engine/component.h"
-#include "engine/shared_data.h"
 #include "engine/system.h"
+#include "engine/touchable.h"
 
 #include <memory>
 #include <OgrePlane.h>
@@ -27,64 +27,78 @@ public:
     /**
     * @brief Properties
     */
-    struct Properties {
+    struct Properties : public Touchable {
+
         /**
         * @brief Whether this sky plane is enabled
         */
         bool enabled = true;
+
         /**
         * @brief The sky plane's plane (normal and distance from camera)
         */
         Ogre::Plane plane = {1, 1, 1, 1};
+
         /**
         * @brief The material path
         */
         Ogre::String materialName = "Background/Blue1";
+
         /**
         * @brief The bigger the scale, the bigger the sky plane
         */
         Ogre::Real scale = 1000;
+
         /**
         * @brief How often to repeat the material across the plane
         */
         Ogre::Real tiling = 10;
+
         /**
         * @brief Whether to draw the plane before everything else
         */
         bool drawFirst = true;
+
         /**
         * @brief If zero, the plane will be flat. Above zero, the plane will
         * be slightly curved
         */
         Ogre::Real bow = 0;
+
         /**
         * @brief Segments for bowed plane
         */
         int xsegments = 1;
+
         /**
         * @brief Segments for bowed plane
         */
         int ysegments = 1;
+
         /**
         * @brief The resource group to which to assign the plane mesh
         */
         Ogre::String groupName = Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME;
+
     };
 
     /**
     * @brief Lua bindings
     *
-    * Exposes the following \ref shared_data_lua "shared properties":
-    * - \c Properties::enabled
-    * - \c Properties::plane
-    * - \c Properties::materialName
-    * - \c Properties::scale
-    * - \c Properties::tiling
-    * - \c Properties::drawFirst
-    * - \c Properties::bow
-    * - \c Properties::xsegments
-    * - \c Properties::ysegments
-    * - \c Properties::groupName
+    * Exposes: 
+    * - SkyPlaneComponent()
+    * - @link SkyPlaneComponent::m_properties properties @endlink
+    * - SkyPlaneComponent::Properties
+    *   - Properties::enabled
+    *   - Properties::plane
+    *   - Properties::materialName
+    *   - Properties::scale
+    *   - Properties::tiling
+    *   - Properties::drawFirst
+    *   - Properties::bow
+    *   - Properties::xsegments
+    *   - Properties::ysegments
+    *   - Properties::groupName
     *
     * @return 
     */
@@ -92,9 +106,9 @@ public:
     luaBindings();
 
     /**
-    * @brief Shared properties
+    * @brief Properties
     */
-    RenderData<Properties>
+    Properties
     m_properties;
 
 };
@@ -121,7 +135,6 @@ public:
     * @brief Initializes the system
     *
     * @param engine
-    *   Must be an OgreEngine
     */
     void init(Engine* engine) override;
 
