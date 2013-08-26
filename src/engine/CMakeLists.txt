@@ -15,6 +15,8 @@ add_sources(
     ${CMAKE_CURRENT_SOURCE_DIR}/entity_manager.h
     ${CMAKE_CURRENT_SOURCE_DIR}/script_bindings.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/script_bindings.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/serialization.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/serialization.h
     ${CMAKE_CURRENT_SOURCE_DIR}/system.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/system.h
     ${CMAKE_CURRENT_SOURCE_DIR}/touchable.cpp
@@ -24,5 +26,6 @@ add_sources(
 add_test_sources(
     ${CMAKE_CURRENT_SOURCE_DIR}/tests/entity.cpp 
     ${CMAKE_CURRENT_SOURCE_DIR}/tests/entity_filter.cpp 
+    ${CMAKE_CURRENT_SOURCE_DIR}/tests/serialization.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/tests/test_component.h
 )
