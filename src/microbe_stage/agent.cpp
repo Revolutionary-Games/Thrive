@@ -1,6 +1,5 @@
 #include "microbe_stage/agent.h"
 
-#include "bullet/on_collision.h"
 #include "bullet/rigid_body_system.h"
 #include "engine/engine.h"
 #include "engine/entity_filter.h"
