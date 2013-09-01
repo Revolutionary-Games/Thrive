@@ -15,6 +15,8 @@ class scope;
 
 namespace thrive {
 
+class StorageContainer;
+
 /**
 * @brief Base class for components
 *
@@ -58,6 +60,11 @@ public:
     */
     virtual ~Component() = 0;
 
+    virtual void
+    load(
+        const StorageContainer& storage
+    ) = 0;
+
     /**
     * @brief The entity this component belongs to
     *
@@ -83,6 +90,9 @@ public:
     ) {
         m_owner = owner;
     }
+
+    virtual StorageContainer
+    storage() const = 0;
 
     /**
     * @brief The component's type id

@@ -1,10 +1,11 @@
 #include "bullet/rigid_body_system.h"
 
 #include "bullet/bullet_ogre_conversion.h"
-#include "engine/component_registry.h"
+#include "engine/component_factory.h"
 #include "engine/engine.h"
 #include "engine/entity_filter.h"
 #include "scripting/luabind.h"
+#include "engine/serialization.h"
 
 #include <iostream>
 
@@ -99,11 +100,47 @@ RigidBodyComponent::getWorldTransform(
 
 
 void
+RigidBodyComponent::load(
+    const StorageContainer& storage
+) {
+    m_properties.shape = CollisionShape::load(storage.get<StorageContainer>("shape", StorageContainer()));
+    m_properties.restitution = storage.get<btScalar>("restitution", 0.0f);
+    m_properties.linearFactor = storage.get<Ogre::Vector3>("linearFactor", Ogre::Vector3(1,1,1));
+    m_properties.angularFactor = storage.get<Ogre::Vector3>("angularFactor", Ogre::Vector3(1,1,1));
+    m_properties.mass = storage.get<btScalar>("mass", 1.0f);
+    m_properties.friction = storage.get<btScalar>("friction", 0.0f);
+    m_properties.linearDamping = storage.get<btScalar>("linearDamping", 0.0f);
+    m_properties.angularDamping = storage.get<btScalar>("angularDamping", 0.0f);
+    m_properties.rollingFriction = storage.get<btScalar>("rollingFriction", 0.0f);
+    m_properties.hasContactResponse = storage.get<bool>("hasContactResponse", true);
+    m_properties.kinematic = storage.get<bool>("kinematic", false);
+    m_properties.touch();
+}
+
+
+void
 RigidBodyComponent::setWorldTransform(
     const btTransform& transform
 ) {
     m_dynamicProperties.position = bulletToOgre(transform.getOrigin());
     m_dynamicProperties.rotation = bulletToOgre(transform.getRotation());
+}
+
+
+StorageContainer
+RigidBodyComponent::storage() const {
+    StorageContainer storage = Component::storage();
+    storage.set<StorageContainer>("shape", m_properties.shape->storage());
+    storage.set<Ogre::Vector3>("linearFactor", m_properties.linearFactor);
+    storage.set<Ogre::Vector3>("angularFactor", m_properties.angularFactor);
+    storage.set<btScalar>("mass", m_properties.mass);
+    storage.set<btScalar>("friction", m_properties.friction);
+    storage.set<btScalar>("linearDamping", m_properties.linearDamping);
+    storage.set<btScalar>("angularDamping", m_properties.angularDamping);
+    storage.set<btScalar>("rollingFriction", m_properties.rollingFriction);
+    storage.set<bool>("hasContactResponse", m_properties.hasContactResponse);
+    storage.set<bool>("kinematic", m_properties.kinematic);
+    return storage;
 }
 
 REGISTER_COMPONENT(RigidBodyComponent)

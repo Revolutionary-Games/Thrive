@@ -29,6 +29,14 @@ public:
     static luabind::scope
     luaBindings();
 
+    void
+    load(
+        const StorageContainer& storage
+    ) override;
+
+    StorageContainer
+    storage() const override;
+
     /**
     * @brief The Lua callback
     */

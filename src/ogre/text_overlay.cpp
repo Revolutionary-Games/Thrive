@@ -1,8 +1,9 @@
 #include "ogre/text_overlay.h"
 
-#include "engine/component_registry.h"
+#include "engine/component_factory.h"
 #include "engine/engine.h"
 #include "engine/entity_filter.h"
+#include "engine/serialization.h"
 #include "scripting/luabind.h"
 
 #include <iostream>
@@ -45,7 +46,7 @@ TextOverlayComponent::luaBindings() {
                 .def_readwrite("width", &Properties::width)
         ]
         .def(constructor<std::string>())
-        .def_readonly("name", &TextOverlayComponent::m_name)
+        .def("name", &TextOverlayComponent::name)
         .def_readonly("properties", &TextOverlayComponent::m_properties)
     ;
 }
@@ -55,6 +56,51 @@ TextOverlayComponent::TextOverlayComponent(
 ) : m_name(name)
 {
 }
+
+
+TextOverlayComponent::TextOverlayComponent() {}
+
+
+void
+TextOverlayComponent::load(
+    const StorageContainer& storage
+) {
+    Component::load(storage);
+    m_name = storage.get<Ogre::String>("name", "");
+    m_properties.charHeight = storage.get<Ogre::Real>("charHeight", 16.0f);
+    m_properties.colour = storage.get<Ogre::ColourValue>("colour", Ogre::ColourValue::White);
+    m_properties.fontName = storage.get<Ogre::String>("fontName", "Thrive");
+    m_properties.height = storage.get<Ogre::Real>("height", 100.0f);
+    m_properties.horizontalAlignment = static_cast<Ogre::GuiHorizontalAlignment>(
+        storage.get<uint8_t>("horizontalAlignment", Ogre::GHA_LEFT)
+    );
+    m_properties.left = storage.get<Ogre::Real>("left", 0.0f);
+    m_properties.text = storage.get<Ogre::String>("text", "");
+    m_properties.top = storage.get<Ogre::Real>("top", 0.0f);
+    m_properties.verticalAlignment = static_cast<Ogre::GuiVerticalAlignment>(
+        storage.get<uint8_t>("verticalAlignment", Ogre::GVA_TOP)
+    );
+    m_properties.width = storage.get<Ogre::Real>("width", 100.0f);
+}
+
+
+StorageContainer
+TextOverlayComponent::storage() const {
+    StorageContainer storage = Component::storage();
+    storage.set<Ogre::String>("name", m_name);
+    storage.set<Ogre::Real>("charHeight", m_properties.charHeight);
+    storage.set<Ogre::ColourValue>("colour", m_properties.colour);
+    storage.set<Ogre::String>("fontName", m_properties.fontName);
+    storage.set<Ogre::Real>("height", m_properties.height);
+    storage.set<uint8_t>("horizontalAlignment", m_properties.horizontalAlignment);
+    storage.set<Ogre::Real>("left", m_properties.left);
+    storage.set<Ogre::String>("text", m_properties.text);
+    storage.set<Ogre::Real>("top", m_properties.top);
+    storage.set<uint8_t>("verticalAlignment", m_properties.verticalAlignment);
+    storage.set<Ogre::Real>("width", m_properties.width);
+    return storage;
+}
+
 
 REGISTER_COMPONENT(TextOverlayComponent)
 
@@ -125,7 +171,7 @@ TextOverlaySystem::update(int) {
         Ogre::TextAreaOverlayElement* textOverlay = static_cast<Ogre::TextAreaOverlayElement*>(
             m_impl->m_overlayManager->createOverlayElement(
                 "TextArea",
-                textOverlayComponent->m_name
+                textOverlayComponent->name()
             )
         );
         textOverlayComponent->m_overlayElement = textOverlay;

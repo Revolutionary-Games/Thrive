@@ -1,8 +1,9 @@
 #include "scripting/on_update.h"
 
-#include "engine/component_registry.h"
+#include "engine/component_factory.h"
 #include "engine/engine.h"
 #include "engine/entity_filter.h"
+#include "engine/serialization.h"
 #include "game.h"
 #include "scripting/luabind.h"
 
@@ -20,6 +21,20 @@ OnUpdateComponent::luaBindings() {
         .def(constructor<>())
         .def_readwrite("callback", &OnUpdateComponent::m_callback)
     ;
+}
+
+
+void
+OnUpdateComponent::load(
+    const StorageContainer& storage
+) {
+    Component::load(storage);
+}
+
+StorageContainer
+OnUpdateComponent::storage() const {
+    StorageContainer storage = Component::storage();
+    return storage;
 }
 
 REGISTER_COMPONENT(OnUpdateComponent)

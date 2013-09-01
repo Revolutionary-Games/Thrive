@@ -18,7 +18,7 @@ class scope;
 
 namespace thrive {
 
-using AgentId = unsigned int;
+using AgentId = uint16_t;
 
 static const AgentId NULL_AGENT = 0;
 
@@ -53,6 +53,14 @@ public:
     */
     Ogre::Vector3 m_velocity = Ogre::Vector3::ZERO;
 
+    void
+    load(
+        const StorageContainer& storage
+    ) override;
+
+    StorageContainer
+    storage() const override;
+
 };
 
 
@@ -78,7 +86,7 @@ public:
     * - AgentEmitterComponent::m_maxEmissionAngle
     * - AgentEmitterComponent::m_meshName
     * - AgentEmitterComponent::m_particlesPerEmission
-    * - AgentEmitterComponent::m_particleLifeTime
+    * - AgentEmitterComponent::m_particleLifetime
     * - AgentEmitterComponent::m_particleScale
     * - AgentEmitterComponent::m_potencyPerParticle
     *
@@ -100,7 +108,7 @@ public:
     /**
     * @brief How often new particles are spawned
     */
-    Milliseconds m_emitInterval;
+    Milliseconds m_emitInterval = 1000;
 
     /**
     * @brief The maximum initial speed of new particles
@@ -134,12 +142,12 @@ public:
     /**
     * @brief The number of particles created per emission interval
     */
-    unsigned int m_particlesPerEmission;
+    uint16_t m_particlesPerEmission;
 
     /**
     * @brief How long new particles will stay alive
     */
-    Milliseconds m_particleLifeTime;
+    Milliseconds m_particleLifetime;
 
     /**
     * @brief The scale of new particles
@@ -155,6 +163,14 @@ public:
     * @brief For use by AgentEmitterSystem
     */
     Milliseconds m_timeSinceLastEmission = 0;
+
+    void
+    load(
+        const StorageContainer& storage
+    ) override;
+
+    StorageContainer
+    storage() const override;
 
 };
 
@@ -216,6 +232,11 @@ public:
         AgentId id
     ) const;
 
+    void
+    load(
+        const StorageContainer& storage
+    ) override;
+
     /**
     * @brief Sets the amount of absorbed agents
     *
@@ -246,6 +267,9 @@ public:
         AgentId id,
         bool canAbsorb
     );
+
+    StorageContainer
+    storage() const override;
 
 };
 

@@ -1,8 +1,9 @@
 #include "ogre/camera_system.h"
 
-#include "engine/component_registry.h"
+#include "engine/component_factory.h"
 #include "engine/engine.h"
 #include "engine/entity_filter.h"
+#include "engine/serialization.h"
 #include "ogre/scene_node_system.h"
 #include "scripting/luabind.h"
 
@@ -43,7 +44,6 @@ OgreCameraComponent::luaBindings() {
                 .def_readwrite("fovY", &Properties::fovY)
                 .def_readwrite("nearClipDistance", &Properties::nearClipDistance)
                 .def_readwrite("farClipDistance", &Properties::farClipDistance)
-                .def_readwrite("aspectRatio", &Properties::aspectRatio)
         ]
         .enum_("PolygonMode") [
             value("PM_POINTS", Ogre::PM_POINTS),
@@ -60,6 +60,36 @@ OgreCameraComponent::OgreCameraComponent(
     std::string name
 ) : m_name(name)
 {
+}
+
+OgreCameraComponent::OgreCameraComponent()
+  : OgreCameraComponent("")
+{
+}
+
+
+void
+OgreCameraComponent::load(
+    const StorageContainer& storage
+) {
+    Component::load(storage);
+    m_properties.farClipDistance = storage.get<Ogre::Real>("farClipDistance", 10000.0f);
+    m_properties.fovY = storage.get<Ogre::Degree>("fovY", Ogre::Degree(45.0f));
+    m_properties.nearClipDistance = storage.get<Ogre::Real>("nearClipDistance", 100.0f);
+    m_properties.polygonMode = static_cast<Ogre::PolygonMode>(
+        storage.get<int16_t>("polygonMode", Ogre::PM_SOLID)
+    );
+}
+
+
+StorageContainer
+OgreCameraComponent::storage() const {
+    StorageContainer storage = Component::storage();
+    storage.set<Ogre::Real>("farClipDistance", m_properties.farClipDistance);
+    storage.set<Ogre::Degree>("fovY", m_properties.fovY);
+    storage.set<Ogre::Real>("nearClipDistance", m_properties.nearClipDistance);
+    storage.set<int16_t>("polygonMode", m_properties.polygonMode);
+    return storage;
 }
 
 REGISTER_COMPONENT(OgreCameraComponent)
@@ -119,6 +149,7 @@ OgreCameraSystem::update(int) {
         Ogre::Camera* camera = m_impl->m_sceneManager->createCamera(
             cameraComponent->m_name
         );
+        camera->setAutoAspectRatio(true);
         cameraComponent->m_camera = camera;
         m_impl->m_cameras[entityId] = camera;
         sceneNodeComponent->m_sceneNode->attachObject(camera);
@@ -141,7 +172,6 @@ OgreCameraSystem::update(int) {
             camera->setFOVy(properties.fovY);
             camera->setNearClipDistance(properties.nearClipDistance);
             camera->setFarClipDistance(properties.farClipDistance);
-            camera->setAspectRatio(properties.aspectRatio);
             // Untouch
             properties.untouch();
         }

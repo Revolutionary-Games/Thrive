@@ -1,10 +1,11 @@
 #include "ogre/scene_node_system.h"
 
-#include "engine/component_registry.h"
+#include "engine/component_factory.h"
 #include "engine/engine.h"
 #include "engine/entity.h"
 #include "engine/entity_filter.h"
 #include "engine/entity_manager.h"
+#include "engine/serialization.h"
 #include "scripting/luabind.h"
 
 #include <OgreSceneManager.h>
@@ -28,6 +29,7 @@ OgreSceneNodeComponent_setMeshName(
 ) {
     self->m_meshName = meshName;
 }
+
 
 static Entity
 OgreSceneNodeComponent_getParent(
@@ -65,6 +67,31 @@ OgreSceneNodeComponent::luaBindings() {
         .property("parent", OgreSceneNodeComponent_getParent, OgreSceneNodeComponent_setParent)
         .property("meshName", OgreSceneNodeComponent_getMeshName, OgreSceneNodeComponent_setMeshName)
     ;
+}
+
+
+void
+OgreSceneNodeComponent::load(
+    const StorageContainer& storage
+) {
+    Component::load(storage);
+    m_transform.orientation = storage.get<Ogre::Quaternion>("orientation", Ogre::Quaternion::IDENTITY);
+    m_transform.position = storage.get<Ogre::Vector3>("position", Ogre::Vector3(0,0,0));
+    m_transform.scale = storage.get<Ogre::Vector3>("scale", Ogre::Vector3(1,1,1));
+    m_meshName = storage.get<Ogre::String>("meshName");
+    m_parentId = storage.get<EntityId>("parentId", NULL_ENTITY);
+}
+
+
+StorageContainer
+OgreSceneNodeComponent::storage() const {
+    StorageContainer storage = Component::storage();
+    storage.set<Ogre::Quaternion>("orientation", m_transform.orientation);
+    storage.set<Ogre::Vector3>("position", m_transform.position);
+    storage.set<Ogre::Vector3>("scale", m_transform.scale);
+    storage.set<Ogre::String>("meshName", m_meshName);
+    storage.set<EntityId>("parentId", m_parentId);
+    return storage;
 }
 
 REGISTER_COMPONENT(OgreSceneNodeComponent)

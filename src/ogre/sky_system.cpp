@@ -1,8 +1,9 @@
 #include "ogre/sky_system.h"
 
-#include "engine/component_registry.h"
+#include "engine/component_factory.h"
 #include "engine/engine.h"
 #include "engine/entity_filter.h"
+#include "engine/serialization.h"
 #include "scripting/luabind.h"
 
 #include <iostream>
@@ -37,6 +38,41 @@ SkyPlaneComponent::luaBindings() {
         .def(constructor<>())
         .def_readonly("properties", &SkyPlaneComponent::m_properties)
     ;
+}
+
+
+void
+SkyPlaneComponent::load(
+    const StorageContainer& storage
+) {
+    Component::load(storage);
+    m_properties.enabled = storage.get<bool>("enabled");
+    m_properties.plane = storage.get<Ogre::Plane>("plane");
+    m_properties.materialName = storage.get<Ogre::String>("materialName");
+    m_properties.scale = storage.get<Ogre::Real>("scale");
+    m_properties.tiling = storage.get<Ogre::Real>("tiling");
+    m_properties.drawFirst = storage.get<bool>("drawFirst");
+    m_properties.bow = storage.get<Ogre::Real>("bow");
+    m_properties.xsegments = storage.get<int>("xsegments");
+    m_properties.ysegments = storage.get<int>("ysegments");
+    m_properties.groupName = storage.get<Ogre::String>("groupName");
+}
+
+
+StorageContainer
+SkyPlaneComponent::storage() const {
+    StorageContainer storage = Component::storage();
+    storage.set<bool>("enabled", m_properties.enabled);
+    storage.set<Ogre::Plane>("plane", m_properties.plane);
+    storage.set<Ogre::String>("materialName", m_properties.materialName);
+    storage.set<Ogre::Real>("scale", m_properties.scale);
+    storage.set<Ogre::Real>("tiling", m_properties.tiling);
+    storage.set<bool>("drawFirst", m_properties.drawFirst);
+    storage.set<Ogre::Real>("bow", m_properties.bow);
+    storage.set<int>("xsegments", m_properties.xsegments);
+    storage.set<int>("ysegments", m_properties.ysegments);
+    storage.set<Ogre::String>("groupName", m_properties.groupName);
+    return storage;
 }
 
 REGISTER_COMPONENT(SkyPlaneComponent)

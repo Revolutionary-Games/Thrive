@@ -1,6 +1,7 @@
 #pragma once
 
 #include "engine/component.h"
+#include "engine/serialization.h"
 
 #include <boost/lexical_cast.hpp>
 
@@ -30,5 +31,17 @@ public:
     typeName() const override {
         return TYPE_NAME();
     };
+
+    void
+    load(
+        const thrive::StorageContainer& storage
+    ) override {
+        Component::load(storage);
+    }
+
+    thrive::StorageContainer
+    storage() const override {
+        return Component::storage();
+    }
 
 };

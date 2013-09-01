@@ -29,7 +29,7 @@ public:
         /**
         * @brief The character height in pixels
         */
-        Ogre::Real charHeight = 16.0;
+        Ogre::Real charHeight = 16.0f;
 
         /**
         * @brief Text colour
@@ -44,7 +44,7 @@ public:
         /**
         * @brief Textbox height in pixels
         */
-        Ogre::Real height = 100.0;
+        Ogre::Real height = 100.0f;
 
         /**
         * @brief Horizontal alignment relative to screen
@@ -78,7 +78,7 @@ public:
         /**
         * @brief Textbox width in pixels
         */
-        Ogre::Real width = 100.0;
+        Ogre::Real width = 100.0f;
     };
 
     /**
@@ -113,10 +113,20 @@ public:
         Ogre::String name
     );
 
-    /**
-    * @brief The overlay's name
-    */
-    const Ogre::String m_name;
+    TextOverlayComponent();
+
+    void
+    load(
+        const StorageContainer& storage
+    ) override;
+
+    Ogre::String
+    name() const {
+        return m_name;
+    }
+
+    StorageContainer
+    storage() const override;
 
     /**
     * @brief Pointer to internal overlay element
@@ -127,6 +137,10 @@ public:
     * @brief Properties
     */
     Properties m_properties;
+
+private:
+    
+    Ogre::String m_name;
 };
 
 

@@ -77,6 +77,14 @@ public:
     static luabind::scope
     luaBindings();
 
+    void
+    load(
+        const StorageContainer& storage
+    ) override;
+
+    StorageContainer
+    storage() const override;
+
     TouchableValue<Ogre::String> m_meshName;
 
     /**
