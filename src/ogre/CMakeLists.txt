@@ -9,8 +9,6 @@ add_sources(
     ${CMAKE_CURRENT_SOURCE_DIR}/light_system.h
     ${CMAKE_CURRENT_SOURCE_DIR}/mouse_system.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/mouse_system.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/on_key.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/on_key.h
     ${CMAKE_CURRENT_SOURCE_DIR}/render_system.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/render_system.h
     ${CMAKE_CURRENT_SOURCE_DIR}/scene_node_system.cpp

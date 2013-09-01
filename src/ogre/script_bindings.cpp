@@ -6,7 +6,6 @@
 #include "ogre/keyboard_system.h"
 #include "ogre/light_system.h"
 #include "ogre/mouse_system.h"
-#include "ogre/on_key.h"
 #include "ogre/scene_node_system.h"
 #include "ogre/script_bindings.h"
 #include "ogre/sky_system.h"
@@ -519,7 +518,6 @@ thrive::OgreBindings::luaBindings() {
         materialBindings(),
         def("getColourMaterial", getColourMaterial),
         // Components
-        OnKeyComponent::luaBindings(),
         OgreCameraComponent::luaBindings(),
         OgreLightComponent::luaBindings(),
         OgreSceneNodeComponent::luaBindings(),
