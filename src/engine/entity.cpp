@@ -1,6 +1,5 @@
 #include "engine/entity.h"
 
-#include "engine/component_registry.h"
 #include "engine/engine.h"
 #include "engine/entity_manager.h"
 #include "game.h"
@@ -50,18 +49,8 @@ Entity::luaBindings() {
         .def("addComponent", &Entity_addComponent, adopt(_2))
         .def("destroy", &Entity::destroy)
         .def("exists", &Entity::exists)
-        .def("getComponent",
-            static_cast<Component* (Entity::*) (Component::TypeId)>(&Entity::getComponent)
-        )
-        .def("getComponent",
-            static_cast<Component* (Entity::*) (const std::string&)>(&Entity::getComponent)
-        )
-        .def("removeComponent",
-            static_cast<void (Entity::*) (Component::TypeId)>(&Entity::removeComponent)
-        )
-        .def("removeComponent",
-            static_cast<void (Entity::*) (const std::string&)>(&Entity::removeComponent)
-        )
+        .def("getComponent", &Entity::getComponent)
+        .def("removeComponent", &Entity::removeComponent)
         .property("id", &Entity::id)
     ;
 }
@@ -180,16 +169,6 @@ Entity::getComponent(
 }
 
 
-Component*
-Entity::getComponent(
-    const std::string& typeName
-) {
-    return this->getComponent(
-        ComponentRegistry::instance().typeNameToId(typeName)
-    );
-}
-
-
 bool
 Entity::hasComponent(
     Component::TypeId typeId
@@ -199,16 +178,6 @@ Entity::hasComponent(
         typeId
     );
     return component != nullptr;
-}
-
-
-bool
-Entity::hasComponent(
-    const std::string& typeName
-) {
-    return this->hasComponent(
-        ComponentRegistry::instance().typeNameToId(typeName)
-    );
 }
 
 
@@ -228,12 +197,3 @@ Entity::removeComponent(
     );
 }
 
-
-void
-Entity::removeComponent(
-    const std::string& typeName
-) {
-    this->removeComponent(
-        ComponentRegistry::instance().typeNameToId(typeName)
-    );
-}
