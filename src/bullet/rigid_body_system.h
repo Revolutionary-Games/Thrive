@@ -213,6 +213,11 @@ public:
         btTransform& transform
     ) const override;
 
+    void
+    load(
+        const StorageContainer& storage
+    ) override;
+
     /**
     * @brief Reimplemented from btMotionState
     *
@@ -247,6 +252,9 @@ public:
         const Ogre::Vector3& linearVelocity,
         const Ogre::Vector3& angularVelocity
     );
+
+    StorageContainer
+    storage() const override;
 
     /**
     * @brief Internal object, dont use this directly

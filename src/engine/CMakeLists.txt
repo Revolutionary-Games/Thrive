@@ -4,8 +4,8 @@ add_sources(
     ${CMAKE_CURRENT_SOURCE_DIR}/component.h 
     ${CMAKE_CURRENT_SOURCE_DIR}/component_collection.cpp 
     ${CMAKE_CURRENT_SOURCE_DIR}/component_collection.h 
-    ${CMAKE_CURRENT_SOURCE_DIR}/component_registry.cpp 
-    ${CMAKE_CURRENT_SOURCE_DIR}/component_registry.h 
+    ${CMAKE_CURRENT_SOURCE_DIR}/component_factory.cpp 
+    ${CMAKE_CURRENT_SOURCE_DIR}/component_factory.h 
     ${CMAKE_CURRENT_SOURCE_DIR}/engine.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/engine.h
     ${CMAKE_CURRENT_SOURCE_DIR}/entity.cpp

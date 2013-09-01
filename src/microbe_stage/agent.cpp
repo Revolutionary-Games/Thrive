@@ -1,8 +1,10 @@
 #include "microbe_stage/agent.h"
 
 #include "bullet/rigid_body_system.h"
+#include "engine/component_factory.h"
 #include "engine/engine.h"
 #include "engine/entity_filter.h"
+#include "engine/serialization.h"
 #include "ogre/scene_node_system.h"
 #include "scripting/luabind.h"
 #include "util/random.h"
@@ -11,6 +13,30 @@
 #include <OgreSceneManager.h>
 
 using namespace thrive;
+
+REGISTER_COMPONENT(AgentComponent)
+
+void
+AgentComponent::load(
+    const StorageContainer& storage
+) {
+    Component::load(storage);
+    m_agentId = storage.get<AgentId>("agentId", NULL_AGENT);
+    m_potency = storage.get<float>("potency");
+    m_timeToLive = storage.get<Milliseconds>("timeToLive");
+    m_velocity = storage.get<Ogre::Vector3>("velocity");
+}
+
+
+StorageContainer
+AgentComponent::storage() const {
+    StorageContainer storage = Component::storage();
+    storage.set<AgentId>("agentId", m_agentId);
+    storage.set<float>("potency", m_potency);
+    storage.set<Milliseconds>("timeToLive", m_timeToLive);
+    storage.set<Ogre::Vector3>("velocity", m_velocity);
+    return storage;
+}
 
 ////////////////////////////////////////////////////////////////////////////////
 // AgentEmitterComponent
@@ -34,11 +60,53 @@ AgentEmitterComponent::luaBindings() {
         .def_readwrite("maxEmissionAngle", &AgentEmitterComponent::m_maxEmissionAngle)
         .def_readwrite("meshName", &AgentEmitterComponent::m_meshName)
         .def_readwrite("particlesPerEmission", &AgentEmitterComponent::m_particlesPerEmission)
-        .def_readwrite("particleLifeTime", &AgentEmitterComponent::m_particleLifeTime)
+        .def_readwrite("particleLifetime", &AgentEmitterComponent::m_particleLifetime)
         .def_readwrite("particleScale", &AgentEmitterComponent::m_particleScale)
         .def_readwrite("potencyPerParticle", &AgentEmitterComponent::m_potencyPerParticle)
     ;
 }
+
+
+void
+AgentEmitterComponent::load(
+    const StorageContainer& storage
+) {
+    Component::load(storage);
+    m_agentId = storage.get<AgentId>("agentId", NULL_AGENT);
+    m_emissionRadius = storage.get<Ogre::Real>("emissionRadius", 0.0);
+    m_emitInterval = storage.get<Milliseconds>("emitInterval", 1000);
+    m_maxInitialSpeed = storage.get<Ogre::Real>("maxInitialSpeed", 0.0);
+    m_minInitialSpeed = storage.get<Ogre::Real>("minInitialSpeed", 0.0);
+    m_maxEmissionAngle = storage.get<Ogre::Degree>("maxEmissionAngle");
+    m_minEmissionAngle = storage.get<Ogre::Degree>("minEmissionAngle");
+    m_meshName = storage.get<Ogre::String>("meshName");
+    m_particlesPerEmission = storage.get<uint16_t>("particlesPerEmission");
+    m_particleLifetime = storage.get<Milliseconds>("particleLifetime");
+    m_particleScale = storage.get<Ogre::Vector3>("particleScale");
+    m_potencyPerParticle = storage.get<float>("potencyPerParticle");
+    m_timeSinceLastEmission = storage.get<Milliseconds>("timeSinceLastEmission");
+}
+
+StorageContainer
+AgentEmitterComponent::storage() const {
+    StorageContainer storage = Component::storage();
+    storage.set<AgentId>("agentId", m_agentId);
+    storage.set<Ogre::Real>("emissionRadius", m_emissionRadius);
+    storage.set<Milliseconds>("emitInterval", m_emitInterval);
+    storage.set<Ogre::Real>("maxInitialSpeed", m_maxInitialSpeed);
+    storage.set<Ogre::Real>("minInitialSpeed", m_minInitialSpeed);
+    storage.set<Ogre::Degree>("maxEmissionAngle", m_maxEmissionAngle);
+    storage.set<Ogre::Degree>("minEmissionAngle", m_minEmissionAngle);
+    storage.set<Ogre::String>("meshName", m_meshName);
+    storage.set<uint16_t>("particlesPerEmission", m_particlesPerEmission);
+    storage.set<Milliseconds>("particleLifetime", m_particleLifetime);
+    storage.set<Ogre::Vector3>("particleScale", m_particleScale);
+    storage.set<float>("potencyPerParticle", m_potencyPerParticle);
+    storage.set<Milliseconds>("timeSinceLastEmission", m_timeSinceLastEmission);
+    return storage;
+}
+
+REGISTER_COMPONENT(AgentEmitterComponent)
 
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -84,6 +152,20 @@ AgentAbsorberComponent::canAbsorbAgent(
 
 
 void
+AgentAbsorberComponent::load(
+    const StorageContainer& storage
+) {
+    StorageList agents = storage.get<StorageList>("agents");
+    for (const StorageContainer& container : agents) {
+        AgentId agentId = container.get<AgentId>("agentId");
+        float amount = container.get<float>("amount");
+        m_absorbedAgents[agentId] = amount;
+        m_canAbsorbAgent.insert(agentId);
+    }
+}
+
+
+void
 AgentAbsorberComponent::setAbsorbedAgentAmount(
     AgentId id,
     float amount
@@ -104,6 +186,24 @@ AgentAbsorberComponent::setCanAbsorbAgent(
         m_canAbsorbAgent.erase(id);
     }
 }
+
+
+StorageContainer
+AgentAbsorberComponent::storage() const {
+    StorageContainer storage = Component::storage();
+    StorageList agents;
+    agents.reserve(m_canAbsorbAgent.size());
+    for (AgentId agentId : m_canAbsorbAgent) {
+        StorageContainer container;
+        container.set<AgentId>("agentId", agentId);
+        container.set<float>("amount", this->absorbedAgentAmount(agentId));
+        agents.append(container);
+    }
+    storage.set<StorageList>("agents", agents);
+    return storage;
+}
+
+REGISTER_COMPONENT(AgentAbsorberComponent)
 
 ////////////////////////////////////////////////////////////////////////////////
 // AgentLifetimeSystem
@@ -286,13 +386,13 @@ AgentEmitterSystem::update(int milliseconds) {
                     btBroadphaseProxy::SensorTrigger,
                     btBroadphaseProxy::AllFilter & (~ btBroadphaseProxy::SensorTrigger)
                 );
-                agentRigidBodyComponent->m_properties.shape = std::make_shared<btSphereShape>(0.01);
+                agentRigidBodyComponent->m_properties.shape = std::make_shared<SphereShape>(0.01);
                 agentRigidBodyComponent->m_properties.hasContactResponse = false;
                 agentRigidBodyComponent->m_properties.kinematic = true;
                 agentRigidBodyComponent->m_dynamicProperties.position = sceneNodeComponent->m_transform.position + emissionPosition; 
                 // Agent Component
                 auto agentComponent = make_unique<AgentComponent>();
-                agentComponent->m_timeToLive = emitterComponent->m_particleLifeTime;
+                agentComponent->m_timeToLive = emitterComponent->m_particleLifetime;
                 agentComponent->m_velocity = emissionVelocity;
                 agentComponent->m_agentId = emitterComponent->m_agentId;
                 agentComponent->m_potency = emitterComponent->m_potencyPerParticle;
