@@ -82,3 +82,15 @@ TEST(Serialization, string) {
 }
 
 
+TEST(Serialization, StorageContainer) {
+    StorageContainer inner;
+    inner.set<std::string>("value", "thrive");
+    StorageContainer outer;
+    outer.set<StorageContainer>("container", inner);
+    StorageContainer outerCopy = copy(outer);
+    EXPECT_TRUE(outerCopy.contains("container"));
+    StorageContainer innerCopy = outerCopy.get<StorageContainer>("container");
+    EXPECT_TRUE(innerCopy.contains("value"));
+}
+
+
