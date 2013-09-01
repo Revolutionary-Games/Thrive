@@ -16,7 +16,6 @@
 #include "ogre/keyboard_system.h"
 #include "ogre/light_system.h"
 #include "ogre/mouse_system.h"
-#include "ogre/on_key.h"
 #include "ogre/render_system.h"
 #include "ogre/scene_node_system.h"
 #include "ogre/sky_system.h"
@@ -265,7 +264,6 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
             m_mouseSystem,
             // Scripts
             std::make_shared<OnUpdateSystem>(),
-            std::make_shared<OnKeySystem>(),
             // Microbe
             std::make_shared<AgentLifetimeSystem>(),
             std::make_shared<AgentMovementSystem>(),
