@@ -14,6 +14,7 @@ function Organelle:__init()
     self._colour = ColourValue(1,1,1,1)
     self._internalEdgeColour = ColourValue(0.5, 0.5, 0.5, 1)
     self._externalEdgeColour = ColourValue(0, 0, 0, 1)
+    self._needsColourUpdate = false
 end
 
 
@@ -27,18 +28,18 @@ function Organelle:addHex(q, r)
         q = q,
         r = r,
         entity = Entity(),
-        ogreEntity = Engine.sceneManager:createEntity("hex.mesh")
         collisionShape = SphereShape(HEX_SIZE),
+        sceneNode = OgreSceneNodeComponent()
     }
     local x, y = axialToCartesian(q, r)
     local translation = Vector3(x, y, 0)
     -- Scene node
     local hexSceneNode = OgreSceneNodeComponent()
-    hexSceneNode.parent = self.entity
-    hexSceneNode.transform.position = translation
-    hexSceneNode.transform:touch()
-    hexSceneNode:attachObject(hex.ogreEntity)
-    hex.entity:addComponent(hexSceneNode)
+    hex.sceneNode.parent = self.entity
+    hex.sceneNode.transform.position = translation
+    hex.sceneNode.transform:touch()
+    hex.sceneNode.meshName = "hex.mesh"
+    hex.entity:addComponent(hex.sceneNode)
     -- Collision shape
     self.collisionShape:addChildShape(
         translation,
@@ -87,18 +88,25 @@ end
 
 function Organelle:setColour(colour)
     self._colour = colour
-    self:updateHexColours()
+    self._needsColourUpdate = true
 end
 
 
 function Organelle:update(microbe, milliseconds)
+    if self._needsColourUpdate then
+        self:_updateHexColours()
+    end
     -- Nothing
 end
 
 
-function Organelle:updateHexColours()
+function Organelle:_updateHexColours()
     for _, hex in pairs(self._hexes) do
-        local center = hex.ogreEntity:getSubEntity("center")
+        if not hex.sceneNode.entity then
+            self._needsColourUpdate = true
+            return
+        end
+        local center = hex.sceneNode.entity:getSubEntity("center")
         center:setMaterial(getColourMaterial(self._colour))
         for i, qs, rs in iterateNeighbours(hex.q, hex.r) do
             local neighbourHex = self:getHex(qs, rs)
@@ -107,7 +115,7 @@ function Organelle:updateHexColours()
                 self.position.r + rs
             )
             local sideName = HEX_SIDE_NAME[i]
-            local subEntity = hex.ogreEntity:getSubEntity(sideName)
+            local subEntity = hex.sceneNode.entity:getSubEntity(sideName)
             local edgeColour = nil
             if neighbourHex then
                 edgeColour = self._colour
@@ -119,4 +127,9 @@ function Organelle:updateHexColours()
             subEntity:setMaterial(getColourMaterial(edgeColour))
         end
     end
+    self._needsColourUpdate = false
+end
+
+function Organelle:updateHexColours()
+    self._needsColourUpdate = true
 end

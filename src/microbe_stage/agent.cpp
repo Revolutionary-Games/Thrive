@@ -280,9 +280,7 @@ AgentEmitterSystem::update(int milliseconds) {
                 // Scene Node
                 auto agentSceneNodeComponent = make_unique<OgreSceneNodeComponent>();
                 agentSceneNodeComponent->m_transform.scale = emitterComponent->m_particleScale; 
-                agentSceneNodeComponent->attachObject(
-                    m_impl->m_sceneManager->createEntity(emitterComponent->m_meshName)
-                );
+                agentSceneNodeComponent->m_meshName = emitterComponent->m_meshName;
                 // Collision Hull
                 auto agentRigidBodyComponent = make_unique<RigidBodyComponent>(
                     btBroadphaseProxy::SensorTrigger,
