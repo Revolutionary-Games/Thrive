@@ -1,5 +1,6 @@
 #pragma once
 
+#include "bullet/collision_shape.h"
 #include "engine/component.h"
 #include "engine/system.h"
 #include "engine/touchable.h"
@@ -15,8 +16,6 @@
 namespace luabind {
 class scope;
 }
-
-class btCollisionShape;
 
 namespace thrive {
 
@@ -37,7 +36,7 @@ public:
         /**
         * @brief The body's shape .
         */
-        std::shared_ptr<btCollisionShape> shape {new btSphereShape(1)};
+        CollisionShape::Ptr shape {new EmptyShape()};
 
         /**
         * @brief The restitution factor
@@ -55,11 +54,6 @@ public:
         * @brief Locks angular movement to specific axis
         */
         Ogre::Vector3 angularFactor {1,1,1};
-
-        /**
-        * @brief Inertia
-        */
-        btVector3 localInertia {0,0,0};
 
         /**
         * @brief The mass of the rigid body
@@ -87,12 +81,6 @@ public:
         * The rollingFriction prevents rounded shapes, such as spheres, cylinders and capsules from rolling forever
         */
         btScalar rollingFriction = 0.f;
-
-        /**
-        *@brief The force currently applied to the body
-        *
-        */
-        Ogre::Vector3 forceApplied = Ogre::Vector3::ZERO;
 
         /**
         * @brief Whether this rigid body reacts to collisions

@@ -71,7 +71,6 @@ RigidBodyComponent::luaBindings() {
                 .def_readwrite("mass", &Properties::mass)
                 .def_readwrite("friction", &Properties::friction)
                 .def_readwrite("rollingFriction", &Properties::rollingFriction)
-                .def_readwrite("forceApplied", &Properties::forceApplied)
                 .def_readwrite("hasContactResponse", &Properties::hasContactResponse)
                 .def_readwrite("kinematic", &Properties::kinematic)
         ]
@@ -161,15 +160,15 @@ RigidBodyInputSystem::update(int milliseconds) {
         EntityId entityId = added.first;
         RigidBodyComponent* rigidBodyComponent = std::get<0>(added.second);
         auto& properties = rigidBodyComponent->m_properties;
-        btVector3 localInertia = properties.localInertia;
-        properties.shape->calculateLocalInertia(
+        btVector3 localInertia;
+        properties.shape->bulletShape()->calculateLocalInertia(
             properties.mass,
             localInertia
         );
         btRigidBody::btRigidBodyConstructionInfo rigidBodyCI(
             properties.mass,
             rigidBodyComponent,
-            properties.shape.get(),
+            properties.shape->bulletShape(),
             localInertia
         );
         std::unique_ptr<btRigidBody> rigidBody(new btRigidBody(rigidBodyCI));
@@ -193,8 +192,8 @@ RigidBodyInputSystem::update(int milliseconds) {
         btRigidBody* body = rigidBodyComponent->m_body;
         auto& properties = rigidBodyComponent->m_properties;
         if (properties.hasChanges()) {
-            btVector3 localInertia = properties.localInertia;
-            properties.shape->calculateLocalInertia(
+            btVector3 localInertia;
+            properties.shape->bulletShape()->calculateLocalInertia(
                 properties.mass,
                 localInertia
             );
@@ -209,7 +208,7 @@ RigidBodyInputSystem::update(int milliseconds) {
                 properties.angularDamping
             );
             body->setRestitution(properties.restitution);
-            body->setCollisionShape(properties.shape.get());
+            body->setCollisionShape(properties.shape->bulletShape());
             body->setFriction(properties.friction);
             body->setRollingFriction(properties.rollingFriction);
             if (properties.hasContactResponse) {

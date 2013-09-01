@@ -12,7 +12,7 @@ function Microbe:__init(name)
     end
     -- Rigid body
     self.rigidBody = RigidBodyComponent()
-    self.rigidBody.properties.shape = btCompoundShape()
+    self.rigidBody.properties.shape = CompoundShape()
     self.rigidBody.properties.linearDamping = 0.5
     self.rigidBody.properties.friction = 0.2
     self.rigidBody.properties.linearFactor = Vector3(1, 1, 0)
@@ -45,8 +45,8 @@ function Microbe:addOrganelle(q, r, organelle)
     local translation = Vector3(x, y, 0)
     -- Collision shape
     self.rigidBody.properties.shape:addChildShape(
-        Quaternion(Radian(0), Vector3(1,0,0)),
         translation,
+        Quaternion(Radian(0), Vector3(1,0,0)),
         organelle.collisionShape
     )
     -- Scene node

@@ -4,7 +4,7 @@ function Organelle:__init()
     self.entity = Entity()
     self.sceneNode = OgreSceneNodeComponent()
     self.entity:addComponent(self.sceneNode)
-    self.collisionShape = btCompoundShape()
+    self.collisionShape = CompoundShape()
     self._hexes = {}
     self.position = {
         q = 0,
@@ -27,8 +27,8 @@ function Organelle:addHex(q, r)
         q = q,
         r = r,
         entity = Entity(),
-        collisionShape = btSphereShape(HEX_SIZE),
         ogreEntity = Engine.sceneManager:createEntity("hex.mesh")
+        collisionShape = SphereShape(HEX_SIZE),
     }
     local x, y = axialToCartesian(q, r)
     local translation = Vector3(x, y, 0)
@@ -41,8 +41,8 @@ function Organelle:addHex(q, r)
     hex.entity:addComponent(hexSceneNode)
     -- Collision shape
     self.collisionShape:addChildShape(
-        Quaternion(Radian(0), Vector3(1,0,0)),
         translation,
+        Quaternion(Radian(0), Vector3(1,0,0)),
         hex.collisionShape
     )
     self._hexes[s] = hex
