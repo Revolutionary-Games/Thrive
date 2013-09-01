@@ -14,7 +14,7 @@ object.rigidBody.properties:touch()
 object:addComponent(object.rigidBody)
 
 object.sceneNode = OgreSceneNodeComponent()
-object.sceneNode:attachObject(Engine.sceneManager:createEntity("molecule.mesh"))
+object.sceneNode.meshName = "molecule.mesh"
 object:addComponent(object.sceneNode)
 
 object.agentEmitter = AgentEmitterComponent()

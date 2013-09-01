@@ -77,6 +77,8 @@ public:
     static luabind::scope
     luaBindings();
 
+    TouchableValue<Ogre::String> m_meshName;
+
     /**
     * @brief The entity id of the parent scene node
     */
@@ -94,32 +96,7 @@ public:
     */
     Ogre::SceneNode* m_sceneNode = nullptr;
 
-    /**
-    * @brief Attaches an object to the scene node
-    *
-    * @param object
-    */
-    void
-    attachObject(
-        Ogre::MovableObject* object
-    );
-
-    /**
-    * @brief Detaches an object to the scene node
-    *
-    * @param object
-    */
-    void
-    detachObject(
-        Ogre::MovableObject* object
-    );
-
-
-    /**
-     * @brief For use by the OgreAddSceneNodeSystem
-     */
-    std::set<Ogre::MovableObject*> m_attachedObjects;
-
+    Ogre::Entity* m_entity = nullptr;
 
 };
 

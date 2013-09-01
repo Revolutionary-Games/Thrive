@@ -8,28 +8,25 @@
 #include "scripting/luabind.h"
 
 #include <OgreSceneManager.h>
+#include <OgreEntity.h>
 
 using namespace thrive;
 
 
-void
-OgreSceneNodeComponent::attachObject(
-    Ogre::MovableObject* object
+static Ogre::String
+OgreSceneNodeComponent_getMeshName(
+    const OgreSceneNodeComponent* self
 ) {
-    bool isNew = m_attachedObjects.insert(object).second;
-    if (isNew and m_sceneNode) {
-        m_sceneNode->attachObject(object);
-    }
+    return self->m_meshName.get();
 }
 
 
-void
-OgreSceneNodeComponent::detachObject(
-    Ogre::MovableObject* object
+static void
+OgreSceneNodeComponent_setMeshName(
+    OgreSceneNodeComponent* self,
+    const Ogre::String& meshName
 ) {
-    if (m_attachedObjects.erase(object) > 0 and m_sceneNode) {
-        m_sceneNode->detachObject(object);
-    }
+    self->m_meshName = meshName;
 }
 
 static Entity
@@ -63,10 +60,10 @@ OgreSceneNodeComponent::luaBindings() {
                 .def_readwrite("scale", &Transform::scale)
         ]
         .def(constructor<>())
-        .def("attachObject", &OgreSceneNodeComponent::attachObject)
-        .def("detachObject", &OgreSceneNodeComponent::detachObject)
         .def_readonly("transform", &OgreSceneNodeComponent::m_transform)
+        .def_readonly("entity", &OgreSceneNodeComponent::m_entity)
         .property("parent", OgreSceneNodeComponent_getParent, OgreSceneNodeComponent_setParent)
+        .property("meshName", OgreSceneNodeComponent_getMeshName, OgreSceneNodeComponent_setMeshName)
     ;
 }
 
@@ -140,9 +137,6 @@ OgreAddSceneNodeSystem::update(int) {
         Ogre::SceneNode* node = parentNode->createChildSceneNode();
         m_impl->m_sceneNodes[entityId] = node;
         component->m_sceneNode = node;
-        for (Ogre::MovableObject* object : component->m_attachedObjects) {
-            node->attachObject(object);
-        }
     }
     m_impl->m_entities.clearChanges();
 }
@@ -290,6 +284,20 @@ OgreUpdateSceneNodeSystem::update(int) {
             Ogre::SceneNode* currentParentNode = sceneNode->getParentSceneNode();
             currentParentNode->removeChild(sceneNode);
             newParentNode->addChild(sceneNode);
+        }
+        if (component->m_meshName.hasChanges()) {
+            if (component->m_entity) {
+                sceneNode->detachObject(component->m_entity);
+                m_impl->m_sceneManager->destroyEntity(component->m_entity);
+                component->m_entity = nullptr;
+            }
+            if (component->m_meshName.get().size() > 0) {
+                component->m_entity = m_impl->m_sceneManager->createEntity(
+                    component->m_meshName
+                );
+                sceneNode->attachObject(component->m_entity);
+            }
+            component->m_meshName.untouch();
         }
     }
 }
