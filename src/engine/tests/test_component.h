@@ -26,7 +26,7 @@ public:
         return string;
     }
 
-    const std::string&
+    std::string
     typeName() const override {
         return TYPE_NAME();
     };
