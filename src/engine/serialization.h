@@ -1,5 +1,7 @@
 #pragma once
 
+#include "scripting/luabind.h"
+
 #include <cstdint>
 #include <OgreColourValue.h>
 #include <OgreMath.h>
@@ -32,6 +34,9 @@ class StorageContainer {
 
 public:
 
+    static luabind::scope
+    luaBindings();
+
     StorageContainer();
 
     StorageContainer(
@@ -60,17 +65,29 @@ public:
     ) const;
 
     template<typename T>
+    bool
+    contains(
+        const std::string& key
+    ) const;
+
+    template<typename T>
     T
     get(
         const std::string& key,
         const T& defaultValue = T()
     ) const;
 
+    luabind::object
+    luaGet(
+        const std::string& key,
+        luabind::object defaultValue
+    ) const;
+
     template<typename T>
     void
     set(
         const std::string& key,
-        const T& value
+        T value
     );
 
     friend std::ostream& 
@@ -103,23 +120,53 @@ operator >> (
     StorageContainer& storage
 );
 
-using StorageVector = std::vector<StorageContainer>;
 
-using StorageMap = std::map<std::string, StorageContainer>;
+class StorageList : public std::vector<StorageContainer> {
 
-using StorableTypeId = uint16_t;
+public:
 
-template<typename T>
-struct StorableTypeToId {
-    static const StorableTypeId Id = 0;
+    static luabind::scope
+    luaBindings();
+
+    StorageList();
+
+    StorageList(
+        const StorageList& other
+    );
+
+    StorageList(
+        StorageList&& other
+    );
+
+    StorageList&
+    operator = (
+        const StorageList& other
+    );
+
+    StorageList&
+    operator = (
+        StorageList&& other
+    );
+
+    void
+    append(
+        StorageContainer element
+    );
+
+    StorageContainer&
+    get(
+        size_t index
+    );
+
 };
 
-template<StorableTypeId>
-struct IdToStorableType {
-    using Type = void;
-};
-
-#define STORABLE_TYPE(typeName, typeId) \
+#define STORABLE_TYPE(typeName) \
+    template<> \
+    bool \
+    StorageContainer::contains<typeName>( \
+        const std::string& key \
+    ) const; \
+    \
     template<> \
     typeName \
     StorageContainer::get<typeName>( \
@@ -131,34 +178,30 @@ struct IdToStorableType {
     void \
     StorageContainer::set<typeName>( \
         const std::string& key, \
-        const typeName& value \
-    ); \
-    \
-    template<> \
-    struct StorableTypeToId<typeName> { \
-        static const StorableTypeId Id = typeId; \
-    }; \
-    \
-    template<> \
-    struct IdToStorableType<typeId> { \
-        using Type = typeName; \
-    };
+        typeName value \
+    );
 
-STORABLE_TYPE(bool,              16)
-STORABLE_TYPE(char,              32)
-STORABLE_TYPE(int8_t,            48)
-STORABLE_TYPE(int16_t,           64)
-STORABLE_TYPE(int32_t,           80)
-STORABLE_TYPE(int64_t,           96)
-STORABLE_TYPE(uint8_t,          112)
-STORABLE_TYPE(uint16_t,         128)
-STORABLE_TYPE(uint32_t,         144)
-STORABLE_TYPE(uint64_t,         160)
-STORABLE_TYPE(float,            176)
-STORABLE_TYPE(double,           192)
-STORABLE_TYPE(std::string,      208)
-STORABLE_TYPE(StorageContainer, 224)
-STORABLE_TYPE(StorageVector,    240)
-STORABLE_TYPE(StorageMap,       256)
+// Native types
+STORABLE_TYPE(bool)
+STORABLE_TYPE(char)
+STORABLE_TYPE(int8_t)
+STORABLE_TYPE(int16_t)
+STORABLE_TYPE(int32_t)
+STORABLE_TYPE(int64_t)
+STORABLE_TYPE(uint8_t)
+STORABLE_TYPE(uint16_t)
+STORABLE_TYPE(uint32_t)
+STORABLE_TYPE(uint64_t)
+STORABLE_TYPE(float)
+STORABLE_TYPE(double)
+STORABLE_TYPE(std::string)
+STORABLE_TYPE(StorageContainer)
+STORABLE_TYPE(StorageList)
 
+// Compound types
+STORABLE_TYPE(Ogre::Degree)
+STORABLE_TYPE(Ogre::Plane)
+STORABLE_TYPE(Ogre::Vector3)
+STORABLE_TYPE(Ogre::Quaternion)
+STORABLE_TYPE(Ogre::ColourValue)
 }
