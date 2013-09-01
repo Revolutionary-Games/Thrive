@@ -38,9 +38,7 @@ public:
     * Exposes the following \b functions:
     * - \c addComponent(Component): addComponent(std::unique_ptr<Component>)
     * - \c getComponent(number): getComponent(Component::TypeId)
-    * - \c getComponent(string): getComponent(const std::string&)
     * - \c removeComponent(number): removeComponent(Component::TypeId)
-    * - \c removeComponent(string): removeComponent(const std::string&)
     *
     * Exposes the following \b operators:
     * - \c ==: operator==(const Entity&)
@@ -201,21 +199,6 @@ public:
     );
 
     /**
-    * @brief Retrieves a component by type name
-    *
-    * @param typeName
-    *   The component's type name
-    *
-    * @return 
-    *   A non-owning pointer to the component or \c nullptr if no such 
-    *   component was found
-    */
-    Component*
-    getComponent(
-        const std::string& typeName
-    );
-
-    /**
     * @brief Checks whether this entity has a component
     *
     * Equivalent to 
@@ -232,25 +215,6 @@ public:
     bool
     hasComponent(
         Component::TypeId typeId
-    );
-
-    /**
-    * @brief Checks whether this entity has a component
-    *
-    * Equivalent to 
-    * \code
-    * entity->getComponent(typeName) != nullptr;
-    * \endcode
-    *
-    * @param typeName
-    *   The component's type name
-    *
-    * @return 
-    *   \c true if such a component was found, false otherwise
-    */
-    bool
-    hasComponent(
-        const std::string& typeName
     );
 
     /**
@@ -274,23 +238,6 @@ public:
     void
     removeComponent(
         Component::TypeId typeId
-    );
-
-    /**
-    * @brief Removes a component by type name
-    *
-    * If no such component was found, does nothing.
-    *
-    * @note
-    *   The component is only actually removed after the entity manager's
-    *   EntityManager::processRemovals() function is called.
-    *
-    * @param name
-    *   The component's type name
-    */
-    void
-    removeComponent(
-        const std::string& name
     );
 
 private:

@@ -14,7 +14,7 @@ end
 function PlayerMicrobe:updateFacingTargetPoint()
     local mousePosition = Engine.mouse:normalizedPosition() 
     local playerCam = Entity("playerCam")
-    local cameraComponent = playerCam:getComponent(OgreCameraComponent.TYPE_NAME())
+    local cameraComponent = playerCam:getComponent(OgreCameraComponent.TYPE_ID())
     local ray = cameraComponent:getCameraToViewportRay(mousePosition.x, mousePosition.y)
     local plane = Plane(Vector3(0, 0, 1), 0)
     local intersects, t = ray:intersects(plane)
