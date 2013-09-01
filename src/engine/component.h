@@ -93,7 +93,7 @@ public:
     /**
     * @brief The component's type name
     */
-    virtual const std::string&
+    virtual std::string
     typeName() const = 0;
 
 protected:
@@ -160,7 +160,7 @@ private:
             return string; \
         } \
         \
-        const std::string& typeName() const override { \
+        std::string typeName() const override { \
             return TYPE_NAME(); \
         } \
         \
