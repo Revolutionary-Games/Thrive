@@ -1,5 +1,6 @@
 #include "engine/system.h"
 
+#include "engine/engine.h"
 #include "scripting/luabind.h"
 
 #include <assert.h>
@@ -7,12 +8,59 @@
 using namespace thrive;
 
 
+struct SystemWrapper : System, luabind::wrap_base {
+
+    void
+    init(
+        Engine* engine
+    ) override {
+        call<void>("init", engine);
+    }
+
+    static void default_init(
+        System* self, 
+        Engine* engine
+    ) {
+        self->System::init(engine);
+    }
+
+    void
+    shutdown() override {
+        call<void>("shutdown");
+    }
+
+    static void default_shutdown(
+        System* self
+    ) {
+        self->System::shutdown();
+    }
+
+    void
+    update(
+        int milliseconds
+    ) override {
+        call<void>("update", milliseconds);
+    }
+
+    static void default_update(
+        System*, 
+        int
+    ) {
+        throw std::runtime_error("System::update has no default implementation");
+    }
+
+};
+
 luabind::scope
 System::luaBindings() {
     using namespace luabind;
-    return class_<System>("System")
+    return class_<System, SystemWrapper>("System")
+        .def(constructor<>())
         .def("active", &System::active)
+        .def("init", &System::init, &SystemWrapper::default_init)
         .def("setActive", &System::setActive)
+        .def("shutdown", &System::shutdown, &SystemWrapper::default_shutdown)
+        .def("update", &System::update, &SystemWrapper::default_update)
     ;
 }
 

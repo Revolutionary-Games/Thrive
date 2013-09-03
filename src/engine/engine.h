@@ -72,6 +72,11 @@ public:
     */
     ~Engine();
 
+    void
+    addScriptSystem(
+        std::shared_ptr<System> system
+    );
+
     ComponentFactory&
     componentFactory();
 

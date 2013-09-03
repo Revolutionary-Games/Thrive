@@ -28,6 +28,7 @@
 #include "scripting/lua_state.h"
 #include "scripting/on_update.h"
 #include "scripting/script_initializer.h"
+#include "scripting/script_system_updater.h"
 
 
 // Microbe
@@ -45,6 +46,7 @@
 #include <forward_list>
 #include <fstream>
 #include <iostream>
+#include <luabind/adopt_policy.hpp>
 #include <OgreConfigFile.h>
 #include <OgreLogManager.h>
 #include <OgreRenderWindow.h>
@@ -73,6 +75,7 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
     Implementation(
         Engine& engine
     ) : m_engine(engine),
+        m_scriptSystemUpdater(std::make_shared<ScriptSystemUpdater>()),
         m_viewportSystem(std::make_shared<OgreViewportSystem>())
     {
         m_input.keyboardSystem = std::make_shared<KeyboardSystem>();
@@ -264,7 +267,7 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
             m_input.keyboardSystem,
             m_input.mouseSystem,
             // Scripts
-            std::make_shared<OnUpdateSystem>(),
+            m_scriptSystemUpdater,
             // Microbe
             std::make_shared<AgentLifetimeSystem>(),
             std::make_shared<AgentMovementSystem>(),
@@ -346,6 +349,8 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
 
     } m_graphics;
 
+    bool m_initialized = false;
+
     struct Input {
 
         OIS::InputManager* inputManager = nullptr;
@@ -372,6 +377,8 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
 
     } m_physics;
 
+    std::shared_ptr<ScriptSystemUpdater> m_scriptSystemUpdater;
+
     std::list<std::shared_ptr<System>> m_systems;
 
     std::shared_ptr<OgreViewportSystem> m_viewportSystem;
@@ -379,10 +386,19 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
 };
 
 
+static void
+Engine_addScriptSystem(
+    Engine* self,
+    System* system
+) {
+    self->addScriptSystem(std::shared_ptr<System>(system));
+}
+
 luabind::scope
 Engine::luaBindings() {
     using namespace luabind;
     return class_<Engine>("__Engine")
+        .def("addScriptSystem", &Engine_addScriptSystem, adopt(_2))
         .def("setPhysicsDebugDrawingEnabled", &Engine::setPhysicsDebugDrawingEnabled)
         .property("componentFactory", &Engine::componentFactory)
         .property("keyboard", &Engine::keyboardSystem)
@@ -401,6 +417,17 @@ Engine::Engine()
 
 
 Engine::~Engine() { }
+
+
+void
+Engine::addScriptSystem(
+    std::shared_ptr<System> system
+) {
+    if (m_impl->m_initialized) {
+        throw std::runtime_error("Cannot add system after engine is initialized");
+    }
+    m_impl->m_scriptSystemUpdater->addSystem(system);
+}
 
 
 ComponentFactory&
@@ -426,6 +453,7 @@ Engine::init() {
     for (auto& system : m_impl->m_systems) {
         system->init(this);
     }
+    m_impl->m_scriptSystemUpdater->initSystems(this);
 }
 
 
@@ -479,6 +507,7 @@ Engine::setPhysicsDebugDrawingEnabled(
 
 void
 Engine::shutdown() {
+    m_impl->m_scriptSystemUpdater->shutdownSystems();
     for (auto& system : m_impl->m_systems) {
         system->shutdown();
     }
