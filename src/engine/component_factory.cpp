@@ -40,13 +40,6 @@ ComponentFactory_registerComponentType(
     luabind::object cls
 ) {
     lua_State* L = cls.interpreter();
-    // DEBUG >>
-    luabind::object(L, cls).push(L);
-    luabind::argument argument(luabind::from_stack(L, lua_gettop(L)));
-    luabind::class_info info = luabind::get_class_info(argument);
-    lua_pop(L, 1);
-    std::cout << "Class info says: " << info.name << std::endl;
-    // << DEBUG
     auto type = luabind::type(cls);
     if (type != LUA_TUSERDATA) {
         std::string typeName(
