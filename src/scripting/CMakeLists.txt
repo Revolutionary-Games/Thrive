@@ -5,8 +5,6 @@ add_sources(
     ${CMAKE_CURRENT_SOURCE_DIR}/on_update.h
     ${CMAKE_CURRENT_SOURCE_DIR}/script_bindings.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/script_bindings.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/script_component.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/script_component.h
     ${CMAKE_CURRENT_SOURCE_DIR}/script_entity_filter.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/script_entity_filter.h
     ${CMAKE_CURRENT_SOURCE_DIR}/script_initializer.cpp
