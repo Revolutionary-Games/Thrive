@@ -160,7 +160,7 @@ Entity::exists() const {
 
 Component*
 Entity::getComponent(
-    Component::TypeId typeId
+    ComponentTypeId typeId
 ) {
     return m_impl->m_entityManager->getComponent(
         m_impl->m_id,
@@ -171,7 +171,7 @@ Entity::getComponent(
 
 bool
 Entity::hasComponent(
-    Component::TypeId typeId
+    ComponentTypeId typeId
 ) {
     Component* component = m_impl->m_entityManager->getComponent(
         m_impl->m_id,
@@ -189,7 +189,7 @@ Entity::id() const {
 
 void
 Entity::removeComponent(
-    Component::TypeId typeId
+    ComponentTypeId typeId
 ) {
     m_impl->m_entityManager->removeComponent(
         m_impl->m_id,

@@ -37,8 +37,8 @@ public:
     *
     * Exposes the following \b functions:
     * - \c addComponent(Component): addComponent(std::unique_ptr<Component>)
-    * - \c getComponent(number): getComponent(Component::TypeId)
-    * - \c removeComponent(number): removeComponent(Component::TypeId)
+    * - \c getComponent(number): getComponent(ComponentTypeId)
+    * - \c removeComponent(number): removeComponent(ComponentTypeId)
     *
     * Exposes the following \b operators:
     * - \c ==: operator==(const Entity&)
@@ -195,7 +195,7 @@ public:
     */
     Component*
     getComponent(
-        Component::TypeId typeId
+        ComponentTypeId typeId
     );
 
     /**
@@ -214,7 +214,7 @@ public:
     */
     bool
     hasComponent(
-        Component::TypeId typeId
+        ComponentTypeId typeId
     );
 
     /**
@@ -237,7 +237,7 @@ public:
     */
     void
     removeComponent(
-        Component::TypeId typeId
+        ComponentTypeId typeId
     );
 
 private:

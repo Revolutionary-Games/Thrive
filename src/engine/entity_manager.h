@@ -1,6 +1,5 @@
 #pragma once
 
-#include "engine/component.h"
 #include "engine/typedefs.h"
 #include "util/make_unique.h"
 
@@ -120,19 +119,19 @@ public:
     Component*
     getComponent(
         EntityId entityId,
-        Component::TypeId typeId
+        ComponentTypeId typeId
     );
 
     /**
     * @brief Convenience template overload
     *
-    * This is the same as EntityManager::getComponent(EntityId, Component::TypeId),
+    * This is the same as EntityManager::getComponent(EntityId, ComponentTypeId),
     * but includes a cast to the expected type. The cast is a static cast for
     * performance reasons. Unless there is a serious error in the way 
     * component type ids are generated or components are stored in the entity
     * manager, the cast should always be correct.
     *
-    * The component id is read from \a ComponentType::TYPE_ID()
+    * The component id is read from \a ComponentType::TYPE_ID
     *
     * @tparam ComponentType
     *   The component subclass to retrieve
@@ -149,7 +148,7 @@ public:
     ) {
         Component* component = this->getComponent(
             entityId,
-            ComponentType::TYPE_ID()
+            ComponentType::TYPE_ID
         );
         return static_cast<ComponentType*>(component);
     }
@@ -163,7 +162,7 @@ public:
     */
     ComponentCollection&
     getComponentCollection(
-        Component::TypeId typeId
+        ComponentTypeId typeId
     );
 
     /**
@@ -252,7 +251,7 @@ public:
     void
     removeComponent(
         EntityId entityId,
-        Component::TypeId typeId
+        ComponentTypeId typeId
     );
 
     /**

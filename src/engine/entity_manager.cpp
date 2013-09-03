@@ -16,7 +16,7 @@ struct EntityManager::Implementation {
 
     ComponentCollection&
     getComponentCollection(
-        Component::TypeId typeId
+        ComponentTypeId typeId
     ) {
         std::unique_ptr<ComponentCollection>& collection = m_components[typeId];
         if (not collection) {
@@ -28,11 +28,11 @@ struct EntityManager::Implementation {
     static EntityId currentId;
 
     std::unordered_map<
-        Component::TypeId, 
+        ComponentTypeId, 
         std::unique_ptr<ComponentCollection>
     > m_components;
 
-    std::list<std::pair<EntityId, Component::TypeId>> m_componentsToRemove;
+    std::list<std::pair<EntityId, ComponentTypeId>> m_componentsToRemove;
 
     std::unordered_map<EntityId, int> m_entities;
 
@@ -59,7 +59,7 @@ EntityManager::addComponent(
     std::unique_ptr<Component> component
 ) {
     assert(entityId != NULL_ENTITY);
-    Component::TypeId typeId = component->typeId();
+    ComponentTypeId typeId = component->typeId();
     auto& componentCollection = m_impl->getComponentCollection(typeId);
     Component* rawComponent = component.get();
     bool isNew = componentCollection.addComponent(
@@ -106,7 +106,7 @@ EntityManager::generateNewId() {
 Component*
 EntityManager::getComponent(
     EntityId entityId,
-    Component::TypeId typeId
+    ComponentTypeId typeId
 ) {
     auto& componentCollection = m_impl->getComponentCollection(typeId);
     return componentCollection[entityId];
@@ -115,7 +115,7 @@ EntityManager::getComponent(
 
 ComponentCollection&
 EntityManager::getComponentCollection(
-    Component::TypeId typeId
+    ComponentTypeId typeId
 ) {
     return m_impl->getComponentCollection(typeId);
 }
@@ -141,7 +141,7 @@ void
 EntityManager::processRemovals() {
     for (const auto& pair : m_impl->m_componentsToRemove) {
         EntityId entityId = pair.first;
-        Component::TypeId typeId = pair.second;
+        ComponentTypeId typeId = pair.second;
         auto& componentCollection = m_impl->getComponentCollection(typeId);
         bool removed = componentCollection.removeComponent(entityId);
         if (removed) {
@@ -168,7 +168,7 @@ EntityManager::processRemovals() {
 void
 EntityManager::removeComponent(
     EntityId entityId,
-    Component::TypeId typeId
+    ComponentTypeId typeId
 ) {
     m_impl->m_componentsToRemove.emplace_back(entityId, typeId);
 }

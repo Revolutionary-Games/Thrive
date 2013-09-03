@@ -24,6 +24,7 @@ namespace OIS {
 
 namespace thrive {
 
+class ComponentFactory;
 class EntityManager;
 class KeyboardSystem;
 class MouseSystem;
@@ -70,6 +71,9 @@ public:
     * @brief Destructor
     */
     ~Engine();
+
+    ComponentFactory&
+    componentFactory();
 
     /**
     * @brief The engine's entity manager

@@ -53,9 +53,11 @@ luabind::scope
 OgreSceneNodeComponent::luaBindings() {
     using namespace luabind;
     return class_<OgreSceneNodeComponent, Component>("OgreSceneNodeComponent")
+        .enum_("ID") [
+            value("TYPE_ID", OgreSceneNodeComponent::TYPE_ID)
+        ]
         .scope [
             def("TYPE_NAME", &OgreSceneNodeComponent::TYPE_NAME),
-            def("TYPE_ID", &OgreSceneNodeComponent::TYPE_ID),
             class_<Transform, Touchable>("Transform")
                 .def_readwrite("orientation", &Transform::orientation)
                 .def_readwrite("position", &Transform::position)

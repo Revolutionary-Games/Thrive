@@ -171,7 +171,7 @@ struct EntityFilter<ComponentTypes...>::Implementation {
         using RawType = typename detail::ExtractComponentType<ComponentType>::Type;
         bool isRequired = detail::IsRequired<ComponentType>::value;
         auto& collection = m_entityManager->getComponentCollection(
-            RawType::TYPE_ID()
+            RawType::TYPE_ID
         );
         // Callbacks
         auto onAdded = [this] (EntityId id, Component&) {

@@ -14,7 +14,7 @@ end
 function PlayerMicrobe:updateFacingTargetPoint()
     local mousePosition = Engine.mouse:normalizedPosition() 
     local playerCam = Entity("playerCam")
-    local cameraComponent = playerCam:getComponent(OgreCameraComponent.TYPE_ID())
+    local cameraComponent = playerCam:getComponent(OgreCameraComponent.TYPE_ID)
     local ray = cameraComponent:getCameraToViewportRay(mousePosition.x, mousePosition.y)
     local plane = Plane(Vector3(0, 0, 1), 0)
     local intersects, t = ray:intersects(plane)
@@ -68,5 +68,16 @@ backwardOrganelle:setColour(ColourValue(1, 0, 0, 1))
 player:addOrganelle(0, -1, backwardOrganelle)
 
 
-
 player:storeAgent(1, 10)
+
+
+
+class 'TestComponent' (ScriptComponent)
+
+function TestComponent:__init()
+    ScriptComponent.__init(self)
+    debug("Yay")
+end
+
+
+Engine.componentFactory:registerComponentType("TestComponent", TestComponent)

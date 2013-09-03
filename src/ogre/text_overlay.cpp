@@ -30,9 +30,11 @@ TextOverlayComponent::luaBindings() {
             value("Center", Ogre::GVA_CENTER),
             value("Bottom", Ogre::GVA_BOTTOM)
         ]
+        .enum_("ID") [
+            value("TYPE_ID", TextOverlayComponent::TYPE_ID)
+        ]
         .scope [
             def("TYPE_NAME", &TextOverlayComponent::TYPE_NAME),
-            def("TYPE_ID", &TextOverlayComponent::TYPE_ID),
             class_<Properties, Touchable>("Properties")
                 .def_readwrite("charHeight", &Properties::charHeight)
                 .def_readwrite("colour", &Properties::colour)

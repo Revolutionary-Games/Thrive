@@ -25,7 +25,7 @@ local time = 0
 OFFSET = Vector3(0, 0, 30)
 playerCam.onUpdate.callback = function(entityId, milliseconds)
     local player = Entity("player")
-    local playerSceneNode = player:getComponent(OgreSceneNodeComponent.TYPE_ID())
+    local playerSceneNode = player:getComponent(OgreSceneNodeComponent.TYPE_ID)
     playerCam.sceneNode.transform.position = playerSceneNode.transform.position + OFFSET
     playerCam.sceneNode.transform:touch()
 end
