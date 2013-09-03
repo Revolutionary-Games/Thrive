@@ -1,15 +1,11 @@
 #pragma once
 
 #include "engine/typedefs.h"
+#include "scripting/luabind.h"
 
+#include <luabind/object.hpp>
 #include <memory>
 #include <unordered_set>
-
-class lua_State;
-
-namespace luabind {
-    class scope;
-}
 
 namespace thrive {
 
@@ -21,13 +17,13 @@ public:
     luaBindings();
 
     ScriptEntityFilter(
-        lua_State* L
+        luabind::object componentTypes
     );
 
     ~ScriptEntityFilter();
 
-    std::unordered_set<EntityId>
-    addedEntities() const;
+    const std::unordered_set<EntityId>&
+    addedEntities();
 
     void
     clearChanges();
@@ -37,11 +33,11 @@ public:
         EntityId id
     ) const;
 
-    std::unordered_set<EntityId>
-    entities() const;
+    const std::unordered_set<EntityId>&
+    entities();
 
-    std::unordered_set<EntityId>
-    removedEntities() const;
+    const std::unordered_set<EntityId>&
+    removedEntities();
 
 private:
 

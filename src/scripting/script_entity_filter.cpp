@@ -119,7 +119,7 @@ luabind::scope
 ScriptEntityFilter::luaBindings() {
     using namespace luabind;
     return class_<ScriptEntityFilter>("ScriptEntityFilter")
-        .def(constructor<lua_State*>())
+        .def(constructor<luabind::object>())
         .def("addedEntities", &ScriptEntityFilter::addedEntities, return_stl_iterator)
         .def("clearChanges", &ScriptEntityFilter::clearChanges)
         .def("containsEntity", &ScriptEntityFilter::containsEntity)
@@ -130,13 +130,16 @@ ScriptEntityFilter::luaBindings() {
 
 
 ScriptEntityFilter::ScriptEntityFilter(
-    lua_State* L
+    luabind::object componentTypes
 ) : m_impl(new Implementation(&Game::globalEntityManager()))
 {
-    for (int i = 0; i < lua_gettop(L); ++i) {
-        luabind::object obj(luabind::from_stack(L, i));
-        luabind::object ret = obj["TYPE_ID"]();
-        unsigned int typeId = luabind::object_cast<unsigned int>(ret);
+    using namespace luabind;
+    if (luabind::type(componentTypes) != LUA_TTABLE) {
+        throw std::runtime_error("ScriptEntityFilter constructor expects a list (table) of component types");
+    }
+    for (luabind::iterator iter(componentTypes), end; iter != end; ++iter) {
+        luabind::object ret = (*iter)["TYPE_ID"];
+        ComponentTypeId typeId = luabind::object_cast<ComponentTypeId>(ret);
         m_impl->m_requiredComponents.insert(typeId);
     }
     m_impl->initialize();
@@ -149,8 +152,8 @@ ScriptEntityFilter::~ScriptEntityFilter() {
 }
 
 
-std::unordered_set<EntityId>
-ScriptEntityFilter::addedEntities() const {
+const std::unordered_set<EntityId>&
+ScriptEntityFilter::addedEntities() {
     return m_impl->m_addedEntities;
 }
 
@@ -170,14 +173,14 @@ ScriptEntityFilter::containsEntity(
 }
 
 
-std::unordered_set<EntityId>
-ScriptEntityFilter::entities() const {
+const std::unordered_set<EntityId>&
+ScriptEntityFilter::entities() {
     return m_impl->m_entities;
 }
 
 
-std::unordered_set<EntityId>
-ScriptEntityFilter::removedEntities() const {
+const std::unordered_set<EntityId>&
+ScriptEntityFilter::removedEntities() {
     return m_impl->m_removedEntities;
 }
 
