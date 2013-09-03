@@ -20,9 +20,11 @@ luabind::scope
 SkyPlaneComponent::luaBindings() {
     using namespace luabind;
     return class_<SkyPlaneComponent, Component>("SkyPlaneComponent")
+        .enum_("ID") [
+            value("TYPE_ID", SkyPlaneComponent::TYPE_ID)
+        ]
         .scope [
             def("TYPE_NAME", &SkyPlaneComponent::TYPE_NAME),
-            def("TYPE_ID", &SkyPlaneComponent::TYPE_ID),
             class_<Properties, Touchable>("Properties")
                 .def_readwrite("enabled", &Properties::enabled)
                 .def_readwrite("plane", &Properties::plane)

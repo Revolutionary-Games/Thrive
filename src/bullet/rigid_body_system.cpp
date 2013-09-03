@@ -59,9 +59,11 @@ luabind::scope
 RigidBodyComponent::luaBindings() {
     using namespace luabind;
     return class_<RigidBodyComponent, Component>("RigidBodyComponent")
+        .enum_("ID") [
+            value("TYPE_ID", RigidBodyComponent::TYPE_ID)
+        ]
         .scope [
             def("TYPE_NAME", &RigidBodyComponent::TYPE_NAME),
-            def("TYPE_ID", &RigidBodyComponent::TYPE_ID),
             class_<Properties, Touchable>("Properties")
                 .def_readwrite("shape", &Properties::shape)
                 .def_readwrite("restitution", &Properties::restitution)

@@ -31,20 +31,20 @@ TEST_F(EntityTest, Exists) {
 
 TEST_F(EntityTest, HasComponent) {
     Entity entity(entityManager);
-    EXPECT_FALSE(entity.hasComponent(OnUpdateComponent::TYPE_ID()));
+    EXPECT_FALSE(entity.hasComponent(OnUpdateComponent::TYPE_ID));
     entity.addComponent(make_unique<OnUpdateComponent>());
-    EXPECT_TRUE(entity.hasComponent(OnUpdateComponent::TYPE_ID()));
+    EXPECT_TRUE(entity.hasComponent(OnUpdateComponent::TYPE_ID));
 }
 
 
 TEST_F(EntityTest, RemoveComponent) {
     Entity entity(entityManager);
-    EXPECT_FALSE(entity.hasComponent(OnUpdateComponent::TYPE_ID()));
+    EXPECT_FALSE(entity.hasComponent(OnUpdateComponent::TYPE_ID));
     entity.addComponent(make_unique<OnUpdateComponent>());
-    EXPECT_TRUE(entity.hasComponent(OnUpdateComponent::TYPE_ID()));
-    entity.removeComponent(OnUpdateComponent::TYPE_ID());
+    EXPECT_TRUE(entity.hasComponent(OnUpdateComponent::TYPE_ID));
+    entity.removeComponent(OnUpdateComponent::TYPE_ID);
     entityManager.processRemovals();
-    EXPECT_FALSE(entity.hasComponent(OnUpdateComponent::TYPE_ID()));
+    EXPECT_FALSE(entity.hasComponent(OnUpdateComponent::TYPE_ID));
 }
 
 

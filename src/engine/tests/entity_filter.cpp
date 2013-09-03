@@ -16,7 +16,7 @@ TEST(EntityFilter, Initialization) {
         entityId,
         make_unique<TestComponent<0>>()
     );
-    EXPECT_TRUE(nullptr != entityManager.getComponent(entityId, TestComponent<0>::TYPE_ID()));
+    EXPECT_TRUE(nullptr != entityManager.getComponent(entityId, TestComponent<0>::TYPE_ID));
     // Set up filter
     EntityFilter<TestComponent<0>> filter;
     filter.setEntityManager(&entityManager);
@@ -44,7 +44,7 @@ TEST(EntityFilter, Single) {
     // Remove component
     entityManager.removeComponent(
         entityId,
-        TestComponent<0>::TYPE_ID()
+        TestComponent<0>::TYPE_ID
     );
     entityManager.processRemovals();
     // Check filter
@@ -86,7 +86,7 @@ TEST(EntityFilter, Multiple) {
     // Remove component
     entityManager.removeComponent(
         entityId,
-        TestComponent<1>::TYPE_ID()
+        TestComponent<1>::TYPE_ID
     );
     entityManager.processRemovals();
     // Check filter
@@ -136,7 +136,7 @@ TEST(EntityFilter, Optional) {
     // Remove component
     entityManager.removeComponent(
         entityId,
-        TestComponent<1>::TYPE_ID()
+        TestComponent<1>::TYPE_ID
     );
     entityManager.processRemovals();
     // Check filter
@@ -174,7 +174,7 @@ TEST(EntityFilter, OptionalOnly) {
     // Remove component
     entityManager.removeComponent(
         entityId,
-        TestComponent<0>::TYPE_ID()
+        TestComponent<0>::TYPE_ID
     );
     entityManager.processRemovals();
     // Check filter
@@ -204,7 +204,7 @@ TEST(EntityFilter, Record) {
     // Remove component
     entityManager.removeComponent(
         entityId,
-        TestComponent<0>::TYPE_ID()
+        TestComponent<0>::TYPE_ID
     );
     entityManager.processRemovals();
     // Check removed entities

@@ -36,9 +36,11 @@ luabind::scope
 OgreCameraComponent::luaBindings() {
     using namespace luabind;
     return class_<OgreCameraComponent, Component>("OgreCameraComponent")
+        .enum_("ID") [
+            value("TYPE_ID", OgreCameraComponent::TYPE_ID)
+        ]
         .scope [
             def("TYPE_NAME", &OgreCameraComponent::TYPE_NAME),
-            def("TYPE_ID", &OgreCameraComponent::TYPE_ID),
             class_<Properties, Touchable>("Properties")
                 .def_readwrite("polygonMode", &Properties::polygonMode)
                 .def_readwrite("fovY", &Properties::fovY)

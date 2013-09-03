@@ -33,9 +33,11 @@ luabind::scope
 OgreLightComponent::luaBindings() {
     using namespace luabind;
     return class_<OgreLightComponent, Component>("OgreLightComponent")
+        .enum_("ID") [
+            value("TYPE_ID", OgreLightComponent::TYPE_ID)
+        ]
         .scope [
             def("TYPE_NAME", &OgreLightComponent::TYPE_NAME),
-            def("TYPE_ID", &OgreLightComponent::TYPE_ID),
             class_<Properties, Touchable>("Properties")
                 .def_readwrite("attenuationConstant", &Properties::attenuationConstant)
                 .def_readwrite("attenuationLinear", &Properties::attenuationLinear)

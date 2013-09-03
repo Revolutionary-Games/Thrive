@@ -14,9 +14,11 @@ luabind::scope
 OnUpdateComponent::luaBindings() {
     using namespace luabind;
     return class_<OnUpdateComponent, Component>("OnUpdateComponent")
+        .enum_("ID") [
+            value("TYPE_ID", OnUpdateComponent::TYPE_ID)
+        ]
         .scope[
-            def("TYPE_NAME", &OnUpdateComponent::TYPE_NAME),
-            def("TYPE_ID", &OnUpdateComponent::TYPE_ID)
+            def("TYPE_NAME", &OnUpdateComponent::TYPE_NAME)
         ]
         .def(constructor<>())
         .def_readwrite("callback", &OnUpdateComponent::m_callback)

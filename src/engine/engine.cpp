@@ -1,6 +1,7 @@
 #include "engine/engine.h"
 
 #include "engine/component_collection.h"
+#include "engine/component_factory.h"
 #include "engine/entity_manager.h"
 #include "engine/system.h"
 #include "game.h"
@@ -72,10 +73,10 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
     Implementation(
         Engine& engine
     ) : m_engine(engine),
-        m_keyboardSystem(std::make_shared<KeyboardSystem>()),
-        m_mouseSystem(std::make_shared<MouseSystem>()),
         m_viewportSystem(std::make_shared<OgreViewportSystem>())
     {
+        m_input.keyboardSystem = std::make_shared<KeyboardSystem>();
+        m_input.mouseSystem = std::make_shared<MouseSystem>();
     }
 
     ~Implementation() {
@@ -167,7 +168,7 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
 
     bool
     quitRequested() {
-        return m_keyboardSystem->isKeyDown(
+        return m_input.keyboardSystem->isKeyDown(
             OIS::KeyCode::KC_ESCAPE
         );
     }
@@ -179,7 +180,7 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
         this->loadResources();
         this->loadOgreConfig();
         m_graphics.renderWindow = m_graphics.root->initialise(true, "Thrive");
-        m_mouseSystem->setWindowSize(
+        m_input.mouseSystem->setWindowSize(
             m_graphics.renderWindow->getWidth(),
             m_graphics.renderWindow->getHeight()
         );
@@ -222,7 +223,7 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
         parameters.insert(std::make_pair(std::string("x11_keyboard_grab"), std::string("false")));
         parameters.insert(std::make_pair(std::string("XAutoRepeatOn"), std::string("true")));
 #endif
-        m_inputManager = OIS::InputManager::createInputSystem(parameters);
+        m_input.inputManager = OIS::InputManager::createInputSystem(parameters);
     }
 
     void
@@ -260,8 +261,8 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
     setupSystems() {
         std::shared_ptr<System> systems[] = {
             // Input
-            m_keyboardSystem,
-            m_mouseSystem,
+            m_input.keyboardSystem,
+            m_input.mouseSystem,
             // Scripts
             std::make_shared<OnUpdateSystem>(),
             // Microbe
@@ -293,11 +294,11 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
 
     void
     shutdownInputManager() {
-        if (not m_inputManager) {
+        if (not m_input.inputManager) {
             return;
         }
-        OIS::InputManager::destroyInputSystem(m_inputManager);
-        m_inputManager = nullptr;
+        OIS::InputManager::destroyInputSystem(m_input.inputManager);
+        m_input.inputManager = nullptr;
     }
 
     bool 
@@ -315,7 +316,7 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
         Ogre::RenderWindow* window
     ) override {
         if (window == m_graphics.renderWindow) {
-            m_mouseSystem->setWindowSize(
+            m_input.mouseSystem->setWindowSize(
                 window->getWidth(),
                 window->getHeight()
             );
@@ -328,6 +329,8 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
     // are destroyed. Since those components are destroyed with the entity 
     // manager, the lua state has to live longer than the manager.
     LuaState m_luaState;
+
+    ComponentFactory m_componentFactory;
 
     Engine& m_engine;
 
@@ -343,11 +346,15 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
 
     } m_graphics;
 
-    OIS::InputManager* m_inputManager = nullptr;
+    struct Input {
 
-    std::shared_ptr<KeyboardSystem> m_keyboardSystem;
+        OIS::InputManager* inputManager = nullptr;
 
-    std::shared_ptr<MouseSystem> m_mouseSystem;
+        std::shared_ptr<KeyboardSystem> keyboardSystem;
+
+        std::shared_ptr<MouseSystem> mouseSystem;
+
+    } m_input;
 
     struct Physics {
 
@@ -377,6 +384,7 @@ Engine::luaBindings() {
     using namespace luabind;
     return class_<Engine>("__Engine")
         .def("setPhysicsDebugDrawingEnabled", &Engine::setPhysicsDebugDrawingEnabled)
+        .property("componentFactory", &Engine::componentFactory)
         .property("keyboard", &Engine::keyboardSystem)
         .property("mouse", &Engine::mouseSystem)
         .property("sceneManager", &Engine::sceneManager)
@@ -393,6 +401,12 @@ Engine::Engine()
 
 
 Engine::~Engine() { }
+
+
+ComponentFactory&
+Engine::componentFactory() {
+    return m_impl->m_componentFactory;
+}
 
 
 EntityManager&
@@ -417,19 +431,19 @@ Engine::init() {
 
 OIS::InputManager*
 Engine::inputManager() const {
-    return m_impl->m_inputManager;
+    return m_impl->m_input.inputManager;
 }
 
 
 KeyboardSystem&
 Engine::keyboardSystem() const {
-    return *m_impl->m_keyboardSystem;
+    return *m_impl->m_input.keyboardSystem;
 }
 
 
 MouseSystem&
 Engine::mouseSystem() const {
-    return *m_impl->m_mouseSystem;
+    return *m_impl->m_input.mouseSystem;
 }
 
 

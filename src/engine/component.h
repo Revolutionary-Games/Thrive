@@ -33,15 +33,6 @@ class Component {
 public:
 
     /**
-    * @brief Typedef for component type ids
-    *
-    * A component type id is a unique identifier, different for each component 
-    * class. We could use the component name (a string) for this, but using
-    * an integer is more performant.
-    */
-    using TypeId = size_t;
-
-    /**
     * @brief Lua bindings
     *
     * Exposes:
@@ -97,7 +88,7 @@ public:
     /**
     * @brief The component's type id
     */
-    virtual TypeId
+    virtual ComponentTypeId
     typeId() const = 0;
 
     /**
@@ -107,17 +98,6 @@ public:
     typeName() const = 0;
 
 protected:
-
-    /**
-    * @brief Generates a new type id
-    *
-    * You usually don't have to call this directly. Use the COMPONENT macro 
-    * instead.
-    *
-    * @return A unique type id
-    */
-    static TypeId
-    generateTypeId();
 
 private:
 
@@ -156,13 +136,10 @@ private:
 #define COMPONENT(name)  \
     public: \
         \
-        static TypeId TYPE_ID() { \
-            static TypeId id = Component::generateTypeId(); \
-            return id; \
-        } \
+        static const ComponentTypeId TYPE_ID; \
         \
-        TypeId typeId() const override { \
-            return TYPE_ID(); \
+        ComponentTypeId typeId() const override { \
+            return TYPE_ID; \
         } \
         \
         static const std::string& TYPE_NAME() { \

@@ -5,13 +5,6 @@
 
 using namespace thrive;
 
-Component::TypeId
-Component::generateTypeId() {
-    static Component::TypeId nextTypeId = 1;
-    return nextTypeId++;
-}
-
-
 luabind::scope
 Component::luaBindings() {
     using namespace luabind;

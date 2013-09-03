@@ -11,7 +11,7 @@ using namespace thrive;
 struct ComponentCollection::Implementation {
 
     Implementation(
-        Component::TypeId type
+        ComponentTypeId type
     ) : m_type(type)
     {
     }
@@ -25,13 +25,13 @@ struct ComponentCollection::Implementation {
 
     unsigned int m_nextChangeCallbackId = 0;
 
-    Component::TypeId m_type;
+    ComponentTypeId m_type = NULL_COMPONENT_TYPE;
 
 };
 
 
 ComponentCollection::ComponentCollection(
-    Component::TypeId type
+    ComponentTypeId type
 ) : m_impl(new Implementation(type))
 {
 }
@@ -120,7 +120,7 @@ ComponentCollection::removeComponent(
 }
 
 
-Component::TypeId
+ComponentTypeId
 ComponentCollection::type() const {
     return m_impl->m_type;
 }

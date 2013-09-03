@@ -79,7 +79,7 @@ public:
     /**
     * @brief The type id of the collection's components
     */
-    Component::TypeId
+    ComponentTypeId
     type() const;
 
     /**
@@ -108,7 +108,7 @@ private:
     * @param type The type id of the components held by this collection.
     */
     ComponentCollection(
-        Component::TypeId type
+        ComponentTypeId type
     );
 
     /**

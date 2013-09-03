@@ -46,9 +46,11 @@ luabind::scope
 AgentEmitterComponent::luaBindings() {
     using namespace luabind;
     return class_<AgentEmitterComponent, Component>("AgentEmitterComponent")
+        .enum_("ID") [
+            value("TYPE_ID", AgentEmitterComponent::TYPE_ID)
+        ]
         .scope [
-            def("TYPE_NAME", &AgentEmitterComponent::TYPE_NAME),
-            def("TYPE_ID", &AgentEmitterComponent::TYPE_ID)
+            def("TYPE_NAME", &AgentEmitterComponent::TYPE_NAME)
         ]
         .def(constructor<>())
         .def_readwrite("agentId", &AgentEmitterComponent::m_agentId)
@@ -117,9 +119,11 @@ luabind::scope
 AgentAbsorberComponent::luaBindings() {
     using namespace luabind;
     return class_<AgentAbsorberComponent, Component>("AgentAbsorberComponent")
+        .enum_("ID") [
+            value("TYPE_ID", AgentAbsorberComponent::TYPE_ID)
+        ]
         .scope [
-            def("TYPE_NAME", &AgentAbsorberComponent::TYPE_NAME),
-            def("TYPE_ID", &AgentAbsorberComponent::TYPE_ID)
+            def("TYPE_NAME", &AgentAbsorberComponent::TYPE_NAME)
         ]
         .def(constructor<>())
         .def("absorbedAgentAmount", &AgentAbsorberComponent::absorbedAgentAmount)
