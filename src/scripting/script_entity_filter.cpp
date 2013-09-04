@@ -13,9 +13,19 @@ using namespace thrive;
 struct ScriptEntityFilter::Implementation {
 
     Implementation(
-        EntityManager* entityManager
-    ) : m_entityManager(entityManager)
+        luabind::object componentTypes,
+        bool recordChanges
+    ) : m_recordChanges(recordChanges)
     {
+        using namespace luabind;
+        if (luabind::type(componentTypes) != LUA_TTABLE) {
+            throw std::runtime_error("ScriptEntityFilter constructor expects a list (table) of component types");
+        }
+        for (luabind::iterator iter(componentTypes), end; iter != end; ++iter) {
+            luabind::object ret = (*iter)["TYPE_ID"];
+            ComponentTypeId typeId = luabind::object_cast<ComponentTypeId>(ret);
+            m_requiredComponents.insert(typeId);
+        }
     }
 
     void
@@ -30,14 +40,9 @@ struct ScriptEntityFilter::Implementation {
 
     void
     initialize() {
-        m_addedEntities.clear();
-        m_removedEntities.clear();
-        m_entities.clear();
-        if (m_entityManager) {
-            for (EntityId id : m_entityManager->entities()) {
-                if (this->isEligible(id)) {
-                    this->addEntity(id);
-                }
+        for (EntityId id : m_entityManager->entities()) {
+            if (this->isEligible(id)) {
+                this->addEntity(id);
             }
         }
     }
@@ -74,6 +79,23 @@ struct ScriptEntityFilter::Implementation {
                 onRemoved
             );
             m_registeredCallbacks[typeId] = handle;
+        }
+    }
+
+    void
+    setEntityManager(
+        EntityManager* entityManager
+    ) {
+        if (m_entityManager) {
+            this->unregisterCallbacks();
+        }
+        m_entityManager = entityManager;
+        m_addedEntities.clear();
+        m_removedEntities.clear();
+        m_entities.clear();
+        if (entityManager) {
+            this->initialize();
+            this->registerCallbacks();
         }
     }
 
@@ -120,35 +142,38 @@ ScriptEntityFilter::luaBindings() {
     using namespace luabind;
     return class_<ScriptEntityFilter>("ScriptEntityFilter")
         .def(constructor<luabind::object>())
+        .def(constructor<luabind::object, bool>())
         .def("addedEntities", &ScriptEntityFilter::addedEntities, return_stl_iterator)
         .def("clearChanges", &ScriptEntityFilter::clearChanges)
         .def("containsEntity", &ScriptEntityFilter::containsEntity)
         .def("entities", &ScriptEntityFilter::entities, return_stl_iterator)
+        .def("init", &ScriptEntityFilter::init)
         .def("removedEntities", &ScriptEntityFilter::removedEntities, return_stl_iterator)
+        .def("shutdown", &ScriptEntityFilter::shutdown)
     ;
 }
 
 
 ScriptEntityFilter::ScriptEntityFilter(
-    luabind::object componentTypes
-) : m_impl(new Implementation(&Game::globalEntityManager()))
+    luabind::object componentTypes,
+    bool recordChanges
+) : m_impl(new Implementation(componentTypes, recordChanges))
 {
-    using namespace luabind;
-    if (luabind::type(componentTypes) != LUA_TTABLE) {
-        throw std::runtime_error("ScriptEntityFilter constructor expects a list (table) of component types");
-    }
-    for (luabind::iterator iter(componentTypes), end; iter != end; ++iter) {
-        luabind::object ret = (*iter)["TYPE_ID"];
-        ComponentTypeId typeId = luabind::object_cast<ComponentTypeId>(ret);
-        m_impl->m_requiredComponents.insert(typeId);
-    }
-    m_impl->initialize();
-    m_impl->registerCallbacks();
+}
+
+
+ScriptEntityFilter::ScriptEntityFilter(
+    luabind::object componentTypes
+) : m_impl(new Implementation(componentTypes, false))
+{
 }
 
 
 ScriptEntityFilter::~ScriptEntityFilter() {
-    m_impl->unregisterCallbacks();
+    assert(
+        not m_impl->m_entityManager && 
+        "Entity filter still active while being destroyed. Call shutdown() on it."
+    );
 }
 
 
@@ -175,13 +200,30 @@ ScriptEntityFilter::containsEntity(
 
 const std::unordered_set<EntityId>&
 ScriptEntityFilter::entities() {
+    if (not m_impl->m_entityManager) {
+        throw std::runtime_error("Entity filter is not initialized. Call init() on it.");
+    }
     return m_impl->m_entities;
+}
+
+
+void
+ScriptEntityFilter::init() {
+    m_impl->setEntityManager(
+        &Game::globalEntityManager()
+    );
 }
 
 
 const std::unordered_set<EntityId>&
 ScriptEntityFilter::removedEntities() {
     return m_impl->m_removedEntities;
+}
+
+
+void
+ScriptEntityFilter::shutdown() {
+    m_impl->setEntityManager(nullptr);
 }
 
 

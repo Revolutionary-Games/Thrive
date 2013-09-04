@@ -17,6 +17,11 @@ public:
     luaBindings();
 
     ScriptEntityFilter(
+        luabind::object componentTypes,
+        bool recordChanges
+    );
+
+    ScriptEntityFilter(
         luabind::object componentTypes
     );
 
@@ -36,8 +41,14 @@ public:
     const std::unordered_set<EntityId>&
     entities();
 
+    void
+    init();
+
     const std::unordered_set<EntityId>&
     removedEntities();
+
+    void
+    shutdown();
 
 private:
 
