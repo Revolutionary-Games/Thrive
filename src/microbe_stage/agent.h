@@ -142,12 +142,12 @@ public:
     /**
     * @brief The number of particles created per emission interval
     */
-    uint16_t m_particlesPerEmission;
+    uint16_t m_particlesPerEmission = 0;
 
     /**
     * @brief How long new particles will stay alive
     */
-    Milliseconds m_particleLifetime;
+    Milliseconds m_particleLifetime = 1000;
 
     /**
     * @brief The scale of new particles
