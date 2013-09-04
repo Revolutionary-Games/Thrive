@@ -18,7 +18,7 @@ local function sign(x)
 end
 
 function MovementOrganelle:_moveMicrobe(milliseconds)
-    local direction = self.microbe.movementDirection
+    local direction = self.microbe.microbe.movementDirection
     if direction:isZeroLength() then
         return
     end 
@@ -46,7 +46,7 @@ function MovementOrganelle:_turnMicrobe()
         return
     end
     local transform = self.microbe.sceneNode.transform
-    local targetDirection = self.microbe.facingTargetPoint - transform.position
+    local targetDirection = self.microbe.microbe.facingTargetPoint - transform.position
     local localTargetDirection = transform.orientation:Inverse() * targetDirection
     assert(localTargetDirection.z < 0.01, "Microbes should only move in the 2D plane with z = 0")
     local alpha = math.atan2(

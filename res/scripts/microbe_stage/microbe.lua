@@ -1,46 +1,83 @@
-class 'Microbe'
+--------------------------------------------------------------------------------
+-- MicrobeComponent
+--
+-- Holds data common to all microbes. You probably shouldn't use this directly,
+-- use the Microbe class (below) instead.
+--------------------------------------------------------------------------------
+class 'MicrobeComponent' (Component)
 
-function Microbe:__init(name)
-    self._organelles = {}
-    self._vacuoles = {}
+function MicrobeComponent:__init()
+    Component.__init(self)
+    self.organelles = {}
+    self.vacuoles = {}
     self.movementDirection = Vector3(0, 0, 0)
     self.facingTargetPoint = Vector3(0, 0, 0)
+end
+
+REGISTER_COMPONENT("MicrobeComponent", MicrobeComponent)
+
+
+--------------------------------------------------------------------------------
+-- Microbe class
+--
+-- This class serves mostly as an interface for manipulating microbe entities
+--------------------------------------------------------------------------------
+class 'Microbe'
+
+
+function Microbe.createMicrobeEntity(name)
+    local entity
     if name then
-        self.entity = Entity(name)
+        entity = Entity(name)
     else
-        self.entity = Entity()
+        entity = Entity()
     end
-    -- Rigid body
-    self.rigidBody = RigidBodyComponent()
-    self.rigidBody.properties.shape = CompoundShape()
-    self.rigidBody.properties.linearDamping = 0.5
-    self.rigidBody.properties.friction = 0.2
-    self.rigidBody.properties.linearFactor = Vector3(1, 1, 0)
-    self.rigidBody.properties.angularFactor = Vector3(0, 0, 1)
-    self.rigidBody.properties:touch()
-    self.entity:addComponent(self.rigidBody)
-    -- Scene node
-    self.sceneNode = OgreSceneNodeComponent()
-    self.entity:addComponent(self.sceneNode)
-    -- OnUpdate
-    self.onUpdate = OnUpdateComponent()
-    self.onUpdate.callback = function(entityId, milliseconds)
-        self:update(milliseconds)
+    local rigidBody = RigidBodyComponent()
+    rigidBody.properties.shape = CompoundShape()
+    rigidBody.properties.linearDamping = 0.5
+    rigidBody.properties.friction = 0.2
+    rigidBody.properties.linearFactor = Vector3(1, 1, 0)
+    rigidBody.properties.angularFactor = Vector3(0, 0, 1)
+    rigidBody.properties:touch()
+    local components = {
+        AgentAbsorberComponent(),
+        OgreSceneNodeComponent(),
+        MicrobeComponent(),
+        rigidBody
+    }
+    for _, component in ipairs(components) do
+        entity:addComponent(component)
     end
-    self.entity:addComponent(self.onUpdate)
-    -- Absorber
-    self.agentAbsorber = AgentAbsorberComponent()
-    self.entity:addComponent(self.agentAbsorber)
+    return Microbe(entity)
+end
+
+-- I don't feel like checking for each component separately, so let's make a 
+-- loop do it with an assert for good measure (see Microbe.__init)
+Microbe.COMPONENTS = {
+    agentAbsorber = AgentAbsorberComponent.TYPE_ID,
+    microbe = MicrobeComponent.TYPE_ID,
+    rigidBody = RigidBodyComponent.TYPE_ID,
+    sceneNode = OgreSceneNodeComponent.TYPE_ID,
+}
+
+
+function Microbe:__init(entity)
+    self.entity = entity
+    for key, typeId in pairs(Microbe.COMPONENTS) do
+        local component = entity:getComponent(typeId)
+        assert(component ~= nil, "Can't create microbe from this entity, it's missing " .. key)
+        self[key] = entity:getComponent(typeId)
+    end
 end
 
 
 function Microbe:addOrganelle(q, r, organelle)
     local s = encodeAxial(q, r)
-    if self._organelles[s] then
+    if self.microbe.organelles[s] then
         assert(false)
         return false
     end
-    self._organelles[s] = organelle
+    self.microbe.organelles[s] = organelle
     local x, y = axialToCartesian(q, r)
     local translation = Vector3(x, y, 0)
     -- Collision shape
@@ -64,17 +101,17 @@ function Microbe:addVacuole(vacuole)
     assert(vacuole.capacity ~= nil)
     assert(vacuole.amount ~= nil)
     local agentId = vacuole.agentId
-    if not self._vacuoles[agentId] then
-        self._vacuoles[agentId] = {}
+    if not self.microbe.vacuoles[agentId] then
+        self.microbe.vacuoles[agentId] = {}
     end
-    local vacuoleList = self._vacuoles[agentId]
+    local vacuoleList = self.microbe.vacuoles[agentId]
     table.insert(vacuoleList, vacuole)
     self:_updateAgentAbsorber(vacuole.agentId)
 end
 
 
 function Microbe:getAgentAmount(agentId)
-    local vacuoleList = self._vacuoles[agentId]
+    local vacuoleList = self.microbe.vacuoles[agentId]
     local totalAmount = 0.0
     if vacuoleList then
         for _, vacuole in ipairs(vacuoleList) do
@@ -86,7 +123,7 @@ end
 
 
 function Microbe:getOrganelleAt(q, r)
-    for _, organelle in pairs(self._organelles) do
+    for _, organelle in pairs(self.microbe.organelles) do
         local localQ = q - organelle.position.q
         local localR = r - organelle.position.r
         if organelle:getHex(localQ, localR) ~= nil then
@@ -100,7 +137,7 @@ end
 function Microbe:removeOrganelle(q, r)
     local index = nil
     local s = encodeAxial(q, r)
-    local organelle = table.remove(self._organelles, index)
+    local organelle = table.remove(self.microbe.organelles, index)
     if not organelle then
         return false
     end
@@ -113,22 +150,22 @@ end
 
 
 function Microbe:removeVacuole(vacuole)
-    local vacuoleList = self._vacuoles[vacuole.agentId]
+    local vacuoleList = self.microbe.vacuoles[vacuole.agentId]
     local indexToRemove = 0
-    for i, v in ipairs(self._vacuoles) do
+    for i, v in ipairs(self.microbe.vacuoles) do
         if v == vacuole then
             indexToRemove = i
             break
         end
     end
     assert(indexToRemove > 0, "Vacuole not found")
-    table.remove(self._vacuoles, indexToRemove)
+    table.remove(self.microbe.vacuoles, indexToRemove)
     self:_updateAgentAbsorber(vacuole.agentId)
 end
 
 
 function Microbe:storeAgent(agentId, amount)
-    local vacuoleList = self._vacuoles[agentId]
+    local vacuoleList = self.microbe.vacuoles[agentId]
     local remainingAmount = amount
     if vacuoleList then
         for _, vacuole in ipairs(vacuoleList) do
@@ -149,7 +186,7 @@ end
 
 
 function Microbe:takeAgent(agentId, maxAmount)
-    local vacuoleList = self._vacuoles[agentId]
+    local vacuoleList = self.microbe.vacuoles[agentId]
     local totalTaken = 0.0
     if vacuoleList then
         for _, vacuole in ipairs(vacuoleList) do
@@ -168,21 +205,21 @@ end
 
 function Microbe:update(milliseconds)
     -- Vacuoles
-    for agentId, vacuoleList in pairs(self._vacuoles) do
+    for agentId, vacuoleList in pairs(self.microbe.vacuoles) do
         local amount = self.agentAbsorber:absorbedAgentAmount(agentId)
         if amount > 0.0 then
             self:storeAgent(agentId, amount)
         end
     end
     -- Other organelles
-    for _, organelle in pairs(self._organelles) do
+    for _, organelle in pairs(self.microbe.organelles) do
         organelle:update(self, milliseconds)
     end
 end
 
 
 function Microbe:_updateAgentAbsorber(agentId)
-    local vacuoleList = self._vacuoles[agentId]
+    local vacuoleList = self.microbe.vacuoles[agentId]
     local canAbsorb = false
     if vacuoleList then
         for _, vacuole in ipairs(vacuoleList) do
@@ -194,7 +231,56 @@ end
 
 
 function Microbe:updateAllHexColours()
-    for s, organelle in pairs(self._organelles) do
+    for s, organelle in pairs(self.microbe.organelles) do
         organelle:updateHexColours()
     end
 end
+
+
+--------------------------------------------------------------------------------
+-- MicrobeSystem
+--
+-- Updates microbes
+--------------------------------------------------------------------------------
+
+class 'MicrobeSystem' (System)
+
+function MicrobeSystem:__init()
+    System.__init(self)
+    self.entities = EntityFilter(
+        {
+            AgentAbsorberComponent,
+            MicrobeComponent,
+            OgreSceneNodeComponent,
+            RigidBodyComponent 
+        }, 
+        true
+    )
+    self.microbes = {}
+end
+
+
+function MicrobeSystem:init(engine)
+    self.entities:init()
+end
+
+
+function MicrobeSystem:shutdown()
+    self.entities:shutdown()
+end
+
+
+function MicrobeSystem:update(milliseconds)
+    for entityId in self.entities:addedEntities() do
+        local microbe = Microbe(Entity(entityId))
+        self.microbes[entityId] = microbe
+    end
+    for entityId in self.entities:removedEntities() do
+        self.microbes[entityId] = nil
+    end
+    self.entities:clearChanges()
+    for _, microbe in pairs(self.microbes) do
+        microbe:update(milliseconds)
+    end
+end
+
