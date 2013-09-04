@@ -12,7 +12,6 @@
 #include "ogre/text_overlay.h"
 #include "ogre/viewport_system.h"
 #include "scripting/luabind.h"
-#include "scripting/on_update.h"
 
 #include <luabind/operator.hpp>
 #include <luabind/out_value_policy.hpp>

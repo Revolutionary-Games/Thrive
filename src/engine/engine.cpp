@@ -26,7 +26,6 @@
 // Scripting
 #include "scripting/luabind.h"
 #include "scripting/lua_state.h"
-#include "scripting/on_update.h"
 #include "scripting/script_initializer.h"
 #include "scripting/script_system_updater.h"
 
