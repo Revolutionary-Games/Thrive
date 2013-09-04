@@ -140,7 +140,7 @@ struct ScriptEntityFilter::Implementation {
 luabind::scope
 ScriptEntityFilter::luaBindings() {
     using namespace luabind;
-    return class_<ScriptEntityFilter>("ScriptEntityFilter")
+    return class_<ScriptEntityFilter>("EntityFilter")
         .def(constructor<luabind::object>())
         .def(constructor<luabind::object, bool>())
         .def("addedEntities", &ScriptEntityFilter::addedEntities, return_stl_iterator)
