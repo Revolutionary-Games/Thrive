@@ -17,6 +17,7 @@ copy(
     std::ostringstream outputStream(std::ios_base::out | std::ios_base::binary);
     outputStream << container;
     // Deserialize
+    auto data = outputStream.str();
     StorageContainer copy;
     std::istringstream inputStream(
         outputStream.str(),
@@ -94,3 +95,7 @@ TEST(Serialization, StorageContainer) {
 }
 
 
+TEST(Serialization, ColourValue) {
+    Ogre::ColourValue colour = Ogre::ColourValue::White;
+    testSerialization(colour);
+}
