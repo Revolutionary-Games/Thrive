@@ -3,6 +3,7 @@
 #include "scripting/luabind.h"
 
 #include <luabind/class_info.hpp>
+#include <luabind/adopt_policy.hpp>
 
 using namespace thrive;
 
@@ -52,7 +53,9 @@ ComponentFactory_registerComponentType(
         [cls] (const StorageContainer& storage) {
             luabind::object classTable = cls;
             luabind::object obj = classTable();
-            auto component = std::unique_ptr<Component>(luabind::object_cast<Component*>(obj));
+            auto component = std::unique_ptr<Component>(
+                luabind::object_cast<Component*>(obj, luabind::adopt(luabind::result))
+            );
             component->load(storage);
             return component;
         }
@@ -143,7 +146,11 @@ ComponentFactory::load(
             return nullptr;
         }
     }
-    return iter->second.second(storage);
+    std::unique_ptr<Component> component = iter->second.second(storage);
+    if (component->owner() == NULL_ENTITY) {
+        std::cout << "Component of type '" << typeName << "' incomplete, no owner" << std::endl;
+    }
+    return component;
 }
 
 
