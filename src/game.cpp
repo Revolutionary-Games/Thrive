@@ -26,7 +26,7 @@ struct Game::Implementation {
 
     unsigned short m_targetFrameRate = 60;
 
-    bool m_quit;
+    bool m_quit = false;
 
 };
 
