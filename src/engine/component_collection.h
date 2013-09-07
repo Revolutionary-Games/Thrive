@@ -42,6 +42,14 @@ public:
         EntityId entityId
     ) const;
 
+    void
+    clear();
+
+    const std::unordered_map<EntityId, std::unique_ptr<Component>>&
+    components() const;
+
+    bool
+    empty() const;
     /**
     * @brief Retrieves a component from the collection
     *
