@@ -44,6 +44,11 @@ public:
         const std::string& name
     ) const;
 
+    std::string
+    getTypeName(
+        ComponentTypeId typeId
+    ) const;
+
     std::unique_ptr<Component>
     load(
         const std::string& typeName,

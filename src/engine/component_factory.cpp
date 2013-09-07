@@ -113,6 +113,24 @@ ComponentFactory::getTypeId(
 }
 
 
+std::string
+ComponentFactory::getTypeName(
+    ComponentTypeId typeId
+) const {
+    for (const auto& item : globalRegistry()) {
+        if (item.second.first == typeId) {
+            return item.first;
+        }
+    }
+    for (const auto& item : m_impl->m_registry) {
+        if (item.second.first == typeId) {
+            return item.first;
+        }
+    }
+    return "";
+}
+
+
 std::unique_ptr<Component>
 ComponentFactory::load(
     const std::string& typeName,
