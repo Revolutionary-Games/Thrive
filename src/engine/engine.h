@@ -109,6 +109,11 @@ public:
     KeyboardSystem&
     keyboardSystem() const;
 
+    void
+    load(
+        std::string filename
+    );
+
     /**
     * @brief The script engine's Lua state
     */
@@ -132,6 +137,11 @@ public:
     */
     btDiscreteDynamicsWorld*
     physicsWorld() const;
+
+    void
+    save(
+        std::string filename
+    );
 
     /**
     * @brief The Ogre scene manager

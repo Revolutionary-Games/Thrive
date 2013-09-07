@@ -3,6 +3,7 @@
 #include "engine/component_collection.h"
 #include "engine/component_factory.h"
 #include "engine/entity_manager.h"
+#include "engine/saving.h"
 #include "engine/system.h"
 #include "game.h"
 
@@ -74,9 +75,13 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
     Implementation(
         Engine& engine
     ) : m_engine(engine),
+        m_loadSystem(std::make_shared<LoadSystem>()),
+        m_saveSystem(std::make_shared<SaveSystem>()),
         m_scriptSystemUpdater(std::make_shared<ScriptSystemUpdater>()),
         m_viewportSystem(std::make_shared<OgreViewportSystem>())
     {
+        m_loadSystem->setActive(false);
+        m_saveSystem->setActive(false);
         m_input.keyboardSystem = std::make_shared<KeyboardSystem>();
         m_input.mouseSystem = std::make_shared<MouseSystem>();
     }
@@ -262,6 +267,8 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
     void
     setupSystems() {
         std::shared_ptr<System> systems[] = {
+            // Loading, this should be first
+            m_loadSystem,
             // Input
             m_input.keyboardSystem,
             m_input.mouseSystem,
@@ -287,7 +294,9 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
             std::make_shared<TextOverlaySystem>(),
             m_viewportSystem, // Has to come *after* camera system
             std::make_shared<OgreRemoveSceneNodeSystem>(),
-            std::make_shared<RenderSystem>()
+            std::make_shared<RenderSystem>(),
+            // Saving, this should be last
+            m_saveSystem
         };
         for (auto system : systems) {
             this->addSystem(system);
@@ -360,6 +369,8 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
 
     } m_input;
 
+    std::shared_ptr<LoadSystem> m_loadSystem;
+
     struct Physics {
 
         std::unique_ptr<btBroadphaseInterface> broadphase;
@@ -375,6 +386,8 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
         std::unique_ptr<btDiscreteDynamicsWorld> world;
 
     } m_physics;
+
+    std::shared_ptr<SaveSystem> m_saveSystem;
 
     std::shared_ptr<ScriptSystemUpdater> m_scriptSystemUpdater;
 
@@ -398,6 +411,8 @@ Engine::luaBindings() {
     using namespace luabind;
     return class_<Engine>("__Engine")
         .def("addScriptSystem", &Engine_addScriptSystem, adopt(_2))
+        .def("load", &Engine::load)
+        .def("save", &Engine::save)
         .def("setPhysicsDebugDrawingEnabled", &Engine::setPhysicsDebugDrawingEnabled)
         .property("componentFactory", &Engine::componentFactory)
         .property("keyboard", &Engine::keyboardSystem)
@@ -468,6 +483,14 @@ Engine::keyboardSystem() const {
 }
 
 
+void
+Engine::load(
+    std::string filename
+) {
+    m_impl->m_loadSystem->load(filename);
+}
+
+
 MouseSystem&
 Engine::mouseSystem() const {
     return *m_impl->m_input.mouseSystem;
@@ -487,6 +510,14 @@ Engine::physicsWorld() const {
 Ogre::RenderWindow*
 Engine::renderWindow() const {
     return m_impl->m_graphics.renderWindow;
+}
+
+
+void
+Engine::save(
+    std::string filename
+) {
+    m_impl->m_saveSystem->save(filename);
 }
 
 
