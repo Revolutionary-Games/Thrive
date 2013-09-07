@@ -35,6 +35,42 @@ local function setupCamera()
     addViewport(viewport)
 end
 
+local function setupEmitter()
+    local entity = Entity("object")
+    -- Rigid body
+    local rigidBody = RigidBodyComponent()
+    rigidBody.properties.friction = 0.2
+    rigidBody.properties.linearDamping = 0.8
+    rigidBody.properties.shape = CylinderShape(CollisionShape.AXIS_Y, Vector3(3.75, 1, 3.75))
+    rigidBody:setDynamicProperties(
+        Vector3(10, 0, 0),
+        Quaternion(Radian(Degree(0)), Vector3(1, 0, 0)),
+        Vector3(0, 0, 0),
+        Vector3(0, 0, 0)
+    )
+    rigidBody.properties:touch()
+    entity:addComponent(rigidBody)
+    -- Scene node
+    local sceneNode = OgreSceneNodeComponent()
+    sceneNode.meshName = "molecule.mesh"
+    entity:addComponent(sceneNode)
+    -- Emitter
+    local agentEmitter = AgentEmitterComponent()
+    entity:addComponent(agentEmitter)
+    agentEmitter.agentId = 1
+    agentEmitter.emitInterval = 1000
+    agentEmitter.emissionRadius = 1
+    agentEmitter.maxInitialSpeed = 10
+    agentEmitter.minInitialSpeed = 2
+    agentEmitter.minEmissionAngle = Degree(0)
+    agentEmitter.maxEmissionAngle = Degree(360)
+    agentEmitter.meshName = "molecule.mesh"
+    agentEmitter.particlesPerEmission = 1
+    agentEmitter.particleLifeTime = 5000
+    agentEmitter.particleScale = Vector3(0.3, 0.3, 0.3)
+    agentEmitter.potencyPerParticle = 3.0
+end
+
 local function setupPlayer()
     local player = Microbe.createMicrobeEntity(PLAYER_NAME)
     -- Forward
@@ -67,6 +103,7 @@ end
 
 setupBackground()
 setupCamera()
+setupEmitter()
 setupPlayer()
 
 
