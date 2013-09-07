@@ -159,6 +159,7 @@ void
 AgentAbsorberComponent::load(
     const StorageContainer& storage
 ) {
+    Component::load(storage);
     StorageList agents = storage.get<StorageList>("agents");
     for (const StorageContainer& container : agents) {
         AgentId agentId = container.get<AgentId>("agentId");

@@ -105,6 +105,7 @@ void
 RigidBodyComponent::load(
     const StorageContainer& storage
 ) {
+    Component::load(storage);
     m_properties.shape = CollisionShape::load(storage.get<StorageContainer>("shape", StorageContainer()));
     m_properties.restitution = storage.get<btScalar>("restitution", 0.0f);
     m_properties.linearFactor = storage.get<Ogre::Vector3>("linearFactor", Ogre::Vector3(1,1,1));
