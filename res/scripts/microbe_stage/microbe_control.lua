@@ -3,7 +3,6 @@ class 'MicrobeControlSystem' (System)
 
 function MicrobeControlSystem:__init()
     System.__init(self)
-    self.player = Entity("player")
 end
 
 
@@ -38,7 +37,8 @@ end
 
 
 function MicrobeControlSystem:update(milliseconds)
-    local microbe = self.player:getComponent(MicrobeComponent.TYPE_ID)
+    local player = Entity("player")
+    local microbe = player:getComponent(MicrobeComponent.TYPE_ID)
     local targetPoint = getTargetPoint()
     local movementDirection = getMovementDirection()
     microbe.facingTargetPoint = getTargetPoint()
