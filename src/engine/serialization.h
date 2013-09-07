@@ -77,6 +77,9 @@ public:
         const T& defaultValue = T()
     ) const;
 
+    std::list<std::string>
+    keys() const;
+
     luabind::object
     luaGet(
         const std::string& key,

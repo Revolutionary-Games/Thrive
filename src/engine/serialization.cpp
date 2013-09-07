@@ -175,6 +175,16 @@ struct StorageContainer::Implementation {
 };
 
 
+std::list<std::string>
+StorageContainer::keys() const {
+    std::list<std::string> keys;
+    for (const auto& pair : m_impl->m_content) {
+        keys.push_back(pair.first);
+    }
+    return keys;
+}
+
+
 luabind::object
 StorageContainer::luaGet(
     const std::string& key,
