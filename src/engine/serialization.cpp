@@ -937,7 +937,7 @@ struct SerializationVisitor : public boost::static_visitor<> {
 
 #define DESERIALIZE_CASE(typeName) \
     case TypeInfo<typeName>::Id: \
-        return TypeHandler<typeName>::deserialize(stream)
+        return TypeHandler<TypeInfo<typeName>::StoredType>::deserialize(stream)
 
 static Variant
 deserialize(
@@ -960,8 +960,14 @@ deserialize(
         DESERIALIZE_CASE(std::string);
         DESERIALIZE_CASE(StorageContainer);
         DESERIALIZE_CASE(StorageList);
+        // Compound types
+        DESERIALIZE_CASE(Ogre::Degree);
+        DESERIALIZE_CASE(Ogre::Plane);
+        DESERIALIZE_CASE(Ogre::Vector3);
+        DESERIALIZE_CASE(Ogre::Quaternion);
+        DESERIALIZE_CASE(Ogre::ColourValue);
         default:
-            return TypeHandler<StorageContainer>::deserialize(stream);
+            assert(false && "Unknown type id. Did you add a new STORABLE_TYPE, but forgot the DESERIALIZE_CASE?");
     }
 }
 
