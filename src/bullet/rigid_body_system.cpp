@@ -196,6 +196,11 @@ RigidBodyInputSystem::shutdown() {
 
 void
 RigidBodyInputSystem::update(int milliseconds) {
+    for (EntityId entityId : m_impl->m_entities.removedEntities()) {
+        btRigidBody* body = m_impl->m_bodies[entityId].get();
+        m_impl->m_world->removeRigidBody(body);
+        m_impl->m_bodies.erase(entityId);
+    }
     for (const auto& added : m_impl->m_entities.addedEntities()) {
         EntityId entityId = added.first;
         RigidBodyComponent* rigidBodyComponent = std::get<0>(added.second);
@@ -220,11 +225,6 @@ RigidBodyInputSystem::update(int milliseconds) {
             rigidBodyComponent->m_collisionFilterMask
         );
         m_impl->m_bodies[entityId] = std::move(rigidBody);
-    }
-    for (EntityId entityId : m_impl->m_entities.removedEntities()) {
-        btRigidBody* body = m_impl->m_bodies[entityId].get();
-        m_impl->m_world->removeRigidBody(body);
-        m_impl->m_bodies.erase(entityId);
     }
     m_impl->m_entities.clearChanges();
     for (const auto& value : m_impl->m_entities) {

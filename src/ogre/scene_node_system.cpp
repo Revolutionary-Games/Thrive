@@ -106,8 +106,6 @@ struct OgreAddSceneNodeSystem::Implementation {
 
     Ogre::SceneManager* m_sceneManager = nullptr;
 
-    std::unordered_map<EntityId, Ogre::SceneNode*> m_sceneNodes;
-
     EntityFilter<OgreSceneNodeComponent> m_entities = {true};
 };
 
@@ -144,7 +142,6 @@ void
 OgreAddSceneNodeSystem::update(int) {
     auto& added = m_impl->m_entities.addedEntities();
     for (const auto& entry : added) {
-        EntityId entityId = entry.first;
         OgreSceneNodeComponent* component = std::get<0>(entry.second);
         Ogre::SceneNode* parentNode = nullptr;
         EntityId parentId = component->m_parentId;
@@ -164,7 +161,6 @@ OgreAddSceneNodeSystem::update(int) {
             }
         }
         Ogre::SceneNode* node = parentNode->createChildSceneNode();
-        m_impl->m_sceneNodes[entityId] = node;
         component->m_sceneNode = node;
     }
     m_impl->m_entities.clearChanges();
@@ -215,16 +211,16 @@ OgreRemoveSceneNodeSystem::shutdown() {
 
 void
 OgreRemoveSceneNodeSystem::update(int) {
+    for (EntityId entityId : m_impl->m_entities.removedEntities()) {
+        Ogre::SceneNode* node = m_impl->m_sceneNodes[entityId];
+        m_impl->m_sceneManager->destroySceneNode(node);
+        m_impl->m_sceneNodes.erase(entityId);
+    }
     for (auto& value : m_impl->m_entities.addedEntities()) {
         EntityId entityId = value.first;
         OgreSceneNodeComponent* sceneNodeComponent = std::get<0>(value.second);
         Ogre::SceneNode* sceneNode = sceneNodeComponent->m_sceneNode;
         m_impl->m_sceneNodes[entityId] = sceneNode;
-    }
-    for (EntityId entityId : m_impl->m_entities.removedEntities()) {
-        Ogre::SceneNode* node = m_impl->m_sceneNodes[entityId];
-        m_impl->m_sceneManager->destroySceneNode(node);
-        m_impl->m_sceneNodes.erase(entityId);
     }
     m_impl->m_entities.clearChanges();
 }

@@ -152,6 +152,11 @@ OgreLightSystem::shutdown() {
 
 void
 OgreLightSystem::update(int) {
+    for (EntityId entityId : m_impl->m_entities.removedEntities()) {
+        Ogre::Light* light = m_impl->m_lights[entityId];
+        m_impl->m_sceneManager->destroyLight(light);
+        m_impl->m_lights.erase(entityId);
+    }
     for (const auto& added : m_impl->m_entities.addedEntities()) {
         EntityId entityId = added.first;
         OgreLightComponent* lightComponent = std::get<0>(added.second);
@@ -161,6 +166,7 @@ OgreLightSystem::update(int) {
         m_impl->m_lights[entityId] = light;
         sceneNodeComponent->m_sceneNode->attachObject(light);
     }
+    m_impl->m_entities.clearChanges();
     for (const auto& value : m_impl->m_entities) {
         OgreLightComponent* lightComponent = std::get<0>(value.second);
         auto& properties = lightComponent->m_properties;
@@ -185,12 +191,6 @@ OgreLightSystem::update(int) {
         light->setSpotlightNearClipDistance(properties.spotlightNearClipDistance);
         properties.untouch();
     }
-    for (EntityId entityId : m_impl->m_entities.removedEntities()) {
-        Ogre::Light* light = m_impl->m_lights[entityId];
-        m_impl->m_sceneManager->destroyLight(light);
-        m_impl->m_lights.erase(entityId);
-    }
-    m_impl->m_entities.clearChanges();
 }
 
 

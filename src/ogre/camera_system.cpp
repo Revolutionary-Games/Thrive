@@ -144,6 +144,13 @@ OgreCameraSystem::shutdown() {
 
 void
 OgreCameraSystem::update(int) {
+    for (EntityId entityId : m_impl->m_entities.removedEntities()) {
+        Ogre::Camera* camera = m_impl->m_cameras[entityId];
+        Ogre::SceneNode* sceneNode = camera->getParentSceneNode();
+        sceneNode->detachObject(camera);
+        m_impl->m_sceneManager->destroyCamera(camera);
+        m_impl->m_cameras.erase(entityId);
+    }
     for (auto& value : m_impl->m_entities.addedEntities()) {
         EntityId entityId = value.first;
         OgreSceneNodeComponent* sceneNodeComponent = std::get<0>(value.second);
@@ -155,13 +162,6 @@ OgreCameraSystem::update(int) {
         cameraComponent->m_camera = camera;
         m_impl->m_cameras[entityId] = camera;
         sceneNodeComponent->m_sceneNode->attachObject(camera);
-    }
-    for (EntityId entityId : m_impl->m_entities.removedEntities()) {
-        Ogre::Camera* camera = m_impl->m_cameras[entityId];
-        Ogre::SceneNode* sceneNode = camera->getParentSceneNode();
-        sceneNode->detachObject(camera);
-        m_impl->m_sceneManager->destroyCamera(camera);
-        m_impl->m_cameras.erase(entityId);
     }
     m_impl->m_entities.clearChanges();
     for (auto& value : m_impl->m_entities) {

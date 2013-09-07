@@ -167,6 +167,11 @@ TextOverlaySystem::shutdown() {
 
 void
 TextOverlaySystem::update(int) {
+    for (EntityId entityId : m_impl->m_entities.removedEntities()) {
+        Ogre::OverlayElement* textOverlay = m_impl->m_textOverlays[entityId];
+        m_impl->m_overlayManager->destroyOverlayElement(textOverlay);
+        m_impl->m_textOverlays.erase(entityId);
+    }
     for (auto& value : m_impl->m_entities.addedEntities()) {
         EntityId entityId = value.first;
         TextOverlayComponent* textOverlayComponent = std::get<0>(value.second);
@@ -180,11 +185,6 @@ TextOverlaySystem::update(int) {
         m_impl->m_textOverlays[entityId] = textOverlay;
         m_impl->m_panel->addChild(textOverlay);
         textOverlay->setMetricsMode(Ogre::GMM_PIXELS);
-    }
-    for (EntityId entityId : m_impl->m_entities.removedEntities()) {
-        Ogre::OverlayElement* textOverlay = m_impl->m_textOverlays[entityId];
-        m_impl->m_overlayManager->destroyOverlayElement(textOverlay);
-        m_impl->m_textOverlays.erase(entityId);
     }
     m_impl->m_entities.clearChanges();
     for (auto& value : m_impl->m_entities) {
