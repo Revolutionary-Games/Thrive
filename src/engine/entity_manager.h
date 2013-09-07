@@ -10,6 +10,8 @@ namespace thrive {
 
 class Component;
 class ComponentCollection;
+class ComponentFactory;
+class StorageContainer;
 
 /**
 * @brief Manages entities and their components
@@ -229,6 +231,9 @@ public:
         EntityId entityId
     ) const;
 
+    std::unordered_set<ComponentTypeId>
+    nonEmptyCollections() const;
+
     /**
     * @brief Removes all components queued for removal
     */
@@ -269,6 +274,15 @@ public:
     removeEntity(
         EntityId entityId
     );
+
+    void
+    restore(
+        const StorageContainer& storage,
+        const ComponentFactory& factory
+    );
+
+    StorageContainer
+    storage() const;
 
 private:
 
