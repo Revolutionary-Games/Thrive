@@ -2,6 +2,7 @@
 
 #include "scripting/luabind.h"
 
+#include <boost/lexical_cast.hpp>
 #include <boost/variant.hpp>
 #include <cfloat>
 #include <luabind/iterator_policy.hpp>
@@ -607,79 +608,6 @@ struct TypeHandler {
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// Portable float serialization
-// Source: http://beej.us/guide/bgnet/output/html/singlepage/bgnet.html#serialization
-////////////////////////////////////////////////////////////////////////////////
-#define pack754_32(f) (pack754((f), 32, 8))
-#define pack754_64(f) (pack754((f), 64, 11))
-#define unpack754_32(i) (unpack754((i), 32, 8))
-#define unpack754_64(i) (unpack754((i), 64, 11))
-
-static uint64_t 
-pack754(
-    long double f, 
-    unsigned bits, 
-    unsigned expbits
-) {
-    long double fnorm;
-    int shift;
-    long long sign, exp, significand;
-    unsigned significandbits = bits - expbits - 1; // -1 for sign bit
-
-    if (std::abs(f) < LDBL_EPSILON) return 0; // get this special case out of the way
-
-    // check sign and begin normalization
-    if (f < 0) { sign = 1; fnorm = -f; }
-    else { sign = 0; fnorm = f; }
-
-    // get the normalized form of f and track the exponent
-    shift = 0;
-    while(fnorm >= 2.0) { fnorm /= 2.0; shift++; }
-    while(fnorm < 1.0) { fnorm *= 2.0; shift--; }
-    fnorm = fnorm - 1.0;
-
-    // calculate the binary form (non-float) of the significand data
-    significand = fnorm * ((1LL<<significandbits) + 0.5f);
-
-    // get the biased exponent
-    exp = shift + ((1<<(expbits-1)) - 1); // shift + bias
-
-    // return the final answer
-    return (sign<<(bits-1)) | (exp<<(bits-expbits-1)) | significand;
-}
-
-static long double 
-unpack754(
-    uint64_t i, 
-    unsigned bits, 
-    unsigned expbits
-) {
-    long double result;
-    long long shift;
-    unsigned bias;
-    unsigned significandbits = bits - expbits - 1; // -1 for sign bit
-
-    if (i == 0) return 0.0;
-
-    // pull the significand
-    result = (i&((1LL<<significandbits)-1)); // mask
-    result /= (1LL<<significandbits); // convert back to float
-    result += 1.0f; // add the one back on
-
-    // deal with the exponent
-    bias = (1<<(expbits-1)) - 1;
-    shift = ((i>>significandbits)&((1LL<<expbits)-1)) - bias;
-    while(shift > 0) { result *= 2.0; shift--; }
-    while(shift < 0) { result /= 2.0; shift++; }
-
-    // sign it
-    result *= (i>>(bits-1))&1? -1.0: 1.0;
-
-    return result;
-}
-
-
-////////////////////////////////////////////////////////////////////////////////
 // Integrals
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -779,60 +707,6 @@ struct TypeHandler<char> {
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// Float
-////////////////////////////////////////////////////////////////////////////////
-
-template<>
-struct TypeHandler<float> {
-
-    static float
-    deserialize(
-        std::istream& stream
-    ) {
-        uint64_t packed = TypeHandler<uint64_t>::deserialize(stream);
-        return unpack754_32(packed);
-    }
-
-    static void
-    serialize(
-        std::ostream& stream,
-        const float& value
-    ) {
-        uint64_t packed = pack754_32(value);
-        TypeHandler<uint64_t>::serialize(stream, packed);
-    }
-
-};
-
-
-////////////////////////////////////////////////////////////////////////////////
-// Double
-////////////////////////////////////////////////////////////////////////////////
-
-template<>
-struct TypeHandler<double> {
-
-    static double
-    deserialize(
-        std::istream& stream
-    ) {
-        uint64_t packed = TypeHandler<uint64_t>::deserialize(stream);
-        return unpack754_64(packed);
-    }
-
-    static void
-    serialize(
-        std::ostream& stream,
-        const double& value
-    ) {
-        uint64_t packed = pack754_64(value);
-        TypeHandler<uint64_t>::serialize(stream, packed);
-    }
-
-};
-
-
-////////////////////////////////////////////////////////////////////////////////
 // String
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -858,6 +732,60 @@ struct TypeHandler<std::string> {
         uint64_t size = string.size();
         TypeHandler<uint64_t>::serialize(stream, size);
         stream.write(string.data(), size);
+    }
+
+};
+
+
+////////////////////////////////////////////////////////////////////////////////
+// Float
+////////////////////////////////////////////////////////////////////////////////
+
+template<>
+struct TypeHandler<float> {
+
+    static float
+    deserialize(
+        std::istream& stream
+    ) {
+        std::string asString = TypeHandler<std::string>::deserialize(stream);
+        return boost::lexical_cast<float>(asString);
+    }
+
+    static void
+    serialize(
+        std::ostream& stream,
+        const float& value
+    ) {
+        std::string asString = boost::lexical_cast<std::string>(value);
+        TypeHandler<std::string>::serialize(stream, asString);
+    }
+
+};
+
+
+////////////////////////////////////////////////////////////////////////////////
+// Double
+////////////////////////////////////////////////////////////////////////////////
+
+template<>
+struct TypeHandler<double> {
+
+    static double
+    deserialize(
+        std::istream& stream
+    ) {
+        std::string asString = TypeHandler<std::string>::deserialize(stream);
+        return boost::lexical_cast<double>(asString);
+    }
+
+    static void
+    serialize(
+        std::ostream& stream,
+        const double& value
+    ) {
+        std::string asString = boost::lexical_cast<std::string>(value);
+        TypeHandler<std::string>::serialize(stream, asString);
     }
 
 };
