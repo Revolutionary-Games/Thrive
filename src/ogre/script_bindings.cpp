@@ -525,7 +525,6 @@ thrive::OgreBindings::luaBindings() {
         // Other
         KeyboardSystem::luaBindings(),
         MouseSystem::luaBindings(),
-        OgreViewport::luaBindings(),
-        OgreViewportSystem::luaBindings()
+        OgreViewportComponent::luaBindings()
     );
 }
