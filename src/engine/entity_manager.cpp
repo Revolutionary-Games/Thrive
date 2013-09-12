@@ -42,6 +42,8 @@ struct EntityManager::Implementation {
 
     std::unordered_map<std::string, EntityId> m_namedIds;
 
+    std::unordered_set<EntityId> m_volatileEntities;
+
 };
 
 
@@ -82,6 +84,7 @@ EntityManager::clear() {
     m_impl->m_entities.clear();
     m_impl->m_entitiesToRemove.clear();
     m_impl->m_namedIds.clear();
+    m_impl->m_volatileEntities.clear();
 }
 
 
@@ -140,6 +143,14 @@ EntityManager::getNamedId(
         m_impl->m_namedIds.insert(iter, std::make_pair(name, newId));
         return newId;
     }
+}
+
+
+bool
+EntityManager::isVolatile(
+    EntityId id
+) const {
+    return m_impl->m_volatileEntities.count(id) > 0;
 }
 
 
@@ -246,6 +257,19 @@ EntityManager::restore(
         m_impl->m_namedIds[name] = id;
     }
 }
+
+
+void
+EntityManager::setVolatile(
+    EntityId id,
+    bool isVolatile
+) {
+    if (isVolatile) {
+        m_impl->m_volatileEntities.insert(id);
+    }
+    else {
+        m_impl->m_volatileEntities.erase(id);
+    }
 }
 
 
@@ -262,6 +286,11 @@ EntityManager::storage() const {
         for (const auto& pair : components) {
             EntityId entityId = pair.first;
             const std::unique_ptr<Component>& component = pair.second;
+            if (component->isVolatile() or 
+                m_impl->m_volatileEntities.count(entityId) > 0
+            ) {
+                continue;
+            }
             if (typeName.empty()) {
                 typeName = component->typeName();
             }

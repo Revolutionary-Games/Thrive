@@ -234,6 +234,11 @@ public:
     std::unordered_set<ComponentTypeId>
     nonEmptyCollections() const;
 
+    bool
+    isVolatile(
+        EntityId id
+    ) const;
+
     /**
     * @brief Removes all components queued for removal
     */
@@ -279,6 +284,12 @@ public:
     restore(
         const StorageContainer& storage,
         const ComponentFactory& factory
+    );
+
+    void
+    setVolatile(
+        EntityId id,
+        bool isVolatile
     );
 
     StorageContainer

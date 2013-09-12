@@ -50,7 +50,9 @@ Entity::luaBindings() {
         .def("destroy", &Entity::destroy)
         .def("exists", &Entity::exists)
         .def("getComponent", &Entity::getComponent)
+        .def("isVolatile", &Entity::isVolatile)
         .def("removeComponent", &Entity::removeComponent)
+        .def("setVolatile", &Entity::setVolatile)
         .property("id", &Entity::id)
     ;
 }
@@ -187,6 +189,12 @@ Entity::id() const {
 }
 
 
+bool
+Entity::isVolatile() const {
+    return m_impl->m_entityManager->isVolatile(m_impl->m_id);
+}
+
+
 void
 Entity::removeComponent(
     ComponentTypeId typeId
@@ -197,3 +205,10 @@ Entity::removeComponent(
     );
 }
 
+
+void
+Entity::setVolatile(
+    bool isVolatile
+) {
+    m_impl->m_entityManager->setVolatile(m_impl->m_id, isVolatile);
+}

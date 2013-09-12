@@ -223,6 +223,9 @@ public:
     EntityId
     id() const;
 
+    bool
+    isVolatile() const;
+
     /**
     * @brief Removes a component by type id
     *
@@ -238,6 +241,11 @@ public:
     void
     removeComponent(
         ComponentTypeId typeId
+    );
+
+    void
+    setVolatile(
+        bool isVolatile
     );
 
 private:
