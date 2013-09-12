@@ -37,21 +37,18 @@ SaveSystem::save(
 
 void
 SaveSystem::update(int) {
-    EntityManager& entityManager = this->engine()->entityManager();
     StorageContainer entities;
-    for (ComponentTypeId typeId : entityManager.nonEmptyCollections()) {
-        ComponentCollection& collection = entityManager.getComponentCollection(typeId);
-        const auto& components = collection.components();
-        StorageList componentList;
-        componentList.reserve(components.size());
-        std::string typeName = "";
-        for (const auto& pair : components) {
-            if (typeName.empty()) {
-                typeName = pair.second->typeName();
-            }
-            componentList.append(pair.second->storage());
-        }
-        entities.set(typeName, std::move(componentList));
+    try {
+        entities = this->engine()->entityManager().storage();
+    }
+    catch (const luabind::error& e) {
+        luabind::object error_msg(luabind::from_stack(
+            e.state(),
+            -1
+        ));
+        // TODO: Log error
+        std::cerr << error_msg << std::endl;
+        throw;
     }
     StorageContainer savegame;
     savegame.set("entities", std::move(entities));
@@ -99,13 +96,20 @@ LoadSystem::update(int) {
     stream >> savegame;
     StorageContainer entities = savegame.get<StorageContainer>("entities");
     std::list<std::string> typeNames = entities.keys();
-    for (const std::string& typeName : typeNames) {
-        StorageList componentStorages = entities.get<StorageList>(typeName);
-        for (const StorageContainer& componentStorage : componentStorages) {
-            auto component = this->engine()->componentFactory().load(typeName, componentStorage);
-            EntityId owner = component->owner();
-            entityManager.addComponent(owner, std::move(component));
-        }
+    try {
+        this->engine()->entityManager().restore(
+            entities,
+            this->engine()->componentFactory()
+        );
+    }
+    catch (const luabind::error& e) {
+        luabind::object error_msg(luabind::from_stack(
+            e.state(),
+            -1
+        ));
+        // TODO: Log error
+        std::cerr << error_msg << std::endl;
+        throw;
     }
     this->setActive(false);
 }
