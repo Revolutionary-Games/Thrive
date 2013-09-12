@@ -383,7 +383,8 @@ StorageContainer::get<Ogre::Plane>(
     StorageContainer storage = m_impl->rawGet<Ogre::Plane>(key);
     Ogre::Vector3 normal = storage.get<Ogre::Vector3>("normal", defaultValue.normal);
     Ogre::Real d = storage.get<Ogre::Real>("d", defaultValue.d);
-    return Ogre::Plane(normal, d);
+    Ogre::Plane plane(normal, -d); // See the constructor definition in OgrePlane.cpp for the minus sign
+    return plane;
 }
 
 
