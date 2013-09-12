@@ -78,6 +78,10 @@ EntityManager::clear() {
     for (auto& pair : m_impl->m_collections) {
         pair.second->clear();
     }
+    m_impl->m_componentsToRemove.clear();
+    m_impl->m_entities.clear();
+    m_impl->m_entitiesToRemove.clear();
+    m_impl->m_namedIds.clear();
 }
 
 
@@ -201,6 +205,7 @@ EntityManager::restore(
     const ComponentFactory& factory
 ) {
     this->clear();
+    // Collections
     StorageContainer collections = storage.get<StorageContainer>("collections");
     auto typeNames = collections.keys();
     for (const std::string& typeName : typeNames) {
@@ -211,6 +216,36 @@ EntityManager::restore(
             this->addComponent(owner, std::move(component));
         }
     }
+    // Components to remove
+    StorageList componentsToRemove = storage.get<StorageList>("componentsToRemove");
+    for (const StorageContainer& entry : componentsToRemove) {
+        EntityId entityId = entry.get<EntityId>("entityId");
+        ComponentTypeId typeId = entry.get<ComponentTypeId>("componentTypeId");
+        this->removeComponent(entityId, typeId);
+    }
+    // Current Id
+    m_impl->m_currentId = storage.get<EntityId>("currentId");
+    // Entities
+    StorageList entities = storage.get<StorageList>("entities");
+    for (const auto& entry : entities) {
+        EntityId entityId = entry.get<EntityId>("entityId");
+        uint16_t componentCount = entry.get<uint16_t>("componentCount");
+        m_impl->m_entities[entityId] = componentCount;
+    }
+    // Entities to remove
+    StorageList entitiesToRemove = storage.get<StorageList>("entitiesToRemove");
+    for (const auto& entry : entitiesToRemove) {
+        EntityId entityId = entry.get<EntityId>("id");
+        this->removeEntity(entityId);
+    }
+    // Named entities
+    StorageList namedIds = storage.get<StorageList>("namedIds");
+    for (const auto& entry : namedIds) {
+        std::string name = entry.get<std::string>("name");
+        EntityId id = entry.get<EntityId>("entityId");
+        m_impl->m_namedIds[name] = id;
+    }
+}
 }
 
 
@@ -225,10 +260,12 @@ EntityManager::storage() const {
         componentList.reserve(components.size());
         std::string typeName = "";
         for (const auto& pair : components) {
+            EntityId entityId = pair.first;
+            const std::unique_ptr<Component>& component = pair.second;
             if (typeName.empty()) {
-                typeName = pair.second->typeName();
+                typeName = component->typeName();
             }
-            componentList.append(pair.second->storage());
+            componentList.append(component->storage());
         }
         if (not typeName.empty()) {
             collections.set(typeName, std::move(componentList));
