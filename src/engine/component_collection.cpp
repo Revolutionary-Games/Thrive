@@ -79,22 +79,12 @@ void
 ComponentCollection::clear() {
     auto iter = m_impl->m_components.begin();
     while (iter != m_impl->m_components.end()) {
-        unsigned int referenceCount = 0;
         EntityId entityId = iter->first;
         std::unique_ptr<Component>& component = iter->second;
         for (auto& value : m_impl->m_changeCallbacks) {
-            auto onRemove = value.second.second;
-            if(onRemove(entityId, *component)) {
-                referenceCount += 1;
-            }
+            value.second.second(entityId, *component);
         }
         component->setOwner(NULL_ENTITY);
-        if (referenceCount > 0) {
-            m_impl->m_references.insert(std::make_pair(
-                component.get(),
-                std::make_pair(std::move(component), referenceCount)
-            ));
-        }
         iter = m_impl->m_components.erase(iter);
     }
 }
