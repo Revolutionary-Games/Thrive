@@ -51,6 +51,9 @@ public:
     */
     virtual ~Component() = 0;
 
+    bool
+    isVolatile() const;
+
     virtual void
     load(
         const StorageContainer& storage
@@ -67,6 +70,12 @@ public:
     owner() const {
         return m_owner;
     }
+
+    void
+    setVolatile(
+        bool isVolatile
+    );
+
 
     /**
     * @brief Sets the component's owner
@@ -100,6 +109,8 @@ public:
 protected:
 
 private:
+
+    bool m_isVolatile = false;
 
     EntityId m_owner = NULL_ENTITY;
 

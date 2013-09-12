@@ -79,7 +79,9 @@ Component::luaBindings() {
     using namespace luabind;
     return class_<Component, ComponentWrapper>("Component")
         .def(constructor<lua_State*>())    
+        .def("isVolatile", &Component::isVolatile)
         .def("load", &Component::load, &ComponentWrapper::default_load)
+        .def("setVolatile", &Component::setVolatile)
         .def("storage", &Component::storage, &ComponentWrapper::default_storage)
         .def("typeId", &Component::typeId)
         .def("typeName", &Component::typeName)
@@ -89,11 +91,26 @@ Component::luaBindings() {
 
 Component::~Component() {}
 
+
+bool
+Component::isVolatile() const {
+    return m_isVolatile;
+}
+
+
 void
 Component::load(
     const StorageContainer& storage
 ) {
     m_owner = storage.get<EntityId>("owner");
+}
+
+
+void
+Component::setVolatile(
+    bool isVolatile
+) {
+    m_isVolatile = isVolatile;
 }
 
 
