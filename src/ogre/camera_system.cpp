@@ -75,6 +75,7 @@ OgreCameraComponent::load(
     const StorageContainer& storage
 ) {
     Component::load(storage);
+    m_name = storage.get<Ogre::String>("name");
     m_properties.farClipDistance = storage.get<Ogre::Real>("farClipDistance", 10000.0f);
     m_properties.fovY = storage.get<Ogre::Degree>("fovY", Ogre::Degree(45.0f));
     m_properties.nearClipDistance = storage.get<Ogre::Real>("nearClipDistance", 100.0f);
@@ -84,9 +85,16 @@ OgreCameraComponent::load(
 }
 
 
+std::string
+OgreCameraComponent::name() const {
+    return m_name;
+}
+
+
 StorageContainer
 OgreCameraComponent::storage() const {
     StorageContainer storage = Component::storage();
+    storage.set("name", m_name);
     storage.set<Ogre::Real>("farClipDistance", m_properties.farClipDistance);
     storage.set<Ogre::Degree>("fovY", m_properties.fovY);
     storage.set<Ogre::Real>("nearClipDistance", m_properties.nearClipDistance);
@@ -156,7 +164,7 @@ OgreCameraSystem::update(int) {
         OgreSceneNodeComponent* sceneNodeComponent = std::get<0>(value.second);
         OgreCameraComponent* cameraComponent = std::get<1>(value.second);
         Ogre::Camera* camera = m_impl->m_sceneManager->createCamera(
-            cameraComponent->m_name
+            cameraComponent->name()
         );
         camera->setAutoAspectRatio(true);
         cameraComponent->m_camera = camera;

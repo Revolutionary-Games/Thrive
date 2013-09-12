@@ -87,6 +87,9 @@ public:
         const StorageContainer& storage
     ) override;
 
+    std::string
+    name() const;
+
     StorageContainer
     storage() const override;
 
@@ -96,15 +99,17 @@ public:
     Ogre::Camera* m_camera = nullptr;
 
     /**
-    * @brief The camera's name
-    */
-    const std::string m_name;
-
-    /**
     * @brief Properties
     */
     Properties
     m_properties;
+
+private:
+
+    /**
+    * @brief The camera's name
+    */
+    std::string m_name;
 
 };
 
