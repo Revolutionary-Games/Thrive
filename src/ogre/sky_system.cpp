@@ -89,8 +89,8 @@ struct SkySystem::Implementation {
     Ogre::SceneManager* m_sceneManager = nullptr;
 
     EntityFilter<
-        Optional<SkyPlaneComponent>
-    > m_entities;
+        SkyPlaneComponent
+    > m_skyPlanes = {true};
 };
 
 
@@ -110,13 +110,13 @@ SkySystem::init(
     System::init(engine);
     assert(m_impl->m_sceneManager == nullptr && "Double init of system");
     m_impl->m_sceneManager = engine->sceneManager();
-    m_impl->m_entities.setEntityManager(&engine->entityManager());
+    m_impl->m_skyPlanes.setEntityManager(&engine->entityManager());
 }
 
 
 void
 SkySystem::shutdown() {
-    m_impl->m_entities.setEntityManager(nullptr);
+    m_impl->m_skyPlanes.setEntityManager(nullptr);
     m_impl->m_sceneManager->setSkyBoxEnabled(false);
     m_impl->m_sceneManager->setSkyDomeEnabled(false);
     m_impl->m_sceneManager->setSkyPlaneEnabled(false);
@@ -127,9 +127,15 @@ SkySystem::shutdown() {
 
 void
 SkySystem::update(int) {
-    for (auto& value : m_impl->m_entities) {
-        SkyPlaneComponent* plane = std::get<0>(value.second);
-        if (plane and plane->m_properties.hasChanges()) {
+    for (EntityId id : m_impl->m_skyPlanes.removedEntities()) {
+        (void) id;
+        m_impl->m_sceneManager->setSkyPlaneEnabled(false);
+    }
+    m_impl->m_skyPlanes.clearChanges();
+    for (auto& item : m_impl->m_skyPlanes) {
+        m_impl->m_sceneManager->setSkyPlaneEnabled(true);
+        SkyPlaneComponent* plane = std::get<0>(item.second);
+        if (plane->m_properties.hasChanges()) {
             auto& properties = plane->m_properties;
             m_impl->m_sceneManager->setSkyPlane(
                 properties.enabled,
