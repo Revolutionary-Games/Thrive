@@ -99,3 +99,13 @@ TEST(Serialization, ColourValue) {
     Ogre::ColourValue colour = Ogre::ColourValue::White;
     testSerialization(colour);
 }
+
+
+
+TEST(Serialization, Vector3) {
+    Ogre::Vector3 vector(1,2,3);
+    testSerialization(vector);
+}
+
+
+
