@@ -147,9 +147,6 @@ ComponentFactory::load(
         }
     }
     std::unique_ptr<Component> component = iter->second.second(storage);
-    if (component->owner() == NULL_ENTITY) {
-        std::cout << "Component of type '" << typeName << "' incomplete, no owner" << std::endl;
-    }
     return component;
 }
 
