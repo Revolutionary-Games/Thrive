@@ -920,6 +920,7 @@ deserialize(
         default:
             assert(false && "Unknown type id. Did you add a new STORABLE_TYPE, but forgot the DESERIALIZE_CASE?");
     }
+    return Variant(); // Should never be reached, but mingw complains without it
 }
 
 
