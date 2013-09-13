@@ -42,7 +42,10 @@ local function setupEmitter()
     local rigidBody = RigidBodyComponent()
     rigidBody.properties.friction = 0.2
     rigidBody.properties.linearDamping = 0.8
-    rigidBody.properties.shape = CylinderShape(CollisionShape.AXIS_Y, Vector3(3.75, 1, 3.75))
+    rigidBody.properties.shape = CylinderShape(
+        CollisionShape.AXIS_X, 
+        Vector3(1.0, 0.4, 0.75)
+    )
     rigidBody:setDynamicProperties(
         Vector3(10, 0, 0),
         Quaternion(Radian(Degree(0)), Vector3(1, 0, 0)),
@@ -106,5 +109,4 @@ setupBackground()
 setupCamera()
 setupEmitter()
 setupPlayer()
-
 
