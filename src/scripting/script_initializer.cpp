@@ -13,6 +13,7 @@
 
 #include <forward_list>
 #include <iostream>
+#include <luabind/class_info.hpp>
 
 static void
 debug(
@@ -53,6 +54,7 @@ thrive::initializeLua(
 ) {
     luabind::set_pcall_callback(constructTraceback);
     luabind::open(L);
+    luabind::bind_class_info(L);
     luabind::module(L) [
         luabind::def("debug", debug),
         EngineBindings::luaBindings(),

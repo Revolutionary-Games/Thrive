@@ -17,8 +17,23 @@ local function sign(x)
     end
 end
 
-function MovementOrganelle:_moveMicrobe(milliseconds)
-    local direction = self.microbe.microbe.movementDirection
+function MovementOrganelle:load(storage)
+    Organelle.load(self, storage)
+    self.energyMultiplier = storage:get("energyMultiplier", 0.025)
+    self.force = storage:get("force", Vector3(0,0,0))
+    self.torque = storage:get("torque", Vector3(0,0,0))
+end
+
+function MovementOrganelle:storage()
+    local storage = Organelle.storage(self)
+    storage:set("energyMultiplier", self.energyMultiplier)
+    storage:set("force", self.force)
+    storage:set("torque", self.torque)
+    return storage
+end
+
+function MovementOrganelle:_moveMicrobe(microbe, milliseconds)
+    local direction = microbe.microbe.movementDirection
     if direction:isZeroLength() then
         return
     end 
@@ -27,26 +42,27 @@ function MovementOrganelle:_moveMicrobe(milliseconds)
     end
     local forceMagnitude = self.force:dotProduct(direction)
     local energy = math.abs(self.energyMultiplier * forceMagnitude * milliseconds / 1000)
-    local availableEnergy = self.microbe:takeAgent(1, energy)
+    local availableEnergy = microbe:takeAgent(1, energy)
     if availableEnergy < energy then
         forceMagnitude = sign(forceMagnitude) * availableEnergy * 1000 / milliseconds
     end
     if forceMagnitude > 0 then
         local impulseMagnitude = milliseconds * forceMagnitude / 1000
         local impulse = impulseMagnitude * direction
-        self.microbe.rigidBody:applyCentralImpulse(
-            self.microbe.sceneNode.transform.orientation * impulse
+        local a = microbe.sceneNode.transform.orientation * impulse
+        microbe.rigidBody:applyCentralImpulse(
+            microbe.sceneNode.transform.orientation * impulse
         )
     end
 end
 
 
-function MovementOrganelle:_turnMicrobe()
+function MovementOrganelle:_turnMicrobe(microbe)
     if self.torque == 0 then
         return
     end
-    local transform = self.microbe.sceneNode.transform
-    local targetDirection = self.microbe.microbe.facingTargetPoint - transform.position
+    local transform = microbe.sceneNode.transform
+    local targetDirection = microbe.microbe.facingTargetPoint - transform.position
     local localTargetDirection = transform.orientation:Inverse() * targetDirection
     assert(localTargetDirection.z < 0.01, "Microbes should only move in the 2D plane with z = 0")
     local alpha = math.atan2(
@@ -54,7 +70,7 @@ function MovementOrganelle:_turnMicrobe()
         localTargetDirection.y
     )
     if math.abs(math.deg(alpha)) > 1 then
-        self.microbe.rigidBody:applyTorque(
+        microbe.rigidBody:applyTorque(
             Vector3(0, 0, self.torque * alpha)
         )
     end
@@ -62,7 +78,8 @@ end
 
 
 function MovementOrganelle:update(microbe, milliseconds)
-    self:_turnMicrobe()
-    self:_moveMicrobe(milliseconds)
+    Organelle.update(self, microbe, milliseconds)
+    self:_turnMicrobe(microbe)
+    self:_moveMicrobe(microbe, milliseconds)
 end
 

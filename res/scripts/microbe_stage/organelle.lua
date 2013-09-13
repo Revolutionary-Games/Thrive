@@ -2,15 +2,14 @@ class 'Organelle'
 
 function Organelle:__init()
     self.entity = Entity()
-    self.sceneNode = OgreSceneNodeComponent()
-    self.entity:addComponent(self.sceneNode)
+    self.entity:setVolatile(true)
+    self.sceneNode = self.entity:getOrCreate(OgreSceneNodeComponent)
     self.collisionShape = CompoundShape()
     self._hexes = {}
     self.position = {
         q = 0,
         r = 0
     }
-    self.microbe = nil
     self._colour = ColourValue(1,1,1,1)
     self._internalEdgeColour = ColourValue(0.5, 0.5, 0.5, 1)
     self._externalEdgeColour = ColourValue(0, 0, 0, 1)
@@ -33,8 +32,8 @@ function Organelle:addHex(q, r)
     }
     local x, y = axialToCartesian(q, r)
     local translation = Vector3(x, y, 0)
+    hex.entity:setVolatile(true)
     -- Scene node
-    local hexSceneNode = OgreSceneNodeComponent()
     hex.sceneNode.parent = self.entity
     hex.sceneNode.transform.position = translation
     hex.sceneNode.transform:touch()
@@ -54,6 +53,31 @@ end
 function Organelle:getHex(q, r)
     local s = encodeAxial(q, r)
     return self._hexes[s]
+end
+
+
+function Organelle:load(storage)
+    local hexes = storage:get("hexes", {})
+    for i = 1,hexes:size() do
+        local hexStorage = hexes:get(i)
+        local q = hexStorage:get("q", 0)
+        local r = hexStorage:get("r", 0)
+        self:addHex(q, r)
+    end
+    self.position.q = storage:get("q", 0)
+    self.position.r = storage:get("r", 0)
+    self._colour = storage:get("colour", ColourValue.White)
+    self._internalEdgeColour = storage:get("internalEdgeColour", ColourValue.Grey)
+    self._externalEdgeColour = storage:get("externalEdgeColour", ColourValue.Black)
+end
+
+
+function Organelle.loadOrganelle(storage)
+    local className = storage:get("className", "")
+    local cls = _G[className]
+    local organelle = cls()
+    organelle:load(storage)
+    return organelle
 end
 
 
@@ -89,6 +113,26 @@ end
 function Organelle:setColour(colour)
     self._colour = colour
     self._needsColourUpdate = true
+end
+
+
+function Organelle:storage()
+    storage = StorageContainer()
+    storage:set("className", class_info(self).name)
+    hexes = StorageList()
+    for _, hex in pairs(self._hexes) do
+        hexStorage = StorageContainer()
+        hexStorage:set("q", hex.q)
+        hexStorage:set("r", hex.r)
+        hexes:append(hexStorage)
+    end
+    storage:set("hexes", hexes)
+    storage:set("q", self.position.q)
+    storage:set("r", self.position.r)
+    storage:set("colour", self._colour)
+    storage:set("internalEdgeColour", self._internalEdgeColour)
+    storage:set("externalEdgeColour", self._externalEdgeColour)
+    return storage
 end
 
 

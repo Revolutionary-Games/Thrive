@@ -12,6 +12,54 @@ function MicrobeComponent:__init()
     self.vacuoles = {}
     self.movementDirection = Vector3(0, 0, 0)
     self.facingTargetPoint = Vector3(0, 0, 0)
+    self.initialized = false
+end
+
+
+function MicrobeComponent:load(storage)
+    Component.load(self, storage)
+    local organelles = storage:get("organelles", {})
+    for i = 1,organelles:size() do
+        local organelleStorage = organelles:get(i)
+        local organelle = Organelle.loadOrganelle(organelleStorage)
+        local q = organelle.position.q
+        local r = organelle.position.r
+        local s = encodeAxial(q, r)
+        self.organelles[s] = organelle
+    end
+    local vacuoles = storage:get("vacuoles", {})
+    for i = 1, vacuoles:size() do
+        local vacuoleStorage = vacuoles:get(i)
+        local vacuole = Vacuole.load(vacuoleStorage)
+        local agentId = vacuole.agentId
+        if not self.vacuoles[agentId] then
+            self.vacuoles[agentId] = {}
+        end
+        local vacuoleList = self.vacuoles[agentId]
+        table.insert(vacuoleList, vacuole)
+    end
+end
+
+
+function MicrobeComponent:storage()
+    local storage = Component.storage(self)
+    -- Organelles
+    local organelles = StorageList()
+    for _, organelle in pairs(self.organelles) do
+        local organelleStorage = organelle:storage()
+        organelles:append(organelleStorage)
+    end
+    storage:set("organelles", organelles)
+    -- Vacuoles
+    local vacuoles = StorageList()
+    for agentId, vacuoleList in pairs(self.vacuoles) do
+        for _, vacuole in ipairs(vacuoleList) do
+            local vacuoleStorage = vacuole:storage()
+            vacuoles:append(vacuoleStorage)
+        end
+    end
+    storage:set("vacuoles", vacuoles)
+    return storage
 end
 
 REGISTER_COMPONENT("MicrobeComponent", MicrobeComponent)
@@ -68,6 +116,9 @@ function Microbe:__init(entity)
         assert(component ~= nil, "Can't create microbe from this entity, it's missing " .. key)
         self[key] = entity:getComponent(typeId)
     end
+    if not self.microbe.initialized then
+        self:_initialize()
+    end
 end
 
 
@@ -78,6 +129,7 @@ function Microbe:addOrganelle(q, r, organelle)
         return false
     end
     self.microbe.organelles[s] = organelle
+    organelle.microbe = self
     local x, y = axialToCartesian(q, r)
     local translation = Vector3(x, y, 0)
     -- Collision shape
@@ -218,6 +270,31 @@ function Microbe:update(milliseconds)
 end
 
 
+function Microbe:_initialize()
+    -- Organelles
+    for s, organelle in pairs(self.microbe.organelles) do
+        organelle.microbe = self
+        local q = organelle.position.q
+        local r = organelle.position.r
+        local x, y = axialToCartesian(q, r)
+        local translation = Vector3(x, y, 0)
+        -- Collision shape
+        self.rigidBody.properties.shape:addChildShape(
+            translation,
+            Quaternion(Radian(0), Vector3(1,0,0)),
+            organelle.collisionShape
+        )
+        -- Scene node
+        organelle.sceneNode.parent = self.entity
+        organelle.sceneNode.transform.position = translation
+        organelle.sceneNode.transform:touch()
+        organelle:onAddedToMicrobe(self, q, r)
+    end
+    self:updateAllHexColours()
+    self.microbe.initialized = true
+end
+
+
 function Microbe:_updateAgentAbsorber(agentId)
     local vacuoleList = self.microbe.vacuoles[agentId]
     local canAbsorb = false
@@ -271,12 +348,12 @@ end
 
 
 function MicrobeSystem:update(milliseconds)
+    for entityId in self.entities:removedEntities() do
+        self.microbes[entityId] = nil
+    end
     for entityId in self.entities:addedEntities() do
         local microbe = Microbe(Entity(entityId))
         self.microbes[entityId] = microbe
-    end
-    for entityId in self.entities:removedEntities() do
-        self.microbes[entityId] = nil
     end
     self.entities:clearChanges()
     for _, microbe in pairs(self.microbes) do

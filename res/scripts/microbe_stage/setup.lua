@@ -29,10 +29,11 @@ local function setupCamera()
     light:setRange(200)
     entity:addComponent(light)
     -- Viewport
-    local viewport = OgreViewport(0)
-    viewport.properties.cameraEntity = entity
-    viewport.properties:touch()
-    addViewport(viewport)
+    local viewportEntity = Entity()
+    local viewportComponent = OgreViewportComponent(0)
+    viewportComponent.properties.cameraEntity = entity
+    viewportComponent.properties:touch()
+    viewportEntity:addComponent(viewportComponent)
 end
 
 local function setupEmitter()
