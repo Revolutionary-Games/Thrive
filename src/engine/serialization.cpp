@@ -42,9 +42,24 @@ struct StoredValue {
 template<typename Type>
 struct TypeInfo {
 
-    using StoredType = void;
+    using StoredType = bool;
 
     static const TypeId Id = 0;
+
+    static Type
+    convertFromStoredType(
+        const StoredType& storedType
+    ) {
+        return storedType;
+    }
+
+    static StoredType
+    convertToStoredType (
+        const Type& type
+    ) {
+        return type;
+    }
+
 };
 
 template<TypeId>
@@ -57,12 +72,24 @@ struct IdToType {
     struct TypeInfo<type> { \
         using StoredType = storedType; \
         static const TypeId Id = typeId; \
+        \
+        static type \
+        convertFromStoredType( \
+            const StoredType& stored \
+        ); \
+        \
+        static StoredType \
+        convertToStoredType( \
+            const type& value \
+        ); \
+        \
     }; \
     \
     template<> \
     struct IdToType<typeId> { \
         using Type = type; \
-    };
+    }; \
+
 
 TYPE_INFO(bool, bool, 16)
 TYPE_INFO(char, char, 32)
@@ -88,18 +115,14 @@ TYPE_INFO(Ogre::Quaternion, StorageContainer, 320)
 TYPE_INFO(Ogre::ColourValue, uint32_t, 336)
 } // namespace
 
-template<typename T>
-luabind::object
-toLua(
-    lua_State* L,
-    const T& value
-) {
-    return luabind::object(L, value);
-}
-
 #define TO_LUA_CASE(typeName) \
     case TypeInfo<typeName>::Id: \
-        return toLua<typeName>(L, boost::get<typeName>(value.value));
+    { \
+        using Info = TypeInfo<typeName>; \
+        auto storedValue = boost::get<Info::StoredType>(value.value); \
+        auto value = Info::convertFromStoredType(storedValue); \
+        return luabind::object(L, value); \
+    }
 
 static luabind::object
 toLua(
@@ -122,6 +145,12 @@ toLua(
         TO_LUA_CASE(std::string);
         TO_LUA_CASE(StorageContainer);
         TO_LUA_CASE(StorageList);
+        // Compound types
+        TO_LUA_CASE(Ogre::Degree);
+        TO_LUA_CASE(Ogre::Plane);
+        TO_LUA_CASE(Ogre::Vector3);
+        TO_LUA_CASE(Ogre::Quaternion);
+        TO_LUA_CASE(Ogre::ColourValue);
         default:
             return luabind::object();
     }
@@ -175,37 +204,60 @@ struct StorageContainer::Implementation {
 
 };
 
-
-std::list<std::string>
-StorageContainer::keys() const {
-    std::list<std::string> keys;
-    for (const auto& pair : m_impl->m_content) {
-        keys.push_back(pair.first);
+#define GET_SET_CONTAINS(type) \
+    \
+    template<> \
+    bool \
+    StorageContainer::contains<type>( \
+        const std::string& key \
+    ) const { \
+        return m_impl->rawContains<type>(key); \
+    } \
+    \
+    template<> \
+    type \
+    StorageContainer::get<type>( \
+        const std::string& key, \
+        const type& defaultValue \
+    ) const { \
+        if (not this->contains<type>(key)) { \
+            return defaultValue; \
+        } \
+        auto storedValue = m_impl->rawGet<type>(key); \
+        return TypeInfo<type>::convertFromStoredType(storedValue); \
+    } \
+    \
+    template <> \
+    void \
+    StorageContainer::set<type>( \
+        const std::string& key, \
+        type value \
+    ) { \
+        auto storedValue = TypeInfo<type>::convertToStoredType(value); \
+        m_impl->rawSet<type>(key, std::move(storedValue)); \
     }
-    return keys;
-}
 
-
-luabind::object
-StorageContainer::luaGet(
-    const std::string& key,
-    luabind::object defaultValue
-) const {
-    auto iter = m_impl->m_content.find(key);
-    if (iter == m_impl->m_content.end()) {
-        return defaultValue;
-    }
-    else {
-        luabind::object obj = toLua(defaultValue.interpreter(), iter->second);
-        if (obj) {
-            return obj;
-        }
-        else {
-            return defaultValue;
-        }
-    }
-}
-
+GET_SET_CONTAINS(bool)
+GET_SET_CONTAINS(char)
+GET_SET_CONTAINS(int8_t)
+GET_SET_CONTAINS(int16_t)
+GET_SET_CONTAINS(int32_t)
+GET_SET_CONTAINS(int64_t)
+GET_SET_CONTAINS(uint8_t)
+GET_SET_CONTAINS(uint16_t)
+GET_SET_CONTAINS(uint32_t)
+GET_SET_CONTAINS(uint64_t)
+GET_SET_CONTAINS(float)
+GET_SET_CONTAINS(double)
+GET_SET_CONTAINS(std::string)
+GET_SET_CONTAINS(StorageContainer)
+GET_SET_CONTAINS(StorageList)
+// Compound types
+GET_SET_CONTAINS(Ogre::Degree)
+GET_SET_CONTAINS(Ogre::Plane)
+GET_SET_CONTAINS(Ogre::Vector3)
+GET_SET_CONTAINS(Ogre::Quaternion)
+GET_SET_CONTAINS(Ogre::ColourValue)
 
 luabind::scope
 StorageContainer::luaBindings() {
@@ -283,31 +335,50 @@ StorageContainer::contains(
 }
 
 
+luabind::object
+StorageContainer::luaGet(
+    const std::string& key,
+    luabind::object defaultValue
+) const {
+    auto iter = m_impl->m_content.find(key);
+    if (iter == m_impl->m_content.end()) {
+        return defaultValue;
+    }
+    else {
+        luabind::object obj = toLua(defaultValue.interpreter(), iter->second);
+        if (obj) {
+            return obj;
+        }
+        else {
+            return defaultValue;
+        }
+    }
+}
+
+
+std::list<std::string>
+StorageContainer::keys() const {
+    std::list<std::string> keys;
+    for (const auto& pair : m_impl->m_content) {
+        keys.push_back(pair.first);
+    }
+    return keys;
+}
+
+
 #define NATIVE_TYPE(typeName) \
-    template<> \
-    bool \
-    StorageContainer::contains<typeName>( \
-        const std::string& key \
-    ) const { \
-        return m_impl->rawContains<typeName>(key); \
-    } \
-    \
-    template<> \
     typeName \
-    StorageContainer::get<typeName>( \
-        const std::string& key, \
-        const typeName& defaultValue \
-    ) const { \
-        return m_impl->rawGet<typeName>(key, defaultValue); \
+    TypeInfo<typeName>::convertFromStoredType( \
+        const typeName& storedValue \
+    ) { \
+        return storedValue; \
     } \
     \
-    template <> \
-    void \
-    StorageContainer::set<typeName>( \
-        const std::string& key, \
-        typeName value \
+    typeName \
+    TypeInfo<typeName>::convertToStoredType( \
+        const typeName& value \
     ) { \
-        m_impl->rawSet<typeName>(key, value); \
+        return value; \
     }
 
 NATIVE_TYPE(bool)
@@ -327,42 +398,23 @@ NATIVE_TYPE(StorageContainer)
 NATIVE_TYPE(StorageList)
 
 
-#define CONTAINS(typeName) \
-    template<> \
-    bool \
-    StorageContainer::contains<typeName>( \
-        const std::string& key \
-    ) const { \
-        return m_impl->rawContains<typeName>(key); \
-    }
-
 ////////////////////////////////////////////////////////////////////////////////
 // Ogre::Degree
 ////////////////////////////////////////////////////////////////////////////////
 
-CONTAINS(Ogre::Degree)
-
-template<>
 Ogre::Degree
-StorageContainer::get<Ogre::Degree>(
-    const std::string& key,
-    const Ogre::Degree& defaultValue
-) const {
-    if (not this->contains<Ogre::Degree>(key)) {
-        return defaultValue;
-    }
-    float value = m_impl->rawGet<Ogre::Degree>(key);
+TypeInfo<Ogre::Degree>::convertFromStoredType(
+    const float& value
+) {
     return Ogre::Degree(value);
 }
 
 
-template<>
-void
-StorageContainer::set<Ogre::Degree>(
-    const std::string& key,
-    Ogre::Degree value
+float
+TypeInfo<Ogre::Degree>::convertToStoredType(
+    const Ogre::Degree& value
 ) {
-    m_impl->rawSet<Ogre::Degree>(key, value.valueDegrees());
+    return value.valueDegrees();
 }
 
 
@@ -370,35 +422,25 @@ StorageContainer::set<Ogre::Degree>(
 // Ogre::Plane
 ////////////////////////////////////////////////////////////////////////////////
 
-CONTAINS(Ogre::Plane)
-
-template<>
 Ogre::Plane
-StorageContainer::get<Ogre::Plane>(
-    const std::string& key,
-    const Ogre::Plane& defaultValue
-) const {
-    if (not this->contains<Ogre::Plane>(key)) {
-        return defaultValue;
-    }
-    StorageContainer storage = m_impl->rawGet<Ogre::Plane>(key);
-    Ogre::Vector3 normal = storage.get<Ogre::Vector3>("normal", defaultValue.normal);
-    Ogre::Real d = storage.get<Ogre::Real>("d", defaultValue.d);
+TypeInfo<Ogre::Plane>::convertFromStoredType(
+    const StorageContainer& storage
+) {
+    Ogre::Vector3 normal = storage.get<Ogre::Vector3>("normal");
+    Ogre::Real d = storage.get<Ogre::Real>("d");
     Ogre::Plane plane(normal, -d); // See the constructor definition in OgrePlane.cpp for the minus sign
     return plane;
 }
 
 
-template<>
-void
-StorageContainer::set<Ogre::Plane>(
-    const std::string& key,
-    Ogre::Plane value
+StorageContainer
+TypeInfo<Ogre::Plane>::convertToStoredType(
+    const Ogre::Plane& value
 ) {
     StorageContainer storage;
     storage.set<Ogre::Vector3>("normal", value.normal);
     storage.set<Ogre::Real>("d", value.d);
-    m_impl->rawSet<Ogre::Plane>(key, storage);
+    return storage;
 }
 
 
@@ -407,38 +449,28 @@ StorageContainer::set<Ogre::Plane>(
 // Ogre::Vector3
 ////////////////////////////////////////////////////////////////////////////////
 
-CONTAINS(Ogre::Vector3)
-
-template<>
 Ogre::Vector3
-StorageContainer::get<Ogre::Vector3>(
-    const std::string& key,
-    const Ogre::Vector3& defaultValue
-) const {
-    if (not this->contains<Ogre::Vector3>(key)) {
-        return defaultValue;
-    }
-    StorageContainer storage = m_impl->rawGet<Ogre::Vector3>(key);
+TypeInfo<Ogre::Vector3>::convertFromStoredType(
+    const StorageContainer& storage
+) {
     std::array<Ogre::Real, 3> elements {{
-        storage.get<Ogre::Real>("x", defaultValue.x),
-        storage.get<Ogre::Real>("y", defaultValue.y),
-        storage.get<Ogre::Real>("z", defaultValue.z)
+        storage.get<Ogre::Real>("x"),
+        storage.get<Ogre::Real>("y"),
+        storage.get<Ogre::Real>("z")
     }};
     return Ogre::Vector3(elements.data());
 }
 
 
-template<>
-void
-StorageContainer::set<Ogre::Vector3>(
-    const std::string& key,
-    Ogre::Vector3 value
+StorageContainer
+TypeInfo<Ogre::Vector3>::convertToStoredType(
+    const Ogre::Vector3& value
 ) {
     StorageContainer storage;
     storage.set<Ogre::Real>("x", value.x);
     storage.set<Ogre::Real>("y", value.y);
     storage.set<Ogre::Real>("z", value.z);
-    m_impl->rawSet<Ogre::Vector3>(key, storage);
+    return storage;
 }
 
 
@@ -447,40 +479,30 @@ StorageContainer::set<Ogre::Vector3>(
 // Ogre::Quaternion
 ////////////////////////////////////////////////////////////////////////////////
 
-CONTAINS(Ogre::Quaternion)
-
-template<>
 Ogre::Quaternion
-StorageContainer::get<Ogre::Quaternion>(
-    const std::string& key,
-    const Ogre::Quaternion& defaultValue
-) const {
-    if (not this->contains<Ogre::Quaternion>(key)) {
-        return defaultValue;
-    }
-    StorageContainer storage = m_impl->rawGet<Ogre::Quaternion>(key);
+TypeInfo<Ogre::Quaternion>::convertFromStoredType(
+    const StorageContainer& storage
+) {
     std::array<Ogre::Real, 4> elements {{
-        storage.get<Ogre::Real>("w", defaultValue.w),
-        storage.get<Ogre::Real>("x", defaultValue.x),
-        storage.get<Ogre::Real>("y", defaultValue.y),
-        storage.get<Ogre::Real>("z", defaultValue.z)
+        storage.get<Ogre::Real>("w"),
+        storage.get<Ogre::Real>("x"),
+        storage.get<Ogre::Real>("y"),
+        storage.get<Ogre::Real>("z")
     }};
     return Ogre::Quaternion(elements.data());
 }
 
 
-template<>
-void
-StorageContainer::set<Ogre::Quaternion>(
-    const std::string& key,
-    Ogre::Quaternion value
+StorageContainer
+TypeInfo<Ogre::Quaternion>::convertToStoredType(
+    const Ogre::Quaternion& value
 ) {
     StorageContainer storage;
     storage.set<Ogre::Real>("w", value.w);
     storage.set<Ogre::Real>("x", value.x);
     storage.set<Ogre::Real>("y", value.y);
     storage.set<Ogre::Real>("z", value.z);
-    m_impl->rawSet<Ogre::Quaternion>(key, storage);
+    return storage;
 }
 
 
@@ -489,31 +511,21 @@ StorageContainer::set<Ogre::Quaternion>(
 // Ogre::ColourValue
 ////////////////////////////////////////////////////////////////////////////////
 
-CONTAINS(Ogre::ColourValue)
-
-template<>
 Ogre::ColourValue
-StorageContainer::get<Ogre::ColourValue>(
-    const std::string& key,
-    const Ogre::ColourValue& defaultValue
-) const {
-    if (not this->contains<Ogre::ColourValue>(key)) {
-        return defaultValue;
-    }
-    uint32_t rgba = m_impl->rawGet<Ogre::ColourValue>(key);
-    Ogre::ColourValue value = defaultValue;
+TypeInfo<Ogre::ColourValue>::convertFromStoredType(
+    const uint32_t& rgba
+) {
+    Ogre::ColourValue value;
     value.setAsRGBA(rgba);
     return value;
 }
 
 
-template<>
-void
-StorageContainer::set<Ogre::ColourValue>(
-    const std::string& key,
-    Ogre::ColourValue value
+uint32_t
+TypeInfo<Ogre::ColourValue>::convertToStoredType(
+    const Ogre::ColourValue& value
 ) {
-    m_impl->rawSet<Ogre::ColourValue>(key, value.getAsRGBA());
+    return value.getAsRGBA();
 }
 
 
