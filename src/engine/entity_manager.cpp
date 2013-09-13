@@ -216,6 +216,8 @@ EntityManager::restore(
     const ComponentFactory& factory
 ) {
     this->clear();
+    // Current Id
+    m_impl->m_currentId = storage.get<EntityId>("currentId");
     // Collections
     StorageContainer collections = storage.get<StorageContainer>("collections");
     auto typeNames = collections.keys();
@@ -234,8 +236,6 @@ EntityManager::restore(
         ComponentTypeId typeId = entry.get<ComponentTypeId>("componentTypeId");
         this->removeComponent(entityId, typeId);
     }
-    // Current Id
-    m_impl->m_currentId = storage.get<EntityId>("currentId");
     // Entities
     StorageList entities = storage.get<StorageList>("entities");
     for (const auto& entry : entities) {
@@ -276,6 +276,8 @@ EntityManager::setVolatile(
 StorageContainer
 EntityManager::storage() const {
     StorageContainer storage;
+    // Current Id
+    storage.set("currentId", m_impl->m_currentId);
     // Collections
     StorageContainer collections;
     for (const auto& item : m_impl->m_collections) {
@@ -311,8 +313,6 @@ EntityManager::storage() const {
         componentsToRemove.append(std::move(pairStorage));
     }
     storage.set("componentsToRemove", std::move(componentsToRemove));
-    // Current Id
-    storage.set("currentId", m_impl->m_currentId);
     // Entities
     StorageList entities;
     entities.reserve(m_impl->m_entities.size());
