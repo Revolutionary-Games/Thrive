@@ -3,6 +3,7 @@
 #include "engine/engine.h"
 #include "scripting/luabind.h"
 
+#include <iostream>
 #include <list>
 
 using namespace thrive;
