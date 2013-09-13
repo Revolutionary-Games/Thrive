@@ -106,6 +106,7 @@ RigidBodyComponent::load(
     const StorageContainer& storage
 ) {
     Component::load(storage);
+    // Static
     m_properties.shape = CollisionShape::load(storage.get<StorageContainer>("shape", StorageContainer()));
     m_properties.restitution = storage.get<btScalar>("restitution", 0.0f);
     m_properties.linearFactor = storage.get<Ogre::Vector3>("linearFactor", Ogre::Vector3(1,1,1));
@@ -118,6 +119,11 @@ RigidBodyComponent::load(
     m_properties.hasContactResponse = storage.get<bool>("hasContactResponse", true);
     m_properties.kinematic = storage.get<bool>("kinematic", false);
     m_properties.touch();
+    // Dynamic
+    m_dynamicProperties.position = storage.get<Ogre::Vector3>("position", Ogre::Vector3::ZERO);
+    m_dynamicProperties.rotation = storage.get<Ogre::Quaternion>("rotation", Ogre::Quaternion::IDENTITY);
+    m_dynamicProperties.linearVelocity = storage.get<Ogre::Vector3>("linearVelocity", Ogre::Vector3::ZERO);
+    m_dynamicProperties.angularVelocity = storage.get<Ogre::Vector3>("angularVelocity", Ogre::Vector3::ZERO);
 }
 
 
@@ -133,6 +139,7 @@ RigidBodyComponent::setWorldTransform(
 StorageContainer
 RigidBodyComponent::storage() const {
     StorageContainer storage = Component::storage();
+    // Static
     storage.set<StorageContainer>("shape", m_properties.shape->storage());
     storage.set<Ogre::Vector3>("linearFactor", m_properties.linearFactor);
     storage.set<Ogre::Vector3>("angularFactor", m_properties.angularFactor);
@@ -143,6 +150,11 @@ RigidBodyComponent::storage() const {
     storage.set<btScalar>("rollingFriction", m_properties.rollingFriction);
     storage.set<bool>("hasContactResponse", m_properties.hasContactResponse);
     storage.set<bool>("kinematic", m_properties.kinematic);
+    // Dynamic
+    storage.set<Ogre::Vector3>("position", m_dynamicProperties.position);
+    storage.set<Ogre::Quaternion>("rotation", m_dynamicProperties.rotation);
+    storage.set<Ogre::Vector3>("linearVelocity", m_dynamicProperties.linearVelocity);
+    storage.set<Ogre::Vector3>("angularVelocity", m_dynamicProperties.angularVelocity);
     return storage;
 }
 
