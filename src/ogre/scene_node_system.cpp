@@ -147,6 +147,7 @@ OgreAddSceneNodeSystem::update(int) {
         EntityId parentId = component->m_parentId;
         if (parentId == NULL_ENTITY) {
             parentNode = m_impl->m_sceneManager->getRootSceneNode();
+            component->m_parentId.untouch();
         }
         else {
             auto parentComponent = this->engine()->entityManager().getComponent<OgreSceneNodeComponent>(parentId);
@@ -303,6 +304,7 @@ OgreUpdateSceneNodeSystem::update(int) {
             Ogre::SceneNode* newParentNode = nullptr;
             if (parentId == NULL_ENTITY) {
                 newParentNode = m_impl->m_sceneManager->getRootSceneNode();
+                component->m_parentId.untouch();
             }
             else {
                 auto parentComponent = this->engine()->entityManager().getComponent<OgreSceneNodeComponent>(
