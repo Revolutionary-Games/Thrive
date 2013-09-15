@@ -2,6 +2,7 @@
 ADD_SYSTEM(MicrobeSystem)
 ADD_SYSTEM(MicrobeCameraSystem)
 ADD_SYSTEM(MicrobeControlSystem)
+ADD_SYSTEM(HudSystem)
 
 local function setupBackground()
     local entity = Entity("background")
@@ -75,6 +76,23 @@ local function setupEmitter()
     agentEmitter.potencyPerParticle = 3.0
 end
 
+
+local function setupHud()
+    local WIDTH = 200
+    local HEIGHT = 32
+
+    local energyCount = Entity("hud.energyCount")
+    local text = TextOverlayComponent("hud.energyCount")
+    energyCount:addComponent(text)
+    text.properties.horizontalAlignment = TextOverlayComponent.Center
+    text.properties.verticalAlignment = TextOverlayComponent.Bottom
+    text.properties.width = WIDTH
+    text.properties.height = HEIGHT
+    text.properties.left = -WIDTH / 2
+    text.properties.top = -HEIGHT
+    text.properties:touch()
+end
+
 local function setupPlayer()
     local player = Microbe.createMicrobeEntity(PLAYER_NAME)
     -- Forward
@@ -108,5 +126,6 @@ end
 setupBackground()
 setupCamera()
 setupEmitter()
+setupHud()
 setupPlayer()
 

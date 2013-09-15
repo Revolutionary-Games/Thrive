@@ -1,18 +1,23 @@
-local WIDTH = 200
-local HEIGHT = 32
 
-local energyCount = Entity("hud.energyCount")
-energyCount.text = TextOverlayComponent("hud.energyCount")
-energyCount:addComponent(energyCount.text)
-energyCount.text.properties.horizontalAlignment = TextOverlayComponent.Center
-energyCount.text.properties.verticalAlignment = TextOverlayComponent.Bottom
-energyCount.text.properties.width = WIDTH
-energyCount.text.properties.height = HEIGHT
-energyCount.text.properties.left = -WIDTH / 2
-energyCount.text.properties.top = -HEIGHT
-energyCount.text.properties:touch()
+--------------------------------------------------------------------------------
+-- Hud system
+--
+-- Updates HUD
+--------------------------------------------------------------------------------
 
-function setPlayerEnergyCount(count)
-    energyCount.text.properties.text = string.format("Energy: %d", count)
-    energyCount.text.properties:touch()
+class 'HudSystem' (System)
+
+function HudSystem:__init()
+    System.__init(self)
 end
+
+
+function HudSystem:update(milliseconds)
+    local player = Entity("player")
+    local playerMicrobe = Microbe(player)
+    local energy = playerMicrobe:getAgentAmount(1)
+    local textOverlay = Entity("hud.energyCount"):getComponent(TextOverlayComponent.TYPE_ID)
+    textOverlay.properties.text = string.format("Energy: %d", energy)
+    textOverlay.properties:touch()
+end
+
