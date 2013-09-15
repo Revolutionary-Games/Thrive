@@ -251,6 +251,7 @@ end
 
 
 function Microbe:_initialize()
+    self.rigidBody.properties.shape:clear()
     -- Organelles
     for s, organelle in pairs(self.microbe.organelles) do
         organelle.microbe = self
