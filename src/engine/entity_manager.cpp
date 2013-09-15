@@ -236,13 +236,6 @@ EntityManager::restore(
         ComponentTypeId typeId = entry.get<ComponentTypeId>("componentTypeId");
         this->removeComponent(entityId, typeId);
     }
-    // Entities
-    StorageList entities = storage.get<StorageList>("entities");
-    for (const auto& entry : entities) {
-        EntityId entityId = entry.get<EntityId>("entityId");
-        uint16_t componentCount = entry.get<uint16_t>("componentCount");
-        m_impl->m_entities[entityId] = componentCount;
-    }
     // Entities to remove
     StorageList entitiesToRemove = storage.get<StorageList>("entitiesToRemove");
     for (const auto& entry : entitiesToRemove) {
