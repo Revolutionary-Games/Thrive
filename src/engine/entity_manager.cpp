@@ -233,6 +233,9 @@ EntityManager::restore(
         for (const StorageContainer& componentStorage : componentList) {
             auto component = factory.load(typeName, componentStorage);
             EntityId owner = component->owner();
+            if (owner == NULL_ENTITY) {
+                std::cerr << "Component with no entity: " << typeName << std::endl;
+            }
             this->addComponent(owner, std::move(component));
         }
     }
@@ -240,7 +243,8 @@ EntityManager::restore(
     StorageList componentsToRemove = storage.get<StorageList>("componentsToRemove");
     for (const StorageContainer& entry : componentsToRemove) {
         EntityId entityId = entry.get<EntityId>("entityId");
-        ComponentTypeId typeId = entry.get<ComponentTypeId>("componentTypeId");
+        std::string typeName = entry.get<std::string>("componentTypeName");
+        ComponentTypeId typeId = factory.getTypeId(typeName);
         this->removeComponent(entityId, typeId);
     }
     // Entities to remove
@@ -267,7 +271,9 @@ EntityManager::setVolatile(
 
 
 StorageContainer
-EntityManager::storage() const {
+EntityManager::storage(
+    const ComponentFactory& factory
+) const {
     StorageContainer storage;
     // Current Id
     storage.set("currentId", m_impl->m_currentId);
@@ -277,7 +283,6 @@ EntityManager::storage() const {
         const auto& components = item.second->components();
         StorageList componentList;
         componentList.reserve(components.size());
-        std::string typeName = "";
         for (const auto& pair : components) {
             EntityId entityId = pair.first;
             const std::unique_ptr<Component>& component = pair.second;
@@ -286,12 +291,10 @@ EntityManager::storage() const {
             ) {
                 continue;
             }
-            if (typeName.empty()) {
-                typeName = component->typeName();
-            }
             componentList.append(component->storage());
         }
-        if (not typeName.empty()) {
+        if (not componentList.empty()) {
+            std::string typeName = factory.getTypeName(item.first);
             collections.set(typeName, std::move(componentList));
         }
     }
@@ -302,20 +305,11 @@ EntityManager::storage() const {
     for (const auto& pair : m_impl->m_componentsToRemove) {
         StorageContainer pairStorage;
         pairStorage.set("entityId", pair.first);
-        pairStorage.set("componentTypeId", pair.second);
+        std::string typeName = factory.getTypeName(pair.second);
+        pairStorage.set("componentTypeName", typeName);
         componentsToRemove.append(std::move(pairStorage));
     }
     storage.set("componentsToRemove", std::move(componentsToRemove));
-    // Entities
-    StorageList entities;
-    entities.reserve(m_impl->m_entities.size());
-    for (const auto& item : m_impl->m_entities) {
-        StorageContainer itemStorage;
-        itemStorage.set("entityId", item.first);
-        itemStorage.set("componentCount", item.second);
-        entities.append(std::move(itemStorage));
-    }
-    storage.set("entities", std::move(entities));
     // Entities to remove
     StorageList entitiesToRemove;
     entitiesToRemove.reserve(m_impl->m_entitiesToRemove.size());

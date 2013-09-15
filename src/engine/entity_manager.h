@@ -293,7 +293,9 @@ public:
     );
 
     StorageContainer
-    storage() const;
+    storage(
+        const ComponentFactory& factory
+    ) const;
 
 private:
 
