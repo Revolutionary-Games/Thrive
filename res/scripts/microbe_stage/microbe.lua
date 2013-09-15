@@ -27,17 +27,6 @@ function MicrobeComponent:load(storage)
         local s = encodeAxial(q, r)
         self.organelles[s] = organelle
     end
-    local vacuoles = storage:get("vacuoles", {})
-    for i = 1, vacuoles:size() do
-        local vacuoleStorage = vacuoles:get(i)
-        local vacuole = Vacuole.load(vacuoleStorage)
-        local agentId = vacuole.agentId
-        if not self.vacuoles[agentId] then
-            self.vacuoles[agentId] = {}
-        end
-        local vacuoleList = self.vacuoles[agentId]
-        table.insert(vacuoleList, vacuole)
-    end
 end
 
 
@@ -50,15 +39,6 @@ function MicrobeComponent:storage()
         organelles:append(organelleStorage)
     end
     storage:set("organelles", organelles)
-    -- Vacuoles
-    local vacuoles = StorageList()
-    for agentId, vacuoleList in pairs(self.vacuoles) do
-        for _, vacuole in ipairs(vacuoleList) do
-            local vacuoleStorage = vacuole:storage()
-            vacuoles:append(vacuoleStorage)
-        end
-    end
-    storage:set("vacuoles", vacuoles)
     return storage
 end
 
