@@ -218,6 +218,13 @@ EntityManager::restore(
     this->clear();
     // Current Id
     m_impl->m_currentId = storage.get<EntityId>("currentId");
+    // Named entities
+    StorageList namedIds = storage.get<StorageList>("namedIds");
+    for (const auto& entry : namedIds) {
+        std::string name = entry.get<std::string>("name");
+        EntityId id = entry.get<EntityId>("entityId");
+        m_impl->m_namedIds[name] = id;
+    }
     // Collections
     StorageContainer collections = storage.get<StorageContainer>("collections");
     auto typeNames = collections.keys();
@@ -241,13 +248,6 @@ EntityManager::restore(
     for (const auto& entry : entitiesToRemove) {
         EntityId entityId = entry.get<EntityId>("id");
         this->removeEntity(entityId);
-    }
-    // Named entities
-    StorageList namedIds = storage.get<StorageList>("namedIds");
-    for (const auto& entry : namedIds) {
-        std::string name = entry.get<std::string>("name");
-        EntityId id = entry.get<EntityId>("entityId");
-        m_impl->m_namedIds[name] = id;
     }
 }
 
