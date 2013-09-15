@@ -165,11 +165,21 @@ degreeBindings() {
 }
 
 
+static void
+SubEntity_setColour(
+    SubEntity* self,
+    const Ogre::ColourValue& colour
+) {
+    auto material = thrive::getColourMaterial(colour);
+    self->setMaterial(material);
+}
+
+
 static luabind::scope
 entityBindings() {
     return (
         class_<SubEntity, MovableObject>("OgreSubEntity")
-            .def("setMaterial", &SubEntity::setMaterial)
+            .def("setColour", &SubEntity_setColour)
         ,
         class_<Ogre::Entity, MovableObject>("OgreEntity")
             .def("getSubEntity", static_cast<SubEntity*(Entity::*)(const String&) const>(&Entity::getSubEntity))
@@ -177,22 +187,6 @@ entityBindings() {
     );
 }
 
-
-namespace Ogre {
-
-static Material*
-get_pointer(MaterialPtr ptr) {
-    return ptr.get();
-}
-
-}
-
-
-static luabind::scope
-materialBindings() {
-    return class_<Material, MaterialPtr>("Material")
-    ;
-}
 
 
 static luabind::scope
@@ -514,8 +508,6 @@ thrive::OgreBindings::luaBindings() {
         sceneManagerBindings(),
         movableObjectBindings(),
         entityBindings(),
-        materialBindings(),
-        def("getColourMaterial", getColourMaterial),
         // Components
         OgreCameraComponent::luaBindings(),
         OgreLightComponent::luaBindings(),

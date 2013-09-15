@@ -151,7 +151,7 @@ function Organelle:_updateHexColours()
             return
         end
         local center = hex.sceneNode.entity:getSubEntity("center")
-        center:setMaterial(getColourMaterial(self._colour))
+        center:setColour(self._colour)
         for i, qs, rs in iterateNeighbours(hex.q, hex.r) do
             local neighbourHex = self:getHex(qs, rs)
             local neighbourOrganelle = self.microbe and self.microbe:getOrganelleAt(
@@ -168,7 +168,7 @@ function Organelle:_updateHexColours()
             else
                 edgeColour = self._externalEdgeColour
             end
-            subEntity:setMaterial(getColourMaterial(edgeColour))
+            subEntity:setColour(edgeColour)
         end
     end
     self._needsColourUpdate = false
