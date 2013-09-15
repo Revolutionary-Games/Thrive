@@ -430,7 +430,9 @@ Engine::Engine()
 }
 
 
-Engine::~Engine() { }
+Engine::~Engine() { 
+    m_impl->m_physics.world.reset();
+}
 
 
 void
