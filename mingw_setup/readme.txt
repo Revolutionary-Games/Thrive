@@ -204,3 +204,16 @@ know how. A few quick pointers:
 
 * gcc 4.7 recommended
 
+
+Troubleshooting
+===============
+
+CMake complains about missing googletest and / or luabind
+---------------------------------------------------------
+Those two dependencies are included as git submodules, which are not 
+automatically cloned. If you are using git from the command line, go to
+the project directory and issue the commands "git submodule init", followed by 
+"git submodule update".
+
+For other clients such as TortoiseGit, look for options like 
+"Submodule Update" or similar.
