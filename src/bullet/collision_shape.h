@@ -216,7 +216,8 @@ public:
 
     CylinderShape(
         CollisionShape::Axis axis,
-        const Ogre::Vector3& halfExtents
+        btScalar radius,
+        btScalar height
     );
 
 
@@ -224,7 +225,9 @@ private:
 
     const CollisionShape::Axis m_axis;
 
-    const Ogre::Vector3 m_halfExtents;
+    const btScalar m_height;
+
+    const btScalar m_radius;
 
 };
 

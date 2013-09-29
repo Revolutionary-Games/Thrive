@@ -362,11 +362,9 @@ CylinderShape::load(
             CollisionShape::AXIS_X
         )
     );
-    Ogre::Vector3 halfExtents = storage.get<Ogre::Vector3>(
-        "halfExtents", 
-        Ogre::Vector3(1,1,1)
-    );
-    return make_unique<CylinderShape>(axis, halfExtents);
+    btScalar radius = storage.get<btScalar>("radius", 1.0f);
+    btScalar height = storage.get<btScalar>("height", 1.0f);
+    return make_unique<CylinderShape>(axis, radius, height);
 }
 
 
@@ -374,32 +372,34 @@ luabind::scope
 CylinderShape::luaBindings() {
     using namespace luabind;
     return class_<CylinderShape, CollisionShape, std::shared_ptr<CollisionShape>>("CylinderShape")
-        .def(constructor<CollisionShape::Axis, Ogre::Vector3>())
+        .def(constructor<CollisionShape::Axis, btScalar, btScalar>())
     ;
 }
 
 
 CylinderShape::CylinderShape(
     CollisionShape::Axis axis,
-    const Ogre::Vector3& halfExtents
+    btScalar radius,
+    btScalar height
 ) : m_axis(axis),
-    m_halfExtents(halfExtents)
+    m_height(height),
+    m_radius(radius)
 {
     switch(axis) {
         case CollisionShape::AXIS_X:
             m_bulletShape.reset(
-                new btCylinderShapeX(ogreToBullet(halfExtents))
+                new btCylinderShapeX(btVector3(height*0.5, radius, radius))
             );
             break;
         default:
         case CollisionShape::AXIS_Y:
             m_bulletShape.reset(
-                new btCylinderShape(ogreToBullet(halfExtents))
+                new btCylinderShape(btVector3(radius, height*0.5, radius))
             );
             break;
         case CollisionShape::AXIS_Z:
             m_bulletShape.reset(
-                new btCylinderShapeZ(ogreToBullet(halfExtents))
+                new btCylinderShapeZ(btVector3(radius, radius, height*0.5))
             );
             break;
     }
@@ -410,7 +410,8 @@ StorageContainer
 CylinderShape::storage() const {
     StorageContainer storage = CollisionShape::storage();
     storage.set<uint8_t>("axis", m_axis);
-    storage.set<Ogre::Vector3>("halfExtents", m_halfExtents);
+    storage.set<btScalar>("height", m_height);
+    storage.set<btScalar>("radius", m_radius);
     return storage;
 }
 
