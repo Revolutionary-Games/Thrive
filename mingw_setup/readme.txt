@@ -217,3 +217,11 @@ the project directory and issue the commands "git submodule init", followed by
 
 For other clients such as TortoiseGit, look for options like 
 "Submodule Update" or similar.
+
+Building works, but when running Thrive, it complains about missing DLLs
+------------------------------------------------------------------------
+Make sure to install Thrive before running it. The install target copies all
+necessary files to the "dist" subdirectory in the build directory.
+
+For Code::Blocks, you can select the install target in a dropdown near the 
+build button.
