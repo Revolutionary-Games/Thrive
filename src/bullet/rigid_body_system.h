@@ -213,6 +213,11 @@ public:
         btTransform& transform
     ) const override;
 
+    /**
+    * @brief Loads the component
+    *
+    * @param storage
+    */
     void
     load(
         const StorageContainer& storage
@@ -253,6 +258,11 @@ public:
         const Ogre::Vector3& angularVelocity
     );
 
+    /**
+    * @brief Serializes the component
+    *
+    * @return 
+    */
     StorageContainer
     storage() const override;
 

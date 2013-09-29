@@ -8,6 +8,11 @@
 using namespace thrive;
 
 
+/**
+* @brief Wrapper class to enable subclassing System in Lua
+*
+* \cond
+*/
 struct SystemWrapper : System, luabind::wrap_base {
 
     void
@@ -50,6 +55,11 @@ struct SystemWrapper : System, luabind::wrap_base {
     }
 
 };
+
+/**
+* \endcond
+*/
+
 
 luabind::scope
 System::luaBindings() {

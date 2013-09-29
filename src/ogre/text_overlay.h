@@ -120,6 +120,10 @@ public:
         const StorageContainer& storage
     ) override;
 
+    /**
+    * @brief The overlay's name
+    *
+    */
     Ogre::String
     name() const {
         return m_name;

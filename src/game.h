@@ -93,9 +93,10 @@
  *
  * Within the Lua scripts, you have access to all classes exposed by Thrive.
  * The most important one is probably Entity. Then, there are the subclasses of
- * Component. If you want to know more about the script API of these classes,
- * look for the function \c luaBindings() (e.g. Entity::luaBindings()), it 
- * will list the functions and data members that are exposed to Lua.
+ * Component and the System class. If you want to know more about the script API 
+ * of these classes, look for the function \c luaBindings() 
+ * (e.g. Entity::luaBindings()), it will list the functions and data members 
+ * that are exposed to Lua.
  *
  */
 namespace thrive {
