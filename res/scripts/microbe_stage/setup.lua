@@ -1,3 +1,4 @@
+Engine:setPhysicsDebugDrawingEnabled(true)
 
 ADD_SYSTEM(MicrobeSystem)
 ADD_SYSTEM(MicrobeCameraSystem)
@@ -45,7 +46,8 @@ local function setupEmitter()
     rigidBody.properties.linearDamping = 0.8
     rigidBody.properties.shape = CylinderShape(
         CollisionShape.AXIS_X, 
-        Vector3(1.0, 0.4, 0.75)
+        0.4,
+        2.0
     )
     rigidBody:setDynamicProperties(
         Vector3(10, 0, 0),
