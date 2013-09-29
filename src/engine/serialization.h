@@ -30,46 +30,120 @@ namespace Ogre {
 namespace thrive {
 
 
+/**
+* @brief A key-value storage for serialization
+*/
 class StorageContainer {
 
 public:
 
+    /**
+    * @brief Lua bindings
+    *
+    * - StorageContainer::contains
+    * - StorageContainer::get
+    * - StorageContainer::set
+    *
+    */
     static luabind::scope
     luaBindings();
 
+    /**
+    * @brief Constructor
+    */
     StorageContainer();
 
+    /**
+    * @brief Copy-constructor
+    *
+    * @param other
+    */
     StorageContainer(
         const StorageContainer& other
     );
 
+    /**
+    * @brief Move-constructor
+    *
+    * @param other
+    */
     StorageContainer(
         StorageContainer&& other
     );
 
+    /**
+    * @brief Destructor
+    */
     ~StorageContainer();
 
+    /**
+    * @brief Copy-assignment
+    *
+    * @param other
+    *
+    */
     StorageContainer&
     operator = (
         const StorageContainer& other
     );
 
+    /**
+    * @brief Move assignment
+    *
+    * @param other
+    *
+    */
     StorageContainer&
     operator = (
         StorageContainer&& other
     );
 
+    /**
+    * @brief Checks for a key
+    *
+    * @param key
+    *   The key to check for
+    *
+    * @return \c true if the key is present in this container, \c false otherwise
+    */
     bool
     contains(
         const std::string& key
     ) const;
 
+    /**
+    * @brief Checks for a key together with type
+    *
+    * @tparam T
+    *   The expected type of the key's associated value
+    * @param key
+    *   The key to check for
+    *
+    * @return
+    *   \c true if the key is present and associated with a value of type \a T,
+    *   \c false otherwise
+    */
     template<typename T>
     bool
     contains(
         const std::string& key
     ) const;
 
+    /**
+    * @brief Retrieves a value from the container
+    *
+    * @tparam T
+    *   The value's type
+    * @param key
+    *   The key to retrieve
+    * @param defaultValue
+    *   The value to return when the key is not present (or the value has the
+    *   wrong type)
+    *
+    * @return 
+    *   The value associated with \a key or \a defaultValue if the key could 
+    *   not be found or has a value associated with it that is not \a T.
+    */
     template<typename T>
     T
     get(
@@ -77,15 +151,39 @@ public:
         const T& defaultValue = T()
     ) const;
 
+    /**
+    * @brief Returns a list of all keys in this container
+    *
+    */
     std::list<std::string>
     keys() const;
 
+    /**
+    * @brief Lua version of StorageContainer::get
+    *
+    * @param key
+    * @param defaultValue
+    *
+    * @return 
+    */
     luabind::object
     luaGet(
         const std::string& key,
         luabind::object defaultValue
     ) const;
 
+    /**
+    * @brief Sets a value in this container
+    *
+    * If \a key is already associated with a value, it is overwritten.
+    *
+    * @tparam T
+    *   The type of \a value
+    * @param key
+    *   The key to associate with the value
+    * @param value
+    *   The value to insert
+    */
     template<typename T>
     void
     set(
@@ -111,12 +209,28 @@ private:
     std::unique_ptr<Implementation> m_impl;
 };
 
+/**
+* @brief Output stream operator for StorageContainer
+*
+* @param stream
+* @param storage
+*
+* @return 
+*/
 std::ostream&
 operator << (
     std::ostream& stream,
     const StorageContainer& storage
 );
 
+/**
+* @brief Input stream operator for StorageContainer
+*
+* @param stream
+* @param storage
+*
+* @return 
+*/
 std::istream&
 operator >> (
     std::istream& stream,
@@ -124,38 +238,91 @@ operator >> (
 );
 
 
+/**
+* @brief A list of StorageContainers
+*/
 class StorageList : public std::vector<StorageContainer> {
 
 public:
 
+    /**
+    * @brief Lua bindings
+    *
+    * - StorageList::append
+    * - StorageList::get
+    * - StorageList::size
+    *
+    * @return 
+    */
     static luabind::scope
     luaBindings();
 
+    /**
+    * @brief Constructor
+    */
     StorageList();
 
+    /**
+    * @brief Copy Constructor
+    *
+    * @param other
+    */
     StorageList(
         const StorageList& other
     );
 
+    /**
+    * @brief Move constructor
+    *
+    * @param other
+    */
     StorageList(
         StorageList&& other
     );
 
+    /**
+    * @brief Copy assignment
+    *
+    * @param other
+    *
+    */
     StorageList&
     operator = (
         const StorageList& other
     );
 
+    /**
+    * @brief Move assignment
+    *
+    * @param other
+    *
+    */
     StorageList&
     operator = (
         StorageList&& other
     );
 
+    /**
+    * @brief Appends a StorageContainer to this list
+    *
+    * @param element
+    *   The container to append
+    */
     void
     append(
         StorageContainer element
     );
 
+    /**
+    * @brief Retrieves an element by index
+    *
+    * @param index
+    *   The index to retrieve
+    *
+    * @return The element at \a index
+    *
+    * @throws std::out_of_range if \a index is out of range
+    */
     StorageContainer&
     get(
         size_t index
@@ -163,6 +330,13 @@ public:
 
 };
 
+/**
+* @brief Macro for declaring a new storable type
+*
+* @param typeName
+*   The name of the storable type
+*
+*/
 #define STORABLE_TYPE(typeName) \
     template<> \
     bool \

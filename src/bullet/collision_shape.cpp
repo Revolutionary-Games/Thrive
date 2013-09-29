@@ -66,6 +66,13 @@ CollisionShape::storage() const {
 // BoxShape
 ////////////////////////////////////////////////////////////////////////////////
 
+/**
+* @brief Loads the box shape
+*
+* @param storage
+*
+* @return 
+*/
 std::unique_ptr<BoxShape>
 BoxShape::load(
     const StorageContainer& storage
@@ -78,6 +85,13 @@ BoxShape::load(
 }
 
 
+/**
+* @brief Lua bindings
+*
+* - BoxShape::BoxShape()
+*
+* @return 
+*/
 luabind::scope
 BoxShape::luaBindings() {
     using namespace luabind;
@@ -95,6 +109,11 @@ BoxShape::BoxShape(
 }
 
 
+/**
+* @brief Serializes this box shape
+*
+* @return 
+*/
 StorageContainer
 BoxShape::storage() const {
     StorageContainer storage = CollisionShape::storage();
@@ -108,6 +127,13 @@ BoxShape::storage() const {
 // CapsuleShape
 ////////////////////////////////////////////////////////////////////////////////
 
+/**
+* @brief Loads a capsule shape
+*
+* @param storage
+*
+* @return 
+*/
 std::unique_ptr<CapsuleShape>
 CapsuleShape::load(
     const StorageContainer& storage
@@ -124,6 +150,13 @@ CapsuleShape::load(
 }
 
 
+/**
+* @brief Lua bindings
+*
+* - CapsuleShape::CapsuleShape()
+*
+* @return 
+*/
 luabind::scope
 CapsuleShape::luaBindings() {
     using namespace luabind;
@@ -156,6 +189,11 @@ CapsuleShape::CapsuleShape(
 }
 
 
+/**
+* @brief Serializes this capsule shape
+*
+* @return 
+*/
 StorageContainer
 CapsuleShape::storage() const {
     StorageContainer storage = CollisionShape::storage();
@@ -171,6 +209,13 @@ CapsuleShape::storage() const {
 // CompoundShape
 ////////////////////////////////////////////////////////////////////////////////
 
+/**
+* @brief Loads a compound shape
+*
+* @param storage
+*
+* @return 
+*/
 std::unique_ptr<CompoundShape>
 CompoundShape::load(
     const StorageContainer& storage
@@ -196,6 +241,16 @@ CompoundShape::load(
 }
 
 
+/**
+* @brief Lua bindings
+*
+* - CompoundShape::CompoundShape()
+* - CompoundShape::addChildShape()
+* - CompoundShape::clear()
+* - CompoundShape::removeChildShape()
+*
+* @return 
+*/
 luabind::scope
 CompoundShape::luaBindings() {
     using namespace luabind;
@@ -262,6 +317,11 @@ CompoundShape::removeChildShape(
 }
 
 
+/**
+* @brief Serializes this compound shape
+*
+* @return 
+*/
 StorageContainer
 CompoundShape::storage() const {
     StorageContainer storage = CollisionShape::storage();
@@ -289,6 +349,13 @@ CompoundShape::storage() const {
 // ConeShape
 ////////////////////////////////////////////////////////////////////////////////
 
+/**
+* @brief Loads a cone shape
+*
+* @param storage
+*
+* @return 
+*/
 std::unique_ptr<ConeShape>
 ConeShape::load(
     const StorageContainer& storage
@@ -305,6 +372,13 @@ ConeShape::load(
 }
 
 
+/**
+* @brief Lua bindings
+*
+* - ConeShape::ConeShape()
+*
+* @return 
+*/
 luabind::scope
 ConeShape::luaBindings() {
     using namespace luabind;
@@ -337,6 +411,11 @@ ConeShape::ConeShape(
 }
 
 
+/**
+* @brief Serializes this cone shape
+*
+* @return 
+*/
 StorageContainer
 ConeShape::storage() const {
     StorageContainer storage = CollisionShape::storage();
@@ -352,6 +431,13 @@ ConeShape::storage() const {
 // CylinderShape
 ////////////////////////////////////////////////////////////////////////////////
 
+/**
+* @brief Loads a cylinder shape
+*
+* @param storage
+*
+* @return 
+*/
 std::unique_ptr<CylinderShape>
 CylinderShape::load(
     const StorageContainer& storage
@@ -368,6 +454,13 @@ CylinderShape::load(
 }
 
 
+/**
+* @brief Lua bindings
+*
+* - CylinderShape::CylinderShape()
+*
+* @return 
+*/
 luabind::scope
 CylinderShape::luaBindings() {
     using namespace luabind;
@@ -406,6 +499,11 @@ CylinderShape::CylinderShape(
 }
 
 
+/**
+* @brief Serializes this cylinder shape
+*
+* @return 
+*/
 StorageContainer
 CylinderShape::storage() const {
     StorageContainer storage = CollisionShape::storage();
@@ -421,6 +519,11 @@ CylinderShape::storage() const {
 // EmptyShape
 ////////////////////////////////////////////////////////////////////////////////
 
+/**
+* @brief Loads an empty shape
+*
+* @return 
+*/
 std::unique_ptr<EmptyShape>
 EmptyShape::load(
     const StorageContainer&
@@ -429,6 +532,13 @@ EmptyShape::load(
 }
 
 
+/**
+* @brief Lua bindings
+*
+* EmptyShape::EmptyShape()
+*
+* @return 
+*/
 luabind::scope
 EmptyShape::luaBindings() {
     using namespace luabind;
@@ -444,6 +554,11 @@ EmptyShape::EmptyShape()
 }
 
 
+/**
+* @brief Serializes this empty shape
+*
+* @return 
+*/
 StorageContainer
 EmptyShape::storage() const {
     return CollisionShape::storage();
@@ -455,6 +570,13 @@ EmptyShape::storage() const {
 // SphereShape
 ////////////////////////////////////////////////////////////////////////////////
 
+/**
+* @brief Loads a sphere shape
+*
+* @param storage
+*
+* @return 
+*/
 std::unique_ptr<SphereShape>
 SphereShape::load(
     const StorageContainer& storage
@@ -464,6 +586,13 @@ SphereShape::load(
 }
 
 
+/**
+* @brief Lua bindings
+*
+* - SphereShape::SphereShape()
+*
+* @return 
+*/
 luabind::scope
 SphereShape::luaBindings() {
     using namespace luabind;
@@ -481,6 +610,11 @@ SphereShape::SphereShape(
 }
 
 
+/**
+* @brief Serializes this sphere shape
+*
+* @return 
+*/
 StorageContainer
 SphereShape::storage() const {
     StorageContainer storage = CollisionShape::storage();

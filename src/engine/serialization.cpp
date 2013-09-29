@@ -39,25 +39,55 @@ struct StoredValue {
     Variant value;
 };
 
+/**
+* @brief Information about a storable type
+*
+* @tparam Type
+*   The serialized type
+*/
 template<typename Type>
 struct TypeInfo {
 
+    /**
+    * @brief The type that is actually put into the storage container
+    */
     using StoredType = bool;
 
+    /**
+    * @brief Type id
+    *
+    * Must remain constant through all versions
+    */
     static const TypeId Id = 0;
 
+    /**
+    * @brief Converts the stored type to the actual type
+    *
+    * @param storedValue
+    *   The stored value
+    *
+    * @return The actual value
+    */
     static Type
     convertFromStoredType(
-        const StoredType& storedType
+        const StoredType& storedValue
     ) {
-        return storedType;
+        return storedValue;
     }
 
+    /**
+    * @brief Converts the actual type to its stored type
+    *
+    * @param value
+    *   The value to convert
+    *
+    * @return The stored value
+    */
     static StoredType
     convertToStoredType (
-        const Type& type
+        const Type& value
     ) {
-        return type;
+        return value;
     }
 
 };

@@ -24,6 +24,11 @@ getLuaClassName(
     return name;
 }
 
+/**
+* @brief Wrapper class to enable subclassing Component in Lua
+*
+* \cond
+*/
 struct ComponentWrapper : Component, luabind::wrap_base {
 
     ComponentWrapper(
@@ -73,6 +78,10 @@ struct ComponentWrapper : Component, luabind::wrap_base {
     lua_State* m_luaState = nullptr;
 
 };
+
+/**
+ * \endcond
+ */
 
 luabind::scope
 Component::luaBindings() {
