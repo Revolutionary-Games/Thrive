@@ -1,10 +1,4 @@
-
---------------------------------------------------------------------------------
--- Hud system
---
--- Updates HUD
---------------------------------------------------------------------------------
-
+-- Updates the hud with relevant information
 class 'HudSystem' (System)
 
 function HudSystem:__init()
