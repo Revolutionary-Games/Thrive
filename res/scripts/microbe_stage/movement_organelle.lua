@@ -1,20 +1,18 @@
+-- Enables a microbe to move and turn
 class 'MovementOrganelle' (Organelle)
 
+-- Constructor
+--
+-- @param force
+--  The force this organelle can exert to move a microbe
+--
+-- @param torque
+--  The torque this organelle can exert to turn a microbe
 function MovementOrganelle:__init(force, torque)
     Organelle.__init(self)
     self.energyMultiplier = 0.025
     self.force = force
     self.torque = torque
-end
-
-local function sign(x)
-    if x < 0 then
-        return -1
-    elseif x > 0 then
-        return 1
-    else
-        return 0
-    end
 end
 
 function MovementOrganelle:load(storage)

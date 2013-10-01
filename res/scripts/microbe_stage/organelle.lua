@@ -1,5 +1,17 @@
+-- Base class for microbe organelles
 class 'Organelle'
 
+-- Factory function for organelles
+function Organelle.loadOrganelle(storage)
+    local className = storage:get("className", "")
+    local cls = _G[className]
+    local organelle = cls()
+    organelle:load(storage)
+    return organelle
+end
+
+
+-- Constructor
 function Organelle:__init()
     self.entity = Entity()
     self.entity:setVolatile(true)
@@ -17,6 +29,13 @@ function Organelle:__init()
 end
 
 
+-- Adds a hex to this organelle
+--
+-- @param q, r
+--  Axial coordinates of the new hex
+--
+-- @returns success
+--  True if the hex could be added, false if there already is a hex at (q,r)
 function Organelle:addHex(q, r)
     assert(not self.microbe, "Cannot change organelle shape while it is in a microbe")
     local s = encodeAxial(q, r)
@@ -50,6 +69,13 @@ function Organelle:addHex(q, r)
 end
 
 
+-- Retrieves a hex
+--
+-- @param q, r
+--  Axial coordinates of the hex
+--
+-- @returns hex
+--  The hex at (q, r) or nil if there's no hex at that position
 function Organelle:getHex(q, r)
     local s = encodeAxial(q, r)
     return self._hexes[s]
@@ -72,15 +98,13 @@ function Organelle:load(storage)
 end
 
 
-function Organelle.loadOrganelle(storage)
-    local className = storage:get("className", "")
-    local cls = _G[className]
-    local organelle = cls()
-    organelle:load(storage)
-    return organelle
-end
-
-
+-- Called by a microbe when this organelle has been added to it
+--
+-- @param microbe
+--  The organelle's new owner
+--
+-- @param q, r
+--  Axial coordinates of the organelle's center
 function Organelle:onAddedToMicrobe(microbe, q, r)
     self.microbe = microbe
     self.position.q = q
@@ -88,6 +112,10 @@ function Organelle:onAddedToMicrobe(microbe, q, r)
 end
 
 
+-- Called by a microbe when this organelle has been removed from it
+--
+-- @param microbe
+--  The organelle's previous owner
 function Organelle:onRemovedFromMicrobe(microbe)
     assert(microbe == self.microbe, "Can't remove organelle, wrong microbe")
     self.microbe = nil
@@ -96,6 +124,13 @@ function Organelle:onRemovedFromMicrobe(microbe)
 end
 
 
+-- Removes a hex from this organelle
+--
+-- @param q,r
+--  Axial coordinates of the hex to remove
+--
+-- @returns success
+--  True if the hex could be removed, false if there's no hex at (q,r)
 function Organelle:removeHex(q, r)
     assert(not self.microbe, "Cannot change organelle shape while it is in a microbe")
     local s = encodeAxial(q, r)
@@ -110,6 +145,9 @@ function Organelle:removeHex(q, r)
 end
 
 
+-- Sets the organelle's colour
+--
+-- Temporary until we use proper models for the organelles
 function Organelle:setColour(colour)
     self._colour = colour
     self._needsColourUpdate = true
@@ -136,6 +174,12 @@ function Organelle:storage()
 end
 
 
+-- Called by Microbe:update
+--
+-- Override this to make your organelle class do something at regular intervals
+--
+-- @param milliseconds
+--  The time since the last call to update()
 function Organelle:update(microbe, milliseconds)
     if self._needsColourUpdate then
         self:_updateHexColours()
@@ -144,6 +188,7 @@ function Organelle:update(microbe, milliseconds)
 end
 
 
+-- Private function for updating the organelle's colour
 function Organelle:_updateHexColours()
     for _, hex in pairs(self._hexes) do
         if not hex.sceneNode.entity then
@@ -174,6 +219,11 @@ function Organelle:_updateHexColours()
     self._needsColourUpdate = false
 end
 
+
+-- Queues a colour update for this organelle
+--
+-- We can't actually update the colour right away because the required objects, 
+-- in particular the Ogre scene nodes may not have been created yet.
 function Organelle:updateHexColours()
     self._needsColourUpdate = true
 end

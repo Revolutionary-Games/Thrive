@@ -1,3 +1,6 @@
+--------------------------------------------------------------------------------
+-- Simple class for a storage vacuole
+--------------------------------------------------------------------------------
 class 'Vacuole'
 
 function Vacuole:__init(agentId, capacity, amount)
@@ -22,8 +25,18 @@ function Vacuole:storage()
     return storage
 end
 
+--------------------------------------------------------------------------------
+-- A storage organelle class
+--------------------------------------------------------------------------------
 class 'StorageOrganelle' (Organelle)
 
+-- Constructor
+--
+-- @param agentId
+--  The agent stored by this organelle
+--
+-- @param capacity
+--  The maximum stored amount
 function StorageOrganelle:__init(agentId, capacity)
     Organelle.__init(self)
     self._vacuole = Vacuole(agentId, capacity, 0.0)
@@ -37,12 +50,14 @@ function StorageOrganelle:load(storage)
 end
 
 
+-- Overridded from Organelle:onAddedToMicrobe
 function StorageOrganelle:onAddedToMicrobe(microbe, q, r)
     Organelle.onAddedToMicrobe(self, microbe, q, r)
     microbe:addVacuole(self._vacuole)
 end
 
 
+-- Overridded from Organelle:onRemovedFromMicrobe
 function StorageOrganelle:onRemovedFromMicrobe(microbe)
     microbe:removeVacuole(self._vacuole)
     Organelle.onRemovedToMicrobe(self, microbe, q, r)

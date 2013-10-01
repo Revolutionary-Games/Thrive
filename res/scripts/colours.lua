@@ -1,3 +1,4 @@
+-- Defines some often-used colours by name for easier access
 local COLOURS = {
     Transparent = {0.0, 0.0, 0.0, 0.0},
     Black       = {0.0, 0.0, 0.0, 0.0},
@@ -11,6 +12,7 @@ local COLOURS = {
     Blue        = {0.0, 0.0, 1.0, 1.0},
 }
 
+-- Put the above defined colours into the ColourValue class object
 for name, components in pairs(COLOURS) do
     ColourValue[name] = ColourValue(
         components[1],
