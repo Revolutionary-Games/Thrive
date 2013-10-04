@@ -240,7 +240,7 @@ target_link_libraries(RunTests ThriveLib gtest_main)
 #################
 
 set(DOC_OUTPUT_DIR ${CMAKE_CURRENT_BINARY_DIR}/doc CACHE PATH "Documentation output directory.")
-set(DOC_INPUT ${CMAKE_CURRENT_SOURCE_DIR}/src)
+set(DOC_INPUT "${CMAKE_CURRENT_SOURCE_DIR}/src ${CMAKE_CURRENT_SOURCE_DIR}/doc")
 
 set( DOXYGEN_CONFIG_FILE
     ${CMAKE_CURRENT_SOURCE_DIR}/doc/doxygen.cfg.in
