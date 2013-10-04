@@ -46,10 +46,14 @@ public:
     * @brief Lua bindings
     *
     * Exposes:
-    * - Engine::setPhysicsDebugDrawingEnabled
-    * - Engine::keyboard (as property)
-    * - Engine::mouse (as property)
-    * - Engine::sceneManager (as property)
+    * - Engine::addScriptSystem()
+    * - Engine::load()
+    * - Engine::save()
+    * - Engine::setPhysicsDebugDrawingEnabled()
+    * - Engine::componentFactory() (as property)
+    * - Engine::keyboard() (as property)
+    * - Engine::mouse() (as property)
+    * - Engine::sceneManager() (as property)
     *
     * @return 
     */
