@@ -1,0 +1,121 @@
+namespace thrive { /**
+
+@page engine_overview Engine Overview
+
+This page gives an overview of the most important systems and components
+and how they fit together. It is meant for prospective contributors trying to 
+get a grasp on how the engine works.
+
+This document assumes that you have an understanding of 
+@ref entity_component "entities, components and systems"
+
+@section graphics Graphics
+
+Thrive uses the Ogre3D graphics engine for rendering. Rendering is done as one
+of the last things in each frame. The most notable systems are listed here.
+
+@subsection scene_nodes Scene Nodes
+
+Everything that has a position and orientation in the game world has an 
+associated Ogre::SceneNode.
+
+The three systems OgreAddSceneNodeSystem, OgreRemoveSceneNodeSystem and 
+OgreUpdateSceneNodeSystem work in conjunction to add, remove and update
+the underlying Ogre::SceneNode for entities that have an 
+OgreSceneNodeComponent.
+
+Many graphics-related components only work if their entity also has an 
+OgreSceneNodeComponent.
+
+You can "attach" a scene node (i.e. make its transformation relative) to 
+a parent by setting OgreSceneNodeComponent::m_parentId.
+
+Scene nodes can optionally display a 3D mesh at their position by assigning
+the mesh's resource name to OgreSceneNodeComponent::m_meshName. Assign an 
+empty string (the default value) to display nothing.
+
+#### Example (Lua)
+@include scene_node.lua
+
+
+@subsection cameras_viewports Cameras and Viewports
+
+The OgreCameraSystem filters for entities with both an OgreSceneNodeComponent
+and an OgreCameraComponent.
+
+To make a camera's viewpoint visible, it must be attached to a viewport.
+Viewports can be created by creating an entity and giving it at least an
+OgreViewportComponent. By assigning a camera entity to the
+OgreViewportComponent::Properties::cameraEntity field of 
+OgreViewportComponent::m_properties, the viewport will show what the camera
+sees.
+
+#### Example (Lua)
+@include camera_viewport.lua
+
+
+@subsection lights Lights
+
+The OgreLightSystem filters for entities with both an OgreSceneNodeComponent
+and an OgreLightComponent.
+
+#### Example (Lua)
+@include light.lua
+
+
+@section input Input
+
+Mouse and keyboard input are handled by the OIS (Open Input System) library.
+The input states can be queried from the MouseSystem and KeyboardSystem. In 
+Lua, those systems are accessible through the `Engine` global.
+
+The mouse position can be queried as absolute pixels or normalized from 0.0 to 
+1.0 relative to the window's dimensions.
+
+#### Example (Lua)
+@include input.lua
+
+
+@section physics Physics
+
+For physics, we use the Bullet library. Rigid bodies are created by adding a
+RigidBodyComponent to an entity. The RigidBodyInputSystem updates the 
+underlying btRigidBody object with the properties set in the 
+RigidBodyComponent, while the RigidBodyOutputSystem reads the results of the 
+physics simulation and writes them back into the RigidBodyComponent.
+
+If an entity has both an OgreSceneNodeComponent and a RigidBodyComponent, the
+authority on the position and orientation is the RigidBodyComponent. The 
+BulletToOgreSystem will update the transform of the OgreSceneNodeComponent
+each frame.
+
+
+#### Example (Lua)
+
+@include rigid_body.lua
+
+
+@section scripting Scripting
+
+To avoid frequent recompilation for minor tweaks, Thrive uses Lua scripts to
+supplement the C++ code. To expose C++ functions and classes to Lua, we use 
+the luabind library.
+
+Lua scripts have access to a global `Engine`. See Engine::luaBindings() for
+an overview of that object's functions and properties.
+
+The primary mechanism for extending Thrive via Lua scripts is to derive from
+the Component and System class. Lua-defined systems can then be added with a 
+call to Engine::addScriptSystem. You can use the EntityFilter to extract the
+list of relevant entities for your system.
+
+#### Defining a new component in Lua
+
+@include component.lua
+
+
+#### Defining a new system in Lua
+
+@include system.lua
+
+*/ }

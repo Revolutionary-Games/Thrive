@@ -36,11 +36,9 @@ public:
     * - \c Entity(string): Entity(const std::string&)
     *
     * Exposes the following \b functions:
-    * - \c addComponent(Component): addComponent(std::shared_ptr<Component>)
-    * - \c getComponent(number): getComponent(Component::TypeId)
-    * - \c getComponent(string): getComponent(const std::string&)
-    * - \c removeComponent(number): removeComponent(Component::TypeId)
-    * - \c removeComponent(string): removeComponent(const std::string&)
+    * - \c addComponent(Component): addComponent(std::unique_ptr<Component>)
+    * - \c getComponent(number): getComponent(ComponentTypeId)
+    * - \c removeComponent(number): removeComponent(ComponentTypeId)
     *
     * Exposes the following \b operators:
     * - \c ==: operator==(const Entity&)
@@ -168,7 +166,7 @@ public:
     */
     void
     addComponent(
-        std::shared_ptr<Component> component
+        std::unique_ptr<Component> component
     );
 
     /**
@@ -197,22 +195,7 @@ public:
     */
     Component*
     getComponent(
-        Component::TypeId typeId
-    );
-
-    /**
-    * @brief Retrieves a component by type name
-    *
-    * @param typeName
-    *   The component's type name
-    *
-    * @return 
-    *   A non-owning pointer to the component or \c nullptr if no such 
-    *   component was found
-    */
-    Component*
-    getComponent(
-        const std::string& typeName
+        ComponentTypeId typeId
     );
 
     /**
@@ -231,26 +214,7 @@ public:
     */
     bool
     hasComponent(
-        Component::TypeId typeId
-    );
-
-    /**
-    * @brief Checks whether this entity has a component
-    *
-    * Equivalent to 
-    * \code
-    * entity->getComponent(typeName) != nullptr;
-    * \endcode
-    *
-    * @param typeName
-    *   The component's type name
-    *
-    * @return 
-    *   \c true if such a component was found, false otherwise
-    */
-    bool
-    hasComponent(
-        const std::string& typeName
+        ComponentTypeId typeId
     );
 
     /**
@@ -258,6 +222,16 @@ public:
     */
     EntityId
     id() const;
+
+    /**
+    * @brief Returns the volatile flag
+    *
+    * Volatile entities are not serialized into a savegame
+    *
+    * @return 
+    */
+    bool
+    isVolatile() const;
 
     /**
     * @brief Removes a component by type id
@@ -273,24 +247,19 @@ public:
     */
     void
     removeComponent(
-        Component::TypeId typeId
+        ComponentTypeId typeId
     );
 
     /**
-    * @brief Removes a component by type name
+    * @brief Sets the volatile flag
     *
-    * If no such component was found, does nothing.
+    * @param isVolatile
     *
-    * @note
-    *   The component is only actually removed after the entity manager's
-    *   EntityManager::processRemovals() function is called.
-    *
-    * @param name
-    *   The component's type name
+    * @see isVolatile()
     */
     void
-    removeComponent(
-        const std::string& name
+    setVolatile(
+        bool isVolatile
     );
 
 private:

@@ -8,12 +8,10 @@
 
 using namespace thrive;
 
-using ComponentPtr = std::shared_ptr<Component>;
-
 struct ComponentCollection::Implementation {
 
     Implementation(
-        Component::TypeId type
+        ComponentTypeId type
     ) : m_type(type)
     {
     }
@@ -23,17 +21,17 @@ struct ComponentCollection::Implementation {
         std::pair<ChangeCallback, ChangeCallback>
     > m_changeCallbacks;
 
-    std::unordered_map<EntityId, ComponentPtr> m_components;
+    std::unordered_map<EntityId, std::unique_ptr<Component>> m_components;
 
     unsigned int m_nextChangeCallbackId = 0;
 
-    Component::TypeId m_type;
+    ComponentTypeId m_type = NULL_COMPONENT_TYPE;
 
 };
 
 
 ComponentCollection::ComponentCollection(
-    Component::TypeId type
+    ComponentTypeId type
 ) : m_impl(new Implementation(type))
 {
 }
@@ -53,7 +51,7 @@ ComponentCollection::operator[] (
 bool
 ComponentCollection::addComponent(
     EntityId entityId,
-    std::shared_ptr<Component> component
+    std::unique_ptr<Component> component
 ) {
     bool isNew = true;
     // Check if we are overwriting an old component
@@ -64,14 +62,43 @@ ComponentCollection::addComponent(
         }
     }
     // Insert new component
+    Component* rawComponent = component.get();
     m_impl->m_components.insert(std::make_pair(
         entityId, 
-        component
+        std::move(component)
     ));
     for (auto& value : m_impl->m_changeCallbacks) {
-        value.second.first(entityId, *component);
+        value.second.first(entityId, *rawComponent);
     }
+    rawComponent->setOwner(entityId);
     return isNew;
+}
+
+
+void
+ComponentCollection::clear() {
+    auto iter = m_impl->m_components.begin();
+    while (iter != m_impl->m_components.end()) {
+        EntityId entityId = iter->first;
+        std::unique_ptr<Component>& component = iter->second;
+        for (auto& value : m_impl->m_changeCallbacks) {
+            value.second.second(entityId, *component);
+        }
+        component->setOwner(NULL_ENTITY);
+        iter = m_impl->m_components.erase(iter);
+    }
+}
+
+
+const std::unordered_map<EntityId, std::unique_ptr<Component>>&
+ComponentCollection::components() const {
+    return m_impl->m_components;
+}
+
+
+bool
+ComponentCollection::empty() const {
+    return m_impl->m_components.empty();
 }
 
 
@@ -112,6 +139,7 @@ ComponentCollection::removeComponent(
         for (auto& value : m_impl->m_changeCallbacks) {
             value.second.second(entityId, *iter->second);
         }
+        iter->second->setOwner(NULL_ENTITY);
         m_impl->m_components.erase(iter);
         return true;
     }
@@ -119,7 +147,7 @@ ComponentCollection::removeComponent(
 }
 
 
-Component::TypeId
+ComponentTypeId
 ComponentCollection::type() const {
     return m_impl->m_type;
 }
