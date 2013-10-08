@@ -2,6 +2,10 @@
 
 #include <memory>
 
+namespace luabind {
+class scope;
+}
+
 namespace thrive {
 
 class Engine;
@@ -18,6 +22,18 @@ class System {
 public:
 
     /**
+    * @brief Lua bindings
+    *
+    * Exposes:
+    * - System::active
+    * - System::setActive
+    *
+    * @return 
+    */
+    static luabind::scope
+    luaBindings();
+
+    /**
     * @brief Constructor
     */
     System();
@@ -26,6 +42,16 @@ public:
     * @brief Destructor
     */
     virtual ~System() = 0;
+
+    /**
+    * @brief Whether this system is active
+    *
+    * Inactive systems are not being updated
+    *
+    * @return 
+    */
+    bool
+    active() const;
 
     /**
     * @brief The system's engine
@@ -48,6 +74,18 @@ public:
     virtual void
     init(
         Engine* engine
+    );
+
+    /**
+    * @brief Sets the active status of this system
+    *
+    * Inactive systems are not updated
+    *
+    * @param active
+    */
+    void
+    setActive(
+        bool active
     );
 
     /**

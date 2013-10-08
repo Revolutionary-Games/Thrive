@@ -1,31 +1,38 @@
 #include "engine/engine.h"
 
 #include "engine/component_collection.h"
+#include "engine/component_factory.h"
 #include "engine/entity_manager.h"
+#include "engine/saving.h"
 #include "engine/system.h"
 #include "game.h"
 
 // Bullet
 #include "bullet/bullet_to_ogre_system.h"
-#include "bullet/update_physics_system.h"
+#include "bullet/debug_drawing.h"
 #include "bullet/rigid_body_system.h"
+#include "bullet/update_physics_system.h"
 
 // Ogre
 #include "ogre/camera_system.h"
-#include "ogre/entity_system.h"
 #include "ogre/keyboard_system.h"
 #include "ogre/light_system.h"
-#include "ogre/on_key.h"
+#include "ogre/mouse_system.h"
 #include "ogre/render_system.h"
 #include "ogre/scene_node_system.h"
 #include "ogre/sky_system.h"
+#include "ogre/text_overlay.h"
 #include "ogre/viewport_system.h"
 
 // Scripting
 #include "scripting/luabind.h"
 #include "scripting/lua_state.h"
-#include "scripting/on_update.h"
 #include "scripting/script_initializer.h"
+#include "scripting/script_system_updater.h"
+
+
+// Microbe
+#include "microbe_stage/agent.h"
 
 #include "util/contains.h"
 #include "util/pair_hash.h"
@@ -35,9 +42,11 @@
 #include <boost/lexical_cast.hpp>
 #include <btBulletDynamicsCommon.h>
 #include <chrono>
+#include <ctime>
 #include <forward_list>
 #include <fstream>
 #include <iostream>
+#include <luabind/adopt_policy.hpp>
 #include <OgreConfigFile.h>
 #include <OgreLogManager.h>
 #include <OgreRenderWindow.h>
@@ -45,6 +54,7 @@
 #include <OgreWindowEventUtilities.h>
 #include <OISInputManager.h>
 #include <OISMouse.h>
+#include <random>
 #include <set>
 #include <stdlib.h>
 #include <unordered_map>
@@ -53,13 +63,8 @@
 
 using namespace thrive;
 
-#ifdef _DEBUG
-    static const char* RESOURCES_CFG = "resources_d.cfg";
-    static const char* PLUGINS_CFG   = "plugins_d.cfg";
-#else
-    static const char* RESOURCES_CFG = "resources.cfg";
-    static const char* PLUGINS_CFG   = "plugins.cfg";
-#endif
+static const char* RESOURCES_CFG = "resources.cfg";
+static const char* PLUGINS_CFG   = "plugins.cfg";
 
 ////////////////////////////////////////////////////////////////////////////////
 // Engine
@@ -70,9 +75,15 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
     Implementation(
         Engine& engine
     ) : m_engine(engine),
-        m_keyboardSystem(std::make_shared<KeyboardSystem>()),
+        m_loadSystem(std::make_shared<LoadSystem>()),
+        m_saveSystem(std::make_shared<SaveSystem>()),
+        m_scriptSystemUpdater(std::make_shared<ScriptSystemUpdater>()),
         m_viewportSystem(std::make_shared<OgreViewportSystem>())
     {
+        m_loadSystem->setActive(false);
+        m_saveSystem->setActive(false);
+        m_input.keyboardSystem = std::make_shared<KeyboardSystem>();
+        m_input.mouseSystem = std::make_shared<MouseSystem>();
     }
 
     ~Implementation() {
@@ -146,16 +157,25 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
             else if (fs::is_directory(manifestEntryPath)) {
                 this->loadScripts(manifestEntryPath);
             }
-            else if(luaL_dofile(m_luaState, manifestEntryPath.string().c_str())) {
-                const char* errorMessage = lua_tostring(m_luaState, -1);
-                std::cerr << "Error while parsing " << manifestEntryPath.string() << ": " << errorMessage << std::endl;
+            else {
+                int error = 0;
+                error = luaL_loadfile(
+                    m_luaState, 
+                    manifestEntryPath.string().c_str()
+                );
+                error = error or luabind::detail::pcall(m_luaState, 0, LUA_MULTRET);
+                if (error) {
+                    std::string errorMessage = lua_tostring(m_luaState, -1);
+                    lua_pop(m_luaState, 1);
+                    std::cerr << errorMessage << std::endl;
+                }
             }
         }
     }
 
     bool
     quitRequested() {
-        return m_keyboardSystem->isKeyDown(
+        return m_input.keyboardSystem->isKeyDown(
             OIS::KeyCode::KC_ESCAPE
         );
     }
@@ -166,7 +186,11 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
         m_graphics.root.reset(new Ogre::Root(PLUGINS_CFG));
         this->loadResources();
         this->loadOgreConfig();
-        this->m_graphics.renderWindow = m_graphics.root->initialise(true, "Thrive");
+        m_graphics.renderWindow = m_graphics.root->initialise(true, "Thrive");
+        m_input.mouseSystem->setWindowSize(
+            m_graphics.renderWindow->getWidth(),
+            m_graphics.renderWindow->getHeight()
+        );
         Ogre::WindowEventUtilities::addWindowEventListener(
             m_graphics.renderWindow,
             this
@@ -195,7 +219,18 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
             HANDLE_NAME,
             boost::lexical_cast<std::string>(windowHandle)
         ));
-        m_inputManager = OIS::InputManager::createInputSystem(parameters);
+#if defined OIS_WIN32_PLATFORM
+        parameters.insert(std::make_pair(std::string("w32_mouse"), std::string("DISCL_FOREGROUND" )));
+        parameters.insert(std::make_pair(std::string("w32_mouse"), std::string("DISCL_NONEXCLUSIVE")));
+        parameters.insert(std::make_pair(std::string("w32_keyboard"), std::string("DISCL_FOREGROUND")));
+        parameters.insert(std::make_pair(std::string("w32_keyboard"), std::string("DISCL_NONEXCLUSIVE")));
+#elif defined OIS_LINUX_PLATFORM
+        parameters.insert(std::make_pair(std::string("x11_mouse_grab"), std::string("false")));
+        parameters.insert(std::make_pair(std::string("x11_mouse_hide"), std::string("false")));
+        parameters.insert(std::make_pair(std::string("x11_keyboard_grab"), std::string("false")));
+        parameters.insert(std::make_pair(std::string("XAutoRepeatOn"), std::string("true")));
+#endif
+        m_input.inputManager = OIS::InputManager::createInputSystem(parameters);
     }
 
     void
@@ -219,6 +254,9 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
             m_physics.collisionConfiguration.get()
         ));
         m_physics.world->setGravity(btVector3(0,0,0));
+        // Debug drawing
+        m_physics.debugDrawSystem = std::make_shared<BulletDebugDrawSystem>();
+        m_physics.debugDrawSystem->setActive(false);
     }
 
     void
@@ -229,26 +267,36 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
     void
     setupSystems() {
         std::shared_ptr<System> systems[] = {
+            // Loading, this should be first
+            m_loadSystem,
             // Input
-            m_keyboardSystem,
+            m_input.keyboardSystem,
+            m_input.mouseSystem,
             // Scripts
-            std::make_shared<OnUpdateSystem>(),
-            std::make_shared<OnKeySystem>(),
+            m_scriptSystemUpdater,
+            // Microbe
+            std::make_shared<AgentLifetimeSystem>(),
+            std::make_shared<AgentMovementSystem>(),
+            std::make_shared<AgentEmitterSystem>(),
+            std::make_shared<AgentAbsorberSystem>(),
             // Physics
             std::make_shared<RigidBodyInputSystem>(),
             std::make_shared<UpdatePhysicsSystem>(),
             std::make_shared<RigidBodyOutputSystem>(),
             std::make_shared<BulletToOgreSystem>(),
+            m_physics.debugDrawSystem,
             // Graphics
             std::make_shared<OgreAddSceneNodeSystem>(),
             std::make_shared<OgreUpdateSceneNodeSystem>(),
             std::make_shared<OgreCameraSystem>(),
             std::make_shared<OgreLightSystem>(),
             std::make_shared<SkySystem>(),
-            std::make_shared<OgreEntitySystem>(),
+            std::make_shared<TextOverlaySystem>(),
             m_viewportSystem, // Has to come *after* camera system
             std::make_shared<OgreRemoveSceneNodeSystem>(),
-            std::make_shared<RenderSystem>()
+            std::make_shared<RenderSystem>(),
+            // Saving, this should be last
+            m_saveSystem
         };
         for (auto system : systems) {
             this->addSystem(system);
@@ -257,11 +305,11 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
 
     void
     shutdownInputManager() {
-        if (not m_inputManager) {
+        if (not m_input.inputManager) {
             return;
         }
-        OIS::InputManager::destroyInputSystem(m_inputManager);
-        m_inputManager = nullptr;
+        OIS::InputManager::destroyInputSystem(m_input.inputManager);
+        m_input.inputManager = nullptr;
     }
 
     bool 
@@ -274,12 +322,26 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
         return true;
     }
 
+    void
+    windowResized(
+        Ogre::RenderWindow* window
+    ) override {
+        if (window == m_graphics.renderWindow) {
+            m_input.mouseSystem->setWindowSize(
+                window->getWidth(),
+                window->getHeight()
+            );
+        }
+    }
+
     // Lua state must be one of the last to be destroyed, so keep it at top. 
     // The reason for that is that some components keep luabind::object 
     // instances around that rely on the lua state to still exist when they
     // are destroyed. Since those components are destroyed with the entity 
     // manager, the lua state has to live longer than the manager.
     LuaState m_luaState;
+
+    ComponentFactory m_componentFactory;
 
     Engine& m_engine;
 
@@ -295,15 +357,27 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
 
     } m_graphics;
 
-    OIS::InputManager* m_inputManager = nullptr;
+    bool m_initialized = false;
 
-    std::shared_ptr<KeyboardSystem> m_keyboardSystem;
+    struct Input {
+
+        OIS::InputManager* inputManager = nullptr;
+
+        std::shared_ptr<KeyboardSystem> keyboardSystem;
+
+        std::shared_ptr<MouseSystem> mouseSystem;
+
+    } m_input;
+
+    std::shared_ptr<LoadSystem> m_loadSystem;
 
     struct Physics {
 
         std::unique_ptr<btBroadphaseInterface> broadphase;
 
         std::unique_ptr<btCollisionConfiguration> collisionConfiguration;
+
+        std::shared_ptr<BulletDebugDrawSystem> debugDrawSystem;
 
         std::unique_ptr<btDispatcher> dispatcher;
 
@@ -313,11 +387,39 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
 
     } m_physics;
 
+    std::shared_ptr<SaveSystem> m_saveSystem;
+
+    std::shared_ptr<ScriptSystemUpdater> m_scriptSystemUpdater;
+
     std::list<std::shared_ptr<System>> m_systems;
 
     std::shared_ptr<OgreViewportSystem> m_viewportSystem;
 
 };
+
+
+static void
+Engine_addScriptSystem(
+    Engine* self,
+    System* system
+) {
+    self->addScriptSystem(std::shared_ptr<System>(system));
+}
+
+luabind::scope
+Engine::luaBindings() {
+    using namespace luabind;
+    return class_<Engine>("__Engine")
+        .def("addScriptSystem", &Engine_addScriptSystem, adopt(_2))
+        .def("load", &Engine::load)
+        .def("save", &Engine::save)
+        .def("setPhysicsDebugDrawingEnabled", &Engine::setPhysicsDebugDrawingEnabled)
+        .property("componentFactory", &Engine::componentFactory)
+        .property("keyboard", &Engine::keyboardSystem)
+        .property("mouse", &Engine::mouseSystem)
+        .property("sceneManager", &Engine::sceneManager)
+    ;
+}
 
 
 
@@ -328,7 +430,26 @@ Engine::Engine()
 }
 
 
-Engine::~Engine() { }
+Engine::~Engine() { 
+    m_impl->m_physics.world.reset();
+}
+
+
+void
+Engine::addScriptSystem(
+    std::shared_ptr<System> system
+) {
+    if (m_impl->m_initialized) {
+        throw std::runtime_error("Cannot add system after engine is initialized");
+    }
+    m_impl->m_scriptSystemUpdater->addSystem(system);
+}
+
+
+ComponentFactory&
+Engine::componentFactory() {
+    return m_impl->m_componentFactory;
+}
 
 
 EntityManager&
@@ -339,6 +460,7 @@ Engine::entityManager() {
 
 void
 Engine::init() {
+    std::srand(unsigned(time(0)));
     m_impl->setupPhysics();
     m_impl->setupScripts();
     m_impl->setupGraphics();
@@ -347,18 +469,33 @@ Engine::init() {
     for (auto& system : m_impl->m_systems) {
         system->init(this);
     }
+    m_impl->m_scriptSystemUpdater->initSystems(this);
 }
 
 
 OIS::InputManager*
 Engine::inputManager() const {
-    return m_impl->m_inputManager;
+    return m_impl->m_input.inputManager;
 }
 
 
 KeyboardSystem&
 Engine::keyboardSystem() const {
-    return *m_impl->m_keyboardSystem;
+    return *m_impl->m_input.keyboardSystem;
+}
+
+
+void
+Engine::load(
+    std::string filename
+) {
+    m_impl->m_loadSystem->load(filename);
+}
+
+
+MouseSystem&
+Engine::mouseSystem() const {
+    return *m_impl->m_input.mouseSystem;
 }
 
 
@@ -378,6 +515,14 @@ Engine::renderWindow() const {
 }
 
 
+void
+Engine::save(
+    std::string filename
+) {
+    m_impl->m_saveSystem->save(filename);
+}
+
+
 Ogre::SceneManager*
 Engine::sceneManager() const {
     return m_impl->m_graphics.sceneManager;
@@ -385,7 +530,16 @@ Engine::sceneManager() const {
 
 
 void
+Engine::setPhysicsDebugDrawingEnabled(
+    bool enabled
+) {
+    m_impl->m_physics.debugDrawSystem->setActive(enabled);
+}
+
+
+void
 Engine::shutdown() {
+    m_impl->m_scriptSystemUpdater->shutdownSystems();
     for (auto& system : m_impl->m_systems) {
         system->shutdown();
     }
@@ -404,7 +558,9 @@ Engine::update(
         Game::instance().quit();
     }
     for(auto& system : m_impl->m_systems) {
-        system->update(milliSeconds);
+        if (system->active()) {
+            system->update(milliSeconds);
+        }
     }
     m_impl->m_entityManager.processRemovals();
 }

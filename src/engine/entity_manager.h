@@ -1,7 +1,7 @@
 #pragma once
 
-#include "engine/component.h"
 #include "engine/typedefs.h"
+#include "util/make_unique.h"
 
 #include <memory>
 #include <unordered_set>
@@ -10,6 +10,8 @@ namespace thrive {
 
 class Component;
 class ComponentCollection;
+class ComponentFactory;
+class StorageContainer;
 
 /**
 * @brief Manages entities and their components
@@ -20,13 +22,6 @@ class ComponentCollection;
 class EntityManager {
 
 public:
-
-    /**
-    * @brief Special entity id for "no entity"
-    *
-    * This entity id will never be returned by generateNewId()
-    */
-    static const EntityId NULL_ID;
 
     /**
     * @brief Constructor
@@ -45,12 +40,47 @@ public:
     *   The entity to add to
     * @param component
     *   The component to add
+    *
+    * @return
+    *   The component as a non-owning pointer
+    *
+    * @note:
+    *   Use the templated version to receive the proper type back
     */
-    void
+    Component*
     addComponent(
         EntityId entityId,
-        std::shared_ptr<Component> component
+        std::unique_ptr<Component> component
     );
+
+    /**
+    * @brief Adds a component
+    *
+    * @tparam C
+    *   The component's class
+    *
+    * @param entityId
+    *   The entity to add to
+    *
+    * @param component
+    *   The component to add
+    *
+    * @return 
+    *   The component as a non-owning pointer
+    */
+    template<typename C>
+    C*
+    addComponent(
+        EntityId entityId,
+        std::unique_ptr<C> component
+    ) {
+        return static_cast<C*>(
+            this->addComponent(
+                entityId, 
+                std::unique_ptr<Component>(std::move(component))
+            )
+        );
+    }
 
     /**
     * @brief Removes all components
@@ -91,19 +121,19 @@ public:
     Component*
     getComponent(
         EntityId entityId,
-        Component::TypeId typeId
+        ComponentTypeId typeId
     );
 
     /**
     * @brief Convenience template overload
     *
-    * This is the same as EntityManager::getComponent(EntityId, Component::TypeId),
+    * This is the same as EntityManager::getComponent(EntityId, ComponentTypeId),
     * but includes a cast to the expected type. The cast is a static cast for
     * performance reasons. Unless there is a serious error in the way 
     * component type ids are generated or components are stored in the entity
     * manager, the cast should always be correct.
     *
-    * The component id is read from \a ComponentType::TYPE_ID()
+    * The component id is read from \a ComponentType::TYPE_ID
     *
     * @tparam ComponentType
     *   The component subclass to retrieve
@@ -120,7 +150,7 @@ public:
     ) {
         Component* component = this->getComponent(
             entityId,
-            ComponentType::TYPE_ID()
+            ComponentType::TYPE_ID
         );
         return static_cast<ComponentType*>(component);
     }
@@ -134,7 +164,7 @@ public:
     */
     ComponentCollection&
     getComponentCollection(
-        Component::TypeId typeId
+        ComponentTypeId typeId
     );
 
     /**
@@ -156,6 +186,39 @@ public:
     );
 
     /**
+    * @brief Retrieves a component, creating it if necessary
+    *
+    * @tparam C
+    *   The component class
+    *
+    * @tparam Args
+    *   Constructor arguments in case the component could not be found
+    *
+    * @param id
+    *   The entity the component belongs to
+    *
+    * @param args
+    *   Constructor arguments
+    *
+    * @return 
+    *   A non-owning pointer to the component
+    */
+    template<typename C, typename... Args>
+    C*
+    getOrCreateComponent(
+        EntityId id,
+        Args&&... args
+    ) {
+        auto component = this->getComponent<C>(id);
+        if (not component) {
+            auto newComponent = make_unique<C>(args...);
+            component = newComponent.get();
+            this->addComponent(id, std::move(newComponent));
+        }
+        return component;
+    }
+
+    /**
     * @brief Checks whether an entity exists
     *
     * @param entityId
@@ -166,6 +229,28 @@ public:
     bool
     exists(
         EntityId entityId
+    ) const;
+
+    /**
+    * @brief Returns the set of non-empty collection ids
+    *
+    * @return 
+    */
+    std::unordered_set<ComponentTypeId>
+    nonEmptyCollections() const;
+
+    /**
+    * @brief Returns the volatile flag for an entity
+    *
+    * Volatile entities are not serialized into a savegame
+    *
+    * @param id
+    *
+    * @return 
+    */
+    bool
+    isVolatile(
+        EntityId id
     ) const;
 
     /**
@@ -190,7 +275,7 @@ public:
     void
     removeComponent(
         EntityId entityId,
-        Component::TypeId typeId
+        ComponentTypeId typeId
     );
 
     /**
@@ -208,6 +293,45 @@ public:
     removeEntity(
         EntityId entityId
     );
+
+    /**
+    * @brief Restores the entity manager from a storage container
+    *
+    * @param storage
+    *   The storage container to restore from
+    * @param factory
+    *   The component factory to use
+    */
+    void
+    restore(
+        const StorageContainer& storage,
+        const ComponentFactory& factory
+    );
+
+    /**
+    * @brief Sets the volatile flag for an entity
+    *
+    * @param id
+    * @param isVolatile
+    */
+    void
+    setVolatile(
+        EntityId id,
+        bool isVolatile
+    );
+
+    /**
+    * @brief Serializes the current non-volatile components into a storage container
+    *
+    * @param factory
+    *   The component factory to use for type name lookup
+    *
+    * @return 
+    */
+    StorageContainer
+    storage(
+        const ComponentFactory& factory
+    ) const;
 
 private:
 

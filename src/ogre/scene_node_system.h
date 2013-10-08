@@ -33,7 +33,7 @@ public:
     /**
     * @brief Properties
     */
-    struct Properties : public Touchable {
+    struct Transform : public Touchable {
 
         /**
         * @brief Rotation
@@ -63,22 +63,43 @@ public:
     *
     * Exposes:
     * - OgreSceneNodeComponent()
-    * - @link m_properties properties @endlink
-    * - Properties
-    *   - Properties::orientation
-    *   - Properties::position
-    *   - Properties::scale
+    * - @link m_transform transform @endlink
+    * - Transform
+    *   - Transform::orientation
+    *   - Transform::position
+    *   - Transform::scale
+    * - OgreSceneNodeComponent::attachObject
+    * - OgreSceneNodeComponent::detachObject
+    * - OgreSceneNodeComponent::m_parentId (as "parent")
     *
     * @return
     */
     static luabind::scope
     luaBindings();
 
+    void
+    load(
+        const StorageContainer& storage
+    ) override;
+
+    StorageContainer
+    storage() const override;
+
     /**
-    * @brief Properties
+    * @brief The name of the mesh to attach to this scene node
     */
-    Properties
-    m_properties;
+    TouchableValue<Ogre::String> m_meshName;
+
+    /**
+    * @brief The entity id of the parent scene node
+    */
+    TouchableValue<EntityId> m_parentId = NULL_ENTITY;
+
+    /**
+    * @brief Transform
+    */
+    Transform
+    m_transform;
 
     /**
     * @brief Pointer to the underlying Ogre::SceneNode
@@ -86,6 +107,10 @@ public:
     */
     Ogre::SceneNode* m_sceneNode = nullptr;
 
+    /**
+    * @brief Pointer to the underlying Ogre::Entity
+    */
+    Ogre::Entity* m_entity = nullptr;
 
 };
 

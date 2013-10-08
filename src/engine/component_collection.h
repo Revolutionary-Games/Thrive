@@ -43,6 +43,27 @@ public:
     ) const;
 
     /**
+    * @brief Empties the component collection
+    */
+    void
+    clear();
+
+    /**
+    * @brief Returns a reference to the internal component map
+    *
+    */
+    const std::unordered_map<EntityId, std::unique_ptr<Component>>&
+    components() const;
+
+    /**
+    * @brief Checks whether this collection is empty
+    *
+    * @return \c true if the collection is empty, \c false otherwise
+    */
+    bool
+    empty() const;
+
+    /**
     * @brief Retrieves a component from the collection
     *
     * @param entityId The entity the component belongs to
@@ -79,7 +100,7 @@ public:
     /**
     * @brief The type id of the collection's components
     */
-    Component::TypeId
+    ComponentTypeId
     type() const;
 
     /**
@@ -108,7 +129,7 @@ private:
     * @param type The type id of the components held by this collection.
     */
     ComponentCollection(
-        Component::TypeId type
+        ComponentTypeId type
     );
 
     /**
@@ -128,7 +149,7 @@ private:
     bool
     addComponent(
         EntityId entityId,
-        std::shared_ptr<Component> component
+        std::unique_ptr<Component> component
     );
 
     /**

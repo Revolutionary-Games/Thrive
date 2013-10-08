@@ -15,6 +15,8 @@ class scope;
 
 namespace thrive {
 
+class StorageContainer;
+
 /**
 * @brief Base class for components
 *
@@ -29,15 +31,6 @@ namespace thrive {
 class Component {
 
 public:
-
-    /**
-    * @brief Typedef for component type ids
-    *
-    * A component type id is a unique identifier, different for each component 
-    * class. We could use the component name (a string) for this, but using
-    * an integer is more performant.
-    */
-    using TypeId = size_t;
 
     /**
     * @brief Lua bindings
@@ -59,33 +52,89 @@ public:
     virtual ~Component() = 0;
 
     /**
+    * @brief A volatile component is not serialized during a save
+    *
+    * @return 
+    */
+    bool
+    isVolatile() const;
+
+    /**
+    * @brief Loads the component
+    *
+    * @param storage
+    */
+    virtual void
+    load(
+        const StorageContainer& storage
+    ) = 0;
+
+    /**
+    * @brief The entity this component belongs to
+    *
+    * @return 
+    *   The entity this component belongs to or NULL_ENTITY if this component
+    *   has not been added to an entity yet
+    */
+    EntityId
+    owner() const {
+        return m_owner;
+    }
+
+    /**
+    * @brief Sets the volatile flag
+    *
+    * @param isVolatile
+    *
+    * @see Component::isVolatile
+    */
+    void
+    setVolatile(
+        bool isVolatile
+    );
+
+
+    /**
+    * @brief Sets the component's owner
+    *
+    * Used by the EntityManager
+    *
+    * @param owner
+    */
+    void
+    setOwner(
+        EntityId owner
+    ) {
+        m_owner = owner;
+    }
+
+    /**
+    * @brief Serializes the component
+    *
+    * @return 
+    */
+    virtual StorageContainer
+    storage() const = 0;
+
+    /**
     * @brief The component's type id
     */
-    virtual TypeId
+    virtual ComponentTypeId
     typeId() const = 0;
 
     /**
     * @brief The component's type name
     */
-    virtual const std::string&
+    virtual std::string
     typeName() const = 0;
 
 protected:
 
-    /**
-    * @brief Generates a new type id
-    *
-    * You usually don't have to call this directly. Use the COMPONENT macro 
-    * instead.
-    *
-    * @return A unique type id
-    */
-    static TypeId
-    generateTypeId();
-
 private:
 
-    bool m_hasChanges = true;
+    bool m_isVolatile = false;
+
+    EntityId m_owner = NULL_ENTITY;
 
 };
 
@@ -120,13 +169,10 @@ private:
 #define COMPONENT(name)  \
     public: \
         \
-        static TypeId TYPE_ID() { \
-            static TypeId id = Component::generateTypeId(); \
-            return id; \
-        } \
+        static const ComponentTypeId TYPE_ID; \
         \
-        TypeId typeId() const override { \
-            return TYPE_ID(); \
+        ComponentTypeId typeId() const override { \
+            return TYPE_ID; \
         } \
         \
         static const std::string& TYPE_NAME() { \
@@ -134,7 +180,7 @@ private:
             return string; \
         } \
         \
-        const std::string& typeName() const override { \
+        std::string typeName() const override { \
             return TYPE_NAME(); \
         } \
         \

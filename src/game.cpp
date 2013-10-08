@@ -13,22 +13,28 @@ using namespace thrive;
 
 struct Game::Implementation {
 
-    using Clock = std::chrono::high_resolution_clock;
+    using Clock = boost::chrono::high_resolution_clock;
 
     Implementation()
     {
-        m_targetFrameDuration = std::chrono::microseconds(1000000 / m_targetFrameRate);
+        m_targetFrameDuration = boost::chrono::microseconds(1000000 / m_targetFrameRate);
     }
 
     Engine m_engine;
 
-    std::chrono::microseconds m_targetFrameDuration;
+    boost::chrono::microseconds m_targetFrameDuration;
 
     unsigned short m_targetFrameRate = 60;
 
-    bool m_quit;
+    bool m_quit = false;
 
 };
+
+
+EntityManager&
+Game::globalEntityManager() {
+    return Game::instance().engine().entityManager();
+}
 
 
 Game&
@@ -70,18 +76,16 @@ Game::run() {
     while (not m_impl->m_quit) {
         auto now = Implementation::Clock::now();
         auto delta = now - lastUpdate;
-        int milliSeconds = std::chrono::duration_cast<std::chrono::milliseconds>(delta).count();
+        int milliSeconds = boost::chrono::duration_cast<boost::chrono::milliseconds>(delta).count();
         lastUpdate = now;
         m_impl->m_engine.update(milliSeconds);
         auto frameDuration = Implementation::Clock::now() - now;
         auto sleepDuration = m_impl->m_targetFrameDuration - frameDuration;
         if (sleepDuration.count() > 0) {
-            auto microseconds = std::chrono::duration_cast<std::chrono::microseconds>(sleepDuration).count();
-            boost::chrono::microseconds boostDuration = boost::chrono::microseconds(microseconds);
-            boost::this_thread::sleep_for(boostDuration);
+            boost::this_thread::sleep_for(sleepDuration);
         }
         fpsCount += 1;
-        fpsTime += std::chrono::duration_cast<std::chrono::milliseconds>(frameDuration).count();
+        fpsTime += boost::chrono::duration_cast<boost::chrono::milliseconds>(frameDuration).count();
         if (fpsTime >= 1000) {
             float fps = 1000 * float(fpsCount) / float(fpsTime);
             std::cout << "FPS: " << fps << std::endl;
@@ -93,7 +97,7 @@ Game::run() {
 }
 
 
-std::chrono::microseconds
+boost::chrono::microseconds
 Game::targetFrameDuration() const {
     return m_impl->m_targetFrameDuration;
 }

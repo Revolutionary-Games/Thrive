@@ -171,7 +171,7 @@ struct EntityFilter<ComponentTypes...>::Implementation {
         using RawType = typename detail::ExtractComponentType<ComponentType>::Type;
         bool isRequired = detail::IsRequired<ComponentType>::value;
         auto& collection = m_entityManager->getComponentCollection(
-            RawType::TYPE_ID()
+            RawType::TYPE_ID
         );
         // Callbacks
         auto onAdded = [this] (EntityId id, Component&) {
@@ -251,6 +251,15 @@ void
 EntityFilter<ComponentTypes...>::clearChanges() {
     m_impl->m_addedEntities.clear();
     m_impl->m_removedEntities.clear();
+}
+
+
+template<typename... ComponentTypes>
+bool
+EntityFilter<ComponentTypes...>::containsEntity(
+    EntityId id
+) const {
+    return m_impl->m_entities.find(id) != m_impl->m_entities.end();
 }
 
 

@@ -1,6 +1,8 @@
 #include "engine/entity_manager.h"
 
 #include "engine/component_collection.h"
+#include "engine/component_factory.h"
+#include "engine/serialization.h"
 
 #include <atomic>
 #include <boost/thread.hpp>
@@ -12,39 +14,37 @@
 
 using namespace thrive;
 
-const EntityId EntityManager::NULL_ID = 0;
-
 struct EntityManager::Implementation {
 
     ComponentCollection&
     getComponentCollection(
-        Component::TypeId typeId
+        ComponentTypeId typeId
     ) {
-        std::unique_ptr<ComponentCollection>& collection = m_components[typeId];
+        std::unique_ptr<ComponentCollection>& collection = m_collections[typeId];
         if (not collection) {
             collection.reset(new ComponentCollection(typeId));
         }
         return *collection;
     }
 
-    static EntityId currentId;
-
     std::unordered_map<
-        Component::TypeId, 
+        ComponentTypeId, 
         std::unique_ptr<ComponentCollection>
-    > m_components;
+    > m_collections;
 
-    std::list<std::pair<EntityId, Component::TypeId>> m_componentsToRemove;
+    std::list<std::pair<EntityId, ComponentTypeId>> m_componentsToRemove;
 
-    std::unordered_map<EntityId, int> m_entities;
+    EntityId m_currentId = NULL_ENTITY + 1;
+
+    std::unordered_map<EntityId, uint16_t> m_entities;
 
     std::list<EntityId> m_entitiesToRemove;
 
     std::unordered_map<std::string, EntityId> m_namedIds;
 
-};
+    std::unordered_set<EntityId> m_volatileEntities;
 
-EntityId EntityManager::Implementation::currentId = NULL_ID + 1;
+};
 
 
 EntityManager::EntityManager() 
@@ -55,24 +55,36 @@ EntityManager::EntityManager()
 EntityManager::~EntityManager() {
 }
 
-void
+Component*
 EntityManager::addComponent(
     EntityId entityId,
-    std::shared_ptr<Component> component
+    std::unique_ptr<Component> component
 ) {
-    assert(entityId != NULL_ID);
-    Component::TypeId typeId = component->typeId();
+    assert(entityId != NULL_ENTITY);
+    ComponentTypeId typeId = component->typeId();
     auto& componentCollection = m_impl->getComponentCollection(typeId);
-    bool isNew = componentCollection.addComponent(entityId, component);
+    Component* rawComponent = component.get();
+    bool isNew = componentCollection.addComponent(
+        entityId, 
+        std::move(component)
+    );
     if (isNew) {
         m_impl->m_entities[entityId] += 1;
     }
+    return rawComponent;
 }
 
 
 void
 EntityManager::clear() {
-    m_impl->m_components.clear();
+    for (auto& pair : m_impl->m_collections) {
+        pair.second->clear();
+    }
+    m_impl->m_componentsToRemove.clear();
+    m_impl->m_entities.clear();
+    m_impl->m_entitiesToRemove.clear();
+    m_impl->m_namedIds.clear();
+    m_impl->m_volatileEntities.clear();
 }
 
 
@@ -96,14 +108,14 @@ EntityManager::exists(
 
 EntityId
 EntityManager::generateNewId() {
-    return Implementation::currentId++;
+    return m_impl->m_currentId++;
 }
 
 
 Component*
 EntityManager::getComponent(
     EntityId entityId,
-    Component::TypeId typeId
+    ComponentTypeId typeId
 ) {
     auto& componentCollection = m_impl->getComponentCollection(typeId);
     return componentCollection[entityId];
@@ -112,7 +124,7 @@ EntityManager::getComponent(
 
 ComponentCollection&
 EntityManager::getComponentCollection(
-    Component::TypeId typeId
+    ComponentTypeId typeId
 ) {
     return m_impl->getComponentCollection(typeId);
 }
@@ -134,11 +146,31 @@ EntityManager::getNamedId(
 }
 
 
+bool
+EntityManager::isVolatile(
+    EntityId id
+) const {
+    return m_impl->m_volatileEntities.count(id) > 0;
+}
+
+
+std::unordered_set<ComponentTypeId>
+EntityManager::nonEmptyCollections() const {
+    std::unordered_set<ComponentTypeId> collections;
+    for (const auto& pair : m_impl->m_collections) {
+        if (not pair.second->empty()) {
+            collections.insert(pair.first);
+        }
+    }
+    return collections;
+}
+
+
 void
 EntityManager::processRemovals() {
     for (const auto& pair : m_impl->m_componentsToRemove) {
         EntityId entityId = pair.first;
-        Component::TypeId typeId = pair.second;
+        ComponentTypeId typeId = pair.second;
         auto& componentCollection = m_impl->getComponentCollection(typeId);
         bool removed = componentCollection.removeComponent(entityId);
         if (removed) {
@@ -154,7 +186,7 @@ EntityManager::processRemovals() {
     }
     m_impl->m_componentsToRemove.clear();
     for (EntityId entityId : m_impl->m_entitiesToRemove) {
-        for (const auto& pair : m_impl->m_components) {
+        for (const auto& pair : m_impl->m_collections) {
             pair.second->removeComponent(entityId);
         }
     }
@@ -165,7 +197,7 @@ EntityManager::processRemovals() {
 void
 EntityManager::removeComponent(
     EntityId entityId,
-    Component::TypeId typeId
+    ComponentTypeId typeId
 ) {
     m_impl->m_componentsToRemove.emplace_back(entityId, typeId);
 }
@@ -177,5 +209,127 @@ EntityManager::removeEntity(
     m_impl->m_entitiesToRemove.push_back(entityId);
 }
 
+
+void
+EntityManager::restore(
+    const StorageContainer& storage,
+    const ComponentFactory& factory
+) {
+    this->clear();
+    // Current Id
+    m_impl->m_currentId = storage.get<EntityId>("currentId");
+    // Named entities
+    StorageList namedIds = storage.get<StorageList>("namedIds");
+    for (const auto& entry : namedIds) {
+        std::string name = entry.get<std::string>("name");
+        EntityId id = entry.get<EntityId>("entityId");
+        m_impl->m_namedIds[name] = id;
+    }
+    // Collections
+    StorageContainer collections = storage.get<StorageContainer>("collections");
+    auto typeNames = collections.keys();
+    for (const std::string& typeName : typeNames) {
+        StorageList componentList = collections.get<StorageList>(typeName);
+        for (const StorageContainer& componentStorage : componentList) {
+            auto component = factory.load(typeName, componentStorage);
+            EntityId owner = component->owner();
+            if (owner == NULL_ENTITY) {
+                std::cerr << "Component with no entity: " << typeName << std::endl;
+            }
+            this->addComponent(owner, std::move(component));
+        }
+    }
+    // Components to remove
+    StorageList componentsToRemove = storage.get<StorageList>("componentsToRemove");
+    for (const StorageContainer& entry : componentsToRemove) {
+        EntityId entityId = entry.get<EntityId>("entityId");
+        std::string typeName = entry.get<std::string>("componentTypeName");
+        ComponentTypeId typeId = factory.getTypeId(typeName);
+        this->removeComponent(entityId, typeId);
+    }
+    // Entities to remove
+    StorageList entitiesToRemove = storage.get<StorageList>("entitiesToRemove");
+    for (const auto& entry : entitiesToRemove) {
+        EntityId entityId = entry.get<EntityId>("id");
+        this->removeEntity(entityId);
+    }
+}
+
+
+void
+EntityManager::setVolatile(
+    EntityId id,
+    bool isVolatile
+) {
+    if (isVolatile) {
+        m_impl->m_volatileEntities.insert(id);
+    }
+    else {
+        m_impl->m_volatileEntities.erase(id);
+    }
+}
+
+
+StorageContainer
+EntityManager::storage(
+    const ComponentFactory& factory
+) const {
+    StorageContainer storage;
+    // Current Id
+    storage.set("currentId", m_impl->m_currentId);
+    // Collections
+    StorageContainer collections;
+    for (const auto& item : m_impl->m_collections) {
+        const auto& components = item.second->components();
+        StorageList componentList;
+        componentList.reserve(components.size());
+        for (const auto& pair : components) {
+            EntityId entityId = pair.first;
+            const std::unique_ptr<Component>& component = pair.second;
+            if (component->isVolatile() or 
+                m_impl->m_volatileEntities.count(entityId) > 0
+            ) {
+                continue;
+            }
+            componentList.append(component->storage());
+        }
+        if (not componentList.empty()) {
+            std::string typeName = factory.getTypeName(item.first);
+            collections.set(typeName, std::move(componentList));
+        }
+    }
+    storage.set("collections", std::move(collections));
+    // Components to remove
+    StorageList componentsToRemove;
+    componentsToRemove.reserve(m_impl->m_componentsToRemove.size());
+    for (const auto& pair : m_impl->m_componentsToRemove) {
+        StorageContainer pairStorage;
+        pairStorage.set("entityId", pair.first);
+        std::string typeName = factory.getTypeName(pair.second);
+        pairStorage.set("componentTypeName", typeName);
+        componentsToRemove.append(std::move(pairStorage));
+    }
+    storage.set("componentsToRemove", std::move(componentsToRemove));
+    // Entities to remove
+    StorageList entitiesToRemove;
+    entitiesToRemove.reserve(m_impl->m_entitiesToRemove.size());
+    for (EntityId entityId : m_impl->m_entitiesToRemove) {
+        StorageContainer idStorage;
+        idStorage.set("id", entityId);
+        entitiesToRemove.append(std::move(idStorage));
+    }
+    storage.set("entitiesToRemove", std::move(entitiesToRemove));
+    // Named entities
+    StorageList namedIds;
+    namedIds.reserve(m_impl->m_namedIds.size());
+    for (const auto& item : m_impl->m_namedIds) {
+        StorageContainer itemStorage;
+        itemStorage.set("name", item.first);
+        itemStorage.set("entityId", item.second);
+        namedIds.append(std::move(itemStorage));
+    }
+    storage.set("namedIds", std::move(namedIds));
+    return storage;
+}
 
 

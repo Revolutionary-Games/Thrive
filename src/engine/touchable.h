@@ -56,4 +56,70 @@ private:
     bool m_hasChanges = true;
 };
 
+/**
+* @brief A single touchable value
+*
+* @tparam T
+*   The type of the underlying value
+*/
+template<typename T>
+class TouchableValue : public Touchable {
+
+public:
+
+    /**
+    * @brief Constructor
+    *
+    * @param value
+    *   The initial value
+    */
+    TouchableValue(
+        const T& value = T()
+    ) : m_value(value)
+    {
+    }
+
+    /**
+    * @brief Assignment operator
+    *
+    * Also calls Touchable::touch()
+    *
+    * @param value
+    *   The new value
+    *
+    * @return 
+    */
+    TouchableValue&
+    operator =(
+        const T& value
+    ) {
+        m_value = value;
+        this->touch();
+        return *this;
+    }
+
+    /**
+    * @brief Implicit cast operator
+    *
+    * @return The underlying value
+    */
+    operator T() const {
+        return this->get();
+    }
+
+    /**
+    * @brief Explicit "cast"
+    *
+    * @return The underlying value
+    */
+    T
+    get() const {
+        return m_value;
+    }
+
+private:
+    
+    T m_value;
+};
+
 }
