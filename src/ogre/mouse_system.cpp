@@ -26,13 +26,13 @@ MouseSystem::luaBindings() {
     using namespace luabind;
     return class_<MouseSystem>("MouseSystem")
         .enum_("MouseButton") [
-            value("MB_Left", OIS::MB_Left)
-            value("MB_Right", OIS::MB_Right)
-            value("MB_Middle", OIS::MB_Middle)
-            value("MB_Button3", OIS::MB_Button3)
-            value("MB_Button4", OIS::MB_Button4)
-            value("MB_Button5", OIS::MB_Button5)
-            value("MB_Button6", OIS::MB_Button6)
+            value("MB_Left", OIS::MB_Left),
+            value("MB_Right", OIS::MB_Right),
+            value("MB_Middle", OIS::MB_Middle),
+            value("MB_Button3", OIS::MB_Button3),
+            value("MB_Button4", OIS::MB_Button4),
+            value("MB_Button5", OIS::MB_Button5),
+            value("MB_Button6", OIS::MB_Button6),
             value("MB_Button7", OIS::MB_Button7)
         ]
         .def("isButtonDown", &MouseSystem::isButtonDown)
