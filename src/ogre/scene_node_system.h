@@ -85,6 +85,9 @@ public:
     StorageContainer
     storage() const override;
 
+    /**
+    * @brief The name of the mesh to attach to this scene node
+    */
     TouchableValue<Ogre::String> m_meshName;
 
     /**
@@ -104,6 +107,9 @@ public:
     */
     Ogre::SceneNode* m_sceneNode = nullptr;
 
+    /**
+    * @brief Pointer to the underlying Ogre::Entity
+    */
     Ogre::Entity* m_entity = nullptr;
 
 };

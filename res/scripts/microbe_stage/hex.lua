@@ -1,5 +1,14 @@
+-- Defines some utility functions and tables related to hex grids
+--
+-- For more information on hex grids, see www.redblobgames.com/grids/hexagons.
+--
+-- We use flat-topped hexagons with axial coordinates.
+
+-- Size of a single hex, that is the distance from the center to a corner
 HEX_SIZE = 1.0
 
+
+-- Enumeration of the hex sides, clock-wise
 HEX_SIDE = {
     TOP          = 1,
     TOP_RIGHT    = 2,
@@ -10,6 +19,7 @@ HEX_SIDE = {
 }
 
 
+-- Maps the HEX_SIDE enumeration to a human-readable name
 HEX_SIDE_NAME = {
     [HEX_SIDE.TOP]          = "top",
     [HEX_SIDE.TOP_RIGHT]    = "top_right",
@@ -20,6 +30,7 @@ HEX_SIDE_NAME = {
 }
 
 
+-- Maps a hex side to its direct opposite
 OPPOSITE_HEX_SIDE = {
     [HEX_SIDE.TOP]          = HEX_SIDE.BOTTOM,
     [HEX_SIDE.TOP_RIGHT]    = HEX_SIDE.BOTTOM_LEFT,
@@ -30,6 +41,8 @@ OPPOSITE_HEX_SIDE = {
 }
 
 
+-- Each hex has six neighbours, one for each side. This table maps the hex 
+-- side to the coordinate offset of the neighbour adjacent to that side.
 HEX_NEIGHBOUR_OFFSET = {
     [HEX_SIDE.TOP]          = { 0,  1},
     [HEX_SIDE.TOP_RIGHT]    = { 1,  0},
@@ -39,6 +52,20 @@ HEX_NEIGHBOUR_OFFSET = {
     [HEX_SIDE.TOP_LEFT]     = {-1,  1}
 }
 
+
+-- Returns an iterator that iterates over all six neighbours of a hex
+--
+-- @param q, r
+--  Coordinates of the center hex
+--
+-- Example:
+--
+--  for side, q, r in iterateNeighbours(0, 0) do
+--      local sideName = HEX_SIDE_NAME[side]
+--      debug("Neighbour to " .. sideName .. ": " .. tostring(q) .. ", " .. tostring(r))
+--  end
+--
+--  This would print the coordinates of each hex around the (0, 0) hexagon.
 function iterateNeighbours(q, r)
     local function nextNeighbour(dummy, i)
         i = i+1
@@ -51,15 +78,39 @@ function iterateNeighbours(q, r)
     return nextNeighbour, 0, 0
 end
 
+
+-- Converts axial hex coordinates to cartesian coordinates 
+--
+-- The result is the position of the hex at q, r
+--
+-- @param q, r
+--  Hex coordinates
+--
+-- @returns x, y
+--  Cartesian coordinates of the hex's center
 function axialToCartesian(q, r)
     local x = q * HEX_SIZE * 3 / 2
     local y = HEX_SIZE * math.sqrt(3) * (r + q / 2)
     return x, y
 end
 
+
+-- Maximum hex coordinate value that can be encoded with encodeAxial()
 local OFFSET = 100
+
+-- Multiplier for the q coordinate used in encodeAxial()
 local SHIFT = OFFSET * 10
 
+
+-- Encodes axial coordinates to a single number
+--
+-- Useful for using hex coordinates as keys in a Lua table
+--
+-- @param q,r
+--  Axial coordinates. Each must be smaller than OFFSET
+--
+-- @returns s
+--  A single number encoding q and r. Use decodeAxial() to retrieve q and r from it.
 function encodeAxial(q, r)
     assert(
         math.abs(q) <= OFFSET and math.abs(r) <= OFFSET, 
@@ -68,6 +119,14 @@ function encodeAxial(q, r)
     return (q + OFFSET) * SHIFT + (r + OFFSET)
 end
 
+
+-- Reverses encodeAxial()
+--
+-- @param s
+--  Encoded hex coordinates, generated with encodeAxial()
+--
+-- @returns q, r
+--  The hex coordinates encoded in s
 function decodeAxial(s)
     local r = (s % SHIFT) - OFFSET
     local q = (s - r - OFFSET) / SHIFT - OFFSET

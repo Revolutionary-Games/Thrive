@@ -1,5 +1,7 @@
+-- This system updates the camera position to stay above the player microbe
 class 'MicrobeCameraSystem' (System)
 
+-- The offset from player microbe to camera
 local OFFSET = Vector3(0, 0, 30)
 
 function MicrobeCameraSystem:__init()

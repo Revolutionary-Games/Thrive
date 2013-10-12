@@ -1,0 +1,142 @@
+/**
+\page lua_primer Lua Primer
+
+The following is a very brief and incomplete overview of Lua's syntax and some
+of its quirks. This is mostly meant for programmers already familiar with at 
+least one other programming language, but unfamiliar with Lua.
+
+If you want to know more about Lua, any of the following links is a good start:
+
+- <a href="http://awesome.naquadah.org/wiki/The_briefest_introduction_to_Lua">The briefest introduction to Lua</a>
+- <a href="http://www.lua.org/manual/5.2/">Lua 5.2 Reference Manual</a>
+- <a href="http://lua-users.org/wiki/TutorialDirectory">Lua Wiki Tutorials</a>
+
+Variables
+---------
+
+\code{.lua}
+    -- Easy as pie
+    variable = 3.1415
+
+    -- Local variables are preferred. They keep the global scope clean
+    -- and are a bit faster for access.
+    local localVariable = 42
+
+    -- Undefined variables are nil by default
+    assert(idontexist == nil)
+\endcode
+
+
+Tables
+------
+
+\code{.lua}
+    local myTable = {
+        1 = "number",
+        key = "value",
+        ["Key with spaces"] = "anotherValue", -- Note the (optional) trailing comma
+    }
+
+    -- The following two lines are equivalent
+    myTable.a = "Thrive"
+    myTable["a"] = "Thrive"
+
+    -- To remove an item, assign nil:
+    myTable.key = nil
+
+    -- Arrays are just tables with numeric keys
+    local myArray = {
+        "first",
+        "second",
+        "third",
+        4,
+        5,
+        6
+    }
+
+    -- Indices start at 1, not 0
+    assert(myArray[1] == "first")
+
+    -- Accessing non-existant keys gives back nil
+    assert(myArray[0] == nil)
+    assert(myTable.nosuchkey =- nil)
+
+\endcode
+
+
+Functions and Classes
+---------------------
+\code{.lua}
+    function myFunction(x, y)
+        return x + y
+    end
+
+    -- Functions, just like variables, should be declared local where possible
+    local function myLocalFunction(x, y)
+        return x - y
+    end
+
+    -- Functions without a return implicitly return nil
+    local function returnsNil()
+    end
+    assert(returnsNil() == nil)
+
+    -- Classes are not a standard Lua feature, but the luabind library 
+    -- enables them for us
+    class 'MyClass'
+
+    -- Note the colon
+    function MyClass:__init(x)
+        self.x = x
+    end
+
+    function MyClass:doSomething()
+        print("My x is " .. tostring(self.x))
+    end
+
+    local myObject = MyClass(5)
+    assert(myObject.x == 5)
+
+    -- A word about this strange colon: The following three lines are equivalent
+    myObject:doSomething()
+    myObject.doSomething(myObject)
+    MyClass.doSomething(myObject)
+
+    -- As are these two definitions
+    function MyClass:doMore()
+        return 5
+    end
+
+    function MyClass.doMore(self)
+        return 5
+    end
+
+\endcode
+
+
+
+Control Structures
+------------------
+
+\code{.lua}
+    if condition then
+        doSomething()
+    end
+
+    -- Loop over numbers
+    for i=min,max,step do
+        doSomething(i)
+    end
+
+    -- Iterate over all entries in a table
+    for key, value in pairs(table) do
+        doSomething(key, value)
+    end
+
+    -- Iterate over the consecutive numeric entries in a table
+    for i, value in ipairs(table) do
+        doSomething(i, value)
+    end
+\endcode
+
+*/

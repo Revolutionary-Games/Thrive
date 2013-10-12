@@ -46,10 +46,14 @@ public:
     * @brief Lua bindings
     *
     * Exposes:
-    * - Engine::setPhysicsDebugDrawingEnabled
-    * - Engine::keyboard (as property)
-    * - Engine::mouse (as property)
-    * - Engine::sceneManager (as property)
+    * - Engine::addScriptSystem()
+    * - Engine::load()
+    * - Engine::save()
+    * - Engine::setPhysicsDebugDrawingEnabled()
+    * - Engine::componentFactory() (as property)
+    * - Engine::keyboard() (as property)
+    * - Engine::mouse() (as property)
+    * - Engine::sceneManager() (as property)
     *
     * @return 
     */
@@ -72,11 +76,22 @@ public:
     */
     ~Engine();
 
+    /**
+    * @brief Adds a system to the ScriptSystemUpdater
+    *
+    * @param system
+    *   The system to add
+    */
     void
     addScriptSystem(
         std::shared_ptr<System> system
     );
 
+    /**
+    * @brief Returns the internal component factory
+    *
+    * @return 
+    */
     ComponentFactory&
     componentFactory();
 
@@ -109,6 +124,12 @@ public:
     KeyboardSystem&
     keyboardSystem() const;
 
+    /**
+    * @brief Loads a savegame
+    *
+    * @param filename
+    *   The file to load
+    */
     void
     load(
         std::string filename
@@ -138,6 +159,12 @@ public:
     btDiscreteDynamicsWorld*
     physicsWorld() const;
 
+    /**
+    * @brief Creates a savegame
+    *
+    * @param filename
+    *   The file to save
+    */
     void
     save(
         std::string filename

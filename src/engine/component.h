@@ -51,9 +51,19 @@ public:
     */
     virtual ~Component() = 0;
 
+    /**
+    * @brief A volatile component is not serialized during a save
+    *
+    * @return 
+    */
     bool
     isVolatile() const;
 
+    /**
+    * @brief Loads the component
+    *
+    * @param storage
+    */
     virtual void
     load(
         const StorageContainer& storage
@@ -71,6 +81,13 @@ public:
         return m_owner;
     }
 
+    /**
+    * @brief Sets the volatile flag
+    *
+    * @param isVolatile
+    *
+    * @see Component::isVolatile
+    */
     void
     setVolatile(
         bool isVolatile
@@ -91,6 +108,11 @@ public:
         m_owner = owner;
     }
 
+    /**
+    * @brief Serializes the component
+    *
+    * @return 
+    */
     virtual StorageContainer
     storage() const = 0;
 

@@ -223,6 +223,13 @@ public:
     EntityId
     id() const;
 
+    /**
+    * @brief Returns the volatile flag
+    *
+    * Volatile entities are not serialized into a savegame
+    *
+    * @return 
+    */
     bool
     isVolatile() const;
 
@@ -243,6 +250,13 @@ public:
         ComponentTypeId typeId
     );
 
+    /**
+    * @brief Sets the volatile flag
+    *
+    * @param isVolatile
+    *
+    * @see isVolatile()
+    */
     void
     setVolatile(
         bool isVolatile

@@ -80,16 +80,35 @@ public:
         std::string name
     );
 
+    /**
+    * @brief Default constructor
+    *
+    * Should only be used for loading
+    */
     OgreCameraComponent();
 
+    /**
+    * @brief Loads a camera
+    *
+    * @param storage
+    */
     void
     load(
         const StorageContainer& storage
     ) override;
 
+    /**
+    * @brief Returns the camera's name
+    *
+    */
     std::string
     name() const;
 
+    /**
+    * @brief Serializes the camera
+    *
+    * @return 
+    */
     StorageContainer
     storage() const override;
 

@@ -231,9 +231,23 @@ public:
         EntityId entityId
     ) const;
 
+    /**
+    * @brief Returns the set of non-empty collection ids
+    *
+    * @return 
+    */
     std::unordered_set<ComponentTypeId>
     nonEmptyCollections() const;
 
+    /**
+    * @brief Returns the volatile flag for an entity
+    *
+    * Volatile entities are not serialized into a savegame
+    *
+    * @param id
+    *
+    * @return 
+    */
     bool
     isVolatile(
         EntityId id
@@ -280,18 +294,40 @@ public:
         EntityId entityId
     );
 
+    /**
+    * @brief Restores the entity manager from a storage container
+    *
+    * @param storage
+    *   The storage container to restore from
+    * @param factory
+    *   The component factory to use
+    */
     void
     restore(
         const StorageContainer& storage,
         const ComponentFactory& factory
     );
 
+    /**
+    * @brief Sets the volatile flag for an entity
+    *
+    * @param id
+    * @param isVolatile
+    */
     void
     setVolatile(
         EntityId id,
         bool isVolatile
     );
 
+    /**
+    * @brief Serializes the current non-volatile components into a storage container
+    *
+    * @param factory
+    *   The component factory to use for type name lookup
+    *
+    * @return 
+    */
     StorageContainer
     storage(
         const ComponentFactory& factory

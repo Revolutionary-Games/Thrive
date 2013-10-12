@@ -117,6 +117,12 @@ public:
     StorageContainer
     storage() const override;
 
+    /**
+    * @brief The viewport's z order
+    *
+    * Higher z orders lay on top of lower ones
+    *
+    */
     int
     zOrder() const;
 

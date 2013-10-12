@@ -53,6 +53,13 @@ REGISTER_COMPONENT("MicrobeComponent", MicrobeComponent)
 class 'Microbe'
 
 
+-- Creates a new microbe with all required components
+--
+-- @param name
+--  The entity's name. If nil, the entity will be unnamed.
+--
+-- @returns microbe
+--  An object of type Microbe
 function Microbe.createMicrobeEntity(name)
     local entity
     if name then
@@ -89,6 +96,13 @@ Microbe.COMPONENTS = {
 }
 
 
+-- Constructor
+--
+-- Requires all necessary components (see Microbe.COMPONENTS) to be present in 
+-- the entity.
+--
+-- @param entity
+--  The entity this microbe wraps
 function Microbe:__init(entity)
     self.entity = entity
     for key, typeId in pairs(Microbe.COMPONENTS) do
@@ -102,6 +116,16 @@ function Microbe:__init(entity)
 end
 
 
+-- Adds a new organelle
+--
+-- The space at (q,r) must not be occupied by another organelle already.
+--
+-- @param q,r
+--  Offset of the organelle's center relative to the microbe's center in 
+--  axial coordinates.
+--
+-- @param organelle
+--  The organelle to add
 function Microbe:addOrganelle(q, r, organelle)
     local s = encodeAxial(q, r)
     if self.microbe.organelles[s] then
@@ -123,11 +147,15 @@ function Microbe:addOrganelle(q, r, organelle)
     organelle.sceneNode.transform.position = translation
     organelle.sceneNode.transform:touch()
     organelle:onAddedToMicrobe(self, q, r)
-    self:updateAllHexColours()
+    self:_updateAllHexColours()
     return true
 end
 
 
+-- Adds a storage vacuole
+--
+-- @param vacuole
+--  An object of type Vacuole
 function Microbe:addVacuole(vacuole)
     assert(vacuole.agentId ~= nil)
     assert(vacuole.capacity ~= nil)
@@ -142,6 +170,13 @@ function Microbe:addVacuole(vacuole)
 end
 
 
+-- Queries the currently stored amount of an agent
+--
+-- @param agentId
+--  The id of the agent to query
+--
+-- @returns amount
+--  The amount stored in the microbe's vacuoles
 function Microbe:getAgentAmount(agentId)
     local vacuoleList = self.microbe.vacuoles[agentId]
     local totalAmount = 0.0
@@ -154,6 +189,13 @@ function Microbe:getAgentAmount(agentId)
 end
 
 
+-- Retrieves the organelle occupying a hex cell
+--
+-- @param q, r
+--  Axial coordinates, relative to the microbe's center
+--
+-- @returns organelle
+--  The organelle at (q,r) or nil if the hex is unoccupied
 function Microbe:getOrganelleAt(q, r)
     for _, organelle in pairs(self.microbe.organelles) do
         local localQ = q - organelle.position.q
@@ -166,6 +208,14 @@ function Microbe:getOrganelleAt(q, r)
 end
 
 
+-- Removes the organelle at a hex cell
+--
+-- @param q, r
+--  Axial coordinates of the organelle's center
+--
+-- @returns success
+--  True if an organelle has been removed, false if there was no organelle
+--  at (q,r)
 function Microbe:removeOrganelle(q, r)
     local index = nil
     local s = encodeAxial(q, r)
@@ -176,11 +226,15 @@ function Microbe:removeOrganelle(q, r)
     organelle.position.q = 0
     organelle.position.r = 0
     organelle:onRemovedFromMicrobe(self)
-    self:updateAllHexColours()
+    self:_updateAllHexColours()
     return true
 end
 
 
+-- Removes a vacuole from the microbe
+--
+-- @param vacuole
+--  The vacuole to remove
 function Microbe:removeVacuole(vacuole)
     local vacuoleList = self.microbe.vacuoles[vacuole.agentId]
     local indexToRemove = 0
@@ -196,6 +250,17 @@ function Microbe:removeVacuole(vacuole)
 end
 
 
+-- Stores an agent in the microbe's vacuoles
+--
+-- @param agentId
+--  The agent to store
+--
+-- @param amount
+--  The amount to store
+--
+-- @returns remainingAmount
+--  The surplus that could not be stored because the microbe's vacuoles for
+--  this agent are full.
 function Microbe:storeAgent(agentId, amount)
     local vacuoleList = self.microbe.vacuoles[agentId]
     local remainingAmount = amount
@@ -210,13 +275,20 @@ function Microbe:storeAgent(agentId, amount)
         end
     end
     self:_updateAgentAbsorber(agentId)
-    if remainingAmount > 0.0 then
-        -- TODO: Release agent back into environment?
-        return
-    end
+    return remainingAmount
 end
 
 
+-- Removes an agent from the microbe's vacuoles
+--
+-- @param agentId
+--  The agent to remove
+--
+-- @param maxAmount
+--  The maximum amount to take
+--
+-- @returns amount
+--  The amount that was actually taken, between 0.0 and maxAmount.
 function Microbe:takeAgent(agentId, maxAmount)
     local vacuoleList = self.microbe.vacuoles[agentId]
     local totalTaken = 0.0
@@ -235,6 +307,7 @@ function Microbe:takeAgent(agentId, maxAmount)
 end
 
 
+-- Updates the microbe's state
 function Microbe:update(milliseconds)
     -- Vacuoles
     for agentId, vacuoleList in pairs(self.microbe.vacuoles) do
@@ -250,6 +323,7 @@ function Microbe:update(milliseconds)
 end
 
 
+-- Private function for initializing a microbe's components
 function Microbe:_initialize()
     self.rigidBody.properties.shape:clear()
     -- Organelles
@@ -271,11 +345,15 @@ function Microbe:_initialize()
         organelle.sceneNode.transform:touch()
         organelle:onAddedToMicrobe(self, q, r)
     end
-    self:updateAllHexColours()
+    self:_updateAllHexColours()
     self.microbe.initialized = true
 end
 
 
+-- Private function for updating the agent absorber
+--
+-- Toggles the absorber on and off depending on the remaining storage
+-- capacity of the vacuoles.
 function Microbe:_updateAgentAbsorber(agentId)
     local vacuoleList = self.microbe.vacuoles[agentId]
     local canAbsorb = false
@@ -288,7 +366,10 @@ function Microbe:_updateAgentAbsorber(agentId)
 end
 
 
-function Microbe:updateAllHexColours()
+-- Private function for updating the colours of the organelles
+--
+-- The simple coloured hexes are a placeholder for proper models.
+function Microbe:_updateAllHexColours()
     for s, organelle in pairs(self.microbe.organelles) do
         organelle:updateHexColours()
     end

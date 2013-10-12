@@ -1,4 +1,4 @@
-
+-- System for processing player input in the microbe stage
 class 'MicrobeControlSystem' (System)
 
 function MicrobeControlSystem:__init()
@@ -6,6 +6,7 @@ function MicrobeControlSystem:__init()
 end
 
 
+-- Computes the point the mouse cursor is at
 local function getTargetPoint()
     local mousePosition = Engine.mouse:normalizedPosition() 
     local playerCam = Entity(CAMERA_NAME)
@@ -17,6 +18,7 @@ local function getTargetPoint()
 end
 
 
+-- Sums up the directional input from the keyboard
 local function getMovementDirection()
     local direction = Vector3(0, 0, 0)
     if (Engine.keyboard:isKeyDown(KeyboardSystem.KC_W)) then

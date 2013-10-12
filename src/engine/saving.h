@@ -4,6 +4,9 @@
 
 namespace thrive {
 
+/**
+* @brief System for saving the game
+*/
 class SaveSystem : public System {
     
 public:
@@ -18,6 +21,12 @@ public:
     */
     ~SaveSystem();
 
+    /**
+    * @brief Saves the game at the end of this frame
+    *
+    * @param filename
+    *   The filename to save to
+    */
     void
     save(
         std::string filename
@@ -34,6 +43,9 @@ private:
     std::unique_ptr<Implementation> m_impl;
 };
 
+/**
+* @brief System for loading a game
+*/
 class LoadSystem : public System {
     
 public:
@@ -48,6 +60,12 @@ public:
     */
     ~LoadSystem();
 
+    /**
+    * @brief Loads a savegame at the beginning of next frame
+    *
+    * @param filename
+    *   The file to load from
+    */
     void
     load(
         std::string filename

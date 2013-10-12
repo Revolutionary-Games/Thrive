@@ -42,14 +42,27 @@ public:
         EntityId entityId
     ) const;
 
+    /**
+    * @brief Empties the component collection
+    */
     void
     clear();
 
+    /**
+    * @brief Returns a reference to the internal component map
+    *
+    */
     const std::unordered_map<EntityId, std::unique_ptr<Component>>&
     components() const;
 
+    /**
+    * @brief Checks whether this collection is empty
+    *
+    * @return \c true if the collection is empty, \c false otherwise
+    */
     bool
     empty() const;
+
     /**
     * @brief Retrieves a component from the collection
     *

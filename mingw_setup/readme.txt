@@ -204,3 +204,24 @@ know how. A few quick pointers:
 
 * gcc 4.7 recommended
 
+
+Troubleshooting
+===============
+
+CMake complains about missing googletest and / or luabind
+---------------------------------------------------------
+Those two dependencies are included as git submodules, which are not 
+automatically cloned. If you are using git from the command line, go to
+the project directory and issue the commands "git submodule init", followed by 
+"git submodule update".
+
+For other clients such as TortoiseGit, look for options like 
+"Submodule Update" or similar.
+
+Building works, but when running Thrive, it complains about missing DLLs
+------------------------------------------------------------------------
+Make sure to install Thrive before running it. The install target copies all
+necessary files to the "dist" subdirectory in the build directory.
+
+For Code::Blocks, you can select the install target in a dropdown near the 
+build button.
