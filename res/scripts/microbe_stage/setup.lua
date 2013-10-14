@@ -80,19 +80,34 @@ end
 
 
 local function setupHud()
-    local WIDTH = 200
-    local HEIGHT = 32
+    local ENERGY_WIDTH = 200
+    local ENERGY_HEIGHT = 32
 
     local energyCount = Entity("hud.energyCount")
-    local text = TextOverlayComponent("hud.energyCount")
-    energyCount:addComponent(text)
-    text.properties.horizontalAlignment = TextOverlayComponent.Center
-    text.properties.verticalAlignment = TextOverlayComponent.Bottom
-    text.properties.width = WIDTH
-    text.properties.height = HEIGHT
-    text.properties.left = -WIDTH / 2
-    text.properties.top = -HEIGHT
-    text.properties:touch()
+    local energyText = TextOverlayComponent("hud.energyCount")
+    energyCount:addComponent(energyText)
+    energyText.properties.horizontalAlignment = TextOverlayComponent.Center
+    energyText.properties.verticalAlignment = TextOverlayComponent.Bottom
+    energyText.properties.width = ENERGY_WIDTH
+    energyText.properties.height = ENERGY_HEIGHT
+    energyText.properties.left = -ENERGY_WIDTH / 2
+    energyText.properties.top = - ENERGY_HEIGHT
+    energyText.properties:touch()
+	
+	local AGENTS_WIDTH = 200
+    local AGENTS_HEIGHT = 32	
+	
+	local playerAgentCounts = Entity("hud.playerAgents")
+    local playerAgentText = TextOverlayComponent("hud.playerAgents")
+    playerAgentCounts:addComponent(playerAgentText)
+    playerAgentText.properties.horizontalAlignment = TextOverlayComponent.Right
+    playerAgentText.properties.verticalAlignment = TextOverlayComponent.Bottom
+    playerAgentText.properties.width = AGENTS_WIDTH
+	 -- Note that height and top will change dynamically with the number of agents displayed
+    playerAgentText.properties.height = AGENTS_HEIGHT  
+    playerAgentText.properties.left = -AGENTS_WIDTH / 2 
+    playerAgentText.properties.top = -AGENTS_HEIGHT
+    playerAgentText.properties:touch()
 end
 
 local function setupPlayer()
