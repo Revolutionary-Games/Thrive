@@ -39,7 +39,8 @@ local function setupCamera()
 end
 
 local function setupEmitter()
-    local entity = Entity("object")
+    -- Setting up an emitter for energy
+    local entity = Entity("energy-emitter")
     -- Rigid body
     local rigidBody = RigidBodyComponent()
     rigidBody.properties.friction = 0.2
@@ -61,28 +62,65 @@ local function setupEmitter()
     local sceneNode = OgreSceneNodeComponent()
     sceneNode.meshName = "molecule.mesh"
     entity:addComponent(sceneNode)
-    -- Emitter
-    local agentEmitter = AgentEmitterComponent()
-    entity:addComponent(agentEmitter)
-    agentEmitter.agentId = 1
-    agentEmitter.emitInterval = 1000
-    agentEmitter.emissionRadius = 1
-    agentEmitter.maxInitialSpeed = 10
-    agentEmitter.minInitialSpeed = 2
-    agentEmitter.minEmissionAngle = Degree(0)
-    agentEmitter.maxEmissionAngle = Degree(360)
-    agentEmitter.meshName = "molecule.mesh"
-    agentEmitter.particlesPerEmission = 1
-    agentEmitter.particleLifeTime = 5000
-    agentEmitter.particleScale = Vector3(0.3, 0.3, 0.3)
-    agentEmitter.potencyPerParticle = 3.0
+    -- Emitter energy
+    local energyEmitter = AgentEmitterComponent()
+    entity:addComponent(energyEmitter)
+    energyEmitter.agentId = 1
+    energyEmitter.emitInterval = 1000
+    energyEmitter.emissionRadius = 1
+    energyEmitter.maxInitialSpeed = 10
+    energyEmitter.minInitialSpeed = 2
+    energyEmitter.minEmissionAngle = Degree(0)
+    energyEmitter.maxEmissionAngle = Degree(360)
+    energyEmitter.meshName = "molecule.mesh"
+    energyEmitter.particlesPerEmission = 1
+    energyEmitter.particleLifeTime = 5000
+    energyEmitter.particleScale = Vector3(0.3, 0.3, 0.3)
+    energyEmitter.potencyPerParticle = 3.0
+	-- Setting up an emitter for agent 2
+	local entity2 = Entity("agent-2-emitter")
+    -- Rigid body
+    rigidBody = RigidBodyComponent()
+    rigidBody.properties.friction = 0.2
+    rigidBody.properties.linearDamping = 0.8
+    rigidBody.properties.shape = CylinderShape(
+        CollisionShape.AXIS_X, 
+        0.4,
+        2.0
+    )
+    rigidBody:setDynamicProperties(
+        Vector3(20, -10, 0),
+        Quaternion(Radian(Degree(0)), Vector3(1, 0, 0)),
+        Vector3(0, 0, 0),
+        Vector3(0, 0, 0)
+    )
+    rigidBody.properties:touch()
+    entity2:addComponent(rigidBody)
+    -- Scene node
+    sceneNode = OgreSceneNodeComponent()
+    sceneNode.meshName = "molecule.mesh"
+    entity2:addComponent(sceneNode)
+	-- Emitter Agent 2
+	local agent2Emitter = AgentEmitterComponent()
+    entity2:addComponent(agent2Emitter)
+    agent2Emitter.agentId = 2
+    agent2Emitter.emitInterval = 1000
+    agent2Emitter.emissionRadius = 1
+    agent2Emitter.maxInitialSpeed = 10
+    agent2Emitter.minInitialSpeed = 2
+    agent2Emitter.minEmissionAngle = Degree(0)
+    agent2Emitter.maxEmissionAngle = Degree(360)
+    agent2Emitter.meshName = "molecule.mesh"
+    agent2Emitter.particlesPerEmission = 1
+    agent2Emitter.particleLifeTime = 5000
+    agent2Emitter.particleScale = Vector3(0.3, 0.3, 0.3)
+    agent2Emitter.potencyPerParticle = 1.0
 end
 
 
 local function setupHud()
     local ENERGY_WIDTH = 200
     local ENERGY_HEIGHT = 32
-
     local energyCount = Entity("hud.energyCount")
     local energyText = TextOverlayComponent("hud.energyCount")
     energyCount:addComponent(energyText)
@@ -93,10 +131,9 @@ local function setupHud()
     energyText.properties.left = -ENERGY_WIDTH / 2
     energyText.properties.top = - ENERGY_HEIGHT
     energyText.properties:touch()
-	
+	-- Setting up hud element for displaying all agents
 	local AGENTS_WIDTH = 200
     local AGENTS_HEIGHT = 32	
-	
 	local playerAgentCounts = Entity("hud.playerAgents")
     local playerAgentText = TextOverlayComponent("hud.playerAgents")
     playerAgentCounts:addComponent(playerAgentText)
@@ -122,13 +159,7 @@ local function setupPlayer()
     forwardOrganelle:addHex(1, -1)
     forwardOrganelle:setColour(ColourValue(1, 0, 0, 1))
     player:addOrganelle(0, 1, forwardOrganelle)
-    -- Storage
-    local storageOrganelle = StorageOrganelle(1, 100.0)
-    storageOrganelle:addHex(0, 0)
-    storageOrganelle:setColour(ColourValue(0, 1, 0, 1))
-    player:addOrganelle(0, 0, storageOrganelle)
-    player:storeAgent(1, 10)
-    -- Backward
+	-- Backward
     local backwardOrganelle = MovementOrganelle(
         Vector3(0.0, -50.0, 0.0),
         300
@@ -137,7 +168,28 @@ local function setupPlayer()
     backwardOrganelle:addHex(-1, 1)
     backwardOrganelle:addHex(1, 0)
     backwardOrganelle:setColour(ColourValue(1, 0, 0, 1))
-    player:addOrganelle(0, -1, backwardOrganelle)
+    player:addOrganelle(0, -2, backwardOrganelle)
+    -- Storage energy
+    local storageOrganelle = StorageOrganelle(1, 100.0)
+    storageOrganelle:addHex(0, 0)
+    storageOrganelle:setColour(ColourValue(0, 1, 0, 1))
+    player:addOrganelle(0, 0, storageOrganelle)
+    player:storeAgent(1, 10)
+	-- Storage agent 2
+    local storageOrganelle2 = StorageOrganelle(2, 100.0)
+    storageOrganelle2:addHex(0, 0)
+    storageOrganelle2:setColour(ColourValue(0, 1, 1, 1))
+    player:addOrganelle(0, -1, storageOrganelle2)
+	-- Storage agent 3
+    local storageOrganelle3 = StorageOrganelle(3, 100.0)
+    storageOrganelle3:addHex(0, 0)
+    storageOrganelle3:setColour(ColourValue(1, 1, 0, 1))
+    player:addOrganelle(-1, 0, storageOrganelle3)
+	-- Storage agent 4
+    local storageOrganelle4 = StorageOrganelle(4, 100.0)
+    storageOrganelle4:addHex(0, 0)
+    storageOrganelle4:setColour(ColourValue(1, 0, 1, 0))
+    player:addOrganelle(1, -1, storageOrganelle4)
 end
 
 setupBackground()
