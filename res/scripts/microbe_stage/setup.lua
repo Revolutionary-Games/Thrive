@@ -77,8 +77,8 @@ local function setupEmitter()
     energyEmitter.particleLifeTime = 5000
     energyEmitter.particleScale = Vector3(0.3, 0.3, 0.3)
     energyEmitter.potencyPerParticle = 3.0
-	-- Setting up an emitter for agent 2
-	local entity2 = Entity("agent-2-emitter")
+    -- Setting up an emitter for agent 2
+    local entity2 = Entity("agent-2-emitter")
     -- Rigid body
     rigidBody = RigidBodyComponent()
     rigidBody.properties.friction = 0.2
@@ -100,8 +100,8 @@ local function setupEmitter()
     sceneNode = OgreSceneNodeComponent()
     sceneNode.meshName = "molecule.mesh"
     entity2:addComponent(sceneNode)
-	-- Emitter Agent 2
-	local agent2Emitter = AgentEmitterComponent()
+    -- Emitter Agent 2
+    local agent2Emitter = AgentEmitterComponent()
     entity2:addComponent(agent2Emitter)
     agent2Emitter.agentId = 2
     agent2Emitter.emitInterval = 1000
@@ -131,16 +131,16 @@ local function setupHud()
     energyText.properties.left = -ENERGY_WIDTH / 2
     energyText.properties.top = - ENERGY_HEIGHT
     energyText.properties:touch()
-	-- Setting up hud element for displaying all agents
-	local AGENTS_WIDTH = 200
-    local AGENTS_HEIGHT = 32	
-	local playerAgentCounts = Entity("hud.playerAgents")
+    -- Setting up hud element for displaying all agents
+    local AGENTS_WIDTH = 200
+    local AGENTS_HEIGHT = 32    
+    local playerAgentCounts = Entity("hud.playerAgents")
     local playerAgentText = TextOverlayComponent("hud.playerAgents")
     playerAgentCounts:addComponent(playerAgentText)
     playerAgentText.properties.horizontalAlignment = TextOverlayComponent.Right
     playerAgentText.properties.verticalAlignment = TextOverlayComponent.Bottom
     playerAgentText.properties.width = AGENTS_WIDTH
-	 -- Note that height and top will change dynamically with the number of agents displayed
+     -- Note that height and top will change dynamically with the number of agents displayed
     playerAgentText.properties.height = AGENTS_HEIGHT  
     playerAgentText.properties.left = -AGENTS_WIDTH / 2 
     playerAgentText.properties.top = -AGENTS_HEIGHT
@@ -159,7 +159,7 @@ local function setupPlayer()
     forwardOrganelle:addHex(1, -1)
     forwardOrganelle:setColour(ColourValue(1, 0, 0, 1))
     player:addOrganelle(0, 1, forwardOrganelle)
-	-- Backward
+    -- Backward
     local backwardOrganelle = MovementOrganelle(
         Vector3(0.0, -50.0, 0.0),
         300
@@ -175,17 +175,17 @@ local function setupPlayer()
     storageOrganelle:setColour(ColourValue(0, 1, 0, 1))
     player:addOrganelle(0, 0, storageOrganelle)
     player:storeAgent(1, 10)
-	-- Storage agent 2
+    -- Storage agent 2
     local storageOrganelle2 = StorageOrganelle(2, 100.0)
     storageOrganelle2:addHex(0, 0)
     storageOrganelle2:setColour(ColourValue(0, 1, 1, 1))
     player:addOrganelle(0, -1, storageOrganelle2)
-	-- Storage agent 3
+    -- Storage agent 3
     local storageOrganelle3 = StorageOrganelle(3, 100.0)
     storageOrganelle3:addHex(0, 0)
     storageOrganelle3:setColour(ColourValue(1, 1, 0, 1))
     player:addOrganelle(-1, 0, storageOrganelle3)
-	-- Storage agent 4
+    -- Storage agent 4
     local storageOrganelle4 = StorageOrganelle(4, 100.0)
     storageOrganelle4:addHex(0, 0)
     storageOrganelle4:setColour(ColourValue(1, 0, 1, 0))
