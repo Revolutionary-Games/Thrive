@@ -38,6 +38,13 @@ local function setupCamera()
     viewportEntity:addComponent(viewportComponent)
 end
 
+local function setupAgents()
+	AgentRegistry.registerAgentType("energy", "Energy")
+	AgentRegistry.registerAgentType("oxygen", "Oxygen")	
+	AgentRegistry.registerAgentType("nitrate", "Nitrate")
+	AgentRegistry.registerAgentType("faxekondium", "Faxekondium")
+end
+
 local function setupEmitter()
     -- Setting up an emitter for energy
     local entity = Entity("energy-emitter")
@@ -65,7 +72,7 @@ local function setupEmitter()
     -- Emitter energy
     local energyEmitter = AgentEmitterComponent()
     entity:addComponent(energyEmitter)
-    energyEmitter.agentId = 1
+    energyEmitter.agentId = AgentRegistry.getAgentId("energy")
     energyEmitter.emitInterval = 1000
     energyEmitter.emissionRadius = 1
     energyEmitter.maxInitialSpeed = 10
@@ -78,7 +85,7 @@ local function setupEmitter()
     energyEmitter.particleScale = Vector3(0.3, 0.3, 0.3)
     energyEmitter.potencyPerParticle = 3.0
 	-- Setting up an emitter for agent 2
-	local entity2 = Entity("agent-2-emitter")
+	local entity2 = Entity("oxygen-emitter")
     -- Rigid body
     rigidBody = RigidBodyComponent()
     rigidBody.properties.friction = 0.2
@@ -103,7 +110,7 @@ local function setupEmitter()
 	-- Emitter Agent 2
 	local agent2Emitter = AgentEmitterComponent()
     entity2:addComponent(agent2Emitter)
-    agent2Emitter.agentId = 2
+    agent2Emitter.agentId = AgentRegistry.getAgentId("oxygen")
     agent2Emitter.emitInterval = 1000
     agent2Emitter.emissionRadius = 1
     agent2Emitter.maxInitialSpeed = 10
@@ -142,7 +149,7 @@ local function setupHud()
     playerAgentText.properties.width = AGENTS_WIDTH
 	 -- Note that height and top will change dynamically with the number of agents displayed
     playerAgentText.properties.height = AGENTS_HEIGHT  
-    playerAgentText.properties.left = -AGENTS_WIDTH / 2 
+    playerAgentText.properties.left = -AGENTS_WIDTH
     playerAgentText.properties.top = -AGENTS_HEIGHT
     playerAgentText.properties:touch()
 end
@@ -170,23 +177,23 @@ local function setupPlayer()
     backwardOrganelle:setColour(ColourValue(1, 0, 0, 1))
     player:addOrganelle(0, -2, backwardOrganelle)
     -- Storage energy
-    local storageOrganelle = StorageOrganelle(1, 100.0)
+    local storageOrganelle = StorageOrganelle(AgentRegistry.getAgentId("energy"), 100.0)
     storageOrganelle:addHex(0, 0)
     storageOrganelle:setColour(ColourValue(0, 1, 0, 1))
     player:addOrganelle(0, 0, storageOrganelle)
-    player:storeAgent(1, 10)
+    player:storeAgent(AgentRegistry.getAgentId("energy"), 10)
 	-- Storage agent 2
-    local storageOrganelle2 = StorageOrganelle(2, 100.0)
+    local storageOrganelle2 = StorageOrganelle(AgentRegistry.getAgentId("oxygen"), 100.0)
     storageOrganelle2:addHex(0, 0)
     storageOrganelle2:setColour(ColourValue(0, 1, 1, 1))
     player:addOrganelle(0, -1, storageOrganelle2)
 	-- Storage agent 3
-    local storageOrganelle3 = StorageOrganelle(3, 100.0)
+    local storageOrganelle3 = StorageOrganelle(AgentRegistry.getAgentId("faxekondium"), 100.0)
     storageOrganelle3:addHex(0, 0)
     storageOrganelle3:setColour(ColourValue(1, 1, 0, 1))
     player:addOrganelle(-1, 0, storageOrganelle3)
 	-- Storage agent 4
-    local storageOrganelle4 = StorageOrganelle(4, 100.0)
+    local storageOrganelle4 = StorageOrganelle(AgentRegistry.getAgentId("nitrate"), 100.0)
     storageOrganelle4:addHex(0, 0)
     storageOrganelle4:setColour(ColourValue(1, 0, 1, 0))
     player:addOrganelle(1, -1, storageOrganelle4)
@@ -194,7 +201,7 @@ end
 
 setupBackground()
 setupCamera()
+setupAgents()
 setupEmitter()
 setupHud()
 setupPlayer()
-
