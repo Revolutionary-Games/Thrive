@@ -384,7 +384,7 @@ AgentEmitterSystem::update(int milliseconds) {
                 EntityId agentEntityId = entityManager.generateNewId();
                 // Scene Node
                 auto agentSceneNodeComponent = make_unique<OgreSceneNodeComponent>();
-                agentSceneNodeComponent->m_transform.scale = emitterComponent->m_particleScale; 
+                agentSceneNodeComponent->m_transform.scale = emitterComponent->m_particleScale;
                 agentSceneNodeComponent->m_meshName = emitterComponent->m_meshName;
                 // Collision Hull
                 auto agentRigidBodyComponent = make_unique<RigidBodyComponent>(
@@ -394,7 +394,7 @@ AgentEmitterSystem::update(int milliseconds) {
                 agentRigidBodyComponent->m_properties.shape = std::make_shared<SphereShape>(0.01);
                 agentRigidBodyComponent->m_properties.hasContactResponse = false;
                 agentRigidBodyComponent->m_properties.kinematic = true;
-                agentRigidBodyComponent->m_dynamicProperties.position = sceneNodeComponent->m_transform.position + emissionPosition; 
+                agentRigidBodyComponent->m_dynamicProperties.position = sceneNodeComponent->m_transform.position + emissionPosition;
                 // Agent Component
                 auto agentComponent = make_unique<AgentComponent>();
                 agentComponent->m_timeToLive = emitterComponent->m_particleLifetime;
@@ -516,9 +516,6 @@ AgentAbsorberSystem::update(int) {
 // AgentRegistry
 ////////////////////////////////////////////////////////////////////////////////
 
-std::vector<std::shared_ptr<AgentRegistry::AgentRegistryEntry>> AgentRegistry::m_agentRegistry;
-std::unordered_map<std::string, std::shared_ptr<AgentRegistry::AgentRegistryEntry>> AgentRegistry::m_agentRegistryMap;
-
 luabind::scope
 AgentRegistry::luaBindings() {
     using namespace luabind;
@@ -533,48 +530,52 @@ AgentRegistry::luaBindings() {
     ;
 }
 
-
-int
+AgentId
 AgentRegistry::registerAgentType(
     const std::string& internalName,
     const std::string& displayName
 ) {
-    //Using shared_ptr as both m_agentRegistry and m_agentRegistryMap will have access to the same element, stack pointers didn't work
-    std::shared_ptr<AgentRegistryEntry> are = std::make_shared<AgentRegistryEntry>();
-    are->id = m_agentRegistry.size()+1; //id of entry is the soon-to-be index in vector + 1
-    are->internalName = internalName;
-    are->displayName = displayName;
-    m_agentRegistry.push_back(are);
-    m_agentRegistryMap.emplace(std::string(internalName), are);
-    return m_agentRegistry.size();
+    if (m_agentRegistryMap().count(internalName) == 0)
+    {
+        AgentRegistryEntry entry;
+        entry.internalName = internalName;
+        entry.displayName = displayName;
+        m_agentRegistry().push_back(entry);
+        m_agentRegistryMap().emplace(std::string(internalName), m_agentRegistry().size());
+        return m_agentRegistry().size();
+    }
+    else
+    {
+        throw std::invalid_argument("Duplicate internalName not allowed.");
+    }
 }
 
 std::string
 AgentRegistry::getAgentDisplayName(
-    int id
+    AgentId id
 ) {
-    if (static_cast<std::size_t>(id) > m_agentRegistry.size())
+    if (static_cast<std::size_t>(id) > m_agentRegistry().size())
         throw std::out_of_range("Index of agent does not exist.");
-    return m_agentRegistry[id-1]->displayName;
+    return m_agentRegistry()[id-1].displayName;
 }
 
 std::string
 AgentRegistry::getAgentInternalName(
-    int id
+    AgentId id
 ) {
-    if (static_cast<std::size_t>(id) > m_agentRegistry.size())
+    if (static_cast<std::size_t>(id) > m_agentRegistry().size())
         throw std::out_of_range("Index of agent does not exist.");
-    return m_agentRegistry[id-1]->internalName;
+    return m_agentRegistry()[id-1].internalName;
 }
 
-int
+AgentId
 AgentRegistry::getAgentId(
     const std::string& internalName
 ) {
-    int aId;
+    AgentId aId;
     try
     {
-        aId = m_agentRegistryMap.at(internalName)->id;
+        aId = m_agentRegistryMap().at(internalName);
     }
     catch(std::out_of_range&)
     {

@@ -91,7 +91,7 @@ public:
     * - AgentEmitterComponent::m_particleScale
     * - AgentEmitterComponent::m_potencyPerParticle
     *
-    * @return 
+    * @return
     */
     static luabind::scope
     luaBindings();
@@ -192,7 +192,7 @@ public:
     * - AgentAbsorberComponent::canAbsorbAgent
     * - AgentAbsorberComponent::setCanAbsorbAgent
     *
-    * @return 
+    * @return
     */
     static luabind::scope
     luaBindings();
@@ -213,7 +213,7 @@ public:
     * @param id
     *   The agent id to get the amount for
     *
-    * @return 
+    * @return
     */
     float
     absorbedAgentAmount(
@@ -226,7 +226,7 @@ public:
     * @param id
     *   The agent id to check
     *
-    * @return 
+    * @return
     */
     bool
     canAbsorbAgent(
@@ -279,7 +279,7 @@ public:
 * @brief Despawns agent particles after they've reached their lifetime
 */
 class AgentLifetimeSystem : public System {
-    
+
 public:
 
     /**
@@ -320,7 +320,7 @@ private:
 * @brief Moves agent particles around
 */
 class AgentMovementSystem : public System {
-    
+
 public:
 
     /**
@@ -361,7 +361,7 @@ private:
 * @brief Spawns agent particles for AgentEmitterComponent
 */
 class AgentEmitterSystem : public System {
-    
+
 public:
 
     /**
@@ -402,7 +402,7 @@ private:
 * @brief Despawns agents for AgentAbsorberComponent
 */
 class AgentAbsorberSystem : public System {
-    
+
 public:
 
     /**
@@ -471,7 +471,7 @@ public:
     * @return
     *   Id of new agent
     */
-    static int
+    static AgentId
     registerAgentType(
         const std::string& internalName,
         const std::string& displayName
@@ -488,7 +488,7 @@ public:
     */
     static std::string
     getAgentDisplayName(
-        int id
+        AgentId id
     );
 
     /**
@@ -502,19 +502,19 @@ public:
     */
     static std::string
     getAgentInternalName(
-        int id
+        AgentId id
     );
 
     /**
     * @brief Obtains the Id of an internal name corresponding to a registered agent
     *
     * @param internalName
-    *   The internal name of the agent
+    *   The internal name of the agent. Must not already exist in collection or invalid_argument is thrown.
     *
     * @return
-    *   Id of the agent if it is registered. If agent is not registered an out_of_range exception is thrown.
+    *   AgentId of the agent if it is registered. If agent is not registered an out_of_range exception is thrown.
     */
-    static int
+    static AgentId
     getAgentId(
         const std::string& internalName
     );
@@ -523,13 +523,20 @@ private:
 
     struct AgentRegistryEntry
     {
-        int id;
         std::string internalName;
         std::string displayName;
     };
-    static std::vector<std::shared_ptr<AgentRegistry::AgentRegistryEntry>> m_agentRegistry;
+    static std::vector<AgentRegistry::AgentRegistryEntry>&
+    m_agentRegistry() {
+        static std::vector<AgentRegistry::AgentRegistryEntry> m_agentRegistry;
+        return m_agentRegistry;
+    }
     //Reverse map used for lookup on internalName in O(1) instead of linear search.
-    static std::unordered_map<std::string, std::shared_ptr<AgentRegistry::AgentRegistryEntry>> m_agentRegistryMap;
+    static std::unordered_map<std::string, AgentId>&
+    m_agentRegistryMap() {
+        static std::unordered_map<std::string, AgentId> m_agentRegistryMap;
+        return m_agentRegistryMap;
+    }
     // Private constructor to prevent initialization
     AgentRegistry();
 };
