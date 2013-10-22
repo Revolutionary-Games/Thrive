@@ -91,7 +91,7 @@ public:
     * - AgentEmitterComponent::m_particleScale
     * - AgentEmitterComponent::m_potencyPerParticle
     *
-    * @return 
+    * @return
     */
     static luabind::scope
     luaBindings();
@@ -192,7 +192,7 @@ public:
     * - AgentAbsorberComponent::canAbsorbAgent
     * - AgentAbsorberComponent::setCanAbsorbAgent
     *
-    * @return 
+    * @return
     */
     static luabind::scope
     luaBindings();
@@ -213,7 +213,7 @@ public:
     * @param id
     *   The agent id to get the amount for
     *
-    * @return 
+    * @return
     */
     float
     absorbedAgentAmount(
@@ -226,7 +226,7 @@ public:
     * @param id
     *   The agent id to check
     *
-    * @return 
+    * @return
     */
     bool
     canAbsorbAgent(
@@ -279,7 +279,7 @@ public:
 * @brief Despawns agent particles after they've reached their lifetime
 */
 class AgentLifetimeSystem : public System {
-    
+
 public:
 
     /**
@@ -320,7 +320,7 @@ private:
 * @brief Moves agent particles around
 */
 class AgentMovementSystem : public System {
-    
+
 public:
 
     /**
@@ -361,7 +361,7 @@ private:
 * @brief Spawns agent particles for AgentEmitterComponent
 */
 class AgentEmitterSystem : public System {
-    
+
 public:
 
     /**
@@ -402,7 +402,7 @@ private:
 * @brief Despawns agents for AgentAbsorberComponent
 */
 class AgentAbsorberSystem : public System {
-    
+
 public:
 
     /**
@@ -527,16 +527,10 @@ private:
         std::string displayName;
     };
     static std::vector<AgentRegistry::AgentRegistryEntry>&
-    m_agentRegistry() {
-        static std::vector<AgentRegistry::AgentRegistryEntry> m_agentRegistry;
-        return m_agentRegistry;
-    }
+    m_agentRegistry();
     //Reverse map used for lookup on internalName in O(1) instead of linear search.
     static std::unordered_map<std::string, AgentId>&
-    m_agentRegistryMap() {
-        static std::unordered_map<std::string, AgentId> m_agentRegistryMap;
-        return m_agentRegistryMap;
-    }
+    m_agentRegistryMap();
     // Private constructor to prevent initialization
     AgentRegistry();
 };

@@ -384,7 +384,7 @@ AgentEmitterSystem::update(int milliseconds) {
                 EntityId agentEntityId = entityManager.generateNewId();
                 // Scene Node
                 auto agentSceneNodeComponent = make_unique<OgreSceneNodeComponent>();
-                agentSceneNodeComponent->m_transform.scale = emitterComponent->m_particleScale; 
+                agentSceneNodeComponent->m_transform.scale = emitterComponent->m_particleScale;
                 agentSceneNodeComponent->m_meshName = emitterComponent->m_meshName;
                 // Collision Hull
                 auto agentRigidBodyComponent = make_unique<RigidBodyComponent>(
@@ -394,7 +394,7 @@ AgentEmitterSystem::update(int milliseconds) {
                 agentRigidBodyComponent->m_properties.shape = std::make_shared<SphereShape>(0.01);
                 agentRigidBodyComponent->m_properties.hasContactResponse = false;
                 agentRigidBodyComponent->m_properties.kinematic = true;
-                agentRigidBodyComponent->m_dynamicProperties.position = sceneNodeComponent->m_transform.position + emissionPosition; 
+                agentRigidBodyComponent->m_dynamicProperties.position = sceneNodeComponent->m_transform.position + emissionPosition;
                 // Agent Component
                 auto agentComponent = make_unique<AgentComponent>();
                 agentComponent->m_timeToLive = emitterComponent->m_particleLifetime;
@@ -566,6 +566,17 @@ AgentRegistry::getAgentInternalName(
     if (static_cast<std::size_t>(id) > m_agentRegistry().size())
         throw std::out_of_range("Index of agent does not exist.");
     return m_agentRegistry()[id-1].internalName;
+}
+
+std::vector<AgentRegistry::AgentRegistryEntry>&
+AgentRegistry::m_agentRegistry() {
+	static std::vector<AgentRegistry::AgentRegistryEntry> m_agentRegistry;
+	return m_agentRegistry;
+}
+std::unordered_map<std::string, AgentId>&
+AgentRegistry::m_agentRegistryMap() {
+	static std::unordered_map<std::string, AgentId> m_agentRegistryMap;
+	return m_agentRegistryMap;
 }
 
 AgentId
