@@ -384,7 +384,7 @@ AgentEmitterSystem::update(int milliseconds) {
                 EntityId agentEntityId = entityManager.generateNewId();
                 // Scene Node
                 auto agentSceneNodeComponent = make_unique<OgreSceneNodeComponent>();
-                agentSceneNodeComponent->m_transform.scale = emitterComponent->m_particleScale; 
+                agentSceneNodeComponent->m_transform.scale = emitterComponent->m_particleScale;
                 agentSceneNodeComponent->m_meshName = emitterComponent->m_meshName;
                 // Collision Hull
                 auto agentRigidBodyComponent = make_unique<RigidBodyComponent>(
@@ -394,7 +394,7 @@ AgentEmitterSystem::update(int milliseconds) {
                 agentRigidBodyComponent->m_properties.shape = std::make_shared<SphereShape>(0.01);
                 agentRigidBodyComponent->m_properties.hasContactResponse = false;
                 agentRigidBodyComponent->m_properties.kinematic = true;
-                agentRigidBodyComponent->m_dynamicProperties.position = sceneNodeComponent->m_transform.position + emissionPosition; 
+                agentRigidBodyComponent->m_dynamicProperties.position = sceneNodeComponent->m_transform.position + emissionPosition;
                 // Agent Component
                 auto agentComponent = make_unique<AgentComponent>();
                 agentComponent->m_timeToLive = emitterComponent->m_particleLifetime;
@@ -530,19 +530,39 @@ AgentRegistry::luaBindings() {
     ;
 }
 
+
+namespace {
+    struct AgentRegistryEntry
+    {
+        std::string internalName;
+        std::string displayName;
+    };
+}
+
+static std::vector<AgentRegistryEntry>&
+agentRegistry() {
+	static std::vector<AgentRegistryEntry> agentRegistry;
+	return agentRegistry;
+}
+static std::unordered_map<std::string, AgentId>&
+agentRegistryMap() {
+	static std::unordered_map<std::string, AgentId> agentRegistryMap;
+	return agentRegistryMap;
+}
+
 AgentId
 AgentRegistry::registerAgentType(
     const std::string& internalName,
     const std::string& displayName
 ) {
-    if (m_agentRegistryMap().count(internalName) == 0)
+    if (agentRegistryMap().count(internalName) == 0)
     {
         AgentRegistryEntry entry;
         entry.internalName = internalName;
         entry.displayName = displayName;
-        m_agentRegistry().push_back(entry);
-        m_agentRegistryMap().emplace(std::string(internalName), m_agentRegistry().size());
-        return m_agentRegistry().size();
+        agentRegistry().push_back(entry);
+        agentRegistryMap().emplace(std::string(internalName), agentRegistry().size());
+        return agentRegistry().size();
     }
     else
     {
@@ -554,45 +574,34 @@ std::string
 AgentRegistry::getAgentDisplayName(
     AgentId id
 ) {
-    if (static_cast<std::size_t>(id) > m_agentRegistry().size())
+    if (static_cast<std::size_t>(id) > agentRegistry().size())
         throw std::out_of_range("Index of agent does not exist.");
-    return m_agentRegistry()[id-1].displayName;
+    return agentRegistry()[id-1].displayName;
 }
 
 std::string
 AgentRegistry::getAgentInternalName(
     AgentId id
 ) {
-    if (static_cast<std::size_t>(id) > m_agentRegistry().size())
+    if (static_cast<std::size_t>(id) > agentRegistry().size())
         throw std::out_of_range("Index of agent does not exist.");
-    return m_agentRegistry()[id-1].internalName;
-}
-
-std::vector<AgentRegistry::AgentRegistryEntry>&
-AgentRegistry::m_agentRegistry() {
-	static std::vector<AgentRegistry::AgentRegistryEntry> m_agentRegistry;
-	return m_agentRegistry;
-}
-std::unordered_map<std::string, AgentId>&
-AgentRegistry::m_agentRegistryMap() {
-	static std::unordered_map<std::string, AgentId> m_agentRegistryMap;
-	return m_agentRegistryMap;
+    return agentRegistry()[id-1].internalName;
 }
 
 AgentId
 AgentRegistry::getAgentId(
     const std::string& internalName
 ) {
-    AgentId aId;
+    AgentId agentId;
     try
     {
-        aId = m_agentRegistryMap().at(internalName);
+        agentId = agentRegistryMap().at(internalName);
     }
     catch(std::out_of_range&)
     {
         throw std::out_of_range("Internal name of agent does not exist.");
     }
-    return aId;
+    return agentId;
 }
 
 
