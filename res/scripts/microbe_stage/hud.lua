@@ -18,7 +18,8 @@ function HudSystem:update(milliseconds)
     local FONT_HEIGHT = 18 -- Not sure how to determine this correctly
     local agentsString =  "Agents: "
     for agentID in pairs(playerMicrobe.microbe.vacuoles) do
-        agentsString = agentsString .. string.format("\nID %d: %d", agentID, playerMicrobe:getAgentAmount(agentID))
+        --Following string.format doesn't quite allign text as desired for unknown reasons. (Could be a non-monospace font problem)
+        agentsString = agentsString .. string.format("\n%-10s%s %d", AgentRegistry.getAgentDisplayName(agentID), ":", playerMicrobe:getAgentAmount(agentID))
     end
     local agentsTextOverlay = Entity("hud.playerAgents"):getComponent(TextOverlayComponent.TYPE_ID)
     agentsTextOverlay.properties.text = agentsString

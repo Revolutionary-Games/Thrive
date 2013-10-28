@@ -90,7 +90,7 @@ public:
     * - AgentEmitterComponent::m_particleScale
     * - AgentEmitterComponent::m_potencyPerParticle
     *
-    * @return 
+    * @return
     */
     static luabind::scope
     luaBindings();
@@ -191,7 +191,7 @@ public:
     * - AgentAbsorberComponent::canAbsorbAgent
     * - AgentAbsorberComponent::setCanAbsorbAgent
     *
-    * @return 
+    * @return
     */
     static luabind::scope
     luaBindings();
@@ -212,7 +212,7 @@ public:
     * @param id
     *   The agent id to get the amount for
     *
-    * @return 
+    * @return
     */
     float
     absorbedAgentAmount(
@@ -225,7 +225,7 @@ public:
     * @param id
     *   The agent id to check
     *
-    * @return 
+    * @return
     */
     bool
     canAbsorbAgent(
@@ -278,7 +278,7 @@ public:
 * @brief Despawns agent particles after they've reached their lifetime
 */
 class AgentLifetimeSystem : public System {
-    
+
 public:
 
     /**
@@ -319,7 +319,7 @@ private:
 * @brief Moves agent particles around
 */
 class AgentMovementSystem : public System {
-    
+
 public:
 
     /**
@@ -360,7 +360,7 @@ private:
 * @brief Spawns agent particles for AgentEmitterComponent
 */
 class AgentEmitterSystem : public System {
-    
+
 public:
 
     /**
@@ -401,7 +401,7 @@ private:
 * @brief Despawns agents for AgentAbsorberComponent
 */
 class AgentAbsorberSystem : public System {
-    
+
 public:
 
     /**
@@ -436,5 +436,91 @@ private:
     struct Implementation;
     std::unique_ptr<Implementation> m_impl;
 };
+
+
+/**
+* @brief Static class keeping track of agents, their Id's, internal and displayed names
+*/
+class AgentRegistry final {
+
+public:
+
+    /**
+    * @brief Lua bindings
+    *
+    * Exposes:
+    * - AgentRegistry::registerAgentType
+    * - AgentRegistry::getAgentDisplayName
+    * - AgentRegistry::getAgentInternalName
+    * - AgentRegistry::getAgentId
+    * @return
+    */
+    static luabind::scope
+    luaBindings();
+
+    /**
+    * @brief Registers a new agent type
+    *
+    * @param internalName
+    *   The name to be used internally for reference across game instances
+    *
+    * @param displayName
+    *   Name to be displayed to users
+    *
+    * @return
+    *   Id of new agent
+    */
+    static AgentId
+    registerAgentType(
+        const std::string& internalName,
+        const std::string& displayName
+    );
+
+    /**
+    * @brief Obtains the display name of an agent
+    *
+    * @param id
+    *   Id of the agent to obtain display name from
+    *
+    * @return
+    *   Agent name to display to users
+    */
+    static std::string
+    getAgentDisplayName(
+        AgentId id
+    );
+
+    /**
+    * @brief Obtains the internal name of an agent
+    *
+    * @param id
+    *   Id of the agent to obtain internal name from
+    *
+    * @return
+    *   Agent name for internal use
+    */
+    static std::string
+    getAgentInternalName(
+        AgentId id
+    );
+
+    /**
+    * @brief Obtains the Id of an internal name corresponding to a registered agent
+    *
+    * @param internalName
+    *   The internal name of the agent. Must not already exist in collection or invalid_argument is thrown.
+    *
+    * @return
+    *   AgentId of the agent if it is registered. If agent is not registered an out_of_range exception is thrown.
+    */
+    static AgentId
+    getAgentId(
+        const std::string& internalName
+    );
+
+    AgentRegistry() = delete;
+
+};
+
 }
 
