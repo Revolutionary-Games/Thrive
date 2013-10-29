@@ -1,6 +1,8 @@
 #pragma once
 
 #include "engine/component.h"
+#include "engine/serialization.h"
+#include "engine/typedefs.h"
 
 #include <boost/lexical_cast.hpp>
 
@@ -9,15 +11,11 @@ class TestComponent : public thrive::Component {
 
 public:
 
-    static TypeId
-    TYPE_ID() {
-        static TypeId id = ID + 10000;
-        return id;
-    }
+    static const thrive::ComponentTypeId TYPE_ID = ID + 10000;
 
-    TypeId
+    thrive::ComponentTypeId
     typeId() const override {
-        return TYPE_ID();
+        return TYPE_ID;
     };
 
     static const std::string&
@@ -26,9 +24,21 @@ public:
         return string;
     }
 
-    const std::string&
+    std::string
     typeName() const override {
         return TYPE_NAME();
     };
+
+    void
+    load(
+        const thrive::StorageContainer& storage
+    ) override {
+        Component::load(storage);
+    }
+
+    thrive::StorageContainer
+    storage() const override {
+        return Component::storage();
+    }
 
 };

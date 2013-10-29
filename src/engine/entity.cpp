@@ -1,6 +1,5 @@
 #include "engine/entity.h"
 
-#include "engine/component_registry.h"
 #include "engine/engine.h"
 #include "engine/entity_manager.h"
 #include "game.h"
@@ -28,6 +27,17 @@ struct Entity::Implementation {
 };
 
 
+static void
+Entity_addComponent(
+    Entity* self,
+    Component* nakedComponent
+) {
+    self->addComponent(
+        std::unique_ptr<Component>(nakedComponent)
+    );
+}
+
+
 luabind::scope
 Entity::luaBindings() {
     using namespace luabind;
@@ -36,21 +46,13 @@ Entity::luaBindings() {
         .def(constructor<EntityId>())
         .def(constructor<const std::string&>())
         .def(const_self == other<Entity>())
-        .def("addComponent", &Entity::addComponent)
+        .def("addComponent", &Entity_addComponent, adopt(_2))
         .def("destroy", &Entity::destroy)
         .def("exists", &Entity::exists)
-        .def("getComponent",
-            static_cast<Component* (Entity::*) (Component::TypeId)>(&Entity::getComponent)
-        )
-        .def("getComponent",
-            static_cast<Component* (Entity::*) (const std::string&)>(&Entity::getComponent)
-        )
-        .def("removeComponent",
-            static_cast<void (Entity::*) (Component::TypeId)>(&Entity::removeComponent)
-        )
-        .def("removeComponent",
-            static_cast<void (Entity::*) (const std::string&)>(&Entity::removeComponent)
-        )
+        .def("getComponent", &Entity::getComponent)
+        .def("isVolatile", &Entity::isVolatile)
+        .def("removeComponent", &Entity::removeComponent)
+        .def("setVolatile", &Entity::setVolatile)
         .property("id", &Entity::id)
     ;
 }
@@ -137,7 +139,7 @@ Entity::operator = (
 
 void
 Entity::addComponent(
-    std::shared_ptr<Component> component
+    std::unique_ptr<Component> component
 ) {
     m_impl->m_entityManager->addComponent(
         m_impl->m_id,
@@ -160,7 +162,7 @@ Entity::exists() const {
 
 Component*
 Entity::getComponent(
-    Component::TypeId typeId
+    ComponentTypeId typeId
 ) {
     return m_impl->m_entityManager->getComponent(
         m_impl->m_id,
@@ -169,19 +171,9 @@ Entity::getComponent(
 }
 
 
-Component*
-Entity::getComponent(
-    const std::string& typeName
-) {
-    return this->getComponent(
-        ComponentRegistry::instance().typeNameToId(typeName)
-    );
-}
-
-
 bool
 Entity::hasComponent(
-    Component::TypeId typeId
+    ComponentTypeId typeId
 ) {
     Component* component = m_impl->m_entityManager->getComponent(
         m_impl->m_id,
@@ -191,25 +183,21 @@ Entity::hasComponent(
 }
 
 
-bool
-Entity::hasComponent(
-    const std::string& typeName
-) {
-    return this->hasComponent(
-        ComponentRegistry::instance().typeNameToId(typeName)
-    );
-}
-
-
 EntityId
 Entity::id() const {
     return m_impl->m_id;
 }
 
 
+bool
+Entity::isVolatile() const {
+    return m_impl->m_entityManager->isVolatile(m_impl->m_id);
+}
+
+
 void
 Entity::removeComponent(
-    Component::TypeId typeId
+    ComponentTypeId typeId
 ) {
     m_impl->m_entityManager->removeComponent(
         m_impl->m_id,
@@ -219,10 +207,8 @@ Entity::removeComponent(
 
 
 void
-Entity::removeComponent(
-    const std::string& typeName
+Entity::setVolatile(
+    bool isVolatile
 ) {
-    this->removeComponent(
-        ComponentRegistry::instance().typeNameToId(typeName)
-    );
+    m_impl->m_entityManager->setVolatile(m_impl->m_id, isVolatile);
 }

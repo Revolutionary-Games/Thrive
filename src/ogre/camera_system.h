@@ -34,11 +34,6 @@ public:
     struct Properties : public Touchable {
 
         /**
-        * @brief Aspect ratio of the frustum viewport
-        */
-        Ogre::Real aspectRatio = 1.3333f;
-
-        /**
         * @brief Far clip distance
         */
         Ogre::Real farClipDistance = 10000.0f;
@@ -46,7 +41,7 @@ public:
         /**
         * @brief The y-dimension field of view
         */
-        Ogre::Radian fovY = Ogre::Radian{45.0f};
+        Ogre::Degree fovY = Ogre::Degree{45.0f};
 
         /**
         * @brief Near clip distance
@@ -65,7 +60,6 @@ public:
     * Exposes:
     * - OgreCameraComponent(std::string)
     * - Properties
-    *   - Properties::aspectRatio
     *   - Properties::farClipDistance
     *   - Properties::fovY
     *   - Properties::nearClipDistance
@@ -87,20 +81,54 @@ public:
     );
 
     /**
+    * @brief Default constructor
+    *
+    * Should only be used for loading
+    */
+    OgreCameraComponent();
+
+    /**
+    * @brief Loads a camera
+    *
+    * @param storage
+    */
+    void
+    load(
+        const StorageContainer& storage
+    ) override;
+
+    /**
+    * @brief Returns the camera's name
+    *
+    */
+    std::string
+    name() const;
+
+    /**
+    * @brief Serializes the camera
+    *
+    * @return 
+    */
+    StorageContainer
+    storage() const override;
+
+    /**
     * @brief Pointer to internal camera
     */
     Ogre::Camera* m_camera = nullptr;
-
-    /**
-    * @brief The camera's name
-    */
-    const std::string m_name;
 
     /**
     * @brief Properties
     */
     Properties
     m_properties;
+
+private:
+
+    /**
+    * @brief The camera's name
+    */
+    std::string m_name;
 
 };
 

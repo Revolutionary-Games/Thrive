@@ -1,5 +1,6 @@
 #pragma once
 
+#include "bullet/collision_shape.h"
 #include "engine/component.h"
 #include "engine/system.h"
 #include "engine/touchable.h"
@@ -15,8 +16,6 @@
 namespace luabind {
 class scope;
 }
-
-class btCollisionShape;
 
 namespace thrive {
 
@@ -37,7 +36,7 @@ public:
         /**
         * @brief The body's shape .
         */
-        std::shared_ptr<btCollisionShape> shape {new btSphereShape(1)};
+        CollisionShape::Ptr shape {new EmptyShape()};
 
         /**
         * @brief The restitution factor
@@ -55,11 +54,6 @@ public:
         * @brief Locks angular movement to specific axis
         */
         Ogre::Vector3 angularFactor {1,1,1};
-
-        /**
-        * @brief Inertia
-        */
-        btVector3 localInertia {0,0,0};
 
         /**
         * @brief The mass of the rigid body
@@ -89,11 +83,14 @@ public:
         btScalar rollingFriction = 0.f;
 
         /**
-        *@brief The force currently applied to the body
-        *
+        * @brief Whether this rigid body reacts to collisions
         */
-        Ogre::Vector3 forceApplied = Ogre::Vector3::ZERO;
+        bool hasContactResponse = true;
 
+        /**
+        * @brief Whether this body is kinematic 
+        */
+        bool kinematic = false;
 
     };
 
@@ -145,11 +142,29 @@ public:
     *   - Properties::mass
     *   - Properties::friction
     *   - Properties::rollingFriction
+    *   - Properties::hasContactResponse
+    *   - Properties::kinematic
     *
     * @return
     */
     static luabind::scope
     luaBindings();
+
+    /**
+    * @brief Constructor
+    *
+    * @param collisionFilterGroup
+    *   The collision group this body belongs to
+    * @param collisionFilterMask
+    *   The groups this body can collide with
+    */
+    RigidBodyComponent(
+        short int collisionFilterGroup = btBroadphaseProxy::DefaultFilter,
+        short int collisionFilterMask = btBroadphaseProxy::AllFilter
+    ) : m_collisionFilterGroup(collisionFilterGroup),
+        m_collisionFilterMask(collisionFilterMask)
+    {
+    }
 
     /**
     * @brief Applies an impulse to the center of mass
@@ -177,6 +192,17 @@ public:
     );
 
     /**
+    * @brief Applies a torque to the body
+    *
+    * @param torque
+    *   The torque to apply
+    */
+    void
+    applyTorque(
+        const Ogre::Vector3& torque
+    );
+
+    /**
     * @brief Reimplemented from btMotionState
     *
     * @param[out] transform
@@ -186,6 +212,16 @@ public:
     getWorldTransform(
         btTransform& transform
     ) const override;
+
+    /**
+    * @brief Loads the component
+    *
+    * @param storage
+    */
+    void
+    load(
+        const StorageContainer& storage
+    ) override;
 
     /**
     * @brief Reimplemented from btMotionState
@@ -223,9 +259,27 @@ public:
     );
 
     /**
+    * @brief Serializes the component
+    *
+    * @return 
+    */
+    StorageContainer
+    storage() const override;
+
+    /**
     * @brief Internal object, dont use this directly
     */
     btRigidBody* m_body = nullptr;
+
+    /**
+    * @brief The body's collision group
+    */
+    const short int m_collisionFilterGroup;
+
+    /**
+    * @brief The groups this body can collide with
+    */
+    const short int m_collisionFilterMask;
 
     /**
     * @brief Dynamic properties
@@ -239,6 +293,11 @@ public:
     std::list<
         std::pair<Ogre::Vector3, Ogre::Vector3>
     > m_impulseQueue;
+
+    /**
+    * @brief The torque that has been applied in this timestep
+    */
+    Ogre::Vector3 m_torque = Ogre::Vector3::ZERO;
 
     /**
     * @brief Properties

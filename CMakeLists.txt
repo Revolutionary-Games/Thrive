@@ -240,7 +240,7 @@ target_link_libraries(RunTests ThriveLib gtest_main)
 #################
 
 set(DOC_OUTPUT_DIR ${CMAKE_CURRENT_BINARY_DIR}/doc CACHE PATH "Documentation output directory.")
-set(DOC_INPUT ${CMAKE_CURRENT_SOURCE_DIR}/src)
+set(DOC_INPUT "${CMAKE_CURRENT_SOURCE_DIR}/src ${CMAKE_CURRENT_SOURCE_DIR}/doc")
 
 set( DOXYGEN_CONFIG_FILE
     ${CMAKE_CURRENT_SOURCE_DIR}/doc/doxygen.cfg.in
@@ -276,30 +276,41 @@ install(EXPORT lua
 # OGRE config and media
 
 install(FILES
-    ${CMAKE_SOURCE_DIR}/res/dist/bin/resources.cfg
+    ${CMAKE_SOURCE_DIR}/res/ogre_cfg/resources.cfg
     DESTINATION bin
 )
 
 install(FILES
-    ${CMAKE_SOURCE_DIR}/res/dist/bin/plugins.cfg
+    ${CMAKE_SOURCE_DIR}/res/ogre_cfg/plugins.cfg
     DESTINATION bin
     CONFIGURATIONS Release
 )
 
 install(FILES
-    ${CMAKE_SOURCE_DIR}/res/dist/bin/plugins_d.cfg
+    ${CMAKE_SOURCE_DIR}/res/ogre_cfg/plugins_d.cfg
     DESTINATION bin
     CONFIGURATIONS Debug
     RENAME plugins.cfg
 )
 
-install(DIRECTORY ${CMAKE_SOURCE_DIR}/res/dist/media
+install(DIRECTORY ${CMAKE_SOURCE_DIR}/res/models
+    DESTINATION ./
+    CONFIGURATIONS Release  Debug
+)
+
+install(DIRECTORY ${CMAKE_SOURCE_DIR}/res/materials
     DESTINATION ./
     CONFIGURATIONS Release  Debug
 )
 
 install(DIRECTORY
-    ${CMAKE_SOURCE_DIR}/res/dist/scripts
+    ${CMAKE_SOURCE_DIR}/res/fonts
+    DESTINATION ./
+    CONFIGURATIONS Release  Debug
+)
+
+install(DIRECTORY
+    ${CMAKE_SOURCE_DIR}/res/scripts
     DESTINATION ./
     CONFIGURATIONS Release  Debug
 )

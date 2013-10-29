@@ -1,7 +1,6 @@
 #pragma once
 
 #include "engine/component.h"
-#include "engine/entity_manager.h"
 #include "engine/system.h"
 #include "engine/touchable.h"
 
@@ -23,7 +22,8 @@ namespace thrive {
 * @brief A proxy for Ogre::Viewport
 *
 */
-class OgreViewport {
+class OgreViewportComponent : public Component {
+    COMPONENT(OgreViewport)
 
 public:
 
@@ -43,7 +43,7 @@ public:
         * If the given entity has no OgreCameraComponent, the viewport
         * will stay black
         */
-        EntityId cameraEntity = EntityManager::NULL_ID;
+        EntityId cameraEntity = NULL_ENTITY;
 
         /**
         * @brief The viewport's height relative to the window
@@ -105,9 +105,26 @@ public:
     * @param zOrder
     *   The lower, the further to the front
     */
-    OgreViewport(
+    OgreViewportComponent(
         int zOrder = 0
     );
+
+    void
+    load(
+        const StorageContainer& storage
+    ) override;
+
+    StorageContainer
+    storage() const override;
+
+    /**
+    * @brief The viewport's z order
+    *
+    * Higher z orders lay on top of lower ones
+    *
+    */
+    int
+    zOrder() const;
 
     /**
     * @brief Properties
@@ -120,10 +137,12 @@ public:
     */
     Ogre::Viewport* m_viewport = nullptr;
 
+private:
+
     /**
     * @brief The viewport's zOrder
     */
-    const int m_zOrder;
+    int32_t m_zOrder = 0;
 
 
 };
@@ -137,18 +156,6 @@ class OgreViewportSystem : public System {
 public:
 
     /**
-    * @brief Lua bindings
-    *
-    * Exposes the following free functions:
-    * - \c addViewport(OgreViewport): Adds the viewport to the window
-    * - \c removeViewport(OgreViewport): Removes the viewport from the window
-    *
-    * @return 
-    */
-    static luabind::scope
-    luaBindings();
-
-    /**
     * @brief Constructor
     */
     OgreViewportSystem();
@@ -159,33 +166,11 @@ public:
     ~OgreViewportSystem();
 
     /**
-    * @brief Adds a viewport
-    *
-    * @param viewport
-    *   The viewport to add
-    */
-    void
-    addViewport(
-        std::shared_ptr<OgreViewport> viewport
-    );
-
-    /**
     * @brief Initializes the system
     *
     * @param engine
     */
     void init(Engine* engine) override;
-
-    /**
-    * @brief Removes a viewport
-    *
-    * @param viewport
-    *   The viewport to remove
-    */
-    void
-    removeViewport(
-        std::shared_ptr<OgreViewport> viewport
-    );
 
     /**
     * @brief Shuts the system down

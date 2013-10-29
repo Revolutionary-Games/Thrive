@@ -6,7 +6,7 @@ MINGW_ENV=$1
 
 WORKING_DIR=$MINGW_ENV/temp/ogre_dependencies
 
-BUILD_TYPE=Debug
+BUILD_TYPES=("Debug" "Release")
 
 REPOSITORY_NAME="ali1234"
 
@@ -57,29 +57,33 @@ fi
 # Fix case sensitive cmake module path
 rsync -a $WORKING_DIR/$ARCHIVE_TOP_LEVEL_DIR/cmake/* $WORKING_DIR/$ARCHIVE_TOP_LEVEL_DIR/CMake
 
-# Compile
-mkdir -p $WORKING_DIR/build
-cd $WORKING_DIR/build
-cmake \
-    -DCMAKE_TOOLCHAIN_FILE=$TOOLCHAIN_FILE \
-    -DCMAKE_INSTALL_PREFIX=${MINGW_ENV}/install \
-    -DCMAKE_C_FLAGS=-shared-libgcc \
-    -DCMAKE_BUILD_TYPE=$BUILD_TYPE \
-    -DOGRE_COPY_DEPENDENCIES=OFF \
-    $WORKING_DIR/$ARCHIVE_TOP_LEVEL_DIR
-make -j4 && make install
+for BUILD_TYPE in ${BUILD_TYPES[@]}
+do
+    BUILD_DIR=$WORKING_DIR/build-$BUILD_TYPE
+    # Compile
+    mkdir -p $BUILD_DIR
+    cd $BUILD_DIR
+    cmake \
+        -DCMAKE_TOOLCHAIN_FILE=$TOOLCHAIN_FILE \
+        -DCMAKE_INSTALL_PREFIX=${MINGW_ENV}/install \
+        -DCMAKE_C_FLAGS=-shared-libgcc \
+        -DCMAKE_BUILD_TYPE=$BUILD_TYPE \
+        -DOGRE_COPY_DEPENDENCIES=OFF \
+        $WORKING_DIR/$ARCHIVE_TOP_LEVEL_DIR
+    make -j4 && make install
 
-# Fix case sensitive paths for Ogre's FindXYZ scripts
-rsync -a $MINGW_ENV/install/lib/$BUILD_TYPE/* $MINGW_ENV/install/lib/`echo ${BUILD_TYPE,,}`
-rsync -a $MINGW_ENV/install/bin/$BUILD_TYPE/* $MINGW_ENV/install/bin/`echo ${BUILD_TYPE,,}`
+    # Fix case sensitive paths for Ogre's FindXYZ scripts
+    rsync -a $MINGW_ENV/install/lib/$BUILD_TYPE/* $MINGW_ENV/install/lib/`echo ${BUILD_TYPE,,}`
+    rsync -a $MINGW_ENV/install/bin/$BUILD_TYPE/* $MINGW_ENV/install/bin/`echo ${BUILD_TYPE,,}`
 
-# For some reason, OIS.dll is installed into bin, move it to lib
-rsync -a $MINGW_ENV/install/bin/`echo ${BUILD_TYPE,,}`/OIS* $MINGW_ENV/install/lib/`echo ${BUILD_TYPE,,}`
+    # For some reason, OIS.dll is installed into bin, move it to lib
+    rsync -a $MINGW_ENV/install/bin/`echo ${BUILD_TYPE,,}`/OIS* $MINGW_ENV/install/lib/`echo ${BUILD_TYPE,,}`
 
-# OGRE's cmake script looks for freeimage, not FreeImage (*sigh*)
-case "$BUILD_TYPE" in
-    "Debug") rsync -a $MINGW_ENV/install/lib/debug/libFreeImage_d.a $MINGW_ENV/install/lib/debug/libfreeimage_d.a
-    ;;
-    "Release") rsync -a $MINGW_ENV/install/lib/release/libFreeImage.a $MINGW_ENV/install/lib/release/libfreeimage.a
-    ;;
-esac
+    # OGRE's cmake script looks for freeimage, not FreeImage (*sigh*)
+    case "$BUILD_TYPE" in
+        "Debug") rsync -a $MINGW_ENV/install/lib/debug/libFreeImage_d.a $MINGW_ENV/install/lib/debug/libfreeimage_d.a
+        ;;
+        "Release") rsync -a $MINGW_ENV/install/lib/release/libFreeImage.a $MINGW_ENV/install/lib/release/libfreeimage.a
+        ;;
+    esac
+done

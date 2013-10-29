@@ -40,7 +40,7 @@ public:
         /**
         * @brief Attenuation quadratic factor
         */
-        Ogre::Real attenuationQuadratic = 0.75;
+        Ogre::Real attenuationQuadratic = 0.75f;
 
         /**
         * @brief Attenuation range
@@ -69,7 +69,7 @@ public:
         /**
         * @brief Spotlight inner angle
         */
-        Ogre::Radian spotlightInnerAngle = Ogre::Radian(0.5);
+        Ogre::Degree spotlightInnerAngle = Ogre::Degree(30);
 
         /**
         * @brief Spotlight near clip distance
@@ -79,7 +79,7 @@ public:
         /**
         * @brief Spotlight outer angle
         */
-        Ogre::Radian spotlightOuterAngle = Ogre::Radian(1.0);
+        Ogre::Degree spotlightOuterAngle = Ogre::Degree(60);
 
         /**
         * @brief The light's type
@@ -92,20 +92,6 @@ public:
         Ogre::Light::LightTypes type = Ogre::Light::LT_POINT;
 
     };
-
-    /**
-    * @brief Convenience function for setting sensible attenuation values
-    *
-    * This function sets the attenuation range and attenuation coefficients
-    * to sensible values, as desribed <a href="http://www.ogre3d.org/tikiwiki/tiki-index.php?page=Light+Attenuation+Shortcut">
-    * here</a>.
-    *
-    * @param range
-    *   The light's range
-    */
-    void setRange(
-        Ogre::Real range
-    );
 
     /**
     * @brief Lua bindings
@@ -135,6 +121,28 @@ public:
     */
     static luabind::scope
     luaBindings();
+
+    void
+    load(
+        const StorageContainer& storage
+    ) override;
+
+    /**
+    * @brief Convenience function for setting sensible attenuation values
+    *
+    * This function sets the attenuation range and attenuation coefficients
+    * to sensible values, as desribed <a href="http://www.ogre3d.org/tikiwiki/tiki-index.php?page=Light+Attenuation+Shortcut">
+    * here</a>.
+    *
+    * @param range
+    *   The light's range
+    */
+    void setRange(
+        Ogre::Real range
+    );
+
+    StorageContainer
+    storage() const override;
 
     /**
     * @brief Internal light, don't use this directly

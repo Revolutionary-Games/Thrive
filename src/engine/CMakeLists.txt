@@ -4,8 +4,8 @@ add_sources(
     ${CMAKE_CURRENT_SOURCE_DIR}/component.h 
     ${CMAKE_CURRENT_SOURCE_DIR}/component_collection.cpp 
     ${CMAKE_CURRENT_SOURCE_DIR}/component_collection.h 
-    ${CMAKE_CURRENT_SOURCE_DIR}/component_registry.cpp 
-    ${CMAKE_CURRENT_SOURCE_DIR}/component_registry.h 
+    ${CMAKE_CURRENT_SOURCE_DIR}/component_factory.cpp 
+    ${CMAKE_CURRENT_SOURCE_DIR}/component_factory.h 
     ${CMAKE_CURRENT_SOURCE_DIR}/engine.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/engine.h
     ${CMAKE_CURRENT_SOURCE_DIR}/entity.cpp
@@ -13,8 +13,12 @@ add_sources(
     ${CMAKE_CURRENT_SOURCE_DIR}/entity_filter.h
     ${CMAKE_CURRENT_SOURCE_DIR}/entity_manager.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/entity_manager.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/saving.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/saving.h
     ${CMAKE_CURRENT_SOURCE_DIR}/script_bindings.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/script_bindings.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/serialization.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/serialization.h
     ${CMAKE_CURRENT_SOURCE_DIR}/system.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/system.h
     ${CMAKE_CURRENT_SOURCE_DIR}/touchable.cpp
@@ -24,5 +28,6 @@ add_sources(
 add_test_sources(
     ${CMAKE_CURRENT_SOURCE_DIR}/tests/entity.cpp 
     ${CMAKE_CURRENT_SOURCE_DIR}/tests/entity_filter.cpp 
+    ${CMAKE_CURRENT_SOURCE_DIR}/tests/serialization.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/tests/test_component.h
 )

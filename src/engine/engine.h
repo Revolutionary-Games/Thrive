@@ -24,8 +24,10 @@ namespace OIS {
 
 namespace thrive {
 
+class ComponentFactory;
 class EntityManager;
 class KeyboardSystem;
+class MouseSystem;
 class OgreViewportSystem;
 class System;
 
@@ -39,6 +41,24 @@ class System;
 class Engine {
 
 public:
+    
+    /**
+    * @brief Lua bindings
+    *
+    * Exposes:
+    * - Engine::addScriptSystem()
+    * - Engine::load()
+    * - Engine::save()
+    * - Engine::setPhysicsDebugDrawingEnabled()
+    * - Engine::componentFactory() (as property)
+    * - Engine::keyboard() (as property)
+    * - Engine::mouse() (as property)
+    * - Engine::sceneManager() (as property)
+    *
+    * @return 
+    */
+    static luabind::scope
+    luaBindings();
 
     /**
     * @brief Constructor
@@ -55,6 +75,25 @@ public:
     * @brief Destructor
     */
     ~Engine();
+
+    /**
+    * @brief Adds a system to the ScriptSystemUpdater
+    *
+    * @param system
+    *   The system to add
+    */
+    void
+    addScriptSystem(
+        std::shared_ptr<System> system
+    );
+
+    /**
+    * @brief Returns the internal component factory
+    *
+    * @return 
+    */
+    ComponentFactory&
+    componentFactory();
 
     /**
     * @brief The engine's entity manager
@@ -86,16 +125,27 @@ public:
     keyboardSystem() const;
 
     /**
+    * @brief Loads a savegame
+    *
+    * @param filename
+    *   The file to load
+    */
+    void
+    load(
+        std::string filename
+    );
+
+    /**
     * @brief The script engine's Lua state
     */
     lua_State*
     luaState();
 
     /**
-    * @brief The physics world
+    * @brief The mouse system
     */
-    btDiscreteDynamicsWorld*
-    physicsWorld() const;
+    MouseSystem&
+    mouseSystem() const;
 
     /**
     * @brief The Ogre root object
@@ -104,10 +154,37 @@ public:
     ogreRoot() const;
 
     /**
+    * @brief The physics world
+    */
+    btDiscreteDynamicsWorld*
+    physicsWorld() const;
+
+    /**
+    * @brief Creates a savegame
+    *
+    * @param filename
+    *   The file to save
+    */
+    void
+    save(
+        std::string filename
+    );
+
+    /**
     * @brief The Ogre scene manager
     */
     Ogre::SceneManager*
     sceneManager() const;
+
+    /**
+    * @brief Enables or disables physics debug drawing
+    *
+    * @param enabled
+    */
+    void
+    setPhysicsDebugDrawingEnabled(
+        bool enabled
+    );
 
     /**
     * @brief Shuts the engine down
