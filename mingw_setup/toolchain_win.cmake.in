@@ -36,7 +36,11 @@ list(APPEND CMAKE_MODULE_PATH
 # DirectX SDK
 set(DXSDK_DIR ${MINGW_ENV}/i686-w64-mingw32)
 
+# Bullet
+set(BULLET_ROOT ${MINGW_ENV}/install)
+
 # Boost
+set(BOOST_ROOT ${MINGW_ENV}/install)
 set(Boost_THREADAPI win32)
 
 # Add to cmake path
