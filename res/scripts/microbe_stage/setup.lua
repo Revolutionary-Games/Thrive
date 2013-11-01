@@ -4,6 +4,7 @@ ADD_SYSTEM(MicrobeSystem)
 ADD_SYSTEM(MicrobeCameraSystem)
 ADD_SYSTEM(MicrobeControlSystem)
 ADD_SYSTEM(HudSystem)
+ADD_SYSTEM(SpawnSystem)
 
 local function setupBackground()
     local entity = Entity("background")
