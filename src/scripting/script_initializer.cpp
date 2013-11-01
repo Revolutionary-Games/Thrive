@@ -2,6 +2,7 @@
 
 #include "bullet/script_bindings.h"
 #include "engine/engine.h"
+#include "engine/rng.h"
 #include "engine/script_bindings.h"
 #include "game.h"
 #include "microbe_stage/script_bindings.h"
@@ -22,7 +23,7 @@ debug(
     std::cout << msg << std::endl;
 }
 
-static int 
+static int
 constructTraceback(
     lua_State* L
 ) {
@@ -65,6 +66,7 @@ thrive::initializeLua(
     ];
     luabind::object globals = luabind::globals(L);
     globals["Engine"] = &(Game::instance().engine());
+    globals["rng"] = &(Game::instance().engine().rng());
 }
 
 
