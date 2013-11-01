@@ -4,7 +4,6 @@ ADD_SYSTEM(MicrobeSystem)
 ADD_SYSTEM(MicrobeCameraSystem)
 ADD_SYSTEM(MicrobeControlSystem)
 ADD_SYSTEM(HudSystem)
-ADD_SYSTEM(SpawnSystem)
 
 local function setupBackground()
     local entity = Entity("background")
@@ -44,6 +43,56 @@ local function setupAgents()
     AgentRegistry.registerAgentType("oxygen", "Oxygen")    
     AgentRegistry.registerAgentType("nitrate", "Nitrate")
     AgentRegistry.registerAgentType("faxekondium", "Faxekondium")
+end
+
+local function setupSpawnSystem()
+    spawnSystem = SpawnSystem()
+    
+    local testFunction = function(x, y)
+        -- Setting up an emitter for energy
+        local entity = Entity()
+        -- Rigid body
+        local rigidBody = RigidBodyComponent()
+        rigidBody.properties.friction = 0.2
+        rigidBody.properties.linearDamping = 0.8
+        rigidBody.properties.shape = CylinderShape(
+            CollisionShape.AXIS_X, 
+            0.4,
+            2.0
+        )
+        rigidBody:setDynamicProperties(
+            Vector3(x, y, 0),
+            Quaternion(Radian(Degree(0)), Vector3(1, 0, 0)),
+            Vector3(0, 0, 0),
+            Vector3(0, 0, 0)
+        )
+        rigidBody.properties:touch()
+        entity:addComponent(rigidBody)
+        -- Scene node
+        local sceneNode = OgreSceneNodeComponent()
+        sceneNode.meshName = "molecule.mesh"
+        entity:addComponent(sceneNode)
+        -- Emitter energy
+        local energyEmitter = AgentEmitterComponent()
+        entity:addComponent(energyEmitter)
+        energyEmitter.agentId = AgentRegistry.getAgentId("energy")
+        energyEmitter.emitInterval = 1000
+        energyEmitter.emissionRadius = 1
+        energyEmitter.maxInitialSpeed = 10
+        energyEmitter.minInitialSpeed = 2
+        energyEmitter.minEmissionAngle = Degree(0)
+        energyEmitter.maxEmissionAngle = Degree(360)
+        energyEmitter.meshName = "molecule.mesh"
+        energyEmitter.particlesPerEmission = 1
+        energyEmitter.particleLifeTime = 5000
+        energyEmitter.particleScale = Vector3(0.3, 0.3, 0.3)
+        energyEmitter.potencyPerParticle = 300.0
+        
+        return entity
+    end
+    
+    spawnSystem:addSpawnType(testFunction, 30)
+    Engine:addScriptSystem(spawnSystem)
 end
 
 local function setupEmitter()
@@ -203,6 +252,7 @@ end
 setupBackground()
 setupCamera()
 setupAgents()
+setupSpawnSystem()
 setupEmitter()
 setupHud()
 setupPlayer()
