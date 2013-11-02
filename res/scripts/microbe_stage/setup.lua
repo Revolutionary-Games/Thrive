@@ -91,7 +91,7 @@ local function setupSpawnSystem()
         return entity
     end
     
-    spawnSystem:addSpawnType(testFunction, 30)
+    spawnSystem:addSpawnType(testFunction, 100, 30)
     Engine:addScriptSystem(spawnSystem)
 end
 
