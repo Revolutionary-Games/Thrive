@@ -62,7 +62,7 @@ local function setupSpawnSystem()
         )
         rigidBody:setDynamicProperties(
             Vector3(x, y, 0),
-            Quaternion(Radian(Degree(0)), Vector3(1, 0, 0)),
+            Quaternion(Radian(Degree(math.random()*360)), Vector3(0, 0, 1)),
             Vector3(0, 0, 0),
             Vector3(0, 0, 0)
         )
