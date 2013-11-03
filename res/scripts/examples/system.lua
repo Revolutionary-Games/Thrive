@@ -47,5 +47,3 @@ function MySystem:update(milliseconds)
     end
 end
 
--- Add the system to the engine
-ADD_SYSTEM(MySystem)

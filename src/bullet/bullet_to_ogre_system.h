@@ -2,6 +2,10 @@
 
 #include "engine/system.h"
 
+namespace luabind {
+    class scope;
+}
+
 namespace thrive {
 
 /**
@@ -11,6 +15,17 @@ namespace thrive {
 class BulletToOgreSystem : public System {
 
 public:
+
+    /**
+    * @brief Lua bindings
+    *
+    * Exposes:
+    * - BulletToOgreSystem()
+    *
+    * @return 
+    */
+    static luabind::scope
+    luaBindings();
 
     /**
     * @brief Constructor
@@ -28,7 +43,7 @@ public:
     */
     void
     init(
-        Engine* engine
+        GameState* gameState
     ) override;
 
     /**

@@ -282,6 +282,17 @@ class AgentLifetimeSystem : public System {
 public:
 
     /**
+    * @brief Lua bindings
+    *
+    * Exposes:
+    * - AgentLifetimeSystem()
+    *
+    * @return 
+    */
+    static luabind::scope
+    luaBindings();
+
+    /**
     * @brief Constructor
     */
     AgentLifetimeSystem();
@@ -294,9 +305,8 @@ public:
     /**
     * @brief Initializes the system
     *
-    * @param engine
     */
-    void init(Engine* engine) override;
+    void init(GameState* gameState) override;
 
     /**
     * @brief Shuts the system down
@@ -323,6 +333,17 @@ class AgentMovementSystem : public System {
 public:
 
     /**
+    * @brief Lua bindings
+    *
+    * Exposes:
+    * - AgentMovementSystem()
+    *
+    * @return 
+    */
+    static luabind::scope
+    luaBindings();
+
+    /**
     * @brief Constructor
     */
     AgentMovementSystem();
@@ -335,9 +356,8 @@ public:
     /**
     * @brief Initializes the system
     *
-    * @param engine
     */
-    void init(Engine* engine) override;
+    void init(GameState* gameState) override;
 
     /**
     * @brief Shuts the system down
@@ -364,6 +384,17 @@ class AgentEmitterSystem : public System {
 public:
 
     /**
+    * @brief Lua bindings
+    *
+    * Exposes:
+    * - AgentEmitterSystem()
+    *
+    * @return 
+    */
+    static luabind::scope
+    luaBindings();
+
+    /**
     * @brief Constructor
     */
     AgentEmitterSystem();
@@ -376,9 +407,9 @@ public:
     /**
     * @brief Initializes the system
     *
-    * @param engine
+    * @param gameState
     */
-    void init(Engine* engine) override;
+    void init(GameState* gameState) override;
 
     /**
     * @brief Shuts the system down
@@ -405,6 +436,17 @@ class AgentAbsorberSystem : public System {
 public:
 
     /**
+    * @brief Lua bindings
+    *
+    * Exposes:
+    * - AgentAbsorberSystem()
+    *
+    * @return 
+    */
+    static luabind::scope
+    luaBindings();
+
+    /**
     * @brief Constructor
     */
     AgentAbsorberSystem();
@@ -417,9 +459,9 @@ public:
     /**
     * @brief Initializes the system
     *
-    * @param engine
+    * @param gameState
     */
-    void init(Engine* engine) override;
+    void init(GameState* gameState) override;
 
     /**
     * @brief Shuts the system down

@@ -3,6 +3,7 @@
 #include "engine/component.h"
 #include "engine/component_collection.h"
 #include "engine/entity_manager.h"
+#include "engine/game_state.h"
 #include "game.h"
 #include "scripting/luabind.h"
 
@@ -208,9 +209,11 @@ ScriptEntityFilter::entities() {
 
 
 void
-ScriptEntityFilter::init() {
+ScriptEntityFilter::init(
+    GameState* gameState
+) {
     m_impl->setEntityManager(
-        &Game::globalEntityManager()
+        &gameState->entityManager()
     );
 }
 

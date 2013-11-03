@@ -14,6 +14,17 @@ class UpdatePhysicsSystem : public System {
 public:
 
     /**
+    * @brief Lua bindings
+    *
+    * Exposes:
+    * - UpdatePhysicsSystem()
+    *
+    * @return 
+    */
+    static luabind::scope
+    luaBindings();
+
+    /**
     * @brief Constructor
     */
     UpdatePhysicsSystem();
@@ -26,12 +37,10 @@ public:
     /**
     * @brief Initializes the system
     *
-    * @param engine
-    *   Must be a BulletEngine
     */
     void
     init(
-        Engine* engine
+        GameState* gameState
     ) override;
 
     /**

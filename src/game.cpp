@@ -31,12 +31,6 @@ struct Game::Implementation {
 };
 
 
-EntityManager&
-Game::globalEntityManager() {
-    return Game::instance().engine().entityManager();
-}
-
-
 Game&
 Game::instance() {
     static Game instance;

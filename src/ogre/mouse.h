@@ -1,8 +1,7 @@
 #pragma once
 
-#include "engine/system.h"
-
 #include <list>
+#include <memory>
 #include <OISMouse.h>
 
 namespace luabind {
@@ -13,12 +12,16 @@ namespace Ogre {
 class Vector3;
 }
 
+namespace OIS {
+class InputManager;
+}
+
 namespace thrive {
 
 /**
 * @brief Handles mouse events
 */
-class MouseSystem : public System {
+class Mouse {
 
 public:
 
@@ -26,9 +29,9 @@ public:
     * @brief Lua bindings
     *
     * Exposes:
-    * - MouseSystem::isButtonDown
-    * - MouseSystem::normalizedPosition
-    * - MouseSystem::position
+    * - Mouse::isButtonDown
+    * - Mouse::normalizedPosition
+    * - Mouse::position
     *
     * @return 
     */
@@ -38,22 +41,23 @@ public:
     /**
     * @brief Constructor
     */
-    MouseSystem();
+    Mouse();
 
     /**
     * @brief Destructor
     */
-    ~MouseSystem();
+    ~Mouse();
 
     /**
-    * @brief Initializes the system
+    * @brief Initializes the mouse
     *
-    * @param engine
+    * @param inputManager
+    *   The input manager to use
     */
     void
     init(
-        Engine* engine
-    ) override;
+        OIS::InputManager* inputManager
+    );
 
     /**
     * @brief Checks whether a mouse button is pressed
@@ -103,18 +107,16 @@ public:
     );
 
     /**
-    * @brief Shuts down the system
+    * @brief Shuts down the mouse
     */
     void
-    shutdown() override;
+    shutdown();
 
     /**
     * @brief Updates the queue with new events
     */
     void
-    update(
-        int
-    ) override;
+    update();
 
 private:
     

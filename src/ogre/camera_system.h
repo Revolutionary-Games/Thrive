@@ -141,6 +141,17 @@ class OgreCameraSystem : public System {
 public:
 
     /**
+    * @brief Lua bindings
+    *
+    * Exposes:
+    * - OgreCameraSystem()
+    *
+    * @return 
+    */
+    static luabind::scope
+    luaBindings();
+
+    /**
     * @brief Constructor
     */
     OgreCameraSystem();
@@ -153,9 +164,8 @@ public:
     /**
     * @brief Initializes the system
     *
-    * @param engine
     */
-    void init(Engine* engine) override;
+    void init(GameState* gameState) override;
 
     /**
     * @brief Shuts the system down

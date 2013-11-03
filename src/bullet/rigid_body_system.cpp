@@ -2,7 +2,7 @@
 
 #include "bullet/bullet_ogre_conversion.h"
 #include "engine/component_factory.h"
-#include "engine/engine.h"
+#include "engine/game_state.h"
 #include "engine/entity_filter.h"
 #include "scripting/luabind.h"
 #include "engine/serialization.h"
@@ -165,6 +165,15 @@ REGISTER_COMPONENT(RigidBodyComponent)
 // RigidBodyInputSystem
 ////////////////////////////////////////////////////////////////////////////////
 
+luabind::scope
+RigidBodyInputSystem::luaBindings() {
+    using namespace luabind;
+    return class_<RigidBodyInputSystem, System>("RigidBodyInputSystem")
+        .def(constructor<>())
+    ;
+}
+
+
 struct RigidBodyInputSystem::Implementation {
 
     EntityFilter<
@@ -189,12 +198,12 @@ RigidBodyInputSystem::~RigidBodyInputSystem() {}
 
 void
 RigidBodyInputSystem::init(
-    Engine* engine
+    GameState* gameState
 ) {
-    System::init(engine);
+    System::init(gameState);
     assert(m_impl->m_world == nullptr && "Double init of system");
-    m_impl->m_world = engine->physicsWorld();
-    m_impl->m_entities.setEntityManager(&engine->entityManager());
+    m_impl->m_world = gameState->physicsWorld();
+    m_impl->m_entities.setEntityManager(&gameState->entityManager());
 }
 
 
@@ -210,7 +219,9 @@ void
 RigidBodyInputSystem::update(int milliseconds) {
     for (EntityId entityId : m_impl->m_entities.removedEntities()) {
         btRigidBody* body = m_impl->m_bodies[entityId].get();
-        m_impl->m_world->removeRigidBody(body);
+        if (body) {
+            m_impl->m_world->removeRigidBody(body);
+        }
         m_impl->m_bodies.erase(entityId);
     }
     for (const auto& added : m_impl->m_entities.addedEntities()) {
@@ -317,6 +328,15 @@ RigidBodyInputSystem::update(int milliseconds) {
 // RigidBodyOutputSystem
 ////////////////////////////////////////////////////////////////////////////////
 
+luabind::scope
+RigidBodyOutputSystem::luaBindings() {
+    using namespace luabind;
+    return class_<RigidBodyOutputSystem, System>("RigidBodyOutputSystem")
+        .def(constructor<>())
+    ;
+}
+
+
 struct RigidBodyOutputSystem::Implementation {
 
     EntityFilter<
@@ -336,10 +356,10 @@ RigidBodyOutputSystem::~RigidBodyOutputSystem() {}
 
 void
 RigidBodyOutputSystem::init(
-    Engine* engine
+    GameState* gameState
 ) {
-    System::init(engine);
-    m_impl->m_entities.setEntityManager(&engine->entityManager());
+    System::init(gameState);
+    m_impl->m_entities.setEntityManager(&gameState->entityManager());
 }
 
 

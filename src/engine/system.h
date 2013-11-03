@@ -9,6 +9,8 @@ class scope;
 namespace thrive {
 
 class Engine;
+class EntityManager;
+class GameState;
 
 /**
 * @brief A system handles one specific part of the game
@@ -44,14 +46,32 @@ public:
     virtual ~System() = 0;
 
     /**
-    * @brief Whether this system is active
+    * @brief Called by GameState::activate()
     *
-    * Inactive systems are not being updated
+    * Override this if you need to restore some internal state when the 
+    * system's game state is activated.
+    */
+    virtual void
+    activate();
+
+    /**
+    * @brief Called by GameState::deactivate()
+    *
+    * Override this if you need to clear some internal state when the 
+    * system's game state is deactivated.
+    */
+    virtual void
+    deactivate();
+
+    /**
+    * @brief Whether this system is enabled
+    *
+    * Disabled systems are not being updated
     *
     * @return 
     */
     bool
-    active() const;
+    enabled() const;
 
     /**
     * @brief The system's engine
@@ -64,28 +84,45 @@ public:
     engine() const;
 
     /**
+    * @brief Returns the system's entity manager
+    *
+    * If the system has not been initialized yet, this returns \c nullptr.
+    *
+    */
+    EntityManager*
+    entityManager() const;
+
+    /**
+    * @brief Returns the system's game state
+    *
+    * If the system has not been initialized yet, this returns \c nullptr.
+    */
+    GameState*
+    gameState() const;
+
+    /**
     * @brief Initializes the system
     *
     * Override this to prepare the system for updating.
     *
-    * @param engine
-    *   The engine the system belongs to
+    * @param gameState
+    *   The gameState the system belongs to
     */
     virtual void
     init(
-        Engine* engine
+        GameState* gameState
     );
 
     /**
-    * @brief Sets the active status of this system
+    * @brief Sets the enabled status of this system
     *
-    * Inactive systems are not updated
+    * Disabled systems are not updated
     *
-    * @param active
+    * @param enabled
     */
     void
-    setActive(
-        bool active
+    setEnabled(
+        bool enabled
     );
 
     /**

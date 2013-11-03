@@ -315,6 +315,17 @@ class RigidBodyInputSystem : public System {
 public:
 
     /**
+    * @brief Lua bindings
+    *
+    * Exposes:
+    * - RigidBodyInputSystem()
+    *
+    * @return 
+    */
+    static luabind::scope
+    luaBindings();
+
+    /**
     * @brief Constructor
     */
     RigidBodyInputSystem();
@@ -327,10 +338,8 @@ public:
     /**
     * @brief Initializes the system
     *
-    * @param engine
-    *   Must be a BulletEngine
     */
-    void init(Engine* engine) override;
+    void init(GameState* gameState) override;
 
     /**
     * @brief Shuts the system down
@@ -365,6 +374,17 @@ class RigidBodyOutputSystem : public System {
 public:
 
     /**
+    * @brief Lua bindings
+    *
+    * Exposes:
+    * - RigidBodyOutputSystem()
+    *
+    * @return 
+    */
+    static luabind::scope
+    luaBindings();
+
+    /**
     * @brief Constructor
     */
     RigidBodyOutputSystem();
@@ -377,10 +397,8 @@ public:
     /**
     * @brief Initializes the engine
     *
-    * @param engine
-    *   Must be a BulletEngine
     */
-    void init(Engine* engine) override;
+    void init(GameState* gameState) override;
 
     /**
     * @brief Shuts the system down

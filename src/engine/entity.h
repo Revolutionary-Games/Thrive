@@ -11,13 +11,14 @@ class scope;
 
 namespace thrive {
 
-class EntityManager;
+class GameState;
 
 /**
 * @brief Convenience class to handle an entity
 *
-* Mostly for script purposes, but if you prefer, you can use this class
-* instead of directly calling the EntityManager functions.
+* This is a thin wrapper around the EntityManager API. Mostly for script 
+* purposes, but if you prefer, you can use this class instead of directly 
+* calling the EntityManager functions.
 *
 * @note
 *   Generally, the type id overloads of this class are to be preferred
@@ -51,34 +52,13 @@ public:
     *
     * Creates a new unnamed entity
     *
-    * Uses the EntityManager of Game::engine()
-    */
-    Entity();
-
-    /**
-    * @brief Constructor
+    * @param gameState
+    *   The game state the new entity belongs to. If \c null, the current game
+    *   state of the global engine object is used.
     *
-    * Creates a new unnamed entity
-    *
-    * @param entityManager
-    *   The entity manager to use
     */
     Entity(
-        EntityManager& entityManager
-    );
-
-    /**
-    * @brief Constructor
-    *
-    * Interfaces to an existing entity
-    *
-    * Uses the EntityManager of Game::engine()
-    *
-    * @param id
-    *   The entity id to interface to
-    */
-    Entity(
-        EntityId id
+        GameState* gameState = nullptr
     );
 
     /**
@@ -88,12 +68,15 @@ public:
     *
     * @param id
     *   The entity id to interface to
-    * @param entityManager
-    *   The entity manager to use
+    *
+    * @param gameState
+    *   The game state the entity belongs to. If \c null, the current game
+    *   state of the global engine object is used.
+    *
     */
     Entity(
         EntityId id,
-        EntityManager& entityManager
+        GameState* gameState = nullptr
     );
 
     /**
@@ -105,28 +88,22 @@ public:
     *
     * @param name
     *   The name of the entity to interface to
-    */
-    Entity(
-        const std::string& name
-    );
-
-    /**
-    * @brief Constructor
     *
-    * Interfaces to a named entity
+    * @param gameState
+    *   The game state the entity belongs to. If \c null, the current game
+    *   state of the global engine object is used.
     *
-    * @param name
-    *   The name of the entity to interface to
-    * @param entityManager
-    *   The entity manager to use
     */
     Entity(
         const std::string& name,
-        EntityManager& entityManager
+        GameState* gameState = nullptr
     );
 
     /**
     * @brief Copy constructor
+    *
+    * This does *not* copy the entity's components, it just creates another
+    * wrapper.
     *
     * @param other
     */
@@ -141,6 +118,10 @@ public:
 
     /**
     * @brief Copy assignment
+    *
+    * This does *not* copy the entity's components, it just changes the 
+    * entity id this wrapper points to.
+    *
     */
     Entity&
     operator = (
@@ -151,7 +132,7 @@ public:
     * @brief Compares two entities
     *
     * Entities compare to \c true if their entity ids are equal
-    * and they use the same entity manager.
+    * and they are part of the same game state.
     *
     */
     bool

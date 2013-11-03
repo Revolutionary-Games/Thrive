@@ -2,6 +2,7 @@
 
 #include "engine/engine.h"
 #include "engine/entity_manager.h"
+#include "engine/game_state.h"
 #include "game.h"
 #include "scripting/luabind.h"
 
@@ -21,9 +22,10 @@ struct Entity::Implementation {
     {
     }
 
-    EntityId m_id;
+    EntityId m_id = NULL_ENTITY;
 
-    EntityManager* m_entityManager;
+    EntityManager* m_entityManager = nullptr;
+
 };
 
 
@@ -43,8 +45,11 @@ Entity::luaBindings() {
     using namespace luabind;
     return class_<Entity>("Entity")
         .def(constructor<>())
+        .def(constructor<GameState*>())
         .def(constructor<EntityId>())
+        .def(constructor<EntityId, GameState*>())
         .def(constructor<const std::string&>())
+        .def(constructor<const std::string&, GameState*>())
         .def(const_self == other<Entity>())
         .def("addComponent", &Entity_addComponent, adopt(_2))
         .def("destroy", &Entity::destroy)
@@ -58,55 +63,45 @@ Entity::luaBindings() {
 }
 
 
-Entity::Entity()
-  : Entity(Game::instance().engine().entityManager())
-{
+static EntityManager&
+getEntityManager(
+    GameState* gameState
+) {
+    if (gameState) {
+        return gameState->entityManager();
+    }
+    else {
+        return Game::instance().engine().currentGameState()->entityManager();
+    }
 }
 
 
 Entity::Entity(
-    EntityManager& manager
-) : Entity(manager.generateNewId(), manager)
-{
-}
-
-
-Entity::Entity(
-    EntityId id
-) : Entity(id, Game::instance().engine().entityManager())
+    GameState* gameState
+) : Entity(getEntityManager(gameState).generateNewId(), gameState)
 {
 }
 
 
 Entity::Entity(
     EntityId id,
-    EntityManager& manager
-) : m_impl(new Implementation(id, &manager))
-{
-}
-
-
-Entity::Entity(
-    const std::string& name
-) : Entity(name, Game::instance().engine().entityManager())
+    GameState* gameState
+) : m_impl(new Implementation(id, &getEntityManager(gameState)))
 {
 }
 
 
 Entity::Entity(
     const std::string& name,
-    EntityManager& manager
-) : m_impl(new Implementation(manager.getNamedId(name), &manager))
+    GameState* gameState
+) : Entity(getEntityManager(gameState).getNamedId(name), gameState)
 {
 }
 
 
 Entity::Entity(
     const Entity& other
-) : Entity(
-        other.m_impl->m_id,
-        *(other.m_impl->m_entityManager)
-    )
+) : m_impl(new Implementation(other.m_impl->m_id, other.m_impl->m_entityManager))
 {
 }
 
