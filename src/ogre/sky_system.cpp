@@ -1,7 +1,7 @@
 #include "ogre/sky_system.h"
 
 #include "engine/component_factory.h"
-#include "engine/engine.h"
+#include "engine/game_state.h"
 #include "engine/entity_filter.h"
 #include "engine/serialization.h"
 #include "scripting/luabind.h"
@@ -84,6 +84,15 @@ REGISTER_COMPONENT(SkyPlaneComponent)
 // SkySystem
 ////////////////////////////////////////////////////////////////////////////////
 
+luabind::scope
+SkySystem::luaBindings() {
+    using namespace luabind;
+    return class_<SkySystem, System>("SkySystem")
+        .def(constructor<>())
+    ;
+}
+
+
 struct SkySystem::Implementation {
 
     Ogre::SceneManager* m_sceneManager = nullptr;
@@ -105,12 +114,12 @@ SkySystem::~SkySystem() {}
 
 void
 SkySystem::init(
-    Engine* engine
+    GameState* gameState
 ) {
-    System::init(engine);
+    System::init(gameState);
     assert(m_impl->m_sceneManager == nullptr && "Double init of system");
-    m_impl->m_sceneManager = engine->sceneManager();
-    m_impl->m_skyPlanes.setEntityManager(&engine->entityManager());
+    m_impl->m_sceneManager = gameState->sceneManager();
+    m_impl->m_skyPlanes.setEntityManager(&gameState->entityManager());
 }
 
 

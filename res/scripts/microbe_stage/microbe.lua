@@ -399,8 +399,9 @@ function MicrobeSystem:__init()
 end
 
 
-function MicrobeSystem:init(engine)
-    self.entities:init()
+function MicrobeSystem:init(gameState)
+    System.init(self, gameState)
+    self.entities:init(gameState)
 end
 
 

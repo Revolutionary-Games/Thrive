@@ -1,9 +1,3 @@
-Engine:setPhysicsDebugDrawingEnabled(true)
-
-ADD_SYSTEM(MicrobeSystem)
-ADD_SYSTEM(MicrobeCameraSystem)
-ADD_SYSTEM(MicrobeControlSystem)
-ADD_SYSTEM(HudSystem)
 
 local function setupBackground()
     local entity = Entity("background")
@@ -45,7 +39,7 @@ local function setupAgents()
     AgentRegistry.registerAgentType("faxekondium", "Faxekondium")
 end
 
-local function setupSpawnSystem()
+local function createSpawnSystem()
     local spawnSystem = SpawnSystem()
     
     local testFunction = function(pos)
@@ -94,7 +88,7 @@ local function setupSpawnSystem()
     --Spawn one emitter on average once in every square of sidelength 10
     -- (square dekaunit?)
     spawnSystem:addSpawnType(testFunction, 1/10^2, 30)
-    Engine:addScriptSystem(spawnSystem)
+    return spawnSystem
 end
 
 local function setupEmitter()
@@ -261,10 +255,51 @@ local function setupPlayer()
     player:addOrganelle(1, -1, storageOrganelle4)
 end
 
-setupBackground()
-setupCamera()
 setupAgents()
-setupSpawnSystem()
-setupEmitter()
-setupHud()
-setupPlayer()
+
+local function createMicrobeStage(name)
+    return Engine:createGameState(
+        name,
+        {
+            SwitchGameStateSystem(),
+            QuickSaveSystem(),
+            -- Microbe specific
+            MicrobeSystem(),
+            MicrobeCameraSystem(),
+            MicrobeControlSystem(),
+            HudSystem(),
+            AgentLifetimeSystem(),
+            AgentMovementSystem(),
+            AgentEmitterSystem(),
+            AgentAbsorberSystem(),
+            createSpawnSystem(),
+            -- Physics
+            RigidBodyInputSystem(),
+            UpdatePhysicsSystem(),
+            RigidBodyOutputSystem(),
+            BulletToOgreSystem(),
+            -- Graphics
+            OgreAddSceneNodeSystem(),
+            OgreUpdateSceneNodeSystem(),
+            OgreCameraSystem(),
+            OgreLightSystem(),
+            SkySystem(),
+            TextOverlaySystem(),
+            OgreViewportSystem(),
+            OgreRemoveSceneNodeSystem(),
+            RenderSystem(),
+        },
+        function()
+            setupBackground()
+            setupCamera()
+            setupEmitter()
+            setupHud()
+            setupPlayer()
+        end
+    )
+end
+
+GameState.MICROBE = createMicrobeStage("microbe")
+GameState.MICROBE_ALTERNATE = createMicrobeStage("microbe_alternate")
+
+Engine:setCurrentGameState(GameState.MICROBE)

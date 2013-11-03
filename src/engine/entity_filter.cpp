@@ -157,7 +157,11 @@ struct EntityFilter<ComponentTypes...>::Implementation {
     ) {
         
         if (m_entities.erase(entityId) > 0 and m_recordChanges) {
-            m_removedEntities.insert(entityId);
+            if (m_addedEntities.erase(entityId) == 0) {
+                // If entityId already was in addedEntities, the entity
+                // was added, then removed in the same frame.
+                m_removedEntities.insert(entityId);
+            }
         }
     }
 

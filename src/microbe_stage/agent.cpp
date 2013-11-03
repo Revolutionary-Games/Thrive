@@ -4,6 +4,7 @@
 #include "engine/component_factory.h"
 #include "engine/engine.h"
 #include "engine/entity_filter.h"
+#include "engine/game_state.h"
 #include "engine/serialization.h"
 #include "engine/rng.h"
 #include "ogre/scene_node_system.h"
@@ -214,6 +215,15 @@ REGISTER_COMPONENT(AgentAbsorberComponent)
 // AgentLifetimeSystem
 ////////////////////////////////////////////////////////////////////////////////
 
+luabind::scope
+AgentLifetimeSystem::luaBindings() {
+    using namespace luabind;
+    return class_<AgentLifetimeSystem, System>("AgentLifetimeSystem")
+        .def(constructor<>())
+    ;
+}
+
+
 struct AgentLifetimeSystem::Implementation {
 
     EntityFilter<
@@ -233,10 +243,10 @@ AgentLifetimeSystem::~AgentLifetimeSystem() {}
 
 void
 AgentLifetimeSystem::init(
-    Engine* engine
+    GameState* gameState
 ) {
-    System::init(engine);
-    m_impl->m_entities.setEntityManager(&engine->entityManager());
+    System::init(gameState);
+    m_impl->m_entities.setEntityManager(&gameState->entityManager());
 }
 
 
@@ -253,7 +263,7 @@ AgentLifetimeSystem::update(int milliseconds) {
         AgentComponent* agentComponent = std::get<0>(value.second);
         agentComponent->m_timeToLive -= milliseconds;
         if (agentComponent->m_timeToLive <= 0) {
-            this->engine()->entityManager().removeEntity(value.first);
+            this->entityManager()->removeEntity(value.first);
         }
     }
 }
@@ -262,6 +272,15 @@ AgentLifetimeSystem::update(int milliseconds) {
 ////////////////////////////////////////////////////////////////////////////////
 // AgentMovementSystem
 ////////////////////////////////////////////////////////////////////////////////
+
+luabind::scope
+AgentMovementSystem::luaBindings() {
+    using namespace luabind;
+    return class_<AgentMovementSystem, System>("AgentMovementSystem")
+        .def(constructor<>())
+    ;
+}
+
 
 struct AgentMovementSystem::Implementation {
 
@@ -283,10 +302,10 @@ AgentMovementSystem::~AgentMovementSystem() {}
 
 void
 AgentMovementSystem::init(
-    Engine* engine
+    GameState* gameState
 ) {
-    System::init(engine);
-    m_impl->m_entities.setEntityManager(&engine->entityManager());
+    System::init(gameState);
+    m_impl->m_entities.setEntityManager(&gameState->entityManager());
 }
 
 
@@ -312,6 +331,15 @@ AgentMovementSystem::update(int milliseconds) {
 // AgentEmitterSystem
 ////////////////////////////////////////////////////////////////////////////////
 
+luabind::scope
+AgentEmitterSystem::luaBindings() {
+    using namespace luabind;
+    return class_<AgentEmitterSystem, System>("AgentEmitterSystem")
+        .def(constructor<>())
+    ;
+}
+
+
 struct AgentEmitterSystem::Implementation {
 
     EntityFilter<
@@ -334,11 +362,11 @@ AgentEmitterSystem::~AgentEmitterSystem() {}
 
 void
 AgentEmitterSystem::init(
-    Engine* engine
+    GameState* gameState
 ) {
-    System::init(engine);
-    m_impl->m_entities.setEntityManager(&engine->entityManager());
-    m_impl->m_sceneManager = engine->sceneManager();
+    System::init(gameState);
+    m_impl->m_entities.setEntityManager(&gameState->entityManager());
+    m_impl->m_sceneManager = gameState->sceneManager();
 }
 
 
@@ -352,7 +380,6 @@ AgentEmitterSystem::shutdown() {
 
 void
 AgentEmitterSystem::update(int milliseconds) {
-    EntityManager& entityManager = this->engine()->entityManager();
     for (auto& value : m_impl->m_entities) {
         AgentEmitterComponent* emitterComponent = std::get<0>(value.second);
         OgreSceneNodeComponent* sceneNodeComponent = std::get<1>(value.second);
@@ -382,7 +409,7 @@ AgentEmitterSystem::update(int milliseconds) {
                     emitterComponent->m_emissionRadius * Ogre::Math::Cos(emissionAngle),
                     0.0
                 );
-                EntityId agentEntityId = entityManager.generateNewId();
+                EntityId agentEntityId = this->entityManager()->generateNewId();
                 // Scene Node
                 auto agentSceneNodeComponent = make_unique<OgreSceneNodeComponent>();
                 agentSceneNodeComponent->m_transform.scale = emitterComponent->m_particleScale;
@@ -408,7 +435,7 @@ AgentEmitterSystem::update(int milliseconds) {
                 components.emplace_back(std::move(agentComponent));
                 components.emplace_back(std::move(agentRigidBodyComponent));
                 for (auto& component : components) {
-                    entityManager.addComponent(
+                    this->entityManager()->addComponent(
                         agentEntityId,
                         std::move(component)
                     );
@@ -422,6 +449,15 @@ AgentEmitterSystem::update(int milliseconds) {
 ////////////////////////////////////////////////////////////////////////////////
 // AgentAbsorberSystem
 ////////////////////////////////////////////////////////////////////////////////
+
+luabind::scope
+AgentAbsorberSystem::luaBindings() {
+    using namespace luabind;
+    return class_<AgentAbsorberSystem, System>("AgentAbsorberSystem")
+        .def(constructor<>())
+    ;
+}
+
 
 struct AgentAbsorberSystem::Implementation {
 
@@ -449,12 +485,12 @@ AgentAbsorberSystem::~AgentAbsorberSystem() {}
 
 void
 AgentAbsorberSystem::init(
-    Engine* engine
+    GameState* gameState
 ) {
-    System::init(engine);
-    m_impl->m_absorbers.setEntityManager(&engine->entityManager());
-    m_impl->m_agents.setEntityManager(&engine->entityManager());
-    m_impl->m_world = engine->physicsWorld();
+    System::init(gameState);
+    m_impl->m_absorbers.setEntityManager(&gameState->entityManager());
+    m_impl->m_agents.setEntityManager(&gameState->entityManager());
+    m_impl->m_world = gameState->physicsWorld();
 }
 
 

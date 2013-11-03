@@ -39,10 +39,25 @@ Usually, a system operates on entities that have a specific combination of
 components. The EntityFilter template can filter out entities that have
 such a component makeup.
 
+@section game_state GameState
+
+Game states represent a distinct state of the game with its own systems and 
+entities. Examples for such a state are "main menu", "microbe stage" or 
+"microbe editor".
+
+All systems are managed by a game state. The game state provides an entity 
+manager, initializes its systems, updates them during the game and 
+finally, shuts them down.
+
+Game states are indirectly created by Engine::addGameState(). A state's 
+system list cannot be changed after creation.
+
 @section engine Engine
 
-All systems are managed by the engine. The engine provides the entity 
-manager, initializes the systems, updates them during the game and 
-finally, shuts them down.
+Engine is for GameState what GameState is for System. It holds a list of 
+registered game states. During startup the game states are all initialized.
+During runtime, the current game state is updated. When the game exits, the 
+engine shuts each game state down.
+
 
 */ }

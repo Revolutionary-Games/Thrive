@@ -1,7 +1,7 @@
 #include "ogre/text_overlay.h"
 
 #include "engine/component_factory.h"
-#include "engine/engine.h"
+#include "engine/game_state.h"
 #include "engine/entity_filter.h"
 #include "engine/serialization.h"
 #include "scripting/luabind.h"
@@ -111,17 +111,83 @@ REGISTER_COMPONENT(TextOverlayComponent)
 // TextOverlaySystem
 ////////////////////////////////////////////////////////////////////////////////
 
+luabind::scope
+TextOverlaySystem::luaBindings() {
+    using namespace luabind;
+    return class_<TextOverlaySystem, System>("TextOverlaySystem")
+        .def(constructor<>())
+    ;
+}
+
+
 struct TextOverlaySystem::Implementation {
 
     Implementation() {
         m_overlayManager = Ogre::OverlayManager::getSingletonPtr();
-        m_overlay = m_overlayManager->create("text_overlay");
-        m_panel = static_cast<Ogre::OverlayContainer*>(
-            m_overlayManager->createOverlayElement("Panel", "text_panel")
-        );
+        Ogre::Overlay* overlay = m_overlayManager->getByName("text_overlay");
+        if (not overlay) {
+            overlay = m_overlayManager->create("text_overlay");
+        }
+        m_overlay = overlay;
+        Ogre::OverlayElement* panelElement = nullptr;
+        if (m_overlayManager->hasOverlayElement("text_panel")) {
+            panelElement = m_overlayManager->getOverlayElement("text_panel");
+        }
+        else {
+            panelElement = m_overlayManager->createOverlayElement("Panel", "text_panel");
+        }
+        m_panel = static_cast<Ogre::OverlayContainer*>(panelElement);
         m_panel->setDimensions(1.0, 1.0);
         m_panel->setPosition(0.0, 0.0);
         m_overlay->add2D(m_panel);
+    }
+
+    void
+    removeAllOverlays() {
+        for (const auto& item : m_entities) {
+            TextOverlayComponent* component = std::get<0>(item.second);
+            this->removeOverlayElement(component->name());
+            component->m_overlayElement = nullptr;
+        }
+        m_textOverlays.clear();
+    }
+
+    void
+    removeOverlayElement(
+        const std::string& name
+    ) {
+        m_panel->removeChild(name);
+        m_overlayManager->destroyOverlayElement(name);
+    }
+
+    void
+    restoreAllOverlays() {
+        for (const auto& item : m_entities) {
+            EntityId entityId = item.first;
+            TextOverlayComponent* component = std::get<0>(item.second);
+            this->restoreOverlayElement(entityId, component);
+        }
+    }
+
+    void
+    restoreOverlayElement(
+        EntityId entityId,
+        TextOverlayComponent* component
+    ) {
+        if (component->m_overlayElement) {
+            // No need for restoring
+            return;
+        }
+        auto textOverlayElement = static_cast<Ogre::TextAreaOverlayElement*>(
+            m_overlayManager->createOverlayElement(
+                "TextArea",
+                component->name()
+            )
+        );
+        component->m_overlayElement = textOverlayElement;
+        m_textOverlays[entityId] = textOverlayElement;
+        m_panel->addChild(textOverlayElement);
+        textOverlayElement->setMetricsMode(Ogre::GMM_PIXELS);
     }
 
     EntityFilter<
@@ -148,11 +214,24 @@ TextOverlaySystem::~TextOverlaySystem() {}
 
 
 void
+TextOverlaySystem::activate() {
+    m_impl->restoreAllOverlays();
+    m_impl->m_entities.clearChanges();
+}
+
+
+void
+TextOverlaySystem::deactivate() {
+    m_impl->removeAllOverlays();
+}
+
+
+void
 TextOverlaySystem::init(
-    Engine* engine
+    GameState* gameState
 ) {
-    System::init(engine);
-    m_impl->m_entities.setEntityManager(&engine->entityManager());
+    System::init(gameState);
+    m_impl->m_entities.setEntityManager(&gameState->entityManager());
     m_impl->m_overlay->show();
 }
 
@@ -169,22 +248,16 @@ void
 TextOverlaySystem::update(int) {
     for (EntityId entityId : m_impl->m_entities.removedEntities()) {
         Ogre::OverlayElement* textOverlay = m_impl->m_textOverlays[entityId];
-        m_impl->m_overlayManager->destroyOverlayElement(textOverlay);
+        m_impl->removeOverlayElement(textOverlay->getName());
         m_impl->m_textOverlays.erase(entityId);
     }
     for (auto& value : m_impl->m_entities.addedEntities()) {
         EntityId entityId = value.first;
-        TextOverlayComponent* textOverlayComponent = std::get<0>(value.second);
-        Ogre::TextAreaOverlayElement* textOverlay = static_cast<Ogre::TextAreaOverlayElement*>(
-            m_impl->m_overlayManager->createOverlayElement(
-                "TextArea",
-                textOverlayComponent->name()
-            )
+        TextOverlayComponent* component = std::get<0>(value.second);
+        m_impl->restoreOverlayElement(
+            entityId,
+            component
         );
-        textOverlayComponent->m_overlayElement = textOverlay;
-        m_impl->m_textOverlays[entityId] = textOverlay;
-        m_impl->m_panel->addChild(textOverlay);
-        textOverlay->setMetricsMode(Ogre::GMM_PIXELS);
     }
     m_impl->m_entities.clearChanges();
     for (auto& value : m_impl->m_entities) {

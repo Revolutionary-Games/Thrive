@@ -156,6 +156,17 @@ class OgreViewportSystem : public System {
 public:
 
     /**
+    * @brief Lua bindings
+    *
+    * Exposes:
+    * - OgreViewportSystem()
+    *
+    * @return 
+    */
+    static luabind::scope
+    luaBindings();
+
+    /**
     * @brief Constructor
     */
     OgreViewportSystem();
@@ -165,12 +176,18 @@ public:
     */
     ~OgreViewportSystem();
 
+    void
+    activate() override;
+
+    void
+    deactivate() override;
+
     /**
     * @brief Initializes the system
     *
-    * @param engine
+    * @param gameState
     */
-    void init(Engine* engine) override;
+    void init(GameState* gameState) override;
 
     /**
     * @brief Shuts the system down

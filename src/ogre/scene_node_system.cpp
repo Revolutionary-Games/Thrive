@@ -1,10 +1,10 @@
 #include "ogre/scene_node_system.h"
 
 #include "engine/component_factory.h"
-#include "engine/engine.h"
 #include "engine/entity.h"
 #include "engine/entity_filter.h"
 #include "engine/entity_manager.h"
+#include "engine/game_state.h"
 #include "engine/serialization.h"
 #include "scripting/luabind.h"
 
@@ -102,6 +102,15 @@ REGISTER_COMPONENT(OgreSceneNodeComponent)
 // OgreAddSceneNodeSystem
 ////////////////////////////////////////////////////////////////////////////////
 
+luabind::scope
+OgreAddSceneNodeSystem::luaBindings() {
+    using namespace luabind;
+    return class_<OgreAddSceneNodeSystem, System>("OgreAddSceneNodeSystem")
+        .def(constructor<>())
+    ;
+}
+
+
 struct OgreAddSceneNodeSystem::Implementation {
 
     Ogre::SceneManager* m_sceneManager = nullptr;
@@ -121,12 +130,12 @@ OgreAddSceneNodeSystem::~OgreAddSceneNodeSystem() {}
 
 void
 OgreAddSceneNodeSystem::init(
-    Engine* engine
+    GameState* gameState
 ) {
-    System::init(engine);
+    System::init(gameState);
     assert(m_impl->m_sceneManager == nullptr && "Double init of system");
-    m_impl->m_sceneManager = engine->sceneManager();
-    m_impl->m_entities.setEntityManager(&engine->entityManager());
+    m_impl->m_sceneManager = gameState->sceneManager();
+    m_impl->m_entities.setEntityManager(&gameState->entityManager());
 }
 
 
@@ -150,7 +159,7 @@ OgreAddSceneNodeSystem::update(int) {
             component->m_parentId.untouch();
         }
         else {
-            auto parentComponent = this->engine()->entityManager().getComponent<OgreSceneNodeComponent>(parentId);
+            auto parentComponent = this->entityManager()->getComponent<OgreSceneNodeComponent>(parentId);
             if (parentComponent and parentComponent->m_sceneNode) {
                 parentNode = parentComponent->m_sceneNode;
                 component->m_parentId.untouch();
@@ -171,6 +180,15 @@ OgreAddSceneNodeSystem::update(int) {
 ////////////////////////////////////////////////////////////////////////////////
 // OgreRemoveSceneNodeSystem
 ////////////////////////////////////////////////////////////////////////////////
+
+luabind::scope
+OgreRemoveSceneNodeSystem::luaBindings() {
+    using namespace luabind;
+    return class_<OgreRemoveSceneNodeSystem, System>("OgreRemoveSceneNodeSystem")
+        .def(constructor<>())
+    ;
+}
+
 
 struct OgreRemoveSceneNodeSystem::Implementation {
 
@@ -195,12 +213,12 @@ OgreRemoveSceneNodeSystem::~OgreRemoveSceneNodeSystem() {}
 
 void
 OgreRemoveSceneNodeSystem::init(
-    Engine* engine
+    GameState* gameState
 ) {
-    System::init(engine);
+    System::init(gameState);
     assert(m_impl->m_sceneManager == nullptr && "Double init of system");
-    m_impl->m_sceneManager = engine->sceneManager();
-    m_impl->m_entities.setEntityManager(&engine->entityManager());
+    m_impl->m_sceneManager = gameState->sceneManager();
+    m_impl->m_entities.setEntityManager(&gameState->entityManager());
 }
 
 
@@ -243,6 +261,15 @@ OgreRemoveSceneNodeSystem::update(int) {
 // OgreUpdateSceneNodeSystem
 ////////////////////////////////////////////////////////////////////////////////
 
+luabind::scope
+OgreUpdateSceneNodeSystem::luaBindings() {
+    using namespace luabind;
+    return class_<OgreUpdateSceneNodeSystem, System>("OgreUpdateSceneNodeSystem")
+        .def(constructor<>())
+    ;
+}
+
+
 struct OgreUpdateSceneNodeSystem::Implementation {
 
     EntityFilter<
@@ -265,11 +292,11 @@ OgreUpdateSceneNodeSystem::~OgreUpdateSceneNodeSystem() {}
 
 void
 OgreUpdateSceneNodeSystem::init(
-    Engine* engine
+    GameState* gameState
 ) {
-    System::init(engine);
-    m_impl->m_sceneManager = engine->sceneManager();
-    m_impl->m_entities.setEntityManager(&engine->entityManager());
+    System::init(gameState);
+    m_impl->m_sceneManager = gameState->sceneManager();
+    m_impl->m_entities.setEntityManager(&gameState->entityManager());
 }
 
 
@@ -307,7 +334,7 @@ OgreUpdateSceneNodeSystem::update(int) {
                 component->m_parentId.untouch();
             }
             else {
-                auto parentComponent = this->engine()->entityManager().getComponent<OgreSceneNodeComponent>(
+                auto parentComponent = this->entityManager()->getComponent<OgreSceneNodeComponent>(
                     parentId
                 );
                 if (parentComponent and parentComponent->m_sceneNode) {

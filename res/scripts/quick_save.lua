@@ -8,9 +8,10 @@ end
 
 
 function QuickSaveSystem:update(milliseconds)
-    local saveDown = Engine.keyboard:isKeyDown(KeyboardSystem.KC_F4)
-    local loadDown = Engine.keyboard:isKeyDown(KeyboardSystem.KC_F10)
+    local saveDown = Engine.keyboard:isKeyDown(Keyboard.KC_F4)
+    local loadDown = Engine.keyboard:isKeyDown(Keyboard.KC_F10)
     if saveDown and not self.saveDown then
+        print("Saving")
         Engine:save("quick.sav")
     end
     if loadDown and not self.loadDown then
@@ -20,4 +21,3 @@ function QuickSaveSystem:update(milliseconds)
     self.loadDown = loadDown
 end
 
-ADD_SYSTEM(QuickSaveSystem)
