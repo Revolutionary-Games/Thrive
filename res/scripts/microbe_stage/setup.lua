@@ -111,6 +111,9 @@ local function setupEmitter()
     )
     rigidBody.properties:touch()
     entity:addComponent(rigidBody)
+    local reactionHandler = CollisionComponent()
+    reactionHandler:addCollisionGroup("emitter")
+    entity:addComponent(reactionHandler)
     -- Scene node
     local sceneNode = OgreSceneNodeComponent()
     sceneNode.meshName = "molecule.mesh"
@@ -278,6 +281,7 @@ local function createMicrobeStage(name)
             UpdatePhysicsSystem(),
             RigidBodyOutputSystem(),
             BulletToOgreSystem(),
+            CollisionSystem(),
             -- Graphics
             OgreAddSceneNodeSystem(),
             OgreUpdateSceneNodeSystem(),
@@ -301,5 +305,5 @@ end
 
 GameState.MICROBE = createMicrobeStage("microbe")
 GameState.MICROBE_ALTERNATE = createMicrobeStage("microbe_alternate")
-
+    
 Engine:setCurrentGameState(GameState.MICROBE)

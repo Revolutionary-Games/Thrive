@@ -2,7 +2,7 @@
 
 #include <memory>
 #include <vector>
-
+#include <iostream>
 class btDiscreteDynamicsWorld;
 
 namespace luabind {
@@ -25,15 +25,17 @@ class System;
 *
 * The game has to switch between different states. Examples of a state are
 * "main menu", "microbe gameplay" or "microbe editor". These states usually
-* share very few entities and even fewer systems, so it is sensible to 
+* share very few entities and even fewer systems, so it is sensible to
 * separate them completely (and, if necessary, share data over other channels).
 *
-* Each GameState has its own EntityManager and its own set of systems. Game 
+* Each GameState has its own EntityManager and its own set of systems. Game
 * states are identified by their name, a unique string.
 *
-* GameStates cannot be created directly. Use Engine::createGameState to create 
+* GameStates cannot be created directly. Use Engine::createGameState to create
 * new GameStates.
 */
+
+
 class GameState {
 
 public:
@@ -49,7 +51,7 @@ public:
     * Exposes:
     * - GameState::name()
     *
-    * @return 
+    * @return
     */
     static luabind::scope
     luaBindings();
@@ -74,7 +76,7 @@ public:
     /**
     * @brief Returns the engine this game state belongs to
     *
-    * @return 
+    * @return
     */
     Engine&
     engine();
@@ -82,7 +84,7 @@ public:
     /**
     * @brief Returns the engine this game state belongs to
     *
-    * @return 
+    * @return
     */
     const Engine&
     engine() const;
@@ -90,7 +92,7 @@ public:
     /**
     * @brief Returns the game state's entity manager
     *
-    * @return 
+    * @return
     */
     EntityManager&
     entityManager();
@@ -98,7 +100,7 @@ public:
     /**
     * @brief Returns the game state's entity manager
     *
-    * @return 
+    * @return
     */
     const EntityManager&
     entityManager() const;
@@ -106,7 +108,7 @@ public:
     /**
     * @brief The game state's name
     *
-    * @return 
+    * @return
     */
     std::string
     name() const;
@@ -122,6 +124,18 @@ public:
     */
     Ogre::SceneManager*
     sceneManager() const;
+
+    template<typename S>
+    S*
+    findSystem() {
+        for (const auto& system : this->systems()) {
+            S* foundSystem = dynamic_cast<S*>(system.get());
+            if (foundSystem) {
+                return foundSystem;
+            }
+        }
+        return nullptr;
+    }
 
 private:
 
@@ -142,7 +156,7 @@ private:
     *   The game state's systems. The game state takes ownership of them.
     *
     * @param initializer
-    *   A function that is called after initializing the game 
+    *   A function that is called after initializing the game
     *   state. You can set up basic entities in this callback.
     */
     GameState(
@@ -172,6 +186,9 @@ private:
     void
     init();
 
+    const std::vector<std::unique_ptr<System>>&
+    systems() const;
+
     /**
     * @brief Called by the engine during loading of a savegame
     *
@@ -195,7 +212,7 @@ private:
     /**
     * @brief Called by the engine during savegame creation
     *
-    * @return 
+    * @return
     *
     * @see GameState::load()
     */
@@ -219,7 +236,7 @@ private:
     struct Implementation;
     std::unique_ptr<Implementation> m_impl;
 
-    
+
 };
 
 }

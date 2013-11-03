@@ -261,13 +261,13 @@ RigidBodyInputSystem::update(int milliseconds) {
                 localInertia
             );
             body->setMassProps(
-                properties.mass, 
+                properties.mass,
                 localInertia
             );
             body->setLinearFactor(ogreToBullet(properties.linearFactor));
             body->setAngularFactor(ogreToBullet(properties.angularFactor));
             body->setDamping(
-                properties.linearDamping, 
+                properties.linearDamping,
                 properties.angularDamping
             );
             body->setRestitution(properties.restitution);

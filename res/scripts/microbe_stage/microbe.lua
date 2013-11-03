@@ -74,10 +74,15 @@ function Microbe.createMicrobeEntity(name)
     rigidBody.properties.linearFactor = Vector3(1, 1, 0)
     rigidBody.properties.angularFactor = Vector3(0, 0, 1)
     rigidBody.properties:touch()
+
+    local reactionHandler = CollisionComponent()
+    reactionHandler:addCollisionGroup("microbe")
+    
     local components = {
         AgentAbsorberComponent(),
         OgreSceneNodeComponent(),
         MicrobeComponent(),
+        reactionHandler,
         rigidBody
     }
     for _, component in ipairs(components) do
@@ -93,6 +98,7 @@ Microbe.COMPONENTS = {
     microbe = MicrobeComponent.TYPE_ID,
     rigidBody = RigidBodyComponent.TYPE_ID,
     sceneNode = OgreSceneNodeComponent.TYPE_ID,
+    collisionHandler = CollisionComponent.TYPE_ID
 }
 
 
@@ -391,7 +397,8 @@ function MicrobeSystem:__init()
             AgentAbsorberComponent,
             MicrobeComponent,
             OgreSceneNodeComponent,
-            RigidBodyComponent 
+            RigidBodyComponent, 
+            CollisionComponent
         }, 
         true
     )
@@ -401,7 +408,7 @@ end
 
 function MicrobeSystem:init(gameState)
     System.init(self, gameState)
-    self.entities:init(gameState)
+    self.entities:init(gameState)    
 end
 
 
