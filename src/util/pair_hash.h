@@ -15,7 +15,7 @@ struct hash<std::pair<A, B>> {
      * @param pair
      *   The pair to hash
      *
-     * @return 
+     * @return
      *   The hash
      */
     std::size_t
@@ -23,7 +23,7 @@ struct hash<std::pair<A, B>> {
         const std::pair<A, B>& pair
     ) const {
         std::size_t hashA = std::hash<A>()(pair.first);
-        std::size_t hashB = std::hash<B>()(pair.first);
+        std::size_t hashB = std::hash<B>()(pair.second);
         return hashA ^ (hashB + 0x9e3779b9 + (hashA << 6) + (hashA >> 2));
     }
 };
