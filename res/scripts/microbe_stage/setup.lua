@@ -141,17 +141,27 @@ local function setupHud()
     -- Setting up hud element for displaying all agents
     local AGENTS_WIDTH = 200
     local AGENTS_HEIGHT = 32    
-    local playerAgentCounts = Entity("hud.playerAgents")
+    local playerAgentList = Entity("hud.playerAgents")
     local playerAgentText = TextOverlayComponent("hud.playerAgents")
-    playerAgentCounts:addComponent(playerAgentText)
+    playerAgentList:addComponent(playerAgentText)
     playerAgentText.properties.horizontalAlignment = TextOverlayComponent.Right
     playerAgentText.properties.verticalAlignment = TextOverlayComponent.Bottom
-    playerAgentText.properties.width = AGENTS_WIDTH
-     -- Note that height and top will change dynamically with the number of agents displayed
-    playerAgentText.properties.height = AGENTS_HEIGHT  
+    playerAgentText.properties.width = AGENTS_WIDTH 
+    playerAgentText.properties.height = AGENTS_HEIGHT  -- Note that height and top will change dynamically with the number of agents displayed
     playerAgentText.properties.left = -AGENTS_WIDTH
     playerAgentText.properties.top = -AGENTS_HEIGHT
     playerAgentText.properties:touch()
+    local playerAgentCounts = Entity("hud.playerAgentCounts")
+    local playerAgentCountText = TextOverlayComponent("hud.playerAgentCounts")
+    playerAgentCounts:addComponent(playerAgentCountText)
+    playerAgentCountText.properties.horizontalAlignment = TextOverlayComponent.Right
+    playerAgentCountText.properties.verticalAlignment = TextOverlayComponent.Bottom
+    playerAgentCountText.properties.width = AGENTS_WIDTH
+    playerAgentCountText.properties.height = AGENTS_HEIGHT  
+    playerAgentCountText.properties.left = -80
+    playerAgentCountText.properties.top = -AGENTS_HEIGHT
+    playerAgentCountText.properties:touch()
+    
 end
 
 local function setupPlayer()
