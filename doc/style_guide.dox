@@ -138,6 +138,10 @@ everyone who has to read your code), break it.
     };
   \endcode
 
+- Try to avoid include statements inside header files unless absolutely 
+  necessary. Prefer forward declarations and put the include inside the
+  source file instead.
+
 
 \section lua_style Lua
 
