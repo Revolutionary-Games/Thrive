@@ -142,6 +142,11 @@ everyone who has to read your code), break it.
   necessary. Prefer forward declarations and put the include inside the
   source file instead.
 
+- Header includes should be sorted alphabetically (ignoring case)
+
+- Functions and data members inside classes should be sorted alphabetically,
+  unless this interfers with destruction order.
+
 
 \section lua_style Lua
 
