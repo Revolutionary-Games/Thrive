@@ -34,51 +34,44 @@ function SpawnSystem:_doSpawnCycle()
     local player = Entity(PLAYER_NAME)
     
     local playerNode = player:getComponent(OgreSceneNodeComponent.TYPE_ID)
-    local playerX = playerNode.transform.position.x
-    local playerY = playerNode.transform.position.y
+    local playerPos = playerNode.transform.position
     
     --Initialize previous player position if necessary
     if self.playerPosPrev == nil then
-        self.playerPosPrev = Vector3(playerNode.transform.position.x,
-                playerNode.transform.position.y, playerNode.transform.position.z)
+        self.playerPosPrev = Vector3(playerPos.x, playerPos.y, playerPos.z)
     end
     
-    local playerXPrev = self.playerPosPrev.x
-    local playerYPrev = self.playerPosPrev.y
-    
     --Despawn entities
-    for entity,v in pairs(self.spawnedEntities) do
+    for entity,info in pairs(self.spawnedEntities) do
         local entityNode = entity:getComponent(OgreSceneNodeComponent.TYPE_ID)
-        local entityX = entityNode.transform.position.x
-        local entityY = entityNode.transform.position.y
-        local xDist = entityX-playerX
-        local yDist = entityY-playerY
-        local distSqr = xDist*xDist + yDist*yDist
+        local entityPos = entityNode.transform.position
+        local distSqr = playerPos:squaredDistance(entityPos)
         
-        if distSqr >= v.spawnRadius * v.spawnRadius then
+        if distSqr >= info.spawnRadius * info.spawnRadius then
             entity:destroy()
             self.spawnedEntities[entity] = nil
         end
     end
     
     --Spawn entities
-    for k,v in pairs(self.spawnTypes) do
+    for _,spawnType in pairs(self.spawnTypes) do
         for i = 1, 10 do
             --TODO use RandomManager
-            if math.random() < self.spawnInterval / 10 / 1000 * v.spawnFrequency then
+            if math.random() < self.spawnInterval / 10 / 1000 * spawnType.spawnFrequency then
                 --Attempt to find a suitable location.
-                local xDist = (2*math.random() - 1) * v.spawnRadius
-                local yDist = (2*math.random() - 1) * v.spawnRadius
-                local distSqr = xDist*xDist + yDist*yDist
+                local xDist = (2*math.random() - 1) * spawnType.spawnRadius
+                local yDist = (2*math.random() - 1) * spawnType.spawnRadius
+                local zDist = 0
+                local displacement = Vector3(xDist, yDist, zDist)
+                local distSqr = displacement:squaredLength()
                 
-                local xDistPrev = xDist + playerX - playerXPrev
-                local yDistPrev = yDist + playerY - playerYPrev
-                local distSqrPrev = xDistPrev*xDistPrev + yDistPrev*yDistPrev
+                local displacementPrev = displacement + playerPos - self.playerPosPrev
+                local distSqrPrev = displacementPrev:squaredLength()
                 
-                if distSqr <= v.spawnRadius * v.spawnRadius and
-                        distSqrPrev > v.spawnRadius * v.spawnRadius then
-                    local entity = v.factoryFunction(playerX + xDist, playerY + yDist)
-                    self.spawnedEntities[entity] = {spawnRadius = v.spawnRadius}
+                if distSqr <= spawnType.spawnRadius * spawnType.spawnRadius and
+                        distSqrPrev > spawnType.spawnRadius * spawnType.spawnRadius then
+                    local entity = spawnType.factoryFunction(playerPos + displacement)
+                    self.spawnedEntities[entity] = {spawnRadius = spawnType.spawnRadius}
                 end
             end
         end

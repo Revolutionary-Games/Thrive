@@ -46,9 +46,9 @@ local function setupAgents()
 end
 
 local function setupSpawnSystem()
-    spawnSystem = SpawnSystem()
+    local spawnSystem = SpawnSystem()
     
-    local testFunction = function(x, y)
+    local testFunction = function(pos)
         -- Setting up an emitter for energy
         local entity = Entity()
         -- Rigid body
@@ -61,7 +61,7 @@ local function setupSpawnSystem()
             2.0
         )
         rigidBody:setDynamicProperties(
-            Vector3(x, y, 0),
+            pos,
             Quaternion(Radian(Degree(math.random()*360)), Vector3(0, 0, 1)),
             Vector3(0, 0, 0),
             Vector3(0, 0, 0)
