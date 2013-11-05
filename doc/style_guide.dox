@@ -125,7 +125,7 @@ everyone who has to read your code), break it.
   aliases look more like familiar variable assignment, with no ambiguity as
   to which is the newly defined type name.
 
-- Virtual member functions overridded in derived classes are marked with the 
+- Virtual member functions overridden in derived classes are marked with the 
   C++11 \p override keyword. This will (correctly) cause a compile time error 
   when the function signature in the base class changes and the programmer 
   forgot to update the derived class.
