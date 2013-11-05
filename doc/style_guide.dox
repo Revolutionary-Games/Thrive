@@ -1,0 +1,192 @@
+/**
+\page Code Style Guide
+
+To maintain a consistent coding style, contributors should follow the rules 
+outlined on this page. This style guide is separated into four parts: common 
+rules, rules specific for C++, rules specific for Lua and guidelines for
+using git.
+
+The style rules are intended to increase readability of the source code. The 
+most important rule of all is: **Use common sense**. If you have to break 
+some rules to make the code more readable (and not just for you, but for 
+everyone who has to read your code), break it.
+
+\section common_style Common (Both C++ and Lua)
+
+- Indentation is 4 spaces
+
+- Names (that includes variables, functions and classes) should be descriptive.
+  Avoid abbreviations. Do not shorten variable names just to save key strokes, 
+  it will be read far more often than it will be written.
+
+- Variables and functions are camelCase with leading lower case. Classes are 
+  CamelCase with leading upper case. Constants are CONSTANT_CASE with 
+  underscores.
+
+- Filenames are lower_case with underscores. The reason for this is that Thrive
+  is a cross-platform project and some platforms use case-sensitive file systems
+  (Unix) while others use case-insensitive file systems (Windows). Exceptions 
+  are the CMakeLists.txt files, which need to be named like this for CMake to
+  find them.
+
+\section cpp_style C++
+
+- Macros are CONSTANT_CASE
+
+- Header files end in .h, source files in .cpp
+
+- Header files should begin with <tt>#pragma once</tt>. Old-style header 
+  guards (with \p ifdef) are discouraged because they are very verbose and
+  the pragma is understood by all relevant compilers.
+
+- Opening braces go in the same line as the control statement, closing braces
+  are aligned below the first character of the opening control statement
+
+- Keep header files minimal. Ideally, they show only functions / classes that
+  are useful to other code. All internal helper functions / classes should be
+  declared and defined in the source file.
+
+- All classes and their public and protected members should be documented by
+  doxygen comments in the header file. If the function's purpose is clear 
+  from the name and its parameters (which should be the usual case), the 
+  comment can be very basic and only serves to shut up doxygen warnings about
+  undocumented stuff.
+
+- Inline comments inside functions can and should be used to describe why
+  you wrote the function like this (and, sometimes more importantly, why you
+  didn't go another way).
+
+- Member variables of classes are prefixed with \p m_. This is to 
+  differentiate them from local or global variables when using their 
+  unqualified name (without \p this->) inside member functions. The prefix can
+  be omitted for very simple structs if they don't have member functions and
+  serve only as data container.
+
+- When calling member functions from another member function, their names are
+  qualified with `this->` to differentiate them from global non-member 
+  functions.
+
+- Function signatures are formatted like this:
+  \code{.cpp}
+    [virtual] ReturnType
+    functionName(
+        ArgType1 arg1,
+        ArgType2 arg2
+    ) [const] [override] {
+        // Function body
+    }
+  \endcode
+  This format may look strange at first, but it has some advantages over 
+  other formats. The return type is clearly separated from the function name, 
+  which increases readability for long, unwieldy return types (think nested 
+  templates). Each argument is at its own line, making it possible to discern 
+  the number of arguments and their types at a glance. Again, this increases
+  readability for complex argument types.
+
+- For non-trivial classes, use the pimpl idiom to hide implementation details.
+  \code{.hpp}
+    // In the header:
+    #include <memory> // Include for std::unique_ptr
+
+    class MyClass {
+        // ...
+
+    public:
+
+        // Constructor required, doesn't need to be
+        // default constructor, though
+        MyClass();
+
+        // Destructor required.
+        ~MyClass();
+
+    private:
+      
+        struct Implementation;
+        std::unique_ptr<Implementation> m_impl;
+    };
+  \endcode
+  \code{.cpp}
+    // In the source file:
+
+    struct MyClass::Implementation {
+        // Private stuff here
+    };
+
+    MyClass::MyClass()
+      : m_impl(new Implementation()) // Initialize pimpl
+    {
+    }
+
+    MyClass::~MyClass() {} // Define destructor
+  \endcode
+
+- Prefer C++11's \p using over \p typedef. With the \p using keyword, type 
+  aliases look more like familiar variable assignment, with no ambiguity as
+  to which is the newly defined type name.
+
+- Virtual member functions overridden in derived classes are marked with the 
+  C++11 \p override keyword. This will (correctly) cause a compile time error 
+  when the function signature in the base class changes and the programmer 
+  forgot to update the derived class.
+
+- Classes not intended as base classes are marked with the \p final keyword
+  like this:
+  \code{.cpp}
+    class MyClass final {
+        // ...
+    };
+  \endcode
+
+- Try to avoid include statements inside header files unless absolutely 
+  necessary. Prefer forward declarations and put the include inside the
+  source file instead.
+
+- Header includes should be sorted alphabetically (ignoring case)
+
+- Functions and data members inside classes should be sorted alphabetically,
+  unless this interfers with destruction order.
+
+
+\section lua_style Lua
+
+- A class's public data members are *not* prefixed by \p m_, unlike C++. This 
+  is because in Lua, all member variables are accessed with their qualified
+  names (like <tt>self.memberVariable</tt>), so there is no need to mark them.
+
+- A class's private data members and functions are prefixed with an 
+  underscore. This is a convention adopted from Python's PEP8 style guide.
+
+- Doxygen does not support Lua natively, but for consistency's sake, Lua 
+  classes and functions are still documented with doxygen style comments.
+
+
+\section git_style Git
+
+- Do not work in the master branch, always create a private feature branch
+  if you want to edit something
+
+- If you are working on a GitHub issue, your feature branch's name should
+  begin with the issue number, followed by an underscore, followed by a
+  short, descriptive name in lower_case_with_underscores. The name should
+  be short, but descriptive enough that you know what the feature branch is
+  about without looking up the GitHub ticket.
+
+- Commit early and frequently, even if the code doesn't run or even compile.
+
+- When the master branch is updated, prefer rebasing over merging to keep
+  your feature branch up-to-date. Rebasing helps in keeping your commit 
+  history clean. An exception is when others are also working on your feature
+  branch, as rebasing could cause trouble for them when they pull the rebased
+  commits. Either ask them to push their changes and wait until you are done
+  with the rebase, or merge.
+
+- When a feature branch is done, open a pull request on GitHub so that others
+  can review it.
+
+- For maintainers: when merging a pull request back into master, consider 
+  squashing the commits into a single one. If the pull request contains 
+  multiple unrelated changes that warrant separate commit messages, scold
+  the author, then do an interactive rebase to clean up the commit history.
+
+**/
