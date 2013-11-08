@@ -5,9 +5,9 @@
 #include "engine/engine.h"
 #include "engine/entity_filter.h"
 #include "engine/serialization.h"
+#include "engine/rng.h"
 #include "ogre/scene_node_system.h"
 #include "scripting/luabind.h"
-#include "util/random.h"
 
 #include <OgreEntity.h>
 #include <OgreSceneManager.h>
@@ -362,12 +362,13 @@ AgentEmitterSystem::update(int milliseconds) {
             emitterComponent->m_timeSinceLastEmission >= emitterComponent->m_emitInterval
         ) {
             emitterComponent->m_timeSinceLastEmission -= emitterComponent->m_emitInterval;
+
             for (unsigned int i = 0; i < emitterComponent->m_particlesPerEmission; ++i) {
-                Ogre::Degree emissionAngle = randomFromRange(
-                    emitterComponent->m_minEmissionAngle,
-                    emitterComponent->m_maxEmissionAngle
-                );
-                Ogre::Real emissionSpeed = randomFromRange(
+                Ogre::Degree emissionAngle{static_cast<Ogre::Real>(this->engine()->rng().getDouble(
+                    emitterComponent->m_minEmissionAngle.valueDegrees(),
+                    emitterComponent->m_maxEmissionAngle.valueDegrees()
+                ))};
+                Ogre::Real emissionSpeed = this->engine()->rng().getDouble(
                     emitterComponent->m_minInitialSpeed,
                     emitterComponent->m_maxInitialSpeed
                 );

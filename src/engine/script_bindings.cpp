@@ -7,7 +7,9 @@
 #include "engine/serialization.h"
 #include "engine/system.h"
 #include "engine/touchable.h"
+#include "engine/rng.h"
 #include "scripting/luabind.h"
+
 
 luabind::scope
 thrive::EngineBindings::luaBindings() {
@@ -19,6 +21,7 @@ thrive::EngineBindings::luaBindings() {
         ComponentFactory::luaBindings(),
         Entity::luaBindings(),
         Touchable::luaBindings(),
-        Engine::luaBindings()
+        Engine::luaBindings(),
+        RNG::luaBindings()
     );
 }
