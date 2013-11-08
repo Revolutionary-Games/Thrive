@@ -173,20 +173,32 @@ everyone who has to read your code), break it.
   about without looking up the GitHub ticket.
 
 - Commit early and frequently, even if the code doesn't run or even compile.
+  I recommend git-cola (available for all major platforms) as a tool for
+  composing good commits. It lets you stage files linewise in a convenient
+  interface. So even if you have unrelated changes within the same file,
+  you can still separate them.
 
-- When the master branch is updated, prefer rebasing over merging to keep
-  your feature branch up-to-date. Rebasing helps in keeping your commit 
-  history clean. An exception is when others are also working on your feature
-  branch, as rebasing could cause trouble for them when they pull the rebased
-  commits. Either ask them to push their changes and wait until you are done
-  with the rebase, or merge.
+- When the master branch is updated, you should usually keep your feature
+  branch as-is. If you really need the new features from master, do a merge.
 
 - When a feature branch is done, open a pull request on GitHub so that others
-  can review it.
+  can review it. Chances are that during this review, there will still be
+  issues to be resolved before the branch can be merged into master.
 
-- For maintainers: when merging a pull request back into master, consider 
-  squashing the commits into a single one. If the pull request contains 
-  multiple unrelated changes that warrant separate commit messages, scold
-  the author, then do an interactive rebase to clean up the commit history.
+- To keep master's commit history clean, your commits in the feature branch
+  will have to be "squashed" into one single (or at least very few) commit.
+  It must also be rebased onto master if the master branch had any other
+  changes since your branch was created. To do so, use an interactive rebase,
+  and edit the commit message of the first feature commit, then squashing all
+  subsequent commits into that first one.
+  It is a good idea to keep the other commit messages inside the new commit's
+  message for future reference.
+
+- For maintainers: GitHub requires a merge commit to recognize the merging
+  of a pull request. A "git merge --squash" does not create a merge commit and
+  will leave the pull request's branch "dangling". To make GitHub properly
+  reflect the merge, follow the procedure outlined in the previous bullet
+  point, then click the "Merge Pull Request" button on GitHub (or do a 
+  normal "git merge".
 
 **/
