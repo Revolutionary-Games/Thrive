@@ -23,11 +23,14 @@ add_sources(
     ${CMAKE_CURRENT_SOURCE_DIR}/system.h
     ${CMAKE_CURRENT_SOURCE_DIR}/touchable.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/touchable.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/rng.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/rng.h
 )
 
 add_test_sources(
     ${CMAKE_CURRENT_SOURCE_DIR}/tests/entity.cpp 
     ${CMAKE_CURRENT_SOURCE_DIR}/tests/entity_filter.cpp 
     ${CMAKE_CURRENT_SOURCE_DIR}/tests/serialization.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/tests/rng.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/tests/test_component.h
 )

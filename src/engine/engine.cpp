@@ -5,6 +5,7 @@
 #include "engine/entity_manager.h"
 #include "engine/saving.h"
 #include "engine/system.h"
+#include "engine/rng.h"
 #include "game.h"
 
 // Bullet
@@ -75,6 +76,7 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
     Implementation(
         Engine& engine
     ) : m_engine(engine),
+        m_rng(),
         m_loadSystem(std::make_shared<LoadSystem>()),
         m_saveSystem(std::make_shared<SaveSystem>()),
         m_scriptSystemUpdater(std::make_shared<ScriptSystemUpdater>()),
@@ -160,7 +162,7 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
             else {
                 int error = 0;
                 error = luaL_loadfile(
-                    m_luaState, 
+                    m_luaState,
                     manifestEntryPath.string().c_str()
                 );
                 error = error or luabind::detail::pcall(m_luaState, 0, LUA_MULTRET);
@@ -312,7 +314,7 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
         m_input.inputManager = nullptr;
     }
 
-    bool 
+    bool
     windowClosing(
         Ogre::RenderWindow* window
     ) override {
@@ -334,10 +336,10 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
         }
     }
 
-    // Lua state must be one of the last to be destroyed, so keep it at top. 
-    // The reason for that is that some components keep luabind::object 
+    // Lua state must be one of the last to be destroyed, so keep it at top.
+    // The reason for that is that some components keep luabind::object
     // instances around that rely on the lua state to still exist when they
-    // are destroyed. Since those components are destroyed with the entity 
+    // are destroyed. Since those components are destroyed with the entity
     // manager, the lua state has to live longer than the manager.
     LuaState m_luaState;
 
@@ -346,6 +348,8 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
     Engine& m_engine;
 
     EntityManager m_entityManager;
+
+    RNG m_rng;
 
     struct Graphics {
 
@@ -424,13 +428,13 @@ Engine::luaBindings() {
 
 
 
-Engine::Engine() 
+Engine::Engine()
   : m_impl(new Implementation(*this))
 {
 }
 
 
-Engine::~Engine() { 
+Engine::~Engine() {
     m_impl->m_physics.world.reset();
 }
 
@@ -455,6 +459,11 @@ Engine::componentFactory() {
 EntityManager&
 Engine::entityManager() {
     return m_impl->m_entityManager;
+}
+
+RNG&
+Engine::rng() {
+    return m_impl->m_rng;
 }
 
 
