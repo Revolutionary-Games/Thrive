@@ -9,8 +9,8 @@ function SpawnSystem:__init()
     
     self.playerPosPrev = nil --A Vector3 that remembers the player's position in the last spawn cycle
     
-    self.residueTime = 0 --Stores how much time has passed since the last spawn cycle
     self.spawnInterval = 100 --Time between spawn cycles
+    self.residueTime = -self.spawnInterval --Stores how much time has passed since the last spawn cycle
 end
 
 -- Adds a new type of entity to spawn in the SpawnSystem
@@ -19,17 +19,28 @@ end
 --  The function called by the SpawnSystem to create the entity. It should have two
 --  parameters, x and y positions, and it should return the new entity.
 --
--- @param spawnFrequency
---  On average, the entities of the given type that should attempt to spawn every
---  second.
-function SpawnSystem:addSpawnType(factoryFunction, spawnFrequency, spawnRadius)
+-- @param spawnDensity
+--  On average, the number of entities of the given type per square unit.
+--
+-- @param spawnRadius
+--  The distance from the player that the entity can spawn or despawn.
+function SpawnSystem:addSpawnType(factoryFunction, spawnDensity, spawnRadius)
     newSpawnType = {}
     newSpawnType.factoryFunction = factoryFunction
-    newSpawnType.spawnFrequency = spawnFrequency
     newSpawnType.spawnRadius = spawnRadius
+    newSpawnType.spawnRadiusSqr = spawnRadius * spawnRadius
+    
+    --spawnFrequency is on average how many entities should pass the first condition
+    --in each spawn cycle (See _doSpawnCycle). spawnRadius^2 * 4 is used because
+    --that is the area of the square region where entities attempt to spawn.
+    newSpawnType.spawnFrequency = spawnDensity * spawnRadius * spawnRadius * 4
+    
     table.insert(self.spawnTypes, newSpawnType)
 end
 
+-- For each entity type, spawns the appropriate number of entities within the spawn
+-- radius of the player at its current location but outside of the spawn radius of the player
+-- at its location during the previous spawn cycle.
 function SpawnSystem:_doSpawnCycle()    
     local player = Entity(PLAYER_NAME)
     
@@ -47,7 +58,8 @@ function SpawnSystem:_doSpawnCycle()
         local entityPos = entityNode.transform.position
         local distSqr = playerPos:squaredDistance(entityPos)
         
-        if distSqr >= info.spawnRadius * info.spawnRadius then
+        --Destroy and forget about all entities outside the spawn radius.
+        if distSqr >= info.spawnRadiusSqr then
             entity:destroy()
             self.spawnedEntities[entity] = nil
         end
@@ -55,28 +67,47 @@ function SpawnSystem:_doSpawnCycle()
     
     --Spawn entities
     for _,spawnType in pairs(self.spawnTypes) do
-        for i = 1, 10 do
-            --TODO use RandomManager
-            if math.random() < self.spawnInterval / 10 / 1000 * spawnType.spawnFrequency then
-                --Attempt to find a suitable location.
-                local xDist = (2*math.random() - 1) * spawnType.spawnRadius
-                local yDist = (2*math.random() - 1) * spawnType.spawnRadius
+        --To actually spawn a given entity for a given attempt, two conditions should be met.
+        --The first condition is a random chance that adjusts the spawn frequency to the approprate
+        --amount. The second condition is whether the entity will spawn in a valid position.
+        --It is checked when the first condition is met and a position
+        --for the entity has been decided.
+        
+        --To allow more than one entity of each type to spawn per spawn cycle, the SpawnSystem
+        --attempts to spawn each given entity multiple times depending on the spawnFrequency.
+        --numAttempts stores how many times the SpawnSystem attempts to spawn the given entity.
+        local numAttempts = math.max(1, math.ceil(spawnType.spawnFrequency * 2))
+        for i = 1, numAttempts do
+            if rng:getReal(0,1) < spawnType.spawnFrequency / numAttempts then
+                --First condition passed. Choose a location for the entity.
+                
+                --A random location in the square of sidelength 2*spawnRadius
+                --centered on the player is chosen. The corners
+                --of the square are outside the spawning region, but they
+                --will fail the second condition, so entities still only
+                --spawn within the spawning region.
+                local xDist = rng:getReal(-1,1) * spawnType.spawnRadius
+                local yDist = rng:getReal(-1,1) * spawnType.spawnRadius
                 local zDist = 0
+                
+                --Distance from the player.
                 local displacement = Vector3(xDist, yDist, zDist)
                 local distSqr = displacement:squaredLength()
                 
+                --Distance from the location of the player in the previous spawn cycle.
                 local displacementPrev = displacement + playerPos - self.playerPosPrev
                 local distSqrPrev = displacementPrev:squaredLength()
                 
-                if distSqr <= spawnType.spawnRadius * spawnType.spawnRadius and
-                        distSqrPrev > spawnType.spawnRadius * spawnType.spawnRadius then
+                if distSqr <= spawnType.spawnRadiusSqr and distSqrPrev > spawnType.spawnRadiusSqr then
+                    --Second condition passed. Spawn the entity.
                     local entity = spawnType.factoryFunction(playerPos + displacement)
-                    self.spawnedEntities[entity] = {spawnRadius = spawnType.spawnRadius}
+                    self.spawnedEntities[entity] = {spawnRadiusSqr = spawnType.spawnRadiusSqr}
                 end
             end
         end
     end
     
+    --Update previous player location.
     self.playerPosPrev.x = playerNode.transform.position.x
     self.playerPosPrev.y = playerNode.transform.position.y
     self.playerPosPrev.z = playerNode.transform.position.z
@@ -85,9 +116,16 @@ end
 function SpawnSystem:update(milliseconds)
     self.residueTime = self.residueTime + milliseconds
     
-    while self.residueTime > self.spawnInterval do
+    --Perform spawn cycle if necessary (Reason for "if" rather than "while" stated below)
+    if self.residueTime > 0 then
         self.residueTime = self.residueTime - self.spawnInterval
         
         self:_doSpawnCycle()
+        
+        --Spawn interval does not affect spawning logic. Therefore, at most one spawn
+        --cycle will be done per frame.
+        if self.residueTime > 0 then
+            self.residueTime = -self.spawnInterval
+        end
     end
 end

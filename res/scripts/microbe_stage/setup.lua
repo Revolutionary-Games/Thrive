@@ -91,7 +91,9 @@ local function setupSpawnSystem()
         return entity
     end
     
-    spawnSystem:addSpawnType(testFunction, 100, 30)
+    --Spawn one emitter on average once in every square of sidelength 10
+    -- (square dekaunit?)
+    spawnSystem:addSpawnType(testFunction, 1/10^2, 30)
     Engine:addScriptSystem(spawnSystem)
 end
 
