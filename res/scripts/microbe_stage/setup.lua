@@ -45,6 +45,58 @@ local function setupAgents()
     AgentRegistry.registerAgentType("faxekondium", "Faxekondium")
 end
 
+local function setupSpawnSystem()
+    local spawnSystem = SpawnSystem()
+    
+    local testFunction = function(pos)
+        -- Setting up an emitter for energy
+        local entity = Entity()
+        -- Rigid body
+        local rigidBody = RigidBodyComponent()
+        rigidBody.properties.friction = 0.2
+        rigidBody.properties.linearDamping = 0.8
+        rigidBody.properties.shape = CylinderShape(
+            CollisionShape.AXIS_X, 
+            0.4,
+            2.0
+        )
+        rigidBody:setDynamicProperties(
+            pos,
+            Quaternion(Radian(Degree(math.random()*360)), Vector3(0, 0, 1)),
+            Vector3(0, 0, 0),
+            Vector3(0, 0, 0)
+        )
+        rigidBody.properties:touch()
+        entity:addComponent(rigidBody)
+        -- Scene node
+        local sceneNode = OgreSceneNodeComponent()
+        sceneNode.meshName = "molecule.mesh"
+        entity:addComponent(sceneNode)
+        -- Emitter energy
+        local energyEmitter = AgentEmitterComponent()
+        entity:addComponent(energyEmitter)
+        energyEmitter.agentId = AgentRegistry.getAgentId("energy")
+        energyEmitter.emitInterval = 1000
+        energyEmitter.emissionRadius = 1
+        energyEmitter.maxInitialSpeed = 10
+        energyEmitter.minInitialSpeed = 2
+        energyEmitter.minEmissionAngle = Degree(0)
+        energyEmitter.maxEmissionAngle = Degree(360)
+        energyEmitter.meshName = "molecule.mesh"
+        energyEmitter.particlesPerEmission = 1
+        energyEmitter.particleLifeTime = 5000
+        energyEmitter.particleScale = Vector3(0.3, 0.3, 0.3)
+        energyEmitter.potencyPerParticle = 300.0
+        
+        return entity
+    end
+    
+    --Spawn one emitter on average once in every square of sidelength 10
+    -- (square dekaunit?)
+    spawnSystem:addSpawnType(testFunction, 1/10^2, 30)
+    Engine:addScriptSystem(spawnSystem)
+end
+
 local function setupEmitter()
     -- Setting up an emitter for energy
     local entity = Entity("energy-emitter")
@@ -212,6 +264,7 @@ end
 setupBackground()
 setupCamera()
 setupAgents()
+setupSpawnSystem()
 setupEmitter()
 setupHud()
 setupPlayer()
