@@ -21,6 +21,7 @@ namespace thrive {
 using AgentId = uint16_t;
 
 static const AgentId NULL_AGENT = 0;
+static const Ogre::Vector3 PARTICLE_SCALE(0.3,0.3,0.3);
 
 AgentId
 generateAgentId();
@@ -32,6 +33,21 @@ class AgentComponent : public Component {
     COMPONENT(Agent)
 
 public:
+
+    /**
+    * @brief Lua bindings
+    *
+    * Exposes:
+    * - AgentComponent()
+    * - AgentComponent::m_agentId
+    * - AgentComponent::m_potency
+    * - AgentComponent::m_timeToLive
+    * - AgentComponent::m_velocity
+    *
+    * @return
+    */
+    static luabind::scope
+    luaBindings();
 
     /**
     * @brief The agent id
@@ -77,18 +93,12 @@ public:
     *
     * Exposes:
     * - AgentEmitterComponent()
-    * - AgentEmitterComponent::m_agentId
     * - AgentEmitterComponent::m_emissionRadius
-    * - AgentEmitterComponent::m_emitInterval
     * - AgentEmitterComponent::m_maxInitialSpeed
     * - AgentEmitterComponent::m_minInitialSpeed
     * - AgentEmitterComponent::m_minEmissionAngle
     * - AgentEmitterComponent::m_maxEmissionAngle
-    * - AgentEmitterComponent::m_meshName
-    * - AgentEmitterComponent::m_particlesPerEmission
     * - AgentEmitterComponent::m_particleLifetime
-    * - AgentEmitterComponent::m_particleScale
-    * - AgentEmitterComponent::m_potencyPerParticle
     *
     * @return
     */
@@ -96,19 +106,9 @@ public:
     luaBindings();
 
     /**
-    * @brief The agent id to emit
-    */
-    AgentId m_agentId = NULL_AGENT;
-
-    /**
     * @brief How far away the particles are spawned
     */
     Ogre::Real m_emissionRadius = 0.0;
-
-    /**
-    * @brief How often new particles are spawned
-    */
-    Milliseconds m_emitInterval = 1000;
 
     /**
     * @brief The maximum initial speed of new particles
@@ -125,24 +125,14 @@ public:
     *
     * Zero degrees is to the left, positive is counter-clockwise.
     */
-    Ogre::Degree m_maxEmissionAngle;
+    Ogre::Degree m_maxEmissionAngle = Ogre::Degree(360);
 
     /**
     * @brief The minimum angle at which to emit particles
     *
     * Zero degrees is to the left, positive is counter-clockwise.
     */
-    Ogre::Degree m_minEmissionAngle;
-
-    /**
-    * @brief The mesh that new particles are created with
-    */
-    Ogre::String m_meshName;
-
-    /**
-    * @brief The number of particles created per emission interval
-    */
-    uint16_t m_particlesPerEmission = 0;
+    Ogre::Degree m_minEmissionAngle = Ogre::Degree(0);
 
     /**
     * @brief How long new particles will stay alive
@@ -150,9 +140,73 @@ public:
     Milliseconds m_particleLifetime = 1000;
 
     /**
-    * @brief The scale of new particles
+    * @brief Emits an agent according to the set properties
+    *
+    * @param agentId
+    *   The agent type to emit
+    *
+    * @param amount
+    *   How much of the chosen agent to emit
+    *
+    * @param emitterPosition
+    *   The position of the entity emitting the agent.
+    *   Agent position is calculated from the relative emissionPosition and
+    *   the emitterPosition.
     */
-    Ogre::Vector3 m_particleScale = Ogre::Vector3(1, 1, 1);
+    void
+    emitAgent(
+        AgentId agentId,
+        double amount
+    );
+
+    void
+    load(
+        const StorageContainer& storage
+    ) override;
+
+    StorageContainer
+    storage() const override;
+
+private:
+
+    friend class AgentEmitterSystem;
+    std::vector<std::pair<AgentId, int>> m_compoundEmissions;
+
+};
+
+
+/**
+* @brief Component for automatic timed compound emissions.
+*/
+class TimedAgentEmitterComponent : public Component {
+    COMPONENT(TimedAgentEmitterComponent)
+
+public:
+
+    /**
+    * @brief Lua bindings
+    *
+    * Exposes:
+    * - AgentEmitterComponent()
+    * - AgentEmitterComponent::m_agentId
+    * - AgentEmitterComponent::m_particlesPerEmission
+    * - AgentEmitterComponent::m_potencyPerParticle
+    * - AgentEmitterComponent::m_emitInterval
+    *
+    * @return
+    */
+    static luabind::scope
+    luaBindings();
+
+    /**
+    * @brief The agent id to emit
+    */
+    AgentId m_agentId = NULL_AGENT;
+
+    /**
+    * @brief The number of particles created per emission interval
+    */
+    uint16_t m_particlesPerEmission = 0;
 
     /**
     * @brief The potency new particles will receive
@@ -160,7 +214,12 @@ public:
     float m_potencyPerParticle = 1.0f;
 
     /**
-    * @brief For use by AgentEmitterSystem
+    * @brief How often new particles are spawned
+    */
+    Milliseconds m_emitInterval = 1000;
+
+    /**
+    * @brief For use by TimedAgentEmitterSystem
     */
     Milliseconds m_timeSinceLastEmission = 0;
 
@@ -287,7 +346,7 @@ public:
     * Exposes:
     * - AgentLifetimeSystem()
     *
-    * @return 
+    * @return
     */
     static luabind::scope
     luaBindings();
@@ -338,7 +397,7 @@ public:
     * Exposes:
     * - AgentMovementSystem()
     *
-    * @return 
+    * @return
     */
     static luabind::scope
     luaBindings();
@@ -389,7 +448,7 @@ public:
     * Exposes:
     * - AgentEmitterSystem()
     *
-    * @return 
+    * @return
     */
     static luabind::scope
     luaBindings();
@@ -441,7 +500,7 @@ public:
     * Exposes:
     * - AgentAbsorberSystem()
     *
-    * @return 
+    * @return
     */
     static luabind::scope
     luaBindings();
@@ -495,6 +554,7 @@ public:
     * - AgentRegistry::getAgentDisplayName
     * - AgentRegistry::getAgentInternalName
     * - AgentRegistry::getAgentId
+    * - AgentRegistry::getAgentMeshName
     * @return
     */
     static luabind::scope
@@ -509,13 +569,17 @@ public:
     * @param displayName
     *   Name to be displayed to users
     *
+    * @param meshName
+    *   Name of the model to use for this agent
+    *
     * @return
     *   Id of new agent
     */
     static AgentId
     registerAgentType(
         const std::string& internalName,
-        const std::string& displayName
+        const std::string& displayName,
+        const std::string& meshName
     );
 
     /**
@@ -558,6 +622,21 @@ public:
     static AgentId
     getAgentId(
         const std::string& internalName
+    );
+
+    /**
+    * @brief Obtains the name of the corresponding mesh
+    *
+    * @param agentId
+    *   The id of the agent to acquire the mesh name from
+    *
+    * @return
+    *   A string containing the name of the agents mesh.
+    *   If agent is not registered an out_of_range exception is thrown.
+    */
+    static std::string
+    getAgentMeshName(
+        AgentId agentId
     );
 
     AgentRegistry() = delete;
