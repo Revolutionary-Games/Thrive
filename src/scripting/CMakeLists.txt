@@ -7,8 +7,6 @@ add_sources(
     ${CMAKE_CURRENT_SOURCE_DIR}/script_entity_filter.h
     ${CMAKE_CURRENT_SOURCE_DIR}/script_initializer.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/script_initializer.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/script_system_updater.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/script_system_updater.h
 )
 
 add_test_sources(

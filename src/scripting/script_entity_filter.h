@@ -9,6 +9,8 @@
 
 namespace thrive {
 
+class GameState;
+
 /**
 * @brief Script version of the EntityFilter
 */
@@ -106,7 +108,9 @@ public:
     * @brief Initializes this filter
     */
     void
-    init();
+    init(
+        GameState* gameState
+    );
 
     /**
     * @brief The set of removed entities

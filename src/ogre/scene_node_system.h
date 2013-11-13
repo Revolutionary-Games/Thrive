@@ -123,6 +123,17 @@ class OgreAddSceneNodeSystem : public System {
 public:
 
     /**
+    * @brief Lua bindings
+    *
+    * Exposes:
+    * - OgreAddSceneNodeSystem()
+    *
+    * @return 
+    */
+    static luabind::scope
+    luaBindings();
+
+    /**
     * @brief Constructor
     */
     OgreAddSceneNodeSystem();
@@ -135,9 +146,8 @@ public:
     /**
     * @brief Initializes the system
     *
-    * @param engine
     */
-    void init(Engine* engine) override;
+    void init(GameState* gameState) override;
 
     /**
     * @brief Shuts the system down
@@ -164,6 +174,17 @@ class OgreRemoveSceneNodeSystem : public System {
 public:
 
     /**
+    * @brief Lua bindings
+    *
+    * Exposes:
+    * - OgreRemoveSceneNodeSystem()
+    *
+    * @return 
+    */
+    static luabind::scope
+    luaBindings();
+
+    /**
     * @brief Constructor
     */
     OgreRemoveSceneNodeSystem();
@@ -176,9 +197,8 @@ public:
     /**
     * @brief Initializes the system
     *
-    * @param engine
     */
-    void init(Engine* engine) override;
+    void init(GameState* gameState) override;
 
     /**
     * @brief Shuts the system down
@@ -204,6 +224,17 @@ class OgreUpdateSceneNodeSystem : public System {
 public:
 
     /**
+    * @brief Lua bindings
+    *
+    * Exposes:
+    * - OgreUpdateSceneNodeSystem()
+    *
+    * @return 
+    */
+    static luabind::scope
+    luaBindings();
+
+    /**
     * @brief Constructor
     */
     OgreUpdateSceneNodeSystem();
@@ -216,9 +247,8 @@ public:
     /**
     * @brief Initializes the system
     *
-    * @param engine
     */
-    void init(Engine* engine) override;
+    void init(GameState* gameState) override;
 
     /**
     * @brief Shuts the system down

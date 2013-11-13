@@ -13,6 +13,17 @@ class RenderSystem : public System {
 public:
 
     /**
+    * @brief Lua bindings
+    *
+    * Exposes:
+    * - RenderSystem()
+    *
+    * @return 
+    */
+    static luabind::scope
+    luaBindings();
+
+    /**
     * @brief Constructor
     */
     RenderSystem();
@@ -25,11 +36,10 @@ public:
     /**
     * @brief Initializes the system
     *
-    * @param engine
     */
     void
     init(
-        Engine* engine
+        GameState* gameState
     ) override;
 
     /**

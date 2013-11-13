@@ -1,7 +1,7 @@
 #include "ogre/light_system.h"
 
 #include "engine/component_factory.h"
-#include "engine/engine.h"
+#include "engine/game_state.h"
 #include "engine/entity_filter.h"
 #include "engine/serialization.h"
 #include "ogre/scene_node_system.h"
@@ -108,6 +108,15 @@ REGISTER_COMPONENT(OgreLightComponent)
 // OgreLightSystem
 ////////////////////////////////////////////////////////////////////////////////
 
+luabind::scope
+OgreLightSystem::luaBindings() {
+    using namespace luabind;
+    return class_<OgreLightSystem, System>("OgreLightSystem")
+        .def(constructor<>())
+    ;
+}
+
+
 struct OgreLightSystem::Implementation {
 
     EntityFilter<
@@ -133,12 +142,12 @@ OgreLightSystem::~OgreLightSystem() {}
 
 void
 OgreLightSystem::init(
-    Engine* engine
+    GameState* gameState
 ) {
-    System::init(engine);
+    System::init(gameState);
     assert(m_impl->m_sceneManager == nullptr && "Double init of system");
-    m_impl->m_sceneManager = engine->sceneManager();
-    m_impl->m_entities.setEntityManager(&engine->entityManager());
+    m_impl->m_sceneManager = gameState->sceneManager();
+    m_impl->m_entities.setEntityManager(&gameState->entityManager());
 }
 
 
@@ -154,7 +163,9 @@ void
 OgreLightSystem::update(int) {
     for (EntityId entityId : m_impl->m_entities.removedEntities()) {
         Ogre::Light* light = m_impl->m_lights[entityId];
-        m_impl->m_sceneManager->destroyLight(light);
+        if (light) {
+            m_impl->m_sceneManager->destroyLight(light);
+        }
         m_impl->m_lights.erase(entityId);
     }
     for (const auto& added : m_impl->m_entities.addedEntities()) {

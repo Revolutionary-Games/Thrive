@@ -6,8 +6,15 @@
 luabind::scope
 thrive::MicrobeBindings::luaBindings() {
     return (
+        // Components
         AgentAbsorberComponent::luaBindings(),
         AgentEmitterComponent::luaBindings(),
+        // Systems
+        AgentLifetimeSystem::luaBindings(),
+        AgentMovementSystem::luaBindings(),
+        AgentAbsorberSystem::luaBindings(),
+        AgentEmitterSystem::luaBindings(),
+        // Other
         AgentRegistry::luaBindings()
     );
 }

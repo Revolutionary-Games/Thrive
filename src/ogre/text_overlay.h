@@ -156,6 +156,17 @@ class TextOverlaySystem : public System {
 public:
 
     /**
+    * @brief Lua bindings
+    *
+    * Exposes:
+    * - TextOverlaySystem()
+    *
+    * @return 
+    */
+    static luabind::scope
+    luaBindings();
+
+    /**
     * @brief Constructor
     */
     TextOverlaySystem();
@@ -165,12 +176,15 @@ public:
     */
     ~TextOverlaySystem();
 
+    void activate() override;
+
+    void deactivate() override;
+
     /**
     * @brief Initializes the system
     *
-    * @param engine
     */
-    void init(Engine* engine) override;
+    void init(GameState* gameState) override;
 
     /**
     * @brief Shuts the system down

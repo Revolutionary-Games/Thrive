@@ -26,14 +26,6 @@ public:
     instance();
 
     /**
-    * @brief Returns the entity manager of the global Game instance
-    *
-    * @return 
-    */
-    static EntityManager&
-    globalEntityManager();
-
-    /**
     * @brief Destructor
     */
     ~Game();

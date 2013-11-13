@@ -3,33 +3,31 @@
 #include "engine/component_collection.h"
 #include "engine/component_factory.h"
 #include "engine/entity_manager.h"
-#include "engine/saving.h"
+#include "engine/game_state.h"
+#include "engine/serialization.h"
 #include "engine/system.h"
 #include "engine/rng.h"
 #include "game.h"
 
 // Bullet
 #include "bullet/bullet_to_ogre_system.h"
-#include "bullet/debug_drawing.h"
 #include "bullet/rigid_body_system.h"
 #include "bullet/update_physics_system.h"
 
 // Ogre
 #include "ogre/camera_system.h"
-#include "ogre/keyboard_system.h"
+#include "ogre/keyboard.h"
 #include "ogre/light_system.h"
-#include "ogre/mouse_system.h"
+#include "ogre/mouse.h"
 #include "ogre/render_system.h"
 #include "ogre/scene_node_system.h"
 #include "ogre/sky_system.h"
 #include "ogre/text_overlay.h"
-#include "ogre/viewport_system.h"
 
 // Scripting
 #include "scripting/luabind.h"
 #include "scripting/lua_state.h"
 #include "scripting/script_initializer.h"
-#include "scripting/script_system_updater.h"
 
 
 // Microbe
@@ -41,7 +39,6 @@
 #include <boost/algorithm/string.hpp>
 #include <boost/filesystem.hpp>
 #include <boost/lexical_cast.hpp>
-#include <btBulletDynamicsCommon.h>
 #include <chrono>
 #include <ctime>
 #include <forward_list>
@@ -76,16 +73,8 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
     Implementation(
         Engine& engine
     ) : m_engine(engine),
-        m_rng(),
-        m_loadSystem(std::make_shared<LoadSystem>()),
-        m_saveSystem(std::make_shared<SaveSystem>()),
-        m_scriptSystemUpdater(std::make_shared<ScriptSystemUpdater>()),
-        m_viewportSystem(std::make_shared<OgreViewportSystem>())
+        m_rng()
     {
-        m_loadSystem->setActive(false);
-        m_saveSystem->setActive(false);
-        m_input.keyboardSystem = std::make_shared<KeyboardSystem>();
-        m_input.mouseSystem = std::make_shared<MouseSystem>();
     }
 
     ~Implementation() {
@@ -96,10 +85,63 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
     }
 
     void
-    addSystem(
-        std::shared_ptr<System> system
+    activateGameState(
+        GameState* gameState
     ) {
-        m_systems.push_back(std::move(system));
+        if (m_currentGameState) {
+            m_currentGameState->deactivate();
+        }
+        m_currentGameState = gameState;
+        if (gameState) {
+            gameState->activate();
+        }
+    }
+
+    void
+    loadSavegame() {
+        std::ifstream stream(
+            m_serialization.loadFile,
+            std::ifstream::binary
+        );
+        m_serialization.loadFile = "";
+        stream.clear();
+        stream.exceptions(std::ofstream::failbit | std::ofstream::badbit);
+        StorageContainer savegame;
+        try {
+            stream >> savegame;
+        }
+        catch(const std::ofstream::failure& e) {
+            std::cerr << "Error loading file: " << e.what() << std::endl;
+            throw;
+        }
+        // Load game states
+        GameState* previousGameState = m_currentGameState;
+        this->activateGameState(nullptr);
+        StorageContainer gameStates = savegame.get<StorageContainer>("gameStates");
+        for (const auto& pair : m_gameStates) {
+            if (gameStates.contains(pair.first)) {
+                // In case anything relies on the current game state
+                // during loading, temporarily switch it
+                m_currentGameState = pair.second.get();
+                pair.second->load(
+                    gameStates.get<StorageContainer>(pair.first)
+                );
+            }
+            else {
+                pair.second->entityManager().clear();
+            }
+        }
+        m_currentGameState = nullptr;
+        // Switch gamestate
+        std::string gameStateName = savegame.get<std::string>("currentGameState");
+        auto iter = m_gameStates.find(gameStateName);
+        if (iter != m_gameStates.end()) {
+            this->activateGameState(iter->second.get());
+        }
+        else {
+            this->activateGameState(previousGameState);
+            // TODO: Log error
+        }
     }
 
     void
@@ -177,19 +219,49 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
 
     bool
     quitRequested() {
-        return m_input.keyboardSystem->isKeyDown(
+        return m_input.keyboard.isKeyDown(
             OIS::KeyCode::KC_ESCAPE
         );
     }
 
     void
+    saveSavegame() {
+        StorageContainer savegame;
+        savegame.set("currentGameState", m_currentGameState->name());
+        StorageContainer gameStates;
+        for (const auto& pair : m_gameStates) {
+            gameStates.set(pair.first, pair.second->storage());
+        }
+        savegame.set("gameStates", std::move(gameStates));
+        std::ofstream stream(
+            m_serialization.saveFile, 
+            std::ofstream::trunc | std::ofstream::binary
+        );
+        m_serialization.saveFile = "";
+        stream.exceptions(std::ofstream::failbit | std::ofstream::badbit);
+        if (stream) {
+            try {
+                stream << savegame;
+                stream.flush();
+                stream.close();
+            }
+            catch (const std::ofstream::failure& e) {
+                std::cerr << "Error saving file: " << e.what() << std::endl;
+                throw;
+            }
+        }
+        else {
+            std::perror("Could not open file for saving");
+        }
+    }
+
+    void
     setupGraphics() {
-        this->setupLog();
         m_graphics.root.reset(new Ogre::Root(PLUGINS_CFG));
         this->loadResources();
         this->loadOgreConfig();
         m_graphics.renderWindow = m_graphics.root->initialise(true, "Thrive");
-        m_input.mouseSystem->setWindowSize(
+        m_input.mouse.setWindowSize(
             m_graphics.renderWindow->getWidth(),
             m_graphics.renderWindow->getHeight()
         );
@@ -201,14 +273,6 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
         Ogre::TextureManager::getSingleton().setDefaultNumMipmaps(5);
         // initialise all resource groups
         Ogre::ResourceGroupManager::getSingleton().initialiseAllResourceGroups();
-        // Setup
-        m_graphics.sceneManager = m_graphics.root->createSceneManager(
-            "DefaultSceneManager"
-        );
-        m_graphics.sceneManager->setAmbientLight(
-            Ogre::ColourValue(0.5, 0.5, 0.5)
-        );
-        setupInputManager();
     }
 
     void
@@ -233,6 +297,8 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
         parameters.insert(std::make_pair(std::string("XAutoRepeatOn"), std::string("true")));
 #endif
         m_input.inputManager = OIS::InputManager::createInputSystem(parameters);
+        m_input.keyboard.init(m_input.inputManager);
+        m_input.mouse.init(m_input.inputManager);
     }
 
     void
@@ -242,68 +308,10 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
     }
 
     void
-    setupPhysics() {
-        m_physics.collisionConfiguration.reset(new btDefaultCollisionConfiguration());
-        m_physics.dispatcher.reset(new btCollisionDispatcher(
-            m_physics.collisionConfiguration.get()
-        ));
-        m_physics.broadphase.reset(new btDbvtBroadphase());
-        m_physics.solver.reset(new btSequentialImpulseConstraintSolver());
-        m_physics.world.reset(new btDiscreteDynamicsWorld(
-            m_physics.dispatcher.get(),
-            m_physics.broadphase.get(),
-            m_physics.solver.get(),
-            m_physics.collisionConfiguration.get()
-        ));
-        m_physics.world->setGravity(btVector3(0,0,0));
-        // Debug drawing
-        m_physics.debugDrawSystem = std::make_shared<BulletDebugDrawSystem>();
-        m_physics.debugDrawSystem->setActive(false);
-    }
-
-    void
     setupScripts() {
         initializeLua(m_luaState);
     }
 
-    void
-    setupSystems() {
-        std::shared_ptr<System> systems[] = {
-            // Loading, this should be first
-            m_loadSystem,
-            // Input
-            m_input.keyboardSystem,
-            m_input.mouseSystem,
-            // Scripts
-            m_scriptSystemUpdater,
-            // Microbe
-            std::make_shared<AgentLifetimeSystem>(),
-            std::make_shared<AgentMovementSystem>(),
-            std::make_shared<AgentEmitterSystem>(),
-            std::make_shared<AgentAbsorberSystem>(),
-            // Physics
-            std::make_shared<RigidBodyInputSystem>(),
-            std::make_shared<UpdatePhysicsSystem>(),
-            std::make_shared<RigidBodyOutputSystem>(),
-            std::make_shared<BulletToOgreSystem>(),
-            m_physics.debugDrawSystem,
-            // Graphics
-            std::make_shared<OgreAddSceneNodeSystem>(),
-            std::make_shared<OgreUpdateSceneNodeSystem>(),
-            std::make_shared<OgreCameraSystem>(),
-            std::make_shared<OgreLightSystem>(),
-            std::make_shared<SkySystem>(),
-            std::make_shared<TextOverlaySystem>(),
-            m_viewportSystem, // Has to come *after* camera system
-            std::make_shared<OgreRemoveSceneNodeSystem>(),
-            std::make_shared<RenderSystem>(),
-            // Saving, this should be last
-            m_saveSystem
-        };
-        for (auto system : systems) {
-            this->addSystem(system);
-        }
-    }
 
     void
     shutdownInputManager() {
@@ -329,7 +337,7 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
         Ogre::RenderWindow* window
     ) override {
         if (window == m_graphics.renderWindow) {
-            m_input.mouseSystem->setWindowSize(
+            m_input.mouse.setWindowSize(
                 window->getWidth(),
                 window->getHeight()
             );
@@ -343,17 +351,17 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
     // manager, the lua state has to live longer than the manager.
     LuaState m_luaState;
 
+    GameState* m_currentGameState = nullptr;
+
     ComponentFactory m_componentFactory;
 
     Engine& m_engine;
 
-    EntityManager m_entityManager;
+    std::map<std::string, std::unique_ptr<GameState>> m_gameStates;
 
     RNG m_rng;
 
     struct Graphics {
-
-        Ogre::SceneManager* sceneManager = nullptr;
 
         std::unique_ptr<Ogre::Root> root;
 
@@ -361,67 +369,73 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
 
     } m_graphics;
 
-    bool m_initialized = false;
-
     struct Input {
 
         OIS::InputManager* inputManager = nullptr;
 
-        std::shared_ptr<KeyboardSystem> keyboardSystem;
+        Keyboard keyboard;
 
-        std::shared_ptr<MouseSystem> mouseSystem;
+        Mouse mouse;
 
     } m_input;
 
-    std::shared_ptr<LoadSystem> m_loadSystem;
+    GameState* m_nextGameState = nullptr;
 
-    struct Physics {
+    struct Serialization {
 
-        std::unique_ptr<btBroadphaseInterface> broadphase;
+        std::string loadFile;
 
-        std::unique_ptr<btCollisionConfiguration> collisionConfiguration;
+        std::string saveFile;
 
-        std::shared_ptr<BulletDebugDrawSystem> debugDrawSystem;
-
-        std::unique_ptr<btDispatcher> dispatcher;
-
-        std::unique_ptr<btConstraintSolver> solver;
-
-        std::unique_ptr<btDiscreteDynamicsWorld> world;
-
-    } m_physics;
-
-    std::shared_ptr<SaveSystem> m_saveSystem;
-
-    std::shared_ptr<ScriptSystemUpdater> m_scriptSystemUpdater;
-
-    std::list<std::shared_ptr<System>> m_systems;
-
-    std::shared_ptr<OgreViewportSystem> m_viewportSystem;
+    } m_serialization;
 
 };
 
 
-static void
-Engine_addScriptSystem(
+static GameState*
+Engine_createGameState(
     Engine* self,
-    System* system
+    std::string name,
+    luabind::object luaSystems,
+    luabind::object luaInitializer
 ) {
-    self->addScriptSystem(std::shared_ptr<System>(system));
+    std::vector<std::unique_ptr<System>> systems;
+    for (luabind::iterator iter(luaSystems), end; iter != end; ++iter) {
+        System* system = luabind::object_cast<System*>(
+            *iter,
+            luabind::adopt(luabind::result)
+        );
+        systems.emplace_back(system);
+    }
+    // We can't just capture the luaInitializer in the lambda here, because 
+    // luabind::object's call operator is not const
+    auto initializer = std::bind<void>(
+        [](luabind::object luaInitializer) {
+            luaInitializer();
+        },
+        luaInitializer
+    );
+    return self->createGameState(
+        name, 
+        std::move(systems),
+        initializer
+    );
 }
+
 
 luabind::scope
 Engine::luaBindings() {
     using namespace luabind;
     return class_<Engine>("__Engine")
-        .def("addScriptSystem", &Engine_addScriptSystem, adopt(_2))
+        .def("createGameState", Engine_createGameState)
+        .def("currentGameState", &Engine::currentGameState)
+        .def("getGameState", &Engine::getGameState)
+        .def("setCurrentGameState", &Engine::setCurrentGameState)
         .def("load", &Engine::load)
         .def("save", &Engine::save)
-        .def("setPhysicsDebugDrawingEnabled", &Engine::setPhysicsDebugDrawingEnabled)
         .property("componentFactory", &Engine::componentFactory)
-        .property("keyboard", &Engine::keyboardSystem)
-        .property("mouse", &Engine::mouseSystem)
-        .property("sceneManager", &Engine::sceneManager)
+        .property("keyboard", &Engine::keyboard)
+        .property("mouse", &Engine::mouse)
     ;
 }
 
@@ -434,20 +448,7 @@ Engine::Engine()
 }
 
 
-Engine::~Engine() {
-    m_impl->m_physics.world.reset();
-}
-
-
-void
-Engine::addScriptSystem(
-    std::shared_ptr<System> system
-) {
-    if (m_impl->m_initialized) {
-        throw std::runtime_error("Cannot add system after engine is initialized");
-    }
-    m_impl->m_scriptSystemUpdater->addSystem(system);
-}
+Engine::~Engine() { }
 
 
 ComponentFactory&
@@ -456,9 +457,31 @@ Engine::componentFactory() {
 }
 
 
-EntityManager&
-Engine::entityManager() {
-    return m_impl->m_entityManager;
+GameState*
+Engine::createGameState(
+    std::string name,
+    std::vector<std::unique_ptr<System>> systems,
+    GameState::Initializer initializer
+) {
+    assert(m_impl->m_gameStates.find(name) == m_impl->m_gameStates.end() && "Duplicate GameState name");
+    std::unique_ptr<GameState> gameState(new GameState(
+        *this,
+        name,
+        std::move(systems),
+        initializer
+    ));
+    GameState* rawGameState = gameState.get();
+    m_impl->m_gameStates.insert(std::make_pair(
+        name, 
+        std::move(gameState)
+    ));
+    return rawGameState;
+}
+
+
+GameState*
+Engine::currentGameState() const {
+    return m_impl->m_currentGameState;
 }
 
 RNG&
@@ -467,18 +490,36 @@ Engine::rng() {
 }
 
 
+GameState*
+Engine::getGameState(
+    const std::string& name
+) const {
+    auto iter = m_impl->m_gameStates.find(name);
+    if (iter != m_impl->m_gameStates.end()) {
+        return iter->second.get();
+    }
+    else {
+        return nullptr;
+    }
+}
+
+
 void
 Engine::init() {
+    assert(m_impl->m_currentGameState == nullptr);
     std::srand(unsigned(time(0)));
-    m_impl->setupPhysics();
+    m_impl->setupLog();
     m_impl->setupScripts();
     m_impl->setupGraphics();
-    m_impl->setupSystems();
+    m_impl->setupInputManager();
     m_impl->loadScripts("../scripts");
-    for (auto& system : m_impl->m_systems) {
-        system->init(this);
+    GameState* previousGameState = m_impl->m_currentGameState;
+    for (const auto& pair : m_impl->m_gameStates) {
+        const auto& gameState = pair.second;
+        m_impl->m_currentGameState = gameState.get();
+        gameState->init();
     }
-    m_impl->m_scriptSystemUpdater->initSystems(this);
+    m_impl->m_currentGameState = previousGameState;
 }
 
 
@@ -488,9 +529,9 @@ Engine::inputManager() const {
 }
 
 
-KeyboardSystem&
-Engine::keyboardSystem() const {
-    return *m_impl->m_input.keyboardSystem;
+const Keyboard&
+Engine::keyboard() const {
+    return m_impl->m_input.keyboard;
 }
 
 
@@ -498,13 +539,13 @@ void
 Engine::load(
     std::string filename
 ) {
-    m_impl->m_loadSystem->load(filename);
+    m_impl->m_serialization.loadFile = filename;
 }
 
 
-MouseSystem&
-Engine::mouseSystem() const {
-    return *m_impl->m_input.mouseSystem;
+const Mouse&
+Engine::mouse() const {
+    return m_impl->m_input.mouse;
 }
 
 
@@ -513,10 +554,6 @@ Engine::ogreRoot() const {
     return m_impl->m_graphics.root.get();
 }
 
-btDiscreteDynamicsWorld*
-Engine::physicsWorld() const {
-    return m_impl->m_physics.world.get();
-}
 
 Ogre::RenderWindow*
 Engine::renderWindow() const {
@@ -528,29 +565,24 @@ void
 Engine::save(
     std::string filename
 ) {
-    m_impl->m_saveSystem->save(filename);
-}
-
-
-Ogre::SceneManager*
-Engine::sceneManager() const {
-    return m_impl->m_graphics.sceneManager;
+    m_impl->m_serialization.saveFile = filename;
 }
 
 
 void
-Engine::setPhysicsDebugDrawingEnabled(
-    bool enabled
+Engine::setCurrentGameState(
+    GameState* gameState
 ) {
-    m_impl->m_physics.debugDrawSystem->setActive(enabled);
+    assert(gameState != nullptr && "GameState must not be null");
+    m_impl->m_nextGameState = gameState;
 }
 
 
 void
 Engine::shutdown() {
-    m_impl->m_scriptSystemUpdater->shutdownSystems();
-    for (auto& system : m_impl->m_systems) {
-        system->shutdown();
+    for (const auto& pair : m_impl->m_gameStates) {
+        const auto& gameState = pair.second;
+        gameState->shutdown();
     }
     m_impl->shutdownInputManager();
     m_impl->m_graphics.renderWindow->destroy();
@@ -560,23 +592,25 @@ Engine::shutdown() {
 
 void
 Engine::update(
-    int milliSeconds
+    int milliseconds
 ) {
+    if (not m_impl->m_serialization.saveFile.empty()) {
+        m_impl->saveSavegame();
+    }
     Ogre::WindowEventUtilities::messagePump();
     if (m_impl->quitRequested()) {
         Game::instance().quit();
     }
-    for(auto& system : m_impl->m_systems) {
-        if (system->active()) {
-            system->update(milliSeconds);
-        }
+    m_impl->m_input.keyboard.update();
+    m_impl->m_input.mouse.update();
+    if (m_impl->m_nextGameState) {
+        m_impl->activateGameState(m_impl->m_nextGameState);
+        m_impl->m_nextGameState = nullptr;
     }
-    m_impl->m_entityManager.processRemovals();
+    assert(m_impl->m_currentGameState != nullptr);
+    m_impl->m_currentGameState->update(milliseconds);
+    if (not m_impl->m_serialization.loadFile.empty()) {
+        m_impl->loadSavegame();
+    }
 }
-
-OgreViewportSystem&
-Engine::viewportSystem() {
-    return *(m_impl->m_viewportSystem);
-}
-
 

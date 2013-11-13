@@ -1,8 +1,10 @@
 #pragma once
 
+#include "engine/game_state.h"
 #include "engine/typedefs.h"
 
 #include <memory>
+#include <vector>
 
 class btDiscreteDynamicsWorld;
 class lua_State;
@@ -26,8 +28,8 @@ namespace thrive {
 
 class ComponentFactory;
 class EntityManager;
-class KeyboardSystem;
-class MouseSystem;
+class Keyboard;
+class Mouse;
 class OgreViewportSystem;
 class System;
 class RNG;
@@ -47,14 +49,15 @@ public:
     * @brief Lua bindings
     *
     * Exposes:
-    * - Engine::addScriptSystem()
+    * - Engine::createGameState()
+    * - Engine::currentGameState()
+    * - Engine::getGameState()
+    * - Engine::setCurrentGameState()
     * - Engine::load()
     * - Engine::save()
-    * - Engine::setPhysicsDebugDrawingEnabled()
     * - Engine::componentFactory() (as property)
     * - Engine::keyboard() (as property)
     * - Engine::mouse() (as property)
-    * - Engine::sceneManager() (as property)
     *
     * @return
     */
@@ -78,30 +81,44 @@ public:
     ~Engine();
 
     /**
-    * @brief Adds a system to the ScriptSystemUpdater
-    *
-    * @param system
-    *   The system to add
-    */
-    void
-    addScriptSystem(
-        std::shared_ptr<System> system
-    );
-
-    /**
     * @brief Returns the internal component factory
     *
-    * @return
+    * @return 
     */
     ComponentFactory&
     componentFactory();
 
     /**
-    * @brief The engine's entity manager
+    * @brief Creates a new game state
+    *
+    * @param name
+    *   The game state's name
+    *
+    * @param systems
+    *   The systems active in the game state
+    *
+    * @param initializer
+    *   The initialization function for the game state
+    *
+    * @return
+    *   The new game state. Will never be \c null. It is returned as a pointer
+    *   as a convenience for Lua bindings, which don't handle references well.
+    */
+    GameState*
+    createGameState(
+        std::string name,
+        std::vector<std::unique_ptr<System>> systems,
+        GameState::Initializer initializer
+    );
+
+    /**
+    * @brief Returns the currently active game state
+    *
+    * If no game state has been set yet, returns \c nullptr
     *
     */
-    EntityManager&
-    entityManager();
+    GameState*
+    currentGameState() const;
 
 
     /**
@@ -110,6 +127,21 @@ public:
     */
     RNG&
     rng();
+
+    /**
+    * @brief Retrieves a game state
+    *
+    * @param name
+    *   The game state's name
+    *
+    * @return 
+    *   The game state with \a name or \c nullptr if no game state with 
+    *   this name exists.
+    */
+    GameState*
+    getGameState(
+        const std::string& name
+    ) const;
 
     /**
     * @brief Initializes the engine
@@ -128,10 +160,11 @@ public:
     inputManager() const;
 
     /**
-    * @brief The keyboard system
+    * @brief Returns the keyboard interface
+    *
     */
-    KeyboardSystem&
-    keyboardSystem() const;
+    const Keyboard&
+    keyboard() const;
 
     /**
     * @brief Loads a savegame
@@ -151,22 +184,17 @@ public:
     luaState();
 
     /**
-    * @brief The mouse system
+    * @brief Returns the mouse interface
+    *
     */
-    MouseSystem&
-    mouseSystem() const;
+    const Mouse&
+    mouse() const;
 
     /**
     * @brief The Ogre root object
     */
     Ogre::Root*
     ogreRoot() const;
-
-    /**
-    * @brief The physics world
-    */
-    btDiscreteDynamicsWorld*
-    physicsWorld() const;
 
     /**
     * @brief Creates a savegame
@@ -180,19 +208,19 @@ public:
     );
 
     /**
-    * @brief The Ogre scene manager
-    */
-    Ogre::SceneManager*
-    sceneManager() const;
-
-    /**
-    * @brief Enables or disables physics debug drawing
+    * @brief Sets the current game state
     *
-    * @param enabled
+    * The game state will be activated at the beginning of the next frame.
+    *
+    * \a gameState must not be \c null. It's passed by pointer as a 
+    * convenience for the Lua bindings (which can't handle references well).
+    *
+    * @param gameState
+    *   The new game state
     */
     void
-    setPhysicsDebugDrawingEnabled(
-        bool enabled
+    setCurrentGameState(
+        GameState* gameState
     );
 
     /**
@@ -217,12 +245,6 @@ public:
     update(
         int milliseconds
     );
-
-    /**
-    * @brief The viewport system
-    */
-    OgreViewportSystem&
-    viewportSystem();
 
     /**
     * @brief The render window
