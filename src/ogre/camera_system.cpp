@@ -1,7 +1,7 @@
 #include "ogre/camera_system.h"
 
 #include "engine/component_factory.h"
-#include "engine/engine.h"
+#include "engine/game_state.h"
 #include "engine/entity_filter.h"
 #include "engine/serialization.h"
 #include "ogre/scene_node_system.h"
@@ -109,6 +109,15 @@ REGISTER_COMPONENT(OgreCameraComponent)
 // OgreCameraSystem
 ////////////////////////////////////////////////////////////////////////////////
 
+luabind::scope
+OgreCameraSystem::luaBindings() {
+    using namespace luabind;
+    return class_<OgreCameraSystem, System>("OgreCameraSystem")
+        .def(constructor<>())
+    ;
+}
+
+
 struct OgreCameraSystem::Implementation {
 
     std::unordered_map<EntityId, Ogre::Camera*> m_cameras;
@@ -133,12 +142,12 @@ OgreCameraSystem::~OgreCameraSystem() {}
 
 void
 OgreCameraSystem::init(
-    Engine* engine
+    GameState* gameState
 ) {
-    System::init(engine);
+    System::init(gameState);
     assert(m_impl->m_sceneManager == nullptr && "Double init of system");
-    m_impl->m_sceneManager = engine->sceneManager();
-    m_impl->m_entities.setEntityManager(&engine->entityManager());
+    m_impl->m_sceneManager = gameState->sceneManager();
+    m_impl->m_entities.setEntityManager(&gameState->entityManager());
 }
 
 
@@ -154,9 +163,11 @@ void
 OgreCameraSystem::update(int) {
     for (EntityId entityId : m_impl->m_entities.removedEntities()) {
         Ogre::Camera* camera = m_impl->m_cameras[entityId];
-        Ogre::SceneNode* sceneNode = camera->getParentSceneNode();
-        sceneNode->detachObject(camera);
-        m_impl->m_sceneManager->destroyCamera(camera);
+        if (camera) {
+            Ogre::SceneNode* sceneNode = camera->getParentSceneNode();
+            sceneNode->detachObject(camera);
+            m_impl->m_sceneManager->destroyCamera(camera);
+        }
         m_impl->m_cameras.erase(entityId);
     }
     for (auto& value : m_impl->m_entities.addedEntities()) {

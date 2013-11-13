@@ -1,16 +1,5 @@
 -- Defines some utility functions for convenience
 
--- Adds a system to the global engine object
---
--- Systems are updated in the order they are added.
--- 
--- @param cls
---  The class object of the system
-function ADD_SYSTEM(cls)
-    Engine:addScriptSystem(cls())
-end
-
-
 -- Registers a component type
 --
 -- Registering a component type enables serialization / deserialization for

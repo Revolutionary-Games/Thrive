@@ -5,6 +5,7 @@
 #include "engine/entity.h"
 #include "engine/entity_filter.h"
 #include "engine/entity_manager.h"
+#include "engine/game_state.h"
 #include "engine/serialization.h"
 #include "game.h"
 #include "ogre/camera_system.h"
@@ -105,11 +106,90 @@ REGISTER_COMPONENT(OgreViewportComponent)
 ////////////////////////////////////////////////////////////////////////////////
 
 
+luabind::scope
+OgreViewportSystem::luaBindings() {
+    using namespace luabind;
+    return class_<OgreViewportSystem, System>("OgreViewportSystem")
+        .def(constructor<>())
+    ;
+}
+
+
 struct OgreViewportSystem::Implementation {
+
+
+    Implementation(
+        OgreViewportSystem& system
+    ) : m_system(system)
+    {
+    }
+
+
+    void
+    removeAllViewports() {
+        for (const auto& item : m_entities) {
+            OgreViewportComponent* viewportComponent = std::get<0>(item.second);
+            viewportComponent->m_viewport = nullptr;
+        }
+        for (const auto& pair : m_viewports) {
+            this->removeViewport(pair.second);
+        }
+        m_viewports.clear();
+    }
+
+    void
+    removeViewport(
+        Ogre::Viewport* viewport
+    ) {
+        m_renderWindow->removeViewport(
+            viewport->getZOrder()
+        );
+    }
+
+
+    void
+    restoreAllViewports() {
+        for (const auto& item : m_entities) {
+            EntityId entityId = item.first;
+            OgreViewportComponent* component = std::get<0>(item.second);
+            this->restoreViewport(entityId, component);
+        }
+    }
+
+    void
+    restoreViewport(
+        EntityId entityId,
+        OgreViewportComponent* component
+    ) {
+        if (component->m_viewport) {
+            // No need to restore
+            return;
+        }
+        // Find camera (if any)
+        Ogre::Camera* camera = nullptr;
+        auto cameraComponent = m_system.entityManager()->getComponent<OgreCameraComponent>(
+            component->m_properties.cameraEntity
+        );
+        if (cameraComponent) {
+            camera = cameraComponent->m_camera;
+        }
+        // Create viewport
+        Ogre::Viewport* viewport = m_renderWindow->addViewport(
+            camera,
+            component->zOrder()
+        );
+        component->m_viewport = viewport;
+        m_viewports.emplace(
+            entityId,
+            viewport
+        );
+    }
 
     EntityFilter<OgreViewportComponent> m_entities = {true};
 
     Ogre::RenderWindow* m_renderWindow = nullptr;
+
+    OgreViewportSystem& m_system;
 
     std::unordered_map<EntityId, Ogre::Viewport*> m_viewports;
 
@@ -117,7 +197,7 @@ struct OgreViewportSystem::Implementation {
 
 
 OgreViewportSystem::OgreViewportSystem()
-  : m_impl(new Implementation())
+  : m_impl(new Implementation(*this))
 {
 }
 
@@ -126,13 +206,28 @@ OgreViewportSystem::~OgreViewportSystem() {}
 
 
 void
-OgreViewportSystem::init(
-    Engine* engine
-) {
-    System::init(engine);
-    m_impl->m_renderWindow = engine->renderWindow();
-    m_impl->m_entities.setEntityManager(&engine->entityManager());
+OgreViewportSystem::activate() {
+    m_impl->restoreAllViewports();
+    m_impl->m_entities.clearChanges();
 }
+
+
+void
+OgreViewportSystem::deactivate() {
+    m_impl->removeAllViewports();
+}
+
+
+void
+OgreViewportSystem::init(
+    GameState* gameState
+) {
+    System::init(gameState);
+    m_impl->m_renderWindow = this->engine()->renderWindow();
+    m_impl->m_entities.setEntityManager(&gameState->entityManager());
+}
+
+
 
 
 void
@@ -147,22 +242,12 @@ void
 OgreViewportSystem::update(int) {
     for (EntityId id : m_impl->m_entities.removedEntities()) {
         Ogre::Viewport* viewport = m_impl->m_viewports[id];
-        this->engine()->renderWindow()->removeViewport(
-            viewport->getZOrder()
-        );
+        m_impl->removeViewport(viewport);
     }
     for (const auto& item : m_impl->m_entities.addedEntities()) {
-        EntityId id = item.first;
-        OgreViewportComponent* viewportComponent = std::get<0>(item.second);
-        Ogre::Viewport* viewport = m_impl->m_renderWindow->addViewport(
-            nullptr, // No camera
-            viewportComponent->zOrder()
-        );
-        viewportComponent->m_viewport = viewport;
-        m_impl->m_viewports.emplace(
-            id,
-            viewport
-        );
+        EntityId entityId = item.first;
+        OgreViewportComponent* component = std::get<0>(item.second);
+        m_impl->restoreViewport(entityId, component);
     }
     m_impl->m_entities.clearChanges();
     for (const auto& item : m_impl->m_entities) {
@@ -170,7 +255,7 @@ OgreViewportSystem::update(int) {
         auto& properties = viewportComponent->m_properties;
         if (properties.hasChanges()) {
             Ogre::Viewport* viewport = viewportComponent->m_viewport;
-            auto cameraComponent = this->engine()->entityManager().getComponent<OgreCameraComponent>(
+            auto cameraComponent = this->entityManager()->getComponent<OgreCameraComponent>(
                 properties.cameraEntity
             );
             if (cameraComponent) {

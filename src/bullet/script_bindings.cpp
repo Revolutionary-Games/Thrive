@@ -1,8 +1,11 @@
 #include "bullet/script_bindings.h"
 
 #include "bullet/bullet_ogre_conversion.h"
+#include "bullet/bullet_to_ogre_system.h"
 #include "bullet/collision_shape.h"
+#include "bullet/debug_drawing.h"
 #include "bullet/rigid_body_system.h"
+#include "bullet/update_physics_system.h"
 #include "scripting/luabind.h"
 
 #include <btBulletCollisionCommon.h>
@@ -15,6 +18,7 @@ using namespace thrive;
 luabind::scope
 thrive::BulletBindings::luaBindings() {
     return (
+        // Shapes
         CollisionShape::luaBindings(),
         BoxShape::luaBindings(),
         CapsuleShape::luaBindings(),
@@ -23,7 +27,14 @@ thrive::BulletBindings::luaBindings() {
         CylinderShape::luaBindings(),
         EmptyShape::luaBindings(),
         SphereShape::luaBindings(),
-        RigidBodyComponent::luaBindings()
+        // Components
+        RigidBodyComponent::luaBindings(),
+        // Systems
+        BulletToOgreSystem::luaBindings(),
+        RigidBodyInputSystem::luaBindings(),
+        RigidBodyOutputSystem::luaBindings(),
+        BulletDebugDrawSystem::luaBindings(),
+        UpdatePhysicsSystem::luaBindings()
     );
 }
 

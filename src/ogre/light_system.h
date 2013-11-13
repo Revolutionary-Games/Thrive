@@ -166,6 +166,17 @@ class OgreLightSystem : public System {
 public:
 
     /**
+    * @brief Lua bindings
+    *
+    * Exposes:
+    * - OgreLightSystem()
+    *
+    * @return 
+    */
+    static luabind::scope
+    luaBindings();
+
+    /**
     * @brief Constructor
     */
     OgreLightSystem();
@@ -178,9 +189,8 @@ public:
     /**
     * @brief Initializes the system
     *
-    * @param engine
     */
-    void init(Engine* engine) override;
+    void init(GameState* gameState) override;
 
     /**
     * @brief Shuts the system down
@@ -188,7 +198,7 @@ public:
     void shutdown() override;
 
     /**
-    * @brief Updates the sky components
+    * @brief Updates the system
     */
     void update(int) override;
 

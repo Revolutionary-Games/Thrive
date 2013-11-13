@@ -21,16 +21,16 @@ end
 -- Sums up the directional input from the keyboard
 local function getMovementDirection()
     local direction = Vector3(0, 0, 0)
-    if (Engine.keyboard:isKeyDown(KeyboardSystem.KC_W)) then
+    if (Engine.keyboard:isKeyDown(Keyboard.KC_W)) then
         direction = direction + Vector3(0, 1, 0)
     end
-    if (Engine.keyboard:isKeyDown(KeyboardSystem.KC_S)) then
+    if (Engine.keyboard:isKeyDown(Keyboard.KC_S)) then
         direction = direction + Vector3(0, -1, 0)
     end
-    if (Engine.keyboard:isKeyDown(KeyboardSystem.KC_A)) then
+    if (Engine.keyboard:isKeyDown(Keyboard.KC_A)) then
         direction = direction + Vector3(-1, 0, 0)
     end
-    if (Engine.keyboard:isKeyDown(KeyboardSystem.KC_D)) then
+    if (Engine.keyboard:isKeyDown(Keyboard.KC_D)) then
         direction = direction + Vector3(1, 0, 0)
     end
     direction:normalise()

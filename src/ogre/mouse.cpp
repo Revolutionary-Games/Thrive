@@ -1,6 +1,5 @@
-#include "ogre/mouse_system.h"
+#include "ogre/mouse.h"
 
-#include "engine/engine.h"
 #include "scripting/luabind.h"
 
 #include <iostream>
@@ -10,7 +9,9 @@
 
 using namespace thrive;
 
-struct MouseSystem::Implementation {
+struct Mouse::Implementation {
+
+    OIS::InputManager* m_inputManager = nullptr;
 
     OIS::Mouse* m_mouse = nullptr;
 
@@ -22,9 +23,9 @@ struct MouseSystem::Implementation {
 
 
 luabind::scope
-MouseSystem::luaBindings() {
+Mouse::luaBindings() {
     using namespace luabind;
-    return class_<MouseSystem>("MouseSystem")
+    return class_<Mouse>("Mouse")
         .enum_("MouseButton") [
             value("MB_Left", OIS::MB_Left),
             value("MB_Right", OIS::MB_Right),
@@ -35,31 +36,31 @@ MouseSystem::luaBindings() {
             value("MB_Button6", OIS::MB_Button6),
             value("MB_Button7", OIS::MB_Button7)
         ]
-        .def("isButtonDown", &MouseSystem::isButtonDown)
-        .def("normalizedPosition", &MouseSystem::normalizedPosition)
-        .def("position", &MouseSystem::position)
+        .def("isButtonDown", &Mouse::isButtonDown)
+        .def("normalizedPosition", &Mouse::normalizedPosition)
+        .def("position", &Mouse::position)
     ;
 }
 
 
-MouseSystem::MouseSystem()
+Mouse::Mouse()
   : m_impl(new Implementation())
 {
 }
 
 
-MouseSystem::~MouseSystem() {}
+Mouse::~Mouse() {}
 
 
 void
-MouseSystem::init(
-    Engine* engine
+Mouse::init(
+    OIS::InputManager* inputManager
 ) {
-    System::init(engine);
     assert(m_impl->m_mouse == nullptr && "Double init of mouse system");
     m_impl->m_mouse = static_cast<OIS::Mouse*>(
-        engine->inputManager()->createInputObject(OIS::OISMouse, false)
+        inputManager->createInputObject(OIS::OISMouse, false)
     );
+    m_impl->m_inputManager = inputManager;
     this->setWindowSize(
         m_impl->m_windowWidth,
         m_impl->m_windowHeight
@@ -68,7 +69,7 @@ MouseSystem::init(
 
 
 bool
-MouseSystem::isButtonDown(
+Mouse::isButtonDown(
     OIS::MouseButtonID button
 ) const {
     return m_impl->m_mouse->getMouseState().buttonDown(button);
@@ -76,7 +77,7 @@ MouseSystem::isButtonDown(
 
 
 Ogre::Vector3
-MouseSystem::normalizedPosition() const {
+Mouse::normalizedPosition() const {
     const OIS::MouseState& mouseState = m_impl->m_mouse->getMouseState();
     return Ogre::Vector3(
         double(mouseState.X.abs) / mouseState.width,
@@ -87,7 +88,7 @@ MouseSystem::normalizedPosition() const {
 
 
 Ogre::Vector3
-MouseSystem::position() const {
+Mouse::position() const {
     return Ogre::Vector3(
         m_impl->m_mouse->getMouseState().X.abs,
         m_impl->m_mouse->getMouseState().Y.abs,
@@ -97,7 +98,7 @@ MouseSystem::position() const {
 
 
 void
-MouseSystem::setWindowSize(
+Mouse::setWindowSize(
     int width,
     int height
 ) {
@@ -111,15 +112,15 @@ MouseSystem::setWindowSize(
 
 
 void
-MouseSystem::shutdown() {
-    this->engine()->inputManager()->destroyInputObject(m_impl->m_mouse);
+Mouse::shutdown() {
+    m_impl->m_inputManager->destroyInputObject(m_impl->m_mouse);
     m_impl->m_mouse = nullptr;
-    System::shutdown();
+    m_impl->m_inputManager = nullptr;
 }
 
 
 void
-MouseSystem::update(int) {
+Mouse::update() {
     m_impl->m_mouse->capture();
 }
 

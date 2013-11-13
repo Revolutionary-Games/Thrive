@@ -1,10 +1,21 @@
 #include "ogre/render_system.h"
 
 #include "engine/engine.h"
+#include "engine/game_state.h"
+#include "scripting/luabind.h"
 
 #include <OgreRoot.h>
 
 using namespace thrive;
+
+luabind::scope
+RenderSystem::luaBindings() {
+    using namespace luabind;
+    return class_<RenderSystem, System>("RenderSystem")
+        .def(constructor<>())
+    ;
+}
+
 
 struct RenderSystem::Implementation {
 
@@ -24,10 +35,10 @@ RenderSystem::~RenderSystem() {}
 
 void
 RenderSystem::init(
-    Engine* engine
+    GameState* gameState
 ) {
-    System::init(engine);
-    m_impl->m_root = engine->ogreRoot();
+    System::init(gameState);
+    m_impl->m_root = this->engine()->ogreRoot();
     assert(m_impl->m_root != nullptr && "Root object is null. Initialize the Engine first.");
 }
 
