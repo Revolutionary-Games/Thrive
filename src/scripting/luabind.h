@@ -68,3 +68,13 @@ namespace boost {
 #endif // Boost version
 
 #include <luabind/luabind.hpp>
+
+inline void
+printLuaError(const luabind::error& e) {
+    luabind::object error_msg(luabind::from_stack(
+        e.state(),
+        -1
+    ));
+    std::cerr<< error_msg << std::endl;
+}
+
