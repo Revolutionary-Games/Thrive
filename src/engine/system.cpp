@@ -20,7 +20,7 @@ struct SystemWrapper : System, luabind::wrap_base {
     init(
         GameState* gameState
     ) override {
-        call<void>("init", gameState);
+        this->call<void>("init", gameState);
     }
 
     static void default_init(
@@ -32,7 +32,7 @@ struct SystemWrapper : System, luabind::wrap_base {
 
     void
     shutdown() override {
-        call<void>("shutdown");
+        this->call<void>("shutdown");
     }
 
     static void default_shutdown(
@@ -45,7 +45,7 @@ struct SystemWrapper : System, luabind::wrap_base {
     update(
         int milliseconds
     ) override {
-        call<void>("update", milliseconds);
+        this->call<void>("update", milliseconds);
     }
 
     static void default_update(
