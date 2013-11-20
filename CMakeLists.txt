@@ -22,7 +22,7 @@ set(ASSET_DIRECTORY ${CMAKE_SOURCE_DIR}/assets
 )
 
 if(NOT IS_DIRECTORY ${ASSET_DIRECTORY}/models)
-    message(WARNING 
+    message(FATAL_ERROR 
 "Could not find assets in ${ASSET_DIRECTORY}.  
 Please use Subversion to download the assets:
         svn co http://91.250.119.121/scm/svn/thrive_assets/trunk ${ASSET_DIRECTORY}
