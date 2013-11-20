@@ -33,17 +33,19 @@ local function setupCamera()
 end
 
 local function setupAgents()
-    AgentRegistry.registerAgentType("energy", "Energy")
+    AgentRegistry.registerAgentType("atp", "ATP")
     AgentRegistry.registerAgentType("oxygen", "Oxygen")    
     AgentRegistry.registerAgentType("nitrate", "Nitrate")
-    AgentRegistry.registerAgentType("faxekondium", "Faxekondium")
+    AgentRegistry.registerAgentType("glucose", "Glucose")
+    AgentRegistry.registerAgentType("co2", "CO2")
+    AgentRegistry.registerAgentType("oxytoxy", "OxyToxy NT")
 end
 
 local function createSpawnSystem()
     local spawnSystem = SpawnSystem()
     
     local testFunction = function(pos)
-        -- Setting up an emitter for energy
+        -- Setting up an emitter for oxygen
         local entity = Entity()
         -- Rigid body
         local rigidBody = RigidBodyComponent()
@@ -66,34 +68,77 @@ local function createSpawnSystem()
         local sceneNode = OgreSceneNodeComponent()
         sceneNode.meshName = "molecule.mesh"
         entity:addComponent(sceneNode)
-        -- Emitter energy
-        local energyEmitter = AgentEmitterComponent()
-        entity:addComponent(energyEmitter)
-        energyEmitter.agentId = AgentRegistry.getAgentId("energy")
-        energyEmitter.emitInterval = 1000
-        energyEmitter.emissionRadius = 1
-        energyEmitter.maxInitialSpeed = 10
-        energyEmitter.minInitialSpeed = 2
-        energyEmitter.minEmissionAngle = Degree(0)
-        energyEmitter.maxEmissionAngle = Degree(360)
-        energyEmitter.meshName = "molecule.mesh"
-        energyEmitter.particlesPerEmission = 1
-        energyEmitter.particleLifeTime = 5000
-        energyEmitter.particleScale = Vector3(0.3, 0.3, 0.3)
-        energyEmitter.potencyPerParticle = 300.0
+        -- Emitter oxygen
+        local oxygenEmitter = AgentEmitterComponent()
+        entity:addComponent(oxygenEmitter)
+        oxygenEmitter.agentId = AgentRegistry.getAgentId("oxygen")
+        oxygenEmitter.emitInterval = 1000
+        oxygenEmitter.emissionRadius = 1
+        oxygenEmitter.maxInitialSpeed = 10
+        oxygenEmitter.minInitialSpeed = 2
+        oxygenEmitter.minEmissionAngle = Degree(0)
+        oxygenEmitter.maxEmissionAngle = Degree(360)
+        oxygenEmitter.meshName = "molecule.mesh"
+        oxygenEmitter.particlesPerEmission = 1
+        oxygenEmitter.particleLifeTime = 5000
+        oxygenEmitter.particleScale = Vector3(0.3, 0.3, 0.3)
+        oxygenEmitter.potencyPerParticle = 2.0
+        
+        return entity
+    end
+    local testFunction2 = function(pos)
+        -- Setting up an emitter for glucose
+        local entity = Entity()
+        -- Rigid body
+        local rigidBody = RigidBodyComponent()
+        rigidBody.properties.friction = 0.2
+        rigidBody.properties.linearDamping = 0.8
+        rigidBody.properties.shape = CylinderShape(
+            CollisionShape.AXIS_X, 
+            0.4,
+            2.0
+        )
+        rigidBody:setDynamicProperties(
+            pos,
+            Quaternion(Radian(Degree(math.random()*360)), Vector3(0, 0, 1)),
+            Vector3(0, 0, 0),
+            Vector3(0, 0, 0)
+        )
+        rigidBody.properties:touch()
+        entity:addComponent(rigidBody)
+        -- Scene node
+        local sceneNode = OgreSceneNodeComponent()
+        sceneNode.meshName = "molecule.mesh"
+        entity:addComponent(sceneNode)
+        -- Emitter glucose
+        local glucoseEmitter = AgentEmitterComponent()
+        entity:addComponent(glucoseEmitter)
+        glucoseEmitter.agentId = AgentRegistry.getAgentId("glucose")
+        glucoseEmitter.emitInterval = 2000
+        glucoseEmitter.emissionRadius = 1
+        glucoseEmitter.maxInitialSpeed = 10
+        glucoseEmitter.minInitialSpeed = 2
+        glucoseEmitter.minEmissionAngle = Degree(0)
+        glucoseEmitter.maxEmissionAngle = Degree(360)
+        glucoseEmitter.meshName = "molecule.mesh"
+        glucoseEmitter.particlesPerEmission = 1
+        glucoseEmitter.particleLifeTime = 5000
+        glucoseEmitter.particleScale = Vector3(0.3, 0.3, 0.3)
+        glucoseEmitter.potencyPerParticle = 1.0
         
         return entity
     end
     
     --Spawn one emitter on average once in every square of sidelength 10
     -- (square dekaunit?)
-    spawnSystem:addSpawnType(testFunction, 1/10^2, 30)
+    spawnSystem:addSpawnType(testFunction, 1/20^2, 30)
+    spawnSystem:addSpawnType(testFunction2, 1/20^2, 30)
     return spawnSystem
 end
 
 local function setupEmitter()
-    -- Setting up an emitter for energy
-    local entity = Entity("energy-emitter")
+    -- Setting up an emitter for glucose
+    local entity = Entity("glucose-emitter")
     -- Rigid body
     local rigidBody = RigidBodyComponent()
     rigidBody.properties.friction = 0.2
@@ -118,59 +163,21 @@ local function setupEmitter()
     local sceneNode = OgreSceneNodeComponent()
     sceneNode.meshName = "molecule.mesh"
     entity:addComponent(sceneNode)
-    -- Emitter energy
-    local energyEmitter = AgentEmitterComponent()
-    entity:addComponent(energyEmitter)
-    energyEmitter.agentId = AgentRegistry.getAgentId("energy")
-    energyEmitter.emitInterval = 1000
-    energyEmitter.emissionRadius = 1
-    energyEmitter.maxInitialSpeed = 10
-    energyEmitter.minInitialSpeed = 2
-    energyEmitter.minEmissionAngle = Degree(0)
-    energyEmitter.maxEmissionAngle = Degree(360)
-    energyEmitter.meshName = "molecule.mesh"
-    energyEmitter.particlesPerEmission = 1
-    energyEmitter.particleLifeTime = 5000
-    energyEmitter.particleScale = Vector3(0.3, 0.3, 0.3)
-    energyEmitter.potencyPerParticle = 3.0
-    -- Setting up an emitter for agent 2
-    local entity2 = Entity("oxygen-emitter")
-    -- Rigid body
-    rigidBody = RigidBodyComponent()
-    rigidBody.properties.friction = 0.2
-    rigidBody.properties.linearDamping = 0.8
-    rigidBody.properties.shape = CylinderShape(
-        CollisionShape.AXIS_X, 
-        0.4,
-        2.0
-    )
-    rigidBody:setDynamicProperties(
-        Vector3(20, -10, 0),
-        Quaternion(Radian(Degree(0)), Vector3(1, 0, 0)),
-        Vector3(0, 0, 0),
-        Vector3(0, 0, 0)
-    )
-    rigidBody.properties:touch()
-    entity2:addComponent(rigidBody)
-    -- Scene node
-    sceneNode = OgreSceneNodeComponent()
-    sceneNode.meshName = "molecule.mesh"
-    entity2:addComponent(sceneNode)
-    -- Emitter Agent 2
-    local agent2Emitter = AgentEmitterComponent()
-    entity2:addComponent(agent2Emitter)
-    agent2Emitter.agentId = AgentRegistry.getAgentId("oxygen")
-    agent2Emitter.emitInterval = 1000
-    agent2Emitter.emissionRadius = 1
-    agent2Emitter.maxInitialSpeed = 10
-    agent2Emitter.minInitialSpeed = 2
-    agent2Emitter.minEmissionAngle = Degree(0)
-    agent2Emitter.maxEmissionAngle = Degree(360)
-    agent2Emitter.meshName = "molecule.mesh"
-    agent2Emitter.particlesPerEmission = 1
-    agent2Emitter.particleLifeTime = 5000
-    agent2Emitter.particleScale = Vector3(0.3, 0.3, 0.3)
-    agent2Emitter.potencyPerParticle = 1.0
+    -- Emitter glucose
+    local glucoseEmitter = AgentEmitterComponent()
+    entity:addComponent(glucoseEmitter)
+    glucoseEmitter.agentId = AgentRegistry.getAgentId("glucose")
+    glucoseEmitter.emitInterval = 1000
+    glucoseEmitter.emissionRadius = 1
+    glucoseEmitter.maxInitialSpeed = 10
+    glucoseEmitter.minInitialSpeed = 2
+    glucoseEmitter.minEmissionAngle = Degree(0)
+    glucoseEmitter.maxEmissionAngle = Degree(360)
+    glucoseEmitter.meshName = "molecule.mesh"
+    glucoseEmitter.particlesPerEmission = 1
+    glucoseEmitter.particleLifeTime = 5000
+    glucoseEmitter.particleScale = Vector3(0.3, 0.3, 0.3)
+    glucoseEmitter.potencyPerParticle = 3.0
 end
 
 
@@ -210,7 +217,6 @@ local function setupHud()
     playerAgentCountText.properties.left = -80
     playerAgentCountText.properties.top = -AGENTS_HEIGHT
     playerAgentCountText.properties:touch()
-    
 end
 
 local function setupPlayer()
@@ -236,26 +242,30 @@ local function setupPlayer()
     backwardOrganelle:setColour(ColourValue(1, 0, 0, 1))
     player:addOrganelle(0, -2, backwardOrganelle)
     -- Storage energy
-    local storageOrganelle = StorageOrganelle(AgentRegistry.getAgentId("energy"), 100.0)
+    local storageOrganelle = StorageOrganelle(AgentRegistry.getAgentId("atp"), 100.0)
     storageOrganelle:addHex(0, 0)
     storageOrganelle:setColour(ColourValue(0, 1, 0, 1))
     player:addOrganelle(0, 0, storageOrganelle)
-    player:storeAgent(AgentRegistry.getAgentId("energy"), 10)
+    player:storeAgent(AgentRegistry.getAgentId("atp"), 20)
     -- Storage agent 2
     local storageOrganelle2 = StorageOrganelle(AgentRegistry.getAgentId("oxygen"), 100.0)
     storageOrganelle2:addHex(0, 0)
-    storageOrganelle2:setColour(ColourValue(0, 1, 1, 1))
+    storageOrganelle2:setColour(ColourValue(0, 1, 0.5, 1))
     player:addOrganelle(0, -1, storageOrganelle2)
     -- Storage agent 3
-    local storageOrganelle3 = StorageOrganelle(AgentRegistry.getAgentId("faxekondium"), 100.0)
+    local storageOrganelle3 = StorageOrganelle(AgentRegistry.getAgentId("glucose"), 100.0)
     storageOrganelle3:addHex(0, 0)
-    storageOrganelle3:setColour(ColourValue(1, 1, 0, 1))
+    storageOrganelle3:setColour(ColourValue(0.5, 1, 0, 1))
     player:addOrganelle(-1, 0, storageOrganelle3)
-    -- Storage agent 4
-    local storageOrganelle4 = StorageOrganelle(AgentRegistry.getAgentId("nitrate"), 100.0)
-    storageOrganelle4:addHex(0, 0)
-    storageOrganelle4:setColour(ColourValue(1, 0, 1, 0))
-    player:addOrganelle(1, -1, storageOrganelle4)
+    -- Producer making atp from oxygen and glucose
+    local processOrganelle1 = ProcessOrganelle(20000) -- 20 second minimum time between producing oxytoxy
+    processOrganelle1:addRecipyInput(AgentRegistry.getAgentId("glucose"), 1)
+    processOrganelle1:addRecipyInput(AgentRegistry.getAgentId("oxygen"), 6)
+    processOrganelle1:addRecipyOutput(AgentRegistry.getAgentId("atp"), 38)
+    processOrganelle1:addRecipyOutput(AgentRegistry.getAgentId("co2"), 6)
+    processOrganelle1:addHex(0, 0)
+    processOrganelle1:setColour(ColourValue(1, 0, 1, 0))
+    player:addOrganelle(1, -1, processOrganelle1)
 end
 
 setupAgents()
