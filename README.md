@@ -25,8 +25,8 @@ repository, but also the Subversion [asset repository](91.250.119.121/scm/svn/th
 The best place to put the assets is in your code repository's `assets` 
 subdirectory. If, for whatever reason, you want to check it out to another
 place, you will have to modify the `ASSET_DIRECTORY` variable in the CMake 
-setup. If you want to know why we split the code and assets into two different
-repositories in the first place, please refer to GitHub issue #32.
+setup. Offloading art assets into Subversion was necessary due to size 
+constraints for GitHub repositories.
 
 Windows developers should follow the procedure outlined in the [mingw setup 
 guide](www.github.com/Revolutionary-Games/Thrive/blob/master/mingw_setup/readme.txt).
