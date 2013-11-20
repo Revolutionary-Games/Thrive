@@ -193,18 +193,6 @@ Once done, you can let CMake know about the toolchain like this:
     cmake -DCMAKE_TOOLCHAIN_FILE=/opt/mingw-w64/cmake/toolchain.cmake $SRC_DIR
 
 
-Linux - Native Build
-====================
-
-Coming soon. Although, if you would like to do this, you probably already 
-know how. A few quick pointers:
-
-* Ogre is required, ideally version 1.8+. An older version from your package 
-  manager might work, it might not.
-
-* gcc 4.7 recommended
-
-
 Troubleshooting
 ===============
 

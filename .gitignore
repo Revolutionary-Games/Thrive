@@ -1,3 +1,4 @@
+# Standard stuff
 Thumbs.db
 *.obj
 *.pdb
@@ -23,10 +24,8 @@ _ReSharper*/
 [Tt]est[Rr]esult*
 *.vssscc
 $tf*/
-
-# Do not ignore the following, some resources are stored in these folders in the res/dist/ tree
-# [Bb]in
-# [Dd]ebug*/
+[Bb]in
+[Dd]ebug*/
 
 # Libraries
 *.lib
@@ -72,3 +71,6 @@ nbproject/
 
 # Vim swap files
 *.swp
+
+# Asset directory
+assets/*

@@ -17,6 +17,20 @@ SET(OGRE_SDK ""
     CACHE STRING "Path to the Ogre SDK"
 )
 
+set(ASSET_DIRECTORY ${CMAKE_SOURCE_DIR}/assets
+    CACHE PATH "Path to assets"
+)
+
+if(NOT IS_DIRECTORY ${ASSET_DIRECTORY}/models)
+    message(FATAL_ERROR 
+"Could not find assets in ${ASSET_DIRECTORY}.  
+Please use Subversion to download the assets:
+        svn co http://91.250.119.121/scm/svn/thrive_assets/trunk ${ASSET_DIRECTORY}
+If you do not have an account for the repository, use anonymous / anonymous for username and password.
+"
+    )
+endif()
+
 
 ###############
 # CMake Setup #
@@ -276,41 +290,52 @@ install(EXPORT lua
 # OGRE config and media
 
 install(FILES
-    ${CMAKE_SOURCE_DIR}/res/ogre_cfg/resources.cfg
+    ${CMAKE_SOURCE_DIR}/ogre_cfg/resources.cfg
     DESTINATION bin
 )
 
 install(FILES
-    ${CMAKE_SOURCE_DIR}/res/ogre_cfg/plugins.cfg
+    ${CMAKE_SOURCE_DIR}/ogre_cfg/plugins.cfg
     DESTINATION bin
     CONFIGURATIONS Release
 )
 
 install(FILES
-    ${CMAKE_SOURCE_DIR}/res/ogre_cfg/plugins_d.cfg
+    ${CMAKE_SOURCE_DIR}/ogre_cfg/plugins_d.cfg
     DESTINATION bin
     CONFIGURATIONS Debug
     RENAME plugins.cfg
 )
 
-install(DIRECTORY ${CMAKE_SOURCE_DIR}/res/models
+install(DIRECTORY ${ASSET_DIRECTORY}/models
     DESTINATION ./
     CONFIGURATIONS Release  Debug
+    FILES_MATCHING
+        PATTERN "*.mesh" 
+        PATTERN "*.mesh.xml"
 )
 
-install(DIRECTORY ${CMAKE_SOURCE_DIR}/res/materials
+install(DIRECTORY ${ASSET_DIRECTORY}/materials
     DESTINATION ./
     CONFIGURATIONS Release  Debug
+    FILES_MATCHING
+        PATTERN "*.jpg"
+        PATTERN "*.jpeg"
+        PATTERN "*.material"
+        PATTERN "*.png"
 )
 
 install(DIRECTORY
-    ${CMAKE_SOURCE_DIR}/res/fonts
+    ${ASSET_DIRECTORY}/fonts
     DESTINATION ./
     CONFIGURATIONS Release  Debug
+    FILES_MATCHING
+        PATTERN "*.ttf"
+        PATTERN "*.fontdef"
 )
 
 install(DIRECTORY
-    ${CMAKE_SOURCE_DIR}/res/scripts
+    ${CMAKE_SOURCE_DIR}/scripts
     DESTINATION ./
     CONFIGURATIONS Release  Debug
 )
