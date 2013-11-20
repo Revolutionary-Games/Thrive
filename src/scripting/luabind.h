@@ -1,6 +1,7 @@
 #pragma once
 
 #include <boost/version.hpp>
+#include <iostream>
 #include <memory>
 
 namespace luabind { namespace detail { namespace has_get_pointer_ {
