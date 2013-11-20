@@ -88,7 +88,7 @@ public:
         bool hasContactResponse = true;
 
         /**
-        * @brief Whether this body is kinematic 
+        * @brief Whether this body is kinematic
         */
         bool kinematic = false;
 
@@ -183,7 +183,7 @@ public:
     * @param impulse
     *   The impulse
     * @param relativePosition
-    *   The attack point, relative to the center of mass 
+    *   The attack point, relative to the center of mass
     */
     void
     applyImpulse(
@@ -261,7 +261,7 @@ public:
     /**
     * @brief Serializes the component
     *
-    * @return 
+    * @return
     */
     StorageContainer
     storage() const override;
@@ -365,7 +365,7 @@ private:
 /**
 * @brief Updates the RigidBodyComponent with new data from the simulation
 *
-* Copies the data from the simulation into 
+* Copies the data from the simulation into
 * RigidBodyComponent::m_dynamicOutputProperties.
 *
 */

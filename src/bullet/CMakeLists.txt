@@ -12,5 +12,9 @@ add_sources(
     ${CMAKE_CURRENT_SOURCE_DIR}/script_bindings.h
     ${CMAKE_CURRENT_SOURCE_DIR}/update_physics_system.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/update_physics_system.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/collision_system.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/collision_system.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/collision_filter.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/collision_filter.h
 )
 

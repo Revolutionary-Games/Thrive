@@ -147,6 +147,10 @@ GameState::init() {
     m_impl->m_initializer();
 }
 
+const std::vector<std::unique_ptr<System>>&
+GameState::systems() const {
+    return m_impl->m_systems;
+}
 
 void
 GameState::load(

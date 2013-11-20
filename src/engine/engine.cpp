@@ -13,6 +13,7 @@
 #include "bullet/bullet_to_ogre_system.h"
 #include "bullet/rigid_body_system.h"
 #include "bullet/update_physics_system.h"
+#include "bullet/collision_system.h"
 
 // Ogre
 #include "ogre/camera_system.h"
@@ -234,7 +235,7 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
         }
         savegame.set("gameStates", std::move(gameStates));
         std::ofstream stream(
-            m_serialization.saveFile, 
+            m_serialization.saveFile,
             std::ofstream::trunc | std::ofstream::binary
         );
         m_serialization.saveFile = "";
@@ -312,7 +313,6 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
         initializeLua(m_luaState);
     }
 
-
     void
     shutdownInputManager() {
         if (not m_input.inputManager) {
@@ -388,7 +388,6 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
         std::string saveFile;
 
     } m_serialization;
-
 };
 
 
@@ -407,7 +406,7 @@ Engine_createGameState(
         );
         systems.emplace_back(system);
     }
-    // We can't just capture the luaInitializer in the lambda here, because 
+    // We can't just capture the luaInitializer in the lambda here, because
     // luabind::object's call operator is not const
     auto initializer = std::bind<void>(
         [](luabind::object luaInitializer) {
@@ -416,7 +415,7 @@ Engine_createGameState(
         luaInitializer
     );
     return self->createGameState(
-        name, 
+        name,
         std::move(systems),
         initializer
     );
@@ -472,7 +471,7 @@ Engine::createGameState(
     ));
     GameState* rawGameState = gameState.get();
     m_impl->m_gameStates.insert(std::make_pair(
-        name, 
+        name,
         std::move(gameState)
     ));
     return rawGameState;

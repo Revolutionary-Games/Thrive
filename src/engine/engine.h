@@ -31,6 +31,7 @@ class EntityManager;
 class Keyboard;
 class Mouse;
 class OgreViewportSystem;
+class CollisionSystem;
 class System;
 class RNG;
 

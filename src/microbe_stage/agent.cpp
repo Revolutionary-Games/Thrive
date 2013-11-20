@@ -1,5 +1,7 @@
 #include "microbe_stage/agent.h"
 
+#include "bullet/collision_filter.h"
+#include "bullet/collision_system.h"
 #include "bullet/rigid_body_system.h"
 #include "engine/component_factory.h"
 #include "engine/engine.h"
@@ -9,9 +11,9 @@
 #include "engine/rng.h"
 #include "ogre/scene_node_system.h"
 #include "scripting/luabind.h"
-
 #include <OgreEntity.h>
 #include <OgreSceneManager.h>
+#include "util/make_unique.h"
 
 using namespace thrive;
 
@@ -429,11 +431,15 @@ AgentEmitterSystem::update(int milliseconds) {
                 agentComponent->m_velocity = emissionVelocity;
                 agentComponent->m_agentId = emitterComponent->m_agentId;
                 agentComponent->m_potency = emitterComponent->m_potencyPerParticle;
+                // Collision handler component
+                auto collisionComponent = make_unique<CollisionComponent>();
+                collisionComponent->addCollisionGroup("agent");
                 // Build component list
                 std::list<std::unique_ptr<Component>> components;
                 components.emplace_back(std::move(agentSceneNodeComponent));
                 components.emplace_back(std::move(agentComponent));
                 components.emplace_back(std::move(agentRigidBodyComponent));
+                components.emplace_back(std::move(collisionComponent));
                 for (auto& component : components) {
                     this->entityManager()->addComponent(
                         agentEntityId,
@@ -458,8 +464,12 @@ AgentAbsorberSystem::luaBindings() {
     ;
 }
 
-
 struct AgentAbsorberSystem::Implementation {
+
+    Implementation()
+      : m_agentCollisions("microbe", "agent")
+    {
+    }
 
     EntityFilter<
         AgentAbsorberComponent
@@ -470,6 +480,8 @@ struct AgentAbsorberSystem::Implementation {
     > m_agents;
 
     btDiscreteDynamicsWorld* m_world = nullptr;
+
+    CollisionFilter m_agentCollisions;
 
 };
 
@@ -491,6 +503,7 @@ AgentAbsorberSystem::init(
     m_impl->m_absorbers.setEntityManager(&gameState->entityManager());
     m_impl->m_agents.setEntityManager(&gameState->entityManager());
     m_impl->m_world = gameState->physicsWorld();
+    m_impl->m_agentCollisions.init(gameState);
 }
 
 
@@ -499,6 +512,7 @@ AgentAbsorberSystem::shutdown() {
     m_impl->m_absorbers.setEntityManager(nullptr);
     m_impl->m_agents.setEntityManager(nullptr);
     m_impl->m_world = nullptr;
+    m_impl->m_agentCollisions.shutdown();
     System::shutdown();
 }
 
@@ -509,14 +523,11 @@ AgentAbsorberSystem::update(int) {
         AgentAbsorberComponent* absorber = std::get<0>(entry.second);
         absorber->m_absorbedAgents.clear();
     }
-    auto dispatcher = m_impl->m_world->getDispatcher();
-    int numManifolds = dispatcher->getNumManifolds();
-    for (int i = 0; i < numManifolds; i++) {
-        btPersistentManifold* contactManifold = dispatcher->getManifoldByIndexInternal(i);
-        auto objectA = static_cast<const btCollisionObject*>(contactManifold->getBody0());
-        auto objectB = static_cast<const btCollisionObject*>(contactManifold->getBody1());
-        EntityId entityA = reinterpret_cast<size_t>(objectA->getUserPointer());
-        EntityId entityB = reinterpret_cast<size_t>(objectB->getUserPointer());
+    for (Collision collision : m_impl->m_agentCollisions)
+    {
+        EntityId entityA = collision.entityId1;
+        EntityId entityB = collision.entityId2;
+
         AgentAbsorberComponent* absorber = nullptr;
         AgentComponent* agent = nullptr;
         if (
@@ -546,6 +557,7 @@ AgentAbsorberSystem::update(int) {
             agent->m_timeToLive = 0;
         }
     }
+    m_impl->m_agentCollisions.clearCollisions();
 }
 
 
@@ -640,5 +652,3 @@ AgentRegistry::getAgentId(
     }
     return agentId;
 }
-
-
