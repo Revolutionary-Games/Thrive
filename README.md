@@ -32,7 +32,13 @@ Windows developers should follow the procedure outlined in the [mingw setup
 guide](www.github.com/Revolutionary-Games/Thrive/blob/master/mingw_setup/readme.txt).
 
 For the time being, Linux developers will have to manually set up their build 
-environment.
+environment. The dependencies at the time of this writing are
+
+* gcc 4.7 or newer
+* boost 1.52
+* Ogre 1.8
+* Bullet 2.81
+* OpenAL Soft 1.15.1
 
 Be sure to have a look at the [styleguide](www.github.com/Revolutionary-Games/Thrive/blob/master/doc/style_guide.dox),
 both for guidelines on code formatting and git usage.
@@ -44,3 +50,4 @@ subdirectory `testing` and place your assets in there. If they are used
 anywhere in the game, they will be picked up by Thrive.
 
 More detailed instructions for contributing art assets will follow soon.
+
