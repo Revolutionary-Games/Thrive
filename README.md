@@ -12,7 +12,7 @@ to get your development environment set up.
 
 ### Script Authors
 If you only want to modify the Lua scripts, you can just download a 
-precompiled package from our [build server][ftp].
+precompiled package from our build server at ftp://91.250.119.121/jenkins.
 After unpacking, you will find the scripts in the aptly named `scripts` 
 subdirectory.
 
@@ -45,7 +45,7 @@ both for guidelines on code formatting and git usage.
 
 ### Modellers and Sound Engineers
 To work on the art assets, you can download a precompiled package from our
-build server (). After unpacking, create a 
+build server at ftp://91.250.119.121/jenkins. After unpacking, create a 
 subdirectory `testing` and place your assets in there. If they are used 
 anywhere in the game, they will be picked up by Thrive.
 
@@ -53,6 +53,5 @@ More detailed instructions for contributing art assets will follow soon.
 
 
 [asset_repository]: http://91.250.119.121/scm/svn/thrive_assets/trunk "Asset Repository"
-[ftp]: ftp://91.250.119.121/jenkins/ "Build Server FTP"
 [mingw]: http://www.github.com/Revolutionary-Games/Thrive/blob/master/mingw_setup/readme.txt "MinGW setup guide"
 [styleguide]: http://www.github.com/Revolutionary-Games/Thrive/blob/master/doc/style_guide.dox "Styleguide"
