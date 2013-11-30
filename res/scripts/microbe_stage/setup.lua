@@ -267,6 +267,7 @@ local function createMicrobeStage(name)
             MicrobeSystem(),
             MicrobeCameraSystem(),
             MicrobeControlSystem(),
+            MicrobeAISystem(),
             HudSystem(),
             AgentLifetimeSystem(),
             AgentMovementSystem(),

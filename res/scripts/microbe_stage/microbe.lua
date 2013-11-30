@@ -74,11 +74,13 @@ function Microbe.createMicrobeEntity(name)
     rigidBody.properties.linearFactor = Vector3(1, 1, 0)
     rigidBody.properties.angularFactor = Vector3(0, 0, 1)
     rigidBody.properties:touch()
+    local aiController = MicrobeAIController()
     local components = {
         AgentAbsorberComponent(),
         OgreSceneNodeComponent(),
         MicrobeComponent(),
-        rigidBody
+        rigidBody,
+        aiController
     }
     for _, component in ipairs(components) do
         entity:addComponent(component)
@@ -93,6 +95,7 @@ Microbe.COMPONENTS = {
     microbe = MicrobeComponent.TYPE_ID,
     rigidBody = RigidBodyComponent.TYPE_ID,
     sceneNode = OgreSceneNodeComponent.TYPE_ID,
+    aiController = MicrobeAIComponent.TYPE_ID,
 }
 
 
