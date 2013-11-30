@@ -74,7 +74,7 @@ function Microbe.createMicrobeEntity(name)
     rigidBody.properties.linearFactor = Vector3(1, 1, 0)
     rigidBody.properties.angularFactor = Vector3(0, 0, 1)
     rigidBody.properties:touch()
-    local aiController = MicrobeAIController()
+    local aiController = MicrobeAIComponent()
     local components = {
         AgentAbsorberComponent(),
         OgreSceneNodeComponent(),
