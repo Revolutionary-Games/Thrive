@@ -33,12 +33,12 @@ local function setupCamera()
 end
 
 local function setupAgents()
-    AgentRegistry.registerAgentType("atp", "ATP")
-    AgentRegistry.registerAgentType("oxygen", "Oxygen")    
-    AgentRegistry.registerAgentType("nitrate", "Nitrate")
-    AgentRegistry.registerAgentType("glucose", "Glucose")
-    AgentRegistry.registerAgentType("co2", "CO2")
-    AgentRegistry.registerAgentType("oxytoxy", "OxyToxy NT")
+    AgentRegistry.registerAgentType("atp", "ATP", "molecule.mesh")
+    AgentRegistry.registerAgentType("oxygen", "Oxygen", "molecule.mesh")    
+    AgentRegistry.registerAgentType("nitrate", "Nitrate", "molecule.mesh")
+    AgentRegistry.registerAgentType("glucose", "Glucose", "molecule.mesh")
+    AgentRegistry.registerAgentType("co2", "CO2", "molecule.mesh")
+    AgentRegistry.registerAgentType("oxytoxy", "OxyToxy NT", "molecule.mesh")
 end
 
 local function createSpawnSystem()
@@ -71,19 +71,18 @@ local function createSpawnSystem()
         -- Emitter oxygen
         local oxygenEmitter = AgentEmitterComponent()
         entity:addComponent(oxygenEmitter)
-        oxygenEmitter.agentId = AgentRegistry.getAgentId("oxygen")
-        oxygenEmitter.emitInterval = 1000
         oxygenEmitter.emissionRadius = 1
         oxygenEmitter.maxInitialSpeed = 10
         oxygenEmitter.minInitialSpeed = 2
         oxygenEmitter.minEmissionAngle = Degree(0)
         oxygenEmitter.maxEmissionAngle = Degree(360)
-        oxygenEmitter.meshName = "molecule.mesh"
-        oxygenEmitter.particlesPerEmission = 1
         oxygenEmitter.particleLifeTime = 5000
-        oxygenEmitter.particleScale = Vector3(0.3, 0.3, 0.3)
-        oxygenEmitter.potencyPerParticle = 2.0
-        
+        local timedEmitter = TimedAgentEmitterComponent()
+        timedEmitter.agentId = AgentRegistry.getAgentId("oxygen")
+        timedEmitter.particlesPerEmission = 1
+        timedEmitter.potencyPerParticle = 2.0
+        timedEmitter.emitInterval = 1000
+        entity:addComponent(timedEmitter)
         return entity
     end
     local testFunction2 = function(pos)
@@ -113,26 +112,83 @@ local function createSpawnSystem()
         -- Emitter glucose
         local glucoseEmitter = AgentEmitterComponent()
         entity:addComponent(glucoseEmitter)
-        glucoseEmitter.agentId = AgentRegistry.getAgentId("glucose")
-        glucoseEmitter.emitInterval = 2000
         glucoseEmitter.emissionRadius = 1
         glucoseEmitter.maxInitialSpeed = 10
         glucoseEmitter.minInitialSpeed = 2
         glucoseEmitter.minEmissionAngle = Degree(0)
         glucoseEmitter.maxEmissionAngle = Degree(360)
-        glucoseEmitter.meshName = "molecule.mesh"
-        glucoseEmitter.particlesPerEmission = 1
         glucoseEmitter.particleLifeTime = 5000
-        glucoseEmitter.particleScale = Vector3(0.3, 0.3, 0.3)
-        glucoseEmitter.potencyPerParticle = 1.0
-        
+        local timedEmitter = TimedAgentEmitterComponent()
+        timedEmitter.agentId = AgentRegistry.getAgentId("glucose")
+        timedEmitter.particlesPerEmission = 1
+        timedEmitter.potencyPerParticle = 1.0
+        timedEmitter.emitInterval = 2000
+        entity:addComponent(timedEmitter)
         return entity
+    end
+    
+    local microbeSpawnFunction = function(pos)
+        local microbe = Microbe.createMicrobeEntity(nil, true)
+        microbe.rigidBody:setDynamicProperties(
+            pos, -- Position
+            Quaternion(Radian(Degree(0)), Vector3(1, 0, 0)), -- Orientation
+            Vector3(0, 0, 0), -- Linear velocity
+            Vector3(0, 0, 0)  -- Angular velocity
+        )
+        -- Forward
+        local forwardOrganelle = MovementOrganelle(
+            Vector3(0.0, 50.0, 0.0),
+            300
+        )
+        forwardOrganelle:addHex(0, 0)
+        forwardOrganelle:addHex(-1, 0)
+        forwardOrganelle:addHex(1, -1)
+        forwardOrganelle:setColour(ColourValue(0, 0.7, 0.7, 1))
+        microbe:addOrganelle(0, 1, forwardOrganelle)
+        -- Backward
+        local backwardOrganelle = MovementOrganelle(
+            Vector3(0.0, -50.0, 0.0),
+            300
+        )
+        backwardOrganelle:addHex(0, 0)
+        backwardOrganelle:addHex(-1, 1)
+        backwardOrganelle:addHex(1, 0)
+        backwardOrganelle:setColour(ColourValue(0, 0.7, 0.7, 1))
+        microbe:addOrganelle(0, -2, backwardOrganelle)
+        -- Storage energy
+        local storageOrganelle = StorageOrganelle(AgentRegistry.getAgentId("atp"), 100.0)
+        storageOrganelle:addHex(0, 0)
+        storageOrganelle:setColour(ColourValue(0, 1, 0, 1))
+        microbe:addOrganelle(0, 0, storageOrganelle)
+        microbe:storeAgent(AgentRegistry.getAgentId("atp"), 40)
+        -- Storage agent 2
+        local storageOrganelle2 = StorageOrganelle(AgentRegistry.getAgentId("oxygen"), 100.0)
+        storageOrganelle2:addHex(0, 0)
+        storageOrganelle2:setColour(ColourValue(0, 1, 0.5, 1))
+        microbe:addOrganelle(0, -1, storageOrganelle2)
+        -- Storage agent 3
+        local storageOrganelle3 = StorageOrganelle(AgentRegistry.getAgentId("glucose"), 100.0)
+        storageOrganelle3:addHex(0, 0)
+        storageOrganelle3:setColour(ColourValue(0.5, 1, 0, 1))
+        microbe:addOrganelle(-1, 0, storageOrganelle3)
+        -- Producer making atp from oxygen and glucose
+        local processOrganelle1 = ProcessOrganelle(20000) -- 20 second minimum time between producing oxytoxy
+        processOrganelle1:addRecipyInput(AgentRegistry.getAgentId("glucose"), 1)
+        processOrganelle1:addRecipyInput(AgentRegistry.getAgentId("oxygen"), 6)
+        processOrganelle1:addRecipyOutput(AgentRegistry.getAgentId("atp"), 38)
+        processOrganelle1:addRecipyOutput(AgentRegistry.getAgentId("co2"), 6)
+        processOrganelle1:addHex(0, 0)
+        processOrganelle1:setColour(ColourValue(1, 0, 1, 0))
+        microbe:addOrganelle(1, -1, processOrganelle1)
+            
+        return microbe
     end
     
     --Spawn one emitter on average once in every square of sidelength 10
     -- (square dekaunit?)
     spawnSystem:addSpawnType(testFunction, 1/20^2, 30)
     spawnSystem:addSpawnType(testFunction2, 1/20^2, 30)
+    spawnSystem:addSpawnType(microbeSpawnFunction, 1/60^2, 40)
     return spawnSystem
 end
 
@@ -166,18 +222,19 @@ local function setupEmitter()
     -- Emitter glucose
     local glucoseEmitter = AgentEmitterComponent()
     entity:addComponent(glucoseEmitter)
-    glucoseEmitter.agentId = AgentRegistry.getAgentId("glucose")
-    glucoseEmitter.emitInterval = 1000
     glucoseEmitter.emissionRadius = 1
     glucoseEmitter.maxInitialSpeed = 10
     glucoseEmitter.minInitialSpeed = 2
     glucoseEmitter.minEmissionAngle = Degree(0)
     glucoseEmitter.maxEmissionAngle = Degree(360)
     glucoseEmitter.meshName = "molecule.mesh"
-    glucoseEmitter.particlesPerEmission = 1
     glucoseEmitter.particleLifeTime = 5000
-    glucoseEmitter.particleScale = Vector3(0.3, 0.3, 0.3)
-    glucoseEmitter.potencyPerParticle = 3.0
+    local timedEmitter = TimedAgentEmitterComponent()
+    timedEmitter.agentId = AgentRegistry.getAgentId("glucose")
+    timedEmitter.particlesPerEmission = 1
+    timedEmitter.potencyPerParticle = 3.0
+    timedEmitter.emitInterval = 1000
+    entity:addComponent(timedEmitter)
 end
 
 
@@ -220,7 +277,7 @@ local function setupHud()
 end
 
 local function setupPlayer()
-    local player = Microbe.createMicrobeEntity(PLAYER_NAME)
+    local player = Microbe.createMicrobeEntity(PLAYER_NAME, false)
     -- Forward
     local forwardOrganelle = MovementOrganelle(
         Vector3(0.0, 50.0, 0.0),
@@ -248,7 +305,7 @@ local function setupPlayer()
     player:addOrganelle(0, 0, storageOrganelle)
     player:storeAgent(AgentRegistry.getAgentId("atp"), 20)
     -- Storage agent 2
-    local storageOrganelle2 = StorageOrganelle(AgentRegistry.getAgentId("oxygen"), 100.0)
+    local storageOrganelle2 = StorageOrganelle(AgentRegistry.getAgentId("oxygen"), 20.0)
     storageOrganelle2:addHex(0, 0)
     storageOrganelle2:setColour(ColourValue(0, 1, 0.5, 1))
     player:addOrganelle(0, -1, storageOrganelle2)
@@ -279,6 +336,7 @@ local function createMicrobeStage(name)
             -- Microbe specific
             MicrobeSystem(),
             MicrobeCameraSystem(),
+            MicrobeAISystem(),
             MicrobeControlSystem(),
             HudSystem(),
             AgentLifetimeSystem(),
@@ -315,5 +373,5 @@ end
 
 GameState.MICROBE = createMicrobeStage("microbe")
 GameState.MICROBE_ALTERNATE = createMicrobeStage("microbe_alternate")
-    
+
 Engine:setCurrentGameState(GameState.MICROBE)
