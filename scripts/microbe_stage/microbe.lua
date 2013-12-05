@@ -63,7 +63,7 @@ class 'Microbe'
 --
 -- @returns microbe
 --  An object of type Microbe
-function Microbe.createMicrobeEntity(name)
+function Microbe.createMicrobeEntity(name, aiControlled)
     local entity
     if name then
         entity = Entity(name)
@@ -77,17 +77,25 @@ function Microbe.createMicrobeEntity(name)
     rigidBody.properties.linearFactor = Vector3(1, 1, 0)
     rigidBody.properties.angularFactor = Vector3(0, 0, 1)
     rigidBody.properties:touch()
-
+    local compoundEmitter = AgentEmitterComponent() -- Emitter for excess compounds
+    compoundEmitter.emissionRadius = 5
+    compoundEmitter.minInitialSpeed = 1
+    compoundEmitter.maxInitialSpeed = 3
+    compoundEmitter.particleLifetime = 5000
     local reactionHandler = CollisionComponent()
     reactionHandler:addCollisionGroup("microbe")
-    
     local components = {
         AgentAbsorberComponent(),
         OgreSceneNodeComponent(),
         MicrobeComponent(),
         reactionHandler,
-        rigidBody
+        rigidBody,
+        compoundEmitter
     }
+    if aiControlled then
+        local aiController = MicrobeAIControllerComponent()
+        table.insert(components, aiController)
+    end
     for _, component in ipairs(components) do
         entity:addComponent(component)
     end
@@ -101,6 +109,7 @@ Microbe.COMPONENTS = {
     microbe = MicrobeComponent.TYPE_ID,
     rigidBody = RigidBodyComponent.TYPE_ID,
     sceneNode = OgreSceneNodeComponent.TYPE_ID,
+    compoundEmitter = AgentEmitterComponent.TYPE_ID,
     collisionHandler = CollisionComponent.TYPE_ID
 }
 
@@ -270,6 +279,8 @@ end
 
 
 -- Stores an agent in the microbe's vacuoles
+-- 
+-- Any excess compounds will be ejected from the microbe
 --
 -- @param agentId
 --  The agent to store
@@ -277,9 +288,6 @@ end
 -- @param amount
 --  The amount to store
 --
--- @returns remainingAmount
---  The surplus that could not be stored because the microbe's vacuoles for
---  this agent are full.
 function Microbe:storeAgent(agentId, amount)
     local vacuoleList = self.microbe.vacuoles[agentId]
     local remainingAmount = amount
@@ -294,7 +302,27 @@ function Microbe:storeAgent(agentId, amount)
         end
     end
     self:_updateAgentAbsorber(agentId)
-    return remainingAmount
+    if remainingAmount > 0 then -- If there is excess compounds, we will eject them
+        local yAxis = self.sceneNode.transform.orientation:yAxis()
+
+        local particleCount = 1
+        if remainingAmount >= 3  then
+            particleCount = 3
+        end
+        local i
+        for i = 1, particleCount do
+            local angle = math.atan2(-yAxis.x, -yAxis.y)
+            if (angle < 0) then 
+                angle = angle + 2*math.pi 
+            end
+            angle = angle * 180/math.pi
+            local minAngle = angle - 30 -- over and underflow of angles are handled automatically
+            local maxAngle = angle + 30    
+            self.compoundEmitter.minEmissionAngle = Degree(minAngle)
+            self.compoundEmitter.maxEmissionAngle = Degree(maxAngle)
+            self.compoundEmitter:emitAgent(agentId, remainingAmount/particleCount)
+        end
+    end
 end
 
 
@@ -329,7 +357,6 @@ end
 -- Updates the microbe's state
 function Microbe:update(milliseconds)
     -- Vacuoles
-    
     for agentId, vacuoleList in pairs(self.microbe.vacuoles) do
         -- Check for agents to store
         local amount = self.agentAbsorber:absorbedAgentAmount(agentId)
@@ -415,6 +442,14 @@ function Microbe:_updateAllHexColours()
     end
 end
 
+function Microbe:getComponent(typeid)
+    return self.entity:getComponent(typeid)
+end
+
+function Microbe:destroy()
+    self.entity:destroy()
+end
+
 
 --------------------------------------------------------------------------------
 -- MicrobeSystem
@@ -442,7 +477,7 @@ end
 
 function MicrobeSystem:init(gameState)
     System.init(self, gameState)
-    self.entities:init(gameState)    
+    self.entities:init(gameState)
 end
 
 
