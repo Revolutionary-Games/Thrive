@@ -6,15 +6,17 @@
 --------------------------------------------------------------------------------
 class 'MicrobeComponent' (Component)
 
-COMPOUND_DISTRIBUTION_INTERVAL = 100 -- quantity of physics time between each loop distributing agents to organelles. TODO: Modify to reflect microbe size.
+COMPOUND_DISTRIBUTION_INTERVAL = 100 -- quantity of physics time between each loop distributing compounds to organelles. TODO: Modify to reflect microbe size.
 
 function MicrobeComponent:__init()
     Component.__init(self)
     self.organelles = {}
-    self.vacuoles = {}
+	self.storageOrganelles = {}
     self.processOrganelles = {}
     self.movementDirection = Vector3(0, 0, 0)
     self.facingTargetPoint = Vector3(0, 0, 0)
+	self.capacity = 0
+	self.stored = 0
     self.initialized = false
 end
 
@@ -82,7 +84,7 @@ function Microbe.createMicrobeEntity(name)
     reactionHandler:addCollisionGroup("microbe")
     
     local components = {
-        AgentAbsorberComponent(),
+        CompoundAbsorberComponent(),
         OgreSceneNodeComponent(),
         MicrobeComponent(),
         reactionHandler,
@@ -97,7 +99,7 @@ end
 -- I don't feel like checking for each component separately, so let's make a 
 -- loop do it with an assert for good measure (see Microbe.__init)
 Microbe.COMPONENTS = {
-    agentAbsorber = AgentAbsorberComponent.TYPE_ID,
+    compoundAbsorber = CompoundAbsorberComponent.TYPE_ID,
     microbe = MicrobeComponent.TYPE_ID,
     rigidBody = RigidBodyComponent.TYPE_ID,
     sceneNode = OgreSceneNodeComponent.TYPE_ID,
@@ -123,6 +125,7 @@ function Microbe:__init(entity)
     if not self.microbe.initialized then
         self:_initialize()
     end
+	self:_updateCompountAbsorber()
 end
 
 
@@ -162,21 +165,15 @@ function Microbe:addOrganelle(q, r, organelle)
 end
 
 
--- Adds a storage vacuole
---
--- @param vacuole
---  An object of type Vacuole
-function Microbe:addVacuole(vacuole)
-    assert(vacuole.agentId ~= nil)
-    assert(vacuole.capacity ~= nil)
-    assert(vacuole.amount ~= nil)
-    local agentId = vacuole.agentId
-    if not self.microbe.vacuoles[agentId] then
-        self.microbe.vacuoles[agentId] = {}
-    end
-    local vacuoleList = self.microbe.vacuoles[agentId]
-    table.insert(vacuoleList, vacuole)
-    self:_updateAgentAbsorber(vacuole.agentId)
+-- Adds a storage organelle
+-- @param organelle
+--  An object of type StorageOrganelle
+
+function Microbe:addStorageOrganelle(storageOrganelle)
+    assert(storageOrganelle.capacity ~= nil)
+	self.capacity = self.capacity + storageOrganelle.capacity
+	storageOrganelle.ID = 
+	table.insert(self.microbe.storageOrganelles, storageOrganelle)
 end
 
 
@@ -189,20 +186,17 @@ function Microbe:addProcessOrganelle(processOrganelle)
 end
 
 
--- Queries the currently stored amount of an agent
+-- Queries the currently stored amount of an compound
 --
--- @param agentId
---  The id of the agent to query
+-- @param compoundId
+--  The id of the compound to query
 --
 -- @returns amount
---  The amount stored in the microbe's vacuoles
-function Microbe:getAgentAmount(agentId)
-    local vacuoleList = self.microbe.vacuoles[agentId]
+--  The amount stored in the microbe's storage oraganelles
+function Microbe:getCompoundAmount(compoundId)
     local totalAmount = 0.0
-    if vacuoleList then
-        for _, vacuole in ipairs(vacuoleList) do
-            totalAmount = totalAmount + vacuole.amount
-        end
+    for _, storageOrganelle in ipairs(self.microbe.storageOrganelles) do
+        totalAmount = totalAmount + storageOrganelle.compounds[compoundId]
     end
     return totalAmount
 end
@@ -250,107 +244,81 @@ function Microbe:removeOrganelle(q, r)
 end
 
 
--- Removes a vacuole from the microbe
+-- Stores an compound in the microbe's storage organelles
 --
--- @param vacuole
---  The vacuole to remove
-function Microbe:removeVacuole(vacuole)
-    local vacuoleList = self.microbe.vacuoles[vacuole.agentId]
-    local indexToRemove = 0
-    for i, v in ipairs(self.microbe.vacuoles) do
-        if v == vacuole then
-            indexToRemove = i
-            break
-        end
-    end
-    assert(indexToRemove > 0, "Vacuole not found")
-    table.remove(self.microbe.vacuoles, indexToRemove)
-    self:_updateAgentAbsorber(vacuole.agentId)
-end
-
-
--- Stores an agent in the microbe's vacuoles
---
--- @param agentId
---  The agent to store
+-- @param compoundId
+--  The compound to store
 --
 -- @param amount
 --  The amount to store
 --
 -- @returns remainingAmount
---  The surplus that could not be stored because the microbe's vacuoles for
---  this agent are full.
-function Microbe:storeAgent(agentId, amount)
-    local vacuoleList = self.microbe.vacuoles[agentId]
+--  The surplus that could not be stored because the microbe's storage organelles for
+--  this compound are full.
+function Microbe:storeCompound(compoundId, amount)
     local remainingAmount = amount
-    if vacuoleList then
-        for _, vacuole in ipairs(vacuoleList) do
-            local storedAmount = math.min(remainingAmount, vacuole.capacity - vacuole.amount)
-            vacuole.amount = vacuole.amount + storedAmount
-            remainingAmount = remainingAmount - storedAmount
-            if remainingAmount <= 0.0 then
-                break
-            end
-        end
-    end
-    self:_updateAgentAbsorber(agentId)
+	for _, storageOrganelle in ipairs(self.microbe.storageOrganelles) do
+		remainingAmount = remainingAmount - storageOrganelle.storeCompound(compoundId, remainingAmount)
+		if remainingAmount <= 0.0 then
+			break
+		end
+	end
+	--if remainingAmount > 0.0 then
+		--microbe needs an emitter to eject excess
+    self:_updateCompoundAbsorber()
     return remainingAmount
 end
 
 
--- Removes an agent from the microbe's vacuoles
+-- Removes an compound from the microbe's storage organelles
 --
--- @param agentId
---  The agent to remove
+-- @param compoundId
+--  The compound to remove
 --
 -- @param maxAmount
 --  The maximum amount to take
 --
 -- @returns amount
 --  The amount that was actually taken, between 0.0 and maxAmount.
-function Microbe:takeAgent(agentId, maxAmount)
-    local vacuoleList = self.microbe.vacuoles[agentId]
-    local totalTaken = 0.0
-    if vacuoleList then
-        for _, vacuole in ipairs(vacuoleList) do
-            local amountTaken = math.min(maxAmount - totalTaken, vacuole.amount)
-            vacuole.amount = math.max(vacuole.amount - amountTaken, 0.0)
-            totalTaken = totalTaken + amountTaken
-            if totalTaken >= maxAmount then
-                break
-            end
-        end
-    end
-    self:_updateAgentAbsorber(agentId)
-    return totalTaken
+function Microbe:takeCompound(compoundId, maxAmount)
+    local remainingAmount = maxAmount
+	for _, storageOrganelle in ipairs(self.microbe.storageOrganelles) do
+		remainingAmount = remainingAmount - storageOrganelle.ejectCompound(compoundId, remainingAmount)
+		if remainingAmount <= 0.0 then
+			break
+		end
+	end
+    self:_updateCompoundAbsorber()
+    return maxAmount - remainingAmount
 end
 
 
 -- Updates the microbe's state
 function Microbe:update(milliseconds)
-    -- Vacuoles
+    -- StorageOrganelles
     
-    for agentId, vacuoleList in pairs(self.microbe.vacuoles) do
-        -- Check for agents to store
-        local amount = self.agentAbsorber:absorbedAgentAmount(agentId)
+    for _, compound in ipairs(CompoundRegistry.getCompoundList()) do
+        -- Check for compounds to store
+        local amount = self.compoundAbsorber:absorbedCompoundAmount(compound)
         if amount > 0.0 then
-            self:storeAgent(agentId, amount)
+            self:storeCompound(compound, amount)
         end
     end
-    -- Distribute agents to StorageOrganelles
+	
+    -- Distribute compounds to StorageOrganelles
     self.residuePhysicsTime = self.residuePhysicsTime + milliseconds
     while self.residuePhysicsTime > COMPOUND_DISTRIBUTION_INTERVAL do -- For every COMPOUND_DISTRIBUTION_INTERVAL passed
-        for agentId, vacuoleList in pairs(self.microbe.vacuoles) do -- Foreach agent type.
-            if self:getAgentAmount(agentId) > 0 then -- If microbe contains the compound
-                local candidateIndices = {} -- Indices of organelles that want the agent
+        for _, compound in ipairs(CompoundRegistry.getCompoundList()) do -- Foreach compound type.
+            if self:getCompoundAmount(compound) > 0 then -- If microbe contains the compound
+                local candidateIndices = {} -- Indices of organelles that want the compound
                 for i, processOrg in ipairs(self.microbe.processOrganelles) do  
-                    if processOrg:wantsInputAgent(agentId) then   
-                        table.insert(candidateIndices, i) -- Organelle has determined that it is interrested in obtaining the agnet
+                    if processOrg:wantsInputCompound(compound) then   
+                        table.insert(candidateIndices, i) -- Organelle has determined that it is interrested in obtaining the compound
                     end
                 end
                 if #candidateIndices > 0 then -- If there were any candidates, pick a random winner.
                     local chosenProcessOrg = self.microbe.processOrganelles[candidateIndices[rng:getInt(1,#candidateIndices)]]
-                    chosenProcessOrg:storeAgent(agentId, self:takeAgent(agentId, 1))
+                    chosenProcessOrg:storeCompound(compound, self:takeCompound(compound, 1))
                 end
             end
         end
@@ -360,6 +328,12 @@ function Microbe:update(milliseconds)
     for _, organelle in pairs(self.microbe.organelles) do
         organelle:update(self, milliseconds)
     end
+	
+	local amountStored = 0
+	for _, storageOrganelle in ipairs(self.microbe.storageOrganelles) do
+		amountStored = amountStored + storageOrganelle.stored
+	end
+	
 end
 
 
@@ -390,19 +364,20 @@ function Microbe:_initialize()
 end
 
 
--- Private function for updating the agent absorber
+-- Private function for updating the compound absorber
 --
 -- Toggles the absorber on and off depending on the remaining storage
--- capacity of the vacuoles.
-function Microbe:_updateAgentAbsorber(agentId)
-    local vacuoleList = self.microbe.vacuoles[agentId]
-    local canAbsorb = false
-    if vacuoleList then
-        for _, vacuole in ipairs(vacuoleList) do
-            canAbsorb = canAbsorb or vacuole.amount < vacuole.capacity
-        end
-    end
-    self.agentAbsorber:setCanAbsorbAgent(agentId, canAbsorb)
+-- capacity of the storage organelles.
+function Microbe:_updateCompoundAbsorber()
+    --quick and dirty method
+	if stored >= capacity then
+		for _, compound in ipairs(CompoundRegistry.getCompoundList()) do
+			self.compoundAbsorber:setCanAbsorbCompound(compound, false)
+		end else
+		for _, compound in ipairs(CompoundRegistry.getCompoundList()) do
+			self.compoundAbsorber:setCanAbsorbCompound(compound, true)
+		end
+	end
 end
 
 
@@ -428,7 +403,7 @@ function MicrobeSystem:__init()
     System.__init(self)
     self.entities = EntityFilter(
         {
-            AgentAbsorberComponent,
+            CompoundAbsorberComponent,
             MicrobeComponent,
             OgreSceneNodeComponent,
             RigidBodyComponent, 

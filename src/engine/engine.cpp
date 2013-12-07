@@ -32,7 +32,7 @@
 
 
 // Microbe
-#include "microbe_stage/agent.h"
+#include "microbe_stage/compound.h"
 
 #include "util/contains.h"
 #include "util/pair_hash.h"

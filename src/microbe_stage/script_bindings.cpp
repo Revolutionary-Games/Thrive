@@ -1,21 +1,21 @@
 #include "microbe_stage/script_bindings.h"
 
 #include "scripting/luabind.h"
-#include "microbe_stage/agent.h"
+#include "microbe_stage/compound.h"
 
 luabind::scope
 thrive::MicrobeBindings::luaBindings() {
     return (
         // Components
-        AgentAbsorberComponent::luaBindings(),
-        AgentEmitterComponent::luaBindings(),
+        CompoundAbsorberComponent::luaBindings(),
+        CompoundEmitterComponent::luaBindings(),
         // Systems
-        AgentLifetimeSystem::luaBindings(),
-        AgentMovementSystem::luaBindings(),
-        AgentAbsorberSystem::luaBindings(),
-        AgentEmitterSystem::luaBindings(),
+        CompoundLifetimeSystem::luaBindings(),
+        CompoundMovementSystem::luaBindings(),
+        CompoundAbsorberSystem::luaBindings(),
+        CompoundEmitterSystem::luaBindings(),
         // Other
-        AgentRegistry::luaBindings()
+        CompoundRegistry::luaBindings()
     );
 }
 

@@ -32,13 +32,13 @@ local function setupCamera()
     viewportEntity:addComponent(viewportComponent)
 end
 
-local function setupAgents()
-    AgentRegistry.registerAgentType("atp", "ATP")
-    AgentRegistry.registerAgentType("oxygen", "Oxygen")    
-    AgentRegistry.registerAgentType("nitrate", "Nitrate")
-    AgentRegistry.registerAgentType("glucose", "Glucose")
-    AgentRegistry.registerAgentType("co2", "CO2")
-    AgentRegistry.registerAgentType("oxytoxy", "OxyToxy NT")
+local function setupCompounds()
+    CompoundRegistry.registerCompoundType("atp", "ATP")
+    CompoundRegistry.registerCompoundType("oxygen", "Oxygen")    
+    CompoundRegistry.registerCompoundType("nitrate", "Nitrate")
+    CompoundRegistry.registerCompoundType("glucose", "Glucose")
+    CompoundRegistry.registerCompoundType("co2", "CO2")
+    CompoundRegistry.registerCompoundType("oxytoxy", "OxyToxy NT")
 end
 
 local function createSpawnSystem()
@@ -69,9 +69,9 @@ local function createSpawnSystem()
         sceneNode.meshName = "molecule.mesh"
         entity:addComponent(sceneNode)
         -- Emitter oxygen
-        local oxygenEmitter = AgentEmitterComponent()
+        local oxygenEmitter = CompoundEmitterComponent()
         entity:addComponent(oxygenEmitter)
-        oxygenEmitter.agentId = AgentRegistry.getAgentId("oxygen")
+        oxygenEmitter.compoundId = CompoundRegistry.getCompoundId("oxygen")
         oxygenEmitter.emitInterval = 1000
         oxygenEmitter.emissionRadius = 1
         oxygenEmitter.maxInitialSpeed = 10
@@ -111,9 +111,9 @@ local function createSpawnSystem()
         sceneNode.meshName = "molecule.mesh"
         entity:addComponent(sceneNode)
         -- Emitter glucose
-        local glucoseEmitter = AgentEmitterComponent()
+        local glucoseEmitter = CompoundEmitterComponent()
         entity:addComponent(glucoseEmitter)
-        glucoseEmitter.agentId = AgentRegistry.getAgentId("glucose")
+        glucoseEmitter.compoundId = CompoundRegistry.getCompoundId("glucose")
         glucoseEmitter.emitInterval = 2000
         glucoseEmitter.emissionRadius = 1
         glucoseEmitter.maxInitialSpeed = 10
@@ -164,9 +164,9 @@ local function setupEmitter()
     sceneNode.meshName = "molecule.mesh"
     entity:addComponent(sceneNode)
     -- Emitter glucose
-    local glucoseEmitter = AgentEmitterComponent()
+    local glucoseEmitter = CompoundEmitterComponent()
     entity:addComponent(glucoseEmitter)
-    glucoseEmitter.agentId = AgentRegistry.getAgentId("glucose")
+    glucoseEmitter.compoundId = CompoundRegistry.getCompoundId("glucose")
     glucoseEmitter.emitInterval = 1000
     glucoseEmitter.emissionRadius = 1
     glucoseEmitter.maxInitialSpeed = 10
@@ -194,29 +194,29 @@ local function setupHud()
     energyText.properties.left = -ENERGY_WIDTH / 2
     energyText.properties.top = - ENERGY_HEIGHT
     energyText.properties:touch()
-    -- Setting up hud element for displaying all agents
-    local AGENTS_WIDTH = 200
-    local AGENTS_HEIGHT = 32    
-    local playerAgentList = Entity("hud.playerAgents")
-    local playerAgentText = TextOverlayComponent("hud.playerAgents")
-    playerAgentList:addComponent(playerAgentText)
-    playerAgentText.properties.horizontalAlignment = TextOverlayComponent.Right
-    playerAgentText.properties.verticalAlignment = TextOverlayComponent.Bottom
-    playerAgentText.properties.width = AGENTS_WIDTH 
-    playerAgentText.properties.height = AGENTS_HEIGHT  -- Note that height and top will change dynamically with the number of agents displayed
-    playerAgentText.properties.left = -AGENTS_WIDTH
-    playerAgentText.properties.top = -AGENTS_HEIGHT
-    playerAgentText.properties:touch()
-    local playerAgentCounts = Entity("hud.playerAgentCounts")
-    local playerAgentCountText = TextOverlayComponent("hud.playerAgentCounts")
-    playerAgentCounts:addComponent(playerAgentCountText)
-    playerAgentCountText.properties.horizontalAlignment = TextOverlayComponent.Right
-    playerAgentCountText.properties.verticalAlignment = TextOverlayComponent.Bottom
-    playerAgentCountText.properties.width = AGENTS_WIDTH
-    playerAgentCountText.properties.height = AGENTS_HEIGHT  
-    playerAgentCountText.properties.left = -80
-    playerAgentCountText.properties.top = -AGENTS_HEIGHT
-    playerAgentCountText.properties:touch()
+    -- Setting up hud element for displaying all compounds
+    local COMPOUNDS_WIDTH = 200
+    local COMPOUNDS_HEIGHT = 32    
+    local playerCompoundList = Entity("hud.playerCompounds")
+    local playerCompoundText = TextOverlayComponent("hud.playerCompounds")
+    playerCompoundList:addComponent(playerCompoundText)
+    playerCompoundText.properties.horizontalAlignment = TextOverlayComponent.Right
+    playerCompoundText.properties.verticalAlignment = TextOverlayComponent.Bottom
+    playerCompoundText.properties.width = COMPOUNDS_WIDTH 
+    playerCompoundText.properties.height = COMPOUNDS_HEIGHT  -- Note that height and top will change dynamically with the number of compounds displayed
+    playerCompoundText.properties.left = -COMPOUNDS_WIDTH
+    playerCompoundText.properties.top = -COMPOUNDS_HEIGHT
+    playerCompoundText.properties:touch()
+    local playerCompoundCounts = Entity("hud.playerCompoundCounts")
+    local playerCompoundCountText = TextOverlayComponent("hud.playerCompoundCounts")
+    playerCompoundCounts:addComponent(playerCompoundCountText)
+    playerCompoundCountText.properties.horizontalAlignment = TextOverlayComponent.Right
+    playerCompoundCountText.properties.verticalAlignment = TextOverlayComponent.Bottom
+    playerCompoundCountText.properties.width = COMPOUNDS_WIDTH
+    playerCompoundCountText.properties.height = COMPOUNDS_HEIGHT  
+    playerCompoundCountText.properties.left = -80
+    playerCompoundCountText.properties.top = -COMPOUNDS_HEIGHT
+    playerCompoundCountText.properties:touch()
 end
 
 local function setupPlayer()
@@ -242,33 +242,33 @@ local function setupPlayer()
     backwardOrganelle:setColour(ColourValue(1, 0, 0, 1))
     player:addOrganelle(0, -2, backwardOrganelle)
     -- Storage energy
-    local storageOrganelle = StorageOrganelle(AgentRegistry.getAgentId("atp"), 100.0)
+    local storageOrganelle = StorageOrganelle(10, 100.0)
     storageOrganelle:addHex(0, 0)
     storageOrganelle:setColour(ColourValue(0, 1, 0, 1))
     player:addOrganelle(0, 0, storageOrganelle)
-    player:storeAgent(AgentRegistry.getAgentId("atp"), 20)
-    -- Storage agent 2
-    local storageOrganelle2 = StorageOrganelle(AgentRegistry.getAgentId("oxygen"), 100.0)
+    -- Storage compound 2
+    local storageOrganelle2 = StorageOrganelle(10, 100.0)
     storageOrganelle2:addHex(0, 0)
     storageOrganelle2:setColour(ColourValue(0, 1, 0.5, 1))
     player:addOrganelle(0, -1, storageOrganelle2)
-    -- Storage agent 3
-    local storageOrganelle3 = StorageOrganelle(AgentRegistry.getAgentId("glucose"), 100.0)
+    -- Storage compound 3
+    local storageOrganelle3 = StorageOrganelle(10, 100.0)
     storageOrganelle3:addHex(0, 0)
     storageOrganelle3:setColour(ColourValue(0.5, 1, 0, 1))
     player:addOrganelle(-1, 0, storageOrganelle3)
+	player:storeCompound(CompoundRegistry.getCompoundId("atp"), 20)
     -- Producer making atp from oxygen and glucose
     local processOrganelle1 = ProcessOrganelle(20000) -- 20 second minimum time between producing oxytoxy
-    processOrganelle1:addRecipyInput(AgentRegistry.getAgentId("glucose"), 1)
-    processOrganelle1:addRecipyInput(AgentRegistry.getAgentId("oxygen"), 6)
-    processOrganelle1:addRecipyOutput(AgentRegistry.getAgentId("atp"), 38)
-    processOrganelle1:addRecipyOutput(AgentRegistry.getAgentId("co2"), 6)
+    processOrganelle1:addRecipyInput(CompoundRegistry.getCompoundId("glucose"), 1)
+    processOrganelle1:addRecipyInput(CompoundRegistry.getCompoundId("oxygen"), 6)
+    processOrganelle1:addRecipyOutput(CompoundRegistry.getCompoundId("atp"), 38)
+    processOrganelle1:addRecipyOutput(CompoundRegistry.getCompoundId("co2"), 6)
     processOrganelle1:addHex(0, 0)
     processOrganelle1:setColour(ColourValue(1, 0, 1, 0))
     player:addOrganelle(1, -1, processOrganelle1)
 end
 
-setupAgents()
+setupCompounds()
 
 local function createMicrobeStage(name)
     return Engine:createGameState(
@@ -281,10 +281,10 @@ local function createMicrobeStage(name)
             MicrobeCameraSystem(),
             MicrobeControlSystem(),
             HudSystem(),
-            AgentLifetimeSystem(),
-            AgentMovementSystem(),
-            AgentEmitterSystem(),
-            AgentAbsorberSystem(),
+            CompoundLifetimeSystem(),
+            CompoundMovementSystem(),
+            CompoundEmitterSystem(),
+            CompoundAbsorberSystem(),
             createSpawnSystem(),
             -- Physics
             RigidBodyInputSystem(),
