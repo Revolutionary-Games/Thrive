@@ -494,7 +494,9 @@ public:
     * - CompoundRegistry::registerCompoundType
     * - CompoundRegistry::getCompoundDisplayName
     * - CompoundRegistry::getCompoundInternalName
+    * - CompoundRegistry::getCompoundSize
     * - CompoundRegistry::getCompoundId
+    * - CompoundRegistry::getCompoundList
     * @return
     */
     static luabind::scope
@@ -516,6 +518,27 @@ public:
     registerCompoundType(
         const std::string& internalName,
         const std::string& displayName
+    );
+    
+    /**
+    * @brief Registers a new compound type
+    *
+    * @param internalName
+    *   The name to be used internally for reference across game instances
+    *
+    * @param displayName
+    *   Name to be displayed to users
+    *
+    * @param size
+    *   Size of the compound when stored
+    * @return
+    *   Id of new compound
+    */
+    static CompoundId
+    registerCompoundType(
+        const std::string& internalName,
+        const std::string& displayName,
+        const int& size
     );
 
     /**
@@ -547,6 +570,20 @@ public:
     );
 
     /**
+    * @brief Obtains the size of a compound
+    *
+    * @param id
+    *   Id of the compound to obtain size from
+    *
+    * @return
+    *   Compound size for internal use
+    */
+    static int
+    getCompoundSize(
+        CompoundId id
+    );
+
+    /**
     * @brief Obtains the Id of an internal name corresponding to a registered compound
     *
     * @param internalName
@@ -558,6 +595,16 @@ public:
     static CompoundId
     getCompoundId(
         const std::string& internalName
+    );
+
+    /**
+    * @brief Obtains the IDs of all currently registered compounds
+    *
+    * @return
+    *   Array of all registered compound IDs
+    */
+    static CompoundId
+    getCompoundList(
     );
 
     CompoundRegistry() = delete;
