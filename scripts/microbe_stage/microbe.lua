@@ -11,12 +11,12 @@ COMPOUND_DISTRIBUTION_INTERVAL = 100 -- quantity of physics time between each lo
 function MicrobeComponent:__init()
     Component.__init(self)
     self.organelles = {}
-	self.storageOrganelles = {}
+    self.storageOrganelles = {}
     self.processOrganelles = {}
     self.movementDirection = Vector3(0, 0, 0)
     self.facingTargetPoint = Vector3(0, 0, 0)
-	self.capacity = 0
-	self.stored = 0
+    self.capacity = 0
+    self.stored = 0
     self.initialized = false
 end
 
@@ -125,7 +125,7 @@ function Microbe:__init(entity)
     if not self.microbe.initialized then
         self:_initialize()
     end
-	self:_updateCompountAbsorber()
+    self:_updateCompountAbsorber()
 end
 
 
@@ -171,9 +171,9 @@ end
 
 function Microbe:addStorageOrganelle(storageOrganelle)
     assert(storageOrganelle.capacity ~= nil)
-	self.capacity = self.capacity + storageOrganelle.capacity
-	storageOrganelle.ID = 
-	table.insert(self.microbe.storageOrganelles, storageOrganelle)
+    self.capacity = self.capacity + storageOrganelle.capacity
+    storageOrganelle.ID = 
+    table.insert(self.microbe.storageOrganelles, storageOrganelle)
 end
 
 
@@ -257,14 +257,14 @@ end
 --  this compound are full.
 function Microbe:storeCompound(compoundId, amount)
     local remainingAmount = amount
-	for _, storageOrganelle in ipairs(self.microbe.storageOrganelles) do
-		remainingAmount = remainingAmount - storageOrganelle.storeCompound(compoundId, remainingAmount)
-		if remainingAmount <= 0.0 then
-			break
-		end
-	end
-	--if remainingAmount > 0.0 then
-		--microbe needs an emitter to eject excess
+    for _, storageOrganelle in ipairs(self.microbe.storageOrganelles) do
+        remainingAmount = remainingAmount - storageOrganelle.storeCompound(compoundId, remainingAmount)
+        if remainingAmount <= 0.0 then
+            break
+        end
+    end
+    --if remainingAmount > 0.0 then
+        --microbe needs an emitter to eject excess
     self:_updateCompoundAbsorber()
     return remainingAmount
 end
@@ -282,12 +282,12 @@ end
 --  The amount that was actually taken, between 0.0 and maxAmount.
 function Microbe:takeCompound(compoundId, maxAmount)
     local remainingAmount = maxAmount
-	for _, storageOrganelle in ipairs(self.microbe.storageOrganelles) do
-		remainingAmount = remainingAmount - storageOrganelle.ejectCompound(compoundId, remainingAmount)
-		if remainingAmount <= 0.0 then
-			break
-		end
-	end
+    for _, storageOrganelle in ipairs(self.microbe.storageOrganelles) do
+        remainingAmount = remainingAmount - storageOrganelle.ejectCompound(compoundId, remainingAmount)
+        if remainingAmount <= 0.0 then
+            break
+        end
+    end
     self:_updateCompoundAbsorber()
     return maxAmount - remainingAmount
 end
@@ -304,7 +304,7 @@ function Microbe:update(milliseconds)
             self:storeCompound(compound, amount)
         end
     end
-	
+    
     -- Distribute compounds to StorageOrganelles
     self.residuePhysicsTime = self.residuePhysicsTime + milliseconds
     while self.residuePhysicsTime > COMPOUND_DISTRIBUTION_INTERVAL do -- For every COMPOUND_DISTRIBUTION_INTERVAL passed
@@ -328,12 +328,14 @@ function Microbe:update(milliseconds)
     for _, organelle in pairs(self.microbe.organelles) do
         organelle:update(self, milliseconds)
     end
-	
-	local amountStored = 0
-	for _, storageOrganelle in ipairs(self.microbe.storageOrganelles) do
-		amountStored = amountStored + storageOrganelle.stored
-	end
-	
+    
+    local amountStored = 0
+    for _, storageOrganelle in ipairs(self.microbe.storageOrganelles) do
+        amountStored = amountStored + storageOrganelle.stored
+    end
+    
+    self.stored = amountStored
+    
 end
 
 
@@ -370,14 +372,14 @@ end
 -- capacity of the storage organelles.
 function Microbe:_updateCompoundAbsorber()
     --quick and dirty method
-	if stored >= capacity then
-		for _, compound in ipairs(CompoundRegistry.getCompoundList()) do
-			self.compoundAbsorber:setCanAbsorbCompound(compound, false)
-		end else
-		for _, compound in ipairs(CompoundRegistry.getCompoundList()) do
-			self.compoundAbsorber:setCanAbsorbCompound(compound, true)
-		end
-	end
+    if stored >= capacity then
+        for _, compound in ipairs(CompoundRegistry.getCompoundList()) do
+            self.compoundAbsorber:setCanAbsorbCompound(compound, false)
+        end else
+        for _, compound in ipairs(CompoundRegistry.getCompoundList()) do
+            self.compoundAbsorber:setCanAbsorbCompound(compound, true)
+        end
+    end
 end
 
 

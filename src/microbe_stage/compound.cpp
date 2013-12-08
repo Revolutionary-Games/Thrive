@@ -576,7 +576,7 @@ CompoundRegistry::luaBindings() {
             def("getCompoundInternalName", &CompoundRegistry::getCompoundInternalName),
             def("getCompoundSize", &CompoundRegistry::getCompoundSize),
             def("getCompoundId", &CompoundRegistry::getCompoundId),
-			def("getCompoundList", &CompoundRegistry::getCompoundList)
+            def("getCompoundList", &CompoundRegistry::getCompoundList)
         ]
     ;
 }
