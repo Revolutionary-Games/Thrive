@@ -634,7 +634,7 @@ CompoundRegistry::registerCompoundType(
         CompoundRegistryEntry entry;
         entry.internalName = internalName;
         entry.displayName = displayName;
-        entry.size = size
+        entry.size = size;
         compoundRegistry().push_back(entry);
         compoundRegistryMap().emplace(std::string(internalName), compoundRegistry().size());
         return compoundRegistry().size();

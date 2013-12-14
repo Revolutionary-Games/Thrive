@@ -603,7 +603,7 @@ public:
     * @return
     *   Array of all registered compound IDs
     */
-    static CompoundId
+    static CompoundId[]
     getCompoundList(
     );
 

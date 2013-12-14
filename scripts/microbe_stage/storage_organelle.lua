@@ -79,7 +79,8 @@ function StorageOrganelle:ejectCompound(compoundId, amount)
         if self.stored < 0 then
             self.stored = 0
         end
-        return 0 else
+        return 0
+	else
         self.compounds[compoundId] = self.compounds[compoundId] - bandwidth
         self.stored = self.stored - COMPOUND_SIZE[compoundID]*bandwidth
         if self.compounds[compoundId] < 0 then
