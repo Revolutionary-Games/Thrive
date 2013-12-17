@@ -584,7 +584,7 @@ public:
     registerCompoundType(
         const std::string& internalName,
         const std::string& displayName,
-        const std::string& meshName
+        const std::string& meshName,
 		const int& size
     );
 
