@@ -20,12 +20,8 @@ namespace thrive {
 
 using CompoundId = uint16_t;
 
-<<<<<<< HEAD:src/microbe_stage/compound.h
-static const CompoundId NULL_AGENT = 0;
-=======
-static const AgentId NULL_AGENT = 0;
+static const CompoundId NULL_COMPOUND = 0;
 static const Ogre::Vector3 PARTICLE_SCALE(0.3,0.3,0.3);
->>>>>>> upstream/master:src/microbe_stage/agent.h
 
 CompoundId
 generateCompoundId();
@@ -39,17 +35,14 @@ class CompoundComponent : public Component {
 public:
 
     /**
-<<<<<<< HEAD:src/microbe_stage/compound.h
-    * @brief The compound id
-=======
     * @brief Lua bindings
     *
     * Exposes:
-    * - AgentComponent()
-    * - AgentComponent::m_agentId
-    * - AgentComponent::m_potency
-    * - AgentComponent::m_timeToLive
-    * - AgentComponent::m_velocity
+    * - CompoundComponent()
+    * - CompoundComponent::m_compoundId
+    * - CompoundComponent::m_potency
+    * - CompoundComponent::m_timeToLive
+    * - CompoundComponent::m_velocity
     *
     * @return
     */
@@ -57,10 +50,9 @@ public:
     luaBindings();
 
     /**
-    * @brief The agent id
->>>>>>> upstream/master:src/microbe_stage/agent.h
+    * @brief The compound id
     */
-    CompoundId m_compoundId = NULL_AGENT;
+    CompoundId m_compoundId = NULL_COMPOUND;
 
     /**
     * @brief The potency of this particle
@@ -100,29 +92,13 @@ public:
     * @brief Lua bindings
     *
     * Exposes:
-<<<<<<< HEAD:src/microbe_stage/compound.h
     * - CompoundEmitterComponent()
-    * - CompoundEmitterComponent::m_compoundId
     * - CompoundEmitterComponent::m_emissionRadius
-    * - CompoundEmitterComponent::m_emitInterval
     * - CompoundEmitterComponent::m_maxInitialSpeed
     * - CompoundEmitterComponent::m_minInitialSpeed
     * - CompoundEmitterComponent::m_minEmissionAngle
     * - CompoundEmitterComponent::m_maxEmissionAngle
-    * - CompoundEmitterComponent::m_meshName
-    * - CompoundEmitterComponent::m_particlesPerEmission
     * - CompoundEmitterComponent::m_particleLifetime
-    * - CompoundEmitterComponent::m_particleScale
-    * - CompoundEmitterComponent::m_potencyPerParticle
-=======
-    * - AgentEmitterComponent()
-    * - AgentEmitterComponent::m_emissionRadius
-    * - AgentEmitterComponent::m_maxInitialSpeed
-    * - AgentEmitterComponent::m_minInitialSpeed
-    * - AgentEmitterComponent::m_minEmissionAngle
-    * - AgentEmitterComponent::m_maxEmissionAngle
-    * - AgentEmitterComponent::m_particleLifetime
->>>>>>> upstream/master:src/microbe_stage/agent.h
     *
     * @return
     */
@@ -130,14 +106,6 @@ public:
     luaBindings();
 
     /**
-<<<<<<< HEAD:src/microbe_stage/compound.h
-    * @brief The compound id to emit
-    */
-    CompoundId m_compoundId = NULL_AGENT;
-
-    /**
-=======
->>>>>>> upstream/master:src/microbe_stage/agent.h
     * @brief How far away the particles are spawned
     */
     Ogre::Real m_emissionRadius = 0.0;
@@ -172,22 +140,22 @@ public:
     Milliseconds m_particleLifetime = 1000;
 
     /**
-    * @brief Emits an agent according to the set properties
+    * @brief Emits an compound according to the set properties
     *
-    * @param agentId
-    *   The agent type to emit
+    * @param compoundId
+    *   The compound type to emit
     *
     * @param amount
-    *   How much of the chosen agent to emit
+    *   How much of the chosen compound to emit
     *
     * @param emitterPosition
-    *   The position of the entity emitting the agent.
-    *   Agent position is calculated from the relative emissionPosition and
+    *   The position of the entity emitting the compound.
+    *   Compound position is calculated from the relative emissionPosition and
     *   the emitterPosition.
     */
     void
-    emitAgent(
-        AgentId agentId,
+    emitCompound(
+        CompoundId compoundId,
         double amount
     );
 
@@ -201,8 +169,8 @@ public:
 
 private:
 
-    friend class AgentEmitterSystem;
-    std::vector<std::pair<AgentId, int>> m_compoundEmissions;
+    friend class CompoundEmitterSystem;
+    std::vector<std::pair<CompoundId, int>> m_compoundEmissions;
 
 };
 
@@ -210,8 +178,8 @@ private:
 /**
 * @brief Component for automatic timed compound emissions.
 */
-class TimedAgentEmitterComponent : public Component {
-    COMPONENT(TimedAgentEmitterComponent)
+class TimedCompoundEmitterComponent : public Component {
+    COMPONENT(TimedCompoundEmitterComponent)
 
 public:
 
@@ -219,11 +187,11 @@ public:
     * @brief Lua bindings
     *
     * Exposes:
-    * - AgentEmitterComponent()
-    * - AgentEmitterComponent::m_agentId
-    * - AgentEmitterComponent::m_particlesPerEmission
-    * - AgentEmitterComponent::m_potencyPerParticle
-    * - AgentEmitterComponent::m_emitInterval
+    * - CompoundEmitterComponent()
+    * - CompoundEmitterComponent::m_compoundId
+    * - CompoundEmitterComponent::m_particlesPerEmission
+    * - CompoundEmitterComponent::m_potencyPerParticle
+    * - CompoundEmitterComponent::m_emitInterval
     *
     * @return
     */
@@ -231,9 +199,9 @@ public:
     luaBindings();
 
     /**
-    * @brief The agent id to emit
+    * @brief The compound id to emit
     */
-    AgentId m_agentId = NULL_AGENT;
+    CompoundId m_compoundId = NULL_COMPOUND;
 
     /**
     * @brief The number of particles created per emission interval
@@ -246,16 +214,12 @@ public:
     float m_potencyPerParticle = 1.0f;
 
     /**
-<<<<<<< HEAD:src/microbe_stage/compound.h
-    * @brief For use by CompoundEmitterSystem
-=======
     * @brief How often new particles are spawned
     */
     Milliseconds m_emitInterval = 1000;
 
     /**
-    * @brief For use by TimedAgentEmitterSystem
->>>>>>> upstream/master:src/microbe_stage/agent.h
+    * @brief For use by TimedCompoundEmitterSystem
     */
     Milliseconds m_timeSinceLastEmission = 0;
 
@@ -608,7 +572,7 @@ public:
     *   Name to be displayed to users
     *
     * @param meshName
-    *   Name of the model to use for this agent
+    *   Name of the model to use for this compound
     *
 	* @param size
     *   Size of the compound when stored
