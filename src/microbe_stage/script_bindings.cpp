@@ -7,8 +7,10 @@ luabind::scope
 thrive::MicrobeBindings::luaBindings() {
     return (
         // Components
+        CompoundComponent::luaBindings(),
         CompoundAbsorberComponent::luaBindings(),
         CompoundEmitterComponent::luaBindings(),
+        TimedCompoundEmitterComponent::luaBindings(),
         // Systems
         CompoundLifetimeSystem::luaBindings(),
         CompoundMovementSystem::luaBindings(),

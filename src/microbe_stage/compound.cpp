@@ -9,6 +9,7 @@
 #include "engine/game_state.h"
 #include "engine/serialization.h"
 #include "engine/rng.h"
+#include "game.h"
 #include "ogre/scene_node_system.h"
 #include "scripting/luabind.h"
 #include <OgreEntity.h>
@@ -18,6 +19,26 @@
 using namespace thrive;
 
 REGISTER_COMPONENT(CompoundComponent)
+
+
+luabind::scope
+CompoundComponent::luaBindings() {
+    using namespace luabind;
+    return class_<CompoundComponent, Component>("CompoundComponent")
+        .enum_("ID") [
+            value("TYPE_ID", CompoundComponent::TYPE_ID)
+        ]
+        .scope [
+            def("TYPE_NAME", &CompoundComponent::TYPE_NAME)
+        ]
+        .def(constructor<>())
+        .def_readwrite("compoundId", &CompoundComponent::m_agentId)
+        .def_readwrite("potency", &CompoundComponent::m_potency)
+        .def_readwrite("timeToLive", &CompoundComponent::m_timeToLive)
+        .def_readwrite("velocity", &CompoundComponent::m_velocity)
+    ;
+}
+
 
 void
 CompoundComponent::load(
@@ -56,20 +77,25 @@ CompoundEmitterComponent::luaBindings() {
             def("TYPE_NAME", &CompoundEmitterComponent::TYPE_NAME)
         ]
         .def(constructor<>())
-        .def_readwrite("compoundId", &CompoundEmitterComponent::m_compoundId)
+        .def("emitCompound", &CompoundEmitterComponent::emitCompound)
         .def_readwrite("emissionRadius", &CompoundEmitterComponent::m_emissionRadius)
-        .def_readwrite("emitInterval", &CompoundEmitterComponent::m_emitInterval)
         .def_readwrite("maxInitialSpeed", &CompoundEmitterComponent::m_maxInitialSpeed)
         .def_readwrite("minInitialSpeed", &CompoundEmitterComponent::m_minInitialSpeed)
         .def_readwrite("minEmissionAngle", &CompoundEmitterComponent::m_minEmissionAngle)
         .def_readwrite("maxEmissionAngle", &CompoundEmitterComponent::m_maxEmissionAngle)
-        .def_readwrite("meshName", &CompoundEmitterComponent::m_meshName)
-        .def_readwrite("particlesPerEmission", &CompoundEmitterComponent::m_particlesPerEmission)
         .def_readwrite("particleLifetime", &CompoundEmitterComponent::m_particleLifetime)
-        .def_readwrite("particleScale", &CompoundEmitterComponent::m_particleScale)
-        .def_readwrite("potencyPerParticle", &CompoundEmitterComponent::m_potencyPerParticle)
     ;
 }
+
+
+void
+CompoundEmitterComponent::emitCompound(
+    CompoundId compoundId,
+    double amount
+) {
+    m_compoundEmissions.push_back(std::pair<CompoundId, int>(compoundId, amount));
+}
+
 
 
 void
@@ -77,42 +103,77 @@ CompoundEmitterComponent::load(
     const StorageContainer& storage
 ) {
     Component::load(storage);
-    m_compoundId = storage.get<CompoundId>("compoundId", NULL_AGENT);
     m_emissionRadius = storage.get<Ogre::Real>("emissionRadius", 0.0);
-    m_emitInterval = storage.get<Milliseconds>("emitInterval", 1000);
     m_maxInitialSpeed = storage.get<Ogre::Real>("maxInitialSpeed", 0.0);
     m_minInitialSpeed = storage.get<Ogre::Real>("minInitialSpeed", 0.0);
     m_maxEmissionAngle = storage.get<Ogre::Degree>("maxEmissionAngle");
     m_minEmissionAngle = storage.get<Ogre::Degree>("minEmissionAngle");
-    m_meshName = storage.get<Ogre::String>("meshName");
-    m_particlesPerEmission = storage.get<uint16_t>("particlesPerEmission");
     m_particleLifetime = storage.get<Milliseconds>("particleLifetime");
-    m_particleScale = storage.get<Ogre::Vector3>("particleScale");
-    m_potencyPerParticle = storage.get<float>("potencyPerParticle");
-    m_timeSinceLastEmission = storage.get<Milliseconds>("timeSinceLastEmission");
 }
 
 StorageContainer
 CompoundEmitterComponent::storage() const {
     StorageContainer storage = Component::storage();
-    storage.set<CompoundId>("compoundId", m_compoundId);
     storage.set<Ogre::Real>("emissionRadius", m_emissionRadius);
-    storage.set<Milliseconds>("emitInterval", m_emitInterval);
     storage.set<Ogre::Real>("maxInitialSpeed", m_maxInitialSpeed);
     storage.set<Ogre::Real>("minInitialSpeed", m_minInitialSpeed);
     storage.set<Ogre::Degree>("maxEmissionAngle", m_maxEmissionAngle);
     storage.set<Ogre::Degree>("minEmissionAngle", m_minEmissionAngle);
-    storage.set<Ogre::String>("meshName", m_meshName);
-    storage.set<uint16_t>("particlesPerEmission", m_particlesPerEmission);
     storage.set<Milliseconds>("particleLifetime", m_particleLifetime);
-    storage.set<Ogre::Vector3>("particleScale", m_particleScale);
-    storage.set<float>("potencyPerParticle", m_potencyPerParticle);
-    storage.set<Milliseconds>("timeSinceLastEmission", m_timeSinceLastEmission);
     return storage;
 }
 
 REGISTER_COMPONENT(CompoundEmitterComponent)
 
+
+////////////////////////////////////////////////////////////////////////////////
+// TimedCompoundEmitterComponent
+////////////////////////////////////////////////////////////////////////////////
+
+luabind::scope
+TimedCompoundEmitterComponent::luaBindings() {
+    using namespace luabind;
+    return class_<TimedCompoundEmitterComponent, Component>("TimedCompoundEmitterComponent")
+        .enum_("ID") [
+            value("TYPE_ID", TimedCompoundEmitterComponent::TYPE_ID)
+        ]
+        .scope [
+            def("TYPE_NAME", &TimedCompoundEmitterComponent::TYPE_NAME)
+        ]
+        .def(constructor<>())
+        .def_readwrite("emitInterval", &TimedCompoundEmitterComponent::m_emitInterval)
+        .def_readwrite("compoundId", &TimedCompoundEmitterComponent::m_compoundId)
+        .def_readwrite("particlesPerEmission", &TimedCompoundEmitterComponent::m_particlesPerEmission)
+        .def_readwrite("potencyPerParticle", &TimedCompoundEmitterComponent::m_potencyPerParticle)
+    ;
+}
+
+
+void
+TimedCompoundEmitterComponent::load(
+    const StorageContainer& storage
+) {
+    Component::load(storage);
+    m_compoundId = storage.get<CompoundId>("compoundId", NULL_COMPOUND);
+    m_particlesPerEmission = storage.get<uint16_t>("particlesPerEmission");
+    m_potencyPerParticle = storage.get<float>("potencyPerParticle");
+    m_emitInterval = storage.get<Milliseconds>("emitInterval", 1000);
+    m_timeSinceLastEmission = storage.get<Milliseconds>("timeSinceLastEmission");
+}
+
+
+StorageContainer
+TimedCompoundEmitterComponent::storage() const {
+    StorageContainer storage = Component::storage();
+    storage.set<CompoundId>("compoundId", m_compoundId);
+    storage.set<uint16_t>("particlesPerEmission", m_particlesPerEmission);
+    storage.set<float>("potencyPerParticle", m_potencyPerParticle);
+    storage.set<Milliseconds>("emitInterval", m_emitInterval);
+    storage.set<Milliseconds>("timeSinceLastEmission", m_timeSinceLastEmission);
+    return storage;
+}
+
+REGISTER_COMPONENT(TimedCompoundEmitterComponent)
 
 ////////////////////////////////////////////////////////////////////////////////
 // CompoundAbsorberComponent
@@ -347,6 +408,7 @@ struct CompoundEmitterSystem::Implementation {
     EntityFilter<
         CompoundEmitterComponent,
         OgreSceneNodeComponent
+		Optional<TimedCompoundEmitterComponent>
     > m_entities;
 
     Ogre::SceneManager* m_sceneManager = nullptr;
@@ -379,72 +441,95 @@ CompoundEmitterSystem::shutdown() {
     System::shutdown();
 }
 
+// Helper function for CompoundEmitterSystem to emit compounds
+static void
+emitCompound(
+    CompoundId compoundId,
+    double amount,
+    Ogre::Vector3 emittorPosition,
+    CompoundEmitterComponent* emitterComponent
+) {
+
+    Ogre::Vector3 emissionOffset(0,0,0);
+
+    Ogre::Degree emissionAngle{static_cast<Ogre::Real>(Game::instance().engine().rng().getDouble(
+        emitterComponent->m_minEmissionAngle.valueDegrees(),
+        emitterComponent->m_maxEmissionAngle.valueDegrees()
+    ))};
+    Ogre::Real emissionSpeed = Game::instance().engine().rng().getDouble(
+        emitterComponent->m_minInitialSpeed,
+        emitterComponent->m_maxInitialSpeed
+    );
+    Ogre::Vector3 emissionVelocity(
+        emissionSpeed * Ogre::Math::Sin(emissionAngle),
+        emissionSpeed * Ogre::Math::Cos(emissionAngle),
+        0.0
+    );
+    emissionOffset = Ogre::Vector3(
+        emitterComponent->m_emissionRadius * Ogre::Math::Sin(emissionAngle),
+        emitterComponent->m_emissionRadius * Ogre::Math::Cos(emissionAngle),
+        0.0
+    );
+    EntityId compoundEntityId = Game::instance().engine().currentGameState()->entityManager().generateNewId();
+    // Scene Node
+    auto compoundSceneNodeComponent = make_unique<OgreSceneNodeComponent>();
+    compoundSceneNodeComponent->m_transform.scale = PARTICLE_SCALE;
+    compoundSceneNodeComponent->m_meshName = CompoundRegistry::getCompoundMeshName(compoundId);
+    // Collision Hull
+    auto compoundRigidBodyComponent = make_unique<RigidBodyComponent>(
+        btBroadphaseProxy::SensorTrigger,
+        btBroadphaseProxy::AllFilter & (~ btBroadphaseProxy::SensorTrigger)
+    );
+    compoundRigidBodyComponent->m_properties.shape = std::make_shared<SphereShape>(0.01);
+    compoundRigidBodyComponent->m_properties.hasContactResponse = false;
+    compoundRigidBodyComponent->m_properties.kinematic = true;
+    compoundRigidBodyComponent->m_dynamicProperties.position = emittorPosition + emissionOffset;
+    // Compound Component
+    auto compoundComponent = make_unique<CompoundComponent>();
+    compoundComponent->m_timeToLive = emitterComponent->m_particleLifetime;
+    compoundComponent->m_velocity = emissionVelocity;
+    compoundComponent->m_compoundId = compoundId;
+    compoundComponent->m_potency = amount;
+    auto collisionHandler = make_unique<CollisionComponent>();
+    collisionHandler->addCollisionGroup("compound");
+    // Build component list
+    std::list<std::unique_ptr<Component>> components;
+    components.emplace_back(std::move(compoundSceneNodeComponent));
+    components.emplace_back(std::move(compoundComponent));
+    components.emplace_back(std::move(compoundRigidBodyComponent));
+    components.emplace_back(std::move(collisionHandler));
+    for (auto& component : components) {
+        Game::instance().engine().currentGameState()->entityManager().addComponent(
+            compoundEntityId,
+            std::move(component)
+        );
+    }
+}
+
+
 
 void
 CompoundEmitterSystem::update(int milliseconds) {
     for (auto& value : m_impl->m_entities) {
         CompoundEmitterComponent* emitterComponent = std::get<0>(value.second);
         OgreSceneNodeComponent* sceneNodeComponent = std::get<1>(value.second);
-        emitterComponent->m_timeSinceLastEmission += milliseconds;
-        while (
-            emitterComponent->m_emitInterval > 0 and
-            emitterComponent->m_timeSinceLastEmission >= emitterComponent->m_emitInterval
-        ) {
-            emitterComponent->m_timeSinceLastEmission -= emitterComponent->m_emitInterval;
+        TimedCompoundEmitterComponent* timedEmitterComponent = std::get<2>(value.second);
 
-            for (unsigned int i = 0; i < emitterComponent->m_particlesPerEmission; ++i) {
-                Ogre::Degree emissionAngle{static_cast<Ogre::Real>(this->engine()->rng().getDouble(
-                    emitterComponent->m_minEmissionAngle.valueDegrees(),
-                    emitterComponent->m_maxEmissionAngle.valueDegrees()
-                ))};
-                Ogre::Real emissionSpeed = this->engine()->rng().getDouble(
-                    emitterComponent->m_minInitialSpeed,
-                    emitterComponent->m_maxInitialSpeed
-                );
-                Ogre::Vector3 emissionVelocity(
-                    emissionSpeed * Ogre::Math::Sin(emissionAngle),
-                    emissionSpeed * Ogre::Math::Cos(emissionAngle),
-                    0.0
-                );
-                Ogre::Vector3 emissionPosition(
-                    emitterComponent->m_emissionRadius * Ogre::Math::Sin(emissionAngle),
-                    emitterComponent->m_emissionRadius * Ogre::Math::Cos(emissionAngle),
-                    0.0
-                );
-                EntityId compoundEntityId = this->entityManager()->generateNewId();
-                // Scene Node
-                auto compoundSceneNodeComponent = make_unique<OgreSceneNodeComponent>();
-                compoundSceneNodeComponent->m_transform.scale = emitterComponent->m_particleScale;
-                compoundSceneNodeComponent->m_meshName = emitterComponent->m_meshName;
-                // Collision Hull
-                auto compoundRigidBodyComponent = make_unique<RigidBodyComponent>(
-                    btBroadphaseProxy::SensorTrigger,
-                    btBroadphaseProxy::AllFilter & (~ btBroadphaseProxy::SensorTrigger)
-                );
-                compoundRigidBodyComponent->m_properties.shape = std::make_shared<SphereShape>(0.01);
-                compoundRigidBodyComponent->m_properties.hasContactResponse = false;
-                compoundRigidBodyComponent->m_properties.kinematic = true;
-                compoundRigidBodyComponent->m_dynamicProperties.position = sceneNodeComponent->m_transform.position + emissionPosition;
-                // Compound Component
-                auto compoundComponent = make_unique<CompoundComponent>();
-                compoundComponent->m_timeToLive = emitterComponent->m_particleLifetime;
-                compoundComponent->m_velocity = emissionVelocity;
-                compoundComponent->m_compoundId = emitterComponent->m_compoundId;
-                compoundComponent->m_potency = emitterComponent->m_potencyPerParticle;
-                // Collision handler component
-                auto collisionComponent = make_unique<CollisionComponent>();
-                collisionComponent->addCollisionGroup("compound");
-                // Build component list
-                std::list<std::unique_ptr<Component>> components;
-                components.emplace_back(std::move(compoundSceneNodeComponent));
-                components.emplace_back(std::move(compoundComponent));
-                components.emplace_back(std::move(compoundRigidBodyComponent));
-                components.emplace_back(std::move(collisionComponent));
-                for (auto& component : components) {
-                    this->entityManager()->addComponent(
-                        compoundEntityId,
-                        std::move(component)
-                    );
+        for (auto emission : emitterComponent->m_compoundEmissions)
+        {
+            emitCompound(std::get<0>(emission), std::get<1>(emission), sceneNodeComponent->m_transform.position, emitterComponent);
+        }
+        emitterComponent->m_compoundEmissions.clear();
+        if (timedEmitterComponent)
+        {
+            timedEmitterComponent->m_timeSinceLastEmission += milliseconds;
+            while (
+                timedEmitterComponent->m_emitInterval > 0 and
+                timedEmitterComponent->m_timeSinceLastEmission >= timedEmitterComponent->m_emitInterval
+            ) {
+                timedEmitterComponent->m_timeSinceLastEmission -= timedEmitterComponent->m_emitInterval;
+                for (unsigned int i = 0; i < timedEmitterComponent->m_particlesPerEmission; ++i) {
+                     emitCompound(timedEmitterComponent->m_compoundId, timedEmitterComponent->m_potencyPerParticle, sceneNodeComponent->m_transform.position, emitterComponent);
                 }
             }
         }
@@ -574,6 +659,7 @@ CompoundRegistry::luaBindings() {
             def("registerCompoundType", &CompoundRegistry::registerCompoundType),
             def("getCompoundDisplayName", &CompoundRegistry::getCompoundDisplayName),
             def("getCompoundInternalName", &CompoundRegistry::getCompoundInternalName),
+			def("getCompoundMeshName", &CompoundRegistry::getCompoundMeshName),
             def("getCompoundSize", &CompoundRegistry::getCompoundSize),
             def("getCompoundId", &CompoundRegistry::getCompoundId),
             def("getCompoundList", &CompoundRegistry::getCompoundList)
@@ -588,6 +674,7 @@ namespace {
         std::string internalName;
         std::string displayName;
         int size;
+		std::string meshName;
     };
 }
 
@@ -605,28 +692,8 @@ compoundRegistryMap() {
 CompoundId
 CompoundRegistry::registerCompoundType(
     const std::string& internalName,
-    const std::string& displayName
-) {
-    if (compoundRegistryMap().count(internalName) == 0)
-    {
-        CompoundRegistryEntry entry;
-        entry.internalName = internalName;
-        entry.displayName = displayName;
-        entry.size = 1;
-        compoundRegistry().push_back(entry);
-        compoundRegistryMap().emplace(std::string(internalName), compoundRegistry().size());
-        return compoundRegistry().size();
-    }
-    else
-    {
-        throw std::invalid_argument("Duplicate internalName not allowed.");
-    }
-}
-
-CompoundId
-CompoundRegistry::registerCompoundType(
-    const std::string& internalName,
     const std::string& displayName,
+	const std::string& meshName,
     const int& size
 ) {
     if (compoundRegistryMap().count(internalName) == 0)
@@ -634,6 +701,7 @@ CompoundRegistry::registerCompoundType(
         CompoundRegistryEntry entry;
         entry.internalName = internalName;
         entry.displayName = displayName;
+		entry.meshName = meshName;
         entry.size = size;
         compoundRegistry().push_back(entry);
         compoundRegistryMap().emplace(std::string(internalName), compoundRegistry().size());
@@ -688,7 +756,16 @@ CompoundRegistry::getCompoundId(
     return compoundId;
 }
 
-CompoundId[]
+std::string
+CompoundRegistry::getCompoundMeshName(
+    CompoundId id
+) {
+    if (static_cast<std::size_t>(id) > compoundRegistry().size())
+        throw std::out_of_range("Index of compound does not exist.");
+    return compoundRegistry()[id-1].meshName;
+}
+
+static CompoundId[]
 CompoundRegistry::getCompoundList(
 ) {
     CompoundId compounds[compoundRegistryMap().size()] = { };

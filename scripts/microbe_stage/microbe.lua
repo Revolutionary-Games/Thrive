@@ -79,16 +79,20 @@ function Microbe.createMicrobeEntity(name)
     rigidBody.properties.linearFactor = Vector3(1, 1, 0)
     rigidBody.properties.angularFactor = Vector3(0, 0, 1)
     rigidBody.properties:touch()
-
+    local compoundEmitter = CompoundEmitterComponent() -- Emitter for excess compounds
+    compoundEmitter.emissionRadius = 5
+    compoundEmitter.minInitialSpeed = 1
+    compoundEmitter.maxInitialSpeed = 3
+    compoundEmitter.particleLifetime = 5000
     local reactionHandler = CollisionComponent()
     reactionHandler:addCollisionGroup("microbe")
-    
     local components = {
         CompoundAbsorberComponent(),
         OgreSceneNodeComponent(),
         MicrobeComponent(),
         reactionHandler,
-        rigidBody
+        rigidBody,
+        compoundEmitter
     }
     for _, component in ipairs(components) do
         entity:addComponent(component)
@@ -103,6 +107,7 @@ Microbe.COMPONENTS = {
     microbe = MicrobeComponent.TYPE_ID,
     rigidBody = RigidBodyComponent.TYPE_ID,
     sceneNode = OgreSceneNodeComponent.TYPE_ID,
+    compoundEmitter = CompoundEmitterComponent.TYPE_ID,
     collisionHandler = CollisionComponent.TYPE_ID
 }
 
@@ -266,6 +271,27 @@ function Microbe:storeCompound(compoundId, amount)
     --if remainingAmount > 0.0 then
         --microbe needs an emitter to eject excess
     self:_updateCompoundAbsorber()
+	if remainingAmount > 0 then -- If there is excess compounds, we will eject them
+        local yAxis = self.sceneNode.transform.orientation:yAxis()
+
+        local particleCount = 1
+        if remainingAmount >= 3  then
+            particleCount = 3
+        end
+        local i
+        for i = 1, particleCount do
+            local angle = math.atan2(-yAxis.x, -yAxis.y)
+            if (angle < 0) then 
+                angle = angle + 2*math.pi 
+            end
+            angle = angle * 180/math.pi
+            local minAngle = angle - 30 -- over and underflow of angles are handled automatically
+            local maxAngle = angle + 30    
+            self.compoundEmitter.minEmissionAngle = Degree(minAngle)
+            self.compoundEmitter.maxEmissionAngle = Degree(maxAngle)
+            self.compoundEmitter:emitCompound(compoundId, remainingAmount/particleCount)
+        end
+    end
     return remainingAmount
 end
 

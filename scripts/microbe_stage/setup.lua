@@ -33,12 +33,12 @@ local function setupCamera()
 end
 
 local function setupCompounds()
-    CompoundRegistry.registerCompoundType("atp", "ATP")
-    CompoundRegistry.registerCompoundType("oxygen", "Oxygen")    
-    CompoundRegistry.registerCompoundType("nitrate", "Nitrate")
-    CompoundRegistry.registerCompoundType("glucose", "Glucose")
-    CompoundRegistry.registerCompoundType("co2", "CO2")
-    CompoundRegistry.registerCompoundType("oxytoxy", "OxyToxy NT")
+    CompoundRegistry.registerCompoundType("atp", "ATP", "molecule.mesh")
+    CompoundRegistry.registerCompoundType("oxygen", "Oxygen", "molecule.mesh")    
+    CompoundRegistry.registerCompoundType("nitrate", "Nitrate", "molecule.mesh")
+    CompoundRegistry.registerCompoundType("glucose", "Glucose", "molecule.mesh")
+    CompoundRegistry.registerCompoundType("co2", "CO2", "molecule.mesh")
+    CompoundRegistry.registerCompoundType("oxytoxy", "OxyToxy NT", "molecule.mesh")
 end
 
 local function createSpawnSystem()
@@ -71,19 +71,18 @@ local function createSpawnSystem()
         -- Emitter oxygen
         local oxygenEmitter = CompoundEmitterComponent()
         entity:addComponent(oxygenEmitter)
-        oxygenEmitter.compoundId = CompoundRegistry.getCompoundId("oxygen")
-        oxygenEmitter.emitInterval = 1000
         oxygenEmitter.emissionRadius = 1
         oxygenEmitter.maxInitialSpeed = 10
         oxygenEmitter.minInitialSpeed = 2
         oxygenEmitter.minEmissionAngle = Degree(0)
         oxygenEmitter.maxEmissionAngle = Degree(360)
-        oxygenEmitter.meshName = "molecule.mesh"
-        oxygenEmitter.particlesPerEmission = 1
         oxygenEmitter.particleLifeTime = 5000
-        oxygenEmitter.particleScale = Vector3(0.3, 0.3, 0.3)
-        oxygenEmitter.potencyPerParticle = 2.0
-        
+        local timedEmitter = TimedCompoundEmitterComponent()
+        timedEmitter.compoundId = CompoundRegistry.getCompoundId("oxygen")
+        timedEmitter.particlesPerEmission = 1
+        timedEmitter.potencyPerParticle = 2.0
+        timedEmitter.emitInterval = 1000
+        entity:addComponent(timedEmitter)
         return entity
     end
     local testFunction2 = function(pos)
@@ -113,19 +112,18 @@ local function createSpawnSystem()
         -- Emitter glucose
         local glucoseEmitter = CompoundEmitterComponent()
         entity:addComponent(glucoseEmitter)
-        glucoseEmitter.compoundId = CompoundRegistry.getCompoundId("glucose")
-        glucoseEmitter.emitInterval = 2000
         glucoseEmitter.emissionRadius = 1
         glucoseEmitter.maxInitialSpeed = 10
         glucoseEmitter.minInitialSpeed = 2
         glucoseEmitter.minEmissionAngle = Degree(0)
         glucoseEmitter.maxEmissionAngle = Degree(360)
-        glucoseEmitter.meshName = "molecule.mesh"
-        glucoseEmitter.particlesPerEmission = 1
         glucoseEmitter.particleLifeTime = 5000
-        glucoseEmitter.particleScale = Vector3(0.3, 0.3, 0.3)
-        glucoseEmitter.potencyPerParticle = 1.0
-        
+        local timedEmitter = TimedCompoundEmitterComponent()
+        timedEmitter.compoundId = CompoundRegistry.getCompoundId("glucose")
+        timedEmitter.particlesPerEmission = 1
+        timedEmitter.potencyPerParticle = 1.0
+        timedEmitter.emitInterval = 2000
+        entity:addComponent(timedEmitter)
         return entity
     end
     
@@ -166,18 +164,19 @@ local function setupEmitter()
     -- Emitter glucose
     local glucoseEmitter = CompoundEmitterComponent()
     entity:addComponent(glucoseEmitter)
-    glucoseEmitter.compoundId = CompoundRegistry.getCompoundId("glucose")
-    glucoseEmitter.emitInterval = 1000
     glucoseEmitter.emissionRadius = 1
     glucoseEmitter.maxInitialSpeed = 10
     glucoseEmitter.minInitialSpeed = 2
     glucoseEmitter.minEmissionAngle = Degree(0)
     glucoseEmitter.maxEmissionAngle = Degree(360)
     glucoseEmitter.meshName = "molecule.mesh"
-    glucoseEmitter.particlesPerEmission = 1
     glucoseEmitter.particleLifeTime = 5000
-    glucoseEmitter.particleScale = Vector3(0.3, 0.3, 0.3)
-    glucoseEmitter.potencyPerParticle = 3.0
+    local timedEmitter = TimedCompoundEmitterComponent()
+    timedEmitter.compoundId = CompoundRegistry.getCompoundId("glucose")
+    timedEmitter.particlesPerEmission = 1
+    timedEmitter.potencyPerParticle = 3.0
+    timedEmitter.emitInterval = 1000
+    entity:addComponent(timedEmitter)
 end
 
 
@@ -315,5 +314,5 @@ end
 
 GameState.MICROBE = createMicrobeStage("microbe")
 GameState.MICROBE_ALTERNATE = createMicrobeStage("microbe_alternate")
-    
+
 Engine:setCurrentGameState(GameState.MICROBE)
