@@ -473,7 +473,7 @@ emitAgent(
     EntityId agentEntityId = Game::instance().engine().currentGameState()->entityManager().generateNewId();
     // Scene Node
     auto agentSceneNodeComponent = make_unique<OgreSceneNodeComponent>();
-    agentSceneNodeComponent->m_transform.scale = PARTICLE_SCALE;
+    agentSceneNodeComponent->m_transform.scale = AgentRegistry::getCompoundScale(agentId);;
     agentSceneNodeComponent->m_meshName = AgentRegistry::getAgentMeshName(agentId);
     // Collision Hull
     auto agentRigidBodyComponent = make_unique<RigidBodyComponent>(
@@ -660,7 +660,8 @@ AgentRegistry::luaBindings() {
             def("getAgentDisplayName", &AgentRegistry::getAgentDisplayName),
             def("getAgentInternalName", &AgentRegistry::getAgentInternalName),
             def("getAgentId", &AgentRegistry::getAgentId),
-            def("getAgentMeshName", &AgentRegistry::getAgentMeshName)
+            def("getAgentMeshName", &AgentRegistry::getAgentMeshName),
+            def("getCompoundScale", &AgentRegistry::getCompoundScale)
         ]
     ;
 }
@@ -672,6 +673,7 @@ namespace {
         std::string internalName;
         std::string displayName;
         std::string meshName;
+        Ogre::Vector3 scale;
     };
 }
 
@@ -691,7 +693,8 @@ AgentId
 AgentRegistry::registerAgentType(
     const std::string& internalName,
     const std::string& displayName,
-    const std::string& meshName
+    const std::string& meshName,
+    double scale
 ) {
     if (agentRegistryMap().count(internalName) == 0)
     {
@@ -699,6 +702,7 @@ AgentRegistry::registerAgentType(
         entry.internalName = internalName;
         entry.displayName = displayName;
         entry.meshName = meshName;
+        entry.scale = Ogre::Vector3(scale, scale, scale);
         agentRegistry().push_back(entry);
         agentRegistryMap().emplace(std::string(internalName), agentRegistry().size());
         return agentRegistry().size();
@@ -750,4 +754,13 @@ AgentRegistry::getAgentMeshName(
     if (static_cast<std::size_t>(id) > agentRegistry().size())
         throw std::out_of_range("Index of agent does not exist.");
     return agentRegistry()[id-1].meshName;
+}
+
+Ogre::Vector3
+AgentRegistry::getCompoundScale(
+    AgentId id
+) {
+    if (static_cast<std::size_t>(id) > agentRegistry().size())
+        throw std::out_of_range("Index of agent does not exist.");
+    return agentRegistry()[id-1].scale;
 }

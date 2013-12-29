@@ -21,7 +21,6 @@ namespace thrive {
 using AgentId = uint16_t;
 
 static const AgentId NULL_AGENT = 0;
-static const Ogre::Vector3 PARTICLE_SCALE(0.3,0.3,0.3);
 
 AgentId
 generateAgentId();
@@ -579,7 +578,8 @@ public:
     registerAgentType(
         const std::string& internalName,
         const std::string& displayName,
-        const std::string& meshName
+        const std::string& meshName,
+        double scale
     );
 
     /**
@@ -636,6 +636,11 @@ public:
     */
     static std::string
     getAgentMeshName(
+        AgentId agentId
+    );
+
+    static Ogre::Vector3
+    getCompoundScale(
         AgentId agentId
     );
 
