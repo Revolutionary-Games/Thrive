@@ -18,19 +18,19 @@ class scope;
 
 namespace thrive {
 
-using AgentId = uint16_t;
+using CompoundId = uint16_t;
 
-static const AgentId NULL_AGENT = 0;
+static const CompoundId NULL_COMPOUND = 0;
 static const Ogre::Vector3 PARTICLE_SCALE(0.3,0.3,0.3);
 
-AgentId
-generateAgentId();
+CompoundId
+generateCompoundId();
 
 /**
-* @brief Component for entities that act as agent particles
+* @brief Component for entities that act as compound particles
 */
-class AgentComponent : public Component {
-    COMPONENT(Agent)
+class CompoundComponent : public Component {
+    COMPONENT(Compound)
 
 public:
 
@@ -38,11 +38,11 @@ public:
     * @brief Lua bindings
     *
     * Exposes:
-    * - AgentComponent()
-    * - AgentComponent::m_agentId
-    * - AgentComponent::m_potency
-    * - AgentComponent::m_timeToLive
-    * - AgentComponent::m_velocity
+    * - CompoundComponent()
+    * - CompoundComponent::m_compoundId
+    * - CompoundComponent::m_potency
+    * - CompoundComponent::m_timeToLive
+    * - CompoundComponent::m_velocity
     *
     * @return
     */
@@ -50,9 +50,9 @@ public:
     luaBindings();
 
     /**
-    * @brief The agent id
+    * @brief The compound id
     */
-    AgentId m_agentId = NULL_AGENT;
+    CompoundId m_compoundId = NULL_COMPOUND;
 
     /**
     * @brief The potency of this particle
@@ -81,10 +81,10 @@ public:
 
 
 /**
-* @brief Emitter for agent particles
+* @brief Emitter for compound particles
 */
-class AgentEmitterComponent : public Component {
-    COMPONENT(AgentEmitter)
+class CompoundEmitterComponent : public Component {
+    COMPONENT(CompoundEmitter)
 
 public:
 
@@ -92,13 +92,13 @@ public:
     * @brief Lua bindings
     *
     * Exposes:
-    * - AgentEmitterComponent()
-    * - AgentEmitterComponent::m_emissionRadius
-    * - AgentEmitterComponent::m_maxInitialSpeed
-    * - AgentEmitterComponent::m_minInitialSpeed
-    * - AgentEmitterComponent::m_minEmissionAngle
-    * - AgentEmitterComponent::m_maxEmissionAngle
-    * - AgentEmitterComponent::m_particleLifetime
+    * - CompoundEmitterComponent()
+    * - CompoundEmitterComponent::m_emissionRadius
+    * - CompoundEmitterComponent::m_maxInitialSpeed
+    * - CompoundEmitterComponent::m_minInitialSpeed
+    * - CompoundEmitterComponent::m_minEmissionAngle
+    * - CompoundEmitterComponent::m_maxEmissionAngle
+    * - CompoundEmitterComponent::m_particleLifetime
     *
     * @return
     */
@@ -140,22 +140,22 @@ public:
     Milliseconds m_particleLifetime = 1000;
 
     /**
-    * @brief Emits an agent according to the set properties
+    * @brief Emits an compound according to the set properties
     *
-    * @param agentId
-    *   The agent type to emit
+    * @param compoundId
+    *   The compound type to emit
     *
     * @param amount
-    *   How much of the chosen agent to emit
+    *   How much of the chosen compound to emit
     *
     * @param emitterPosition
-    *   The position of the entity emitting the agent.
-    *   Agent position is calculated from the relative emissionPosition and
+    *   The position of the entity emitting the compound.
+    *   Compound position is calculated from the relative emissionPosition and
     *   the emitterPosition.
     */
     void
-    emitAgent(
-        AgentId agentId,
+    emitCompound(
+        CompoundId compoundId,
         double amount
     );
 
@@ -169,8 +169,8 @@ public:
 
 private:
 
-    friend class AgentEmitterSystem;
-    std::vector<std::pair<AgentId, int>> m_compoundEmissions;
+    friend class CompoundEmitterSystem;
+    std::vector<std::pair<CompoundId, int>> m_compoundEmissions;
 
 };
 
@@ -178,8 +178,8 @@ private:
 /**
 * @brief Component for automatic timed compound emissions.
 */
-class TimedAgentEmitterComponent : public Component {
-    COMPONENT(TimedAgentEmitterComponent)
+class TimedCompoundEmitterComponent : public Component {
+    COMPONENT(TimedCompoundEmitterComponent)
 
 public:
 
@@ -187,11 +187,11 @@ public:
     * @brief Lua bindings
     *
     * Exposes:
-    * - AgentEmitterComponent()
-    * - AgentEmitterComponent::m_agentId
-    * - AgentEmitterComponent::m_particlesPerEmission
-    * - AgentEmitterComponent::m_potencyPerParticle
-    * - AgentEmitterComponent::m_emitInterval
+    * - CompoundEmitterComponent()
+    * - CompoundEmitterComponent::m_compoundId
+    * - CompoundEmitterComponent::m_particlesPerEmission
+    * - CompoundEmitterComponent::m_potencyPerParticle
+    * - CompoundEmitterComponent::m_emitInterval
     *
     * @return
     */
@@ -199,9 +199,9 @@ public:
     luaBindings();
 
     /**
-    * @brief The agent id to emit
+    * @brief The compound id to emit
     */
-    AgentId m_agentId = NULL_AGENT;
+    CompoundId m_compoundId = NULL_COMPOUND;
 
     /**
     * @brief The number of particles created per emission interval
@@ -219,7 +219,7 @@ public:
     Milliseconds m_emitInterval = 1000;
 
     /**
-    * @brief For use by TimedAgentEmitterSystem
+    * @brief For use by TimedCompoundEmitterSystem
     */
     Milliseconds m_timeSinceLastEmission = 0;
 
@@ -235,10 +235,10 @@ public:
 
 
 /**
-* @brief Absorbs agent particles
+* @brief Absorbs compound particles
 */
-class AgentAbsorberComponent : public Component {
-    COMPONENT(AgentAbsorber)
+class CompoundAbsorberComponent : public Component {
+    COMPONENT(CompoundAbsorber)
 
 public:
 
@@ -246,9 +246,9 @@ public:
     * @brief Lua bindings
     *
     * Exposes:
-    * - AgentAbsorberComponent::absorbedAgentAmount
-    * - AgentAbsorberComponent::canAbsorbAgent
-    * - AgentAbsorberComponent::setCanAbsorbAgent
+    * - CompoundAbsorberComponent::absorbedCompoundAmount
+    * - CompoundAbsorberComponent::canAbsorbCompound
+    * - CompoundAbsorberComponent::setCanAbsorbCompound
     *
     * @return
     */
@@ -256,39 +256,39 @@ public:
     luaBindings();
 
     /**
-    * @brief The agents absorbed in the last time step
+    * @brief The compounds absorbed in the last time step
     */
-    std::unordered_map<AgentId, float> m_absorbedAgents;
+    std::unordered_map<CompoundId, float> m_absorbedCompounds;
 
     /**
-    * @brief Whether a particular agent id can be absorbed
+    * @brief Whether a particular compound id can be absorbed
     */
-    std::unordered_set<AgentId> m_canAbsorbAgent;
+    std::unordered_set<CompoundId> m_canAbsorbCompound;
 
     /**
     * @brief The absorbed amount in the last time step
     *
     * @param id
-    *   The agent id to get the amount for
+    *   The compound id to get the amount for
     *
     * @return
     */
     float
-    absorbedAgentAmount(
-        AgentId id
+    absorbedCompoundAmount(
+        CompoundId id
     ) const;
 
     /**
-    * @brief Whether an agent can be absorbed
+    * @brief Whether an compound can be absorbed
     *
     * @param id
-    *   The agent id to check
+    *   The compound id to check
     *
     * @return
     */
     bool
-    canAbsorbAgent(
-        AgentId id
+    canAbsorbCompound(
+        CompoundId id
     ) const;
 
     void
@@ -297,33 +297,33 @@ public:
     ) override;
 
     /**
-    * @brief Sets the amount of absorbed agents
+    * @brief Sets the amount of absorbed compounds
     *
     * Use this for e.g. resetting the absorbed amount down
     * to zero.
     *
     * @param id
-    *   The agent id to change the amount for
+    *   The compound id to change the amount for
     * @param amount
     *   The new amount
     */
     void
-    setAbsorbedAgentAmount(
-        AgentId id,
+    setAbsorbedCompoundAmount(
+        CompoundId id,
         float amount
     );
 
     /**
-    * @brief Sets whether an agent can be absorbed
+    * @brief Sets whether an compound can be absorbed
     *
     * @param id
-    *   The agent id to set the flag for
+    *   The compound id to set the flag for
     * @param canAbsorb
-    *   Whether to absorb the agent
+    *   Whether to absorb the compound
     */
     void
-    setCanAbsorbAgent(
-        AgentId id,
+    setCanAbsorbCompound(
+        CompoundId id,
         bool canAbsorb
     );
 
@@ -334,9 +334,9 @@ public:
 
 
 /**
-* @brief Despawns agent particles after they've reached their lifetime
+* @brief Despawns compound particles after they've reached their lifetime
 */
-class AgentLifetimeSystem : public System {
+class CompoundLifetimeSystem : public System {
 
 public:
 
@@ -344,7 +344,7 @@ public:
     * @brief Lua bindings
     *
     * Exposes:
-    * - AgentLifetimeSystem()
+    * - CompoundLifetimeSystem()
     *
     * @return
     */
@@ -354,12 +354,12 @@ public:
     /**
     * @brief Constructor
     */
-    AgentLifetimeSystem();
+    CompoundLifetimeSystem();
 
     /**
     * @brief Destructor
     */
-    ~AgentLifetimeSystem();
+    ~CompoundLifetimeSystem();
 
     /**
     * @brief Initializes the system
@@ -385,9 +385,9 @@ private:
 
 
 /**
-* @brief Moves agent particles around
+* @brief Moves compound particles around
 */
-class AgentMovementSystem : public System {
+class CompoundMovementSystem : public System {
 
 public:
 
@@ -395,7 +395,7 @@ public:
     * @brief Lua bindings
     *
     * Exposes:
-    * - AgentMovementSystem()
+    * - CompoundMovementSystem()
     *
     * @return
     */
@@ -405,12 +405,12 @@ public:
     /**
     * @brief Constructor
     */
-    AgentMovementSystem();
+    CompoundMovementSystem();
 
     /**
     * @brief Destructor
     */
-    ~AgentMovementSystem();
+    ~CompoundMovementSystem();
 
     /**
     * @brief Initializes the system
@@ -436,9 +436,9 @@ private:
 
 
 /**
-* @brief Spawns agent particles for AgentEmitterComponent
+* @brief Spawns compound particles for CompoundEmitterComponent
 */
-class AgentEmitterSystem : public System {
+class CompoundEmitterSystem : public System {
 
 public:
 
@@ -446,7 +446,7 @@ public:
     * @brief Lua bindings
     *
     * Exposes:
-    * - AgentEmitterSystem()
+    * - CompoundEmitterSystem()
     *
     * @return
     */
@@ -456,64 +456,12 @@ public:
     /**
     * @brief Constructor
     */
-    AgentEmitterSystem();
+    CompoundEmitterSystem();
 
     /**
     * @brief Destructor
     */
-    ~AgentEmitterSystem();
-
-    /**
-    * @brief Initializes the system
-    *
-    * @param gameState
-    */
-    void init(GameState* gameState) override;
-
-    /**
-    * @brief Shuts the system down
-    */
-    void shutdown() override;
-
-    /**
-    * @brief Updates the system
-    */
-    void update(int) override;
-
-private:
-
-    struct Implementation;
-    std::unique_ptr<Implementation> m_impl;
-};
-
-
-/**
-* @brief Despawns agents for AgentAbsorberComponent
-*/
-class AgentAbsorberSystem : public System {
-
-public:
-
-    /**
-    * @brief Lua bindings
-    *
-    * Exposes:
-    * - AgentAbsorberSystem()
-    *
-    * @return
-    */
-    static luabind::scope
-    luaBindings();
-
-    /**
-    * @brief Constructor
-    */
-    AgentAbsorberSystem();
-
-    /**
-    * @brief Destructor
-    */
-    ~AgentAbsorberSystem();
+    ~CompoundEmitterSystem();
 
     /**
     * @brief Initializes the system
@@ -540,9 +488,9 @@ private:
 
 
 /**
-* @brief Static class keeping track of agents, their Id's, internal and displayed names
+* @brief Despawns compounds for CompoundAbsorberComponent
 */
-class AgentRegistry final {
+class CompoundAbsorberSystem : public System {
 
 public:
 
@@ -550,18 +498,72 @@ public:
     * @brief Lua bindings
     *
     * Exposes:
-    * - AgentRegistry::registerAgentType
-    * - AgentRegistry::getAgentDisplayName
-    * - AgentRegistry::getAgentInternalName
-    * - AgentRegistry::getAgentId
-    * - AgentRegistry::getAgentMeshName
+    * - CompoundAbsorberSystem()
+    *
     * @return
     */
     static luabind::scope
     luaBindings();
 
     /**
-    * @brief Registers a new agent type
+    * @brief Constructor
+    */
+    CompoundAbsorberSystem();
+
+    /**
+    * @brief Destructor
+    */
+    ~CompoundAbsorberSystem();
+
+    /**
+    * @brief Initializes the system
+    *
+    * @param gameState
+    */
+    void init(GameState* gameState) override;
+
+    /**
+    * @brief Shuts the system down
+    */
+    void shutdown() override;
+
+    /**
+    * @brief Updates the system
+    */
+    void update(int) override;
+
+private:
+
+    struct Implementation;
+    std::unique_ptr<Implementation> m_impl;
+};
+
+
+/**
+* @brief Static class keeping track of compounds, their Id's, internal and displayed names
+*/
+class CompoundRegistry final {
+
+public:
+
+    /**
+    * @brief Lua bindings
+    *
+    * Exposes:
+    * - CompoundRegistry::registerCompoundType
+    * - CompoundRegistry::getCompoundDisplayName
+    * - CompoundRegistry::getCompoundInternalName
+    * - CompoundRegistry::getCompoundSize
+    * - CompoundRegistry::getCompoundId
+    * - CompoundRegistry::getCompoundList
+    * - CompoundRegistry::getCompoundMeshName
+    * @return
+    */
+    static luabind::scope
+    luaBindings();
+
+    /**
+    * @brief Registers a new compound type
     *
     * @param internalName
     *   The name to be used internally for reference across game instances
@@ -570,76 +572,104 @@ public:
     *   Name to be displayed to users
     *
     * @param meshName
-    *   Name of the model to use for this agent
+    *   Name of the model to use for this compound
     *
+	* @param size
+    *   Size of the compound when stored
+	*
     * @return
-    *   Id of new agent
+    *   Id of new compound
     */
-    static AgentId
-    registerAgentType(
+    static CompoundId
+    registerCompoundType(
         const std::string& internalName,
         const std::string& displayName,
-        const std::string& meshName
+        const std::string& meshName,
+		const int& size
     );
 
     /**
-    * @brief Obtains the display name of an agent
+    * @brief Obtains the display name of an compound
     *
     * @param id
-    *   Id of the agent to obtain display name from
+    *   Id of the compound to obtain display name from
     *
     * @return
-    *   Agent name to display to users
+    *   Compound name to display to users
     */
     static std::string
-    getAgentDisplayName(
-        AgentId id
+    getCompoundDisplayName(
+        CompoundId id
     );
 
     /**
-    * @brief Obtains the internal name of an agent
+    * @brief Obtains the internal name of an compound
     *
     * @param id
-    *   Id of the agent to obtain internal name from
+    *   Id of the compound to obtain internal name from
     *
     * @return
-    *   Agent name for internal use
+    *   Compound name for internal use
     */
     static std::string
-    getAgentInternalName(
-        AgentId id
+    getCompoundInternalName(
+        CompoundId id
     );
 
     /**
-    * @brief Obtains the Id of an internal name corresponding to a registered agent
+    * @brief Obtains the size of a compound
+    *
+    * @param id
+    *   Id of the compound to obtain size from
+    *
+    * @return
+    *   Compound size for internal use
+    */
+    static int
+    getCompoundSize(
+        CompoundId id
+    );
+
+    /**
+    * @brief Obtains the Id of an internal name corresponding to a registered compound
     *
     * @param internalName
-    *   The internal name of the agent. Must not already exist in collection or invalid_argument is thrown.
+    *   The internal name of the compound. Must not already exist in collection or invalid_argument is thrown.
     *
     * @return
-    *   AgentId of the agent if it is registered. If agent is not registered an out_of_range exception is thrown.
+    *   CompoundId of the compound if it is registered. If compound is not registered an out_of_range exception is thrown.
     */
-    static AgentId
-    getAgentId(
+    static CompoundId
+    getCompoundId(
         const std::string& internalName
     );
 
     /**
-    * @brief Obtains the name of the corresponding mesh
-    *
-    * @param agentId
-    *   The id of the agent to acquire the mesh name from
+    * @brief Obtains the IDs of all currently registered compounds
     *
     * @return
-    *   A string containing the name of the agents mesh.
-    *   If agent is not registered an out_of_range exception is thrown.
+    *   Array of all registered compound IDs
+    */
+    static CompoundId[]
+    getCompoundList(
+    );
+	
+	/**
+    * @brief Obtains the name of the corresponding mesh
+    *
+    * @param compoundId
+    *   The id of the compound to acquire the mesh name from
+    *
+    * @return
+    *   A string containing the name of the compounds mesh.
+    *   If compound is not registered an out_of_range exception is thrown.
     */
     static std::string
-    getAgentMeshName(
-        AgentId agentId
+    getCompoundMeshName(
+        CompoundId compoundId
     );
 
-    AgentRegistry() = delete;
+    CompoundRegistry() = delete;
 
 };
 
