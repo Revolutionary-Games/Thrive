@@ -63,7 +63,7 @@ class 'Microbe'
 --
 -- @returns microbe
 --  An object of type Microbe
-function Microbe.createMicrobeEntity(name)
+function Microbe.createMicrobeEntity(name, aiControlled)
     local entity
     if name then
         entity = Entity(name)
@@ -92,6 +92,10 @@ function Microbe.createMicrobeEntity(name)
         rigidBody,
         compoundEmitter
     }
+    if aiControlled then
+        local aiController = MicrobeAIControllerComponent()
+        table.insert(components, aiController)
+    end
     for _, component in ipairs(components) do
         entity:addComponent(component)
     end
@@ -353,7 +357,6 @@ end
 -- Updates the microbe's state
 function Microbe:update(milliseconds)
     -- Vacuoles
-    
     for agentId, vacuoleList in pairs(self.microbe.vacuoles) do
         -- Check for agents to store
         local amount = self.agentAbsorber:absorbedAgentAmount(agentId)
@@ -439,6 +442,14 @@ function Microbe:_updateAllHexColours()
     end
 end
 
+function Microbe:getComponent(typeid)
+    return self.entity:getComponent(typeid)
+end
+
+function Microbe:destroy()
+    self.entity:destroy()
+end
+
 
 --------------------------------------------------------------------------------
 -- MicrobeSystem
@@ -466,7 +477,7 @@ end
 
 function MicrobeSystem:init(gameState)
     System.init(self, gameState)
-    self.entities:init(gameState)    
+    self.entities:init(gameState)
 end
 
 
