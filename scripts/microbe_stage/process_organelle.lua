@@ -23,6 +23,13 @@ function ProcessOrganelle:onAddedToMicrobe(microbe, q, r)
     microbe:addProcessOrganelle(self)
 end
 
+-- Overridded from Organelle:onRemovedFromMicrobe
+function ProcessOrganelle:onRemovedFromMicrobe(microbe, q, r)
+    microbe:removeVacuole(self._vacuole)
+    Organelle.onRemovedToMicrobe(self, microbe, q, r)
+end
+
+
 
 -- Set the minimum time that has to pass between agents are produced
 -- 

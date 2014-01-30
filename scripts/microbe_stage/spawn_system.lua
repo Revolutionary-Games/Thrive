@@ -55,6 +55,7 @@ function SpawnSystem:_doSpawnCycle()
     --Despawn entities
     for entity,info in pairs(self.spawnedEntities) do
         local entityNode = entity:getComponent(OgreSceneNodeComponent.TYPE_ID)
+        if entityNode ~= nil then
         local entityPos = entityNode.transform.position
         local distSqr = playerPos:squaredDistance(entityPos)
         
@@ -62,6 +63,7 @@ function SpawnSystem:_doSpawnCycle()
         if distSqr >= info.spawnRadiusSqr then
             entity:destroy()
             self.spawnedEntities[entity] = nil
+        end
         end
     end
     

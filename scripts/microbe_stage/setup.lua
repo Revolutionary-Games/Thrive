@@ -188,7 +188,7 @@ local function createSpawnSystem()
     -- (square dekaunit?)
     spawnSystem:addSpawnType(testFunction, 1/20^2, 30)
     spawnSystem:addSpawnType(testFunction2, 1/20^2, 30)
-    spawnSystem:addSpawnType(microbeSpawnFunction, 1/60^2, 40)
+   -- spawnSystem:addSpawnType(microbeSpawnFunction, 1/60^2, 40)
     return spawnSystem
 end
 
@@ -277,7 +277,7 @@ local function setupHud()
 end
 
 local function setupPlayer()
-    local player = Microbe.createMicrobeEntity(PLAYER_NAME, false)
+    player = Microbe.createMicrobeEntity(PLAYER_NAME, false)
     -- Forward
     local forwardOrganelle = MovementOrganelle(
         Vector3(0.0, 50.0, 0.0),
@@ -331,6 +331,7 @@ local function createMicrobeStage(name)
     return Engine:createGameState(
         name,
         {
+            MicrobeReplacementSystem(),
             SwitchGameStateSystem(),
             QuickSaveSystem(),
             -- Microbe specific
@@ -371,7 +372,12 @@ local function createMicrobeStage(name)
     )
 end
 
+player = nil
+newPlayerAvaliable = nil -- if this is non-nil the microbe object contained therein replaces the current player microbe
+
+
+
 GameState.MICROBE = createMicrobeStage("microbe")
 GameState.MICROBE_ALTERNATE = createMicrobeStage("microbe_alternate")
 
-Engine:setCurrentGameState(GameState.MICROBE)
+--Engine:setCurrentGameState(GameState.MICROBE)
