@@ -127,10 +127,68 @@ local function createSpawnSystem()
         return entity
     end
     
+    local microbeSpawnFunction = function(pos)
+        local microbe = Microbe.createMicrobeEntity(nil, true)
+        microbe.rigidBody:setDynamicProperties(
+            pos, -- Position
+            Quaternion(Radian(Degree(0)), Vector3(1, 0, 0)), -- Orientation
+            Vector3(0, 0, 0), -- Linear velocity
+            Vector3(0, 0, 0)  -- Angular velocity
+        )
+        -- Forward
+        local forwardOrganelle = MovementOrganelle(
+            Vector3(0.0, 50.0, 0.0),
+            300
+        )
+        forwardOrganelle:addHex(0, 0)
+        forwardOrganelle:addHex(-1, 0)
+        forwardOrganelle:addHex(1, -1)
+        forwardOrganelle:setColour(ColourValue(0, 0.7, 0.7, 1))
+        microbe:addOrganelle(0, 1, forwardOrganelle)
+        -- Backward
+        local backwardOrganelle = MovementOrganelle(
+            Vector3(0.0, -50.0, 0.0),
+            300
+        )
+        backwardOrganelle:addHex(0, 0)
+        backwardOrganelle:addHex(-1, 1)
+        backwardOrganelle:addHex(1, 0)
+        backwardOrganelle:setColour(ColourValue(0, 0.7, 0.7, 1))
+        microbe:addOrganelle(0, -2, backwardOrganelle)
+        -- Storage energy
+        local storageOrganelle = StorageOrganelle(AgentRegistry.getAgentId("atp"), 100.0)
+        storageOrganelle:addHex(0, 0)
+        storageOrganelle:setColour(ColourValue(0, 1, 0, 1))
+        microbe:addOrganelle(0, 0, storageOrganelle)
+        microbe:storeAgent(AgentRegistry.getAgentId("atp"), 40)
+        -- Storage agent 2
+        local storageOrganelle2 = StorageOrganelle(AgentRegistry.getAgentId("oxygen"), 100.0)
+        storageOrganelle2:addHex(0, 0)
+        storageOrganelle2:setColour(ColourValue(0, 1, 0.5, 1))
+        microbe:addOrganelle(0, -1, storageOrganelle2)
+        -- Storage agent 3
+        local storageOrganelle3 = StorageOrganelle(AgentRegistry.getAgentId("glucose"), 100.0)
+        storageOrganelle3:addHex(0, 0)
+        storageOrganelle3:setColour(ColourValue(0.5, 1, 0, 1))
+        microbe:addOrganelle(-1, 0, storageOrganelle3)
+        -- Producer making atp from oxygen and glucose
+        local processOrganelle1 = ProcessOrganelle(20000) -- 20 second minimum time between producing oxytoxy
+        processOrganelle1:addRecipyInput(AgentRegistry.getAgentId("glucose"), 1)
+        processOrganelle1:addRecipyInput(AgentRegistry.getAgentId("oxygen"), 6)
+        processOrganelle1:addRecipyOutput(AgentRegistry.getAgentId("atp"), 38)
+        processOrganelle1:addRecipyOutput(AgentRegistry.getAgentId("co2"), 6)
+        processOrganelle1:addHex(0, 0)
+        processOrganelle1:setColour(ColourValue(1, 0, 1, 0))
+        microbe:addOrganelle(1, -1, processOrganelle1)
+            
+        return microbe
+    end
+    
     --Spawn one emitter on average once in every square of sidelength 10
     -- (square dekaunit?)
     spawnSystem:addSpawnType(testFunction, 1/20^2, 30)
     spawnSystem:addSpawnType(testFunction2, 1/20^2, 30)
+    spawnSystem:addSpawnType(microbeSpawnFunction, 1/60^2, 40)
     return spawnSystem
 end
 
@@ -219,7 +277,7 @@ local function setupHud()
 end
 
 local function setupPlayer()
-    local player = Microbe.createMicrobeEntity(PLAYER_NAME)
+    local player = Microbe.createMicrobeEntity(PLAYER_NAME, false)
     -- Forward
     local forwardOrganelle = MovementOrganelle(
         Vector3(0.0, 50.0, 0.0),
@@ -278,6 +336,7 @@ local function createMicrobeStage(name)
             -- Microbe specific
             MicrobeSystem(),
             MicrobeCameraSystem(),
+            MicrobeAISystem(),
             MicrobeControlSystem(),
             HudSystem(),
             AgentLifetimeSystem(),
