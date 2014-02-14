@@ -62,6 +62,7 @@ function MovementOrganelle:_turnMicrobe(microbe)
     local transform = microbe.sceneNode.transform
     local targetDirection = microbe.microbe.facingTargetPoint - transform.position
     local localTargetDirection = transform.orientation:Inverse() * targetDirection
+    localTargetDirection.z = 0 -- improper fix. facingTargetPoint somehow gets a non-zero z value.
     assert(localTargetDirection.z < 0.01, "Microbes should only move in the 2D plane with z = 0")
     local alpha = math.atan2(
         -localTargetDirection.x,
@@ -69,7 +70,7 @@ function MovementOrganelle:_turnMicrobe(microbe)
     )
     if math.abs(math.deg(alpha)) > 1 then
         microbe.rigidBody:applyTorque(
-            Vector3(0, 0, self.torque * alpha)
+            Vector3(0, 0, self.torque * alpha  )
         )
     end
 end
