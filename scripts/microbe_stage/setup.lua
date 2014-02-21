@@ -33,12 +33,12 @@ local function setupCamera()
 end
 
 local function setupAgents()
-    AgentRegistry.registerAgentType("atp", "ATP", "molecule.mesh")
-    AgentRegistry.registerAgentType("oxygen", "Oxygen", "molecule.mesh")    
-    AgentRegistry.registerAgentType("nitrate", "Nitrate", "molecule.mesh")
-    AgentRegistry.registerAgentType("glucose", "Glucose", "molecule.mesh")
-    AgentRegistry.registerAgentType("co2", "CO2", "molecule.mesh")
-    AgentRegistry.registerAgentType("oxytoxy", "OxyToxy NT", "molecule.mesh")
+    AgentRegistry.registerAgentType("atp", "ATP", "atp.mesh", 0.1)
+    AgentRegistry.registerAgentType("oxygen", "Oxygen", "molecule.mesh", 0.3)    
+    AgentRegistry.registerAgentType("nitrate", "Nitrate", "molecule.mesh", 0.3)
+    AgentRegistry.registerAgentType("glucose", "Glucose", "glucose.mesh", 0.3)
+    AgentRegistry.registerAgentType("co2", "CO2", "co2.mesh", 0.16)
+    AgentRegistry.registerAgentType("oxytoxy", "OxyToxy NT", "oxytoxy.mesh", 0.3)
 end
 
 local function createSpawnSystem()
