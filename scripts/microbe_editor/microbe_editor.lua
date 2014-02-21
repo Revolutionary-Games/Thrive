@@ -2,15 +2,13 @@
 -- MicrobeEditor
 --
 -- Contains the functionality associated with creating and augmenting microbes
+-- See http://www.redblobgames.com/grids/hexagons/ for mathematical basis of code.
 --------------------------------------------------------------------------------
 class 'MicrobeEditor'
 
 function MicrobeEditor:__init()
-    self.currentHexQ = 0
-    self.currentHexR = 0
-    self.settingHexQ = true -- True, the players numbers are interpreted as a Q coordinate, false: R coordinate
     self.currentMicrobe = nil
-    self.nextMinus = false
+    self.firstOrganelle = true
 end
 
 
@@ -44,7 +42,7 @@ end
 -- Recreates currentMicrobe in the active gamestate and returns it (necessary for transfer between gamestates)
 function MicrobeEditor:recreateMicrobe(name) 
 
-
+    self.firstOrganelle = true
     local newMicrobe = Microbe.createMicrobeEntity(name, false)
     
   --    local storageOrganelle = StorageOrganelle(AgentRegistry.getAgentId("atp"), 100.0)
@@ -89,51 +87,36 @@ function MicrobeEditor:recreateMicrobe(name)
   --  newMicrobe.microbe:load(microbeStorage)
     
     return newMicrobe
-    
-    
-
 
 end
 
-function MicrobeEditor:setNextMinus()
-    self.nextMinus = true
-end
-
-function MicrobeEditor:setHexCoordinate(value)
-    if self.settingHexQ then
-        if self.nextMinus then
-            self.currentHexQ = -value
-            self.nextMinus = false
-            print("Set Q coordinate to " .. -value)
-        else
-            self.currentHexQ = value
-            print("Set Q coordinate to " .. value)
-        end
-        self.settingHexQ = false
-        
+function MicrobeEditor:getMouseHex()
+    if self.firstOrganelle then -- We want the first organelle to be at the origin
+        self.firstOrganelle = false
+        return 0, 0
     else
-        if self.nextMinus then
-            self.currentHexR = -value
-            self.nextMinus = false
-            print("Set R coordinate to " .. -value)
-        else
-            self.currentHexR = value
-            print("Set R coordinate to " .. value)
-        end
-        self.settingHexQ = true
-        
+        local mousePosition = Engine.mouse:normalizedPosition() 
+        -- Get the position of the cursor in the plane that the microbes is floating in
+         -- The 25 is a magic value (30 would make sense as is the camera distance). This will is an imperfect "hacked" solution due to my lacking understanding.
+        local rayPoint =  Entity(CAMERA_NAME .. "3"):getComponent(OgreCameraComponent.TYPE_ID):getCameraToViewportRay(mousePosition.x, mousePosition.y):getPoint(25)
+        -- Convert to the hex the cursor is currently located over. 
+        local q, r = cartesianToAxial(-rayPoint.x, rayPoint.y) -- Negating X to compensate for the fact that we are looking at the opposite side of the normal coordinate system
+        local qr, rr = cubeToAxial(cubeHexRound(axialToCube(q, r))) -- This requires a conversion to hex cube coordinates and back for proper rounding.
+        return qr, rr
     end
 end
 
 function MicrobeEditor:removeOrganelle()
-    self.currentMicrobe:removeOrganelle(self.currentHexQ, self.currentHexR) -- currently does not take into consideration special handling of vacuoles etc. (Or is that automatic?)
+    local q, r = self:getMouseHex()
+    self.currentMicrobe:removeOrganelle(q,r) -- currently does not take into consideration special handling of vacuoles etc. (Or is that automatic?)
 end
 
 function MicrobeEditor:addStorageOrganelle()
     local storageOrganelle = StorageOrganelle(AgentRegistry.getAgentId("atp"), 100.0)
     storageOrganelle:addHex(0, 0)
     storageOrganelle:setColour(ColourValue(0, 1, 0, 1))
-    self.currentMicrobe:addOrganelle(self.currentHexQ, self.currentHexR, storageOrganelle)
+    local q, r = self:getMouseHex()
+    self.currentMicrobe:addOrganelle(q, r, storageOrganelle)
 end
 
 function MicrobeEditor:addMovementOrganelle(momentumX, momentumY) -- I cant remember how movement organelles work atm
@@ -143,23 +126,33 @@ function MicrobeEditor:addMovementOrganelle(momentumX, momentumY) -- I cant reme
     )
     forwardOrganelle:addHex(0, 0)
     forwardOrganelle:setColour(ColourValue(1, 0, 0, 1))
-    self.currentMicrobe:addOrganelle(self.currentHexQ, self.currentHexR, forwardOrganelle)
+    local q, r = self:getMouseHex()
+    self.currentMicrobe:addOrganelle(q,r, forwardOrganelle)
 end
 
 function MicrobeEditor:addProcessOrganelle(poType)
 
-    if poType == "mitochondria" then
-        local processOrganelle1 = ProcessOrganelle(20000) -- 20 second minimum time between producing oxytoxy
+    if poType == "mitochondria" then         
+        local processOrganelle1 = ProcessOrganelle(20000) -- 20 second minimum time between producing
         processOrganelle1:addRecipyInput(AgentRegistry.getAgentId("glucose"), 1)
         processOrganelle1:addRecipyInput(AgentRegistry.getAgentId("oxygen"), 6)
         processOrganelle1:addRecipyOutput(AgentRegistry.getAgentId("atp"), 38)
         processOrganelle1:addRecipyOutput(AgentRegistry.getAgentId("co2"), 6)
         processOrganelle1:addHex(0, 0)
         processOrganelle1:setColour(ColourValue(1, 0, 1, 0))
-        self.currentMicrobe:addOrganelle(self.currentHexQ, self.currentHexR, processOrganelle1)
+        local q, r = self:getMouseHex()
+        self.currentMicrobe:addOrganelle(q,r, processOrganelle1)
     end
 end
 
 function MicrobeEditor:createNewMicrobe()
     self.currentMicrobe = Microbe.createMicrobeEntity("working_microbe", false)
+    self.currentMicrobe.sceneNode.transform.orientation = Quaternion(Radian(Degree(180)), Vector3(0, 0, 1))-- Orientation
+    self.currentMicrobe.sceneNode.transform:touch()
+        
+  --  local q,r = normalizedPixelToAxial((Engine.mouse:normalizedPosition().x - 0.5)*2, (Engine.mouse:normalizedPosition().y - 0.5)*2)
+  --  local x, y = axialToCartesian(0,1)
+  --  print(x .. " " .. y)
+     --print((Engine.mouse:normalizedPosition().y - 0.5)*2)
+ --   print(q .. " " .. r)
 end

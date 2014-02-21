@@ -94,6 +94,72 @@ function axialToCartesian(q, r)
     return x, y
 end
 
+-- Converts cartesian coordinates to axial hex coordinates 
+--
+-- The result is the hex coordinates of the position x, y
+--
+-- @param x, y
+--  cartesian coordinates
+--
+-- @returns q, r
+--  hex position
+function cartesianToAxial(x, y)    
+    local q = x / (HEX_SIZE * 3 / 2);
+    local r = (y / (HEX_SIZE * math.sqrt(3))) - q/2;
+    return q, r
+end
+
+-- Converts axial hex coordinates to coordinates in the cube based hex model
+--
+-- The result is the cube x,y,z coordinates of the hex q,r
+--
+-- @param q,r
+--  axial hex coordinates
+--
+-- @returns x, y, z
+--  cube coordinates
+function axialToCube(q, r)
+    return q, r, (-q-r)
+end
+
+-- Converts cube based hex coordinates to axial hex coordinates
+--
+-- The result is the axial hex coordinates of the cube x, y ,z
+--
+-- @param x, y, z
+--  cube hex coordinates
+--
+-- @returns q, r
+--  hex coordinates
+function cubeToAxial(x, y, z)
+    return x, z
+end
+
+-- Correctly rounds fractional hex cube coordinates to the correct integer coordinates
+--
+-- @param x, y, z
+--  fractional cube hex coordinates
+--
+-- @returns rx, ry, rz
+--  correctly rounded hex cube coordinates
+function cubeHexRound(x, y, z)
+    local rx = math.floor(x+0.5)
+    local ry = math.floor(y+0.5)
+    local rz = math.floor(z+0.5)
+
+    local x_diff = math.abs(rx - x)
+    local y_diff = math.abs(ry - y)
+    local z_diff = math.abs(rz - z)
+
+    if x_diff > y_diff and x_diff > z_diff then
+        rx = -ry-rz
+    elseif y_diff > z_diff then
+        ry = -rx-rz
+    else
+        rz = -rx-ry
+    end
+    return rx, ry, rz
+end
 
 -- Maximum hex coordinate value that can be encoded with encodeAxial()
 local OFFSET = 100
