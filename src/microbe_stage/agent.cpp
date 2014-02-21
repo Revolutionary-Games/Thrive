@@ -473,7 +473,8 @@ emitAgent(
     EntityId agentEntityId = Game::instance().engine().currentGameState()->entityManager().generateNewId();
     // Scene Node
     auto agentSceneNodeComponent = make_unique<OgreSceneNodeComponent>();
-    agentSceneNodeComponent->m_transform.scale = PARTICLE_SCALE;
+    auto meshScale = AgentRegistry::getAgentMeshScale(agentId);
+    agentSceneNodeComponent->m_transform.scale = Ogre::Vector3(meshScale,meshScale,meshScale);
     agentSceneNodeComponent->m_meshName = AgentRegistry::getAgentMeshName(agentId);
     // Collision Hull
     auto agentRigidBodyComponent = make_unique<RigidBodyComponent>(
@@ -660,7 +661,8 @@ AgentRegistry::luaBindings() {
             def("getAgentDisplayName", &AgentRegistry::getAgentDisplayName),
             def("getAgentInternalName", &AgentRegistry::getAgentInternalName),
             def("getAgentId", &AgentRegistry::getAgentId),
-            def("getAgentMeshName", &AgentRegistry::getAgentMeshName)
+            def("getAgentMeshName", &AgentRegistry::getAgentMeshName),
+            def("getAgentMeshScale", &AgentRegistry::getAgentMeshScale)
         ]
     ;
 }
@@ -672,6 +674,7 @@ namespace {
         std::string internalName;
         std::string displayName;
         std::string meshName;
+        double meshScale;
     };
 }
 
@@ -691,7 +694,8 @@ AgentId
 AgentRegistry::registerAgentType(
     const std::string& internalName,
     const std::string& displayName,
-    const std::string& meshName
+    const std::string& meshName,
+    double meshScale
 ) {
     if (agentRegistryMap().count(internalName) == 0)
     {
@@ -699,6 +703,7 @@ AgentRegistry::registerAgentType(
         entry.internalName = internalName;
         entry.displayName = displayName;
         entry.meshName = meshName;
+        entry.meshScale = meshScale;
         agentRegistry().push_back(entry);
         agentRegistryMap().emplace(std::string(internalName), agentRegistry().size());
         return agentRegistry().size();
@@ -745,9 +750,18 @@ AgentRegistry::getAgentId(
 
 std::string
 AgentRegistry::getAgentMeshName(
-    AgentId id
+    AgentId agentId
 ) {
-    if (static_cast<std::size_t>(id) > agentRegistry().size())
+    if (static_cast<std::size_t>(agentId) > agentRegistry().size())
         throw std::out_of_range("Index of agent does not exist.");
-    return agentRegistry()[id-1].meshName;
+    return agentRegistry()[agentId-1].meshName;
+}
+
+double
+AgentRegistry::getAgentMeshScale(
+    AgentId agentId
+) {
+    if (static_cast<std::size_t>(agentId) > agentRegistry().size())
+        throw std::out_of_range("Index of agent does not exist.");
+    return agentRegistry()[agentId-1].meshScale;
 }

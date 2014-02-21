@@ -21,7 +21,6 @@ namespace thrive {
 using AgentId = uint16_t;
 
 static const AgentId NULL_AGENT = 0;
-static const Ogre::Vector3 PARTICLE_SCALE(0.3,0.3,0.3);
 
 AgentId
 generateAgentId();
@@ -555,6 +554,7 @@ public:
     * - AgentRegistry::getAgentInternalName
     * - AgentRegistry::getAgentId
     * - AgentRegistry::getAgentMeshName
+    * - AgentRegistry::getAgentMeshScale
     * @return
     */
     static luabind::scope
@@ -572,6 +572,9 @@ public:
     * @param meshName
     *   Name of the model to use for this agent
     *
+    * @param meshScale
+    *   The relative size of the mesh
+    *
     * @return
     *   Id of new agent
     */
@@ -579,7 +582,8 @@ public:
     registerAgentType(
         const std::string& internalName,
         const std::string& displayName,
-        const std::string& meshName
+        const std::string& meshName,
+        double meshScale
     );
 
     /**
@@ -636,6 +640,21 @@ public:
     */
     static std::string
     getAgentMeshName(
+        AgentId agentId
+    );
+
+    /**
+    * @brief Obtains the scale of the corresponding mesh
+    *
+    * @param agentId
+    *   The id of the agent to acquire the mesh scale from
+    *
+    * @return
+    *   A double equal to the scale of the model
+    *   If agent is not registered an out_of_range exception is thrown.
+    */
+    static double
+    getAgentMeshScale(
         AgentId agentId
     );
 
