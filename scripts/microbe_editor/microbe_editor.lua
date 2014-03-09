@@ -8,7 +8,7 @@ class 'MicrobeEditor'
 
 function MicrobeEditor:__init()
     self.currentMicrobe = nil
-    self.firstOrganelle = true
+    self.organelleCount = 0
 end
 
 
@@ -41,7 +41,6 @@ end
 
 -- Recreates currentMicrobe in the active gamestate and returns it (necessary for transfer between gamestates)
 function MicrobeEditor:recreateMicrobe(name) 
-
     self.firstOrganelle = true
     local newMicrobe = Microbe.createMicrobeEntity(name, false)
     
@@ -91,8 +90,7 @@ function MicrobeEditor:recreateMicrobe(name)
 end
 
 function MicrobeEditor:getMouseHex()
-    if self.firstOrganelle then -- We want the first organelle to be at the origin
-        self.firstOrganelle = false
+    if self.organelleCount == 0 then -- We want the first organelle to be at the origin
         return 0, 0
     else
         local mousePosition = Engine.mouse:normalizedPosition() 
@@ -109,7 +107,9 @@ end
 function MicrobeEditor:removeOrganelle()
     local q, r = self:getMouseHex()
     self.currentMicrobe:removeOrganelle(q,r) -- currently does not take into consideration special handling of vacuoles etc. (Or is that automatic?)
+    self.organelleCount = self.organelleCount - 1
 end
+
 
 function MicrobeEditor:addStorageOrganelle()
     local storageOrganelle = StorageOrganelle(AgentRegistry.getAgentId("atp"), 100.0)
@@ -117,6 +117,7 @@ function MicrobeEditor:addStorageOrganelle()
     storageOrganelle:setColour(ColourValue(0, 1, 0, 1))
     local q, r = self:getMouseHex()
     self.currentMicrobe:addOrganelle(q, r, storageOrganelle)
+    self.organelleCount = self.organelleCount + 1
 end
 
 function MicrobeEditor:addMovementOrganelle(momentumX, momentumY) -- I cant remember how movement organelles work atm
@@ -128,10 +129,11 @@ function MicrobeEditor:addMovementOrganelle(momentumX, momentumY) -- I cant reme
     forwardOrganelle:setColour(ColourValue(1, 0, 0, 1))
     local q, r = self:getMouseHex()
     self.currentMicrobe:addOrganelle(q,r, forwardOrganelle)
+    self.organelleCount = self.organelleCount + 1
 end
 
 function MicrobeEditor:addProcessOrganelle(poType)
-
+    
     if poType == "mitochondria" then         
         local processOrganelle1 = ProcessOrganelle(20000) -- 20 second minimum time between producing
         processOrganelle1:addRecipyInput(AgentRegistry.getAgentId("glucose"), 1)
@@ -143,9 +145,11 @@ function MicrobeEditor:addProcessOrganelle(poType)
         local q, r = self:getMouseHex()
         self.currentMicrobe:addOrganelle(q,r, processOrganelle1)
     end
+    self.organelleCount = self.organelleCount + 1
 end
 
 function MicrobeEditor:createNewMicrobe()
+    self.organelleCount = 0
     self.currentMicrobe = Microbe.createMicrobeEntity("working_microbe", false)
     self.currentMicrobe.sceneNode.transform.orientation = Quaternion(Radian(Degree(180)), Vector3(0, 0, 1))-- Orientation
     self.currentMicrobe.sceneNode.transform:touch()

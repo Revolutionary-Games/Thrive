@@ -177,6 +177,7 @@ OgreCameraSystem::update(int) {
         Ogre::Camera* camera = m_impl->m_sceneManager->createCamera(
             cameraComponent->name()
         );
+        //camera->setProjectionType(Ogre::PT_ORTHOGRAPHIC); // Attempt to fix mouse hex relationship
         camera->setAutoAspectRatio(true);
         cameraComponent->m_camera = camera;
         m_impl->m_cameras[entityId] = camera;

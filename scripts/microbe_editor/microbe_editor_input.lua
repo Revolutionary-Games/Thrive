@@ -3,16 +3,31 @@ class 'MicrobeEditorInputSystem' (System)
 function MicrobeEditorInputSystem:__init()
     System.__init(self)
     
-    self.editor = nil
+    self.editor = MicrobeEditor()
 end
 
-function MicrobeEditorInputSystem:setEditor(microbeEditor)
-    self.editor = microbeEditor
+function MicrobeEditorInputSystem:init(gameState)
+    System.init(self, gameState)
+    if self.hoverHex == nil then
+        self.hoverHex = Entity("hover-hex")
+        local sceneNode = OgreSceneNodeComponent()
+        self.hoverHex:setVolatile(true)
+        sceneNode.transform.position = Vector3(0,0, 0)
+        sceneNode.transform:touch()
+        sceneNode.meshName = "hex.mesh"
+        self.hoverHex:addComponent(sceneNode)
+    end
 end
+
 
 function MicrobeEditorInputSystem:update(milliseconds)
-  
-   
+
+    local x, y = axialToCartesian(self.editor:getMouseHex())
+    local translation = Vector3(-x, -y, 0)
+    local sceneNode = Entity("hover-hex"):getComponent(OgreSceneNodeComponent.TYPE_ID)
+    sceneNode.transform.position = translation
+    sceneNode.transform:touch()
+    
     if self.editor ~= nil then
         
         if Engine.keyboard:wasKeyPressed(Keyboard.KC_C) then
@@ -33,6 +48,9 @@ function MicrobeEditorInputSystem:update(milliseconds)
         end
             
     end
+    
+    
+    
 end
 
 

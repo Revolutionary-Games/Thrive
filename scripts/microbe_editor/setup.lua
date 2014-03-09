@@ -78,9 +78,6 @@ local function createMicrobeEditor(name, inputSystem)
 end
 
 local inputSystem = MicrobeEditorInputSystem()
-local editor = MicrobeEditor()
 GameState.MICROBE_EDITOR = createMicrobeEditor("microbe_editor", inputSystem)
-
-inputSystem:setEditor(editor)
 
 Engine:setCurrentGameState(GameState.MICROBE_EDITOR)
