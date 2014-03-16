@@ -2,7 +2,7 @@ Thrive
 ======
 
 This is the code repository for Thrive. For more information, visit
-http://www.revolutionarygames.com.
+http://revolutionarygamesstudio.com/.
 
 
 Getting Involved
