@@ -28,8 +28,7 @@ reason, you want to check it out to another place, you will have to modify
 the `ASSET_DIRECTORY` variable in the CMake setup. Offloading art assets 
 into Subversion was necessary due to size constraints for GitHub repositories.
 
-Windows developers should follow the procedure outlined in the [mingw setup 
-guide]().
+Windows developers should follow the procedure outlined in the [mingw setup guide][mingwsetupguide].
 
 For the time being, Linux developers will have to manually set up their build 
 environment. The dependencies at the time of this writing are
@@ -55,3 +54,4 @@ More detailed instructions for contributing art assets will follow soon.
 [asset_repository]: http://nimbal.net/scm/svn/thrive_assets/trunk "Asset Repository"
 [mingw]: http://www.github.com/Revolutionary-Games/Thrive/blob/master/mingw_setup/readme.txt "MinGW setup guide"
 [styleguide]: http://www.github.com/Revolutionary-Games/Thrive/blob/master/doc/style_guide.dox "Styleguide"
+[mingwsetupguide]: http://www.github.com/Revolutionary-Games/Thrive/blob/master/mingw_setup/readme.txt "mingw setup guide" 
