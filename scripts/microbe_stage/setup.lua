@@ -195,7 +195,6 @@ end
 local function setupEmitter()
     -- Setting up an emitter for glucose
     local entity = Entity("glucose-emitter")
-    -- Sound Source
     -- Rigid body
     local rigidBody = RigidBodyComponent()
     rigidBody.properties.friction = 0.2
@@ -236,15 +235,6 @@ local function setupEmitter()
     timedEmitter.potencyPerParticle = 3.0
     timedEmitter.emitInterval = 1000
     entity:addComponent(timedEmitter)
-    local soundSource = SoundSourceComponent()
-    -- Sound
-    local sound = soundSource:addSound("emitter", "rain.ogg")
-    sound.properties.playState = Sound.Play
-    sound.properties.loop = true
-    sound.properties.maxDistance = 10000.0;
-    sound.properties.rolloffFactor = 10.0;
-    sound.properties.referenceDistance = 10.0;
-    entity:addComponent(soundSource) 
 end
 
 
