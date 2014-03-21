@@ -1,0 +1,557 @@
+* version 1.23
+
+	* Fixed ambiguous mName member variable in OgreOggISound 
+	
+	* Fixed bug detailed here: http://www.ogre3d.org/addonforums/viewtopic.php?f=19&t=29607
+		* Non-playing sounds
+	
+	* Fixed bug detailed here: http://www.ogre3d.org/addonforums/viewtopic.php?f=19&t=29797
+		* Potential crash
+		
+	* Fixed bug detailed here: http://www.ogre3d.org/addonforums/viewtopic.php?f=19&t=29880
+		* Potential double destroy on source (Only affects static ogg/wav sounds, streamed versions are fine)
+
+* Version 1.22
+	
+	* Added support for OGRE 1.8 (singleton rename)
+
+	* Fixed crash when unloading/reloading OgreOggSound plugin
+
+* Version 1.21
+
+	* Tweaked sound fading
+
+	* Finished off optional (execute command now) flag for MULTI-THREADED mode, allows user to specify per-sound immediate (blocking) execution of some common sound actions,
+		* Play / Stop / Pause / create
+
+	* Bug fix - EOF flag wasn't being reset correctly stopping stream sounds being replayed after finished playing.
+
+	* Added openal path for EFX-Util lib on windows
+
+
+* Version 1.2
+
+	* Licensed under the MIT licensing terms.
+
+	* Bug fix - playtime incorrectly calculated for WAV sounds
+
+	* Bug fix - streamed sounds incorrectly wrapping around when remaining audio data is less then buffer size.
+
+	* Added a OgreOggSoundManager::setForceMutex() function for switching between asynchronous sound actions & blocking sound actions (multi-threaded version ONLY - Useful for ensuring an action has completed before moving on, synching sound to animations??)
+		* Added per-call setting of this attribute if necessary for the following functions:
+			* createSound()
+			* play()
+			* stop()
+			* pause()
+
+* version 1.19
+
+	* Added patch from torrque to add mingw support.
+	
+	* Added getPlayPosition() function to OgreOggISound
+
+	* Moved streaming loop callback to a more acurate trigger point
+
+	* Removed <Ogre.h> include for individually used headers
+
+	* Moved #define of HAVE_EFX into windows build only
+		* Previously caused build issues on linux/mac where that support wasn't available, by default its disabled everywhere but windows.
+
+	* Fixed mutex locking? 
+		* Added a lock to the update function which seems to correctly lock synchronisation between main thread and worker thread.
+		* Solves a crash where quitting app whilst loading a sound would casue a crash, it would appear the locking wasn't working correctly,
+		* fixed by adding a lock to the updateThread() function, but was under the impression this was unnecessary :s
+		* Any performance issues please let me know! 
+	
+	* Fixed crash bug in temporary sounds for non-threaded lib version
+
+	* Fixed linux compile errors about EFX
+
+	* Fixed POCO compile errors
+ 
+
+
+* version 1.18
+
+	* Fixed broken Listener object
+
+	* Minor change to listener creation
+
+	* Fixed no sound bug after Ogre::Root recreation.
+
+	* Changed stopAllSounds() / pauseAllSounds() / resumeAllPausedSounds() to call implementation functions instead of external functions
+		* Fixes bugs where sound actions were getting cued up in the wrong order.
+		* Fixes things like no sound playing after a call to stopAllSounds() then play().
+
+	* Fixed some plugin loopholes as identified by cycheng here: http://www.ogre3d.org/addonforums/viewtopic.php?f=19&t=13383&p=75145#p75145
+
+	* Added a createListener() function for cases where clearScene() is used to destroy all objects
+		* This call will destroy all sounds and listener object and there was no way of recreating a listener previously.
+		* http://www.ogre3d.org/addonforums/viewtopic.php?f=19&t=13381
+	
+	* Fixed crash on exit (Multi-threaded ONLY)
+
+	* Reworked sound destruction to avoid thread crashes (Multi-threaded ONLY)
+
+	* Mutex optimisation made to OgreOggSoundManager::update()
+
+	* Added a setGlobalPitch()/getGlobalPitch() functions to OgreOggSoundManager
+
+	* Destruction of sounds handled immediately, prevents timing issues between destruction/recreation.
+
+	* Added a lockless queue to handle temporary sounds destruction
+		* Requires update() to handle the destruction
+		* Should fix any possible thread crash
+	
+	* Replaced Ogre::Real for float
+
+
+* version 1.17
+
+	* Added POCO/BOOST thread support by way of defines (BOOST_THREAD/POCO_THREAD) default: BOOST
+		* Fixed missing cpp ammendments
+
+	* Wav format bug fixed for 7-channel / 8-channel audio
+
+	* Added getter functions for: getMaxDistance() / getPitch() / getRolloffFactor() / getReferenceDistance()
+
+	* Fixed two bugs affecting setPlayPosition() on OGG sounds
+
+	* Fixed initialisation list order warning in OgreOggSoundListener
+
+	* Fixed mSceneMgr pointer not set correctly in init()
+	
+	* Fixed getListener() returning NULL (threaded version)
+
+
+* version 1.16
+
+	* Single createSound() function which takes an optional SceneManager pointer
+		* If no scenemanager is provided then the first scenemanager is grabbed from Root.
+	
+	* Lib must be created through Root::loadPlugin()
+
+	* Added optional parameter to support a default SceneManager for creating sounds
+
+	* Added OgreOggSoundManager::getSceneManager() for getting current default manager.
+
+	* Added OgreOggSoundManager::setSceneManager() for setting current default manager for sound creation.
+
+	* Added SoundListener for notification of sound events per sound.
+
+		* notifications are: Loaded/Played/Stopped/Paused/Destroyed/Looping
+
+	* Fixed potential destruction crashes in multi-threaded mode in sound action list.
+
+	* Added get/setResourceGroupName() to OgreOggSoundManager for speed improvements
+		
+		* Removed unnecessary resource group searching to improve sound creation speed.
+
+	* Updated CMakeLists to allow optional builds and Threaded settings, as created by Kornerr.
+
+	* Fixed compiler bugs for linux build
+
+	* Fixed typo bug for getResourceGroupName()
+
+	* Fixed bug in createSound() when passing a SceneManager pointer
+
+	* Fixed bug in plugin shutdown - Ogre::MEMCATEGORY_GEOMETRY changed to Ogre::MEMCATEGORY_GENERAL
+
+	* Fixed compile bugs for LINUX build
+
+	* Fixed callback bug in OgreOggSoundStatic class
+
+
+* version 1.15
+
+	* Bug fix - EFX attach/detach functions added to actions queue
+
+	* Cleaned up warnings for variable conversions
+	
+	* supressed vorbis file warnings
+
+	* Removed prebuilt libs from SVN
+
+	* Added isMono() convenience function for determining spatialisation problems.
+
+	* Paths setup for OGRE 1.7
+
+
+* version 1.14
+
+	* Visual Studio project settings tweaked to reduce lib size and improve performance.
+	
+	* Updated BOOST version to 1.40
+
+	* Cleaned up files:
+		* Removed ogg/vorbis directories
+		* introduced a dependencies directory containing libs for ogg/vorbis
+		* Removed TestDemo directory, available on request.
+        
+	* Removed Release/Debug folders
+        
+	* Added new lib folder for output, more consistent with other libs
+
+	* Removed libs folder from within dependencies, dependencies now contains ogg/vorbis libs.
+
+	* Changed exceptions to booleans in OgreOggSoundManager::init()
+		* Function now returns false for any errors instead of crashing.
+
+	* Fixed linux compiling issues.
+
+
+* version 1.13
+
+	* Added temporary sounds
+		* Can now specify a sound to auto-destroy itself at any point
+		* markTemporary()/isTemporary() can be use to set and query this status
+		* Looping will be disabled when set, and sound will destroy itself when it has finished playing.
+
+	* Added user defined loop points for streamed sounds
+	
+	* Fixed - mLoopOffset changed to Ogre::Real instead of unsigned long.
+
+
+* Version 1.12
+
+	* Bug fix - delayedActionsList wasn't being executed.
+	
+	* Bug fix - mFormatData.mFormat pointer wasn't being initialised resulting in possible crash 
+		    on cleanup if using shared buffer (static Wav only)
+
+	* Bug fix - mPlaytime not calculated correctly for stereo wav sounds
+
+	* Bug fix - Added a file size check and adjustment for wav sounds
+
+	* Bug fix - isStopped() not correctly reporting state - can cause sounds not to play when source limit reached.
+	
+	* Added getNumSounds() to SoundManager
+
+	* Bug fix - prevented multiple destroy commands being sent for a sound
+	
+	* Swapped std::vector containers for std::deque and main active list for std::list
+
+	* Bug fix - A failed source request would be lost and wouldn't be retried again.
+		* Added a waiting sounds list which is retested periodically for any sound which fails to grab
+		a source, simliar to reactivate sounds except this is for sounds which have just been created 
+		and not yet played.
+	* Bug fix - removeFromLists had invalid iterators after erase()
+
+
+* Version 1.11
+
+	* Major overhaul to improve multi-threaded performance
+		* Removed all mutex locks, therefore status is experimental until passed stable by testing.		
+		* Removed/added numerous internal functions to a number of classes.
+
+	
+	* Interface breaking changes:
+		* Removed playSound/pauseSound/stopSound/fadeSound functions
+		* Use OgreOggISound play/stop/pause/starFade functions as before.
+	
+	* Added minor tweaks to various functions
+
+	* Fixed potential memory leak from action list on shutdown
+
+	* Fixed potential crash on shutdown if an ogg sound hasn't been loaded prior to shutdown
+	
+	* Fixed crash in wav sounds where sound has extra CHUNK's.
+	
+	* Added optional parameter to init() to allow customisation of the action list (MULTI-THREADED ONLY)
+	
+	* Added delayed action list for failed sound action requests through _requestSoundAction() calls.
+
+	* Rewrote WAV file load functions() 
+		
+		* Should be quicker to load 
+		* Should handle CHUNK sections correctly
+
+	* Cleaned up some unused vars from OgreOggStaticWav class
+
+	* Fixed minor bug in streamed sounds when audio buffer data runs out before being updated
+		
+		* Previously already played buffers were replayed because stop() resets play position
+		  back to start of the buffers, now, currently queued buffers are removed and filled with
+		  next chunk of audio data.
+
+	* Fixed wav sound bug playing invalid audio due to extra chunks AFTER a 'data' chunk
+		* Now stores start and end offsets to ensure only audio data is read.
+
+
+* version 1.1
+
+	* Interface breaking changes made:
+		* Sound control is handled ONLY through manager class
+			* OgreOggISound::play() acces removed use OgreOggSoundManager::playSound() 
+			* OgreOggISound::stop() access removed use OgreOggSoundManager::stopSOund()
+			* OgreOggISound::pause() access removed use OgreOggSoundManager::pauseSOund()
+			* OgreOggISound::startFade() access removed use OgreOggSoundManager::fadeSound()
+		* OgreOggISound functions allow ONLY property setting/querying.
+	
+	* Fixed bug casuing pauses in multi-threaded mode when playing/stopping/pausing sounds.
+	
+	* Added fadeSound() to OgreOggSoundManager.
+
+	* Added setSoundCurrentTime() to OgreOggSoundManager.
+
+	* Added disable3D() to OgreOggSoundManager
+
+		* Allows switchable spatialisation of mono sounds.
+
+
+* version 1.09
+
+	* Added OGRE memory allocation tracking.
+
+	* Fixed two memory leaks.
+		* Fixed mem leak when closing down system BEFORE a queued sound has played for the first time.
+		* Fixed mem leak when playing a non-streamed sound
+
+	* Fixed crash in destroyAllSounds() and fixed various destruction bugs relating to lists.
+		* Sound references are now removed from various state lists on destruction.
+		* Active list is updated correctly to reflect the destruction of a previously active sound.
+
+	* Fixed setVelocity() bug NOT setting velocity, and exposed those settings to OgreOggSoundListener too.
+
+	* Swapped #ifndef LINUX to OGRE variants
+
+
+	* Fixed allocation crash when allocating effect lists
+	
+	* Fixed memory leak in TestDemo (OIS not cleaned up properly)
+
+	* version 1.08
+
+	* Added mute/unmute functions to OgreOggSoundManager
+
+	* Removed setListenerVolume()/getListenerVolume() from OgreOggSoundListener
+		* use OgreOggSoundManager::setMasterVolume() & OgreOggSound::getMasterVolume() instead.
+
+
+
+
+* version 1.07
+
+	* Cleaned out some unused ogg file pointers
+	
+	* Cleaned up ov_time_seek() use when using non-seekable ogg's
+	
+	* Fixed infinte loop bug in OgreOggStreamSound::_stream() when ogg file is set to loop but is unseekable.
+	
+	* Fixed bug in OgreOggStreamSound::pause() missing 'return;' after source check.
+
+	* Added missing subclass call in _notifyMoved() methods of OgreOggIsound/Listener classes
+	
+	* Added closing/opening of ogg file in stop() when using non-seekable ogg's, should reset play cursor to beginning, however will cause delay whilst re-opening file..
+
+
+
+* version 1.06
+
+	* Added check in _reactivateSounds() for stopped sounds.
+		* Now if a sound has been stopped whilst waiting for reactivation, it is merely kicked off the list and management is
+		  handed back to user.
+	
+	* Added seeking to sounds in seconds.
+		* You can now 'jump' to a point in time (seconds) on any sound, offset is wrapped if out of bounds.
+	
+	* Added OgreOggISound::getAudioLength() - returns length in seconds.
+	
+	* Changed default return value from isStopped() to true.
+		* Previously if sound didn't have a source it skipped the check and returned false, obviously if it doesn't have a 
+		source it can't be playing!
+	
+	* Changed default return value of isPlaying().
+		* Previously if sound didn't have a source it returned false, however, although it isn't currently playing this could
+		be due to being held in the reactivate list where it would be restarted when within range, therefore this function now
+		returns the current and/or intended status.
+	
+	* Added functions to record and recover audio position when relinquishing/reactivating.
+	
+	* Added queues to handle delayed sound actions when compiled with Thread support.
+		* Fixes the issue where creating a sound and calling its play/pause/stop functions directly has no effect.
+		* It was because the sounds weren't rechecked if the call was made prior to the file having been opened by the second thread. Now such actions are queued and checked by the SoundManager to ensure they are excuted at the earliest opportunity.
+	
+	* Added mutex locking to sound objects to prevent crashing if calling OgreOggISound functions directly.
+	
+	* Rebuilt ogg/vorbis libs to remove warnings
+
+	* Added vc8 and vc9 project/solution files
+		* NOTE:- library has been compiled with vc8 ( Visual Studio C++ 2005 Express )
+	
+	* Added cue point list to sounds
+
+* version 1.05
+
+	* Started porting to linux by wrapping unsupported code in #ifndef LINUX 
+		* builds using CMake on LINUX	
+
+	* Removed references to windows specific code
+
+	* Removed setMinDistance() from OgreOggISound.
+
+	* added getSoundList() to SoundManager, returns a StringVector of all defined sounds.
+
+* version 1.04
+
+
+	* Fixed crash with streamed sounds and soundData NULL
+
+	* Removed OgreOggSoundRecord::setRecordingProperties() and added functionality to OgreOggSoundRecord::initCaptureDevice().
+
+* version 1.03
+
+	* Bug fix in OgreOggSoundRecord destructor crash
+
+* version 1.02
+
+	* Added capturing support
+		* Capture to wav file support
+		* Frequency, format, buffer size properties
+		* start/stop functions
+		* query support functions
+		NOTE:- Use sound/audio device control panel to select input setting and capture volume.
+
+* version 1.01
+
+	* Added buffer sharing for static sounds
+
+* version 1.0
+
+	* Official stable release 
+
+* version 0.94
+
+	* Added OGRE plugin support
+		* library can be registered with OGRE as a plugin allowing the creation/management of sounds
+		  via the SceneManager::createMovableObject() interface. OGRE automatically creates/destroys
+		  the manager and all sounds created via this process.
+		  NOTE:- The library still functions the same as before if you don't load via the plugin interface.
+
+	* Fixed loop bug in multi-threaded wav sounds not being set on creation
+
+	* Fixed infinite loop bug when opening wav sounds with extra information
+
+	* Fixed pauseAllSounds bug not pausing sounds	
+
+	* Fixed random crash on shutdown in streamed sounds
+
+* version 0.93
+
+	* Added automatic pause/restart on fade
+
+	* Fixed potential memory leak in _stream() functions
+
+	* Added OgreOggSoundManager functions for stopping/playing/pausing sounds.
+		* Prevents by-passing thread mutex and casuing memory corruption/audio artefacts.
+
+	* Added optional parameter to startFade() to add control to the fading sound.
+		* Pass an enumerated value to allow stopping/pausing of the sound when fading is
+		  complete, useful when fading out to stop/pause a sound to save cpu time.
+		  default: NONE.
+
+	* Fixed crash at maximum sources.
+
+* version 0.92
+
+	* Moved MUTEX from update function into reactivateSounds() - caused major performance issues.
+
+* version 0.91
+	
+	* Added extra query funtions to listener and sound classes
+
+	* Re-wrote requestSoundSource() to eliminate list invalidation
+
+	* Added sort by distance for reactivated sounds or when playing a new sound
+
+	* Added mutex lock in SoundManager::update()
+
+	* Optimised reactivate function() - periodically checks
+
+	* Added solution file to fix working directory problem in test demo
+
+	* Added default parameter in SoundManager::init(), an empty parameter list will pick default device
+
+	* Updated docs
+
+* version 0.9
+	
+	* Added multichannel support for ogg/wav files.
+
+	* Improved buffer size management.
+
+* version 0.89
+
+	* Added EFX effect/filter support
+
+	* Added EAX room reverb preset support	
+
+	* Fixed sound position bug 
+
+	* Added flag in OgreOggISound for indicating source management per sound
+		Can be used to keep a good level of source objects available, by forcing infrequent
+		or single play sounds to immediately give up their source objects when stopped.
+
+	* Added 'TestDemo' project as a playpen.
+
+	* Added support for RIFF WAVE audio files.
+
+	* Fixed unqueue bug in streamed sounds
+
+* version 0.88
+
+	* Added XRAM support for hardware buffers
+		As suggested in the OpenAL specification this only applies to static sound buffers
+		not streaming buffers.
+
+	* Cleaned up and enhanced supported features checks.
+
+* version 0.87
+
+	* Added loop callback triggers
+		slightly inaccurate for streaming sounds, should be more reliable for static sounds.
+
+* version 0.86
+	
+	* Added callbacks for finished sounds
+
+	* Fixed bug in stop() for static sounds
+
+	* Added enable/disable of callbacks
+
+* version 0.85
+
+	* Fixed crash caused by non-SceneNode derived positioning in OgreOggISound / OgreOggListener.
+
+	* Fixed updating bug in fading where the volume would never stop being set once started. 
+          Also ammended startFade() to pick up current sound volume to fade in/out from.
+
+* version 0.84
+
+	* Added setMasterVolume()/getMasterVolume() for global attenuation of sounds.
+
+* Version 0.83
+
+	* Fixed bug with streaming sounds and DataStreamPointer causing open() to fail.
+
+* Version 0.82
+
+	* Added OGRE resource management support
+		Audio files must now be specified through OGRE's resource management system,
+		allows audio files to be stored and accessed within .zip files etc..
+
+* Version 0.8
+
+	* Fixed crash in shutdown when deleting unused thread.
+	
+	* Sound Constructor/Destructors made protected members, handled by OgreOggSoundManager.
+
+	* enumDevices() made private, it was an internally used function. renamed to: _enumDevices()
+
+	* _getDeviceList() made public, was used internally but is now a useful public 
+	  function for geting a human readable list of audio deivce strings.
+
+* Version 0.7
+
+	* Added ancillary OgreOggSoundManager functions for stopping/pausing/resuming
+	  ALL playing sounds.

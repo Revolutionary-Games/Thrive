@@ -195,6 +195,7 @@ end
 local function setupEmitter()
     -- Setting up an emitter for glucose
     local entity = Entity("glucose-emitter")
+    -- Sound Source
     -- Rigid body
     local rigidBody = RigidBodyComponent()
     rigidBody.properties.friction = 0.2
@@ -235,6 +236,15 @@ local function setupEmitter()
     timedEmitter.potencyPerParticle = 3.0
     timedEmitter.emitInterval = 1000
     entity:addComponent(timedEmitter)
+    local soundSource = SoundSourceComponent()
+    -- Sound
+    local sound = soundSource:addSound("emitter", "rain.ogg")
+    sound.properties.playState = Sound.Play
+    sound.properties.loop = true
+    sound.properties.maxDistance = 10000.0;
+    sound.properties.rolloffFactor = 10.0;
+    sound.properties.referenceDistance = 10.0;
+    entity:addComponent(soundSource) 
 end
 
 
@@ -325,10 +335,26 @@ local function setupPlayer()
     player:addOrganelle(1, -1, processOrganelle1)
 end
 
+local function setupSound()
+    local ambientEntity = Entity("ambience")
+    local soundSource = SoundSourceComponent()
+    soundSource.ambientSoundSource = true
+    soundSource.volumeMultiplier = 0.3
+    ambientEntity:addComponent(soundSource)
+    -- Sound
+    soundSource:addSound("microbe-theme-1", "microbe-theme-1.ogg")
+    soundSource:addSound("microbe-theme-3", "microbe-theme-3.ogg")
+    soundSource:addSound("microbe-theme-4", "microbe-theme-4.ogg")
+    soundSource:addSound("microbe-theme-5", "microbe-theme-5.ogg")
+    soundSource:addSound("microbe-theme-6", "microbe-theme-6.ogg")   
+    soundSource:addSound("microbe-theme-7", "microbe-theme-7.ogg")   
+end
+
 setupAgents()
 
 local function createMicrobeStage(name)
-    return Engine:createGameState(
+    return 
+        Engine:createGameState(
         name,
         {
             SwitchGameStateSystem(),
@@ -352,6 +378,7 @@ local function createMicrobeStage(name)
             CollisionSystem(),
             -- Graphics
             OgreAddSceneNodeSystem(),
+            SoundSourceSystem(),
             OgreUpdateSceneNodeSystem(),
             OgreCameraSystem(),
             OgreLightSystem(),
@@ -367,11 +394,11 @@ local function createMicrobeStage(name)
             setupEmitter()
             setupHud()
             setupPlayer()
+            setupSound()
         end
     )
 end
 
 GameState.MICROBE = createMicrobeStage("microbe")
-GameState.MICROBE_ALTERNATE = createMicrobeStage("microbe_alternate")
-
+ GameState.MICROBE_ALTERNATE = createMicrobeStage("microbe_alternate")
 Engine:setCurrentGameState(GameState.MICROBE)

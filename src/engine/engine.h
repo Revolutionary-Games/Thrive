@@ -20,6 +20,10 @@ namespace Ogre {
     class Viewport;
 }
 
+namespace OgreOggSound {
+    class OgreOggSoundManager;
+}
+
 namespace OIS {
     class InputManager;
 }
@@ -232,6 +236,9 @@ public:
     */
     void
     shutdown();
+
+    OgreOggSound::OgreOggSoundManager*
+    soundManager() const;
 
     /**
     * @brief Renders a single frame
