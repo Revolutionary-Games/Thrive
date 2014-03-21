@@ -9,6 +9,7 @@
 #include "ogre/script_bindings.h"
 #include "scripting/luabind.h"
 #include "scripting/script_bindings.h"
+#include "sound/script_bindings.h"
 
 #include <forward_list>
 #include <iostream>
@@ -60,6 +61,7 @@ thrive::initializeLua(
         OgreBindings::luaBindings(),
         BulletBindings::luaBindings(),
         ScriptBindings::luaBindings(),
+        SoundBindings::luaBindings(),
         MicrobeBindings::luaBindings()
     ];
     luabind::object globals = luabind::globals(L);
