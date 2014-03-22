@@ -1,3 +1,19 @@
+* version 1.24
+
+	* Fixed bug where is playing returns wrong result for streaming sound: http://www.ogre3d.org/addonforums/viewtopic.php?f=19&t=30135
+
+	* Fixed memory leak issues: http://www.ogre3d.org/addonforums/viewtopic.php?f=19&t=30121
+	
+	* Fixed ogg callback read size: http://www.ogre3d.org/addonforums/viewtopic.php?f=19&t=30120
+	
+	* Added 'finished' callback as suggested here: http://www.ogre3d.org/addonforums/viewtopic.php?f=19&t=30122
+	
+	* Fixed bug with shared sounds not setting parameters: http://www.ogre3d.org/addonforums/viewtopic.php?f=19&t=30131
+	
+	* Changed some types for 64-bit compatibility
+	
+	* Updated oggvorbis to 1.3.3
+
 * version 1.23
 
 	* Fixed ambiguous mName member variable in OgreOggISound 
@@ -10,6 +26,8 @@
 		
 	* Fixed bug detailed here: http://www.ogre3d.org/addonforums/viewtopic.php?f=19&t=29880
 		* Potential double destroy on source (Only affects static ogg/wav sounds, streamed versions are fine)
+
+	* Fixed 64-bit WAVE bug detailed here: http://www.ogre3d.org/addonforums/viewtopic.php?f=19&t=30027
 
 * Version 1.22
 	

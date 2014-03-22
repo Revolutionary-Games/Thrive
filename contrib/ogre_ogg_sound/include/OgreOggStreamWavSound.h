@@ -1,14 +1,14 @@
 /**
 * @file OgreOggStreamWavSound.h
 * @author  Ian Stangoe
-* @version v1.23
+* @version v1.24
 *
 * @section LICENSE
 * 
 * This source file is part of OgreOggSound, an OpenAL wrapper library for   
 * use with the Ogre Rendering Engine.										 
 *                                                                           
-* Copyright (c) 2013 <Ian Stangoe>
+* Copyright (c) 2013 Ian Stangoe
 *
 * Permission is hereby granted, free of charge, to any person obtaining a copy
 * of this software and associated documentation files (the "Software"), to deal
@@ -174,11 +174,9 @@ namespace OgreOggSound
 		/**
 		 * Ogg file variables
 		 */
-		ALuint mBuffers[NUM_BUFFERS];		// Sound data buffers
-		ALenum mFormat;						// OpenAL format
 		bool mStreamEOF;					// EOF flag
 		WavFormatData mFormatData;			// WAVE format structure
-		unsigned long mLoopOffsetBytes;		// Loop offset in bytes
+		unsigned int mLoopOffsetBytes;		// Loop offset in bytes
 		float mLastOffset;					// Offset in seconds
 
 		friend class OgreOggSoundManager;

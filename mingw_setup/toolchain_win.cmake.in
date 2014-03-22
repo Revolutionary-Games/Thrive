@@ -41,6 +41,7 @@ set(BULLET_ROOT ${MINGW_ENV}/install)
 
 # Boost
 set(BOOST_ROOT ${MINGW_ENV}/install)
+set(BOOST_DIR ${MINGW_ENV}/install)
 set(Boost_THREADAPI win32)
 
 # Add to cmake path
