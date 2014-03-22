@@ -1,14 +1,14 @@
 /**
 * @file OgreOggSoundFactory.cpp
 * @author  Ian Stangoe
-* @version v1.23
+* @version v1.24
 *
 * @section LICENSE
 * 
 * This source file is part of OgreOggSound, an OpenAL wrapper library for   
 * use with the Ogre Rendering Engine.										 
 *                                                                           
-* Copyright (c) 2013 <Ian Stangoe>
+* Copyright (c) 2013 Ian Stangoe
 *
 * Permission is hereby granted, free of charge, to any person obtaining a copy
 * of this software and associated documentation files (the "Software"), to deal
@@ -48,14 +48,15 @@ const String& OgreOggSoundFactory::getType(void) const
 MovableObject* OgreOggSoundFactory::createInstanceImpl( const String& name, const NameValuePairList* params)
 {
 	String fileName;
-	bool loop = false;
-	bool stream = false;
-	bool preBuffer = false;
-	bool immediate = false;
-	SceneManager* scnMgr = 0;
 
 	if (params != 0)
 	{
+		bool loop = false;
+		bool stream = false;
+		bool preBuffer = false;
+		bool immediate = false;
+		SceneManager* scnMgr = 0;
+
 		NameValuePairList::const_iterator fileNameIterator = params->find("fileName");
 		if (fileNameIterator != params->end())
 		{

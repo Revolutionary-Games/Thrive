@@ -1,14 +1,14 @@
 /**
 * @file OgreOggSoundPrereqs.h
 * @author  Ian Stangoe
-* @version v1.23
+* @version v1.24
 *
 * @section LICENSE
 * 
 * This source file is part of OgreOggSound, an OpenAL wrapper library for   
 * use with the Ogre Rendering Engine.										 
 *                                                                           
-* Copyright (c) 2013 <Ian Stangoe>
+* Copyright (c) 2013 Ian Stangoe
 *
 * Permission is hereby granted, free of charge, to any person obtaining a copy
 * of this software and associated documentation files (the "Software"), to deal
@@ -32,6 +32,7 @@
 * 
 * Pre-requisites for building lib
 */
+#pragma once 
 
 #include <OgreVector3.h>
 #include <OgreDataStream.h>
@@ -40,7 +41,6 @@
 
 #   if OGRE_PLATFORM == OGRE_PLATFORM_WIN32
 
-#	pragma once
 #	pragma warning( disable : 4244 )
 
 /**
@@ -88,6 +88,21 @@
 #	include "xram.h"
 #	define _OGGSOUND_EXPORT
 #endif
+	
+namespace OgreOggSound
+{
+	class OgreOggISound;
+
+	//! Holds information about a static shared audio buffer.
+	struct sharedAudioBuffer
+	{
+		ALuint mAudioBuffer;		/// OpenAL buffer
+		unsigned int mRefCount;		/// Reference counter
+		OgreOggISound* mParent;		/// Parent OgreOggISound ptr for shared properties
+	};
+
+	typedef std::map<std::string, sharedAudioBuffer*> SharedBufferList;
+};
 
 /**
  * Specifies whether to use threads for streaming

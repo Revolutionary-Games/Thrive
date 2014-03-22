@@ -1,14 +1,14 @@
 /**
 * @file OgreOggSoundRecord.cpp
 * @author  Ian Stangoe
-* @version v1.23
+* @version v1.24
 *
 * @section LICENSE
 * 
 * This source file is part of OgreOggSound, an OpenAL wrapper library for   
 * use with the Ogre Rendering Engine.										 
 *                                                                           
-* Copyright (c) 2013 <Ian Stangoe>
+* Copyright (c) 2013 Ian Stangoe
 *
 * Permission is hereby granted, free of charge, to any person obtaining a copy
 * of this software and associated documentation files (the "Software"), to deal
@@ -237,14 +237,13 @@ void	OgreOggSoundRecord::stopRecording()
 		mFile.seekp(42);
 		mFile.write(reinterpret_cast<char*>(&mDataSize), 4);
 		mFile.close();
-	}
-
+	}						  
 
 	// Destroy audio buffer
 	if ( mBuffer ) 	OGRE_FREE(mBuffer, Ogre::MEMCATEGORY_GENERAL);
 
 	// Close the Capture Device
-	if (mCaptureDevice) alcCaptureCloseDevice(mCaptureDevice);
+	if ( mCaptureDevice ) alcCaptureCloseDevice(mCaptureDevice);
 }
 
 

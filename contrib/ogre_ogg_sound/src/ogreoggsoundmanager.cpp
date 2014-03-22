@@ -1,14 +1,14 @@
 /**
 * @file OgreOggSoundManager.cpp
 * @author  Ian Stangoe
-* @version v1.23
+* @version v1.24
 *
 * @section LICENSE
 *
 * This source file is part of OgreOggSound, an OpenAL wrapper library for
 * use with the Ogre Rendering Engine.
 *
-* Copyright (c) 2013 <Ian Stangoe>
+* Copyright (c) 2013 Ian Stangoe
 *
 * Permission is hereby granted, free of charge, to any person obtaining a copy
 * of this software and associated documentation files (the "Software"), to deal
@@ -32,6 +32,7 @@
 
 #include "OgreOggSoundManager.h"
 #include "OgreOggSound.h"
+
 #include <string>
 
 #if OGGSOUND_THREADED
@@ -163,12 +164,28 @@ namespace OgreOggSound
 					// If parameters specified delete structure
 					if (obj.mParams)
 					{
-						if ( obj.mAction==LQ_LOAD )
-						{
-							cSound* params = static_cast<cSound*>(obj.mParams);
-							params->mStream.setNull();
+						switch ( obj.mAction )
+						{			
+						case LQ_LOAD:
+							{
+								cSound* params = static_cast<cSound*>(obj.mParams);
+								params->mStream.setNull();	
+								OGRE_DELETE_T(params, cSound, Ogre::MEMCATEGORY_GENERAL);
+							}
+							break;	   
+						case LQ_ATTACH_EFX:
+						case LQ_DETACH_EFX:
+						case LQ_SET_EFX_PROPERTY:
+							{
+								OGRE_DELETE_T(static_cast<efxProperty*>(obj.mParams), efxProperty, Ogre::MEMCATEGORY_GENERAL);
+							}
+							break;	 
+						default:
+							{
+								OGRE_FREE(obj.mParams, Ogre::MEMCATEGORY_GENERAL);
+							}
+							break;
 						}
-						OGRE_FREE(obj.mParams, Ogre::MEMCATEGORY_GENERAL);
 					}
 				}
 			}
@@ -237,8 +254,10 @@ namespace OgreOggSound
 
 		// Set source limit
 		mMaxSources = maxSources;
+
 		// Get an internal list of audio device strings
 		_enumDevices();
+
 		int majorVersion;
 		int minorVersion;
 #if OGRE_PLATFORM != OGRE_PLATFORM_WIN32
@@ -247,48 +266,51 @@ namespace OgreOggSound
 		// Version Info
 #if OGRE_PLATFORM == OGRE_PLATFORM_WIN32
         ALenum error = 0;
-/*alGetError();*/
+		alcGetError(NULL);
 	    alcGetIntegerv(NULL, ALC_MINOR_VERSION, sizeof(minorVersion), &minorVersion);
-/*if ((error = alGetError())!=AL_NO_ERROR)
-{
-	switch (error)
-	{
-	case AL_INVALID_NAME:		{ LogManager::getSingleton().logMessage("Invalid Name when attempting: OpenAL Minor Version number", Ogre::LML_CRITICAL); }		break;
-	case AL_INVALID_ENUM:		{ LogManager::getSingleton().logMessage("Invalid Enum when attempting: OpenAL Minor Version number", Ogre::LML_CRITICAL); }		break;
-	case AL_INVALID_VALUE:		{ LogManager::getSingleton().logMessage("Invalid Value when attempting: OpenAL Minor Version number", Ogre::LML_CRITICAL);}		break;
-	case AL_INVALID_OPERATION:	{ LogManager::getSingleton().logMessage("Invalid Operation when attempting: OpenAL Minor Version number", Ogre::LML_CRITICAL); }break;
-	case AL_OUT_OF_MEMORY:		{ LogManager::getSingleton().logMessage("Out of memory when attempting: OpenAL Minor Version number", Ogre::LML_CRITICAL); }	break;
-	}
-	LogManager::getSingleton().logMessage("Unable to get OpenAL Minor Version number", Ogre::LML_CRITICAL);
-	return false;
-}
-alGetError();*/		alcGetIntegerv(NULL, ALC_MAJOR_VERSION, sizeof(majorVersion), &majorVersion);
-/*if ((error = alGetError())!=AL_NO_ERROR)
-{
-	switch (error)
-	{
-	case AL_INVALID_NAME:		{ LogManager::getSingleton().logMessage("Invalid Name when attempting: OpenAL Minor Version number", Ogre::LML_CRITICAL); }		break;
-	case AL_INVALID_ENUM:		{ LogManager::getSingleton().logMessage("Invalid Enum when attempting: OpenAL Minor Version number", Ogre::LML_CRITICAL); }		break;
-	case AL_INVALID_VALUE:		{ LogManager::getSingleton().logMessage("Invalid Value when attempting: OpenAL Minor Version number", Ogre::LML_CRITICAL);}		break;
-	case AL_INVALID_OPERATION:	{ LogManager::getSingleton().logMessage("Invalid Operation when attempting: OpenAL Minor Version number", Ogre::LML_CRITICAL); }break;
-	case AL_OUT_OF_MEMORY:		{ LogManager::getSingleton().logMessage("Out of memory when attempting: OpenAL Minor Version number", Ogre::LML_CRITICAL); }	break;
-	}
-	LogManager::getSingleton().logMessage("Unable to get OpenAL Major Version number", Ogre::LML_CRITICAL);
-	return false;
-}*/#else
+        if ((error = alcGetError(NULL))!=AL_NO_ERROR)
+		{
+			switch (error)
+			{
+			case AL_INVALID_NAME:		{ LogManager::getSingleton().logMessage("Invalid Name when attempting: OpenAL Minor Version number", Ogre::LML_CRITICAL); }		break;
+			case AL_INVALID_ENUM:		{ LogManager::getSingleton().logMessage("Invalid Enum when attempting: OpenAL Minor Version number", Ogre::LML_CRITICAL); }		break;
+			case AL_INVALID_VALUE:		{ LogManager::getSingleton().logMessage("Invalid Value when attempting: OpenAL Minor Version number", Ogre::LML_CRITICAL);}		break;
+			case AL_INVALID_OPERATION:	{ LogManager::getSingleton().logMessage("Invalid Operation when attempting: OpenAL Minor Version number", Ogre::LML_CRITICAL); }break;
+			case AL_OUT_OF_MEMORY:		{ LogManager::getSingleton().logMessage("Out of memory when attempting: OpenAL Minor Version number", Ogre::LML_CRITICAL); }	break;
+			}
+			LogManager::getSingleton().logMessage("Unable to get OpenAL Minor Version number", Ogre::LML_CRITICAL);
+			return false;
+		}
+		alcGetError(NULL);
+		alcGetIntegerv(NULL, ALC_MAJOR_VERSION, sizeof(majorVersion), &majorVersion);
+        if ((error = alcGetError(NULL))!=AL_NO_ERROR)
+		{
+			switch (error)
+			{
+			case AL_INVALID_NAME:		{ LogManager::getSingleton().logMessage("Invalid Name when attempting: OpenAL Minor Version number", Ogre::LML_CRITICAL); }		break;
+			case AL_INVALID_ENUM:		{ LogManager::getSingleton().logMessage("Invalid Enum when attempting: OpenAL Minor Version number", Ogre::LML_CRITICAL); }		break;
+			case AL_INVALID_VALUE:		{ LogManager::getSingleton().logMessage("Invalid Value when attempting: OpenAL Minor Version number", Ogre::LML_CRITICAL);}		break;
+			case AL_INVALID_OPERATION:	{ LogManager::getSingleton().logMessage("Invalid Operation when attempting: OpenAL Minor Version number", Ogre::LML_CRITICAL); }break;
+			case AL_OUT_OF_MEMORY:		{ LogManager::getSingleton().logMessage("Out of memory when attempting: OpenAL Minor Version number", Ogre::LML_CRITICAL); }	break;
+			}
+			LogManager::getSingleton().logMessage("Unable to get OpenAL Major Version number", Ogre::LML_CRITICAL);
+			return false;
+		}
+#else
         alcGetIntegerv(device, ALC_MINOR_VERSION, sizeof(minorVersion), &minorVersion);
-/*ALCenum error = alcGetError(device);
-if (error != ALC_NO_ERROR)
-{
-	LogManager::getSingleton().logMessage("Unable to get OpenAL Minor Version number", Ogre::LML_CRITICAL);
-	return false;
-}*/		alcGetIntegerv(device, ALC_MAJOR_VERSION, sizeof(majorVersion), &majorVersion);
-/*error = alcGetError(device);
+        ALCenum error = alcGetError(device);
+        if (error != ALC_NO_ERROR)
+		{
+			LogManager::getSingleton().logMessage("Unable to get OpenAL Minor Version number", Ogre::LML_CRITICAL);
+			return false;
+		}
+		alcGetIntegerv(device, ALC_MAJOR_VERSION, sizeof(majorVersion), &majorVersion);
+		error = alcGetError(device);
         if (error != ALC_NO_ERROR)
 		{
 			LogManager::getSingleton().logMessage("Unable to get OpenAL Major Version number", Ogre::LML_CRITICAL);
 			return false;
-		}*/
+		}
 		alcCloseDevice(device);
 #endif
 		Ogre::String msg="*** --- OpenAL version " + Ogre::StringConverter::toString(majorVersion) + "." + Ogre::StringConverter::toString(minorVersion);
@@ -308,7 +330,7 @@ if (error != ALC_NO_ERROR)
 			Ogre::StringVector deviceList = getDeviceList();
 			std::stringstream ss;
 			Ogre::StringVector::iterator deviceItr;
-			for(deviceItr = deviceList.begin(); deviceItr != deviceList.end() && (*deviceItr).compare("") != 0; deviceItr++)
+			for(deviceItr = deviceList.begin(); deviceItr != deviceList.end() && (*deviceItr).compare("") != 0; ++deviceItr)
 			{
 				deviceInList |= (*deviceItr).compare(deviceName) == 0;
 				ss << "*** --- " << (*deviceItr);
@@ -496,8 +518,7 @@ if (error != ALC_NO_ERROR)
 	{
 		if ( (vol>=0.f) && (vol<=1.f) )
 			alListenerf(AL_GAIN, vol);
-	}
-
+	}		 
 	/*/////////////////////////////////////////////////////////////////*/
 	ALfloat OgreOggSoundManager::getMasterVolume()
 	{
@@ -680,8 +701,7 @@ if (error != ALC_NO_ERROR)
 		OgreOggListener* l = OGRE_NEW_T(OgreOggListener, Ogre::MEMCATEGORY_GENERAL)();
 		l->setSceneManager(*mSceneMgr);
 		return l;
-	}
-
+	}		
 	/*/////////////////////////////////////////////////////////////////*/
 	OgreOggISound* OgreOggSoundManager::getSound(const std::string& name)
 	{
@@ -1107,8 +1127,7 @@ if (error != ALC_NO_ERROR)
 
 		// Uh oh - won't be played
 		return false;
-	}
-
+	}	  
 	/*/////////////////////////////////////////////////////////////////*/
 	bool OgreOggSoundManager::_releaseSoundSource(OgreOggISound* sound)
 	{
@@ -1144,8 +1163,7 @@ if (error != ALC_NO_ERROR)
 		}
 
 		return false;
-	}
-	
+	}	 	
 #if OGRE_PLATFORM == OGRE_PLATFORM_WIN32
 
 	/*/////////////////////////////////////////////////////////////////*/
@@ -1164,8 +1182,7 @@ if (error != ALC_NO_ERROR)
 			return 0;
 	}
 
-#endif
-	
+#endif																				  	
 #if HAVE_EFX
 	/*/////////////////////////////////////////////////////////////////*/
 	bool OgreOggSoundManager::isEffectSupported(ALint effectID)
@@ -2068,9 +2085,9 @@ if (error != ALC_NO_ERROR)
 			soundList.push_back(i->first);
 
 		// Destroy individually outside mSoundMap iteration
-		OgreOggISound* sound=0;
 		for ( StringVector::iterator i=soundList.begin(); i!=soundList.end(); ++i )
 		{
+			OgreOggISound* sound=0;
 			if ( sound=getSound((*i)) ) 
 				_destroySoundImpl(sound);
 		}
@@ -2146,18 +2163,22 @@ if (error != ALC_NO_ERROR)
 	{
 		if ( !sound ) return;
 
-		ALuint buffer=AL_NONE;
+		sharedAudioBuffer* buffer=0;
 
 		if ( !sound->mStream )
 			// Is there a shared buffer?
 			buffer = _getSharedBuffer(file);
 
-		if (buffer==AL_NONE)
+		if (!buffer)
+		{
 			// Load audio file
 			sound->_openImpl(stream);
+		}
 		else
+		{
 			// Use shared buffer if available
 			sound->_openImpl(file, buffer);
+		}
 
 		// If requested to preBuffer - grab free source and init
 		if (prebuffer)
@@ -2369,8 +2390,7 @@ if (error != ALC_NO_ERROR)
 	void OgreOggSoundManager::_enumDevices()
 	{
 		mDeviceStrings = const_cast<ALCchar*>(alcGetString(0,ALC_DEVICE_SPECIFIER));
-	}
-
+	}					  
 	/*/////////////////////////////////////////////////////////////////*/
 	void OgreOggSoundManager::_releaseAll()
 	{
@@ -2512,19 +2532,16 @@ if (error != ALC_NO_ERROR)
 #endif
 	}
 	/*/////////////////////////////////////////////////////////////////*/
-	ALuint OgreOggSoundManager::_getSharedBuffer(const String& sName)
+	sharedAudioBuffer* OgreOggSoundManager::_getSharedBuffer(const String& sName)
 	{
 		if ( sName.empty() ) return AL_NONE;
 
 		SharedBufferList::iterator f;
 		if ( ( f = mSharedBuffers.find(sName) ) != mSharedBuffers.end() )
-		{
-			f->second->mRefCount++;
-			return f->second->mAudioBuffer;
-		}
-		return AL_NONE;
-	}
+			return f->second;
 
+		return AL_NONE;
+	}	 
 	/*/////////////////////////////////////////////////////////////////*/
 	bool OgreOggSoundManager::_releaseSharedBuffer(const String& sName, ALuint& buffer)
 	{
@@ -2553,10 +2570,9 @@ if (error != ALC_NO_ERROR)
 			}
 		}
 		return false;
-	}
-
+	}	
 	/*/////////////////////////////////////////////////////////////////*/
-	bool OgreOggSoundManager::_registerSharedBuffer(const String& sName, ALuint& buffer)
+	bool OgreOggSoundManager::_registerSharedBuffer(const String& sName, ALuint& buffer, OgreOggISound* parent)
 	{
 		if ( sName.empty() ) return false;
 
@@ -2572,6 +2588,9 @@ if (error != ALC_NO_ERROR)
 			// Set ref count
 			buf->mRefCount = 1;
 
+			// Set parent ptr
+			buf->mParent = parent;
+
 			// Add to list
 			mSharedBuffers[sName] = buf;
 		}
@@ -2581,7 +2600,7 @@ if (error != ALC_NO_ERROR)
 	/*/////////////////////////////////////////////////////////////////*/
 	void OgreOggSoundManager::_updateBuffers()
 	{
-		static Ogre::uint32 cTime=0;
+		static Ogre::uint32 cTime;
 		static Ogre::uint32 pTime=0;
 		static Ogre::Timer timer;
 		static float rTime=0.f;
@@ -2621,7 +2640,6 @@ if (error != ALC_NO_ERROR)
 		// Reset timer
 		pTime=cTime;
 	}
-
 	/*/////////////////////////////////////////////////////////////////*/
 	void OgreOggSoundManager::_performAction(const SoundAction& act)
 	{
@@ -2683,7 +2701,7 @@ if (error != ALC_NO_ERROR)
 				}
 
 				// Delete
-				OGRE_FREE(c, Ogre::MEMCATEGORY_GENERAL);
+				OGRE_DELETE_T(c, cSound, Ogre::MEMCATEGORY_GENERAL);
 			}
 			break;
 #if HAVE_EFX
@@ -2699,7 +2717,7 @@ if (error != ALC_NO_ERROR)
 						_attachFilterToSoundImpl(s, e->mFilterName);
 				}
 				// Delete
-				OGRE_FREE(e, Ogre::MEMCATEGORY_GENERAL);
+				OGRE_DELETE_T(e, efxProperty, Ogre::MEMCATEGORY_GENERAL);
 			}
 			break;
 		case LQ_DETACH_EFX:
@@ -2714,7 +2732,7 @@ if (error != ALC_NO_ERROR)
 						_detachFilterFromSoundImpl(s);
 				}
 				// Delete
-				OGRE_FREE(e, Ogre::MEMCATEGORY_GENERAL);
+				OGRE_DELETE_T(e, efxProperty, Ogre::MEMCATEGORY_GENERAL);
 			}
 			break;
 		case LQ_SET_EFX_PROPERTY:
@@ -2726,7 +2744,7 @@ if (error != ALC_NO_ERROR)
 					_setEFXSoundPropertiesImpl(s, e->mAirAbsorption, e->mRolloff, e->mConeHF);
 				}
 				// Delete
-				OGRE_FREE(e, Ogre::MEMCATEGORY_GENERAL);
+				OGRE_DELETE_T(e, efxProperty, Ogre::MEMCATEGORY_GENERAL);
 			}
 			break;
 #endif
@@ -2758,8 +2776,6 @@ if (error != ALC_NO_ERROR)
 		if ( !mActionsList ) return;
 
 		SoundAction act;
-		int i=0;
-
 		// Perform sound requests 
 		while ( mActionsList->pop(act) )
 		{

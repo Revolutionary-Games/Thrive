@@ -1,14 +1,14 @@
 /**
 * @file OgreOggStaticSound.h
 * @author  Ian Stangoe
-* @version v1.23
+* @version v1.24
 *
 * @section LICENSE
 * 
 * This source file is part of OgreOggSound, an OpenAL wrapper library for   
 * use with the Ogre Rendering Engine.										 
 *                                                                           
-* Copyright (c) 2013 <Ian Stangoe>
+* Copyright (c) 2013 Ian Stangoe
 *
 * Permission is hereby granted, free of charge, to any person obtaining a copy
 * of this software and associated documentation files (the "Software"), to deal
@@ -102,7 +102,7 @@ namespace OgreOggSound
 			@param buffer
 				shared buffer reference
 		 */
-		void _openImpl(const Ogre::String& fName, ALuint& buffer);
+		void _openImpl(const Ogre::String& fName, sharedAudioBuffer* buffer);
 		/** Stops playing sound.
 		@remarks
 			Stops playing audio immediately. If specified to do so its source
@@ -151,13 +151,8 @@ namespace OgreOggSound
 		OggVorbis_File	mOggStream;			// OggVorbis file structure
 		vorbis_info*	mVorbisInfo;		// Vorbis info 
 		vorbis_comment* mVorbisComment;		// Vorbis comments
-
 		Ogre::String	mAudioName;			// Name of audio file stream (Used with shared buffers)
-
 		std::vector<char> mBufferData;		// Sound data buffer
-
-		ALuint mBuffer;						// OpenAL buffer index
-		ALenum mFormat;						// OpenAL buffer format
 		ALint mPreviousOffset;				// Current play position
 
 		friend class OgreOggSoundManager;	
