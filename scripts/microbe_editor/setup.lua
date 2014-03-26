@@ -14,6 +14,8 @@ local function setupCamera()
     -- Camera
     local camera = OgreCameraComponent("camera3")
     camera.properties.nearClipDistance = 5
+    camera.properties.orthographicalMode = true
+    camera.properties.fovY = Degree(30.0)
     camera.properties:touch()
     entity:addComponent(camera)
     -- Scene node
