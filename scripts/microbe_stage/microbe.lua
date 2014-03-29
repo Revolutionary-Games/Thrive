@@ -442,12 +442,20 @@ function Microbe:_updateAllHexColours()
     end
 end
 
-function Microbe:getComponent(typeid)
-    return self.entity:getComponent(typeid)
-end
 
 function Microbe:destroy()
     self.entity:destroy()
+end
+
+
+-- The last two functions are only present since the spawn system expects an entity interface.
+
+function Microbe:addComponent(component)
+    self.entity:addComponent(component)
+end
+
+function Microbe:getComponent(typeid)
+    return self.entity:getComponent(typeid)
 end
 
 

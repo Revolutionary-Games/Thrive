@@ -390,5 +390,5 @@ local function createMicrobeStage(name)
 end
 
 GameState.MICROBE = createMicrobeStage("microbe")
- GameState.MICROBE_ALTERNATE = createMicrobeStage("microbe_alternate")
+GameState.MICROBE_ALTERNATE = createMicrobeStage("microbe_alternate")
 Engine:setCurrentGameState(GameState.MICROBE)
