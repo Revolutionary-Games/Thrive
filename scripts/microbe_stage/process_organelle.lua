@@ -150,6 +150,7 @@ end
 function ProcessOrganelle:storage()
     local storage = Organelle.storage(self)
     storage:set("remainingCooldown", self.remainingCooldown)
+    storage:set("processCooldown", self.processCooldown)
     local inputAgentsSt = StorageList()
     for agentId, amount in pairs(self.inputAgents) do
         inputStorage = StorageContainer()
@@ -174,6 +175,7 @@ function ProcessOrganelle:load(storage)
     Organelle.load(self, storage)
     self.originalColour = self._colour
     self.remainingCooldown = storage:get("remainingCooldown", 0)
+    self.processCooldown = storage:get("processCooldown", 0)
     local inputAgentsSt = storage:get("inputAgents", {})
     for i = 1,inputAgentsSt:size() do
         local inputStorage = inputAgentsSt:get(i)

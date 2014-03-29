@@ -262,6 +262,7 @@ SoundSourceComponent::storage() const {
     for (const auto& pair : m_sounds) {
         sounds.push_back(pair.second->storage());
     }
+    storage.set<StorageList>("sounds", sounds);
     return storage;
 }
 
@@ -296,10 +297,17 @@ struct SoundSourceSystem::Implementation {
     removeSoundsForEntity(
         EntityId entityId
     ) {
+        EntityManager& entityManager = Game::instance().engine().currentGameState()->entityManager();
+        SoundSourceComponent* soundSource = static_cast<SoundSourceComponent*>(entityManager.getComponent(entityId, SoundSourceComponent::TYPE_ID));
+        for (const auto& pair : soundSource->m_sounds) {
+            Sound* sound = pair.second.get();
+            sound->m_sound = nullptr;
+        }
         for (const auto& pair : m_sounds[entityId]) {
             OgreOggSound::OgreOggISound* sound = pair.second;
             this->removeSound(sound);
         }
+        m_sounds[entityId].clear();
     }
 
     void
@@ -456,21 +464,10 @@ SoundSourceSystem::update(int milliseconds) {
     }
     m_impl->m_entities.clearChanges();
     for (auto& value : m_impl->m_entities) {
-        EntityId entityId = value.first;
         SoundSourceComponent* soundSourceComponent = std::get<0>(value.second);
-        OgreSceneNodeComponent* sceneNodeComponent = std::get<1>(value.second);
         for (const auto& pair : soundSourceComponent->m_sounds) {
-
             Sound* sound = pair.second.get();
-
-            if (not sound->m_sound) {
-                m_impl->restoreSound(
-                    entityId,
-                    sceneNodeComponent,
-                    sound,
-                    soundSourceComponent->m_ambientSoundSource
-                );
-            }
+            assert(sound->m_sound && "Sound was not intialized");
             if (sound->m_properties.hasChanges()) {
                 const auto& properties = sound->m_properties;
                 OgreOggSound::OgreOggISound* ogreSound = sound->m_sound;
@@ -528,13 +525,12 @@ SoundSourceSystem::update(int milliseconds) {
                         soundSourceComponent->m_ambientActiveSound->stop();
                     }
                     Sound* newSound = nullptr;
-                    if (soundSourceComponent->m_queuedSound){
-                        newSound = soundSourceComponent->m_queuedSound;
-                    }
-                    else {
-                        int numOfSounds = soundSourceComponent->m_sounds.size();
-                        if (numOfSounds > 0){
-
+                    int numOfSounds = soundSourceComponent->m_sounds.size();
+                    if (numOfSounds > 0){
+                        if (soundSourceComponent->m_queuedSound){
+                            newSound = soundSourceComponent->m_queuedSound;
+                        }
+                        else {
                             do {
                                 int randSoundIndex = Game::instance().engine().rng().getInt(0, numOfSounds-1);
                                 std::unordered_map<std::string, std::unique_ptr<Sound>>::iterator soundPointer
@@ -544,18 +540,19 @@ SoundSourceSystem::update(int milliseconds) {
                                 newSound = soundPointer->second.get();
                             } while (newSound == soundSourceComponent->m_ambientActiveSound); //Ensure we don't play the same song twice
                         }
-                    }
-                    float soundLength = newSound->m_sound->getAudioLength();
-                    // Soundlength will return 0 for a while after initialization (I think it's due to multi-threaded sound init)
-                    if (soundLength > 0){
-                        soundSourceComponent->m_ambientActiveSound = newSound;
-                        soundSourceComponent->m_ambientSoundCountdown = newSound->m_sound->getAudioLength()*1000;
-                        newSound->play();
-                        soundSourceComponent->m_queuedSound = nullptr;
-                        //newSound->m_sound->startFade(true, 5000); // In case we want to fade-in themes instead of just playing them.
+                        float soundLength = newSound->m_sound->getAudioLength();
+                        // Soundlength will return 0 for a while after initialization (I think it's due to multi-threaded sound init)
+                        if (soundLength > 0){
+                            soundSourceComponent->m_ambientActiveSound = newSound;
+                            soundSourceComponent->m_ambientSoundCountdown = newSound->m_sound->getAudioLength()*1000;
+                            newSound->play();
+                            soundSourceComponent->m_queuedSound = nullptr;
+                            //newSound->m_sound->startFade(true, 5000); // In case we want to fade-in themes instead of just playing them.
+                        }
                     }
                     soundSourceComponent->m_isTransitioningAmbient = false;
                 }
+
             }
         }
     }
