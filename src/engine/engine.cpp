@@ -531,7 +531,7 @@ Engine::init() {
         m_impl->m_currentGameState = gameState.get();
         gameState->init();
     }
-    // OgreOggSoundManager must be initialized after at least one 
+    // OgreOggSoundManager must be initialized after at least one
     // Ogre::SceneManager has been instantiated
     m_impl->setupSoundManager();
     m_impl->m_currentGameState = previousGameState;

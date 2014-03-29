@@ -21,13 +21,19 @@ function MicrobeAIControllerComponent:__init()
 end
 
 function MicrobeAIControllerComponent:storage()
+   
     local storage = Component.storage(self)
     storage:set("movementRadius", self.movementRadius)
     storage:set("reevalutationInterval", self.reevalutationInterval)
     storage:set("intervalRemaining", self.intervalRemaining)
     storage:set("direction", self.direction)
-    storage:set("targetEmitterPosition", self.targetEmitterPosition)
+    if targetEmitterPosition == nil then
+        storage:set("targetEmitterPosition", "nil")
+    else
+        storage:set("targetEmitterPosition", self.targetEmitterPosition)
+    end
     storage:set("searchedAgentId", self.searchedAgentId)
+    
     return storage
 end
 
@@ -37,7 +43,12 @@ function MicrobeAIControllerComponent:load(storage)
     self.reevalutationInterval = storage:get("reevalutationInterval", 1000)
     self.intervalRemaining = storage:get("intervalRemaining", self.reevalutationInterval)
     self.direction = storage:get("direction", Vector3(0, 0, 0))
-    self.targetEmitterPosition = storage:get("targetEmitterPosition", nil)
+    local emitterPosition = storage:get("targetEmitterPosition", nil)
+    if emitterPosition == "nil" then
+        self.targetEmitterPosition = nil
+    else
+        self.targetEmitterPosition = emitterPosition
+    end
     self.searchedAgentId = storage:get("searchedAgentId", nil)
 end
 
@@ -102,14 +113,15 @@ function MicrobeAISystem:update(milliseconds)
     end
     for entityId in self.emitters:addedEntities() do
         local emitterComponent = Entity(entityId):getComponent(AgentEmitterComponent.TYPE_ID)
-        if emitterComponent.agentId == AgentRegistry.getAgentId("oxygen") then
-            self.oxygenEmitters[entityId] = true
-        elseif emitterComponent.agentId == AgentRegistry.getAgentId("glucose") then
-            self.glucoseEmitters[entityId] = true
+        if emitterComponent ~= nil then
+            if emitterComponent.agentId == AgentRegistry.getAgentId("oxygen") then
+                self.oxygenEmitters[entityId] = true
+            elseif emitterComponent.agentId == AgentRegistry.getAgentId("glucose") then
+                self.glucoseEmitters[entityId] = true
+            end
         end
     end
     self.entities:clearChanges()
-    self.emitters:clearChanges()
     for _, microbe in pairs(self.microbes) do
         local aiComponent = microbe:getComponent(MicrobeAIControllerComponent.TYPE_ID)
         aiComponent.intervalRemaining = aiComponent.intervalRemaining + milliseconds
