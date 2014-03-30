@@ -320,6 +320,8 @@ install(DIRECTORY ${ASSET_DIRECTORY}/models
     FILES_MATCHING
         PATTERN "*.mesh" 
         PATTERN "*.mesh.xml"
+        PATTERN "*.skeleton" 
+        PATTERN "*.skeleton.xml"
 )
 
 install(DIRECTORY ${ASSET_DIRECTORY}/materials
