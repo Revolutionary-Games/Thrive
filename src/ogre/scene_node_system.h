@@ -68,6 +68,7 @@ public:
     *   - Transform::orientation
     *   - Transform::position
     *   - Transform::scale
+    * - OgreSceneNodeComponent::playAnimation
     * - OgreSceneNodeComponent::attachObject
     * - OgreSceneNodeComponent::attachSoundListener
     * - OgreSceneNodeComponent::detachObject (unimplemented)
@@ -85,6 +86,26 @@ public:
 
     StorageContainer
     storage() const override;
+
+    /**
+    * @brief Sets the current animation to be played
+    *
+    * Calling this while an animation is already playing interrupts
+    * the existing animation
+    * (Dev note: This can be changed to blending if needed)
+    *
+    * @param name
+    *  Name of the animation to play
+    *
+    * @param loop
+    *  If true the animation will loop indefinitely
+    *
+    */
+    void
+    playAnimation(
+        std::string name,
+        bool loop
+    );
 
     /**
     * @brief Attaches a MovableObject to the underlying scenenode
@@ -142,6 +163,10 @@ private:
     _attachObject(
         Ogre::MovableObject* obj
     );
+
+    TouchableValue<std::string> m_activeAnimation = std::string("");
+    int m_animationTime = 0;
+    bool m_loopingAnimation = false;
 
     static bool s_soundListenerAttached;
 

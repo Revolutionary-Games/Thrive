@@ -68,6 +68,7 @@ OgreSceneNodeComponent::luaBindings() {
                 .def_readwrite("scale", &Transform::scale)
         ]
         .def(constructor<>())
+        .def("playAnimation", &OgreSceneNodeComponent::playAnimation)
         .def("attachObject", &OgreSceneNodeComponent::attachObject)
         .def("attachSoundListener", &OgreSceneNodeComponent::attachSoundListener)
         .def_readonly("transform", &OgreSceneNodeComponent::m_transform)
@@ -101,6 +102,15 @@ OgreSceneNodeComponent::storage() const {
     storage.set<Ogre::String>("meshName", m_meshName);
     storage.set<EntityId>("parentId", m_parentId);
     return storage;
+}
+
+void
+OgreSceneNodeComponent::playAnimation(
+    std::string name,
+    bool loop
+) {
+    m_loopingAnimation = loop;
+    m_activeAnimation = name;
 }
 
 void
@@ -243,6 +253,8 @@ void
 OgreRemoveSceneNodeSystem::init(
     GameState* gameState
 ) {
+    Ogre::Animation::setDefaultInterpolationMode(Ogre::Animation::IM_LINEAR);
+    Ogre::Animation::setDefaultRotationInterpolationMode(Ogre::Animation::RIM_LINEAR);
     System::init(gameState);
     assert(m_impl->m_sceneManager == nullptr && "Double init of system");
     m_impl->m_sceneManager = gameState->sceneManager();
@@ -337,7 +349,7 @@ OgreUpdateSceneNodeSystem::shutdown() {
 
 
 void
-OgreUpdateSceneNodeSystem::update(int) {
+OgreUpdateSceneNodeSystem::update(int milliseconds) {
     for (const auto& entry : m_impl->m_entities) {
         OgreSceneNodeComponent* component = std::get<0>(entry.second);
         Ogre::SceneNode* sceneNode = component->m_sceneNode;
@@ -412,6 +424,28 @@ OgreUpdateSceneNodeSystem::update(int) {
                 component->_attachObject(listener);
             }
             component->m_attachToListener.untouch();
+        }
+        if (component->m_entity && component->m_entity->hasSkeleton()){
+            // Progress animations
+            Ogre::AnimationStateSet* animations = component->m_entity->getAllAnimationStates();
+            if (animations){
+                Ogre::AnimationStateIterator iter = animations->getAnimationStateIterator();
+                while (iter.hasMoreElements()){
+                    Ogre::AnimationState* animation = iter.getNext();
+                    animation->addTime(milliseconds/1000.0);
+                    // If we are about to set a new animation, cancel all other animations (In this could change if we want blended animations)
+                    if (component->m_activeAnimation.hasChanges()){
+                        animation->setEnabled(false);
+                    }
+                }
+            }
+            if(component->m_activeAnimation.hasChanges() && component->m_activeAnimation.get().size() > 0){
+                auto animationState = component->m_entity->getAnimationState(component->m_activeAnimation.get());
+                animationState->setEnabled(true);
+                animationState->setLoop(component->m_loopingAnimation);
+            }
+            component->m_activeAnimation.untouch();
+
         }
     }
 }
