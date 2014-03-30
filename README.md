@@ -11,10 +11,11 @@ Depending on what you want to contribute, you need to take different steps
 to get your development environment set up.
 
 ### Script Authors
-If you only want to modify the Lua scripts, you can just download a 
-precompiled package from our build server at ftp://nimbal.net/jenkins.
-After unpacking, you will find the scripts in the aptly named `scripts` 
-subdirectory.
+If you only want to modify the Lua scripts, you can obtain a 
+working copy of the game from official releases here: http://thrivegame.forum-free.ca/t1276-thrive-releases#29017
+alternatively you can request a newer version from developers, compile the project yourself,
+or you can download from our (currently not updating and temporary) build server at
+ftp://nimbal.net/jenkins.
 
 Be sure to have a look at the [styleguide][styleguide],
 both for guidelines on code formatting and git usage.
@@ -38,20 +39,45 @@ environment. The dependencies at the time of this writing are
 * Ogre 1.8
 * Bullet 2.81
 * OpenAL Soft 1.15.1
+* Vorbis 1.3.3
+* OGG 1.3.1
+* CEGUI 0.8.3
+* TinyXML 2.6.2
 
 Be sure to have a look at the [styleguide][styleguide],
 both for guidelines on code formatting and git usage.
 
-### Modellers and Sound Engineers
-To work on the art assets, you can download a precompiled package from our
-build server at ftp://nimbal.net/jenkins. After unpacking, create a 
-subdirectory `testing` and place your assets in there. If they are used 
-anywhere in the game, they will be picked up by Thrive.
+### Modellers, texture and GUI artists, and Sound Engineers
+To work on the art assets you will want a working copy of the game.
+You can find official releases here: http://thrivegame.forum-free.ca/t1276-thrive-releases#29017
+alternatively you can request a newer version from developers, compile the project yourself,
+or you can download from our (currently not updating and temporary) build server at ftp://nimbal.net/jenkins.
+ 
+After you have obtained a working version of the game, you can place any new assets in the corresponding subdirectories:
+sound, models, materials and gui and the game will automatically detect up your new files, which you can then use in scripts.
+An example of modifying a script to use your model would be to open scripts/microbe_stage/setup.lua with a text editor and 
+find the setupEmitter function and edit the line that says:
+    sceneNode.meshName = "molecule.mesh"
+to 
+    sceneNode.meshName = "myNewModel.mesh"
+Similarly you can find sections of the scripts that use other assets and replace the assets they use. (often in setup scripts)
+If you are truly uncomfortable with editing scripts you can simply try stealing the names of existing assets. For example 
+going into the sound subdirectory and stealing the name "microbe-theme-1.ogg" by renaming your new sound-file to that and the 
+game will then play that sound instead.
 
-More detailed instructions for contributing art assets will follow soon.
+To contribute assets you can contact a developer and provide that person with your assets and the developer can add the assets 
+the official repository. It will at a later time be possible to commit to the subversion (SVN) server yourself. In the meantime you can
+learn about subversion from a lot of easy-to-find tutorials. A recommended tool for windows is: [tortoise svn][tortoiseSVN].
 
+Extra note for modellers:
+Ogre (the graphics system that Thrive uses) uses it's own file format for materials, models (meshes) and skeletons. In order for your 
+model to be used in Thrive it will need to be converted. You can contact a developer to do this for you or you can do it yourself.
+A good tutorial for converting blender files can be found [here][blender_ogre_tutorial] Note that you should make sure to use a version of
+blender that has a corresponding version of blender2ogre to do the conversion.
 
+[blender_ogre_tutorial]: http://www.ogre3d.org/forums/viewtopic.php?f=8&t=79616&p=504590 "Blender to ogre tutorial"
 [asset_repository]: http://nimbal.net/scm/svn/thrive_assets/trunk "Asset Repository"
+[tortoiseSVN]: http://tortoisesvn.net/docs/release/TortoiseSVN_en/ "Tortoise SVN"
 [mingw]: http://www.github.com/Revolutionary-Games/Thrive/blob/master/mingw_setup/readme.txt "MinGW setup guide"
 [styleguide]: http://www.github.com/Revolutionary-Games/Thrive/blob/master/doc/style_guide.dox "Styleguide"
 [mingwsetupguide]: http://www.github.com/Revolutionary-Games/Thrive/blob/master/mingw_setup/readme.txt "mingw setup guide" 
