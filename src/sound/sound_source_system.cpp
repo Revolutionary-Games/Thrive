@@ -139,6 +139,7 @@ Sound::storage() const {
 // SoundSourceComponent
 ////////////////////////////////////////////////////////////////////////////////
 
+//Luabind helper functions
 static bool
 SoundSourceComponent_getAmbientSoundSource(
     const SoundSourceComponent* self
@@ -284,6 +285,7 @@ SoundSourceSystem::luaBindings() {
 
 struct SoundSourceSystem::Implementation {
 
+    //Destroys all sounds, freeing up memory
     void
     removeAllSounds() {
         for (const auto& item : m_entities) {
@@ -293,6 +295,7 @@ struct SoundSourceSystem::Implementation {
         m_sounds.clear();
     }
 
+    //Destroys all sounds for a specific entity (useful for when it is destroyed)
     void
     removeSoundsForEntity(
         EntityId entityId
@@ -324,6 +327,7 @@ struct SoundSourceSystem::Implementation {
         }
     }
 
+    //Loads all sounds for all SoundSourceComponenet containing entities
     void
     restoreAllSounds() {
         for (const auto& item : m_entities) {
@@ -342,6 +346,7 @@ struct SoundSourceSystem::Implementation {
         }
     }
 
+    //Loads a sound and sets relevant properties
     void
     restoreSound(
         EntityId entityId,
@@ -349,8 +354,8 @@ struct SoundSourceSystem::Implementation {
         Sound* sound,
         bool ambient
     ) {
-        static const bool STREAM = true;
-        static const bool PREBUFFER = true;
+        static const bool STREAM = true; //Streaming sound from file
+        static const bool PREBUFFER = true; //Attaches soundsource on creation
         // 3D sounds should not be attempted loaded before scenenodes are created
         if (not ambient && not sceneNodeComponent->m_sceneNode){
             return;
@@ -367,6 +372,7 @@ struct SoundSourceSystem::Implementation {
             sound->m_sound = ogreSound;
             ogreSound->disable3D(ambient);
             if (ambient) {
+                // We want to manage ambient sound looping ourselves
                 sound->m_properties.loop = false;
                 ogreSound->loop(false);
             }
@@ -388,6 +394,7 @@ struct SoundSourceSystem::Implementation {
 
     > m_entities = {true};
 
+    //Map of the sounds of all entities for destruction reference
     std::unordered_map<
         EntityId,
         std::unordered_map<std::string, OgreOggSound::OgreOggISound*>
@@ -447,11 +454,13 @@ SoundSourceSystem::update(int milliseconds) {
         m_impl->removeSoundsForEntity(entityId);
     }
     for (auto& value : m_impl->m_entities.addedEntities()) {
+        //Load the songs for any new soundSourceComponent containing entities that have been created
         EntityId entityId = value.first;
         SoundSourceComponent* soundSourceComponent = std::get<0>(value.second);
         OgreSceneNodeComponent* sceneNodeComponent = std::get<1>(value.second);
         for (const auto& pair : soundSourceComponent->m_sounds) {
             Sound* sound = pair.second.get();
+            // If soun
             if (not sound->m_sound) {
                 m_impl->restoreSound(
                     entityId,
@@ -495,7 +504,7 @@ SoundSourceSystem::update(int milliseconds) {
             }
         }
         if (soundSourceComponent->m_ambientSoundSource.hasChanges()) {
-            //Iterate through all existing sounds and make them ready for ambience
+            //Iterate through all existing sounds and set/unset ambience only properties
             for (const auto& pair : soundSourceComponent->m_sounds) {
                 Sound* sound = pair.second.get();
                 OgreOggSound::OgreOggISound* ogreSound = sound->m_sound;
@@ -510,13 +519,17 @@ SoundSourceSystem::update(int milliseconds) {
             }
             soundSourceComponent->m_ambientSoundSource.untouch();
         }
+        // If the current soundsource is an ambient soundsource
         if (soundSourceComponent->m_ambientSoundSource.get()) {
+            //Automatically manage looping of ambient sounds randomly
+            // (This would have unintended effects on ambient soundsources not meant for background music
+            // and would result in overlap with multiple simultanious ambient soundsource entities
+            // a redesign will be necessary if either of those two optiosn are desired)
             soundSourceComponent->m_ambientSoundCountdown -= milliseconds;
             if (soundSourceComponent->m_ambientSoundCountdown < FADE_TIME) {
                 if (soundSourceComponent->m_ambientActiveSound && not soundSourceComponent->m_isTransitioningAmbient && soundSourceComponent->m_ambientSoundCountdown  > 0){
                     soundSourceComponent->m_isTransitioningAmbient = true;
                     soundSourceComponent->m_ambientActiveSound->m_sound->startFade(false, (soundSourceComponent->m_ambientSoundCountdown)/1000.0f);
-
                 }
                 if (soundSourceComponent->m_ambientSoundCountdown <= 0){
                     // We want to stop the active song instantly, so we can't reply only on the Sound::stop(), we need to call it on the ogresound directly as well.
@@ -525,30 +538,37 @@ SoundSourceSystem::update(int milliseconds) {
                         soundSourceComponent->m_ambientActiveSound->stop();
                     }
                     Sound* newSound = nullptr;
-                    int numOfSounds = soundSourceComponent->m_sounds.size();
-                    if (numOfSounds > 0){
-                        if (soundSourceComponent->m_queuedSound){
-                            newSound = soundSourceComponent->m_queuedSound;
+                    if (soundSourceComponent->m_queuedSound){
+                        //If a sound was queued up to be next, then pick that one
+                        newSound = soundSourceComponent->m_queuedSound;
+                    }
+                    else {
+                        //Otherwise pick a sound by random from the avaliable sounds
+                        int numOfSounds = soundSourceComponent->m_sounds.size();
+                        if (numOfSounds > 0){
+                            if (soundSourceComponent->m_queuedSound){
+                                newSound = soundSourceComponent->m_queuedSound;
+                            }
+                            else {
+                                do {
+                                    int randSoundIndex = Game::instance().engine().rng().getInt(0, numOfSounds-1);
+                                    std::unordered_map<std::string, std::unique_ptr<Sound>>::iterator soundPointer
+                                        = soundSourceComponent->m_sounds.begin();
+                                    for (int i = 0; i < randSoundIndex; ++i)
+                                        soundPointer++;
+                                    newSound = soundPointer->second.get();
+                                } while (newSound == soundSourceComponent->m_ambientActiveSound); //Ensure we don't play the same song twice
+                            }
                         }
-                        else {
-                            do {
-                                int randSoundIndex = Game::instance().engine().rng().getInt(0, numOfSounds-1);
-                                std::unordered_map<std::string, std::unique_ptr<Sound>>::iterator soundPointer
-                                    = soundSourceComponent->m_sounds.begin();
-                                for (int i = 0; i < randSoundIndex; ++i)
-                                    soundPointer++;
-                                newSound = soundPointer->second.get();
-                            } while (newSound == soundSourceComponent->m_ambientActiveSound); //Ensure we don't play the same song twice
-                        }
-                        float soundLength = newSound->m_sound->getAudioLength();
-                        // Soundlength will return 0 for a while after initialization (I think it's due to multi-threaded sound init)
-                        if (soundLength > 0){
-                            soundSourceComponent->m_ambientActiveSound = newSound;
-                            soundSourceComponent->m_ambientSoundCountdown = newSound->m_sound->getAudioLength()*1000;
-                            newSound->play();
-                            soundSourceComponent->m_queuedSound = nullptr;
-                            //newSound->m_sound->startFade(true, 5000); // In case we want to fade-in themes instead of just playing them.
-                        }
+                    }
+                    float soundLength = newSound->m_sound->getAudioLength();
+                    // Soundlength will return 0 for a while after initialization (I think it's due to multi-threaded sound init) so we need to handle that
+                    if (soundLength > 0){
+                        soundSourceComponent->m_ambientActiveSound = newSound;
+                        soundSourceComponent->m_ambientSoundCountdown = newSound->m_sound->getAudioLength()*1000;
+                        newSound->play();
+                        soundSourceComponent->m_queuedSound = nullptr;
+                        //newSound->m_sound->startFade(true, 5000); // In case we want to fade-in themes instead of just playing them.
                     }
                     soundSourceComponent->m_isTransitioningAmbient = false;
                 }
