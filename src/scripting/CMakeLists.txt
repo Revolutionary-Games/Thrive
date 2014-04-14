@@ -1,6 +1,7 @@
 add_sources(
     ${CMAKE_CURRENT_SOURCE_DIR}/lua_state.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/lua_state.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/luabind.h
     ${CMAKE_CURRENT_SOURCE_DIR}/script_bindings.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/script_bindings.h
     ${CMAKE_CURRENT_SOURCE_DIR}/script_entity_filter.cpp

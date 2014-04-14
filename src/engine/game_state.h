@@ -163,7 +163,8 @@ private:
         Engine& engine,
         std::string name,
         std::vector<std::unique_ptr<System>> systems,
-        Initializer initializer
+        Initializer initializer,
+        std::string guiLayoutName
     );
 
     /**
