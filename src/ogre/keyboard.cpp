@@ -2,6 +2,8 @@
 
 #include "scripting/luabind.h"
 
+#include <CEGUI/CEGUI.h>
+
 #include <array>
 #include <iostream>
 #include <OISInputManager.h>
@@ -26,6 +28,8 @@ struct Keyboard::Implementation : public OIS::KeyListener{
         const OIS::KeyEvent& event
     ) {
         this->queueEvent(event, true);
+        CEGUI::System::getSingleton().getDefaultGUIContext().injectKeyDown(static_cast<CEGUI::Key::Scan>(static_cast<int>(event.key)));
+        CEGUI::System::getSingleton().getDefaultGUIContext().injectChar(event.text);
         return true;
     }
 
@@ -34,6 +38,7 @@ struct Keyboard::Implementation : public OIS::KeyListener{
         const OIS::KeyEvent& event
     ) {
         this->queueEvent(event, false);
+        CEGUI::System::getSingleton().getDefaultGUIContext().injectKeyUp(static_cast<CEGUI::Key::Scan>(static_cast<int>(event.key)));
         return true;
     }
 
@@ -150,8 +155,83 @@ Keyboard::luaBindings() {
             value("KC_F7", OIS::KC_F7),
             value("KC_F8", OIS::KC_F8),
             value("KC_F9", OIS::KC_F9),
-            value("KC_F10", OIS::KC_F10)
-            // To be continued (don't forget the comma above)
+            value("KC_F10", OIS::KC_F10),
+            value("KC_NUMLOCK", OIS::KC_NUMLOCK),
+            value("KC_SCROLL", OIS::KC_SCROLL),
+            value("KC_NUMPAD7", OIS::KC_NUMPAD7),
+            value("KC_NUMPAD8", OIS::KC_NUMPAD8),
+            value("KC_NUMPAD9", OIS::KC_NUMPAD9),
+            value("KC_SUBTRACT", OIS::KC_SUBTRACT),
+            value("KC_NUMPAD4", OIS::KC_NUMPAD4),
+            value("KC_NUMPAD5", OIS::KC_NUMPAD5),
+            value("KC_NUMPAD6", OIS::KC_NUMPAD6),
+            value("KC_ADD", OIS::KC_ADD),
+            value("KC_NUMPAD1", OIS::KC_NUMPAD1),
+            value("KC_NUMPAD2", OIS::KC_NUMPAD2),
+            value("KC_NUMPAD3", OIS::KC_NUMPAD3),
+            value("KC_NUMPAD0", OIS::KC_NUMPAD0),
+            value("KC_DECIMAL", OIS::KC_DECIMAL),
+            value("KC_OEM_102", OIS::KC_OEM_102),
+            value("KC_F11", OIS::KC_F11),
+            value("KC_F12", OIS::KC_F12),
+            value("KC_F13", OIS::KC_F13),
+            value("KC_F14", OIS::KC_F14),
+            value("KC_F15", OIS::KC_F15),
+            value("KC_KANA", OIS::KC_KANA),
+            value("KC_ABNT_C1", OIS::KC_ABNT_C1),
+            value("KC_CONVERT", OIS::KC_CONVERT),
+            value("KC_NOCONVERT", OIS::KC_NOCONVERT),
+            value("KC_YEN", OIS::KC_YEN),
+            value("KC_ABNT_C2", OIS::KC_ABNT_C2),
+            value("KC_NUMPADEQUALS", OIS::KC_NUMPADEQUALS),
+            value("KC_PREVTRACK", OIS::KC_PREVTRACK),
+            value("KC_AT", OIS::KC_AT),
+            value("KC_COLON", OIS::KC_COLON),
+            value("KC_UNDERLINE", OIS::KC_UNDERLINE),
+            value("KC_KANJI", OIS::KC_KANJI),
+            value("KC_STOP", OIS::KC_STOP),
+            value("KC_AX", OIS::KC_AX),
+            value("KC_UNLABELED", OIS::KC_UNLABELED),
+            value("KC_NEXTTRACK", OIS::KC_NEXTTRACK),
+            value("KC_NUMPADENTER", OIS::KC_NUMPADENTER),
+            value("KC_RCONTROL", OIS::KC_RCONTROL),
+            value("KC_MUTE", OIS::KC_MUTE),
+            value("KC_CALCULATOR", OIS::KC_CALCULATOR),
+            value("KC_PLAYPAUSE", OIS::KC_PLAYPAUSE),
+            value("KC_MEDIASTOP", OIS::KC_MEDIASTOP),
+            value("KC_VOLUMEDOWN", OIS::KC_VOLUMEDOWN),
+            value("KC_VOLUMEUP", OIS::KC_VOLUMEUP),
+            value("KC_WEBHOME", OIS::KC_WEBHOME),
+            value("KC_NUMPADCOMMA", OIS::KC_NUMPADCOMMA),
+            value("KC_DIVIDE", OIS::KC_DIVIDE),
+            value("KC_SYSRQ", OIS::KC_SYSRQ),
+            value("KC_RMENU", OIS::KC_RMENU),
+            value("KC_PAUSE", OIS::KC_PAUSE),
+            value("KC_HOME", OIS::KC_HOME),
+            value("KC_UP", OIS::KC_UP),
+            value("KC_PGUP", OIS::KC_PGUP),
+            value("KC_LEFT", OIS::KC_LEFT),
+            value("KC_RIGHT", OIS::KC_RIGHT),
+            value("KC_END", OIS::KC_END),
+            value("KC_DOWN", OIS::KC_DOWN),
+            value("KC_PGDOWN", OIS::KC_PGDOWN),
+            value("KC_INSERT", OIS::KC_INSERT),
+            value("KC_DELETE", OIS::KC_DELETE),
+            value("KC_LWIN", OIS::KC_LWIN),
+            value("KC_RWIN", OIS::KC_RWIN),
+            value("KC_APPS", OIS::KC_APPS),
+            value("KC_POWER", OIS::KC_POWER),
+            value("KC_SLEEP", OIS::KC_SLEEP),
+            value("KC_WAKE", OIS::KC_WAKE),
+            value("KC_WEBSEARCH", OIS::KC_WEBSEARCH),
+            value("KC_WEBFAVORITES", OIS::KC_WEBFAVORITES),
+            value("KC_WEBREFRESH", OIS::KC_WEBREFRESH),
+            value("KC_WEBSTOP", OIS::KC_WEBSTOP),
+            value("KC_WEBFORWARD", OIS::KC_WEBFORWARD),
+            value("KC_WEBBACK", OIS::KC_WEBBACK),
+            value("KC_MYCOMPUTER", OIS::KC_MYCOMPUTER),
+            value("KC_MAIL", OIS::KC_MAIL),
+            value("KC_MEDIASELECT", OIS::KC_MEDIASELECT)
     ]
     ;
 }

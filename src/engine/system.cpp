@@ -24,7 +24,7 @@ struct SystemWrapper : System, luabind::wrap_base {
     }
 
     static void default_init(
-        System* self, 
+        System* self,
         GameState* gameState
     ) {
         self->System::init(gameState);
@@ -41,6 +41,28 @@ struct SystemWrapper : System, luabind::wrap_base {
         self->System::shutdown();
     }
 
+    static void default_activate(
+        System* self
+    ) {
+        self->System::activate();
+    }
+
+    void
+    activate() override {
+        this->call<void>("activate");
+    }
+
+    static void default_deactivate(
+        System* self
+    ) {
+        self->System::deactivate();
+    }
+
+    void
+    deactivate() override {
+        this->call<void>("deactivate");
+    }
+
     void
     update(
         int milliseconds
@@ -49,7 +71,7 @@ struct SystemWrapper : System, luabind::wrap_base {
     }
 
     static void default_update(
-        System*, 
+        System*,
         int
     ) {
         throw std::runtime_error("System::update has no default implementation");
@@ -70,6 +92,8 @@ System::luaBindings() {
         .def("enabled", &System::enabled)
         .def("init", &System::init, &SystemWrapper::default_init)
         .def("setEnabled", &System::setEnabled)
+        .def("activate", &System::activate, &SystemWrapper::default_activate)
+        .def("deactivate", &System::deactivate, &SystemWrapper::default_deactivate)
         .def("shutdown", &System::shutdown, &SystemWrapper::default_shutdown)
         .def("update", &System::update, &SystemWrapper::default_update)
     ;
