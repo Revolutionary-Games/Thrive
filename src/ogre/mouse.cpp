@@ -2,14 +2,49 @@
 
 #include "scripting/luabind.h"
 
+#include <CEGUI/CEGUI.h>
+
 #include <iostream>
 #include <OgreVector3.h>
 #include <OISInputManager.h>
 #include <OISMouse.h>
 
+
 using namespace thrive;
 
-struct Mouse::Implementation {
+struct Mouse::Implementation : public OIS::MouseListener {
+
+    bool mouseMoved (const OIS::MouseEvent& e){
+        CEGUI::System::getSingleton().getDefaultGUIContext().injectMousePosition(e.state.X.abs, e.state.Y.abs );
+        return true;
+    }
+
+    bool mousePressed (const OIS::MouseEvent&, OIS::MouseButtonID id){
+        if (id == OIS::MB_Left) {
+            CEGUI::System::getSingleton().getDefaultGUIContext().injectMouseButtonDown(CEGUI::MouseButton::LeftButton);
+        }
+        if (id == OIS::MB_Right){
+            CEGUI::System::getSingleton().getDefaultGUIContext().injectMouseButtonDown(CEGUI::MouseButton::RightButton);
+        }
+        if (id == OIS::MB_Middle){
+            CEGUI::System::getSingleton().getDefaultGUIContext().injectMouseButtonDown(CEGUI::MouseButton::MiddleButton);
+        }
+        // TODO: Consider adding extra mouse buttons
+        return true;
+    }
+
+    bool mouseReleased (const OIS::MouseEvent&, OIS::MouseButtonID id){
+        if (id == OIS::MB_Left) {
+            CEGUI::System::getSingleton().getDefaultGUIContext().injectMouseButtonUp(CEGUI::MouseButton::LeftButton);
+        }
+        if (id == OIS::MB_Right){
+            CEGUI::System::getSingleton().getDefaultGUIContext().injectMouseButtonUp(CEGUI::MouseButton::RightButton);
+        }
+        if (id == OIS::MB_Middle){
+            CEGUI::System::getSingleton().getDefaultGUIContext().injectMouseButtonUp(CEGUI::MouseButton::MiddleButton);
+        }
+        return true;
+    }
 
     OIS::InputManager* m_inputManager = nullptr;
 
@@ -58,13 +93,14 @@ Mouse::init(
 ) {
     assert(m_impl->m_mouse == nullptr && "Double init of mouse system");
     m_impl->m_mouse = static_cast<OIS::Mouse*>(
-        inputManager->createInputObject(OIS::OISMouse, false)
+        inputManager->createInputObject(OIS::OISMouse, true)
     );
     m_impl->m_inputManager = inputManager;
     this->setWindowSize(
         m_impl->m_windowWidth,
         m_impl->m_windowHeight
     );
+    m_impl->m_mouse->setEventCallback(m_impl.get());
 }
 
 

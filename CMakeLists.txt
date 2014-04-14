@@ -133,6 +133,15 @@ include_directories(
     ${CMAKE_CURRENT_SOURCE_DIR}/contrib/luabind/
 )
 
+#######
+# CEGUI #
+#######
+
+find_package(CEGUI REQUIRED QUIET COMPONENTS OGRE)
+
+include_directories(SYSTEM ${CEGUI_INCLUDE_DIRS})
+
+
 if(WIN32)
     add_definitions(-DLUA_BUILD_AS_DLL)
 endif()
@@ -222,6 +231,7 @@ target_link_libraries(ThriveLib
     ${BULLET_COLLISION_LIBRARY}
     ${BULLET_MATH_LIBRARY}
     ${BULLET_SOFTBODY_LIBRARY}
+    ${CEGUI_LIBRARY}
     ${OpenAL_LIBRARIES}
     ${Ogg_LIBRARIES}
     ${Vorbis_LIBRARIES}
@@ -341,12 +351,51 @@ install(DIRECTORY
     FILES_MATCHING
         PATTERN "*.ttf"
         PATTERN "*.fontdef"
+        PATTERN "*.font"
 )
 
 install(DIRECTORY
     ${CMAKE_SOURCE_DIR}/scripts
     DESTINATION ./
     CONFIGURATIONS Release  Debug
+)
+install(DIRECTORY
+    ${ASSET_DIRECTORY}/gui/animations
+    DESTINATION ./gui/
+    CONFIGURATIONS Release  Debug
+    FILES_MATCHING
+        PATTERN "*.anims"
+)
+install(DIRECTORY
+    ${ASSET_DIRECTORY}/gui/imagesets
+    DESTINATION ./gui/
+    CONFIGURATIONS Release  Debug
+    FILES_MATCHING
+        PATTERN "*.imageset"
+        PATTERN "*.jpg"
+        PATTERN "*.png"
+)
+install(DIRECTORY
+    ${ASSET_DIRECTORY}/gui/layouts
+    DESTINATION ./gui/
+    CONFIGURATIONS Release  Debug
+    FILES_MATCHING
+        PATTERN "*.layout"
+        PATTERN "*.wnd"
+)
+install(DIRECTORY
+    ${ASSET_DIRECTORY}/gui/looknfeel
+    DESTINATION ./gui/
+    CONFIGURATIONS Release  Debug
+    FILES_MATCHING
+        PATTERN "*.looknfeel"
+)
+install(DIRECTORY
+    ${ASSET_DIRECTORY}/gui/schemes
+    DESTINATION ./gui/
+    CONFIGURATIONS Release  Debug
+    FILES_MATCHING
+        PATTERN "*.scheme"
 )
 
 install(DIRECTORY
@@ -412,6 +461,13 @@ if(WIN32)
 	)
     
     install(FILES
+        ${MINGW_ENV}/install/bin/libCEGUIBase-0_d.dll
+        ${MINGW_ENV}/install/bin/libCEGUIOgreRenderer-0_d.dll
+        ${MINGW_ENV}/install/bin/Debug/libfreetype_d.dll
+        ${MINGW_ENV}/install/bin/Debug/libjpeg_d.dll
+        ${MINGW_ENV}/install/bin/Debug/liblibpng_d.dll
+        ${MINGW_ENV}/install/bin/Debug/libSILLY_d.dll
+        ${MINGW_ENV}/install/bin/Debug/libzlib_d.dll
         ${MINGW_ENV}/install/bin/OpenAL32.dll
         DESTINATION bin
 		CONFIGURATIONS Release debug

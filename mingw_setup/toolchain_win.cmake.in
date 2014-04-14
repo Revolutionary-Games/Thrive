@@ -44,6 +44,9 @@ set(BOOST_ROOT ${MINGW_ENV}/install)
 set(BOOST_DIR ${MINGW_ENV}/install)
 set(Boost_THREADAPI win32)
 
+# CEGUI
+set(CEGUI_ROOT ${MINGW_ENV}/install)
+
 # Add to cmake path
 list(APPEND CMAKE_MODULE_PATH
     ${MINGW_ENV}/cmake

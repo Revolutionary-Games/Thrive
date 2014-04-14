@@ -5,6 +5,7 @@ add_sources(
 
 add_subdirectory(bullet)
 add_subdirectory(engine)
+add_subdirectory(gui)
 add_subdirectory(microbe_stage)
 add_subdirectory(ogre)
 add_subdirectory(scripting)

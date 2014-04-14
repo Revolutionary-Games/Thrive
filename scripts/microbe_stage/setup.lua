@@ -389,10 +389,16 @@ local function createMicrobeStage(name)
             setupHud()
             setupPlayer()
             setupSound()
-        end
+        end,
+        "Thrive"
     )
 end
+
 
 GameState.MICROBE = createMicrobeStage("microbe")
 GameState.MICROBE_ALTERNATE = createMicrobeStage("microbe_alternate")
 Engine:setCurrentGameState(GameState.MICROBE)
+
+
+
+

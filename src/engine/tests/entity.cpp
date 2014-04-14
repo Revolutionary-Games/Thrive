@@ -15,8 +15,8 @@ using namespace thrive;
 
 struct EntityTest : public ::testing::Test {
 
-    EntityTest() 
-      : gameState(engine.createGameState("test", {}, GameState::Initializer()))
+    EntityTest()
+      : gameState(engine.createGameState("test", {}, GameState::Initializer(), "DragDropDemo"))
     {
 
     }
