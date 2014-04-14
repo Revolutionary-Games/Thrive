@@ -270,7 +270,7 @@ function ProcessOrganelle:load(storage)
     self.capacityIntervalTimer = storage:get("capacityIntervalTimer", 0)
     local processes = storage:get("processes", {})
     for i = 1,processes:size() do
-        local process = Process(0, {},{})
+        local process = Process(0, 0, {},{})
         process:load(processes:get(i))
         self:addProcess(process)
     end
