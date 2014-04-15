@@ -10,6 +10,7 @@
 #include "engine/serialization.h"
 #include "engine/rng.h"
 #include "game.h"
+#include "general/timed_life_system.h"
 #include <luabind/iterator_policy.hpp>
 #include "ogre/scene_node_system.h"
 #include "scripting/luabind.h"
@@ -35,7 +36,6 @@ CompoundComponent::luaBindings() {
         .def(constructor<>())
         .def_readwrite("compoundId", &CompoundComponent::m_compoundId)
         .def_readwrite("potency", &CompoundComponent::m_potency)
-        .def_readwrite("timeToLive", &CompoundComponent::m_timeToLive)
         .def_readwrite("velocity", &CompoundComponent::m_velocity)
     ;
 }
@@ -48,7 +48,6 @@ CompoundComponent::load(
     Component::load(storage);
     m_compoundId = storage.get<CompoundId>("compoundId", NULL_COMPOUND);
     m_potency = storage.get<float>("potency");
-    m_timeToLive = storage.get<Milliseconds>("timeToLive");
     m_velocity = storage.get<Ogre::Vector3>("velocity");
 }
 
@@ -58,7 +57,6 @@ CompoundComponent::storage() const {
     StorageContainer storage = Component::storage();
     storage.set<CompoundId>("compoundId", m_compoundId);
     storage.set<float>("potency", m_potency);
-    storage.set<Milliseconds>("timeToLive", m_timeToLive);
     storage.set<Ogre::Vector3>("velocity", m_velocity);
     return storage;
 }
@@ -296,63 +294,6 @@ CompoundAbsorberComponent::storage() const {
 
 REGISTER_COMPONENT(CompoundAbsorberComponent)
 
-////////////////////////////////////////////////////////////////////////////////
-// CompoundLifetimeSystem
-////////////////////////////////////////////////////////////////////////////////
-
-luabind::scope
-CompoundLifetimeSystem::luaBindings() {
-    using namespace luabind;
-    return class_<CompoundLifetimeSystem, System>("CompoundLifetimeSystem")
-        .def(constructor<>())
-    ;
-}
-
-
-struct CompoundLifetimeSystem::Implementation {
-
-    EntityFilter<
-        CompoundComponent
-    > m_entities;
-};
-
-
-CompoundLifetimeSystem::CompoundLifetimeSystem()
-  : m_impl(new Implementation())
-{
-}
-
-
-CompoundLifetimeSystem::~CompoundLifetimeSystem() {}
-
-
-void
-CompoundLifetimeSystem::init(
-    GameState* gameState
-) {
-    System::init(gameState);
-    m_impl->m_entities.setEntityManager(&gameState->entityManager());
-}
-
-
-void
-CompoundLifetimeSystem::shutdown() {
-    m_impl->m_entities.setEntityManager(nullptr);
-    System::shutdown();
-}
-
-
-void
-CompoundLifetimeSystem::update(int milliseconds) {
-    for (auto& value : m_impl->m_entities) {
-        CompoundComponent* compoundComponent = std::get<0>(value.second);
-        compoundComponent->m_timeToLive -= milliseconds;
-        if (compoundComponent->m_timeToLive <= 0) {
-            this->entityManager()->removeEntity(value.first);
-        }
-    }
-}
-
 
 ////////////////////////////////////////////////////////////////////////////////
 // CompoundMovementSystem
@@ -509,16 +450,18 @@ emitCompound(
     compoundRigidBodyComponent->m_dynamicProperties.position = emittorPosition + emissionOffset;
     // Compound Component
     auto compoundComponent = make_unique<CompoundComponent>();
-    compoundComponent->m_timeToLive = emitterComponent->m_particleLifetime;
     compoundComponent->m_velocity = emissionVelocity;
     compoundComponent->m_compoundId = compoundId;
     compoundComponent->m_potency = amount;
+    auto timedLifeComponent = make_unique<TimedLifeComponent>();
+    timedLifeComponent->m_timeToLive = emitterComponent->m_particleLifetime;
     auto collisionHandler = make_unique<CollisionComponent>();
     collisionHandler->addCollisionGroup("compound");
     // Build component list
     std::list<std::unique_ptr<Component>> components;
     components.emplace_back(std::move(compoundSceneNodeComponent));
     components.emplace_back(std::move(compoundComponent));
+    components.emplace_back(std::move(timedLifeComponent));
     components.emplace_back(std::move(compoundRigidBodyComponent));
     components.emplace_back(std::move(collisionHandler));
     for (auto& component : components) {
@@ -635,6 +578,7 @@ CompoundAbsorberSystem::update(int) {
     {
         EntityId entityA = collision.entityId1;
         EntityId entityB = collision.entityId2;
+        EntityId compoundEntity = NULL_ENTITY;
 
         CompoundAbsorberComponent* absorber = nullptr;
         CompoundComponent* compound = nullptr;
@@ -642,6 +586,7 @@ CompoundAbsorberSystem::update(int) {
             m_impl->m_compounds.containsEntity(entityA) and
             m_impl->m_absorbers.containsEntity(entityB)
         ) {
+            compoundEntity = entityA;
             compound = std::get<0>(
                 m_impl->m_compounds.entities().at(entityA)
             );
@@ -653,6 +598,7 @@ CompoundAbsorberSystem::update(int) {
             m_impl->m_absorbers.containsEntity(entityA) and
             m_impl->m_compounds.containsEntity(entityB)
         ) {
+            compoundEntity = entityB;
             absorber = std::get<0>(
                 m_impl->m_absorbers.entities().at(entityA)
             );
@@ -661,9 +607,9 @@ CompoundAbsorberSystem::update(int) {
             );
         }
         if (compound and absorber and absorber->m_enabled == true and absorber->m_absorbtionCapacity >= compound->m_potency * CompoundRegistry::getCompoundUnitVolume(compound->m_compoundId) and
-                                        absorber->canAbsorbCompound(compound->m_compoundId) and compound->m_timeToLive > 0) {
+                                        absorber->canAbsorbCompound(compound->m_compoundId)) {
             absorber->m_absorbedCompounds[compound->m_compoundId] += compound->m_potency;
-            compound->m_timeToLive = 0;
+            this->entityManager()->removeEntity(compoundEntity);
         }
 
     }

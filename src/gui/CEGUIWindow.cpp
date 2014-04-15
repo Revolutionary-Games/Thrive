@@ -41,9 +41,6 @@ CEGUIWindow::luaBindings() {
         .def(constructor<std::string>())
         .def("getText", &CEGUIWindow::getText)
         .def("setText", &CEGUIWindow::setText)
-        .def("listboxAddItem", &CEGUIWindow::listboxAddItem)
-        .def("listboxResetList", &CEGUIWindow::listboxResetList)
-        .def("listboxHandleUpdatedItemData", &CEGUIWindow::listboxHandleUpdatedItemData)
         .def("appendText", &CEGUIWindow::appendText)
         .def("getParent", &CEGUIWindow::getParent)
         .def("getChild", &CEGUIWindow::getChild)
@@ -62,6 +59,10 @@ CEGUIWindow::luaBindings() {
         .def("moveInFront", &CEGUIWindow::moveInFront)
         .def("moveBehind", &CEGUIWindow::moveBehind)
         .def("setPosition", &CEGUIWindow::setPosition)
+        .def("listboxAddItem", &CEGUIWindow::listboxAddItem)
+        .def("listboxResetList", &CEGUIWindow::listboxResetList)
+        .def("listboxHandleUpdatedItemData", &CEGUIWindow::listboxHandleUpdatedItemData)
+        .def("progressbarSetProgress", &CEGUIWindow::progressbarSetProgress)
     ;
 }
 
@@ -128,6 +129,12 @@ void
 CEGUIWindow::listboxHandleUpdatedItemData(){
     dynamic_cast<CEGUI::Listbox*>(m_window)->handleUpdatedItemData();
 }
+
+void
+CEGUIWindow::progressbarSetProgress(float progress){
+    dynamic_cast<CEGUI::ProgressBar*>(m_window)->setProgress(progress);
+}
+
 
 CEGUIWindow
 CEGUIWindow::getParent() const {

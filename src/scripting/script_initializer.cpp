@@ -4,6 +4,7 @@
 #include "engine/engine.h"
 #include "engine/rng.h"
 #include "engine/script_bindings.h"
+#include "general/script_bindings.h"
 #include "game.h"
 #include "microbe_stage/script_bindings.h"
 #include "gui/script_bindings.h"
@@ -59,6 +60,7 @@ thrive::initializeLua(
     luabind::module(L) [
         luabind::def("debug", debug),
         EngineBindings::luaBindings(),
+        GeneralBindings::luaBindings(),
         OgreBindings::luaBindings(),
         BulletBindings::luaBindings(),
         ScriptBindings::luaBindings(),

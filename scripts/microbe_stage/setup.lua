@@ -190,7 +190,7 @@ local function createSpawnSystem()
     -- (square dekaunit?)
     spawnSystem:addSpawnType(testFunction, 1/20^2, 30)
     spawnSystem:addSpawnType(testFunction2, 1/20^2, 30)
-  --  spawnSystem:addSpawnType(microbeSpawnFunction, 1/66^2, 40)
+    spawnSystem:addSpawnType(microbeSpawnFunction, 1/75^2, 40)
     return spawnSystem
 end
 
@@ -239,45 +239,6 @@ local function setupEmitter()
     entity:addComponent(timedEmitter)
 end
 
-
-local function setupHud()
-    local ENERGY_WIDTH = 200
-    local ENERGY_HEIGHT = 32
-    local energyCount = Entity("hud.energyCount")
-    local energyText = TextOverlayComponent("hud.energyCount")
-    energyCount:addComponent(energyText)
-    energyText.properties.horizontalAlignment = TextOverlayComponent.Center
-    energyText.properties.verticalAlignment = TextOverlayComponent.Bottom
-    energyText.properties.width = ENERGY_WIDTH
-    energyText.properties.height = ENERGY_HEIGHT
-    energyText.properties.left = -ENERGY_WIDTH / 2
-    energyText.properties.top = - ENERGY_HEIGHT
-    energyText.properties:touch()
-    -- Setting up hud element for displaying all compounds
-    local COMPOUNDS_WIDTH = 200
-    local COMPOUNDS_HEIGHT = 32    
-    local playerCompoundList = Entity("hud.playerCompounds")
-    local playerCompoundText = TextOverlayComponent("hud.playerCompounds")
-    playerCompoundList:addComponent(playerCompoundText)
-    playerCompoundText.properties.horizontalAlignment = TextOverlayComponent.Right
-    playerCompoundText.properties.verticalAlignment = TextOverlayComponent.Bottom
-    playerCompoundText.properties.width = COMPOUNDS_WIDTH 
-    playerCompoundText.properties.height = COMPOUNDS_HEIGHT  -- Note that height and top will change dynamically with the number of compounds displayed
-    playerCompoundText.properties.left = -COMPOUNDS_WIDTH
-    playerCompoundText.properties.top = -COMPOUNDS_HEIGHT
-    playerCompoundText.properties:touch()
-    local playerCompoundCounts = Entity("hud.playerCompoundCounts")
-    local playerCompoundCountText = TextOverlayComponent("hud.playerCompoundCounts")
-    playerCompoundCounts:addComponent(playerCompoundCountText)
-    playerCompoundCountText.properties.horizontalAlignment = TextOverlayComponent.Right
-    playerCompoundCountText.properties.verticalAlignment = TextOverlayComponent.Bottom
-    playerCompoundCountText.properties.width = COMPOUNDS_WIDTH
-    playerCompoundCountText.properties.height = COMPOUNDS_HEIGHT  
-    playerCompoundCountText.properties.left = -80
-    playerCompoundCountText.properties.top = -COMPOUNDS_HEIGHT
-    playerCompoundCountText.properties:touch()
-end
-
 local function setupPlayer()
     local player = Microbe.createMicrobeEntity(PLAYER_NAME, false)
     -- Forward
@@ -288,7 +249,7 @@ local function setupPlayer()
     forwardOrganelle:addHex(0, 0)
     forwardOrganelle:addHex(-1, 0)
     forwardOrganelle:addHex(1, -1)
-    forwardOrganelle:setColour(ColourValue(1, 0, 0, 1))
+    forwardOrganelle:setColour(ColourValue(0.8, 0.3, 0.3, 1))
     player:addOrganelle(0, 1, forwardOrganelle)
     -- Backward
     local backwardOrganelle = MovementOrganelle(
@@ -298,7 +259,7 @@ local function setupPlayer()
     backwardOrganelle:addHex(0, 0)
     backwardOrganelle:addHex(-1, 1)
     backwardOrganelle:addHex(1, 0)
-    backwardOrganelle:setColour(ColourValue(1, 0, 0, 1))
+    backwardOrganelle:setColour(ColourValue(0.8, 0.3, 0.3, 1))
     player:addOrganelle(0, -2, backwardOrganelle)
     -- Storage organelle 1
     local storageOrganelle = StorageOrganelle(100.0)
@@ -359,7 +320,7 @@ local function createMicrobeStage(name)
             MicrobeAISystem(),
             MicrobeControlSystem(),
             HudSystem(),
-            CompoundLifetimeSystem(),
+            TimedLifeSystem(),
             CompoundMovementSystem(),
             CompoundEmitterSystem(),
             CompoundAbsorberSystem(),
@@ -386,7 +347,6 @@ local function createMicrobeStage(name)
             setupBackground()
             setupCamera()
             setupEmitter()
-            setupHud()
             setupPlayer()
             setupSound()
         end,

@@ -68,6 +68,9 @@ public:
     *   - Transform::orientation
     *   - Transform::position
     *   - Transform::scale
+    * - OgreSceneNodeComponent::entity
+    * - OgreSceneNodeComponent::meshName
+    * - OgreSceneNodeComponent::visible
     * - OgreSceneNodeComponent::playAnimation
     * - OgreSceneNodeComponent::attachObject
     * - OgreSceneNodeComponent::attachSoundListener
@@ -152,6 +155,12 @@ public:
     * @brief Pointer to the underlying Ogre::Entity
     */
     Ogre::Entity* m_entity = nullptr;
+
+
+    /**
+    * @brief Whether the scenenode is visible
+    */
+    TouchableValue<bool> m_visible = true;
 
 private:
 
