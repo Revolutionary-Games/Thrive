@@ -42,7 +42,6 @@ public:
     * - CompoundComponent()
     * - CompoundComponent::m_compoundId
     * - CompoundComponent::m_potency
-    * - CompoundComponent::m_timeToLive
     * - CompoundComponent::m_velocity
     *
     * @return
@@ -59,11 +58,6 @@ public:
     * @brief The potency of this particle
     */
     float m_potency = 0.0f;
-
-    /**
-    * @brief The time until this particle despawns
-    */
-    Milliseconds m_timeToLive = 0;
 
     /**
     * @brief The current velocity of the particle
@@ -367,57 +361,6 @@ public:
     StorageContainer
     storage() const override;
 
-};
-
-
-/**
-* @brief Despawns compound particles after they've reached their lifetime
-*/
-class CompoundLifetimeSystem : public System {
-
-public:
-
-    /**
-    * @brief Lua bindings
-    *
-    * Exposes:
-    * - CompoundLifetimeSystem()
-    *
-    * @return
-    */
-    static luabind::scope
-    luaBindings();
-
-    /**
-    * @brief Constructor
-    */
-    CompoundLifetimeSystem();
-
-    /**
-    * @brief Destructor
-    */
-    ~CompoundLifetimeSystem();
-
-    /**
-    * @brief Initializes the system
-    *
-    */
-    void init(GameState* gameState) override;
-
-    /**
-    * @brief Shuts the system down
-    */
-    void shutdown() override;
-
-    /**
-    * @brief Updates the system
-    */
-    void update(int) override;
-
-private:
-
-    struct Implementation;
-    std::unique_ptr<Implementation> m_impl;
 };
 
 

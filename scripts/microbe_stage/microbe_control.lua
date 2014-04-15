@@ -41,8 +41,10 @@ end
 function MicrobeControlSystem:update(milliseconds)
     local player = Entity("player")
     local microbe = player:getComponent(MicrobeComponent.TYPE_ID)
-    local targetPoint = getTargetPoint()
-    local movementDirection = getMovementDirection()
-    microbe.facingTargetPoint = getTargetPoint()
-    microbe.movementDirection = getMovementDirection()
+    if not microbe.dead then
+        local targetPoint = getTargetPoint()
+        local movementDirection = getMovementDirection()
+        microbe.facingTargetPoint = getTargetPoint()
+        microbe.movementDirection = getMovementDirection()
+    end
 end

@@ -153,6 +153,14 @@ function Organelle:setColour(colour)
     self._needsColourUpdate = true
 end
 
+function Organelle:flashColour(duration, colour)
+    if self.flashDuration == nil then
+        self._originalColour = self._colour
+        self._colour = colour
+        self._needsColourUpdate = true
+        self.flashDuration = duration
+    end
+end
 
 function Organelle:storage()
     storage = StorageContainer()
@@ -181,6 +189,14 @@ end
 -- @param milliseconds
 --  The time since the last call to update()
 function Organelle:update(microbe, milliseconds)
+    if self.flashDuration ~= nil then
+        self.flashDuration = self.flashDuration - milliseconds
+        if self.flashDuration <= 0 then
+            self._colour = self._originalColour
+            self._needsColourUpdate = true
+            self.flashDuration = nil
+        end
+    end
     if self._needsColourUpdate then
         self:_updateHexColours()
     end

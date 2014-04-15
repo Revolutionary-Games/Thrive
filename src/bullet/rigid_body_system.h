@@ -203,6 +203,12 @@ public:
     );
 
     /**
+    * @brief Clears forces acting upon the body
+    */
+    void
+    clearForces();
+
+    /**
     * @brief Reimplemented from btMotionState
     *
     * @param[out] transform
@@ -304,6 +310,13 @@ public:
     */
     Properties
     m_properties;
+
+private:
+
+    friend class RigidBodyInputSystem;
+
+    bool m_toClearForces = false;
+
 };
 
 
@@ -320,7 +333,7 @@ public:
     * Exposes:
     * - RigidBodyInputSystem()
     *
-    * @return 
+    * @return
     */
     static luabind::scope
     luaBindings();
@@ -379,7 +392,7 @@ public:
     * Exposes:
     * - RigidBodyOutputSystem()
     *
-    * @return 
+    * @return
     */
     static luabind::scope
     luaBindings();

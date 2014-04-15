@@ -60,6 +60,8 @@ public:
     * - CEGUIWindow::listboxResetList
     * - CEGUIWindow::listboxHandleUpdatedItemData
     *
+    * - CEGUIWindow::progressbarSetProgress
+    *
     * @return
     */
     static luabind::scope
@@ -160,6 +162,15 @@ public:
     */
     void
     listboxHandleUpdatedItemData();
+
+    /**
+    * @brief Sets the progress of the progressbar
+    *
+    * @param progress
+    *  Float between 0.0 and 1.0
+    */
+    void
+    progressbarSetProgress(float progress);
 
     /**
     * @brief Gets the underlying cegui windows parent, wrapped as a CEGUIWindow*
