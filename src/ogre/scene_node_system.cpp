@@ -35,6 +35,23 @@ OgreSceneNodeComponent_setMeshName(
 }
 
 
+static bool
+OgreSceneNodeComponent_getVisible(
+    const OgreSceneNodeComponent* self
+) {
+    return self->m_visible.get();
+}
+
+
+static void
+OgreSceneNodeComponent_setVisible(
+    OgreSceneNodeComponent* self,
+    bool visible
+) {
+    self->m_visible = visible; // This should automatically call touch().w
+}
+
+
 static Entity
 OgreSceneNodeComponent_getParent(
     const OgreSceneNodeComponent* self
@@ -75,6 +92,7 @@ OgreSceneNodeComponent::luaBindings() {
         .def_readonly("entity", &OgreSceneNodeComponent::m_entity)
         .property("parent", OgreSceneNodeComponent_getParent, OgreSceneNodeComponent_setParent)
         .property("meshName", OgreSceneNodeComponent_getMeshName, OgreSceneNodeComponent_setMeshName)
+        .property("visible", OgreSceneNodeComponent_getVisible, OgreSceneNodeComponent_setVisible)
     ;
 }
 
@@ -89,6 +107,8 @@ OgreSceneNodeComponent::load(
     m_transform.position = storage.get<Ogre::Vector3>("position", Ogre::Vector3(0,0,0));
     m_transform.scale = storage.get<Ogre::Vector3>("scale", Ogre::Vector3(1,1,1));
     m_meshName = storage.get<Ogre::String>("meshName");
+    m_meshName = storage.get<Ogre::String>("meshName");
+    m_visible = storage.get<bool>("visible");
     m_parentId = storage.get<EntityId>("parentId", NULL_ENTITY);
 }
 
@@ -100,6 +120,7 @@ OgreSceneNodeComponent::storage() const {
     storage.set<Ogre::Vector3>("position", m_transform.position);
     storage.set<Ogre::Vector3>("scale", m_transform.scale);
     storage.set<Ogre::String>("meshName", m_meshName);
+    storage.set<bool>("visible", m_visible);
     storage.set<EntityId>("parentId", m_parentId);
     return storage;
 }
@@ -405,6 +426,10 @@ OgreUpdateSceneNodeSystem::update(int milliseconds) {
             }
             component->m_meshName.untouch();
         }
+        if (component->m_visible.hasChanges()) {
+            component->m_sceneNode->setVisible(component->m_visible.get());
+            component->m_visible.untouch();
+        }
         if(component->m_objectsToAttach.hasChanges()){
             for (auto obj : component->m_objectsToAttach.get()){
                 component->_attachObject(obj);
@@ -445,7 +470,6 @@ OgreUpdateSceneNodeSystem::update(int milliseconds) {
                 animationState->setLoop(component->m_loopingAnimation);
             }
             component->m_activeAnimation.untouch();
-
         }
     }
 }

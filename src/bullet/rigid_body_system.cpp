@@ -55,6 +55,13 @@ RigidBodyComponent::applyTorque(
     m_torque += torque;
 }
 
+
+void
+RigidBodyComponent::clearForces(){
+    m_toClearForces = true;
+}
+
+
 luabind::scope
 RigidBodyComponent::luaBindings() {
     using namespace luabind;
@@ -82,6 +89,7 @@ RigidBodyComponent::luaBindings() {
         .def("applyImpulse", &RigidBodyComponent::applyImpulse)
         .def("applyCentralImpulse", &RigidBodyComponent::applyCentralImpulse)
         .def("applyTorque", &RigidBodyComponent::applyTorque)
+        .def("clearForces", &RigidBodyComponent::clearForces)
         .def_readonly("properties", &RigidBodyComponent::m_properties)
     ;
 }
@@ -319,6 +327,12 @@ RigidBodyInputSystem::update(int milliseconds) {
                 ogreToBullet(rigidBodyComponent->m_torque)
             );
             rigidBodyComponent->m_torque = Ogre::Vector3::ZERO;
+        }
+        if(rigidBodyComponent->m_toClearForces == true){
+            body->clearForces();
+            body->setLinearVelocity(btVector3(0,0,0));
+            body->setAngularVelocity(btVector3(0,0,0));
+            rigidBodyComponent->m_toClearForces = false;
         }
         body->applyDamping(milliseconds / 1000.0f);
     }
