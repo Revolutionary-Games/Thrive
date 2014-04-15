@@ -12,7 +12,6 @@ thrive::MicrobeBindings::luaBindings() {
         CompoundEmitterComponent::luaBindings(),
         TimedCompoundEmitterComponent::luaBindings(),
         // Systems
-        CompoundLifetimeSystem::luaBindings(),
         CompoundMovementSystem::luaBindings(),
         CompoundAbsorberSystem::luaBindings(),
         CompoundEmitterSystem::luaBindings(),

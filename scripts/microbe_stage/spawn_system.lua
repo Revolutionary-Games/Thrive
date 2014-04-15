@@ -104,21 +104,6 @@ function SpawnSystem:_doSpawnCycle()
         self.playerPosPrev = Vector3(playerPos.x, playerPos.y, playerPos.z)
     end
     
-    --Despawn entities    
-    for entityId in self.entities:entities() do
-        entity = Entity(entityId)
-        local spawnComponent = entity:getComponent(SpawnedComponent.TYPE_ID)
-        local sceneNode = entity:getComponent(OgreSceneNodeComponent.TYPE_ID)
-        local entityPos = sceneNode.transform.position
-        local distSqr = playerPos:squaredDistance(entityPos)
-        
-        --Destroy and forget entities outside the spawn radius.
-        if distSqr >= spawnComponent.spawnRadiusSqr then
-            entity:destroy()
-        end
-    end
-    
-    
     for entity in self.entities:removedEntities() do
         self.microbes[entityId] = nil
     end
@@ -128,6 +113,24 @@ function SpawnSystem:_doSpawnCycle()
     end
     self.entities:clearChanges()
     
+    --Despawn entities    
+    for entityId in self.entities:entities() do
+        entity = Entity(entityId)
+     --   if entity:exists() then -- THe microbe might have been killed
+            local spawnComponent = entity:getComponent(SpawnedComponent.TYPE_ID)
+            local sceneNode = entity:getComponent(OgreSceneNodeComponent.TYPE_ID)
+            local entityPos = sceneNode.transform.position
+            local distSqr = playerPos:squaredDistance(entityPos)
+            
+            --Destroy and forget entities outside the spawn radius.
+            if distSqr >= spawnComponent.spawnRadiusSqr then
+                entity:destroy()
+            end
+     --   else
+     --       self.spawnedEntities[entity] = nil
+     --   end
+    end
+
     
     --Spawn entities
     for _,spawnType in pairs(self.spawnTypes) do
