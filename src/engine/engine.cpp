@@ -15,6 +15,11 @@
 #include "bullet/update_physics_system.h"
 #include "bullet/collision_system.h"
 
+// CEGUI
+#include <CEGUI/CEGUI.h>
+#include "CEGUI/RendererModules/Ogre/Renderer.h"
+#include "gui/AlphaHitWindow.h"
+
 // Ogre
 #include "ogre/camera_system.h"
 #include "ogre/keyboard.h"
@@ -30,9 +35,8 @@
 #include "scripting/lua_state.h"
 #include "scripting/script_initializer.h"
 
-
 // Microbe
-#include "microbe_stage/agent.h"
+#include "microbe_stage/compound.h"
 
 #include "util/contains.h"
 #include "util/pair_hash.h"
@@ -48,6 +52,7 @@
 #include <luabind/adopt_policy.hpp>
 #include <OgreConfigFile.h>
 #include <OgreLogManager.h>
+#include <OgreOggSoundManager.h>
 #include <OgreRenderWindow.h>
 #include <OgreRoot.h>
 #include <OgreWindowEventUtilities.h>
@@ -288,18 +293,45 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
         ));
 #if defined OIS_WIN32_PLATFORM
         parameters.insert(std::make_pair(std::string("w32_mouse"), std::string("DISCL_FOREGROUND" )));
-        parameters.insert(std::make_pair(std::string("w32_mouse"), std::string("DISCL_NONEXCLUSIVE")));
+        parameters.insert(std::make_pair(std::string("w32_mouse"), std::string("DISCL_EXCLUSIVE")));
         parameters.insert(std::make_pair(std::string("w32_keyboard"), std::string("DISCL_FOREGROUND")));
         parameters.insert(std::make_pair(std::string("w32_keyboard"), std::string("DISCL_NONEXCLUSIVE")));
 #elif defined OIS_LINUX_PLATFORM
         parameters.insert(std::make_pair(std::string("x11_mouse_grab"), std::string("false")));
-        parameters.insert(std::make_pair(std::string("x11_mouse_hide"), std::string("false")));
+        parameters.insert(std::make_pair(std::string("x11_mouse_hide"), std::string("true")));
         parameters.insert(std::make_pair(std::string("x11_keyboard_grab"), std::string("false")));
         parameters.insert(std::make_pair(std::string("XAutoRepeatOn"), std::string("true")));
 #endif
         m_input.inputManager = OIS::InputManager::createInputSystem(parameters);
         m_input.keyboard.init(m_input.inputManager);
         m_input.mouse.init(m_input.inputManager);
+    }
+
+    void
+    setupGUI(){
+        CEGUI::WindowFactoryManager::addFactory<CEGUI::TplWindowFactory<AlphaHitWindow> >();
+
+        CEGUI::OgreRenderer::bootstrapSystem();
+        CEGUI::WindowManager& wmgr = CEGUI::WindowManager::getSingleton();
+        CEGUI::Window* myRoot = wmgr.createWindow( "DefaultWindow", "root" );
+        CEGUI::System::getSingleton().getDefaultGUIContext().setRootWindow( myRoot );
+        CEGUI::SchemeManager::getSingleton().createFromFile("Thrive.scheme");
+        CEGUI::System::getSingleton().getDefaultGUIContext().getMouseCursor().setDefaultImage("ThriveGeneric/MouseArrow");
+
+        //For demos:
+        CEGUI::SchemeManager::getSingleton().createFromFile("TaharezLook.scheme");
+        CEGUI::SchemeManager::getSingleton().createFromFile("SampleBrowser.scheme");
+        CEGUI::SchemeManager::getSingleton().createFromFile("OgreTray.scheme");
+        CEGUI::SchemeManager::getSingleton().createFromFile("GameMenu.scheme");
+        CEGUI::SchemeManager::getSingleton().createFromFile("AlfiskoSkin.scheme");
+        CEGUI::SchemeManager::getSingleton().createFromFile("WindowsLook.scheme");
+        CEGUI::SchemeManager::getSingleton().createFromFile("VanillaSkin.scheme");
+        CEGUI::SchemeManager::getSingleton().createFromFile("Generic.scheme");
+        CEGUI::SchemeManager::getSingleton().createFromFile("VanillaCommonDialogs.scheme");
+
+        CEGUI::ImageManager::getSingleton().loadImageset("DriveIcons.imageset");
+        CEGUI::ImageManager::getSingleton().loadImageset("GameMenu.imageset");
+        CEGUI::ImageManager::getSingleton().loadImageset("HUDDemo.imageset");
     }
 
     void
@@ -311,6 +343,19 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
     void
     setupScripts() {
         initializeLua(m_luaState);
+    }
+
+    void
+    setupSoundManager() {
+        static const std::string DEVICE_NAME = "";
+        static const unsigned int MAX_SOURCES = 100;
+        static const unsigned int QUEUE_LIST_SIZE = 100;
+        auto& soundManager = OgreOggSound::OgreOggSoundManager::getSingleton();
+        soundManager.init(
+            DEVICE_NAME,
+            MAX_SOURCES,
+            QUEUE_LIST_SIZE
+        );
     }
 
     void
@@ -396,7 +441,8 @@ Engine_createGameState(
     Engine* self,
     std::string name,
     luabind::object luaSystems,
-    luabind::object luaInitializer
+    luabind::object luaInitializer,
+    std::string guiLayoutName
 ) {
     std::vector<std::unique_ptr<System>> systems;
     for (luabind::iterator iter(luaSystems), end; iter != end; ++iter) {
@@ -417,7 +463,8 @@ Engine_createGameState(
     return self->createGameState(
         name,
         std::move(systems),
-        initializer
+        initializer,
+        guiLayoutName
     );
 }
 
@@ -460,14 +507,16 @@ GameState*
 Engine::createGameState(
     std::string name,
     std::vector<std::unique_ptr<System>> systems,
-    GameState::Initializer initializer
+    GameState::Initializer initializer,
+    std::string guiLayoutName
 ) {
     assert(m_impl->m_gameStates.find(name) == m_impl->m_gameStates.end() && "Duplicate GameState name");
     std::unique_ptr<GameState> gameState(new GameState(
         *this,
         name,
         std::move(systems),
-        initializer
+        initializer,
+        guiLayoutName
     ));
     GameState* rawGameState = gameState.get();
     m_impl->m_gameStates.insert(std::make_pair(
@@ -511,6 +560,7 @@ Engine::init() {
     m_impl->setupScripts();
     m_impl->setupGraphics();
     m_impl->setupInputManager();
+    m_impl->setupGUI();
     m_impl->loadScripts("../scripts");
     GameState* previousGameState = m_impl->m_currentGameState;
     for (const auto& pair : m_impl->m_gameStates) {
@@ -518,8 +568,13 @@ Engine::init() {
         m_impl->m_currentGameState = gameState.get();
         gameState->init();
     }
+    // OgreOggSoundManager must be initialized after at least one
+    // Ogre::SceneManager has been instantiated
+    m_impl->setupSoundManager();
     m_impl->m_currentGameState = previousGameState;
+
 }
+
 
 
 OIS::InputManager*
@@ -586,6 +641,12 @@ Engine::shutdown() {
     m_impl->shutdownInputManager();
     m_impl->m_graphics.renderWindow->destroy();
     m_impl->m_graphics.root.reset();
+}
+
+
+OgreOggSound::OgreOggSoundManager*
+Engine::soundManager() const {
+    return OgreOggSound::OgreOggSoundManager::getSingletonPtr();
 }
 
 

@@ -51,6 +51,7 @@
 
     #********** First we locate the include directorys ********** ********** ********** **********
     SET( CEGUI_INCLUDE_SEARCH_DIR
+       ${CEGUI_ROOT}/include
        ${CEGUIDIR}/include
        ${CEGUIDIR}/cegui/include
        ~/Library/Frameworks
@@ -71,7 +72,6 @@
           MESSAGE("Could not located ${FILENAME}")
           SET(CEGUI_FOUND "NO")
        ELSE()
-          MESSAGE("${FILENAME} : ${${FILENAME}_DIR}")
           LIST(APPEND CEGUI_INCLUDE_DIR ${${FILENAME}_DIR})
        ENDIF()
     ENDMACRO()
@@ -89,7 +89,7 @@
 
     FOREACH(COMPONENT ${CEGUI_FIND_COMPONENTS})
        HELPER_GET_CASE_FROM_LIST( ${COMPONENT} RENDER_NAME COMPONENT_CASE)
-       FIND_PATH_HELPER( "CEGUI${COMPONENT_CASE}Renderer.h" "CEGUI_INCLUDE_SEARCH_DIR" "CEGUI/RendererModules/${COMPONENT_CASE}/;RendererModules/${COMPONENT_CASE}/" )
+       FIND_PATH_HELPER( "Renderer.h" "CEGUI_INCLUDE_SEARCH_DIR" "CEGUI/RendererModules/${COMPONENT_CASE}/;RendererModules/${COMPONENT_CASE}/" )
     ENDFOREACH(COMPONENT)
 
     IF (APPLE)
@@ -111,6 +111,7 @@
     #********** Then we locate the Librarys ********** ********** ********** **********
     SET( CEGUI_LIBRARY_SEARCH_DIR
        ${CEGUIDIR}/lib
+            ${CEGUI_ROOT}/lib
             ${CEGUIDIR}
             ~/Library/Frameworks
             /Library/Frameworks
@@ -131,17 +132,25 @@
           MESSAGE("Could not located ${FILENAME}")
           SET(CEGUI_FOUND "NO")
        ELSE()
-          MESSAGE("${FILENAME} : ${${FILENAME}_DIR}")
           LIST(APPEND CEGUI_LIBRARY ${${FILENAME}_DIR})
        ENDIF()
     ENDMACRO()
 
-    FIND_LIBRARY_HELPER( CEGUIBase CEGUI_LIBRARY_SEARCH_DIR )
-
+    IF(CMAKE_BUILD_TYPE MATCHES "^([Dd][Ee][Bb][Uu][Gg])$")
+        FIND_LIBRARY_HELPER( CEGUIBase-0_d CEGUI_LIBRARY_SEARCH_DIR )
+    ELSE()
+        FIND_LIBRARY_HELPER( CEGUIBase-0 CEGUI_LIBRARY_SEARCH_DIR )
+    ENDIF()
+    
+    
     FOREACH(COMPONENT ${CEGUI_FIND_COMPONENTS})
        HELPER_GET_CASE_FROM_LIST( ${COMPONENT} RENDER_NAME COMPONENT_CASE)
-       MESSAGE("Looking for lib: CEGUI${COMPONENT_CASE}Renderer")
-       FIND_LIBRARY_HELPER( CEGUI${COMPONENT_CASE}Renderer "CEGUI_LIBRARY_SEARCH_DIR" CEGUI)
+       IF(CMAKE_BUILD_TYPE MATCHES "^([Dd][Ee][Bb][Uu][Gg])$")
+           FIND_LIBRARY_HELPER( CEGUI${COMPONENT_CASE}Renderer-0_d "CEGUI_LIBRARY_SEARCH_DIR" CEGUI)
+       ELSE()
+           FIND_LIBRARY_HELPER( CEGUI${COMPONENT_CASE}Renderer-0 "CEGUI_LIBRARY_SEARCH_DIR" CEGUI)
+       ENDIF()
+       
     ENDFOREACH(COMPONENT)
 
     #********** And we are done ********** ********** ********** ********** ********** ********** ********** **********

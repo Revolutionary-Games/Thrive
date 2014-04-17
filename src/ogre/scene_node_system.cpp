@@ -8,6 +8,10 @@
 #include "engine/serialization.h"
 #include "scripting/luabind.h"
 
+#include "sound/sound_source_system.h"
+#include <OgreOggISound.h>
+#include <OgreOggSoundManager.h>
+
 #include <OgreSceneManager.h>
 #include <OgreEntity.h>
 
@@ -28,6 +32,23 @@ OgreSceneNodeComponent_setMeshName(
     const Ogre::String& meshName
 ) {
     self->m_meshName = meshName;
+}
+
+
+static bool
+OgreSceneNodeComponent_getVisible(
+    const OgreSceneNodeComponent* self
+) {
+    return self->m_visible.get();
+}
+
+
+static void
+OgreSceneNodeComponent_setVisible(
+    OgreSceneNodeComponent* self,
+    bool visible
+) {
+    self->m_visible = visible; // This should automatically call touch().w
 }
 
 
@@ -64,13 +85,18 @@ OgreSceneNodeComponent::luaBindings() {
                 .def_readwrite("scale", &Transform::scale)
         ]
         .def(constructor<>())
+        .def("playAnimation", &OgreSceneNodeComponent::playAnimation)
+        .def("attachObject", &OgreSceneNodeComponent::attachObject)
+        .def("attachSoundListener", &OgreSceneNodeComponent::attachSoundListener)
         .def_readonly("transform", &OgreSceneNodeComponent::m_transform)
         .def_readonly("entity", &OgreSceneNodeComponent::m_entity)
         .property("parent", OgreSceneNodeComponent_getParent, OgreSceneNodeComponent_setParent)
         .property("meshName", OgreSceneNodeComponent_getMeshName, OgreSceneNodeComponent_setMeshName)
+        .property("visible", OgreSceneNodeComponent_getVisible, OgreSceneNodeComponent_setVisible)
     ;
 }
 
+bool OgreSceneNodeComponent::s_soundListenerAttached = false;
 
 void
 OgreSceneNodeComponent::load(
@@ -81,6 +107,8 @@ OgreSceneNodeComponent::load(
     m_transform.position = storage.get<Ogre::Vector3>("position", Ogre::Vector3(0,0,0));
     m_transform.scale = storage.get<Ogre::Vector3>("scale", Ogre::Vector3(1,1,1));
     m_meshName = storage.get<Ogre::String>("meshName");
+    m_meshName = storage.get<Ogre::String>("meshName");
+    m_visible = storage.get<bool>("visible");
     m_parentId = storage.get<EntityId>("parentId", NULL_ENTITY);
 }
 
@@ -92,8 +120,39 @@ OgreSceneNodeComponent::storage() const {
     storage.set<Ogre::Vector3>("position", m_transform.position);
     storage.set<Ogre::Vector3>("scale", m_transform.scale);
     storage.set<Ogre::String>("meshName", m_meshName);
+    storage.set<bool>("visible", m_visible);
     storage.set<EntityId>("parentId", m_parentId);
     return storage;
+}
+
+void
+OgreSceneNodeComponent::playAnimation(
+    std::string name,
+    bool loop
+) {
+    m_loopingAnimation = loop;
+    m_activeAnimation = name;
+}
+
+void
+OgreSceneNodeComponent::attachObject(
+    Ogre::MovableObject* obj
+) {
+    m_objectsToAttach.get().push_back(obj);
+    m_objectsToAttach.touch();
+}
+
+void
+OgreSceneNodeComponent::_attachObject(
+    Ogre::MovableObject* obj
+) {
+    m_sceneNode->attachObject(obj);
+}
+
+void
+OgreSceneNodeComponent::attachSoundListener() {
+    m_attachToListener = true;
+    m_attachToListener.touch();
 }
 
 REGISTER_COMPONENT(OgreSceneNodeComponent)
@@ -215,6 +274,8 @@ void
 OgreRemoveSceneNodeSystem::init(
     GameState* gameState
 ) {
+    Ogre::Animation::setDefaultInterpolationMode(Ogre::Animation::IM_LINEAR);
+    Ogre::Animation::setDefaultRotationInterpolationMode(Ogre::Animation::RIM_LINEAR);
     System::init(gameState);
     assert(m_impl->m_sceneManager == nullptr && "Double init of system");
     m_impl->m_sceneManager = gameState->sceneManager();
@@ -309,7 +370,7 @@ OgreUpdateSceneNodeSystem::shutdown() {
 
 
 void
-OgreUpdateSceneNodeSystem::update(int) {
+OgreUpdateSceneNodeSystem::update(int milliseconds) {
     for (const auto& entry : m_impl->m_entities) {
         OgreSceneNodeComponent* component = std::get<0>(entry.second);
         Ogre::SceneNode* sceneNode = component->m_sceneNode;
@@ -365,7 +426,50 @@ OgreUpdateSceneNodeSystem::update(int) {
             }
             component->m_meshName.untouch();
         }
+        if (component->m_visible.hasChanges()) {
+            component->m_sceneNode->setVisible(component->m_visible.get());
+            component->m_visible.untouch();
+        }
+        if(component->m_objectsToAttach.hasChanges()){
+            for (auto obj : component->m_objectsToAttach.get()){
+                component->_attachObject(obj);
+                component->m_objectsToAttach.get().clear();
+            }
+            component->m_objectsToAttach.untouch();
+        }
+        if(component->m_attachToListener.hasChanges()){
+            if (component->m_attachToListener.get()) {
+                OgreOggSound::OgreOggListener* listener = OgreOggSound::OgreOggSoundManager::getSingleton().getListener();
+                if (OgreSceneNodeComponent::s_soundListenerAttached){
+                    listener->detachFromParent();
+                }
+                else {
+                    OgreSceneNodeComponent::s_soundListenerAttached = true;
+                }
+                component->_attachObject(listener);
+            }
+            component->m_attachToListener.untouch();
+        }
+        if (component->m_entity && component->m_entity->hasSkeleton()){
+            // Progress animations
+            Ogre::AnimationStateSet* animations = component->m_entity->getAllAnimationStates();
+            if (animations){
+                Ogre::AnimationStateIterator iter = animations->getAnimationStateIterator();
+                while (iter.hasMoreElements()){
+                    Ogre::AnimationState* animation = iter.getNext();
+                    animation->addTime(milliseconds/1000.0);
+                    // If we are about to set a new animation, cancel all other animations (In this could change if we want blended animations)
+                    if (component->m_activeAnimation.hasChanges()){
+                        animation->setEnabled(false);
+                    }
+                }
+            }
+            if(component->m_activeAnimation.hasChanges() && component->m_activeAnimation.get().size() > 0){
+                auto animationState = component->m_entity->getAnimationState(component->m_activeAnimation.get());
+                animationState->setEnabled(true);
+                animationState->setLoop(component->m_loopingAnimation);
+            }
+            component->m_activeAnimation.untouch();
+        }
     }
 }
-
-

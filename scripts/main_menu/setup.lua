@@ -71,7 +71,8 @@ local function createMainMenu(name)
             setupBackground()
             setupCamera()
             setupHud()
-        end
+        end,
+        "MicrobeStage"
     )
 end
 

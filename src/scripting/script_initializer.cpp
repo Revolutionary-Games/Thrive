@@ -4,11 +4,14 @@
 #include "engine/engine.h"
 #include "engine/rng.h"
 #include "engine/script_bindings.h"
+#include "general/script_bindings.h"
 #include "game.h"
 #include "microbe_stage/script_bindings.h"
+#include "gui/script_bindings.h"
 #include "ogre/script_bindings.h"
 #include "scripting/luabind.h"
 #include "scripting/script_bindings.h"
+#include "sound/script_bindings.h"
 
 #include <forward_list>
 #include <iostream>
@@ -57,10 +60,13 @@ thrive::initializeLua(
     luabind::module(L) [
         luabind::def("debug", debug),
         EngineBindings::luaBindings(),
+        GeneralBindings::luaBindings(),
         OgreBindings::luaBindings(),
         BulletBindings::luaBindings(),
         ScriptBindings::luaBindings(),
-        MicrobeBindings::luaBindings()
+        MicrobeBindings::luaBindings(),
+        GuiBindings::luaBindings(),
+        SoundBindings::luaBindings()
     ];
     luabind::object globals = luabind::globals(L);
     globals["Engine"] = &(Game::instance().engine());

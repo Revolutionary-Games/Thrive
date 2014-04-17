@@ -1,19 +1,71 @@
--- System for handling the spawning of entities
+
+--------------------------------------------------------------------------------
+-- SpawnedComponent
+--
+-- Holds information about an entity spawned by spawnComponent
+--------------------------------------------------------------------------------
+class 'SpawnedComponent' (Component)
+
+SPAWN_INTERVAL = 100 --Time between spawn cycles
+
+function SpawnedComponent:__init()
+    Component.__init(self)
+    self.spawnRadiusSqr = 100
+end
+
+function SpawnedComponent:load(storage)
+    Component.load(self, storage)
+    self.spawnRadiusSqr = storage:get("spawnRadius", 100)
+end
+
+
+function SpawnedComponent:storage()
+    local storage = Component.storage(self)
+    storage:set("spawnRadius", self.spawnRadiusSqr)
+    return storage
+end
+
+REGISTER_COMPONENT("SpawnedComponent", SpawnedComponent)
+
+
+--------------------------------------------------------------------------------
+-- SpawnSystem
+--
+-- System for spawning and despawning entities
+--------------------------------------------------------------------------------
 class 'SpawnSystem' (System)
 
 function SpawnSystem:__init()
     System.__init(self)
     
+    self.entities = EntityFilter(
+        {
+            SpawnedComponent
+        }
+    )
+    
     self.spawnTypes = {} --Keeps track of factory functions.
-    self.spawnedEntities = {} --Keeps track of spawned entities to despawn later.
     
     self.playerPosPrev = nil --A Vector3 that remembers the player's position in the last spawn cycle
     
-    self.spawnInterval = 100 --Time between spawn cycles
-    self.residueTime = -self.spawnInterval --Stores how much time has passed since the last spawn cycle
+    self.timeSinceLastCycle = 0 --Stores how much time has passed since the last spawn cycle
+end
+
+-- Override from System
+function SpawnSystem:init(gameState)
+    System.init(self, gameState)
+    self.entities:init(gameState)
+end
+
+-- Override from System
+function SpawnSystem:shutdown()
+    self.entities:shutdown()
+    System.shutdown(self)
 end
 
 -- Adds a new type of entity to spawn in the SpawnSystem
+--
+-- Note that SpawnedComponent will be added automatically and should not be done by the factory function
 --
 -- @param factoryFunction
 --  The function called by the SpawnSystem to create the entity. It should have two
@@ -52,20 +104,33 @@ function SpawnSystem:_doSpawnCycle()
         self.playerPosPrev = Vector3(playerPos.x, playerPos.y, playerPos.z)
     end
     
-    --Despawn entities
-    for entity,info in pairs(self.spawnedEntities) do
-        local entityNode = entity:getComponent(OgreSceneNodeComponent.TYPE_ID)
-        if entityNode ~= nil then
-        local entityPos = entityNode.transform.position
-        local distSqr = playerPos:squaredDistance(entityPos)
-        
-        --Destroy and forget about all entities outside the spawn radius.
-        if distSqr >= info.spawnRadiusSqr then
-            entity:destroy()
-            self.spawnedEntities[entity] = nil
-        end
-        end
+    for entity in self.entities:removedEntities() do
+        self.microbes[entityId] = nil
     end
+    for entityId in self.entities:addedEntities() do
+        local microbe = Microbe(Entity(entityId))
+        self.microbes[entityId] = microbe
+    end
+    self.entities:clearChanges()
+    
+    --Despawn entities    
+    for entityId in self.entities:entities() do
+        entity = Entity(entityId)
+     --   if entity:exists() then -- THe microbe might have been killed
+            local spawnComponent = entity:getComponent(SpawnedComponent.TYPE_ID)
+            local sceneNode = entity:getComponent(OgreSceneNodeComponent.TYPE_ID)
+            local entityPos = sceneNode.transform.position
+            local distSqr = playerPos:squaredDistance(entityPos)
+            
+            --Destroy and forget entities outside the spawn radius.
+            if distSqr >= spawnComponent.spawnRadiusSqr then
+                entity:destroy()
+            end
+     --   else
+     --       self.spawnedEntities[entity] = nil
+     --   end
+    end
+
     
     --Spawn entities
     for _,spawnType in pairs(self.spawnTypes) do
@@ -103,7 +168,9 @@ function SpawnSystem:_doSpawnCycle()
                 if distSqr <= spawnType.spawnRadiusSqr and distSqrPrev > spawnType.spawnRadiusSqr then
                     --Second condition passed. Spawn the entity.
                     local entity = spawnType.factoryFunction(playerPos + displacement)
-                    self.spawnedEntities[entity] = {spawnRadiusSqr = spawnType.spawnRadiusSqr}
+                    local spawnComponent = SpawnedComponent()
+                    spawnComponent.spawnRadiusSqr = spawnType.spawnRadiusSqr
+                    entity:addComponent(spawnComponent)
                 end
             end
         end
@@ -115,19 +182,17 @@ function SpawnSystem:_doSpawnCycle()
     self.playerPosPrev.z = playerNode.transform.position.z
 end
 
+-- Override from System
 function SpawnSystem:update(milliseconds)
-    self.residueTime = self.residueTime + milliseconds
+    self.timeSinceLastCycle = self.timeSinceLastCycle + milliseconds
     
     --Perform spawn cycle if necessary (Reason for "if" rather than "while" stated below)
-    if self.residueTime > 0 then
-        self.residueTime = self.residueTime - self.spawnInterval
+    if self.timeSinceLastCycle > SPAWN_INTERVAL then
         
         self:_doSpawnCycle()
         
         --Spawn interval does not affect spawning logic. Therefore, at most one spawn
         --cycle will be done per frame.
-        if self.residueTime > 0 then
-            self.residueTime = -self.spawnInterval
-        end
+         self.timeSinceLastCycle = 0
     end
 end

@@ -68,8 +68,13 @@ public:
     *   - Transform::orientation
     *   - Transform::position
     *   - Transform::scale
+    * - OgreSceneNodeComponent::entity
+    * - OgreSceneNodeComponent::meshName
+    * - OgreSceneNodeComponent::visible
+    * - OgreSceneNodeComponent::playAnimation
     * - OgreSceneNodeComponent::attachObject
-    * - OgreSceneNodeComponent::detachObject
+    * - OgreSceneNodeComponent::attachSoundListener
+    * - OgreSceneNodeComponent::detachObject (unimplemented)
     * - OgreSceneNodeComponent::m_parentId (as "parent")
     *
     * @return
@@ -84,6 +89,45 @@ public:
 
     StorageContainer
     storage() const override;
+
+    /**
+    * @brief Sets the current animation to be played
+    *
+    * Calling this while an animation is already playing interrupts
+    * the existing animation
+    * (Dev note: This can be changed to blending if needed)
+    *
+    * @param name
+    *  Name of the animation to play
+    *
+    * @param loop
+    *  If true the animation will loop indefinitely
+    *
+    */
+    void
+    playAnimation(
+        std::string name,
+        bool loop
+    );
+
+    /**
+    * @brief Attaches a MovableObject to the underlying scenenode
+    *
+    *  Note that this will not transfer across serialization so should prefer to be used in initialization
+    *
+    * @param obj
+    *  Object to attach
+    */
+    void
+    attachObject(
+        Ogre::MovableObject* obj
+    );
+
+    /**
+    * @brief Attaches the sound-listener to the underlying scenenode, having the sound perspective move with it
+    */
+    void
+    attachSoundListener();
 
     /**
     * @brief The name of the mesh to attach to this scene node
@@ -112,14 +156,36 @@ public:
     */
     Ogre::Entity* m_entity = nullptr;
 
-};
 
+    /**
+    * @brief Whether the scenenode is visible
+    */
+    TouchableValue<bool> m_visible = true;
+
+private:
+
+    friend class OgreUpdateSceneNodeSystem;
+    TouchableValue<std::vector<Ogre::MovableObject*>> m_objectsToAttach;
+    TouchableValue<bool> m_attachToListener = false;
+
+    void
+    _attachObject(
+        Ogre::MovableObject* obj
+    );
+
+    TouchableValue<std::string> m_activeAnimation = std::string("");
+    int m_animationTime = 0;
+    bool m_loopingAnimation = false;
+
+    static bool s_soundListenerAttached;
+
+};
 
 /**
 * @brief Creates scene nodes for new OgreSceneNodeComponents
 */
 class OgreAddSceneNodeSystem : public System {
-    
+
 public:
 
     /**
@@ -128,7 +194,7 @@ public:
     * Exposes:
     * - OgreAddSceneNodeSystem()
     *
-    * @return 
+    * @return
     */
     static luabind::scope
     luaBindings();
@@ -170,7 +236,7 @@ private:
 * @brief Removes scene nodes for removed OgreSceneNodeComponents
 */
 class OgreRemoveSceneNodeSystem : public System {
-    
+
 public:
 
     /**
@@ -179,7 +245,7 @@ public:
     * Exposes:
     * - OgreRemoveSceneNodeSystem()
     *
-    * @return 
+    * @return
     */
     static luabind::scope
     luaBindings();
@@ -220,7 +286,7 @@ private:
 * @brief Updates scene node transformations
 */
 class OgreUpdateSceneNodeSystem : public System {
-    
+
 public:
 
     /**
@@ -229,7 +295,7 @@ public:
     * Exposes:
     * - OgreUpdateSceneNodeSystem()
     *
-    * @return 
+    * @return
     */
     static luabind::scope
     luaBindings();

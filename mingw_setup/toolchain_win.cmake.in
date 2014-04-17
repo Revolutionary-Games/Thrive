@@ -41,13 +41,22 @@ set(BULLET_ROOT ${MINGW_ENV}/install)
 
 # Boost
 set(BOOST_ROOT ${MINGW_ENV}/install)
+set(BOOST_DIR ${MINGW_ENV}/install)
 set(Boost_THREADAPI win32)
+
+# CEGUI
+set(CEGUI_ROOT ${MINGW_ENV}/install)
 
 # Add to cmake path
 list(APPEND CMAKE_MODULE_PATH
     ${MINGW_ENV}/cmake
     ${OGRE_SDK}/CMake
 )
+
+# Sound libraries
+set(OGG_ROOT ${MINGW_ENV}/install)
+set(VORBIS_ROOT ${MINGW_ENV}/install)
+set(OPENAL_ROOT ${MINGW_ENV}/install)
 
 set(SYSTEM_DLLS
     ${MINGW_ENV}/bin/libgcc_s_sjlj-1.dll

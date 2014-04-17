@@ -17,17 +17,26 @@ function MicrobeAIControllerComponent:__init()
     self.intervalRemaining = self.reevalutationInterval
     self.direction = Vector3(0, 0, 0)
     self.targetEmitterPosition = nil
-    self.searchedAgentId = nil
+    self.searchedCompoundId = nil
 end
 
 function MicrobeAIControllerComponent:storage()
+   
     local storage = Component.storage(self)
     storage:set("movementRadius", self.movementRadius)
     storage:set("reevalutationInterval", self.reevalutationInterval)
     storage:set("intervalRemaining", self.intervalRemaining)
     storage:set("direction", self.direction)
-    storage:set("targetEmitterPosition", self.targetEmitterPosition)
-    storage:set("searchedAgentId", self.searchedAgentId)
+    if self.targetEmitterPosition == nil then
+        storage:set("targetEmitterPosition", "nil")
+    else
+        storage:set("targetEmitterPosition", self.targetEmitterPosition)
+    end
+    if self.searchedCompoundId == nil then
+        storage:set("searchedCompoundId", "nil")
+    else
+        storage:set("searchedCompoundId", self.searchedCompoundId)
+    end
     return storage
 end
 
@@ -37,8 +46,16 @@ function MicrobeAIControllerComponent:load(storage)
     self.reevalutationInterval = storage:get("reevalutationInterval", 1000)
     self.intervalRemaining = storage:get("intervalRemaining", self.reevalutationInterval)
     self.direction = storage:get("direction", Vector3(0, 0, 0))
-    self.targetEmitterPosition = storage:get("targetEmitterPosition", nil)
-    self.searchedAgentId = storage:get("searchedAgentId", nil)
+    local emitterPosition = storage:get("targetEmitterPosition", nil)
+    if emitterPosition == "nil" then
+        self.targetEmitterPosition = nil
+    else
+        self.targetEmitterPosition = emitterPosition
+    end
+    self.searchedCompoundId = storage:get("searchedCompoundId", nil)
+    if self.searchedCompoundId == "nil" then
+        self.searchedCompoundId = nil
+    end
 end
 
 REGISTER_COMPONENT("MicrobeAIControllerComponent", MicrobeAIControllerComponent)
@@ -63,7 +80,7 @@ function MicrobeAISystem:__init()
     )
     self.emitters = EntityFilter(
         {
-            AgentEmitterComponent
+            CompoundEmitterComponent
         }, 
         true
     )
@@ -101,15 +118,17 @@ function MicrobeAISystem:update(milliseconds)
         self.glucoseEmitters[entityId] = nil
     end
     for entityId in self.emitters:addedEntities() do
-        local emitterComponent = Entity(entityId):getComponent(AgentEmitterComponent.TYPE_ID)
-        if emitterComponent.agentId == AgentRegistry.getAgentId("oxygen") then
-            self.oxygenEmitters[entityId] = true
-        elseif emitterComponent.agentId == AgentRegistry.getAgentId("glucose") then
-            self.glucoseEmitters[entityId] = true
-        end
+        local emitterComponent = Entity(entityId):getComponent(CompoundEmitterComponent.TYPE_ID)
+		if emitterComponent ~= nil then -- TODO: Unsure why this is necessary
+			if emitterComponent.compoundId == CompoundRegistry.getCompoundId("oxygen") then
+				self.oxygenEmitters[entityId] = true
+			elseif emitterComponent.compoundId == CompoundRegistry.getCompoundId("glucose") then
+				self.glucoseEmitters[entityId] = true
+			end
+		end
     end
-    self.entities:clearChanges()
     self.emitters:clearChanges()
+    self.entities:clearChanges()
     for _, microbe in pairs(self.microbes) do
         local aiComponent = microbe:getComponent(MicrobeAIControllerComponent.TYPE_ID)
         aiComponent.intervalRemaining = aiComponent.intervalRemaining + milliseconds
@@ -117,10 +136,10 @@ function MicrobeAISystem:update(milliseconds)
             aiComponent.intervalRemaining = aiComponent.intervalRemaining - aiComponent.reevalutationInterval
             
             local targetPosition = nil
-            if microbe:getAgentAmount(AgentRegistry.getAgentId("oxygen")) <= OXYGEN_SEARCH_THRESHHOLD then
+            if microbe:getCompoundAmount(CompoundRegistry.getCompoundId("oxygen")) <= OXYGEN_SEARCH_THRESHHOLD then
                 -- If we are NOT currenty heading towards an emitter
-                if aiComponent.targetEmitterPosition == nil or aiComponent.searchedAgentId ~= AgentRegistry.getAgentId("oxygen") then
-                    aiComponent.searchedAgentId = AgentRegistry.getAgentId("oxygen")
+                if aiComponent.targetEmitterPosition == nil or aiComponent.searchedCompoundId ~= CompoundRegistry.getCompoundId("oxygen") then
+                    aiComponent.searchedCompoundId = CompoundRegistry.getCompoundId("oxygen")
                     local emitterArrayList = {}
                     local i = 0
                     for emitterId, _ in pairs(self.oxygenEmitters) do
@@ -136,10 +155,10 @@ function MicrobeAISystem:update(milliseconds)
                 if aiComponent.targetEmitterPosition ~= nil and aiComponent.targetEmitterPosition.z ~= 0 then
                     aiComponent.targetEmitterPosition = nil
                 end             
-            elseif microbe:getAgentAmount(AgentRegistry.getAgentId("glucose")) <= GLUCOSE_SEARCH_THRESHHOLD then
+            elseif microbe:getCompoundAmount(CompoundRegistry.getCompoundId("glucose")) <= GLUCOSE_SEARCH_THRESHHOLD then
                 -- If we are NOT currenty heading towards an emitter
-                if aiComponent.targetEmitterPosition == nil or aiComponent.searchedAgentId ~= AgentRegistry.getAgentId("glucose") then
-                aiComponent.searchedAgentId = AgentRegistry.getAgentId("glucose")
+                if aiComponent.targetEmitterPosition == nil or aiComponent.searchedCompoundId ~= CompoundRegistry.getCompoundId("glucose") then
+                aiComponent.searchedCompoundId = CompoundRegistry.getCompoundId("glucose")
                     local emitterArrayList = {}
                     local i = 0
                     for emitterId, _ in pairs(self.glucoseEmitters) do

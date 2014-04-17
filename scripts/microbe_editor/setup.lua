@@ -75,7 +75,8 @@ local function createMicrobeEditor(name, inputSystem)
             setupBackground()
             setupCamera()
             setupHud()
-        end
+        end,
+        "MicrobeEditor"
     )
 end
 
