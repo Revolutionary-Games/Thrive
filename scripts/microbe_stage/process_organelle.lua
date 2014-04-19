@@ -38,6 +38,7 @@ function Process:__init(basicRate, atpCost, inputCompounds, outputCompounds)
     end
 end
 
+
 function Process:updateFactors(parentMicrobe)
     -- Update processPriority
     self.priority = 0
@@ -189,6 +190,12 @@ end
 function ProcessOrganelle:onAddedToMicrobe(microbe, q, r)
     Organelle.onAddedToMicrobe(self, microbe, q, r)
     microbe:addProcessOrganelle(self)
+end
+
+-- Overridded from Organelle:onRemovedFromMicrobe
+function ProcessOrganelle:onRemovedFromMicrobe(microbe, q, r)
+    microbe:removeProcessOrganelle(self)
+    Organelle.onRemovedFromMicrobe(self, microbe, q, r)
 end
 
 -- Private function used to update colour of organelle based on how full it is

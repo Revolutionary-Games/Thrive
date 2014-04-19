@@ -1,5 +1,6 @@
 #include "ogre/mouse.h"
 
+#include <bitset>
 #include "scripting/luabind.h"
 
 #include <CEGUI/CEGUI.h>
@@ -9,6 +10,8 @@
 #include <OISInputManager.h>
 #include <OISMouse.h>
 
+// W
+#pragma GCC diagnostic ignored "-Wswitch-enum"
 
 using namespace thrive;
 
@@ -18,30 +21,44 @@ struct Mouse::Implementation : public OIS::MouseListener {
         CEGUI::System::getSingleton().getDefaultGUIContext().injectMousePosition(e.state.X.abs, e.state.Y.abs );
         return true;
     }
-
     bool mousePressed (const OIS::MouseEvent&, OIS::MouseButtonID id){
-        if (id == OIS::MB_Left) {
+        switch(id){
+        case OIS::MB_Left:
             CEGUI::System::getSingleton().getDefaultGUIContext().injectMouseButtonDown(CEGUI::MouseButton::LeftButton);
-        }
-        if (id == OIS::MB_Right){
+            break;
+        case OIS::MB_Right:
             CEGUI::System::getSingleton().getDefaultGUIContext().injectMouseButtonDown(CEGUI::MouseButton::RightButton);
-        }
-        if (id == OIS::MB_Middle){
+            break;
+        case OIS::MB_Middle:
             CEGUI::System::getSingleton().getDefaultGUIContext().injectMouseButtonDown(CEGUI::MouseButton::MiddleButton);
+            break;
+        default:
+            break;
         }
         // TODO: Consider adding extra mouse buttons
         return true;
     }
 
     bool mouseReleased (const OIS::MouseEvent&, OIS::MouseButtonID id){
-        if (id == OIS::MB_Left) {
-            CEGUI::System::getSingleton().getDefaultGUIContext().injectMouseButtonUp(CEGUI::MouseButton::LeftButton);
-        }
-        if (id == OIS::MB_Right){
-            CEGUI::System::getSingleton().getDefaultGUIContext().injectMouseButtonUp(CEGUI::MouseButton::RightButton);
-        }
-        if (id == OIS::MB_Middle){
-            CEGUI::System::getSingleton().getDefaultGUIContext().injectMouseButtonUp(CEGUI::MouseButton::MiddleButton);
+        switch(id){
+        case OIS::MB_Left:
+            if (not CEGUI::System::getSingleton().getDefaultGUIContext().injectMouseButtonUp(CEGUI::MouseButton::LeftButton)){
+                //Activate the bit for this button only if CEGUI did not handle the click
+                m_nextClickedStates |= 0x1;
+            }
+            break;
+        case OIS::MB_Right:
+            if (not CEGUI::System::getSingleton().getDefaultGUIContext().injectMouseButtonUp(CEGUI::MouseButton::RightButton)){
+                m_nextClickedStates |= 0x2;
+            }
+            break;
+        case OIS::MB_Middle:
+            if (not CEGUI::System::getSingleton().getDefaultGUIContext().injectMouseButtonUp(CEGUI::MouseButton::MiddleButton)){
+                m_nextClickedStates |= 0x4;
+            }
+            break;
+        default:
+            break;
         }
         return true;
     }
@@ -49,6 +66,10 @@ struct Mouse::Implementation : public OIS::MouseListener {
     OIS::InputManager* m_inputManager = nullptr;
 
     OIS::Mouse* m_mouse = nullptr;
+
+    uint8_t m_wasClickedStates = 0x0;
+
+    uint8_t m_nextClickedStates = 0x0;
 
     int m_windowWidth = 0;
 
@@ -72,6 +93,7 @@ Mouse::luaBindings() {
             value("MB_Button7", OIS::MB_Button7)
         ]
         .def("isButtonDown", &Mouse::isButtonDown)
+        .def("wasButtonPressed", &Mouse::wasButtonPressed)
         .def("normalizedPosition", &Mouse::normalizedPosition)
         .def("position", &Mouse::position)
     ;
@@ -111,6 +133,24 @@ Mouse::isButtonDown(
     return m_impl->m_mouse->getMouseState().buttonDown(button);
 }
 
+bool
+Mouse::wasButtonPressed(
+    OIS::MouseButtonID button
+) const {
+    switch(button) {
+    case OIS::MB_Left:
+        return m_impl->m_wasClickedStates & 0x1;
+        break;
+    case OIS::MB_Right:
+        return m_impl->m_wasClickedStates & 0x2;
+        break;
+    case OIS::MB_Middle:
+        return m_impl->m_wasClickedStates & 0x4;
+        break;
+    default:
+        return false;
+    }
+}
 
 Ogre::Vector3
 Mouse::normalizedPosition() const {
@@ -158,8 +198,8 @@ Mouse::shutdown() {
 void
 Mouse::update() {
     m_impl->m_mouse->capture();
+
+    std::swap(m_impl->m_wasClickedStates, m_impl->m_nextClickedStates);
+    m_impl->m_nextClickedStates = 0x0;
 }
-
-
-
 

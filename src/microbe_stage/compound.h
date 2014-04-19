@@ -558,9 +558,9 @@ public:
     * @param meshScale
     *   The relative size of the mesh
     *
-	* @param unitVolume
+    * @param unitVolume
     *   Size of the compound when stored and transported
-	*
+    *
     * @return
     *   Id of new compound
     */
@@ -570,7 +570,7 @@ public:
         const std::string& displayName,
         const std::string& meshName,
         double meshScale,
-		int unitVolume
+        int unitVolume
     );
 
     /**
@@ -639,7 +639,7 @@ public:
     getCompoundList(
     );
 
-	/**
+    /**
     * @brief Obtains the name of the corresponding mesh
     *
     * @param compoundId

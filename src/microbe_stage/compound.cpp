@@ -371,7 +371,7 @@ struct CompoundEmitterSystem::Implementation {
     EntityFilter<
         CompoundEmitterComponent,
         OgreSceneNodeComponent,
-		Optional<TimedCompoundEmitterComponent>
+        Optional<TimedCompoundEmitterComponent>
     > m_entities;
 
     Ogre::SceneManager* m_sceneManager = nullptr;
@@ -631,7 +631,7 @@ CompoundRegistry::luaBindings() {
             def("registerCompoundType", &CompoundRegistry::registerCompoundType),
             def("getCompoundDisplayName", &CompoundRegistry::getCompoundDisplayName),
             def("getCompoundInternalName", &CompoundRegistry::getCompoundInternalName),
-			def("getCompoundMeshName", &CompoundRegistry::getCompoundMeshName),
+            def("getCompoundMeshName", &CompoundRegistry::getCompoundMeshName),
             def("getCompoundUnitVolume", &CompoundRegistry::getCompoundUnitVolume),
             def("getCompoundId", &CompoundRegistry::getCompoundId),
             def("getCompoundList", &CompoundRegistry::getCompoundList, return_stl_iterator),
@@ -647,7 +647,7 @@ namespace {
         std::string internalName;
         std::string displayName;
         int unitVolume;
-		std::string meshName;
+        std::string meshName;
         double meshScale;
     };
 }
@@ -667,7 +667,7 @@ CompoundId
 CompoundRegistry::registerCompoundType(
     const std::string& internalName,
     const std::string& displayName,
-	const std::string& meshName,
+    const std::string& meshName,
     double meshScale,
     int unitVolume
 ) {
@@ -676,7 +676,7 @@ CompoundRegistry::registerCompoundType(
         CompoundRegistryEntry entry;
         entry.internalName = internalName;
         entry.displayName = displayName;
-		entry.meshName = meshName;
+        entry.meshName = meshName;
         entry.meshScale = meshScale;
         entry.unitVolume = unitVolume;
         compoundRegistry().push_back(entry);

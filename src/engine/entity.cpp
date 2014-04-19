@@ -50,6 +50,7 @@ Entity::luaBindings() {
         .def(constructor<EntityId, GameState*>())
         .def(constructor<const std::string&>())
         .def(constructor<const std::string&, GameState*>())
+        .def(constructor<const Entity&>())
         .def(const_self == other<Entity>())
         .def("addComponent", &Entity_addComponent, adopt(_2))
         .def("destroy", &Entity::destroy)

@@ -33,7 +33,7 @@ public:
     * - Mouse::normalizedPosition
     * - Mouse::position
     *
-    * @return 
+    * @return
     */
     static luabind::scope
     luaBindings();
@@ -61,11 +61,12 @@ public:
 
     /**
     * @brief Checks whether a mouse button is pressed
+    *  Note that unlike wasButtonPressed this is not affected by CEGUI
     *
     * @param button
     *   The button to check for
     *
-    * @return 
+    * @return
     *   \c true if the mouse button is pressed down, \c false otherwise
     */
     bool
@@ -74,9 +75,24 @@ public:
     ) const;
 
     /**
+    * @brief Checks whether a mouse button was pressed since last update frame
+    *  Note that this only returns true if CEGUI did not handle the event
+    *
+    * @param button
+    *   The button to check for
+    *
+    * @return
+    *   \c true if the mouse button was released since last update, \c false otherwise
+    */
+    bool
+    wasButtonPressed(
+        OIS::MouseButtonID button
+    ) const;
+
+    /**
     * @brief The mouse position in coordinates ranging from 0.0 to 1.0
     *
-    * @return 
+    * @return
     */
     Ogre::Vector3
     normalizedPosition() const;
@@ -84,7 +100,7 @@ public:
     /**
     * @brief The mouse position in pixels, relative to the top-right window corner
     *
-    * @return 
+    * @return
     */
     Ogre::Vector3
     position() const;
@@ -119,7 +135,7 @@ public:
     update();
 
 private:
-    
+
     struct Implementation;
     std::unique_ptr<Implementation> m_impl;
 };

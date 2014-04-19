@@ -135,6 +135,10 @@ local function createSpawnSystem()
             Vector3(0, 0, 0), -- Linear velocity
             Vector3(0, 0, 0)  -- Angular velocity
         )
+        local nucleusOrganelle = NucleusOrganelle()
+        nucleusOrganelle:addHex(0, 0)
+        nucleusOrganelle:setColour(ColourValue(0.8, 0.2, 0.8, 1))
+        microbe:addOrganelle(0, 0, nucleusOrganelle)
         -- Forward
         local forwardOrganelle = MovementOrganelle(
             Vector3(0.0, 50.0, 0.0),
@@ -155,18 +159,10 @@ local function createSpawnSystem()
         backwardOrganelle:addHex(1, 0)
         backwardOrganelle:setColour(ColourValue(0, 0.7, 0.7, 1))
         microbe:addOrganelle(0, -2, backwardOrganelle)
-        -- Storage energy
-        local storageOrganelle = StorageOrganelle(100.0)
-        storageOrganelle:addHex(0, 0)
-        storageOrganelle:setColour(ColourValue(0, 1, 0, 1))
-        microbe:addOrganelle(0, 0, storageOrganelle)
-        microbe:storeCompound(CompoundRegistry.getCompoundId("atp"), 40, false)
-        -- Storage compound 2
         local storageOrganelle2 = StorageOrganelle(100.0)
         storageOrganelle2:addHex(0, 0)
         storageOrganelle2:setColour(ColourValue(0, 1, 0.5, 1))
         microbe:addOrganelle(0, -1, storageOrganelle2)
-        -- Storage compound 3
         local storageOrganelle3 = StorageOrganelle(100.0)
         storageOrganelle3:addHex(0, 0)
         storageOrganelle3:setColour(ColourValue(0.5, 1, 0, 1))
@@ -190,7 +186,7 @@ local function createSpawnSystem()
     -- (square dekaunit?)
     spawnSystem:addSpawnType(testFunction, 1/20^2, 30)
     spawnSystem:addSpawnType(testFunction2, 1/20^2, 30)
-    spawnSystem:addSpawnType(microbeSpawnFunction, 1/75^2, 40)
+   -- spawnSystem:addSpawnType(microbeSpawnFunction, 1/75^2, 40)
     return spawnSystem
 end
 
@@ -240,7 +236,11 @@ local function setupEmitter()
 end
 
 local function setupPlayer()
-    local player = Microbe.createMicrobeEntity(PLAYER_NAME, false)
+    player = Microbe.createMicrobeEntity(PLAYER_NAME, false)
+    local nucleusOrganelle = NucleusOrganelle()
+    nucleusOrganelle:addHex(0, 0)
+    nucleusOrganelle:setColour(ColourValue(0.8, 0.2, 0.8, 1))
+    player:addOrganelle(0, 0, nucleusOrganelle)
     -- Forward
     local forwardOrganelle = MovementOrganelle(
         Vector3(0.0, 50.0, 0.0),
@@ -261,22 +261,15 @@ local function setupPlayer()
     backwardOrganelle:addHex(1, 0)
     backwardOrganelle:setColour(ColourValue(0.8, 0.3, 0.3, 1))
     player:addOrganelle(0, -2, backwardOrganelle)
-    -- Storage organelle 1
-    local storageOrganelle = StorageOrganelle(100.0)
-    storageOrganelle:addHex(0, 0)
-    storageOrganelle:setColour(ColourValue(0, 1, 0, 1))
-    player:addOrganelle(0, 0, storageOrganelle)
-    -- Storage organelle 2
     local storageOrganelle2 = StorageOrganelle(100.0)
     storageOrganelle2:addHex(0, 0)
     storageOrganelle2:setColour(ColourValue(0, 1, 0, 1))
     player:addOrganelle(0, -1, storageOrganelle2)
-    -- Storage organelle 3
     local storageOrganelle3 = StorageOrganelle(100.0)
     storageOrganelle3:addHex(0, 0)
     storageOrganelle3:setColour(ColourValue(0, 1, 0, 1))
     player:addOrganelle(-1, 0, storageOrganelle3)
-	player:storeCompound(CompoundRegistry.getCompoundId("atp"), 20, false)
+    player:storeCompound(CompoundRegistry.getCompoundId("atp"), 20, false)
     -- Producer making atp from oxygen and glucose
     local processOrganelle1 = ProcessOrganelle()
     local inputCompounds = {[CompoundRegistry.getCompoundId("glucose")] = 1,
@@ -312,6 +305,7 @@ local function createMicrobeStage(name)
         Engine:createGameState(
         name,
         {
+            MicrobeReplacementSystem(),
             SwitchGameStateSystem(),
             QuickSaveSystem(),
             -- Microbe specific
@@ -350,15 +344,16 @@ local function createMicrobeStage(name)
             setupPlayer()
             setupSound()
         end,
-        "Thrive"
+        "MicrobeStage"
     )
 end
+
+player = nil
+newPlayerAvaliable = nil -- if this is non-nil the microbe object contained therein replaces the current player microbe
+
 
 
 GameState.MICROBE = createMicrobeStage("microbe")
 GameState.MICROBE_ALTERNATE = createMicrobeStage("microbe_alternate")
-Engine:setCurrentGameState(GameState.MICROBE)
 
-
-
-
+--Engine:setCurrentGameState(GameState.MICROBE)
