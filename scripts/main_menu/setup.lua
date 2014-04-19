@@ -44,11 +44,7 @@ local function setupHud()
     titleText.properties.text = string.format(GAME_TITLE)
     titleText.properties.verticalAlignment = TextOverlayComponent.Top
     titleText.properties.charHeight = 30
- --   titleText.properties.width = ENERGY_WIDTH
- --   titleText.properties.height = ENERGY_HEIGHT
     titleText.properties.left = -80
- --   titleText.properties.top = - ENERGY_HEIGHT
- --   titleText.properties:touch()
 end
 
 

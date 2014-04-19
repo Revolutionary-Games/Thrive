@@ -314,6 +314,7 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
         CEGUI::OgreRenderer::bootstrapSystem();
         CEGUI::WindowManager& wmgr = CEGUI::WindowManager::getSingleton();
         CEGUI::Window* myRoot = wmgr.createWindow( "DefaultWindow", "root" );
+        myRoot->setProperty("MousePassThroughEnabled", "True");
         CEGUI::System::getSingleton().getDefaultGUIContext().setRootWindow( myRoot );
         CEGUI::SchemeManager::getSingleton().createFromFile("Thrive.scheme");
         CEGUI::System::getSingleton().getDefaultGUIContext().getMouseCursor().setDefaultImage("ThriveGeneric/MouseArrow");

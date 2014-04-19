@@ -12,11 +12,12 @@ end
 function MicrobeCameraSystem:update(milliseconds)
     local camera = Entity(CAMERA_NAME)
     local player = Entity(PLAYER_NAME)
+    
     local playerNode = player:getComponent(OgreSceneNodeComponent.TYPE_ID)
     local cameraNode = camera:getComponent(OgreSceneNodeComponent.TYPE_ID)
     local microbe = player:getComponent(MicrobeComponent.TYPE_ID)
-	cameraNode.transform.position = playerNode.transform.position + OFFSET
-	cameraNode.transform:touch()
+    cameraNode.transform.position = playerNode.transform.position + OFFSET
+    cameraNode.transform:touch()
 end
 
 

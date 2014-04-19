@@ -35,36 +35,18 @@ local function setupCamera()
     viewportEntity:addComponent(viewportComponent)
 end
 
-
-local function setupHud()
-    local ENERGY_WIDTH = 200
-    local ENERGY_HEIGHT = 32
-    local title = Entity("menu.hud.title")
-    local titleText = TextOverlayComponent("menu.hud.title")
-    title:addComponent(titleText)
-    titleText.properties.horizontalAlignment = TextOverlayComponent.Center
-    titleText.properties.text = string.format("Microbe Editor")
-    titleText.properties.verticalAlignment = TextOverlayComponent.Top
-    titleText.properties.charHeight = 30
- --   titleText.properties.width = ENERGY_WIDTH
- --   titleText.properties.height = ENERGY_HEIGHT
-    titleText.properties.left = -80
- --   titleText.properties.top = - ENERGY_HEIGHT
- --   titleText.properties:touch()
-end
-
-
-local function createMicrobeEditor(name, inputSystem)
+local function createMicrobeEditor(name)
+    
     return Engine:createGameState(
         name,
         {   
             MicrobeSystem(),
-            inputSystem,
             -- Graphics
             OgreAddSceneNodeSystem(),
             OgreUpdateSceneNodeSystem(),
             OgreCameraSystem(),
             OgreLightSystem(),
+            MicrobeEditorHudSystem(),
             SkySystem(),
             TextOverlaySystem(),
             OgreViewportSystem(),
@@ -74,13 +56,11 @@ local function createMicrobeEditor(name, inputSystem)
         function()
             setupBackground()
             setupCamera()
-            setupHud()
         end,
         "MicrobeEditor"
     )
 end
 
-local inputSystem = MicrobeEditorInputSystem()
-GameState.MICROBE_EDITOR = createMicrobeEditor("microbe_editor", inputSystem)
+GameState.MICROBE_EDITOR = createMicrobeEditor("microbe_editor")
 
 Engine:setCurrentGameState(GameState.MICROBE_EDITOR)

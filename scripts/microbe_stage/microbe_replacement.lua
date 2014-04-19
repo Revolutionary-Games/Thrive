@@ -9,12 +9,10 @@ end
 
 function MicrobeReplacementSystem:update(milliseconds)
       if self.createNewPlayer ~= nil then -- This triggers as the first system update after a player removal
-        print("STAGE B")
         player = self.createNewPlayer:recreateMicrobe(PLAYER_NAME)
         self.createNewPlayer = nil
     end
     if newPlayerAvaliable ~= nil then
-       print("STAGE A")
        Entity(PLAYER_NAME):destroy() -- The removal is processed after all systems are done updating
        self.createNewPlayer = newPlayerAvaliable
        newPlayerAvaliable = nil

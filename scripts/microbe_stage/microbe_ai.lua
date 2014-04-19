@@ -119,13 +119,13 @@ function MicrobeAISystem:update(milliseconds)
     end
     for entityId in self.emitters:addedEntities() do
         local emitterComponent = Entity(entityId):getComponent(CompoundEmitterComponent.TYPE_ID)
-		if emitterComponent ~= nil then -- TODO: Unsure why this is necessary
-			if emitterComponent.compoundId == CompoundRegistry.getCompoundId("oxygen") then
-				self.oxygenEmitters[entityId] = true
-			elseif emitterComponent.compoundId == CompoundRegistry.getCompoundId("glucose") then
-				self.glucoseEmitters[entityId] = true
-			end
-		end
+        if emitterComponent ~= nil then -- TODO: Unsure why this is necessary
+            if emitterComponent.compoundId == CompoundRegistry.getCompoundId("oxygen") then
+                self.oxygenEmitters[entityId] = true
+            elseif emitterComponent.compoundId == CompoundRegistry.getCompoundId("glucose") then
+                self.glucoseEmitters[entityId] = true
+            end
+        end
     end
     self.emitters:clearChanges()
     self.entities:clearChanges()
