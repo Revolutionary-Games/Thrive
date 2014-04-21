@@ -60,6 +60,7 @@ public:
     * - Engine::setCurrentGameState()
     * - Engine::load()
     * - Engine::save()
+    * - Engine::quit()
     * - Engine::componentFactory() (as property)
     * - Engine::keyboard() (as property)
     * - Engine::mouse() (as property)
@@ -237,6 +238,12 @@ public:
     */
     void
     shutdown();
+
+    /**
+    * @brief Request the game to close
+    */
+    void
+    quit();
 
     OgreOggSound::OgreOggSoundManager*
     soundManager() const;

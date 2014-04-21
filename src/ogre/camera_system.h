@@ -52,6 +52,15 @@ public:
         * @brief The level of rendering detail
         */
         Ogre::PolygonMode polygonMode = Ogre::PM_SOLID;
+
+
+        /**
+        * @brief Whether the camera is using orthographical projection or perspective
+        *
+        *  For orthographical mode the FOV is used to determine screen dimensions in world coordinates
+        */
+        bool orthographicalMode = false;
+
     };
 
     /**
@@ -65,7 +74,7 @@ public:
     *   - Properties::nearClipDistance
     *   - Properties::polygonMode
     *
-    * @return 
+    * @return
     */
     static luabind::scope
     luaBindings();
@@ -107,7 +116,7 @@ public:
     /**
     * @brief Serializes the camera
     *
-    * @return 
+    * @return
     */
     StorageContainer
     storage() const override;
@@ -137,7 +146,7 @@ private:
 * @brief Creates, updates and removes cameras
 */
 class OgreCameraSystem : public System {
-    
+
 public:
 
     /**
@@ -146,7 +155,7 @@ public:
     * Exposes:
     * - OgreCameraSystem()
     *
-    * @return 
+    * @return
     */
     static luabind::scope
     luaBindings();
