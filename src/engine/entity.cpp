@@ -50,6 +50,7 @@ Entity::luaBindings() {
         .def(constructor<EntityId, GameState*>())
         .def(constructor<const std::string&>())
         .def(constructor<const std::string&, GameState*>())
+
         .def(const_self == other<Entity>())
         .def("addComponent", &Entity_addComponent, adopt(_2))
         .def("destroy", &Entity::destroy)
@@ -58,6 +59,7 @@ Entity::luaBindings() {
         .def("isVolatile", &Entity::isVolatile)
         .def("removeComponent", &Entity::removeComponent)
         .def("setVolatile", &Entity::setVolatile)
+        .def("stealName", &Entity::stealName)
         .property("id", &Entity::id)
     ;
 }
@@ -80,6 +82,7 @@ Entity::Entity(
     GameState* gameState
 ) : Entity(getEntityManager(gameState).generateNewId(), gameState)
 {
+
 }
 
 
@@ -145,6 +148,8 @@ Entity::addComponent(
 
 void
 Entity::destroy() {
+
+
     m_impl->m_entityManager->removeEntity(m_impl->m_id);
 }
 
@@ -207,3 +212,16 @@ Entity::setVolatile(
 ) {
     m_impl->m_entityManager->setVolatile(m_impl->m_id, isVolatile);
 }
+
+
+void
+Entity::stealName(
+    const std::string& name
+) {
+    m_impl->m_entityManager->stealName(m_impl->m_id, name);
+}
+
+
+
+
+

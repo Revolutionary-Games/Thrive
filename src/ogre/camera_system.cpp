@@ -46,6 +46,7 @@ OgreCameraComponent::luaBindings() {
                 .def_readwrite("fovY", &Properties::fovY)
                 .def_readwrite("nearClipDistance", &Properties::nearClipDistance)
                 .def_readwrite("farClipDistance", &Properties::farClipDistance)
+                .def_readwrite("orthographicalMode", &Properties::orthographicalMode)
         ]
         .enum_("PolygonMode") [
             value("PM_POINTS", Ogre::PM_POINTS),
@@ -78,7 +79,8 @@ OgreCameraComponent::load(
     m_name = storage.get<Ogre::String>("name");
     m_properties.farClipDistance = storage.get<Ogre::Real>("farClipDistance", 10000.0f);
     m_properties.fovY = storage.get<Ogre::Degree>("fovY", Ogre::Degree(45.0f));
-    m_properties.nearClipDistance = storage.get<Ogre::Real>("nearClipDistance", 100.0f);
+    m_properties.nearClipDistance = storage.get<Ogre::Real>("nearClipDistance", 5.0f);
+    m_properties.orthographicalMode = storage.get<bool>("orthographicalMode", false);
     m_properties.polygonMode = static_cast<Ogre::PolygonMode>(
         storage.get<int16_t>("polygonMode", Ogre::PM_SOLID)
     );
@@ -98,6 +100,7 @@ OgreCameraComponent::storage() const {
     storage.set<Ogre::Real>("farClipDistance", m_properties.farClipDistance);
     storage.set<Ogre::Degree>("fovY", m_properties.fovY);
     storage.set<Ogre::Real>("nearClipDistance", m_properties.nearClipDistance);
+    storage.set<bool>("orthographicalMode", m_properties.orthographicalMode);
     storage.set<int16_t>("polygonMode", m_properties.polygonMode);
     return storage;
 }
@@ -190,9 +193,16 @@ OgreCameraSystem::update(int) {
             Ogre::Camera* camera = cameraComponent->m_camera;
             // Update camera
             camera->setPolygonMode(properties.polygonMode);
-            camera->setFOVy(properties.fovY);
             camera->setNearClipDistance(properties.nearClipDistance);
             camera->setFarClipDistance(properties.farClipDistance);
+            if (properties.orthographicalMode){
+                camera->setProjectionType(Ogre::ProjectionType::PT_ORTHOGRAPHIC);
+                camera->setOrthoWindow(properties.fovY.valueDegrees(), properties.fovY.valueDegrees()); //Abstract conversion
+            }
+            else {
+                camera->setProjectionType(Ogre::ProjectionType::PT_PERSPECTIVE);
+                camera->setFOVy(properties.fovY);
+            }
             // Untouch
             properties.untouch();
         }

@@ -419,7 +419,9 @@ SoundSourceSystem::activate() {
     auto& soundManager = OgreOggSound::OgreOggSoundManager::getSingleton();
     soundManager.setSceneManager(this->gameState()->sceneManager());
     m_impl->restoreAllSounds();
-    static_cast<OgreSceneNodeComponent*>(Entity("player", gameState()).getComponent(OgreSceneNodeComponent::TYPE_ID))->attachSoundListener();
+    if (Entity("player", gameState()).exists()){
+        static_cast<OgreSceneNodeComponent*>(Entity("player", gameState()).getComponent(OgreSceneNodeComponent::TYPE_ID))->attachSoundListener();
+    }
 }
 
 
@@ -428,6 +430,9 @@ SoundSourceSystem::deactivate() {
     System::deactivate();
     auto& soundManager = OgreOggSound::OgreOggSoundManager::getSingleton();
     m_impl->removeAllSounds();
+    for (auto& value : m_impl->m_entities) {
+        std::get<0>(value.second)->m_ambientSoundCountdown = 0;
+    }
     soundManager.setSceneManager(nullptr);
 }
 
@@ -557,7 +562,7 @@ SoundSourceSystem::update(int milliseconds) {
                                     for (int i = 0; i < randSoundIndex; ++i)
                                         soundPointer++;
                                     newSound = soundPointer->second.get();
-                                } while (newSound == soundSourceComponent->m_ambientActiveSound); //Ensure we don't play the same song twice
+                                } while (newSound == soundSourceComponent->m_ambientActiveSound && numOfSounds > 1); //Ensure we don't play the same song twice
                             }
                         }
                     }

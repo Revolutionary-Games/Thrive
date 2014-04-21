@@ -35,7 +35,6 @@ public:
     * @brief Lua bindings
     *
     * Exposes:
-    * - CEGUIWindow::getRootWindow (static)
     * - CEGUIWindow::CEGUIWindow(string)
     * - CEGUIWindow::getText
     * - CEGUIWindow::setText

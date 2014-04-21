@@ -28,7 +28,7 @@ struct EntityManager::Implementation {
     }
 
     std::unordered_map<
-        ComponentTypeId, 
+        ComponentTypeId,
         std::unique_ptr<ComponentCollection>
     > m_collections;
 
@@ -47,7 +47,7 @@ struct EntityManager::Implementation {
 };
 
 
-EntityManager::EntityManager() 
+EntityManager::EntityManager()
   : m_impl(new Implementation())
 {
 }
@@ -65,7 +65,7 @@ EntityManager::addComponent(
     auto& componentCollection = m_impl->getComponentCollection(typeId);
     Component* rawComponent = component.get();
     bool isNew = componentCollection.addComponent(
-        entityId, 
+        entityId,
         std::move(component)
     );
     if (isNew) {
@@ -153,6 +153,13 @@ EntityManager::isVolatile(
     return m_impl->m_volatileEntities.count(id) > 0;
 }
 
+void
+EntityManager::stealName(
+    EntityId entityId,
+    const std::string& name
+){
+    m_impl->m_namedIds[name] = entityId;
+}
 
 std::unordered_set<ComponentTypeId>
 EntityManager::nonEmptyCollections() const {
@@ -286,7 +293,7 @@ EntityManager::storage(
         for (const auto& pair : components) {
             EntityId entityId = pair.first;
             const std::unique_ptr<Component>& component = pair.second;
-            if (component->isVolatile() or 
+            if (component->isVolatile() or
                 m_impl->m_volatileEntities.count(entityId) > 0
             ) {
                 continue;
