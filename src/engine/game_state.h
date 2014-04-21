@@ -3,6 +3,7 @@
 #include <memory>
 #include <vector>
 #include <iostream>
+
 class btDiscreteDynamicsWorld;
 
 namespace luabind {
@@ -15,6 +16,7 @@ namespace Ogre {
 
 namespace thrive {
 
+class CEGUIWindow;
 class Engine;
 class EntityManager;
 class StorageContainer;
@@ -50,6 +52,7 @@ public:
     *
     * Exposes:
     * - GameState::name()
+    * - GameState::rootGUIWindow()
     *
     * @return
     */
@@ -118,6 +121,12 @@ public:
     */
     btDiscreteDynamicsWorld*
     physicsWorld() const;
+
+    /**
+    * @brief The root CEGUIWindow
+    */
+    CEGUIWindow
+    rootGUIWindow();
 
     /**
     * @brief The Ogre scene manager

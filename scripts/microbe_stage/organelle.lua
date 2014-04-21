@@ -144,6 +144,13 @@ function Organelle:removeHex(q, r)
     end
 end
 
+function Organelle:destroy()
+    for _, hex in pairs(self._hexes) do
+        hex.entity:destroy()
+    end
+    self.entity:destroy()
+end
+
 
 -- Sets the organelle's colour
 --

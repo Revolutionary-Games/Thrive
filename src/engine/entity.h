@@ -16,8 +16,8 @@ class GameState;
 /**
 * @brief Convenience class to handle an entity
 *
-* This is a thin wrapper around the EntityManager API. Mostly for script 
-* purposes, but if you prefer, you can use this class instead of directly 
+* This is a thin wrapper around the EntityManager API. Mostly for script
+* purposes, but if you prefer, you can use this class instead of directly
 * calling the EntityManager functions.
 *
 * @note
@@ -40,6 +40,7 @@ public:
     * - \c addComponent(Component): addComponent(std::unique_ptr<Component>)
     * - \c getComponent(number): getComponent(ComponentTypeId)
     * - \c removeComponent(number): removeComponent(ComponentTypeId)
+    * - \c stealName(string): stealName(name)
     *
     * Exposes the following \b operators:
     * - \c ==: operator==(const Entity&)
@@ -119,7 +120,7 @@ public:
     /**
     * @brief Copy assignment
     *
-    * This does *not* copy the entity's components, it just changes the 
+    * This does *not* copy the entity's components, it just changes the
     * entity id this wrapper points to.
     *
     */
@@ -170,8 +171,8 @@ public:
     * @param typeId
     *   The component's type id
     *
-    * @return 
-    *   A non-owning pointer to the component or \c nullptr if no such 
+    * @return
+    *   A non-owning pointer to the component or \c nullptr if no such
     *   component was found
     */
     Component*
@@ -182,7 +183,7 @@ public:
     /**
     * @brief Checks whether this entity has a component
     *
-    * Equivalent to 
+    * Equivalent to
     * \code
     * entity->getComponent(typeId) != nullptr;
     * \endcode
@@ -190,7 +191,7 @@ public:
     * @param typeId
     *   The component's type id
     *
-    * @return 
+    * @return
     *   \c true if such a component was found, false otherwise
     */
     bool
@@ -209,10 +210,26 @@ public:
     *
     * Volatile entities are not serialized into a savegame
     *
-    * @return 
+    * @return
     */
     bool
     isVolatile() const;
+
+    /**
+    * @brief Rebinds the name to the new Id
+    *
+    * @param entityId
+    *   The stealing entity
+    *
+    * @param name
+    *   The name to rebind
+    *
+    * @return
+    */
+    void
+    stealName(
+        const std::string& name
+    );
 
     /**
     * @brief Removes a component by type id

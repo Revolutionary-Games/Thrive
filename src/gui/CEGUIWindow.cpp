@@ -34,10 +34,10 @@ luabind::scope
 CEGUIWindow::luaBindings() {
     using namespace luabind;
     return class_<CEGUIWindow>("CEGUIWindow")
-        .scope
-        [
-            def("getRootWindow", &CEGUIWindow::getRootWindow)
-        ]
+        //.scope
+        //[
+        //    def("getRootWindow", &CEGUIWindow::getRootWindow) //Better to use gameState::rootGUIWindow
+        //]
         .def(constructor<std::string>())
         .def("getText", &CEGUIWindow::getText)
         .def("setText", &CEGUIWindow::setText)
