@@ -1,5 +1,7 @@
 -- Define global constants here
 
+GAME_TITLE = "THRIVE"
+
 -- Name of the player entity
 PLAYER_NAME = "player"
 

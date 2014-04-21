@@ -223,13 +223,6 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
         }
     }
 
-    bool
-    quitRequested() {
-        return m_input.keyboard.isKeyDown(
-            OIS::KeyCode::KC_ESCAPE
-        );
-    }
-
     void
     saveSavegame() {
         StorageContainer savegame;
@@ -314,6 +307,7 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
         CEGUI::OgreRenderer::bootstrapSystem();
         CEGUI::WindowManager& wmgr = CEGUI::WindowManager::getSingleton();
         CEGUI::Window* myRoot = wmgr.createWindow( "DefaultWindow", "root" );
+        myRoot->setProperty("MousePassThroughEnabled", "True");
         CEGUI::System::getSingleton().getDefaultGUIContext().setRootWindow( myRoot );
         CEGUI::SchemeManager::getSingleton().createFromFile("Thrive.scheme");
         CEGUI::System::getSingleton().getDefaultGUIContext().getMouseCursor().setDefaultImage("ThriveGeneric/MouseArrow");
@@ -406,6 +400,8 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
 
     RNG m_rng;
 
+    bool m_quitRequested = false;
+
     struct Graphics {
 
         std::unique_ptr<Ogre::Root> root;
@@ -479,6 +475,7 @@ Engine::luaBindings() {
         .def("setCurrentGameState", &Engine::setCurrentGameState)
         .def("load", &Engine::load)
         .def("save", &Engine::save)
+        .def("quit", &Engine::quit)
         .property("componentFactory", &Engine::componentFactory)
         .property("keyboard", &Engine::keyboard)
         .property("mouse", &Engine::mouse)
@@ -644,6 +641,12 @@ Engine::shutdown() {
 }
 
 
+void
+Engine::quit(){
+    m_impl->m_quitRequested = true;
+}
+
+
 OgreOggSound::OgreOggSoundManager*
 Engine::soundManager() const {
     return OgreOggSound::OgreOggSoundManager::getSingletonPtr();
@@ -658,7 +661,7 @@ Engine::update(
         m_impl->saveSavegame();
     }
     Ogre::WindowEventUtilities::messagePump();
-    if (m_impl->quitRequested()) {
+    if (m_impl->m_quitRequested) {
         Game::instance().quit();
     }
     m_impl->m_input.keyboard.update();

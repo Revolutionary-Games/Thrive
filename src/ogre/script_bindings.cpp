@@ -56,41 +56,41 @@ axisAlignedBoxBindings() {
             Real, Real, Real >()
         )
         .def(const_self == other<AxisAlignedBox>())
-        .def("getMinimum", 
+        .def("getMinimum",
             static_cast<const Vector3& (AxisAlignedBox::*) () const>(&AxisAlignedBox::getMinimum)
         )
-        .def("getMaximum", 
+        .def("getMaximum",
             static_cast<const Vector3& (AxisAlignedBox::*) () const>(&AxisAlignedBox::getMaximum)
         )
-        .def("setMinimum", 
+        .def("setMinimum",
             static_cast<void (AxisAlignedBox::*) (const Vector3&)>(&AxisAlignedBox::setMinimum)
         )
-        .def("setMinimum", 
+        .def("setMinimum",
             static_cast<void (AxisAlignedBox::*) (Real, Real, Real)>(&AxisAlignedBox::setMinimum)
         )
         .def("setMinimumX", &AxisAlignedBox::setMinimumX)
         .def("setMinimumY", &AxisAlignedBox::setMinimumY)
         .def("setMinimumZ", &AxisAlignedBox::setMinimumZ)
-        .def("setMaximum", 
+        .def("setMaximum",
             static_cast<void (AxisAlignedBox::*) (const Vector3&)>(&AxisAlignedBox::setMaximum)
         )
-        .def("setMaximum", 
+        .def("setMaximum",
             static_cast<void (AxisAlignedBox::*) (Real, Real, Real)>(&AxisAlignedBox::setMaximum)
         )
         .def("setMaximumX", &AxisAlignedBox::setMaximumX)
         .def("setMaximumY", &AxisAlignedBox::setMaximumY)
         .def("setMaximumZ", &AxisAlignedBox::setMaximumZ)
-        .def("setExtents", 
+        .def("setExtents",
             static_cast<void (AxisAlignedBox::*) (const Vector3&, const Vector3&)>(&AxisAlignedBox::setExtents)
         )
-        .def("setExtents", 
+        .def("setExtents",
             static_cast<void (AxisAlignedBox::*) (Real, Real, Real, Real, Real, Real)>(&AxisAlignedBox::setExtents)
         )
         .def("getCorner", &AxisAlignedBox::getCorner)
-        .def("merge", 
+        .def("merge",
             static_cast<void (AxisAlignedBox::*) (const AxisAlignedBox&)>(&AxisAlignedBox::merge)
         )
-        .def("merge", 
+        .def("merge",
             static_cast<void (AxisAlignedBox::*) (const Vector3&)>(&AxisAlignedBox::merge)
         )
         .def("setNull", &AxisAlignedBox::setNull)
@@ -98,29 +98,29 @@ axisAlignedBoxBindings() {
         .def("isFinite", &AxisAlignedBox::isFinite)
         .def("setInfinite", &AxisAlignedBox::setInfinite)
         .def("isInfinite", &AxisAlignedBox::isInfinite)
-        .def("intersects", 
+        .def("intersects",
             static_cast<bool (AxisAlignedBox::*) (const AxisAlignedBox&) const>(&AxisAlignedBox::intersects)
         )
         .def("intersection", &AxisAlignedBox::intersection)
         .def("volume", &AxisAlignedBox::volume)
         .def("scale", &AxisAlignedBox::scale)
-        .def("intersects", 
+        .def("intersects",
             static_cast<bool (AxisAlignedBox::*) (const Sphere&) const>(&AxisAlignedBox::intersects)
         )
-        .def("intersects", 
+        .def("intersects",
             static_cast<bool (AxisAlignedBox::*) (const Plane&) const>(&AxisAlignedBox::intersects)
         )
-        .def("intersects", 
+        .def("intersects",
             static_cast<bool (AxisAlignedBox::*) (const Vector3&) const>(&AxisAlignedBox::intersects)
         )
         .def("getCenter", &AxisAlignedBox::getCenter)
         .def("getSize", &AxisAlignedBox::getSize)
         .def("getHalfSize", &AxisAlignedBox::getHalfSize)
-        .def("contains", 
+        .def("contains",
             static_cast<bool (AxisAlignedBox::*) (const Vector3&) const>(&AxisAlignedBox::contains)
         )
         .def("distance", &AxisAlignedBox::distance)
-        .def("contains", 
+        .def("contains",
             static_cast<bool (AxisAlignedBox::*) (const AxisAlignedBox&) const>(&AxisAlignedBox::contains)
         )
     ;
@@ -162,6 +162,7 @@ degreeBindings() {
         .def(const_self * Real())
         .def(const_self / Real())
         .def(const_self < other<Degree>())
+        .def("valueDegrees", &Degree::valueDegrees)
     ;
 }
 
@@ -208,48 +209,48 @@ matrix3Bindings() {
         .def("SetColumn", &Matrix3::SetColumn)
         .def("FromAxes", &Matrix3::FromAxes)
         .def("Transpose", &Matrix3::Transpose)
-        .def("Inverse", 
-            static_cast<bool(Matrix3::*)(Matrix3&, Real) const>(&Matrix3::Inverse), 
+        .def("Inverse",
+            static_cast<bool(Matrix3::*)(Matrix3&, Real) const>(&Matrix3::Inverse),
             pure_out_value(_2)
         )
         .def("Determinant", &Matrix3::Determinant)
-        .def("SingularValueDecomposition", 
+        .def("SingularValueDecomposition",
             &Matrix3::SingularValueDecomposition,
             (pure_out_value(_2), pure_out_value(_3), pure_out_value(_4))
         )
         .def("SingularValueComposition", &Matrix3::SingularValueComposition)
         .def("Orthonormalize", &Matrix3::Orthonormalize)
-        .def("QDUDecomposition", 
+        .def("QDUDecomposition",
             &Matrix3::QDUDecomposition,
             (pure_out_value(_2), pure_out_value(_3), pure_out_value(_4))
         )
         .def("SpectralNorm", &Matrix3::SpectralNorm)
-        .def("ToAngleAxis", 
+        .def("ToAngleAxis",
             static_cast<void(Matrix3::*)(Vector3&, Radian&) const>(&Matrix3::ToAngleAxis),
             (pure_out_value(_2), pure_out_value(_3))
         )
         .def("FromAngleAxis", &Matrix3::FromAngleAxis)
-        .def("ToEulerAnglesXYZ", 
+        .def("ToEulerAnglesXYZ",
             &Matrix3::ToEulerAnglesXYZ,
             (pure_out_value(_2), pure_out_value(_3), pure_out_value(_4))
         )
-        .def("ToEulerAnglesXZY", 
+        .def("ToEulerAnglesXZY",
             &Matrix3::ToEulerAnglesXZY,
             (pure_out_value(_2), pure_out_value(_3), pure_out_value(_4))
         )
-        .def("ToEulerAnglesYXZ", 
+        .def("ToEulerAnglesYXZ",
             &Matrix3::ToEulerAnglesYXZ,
             (pure_out_value(_2), pure_out_value(_3), pure_out_value(_4))
         )
-        .def("ToEulerAnglesYZX", 
+        .def("ToEulerAnglesYZX",
             &Matrix3::ToEulerAnglesYZX,
             (pure_out_value(_2), pure_out_value(_3), pure_out_value(_4))
         )
-        .def("ToEulerAnglesZXY", 
+        .def("ToEulerAnglesZXY",
             &Matrix3::ToEulerAnglesZXY,
             (pure_out_value(_2), pure_out_value(_3), pure_out_value(_4))
         )
-        .def("ToEulerAnglesZYX", 
+        .def("ToEulerAnglesZYX",
             &Matrix3::ToEulerAnglesZYX,
             (pure_out_value(_2), pure_out_value(_3), pure_out_value(_4))
         )
@@ -285,20 +286,20 @@ planeBindings() {
         .def(constructor<const Vector3&, const Vector3&>())
         .def(constructor<const Vector3&, const Vector3&, const Vector3&>())
         .def(const_self == other<Plane>())
-        .def("getSide", 
+        .def("getSide",
             static_cast<Plane::Side (Plane::*) (const Vector3&) const>(&Plane::getSide)
         )
-        .def("getSide", 
+        .def("getSide",
             static_cast<Plane::Side (Plane::*) (const AxisAlignedBox&) const>(&Plane::getSide)
         )
-        .def("getSide", 
+        .def("getSide",
             static_cast<Plane::Side (Plane::*) (const Vector3&, const Vector3&) const>(&Plane::getSide)
         )
         .def("getDistance", &Plane::getDistance)
-        .def("redefine", 
+        .def("redefine",
             static_cast<void (Plane::*) (const Vector3&, const Vector3&)>(&Plane::redefine)
         )
-        .def("redefine", 
+        .def("redefine",
             static_cast<void (Plane::*) (const Vector3&, const Vector3&, const Vector3&)>(&Plane::redefine)
         )
         .def("projectVector", &Plane::projectVector)
@@ -326,14 +327,14 @@ quaternionBindings() {
         .def("FromRotationMatrix", &Quaternion::FromRotationMatrix)
         .def("ToRotationMatrix", &Quaternion::ToRotationMatrix, pure_out_value(_2))
         .def("FromAngleAxis", &Quaternion::FromAngleAxis)
-        .def("ToAngleAxis", 
-            static_cast<void(Quaternion::*)(Radian&, Vector3&) const>(&Quaternion::ToAngleAxis), 
+        .def("ToAngleAxis",
+            static_cast<void(Quaternion::*)(Radian&, Vector3&) const>(&Quaternion::ToAngleAxis),
             (pure_out_value(_2), pure_out_value(_3))
         )
-        .def("FromAxes", 
+        .def("FromAxes",
             static_cast<void(Quaternion::*)(const Vector3&, const Vector3&, const Vector3&)>(&Quaternion::FromAxes)
         )
-        .def("ToAxes", 
+        .def("ToAxes",
             static_cast<void(Quaternion::*)(Vector3&, Vector3&, Vector3&) const>(&Quaternion::ToAxes),
             (pure_out_value(_2), pure_out_value(_3), pure_out_value(_4))
         )
@@ -410,10 +411,10 @@ sceneManagerBindings() {
             value("PT_CUBE", SceneManager::PT_CUBE),
             value("PT_SPHERE", SceneManager::PT_SPHERE)
         ]
-        .def("createEntity", 
+        .def("createEntity",
             static_cast<Entity* (SceneManager::*)(const String&)>(&SceneManager::createEntity)
         )
-        .def("createEntity", 
+        .def("createEntity",
             static_cast<Entity* (SceneManager::*)(SceneManager::PrefabType)>(&SceneManager::createEntity)
         )
         .def("setAmbientLight", &SceneManager::setAmbientLight)
@@ -430,16 +431,16 @@ sphereBindings() {
         .def("setRadius", &Sphere::setRadius)
         .def("getCenter", &Sphere::getCenter)
         .def("setCenter", &Sphere::setCenter)
-        .def("intersects", 
+        .def("intersects",
             static_cast<bool (Sphere::*)(const Sphere&) const>(&Sphere::intersects)
         )
-        .def("intersects", 
+        .def("intersects",
             static_cast<bool (Sphere::*)(const AxisAlignedBox&) const>(&Sphere::intersects)
         )
-        .def("intersects", 
+        .def("intersects",
             static_cast<bool (Sphere::*)(const Plane&) const>(&Sphere::intersects)
         )
-        .def("intersects", 
+        .def("intersects",
             static_cast<bool (Sphere::*)(const Vector3&) const>(&Sphere::intersects)
         )
         .def("merge", &Sphere::merge)

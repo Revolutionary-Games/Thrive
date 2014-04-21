@@ -65,7 +65,7 @@ public:
     * @param component
     *   The component to add
     *
-    * @return 
+    * @return
     *   The component as a non-owning pointer
     */
     template<typename C>
@@ -76,7 +76,7 @@ public:
     ) {
         return static_cast<C*>(
             this->addComponent(
-                entityId, 
+                entityId,
                 std::unique_ptr<Component>(std::move(component))
             )
         );
@@ -114,8 +114,8 @@ public:
     * @param typeId
     *   The component's type id
     *
-    * @return 
-    *   A non-owning pointer to the component or \c nullptr if no such 
+    * @return
+    *   A non-owning pointer to the component or \c nullptr if no such
     *   component exists
     */
     Component*
@@ -129,7 +129,7 @@ public:
     *
     * This is the same as EntityManager::getComponent(EntityId, ComponentTypeId),
     * but includes a cast to the expected type. The cast is a static cast for
-    * performance reasons. Unless there is a serious error in the way 
+    * performance reasons. Unless there is a serious error in the way
     * component type ids are generated or components are stored in the entity
     * manager, the cast should always be correct.
     *
@@ -141,7 +141,7 @@ public:
     * @param entityId
     *   The component's owner
     *
-    * @return 
+    * @return
     */
     template<class ComponentType>
     ComponentType*
@@ -171,13 +171,13 @@ public:
     * @brief Returns the id of a named entity
     *
     * If the name is unknown, a new entity id is created. This function always
-    * returns the same entity id for the same name during the same application 
+    * returns the same entity id for the same name during the same application
     * instance.
     *
     * @param name
     *   The entity's name
     *
-    * @return 
+    * @return
     *   The named entity's id
     */
     EntityId
@@ -200,7 +200,7 @@ public:
     * @param args
     *   Constructor arguments
     *
-    * @return 
+    * @return
     *   A non-owning pointer to the component
     */
     template<typename C, typename... Args>
@@ -234,7 +234,7 @@ public:
     /**
     * @brief Returns the set of non-empty collection ids
     *
-    * @return 
+    * @return
     */
     std::unordered_set<ComponentTypeId>
     nonEmptyCollections() const;
@@ -246,12 +246,24 @@ public:
     *
     * @param id
     *
-    * @return 
+    * @return
     */
     bool
     isVolatile(
         EntityId id
     ) const;
+
+    /**
+    * @brief Rebinds a name to this entity
+    *
+    * @param name
+    *  name re rebind
+    */
+    void
+    stealName(
+        EntityId entityId,
+        const std::string& name
+    );
 
     /**
     * @brief Removes all components queued for removal
@@ -326,7 +338,7 @@ public:
     * @param factory
     *   The component factory to use for type name lookup
     *
-    * @return 
+    * @return
     */
     StorageContainer
     storage(

@@ -1,5 +1,7 @@
 #include "engine/game_state.h"
 
+#include <btBulletDynamicsCommon.h>
+
 #include "engine/engine.h"
 #include "engine/entity_manager.h"
 #include "engine/serialization.h"
@@ -7,7 +9,7 @@
 
 #include "gui/CEGUIWindow.h"
 
-#include <btBulletDynamicsCommon.h>
+
 #include <OgreRoot.h>
 
 using namespace thrive;
@@ -95,6 +97,7 @@ GameState::luaBindings() {
     using namespace luabind;
     return class_<GameState>("GameState")
         .def("name", &GameState::name)
+        .def("rootGUIWindow", &GameState::rootGUIWindow)
     ;
 }
 
@@ -151,13 +154,13 @@ GameState::entityManager() {
 
 void
 GameState::init() {
+    m_impl->m_guiWindow = CEGUIWindow(m_impl->m_guiLayoutName);
     m_impl->setupPhysics();
     m_impl->setupSceneManager();
     for (const auto& system : m_impl->m_systems) {
         system->init(this);
     }
     m_impl->m_initializer();
-    m_impl->m_guiWindow = CEGUIWindow(m_impl->m_guiLayoutName);
 }
 
 const std::vector<std::unique_ptr<System>>&
@@ -199,6 +202,13 @@ btDiscreteDynamicsWorld*
 GameState::physicsWorld() const {
     return m_impl->m_physics.world.get();
 }
+
+CEGUIWindow
+GameState::rootGUIWindow(){
+    return m_impl->m_guiWindow;
+}
+
+
 
 
 Ogre::SceneManager*
