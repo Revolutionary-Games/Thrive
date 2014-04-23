@@ -25,8 +25,8 @@ if(NOT IS_DIRECTORY ${ASSET_DIRECTORY}/models)
     message(FATAL_ERROR 
 "Could not find assets in ${ASSET_DIRECTORY}.  
 Please use Subversion to download the assets:
-        svn co http://www.nimbal.net/scm/svn/thrive_assets/trunk/ ${ASSET_DIRECTORY}
-If you do not have an account for the repository, use anonymous / anonymous for username and password.
+        svn co http://crovea.net/svn/thrive_assets/ ${ASSET_DIRECTORY}
+Use 'thrive' for the username and password
 "
     )
 endif()
