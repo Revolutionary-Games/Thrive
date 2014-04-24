@@ -4,6 +4,21 @@ Thrive
 This is the code repository for Thrive. For more information, visit
 http://revolutionarygamesstudio.com/.
 
+Overview
+----------------
+
+Repository structure:
+- assets: An SVN repository that doesn't follow with the git repository. This contains all the assets such as models and other binaries. Get it with SVN Checkout http://crovea.net/svn/thrive_assets
+- cmake_modules: Scripts used by cmake when building the project binaries to find the dependencies. The dependencies will, for windows users, be installed with the mingw_setup directory.
+- contrib: Git submodules and other external code bases we use for the project.
+- cpack: Script used by 7zip.
+- doc: Documentation files. Contains style guide, engine overview and other useful documentation. .
+- mingw_setup: Dependency installation for windows and linux->windows cross-compiling (cross-compiling currently deprecated). You will need to run this to build the project files.
+- ogre_cfg: Ogre configuration files for resources and plugins. This is installed with distributions.
+- scripts: Lua scripts that contain part of the codebase. Lua scripts are used for easier development and code here can then later be transferred to the C++ base for performance. We use luabind for binding.
+- src: The C++ code base containing the engine and other sections.
+
+Remember to get the luabind and google test submodules with git submodule update --init --recursive.
 
 Getting Involved
 ----------------
