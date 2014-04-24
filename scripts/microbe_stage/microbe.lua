@@ -566,7 +566,7 @@ function Microbe:kill()
     lifeTimeComponent.timeToLive = 4000
     deathAnimationEntity:addComponent(lifeTimeComponent)
     local deathAnimSceneNode = OgreSceneNodeComponent()
-    deathAnimSceneNode.meshName = "MeshMicrobeDeath.mesh"
+    deathAnimSceneNode.meshName = "MicrobeDeath.mesh"
     deathAnimSceneNode:playAnimation("Death", false)
     deathAnimSceneNode.transform.position = Vector3(microbeSceneNode.transform.position.x, microbeSceneNode.transform.position.y, 0)
     deathAnimSceneNode.transform:touch()
