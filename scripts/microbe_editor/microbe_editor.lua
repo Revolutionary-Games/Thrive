@@ -13,21 +13,17 @@ function MicrobeEditor:__init(hudSystem)
     self.organelleCount = 0
     self.activeActionName = nil
     self.hudSystem = hudSystem
+    self.nextMicrobeEntity = nil
     self.placementFunctions = {["nucleus"] = MicrobeEditor.createNewMicrobe,
                                ["flagelium"] = MicrobeEditor.addMovementOrganelle,
                                ["mitochondria"] = MicrobeEditor.addProcessOrganelle,
                                ["vacuole"] = MicrobeEditor.addStorageOrganelle,
                                ["remove"] = MicrobeEditor.removeOrganelle}
 end
-
-function MicrobeEditor:init()
-    self.currentMicrobe = createStarterMicrobe("working_microbe")
-    self.currentMicrobe.sceneNode.transform.orientation = Quaternion(Radian(Degree(180)), Vector3(0, 0, 1))-- Orientation
-    self.currentMicrobe.sceneNode.transform:touch()
-end
-
 function MicrobeEditor:activate()
-    self.currentMicrobe = Microbe(Entity("working_microbe"))
+    playerEntity = Entity(PLAYER_NAME, GameState.MICROBE)
+    self.nextMicrobeEntity = playerEntity:transfer(GameState.MICROBE_EDITOR)
+    self.nextMicrobeEntity:stealName("working_microbe")
 end
 
 function MicrobeEditor:performLocationAction()
@@ -52,6 +48,7 @@ function MicrobeEditor:getMouseHex()
 end
 
 function MicrobeEditor:removeOrganelle()
+    self.currentMicrobe.entity:printAddress()
     local q, r = self:getMouseHex()
     if not (q == 0 and r == 0) then -- Don't remove nucleus
         local organelle = self.currentMicrobe:getOrganelleAt(q,r)
@@ -65,6 +62,7 @@ end
 
 
 function MicrobeEditor:addStorageOrganelle(organelleType)
+   -- self.currentMicrobe = Microbe(Entity("working_microbe", GameState.MICROBE))
     local q, r = self:getMouseHex()
     if self.currentMicrobe:getOrganelleAt(q, r) == nil then
         local storageOrganelle = StorageOrganelle(100.0)

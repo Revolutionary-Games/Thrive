@@ -11,6 +11,7 @@ namespace thrive {
 class Component;
 class ComponentCollection;
 class ComponentFactory;
+class GameState;
 class StorageContainer;
 
 /**
@@ -177,12 +178,16 @@ public:
     * @param name
     *   The entity's name
     *
+    * @param forceNew
+    *   Forces a new entity with the provided name to be created whether it exists or not
+    *
     * @return
     *   The named entity's id
     */
     EntityId
     getNamedId(
-        const std::string& name
+        const std::string& name,
+        bool forceNew = false
     );
 
     /**
@@ -307,6 +312,20 @@ public:
     );
 
     /**
+    * @brief Gets the name for a given entityId if it exists
+    *
+    * @param entityId
+    *  The entity to find a name mapping for
+    *
+    * @return
+    *   \c valid pointer to string if such a namemapping was found, nullptr otherwise
+    */
+    const std::string*
+    getNameMappingFor(
+        EntityId entityId
+    );
+
+    /**
     * @brief Restores the entity manager from a storage container
     *
     * @param storage
@@ -346,6 +365,32 @@ public:
     ) const;
 
 private:
+
+    friend class Engine;
+
+    /**
+    * @brief Transfers an entity to a different gamestate removing it from the current one
+    *  This is called by engine when it processes transfers
+    *
+    * @param oldEntityId
+    *   The old entity to transfer
+    *
+    * @param newEntityId
+    *   The new entity to transfer components to
+    *
+    * @param newEntityManager
+    *  The new entityManager owning the newEntity
+    *
+    * @param componentFactory
+    *  Factory used for loading new copies of components
+    */
+    void
+    transferEntity(
+        EntityId oldEntityId,
+        EntityId newEntityId,
+        EntityManager& newEntityManager,
+        const ComponentFactory& componentFactory
+    );
 
     struct Implementation;
     std::unique_ptr<Implementation> m_impl;

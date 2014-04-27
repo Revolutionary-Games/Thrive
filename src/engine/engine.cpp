@@ -2,6 +2,7 @@
 
 #include "engine/component_collection.h"
 #include "engine/component_factory.h"
+#include "engine/entity.h"
 #include "engine/entity_manager.h"
 #include "engine/game_state.h"
 #include "engine/serialization.h"
@@ -398,6 +399,8 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
 
     std::map<std::string, std::unique_ptr<GameState>> m_gameStates;
 
+    std::list<std::tuple<EntityId, EntityId, GameState*, GameState*>> m_entitiesToTransferGameState;
+
     RNG m_rng;
 
     bool m_quitRequested = false;
@@ -652,6 +655,24 @@ Engine::soundManager() const {
     return OgreOggSound::OgreOggSoundManager::getSingletonPtr();
 }
 
+EntityId
+Engine::transferEntityGameState(
+    EntityId oldEntityId,
+    EntityManager* oldEntityManager,
+    GameState* newGameState
+){
+    EntityId newEntity;
+    const std::string* nameMapping = oldEntityManager->getNameMappingFor(oldEntityId);
+    if (nameMapping){
+        newEntity = newGameState->entityManager().getNamedId(*nameMapping, true);
+    }
+    else{
+        newEntity = newGameState->entityManager().generateNewId();
+    }
+    oldEntityManager->transferEntity(oldEntityId, newEntity, newGameState->entityManager(), m_impl->m_componentFactory);
+    return newEntity;
+}
+
 
 void
 Engine::update(
@@ -666,6 +687,7 @@ Engine::update(
     }
     m_impl->m_input.keyboard.update();
     m_impl->m_input.mouse.update();
+
     if (m_impl->m_nextGameState) {
         m_impl->activateGameState(m_impl->m_nextGameState);
         m_impl->m_nextGameState = nullptr;

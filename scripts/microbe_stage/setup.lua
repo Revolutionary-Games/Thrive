@@ -353,11 +353,6 @@ local function createMicrobeStage(name)
     )
 end
 
-player = nil -- Wut?
-
-
-
-
 GameState.MICROBE = createMicrobeStage("microbe")
 GameState.MICROBE_ALTERNATE = createMicrobeStage("microbe_alternate")
 
