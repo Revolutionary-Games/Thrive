@@ -117,7 +117,6 @@ end
 -- @param microbe
 --  The organelle's previous owner
 function Organelle:onRemovedFromMicrobe(microbe)
-    assert(microbe == self.microbe, "Can't remove organelle, wrong microbe")
     self.microbe = nil
     self.position.q = 0
     self.position.r = 0
