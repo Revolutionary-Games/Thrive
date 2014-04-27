@@ -32,6 +32,7 @@ namespace thrive {
 
 class ComponentFactory;
 class EntityManager;
+class Entity;
 class Keyboard;
 class Mouse;
 class OgreViewportSystem;
@@ -260,6 +261,19 @@ public:
     void
     update(
         int milliseconds
+    );
+
+    /**
+    * @brief Transfers an entity from one gamestate to another
+    *
+    *
+    *
+    */
+    EntityId
+    transferEntityGameState(
+        EntityId oldEntityId,
+        EntityManager* oldEntityManager,
+        GameState* newGameState
     );
 
     /**

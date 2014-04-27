@@ -4,7 +4,7 @@
 #include "engine/typedefs.h"
 
 #include <string>
-
+#include <iostream>
 namespace luabind {
 class scope;
 }
@@ -12,6 +12,7 @@ class scope;
 namespace thrive {
 
 class GameState;
+class EntityManager;
 
 /**
 * @brief Convenience class to handle an entity
@@ -246,6 +247,20 @@ public:
     void
     removeComponent(
         ComponentTypeId typeId
+    );
+
+    /**
+    * @brief Transfers an entity to a different gameState
+    *
+    * @param GameState
+    *   The GameState to transfer to
+    * @return
+    *  The new entity in the new gamestate.
+    *  Note that the actual transfer will take place before next update so the old entity is valid until then.
+    */
+    Entity
+    transfer(
+        GameState* newGameState
     );
 
     /**

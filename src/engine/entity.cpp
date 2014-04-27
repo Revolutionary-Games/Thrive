@@ -58,6 +58,7 @@ Entity::luaBindings() {
         .def("getComponent", &Entity::getComponent)
         .def("isVolatile", &Entity::isVolatile)
         .def("removeComponent", &Entity::removeComponent)
+        .def("transfer", &Entity::transfer)
         .def("setVolatile", &Entity::setVolatile)
         .def("stealName", &Entity::stealName)
         .property("id", &Entity::id)
@@ -148,8 +149,6 @@ Entity::addComponent(
 
 void
 Entity::destroy() {
-
-
     m_impl->m_entityManager->removeEntity(m_impl->m_id);
 }
 
@@ -205,6 +204,12 @@ Entity::removeComponent(
     );
 }
 
+Entity
+Entity::transfer(
+    GameState* newGameState
+) {
+    return Entity(Game::instance().engine().transferEntityGameState(m_impl->m_id, m_impl->m_entityManager, newGameState), newGameState);
+}
 
 void
 Entity::setVolatile(
@@ -220,8 +225,4 @@ Entity::stealName(
 ) {
     m_impl->m_entityManager->stealName(m_impl->m_id, name);
 }
-
-
-
-
 

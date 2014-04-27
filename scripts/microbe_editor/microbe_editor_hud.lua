@@ -12,7 +12,6 @@ end
 
 function MicrobeEditorHudSystem:init(gameState)
     System.init(self, gameState)
-    self.editor:init()
     self.hoverHex = Entity("hover-hex")
     local sceneNode = OgreSceneNodeComponent()
     sceneNode.transform.position = Vector3(0,0,110)
@@ -59,19 +58,18 @@ function MicrobeEditorHudSystem:setActiveAction(actionName)
 end
 
 
-function MicrobeEditorHudSystem:setNewPlayerMicrobe()
-    global_transferMicrobe = self.editor.currentMicrobe
-end
-
-
 function MicrobeEditorHudSystem:update(milliseconds)
+    if self.editor.nextMicrobeEntity ~= nil then
+        self.editor.currentMicrobe = Microbe(self.editor.nextMicrobeEntity)
+        self.editor.currentMicrobe.sceneNode.transform.orientation = Quaternion(Radian(Degree(180)), Vector3(0, 0, 1))-- Orientation
+        self.editor.currentMicrobe.sceneNode.transform.position = Vector3(0, 0, 0)
+        self.editor.currentMicrobe.sceneNode.transform:touch()
+        self.editor.nextMicrobeEntity = nil
+    end
      -- Render the hex under the cursor
      local x, y = axialToCartesian(self.editor:getMouseHex())
      local translation = Vector3(-x, -y, 0)
      local sceneNode = self.hoverHex:getComponent(OgreSceneNodeComponent.TYPE_ID)
-     if sceneNode == nil then
-     print("sceneNode niul")
-     end
      sceneNode.transform.position = translation
      sceneNode.transform:touch()
      -- Handle input
@@ -142,7 +140,7 @@ function removeClicked()
 end
 
 function playClicked()
-    global_activeMicrobeEditorHudSystem:setNewPlayerMicrobe()
+    global_newEditorMicrobe = true
     Engine:setCurrentGameState(GameState.MICROBE)
 end
 

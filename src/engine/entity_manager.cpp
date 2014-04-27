@@ -132,10 +132,18 @@ EntityManager::getComponentCollection(
 
 EntityId
 EntityManager::getNamedId(
-    const std::string& name
+    const std::string& name,
+    bool forceNew
 ) {
+    if (forceNew){
+        m_impl->m_namedIds.erase(name);
+
+    }
     auto iter = m_impl->m_namedIds.find(name);
     if (iter != m_impl->m_namedIds.end()) {
+        if (forceNew){
+            iter->second = this->generateNewId();
+        }
         return iter->second;
     }
     else {
@@ -216,6 +224,27 @@ EntityManager::removeEntity(
     m_impl->m_entitiesToRemove.push_back(entityId);
 }
 
+void
+EntityManager::transferEntity(
+    EntityId oldEntityId,
+    EntityId newEntityId,
+    EntityManager& newEntityManager,
+    const ComponentFactory& componentFactory
+){
+    for (const auto& pair : m_impl->m_collections) {
+        Component* component = pair.second->get(oldEntityId);
+        if (component != nullptr){
+            if (not component->isVolatile() and not
+                m_impl->m_volatileEntities.count(oldEntityId) > 0
+            ) {
+                auto newComponent = componentFactory.load(componentFactory.getTypeName(pair.first), component->storage());
+                newComponent->setOwner(newEntityId);
+                this->removeComponent(oldEntityId, pair.first);
+                newEntityManager.addComponent(newEntityId, std::move(newComponent));
+            }
+        }
+    }
+}
 
 void
 EntityManager::restore(
@@ -262,6 +291,18 @@ EntityManager::restore(
     }
 }
 
+const std::string*
+EntityManager::getNameMappingFor(
+    EntityId entityId
+){
+    // Rough way of checking for a name mapping. But performance should not matter much here.
+    for (auto& pair : m_impl->m_namedIds){
+        if (pair.second == entityId){
+            return &pair.first;
+        }
+    }
+    return nullptr;
+}
 
 void
 EntityManager::setVolatile(
