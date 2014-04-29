@@ -463,6 +463,8 @@ if(WIN32)
     install(FILES
         ${MINGW_ENV}/install/bin/libCEGUIBase-0_d.dll
         ${MINGW_ENV}/install/bin/libCEGUIOgreRenderer-0_d.dll
+        ${MINGW_ENV}/install/bin/libCEGUITinyXMLParser_d.dll
+        ${MINGW_ENV}/install/bin/libCEGUICoreWindowRendererSet_d.dll
         ${MINGW_ENV}/install/bin/Debug/libfreetype_d.dll
         ${MINGW_ENV}/install/bin/Debug/libjpeg_d.dll
         ${MINGW_ENV}/install/bin/Debug/liblibpng_d.dll
@@ -470,7 +472,22 @@ if(WIN32)
         ${MINGW_ENV}/install/bin/Debug/libzlib_d.dll
         ${MINGW_ENV}/install/bin/OpenAL32.dll
         DESTINATION bin
-		CONFIGURATIONS Release debug
+		CONFIGURATIONS Debug
+    )
+    
+    install(FILES
+        ${MINGW_ENV}/install/bin/libCEGUIBase-0.dll
+        ${MINGW_ENV}/install/bin/libCEGUIOgreRenderer-0.dll
+        ${MINGW_ENV}/install/bin/libCEGUITinyXMLParser.dll
+        ${MINGW_ENV}/install/bin/libCEGUICoreWindowRendererSet.dll
+        ${MINGW_ENV}/install/bin/Release/libfreetype.dll
+        ${MINGW_ENV}/install/bin/Release/libjpeg.dll
+        ${MINGW_ENV}/install/bin/Release/liblibpng.dll
+        ${MINGW_ENV}/install/bin/Release/libSILLY.dll
+        ${MINGW_ENV}/install/bin/Release/libzlib.dll
+        ${MINGW_ENV}/install/bin/OpenAL32.dll
+        DESTINATION bin
+		CONFIGURATIONS Release
     )
 
 elseif(UNIX)

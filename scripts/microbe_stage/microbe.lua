@@ -694,6 +694,9 @@ function Microbe:kill()
         microbeSceneNode.visible = false
     else
         self:destroy()
+        local messagePanel = Engine:currentGameState():rootGUIWindow():getChild("MessagePanel")
+        messagePanel:getChild("MessageLabel"):setText("VICTORY!!!")
+        messagePanel:show()
     end
    
 end

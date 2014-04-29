@@ -206,7 +206,6 @@ end
 function ProcessOrganelle:_updateColourDynamic(factorProduct)
     -- Scaled Factor Product (using a sigmoid to accommodate that factor will be low)
     local SFP = 1/(0.6+2^(-factorProduct*64))-0.5
-    print("process speed = " .. SFP)
     self._colour = ColourValue(0.6 + (self.originalColour.r-0.6)*SFP,
                                0.6 + (self.originalColour.g-0.6)*SFP,
                                0.6 + (self.originalColour.b-0.6)*SFP, 1) -- Calculate colour relative to how close the organelle is to have enough input compounds to produce
@@ -224,7 +223,6 @@ end
 -- The time since the last call to update()
 function ProcessOrganelle:update(microbe, milliseconds)
     Organelle.update(self, microbe, milliseconds)
-    
     self.capacityIntervalTimer = self.capacityIntervalTimer + milliseconds
     processFactoredPriorities = {}
     factorProduct = 1.0
@@ -266,6 +264,7 @@ end
 function ProcessOrganelle:storage()
     local storage = Organelle.storage(self)
     storage:set("capacityIntervalTimer", self.capacityIntervalTimer)
+    storage:set("originalColour", self.originalColour)
     local processes = StorageList()
     for _, process in ipairs(self.processes) do
         processes:append(process:storage())
@@ -277,7 +276,7 @@ end
 
 function ProcessOrganelle:load(storage)
     Organelle.load(self, storage)
-    self.originalColour = self._colour -- _colour was loaded by the base-class load
+    self.originalColour =  storage:get("originalColour", ColourValue.White)
     self.capacityIntervalTimer = storage:get("capacityIntervalTimer", 0)
     local processes = storage:get("processes", {})
     for i = 1,processes:size() do

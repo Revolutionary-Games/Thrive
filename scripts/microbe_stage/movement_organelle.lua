@@ -13,7 +13,41 @@ function MovementOrganelle:__init(force, torque)
     self.energyMultiplier = 0.025
     self.force = force
     self.torque = torque
+    
+    for _, hex in pairs(self._hexes) do
+        print("changing")
+        hex.sceneNode.meshName = "Flagella.mesh"
+        hex.sceneNode:playAnimation("Move", true)
+    end
+    --sceneNode:playAnimation("Move", true)
 end
+
+function MovementOrganelle:onAddedToMicrobe(microbe, q, r)  
+    Organelle.onAddedToMicrobe(self, microbe, q,r)
+    self.tailEntity = Entity()
+    local x, y = axialToCartesian(q, r)
+    local translation = Vector3(0, 0, 0.5)
+    sceneNode = OgreSceneNodeComponent()
+    sceneNode.parent = self.entity
+    sceneNode.transform.position = translation
+    sceneNode.meshName = "Flagella.mesh"
+    sceneNode:playAnimation("Move", true)
+    sceneNode.transform.scale = Vector3(0.35, 0.6, 0.6)
+    sceneNode.transform.orientation = Quaternion(Radian(Degree(0)), Vector3(0, 0, 1))
+    sceneNode.transform:touch()
+    self.tailEntity:addComponent(sceneNode)
+    local organelleX, organelleY = axialToCartesian(q, r)
+    local nucleusX, nucleusY = axialToCartesian(0, 0)
+    local deltaX = nucleusX - organelleX
+    local deltaY = nucleusY - organelleY
+    local angle = math.atan2(deltaY, deltaX)
+    if (angle < 0) then
+        angle = angle + 2*math.pi
+    end
+    angle = (angle * 180/math.pi + 180) % 360
+    self.tailEntity:getComponent(OgreSceneNodeComponent.TYPE_ID).transform.orientation = Quaternion(Radian(Degree(angle)), Vector3(0, 0, 1))
+end
+
 
 function MovementOrganelle:load(storage)
     Organelle.load(self, storage)

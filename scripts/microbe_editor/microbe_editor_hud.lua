@@ -57,6 +57,7 @@ function MicrobeEditorHudSystem:activate()
             button:enable()
         end
     end
+    global_newEditorMicrobe = true
 end
 
 function MicrobeEditorHudSystem:setActiveAction(actionName)
@@ -167,7 +168,6 @@ function removeClicked()
 end
 
 function playClicked()
-    global_newEditorMicrobe = true
     Engine:setCurrentGameState(GameState.MICROBE)
 end
 

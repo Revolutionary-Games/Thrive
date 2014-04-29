@@ -129,7 +129,7 @@ function MicrobeEditor:addProcessOrganelle(organelleType)
             local respiration = Process(0.5, 1.0, inputCompounds, outputCompounds)
             processOrganelle:addProcess(respiration)
             processOrganelle:addHex(0, 0)
-            processOrganelle:setColour(ColourValue(1, 0, 1, 0))
+            processOrganelle:setColour(ColourValue(0.8, 0.4, 1, 0))
             
             self.currentMicrobe:addOrganelle(q,r, processOrganelle)
             self.organelleCount = self.organelleCount + 1

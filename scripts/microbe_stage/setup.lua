@@ -96,11 +96,7 @@ local function createSpawnSystem()
         local rigidBody = RigidBodyComponent()
         rigidBody.properties.friction = 0.2
         rigidBody.properties.linearDamping = 0.8
-        rigidBody.properties.shape = CylinderShape(
-            CollisionShape.AXIS_X, 
-            0.4,
-            2.0
-        )
+        rigidBody.properties.shape = SphereShape(HEX_SIZE)
         rigidBody:setDynamicProperties(
             pos,
             Quaternion(Radian(Degree(math.random()*360)), Vector3(0, 0, 1)),
@@ -151,7 +147,7 @@ local function createSpawnSystem()
         forwardOrganelle:addHex(0, 0)
         forwardOrganelle:addHex(-1, 0)
         forwardOrganelle:addHex(1, -1)
-        forwardOrganelle:setColour(ColourValue(0, 0.7, 0.7, 1))
+        forwardOrganelle:setColour(ColourValue(0.9, 0.3, 0.7, 1))
         microbe:addOrganelle(0, 1, forwardOrganelle)
         -- Backward
         local backwardOrganelle = MovementOrganelle(
@@ -161,7 +157,7 @@ local function createSpawnSystem()
         backwardOrganelle:addHex(0, 0) 
         backwardOrganelle:addHex(-1, 1)
         backwardOrganelle:addHex(1, 0)
-        backwardOrganelle:setColour(ColourValue(0, 0.7, 0.7, 1))
+        backwardOrganelle:setColour(ColourValue(0.9, 0.3, 0.7, 1))
         microbe:addOrganelle(0, -2, backwardOrganelle)
         local storageOrganelle2 = StorageOrganelle(100.0)
         storageOrganelle2:addHex(0, 0)
@@ -180,7 +176,7 @@ local function createSpawnSystem()
         local respiration = Process(0.5, 1.0, inputCompounds, outputCompounds)
         processOrganelle1:addProcess(respiration)
         processOrganelle1:addHex(0, 0)
-        processOrganelle1:setColour(ColourValue(1, 0, 1, 0))
+        processOrganelle1:setColour(ColourValue(0.8, 0.4, 1, 0))
         microbe:addOrganelle(1, -1, processOrganelle1)
         microbe:storeCompound(CompoundRegistry.getCompoundId("atp"), 40, false)
         microbe.microbe:updateSafeAngles()
@@ -191,8 +187,9 @@ local function createSpawnSystem()
         powerupEntity = Entity()
         psceneNode = OgreSceneNodeComponent()
         psceneNode.transform.position = pos
+        psceneNode.transform.scale = Vector3(0.9, 0.9, 0.9)
         psceneNode.transform:touch()
-        psceneNode.meshName = "hex.mesh"
+        psceneNode.meshName = "AgentVacuole.mesh"
         powerupEntity:addComponent(psceneNode)
         
         local reactionHandler = CollisionComponent()
@@ -222,8 +219,8 @@ local function createSpawnSystem()
     -- (square dekaunit?)
     spawnSystem:addSpawnType(testFunction, 1/20^2, 30)
     spawnSystem:addSpawnType(testFunction2, 1/20^2, 30)
---    spawnSystem:addSpawnType(microbeSpawnFunction, 1/6400, 40)
-    spawnSystem:addSpawnType(toxinOrganelleSpawnFunction, 1/20000, 30)
+    spawnSystem:addSpawnType(microbeSpawnFunction, 1/6400, 40)
+    spawnSystem:addSpawnType(toxinOrganelleSpawnFunction, 1/18000, 30)
     return spawnSystem
 end
 
@@ -252,7 +249,7 @@ local function setupEmitter()
     entity:addComponent(reactionHandler)
     -- Scene node
     local sceneNode = OgreSceneNodeComponent()
-    sceneNode.meshName = "molecule.mesh"
+    sceneNode.meshName = "oxytoxy.mesh"
     entity:addComponent(sceneNode)
     -- Emitter glucose
     local glucoseEmitter = CompoundEmitterComponent()
@@ -273,7 +270,12 @@ local function setupEmitter()
 end
 
 function unlockToxin(entityId)
-    Entity(entityId):getComponent(LockedMapComponent.TYPE_ID):unlock("Toxin")
+    if Entity(entityId):getComponent(LockedMapComponent.TYPE_ID):isLocked("Toxin") then
+        local messagePanel = Engine:currentGameState():rootGUIWindow():getChild("MessagePanel")
+        messagePanel:getChild("MessageLabel"):  setText("Toxin Unlocked!")
+        messagePanel:show()
+        Entity(entityId):getComponent(LockedMapComponent.TYPE_ID):unlock("Toxin")
+    end
     return true
 end
 
@@ -285,24 +287,48 @@ function createStarterMicrobe(name, aiControlled)
     microbe:addOrganelle(0, 0, nucleusOrganelle)
     -- Forward
     local forwardOrganelle = MovementOrganelle(
-        Vector3(0.0, 50.0, 0.0),
+        Vector3(0.0, 15.0, 0.0),
         300
     )
     forwardOrganelle:addHex(0, 0)
-    forwardOrganelle:addHex(-1, 0)
-    forwardOrganelle:addHex(1, -1)
     forwardOrganelle:setColour(ColourValue(0.8, 0.3, 0.3, 1))
     microbe:addOrganelle(0, 1, forwardOrganelle)
+    forwardOrganelle = MovementOrganelle(
+        Vector3(0.0, 15.0, 0.0),
+        300
+    )
+    forwardOrganelle:addHex(0, 0)
+    forwardOrganelle:setColour(ColourValue(0.8, 0.3, 0.3, 1))
+    microbe:addOrganelle(-1, 1, forwardOrganelle)
+    forwardOrganelle = MovementOrganelle(
+        Vector3(0.0, 15.0, 0.0),
+        300
+    )
+    forwardOrganelle:addHex(0, 0)
+    forwardOrganelle:setColour(ColourValue(0.8, 0.3, 0.3, 1))
+    microbe:addOrganelle(1, 0, forwardOrganelle)
     -- Backward
     local backwardOrganelle = MovementOrganelle(
-        Vector3(0.0, -50.0, 0.0),
+        Vector3(0.0, -15.0, 0.0),
         300
     )
     backwardOrganelle:addHex(0, 0)
-    backwardOrganelle:addHex(-1, 1)
-    backwardOrganelle:addHex(1, 0)
     backwardOrganelle:setColour(ColourValue(0.8, 0.3, 0.3, 1))
     microbe:addOrganelle(0, -2, backwardOrganelle)
+    backwardOrganelle = MovementOrganelle(
+        Vector3(0.0, -15.0, 0.0),
+        300
+    )
+    backwardOrganelle:addHex(0, 0)
+    backwardOrganelle:setColour(ColourValue(0.8, 0.3, 0.3, 1))
+    microbe:addOrganelle(-1, -1, backwardOrganelle)
+    backwardOrganelle = MovementOrganelle(
+        Vector3(0.0, -15.0, 0.0),
+        300
+    )
+    backwardOrganelle:addHex(0, 0)
+    backwardOrganelle:setColour(ColourValue(0.8, 0.3, 0.3, 1))
+    microbe:addOrganelle(1, -2, backwardOrganelle)
     local storageOrganelle2 = StorageOrganelle(100.0)
     storageOrganelle2:addHex(0, 0)
     storageOrganelle2:setColour(ColourValue(0, 1, 0, 1))
@@ -321,7 +347,7 @@ function createStarterMicrobe(name, aiControlled)
     local respiration = Process(0.5, 1.0, inputCompounds, outputCompounds)
     processOrganelle1:addProcess(respiration)
     processOrganelle1:addHex(0, 0)
-    processOrganelle1:setColour(ColourValue(1, 0, 1, 0))
+    processOrganelle1:setColour(ColourValue(0.8, 0.4, 0.5, 0))
     microbe:addOrganelle(1, -1, processOrganelle1)
     microbe.microbe:updateSafeAngles()
     return microbe

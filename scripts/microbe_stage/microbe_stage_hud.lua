@@ -11,6 +11,17 @@ function HudSystem:__init()
     self.rootGuiWindow = nil
 end
 
+global_if_already_displayed = false
+
+function HudSystem:activate()
+    if not Entity(PLAYER_NAME):getComponent(LockedMapComponent.TYPE_ID):isLocked("Toxin") and not global_if_already_displayed then
+        local messagePanel = Engine:currentGameState():rootGUIWindow():getChild("MessagePanel")
+        messagePanel:getChild("MessageLabel"):setText("'E' Releases Toxin")
+        messagePanel:show()
+        global_if_already_displayed = true
+    end
+end
+
 function HudSystem:init(gameState)
     System.init(self, gameState)
     self.rootGuiWindow =  gameState:rootGUIWindow()
@@ -18,12 +29,18 @@ function HudSystem:init(gameState)
     self.hitpointsBar = self.rootGuiWindow:getChild("BottomSection"):getChild("LifeBar")
     self.hitpointsCountLabel = self.hitpointsBar:getChild("NumberLabel")
     local menuButton = self.rootGuiWindow:getChild("BottomSection"):getChild("MenuButton")
+    local helpButton = self.rootGuiWindow:getChild("BottomSection"):getChild("HelpButton")
     local editorButton = self.rootGuiWindow:getChild("MenuPanel"):getChild("EditorButton")
     local returnButton = self.rootGuiWindow:getChild("MenuPanel"):getChild("ReturnButton")
+    local returnButton2 = self.rootGuiWindow:getChild("HelpPanel"):getChild("ReturnButton")
+    local returnButton3 = self.rootGuiWindow:getChild("MessagePanel"):getChild("ReturnButton")
     local quitButton = self.rootGuiWindow:getChild("MenuPanel"):getChild("QuitButton")
     menuButton:registerEventHandler("Clicked", menuButtonClicked)
+    helpButton:registerEventHandler("Clicked", helpButtonClicked)
     editorButton:registerEventHandler("Clicked", editorButtonClicked)
     returnButton:registerEventHandler("Clicked", returnButtonClicked)
+    returnButton2:registerEventHandler("Clicked", returnButtonClicked)
+    returnButton3:registerEventHandler("Clicked", returnButtonClicked)
     quitButton:registerEventHandler("Clicked", quitButtonClicked)
     self.rootGuiWindow:getChild("MenuPanel"):getChild("MainMenuButton"):registerEventHandler("Clicked", menuMainMenuClicked)
 end
@@ -60,6 +77,17 @@ end
 --Event handlers
 function menuButtonClicked()
     Engine:currentGameState():rootGUIWindow():getChild("MenuPanel"):show()
+        
+    if Engine:currentGameState():name() == "microbe" then
+        Engine:currentGameState():rootGUIWindow():getChild("HelpPanel"):hide()
+    end
+end
+
+function helpButtonClicked()
+    Engine:currentGameState():rootGUIWindow():getChild("MenuPanel"):hide()
+    if Engine:currentGameState():name() == "microbe" then
+        Engine:currentGameState():rootGUIWindow():getChild("HelpPanel"):show()
+    end
 end
 
 function editorButtonClicked()
@@ -69,6 +97,10 @@ end
 
 function returnButtonClicked()
     Engine:currentGameState():rootGUIWindow():getChild("MenuPanel"):hide()
+    if Engine:currentGameState():name() == "microbe" then
+        Engine:currentGameState():rootGUIWindow():getChild("HelpPanel"):hide()
+        Engine:currentGameState():rootGUIWindow():getChild("MessagePanel"):hide()
+    end
 end
 
 function quitButtonClicked()
