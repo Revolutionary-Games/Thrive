@@ -7,16 +7,19 @@
 #include "engine/engine.h"
 #include "engine/entity_filter.h"
 #include "engine/game_state.h"
-#include "engine/serialization.h"
 #include "engine/rng.h"
+#include "engine/serialization.h"
 #include "game.h"
 #include "general/timed_life_system.h"
-#include <luabind/iterator_policy.hpp>
 #include "ogre/scene_node_system.h"
 #include "scripting/luabind.h"
+#include "util/make_unique.h"
+
+#include <luabind/iterator_policy.hpp>
 #include <OgreEntity.h>
 #include <OgreSceneManager.h>
-#include "util/make_unique.h"
+#include <stdexcept>
+
 
 using namespace thrive;
 
@@ -90,9 +93,11 @@ CompoundEmitterComponent::luaBindings() {
 void
 CompoundEmitterComponent::emitCompound(
     CompoundId compoundId,
-    double amount
+    double amount,
+    double angle,
+    double radius
 ) {
-    m_compoundEmissions.push_back(std::pair<CompoundId, int>(compoundId, amount));
+    m_compoundEmissions.push_back(std::tuple<CompoundId, double, double, double>(compoundId, amount, angle, radius));
 }
 
 
@@ -190,6 +195,7 @@ CompoundAbsorberComponent::luaBindings() {
         ]
         .def(constructor<>())
         .def("absorbedCompoundAmount", &CompoundAbsorberComponent::absorbedCompoundAmount)
+        .def("getAbsorbedCompounds", &CompoundAbsorberComponent::getAbsorbedCompounds, return_stl_iterator)
         .def("setAbsorbedCompoundAmount", &CompoundAbsorberComponent::setAbsorbedCompoundAmount)
         .def("setCanAbsorbCompound", &CompoundAbsorberComponent::setCanAbsorbCompound)
         .def("setAbsorbtionCapacity", &CompoundAbsorberComponent::setAbsorbtionCapacity)
@@ -210,6 +216,11 @@ CompoundAbsorberComponent::absorbedCompoundAmount(
     else {
         return 0.0f;
     }
+}
+
+BoostAbsorbedMapIterator
+CompoundAbsorberComponent::getAbsorbedCompounds() {
+    return m_absorbedCompounds | boost::adaptors::map_keys;
 }
 
 
@@ -410,15 +421,16 @@ emitCompound(
     CompoundId compoundId,
     double amount,
     Ogre::Vector3 emittorPosition,
+    double angle,
+    double radius,
     CompoundEmitterComponent* emitterComponent
 ) {
 
     Ogre::Vector3 emissionOffset(0,0,0);
 
-    Ogre::Degree emissionAngle{static_cast<Ogre::Real>(Game::instance().engine().rng().getDouble(
-        emitterComponent->m_minEmissionAngle.valueDegrees(),
-        emitterComponent->m_maxEmissionAngle.valueDegrees()
-    ))};
+
+    Ogre::Degree emissionAngle{static_cast<Ogre::Real>(angle)};
+
     Ogre::Real emissionSpeed = Game::instance().engine().rng().getDouble(
         emitterComponent->m_minInitialSpeed,
         emitterComponent->m_maxInitialSpeed
@@ -429,8 +441,8 @@ emitCompound(
         0.0
     );
     emissionOffset = Ogre::Vector3(
-        emitterComponent->m_emissionRadius * Ogre::Math::Sin(emissionAngle),
-        emitterComponent->m_emissionRadius * Ogre::Math::Cos(emissionAngle),
+        radius * Ogre::Math::Sin(emissionAngle),
+        radius * Ogre::Math::Cos(emissionAngle),
         0.0
     );
     EntityId compoundEntityId = Game::instance().engine().currentGameState()->entityManager().generateNewId();
@@ -483,7 +495,7 @@ CompoundEmitterSystem::update(int milliseconds) {
 
         for (auto emission : emitterComponent->m_compoundEmissions)
         {
-            emitCompound(std::get<0>(emission), std::get<1>(emission), sceneNodeComponent->m_transform.position, emitterComponent);
+            emitCompound(std::get<0>(emission), std::get<1>(emission), sceneNodeComponent->m_transform.position, std::get<2>(emission), std::get<3>(emission), emitterComponent);
         }
         emitterComponent->m_compoundEmissions.clear();
         if (timedEmitterComponent)
@@ -495,7 +507,11 @@ CompoundEmitterSystem::update(int milliseconds) {
             ) {
                 timedEmitterComponent->m_timeSinceLastEmission -= timedEmitterComponent->m_emitInterval;
                 for (unsigned int i = 0; i < timedEmitterComponent->m_particlesPerEmission; ++i) {
-                     emitCompound(timedEmitterComponent->m_compoundId, timedEmitterComponent->m_potencyPerParticle, sceneNodeComponent->m_transform.position, emitterComponent);
+                    double angle = Game::instance().engine().rng().getDouble(
+                        emitterComponent->m_minEmissionAngle.valueDegrees(),
+                        emitterComponent->m_maxEmissionAngle.valueDegrees()
+                    );
+                    emitCompound(timedEmitterComponent->m_compoundId, timedEmitterComponent->m_potencyPerParticle, sceneNodeComponent->m_transform.position, angle,  emitterComponent->m_emissionRadius, emitterComponent);
                 }
             }
         }
@@ -579,6 +595,7 @@ CompoundAbsorberSystem::update(int) {
         EntityId entityA = collision.entityId1;
         EntityId entityB = collision.entityId2;
         EntityId compoundEntity = NULL_ENTITY;
+        EntityId absorberEntity = NULL_ENTITY;
 
         CompoundAbsorberComponent* absorber = nullptr;
         CompoundComponent* compound = nullptr;
@@ -587,6 +604,7 @@ CompoundAbsorberSystem::update(int) {
             m_impl->m_absorbers.containsEntity(entityB)
         ) {
             compoundEntity = entityA;
+            absorberEntity = entityB;
             compound = std::get<0>(
                 m_impl->m_compounds.entities().at(entityA)
             );
@@ -599,6 +617,7 @@ CompoundAbsorberSystem::update(int) {
             m_impl->m_compounds.containsEntity(entityB)
         ) {
             compoundEntity = entityB;
+            absorberEntity = entityA;
             absorber = std::get<0>(
                 m_impl->m_absorbers.entities().at(entityA)
             );
@@ -606,12 +625,16 @@ CompoundAbsorberSystem::update(int) {
                 m_impl->m_compounds.entities().at(entityB)
             );
         }
-        if (compound and absorber and absorber->m_enabled == true and absorber->m_absorbtionCapacity >= compound->m_potency * CompoundRegistry::getCompoundUnitVolume(compound->m_compoundId) and
-                                        absorber->canAbsorbCompound(compound->m_compoundId)) {
-            absorber->m_absorbedCompounds[compound->m_compoundId] += compound->m_potency;
-            this->entityManager()->removeEntity(compoundEntity);
+        if (compound and absorber and absorber->m_enabled == true and absorber->canAbsorbCompound(compound->m_compoundId)) {
+            if (CompoundRegistry::isAgentType(compound->m_compoundId)){
+                (*CompoundRegistry::getAgentEffect(compound->m_compoundId))(absorberEntity, compound->m_potency);
+                this->entityManager()->removeEntity(compoundEntity);
+            }
+            else if(absorber->m_absorbtionCapacity >= compound->m_potency * CompoundRegistry::getCompoundUnitVolume(compound->m_compoundId)){
+                absorber->m_absorbedCompounds[compound->m_compoundId] += compound->m_potency;
+                this->entityManager()->removeEntity(compoundEntity);
+            }
         }
-
     }
 
     m_impl->m_compoundCollisions.clearCollisions();
@@ -629,13 +652,24 @@ CompoundRegistry::luaBindings() {
         .scope
         [
             def("registerCompoundType", &CompoundRegistry::registerCompoundType),
+            def("registerAgentType",
+                static_cast<CompoundId (*)(
+                    const std::string&,
+                    const std::string&,
+                    const std::string&,
+                    double,
+                    int,
+                    const luabind::object&
+                )>(&CompoundRegistry::registerAgentType)
+            ),
             def("getCompoundDisplayName", &CompoundRegistry::getCompoundDisplayName),
             def("getCompoundInternalName", &CompoundRegistry::getCompoundInternalName),
 			def("getCompoundMeshName", &CompoundRegistry::getCompoundMeshName),
             def("getCompoundUnitVolume", &CompoundRegistry::getCompoundUnitVolume),
             def("getCompoundId", &CompoundRegistry::getCompoundId),
             def("getCompoundList", &CompoundRegistry::getCompoundList, return_stl_iterator),
-            def("getCompoundMeshScale", &CompoundRegistry::getCompoundMeshScale)
+            def("getCompoundMeshScale", &CompoundRegistry::getCompoundMeshScale),
+            def("getAgentEffect", &CompoundRegistry::getAgentEffect)
         ]
     ;
 }
@@ -649,6 +683,8 @@ namespace {
         int unitVolume;
 		std::string meshName;
         double meshScale;
+        bool isAgent;
+        std::function<bool(EntityId, double)>* effect;
     };
 }
 
@@ -671,6 +707,56 @@ CompoundRegistry::registerCompoundType(
     double meshScale,
     int unitVolume
 ) {
+
+/*    auto effectLambda = [](EntityId) -> int
+        {
+            return 1;
+        };*/
+    //Call overload
+    return registerAgentType(internalName,
+                         displayName,
+                         meshName,
+                         meshScale,
+                         unitVolume,
+                         static_cast<std::function<bool(EntityId, double)>*>(nullptr));
+}
+
+
+//Luabind version
+CompoundId
+CompoundRegistry::registerAgentType(
+    const std::string& internalName,
+    const std::string& displayName,
+	const std::string& meshName,
+    double meshScale,
+    int unitVolume,
+    const luabind::object& effect
+) {
+    auto effectLambda = new std::function<bool(EntityId, double)>(
+        [effect](EntityId entityId, double potency) -> bool
+        {
+            luabind::call_function<void>(effect, entityId, potency);
+            return true;
+        });
+    //Call overload
+    return registerAgentType(
+        internalName,
+         displayName,
+         meshName,
+         meshScale,
+         unitVolume,
+         effectLambda);
+}
+
+CompoundId
+CompoundRegistry::registerAgentType(
+    const std::string& internalName,
+    const std::string& displayName,
+	const std::string& meshName,
+    double meshScale,
+    int unitVolume,
+    std::function<bool(EntityId, double)>* effect
+) {
     if (compoundRegistryMap().count(internalName) == 0)
     {
         CompoundRegistryEntry entry;
@@ -679,6 +765,8 @@ CompoundRegistry::registerCompoundType(
 		entry.meshName = meshName;
         entry.meshScale = meshScale;
         entry.unitVolume = unitVolume;
+        entry.effect = effect;
+        entry.isAgent = (effect != nullptr);
         compoundRegistry().push_back(entry);
         compoundRegistryMap().emplace(std::string(internalName), compoundRegistry().size());
         return compoundRegistry().size();
@@ -751,8 +839,27 @@ CompoundRegistry::getCompoundMeshScale(
         throw std::out_of_range("Index of compound does not exist.");
     return compoundRegistry()[compoundId-1].meshScale;
 }
-const boost::range_detail::select_second_mutable_range<std::unordered_map<std::string, CompoundId>>
+const BoostCompoundMapIterator
 CompoundRegistry::getCompoundList(
 ) {
     return compoundRegistryMap() | boost::adaptors::map_values;
+}
+
+std::function<bool(EntityId, double)>*
+CompoundRegistry::getAgentEffect(
+    CompoundId id
+) {
+    if (static_cast<std::size_t>(id) > compoundRegistry().size())
+        throw std::out_of_range("Index of compound does not exist.");
+    return compoundRegistry()[id-1].effect;
+}
+
+
+bool
+CompoundRegistry::isAgentType(
+    CompoundId id
+) {
+    if (static_cast<std::size_t>(id) > compoundRegistry().size())
+        throw std::out_of_range("Index of compound does not exist.");
+    return compoundRegistry()[id-1].isAgent;
 }

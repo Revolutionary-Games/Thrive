@@ -7,6 +7,7 @@
 #include "engine/touchable.h"
 #include "scripting/luabind.h"
 
+#include <luabind/object.hpp>
 #include <memory>
 #include <OgreCommon.h>
 #include <OgreMath.h>
@@ -21,6 +22,8 @@ class scope;
 namespace thrive {
 
 using CompoundId = uint16_t;
+using BoostCompoundMapIterator = boost::range_detail::select_second_mutable_range<std::unordered_map<std::string, CompoundId>>;
+using BoostAbsorbedMapIterator = boost::range_detail::select_first_range<std::unordered_map<CompoundId, float>>;
 
 static const CompoundId NULL_COMPOUND = 0;
 
@@ -28,7 +31,8 @@ CompoundId
 generateCompoundId();
 
 /**
-* @brief Component for entities that act as compound particles
+* @brief Component for entities that act as compound particles or agent particles
+*        Note that this class is strongly linked with CompoundRegistry.
 */
 class CompoundComponent : public Component {
     COMPONENT(Compound)
@@ -151,7 +155,9 @@ public:
     void
     emitCompound(
         CompoundId compoundId,
-        double amount
+        double amount,
+        double angle,
+        double radius
     );
 
     void
@@ -165,7 +171,7 @@ public:
 private:
 
     friend class CompoundEmitterSystem;
-    std::vector<std::pair<CompoundId, int>> m_compoundEmissions;
+    std::vector<std::tuple<CompoundId, double, double, double>> m_compoundEmissions;
 
 };
 
@@ -242,6 +248,7 @@ public:
     *
     * Exposes:
     * - CompoundAbsorberComponent::absorbedCompoundAmount
+    * - CompoundAbsorberComponent::getAbsorbedCompounds
     * - CompoundAbsorberComponent::canAbsorbCompound
     * - CompoundAbsorberComponent::setCanAbsorbCompound
     * - CompoundAbsorberComponent::setAbsorbtionCapacity
@@ -343,6 +350,9 @@ public:
         CompoundId id,
         float amount
     );
+
+    BoostAbsorbedMapIterator
+    getAbsorbedCompounds();
 
     /**
     * @brief Sets whether an compound can be absorbed
@@ -531,6 +541,7 @@ public:
     *
     * Exposes:
     * - CompoundRegistry::registerCompoundType
+    * - CompoundRegistry::registerAgentType
     * - CompoundRegistry::getCompoundDisplayName
     * - CompoundRegistry::getCompoundInternalName
     * - CompoundRegistry::getCompoundUnitVolume
@@ -571,6 +582,76 @@ public:
         const std::string& meshName,
         double meshScale,
 		int unitVolume
+    );
+
+    /**
+    * @brief Registers a new agent type
+    *
+    * @param internalName
+    *   The name to be used internally for reference across game instances
+    *
+    * @param displayName
+    *   Name to be displayed to users
+    *
+    * @param meshName
+    *   Name of the model to use for this compound
+    *
+    * @param meshScale
+    *   The relative size of the mesh
+    *
+	* @param unitVolume
+    *   Size of the compound when stored and transported
+	*
+	* @param effect
+	*   A function pointer for the action to be performed on the absorbing entity.
+	*   This function should take the id of the recieving entity as parameter and return true.
+	*
+    * @return
+    *   Id of new agent
+    */
+    static CompoundId
+    registerAgentType(
+        const std::string& internalName,
+        const std::string& displayName,
+        const std::string& meshName,
+        double meshScale,
+        int unitVolume,
+        std::function<bool(EntityId, double)>* effect
+    );
+
+    /**
+    * @brief Registers a new agent type
+    *
+    * @param internalName
+    *   The name to be used internally for reference across game instances
+    *
+    * @param displayName
+    *   Name to be displayed to users
+    *
+    * @param meshName
+    *   Name of the model to use for this agent
+    *
+    * @param meshScale
+    *   The relative size of the mesh
+    *
+	* @param unitVolume
+    *   Size of the compound when stored and transported
+	*
+	* @param effect
+	*   A lua function for the action to be performed on the absorbing entity.
+	*   This function should take the id of the recieving entity as parameter and return true.
+	*
+    * @return
+    *   Id of new agent
+    */
+    static CompoundId
+    registerAgentType(
+        const std::string& internalName,
+        const std::string& displayName,
+        const std::string& meshName,
+        double meshScale,
+        int unitVolume,
+        const luabind::object& effect
     );
 
     /**
@@ -635,7 +716,7 @@ public:
     * @return
     *   Array of all registered compound IDs
     */
-    static const boost::range_detail::select_second_mutable_range<std::unordered_map<std::string, CompoundId>>
+    static const BoostCompoundMapIterator
     getCompoundList(
     );
 
@@ -657,16 +738,46 @@ public:
     /**
     * @brief Obtains the scale of the corresponding mesh
     *
-    * @param agentId
-    *   The id of the agent to acquire the mesh scale from
+    * @param compoundId
+    *   The id of the compound to acquire the mesh scale from
     *
     * @return
     *   A double equal to the scale of the model
-    *   If agent is not registered an out_of_range exception is thrown.
+    *   If compound is not registered an out_of_range exception is thrown.
     */
     static double
     getCompoundMeshScale(
         CompoundId compoundId
+    );
+
+    /**
+    * @brief Obtains the scale of the corresponding mesh
+    *
+    * @param compoundId
+    *   The id of the compound to acquire the mesh scale from
+    *
+    * @return
+    *   A double equal to the scale of the model
+    *   If compound is not registered an out_of_range exception is thrown.
+    */
+    static std::function<bool(EntityId, double)>*
+    getAgentEffect(
+        CompoundId id
+    );
+
+    /**
+    * @brief Obtains the scale of the corresponding mesh
+    *
+    * @param compoundId
+    *   The id of the compound to check if its an agent
+    *
+    * @return
+    *   True if compound is an agent, false otherwise
+    *   If compound is not registered an out_of_range exception is thrown.
+    */
+    static bool
+    isAgentType(
+        CompoundId id
     );
 
     CompoundRegistry() = delete;

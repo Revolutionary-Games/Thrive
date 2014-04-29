@@ -206,7 +206,6 @@ function Organelle:update(microbe, milliseconds)
     if self._needsColourUpdate then
         self:_updateHexColours()
     end
-    -- Nothing
 end
 
 
