@@ -17,7 +17,7 @@ class EntityManager;
 * callbacks for when a component has been added or removed (mainly used by
 * the EntityFilter).
 *
-* Component collections are pretty much read-only for anything but the 
+* Component collections are pretty much read-only for anything but the
 * EntityManager. Use the manager to actually add or remove components.
 */
 class ComponentCollection {
@@ -68,8 +68,8 @@ public:
     *
     * @param entityId The entity the component belongs to
     *
-    * @return 
-    *   A non-owning pointer to the component or \c nullptr if no such 
+    * @return
+    *   A non-owning pointer to the component or \c nullptr if no such
     *   component exists
     *
     */
@@ -86,7 +86,7 @@ public:
     * @param onComponentRemoved
     *   Called when a component has been removed
     *
-    * @return 
+    * @return
     *   An identifier with which you can remove the callbacks.
     *
     * @see unregisterChangeCallbacks
@@ -142,8 +142,8 @@ private:
     * @param component
     *   The component to add
     *
-    * @return 
-    *   \c true if the component is new, i.e. does not overwrite an existing 
+    * @return
+    *   \c true if the component is new, i.e. does not overwrite an existing
     *   one, \c false otherwise
     */
     bool
@@ -160,7 +160,7 @@ private:
     * @param entityId
     *   The entity the component belongs to
     *
-    * @return 
+    * @return
     *   \c true if a component was removed, \c false if no component for
     *   \a entityId was found.
     */
@@ -169,9 +169,25 @@ private:
         EntityId entityId
     );
 
+    /**
+    * @brief Removes a component from this collection returning an owning pointer instead of destroying it
+    *
+    * Does not call any callbacks
+    *
+    * @param entityId
+    *   The entity the component belongs to
+    *
+    * @return
+    *   A unique_ptr containing the component
+    */
+    std::unique_ptr<Component>
+    extractComponent(
+        EntityId entityId
+    );
+
     struct Implementation;
     std::unique_ptr<Implementation> m_impl;
-    
+
 };
 
 }

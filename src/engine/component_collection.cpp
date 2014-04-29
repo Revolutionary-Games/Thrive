@@ -2,9 +2,10 @@
 
 #include "util/contains.h"
 
-#include <unordered_set>
-
 #include <iostream>
+#include <unordered_set>
+#include <stdexcept>
+
 
 using namespace thrive;
 
@@ -17,7 +18,7 @@ struct ComponentCollection::Implementation {
     }
 
     std::unordered_map<
-        unsigned int, 
+        unsigned int,
         std::pair<ChangeCallback, ChangeCallback>
     > m_changeCallbacks;
 
@@ -64,7 +65,7 @@ ComponentCollection::addComponent(
     // Insert new component
     Component* rawComponent = component.get();
     m_impl->m_components.insert(std::make_pair(
-        entityId, 
+        entityId,
         std::move(component)
     ));
     for (auto& value : m_impl->m_changeCallbacks) {
@@ -144,6 +145,22 @@ ComponentCollection::removeComponent(
         return true;
     }
     return false;
+}
+
+std::unique_ptr<Component>
+ComponentCollection::extractComponent(
+    EntityId entityId
+) {
+    auto iter = m_impl->m_components.find(entityId);
+    if (iter != m_impl->m_components.end()) {
+        iter->second->setOwner(NULL_ENTITY);
+        std::unique_ptr<Component> component = std::move(iter->second);
+        m_impl->m_components.erase(iter);
+        return std::move(component);
+    }
+    else{
+        throw std::invalid_argument("No component for the provided entityId existed.");
+    }
 }
 
 

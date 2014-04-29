@@ -34,10 +34,10 @@ function HudSystem:update(milliseconds)
     local playerMicrobe = Microbe(player)
 
     self.hitpointsBar:progressbarSetProgress(playerMicrobe.microbe.hitpoints/playerMicrobe.microbe.maxHitpoints)
-    self.hitpointsCountLabel:setText(""..playerMicrobe.microbe.hitpoints)
+    self.hitpointsCountLabel:setText("".. math.floor(playerMicrobe.microbe.hitpoints))
     
     for compoundID in CompoundRegistry.getCompoundList() do
-        local compoundsString = string.format("%s - %d", CompoundRegistry.getCompoundDisplayName(compoundID), playerMicrobe:getCompoundAmount(compoundID)+0.5)
+        local compoundsString = string.format("%s - %d", CompoundRegistry.getCompoundDisplayName(compoundID), playerMicrobe:getCompoundAmount(compoundID))
         if self.compoundListItems[compoundID] == nil then
             self.compoundListItems[compoundID] = ListboxItem(compoundsString)
             self.compoundListItems[compoundID]:setTextColours(0.0, 0.25, 0.0)
@@ -52,6 +52,8 @@ function HudSystem:update(milliseconds)
         menuButtonClicked()
     elseif  Engine.keyboard:wasKeyPressed(Keyboard.KC_F2) then
         editorButtonClicked()
+    elseif  Engine.keyboard:wasKeyPressed(Keyboard.KC_E) then
+        playerMicrobe:emitAgent(CompoundRegistry.getCompoundId("oxytoxy"), 3)
     end
 end
 

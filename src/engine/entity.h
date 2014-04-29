@@ -41,6 +41,8 @@ public:
     * - \c addComponent(Component): addComponent(std::unique_ptr<Component>)
     * - \c getComponent(number): getComponent(ComponentTypeId)
     * - \c removeComponent(number): removeComponent(ComponentTypeId)
+    * - \c transfer(gameState) : transfer(gameState)
+    * - \c setVolatile(bool) : setVolatile(bool)
     * - \c stealName(string): stealName(name)
     *
     * Exposes the following \b operators:

@@ -6,6 +6,7 @@
 
 #include <atomic>
 #include <boost/thread.hpp>
+#include "game_state.h"
 #include <unordered_map>
 #include <unordered_set>
 
@@ -39,6 +40,8 @@ struct EntityManager::Implementation {
     std::unordered_map<EntityId, uint16_t> m_entities;
 
     std::list<EntityId> m_entitiesToRemove;
+
+    std::list<std::tuple<EntityId, EntityId, GameState*>> m_entitiesToTransfer;
 
     std::unordered_map<std::string, EntityId> m_namedIds;
 
@@ -168,6 +171,45 @@ EntityManager::stealName(
 ){
     m_impl->m_namedIds[name] = entityId;
 }
+
+
+
+
+EntityId
+EntityManager::transferEntity(
+    EntityId entityId,
+    GameState* gameState
+) {
+    //Get a new id, this initial id will not be used and therefore wasted if we find a name mapping.
+    EntityId newEntity = gameState->entityManager().generateNewId();
+    // Rough way of checking for a name mapping. But performance should not matter much here.
+    for (auto& pair : m_impl->m_namedIds){
+        if (pair.second == entityId){
+            newEntity = gameState->entityManager().getNamedId(pair.first);
+            break;
+        }
+    }
+    m_impl->m_entitiesToTransfer.emplace_back(std::tuple<EntityId, EntityId, GameState*>(entityId, newEntity, gameState));
+    return newEntity;
+}
+
+
+void
+EntityManager::processTransfers() {
+    for (auto& tuple : m_impl->m_entitiesToTransfer){
+        for (const auto& pair : m_impl->m_collections) {
+            if (pair.second->get(std::get<0>(tuple)) != nullptr){
+                std::get<2>(tuple)->entityManager().addComponent(std::get<1>(tuple), pair.second->extractComponent(std::get<0>(tuple)));
+                auto iter = m_impl->m_entities.find(std::get<0>(tuple));
+                iter->second -= 1;
+                if (iter->second == 0) {
+                    m_impl->m_entities.erase(iter);
+                }
+            }
+        }
+    }
+}
+
 
 std::unordered_set<ComponentTypeId>
 EntityManager::nonEmptyCollections() const {
