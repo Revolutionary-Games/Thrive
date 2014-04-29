@@ -220,7 +220,7 @@ local function createSpawnSystem()
     spawnSystem:addSpawnType(testFunction, 1/20^2, 30)
     spawnSystem:addSpawnType(testFunction2, 1/20^2, 30)
     spawnSystem:addSpawnType(microbeSpawnFunction, 1/6400, 40)
-    spawnSystem:addSpawnType(toxinOrganelleSpawnFunction, 1/18000, 30)
+    spawnSystem:addSpawnType(toxinOrganelleSpawnFunction, 1/1800, 30)
     return spawnSystem
 end
 
@@ -287,21 +287,21 @@ function createStarterMicrobe(name, aiControlled)
     microbe:addOrganelle(0, 0, nucleusOrganelle)
     -- Forward
     local forwardOrganelle = MovementOrganelle(
-        Vector3(0.0, 15.0, 0.0),
+        Vector3(0.0, -15.0, 0.0),
         300
     )
     forwardOrganelle:addHex(0, 0)
     forwardOrganelle:setColour(ColourValue(0.8, 0.3, 0.3, 1))
     microbe:addOrganelle(0, 1, forwardOrganelle)
     forwardOrganelle = MovementOrganelle(
-        Vector3(0.0, 15.0, 0.0),
+        Vector3(0.0, -15.0, 0.0),
         300
     )
     forwardOrganelle:addHex(0, 0)
     forwardOrganelle:setColour(ColourValue(0.8, 0.3, 0.3, 1))
     microbe:addOrganelle(-1, 1, forwardOrganelle)
     forwardOrganelle = MovementOrganelle(
-        Vector3(0.0, 15.0, 0.0),
+        Vector3(0.0, -15.0, 0.0),
         300
     )
     forwardOrganelle:addHex(0, 0)
@@ -309,21 +309,21 @@ function createStarterMicrobe(name, aiControlled)
     microbe:addOrganelle(1, 0, forwardOrganelle)
     -- Backward
     local backwardOrganelle = MovementOrganelle(
-        Vector3(0.0, -15.0, 0.0),
+        Vector3(0.0, 15.0, 0.0),
         300
     )
     backwardOrganelle:addHex(0, 0)
     backwardOrganelle:setColour(ColourValue(0.8, 0.3, 0.3, 1))
     microbe:addOrganelle(0, -2, backwardOrganelle)
     backwardOrganelle = MovementOrganelle(
-        Vector3(0.0, -15.0, 0.0),
+        Vector3(0.0, 15.0, 0.0),
         300
     )
     backwardOrganelle:addHex(0, 0)
     backwardOrganelle:setColour(ColourValue(0.8, 0.3, 0.3, 1))
     microbe:addOrganelle(-1, -1, backwardOrganelle)
     backwardOrganelle = MovementOrganelle(
-        Vector3(0.0, -15.0, 0.0),
+        Vector3(0.0, 15.0, 0.0),
         300
     )
     backwardOrganelle:addHex(0, 0)
