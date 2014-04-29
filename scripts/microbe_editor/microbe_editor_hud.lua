@@ -148,13 +148,15 @@ function vacuoleClicked()
 end
 
 function toxinClicked()
-    for typeName,button in pairs(global_activeMicrobeEditorHudSystem.organelleButtons) do
-        if not global_activeMicrobeEditorHudSystem.editor.lockedMap:isLocked(typeName) then
-            button:enable()
+    if not global_activeMicrobeEditorHudSystem.editor.lockedMap:isLocked("Toxin") then
+        for typeName,button in pairs(global_activeMicrobeEditorHudSystem.organelleButtons) do
+            if not global_activeMicrobeEditorHudSystem.editor.lockedMap:isLocked(typeName) then
+                button:enable()
+            end
         end
+        global_activeMicrobeEditorHudSystem.organelleButtons["Toxin"]:disable()
+        global_activeMicrobeEditorHudSystem:setActiveAction("toxin")
     end
-    global_activeMicrobeEditorHudSystem.organelleButtons["Toxin"]:disable()
-    global_activeMicrobeEditorHudSystem:setActiveAction("toxin")
 end
 
 function removeClicked()
