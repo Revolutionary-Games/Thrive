@@ -34,6 +34,7 @@ CollisionFilter::luaBindings() {
         .def("shutdown", &CollisionFilter::shutdown)
         .def("collisions", &CollisionFilter::collisions, return_stl_iterator)
         .def("clearCollisions", &CollisionFilter::clearCollisions)
+        .def("removeCollision", &CollisionFilter::removeCollision)
     ;
 }
 
@@ -82,6 +83,10 @@ CollisionFilter::addCollision(
 
 }
 
+void
+CollisionFilter::removeCollision(const Collision& collision){
+    m_impl->m_collisions.erase(CollisionId(collision.entityId1, collision.entityId2));
+}
 
 typename CollisionFilter::CollisionIterator::iterator
 CollisionFilter::begin() const {

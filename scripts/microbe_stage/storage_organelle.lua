@@ -5,9 +5,6 @@ class 'StorageOrganelle' (Organelle)
 
 -- Constructor
 --
--- @param bandwidth
--- The rate of transfer of this organelle
---
 -- @param capacity
 -- The maximum stored amount
 function StorageOrganelle:__init(capacity)
@@ -37,9 +34,5 @@ end
 function StorageOrganelle:onRemovedFromMicrobe(microbe, q, r)
     Organelle.onRemovedFromMicrobe(self, microbe, q, r)
     microbe:removeStorageOrganelle(self)
-end
-
-function StorageOrganelle:update(microbe, milliseconds)
-    Organelle.update(self, microbe, milliseconds)
 end
 

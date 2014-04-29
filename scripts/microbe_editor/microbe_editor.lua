@@ -14,16 +14,37 @@ function MicrobeEditor:__init(hudSystem)
     self.activeActionName = nil
     self.hudSystem = hudSystem
     self.nextMicrobeEntity = nil
+    self.lockedMap = nil
     self.placementFunctions = {["nucleus"] = MicrobeEditor.createNewMicrobe,
                                ["flagelium"] = MicrobeEditor.addMovementOrganelle,
                                ["mitochondria"] = MicrobeEditor.addProcessOrganelle,
+                               ["toxin"] = MicrobeEditor.addAgentVacuole,
+                               
                                ["vacuole"] = MicrobeEditor.addStorageOrganelle,
                                ["remove"] = MicrobeEditor.removeOrganelle}
 end
+
 function MicrobeEditor:activate()
     playerEntity = Entity(PLAYER_NAME, GameState.MICROBE)
+    self.lockedMap = playerEntity:getComponent(LockedMapComponent.TYPE_ID)
+    
     self.nextMicrobeEntity = playerEntity:transfer(GameState.MICROBE_EDITOR)
     self.nextMicrobeEntity:stealName("working_microbe")
+end
+
+function MicrobeEditor:update(milliseconds)
+    if self.nextMicrobeEntity ~= nil then
+        self.currentMicrobe = Microbe(self.nextMicrobeEntity)
+        self.currentMicrobe.sceneNode.transform.orientation = Quaternion(Radian(Degree(180)), Vector3(0, 0, 1))-- Orientation
+        self.currentMicrobe.sceneNode.transform.position = Vector3(0, 0, 0)
+        self.currentMicrobe.sceneNode.transform:touch()
+        self.nextMicrobeEntity = nil
+    end
+     for _, organelle in pairs(self.currentMicrobe.microbe.organelles) do
+        if organelle._needsColourUpdate then
+            organelle:_updateHexColours()
+        end
+    end
 end
 
 function MicrobeEditor:performLocationAction()
@@ -48,7 +69,6 @@ function MicrobeEditor:getMouseHex()
 end
 
 function MicrobeEditor:removeOrganelle()
-    self.currentMicrobe.entity:printAddress()
     local q, r = self:getMouseHex()
     if not (q == 0 and r == 0) then -- Don't remove nucleus
         local organelle = self.currentMicrobe:getOrganelleAt(q,r)
@@ -94,6 +114,7 @@ function MicrobeEditor:addMovementOrganelle(organelleType)
         self.currentMicrobe:addOrganelle(q,r, movementOrganelle)
         self.organelleCount = self.organelleCount + 1
     end
+   
 end
 
 function MicrobeEditor:addProcessOrganelle(organelleType)
@@ -111,6 +132,24 @@ function MicrobeEditor:addProcessOrganelle(organelleType)
             processOrganelle:setColour(ColourValue(1, 0, 1, 0))
             
             self.currentMicrobe:addOrganelle(q,r, processOrganelle)
+            self.organelleCount = self.organelleCount + 1
+        end
+    end
+    self.organelleCount = self.organelleCount + 1
+end
+
+function MicrobeEditor:addAgentVacuole(organelleType)
+    if organelleType == "toxin" then         
+        local q, r = self:getMouseHex()
+        if self.currentMicrobe:getOrganelleAt(q, r) == nil then
+        
+            inputCompounds = {[CompoundRegistry.getCompoundId("oxygen")] = 3}
+            outputCompounds = {[CompoundRegistry.getCompoundId("oxytoxy")] = 1}
+            local oxytoxyproduction = Process(0.1, 1.0, inputCompounds, outputCompounds)
+            local agentVacuole = AgentVacuole(CompoundRegistry.getCompoundId("oxytoxy"), oxytoxyproduction)
+            agentVacuole:addHex(0, 0)
+            agentVacuole:setColour(ColourValue(0, 1, 1, 0))
+            self.currentMicrobe:addOrganelle(q, r, agentVacuole)
             self.organelleCount = self.organelleCount + 1
         end
     end

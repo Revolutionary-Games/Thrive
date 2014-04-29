@@ -54,7 +54,7 @@ local function createMicrobeEditor(name)
     return Engine:createGameState(
         name,
         {   
-            MicrobeSystem(),
+      --      MicrobeSystem(),
             MicrobeEditorHudSystem(),
             -- Graphics
             OgreAddSceneNodeSystem(),
@@ -66,7 +66,7 @@ local function createMicrobeEditor(name)
             OgreRemoveSceneNodeSystem(),
             RenderSystem(),
             -- Other
-           -- SoundSourceSystem(),
+            SoundSourceSystem(),
         },
         function()
             setupBackground()

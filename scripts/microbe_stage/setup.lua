@@ -32,13 +32,17 @@ local function setupCamera()
     viewportEntity:addComponent(viewportComponent)
 end
 
+function oxytoxyEffect(entityId, potency)
+    Microbe(Entity(entityId)):damage(potency*10)
+end
+
 local function setupCompounds()
     CompoundRegistry.registerCompoundType("atp", "ATP", "atp.mesh", 0.1, 1)
     CompoundRegistry.registerCompoundType("oxygen", "Oxygen", "molecule.mesh", 0.3, 1 )    
     CompoundRegistry.registerCompoundType("nitrate", "Nitrate", "molecule.mesh", 0.3, 1)
     CompoundRegistry.registerCompoundType("glucose", "Glucose", "glucose.mesh", 0.3, 1)
     CompoundRegistry.registerCompoundType("co2", "CO2", "co2.mesh", 0.16, 1)
-    CompoundRegistry.registerCompoundType("oxytoxy", "OxyToxy NT", "oxytoxy.mesh", 0.3, 1)
+    CompoundRegistry.registerAgentType("oxytoxy", "OxyToxy NT", "oxytoxy.mesh", 0.3, 1, oxytoxyEffect)
 end
 
 local function createSpawnSystem()
@@ -107,7 +111,7 @@ local function createSpawnSystem()
         entity:addComponent(rigidBody)
         -- Scene node
         local sceneNode = OgreSceneNodeComponent()
-        sceneNode.meshName = "molecule.mesh"
+        sceneNode.meshName = "glucose.mesh"
         entity:addComponent(sceneNode)
         -- Emitter glucose
         local glucoseEmitter = CompoundEmitterComponent()
@@ -179,14 +183,47 @@ local function createSpawnSystem()
         processOrganelle1:setColour(ColourValue(1, 0, 1, 0))
         microbe:addOrganelle(1, -1, processOrganelle1)
         microbe:storeCompound(CompoundRegistry.getCompoundId("atp"), 40, false)
+        microbe.microbe:updateSafeAngles()
         return microbe
+    end
+    
+    local toxinOrganelleSpawnFunction = function(pos) 
+        powerupEntity = Entity()
+        psceneNode = OgreSceneNodeComponent()
+        psceneNode.transform.position = pos
+        psceneNode.transform:touch()
+        psceneNode.meshName = "hex.mesh"
+        powerupEntity:addComponent(psceneNode)
+        
+        local reactionHandler = CollisionComponent()
+        reactionHandler:addCollisionGroup("powerup")
+        powerupEntity:addComponent(reactionHandler)
+       
+        local rigidBody = RigidBodyComponent()
+        rigidBody.properties.friction = 0.2
+        rigidBody.properties.linearDamping = 0.8
+        rigidBody.properties.shape = SphereShape(HEX_SIZE)
+        rigidBody:setDynamicProperties(
+            pos,
+            Quaternion(Radian(Degree(math.random()*360)), Vector3(0, 0, 1)),
+            Vector3(0, 0, 0),
+            Vector3(0, 0, 0)
+        )
+        rigidBody.properties:touch()
+        powerupEntity:addComponent(rigidBody)
+        
+        local powerupComponent = PowerupComponent()
+        powerupComponent:setEffect(unlockToxin)
+        powerupEntity:addComponent(powerupComponent)
+        return powerupEntity
     end
     
     --Spawn one emitter on average once in every square of sidelength 10
     -- (square dekaunit?)
     spawnSystem:addSpawnType(testFunction, 1/20^2, 30)
     spawnSystem:addSpawnType(testFunction2, 1/20^2, 30)
-    spawnSystem:addSpawnType(microbeSpawnFunction, 1/6400, 40)
+--    spawnSystem:addSpawnType(microbeSpawnFunction, 1/6400, 40)
+    spawnSystem:addSpawnType(toxinOrganelleSpawnFunction, 1/20000, 30)
     return spawnSystem
 end
 
@@ -228,11 +265,16 @@ local function setupEmitter()
     glucoseEmitter.meshName = "molecule.mesh"
     glucoseEmitter.particleLifeTime = 5000
     local timedEmitter = TimedCompoundEmitterComponent()
-    timedEmitter.compoundId = CompoundRegistry.getCompoundId("glucose")
+    timedEmitter.compoundId = CompoundRegistry.getCompoundId("oxytoxy")
     timedEmitter.particlesPerEmission = 1
     timedEmitter.potencyPerParticle = 3.0
     timedEmitter.emitInterval = 1000
     entity:addComponent(timedEmitter)
+end
+
+function unlockToxin(entityId)
+    Entity(entityId):getComponent(LockedMapComponent.TYPE_ID):unlock("Toxin")
+    return true
 end
 
 function createStarterMicrobe(name, aiControlled)
@@ -281,11 +323,16 @@ function createStarterMicrobe(name, aiControlled)
     processOrganelle1:addHex(0, 0)
     processOrganelle1:setColour(ColourValue(1, 0, 1, 0))
     microbe:addOrganelle(1, -1, processOrganelle1)
+    microbe.microbe:updateSafeAngles()
     return microbe
 end
 
 local function setupPlayer()
-    createStarterMicrobe(PLAYER_NAME, false)
+    microbe = createStarterMicrobe(PLAYER_NAME, false)
+    microbe.collisionHandler:addCollisionGroup("powerupable")
+    local lockedMap = LockedMapComponent()
+    lockedMap:addLock("Toxin")
+    microbe.entity:addComponent(lockedMap)
 end
 
 local function setupSound()
@@ -332,7 +379,6 @@ local function createMicrobeStage(name)
             CollisionSystem(),
             -- Graphics
             OgreAddSceneNodeSystem(),
-            SoundSourceSystem(),
             OgreUpdateSceneNodeSystem(),
             OgreCameraSystem(),
             OgreLightSystem(),
@@ -341,6 +387,9 @@ local function createMicrobeStage(name)
             OgreViewportSystem(),
             OgreRemoveSceneNodeSystem(),
             RenderSystem(),
+            -- Other
+            SoundSourceSystem(),
+            PowerupSystem(),
         },
         function()
             setupBackground()
@@ -355,5 +404,3 @@ end
 
 GameState.MICROBE = createMicrobeStage("microbe")
 GameState.MICROBE_ALTERNATE = createMicrobeStage("microbe_alternate")
-
---Engine:setCurrentGameState(GameState.MICROBE)
