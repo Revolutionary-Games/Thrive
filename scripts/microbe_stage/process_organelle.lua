@@ -79,7 +79,7 @@ CAPACITY_EVEN_FACTOR = 0.4
 -- @param milliseconds
 -- The simulation time
 --
-function Process:produce(milliseconds, capacityFactor, parentMicrobe)
+function Process:produce(milliseconds, capacityFactor, parentMicrobe, storageTarget)
     -- Factor here is the value we multiply on to the compound amounts to be produced and consumed,
     -- so a factor=1.0 would mean that respiration would use 1 glucose and produce 6 Oxygen
     -- Lower values for in and out weights here bring the factors closer to constant 1 (no effect)
@@ -103,7 +103,11 @@ function Process:produce(milliseconds, capacityFactor, parentMicrobe)
         end
         -- Give compounds to microbe
         for compoundId ,baseAmount in pairs(self.outputCompounds) do
+            if storageTarget == nil then
             parentMicrobe:storeCompound(compoundId, baseAmount*factor)
+            else
+                storageTarget:storeCompound(compoundId, baseAmount*factor)
+            end
         end
         parentMicrobe:takeCompound(CompoundRegistry.getCompoundId("atp"), cost)
     else
@@ -201,8 +205,8 @@ end
 -- Private function used to update colour of organelle based on how full it is
 function ProcessOrganelle:_updateColourDynamic(factorProduct)
     -- Scaled Factor Product (using a sigmoid to accommodate that factor will be low)
-    local SFP = 1/(0.8+2^(-factorProduct*64))-0.5
-    
+    local SFP = 1/(0.6+2^(-factorProduct*64))-0.5
+    print("process speed = " .. SFP)
     self._colour = ColourValue(0.6 + (self.originalColour.r-0.6)*SFP,
                                0.6 + (self.originalColour.g-0.6)*SFP,
                                0.6 + (self.originalColour.b-0.6)*SFP, 1) -- Calculate colour relative to how close the organelle is to have enough input compounds to produce

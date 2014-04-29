@@ -23,7 +23,7 @@ class CollisionSystem;
 /**
 * @brief Filters for collisions that contain specific collision groups
 *
-* Collision filter makes it easy for systems and other peices of code to get easy
+* Collision filter makes it easy for systems and other pieces of code to get easy
 *  access to the right collisions
 *
 */
@@ -100,6 +100,7 @@ public:
     * - CollisionFilter::shutdown()
     * - CollisionFilter::collisions()
     * - CollisionFilter::clearCollisions()
+    * - CollisionFilter::removeCollision
     */
     static luabind::scope
     luaBindings();
@@ -125,7 +126,20 @@ public:
     *   Collision to add
     */
     void
-    addCollision(Collision collision);
+    addCollision(
+        Collision collision
+    );
+
+    /**
+    * @brief Removes a collision
+    *
+    * @param collision
+    *   Collision to add
+    */
+    void
+    removeCollision(
+        const Collision& collision
+    );
 
     /**
     * @brief Iterator

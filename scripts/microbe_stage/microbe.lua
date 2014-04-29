@@ -16,8 +16,11 @@ STORAGE_EJECTION_THRESHHOLD = 0.8
 
 EXCESS_COMPOUND_COLLECTION_INTERVAL = 1500 -- The amount of time between each loop to maintaining a fill level below STORAGE_EJECTION_THRESHHOLD and eject useless compounds
 
+ANGLE_RADIUS_DIVISION_COUNT = 4 -- How many pizza slices the microbes angles are divided into. Higher is more precision but also more errors. 4 Seems to give no significant errors
 
 MICROBE_HITPOINTS_PER_ORGANELLE = 10
+
+MINIMUM_AGENT_EMISSION_AMOUNT = 1
 
 function MicrobeComponent:__init(isPlayerMicrobe)
     Component.__init(self)
@@ -26,12 +29,12 @@ function MicrobeComponent:__init(isPlayerMicrobe)
     self.dead = false
     self.deathTimer = 0
     self.organelles = {}
-    self.storageOrganelles = {}
-    self.processOrganelles = {}
+    self.processOrganelles = {} -- Organelles responsible for producing compounds from other compounds
+    self.specialStorageOrganelles = {} -- Organelles with complete resonsiblity for a specific compound (such as agentvacuoles)
     self.movementDirection = Vector3(0, 0, 0)
     self.facingTargetPoint = Vector3(0, 0, 0)
-    self.capacity = 0
-    self.stored = 0
+    self.capacity = 0  -- The amount that can be stored in the microbe. NOTE: This does not include special storage organelles
+    self.stored = 0 -- The amount stored in the microbe. NOTE: This does not include special storage organelles
     self.compounds = {}
     self.compoundPriorities = {}
     self:_resetCompoundPriorities()
@@ -40,6 +43,10 @@ function MicrobeComponent:__init(isPlayerMicrobe)
     self.maxBandwidth = 0
     self.remainingBandwidth = 0
     self.compoundCollectionTimer = EXCESS_COMPOUND_COLLECTION_INTERVAL
+    self.angleRadiuses = {} -- Holds ANGLE_RADIUS_DIVISION_COUNT angles and their distances until outside of microbe 
+    for i=0, ANGLE_RADIUS_DIVISION_COUNT+1 do
+        table.insert(self.angleRadiuses, 3) -- We need a buffer zone as now all ANGLE_RADIUS_DIVISION_COUNT quadrants can be expected to be filled
+    end
 end
 
 function MicrobeComponent:_resetCompoundPriorities()
@@ -118,6 +125,34 @@ function MicrobeComponent:regenerateBandwidth(milliseconds)
     self.remainingBandwidth = math.min(addedBandwidth, self.maxBandwidth)
 end
 
+-- Find for a number of angles, how far away from the microbe we need to eject to avoid self colliding (for example emitting an agent into the microbe itself)
+-- A better for system should be devisable when we have microbe membranes
+-- This should be called when changes are made to the microbe outside the editor
+function MicrobeComponent:updateSafeAngles()
+    -- For each organelle find how far away from the microbe we have to eject at a given angle to avoid self collision
+    for _, organelle in pairs(self.organelles) do
+        local organelleX, organelleY = axialToCartesian(organelle.position.q, organelle.position.r)
+        local nucleusX, nucleusY = axialToCartesian(0, 0)
+        local deltaX = nucleusX - organelleX
+        local deltaY = nucleusY - organelleY
+        local dist = math.sqrt(deltaX^2 + deltaY^2)
+        local angle = math.atan2(deltaY, deltaX)
+        if (angle < 0) then
+            angle = angle + 2*math.pi
+        end
+        angle = (angle * 180/math.pi + 90) % 360
+        local angleScaled = angle /  (360/ANGLE_RADIUS_DIVISION_COUNT)
+        local angleRoundedDown = math.floor(angleScaled)
+        local angleRoundedUp = math.ceil(angleScaled)
+        if dist > self.angleRadiuses[angleRoundedDown+1] then
+            self.angleRadiuses[angleRoundedDown+1] = dist
+        end
+        if dist > self.angleRadiuses[angleRoundedUp+1] then
+            self.angleRadiuses[angleRoundedUp+1] = dist
+        end
+    end
+end
+
 function MicrobeComponent:load(storage)
     Component.load(self, storage)
     local organelles = storage:get("organelles", {})
@@ -130,6 +165,9 @@ function MicrobeComponent:load(storage)
         self.organelles[s] = organelle
     end
     self.hitpoints = storage:get("hitpoints", 0)
+    self.maxHitpoints = storage:get("maxHitpoints", 0)
+    self.maxBandwidth = storage:get("maxBandwidth", 0)
+    self.remainingBandwidth = storage:get("remainingBandwidth", 0)
     local storedCompound = storage:get("storedCompounds", {})
     for i = 1,storedCompound:size() do
         local compound = storedCompound:get(i)
@@ -143,6 +181,7 @@ function MicrobeComponent:load(storage)
         local compound = compoundPriorities:get(i)
         self.compoundPriorities[compound:get("compoundId", 0)] = compound:get("priority", 0)
     end
+    self:updateSafeAngles()
 end
 
 
@@ -156,6 +195,9 @@ function MicrobeComponent:storage()
     end
     storage:set("organelles", organelles)
     storage:set("hitpoints", self.hitpoints)
+    storage:set("maxHitpoints", self.maxHitpoints)
+    storage:set("remainingBandwidth", self.remainingBandwidth)
+    storage:set("maxBandwidth", self.maxBandwidth)
     local storedCompounds = StorageList()
     for compoundId, amount in pairs(self.compounds) do
         compound = StorageContainer()
@@ -208,8 +250,8 @@ function Microbe.createMicrobeEntity(name, aiControlled)
     rigidBody.properties.angularFactor = Vector3(0, 0, 1)
     rigidBody.properties:touch()
     local compoundEmitter = CompoundEmitterComponent() -- Emitter for excess compounds
-    compoundEmitter.minInitialSpeed = 1
-    compoundEmitter.maxInitialSpeed = 3
+    compoundEmitter.minInitialSpeed = 3
+    compoundEmitter.maxInitialSpeed = 4
     compoundEmitter.particleLifetime = 5000
     local reactionHandler = CollisionComponent()
     reactionHandler:addCollisionGroup("microbe")
@@ -252,7 +294,6 @@ Microbe.COMPONENTS = {
 -- The entity this microbe wraps
 function Microbe:__init(entity)
     self.entity = entity
-    self.gatheredDistributionTime = 0
     for key, typeId in pairs(Microbe.COMPONENTS) do
         local component = entity:getComponent(typeId)
         assert(component ~= nil, "Can't create microbe from this entity, it's missing " .. key)
@@ -291,9 +332,6 @@ function Microbe:addOrganelle(q, r, organelle)
     local x, y = axialToCartesian(q, r)
     local translation = Vector3(x, y, 0)
     -- Collision shape
-    if self.rigidBody.properties.shape == nil then
-        print("NIIIL")
-    end
     self.rigidBody.properties.shape:addChildShape(
         translation,
         Quaternion(Radian(0), Vector3(1,0,0)),
@@ -309,9 +347,13 @@ function Microbe:addOrganelle(q, r, organelle)
     self.microbe.maxHitpoints = self.microbe.maxHitpoints + MICROBE_HITPOINTS_PER_ORGANELLE
     self.microbe.maxBandwidth = self.microbe.maxBandwidth + BANDWIDTH_PER_ORGANELLE -- Temporary solution for increasing max bandwidth
     self.microbe.remainingBandwidth = self.microbe.maxBandwidth
+    local localQ = q - organelle.position.q
+    local localR = r - organelle.position.r
+    if organelle:getHex(localQ, localR) ~= nil then
+        return organelle
+    end
     return true
 end
-
 
 -- Adds a storage organelle
 -- This will be called automatically by storage organelles added with addOrganelle(...)
@@ -322,8 +364,6 @@ function Microbe:addStorageOrganelle(storageOrganelle)
     assert(storageOrganelle.capacity ~= nil)
     
     self.microbe.capacity = self.microbe.capacity + storageOrganelle.capacity
-    table.insert(self.microbe.storageOrganelles, storageOrganelle)
-    return #self.microbe.storageOrganelles
 end
 
 -- Removes a storage organelle
@@ -332,7 +372,6 @@ end
 --   An object of type StorageOrganelle
 function Microbe:removeStorageOrganelle(storageOrganelle)
     self.microbe.capacity = self.microbe.capacity - storageOrganelle.capacity
-    table.remove(self.microbe.storageOrganelles, storageOrganelle.parentId)
 end
 
 -- Removes a process organelle
@@ -353,7 +392,23 @@ function Microbe:addProcessOrganelle(processOrganelle)
     self.microbe.processOrganelles[processOrganelle] = processOrganelle
 end
 
+-- Removes a special storage organelle
+-- This will be called automatically by process organelles removed with with removeOrganelle(...)
+--
+-- @param organelle
+--   An object of type ProcessOrganelle
+function Microbe:removeSpecialStorageOrganelle(organelle, compoundId)
+    self.microbe.specialStorageOrganelles[compoundId] = nil
+end
 
+-- Adds a special storage organelle that holds complete responsibility for some compound
+-- This will be called automatically by process organelles added with addOrganelle(...)
+--
+-- @param processOrganelle
+--   An object of type ProcessOrganelle
+function Microbe:addSpecialStorageOrganelle(organelle, compoundId)
+    self.microbe.specialStorageOrganelles[compoundId] = organelle
+end
 
 -- Retrieves the organelle occupying a hex cell
 --
@@ -414,10 +469,14 @@ end
 -- @returns amount
 -- The amount stored in the microbe's storage oraganelles
 function Microbe:getCompoundAmount(compoundId)
-    if self.microbe.compounds[compoundId] == nil then
-        return 0
+    if self.microbe.specialStorageOrganelles[compoundId] == nil then
+        if self.microbe.compounds[compoundId] == nil then
+            return 0
+        else
+            return self.microbe.compounds[compoundId]
+        end
     else
-        return self.microbe.compounds[compoundId]
+        return self.microbe.specialStorageOrganelles[compoundId].storedAmount
     end
 end
 
@@ -448,6 +507,38 @@ function Microbe:heal(amount)
     self.microbe.hitpoints = (self.microbe.hitpoints + amount) % self.microbe.maxHitpoints
 end
 
+-- Drains an agent from the microbes special storage and emits it
+--
+-- @param compoundId
+-- The compound id of the agent to emit
+--
+-- @param maxAmount
+-- The maximum amount to try to emit
+function Microbe:emitAgent(compoundId, maxAmount)
+    local agentVacuole = self.microbe.specialStorageOrganelles[compoundId]
+    if agentVacuole ~= nil and agentVacuole.storedAmount > MINIMUM_AGENT_EMISSION_AMOUNT then
+        -- Calculate the emission angle of the agent emitter
+        local organelleX, organelleY = axialToCartesian(agentVacuole.position.q, agentVacuole.position.r)
+        local nucleusX, nucleusY = axialToCartesian(0, 0)
+        local deltaX = nucleusX - organelleX
+        local deltaY = nucleusY - organelleY
+        local angle =  math.atan2(-deltaY, -deltaX)
+        if (angle < 0) then
+            angle = angle + 2*math.pi
+        end
+        angle = -(angle * 180/math.pi -90 ) % 360
+        local amountToEject = math.min(maxAmount, agentVacuole.storedAmount)
+        local particleCount = 1
+        if amountToEject >= 3 then
+            particleCount = 3
+        end
+        agentVacuole:takeCompound(compoundId, amountToEject)
+        local i
+        for i = 1, particleCount do
+            self:ejectCompound(compoundId, amountToEject/particleCount, angle,angle, true)
+        end
+    end
+end
 
 -- Stores an compound in the microbe's storage organelles
 --
@@ -466,29 +557,33 @@ function Microbe:storeCompound(compoundId, amount, bandwidthLimited)
     else
         storedAmount = amount
     end
-    if self.microbe.compounds[compoundId] == nil then
-        self.microbe.compounds[compoundId] = 0
-    end
-    self.microbe.compounds[compoundId] = self.microbe.compounds[compoundId] + storedAmount
-    self.microbe.stored = self.microbe.stored + storedAmount
-    local remainingAmount = amount - storedAmount
-    -- If there is excess compounds, we will eject them
-    -- This is necessary as bandwidth doesnt prevent or reduce absorbtion of large compound particles
-    if remainingAmount > 0 then
-        local particleCount = 1
-        if remainingAmount >= 3 then
-            particleCount = 3
+    if self.microbe.specialStorageOrganelles[compoundId] == nil then
+        if self.microbe.compounds[compoundId] == nil then
+            self.microbe.compounds[compoundId] = 0
         end
-        local i
-        for i = 1, particleCount do
-            self:ejectCompound(compoundId, remainingAmount/particleCount, true)
+        self.microbe.compounds[compoundId] = self.microbe.compounds[compoundId] + storedAmount
+        self.microbe.stored = self.microbe.stored + storedAmount
+        local remainingAmount = amount - storedAmount
+        -- If there is excess compounds, we will eject them
+        -- This is necessary as bandwidth doesnt prevent or reduce absorbtion of large compound particles
+        if remainingAmount > 0 then
+            local particleCount = 1
+            if remainingAmount >= 3 then
+                particleCount = 3
+            end
+            local i
+            for i = 1, particleCount do
+                self:ejectCompound(compoundId, remainingAmount/particleCount, 160, 200, true)
+            end
         end
+    else
+        self.microbe.specialStorageOrganelles[compoundId]:storeCompound(compoundId, storedAmount)
     end
     self.microbe:_updateCompoundPriorities()
 end
 
 
--- Removes an compound from the microbe's storage organelles
+-- Removes compounds from the microbe's storage organelles
 --
 -- @param compoundId
 -- The compound to remove
@@ -499,15 +594,27 @@ end
 -- @returns amount
 -- The amount that was actually taken, between 0.0 and maxAmount.
 function Microbe:takeCompound(compoundId, maxAmount)
-    if self.microbe.compounds[compoundId] == nil then
-        return 0
+    if self.microbe.specialStorageOrganelles[compoundId] == nil then
+        if self.microbe.compounds[compoundId] == nil then
+            return 0
+        else
+            local takenAmount = math.min(maxAmount, self.microbe.compounds[compoundId])
+            self.microbe.compounds[compoundId] = self.microbe.compounds[compoundId] - takenAmount    
+            self.microbe.stored = self.microbe.stored - takenAmount
+            return takenAmount
+        end
     else
-        local takenAmount = math.min(maxAmount, self.microbe.compounds[compoundId])
-        self.microbe.compounds[compoundId] = self.microbe.compounds[compoundId] - takenAmount    
-        self.microbe.stored = self.microbe.stored - takenAmount
-        return takenAmount
+        return self.microbe.specialStorageOrganelles:takeCompound(compoundId, maxAmount)
     end
     self.microbe:_updateCompoundPriorities()
+end
+
+
+function Microbe:getSafeEmissionDistance(angle)
+    local angleScaled = angle /  (360/ANGLE_RADIUS_DIVISION_COUNT)
+    local angleRoundedDown = math.floor(angleScaled)
+    local angleRoundedUp = math.ceil(angleScaled)
+    return math.max(self.microbe.angleRadiuses[angleRoundedDown+1], self.microbe.angleRadiuses[angleRoundedUp+1]) + 2
 end
 
 
@@ -520,44 +627,51 @@ end
 -- @param amount
 -- The amount to eject
 --
--- @param ejectBehind
--- If true eject behind microbe otherwise anywhere
-function Microbe:ejectCompound(compoundId, amount, ejectBehind)
-    local minAngle
-    local maxAngle
-    if ejectBehind then
-        local yAxis = self.sceneNode.transform.orientation:yAxis()
-        local angle = math.atan2(-yAxis.x, -yAxis.y)
-        if (angle < 0) then
-            angle = angle + 2*math.pi
-        end
-        angle = angle * 180/math.pi
-        minAngle = angle - 30 -- over and underflow of angles are handled automatically
-        maxAngle = angle + 30
-        self.compoundEmitter.emissionRadius = 5
-    else
-        minAngle = 0
-        maxAngle = 359
-        self.compoundEmitter.emissionRadius = 1
+-- @param minAngle
+-- Relative angle to the microbe. 0 = microbes front. Should be between 0 and 359 and lower or equal than maxAngle
+--
+-- @param maxAngle
+-- Relative angle to the microbe. 0 = microbes front. Should be between 0 and 359 and higher or equal than minAngle
+function Microbe:ejectCompound(compoundId, amount, minAngle, maxAngle, useRadius)
+    local chosenAngle = rng:getReal(minAngle, maxAngle)
+    -- Find the direction the microbe is facing
+    local yAxis = self.sceneNode.transform.orientation:yAxis()
+    local microbeAngle = math.atan2(yAxis.x, yAxis.y)
+    if (microbeAngle < 0) then
+        microbeAngle = microbeAngle + 2*math.pi
     end
-    self.compoundEmitter.minEmissionAngle = Degree(minAngle)
-    self.compoundEmitter.maxEmissionAngle = Degree(maxAngle)
-    self.compoundEmitter:emitCompound(compoundId, amount)
+    microbeAngle = microbeAngle * 180/math.pi
+    -- Take the mirobe angle into account so we get world relative degrees
+    local finalAngle = (chosenAngle + microbeAngle) % 360
+    -- Find how far away we should spawn the particle so it doesn't collide with microbe.
+    local radius = 0
+    if useRadius then
+        radius =  self:getSafeEmissionDistance((chosenAngle+180)%360)
+    end
+    self.compoundEmitter:emitCompound(compoundId, amount, finalAngle, radius)
     self.microbe:_updateCompoundPriorities()
 end
+
 
 
 
 -- Kills the microbe, releasing stored compounds into the enviroment
 function Microbe:kill()
     -- Eject the compounds that was in the microbe
-    for compoundId,_ in pairs(self.microbe.compounds) do
-        local amount = self.microbe.compounds[compoundId]
-        while amount > 0 do
-            
-            ejectedAmount = self:takeCompound(compoundId, 3) -- Eject up to 3 units per particle
-            self:ejectCompound(compoundId, ejectedAmount, false)
-            amount = amount - ejectedAmount
+    for compoundId,amount in pairs(self.microbe.compounds) do
+        local _amount = amount
+        while _amount > 0 do
+            ejectedAmount = self:takeCompound(compoundId, 2.5) -- Eject up to 3 units per particle
+            self:ejectCompound(compoundId, ejectedAmount, 0, 359, false)
+            _amount = _amount - ejectedAmount
+        end
+    end    
+    for compoundId, specialStorageOrg in pairs(self.microbe.specialStorageOrganelles) do
+        local _amount = specialStorageOrg.storedAmount
+        while _amount > 0 do
+            ejectedAmount = specialStorageOrg:takeCompound(compoundId, 3) -- Eject up to 3 units per particle
+            self:ejectCompound(compoundId, ejectedAmount, 0, 359, false)
+            _amount = _amount - ejectedAmount
         end
     end    
     local microbeSceneNode = self.entity:getComponent(OgreSceneNodeComponent.TYPE_ID)
@@ -592,8 +706,7 @@ function Microbe:update(milliseconds)
         -- Regenerate bandwidth
         self.microbe:regenerateBandwidth(milliseconds)
         -- Attempt to absorb queued compounds
-        for compound in CompoundRegistry.getCompoundList() do
-            -- Check for compounds to store
+        for compound in self.compoundAbsorber:getAbsorbedCompounds() do 
             local amount = self.compoundAbsorber:absorbedCompoundAmount(compound)
             if amount > 0.0 then
                 self:storeCompound(compound, amount, true)
@@ -643,7 +756,7 @@ function Microbe:update(milliseconds)
             end 
             for compoundId, amount in pairs(excessCompounds) do
                 if amount > 0 then
-                    self:ejectCompound(compoundId, amount, true)
+                    self:ejectCompound(compoundId, amount, 160, 200, true)
                 end
             end
             self.microbe.compoundCollectionTimer = self.microbe.compoundCollectionTimer - EXCESS_COMPOUND_COLLECTION_INTERVAL
@@ -786,6 +899,7 @@ end
 
 
 function MicrobeSystem:update(milliseconds)
+  --  if Engine:currentGameState()
     for entityId in self.entities:removedEntities() do
         self.microbes[entityId] = nil
     end
