@@ -6,7 +6,7 @@
 --------------------------------------------------------------------------------
 class 'MicrobeEditor'
 
-FLAGELIUM_MOMENTUM = 50
+FLAGELIUM_MOMENTUM = 12.5
 
 function MicrobeEditor:__init(hudSystem)
     self.currentMicrobe = nil
@@ -26,8 +26,13 @@ end
 
 function MicrobeEditor:activate()
     playerEntity = Entity(PLAYER_NAME, GameState.MICROBE)
+    if not playerEntity:exists() then 
+        print("NOT EXIST")
+    end
     self.lockedMap = playerEntity:getComponent(LockedMapComponent.TYPE_ID)
-    
+    if self.lockedMap == nil then 
+        print("LOCK NIL")
+    end
     self.nextMicrobeEntity = playerEntity:transfer(GameState.MICROBE_EDITOR)
     self.nextMicrobeEntity:stealName("working_microbe")
 end
@@ -40,7 +45,12 @@ function MicrobeEditor:update(milliseconds)
         self.currentMicrobe.sceneNode.transform:touch()
         self.nextMicrobeEntity = nil
     end
-     for _, organelle in pairs(self.currentMicrobe.microbe.organelles) do
+    for _, organelle in pairs(self.currentMicrobe.microbe.organelles) do
+        if organelle.flashDuration ~= nil then
+            organelle.flashDuration = nil
+            organelle._colour = organelle._originalColour
+            organelle._needsColourUpdate = true
+        end
         if organelle._needsColourUpdate then
             organelle:_updateHexColours()
         end
@@ -114,7 +124,6 @@ function MicrobeEditor:addMovementOrganelle(organelleType)
         self.currentMicrobe:addOrganelle(q,r, movementOrganelle)
         self.organelleCount = self.organelleCount + 1
     end
-   
 end
 
 function MicrobeEditor:addProcessOrganelle(organelleType)
@@ -126,7 +135,7 @@ function MicrobeEditor:addProcessOrganelle(organelleType)
                                     [CompoundRegistry.getCompoundId("oxygen")] = 6}
             local outputCompounds = {[CompoundRegistry.getCompoundId("atp")] = 38,
                                     [CompoundRegistry.getCompoundId("co2")] = 6}
-            local respiration = Process(0.5, 1.0, inputCompounds, outputCompounds)
+            local respiration = Process(0.5, 0, inputCompounds, outputCompounds)
             processOrganelle:addProcess(respiration)
             processOrganelle:addHex(0, 0)
             processOrganelle:setColour(ColourValue(0.8, 0.4, 1, 0))
@@ -161,12 +170,18 @@ function MicrobeEditor:createNewMicrobe()
     if self.currentMicrobe ~= nil then
         self.currentMicrobe.entity:destroy()
     end
+    local lockedMapStorage = self.currentMicrobe:getComponent(LockedMapComponent.TYPE_ID):storage()
     self.currentMicrobe = Microbe.createMicrobeEntity(nil, false)
     self.currentMicrobe.entity:stealName("working_microbe")
     self.currentMicrobe.sceneNode.transform.orientation = Quaternion(Radian(Degree(180)), Vector3(0, 0, 1))-- Orientation
     self.currentMicrobe.sceneNode.transform:touch()
+    local newLockedMap = LockedMapComponent()
+    newLockedMap:load(lockedMapStorage)
+    self.currentMicrobe.entity:addComponent(newLockedMap)
+    self.currentMicrobe.collisionHandler:addCollisionGroup("powerupable")
     local nucleusOrganelle = NucleusOrganelle()
     nucleusOrganelle:addHex(0, 0)
     nucleusOrganelle:setColour(ColourValue(0.8, 0.2, 0.8, 1))
     self.currentMicrobe:addOrganelle(0, 0, nucleusOrganelle)
+    
 end

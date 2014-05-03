@@ -31,7 +31,7 @@ PowerupComponent::luaBindings() {
 
 void
 PowerupComponent::setEffect(
-    std::function<bool(EntityId)> effect
+    std::function<bool(EntityId)>* effect
 ){
     m_effect = effect;
 }
@@ -40,11 +40,12 @@ void
 PowerupComponent::setEffect(
     const luabind::object& effect
 ){
-    auto effectLambda = [effect](EntityId entityId) -> bool
+    this->setEffect(new std::function<bool(EntityId)>(
+        [effect](EntityId entityId) -> bool
         {
-            return luabind::call_function<bool>(effect, entityId);;
-        };
-    this->setEffect(std::function<bool(EntityId)>(effectLambda));
+            return luabind::call_function<bool>(effect, entityId);
+        }
+    ));
 }
 
 void
@@ -123,6 +124,7 @@ PowerupSystem::shutdown() {
 
 void
 PowerupSystem::update(int /*milliseconds*/) {
+    std::vector<Collision*> collisionsToRemove = std::vector<Collision*>();
     for (Collision collision : m_impl->m_powerupCollisions)
     {
         EntityId entityA = collision.entityId1;
@@ -135,14 +137,21 @@ PowerupSystem::update(int /*milliseconds*/) {
             powerupEntity = entityA;
             powerupableEntity = entityB;
         }
-        else {
+        else if (m_impl->m_entities.containsEntity(entityB)){
             powerupEntity = entityB;
             powerupableEntity = entityA;
         }
-        PowerupComponent* powerupComponent = m_impl->m_entityManager->getComponent<PowerupComponent>(powerupEntity);
-        if (powerupComponent->m_effect.operator()(powerupableEntity)){
-            m_impl->m_powerupCollisions.removeCollision(collision);
-            m_impl->m_entityManager->removeEntity(powerupEntity);
+        else {
+            collisionsToRemove.push_back(&collision);
+            break;
         }
+        PowerupComponent* powerupComponent = m_impl->m_entityManager->getComponent<PowerupComponent>(powerupEntity);
+        if (powerupComponent->m_effect->operator()(powerupableEntity)){
+            m_impl->m_entityManager->removeEntity(powerupEntity);
+            collisionsToRemove.push_back(&collision);
+        }
+    }
+    for (auto* collision : collisionsToRemove){
+        m_impl->m_powerupCollisions.removeCollision(*collision); //Invalid collision
     }
 }

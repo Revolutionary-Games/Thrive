@@ -13,13 +13,6 @@ function MovementOrganelle:__init(force, torque)
     self.energyMultiplier = 0.025
     self.force = force
     self.torque = torque
-    
-    for _, hex in pairs(self._hexes) do
-        print("changing")
-        hex.sceneNode.meshName = "Flagella.mesh"
-        hex.sceneNode:playAnimation("Move", true)
-    end
-    --sceneNode:playAnimation("Move", true)
 end
 
 function MovementOrganelle:onAddedToMicrobe(microbe, q, r)  
@@ -32,10 +25,13 @@ function MovementOrganelle:onAddedToMicrobe(microbe, q, r)
     sceneNode.transform.position = translation
     sceneNode.meshName = "Flagella.mesh"
     sceneNode:playAnimation("Move", true)
+    sceneNode:setAnimationSpeed(0.25)
     sceneNode.transform.scale = Vector3(0.35, 0.6, 0.6)
     sceneNode.transform.orientation = Quaternion(Radian(Degree(0)), Vector3(0, 0, 1))
     sceneNode.transform:touch()
     self.tailEntity:addComponent(sceneNode)
+    self.tailEntity.sceneNode = sceneNode
+    self.movingTail = false
     local organelleX, organelleY = axialToCartesian(q, r)
     local nucleusX, nucleusY = axialToCartesian(0, 0)
     local deltaX = nucleusX - organelleX
@@ -46,6 +42,10 @@ function MovementOrganelle:onAddedToMicrobe(microbe, q, r)
     end
     angle = (angle * 180/math.pi + 180) % 360
     self.tailEntity:getComponent(OgreSceneNodeComponent.TYPE_ID).transform.orientation = Quaternion(Radian(Degree(angle)), Vector3(0, 0, 1))
+end
+
+function MovementOrganelle:onRemovedFromMicrobe(microbe)
+    self.tailEntity:destroy() --ogre scenenode will be destroyed due to parenting but the rest of the entity wont without this call.
 end
 
 
@@ -66,14 +66,19 @@ end
 
 function MovementOrganelle:_moveMicrobe(microbe, milliseconds)
     local direction = microbe.microbe.movementDirection
-    if direction:isZeroLength() then
+    if direction:isZeroLength() or self.force:isZeroLength() then
+        if self.movingTail then
+            self.movingTail = false
+            self.tailEntity.sceneNode:setAnimationSpeed(0.25)
+        end
         return
     end 
-    if self.force:isZeroLength() then
-        return
-    end
     local forceMagnitude = self.force:dotProduct(direction)
     if forceMagnitude > 0 then
+        if not self.movingTail then
+            self.movingTail = true
+            self.tailEntity.sceneNode:setAnimationSpeed(1.3)
+        end
         local energy = math.abs(self.energyMultiplier * forceMagnitude * milliseconds / 1000)
         local availableEnergy = microbe:takeCompound(CompoundRegistry.getCompoundId("atp"), energy)
         if availableEnergy < energy then
@@ -85,6 +90,11 @@ function MovementOrganelle:_moveMicrobe(microbe, milliseconds)
         microbe.rigidBody:applyCentralImpulse(
             microbe.sceneNode.transform.orientation * impulse
         )
+    else 
+        if self.movingTail then
+        self.movingTail = false
+         self.tailEntity.sceneNode:setAnimationSpeed(0.25)
+        end
     end
 end
 

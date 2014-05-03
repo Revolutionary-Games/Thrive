@@ -90,7 +90,7 @@ function Process:produce(milliseconds, capacityFactor, parentMicrobe, storageTar
                     (milliseconds/1000) *
                     capacityFactor
     local cost =  factor * self.atpCost
-    if parentMicrobe:getCompoundAmount(CompoundRegistry.getCompoundId("atp")) > cost then
+    if parentMicrobe:getCompoundAmount(CompoundRegistry.getCompoundId("atp")) >= cost then
         -- Making sure microbe has the required amount of input compounds, otherwise lower factor
         for compoundId ,baseAmount in pairs(self.inputCompounds) do
             if factor * baseAmount > parentMicrobe:getCompoundAmount(compoundId) then

@@ -420,7 +420,10 @@ SoundSourceSystem::activate() {
     soundManager.setSceneManager(this->gameState()->sceneManager());
     m_impl->restoreAllSounds();
     if (Entity("player", gameState()).exists()){
-        static_cast<OgreSceneNodeComponent*>(Entity("player", gameState()).getComponent(OgreSceneNodeComponent::TYPE_ID))->attachSoundListener();
+        auto* sceneNode = static_cast<OgreSceneNodeComponent*>(Entity("player", gameState()).getComponent(OgreSceneNodeComponent::TYPE_ID));
+        if (sceneNode != nullptr){
+            sceneNode->attachSoundListener();
+        }
     }
 }
 

@@ -14,14 +14,9 @@ end
 global_if_already_displayed = false
 
 function HudSystem:activate()
-    if not Entity(PLAYER_NAMe):exists() then
-        return
-    end
     comp = Entity(PLAYER_NAME):getComponent(LockedMapComponent.TYPE_ID)
     if comp ~= nil and not comp:isLocked("Toxin") and not ss and not global_if_already_displayed then
-        local messagePanel = Engine:currentGameState():rootGUIWindow():getChild("MessagePanel")
-        messagePanel:getChild("MessageLabel"):setText("'E' Releases Toxin")
-        messagePanel:show()
+        showMessage("'E' Releases Toxin")
         global_if_already_displayed = true
     end
 end
@@ -76,6 +71,12 @@ function HudSystem:update(milliseconds)
     elseif  Engine.keyboard:wasKeyPressed(Keyboard.KC_E) then
         playerMicrobe:emitAgent(CompoundRegistry.getCompoundId("oxytoxy"), 3)
     end
+end
+
+function showMessage(msg)
+    local messagePanel = Engine:currentGameState():rootGUIWindow():getChild("MessagePanel")
+    messagePanel:getChild("MessageLabel"):setText(msg)
+    messagePanel:show()
 end
 
 --Event handlers

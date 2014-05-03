@@ -10,11 +10,16 @@ end
 
 function MicrobeReplacementSystem:activate()
     if global_newEditorMicrobe then
-        newMicrobeEntity = Entity("working_microbe", GameState.MICROBE_EDITOR)
+        workingMicrobe = Microbe(Entity("working_microbe", GameState.MICROBE_EDITOR))
+        if workingMicrobe:getCompoundAmount(CompoundRegistry.getCompoundId("atp")) == 0 then
+            workingMicrobe:storeCompound(CompoundRegistry.getCompoundId("atp"), 10)
+        end
+        newMicrobeEntity = workingMicrobe.entity
         newPlayerMicrobe = newMicrobeEntity:transfer(GameState.MICROBE)
         newPlayerMicrobe:stealName(PLAYER_NAME)
         global_newEditorMicrobe = false
     end
+    
 end
 
 function MicrobeReplacementSystem:update(milliseconds)

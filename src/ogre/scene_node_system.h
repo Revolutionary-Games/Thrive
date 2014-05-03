@@ -93,10 +93,6 @@ public:
     /**
     * @brief Sets the current animation to be played
     *
-    * Calling this while an animation is already playing interrupts
-    * the existing animation
-    * (Dev note: This can be changed to blending if needed)
-    *
     * @param name
     *  Name of the animation to play
     *
@@ -108,6 +104,36 @@ public:
     playAnimation(
         std::string name,
         bool loop
+    );
+
+    /**
+    * @brief Stops a specific animation
+    *
+    * @param name
+    *  Name of the animation to stop
+    *
+    */
+    void
+    stopAnimation(
+        std::string name
+    );
+
+    /**
+    * @brief Stops all animations playing on this sceneNode
+    */
+    void
+    stopAllAnimations();
+
+    /**
+    * @brief Sets the speed for all animations for this scenenode
+    *
+    * @param factor
+    *  Factor to multiply the speed by. 1.0 is normal speed.
+    *
+    */
+    void
+    setAnimationSpeed(
+        float factor
     );
 
     /**
@@ -173,9 +199,11 @@ private:
         Ogre::MovableObject* obj
     );
 
-    TouchableValue<std::string> m_activeAnimation = std::string("");
-    int m_animationTime = 0;
-    bool m_loopingAnimation = false;
+    std::vector<std::pair<std::string, bool>> m_animationsToStart;
+    std::vector<std::string> m_animationsToHalt;
+    bool m_animationChange = false;
+    bool m_fullAnimationHalt = false;
+    float m_animationSpeedFactor = 1.0f;
 
     static bool s_soundListenerAttached;
 

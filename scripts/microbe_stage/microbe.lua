@@ -14,7 +14,7 @@ BANDWIDTH_REFILL_DURATION = 1000 -- The amount of time it takes for the microbe 
 
 STORAGE_EJECTION_THRESHHOLD = 0.8
 
-EXCESS_COMPOUND_COLLECTION_INTERVAL = 1500 -- The amount of time between each loop to maintaining a fill level below STORAGE_EJECTION_THRESHHOLD and eject useless compounds
+EXCESS_COMPOUND_COLLECTION_INTERVAL = 1000 -- The amount of time between each loop to maintaining a fill level below STORAGE_EJECTION_THRESHHOLD and eject useless compounds
 
 ANGLE_RADIUS_DIVISION_COUNT = 4 -- How many pizza slices the microbes angles are divided into. Higher is more precision but also more errors. 4 Seems to give no significant errors
 
@@ -308,6 +308,7 @@ function Microbe:__init(entity)
         self:_initialize()
     end
     self:_updateCompoundAbsorber()
+    self.playerAlreadyShownAtpDamage = false
 end
 
 
@@ -696,9 +697,7 @@ function Microbe:kill()
         microbeSceneNode.visible = false
     else
         self:destroy()
-        local messagePanel = Engine:currentGameState():rootGUIWindow():getChild("MessagePanel")
-        messagePanel:getChild("MessageLabel"):setText("VICTORY!!!")
-        messagePanel:show()
+        showMessage("VICTORY!!!")
     end
    
 end
@@ -763,6 +762,14 @@ function Microbe:update(milliseconds)
                 if amount > 0 then
                     self:ejectCompound(compoundId, amount, 160, 200, true)
                 end
+            end
+            -- Damage microbe if its too low on ATP
+            if self.microbe.compounds[CompoundRegistry.getCompoundId("atp")] < 1.0 then
+                if not self.playerAlreadyShownAtpDamage then
+                    self.playerAlreadyShownAtpDamage = true
+                    showMessage("No ATP hurts you!")
+                end
+                self:damage(EXCESS_COMPOUND_COLLECTION_INTERVAL * 0.00002  * self.microbe.maxHitpoints) -- Microbe takes 2% of max hp per second in damage
             end
             self.microbe.compoundCollectionTimer = self.microbe.compoundCollectionTimer - EXCESS_COMPOUND_COLLECTION_INTERVAL
         end
