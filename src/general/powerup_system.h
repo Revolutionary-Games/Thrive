@@ -45,7 +45,7 @@ public:
     */
     void
     setEffect(
-        std::function<bool(EntityId)> effect
+        std::function<bool(EntityId)>* effect
     );
 
     /**
@@ -75,7 +75,7 @@ private:
     /**
     * @brief The function to be called when the powerup is activated for an entity
     */
-    std::function<bool(EntityId)> m_effect;
+    std::function<bool(EntityId)>* m_effect;
 
 };
 

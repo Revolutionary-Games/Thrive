@@ -86,6 +86,9 @@ OgreSceneNodeComponent::luaBindings() {
         ]
         .def(constructor<>())
         .def("playAnimation", &OgreSceneNodeComponent::playAnimation)
+        .def("stopAnimation", &OgreSceneNodeComponent::stopAnimation)
+        .def("stopAllAnimations", &OgreSceneNodeComponent::stopAllAnimations)
+        .def("setAnimationSpeed", &OgreSceneNodeComponent::setAnimationSpeed)
         .def("attachObject", &OgreSceneNodeComponent::attachObject)
         .def("attachSoundListener", &OgreSceneNodeComponent::attachSoundListener)
         .def_readonly("transform", &OgreSceneNodeComponent::m_transform)
@@ -130,8 +133,29 @@ OgreSceneNodeComponent::playAnimation(
     std::string name,
     bool loop
 ) {
-    m_loopingAnimation = loop;
-    m_activeAnimation = name;
+    m_animationsToStart.push_back(std::pair<std::string, bool>(name, loop));
+    m_animationChange = true;
+}
+
+void
+OgreSceneNodeComponent::setAnimationSpeed(
+    float factor
+) {
+    m_animationSpeedFactor = factor;
+}
+
+void
+OgreSceneNodeComponent::stopAnimation(
+    std::string name
+) {
+    m_animationsToHalt.push_back(name);
+    m_animationChange = true;
+}
+
+void
+OgreSceneNodeComponent::stopAllAnimations() {
+    m_fullAnimationHalt = true;
+    m_animationChange = true;
 }
 
 void
@@ -453,23 +477,31 @@ OgreUpdateSceneNodeSystem::update(int milliseconds) {
         if (component->m_entity && component->m_entity->hasSkeleton()){
             // Progress animations
             Ogre::AnimationStateSet* animations = component->m_entity->getAllAnimationStates();
-            if (animations){
-                Ogre::AnimationStateIterator iter = animations->getAnimationStateIterator();
-                while (iter.hasMoreElements()){
-                    Ogre::AnimationState* animation = iter.getNext();
-                    animation->addTime(milliseconds/1000.0);
-                    // If we are about to set a new animation, cancel all other animations (In this could change if we want blended animations)
-                    if (component->m_activeAnimation.hasChanges()){
-                        animation->setEnabled(false);
-                    }
+            if (component->m_animationChange) {
+                component->m_animationChange = false;
+                //Stop specific animations
+                for (auto animationName : component->m_animationsToHalt) {
+                    animations->getAnimationState(animationName)->setEnabled(false);
+                }
+                component->m_animationsToHalt.clear();
+                // Start animations
+                for (auto pair : component->m_animationsToStart) {
+                    Ogre::AnimationState* animation = animations->getAnimationState(pair.first);
+                    animation->setLoop(pair.second);
+                    animation->setEnabled(true);
+                }
+                component->m_animationsToStart.clear();
+            }
+            // Progress animations and handle full animation halt
+            Ogre::AnimationStateIterator iter = animations->getAnimationStateIterator();
+            while (iter.hasMoreElements()){
+                Ogre::AnimationState* animation = iter.getNext();
+                animation->addTime(milliseconds * 0.001 * component->m_animationSpeedFactor);
+                if (component->m_fullAnimationHalt){
+                    animation->setEnabled(false);
                 }
             }
-            if(component->m_activeAnimation.hasChanges() && component->m_activeAnimation.get().size() > 0){
-                auto animationState = component->m_entity->getAnimationState(component->m_activeAnimation.get());
-                animationState->setEnabled(true);
-                animationState->setLoop(component->m_loopingAnimation);
-            }
-            component->m_activeAnimation.untouch();
+            component->m_fullAnimationHalt = false;
         }
     }
 }
