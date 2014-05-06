@@ -71,6 +71,11 @@ RigidBodyComponent::luaBindings() {
         ]
         .scope [
             def("TYPE_NAME", &RigidBodyComponent::TYPE_NAME),
+            class_<DynamicProperties, Touchable>("DynamicProperties")
+                .def_readwrite("position", &DynamicProperties::position)
+                .def_readwrite("rotation", &DynamicProperties::rotation)
+                .def_readwrite("linearVelocity", &DynamicProperties::linearVelocity)
+                .def_readwrite("angularVelocity", &DynamicProperties::angularVelocity),
             class_<Properties, Touchable>("Properties")
                 .def_readwrite("shape", &Properties::shape)
                 .def_readwrite("restitution", &Properties::restitution)
@@ -91,6 +96,7 @@ RigidBodyComponent::luaBindings() {
         .def("applyTorque", &RigidBodyComponent::applyTorque)
         .def("clearForces", &RigidBodyComponent::clearForces)
         .def_readonly("properties", &RigidBodyComponent::m_properties)
+        .def_readonly("dynamicProperties", &RigidBodyComponent::m_dynamicProperties)
     ;
 }
 

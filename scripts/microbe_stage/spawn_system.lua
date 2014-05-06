@@ -116,19 +116,19 @@ function SpawnSystem:_doSpawnCycle()
     --Despawn entities    
     for entityId in self.entities:entities() do
         entity = Entity(entityId)
-     --   if entity:exists() then -- THe microbe might have been killed
-            local spawnComponent = entity:getComponent(SpawnedComponent.TYPE_ID)
-            local sceneNode = entity:getComponent(OgreSceneNodeComponent.TYPE_ID)
-            local entityPos = sceneNode.transform.position
-            local distSqr = playerPos:squaredDistance(entityPos)
-            
-            --Destroy and forget entities outside the spawn radius.
-            if distSqr >= spawnComponent.spawnRadiusSqr then
-                entity:destroy()
-            end
-     --   else
-     --       self.spawnedEntities[entity] = nil
-     --   end
+        local spawnComponent = entity:getComponent(SpawnedComponent.TYPE_ID)
+        local sceneNode = entity:getComponent(OgreSceneNodeComponent.TYPE_ID)
+        local entityPos = sceneNode.transform.position
+        local distSqr = playerPos:squaredDistance(entityPos)
+        
+        --Destroy and forget entities outside the spawn radius.
+        if distSqr >= spawnComponent.spawnRadiusSqr then
+            entity:destroy()
+        elseif entityPos.z ~= 0 then
+            local rigidBody = entity:getComponent(RigidBodyComponent.TYPE_ID)
+            rigidBody.dynamicProperties.position.z = 0
+            rigidBody.dynamicProperties:touch()
+        end
     end
 
     
