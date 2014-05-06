@@ -382,6 +382,7 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
                 window->getHeight()
             );
         }
+        CEGUI::System::getSingleton().getRenderer()->setDisplaySize(CEGUI::Sizef(window->getWidth(), window->getHeight()));
     }
 
     // Lua state must be one of the last to be destroyed, so keep it at top.
