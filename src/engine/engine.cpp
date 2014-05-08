@@ -367,7 +367,7 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
         Ogre::RenderWindow* window
     ) override {
         if (window == m_graphics.renderWindow) {
-            Game::instance().quit();
+            m_quitRequested = true;
         }
         return true;
     }
@@ -685,6 +685,7 @@ Engine::update(
     Ogre::WindowEventUtilities::messagePump();
     if (m_impl->m_quitRequested) {
         Game::instance().quit();
+        return;
     }
     m_impl->m_input.keyboard.update();
     m_impl->m_input.mouse.update();
