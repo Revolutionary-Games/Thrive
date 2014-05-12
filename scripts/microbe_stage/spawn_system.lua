@@ -10,12 +10,12 @@ SPAWN_INTERVAL = 100 --Time between spawn cycles
 
 function SpawnedComponent:__init()
     Component.__init(self)
-    self.spawnRadiusSqr = 100
+    self.spawnRadiusSqr = 1000
 end
 
 function SpawnedComponent:load(storage)
     Component.load(self, storage)
-    self.spawnRadiusSqr = storage:get("spawnRadius", 100)
+    self.spawnRadiusSqr = storage:get("spawnRadius", 1000)
 end
 
 

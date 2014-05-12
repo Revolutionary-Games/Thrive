@@ -70,6 +70,8 @@ function HudSystem:update(milliseconds)
         editorButtonClicked()
     elseif  Engine.keyboard:wasKeyPressed(Keyboard.KC_E) then
         playerMicrobe:emitAgent(CompoundRegistry.getCompoundId("oxytoxy"), 3)
+    elseif  Engine.keyboard:wasKeyPressed(Keyboard.KC_P) then
+        playerMicrobe:reproduce()
     end
 end
 
