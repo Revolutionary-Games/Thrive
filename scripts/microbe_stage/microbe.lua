@@ -7,20 +7,14 @@
 class 'MicrobeComponent' (Component)
 
 COMPOUND_PROCESS_DISTRIBUTION_INTERVAL = 100 -- quantity of physics time between each loop distributing compounds to organelles. TODO: Modify to reflect microbe size.
-
 BANDWIDTH_PER_ORGANELLE = 0.5 -- amount the microbes maxmimum bandwidth increases with per organelle added. This is a temporary replacement for microbe surface area
-
 BANDWIDTH_REFILL_DURATION = 1000 -- The amount of time it takes for the microbe to regenerate an amount of bandwidth equal to maxBandwidth
-
 STORAGE_EJECTION_THRESHHOLD = 0.8
-
 EXCESS_COMPOUND_COLLECTION_INTERVAL = 1000 -- The amount of time between each loop to maintaining a fill level below STORAGE_EJECTION_THRESHHOLD and eject useless compounds
-
 ANGLE_RADIUS_DIVISION_COUNT = 4 -- How many pizza slices the microbes angles are divided into. Higher is more precision but also more errors. 4 Seems to give no significant errors
-
 MICROBE_HITPOINTS_PER_ORGANELLE = 10
-
 MINIMUM_AGENT_EMISSION_AMOUNT = 1
+REPRODUCTASE_TO_SPLIT = 5
 
 function MicrobeComponent:__init(isPlayerMicrobe)
     Component.__init(self)
@@ -54,6 +48,7 @@ function MicrobeComponent:_resetCompoundPriorities()
         self.compoundPriorities[compound] = 0
     end
     self.compoundPriorities[CompoundRegistry.getCompoundId("atp")] = 10
+    self.compoundPriorities[CompoundRegistry.getCompoundId("reproductase")] = 8
 end
 
 function MicrobeComponent:_updateCompoundPriorities() 
@@ -309,6 +304,7 @@ function Microbe:__init(entity)
     end
     self:_updateCompoundAbsorber()
     self.playerAlreadyShownAtpDamage = false
+    self.playerAlreadyShownVictory = false
 end
 
 
@@ -355,6 +351,7 @@ function Microbe:addOrganelle(q, r, organelle)
     if organelle:getHex(localQ, localR) ~= nil then
         return organelle
     end
+       
     return true
 end
 
@@ -367,6 +364,7 @@ function Microbe:addStorageOrganelle(storageOrganelle)
     assert(storageOrganelle.capacity ~= nil)
     
     self.microbe.capacity = self.microbe.capacity + storageOrganelle.capacity
+
 end
 
 -- Removes a storage organelle
@@ -697,10 +695,29 @@ function Microbe:kill()
         microbeSceneNode.visible = false
     else
         self:destroy()
-        showMessage("VICTORY!!!")
+        if not self.playerAlreadyShownVictory then
+            self.playerAlreadyShownVictory = true
+            showMessage("VICTORY!!!")
+        end
     end
-   
 end
+
+-- Copies this microbe. The new microbe will not have the stored compounds of this one. 
+function Microbe:reproduce()
+
+    copy = Microbe.createMicrobeEntity(nil, true)
+    for _, organelle in pairs(self.microbe.organelles) do
+        local organelleStorage = organelle:storage()
+        local organelle = Organelle.loadOrganelle(organelleStorage)
+        copy:addOrganelle(organelle.position.q, organelle.position.r, organelle)
+    end
+    copy.rigidBody.dynamicProperties.position = Vector3(self.rigidBody.dynamicProperties.position.x, self.rigidBody.dynamicProperties.position.y, 0)
+    copy:storeCompound(CompoundRegistry.getCompoundId("atp"), 20, false)
+    copy.microbe:updateSafeAngles()
+    copy.microbe:_resetCompoundPriorities()  
+    copy.entity:addComponent(SpawnedComponent())
+end
+
 
 -- Updates the microbe's state
 function Microbe:update(milliseconds)
@@ -749,7 +766,6 @@ function Microbe:update(milliseconds)
             for compoundId,_ in pairs(self.microbe.compounds) do
                 if self.microbe.compoundPriorities[compoundId] == 0 and self.microbe.compounds[compoundId] > 1 then
                     local uselessCompoundAmount
-                    
                     uselessCompoundAmount = self.microbe:getBandwidth(self.microbe.compounds[compoundId], compoundId)
                     if excessCompounds[compoundId] ~= nil then
                         excessCompounds[compoundId] = excessCompounds[compoundId] + self:takeCompound(compoundId, uselessCompoundAmount)
@@ -764,12 +780,17 @@ function Microbe:update(milliseconds)
                 end
             end
             -- Damage microbe if its too low on ATP
-            if self.microbe.compounds[CompoundRegistry.getCompoundId("atp")] < 1.0 then
-                if not self.playerAlreadyShownAtpDamage then
+            if self.microbe.compounds[CompoundRegistry.getCompoundId("atp")] ~= nil and self.microbe.compounds[CompoundRegistry.getCompoundId("atp")] < 1.0 then
+                if self.microbe.isPlayerMicrobe and not self.playerAlreadyShownAtpDamage then
                     self.playerAlreadyShownAtpDamage = true
                     showMessage("No ATP hurts you!")
                 end
                 self:damage(EXCESS_COMPOUND_COLLECTION_INTERVAL * 0.00002  * self.microbe.maxHitpoints) -- Microbe takes 2% of max hp per second in damage
+            end
+            -- Split microbe if it has enough reproductase
+            if self.microbe.compounds[CompoundRegistry.getCompoundId("reproductase")] ~= nil and self.microbe.compounds[CompoundRegistry.getCompoundId("reproductase")] > REPRODUCTASE_TO_SPLIT then
+                self:takeCompound(CompoundRegistry.getCompoundId("reproductase"), 5)
+                self:reproduce()
             end
             self.microbe.compoundCollectionTimer = self.microbe.compoundCollectionTimer - EXCESS_COMPOUND_COLLECTION_INTERVAL
         end
