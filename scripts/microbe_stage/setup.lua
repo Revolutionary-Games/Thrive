@@ -40,7 +40,9 @@ end
 local function setupCompounds()
     CompoundRegistry.registerCompoundType("atp", "ATP", "atp.mesh", 0.1, 1)
     CompoundRegistry.registerCompoundType("oxygen", "Oxygen", "molecule.mesh", 0.3, 1 )    
-    CompoundRegistry.registerCompoundType("nitrate", "Nitrate", "molecule.mesh", 0.3, 1)
+    CompoundRegistry.registerCompoundType("reproductase", "Reproductase", "hex.mesh", 0.3, 1)
+    CompoundRegistry.registerCompoundType("aminoacids", "Amino Acids", "hex.mesh", 0.3, 1)
+    CompoundRegistry.registerCompoundType("ammonia", "Amonia", "hex.mesh", 0.3, 1)
     CompoundRegistry.registerCompoundType("glucose", "Glucose", "glucose.mesh", 0.3, 1)
     CompoundRegistry.registerCompoundType("co2", "CO2", "co2.mesh", 0.16, 1)
     CompoundRegistry.registerAgentType("oxytoxy", "OxyToxy NT", "oxytoxy.mesh", 0.3, 1, oxytoxyEffect)
@@ -49,7 +51,7 @@ end
 local function createSpawnSystem()
     local spawnSystem = SpawnSystem()
     
-    local testFunction = function(pos)
+    local spawnOxygenEmitter = function(pos)
         -- Setting up an emitter for oxygen
         local entity = Entity()
         -- Rigid body
@@ -90,7 +92,7 @@ local function createSpawnSystem()
         entity:addComponent(timedEmitter)
         return entity
     end
-    local testFunction2 = function(pos)
+    local spawnGlucoseEmitter = function(pos)
         -- Setting up an emitter for glucose
         local entity = Entity()
         -- Rigid body
@@ -127,6 +129,43 @@ local function createSpawnSystem()
         entity:addComponent(timedEmitter)
         return entity
     end
+    local spawnAmmoniaEmitter = function(pos)
+        -- Setting up an emitter for glucose
+        local entity = Entity()
+        -- Rigid body
+        local rigidBody = RigidBodyComponent()
+        rigidBody.properties.friction = 0.2
+        rigidBody.properties.linearDamping = 0.8
+        rigidBody.properties.shape = SphereShape(HEX_SIZE)
+        rigidBody:setDynamicProperties(
+            pos,
+            Quaternion(Radian(Degree(math.random()*360)), Vector3(0, 0, 1)),
+            Vector3(0, 0, 0),
+            Vector3(0, 0, 0)
+        )
+        rigidBody.properties:touch()
+        entity:addComponent(rigidBody)
+        -- Scene node
+        local sceneNode = OgreSceneNodeComponent()
+        sceneNode.meshName = "hex.mesh"
+        entity:addComponent(sceneNode)
+        -- Emitter glucose
+        local glucoseEmitter = CompoundEmitterComponent()
+        entity:addComponent(glucoseEmitter)
+        glucoseEmitter.emissionRadius = 1
+        glucoseEmitter.maxInitialSpeed = 10
+        glucoseEmitter.minInitialSpeed = 2
+        glucoseEmitter.minEmissionAngle = Degree(0)
+        glucoseEmitter.maxEmissionAngle = Degree(360)
+        glucoseEmitter.particleLifeTime = 5000
+        local timedEmitter = TimedCompoundEmitterComponent()
+        timedEmitter.compoundId = CompoundRegistry.getCompoundId("ammonia")
+        timedEmitter.particlesPerEmission = 1
+        timedEmitter.potencyPerParticle = 1.0
+        timedEmitter.emitInterval = 1000
+        entity:addComponent(timedEmitter)
+        return entity
+    end
     
     local microbeSpawnFunction = function(pos)
         local microbe = Microbe.createMicrobeEntity(nil, true)
@@ -139,6 +178,19 @@ local function createSpawnSystem()
         local nucleusOrganelle = NucleusOrganelle()
         nucleusOrganelle:addHex(0, 0)
         nucleusOrganelle:setColour(ColourValue(0.8, 0.2, 0.8, 1))
+        local inputCompounds = {[CompoundRegistry.getCompoundId("aminoacids")] = 6,
+                                [CompoundRegistry.getCompoundId("glucose")] = 6,
+                                [CompoundRegistry.getCompoundId("oxygen")] = 6}
+        local outputCompounds = {[CompoundRegistry.getCompoundId("reproductase")] = 1}
+        local reproducer = Process(2.2, 30, inputCompounds, outputCompounds)
+        nucleusOrganelle:addProcess(reproducer)
+        inputCompounds = {[CompoundRegistry.getCompoundId("glucose")] = 1,
+                          [CompoundRegistry.getCompoundId("ammonia")] = 1,}
+        outputCompounds = {[CompoundRegistry.getCompoundId("co2")] = 1,
+                           [CompoundRegistry.getCompoundId("atp")] = 2,
+                           [CompoundRegistry.getCompoundId("aminoacids")] = 1}
+        local aminosynthesizer = Process(3.5, 0, inputCompounds, outputCompounds)
+        nucleusOrganelle:addProcess(aminosynthesizer)
         microbe:addOrganelle(0, 0, nucleusOrganelle)
         -- Forward
         local forwardOrganelle = MovementOrganelle(
@@ -170,9 +222,9 @@ local function createSpawnSystem()
         microbe:addOrganelle(-1, 0, storageOrganelle3)
         -- Producer making atp from oxygen and glucose
         local processOrganelle1 = ProcessOrganelle()
-        local inputCompounds = {[CompoundRegistry.getCompoundId("glucose")] = 1,
+        inputCompounds = {[CompoundRegistry.getCompoundId("glucose")] = 1,
                                 [CompoundRegistry.getCompoundId("oxygen")] = 6}
-        local outputCompounds = {[CompoundRegistry.getCompoundId("atp")] = 38,
+        outputCompounds = {[CompoundRegistry.getCompoundId("atp")] = 38,
                                 [CompoundRegistry.getCompoundId("co2")] = 6}
         local respiration = Process(0.5, 0, inputCompounds, outputCompounds)
         processOrganelle1:addProcess(respiration)
@@ -218,8 +270,9 @@ local function createSpawnSystem()
     
     --Spawn one emitter on average once in every square of sidelength 10
     -- (square dekaunit?)
-    spawnSystem:addSpawnType(testFunction, 1/20^2, 30)
-    spawnSystem:addSpawnType(testFunction2, 1/20^2, 30)
+    spawnSystem:addSpawnType(spawnOxygenEmitter, 1/20^2, 30)
+    spawnSystem:addSpawnType(spawnGlucoseEmitter, 1/20^2, 30)
+    spawnSystem:addSpawnType(spawnAmmoniaEmitter, 1/1000, 30)
     spawnSystem:addSpawnType(microbeSpawnFunction, 1/6500, 40)
     spawnSystem:addSpawnType(toxinOrganelleSpawnFunction, 1/17000, 30)
     return spawnSystem
@@ -282,6 +335,21 @@ function createStarterMicrobe(name, aiControlled)
    local nucleusOrganelle = NucleusOrganelle()
     nucleusOrganelle:addHex(0, 0)
     nucleusOrganelle:setColour(ColourValue(0.8, 0.2, 0.8, 1))
+    
+    local inputCompounds = {[CompoundRegistry.getCompoundId("aminoacids")] = 6,
+                            [CompoundRegistry.getCompoundId("glucose")] = 6,
+                            [CompoundRegistry.getCompoundId("oxygen")] = 6}
+    local outputCompounds = {[CompoundRegistry.getCompoundId("reproductase")] = 1}
+    local reproducer = Process(2.2, 30, inputCompounds, outputCompounds)
+    nucleusOrganelle:addProcess(reproducer)
+    inputCompounds = {[CompoundRegistry.getCompoundId("glucose")] = 1,
+                      [CompoundRegistry.getCompoundId("ammonia")] = 1,}
+    outputCompounds = {[CompoundRegistry.getCompoundId("co2")] = 1,
+                       [CompoundRegistry.getCompoundId("atp")] = 2,
+                       [CompoundRegistry.getCompoundId("aminoacids")] = 1}
+    local aminosynthesizer = Process(3.5, 0, inputCompounds, outputCompounds)
+    nucleusOrganelle:addProcess(aminosynthesizer)
+    
     microbe:addOrganelle(0, 0, nucleusOrganelle)
     -- Forward
     local forwardOrganelle = MovementOrganelle(
@@ -338,9 +406,9 @@ function createStarterMicrobe(name, aiControlled)
     microbe:storeCompound(CompoundRegistry.getCompoundId("atp"), 20, false)
     -- Producer making atp from oxygen and glucose
     local processOrganelle1 = ProcessOrganelle()
-    local inputCompounds = {[CompoundRegistry.getCompoundId("glucose")] = 1,
+    inputCompounds = {[CompoundRegistry.getCompoundId("glucose")] = 1,
                         [CompoundRegistry.getCompoundId("oxygen")] = 6}
-    local outputCompounds = {[CompoundRegistry.getCompoundId("atp")] = 38,
+    outputCompounds = {[CompoundRegistry.getCompoundId("atp")] = 38,
                         [CompoundRegistry.getCompoundId("co2")] = 6}
     local respiration = Process(0.5, 0, inputCompounds, outputCompounds)
     processOrganelle1:addProcess(respiration)
