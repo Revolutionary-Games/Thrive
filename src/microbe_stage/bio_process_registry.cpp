@@ -1,6 +1,8 @@
 
 #include "microbe_stage/bio_process_registry.h"
+#include "microbe_stage/compound.h"
 #include "scripting/luabind.h"
+
 #include "tinyxml/tinyxml.h"
 
 #include <luabind/iterator_policy.hpp>
@@ -17,6 +19,8 @@ BioProcessRegistry::luaBindings() {
             //def("registerBioProcess", &BioProcessRegistry::registerBioProcess),
             def("getDisplayName", &BioProcessRegistry::getDisplayName),
             def("getInternalName", &BioProcessRegistry::getInternalName),
+            def("getEnergyCost", &BioProcessRegistry::getEnergyCost),
+            def("getSpeedFactor", &BioProcessRegistry::getSpeedFactor),
             def("getId", &BioProcessRegistry::getId),
             def("getList", &BioProcessRegistry::getList, return_stl_iterator),
             def("getInputCompounds", &BioProcessRegistry::getInputCompounds, return_stl_iterator),
@@ -24,8 +28,8 @@ BioProcessRegistry::luaBindings() {
         ]
     ,
         class_<std::pair<CompoundId, int>>("RecipyCompound")
-            .def_readwrite("compoundId", &std::pair<CompoundId, int>::first)
-            .def_readwrite("amount", &std::pair<CompoundId, int>::second)
+            .def_readonly("compoundId", &std::pair<CompoundId, int>::first)
+            .def_readonly("amount", &std::pair<CompoundId, int>::second)
     );
 }
 
@@ -64,36 +68,62 @@ BioProcessRegistry::loadFromXML(
     if (loadOkay)
 	{
 		TiXmlHandle hDoc(&doc);
-        TiXmlElement* pElem,
-                    * pElem2;
+        TiXmlElement* processElement,
+                    * pElem;
         TiXmlHandle hRoot(0);
 
-        pElem=hDoc.FirstChildElement().Element();
-        hRoot=TiXmlHandle(pElem);
+        processElement=hDoc.FirstChildElement("Processes").Element();
+        hRoot=TiXmlHandle(processElement);
 
-
-
-      //  pElem=hRoot.FirstChild( "Messages" ).FirstChild().Element();
-		pElem=pElem->NextSiblingElement();
-        while (pElem)
+		processElement=hRoot.FirstChild( "Process" ).Element();
+        while (processElement)
 		{
-		    pElem2=hRoot.FirstChild( "Inputs" ).FirstChild().Element();
-            pElem2=pElem2->NextSiblingElement();
-            while (pElem2)
-            {
-                int amount;
-                pElem2->Attribute("aminoacid", &amount);
-                std::cout << "input found: " << amount << std::endl;
+		    std::vector<std::pair<CompoundId, int>> inputs;
+		    std::vector<std::pair<CompoundId, int>> outputs;
+		    std::string compoundName;
+            int compoundAmount;
 
-                //const char *pKey=pElem->Value();
-              /*  const char *pText=pElem->GetText();
-                if (pKey && pText)
-                {
-                    m_messages[pKey]=pText;
-                }*/
-                pElem2=pElem2->NextSiblingElement();
+		    pElem = processElement->FirstChildElement("Inputs");
+
+            pElem=pElem->FirstChildElement( "Input" );
+            while (pElem)
+            {
+                pElem->Attribute("amount", &compoundAmount);
+                compoundName = pElem->Attribute("compound");
+                std::cout << "input found " << compoundName << compoundAmount << std::endl;
+                inputs.push_back({CompoundRegistry::getCompoundId(compoundName), compoundAmount});
+
+                 pElem=pElem->NextSiblingElement();
             }
-            pElem=pElem->NextSiblingElement();
+
+            pElem = processElement->FirstChildElement("Outputs");
+
+            pElem=pElem->FirstChildElement( "Output" );
+            while (pElem)
+            {
+                pElem->Attribute("amount", &compoundAmount);
+                compoundName = pElem->Attribute("compound");
+                std::cout << "output found " << compoundName << compoundAmount << std::endl;
+                outputs.push_back({CompoundRegistry::getCompoundId(compoundName), compoundAmount});
+
+                 pElem=pElem->NextSiblingElement();
+            }
+
+
+            int energyCost;
+            double speedFactor;
+            processElement->Attribute("energyCost", &energyCost);
+            processElement->Attribute("speedFactor", &speedFactor);
+            registerBioProcess(
+               processElement->Attribute("name"),
+               processElement->Attribute("name"),
+               energyCost,
+               speedFactor,
+               std::move(inputs),
+               std::move(outputs)
+            );
+
+            processElement=processElement->NextSiblingElement("Process");
 		}
 
 	}
@@ -148,6 +178,24 @@ BioProcessRegistry::getInternalName(
     if (static_cast<std::size_t>(id) > processRegistry().size())
         throw std::out_of_range("Index of process does not exist.");
     return processRegistry()[id-1].internalName;
+}
+
+double
+BioProcessRegistry::getSpeedFactor(
+    BioProcessId id
+) {
+    if (static_cast<std::size_t>(id) > processRegistry().size())
+        throw std::out_of_range("Index of process does not exist.");
+    return processRegistry()[id-1].speedFactor;
+}
+
+int
+BioProcessRegistry::getEnergyCost(
+    BioProcessId id
+) {
+    if (static_cast<std::size_t>(id) > processRegistry().size())
+        throw std::out_of_range("Index of process does not exist.");
+    return processRegistry()[id-1].energyCost;
 }
 
 

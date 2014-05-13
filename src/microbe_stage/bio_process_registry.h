@@ -31,6 +31,8 @@ public:
     * - BioProcessRegistry::registerBioProcess
     * - BioProcessRegistry::getDisplayName
     * - BioProcessRegistry::getInternalName
+    * - BioProcessRegistry::getSpeedFactor
+    * - BioProcessRegistry::getEnergyCost
     * - BioProcessRegistry::getId
     * - BioProcessRegistry::getList
     * - BioProcessRegistry::getInputCompounds
@@ -107,6 +109,15 @@ public:
         BioProcessId id
     );
 
+    static double
+    getSpeedFactor(
+        BioProcessId id
+    );
+
+    static int
+    getEnergyCost(
+        BioProcessId id
+    );
 
     /**
     * @brief Obtains the Id of an internal name corresponding to a registered process

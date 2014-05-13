@@ -413,6 +413,14 @@ install(DIRECTORY
         PATTERN "*.wav"
 )
 
+install(DIRECTORY
+    ${ASSET_DIRECTORY}/definitions
+    DESTINATION ./
+    CONFIGURATIONS Release  Debug
+    FILES_MATCHING
+        PATTERN "*.xml"
+)
+
 # Install Runtime Libraries
 if(WIN32)
 
