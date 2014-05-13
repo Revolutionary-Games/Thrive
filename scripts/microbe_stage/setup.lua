@@ -494,5 +494,7 @@ local function createMicrobeStage(name)
     )
 end
 
+BioProcessRegistry.loadFromXML("processes.xml")
+
 GameState.MICROBE = createMicrobeStage("microbe")
 GameState.MICROBE_ALTERNATE = createMicrobeStage("microbe_alternate")

@@ -6,6 +6,7 @@
 #include "engine/system.h"
 #include "engine/touchable.h"
 #include "scripting/luabind.h"
+#include "engine/typedefs.h"
 
 #include <luabind/object.hpp>
 #include <memory>
@@ -21,7 +22,6 @@ class scope;
 
 namespace thrive {
 
-using CompoundId = uint16_t;
 using BoostCompoundMapIterator = boost::range_detail::select_second_mutable_range<std::unordered_map<std::string, CompoundId>>;
 using BoostAbsorbedMapIterator = boost::range_detail::select_first_range<std::unordered_map<CompoundId, float>>;
 
