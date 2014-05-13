@@ -48,6 +48,30 @@ local function setupCompounds()
     CompoundRegistry.registerAgentType("oxytoxy", "OxyToxy NT", "oxytoxy.mesh", 0.3, 1, oxytoxyEffect)
 end
 
+--  This isn't a finished solution. Optimally the process class would be moved to CPP and loaded there entirely.
+global_processMap = {}
+local function setupProcesses()
+    BioProcessRegistry.loadFromXML("../definitions/processes.xml")
+    for processId in BioProcessRegistry.getList() do
+        local inputCompounds = {}
+        local outputCompounds = {}
+        
+        for recipyCompound in BioProcessRegistry.getInputCompounds(processId) do
+            inputCompounds[recipyCompound.compoundId] = recipyCompound.amount
+        end
+        for recipyCompound in BioProcessRegistry.getOutputCompounds(processId) do
+            outputCompounds[recipyCompound.compoundId] = recipyCompound.amount
+        end
+        
+        global_processMap[BioProcessRegistry.getInternalName(processId)] = Process(
+            BioProcessRegistry.getSpeedFactor(processId),
+            BioProcessRegistry.getEnergyCost(processId),
+            inputCompounds,
+            outputCompounds
+        )
+    end
+end
+
 local function createSpawnSystem()
     local spawnSystem = SpawnSystem()
     
@@ -443,6 +467,7 @@ local function setupSound()
 end
 
 setupCompounds()
+setupProcesses()
 
 local function createMicrobeStage(name)
     return 
@@ -493,8 +518,6 @@ local function createMicrobeStage(name)
         "MicrobeStage"
     )
 end
-
-BioProcessRegistry.loadFromXML("processes.xml")
 
 GameState.MICROBE = createMicrobeStage("microbe")
 GameState.MICROBE_ALTERNATE = createMicrobeStage("microbe_alternate")
