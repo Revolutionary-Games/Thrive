@@ -38,14 +38,7 @@ function oxytoxyEffect(entityId, potency)
 end
 
 local function setupCompounds()
-    CompoundRegistry.registerCompoundType("atp", "ATP", "atp.mesh", 0.1, 1)
-    CompoundRegistry.registerCompoundType("oxygen", "Oxygen", "molecule.mesh", 0.3, 1 )    
-    CompoundRegistry.registerCompoundType("reproductase", "Reproductase", "hex.mesh", 0.3, 1)
-    CompoundRegistry.registerCompoundType("aminoacids", "Amino Acids", "hex.mesh", 0.3, 1)
-    CompoundRegistry.registerCompoundType("ammonia", "Amonia", "hex.mesh", 0.3, 1)
-    CompoundRegistry.registerCompoundType("glucose", "Glucose", "glucose.mesh", 0.3, 1)
-    CompoundRegistry.registerCompoundType("co2", "CO2", "co2.mesh", 0.16, 1)
-    CompoundRegistry.registerAgentType("oxytoxy", "OxyToxy NT", "oxytoxy.mesh", 0.3, 1, oxytoxyEffect)
+    CompoundRegistry.loadFromXML("../definitions/compounds.xml")
 end
 
 --  This isn't a finished solution. Optimally the process class would be moved to CPP and loaded there entirely.

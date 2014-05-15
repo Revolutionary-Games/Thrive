@@ -18,7 +18,9 @@ using BoostCompoundMapIterator = boost::range_detail::select_second_mutable_rang
 using BoostAbsorbedMapIterator = boost::range_detail::select_first_range<std::unordered_map<CompoundId, float>>;
 
 /**
-* @brief Static abstract class keeping track of a predefined static concept collection, their Id's, internal and displayed names
+* @brief Static abstract class keeping track of a predefined biological processes, their Id's, internal and displayed names as well as various data
+*
+* Preferably this would hold process objects in the future, but currently it just holds data for certain lua considerations
 */
 class BioProcessRegistry {
 
