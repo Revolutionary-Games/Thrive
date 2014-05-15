@@ -202,19 +202,8 @@ local function createSpawnSystem()
         local nucleusOrganelle = NucleusOrganelle()
         nucleusOrganelle:addHex(0, 0)
         nucleusOrganelle:setColour(ColourValue(0.8, 0.2, 0.8, 1))
-        local inputCompounds = {[CompoundRegistry.getCompoundId("aminoacids")] = 6,
-                                [CompoundRegistry.getCompoundId("glucose")] = 6,
-                                [CompoundRegistry.getCompoundId("oxygen")] = 6}
-        local outputCompounds = {[CompoundRegistry.getCompoundId("reproductase")] = 1}
-        local reproducer = Process(2.2, 30, inputCompounds, outputCompounds)
-        nucleusOrganelle:addProcess(reproducer)
-        inputCompounds = {[CompoundRegistry.getCompoundId("glucose")] = 1,
-                          [CompoundRegistry.getCompoundId("ammonia")] = 1,}
-        outputCompounds = {[CompoundRegistry.getCompoundId("co2")] = 1,
-                           [CompoundRegistry.getCompoundId("atp")] = 2,
-                           [CompoundRegistry.getCompoundId("aminoacids")] = 1}
-        local aminosynthesizer = Process(3.5, 0, inputCompounds, outputCompounds)
-        nucleusOrganelle:addProcess(aminosynthesizer)
+        nucleusOrganelle:addProcess(global_processMap["ReproductaseSynthesis"])
+        nucleusOrganelle:addProcess(global_processMap["AminoAcidSynthesis"])
         microbe:addOrganelle(0, 0, nucleusOrganelle)
         -- Forward
         local forwardOrganelle = MovementOrganelle(
@@ -246,12 +235,7 @@ local function createSpawnSystem()
         microbe:addOrganelle(-1, 0, storageOrganelle3)
         -- Producer making atp from oxygen and glucose
         local processOrganelle1 = ProcessOrganelle()
-        inputCompounds = {[CompoundRegistry.getCompoundId("glucose")] = 1,
-                                [CompoundRegistry.getCompoundId("oxygen")] = 6}
-        outputCompounds = {[CompoundRegistry.getCompoundId("atp")] = 38,
-                                [CompoundRegistry.getCompoundId("co2")] = 6}
-        local respiration = Process(0.5, 0, inputCompounds, outputCompounds)
-        processOrganelle1:addProcess(respiration)
+        processOrganelle1:addProcess(global_processMap["Respiration"])
         processOrganelle1:addHex(0, 0)
         processOrganelle1:setColour(ColourValue(0.8, 0.4, 1, 0))
         microbe:addOrganelle(1, -1, processOrganelle1)
@@ -359,21 +343,8 @@ function createStarterMicrobe(name, aiControlled)
    local nucleusOrganelle = NucleusOrganelle()
     nucleusOrganelle:addHex(0, 0)
     nucleusOrganelle:setColour(ColourValue(0.8, 0.2, 0.8, 1))
-    
-    local inputCompounds = {[CompoundRegistry.getCompoundId("aminoacids")] = 6,
-                            [CompoundRegistry.getCompoundId("glucose")] = 6,
-                            [CompoundRegistry.getCompoundId("oxygen")] = 6}
-    local outputCompounds = {[CompoundRegistry.getCompoundId("reproductase")] = 1}
-    local reproducer = Process(2.2, 30, inputCompounds, outputCompounds)
-    nucleusOrganelle:addProcess(reproducer)
-    inputCompounds = {[CompoundRegistry.getCompoundId("glucose")] = 1,
-                      [CompoundRegistry.getCompoundId("ammonia")] = 1,}
-    outputCompounds = {[CompoundRegistry.getCompoundId("co2")] = 1,
-                       [CompoundRegistry.getCompoundId("atp")] = 2,
-                       [CompoundRegistry.getCompoundId("aminoacids")] = 1}
-    local aminosynthesizer = Process(3.5, 0, inputCompounds, outputCompounds)
-    nucleusOrganelle:addProcess(aminosynthesizer)
-    
+    nucleusOrganelle:addProcess(global_processMap["ReproductaseSynthesis"])
+    nucleusOrganelle:addProcess(global_processMap["AminoAcidSynthesis"])
     microbe:addOrganelle(0, 0, nucleusOrganelle)
     -- Forward
     local forwardOrganelle = MovementOrganelle(
@@ -430,12 +401,7 @@ function createStarterMicrobe(name, aiControlled)
     microbe:storeCompound(CompoundRegistry.getCompoundId("atp"), 20, false)
     -- Producer making atp from oxygen and glucose
     local processOrganelle1 = ProcessOrganelle()
-    inputCompounds = {[CompoundRegistry.getCompoundId("glucose")] = 1,
-                        [CompoundRegistry.getCompoundId("oxygen")] = 6}
-    outputCompounds = {[CompoundRegistry.getCompoundId("atp")] = 38,
-                        [CompoundRegistry.getCompoundId("co2")] = 6}
-    local respiration = Process(0.5, 0, inputCompounds, outputCompounds)
-    processOrganelle1:addProcess(respiration)
+    processOrganelle1:addProcess(global_processMap["Respiration"])
     processOrganelle1:addHex(0, 0)
     processOrganelle1:setColour(ColourValue(0.8, 0.4, 0.5, 0))
     microbe:addOrganelle(1, -1, processOrganelle1)
