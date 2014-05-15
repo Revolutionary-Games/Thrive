@@ -67,68 +67,75 @@ BioProcessRegistry::loadFromXML(
     bool loadOkay = doc.LoadFile();
     if (loadOkay)
 	{
-		TiXmlHandle hDoc(&doc);
-        TiXmlElement* processElement,
-                    * pElem;
-        TiXmlHandle hRoot(0);
+	    // Handles used for null-safety
+		TiXmlHandle hDoc(&doc),
+                    hProcesses(0),
+                    hCompounds(0);
+        // Elements used for iteration
+        TiXmlElement * pProcess,
+                     * pCompound;
 
-        processElement=hDoc.FirstChildElement("Processes").Element();
-        hRoot=TiXmlHandle(processElement);
-
-		processElement=hRoot.FirstChild( "Process" ).Element();
-        while (processElement)
+        hProcesses=hDoc.FirstChildElement("Processes");
+		pProcess=hProcesses.FirstChild( "Process" ).Element();
+        while (pProcess)
 		{
 		    std::vector<std::pair<CompoundId, int>> inputs;
 		    std::vector<std::pair<CompoundId, int>> outputs;
-		    std::string compoundName;
+		    const char* compoundName; //Char pointer for null-checks
             int compoundAmount;
-
-		    pElem = processElement->FirstChildElement("Inputs");
-
-            pElem=pElem->FirstChildElement( "Input" );
-            while (pElem)
+		    hCompounds = TiXmlHandle(pProcess->FirstChildElement("Inputs"));
+            pCompound=hCompounds.FirstChildElement( "Input" ).Element();
+            while (pCompound)
             {
-                pElem->Attribute("amount", &compoundAmount);
-                compoundName = pElem->Attribute("compound");
-                std::cout << "input found " << compoundName << compoundAmount << std::endl;
+                if (pCompound->QueryIntAttribute("amount", &compoundAmount) != TIXML_SUCCESS){
+                    throw std::logic_error("Could not access 'amount' attribute on Input element of " + filename);
+                }
+                compoundName = pCompound->Attribute("compound");
+                if (compoundName == nullptr) {
+                    throw std::logic_error("Could not access 'compound' attribute on Input element of " + filename);
+                }
                 inputs.push_back({CompoundRegistry::getCompoundId(compoundName), compoundAmount});
-
-                 pElem=pElem->NextSiblingElement();
+                pCompound=pCompound->NextSiblingElement();
             }
-
-            pElem = processElement->FirstChildElement("Outputs");
-
-            pElem=pElem->FirstChildElement( "Output" );
-            while (pElem)
+            hCompounds = TiXmlHandle(pProcess->FirstChildElement("Outputs"));
+            pCompound=hCompounds.FirstChildElement( "Output" ).Element();
+            while (pCompound)
             {
-                pElem->Attribute("amount", &compoundAmount);
-                compoundName = pElem->Attribute("compound");
-                std::cout << "output found " << compoundName << compoundAmount << std::endl;
+                if (pCompound->QueryIntAttribute("amount", &compoundAmount) != TIXML_SUCCESS){
+                    throw std::logic_error("Could not access 'amount' attribute on Input element of " + filename);
+                }
+                compoundName = pCompound->Attribute("compound");
+                if (compoundName == nullptr) {
+                    throw std::logic_error("Could not access 'compound' attribute on Input element of " + filename);
+                }
                 outputs.push_back({CompoundRegistry::getCompoundId(compoundName), compoundAmount});
 
-                 pElem=pElem->NextSiblingElement();
+                pCompound=pCompound->NextSiblingElement();
             }
-
-
             int energyCost;
             double speedFactor;
-            processElement->Attribute("energyCost", &energyCost);
-            processElement->Attribute("speedFactor", &speedFactor);
+            if (pProcess->QueryIntAttribute("energyCost", &energyCost) != TIXML_SUCCESS){
+                throw std::logic_error("Could not access 'speedFactor' attribute on Process element of " + filename);
+            }
+            if (pProcess->QueryDoubleAttribute("speedFactor", &speedFactor) != TIXML_SUCCESS){
+                throw std::logic_error("Could not access 'speedFactor' attribute on Process element of " + filename);
+            }
+            const char* processName = pProcess->Attribute("name");
+            if (processName == nullptr) {
+                throw std::logic_error("Could not access 'name' attribute on Process element of " + filename);
+            }
             registerBioProcess(
-               processElement->Attribute("name"),
-               processElement->Attribute("name"),
+               processName,
+               processName,
                energyCost,
                speedFactor,
                std::move(inputs),
                std::move(outputs)
             );
-
-            processElement=processElement->NextSiblingElement("Process");
+            pProcess=pProcess->NextSiblingElement("Process");
 		}
-
 	}
 	else {
-
 		throw std::invalid_argument(doc.ErrorDesc());
 	}
 }
