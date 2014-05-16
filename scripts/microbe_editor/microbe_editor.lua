@@ -132,27 +132,11 @@ function MicrobeEditor:addProcessOrganelle(organelleType)
     if self.currentMicrobe:getOrganelleAt(q, r) == nil then
         local processOrganelle = ProcessOrganelle()
         if organelleType == "mitochondria" then         
-            local inputCompounds = {[CompoundRegistry.getCompoundId("glucose")] = 1,
-                                    [CompoundRegistry.getCompoundId("oxygen")] = 6}
-            local outputCompounds = {[CompoundRegistry.getCompoundId("atp")] = 38,
-                                    [CompoundRegistry.getCompoundId("co2")] = 6}
-            local respiration = Process(0.5, 0, inputCompounds, outputCompounds)
-            processOrganelle:addProcess(respiration)
+            processOrganelle:addProcess(global_processMap["Respiration"])
             processOrganelle:addHex(0, 0)
             processOrganelle:setColour(ColourValue(0.8, 0.4, 0.5, 0))
             
             self.currentMicrobe:addOrganelle(q,r, processOrganelle)
-     --   elseif organelleType == "aminosynthesizer" then         
-     --       local inputCompounds = {[CompoundRegistry.getCompoundId("glucose")] = 1,
-     --                               [CompoundRegistry.getCompoundId("ammonia")] = 1,}
-     --       local outputCompounds = {[CompoundRegistry.getCompoundId("co2")] = 1,
-     --                                [CompoundRegistry.getCompoundId("atp")] = 2,
-     --                                [CompoundRegistry.getCompoundId("aminoacids")] = 1}
-     --       local aminosynthesizer = Process(3.0, 0, inputCompounds, outputCompounds)
-     --       processOrganelle:addProcess(aminosynthesizer)
-     --       processOrganelle:addHex(0, 0)
-     --       processOrganelle:setColour(ColourValue(0.8, 0.75, 0.35, 0))
-     --       self.currentMicrobe:addOrganelle(q,r, processOrganelle)
         else
             assert(false, "organelleType did not exist")
         end
@@ -164,11 +148,7 @@ function MicrobeEditor:addAgentVacuole(organelleType)
     if organelleType == "toxin" then         
         local q, r = self:getMouseHex()
         if self.currentMicrobe:getOrganelleAt(q, r) == nil then
-        
-            inputCompounds = {[CompoundRegistry.getCompoundId("oxygen")] = 3}
-            outputCompounds = {[CompoundRegistry.getCompoundId("oxytoxy")] = 1}
-            local oxytoxyproduction = Process(0.1, 1.0, inputCompounds, outputCompounds)
-            local agentVacuole = AgentVacuole(CompoundRegistry.getCompoundId("oxytoxy"), oxytoxyproduction)
+            local agentVacuole = AgentVacuole(CompoundRegistry.getCompoundId("oxytoxy"), global_processMap["OxyToxySynthesis"])
             agentVacuole:addHex(0, 0)
             agentVacuole:setColour(ColourValue(0, 1, 1, 0))
             self.currentMicrobe:addOrganelle(q, r, agentVacuole)
@@ -183,20 +163,8 @@ function MicrobeEditor:addNucleus()
     nucleusOrganelle:addHex(0, 0)
     nucleusOrganelle:setColour(ColourValue(0.8, 0.2, 0.8, 1))
     self.currentMicrobe:addOrganelle(0, 0, nucleusOrganelle)
-    
-    local inputCompounds = {[CompoundRegistry.getCompoundId("aminoacids")] = 6,
-                            [CompoundRegistry.getCompoundId("glucose")] = 6,
-                            [CompoundRegistry.getCompoundId("oxygen")] = 6}
-    local outputCompounds = {[CompoundRegistry.getCompoundId("reproductase")] = 1}
-    local reproducer = Process(2.2, 30, inputCompounds, outputCompounds)
-    nucleusOrganelle:addProcess(reproducer)
-    inputCompounds = {[CompoundRegistry.getCompoundId("glucose")] = 1,
-                      [CompoundRegistry.getCompoundId("ammonia")] = 1,}
-    outputCompounds = {[CompoundRegistry.getCompoundId("co2")] = 1,
-                       [CompoundRegistry.getCompoundId("atp")] = 2,
-                       [CompoundRegistry.getCompoundId("aminoacids")] = 1}
-    local aminosynthesizer = Process(3.5, 0, inputCompounds, outputCompounds)
-    nucleusOrganelle:addProcess(aminosynthesizer)
+    nucleusOrganelle:addProcess(global_processMap["ReproductaseSynthesis"])
+    nucleusOrganelle:addProcess(global_processMap["AminoAcidSynthesis"])
 end
 
 function MicrobeEditor:createNewMicrobe()

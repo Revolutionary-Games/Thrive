@@ -597,6 +597,10 @@ Engine::load(
     m_impl->m_serialization.loadFile = filename;
 }
 
+lua_State*
+Engine::luaState(){
+    return m_impl->m_luaState;
+}
 
 const Mouse&
 Engine::mouse() const {

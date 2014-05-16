@@ -15,6 +15,8 @@
 #include "scripting/luabind.h"
 #include "util/make_unique.h"
 
+#include "tinyxml/tinyxml.h"
+
 #include <luabind/iterator_policy.hpp>
 #include <OgreEntity.h>
 #include <OgreSceneManager.h>
@@ -662,6 +664,7 @@ CompoundRegistry::luaBindings() {
                     const luabind::object&
                 )>(&CompoundRegistry::registerAgentType)
             ),
+            def("loadFromXML", &CompoundRegistry::loadFromXML),
             def("getCompoundDisplayName", &CompoundRegistry::getCompoundDisplayName),
             def("getCompoundInternalName", &CompoundRegistry::getCompoundInternalName),
 			def("getCompoundMeshName", &CompoundRegistry::getCompoundMeshName),
@@ -699,6 +702,118 @@ compoundRegistryMap() {
     return compoundRegistryMap;
 }
 
+void
+CompoundRegistry::loadFromXML(
+    const std::string& filename
+) {
+    TiXmlDocument doc(filename.c_str());
+    bool loadOkay = doc.LoadFile();
+    if (loadOkay)
+	{
+	    // Handles used for null-safety when possible
+		TiXmlHandle hDoc(&doc),
+                    hCompounds(0),
+                    hDisplay(0),
+                    hModel(0),
+                    hAgents(0),
+                    hEffect(0);
+        // Elements used for iteration with explicit null-checks
+        TiXmlElement * pCompound,
+                     * pAgent;
+
+        hCompounds=hDoc.FirstChildElement("Compounds");
+
+		pCompound=hCompounds.FirstChildElement("Compound").Element();
+        while (pCompound)
+		{
+		    hDisplay = TiXmlHandle(pCompound->FirstChildElement("Display"));
+            hModel = TiXmlHandle(hDisplay.FirstChildElement("Model"));
+            int molecularWeight;
+            double modelSize;
+            if (pCompound->QueryIntAttribute("weight", &molecularWeight) != TIXML_SUCCESS){
+                throw std::logic_error("Could not access 'weight' attribute on compound element of " + filename);
+            }
+            if (hModel.Element()->QueryDoubleAttribute("size", &modelSize) != TIXML_SUCCESS){
+                throw std::logic_error("Could not access 'size' attribute on Model element of " + filename);
+            }
+            const char* name = pCompound->Attribute("name");
+            if (name == nullptr) {
+                throw std::logic_error("Could not access 'name' attribute on compound element of " + filename);
+            }
+            const char* displayName = hDisplay.Element()->Attribute("text");
+            if (displayName == nullptr) {
+                throw std::logic_error("Could not access 'text' attribute on Display element of " + filename);
+            }
+            const char* meshname = hModel.Element()->Attribute("file");
+            if (meshname == nullptr) {
+                throw std::logic_error("Could not access 'file' attribute on Model element of " + filename);
+            }
+            registerCompoundType(
+                name,
+                displayName,
+                meshname,
+                modelSize,
+                molecularWeight
+            );
+            pCompound=pCompound->NextSiblingElement("Compound");
+		}
+		hAgents=hCompounds.FirstChildElement("AgentCompounds");
+		pAgent=hAgents.FirstChildElement("Agent").Element();
+        while (pAgent)
+		{
+		    hDisplay = TiXmlHandle(pAgent->FirstChildElement("Display"));
+            hModel = TiXmlHandle(hDisplay.FirstChildElement("Model"));
+            hEffect = TiXmlHandle(pAgent->FirstChildElement("Effect"));
+            int molecularWeight;
+            double modelSize;
+            if (pAgent->QueryIntAttribute("weight", &molecularWeight) != TIXML_SUCCESS){
+                throw std::logic_error("Could not access 'weight' attribute on Compound element of " + filename);
+            }
+            if (hModel.Element()->QueryDoubleAttribute("size", &modelSize) != TIXML_SUCCESS){
+
+                throw std::logic_error("Could not access 'size' attribute on Model element of " + filename);
+            }
+            const char* functionName = hEffect.Element()->Attribute("function");
+            if (functionName == nullptr) {
+                throw std::logic_error("Could not access 'function' attribute on Effect element of " + filename);
+            }
+            std::string luaFunctionName = std::string(functionName);
+            // Create a lambda to call the function defined in the XML document
+            auto effectLambda = new std::function<bool(EntityId, double)>(
+                [luaFunctionName](EntityId entityId, double potency) -> bool
+                {
+                    luabind::call_function<void>(Game::instance().engine().luaState(), luaFunctionName.c_str(), entityId, potency);
+                    return true;
+                });
+            const char* name = pAgent->Attribute("name");
+            if (name == nullptr) {
+                throw std::logic_error("Could not access 'name' attribute on compound element of " + filename);
+            }
+            const char* displayName = hDisplay.Element()->Attribute("text");
+            if (displayName == nullptr) {
+                throw std::logic_error("Could not access 'text' attribute on Display element of " + filename);
+            }
+            const char* meshname = hModel.Element()->Attribute("file");
+            if (meshname == nullptr) {
+                throw std::logic_error("Could not access 'file' attribute on Model element of " + filename);
+            }
+            //Register the agent type
+            registerAgentType(
+                name,
+                displayName,
+                meshname,
+                modelSize,
+                molecularWeight,
+                effectLambda
+            );
+            pAgent=pAgent->NextSiblingElement("Agent");
+		}
+	}
+	else {
+		throw std::invalid_argument(doc.ErrorDesc());
+	}
+}
+
 CompoundId
 CompoundRegistry::registerCompoundType(
     const std::string& internalName,
@@ -707,12 +822,6 @@ CompoundRegistry::registerCompoundType(
     double meshScale,
     int unitVolume
 ) {
-
-/*    auto effectLambda = [](EntityId) -> int
-        {
-            return 1;
-        };*/
-    //Call overload
     return registerAgentType(internalName,
                          displayName,
                          meshName,

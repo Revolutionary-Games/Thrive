@@ -9,6 +9,10 @@ namespace thrive {
 
     using EntityId = uint32_t;
 
+    using CompoundId = uint16_t;
+    
+    using BioProcessId = uint16_t;
+    
     using Milliseconds = int;
 
     /**
