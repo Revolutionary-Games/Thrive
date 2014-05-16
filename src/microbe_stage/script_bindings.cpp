@@ -2,6 +2,7 @@
 
 #include "scripting/luabind.h"
 #include "microbe_stage/compound.h"
+#include "microbe_stage/bio_process_registry.h"
 
 luabind::scope
 thrive::MicrobeBindings::luaBindings() {
@@ -16,7 +17,8 @@ thrive::MicrobeBindings::luaBindings() {
         CompoundAbsorberSystem::luaBindings(),
         CompoundEmitterSystem::luaBindings(),
         // Other
-        CompoundRegistry::luaBindings()
+        CompoundRegistry::luaBindings(),
+        BioProcessRegistry::luaBindings()
     );
 }
 

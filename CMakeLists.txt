@@ -122,6 +122,11 @@ find_package(Bullet REQUIRED QUIET)
 
 include_directories(SYSTEM ${BULLET_INCLUDE_DIRS})
 
+##########
+# TinyXML #
+##########
+
+find_package(TinyXML REQUIRED QUIET)
 
 #######
 # Lua #
@@ -232,6 +237,7 @@ target_link_libraries(ThriveLib
     ${BULLET_MATH_LIBRARY}
     ${BULLET_SOFTBODY_LIBRARY}
     ${CEGUI_LIBRARY}
+    ${TINYXML_LIBRARIES}
     ${OpenAL_LIBRARIES}
     ${Ogg_LIBRARIES}
     ${Vorbis_LIBRARIES}
@@ -405,6 +411,14 @@ install(DIRECTORY
     FILES_MATCHING
         PATTERN "*.ogg"
         PATTERN "*.wav"
+)
+
+install(DIRECTORY
+    ${ASSET_DIRECTORY}/definitions
+    DESTINATION ./
+    CONFIGURATIONS Release  Debug
+    FILES_MATCHING
+        PATTERN "*.xml"
 )
 
 # Install Runtime Libraries
