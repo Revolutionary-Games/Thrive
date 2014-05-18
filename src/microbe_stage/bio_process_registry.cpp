@@ -3,7 +3,7 @@
 #include "microbe_stage/compound.h"
 #include "scripting/luabind.h"
 
-#include "tinyxml/tinyxml.h"
+#include "tinyxml.h"
 
 #include <luabind/iterator_policy.hpp>
 

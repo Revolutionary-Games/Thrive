@@ -146,6 +146,13 @@ find_package(CEGUI REQUIRED QUIET COMPONENTS OGRE)
 
 include_directories(SYSTEM ${CEGUI_INCLUDE_DIRS})
 
+#######
+# TinyXML #
+#######
+
+find_package(TinyXML REQUIRED QUIET)
+
+include_directories(SYSTEM ${TINYXML_INCLUDE_DIR})
 
 if(WIN32)
     add_definitions(-DLUA_BUILD_AS_DLL)

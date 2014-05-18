@@ -15,7 +15,7 @@
 #include "scripting/luabind.h"
 #include "util/make_unique.h"
 
-#include "tinyxml/tinyxml.h"
+#include "tinyxml.h"
 
 #include <luabind/iterator_policy.hpp>
 #include <OgreEntity.h>
