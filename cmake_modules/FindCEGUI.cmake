@@ -57,6 +57,7 @@
        ~/Library/Frameworks
        /Library/Frameworks
        /usr/local/include
+       /usr/local/cegui-0/include
        /usr/include
        /sw/include # Fink
        /opt/local/include # DarwinPorts
