@@ -14,8 +14,8 @@ end
 global_if_already_displayed = false
 
 function HudSystem:activate()
-    comp = Entity(PLAYER_NAME):getComponent(LockedMapComponent.TYPE_ID)
-    if comp ~= nil and not comp:isLocked("Toxin") and not ss and not global_if_already_displayed then
+    lockedMap = Engine:playerData():lockedMap()
+    if lockedMap ~= nil and not lockedMap:isLocked("Toxin") and not ss and not global_if_already_displayed then
         showMessage("'E' Releases Toxin")
         global_if_already_displayed = true
     end

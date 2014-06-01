@@ -1,7 +1,6 @@
-#include "general/unlocking_system.h"
+#include "general/locked_map.h"
 
 #include "bullet/collision_filter.h"
-#include "engine/component_factory.h"
 #include "engine/engine.h"
 #include "engine/entity_filter.h"
 #include "engine/game_state.h"
@@ -13,32 +12,26 @@
 using namespace thrive;
 
 luabind::scope
-LockedMapComponent::luaBindings() {
+LockedMap::luaBindings() {
     using namespace luabind;
-    return class_<LockedMapComponent, Component>("LockedMapComponent")
-        .enum_("ID") [
-            value("TYPE_ID", LockedMapComponent::TYPE_ID)
-        ]
-        .scope [
-            def("TYPE_NAME", &LockedMapComponent::TYPE_NAME)
-        ]
+    return class_<LockedMap>("LockedMap")
         .def(constructor<>())
-        .def("addLock", &LockedMapComponent::addLock)
-        .def("isLocked", &LockedMapComponent::isLocked)
-        .def("unlock", &LockedMapComponent::unlock)
-        .def("locksList", &LockedMapComponent::locksList, return_stl_iterator)
+        .def("addLock", &LockedMap::addLock)
+        .def("isLocked", &LockedMap::isLocked)
+        .def("unlock", &LockedMap::unlock)
+        .def("locksList", &LockedMap::locksList, return_stl_iterator)
     ;
 }
 
 void
-LockedMapComponent::addLock(
+LockedMap::addLock(
     std::string lockName
 ) {
     m_locks.insert(lockName);
 }
 
 bool
-LockedMapComponent::isLocked(
+LockedMap::isLocked(
     std::string conceptName
 ) const {
     auto found = m_locks.find(conceptName);
@@ -46,7 +39,7 @@ LockedMapComponent::isLocked(
 }
 
 void
-LockedMapComponent::unlock(
+LockedMap::unlock(
     std::string conceptName
 ) {
     m_locks.erase(conceptName);
@@ -54,10 +47,9 @@ LockedMapComponent::unlock(
 
 
 void
-LockedMapComponent::load(
+LockedMap::load(
     const StorageContainer& storage
 ) {
-    Component::load(storage);
     StorageList locks = storage.get<StorageList>("locks");
     for (const StorageContainer& container : locks) {
         std::string name = container.get<std::string>("name");
@@ -66,13 +58,13 @@ LockedMapComponent::load(
 }
 
 const std::unordered_set<std::string>&
-LockedMapComponent::locksList() const {
+LockedMap::locksList() const {
     return m_locks;
 }
 
 StorageContainer
-LockedMapComponent::storage() const {
-    StorageContainer storage = Component::storage();
+LockedMap::storage() const {
+    StorageContainer storage;
     StorageList locks;
     locks.reserve(m_locks.size());
     for (const auto& name : m_locks) {
@@ -83,6 +75,3 @@ LockedMapComponent::storage() const {
     storage.set<StorageList>("locks", locks);
     return storage;
 }
-
-REGISTER_COMPONENT(LockedMapComponent)
-
