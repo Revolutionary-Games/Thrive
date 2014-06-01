@@ -33,6 +33,7 @@ namespace thrive {
 class ComponentFactory;
 class EntityManager;
 class Entity;
+class PlayerData;
 class Keyboard;
 class Mouse;
 class OgreViewportSystem;
@@ -59,6 +60,7 @@ public:
     * - Engine::currentGameState()
     * - Engine::getGameState()
     * - Engine::setCurrentGameState()
+    * - Engine::playerData()
     * - Engine::load()
     * - Engine::save()
     * - Engine::quit()
@@ -128,6 +130,11 @@ public:
     GameState*
     currentGameState() const;
 
+    /**
+    * @brief Object holding generic player data
+    */
+    PlayerData&
+    playerData();
 
     /**
     * @brief The engine's RNG
