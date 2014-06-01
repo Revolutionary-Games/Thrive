@@ -31,6 +31,7 @@ function MovementOrganelle:onAddedToMicrobe(microbe, q, r)
     sceneNode.transform:touch()
     self.tailEntity:addComponent(sceneNode)
     self.tailEntity.sceneNode = sceneNode
+    self.tailEntity:setVolatile(true)
     self.movingTail = false
     local organelleX, organelleY = axialToCartesian(q, r)
     local nucleusX, nucleusY = axialToCartesian(0, 0)
@@ -48,6 +49,11 @@ function MovementOrganelle:onRemovedFromMicrobe(microbe)
     self.tailEntity:destroy() --ogre scenenode will be destroyed due to parenting but the rest of the entity wont without this call.
 end
 
+function MovementOrganelle:destroy()
+    print("ya")
+    self.tailEntity:destroy()
+    Organelle.destroy(self)
+end
 
 function MovementOrganelle:load(storage)
     Organelle.load(self, storage)
