@@ -50,7 +50,6 @@ function MovementOrganelle:onRemovedFromMicrobe(microbe)
 end
 
 function MovementOrganelle:destroy()
-    print("ya")
     self.tailEntity:destroy()
     Organelle.destroy(self)
 end
