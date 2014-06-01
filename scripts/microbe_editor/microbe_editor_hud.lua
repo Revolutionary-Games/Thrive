@@ -55,13 +55,13 @@ function MicrobeEditorHudSystem:activate()
     global_activeMicrobeEditorHudSystem = self -- Global reference for event handlers
     self.editor:activate()
     for typeName,button in pairs(global_activeMicrobeEditorHudSystem.organelleButtons) do
-        if global_activeMicrobeEditorHudSystem.editor.lockedMap ~= nil and global_activeMicrobeEditorHudSystem.editor.lockedMap:isLocked(typeName) then
+        if Engine:playerData():lockedMap():isLocked(typeName) then
             button:disable()
         else
             button:enable()
         end
     end
-    global_newEditorMicrobe = true
+    
 end
 
 function MicrobeEditorHudSystem:setActiveAction(actionName)
@@ -117,7 +117,7 @@ end
 -- Event handlers
 function nucleusClicked()
     for typeName,button in pairs(global_activeMicrobeEditorHudSystem.organelleButtons) do
-        if not global_activeMicrobeEditorHudSystem.editor.lockedMap:isLocked(typeName) then
+        if not Engine:playerData():lockedMap():isLocked(typeName) then
             button:enable()
         end
     end
@@ -126,7 +126,7 @@ end
 
 function flageliumClicked()
     for typeName,button in pairs(global_activeMicrobeEditorHudSystem.organelleButtons) do
-        if not global_activeMicrobeEditorHudSystem.editor.lockedMap:isLocked(typeName) then
+        if not Engine:playerData():lockedMap():isLocked(typeName) then
             button:enable()
         end
     end
@@ -136,7 +136,7 @@ end
 
 function mitochondriaClicked()
     for typeName,button in pairs(global_activeMicrobeEditorHudSystem.organelleButtons) do
-        if not global_activeMicrobeEditorHudSystem.editor.lockedMap:isLocked(typeName) then
+        if not Engine:playerData():lockedMap():isLocked(typeName) then
             button:enable()
         end
     end
@@ -146,7 +146,7 @@ end
 
 function aminoSynthesizerClicked()
     for typeName,button in pairs(global_activeMicrobeEditorHudSystem.organelleButtons) do
-        if not global_activeMicrobeEditorHudSystem.editor.lockedMap:isLocked(typeName) then
+        if not Engine:playerData():lockedMap():isLocked(typeName) then
             button:enable()
         end
     end
@@ -156,7 +156,7 @@ end
 
 function vacuoleClicked()
     for typeName,button in pairs(global_activeMicrobeEditorHudSystem.organelleButtons) do
-        if not global_activeMicrobeEditorHudSystem.editor.lockedMap:isLocked(typeName) then
+        if not Engine:playerData():lockedMap():isLocked(typeName) then
             button:enable()
         end
     end
@@ -165,9 +165,9 @@ function vacuoleClicked()
 end
 
 function toxinClicked()
-    if not global_activeMicrobeEditorHudSystem.editor.lockedMap:isLocked("Toxin") then
+    if not Engine:playerData():lockedMap():isLocked("Toxin") then
         for typeName,button in pairs(global_activeMicrobeEditorHudSystem.organelleButtons) do
-            if not global_activeMicrobeEditorHudSystem.editor.lockedMap:isLocked(typeName) then
+            if not Engine:playerData():lockedMap():isLocked(typeName) then
                 button:enable()
             end
         end
@@ -179,7 +179,7 @@ end
 
 function removeClicked()
     for typeName,button in pairs(global_activeMicrobeEditorHudSystem.organelleButtons) do
-        if not global_activeMicrobeEditorHudSystem.editor.lockedMap:isLocked(typeName) then
+        if not Engine:playerData():lockedMap():isLocked(typeName) then
             button:enable()
         end
     end

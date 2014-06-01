@@ -324,9 +324,9 @@ local function setupEmitter()
 end
 
 function unlockToxin(entityId)
-    if Entity(entityId):getComponent(LockedMapComponent.TYPE_ID):isLocked("Toxin") then
+    if Engine:playerData():lockedMap():isLocked("Toxin") then
         showMessage("Toxin Unlocked!")
-        Entity(entityId):getComponent(LockedMapComponent.TYPE_ID):unlock("Toxin")
+        Engine:playerData():lockedMap():unlock("Toxin")
     end
     return true
 end
@@ -405,9 +405,8 @@ end
 local function setupPlayer()
     microbe = createStarterMicrobe(PLAYER_NAME, false)
     microbe.collisionHandler:addCollisionGroup("powerupable")
-    local lockedMap = LockedMapComponent()
-    lockedMap:addLock("Toxin")
-    microbe.entity:addComponent(lockedMap)
+    Engine:playerData():lockedMap():addLock("Toxin")
+    Engine:playerData():setActiveCreature(microbe.entity.id)
 end
 
 local function setupSound()
