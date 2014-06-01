@@ -26,16 +26,12 @@ function MicrobeEditor:__init(hudSystem)
 end
 
 function MicrobeEditor:activate()
-    playerEntity = Entity(PLAYER_NAME, GameState.MICROBE)
-    if not playerEntity:exists() then 
-        print("NOT EXIST")
-    end
-    self.lockedMap = playerEntity:getComponent(LockedMapComponent.TYPE_ID)
-    if self.lockedMap == nil then 
-        print("LOCK NIL")
-    end
+    playerEntity = Entity(Engine:playerData():activeCreature(), GameState.MICROBE)
+    self.lockedMap = Engine:playerData():lockedMap()
     self.nextMicrobeEntity = playerEntity:transfer(GameState.MICROBE_EDITOR)
     self.nextMicrobeEntity:stealName("working_microbe")
+    Engine:playerData():setBool("edited_microbe", true)
+    Engine:playerData():setActiveCreature(self.nextMicrobeEntity.id)
 end
 
 function MicrobeEditor:update(milliseconds)
@@ -172,14 +168,10 @@ function MicrobeEditor:createNewMicrobe()
     if self.currentMicrobe ~= nil then
         self.currentMicrobe.entity:destroy()
     end
-    local lockedMapStorage = self.currentMicrobe:getComponent(LockedMapComponent.TYPE_ID):storage()
     self.currentMicrobe = Microbe.createMicrobeEntity(nil, false)
     self.currentMicrobe.entity:stealName("working_microbe")
     self.currentMicrobe.sceneNode.transform.orientation = Quaternion(Radian(Degree(180)), Vector3(0, 0, 1))-- Orientation
     self.currentMicrobe.sceneNode.transform:touch()
-    local newLockedMap = LockedMapComponent()
-    newLockedMap:load(lockedMapStorage)
-    self.currentMicrobe.entity:addComponent(newLockedMap)
     self.currentMicrobe.collisionHandler:addCollisionGroup("powerupable")
     self:addNucleus()
     

@@ -8,6 +8,7 @@
 #include "engine/serialization.h"
 #include "engine/system.h"
 #include "engine/rng.h"
+#include "engine/player_data.h"
 #include "game.h"
 
 // Bullet
@@ -35,6 +36,7 @@
 #include "scripting/luabind.h"
 #include "scripting/lua_state.h"
 #include "scripting/script_initializer.h"
+
 
 // Microbe
 #include "microbe_stage/compound.h"
@@ -80,7 +82,8 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
     Implementation(
         Engine& engine
     ) : m_engine(engine),
-        m_rng()
+        m_rng(),
+        m_playerData("player")
     {
     }
 
@@ -149,6 +152,7 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
             this->activateGameState(previousGameState);
             // TODO: Log error
         }
+        m_playerData.load(savegame.get<StorageContainer>("playerData"));
     }
 
     void
@@ -233,6 +237,7 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
             gameStates.set(pair.first, pair.second->storage());
         }
         savegame.set("gameStates", std::move(gameStates));
+        savegame.set("playerData", m_playerData.storage());
         std::ofstream stream(
             m_serialization.saveFile,
             std::ofstream::trunc | std::ofstream::binary
@@ -404,6 +409,8 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
 
     RNG m_rng;
 
+    PlayerData m_playerData;
+
     bool m_quitRequested = false;
 
     struct Graphics {
@@ -477,6 +484,7 @@ Engine::luaBindings() {
         .def("currentGameState", &Engine::currentGameState)
         .def("getGameState", &Engine::getGameState)
         .def("setCurrentGameState", &Engine::setCurrentGameState)
+        .def("playerData", &Engine::playerData)
         .def("load", &Engine::load)
         .def("save", &Engine::save)
         .def("quit", &Engine::quit)
@@ -485,8 +493,6 @@ Engine::luaBindings() {
         .property("mouse", &Engine::mouse)
     ;
 }
-
-
 
 
 Engine::Engine()
@@ -636,6 +642,10 @@ Engine::setCurrentGameState(
     m_impl->m_nextGameState = gameState;
 }
 
+PlayerData&
+Engine::playerData(){
+    return m_impl->m_playerData;
+}
 
 void
 Engine::shutdown() {

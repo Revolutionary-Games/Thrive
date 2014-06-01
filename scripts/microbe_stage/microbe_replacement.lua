@@ -9,8 +9,9 @@ function MicrobeReplacementSystem:__init()
 end
 
 function MicrobeReplacementSystem:activate()
-    if global_newEditorMicrobe then
-        workingMicrobe = Microbe(Entity("working_microbe", GameState.MICROBE_EDITOR))
+    activeCreatureId = Engine:playerData():activeCreature()
+    if Engine:playerData():isBoolSet("edited_microbe") then
+        workingMicrobe = Microbe(Entity(activeCreatureId, GameState.MICROBE_EDITOR))
         if workingMicrobe:getCompoundAmount(CompoundRegistry.getCompoundId("atp")) == 0 then
             workingMicrobe:storeCompound(CompoundRegistry.getCompoundId("atp"), 10)
         end
@@ -18,8 +19,9 @@ function MicrobeReplacementSystem:activate()
         newPlayerMicrobe = newMicrobeEntity:transfer(GameState.MICROBE)
         newPlayerMicrobe:stealName(PLAYER_NAME)
         global_newEditorMicrobe = false
+        Engine:playerData():setActiveCreature(newPlayerMicrobe.id)
     end
-    
+   
 end
 
 function MicrobeReplacementSystem:update(milliseconds)
