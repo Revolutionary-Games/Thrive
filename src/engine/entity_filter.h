@@ -211,6 +211,14 @@ public:
     std::unordered_set<EntityId>&
     removedEntities();
 
+    /** 
+    * @brief Gets the current entiyManager
+    *
+    * @return
+    */
+    EntityManager*
+    entityManager();
+    
     /**
     * @brief Sets the entity manager this filter applies to
     *

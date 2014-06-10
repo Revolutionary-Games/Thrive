@@ -64,6 +64,8 @@ public:
     * - Engine::load()
     * - Engine::save()
     * - Engine::quit()
+    * - Engine::timedSystemShutdown()
+    * - Engine::isSystemTimedShutdown()
     * - Engine::componentFactory() (as property)
     * - Engine::keyboard() (as property)
     * - Engine::mouse() (as property)
@@ -271,10 +273,47 @@ public:
     );
 
     /**
+    * @brief Keeps a system alive after being shut down for a specified amount of  time
+    *
+    * Note that this causes update to be called for the specified duration so be careful
+    * to ensure that the system is not enabled or it will get update calls twice.
+    *
+    * @param system
+    *   The system to keep updated
+    *
+    * @param milliseconds
+    *   The number of milliseconds to keep the system updated for
+    */
+    void
+    timedSystemShutdown(
+        System& system,
+        int milliseconds
+    );
+
+    /**
+    * @brief Returns whether the specified system has already been set for a timed shutdown
+    *
+    * @param system
+    *   The system to check for
+    *
+    * @return
+    */
+    bool
+    isSystemTimedShutdown(
+        System& system
+    ) const;
+
+    /**
     * @brief Transfers an entity from one gamestate to another
     *
+    * @param oldEntityId
+    *  The id of the entity to transfer in the old entitymanager
     *
+    * @param oldEntityManager
+    *  The old entitymanager which is currently handling the entity
     *
+    * @param newGameState
+    *  The new gamestate to transfer the entity to
     */
     EntityId
     transferEntityGameState(
