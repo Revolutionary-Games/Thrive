@@ -499,13 +499,16 @@ function Microbe:damage(amount)
     end
 end
 
--- Heals the microbe, restoring hitpoints, cannot exceede the microbes max hitpoints
+-- Heals the microbe, restoring hitpoints, cannot exceed the microbes max hitpoints
 --
 -- @param amount
 --  amount of hitpoints heal
 function Microbe:heal(amount)
     assert(amount >= 0, "Can't heal for negative amount of hitpoints. Use Microbe:damage instead")
-    self.microbe.hitpoints = (self.microbe.hitpoints + amount) % self.microbe.maxHitpoints
+    self.microbe.hitpoints = (self.microbe.hitpoints + amount)
+    if self.microbe.hitpoints > self.microbe.maxHitpoints then
+        self.microbe.hitpoints = self.microbe.maxHitpoints
+    end
 end
 
 -- Drains an agent from the microbes special storage and emits it
