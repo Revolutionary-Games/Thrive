@@ -36,3 +36,10 @@ function StorageOrganelle:onRemovedFromMicrobe(microbe, q, r)
     microbe:removeStorageOrganelle(self)
 end
 
+
+function OrganelleFactory.makeVacuole()
+    local vacuole = StorageOrganelle(100.0)
+    vacuole:addHex(0, 0)
+    vacuole:setColour(ColourValue(0, 1, 0, 1))
+    return vacuole
+end

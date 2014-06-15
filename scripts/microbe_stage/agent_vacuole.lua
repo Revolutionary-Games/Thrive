@@ -79,3 +79,11 @@ function AgentVacuole:load(storage)
     process:load(storage:get("process", 0))
     self.process = process
 end
+
+-- factory functions
+function OrganelleFactory.makeOxytoxyVacuole()
+    local agentVacuole = AgentVacuole(CompoundRegistry.getCompoundId("oxytoxy"), global_processMap["OxyToxySynthesis"])
+    agentVacuole:addHex(0, 0)
+    agentVacuole:setColour(ColourValue(0, 1, 1, 0))
+    return agentVacuole
+end

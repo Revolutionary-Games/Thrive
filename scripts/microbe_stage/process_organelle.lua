@@ -285,3 +285,14 @@ function ProcessOrganelle:load(storage)
         self:addProcess(process)
     end
 end
+
+-------------------------------------------
+-- factory functions for process organelles
+
+function OrganelleFactory.makeMitochondrion()
+    local mito = ProcessOrganelle()
+    mito:addProcess(global_processMap["Respiration"])
+    mito:addHex(0, 0)
+    mito:setColour(ColourValue(0.8, 0.4, 0.5, 0))
+    return mito
+end

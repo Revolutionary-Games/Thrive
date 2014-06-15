@@ -248,3 +248,20 @@ end
 function Organelle:updateHexColours()
     self._needsColourUpdate = true
 end
+
+-- The basic organelle maker
+class 'OrganelleFactory'
+
+-- OrganelleFactory:makeFoo() should be defined in the appropriate file
+-- for example, OrganelleFactory:makeMitochondrion() should be defined in process_organelle.lua
+-- each factory function should return an organelle that's ready to be inserted into a microbe
+-- example:
+
+function OrganelleFactory.makeNucleus()
+    local nucleus = NucleusOrganelle()
+    nucleus:addHex(0, 0)
+    nucleus:setColour(ColourValue(0.8, 0.2, 0.8, 1))
+    nucleus:addProcess(global_processMap["ReproductaseSynthesis"])
+    nucleus:addProcess(global_processMap["AminoAcidSynthesis"])
+    return nucleus
+end
