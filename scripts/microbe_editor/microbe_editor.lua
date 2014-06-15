@@ -92,9 +92,7 @@ function MicrobeEditor:addStorageOrganelle(organelleType)
    -- self.currentMicrobe = Microbe(Entity("working_microbe", GameState.MICROBE))
     local q, r = self:getMouseHex()
     if self.currentMicrobe:getOrganelleAt(q, r) == nil then
-        local storageOrganelle = StorageOrganelle(100.0)
-        storageOrganelle:addHex(0, 0)
-        storageOrganelle:setColour(ColourValue(0, 1, 0, 1))  
+        local storageOrganelle = OrganelleFactory.makeVacuole()
         self.currentMicrobe:addOrganelle(q, r, storageOrganelle)
         self.organelleCount = self.organelleCount + 1
     end
@@ -104,20 +102,7 @@ end
 function MicrobeEditor:addMovementOrganelle(organelleType)
     local q, r = self:getMouseHex()
     if self.currentMicrobe:getOrganelleAt(q, r) == nil then
-        -- Calculate the momentum of the movement organelle based on angle towards nucleus
-        local organelleX, organelleY = axialToCartesian(q, r)
-        local nucleusX, nucleusY = axialToCartesian(0, 0)
-        local deltaX = nucleusX - organelleX
-        local deltaY = nucleusY - organelleY
-        local dist = math.sqrt(deltaX^2 + deltaY^2) -- For normalizing vector
-        local momentumX = deltaX / dist * FLAGELIUM_MOMENTUM
-        local momentumY = deltaY / dist * FLAGELIUM_MOMENTUM
-        local movementOrganelle = MovementOrganelle(
-            Vector3(momentumX, momentumY, 0.0),
-            300
-        )
-        movementOrganelle:addHex(0, 0)
-        movementOrganelle:setColour(ColourValue(0.8, 0.3, 0.3, 1))
+        local movementOrganelle = OrganelleFactory.makeFlagellum(q,r)
         self.currentMicrobe:addOrganelle(q,r, movementOrganelle)
         self.organelleCount = self.organelleCount + 1
     end
@@ -126,13 +111,9 @@ end
 function MicrobeEditor:addProcessOrganelle(organelleType)
     local q, r = self:getMouseHex()
     if self.currentMicrobe:getOrganelleAt(q, r) == nil then
-        local processOrganelle = ProcessOrganelle()
-        if organelleType == "mitochondria" then         
-            processOrganelle:addProcess(global_processMap["Respiration"])
-            processOrganelle:addHex(0, 0)
-            processOrganelle:setColour(ColourValue(0.8, 0.4, 0.5, 0))
-            
-            self.currentMicrobe:addOrganelle(q,r, processOrganelle)
+        
+        if organelleType == "mitochondria" then
+            self.currentMicrobe:addOrganelle(q,r, OrganelleFactory.makeMitochondrion())
         else
             assert(false, "organelleType did not exist")
         end
@@ -144,9 +125,7 @@ function MicrobeEditor:addAgentVacuole(organelleType)
     if organelleType == "toxin" then         
         local q, r = self:getMouseHex()
         if self.currentMicrobe:getOrganelleAt(q, r) == nil then
-            local agentVacuole = AgentVacuole(CompoundRegistry.getCompoundId("oxytoxy"), global_processMap["OxyToxySynthesis"])
-            agentVacuole:addHex(0, 0)
-            agentVacuole:setColour(ColourValue(0, 1, 1, 0))
+            local agentVacuole = OrganelleFactory.makeOxytoxyVacuole()
             self.currentMicrobe:addOrganelle(q, r, agentVacuole)
             self.organelleCount = self.organelleCount + 1
         end
@@ -155,12 +134,8 @@ function MicrobeEditor:addAgentVacuole(organelleType)
 end
 
 function MicrobeEditor:addNucleus()
-    local nucleusOrganelle = NucleusOrganelle()
-    nucleusOrganelle:addHex(0, 0)
-    nucleusOrganelle:setColour(ColourValue(0.8, 0.2, 0.8, 1))
+    local nucleusOrganelle = OrganelleFactory.makeNucleus()
     self.currentMicrobe:addOrganelle(0, 0, nucleusOrganelle)
-    nucleusOrganelle:addProcess(global_processMap["ReproductaseSynthesis"])
-    nucleusOrganelle:addProcess(global_processMap["AminoAcidSynthesis"])
 end
 
 function MicrobeEditor:createNewMicrobe()
