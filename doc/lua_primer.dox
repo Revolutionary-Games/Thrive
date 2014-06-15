@@ -59,7 +59,7 @@ Tables
 
     -- Accessing non-existant keys gives back nil
     assert(myArray[0] == nil)
-    assert(myTable.nosuchkey =- nil)
+    assert(myTable.nosuchkey == nil)
 
 \endcode
 
