@@ -92,8 +92,7 @@ function MicrobeEditor:addStorageOrganelle(organelleType)
    -- self.currentMicrobe = Microbe(Entity("working_microbe", GameState.MICROBE))
     local q, r = self:getMouseHex()
     if self.currentMicrobe:getOrganelleAt(q, r) == nil then
-        local storageOrganelle = OrganelleFactory.makeVacuole()
-        self.currentMicrobe:addOrganelle(q, r, storageOrganelle)
+        self.currentMicrobe:addOrganelle(q, r, OrganelleFactory.makeVacuole())
         self.organelleCount = self.organelleCount + 1
     end
 end
@@ -102,8 +101,7 @@ end
 function MicrobeEditor:addMovementOrganelle(organelleType)
     local q, r = self:getMouseHex()
     if self.currentMicrobe:getOrganelleAt(q, r) == nil then
-        local movementOrganelle = OrganelleFactory.makeFlagellum(q,r)
-        self.currentMicrobe:addOrganelle(q,r, movementOrganelle)
+        self.currentMicrobe:addOrganelle(q,r, OrganelleFactory.makeFlagellum(q,r))
         self.organelleCount = self.organelleCount + 1
     end
 end
@@ -125,8 +123,7 @@ function MicrobeEditor:addAgentVacuole(organelleType)
     if organelleType == "toxin" then         
         local q, r = self:getMouseHex()
         if self.currentMicrobe:getOrganelleAt(q, r) == nil then
-            local agentVacuole = OrganelleFactory.makeOxytoxyVacuole()
-            self.currentMicrobe:addOrganelle(q, r, agentVacuole)
+            self.currentMicrobe:addOrganelle(q, r, OrganelleFactory.makeOxytoxyVacuole())
             self.organelleCount = self.organelleCount + 1
         end
     end
