@@ -300,7 +300,7 @@ struct SoundSourceSystem::Implementation {
     removeSoundsForEntity(
         EntityId entityId
     ) {
-        EntityManager& entityManager = Game::instance().engine().currentGameState()->entityManager();
+        EntityManager& entityManager = *m_entities.entityManager();
         SoundSourceComponent* soundSource = static_cast<SoundSourceComponent*>(entityManager.getComponent(entityId, SoundSourceComponent::TYPE_ID));
         for (const auto& pair : soundSource->m_sounds) {
             Sound* sound = pair.second.get();
@@ -430,13 +430,16 @@ SoundSourceSystem::activate() {
 
 void
 SoundSourceSystem::deactivate() {
-    System::deactivate();
-    auto& soundManager = OgreOggSound::OgreOggSoundManager::getSingleton();
-    m_impl->removeAllSounds();
-    for (auto& value : m_impl->m_entities) {
-        std::get<0>(value.second)->m_ambientSoundCountdown = 0;
+    if (this->engine()->isSystemTimedShutdown(*this)) {
+        System::deactivate();
+        m_impl->removeAllSounds();
     }
-    soundManager.setSceneManager(nullptr);
+    else {
+        for (auto& value : m_impl->m_entities) {
+            std::get<0>(value.second)->m_ambientSoundCountdown = 1500;
+        }
+        this->engine()->timedSystemShutdown(*this, 1500);
+    }
 }
 
 
