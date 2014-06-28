@@ -288,6 +288,11 @@ EntityFilter<ComponentTypes...>::removedEntities() {
     return m_impl->m_removedEntities;
 }
 
+template<typename... ComponentTypes>
+EntityManager*
+EntityFilter<ComponentTypes...>::entityManager() {
+    return m_impl->m_entityManager;
+}
 
 template<typename... ComponentTypes>
 void
