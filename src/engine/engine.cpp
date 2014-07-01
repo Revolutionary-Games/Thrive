@@ -61,6 +61,7 @@
 #include <OgreWindowEventUtilities.h>
 #include <OISInputManager.h>
 #include <OISMouse.h>
+#include <map>
 #include <random>
 #include <set>
 #include <stdlib.h>
@@ -83,7 +84,9 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
         Engine& engine
     ) : m_engine(engine),
         m_rng(),
-        m_playerData("player")
+        m_playerData("player"),
+        m_nextShutdownSystems(new std::map<System*, int>),
+        m_prevShutdownSystems(new std::map<System*, int>)
     {
     }
 
@@ -413,6 +416,9 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
 
     bool m_quitRequested = false;
 
+    std::map<System*, int>* m_nextShutdownSystems;
+    std::map<System*, int>* m_prevShutdownSystems;
+
     struct Graphics {
 
         std::unique_ptr<Ogre::Root> root;
@@ -488,6 +494,8 @@ Engine::luaBindings() {
         .def("load", &Engine::load)
         .def("save", &Engine::save)
         .def("quit", &Engine::quit)
+        .def("timedSystemShutdown", &Engine::timedSystemShutdown)
+        .def("isSystemTimedShutdown", &Engine::isSystemTimedShutdown)
         .property("componentFactory", &Engine::componentFactory)
         .property("keyboard", &Engine::keyboard)
         .property("mouse", &Engine::mouse)
@@ -640,6 +648,13 @@ Engine::setCurrentGameState(
 ) {
     assert(gameState != nullptr && "GameState must not be null");
     m_impl->m_nextGameState = gameState;
+    for (auto& pair : *m_impl->m_prevShutdownSystems){
+        //Make sure systems are deactivated before any potential reactivations
+        pair.first->deactivate();
+    }
+    m_impl->m_prevShutdownSystems = m_impl->m_nextShutdownSystems;
+    m_impl->m_nextShutdownSystems = m_impl->m_prevShutdownSystems;
+    m_impl->m_nextShutdownSystems->clear();
 }
 
 PlayerData&
@@ -710,8 +725,36 @@ Engine::update(
     }
     assert(m_impl->m_currentGameState != nullptr);
     m_impl->m_currentGameState->update(milliseconds);
+    // Update any timed shutdown systems
+    auto itr = m_impl->m_prevShutdownSystems->begin();
+    while (itr != m_impl->m_prevShutdownSystems->end()) {
+        int updateTime = std::min(itr->second, milliseconds);
+        itr->first->update(updateTime);
+        itr->second = itr->second - updateTime;
+        if (itr->second == 0) {
+            // Remove systems that had timed out
+            itr->first->deactivate();
+            m_impl->m_prevShutdownSystems->erase(itr++);
+        } else {
+            ++itr;
+        }
+    }
     if (not m_impl->m_serialization.loadFile.empty()) {
         m_impl->loadSavegame();
     }
 }
 
+void
+Engine::timedSystemShutdown(
+    System& system,
+    int milliseconds
+) {
+    (*m_impl->m_nextShutdownSystems)[&system] = milliseconds;
+}
+
+bool
+Engine::isSystemTimedShutdown(
+    System& system
+) const {
+    return m_impl->m_prevShutdownSystems->find(&system) !=  m_impl->m_prevShutdownSystems->end();
+}
