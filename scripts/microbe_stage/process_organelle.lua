@@ -296,3 +296,11 @@ function OrganelleFactory.makeMitochondrion()
     mito:setColour(ColourValue(0.8, 0.4, 0.5, 0))
     return mito
 end
+
+function OrganelleFactory.makeChloroplast()
+    local chloro = ProcessOrganelle()
+    chloro:addProcess(global_processMap["Photosynthesis"])
+    chloro:addHex(0, 0)
+    chloro:setColour(ColourValue(0, 1, 0, 0.5))
+    return chloro
+end
