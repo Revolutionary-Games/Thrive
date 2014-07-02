@@ -109,6 +109,48 @@ local function createSpawnSystem()
         entity:addComponent(timedEmitter)
         return entity
     end
+    local spawnCO2Emitter = function(pos)
+        -- Setting up an emitter for co2
+        local entity = Entity()
+        -- Rigid body
+        local rigidBody = RigidBodyComponent()
+        rigidBody.properties.friction = 0.2
+        rigidBody.properties.linearDamping = 0.8
+        rigidBody.properties.shape = CylinderShape(
+            CollisionShape.AXIS_X, 
+            0.4,
+            2.0
+        )
+        rigidBody:setDynamicProperties(
+            pos,
+            Quaternion(Radian(Degree(math.random()*360)), Vector3(0, 0, 1)),
+            Vector3(0, 0, 0),
+            Vector3(0, 0, 0)
+        )
+        rigidBody.properties:touch()
+        entity:addComponent(rigidBody)
+        -- Scene node
+        local sceneNode = OgreSceneNodeComponent()
+        sceneNode.meshName = "co2.mesh"
+        sceneNode.transform.scale = Vector3(0.4, 0.4, 0.4)
+        entity:addComponent(sceneNode)
+        -- Emitter carbon dioxide
+        local co2Emitter = CompoundEmitterComponent()
+        entity:addComponent(co2Emitter)
+        co2Emitter.emissionRadius = 1
+        co2Emitter.maxInitialSpeed = 10
+        co2Emitter.minInitialSpeed = 2
+        co2Emitter.minEmissionAngle = Degree(0)
+        co2Emitter.maxEmissionAngle = Degree(360)
+        co2Emitter.particleLifeTime = 5000
+        local timedEmitter = TimedCompoundEmitterComponent()
+        timedEmitter.compoundId = CompoundRegistry.getCompoundId("co2")
+        timedEmitter.particlesPerEmission = 1
+        timedEmitter.potencyPerParticle = 2.0
+        timedEmitter.emitInterval = 1000
+        entity:addComponent(timedEmitter)
+        return entity
+    end
     local spawnGlucoseEmitter = function(pos)
         -- Setting up an emitter for glucose
         local entity = Entity()
@@ -192,46 +234,20 @@ local function createSpawnSystem()
             Vector3(0, 0, 0), -- Linear velocity
             Vector3(0, 0, 0)  -- Angular velocity
         )
-        local nucleusOrganelle = NucleusOrganelle()
-        nucleusOrganelle:addHex(0, 0)
-        nucleusOrganelle:setColour(ColourValue(0.8, 0.2, 0.8, 1))
-        nucleusOrganelle:addProcess(global_processMap["ReproductaseSynthesis"])
-        nucleusOrganelle:addProcess(global_processMap["AminoAcidSynthesis"])
-        microbe:addOrganelle(0, 0, nucleusOrganelle)
+        microbe:addOrganelle(0, 0, OrganelleFactory.makeNucleus())
         -- Forward
-        local forwardOrganelle = MovementOrganelle(
-            Vector3(0.0, -30.0, 0.0),
-            300
-        )
-        forwardOrganelle:addHex(0, 0)
-        forwardOrganelle:addHex(-1, 0)
-        forwardOrganelle:addHex(1, -1)
-        forwardOrganelle:setColour(ColourValue(0.9, 0.3, 0.7, 1))
-        microbe:addOrganelle(0, 1, forwardOrganelle)
+        microbe:addOrganelle(0, 1, OrganelleFactory.makeFlagellum(0, 1))
+        microbe:addOrganelle(-1, 1, OrganelleFactory.makeFlagellum(-1, 1))
+        microbe:addOrganelle(1, 0, OrganelleFactory.makeFlagellum(1, 0))
         -- Backward
-        local backwardOrganelle = MovementOrganelle(
-            Vector3(0.0, 30.0, 0.0),
-            300
-        )
-        backwardOrganelle:addHex(0, 0) 
-        backwardOrganelle:addHex(-1, 1)
-        backwardOrganelle:addHex(1, 0)
-        backwardOrganelle:setColour(ColourValue(0.9, 0.3, 0.7, 1))
-        microbe:addOrganelle(0, -2, backwardOrganelle)
-        local storageOrganelle2 = StorageOrganelle(100.0)
-        storageOrganelle2:addHex(0, 0)
-        storageOrganelle2:setColour(ColourValue(0, 1, 0.5, 1))
-        microbe:addOrganelle(0, -1, storageOrganelle2)
-        local storageOrganelle3 = StorageOrganelle(100.0)
-        storageOrganelle3:addHex(0, 0)
-        storageOrganelle3:setColour(ColourValue(0.5, 1, 0, 1))
-        microbe:addOrganelle(-1, 0, storageOrganelle3)
-        -- Producer making atp from oxygen and glucose
-        local processOrganelle1 = ProcessOrganelle()
-        processOrganelle1:addProcess(global_processMap["Respiration"])
-        processOrganelle1:addHex(0, 0)
-        processOrganelle1:setColour(ColourValue(0.8, 0.4, 1, 0))
-        microbe:addOrganelle(1, -1, processOrganelle1)
+        microbe:addOrganelle(0, -2, OrganelleFactory.makeFlagellum(0, -2))
+        microbe:addOrganelle(-1, -1, OrganelleFactory.makeFlagellum(-1, -1))
+        microbe:addOrganelle(1, -2, OrganelleFactory.makeFlagellum(1, -2))
+
+        microbe:addOrganelle(0, -1, OrganelleFactory.makeVacuole())
+        microbe:addOrganelle(-1, 0, OrganelleFactory.makeVacuole())
+        microbe:addOrganelle(1, -1, OrganelleFactory.makeMitochondrion())
+        
         microbe:storeCompound(CompoundRegistry.getCompoundId("atp"), 40, false)
         microbe.microbe:updateSafeAngles()
         return microbe
@@ -271,9 +287,10 @@ local function createSpawnSystem()
     
     --Spawn one emitter on average once in every square of sidelength 10
     -- (square dekaunit?)
-    spawnSystem:addSpawnType(spawnOxygenEmitter, 1/20^2, 30)
-    spawnSystem:addSpawnType(spawnGlucoseEmitter, 1/20^2, 30)
-    spawnSystem:addSpawnType(spawnAmmoniaEmitter, 1/1000, 30)
+    spawnSystem:addSpawnType(spawnOxygenEmitter, 1/500, 30)
+    spawnSystem:addSpawnType(spawnCO2Emitter, 1/500, 30)
+    spawnSystem:addSpawnType(spawnGlucoseEmitter, 1/500, 30)
+    spawnSystem:addSpawnType(spawnAmmoniaEmitter, 1/1250, 30)
     spawnSystem:addSpawnType(microbeSpawnFunction, 1/6500, 40)
     spawnSystem:addSpawnType(toxinOrganelleSpawnFunction, 1/17000, 30)
     return spawnSystem
@@ -332,72 +349,23 @@ function unlockToxin(entityId)
 end
 
 function createStarterMicrobe(name, aiControlled)
-   local microbe = Microbe.createMicrobeEntity(name, aiControlled)
-   local nucleusOrganelle = NucleusOrganelle()
-    nucleusOrganelle:addHex(0, 0)
-    nucleusOrganelle:setColour(ColourValue(0.8, 0.2, 0.8, 1))
-    nucleusOrganelle:addProcess(global_processMap["ReproductaseSynthesis"])
-    nucleusOrganelle:addProcess(global_processMap["AminoAcidSynthesis"])
-    microbe:addOrganelle(0, 0, nucleusOrganelle)
+    local microbe = Microbe.createMicrobeEntity(name, aiControlled)
+    local nucleusOrganelle = NucleusOrganelle()
+    microbe:addOrganelle(0, 0, OrganelleFactory.makeNucleus())
     -- Forward
-    local forwardOrganelle = MovementOrganelle(
-        Vector3(0, -12.5, 0.0),
-        300
-    )
-    forwardOrganelle:addHex(0, 0)
-    forwardOrganelle:setColour(ColourValue(0.8, 0.3, 0.3, 1))
-    microbe:addOrganelle(0, 1, forwardOrganelle)
-    forwardOrganelle = MovementOrganelle(
-        Vector3(11, -6, 0.0),
-        300
-    )
-    forwardOrganelle:addHex(0, 0)
-    forwardOrganelle:setColour(ColourValue(0.8, 0.3, 0.3, 1))
-    microbe:addOrganelle(-1, 1, forwardOrganelle)
-    forwardOrganelle = MovementOrganelle(
-        Vector3(-11, -6, 0.0),
-        300
-    )
-    forwardOrganelle:addHex(0, 0)
-    forwardOrganelle:setColour(ColourValue(0.8, 0.3, 0.3, 1))
-    microbe:addOrganelle(1, 0, forwardOrganelle)
+    microbe:addOrganelle(0, 1, OrganelleFactory.makeFlagellum(0, 1))
+    microbe:addOrganelle(-1, 1, OrganelleFactory.makeFlagellum(-1, 1))
+    microbe:addOrganelle(1, 0, OrganelleFactory.makeFlagellum(1, 0))
     -- Backward
-    local backwardOrganelle = MovementOrganelle(
-        Vector3(0.0, 12.5, 0.0),
-        300
-    )
-    backwardOrganelle:addHex(0, 0)
-    backwardOrganelle:setColour(ColourValue(0.8, 0.3, 0.3, 1))
-    microbe:addOrganelle(0, -2, backwardOrganelle)
-    backwardOrganelle = MovementOrganelle(
-        Vector3(6, 11, 0.0),
-        300
-    )
-    backwardOrganelle:addHex(0, 0)
-    backwardOrganelle:setColour(ColourValue(0.8, 0.3, 0.3, 1))
-    microbe:addOrganelle(-1, -1, backwardOrganelle)
-    backwardOrganelle = MovementOrganelle(
-        Vector3(-6, 11, 0.0),
-        300
-    )
-    backwardOrganelle:addHex(0, 0)
-    backwardOrganelle:setColour(ColourValue(0.8, 0.3, 0.3, 1))
-    microbe:addOrganelle(1, -2, backwardOrganelle)
-    local storageOrganelle2 = StorageOrganelle(100.0)
-    storageOrganelle2:addHex(0, 0)
-    storageOrganelle2:setColour(ColourValue(0, 1, 0, 1))
-    microbe:addOrganelle(0, -1, storageOrganelle2)
-    local storageOrganelle3 = StorageOrganelle(100.0)
-    storageOrganelle3:addHex(0, 0)
-    storageOrganelle3:setColour(ColourValue(0, 1, 0, 1))
-    microbe:addOrganelle(-1, 0, storageOrganelle3)
+    microbe:addOrganelle(0, -2, OrganelleFactory.makeFlagellum(0, -2))
+    microbe:addOrganelle(-1, -1, OrganelleFactory.makeFlagellum(-1, -1))
+    microbe:addOrganelle(1, -2, OrganelleFactory.makeFlagellum(1, -2))
+
+    microbe:addOrganelle(0, -1, OrganelleFactory.makeVacuole())
+    microbe:addOrganelle(-1, 0, OrganelleFactory.makeVacuole())
+    microbe:addOrganelle(1, -1, OrganelleFactory.makeMitochondrion())
+    
     microbe:storeCompound(CompoundRegistry.getCompoundId("atp"), 20, false)
-    -- Producer making atp from oxygen and glucose
-    local processOrganelle1 = ProcessOrganelle()
-    processOrganelle1:addProcess(global_processMap["Respiration"])
-    processOrganelle1:addHex(0, 0)
-    processOrganelle1:setColour(ColourValue(0.8, 0.4, 0.5, 0))
-    microbe:addOrganelle(1, -1, processOrganelle1)
     microbe.microbe:updateSafeAngles()
     return microbe
 end
