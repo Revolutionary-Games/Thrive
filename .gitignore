@@ -74,3 +74,15 @@ nbproject/
 
 # Asset directory
 assets/*
+
+# This is the gh-pages ignore file, so we ignore all code
+CMakeLists.txt
+cmake_modules/*
+cpack/*
+mingw_setup/*
+ogre_cfg/*
+src/*
+scripts/*
+Examples.material
+contrib/*
+# we keep docs though
