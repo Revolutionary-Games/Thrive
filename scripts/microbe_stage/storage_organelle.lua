@@ -40,6 +40,6 @@ end
 function OrganelleFactory.makeVacuole()
     local vacuole = StorageOrganelle(100.0)
     vacuole:addHex(0, 0)
-    vacuole:setColour(ColourValue(0, 1, 0, 1))
+    vacuole:setColour(ColourValue(1, 1, 0, 1))
     return vacuole
 end

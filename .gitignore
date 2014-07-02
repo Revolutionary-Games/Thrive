@@ -1,3 +1,16 @@
+# Asset directory
+assets/*
+# We want certain xmls though
+!assets/definitions/
+!assets/definitions/*.xml
+# maybe add these in later
+#!assets/gui/layouts/*.layout
+
+# Website directory
+
+website/*
+index.html
+
 # Standard stuff
 Thumbs.db
 *.obj
@@ -72,5 +85,5 @@ nbproject/
 # Vim swap files
 *.swp
 
-# Asset directory
-assets/*
+# Temporary/backup files
+*~
