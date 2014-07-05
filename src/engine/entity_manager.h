@@ -289,6 +289,38 @@ public:
     );
 
     /**
+    * @brief Stores a single entity
+    *
+    * @param entityId
+    *   The entity to store
+    *
+    * @return
+    *  A container holding the entity.
+    */
+    StorageContainer
+    storeEntity(
+        EntityId entityId
+    ) const;
+
+    /**
+    * @brief Loads an entity into this entity manager
+    *
+    * @param storage
+    *   The storage to load the entity from
+    *
+    * @param componentFactory
+    *  Factory used for loading entity components
+    *
+    * @return
+    *  The new entity id in the new gamestate
+    */
+    EntityId
+    loadEntity(
+        StorageContainer storage,
+        const ComponentFactory& componentFactory
+    );
+
+    /**
     * @brief Removes all components queued for removal
     */
     void

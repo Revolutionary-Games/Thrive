@@ -5,6 +5,7 @@
 
 #include <memory>
 #include <vector>
+#include <set>
 
 class btDiscreteDynamicsWorld;
 class lua_State;
@@ -41,6 +42,7 @@ class CollisionSystem;
 class System;
 class RNG;
 
+
 /**
 * @brief The heart of the game
 *
@@ -63,12 +65,15 @@ public:
     * - Engine::playerData()
     * - Engine::load()
     * - Engine::save()
+    * - Engine::saveCreation()
+    * - Engine::loadCreation()
     * - Engine::quit()
     * - Engine::timedSystemShutdown()
     * - Engine::isSystemTimedShutdown()
     * - Engine::componentFactory() (as property)
     * - Engine::keyboard() (as property)
     * - Engine::mouse() (as property)
+    * - Engine::thriveVersion()
     *
     * @return
     */
@@ -225,6 +230,79 @@ public:
     );
 
     /**
+    * @brief Saves a creation to file
+    *
+    * @param entityId
+    *   The entity which represents the creation to save
+    *
+    * @param entityManager
+    *   The entity manager that manages the entity
+    *
+    * @param name
+    *   The name of the file
+    *
+    * @param type
+    *   The type of creation. This also becomes the file extension.
+    */
+    void
+    saveCreation(
+        EntityId entityId,
+        const EntityManager& entityManager,
+        std::string name,
+        std::string type
+    ) const;
+
+    /**
+    * @brief Overload of above
+    */
+    void
+    saveCreation(
+        EntityId entityId,
+        std::string name,
+        std::string type
+    ) const;
+
+    /**
+    * @brief Loads a creation from file
+    *
+    * @param file
+    *   The file to load from
+    *
+    * @param entityManager
+    *   The entity manager that will manage the loaded entity
+    *
+    * @return entityId
+    */
+    EntityId
+    loadCreation(
+        std::string file,
+        EntityManager& entityManager
+    );
+
+    /**
+    * @brief Overload of above
+    */
+    EntityId
+    loadCreation(
+        std::string file
+    );
+
+    /**
+    * @brief Obtains a list of filenames for saved creations that match the provided type
+    *
+    * @param stage
+    *   The game stage to filter creations on
+    *
+    * @return
+    *  A string of concatenated paths separated by spaces.
+    *  Optimally a vector of strings would be returned but luabind causes occasional crashes with that.
+    */
+    std::string
+    getCreationFileList(
+        std::string stage
+    ) const;
+
+    /**
     * @brief Sets the current game state
     *
     * The game state will be activated at the beginning of the next frame.
@@ -328,7 +406,21 @@ public:
     Ogre::RenderWindow*
     renderWindow() const;
 
+
+    /**
+    * @brief Gets the current version of thrive as a string.
+    *
+    * The version is loaded from thriveversion.ver file.
+    * It returns as "unknown" if that file was not found
+    *
+    * @return versionString
+    */
+    const std::string&
+    thriveVersion() const;
+
 private:
+
+
 
     struct Implementation;
     std::unique_ptr<Implementation> m_impl;
