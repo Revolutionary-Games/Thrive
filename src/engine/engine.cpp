@@ -33,10 +33,10 @@
 #include "ogre/text_overlay.h"
 
 // Scripting
+#include <luabind/iterator_policy.hpp>
 #include "scripting/luabind.h"
 #include "scripting/lua_state.h"
 #include "scripting/script_initializer.h"
-
 
 // Microbe
 #include "microbe_stage/compound.h"
@@ -241,6 +241,7 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
         }
         savegame.set("gameStates", std::move(gameStates));
         savegame.set("playerData", m_playerData.storage());
+        savegame.set("thriveversion", m_thriveVersion);
         std::ofstream stream(
             m_serialization.saveFile,
             std::ofstream::trunc | std::ofstream::binary
@@ -362,6 +363,18 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
     }
 
     void
+    loadVersionNumber() {
+        std::ifstream versionFile ("thriveversion.ver");
+        if (versionFile.is_open()) {
+            std::getline(versionFile, m_thriveVersion);
+        }
+        else {
+            m_thriveVersion = "unknown";
+        }
+        versionFile.close();
+    }
+
+    void
     shutdownInputManager() {
         if (not m_input.inputManager) {
             return;
@@ -439,6 +452,8 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
 
     GameState* m_nextGameState = nullptr;
 
+    std::string m_thriveVersion;
+
     struct Serialization {
 
         std::string loadFile;
@@ -493,9 +508,13 @@ Engine::luaBindings() {
         .def("playerData", &Engine::playerData)
         .def("load", &Engine::load)
         .def("save", &Engine::save)
+        .def("saveCreation", static_cast<void(Engine::*)(EntityId, std::string, std::string)const>(&Engine::saveCreation))
+        .def("loadCreation", static_cast<EntityId(Engine::*)(std::string)>(&Engine::loadCreation))
+        .def("getCreationFileList", &Engine::getCreationFileList)
         .def("quit", &Engine::quit)
         .def("timedSystemShutdown", &Engine::timedSystemShutdown)
         .def("isSystemTimedShutdown", &Engine::isSystemTimedShutdown)
+        .def("thriveVersion", &Engine::thriveVersion)
         .property("componentFactory", &Engine::componentFactory)
         .property("keyboard", &Engine::keyboard)
         .property("mouse", &Engine::mouse)
@@ -577,6 +596,7 @@ Engine::init() {
     m_impl->setupInputManager();
     m_impl->setupGUI();
     m_impl->loadScripts("../scripts");
+    m_impl->loadVersionNumber();
     GameState* previousGameState = m_impl->m_currentGameState;
     for (const auto& pair : m_impl->m_gameStates) {
         const auto& gameState = pair.second;
@@ -641,6 +661,94 @@ Engine::save(
     m_impl->m_serialization.saveFile = filename;
 }
 
+void
+Engine::saveCreation(
+    EntityId entityId,
+    std::string name,
+    std::string type
+) const {
+    saveCreation(entityId, this->currentGameState()->entityManager(), name, type);
+}
+
+void
+Engine::saveCreation(
+    EntityId entityId,
+    const EntityManager& entityManager,
+    std::string name,
+    std::string type
+) const {
+    namespace fs = boost::filesystem;
+    StorageContainer creation = entityManager.storeEntity(entityId);
+    creation.set("thriveversion", this->thriveVersion());
+    std::ofstream stream(
+        (fs::path("creations") / fs::path(type) / fs::path(name + "." + type)).string<std::string>(),
+        std::ofstream::trunc | std::ofstream::binary
+    );
+    stream.exceptions(std::ofstream::failbit | std::ofstream::badbit);
+    if (stream) {
+        try {
+            stream << creation;
+            stream.flush();
+            stream.close();
+        }
+        catch (const std::ofstream::failure& e) {
+            std::cerr << "Error saving file: " << e.what() << std::endl;
+            throw;
+        }
+    }
+    else {
+        std::perror("Could not open file for saving");
+    }
+}
+
+EntityId
+Engine::loadCreation(
+    std::string file
+) {
+    return loadCreation(file, this->currentGameState()->entityManager());
+}
+
+EntityId
+Engine::loadCreation(
+    std::string file,
+    EntityManager& entityManager
+) {
+    std::ifstream stream(
+        file,
+        std::ifstream::binary
+    );
+    stream.clear();
+    stream.exceptions(std::ofstream::failbit | std::ofstream::badbit);
+    StorageContainer creation;
+    try {
+        stream >> creation;
+    }
+    catch(const std::ofstream::failure& e) {
+        std::cerr << "Error loading file: " << e.what() << std::endl;
+        throw;
+    }
+    EntityId entityId = entityManager.loadEntity(creation, m_impl->m_componentFactory);
+    return entityId;
+}
+
+std::string
+Engine::getCreationFileList(
+    std::string stage
+) const {
+    namespace fs = boost::filesystem;
+    fs::path directory("./creations/" + stage);
+    fs::directory_iterator end_iter;
+    std::stringstream stringbuilder;
+    if ( fs::exists(directory) && fs::is_directory(directory)) {
+        for( fs::directory_iterator dir_iter(directory) ; dir_iter != end_iter ; ++dir_iter) {
+            if (fs::is_regular_file(dir_iter->status()) )
+            {
+                stringbuilder << dir_iter->path().string() << " ";
+            }
+        }
+    }
+    return stringbuilder.str();
+}
 
 void
 Engine::setCurrentGameState(
@@ -758,3 +866,9 @@ Engine::isSystemTimedShutdown(
 ) const {
     return m_impl->m_prevShutdownSystems->find(&system) !=  m_impl->m_prevShutdownSystems->end();
 }
+
+const std::string&
+Engine::thriveVersion() const {
+    return m_impl->m_thriveVersion;
+}
+

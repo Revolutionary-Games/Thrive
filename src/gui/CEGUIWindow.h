@@ -16,14 +16,31 @@ class CEGUIWindow {
 public:
 
     /**
-    * Constructor
+    * @brief Constructor
+    *
+    * @param layoutName
+    *  The name of the layout file to load the window from
     **/
     CEGUIWindow(
         std::string layoutName
     );
 
     /**
-    * Destructor
+    * @brief Constructor
+    *
+    * @param type
+    *  The type of CEGUI window (from .scheme) to create internally
+    *
+    * @param name
+    *  name of the window
+    **/
+    CEGUIWindow(
+        std::string type,
+        std::string name
+    );
+
+    /**
+    * @brief Destructor
     **/
     virtual
     ~CEGUIWindow();
@@ -36,6 +53,7 @@ public:
     *
     * Exposes:
     * - CEGUIWindow::CEGUIWindow(string)
+    * - CEGUIWindow::isNull
     * - CEGUIWindow::getText
     * - CEGUIWindow::setText
     * - CEGUIWindow::appendText
@@ -59,12 +77,26 @@ public:
     * - CEGUIWindow::listboxResetList
     * - CEGUIWindow::listboxHandleUpdatedItemData
     *
+    * - CEGUIWindow::itemListboxAddItem
+    * - CEGUIWindow::itemListboxResetList
+    * - CEGUIWindow::itemListboxHandleUpdatedItemData
+    * - CEGUIWindow::itemListboxGetLastSelectedItem
+    *
     * - CEGUIWindow::progressbarSetProgress
     *
     * @return
     */
     static luabind::scope
     luaBindings();
+
+
+    /**
+    * @brief Returns whether the underlying CEGUI::Window is a nullptr
+    *
+    * @return isNull
+    */
+    bool
+    isNull() const;
 
     /**
     * @brief Creates a new windows and adds it to the underlying CEGUI window
@@ -142,8 +174,8 @@ public:
     /**
     * @brief Adds a string to the window if it is a listbox otherwise throws bad_cast exception
     *
-    * @param text
-    *  The text to add
+    * @param listboxItem
+    *  The text item to add
     */
     void
     listboxAddItem(
@@ -161,6 +193,34 @@ public:
     */
     void
     listboxHandleUpdatedItemData();
+
+    /**
+    * @brief Adds an item to the window if it is a itemlist otherwise throws bad_cast exception
+    *
+    * Register a click event for action on selection
+    *
+    * @param listboxItem
+    *  The item to add
+    */
+    void
+    itemListboxAddItem(
+        CEGUIWindow* item
+    );
+
+    /**
+    * @brief Clears the list if the window is a itemlist otherwise throws bad_cast exception
+    */
+    void
+    itemListboxResetList();
+
+    /**
+    * @brief Updates the rendering of the itemlist
+    */
+    void
+    itemListboxHandleUpdatedItemData();
+
+    CEGUIWindow*
+    itemListboxGetLastSelectedItem();
 
     /**
     * @brief Sets the progress of the progressbar
