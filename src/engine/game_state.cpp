@@ -98,6 +98,7 @@ GameState::luaBindings() {
     return class_<GameState>("GameState")
         .def("name", &GameState::name)
         .def("rootGUIWindow", &GameState::rootGUIWindow)
+        .def("entityManager", static_cast<EntityManager&(GameState::*)()>(&GameState::entityManager))
     ;
 }
 

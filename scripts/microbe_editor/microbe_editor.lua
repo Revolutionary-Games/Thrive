@@ -138,6 +138,19 @@ function MicrobeEditor:addNucleus()
     self.currentMicrobe:addOrganelle(0, 0, nucleusOrganelle)
 end
 
+function MicrobeEditor:loadMicrobe(entityId)
+    self.organelleCount = 0
+    if self.currentMicrobe ~= nil then
+        self.currentMicrobe.entity:destroy()
+    end
+    self.currentMicrobe = Microbe(Entity(entityId))
+    self.currentMicrobe.entity:stealName("working_microbe")
+    self.currentMicrobe.sceneNode.transform.orientation = Quaternion(Radian(Degree(180)), Vector3(0, 0, 1))-- Orientation
+    self.currentMicrobe.sceneNode.transform:touch()
+    self.currentMicrobe.collisionHandler:addCollisionGroup("powerupable")
+    Engine:playerData():setActiveCreature(entityId)
+end
+
 function MicrobeEditor:createNewMicrobe()
     self.organelleCount = 0
     if self.currentMicrobe ~= nil then

@@ -107,6 +107,8 @@ function returnButtonClicked()
     if Engine:currentGameState():name() == "microbe" then
         Engine:currentGameState():rootGUIWindow():getChild("HelpPanel"):hide()
         Engine:currentGameState():rootGUIWindow():getChild("MessagePanel"):hide()
+    elseif Engine:currentGameState():name() == "microbe_editor" then
+        Engine:currentGameState():rootGUIWindow():getChild("SaveLoadPanel"):hide()
     end
 end
 

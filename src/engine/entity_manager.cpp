@@ -288,6 +288,39 @@ EntityManager::transferEntity(
     }
 }
 
+StorageContainer
+EntityManager::storeEntity(
+    EntityId entityId
+) const {
+    StorageContainer entityStorage;
+    StorageList componentList;
+
+    for (const auto& pair : m_impl->m_collections) {
+        Component* component = pair.second->get(entityId);
+        if (component != nullptr){
+            StorageContainer componentStorage = component->storage();
+            componentStorage.set("typename", component->typeName());
+            componentList.append(componentStorage);
+        }
+    }
+    entityStorage.set("components", std::move(componentList));
+    return entityStorage;
+}
+
+EntityId
+EntityManager::loadEntity(
+    StorageContainer storage,
+    const ComponentFactory& componentFactory
+) {
+    EntityId entityId = this->generateNewId();
+    StorageList componentList = storage.get<StorageList>("components");
+    for (const StorageContainer& entry : componentList) {
+        auto component = componentFactory.load(entry.get<std::string>("typename"), entry);
+        this->addComponent(entityId, std::move(component));
+    }
+    return entityId;
+}
+
 void
 EntityManager::restore(
     const StorageContainer& storage,
@@ -358,7 +391,6 @@ EntityManager::setVolatile(
         m_impl->m_volatileEntities.erase(id);
     }
 }
-
 
 StorageContainer
 EntityManager::storage(
