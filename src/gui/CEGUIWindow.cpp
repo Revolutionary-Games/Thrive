@@ -26,6 +26,13 @@ CEGUIWindow::CEGUIWindow(
     m_window = CEGUI::WindowManager::getSingleton().loadLayoutFromFile(layoutName + ".layout");
 }
 
+CEGUIWindow::CEGUIWindow(
+    std::string type,
+    std::string name
+){
+    m_window = CEGUI::WindowManager::getSingleton().createWindow(type, name);
+}
+
 CEGUIWindow::~CEGUIWindow()
 {
 }
@@ -39,6 +46,8 @@ CEGUIWindow::luaBindings() {
         //    def("getRootWindow", &CEGUIWindow::getRootWindow) //Better to use gameState::rootGUIWindow
         //]
         .def(constructor<std::string>())
+        .def(constructor<std::string, std::string>())
+        .def("isNull", &CEGUIWindow::isNull)
         .def("getText", &CEGUIWindow::getText)
         .def("setText", &CEGUIWindow::setText)
         .def("appendText", &CEGUIWindow::appendText)
@@ -62,10 +71,18 @@ CEGUIWindow::luaBindings() {
         .def("listboxAddItem", &CEGUIWindow::listboxAddItem)
         .def("listboxResetList", &CEGUIWindow::listboxResetList)
         .def("listboxHandleUpdatedItemData", &CEGUIWindow::listboxHandleUpdatedItemData)
+        .def("itemListboxAddItem", &CEGUIWindow::itemListboxAddItem)
+        .def("itemListboxResetList", &CEGUIWindow::itemListboxResetList)
+        .def("itemListboxHandleUpdatedItemData", &CEGUIWindow::itemListboxHandleUpdatedItemData)
+        .def("itemListboxGetLastSelectedItem", &CEGUIWindow::itemListboxGetLastSelectedItem)
         .def("progressbarSetProgress", &CEGUIWindow::progressbarSetProgress)
     ;
 }
 
+bool
+CEGUIWindow::isNull() const {
+    return m_window == nullptr;
+}
 
 CEGUIWindow
 CEGUIWindow::createChildWindow(
@@ -120,6 +137,8 @@ CEGUIWindow::listboxAddItem(
     dynamic_cast<CEGUI::Listbox*>(m_window)->addItem(listboxItem);
 }
 
+
+
 void
 CEGUIWindow::listboxResetList(){
     dynamic_cast<CEGUI::Listbox*>(m_window)->resetList();
@@ -129,6 +148,30 @@ void
 CEGUIWindow::listboxHandleUpdatedItemData(){
     dynamic_cast<CEGUI::Listbox*>(m_window)->handleUpdatedItemData();
 }
+
+void
+CEGUIWindow::itemListboxAddItem(
+    CEGUIWindow* item
+) {
+    dynamic_cast<CEGUI::ItemListBase*>(m_window)->addItem(dynamic_cast<CEGUI::ItemEntry*>(item->m_window));
+}
+
+void
+CEGUIWindow::itemListboxResetList(){
+    dynamic_cast<CEGUI::ItemListBase*>(m_window)->resetList();
+}
+
+void
+CEGUIWindow::itemListboxHandleUpdatedItemData(){
+    dynamic_cast<CEGUI::ItemListBase*>(m_window)->handleUpdatedItemData();
+}
+
+CEGUIWindow*
+CEGUIWindow::itemListboxGetLastSelectedItem(){
+    return new CEGUIWindow(dynamic_cast<CEGUI::ItemListbox*>(m_window)-> getLastSelectedItem());
+}
+
+
 
 void
 CEGUIWindow::progressbarSetProgress(float progress){
@@ -165,9 +208,9 @@ CEGUIWindow::RegisterEventHandler(
     const luabind::object& callback
 ) const {
     // Lambda must return something to avoid an template error.
-    auto callbackLambda = [callback](const CEGUI::EventArgs&) -> int
+    auto callbackLambda = [callback](const CEGUI::EventArgs& args) -> int
         {
-            luabind::call_function<void>(callback);
+            luabind::call_function<void>(callback, CEGUIWindow(static_cast<const CEGUI::WindowEventArgs&>(args).window) );
             return 0;
         };
     m_window->subscribeEvent(eventName, callbackLambda);
