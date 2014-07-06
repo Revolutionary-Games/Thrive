@@ -270,23 +270,6 @@ public:
         const std::string& name
     );
 
-    /**
-    * @brief Transfers an entity to a different gamestate removing it from the current one
-    *
-    * @param entityId
-    *   The entity to transfer
-    *
-    * @param gameState
-    *  The new gamestate to own the entity
-    *
-    * @return
-    *  The new entity id in the new gamestate
-    */
-    EntityId
-    transferEntity(
-        EntityId entityId,
-        GameState* gameState
-    );
 
     /**
     * @brief Stores a single entity

@@ -11,9 +11,9 @@ namespace luabind {
 
 namespace thrive {
 
+class GameState;
 class StorageContainer;
 class LockedMap;
-
 
 class PlayerData {
 
@@ -42,6 +42,7 @@ public:
     * - PlayerData::lockedMap
     * - PlayerData::activeCreature
     * - PlayerData::setActiveCreature
+    * - PlayerData::activeCreatureGamestate
     * - PlayerData::isBoolSet
     * - PlayerData::setBool
     *
@@ -51,7 +52,7 @@ public:
     luaBindings();
 
     /**
-    * @brief getter for the players name
+    * @brief Getter for the players name
     *
     * @return
     */
@@ -59,7 +60,7 @@ public:
     playerName();
 
     /**
-    * @brief getter for the map of locked concepts
+    * @brief Getter for the map of locked concepts
     *
     * @return
     */
@@ -67,7 +68,7 @@ public:
     lockedMap();
 
     /**
-    * @brief getter for the id of the players currently active creature entity
+    * @brief Getter for the id of the players currently active creature entity
     *
     * @return
     */
@@ -79,11 +80,23 @@ public:
     *
     * @param creatureId
     *  Entity id of the creature
+    *
+    * @param gamestate
+    *  The gamestate that the players new active creature belongs to
     */
     void
     setActiveCreature(
-        EntityId creatureId
+        EntityId creatureId,
+        GameState& gamestate
     );
+
+    /**
+    * @brief Getter for the players currently active creatures gamestate
+    *
+    * @return
+    */
+    GameState&
+    activeCreatureGamestate();
 
     /**
     * @brief Returns whether a key has a true bool set to it
