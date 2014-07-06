@@ -144,6 +144,14 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
                 pair.second->entityManager().clear();
             }
         }
+        for (auto& kv : *m_prevShutdownSystems) {
+            kv.first->deactivate();
+        }
+        for (auto& kv : *m_nextShutdownSystems) {
+            kv.first->deactivate();
+        }
+        m_prevShutdownSystems->clear();
+        m_nextShutdownSystems->clear();
         m_currentGameState = nullptr;
         // Switch gamestate
         std::string gameStateName = savegame.get<std::string>("currentGameState");
