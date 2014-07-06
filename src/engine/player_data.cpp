@@ -1,5 +1,6 @@
 #include "engine/player_data.h"
 
+#include "engine/game_state.h"
 #include "engine/serialization.h"
 #include "general/locked_map.h"
 #include "scripting/luabind.h"
@@ -17,6 +18,7 @@ struct PlayerData::Implementation {
     }
 
     EntityId m_activeCreature = NULL_ENTITY;
+    GameState* m_activeCreatureGamestate = nullptr;
 
     std::string m_playerName;
 
@@ -35,6 +37,7 @@ PlayerData::luaBindings() {
         .def("lockedMap", &PlayerData::lockedMap)
         .def("activeCreature", &PlayerData::activeCreature)
         .def("setActiveCreature", &PlayerData::setActiveCreature)
+        .def("activeCreatureGamestate", &PlayerData::activeCreatureGamestate)
         .def("isBoolSet", &PlayerData::isBoolSet)
         .def("setBool", &PlayerData::setBool)
     ;
@@ -65,9 +68,16 @@ PlayerData::activeCreature(){
 
 void
 PlayerData::setActiveCreature(
-    EntityId creatureId
+    EntityId creatureId,
+    GameState& gamestate
 ){
     m_impl->m_activeCreature = creatureId;
+    m_impl->m_activeCreatureGamestate = &gamestate;
+}
+
+GameState&
+PlayerData::activeCreatureGamestate(){
+    return *m_impl->m_activeCreatureGamestate;
 }
 
 bool

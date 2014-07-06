@@ -20,7 +20,7 @@ function MicrobeReplacementSystem:activate()
         newPlayerMicrobe = newMicrobeEntity:transfer(GameState.MICROBE)
         newPlayerMicrobe:stealName(PLAYER_NAME)
         global_newEditorMicrobe = false
-        Engine:playerData():setActiveCreature(newPlayerMicrobe.id)
+        Engine:playerData():setActiveCreature(newPlayerMicrobe.id, GameState.MICROBE)
     end
    
 end

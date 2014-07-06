@@ -147,22 +147,6 @@ ComponentCollection::removeComponent(
     return false;
 }
 
-std::unique_ptr<Component>
-ComponentCollection::extractComponent(
-    EntityId entityId
-) {
-    auto iter = m_impl->m_components.find(entityId);
-    if (iter != m_impl->m_components.end()) {
-        iter->second->setOwner(NULL_ENTITY);
-        std::unique_ptr<Component> component = std::move(iter->second);
-        m_impl->m_components.erase(iter);
-        return std::move(component);
-    }
-    else{
-        throw std::invalid_argument("No component for the provided entityId existed.");
-    }
-}
-
 
 ComponentTypeId
 ComponentCollection::type() const {

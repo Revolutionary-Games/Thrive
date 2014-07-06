@@ -27,12 +27,14 @@ function MicrobeEditor:__init(hudSystem)
 end
 
 function MicrobeEditor:activate()
-    playerEntity = Entity(Engine:playerData():activeCreature(), GameState.MICROBE)
-    self.lockedMap = Engine:playerData():lockedMap()
-    self.nextMicrobeEntity = playerEntity:transfer(GameState.MICROBE_EDITOR)
-    self.nextMicrobeEntity:stealName("working_microbe")
-    Engine:playerData():setBool("edited_microbe", true)
-    Engine:playerData():setActiveCreature(self.nextMicrobeEntity.id)
+    if Engine:playerData():activeCreatureGamestate():name() == GameState.MICROBE:name() then 
+        microbeStageMicrobe = Entity(Engine:playerData():activeCreature(), GameState.MICROBE)
+        self.lockedMap = Engine:playerData():lockedMap()
+        self.nextMicrobeEntity = microbeStageMicrobe:transfer(GameState.MICROBE_EDITOR)
+        self.nextMicrobeEntity:stealName("working_microbe")
+        Engine:playerData():setBool("edited_microbe", true)
+        Engine:playerData():setActiveCreature(self.nextMicrobeEntity.id, GameState.MICROBE_EDITOR)
+    end
 end
 
 function MicrobeEditor:update(milliseconds)
@@ -148,7 +150,7 @@ function MicrobeEditor:loadMicrobe(entityId)
     self.currentMicrobe.sceneNode.transform.orientation = Quaternion(Radian(Degree(180)), Vector3(0, 0, 1))-- Orientation
     self.currentMicrobe.sceneNode.transform:touch()
     self.currentMicrobe.collisionHandler:addCollisionGroup("powerupable")
-    Engine:playerData():setActiveCreature(entityId)
+    Engine:playerData():setActiveCreature(entityId, GameState.MICROBE_EDITOR)
 end
 
 function MicrobeEditor:createNewMicrobe()
