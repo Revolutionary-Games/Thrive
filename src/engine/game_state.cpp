@@ -262,6 +262,5 @@ GameState::update(
             system->update(milliseconds);
         }
     }
-    m_impl->m_entityManager.processTransfers(); // Transfer requests trumps remove request with this ordering
     m_impl->m_entityManager.processRemovals();
 }

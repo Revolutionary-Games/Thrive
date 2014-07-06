@@ -169,22 +169,6 @@ private:
         EntityId entityId
     );
 
-    /**
-    * @brief Removes a component from this collection returning an owning pointer instead of destroying it
-    *
-    * Does not call any callbacks
-    *
-    * @param entityId
-    *   The entity the component belongs to
-    *
-    * @return
-    *   A unique_ptr containing the component
-    */
-    std::unique_ptr<Component>
-    extractComponent(
-        EntityId entityId
-    );
-
     struct Implementation;
     std::unique_ptr<Implementation> m_impl;
 
