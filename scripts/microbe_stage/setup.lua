@@ -374,7 +374,7 @@ local function setupPlayer()
     microbe = createStarterMicrobe(PLAYER_NAME, false)
     microbe.collisionHandler:addCollisionGroup("powerupable")
     Engine:playerData():lockedMap():addLock("Toxin")
-    Engine:playerData():setActiveCreature(microbe.entity.id)
+    Engine:playerData():setActiveCreature(microbe.entity.id, GameState.MICROBE)
 end
 
 local function setupSound()
