@@ -74,6 +74,9 @@ struct Mouse::Implementation : public OIS::MouseListener {
 
     int m_windowHeight = 0;
 
+    int m_scrollChange = 0;
+    int m_lastMouseZ = 0;
+
 };
 
 
@@ -94,6 +97,7 @@ Mouse::luaBindings() {
         .def("isButtonDown", &Mouse::isButtonDown)
         .def("wasButtonPressed", &Mouse::wasButtonPressed)
         .def("normalizedPosition", &Mouse::normalizedPosition)
+        .def("scrollChange", &Mouse::scrollChange)
         .def("position", &Mouse::position)
     ;
 }
@@ -171,6 +175,10 @@ Mouse::position() const {
     );
 }
 
+int
+Mouse::scrollChange() const {
+    return m_impl->m_scrollChange;
+}
 
 void
 Mouse::setWindowSize(
@@ -197,7 +205,9 @@ Mouse::shutdown() {
 void
 Mouse::update() {
     m_impl->m_mouse->capture();
-
+    int newScrollValue = m_impl->m_mouse->getMouseState().Z.abs;
+    m_impl->m_scrollChange = m_impl->m_lastMouseZ - newScrollValue;
+    m_impl->m_lastMouseZ = newScrollValue;
     std::swap(m_impl->m_wasClickedStates, m_impl->m_nextClickedStates);
     m_impl->m_nextClickedStates = 0x0;
 }

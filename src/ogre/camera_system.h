@@ -7,6 +7,7 @@
 #include <memory>
 #include <OgreCommon.h>
 #include <OgreMath.h>
+#include <OgreVector3.h>
 
 namespace luabind {
 class scope;
@@ -53,6 +54,11 @@ public:
         */
         Ogre::PolygonMode polygonMode = Ogre::PM_SOLID;
 
+        /**
+        * @brief Camera offset
+        *  Note that this is not automatically taken into account
+        */
+        Ogre::Vector3 offset = Ogre::Vector3(0,0,10);
 
         /**
         * @brief Whether the camera is using orthographical projection or perspective
@@ -73,6 +79,7 @@ public:
     *   - Properties::fovY
     *   - Properties::nearClipDistance
     *   - Properties::polygonMode
+    *   - Properties::offset
     *
     * @return
     */
@@ -105,6 +112,17 @@ public:
     load(
         const StorageContainer& storage
     ) override;
+
+    /**
+    * @brief Changes the depth offset of the camera
+    *
+    * @param value
+    *  Value to change the depth by
+    */
+    void
+    zoom(
+        int value
+    );
 
     /**
     * @brief Returns the camera's name
