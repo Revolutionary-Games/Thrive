@@ -14,6 +14,7 @@ local function setupCamera()
     -- Camera
     local camera = OgreCameraComponent("camera")
     camera.properties.nearClipDistance = 5
+    camera.offset = Vector3(0, 0, 30)
     camera.properties:touch()
     entity:addComponent(camera)
     -- Scene node

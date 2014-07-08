@@ -127,6 +127,15 @@ function MicrobeEditorHudSystem:update(milliseconds)
     elseif  Engine.keyboard:wasKeyPressed(Keyboard.KC_F2) then
         playClicked()
     end
+    properties = Entity(CAMERA_NAME .. 3):getComponent(OgreCameraComponent.TYPE_ID).properties
+    newFovY = properties.fovY + Degree(Engine.mouse:scrollChange()/10)
+    if newFovY < Degree(10) then
+        newFovY = Degree(10)
+    elseif newFovY > Degree(120) then
+        newFovY = Degree(120)
+    end
+    properties.fovY = newFovY
+    properties:touch()
 end
 
 

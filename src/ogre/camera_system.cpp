@@ -47,6 +47,7 @@ OgreCameraComponent::luaBindings() {
                 .def_readwrite("nearClipDistance", &Properties::nearClipDistance)
                 .def_readwrite("farClipDistance", &Properties::farClipDistance)
                 .def_readwrite("orthographicalMode", &Properties::orthographicalMode)
+                .def_readwrite("offset", &Properties::offset)
         ]
         .enum_("PolygonMode") [
             value("PM_POINTS", Ogre::PM_POINTS),
@@ -84,8 +85,8 @@ OgreCameraComponent::load(
     m_properties.polygonMode = static_cast<Ogre::PolygonMode>(
         storage.get<int16_t>("polygonMode", Ogre::PM_SOLID)
     );
+    m_properties.offset = storage.get<Ogre::Vector3>("offset", Ogre::Vector3(0,0,10));
 }
-
 
 std::string
 OgreCameraComponent::name() const {
@@ -102,6 +103,7 @@ OgreCameraComponent::storage() const {
     storage.set<Ogre::Real>("nearClipDistance", m_properties.nearClipDistance);
     storage.set<bool>("orthographicalMode", m_properties.orthographicalMode);
     storage.set<int16_t>("polygonMode", m_properties.polygonMode);
+    storage.set<Ogre::Vector3>("offset", m_properties.offset);
     return storage;
 }
 
@@ -197,7 +199,8 @@ OgreCameraSystem::update(int) {
             camera->setFarClipDistance(properties.farClipDistance);
             if (properties.orthographicalMode){
                 camera->setProjectionType(Ogre::ProjectionType::PT_ORTHOGRAPHIC);
-                camera->setOrthoWindow(properties.fovY.valueDegrees(), properties.fovY.valueDegrees()); //Abstract conversion
+
+                camera->setOrthoWindow(properties.fovY.valueDegrees()*camera->getAspectRatio(), properties.fovY.valueDegrees()); //Abstract conversion
             }
             else {
                 camera->setProjectionType(Ogre::ProjectionType::PT_PERSPECTIVE);
