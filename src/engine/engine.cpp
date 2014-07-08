@@ -41,6 +41,9 @@
 // Microbe
 #include "microbe_stage/compound.h"
 
+// Console
+#include "gui/CEGUIWindow.h"
+
 #include "util/contains.h"
 #include "util/pair_hash.h"
 
@@ -107,6 +110,7 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
         m_currentGameState = gameState;
         if (gameState) {
             gameState->activate();
+            m_currentGameState->rootGUIWindow().addChild(*m_consoleGUIWindow);
         }
     }
 
@@ -344,6 +348,8 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
         CEGUI::ImageManager::getSingleton().loadImageset("DriveIcons.imageset");
         CEGUI::ImageManager::getSingleton().loadImageset("GameMenu.imageset");
         CEGUI::ImageManager::getSingleton().loadImageset("HUDDemo.imageset");
+
+        m_consoleGUIWindow = new CEGUIWindow("Console");
     }
 
     void
@@ -423,6 +429,8 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
 
     GameState* m_currentGameState = nullptr;
 
+    CEGUIWindow* m_consoleGUIWindow = nullptr;
+
     ComponentFactory m_componentFactory;
 
     Engine& m_engine;
@@ -469,6 +477,8 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
         std::string saveFile;
 
     } m_serialization;
+
+    luabind::object m_console;
 };
 
 
@@ -523,6 +533,7 @@ Engine::luaBindings() {
         .def("timedSystemShutdown", &Engine::timedSystemShutdown)
         .def("isSystemTimedShutdown", &Engine::isSystemTimedShutdown)
         .def("thriveVersion", &Engine::thriveVersion)
+        .def("registerConsoleObject", &Engine::registerConsoleObject)
         .property("componentFactory", &Engine::componentFactory)
         .property("keyboard", &Engine::keyboard)
         .property("mouse", &Engine::mouse)
@@ -615,7 +626,6 @@ Engine::init() {
     // Ogre::SceneManager has been instantiated
     m_impl->setupSoundManager();
     m_impl->m_currentGameState = previousGameState;
-
 }
 
 
@@ -819,7 +829,6 @@ Engine::transferEntityGameState(
     return newEntity;
 }
 
-
 void
 Engine::update(
     int milliseconds
@@ -841,6 +850,9 @@ Engine::update(
     }
     assert(m_impl->m_currentGameState != nullptr);
     m_impl->m_currentGameState->update(milliseconds);
+
+    luabind::call_member<void>(m_impl->m_console, "update");
+    
     // Update any timed shutdown systems
     auto itr = m_impl->m_prevShutdownSystems->begin();
     while (itr != m_impl->m_prevShutdownSystems->end()) {
@@ -880,3 +892,7 @@ Engine::thriveVersion() const {
     return m_impl->m_thriveVersion;
 }
 
+void
+Engine::registerConsoleObject(luabind::object consoleObject) {
+    m_impl->m_console = consoleObject;
+}

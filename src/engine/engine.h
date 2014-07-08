@@ -7,6 +7,8 @@
 #include <vector>
 #include <set>
 
+#include <luabind/object.hpp>
+
 class btDiscreteDynamicsWorld;
 class lua_State;
 
@@ -74,6 +76,7 @@ public:
     * - Engine::keyboard() (as property)
     * - Engine::mouse() (as property)
     * - Engine::thriveVersion()
+    * - Engine::registerConsoleObject()
     *
     * @return
     */
@@ -405,6 +408,12 @@ public:
     */
     Ogre::RenderWindow*
     renderWindow() const;
+
+    /**
+    * @brief Registers the console object
+    */
+    void
+    registerConsoleObject(luabind::object consoleObject);
 
 
     /**

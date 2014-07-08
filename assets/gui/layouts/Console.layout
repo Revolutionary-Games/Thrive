@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<GUILayout version="4" >
+    <Window type="Thrive/FrameWindow" name="ConsoleWindow" >
+        <Property name="Position" value="{{0.05,0},{0.1,0}}" />
+        <Property name="Size" value="{{0.9,0},{0.3,0}}" />
+        <Property name="MousePassThroughEnabled" value="True" />
+        <Property name="AlwaysOnTop" value="True" />
+        <Property name="Visible" value="False" />
+        <Property name="Disabled" value="True" />
+        <Window type="Thrive/Label" name="History" >
+            <Property name="Position" value="{{0.05,0},{0,0}}" />
+            <Property name="Size" value="{{1,0},{0.9,0}}" />
+            <Property name="MaxSize" value="{{1,0},{1,0}}" />
+            <Property name="Text" value="" />
+            <Property name="Font" value="Thrive-13" />
+            <Property name="NormalTextColour" value="FF002200" />
+            <Property name="MousePassThroughEnabled" value="True" />
+            <Property name="HorzFormatting" value="LeftAligned" />
+            <Property name="VertFormatting" value="BottomAligned" />
+        </Window>
+        <Window type="Thrive/Textbox" name="TextEntry">
+            <Property name="Position" value="{{0,0},{0.9,0}}" />
+            <Property name="MaxSize" value="{{1,0},{1,0}}" />
+            <Property name="Size" value="{{1,0},{0.12,0}}" />
+            <Property name="TooltipText" value="Enter Lua commands" />
+        </Window>
+	</Window>
+</GUILayout>
