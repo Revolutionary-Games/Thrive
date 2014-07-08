@@ -73,6 +73,14 @@ function HudSystem:update(milliseconds)
     elseif  Engine.keyboard:wasKeyPressed(Keyboard.KC_P) then
         playerMicrobe:reproduce()
     end
+    offset = Entity(CAMERA_NAME):getComponent(OgreCameraComponent.TYPE_ID).properties.offset
+    newZVal = offset.z + Engine.mouse:scrollChange()/10
+    if newZVal < 10 then
+        newZVal = 10
+    elseif newZVal > 80 then
+        newZVal = 80
+    end
+    offset.z = newZVal
 end
 
 function showMessage(msg)
