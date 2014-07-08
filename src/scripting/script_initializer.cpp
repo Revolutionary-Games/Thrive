@@ -17,12 +17,6 @@
 #include <iostream>
 #include <luabind/class_info.hpp>
 
-static void
-debug(
-    const std::string& msg
-) {
-    std::cout << msg << std::endl;
-}
 
 static int
 constructTraceback(
@@ -58,7 +52,6 @@ thrive::initializeLua(
     luabind::open(L);
     luabind::bind_class_info(L);
     luabind::module(L) [
-        luabind::def("debug", debug),
         EngineBindings::luaBindings(),
         GeneralBindings::luaBindings(),
         OgreBindings::luaBindings(),
