@@ -164,5 +164,5 @@ function MicrobeEditor:createNewMicrobe()
     self.currentMicrobe.sceneNode.transform:touch()
     self.currentMicrobe.collisionHandler:addCollisionGroup("powerupable")
     self:addNucleus()
-    
+    Engine:playerData():setActiveCreature(self.currentMicrobe.entity.id, GameState.MICROBE_EDITOR)
 end
