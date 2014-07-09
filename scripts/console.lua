@@ -352,7 +352,7 @@ interpreter = Interpreter()
 function oprint(...)
     interpreter:oprint(...)
 end
-print = oprint
+--print = oprint
 
 console = ConsoleHud(interpreter)
 Engine:registerConsoleObject(console)
