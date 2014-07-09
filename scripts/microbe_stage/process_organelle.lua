@@ -289,7 +289,7 @@ end
 -------------------------------------------
 -- factory functions for process organelles
 
-function OrganelleFactory.makeMitochondrion()
+function OrganelleFactory.make_mitochondrion(data)
     local mito = ProcessOrganelle()
     mito:addProcess(global_processMap["Respiration"])
     mito:addHex(0, 0)
@@ -297,7 +297,7 @@ function OrganelleFactory.makeMitochondrion()
     return mito
 end
 
-function OrganelleFactory.makeChloroplast()
+function OrganelleFactory.make_chloroplast(data)
     local chloro = ProcessOrganelle()
     chloro:addProcess(global_processMap["Photosynthesis"])
     chloro:addHex(0, 0)
