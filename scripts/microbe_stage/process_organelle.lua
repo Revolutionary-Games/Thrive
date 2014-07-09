@@ -71,7 +71,7 @@ function Process:updateFactors(parentMicrobe)
     end
 end
 
-INPUT_CONCENTRATION_WEIGHT = 1
+INPUT_CONCENTRATION_WEIGHT = 0.7
 OUTPUT_CONCENTRATION_WEIGHT = 0.5
 CAPACITY_EVEN_FACTOR = 0.4
 -- Run the process for a given amount of time
@@ -177,6 +177,7 @@ function ProcessOrganelle:__init()
     Organelle.__init(self)
     self.originalColour = ColourValue(1,1,1,1)
     self.processes = {}
+    self.colourChangeFactor = 1.0
     self.capacityIntervalTimer = PROCESS_CAPACITY_UPDATE_INTERVAL
 end
 
@@ -205,7 +206,7 @@ end
 -- Private function used to update colour of organelle based on how full it is
 function ProcessOrganelle:_updateColourDynamic(factorProduct)
     -- Scaled Factor Product (using a sigmoid to accommodate that factor will be low)
-    local SFP = 1/(0.6+2^(-factorProduct*64))-0.5
+    local SFP = (1/(0.4+2^(-factorProduct*128*self.colourChangeFactor))-0.5)
     self._colour = ColourValue(0.6 + (self.originalColour.r-0.6)*SFP,
                                0.6 + (self.originalColour.g-0.6)*SFP,
                                0.6 + (self.originalColour.b-0.6)*SFP, 1) -- Calculate colour relative to how close the organelle is to have enough input compounds to produce
@@ -225,7 +226,7 @@ function ProcessOrganelle:update(microbe, milliseconds)
     Organelle.update(self, microbe, milliseconds)
     self.capacityIntervalTimer = self.capacityIntervalTimer + milliseconds
     processFactoredPriorities = {}
-    factorProduct = 1.0
+    factorProduct = 0.0
     if self.capacityIntervalTimer > PROCESS_CAPACITY_UPDATE_INTERVAL then
         local prioritySum = 0
         for _, process in ipairs(self.processes) do
@@ -240,10 +241,8 @@ function ProcessOrganelle:update(microbe, milliseconds)
             for _, process in ipairs(self.processes) do
                     -- (processPriority / sumOfAllProcessPriorities) * (1-X) + X/numOfProcesses
                     local capacityFactor = (process.priority / prioritySum) * (1-CAPACITY_EVEN_FACTOR) + CAPACITY_EVEN_FACTOR/#self.processes
-                    factorProduct = factorProduct * process:produce(self.capacityIntervalTimer, capacityFactor, microbe)
+                    factorProduct = math.max(factorProduct, process:produce(self.capacityIntervalTimer, capacityFactor, microbe))
             end
-        else
-            factorProduct = 0
         end
         self.capacityIntervalTimer = 0
         self._needsColourUpdate = true -- Update colours for displaying completeness of organelle production
@@ -265,6 +264,7 @@ function ProcessOrganelle:storage()
     local storage = Organelle.storage(self)
     storage:set("capacityIntervalTimer", self.capacityIntervalTimer)
     storage:set("originalColour", self.originalColour)
+    storage:set("colourChangeFactor", self.colourChangeFactor)
     local processes = StorageList()
     for _, process in ipairs(self.processes) do
         processes:append(process:storage())
@@ -278,6 +278,7 @@ function ProcessOrganelle:load(storage)
     Organelle.load(self, storage)
     self.originalColour =  storage:get("originalColour", ColourValue.White)
     self.capacityIntervalTimer = storage:get("capacityIntervalTimer", 0)
+    self.colourChangeFactor = storage:get("colourChangeFactor", 1.0)
     local processes = storage:get("processes", {})
     for i = 1,processes:size() do
         local process = Process(0, 0, {},{})
@@ -294,6 +295,7 @@ function OrganelleFactory.make_mitochondrion(data)
     mito:addProcess(global_processMap["Respiration"])
     mito:addHex(0, 0)
     mito:setColour(ColourValue(0.8, 0.4, 0.5, 0))
+    mito.colourChangeFactor = 2.0
     return mito
 end
 
@@ -302,5 +304,6 @@ function OrganelleFactory.make_chloroplast(data)
     chloro:addProcess(global_processMap["Photosynthesis"])
     chloro:addHex(0, 0)
     chloro:setColour(ColourValue(0, 1, 0, 0.5))
+    chloro.colourChangeFactor = 1.0
     return chloro
 end
