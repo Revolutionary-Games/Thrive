@@ -412,7 +412,6 @@ local function createMicrobeStage(name)
             HudSystem(),
             TimedLifeSystem(),
             CompoundMovementSystem(),
-            CompoundEmitterSystem(),
             CompoundAbsorberSystem(),
             createSpawnSystem(),
             -- Physics
@@ -434,6 +433,7 @@ local function createMicrobeStage(name)
             -- Other
             SoundSourceSystem(),
             PowerupSystem(),
+            CompoundEmitterSystem(), -- Keep this after any logic that might eject compounds such that any entites that are queued for destruction will be destroyed after emitting.
         },
         function()
             setupBackground()
