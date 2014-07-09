@@ -31,6 +31,9 @@ function MicrobeComponent:__init(isPlayerMicrobe)
     self.stored = 0 -- The amount stored in the microbe. NOTE: This does not include special storage organelles
     self.compounds = {}
     self.compoundPriorities = {}
+    self.defaultCompoundPriorities = {}
+    self.defaultCompoundPriorities[CompoundRegistry.getCompoundId("atp")] = 10
+    self.defaultCompoundPriorities[CompoundRegistry.getCompoundId("reproductase")] = 8
     self:_resetCompoundPriorities()
     self.initialized = false
     self.isPlayerMicrobe = isPlayerMicrobe
@@ -47,8 +50,9 @@ function MicrobeComponent:_resetCompoundPriorities()
     for compound in CompoundRegistry.getCompoundList() do
         self.compoundPriorities[compound] = 0
     end
-    self.compoundPriorities[CompoundRegistry.getCompoundId("atp")] = 10
-    self.compoundPriorities[CompoundRegistry.getCompoundId("reproductase")] = 8
+    for k, v in pairs(self.defaultCompoundPriorities) do
+        self.compoundPriorities[k] = v
+    end
 end
 
 function MicrobeComponent:_updateCompoundPriorities() 
@@ -481,6 +485,13 @@ function Microbe:getCompoundAmount(compoundId)
     end
 end
 
+-- Sets the default compound priorities
+--
+-- @param compoundId
+-- @param priority
+function Microbe:setDefaultCompoundPriority(compoundId, priority)
+    self.microbe.defaultCompoundPriorities[compoundId] = priority
+end
 
 -- Damages the microbe, killing it if its hitpoints drop low enough
 --

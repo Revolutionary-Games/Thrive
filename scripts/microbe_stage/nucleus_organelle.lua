@@ -29,3 +29,12 @@ end
 function NucleusOrganelle:load(storage)
     ProcessOrganelle.load(self, storage)
 end
+
+function OrganelleFactory.make_nucleus(data)
+    local nucleus = NucleusOrganelle()
+    nucleus:addHex(0, 0)
+    nucleus:setColour(ColourValue(0.8, 0.2, 0.8, 1))
+    nucleus:addProcess(global_processMap["ReproductaseSynthesis"])
+    nucleus:addProcess(global_processMap["AminoAcidSynthesis"])
+    return nucleus
+end

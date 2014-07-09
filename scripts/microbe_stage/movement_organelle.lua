@@ -132,9 +132,9 @@ function MovementOrganelle:update(microbe, milliseconds)
 end
 
 -- factory functions
-function OrganelleFactory.makeFlagellum(q,r)
+function OrganelleFactory.make_flagellum(data)
     -- Calculate the momentum of the movement organelle based on angle towards nucleus
-    local organelleX, organelleY = axialToCartesian(q, r)
+    local organelleX, organelleY = axialToCartesian(data.q, data.r)
     local nucleusX, nucleusY = axialToCartesian(0, 0)
     local deltaX = nucleusX - organelleX
     local deltaY = nucleusY - organelleY
