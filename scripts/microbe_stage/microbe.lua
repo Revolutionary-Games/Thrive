@@ -561,6 +561,7 @@ function Microbe:storeCompound(compoundId, amount, bandwidthLimited)
     else
         storedAmount = amount
     end
+    storedAmount = math.min(storedAmount , self.microbe.capacity - self.microbe.stored)
     if self.microbe.specialStorageOrganelles[compoundId] == nil then
         if self.microbe.compounds[compoundId] == nil then
             self.microbe.compounds[compoundId] = 0
