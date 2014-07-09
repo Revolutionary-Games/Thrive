@@ -252,16 +252,19 @@ end
 -- The basic organelle maker
 class 'OrganelleFactory'
 
--- OrganelleFactory:makeFoo() should be defined in the appropriate file
--- for example, OrganelleFactory:makeMitochondrion() should be defined in process_organelle.lua
--- each factory function should return an organelle that's ready to be inserted into a microbe
--- example:
-
-function OrganelleFactory.makeNucleus()
-    local nucleus = NucleusOrganelle()
-    nucleus:addHex(0, 0)
-    nucleus:setColour(ColourValue(0.8, 0.2, 0.8, 1))
-    nucleus:addProcess(global_processMap["ReproductaseSynthesis"])
-    nucleus:addProcess(global_processMap["AminoAcidSynthesis"])
-    return nucleus
+function OrganelleFactory.makeOrganelle(data)
+    local make_organelle = function()
+        return OrganelleFactory["make_"..data.name](data)
+    end
+    local success, organelle = pcall(make_organelle)
+    if success then
+        return organelle
+    else
+        if data.name == "" or data.name == nil then data.name = "<nameless>" end
+        assert(false, "no organelle by name "..data.name)
+    end
 end
+
+-- OrganelleFactory.make_organelle(data) should be defined in the appropriate file
+-- each factory function should return an organelle that's ready to be inserted into a microbe
+-- check the organelle files for examples on use.

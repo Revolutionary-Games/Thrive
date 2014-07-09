@@ -95,7 +95,7 @@ function MicrobeEditor:addStorageOrganelle(organelleType)
    -- self.currentMicrobe = Microbe(Entity("working_microbe", GameState.MICROBE))
     local q, r = self:getMouseHex()
     if self.currentMicrobe:getOrganelleAt(q, r) == nil then
-        self.currentMicrobe:addOrganelle(q, r, OrganelleFactory.makeVacuole())
+        self.currentMicrobe:addOrganelle(q, r, OrganelleFactory.make_vacuole({}))
         self.organelleCount = self.organelleCount + 1
     end
 end
@@ -103,8 +103,9 @@ end
 
 function MicrobeEditor:addMovementOrganelle(organelleType)
     local q, r = self:getMouseHex()
+    local data = {["q"]=q, ["r"]=r}
     if self.currentMicrobe:getOrganelleAt(q, r) == nil then
-        self.currentMicrobe:addOrganelle(q,r, OrganelleFactory.makeFlagellum(q,r))
+        self.currentMicrobe:addOrganelle(q,r, OrganelleFactory.make_flagellum(data))
         self.organelleCount = self.organelleCount + 1
     end
 end
@@ -114,9 +115,9 @@ function MicrobeEditor:addProcessOrganelle(organelleType)
     if self.currentMicrobe:getOrganelleAt(q, r) == nil then
         
         if organelleType == "mitochondria" then
-            self.currentMicrobe:addOrganelle(q,r, OrganelleFactory.makeMitochondrion())
+            self.currentMicrobe:addOrganelle(q,r, OrganelleFactory.make_mitochondrion({}))
         elseif organelleType == "chloroplast" then
-            self.currentMicrobe:addOrganelle(q,r, OrganelleFactory.makeChloroplast())
+            self.currentMicrobe:addOrganelle(q,r, OrganelleFactory.make_chloroplast({}))
         else
             assert(false, "organelleType did not exist")
         end
@@ -128,7 +129,7 @@ function MicrobeEditor:addAgentVacuole(organelleType)
     if organelleType == "toxin" then         
         local q, r = self:getMouseHex()
         if self.currentMicrobe:getOrganelleAt(q, r) == nil then
-            self.currentMicrobe:addOrganelle(q, r, OrganelleFactory.makeOxytoxyVacuole())
+            self.currentMicrobe:addOrganelle(q, r, OrganelleFactory.make_oxytoxy({}))
             self.organelleCount = self.organelleCount + 1
         end
     end
@@ -136,7 +137,7 @@ function MicrobeEditor:addAgentVacuole(organelleType)
 end
 
 function MicrobeEditor:addNucleus()
-    local nucleusOrganelle = OrganelleFactory.makeNucleus()
+    local nucleusOrganelle = OrganelleFactory.make_nucleus({})
     self.currentMicrobe:addOrganelle(0, 0, nucleusOrganelle)
 end
 

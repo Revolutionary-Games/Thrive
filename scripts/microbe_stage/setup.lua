@@ -66,9 +66,45 @@ local function setupProcesses()
     end
 end
 
+-- speciesName decides the template to use, while individualName is used for referencing the instance
+function microbeSpawnFunctionGeneric(pos, speciesName, aiControlled, individualName)
+    local microbe = Microbe.createMicrobeEntity(individualName, aiControlled)
+    if pos ~= nil then
+        microbe.rigidBody:setDynamicProperties(
+            pos, -- Position
+            Quaternion(Radian(Degree(0)), Vector3(1, 0, 0)), -- Orientation
+            Vector3(0, 0, 0), -- Linear velocity
+            Vector3(0, 0, 0)  -- Angular velocity
+        )
+    end
+    local numOrganelles = SpeciesRegistry.getSize(speciesName)
+    for i = 0,(numOrganelles-1) do
+        -- TODO make a SpeciesRegistry::getOrganelle function that returns a property table
+        local organelleData = SpeciesRegistry.getOrganelle(speciesName, i)
+        local organelle = OrganelleFactory.makeOrganelle(organelleData)
+        microbe:addOrganelle(organelleData.q, organelleData.r, organelle)
+    end
+    -- TODO figure out way to iterate this over all compounds, and set priorities too
+    for compoundID in CompoundRegistry.getCompoundList() do
+        compound = CompoundRegistry.getCompoundInternalName(compoundID)
+        amount = SpeciesRegistry.getCompoundAmount(speciesName, compound)
+        if amount ~= 0 then
+            microbe:storeCompound(compoundID, amount, false)
+        end
+        priority = SpeciesRegistry.getCompoundPriority(speciesName, compound)
+        if priority ~= 0 then
+            microbe:setDefaultCompoundPriority(compoundID, priority)
+        end
+    end
+    
+    microbe.microbe:updateSafeAngles()
+    return microbe
+end
+
 local function createSpawnSystem()
     local spawnSystem = SpawnSystem()
-    
+    SpeciesRegistry.loadFromXML("../definitions/microbes.xml")
+
     local spawnOxygenEmitter = function(pos)
         -- Setting up an emitter for oxygen
         local entity = Entity()
@@ -190,7 +226,7 @@ local function createSpawnSystem()
         return entity
     end
     local spawnAmmoniaEmitter = function(pos)
-        -- Setting up an emitter for glucose
+        -- Setting up an emitter for ammonia
         local entity = Entity()
         -- Rigid body
         local rigidBody = RigidBodyComponent()
@@ -209,15 +245,15 @@ local function createSpawnSystem()
         local sceneNode = OgreSceneNodeComponent()
         sceneNode.meshName = "hex.mesh"
         entity:addComponent(sceneNode)
-        -- Emitter glucose
-        local glucoseEmitter = CompoundEmitterComponent()
-        entity:addComponent(glucoseEmitter)
-        glucoseEmitter.emissionRadius = 1
-        glucoseEmitter.maxInitialSpeed = 10
-        glucoseEmitter.minInitialSpeed = 2
-        glucoseEmitter.minEmissionAngle = Degree(0)
-        glucoseEmitter.maxEmissionAngle = Degree(360)
-        glucoseEmitter.particleLifeTime = 5000
+        -- Emitter ammonia
+        local ammoniaEmitter = CompoundEmitterComponent()
+        entity:addComponent(ammoniaEmitter)
+        ammoniaEmitter.emissionRadius = 1
+        ammoniaEmitter.maxInitialSpeed = 10
+        ammoniaEmitter.minInitialSpeed = 2
+        ammoniaEmitter.minEmissionAngle = Degree(0)
+        ammoniaEmitter.maxEmissionAngle = Degree(360)
+        ammoniaEmitter.particleLifeTime = 5000
         local timedEmitter = TimedCompoundEmitterComponent()
         timedEmitter.compoundId = CompoundRegistry.getCompoundId("ammonia")
         timedEmitter.particlesPerEmission = 1
@@ -226,34 +262,19 @@ local function createSpawnSystem()
         entity:addComponent(timedEmitter)
         return entity
     end
-    
-    local microbeSpawnFunction = function(pos)
-        local microbe = Microbe.createMicrobeEntity(nil, true)
-        microbe.rigidBody:setDynamicProperties(
-            pos, -- Position
-            Quaternion(Radian(Degree(0)), Vector3(1, 0, 0)), -- Orientation
-            Vector3(0, 0, 0), -- Linear velocity
-            Vector3(0, 0, 0)  -- Angular velocity
-        )
-        microbe:addOrganelle(0, 0, OrganelleFactory.makeNucleus())
-        -- Forward
-        microbe:addOrganelle(0, 1, OrganelleFactory.makeFlagellum(0, 1))
-        microbe:addOrganelle(-1, 1, OrganelleFactory.makeFlagellum(-1, 1))
-        microbe:addOrganelle(1, 0, OrganelleFactory.makeFlagellum(1, 0))
-        -- Backward
-        microbe:addOrganelle(0, -2, OrganelleFactory.makeFlagellum(0, -2))
-        microbe:addOrganelle(-1, -1, OrganelleFactory.makeFlagellum(-1, -1))
-        microbe:addOrganelle(1, -2, OrganelleFactory.makeFlagellum(1, -2))
 
-        microbe:addOrganelle(0, -1, OrganelleFactory.makeVacuole())
-        microbe:addOrganelle(-1, 0, OrganelleFactory.makeVacuole())
-        microbe:addOrganelle(1, -1, OrganelleFactory.makeMitochondrion())
-        
-        microbe:storeCompound(CompoundRegistry.getCompoundId("atp"), 40, false)
-        microbe.microbe:updateSafeAngles()
-        return microbe
+    local microbeDefault = function(pos)
+        return microbeSpawnFunctionGeneric(pos, "Default", true, nil)
     end
-    
+
+    local microbeTeeny = function(pos)
+        return microbeSpawnFunctionGeneric(pos, "Teeny", true, nil)
+    end
+
+    local microbePlankton = function(pos)
+        return microbeSpawnFunctionGeneric(pos, "Plankton", true, nil)
+    end
+
     local toxinOrganelleSpawnFunction = function(pos) 
         powerupEntity = Entity()
         psceneNode = OgreSceneNodeComponent()
@@ -292,13 +313,15 @@ local function createSpawnSystem()
     spawnSystem:addSpawnType(spawnCO2Emitter, 1/500, 30)
     spawnSystem:addSpawnType(spawnGlucoseEmitter, 1/500, 30)
     spawnSystem:addSpawnType(spawnAmmoniaEmitter, 1/1250, 30)
-    spawnSystem:addSpawnType(microbeSpawnFunction, 1/6500, 40)
+    spawnSystem:addSpawnType(microbeDefault, 1/12000, 40)
+    spawnSystem:addSpawnType(microbeTeeny, 1/6000, 40)
+    spawnSystem:addSpawnType(microbePlankton, 1/32000, 40)
     spawnSystem:addSpawnType(toxinOrganelleSpawnFunction, 1/17000, 30)
     return spawnSystem
 end
 
 local function setupEmitter()
-    -- Setting up an emitter for glucose
+    -- Setting up a test emitter
     local entity = Entity("glucose-emitter")
     -- Rigid body
     local rigidBody = RigidBodyComponent()
@@ -324,15 +347,15 @@ local function setupEmitter()
     local sceneNode = OgreSceneNodeComponent()
     sceneNode.meshName = "molecule.mesh"
     entity:addComponent(sceneNode)
-    -- Emitter glucose
-    local glucoseEmitter = CompoundEmitterComponent()
-    entity:addComponent(glucoseEmitter)
-    glucoseEmitter.emissionRadius = 1
-    glucoseEmitter.maxInitialSpeed = 10
-    glucoseEmitter.minInitialSpeed = 2
-    glucoseEmitter.minEmissionAngle = Degree(0)
-    glucoseEmitter.maxEmissionAngle = Degree(360)
-    glucoseEmitter.particleLifeTime = 5000
+    -- Emitter test
+    local testEmitter = CompoundEmitterComponent()
+    entity:addComponent(testEmitter)
+    testEmitter.emissionRadius = 1
+    testEmitter.maxInitialSpeed = 10
+    testEmitter.minInitialSpeed = 2
+    testEmitter.minEmissionAngle = Degree(0)
+    testEmitter.maxEmissionAngle = Degree(360)
+    testEmitter.particleLifeTime = 5000
     local timedEmitter = TimedCompoundEmitterComponent()
     timedEmitter.compoundId = CompoundRegistry.getCompoundId("oxygen")
     timedEmitter.particlesPerEmission = 1
@@ -350,28 +373,12 @@ function unlockToxin(entityId)
 end
 
 function createStarterMicrobe(name, aiControlled)
-    local microbe = Microbe.createMicrobeEntity(name, aiControlled)
-    local nucleusOrganelle = NucleusOrganelle()
-    microbe:addOrganelle(0, 0, OrganelleFactory.makeNucleus())
-    -- Forward
-    microbe:addOrganelle(0, 1, OrganelleFactory.makeFlagellum(0, 1))
-    microbe:addOrganelle(-1, 1, OrganelleFactory.makeFlagellum(-1, 1))
-    microbe:addOrganelle(1, 0, OrganelleFactory.makeFlagellum(1, 0))
-    -- Backward
-    microbe:addOrganelle(0, -2, OrganelleFactory.makeFlagellum(0, -2))
-    microbe:addOrganelle(-1, -1, OrganelleFactory.makeFlagellum(-1, -1))
-    microbe:addOrganelle(1, -2, OrganelleFactory.makeFlagellum(1, -2))
-
-    microbe:addOrganelle(0, -1, OrganelleFactory.makeVacuole())
-    microbe:addOrganelle(-1, 0, OrganelleFactory.makeVacuole())
-    microbe:addOrganelle(1, -1, OrganelleFactory.makeMitochondrion())
-    
-    microbe:storeCompound(CompoundRegistry.getCompoundId("atp"), 20, false)
-    microbe.microbe:updateSafeAngles()
+    local microbe = microbeSpawnFunctionGeneric(nil,"Default",aiControlled, name)
     return microbe
 end
 
 local function setupPlayer()
+    SpeciesRegistry.loadFromXML("../definitions/microbes.xml")
     microbe = createStarterMicrobe(PLAYER_NAME, false)
     microbe.collisionHandler:addCollisionGroup("powerupable")
     Engine:playerData():lockedMap():addLock("Toxin")

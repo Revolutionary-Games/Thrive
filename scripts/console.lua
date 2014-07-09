@@ -352,7 +352,8 @@ interpreter = Interpreter()
 function oprint(...)
     interpreter:oprint(...)
 end
---print = oprint
+
+-- print = oprint -- disabled cuz it's annoying
 
 console = ConsoleHud(interpreter)
 Engine:registerConsoleObject(console)
