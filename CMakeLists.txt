@@ -435,6 +435,11 @@ install(DIRECTORY
         PATTERN "*.xml"
 )
 
+# Create directory tree that thrive requires
+file(MAKE_DIRECTORY ${CMAKE_INSTALL_PREFIX}/bin/creations)
+file(MAKE_DIRECTORY ${CMAKE_INSTALL_PREFIX}/bin/creations/microbe)
+file(MAKE_DIRECTORY ${CMAKE_INSTALL_PREFIX}/bin/creations/multicellular)
+
 # Install Runtime Libraries
 if(WIN32)
 
