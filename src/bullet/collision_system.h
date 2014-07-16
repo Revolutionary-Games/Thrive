@@ -226,7 +226,8 @@ public:
     * @param milliSeconds
     */
     void update(
-        int milliSeconds
+        int milliSeconds,
+        bool paused
     ) override;
 
     /**

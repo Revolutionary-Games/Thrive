@@ -10,7 +10,7 @@ class SceneManager;
 }
 
 namespace thrive {
- 
+
 /**
 * @brief Implementation of Bullet's debug drawing interface
 */
@@ -40,10 +40,10 @@ public:
     * @param fromColour
     * @param toColour
     */
-    void     
+    void
     drawLine(
-        const btVector3& from, 
-        const btVector3& to, 
+        const btVector3& from,
+        const btVector3& to,
         const btVector3& fromColour,
         const btVector3& toColour
     ) override;
@@ -55,10 +55,10 @@ public:
     * @param to
     * @param colour
     */
-    void     
+    void
     drawLine(
-        const btVector3& from, 
-        const btVector3& to, 
+        const btVector3& from,
+        const btVector3& to,
         const btVector3& colour
     ) override;
 
@@ -77,15 +77,15 @@ public:
     * @param colour
     * @param alpha
     */
-    void     
+    void
     drawTriangle(
-        const btVector3& v0, 
-        const btVector3& v1, 
-        const btVector3& v2, 
+        const btVector3& v0,
+        const btVector3& v1,
+        const btVector3& v2,
         const btVector3& n0,
         const btVector3& n1,
         const btVector3& n2,
-        const btVector3& colour, 
+        const btVector3& colour,
         btScalar alpha
     ) override;
 
@@ -98,12 +98,12 @@ public:
     * @param colour
     * @param alpha
     */
-    void     
+    void
     drawTriangle(
-        const btVector3& v0, 
-        const btVector3& v1, 
-        const btVector3& v2, 
-        const btVector3& colour, 
+        const btVector3& v0,
+        const btVector3& v1,
+        const btVector3& v2,
+        const btVector3& colour,
         btScalar alpha
     ) override;
 
@@ -116,12 +116,12 @@ public:
     * @param lifeTime
     * @param colour
     */
-    void     
+    void
     drawContactPoint(
-        const btVector3& PointOnB, 
-        const btVector3& normalOnB, 
-        btScalar distance, 
-        int lifeTime, 
+        const btVector3& PointOnB,
+        const btVector3& normalOnB,
+        btScalar distance,
+        int lifeTime,
         const btVector3& colour
     ) override;
 
@@ -130,7 +130,7 @@ public:
     *
     * @param warningString
     */
-    void     
+    void
     reportErrorWarning(
         const char *warningString
     ) override;
@@ -141,9 +141,9 @@ public:
     * @param location
     * @param textString
     */
-    void     
+    void
     draw3dText(
-        const btVector3& location, 
+        const btVector3& location,
         const char *textString
     ) override;
 
@@ -152,7 +152,7 @@ public:
     *
     * @param debugMode
     */
-    void     
+    void
     setDebugMode(
         int debugMode
     ) override;
@@ -161,7 +161,7 @@ public:
     * @brief Overridden from btIDebugDraw::getDebugMode
     *
     */
-    int     
+    int
     getDebugMode() const override;
 
 private:
@@ -175,7 +175,7 @@ private:
 * @brief Renders physics debug information
 */
 class BulletDebugDrawSystem : public System {
-    
+
 public:
 
     /**
@@ -184,7 +184,7 @@ public:
     * Exposes:
     * - BulletDebugDrawSystem()
     *
-    * @return 
+    * @return
     */
     static luabind::scope
     luaBindings();
@@ -213,7 +213,7 @@ public:
     /**
     * @brief Updates the system
     */
-    void update(int) override;
+    void update(int, bool) override;
 
 private:
 

@@ -123,7 +123,7 @@ PowerupSystem::shutdown() {
 
 
 void
-PowerupSystem::update(int /*milliseconds*/) {
+PowerupSystem::update(int, bool /*milliseconds*/) {
     std::vector<Collision*> collisionsToRemove = std::vector<Collision*>();
     for (Collision collision : m_impl->m_powerupCollisions)
     {

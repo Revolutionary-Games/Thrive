@@ -251,7 +251,7 @@ public:
     /**
     * @brief Adds new scene nodes
     */
-    void update(int) override;
+    void update(int, bool) override;
 
 private:
 
@@ -302,7 +302,7 @@ public:
     /**
     * @brief Removes stale scene nodes
     */
-    void update(int) override;
+    void update(int, bool) override;
 
 private:
 
@@ -352,7 +352,7 @@ public:
     /**
     * @brief Updates the scene nodes
     */
-    void update(int) override;
+    void update(int, bool) override;
 
 private:
 

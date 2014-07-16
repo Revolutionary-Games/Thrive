@@ -18,7 +18,7 @@ public:
     * Exposes:
     * - RenderSystem()
     *
-    * @return 
+    * @return
     */
     static luabind::scope
     luaBindings();
@@ -57,7 +57,8 @@ public:
     */
     void
     update(
-        int milliSeconds
+        int milliSeconds,
+        bool paused
     ) override;
 
 private:

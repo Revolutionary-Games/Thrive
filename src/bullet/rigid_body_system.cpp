@@ -230,7 +230,7 @@ RigidBodyInputSystem::shutdown() {
 
 
 void
-RigidBodyInputSystem::update(int milliseconds) {
+RigidBodyInputSystem::update(int milliseconds, bool) {
     for (EntityId entityId : m_impl->m_entities.removedEntities()) {
         btRigidBody* body = m_impl->m_bodies[entityId].get();
         if (body) {
@@ -391,22 +391,24 @@ RigidBodyOutputSystem::shutdown() {
 
 
 void
-RigidBodyOutputSystem::update(int) {
-    for (auto& value : m_impl->m_entities.entities()) {
-        RigidBodyComponent* rigidBodyComponent = std::get<0>(value.second);
-        btRigidBody* rigidBody = rigidBodyComponent->m_body;
-        auto& dynamicProperties = rigidBodyComponent->m_dynamicProperties;
-        // Position and orientation are handled by RigidBodyComponent::setWorldTransform
-        if (rigidBody->isActive()) {
-            dynamicProperties.linearVelocity = bulletToOgre(rigidBody->getLinearVelocity());
-            dynamicProperties.angularVelocity = bulletToOgre(rigidBody->getAngularVelocity());
-        }
-        else if (
-            not dynamicProperties.linearVelocity.isZeroLength()
-            or not dynamicProperties.angularVelocity.isZeroLength()
-        ) {
-            dynamicProperties.linearVelocity = Ogre::Vector3::ZERO;
-            dynamicProperties.angularVelocity = Ogre::Vector3::ZERO;
+RigidBodyOutputSystem::update(int, bool paused) {
+    if (!paused) {
+        for (auto& value : m_impl->m_entities.entities()) {
+            RigidBodyComponent* rigidBodyComponent = std::get<0>(value.second);
+            btRigidBody* rigidBody = rigidBodyComponent->m_body;
+            auto& dynamicProperties = rigidBodyComponent->m_dynamicProperties;
+            // Position and orientation are handled by RigidBodyComponent::setWorldTransform
+            if (rigidBody->isActive()) {
+                dynamicProperties.linearVelocity = bulletToOgre(rigidBody->getLinearVelocity());
+                dynamicProperties.angularVelocity = bulletToOgre(rigidBody->getAngularVelocity());
+            }
+            else if (
+                not dynamicProperties.linearVelocity.isZeroLength()
+                or not dynamicProperties.angularVelocity.isZeroLength()
+            ) {
+                dynamicProperties.linearVelocity = Ogre::Vector3::ZERO;
+                dynamicProperties.angularVelocity = Ogre::Vector3::ZERO;
+            }
         }
     }
 }

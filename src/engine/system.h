@@ -15,7 +15,7 @@ class GameState;
 /**
 * @brief A system handles one specific part of the game
 *
-* Systems can operate on entities and their components, but they can also 
+* Systems can operate on entities and their components, but they can also
 * handle tasks that don't require components at all, such as issuing a render
 * call to the graphics engine.
 */
@@ -30,7 +30,7 @@ public:
     * - System::active
     * - System::setActive
     *
-    * @return 
+    * @return
     */
     static luabind::scope
     luaBindings();
@@ -48,7 +48,7 @@ public:
     /**
     * @brief Called by GameState::activate()
     *
-    * Override this if you need to restore some internal state when the 
+    * Override this if you need to restore some internal state when the
     * system's game state is activated.
     */
     virtual void
@@ -57,7 +57,7 @@ public:
     /**
     * @brief Called by GameState::deactivate()
     *
-    * Override this if you need to clear some internal state when the 
+    * Override this if you need to clear some internal state when the
     * system's game state is deactivated.
     */
     virtual void
@@ -68,7 +68,7 @@ public:
     *
     * Disabled systems are not being updated
     *
-    * @return 
+    * @return
     */
     bool
     enabled() const;
@@ -76,8 +76,8 @@ public:
     /**
     * @brief The system's engine
     *
-    * @return 
-    *   The system's engine or \c nullptr if the system hasn't been 
+    * @return
+    *   The system's engine or \c nullptr if the system hasn't been
     *   initialized yet.
     */
     Engine*
@@ -143,13 +143,17 @@ public:
     * @param milliSeconds
     *   The number of milliseconds to advance
     *
+    * @param paused
+    *   Whether the game is currently paused, which may have different behavior
+    *
     * @note
     *   If you need to know the time since the last call to \a this system's
     *   update() function, you'll have to measure it yourself.
     */
     virtual void
     update(
-        int milliSeconds
+        int milliSeconds,
+        bool paused
     ) = 0;
 
 private:

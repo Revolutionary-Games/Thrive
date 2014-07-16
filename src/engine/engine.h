@@ -70,6 +70,8 @@ public:
     * - Engine::saveCreation()
     * - Engine::loadCreation()
     * - Engine::quit()
+    * - Engine::pauseGame()
+    * - Engine::resumeGame()
     * - Engine::timedSystemShutdown()
     * - Engine::isSystemTimedShutdown()
     * - Engine::componentFactory() (as property)
@@ -335,6 +337,18 @@ public:
     */
     void
     quit();
+
+    /**
+    * @brief Pauses system updates of the game
+    */
+    void
+    pauseGame();
+
+    /**
+    * @brief Resumes system updates of the game
+    */
+    void
+    resumeGame();
 
     OgreOggSound::OgreOggSoundManager*
     soundManager() const;
