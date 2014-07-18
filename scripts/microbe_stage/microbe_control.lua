@@ -38,13 +38,15 @@ local function getMovementDirection()
 end
 
 
-function MicrobeControlSystem:update(milliseconds)
-    local player = Entity("player")
-    local microbe = player:getComponent(MicrobeComponent.TYPE_ID)
-    if not microbe.dead then
-        local targetPoint = getTargetPoint()
-        local movementDirection = getMovementDirection()
-        microbe.facingTargetPoint = getTargetPoint()
-        microbe.movementDirection = movementDirection
+function MicrobeControlSystem:update(milliseconds, paused)
+    if not paused then
+        local player = Entity("player")
+        local microbe = player:getComponent(MicrobeComponent.TYPE_ID)
+        if not microbe.dead then
+            local targetPoint = getTargetPoint()
+            local movementDirection = getMovementDirection()
+            microbe.facingTargetPoint = getTargetPoint()
+            microbe.movementDirection = movementDirection
+        end
     end
 end

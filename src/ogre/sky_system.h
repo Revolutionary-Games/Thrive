@@ -85,7 +85,7 @@ public:
     /**
     * @brief Lua bindings
     *
-    * Exposes: 
+    * Exposes:
     * - SkyPlaneComponent()
     * - @link SkyPlaneComponent::m_properties properties @endlink
     * - SkyPlaneComponent::Properties
@@ -100,7 +100,7 @@ public:
     *   - Properties::ysegments
     *   - Properties::groupName
     *
-    * @return 
+    * @return
     */
     static luabind::scope
     luaBindings();
@@ -126,7 +126,7 @@ public:
 * @brief Handles sky planes, boxes and domes
 */
 class SkySystem : public System {
-    
+
 public:
 
     /**
@@ -135,7 +135,7 @@ public:
     * Exposes:
     * - SkySystem()
     *
-    * @return 
+    * @return
     */
     static luabind::scope
     luaBindings();
@@ -164,7 +164,7 @@ public:
     /**
     * @brief Updates the sky components
     */
-    void update(int) override;
+    void update(int, bool) override;
 
 private:
 

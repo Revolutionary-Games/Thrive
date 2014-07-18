@@ -241,7 +241,8 @@ private:
     */
     void
     update(
-        int milliseconds
+        int milliseconds,
+        bool paused
     );
 
     struct Implementation;

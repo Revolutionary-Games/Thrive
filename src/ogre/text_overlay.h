@@ -20,7 +20,7 @@ class TextOverlayComponent : public Component {
     COMPONENT(TextOverlay)
 
 public:
-    
+
     /**
     * @brief Properties
     */
@@ -52,7 +52,7 @@ public:
         Ogre::GuiHorizontalAlignment horizontalAlignment = Ogre::GHA_LEFT;
 
         /**
-        * @brief Offset relative to screen anchor in pixels. 
+        * @brief Offset relative to screen anchor in pixels.
         *
         * Positive is to the right.
         */
@@ -98,7 +98,7 @@ public:
     *   - Properties::verticalAlignment
     *   - Properties::width
     *
-    * @return 
+    * @return
     */
     static luabind::scope
     luaBindings();
@@ -143,7 +143,7 @@ public:
     Properties m_properties;
 
 private:
-    
+
     Ogre::String m_name;
 };
 
@@ -152,7 +152,7 @@ private:
 * @brief Creates, updates and removes text overlays
 */
 class TextOverlaySystem : public System {
-    
+
 public:
 
     /**
@@ -161,7 +161,7 @@ public:
     * Exposes:
     * - TextOverlaySystem()
     *
-    * @return 
+    * @return
     */
     static luabind::scope
     luaBindings();
@@ -194,7 +194,7 @@ public:
     /**
     * @brief Updates the system
     */
-    void update(int) override;
+    void update(int, bool) override;
 
 private:
 

@@ -117,7 +117,7 @@ public:
     *   - Properties::spotlightOuterAngle
     *   - Properties::type
     *
-    * @return 
+    * @return
     */
     static luabind::scope
     luaBindings();
@@ -162,7 +162,7 @@ public:
 * @brief Creates lights and updates their properties
 */
 class OgreLightSystem : public System {
-    
+
 public:
 
     /**
@@ -171,7 +171,7 @@ public:
     * Exposes:
     * - OgreLightSystem()
     *
-    * @return 
+    * @return
     */
     static luabind::scope
     luaBindings();
@@ -200,7 +200,7 @@ public:
     /**
     * @brief Updates the system
     */
-    void update(int) override;
+    void update(int, bool) override;
 
 private:
 

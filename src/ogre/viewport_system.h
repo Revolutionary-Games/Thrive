@@ -94,7 +94,7 @@ public:
     *   - Properties::width
     *   - Properties::zOrder
     *
-    * @return 
+    * @return
     */
     static luabind::scope
     luaBindings();
@@ -152,7 +152,7 @@ private:
 * @brief Creates, updates and removes viewports
 */
 class OgreViewportSystem : public System {
-    
+
 public:
 
     /**
@@ -161,7 +161,7 @@ public:
     * Exposes:
     * - OgreViewportSystem()
     *
-    * @return 
+    * @return
     */
     static luabind::scope
     luaBindings();
@@ -197,7 +197,7 @@ public:
     /**
     * @brief Updates the system
     */
-    void update(int) override;
+    void update(int, bool) override;
 
 private:
 

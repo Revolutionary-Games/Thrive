@@ -65,14 +65,16 @@ struct SystemWrapper : System, luabind::wrap_base {
 
     void
     update(
-        int milliseconds
+        int milliseconds,
+        bool paused
     ) override {
-        this->call<void>("update", milliseconds);
+        this->call<void>("update", milliseconds, paused);
     }
 
     static void default_update(
         System*,
-        int
+        int,
+        bool
     ) {
         throw std::runtime_error("System::update has no default implementation");
     }

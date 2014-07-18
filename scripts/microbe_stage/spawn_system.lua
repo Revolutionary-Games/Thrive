@@ -183,16 +183,18 @@ function SpawnSystem:_doSpawnCycle()
 end
 
 -- Override from System
-function SpawnSystem:update(milliseconds)
-    self.timeSinceLastCycle = self.timeSinceLastCycle + milliseconds
-    
-    --Perform spawn cycle if necessary (Reason for "if" rather than "while" stated below)
-    if self.timeSinceLastCycle > SPAWN_INTERVAL then
+function SpawnSystem:update(milliseconds, paused)
+    if not paused then
+        self.timeSinceLastCycle = self.timeSinceLastCycle + milliseconds
         
-        self:_doSpawnCycle()
-        
-        --Spawn interval does not affect spawning logic. Therefore, at most one spawn
-        --cycle will be done per frame.
-         self.timeSinceLastCycle = 0
+        --Perform spawn cycle if necessary (Reason for "if" rather than "while" stated below)
+        if self.timeSinceLastCycle > SPAWN_INTERVAL then
+            
+            self:_doSpawnCycle()
+            
+            --Spawn interval does not affect spawning logic. Therefore, at most one spawn
+            --cycle will be done per frame.
+             self.timeSinceLastCycle = 0
+        end
     end
 end

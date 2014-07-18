@@ -735,7 +735,10 @@ end
 
 
 -- Updates the microbe's state
-function Microbe:update(milliseconds)
+function Microbe:update(milliseconds, paused)
+    if paused then
+        return
+    end
     if not self.microbe.dead then
         -- StorageOrganelles
         self:_updateCompoundAbsorber()
@@ -946,7 +949,7 @@ function MicrobeSystem:shutdown()
 end
 
 
-function MicrobeSystem:update(milliseconds)
+function MicrobeSystem:update(milliseconds, paused)
   --  if Engine:currentGameState()
     for entityId in self.entities:removedEntities() do
         self.microbes[entityId] = nil
@@ -957,7 +960,7 @@ function MicrobeSystem:update(milliseconds)
     end
     self.entities:clearChanges()
     for _, microbe in pairs(self.microbes) do
-        microbe:update(milliseconds)
+        microbe:update(milliseconds, paused)
     end
 end
 

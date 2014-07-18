@@ -171,7 +171,10 @@ CollisionSystem::shutdown() {
 }
 
 void
-CollisionSystem::update(int milliseconds) {
+CollisionSystem::update(
+    int milliseconds,
+    bool
+) {
     auto dispatcher = m_impl->m_world->getDispatcher();
     int numManifolds = dispatcher->getNumManifolds();
 

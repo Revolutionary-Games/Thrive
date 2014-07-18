@@ -239,7 +239,7 @@ OgreViewportSystem::shutdown() {
 
 
 void
-OgreViewportSystem::update(int) {
+OgreViewportSystem::update(int, bool) {
     for (EntityId id : m_impl->m_entities.removedEntities()) {
         Ogre::Viewport* viewport = m_impl->m_viewports[id];
         m_impl->removeViewport(viewport);

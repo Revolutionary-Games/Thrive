@@ -22,7 +22,7 @@ public:
     * Exposes:
     * - BulletToOgreSystem()
     *
-    * @return 
+    * @return
     */
     static luabind::scope
     luaBindings();
@@ -59,7 +59,8 @@ public:
     */
     void
     update(
-        int milliSeconds
+        int milliSeconds,
+        bool
     ) override;
 
 private:

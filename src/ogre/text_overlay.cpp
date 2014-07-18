@@ -245,7 +245,7 @@ TextOverlaySystem::shutdown() {
 
 
 void
-TextOverlaySystem::update(int) {
+TextOverlaySystem::update(int, bool) {
     for (EntityId entityId : m_impl->m_entities.removedEntities()) {
         Ogre::OverlayElement* textOverlay = m_impl->m_textOverlays[entityId];
         m_impl->removeOverlayElement(textOverlay->getName());

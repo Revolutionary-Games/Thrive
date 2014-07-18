@@ -94,12 +94,14 @@ TimedLifeSystem::shutdown() {
 
 
 void
-TimedLifeSystem::update(int milliseconds) {
-    for (auto& value : m_impl->m_entities) {
-        TimedLifeComponent* timedLifeComponent = std::get<0>(value.second);
-        timedLifeComponent->m_timeToLive -= milliseconds;
-        if (timedLifeComponent->m_timeToLive <= 0) {
-            this->entityManager()->removeEntity(value.first);
+TimedLifeSystem::update(int milliseconds, bool paused) {
+    if (!paused ) {
+        for (auto& value : m_impl->m_entities) {
+            TimedLifeComponent* timedLifeComponent = std::get<0>(value.second);
+            timedLifeComponent->m_timeToLive -= milliseconds;
+            if (timedLifeComponent->m_timeToLive <= 0) {
+                this->entityManager()->removeEntity(value.first);
+            }
         }
     }
 }
