@@ -422,6 +422,7 @@ local function createMicrobeStage(name)
             CompoundMovementSystem(),
             CompoundAbsorberSystem(),
             createSpawnSystem(),
+            PopulationSystem(),
             -- Physics
             RigidBodyInputSystem(),
             UpdatePhysicsSystem(),

@@ -267,6 +267,8 @@ function Microbe.createMicrobeEntity(name, aiControlled)
     if aiControlled then
         local aiController = MicrobeAIControllerComponent()
         table.insert(components, aiController)
+    else
+        table.insert(components, SpeciesComponent())
     end
     for _, component in ipairs(components) do
         entity:addComponent(component)
