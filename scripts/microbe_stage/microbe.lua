@@ -505,6 +505,12 @@ function Microbe:damage(amount)
     for _, organelle in pairs(self.microbe.organelles) do
         organelle:flashColour(300, ColourValue(1,0.2,0.2,1))
     end
+    if self.microbe.isPlayerMicrobe then
+        if self.entity:getComponent(SpeciesComponent.TYPE_ID) == nil then
+            print("nil :(")
+        end
+        self.entity:getComponent(SpeciesComponent.TYPE_ID):changeSpeciesScore(-amount/10)
+    end
     self:_updateAllHexColours()
     if self.microbe.hitpoints <= 0 then
         self.microbe.hitpoints = 0
@@ -552,6 +558,7 @@ function Microbe:emitAgent(compoundId, maxAmount)
         agentVacuole:takeCompound(compoundId, amountToEject)
         local i
         for i = 1, particleCount do
+            print("particles")
             self:ejectCompound(compoundId, amountToEject/particleCount, angle,angle, true)
         end
     end
@@ -717,6 +724,9 @@ function Microbe:kill()
             showMessage("VICTORY!!!")
         end
     end
+    if self.microbe.isPlayerMicrobe then
+        self.microbe.entity:getComponent(SpeciesComponent.TYPE_ID):changeSpeciesScore(-200)
+    end
 end
 
 -- Copies this microbe. The new microbe will not have the stored compounds of this one. 
@@ -733,6 +743,9 @@ function Microbe:reproduce()
     copy.microbe:updateSafeAngles()
     copy.microbe:_resetCompoundPriorities()  
     copy.entity:addComponent(SpawnedComponent())
+    if self.microbe.isPlayerMicrobe then
+        self.microbe.entity:getComponent(SpeciesComponent.TYPE_ID):changeSpeciesScore(210)
+    end
 end
 
 
