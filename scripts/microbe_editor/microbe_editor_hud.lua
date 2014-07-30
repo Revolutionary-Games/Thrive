@@ -23,6 +23,8 @@ function MicrobeEditorHudSystem:init(gameState)
     sceneNode.meshName = "hex.mesh"
     self.hoverHex:addComponent(sceneNode)
     local root = gameState:rootGUIWindow()
+    self.mpLabel = root:getChild("BottomSection"):getChild("MutationPoints"):getChild("MPBar"):getChild("NumberLabel")
+    self.mpProgressBar = root:getChild("BottomSection"):getChild("MutationPoints"):getChild("MPBar")
     local nucleusButton = root:getChild("EditorTools"):getChild("NucleusItem")
     local flageliumButton = root:getChild("EditorTools"):getChild("FlageliumItem")
     local mitochondriaButton = root:getChild("EditorTools"):getChild("MitochondriaItem")
@@ -136,6 +138,12 @@ function MicrobeEditorHudSystem:update(milliseconds)
     end
     properties.fovY = newFovY
     properties:touch()
+end
+
+
+function MicrobeEditorHudSystem:updateMutationPoints()
+    self.mpProgressBar:progressbarSetProgress(self.editor.mutationPoints/100)
+    self.mpLabel:setText("" .. self.editor.mutationPoints)
 end
 
 
