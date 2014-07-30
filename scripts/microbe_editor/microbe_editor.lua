@@ -15,6 +15,7 @@ function MicrobeEditor:__init(hudSystem)
     self.hudSystem = hudSystem
     self.nextMicrobeEntity = nil
     self.lockedMap = nil
+    self.mutationPoints = 100
     self.placementFunctions = {["nucleus"] = MicrobeEditor.createNewMicrobe,
                                ["flagelium"] = MicrobeEditor.addMovementOrganelle,
                                ["mitochondria"] = MicrobeEditor.addProcessOrganelle,
@@ -35,6 +36,7 @@ function MicrobeEditor:activate()
         Engine:playerData():setBool("edited_microbe", true)
         Engine:playerData():setActiveCreature(self.nextMicrobeEntity.id, GameState.MICROBE_EDITOR)
     end
+    self.mutationPoints = 100
 end
 
 function MicrobeEditor:update(milliseconds)
@@ -54,6 +56,16 @@ function MicrobeEditor:update(milliseconds)
         if organelle._needsColourUpdate then
             organelle:_updateHexColours()
         end
+    end
+    self.hudSystem:updateMutationPoints()
+end
+
+function MicrobeEditor:takeMutationPoints(amount)
+    if amount <= self.mutationPoints then
+        self.mutationPoints = self.mutationPoints - amount
+        return true
+    else
+        return false
     end
 end
 
@@ -82,7 +94,7 @@ function MicrobeEditor:removeOrganelle()
     local q, r = self:getMouseHex()
     if not (q == 0 and r == 0) then -- Don't remove nucleus
         local organelle = self.currentMicrobe:getOrganelleAt(q,r)
-        if organelle then
+        if organelle and self:takeMutationPoints(10) then
             self.currentMicrobe:removeOrganelle(organelle.position.q ,organelle.position.r )
             self.currentMicrobe.sceneNode.transform:touch()
             self.organelleCount = self.organelleCount - 1
@@ -94,7 +106,7 @@ end
 function MicrobeEditor:addStorageOrganelle(organelleType)
    -- self.currentMicrobe = Microbe(Entity("working_microbe", GameState.MICROBE))
     local q, r = self:getMouseHex()
-    if self.currentMicrobe:getOrganelleAt(q, r) == nil then
+    if self.currentMicrobe:getOrganelleAt(q, r) == nil and self:takeMutationPoints(Organelle.mpCosts["vacuole"]) then
         self.currentMicrobe:addOrganelle(q, r, OrganelleFactory.make_vacuole({}))
         self.organelleCount = self.organelleCount + 1
     end
@@ -104,7 +116,7 @@ end
 function MicrobeEditor:addMovementOrganelle(organelleType)
     local q, r = self:getMouseHex()
     local data = {["q"]=q, ["r"]=r}
-    if self.currentMicrobe:getOrganelleAt(q, r) == nil then
+    if self.currentMicrobe:getOrganelleAt(q, r) == nil and self:takeMutationPoints(Organelle.mpCosts["flagellum"]) then
         self.currentMicrobe:addOrganelle(q,r, OrganelleFactory.make_flagellum(data))
         self.organelleCount = self.organelleCount + 1
     end
@@ -114,12 +126,10 @@ function MicrobeEditor:addProcessOrganelle(organelleType)
     local q, r = self:getMouseHex()
     if self.currentMicrobe:getOrganelleAt(q, r) == nil then
         
-        if organelleType == "mitochondria" then
+        if organelleType == "mitochondria" and self:takeMutationPoints(Organelle.mpCosts["mitochondrion"]) then
             self.currentMicrobe:addOrganelle(q,r, OrganelleFactory.make_mitochondrion({}))
-        elseif organelleType == "chloroplast" then
+        elseif organelleType == "chloroplast" and self:takeMutationPoints(Organelle.mpCosts["chloroplast"]) then
             self.currentMicrobe:addOrganelle(q,r, OrganelleFactory.make_chloroplast({}))
-        else
-            assert(false, "organelleType did not exist")
         end
     end
     self.organelleCount = self.organelleCount + 1
@@ -128,7 +138,7 @@ end
 function MicrobeEditor:addAgentVacuole(organelleType)
     if organelleType == "toxin" then         
         local q, r = self:getMouseHex()
-        if self.currentMicrobe:getOrganelleAt(q, r) == nil then
+        if self.currentMicrobe:getOrganelleAt(q, r) == nil and self:takeMutationPoints(Organelle.mpCosts["oxytoxy"]) then
             self.currentMicrobe:addOrganelle(q, r, OrganelleFactory.make_oxytoxy({}))
             self.organelleCount = self.organelleCount + 1
         end
@@ -152,6 +162,7 @@ function MicrobeEditor:loadMicrobe(entityId)
     self.currentMicrobe.sceneNode.transform:touch()
     self.currentMicrobe.collisionHandler:addCollisionGroup("powerupable")
     Engine:playerData():setActiveCreature(entityId, GameState.MICROBE_EDITOR)
+    self.mutationPoints = 0
 end
 
 function MicrobeEditor:createNewMicrobe()
@@ -165,5 +176,6 @@ function MicrobeEditor:createNewMicrobe()
     self.currentMicrobe.sceneNode.transform:touch()
     self.currentMicrobe.collisionHandler:addCollisionGroup("powerupable")
     self:addNucleus()
+    self.mutationPoints = 100
     Engine:playerData():setActiveCreature(self.currentMicrobe.entity.id, GameState.MICROBE_EDITOR)
 end

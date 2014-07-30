@@ -131,6 +131,8 @@ function MovementOrganelle:update(microbe, milliseconds)
     self:_moveMicrobe(microbe, milliseconds)
 end
 
+Organelle.mpCosts["flagellum"] = 25
+
 -- factory functions
 function OrganelleFactory.make_flagellum(data)
     -- Calculate the momentum of the movement organelle based on angle towards nucleus

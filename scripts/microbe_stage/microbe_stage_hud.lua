@@ -14,6 +14,7 @@ end
 global_if_already_displayed = false
 
 function HudSystem:activate()
+    global_activeMicrobeStageHudSystem = self -- Global reference for event handlers
     lockedMap = Engine:playerData():lockedMap()
     if lockedMap ~= nil and not lockedMap:isLocked("Toxin") and not ss and not global_if_already_displayed then
         showMessage("'E' Releases Toxin")
@@ -30,16 +31,20 @@ function HudSystem:init(gameState)
     local menuButton = self.rootGuiWindow:getChild("BottomSection"):getChild("MenuButton")
     local helpButton = self.rootGuiWindow:getChild("BottomSection"):getChild("HelpButton")
     local editorButton = self.rootGuiWindow:getChild("MenuPanel"):getChild("EditorButton")
+    local editorButton2 = self.rootGuiWindow:getChild("ReproductionPanel"):getChild("EditorButton")
     local returnButton = self.rootGuiWindow:getChild("MenuPanel"):getChild("ReturnButton")
     local returnButton2 = self.rootGuiWindow:getChild("HelpPanel"):getChild("ReturnButton")
     local returnButton3 = self.rootGuiWindow:getChild("MessagePanel"):getChild("ReturnButton")
+    local returnButton4 = self.rootGuiWindow:getChild("ReproductionPanel"):getChild("ReturnButton")
     local quitButton = self.rootGuiWindow:getChild("MenuPanel"):getChild("QuitButton")
     menuButton:registerEventHandler("Clicked", menuButtonClicked)
     helpButton:registerEventHandler("Clicked", helpButtonClicked)
     editorButton:registerEventHandler("Clicked", editorButtonClicked)
+    editorButton2:registerEventHandler("Clicked", editorButtonClicked)
     returnButton:registerEventHandler("Clicked", returnButtonClicked)
     returnButton2:registerEventHandler("Clicked", returnButtonClicked)
     returnButton3:registerEventHandler("Clicked", returnButtonClicked)
+    returnButton4:registerEventHandler("Clicked", returnButtonClicked)
     quitButton:registerEventHandler("Clicked", quitButtonClicked)
     self.rootGuiWindow:getChild("MenuPanel"):getChild("MainMenuButton"):registerEventHandler("Clicked", menuMainMenuClicked)
 end
@@ -83,6 +88,10 @@ function HudSystem:update(milliseconds)
     offset.z = newZVal
 end
 
+function showReproductionDialog()
+    global_activeMicrobeStageHudSystem.rootGuiWindow:getChild("ReproductionPanel"):show()
+end
+
 function showMessage(msg)
     local messagePanel = Engine:currentGameState():rootGUIWindow():getChild("MessagePanel")
     messagePanel:getChild("MessageLabel"):setText(msg)
@@ -115,6 +124,7 @@ function returnButtonClicked()
     if Engine:currentGameState():name() == "microbe" then
         Engine:currentGameState():rootGUIWindow():getChild("HelpPanel"):hide()
         Engine:currentGameState():rootGUIWindow():getChild("MessagePanel"):hide()
+        Engine:currentGameState():rootGUIWindow():getChild("ReproductionPanel"):hide()
     elseif Engine:currentGameState():name() == "microbe_editor" then
         Engine:currentGameState():rootGUIWindow():getChild("SaveLoadPanel"):hide()
     end
