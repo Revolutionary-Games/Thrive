@@ -18,6 +18,7 @@ REPRODUCTASE_TO_SPLIT = 5
 
 function MicrobeComponent:__init(isPlayerMicrobe)
     Component.__init(self)
+    self.speciesName = ""
     self.hitpoints = 10
     self.maxHitpoints = 10
     self.dead = false
@@ -505,12 +506,6 @@ function Microbe:damage(amount)
     for _, organelle in pairs(self.microbe.organelles) do
         organelle:flashColour(300, ColourValue(1,0.2,0.2,1))
     end
-    if self.microbe.isPlayerMicrobe then
-        if self.entity:getComponent(SpeciesComponent.TYPE_ID) == nil then
-            print("nil :(")
-        end
-        self.entity:getComponent(SpeciesComponent.TYPE_ID):changeSpeciesScore(-amount/10)
-    end
     self:_updateAllHexColours()
     if self.microbe.hitpoints <= 0 then
         self.microbe.hitpoints = 0
@@ -558,7 +553,6 @@ function Microbe:emitAgent(compoundId, maxAmount)
         agentVacuole:takeCompound(compoundId, amountToEject)
         local i
         for i = 1, particleCount do
-            print("particles")
             self:ejectCompound(compoundId, amountToEject/particleCount, angle,angle, true)
         end
     end
@@ -724,8 +718,9 @@ function Microbe:kill()
             showMessage("VICTORY!!!")
         end
     end
-    if self.microbe.isPlayerMicrobe then
-        self.microbe.entity:getComponent(SpeciesComponent.TYPE_ID):changeSpeciesScore(-200)
+    species = Entity(self.microbe.speciesName):getComponent(SpeciesComponent.TYPE_ID)
+    if species ~= nil then -- Microbes don't need to have a species
+        species.populationPenaltyFactor = species.populationPenaltyFactor * 1.4
     end
 end
 
@@ -743,9 +738,11 @@ function Microbe:reproduce()
     copy.microbe:updateSafeAngles()
     copy.microbe:_resetCompoundPriorities()  
     copy.entity:addComponent(SpawnedComponent())
-    if self.microbe.isPlayerMicrobe then
-        self.microbe.entity:getComponent(SpeciesComponent.TYPE_ID):changeSpeciesScore(210)
+    species = Entity(self.microbe.speciesName):getComponent(SpeciesComponent.TYPE_ID)
+    if species ~= nil then -- Microbes don't need to have a species
+        species.populationBonusFactor = species.populationBonusFactor * 1.4
     end
+    
 end
 
 
@@ -823,6 +820,15 @@ function Microbe:update(milliseconds)
                 self:reproduce()
             end
             self.microbe.compoundCollectionTimer = self.microbe.compoundCollectionTimer - EXCESS_COMPOUND_COLLECTION_INTERVAL
+            -- Award some species population based on ATP surplus
+            species = Entity(self.microbe.speciesName):getComponent(SpeciesComponent.TYPE_ID)
+            if species ~= nil then -- Microbes don't need to have a species
+                species.populationBonusFactor = species.populationBonusFactor * 1.0 + self.microbe.compounds[CompoundRegistry.getCompoundId("atp")]/10000
+                if microbe.microbe.isPlayerMicrobe then
+                    print(math.floor(species.currentPopulation))
+                end
+            end
+            
         end
         -- Other organelles
         for _, organelle in pairs(self.microbe.organelles) do
