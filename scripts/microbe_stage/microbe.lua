@@ -719,7 +719,6 @@ end
 
 -- Copies this microbe. The new microbe will not have the stored compounds of this one. 
 function Microbe:reproduce()
-
     copy = Microbe.createMicrobeEntity(nil, true)
     for _, organelle in pairs(self.microbe.organelles) do
         local organelleStorage = organelle:storage()
@@ -731,6 +730,9 @@ function Microbe:reproduce()
     copy.microbe:updateSafeAngles()
     copy.microbe:_resetCompoundPriorities()  
     copy.entity:addComponent(SpawnedComponent())
+    if self.microbe.isPlayerMicrobe then
+        showReproductionDialog()
+    end
 end
 
 

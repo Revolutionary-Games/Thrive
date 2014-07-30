@@ -1,6 +1,8 @@
 -- Base class for microbe organelles
 class 'Organelle'
 
+Organelle.mpCosts = {}
+
 -- Factory function for organelles
 function Organelle.loadOrganelle(storage)
     local className = storage:get("className", "")
