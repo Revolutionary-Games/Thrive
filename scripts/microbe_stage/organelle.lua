@@ -192,11 +192,11 @@ end
 --
 -- Override this to make your organelle class do something at regular intervals
 --
--- @param milliseconds
+-- @param logicTime
 --  The time since the last call to update()
-function Organelle:update(microbe, milliseconds)
+function Organelle:update(microbe, logicTime)
     if self.flashDuration ~= nil then
-        self.flashDuration = self.flashDuration - milliseconds
+        self.flashDuration = self.flashDuration - logicTime
         if self.flashDuration <= 0 then
             self._colour = self._originalColour
             self._needsColourUpdate = true

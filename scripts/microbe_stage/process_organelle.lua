@@ -220,11 +220,11 @@ end
 -- @param microbe
 -- The microbe containing the organelle
 --
--- @param milliseconds
+-- @param logicTime
 -- The time since the last call to update()
-function ProcessOrganelle:update(microbe, milliseconds)
-    Organelle.update(self, microbe, milliseconds)
-    self.capacityIntervalTimer = self.capacityIntervalTimer + milliseconds
+function ProcessOrganelle:update(microbe, logicTime)
+    Organelle.update(self, microbe, logicTime)
+    self.capacityIntervalTimer = self.capacityIntervalTimer + logicTime
     processFactoredPriorities = {}
     factorProduct = 0.0
     if self.capacityIntervalTimer > PROCESS_CAPACITY_UPDATE_INTERVAL then

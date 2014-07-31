@@ -165,7 +165,7 @@ OgreCameraSystem::shutdown() {
 
 
 void
-OgreCameraSystem::update(int, bool) {
+OgreCameraSystem::update(int, int) {
     for (EntityId entityId : m_impl->m_entities.removedEntities()) {
         Ogre::Camera* camera = m_impl->m_cameras[entityId];
         if (camera) {

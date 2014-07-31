@@ -56,8 +56,8 @@ public:
     */
     void
     update(
-        int milliSeconds,
-        bool paused
+        int renderTime,
+        int logicTime
     ) override;
 
 private:

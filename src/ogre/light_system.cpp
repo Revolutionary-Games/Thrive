@@ -160,7 +160,7 @@ OgreLightSystem::shutdown() {
 
 
 void
-OgreLightSystem::update(int, bool) {
+OgreLightSystem::update(int, int) {
     for (EntityId entityId : m_impl->m_entities.removedEntities()) {
         Ogre::Light* light = m_impl->m_lights[entityId];
         if (light) {

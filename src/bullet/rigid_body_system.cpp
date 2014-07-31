@@ -230,7 +230,7 @@ RigidBodyInputSystem::shutdown() {
 
 
 void
-RigidBodyInputSystem::update(int milliseconds, bool) {
+RigidBodyInputSystem::update(int, int logicTime) {
     for (EntityId entityId : m_impl->m_entities.removedEntities()) {
         btRigidBody* body = m_impl->m_bodies[entityId].get();
         if (body) {
@@ -340,7 +340,7 @@ RigidBodyInputSystem::update(int milliseconds, bool) {
             body->setAngularVelocity(btVector3(0,0,0));
             rigidBodyComponent->m_toClearForces = false;
         }
-        body->applyDamping(milliseconds / 1000.0f);
+        body->applyDamping(logicTime / 1000.0f);
     }
 }
 
@@ -391,8 +391,8 @@ RigidBodyOutputSystem::shutdown() {
 
 
 void
-RigidBodyOutputSystem::update(int, bool paused) {
-    if (!paused) {
+RigidBodyOutputSystem::update(int, int logicTime) {
+    if (logicTime > 0) {
         for (auto& value : m_impl->m_entities.entities()) {
             RigidBodyComponent* rigidBodyComponent = std::get<0>(value.second);
             btRigidBody* rigidBody = rigidBodyComponent->m_body;

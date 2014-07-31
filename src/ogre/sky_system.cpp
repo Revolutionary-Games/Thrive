@@ -135,7 +135,7 @@ SkySystem::shutdown() {
 
 
 void
-SkySystem::update(int, bool) {
+SkySystem::update(int, int) {
     for (EntityId id : m_impl->m_skyPlanes.removedEntities()) {
         (void) id;
         m_impl->m_sceneManager->setSkyPlaneEnabled(false);

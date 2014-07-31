@@ -17,7 +17,7 @@ function MainMenuHudSystem:init(gameState)
     root:getChild("Background"):getChild("QuitButton"):registerEventHandler("Clicked", quitButtonClicked)
 end
 
-function MainMenuHudSystem:update(milliseconds)
+function MainMenuHudSystem:update(renderTime, logicTime)
 end
 
 function mainMenuMicrobeStageButtonClicked()

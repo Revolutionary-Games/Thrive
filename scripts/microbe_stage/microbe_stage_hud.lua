@@ -45,7 +45,7 @@ function HudSystem:init(gameState)
 end
 
 
-function HudSystem:update(milliseconds)
+function HudSystem:update(renderTime, logicTime)
     local player = Entity("player")
     local playerMicrobe = Microbe(player)
 

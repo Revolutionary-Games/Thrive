@@ -38,7 +38,7 @@ local function getMovementDirection()
 end
 
 
-function MicrobeControlSystem:update(milliseconds, paused)
+function MicrobeControlSystem:update(renderTime, logicTime)
     if not paused then
         local player = Entity("player")
         local microbe = player:getComponent(MicrobeComponent.TYPE_ID)

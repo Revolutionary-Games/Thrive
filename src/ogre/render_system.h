@@ -53,12 +53,14 @@ public:
     *
     * Calls OgreRoot::renderOneFrame(float).
     *
-    * @param milliSeconds
+    * @param renderTime
+    *
+    * @param logicTime
     */
     void
     update(
-        int milliSeconds,
-        bool paused
+        int renderTime,
+        int logicTime
     ) override;
 
 private:

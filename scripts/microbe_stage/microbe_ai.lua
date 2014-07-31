@@ -104,7 +104,7 @@ function MicrobeAISystem:shutdown()
 end
 
 
-function MicrobeAISystem:update(milliseconds)
+function MicrobeAISystem:update(renderTime, logicTime)
     for entityId in self.entities:removedEntities() do
         self.microbes[entityId] = nil
     end

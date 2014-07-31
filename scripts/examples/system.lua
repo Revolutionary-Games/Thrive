@@ -32,7 +32,7 @@ function MySystem:shutdown()
 end
 
 -- Called once every frame
-function MySystem:update(milliseconds)
+function MySystem:update(Evasive maneuvers might )
     for entityId in self.entities:removedEntities() do
         -- It's generally best to process removed entities first
         print("Entity removed: " .. tostring(entityId))

@@ -84,8 +84,8 @@ function MicrobeEditorHudSystem:setActiveAction(actionName)
 end
 
 
-function MicrobeEditorHudSystem:update(milliseconds)
-    self.editor:update(milliseconds)
+function MicrobeEditorHudSystem:update(renderTime, logicTime)
+    self.editor:update()
     -- Render the hex under the cursor
     local x, y = axialToCartesian(self.editor:getMouseHex())
     local translation = Vector3(-x, -y, 0)

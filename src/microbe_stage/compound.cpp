@@ -356,14 +356,12 @@ CompoundMovementSystem::shutdown() {
 
 
 void
-CompoundMovementSystem::update(int milliseconds, bool paused) {
-    if (!paused) {
-        for (auto& value : m_impl->m_entities) {
-            CompoundComponent* compoundComponent = std::get<0>(value.second);
-            RigidBodyComponent* rigidBodyComponent = std::get<1>(value.second);
-            Ogre::Vector3 delta = compoundComponent->m_velocity * float(milliseconds) / 1000.0f;
-            rigidBodyComponent->m_dynamicProperties.position += delta;
-        }
+CompoundMovementSystem::update(int, int logicTime) {
+    for (auto& value : m_impl->m_entities) {
+        CompoundComponent* compoundComponent = std::get<0>(value.second);
+        RigidBodyComponent* rigidBodyComponent = std::get<1>(value.second);
+        Ogre::Vector3 delta = compoundComponent->m_velocity * float(logicTime) / 1000.0f;
+        rigidBodyComponent->m_dynamicProperties.position += delta;
     }
 }
 
@@ -491,7 +489,7 @@ emitCompound(
 
 
 void
-CompoundEmitterSystem::update(int milliseconds, bool paused) {
+CompoundEmitterSystem::update(int, int logicTime) {
     for (auto& value : m_impl->m_entities) {
         CompoundEmitterComponent* emitterComponent = std::get<0>(value.second);
         OgreSceneNodeComponent* sceneNodeComponent = std::get<1>(value.second);
@@ -502,9 +500,9 @@ CompoundEmitterSystem::update(int milliseconds, bool paused) {
             emitCompound(std::get<0>(emission), std::get<1>(emission), sceneNodeComponent->m_transform.position, std::get<2>(emission), std::get<3>(emission), emitterComponent);
         }
         emitterComponent->m_compoundEmissions.clear();
-        if (timedEmitterComponent && !paused)
+        if (timedEmitterComponent)
         {
-            timedEmitterComponent->m_timeSinceLastEmission += milliseconds;
+            timedEmitterComponent->m_timeSinceLastEmission += logicTime;
             while (
                 timedEmitterComponent->m_emitInterval > 0 and
                 timedEmitterComponent->m_timeSinceLastEmission >= timedEmitterComponent->m_emitInterval
@@ -589,7 +587,7 @@ CompoundAbsorberSystem::shutdown() {
 
 
 void
-CompoundAbsorberSystem::update(int, bool) {
+CompoundAbsorberSystem::update(int, int) {
     for (const auto& entry : m_impl->m_absorbers) {
         CompoundAbsorberComponent* absorber = std::get<0>(entry.second);
         absorber->m_absorbedCompounds.clear();

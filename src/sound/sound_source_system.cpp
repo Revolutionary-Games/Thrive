@@ -462,7 +462,7 @@ SoundSourceSystem::shutdown() {
 void
 SoundSourceSystem::update(
     int milliseconds,
-    bool
+    int
 ) {
     for (EntityId entityId : m_impl->m_entities.removedEntities()) {
         m_impl->removeSoundsForEntity(entityId);

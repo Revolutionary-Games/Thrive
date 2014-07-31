@@ -164,7 +164,7 @@ public:
     /**
     * @brief Updates the sky components
     */
-    void update(int, bool) override;
+    void update(int, int) override;
 
 private:
 

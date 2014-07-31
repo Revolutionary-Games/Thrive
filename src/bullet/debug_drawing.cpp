@@ -318,7 +318,7 @@ BulletDebugDrawSystem::shutdown() {
 
 
 void
-BulletDebugDrawSystem::update(int, bool) {
+BulletDebugDrawSystem::update(int, int) {
     m_impl->m_physicsWorld->debugDrawWorld();
 }
 

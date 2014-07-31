@@ -37,7 +37,7 @@ function MicrobeEditor:activate()
     end
 end
 
-function MicrobeEditor:update(milliseconds)
+function MicrobeEditor:update(renderTime, logicTime)
     if self.nextMicrobeEntity ~= nil then
         self.currentMicrobe = Microbe(self.nextMicrobeEntity)
         self.currentMicrobe.sceneNode.transform.orientation = Quaternion(Radian(Degree(180)), Vector3(0, 0, 1))-- Orientation
