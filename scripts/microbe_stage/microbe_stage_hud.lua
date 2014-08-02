@@ -108,7 +108,6 @@ function helpButtonClicked()
 end
 
 function editorButtonClicked()
-    Engine:currentGameState():rootGUIWindow():getChild("MenuPanel"):hide()
     Engine:setCurrentGameState(GameState.MICROBE_EDITOR)
 end
 

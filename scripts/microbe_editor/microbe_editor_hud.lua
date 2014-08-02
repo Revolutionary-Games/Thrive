@@ -276,6 +276,5 @@ function menuPlayClicked()
 end
 
 function menuMainMenuClicked()
-    Engine:currentGameState():rootGUIWindow():getChild("MenuPanel"):hide()
     Engine:setCurrentGameState(GameState.MAIN_MENU)
 end
