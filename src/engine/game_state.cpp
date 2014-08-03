@@ -98,6 +98,7 @@ GameState::luaBindings() {
     return class_<GameState>("GameState")
         .def("name", &GameState::name)
         .def("rootGUIWindow", &GameState::rootGUIWindow)
+        .def("entityManager", static_cast<EntityManager&(GameState::*)()>(&GameState::entityManager))
     ;
 }
 
@@ -261,6 +262,5 @@ GameState::update(
             system->update(milliseconds);
         }
     }
-    m_impl->m_entityManager.processTransfers(); // Transfer requests trumps remove request with this ordering
     m_impl->m_entityManager.processRemovals();
 }

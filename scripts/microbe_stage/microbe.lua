@@ -31,6 +31,9 @@ function MicrobeComponent:__init(isPlayerMicrobe)
     self.stored = 0 -- The amount stored in the microbe. NOTE: This does not include special storage organelles
     self.compounds = {}
     self.compoundPriorities = {}
+    self.defaultCompoundPriorities = {}
+    self.defaultCompoundPriorities[CompoundRegistry.getCompoundId("atp")] = 10
+    self.defaultCompoundPriorities[CompoundRegistry.getCompoundId("reproductase")] = 8
     self:_resetCompoundPriorities()
     self.initialized = false
     self.isPlayerMicrobe = isPlayerMicrobe
@@ -47,8 +50,9 @@ function MicrobeComponent:_resetCompoundPriorities()
     for compound in CompoundRegistry.getCompoundList() do
         self.compoundPriorities[compound] = 0
     end
-    self.compoundPriorities[CompoundRegistry.getCompoundId("atp")] = 10
-    self.compoundPriorities[CompoundRegistry.getCompoundId("reproductase")] = 8
+    for k, v in pairs(self.defaultCompoundPriorities) do
+        self.compoundPriorities[k] = v
+    end
 end
 
 function MicrobeComponent:_updateCompoundPriorities() 
@@ -481,6 +485,13 @@ function Microbe:getCompoundAmount(compoundId)
     end
 end
 
+-- Sets the default compound priorities
+--
+-- @param compoundId
+-- @param priority
+function Microbe:setDefaultCompoundPriority(compoundId, priority)
+    self.microbe.defaultCompoundPriorities[compoundId] = priority
+end
 
 -- Damages the microbe, killing it if its hitpoints drop low enough
 --
@@ -499,13 +510,16 @@ function Microbe:damage(amount)
     end
 end
 
--- Heals the microbe, restoring hitpoints, cannot exceede the microbes max hitpoints
+-- Heals the microbe, restoring hitpoints, cannot exceed the microbes max hitpoints
 --
 -- @param amount
 --  amount of hitpoints heal
 function Microbe:heal(amount)
     assert(amount >= 0, "Can't heal for negative amount of hitpoints. Use Microbe:damage instead")
-    self.microbe.hitpoints = (self.microbe.hitpoints + amount) % self.microbe.maxHitpoints
+    self.microbe.hitpoints = (self.microbe.hitpoints + amount)
+    if self.microbe.hitpoints > self.microbe.maxHitpoints then
+        self.microbe.hitpoints = self.microbe.maxHitpoints
+    end
 end
 
 -- Drains an agent from the microbes special storage and emits it
@@ -558,6 +572,7 @@ function Microbe:storeCompound(compoundId, amount, bandwidthLimited)
     else
         storedAmount = amount
     end
+    storedAmount = math.min(storedAmount , self.microbe.capacity - self.microbe.stored)
     if self.microbe.specialStorageOrganelles[compoundId] == nil then
         if self.microbe.compounds[compoundId] == nil then
             self.microbe.compounds[compoundId] = 0
@@ -704,7 +719,6 @@ end
 
 -- Copies this microbe. The new microbe will not have the stored compounds of this one. 
 function Microbe:reproduce()
-
     copy = Microbe.createMicrobeEntity(nil, true)
     for _, organelle in pairs(self.microbe.organelles) do
         local organelleStorage = organelle:storage()
@@ -716,6 +730,9 @@ function Microbe:reproduce()
     copy.microbe:updateSafeAngles()
     copy.microbe:_resetCompoundPriorities()  
     copy.entity:addComponent(SpawnedComponent())
+    if self.microbe.isPlayerMicrobe then
+        showReproductionDialog()
+    end
 end
 
 

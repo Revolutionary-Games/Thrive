@@ -317,6 +317,13 @@ install(EXPORT lua
     DESTINATION bin
 )
 
+# Version file
+
+install(FILES
+    ${CMAKE_SOURCE_DIR}/thriveversion.ver
+    DESTINATION bin
+)
+
 # OGRE config and media
 
 install(FILES

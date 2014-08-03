@@ -31,6 +31,7 @@ function MovementOrganelle:onAddedToMicrobe(microbe, q, r)
     sceneNode.transform:touch()
     self.tailEntity:addComponent(sceneNode)
     self.tailEntity.sceneNode = sceneNode
+    self.tailEntity:setVolatile(true)
     self.movingTail = false
     local organelleX, organelleY = axialToCartesian(q, r)
     local nucleusX, nucleusY = axialToCartesian(0, 0)
@@ -48,6 +49,10 @@ function MovementOrganelle:onRemovedFromMicrobe(microbe)
     self.tailEntity:destroy() --ogre scenenode will be destroyed due to parenting but the rest of the entity wont without this call.
 end
 
+function MovementOrganelle:destroy()
+    self.tailEntity:destroy()
+    Organelle.destroy(self)
+end
 
 function MovementOrganelle:load(storage)
     Organelle.load(self, storage)
@@ -126,3 +131,23 @@ function MovementOrganelle:update(microbe, milliseconds)
     self:_moveMicrobe(microbe, milliseconds)
 end
 
+Organelle.mpCosts["flagellum"] = 25
+
+-- factory functions
+function OrganelleFactory.make_flagellum(data)
+    -- Calculate the momentum of the movement organelle based on angle towards nucleus
+    local organelleX, organelleY = axialToCartesian(data.q, data.r)
+    local nucleusX, nucleusY = axialToCartesian(0, 0)
+    local deltaX = nucleusX - organelleX
+    local deltaY = nucleusY - organelleY
+    local dist = math.sqrt(deltaX^2 + deltaY^2) -- For normalizing vector
+    local momentumX = deltaX / dist * FLAGELIUM_MOMENTUM
+    local momentumY = deltaY / dist * FLAGELIUM_MOMENTUM
+    local flagellum = MovementOrganelle(
+        Vector3(momentumX, momentumY, 0.0),
+        300
+    )
+    flagellum:setColour(ColourValue(0.8, 0.3, 0.3, 1))
+    flagellum:addHex(0, 0)
+    return flagellum
+end

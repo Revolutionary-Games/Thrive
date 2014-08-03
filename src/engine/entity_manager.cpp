@@ -41,8 +41,6 @@ struct EntityManager::Implementation {
 
     std::list<EntityId> m_entitiesToRemove;
 
-    std::list<std::tuple<EntityId, EntityId, GameState*>> m_entitiesToTransfer;
-
     std::unordered_map<std::string, EntityId> m_namedIds;
 
     std::unordered_set<EntityId> m_volatileEntities;
@@ -173,44 +171,6 @@ EntityManager::stealName(
 }
 
 
-
-
-EntityId
-EntityManager::transferEntity(
-    EntityId entityId,
-    GameState* gameState
-) {
-    //Get a new id, this initial id will not be used and therefore wasted if we find a name mapping.
-    EntityId newEntity = gameState->entityManager().generateNewId();
-    // Rough way of checking for a name mapping. But performance should not matter much here.
-    for (auto& pair : m_impl->m_namedIds){
-        if (pair.second == entityId){
-            newEntity = gameState->entityManager().getNamedId(pair.first);
-            break;
-        }
-    }
-    m_impl->m_entitiesToTransfer.emplace_back(std::tuple<EntityId, EntityId, GameState*>(entityId, newEntity, gameState));
-    return newEntity;
-}
-
-
-void
-EntityManager::processTransfers() {
-    for (auto& tuple : m_impl->m_entitiesToTransfer){
-        for (const auto& pair : m_impl->m_collections) {
-            if (pair.second->get(std::get<0>(tuple)) != nullptr){
-                std::get<2>(tuple)->entityManager().addComponent(std::get<1>(tuple), pair.second->extractComponent(std::get<0>(tuple)));
-                auto iter = m_impl->m_entities.find(std::get<0>(tuple));
-                iter->second -= 1;
-                if (iter->second == 0) {
-                    m_impl->m_entities.erase(iter);
-                }
-            }
-        }
-    }
-}
-
-
 std::unordered_set<ComponentTypeId>
 EntityManager::nonEmptyCollections() const {
     std::unordered_set<ComponentTypeId> collections;
@@ -281,11 +241,45 @@ EntityManager::transferEntity(
             ) {
                 auto newComponent = componentFactory.load(componentFactory.getTypeName(pair.first), component->storage());
                 newComponent->setOwner(newEntityId);
-                this->removeComponent(oldEntityId, pair.first);
+
                 newEntityManager.addComponent(newEntityId, std::move(newComponent));
             }
+            this->removeComponent(oldEntityId, pair.first);
         }
     }
+}
+
+StorageContainer
+EntityManager::storeEntity(
+    EntityId entityId
+) const {
+    StorageContainer entityStorage;
+    StorageList componentList;
+
+    for (const auto& pair : m_impl->m_collections) {
+        Component* component = pair.second->get(entityId);
+        if (component != nullptr){
+            StorageContainer componentStorage = component->storage();
+            componentStorage.set("typename", component->typeName());
+            componentList.append(componentStorage);
+        }
+    }
+    entityStorage.set("components", std::move(componentList));
+    return entityStorage;
+}
+
+EntityId
+EntityManager::loadEntity(
+    StorageContainer storage,
+    const ComponentFactory& componentFactory
+) {
+    EntityId entityId = this->generateNewId();
+    StorageList componentList = storage.get<StorageList>("components");
+    for (const StorageContainer& entry : componentList) {
+        auto component = componentFactory.load(entry.get<std::string>("typename"), entry);
+        this->addComponent(entityId, std::move(component));
+    }
+    return entityId;
 }
 
 void
@@ -358,7 +352,6 @@ EntityManager::setVolatile(
         m_impl->m_volatileEntities.erase(id);
     }
 }
-
 
 StorageContainer
 EntityManager::storage(

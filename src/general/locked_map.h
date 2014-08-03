@@ -1,6 +1,5 @@
 #pragma once
 
-#include "engine/component.h"
 #include "engine/system.h"
 #include "engine/touchable.h"
 #include "engine/typedefs.h"
@@ -16,12 +15,12 @@ class scope;
 
 namespace thrive {
 
+class StorageContainer;
 
 /**
-* @brief Component that contains a set of locked concepts represented and accessed by strings
+* @brief Object that contains a set of locked concepts represented and accessed by strings
 */
-class LockedMapComponent : public Component {
-    COMPONENT(LockedMapComponent)
+class LockedMap {
 
 public:
 
@@ -29,10 +28,10 @@ public:
     * @brief Lua bindings
     *
     * Exposes:
-    * - LockedMapComponent()
-    * - LockedMapComponent::addLock
-    * - LockedMapComponent::isLocked
-    * - LockedMapComponent::unlock
+    * - LockedMap()
+    * - LockedMap::addLock
+    * - LockedMap::isLocked
+    * - LockedMap::unlock
     *
     * @return
     */
@@ -88,10 +87,10 @@ public:
     void
     load(
         const StorageContainer& storage
-    ) override;
+    );
 
     StorageContainer
-    storage() const override;
+    storage() const;
 
 private:
 
