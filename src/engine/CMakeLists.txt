@@ -25,6 +25,8 @@ add_sources(
     ${CMAKE_CURRENT_SOURCE_DIR}/touchable.h
     ${CMAKE_CURRENT_SOURCE_DIR}/rng.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/rng.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/player_data.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/player_data.h
 )
 
 add_test_sources(

@@ -106,6 +106,14 @@ public:
     position() const;
 
     /**
+    * @brief The scrollvalue since last update
+    *
+    * @return
+    */
+    int
+    scrollChange() const;
+
+    /**
     * @brief Updates the window size
     *
     * Used for normalization

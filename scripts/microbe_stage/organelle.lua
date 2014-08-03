@@ -1,6 +1,8 @@
 -- Base class for microbe organelles
 class 'Organelle'
 
+Organelle.mpCosts = {}
+
 -- Factory function for organelles
 function Organelle.loadOrganelle(storage)
     local className = storage:get("className", "")
@@ -248,3 +250,23 @@ end
 function Organelle:updateHexColours()
     self._needsColourUpdate = true
 end
+
+-- The basic organelle maker
+class 'OrganelleFactory'
+
+function OrganelleFactory.makeOrganelle(data)
+    local make_organelle = function()
+        return OrganelleFactory["make_"..data.name](data)
+    end
+    local success, organelle = pcall(make_organelle)
+    if success then
+        return organelle
+    else
+        if data.name == "" or data.name == nil then data.name = "<nameless>" end
+        assert(false, "no organelle by name "..data.name)
+    end
+end
+
+-- OrganelleFactory.make_organelle(data) should be defined in the appropriate file
+-- each factory function should return an organelle that's ready to be inserted into a microbe
+-- check the organelle files for examples on use.

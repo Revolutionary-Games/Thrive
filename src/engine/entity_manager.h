@@ -270,22 +270,37 @@ public:
         const std::string& name
     );
 
+
     /**
-    * @brief Transfers an entity to a different gamestate removing it from the current one
+    * @brief Stores a single entity
     *
     * @param entityId
-    *   The entity to transfer
+    *   The entity to store
     *
-    * @param gameState
-    *  The new gamestate to own the entity
+    * @return
+    *  A container holding the entity.
+    */
+    StorageContainer
+    storeEntity(
+        EntityId entityId
+    ) const;
+
+    /**
+    * @brief Loads an entity into this entity manager
+    *
+    * @param storage
+    *   The storage to load the entity from
+    *
+    * @param componentFactory
+    *  Factory used for loading entity components
     *
     * @return
     *  The new entity id in the new gamestate
     */
     EntityId
-    transferEntity(
-        EntityId entityId,
-        GameState* gameState
+    loadEntity(
+        StorageContainer storage,
+        const ComponentFactory& componentFactory
     );
 
     /**

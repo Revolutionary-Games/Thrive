@@ -8,6 +8,7 @@
 #include "engine/serialization.h"
 #include "engine/system.h"
 #include "engine/rng.h"
+#include "engine/player_data.h"
 #include "game.h"
 
 // Bullet
@@ -32,12 +33,16 @@
 #include "ogre/text_overlay.h"
 
 // Scripting
+#include <luabind/iterator_policy.hpp>
 #include "scripting/luabind.h"
 #include "scripting/lua_state.h"
 #include "scripting/script_initializer.h"
 
 // Microbe
 #include "microbe_stage/compound.h"
+
+// Console
+#include "gui/CEGUIWindow.h"
 
 #include "util/contains.h"
 #include "util/pair_hash.h"
@@ -59,6 +64,7 @@
 #include <OgreWindowEventUtilities.h>
 #include <OISInputManager.h>
 #include <OISMouse.h>
+#include <map>
 #include <random>
 #include <set>
 #include <stdlib.h>
@@ -80,7 +86,10 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
     Implementation(
         Engine& engine
     ) : m_engine(engine),
-        m_rng()
+        m_rng(),
+        m_playerData("player"),
+        m_nextShutdownSystems(new std::map<System*, int>),
+        m_prevShutdownSystems(new std::map<System*, int>)
     {
     }
 
@@ -101,6 +110,7 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
         m_currentGameState = gameState;
         if (gameState) {
             gameState->activate();
+            m_currentGameState->rootGUIWindow().addChild(*m_consoleGUIWindow);
         }
     }
 
@@ -138,6 +148,14 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
                 pair.second->entityManager().clear();
             }
         }
+        for (auto& kv : *m_prevShutdownSystems) {
+            kv.first->deactivate();
+        }
+        for (auto& kv : *m_nextShutdownSystems) {
+            kv.first->deactivate();
+        }
+        m_prevShutdownSystems->clear();
+        m_nextShutdownSystems->clear();
         m_currentGameState = nullptr;
         // Switch gamestate
         std::string gameStateName = savegame.get<std::string>("currentGameState");
@@ -149,6 +167,7 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
             this->activateGameState(previousGameState);
             // TODO: Log error
         }
+        m_playerData.load(savegame.get<StorageContainer>("playerData"));
     }
 
     void
@@ -233,6 +252,8 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
             gameStates.set(pair.first, pair.second->storage());
         }
         savegame.set("gameStates", std::move(gameStates));
+        savegame.set("playerData", m_playerData.storage());
+        savegame.set("thriveversion", m_thriveVersion);
         std::ofstream stream(
             m_serialization.saveFile,
             std::ofstream::trunc | std::ofstream::binary
@@ -327,6 +348,8 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
         CEGUI::ImageManager::getSingleton().loadImageset("DriveIcons.imageset");
         CEGUI::ImageManager::getSingleton().loadImageset("GameMenu.imageset");
         CEGUI::ImageManager::getSingleton().loadImageset("HUDDemo.imageset");
+
+        m_consoleGUIWindow = new CEGUIWindow("Console");
     }
 
     void
@@ -351,6 +374,18 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
             MAX_SOURCES,
             QUEUE_LIST_SIZE
         );
+    }
+
+    void
+    loadVersionNumber() {
+        std::ifstream versionFile ("thriveversion.ver");
+        if (versionFile.is_open()) {
+            std::getline(versionFile, m_thriveVersion);
+        }
+        else {
+            m_thriveVersion = "unknown";
+        }
+        versionFile.close();
     }
 
     void
@@ -394,6 +429,8 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
 
     GameState* m_currentGameState = nullptr;
 
+    CEGUIWindow* m_consoleGUIWindow = nullptr;
+
     ComponentFactory m_componentFactory;
 
     Engine& m_engine;
@@ -404,7 +441,12 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
 
     RNG m_rng;
 
+    PlayerData m_playerData;
+
     bool m_quitRequested = false;
+
+    std::map<System*, int>* m_nextShutdownSystems;
+    std::map<System*, int>* m_prevShutdownSystems;
 
     struct Graphics {
 
@@ -426,6 +468,8 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
 
     GameState* m_nextGameState = nullptr;
 
+    std::string m_thriveVersion;
+
     struct Serialization {
 
         std::string loadFile;
@@ -433,6 +477,8 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
         std::string saveFile;
 
     } m_serialization;
+
+    luabind::object m_console;
 };
 
 
@@ -477,16 +523,22 @@ Engine::luaBindings() {
         .def("currentGameState", &Engine::currentGameState)
         .def("getGameState", &Engine::getGameState)
         .def("setCurrentGameState", &Engine::setCurrentGameState)
+        .def("playerData", &Engine::playerData)
         .def("load", &Engine::load)
         .def("save", &Engine::save)
+        .def("saveCreation", static_cast<void(Engine::*)(EntityId, std::string, std::string)const>(&Engine::saveCreation))
+        .def("loadCreation", static_cast<EntityId(Engine::*)(std::string)>(&Engine::loadCreation))
+        .def("getCreationFileList", &Engine::getCreationFileList)
         .def("quit", &Engine::quit)
+        .def("timedSystemShutdown", &Engine::timedSystemShutdown)
+        .def("isSystemTimedShutdown", &Engine::isSystemTimedShutdown)
+        .def("thriveVersion", &Engine::thriveVersion)
+        .def("registerConsoleObject", &Engine::registerConsoleObject)
         .property("componentFactory", &Engine::componentFactory)
         .property("keyboard", &Engine::keyboard)
         .property("mouse", &Engine::mouse)
     ;
 }
-
-
 
 
 Engine::Engine()
@@ -563,6 +615,7 @@ Engine::init() {
     m_impl->setupInputManager();
     m_impl->setupGUI();
     m_impl->loadScripts("../scripts");
+    m_impl->loadVersionNumber();
     GameState* previousGameState = m_impl->m_currentGameState;
     for (const auto& pair : m_impl->m_gameStates) {
         const auto& gameState = pair.second;
@@ -573,7 +626,6 @@ Engine::init() {
     // Ogre::SceneManager has been instantiated
     m_impl->setupSoundManager();
     m_impl->m_currentGameState = previousGameState;
-
 }
 
 
@@ -627,6 +679,94 @@ Engine::save(
     m_impl->m_serialization.saveFile = filename;
 }
 
+void
+Engine::saveCreation(
+    EntityId entityId,
+    std::string name,
+    std::string type
+) const {
+    saveCreation(entityId, this->currentGameState()->entityManager(), name, type);
+}
+
+void
+Engine::saveCreation(
+    EntityId entityId,
+    const EntityManager& entityManager,
+    std::string name,
+    std::string type
+) const {
+    namespace fs = boost::filesystem;
+    StorageContainer creation = entityManager.storeEntity(entityId);
+    creation.set("thriveversion", this->thriveVersion());
+    std::ofstream stream(
+        (fs::path("creations") / fs::path(type) / fs::path(name + "." + type)).string<std::string>(),
+        std::ofstream::trunc | std::ofstream::binary
+    );
+    stream.exceptions(std::ofstream::failbit | std::ofstream::badbit);
+    if (stream) {
+        try {
+            stream << creation;
+            stream.flush();
+            stream.close();
+        }
+        catch (const std::ofstream::failure& e) {
+            std::cerr << "Error saving file: " << e.what() << std::endl;
+            throw;
+        }
+    }
+    else {
+        std::perror("Could not open file for saving");
+    }
+}
+
+EntityId
+Engine::loadCreation(
+    std::string file
+) {
+    return loadCreation(file, this->currentGameState()->entityManager());
+}
+
+EntityId
+Engine::loadCreation(
+    std::string file,
+    EntityManager& entityManager
+) {
+    std::ifstream stream(
+        file,
+        std::ifstream::binary
+    );
+    stream.clear();
+    stream.exceptions(std::ofstream::failbit | std::ofstream::badbit);
+    StorageContainer creation;
+    try {
+        stream >> creation;
+    }
+    catch(const std::ofstream::failure& e) {
+        std::cerr << "Error loading file: " << e.what() << std::endl;
+        throw;
+    }
+    EntityId entityId = entityManager.loadEntity(creation, m_impl->m_componentFactory);
+    return entityId;
+}
+
+std::string
+Engine::getCreationFileList(
+    std::string stage
+) const {
+    namespace fs = boost::filesystem;
+    fs::path directory("./creations/" + stage);
+    fs::directory_iterator end_iter;
+    std::stringstream stringbuilder;
+    if ( fs::exists(directory) && fs::is_directory(directory)) {
+        for( fs::directory_iterator dir_iter(directory) ; dir_iter != end_iter ; ++dir_iter) {
+            if (fs::is_regular_file(dir_iter->status()) )
+            {
+                stringbuilder << dir_iter->path().string() << " ";
+            }
+        }
+    }
+    return stringbuilder.str();
+}
 
 void
 Engine::setCurrentGameState(
@@ -634,8 +774,19 @@ Engine::setCurrentGameState(
 ) {
     assert(gameState != nullptr && "GameState must not be null");
     m_impl->m_nextGameState = gameState;
+    for (auto& pair : *m_impl->m_prevShutdownSystems){
+        //Make sure systems are deactivated before any potential reactivations
+        pair.first->deactivate();
+    }
+    m_impl->m_prevShutdownSystems = m_impl->m_nextShutdownSystems;
+    m_impl->m_nextShutdownSystems = m_impl->m_prevShutdownSystems;
+    m_impl->m_nextShutdownSystems->clear();
 }
 
+PlayerData&
+Engine::playerData(){
+    return m_impl->m_playerData;
+}
 
 void
 Engine::shutdown() {
@@ -678,7 +829,6 @@ Engine::transferEntityGameState(
     return newEntity;
 }
 
-
 void
 Engine::update(
     int milliseconds
@@ -700,8 +850,49 @@ Engine::update(
     }
     assert(m_impl->m_currentGameState != nullptr);
     m_impl->m_currentGameState->update(milliseconds);
+
+    luabind::call_member<void>(m_impl->m_console, "update");
+    
+    // Update any timed shutdown systems
+    auto itr = m_impl->m_prevShutdownSystems->begin();
+    while (itr != m_impl->m_prevShutdownSystems->end()) {
+        int updateTime = std::min(itr->second, milliseconds);
+        itr->first->update(updateTime);
+        itr->second = itr->second - updateTime;
+        if (itr->second == 0) {
+            // Remove systems that had timed out
+            itr->first->deactivate();
+            m_impl->m_prevShutdownSystems->erase(itr++);
+        } else {
+            ++itr;
+        }
+    }
     if (not m_impl->m_serialization.loadFile.empty()) {
         m_impl->loadSavegame();
     }
 }
 
+void
+Engine::timedSystemShutdown(
+    System& system,
+    int milliseconds
+) {
+    (*m_impl->m_nextShutdownSystems)[&system] = milliseconds;
+}
+
+bool
+Engine::isSystemTimedShutdown(
+    System& system
+) const {
+    return m_impl->m_prevShutdownSystems->find(&system) !=  m_impl->m_prevShutdownSystems->end();
+}
+
+const std::string&
+Engine::thriveVersion() const {
+    return m_impl->m_thriveVersion;
+}
+
+void
+Engine::registerConsoleObject(luabind::object consoleObject) {
+    m_impl->m_console = consoleObject;
+}

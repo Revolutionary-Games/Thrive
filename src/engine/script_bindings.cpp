@@ -8,6 +8,7 @@
 #include "engine/serialization.h"
 #include "engine/system.h"
 #include "engine/touchable.h"
+#include "engine/player_data.h"
 #include "engine/rng.h"
 #include "scripting/luabind.h"
 
@@ -24,6 +25,7 @@ thrive::EngineBindings::luaBindings() {
         Touchable::luaBindings(),
         GameState::luaBindings(),
         Engine::luaBindings(),
-        RNG::luaBindings()
+        RNG::luaBindings(),
+        PlayerData::luaBindings()
     );
 }

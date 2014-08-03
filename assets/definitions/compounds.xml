@@ -1,0 +1,47 @@
+<?xml version="1.0" ?>
+<Compounds>
+    <Compound name="atp" weight="1">
+        <Display text="ATP">
+            <Model file="ATP.mesh" size="0.1" />
+        </Display>
+	</Compound>
+    <Compound name="oxygen" weight="1">
+        <Display text="Oxygen" >
+            <Model file="molecule.mesh" size="0.3" />
+        </Display>
+	</Compound>
+    <Compound name="reproductase" weight="1">
+        <Display text="Reproductase" >
+            <Model file="hex.mesh" size="0.3" />
+        </Display>
+	</Compound>
+    <Compound name="aminoacids" weight="1">
+        <Display text="Amino Acids">
+            <Model file="hex.mesh" size="0.3" />
+        </Display>
+	</Compound>
+    <Compound name="ammonia" weight="1">
+        <Display text="Ammonia" >
+            <Model file="hex.mesh" size="0.3" />
+        </Display>
+	</Compound>
+    <Compound name="glucose" weight="1">
+        <Display text="Glucose" >
+            <Model file="glucose.mesh" size="0.3" />
+        </Display>
+	</Compound>
+    <Compound name="co2" weight="1">
+        <Display text="CO2" >
+            <Model file="co2.mesh" size="0.16" />
+        </Display>
+	</Compound>
+    
+    <AgentCompounds>
+        <Agent name="oxytoxy" weight="1">
+            <Display text="OxyToxy NT" >
+                <Model file="oxytoxy.mesh" size="0.3" />
+            </Display>
+            <Effect function="oxytoxyEffect" />
+        </Agent>
+    </AgentCompounds>
+</Compounds>

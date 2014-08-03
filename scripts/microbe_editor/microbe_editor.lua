@@ -15,9 +15,11 @@ function MicrobeEditor:__init(hudSystem)
     self.hudSystem = hudSystem
     self.nextMicrobeEntity = nil
     self.lockedMap = nil
+    self.mutationPoints = 100
     self.placementFunctions = {["nucleus"] = MicrobeEditor.createNewMicrobe,
                                ["flagelium"] = MicrobeEditor.addMovementOrganelle,
                                ["mitochondria"] = MicrobeEditor.addProcessOrganelle,
+                               ["chloroplast"] = MicrobeEditor.addProcessOrganelle,
                                ["toxin"] = MicrobeEditor.addAgentVacuole,
                                
                                ["vacuole"] = MicrobeEditor.addStorageOrganelle,
@@ -26,16 +28,15 @@ function MicrobeEditor:__init(hudSystem)
 end
 
 function MicrobeEditor:activate()
-    playerEntity = Entity(PLAYER_NAME, GameState.MICROBE)
-    if not playerEntity:exists() then 
-        print("NOT EXIST")
+    if Engine:playerData():activeCreatureGamestate():name() == GameState.MICROBE:name() then 
+        microbeStageMicrobe = Entity(Engine:playerData():activeCreature(), GameState.MICROBE)
+        self.lockedMap = Engine:playerData():lockedMap()
+        self.nextMicrobeEntity = microbeStageMicrobe:transfer(GameState.MICROBE_EDITOR)
+        self.nextMicrobeEntity:stealName("working_microbe")
+        Engine:playerData():setBool("edited_microbe", true)
+        Engine:playerData():setActiveCreature(self.nextMicrobeEntity.id, GameState.MICROBE_EDITOR)
     end
-    self.lockedMap = playerEntity:getComponent(LockedMapComponent.TYPE_ID)
-    if self.lockedMap == nil then 
-        print("LOCK NIL")
-    end
-    self.nextMicrobeEntity = playerEntity:transfer(GameState.MICROBE_EDITOR)
-    self.nextMicrobeEntity:stealName("working_microbe")
+    self.mutationPoints = 100
 end
 
 function MicrobeEditor:update(milliseconds)
@@ -55,6 +56,16 @@ function MicrobeEditor:update(milliseconds)
         if organelle._needsColourUpdate then
             organelle:_updateHexColours()
         end
+    end
+    self.hudSystem:updateMutationPoints()
+end
+
+function MicrobeEditor:takeMutationPoints(amount)
+    if amount <= self.mutationPoints then
+        self.mutationPoints = self.mutationPoints - amount
+        return true
+    else
+        return false
     end
 end
 
@@ -83,7 +94,7 @@ function MicrobeEditor:removeOrganelle()
     local q, r = self:getMouseHex()
     if not (q == 0 and r == 0) then -- Don't remove nucleus
         local organelle = self.currentMicrobe:getOrganelleAt(q,r)
-        if organelle then
+        if organelle and self:takeMutationPoints(10) then
             self.currentMicrobe:removeOrganelle(organelle.position.q ,organelle.position.r )
             self.currentMicrobe.sceneNode.transform:touch()
             self.organelleCount = self.organelleCount - 1
@@ -95,11 +106,8 @@ end
 function MicrobeEditor:addStorageOrganelle(organelleType)
    -- self.currentMicrobe = Microbe(Entity("working_microbe", GameState.MICROBE))
     local q, r = self:getMouseHex()
-    if self.currentMicrobe:getOrganelleAt(q, r) == nil then
-        local storageOrganelle = StorageOrganelle(100.0)
-        storageOrganelle:addHex(0, 0)
-        storageOrganelle:setColour(ColourValue(0, 1, 0, 1))  
-        self.currentMicrobe:addOrganelle(q, r, storageOrganelle)
+    if self.currentMicrobe:getOrganelleAt(q, r) == nil and self:takeMutationPoints(Organelle.mpCosts["vacuole"]) then
+        self.currentMicrobe:addOrganelle(q, r, OrganelleFactory.make_vacuole({}))
         self.organelleCount = self.organelleCount + 1
     end
 end
@@ -107,22 +115,9 @@ end
 
 function MicrobeEditor:addMovementOrganelle(organelleType)
     local q, r = self:getMouseHex()
-    if self.currentMicrobe:getOrganelleAt(q, r) == nil then
-        -- Calculate the momentum of the movement organelle based on angle towards nucleus
-        local organelleX, organelleY = axialToCartesian(q, r)
-        local nucleusX, nucleusY = axialToCartesian(0, 0)
-        local deltaX = nucleusX - organelleX
-        local deltaY = nucleusY - organelleY
-        local dist = math.sqrt(deltaX^2 + deltaY^2) -- For normalizing vector
-        local momentumX = deltaX / dist * FLAGELIUM_MOMENTUM
-        local momentumY = deltaY / dist * FLAGELIUM_MOMENTUM
-        local movementOrganelle = MovementOrganelle(
-            Vector3(momentumX, momentumY, 0.0),
-            300
-        )
-        movementOrganelle:addHex(0, 0)
-        movementOrganelle:setColour(ColourValue(0.8, 0.3, 0.3, 1))
-        self.currentMicrobe:addOrganelle(q,r, movementOrganelle)
+    local data = {["q"]=q, ["r"]=r}
+    if self.currentMicrobe:getOrganelleAt(q, r) == nil and self:takeMutationPoints(Organelle.mpCosts["flagellum"]) then
+        self.currentMicrobe:addOrganelle(q,r, OrganelleFactory.make_flagellum(data))
         self.organelleCount = self.organelleCount + 1
     end
 end
@@ -130,15 +125,11 @@ end
 function MicrobeEditor:addProcessOrganelle(organelleType)
     local q, r = self:getMouseHex()
     if self.currentMicrobe:getOrganelleAt(q, r) == nil then
-        local processOrganelle = ProcessOrganelle()
-        if organelleType == "mitochondria" then         
-            processOrganelle:addProcess(global_processMap["Respiration"])
-            processOrganelle:addHex(0, 0)
-            processOrganelle:setColour(ColourValue(0.8, 0.4, 0.5, 0))
-            
-            self.currentMicrobe:addOrganelle(q,r, processOrganelle)
-        else
-            assert(false, "organelleType did not exist")
+        
+        if organelleType == "mitochondria" and self:takeMutationPoints(Organelle.mpCosts["mitochondrion"]) then
+            self.currentMicrobe:addOrganelle(q,r, OrganelleFactory.make_mitochondrion({}))
+        elseif organelleType == "chloroplast" and self:takeMutationPoints(Organelle.mpCosts["chloroplast"]) then
+            self.currentMicrobe:addOrganelle(q,r, OrganelleFactory.make_chloroplast({}))
         end
     end
     self.organelleCount = self.organelleCount + 1
@@ -147,11 +138,8 @@ end
 function MicrobeEditor:addAgentVacuole(organelleType)
     if organelleType == "toxin" then         
         local q, r = self:getMouseHex()
-        if self.currentMicrobe:getOrganelleAt(q, r) == nil then
-            local agentVacuole = AgentVacuole(CompoundRegistry.getCompoundId("oxytoxy"), global_processMap["OxyToxySynthesis"])
-            agentVacuole:addHex(0, 0)
-            agentVacuole:setColour(ColourValue(0, 1, 1, 0))
-            self.currentMicrobe:addOrganelle(q, r, agentVacuole)
+        if self.currentMicrobe:getOrganelleAt(q, r) == nil and self:takeMutationPoints(Organelle.mpCosts["oxytoxy"]) then
+            self.currentMicrobe:addOrganelle(q, r, OrganelleFactory.make_oxytoxy({}))
             self.organelleCount = self.organelleCount + 1
         end
     end
@@ -159,12 +147,22 @@ function MicrobeEditor:addAgentVacuole(organelleType)
 end
 
 function MicrobeEditor:addNucleus()
-    local nucleusOrganelle = NucleusOrganelle()
-    nucleusOrganelle:addHex(0, 0)
-    nucleusOrganelle:setColour(ColourValue(0.8, 0.2, 0.8, 1))
+    local nucleusOrganelle = OrganelleFactory.make_nucleus({})
     self.currentMicrobe:addOrganelle(0, 0, nucleusOrganelle)
-    nucleusOrganelle:addProcess(global_processMap["ReproductaseSynthesis"])
-    nucleusOrganelle:addProcess(global_processMap["AminoAcidSynthesis"])
+end
+
+function MicrobeEditor:loadMicrobe(entityId)
+    self.organelleCount = 0
+    if self.currentMicrobe ~= nil then
+        self.currentMicrobe.entity:destroy()
+    end
+    self.currentMicrobe = Microbe(Entity(entityId))
+    self.currentMicrobe.entity:stealName("working_microbe")
+    self.currentMicrobe.sceneNode.transform.orientation = Quaternion(Radian(Degree(180)), Vector3(0, 0, 1))-- Orientation
+    self.currentMicrobe.sceneNode.transform:touch()
+    self.currentMicrobe.collisionHandler:addCollisionGroup("powerupable")
+    Engine:playerData():setActiveCreature(entityId, GameState.MICROBE_EDITOR)
+    self.mutationPoints = 0
 end
 
 function MicrobeEditor:createNewMicrobe()
@@ -172,15 +170,12 @@ function MicrobeEditor:createNewMicrobe()
     if self.currentMicrobe ~= nil then
         self.currentMicrobe.entity:destroy()
     end
-    local lockedMapStorage = self.currentMicrobe:getComponent(LockedMapComponent.TYPE_ID):storage()
     self.currentMicrobe = Microbe.createMicrobeEntity(nil, false)
     self.currentMicrobe.entity:stealName("working_microbe")
     self.currentMicrobe.sceneNode.transform.orientation = Quaternion(Radian(Degree(180)), Vector3(0, 0, 1))-- Orientation
     self.currentMicrobe.sceneNode.transform:touch()
-    local newLockedMap = LockedMapComponent()
-    newLockedMap:load(lockedMapStorage)
-    self.currentMicrobe.entity:addComponent(newLockedMap)
     self.currentMicrobe.collisionHandler:addCollisionGroup("powerupable")
     self:addNucleus()
-    
+    self.mutationPoints = 100
+    Engine:playerData():setActiveCreature(self.currentMicrobe.entity.id, GameState.MICROBE_EDITOR)
 end

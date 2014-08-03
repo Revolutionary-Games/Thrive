@@ -208,7 +208,7 @@ TEST(EntityFilter, Record) {
     );
     entityManager.processRemovals();
     // Check removed entities
-    EXPECT_EQ(1, filter.removedEntities().count(entityId));
+    EXPECT_EQ(0, filter.removedEntities().count(entityId));
 }
 
 

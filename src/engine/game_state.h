@@ -53,6 +53,7 @@ public:
     * Exposes:
     * - GameState::name()
     * - GameState::rootGUIWindow()
+    * - GameState::entityManager() // NOTE: Entitymanager class may not be exposed to luabind
     *
     * @return
     */

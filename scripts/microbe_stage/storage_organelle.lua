@@ -36,3 +36,11 @@ function StorageOrganelle:onRemovedFromMicrobe(microbe, q, r)
     microbe:removeStorageOrganelle(self)
 end
 
+Organelle.mpCosts["vacuole"] = 15
+
+function OrganelleFactory.make_vacuole(data)
+    local vacuole = StorageOrganelle(100.0)
+    vacuole:addHex(0, 0)
+    vacuole:setColour(ColourValue(1, 1, 0, 1))
+    return vacuole
+end
