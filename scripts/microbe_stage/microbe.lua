@@ -832,9 +832,6 @@ function Microbe:update(milliseconds)
             species = self:getSpeciesComponent()
             if species ~= nil then -- Microbes don't need to have a species
                 species.populationBonusFactor = species.populationBonusFactor * 1.0 + self.microbe.compounds[CompoundRegistry.getCompoundId("atp")]/10000
-                if microbe.microbe.isPlayerMicrobe then
-                    print(math.floor(species.currentPopulation))
-                end
             end
             
         end

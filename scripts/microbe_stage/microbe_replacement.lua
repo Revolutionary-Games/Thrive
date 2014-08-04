@@ -19,14 +19,12 @@ function MicrobeReplacementSystem:activate()
         end
         -- solution placeholder for species naming :
         workingMicrobe.microbe.speciesName = "species" .. self.globalSpeciesNameCounter
-        workingMicrobe.microbe.testvar1 = "hey"
-        print("REPLACE " .. workingMicrobe.microbe.speciesName )
         speciesEntity = Entity(workingMicrobe.microbe.speciesName, GameState.MICROBE)
         species = SpeciesComponent(workingMicrobe.microbe.speciesName)
         species.populationBonusFactor = 1.2
         speciesEntity:addComponent(species)
-         print("test " .. workingMicrobe.entity.id)
         self.globalSpeciesNameCounter = self.globalSpeciesNameCounter + 1
+        -- Initiate entity transfer to microbe stage
         newMicrobeEntity = workingMicrobe.entity
         newPlayerMicrobe = newMicrobeEntity:transfer(GameState.MICROBE)
         newPlayerMicrobe:stealName(PLAYER_NAME)

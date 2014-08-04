@@ -53,18 +53,8 @@ function HudSystem:update(milliseconds)
 
     self.hitpointsBar:progressbarSetProgress(playerMicrobe.microbe.hitpoints/playerMicrobe.microbe.maxHitpoints)
     self.hitpointsCountLabel:setText("".. math.floor(playerMicrobe.microbe.hitpoints))
-    
-    
     local playerSpecies = playerMicrobe:getSpeciesComponent()
-    
-    if playerSpecies ~= nil then
-    print ("lala" .. playerMicrobe.microbe.speciesName)
-        self.populationNumberLabel:setText("" .. math.floor(playerSpecies.currentPopulation))
-    else
-        print("FAIL " .. player.id)
-         print ("lala" .. playerMicrobe.microbe.speciesName)
-    end
-    
+    self.populationNumberLabel:setText("" .. math.floor(playerSpecies.currentPopulation))
     for compoundID in CompoundRegistry.getCompoundList() do
         local compoundsString = string.format("%s - %d", CompoundRegistry.getCompoundDisplayName(compoundID), playerMicrobe:getCompoundAmount(compoundID))
         if self.compoundListItems[compoundID] == nil then
