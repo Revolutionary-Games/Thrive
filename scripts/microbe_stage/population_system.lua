@@ -10,7 +10,11 @@ class 'SpeciesComponent' (Component)
 
 function SpeciesComponent:__init(name)
     Component.__init(self)
-    self.name = name
+    if name == nil then
+        self.name = "noname"
+    else
+        self.name = name
+    end
     self.populationBonusFactor = 1.0
     self.populationPenaltyFactor = 1.0
     self.deathsPerTime = 1.0
@@ -22,13 +26,24 @@ end
 --todo
 function SpeciesComponent:load(storage)
     Component.load(self, storage)
-    self.spawnRadiusSqr = storage:get("spawnRadius", 1000)
+    self.name = storage:get("name", "")
+    self.populationBonusFactor = storage:get("populationBonusFactor", 0)
+    self.populationPenaltyFactor = storage:get("populationPenaltyFactor", 0)
+    self.deathsPerTime = storage:get("deathsPerTime", 0)
+    self.deathsPerTime = storage:get("deathsPerTime", 0)
+    self.birthsPerTime = storage:get("birthsPerTime", 0)
+    self.currentPopulation = storage:get("currentPopulation", 0)
 end
 
 --todo
 function SpeciesComponent:storage()
     local storage = Component.storage(self)
-    storage:set("spawnRadius", self.spawnRadiusSqr)
+    storage:set("name", self.name)
+    storage:set("populationBonusFactor", self.populationBonusFactor)
+    storage:set("populationPenaltyFactor", self.populationPenaltyFactor)
+    storage:set("deathsPerTime", self.deathsPerTime)
+    storage:set("birthsPerTime", self.birthsPerTime)
+    storage:set("currentPopulation", self.currentPopulation)
     return storage
 end
 

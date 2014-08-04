@@ -9,6 +9,7 @@ function HudSystem:__init()
 	self.hitpointsBar = nil
 	self.compoundListItems = {}
     self.rootGuiWindow = nil
+    self.populationNumberLabel = nil
 end
 
 global_if_already_displayed = false
@@ -27,6 +28,7 @@ function HudSystem:init(gameState)
     self.compoundListBox = self.rootGuiWindow:getChild("BottomSection"):getChild("CompoundList")
     self.hitpointsBar = self.rootGuiWindow:getChild("BottomSection"):getChild("LifeBar")
     self.hitpointsCountLabel = self.hitpointsBar:getChild("NumberLabel")
+    self.populationNumberLabel = self.rootGuiWindow:getChild("BottomSection"):getChild("Population"):getChild("Number")
     local menuButton = self.rootGuiWindow:getChild("BottomSection"):getChild("MenuButton")
     local helpButton = self.rootGuiWindow:getChild("BottomSection"):getChild("HelpButton")
     local editorButton = self.rootGuiWindow:getChild("MenuPanel"):getChild("EditorButton")
@@ -51,6 +53,17 @@ function HudSystem:update(milliseconds)
 
     self.hitpointsBar:progressbarSetProgress(playerMicrobe.microbe.hitpoints/playerMicrobe.microbe.maxHitpoints)
     self.hitpointsCountLabel:setText("".. math.floor(playerMicrobe.microbe.hitpoints))
+    
+    
+    local playerSpecies = playerMicrobe:getSpeciesComponent()
+    
+    if playerSpecies ~= nil then
+    print ("lala" .. playerMicrobe.microbe.speciesName)
+        self.populationNumberLabel:setText("" .. math.floor(playerSpecies.currentPopulation))
+    else
+        print("FAIL " .. player.id)
+         print ("lala" .. playerMicrobe.microbe.speciesName)
+    end
     
     for compoundID in CompoundRegistry.getCompoundList() do
         local compoundsString = string.format("%s - %d", CompoundRegistry.getCompoundDisplayName(compoundID), playerMicrobe:getCompoundAmount(compoundID))

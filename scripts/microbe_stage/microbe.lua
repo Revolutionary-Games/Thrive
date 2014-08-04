@@ -169,6 +169,7 @@ function MicrobeComponent:load(storage)
     self.maxBandwidth = storage:get("maxBandwidth", 0)
     self.remainingBandwidth = storage:get("remainingBandwidth", 0)
     self.isPlayerMicrobe = storage:get("isPlayerMicrobe", false)
+    self.speciesName = storage:get("speciesName", "")
     local storedCompound = storage:get("storedCompounds", {})
     for i = 1,storedCompound:size() do
         local compound = storedCompound:get(i)
@@ -200,6 +201,7 @@ function MicrobeComponent:storage()
     storage:set("remainingBandwidth", self.remainingBandwidth)
     storage:set("maxBandwidth", self.maxBandwidth)
     storage:set("isPlayerMicrobe", self.isPlayerMicrobe)
+    storage:set("speciesName", self.speciesName)
     local storedCompounds = StorageList()
     for compoundId, amount in pairs(self.compounds) do
         compound = StorageContainer()
@@ -314,6 +316,12 @@ function Microbe:__init(entity)
     self.playerAlreadyShownVictory = false
 end
 
+-- Getter for microbe species
+-- 
+-- returns the species component or nil if it doesn't have a valid species
+function Microbe:getSpeciesComponent()
+    return Entity(self.microbe.speciesName):getComponent(SpeciesComponent.TYPE_ID)
+end
 
 -- Adds a new organelle
 --
@@ -718,7 +726,7 @@ function Microbe:kill()
             showMessage("VICTORY!!!")
         end
     end
-    species = Entity(self.microbe.speciesName):getComponent(SpeciesComponent.TYPE_ID)
+    species = self:getSpeciesComponent()
     if species ~= nil then -- Microbes don't need to have a species
         species.populationPenaltyFactor = species.populationPenaltyFactor * 1.4
     end
@@ -738,7 +746,7 @@ function Microbe:reproduce()
     copy.microbe:updateSafeAngles()
     copy.microbe:_resetCompoundPriorities()  
     copy.entity:addComponent(SpawnedComponent())
-    species = Entity(self.microbe.speciesName):getComponent(SpeciesComponent.TYPE_ID)
+    species = self:getSpeciesComponent()
     if species ~= nil then -- Microbes don't need to have a species
         species.populationBonusFactor = species.populationBonusFactor * 1.4
     end
@@ -821,7 +829,7 @@ function Microbe:update(milliseconds)
             end
             self.microbe.compoundCollectionTimer = self.microbe.compoundCollectionTimer - EXCESS_COMPOUND_COLLECTION_INTERVAL
             -- Award some species population based on ATP surplus
-            species = Entity(self.microbe.speciesName):getComponent(SpeciesComponent.TYPE_ID)
+            species = self:getSpeciesComponent()
             if species ~= nil then -- Microbes don't need to have a species
                 species.populationBonusFactor = species.populationBonusFactor * 1.0 + self.microbe.compounds[CompoundRegistry.getCompoundId("atp")]/10000
                 if microbe.microbe.isPlayerMicrobe then

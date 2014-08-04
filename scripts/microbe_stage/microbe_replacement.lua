@@ -5,6 +5,7 @@ class 'MicrobeReplacementSystem' (System)
 global_newEditorMicrobe = false
 
 function MicrobeReplacementSystem:__init()
+    self.globalSpeciesNameCounter = 1
     System.__init(self)
 end
 
@@ -16,6 +17,16 @@ function MicrobeReplacementSystem:activate()
         if workingMicrobe:getCompoundAmount(CompoundRegistry.getCompoundId("atp")) == 0 then
             workingMicrobe:storeCompound(CompoundRegistry.getCompoundId("atp"), 10)
         end
+        -- solution placeholder for species naming :
+        workingMicrobe.microbe.speciesName = "species" .. self.globalSpeciesNameCounter
+        workingMicrobe.microbe.testvar1 = "hey"
+        print("REPLACE " .. workingMicrobe.microbe.speciesName )
+        speciesEntity = Entity(workingMicrobe.microbe.speciesName, GameState.MICROBE)
+        species = SpeciesComponent(workingMicrobe.microbe.speciesName)
+        species.populationBonusFactor = 1.2
+        speciesEntity:addComponent(species)
+         print("test " .. workingMicrobe.entity.id)
+        self.globalSpeciesNameCounter = self.globalSpeciesNameCounter + 1
         newMicrobeEntity = workingMicrobe.entity
         newPlayerMicrobe = newMicrobeEntity:transfer(GameState.MICROBE)
         newPlayerMicrobe:stealName(PLAYER_NAME)
