@@ -2,6 +2,9 @@
 
 #include "scripting/luabind.h"
 #include "microbe_stage/compound.h"
+#include "microbe_stage/compound_absorber_system.h"
+#include "microbe_stage/compound_emitter_system.h"
+#include "microbe_stage/compound_registry.h"
 #include "microbe_stage/bio_process_registry.h"
 #include "microbe_stage/species_registry.h"
 
