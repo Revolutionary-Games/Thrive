@@ -21,6 +21,15 @@ function ConsoleHud:__init(interpreter)
     self.inputHistoryIndex = 0
 end
 
+function ConsoleHud:registerEvents(gameState)
+    local root = gameState:rootGUIWindow()
+    local consoleWindow = root:getChild("ConsoleWindow")
+    local inputArea = consoleWindow:getChild("TextEntry")
+    local outputArea = consoleWindow:getChild("History")
+    inputArea:registerEventHandler("TextAccepted", textAccepted)
+    inputArea:registerKeyEventHandler( handleConsoleKey)
+end
+
 function ConsoleHud:update()
     local gameState = Engine:currentGameState()
     local root = gameState:rootGUIWindow()
@@ -57,6 +66,34 @@ function ConsoleHud:update()
             self.inputHistoryIndex = self.inputHistoryIndex + 1
             inputArea:setText(self.inputHistory[self.inputHistoryIndex + 1])
         end
+    end
+end
+
+function ConsoleHud:eval()
+    -- push line to interpreter
+    if not self.active then return end
+    local gameState = Engine:currentGameState()
+    local consoleWindow = gameState:rootGUIWindow():getChild("ConsoleWindow")
+    local inputArea = consoleWindow:getChild("TextEntry")
+    local outputArea = consoleWindow:getChild("History")
+    local line = inputArea:getText()
+    self.interpreter:eval_lua(line)
+    inputArea:setText("")
+    outputArea:setText(self.interpreter.history)
+    self.inputHistoryIndex = #self.inputHistory
+    self.inputHistory[self.inputHistoryIndex + 1] = line
+    self.inputHistoryIndex = self.inputHistoryIndex + 1
+end
+
+function ConsoleHud:handleKeys(key)
+    local consoleWindow = Engine:currentGameState():rootGUIWindow():getChild("ConsoleWindow")
+    local inputArea = consoleWindow:getChild("TextEntry")
+    if key == Keyboard.KC_GRAVE then
+        if self.active then
+            consoleWindow:disable()
+            consoleWindow:hide()
+        end
+        
     end
 end
 
@@ -278,6 +315,8 @@ function Interpreter:evaluate(chunk)
 end
 
 function Interpreter:eval_lua(line)
+    local oldprint = print
+    print = oprint
     if self.savef then
         self.savef:write(prompt,line,'\n')
     end
@@ -302,6 +341,7 @@ function Interpreter:eval_lua(line)
     if err then
         self:oprint(err)
     end
+    print = oldprint
 end
 
 function Interpreter:quit(code,msg)
@@ -353,7 +393,13 @@ function oprint(...)
     interpreter:oprint(...)
 end
 
--- print = oprint -- disabled cuz it's annoying
+function handleConsoleKey(window, key)
+    console:handleKeys(key)
+end
+
+function textAccepted()
+    console:eval()
+end
 
 console = ConsoleHud(interpreter)
 Engine:registerConsoleObject(console)
