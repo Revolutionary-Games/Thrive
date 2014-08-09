@@ -21,15 +21,22 @@ struct Keyboard::Implementation : public OIS::KeyListener{
     {
         m_bufferA.fill('\0');
         m_bufferB.fill('\0');
+        m_keysHeld.fill('\0');
     }
 
     bool
     keyPressed(
         const OIS::KeyEvent& event
     ) {
+        if (CEGUI::System::getSingleton().getDefaultGUIContext().injectKeyDown(static_cast<CEGUI::Key::Scan>(static_cast<int>(event.key)))) {
+            return true;
+        }
+        if (CEGUI::System::getSingleton().getDefaultGUIContext().injectChar(event.text)) {
+            return true;
+        }
+        m_keysHeld.data()[event.key] = 1;
+        m_previousKeyStates->data()[event.key] = 1;
         this->queueEvent(event, true);
-        CEGUI::System::getSingleton().getDefaultGUIContext().injectKeyDown(static_cast<CEGUI::Key::Scan>(static_cast<int>(event.key)));
-        CEGUI::System::getSingleton().getDefaultGUIContext().injectChar(event.text);
         return true;
     }
 
@@ -37,8 +44,11 @@ struct Keyboard::Implementation : public OIS::KeyListener{
     keyReleased(
         const OIS::KeyEvent& event
     ) {
+        if (CEGUI::System::getSingleton().getDefaultGUIContext().injectKeyUp(static_cast<CEGUI::Key::Scan>(static_cast<int>(event.key)))) {
+            return true;
+        }
+        m_keysHeld.data()[event.key] = 0;
         this->queueEvent(event, false);
-        CEGUI::System::getSingleton().getDefaultGUIContext().injectKeyUp(static_cast<CEGUI::Key::Scan>(static_cast<int>(event.key)));
         return true;
     }
 
@@ -57,6 +67,8 @@ struct Keyboard::Implementation : public OIS::KeyListener{
     KeyStates m_bufferA;
 
     KeyStates m_bufferB;
+
+    KeyStates m_keysHeld;
 
     KeyStates* m_currentKeyStates = nullptr;
 
@@ -269,7 +281,7 @@ bool
 Keyboard::isKeyDown(
     OIS::KeyCode key
 ) const {
-    return m_impl->m_currentKeyStates->at(key) == 1;
+    return m_impl->m_keysHeld[key] == 1;
 }
 
 
@@ -284,9 +296,9 @@ Keyboard::shutdown() {
 void
 Keyboard::update() {
     m_impl->m_queue.clear();
+    m_impl->m_previousKeyStates->fill('\0');
     m_impl->m_keyboard->capture();
     std::swap(m_impl->m_currentKeyStates, m_impl->m_previousKeyStates);
-    m_impl->m_keyboard->copyKeyStates(m_impl->m_currentKeyStates->data());
 }
 
 

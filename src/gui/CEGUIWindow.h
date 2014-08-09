@@ -3,6 +3,7 @@
 #include <CEGUI/CEGUI.h>
 #include <luabind/object.hpp>
 #include <OgreVector2.h>
+#include <OISKeyboard.h>
 
 
 namespace luabind {
@@ -62,6 +63,7 @@ public:
     * - CEGUIWindow::addChild
     * - CEGUIWindow::removeChild
     * - CEGUIWindow::registerEventHandler
+    * - CEGUIWindow::registerKeyEventHandler
     * - CEGUIWindow::enable
     * - CEGUIWindow::disable
     * - CEGUIWindow::setFocus
@@ -253,7 +255,7 @@ public:
     ) const;
 
     /**
-    * @brief Gets one of the underlying cegui windows children by name, wrapped as a CEGUIWindow*
+    * @brief Registers an callback for a given generic CEGUI event
     *
     * @param eventName
     *  name of the event to subscribe to
@@ -262,19 +264,34 @@ public:
     *  callback to use when event fires
     */
     void
-    RegisterEventHandler(
+    registerEventHandler(
         const std::string& eventName,
         CEGUI::Event::Subscriber callback
     ) const;
 
-    // Same as above but for lua callbacks
+    /// Same as above but for lua callbacks
     void
-    RegisterEventHandler(
+    registerEventHandler(
         const std::string& eventName,
         const luabind::object& callback
     ) const ;
 
+    /**
+    * @brief Registers an callback for a given keypress CEGUI event
+    *
+    * @param callback
+    *  callback to use when key is pressed
+    */
+    void
+    registerKeyEventHandler(
+        CEGUI::Event::Subscriber callback
+    ) const;
 
+    /// Same as above but for lua callbacks
+    void
+    registerKeyEventHandler(
+        const luabind::object& callback
+    ) const ;
 
     /**
     * @brief Enables the window, allowing interaction

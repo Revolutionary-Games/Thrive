@@ -110,7 +110,8 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
         m_currentGameState = gameState;
         if (gameState) {
             gameState->activate();
-            m_currentGameState->rootGUIWindow().addChild(*m_consoleGUIWindow);
+            gameState->rootGUIWindow().addChild(*m_consoleGUIWindow);
+            luabind::call_member<void>(m_console, "registerEvents", gameState);
         }
     }
 
@@ -852,7 +853,7 @@ Engine::update(
     m_impl->m_currentGameState->update(milliseconds);
 
     luabind::call_member<void>(m_impl->m_console, "update");
-    
+
     // Update any timed shutdown systems
     auto itr = m_impl->m_prevShutdownSystems->begin();
     while (itr != m_impl->m_prevShutdownSystems->end()) {
