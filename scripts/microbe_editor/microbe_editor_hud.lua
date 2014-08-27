@@ -102,26 +102,34 @@ function MicrobeEditorHudSystem:update(milliseconds)
         -- These global event handlers are defined in microbe_editor_hud.lua
         nucleusClicked()
     elseif  Engine.keyboard:wasKeyPressed(Keyboard.KC_R) then
-        self.editor:setActiveAction("remove")
-        self.editor:performLocationAction()
-    elseif  Engine.keyboard:wasKeyPressed(Keyboard.KC_S) and self.editor.currentMicrobe ~= nil then
+        if Engine.keyboard:isKeyDown(Keyboard.KC_LCONTROL) then
+            self.editor:redo()
+        else
+            self.editor:setActiveAction("remove")
+            self.editor:performLocationAction()
+        end
+    elseif Engine.keyboard:wasKeyPressed(Keyboard.KC_U) then
+        if Engine.keyboard:isKeyDown(Keyboard.KC_LCONTROL) then
+            self.editor:undo()
+        end
+    elseif  Engine.keyboard:wasKeyPressed(Keyboard.KC_S) then
         vacuoleClicked()
         self.editor:performLocationAction()
-    elseif  Engine.keyboard:wasKeyPressed(Keyboard.KC_T) and self.editor.currentMicrobe ~= nil then
+    elseif  Engine.keyboard:wasKeyPressed(Keyboard.KC_T) then
         if not Engine:playerData():lockedMap():isLocked("Toxin") then
             toxinClicked()
             self.editor:performLocationAction()
         end
-    elseif  Engine.keyboard:wasKeyPressed(Keyboard.KC_F) and self.editor.currentMicrobe ~= nil then
+    elseif  Engine.keyboard:wasKeyPressed(Keyboard.KC_F) then
         flageliumClicked()
         self.editor:performLocationAction()
-    elseif  Engine.keyboard:wasKeyPressed(Keyboard.KC_M) and self.editor.currentMicrobe ~= nil then
+    elseif  Engine.keyboard:wasKeyPressed(Keyboard.KC_M) then
         mitochondriaClicked()  
         self.editor:performLocationAction()
     --elseif  Engine.keyboard:wasKeyPressed(Keyboard.KC_A) and self.editor.currentMicrobe ~= nil then
     --    aminoSynthesizerClicked()
     --    self.editor:performLocationAction()
-    elseif Engine.keyboard:wasKeyPressed(Keyboard.KC_P) and self.editor.currentMicrobe ~= nil then
+    elseif Engine.keyboard:wasKeyPressed(Keyboard.KC_P) then
        chloroplastClicked()
        self.editor:performLocationAction()
     elseif  Engine.keyboard:wasKeyPressed(Keyboard.KC_ESCAPE) then
@@ -129,6 +137,7 @@ function MicrobeEditorHudSystem:update(milliseconds)
     elseif  Engine.keyboard:wasKeyPressed(Keyboard.KC_F2) then
         playClicked()
     end
+	
     properties = Entity(CAMERA_NAME .. 3):getComponent(OgreCameraComponent.TYPE_ID).properties
     newFovY = properties.fovY + Degree(Engine.mouse:scrollChange()/10)
     if newFovY < Degree(10) then
@@ -171,7 +180,7 @@ function mitochondriaClicked()
     global_activeMicrobeEditorHudSystem.activeButton = 
         global_activeMicrobeEditorHudSystem.organelleButtons["Mitochondria"]
     global_activeMicrobeEditorHudSystem.activeButton:disable()
-    global_activeMicrobeEditorHudSystem:setActiveAction("mitochondria")
+    global_activeMicrobeEditorHudSystem:setActiveAction("mitochondrion")
 end
 
 function chloroplastClicked()
