@@ -1,3 +1,5 @@
+language: cpp
+compiler: gcc
 before_install:
 # figuring out where in the directory structure we are will quickly get messy 
  - sudo apt-get update -qq
