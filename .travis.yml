@@ -1,0 +1,46 @@
+language: cpp
+compiler: gcc
+before_install:
+# figuring out where in the directory structure we are will quickly get messy 
+ - sudo apt-get update -qq
+ - sudo apt-get install -qq build-essential cmake curl subversion doxygen libglu1-mesa-dev freeglut3-dev mesa-common-dev libalut0 libalut-dev libboost-filesystem-dev libvorbis-dev libogg-dev libtinyxml-dev libois-dev libsilly-dev libgtk2.0-dev
+# - sudo apt-get install -qq libboost1.54-dev libogre-1.8-dev libbullet-dev
+ - sudo apt-get remove -qq libogre-1.8-dev
+ - curl -L -O http://sourceforge.net/projects/ogre/files/ogre/1.8/1.8.1/ogre_src_v1-8-1.tar.bz2
+ - tar xjf ogre_src_v1-8-1.tar.bz2
+ - curl -L -O http://sourceforge.net/projects/crayzedsgui/files/CEGUI%20Mk-2/0.8/cegui-0.8.3.zip
+ - unzip cegui-0.8.3.zip
+ - svn co http://crovea.net/svn/thrive_assets assets # where should assets/ go?
+ - cd ogre_src_v1-8-1 # replace with an env var
+ - cmake -H. -Bbuild-release -DFREETYPE_INCLUDE_DIR=/usr/include/freetype2
+ - cd build-release
+ - make clean
+ - make
+ - sudo make install
+ - sudo ldconfig
+ - cd ../..
+ - cd cegui-0.8.3
+ - cp CMakeLists.txt CmakeList.txt.bak
+ - sed s/libfreetype\.so/libfreetype\.a/ <CMakeLists.txt.bak >CMakeLists.txt
+ - cmake -DCMAKE_BUILD_TYPE=Debug -H. -Bbuild-debug -DFREETYPE_INCLUDE_DIR=/usr/include/freetype2 -DCEGUI_HAS_FREETYPE=True
+ - cd build-debug
+ - make clean
+ - make
+ - sudo make install
+ - sudo ldconfig
+ - cd ../..
+ - cd /usr/local/lib/
+ - sudo cp libCEGUIBase-0.so libCEGUIBase-0_d.so
+ - sudo cp libCEGUIOgreRenderer-0.so libCEGUIOgreRenderer-0_d.so
+ - sudo mv /usr/local/include/cegui-0/CEGUI /usr/local/include/CEGUI
+ - cd -
+ - cd ogre_src_v1-8-1/build-release
+ - make
+ - sudo make install
+ - cd -
+install:
+ - cmake  -DCMAKE_BUILD_TYPE=Debug -H. -Bbuild-debug
+ - cd build-debug
+ - make Runtests
+script:
+ - ./Runtests
