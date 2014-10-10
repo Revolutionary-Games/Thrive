@@ -446,6 +446,8 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
 
     bool m_quitRequested = false;
 
+    bool m_paused = false;
+
     std::map<System*, int>* m_nextShutdownSystems;
     std::map<System*, int>* m_prevShutdownSystems;
 
@@ -534,6 +536,8 @@ Engine::luaBindings() {
         .def("timedSystemShutdown", &Engine::timedSystemShutdown)
         .def("isSystemTimedShutdown", &Engine::isSystemTimedShutdown)
         .def("thriveVersion", &Engine::thriveVersion)
+        .def("pauseGame", &Engine::pauseGame)
+        .def("resumeGame", &Engine::resumeGame)
         .def("registerConsoleObject", &Engine::registerConsoleObject)
         .property("componentFactory", &Engine::componentFactory)
         .property("keyboard", &Engine::keyboard)
@@ -541,6 +545,15 @@ Engine::luaBindings() {
     ;
 }
 
+void
+Engine::pauseGame(){
+ m_impl->m_paused = true;
+}
+
+void
+Engine::resumeGame(){
+ m_impl->m_paused = false;
+}
 
 Engine::Engine()
   : m_impl(new Implementation(*this))
@@ -850,7 +863,7 @@ Engine::update(
         m_impl->m_nextGameState = nullptr;
     }
     assert(m_impl->m_currentGameState != nullptr);
-    m_impl->m_currentGameState->update(milliseconds);
+    m_impl->m_currentGameState->update(milliseconds, m_impl->m_paused ? 0 : milliseconds);
 
     luabind::call_member<void>(m_impl->m_console, "update");
 
@@ -858,7 +871,7 @@ Engine::update(
     auto itr = m_impl->m_prevShutdownSystems->begin();
     while (itr != m_impl->m_prevShutdownSystems->end()) {
         int updateTime = std::min(itr->second, milliseconds);
-        itr->first->update(updateTime);
+        itr->first->update(updateTime, m_impl->m_paused ? 0 : updateTime);
         itr->second = itr->second - updateTime;
         if (itr->second == 0) {
             // Remove systems that had timed out

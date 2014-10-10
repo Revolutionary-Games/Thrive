@@ -231,7 +231,7 @@ OgreAddSceneNodeSystem::shutdown() {
 
 
 void
-OgreAddSceneNodeSystem::update(int) {
+OgreAddSceneNodeSystem::update(int, int) {
     auto& added = m_impl->m_entities.addedEntities();
     for (const auto& entry : added) {
         OgreSceneNodeComponent* component = std::get<0>(entry.second);
@@ -316,7 +316,7 @@ OgreRemoveSceneNodeSystem::shutdown() {
 
 
 void
-OgreRemoveSceneNodeSystem::update(int) {
+OgreRemoveSceneNodeSystem::update(int, int) {
     for (EntityId entityId : m_impl->m_entities.removedEntities()) {
         // Scene node
         Ogre::SceneNode* node = m_impl->m_sceneNodes[entityId];
@@ -394,7 +394,10 @@ OgreUpdateSceneNodeSystem::shutdown() {
 
 
 void
-OgreUpdateSceneNodeSystem::update(int milliseconds) {
+OgreUpdateSceneNodeSystem::update(
+    int,
+    int logicTime
+) {
     for (const auto& entry : m_impl->m_entities) {
         OgreSceneNodeComponent* component = std::get<0>(entry.second);
         Ogre::SceneNode* sceneNode = component->m_sceneNode;
@@ -496,7 +499,7 @@ OgreUpdateSceneNodeSystem::update(int milliseconds) {
             Ogre::AnimationStateIterator iter = animations->getAnimationStateIterator();
             while (iter.hasMoreElements()){
                 Ogre::AnimationState* animation = iter.getNext();
-                animation->addTime(milliseconds * 0.001 * component->m_animationSpeedFactor);
+                animation->addTime(logicTime * 0.001 * component->m_animationSpeedFactor);
                 if (component->m_fullAnimationHalt){
                     animation->setEnabled(false);
                 }

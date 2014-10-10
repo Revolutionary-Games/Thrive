@@ -16,7 +16,7 @@ function MicrobeCameraSystem:activate()
     self.cameraScenenode = camera:getComponent(OgreSceneNodeComponent.TYPE_ID)
 end
 
-function MicrobeCameraSystem:update(milliseconds)    
+function MicrobeCameraSystem:update(renderTime, logicTime)    
     local player = Entity(PLAYER_NAME)
     local playerNode = player:getComponent(OgreSceneNodeComponent.TYPE_ID)
 	self.cameraScenenode.transform.position = playerNode.transform.position + self.camera.properties.offset
