@@ -140,8 +140,12 @@ public:
     *
     * Override this to update the systems's state.
     *
-    * @param milliSeconds
-    *   The number of milliseconds to advance
+    + * @param renderTime
+    * The number of milliseconds the frame took to render
+    *
+    * @param logicTime
+    * The number of milliseconds to advance the game logic.
+    * The same as render time except when changing gamespeed or pausing.
     *
     * @note
     *   If you need to know the time since the last call to \a this system's
@@ -149,7 +153,8 @@ public:
     */
     virtual void
     update(
-        int milliSeconds
+        int renderTime,
+        int logicTime
     ) = 0;
 
 private:

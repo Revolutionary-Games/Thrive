@@ -52,10 +52,11 @@ RenderSystem::shutdown() {
 
 void
 RenderSystem::update(
-    int milliSeconds
+    int renderTime,
+    int
 ) {
     assert(m_impl->m_root != nullptr && "RenderSystem not initialized");
-    m_impl->m_root->renderOneFrame(float(milliSeconds) / 1000);
+    m_impl->m_root->renderOneFrame(float(renderTime) / 1000);
 }
 
 

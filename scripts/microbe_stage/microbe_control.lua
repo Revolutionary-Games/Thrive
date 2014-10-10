@@ -38,7 +38,7 @@ local function getMovementDirection()
 end
 
 
-function MicrobeControlSystem:update(milliseconds)
+function MicrobeControlSystem:update(renderTime, logicTime)
     local player = Entity("player")
     local microbe = player:getComponent(MicrobeComponent.TYPE_ID)
     if not microbe.dead then

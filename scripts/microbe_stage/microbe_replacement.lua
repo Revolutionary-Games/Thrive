@@ -25,5 +25,5 @@ function MicrobeReplacementSystem:activate()
    
 end
 
-function MicrobeReplacementSystem:update(milliseconds)
+function MicrobeReplacementSystem:update(renderTime, logicTime)
 end

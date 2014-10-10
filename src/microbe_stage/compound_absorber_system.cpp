@@ -217,7 +217,7 @@ CompoundAbsorberSystem::shutdown() {
 
 
 void
-CompoundAbsorberSystem::update(int) {
+CompoundAbsorberSystem::update(int, int) {
     for (const auto& entry : m_impl->m_absorbers) {
         CompoundAbsorberComponent* absorber = std::get<0>(entry.second);
         absorber->m_absorbedCompounds.clear();

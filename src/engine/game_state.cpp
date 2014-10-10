@@ -255,11 +255,12 @@ GameState::storage() const {
 
 void
 GameState::update(
-    int milliseconds
+    int renderTime,
+    int logicTime
 ) {
     for(auto& system : m_impl->m_systems) {
         if (system->enabled()) {
-            system->update(milliseconds);
+            system->update(renderTime, logicTime);
         }
     }
     m_impl->m_entityManager.processRemovals();

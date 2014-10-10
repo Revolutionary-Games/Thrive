@@ -362,7 +362,7 @@ public:
     /**
     * @brief Updates the sky components
     */
-    void update(int) override;
+    void update(int, int) override;
 
 private:
 
@@ -423,7 +423,7 @@ public:
     *
     * @param milliSeconds
     */
-    void update(int milliSeconds) override;
+    void update(int, int) override;
 
 private:
 
