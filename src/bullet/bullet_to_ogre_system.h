@@ -55,11 +55,14 @@ public:
     /**
     * @brief Updates the system
     *
-    * @param milliSeconds
+    * @param renderTime
+    *
+    * @param logicTime
     */
     void
     update(
-        int milliSeconds
+        int renderTime,
+        int logicTime
     ) override;
 
 private:

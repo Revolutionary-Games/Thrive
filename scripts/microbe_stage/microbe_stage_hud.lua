@@ -50,7 +50,7 @@ function HudSystem:init(gameState)
 end
 
 
-function HudSystem:update(milliseconds)
+function HudSystem:update(renderTime)
     local player = Entity("player")
     local playerMicrobe = Microbe(player)
 
@@ -105,6 +105,7 @@ function menuButtonClicked()
     if Engine:currentGameState():name() == "microbe" then
         Engine:currentGameState():rootGUIWindow():getChild("HelpPanel"):hide()
     end
+    Engine:pauseGame()
 end
 
 function helpButtonClicked()
@@ -115,7 +116,6 @@ function helpButtonClicked()
 end
 
 function editorButtonClicked()
-    Engine:currentGameState():rootGUIWindow():getChild("MenuPanel"):hide()
     Engine:setCurrentGameState(GameState.MICROBE_EDITOR)
 end
 
@@ -125,6 +125,7 @@ function returnButtonClicked()
         Engine:currentGameState():rootGUIWindow():getChild("HelpPanel"):hide()
         Engine:currentGameState():rootGUIWindow():getChild("MessagePanel"):hide()
         Engine:currentGameState():rootGUIWindow():getChild("ReproductionPanel"):hide()
+        Engine:resumeGame()
     elseif Engine:currentGameState():name() == "microbe_editor" then
         Engine:currentGameState():rootGUIWindow():getChild("SaveLoadPanel"):hide()
     end

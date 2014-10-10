@@ -262,7 +262,7 @@ emitCompound(
 
 
 void
-CompoundEmitterSystem::update(int milliseconds) {
+CompoundEmitterSystem::update(int, int logicTime) {
     for (auto& value : m_impl->m_entities) {
         CompoundEmitterComponent* emitterComponent = std::get<0>(value.second);
         OgreSceneNodeComponent* sceneNodeComponent = std::get<1>(value.second);
@@ -275,7 +275,7 @@ CompoundEmitterSystem::update(int milliseconds) {
         emitterComponent->m_compoundEmissions.clear();
         if (timedEmitterComponent)
         {
-            timedEmitterComponent->m_timeSinceLastEmission += milliseconds;
+            timedEmitterComponent->m_timeSinceLastEmission += logicTime;
             while (
                 timedEmitterComponent->m_emitInterval > 0 and
                 timedEmitterComponent->m_timeSinceLastEmission >= timedEmitterComponent->m_emitInterval

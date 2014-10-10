@@ -183,8 +183,8 @@ function SpawnSystem:_doSpawnCycle()
 end
 
 -- Override from System
-function SpawnSystem:update(milliseconds)
-    self.timeSinceLastCycle = self.timeSinceLastCycle + milliseconds
+function SpawnSystem:update(renderTime, logicTime)
+    self.timeSinceLastCycle = self.timeSinceLastCycle + logicTime
     
     --Perform spawn cycle if necessary (Reason for "if" rather than "while" stated below)
     if self.timeSinceLastCycle > SPAWN_INTERVAL then

@@ -115,11 +115,11 @@ CompoundMovementSystem::shutdown() {
 
 
 void
-CompoundMovementSystem::update(int milliseconds) {
+CompoundMovementSystem::update(int, int logicTime) {
     for (auto& value : m_impl->m_entities) {
         CompoundComponent* compoundComponent = std::get<0>(value.second);
         RigidBodyComponent* rigidBodyComponent = std::get<1>(value.second);
-        Ogre::Vector3 delta = compoundComponent->m_velocity * float(milliseconds) / 1000.0f;
+        Ogre::Vector3 delta = compoundComponent->m_velocity * float(logicTime) / 1000.0f;
         rigidBodyComponent->m_dynamicProperties.position += delta;
     }
 }

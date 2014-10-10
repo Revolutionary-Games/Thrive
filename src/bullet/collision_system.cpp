@@ -171,7 +171,10 @@ CollisionSystem::shutdown() {
 }
 
 void
-CollisionSystem::update(int milliseconds) {
+CollisionSystem::update(
+ int,
+ int logicTime
+) {
     auto dispatcher = m_impl->m_world->getDispatcher();
     int numManifolds = dispatcher->getNumManifolds();
 
@@ -209,7 +212,7 @@ CollisionSystem::update(int milliseconds) {
                 auto filterIterators = m_impl->m_collisionFilterMap.equal_range(collisionSignature);//Get iterators for group of relevant CollisionFilters
                 for(auto it = filterIterators.first; it != filterIterators.second; ++it)        // Foreach CollisionFilter object
                 {
-                    Collision collision = Collision(entityId1, entityId2, milliseconds);
+                    Collision collision = Collision(entityId1, entityId2, logicTime);
                     it->second.addCollision(collision);
                 }
             }
