@@ -226,7 +226,8 @@ public:
     * @param milliSeconds
     */
     void update(
-        int milliSeconds
+        int renderTime,
+        int logicTime
     ) override;
 
     /**

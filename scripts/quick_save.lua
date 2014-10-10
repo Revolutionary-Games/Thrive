@@ -7,7 +7,7 @@ function QuickSaveSystem:__init()
 end
 
 
-function QuickSaveSystem:update(milliseconds)
+function QuickSaveSystem:update(renderTime, logicTime)
     local saveDown = Engine.keyboard:isKeyDown(Keyboard.KC_F4)
     local loadDown = Engine.keyboard:isKeyDown(Keyboard.KC_F10)
     if saveDown and not self.saveDown then

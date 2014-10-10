@@ -122,7 +122,7 @@ public:
     /**
     * @brief Updates the system
     */
-    void update(int) override;
+    void update(int, int) override;
 
 private:
 

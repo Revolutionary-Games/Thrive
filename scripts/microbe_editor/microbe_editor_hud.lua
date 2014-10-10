@@ -86,8 +86,8 @@ function MicrobeEditorHudSystem:setActiveAction(actionName)
 end
 
 
-function MicrobeEditorHudSystem:update(milliseconds)
-    self.editor:update(milliseconds)
+function MicrobeEditorHudSystem:update(renderTime, logicTime)
+    self.editor:update(renderTime, logicTime)
     -- Render the hex under the cursor
     local x, y = axialToCartesian(self.editor:getMouseHex())
     local translation = Vector3(-x, -y, 0)
@@ -293,6 +293,5 @@ function menuPlayClicked()
 end
 
 function menuMainMenuClicked()
-    Engine:currentGameState():rootGUIWindow():getChild("MenuPanel"):hide()
     Engine:setCurrentGameState(GameState.MAIN_MENU)
 end

@@ -43,7 +43,7 @@ function MicrobeEditor:activate()
     self.actionIndex = 0 -- marks the last action that has been done (not undone, but possibly redone), is 0 if there is none
 end
 
-function MicrobeEditor:update(milliseconds)
+function MicrobeEditor:update(renderTime, logicTime)
     if self.nextMicrobeEntity ~= nil then
         self.currentMicrobe = Microbe(self.nextMicrobeEntity)
         self.currentMicrobe.sceneNode.transform.orientation = Quaternion(Radian(Degree(180)), Vector3(0, 0, 1))-- Orientation

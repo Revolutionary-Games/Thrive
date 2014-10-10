@@ -5,7 +5,7 @@ function SwitchGameStateSystem:__init()
 end
 
 
-function SwitchGameStateSystem:update(milliseconds)
+function SwitchGameStateSystem:update(renderTime, logicTime)
     if Engine.keyboard:wasKeyPressed(Keyboard.KC_F1) then
         local currentState = Engine:currentGameState()
         local nextGameState
