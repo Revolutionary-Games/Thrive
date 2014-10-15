@@ -15,6 +15,8 @@ function MicrobeEditor:__init(hudSystem)
     self.hudSystem = hudSystem
     self.nextMicrobeEntity = nil
     self.lockedMap = nil
+    self.gridSceneNode = nil
+    self.gridVisible = true
     self.mutationPoints = 100
     self.placementFunctions = {["nucleus"] = MicrobeEditor.createNewMicrobe,
                                ["flagelium"] = MicrobeEditor.addMovementOrganelle,
@@ -27,6 +29,14 @@ function MicrobeEditor:__init(hudSystem)
                                ["remove"] = MicrobeEditor.removeOrganelle}
     self.actionHistory = nil
     self.actionIndex = 0
+end
+
+function MicrobeEditor:init(gameState)
+    ent = Entity()
+    sceneNode = OgreSceneNodeComponent()
+    sceneNode.planeTexture = "EditorGridMaterial"
+    ent:addComponent(sceneNode)
+    self.gridSceneNode = sceneNode
 end
 
 function MicrobeEditor:activate()

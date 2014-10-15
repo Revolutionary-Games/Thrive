@@ -51,6 +51,23 @@ OgreSceneNodeComponent_setVisible(
     self->m_visible = visible; // This should automatically call touch().w
 }
 
+static std::string
+OgreSceneNodeComponent_getPlaneTexture(
+    const OgreSceneNodeComponent* self
+) {
+    return self->m_planeTexture.get();
+}
+
+
+static void
+OgreSceneNodeComponent_setPlaneTexture(
+    OgreSceneNodeComponent* self,
+    std::string planeTexture
+) {
+    self->m_planeTexture = planeTexture; // This should automatically call touch().w
+}
+
+
 
 static Entity
 OgreSceneNodeComponent_getParent(
@@ -96,6 +113,7 @@ OgreSceneNodeComponent::luaBindings() {
         .property("parent", OgreSceneNodeComponent_getParent, OgreSceneNodeComponent_setParent)
         .property("meshName", OgreSceneNodeComponent_getMeshName, OgreSceneNodeComponent_setMeshName)
         .property("visible", OgreSceneNodeComponent_getVisible, OgreSceneNodeComponent_setVisible)
+        .property("planeTexture", OgreSceneNodeComponent_getPlaneTexture, OgreSceneNodeComponent_setPlaneTexture)
     ;
 }
 
@@ -112,6 +130,7 @@ OgreSceneNodeComponent::load(
     m_meshName = storage.get<Ogre::String>("meshName");
     m_meshName = storage.get<Ogre::String>("meshName");
     m_visible = storage.get<bool>("visible");
+    m_planeTexture = storage.get<Ogre::String>("planeTexture");
     m_parentId = storage.get<EntityId>("parentId", NULL_ENTITY);
 }
 
@@ -124,6 +143,7 @@ OgreSceneNodeComponent::storage() const {
     storage.set<Ogre::Vector3>("scale", m_transform.scale);
     storage.set<Ogre::String>("meshName", m_meshName);
     storage.set<bool>("visible", m_visible);
+    storage.set<Ogre::String>("planeTexture", m_planeTexture);
     storage.set<EntityId>("parentId", m_parentId);
     return storage;
 }
@@ -392,6 +412,7 @@ OgreUpdateSceneNodeSystem::shutdown() {
     System::shutdown();
 }
 
+static int planeNameCounter = 0;
 
 void
 OgreUpdateSceneNodeSystem::update(
@@ -456,6 +477,29 @@ OgreUpdateSceneNodeSystem::update(
         if (component->m_visible.hasChanges()) {
             component->m_sceneNode->setVisible(component->m_visible.get());
             component->m_visible.untouch();
+        }
+        if (component->m_planeTexture.hasChanges()) {
+            if (component->m_entity) {
+                sceneNode->detachObject(component->m_entity);
+                m_impl->m_sceneManager->destroyEntity(component->m_entity);
+                component->m_entity = nullptr;
+            }
+            if (component->m_planeTexture.get().length() != 0) {
+                Ogre::Plane plane(Ogre::Vector3::UNIT_Z, 0);
+                std::string planeName("plane" + ++planeNameCounter);
+                Ogre::MeshManager::getSingleton().createPlane(planeName,
+                    Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME,
+                    plane, 10000, 10000);
+                component->m_entity = m_impl->m_sceneManager->createEntity(
+                    planeName
+                );
+                sceneNode->attachObject(component->m_entity);
+                component->m_entity->setMaterialName(component->m_planeTexture.get());
+                component->m_entity->setCastShadows(false);
+            } else {
+                component->m_meshName.touch();
+            }
+            component->m_planeTexture.untouch();
         }
         if(component->m_objectsToAttach.hasChanges()){
             for (auto obj : component->m_objectsToAttach.get()){
