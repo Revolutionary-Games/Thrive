@@ -15,14 +15,40 @@ function SpeciesComponent:__init(name)
     else
         self.name = name
     end
+    self.name="Default"
     self.populationBonusFactor = 1.0
     self.populationPenaltyFactor = 1.0
     self.deathsPerTime = 1.0
     self.birthsPerTime = 1.0
     self.currentPopulation = 1
+    -- todo make these actually do stuff
+    self.organelles = {} -- stores a table of organelle {q,r,name} tables
+
+    --SpeciesRegistry.loadFromXML("../definitions/microbes.xml") -- might not be necessary
+    -- 
+    if pcall(function () SpeciesRegistry.getSize(name) end) then
+        -- In this case the species is a default one loaded from xml
+        print("loaded "..self.name)
+        local numOrganelles = SpeciesRegistry.getSize(name)
+        print("# organelles = "..numOrganelles)
+        for i = 0,(numOrganelles-1) do
+            -- returns a property table
+            local organelleData = SpeciesRegistry.getOrganelle(name, i)
+            self.organelles[#self.organelles+1] = organelleData
+        end
+        for _, org in pairs(self.organelles) do print(org.name, org.q, org.r) end
+    else
+        -- In this case the species is an evolutionary descendant
+        -- So whatever handles evolution can fill in the organelles
+        print("evolved "..self.name)
+    end
+    -- for key, value in pairs(self.organelles) do print(key, value) end
+    self.avgCompoundAmounts = {} -- maps each compound name to the amount a new spawn should get. Nonentries are zero.
+                                 -- we could also add some measure of variability to make things more ...variable.
+    self.compoundPriorities = {} -- maps compound name to priority.
 end
 
-
+--is this still todo?
 --todo
 function SpeciesComponent:load(storage)
     Component.load(self, storage)
@@ -73,6 +99,7 @@ end
 -- Override from System
 function PopulationSystem:init(gameState)
     System.init(self, gameState)
+    SpeciesRegistry.loadFromXML("../definitions/microbes.xml")
     self.entities:init(gameState)
 end
 

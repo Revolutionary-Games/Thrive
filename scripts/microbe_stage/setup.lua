@@ -80,12 +80,12 @@ function microbeSpawnFunctionGeneric(pos, speciesName, aiControlled, individualN
     end
     local numOrganelles = SpeciesRegistry.getSize(speciesName)
     for i = 0,(numOrganelles-1) do
-        -- TODO make a SpeciesRegistry::getOrganelle function that returns a property table
+        -- returns a property table
         local organelleData = SpeciesRegistry.getOrganelle(speciesName, i)
         local organelle = OrganelleFactory.makeOrganelle(organelleData)
         microbe:addOrganelle(organelleData.q, organelleData.r, organelle)
     end
-    -- TODO figure out way to iterate this over all compounds, and set priorities too
+    -- iterates over all compounds, and sets amounts and priorities
     for compoundID in CompoundRegistry.getCompoundList() do
         compound = CompoundRegistry.getCompoundInternalName(compoundID)
         amount = SpeciesRegistry.getCompoundAmount(speciesName, compound)
@@ -314,9 +314,12 @@ local function createSpawnSystem()
     spawnSystem:addSpawnType(spawnCO2Emitter, 1/500, 30)
     spawnSystem:addSpawnType(spawnGlucoseEmitter, 1/500, 30)
     spawnSystem:addSpawnType(spawnAmmoniaEmitter, 1/1250, 30)
+
+    -- Microbe spawning needs to be handled by species/population
     spawnSystem:addSpawnType(microbeDefault, 1/12000, 40)
     spawnSystem:addSpawnType(microbeTeeny, 1/6000, 40)
     spawnSystem:addSpawnType(microbePlankton, 1/32000, 40)
+    
     spawnSystem:addSpawnType(toxinOrganelleSpawnFunction, 1/17000, 30)
     return spawnSystem
 end

@@ -52,7 +52,11 @@ speciesMap() {
 int
 SpeciesRegistry::getSize(
     const std::string& microbe_name) {
-    return speciesMap()[microbe_name].organelles.size();
+    try {
+        return speciesMap()[microbe_name].organelles.size();
+    } catch (...) {
+        return 0;
+    }
 }
 
 luabind::object
@@ -60,10 +64,16 @@ SpeciesRegistry::getOrganelle(
     const std::string& microbe_name,
     int index) {
     luabind::object table = luabind::newtable(Game::instance().engine().luaState());
-    Organelle organelle = speciesMap()[microbe_name].organelles[index];
-    table["name"] = organelle.internalName;
-    table["q"] = organelle.q;
-    table["r"] = organelle.r;
+    try {
+        Organelle organelle = speciesMap()[microbe_name].organelles[index];
+        table["name"] = organelle.internalName;
+        table["q"] = organelle.q;
+        table["r"] = organelle.r;
+    } catch (...) {
+        table["name"] = "";
+        table["q"] = 0;
+        table["r"] = 0;
+    }
     return table;
 }
 
@@ -71,14 +81,22 @@ double
 SpeciesRegistry::getCompoundPriority(
     const std::string& microbe_name,
     const std::string& compound_name) {
-    return speciesMap()[microbe_name].compounds[compound_name].priority;
+    try {
+        return speciesMap()[microbe_name].compounds[compound_name].priority;
+    } catch (...) {
+        return 0;
+    }
 }
 
 double
 SpeciesRegistry::getCompoundAmount(
     const std::string& microbe_name,
     const std::string& compound_name) {
-    return speciesMap()[microbe_name].compounds[compound_name].amount;
+    try {
+        return speciesMap()[microbe_name].compounds[compound_name].amount;
+    } catch (...) {
+        return 0;
+    }
 }
 
 void
