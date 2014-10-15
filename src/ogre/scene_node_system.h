@@ -76,6 +76,7 @@ public:
     * - OgreSceneNodeComponent::attachSoundListener
     * - OgreSceneNodeComponent::detachObject (unimplemented)
     * - OgreSceneNodeComponent::m_parentId (as "parent")
+    * - OgreSceneNodeComponent::planeTexture
     *
     * @return
     */
@@ -187,6 +188,11 @@ public:
     * @brief Whether the scenenode is visible
     */
     TouchableValue<bool> m_visible = true;
+
+    /**
+    * @brief Whether the scenenode is a simple plane
+    */
+    TouchableValue<std::string> m_planeTexture;
 
 private:
 

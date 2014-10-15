@@ -16,6 +16,7 @@ end
 
 function MicrobeEditorHudSystem:init(gameState)
     System.init(self, gameState)
+    self.editor:init(gameState)
     self.hoverHex = Entity("hover-hex")
     local sceneNode = OgreSceneNodeComponent()
     sceneNode.transform.position = Vector3(0,0,110)
@@ -132,6 +133,14 @@ function MicrobeEditorHudSystem:update(renderTime, logicTime)
     elseif Engine.keyboard:wasKeyPressed(Keyboard.KC_P) then
        chloroplastClicked()
        self.editor:performLocationAction()
+    elseif Engine.keyboard:wasKeyPressed(Keyboard.KC_G) then
+        if self.editor.gridVisible then
+            self.editor.gridSceneNode.visible = false;
+            self.editor.gridVisible = false
+        else
+            self.editor.gridSceneNode.visible = true;
+            self.editor.gridVisible = true
+        end
     elseif  Engine.keyboard:wasKeyPressed(Keyboard.KC_ESCAPE) then
         menuButtonClicked()
     elseif  Engine.keyboard:wasKeyPressed(Keyboard.KC_F2) then

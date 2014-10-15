@@ -2,9 +2,9 @@
 local function setupBackground()
     local entity = Entity("background")
     local skyplane = SkyPlaneComponent()
-    skyplane.properties.plane.normal = Vector3(0, 0, 1)
-    skyplane.properties.plane.d = 1000
-  --  skyplane.properties.materialName = string.format("background/blue_02.png")
+    skyplane.properties.plane.normal = Vector3(0, 0, 2000)
+    skyplane.properties.materialName = "background/blue_01"
+    skyplane.properties.tiling = 500
     skyplane.properties:touch()
     entity:addComponent(skyplane)
 end
