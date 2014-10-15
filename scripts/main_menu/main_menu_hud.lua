@@ -10,14 +10,14 @@ function MainMenuHudSystem:init(gameState)
     local root = gameState:rootGUIWindow()
     local microbeButton = root:getChild("Background"):getChild("MicrobeButton")
     local microbeEditorButton = root:getChild("Background"):getChild("MicrobeEditorButton")
-    local mitochondriaButton = root:getChild("Background"):getChild("QuitButton")
+    local quitButton = root:getChild("Background"):getChild("QuitButton")
     
-    root:getChild("Background"):getChild("MicrobeButton"):registerEventHandler("Clicked", mainMenuMicrobeStageButtonClicked)
-    root:getChild("Background"):getChild("MicrobeEditorButton"):registerEventHandler("Clicked", mainMenuMicrobeEditorButtonClicked)
-    root:getChild("Background"):getChild("QuitButton"):registerEventHandler("Clicked", quitButtonClicked)
+    microbeButton:registerEventHandler("Clicked", mainMenuMicrobeStageButtonClicked)
+    microbeEditorButton:registerEventHandler("Clicked", mainMenuMicrobeEditorButtonClicked)
+    quitButton:registerEventHandler("Clicked", quitButtonClicked)
 end
 
-function MainMenuHudSystem:update(milliseconds)
+function MainMenuHudSystem:update(renderTime, logicTime)
 end
 
 function mainMenuMicrobeStageButtonClicked()
@@ -27,3 +27,5 @@ end
 function mainMenuMicrobeEditorButtonClicked()
     Engine:setCurrentGameState(GameState.MICROBE_EDITOR)
 end
+
+-- quitButtonClicked is already defined in microbe_stage_hud.lua

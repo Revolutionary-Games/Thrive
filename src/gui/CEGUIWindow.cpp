@@ -56,7 +56,7 @@ CEGUIWindow::luaBindings() {
         .def("addChild", &CEGUIWindow::addChild)
         .def("removeChild", &CEGUIWindow::removeChild)
         .def("registerEventHandler",
-             static_cast<void (CEGUIWindow::*)(const std::string&, const luabind::object&) const>(&CEGUIWindow::RegisterEventHandler)
+             static_cast<void (CEGUIWindow::*)(const std::string&, const luabind::object&) const>(&CEGUIWindow::registerEventHandler)
          )
         .def("enable", &CEGUIWindow::enable)
         .def("disable", &CEGUIWindow::disable)
@@ -76,6 +76,9 @@ CEGUIWindow::luaBindings() {
         .def("itemListboxHandleUpdatedItemData", &CEGUIWindow::itemListboxHandleUpdatedItemData)
         .def("itemListboxGetLastSelectedItem", &CEGUIWindow::itemListboxGetLastSelectedItem)
         .def("progressbarSetProgress", &CEGUIWindow::progressbarSetProgress)
+        .def("registerKeyEventHandler",
+             static_cast<void (CEGUIWindow::*)(const luabind::object&) const>(&CEGUIWindow::registerKeyEventHandler)
+         )
     ;
 }
 
@@ -194,7 +197,7 @@ CEGUIWindow::getChild(
 
 
 void
-CEGUIWindow::RegisterEventHandler(
+CEGUIWindow::registerEventHandler(
     const std::string& eventName,
     CEGUI::Event::Subscriber callback
 ) const {
@@ -203,19 +206,38 @@ CEGUIWindow::RegisterEventHandler(
 
 
 void
-CEGUIWindow::RegisterEventHandler(
+CEGUIWindow::registerEventHandler(
     const std::string& eventName,
     const luabind::object& callback
 ) const {
     // Lambda must return something to avoid an template error.
     auto callbackLambda = [callback](const CEGUI::EventArgs& args) -> int
         {
-            luabind::call_function<void>(callback, CEGUIWindow(static_cast<const CEGUI::WindowEventArgs&>(args).window) );
+            luabind::call_function<void>(callback, CEGUIWindow(static_cast<const CEGUI::WindowEventArgs&>(args).window));
             return 0;
         };
     m_window->subscribeEvent(eventName, callbackLambda);
 }
 
+void
+CEGUIWindow::registerKeyEventHandler(
+    CEGUI::Event::Subscriber callback
+) const {
+    m_window->subscribeEvent("CharacterKey", callback);
+}
+
+void
+CEGUIWindow::registerKeyEventHandler(
+    const luabind::object& callback
+) const {
+    auto callbackLambda = [callback](const CEGUI::EventArgs& args) -> int
+        {
+
+            luabind::call_function<void>(callback, CEGUIWindow(static_cast<const CEGUI::WindowEventArgs&>(args).window), static_cast<int>(static_cast<const CEGUI::KeyEventArgs&>(args).scancode) );
+            return 0;
+        };
+    m_window->subscribeEvent(CEGUI::PushButton::EventKeyDown, callbackLambda);
+}
 
 void
 CEGUIWindow::enable(){

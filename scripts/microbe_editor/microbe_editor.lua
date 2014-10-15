@@ -15,15 +15,28 @@ function MicrobeEditor:__init(hudSystem)
     self.hudSystem = hudSystem
     self.nextMicrobeEntity = nil
     self.lockedMap = nil
+    self.gridSceneNode = nil
+    self.gridVisible = true
+    self.mutationPoints = 100
     self.placementFunctions = {["nucleus"] = MicrobeEditor.createNewMicrobe,
                                ["flagelium"] = MicrobeEditor.addMovementOrganelle,
-                               ["mitochondria"] = MicrobeEditor.addProcessOrganelle,
+                               ["mitochondrion"] = MicrobeEditor.addProcessOrganelle,
                                ["chloroplast"] = MicrobeEditor.addProcessOrganelle,
                                ["toxin"] = MicrobeEditor.addAgentVacuole,
                                
                                ["vacuole"] = MicrobeEditor.addStorageOrganelle,
                              --  ["aminosynthesizer"] = MicrobeEditor.addProcessOrganelle,
                                ["remove"] = MicrobeEditor.removeOrganelle}
+    self.actionHistory = nil
+    self.actionIndex = 0
+end
+
+function MicrobeEditor:init(gameState)
+    ent = Entity()
+    sceneNode = OgreSceneNodeComponent()
+    sceneNode.planeTexture = "EditorGridMaterial"
+    ent:addComponent(sceneNode)
+    self.gridSceneNode = sceneNode
 end
 
 function MicrobeEditor:activate()
@@ -35,9 +48,12 @@ function MicrobeEditor:activate()
         Engine:playerData():setBool("edited_microbe", true)
         Engine:playerData():setActiveCreature(self.nextMicrobeEntity.id, GameState.MICROBE_EDITOR)
     end
+    self.mutationPoints = 100
+    self.actionHistory = {} -- where all user actions will  be registered
+    self.actionIndex = 0 -- marks the last action that has been done (not undone, but possibly redone), is 0 if there is none
 end
 
-function MicrobeEditor:update(milliseconds)
+function MicrobeEditor:update(renderTime, logicTime)
     if self.nextMicrobeEntity ~= nil then
         self.currentMicrobe = Microbe(self.nextMicrobeEntity)
         self.currentMicrobe.sceneNode.transform.orientation = Quaternion(Radian(Degree(180)), Vector3(0, 0, 1))-- Orientation
@@ -55,6 +71,16 @@ function MicrobeEditor:update(milliseconds)
             organelle:_updateHexColours()
         end
     end
+    self.hudSystem:updateMutationPoints()
+end
+
+function MicrobeEditor:takeMutationPoints(amount)
+    if amount <= self.mutationPoints then
+        self.mutationPoints = self.mutationPoints - amount
+        return true
+    else
+        return false
+    end
 end
 
 function MicrobeEditor:performLocationAction()
@@ -66,6 +92,42 @@ end
 
 function MicrobeEditor:setActiveAction(actionName)
     self.activeActionName = actionName
+end
+
+-- Instead of executing a command, put it in a table with a redo() and undo() function to make it use the Undo-/Redo-Feature.
+-- Enqueuing it will execute it automatically, so you don't have to write things twice.
+-- The cost of the action can also be incorporated into this by making it a member of the parameter table. It will be used automatically.
+function MicrobeEditor:enqueueAction(action)
+    if not action.cost or self:takeMutationPoints(action.cost) then
+        while #self.actionHistory > self.actionIndex do
+            table.remove(self.actionHistory)
+        end
+        action.redo()
+        table.insert(self.actionHistory, action)
+        self.actionIndex = self.actionIndex + 1
+    end
+end
+
+function MicrobeEditor:undo()
+    if self.actionIndex > 0 then
+        local action = self.actionHistory[self.actionIndex]
+        action.undo()
+        if action.cost then
+            self.mutationPoints = self.mutationPoints + action.cost
+        end
+        self.actionIndex = self.actionIndex - 1
+    end
+end
+
+function MicrobeEditor:redo()
+    if self.actionIndex < #self.actionHistory then
+        self.actionIndex = self.actionIndex + 1
+        local action = self.actionHistory[self.actionIndex]
+        action.redo()
+        if action.cost then
+            self.mutationPoints = self.mutationPoints - action.cost
+        end
+    end
 end
 
 function MicrobeEditor:getMouseHex()
@@ -83,9 +145,19 @@ function MicrobeEditor:removeOrganelle()
     if not (q == 0 and r == 0) then -- Don't remove nucleus
         local organelle = self.currentMicrobe:getOrganelleAt(q,r)
         if organelle then
-            self.currentMicrobe:removeOrganelle(organelle.position.q ,organelle.position.r )
-            self.currentMicrobe.sceneNode.transform:touch()
-            self.organelleCount = self.organelleCount - 1
+            local storage = organelle:storage()
+            self:enqueueAction{
+                cost = 10,
+                redo = function()
+                    self.currentMicrobe:removeOrganelle(q, r)
+                    self.currentMicrobe.sceneNode.transform:touch()
+                    self.organelleCount = self.organelleCount - 1
+                end,
+                undo = function()
+                    self.currentMicrobe:addOrganelle(q, r, Organelle.loadOrganelle(storage))
+                    self.organelleCount = self.organelleCount + 1
+                end
+            }
         end
     end
 end
@@ -95,45 +167,79 @@ function MicrobeEditor:addStorageOrganelle(organelleType)
    -- self.currentMicrobe = Microbe(Entity("working_microbe", GameState.MICROBE))
     local q, r = self:getMouseHex()
     if self.currentMicrobe:getOrganelleAt(q, r) == nil then
-        self.currentMicrobe:addOrganelle(q, r, OrganelleFactory.make_vacuole({}))
-        self.organelleCount = self.organelleCount + 1
+        self:enqueueAction{
+            cost = Organelle.mpCosts["vacuole"],
+            redo = function()
+                self.currentMicrobe:addOrganelle(q, r, OrganelleFactory.make_vacuole({}))
+                self.organelleCount = self.organelleCount + 1
+            end,
+            undo = function()
+                self.currentMicrobe:removeOrganelle(q, r)
+                self.currentMicrobe.sceneNode.transform:touch()
+                self.organelleCount = self.organelleCount - 1
+            end
+        }
     end
 end
 
 
 function MicrobeEditor:addMovementOrganelle(organelleType)
     local q, r = self:getMouseHex()
-    local data = {["q"]=q, ["r"]=r}
     if self.currentMicrobe:getOrganelleAt(q, r) == nil then
-        self.currentMicrobe:addOrganelle(q,r, OrganelleFactory.make_flagellum(data))
-        self.organelleCount = self.organelleCount + 1
+        self:enqueueAction{
+            cost = Organelle.mpCosts["flagellum"],
+            redo = function()
+                self.currentMicrobe:addOrganelle(q,r, OrganelleFactory.make_flagellum{["q"]=q, ["r"]=r})
+                self.organelleCount = self.organelleCount + 1
+            end,
+            undo = function()
+                self.currentMicrobe:removeOrganelle(q, r)
+                self.currentMicrobe.sceneNode.transform:touch()
+                self.organelleCount = self.organelleCount - 1
+            end
+        }
     end
 end
 
 function MicrobeEditor:addProcessOrganelle(organelleType)
     local q, r = self:getMouseHex()
-    if self.currentMicrobe:getOrganelleAt(q, r) == nil then
+    
+    if organelleType and self.currentMicrobe:getOrganelleAt(q, r) == nil then
+        local data = { ["name"] = organelleType }
         
-        if organelleType == "mitochondria" then
-            self.currentMicrobe:addOrganelle(q,r, OrganelleFactory.make_mitochondrion({}))
-        elseif organelleType == "chloroplast" then
-            self.currentMicrobe:addOrganelle(q,r, OrganelleFactory.make_chloroplast({}))
-        else
-            assert(false, "organelleType did not exist")
-        end
+        self:enqueueAction{
+            cost = Organelle.mpCosts[data.name],
+            redo = function()
+                self.currentMicrobe:addOrganelle(q, r, OrganelleFactory.makeOrganelle(data))
+                self.organelleCount = self.organelleCount + 1
+            end,
+            undo = function()
+                self.currentMicrobe:removeOrganelle(q, r)
+                self.currentMicrobe.sceneNode.transform:touch()
+                self.organelleCount = self.organelleCount - 1
+            end
+        }
     end
-    self.organelleCount = self.organelleCount + 1
 end
 
 function MicrobeEditor:addAgentVacuole(organelleType)
     if organelleType == "toxin" then         
         local q, r = self:getMouseHex()
         if self.currentMicrobe:getOrganelleAt(q, r) == nil then
-            self.currentMicrobe:addOrganelle(q, r, OrganelleFactory.make_oxytoxy({}))
-            self.organelleCount = self.organelleCount + 1
+            self:enqueueAction{
+                cost = Organelle.mpCosts["oxytoxy"],
+                redo = function()
+                    self.currentMicrobe:addOrganelle(q, r, OrganelleFactory.make_oxytoxy({}))
+                    self.organelleCount = self.organelleCount + 1
+                end,
+                undo = function()
+                    self.currentMicrobe:removeOrganelle(q, r)
+                    self.currentMicrobe.sceneNode.transform:touch()
+                    self.organelleCount = self.organelleCount - 1
+                end
+            }
         end
     end
-    self.organelleCount = self.organelleCount + 1
 end
 
 function MicrobeEditor:addNucleus()
@@ -152,18 +258,57 @@ function MicrobeEditor:loadMicrobe(entityId)
     self.currentMicrobe.sceneNode.transform:touch()
     self.currentMicrobe.collisionHandler:addCollisionGroup("powerupable")
     Engine:playerData():setActiveCreature(entityId, GameState.MICROBE_EDITOR)
+    self.mutationPoints = 0
+    -- resetting the action history - it should not become entangled with the local file system
+    self.actionHistory = {}
+    self.actionIndex = 0
 end
 
 function MicrobeEditor:createNewMicrobe()
-    self.organelleCount = 0
+    local action = {
+        redo = function()
+            self.organelleCount = 0
+            if self.currentMicrobe ~= nil then
+                self.currentMicrobe.entity:destroy()
+            end
+            self.currentMicrobe = Microbe.createMicrobeEntity(nil, false)
+            self.currentMicrobe.entity:stealName("working_microbe")
+            self.currentMicrobe.sceneNode.transform.orientation = Quaternion(Radian(Degree(180)), Vector3(0, 0, 1))-- Orientation
+            self.currentMicrobe.sceneNode.transform:touch()
+            self.currentMicrobe.collisionHandler:addCollisionGroup("powerupable")
+            self:addNucleus()
+            self.mutationPoints = 100
+            Engine:playerData():setActiveCreature(self.currentMicrobe.entity.id, GameState.MICROBE_EDITOR)
+        end
+    }
+    
     if self.currentMicrobe ~= nil then
-        self.currentMicrobe.entity:destroy()
+         -- that there has already been a microbe in the editor suggests that it was a player action, so it's prepared and filed in for un/redo
+        local organelleStorage = {} -- self.currentMicrobe.microbe.organelles
+        local previousOrganelleCount = self.organelleCount
+        local previousMP = self.mutationPoints
+        for position,organelle in pairs(self.currentMicrobe.microbe.organelles) do
+            organelleStorage[position] = organelle:storage()
+        end
+        action.undo = function()
+            self.currentMicrobe.entity:destroy() -- remove the "new" entity that has replaced the previous one
+            self.currentMicrobe = Microbe.createMicrobeEntity(nil, false)
+            self.currentMicrobe.entity:stealName("working_microbe")
+            self.currentMicrobe.sceneNode.transform.orientation = Quaternion(Radian(Degree(180)), Vector3(0, 0, 1))-- Orientation
+            self.currentMicrobe.sceneNode.transform:touch()
+            self.currentMicrobe.collisionHandler:addCollisionGroup("powerupable")
+            for position,storage in pairs(organelleStorage) do
+                local q, r = decodeAxial(position)
+                self.currentMicrobe:addOrganelle(q, r, Organelle.loadOrganelle(storage))
+            end
+            -- no need to add the nucleus manually - it's alreary included in the organelleStorage
+            self.mutationPoints = previousMP
+            self.organelleCount = previousOrganelleCount
+            Engine:playerData():setActiveCreature(self.currentMicrobe.entity.id, GameState.MICROBE_EDITOR)
+        end
+        self:enqueueAction(action)
+    else
+        -- if there's no microbe yet, it can be safely assumed that this is a generated default microbe when opening the editor for the first time, so it's not an action that should be put into the un/redo-feature
+        action.redo()
     end
-    self.currentMicrobe = Microbe.createMicrobeEntity(nil, false)
-    self.currentMicrobe.entity:stealName("working_microbe")
-    self.currentMicrobe.sceneNode.transform.orientation = Quaternion(Radian(Degree(180)), Vector3(0, 0, 1))-- Orientation
-    self.currentMicrobe.sceneNode.transform:touch()
-    self.currentMicrobe.collisionHandler:addCollisionGroup("powerupable")
-    self:addNucleus()
-    Engine:playerData():setActiveCreature(self.currentMicrobe.entity.id, GameState.MICROBE_EDITOR)
 end

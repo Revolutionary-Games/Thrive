@@ -125,11 +125,13 @@ function MovementOrganelle:_turnMicrobe(microbe)
 end
 
 
-function MovementOrganelle:update(microbe, milliseconds)
-    Organelle.update(self, microbe, milliseconds)
+function MovementOrganelle:update(microbe, logicTime)
+    Organelle.update(self, microbe, logicTime)
     self:_turnMicrobe(microbe)
-    self:_moveMicrobe(microbe, milliseconds)
+    self:_moveMicrobe(microbe, logicTime)
 end
+
+Organelle.mpCosts["flagellum"] = 25
 
 -- factory functions
 function OrganelleFactory.make_flagellum(data)

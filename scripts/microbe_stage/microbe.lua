@@ -121,8 +121,8 @@ function MicrobeComponent:getBandwidth(maxAmount, compoundId)
     return amount / compoundVolume
 end
 
-function MicrobeComponent:regenerateBandwidth(milliseconds)
-    local addedBandwidth = self.remainingBandwidth + milliseconds * (self.maxBandwidth / BANDWIDTH_REFILL_DURATION)
+function MicrobeComponent:regenerateBandwidth(logicTime)
+    local addedBandwidth = self.remainingBandwidth + logicTime * (self.maxBandwidth / BANDWIDTH_REFILL_DURATION)
     self.remainingBandwidth = math.min(addedBandwidth, self.maxBandwidth)
 end
 
@@ -735,7 +735,6 @@ end
 
 -- Copies this microbe. The new microbe will not have the stored compounds of this one. 
 function Microbe:reproduce()
-
     copy = Microbe.createMicrobeEntity(nil, true)
     for _, organelle in pairs(self.microbe.organelles) do
         local organelleStorage = organelle:storage()
@@ -751,17 +750,20 @@ function Microbe:reproduce()
     if species ~= nil then -- Microbes don't need to have a species
         species.populationBonusFactor = species.populationBonusFactor * 1.4
     end
-    
+    end
+    if self.microbe.isPlayerMicrobe then
+        showReproductionDialog()
+    end
 end
 
 
 -- Updates the microbe's state
-function Microbe:update(milliseconds)
+function Microbe:update(logicTime)
     if not self.microbe.dead then
         -- StorageOrganelles
         self:_updateCompoundAbsorber()
         -- Regenerate bandwidth
-        self.microbe:regenerateBandwidth(milliseconds)
+        self.microbe:regenerateBandwidth(logicTime)
         -- Attempt to absorb queued compounds
         for compound in self.compoundAbsorber:getAbsorbedCompounds() do 
             local amount = self.compoundAbsorber:absorbedCompoundAmount(compound)
@@ -772,10 +774,10 @@ function Microbe:update(milliseconds)
         
         -- Distribute compounds to Process Organelles
         for _, processOrg in pairs(self.microbe.processOrganelles) do
-            processOrg:update(self, milliseconds)
+            processOrg:update(self, logicTime)
         end
         
-        self.microbe.compoundCollectionTimer = self.microbe.compoundCollectionTimer + milliseconds
+        self.microbe.compoundCollectionTimer = self.microbe.compoundCollectionTimer + logicTime
         while self.microbe.compoundCollectionTimer > EXCESS_COMPOUND_COLLECTION_INTERVAL do -- For every COMPOUND_DISTRIBUTION_INTERVAL passed
             -- Gather excess compounds that are the compounds that the storage organelles automatically emit to stay less than full
             local excessCompounds = {}
@@ -838,10 +840,10 @@ function Microbe:update(milliseconds)
         end
         -- Other organelles
         for _, organelle in pairs(self.microbe.organelles) do
-            organelle:update(self, milliseconds)
+            organelle:update(self, logicTime)
         end
     else
-        self.microbe.deathTimer = self.microbe.deathTimer - milliseconds
+        self.microbe.deathTimer = self.microbe.deathTimer - logicTime
         if self.microbe.deathTimer <= 0 then
             self.microbe.dead = false
             self.microbe.deathTimer = 0

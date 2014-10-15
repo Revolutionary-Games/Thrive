@@ -47,12 +47,12 @@ end
 -- @param microbe
 -- The microbe containing the organelle
 --
--- @param milliseconds
+-- @param logicTime
 -- The time since the last call to update()
-function AgentVacuole:update(microbe, milliseconds)
-    Organelle.update(self, microbe, milliseconds)
+function AgentVacuole:update(microbe, logicTime)
+    Organelle.update(self, microbe, logicTime)
     
-    self.capacityIntervalTimer = self.capacityIntervalTimer + milliseconds
+    self.capacityIntervalTimer = self.capacityIntervalTimer + logicTime
     if self.capacityIntervalTimer > PROCESS_CAPACITY_UPDATE_INTERVAL then
         factorProduct = self.process:produce(self.capacityIntervalTimer, 1.0, microbe, self)
         self.capacityIntervalTimer = 0
@@ -79,6 +79,8 @@ function AgentVacuole:load(storage)
     process:load(storage:get("process", 0))
     self.process = process
 end
+
+Organelle.mpCosts["oxytoxy"] = 40
 
 -- factory functions
 function OrganelleFactory.make_oxytoxy(data)

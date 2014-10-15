@@ -53,9 +53,10 @@ UpdatePhysicsSystem::shutdown() {
 
 void
 UpdatePhysicsSystem::update(
-    int milliSeconds
+    int,
+    int logicTime
 ) {
     assert(m_impl->m_world != nullptr && "UpdatePhysicsSystem not initialized");
-    m_impl->m_world->stepSimulation(milliSeconds/1000.f,10);
+    m_impl->m_world->stepSimulation(logicTime/1000.f,10);
 }
 

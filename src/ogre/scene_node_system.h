@@ -76,6 +76,7 @@ public:
     * - OgreSceneNodeComponent::attachSoundListener
     * - OgreSceneNodeComponent::detachObject (unimplemented)
     * - OgreSceneNodeComponent::m_parentId (as "parent")
+    * - OgreSceneNodeComponent::planeTexture
     *
     * @return
     */
@@ -188,6 +189,11 @@ public:
     */
     TouchableValue<bool> m_visible = true;
 
+    /**
+    * @brief Whether the scenenode is a simple plane
+    */
+    TouchableValue<std::string> m_planeTexture;
+
 private:
 
     friend class OgreUpdateSceneNodeSystem;
@@ -251,7 +257,7 @@ public:
     /**
     * @brief Adds new scene nodes
     */
-    void update(int) override;
+    void update(int, int) override;
 
 private:
 
@@ -302,7 +308,7 @@ public:
     /**
     * @brief Removes stale scene nodes
     */
-    void update(int) override;
+    void update(int, int) override;
 
 private:
 
@@ -352,7 +358,7 @@ public:
     /**
     * @brief Updates the scene nodes
     */
-    void update(int) override;
+    void update(int, int) override;
 
 private:
 
