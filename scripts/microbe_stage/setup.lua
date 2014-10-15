@@ -35,6 +35,7 @@ local function setupCamera()
     viewportEntity:addComponent(viewportComponent)
 end
 
+-- there must be some more robust way to script agents than having stuff all over the place.
 function oxytoxyEffect(entityId, potency)
     Microbe(Entity(entityId)):damage(potency*15)
 end
@@ -429,8 +430,8 @@ local function createMicrobeStage(name)
             TimedLifeSystem(),
             CompoundMovementSystem(),
             CompoundAbsorberSystem(),
-            createSpawnSystem(),
             PopulationSystem(),
+            createSpawnSystem(),
             -- Physics
             RigidBodyInputSystem(),
             UpdatePhysicsSystem(),

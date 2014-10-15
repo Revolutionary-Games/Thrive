@@ -19,6 +19,7 @@ REPRODUCTASE_TO_SPLIT = 5
 function MicrobeComponent:__init(isPlayerMicrobe)
     Component.__init(self)
     self.speciesName = ""
+    self.speciesComponent = nil
     self.hitpoints = 10
     self.maxHitpoints = 10
     self.dead = false
