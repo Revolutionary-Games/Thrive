@@ -95,6 +95,7 @@ function MovementOrganelle:_moveMicrobe(microbe, milliseconds)
         microbe.rigidBody:applyCentralImpulse(
             microbe.sceneNode.transform.orientation * impulse
         )
+
     else 
         if self.movingTail then
         self.movingTail = false
@@ -121,6 +122,7 @@ function MovementOrganelle:_turnMicrobe(microbe)
         microbe.rigidBody:applyTorque(
             Vector3(0, 0, self.torque * alpha)
         )
+        microbe.soundSource:playSound("microbe-movement-turn")
     end
 end
 

@@ -256,13 +256,30 @@ function Microbe.createMicrobeEntity(name, aiControlled)
     compoundEmitter.particleLifetime = 5000
     local reactionHandler = CollisionComponent()
     reactionHandler:addCollisionGroup("microbe")
+    local soundComponent = SoundSourceComponent()
+    local s1 = nil
+    soundComponent:addSound("microbe-release-toxin", "soundeffects/microbe-release-toxin.ogg")
+    soundComponent:addSound("microbe-toxin-damage", "soundeffects/microbe-toxin-damage.ogg")
+    soundComponent:addSound("microbe-death", "soundeffects/microbe-death.ogg")
+    soundComponent:addSound("microbe-collision", "soundeffects/microbe-collision.ogg")
+    soundComponent:addSound("microbe-pickup-organelle", "soundeffects/microbe-pickup-organelle.ogg")
+    s1 = soundComponent:addSound("microbe-movement-1", "soundeffects/microbe-movement-1.ogg")
+    s1.properties.volume = 1
+    s1.properties:touch()
+    s1 = soundComponent:addSound("microbe-movement-turn", "soundeffects/microbe-movement-2.ogg")
+    s1.properties.volume = 0.2
+    s1.properties:touch()
+    s1 = soundComponent:addSound("microbe-movement-2", "soundeffects/microbe-movement-3.ogg")
+    s1.properties.volume = 1
+    s1.properties:touch()
     local components = {
         CompoundAbsorberComponent(),
         OgreSceneNodeComponent(),
         MicrobeComponent(not aiControlled),
         reactionHandler,
         rigidBody,
-        compoundEmitter
+        compoundEmitter,
+        soundComponent
     }
     if aiControlled then
         local aiController = MicrobeAIControllerComponent()
@@ -282,7 +299,8 @@ Microbe.COMPONENTS = {
     rigidBody = RigidBodyComponent.TYPE_ID,
     sceneNode = OgreSceneNodeComponent.TYPE_ID,
     compoundEmitter = CompoundEmitterComponent.TYPE_ID,
-    collisionHandler = CollisionComponent.TYPE_ID
+    collisionHandler = CollisionComponent.TYPE_ID,
+    soundSource = SoundSourceComponent.TYPE_ID,
 }
 
 
@@ -497,8 +515,11 @@ end
 --
 -- @param amount
 --  amount of hitpoints to substract
-function Microbe:damage(amount)
+function Microbe:damage(amount, damageType)
     assert(amount >= 0, "Can't deal negative damage. Use Microbe:heal instead")
+    if damageType ~= nil and damageType == "toxin" then
+        self.soundSource:playSound("microbe-toxin-damage")
+    end
     self.microbe.hitpoints = self.microbe.hitpoints - amount
     for _, organelle in pairs(self.microbe.organelles) do
         organelle:flashColour(300, ColourValue(1,0.2,0.2,1))
@@ -532,6 +553,7 @@ end
 function Microbe:emitAgent(compoundId, maxAmount)
     local agentVacuole = self.microbe.specialStorageOrganelles[compoundId]
     if agentVacuole ~= nil and agentVacuole.storedAmount > MINIMUM_AGENT_EMISSION_AMOUNT then
+        self.soundSource:playSound("microbe-release-toxin")
         -- Calculate the emission angle of the agent emitter
         local organelleX, organelleY = axialToCartesian(agentVacuole.position.q, agentVacuole.position.r)
         local nucleusX, nucleusY = axialToCartesian(0, 0)
@@ -701,15 +723,13 @@ function Microbe:kill()
     deathAnimSceneNode.transform.position = Vector3(microbeSceneNode.transform.position.x, microbeSceneNode.transform.position.y, 0)
     deathAnimSceneNode.transform:touch()
     deathAnimationEntity:addComponent(deathAnimSceneNode)
-    
-    if self.microbe.isPlayerMicrobe then
-        self.microbe.dead = true
-        self.microbe.deathTimer = 5000
-        self.microbe.movementDirection = Vector3(0,0,0)
-        self.rigidBody:clearForces()
-        microbeSceneNode.visible = false
-    else
-        self:destroy()
+    self.soundSource:playSound("microbe-death")
+    self.microbe.dead = true
+    self.microbe.deathTimer = 5000
+    self.microbe.movementDirection = Vector3(0,0,0)
+    self.rigidBody:clearForces()
+    microbeSceneNode.visible = false
+    if self.microbe.isPlayerMicrobe  ~= true then
         if not self.playerAlreadyShownVictory then
             self.playerAlreadyShownVictory = true
             showMessage("VICTORY!!!")
@@ -750,7 +770,6 @@ function Microbe:update(logicTime)
                 self:storeCompound(compound, amount, true)
             end
         end
-        
         -- Distribute compounds to Process Organelles
         for _, processOrg in pairs(self.microbe.processOrganelles) do
             processOrg:update(self, logicTime)
@@ -818,20 +837,24 @@ function Microbe:update(logicTime)
     else
         self.microbe.deathTimer = self.microbe.deathTimer - logicTime
         if self.microbe.deathTimer <= 0 then
-            self.microbe.dead = false
-            self.microbe.deathTimer = 0
-            self.residuePhysicsTime = 0
-            self.microbe.hitpoints = self.microbe.maxHitpoints
-            
-            self.rigidBody:setDynamicProperties(
-                Vector3(0,0,0), -- Position
-                Quaternion(Radian(Degree(0)), Vector3(1, 0, 0)), -- Orientation
-                Vector3(0, 0, 0), -- Linear velocity
-                Vector3(0, 0, 0)  -- Angular velocity
-            )
-            local sceneNode = self.entity:getComponent(OgreSceneNodeComponent.TYPE_ID)
-            sceneNode.visible = true
-            self:storeCompound(CompoundRegistry.getCompoundId("atp"), 20, false)
+            if self.microbe.isPlayerMicrobe  == true then
+                self.microbe.dead = false
+                self.microbe.deathTimer = 0
+                self.residuePhysicsTime = 0
+                self.microbe.hitpoints = self.microbe.maxHitpoints
+                
+                self.rigidBody:setDynamicProperties(
+                    Vector3(0,0,0), -- Position
+                    Quaternion(Radian(Degree(0)), Vector3(1, 0, 0)), -- Orientation
+                    Vector3(0, 0, 0), -- Linear velocity
+                    Vector3(0, 0, 0)  -- Angular velocity
+                )
+                local sceneNode = self.entity:getComponent(OgreSceneNodeComponent.TYPE_ID)
+                sceneNode.visible = true
+                self:storeCompound(CompoundRegistry.getCompoundId("atp"), 20, false)
+            else
+                self:destroy()
+            end
         end
     end
     self.compoundAbsorber:setAbsorbtionCapacity(self.microbe.remainingBandwidth)
@@ -933,6 +956,10 @@ function MicrobeSystem:__init()
         },
         true
     )
+    self.microbeCollisions = CollisionFilter(
+        "microbe",
+        "microbe"
+    );
     self.microbes = {}
 end
 
@@ -940,16 +967,17 @@ end
 function MicrobeSystem:init(gameState)
     System.init(self, gameState)
     self.entities:init(gameState)
+    self.microbeCollisions:init(gameState)
 end
 
 
 function MicrobeSystem:shutdown()
     self.entities:shutdown()
+    self.microbeCollisions:shutdown()
 end
 
 
 function MicrobeSystem:update(milliseconds)
-  --  if Engine:currentGameState()
     for entityId in self.entities:removedEntities() do
         self.microbes[entityId] = nil
     end
@@ -961,6 +989,15 @@ function MicrobeSystem:update(milliseconds)
     for _, microbe in pairs(self.microbes) do
         microbe:update(milliseconds)
     end
+    -- Note that this triggers every frame there is a collision, but the sound system ensures that the sound doesn't overlap itself. Could potentially be optimised
+    for collision in self.microbeCollisions:collisions() do
+        local soundComponent = Entity(collision.entityId1):getComponent(SoundSourceComponent.TYPE_ID)
+        -- The component can sometimes be nil in the case of two ai microbes colliding just before one is despawned.
+        if soundComponent ~= nil then
+            soundComponent:playSound("microbe-collision")
+        end
+    end
+    self.microbeCollisions:clearCollisions()
 end
 
 

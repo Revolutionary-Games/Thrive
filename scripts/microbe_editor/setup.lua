@@ -38,6 +38,7 @@ end
 local function setupSound()
     local ambientEntity = Entity("editor_ambience")
     local soundSource = SoundSourceComponent()
+    soundSource.autoLoop = true
     soundSource.ambientSoundSource = true
     soundSource.volumeMultiplier = 0.4
     ambientEntity:addComponent(soundSource)
@@ -47,6 +48,15 @@ local function setupSound()
     soundSource:addSound("microbe-editor-theme-3", "microbe-editor-theme-3.ogg")
     soundSource:addSound("microbe-editor-theme-4", "microbe-editor-theme-4.ogg")
     soundSource:addSound("microbe-editor-theme-5", "microbe-editor-theme-5.ogg")   
+    -- Gui effects
+    local guiSoundEntity = Entity("gui_sounds")
+    soundSource = SoundSourceComponent()
+    soundSource.ambientSoundSource = true
+    soundSource.autoLoop = false
+    soundSource.volumeMultiplier = 1.0
+    guiSoundEntity:addComponent(soundSource)
+    -- Sound
+    soundSource:addSound("button-hover-click", "soundeffects/gui/button-hover-click.ogg")
 end
 
 local function createMicrobeEditor(name)
