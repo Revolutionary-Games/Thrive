@@ -750,7 +750,6 @@ function Microbe:reproduce()
     if species ~= nil then -- Microbes don't need to have a species
         species.populationBonusFactor = species.populationBonusFactor * 1.4
     end
-    end
     if self.microbe.isPlayerMicrobe then
         showReproductionDialog()
     end

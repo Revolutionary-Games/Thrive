@@ -465,4 +465,4 @@ end
 
 GameState.MICROBE = createMicrobeStage("microbe")
 GameState.MICROBE_ALTERNATE = createMicrobeStage("microbe_alternate")
-Engine:setCurrentGameState(GameState.MICROBE)
+--Engine:setCurrentGameState(GameState.MICROBE)
