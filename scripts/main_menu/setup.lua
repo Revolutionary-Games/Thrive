@@ -18,13 +18,23 @@ local function setupCamera()
 end
 
 local function setupSound()
+    -- Background music
     local ambientEntity = Entity("main_menu_ambience")
     local soundSource = SoundSourceComponent()
     soundSource.ambientSoundSource = true
+    soundSource.autoLoop = true
     soundSource.volumeMultiplier = 0.4
     ambientEntity:addComponent(soundSource)
-    -- Sound
     soundSource:addSound("main-menu-theme-1", "main-menu-theme-1.ogg")
+    -- Gui effects
+    local guiSoundEntity = Entity("gui_sounds")
+    soundSource = SoundSourceComponent()
+    soundSource.ambientSoundSource = true
+    soundSource.autoLoop = false
+    soundSource.volumeMultiplier = 1.0
+    guiSoundEntity:addComponent(soundSource)
+    -- Sound
+    soundSource:addSound("button-hover-click", "soundeffects/gui/button-hover-click.ogg")
 end
 
 local function createMainMenu(name)

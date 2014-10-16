@@ -328,11 +328,13 @@ RigidBodyInputSystem::update(int, int logicTime) {
             body->activate();
         }
         rigidBodyComponent->m_impulseQueue.clear();
+
         if (not rigidBodyComponent->m_torque.isZeroLength()) {
             body->applyTorque(
                 ogreToBullet(rigidBodyComponent->m_torque)
             );
             rigidBodyComponent->m_torque = Ogre::Vector3::ZERO;
+            body->activate();
         }
         if(rigidBodyComponent->m_toClearForces == true){
             body->clearForces();
