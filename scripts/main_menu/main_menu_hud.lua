@@ -21,10 +21,14 @@ function MainMenuHudSystem:update(renderTime, logicTime)
 end
 
 function mainMenuMicrobeStageButtonClicked()
+    local guiSoundEntity = Entity("gui_sounds")
+    guiSoundEntity:getComponent(SoundSourceComponent.TYPE_ID):playSound("button-hover-click")
     Engine:setCurrentGameState(GameState.MICROBE)
 end
 
 function mainMenuMicrobeEditorButtonClicked()
+    local guiSoundEntity = Entity("gui_sounds")
+    guiSoundEntity:getComponent(SoundSourceComponent.TYPE_ID):playSound("button-hover-click")
     Engine:setCurrentGameState(GameState.MICROBE_EDITOR)
 end
 
