@@ -240,6 +240,8 @@ function removeClicked()
 end
 
 function rootSaveCreationClicked()
+    local guiSoundEntity = Entity("gui_sounds")
+    guiSoundEntity:getComponent(SoundSourceComponent.TYPE_ID):playSound("button-hover-click")
     panel = global_activeMicrobeEditorHudSystem.saveLoadPanel
     panel:getChild("SaveButton"):show()
     panel:getChild("NameTextbox"):show()
@@ -250,6 +252,8 @@ function rootSaveCreationClicked()
 end
 
 function rootLoadCreationClicked()
+    local guiSoundEntity = Entity("gui_sounds")
+    guiSoundEntity:getComponent(SoundSourceComponent.TYPE_ID):playSound("button-hover-click")
     panel = global_activeMicrobeEditorHudSystem.saveLoadPanel
     panel:getChild("SaveButton"):hide()
     panel:getChild("NameTextbox"):hide()
@@ -275,6 +279,8 @@ function rootLoadCreationClicked()
 end
 
 function saveCreationClicked()
+    local guiSoundEntity = Entity("gui_sounds")
+    guiSoundEntity:getComponent(SoundSourceComponent.TYPE_ID):playSound("button-hover-click")
     name = panel:getChild("NameTextbox"):getText()
     -- Todo: Additional input sanitation
     if string.len(name) > 0 then
@@ -284,6 +290,8 @@ function saveCreationClicked()
 end
 
 function loadCreationClicked()
+    local guiSoundEntity = Entity("gui_sounds")
+    guiSoundEntity:getComponent(SoundSourceComponent.TYPE_ID):playSound("button-hover-click")
     item = global_activeMicrobeEditorHudSystem.creationsListbox:itemListboxGetLastSelectedItem()
     if not item:isNull() then 
         entity = Engine:loadCreation(global_activeMicrobeEditorHudSystem.creationFileMap[item:getText()])
@@ -293,14 +301,20 @@ function loadCreationClicked()
 end
 
 function playClicked()
+    local guiSoundEntity = Entity("gui_sounds")
+    guiSoundEntity:getComponent(SoundSourceComponent.TYPE_ID):playSound("button-hover-click")
     Engine:setCurrentGameState(GameState.MICROBE)
 end
 
 function menuPlayClicked()
+    local guiSoundEntity = Entity("gui_sounds")
+    guiSoundEntity:getComponent(SoundSourceComponent.TYPE_ID):playSound("button-hover-click")
     Engine:currentGameState():rootGUIWindow():getChild("MenuPanel"):hide()
     playClicked()
 end
 
 function menuMainMenuClicked()
+    local guiSoundEntity = Entity("gui_sounds")
+    guiSoundEntity:getComponent(SoundSourceComponent.TYPE_ID):playSound("button-hover-click")
     Engine:setCurrentGameState(GameState.MAIN_MENU)
 end
