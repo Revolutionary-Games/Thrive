@@ -35,7 +35,7 @@ local function setupCamera()
 end
 
 function oxytoxyEffect(entityId, potency)
-    Microbe(Entity(entityId)):damage(potency*15)
+    Microbe(Entity(entityId)):damage(potency*15, "toxin")
 end
 
 local function setupCompounds()
@@ -357,7 +357,7 @@ local function setupEmitter()
     testEmitter.maxEmissionAngle = Degree(360)
     testEmitter.particleLifeTime = 5000
     local timedEmitter = TimedCompoundEmitterComponent()
-    timedEmitter.compoundId = CompoundRegistry.getCompoundId("oxygen")
+    timedEmitter.compoundId = CompoundRegistry.getCompoundId("glucose")
     timedEmitter.particlesPerEmission = 1
     timedEmitter.potencyPerParticle = 3.0
     timedEmitter.emitInterval = 1000
@@ -368,6 +368,8 @@ function unlockToxin(entityId)
     if Engine:playerData():lockedMap():isLocked("Toxin") then
         showMessage("Toxin Unlocked!")
         Engine:playerData():lockedMap():unlock("Toxin")
+        local guiSoundEntity = Entity("gui_sounds")
+        guiSoundEntity:getComponent(SoundSourceComponent.TYPE_ID):playSound("microbe-pickup-organelle")
     end
     return true
 end
@@ -389,7 +391,8 @@ local function setupSound()
     local ambientEntity = Entity("ambience")
     local soundSource = SoundSourceComponent()
     soundSource.ambientSoundSource = true
-    soundSource.volumeMultiplier = 0.3
+    soundSource.autoLoop = true
+    soundSource.volumeMultiplier = 0.1
     ambientEntity:addComponent(soundSource)
     -- Sound
     soundSource:addSound("microbe-theme-1", "microbe-theme-1.ogg")
@@ -398,6 +401,26 @@ local function setupSound()
     soundSource:addSound("microbe-theme-5", "microbe-theme-5.ogg")
     soundSource:addSound("microbe-theme-6", "microbe-theme-6.ogg")   
     soundSource:addSound("microbe-theme-7", "microbe-theme-7.ogg")   
+    local ambientEntity2 = Entity("ambience2")
+    local soundSource = SoundSourceComponent()
+     soundSource.volumeMultiplier = 0.4
+    soundSource.ambientSoundSource = true
+    ambientSound = soundSource:addSound("microbe-ambient", "soundeffects/microbe-ambience.ogg")
+    soundSource.autoLoop = true
+     ambientEntity2:addComponent(soundSource)
+    -- Gui effects
+    local guiSoundEntity = Entity("gui_sounds")
+    soundSource = SoundSourceComponent()
+    soundSource.ambientSoundSource = true
+    soundSource.autoLoop = false
+    soundSource.volumeMultiplier = 1.0
+    guiSoundEntity:addComponent(soundSource)
+    -- Sound
+    soundSource:addSound("button-hover-click", "soundeffects/gui/button-hover-click.ogg")
+    soundSource:addSound("microbe-pickup-organelle", "soundeffects/microbe-pickup-organelle.ogg")
+    local listener = Entity("soundListener")
+    local sceneNode = OgreSceneNodeComponent()
+    listener:addComponent(sceneNode)
 end
 
 setupCompounds()

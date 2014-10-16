@@ -375,6 +375,7 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
             MAX_SOURCES,
             QUEUE_LIST_SIZE
         );
+        soundManager.setDistanceModel(AL_LINEAR_DISTANCE);
     }
 
     void
