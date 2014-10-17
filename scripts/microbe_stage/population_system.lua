@@ -8,10 +8,14 @@ POPULATION_SIMULATION_INTERVAL = 1200
 --------------------------------------------------------------------------------
 class 'SpeciesComponent' (Component)
 
+SPECIES_NUM = 0
+
 function SpeciesComponent:__init(name)
     Component.__init(self)
+    self.num = SPECIES_NUM
+    SPECIES_NUM = SPECIES_NUM + 1
     if name == nil then
-        self.name = "noname"
+        self.name = "noname"..self.num
     else
         self.name = name
     end
@@ -26,21 +30,21 @@ function SpeciesComponent:__init(name)
 
     --SpeciesRegistry.loadFromXML("../definitions/microbes.xml") -- might not be necessary
     -- 
-    if pcall(function () SpeciesRegistry.getSize(name) end) then
+    if pcall(function () SpeciesRegistry.getSize(self.name) end) then
         -- In this case the species is a default one loaded from xml
-        print("loaded "..self.name)
-        local numOrganelles = SpeciesRegistry.getSize(name)
-        print("# organelles = "..numOrganelles)
+        -- print("loaded "..self.name)
+        local numOrganelles = SpeciesRegistry.getSize(self.name)
+        -- print("# organelles = "..numOrganelles)
         for i = 0,(numOrganelles-1) do
             -- returns a property table
-            local organelleData = SpeciesRegistry.getOrganelle(name, i)
+            local organelleData = SpeciesRegistry.getOrganelle(self.name, i)
             self.organelles[#self.organelles+1] = organelleData
         end
-        for _, org in pairs(self.organelles) do print(org.name, org.q, org.r) end
+        -- for _, org in pairs(self.organelles) do print(org.name, org.q, org.r) end
     else
         -- In this case the species is an evolutionary descendant
         -- So whatever handles evolution can fill in the organelles
-        print("evolved "..self.name)
+        -- print("evolved "..self.name)
     end
     -- for key, value in pairs(self.organelles) do print(key, value) end
     self.avgCompoundAmounts = {} -- maps each compound name to the amount a new spawn should get. Nonentries are zero.
@@ -53,12 +57,36 @@ end
 function SpeciesComponent:load(storage)
     Component.load(self, storage)
     self.name = storage:get("name", "")
+    print(self.name)
     self.populationBonusFactor = storage:get("populationBonusFactor", 0)
     self.populationPenaltyFactor = storage:get("populationPenaltyFactor", 0)
     self.deathsPerTime = storage:get("deathsPerTime", 0)
     self.deathsPerTime = storage:get("deathsPerTime", 0)
     self.birthsPerTime = storage:get("birthsPerTime", 0)
     self.currentPopulation = storage:get("currentPopulation", 0)
+    self.compoundPriorities = {}
+    priorityData = storage:get("compoundPriorities", nil)
+    --if priorityData ~= nil then
+     --   print("atp: "..priorityData:get("atp", -1))
+      --  print("glucose: "..priorityData:get("glucose", -1))
+    --end
+    organelleData = storage:get("organelleData", nil)
+    self.organelles = {}
+    if organelleData ~= nil then
+        i = 1
+        while organelleData:contains(""..i) do
+            organelle = {}
+            orgData = organelleData:get(""..i, nil)
+            if orgData ~= nil then
+                organelle.name = orgData:get("name", "")
+                organelle.q = orgData:get("q", 0)
+                organelle.r = orgData:get("r", 0)
+            end
+            self.organelles[i] = organelle
+            i = i + 1
+        end
+    end
+    for _, org in pairs(self.organelles) do print(org.name, org.q, org.r) end
 end
 
 --todo
@@ -70,6 +98,20 @@ function SpeciesComponent:storage()
     storage:set("deathsPerTime", self.deathsPerTime)
     storage:set("birthsPerTime", self.birthsPerTime)
     storage:set("currentPopulation", self.currentPopulation)
+    compoundPriorities = StorageContainer()
+    for k,v in pairs(self.compoundPriorities) do
+        compoundPriorities:set(k,v)
+    end
+    storage:set("compoundPriorities", compoundPriorities)
+    organelles = StorageContainer()
+    for i, org in pairs(self.organelles) do
+        orgData = StorageContainer()
+        orgData:set("name", org.name)
+        orgData:set("q", org.q)
+        orgData:set("r", org.r)
+        organelles:set(""..i, orgData)
+    end
+    storage:set("organelleData", organelles)
     return storage
 end
 
