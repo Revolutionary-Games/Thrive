@@ -19,7 +19,7 @@ function SpeciesComponent:__init(name)
     else
         self.name = name
     end
-    self.name="Default"
+    --self.name="Default" -- TODO TODODO TODODODO get names properly somehow
     self.populationBonusFactor = 1.0
     self.populationPenaltyFactor = 1.0
     self.deathsPerTime = 1.0
@@ -28,25 +28,6 @@ function SpeciesComponent:__init(name)
     -- todo make these actually do stuff
     self.organelles = {} -- stores a table of organelle {q,r,name} tables
 
-    --SpeciesRegistry.loadFromXML("../definitions/microbes.xml") -- might not be necessary
-    -- 
-    if pcall(function () SpeciesRegistry.getSize(self.name) end) then
-        -- In this case the species is a default one loaded from xml
-        -- print("loaded "..self.name)
-        local numOrganelles = SpeciesRegistry.getSize(self.name)
-        -- print("# organelles = "..numOrganelles)
-        for i = 0,(numOrganelles-1) do
-            -- returns a property table
-            local organelleData = SpeciesRegistry.getOrganelle(self.name, i)
-            self.organelles[#self.organelles+1] = organelleData
-        end
-        -- for _, org in pairs(self.organelles) do print(org.name, org.q, org.r) end
-    else
-        -- In this case the species is an evolutionary descendant
-        -- So whatever handles evolution can fill in the organelles
-        -- print("evolved "..self.name)
-    end
-    -- for key, value in pairs(self.organelles) do print(key, value) end
     self.avgCompoundAmounts = {} -- maps each compound name to the amount a new spawn should get. Nonentries are zero.
                                  -- we could also add some measure of variability to make things more ...variable.
     self.compoundPriorities = {} -- maps compound name to priority.
@@ -57,7 +38,7 @@ end
 function SpeciesComponent:load(storage)
     Component.load(self, storage)
     self.name = storage:get("name", "")
-    print(self.name)
+    print(self.name,""..self.num)
     self.populationBonusFactor = storage:get("populationBonusFactor", 0)
     self.populationPenaltyFactor = storage:get("populationPenaltyFactor", 0)
     self.deathsPerTime = storage:get("deathsPerTime", 0)
@@ -86,7 +67,7 @@ function SpeciesComponent:load(storage)
             i = i + 1
         end
     end
-    for _, org in pairs(self.organelles) do print(org.name, org.q, org.r) end
+    -- for _, org in pairs(self.organelles) do print(org.name, org.q, org.r) end
 end
 
 --todo
@@ -104,7 +85,7 @@ function SpeciesComponent:storage()
     end
     storage:set("compoundPriorities", compoundPriorities)
     organelles = StorageContainer()
-    for i, org in pairs(self.organelles) do
+    for i, org in ipairs(self.organelles) do
         orgData = StorageContainer()
         orgData:set("name", org.name)
         orgData:set("q", org.q)
@@ -113,6 +94,16 @@ function SpeciesComponent:storage()
     end
     storage:set("organelleData", organelles)
     return storage
+end
+
+function SpeciesComponent:mutate(aiControlled)
+    --[[
+    SpeciesComponent:mutate should call the correct evolution-handler
+    (Ie, trigger an entry into microbe editor for player; and auto-evo 
+    for AI), and then create and add the new species to the system
+    
+
+    ]]
 end
 
 REGISTER_COMPONENT("SpeciesComponent", SpeciesComponent)
@@ -141,7 +132,7 @@ end
 -- Override from System
 function PopulationSystem:init(gameState)
     System.init(self, gameState)
-    SpeciesRegistry.loadFromXML("../definitions/microbes.xml")
+    self.starterSpecies()
     self.entities:init(gameState)
 end
 
@@ -153,7 +144,7 @@ end
 
 
 -- Override from System
-function PopulationSystem:update(milliseconds)
+function PopulationSystem:update(_, milliseconds)
     self.timeSinceLastCycle = self.timeSinceLastCycle + milliseconds
     
     --Perform spawn cycle if necessary (Reason for "if" rather than "while" stated below)
@@ -178,5 +169,37 @@ function PopulationSystem:update(milliseconds)
         
         
         self.timeSinceLastCycle = self.timeSinceLastCycle - POPULATION_SIMULATION_INTERVAL
+    end
+end
+
+function PopulationSystem:starterSpecies()
+    --[[
+    This function should be the entry point for all initial-species generation
+    For now, it can go through the XML and instantiate all the species, but later this 
+    would be all procedural.
+
+    Together with the mutate function, these would be the only ways species are created
+    ]]
+    SpeciesRegistry.loadFromXML("../definitions/microbes.xml")
+    for _, name in ipairs(SpeciesRegistry.getSpeciesNames()) do
+        speciesEntity = Entity(name)
+        speciesComponent = SpeciesComponent(name)
+        speciesEntity:addComponent(speciesComponent)
+        -- print("made entity and component")
+        local organelles = {}
+        assert(pcall(function () SpeciesRegistry.getSize(name) end), "could not load species", name, "from XML")
+        -- In this case the species is a default one loaded from xml
+        -- print("loaded", name)
+        local numOrganelles = SpeciesRegistry.getSize(name)
+        -- print("# organelles = "..numOrganelles)
+        for i = 0,(numOrganelles-1) do
+            -- returns a property table
+            local organelleData = SpeciesRegistry.getOrganelle(name, i)
+            organelles[#organelles+1] = organelleData
+        end
+        -- for _, org in pairs(organelles) do print(org.name, org.q, org.r) end
+
+        -- for key, value in pairs(organelles) do print(key, value) end
+        speciesComponent.organelles = organelles
     end
 end

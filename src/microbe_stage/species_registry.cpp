@@ -4,6 +4,7 @@
 
 #include <vector>
 #include <unordered_map>
+#include <boost/range/adaptor/map.hpp>
 
 #include "tinyxml.h"
 
@@ -16,6 +17,7 @@ SpeciesRegistry::luaBindings() {
         .scope
         [
             def("loadFromXML", &SpeciesRegistry::loadFromXML),
+            def("getSpeciesNames", &SpeciesRegistry::getSpeciesNames),
             def("getSize", &SpeciesRegistry::getSize),
             def("getCompoundPriority", &SpeciesRegistry::getCompoundPriority),
             def("getCompoundAmount", SpeciesRegistry::getCompoundAmount),
@@ -73,6 +75,17 @@ SpeciesRegistry::getOrganelle(
         table["name"] = "";
         table["q"] = 0;
         table["r"] = 0;
+    }
+    return table;
+}
+
+luabind::object
+SpeciesRegistry::getSpeciesNames() {
+    luabind::object table = luabind::newtable(Game::instance().engine().luaState());
+    int i = 1;
+    for (std::string name : speciesMap() | boost::adaptors::map_keys) {
+        table[i] = name;
+        i++;
     }
     return table;
 }
