@@ -239,7 +239,7 @@ class 'Microbe'
 --
 -- @returns microbe
 -- An object of type Microbe
-function Microbe.createMicrobeEntity(name, aiControlled)
+function Microbe.createMicrobeEntity(name, aiControlled, speciesName)
     local entity
     if name then
         entity = Entity(name)
@@ -288,7 +288,7 @@ function Microbe.createMicrobeEntity(name, aiControlled)
         local aiController = MicrobeAIControllerComponent()
         table.insert(components, aiController)
     else
-        table.insert(components, SpeciesComponent())
+        --table.insert(components, SpeciesComponent()) -- we need another way to make a new SpeciesComponent
     end
     for _, component in ipairs(components) do
         entity:addComponent(component)
@@ -339,6 +339,22 @@ end
 -- returns the species component or nil if it doesn't have a valid species
 function Microbe:getSpeciesComponent()
     return Entity(self.microbe.speciesName):getComponent(SpeciesComponent.TYPE_ID)
+end
+
+-- Assigns a species to the microbe
+-- If the species already exists, the microbe is updated to fit.
+-- If the species does not exist, the species is created using the microbe as a template.
+function Microbe:setSpecies(speciesName)
+    self.microbe.speciesName = speciesName
+    if self.getSpeciesComponent() ~= nil then 
+        -- update microbe
+    else
+        -- make species
+        speciesEntity = Entity(speciesName)
+        speciesComponent = SpeciesComponent(speciesName)
+        speciesEntity:addComponent(speciesComponent)
+        
+    end
 end
 
 -- Adds a new organelle
