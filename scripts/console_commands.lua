@@ -3,13 +3,19 @@
 ----------------------
 
 global_consoleEmitter = nil
+local guiMode = false
 
 function help()
     commands()
 end
 
 function commands()
-    print("Extra console commands are: \n - spawnCompounds(name, amount) \n - reproduce() \n - suicide() \n - unlockAll() \n - mutationPoints()")
+    print("Extra console commands are: \n - spawnCompounds(name, amount) \n - reproduce() \n - suicide() \n - unlockAll() \n - mutationPoints() \n - toggleGuiMove()")
+end
+
+function toggleGuiMove()
+    guiMode = not guiMode
+    CEGUIWindow.setGuiMoveMode(guiMode)
 end
 
 function spawnCompounds(name, amount)
