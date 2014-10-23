@@ -91,6 +91,11 @@ public:
     static luabind::scope
     luaBindings();
 
+    static void
+    setGuiMoveMode(
+        bool value
+    );
+
 
     /**
     * @brief Returns whether the underlying CEGUI::Window is a nullptr
@@ -377,8 +382,8 @@ private:
 
     friend class GameState;
 
-    //Private constructor
-    CEGUIWindow(CEGUI::Window* window);
+    //Private constructor. New window is true if this is the first time a CEGUIWindow is created with the window pointer (for event subscribing)
+    CEGUIWindow(CEGUI::Window* window, bool newWindow = true);
 
     CEGUI::Window* m_window = nullptr;
 
