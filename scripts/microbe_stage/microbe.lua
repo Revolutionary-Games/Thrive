@@ -32,9 +32,9 @@ function MicrobeComponent:__init(isPlayerMicrobe)
     self.stored = 0 -- The amount stored in the microbe. NOTE: This does not include special storage organelles
     self.compounds = {}
     self.compoundPriorities = {}
-    self.defaultCompoundPriorities = {}
-    self.defaultCompoundPriorities[CompoundRegistry.getCompoundId("atp")] = 10
-    self.defaultCompoundPriorities[CompoundRegistry.getCompoundId("reproductase")] = 8
+    self.defaultCompoundPriorities = {} -- should go to species
+    self.defaultCompoundPriorities[CompoundRegistry.getCompoundId("atp")] = 10 -- should go to species
+    self.defaultCompoundPriorities[CompoundRegistry.getCompoundId("reproductase")] = 8 -- should go to species
     self:_resetCompoundPriorities()
     self.initialized = false
     self.isPlayerMicrobe = isPlayerMicrobe
@@ -341,19 +341,30 @@ function Microbe:getSpeciesComponent()
     return Entity(self.microbe.speciesName):getComponent(SpeciesComponent.TYPE_ID)
 end
 
--- Assigns a species to the microbe
+-- Assigns a species to the microbe, if teh species already exists
 -- If the species already exists, the microbe is updated to fit.
--- If the species does not exist, the species is created using the microbe as a template.
 function Microbe:setSpecies(speciesName)
     self.microbe.speciesName = speciesName
-    if self.getSpeciesComponent() ~= nil then 
+    if self.getSpeciesComponent() ~= nil then
         -- update microbe
-    else
+        species = self.getSpeciesComponent()
+        -- remove all current organelles
+        self.microbe.organelles = {} -- we need to clear a bunch more data than this
+        for i, orgdata in pairs(species.organelles) do
+            organelle = OrganelleFactory.makeOrganelle(orgdata)
+            addOrganelle(orgdata.q, orgdata.r, organelle)
+        end
+    end
+end
+
+function Microbe:makeSpecies(speciesName)
+    self.microbe.speciesName = speciesName
+    if self.getSpeciesComponent() == nil then
         -- make species
         speciesEntity = Entity(speciesName)
         speciesComponent = SpeciesComponent(speciesName)
         speciesEntity:addComponent(speciesComponent)
-        
+        -- Create species' organelle data
     end
 end
 
