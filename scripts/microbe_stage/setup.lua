@@ -345,7 +345,7 @@ local function setupEmitter()
     entity:addComponent(reactionHandler)
     -- Scene node
     local sceneNode = OgreSceneNodeComponent()
-    sceneNode.meshName = "molecule.mesh"
+    sceneNode.meshName = "buffer"
     entity:addComponent(sceneNode)
     -- Emitter test
     local testEmitter = CompoundEmitterComponent()
@@ -477,4 +477,4 @@ local function createMicrobeStage(name)
 end
 
 GameState.MICROBE = createMicrobeStage("microbe")
-GameState.MICROBE_ALTERNATE = createMicrobeStage("microbe_alternate")
+--GameState.MICROBE_ALTERNATE = createMicrobeStage("microbe_alternate")
