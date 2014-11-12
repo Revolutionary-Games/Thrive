@@ -283,7 +283,9 @@ function saveCreationClicked()
     guiSoundEntity:getComponent(SoundSourceComponent.TYPE_ID):playSound("button-hover-click")
     name = panel:getChild("NameTextbox"):getText()
     -- Todo: Additional input sanitation
-    if string.len(name) > 0 then
+    if string.match(name, "^[%w_]+$") == nil then
+        print("unsanitary name: "..name)
+    elseif string.len(name) > 0  then
         Engine:saveCreation(global_activeMicrobeEditorHudSystem.editor.currentMicrobe.entity.id, name, "microbe") 
         panel:hide()
     end
@@ -303,8 +305,6 @@ end
 function playClicked()
     local guiSoundEntity = Entity("gui_sounds")
     guiSoundEntity:getComponent(SoundSourceComponent.TYPE_ID):playSound("button-hover-click")
-    local m = global_activeMicrobeEditorHudSystem.editor.currentMicrobe
-    m:makeSpecies("nurp")
     Engine:setCurrentGameState(GameState.MICROBE)
 end
 
