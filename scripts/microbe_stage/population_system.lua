@@ -67,7 +67,6 @@ function SpeciesComponent:load(storage)
             i = i + 1
         end
     end
-    -- for _, org in pairs(self.organelles) do print(org.name, org.q, org.r) end
 end
 
 --todo

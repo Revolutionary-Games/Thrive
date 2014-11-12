@@ -341,8 +341,9 @@ function Microbe:getSpeciesComponent()
     return Entity(self.microbe.speciesName):getComponent(SpeciesComponent.TYPE_ID)
 end
 
--- Assigns a species to the microbe, if teh species already exists
+-- Assigns a species to the microbe, if the species already exists
 -- If the species already exists, the microbe is updated to fit.
+-- Otherwise does nothing
 function Microbe:setSpecies(speciesName)
     self.microbe.speciesName = speciesName
     if self.getSpeciesComponent() ~= nil then
@@ -359,12 +360,21 @@ end
 
 function Microbe:makeSpecies(speciesName)
     self.microbe.speciesName = speciesName
-    if self.getSpeciesComponent() == nil then
+    if not pcall(function() self.getSpeciesComponent() end) then
         -- make species
         speciesEntity = Entity(speciesName)
-        speciesComponent = SpeciesComponent(speciesName)
-        speciesEntity:addComponent(speciesComponent)
+        species = SpeciesComponent(speciesName)
+        speciesEntity:addComponent(species)
         -- Create species' organelle data
+        for i, organelle in ipairs(self.microbe.organelles) do
+            print(i)
+            local data = {}
+            data.name = organelle.name
+            data.q = organelle.position.q
+            data.r = organelle.position.r
+            species.organelles[i] = data
+        end
+        for i,org in ipairs(species.organelles) do print(org.name,org.q,org.r) end
     end
 end
 

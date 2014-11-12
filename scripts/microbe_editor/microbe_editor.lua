@@ -54,6 +54,7 @@ function MicrobeEditor:activate()
 end
 
 function MicrobeEditor:update(renderTime, logicTime)
+    -- self.nextMicrobeEntity being a temporary used to pass the microbe from game to editor TODO replace with species fiddling
     if self.nextMicrobeEntity ~= nil then
         self.currentMicrobe = Microbe(self.nextMicrobeEntity)
         self.currentMicrobe.sceneNode.transform.orientation = Quaternion(Radian(Degree(180)), Vector3(0, 0, 1))-- Orientation

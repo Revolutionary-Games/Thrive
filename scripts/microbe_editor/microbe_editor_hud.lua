@@ -303,6 +303,8 @@ end
 function playClicked()
     local guiSoundEntity = Entity("gui_sounds")
     guiSoundEntity:getComponent(SoundSourceComponent.TYPE_ID):playSound("button-hover-click")
+    local m = global_activeMicrobeEditorHudSystem.editor.currentMicrobe
+    m:makeSpecies("nurp")
     Engine:setCurrentGameState(GameState.MICROBE)
 end
 

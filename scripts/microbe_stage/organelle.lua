@@ -260,6 +260,7 @@ function OrganelleFactory.makeOrganelle(data)
     end
     local success, organelle = pcall(make_organelle)
     if success then
+        organelle.name = name
         return organelle
     else
         if data.name == "" or data.name == nil then data.name = "<nameless>" end
