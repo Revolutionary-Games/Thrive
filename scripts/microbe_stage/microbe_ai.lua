@@ -104,7 +104,7 @@ function MicrobeAISystem:shutdown()
 end
 
 
-function MicrobeAISystem:update(milliseconds)
+function MicrobeAISystem:update(renderTime, logicTime)
     for entityId in self.entities:removedEntities() do
         self.microbes[entityId] = nil
     end
@@ -131,7 +131,7 @@ function MicrobeAISystem:update(milliseconds)
     self.entities:clearChanges()
     for _, microbe in pairs(self.microbes) do
         local aiComponent = microbe:getComponent(MicrobeAIControllerComponent.TYPE_ID)
-        aiComponent.intervalRemaining = aiComponent.intervalRemaining + milliseconds
+        aiComponent.intervalRemaining = aiComponent.intervalRemaining + logicTime
         while aiComponent.intervalRemaining > aiComponent.reevalutationInterval do
             aiComponent.intervalRemaining = aiComponent.intervalRemaining - aiComponent.reevalutationInterval
             

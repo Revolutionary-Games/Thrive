@@ -55,9 +55,7 @@ public:
     * @param milliSeconds
     */
     void
-    update(
-        int milliSeconds
-    ) override;
+    update(int, int) override;
 
 private:
 

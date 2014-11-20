@@ -53,7 +53,7 @@ BulletToOgreSystem::shutdown() {
 
 
 void
-BulletToOgreSystem::update(int) {
+BulletToOgreSystem::update(int, int) {
     for (auto& value : m_impl->m_entities) {
         RigidBodyComponent* rigidBodyComponent = std::get<0>(value.second);
         OgreSceneNodeComponent* sceneNodeComponent = std::get<1>(value.second);

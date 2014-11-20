@@ -68,9 +68,9 @@ public:
         PlayState playState = PlayState::Stop;
         bool loop = false;
         float volume = 1.0f;
-        float maxDistance = -1.0f;
-        float rolloffFactor = -1.0f;
-        float referenceDistance = 100.0f;
+        float maxDistance = 25.0f;
+        float rolloffFactor = 0.4f;
+        float referenceDistance = 5.0f;
         uint8_t priority = 0;
     };
 
@@ -159,8 +159,6 @@ private:
     std::string m_filename;
 
     std::string m_name;
-
-
 };
 
 /**
@@ -179,6 +177,7 @@ public:
     * - SoundSourceComponent()
     * - SoundSourceComponent::addSound()
     * - SoundSourceComponent::removeSound()
+    * - SoundSourceComponent::playSound()
     * - SoundSourceComponent::interpose()
     * - SoundSourceComponent::queueSound()
     * - SoundSourceComponent::volumeMultiplier
@@ -205,7 +204,6 @@ public:
         std::string filename
     );
 
-
     /**
     * @brief Removes a sound by name
     *
@@ -216,9 +214,22 @@ public:
         std::string name
     );
 
+    /**
+    * @brief Plays a sound
+    *  This is equivalent to playing the sound directly
+    *
+    * @param name
+    *   The name of the sound
+    */
+    void
+    playSound(
+        std::string name
+    );
+
 
     /**
-    * @brief Interrupts the current sound and interposes a new one
+    * @brief Interrupts the current ambient sound and interposes a new one
+    *  Does nothing for non-ambient sound sources
     *
     * @param name
     *  The name of the song that is to interpose
@@ -233,7 +244,8 @@ public:
     );
 
     /**
-    * @brief Queues up a sound to be played after the current one
+    * @brief Queues up an ambient sound to be played after the current one
+    *  Does nothing for non-ambient sound sources
     *
     * @param name
     *  The name of the song to queue up
@@ -254,11 +266,16 @@ public:
     storage() const override;
 
     /**
-    * @brief Whether this source as an ambient soundsource
-    *
-    *  Ambient sound sources convert all sounds to ambient ones and automatically fade between them
+    * @brief Whether this source as an ambient soundsource with no 3d position
     */
     TouchableValue<bool> m_ambientSoundSource = false;
+
+    /**
+    * @brief Whether this source auto loops
+    *
+    *  Auto looping sound sources will automatically keep playing sounds from the added sounds and fade between them
+    */
+    TouchableValue<bool> m_autoLoop = false;
 
     /**
     * @brief Volume multiplier that is applied to all associated sounds
@@ -274,10 +291,10 @@ private:
 
     std::list<Sound*> m_removedSounds;
 
-    Sound* m_ambientActiveSound = nullptr;
+    Sound* m_autoActiveSound = nullptr;
     Sound* m_queuedSound = nullptr;
-    int m_ambientSoundCountdown = 0;
-    bool m_isTransitioningAmbient = false;
+    int m_autoSoundCountdown = 0;
+    bool m_isTransitioningAuto = false;
 
     std::unordered_map<std::string, std::unique_ptr<Sound>> m_sounds;
 
@@ -332,7 +349,7 @@ public:
     /**
     * @brief Updates the system
     */
-    void update(int) override;
+    void update(int, int) override;
 
 private:
 
