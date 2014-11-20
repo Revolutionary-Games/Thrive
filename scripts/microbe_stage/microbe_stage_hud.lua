@@ -50,7 +50,7 @@ function HudSystem:init(gameState)
 end
 
 
-function HudSystem:update(milliseconds)
+function HudSystem:update(renderTime)
     local player = Entity("player")
     local playerMicrobe = Microbe(player)
 
@@ -78,6 +78,20 @@ function HudSystem:update(milliseconds)
     elseif  Engine.keyboard:wasKeyPressed(Keyboard.KC_P) then
         playerMicrobe:reproduce()
     end
+    local direction = Vector3(0, 0, 0)
+    if (Engine.keyboard:wasKeyPressed(Keyboard.KC_W)) then
+        playerMicrobe.soundSource:playSound("microbe-movement-2")
+    end
+    if (Engine.keyboard:wasKeyPressed(Keyboard.KC_S)) then
+        playerMicrobe.soundSource:playSound("microbe-movement-2")
+    end
+    if (Engine.keyboard:wasKeyPressed(Keyboard.KC_A)) then
+        playerMicrobe.soundSource:playSound("microbe-movement-1")
+    end
+    if (Engine.keyboard:wasKeyPressed(Keyboard.KC_D)) then
+        playerMicrobe.soundSource:playSound("microbe-movement-1")
+    end
+    
     offset = Entity(CAMERA_NAME):getComponent(OgreCameraComponent.TYPE_ID).properties.offset
     newZVal = offset.z + Engine.mouse:scrollChange()/10
     if newZVal < 10 then
@@ -100,14 +114,18 @@ end
 
 --Event handlers
 function menuButtonClicked()
+    local guiSoundEntity = Entity("gui_sounds")
+    guiSoundEntity:getComponent(SoundSourceComponent.TYPE_ID):playSound("button-hover-click")
     Engine:currentGameState():rootGUIWindow():getChild("MenuPanel"):show()
-        
     if Engine:currentGameState():name() == "microbe" then
         Engine:currentGameState():rootGUIWindow():getChild("HelpPanel"):hide()
     end
+    Engine:pauseGame()
 end
 
 function helpButtonClicked()
+    local guiSoundEntity = Entity("gui_sounds")
+    guiSoundEntity:getComponent(SoundSourceComponent.TYPE_ID):playSound("button-hover-click")
     Engine:currentGameState():rootGUIWindow():getChild("MenuPanel"):hide()
     if Engine:currentGameState():name() == "microbe" then
         Engine:currentGameState():rootGUIWindow():getChild("HelpPanel"):show()
@@ -115,21 +133,27 @@ function helpButtonClicked()
 end
 
 function editorButtonClicked()
-    Engine:currentGameState():rootGUIWindow():getChild("MenuPanel"):hide()
+    local guiSoundEntity = Entity("gui_sounds")
+    guiSoundEntity:getComponent(SoundSourceComponent.TYPE_ID):playSound("button-hover-click")
     Engine:setCurrentGameState(GameState.MICROBE_EDITOR)
 end
 
 function returnButtonClicked()
+    local guiSoundEntity = Entity("gui_sounds")
+    guiSoundEntity:getComponent(SoundSourceComponent.TYPE_ID):playSound("button-hover-click")
     Engine:currentGameState():rootGUIWindow():getChild("MenuPanel"):hide()
     if Engine:currentGameState():name() == "microbe" then
         Engine:currentGameState():rootGUIWindow():getChild("HelpPanel"):hide()
         Engine:currentGameState():rootGUIWindow():getChild("MessagePanel"):hide()
         Engine:currentGameState():rootGUIWindow():getChild("ReproductionPanel"):hide()
+        Engine:resumeGame()
     elseif Engine:currentGameState():name() == "microbe_editor" then
         Engine:currentGameState():rootGUIWindow():getChild("SaveLoadPanel"):hide()
     end
 end
 
 function quitButtonClicked()
+    local guiSoundEntity = Entity("gui_sounds")
+    guiSoundEntity:getComponent(SoundSourceComponent.TYPE_ID):playSound("button-hover-click")
     Engine:quit()
 end

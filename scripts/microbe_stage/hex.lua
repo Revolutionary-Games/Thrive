@@ -162,7 +162,7 @@ function cubeHexRound(x, y, z)
 end
 
 -- Maximum hex coordinate value that can be encoded with encodeAxial()
-local OFFSET = 100
+local OFFSET = 256
 
 -- Multiplier for the q coordinate used in encodeAxial()
 local SHIFT = OFFSET * 10

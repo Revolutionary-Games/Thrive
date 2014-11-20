@@ -15,6 +15,12 @@ add_sources(
     ${CMAKE_CURRENT_SOURCE_DIR}/entity_manager.h
     ${CMAKE_CURRENT_SOURCE_DIR}/game_state.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/game_state.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/player_data.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/player_data.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/rng.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/rng.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/rolling_grid.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/rolling_grid.h
     ${CMAKE_CURRENT_SOURCE_DIR}/script_bindings.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/script_bindings.h
     ${CMAKE_CURRENT_SOURCE_DIR}/serialization.cpp
@@ -23,10 +29,6 @@ add_sources(
     ${CMAKE_CURRENT_SOURCE_DIR}/system.h
     ${CMAKE_CURRENT_SOURCE_DIR}/touchable.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/touchable.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/rng.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/rng.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/player_data.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/player_data.h
 )
 
 add_test_sources(
@@ -34,5 +36,6 @@ add_test_sources(
     ${CMAKE_CURRENT_SOURCE_DIR}/tests/entity_filter.cpp 
     ${CMAKE_CURRENT_SOURCE_DIR}/tests/serialization.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/tests/rng.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/tests/rolling_grid.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/tests/test_component.h
 )

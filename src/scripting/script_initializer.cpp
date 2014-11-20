@@ -12,6 +12,7 @@
 #include "scripting/luabind.h"
 #include "scripting/script_bindings.h"
 #include "sound/script_bindings.h"
+#include "engine/rolling_grid.h"
 
 #include <forward_list>
 #include <iostream>
@@ -59,7 +60,8 @@ thrive::initializeLua(
         ScriptBindings::luaBindings(),
         MicrobeBindings::luaBindings(),
         GuiBindings::luaBindings(),
-        SoundBindings::luaBindings()
+        SoundBindings::luaBindings(),
+        RollingGrid::luaBindings()
     ];
     luabind::object globals = luabind::globals(L);
     globals["Engine"] = &(Game::instance().engine());

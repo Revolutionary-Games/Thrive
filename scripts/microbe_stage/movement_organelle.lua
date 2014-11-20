@@ -95,6 +95,7 @@ function MovementOrganelle:_moveMicrobe(microbe, milliseconds)
         microbe.rigidBody:applyCentralImpulse(
             microbe.sceneNode.transform.orientation * impulse
         )
+
     else 
         if self.movingTail then
         self.movingTail = false
@@ -121,14 +122,15 @@ function MovementOrganelle:_turnMicrobe(microbe)
         microbe.rigidBody:applyTorque(
             Vector3(0, 0, self.torque * alpha)
         )
+        microbe.soundSource:playSound("microbe-movement-turn")
     end
 end
 
 
-function MovementOrganelle:update(microbe, milliseconds)
-    Organelle.update(self, microbe, milliseconds)
+function MovementOrganelle:update(microbe, logicTime)
+    Organelle.update(self, microbe, logicTime)
     self:_turnMicrobe(microbe)
-    self:_moveMicrobe(microbe, milliseconds)
+    self:_moveMicrobe(microbe, logicTime)
 end
 
 Organelle.mpCosts["flagellum"] = 25
