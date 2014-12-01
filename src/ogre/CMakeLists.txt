@@ -21,6 +21,8 @@ add_sources(
     ${CMAKE_CURRENT_SOURCE_DIR}/text_overlay.h
     ${CMAKE_CURRENT_SOURCE_DIR}/viewport_system.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/viewport_system.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/membrane_generation_system.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/membrane_generation_system.h
 )
 
 add_test_sources(
