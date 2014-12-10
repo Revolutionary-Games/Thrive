@@ -19,7 +19,6 @@ endfunction()
 if(CMAKE_COMPILER_IS_GNUCC OR CMAKE_COMPILER_IS_GNUCXX)
 
     join(WARNING_FLAGS
-        -pedantic
         -Werror
         -Wall
         -Wextra
