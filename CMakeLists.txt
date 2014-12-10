@@ -211,7 +211,7 @@ include_directories(
 )
 
 # Compile using c++11
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=gnu++0x")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++1y")
 
 
 find_package(Threads)
