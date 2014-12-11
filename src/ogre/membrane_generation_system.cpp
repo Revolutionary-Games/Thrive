@@ -5,10 +5,6 @@
 #include "scripting/luabind.h"
 
 
-// Ignore warnings about binary literals
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored
-
 using namespace thrive;
 
 luabind::scope
@@ -70,8 +66,7 @@ MembraneGenerationSystem::luaBindings() {
 
 
 struct MembraneGenerationSystem::Implementation {
-
-    int* table[256];
+    private int[][] table;
 };
 
 
@@ -93,11 +88,11 @@ MembraneGenerationSystem::init(
 
 
 
-    private static int[][] table;
-	public static int TEST;
+
 
 	public static void init()
 	{
+	    int[][] table = m_impl->table;
 		for (int i=0b00000000; i<=0b11111111; i++)
 			table[i] = new int[] {};
 
@@ -392,5 +387,3 @@ MembraneGenerationSystem::update(
     int logicTime
 ) {
 }
-
-#pragma GCC diagnostic pop
