@@ -17,8 +17,6 @@ class Vector3;
 
 namespace thrive {
 
-class
-
 /**
 * @brief A component for a Ogre scene nodes
 *
@@ -56,8 +54,9 @@ public:
     *
     */
     void
-    dawdaw(
-        float dawdaw
+    addArea(
+        float x,
+        float y
     );
 
 
@@ -69,7 +68,9 @@ public:
 
 
 private:
+    friend class MembraneGenerationSystem;
 
+    std::vector<Ogre::Vector2> areasToAdd;
 
 };
 
