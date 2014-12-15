@@ -1,5 +1,6 @@
 #include "ogre/membrane_generation_system.h"
 
+#include "engine/component_factory.h"
 #include "engine/engine.h"
 #include "engine/game_state.h"
 #include "engine/entity.h"
@@ -8,12 +9,14 @@
 #include "scripting/luabind.h"
 #include "engine/serialization.h"
 #include "OgreVector2.h"
+#include "util/make_unique.h"
 
 #include <vector>
 #include <math.h>
 
 using namespace thrive;
-/*
+
+
 luabind::scope
 MembraneGenerationComponent::luaBindings() {
     using namespace luabind;
@@ -67,7 +70,7 @@ MembraneGenerationSystem::luaBindings() {
     return class_<MembraneGenerationSystem, System>("MembraneGenerationSystem")
         .def(constructor<>())
     ;
-}*/
+}
 
 
 struct MembraneGenerationSystem::Implementation {

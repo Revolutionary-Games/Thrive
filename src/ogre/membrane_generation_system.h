@@ -11,10 +11,6 @@ namespace luabind {
 class scope;
 }
 
-namespace Ogre {
-class Vector3;
-}
-
 namespace thrive {
 
 /**
