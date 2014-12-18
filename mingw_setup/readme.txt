@@ -1,47 +1,76 @@
 What's this?
 ============
 
-In this directory, you will find some scripts that will help you setting up a
-system for building Thrive.
+In the directory of this readme, you will find some scripts that will help you setting up a
+system for building Thrive on Windows.
+
 
 Important Note: If you run into any trouble with the setup scripts, please 
 post them at
-
+    http://thrivegame.forum-free.ca/t999-development-troubleshooting
+    
+Or if you have feedback for how to make the process better:
+    
     http://thrivegame.forum-free.ca/t1101-build-system-discussion
 
-so that we can improve the scripts. Thank you.
+Thank you!
 
 
-Windows 7 + Code::Blocks
+Windows 7/8 + Code::Blocks
 ========================
 
-This is the only combination tested so far and probably the most popular. If 
-you would like to use another Windows version, please refer to the "Other 
-Windows Platforms" section. If you prefer another IDE, go to "Other Windows 
-IDEs".
+If you would like to use an older Windows version, please refer to the "Other 
+Windows Platforms" section. We currently only have experience with using codeblocks
+due to its good support of make-files and mingw. Other IDEs may be possible to use
+but we can't currently help with setting that up.
 
-The setup script will install:
-
-* MinGW-w64 with GCC 4.7
-
-* Boost libraries 1.53.0
-
-* Ogre SDK 1.8.1
+The setup script will install Ogre, Mingw and other required libraries.
+For a full list refer to the readme in the root of the repository.
 
 To set up the build system follow the steps listed below. If you are not 
 interested in the gory details, you can ignore everything but the bullet
 points.
 
+
 0. Requirements
 ---------------
 
-* At least 5 GB of free hard drive space
+* At least 5 GB of free hard drive space on C:\ drive specifially
+(We want to make it possible to use other drives but not as of yet possible)
 
 * About 30-60 minutes, depending on the speed of your PC and your internet
   connection
 
-1. Enabling Powershell to run the setup script
+
+1. Install CMake
+----------------
+
+* Download CMake from
+
+    http://www.cmake.org/cmake/resources/software.html
+
+* Run the installer
+
+
+2a. Downloading required libraries
 ----------------------------------------------
+Step 2a is optional but recommended for beginners to the project.
+If you choose step 2a, you should skip forward to step 5. after completion.
+
+*  Download the archive found here:
+    https://mega.co.nz/#!dVRyVJJb!uJA5r2whpPa6TFiCzN7EbFCAxL4LkS_PvXHSp-gPro8
+
+*  Extract to C:\mingw
+
+This skips the compilation of required libraries and instead downloads precompiled ones.
+
+Skip to step 5.
+
+
+2b. Enabling Powershell to run the setup script
+----------------------------------------------
+
+Note that this and the following steps should only be performed if you skip 2a.
 
 * Open "Windows Powershell" as administrator by opening the start menu, 
   and entering "powershell" into the search line. Then right click on
@@ -58,17 +87,6 @@ cannot execute scripts you downloaded (such as ours) or even scripts you wrote
 yourself. To change that, we have to explicitly set the execution policy to
 "Unrestricted". For security reasons, only the administrator can do that.
 
-2. Install CMake
-----------------
-
-* Download CMake from
-
-    http://www.cmake.org/cmake/resources/software.html
-
-* Run the installer and check "Add CMake to system path" during installation
-
-The setup script requires CMake to be available on the command line. That's
-why we need to add it to the PATH environment variable.
 
 3. Run the setup script
 -----------------------
@@ -109,7 +127,33 @@ You will also have to point Code::Blocks to your custom directory in step (7).
 If you don't install Code::Blocks, CMake won't be able to generate a project
 file in the next step.
 
-6. Invoke CMake
+
+6. Install tortoise svn or just svn
+---------------
+
+* Download TortoiseSVN from
+
+    http://tortoisesvn.net/downloads.html
+    
+    and install it
+
+
+7. Get the assets
+---------------
+
+* If you Installed tortoise SVN
+
+    Right click somewhere in the git repository and click SVN Checkout.
+    Under URL enter: http://crovea.net/svn/thrive_assets
+    Edit the last part of Checkout directory to "/assets" instead of "/trive_assets"
+    Click checkout and it will prompt you for a user
+    For password and username simply enter 'thrive' and 'thrive'
+
+* If you are instead using commandline SVN
+
+    svn co http://crovea.net/svn/thrive_assets/ ./assets
+    
+8. Invoke CMake
 ---------------
 
 * Start the CMake GUI from your start menu
@@ -134,7 +178,7 @@ The toolchain file was configured during the setup script to contain paths to
 the compiler executable and all accompanying tools. It's usually used for 
 cross-compiling, but it's convenient for us, too.
 
-7. Building Thrive
+9. Building Thrive
 ---------------------------
 
 * Open "Thrive.cbp" in your selected build directory with Code::Blocks
@@ -150,31 +194,24 @@ cross-compiling, but it's convenient for us, too.
   build Thrive
 
 
-8. Running Thrive
+10. Running Thrive
 -----------------
 
 * In Code::Blocks, select "install" as the build target and click on the 
   "Build" button.
 
-* Go to your build directory and start Thrive.exe
+* Go to your build/dist/bin directory and start Thrive.exe
+Note that the build/Thrive.exe will not work as it is not placed with the 
+necessary DLL files.
+
+* An ogre config will show up when you start Thrive. Selecting a non-0 value for FSAA anti aliasing will prevent a current issue with flickering on windows.
 
 Unfortunately, I haven't yet found a clean way to start (and debug) Thrive
 from within Code::Blocks due to the way Windows finds its shared libraries.
 
 
-Other IDEs
-==========
 
-CMake offers generators for a range of different build procedures. All the 
-ones referring to "MinGW Makefiles" should work similar to the Code::Blocks
-one.
-
-If you would like to use Visual Studio, I can't render much assistance. You 
-can try and find information on how to use MinGW with VS, but the prospects
-seem grim.
-
-
-Other Windows Platforms
+Older Windows Platforms
 =======================
 
 Windows versions prior to Windows 7 may not have Powershell installed by 
@@ -184,6 +221,9 @@ for your system. Then the above steps should apply as well.
 
 Linux - Cross Compiling for Windows
 ===================================
+
+ [ THIS FEATURE IS CURRENTLY DEPRECATED ]
+ It may return in the future.
 
 The setup.sh script takes one argument, the path to the build environment 
 installation directory. It defaults to /opt/mingw-w64.

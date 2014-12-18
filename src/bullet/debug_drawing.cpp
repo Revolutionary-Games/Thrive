@@ -6,8 +6,12 @@
 
 #include <OgreColourValue.h>
 #include <OgreFrameListener.h>
+#include <OgreLogManager.h>
 #include <OgreManualObject.h>
+#include <OgreMaterialManager.h>
 #include <OgreRoot.h>
+#include <OgreTechnique.h>
+#include <OgreTimer.h>
 #include <OgreVector3.h>
 
 using namespace thrive;
@@ -38,20 +42,30 @@ struct BulletDebugDrawer::Implementation : public Ogre::FrameListener {
         size_t dieTime;
     };
 
-    Implementation()
-      : m_lines(new Ogre::ManualObject("physics lines")),
-        m_triangles(new Ogre::ManualObject("physics triangles"))
+    Implementation(Ogre::SceneManager* sceneManager) :
+        m_scene(sceneManager)
     {
+
+        m_lines = sceneManager->createManualObject();
+        m_triangles = sceneManager->createManualObject();
+        
         m_lines->setDynamic(true);
         m_triangles->setDynamic(true);
         this->setupMaterial();
         this->setupLines();
         this->setupTriangles();
+
+        sceneManager->getRootSceneNode()->attachObject(m_lines);
+        sceneManager->getRootSceneNode()->attachObject(m_triangles);
+        
         Ogre::Root::getSingleton().addFrameListener(this);
     }
 
     ~Implementation() {
         Ogre::Root::getSingleton().removeFrameListener(this);
+
+        m_scene->destroyManualObject(m_lines);
+        m_scene->destroyManualObject(m_triangles);
     }
 
     bool
@@ -129,9 +143,11 @@ struct BulletDebugDrawer::Implementation : public Ogre::FrameListener {
 
     DebugDrawModes m_debugModes = DBG_DrawWireframe;
 
-    std::unique_ptr<Ogre::ManualObject> m_lines;
+    Ogre::ManualObject* m_lines;
 
-    std::unique_ptr<Ogre::ManualObject> m_triangles;
+    Ogre::ManualObject* m_triangles;
+
+    Ogre::SceneManager* m_scene;
 
     std::list<ContactPoint> m_contactPoints;
 };
@@ -139,14 +155,9 @@ struct BulletDebugDrawer::Implementation : public Ogre::FrameListener {
 
 BulletDebugDrawer::BulletDebugDrawer(
     Ogre::SceneManager* sceneManager
-) : m_impl(new Implementation())
+) : m_impl(new Implementation(sceneManager))
 {
-    sceneManager->getRootSceneNode()->attachObject(
-        m_impl->m_lines.get()
-    );
-    sceneManager->getRootSceneNode()->attachObject(
-        m_impl->m_triangles.get()
-    );
+
 }
 
 

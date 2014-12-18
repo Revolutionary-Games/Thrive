@@ -47,8 +47,12 @@ set(Boost_THREADAPI win32)
 # CEGUI
 set(CEGUI_ROOT ${MINGW_ENV}/install)
 
-# CEGUI
+# TINYXML
 set(TINYXML_ROOT ${MINGW_ENV}/install)
+
+# CAUDIO
+set(cAudio_HOME ${MINGW_ENV}/install)
+set(cAudio_ROOT ${MINGW_ENV}/install)
 
 # Add to cmake path
 list(APPEND CMAKE_MODULE_PATH

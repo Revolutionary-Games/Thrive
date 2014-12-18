@@ -7,9 +7,13 @@
 #include "scripting/luabind.h"
 #include "engine/serialization.h"
 
+#include <cmath>
 #include <iostream>
 
 using namespace thrive;
+
+const int PI = 3.1416f;
+const float PUSHBACK_DIST = 2.2f; //Used for incrementally pushing emissions out of the emitters body
 
 ////////////////////////////////////////////////////////////////////////////////
 // RigidBodyComponent
@@ -62,6 +66,18 @@ RigidBodyComponent::clearForces(){
 }
 
 
+void
+RigidBodyComponent::disableCollisionsWith(
+    EntityId other
+) {
+    m_entityToNoCollide = other;
+}
+
+void
+RigidBodyComponent::reenableAllCollisions() {
+    m_shouldReenableAllCollisions = true;
+}
+
 luabind::scope
 RigidBodyComponent::luaBindings() {
     using namespace luabind;
@@ -95,8 +111,12 @@ RigidBodyComponent::luaBindings() {
         .def("applyCentralImpulse", &RigidBodyComponent::applyCentralImpulse)
         .def("applyTorque", &RigidBodyComponent::applyTorque)
         .def("clearForces", &RigidBodyComponent::clearForces)
+        .def("disableCollisionsWith", &RigidBodyComponent::disableCollisionsWith)
+        .def("reenableAllCollisions", &RigidBodyComponent::reenableAllCollisions)
         .def_readonly("properties", &RigidBodyComponent::m_properties)
         .def_readonly("dynamicProperties", &RigidBodyComponent::m_dynamicProperties)
+        .def_readwrite("pushbackEntity", &RigidBodyComponent::m_pushbackEntity)
+        .def_readwrite("m_pushbackAngle", &RigidBodyComponent::m_pushbackAngle)
     ;
 }
 
@@ -198,6 +218,9 @@ struct RigidBodyInputSystem::Implementation {
 
     btDiscreteDynamicsWorld* m_world = nullptr;
 
+    //Map links the dominating entity to a shared constraint
+    std::map<EntityId, std::unique_ptr<btTypedConstraint>> m_activeConstraints;
+    std::map<EntityId, EntityId> m_activeConstraintOtherEntity;
 };
 
 
@@ -229,10 +252,51 @@ RigidBodyInputSystem::shutdown() {
 }
 
 
+
+struct _ContactResultCallback  : public btCollisionWorld::ContactResultCallback
+{
+    bool collisionDetected = false;
+
+    btScalar addSingleResult(
+        btManifoldPoint&,
+        const btCollisionObjectWrapper*,
+        int ,
+        int ,
+        const btCollisionObjectWrapper*,
+        int ,
+        int)
+    {
+        collisionDetected = true;
+        return 0.0f;
+    }
+};
+
+struct DummyConstraint : public btTypedConstraint {
+
+public:
+    DummyConstraint(btRigidBody* body1, btRigidBody* body2)
+        : btTypedConstraint(btTypedConstraintType::D6_CONSTRAINT_TYPE, *body1, *body2) //static_cast<btTypedConstraintType>(0xFF), *body1, *body2)
+    {}
+
+	void getInfo1 (btConstraintInfo1* info ){info->m_numConstraintRows = 0; info->nub = 0;}
+	void getInfo2 (btConstraintInfo2* ){}
+	void	setParam(int , btScalar , int) {}
+    btScalar getParam(int, int ) const {return 1.0;}
+
+};
+
 void
 RigidBodyInputSystem::update(int, int logicTime) {
     for (EntityId entityId : m_impl->m_entities.removedEntities()) {
         btRigidBody* body = m_impl->m_bodies[entityId].get();
+        auto it = m_impl->m_activeConstraints.find(entityId);
+        if (it != m_impl->m_activeConstraints.end()) {
+            btRigidBody* otherbody =  m_impl->m_bodies[m_impl->m_activeConstraintOtherEntity[entityId]].get();
+            body->removeConstraintRef(it->second.get());
+            otherbody->removeConstraintRef(it->second.get());
+            m_impl->m_activeConstraints.erase(it);
+            m_impl->m_activeConstraintOtherEntity.erase(entityId);
+        }
         if (body) {
             m_impl->m_world->removeRigidBody(body);
         }
@@ -342,6 +406,55 @@ RigidBodyInputSystem::update(int, int logicTime) {
             body->setAngularVelocity(btVector3(0,0,0));
             rigidBodyComponent->m_toClearForces = false;
         }
+        if(rigidBodyComponent->m_pushbackEntity != NULL_ENTITY) {
+            //To debug this in the future, in the context of emitter components
+            // set emission speeds on the emitter components to 0
+            RigidBodyComponent* otherEntityBody =  m_impl->m_entities.entityManager()->getComponent<RigidBodyComponent>(rigidBodyComponent->m_pushbackEntity);
+            auto callback = _ContactResultCallback();
+            if (otherEntityBody) {
+                m_impl->m_world->contactPairTest(body, otherEntityBody->m_body, callback);
+                auto v = Ogre::Vector3(PUSHBACK_DIST*sin(rigidBodyComponent->m_pushbackAngle*(PI/180.0)),PUSHBACK_DIST*cos(rigidBodyComponent->m_pushbackAngle*(PI/180.0)),0);
+                while(callback.collisionDetected)
+                {
+                    rigidBodyComponent->m_dynamicProperties.position = rigidBodyComponent->m_dynamicProperties.position + v;
+                    btTransform transform;
+                    rigidBodyComponent->getWorldTransform(transform);
+                    body->setWorldTransform(transform);
+
+                    callback.collisionDetected = false;
+                    m_impl->m_world->contactPairTest(body, otherEntityBody->m_body, callback);
+                }
+            }
+            rigidBodyComponent->m_pushbackEntity = NULL_ENTITY;
+        }
+        if (rigidBodyComponent->m_shouldReenableAllCollisions) {
+            //As implemented right now there can be only one nocollideentity
+            if (m_impl->m_activeConstraints.find(value.first) != m_impl->m_activeConstraints.end()) {
+                btRigidBody* otherbody =  m_impl->m_bodies[m_impl->m_activeConstraintOtherEntity[value.first]].get();
+                body->removeConstraintRef(m_impl->m_activeConstraints[value.first].get());
+
+                if (otherbody) {
+                    otherbody->removeConstraintRef(m_impl->m_activeConstraints[value.first].get());
+                }
+                m_impl->m_activeConstraints.erase(value.first);
+                m_impl->m_activeConstraintOtherEntity.erase(value.first);
+            }
+            rigidBodyComponent->m_shouldReenableAllCollisions = false;
+        }
+        if (rigidBodyComponent->m_entityToNoCollide != NULL_ENTITY)
+        {
+            btRigidBody* otherbody =  m_impl->m_bodies[rigidBodyComponent->m_entityToNoCollide].get();
+            //If both entities exist and we aren't activating a collision with the same entity again
+            if (otherbody ) {
+                std::unique_ptr<btTypedConstraint> constraint = make_unique<DummyConstraint>(otherbody, body);
+                otherbody->addConstraintRef(constraint.get());
+                body->addConstraintRef(constraint.get());
+                m_impl->m_activeConstraints.insert( std::pair<EntityId, std::unique_ptr<btTypedConstraint>>(value.first, std::move(constraint)));
+                m_impl->m_activeConstraintOtherEntity.insert( std::pair<EntityId,EntityId>(value.first, rigidBodyComponent->m_entityToNoCollide));
+            }
+            rigidBodyComponent->m_entityToNoCollide  = NULL_ENTITY;
+        }
+
         body->applyDamping(logicTime / 1000.0f);
     }
 }

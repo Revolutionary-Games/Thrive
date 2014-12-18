@@ -7,6 +7,15 @@ local function setupBackground()
     skyplane.properties.tiling = 500
     skyplane.properties:touch()
     entity:addComponent(skyplane)
+    -- Create floating arrow entity
+    entity = Entity("directionarrow")
+    local sceneNode = OgreSceneNodeComponent()
+    sceneNode.meshName = "arrow.mesh"
+    sceneNode.transform.position = Vector3(0,-7,-4)
+    sceneNode.transform.orientation = Quaternion(90,-90,90,-90)
+    sceneNode.transform:touch()
+    sceneNode:playAnimation("Stand", true)
+    entity:addComponent(sceneNode)
 end
 
 local function setupCamera()
@@ -27,12 +36,13 @@ local function setupCamera()
     local light = OgreLightComponent()
     light:setRange(200)
     entity:addComponent(light)
-    -- Viewport
-    local viewportEntity = Entity()
-    local viewportComponent = OgreViewportComponent(0)
-    viewportComponent.properties.cameraEntity = entity
-    viewportComponent.properties:touch()
-    viewportEntity:addComponent(viewportComponent)
+    -- Workspace
+    local workspaceEntity = Entity()
+    local workspaceComponent = OgreWorkspaceComponent("thrive_default")
+    workspaceComponent.properties.cameraEntity = entity
+    workspaceComponent.properties.position = 0
+    workspaceComponent.properties:touch()
+    workspaceEntity:addComponent(workspaceComponent)
 end
 
 local function setupSound()
@@ -40,7 +50,7 @@ local function setupSound()
     local soundSource = SoundSourceComponent()
     soundSource.autoLoop = true
     soundSource.ambientSoundSource = true
-    soundSource.volumeMultiplier = 0.4
+    soundSource.volumeMultiplier = 0.6
     ambientEntity:addComponent(soundSource)
     -- Sound
     soundSource:addSound("microbe-editor-theme-1", "microbe-editor-theme-1.ogg")
@@ -72,7 +82,7 @@ local function createMicrobeEditor(name)
             OgreCameraSystem(),
             OgreLightSystem(),
             SkySystem(),
-            OgreViewportSystem(),
+            OgreWorkspaceSystem(),
             OgreRemoveSceneNodeSystem(),
             RenderSystem(),
             -- Other

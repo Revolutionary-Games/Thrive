@@ -50,10 +50,12 @@ struct GameState::Implementation {
 
     void
     setupSceneManager() {
+        // TODO: configure the number of worker threads, currently always 2
         m_sceneManager = m_engine.ogreRoot()->createSceneManager(
-            Ogre::ST_GENERIC,
+            Ogre::ST_GENERIC, 2, Ogre::INSTANCING_CULLING_THREADED,
             m_name
         );
+
         m_sceneManager->setAmbientLight(
             Ogre::ColourValue(0.5, 0.5, 0.5)
         );
@@ -119,7 +121,8 @@ GameState::~GameState() {}
 
 void
 GameState::activate() {
-    CEGUIWindow::getRootWindow().addChild(m_impl->m_guiWindow);
+    m_impl->m_guiWindow.show();
+    CEGUIWindow::getRootWindow().addChild(&m_impl->m_guiWindow);
     for (const auto& system : m_impl->m_systems) {
         system->activate();
     }
@@ -131,7 +134,8 @@ GameState::deactivate() {
     for (const auto& system : m_impl->m_systems) {
         system->deactivate();
     }
-    CEGUIWindow::getRootWindow().removeChild(m_impl->m_guiWindow);
+    m_impl->m_guiWindow.hide();
+    CEGUIWindow::getRootWindow().removeChild(&m_impl->m_guiWindow);
 }
 
 

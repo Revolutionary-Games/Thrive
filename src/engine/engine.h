@@ -23,8 +23,8 @@ namespace Ogre {
     class Viewport;
 }
 
-namespace OgreOggSound {
-    class OgreOggSoundManager;
+namespace thrive{
+    class SoundManager;
 }
 
 namespace OIS {
@@ -66,9 +66,11 @@ public:
     * - Engine::setCurrentGameState()
     * - Engine::playerData()
     * - Engine::load()
+    * - Engine::fileExists()
     * - Engine::save()
     * - Engine::saveCreation()
     * - Engine::loadCreation()
+    * - Engine::screenShot()
     * - Engine::quit()
     * - Engine::pauseGame()
     * - Engine::resumeGame()
@@ -203,6 +205,16 @@ public:
     load(
         std::string filename
     );
+    /**
+    * @brief checks if a file exists
+    *
+    * @param filename
+    *   The file to check for
+    */
+    bool
+    fileExists(
+        std::string filePath
+    );
 
     /**
     * @brief The script engine's Lua state
@@ -293,6 +305,17 @@ public:
     );
 
     /**
+    * @brief Takes a screenshot
+    *
+    * @param path
+    *   The path and filename relative to exe
+    */
+    void
+    screenShot(
+       std::string path
+    );
+
+    /**
     * @brief Obtains a list of filenames for saved creations that match the provided type
     *
     * @param stage
@@ -343,14 +366,14 @@ public:
     */
     void
     pauseGame();
-    
+
     /**
     * @brief Resumes system updates of the game
     */
     void
     resumeGame();
-    
-    OgreOggSound::OgreOggSoundManager*
+
+    SoundManager*
     soundManager() const;
 
     /**

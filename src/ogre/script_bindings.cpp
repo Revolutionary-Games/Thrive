@@ -10,9 +10,10 @@
 #include "ogre/scene_node_system.h"
 #include "ogre/script_bindings.h"
 #include "ogre/sky_system.h"
-#include "ogre/text_overlay.h"
-#include "ogre/viewport_system.h"
 #include "scripting/luabind.h"
+
+#include "ogre/workspace_system.h"
+
 
 #include <luabind/operator.hpp>
 #include <luabind/out_value_policy.hpp>
@@ -25,6 +26,8 @@
 #include <OgreSceneManager.h>
 #include <OgreSphere.h>
 #include <OgreVector3.h>
+#include <OgreSubEntity.h>
+#include <OgreEntity.h>
 
 using namespace luabind;
 using namespace Ogre;
@@ -184,8 +187,8 @@ entityBindings() {
             .def("setColour", &SubEntity_setColour)
         ,
         class_<Ogre::Entity, MovableObject>("OgreEntity")
-            .def("getSubEntity", static_cast<SubEntity*(Entity::*)(const String&) const>(&Entity::getSubEntity))
-            .def("getNumSubEntities", &Entity::getNumSubEntities)
+        .def("getSubEntity", static_cast<SubEntity*(Entity::*)(const Ogre::String&)>(&Entity::getSubEntity))
+        .def("getNumSubEntities", &Entity::getNumSubEntities)
     );
 }
 
@@ -402,7 +405,6 @@ rayBindings() {
     ;
 }
 
-
 static luabind::scope
 sceneManagerBindings() {
     return class_<SceneManager>("SceneManager")
@@ -411,12 +413,15 @@ sceneManagerBindings() {
             value("PT_CUBE", SceneManager::PT_CUBE),
             value("PT_SPHERE", SceneManager::PT_SPHERE)
         ]
-        .def("createEntity",
-            static_cast<Entity* (SceneManager::*)(const String&)>(&SceneManager::createEntity)
-        )
-        .def("createEntity",
-            static_cast<Entity* (SceneManager::*)(SceneManager::PrefabType)>(&SceneManager::createEntity)
-        )
+        // Fails to compile after upgrade to 2.0
+        // .def("createEntity",
+        //     static_cast<Entity* (SceneManager::*)(
+        //         const Ogre::String&)>(&SceneManager::createEntity)
+        // )
+        // .def("createEntity",
+        //     static_cast<Entity* (SceneManager::*)(
+        //         SceneManager::PrefabType)>(&SceneManager::createEntity)
+        // )
         .def("setAmbientLight", &SceneManager::setAmbientLight)
     ;
 }
@@ -514,19 +519,17 @@ thrive::OgreBindings::luaBindings() {
         OgreCameraComponent::luaBindings(),
         OgreLightComponent::luaBindings(),
         OgreSceneNodeComponent::luaBindings(),
-        OgreViewportComponent::luaBindings(),
         SkyPlaneComponent::luaBindings(),
-        TextOverlayComponent::luaBindings(),
+        OgreWorkspaceComponent::luaBindings(),
         // Systems
         OgreAddSceneNodeSystem::luaBindings(),
         OgreCameraSystem::luaBindings(),
         OgreLightSystem::luaBindings(),
         OgreRemoveSceneNodeSystem::luaBindings(),
         OgreUpdateSceneNodeSystem::luaBindings(),
-        OgreViewportSystem::luaBindings(),
         thrive::RenderSystem::luaBindings(), // Fully qualified because of Ogre::RenderSystem
         SkySystem::luaBindings(),
-        TextOverlaySystem::luaBindings(),
+        OgreWorkspaceSystem::luaBindings(),
         // Other
         Keyboard::luaBindings(),
         Mouse::luaBindings()

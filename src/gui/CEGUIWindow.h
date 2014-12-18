@@ -12,6 +12,8 @@ class scope;
 
 namespace thrive {
 
+class StandardItemWrapper;
+    
 class CEGUIWindow {
 
 public:
@@ -74,7 +76,17 @@ public:
     * - CEGUIWindow::moveInFront
     * - CEGUIWindow::moveBehind
     * - CEGUIWindow::setPosition
+    * - CEGUIWindow::getName
     *
+    * - CEGUIWindow::playAnimation
+    *
+    * Depending on version. Newer CEGUI versions:
+    * - CEGUIWindow::listWidgetAddItem
+    * - CEGUIWindow::listWidgetResetList
+    * - CEGUIWindow::listWidgetGetFirstSelectedItemText
+    * - CEGUIWindow::listWidgetGetFirstSelectedID
+    *
+    * Older versions:
     * - CEGUIWindow::listboxAddItem
     * - CEGUIWindow::listboxResetList
     * - CEGUIWindow::listboxHandleUpdatedItemData
@@ -84,7 +96,16 @@ public:
     * - CEGUIWindow::itemListboxHandleUpdatedItemData
     * - CEGUIWindow::itemListboxGetLastSelectedItem
     *
+    *
+    *
+    *
+    * - CEGUIWindow::scrollingpaneGetVerticalPosition
+    * - CEGUIWindow::scrollingpaneSetVerticalPosition
+    *
     * - CEGUIWindow::progressbarSetProgress
+    *
+    * - CEGUIWindow.getWindowUnderMouse
+    * - CEGUIWindow.setGuiMoveMode
     *
     * @return
     */
@@ -95,6 +116,9 @@ public:
     setGuiMoveMode(
         bool value
     );
+
+    static CEGUIWindow
+    getWindowUnderMouse();
 
 
     /**
@@ -127,7 +151,7 @@ public:
     */
     void
     addChild(
-        CEGUIWindow& window
+        CEGUIWindow* window
     );
 
     /**
@@ -138,7 +162,7 @@ public:
     */
     void
     removeChild(
-        CEGUIWindow& window
+        CEGUIWindow* window
     );
 
     /**
@@ -179,55 +203,69 @@ public:
     );
 
     /**
-    * @brief Adds a string to the window if it is a listbox otherwise throws bad_cast exception
+    * @brief Sets the underlying windows image property
     *
-    * @param listboxItem
-    *  The text item to add
+    * @param text
+    *  The image to use
     */
     void
-    listboxAddItem(
-        CEGUI::ListboxTextItem* listboxItem
+    setImage(
+        const std::string& image
+    );
+
+    // Listbox has been removed from cegui.
+    // For basic use use ListWidget instead
+    // For more advanced view items use ListView
+    // In .layout files ListWidget is called Thrive/ListView
+
+    /**
+       @brief Adds a StandardItem to the window if it is a ListWidget otherwise throws bad_cast exception
+    */
+    void
+    listWidgetAddStandardItem(
+        StandardItemWrapper* item
     );
 
     /**
-    * @brief Clears the list if the window is a listbox otherwise throws bad_cast exception
+       @brief Creates and adds a StandardItem to the window if it is a ListWidget otherwise throws bad_cast exception
     */
     void
-    listboxResetList();
-
-    /**
-    * @brief Updates the rendering of the listbox
-    */
-    void
-    listboxHandleUpdatedItemData();
-
-    /**
-    * @brief Adds an item to the window if it is a itemlist otherwise throws bad_cast exception
-    *
-    * Register a click event for action on selection
-    *
-    * @param listboxItem
-    *  The item to add
-    */
-    void
-    itemListboxAddItem(
-        CEGUIWindow* item
+    listWidgetAddItem(
+        const std::string &text,
+        int id
     );
 
     /**
-    * @brief Clears the list if the window is a itemlist otherwise throws bad_cast exception
-    */
+     * @brief Adds a string to the window if it is a ListWidget otherwise throws bad_cast exception
+     */
     void
-    itemListboxResetList();
+    listWidgetAddTextItem(
+        const std::string &text
+    );
 
     /**
-    * @brief Updates the rendering of the itemlist
+       @brief Updates an item with the new text
     */
     void
-    itemListboxHandleUpdatedItemData();
+    listWidgetUpdateItem(
+        StandardItemWrapper* item,
+        const std::string &text
+    );
 
-    CEGUIWindow*
-    itemListboxGetLastSelectedItem();
+    /**
+     * @brief Clears the list if the window is a ListWidget otherwise throws bad_cast exception
+     */
+    void
+    listWidgetResetList();
+
+    std::string
+    listWidgetGetFirstSelectedItemText();
+
+    int
+    listWidgetGetFirstSelectedID();
+
+    
+
 
     /**
     * @brief Sets the progress of the progressbar
@@ -236,7 +274,38 @@ public:
     *  Float between 0.0 and 1.0
     */
     void
-    progressbarSetProgress(float progress);
+    progressbarSetProgress(
+       float progress
+   );
+
+    /**
+    * @brief Gets the vertical scroll position
+    *
+    * @return
+    */
+    float
+    scrollingpaneGetVerticalPosition();
+
+    /**
+    * @brief Sets the vertical scroll position
+    *
+    * @param position
+    *   float between 0.0 - 1.0
+    */
+    void
+    scrollingpaneSetVerticalPosition(
+         float position
+     );
+
+    /**
+    * @brief Adds an icon vertically to the scrollable pane
+    *
+    * @param Window to add
+    */
+    void
+    scrollingpaneAddIcon(
+        CEGUIWindow* icon
+    );
 
     /**
     * @brief Gets the underlying cegui windows parent, wrapped as a CEGUIWindow*
@@ -368,14 +437,58 @@ public:
     * The positional system uses Falagard coordinate system.
     * The position is offset from one of the corners and edges of this Element's parent element (depending on alignments)
     *
-    * @param position
-    *  The new position to use
+    * @param x
+    *
+    * @param x
     **/
     void
-    setPosition(
-        Ogre::Vector2 position
+    setPositionAbs(
+        float x,
+        float y
+    );
+    void
+    setPositionRel(
+        float x,
+        float y
     );
 
+    /**
+    * @brief Sets the windows size
+    *
+    * The positional system uses Falagard coordinate system.
+    *
+    * @param width
+    *
+    * @param height
+    **/
+    void
+    setSizeAbs(
+        float width,
+        float height
+    );
+    void
+    setSizeRel(
+        float width,
+        float height
+    );
+
+    /**
+    * @brief Returns the windows internal name
+    *
+    **/
+    std::string
+    getName();
+
+    /**
+    * @brief Plays an animation by name
+    *
+    * @param name
+    *  The name of the animation to play
+    **/
+    void
+    playAnimation(
+      std::string name
+    );
 
 
 private:

@@ -19,6 +19,7 @@
 
 // CEGUI
 #include <CEGUI/CEGUI.h>
+#include <CEGUI/InputAggregator.h>
 #include "CEGUI/RendererModules/Ogre/Renderer.h"
 #include "gui/AlphaHitWindow.h"
 
@@ -30,7 +31,6 @@
 #include "ogre/render_system.h"
 #include "ogre/scene_node_system.h"
 #include "ogre/sky_system.h"
-#include "ogre/text_overlay.h"
 
 // Scripting
 #include <luabind/iterator_policy.hpp>
@@ -58,19 +58,19 @@
 #include <luabind/adopt_policy.hpp>
 #include <OgreConfigFile.h>
 #include <OgreLogManager.h>
-#include <OgreOggSoundManager.h>
 #include <OgreRenderWindow.h>
 #include <OgreRoot.h>
 #include <OgreWindowEventUtilities.h>
 #include <OISInputManager.h>
 #include <OISMouse.h>
+#include <OgreTextureManager.h>
 #include <map>
 #include <random>
 #include <set>
 #include <stdlib.h>
 #include <unordered_map>
-
 #include <iostream>
+#include "sound/sound_manager.h"
 
 using namespace thrive;
 
@@ -110,7 +110,7 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
         m_currentGameState = gameState;
         if (gameState) {
             gameState->activate();
-            gameState->rootGUIWindow().addChild(*m_consoleGUIWindow);
+            gameState->rootGUIWindow().addChild(m_consoleGUIWindow);
             luabind::call_member<void>(m_console, "registerEvents", gameState);
         }
     }
@@ -248,12 +248,12 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
     saveSavegame() {
         StorageContainer savegame;
         savegame.set("currentGameState", m_currentGameState->name());
+        savegame.set("playerData", m_playerData.storage());
         StorageContainer gameStates;
         for (const auto& pair : m_gameStates) {
             gameStates.set(pair.first, pair.second->storage());
         }
         savegame.set("gameStates", std::move(gameStates));
-        savegame.set("playerData", m_playerData.storage());
         savegame.set("thriveversion", m_thriveVersion);
         std::ofstream stream(
             m_serialization.saveFile,
@@ -319,8 +319,8 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
         parameters.insert(std::make_pair(std::string("XAutoRepeatOn"), std::string("true")));
 #endif
         m_input.inputManager = OIS::InputManager::createInputSystem(parameters);
-        m_input.keyboard.init(m_input.inputManager);
-        m_input.mouse.init(m_input.inputManager);
+        m_input.keyboard.init(m_input.inputManager, m_aggregator.get());
+        m_input.mouse.init(m_input.inputManager, m_aggregator.get());
     }
 
     void
@@ -330,16 +330,40 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
         CEGUI::OgreRenderer::bootstrapSystem();
         CEGUI::WindowManager& wmgr = CEGUI::WindowManager::getSingleton();
         CEGUI::Window* myRoot = wmgr.createWindow( "DefaultWindow", "root" );
-        myRoot->setProperty("MousePassThroughEnabled", "True");
+        myRoot->setProperty("CursorPassThroughEnabled", "True");
+
         CEGUI::System::getSingleton().getDefaultGUIContext().setRootWindow( myRoot );
         CEGUI::SchemeManager::getSingleton().createFromFile("Thrive.scheme");
-        CEGUI::System::getSingleton().getDefaultGUIContext().getMouseCursor().setDefaultImage("ThriveGeneric/MouseArrow");
+        CEGUI::System::getSingleton().getDefaultGUIContext().getCursor().setDefaultImage(
+            "ThriveGeneric/MouseArrow");
+
+        m_aggregator = std::move(std::unique_ptr<CEGUI::InputAggregator>(
+                new CEGUI::InputAggregator(&CEGUI::System::getSingleton()
+                    .getDefaultGUIContext())));
+
+        // Using the handling on keydown mode to detect when inputs are consumed
+        m_aggregator->initialise(false);
+
+        CEGUI::System::getSingleton().getDefaultGUIContext().setDefaultTooltipType(
+            reinterpret_cast<const CEGUI::utf8*>("Thrive/Tooltip") );
+
+        // For demos
+        // This file is renamed in newer CEGUI versions
+      //  CEGUI::System::getSingleton().getDefaultGUIContext().getMouseCursor().setDefaultImage(
+       //     "ThriveGeneric/MouseArrow");
+
+       // CEGUI::SchemeManager::getSingleton().createFromFile("GameMenu.scheme");
+
+      //  CEGUI::ImageManager::getSingleton().loadImageset("GameMenu.imageset");
+       // CEGUI::ImageManager::getSingleton().loadImageset("HUDDemo.imageset");
+
+        CEGUI::System::getSingleton().getDefaultGUIContext().setDefaultTooltipType( reinterpret_cast<const CEGUI::utf8*>("Thrive/Tooltip") );
+        CEGUI::AnimationManager::getSingleton().loadAnimationsFromXML("thrive.anims");
 
         //For demos:
         CEGUI::SchemeManager::getSingleton().createFromFile("TaharezLook.scheme");
         CEGUI::SchemeManager::getSingleton().createFromFile("SampleBrowser.scheme");
         CEGUI::SchemeManager::getSingleton().createFromFile("OgreTray.scheme");
-        CEGUI::SchemeManager::getSingleton().createFromFile("GameMenu.scheme");
         CEGUI::SchemeManager::getSingleton().createFromFile("AlfiskoSkin.scheme");
         CEGUI::SchemeManager::getSingleton().createFromFile("WindowsLook.scheme");
         CEGUI::SchemeManager::getSingleton().createFromFile("VanillaSkin.scheme");
@@ -347,7 +371,6 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
         CEGUI::SchemeManager::getSingleton().createFromFile("VanillaCommonDialogs.scheme");
 
         CEGUI::ImageManager::getSingleton().loadImageset("DriveIcons.imageset");
-        CEGUI::ImageManager::getSingleton().loadImageset("GameMenu.imageset");
         CEGUI::ImageManager::getSingleton().loadImageset("HUDDemo.imageset");
 
         m_consoleGUIWindow = new CEGUIWindow("Console");
@@ -367,15 +390,11 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
     void
     setupSoundManager() {
         static const std::string DEVICE_NAME = "";
-        static const unsigned int MAX_SOURCES = 100;
-        static const unsigned int QUEUE_LIST_SIZE = 100;
-        auto& soundManager = OgreOggSound::OgreOggSoundManager::getSingleton();
-        soundManager.init(
-            DEVICE_NAME,
-            MAX_SOURCES,
-            QUEUE_LIST_SIZE
-        );
-        soundManager.setDistanceModel(AL_LINEAR_DISTANCE);
+
+        m_soundManager = std::move(std::unique_ptr<SoundManager>(new SoundManager()));
+
+        m_soundManager->init(DEVICE_NAME);
+        //soundManager.setDistanceModel(AL_LINEAR_DISTANCE);
     }
 
     void
@@ -483,6 +502,11 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
     } m_serialization;
 
     luabind::object m_console;
+    std::unique_ptr<SoundManager> m_soundManager;
+
+    std::unique_ptr<CEGUI::InputAggregator> m_aggregator;
+
+
 };
 
 
@@ -530,8 +554,10 @@ Engine::luaBindings() {
         .def("playerData", &Engine::playerData)
         .def("load", &Engine::load)
         .def("save", &Engine::save)
+        .def("fileExists", &Engine::fileExists)
         .def("saveCreation", static_cast<void(Engine::*)(EntityId, std::string, std::string)const>(&Engine::saveCreation))
         .def("loadCreation", static_cast<EntityId(Engine::*)(std::string)>(&Engine::loadCreation))
+        .def("screenShot", &Engine::screenShot)
         .def("getCreationFileList", &Engine::getCreationFileList)
         .def("quit", &Engine::quit)
         .def("timedSystemShutdown", &Engine::timedSystemShutdown)
@@ -627,8 +653,8 @@ Engine::init() {
     m_impl->setupLog();
     m_impl->setupScripts();
     m_impl->setupGraphics();
-    m_impl->setupInputManager();
     m_impl->setupGUI();
+    m_impl->setupInputManager();
     m_impl->loadScripts("../scripts");
     m_impl->loadVersionNumber();
     GameState* previousGameState = m_impl->m_currentGameState;
@@ -663,6 +689,23 @@ Engine::load(
 ) {
     m_impl->m_serialization.loadFile = filename;
 }
+
+
+bool
+Engine::fileExists(
+    std::string filePath
+) {
+        namespace fs = boost::filesystem;
+        fs::path fPath = filePath;
+        if (not fs::exists(fPath)) {
+            return false;
+        }
+        else{
+            return true;
+        }
+
+}
+
 
 lua_State*
 Engine::luaState(){
@@ -712,25 +755,33 @@ Engine::saveCreation(
 ) const {
     namespace fs = boost::filesystem;
     StorageContainer creation = entityManager.storeEntity(entityId);
-    creation.set("thriveversion", this->thriveVersion());
-    std::ofstream stream(
-        (fs::path("creations") / fs::path(type) / fs::path(name + "." + type)).string<std::string>(),
-        std::ofstream::trunc | std::ofstream::binary
-    );
-    stream.exceptions(std::ofstream::failbit | std::ofstream::badbit);
-    if (stream) {
-        try {
-            stream << creation;
-            stream.flush();
-            stream.close();
-        }
-        catch (const std::ofstream::failure& e) {
-            std::cerr << "Error saving file: " << e.what() << std::endl;
-            throw;
-        }
+    fs::path pth = (fs::path("creations") / fs::path(type));
+    boost::system::error_code returnedError;
+    boost::filesystem::create_directories( pth, returnedError );
+    if (returnedError) {
+        std::perror("Could not create necessary directories for saving.");
     }
     else {
-        std::perror("Could not open file for saving");
+        creation.set("thriveversion", this->thriveVersion());
+        std::ofstream stream(
+            (pth / fs::path(name + "." + type)).string<std::string>(),
+            std::ofstream::trunc | std::ofstream::binary
+        );
+        stream.exceptions(std::ofstream::failbit | std::ofstream::badbit);
+        if (stream) {
+            try {
+                stream << creation;
+                stream.flush();
+                stream.close();
+            }
+            catch (const std::ofstream::failure& e) {
+                std::cerr << "Error saving file: " << e.what() << std::endl;
+                throw;
+            }
+        }
+        else {
+            std::perror("Could not open file for saving");
+        }
     }
 }
 
@@ -763,6 +814,13 @@ Engine::loadCreation(
     EntityId entityId = entityManager.loadEntity(creation, m_impl->m_componentFactory);
     return entityId;
 }
+
+void
+Engine::screenShot(std::string path){
+     m_impl->m_graphics.renderWindow->writeContentsToFile(path);
+}
+
+
 
 std::string
 Engine::getCreationFileList(
@@ -811,6 +869,7 @@ Engine::shutdown() {
     }
     m_impl->shutdownInputManager();
     m_impl->m_graphics.renderWindow->destroy();
+
     m_impl->m_graphics.root.reset();
 }
 
@@ -820,10 +879,9 @@ Engine::quit(){
     m_impl->m_quitRequested = true;
 }
 
-
-OgreOggSound::OgreOggSoundManager*
+SoundManager*
 Engine::soundManager() const {
-    return OgreOggSound::OgreOggSoundManager::getSingletonPtr();
+    return m_impl->m_soundManager.get();
 }
 
 EntityId
@@ -868,6 +926,8 @@ Engine::update(
 
     luabind::call_member<void>(m_impl->m_console, "update");
 
+    CEGUI::System::getSingleton().injectTimePulse(milliseconds/1000.0f);
+    CEGUI::System::getSingleton().getDefaultGUIContext().injectTimePulse(milliseconds/1000.0f);
     // Update any timed shutdown systems
     auto itr = m_impl->m_prevShutdownSystems->begin();
     while (itr != m_impl->m_prevShutdownSystems->end()) {

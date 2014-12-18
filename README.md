@@ -49,9 +49,10 @@ Windows developers should follow the procedure outlined in the [mingw setup guid
 For the time being, Linux developers will have to manually set up their build 
 environment. The dependencies at the time of this writing are
 
-* gcc 4.8 or newer
+* gcc 4.7.3
 * boost 1.52
 * Ogre 1.8
+* OIS 1.3
 * Bullet 2.81
 * OpenAL Soft 1.15.1
 * Vorbis 1.3.3

@@ -6,7 +6,7 @@ end
 
 
 function SwitchGameStateSystem:update(renderTime, logicTime)
-    if Engine.keyboard:wasKeyPressed(Keyboard.KC_F1) then
+    if keyCombo(kmp.altuniverse) then
         local currentState = Engine:currentGameState()
         local nextGameState
         if Engine:currentGameState():name() == GameState.MICROBE:name() then
