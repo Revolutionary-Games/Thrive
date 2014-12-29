@@ -335,6 +335,8 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
         CEGUI::SchemeManager::getSingleton().createFromFile("Thrive.scheme");
         CEGUI::System::getSingleton().getDefaultGUIContext().getMouseCursor().setDefaultImage("ThriveGeneric/MouseArrow");
 
+        CEGUI::AnimationManager::getSingleton().loadAnimationsFromXML("thrive.anims");
+
         //For demos:
         CEGUI::SchemeManager::getSingleton().createFromFile("TaharezLook.scheme");
         CEGUI::SchemeManager::getSingleton().createFromFile("SampleBrowser.scheme");
@@ -867,6 +869,8 @@ Engine::update(
     m_impl->m_currentGameState->update(milliseconds, m_impl->m_paused ? 0 : milliseconds);
 
     luabind::call_member<void>(m_impl->m_console, "update");
+
+    CEGUI::System::getSingleton().injectTimePulse(milliseconds/1000.0f);
 
     // Update any timed shutdown systems
     auto itr = m_impl->m_prevShutdownSystems->begin();
