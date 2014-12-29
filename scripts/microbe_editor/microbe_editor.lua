@@ -6,7 +6,7 @@
 --------------------------------------------------------------------------------
 class 'MicrobeEditor'
 
-FLAGELIUM_MOMENTUM = 12.5
+FLAGELIUM_MOMENTUM = 12.5 -- what the heck is this for, and why is it here?
 
 function MicrobeEditor:__init(hudSystem)
     self.currentMicrobe = nil
@@ -103,6 +103,8 @@ function MicrobeEditor:enqueueAction(action)
         while #self.actionHistory > self.actionIndex do
             table.remove(self.actionHistory)
         end
+        self.hudSystem.undoButton:enable()
+        self.hudSystem.redoButton:disable()
         action.redo()
         table.insert(self.actionHistory, action)
         self.actionIndex = self.actionIndex + 1
@@ -118,6 +120,12 @@ function MicrobeEditor:undo()
         end
         self.actionIndex = self.actionIndex - 1
     end
+    -- nothing left to undo? disable undo
+    if self.actionIndex <= 0 then
+        self.hudSystem.undoButton:disable()
+    end
+    -- upon undoing, redoing is possible
+    self.hudSystem.redoButton:enable()
 end
 
 function MicrobeEditor:redo()
@@ -129,6 +137,12 @@ function MicrobeEditor:redo()
             self.mutationPoints = self.mutationPoints - action.cost
         end
     end
+    -- nothing left to redo? disable redo
+    if self.actionIndex >= #self.actionHistory then
+        self.hudSystem.redoButton:disable()
+    end
+    -- upon redoing, undoing is possible
+    self.hudSystem.undoButton:enable()
 end
 
 function MicrobeEditor:getMouseHex()

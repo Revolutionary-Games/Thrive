@@ -89,6 +89,7 @@ CEGUIWindow::CEGUIWindow(
 ) : m_window(window)
 {
     if (window && newWindow ) {
+
         m_window->subscribeEvent("MouseClick", handleWindowMove);
     }
 }
@@ -159,6 +160,7 @@ CEGUIWindow::luaBindings() {
         .def("moveInFront", &CEGUIWindow::moveInFront)
         .def("moveBehind", &CEGUIWindow::moveBehind)
         .def("setPosition", &CEGUIWindow::setPosition)
+        .def("playAnimation", &CEGUIWindow::playAnimation)
         .def("listboxAddItem", &CEGUIWindow::listboxAddItem)
         .def("listboxResetList", &CEGUIWindow::listboxResetList)
         .def("listboxHandleUpdatedItemData", &CEGUIWindow::listboxHandleUpdatedItemData)
@@ -398,4 +400,14 @@ CEGUIWindow::setPosition(
     Ogre::Vector2 position
 ){
     m_window->setPosition(CEGUI::Vector2<CEGUI::UDim>(CEGUI::UDim(position.x, 0), CEGUI::UDim(position.y, 0)));
+}
+
+
+void
+CEGUIWindow::playAnimation(
+  std::string name
+) {
+    auto anim = CEGUI::AnimationManager::getSingleton().instantiateAnimation(name);
+    anim->setTargetWindow(m_window);
+    anim->start();
 }
