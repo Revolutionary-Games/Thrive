@@ -75,6 +75,8 @@ public:
     * - CEGUIWindow::moveBehind
     * - CEGUIWindow::setPosition
     *
+    * - CEGUIWindow::playAnimation
+    *
     * - CEGUIWindow::listboxAddItem
     * - CEGUIWindow::listboxResetList
     * - CEGUIWindow::listboxHandleUpdatedItemData
@@ -376,6 +378,11 @@ public:
         Ogre::Vector2 position
     );
 
+
+    void
+    playAnimation(
+      std::string name
+    );
 
 
 private:
