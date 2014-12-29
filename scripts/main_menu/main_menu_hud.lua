@@ -8,9 +8,9 @@ end
 function MainMenuHudSystem:init(gameState)
     System.init(self, gameState)
     local root = gameState:rootGUIWindow()
-    local microbeButton = root:getChild("Background"):getChild("MicrobeButton")
-    local microbeEditorButton = root:getChild("Background"):getChild("MicrobeEditorButton")
-    local quitButton = root:getChild("Background"):getChild("QuitButton")
+    local microbeButton = root:getChild("Background"):getChild("MainMenuInteractive"):getChild("NewGameButton")
+    local microbeEditorButton = root:getChild("Background"):getChild("MainMenuInteractive"):getChild("EditorMenuButton")
+    local quitButton = root:getChild("Background"):getChild("MainMenuInteractive"):getChild("ExitGameButton")
     
     microbeButton:registerEventHandler("Clicked", mainMenuMicrobeStageButtonClicked)
     microbeEditorButton:registerEventHandler("Clicked", mainMenuMicrobeEditorButtonClicked)
