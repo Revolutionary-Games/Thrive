@@ -978,7 +978,7 @@ function MicrobeSystem:shutdown()
 end
 
 
-function MicrobeSystem:update(milliseconds)
+function MicrobeSystem:update(renderTime, logicTime)
     for entityId in self.entities:removedEntities() do
         self.microbes[entityId] = nil
     end
@@ -988,7 +988,7 @@ function MicrobeSystem:update(milliseconds)
     end
     self.entities:clearChanges()
     for _, microbe in pairs(self.microbes) do
-        microbe:update(milliseconds)
+        microbe:update(logicTime)
     end
     -- Note that this triggers every frame there is a collision, but the sound system ensures that the sound doesn't overlap itself. Could potentially be optimised
     for collision in self.microbeCollisions:collisions() do
