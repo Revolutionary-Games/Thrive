@@ -105,7 +105,45 @@ function SpeciesComponent:mutate(aiControlled)
     ]]
 end
 
+
+-- Given a newly-created microbe, this sets the organelles and all other species-specific microbe data
+--  like agent codes, for example.
+function SpeciesComponent:template(microbe)
+
+    microbe.microbe.speciesName = self.name
+    -- give it organelles
+    for i, orgdata in pairs(self.organelles) do
+        organelle = OrganelleFactory.makeOrganelle(orgdata)
+        microbe:addOrganelle(orgdata.q, orgdata.r, organelle)
+    end
+
+    for compoundID, amount in pairs(self.avgCompoundAmounts) do
+        if amount ~= 0 then
+            microbe:storeCompound(compoundID, amount, false)
+        end
+    end
+    for compoundID, priority in pairs(self.compoundPriorities) do
+        if priority ~= 0 then
+            microbe:setDefaultCompoundPriority(compoundID, priority)
+        end
+    end
+    return microbe
+end
+
 REGISTER_COMPONENT("SpeciesComponent", SpeciesComponent)
+
+--------------------------------------------------------------------------------
+-- Population
+--
+-- Holds information about a specific population (species \intersect patch)
+--------------------------------------------------------------------------------
+class 'Population'
+
+function Population:__init(species)
+    self.species = species
+    self.heldCompounds = {} -- compounds that are available for intracellular processes
+    self.lockedCompounds = {} -- compounds that aren't, but will be released on deaths
+end
 
 
 --------------------------------------------------------------------------------
@@ -131,7 +169,7 @@ end
 -- Override from System
 function PopulationSystem:init(gameState)
     System.init(self, gameState)
-    self.starterSpecies()
+    --self.starterSpecies()
     self.entities:init(gameState)
 end
 
@@ -145,8 +183,10 @@ end
 -- Override from System
 function PopulationSystem:update(_, milliseconds)
     self.timeSinceLastCycle = self.timeSinceLastCycle + milliseconds
+
+    -- this entire system is probably unnecessary, we should have a PatchSystem instead that does analogous work
     
-    --Perform spawn cycle if necessary (Reason for "if" rather than "while" stated below)
+    --Perform spawn cycle if necessary (Reason for "while" rather than "if" stated below)
     while self.timeSinceLastCycle > POPULATION_SIMULATION_INTERVAL do
         for entityId in self.entities:addedEntities() do
         end
@@ -168,37 +208,5 @@ function PopulationSystem:update(_, milliseconds)
         
         
         self.timeSinceLastCycle = self.timeSinceLastCycle - POPULATION_SIMULATION_INTERVAL
-    end
-end
-
-function PopulationSystem:starterSpecies()
-    --[[
-    This function should be the entry point for all initial-species generation
-    For now, it can go through the XML and instantiate all the species, but later this 
-    would be all procedural.
-
-    Together with the mutate function, these would be the only ways species are created
-    ]]
-    SpeciesRegistry.loadFromXML("../definitions/microbes.xml")
-    for _, name in ipairs(SpeciesRegistry.getSpeciesNames()) do
-        speciesEntity = Entity(name)
-        speciesComponent = SpeciesComponent(name)
-        speciesEntity:addComponent(speciesComponent)
-        -- print("made entity and component")
-        local organelles = {}
-        assert(pcall(function () SpeciesRegistry.getSize(name) end), "could not load species", name, "from XML")
-        -- In this case the species is a default one loaded from xml
-        -- print("loaded", name)
-        local numOrganelles = SpeciesRegistry.getSize(name)
-        -- print("# organelles = "..numOrganelles)
-        for i = 0,(numOrganelles-1) do
-            -- returns a property table
-            local organelleData = SpeciesRegistry.getOrganelle(name, i)
-            organelles[#organelles+1] = organelleData
-        end
-        -- for _, org in pairs(organelles) do print(org.name, org.q, org.r) end
-
-        -- for key, value in pairs(organelles) do print(key, value) end
-        speciesComponent.organelles = organelles
     end
 end

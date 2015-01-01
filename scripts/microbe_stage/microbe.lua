@@ -287,7 +287,7 @@ function Microbe.createMicrobeEntity(name, aiControlled, speciesName)
     if aiControlled then
         local aiController = MicrobeAIControllerComponent()
         table.insert(components, aiController)
-    else
+    --else
         --table.insert(components, SpeciesComponent()) -- we need another way to make a new SpeciesComponent
     end
     for _, component in ipairs(components) do
@@ -341,9 +341,11 @@ function Microbe:getSpeciesComponent()
     return Entity(self.microbe.speciesName):getComponent(SpeciesComponent.TYPE_ID)
 end
 
+
 -- Assigns a species to the microbe, if the species already exists
 -- If the species already exists, the microbe is updated to fit.
 -- Otherwise does nothing
+-- TODO this is a very dirty function, and we should probably not do things this way
 function Microbe:setSpecies(speciesName)
     self.microbe.speciesName = speciesName
     if self.getSpeciesComponent() ~= nil then

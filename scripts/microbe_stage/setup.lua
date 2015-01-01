@@ -67,6 +67,45 @@ local function setupProcesses()
     end
 end
 
+function setupSpecies()
+    --[[
+    This function should be the entry point for all initial-species generation
+    For now, it can go through the XML and instantiate all the species, but later this 
+    would be all procedural.
+
+    Together with the mutate function, these would be the only ways species are created
+    ]]
+    SpeciesRegistry.loadFromXML("../definitions/microbes.xml")
+    for _, name in ipairs(SpeciesRegistry.getSpeciesNames()) do
+        speciesEntity = Entity(name)
+        speciesComponent = SpeciesComponent(name)
+        speciesEntity:addComponent(speciesComponent)
+        -- print("made entity and component")
+        local organelles = {}
+        assert(pcall(function () SpeciesRegistry.getSize(name) end), "could not load species", name, "from XML")
+        -- In this case the species is a default one loaded from xml
+        -- print("loaded", name)
+        local numOrganelles = SpeciesRegistry.getSize(name)
+        -- print("# organelles = "..numOrganelles)
+        for i = 0,(numOrganelles-1) do
+            -- returns a property table
+            local organelleData = SpeciesRegistry.getOrganelle(name, i)
+            organelles[#organelles+1] = organelleData
+        end
+        -- for _, org in pairs(organelles) do print(org.name, org.q, org.r) end
+        speciesComponent.organelles = organelles
+
+        -- iterates over all compounds, and sets amounts and priorities
+        for compoundID in CompoundRegistry.getCompoundList() do
+            compound = CompoundRegistry.getCompoundInternalName(compoundID)
+            amount = SpeciesRegistry.getCompoundAmount(name, compound)
+            priority = SpeciesRegistry.getCompoundPriority(name, compound)
+            speciesComponent.avgCompoundAmounts[compoundID] = amount
+            speciesComponent.compoundPriorities[compoundID] = priority
+        end
+    end
+end
+
 -- speciesName decides the template to use, while individualName is used for referencing the instance
 function microbeSpawnFunctionGeneric(pos, speciesName, aiControlled, individualName)
     local microbe = Microbe.createMicrobeEntity(individualName, aiControlled)
@@ -78,26 +117,9 @@ function microbeSpawnFunctionGeneric(pos, speciesName, aiControlled, individualN
             Vector3(0, 0, 0)  -- Angular velocity
         )
     end
-    local numOrganelles = SpeciesRegistry.getSize(speciesName)
-    for i = 0,(numOrganelles-1) do
-        -- returns a property table
-        local organelleData = SpeciesRegistry.getOrganelle(speciesName, i)
-        local organelle = OrganelleFactory.makeOrganelle(organelleData)
-        microbe:addOrganelle(organelleData.q, organelleData.r, organelle)
-    end
-    -- iterates over all compounds, and sets amounts and priorities
-    for compoundID in CompoundRegistry.getCompoundList() do
-        compound = CompoundRegistry.getCompoundInternalName(compoundID)
-        amount = SpeciesRegistry.getCompoundAmount(speciesName, compound)
-        if amount ~= 0 then
-            microbe:storeCompound(compoundID, amount, false)
-        end
-        priority = SpeciesRegistry.getCompoundPriority(speciesName, compound)
-        if priority ~= 0 then
-            microbe:setDefaultCompoundPriority(compoundID, priority)
-        end
-    end
-    
+    -- set organelles, starting compound amounts, all that
+    -- TODO: 
+    Entity(speciesName):getComponent(SpeciesComponent.TYPE_ID):template(microbe)
     microbe.microbe:updateSafeAngles()
     return microbe
 end
@@ -479,6 +501,7 @@ local function createMicrobeStage(name)
             setupBackground()
             setupCamera()
             setupEmitter()
+            setupSpecies()
             setupPlayer()
             setupSound()
         end,
