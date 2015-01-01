@@ -124,6 +124,23 @@ function microbeSpawnFunctionGeneric(pos, speciesName, aiControlled, individualN
     return microbe
 end
 
+local function addEmitter2Entity(entity, compound)
+    local compoundEmitter = CompoundEmitterComponent()
+    entity:addComponent(compoundEmitter)
+    compoundEmitter.emissionRadius = 1
+    compoundEmitter.maxInitialSpeed = 10
+    compoundEmitter.minInitialSpeed = 2
+    compoundEmitter.minEmissionAngle = Degree(0)
+    compoundEmitter.maxEmissionAngle = Degree(360)
+    compoundEmitter.particleLifeTime = 5000
+    local timedEmitter = TimedCompoundEmitterComponent()
+    timedEmitter.compoundId = CompoundRegistry.getCompoundId(compound)
+    timedEmitter.particlesPerEmission = 1
+    timedEmitter.potencyPerParticle = 2.0
+    timedEmitter.emitInterval = 1000
+    entity:addComponent(timedEmitter)
+end
+
 local function createSpawnSystem()
     local spawnSystem = SpawnSystem()
     SpeciesRegistry.loadFromXML("../definitions/microbes.xml")
@@ -153,20 +170,7 @@ local function createSpawnSystem()
         sceneNode.meshName = "molecule.mesh"
         entity:addComponent(sceneNode)
         -- Emitter oxygen
-        local oxygenEmitter = CompoundEmitterComponent()
-        entity:addComponent(oxygenEmitter)
-        oxygenEmitter.emissionRadius = 1
-        oxygenEmitter.maxInitialSpeed = 10
-        oxygenEmitter.minInitialSpeed = 2
-        oxygenEmitter.minEmissionAngle = Degree(0)
-        oxygenEmitter.maxEmissionAngle = Degree(360)
-        oxygenEmitter.particleLifeTime = 5000
-        local timedEmitter = TimedCompoundEmitterComponent()
-        timedEmitter.compoundId = CompoundRegistry.getCompoundId("oxygen")
-        timedEmitter.particlesPerEmission = 1
-        timedEmitter.potencyPerParticle = 2.0
-        timedEmitter.emitInterval = 1000
-        entity:addComponent(timedEmitter)
+        addEmitter2Entity(entity, "oxygen")
         return entity
     end
     local spawnCO2Emitter = function(pos)
@@ -195,20 +199,7 @@ local function createSpawnSystem()
         sceneNode.transform.scale = Vector3(0.4, 0.4, 0.4)
         entity:addComponent(sceneNode)
         -- Emitter carbon dioxide
-        local co2Emitter = CompoundEmitterComponent()
-        entity:addComponent(co2Emitter)
-        co2Emitter.emissionRadius = 1
-        co2Emitter.maxInitialSpeed = 10
-        co2Emitter.minInitialSpeed = 2
-        co2Emitter.minEmissionAngle = Degree(0)
-        co2Emitter.maxEmissionAngle = Degree(360)
-        co2Emitter.particleLifeTime = 5000
-        local timedEmitter = TimedCompoundEmitterComponent()
-        timedEmitter.compoundId = CompoundRegistry.getCompoundId("co2")
-        timedEmitter.particlesPerEmission = 1
-        timedEmitter.potencyPerParticle = 2.0
-        timedEmitter.emitInterval = 1000
-        entity:addComponent(timedEmitter)
+        addEmitter2Entity(entity, "co2")
         return entity
     end
     local spawnGlucoseEmitter = function(pos)
@@ -232,20 +223,7 @@ local function createSpawnSystem()
         sceneNode.meshName = "glucose.mesh"
         entity:addComponent(sceneNode)
         -- Emitter glucose
-        local glucoseEmitter = CompoundEmitterComponent()
-        entity:addComponent(glucoseEmitter)
-        glucoseEmitter.emissionRadius = 1
-        glucoseEmitter.maxInitialSpeed = 10
-        glucoseEmitter.minInitialSpeed = 2
-        glucoseEmitter.minEmissionAngle = Degree(0)
-        glucoseEmitter.maxEmissionAngle = Degree(360)
-        glucoseEmitter.particleLifeTime = 5000
-        local timedEmitter = TimedCompoundEmitterComponent()
-        timedEmitter.compoundId = CompoundRegistry.getCompoundId("glucose")
-        timedEmitter.particlesPerEmission = 1
-        timedEmitter.potencyPerParticle = 1.0
-        timedEmitter.emitInterval = 2000
-        entity:addComponent(timedEmitter)
+        addEmitter2Entity(entity, "glucose")
         return entity
     end
     local spawnAmmoniaEmitter = function(pos)
@@ -269,33 +247,8 @@ local function createSpawnSystem()
         sceneNode.meshName = "hex.mesh"
         entity:addComponent(sceneNode)
         -- Emitter ammonia
-        local ammoniaEmitter = CompoundEmitterComponent()
-        entity:addComponent(ammoniaEmitter)
-        ammoniaEmitter.emissionRadius = 1
-        ammoniaEmitter.maxInitialSpeed = 10
-        ammoniaEmitter.minInitialSpeed = 2
-        ammoniaEmitter.minEmissionAngle = Degree(0)
-        ammoniaEmitter.maxEmissionAngle = Degree(360)
-        ammoniaEmitter.particleLifeTime = 5000
-        local timedEmitter = TimedCompoundEmitterComponent()
-        timedEmitter.compoundId = CompoundRegistry.getCompoundId("ammonia")
-        timedEmitter.particlesPerEmission = 1
-        timedEmitter.potencyPerParticle = 1.0
-        timedEmitter.emitInterval = 1000
-        entity:addComponent(timedEmitter)
+        addEmitter2Entity(entity, "ammonia")
         return entity
-    end
-
-    local microbeDefault = function(pos)
-        return microbeSpawnFunctionGeneric(pos, "Default", true, nil)
-    end
-
-    local microbeTeeny = function(pos)
-        return microbeSpawnFunctionGeneric(pos, "Teeny", true, nil)
-    end
-
-    local microbePlankton = function(pos)
-        return microbeSpawnFunctionGeneric(pos, "Plankton", true, nil)
     end
 
     local toxinOrganelleSpawnFunction = function(pos) 
@@ -329,7 +282,19 @@ local function createSpawnSystem()
         powerupEntity:addComponent(powerupComponent)
         return powerupEntity
     end
-    
+
+    local microbeDefault = function(pos)
+        return microbeSpawnFunctionGeneric(pos, "Default", true, nil)
+    end
+
+    local microbeTeeny = function(pos)
+        return microbeSpawnFunctionGeneric(pos, "Teeny", true, nil)
+    end
+
+    local microbePlankton = function(pos)
+        return microbeSpawnFunctionGeneric(pos, "Plankton", true, nil)
+    end
+
     --Spawn one emitter on average once in every square of sidelength 10
     -- (square dekaunit?)
     spawnSystem:addSpawnType(spawnOxygenEmitter, 1/500, 30)
