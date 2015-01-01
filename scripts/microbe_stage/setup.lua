@@ -124,6 +124,29 @@ function microbeSpawnFunctionGeneric(pos, speciesName, aiControlled, individualN
     return microbe
 end
 
+local function setSpawnablePhysics(entity, pos, mesh, scale, collisionShape)
+    -- Rigid body
+    local rigidBody = RigidBodyComponent()
+    rigidBody.properties.friction = 0.2
+    rigidBody.properties.linearDamping = 0.8
+
+    rigidBody.properties.shape = collisionShape
+    rigidBody:setDynamicProperties(
+        pos,
+        Quaternion(Radian(Degree(math.random()*360)), Vector3(0, 0, 1)),
+        Vector3(0, 0, 0),
+        Vector3(0, 0, 0)
+    )
+    rigidBody.properties:touch()
+    entity:addComponent(rigidBody)
+    -- Scene node
+    local sceneNode = OgreSceneNodeComponent()
+    sceneNode.meshName = mesh
+    sceneNode.transform.scale = Vector3(scale, scale, scale)
+    entity:addComponent(sceneNode)
+    return entity
+end
+
 local function addEmitter2Entity(entity, compound)
     local compoundEmitter = CompoundEmitterComponent()
     entity:addComponent(compoundEmitter)
@@ -146,136 +169,45 @@ local function createSpawnSystem()
     SpeciesRegistry.loadFromXML("../definitions/microbes.xml")
 
     local spawnOxygenEmitter = function(pos)
-        -- Setting up an emitter for oxygen
         local entity = Entity()
-        -- Rigid body
-        local rigidBody = RigidBodyComponent()
-        rigidBody.properties.friction = 0.2
-        rigidBody.properties.linearDamping = 0.8
-        rigidBody.properties.shape = CylinderShape(
-            CollisionShape.AXIS_X, 
-            0.4,
-            2.0
-        )
-        rigidBody:setDynamicProperties(
-            pos,
-            Quaternion(Radian(Degree(math.random()*360)), Vector3(0, 0, 1)),
-            Vector3(0, 0, 0),
-            Vector3(0, 0, 0)
-        )
-        rigidBody.properties:touch()
-        entity:addComponent(rigidBody)
-        -- Scene node
-        local sceneNode = OgreSceneNodeComponent()
-        sceneNode.meshName = "molecule.mesh"
-        entity:addComponent(sceneNode)
-        -- Emitter oxygen
+        setSpawnablePhysics(entity, pos, "molecule.mesh", 1, CylinderShape(
+                CollisionShape.AXIS_X, 
+                0.4,
+                2.0
+            ))
         addEmitter2Entity(entity, "oxygen")
         return entity
     end
     local spawnCO2Emitter = function(pos)
-        -- Setting up an emitter for co2
         local entity = Entity()
-        -- Rigid body
-        local rigidBody = RigidBodyComponent()
-        rigidBody.properties.friction = 0.2
-        rigidBody.properties.linearDamping = 0.8
-        rigidBody.properties.shape = CylinderShape(
-            CollisionShape.AXIS_X, 
-            0.4,
-            2.0
-        )
-        rigidBody:setDynamicProperties(
-            pos,
-            Quaternion(Radian(Degree(math.random()*360)), Vector3(0, 0, 1)),
-            Vector3(0, 0, 0),
-            Vector3(0, 0, 0)
-        )
-        rigidBody.properties:touch()
-        entity:addComponent(rigidBody)
-        -- Scene node
-        local sceneNode = OgreSceneNodeComponent()
-        sceneNode.meshName = "co2.mesh"
-        sceneNode.transform.scale = Vector3(0.4, 0.4, 0.4)
-        entity:addComponent(sceneNode)
-        -- Emitter carbon dioxide
+        setSpawnablePhysics(entity, pos, "co2.mesh", 0.4, CylinderShape(
+                CollisionShape.AXIS_X, 
+                0.4,
+                2.0
+            ))
         addEmitter2Entity(entity, "co2")
         return entity
     end
     local spawnGlucoseEmitter = function(pos)
-        -- Setting up an emitter for glucose
         local entity = Entity()
-        -- Rigid body
-        local rigidBody = RigidBodyComponent()
-        rigidBody.properties.friction = 0.2
-        rigidBody.properties.linearDamping = 0.8
-        rigidBody.properties.shape = SphereShape(HEX_SIZE)
-        rigidBody:setDynamicProperties(
-            pos,
-            Quaternion(Radian(Degree(math.random()*360)), Vector3(0, 0, 1)),
-            Vector3(0, 0, 0),
-            Vector3(0, 0, 0)
-        )
-        rigidBody.properties:touch()
-        entity:addComponent(rigidBody)
-        -- Scene node
-        local sceneNode = OgreSceneNodeComponent()
-        sceneNode.meshName = "glucose.mesh"
-        entity:addComponent(sceneNode)
-        -- Emitter glucose
+        setSpawnablePhysics(entity, pos, "glucose.mesh", 1, SphereShape(HEX_SIZE))
         addEmitter2Entity(entity, "glucose")
         return entity
     end
     local spawnAmmoniaEmitter = function(pos)
-        -- Setting up an emitter for ammonia
         local entity = Entity()
-        -- Rigid body
-        local rigidBody = RigidBodyComponent()
-        rigidBody.properties.friction = 0.2
-        rigidBody.properties.linearDamping = 0.8
-        rigidBody.properties.shape = SphereShape(HEX_SIZE)
-        rigidBody:setDynamicProperties(
-            pos,
-            Quaternion(Radian(Degree(math.random()*360)), Vector3(0, 0, 1)),
-            Vector3(0, 0, 0),
-            Vector3(0, 0, 0)
-        )
-        rigidBody.properties:touch()
-        entity:addComponent(rigidBody)
-        -- Scene node
-        local sceneNode = OgreSceneNodeComponent()
-        sceneNode.meshName = "hex.mesh"
-        entity:addComponent(sceneNode)
-        -- Emitter ammonia
+        setSpawnablePhysics(entity, pos, "hex.mesh", 1, SphereShape(HEX_SIZE))
         addEmitter2Entity(entity, "ammonia")
         return entity
     end
 
     local toxinOrganelleSpawnFunction = function(pos) 
         powerupEntity = Entity()
-        psceneNode = OgreSceneNodeComponent()
-        psceneNode.transform.position = pos
-        psceneNode.transform.scale = Vector3(0.9, 0.9, 0.9)
-        psceneNode.transform:touch()
-        psceneNode.meshName = "AgentVacuole.mesh"
-        powerupEntity:addComponent(psceneNode)
-        
+        setSpawnablePhysics(powerupEntity, pos, "AgentVacuole.mesh", 0.9, SphereShape(HEX_SIZE))
+
         local reactionHandler = CollisionComponent()
         reactionHandler:addCollisionGroup("powerup")
         powerupEntity:addComponent(reactionHandler)
-       
-        local rigidBody = RigidBodyComponent()
-        rigidBody.properties.friction = 0.2
-        rigidBody.properties.linearDamping = 0.8
-        rigidBody.properties.shape = SphereShape(HEX_SIZE)
-        rigidBody:setDynamicProperties(
-            pos,
-            Quaternion(Radian(Degree(math.random()*360)), Vector3(0, 0, 1)),
-            Vector3(0, 0, 0),
-            Vector3(0, 0, 0)
-        )
-        rigidBody.properties:touch()
-        powerupEntity:addComponent(rigidBody)
         
         local powerupComponent = PowerupComponent()
         powerupComponent:setEffect(unlockToxin)
@@ -339,20 +271,7 @@ local function setupEmitter()
     sceneNode.meshName = "molecule.mesh"
     entity:addComponent(sceneNode)
     -- Emitter test
-    local testEmitter = CompoundEmitterComponent()
-    entity:addComponent(testEmitter)
-    testEmitter.emissionRadius = 1
-    testEmitter.maxInitialSpeed = 10
-    testEmitter.minInitialSpeed = 2
-    testEmitter.minEmissionAngle = Degree(0)
-    testEmitter.maxEmissionAngle = Degree(360)
-    testEmitter.particleLifeTime = 5000
-    local timedEmitter = TimedCompoundEmitterComponent()
-    timedEmitter.compoundId = CompoundRegistry.getCompoundId("glucose")
-    timedEmitter.particlesPerEmission = 1
-    timedEmitter.potencyPerParticle = 3.0
-    timedEmitter.emitInterval = 1000
-    entity:addComponent(timedEmitter)
+    addEmitter2Entity(entity, "glucose")
 end
 
 function unlockToxin(entityId)
