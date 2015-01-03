@@ -148,7 +148,7 @@ function MicrobeEditorHudSystem:update(renderTime, logicTime)
             self.editor.gridVisible = true
         end
     elseif Engine.keyboard:wasKeyPressed(Keyboard.KC_F2) then
-        self:playClicked()
+        playClicked()
     elseif Engine.keyboard:wasKeyPressed(Keyboard.KC_F12) then
         self:updateMicrobeName()
     end
