@@ -106,7 +106,7 @@ end
 function showReproductionDialog() global_activeMicrobeStageHudSystem:showReproductionDialog() end
 
 function HudSystem:showReproductionDialog()
-    print("Reproduction Dialog called but currently disabled. Is it needed? Note that the editor button has been enabled")
+   -- print("Reproduction Dialog called but currently disabled. Is it needed? Note that the editor button has been enabled")
     --global_activeMicrobeStageHudSystem.rootGUIWindow:getChild("ReproductionPanel"):show()
     self.editorButton:enable()
 end
@@ -141,11 +141,15 @@ function HudSystem:menuButtonClicked()
 end
 
 function HudSystem:openCompoundPanel()
+    local guiSoundEntity = Entity("gui_sounds")
+    guiSoundEntity:getComponent(SoundSourceComponent.TYPE_ID):playSound("button-hover-click")
     self.rootGUIWindow:getChild("CompoundsOpen"):show()
     self.rootGUIWindow:getChild("CompoundsClosed"):hide()
 end
 
 function HudSystem:closeCompoundPanel()
+    local guiSoundEntity = Entity("gui_sounds")
+    guiSoundEntity:getComponent(SoundSourceComponent.TYPE_ID):playSound("button-hover-click")
     self.rootGUIWindow:getChild("CompoundsOpen"):hide()
     self.rootGUIWindow:getChild("CompoundsClosed"):show()
 end
