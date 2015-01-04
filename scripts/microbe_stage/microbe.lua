@@ -15,6 +15,7 @@ ANGLE_RADIUS_DIVISION_COUNT = 4 -- How many pizza slices the microbes angles are
 MICROBE_HITPOINTS_PER_ORGANELLE = 10
 MINIMUM_AGENT_EMISSION_AMOUNT = 1
 REPRODUCTASE_TO_SPLIT = 5
+RELATIVE_VELOCITY_TO_BUMP_SOUND = 6
 
 function MicrobeComponent:__init(isPlayerMicrobe)
     Component.__init(self)
@@ -992,13 +993,17 @@ function MicrobeSystem:update(renderTime, logicTime)
     end
     -- Note that this triggers every frame there is a collision, but the sound system ensures that the sound doesn't overlap itself. Could potentially be optimised
     for collision in self.microbeCollisions:collisions() do
-        local soundComponent = Entity(collision.entityId1):getComponent(SoundSourceComponent.TYPE_ID)
-        -- The component can sometimes be nil in the case of two ai microbes colliding just before one is despawned.
-        if soundComponent ~= nil then
-            soundComponent:playSound("microbe-collision")
+        local entity1 = Entity(collision.entityId1)
+        local entity2 = Entity(collision.entityId2)
+        if entity1:exists() and entity2:exists() then
+            microbe.rigidBody.dynamicProperties.linearVelocity:length()
+            local body1 = entity1:getComponent(RigidBodyComponent.TYPE_ID)
+            local body2 = entity2:getComponent(RigidBodyComponent.TYPE_ID)
+            if ((body1.dynamicProperties.linearVelocity - body2.dynamicProperties.linearVelocity):length()) > RELATIVE_VELOCITY_TO_BUMP_SOUND then
+                local soundComponent = entity1:getComponent(SoundSourceComponent.TYPE_ID)
+                soundComponent:playSound("microbe-collision")
+            end
         end
     end
     self.microbeCollisions:clearCollisions()
 end
-
-
