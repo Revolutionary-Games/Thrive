@@ -77,6 +77,13 @@ CEGUIWindow::setGuiMoveMode(
 
 //Static
 CEGUIWindow
+CEGUIWindow::getWindowUnderMouse()
+{
+    return CEGUIWindow(CEGUI::System::getSingleton().getDefaultGUIContext().getWindowContainingMouse());
+}
+
+//Static
+CEGUIWindow
 CEGUIWindow::getRootWindow()
 {
     return CEGUIWindow(CEGUI::System::getSingleton().getDefaultGUIContext().getRootWindow(), false);
@@ -160,6 +167,7 @@ CEGUIWindow::luaBindings() {
         .def("moveInFront", &CEGUIWindow::moveInFront)
         .def("moveBehind", &CEGUIWindow::moveBehind)
         .def("setPosition", &CEGUIWindow::setPosition)
+        .def("getName", &CEGUIWindow::getName)
         .def("playAnimation", &CEGUIWindow::playAnimation)
         .def("listboxAddItem", &CEGUIWindow::listboxAddItem)
         .def("listboxResetList", &CEGUIWindow::listboxResetList)
@@ -174,7 +182,8 @@ CEGUIWindow::luaBindings() {
          )
         .scope
         [
-            def("setGuiMoveMode", &CEGUIWindow::setGuiMoveMode)
+            def("setGuiMoveMode", &CEGUIWindow::setGuiMoveMode),
+            def("getWindowUnderMouse", &CEGUIWindow::getWindowUnderMouse)
         ]
     ;
 }
@@ -402,6 +411,10 @@ CEGUIWindow::setPosition(
     m_window->setPosition(CEGUI::Vector2<CEGUI::UDim>(CEGUI::UDim(position.x, 0), CEGUI::UDim(position.y, 0)));
 }
 
+std::string
+CEGUIWindow::getName() {
+    return std::string(m_window->getName().c_str());
+}
 
 void
 CEGUIWindow::playAnimation(

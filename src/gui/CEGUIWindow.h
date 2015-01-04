@@ -74,6 +74,7 @@ public:
     * - CEGUIWindow::moveInFront
     * - CEGUIWindow::moveBehind
     * - CEGUIWindow::setPosition
+    * - CEGUIWindow::getName
     *
     * - CEGUIWindow::playAnimation
     *
@@ -88,6 +89,9 @@ public:
     *
     * - CEGUIWindow::progressbarSetProgress
     *
+    * - CEGUIWindow.getWindowUnderMouse
+    * - CEGUIWindow.setGuiMoveMode
+    *
     * @return
     */
     static luabind::scope
@@ -97,6 +101,9 @@ public:
     setGuiMoveMode(
         bool value
     );
+
+    static CEGUIWindow
+    getWindowUnderMouse();
 
 
     /**
@@ -378,7 +385,19 @@ public:
         Ogre::Vector2 position
     );
 
+    /**
+    * @brief Returns the windows internal name
+    *
+    **/
+    std::string
+    getName();
 
+    /**
+    * @brief Plays an animation by name
+    *
+    * @param name
+    *  The name of the animation to play
+    **/
     void
     playAnimation(
       std::string name
