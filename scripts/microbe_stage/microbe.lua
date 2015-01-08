@@ -345,7 +345,8 @@ end
 -- Assigns a species to the microbe, if the species already exists
 -- If the species already exists, the microbe is updated to fit.
 -- Otherwise does nothing
--- TODO this is a very dirty function, and we should probably not do things this way
+-- TODONE this is a very dirty function, and we should probably not do things this way
+-- deprecated, we now have SpeciesComponent:template to modify clean microbes
 function Microbe:setSpecies(speciesName)
     self.microbe.speciesName = speciesName
     if self.getSpeciesComponent() ~= nil then
@@ -361,6 +362,7 @@ function Microbe:setSpecies(speciesName)
 end
 
 --[[
+-- deprecated and stuff, see SpeciesComponent:fromMicrobe
 function Microbe:makeSpecies(speciesName)
     self.microbe.speciesName = speciesName
     if not pcall(function() self.getSpeciesComponent() end) then
@@ -793,13 +795,16 @@ function Microbe:kill()
 end
 
 -- Copies this microbe. The new microbe will not have the stored compounds of this one. 
+-- TODO: update reproduce to go through species, make sure species are generated at startup
 function Microbe:reproduce()
     copy = Microbe.createMicrobeEntity(nil, true)
+    --[[
     for _, organelle in pairs(self.microbe.organelles) do
         local organelleStorage = organelle:storage()
         local organelle = Organelle.loadOrganelle(organelleStorage)
         copy:addOrganelle(organelle.position.q, organelle.position.r, organelle)
-    end
+    end]]
+    species:template(copy) -- does this afraid of anything?
     copy.rigidBody.dynamicProperties.position = Vector3(self.rigidBody.dynamicProperties.position.x, self.rigidBody.dynamicProperties.position.y, 0)
     copy:storeCompound(CompoundRegistry.getCompoundId("atp"), 20, false)
     copy.microbe:updateSafeAngles()
