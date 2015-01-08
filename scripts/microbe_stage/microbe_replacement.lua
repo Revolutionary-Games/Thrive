@@ -16,25 +16,40 @@ function MicrobeReplacementSystem:activate()
 
         -- first we'll decouple workingMicrobe from microbe stage, then we'll decouple from editor
         workingMicrobe = Microbe(Entity(activeCreatureId, GameState.MICROBE_EDITOR))
-        if workingMicrobe:getCompoundAmount(CompoundRegistry.getCompoundId("atp")) < 10 then
-            workingMicrobe:storeCompound(CompoundRegistry.getCompoundId("atp"), 10)
-        end
+        
         -- solution placeholder for species naming :
         --workingMicrobe.microbe.speciesName = "species" .. self.globalSpeciesNameCounter
-        speciesEntity = Entity(workingMicrobe.microbe.speciesName..self.globalSpeciesNameCounter, GameState.MICROBE)
+        speciesEntity = Entity(workingMicrobe.microbe.speciesName, GameState.MICROBE)
         species = SpeciesComponent(workingMicrobe.microbe.speciesName)
         species.populationBonusFactor = 1.2
         speciesEntity:addComponent(species)
         self.globalSpeciesNameCounter = self.globalSpeciesNameCounter + 1
+        species:fromMicrobe(workingMicrobe)
 
-        -- Initiate entity transfer to microbe stage
-        -- TODO replace entity transfer with microbe initialization from species
+        -- having created a new species from the editor microbe, we now create a new microbe of this species,
+        -- and make that the player
+        
+        workingMicrobeEntity = workingMicrobe.entity
+        newMicrobe = Microbe.createMicrobeEntity(PLAYER_NAME, false, workingMicrobe.microbe.speciesName)
+        species:template(newMicrobe)
 
-        newMicrobeEntity = workingMicrobe.entity
-        newPlayerMicrobe = newMicrobeEntity:transfer(GameState.MICROBE)
-        newPlayerMicrobe:stealName(PLAYER_NAME)
+        -- print the names of the organelles of the new microbe
+        for i, o in pairs(newMicrobe.microbe.organelles) do print(o.name) end
+
+        -- So, we /know/ things work fine up to here, since we have the organelles
+
+        if newMicrobe:getCompoundAmount(CompoundRegistry.getCompoundId("atp")) < 10 then
+            newMicrobe:storeCompound(CompoundRegistry.getCompoundId("atp"), 10)
+        end
+
+        --print("ATP: "..newMicrobe:getCompoundAmount(CompoundRegistry.getCompoundId("atp")))
+        -- and up to here, since the ATP stored above is present
+
+        newMicrobeEntity = newMicrobe.entity:transfer(GameState.MICROBE) -- the secret is in the transfer
+        newMicrobeEntity:stealName(PLAYER_NAME)
         global_newEditorMicrobe = false
-        Engine:playerData():setActiveCreature(newPlayerMicrobe.id, GameState.MICROBE)
+        Engine:playerData():setActiveCreature(newMicrobeEntity.id, GameState.MICROBE)
+        print("finished setting up new microbe")
     end
    
 end

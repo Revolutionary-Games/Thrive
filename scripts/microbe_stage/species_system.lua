@@ -130,6 +130,24 @@ function SpeciesComponent:template(microbe)
     return microbe
 end
 
+function SpeciesComponent:fromMicrobe(microbe)
+    microbe = microbe.microbe -- shouldn't break, I think
+    self.name = microbe.speciesName
+    print("self.name: "..self.name)
+    -- Create species' organelle data
+    for i, organelle in pairs(microbe.organelles) do
+        print(i)
+        local data = {}
+        data.name = organelle.name
+        data.q = organelle.position.q
+        data.r = organelle.position.r
+        self.organelles[i] = data
+    end
+    print("#microbe.organelles: "..#microbe.organelles)
+    print("#self.organelles: "..#self.organelles)
+    for i,org in pairs(self.organelles) do print(org.name,org.q,org.r) end
+end
+
 REGISTER_COMPONENT("SpeciesComponent", SpeciesComponent)
 
 SPECIES_SIM_INTERVAL = 20000

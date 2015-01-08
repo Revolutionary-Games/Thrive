@@ -15,6 +15,16 @@ function Population:__init(species)
 end
 
 --[[
+There are probably some functions here that would be useful to package with the population,
+possibly useful enough to make this a component and have a system that coordinates.
+
+Getting the effective population number from 
+
+
+--]]
+
+
+--[[
 
 --------------------------------------------------------------------------------
 -- PopulationSystem

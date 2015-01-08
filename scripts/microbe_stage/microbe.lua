@@ -360,6 +360,7 @@ function Microbe:setSpecies(speciesName)
     end
 end
 
+--[[
 function Microbe:makeSpecies(speciesName)
     self.microbe.speciesName = speciesName
     if not pcall(function() self.getSpeciesComponent() end) then
@@ -378,7 +379,7 @@ function Microbe:makeSpecies(speciesName)
         end
         for i,org in ipairs(species.organelles) do print(org.name,org.q,org.r) end
     end
-end
+end --]]
 
 -- Adds a new organelle
 --
