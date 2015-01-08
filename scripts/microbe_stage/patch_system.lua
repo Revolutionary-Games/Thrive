@@ -71,8 +71,8 @@ end
 
 -- Override from System
 function PatchSystem:activate()
-    --[[ 
-    This runs in two (three?) use-cases:
+    --[[
+    This handles two (three?) cases:
     - First, it runs on game entry from main menu -- orchestrate with rest of world-generation
     - Second, game entry from editor -- split patches, 
     	move patches, merge patches

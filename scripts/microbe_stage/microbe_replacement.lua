@@ -34,7 +34,7 @@ function MicrobeReplacementSystem:activate()
         species:template(newMicrobe)
 
         -- print the names of the organelles of the new microbe
-        for i, o in pairs(newMicrobe.microbe.organelles) do print(o.name) end
+        --for i, o in pairs(newMicrobe.microbe.organelles) do print(o.name) end
 
         -- So, we /know/ things work fine up to here, since we have the organelles
 
@@ -49,7 +49,7 @@ function MicrobeReplacementSystem:activate()
         newMicrobeEntity:stealName(PLAYER_NAME)
         global_newEditorMicrobe = false
         Engine:playerData():setActiveCreature(newMicrobeEntity.id, GameState.MICROBE)
-        print("finished setting up new microbe")
+        --print("finished setting up new microbe")
     end
    
 end

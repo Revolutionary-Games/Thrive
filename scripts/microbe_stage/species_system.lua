@@ -32,7 +32,7 @@ function SpeciesComponent:__init(name)
 end
 
 --is this still todo?
---todo
+--todo - store moar data
 function SpeciesComponent:load(storage)
     Component.load(self, storage)
     self.name = storage:get("name", "")
@@ -100,7 +100,9 @@ function SpeciesComponent:mutate(aiControlled, population)
     for AI), and then create and add the new species to the system.
     - uses the population to access information about 
     
-    For player mutation, this should be the entry point into the editor
+    For player mutation, this would be the entry point into the editor
+
+    - note, this architecture may be reconsidered
 
     ]]
 end
@@ -127,25 +129,31 @@ function SpeciesComponent:template(microbe)
             microbe:setDefaultCompoundPriority(compoundID, priority)
         end
     end
+    -- complimentary serving of atp
+    --newMicrobe:storeCompound(CompoundRegistry.getCompoundId("atp"), 10)
     return microbe
 end
 
+--[[
+Modify the species, using a microbe as the template for the new genome.
+
+]]
 function SpeciesComponent:fromMicrobe(microbe)
     microbe = microbe.microbe -- shouldn't break, I think
     self.name = microbe.speciesName
-    print("self.name: "..self.name)
+    --print("self.name: "..self.name)
     -- Create species' organelle data
     for i, organelle in pairs(microbe.organelles) do
-        print(i)
+        --print(i)
         local data = {}
         data.name = organelle.name
         data.q = organelle.position.q
         data.r = organelle.position.r
         self.organelles[i] = data
     end
-    print("#microbe.organelles: "..#microbe.organelles)
-    print("#self.organelles: "..#self.organelles)
-    for i,org in pairs(self.organelles) do print(org.name,org.q,org.r) end
+    --print("#microbe.organelles: "..#microbe.organelles)
+    --print("#self.organelles: "..#self.organelles)
+    --for i,org in pairs(self.organelles) do print(org.name,org.q,org.r) end
 end
 
 REGISTER_COMPONENT("SpeciesComponent", SpeciesComponent)
