@@ -820,6 +820,7 @@ function Microbe:reproduce()
 end
 
 
+-- TODO clean/split up this function
 -- Updates the microbe's state
 function Microbe:update(logicTime)
     if not self.microbe.dead then
@@ -862,7 +863,7 @@ function Microbe:update(logicTime)
                 amountInExcess = math.min(self.microbe.compounds[lowestPriorityId],self.microbe.stored - self.microbe.capacity * STORAGE_EJECTION_THRESHHOLD)
                 excessCompounds[lowestPriorityId] = self:takeCompound(lowestPriorityId, amountInExcess)
             end
-            -- Expell compounds of priority 0 periodically
+            -- Expel compounds of priority 0 periodically
             for compoundId,_ in pairs(self.microbe.compounds) do
                 if self.microbe.compoundPriorities[compoundId] == 0 and self.microbe.compounds[compoundId] > 1 then
                     local uselessCompoundAmount
@@ -898,8 +899,8 @@ function Microbe:update(logicTime)
             if species ~= nil then -- Microbes don't need to have a species
                 species.populationBonusFactor = species.populationBonusFactor * 1.0 + self.microbe.compounds[CompoundRegistry.getCompoundId("atp")]/10000
             end
-            
         end
+
         -- Other organelles
         for _, organelle in pairs(self.microbe.organelles) do
             organelle:update(self, logicTime)
@@ -908,20 +909,7 @@ function Microbe:update(logicTime)
         self.microbe.deathTimer = self.microbe.deathTimer - logicTime
         if self.microbe.deathTimer <= 0 then
             if self.microbe.isPlayerMicrobe  == true then
-                self.microbe.dead = false
-                self.microbe.deathTimer = 0
-                self.residuePhysicsTime = 0
-                self.microbe.hitpoints = self.microbe.maxHitpoints
-                
-                self.rigidBody:setDynamicProperties(
-                    Vector3(0,0,0), -- Position
-                    Quaternion(Radian(Degree(0)), Vector3(1, 0, 0)), -- Orientation
-                    Vector3(0, 0, 0), -- Linear velocity
-                    Vector3(0, 0, 0)  -- Angular velocity
-                )
-                local sceneNode = self.entity:getComponent(OgreSceneNodeComponent.TYPE_ID)
-                sceneNode.visible = true
-                self:storeCompound(CompoundRegistry.getCompoundId("atp"), 20, false)
+                self:respawn()
             else
                 self:destroy()
             end
@@ -930,6 +918,22 @@ function Microbe:update(logicTime)
     self.compoundAbsorber:setAbsorbtionCapacity(self.microbe.remainingBandwidth)
 end
 
+function Microbe:respawn()
+    self.microbe.dead = false
+    self.microbe.deathTimer = 0
+    self.residuePhysicsTime = 0
+    self.microbe.hitpoints = self.microbe.maxHitpoints
+
+    self.rigidBody:setDynamicProperties(
+        Vector3(0,0,0), -- Position
+        Quaternion(Radian(Degree(0)), Vector3(1, 0, 0)), -- Orientation
+        Vector3(0, 0, 0), -- Linear velocity
+        Vector3(0, 0, 0)  -- Angular velocity
+    )
+    local sceneNode = self.entity:getComponent(OgreSceneNodeComponent.TYPE_ID)
+    sceneNode.visible = true
+    self:storeCompound(CompoundRegistry.getCompoundId("atp"), 20, false)
+end
 
 -- Private function for initializing a microbe's components
 function Microbe:_initialize()
