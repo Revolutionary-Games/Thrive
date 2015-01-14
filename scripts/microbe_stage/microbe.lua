@@ -794,7 +794,7 @@ function Microbe:kill()
     end
 end
 
--- Copies this microbe. The new microbe will not have the stored compounds of this one. 
+-- Copies this microbe. The new microbe will not have the stored compounds of this one.
 -- TODO: update reproduce to go through species, make sure species are generated at startup
 function Microbe:reproduce()
     copy = Microbe.createMicrobeEntity(nil, true)
@@ -819,7 +819,6 @@ function Microbe:reproduce()
     end
 end
 
-
 -- TODO clean/split up this function
 -- Updates the microbe's state
 function Microbe:update(logicTime)
@@ -842,58 +841,15 @@ function Microbe:update(logicTime)
         
         self.microbe.compoundCollectionTimer = self.microbe.compoundCollectionTimer + logicTime
         while self.microbe.compoundCollectionTimer > EXCESS_COMPOUND_COLLECTION_INTERVAL do -- For every COMPOUND_DISTRIBUTION_INTERVAL passed
-            -- Gather excess compounds that are the compounds that the storage organelles automatically emit to stay less than full
-            local excessCompounds = {}
-            while self.microbe.stored/self.microbe.capacity > STORAGE_EJECTION_THRESHHOLD+0.01 do
-                -- Find lowest priority compound type contained in the microbe
-                local lowestPriorityId = nil
-                local lowestPriority = math.huge
-                for compoundId,_ in pairs(self.microbe.compounds) do
-                    assert(self.microbe.compoundPriorities[compoundId] ~= nil, "Compound priority table was missing compound")
-                    if self.microbe.compounds[compoundId] > 0  and self.microbe.compoundPriorities[compoundId] < lowestPriority then
-                        lowestPriority = self.microbe.compoundPriorities[compoundId]
-                        lowestPriorityId = compoundId
-                    end
-                end
-                assert(lowestPriorityId ~= nil, "The microbe didn't seem to contain any compounds but was over the threshold")
-                assert(self.microbe.compounds[lowestPriorityId] ~= nil, "Microbe storage was over threshold but didn't have any valid compounds to expell")
-                -- Return an amount that either is how much the microbe contains of the compound or until it goes to the threshhold
-                local amountInExcess
-                
-                amountInExcess = math.min(self.microbe.compounds[lowestPriorityId],self.microbe.stored - self.microbe.capacity * STORAGE_EJECTION_THRESHHOLD)
-                excessCompounds[lowestPriorityId] = self:takeCompound(lowestPriorityId, amountInExcess)
-            end
-            -- Expel compounds of priority 0 periodically
-            for compoundId,_ in pairs(self.microbe.compounds) do
-                if self.microbe.compoundPriorities[compoundId] == 0 and self.microbe.compounds[compoundId] > 1 then
-                    local uselessCompoundAmount
-                    uselessCompoundAmount = self.microbe:getBandwidth(self.microbe.compounds[compoundId], compoundId)
-                    if excessCompounds[compoundId] ~= nil then
-                        excessCompounds[compoundId] = excessCompounds[compoundId] + self:takeCompound(compoundId, uselessCompoundAmount)
-                    else
-                        excessCompounds[compoundId] = self:takeCompound(compoundId, uselessCompoundAmount)
-                    end
-                end
-            end 
-            for compoundId, amount in pairs(excessCompounds) do
-                if amount > 0 then
-                    self:ejectCompound(compoundId, amount, 160, 200, true)
-                end
-            end
-            -- Damage microbe if its too low on ATP
-            if self.microbe.compounds[CompoundRegistry.getCompoundId("atp")] ~= nil and self.microbe.compounds[CompoundRegistry.getCompoundId("atp")] < 1.0 then
-                if self.microbe.isPlayerMicrobe and not self.playerAlreadyShownAtpDamage then
-                    self.playerAlreadyShownAtpDamage = true
-                    showMessage("No ATP hurts you!")
-                end
-                self:damage(EXCESS_COMPOUND_COLLECTION_INTERVAL * 0.00002  * self.microbe.maxHitpoints) -- Microbe takes 2% of max hp per second in damage
-            end
-            -- Split microbe if it has enough reproductase
-            if self.microbe.compounds[CompoundRegistry.getCompoundId("reproductase")] ~= nil and self.microbe.compounds[CompoundRegistry.getCompoundId("reproductase")] > REPRODUCTASE_TO_SPLIT then
-                self:takeCompound(CompoundRegistry.getCompoundId("reproductase"), 5)
-                self:reproduce()
-            end
+
             self.microbe.compoundCollectionTimer = self.microbe.compoundCollectionTimer - EXCESS_COMPOUND_COLLECTION_INTERVAL
+
+            self:purgeCompounds()
+
+            self:atpDamage()
+
+            self:attemptReproduce()
+
             -- Award some species population based on ATP surplus
             species = self:getSpeciesComponent()
             if species ~= nil then -- Microbes don't need to have a species
@@ -905,6 +861,8 @@ function Microbe:update(logicTime)
         for _, organelle in pairs(self.microbe.organelles) do
             organelle:update(self, logicTime)
         end
+
+        self.compoundAbsorber:setAbsorbtionCapacity(self.microbe.remainingBandwidth)
     else
         self.microbe.deathTimer = self.microbe.deathTimer - logicTime
         if self.microbe.deathTimer <= 0 then
@@ -915,7 +873,67 @@ function Microbe:update(logicTime)
             end
         end
     end
-    self.compoundAbsorber:setAbsorbtionCapacity(self.microbe.remainingBandwidth)
+end
+
+function Microbe:purgeCompounds()
+    -- Gather excess compounds that are the compounds that the storage organelles automatically emit to stay less than full
+    local excessCompounds = {}
+    while self.microbe.stored/self.microbe.capacity > STORAGE_EJECTION_THRESHHOLD+0.01 do
+        -- Find lowest priority compound type contained in the microbe
+        local lowestPriorityId = nil
+        local lowestPriority = math.huge
+        for compoundId,_ in pairs(self.microbe.compounds) do
+            assert(self.microbe.compoundPriorities[compoundId] ~= nil, "Compound priority table was missing compound")
+            if self.microbe.compounds[compoundId] > 0  and self.microbe.compoundPriorities[compoundId] < lowestPriority then
+                lowestPriority = self.microbe.compoundPriorities[compoundId]
+                lowestPriorityId = compoundId
+            end
+        end
+        assert(lowestPriorityId ~= nil, "The microbe didn't seem to contain any compounds but was over the threshold")
+        assert(self.microbe.compounds[lowestPriorityId] ~= nil, "Microbe storage was over threshold but didn't have any valid compounds to expell")
+        -- Return an amount that either is how much the microbe contains of the compound or until it goes to the threshhold
+        local amountInExcess
+        
+        amountInExcess = math.min(self.microbe.compounds[lowestPriorityId],self.microbe.stored - self.microbe.capacity * STORAGE_EJECTION_THRESHHOLD)
+        excessCompounds[lowestPriorityId] = self:takeCompound(lowestPriorityId, amountInExcess)
+    end
+
+    -- Expel compounds of priority 0 periodically
+    for compoundId,_ in pairs(self.microbe.compounds) do
+        if self.microbe.compoundPriorities[compoundId] == 0 and self.microbe.compounds[compoundId] > 1 then
+            local uselessCompoundAmount
+            uselessCompoundAmount = self.microbe:getBandwidth(self.microbe.compounds[compoundId], compoundId)
+            if excessCompounds[compoundId] ~= nil then
+                excessCompounds[compoundId] = excessCompounds[compoundId] + self:takeCompound(compoundId, uselessCompoundAmount)
+            else
+                excessCompounds[compoundId] = self:takeCompound(compoundId, uselessCompoundAmount)
+            end
+        end
+    end 
+    for compoundId, amount in pairs(excessCompounds) do
+        if amount > 0 then
+            self:ejectCompound(compoundId, amount, 160, 200, true)
+        end
+    end
+end
+
+function Microbe:atpDamage()
+    -- Damage microbe if its too low on ATP
+    if self.microbe.compounds[CompoundRegistry.getCompoundId("atp")] ~= nil and self.microbe.compounds[CompoundRegistry.getCompoundId("atp")] < 1.0 then
+        if self.microbe.isPlayerMicrobe and not self.playerAlreadyShownAtpDamage then
+            self.playerAlreadyShownAtpDamage = true
+            showMessage("No ATP hurts you!")
+        end
+        self:damage(EXCESS_COMPOUND_COLLECTION_INTERVAL * 0.00002  * self.microbe.maxHitpoints) -- Microbe takes 2% of max hp per second in damage
+    end
+end
+
+function Microbe:attemptReproduce()
+    -- Split microbe if it has enough reproductase
+    if self.microbe.compounds[CompoundRegistry.getCompoundId("reproductase")] ~= nil and self.microbe.compounds[CompoundRegistry.getCompoundId("reproductase")] > REPRODUCTASE_TO_SPLIT then
+        self:takeCompound(CompoundRegistry.getCompoundId("reproductase"), 5)
+        self:reproduce()
+    end
 end
 
 function Microbe:respawn()
