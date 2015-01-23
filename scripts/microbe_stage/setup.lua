@@ -297,6 +297,7 @@ local function setupPlayer()
     Engine:playerData():setActiveCreature(microbe.entity.id, GameState.MICROBE)
     speciesEntity = Entity("defaultMicrobeSpecies")
     species = SpeciesComponent("defaultMicrobeSpecies")
+    species:fromMicrobe(microbe)
     species.populationBonusFactor = 1.2
     speciesEntity:addComponent(species)
     microbe.microbe.speciesName = "defaultMicrobeSpecies"
