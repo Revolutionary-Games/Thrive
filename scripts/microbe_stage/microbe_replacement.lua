@@ -29,7 +29,9 @@ function MicrobeReplacementSystem:activate()
         -- having created a new species from the editor microbe, we now create a new microbe of this species,
         -- and make that the player
         
-        workingMicrobeEntity = workingMicrobe.entity
+        -- workingMicrobeEntity = workingMicrobe.entity
+        workingMicrobe.entity:destroy()
+
         newMicrobe = Microbe.createMicrobeEntity(PLAYER_NAME, false, workingMicrobe.microbe.speciesName)
         species:template(newMicrobe)
 
