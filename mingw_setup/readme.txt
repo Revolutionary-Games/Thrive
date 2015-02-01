@@ -31,6 +31,11 @@ To set up the build system follow the steps listed below. If you are not
 interested in the gory details, you can ignore everything but the bullet
 points.
 
+OBS OBS OBS
+Some errors have popped up when following step 3 and as such it 
+is current adviced to skip step 1, 3 and 4 and instead follow step 1b
+
+
 0. Requirements
 ---------------
 
@@ -57,6 +62,19 @@ Powershell has very strict execution policies by default. Initially, you
 cannot execute scripts you downloaded (such as ours) or even scripts you wrote
 yourself. To change that, we have to explicitly set the execution policy to
 "Unrestricted". For security reasons, only the administrator can do that.
+
+1b. 
+----------------------------------------------
+
+This step is the currently adviced alternative to step 1, 3 and 4. 
+As such you would instead follow step 1b -> 2 -> 5 -> 6 etc.
+
+Download the archive found here:
+https://mega.co.nz/#!Md4WAJQR!0mf-0A7tlu5-qHpS_T6iD7wLYYM2WV1SkPhsk6AGfak
+
+and extract it such that you have C:\mingw
+
+This skips the compilation of required libraries and instead downloads precompiled ones.
 
 2. Install CMake
 ----------------
