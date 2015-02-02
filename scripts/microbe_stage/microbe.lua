@@ -240,7 +240,7 @@ class 'Microbe'
 -- An object of type Microbe
 function Microbe.createMicrobeEntity(name, aiControlled)
     local entity
-    if name~=nil and name then
+    if name then
         entity = Entity(name)
     else
         entity = Entity()
