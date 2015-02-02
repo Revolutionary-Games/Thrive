@@ -10,7 +10,7 @@
             <Output compound="atp" amount="36"/>
         </Outputs>
 	</Process>
-    <Process name="ReproductaseSynthesis" speedFactor="0.3" energyCost="6">
+    <Process name="ReproductaseSynthesis" speedFactor="0.5" energyCost="6">
         <Inputs>
             <Input compound="aminoacids" amount="6"/>
             <Input compound="glucose" amount="6"/>
@@ -18,7 +18,7 @@
             <Input compound="atp" amount="6"/>
         </Inputs>
         <Outputs>
-            <Output compound="reproductase" amount="1"/>
+            <Output compound="reproductase" amount="5"/>
         </Outputs>
 	</Process>
     <Process name="AminoAcidSynthesis" speedFactor="1.0" energyCost="0">
