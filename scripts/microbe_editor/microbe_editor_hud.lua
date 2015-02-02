@@ -95,12 +95,17 @@ end
 function MicrobeEditorHudSystem:update(renderTime, logicTime)
     self.editor:update(renderTime, logicTime)
     -- Render the hex under the cursor
-    local x, y = axialToCartesian(self.editor:getMouseHex())
-    local translation = Vector3(-x, -y, 0)
     local sceneNode = self.hoverHex:getComponent(OgreSceneNodeComponent.TYPE_ID)
-    sceneNode.transform.position = translation
+    if CEGUIWindow.getWindowUnderMouse():getName() == 'root' then
+        local x, y = axialToCartesian(self.editor:getMouseHex())
+        local translation = Vector3(-x, -y, 0)
+        
+        sceneNode.transform.position = translation
+    else
+        sceneNode.transform.position = Vector3(0,0,100)
+    end
     sceneNode.transform:touch()
-
+    
     -- Handle input
     if Engine.mouse:wasButtonPressed(Mouse.MB_Left) then
         self.editor:performLocationAction()
@@ -148,7 +153,7 @@ function MicrobeEditorHudSystem:update(renderTime, logicTime)
             self.editor.gridVisible = true
         end
     elseif Engine.keyboard:wasKeyPressed(Keyboard.KC_F2) then
-        self:playClicked()
+        playClicked()
     elseif Engine.keyboard:wasKeyPressed(Keyboard.KC_F12) then
         self:updateMicrobeName()
     end

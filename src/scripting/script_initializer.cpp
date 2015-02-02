@@ -42,6 +42,7 @@ constructTraceback(
        traceback << std::endl;
     }
     lua_pushstring(L, traceback.str().c_str());
+    std::cout << traceback.str().c_str() << std::endl;
     return 1;
 }
 

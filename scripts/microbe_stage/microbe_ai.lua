@@ -18,6 +18,7 @@ function MicrobeAIControllerComponent:__init()
     self.direction = Vector3(0, 0, 0)
     self.targetEmitterPosition = nil
     self.searchedCompoundId = nil
+    self.prey = nil
 end
 
 function MicrobeAIControllerComponent:storage()
@@ -85,6 +86,8 @@ function MicrobeAISystem:__init()
         true
     )
     self.microbes = {}
+    self.preyCandidates = {}
+    self.currentPreyIndex = 1
     self.oxygenEmitters = {}
     self.glucoseEmitters = {}
 end
@@ -111,6 +114,12 @@ function MicrobeAISystem:update(renderTime, logicTime)
     for entityId in self.entities:addedEntities() do
         local microbe = Microbe(Entity(entityId))
         self.microbes[entityId] = microbe
+        
+        -- This is a hack to remember up to 5 recent microbes as candidates for predators. 
+        -- Gives something semi random
+        self.preyCandidates[self.currentPreyIndex] = microbe
+        self.currentPreyIndex = (self.currentPreyIndex + 1)%6
+        
     end
     
     for entityId in self.emitters:removedEntities() do
@@ -134,61 +143,86 @@ function MicrobeAISystem:update(renderTime, logicTime)
         aiComponent.intervalRemaining = aiComponent.intervalRemaining + logicTime
         while aiComponent.intervalRemaining > aiComponent.reevalutationInterval do
             aiComponent.intervalRemaining = aiComponent.intervalRemaining - aiComponent.reevalutationInterval
-            
             local targetPosition = nil
-            if microbe:getCompoundAmount(CompoundRegistry.getCompoundId("oxygen")) <= OXYGEN_SEARCH_THRESHHOLD then
-                -- If we are NOT currenty heading towards an emitter
-                if aiComponent.targetEmitterPosition == nil or aiComponent.searchedCompoundId ~= CompoundRegistry.getCompoundId("oxygen") then
-                    aiComponent.searchedCompoundId = CompoundRegistry.getCompoundId("oxygen")
-                    local emitterArrayList = {}
-                    local i = 0
-                    for emitterId, _ in pairs(self.oxygenEmitters) do
-                        i = i + 1
-                        emitterArrayList[i] = emitterId
-                    end     
-                    if i ~= 0 then
-                        local emitterEntity = Entity(emitterArrayList[rng:getInt(1, i)])
-                        aiComponent.targetEmitterPosition = emitterEntity:getComponent(OgreSceneNodeComponent.TYPE_ID).transform.position     
-                    end  
+            if microbe.microbe.speciesName == "ToxinPredator" then
+                self.preyCandidates[6] = Microbe(Entity(PLAYER_NAME))
+                aiComponent.prey = nil
+                local attempts = 0
+                while (aiComponent.prey  == nil or not aiComponent.prey:exists() or aiComponent.prey.microbe.speciesName == "ToxinPredator") and attempts < 6 do
+                    aiComponent.prey = self.preyCandidates[rng:getInt(1, 6)]
+                    attempts = attempts + 1
                 end
-                targetPosition = aiComponent.targetEmitterPosition           
-                if aiComponent.targetEmitterPosition ~= nil and aiComponent.targetEmitterPosition.z ~= 0 then
-                    aiComponent.targetEmitterPosition = nil
-                end             
-            elseif microbe:getCompoundAmount(CompoundRegistry.getCompoundId("glucose")) <= GLUCOSE_SEARCH_THRESHHOLD then
-                -- If we are NOT currenty heading towards an emitter
-                if aiComponent.targetEmitterPosition == nil or aiComponent.searchedCompoundId ~= CompoundRegistry.getCompoundId("glucose") then
-                aiComponent.searchedCompoundId = CompoundRegistry.getCompoundId("glucose")
-                    local emitterArrayList = {}
-                    local i = 0
-                    for emitterId, _ in pairs(self.glucoseEmitters) do
-                        i = i + 1
-                        emitterArrayList[i] = emitterId
-                    end     
-                    if i ~= 0 then
-                        local emitterEntity = Entity(emitterArrayList[rng:getInt(1, i)])
-                        aiComponent.targetEmitterPosition = emitterEntity:getComponent(OgreSceneNodeComponent.TYPE_ID).transform.position         
-                    end
+                if aiComponent.prey ~= nil then 
+
+                local vec = (aiComponent.prey.sceneNode.transform.position - microbe.sceneNode.transform.position)
+                
+                if vec:length() < 10 then 
+                    microbe:emitAgent(CompoundRegistry.getCompoundId("oxytoxy"), 1)
                 end
-                targetPosition = aiComponent.targetEmitterPosition
-                if aiComponent.targetEmitterPosition ~= nil and aiComponent.targetEmitterPosition.z ~= 0 then
-                    aiComponent.targetEmitterPosition = nil
-                end    
+                
+                vec:normalise()
+                aiComponent.direction = vec
+                microbe.microbe.facingTargetPoint = Vector3(aiComponent.prey.sceneNode.transform.position.x,aiComponent.prey.sceneNode.transform.position.y, 0)  
+                microbe.microbe.movementDirection = Vector3(0,AI_MOVEMENT_SPEED,0)
+                
+                
+                end
             else
-                aiComponent.targetEmitterPosition = nil
+                if microbe:getCompoundAmount(CompoundRegistry.getCompoundId("oxygen")) <= OXYGEN_SEARCH_THRESHHOLD then
+                    -- If we are NOT currenty heading towards an emitter
+                    if aiComponent.targetEmitterPosition == nil or aiComponent.searchedCompoundId ~= CompoundRegistry.getCompoundId("oxygen") then
+                        aiComponent.searchedCompoundId = CompoundRegistry.getCompoundId("oxygen")
+                        local emitterArrayList = {}
+                        local i = 0
+                        for emitterId, _ in pairs(self.oxygenEmitters) do
+                            i = i + 1
+                            emitterArrayList[i] = emitterId
+                        end     
+                        if i ~= 0 then
+                            local emitterEntity = Entity(emitterArrayList[rng:getInt(1, i)])
+                            aiComponent.targetEmitterPosition = emitterEntity:getComponent(OgreSceneNodeComponent.TYPE_ID).transform.position     
+                        end  
+                    end
+                    targetPosition = aiComponent.targetEmitterPosition           
+                    if aiComponent.targetEmitterPosition ~= nil and aiComponent.targetEmitterPosition.z ~= 0 then
+                        aiComponent.targetEmitterPosition = nil
+                    end             
+                elseif microbe:getCompoundAmount(CompoundRegistry.getCompoundId("glucose")) <= GLUCOSE_SEARCH_THRESHHOLD then
+                    -- If we are NOT currenty heading towards an emitter
+                    if aiComponent.targetEmitterPosition == nil or aiComponent.searchedCompoundId ~= CompoundRegistry.getCompoundId("glucose") then
+                    aiComponent.searchedCompoundId = CompoundRegistry.getCompoundId("glucose")
+                        local emitterArrayList = {}
+                        local i = 0
+                        for emitterId, _ in pairs(self.glucoseEmitters) do
+                            i = i + 1
+                            emitterArrayList[i] = emitterId
+                        end     
+                        if i ~= 0 then
+                            local emitterEntity = Entity(emitterArrayList[rng:getInt(1, i)])
+                            aiComponent.targetEmitterPosition = emitterEntity:getComponent(OgreSceneNodeComponent.TYPE_ID).transform.position         
+                        end
+                    end
+                    targetPosition = aiComponent.targetEmitterPosition
+                    
+                    if aiComponent.targetEmitterPosition ~= nil and aiComponent.targetEmitterPosition.z ~= 0 then
+                        aiComponent.targetEmitterPosition = nil
+                    end    
+                else
+                    aiComponent.targetEmitterPosition = nil
+                end
+                if aiComponent.targetEmitterPosition == nil then
+                    local randAngle = rng:getReal(0, 2*math.pi)
+                    local randDist = rng:getInt(10, aiComponent.movementRadius)
+                    targetPosition = Vector3(math.cos(randAngle)* randDist, 
+                                             math.sin(randAngle)* randDist, 0)
+                end
+                local vec = (targetPosition - microbe.sceneNode.transform.position)
+                vec:normalise()
+                aiComponent.direction = vec
+                microbe.microbe.facingTargetPoint = targetPosition 
+                microbe.microbe.movementDirection = Vector3(0,AI_MOVEMENT_SPEED,0)
             end
-            if aiComponent.targetEmitterPosition == nil then
-                local randAngle = rng:getReal(0, 2*math.pi)
-                local randDist = rng:getInt(10, aiComponent.movementRadius)
-                targetPosition = Vector3(math.cos(randAngle)* randDist, 
-                                         math.sin(randAngle)* randDist, 0)
-            end
-            local vec = (targetPosition - microbe.sceneNode.transform.position)
-            vec:normalise()
-            aiComponent.direction = vec
-            microbe.microbe.facingTargetPoint = targetPosition 
-            microbe.microbe.movementDirection = Vector3(0,AI_MOVEMENT_SPEED,0)
-            
+
         end
     end
 end

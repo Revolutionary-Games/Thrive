@@ -343,13 +343,13 @@ public:
     */
     void
     pauseGame();
-    
+
     /**
     * @brief Resumes system updates of the game
     */
     void
     resumeGame();
-    
+
     OgreOggSound::OgreOggSoundManager*
     soundManager() const;
 

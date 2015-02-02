@@ -227,6 +227,46 @@ local function createSpawnSystem()
         return microbeSpawnFunctionGeneric(pos, "Plankton", true, nil)
     end
 
+    local microbePoisonous = function(pos)
+        return microbeSpawnFunctionGeneric(pos, "Poisonous", true, nil)
+    end
+    
+    local microbeToxinPredator = function(pos)
+        return microbeSpawnFunctionGeneric(pos, "ToxinPredator", true, nil)
+    end
+
+    local toxinOrganelleSpawnFunction = function(pos) 
+        powerupEntity = Entity()
+        psceneNode = OgreSceneNodeComponent()
+        psceneNode.transform.position = pos
+        psceneNode.transform.scale = Vector3(0.9, 0.9, 0.9)
+        psceneNode.transform:touch()
+        psceneNode.meshName = "AgentVacuole.mesh"
+        powerupEntity:addComponent(psceneNode)
+        
+        local reactionHandler = CollisionComponent()
+        reactionHandler:addCollisionGroup("powerup")
+        powerupEntity:addComponent(reactionHandler)
+       
+        local rigidBody = RigidBodyComponent()
+        rigidBody.properties.friction = 0.2
+        rigidBody.properties.linearDamping = 0.8
+        rigidBody.properties.shape = SphereShape(HEX_SIZE)
+        rigidBody:setDynamicProperties(
+            pos,
+            Quaternion(Radian(Degree(math.random()*360)), Vector3(0, 0, 1)),
+            Vector3(0, 0, 0),
+            Vector3(0, 0, 0)
+        )
+        rigidBody.properties:touch()
+        powerupEntity:addComponent(rigidBody)
+        
+        local powerupComponent = PowerupComponent()
+        powerupComponent:setEffect(unlockToxin)
+        powerupEntity:addComponent(powerupComponent)
+        return powerupEntity
+    end
+    
     --Spawn one emitter on average once in every square of sidelength 10
     -- (square dekaunit?)
     spawnSystem:addSpawnType(spawnOxygenEmitter, 1/500, 30)
@@ -238,7 +278,8 @@ local function createSpawnSystem()
     spawnSystem:addSpawnType(microbeDefault, 1/12000, 40)
     spawnSystem:addSpawnType(microbeTeeny, 1/6000, 40)
     spawnSystem:addSpawnType(microbePlankton, 1/32000, 40)
-    
+    spawnSystem:addSpawnType(microbePoisonous, 1/32000, 40)
+    spawnSystem:addSpawnType(microbeToxinPredator, 1/15000, 40)
     spawnSystem:addSpawnType(toxinOrganelleSpawnFunction, 1/17000, 30)
     return spawnSystem
 end
@@ -308,7 +349,7 @@ local function setupSound()
     local soundSource = SoundSourceComponent()
     soundSource.ambientSoundSource = true
     soundSource.autoLoop = true
-    soundSource.volumeMultiplier = 0.1
+    soundSource.volumeMultiplier = 0.12
     ambientEntity:addComponent(soundSource)
     -- Sound
     soundSource:addSound("microbe-theme-1", "microbe-theme-1.ogg")
@@ -319,7 +360,7 @@ local function setupSound()
     soundSource:addSound("microbe-theme-7", "microbe-theme-7.ogg")   
     local ambientEntity2 = Entity("ambience2")
     local soundSource = SoundSourceComponent()
-     soundSource.volumeMultiplier = 0.4
+    soundSource.volumeMultiplier = 0.4
     soundSource.ambientSoundSource = true
     ambientSound = soundSource:addSound("microbe-ambient", "soundeffects/microbe-ambience.ogg")
     soundSource.autoLoop = true
