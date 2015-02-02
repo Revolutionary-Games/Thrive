@@ -166,6 +166,7 @@ function MicrobeComponent:load(storage)
         self.organelles[s] = organelle
     end
     self.hitpoints = storage:get("hitpoints", 0)
+    self.speciesName = storage:get("speciesName", "Default")
     self.maxHitpoints = storage:get("maxHitpoints", 0)
     self.maxBandwidth = storage:get("maxBandwidth", 0)
     self.remainingBandwidth = storage:get("remainingBandwidth", 0)
@@ -197,6 +198,7 @@ function MicrobeComponent:storage()
     end
     storage:set("organelles", organelles)
     storage:set("hitpoints", self.hitpoints)
+    storage:set("speciesName", self.speciesName)
     storage:set("maxHitpoints", self.maxHitpoints)
     storage:set("remainingBandwidth", self.remainingBandwidth)
     storage:set("maxBandwidth", self.maxBandwidth)
