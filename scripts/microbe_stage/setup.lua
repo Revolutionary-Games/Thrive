@@ -283,6 +283,14 @@ local function createSpawnSystem()
         return microbeSpawnFunctionGeneric(pos, "ToxinPredator", true, nil)
     end
 
+    local microbeNoper = function(pos)
+        return microbeSpawnFunctionGeneric(pos, "Noper", true, nil)
+    end
+
+    local microbeAlgae = function(pos)
+        return microbeSpawnFunctionGeneric(pos, "Algae", true, nil)
+    end
+
     local toxinOrganelleSpawnFunction = function(pos) 
         powerupEntity = Entity()
         psceneNode = OgreSceneNodeComponent()
@@ -326,6 +334,8 @@ local function createSpawnSystem()
     spawnSystem:addSpawnType(microbePlankton, 1/32000, 40)
     spawnSystem:addSpawnType(microbePoisonous, 1/32000, 40)
     spawnSystem:addSpawnType(microbeToxinPredator, 1/15000, 40)
+    spawnSystem:addSpawnType(microbeNoper, 1/6000, 40)
+    spawnSystem:addSpawnType(microbeAlgae, 1/3000, 40)
     spawnSystem:addSpawnType(toxinOrganelleSpawnFunction, 1/17000, 30)
     return spawnSystem
 end
