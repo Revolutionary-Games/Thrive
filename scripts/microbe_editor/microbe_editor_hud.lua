@@ -110,6 +110,10 @@ function MicrobeEditorHudSystem:update(renderTime, logicTime)
     if Engine.mouse:wasButtonPressed(Mouse.MB_Left) then
         self.editor:performLocationAction()
     end
+    if Engine.mouse:wasButtonPressed(Mouse.MB_Right) then
+        self:removeClicked()
+        self.editor:performLocationAction()
+    end	            
     if Engine.keyboard:wasKeyPressed(Keyboard.KC_C) then
         -- These global event handlers are defined in microbe_editor_hud.lua
         self:nucleusClicked()
