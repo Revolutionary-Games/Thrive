@@ -31,10 +31,6 @@ To set up the build system follow the steps listed below. If you are not
 interested in the gory details, you can ignore everything but the bullet
 points.
 
-OBS OBS OBS
-Some errors have popped up when following step 3 and as such it 
-is current adviced to skip step 1, 3 and 4 and instead follow step 1b
-
 
 0. Requirements
 ---------------
@@ -45,8 +41,36 @@ is current adviced to skip step 1, 3 and 4 and instead follow step 1b
 * About 30-60 minutes, depending on the speed of your PC and your internet
   connection
 
-1. Enabling Powershell to run the setup script
+
+1. Install CMake
+----------------
+
+* Download CMake from
+
+    http://www.cmake.org/cmake/resources/software.html
+
+* Run the installer
+
+
+2a. Downloading required libraries
 ----------------------------------------------
+Step 2a is optional but recommended for beginners to the project.
+If you choose step 2a, you should skip forward to step 5. after completion.
+
+*  Download the archive found here:
+    https://mega.co.nz/#!Md4WAJQR!0mf-0A7tlu5-qHpS_T6iD7wLYYM2WV1SkPhsk6AGfak
+
+*  Extract to C:\mingw
+
+This skips the compilation of required libraries and instead downloads precompiled ones.
+
+Skip to step 5.
+
+
+2b. Enabling Powershell to run the setup script
+----------------------------------------------
+
+Note that this and the following steps should only be performed if you skip 2a.
 
 * Open "Windows Powershell" as administrator by opening the start menu, 
   and entering "powershell" into the search line. Then right click on
@@ -63,30 +87,6 @@ cannot execute scripts you downloaded (such as ours) or even scripts you wrote
 yourself. To change that, we have to explicitly set the execution policy to
 "Unrestricted". For security reasons, only the administrator can do that.
 
-1b. 
-----------------------------------------------
-
-This step is the currently adviced alternative to step 1, 3 and 4. 
-As such you would instead follow step 1b -> 2 -> 5 -> 6 etc.
-
-Download the archive found here:
-https://mega.co.nz/#!Md4WAJQR!0mf-0A7tlu5-qHpS_T6iD7wLYYM2WV1SkPhsk6AGfak
-
-and extract it such that you have C:\mingw
-
-This skips the compilation of required libraries and instead downloads precompiled ones.
-
-2. Install CMake
-----------------
-
-* Download CMake from
-
-    http://www.cmake.org/cmake/resources/software.html
-
-* Run the installer and check "Add CMake to system path" during installation
-
-The setup script requires CMake to be available on the command line. That's
-why we need to add it to the PATH environment variable.
 
 3. Run the setup script
 -----------------------
