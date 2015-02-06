@@ -532,6 +532,7 @@ Engine::luaBindings() {
         .def("playerData", &Engine::playerData)
         .def("load", &Engine::load)
         .def("save", &Engine::save)
+        .def("fileExists", &Engine::fileExists)
         .def("saveCreation", static_cast<void(Engine::*)(EntityId, std::string, std::string)const>(&Engine::saveCreation))
         .def("loadCreation", static_cast<EntityId(Engine::*)(std::string)>(&Engine::loadCreation))
         .def("getCreationFileList", &Engine::getCreationFileList)
@@ -666,15 +667,23 @@ Engine::load(
     m_impl->m_serialization.loadFile = filename;
 }
 
-/*
-/to be made
-void
-Engine::saveExists(
-    std::string filename
+
+//to be made
+bool
+Engine::fileExists(
+    std::string filePath
 ) {
-    m_impl->m_serialization.loadFile = filename;
+        namespace fs = boost::filesystem;
+        fs::path fPath = filePath;
+        if (not fs::exists(fPath)) {
+            return false;
+        }
+        else{
+            return true;
+        }
+
 }
-*/
+
 
 lua_State*
 Engine::luaState(){
