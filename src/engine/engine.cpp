@@ -666,6 +666,16 @@ Engine::load(
     m_impl->m_serialization.loadFile = filename;
 }
 
+/*
+/to be made
+void
+Engine::saveExists(
+    std::string filename
+) {
+    m_impl->m_serialization.loadFile = filename;
+}
+*/
+
 lua_State*
 Engine::luaState(){
     return m_impl->m_luaState;
