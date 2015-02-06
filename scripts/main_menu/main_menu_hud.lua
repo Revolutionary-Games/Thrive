@@ -16,14 +16,20 @@ function MainMenuHudSystem:init(gameState)
     microbeEditorButton:registerEventHandler("Clicked", mainMenuMicrobeEditorButtonClicked)
     loadButton:registerEventHandler("Clicked", mainMenuLoadButtonClicked)
     quitButton:registerEventHandler("Clicked", quitButtonClicked)
+	updateLoadButton();
 end
 
 function MainMenuHudSystem:update(renderTime, logicTime)
+
+end
+
+function MainMenuHudSystem:activate()
+    updateLoadButton();
+end
+function updateLoadButton()
     if Engine:fileExists("quick.sav") then
-	    --print("The file exists");
         root:getChild("Background"):getChild("MainMenuInteractive"):getChild("LoadGameButton"):enable();
     else
-		--print("the file doesnt exist");
         root:getChild("Background"):getChild("MainMenuInteractive"):getChild("LoadGameButton"):disable();
     end
 end
