@@ -31,7 +31,9 @@ function HudSystem:init(gameState)
     self.hitpointsBar = self.rootGUIWindow:getChild("HealthPanel"):getChild("LifeBar")
     self.hitpointsCountLabel = self.hitpointsBar:getChild("NumberLabel")
     self.nameLabel = self.rootGUIWindow:getChild("SpeciesNamePanel"):getChild("SpeciesNameLabel")
-    local menuButton = self.rootGUIWindow:getChild("MenuButton") 
+    local menuButton = self.rootGUIWindow:getChild("MenuButton")
+    local saveButton = self.rootGUIWindow:getChild("SaveGameButton") 
+    local loadButton = self.rootGUIWindow:getChild("LoadGameButton")	
     --local collapseButton = self.rootGUIWindow:getChild() collapseButtonClicked
     local helpButton = self.rootGUIWindow:getChild("HelpButton")
     self.editorButton = self.rootGUIWindow:getChild("EditorButton")
@@ -39,6 +41,8 @@ function HudSystem:init(gameState)
     local compoundButton = self.rootGUIWindow:getChild("CompoundsClosed")
     local compoundPanel = self.rootGUIWindow:getChild("CompoundsOpen")
     local quitButton = self.rootGUIWindow:getChild("QuitButton")
+    saveButton:registerEventHandler("Clicked", function() self:saveButtonClicked() end)
+	loadButton:registerEventHandler("Clicked", function() self:loadButtonClicked() end)
     menuButton:registerEventHandler("Clicked", function() self:menuButtonClicked() end)
     helpButton:registerEventHandler("Clicked", function() self:helpButtonClicked() end)
     self.editorButton:registerEventHandler("Clicked", function() self:editorButtonClicked() end)
@@ -119,6 +123,21 @@ function showMessage(msg)
 end
 
 --Event handlers
+function HudSystem:saveButtonClicked()
+    local guiSoundEntity = Entity("gui_sounds")
+    guiSoundEntity:getComponent(SoundSourceComponent.TYPE_ID):playSound("button-hover-click")
+    Engine:save("quick.sav")
+    print("Game Saved");
+
+end
+function HudSystem:loadButtonClicked()
+    local guiSoundEntity = Entity("gui_sounds")
+    guiSoundEntity:getComponent(SoundSourceComponent.TYPE_ID):playSound("button-hover-click")
+    Engine:load("quick.sav")
+    print("Game loaded");
+
+end
+
 function HudSystem:menuButtonClicked()
     local guiSoundEntity = Entity("gui_sounds")
     guiSoundEntity:getComponent(SoundSourceComponent.TYPE_ID):playSound("button-hover-click")
