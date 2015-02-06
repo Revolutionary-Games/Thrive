@@ -668,7 +668,6 @@ Engine::load(
 }
 
 
-//to be made
 bool
 Engine::fileExists(
     std::string filePath

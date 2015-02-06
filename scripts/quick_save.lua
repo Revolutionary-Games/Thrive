@@ -15,7 +15,7 @@ function QuickSaveSystem:update(renderTime, logicTime)
         Engine:save("quick.sav")
     end
     if loadDown and not self.loadDown then
-	    print("Loading")
+        print("Loading")
         Engine:load("quick.sav")
     end
     self.saveDown = saveDown

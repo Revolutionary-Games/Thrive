@@ -42,7 +42,7 @@ function HudSystem:init(gameState)
     local compoundPanel = self.rootGUIWindow:getChild("CompoundsOpen")
     local quitButton = self.rootGUIWindow:getChild("QuitButton")
     saveButton:registerEventHandler("Clicked", function() self:saveButtonClicked() end)
-	loadButton:registerEventHandler("Clicked", function() self:loadButtonClicked() end)
+    loadButton:registerEventHandler("Clicked", function() self:loadButtonClicked() end)
     menuButton:registerEventHandler("Clicked", function() self:menuButtonClicked() end)
     helpButton:registerEventHandler("Clicked", function() self:helpButtonClicked() end)
     self.editorButton:registerEventHandler("Clicked", function() self:editorButtonClicked() end)
@@ -105,6 +105,13 @@ function HudSystem:update(renderTime)
         newZVal = 80
     end
     offset.z = newZVal --]]
+
+    --make the load button activate, if and only if there actually  is a save file to load
+    if Engine:fileExists("quick.sav") then
+        self.rootGUIWindow:getChild("LoadGameButton"):enable();
+    else
+        self.rootGUIWindow:getChild("LoadGameButton"):disable();
+    end
 end
 
 function showReproductionDialog() global_activeMicrobeStageHudSystem:showReproductionDialog() end

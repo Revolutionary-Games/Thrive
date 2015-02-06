@@ -7,7 +7,7 @@ end
 
 function MainMenuHudSystem:init(gameState)
     System.init(self, gameState)
-    local root = gameState:rootGUIWindow()
+    root = gameState:rootGUIWindow()
     local microbeButton = root:getChild("Background"):getChild("MainMenuInteractive"):getChild("NewGameButton")
     local microbeEditorButton = root:getChild("Background"):getChild("MainMenuInteractive"):getChild("EditorMenuButton")
     local quitButton = root:getChild("Background"):getChild("MainMenuInteractive"):getChild("ExitGameButton")
@@ -19,6 +19,13 @@ function MainMenuHudSystem:init(gameState)
 end
 
 function MainMenuHudSystem:update(renderTime, logicTime)
+    if Engine:fileExists("quick.sav") then
+	    --print("The file exists");
+        root:getChild("Background"):getChild("MainMenuInteractive"):getChild("LoadGameButton"):enable();
+    else
+		--print("the file doesnt exist");
+        root:getChild("Background"):getChild("MainMenuInteractive"):getChild("LoadGameButton"):disable();
+    end
 end
 
 function mainMenuLoadButtonClicked()
