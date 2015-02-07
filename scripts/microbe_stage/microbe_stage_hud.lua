@@ -22,7 +22,7 @@ function HudSystem:activate()
     end
     self.helpOpen = false
     self.menuOpen = true
-	self:updateLoadButton();
+    self:updateLoadButton();
 end
 
 function HudSystem:init(gameState)
