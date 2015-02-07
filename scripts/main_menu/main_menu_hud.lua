@@ -7,7 +7,7 @@ end
 
 function MainMenuHudSystem:init(gameState)
     System.init(self, gameState)
-    root = gameState:rootGUIWindow()
+    local root = gameState:rootGUIWindow()
     local microbeButton = root:getChild("Background"):getChild("MainMenuInteractive"):getChild("NewGameButton")
     local microbeEditorButton = root:getChild("Background"):getChild("MainMenuInteractive"):getChild("EditorMenuButton")
     local quitButton = root:getChild("Background"):getChild("MainMenuInteractive"):getChild("ExitGameButton")
@@ -16,22 +16,9 @@ function MainMenuHudSystem:init(gameState)
     microbeEditorButton:registerEventHandler("Clicked", mainMenuMicrobeEditorButtonClicked)
     loadButton:registerEventHandler("Clicked", mainMenuLoadButtonClicked)
     quitButton:registerEventHandler("Clicked", quitButtonClicked)
-	updateLoadButton();
 end
 
 function MainMenuHudSystem:update(renderTime, logicTime)
-
-end
-
-function MainMenuHudSystem:activate()
-    updateLoadButton();
-end
-function updateLoadButton()
-    if Engine:fileExists("quick.sav") then
-        root:getChild("Background"):getChild("MainMenuInteractive"):getChild("LoadGameButton"):enable();
-    else
-        root:getChild("Background"):getChild("MainMenuInteractive"):getChild("LoadGameButton"):disable();
-    end
 end
 
 function mainMenuLoadButtonClicked()
