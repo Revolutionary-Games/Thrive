@@ -278,11 +278,10 @@ local function createSpawnSystem()
     local microbePoisonous = function(pos)
         return microbeSpawnFunctionGeneric(pos, "Poisonous", true, nil)
     end
-    
+
     local microbeToxinPredator = function(pos)
         return microbeSpawnFunctionGeneric(pos, "ToxinPredator", true, nil)
     end
-
     local microbeNoper = function(pos)
         return microbeSpawnFunctionGeneric(pos, "Noper", true, nil)
     end

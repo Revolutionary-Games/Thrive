@@ -66,6 +66,7 @@ public:
     * - Engine::setCurrentGameState()
     * - Engine::playerData()
     * - Engine::load()
+    * - Engine::fileExists()
     * - Engine::save()
     * - Engine::saveCreation()
     * - Engine::loadCreation()
@@ -202,6 +203,16 @@ public:
     void
     load(
         std::string filename
+    );
+    /**
+    * @brief checks if a file exists
+    *
+    * @param filename
+    *   The file to check for
+    */
+    bool
+    fileExists(
+        std::string filePath
     );
 
     /**
