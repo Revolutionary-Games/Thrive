@@ -1007,7 +1007,7 @@ function MicrobeSystem:update(renderTime, logicTime)
                     soundComponent:playSound("microbe-collision")
                 end
             end
-	    end
+        end
     end
     self.microbeCollisions:clearCollisions()
 end
