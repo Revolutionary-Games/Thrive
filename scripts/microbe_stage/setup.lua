@@ -462,13 +462,14 @@ local function createMicrobeStage(name)
             TimedLifeSystem(),
             CompoundMovementSystem(),
             CompoundAbsorberSystem(),
-            createSpawnSystem(),
             -- Physics
             RigidBodyInputSystem(),
             UpdatePhysicsSystem(),
             RigidBodyOutputSystem(),
             BulletToOgreSystem(),
             CollisionSystem(),
+            -- Microbe Specific again (order sensitive)
+            createSpawnSystem(),
             -- Graphics
             OgreAddSceneNodeSystem(),
             OgreUpdateSceneNodeSystem(),
