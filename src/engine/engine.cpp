@@ -110,7 +110,7 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
         m_currentGameState = gameState;
         if (gameState) {
             gameState->activate();
-            gameState->rootGUIWindow().addChild(*m_consoleGUIWindow);
+            gameState->rootGUIWindow().addChild(m_consoleGUIWindow);
             luabind::call_member<void>(m_console, "registerEvents", gameState);
         }
     }
