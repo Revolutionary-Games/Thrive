@@ -10,6 +10,8 @@
 
 using namespace thrive;
 
+static int SCROLLABLE_PANE_VERTICAL_PADDING = 5;
+
 //Static variables used for moving gui
 static bool static_guiMode = false;
 static CEGUI::Window* static_activeMoveWindow = nullptr;
@@ -96,7 +98,6 @@ CEGUIWindow::CEGUIWindow(
 ) : m_window(window)
 {
     if (window && newWindow ) {
-
         m_window->subscribeEvent("MouseClick", handleWindowMove);
     }
 }
@@ -150,6 +151,7 @@ CEGUIWindow::luaBindings() {
         .def("getText", &CEGUIWindow::getText)
         .def("setText", &CEGUIWindow::setText)
         .def("appendText", &CEGUIWindow::appendText)
+        .def("setImage", &CEGUIWindow::setImage)
         .def("getParent", &CEGUIWindow::getParent)
         .def("getChild", &CEGUIWindow::getChild)
         .def("addChild", &CEGUIWindow::addChild)
@@ -166,7 +168,10 @@ CEGUIWindow::luaBindings() {
         .def("moveToBack", &CEGUIWindow::moveToBack)
         .def("moveInFront", &CEGUIWindow::moveInFront)
         .def("moveBehind", &CEGUIWindow::moveBehind)
-        .def("setPosition", &CEGUIWindow::setPosition)
+        .def("setPositionAbs", &CEGUIWindow::setPositionAbs)
+        .def("setPositionRel", &CEGUIWindow::setPositionRel)
+        .def("setSizeAbs", &CEGUIWindow::setSizeAbs)
+        .def("setSizeRel", &CEGUIWindow::setSizeRel)
         .def("getName", &CEGUIWindow::getName)
         .def("playAnimation", &CEGUIWindow::playAnimation)
         .def("listboxAddItem", &CEGUIWindow::listboxAddItem)
@@ -177,6 +182,9 @@ CEGUIWindow::luaBindings() {
         .def("itemListboxHandleUpdatedItemData", &CEGUIWindow::itemListboxHandleUpdatedItemData)
         .def("itemListboxGetLastSelectedItem", &CEGUIWindow::itemListboxGetLastSelectedItem)
         .def("progressbarSetProgress", &CEGUIWindow::progressbarSetProgress)
+        .def("scrollingpaneAddIcon", &CEGUIWindow::scrollingpaneAddIcon)
+        .def("scrollingpaneGetVerticalPosition", &CEGUIWindow::scrollingpaneGetVerticalPosition)
+        .def("scrollingpaneSetVerticalPosition", &CEGUIWindow::scrollingpaneSetVerticalPosition)
         .def("registerKeyEventHandler",
              static_cast<void (CEGUIWindow::*)(const luabind::object&) const>(&CEGUIWindow::registerKeyEventHandler)
          )
@@ -205,13 +213,13 @@ CEGUIWindow::createChildWindow(
 
 
 void
-CEGUIWindow::addChild(CEGUIWindow& window){
-    m_window->addChild(window.m_window);
+CEGUIWindow::addChild(CEGUIWindow* window){
+    m_window->addChild(window->m_window);
 }
 
 void
-CEGUIWindow::removeChild(CEGUIWindow& window){
-    m_window->removeChild(window.m_window->getID());
+CEGUIWindow::removeChild(CEGUIWindow* window){
+    m_window->removeChild(window->m_window->getID());
 }
 
 
@@ -239,6 +247,13 @@ CEGUIWindow::appendText(
     const std::string& text
 ) {
     m_window->appendText(text);
+}
+
+void
+CEGUIWindow::setImage(
+    const std::string& image
+) {
+    m_window->setProperty("Image", image);
 }
 
 void
@@ -287,6 +302,25 @@ CEGUIWindow::itemListboxGetLastSelectedItem(){
 void
 CEGUIWindow::progressbarSetProgress(float progress){
     dynamic_cast<CEGUI::ProgressBar*>(m_window)->setProgress(progress);
+}
+
+float
+CEGUIWindow::scrollingpaneGetVerticalPosition()
+{
+    return dynamic_cast<CEGUI::ScrollablePane*>(m_window)->getVerticalScrollPosition();
+}
+
+void
+CEGUIWindow::scrollingpaneSetVerticalPosition(float position)
+{
+    dynamic_cast<CEGUI::ScrollablePane*>(m_window)->setVerticalScrollPosition(position);
+}
+
+void
+CEGUIWindow::scrollingpaneAddIcon(CEGUIWindow* icon)
+{
+    icon->setPositionAbs(0, dynamic_cast<CEGUI::ScrollablePane*>(m_window)->getContentPaneArea().getHeight()+SCROLLABLE_PANE_VERTICAL_PADDING);
+    m_window->addChild(icon->m_window);
 }
 
 
@@ -405,10 +439,34 @@ CEGUIWindow::moveBehind(
 
 
 void
-CEGUIWindow::setPosition(
-    Ogre::Vector2 position
+CEGUIWindow::setPositionAbs(
+    float x,
+    float y
 ){
-    m_window->setPosition(CEGUI::Vector2<CEGUI::UDim>(CEGUI::UDim(position.x, 0), CEGUI::UDim(position.y, 0)));
+    m_window->setPosition(CEGUI::Vector2<CEGUI::UDim>(CEGUI::UDim(0,x), CEGUI::UDim(0,y)));
+}
+
+void
+CEGUIWindow::setPositionRel(
+    float x,
+    float y
+){
+    m_window->setPosition(CEGUI::Vector2<CEGUI::UDim>(CEGUI::UDim(x, 0), CEGUI::UDim(y, 0)));
+}
+
+void
+CEGUIWindow::setSizeAbs(
+    float width,
+    float height
+){
+    m_window->setSize( CEGUI::Size<CEGUI::UDim>(CEGUI::UDim(0, width), CEGUI::UDim(0,height))   );
+}
+void
+CEGUIWindow::setSizeRel(
+    float width,
+    float height
+){
+    m_window->setSize( CEGUI::Size<CEGUI::UDim>(CEGUI::UDim(width, 0), CEGUI::UDim(height, 0))   );
 }
 
 std::string

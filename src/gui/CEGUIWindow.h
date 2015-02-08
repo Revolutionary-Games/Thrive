@@ -87,6 +87,9 @@ public:
     * - CEGUIWindow::itemListboxHandleUpdatedItemData
     * - CEGUIWindow::itemListboxGetLastSelectedItem
     *
+    * - CEGUIWindow::scrollingpaneGetVerticalPosition
+    * - CEGUIWindow::scrollingpaneSetVerticalPosition
+    *
     * - CEGUIWindow::progressbarSetProgress
     *
     * - CEGUIWindow.getWindowUnderMouse
@@ -136,7 +139,7 @@ public:
     */
     void
     addChild(
-        CEGUIWindow& window
+        CEGUIWindow* window
     );
 
     /**
@@ -147,7 +150,7 @@ public:
     */
     void
     removeChild(
-        CEGUIWindow& window
+        CEGUIWindow* window
     );
 
     /**
@@ -185,6 +188,17 @@ public:
     void
     appendText(
         const std::string& text
+    );
+
+    /**
+    * @brief Sets the underlying windows image property
+    *
+    * @param text
+    *  The image to use
+    */
+    void
+    setImage(
+        const std::string& image
     );
 
     /**
@@ -245,7 +259,38 @@ public:
     *  Float between 0.0 and 1.0
     */
     void
-    progressbarSetProgress(float progress);
+    progressbarSetProgress(
+       float progress
+   );
+
+    /**
+    * @brief Gets the vertical scroll position
+    *
+    * @return
+    */
+    float
+    scrollingpaneGetVerticalPosition();
+
+    /**
+    * @brief Sets the vertical scroll position
+    *
+    * @param position
+    *   float between 0.0 - 1.0
+    */
+    void
+    scrollingpaneSetVerticalPosition(
+         float position
+     );
+
+    /**
+    * @brief Adds an icon vertically to the scrollable pane
+    *
+    * @param Window to add
+    */
+    void
+    scrollingpaneAddIcon(
+        CEGUIWindow* icon
+    );
 
     /**
     * @brief Gets the underlying cegui windows parent, wrapped as a CEGUIWindow*
@@ -377,12 +422,39 @@ public:
     * The positional system uses Falagard coordinate system.
     * The position is offset from one of the corners and edges of this Element's parent element (depending on alignments)
     *
-    * @param position
-    *  The new position to use
+    * @param x
+    *
+    * @param x
     **/
     void
-    setPosition(
-        Ogre::Vector2 position
+    setPositionAbs(
+        float x,
+        float y
+    );
+    void
+    setPositionRel(
+        float x,
+        float y
+    );
+
+    /**
+    * @brief Sets the windows size
+    *
+    * The positional system uses Falagard coordinate system.
+    *
+    * @param width
+    *
+    * @param height
+    **/
+    void
+    setSizeAbs(
+        float width,
+        float height
+    );
+    void
+    setSizeRel(
+        float width,
+        float height
     );
 
     /**
