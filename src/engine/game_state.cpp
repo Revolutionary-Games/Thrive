@@ -119,7 +119,7 @@ GameState::~GameState() {}
 
 void
 GameState::activate() {
-    CEGUIWindow::getRootWindow().addChild(m_impl->m_guiWindow);
+    CEGUIWindow::getRootWindow().addChild(&m_impl->m_guiWindow);
     for (const auto& system : m_impl->m_systems) {
         system->activate();
     }
@@ -131,7 +131,7 @@ GameState::deactivate() {
     for (const auto& system : m_impl->m_systems) {
         system->deactivate();
     }
-    CEGUIWindow::getRootWindow().removeChild(m_impl->m_guiWindow);
+    CEGUIWindow::getRootWindow().removeChild(&m_impl->m_guiWindow);
 }
 
 

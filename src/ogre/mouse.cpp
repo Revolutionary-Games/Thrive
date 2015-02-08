@@ -18,6 +18,7 @@ struct Mouse::Implementation : public OIS::MouseListener {
 
     bool mouseMoved (const OIS::MouseEvent& e){
         CEGUI::System::getSingleton().getDefaultGUIContext().injectMousePosition(e.state.X.abs, e.state.Y.abs );
+        CEGUI::System::getSingleton().getDefaultGUIContext().injectMouseWheelChange(e.state.Z.rel/100);
         return true;
     }
     bool mousePressed (const OIS::MouseEvent&, OIS::MouseButtonID id){
