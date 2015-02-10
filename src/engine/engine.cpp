@@ -248,12 +248,12 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
     saveSavegame() {
         StorageContainer savegame;
         savegame.set("currentGameState", m_currentGameState->name());
+        savegame.set("playerData", m_playerData.storage());
         StorageContainer gameStates;
         for (const auto& pair : m_gameStates) {
             gameStates.set(pair.first, pair.second->storage());
         }
         savegame.set("gameStates", std::move(gameStates));
-        savegame.set("playerData", m_playerData.storage());
         savegame.set("thriveversion", m_thriveVersion);
         std::ofstream stream(
             m_serialization.saveFile,
