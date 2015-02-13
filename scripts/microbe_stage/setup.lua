@@ -243,7 +243,8 @@ local function createSpawnSystem()
         entity:addComponent(rigidBody)
         -- Scene node
         local sceneNode = OgreSceneNodeComponent()
-        sceneNode.meshName = "hex.mesh"
+        sceneNode.meshName = "ammonia.mesh"
+        sceneNode.transform.scale = Vector3(0.5, 0.5, 0.5)
         entity:addComponent(sceneNode)
         -- Emitter ammonia
         local ammoniaEmitter = CompoundEmitterComponent()
