@@ -138,7 +138,7 @@ file in the next step.
     and install it
 
 
-6. Get the assets
+7. Get the assets
 ---------------
 
 * If you Installed tortoise SVN
