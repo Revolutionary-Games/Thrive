@@ -127,7 +127,33 @@ You will also have to point Code::Blocks to your custom directory in step (7).
 If you don't install Code::Blocks, CMake won't be able to generate a project
 file in the next step.
 
-6. Invoke CMake
+
+6. Install tortoise svn or just svn
+---------------
+
+* Download TortoiseSVN from
+
+    http://tortoisesvn.net/downloads.html
+    
+    and install it
+
+
+6. Get the assets
+---------------
+
+* If you Installed tortoise SVN
+
+    Right click somewhere in the git repository and click SVN Checkout.
+    Under URL enter: http://crovea.net/svn/thrive_assets
+    Edit the last part of Checkout directory to "/assets" instead of "/trive_assets"
+    Click checkout and it will prompt you for a user
+    For password and username simply enter 'thrive' and 'thrive'
+
+* If you are instead using commandline SVN
+
+    svn co http://crovea.net/svn/thrive_assets/ ./assets
+    
+8. Invoke CMake
 ---------------
 
 * Start the CMake GUI from your start menu
@@ -152,7 +178,7 @@ The toolchain file was configured during the setup script to contain paths to
 the compiler executable and all accompanying tools. It's usually used for 
 cross-compiling, but it's convenient for us, too.
 
-7. Building Thrive
+9. Building Thrive
 ---------------------------
 
 * Open "Thrive.cbp" in your selected build directory with Code::Blocks
@@ -168,7 +194,7 @@ cross-compiling, but it's convenient for us, too.
   build Thrive
 
 
-8. Running Thrive
+10. Running Thrive
 -----------------
 
 * In Code::Blocks, select "install" as the build target and click on the 
