@@ -70,7 +70,6 @@ CollisionComponent::load(
 ) {
     Component::load(storage);
     StorageList collisionGroups = storage.get<StorageList>("collisionGroups");
-    m_collisionGroups.reserve(collisionGroups.size());
     for (const StorageContainer& container : collisionGroups) {
         std::string collisionGroup = container.get<std::string>("collisionGroup");
         m_collisionGroups.push_back(collisionGroup);
