@@ -1,5 +1,5 @@
 #include "rng.h"
-
+#include "chrono"
 #include "scripting/luabind.h"
 
 using namespace thrive;
@@ -13,11 +13,14 @@ struct RNG::Implementation {
     }
     Implementation()
     {
-        m_seed = m_rd();
+        //This is a temporary fix, since in this version of c++ random_device is not non-deterministic.
+        m_seed = std::chrono::high_resolution_clock::now().time_since_epoch().count();
+        //End of temporary fix.
         m_mt = std::mt19937(m_seed);
     }
 
     Seed m_seed;
+    //keeping this here, because changing the seed mid-game should still give a "random" distribution of numbers.
     std::random_device m_rd;
     std::mt19937 m_mt;
 };
