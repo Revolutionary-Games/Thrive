@@ -111,7 +111,6 @@ end
 -- Given a newly-created microbe, this sets the organelles and all other species-specific microbe data
 --  like agent codes, for example.
 function SpeciesComponent:template(microbe)
-
     microbe.microbe.speciesName = self.name
     -- give it organelles
     for i, orgdata in pairs(self.organelles) do
