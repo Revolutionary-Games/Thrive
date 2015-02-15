@@ -51,6 +51,7 @@ function MicrobeReplacementSystem:activate()
         newMicrobeEntity:stealName(PLAYER_NAME)
         global_newEditorMicrobe = false
         Engine:playerData():setActiveCreature(newMicrobeEntity.id, GameState.MICROBE)
+        newMicrobe.collisionHandler:addCollisionGroup("powerupable")
         --print("finished setting up new microbe")
     end
    
