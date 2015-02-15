@@ -26,6 +26,7 @@ local function setupSound()
     soundSource.volumeMultiplier = 0.4
     ambientEntity:addComponent(soundSource)
     soundSource:addSound("main-menu-theme-1", "main-menu-theme-1.ogg")
+    soundSource:addSound("main-menu-theme-1", "main-menu-theme-2.ogg")
     -- Gui effects
     local guiSoundEntity = Entity("gui_sounds")
     soundSource = SoundSourceComponent()

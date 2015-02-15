@@ -42,6 +42,25 @@
             -->
         </Organelles>
     </Species>
+        
+    <Species name="Noper">
+        <Compounds>
+            <Compound name="atp" amount="15"/>
+        </Compounds>
+        <Organelles>
+            <Organelle name="nucleus" q="0" r="0"/>
+            
+            <Organelle name="mitochondrion" q="0" r="-1"/>
+            
+            <Organelle name="vacuole" q="0" r="-2"/>
+            
+            <Organelle name="flagellum" q="1" r="-3"/>
+            <Organelle name="flagellum" q="-1" r="-2"/>
+            <Organelle name="flagellum" q="0" r="-3"/>
+            <Organelle name="flagellum" q="-1" r="-3"/>
+            <Organelle name="flagellum" q="1" r="-4"/>
+        </Organelles>
+    </Species>
     <Species name="Teeny">
         <Compounds>
             <Compound name="atp" amount="60"/>
@@ -96,7 +115,22 @@
             <Organelle name="chloroplast" q="-3" r="2"/>
         </Organelles>
     </Species>
-
+    <Species name="Algae">
+        <Compounds>
+            <Compound name="atp" amount="20"/>
+        </Compounds>
+<Organelles>
+                <Organelle name="nucleus" q="0" r="0"/>
+                
+                <Organelle name="mitochondrion" q="0" r="1"/>
+                <Organelle name="vacuole" q="0" r="-1"/>
+                
+                <Organelle name="chloroplast" q="1" r="0"/>
+                <Organelle name="chloroplast" q="-1" r="0"/>
+                <Organelle name="chloroplast" q="1" r="-1"/>
+                <Organelle name="chloroplast" q="-1" r="1"/>
+       </Organelles>
+    </Species>
     <Species name="Poisonous">
         <Compounds>
             <Compound name="atp" amount="30"/>
@@ -104,25 +138,25 @@
         </Compounds>
         <Organelles>
             <Organelle name="nucleus" q="0" r="0"/>
-
+            
             <Organelle name="mitochondrion" q="0" r="-1"/>
             <Organelle name="mitochondrion" q="0" r="1"/>
-
+            
             <Organelle name="vacuole" q="0" r="-2"/>
             <Organelle name="vacuole" q="0" r="2"/>
-
+            
             <Organelle name="chloroplast" q="0" r="-3"/>
             <Organelle name="chloroplast" q="0" r="3"/>
-
+           
             <Organelle name="oxytoxy" q="1" r="0"/>
             <Organelle name="oxytoxy" q="-1" r="0"/>
-
+            
             <Organelle name="oxytoxy" q="1" r="-1"/>
             <Organelle name="oxytoxy" q="-1" r="1"/>
-
+            
             <Organelle name="flagellum" q="2" r="-1"/>
             <Organelle name="flagellum" q="-2" r="1"/>
-
+            
             <Organelle name="flagellum" q="0" r="4"/>
             <Organelle name="flagellum" q="0" r="-4"/>
         </Organelles>
@@ -147,8 +181,8 @@
             <Organelle name="flagellum" q="0" r="-2"/>
             
             <Organelle name="oxytoxy" q="0" r="1"/>
-
-
+            
+            
         </Organelles>
     </Species>
 </Microbes>

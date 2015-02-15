@@ -12,6 +12,7 @@ function MicrobeEditorHudSystem:__init()
     self.creationFileMap = {} -- Map from player creation name to filepath
     self.activeButton = nil -- stores button, not name
     self.helpPanelOpen = false
+    self.organelleScrollPane = nil
 end
 
 
@@ -30,14 +31,14 @@ function MicrobeEditorHudSystem:init(gameState)
     self.nameTextbox = root:getChild("SpeciesNamePanel"):getChild("NameTextbox")
     root:getChild("SpeciesNamePanel"):registerEventHandler("Clicked", 
         function() global_activeMicrobeEditorHudSystem:nameClicked() end)
-
     -- self.mpProgressBar = root:getChild("BottomSection"):getChild("MutationPoints"):getChild("MPBar")
+    self.organelleScrollPane = root:getChild("scrollablepane");
     local nucleusButton = root:getChild("NewMicrobe")
-    local flageliumButton = root:getChild("AddFlagellum")
-    local mitochondriaButton = root:getChild("AddMitochondria")
-    local vacuoleButton = root:getChild("AddVacuole")
-    local toxinButton = root:getChild("AddToxinVacuole")
-    local chloroplastButton = root:getChild("AddChloroplast")
+    local flageliumButton = root:getChild("scrollablepane"):getChild("AddFlagellum")
+    local mitochondriaButton = root:getChild("scrollablepane"):getChild("AddMitochondria")
+    local vacuoleButton = root:getChild("scrollablepane"):getChild("AddVacuole")
+    local toxinButton = root:getChild("scrollablepane"):getChild("AddToxinVacuole")
+    local chloroplastButton = root:getChild("scrollablepane"):getChild("AddChloroplast")
     self.organelleButtons["nucleus"] = nucleusButton
     self.organelleButtons["flagelium"] = flageliumButton
     self.organelleButtons["mitochondrion"] = mitochondriaButton
@@ -110,6 +111,10 @@ function MicrobeEditorHudSystem:update(renderTime, logicTime)
     if Engine.mouse:wasButtonPressed(Mouse.MB_Left) then
         self.editor:performLocationAction()
     end
+    if Engine.mouse:wasButtonPressed(Mouse.MB_Right) then
+        self:removeClicked()
+        self.editor:performLocationAction()
+    end	            
     if Engine.keyboard:wasKeyPressed(Keyboard.KC_C) then
         -- These global event handlers are defined in microbe_editor_hud.lua
         self:nucleusClicked()
@@ -157,15 +162,27 @@ function MicrobeEditorHudSystem:update(renderTime, logicTime)
     elseif Engine.keyboard:wasKeyPressed(Keyboard.KC_F12) then
         self:updateMicrobeName()
     end
-    properties = Entity(CAMERA_NAME .. 3):getComponent(OgreCameraComponent.TYPE_ID).properties
-    newFovY = properties.fovY + Degree(Engine.mouse:scrollChange()/10)
-    if newFovY < Degree(10) then
-        newFovY = Degree(10)
-    elseif newFovY > Degree(120) then
-        newFovY = Degree(120)
+
+    if Engine.keyboard:isKeyDown(Keyboard.KC_LSHIFT) then 
+        properties = Entity(CAMERA_NAME .. 3):getComponent(OgreCameraComponent.TYPE_ID).properties
+        newFovY = properties.fovY + Degree(Engine.mouse:scrollChange()/10)
+        if newFovY < Degree(10) then
+            newFovY = Degree(10)
+        elseif newFovY > Degree(120) then
+            newFovY = Degree(120)
+        end
+        properties.fovY = newFovY
+        properties:touch()
+    else
+        local organelleScrollVal = self.organelleScrollPane:scrollingpaneGetVerticalPosition() + Engine.mouse:scrollChange()/1000
+        if organelleScrollVal < 0 then
+            organelleScrollVal = 0
+        elseif organelleScrollVal > 1.0 then
+            organelleScrollVal = 1.0
+        end
+        self.organelleScrollPane:scrollingpaneSetVerticalPosition(organelleScrollVal)
+        
     end
-    properties.fovY = newFovY
-    properties:touch()
 end
 
 function MicrobeEditorHudSystem:updateMutationPoints() 

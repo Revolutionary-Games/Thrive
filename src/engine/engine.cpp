@@ -110,7 +110,7 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
         m_currentGameState = gameState;
         if (gameState) {
             gameState->activate();
-            gameState->rootGUIWindow().addChild(*m_consoleGUIWindow);
+            gameState->rootGUIWindow().addChild(m_consoleGUIWindow);
             luabind::call_member<void>(m_console, "registerEvents", gameState);
         }
     }
@@ -248,12 +248,12 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
     saveSavegame() {
         StorageContainer savegame;
         savegame.set("currentGameState", m_currentGameState->name());
+        savegame.set("playerData", m_playerData.storage());
         StorageContainer gameStates;
         for (const auto& pair : m_gameStates) {
             gameStates.set(pair.first, pair.second->storage());
         }
         savegame.set("gameStates", std::move(gameStates));
-        savegame.set("playerData", m_playerData.storage());
         savegame.set("thriveversion", m_thriveVersion);
         std::ofstream stream(
             m_serialization.saveFile,
@@ -532,6 +532,7 @@ Engine::luaBindings() {
         .def("playerData", &Engine::playerData)
         .def("load", &Engine::load)
         .def("save", &Engine::save)
+        .def("fileExists", &Engine::fileExists)
         .def("saveCreation", static_cast<void(Engine::*)(EntityId, std::string, std::string)const>(&Engine::saveCreation))
         .def("loadCreation", static_cast<EntityId(Engine::*)(std::string)>(&Engine::loadCreation))
         .def("getCreationFileList", &Engine::getCreationFileList)
@@ -665,6 +666,23 @@ Engine::load(
 ) {
     m_impl->m_serialization.loadFile = filename;
 }
+
+
+bool
+Engine::fileExists(
+    std::string filePath
+) {
+        namespace fs = boost::filesystem;
+        fs::path fPath = filePath;
+        if (not fs::exists(fPath)) {
+            return false;
+        }
+        else{
+            return true;
+        }
+
+}
+
 
 lua_State*
 Engine::luaState(){

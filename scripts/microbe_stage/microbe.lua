@@ -1092,9 +1092,11 @@ function MicrobeSystem:update(renderTime, logicTime)
             microbe.rigidBody.dynamicProperties.linearVelocity:length()
             local body1 = entity1:getComponent(RigidBodyComponent.TYPE_ID)
             local body2 = entity2:getComponent(RigidBodyComponent.TYPE_ID)
-            if ((body1.dynamicProperties.linearVelocity - body2.dynamicProperties.linearVelocity):length()) > RELATIVE_VELOCITY_TO_BUMP_SOUND then
-                local soundComponent = entity1:getComponent(SoundSourceComponent.TYPE_ID)
-                soundComponent:playSound("microbe-collision")
+            if body1~=nil and body2~=nil then
+                if ((body1.dynamicProperties.linearVelocity - body2.dynamicProperties.linearVelocity):length()) > RELATIVE_VELOCITY_TO_BUMP_SOUND then
+                    local soundComponent = entity1:getComponent(SoundSourceComponent.TYPE_ID)
+                    soundComponent:playSound("microbe-collision")
+                end
             end
         end
     end

@@ -24,6 +24,7 @@ function HudSystem:activate()
     end
     self.helpOpen = false
     self.menuOpen = true
+    self:updateLoadButton();
 end
 
 function HudSystem:init(gameState)
@@ -33,7 +34,9 @@ function HudSystem:init(gameState)
     self.hitpointsBar = self.rootGUIWindow:getChild("HealthPanel"):getChild("LifeBar")
     self.hitpointsCountLabel = self.hitpointsBar:getChild("NumberLabel")
     self.nameLabel = self.rootGUIWindow:getChild("SpeciesNamePanel"):getChild("SpeciesNameLabel")
-    local menuButton = self.rootGUIWindow:getChild("MenuButton") 
+    local menuButton = self.rootGUIWindow:getChild("MenuButton")
+    local saveButton = self.rootGUIWindow:getChild("SaveGameButton") 
+    local loadButton = self.rootGUIWindow:getChild("LoadGameButton")	
     --local collapseButton = self.rootGUIWindow:getChild() collapseButtonClicked
     local helpButton = self.rootGUIWindow:getChild("HelpButton")
     self.editorButton = self.rootGUIWindow:getChild("EditorButton")
@@ -41,6 +44,8 @@ function HudSystem:init(gameState)
     local compoundButton = self.rootGUIWindow:getChild("CompoundsClosed")
     local compoundPanel = self.rootGUIWindow:getChild("CompoundsOpen")
     local quitButton = self.rootGUIWindow:getChild("QuitButton")
+    saveButton:registerEventHandler("Clicked", function() self:saveButtonClicked() end)
+    loadButton:registerEventHandler("Clicked", function() self:loadButtonClicked() end)
     menuButton:registerEventHandler("Clicked", function() self:menuButtonClicked() end)
     helpButton:registerEventHandler("Clicked", function() self:helpButtonClicked() end)
     self.editorButton:registerEventHandler("Clicked", function() self:editorButtonClicked() end)
@@ -49,6 +54,7 @@ function HudSystem:init(gameState)
     compoundPanel:registerEventHandler("Clicked", function() self:closeCompoundPanel() end)
     quitButton:registerEventHandler("Clicked", quitButtonClicked)
     self.rootGUIWindow:getChild("MainMenuButton"):registerEventHandler("Clicked", menuMainMenuClicked) -- in microbe_editor_hud.lua
+    self:updateLoadButton();
 end
 
 
@@ -121,7 +127,30 @@ function showMessage(msg)
     --messagePanel:show()
 end
 
+function HudSystem:updateLoadButton()
+    if Engine:fileExists("quick.sav") then
+        self.rootGUIWindow:getChild("LoadGameButton"):enable();
+    else
+        self.rootGUIWindow:getChild("LoadGameButton"):disable();
+    end
+end
+
 --Event handlers
+function HudSystem:saveButtonClicked()
+    local guiSoundEntity = Entity("gui_sounds")
+    guiSoundEntity:getComponent(SoundSourceComponent.TYPE_ID):playSound("button-hover-click")
+    Engine:save("quick.sav")
+    print("Game Saved");
+	--Because using update load button here doesn't seem to work unless you press save twice
+    self.rootGUIWindow:getChild("LoadGameButton"):enable();
+end
+function HudSystem:loadButtonClicked()
+    local guiSoundEntity = Entity("gui_sounds")
+    guiSoundEntity:getComponent(SoundSourceComponent.TYPE_ID):playSound("button-hover-click")
+    Engine:load("quick.sav")
+    print("Game loaded");
+end
+
 function HudSystem:menuButtonClicked()
     local guiSoundEntity = Entity("gui_sounds")
     guiSoundEntity:getComponent(SoundSourceComponent.TYPE_ID):playSound("button-hover-click")
@@ -132,6 +161,7 @@ function HudSystem:menuButtonClicked()
         self.rootGUIWindow:getChild("OptionsButton"):playAnimation("MoveToOptionsButton");
         self.rootGUIWindow:getChild("LoadGameButton"):playAnimation("MoveToLoadGameButton");
         self.rootGUIWindow:getChild("SaveGameButton"):playAnimation("MoveToSaveGameButton");
+        self:updateLoadButton();
         self.menuOpen = true
     else
         self.rootGUIWindow:getChild("StatsButton"):playAnimation("MoveToMenuButtonD0");
@@ -139,9 +169,11 @@ function HudSystem:menuButtonClicked()
         self.rootGUIWindow:getChild("OptionsButton"):playAnimation("MoveToMenuButtonD1");
         self.rootGUIWindow:getChild("LoadGameButton"):playAnimation("MoveToMenuButtonD4");
         self.rootGUIWindow:getChild("SaveGameButton"):playAnimation("MoveToMenuButtonD3");
+        self:updateLoadButton();
         self.menuOpen = false
     end
 end
+
 
 function HudSystem:openCompoundPanel()
     local guiSoundEntity = Entity("gui_sounds")
