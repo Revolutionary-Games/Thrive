@@ -97,7 +97,6 @@ function microbeSpawnFunctionGeneric(pos, speciesName, aiControlled, individualN
         end
     end
     microbe.microbe.speciesName = speciesName
-    microbe.microbe:updateSafeAngles()
     return microbe
 end
 
@@ -369,14 +368,14 @@ local function setupEmitter()
     -- Emitter test
     local testEmitter = CompoundEmitterComponent()
     entity:addComponent(testEmitter)
-    testEmitter.emissionRadius = 1
+    testEmitter.emissionRadius = 1.5
     testEmitter.maxInitialSpeed = 10
     testEmitter.minInitialSpeed = 2
     testEmitter.minEmissionAngle = Degree(0)
     testEmitter.maxEmissionAngle = Degree(360)
     testEmitter.particleLifeTime = 5000
     local timedEmitter = TimedCompoundEmitterComponent()
-    timedEmitter.compoundId = CompoundRegistry.getCompoundId("glucose")
+    timedEmitter.compoundId = CompoundRegistry.getCompoundId("oxygen")
     timedEmitter.particlesPerEmission = 1
     timedEmitter.potencyPerParticle = 3.0
     timedEmitter.emitInterval = 1000
