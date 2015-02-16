@@ -196,7 +196,7 @@ local function createSpawnSystem()
     end
     local spawnAmmoniaEmitter = function(pos)
         local entity = Entity()
-        setSpawnablePhysics(entity, pos, "ammonia.mesh", 1, SphereShape(HEX_SIZE))
+        setSpawnablePhysics(entity, pos, "ammonia.mesh", 0.5, SphereShape(HEX_SIZE))
         addEmitter2Entity(entity, "ammonia")
         return entity
     end
@@ -335,14 +335,9 @@ function unlockToxin(entityId)
     return true
 end
 
-function createStarterMicrobe(name, aiControlled)
-    local microbe = microbeSpawnFunctionGeneric(nil,"Default",aiControlled, name)
-    return microbe
-end
-
 local function setupPlayer()
     SpeciesRegistry.loadFromXML("../definitions/microbes.xml")
-    microbe = createStarterMicrobe(PLAYER_NAME, false)
+    microbe = microbeSpawnFunctionGeneric(nil, "Default", false, PLAYER_NAME)
     microbe.collisionHandler:addCollisionGroup("powerupable")
     Engine:playerData():lockedMap():addLock("Toxin")
     Engine:playerData():setActiveCreature(microbe.entity.id, GameState.MICROBE)
