@@ -196,7 +196,7 @@ local function createSpawnSystem()
     end
     local spawnAmmoniaEmitter = function(pos)
         local entity = Entity()
-        setSpawnablePhysics(entity, pos, "hex.mesh", 1, SphereShape(HEX_SIZE))
+        setSpawnablePhysics(entity, pos, "ammonia.mesh", 1, SphereShape(HEX_SIZE))
         addEmitter2Entity(entity, "ammonia")
         return entity
     end

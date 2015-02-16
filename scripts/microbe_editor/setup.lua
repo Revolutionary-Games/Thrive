@@ -7,6 +7,15 @@ local function setupBackground()
     skyplane.properties.tiling = 500
     skyplane.properties:touch()
     entity:addComponent(skyplane)
+    -- Create floating arrow entity
+    entity = Entity("directionarrow")
+    local sceneNode = OgreSceneNodeComponent()
+    sceneNode.meshName = "arrow.mesh"
+    sceneNode.transform.position = Vector3(0,-7,-4)
+    sceneNode.transform.orientation = Quaternion(90,-90,90,-90)
+    sceneNode.transform:touch()
+    sceneNode:playAnimation("Stand", true)
+    entity:addComponent(sceneNode)
 end
 
 local function setupCamera()
