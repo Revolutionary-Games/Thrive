@@ -37,6 +37,7 @@ end
 function mainMenuLoadButtonClicked()
     local guiSoundEntity = Entity("gui_sounds")
     guiSoundEntity:getComponent(SoundSourceComponent.TYPE_ID):playSound("button-hover-click")
+    Engine:setCurrentGameState(GameState.MICROBE)
     Engine:load("quick.sav")
     print("Game loaded");
 end
