@@ -7,9 +7,13 @@
 #include "scripting/luabind.h"
 #include "engine/serialization.h"
 
+#include <cmath>
 #include <iostream>
 
 using namespace thrive;
+
+const int PI = 3.1416f;
+const float PUSHBACK_DIST = 2.2f; //Used for incrementally pushing emissions out of the emitters body
 
 ////////////////////////////////////////////////////////////////////////////////
 // RigidBodyComponent
@@ -97,6 +101,8 @@ RigidBodyComponent::luaBindings() {
         .def("clearForces", &RigidBodyComponent::clearForces)
         .def_readonly("properties", &RigidBodyComponent::m_properties)
         .def_readonly("dynamicProperties", &RigidBodyComponent::m_dynamicProperties)
+        .def_readwrite("pushbackEntity", &RigidBodyComponent::m_pushbackEntity)
+        .def_readwrite("m_pushbackAngle", &RigidBodyComponent::m_pushbackAngle)
     ;
 }
 
@@ -229,6 +235,26 @@ RigidBodyInputSystem::shutdown() {
 }
 
 
+
+struct _ContactResultCallback  : public btCollisionWorld::ContactResultCallback
+{
+    bool collisionDetected = false;
+
+    btScalar addSingleResult(
+        btManifoldPoint&,
+        const btCollisionObjectWrapper*,
+        int ,
+        int ,
+        const btCollisionObjectWrapper*,
+        int ,
+        int)
+    {
+        collisionDetected = true;
+        return 0.0f;
+    }
+};
+
+
 void
 RigidBodyInputSystem::update(int, int logicTime) {
     for (EntityId entityId : m_impl->m_entities.removedEntities()) {
@@ -341,6 +367,27 @@ RigidBodyInputSystem::update(int, int logicTime) {
             body->setLinearVelocity(btVector3(0,0,0));
             body->setAngularVelocity(btVector3(0,0,0));
             rigidBodyComponent->m_toClearForces = false;
+        }
+        if(rigidBodyComponent->m_pushbackEntity != NULL_ENTITY) {
+            //To debug this in the future, in the context of emitter components
+            // set emission speeds on the emitter components to 0
+            RigidBodyComponent* otherEntityBody =  m_impl->m_entities.entityManager()->getComponent<RigidBodyComponent>(rigidBodyComponent->m_pushbackEntity);
+            auto callback = _ContactResultCallback();
+            if (otherEntityBody) {
+                m_impl->m_world->contactPairTest(body, otherEntityBody->m_body, callback);
+                auto v = Ogre::Vector3(PUSHBACK_DIST*sin(rigidBodyComponent->m_pushbackAngle*(PI/180.0)),PUSHBACK_DIST*cos(rigidBodyComponent->m_pushbackAngle*(PI/180.0)),0);
+                while(callback.collisionDetected)
+                {
+                    rigidBodyComponent->m_dynamicProperties.position = rigidBodyComponent->m_dynamicProperties.position + v;
+                    btTransform transform;
+                    rigidBodyComponent->getWorldTransform(transform);
+                    body->setWorldTransform(transform);
+
+                    callback.collisionDetected = false;
+                    m_impl->m_world->contactPairTest(body, otherEntityBody->m_body, callback);
+                }
+            }
+            rigidBodyComponent->m_pushbackEntity = NULL_ENTITY;
         }
         body->applyDamping(logicTime / 1000.0f);
     }
