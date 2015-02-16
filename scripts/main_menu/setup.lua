@@ -23,7 +23,7 @@ local function setupSound()
     local soundSource = SoundSourceComponent()
     soundSource.ambientSoundSource = true
     soundSource.autoLoop = true
-    soundSource.volumeMultiplier = 0.4
+    soundSource.volumeMultiplier = 0.8
     ambientEntity:addComponent(soundSource)
     soundSource:addSound("main-menu-theme-1", "main-menu-theme-1.ogg")
     soundSource:addSound("main-menu-theme-2", "main-menu-theme-2.ogg")
