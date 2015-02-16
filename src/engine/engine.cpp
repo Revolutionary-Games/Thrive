@@ -732,25 +732,33 @@ Engine::saveCreation(
 ) const {
     namespace fs = boost::filesystem;
     StorageContainer creation = entityManager.storeEntity(entityId);
-    creation.set("thriveversion", this->thriveVersion());
-    std::ofstream stream(
-        (fs::path("creations") / fs::path(type) / fs::path(name + "." + type)).string<std::string>(),
-        std::ofstream::trunc | std::ofstream::binary
-    );
-    stream.exceptions(std::ofstream::failbit | std::ofstream::badbit);
-    if (stream) {
-        try {
-            stream << creation;
-            stream.flush();
-            stream.close();
-        }
-        catch (const std::ofstream::failure& e) {
-            std::cerr << "Error saving file: " << e.what() << std::endl;
-            throw;
-        }
+    fs::path pth = (fs::path("creations") / fs::path(type));
+    boost::system::error_code returnedError;
+    boost::filesystem::create_directories( pth, returnedError );
+    if (returnedError) {
+        std::perror("Could not create necessary directories for saving.");
     }
     else {
-        std::perror("Could not open file for saving");
+        creation.set("thriveversion", this->thriveVersion());
+        std::ofstream stream(
+            (pth / fs::path(name + "." + type)).string<std::string>(),
+            std::ofstream::trunc | std::ofstream::binary
+        );
+        stream.exceptions(std::ofstream::failbit | std::ofstream::badbit);
+        if (stream) {
+            try {
+                stream << creation;
+                stream.flush();
+                stream.close();
+            }
+            catch (const std::ofstream::failure& e) {
+                std::cerr << "Error saving file: " << e.what() << std::endl;
+                throw;
+            }
+        }
+        else {
+            std::perror("Could not open file for saving");
+        }
     }
 }
 
