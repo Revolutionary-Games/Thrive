@@ -198,7 +198,8 @@ emitCompound(
     Ogre::Vector3 emittorPosition,
     double angle,
     double radius,
-    CompoundEmitterComponent* emitterComponent
+    CompoundEmitterComponent* emitterComponent,
+    EntityId emittingEntityId
 ) {
 
     Ogre::Vector3 emissionOffset(0,0,0);
@@ -235,6 +236,8 @@ emitCompound(
     compoundRigidBodyComponent->m_properties.hasContactResponse = false;
     compoundRigidBodyComponent->m_properties.kinematic = true;
     compoundRigidBodyComponent->m_dynamicProperties.position = emittorPosition + emissionOffset;
+    compoundRigidBodyComponent->m_pushbackEntity = emittingEntityId;
+    compoundRigidBodyComponent->m_pushbackAngle = angle;
     // Compound Component
     auto compoundComponent = make_unique<CompoundComponent>();
     compoundComponent->m_velocity = emissionVelocity;
@@ -270,7 +273,7 @@ CompoundEmitterSystem::update(int, int logicTime) {
 
         for (auto emission : emitterComponent->m_compoundEmissions)
         {
-            emitCompound(std::get<0>(emission), std::get<1>(emission), sceneNodeComponent->m_transform.position, std::get<2>(emission), std::get<3>(emission), emitterComponent);
+            emitCompound(std::get<0>(emission), std::get<1>(emission), sceneNodeComponent->m_transform.position, std::get<2>(emission), std::get<3>(emission), emitterComponent, value.first);
         }
         emitterComponent->m_compoundEmissions.clear();
         if (timedEmitterComponent)
@@ -286,7 +289,7 @@ CompoundEmitterSystem::update(int, int logicTime) {
                         emitterComponent->m_minEmissionAngle.valueDegrees(),
                         emitterComponent->m_maxEmissionAngle.valueDegrees()
                     );
-                    emitCompound(timedEmitterComponent->m_compoundId, timedEmitterComponent->m_potencyPerParticle, sceneNodeComponent->m_transform.position, angle,  emitterComponent->m_emissionRadius, emitterComponent);
+                    emitCompound(timedEmitterComponent->m_compoundId, timedEmitterComponent->m_potencyPerParticle, sceneNodeComponent->m_transform.position, angle,  emitterComponent->m_emissionRadius, emitterComponent, value.first);
                 }
             }
         }
