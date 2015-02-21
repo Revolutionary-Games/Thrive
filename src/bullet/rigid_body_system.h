@@ -311,6 +311,9 @@ public:
     Properties
     m_properties;
 
+    EntityId m_pushbackEntity = NULL_ENTITY;
+    float m_pushbackAngle = 0;
+
 private:
 
     friend class RigidBodyInputSystem;

@@ -11,11 +11,11 @@ BANDWIDTH_PER_ORGANELLE = 0.5 -- amount the microbes maxmimum bandwidth increase
 BANDWIDTH_REFILL_DURATION = 1000 -- The amount of time it takes for the microbe to regenerate an amount of bandwidth equal to maxBandwidth
 STORAGE_EJECTION_THRESHHOLD = 0.8
 EXCESS_COMPOUND_COLLECTION_INTERVAL = 1000 -- The amount of time between each loop to maintaining a fill level below STORAGE_EJECTION_THRESHHOLD and eject useless compounds
-ANGLE_RADIUS_DIVISION_COUNT = 4 -- How many pizza slices the microbes angles are divided into. Higher is more precision but also more errors. 4 Seems to give no significant errors
 MICROBE_HITPOINTS_PER_ORGANELLE = 10
 MINIMUM_AGENT_EMISSION_AMOUNT = 1
 REPRODUCTASE_TO_SPLIT = 5
 RELATIVE_VELOCITY_TO_BUMP_SOUND = 6
+INITIAL_EMISSION_RADIUS = 2
 
 function MicrobeComponent:__init(isPlayerMicrobe)
     Component.__init(self)
@@ -42,10 +42,6 @@ function MicrobeComponent:__init(isPlayerMicrobe)
     self.maxBandwidth = 0
     self.remainingBandwidth = 0
     self.compoundCollectionTimer = EXCESS_COMPOUND_COLLECTION_INTERVAL
-    self.angleRadiuses = {} -- Holds ANGLE_RADIUS_DIVISION_COUNT angles and their distances until outside of microbe 
-    for i=0, ANGLE_RADIUS_DIVISION_COUNT+1 do
-        table.insert(self.angleRadiuses, 3) -- We need a buffer zone as now all ANGLE_RADIUS_DIVISION_COUNT quadrants can be expected to be filled
-    end
 end
 
 function MicrobeComponent:_resetCompoundPriorities()
@@ -126,33 +122,6 @@ function MicrobeComponent:regenerateBandwidth(logicTime)
     self.remainingBandwidth = math.min(addedBandwidth, self.maxBandwidth)
 end
 
--- Find for a number of angles, how far away from the microbe we need to eject to avoid self colliding (for example emitting an agent into the microbe itself)
--- A better for system should be devisable when we have microbe membranes
--- This should be called when changes are made to the microbe outside the editor
-function MicrobeComponent:updateSafeAngles()
-    -- For each organelle find how far away from the microbe we have to eject at a given angle to avoid self collision
-    for _, organelle in pairs(self.organelles) do
-        local organelleX, organelleY = axialToCartesian(organelle.position.q, organelle.position.r)
-        local nucleusX, nucleusY = axialToCartesian(0, 0)
-        local deltaX = nucleusX - organelleX
-        local deltaY = nucleusY - organelleY
-        local dist = math.sqrt(deltaX^2 + deltaY^2)
-        local angle = math.atan2(deltaY, deltaX)
-        if (angle < 0) then
-            angle = angle + 2*math.pi
-        end
-        angle = (angle * 180/math.pi + 90) % 360
-        local angleScaled = angle /  (360/ANGLE_RADIUS_DIVISION_COUNT)
-        local angleRoundedDown = math.floor(angleScaled)
-        local angleRoundedUp = math.ceil(angleScaled)
-        if dist > self.angleRadiuses[angleRoundedDown+1] then
-            self.angleRadiuses[angleRoundedDown+1] = dist
-        end
-        if dist > self.angleRadiuses[angleRoundedUp+1] then
-            self.angleRadiuses[angleRoundedUp+1] = dist
-        end
-    end
-end
 
 function MicrobeComponent:load(storage)
     Component.load(self, storage)
@@ -185,7 +154,6 @@ function MicrobeComponent:load(storage)
         local compound = compoundPriorities:get(i)
         self.compoundPriorities[compound:get("compoundId", 0)] = compound:get("priority", 0)
     end
-    self:updateSafeAngles()
 end
 
 
@@ -629,7 +597,7 @@ function Microbe:emitAgent(compoundId, maxAmount)
         agentVacuole:takeCompound(compoundId, amountToEject)
         local i
         for i = 1, particleCount do
-            self:ejectCompound(compoundId, amountToEject/particleCount, angle,angle, true)
+            self:ejectCompound(compoundId, amountToEject/particleCount, angle,angle)
         end
     end
 end
@@ -668,7 +636,7 @@ function Microbe:storeCompound(compoundId, amount, bandwidthLimited)
             end
             local i
             for i = 1, particleCount do
-                self:ejectCompound(compoundId, remainingAmount/particleCount, 160, 200, true)
+                self:ejectCompound(compoundId, remainingAmount/particleCount, 160, 200)
             end
         end
     else
@@ -705,14 +673,6 @@ function Microbe:takeCompound(compoundId, maxAmount)
 end
 
 
-function Microbe:getSafeEmissionDistance(angle)
-    local angleScaled = angle /  (360/ANGLE_RADIUS_DIVISION_COUNT)
-    local angleRoundedDown = math.floor(angleScaled)
-    local angleRoundedUp = math.ceil(angleScaled)
-    return math.max(self.microbe.angleRadiuses[angleRoundedDown+1], self.microbe.angleRadiuses[angleRoundedUp+1]) + 2
-end
-
-
 -- Ejects compounds from the microbes behind position, into the enviroment
 -- Note that the compounds ejected are created in this function and not taken from the microbe
 --
@@ -727,7 +687,7 @@ end
 --
 -- @param maxAngle
 -- Relative angle to the microbe. 0 = microbes front. Should be between 0 and 359 and higher or equal than minAngle
-function Microbe:ejectCompound(compoundId, amount, minAngle, maxAngle, useRadius)
+function Microbe:ejectCompound(compoundId, amount, minAngle, maxAngle)
     local chosenAngle = rng:getReal(minAngle, maxAngle)
     -- Find the direction the microbe is facing
     local yAxis = self.sceneNode.transform.orientation:yAxis()
@@ -739,10 +699,7 @@ function Microbe:ejectCompound(compoundId, amount, minAngle, maxAngle, useRadius
     -- Take the mirobe angle into account so we get world relative degrees
     local finalAngle = (chosenAngle + microbeAngle) % 360
     -- Find how far away we should spawn the particle so it doesn't collide with microbe.
-    local radius = 0
-    if useRadius then
-        radius =  self:getSafeEmissionDistance((chosenAngle+180)%360)
-    end
+    local radius = INITIAL_EMISSION_RADIUS
     self.compoundEmitter:emitCompound(compoundId, amount, finalAngle, radius)
     self.microbe:_updateCompoundPriorities()
 end
@@ -757,7 +714,7 @@ function Microbe:kill()
         local _amount = amount
         while _amount > 0 do
             ejectedAmount = self:takeCompound(compoundId, 2.5) -- Eject up to 3 units per particle
-            self:ejectCompound(compoundId, ejectedAmount, 0, 359, false)
+            self:ejectCompound(compoundId, ejectedAmount, 0, 359)
             _amount = _amount - ejectedAmount
         end
     end    
@@ -765,7 +722,7 @@ function Microbe:kill()
         local _amount = specialStorageOrg.storedAmount
         while _amount > 0 do
             ejectedAmount = specialStorageOrg:takeCompound(compoundId, 3) -- Eject up to 3 units per particle
-            self:ejectCompound(compoundId, ejectedAmount, 0, 359, false)
+            self:ejectCompound(compoundId, ejectedAmount, 0, 359)
             _amount = _amount - ejectedAmount
         end
     end    
@@ -807,7 +764,6 @@ function Microbe:reproduce()
     self:getSpeciesComponent():template(copy) -- does this afraid of anything?
     copy.rigidBody.dynamicProperties.position = Vector3(self.rigidBody.dynamicProperties.position.x, self.rigidBody.dynamicProperties.position.y, 0)
     copy:storeCompound(CompoundRegistry.getCompoundId("atp"), 20, false)
-    copy.microbe:updateSafeAngles()
     copy.microbe:_resetCompoundPriorities()  
     copy.entity:addComponent(SpawnedComponent())
     species = self:getSpeciesComponent()
@@ -840,7 +796,8 @@ function Microbe:update(logicTime)
         end
         
         self.microbe.compoundCollectionTimer = self.microbe.compoundCollectionTimer + logicTime
-        while self.microbe.compoundCollectionTimer > EXCESS_COMPOUND_COLLECTION_INTERVAL do -- For every COMPOUND_DISTRIBUTION_INTERVAL passed
+        while self.microbe.compoundCollectionTimer > EXCESS_COMPOUND_COLLECTION_INTERVAL do
+            -- For every COMPOUND_DISTRIBUTION_INTERVAL passed
 
             self.microbe.compoundCollectionTimer = self.microbe.compoundCollectionTimer - EXCESS_COMPOUND_COLLECTION_INTERVAL
 
