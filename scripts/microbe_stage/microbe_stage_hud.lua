@@ -8,6 +8,8 @@ function HudSystem:__init()
 	self.hitpointsCountLabel = nil
 	self.hitpointsBar = nil
 	self.compoundListItems = {}
+    self.rootGuiWindow = nil
+    self.populationNumberLabel = nil
     self.rootGUIWindow = nil
 end
 
@@ -63,7 +65,8 @@ function HudSystem:update(renderTime)
 
     self.hitpointsBar:progressbarSetProgress(playerMicrobe.microbe.hitpoints/playerMicrobe.microbe.maxHitpoints)
     self.hitpointsCountLabel:setText("".. math.floor(playerMicrobe.microbe.hitpoints))
-    
+    local playerSpecies = playerMicrobe:getSpeciesComponent()
+    --self.populationNumberLabel:setText("" .. math.floor(playerSpecies.currentPopulation))
     for compoundID in CompoundRegistry.getCompoundList() do
         local compoundsString = string.format("%s - %d", CompoundRegistry.getCompoundDisplayName(compoundID), playerMicrobe:getCompoundAmount(compoundID))
         if self.compoundListItems[compoundID] == nil then
