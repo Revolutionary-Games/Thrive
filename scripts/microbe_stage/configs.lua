@@ -50,7 +50,7 @@ agents = {
         name = "OxyToxy NT",
         mesh = "oxytoxy.mesh",
         size = 0.3,
-        effect = oxyToxyEffect 
+        effect = "oxytoxyEffect" 
         -- we'll have to be careful with this referencing
     }
 }
@@ -138,14 +138,81 @@ starter_microbes = {
         }
     },
     Teeny = {
-        compounds = {
-            atp = {amount=60}
-        },
+        compounds = {atp = {amount = 60}},
         organelles = {
             {name="nucleus",q=0,r=0},
             {name="vacuole",q=-1,r=0},
             {name="mitochondrion",q=1,r=-1},
             {name="flagellum",q=0,r=-1}
+        }
+    },
+    Plankton = {
+        compounds = {atp = {amount = 60}},
+        organelles = {
+            {name="nucleus", q=0, r=0},
+            {name="vacuole", q=1, r=0},
+            {name="vacuole", q=0, r=-1},
+            {name="vacuole", q=-1, r=1},
+            {name="mitochondrion", q=-1, r=0},
+            {name="mitochondrion", q=0, r=1},
+            {name="mitochondrion", q=1,r=-1},
+            {name="vacuole", q=2, r=0},
+            {name="vacuole", q=0, r=-2},
+            {name="vacuole", q=-2, r=2},
+            {name="vacuole", q=-2, r=0},
+            {name="vacuole", q=0, r=2},
+            {name="vacuole", q=2, r=-2},
+            {name="chloroplast", q=1, r=1},
+            {name="chloroplast", q=1,r=-2},
+            {name="chloroplast", q=-2, r=1},
+            {name="chloroplast", q=-1,r=-1},
+            {name="chloroplast", q=-1, r=2},
+            {name="chloroplast", q=2,r=-1},
+            {name="flagellum", q=3, r=0},
+            {name="flagellum", q=0,r=-3},
+            {name="flagellum", q=-3, r=3},
+            {name="flagellum", q=-3, r=0},
+            {name="flagellum", q=0, r=3},
+            {name="flagellum", q=3,r=-3},
+            {name="chloroplast", q=-1, r=3},
+            {name="chloroplast", q=3,r=-2},
+            {name="chloroplast", q=1,r=-3},
+            {name="chloroplast", q=-3, r=2}
+        }
+    },
+    Algae = {
+        compounds = {atp = {amount = 20}},
+        organelles = {
+            {name="nucleus", q=0, r=0},
+            {name="mitochondrion", q=0, r=1},
+            {name="vacuole", q=0, r=-1},
+            {name="chloroplast", q=1, r=0},
+            {name="chloroplast", q=-1, r=0},
+            {name="chloroplast", q=1, r=-1},
+            {name="chloroplast", q=-1, r=1}
+        }
+    },
+    Posionous = {
+        compounds = {
+            atp = {amount = 30},
+            oxytoxy = {amount = 15}
+        },
+        organelles = {
+            {name="nucleus", q=0, r=0},
+            {name="mitochondrion", q=0, r=-1},
+            {name="mitochondrion", q=0, r=1},
+            {name="vacuole", q=0, r=-2},
+            {name="vacuole", q=0, r=2},
+            {name="chloroplast", q=0, r=-3},
+            {name="chloroplast", q=0, r=3},
+            {name="oxytoxy", q=1, r=0},
+            {name="oxytoxy", q=-1, r=0},
+            {name="oxytoxy", q=1, r=-1},
+            {name="oxytoxy", q=-1, r=1},
+            {name="flagellum", q=2, r=-1},
+            {name="flagellum", q=-2, r=1},
+            {name="flagellum", q=0, r=4},
+            {name="flagellum", q=0, r=-4}
         }
     },
 }
