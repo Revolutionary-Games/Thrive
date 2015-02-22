@@ -28,6 +28,7 @@ function Organelle:__init()
     self._internalEdgeColour = ColourValue(0.5, 0.5, 0.5, 1)
     self._externalEdgeColour = ColourValue(0, 0, 0, 1)
     self._needsColourUpdate = false
+    self.name = "<nameless>"
 end
 
 
@@ -97,6 +98,7 @@ function Organelle:load(storage)
     self._colour = storage:get("colour", ColourValue.White)
     self._internalEdgeColour = storage:get("internalEdgeColour", ColourValue.Grey)
     self._externalEdgeColour = storage:get("externalEdgeColour", ColourValue.Black)
+    self.name = storage:get("name", "<nameless>")
 end
 
 
@@ -181,6 +183,7 @@ function Organelle:storage()
         hexes:append(hexStorage)
     end
     storage:set("hexes", hexes)
+    storage:set("name", self.name)
     storage:set("q", self.position.q)
     storage:set("r", self.position.r)
     storage:set("colour", self._colour)
@@ -260,6 +263,7 @@ function OrganelleFactory.makeOrganelle(data)
     end
     local success, organelle = pcall(make_organelle)
     if success then
+        organelle.name = data.name
         return organelle
     else
         if data.name == "" or data.name == nil then data.name = "<nameless>" end

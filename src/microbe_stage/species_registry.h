@@ -24,6 +24,7 @@ public:
     * 
     * Exposes:
     * - SpeciesRegistry::loadFromXML
+    * - SpeciesRegistry::getSpeciesNames
     * - SpeciesRegistry::getSize
     * - SpeciesRegistry::getOrganelle
     * - SpeciesRegistry::getCompoundPriority
@@ -55,6 +56,9 @@ public:
         const std::string& microbe_name,
         int index
         );
+
+    static luabind::object
+    getSpeciesNames();
 
     static double
     getCompoundPriority(
