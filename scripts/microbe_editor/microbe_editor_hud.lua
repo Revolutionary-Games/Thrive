@@ -115,41 +115,37 @@ function MicrobeEditorHudSystem:update(renderTime, logicTime)
         self:removeClicked()
         self.editor:performLocationAction()
     end	            
-    if Engine.keyboard:wasKeyPressed(Keyboard.KC_C) then
+    if keyCombo(kmp.newmicrobe) then
         -- These global event handlers are defined in microbe_editor_hud.lua
         self:nucleusClicked()
-    elseif Engine.keyboard:wasKeyPressed(Keyboard.KC_R) then
-        if Engine.keyboard:isKeyDown(Keyboard.KC_LCONTROL) then
-            self.editor:redo()
-        else
-            self:removeClicked()
-            self.editor:performLocationAction()
-        end
-    elseif Engine.keyboard:wasKeyPressed(Keyboard.KC_U) then
-        if Engine.keyboard:isKeyDown(Keyboard.KC_LCONTROL) then
-            self.editor:undo()
-        end
-    elseif Engine.keyboard:wasKeyPressed(Keyboard.KC_S) then
+    elseif keyCombo(kmp.redo) then
+        self.editor:redo()
+    elseif keyCombo(kmp.remove) then
+        self:removeClicked()
+        self.editor:performLocationAction()
+    elseif keyCombo(kmp.undo) then
+        self.editor:undo()
+    elseif keyCombo(kmp.vacuole) then
         self:vacuoleClicked()
         self.editor:performLocationAction()
-    elseif Engine.keyboard:wasKeyPressed(Keyboard.KC_T) then
+    elseif keyCombo(kmp.oxytoxyvacuole) then
         if not Engine:playerData():lockedMap():isLocked("Toxin") then
             self:toxinClicked()
             self.editor:performLocationAction()
         end
-    elseif Engine.keyboard:wasKeyPressed(Keyboard.KC_F) then
+    elseif keyCombo(kmp.flagellum) then
         self:flageliumClicked()
         self.editor:performLocationAction()
-    elseif  Engine.keyboard:wasKeyPressed(Keyboard.KC_M) then
+    elseif keyCombo(kmp.mitochondrion) then
         self:mitochondriaClicked()  
         self.editor:performLocationAction()
     --elseif Engine.keyboard:wasKeyPressed(Keyboard.KC_A) and self.editor.currentMicrobe ~= nil then
     --    self:aminoSynthesizerClicked()
     --    self.editor:performLocationAction()
-    elseif Engine.keyboard:wasKeyPressed(Keyboard.KC_P) then
+    elseif keyCombo(kmp.chloroplast) then
        self:chloroplastClicked()
        self.editor:performLocationAction()
-    elseif Engine.keyboard:wasKeyPressed(Keyboard.KC_G) then
+    elseif keyCombo(kmp.togglegrid) then
         if self.editor.gridVisible then
             self.editor.gridSceneNode.visible = false;
             self.editor.gridVisible = false
@@ -157,9 +153,9 @@ function MicrobeEditorHudSystem:update(renderTime, logicTime)
             self.editor.gridSceneNode.visible = true;
             self.editor.gridVisible = true
         end
-    elseif Engine.keyboard:wasKeyPressed(Keyboard.KC_F2) then
+    elseif keyCombo(kmp.gotostage) then
         playClicked()
-    elseif Engine.keyboard:wasKeyPressed(Keyboard.KC_F12) then
+    elseif keyCombo(kmp.rename) then
         self:updateMicrobeName()
     end
 
