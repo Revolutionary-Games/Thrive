@@ -34,20 +34,20 @@ function MicrobeEditorHudSystem:init(gameState)
     -- self.mpProgressBar = root:getChild("BottomSection"):getChild("MutationPoints"):getChild("MPBar")
     self.organelleScrollPane = root:getChild("scrollablepane");
     local nucleusButton = root:getChild("NewMicrobe")
-    local flageliumButton = root:getChild("scrollablepane"):getChild("AddFlagellum")
+    local flagellumButton = root:getChild("scrollablepane"):getChild("AddFlagellum")
     local mitochondriaButton = root:getChild("scrollablepane"):getChild("AddMitochondria")
     local vacuoleButton = root:getChild("scrollablepane"):getChild("AddVacuole")
     local toxinButton = root:getChild("scrollablepane"):getChild("AddToxinVacuole")
     local chloroplastButton = root:getChild("scrollablepane"):getChild("AddChloroplast")
     self.organelleButtons["nucleus"] = nucleusButton
-    self.organelleButtons["flagelium"] = flageliumButton
+    self.organelleButtons["flagellum"] = flagellumButton
     self.organelleButtons["mitochondrion"] = mitochondriaButton
     self.organelleButtons["chloroplast"] = chloroplastButton
     self.organelleButtons["vacuole"] = vacuoleButton
     self.organelleButtons["Toxin"] = toxinButton
     self.activeButton = nil
     nucleusButton:registerEventHandler("Clicked", function() self:nucleusClicked() end)
-    flageliumButton:registerEventHandler("Clicked", function() self:flageliumClicked() end)
+    flagellumButton:registerEventHandler("Clicked", function() self:flagellumClicked() end)
     mitochondriaButton:registerEventHandler("Clicked", function() self:mitochondriaClicked() end)
     chloroplastButton:registerEventHandler("Clicked", function() self:chloroplastClicked() end)
     vacuoleButton:registerEventHandler("Clicked", function() self:vacuoleClicked() end)
@@ -134,7 +134,7 @@ function MicrobeEditorHudSystem:update(renderTime, logicTime)
             self.editor:performLocationAction()
         end
     elseif keyCombo(kmp.flagellum) then
-        self:flageliumClicked()
+        self:flagellumClicked()
         self.editor:performLocationAction()
     elseif keyCombo(kmp.mitochondrion) then
         self:mitochondriaClicked()  
@@ -241,13 +241,13 @@ function MicrobeEditorHudSystem:nucleusClicked()
     self:setActiveAction("nucleus")
 end
 
-function MicrobeEditorHudSystem:flageliumClicked()
+function MicrobeEditorHudSystem:flagellumClicked()
     if self.activeButton ~= nil then
         self.activeButton:enable()
     end
-    self.activeButton = self.organelleButtons["flagelium"]
+    self.activeButton = self.organelleButtons["flagellum"]
     self.activeButton:disable()
-    self:setActiveAction("flagelium")
+    self:setActiveAction("flagellum")
 end
 
 function MicrobeEditorHudSystem:mitochondriaClicked()
@@ -292,7 +292,7 @@ function MicrobeEditorHudSystem:toxinClicked()
     end
     self.activeButton = self.organelleButtons["Toxin"]
     self.activeButton:disable()
-    self:setActiveAction("toxin")
+    self:setActiveAction("oxytoxy")
 end
 
 

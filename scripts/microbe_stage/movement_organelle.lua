@@ -13,6 +13,7 @@ function MovementOrganelle:__init(force, torque)
     self.energyMultiplier = 0.025
     self.force = force
     self.torque = torque
+    self.backwards_multiplier = 0
 end
 
 function MovementOrganelle:onAddedToMicrobe(microbe, q, r)  
