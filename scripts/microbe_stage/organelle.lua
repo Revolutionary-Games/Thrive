@@ -263,10 +263,7 @@ function OrganelleFactory.makeOrganelle(data)
     end
     local success, organelle = pcall(make_organelle)
     if success then
-        --print("name: "..data.name)
         organelle.name = data.name
-        --print("organelle-name: "..organelle.name)
-        --print(organelle.name)
         return organelle
     else
         if data.name == "" or data.name == nil then data.name = "<nameless>" end

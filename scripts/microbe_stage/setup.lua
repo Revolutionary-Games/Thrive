@@ -120,7 +120,6 @@ function microbeSpawnFunctionGeneric(pos, speciesName, aiControlled, individualN
     -- set organelles, starting compound amounts, all that
     -- TODO: 
     Entity(speciesName):getComponent(SpeciesComponent.TYPE_ID):template(microbe)
-    microbe.microbe:updateSafeAngles()
     return microbe
 end
 
@@ -344,7 +343,6 @@ local function setupPlayer()
     speciesEntity = Entity("defaultMicrobeSpecies")
     species = SpeciesComponent("defaultMicrobeSpecies")
     species:fromMicrobe(microbe)
-    species.populationBonusFactor = 1.2
     speciesEntity:addComponent(species)
     microbe.microbe.speciesName = "defaultMicrobeSpecies"
 end

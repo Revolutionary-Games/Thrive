@@ -8,7 +8,8 @@ class "PatchComponent" (Component)
 
 function PatchComponent:__init()
 	Component.__init(self)
-	-- stuff
+	-- map species to populations
+    -- model environment
 end
 
 --[[
@@ -33,6 +34,29 @@ Culling:
 --]]
 
 REGISTER_COMPONENT("PatchComponent", PatchComponent)
+
+--------------------------------------------------------------------------------
+-- Population
+--
+-- Holds information about a specific population (species \intersect patch)
+--------------------------------------------------------------------------------
+class 'Population'
+
+function Population:__init(species)
+    self.species = species
+    self.heldCompounds = {} -- compounds that are available for intracellular processes
+    self.lockedCompounds = {} -- compounds that aren't, but will be released on deaths
+end
+
+--[[
+Whatever population calculations the patch does that would be useful to factor out will go here
+
+Getting the effective population number from the lockedCompounds pool is a bit complicated
+- each organelle will need an amortized cost, in locked compounds (protein, lipids, polysaccharides)
+- SpeciesComponent should calculate average organism cost
+- divide out current locked pool by per-unit cost, pick lowest
+- fudge
+--]]
 
 --------------------------------------------------------------------------------
 -- PatchSystem

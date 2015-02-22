@@ -17,9 +17,9 @@ REPRODUCTASE_TO_SPLIT = 5
 RELATIVE_VELOCITY_TO_BUMP_SOUND = 6
 INITIAL_EMISSION_RADIUS = 2
 
-function MicrobeComponent:__init(isPlayerMicrobe)
+function MicrobeComponent:__init(isPlayerMicrobe, speciesName)
     Component.__init(self)
-    self.speciesName = "Default"
+    self.speciesName = speciesName
     self.hitpoints = 10
     self.maxHitpoints = 10
     self.dead = false
@@ -33,9 +33,9 @@ function MicrobeComponent:__init(isPlayerMicrobe)
     self.stored = 0 -- The amount stored in the microbe. NOTE: This does not include special storage organelles
     self.compounds = {}
     self.compoundPriorities = {}
-    self.defaultCompoundPriorities = {} -- should go to species
-    self.defaultCompoundPriorities[CompoundRegistry.getCompoundId("atp")] = 10 -- should go to species
-    self.defaultCompoundPriorities[CompoundRegistry.getCompoundId("reproductase")] = 8 -- should go to species
+    self.defaultCompoundPriorities = {}
+    self.defaultCompoundPriorities[CompoundRegistry.getCompoundId("atp")] = 10
+    self.defaultCompoundPriorities[CompoundRegistry.getCompoundId("reproductase")] = 8
     self:_resetCompoundPriorities()
     self.initialized = false
     self.isPlayerMicrobe = isPlayerMicrobe
@@ -249,7 +249,7 @@ function Microbe.createMicrobeEntity(name, aiControlled, speciesName)
     local components = {
         CompoundAbsorberComponent(),
         OgreSceneNodeComponent(),
-        MicrobeComponent(not aiControlled),
+        MicrobeComponent(not aiControlled, speciesName),
         reactionHandler,
         rigidBody,
         compoundEmitter,
@@ -258,8 +258,6 @@ function Microbe.createMicrobeEntity(name, aiControlled, speciesName)
     if aiControlled then
         local aiController = MicrobeAIControllerComponent()
         table.insert(components, aiController)
-    --else
-        --table.insert(components, SpeciesComponent()) -- we need another way to make a new SpeciesComponent
     end
     for _, component in ipairs(components) do
         entity:addComponent(component)
@@ -311,49 +309,6 @@ end
 function Microbe:getSpeciesComponent()
     return Entity(self.microbe.speciesName):getComponent(SpeciesComponent.TYPE_ID)
 end
-
-
---[[ deprecated, see SpeciesComponent:template
--- Assigns a species to the microbe, if the species already exists
--- If the species already exists, the microbe is updated to fit.
--- Otherwise does nothing
--- TODONE this is a very dirty function, and we should probably not do things this way
--- deprecated, we now have SpeciesComponent:template to modify clean microbes
-function Microbe:setSpecies(speciesName)
-    self.microbe.speciesName = speciesName
-    if self.getSpeciesComponent() ~= nil then
-        -- update microbe
-        species = self.getSpeciesComponent()
-        -- remove all current organelles
-        self.microbe.organelles = {} -- we need to clear a bunch more data than this
-        for i, orgdata in pairs(species.organelles) do
-            organelle = OrganelleFactory.makeOrganelle(orgdata)
-            addOrganelle(orgdata.q, orgdata.r, organelle)
-        end
-    end
-end
---]]
-
---[[ deprecated, see SpeciesComponent:fromMicrobe
-function Microbe:makeSpecies(speciesName)
-    self.microbe.speciesName = speciesName
-    if not pcall(function() self.getSpeciesComponent() end) then
-        -- make species
-        speciesEntity = Entity(speciesName)
-        species = SpeciesComponent(speciesName)
-        speciesEntity:addComponent(species)
-        -- Create species' organelle data
-        for i, organelle in ipairs(self.microbe.organelles) do
-            print(i)
-            local data = {}
-            data.name = organelle.name
-            data.q = organelle.position.q
-            data.r = organelle.position.r
-            species.organelles[i] = data
-        end
-        for i,org in ipairs(species.organelles) do print(org.name,org.q,org.r) end
-    end
-end --]]
 
 -- Adds a new organelle
 --
@@ -751,31 +706,21 @@ function Microbe:kill()
         end
     end
     --]]
-    species = self:getSpeciesComponent()
-    if species ~= nil then -- Microbes don't need to have a species
-        species.populationPenaltyFactor = species.populationPenaltyFactor * 1.4
-    end
 end
 
 -- Copies this microbe. The new microbe will not have the stored compounds of this one.
--- TODO: update reproduce to go through species, make sure species are generated at startup
 function Microbe:reproduce()
     copy = Microbe.createMicrobeEntity(nil, true)
-    self:getSpeciesComponent():template(copy) -- does this afraid of anything?
+    self:getSpeciesComponent():template(copy)
     copy.rigidBody.dynamicProperties.position = Vector3(self.rigidBody.dynamicProperties.position.x, self.rigidBody.dynamicProperties.position.y, 0)
     copy:storeCompound(CompoundRegistry.getCompoundId("atp"), 20, false)
     copy.microbe:_resetCompoundPriorities()  
     copy.entity:addComponent(SpawnedComponent())
-    species = self:getSpeciesComponent()
-    if species ~= nil then -- Microbes don't need to have a species
-        species.populationBonusFactor = species.populationBonusFactor * 1.4
-    end
     if self.microbe.isPlayerMicrobe then
         showReproductionDialog()
     end
 end
 
--- TODO clean/split up this function
 -- Updates the microbe's state
 function Microbe:update(logicTime)
     if not self.microbe.dead then
@@ -806,12 +751,6 @@ function Microbe:update(logicTime)
             self:atpDamage()
 
             self:attemptReproduce()
-
-            -- Award some species population based on ATP surplus
-            species = self:getSpeciesComponent()
-            if species ~= nil then -- Microbes don't need to have a species
-                species.populationBonusFactor = species.populationBonusFactor * 1.0 + self.microbe.compounds[CompoundRegistry.getCompoundId("atp")]/10000
-            end
         end
 
         -- Other organelles

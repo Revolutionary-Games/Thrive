@@ -17,13 +17,7 @@ function SpeciesComponent:__init(name)
     else
         self.name = name
     end
-    --self.name="Default" -- TODO TODODO TODODODO get names properly somehow
-    self.populationBonusFactor = 1.0
-    self.populationPenaltyFactor = 1.0
-    self.deathsPerTime = 1.0
-    self.birthsPerTime = 1.0
-    self.currentPopulation = 1
-    -- todo make these actually do stuff
+
     self.organelles = {} -- stores a table of organelle {q,r,name} tables
 
     self.avgCompoundAmounts = {} -- maps each compound name to the amount a new spawn should get. Nonentries are zero.
@@ -36,19 +30,8 @@ end
 function SpeciesComponent:load(storage)
     Component.load(self, storage)
     self.name = storage:get("name", "")
-    print(self.name,""..self.num)
-    self.populationBonusFactor = storage:get("populationBonusFactor", 0)
-    self.populationPenaltyFactor = storage:get("populationPenaltyFactor", 0)
-    self.deathsPerTime = storage:get("deathsPerTime", 0)
-    self.deathsPerTime = storage:get("deathsPerTime", 0)
-    self.birthsPerTime = storage:get("birthsPerTime", 0)
-    self.currentPopulation = storage:get("currentPopulation", 0)
     self.compoundPriorities = {}
     priorityData = storage:get("compoundPriorities", nil)
-    --if priorityData ~= nil then
-     --   print("atp: "..priorityData:get("atp", -1))
-      --  print("glucose: "..priorityData:get("glucose", -1))
-    --end
     organelleData = storage:get("organelleData", nil)
     self.organelles = {}
     if organelleData ~= nil then
@@ -71,11 +54,6 @@ end
 function SpeciesComponent:storage()
     local storage = Component.storage(self)
     storage:set("name", self.name)
-    storage:set("populationBonusFactor", self.populationBonusFactor)
-    storage:set("populationPenaltyFactor", self.populationPenaltyFactor)
-    storage:set("deathsPerTime", self.deathsPerTime)
-    storage:set("birthsPerTime", self.birthsPerTime)
-    storage:set("currentPopulation", self.currentPopulation)
     compoundPriorities = StorageContainer()
     for k,v in pairs(self.compoundPriorities) do
         compoundPriorities:set(k,v)
@@ -150,9 +128,6 @@ function SpeciesComponent:fromMicrobe(microbe)
         data.r = organelle.position.r
         self.organelles[i] = data
     end
-    --print("#microbe.organelles: "..#microbe.organelles)
-    --print("#self.organelles: "..#self.organelles)
-    --for i,org in pairs(self.organelles) do print(org.name,org.q,org.r) end
 end
 
 REGISTER_COMPONENT("SpeciesComponent", SpeciesComponent)
