@@ -31,11 +31,11 @@ function MicrobeReplacementSystem:activate()
             newMicrobe:storeCompound(CompoundRegistry.getCompoundId("atp"), 10)
         end
 
-        newMicrobeEntity = newMicrobe.entity:transfer(GameState.MICROBE) -- the secret is in the transfer
+        newMicrobe.collisionHandler:addCollisionGroup("powerupable")
+        newMicrobeEntity = newMicrobe.entity:transfer(GameState.MICROBE)
         newMicrobeEntity:stealName(PLAYER_NAME)
         global_newEditorMicrobe = false
         Engine:playerData():setActiveCreature(newMicrobeEntity.id, GameState.MICROBE)
-        newMicrobe.collisionHandler:addCollisionGroup("powerupable") -- this doesn't work, for some reason
     end
    
 end

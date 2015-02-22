@@ -210,7 +210,6 @@ function MicrobeEditor:loadMicrobe(entityId)
     self.currentMicrobe.entity:stealName("working_microbe")
     self.currentMicrobe.sceneNode.transform.orientation = Quaternion(Radian(Degree(180)), Vector3(0, 0, 1))-- Orientation
     self.currentMicrobe.sceneNode.transform:touch()
-    self.currentMicrobe.collisionHandler:addCollisionGroup("powerupable")
     Engine:playerData():setActiveCreature(entityId, GameState.MICROBE_EDITOR)
     self.mutationPoints = 0
     -- resetting the action history - it should not become entangled with the local file system
@@ -229,7 +228,6 @@ function MicrobeEditor:createNewMicrobe()
             self.currentMicrobe.entity:stealName("working_microbe")
             self.currentMicrobe.sceneNode.transform.orientation = Quaternion(Radian(Degree(180)), Vector3(0, 0, 1))-- Orientation
             self.currentMicrobe.sceneNode.transform:touch()
-            self.currentMicrobe.collisionHandler:addCollisionGroup("powerupable")
             self:addNucleus()
             self.mutationPoints = 100
             Engine:playerData():setActiveCreature(self.currentMicrobe.entity.id, GameState.MICROBE_EDITOR)
@@ -250,7 +248,6 @@ function MicrobeEditor:createNewMicrobe()
             self.currentMicrobe.entity:stealName("working_microbe")
             self.currentMicrobe.sceneNode.transform.orientation = Quaternion(Radian(Degree(180)), Vector3(0, 0, 1))-- Orientation
             self.currentMicrobe.sceneNode.transform:touch()
-            self.currentMicrobe.collisionHandler:addCollisionGroup("powerupable")
             for position,storage in pairs(organelleStorage) do
                 local q, r = decodeAxial(position)
                 self.currentMicrobe:addOrganelle(q, r, Organelle.loadOrganelle(storage))
