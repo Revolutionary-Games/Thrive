@@ -1,6 +1,6 @@
 add_sources(
-    ${CMAKE_CURRENT_SOURCE_DIR}/game.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/game.h
+    "${CMAKE_CURRENT_SOURCE_DIR}/game.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/game.h"
 )
 
 add_subdirectory(bullet)
