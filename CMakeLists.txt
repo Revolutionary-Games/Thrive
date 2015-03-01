@@ -17,11 +17,11 @@ SET(OGRE_SDK ""
     CACHE STRING "Path to the Ogre SDK"
 )
 
-set(ASSET_DIRECTORY ${CMAKE_SOURCE_DIR}/assets
+set(ASSET_DIRECTORY "${CMAKE_SOURCE_DIR}/assets"
     CACHE PATH "Path to assets"
 )
 
-if(NOT IS_DIRECTORY ${ASSET_DIRECTORY}/models)
+if(NOT IS_DIRECTORY "${ASSET_DIRECTORY}/models")
     message(FATAL_ERROR 
 "Could not find assets in ${ASSET_DIRECTORY}.  
 Please use Subversion to download the assets:
@@ -38,7 +38,7 @@ endif()
 
 # Configure search path for cmake modules
 list(APPEND CMAKE_MODULE_PATH
-    ${CMAKE_SOURCE_DIR}/cmake_modules
+    "${CMAKE_SOURCE_DIR}/cmake_modules"
 )
 
 # Import utility functions
@@ -52,7 +52,7 @@ set(CMAKE_INSTALL_RPATH ".")
 if (NOT CMAKE_BUILD_TYPE)
   set(CMAKE_BUILD_TYPE
       "Debug"
-      CACHE STRING "Choose the type of build, options are: None (CMAKE_CXX_FLAGS or CMAKE_C_FLAGS used) Debug Release."
+      CACHE STRING "Choose the type of build, options are: None (CMAKE_CXX_FLAGS or CMAKE_C_FLAGS used) Debug Release RelWithDebInfo."
       FORCE
     )
 endif ()
@@ -106,12 +106,12 @@ find_package(Boost COMPONENTS ${BOOST_COMPONENTS} REQUIRED QUIET)
 ###############
 
 add_subdirectory(
-    ${CMAKE_CURRENT_SOURCE_DIR}/contrib/googletest
+    "${CMAKE_CURRENT_SOURCE_DIR}/contrib/googletest"
 )
 
 include_directories(
     SYSTEM
-    ${CMAKE_CURRENT_SOURCE_DIR}/contrib/googletest/include
+    "${CMAKE_CURRENT_SOURCE_DIR}/contrib/googletest/include"
 )
 
 ##########
@@ -134,8 +134,8 @@ find_package(TinyXML REQUIRED QUIET)
 
 include_directories(
     SYSTEM
-    ${CMAKE_CURRENT_SOURCE_DIR}/contrib/lua/lua/src
-    ${CMAKE_CURRENT_SOURCE_DIR}/contrib/luabind/
+    "${CMAKE_CURRENT_SOURCE_DIR}/contrib/lua/lua/src"
+    "${CMAKE_CURRENT_SOURCE_DIR}/contrib/luabind/"
 )
 
 #######
@@ -159,11 +159,11 @@ if(WIN32)
 endif()
 
 add_subdirectory(
-    ${CMAKE_CURRENT_SOURCE_DIR}/contrib/lua/
+    "${CMAKE_CURRENT_SOURCE_DIR}/contrib/lua/"
 )
 
 set(LUA_FOUND TRUE)
-set(LUA_INCLUDE_DIRS ${CMAKE_CURRENT_SOURCE_DIR}/contrib/lua/lua/src)
+set(LUA_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/contrib/lua/lua/src")
 set(LUA_LIBRARIES lua)
 #set(BUILD_SHARED_LUABIND ON)
 #set(INSTALL_LUABIND ON)
@@ -171,7 +171,7 @@ set(LIB_DIR bin)
 add_definitions(-DLUABIND_CPLUSPLUS_LUA)
 
 add_subdirectory(
-    ${CMAKE_CURRENT_SOURCE_DIR}/contrib/luabind/
+    "${CMAKE_CURRENT_SOURCE_DIR}/contrib/luabind/"
 )
 
 ################
@@ -185,12 +185,12 @@ find_package(Vorbis REQUIRED)
 add_definitions(-DHAVE_EFX=0)
 
 add_subdirectory(
-    ${CMAKE_CURRENT_SOURCE_DIR}/contrib/ogre_ogg_sound
+    "${CMAKE_CURRENT_SOURCE_DIR}/contrib/ogre_ogg_sound"
 )
 
 include_directories(
     SYSTEM
-    ${CMAKE_CURRENT_SOURCE_DIR}/contrib/ogre_ogg_sound/include
+    "${CMAKE_CURRENT_SOURCE_DIR}/contrib/ogre_ogg_sound/include"
     ${OpenAL_INCLUDE_DIRS}
     ${OGG_INCLUDE_DIRS}
     ${VORBIS_INCLUDE_DIRS}
@@ -207,7 +207,7 @@ include_directories(SYSTEM
 )
 
 include_directories(
-    ${CMAKE_CURRENT_SOURCE_DIR}/src
+    "${CMAKE_CURRENT_SOURCE_DIR}/src"
 )
 
 # Compile using c++11
@@ -283,20 +283,20 @@ target_link_libraries(RunTests ThriveLib gtest_main)
 # Documentation #
 #################
 
-set(DOC_OUTPUT_DIR ${CMAKE_CURRENT_BINARY_DIR}/doc CACHE PATH "Documentation output directory.")
+set(DOC_OUTPUT_DIR "${CMAKE_CURRENT_BINARY_DIR}/doc" CACHE PATH "Documentation output directory.")
 set(DOC_INPUT "${CMAKE_CURRENT_SOURCE_DIR}/src ${CMAKE_CURRENT_SOURCE_DIR}/doc")
 
 set( DOXYGEN_CONFIG_FILE
-    ${CMAKE_CURRENT_SOURCE_DIR}/doc/doxygen.cfg.in
+    "${CMAKE_CURRENT_SOURCE_DIR}/doc/doxygen.cfg.in"
 )
 
 find_package(Doxygen)
 
 if(DOXYGEN_FOUND)
-    configure_file(${DOXYGEN_CONFIG_FILE} ${CMAKE_CURRENT_BINARY_DIR}/doxygen.cfg @ONLY)
+    configure_file(${DOXYGEN_CONFIG_FILE} "${CMAKE_CURRENT_BINARY_DIR}/doxygen.cfg" @ONLY)
     add_custom_target(doc
-        ${DOXYGEN_EXECUTABLE} ${CMAKE_CURRENT_BINARY_DIR}/doxygen.cfg
-        WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/doc
+        ${DOXYGEN_EXECUTABLE} "${CMAKE_CURRENT_BINARY_DIR}/doxygen.cfg"
+        WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/doc"
         COMMENT "Generating API documentation with Doxygen" VERBATIM
         SOURCES ${DOXYGEN_CONFIG_FILE}
     )
@@ -320,31 +320,31 @@ install(EXPORT lua
 # Version file
 
 install(FILES
-    ${CMAKE_SOURCE_DIR}/thriveversion.ver
+    "${CMAKE_SOURCE_DIR}/thriveversion.ver"
     DESTINATION bin
 )
 
 # OGRE config and media
 
 install(FILES
-    ${CMAKE_SOURCE_DIR}/ogre_cfg/resources.cfg
+    "${CMAKE_SOURCE_DIR}/ogre_cfg/resources.cfg"
     DESTINATION bin
 )
 
 install(FILES
-    ${CMAKE_SOURCE_DIR}/ogre_cfg/plugins.cfg
+    "${CMAKE_SOURCE_DIR}/ogre_cfg/plugins.cfg"
     DESTINATION bin
     CONFIGURATIONS Release
 )
 
 install(FILES
-    ${CMAKE_SOURCE_DIR}/ogre_cfg/plugins_d.cfg
+    "${CMAKE_SOURCE_DIR}/ogre_cfg/plugins_d.cfg"
     DESTINATION bin
     CONFIGURATIONS Debug
     RENAME plugins.cfg
 )
 
-install(DIRECTORY ${ASSET_DIRECTORY}/models
+install(DIRECTORY "${ASSET_DIRECTORY}/models"
     DESTINATION ./
     CONFIGURATIONS Release  Debug
     FILES_MATCHING
@@ -354,7 +354,7 @@ install(DIRECTORY ${ASSET_DIRECTORY}/models
         PATTERN "*.skeleton.xml"
 )
 
-install(DIRECTORY ${ASSET_DIRECTORY}/materials
+install(DIRECTORY "${ASSET_DIRECTORY}/materials"
     DESTINATION ./
     CONFIGURATIONS Release  Debug
     FILES_MATCHING
@@ -365,7 +365,7 @@ install(DIRECTORY ${ASSET_DIRECTORY}/materials
 )
 
 install(DIRECTORY
-    ${ASSET_DIRECTORY}/fonts
+    "${ASSET_DIRECTORY}/fonts"
     DESTINATION ./
     CONFIGURATIONS Release  Debug
     FILES_MATCHING
@@ -375,19 +375,19 @@ install(DIRECTORY
 )
 
 install(DIRECTORY
-    ${CMAKE_SOURCE_DIR}/scripts
+    "${CMAKE_SOURCE_DIR}/scripts"
     DESTINATION ./
     CONFIGURATIONS Release  Debug
 )
 install(DIRECTORY
-    ${ASSET_DIRECTORY}/gui/animations
+   " ${ASSET_DIRECTORY}/gui/animations"
     DESTINATION ./gui/
     CONFIGURATIONS Release  Debug
     FILES_MATCHING
         PATTERN "*.anims"
 )
 install(DIRECTORY
-    ${ASSET_DIRECTORY}/gui/imagesets
+    "${ASSET_DIRECTORY}/gui/imagesets"
     DESTINATION ./gui/
     CONFIGURATIONS Release  Debug
     FILES_MATCHING
@@ -396,7 +396,7 @@ install(DIRECTORY
         PATTERN "*.png"
 )
 install(DIRECTORY
-    ${ASSET_DIRECTORY}/gui/layouts
+    "${ASSET_DIRECTORY}/gui/layouts"
     DESTINATION ./gui/
     CONFIGURATIONS Release  Debug
     FILES_MATCHING
@@ -404,14 +404,14 @@ install(DIRECTORY
         PATTERN "*.wnd"
 )
 install(DIRECTORY
-    ${ASSET_DIRECTORY}/gui/looknfeel
+    "${ASSET_DIRECTORY}/gui/looknfeel"
     DESTINATION ./gui/
     CONFIGURATIONS Release  Debug
     FILES_MATCHING
         PATTERN "*.looknfeel"
 )
 install(DIRECTORY
-    ${ASSET_DIRECTORY}/gui/schemes
+    "${ASSET_DIRECTORY}/gui/schemes"
     DESTINATION ./gui/
     CONFIGURATIONS Release  Debug
     FILES_MATCHING
@@ -419,7 +419,7 @@ install(DIRECTORY
 )
 
 install(DIRECTORY
-    ${ASSET_DIRECTORY}/sounds
+    "${ASSET_DIRECTORY}/sounds"
     DESTINATION ./
     CONFIGURATIONS Release  Debug
     FILES_MATCHING
@@ -428,7 +428,7 @@ install(DIRECTORY
 )
 
 install(DIRECTORY
-    ${ASSET_DIRECTORY}/definitions
+    "${ASSET_DIRECTORY}/definitions"
     DESTINATION ./
     CONFIGURATIONS Release  Debug
     FILES_MATCHING
@@ -458,62 +458,62 @@ if(WIN32)
     foreach(OGRE_PLUGIN ${OGRE_PLUGINS})
         # Release
         install(FILES
-            ${OGRE_PLUGIN_DIR_REL}/${OGRE_PLUGIN}.dll
+            "${OGRE_PLUGIN_DIR_REL}/${OGRE_PLUGIN}.dll"
             DESTINATION bin
             CONFIGURATIONS Release
         )
         # Debug
         install(FILES
-            ${OGRE_PLUGIN_DIR_DBG}/${OGRE_PLUGIN}_d.dll
+            "${OGRE_PLUGIN_DIR_DBG}/${OGRE_PLUGIN}_d.dll"
             DESTINATION bin
             CONFIGURATIONS Debug
         )
     endforeach()
 
     install(FILES
-        ${OGRE_PLUGIN_DIR_REL}/OgreMain.dll
-		${OGRE_PLUGIN_DIR_REL}/RenderSystem_GL.dll
-		${OGRE_PLUGIN_DIR_REL}/OIS.dll
-        #${OGRE_PLUGIN_DIR_REL}/cg.dll
+        "${OGRE_PLUGIN_DIR_REL}/OgreMain.dll"
+		"${OGRE_PLUGIN_DIR_REL}/RenderSystem_GL.dll"
+		"${OGRE_PLUGIN_DIR_REL}/OIS.dll"
+        #"${OGRE_PLUGIN_DIR_REL}/cg.dll"
 		DESTINATION bin
 		CONFIGURATIONS Release
 	)
     
 	install(FILES
-        ${OGRE_PLUGIN_DIR_DBG}/OgreMain_d.dll
-		${OGRE_PLUGIN_DIR_DBG}/RenderSystem_GL_d.dll
-		${OGRE_PLUGIN_DIR_DBG}/OIS_d.dll
-        #${OGRE_PLUGIN_DIR_DBG}/cg.dll
+        "${OGRE_PLUGIN_DIR_DBG}/OgreMain_d.dll"
+		"${OGRE_PLUGIN_DIR_DBG}/RenderSystem_GL_d.dll"
+		"${OGRE_PLUGIN_DIR_DBG}/OIS_d.dll"
+        #"${OGRE_PLUGIN_DIR_DBG}/cg.dll"
 		DESTINATION bin
 		CONFIGURATIONS Debug
 	)
     
     install(FILES
-        ${MINGW_ENV}/install/bin/libCEGUIBase-0_d.dll
-        ${MINGW_ENV}/install/bin/libCEGUIOgreRenderer-0_d.dll
-        ${MINGW_ENV}/install/bin/libCEGUITinyXMLParser_d.dll
-        ${MINGW_ENV}/install/bin/libCEGUICoreWindowRendererSet_d.dll
-        ${MINGW_ENV}/install/bin/Debug/libfreetype_d.dll
-        ${MINGW_ENV}/install/bin/Debug/libjpeg_d.dll
-        ${MINGW_ENV}/install/bin/Debug/liblibpng_d.dll
-        ${MINGW_ENV}/install/bin/Debug/libSILLY_d.dll
-        ${MINGW_ENV}/install/bin/Debug/libzlib_d.dll
-        ${MINGW_ENV}/install/bin/OpenAL32.dll
+        "${MINGW_ENV}/install/bin/libCEGUIBase-0_d.dll"
+        "${MINGW_ENV}/install/bin/libCEGUIOgreRenderer-0_d.dll"
+        "${MINGW_ENV}/install/bin/libCEGUITinyXMLParser_d.dll"
+        "${MINGW_ENV}/install/bin/libCEGUICoreWindowRendererSet_d.dll"
+        "${MINGW_ENV}/install/bin/Debug/libfreetype_d.dll"
+        "${MINGW_ENV}/install/bin/Debug/libjpeg_d.dll"
+        "${MINGW_ENV}/install/bin/Debug/liblibpng_d.dll"
+        "${MINGW_ENV}/install/bin/Debug/libSILLY_d.dll"
+        "${MINGW_ENV}/install/bin/Debug/libzlib_d.dll"
+        "${MINGW_ENV}/install/bin/OpenAL32.dll"
         DESTINATION bin
 		CONFIGURATIONS Debug
     )
     
     install(FILES
-        ${MINGW_ENV}/install/bin/libCEGUIBase-0.dll
-        ${MINGW_ENV}/install/bin/libCEGUIOgreRenderer-0.dll
-        ${MINGW_ENV}/install/bin/libCEGUITinyXMLParser.dll
-        ${MINGW_ENV}/install/bin/libCEGUICoreWindowRendererSet.dll
-        ${MINGW_ENV}/install/bin/Release/libfreetype.dll
-        ${MINGW_ENV}/install/bin/Release/libjpeg.dll
-        ${MINGW_ENV}/install/bin/Release/liblibpng.dll
-        ${MINGW_ENV}/install/bin/Release/libSILLY.dll
-        ${MINGW_ENV}/install/bin/Release/libzlib.dll
-        ${MINGW_ENV}/install/bin/OpenAL32.dll
+        "${MINGW_ENV}/install/bin/libCEGUIBase-0.dll"
+        "${MINGW_ENV}/install/bin/libCEGUIOgreRenderer-0.dll"
+        "${MINGW_ENV}/install/bin/libCEGUITinyXMLParser.dll"
+        "${MINGW_ENV}/install/bin/libCEGUICoreWindowRendererSet.dll"
+        "${MINGW_ENV}/install/bin/Release/libfreetype.dll"
+        "${MINGW_ENV}/install/bin/Release/libjpeg.dll"
+        "${MINGW_ENV}/install/bin/Release/liblibpng.dll"
+        "${MINGW_ENV}/install/bin/Release/libSILLY.dll"
+        "${MINGW_ENV}/install/bin/Release/libzlib.dll"
+        "${MINGW_ENV}/install/bin/OpenAL32.dll"
         DESTINATION bin
 		CONFIGURATIONS Release
     )
@@ -566,8 +566,8 @@ endif()
 # CPack
 ###############################################################################
 
-configure_file(${CMAKE_SOURCE_DIR}/cpack/zip.cmake.in
-  "${CMAKE_CURRENT_BINARY_DIR}/cpack/zip.cmake" @ONLY
+configure_file("${CMAKE_SOURCE_DIR}/cpack/zip.cmake.in"
+    "${CMAKE_CURRENT_BINARY_DIR}/cpack/zip.cmake" @ONLY
 )
 
 add_custom_target(zip
