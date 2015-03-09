@@ -70,6 +70,7 @@ public:
     * - Engine::save()
     * - Engine::saveCreation()
     * - Engine::loadCreation()
+    * - Engine::screenShot()
     * - Engine::quit()
     * - Engine::pauseGame()
     * - Engine::resumeGame()
@@ -301,6 +302,17 @@ public:
     EntityId
     loadCreation(
         std::string file
+    );
+
+    /**
+    * @brief Takes a screenshot
+    *
+    * @param path
+    *   The path and filename relative to exe
+    */
+    void
+    screenShot(
+       std::string path
     );
 
     /**

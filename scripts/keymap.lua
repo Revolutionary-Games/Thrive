@@ -16,6 +16,7 @@ kmp.oxytoxyvacuole = {"T"}
 kmp.flagellum = {"F"}
 kmp.chloroplast = {"P"}
 
+
 kmp.togglegrid = {"G"}
 
 kmp.rename = {"F12"}
@@ -34,6 +35,7 @@ kmp.reproduce = {"P"}
 kmp.togglemenu = {"ESCAPE"}
 kmp.gotoeditor = {"F2"}
 kmp.altuniverse = {"F1"}
+kmp.screenshot = {"SYSRQ"} --printscreen button
 
 -- this is the perfect kind of thing to move into C++
 -- it shouldn't require anything in Lua, it'll just get a table of strings, and do comparisons
