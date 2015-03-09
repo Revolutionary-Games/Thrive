@@ -101,6 +101,9 @@ function HudSystem:update(renderTime)
     if keyCombo(kmp.rightward) then
         playerMicrobe.soundSource:playSound("microbe-movement-1")
     end
+    if (Engine.keyboard:wasKeyPressed(Keyboard.KC_G)) then
+        playerMicrobe:toggleEngulfMode()
+    end
     
     offset = Entity(CAMERA_NAME):getComponent(OgreCameraComponent.TYPE_ID).properties.offset
     newZVal = offset.z + Engine.mouse:scrollChange()/10

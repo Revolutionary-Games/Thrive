@@ -87,7 +87,8 @@ function MicrobeAISystem:__init()
     )
     self.microbes = {}
     self.preyCandidates = {}
-    self.currentPreyIndex = 1
+    self.preyEntityToIndexMap = {} -- Used for removing from preyCandidates
+    self.currentPreyIndex = 0
     self.oxygenEmitters = {}
     self.glucoseEmitters = {}
 end
@@ -110,6 +111,10 @@ end
 function MicrobeAISystem:update(renderTime, logicTime)
     for entityId in self.entities:removedEntities() do
         self.microbes[entityId] = nil
+        if self.preyEntityToIndexMap[entityId] then
+            self.preyCandidates[self.preyEntityToIndexMap[entityId]] = nil
+            self.preyEntityToIndexMap[entityId] = nil
+        end
     end
     for entityId in self.entities:addedEntities() do
         local microbe = Microbe(Entity(entityId))
@@ -118,7 +123,8 @@ function MicrobeAISystem:update(renderTime, logicTime)
         -- This is a hack to remember up to 5 recent microbes as candidates for predators. 
         -- Gives something semi random
         self.preyCandidates[self.currentPreyIndex] = microbe
-        self.currentPreyIndex = (self.currentPreyIndex + 1)%6
+        self.preyEntityToIndexMap[entityId] = self.currentPreyIndex
+        self.currentPreyIndex = (self.currentPreyIndex)%6
         
     end
     
@@ -144,28 +150,33 @@ function MicrobeAISystem:update(renderTime, logicTime)
         while aiComponent.intervalRemaining > aiComponent.reevalutationInterval do
             aiComponent.intervalRemaining = aiComponent.intervalRemaining - aiComponent.reevalutationInterval
             local targetPosition = nil
-            if microbe.microbe.speciesName == "ToxinPredator" then
+            if microbe.microbe.speciesName == "ToxinPredator" or microbe.microbe.speciesName == "Glutony" then
                 self.preyCandidates[6] = Microbe(Entity(PLAYER_NAME))
-                aiComponent.prey = nil
+                self.preyEntityToIndexMap[6] = Entity(PLAYER_NAME).id
                 local attempts = 0
-                while (aiComponent.prey  == nil or not aiComponent.prey:exists() or aiComponent.prey.microbe.speciesName == "ToxinPredator") and attempts < 6 do
-                    aiComponent.prey = self.preyCandidates[rng:getInt(1, 6)]
-                    attempts = attempts + 1
+                while (aiComponent.prey  == nil or not aiComponent.prey:exists() or aiComponent.prey.microbe.dead or
+                      (aiComponent.prey.microbe.speciesName ==  microbe.microbe.speciesName) or
+                       self.preyEntityToIndexMap[aiComponent.prey.entity.id] == nil) and attempts < 6 do
+                    aiComponent.prey = self.preyCandidates[rng:getInt(0, 6)]
+                    attempts = attempts + 1       
                 end
-                if aiComponent.prey ~= nil then 
-
-                local vec = (aiComponent.prey.sceneNode.transform.position - microbe.sceneNode.transform.position)
-                
-                if vec:length() < 10 then 
-                    microbe:emitAgent(CompoundRegistry.getCompoundId("oxytoxy"), 1)
-                end
-                
-                vec:normalise()
-                aiComponent.direction = vec
-                microbe.microbe.facingTargetPoint = Vector3(aiComponent.prey.sceneNode.transform.position.x,aiComponent.prey.sceneNode.transform.position.y, 0)  
-                microbe.microbe.movementDirection = Vector3(0,AI_MOVEMENT_SPEED,0)
-                
-                
+                if attempts < 6 then
+                    local vec = (aiComponent.prey.sceneNode.transform.position - microbe.sceneNode.transform.position)
+                    
+                    if vec:length() < 10 then 
+                        if microbe.microbe.speciesName == "ToxinPredator" then
+                            microbe:emitAgent(CompoundRegistry.getCompoundId("oxytoxy"), 1)
+                        elseif microbe.microbe.speciesName == "Glutony" and not microbe.microbe.engulfMode then
+                            microbe:toggleEngulfMode()
+                        end
+                    elseif microbe.microbe.speciesName == "Glutony" and microbe.microbe.engulfMode then
+                        microbe:toggleEngulfMode()
+                    end
+                    
+                    vec:normalise()
+                    aiComponent.direction = vec
+                    microbe.microbe.facingTargetPoint = Vector3(aiComponent.prey.sceneNode.transform.position.x,aiComponent.prey.sceneNode.transform.position.y, 0)  
+                    microbe.microbe.movementDirection = Vector3(0,AI_MOVEMENT_SPEED,0)
                 end
             else
                 if microbe:getCompoundAmount(CompoundRegistry.getCompoundId("oxygen")) <= OXYGEN_SEARCH_THRESHHOLD then
