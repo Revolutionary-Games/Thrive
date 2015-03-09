@@ -185,4 +185,47 @@
             
         </Organelles>
     </Species>
+    <Species name="Glutony">
+        <Compounds>
+            <Compound name="atp" amount="30"/>
+        </Compounds>
+      <Organelles>
+            <Organelle name="nucleus" q="0" r="0"/>
+            
+            <Organelle name="mitochondrion" q="0" r="-2"/>
+            <Organelle name="mitochondrion" q="1" r="-2"/>
+            <Organelle name="mitochondrion" q="-1" r="-1"/>
+            <Organelle name="mitochondrion" q="0" r="-1"/>
+            <Organelle name="mitochondrion" q="1" r="-1"/>
+            <Organelle name="mitochondrion" q="2" r="-1"/>
+            <Organelle name="mitochondrion" q="-1" r="0"/>
+            <Organelle name="mitochondrion" q="1" r="0"/>
+            <Organelle name="mitochondrion" q="-2" r="1"/>
+            <Organelle name="mitochondrion" q="-1" r="1"/>
+            <Organelle name="mitochondrion" q="1" r="1"/>
+            <Organelle name="mitochondrion" q="-1" r="2"/>
+            
+            <Organelle name="vacuole" q="3" r="-2"/>
+            <Organelle name="vacuole" q="3" r="-1"/>
+            <Organelle name="vacuole" q="3" r="1"/>
+            <Organelle name="vacuole" q="3" r="2"/>
+            <Organelle name="vacuole" q="2" r="-2"/>
+            <Organelle name="vacuole" q="2" r="0"/>
+            <Organelle name="vacuole" q="2" r="1"/>
+            <Organelle name="vacuole" q="1" r="-3"/>
+            <Organelle name="vacuole" q="-1" r="-2"/>
+            <Organelle name="vacuole" q="-2" r="0"/>
+            <Organelle name="vacuole" q="-2" r="2"/>
+            <Organelle name="vacuole" q="-2" r="3"/>
+            <Organelle name="vacuole" q="-3" r="1"/>
+            <Organelle name="vacuole" q="-3" r="2"/>
+            <Organelle name="vacuole" q="-3" r="4"/>
+            <Organelle name="vacuole" q="-3" r="5"/>
+            
+            <Organelle name="flagellum" q="2" r="-3"/>
+            <Organelle name="flagellum" q="0" r="-3"/>
+            <Organelle name="flagellum" q="-2" r="-1"/>
+            <Organelle name="flagellum" q="0" r="1"/>
+        </Organelles>
+    </Species>
 </Microbes>
