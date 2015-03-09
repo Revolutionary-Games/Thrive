@@ -158,6 +158,9 @@ function MicrobeEditorHudSystem:update(renderTime, logicTime)
     elseif keyCombo(kmp.rename) then
         self:updateMicrobeName()
     end
+    if keyCombo(kmp.screenshot) then
+        Engine:screenShot("screenshot.png")
+    end
 
     if Engine.keyboard:isKeyDown(Keyboard.KC_LSHIFT) then 
         properties = Entity(CAMERA_NAME .. 3):getComponent(OgreCameraComponent.TYPE_ID).properties
