@@ -7,15 +7,19 @@
 class 'MicrobeComponent' (Component)
 
 COMPOUND_PROCESS_DISTRIBUTION_INTERVAL = 100 -- quantity of physics time between each loop distributing compounds to organelles. TODO: Modify to reflect microbe size.
-BANDWIDTH_PER_ORGANELLE = 0.5 -- amount the microbes maxmimum bandwidth increases with per organelle added. This is a temporary replacement for microbe surface area
-BANDWIDTH_REFILL_DURATION = 1000 -- The amount of time it takes for the microbe to regenerate an amount of bandwidth equal to maxBandwidth
+BANDWIDTH_PER_ORGANELLE = 1.0 -- amount the microbes maxmimum bandwidth increases with per organelle added. This is a temporary replacement for microbe surface area
+BANDWIDTH_REFILL_DURATION = 800 -- The amount of time it takes for the microbe to regenerate an amount of bandwidth equal to maxBandwidth
 STORAGE_EJECTION_THRESHHOLD = 0.8
 EXCESS_COMPOUND_COLLECTION_INTERVAL = 1000 -- The amount of time between each loop to maintaining a fill level below STORAGE_EJECTION_THRESHHOLD and eject useless compounds
 MICROBE_HITPOINTS_PER_ORGANELLE = 10
 MINIMUM_AGENT_EMISSION_AMOUNT = 1
 REPRODUCTASE_TO_SPLIT = 5
 RELATIVE_VELOCITY_TO_BUMP_SOUND = 6
-INITIAL_EMISSION_RADIUS = 2
+INITIAL_EMISSION_RADIUS = 0.5
+ENGULFING_MOVEMENT_DIVISION = 3
+ENGULFED_MOVEMENT_DIVISION = 8
+ENGULFING_ATP_COST_SECOND = 1.5
+ENGULF_HP_RATIO_REQ = 1.5 
 
 function MicrobeComponent:__init(isPlayerMicrobe, speciesName)
     Component.__init(self)
@@ -29,6 +33,7 @@ function MicrobeComponent:__init(isPlayerMicrobe, speciesName)
     self.specialStorageOrganelles = {} -- Organelles with complete resonsiblity for a specific compound (such as agentvacuoles)
     self.movementDirection = Vector3(0, 0, 0)
     self.facingTargetPoint = Vector3(0, 0, 0)
+    self.movementFactor = 1.0 -- Multiplied on the movement speed of the microbe.
     self.capacity = 0  -- The amount that can be stored in the microbe. NOTE: This does not include special storage organelles
     self.stored = 0 -- The amount stored in the microbe. NOTE: This does not include special storage organelles
     self.compounds = {}
@@ -42,6 +47,10 @@ function MicrobeComponent:__init(isPlayerMicrobe, speciesName)
     self.maxBandwidth = 0
     self.remainingBandwidth = 0
     self.compoundCollectionTimer = EXCESS_COMPOUND_COLLECTION_INTERVAL
+    self.isCurrentlyEngulfing = false
+    self.isBeingEngulfed = false
+    self.wasBeingEngulfed = false
+    self.hostileEngulfer = nil
 end
 
 function MicrobeComponent:_resetCompoundPriorities()
@@ -300,7 +309,6 @@ function Microbe:__init(entity)
     end
     self:_updateCompoundAbsorber()
     self.playerAlreadyShownAtpDamage = false
-    self.playerAlreadyShownVictory = false
 end
 
 -- Getter for microbe species
@@ -552,7 +560,7 @@ function Microbe:emitAgent(compoundId, maxAmount)
         agentVacuole:takeCompound(compoundId, amountToEject)
         local i
         for i = 1, particleCount do
-            self:ejectCompound(compoundId, amountToEject/particleCount, angle,angle)
+            self:ejectCompound(compoundId, amountToEject/particleCount, angle,angle, INITIAL_EMISSION_RADIUS*4)
         end
     end
 end
@@ -642,7 +650,7 @@ end
 --
 -- @param maxAngle
 -- Relative angle to the microbe. 0 = microbes front. Should be between 0 and 359 and higher or equal than minAngle
-function Microbe:ejectCompound(compoundId, amount, minAngle, maxAngle)
+function Microbe:ejectCompound(compoundId, amount, minAngle, maxAngle, radius)
     local chosenAngle = rng:getReal(minAngle, maxAngle)
     -- Find the direction the microbe is facing
     local yAxis = self.sceneNode.transform.orientation:yAxis()
@@ -653,9 +661,12 @@ function Microbe:ejectCompound(compoundId, amount, minAngle, maxAngle)
     microbeAngle = microbeAngle * 180/math.pi
     -- Take the mirobe angle into account so we get world relative degrees
     local finalAngle = (chosenAngle + microbeAngle) % 360
+    local _radius = INITIAL_EMISSION_RADIUS
+    if radius then
+        _radius = radius
+    end
     -- Find how far away we should spawn the particle so it doesn't collide with microbe.
-    local radius = INITIAL_EMISSION_RADIUS
-    self.compoundEmitter:emitCompound(compoundId, amount, finalAngle, radius)
+    self.compoundEmitter:emitCompound(compoundId, amount, finalAngle, _radius)
     self.microbe:_updateCompoundPriorities()
 end
 
@@ -697,15 +708,15 @@ function Microbe:kill()
     self.microbe.deathTimer = 5000
     self.microbe.movementDirection = Vector3(0,0,0)
     self.rigidBody:clearForces()
-    microbeSceneNode.visible = false
-    --[[ since other microbes can kll each other now, this is deprecated
-    if self.microbe.isPlayerMicrobe  ~= true then
-        if not self.playerAlreadyShownVictory then
-            self.playerAlreadyShownVictory = true
-            showMessage("VICTORY!!!")
+    if not self.microbe.isPlayerMicrobe then
+        for _, organelle in pairs(self.microbe.organelles) do
+           organelle:removePhysics()
         end
     end
-    --]]
+    if self.microbe.hostileEngulfer then
+        self.microbe.hostileEngulfer.microbe.isCurrentlyEngulfing = false;
+    end
+    microbeSceneNode.visible = false
 end
 
 -- Copies this microbe. The new microbe will not have the stored compounds of this one.
@@ -720,6 +731,24 @@ function Microbe:reproduce()
         showReproductionDialog()
     end
 end
+
+-- Disables or enabled engulfmode for a microbe, allowing or disallowed it to absorb other microbes
+function Microbe:toggleEngulfMode()
+    colourToSet = ColourValue.Black
+    if self.microbe.engulfMode then
+        self.microbe.movementFactor = self.microbe.movementFactor * ENGULFING_MOVEMENT_DIVISION
+        
+        self.rigidBody:reenableAllCollisions()
+    else
+        colourToSet = ColourValue.Red
+        self.microbe.movementFactor = self.microbe.movementFactor / ENGULFING_MOVEMENT_DIVISION
+    end
+    for _, organelle in pairs(self.microbe.organelles) do
+        organelle:setExternalEdgeColour(colourToSet)
+    end
+    self.microbe.engulfMode = not self.microbe.engulfMode
+end
+
 
 -- Updates the microbe's state
 function Microbe:update(logicTime)
@@ -757,7 +786,24 @@ function Microbe:update(logicTime)
         for _, organelle in pairs(self.microbe.organelles) do
             organelle:update(self, logicTime)
         end
-
+        if self.microbe.engulfMode then
+            -- Drain atp and if we run out then disable engulfmode
+            local cost = ENGULFING_ATP_COST_SECOND/1000*logicTime
+            if self:takeCompound(CompoundRegistry.getCompoundId("atp"), cost) < cost then
+                self:toggleEngulfMode()
+            end
+        end
+        if self.microbe.isBeingEngulfed then
+            self:damage(logicTime * 0.0005  * self.microbe.maxHitpoints) -- Engulfment damages 5% per second
+        -- Else If we were but are no longer, being engulfed
+        elseif self.microbe.wasBeingEngulfed then
+            self.microbe.movementFactor = self.microbe.movementFactor * ENGULFED_MOVEMENT_DIVISION
+            self.microbe.wasBeingEngulfed = false
+            self.microbe.hostileEngulfer.microbe.isCurrentlyEngulfing = false;
+            self.microbe.hostileEngulfer.rigidBody:reenableAllCollisions()
+        end
+        -- Used to detect when engulfing stops
+        self.microbe.isBeingEngulfed = false;
         self.compoundAbsorber:setAbsorbtionCapacity(self.microbe.remainingBandwidth)
     else
         self.microbe.deathTimer = self.microbe.deathTimer - logicTime
@@ -808,7 +854,7 @@ function Microbe:purgeCompounds()
     end 
     for compoundId, amount in pairs(excessCompounds) do
         if amount > 0 then
-            self:ejectCompound(compoundId, amount, 160, 200, true)
+            self:ejectCompound(compoundId, amount, 160, 200)
         end
     end
 end
@@ -985,13 +1031,31 @@ function MicrobeSystem:update(renderTime, logicTime)
             microbe.rigidBody.dynamicProperties.linearVelocity:length()
             local body1 = entity1:getComponent(RigidBodyComponent.TYPE_ID)
             local body2 = entity2:getComponent(RigidBodyComponent.TYPE_ID)
+            local microbe1Comp = entity1:getComponent(MicrobeComponent.TYPE_ID)
+            local microbe2Comp = entity2:getComponent(MicrobeComponent.TYPE_ID)
             if body1~=nil and body2~=nil then
+                -- Play bump sound
                 if ((body1.dynamicProperties.linearVelocity - body2.dynamicProperties.linearVelocity):length()) > RELATIVE_VELOCITY_TO_BUMP_SOUND then
                     local soundComponent = entity1:getComponent(SoundSourceComponent.TYPE_ID)
                     soundComponent:playSound("microbe-collision")
                 end
+                -- Engulf initiation
+                checkEngulfment(microbe1Comp, microbe2Comp, body1, entity1, entity2)
+                checkEngulfment(microbe2Comp, microbe1Comp, body2, entity2, entity1)
             end
         end
     end
     self.microbeCollisions:clearCollisions()
+end
+
+function checkEngulfment(microbe1Comp, microbe2Comp, body, entity1, entity2)
+    if microbe1Comp.engulfMode and microbe1Comp.maxHitpoints > ENGULF_HP_RATIO_REQ*microbe2Comp.maxHitpoints 
+                   and not microbe2Comp.wasBeingEngulfed and not microbe1Comp.isCurrentlyEngulfing then
+        microbe2Comp.movementFactor = microbe2Comp.movementFactor / ENGULFED_MOVEMENT_DIVISION
+        microbe1Comp.isCurrentlyEngulfing = true
+        microbe2Comp.isBeingEngulfed = true
+        microbe2Comp.wasBeingEngulfed = true
+        microbe2Comp.hostileEngulfer = Microbe(entity1)
+        body:disableCollisionsWith(entity2.id)     
+    end
 end

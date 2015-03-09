@@ -90,7 +90,7 @@ function MovementOrganelle:_moveMicrobe(microbe, milliseconds)
         if availableEnergy < energy then
             forceMagnitude = sign(forceMagnitude) * availableEnergy * 1000 / milliseconds
         end
-        local impulseMagnitude = milliseconds * forceMagnitude / 1000
+        local impulseMagnitude = microbe.microbe.movementFactor * milliseconds * forceMagnitude / 1000
         local impulse = impulseMagnitude * direction
         local a = microbe.sceneNode.transform.orientation * impulse
         microbe.rigidBody:applyCentralImpulse(
@@ -121,7 +121,7 @@ function MovementOrganelle:_turnMicrobe(microbe)
     )
     if math.abs(math.deg(alpha)) > 1 then
         microbe.rigidBody:applyTorque(
-            Vector3(0, 0, self.torque * alpha)
+            Vector3(0, 0, self.torque * alpha * microbe.microbe.movementFactor)
         )
         microbe.soundSource:playSound("microbe-movement-turn")
     end

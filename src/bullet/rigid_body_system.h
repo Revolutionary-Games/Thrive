@@ -19,6 +19,8 @@ class scope;
 
 namespace thrive {
 
+
+
 /**
 * @brief A component for a rigid body
 */
@@ -26,7 +28,6 @@ class RigidBodyComponent : public Component, public btMotionState {
     COMPONENT(RigidBody)
 
 public:
-
 
     /**
     * @brief Properties
@@ -145,6 +146,13 @@ public:
     *   - Properties::hasContactResponse
     *   - Properties::kinematic
     *
+    * - applyImpulse
+    * - applyCentralImpulse
+    * - applyTorque
+    * - Clearforces
+    * - disableCollisionsWith
+    * - reenableAllCollisions
+    *
     * @return
     */
     static luabind::scope
@@ -207,6 +215,23 @@ public:
     */
     void
     clearForces();
+
+    /**
+    * @brief This disables collisions with another entity
+    *
+    * @param other
+    *  The entity to nocollide with
+    */
+    void
+    disableCollisionsWith(
+        EntityId other
+    );
+
+    /**
+    * @brief Reenables all collisions previously disabled
+    */
+    void
+    reenableAllCollisions();
 
     /**
     * @brief Reimplemented from btMotionState
@@ -318,8 +343,10 @@ private:
 
     friend class RigidBodyInputSystem;
 
+    //HDELETE ME
+    EntityId m_entityToNoCollide = NULL_ENTITY;
+    bool m_shouldReenableAllCollisions = false;
     bool m_toClearForces = false;
-
 };
 
 
