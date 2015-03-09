@@ -241,6 +241,10 @@ local function createSpawnSystem()
     local microbeAlgae = function(pos)
         return microbeSpawnFunctionGeneric(pos, "Algae", true, nil)
     end
+    
+    local microbeGlutony = function(pos)
+        return microbeSpawnFunctionGeneric(pos, "Glutony", true, nil)
+    end
 
     local toxinOrganelleSpawnFunction = function(pos) 
         powerupEntity = Entity()
@@ -284,11 +288,12 @@ local function createSpawnSystem()
     -- Microbe spawning needs to be handled by species/population
     spawnSystem:addSpawnType(microbeDefault, 1/12000, 40)
     spawnSystem:addSpawnType(microbeTeeny, 1/6000, 40)
-    spawnSystem:addSpawnType(microbePlankton, 1/32000, 40)
+    spawnSystem:addSpawnType(microbePlankton, 1/10000, 40)
     spawnSystem:addSpawnType(microbePoisonous, 1/32000, 40)
-    spawnSystem:addSpawnType(microbeToxinPredator, 1/15000, 40)
+   spawnSystem:addSpawnType(microbeToxinPredator, 1/7000, 40)
     spawnSystem:addSpawnType(microbeNoper, 1/6000, 40)
     spawnSystem:addSpawnType(microbeAlgae, 1/3000, 40)
+    spawnSystem:addSpawnType(microbeGlutony, 1/18000, 40)
     spawnSystem:addSpawnType(toxinOrganelleSpawnFunction, 1/17000, 30)
     return spawnSystem
 end
