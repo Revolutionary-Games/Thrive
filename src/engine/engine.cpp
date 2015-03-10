@@ -535,6 +535,7 @@ Engine::luaBindings() {
         .def("fileExists", &Engine::fileExists)
         .def("saveCreation", static_cast<void(Engine::*)(EntityId, std::string, std::string)const>(&Engine::saveCreation))
         .def("loadCreation", static_cast<EntityId(Engine::*)(std::string)>(&Engine::loadCreation))
+        .def("screenShot", &Engine::screenShot)
         .def("getCreationFileList", &Engine::getCreationFileList)
         .def("quit", &Engine::quit)
         .def("timedSystemShutdown", &Engine::timedSystemShutdown)
@@ -792,6 +793,13 @@ Engine::loadCreation(
     return entityId;
 }
 
+void
+Engine::screenShot(std::string path){
+     m_impl->m_graphics.renderWindow->writeContentsToFile(path);
+}
+
+
+
 std::string
 Engine::getCreationFileList(
     std::string stage
@@ -839,6 +847,7 @@ Engine::shutdown() {
     }
     m_impl->shutdownInputManager();
     m_impl->m_graphics.renderWindow->destroy();
+
     m_impl->m_graphics.root.reset();
 }
 
