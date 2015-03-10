@@ -98,6 +98,9 @@ function HudSystem:update(renderTime)
     if keyCombo(kmp.leftward) then
         playerMicrobe.soundSource:playSound("microbe-movement-1")
     end
+    if keyCombo(kmp.screenshot) then
+        Engine:screenShot("screenshot.png")
+    end
     if keyCombo(kmp.rightward) then
         playerMicrobe.soundSource:playSound("microbe-movement-1")
     end
