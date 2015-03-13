@@ -52,32 +52,46 @@
     #********** First we locate the include directorys ********** ********** ********** **********
     SET( CEGUI_INCLUDE_SEARCH_DIR
        ${CEGUI_ROOT}/include
+       ${CEGUI_ROOT}/include/cegui-0
        ${CEGUIDIR}/include
-       ${CEGUIDIR}/cegui/include
+       ${CEGUIDIR}/include/cegui-0
+
        ~/Library/Frameworks
        /Library/Frameworks
        /usr/local/include
        /usr/local/cegui-0/include
+       /usr/local/include/cegui-0
        /usr/include
+       /usr/include/cegui-0
        /sw/include # Fink
+       /sw/include/cegui-0
        /opt/local/include # DarwinPorts
+       /opt/local/include/cegui-0
        /opt/csw/include # Blastwave
+       /opt/csw/include/cegui-0
        /opt/include
+       /opt/include/cegui-0
        /usr/freeware/include
+       /usr/freeware/include/cegui-0
     )
 
     #helper
-    MACRO(FIND_PATH_HELPER FILENAME DIR SUFFIX)
+    MACRO(FIND_PATH_HELPER FILENAME DIR SUFFIX USERENDERER)
        FIND_PATH(${FILENAME}_DIR ${FILENAME} PATHS ${${DIR}} PATH_SUFFIXES ${SUFFIX})
        IF(NOT ${FILENAME}_DIR)
           MESSAGE("Could not located ${FILENAME}")
           SET(CEGUI_FOUND "NO")
        ELSE()
-          LIST(APPEND CEGUI_INCLUDE_DIR ${${FILENAME}_DIR})
+            message(STATUS USERENDERER)
+          IF (${ARGC} GREATER 4)
+            LIST(APPEND CEGUI_INCLUDE_DIR ${${FILENAME}_DIR})
+          ELSE()
+          
+            LIST(APPEND CEGUI_INCLUDE_DIR ${${FILENAME}_DIR}/../)
+          ENDIF()
        ENDIF()
     ENDMACRO()
-
-    FIND_PATH_HELPER(CEGUI.h CEGUI_INCLUDE_SEARCH_DIR CEGUI)
+    FIND_PATH_HELPER(CEGUI.h CEGUI_INCLUDE_SEARCH_DIR CEGUI "")
 
     IF("${CEGUI_FIND_COMPONENTS}" STREQUAL "")
        MESSAGE("ERROR: No CEGUI renderer selected. \n\nSelect a renderer by including it's name in the component list:\n\ne.g. Find_Package(CEGUI REQUIRED COMPONENTS OPENGL)\n\nCEGUI renderers:")
@@ -90,7 +104,7 @@
 
     FOREACH(COMPONENT ${CEGUI_FIND_COMPONENTS})
        HELPER_GET_CASE_FROM_LIST( ${COMPONENT} RENDER_NAME COMPONENT_CASE)
-       FIND_PATH_HELPER( "Renderer.h" "CEGUI_INCLUDE_SEARCH_DIR" "CEGUI/RendererModules/${COMPONENT_CASE}/;RendererModules/${COMPONENT_CASE}/" )
+       FIND_PATH_HELPER( "Renderer.h" "CEGUI_INCLUDE_SEARCH_DIR" "CEGUI/RendererModules/${COMPONENT_CASE}/;RendererModules/${COMPONENT_CASE}/" "" TRUE )
     ENDFOREACH(COMPONENT)
 
     IF (APPLE)
@@ -104,8 +118,6 @@
 
     IF(CEGUI_FRAMEWORK_DIR)
        LIST(APPEND CEGUI_INCLUDE_DIR ${CEGUI_FRAMEWORK_DIR})
-    ELSE()
-       LIST(APPEND CEGUI_INCLUDE_DIR ${CEGUI_FRAMEWORK_DIR}/CEGUI)
     ENDIF()
 
 
