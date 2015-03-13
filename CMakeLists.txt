@@ -8,6 +8,8 @@ cmake_minimum_required(VERSION 2.6)
 
 project(Thrive)
 
+
+
 ###################
 # Cache Variables #
 ###################
@@ -144,7 +146,10 @@ include_directories(
 
 find_package(CEGUI REQUIRED QUIET COMPONENTS OGRE)
 
-include_directories(SYSTEM ${CEGUI_INCLUDE_DIRS})
+
+#set(CEGUI_INCLUDE_DIR 
+include_directories(SYSTEM ${CEGUI_INCLUDE_DIR})
+
 
 #######
 # TinyXML #
