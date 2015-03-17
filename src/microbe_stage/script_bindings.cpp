@@ -6,7 +6,6 @@
 #include "microbe_stage/compound_emitter_system.h"
 #include "microbe_stage/compound_registry.h"
 #include "microbe_stage/bio_process_registry.h"
-#include "microbe_stage/species_registry.h"
 
 luabind::scope
 thrive::MicrobeBindings::luaBindings() {
@@ -22,8 +21,7 @@ thrive::MicrobeBindings::luaBindings() {
         CompoundEmitterSystem::luaBindings(),
         // Other
         CompoundRegistry::luaBindings(),
-        BioProcessRegistry::luaBindings(),
-        SpeciesRegistry::luaBindings()
+        BioProcessRegistry::luaBindings()
     );
 }
 
