@@ -66,6 +66,35 @@ local function setupProcesses()
     end
 end
 
+function setupSpecies()
+    --[[
+    This function should be the entry point for all initial-species generation
+    For now, it can go through the XML and instantiate all the species, but later this 
+    would be all procedural.
+
+    Together with the mutate function, these would be the only ways species are created
+    ]]
+    
+    for name, data in pairs(starter_microbes) do
+        speciesEntity = Entity(name)
+        speciesComponent = SpeciesComponent(name)
+        speciesEntity:addComponent(speciesComponent)
+        speciesComponent.organelles = data.organelles -- note, shallow assignment
+
+        -- iterates over all compounds, and sets amounts and priorities
+        for compoundID in CompoundRegistry.getCompoundList() do
+            compound = CompoundRegistry.getCompoundInternalName(compoundID)
+            compoundData = data.compounds[compound]
+            if compoundData ~= nil then
+                amount = compoundData.amount
+                priority = compoundData.priority
+                speciesComponent.avgCompoundAmounts[compoundID] = amount
+                speciesComponent.compoundPriorities[compoundID] = priority
+            end
+        end
+    end
+end
+
 -- speciesName decides the template to use, while individualName is used for referencing the instance
 function microbeSpawnFunctionGeneric(pos, speciesName, aiControlled, individualName)
     local microbe = Microbe.createMicrobeEntity(individualName, aiControlled)
@@ -102,7 +131,6 @@ end
 
 local function createSpawnSystem()
     local spawnSystem = SpawnSystem()
-    SpeciesRegistry.loadFromXML("../definitions/microbes.xml")
 
     local spawnOxygenEmitter = function(pos)
         -- Setting up an emitter for oxygen
@@ -263,79 +291,36 @@ local function createSpawnSystem()
         return entity
     end
 
-    local microbeDefault = function(pos)
-        return microbeSpawnFunctionGeneric(pos, "Default", true, nil)
-    end
-
-    local microbeTeeny = function(pos)
-        return microbeSpawnFunctionGeneric(pos, "Teeny", true, nil)
-    end
-
-    local microbePlankton = function(pos)
-        return microbeSpawnFunctionGeneric(pos, "Plankton", true, nil)
-    end
-
-    local microbePoisonous = function(pos)
-        return microbeSpawnFunctionGeneric(pos, "Poisonous", true, nil)
-    end
-
-    local microbeToxinPredator = function(pos)
-        return microbeSpawnFunctionGeneric(pos, "ToxinPredator", true, nil)
-    end
-    local microbeNoper = function(pos)
-        return microbeSpawnFunctionGeneric(pos, "Noper", true, nil)
-    end
-
-    local microbeAlgae = function(pos)
-        return microbeSpawnFunctionGeneric(pos, "Algae", true, nil)
-    end
-
     local toxinOrganelleSpawnFunction = function(pos) 
         powerupEntity = Entity()
-        psceneNode = OgreSceneNodeComponent()
-        psceneNode.transform.position = pos
-        psceneNode.transform.scale = Vector3(0.9, 0.9, 0.9)
-        psceneNode.transform:touch()
-        psceneNode.meshName = "AgentVacuole.mesh"
-        powerupEntity:addComponent(psceneNode)
-        
+        setSpawnablePhysics(powerupEntity, pos, "AgentVacuole.mesh", 0.9, SphereShape(HEX_SIZE))
+
         local reactionHandler = CollisionComponent()
         reactionHandler:addCollisionGroup("powerup")
         powerupEntity:addComponent(reactionHandler)
-       
-        local rigidBody = RigidBodyComponent()
-        rigidBody.properties.friction = 0.2
-        rigidBody.properties.linearDamping = 0.8
-        rigidBody.properties.shape = SphereShape(HEX_SIZE)
-        rigidBody:setDynamicProperties(
-            pos,
-            Quaternion(Radian(Degree(math.random()*360)), Vector3(0, 0, 1)),
-            Vector3(0, 0, 0),
-            Vector3(0, 0, 0)
-        )
-        rigidBody.properties:touch()
-        powerupEntity:addComponent(rigidBody)
         
         local powerupComponent = PowerupComponent()
         powerupComponent:setEffect(unlockToxin)
         powerupEntity:addComponent(powerupComponent)
         return powerupEntity
     end
-    
+
     --Spawn one emitter on average once in every square of sidelength 10
     -- (square dekaunit?)
     spawnSystem:addSpawnType(spawnOxygenEmitter, 1/500, 30)
     spawnSystem:addSpawnType(spawnCO2Emitter, 1/500, 30)
     spawnSystem:addSpawnType(spawnGlucoseEmitter, 1/500, 30)
     spawnSystem:addSpawnType(spawnAmmoniaEmitter, 1/1250, 30)
-    spawnSystem:addSpawnType(microbeDefault, 1/12000, 40)
-    spawnSystem:addSpawnType(microbeTeeny, 1/6000, 40)
-    spawnSystem:addSpawnType(microbePlankton, 1/32000, 40)
-    spawnSystem:addSpawnType(microbePoisonous, 1/32000, 40)
-    spawnSystem:addSpawnType(microbeToxinPredator, 1/15000, 40)
-    spawnSystem:addSpawnType(microbeNoper, 1/6000, 40)
-    spawnSystem:addSpawnType(microbeAlgae, 1/3000, 40)
     spawnSystem:addSpawnType(toxinOrganelleSpawnFunction, 1/17000, 30)
+
+    for name, species in pairs(starter_microbes) do
+        spawnSystem:addSpawnType(
+            function(pos) 
+                return microbeSpawnFunctionGeneric(pos, name, true, nil)
+            end, 
+            species.spawnDensity, 40)
+    end
+
     return spawnSystem
 end
 
@@ -399,8 +384,7 @@ function createStarterMicrobe(name, aiControlled)
 end
 
 local function setupPlayer()
-    SpeciesRegistry.loadFromXML("../definitions/microbes.xml")
-    microbe = createStarterMicrobe(PLAYER_NAME, false)
+    microbe = microbeSpawnFunctionGeneric(nil, "Default", false, PLAYER_NAME)
     microbe.collisionHandler:addCollisionGroup("powerupable")
     Engine:playerData():lockedMap():addLock("Toxin")
     Engine:playerData():setActiveCreature(microbe.entity.id, GameState.MICROBE)
