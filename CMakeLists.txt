@@ -298,12 +298,12 @@ set( DOXYGEN_CONFIG_FILE
 find_package(Doxygen)
 
 if(DOXYGEN_FOUND)
-    configure_file(${DOXYGEN_CONFIG_FILE} "${CMAKE_CURRENT_BINARY_DIR}/doxygen.cfg" @ONLY)
+    configure_file("${DOXYGEN_CONFIG_FILE}" "${CMAKE_CURRENT_BINARY_DIR}/doxygen.cfg" @ONLY)
     add_custom_target(doc
-        ${DOXYGEN_EXECUTABLE} "${CMAKE_CURRENT_BINARY_DIR}/doxygen.cfg"
+        "${DOXYGEN_EXECUTABLE}" "${CMAKE_CURRENT_BINARY_DIR}/doxygen.cfg"
         WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/doc"
         COMMENT "Generating API documentation with Doxygen" VERBATIM
-        SOURCES ${DOXYGEN_CONFIG_FILE}
+        SOURCES "${DOXYGEN_CONFIG_FILE}"
     )
 endif()
 
