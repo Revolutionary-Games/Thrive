@@ -334,7 +334,8 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
         CEGUI::System::getSingleton().getDefaultGUIContext().setRootWindow( myRoot );
         CEGUI::SchemeManager::getSingleton().createFromFile("Thrive.scheme");
         CEGUI::System::getSingleton().getDefaultGUIContext().getMouseCursor().setDefaultImage("ThriveGeneric/MouseArrow");
-
+        CEGUI::System::getSingleton().getDefaultGUIContext().setDefaultTooltipType( reinterpret_cast<const CEGUI::utf8*>("Thrive/Tooltip") );
+     //   CEGUI::System::getSingleton().getDefaultGUIContext().setDefaultTooltipObject(new CEGUI::Tooltip("Thrive/Tooltip", "mytooltip"));
         CEGUI::AnimationManager::getSingleton().loadAnimationsFromXML("thrive.anims");
 
         //For demos:
@@ -906,7 +907,7 @@ Engine::update(
     luabind::call_member<void>(m_impl->m_console, "update");
 
     CEGUI::System::getSingleton().injectTimePulse(milliseconds/1000.0f);
-
+    CEGUI::System::getSingleton().getDefaultGUIContext().injectTimePulse(milliseconds/1000.0f);
     // Update any timed shutdown systems
     auto itr = m_impl->m_prevShutdownSystems->begin();
     while (itr != m_impl->m_prevShutdownSystems->end()) {
