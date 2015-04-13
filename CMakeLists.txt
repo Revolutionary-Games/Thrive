@@ -82,6 +82,15 @@ set(OGRE_PLUGINS
     RenderSystem_GL
 )
 
+# Determine major version
+# Used to find correct version of CEGUI
+if((${OGRE_VERSION_MAJOR} EQUAL 2) OR (${OGRE_VERSION_MAJOR} GREATER 2))
+  set(USE_OGRE_2 ON)
+  add_definitions(-DUSE_OGRE2)
+else()
+  set(USE_OGRE_2 OFF)
+endif()
+
 #######
 # OIS #
 #######
@@ -144,11 +153,31 @@ include_directories(
 # CEGUI #
 #######
 
+# Version idenfitier
+# Changing this value requires that you delete your cmake cache
+# (your build folder) to find the new version pointer to by
+# this variable
+if(USE_OGRE_2)
+  set(FIND_CEGUI_VERSION 9999)
+  set(CEGUI_USE_GLM ON)
+else()
+  set(FIND_CEGUI_VERSION 0)
+    set(CEGUI_USE_GLM OFF)
+endif()
+
+message(STATUS "Finding CEGUI version " ${FIND_CEGUI_VERSION}
+  " for Ogre version " ${OGRE_VERSION})
+
 find_package(CEGUI REQUIRED QUIET COMPONENTS OGRE)
 
 
 #set(CEGUI_INCLUDE_DIR 
 include_directories(SYSTEM ${CEGUI_INCLUDE_DIR})
+
+if(CEGUI_USE_GLM)
+  add_definitions(-DCEGUI_GLM)
+  add_definitions(-DCEGUI_USE_NEW)
+endif()
 
 
 #######
@@ -180,26 +209,55 @@ add_subdirectory(
 )
 
 ################
+# cAudio #
+################
+
+find_package(cAudio)
+find_package(OpenAL QUIET)
+
+include_directories("${cAudio_INCLUDE_DIRS}")
+
+# Disable OgreOggSound if using cAudio
+if(cAudio_FOUND)
+  set(USING_CAUDIO ON)
+
+  add_definitions(-DUSE_CAUDIO)
+
+  message(STATUS "Using cAudio")
+  
+else()
+  set(USING_CAUDIO OFF)
+
+  # Complain if we are using Ogre 2
+  if(USE_OGRE_2)
+    message(SEND_ERROR "cAudio is required when using Ogre 2 or higher")
+  endif()
+  
+endif()
+
+################
 # OgreOggSound #
 ################
 
-find_package(OpenAL REQUIRED QUIET)
-find_package(Ogg REQUIRED)
-find_package(Vorbis REQUIRED)
+if(NOT USING_CAUDIO)
+  find_package(OpenAL REQUIRED QUIET)
+  find_package(Ogg REQUIRED)
+  find_package(Vorbis REQUIRED)
 
-add_definitions(-DHAVE_EFX=0)
+  add_definitions(-DHAVE_EFX=0)
 
-add_subdirectory(
+  add_subdirectory(
     "${CMAKE_CURRENT_SOURCE_DIR}/contrib/ogre_ogg_sound"
-)
+    )
 
-include_directories(
+  include_directories(
     SYSTEM
     "${CMAKE_CURRENT_SOURCE_DIR}/contrib/ogre_ogg_sound/include"
     ${OpenAL_INCLUDE_DIRS}
     ${OGG_INCLUDE_DIRS}
     ${VORBIS_INCLUDE_DIRS}
-)
+    )
+endif()
 
 ######################
 # Configure Compiler #
@@ -251,11 +309,21 @@ target_link_libraries(ThriveLib
     ${CEGUI_LIBRARY}
     ${TINYXML_LIBRARIES}
     ${OpenAL_LIBRARIES}
+    luabind
+)
+
+if(NOT USING_CAUDIO)
+  target_link_libraries(ThriveLib
     ${Ogg_LIBRARIES}
     ${Vorbis_LIBRARIES}
     OgreOggSound
-    luabind
-)
+  )
+else()
+  target_link_libraries(ThriveLib
+    ${cAudio_LIBRARIES}
+    )
+endif()
+
 
 
 set_target_properties(ThriveLib PROPERTIES

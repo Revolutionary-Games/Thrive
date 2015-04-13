@@ -9,12 +9,14 @@ local function setupCamera()
     -- Scene node
     local sceneNode = OgreSceneNodeComponent()
     entity:addComponent(sceneNode)
-    -- Viewport
-    local viewportEntity = Entity()
-    local viewportComponent = OgreViewportComponent(0)
-    viewportComponent.properties.cameraEntity = entity
-    viewportComponent.properties:touch()
-    viewportEntity:addComponent(viewportComponent)
+    -- Workspace
+    local workspaceEntity = Entity()
+    -- TODO: could create a workspace without shadows
+    local workspaceComponent = OgreWorkspaceComponent("thrive_default")
+    workspaceComponent.properties.cameraEntity = entity
+    workspaceComponent.properties.position = 0
+    workspaceComponent.properties:touch()
+    workspaceEntity:addComponent(workspaceComponent)
 end
 
 local function setupSound()
@@ -47,7 +49,7 @@ local function createMainMenu(name)
             OgreUpdateSceneNodeSystem(),
             OgreCameraSystem(),
             MainMenuHudSystem(),
-            OgreViewportSystem(),
+            OgreWorkspaceSystem(),
             OgreRemoveSceneNodeSystem(),
             RenderSystem(),
             -- Other

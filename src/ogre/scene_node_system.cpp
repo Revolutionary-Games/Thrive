@@ -9,10 +9,16 @@
 #include "scripting/luabind.h"
 
 #include "sound/sound_source_system.h"
+#ifndef USE_CAUDIO
 #include <OgreOggISound.h>
 #include <OgreOggSoundManager.h>
+#else
+#include "engine/sound/sound_manager.h"
+#include "engine/sound/sound_listener.h"
+#endif //USE_CAUDIO
 
 #include <OgreSceneManager.h>
+#include <OgreMeshManager.h>
 #include <OgreEntity.h>
 
 using namespace thrive;
@@ -510,7 +516,23 @@ OgreUpdateSceneNodeSystem::update(
         }
         if(component->m_attachToListener.hasChanges()){
             if (component->m_attachToListener.get()) {
-                OgreOggSound::OgreOggListener* listener = OgreOggSound::OgreOggSoundManager::getSingleton().getListener();
+#ifdef USE_CAUDIO
+
+                auto listener = SoundManager::getListener();
+                
+                if (OgreSceneNodeComponent::s_soundListenerAttached){
+                    listener->detachFromNode();
+                }
+                
+                else {
+                    OgreSceneNodeComponent::s_soundListenerAttached = true;
+                }
+                
+                listener->attachToNode(component->m_sceneNode);
+#else
+                OgreOggSound::OgreOggListener* listener =
+                    OgreOggSound::OgreOggSoundManager::getSingleton().getListener();
+
                 if (OgreSceneNodeComponent::s_soundListenerAttached){
                     listener->detachFromParent();
                 }
@@ -518,6 +540,10 @@ OgreUpdateSceneNodeSystem::update(
                     OgreSceneNodeComponent::s_soundListenerAttached = true;
                 }
                 component->_attachObject(listener);
+#endif //USE_CAUDIO
+                
+
+
             }
             component->m_attachToListener.untouch();
         }

@@ -19,6 +19,12 @@ namespace Ogre {
 class SceneNode;
 }
 
+#ifdef USE_CAUDIO
+namespace thrive {
+    class SoundManager;
+}
+#endif //USE_CAUDIO
+
 namespace thrive {
 
 /**

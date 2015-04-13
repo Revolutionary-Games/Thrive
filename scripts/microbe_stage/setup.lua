@@ -26,12 +26,13 @@ local function setupCamera()
     local light = OgreLightComponent()
     light:setRange(200)
     entity:addComponent(light)
-    -- Viewport
-    local viewportEntity = Entity()
-    local viewportComponent = OgreViewportComponent(0)
-    viewportComponent.properties.cameraEntity = entity
-    viewportComponent.properties:touch()
-    viewportEntity:addComponent(viewportComponent)
+    -- Workspace
+    local workspaceEntity = Entity()
+    local workspaceComponent = OgreWorkspaceComponent("thrive_default")
+    workspaceComponent.properties.cameraEntity = entity
+    workspaceComponent.properties.position = 0
+    workspaceComponent.properties:touch()
+    workspaceEntity:addComponent(workspaceComponent)
 end
 
 -- there must be some more robust way to script agents than having stuff all over the place.
@@ -425,8 +426,7 @@ local function createMicrobeStage(name)
             OgreCameraSystem(),
             OgreLightSystem(),
             SkySystem(),
-            TextOverlaySystem(),
-            OgreViewportSystem(),
+            OgreWorkspaceSystem(),
             OgreRemoveSceneNodeSystem(),
             RenderSystem(),
             -- Other

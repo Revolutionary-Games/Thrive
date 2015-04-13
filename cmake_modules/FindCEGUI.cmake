@@ -18,6 +18,10 @@
     SET(CEGUI_LIBRARY "")
     SET(CEGUI_INCLUDE_DIR "")
 
+    if(NOT DEFINED FIND_CEGUI_VERSION)
+      set(FIND_CEGUI_VERSION 0)
+    endif()
+
     SET( CEGUIDIR $ENV{CEGUIDIR} )
     IF((WIN32 OR WIN64) AND NOT(CYGWIN))
        # Convert backslashes to slashes
@@ -51,28 +55,28 @@
 
     #********** First we locate the include directorys ********** ********** ********** **********
     SET( CEGUI_INCLUDE_SEARCH_DIR
-       ${CEGUI_ROOT}/include
-       ${CEGUI_ROOT}/include/cegui-0
-       ${CEGUIDIR}/include
-       ${CEGUIDIR}/include/cegui-0
+       "${CEGUI_ROOT}/include"
+       "${CEGUI_ROOT}/include/cegui-${FIND_CEGUI_VERSION}"
+       "${CEGUIDIR}/include"
+       "${CEGUIDIR}/include/cegui-${FIND_CEGUI_VERSION}"
 
        ~/Library/Frameworks
        /Library/Frameworks
        /usr/local/include
-       /usr/local/cegui-0/include
-       /usr/local/include/cegui-0
+       /usr/local/cegui-${FIND_CEGUI_VERSION}/include
+       /usr/local/include/cegui-${FIND_CEGUI_VERSION}
        /usr/include
-       /usr/include/cegui-0
+       /usr/include/cegui-${FIND_CEGUI_VERSION}
        /sw/include # Fink
-       /sw/include/cegui-0
+       /sw/include/cegui-${FIND_CEGUI_VERSION}
        /opt/local/include # DarwinPorts
-       /opt/local/include/cegui-0
+       /opt/local/include/cegui-${FIND_CEGUI_VERSION}
        /opt/csw/include # Blastwave
-       /opt/csw/include/cegui-0
+       /opt/csw/include/cegui-${FIND_CEGUI_VERSION}
        /opt/include
-       /opt/include/cegui-0
+       /opt/include/cegui-${FIND_CEGUI_VERSION}
        /usr/freeware/include
-       /usr/freeware/include/cegui-0
+       /usr/freeware/include/cegui-${FIND_CEGUI_VERSION}
     )
 
     #helper
@@ -124,8 +128,8 @@
     #********** Then we locate the Librarys ********** ********** ********** **********
     SET( CEGUI_LIBRARY_SEARCH_DIR
        ${CEGUIDIR}/lib
-            ${CEGUI_ROOT}/lib
-            ${CEGUIDIR}
+            "${CEGUI_ROOT}/lib"
+            "${CEGUIDIR}"
             ~/Library/Frameworks
             /Library/Frameworks
             /usr/local/lib
@@ -150,18 +154,18 @@
     ENDMACRO()
 
     IF(CMAKE_BUILD_TYPE MATCHES "^([Dd][Ee][Bb][Uu][Gg])$")
-        FIND_LIBRARY_HELPER( CEGUIBase-0_d CEGUI_LIBRARY_SEARCH_DIR )
+        FIND_LIBRARY_HELPER( CEGUIBase-${FIND_CEGUI_VERSION}_d CEGUI_LIBRARY_SEARCH_DIR )
     ELSE()
-        FIND_LIBRARY_HELPER( CEGUIBase-0 CEGUI_LIBRARY_SEARCH_DIR )
+        FIND_LIBRARY_HELPER( CEGUIBase-${FIND_CEGUI_VERSION} CEGUI_LIBRARY_SEARCH_DIR )
     ENDIF()
     
     
     FOREACH(COMPONENT ${CEGUI_FIND_COMPONENTS})
        HELPER_GET_CASE_FROM_LIST( ${COMPONENT} RENDER_NAME COMPONENT_CASE)
        IF(CMAKE_BUILD_TYPE MATCHES "^([Dd][Ee][Bb][Uu][Gg])$")
-           FIND_LIBRARY_HELPER( CEGUI${COMPONENT_CASE}Renderer-0_d "CEGUI_LIBRARY_SEARCH_DIR" CEGUI)
+           FIND_LIBRARY_HELPER( CEGUI${COMPONENT_CASE}Renderer-${FIND_CEGUI_VERSION}_d "CEGUI_LIBRARY_SEARCH_DIR" CEGUI)
        ELSE()
-           FIND_LIBRARY_HELPER( CEGUI${COMPONENT_CASE}Renderer-0 "CEGUI_LIBRARY_SEARCH_DIR" CEGUI)
+           FIND_LIBRARY_HELPER( CEGUI${COMPONENT_CASE}Renderer-${FIND_CEGUI_VERSION} "CEGUI_LIBRARY_SEARCH_DIR" CEGUI)
        ENDIF()
        
     ENDFOREACH(COMPONENT)
