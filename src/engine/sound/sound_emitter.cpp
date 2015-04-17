@@ -38,7 +38,8 @@ struct SoundEmitter::Implementation : public NodeAttachable{
         m_audioObject->move(cAudio::cVector3(pos.x, pos.y, pos.z));
     }
 
-    void play(){
+    void
+    play(){
 
         if(m_play3D){
 
@@ -69,7 +70,10 @@ struct SoundEmitter::Implementation : public NodeAttachable{
     cAudio::IAudioSource* m_audioObject;
 };
 
-SoundEmitter::SoundEmitter(cAudio::IAudioSource* audioObject) : m_impl(new Implementation(audioObject)){
+SoundEmitter::SoundEmitter(
+    cAudio::IAudioSource* audioObject
+) : m_impl(new Implementation(audioObject))
+{
 
 }
 
@@ -80,14 +84,18 @@ SoundEmitter::~SoundEmitter(){
 
 
 void
-SoundEmitter::loop(bool actuallyLoop){
+SoundEmitter::loop(
+    bool actuallyLoop
+) {
 
     m_impl->m_autoRepeat = actuallyLoop;
     m_impl->m_audioObject->loop(actuallyLoop);
 }
 
 void
-SoundEmitter::play(bool forceRestart /*= false*/){
+SoundEmitter::play(
+    bool forceRestart /*= false*/
+) {
 
     if(m_impl->m_audioObject->isPlaying()){
 
@@ -119,7 +127,9 @@ SoundEmitter::stop(){
 }
 
 void
-SoundEmitter::disable3D(bool disable){
+SoundEmitter::disable3D(
+    bool disable
+) {
 
     m_impl->m_play3D = !disable;
 
@@ -130,25 +140,34 @@ SoundEmitter::disable3D(bool disable){
 }
 
 void
-SoundEmitter::setVolume(float volume){
+SoundEmitter::setVolume(
+    float volume
+) {
 
     m_impl->m_audioObject->setVolume(volume);
 }
 
 void
-SoundEmitter::setRolloffFactor(float rolloff){
+SoundEmitter::setRolloffFactor(
+    float rolloff
+) {
 
     m_impl->m_audioObject->setRolloffFactor(rolloff);
 }
 
 void
-SoundEmitter::setMaxDistance(float distance){
+SoundEmitter::setMaxDistance(
+    float distance
+) {
 
     m_impl->m_audioObject->setMaxAttenuationDistance(distance);
 }
 
 void
-SoundEmitter::startFade(bool fadeIn, float time){
+SoundEmitter::startFade(
+    bool fadeIn,
+    float time
+) {
 
     // TODO: change the audio volume over time
     (void)fadeIn;

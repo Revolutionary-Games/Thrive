@@ -17,31 +17,31 @@ struct SoundManager::Implementation{
     {
 
         // TODO: allow selecting a specific audio device
-
+        
         m_audioManager = cAudio::createAudioManager(false);
-
+        
         assert(m_audioManager && "Failed to create audio manager");
 
-		cAudio::IAudioDeviceList* devices = cAudio::createAudioDeviceList();
-
+        cAudio::IAudioDeviceList* devices = cAudio::createAudioDeviceList();
+        
         // GCC complains about unused variables if devices are not used
 		//auto deviceCount = devices->getDeviceCount();
         //assert(deviceCount >= 1 && "No audio devices found");
         
-		auto defaultDeviceName = devices->getDefaultDeviceName();
-
+        auto defaultDeviceName = devices->getDefaultDeviceName();
+        
         const char* selectedDevice = device.empty() ? defaultDeviceName.c_str() : device.c_str();
         
         const bool succeeded = m_audioManager->initialize(selectedDevice);
-
+        
         CAUDIO_DELETE devices;
 		devices = 0;
-
+        
         if(!succeeded)
             assert(false && "Failed to initialize openAL (cAudio)");   
         
         m_listener = std::move(std::unique_ptr<SoundListener>(new SoundListener(m_audioManager->getListener())));
-
+        
         m_initialized = true;
     }
 
