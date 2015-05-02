@@ -25,9 +25,10 @@ function Organelle:__init()
         r = 0
     }
     self._colour = ColourValue(1,1,1,1)
-    self._internalEdgeColour = ColourValue(0.5, 0.5, 0.5, 1)
-    self._externalEdgeColour = ColourValue(0, 0, 0, 1)
+    self._internalEdgeColour = ColourValue.Grey
+    self._externalEdgeColour = ColourValue.Black
     self._needsColourUpdate = false
+    self.name = "<nameless>"
 end
 
 
@@ -96,7 +97,9 @@ function Organelle:load(storage)
     self.position.r = storage:get("r", 0)
     self._colour = storage:get("colour", ColourValue.White)
     self._internalEdgeColour = storage:get("internalEdgeColour", ColourValue.Grey)
-    self._externalEdgeColour = storage:get("externalEdgeColour", ColourValue.Black)
+    --Serializing these causes some minor issues and doesn't serve a purpose anyway
+    --self._externalEdgeColour = storage:get("externalEdgeColour", ColourValue.Black)
+    self.name = storage:get("name", "<nameless>")
 end
 
 
@@ -181,11 +184,13 @@ function Organelle:storage()
         hexes:append(hexStorage)
     end
     storage:set("hexes", hexes)
+    storage:set("name", self.name)
     storage:set("q", self.position.q)
     storage:set("r", self.position.r)
     storage:set("colour", self._colour)
     storage:set("internalEdgeColour", self._internalEdgeColour)
-    storage:set("externalEdgeColour", self._externalEdgeColour)
+    --Serializing these causes some minor issues and doesn't serve a purpose anyway
+    --storage:set("externalEdgeColour", self._externalEdgeColour)
     return storage
 end
 
@@ -242,6 +247,10 @@ function Organelle:_updateHexColours()
     self._needsColourUpdate = false
 end
 
+function Organelle:setExternalEdgeColour(colour)
+    self._externalEdgeColour = colour
+    self._needsColourUpdate = true
+end
 
 -- Queues a colour update for this organelle
 --
@@ -249,6 +258,10 @@ end
 -- in particular the Ogre scene nodes may not have been created yet.
 function Organelle:updateHexColours()
     self._needsColourUpdate = true
+end
+
+function Organelle:removePhysics()
+    self.collisionShape:clear()
 end
 
 -- The basic organelle maker
@@ -260,6 +273,7 @@ function OrganelleFactory.makeOrganelle(data)
     end
     local success, organelle = pcall(make_organelle)
     if success then
+        organelle.name = data.name
         return organelle
     else
         if data.name == "" or data.name == nil then data.name = "<nameless>" end

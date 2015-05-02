@@ -20,7 +20,9 @@ function MainMenuHudSystem:init(gameState)
 end
 
 function MainMenuHudSystem:update(renderTime, logicTime)
-
+    if keyCombo(kmp.screenshot) then
+        Engine:screenShot("screenshot.png")
+    end
 end
 
 function MainMenuHudSystem:activate()
