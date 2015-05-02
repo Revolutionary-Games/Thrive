@@ -8,6 +8,8 @@ function HudSystem:__init()
 	self.hitpointsCountLabel = nil
 	self.hitpointsBar = nil
 	self.compoundListItems = {}
+    self.rootGuiWindow = nil
+    self.populationNumberLabel = nil
     self.rootGUIWindow = nil
 end
 
@@ -63,7 +65,8 @@ function HudSystem:update(renderTime)
 
     self.hitpointsBar:progressbarSetProgress(playerMicrobe.microbe.hitpoints/playerMicrobe.microbe.maxHitpoints)
     self.hitpointsCountLabel:setText("".. math.floor(playerMicrobe.microbe.hitpoints))
-    
+    local playerSpecies = playerMicrobe:getSpeciesComponent()
+    --TODO display population in home patch here
     for compoundID in CompoundRegistry.getCompoundList() do
         local compoundsString = string.format("%s - %d", CompoundRegistry.getCompoundDisplayName(compoundID), playerMicrobe:getCompoundAmount(compoundID))
         if self.compoundListItems[compoundID] == nil then
@@ -74,29 +77,35 @@ function HudSystem:update(renderTime)
             self.compoundListItems[compoundID]:setText(compoundsString)
         end
     end
-    self.compoundListBox:listboxHandleUpdatedItemData() --]]
+    self.compoundListBox:listboxHandleUpdatedItemData()
     
-    if  Engine.keyboard:wasKeyPressed(Keyboard.KC_ESCAPE) then
+    if keyCombo(kmp.togglemenu) then
         self:menuButtonClicked()
-    elseif  Engine.keyboard:wasKeyPressed(Keyboard.KC_F2) then
+    elseif keyCombo(kmp.gotoeditor) then
         self:editorButtonClicked()
-    elseif  Engine.keyboard:wasKeyPressed(Keyboard.KC_E) then
+    elseif keyCombo(kmp.shootoxytoxy) then
         playerMicrobe:emitAgent(CompoundRegistry.getCompoundId("oxytoxy"), 3)
-    elseif  Engine.keyboard:wasKeyPressed(Keyboard.KC_P) then
+    elseif keyCombo(kmp.reproduce) then
         playerMicrobe:reproduce()
     end
     local direction = Vector3(0, 0, 0)
-    if (Engine.keyboard:wasKeyPressed(Keyboard.KC_W)) then
+    if keyCombo(kmp.forward) then
         playerMicrobe.soundSource:playSound("microbe-movement-2")
     end
-    if (Engine.keyboard:wasKeyPressed(Keyboard.KC_S)) then
+    if keyCombo(kmp.backward) then
         playerMicrobe.soundSource:playSound("microbe-movement-2")
     end
-    if (Engine.keyboard:wasKeyPressed(Keyboard.KC_A)) then
+    if keyCombo(kmp.leftward) then
         playerMicrobe.soundSource:playSound("microbe-movement-1")
     end
-    if (Engine.keyboard:wasKeyPressed(Keyboard.KC_D)) then
+    if keyCombo(kmp.screenshot) then
+        Engine:screenShot("screenshot.png")
+    end
+    if keyCombo(kmp.rightward) then
         playerMicrobe.soundSource:playSound("microbe-movement-1")
+    end
+    if (Engine.keyboard:wasKeyPressed(Keyboard.KC_G)) then
+        playerMicrobe:toggleEngulfMode()
     end
     
     offset = Entity(CAMERA_NAME):getComponent(OgreCameraComponent.TYPE_ID).properties.offset

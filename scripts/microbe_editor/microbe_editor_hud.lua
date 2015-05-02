@@ -34,20 +34,20 @@ function MicrobeEditorHudSystem:init(gameState)
     -- self.mpProgressBar = root:getChild("BottomSection"):getChild("MutationPoints"):getChild("MPBar")
     self.organelleScrollPane = root:getChild("scrollablepane");
     local nucleusButton = root:getChild("NewMicrobe")
-    local flageliumButton = root:getChild("scrollablepane"):getChild("AddFlagellum")
+    local flagellumButton = root:getChild("scrollablepane"):getChild("AddFlagellum")
     local mitochondriaButton = root:getChild("scrollablepane"):getChild("AddMitochondria")
     local vacuoleButton = root:getChild("scrollablepane"):getChild("AddVacuole")
     local toxinButton = root:getChild("scrollablepane"):getChild("AddToxinVacuole")
     local chloroplastButton = root:getChild("scrollablepane"):getChild("AddChloroplast")
     self.organelleButtons["nucleus"] = nucleusButton
-    self.organelleButtons["flagelium"] = flageliumButton
+    self.organelleButtons["flagellum"] = flagellumButton
     self.organelleButtons["mitochondrion"] = mitochondriaButton
     self.organelleButtons["chloroplast"] = chloroplastButton
     self.organelleButtons["vacuole"] = vacuoleButton
     self.organelleButtons["Toxin"] = toxinButton
     self.activeButton = nil
     nucleusButton:registerEventHandler("Clicked", function() self:nucleusClicked() end)
-    flageliumButton:registerEventHandler("Clicked", function() self:flageliumClicked() end)
+    flagellumButton:registerEventHandler("Clicked", function() self:flagellumClicked() end)
     mitochondriaButton:registerEventHandler("Clicked", function() self:mitochondriaClicked() end)
     chloroplastButton:registerEventHandler("Clicked", function() self:chloroplastClicked() end)
     vacuoleButton:registerEventHandler("Clicked", function() self:vacuoleClicked() end)
@@ -115,41 +115,37 @@ function MicrobeEditorHudSystem:update(renderTime, logicTime)
         self:removeClicked()
         self.editor:performLocationAction()
     end	            
-    if Engine.keyboard:wasKeyPressed(Keyboard.KC_C) then
+    if keyCombo(kmp.newmicrobe) then
         -- These global event handlers are defined in microbe_editor_hud.lua
         self:nucleusClicked()
-    elseif Engine.keyboard:wasKeyPressed(Keyboard.KC_R) then
-        if Engine.keyboard:isKeyDown(Keyboard.KC_LCONTROL) then
-            self.editor:redo()
-        else
-            self:removeClicked()
-            self.editor:performLocationAction()
-        end
-    elseif Engine.keyboard:wasKeyPressed(Keyboard.KC_U) then
-        if Engine.keyboard:isKeyDown(Keyboard.KC_LCONTROL) then
-            self.editor:undo()
-        end
-    elseif Engine.keyboard:wasKeyPressed(Keyboard.KC_S) then
+    elseif keyCombo(kmp.redo) then
+        self.editor:redo()
+    elseif keyCombo(kmp.remove) then
+        self:removeClicked()
+        self.editor:performLocationAction()
+    elseif keyCombo(kmp.undo) then
+        self.editor:undo()
+    elseif keyCombo(kmp.vacuole) then
         self:vacuoleClicked()
         self.editor:performLocationAction()
-    elseif Engine.keyboard:wasKeyPressed(Keyboard.KC_T) then
+    elseif keyCombo(kmp.oxytoxyvacuole) then
         if not Engine:playerData():lockedMap():isLocked("Toxin") then
             self:toxinClicked()
             self.editor:performLocationAction()
         end
-    elseif Engine.keyboard:wasKeyPressed(Keyboard.KC_F) then
-        self:flageliumClicked()
+    elseif keyCombo(kmp.flagellum) then
+        self:flagellumClicked()
         self.editor:performLocationAction()
-    elseif  Engine.keyboard:wasKeyPressed(Keyboard.KC_M) then
+    elseif keyCombo(kmp.mitochondrion) then
         self:mitochondriaClicked()  
         self.editor:performLocationAction()
     --elseif Engine.keyboard:wasKeyPressed(Keyboard.KC_A) and self.editor.currentMicrobe ~= nil then
     --    self:aminoSynthesizerClicked()
     --    self.editor:performLocationAction()
-    elseif Engine.keyboard:wasKeyPressed(Keyboard.KC_P) then
+    elseif keyCombo(kmp.chloroplast) then
        self:chloroplastClicked()
        self.editor:performLocationAction()
-    elseif Engine.keyboard:wasKeyPressed(Keyboard.KC_G) then
+    elseif keyCombo(kmp.togglegrid) then
         if self.editor.gridVisible then
             self.editor.gridSceneNode.visible = false;
             self.editor.gridVisible = false
@@ -157,10 +153,13 @@ function MicrobeEditorHudSystem:update(renderTime, logicTime)
             self.editor.gridSceneNode.visible = true;
             self.editor.gridVisible = true
         end
-    elseif Engine.keyboard:wasKeyPressed(Keyboard.KC_F2) then
+    elseif keyCombo(kmp.gotostage) then
         playClicked()
-    elseif Engine.keyboard:wasKeyPressed(Keyboard.KC_F12) then
+    elseif keyCombo(kmp.rename) then
         self:updateMicrobeName()
+    end
+    if keyCombo(kmp.screenshot) then
+        Engine:screenShot("screenshot.png")
     end
 
     if Engine.keyboard:isKeyDown(Keyboard.KC_LSHIFT) then 
@@ -245,13 +244,13 @@ function MicrobeEditorHudSystem:nucleusClicked()
     self:setActiveAction("nucleus")
 end
 
-function MicrobeEditorHudSystem:flageliumClicked()
+function MicrobeEditorHudSystem:flagellumClicked()
     if self.activeButton ~= nil then
         self.activeButton:enable()
     end
-    self.activeButton = self.organelleButtons["flagelium"]
+    self.activeButton = self.organelleButtons["flagellum"]
     self.activeButton:disable()
-    self:setActiveAction("flagelium")
+    self:setActiveAction("flagellum")
 end
 
 function MicrobeEditorHudSystem:mitochondriaClicked()
@@ -296,7 +295,7 @@ function MicrobeEditorHudSystem:toxinClicked()
     end
     self.activeButton = self.organelleButtons["Toxin"]
     self.activeButton:disable()
-    self:setActiveAction("toxin")
+    self:setActiveAction("oxytoxy")
 end
 
 
