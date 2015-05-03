@@ -40,13 +40,13 @@ function oxytoxyEffect(entityId, potency)
 end
 
 local function setupCompounds()
-    CompoundRegistry.loadFromXML("../definitions/compounds.xml")
+    CompoundRegistry.loadFromXML("../scripts/definitions/compounds.xml")
 end
 
 --  This isn't a finished solution. Optimally the process class would be moved to CPP and loaded there entirely.
 global_processMap = {}
 local function setupProcesses()
-    BioProcessRegistry.loadFromXML("../definitions/processes.xml")
+    BioProcessRegistry.loadFromXML("../scripts/definitions/processes.xml")
     for processId in BioProcessRegistry.getList() do
         local inputCompounds = {}
         local outputCompounds = {}
