@@ -1,0 +1,53 @@
+<?xml version="1.0" ?>
+<Processes>
+	<Process name="Respiration" speedFactor="0.1" energyCost="0">
+        <Inputs>
+            <Input compound="glucose" amount="1"/>
+            <Input compound="oxygen" amount="6"/>
+        </Inputs>
+        <Outputs>
+            <Output compound="co2" amount="6"/>
+            <Output compound="atp" amount="36"/>
+        </Outputs>
+	</Process>
+    <Process name="ReproductaseSynthesis" speedFactor="0.5" energyCost="6">
+        <Inputs>
+            <Input compound="aminoacids" amount="6"/>
+            <Input compound="glucose" amount="6"/>
+            <Input compound="oxygen" amount="6"/>
+            <Input compound="atp" amount="6"/>
+        </Inputs>
+        <Outputs>
+            <Output compound="reproductase" amount="5"/>
+        </Outputs>
+	</Process>
+    <Process name="AminoAcidSynthesis" speedFactor="1.0" energyCost="0">
+        <Inputs>
+            <Input compound="glucose" amount="1"/>
+            <Input compound="ammonia" amount="1"/>
+        </Inputs>
+        <Outputs>
+            <Output compound="co2" amount="1"/>
+            <Output compound="atp" amount="2"/>
+            <Output compound="aminoacids" amount="1"/>
+        </Outputs>
+	</Process>
+    <Process name="OxyToxySynthesis" speedFactor="0.1" energyCost="1">
+        <Inputs>
+            <Input compound="oxygen" amount="3"/>
+        </Inputs>
+        <Outputs>
+            <Output compound="oxytoxy" amount="1"/>
+        </Outputs>
+	</Process>
+    <Process name="Photosynthesis" speedFactor="0.03" energyCost="0">
+	    <Inputs>
+            <Input compound="co2" amount="6"/>
+        </Inputs>
+        <Outputs>
+            <Output compound="glucose" amount="1"/>
+            <Output compound="oxygen" amount="6"/>
+        </Outputs>
+    </Process>
+</Processes>
+
