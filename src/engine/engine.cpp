@@ -346,7 +346,10 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
         CEGUI::Window* myRoot = wmgr.createWindow( "DefaultWindow", "root" );
 #ifndef CEGUI_USE_NEW
         myRoot->setProperty("MousePassThroughEnabled", "True");
+#else
+        myRoot->setProperty("CursorPassThroughEnabled", "True");
 #endif //CEGUI_USE_NEW
+        
         CEGUI::System::getSingleton().getDefaultGUIContext().setRootWindow( myRoot );
         CEGUI::SchemeManager::getSingleton().createFromFile("Thrive.scheme");
 #ifdef CEGUI_USE_NEW
@@ -360,18 +363,25 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
         // Using the handling on keydown mode to detect when inputs are consumed
         m_aggregator->initialise(false);
 
+        CEGUI::System::getSingleton().getDefaultGUIContext().setDefaultTooltipType(
+            reinterpret_cast<const CEGUI::utf8*>("Thrive/Tooltip") );
+
         // For demos
         // This file is renamed in newer CEGUI versions
         CEGUI::ImageManager::getSingleton().loadImageset("GameMenuSample.imageset");
         CEGUI::SchemeManager::getSingleton().createFromFile("GameMenuSample.scheme");
 #else
-        CEGUI::System::getSingleton().getDefaultGUIContext().getMouseCursor().setDefaultImage("ThriveGeneric/MouseArrow");
-        
+        CEGUI::System::getSingleton().getDefaultGUIContext().getMouseCursor().setDefaultImage(
+            "ThriveGeneric/MouseArrow");
 
         CEGUI::SchemeManager::getSingleton().createFromFile("GameMenu.scheme");
 
         CEGUI::ImageManager::getSingleton().loadImageset("GameMenu.imageset");
         CEGUI::ImageManager::getSingleton().loadImageset("HUDDemo.imageset");
+
+        CEGUI::System::getSingleton().getDefaultGUIContext().setDefaultTooltipType( reinterpret_cast<const CEGUI::utf8*>("Thrive/Tooltip") );
+     //   CEGUI::System::getSingleton().getDefaultGUIContext().setDefaultTooltipObject(new CEGUI::Tooltip("Thrive/Tooltip", "mytooltip"));
+
 
 #endif //CEGUI_USE_NEW
 
@@ -388,6 +398,8 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
         CEGUI::SchemeManager::getSingleton().createFromFile("VanillaCommonDialogs.scheme");
 
         CEGUI::ImageManager::getSingleton().loadImageset("DriveIcons.imageset");
+        CEGUI::ImageManager::getSingleton().loadImageset("GameMenu.imageset");
+        CEGUI::ImageManager::getSingleton().loadImageset("HUDDemo.imageset");
 
         m_consoleGUIWindow = new CEGUIWindow("Console");
     }
@@ -972,7 +984,7 @@ Engine::update(
     luabind::call_member<void>(m_impl->m_console, "update");
 
     CEGUI::System::getSingleton().injectTimePulse(milliseconds/1000.0f);
-
+    CEGUI::System::getSingleton().getDefaultGUIContext().injectTimePulse(milliseconds/1000.0f);
     // Update any timed shutdown systems
     auto itr = m_impl->m_prevShutdownSystems->begin();
     while (itr != m_impl->m_prevShutdownSystems->end()) {
