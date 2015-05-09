@@ -509,7 +509,7 @@ CEGUIWindow::registerEventHandler(
 ) const {
 
     // Lambda must return something to avoid an template error.
-    auto callbackLambda = [callback](const CEGUI::EventArgs& args) -> int
+    auto callbackLambda = [callback](const CEGUI::EventArgs& args) -> bool
         {
             luabind::call_function<void>(callback, CEGUIWindow(static_cast<const CEGUI::WindowEventArgs&>(args).window, false));
             return 0;
@@ -531,7 +531,7 @@ CEGUIWindow::registerKeyEventHandler(
 ) const {
 #ifdef CEGUI_USE_NEW
     // Event doesn't exist anymore //
-    auto callbackLambda = [callback](const CEGUI::EventArgs& args) -> int
+    auto callbackLambda = [callback](const CEGUI::EventArgs& args) -> bool
         {
             luabind::call_function<void>(callback, CEGUIWindow(static_cast<
                     const CEGUI::WindowEventArgs&>(args).window, false),

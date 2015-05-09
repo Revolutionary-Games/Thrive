@@ -398,7 +398,6 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
         CEGUI::SchemeManager::getSingleton().createFromFile("VanillaCommonDialogs.scheme");
 
         CEGUI::ImageManager::getSingleton().loadImageset("DriveIcons.imageset");
-        CEGUI::ImageManager::getSingleton().loadImageset("GameMenu.imageset");
         CEGUI::ImageManager::getSingleton().loadImageset("HUDDemo.imageset");
 
         m_consoleGUIWindow = new CEGUIWindow("Console");
