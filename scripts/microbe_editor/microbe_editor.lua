@@ -14,7 +14,6 @@ function MicrobeEditor:__init(hudSystem)
     self.activeActionName = nil
     self.hudSystem = hudSystem
     self.nextMicrobeEntity = nil
-    self.lockedMap = nil
     self.gridSceneNode = nil
     self.gridVisible = true
     self.mutationPoints = 100
@@ -42,7 +41,6 @@ end
 function MicrobeEditor:activate()
     if Engine:playerData():activeCreatureGamestate():name() == GameState.MICROBE:name() then 
         microbeStageMicrobe = Entity(Engine:playerData():activeCreature(), GameState.MICROBE)
-        self.lockedMap = Engine:playerData():lockedMap()
         self.nextMicrobeEntity = microbeStageMicrobe:transfer(GameState.MICROBE_EDITOR)
         self.nextMicrobeEntity:stealName("working_microbe")
         Engine:playerData():setBool("edited_microbe", true)
