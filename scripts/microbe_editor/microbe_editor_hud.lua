@@ -76,6 +76,7 @@ function MicrobeEditorHudSystem:activate()
     global_activeMicrobeEditorHudSystem = self -- Global reference for event handlers
     self.editor:activate()
     for typeName,button in pairs(global_activeMicrobeEditorHudSystem.organelleButtons) do
+        print(typeName)
         if Engine:playerData():lockedMap():isLocked(typeName) then
             button:disable()
         else
@@ -143,8 +144,10 @@ function MicrobeEditorHudSystem:update(renderTime, logicTime)
     --    self:aminoSynthesizerClicked()
     --    self.editor:performLocationAction()
     elseif keyCombo(kmp.chloroplast) then
-       self:chloroplastClicked()
-       self.editor:performLocationAction()
+        if not Engine:playerData():lockedMap():isLocked("Chloroplast") then
+            self:chloroplastClicked()
+            self.editor:performLocationAction()
+        end
     elseif keyCombo(kmp.togglegrid) then
         if self.editor.gridVisible then
             self.editor.gridSceneNode.visible = false;

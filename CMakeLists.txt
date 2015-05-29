@@ -384,13 +384,7 @@ install(DIRECTORY
     DESTINATION ./
     CONFIGURATIONS Release  Debug
 )
-install(DIRECTORY
-   " ${ASSET_DIRECTORY}/gui/animations"
-    DESTINATION ./gui/
-    CONFIGURATIONS Release  Debug
-    FILES_MATCHING
-        PATTERN "*.anims"
-)
+
 install(DIRECTORY
     "${ASSET_DIRECTORY}/gui/imagesets"
     DESTINATION ./gui/
@@ -400,6 +394,15 @@ install(DIRECTORY
         PATTERN "*.jpg"
         PATTERN "*.png"
 )
+
+install(DIRECTORY
+    "${ASSET_DIRECTORY}/gui/animations"
+    DESTINATION ./gui/
+    CONFIGURATIONS Release  Debug
+    FILES_MATCHING
+        PATTERN "*.anims"
+)
+
 install(DIRECTORY
     "${ASSET_DIRECTORY}/gui/layouts"
     DESTINATION ./gui/
