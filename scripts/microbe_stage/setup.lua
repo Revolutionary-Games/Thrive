@@ -213,6 +213,19 @@ local function createSpawnSystem()
         powerupEntity:addComponent(powerupComponent)
         return powerupEntity
     end
+    local ChloroplastOrganelleSpawnFunction = function(pos) 
+        powerupEntity = Entity()
+        setSpawnablePhysics(powerupEntity, pos, "AgentVacuole.mesh", 0.9, SphereShape(HEX_SIZE))
+
+        local reactionHandler = CollisionComponent()
+        reactionHandler:addCollisionGroup("powerup")
+        powerupEntity:addComponent(reactionHandler)
+        
+        local powerupComponent = PowerupComponent()
+        powerupComponent:setEffect(unlockChloroplast)
+        powerupEntity:addComponent(powerupComponent)
+        return powerupEntity
+    end
 
     local microbeDefault = function(pos)
         return microbeSpawnFunctionGeneric(pos, "Default", true, nil)
@@ -246,6 +259,8 @@ local function createSpawnSystem()
         return microbeSpawnFunctionGeneric(pos, "Glutony", true, nil)
     end
 
+   
+    
     local toxinOrganelleSpawnFunction = function(pos) 
         powerupEntity = Entity()
         psceneNode = OgreSceneNodeComponent()
@@ -290,11 +305,12 @@ local function createSpawnSystem()
     spawnSystem:addSpawnType(microbeTeeny, 1/6000, 40)
     spawnSystem:addSpawnType(microbePlankton, 1/10000, 40)
     spawnSystem:addSpawnType(microbePoisonous, 1/32000, 40)
-   spawnSystem:addSpawnType(microbeToxinPredator, 1/7000, 40)
+    spawnSystem:addSpawnType(microbeToxinPredator, 1/7000, 40)
     spawnSystem:addSpawnType(microbeNoper, 1/6000, 40)
     spawnSystem:addSpawnType(microbeAlgae, 1/3000, 40)
     spawnSystem:addSpawnType(microbeGlutony, 1/18000, 40)
     spawnSystem:addSpawnType(toxinOrganelleSpawnFunction, 1/17000, 30)
+    spawnSystem:addSpawnType(ChloroplastOrganelleSpawnFunction, 1/18000, 30)
     return spawnSystem
 end
 
@@ -338,12 +354,22 @@ function unlockToxin(entityId)
     end
     return true
 end
+function unlockChloroplast(entityId)
+    if Engine:playerData():lockedMap():isLocked("chloroplast") then
+        showMessage("Chloroplast Unlocked!")
+        Engine:playerData():lockedMap():unlock("chloroplast")
+        local guiSoundEntity = Entity("gui_sounds")
+        guiSoundEntity:getComponent(SoundSourceComponent.TYPE_ID):playSound("microbe-pickup-organelle")
+    end
+    return true
+end
 
 local function setupPlayer()
     SpeciesRegistry.loadFromXML("../definitions/microbes.xml")
     microbe = microbeSpawnFunctionGeneric(nil, "Default", false, PLAYER_NAME)
     microbe.collisionHandler:addCollisionGroup("powerupable")
     Engine:playerData():lockedMap():addLock("Toxin")
+    Engine:playerData():lockedMap():addLock("chloroplast")
     Engine:playerData():setActiveCreature(microbe.entity.id, GameState.MICROBE)
     speciesEntity = Entity("defaultMicrobeSpecies")
     species = SpeciesComponent("defaultMicrobeSpecies")
