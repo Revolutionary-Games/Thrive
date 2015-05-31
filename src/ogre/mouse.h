@@ -16,6 +16,10 @@ namespace OIS {
 class InputManager;
 }
 
+namespace CEGUI {
+    class InputAggregator;
+}
+
 namespace thrive {
 
 /**
@@ -54,10 +58,18 @@ public:
     * @param inputManager
     *   The input manager to use
     */
+#ifdef CEGUI_USE_NEW
+    void
+    init(
+        OIS::InputManager* inputManager,
+        CEGUI::InputAggregator* aggregator
+    );
+#else
     void
     init(
         OIS::InputManager* inputManager
     );
+#endif //CEGUI_USE_NEW
 
     /**
     * @brief Checks whether a mouse button is pressed

@@ -1,12 +1,24 @@
 #include "gui/CEGUIWindow.h"
 
-#include "scripting/luabind.h"
-#include "game.h"
 #include "engine/engine.h"
+#include "game.h"
 #include "ogre/mouse.h"
+#include "script_wrappers.h"
+#include "scripting/luabind.h"
+
 #include <OgreVector3.h>
 #include <luabind/object.hpp>
 #include <functional>
+
+#include <CEGUI/Element.h>
+#include <CEGUI/InputEvent.h>
+
+#ifdef CEGUI_USE_NEW
+#include <CEGUI/widgets/ListWidget.h>
+#include <CEGUI/views/ListView.h>
+#endif //CEGUI_USE_NEW
+
+#include "cegui_types.h"
 
 using namespace thrive;
 
@@ -14,10 +26,31 @@ static int SCROLLABLE_PANE_VERTICAL_PADDING = 5;
 
 //Static variables used for moving gui
 static bool static_guiMode = false;
-static CEGUI::Window* static_activeMoveWindow = nullptr;
 static CEGUI::Event::Connection static_movingEvent;
-static CEGUI::Vector2f static_mousePosInWindow;
+static CEGUIVector2 static_mousePosInWindow;
 
+#ifdef CEGUI_USE_NEW
+//Event handlers
+static bool
+handleWindowMove(
+    const CEGUI::EventArgs& args
+) {
+    using namespace CEGUI;
+    if (static_guiMode) {
+
+        auto eventArgs = static_cast<const WindowEventArgs&>(args);
+        
+        eventArgs.window->getParent();
+        
+        // Still no idea what's going on
+        // Unless this is a really awkward way of allowing windows to move under some conditions
+        return true;
+    }
+    return false;
+}
+
+#else
+static CEGUI::Window* static_activeMoveWindow = nullptr;
 
 static bool onWindowMove(
     const CEGUI::EventArgs& args
@@ -67,7 +100,7 @@ handleWindowMove(
     }
     return false;
 }
-
+#endif //CEGUI_USE_NEW
 
 //Static
 void
@@ -81,7 +114,12 @@ CEGUIWindow::setGuiMoveMode(
 CEGUIWindow
 CEGUIWindow::getWindowUnderMouse()
 {
+#ifdef CEGUI_USE_NEW
+    return CEGUIWindow(CEGUI::System::getSingleton().getDefaultGUIContext().
+        getWindowContainingCursor());
+#else
     return CEGUIWindow(CEGUI::System::getSingleton().getDefaultGUIContext().getWindowContainingMouse());
+#endif //CEGUI_USE_NEW
 }
 
 //Static
@@ -174,6 +212,16 @@ CEGUIWindow::luaBindings() {
         .def("setSizeRel", &CEGUIWindow::setSizeRel)
         .def("getName", &CEGUIWindow::getName)
         .def("playAnimation", &CEGUIWindow::playAnimation)
+#ifdef CEGUI_USE_NEW
+        .def("listWidgetAddItem", &CEGUIWindow::listWidgetAddStandardItem)
+        .def("listWidgetAddItem", &CEGUIWindow::listWidgetAddTextItem)
+        .def("listWidgetAddItem", &CEGUIWindow::listWidgetAddItem)
+        .def("listWidgetResetList", &CEGUIWindow::listWidgetResetList)
+        .def("listWidgetUpdateItem", &CEGUIWindow::listWidgetUpdateItem)
+        .def("listWidgetGetFirstSelectedID", &CEGUIWindow::listWidgetGetFirstSelectedID)
+        .def("listWidgetGetFirstSelectedItemText",
+            &CEGUIWindow::listWidgetGetFirstSelectedItemText)
+#else
         .def("listboxAddItem", &CEGUIWindow::listboxAddItem)
         .def("listboxResetList", &CEGUIWindow::listboxResetList)
         .def("listboxHandleUpdatedItemData", &CEGUIWindow::listboxHandleUpdatedItemData)
@@ -181,13 +229,14 @@ CEGUIWindow::luaBindings() {
         .def("itemListboxResetList", &CEGUIWindow::itemListboxResetList)
         .def("itemListboxHandleUpdatedItemData", &CEGUIWindow::itemListboxHandleUpdatedItemData)
         .def("itemListboxGetLastSelectedItem", &CEGUIWindow::itemListboxGetLastSelectedItem)
+#endif //CEGUI_USE_NEW
         .def("progressbarSetProgress", &CEGUIWindow::progressbarSetProgress)
         .def("scrollingpaneAddIcon", &CEGUIWindow::scrollingpaneAddIcon)
         .def("scrollingpaneGetVerticalPosition", &CEGUIWindow::scrollingpaneGetVerticalPosition)
         .def("scrollingpaneSetVerticalPosition", &CEGUIWindow::scrollingpaneSetVerticalPosition)
         .def("registerKeyEventHandler",
-             static_cast<void (CEGUIWindow::*)(const luabind::object&) const>(&CEGUIWindow::registerKeyEventHandler)
-         )
+            static_cast<void (CEGUIWindow::*)(const luabind::object&) const>(&CEGUIWindow::registerKeyEventHandler)
+        )
         .scope
         [
             def("setGuiMoveMode", &CEGUIWindow::setGuiMoveMode),
@@ -256,14 +305,119 @@ CEGUIWindow::setImage(
     m_window->setProperty("Image", image);
 }
 
+#ifdef CEGUI_USE_NEW
+void
+CEGUIWindow::listWidgetAddStandardItem(
+     StandardItemWrapper* item
+) {
+
+    auto list = dynamic_cast<CEGUI::ListWidget*>(m_window);
+
+    if(!list)
+        throw std::bad_cast();
+
+    auto actualItem = item->getItem();
+    
+    list->addItem(actualItem);
+
+    item->markAttached();
+}
+
+void
+CEGUIWindow::listWidgetAddItem(
+    const std::string &text,
+    int id
+) {
+
+    auto list = dynamic_cast<CEGUI::ListWidget*>(m_window);
+
+    if(!list)
+        throw std::bad_cast();
+
+    list->addItem(new CEGUI::StandardItem(text.c_str(), id));
+}
+
+void
+CEGUIWindow::listWidgetAddTextItem(
+    const std::string &text
+) {
+
+    auto list = dynamic_cast<CEGUI::ListWidget*>(m_window);
+
+    if(!list)
+        throw std::bad_cast();
+
+    list->addItem(text);
+}
+
+void
+CEGUIWindow::listWidgetUpdateItem(
+    StandardItemWrapper* item,
+    const std::string &text
+) {
+
+
+    auto list = dynamic_cast<CEGUI::ListWidget*>(m_window);
+
+    if(!list)
+        throw std::bad_cast();
+
+    // Should always be this so static cast could be fine
+    auto model = list->getModel();
+
+    model->updateItemText(item->getItem(), text);
+}
+
+void
+CEGUIWindow::listWidgetResetList(){
+
+    auto list = dynamic_cast<CEGUI::ListWidget*>(m_window);
+
+    if(!list)
+        throw std::bad_cast();
+
+    list->clearList();
+}
+
+std::string
+CEGUIWindow::listWidgetGetFirstSelectedItemText(){
+
+    auto list = dynamic_cast<CEGUI::ListWidget*>(m_window);
+
+    if(!list)
+        throw std::bad_cast();
+
+    auto selected = list->getFirstSelectedItem();
+
+    if(!selected)
+        return "";
+
+    return std::string(selected->getText().c_str());
+}
+
+int
+CEGUIWindow::listWidgetGetFirstSelectedID(){
+
+    auto list = dynamic_cast<CEGUI::ListWidget*>(m_window);
+
+    if(!list)
+        throw std::bad_cast();
+
+    auto selected = list->getFirstSelectedItem();
+
+    if(!selected)
+        return -1;
+
+    return selected->getId();
+}
+
+#else
 void
 CEGUIWindow::listboxAddItem(
     CEGUI::ListboxTextItem* listboxItem
 ) {
     dynamic_cast<CEGUI::Listbox*>(m_window)->addItem(listboxItem);
 }
-
-
 
 void
 CEGUIWindow::listboxResetList(){
@@ -294,8 +448,9 @@ CEGUIWindow::itemListboxHandleUpdatedItemData(){
 
 CEGUIWindow*
 CEGUIWindow::itemListboxGetLastSelectedItem(){
-    return new CEGUIWindow(dynamic_cast<CEGUI::ItemListbox*>(m_window)-> getLastSelectedItem(), false);
+    return new CEGUIWindow(dynamic_cast<CEGUI::ListboxItem*>(m_window)-> getLastSelectedItem(), false);
 }
+#endif //CEGUI_USE_NEW
 
 
 
@@ -352,12 +507,14 @@ CEGUIWindow::registerEventHandler(
     const std::string& eventName,
     const luabind::object& callback
 ) const {
+
     // Lambda must return something to avoid an template error.
-    auto callbackLambda = [callback](const CEGUI::EventArgs& args) -> int
+    auto callbackLambda = [callback](const CEGUI::EventArgs& args) -> bool
         {
             luabind::call_function<void>(callback, CEGUIWindow(static_cast<const CEGUI::WindowEventArgs&>(args).window, false));
             return 0;
         };
+
     m_window->subscribeEvent(eventName, callbackLambda);
 }
 
@@ -372,12 +529,26 @@ void
 CEGUIWindow::registerKeyEventHandler(
     const luabind::object& callback
 ) const {
+#ifdef CEGUI_USE_NEW
+    // Event doesn't exist anymore //
+    auto callbackLambda = [callback](const CEGUI::EventArgs& args) -> bool
+        {
+            luabind::call_function<void>(callback, CEGUIWindow(static_cast<
+                    const CEGUI::WindowEventArgs&>(args).window, false),
+                static_cast<int>(static_cast<const CEGUI::TextEventArgs&>(args).character));
+            return 0;
+        };
+    
+    m_window->subscribeEvent(CEGUI::Window::EventCharacterKey, callbackLambda);
+#else
     auto callbackLambda = [callback](const CEGUI::EventArgs& args) -> int
         {
             luabind::call_function<void>(callback, CEGUIWindow(static_cast<const CEGUI::WindowEventArgs&>(args).window, false), static_cast<int>(static_cast<const CEGUI::KeyEventArgs&>(args).scancode) );
             return 0;
         };
-    m_window->subscribeEvent(CEGUI::PushButton::EventKeyDown, callbackLambda);
+
+    m_window->subscribeEvent(CEGUI::Window::EventKeyDown, callbackLambda);
+#endif //CEGUI_USE_NEW
 }
 
 void

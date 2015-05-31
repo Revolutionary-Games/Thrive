@@ -9,6 +9,10 @@
 #include <OISInputManager.h>
 #include <OISKeyboard.h>
 
+#ifdef CEGUI_USE_NEW
+#include <CEGUI/InputAggregator.h>
+#endif //CEGUI_USE_NEW
+
 using namespace thrive;
 
 struct Keyboard::Implementation : public OIS::KeyListener{
@@ -28,12 +32,41 @@ struct Keyboard::Implementation : public OIS::KeyListener{
     keyPressed(
         const OIS::KeyEvent& event
     ) {
-        if (CEGUI::System::getSingleton().getDefaultGUIContext().injectKeyDown(static_cast<CEGUI::Key::Scan>(static_cast<int>(event.key)))) {
+#ifdef CEGUI_USE_NEW
+        // TODO: cache this for a single frame
+        m_aggregator->setModifierKeys(
+            m_keyboard->isModifierDown(OIS::Keyboard::Shift),
+            m_keyboard->isModifierDown(OIS::Keyboard::Alt),
+            m_keyboard->isModifierDown(OIS::Keyboard::Ctrl)
+        );
+
+        // Because we use CEGUI InputAggregator handling on key down this properly returns
+        // true only when the input is actually used
+        if(m_aggregator->injectKeyDown(static_cast<CEGUI::Key::Scan>(
+                    static_cast<int>(event.key))))
+        {
+            
             return true;
         }
+#else
+        if (CEGUI::System::getSingleton().getDefaultGUIContext().injectKeyDown(static_cast<CEGUI::Key::Scan>(static_cast<int>(event.key)))) {
+
+
+            return true;
+        }
+#endif //CEGUI_USE_NEW            
+
+#ifdef CEGUI_USE_NEW
+        if(m_aggregator->injectChar(event.text)){
+            
+            return true;
+        }
+#else
         if (CEGUI::System::getSingleton().getDefaultGUIContext().injectChar(event.text)) {
             return true;
         }
+#endif //CEGUI_USE_NEW
+            
         m_keysHeld.data()[event.key] = 1;
         m_previousKeyStates->data()[event.key] = 1;
         this->queueEvent(event, true);
@@ -44,9 +77,18 @@ struct Keyboard::Implementation : public OIS::KeyListener{
     keyReleased(
         const OIS::KeyEvent& event
     ) {
+#ifdef CEGUI_USE_NEW
+        // Aggregator is not configured to handle keys in key up so the result can always
+        // be ignored
+        m_aggregator->injectKeyUp(static_cast<CEGUI::Key::Scan>(static_cast<int>(event.key)));
+        
+#else
         if (CEGUI::System::getSingleton().getDefaultGUIContext().injectKeyUp(static_cast<CEGUI::Key::Scan>(static_cast<int>(event.key)))) {
+            
             return true;
         }
+#endif //CEGUI_USE_NEW
+
         m_keysHeld.data()[event.key] = 0;
         this->queueEvent(event, false);
         return true;
@@ -79,6 +121,10 @@ struct Keyboard::Implementation : public OIS::KeyListener{
     KeyStates* m_previousKeyStates = nullptr;
 
     std::list<KeyEvent> m_queue;
+
+#ifdef CEGUI_USE_NEW
+    CEGUI::InputAggregator* m_aggregator;
+#endif //CEGUI_USE_NEW
 
 };
 
@@ -264,6 +310,21 @@ Keyboard::eventQueue() const {
 }
 
 
+#ifdef CEGUI_USE_NEW
+void
+Keyboard::init(
+    OIS::InputManager* inputManager,
+    CEGUI::InputAggregator* aggregator
+) {
+    assert(m_impl->m_keyboard == nullptr && "Double init of keyboard system");
+    m_impl->m_inputManager = inputManager;
+    m_impl->m_aggregator = aggregator;
+    m_impl->m_keyboard = static_cast<OIS::Keyboard*>(
+        inputManager->createInputObject(OIS::OISKeyboard, true)
+    );
+    m_impl->m_keyboard->setEventCallback(m_impl.get());
+}
+#else
 void
 Keyboard::init(
     OIS::InputManager* inputManager
@@ -275,6 +336,7 @@ Keyboard::init(
     );
     m_impl->m_keyboard->setEventCallback(m_impl.get());
 }
+#endif //CEGUI_USE_NEW
 
 
 bool

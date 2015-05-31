@@ -1,19 +1,24 @@
 #include "sound_source_system.h"
 
 #include "engine/component_factory.h"
-#include "engine/entity_filter.h"
 #include "engine/engine.h"
 #include "engine/entity.h"
-#include "engine/serialization.h"
+#include "engine/entity_filter.h"
 #include "engine/rng.h"
+#include "engine/serialization.h"
+#include "engine/sound/sound_emitter.h"
+#include "engine/sound/sound_manager.h"
 #include "ogre/scene_node_system.h"
 #include "scripting/luabind.h"
 
 #include "game.h"
 
+#include <OgreSceneNode.h>
+
+#ifndef USE_CAUDIO
 #include <OgreOggISound.h>
 #include <OgreOggSoundManager.h>
-
+#endif //USE_CAUDIO
 
 using namespace thrive;
 
@@ -331,12 +336,25 @@ struct SoundSourceSystem::Implementation {
             }
         }
         for (const auto& pair : m_sounds[entityId]) {
-            OgreOggSound::OgreOggISound* sound = pair.second;
+            auto sound = pair.second;
             this->removeSound(sound);
         }
         m_sounds[entityId].clear();
     }
 
+#ifdef USE_CAUDIO
+    void
+    removeSound(
+        SoundEmitter* sound
+    ) {
+        auto manager = SoundManager::getSingleton();
+        if (sound) {
+            sound->detachFromNode();
+            manager->destroySound(sound);
+        }
+    }
+    
+#else
     void
     removeSound(
         OgreOggSound::OgreOggISound* sound
@@ -350,6 +368,7 @@ struct SoundSourceSystem::Implementation {
             soundManager.destroySound(sound);
         }
     }
+#endif //USE_CAUDIO
 
     //Loads all sounds for all SoundSourceComponenet containing entities
     void
@@ -383,14 +402,55 @@ struct SoundSourceSystem::Implementation {
         GameState* gameState
     ) {
         static const bool STREAM = true; //Streaming sound from file
+#ifndef USE_CAUDIO
         static const bool PREBUFFER = true; //Attaches soundsource on creation
+#endif //USE_CAUDIO
+        
         //3D sounds should not be attempted loaded before scenenodes are created
         if (not ambient && (not sceneNodeComponent || not sceneNodeComponent->m_sceneNode)){
             return;
         }
-        auto& soundManager = OgreOggSound::OgreOggSoundManager::getSingleton();
         std::ostringstream soundName;
         soundName << Game::instance().engine().currentGameState()->name() << sound->name() << entityId;
+#ifdef USE_CAUDIO
+        auto soundManager = SoundManager::getSingleton();        
+        auto ogreSound = soundManager->createSound(
+            soundName.str(),
+            sound->filename(),
+            STREAM,
+            sound->m_properties.loop
+        );
+
+        // SceneManager is not used here, suppress warning
+        (void)gameState;
+        
+        if(ogreSound){
+            
+            sound->m_sound = ogreSound;
+            ogreSound->disable3D(ambient);
+            
+            if (autoLoop) {
+                // We want to manage looping ourselves
+                sound->m_properties.loop = false;
+                ogreSound->loop(false);
+            }
+            
+            m_sounds[entityId].emplace(sound->name(), ogreSound);
+            
+            if (not ambient){
+
+                ogreSound->attachToNode(sceneNodeComponent->m_sceneNode);
+            }
+            
+            sound->m_properties.touch();
+        } else {
+            std::string msg = "*** SoundSourceSystem::restoreSound() - Sound with name: "+sound->filename()+
+                " failed to load!";
+            // Logger object?
+            std::cout << msg << std::endl;
+        }
+#else
+        auto& soundManager = OgreOggSound::OgreOggSoundManager::getSingleton();        
         OgreOggSound::OgreOggISound* ogreSound = soundManager.createSound(
                 soundName.str(),
                 sound->filename(),
@@ -417,6 +477,7 @@ struct SoundSourceSystem::Implementation {
             Ogre::String msg = "*** SoundSourceSystem::restoreSound() - Sound with name: "+sound->filename()+" failed to load!";
             Ogre::LogManager::getSingleton().logMessage(msg);
         }
+#endif //USE_CAUDIO
     }
 
     EntityFilter<
@@ -426,10 +487,17 @@ struct SoundSourceSystem::Implementation {
     > m_entities = {true};
 
     //Map of the sounds of all entities for destruction reference
+#ifdef USE_CAUDIO
+    std::unordered_map<
+        EntityId,
+        std::unordered_map<std::string, SoundEmitter*>
+        > m_sounds;
+#else
     std::unordered_map<
         EntityId,
         std::unordered_map<std::string, OgreOggSound::OgreOggISound*>
     > m_sounds;
+#endif //USE_CAUDIO
 
     GameState* m_gameState = nullptr;
 
@@ -449,8 +517,12 @@ SoundSourceSystem::~SoundSourceSystem() {}
 void
 SoundSourceSystem::activate() {
     System::activate();
+    
+#ifndef USE_CAUDIO
     auto& soundManager = OgreOggSound::OgreOggSoundManager::getSingleton();
     soundManager.setSceneManager(this->gameState()->sceneManager());
+#endif //USE_CAUDIO
+    
     m_impl->restoreAllSounds();
     if (Entity("soundListener", gameState()).exists()){
         auto* sceneNode = static_cast<OgreSceneNodeComponent*>(Entity("soundListener", gameState()).getComponent(OgreSceneNodeComponent::TYPE_ID));
@@ -537,13 +609,13 @@ SoundSourceSystem::update(
             assert(sound->m_sound && "Sound was not intialized");
             if (sound->m_properties.hasChanges()) {
                 const auto& properties = sound->m_properties;
-                OgreOggSound::OgreOggISound* ogreSound = sound->m_sound;
+                auto ogreSound = sound->m_sound;
+                assert(ogreSound && "Sound was not intialized properly");
                 ogreSound->loop(properties.loop and not soundSourceComponent->m_autoLoop);
                 ogreSound->setVolume(properties.volume * soundSourceComponent->m_volumeMultiplier);
                 ogreSound->setMaxDistance(properties.maxDistance);
                 ogreSound->setRolloffFactor(properties.rolloffFactor);
-                ogreSound->setReferenceDistance(properties.referenceDistance);
-                ogreSound->setPriority(properties.priority);
+                // TODO: do something about properties.referenceDistance and properties.priority
                 switch(properties.playState) {
                     case Sound::PlayState::Play:
                         ogreSound->play();
@@ -565,7 +637,7 @@ SoundSourceSystem::update(
             //Iterate through all existing sounds and set/unset ambience only properties
             for (const auto& pair : soundSourceComponent->m_sounds) {
                 Sound* sound = pair.second.get();
-                OgreOggSound::OgreOggISound* ogreSound = sound->m_sound;
+                auto ogreSound = sound->m_sound;
                 if (sound->m_sound) {
                     ogreSound->disable3D(soundSourceComponent->m_ambientSoundSource.get() || !sceneNodeComponent);
                     if (soundSourceComponent->m_ambientSoundSource.get()) {
@@ -579,7 +651,7 @@ SoundSourceSystem::update(
             //Iterate through all existing sounds and set/unset ambience only properties
             for (const auto& pair : soundSourceComponent->m_sounds) {
                 Sound* sound = pair.second.get();
-                OgreOggSound::OgreOggISound* ogreSound = sound->m_sound;
+                auto ogreSound = sound->m_sound;
                 if (sound->m_sound) {
                     if (soundSourceComponent->m_ambientSoundSource.get()) {
                         ogreSound->loop(false);

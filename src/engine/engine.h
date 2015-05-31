@@ -27,6 +27,12 @@ namespace OgreOggSound {
     class OgreOggSoundManager;
 }
 
+#ifdef USE_CAUDIO
+namespace thrive{
+    class SoundManager;
+}
+#endif //USE_CAUDIO
+
 namespace OIS {
     class InputManager;
 }
@@ -373,8 +379,13 @@ public:
     void
     resumeGame();
 
+#ifdef USE_CAUDIO
+    SoundManager*
+    soundManager() const;
+#else
     OgreOggSound::OgreOggSoundManager*
     soundManager() const;
+#endif //USE_CAUDIO
 
     /**
     * @brief Renders a single frame

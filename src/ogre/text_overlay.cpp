@@ -1,5 +1,6 @@
 #include "ogre/text_overlay.h"
 
+#ifndef USE_OGRE2
 #include "engine/component_factory.h"
 #include "engine/game_state.h"
 #include "engine/entity_filter.h"
@@ -285,4 +286,4 @@ TextOverlaySystem::update(int, int) {
     }
 }
 
-
+#endif //USE_OGRE2

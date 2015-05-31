@@ -31,6 +31,20 @@ add_sources(
     "${CMAKE_CURRENT_SOURCE_DIR}/touchable.h"
 )
 
+if(USING_CAUDIO)
+
+  add_sources(
+    "${CMAKE_CURRENT_SOURCE_DIR}/sound/sound_emitter.h"
+    "${CMAKE_CURRENT_SOURCE_DIR}/sound/sound_emitter.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/sound/sound_listener.h"
+    "${CMAKE_CURRENT_SOURCE_DIR}/sound/sound_listener.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/sound/sound_manager.h"
+    "${CMAKE_CURRENT_SOURCE_DIR}/sound/sound_manager.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/sound/node_attachable.h"
+    "${CMAKE_CURRENT_SOURCE_DIR}/sound/node_attachable.cpp"
+    )
+endif()
+
 add_test_sources(
     "${CMAKE_CURRENT_SOURCE_DIR}/tests/entity.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/tests/entity_filter.cpp"

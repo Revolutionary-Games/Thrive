@@ -1,9 +1,9 @@
 #pragma once
-
 #include "engine/component.h"
 #include "engine/system.h"
 #include "engine/touchable.h"
 
+#ifndef USE_OGRE2
 #include <Ogre.h>
 #include <OgreTextAreaOverlayElement.h>
 
@@ -204,3 +204,5 @@ private:
 };
 
 }
+
+#endif //USE_OGRE2

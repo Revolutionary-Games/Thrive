@@ -1,6 +1,7 @@
 #pragma once
 
 #include <CEGUI/CEGUI.h>
+#include "cegui_types.h"
 
 
 class AlphaHitWindow : public CEGUI::PushButton
@@ -15,8 +16,12 @@ public:
     ~AlphaHitWindow();
 
     // overridden from Window base class
-    bool isHit(const CEGUI::Vector2f& position, const bool allow_disabled = false) const;
-
+    bool
+    isHit(
+        const CEGUIVector2& position,
+        const bool allow_disabled = false
+    ) const override;
+    
 protected:
     //! handler to copy rendered data to a memory buffer
     bool renderingEndedHandler(const CEGUI::EventArgs& args);

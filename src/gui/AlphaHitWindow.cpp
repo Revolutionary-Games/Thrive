@@ -29,8 +29,12 @@ AlphaHitWindow::~AlphaHitWindow()
 }
 
 //----------------------------------------------------------------------------//
-bool AlphaHitWindow::isHit(const CEGUI::Vector2f& position, const bool allow_disabled) const
-{
+bool
+AlphaHitWindow::isHit(
+    const CEGUIVector2& position,
+    const bool allow_disabled
+) const {
+
     // still do the rect test, since we only want to do the detailed test
     // if absolutely neccessary.
     if (!CEGUI::PushButton::isHit(position, allow_disabled))
@@ -40,10 +44,15 @@ bool AlphaHitWindow::isHit(const CEGUI::Vector2f& position, const bool allow_dis
     if (!d_hitTestBuffer)
         return true;
 
-    const CEGUI::Vector2f wpos(CEGUI::CoordConverter::screenToWindow(*this, position));
+    const CEGUIVector2 wpos(CEGUI::CoordConverter::screenToWindow(*this, position));
     const size_t idx = (d_hitBufferInverted ?
-                            d_hitBufferSize.d_height - wpos.d_y :
-                            wpos.d_y) * d_hitBufferSize.d_width + wpos.d_x;
+#ifdef CEGUI_USE_NEW
+        d_hitBufferSize.d_height - wpos.y :
+        wpos.y) * d_hitBufferSize.d_width + wpos.x;
+#else
+        d_hitBufferSize.d_height - wpos.d_y :
+        wpos.d_y) * d_hitBufferSize.d_width + wpos.d_x;
+#endif //CEGUI_USE_NEW
 
     return (d_hitTestBuffer[idx] >> 24) > 0;
 }

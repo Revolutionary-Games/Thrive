@@ -19,6 +19,7 @@
 
 // CEGUI
 #include <CEGUI/CEGUI.h>
+#include <CEGUI/InputAggregator.h>
 #include "CEGUI/RendererModules/Ogre/Renderer.h"
 #include "gui/AlphaHitWindow.h"
 
@@ -58,17 +59,24 @@
 #include <luabind/adopt_policy.hpp>
 #include <OgreConfigFile.h>
 #include <OgreLogManager.h>
-#include <OgreOggSoundManager.h>
 #include <OgreRenderWindow.h>
 #include <OgreRoot.h>
 #include <OgreWindowEventUtilities.h>
 #include <OISInputManager.h>
 #include <OISMouse.h>
+#include <OgreTextureManager.h>
 #include <map>
 #include <random>
 #include <set>
 #include <stdlib.h>
 #include <unordered_map>
+
+// Audio
+#ifndef USE_CAUDIO
+#include <OgreOggSoundManager.h>
+#else
+#include "sound/sound_manager.h"
+#endif //USE_CAUDIO
 
 #include <iostream>
 
@@ -319,8 +327,14 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
         parameters.insert(std::make_pair(std::string("XAutoRepeatOn"), std::string("true")));
 #endif
         m_input.inputManager = OIS::InputManager::createInputSystem(parameters);
+
+#ifdef CEGUI_USE_NEW
+        m_input.keyboard.init(m_input.inputManager, m_aggregator.get());
+        m_input.mouse.init(m_input.inputManager, m_aggregator.get());
+#else
         m_input.keyboard.init(m_input.inputManager);
         m_input.mouse.init(m_input.inputManager);
+#endif //CEGUI_USE_NEW
     }
 
     void
@@ -330,19 +344,53 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
         CEGUI::OgreRenderer::bootstrapSystem();
         CEGUI::WindowManager& wmgr = CEGUI::WindowManager::getSingleton();
         CEGUI::Window* myRoot = wmgr.createWindow( "DefaultWindow", "root" );
+#ifndef CEGUI_USE_NEW
         myRoot->setProperty("MousePassThroughEnabled", "True");
+#else
+        myRoot->setProperty("CursorPassThroughEnabled", "True");
+#endif //CEGUI_USE_NEW
+        
         CEGUI::System::getSingleton().getDefaultGUIContext().setRootWindow( myRoot );
         CEGUI::SchemeManager::getSingleton().createFromFile("Thrive.scheme");
-        CEGUI::System::getSingleton().getDefaultGUIContext().getMouseCursor().setDefaultImage("ThriveGeneric/MouseArrow");
+#ifdef CEGUI_USE_NEW
+        CEGUI::System::getSingleton().getDefaultGUIContext().getCursor().setDefaultImage(
+            "ThriveGeneric/MouseArrow");
+
+        m_aggregator = std::move(std::unique_ptr<CEGUI::InputAggregator>(
+                new CEGUI::InputAggregator(&CEGUI::System::getSingleton()
+                    .getDefaultGUIContext())));
+
+        // Using the handling on keydown mode to detect when inputs are consumed
+        m_aggregator->initialise(false);
+
+        CEGUI::System::getSingleton().getDefaultGUIContext().setDefaultTooltipType(
+            reinterpret_cast<const CEGUI::utf8*>("Thrive/Tooltip") );
+
+        // For demos
+        // This file is renamed in newer CEGUI versions
+        CEGUI::ImageManager::getSingleton().loadImageset("GameMenuSample.imageset");
+        CEGUI::SchemeManager::getSingleton().createFromFile("GameMenuSample.scheme");
+#else
+        CEGUI::System::getSingleton().getDefaultGUIContext().getMouseCursor().setDefaultImage(
+            "ThriveGeneric/MouseArrow");
+
+        CEGUI::SchemeManager::getSingleton().createFromFile("GameMenu.scheme");
+
+        CEGUI::ImageManager::getSingleton().loadImageset("GameMenu.imageset");
+        CEGUI::ImageManager::getSingleton().loadImageset("HUDDemo.imageset");
+
         CEGUI::System::getSingleton().getDefaultGUIContext().setDefaultTooltipType( reinterpret_cast<const CEGUI::utf8*>("Thrive/Tooltip") );
      //   CEGUI::System::getSingleton().getDefaultGUIContext().setDefaultTooltipObject(new CEGUI::Tooltip("Thrive/Tooltip", "mytooltip"));
+
+
+#endif //CEGUI_USE_NEW
+
         CEGUI::AnimationManager::getSingleton().loadAnimationsFromXML("thrive.anims");
 
         //For demos:
         CEGUI::SchemeManager::getSingleton().createFromFile("TaharezLook.scheme");
         CEGUI::SchemeManager::getSingleton().createFromFile("SampleBrowser.scheme");
         CEGUI::SchemeManager::getSingleton().createFromFile("OgreTray.scheme");
-        CEGUI::SchemeManager::getSingleton().createFromFile("GameMenu.scheme");
         CEGUI::SchemeManager::getSingleton().createFromFile("AlfiskoSkin.scheme");
         CEGUI::SchemeManager::getSingleton().createFromFile("WindowsLook.scheme");
         CEGUI::SchemeManager::getSingleton().createFromFile("VanillaSkin.scheme");
@@ -350,7 +398,6 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
         CEGUI::SchemeManager::getSingleton().createFromFile("VanillaCommonDialogs.scheme");
 
         CEGUI::ImageManager::getSingleton().loadImageset("DriveIcons.imageset");
-        CEGUI::ImageManager::getSingleton().loadImageset("GameMenu.imageset");
         CEGUI::ImageManager::getSingleton().loadImageset("HUDDemo.imageset");
 
         m_consoleGUIWindow = new CEGUIWindow("Console");
@@ -367,6 +414,7 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
         initializeLua(m_luaState);
     }
 
+#ifndef USE_CAUDIO
     void
     setupSoundManager() {
         static const std::string DEVICE_NAME = "";
@@ -380,6 +428,19 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
         );
         soundManager.setDistanceModel(AL_LINEAR_DISTANCE);
     }
+#else
+    void
+    setupSoundManager() {
+        static const std::string DEVICE_NAME = "";
+
+        m_soundManager = std::move(std::unique_ptr<SoundManager>(new SoundManager()));
+        
+        assert(false && "implement this");
+
+        m_soundManager->init(DEVICE_NAME);
+        //soundManager.setDistanceModel(AL_LINEAR_DISTANCE);
+    }    
+#endif //USE_CAUDIO
 
     void
     loadVersionNumber() {
@@ -486,6 +547,15 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
     } m_serialization;
 
     luabind::object m_console;
+#ifdef USE_CAUDIO
+    std::unique_ptr<SoundManager> m_soundManager;
+#endif //USE_CAUDIO
+
+#ifdef CEGUI_USE_NEW
+    std::unique_ptr<CEGUI::InputAggregator> m_aggregator;
+#endif //CEGUI_USE_NEW
+
+
 };
 
 
@@ -632,8 +702,8 @@ Engine::init() {
     m_impl->setupLog();
     m_impl->setupScripts();
     m_impl->setupGraphics();
-    m_impl->setupInputManager();
     m_impl->setupGUI();
+    m_impl->setupInputManager();
     m_impl->loadScripts("../scripts");
     m_impl->loadVersionNumber();
     GameState* previousGameState = m_impl->m_currentGameState;
@@ -858,11 +928,17 @@ Engine::quit(){
     m_impl->m_quitRequested = true;
 }
 
-
+#ifndef USE_CAUDIO
 OgreOggSound::OgreOggSoundManager*
 Engine::soundManager() const {
     return OgreOggSound::OgreOggSoundManager::getSingletonPtr();
 }
+#else
+SoundManager*
+Engine::soundManager() const {
+    return m_impl->m_soundManager.get();
+}
+#endif //USE_CAUDIO
 
 EntityId
 Engine::transferEntityGameState(
