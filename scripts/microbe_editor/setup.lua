@@ -36,12 +36,13 @@ local function setupCamera()
     local light = OgreLightComponent()
     light:setRange(200)
     entity:addComponent(light)
-    -- Viewport
-    local viewportEntity = Entity()
-    local viewportComponent = OgreViewportComponent(0)
-    viewportComponent.properties.cameraEntity = entity
-    viewportComponent.properties:touch()
-    viewportEntity:addComponent(viewportComponent)
+    -- Workspace
+    local workspaceEntity = Entity()
+    local workspaceComponent = OgreWorkspaceComponent("thrive_default")
+    workspaceComponent.properties.cameraEntity = entity
+    workspaceComponent.properties.position = 0
+    workspaceComponent.properties:touch()
+    workspaceEntity:addComponent(workspaceComponent)
 end
 
 local function setupSound()
@@ -81,7 +82,7 @@ local function createMicrobeEditor(name)
             OgreCameraSystem(),
             OgreLightSystem(),
             SkySystem(),
-            OgreViewportSystem(),
+            OgreWorkspaceSystem(),
             OgreRemoveSceneNodeSystem(),
             RenderSystem(),
             -- Other

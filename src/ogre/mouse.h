@@ -16,6 +16,10 @@ namespace OIS {
 class InputManager;
 }
 
+namespace CEGUI {
+    class InputAggregator;
+}
+
 namespace thrive {
 
 /**
@@ -56,7 +60,8 @@ public:
     */
     void
     init(
-        OIS::InputManager* inputManager
+        OIS::InputManager* inputManager,
+        CEGUI::InputAggregator* aggregator
     );
 
     /**

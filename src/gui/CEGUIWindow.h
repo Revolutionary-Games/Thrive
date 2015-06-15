@@ -12,6 +12,8 @@ class scope;
 
 namespace thrive {
 
+class StandardItemWrapper;
+    
 class CEGUIWindow {
 
 public:
@@ -78,6 +80,13 @@ public:
     *
     * - CEGUIWindow::playAnimation
     *
+    * Depending on version. Newer CEGUI versions:
+    * - CEGUIWindow::listWidgetAddItem
+    * - CEGUIWindow::listWidgetResetList
+    * - CEGUIWindow::listWidgetGetFirstSelectedItemText
+    * - CEGUIWindow::listWidgetGetFirstSelectedID
+    *
+    * Older versions:
     * - CEGUIWindow::listboxAddItem
     * - CEGUIWindow::listboxResetList
     * - CEGUIWindow::listboxHandleUpdatedItemData
@@ -86,6 +95,9 @@ public:
     * - CEGUIWindow::itemListboxResetList
     * - CEGUIWindow::itemListboxHandleUpdatedItemData
     * - CEGUIWindow::itemListboxGetLastSelectedItem
+    *
+    *
+    *
     *
     * - CEGUIWindow::scrollingpaneGetVerticalPosition
     * - CEGUIWindow::scrollingpaneSetVerticalPosition
@@ -201,56 +213,59 @@ public:
         const std::string& image
     );
 
+    // Listbox has been removed from cegui.
+    // For basic use use ListWidget instead
+    // For more advanced view items use ListView
+    // In .layout files ListWidget is called Thrive/ListView
+
     /**
-    * @brief Adds a string to the window if it is a listbox otherwise throws bad_cast exception
-    *
-    * @param listboxItem
-    *  The text item to add
+       @brief Adds a StandardItem to the window if it is a ListWidget otherwise throws bad_cast exception
     */
     void
-    listboxAddItem(
-        CEGUI::ListboxTextItem* listboxItem
+    listWidgetAddStandardItem(
+        StandardItemWrapper* item
     );
 
     /**
-    * @brief Clears the list if the window is a listbox otherwise throws bad_cast exception
+       @brief Creates and adds a StandardItem to the window if it is a ListWidget otherwise throws bad_cast exception
     */
     void
-    listboxResetList();
-
-    /**
-    * @brief Updates the rendering of the listbox
-    */
-    void
-    listboxHandleUpdatedItemData();
-
-    /**
-    * @brief Adds an item to the window if it is a itemlist otherwise throws bad_cast exception
-    *
-    * Register a click event for action on selection
-    *
-    * @param listboxItem
-    *  The item to add
-    */
-    void
-    itemListboxAddItem(
-        CEGUIWindow* item
+    listWidgetAddItem(
+        const std::string &text,
+        int id
     );
 
     /**
-    * @brief Clears the list if the window is a itemlist otherwise throws bad_cast exception
-    */
+     * @brief Adds a string to the window if it is a ListWidget otherwise throws bad_cast exception
+     */
     void
-    itemListboxResetList();
+    listWidgetAddTextItem(
+        const std::string &text
+    );
 
     /**
-    * @brief Updates the rendering of the itemlist
+       @brief Updates an item with the new text
     */
     void
-    itemListboxHandleUpdatedItemData();
+    listWidgetUpdateItem(
+        StandardItemWrapper* item,
+        const std::string &text
+    );
 
-    CEGUIWindow*
-    itemListboxGetLastSelectedItem();
+    /**
+     * @brief Clears the list if the window is a ListWidget otherwise throws bad_cast exception
+     */
+    void
+    listWidgetResetList();
+
+    std::string
+    listWidgetGetFirstSelectedItemText();
+
+    int
+    listWidgetGetFirstSelectedID();
+
+    
+
 
     /**
     * @brief Sets the progress of the progressbar

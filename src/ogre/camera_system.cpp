@@ -185,6 +185,7 @@ OgreCameraSystem::update(int, int) {
         camera->setAutoAspectRatio(true);
         cameraComponent->m_camera = camera;
         m_impl->m_cameras[entityId] = camera;
+        camera->detachFromParent();
         sceneNodeComponent->m_sceneNode->attachObject(camera);
     }
     m_impl->m_entities.clearChanges();

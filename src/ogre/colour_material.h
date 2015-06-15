@@ -1,7 +1,9 @@
 #pragma once
 
 namespace Ogre {
-    class MaterialPtr;
+    class Material;
+    template<class t> class SharedPtr;
+    typedef SharedPtr<Material> MaterialPtr;
     class ColourValue;
 }
 

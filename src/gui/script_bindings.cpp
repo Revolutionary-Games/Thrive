@@ -1,7 +1,8 @@
 #include "gui/script_bindings.h"
 
-#include "scripting/luabind.h"
 #include "gui/CEGUIWindow.h"
+#include "script_wrappers.h"
+#include "scripting/luabind.h"
 
 using namespace luabind;
 
@@ -88,7 +89,8 @@ thrive::GuiBindings::luaBindings() {
         // Other
         listboxItemBindings(),
         itemEntryBindings(),
-        CEGUIWindow::luaBindings()
+        CEGUIWindow::luaBindings(),
+        ScriptWrappers::StandardItemWrapperBindings()
     );
 }
 
