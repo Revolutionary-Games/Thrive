@@ -9,10 +9,11 @@
 #include "scripting/luabind.h"
 
 #include "sound/sound_source_system.h"
-#include <OgreOggISound.h>
-#include <OgreOggSoundManager.h>
+#include "sound/sound_manager.h"
+#include "sound/sound_listener.h"
 
 #include <OgreSceneManager.h>
+#include <OgreMeshManager.h>
 #include <OgreEntity.h>
 
 using namespace thrive;
@@ -510,14 +511,18 @@ OgreUpdateSceneNodeSystem::update(
         }
         if(component->m_attachToListener.hasChanges()){
             if (component->m_attachToListener.get()) {
-                OgreOggSound::OgreOggListener* listener = OgreOggSound::OgreOggSoundManager::getSingleton().getListener();
+                auto listener = SoundManager::getListener();
+
                 if (OgreSceneNodeComponent::s_soundListenerAttached){
-                    listener->detachFromParent();
+                    listener->detachFromNode();
                 }
+
                 else {
                     OgreSceneNodeComponent::s_soundListenerAttached = true;
                 }
-                component->_attachObject(listener);
+
+                listener->attachToNode(component->m_sceneNode);
+
             }
             component->m_attachToListener.untouch();
         }

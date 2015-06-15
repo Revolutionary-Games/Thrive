@@ -70,14 +70,16 @@ function HudSystem:update(renderTime)
     for compoundID in CompoundRegistry.getCompoundList() do
         local compoundsString = string.format("%s - %d", CompoundRegistry.getCompoundDisplayName(compoundID), playerMicrobe:getCompoundAmount(compoundID))
         if self.compoundListItems[compoundID] == nil then
-            self.compoundListItems[compoundID] = ListboxItem(compoundsString)
-            self.compoundListItems[compoundID]:setTextColours(0.0, 0.25, 0.0)
-            self.compoundListBox:listboxAddItem(self.compoundListItems[compoundID])
+           -- TODO: fix this colour
+           self.compoundListItems[compoundID] = StandardItemWrapper("[colour='FF004400']" .. compoundsString, compoundID)
+           -- The object will be deleted by CEGUI so make sure that it isn't touched after destroying the layout
+           self.compoundListBox:listWidgetAddItem(self.compoundListItems[compoundID])
         else
-            self.compoundListItems[compoundID]:setText(compoundsString)
+           self.compoundListBox:listWidgetUpdateItem(self.compoundListItems[compoundID],
+                                                      "[colour='FF004400']" .. compoundsString)
         end
     end
-    self.compoundListBox:listboxHandleUpdatedItemData()
+    
     
     if keyCombo(kmp.togglemenu) then
         self:menuButtonClicked()

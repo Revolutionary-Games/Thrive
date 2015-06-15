@@ -20,6 +20,10 @@ class SceneNode;
 }
 
 namespace thrive {
+    class SoundManager;
+}
+
+namespace thrive {
 
 /**
 * @brief A component for a Ogre scene nodes
