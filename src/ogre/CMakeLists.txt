@@ -17,11 +17,12 @@ add_sources(
     "${CMAKE_CURRENT_SOURCE_DIR}/script_bindings.h"
     "${CMAKE_CURRENT_SOURCE_DIR}/sky_system.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/sky_system.h"
-    "${CMAKE_CURRENT_SOURCE_DIR}/text_overlay.cpp"
-    "${CMAKE_CURRENT_SOURCE_DIR}/text_overlay.h"
-    "${CMAKE_CURRENT_SOURCE_DIR}/viewport_system.cpp"
-    "${CMAKE_CURRENT_SOURCE_DIR}/viewport_system.h"
 )
+
+  add_sources(
+    "${CMAKE_CURRENT_SOURCE_DIR}/workspace_system.h"
+    "${CMAKE_CURRENT_SOURCE_DIR}/workspace_system.cpp"
+    )
 
 add_test_sources(
     "${CMAKE_CURRENT_SOURCE_DIR}/tests/script_bindings.cpp"

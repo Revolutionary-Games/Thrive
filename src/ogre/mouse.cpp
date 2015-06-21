@@ -17,20 +17,24 @@ using namespace thrive;
 struct Mouse::Implementation : public OIS::MouseListener {
 
     bool mouseMoved (const OIS::MouseEvent& e){
-        CEGUI::System::getSingleton().getDefaultGUIContext().injectMousePosition(e.state.X.abs, e.state.Y.abs );
-        CEGUI::System::getSingleton().getDefaultGUIContext().injectMouseWheelChange(e.state.Z.rel/100);
+        m_aggregator->injectMousePosition(e.state.X.abs, e.state.Y.abs);
+
+        m_aggregator->injectMouseWheelChange(e.state.Z.rel/100);
+
+        
         return true;
     }
     bool mousePressed (const OIS::MouseEvent&, OIS::MouseButtonID id){
+
         switch(id){
         case OIS::MB_Left:
-            CEGUI::System::getSingleton().getDefaultGUIContext().injectMouseButtonDown(CEGUI::MouseButton::LeftButton);
+            m_aggregator->injectMouseButtonDown(CEGUI::MouseButton::LeftButton);
             break;
         case OIS::MB_Right:
-            CEGUI::System::getSingleton().getDefaultGUIContext().injectMouseButtonDown(CEGUI::MouseButton::RightButton);
+            m_aggregator->injectMouseButtonDown(CEGUI::MouseButton::RightButton);
             break;
         case OIS::MB_Middle:
-            CEGUI::System::getSingleton().getDefaultGUIContext().injectMouseButtonDown(CEGUI::MouseButton::MiddleButton);
+            m_aggregator->injectMouseButtonDown(CEGUI::MouseButton::MiddleButton);
             break;
         default:
             break;
@@ -42,18 +46,20 @@ struct Mouse::Implementation : public OIS::MouseListener {
     bool mouseReleased (const OIS::MouseEvent&, OIS::MouseButtonID id){
         switch(id){
         case OIS::MB_Left:
-            if (not CEGUI::System::getSingleton().getDefaultGUIContext().injectMouseButtonUp(CEGUI::MouseButton::LeftButton)){
-                //Activate the bit for this button only if CEGUI did not handle the click
+            if(!m_aggregator->injectMouseButtonUp(CEGUI::MouseButton::LeftButton)){
+
                 m_nextClickedStates |= 0x1;
             }
             break;
         case OIS::MB_Right:
-            if (not CEGUI::System::getSingleton().getDefaultGUIContext().injectMouseButtonUp(CEGUI::MouseButton::RightButton)){
+            if(!m_aggregator->injectMouseButtonUp(CEGUI::MouseButton::RightButton)){
+
                 m_nextClickedStates |= 0x2;
             }
             break;
         case OIS::MB_Middle:
-            if (not CEGUI::System::getSingleton().getDefaultGUIContext().injectMouseButtonUp(CEGUI::MouseButton::MiddleButton)){
+            if(!m_aggregator->injectMouseButtonUp(CEGUI::MouseButton::MiddleButton)){
+
                 m_nextClickedStates |= 0x4;
             }
             break;
@@ -78,6 +84,7 @@ struct Mouse::Implementation : public OIS::MouseListener {
     int m_scrollChange = 0;
     int m_lastMouseZ = 0;
 
+    CEGUI::InputAggregator* m_aggregator;
 };
 
 
@@ -112,12 +119,13 @@ Mouse::Mouse()
 
 Mouse::~Mouse() {}
 
-
 void
 Mouse::init(
-    OIS::InputManager* inputManager
+    OIS::InputManager* inputManager,
+    CEGUI::InputAggregator* aggregator
 ) {
     assert(m_impl->m_mouse == nullptr && "Double init of mouse system");
+    m_impl->m_aggregator = aggregator;
     m_impl->m_mouse = static_cast<OIS::Mouse*>(
         inputManager->createInputObject(OIS::OISMouse, true)
     );
@@ -128,7 +136,6 @@ Mouse::init(
     );
     m_impl->m_mouse->setEventCallback(m_impl.get());
 }
-
 
 bool
 Mouse::isButtonDown(

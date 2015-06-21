@@ -74,13 +74,14 @@ find_package(OGRE REQUIRED)
 
 # OGRE Plugins used
 set(OGRE_PLUGINS
-    Plugin_BSPSceneManager
-    Plugin_OctreeSceneManager
-    Plugin_OctreeZone
+  # Plugin_BSPSceneManager
+  #  Plugin_OctreeSceneManager
+  #  Plugin_OctreeZone
     Plugin_ParticleFX
-    Plugin_PCZSceneManager
+  #  Plugin_PCZSceneManager
     RenderSystem_GL
 )
+
 
 #######
 # OIS #
@@ -144,6 +145,11 @@ include_directories(
 # CEGUI #
 #######
 
+set(FIND_CEGUI_VERSION 9999)
+
+message(STATUS "Finding CEGUI version " ${FIND_CEGUI_VERSION}
+  " for Ogre version " ${OGRE_VERSION})
+
 find_package(CEGUI REQUIRED QUIET COMPONENTS OGRE)
 
 
@@ -180,26 +186,14 @@ add_subdirectory(
 )
 
 ################
-# OgreOggSound #
+# cAudio #
 ################
 
-find_package(OpenAL REQUIRED QUIET)
-find_package(Ogg REQUIRED)
-find_package(Vorbis REQUIRED)
+find_package(cAudio)
+find_package(OpenAL QUIET)
 
-add_definitions(-DHAVE_EFX=0)
+include_directories("${cAudio_INCLUDE_DIRS}")
 
-add_subdirectory(
-    "${CMAKE_CURRENT_SOURCE_DIR}/contrib/ogre_ogg_sound"
-)
-
-include_directories(
-    SYSTEM
-    "${CMAKE_CURRENT_SOURCE_DIR}/contrib/ogre_ogg_sound/include"
-    ${OpenAL_INCLUDE_DIRS}
-    ${OGG_INCLUDE_DIRS}
-    ${VORBIS_INCLUDE_DIRS}
-)
 
 ######################
 # Configure Compiler #
@@ -215,8 +209,9 @@ include_directories(
     "${CMAKE_CURRENT_SOURCE_DIR}/src"
 )
 
-# Compile using c++11
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++0x")
+# Compile using c++11 and using sse2
+#no-unused-variable is necessary to supress werror while compiling cAudio
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++0x -msse2 -Wno-unused-function")
 
 
 find_package(Threads)
@@ -244,17 +239,18 @@ target_link_libraries(ThriveLib
     ${OGRE_LIBRARIES}
     ${OIS_LIBRARIES}
     ${CMAKE_THREAD_LIBS_INIT}
-    ${BULLET_DYNAMICS_LIBRARY}
-    ${BULLET_COLLISION_LIBRARY}
-    ${BULLET_MATH_LIBRARY}
-    ${BULLET_SOFTBODY_LIBRARY}
+    ${BULLET_DYNAMICS_LIBRARY_DEBUG}
+    ${BULLET_COLLISION_LIBRARY_DEBUG}
+    ${BULLET_MATH_LIBRARY_DEBUG}
+    ${BULLET_SOFTBODY_LIBRARY_DEBUG}
     ${CEGUI_LIBRARY}
     ${TINYXML_LIBRARIES}
     ${OpenAL_LIBRARIES}
-    ${Ogg_LIBRARIES}
-    ${Vorbis_LIBRARIES}
-    OgreOggSound
     luabind
+)
+
+target_link_libraries(ThriveLib
+${cAudio_LIBRARIES}
 )
 
 
@@ -497,23 +493,25 @@ if(WIN32)
 	)
     
     install(FILES
-        "${MINGW_ENV}/install/bin/libCEGUIBase-0_d.dll"
-        "${MINGW_ENV}/install/bin/libCEGUIOgreRenderer-0_d.dll"
+        "${MINGW_ENV}/install/bin/libCEGUIBase-${FIND_CEGUI_VERSION}_d.dll"
+        "${MINGW_ENV}/install/bin/libCEGUIOgreRenderer-${FIND_CEGUI_VERSION}_d.dll"
         "${MINGW_ENV}/install/bin/libCEGUITinyXMLParser_d.dll"
         "${MINGW_ENV}/install/bin/libCEGUICoreWindowRendererSet_d.dll"
         "${MINGW_ENV}/install/bin/Debug/libfreetype_d.dll"
         "${MINGW_ENV}/install/bin/Debug/libjpeg_d.dll"
-        "${MINGW_ENV}/install/bin/Debug/liblibpng_d.dll"
         "${MINGW_ENV}/install/bin/Debug/libSILLY_d.dll"
         "${MINGW_ENV}/install/bin/Debug/libzlib_d.dll"
+        "${MINGW_ENV}/install/bin/libcAudio_d.dll"
+        "${MINGW_ENV}/install/bin/libcAudio.dll"
+        "${MINGW_ENV}/install/bin/wrap_oal.dll"
         "${MINGW_ENV}/install/bin/OpenAL32.dll"
         DESTINATION bin
 		CONFIGURATIONS Debug
     )
     
     install(FILES
-        "${MINGW_ENV}/install/bin/libCEGUIBase-0.dll"
-        "${MINGW_ENV}/install/bin/libCEGUIOgreRenderer-0.dll"
+        "${MINGW_ENV}/install/bin/libCEGUIBase-${FIND_CEGUI_VERSION}.dll"
+        "${MINGW_ENV}/install/bin/libCEGUIOgreRenderer-${FIND_CEGUI_VERSION}.dll"
         "${MINGW_ENV}/install/bin/libCEGUITinyXMLParser.dll"
         "${MINGW_ENV}/install/bin/libCEGUICoreWindowRendererSet.dll"
         "${MINGW_ENV}/install/bin/Release/libfreetype.dll"
@@ -521,6 +519,9 @@ if(WIN32)
         "${MINGW_ENV}/install/bin/Release/liblibpng.dll"
         "${MINGW_ENV}/install/bin/Release/libSILLY.dll"
         "${MINGW_ENV}/install/bin/Release/libzlib.dll"
+        "${MINGW_ENV}/install/bin/Release/libzlib.dll"
+        "${MINGW_ENV}/install/bin/libcAudio.dll"
+        "${MINGW_ENV}/install/bin/wrap_oal.dll"
         "${MINGW_ENV}/install/bin/OpenAL32.dll"
         DESTINATION bin
 		CONFIGURATIONS Release

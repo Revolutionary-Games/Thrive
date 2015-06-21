@@ -50,10 +50,12 @@ struct GameState::Implementation {
 
     void
     setupSceneManager() {
+        // TODO: configure the number of worker threads, currently always 2
         m_sceneManager = m_engine.ogreRoot()->createSceneManager(
-            Ogre::ST_GENERIC,
+            Ogre::ST_GENERIC, 2, Ogre::INSTANCING_CULLING_THREADED,
             m_name
         );
+
         m_sceneManager->setAmbientLight(
             Ogre::ColourValue(0.5, 0.5, 0.5)
         );

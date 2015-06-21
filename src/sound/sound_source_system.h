@@ -11,8 +11,8 @@ namespace luabind {
 class scope;
 }
 
-namespace OgreOggSound {
-class OgreOggISound;
+namespace thrive {
+    class SoundEmitter;
 }
 
 namespace thrive {
@@ -152,8 +152,7 @@ public:
     /**
     * @brief Pointer to internal sound
     */
-    OgreOggSound::OgreOggISound* m_sound = nullptr;
-
+    SoundEmitter* m_sound = nullptr;
 private:
 
     std::string m_filename;
