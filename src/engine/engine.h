@@ -23,8 +23,8 @@ namespace Ogre {
     class Viewport;
 }
 
-namespace OgreOggSound {
-    class OgreOggSoundManager;
+namespace thrive{
+    class SoundManager;
 }
 
 namespace OIS {
@@ -373,7 +373,7 @@ public:
     void
     resumeGame();
 
-    OgreOggSound::OgreOggSoundManager*
+    SoundManager*
     soundManager() const;
 
     /**

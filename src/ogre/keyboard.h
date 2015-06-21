@@ -12,6 +12,10 @@ namespace OIS {
 class InputManager;
 }
 
+namespace CEGUI {
+    class InputAggregator;
+}
+
 namespace thrive {
 
 /**
@@ -91,14 +95,15 @@ public:
     eventQueue() const;
 
     /**
-    * @brief Initializes the keyboard
-    *
-    * @param inputManager
-    *   The input manager to use
-    */
+     * @brief Initializes the keyboard
+     *
+     * @param inputManager
+     *   The input manager to use
+     */
     void
     init(
-        OIS::InputManager* inputManager
+        OIS::InputManager* inputManager,
+        CEGUI::InputAggregator* aggregator
     );
 
     /**
