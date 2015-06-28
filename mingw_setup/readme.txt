@@ -58,7 +58,7 @@ Step 2a is optional but recommended for beginners to the project.
 If you choose step 2a, you should skip forward to step 5. after completion.
 
 *  Download the archive found here:
-    https://mega.co.nz/#!Md4WAJQR!0mf-0A7tlu5-qHpS_T6iD7wLYYM2WV1SkPhsk6AGfak
+    https://mega.co.nz/#!BNoSSaTT!qqA_nujawy_mcyR9w-KocrgjtlisJBdtqfT0qR8zpDM
 
 *  Extract to C:\mingw
 
