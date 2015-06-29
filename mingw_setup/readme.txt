@@ -58,7 +58,7 @@ Step 2a is optional but recommended for beginners to the project.
 If you choose step 2a, you should skip forward to step 5. after completion.
 
 *  Download the archive found here:
-    https://mega.co.nz/#!BNoSSaTT!qqA_nujawy_mcyR9w-KocrgjtlisJBdtqfT0qR8zpDM
+    https://mega.co.nz/#!dVRyVJJb!uJA5r2whpPa6TFiCzN7EbFCAxL4LkS_PvXHSp-gPro8
 
 *  Extract to C:\mingw
 
@@ -203,6 +203,8 @@ cross-compiling, but it's convenient for us, too.
 * Go to your build/dist/bin directory and start Thrive.exe
 Note that the build/Thrive.exe will not work as it is not placed with the 
 necessary DLL files.
+
+* An ogre config will show up when you start Thrive. Selecting a non-0 value for FSAA anti aliasing will prevent a current issue with flickering on windows.
 
 Unfortunately, I haven't yet found a clean way to start (and debug) Thrive
 from within Code::Blocks due to the way Windows finds its shared libraries.
