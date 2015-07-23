@@ -13,6 +13,8 @@ add_sources(
     "${CMAKE_CURRENT_SOURCE_DIR}/script_bindings.h"
     "${CMAKE_CURRENT_SOURCE_DIR}/species_registry.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/species_registry.h"
+    "${CMAKE_CURRENT_SOURCE_DIR}/membrane.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/membrane.h"
 )
 
 
