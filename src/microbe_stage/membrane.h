@@ -1,51 +1,56 @@
 #pragma once
 
-//----------------------------------------------------------------------- 
-//   
+//-----------------------------------------------------------------------
+//
 //  Name: Membrane.h
-//   
-//  Author: Michael Silver 2015
-// 
+//
+//  Author: Michael Silver, 2015
+//
 //  Desc: creates a dynamic membrane around organelles
-// 
-//------------------------------------------------------------------------ 
- 
-#include <windows.h> 
+//
+//------------------------------------------------------------------------
+
+#include <windows.h>
 #include <vector>
 #include <algorithm>
+#include <fstream>
 #include <math.h>
- 
-using namespace std;
+#include <OgreVector3.h>
 
-class Membrane 
-{ 
+class Membrane
+{
 private:
+    // The length in pixels of a side of the square that bounds the membrane.
+    int cellDimensions;
 
-	// Stores the generated 2-Dimensional membrane.
-	vector<Point>		MembraneVertices2D;
+    // The amount of points on the side of the membrane.
+    int membraneResolution;
 
-	// Stores the 3-Dimensional membrane such that every 3 points make up a triangle.
-	vector<Point>		MembraneVertices3D;
+    // Stores the generated 2-Dimensional membrane.
+    std::vector<Ogre::Vector3>   Vertices2D;
 
-	// Stores the positions of the organelles.
-	vector<Point>		organellePos;
-     
-public: 
- 
-	Membrane(vector<Point> organellePos);
- 
+    // Stores the 3-Dimensional membrane such that every 3 points make up a triangle.
+    std::vector<Ogre::Vector3>   Vertices3D;
+
+    // Stores the positions of the organelles.
+    std::vector<Ogre::Vector3>   organellePos;
+
+public:
+
+	Membrane(std::vector<Ogre::Vector3> organellePos);
+
 	// This function gives out the commands to create and draw the membrane.
-	bool	Update(); 
+	bool	Update();
 
-	// Creates the 2D points in the membrane by looking at the positions of the organelles
-	void	DrawMembrane(vector<SPoint> organellePos);
+	// Creates the 2D points in the membrane by looking at the positions of the organelles.
+	void	DrawMembrane();
 
 	// Return the position of the closest organelle to the target point if it is less then a certain threshold away.
-	Point	FindClosestOrganelles(Point target, vector<Point> organelles);
+	Ogre::Vector3 FindClosestOrganelles(Ogre::Vector3 target);
 
-	// Desides where the point needs to move based on the position of the closest organelle.
-	Vector	GetMovement(SPoint target, SPoint closestOrganelle);
+	// Decides where the point needs to move based on the position of the closest organelle.
+	Ogre::Vector3	GetMovement(Ogre::Vector3 target, Ogre::Vector3 closestOrganelle);
 
 	// Creates a 3D prism from the 2D vertices.
-	void	WriteData(vector<Point> vertices);
+	void	WriteData(std::vector<Ogre::Vector3> vertices);
 };

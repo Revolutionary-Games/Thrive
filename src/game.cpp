@@ -5,6 +5,8 @@
 #include "scripting/luabind.h"
 #include "util/make_unique.h"
 
+#include "microbe_stage/membrane.h"
+
 #include <boost/thread.hpp>
 #include <type_traits>
 #include <unordered_map>
@@ -67,9 +69,15 @@ Game::run() {
         int fpsTime = 0;
         auto lastUpdate = Implementation::Clock::now();
         m_impl->m_engine.init();
+
+        std::vector<Ogre::Vector3> organellePositions;
+        Membrane MyMembrane(organellePositions);
         // Start game loop
         m_impl->m_quit = false;
         while (not m_impl->m_quit) {
+
+            MyMembrane.Update();
+
             auto now = Implementation::Clock::now();
             auto delta = now - lastUpdate;
             int milliSeconds = boost::chrono::duration_cast<boost::chrono::milliseconds>(delta).count();
