@@ -197,18 +197,16 @@ cross-compiling, but it's convenient for us, too.
 10. Running Thrive
 -----------------
 
-* In Code::Blocks, select "install" as the build target and click on the 
-  "Build" button.
+* In Code::Blocks, go to Project->Properties->Build Targets then select Install on the left and change Type: from GUI Application to Console Application. Next, change Output Filename to "dist\bin\Thrive.exe" (without the quotes). If asks you to replace the file, replace it. Finally, click okay and exit.
 
-* Go to your build/dist/bin directory and start Thrive.exe
+* Select "install" as the build target and click on the 
+  "Build and Run" button.
+
+* You can also go to your build/dist/bin directory and start Thrive.exe
 Note that the build/Thrive.exe will not work as it is not placed with the 
 necessary DLL files.
 
-* An ogre config will show up when you start Thrive. Selecting a non-0 value for FSAA anti aliasing will prevent a current issue with flickering on windows.
-
-Unfortunately, I haven't yet found a clean way to start (and debug) Thrive
-from within Code::Blocks due to the way Windows finds its shared libraries.
-
+* An ogre config will show up when you start Thrive. Selecting a non-0 value for FSAA anti aliasing may or may not prevent a current issue with flickering on windows.
 
 
 Older Windows Platforms
