@@ -40,7 +40,7 @@ Membrane::Membrane()
 		vertices2D.emplace_back(-cellDimensions, cellDimensions - 2*cellDimensions/membraneResolution*i, 0);
 	}
 
-	for(int i=0; i<200; i++)
+	for(int i=0; i<500; i++)
     {
         DrawMembrane();
     }
@@ -48,31 +48,14 @@ Membrane::Membrane()
 
 bool Membrane::Update(vector<Ogre::Vector3> organellePositions)
 {
-    organellePos = organellePositions;
-
-    organellePos.clear();
-	organellePos.emplace_back(0,0,0);
-	organellePos.emplace_back(0,-2,0);
-	organellePos.emplace_back(0,2,0);
-	organellePos.emplace_back(0,-4,0);
-	organellePos.emplace_back(1.7,-1,0);
-	organellePos.emplace_back(-1.7,-1,0);
-	organellePos.emplace_back(-3.4,-2,0);
-	organellePos.emplace_back(3.4,-2,0);
-	organellePos.emplace_back(-3.4,-4,0);
-	organellePos.emplace_back(3.4,-4,0);
-	organellePos.emplace_back(-1.7,1,0);
-	organellePos.emplace_back(1.7,1,0);
-	organellePos.emplace_back(-1.7,-3,0);
-	organellePos.emplace_back(1.7,-3,0);
-	organellePos.emplace_back(0,4,0);
+    organellePositions = organellePos;
 
     MeshPoints.clear();
 	faces.clear();
 
     DrawMembrane();
 	MakePrism();
-	Subdivide();
+	//Subdivide();
 
 	return true;
 }

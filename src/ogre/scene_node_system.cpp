@@ -499,8 +499,8 @@ OgreUpdateSceneNodeSystem::update(
 
                     // Normal.
                     vertexData.push_back(0.0);
-                    vertexData.push_back(0.0);
-                    vertexData.push_back(-1.0);
+                    vertexData.push_back(1.0);
+                    vertexData.push_back(1.0);
                 }
 
                 // Populate the vertex buffer.
@@ -514,9 +514,10 @@ OgreUpdateSceneNodeSystem::update(
                 // Use render system to convert color value.
                 Ogre::RenderSystem* rs = Ogre::Root::getSingleton().getRenderSystem();
                 Ogre::RGBA color[vertexData.size()/6];
-                for(auto it : color)
+                Ogre::RGBA *pColor = color;
+                for(size_t i=0, end=vertexData.size()/6; i<end; i++)
                 {
-                    rs->convertColourValue(Ogre::ColourValue(1,1,1), &it);
+                    rs->convertColourValue(Ogre::ColourValue(0.0,1.0,1.0), pColor++);
                 }
 
                 // Populate the index buffer.
