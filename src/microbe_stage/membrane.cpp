@@ -2,58 +2,77 @@
 
 using namespace std;
 
-Membrane::Membrane(vector<Ogre::Vector3> organellePositions): organellePos(organellePositions)
+Membrane::Membrane()
 {
-    cellDimensions = 50;
-    membraneResolution = 5;
+	cellDimensions = 5;
+	membraneResolution = 5;
 
-    organellePos.emplace_back(0,0,0);
-	organellePos.emplace_back(0,-20,0);
-	organellePos.emplace_back(0,20,0);
-	organellePos.emplace_back(0,-40,0);
-	organellePos.emplace_back(17,-10,0);
-	organellePos.emplace_back(-17,-10,0);
-	organellePos.emplace_back(-34,-20,0);
-	organellePos.emplace_back(34,-20,0);
-	organellePos.emplace_back(-34,-40,0);
-	organellePos.emplace_back(34,-40,0);
-	organellePos.emplace_back(-17,10,0);
-	organellePos.emplace_back(17,10,0);
-	organellePos.emplace_back(-17,-30,0);
-	organellePos.emplace_back(17,-30,0);
-	organellePos.emplace_back(0,40,0);
+	organellePos.emplace_back(0,0,0);
+	organellePos.emplace_back(0,-2,0);
+	organellePos.emplace_back(0,2,0);
+	organellePos.emplace_back(0,-4,0);
+	organellePos.emplace_back(1.7,-1,0);
+	organellePos.emplace_back(-1.7,-1,0);
+	organellePos.emplace_back(-3.4,-2,0);
+	organellePos.emplace_back(3.4,-2,0);
+	organellePos.emplace_back(-3.4,-4,0);
+	organellePos.emplace_back(3.4,-4,0);
+	organellePos.emplace_back(-1.7,1,0);
+	organellePos.emplace_back(1.7,1,0);
+	organellePos.emplace_back(-1.7,-3,0);
+	organellePos.emplace_back(1.7,-3,0);
+	organellePos.emplace_back(0,4,0);
 
 	for(int i=0; i<membraneResolution; i++)
 	{
-		Vertices2D.emplace_back(-cellDimensions + 2*cellDimensions/membraneResolution*i, -cellDimensions, 0);
+		vertices2D.emplace_back(-cellDimensions + 2*cellDimensions/membraneResolution*i, -cellDimensions, 0);
 	}
 	for(int i=0; i<membraneResolution; i++)
 	{
-		Vertices2D.emplace_back(cellDimensions, -cellDimensions + 2*cellDimensions/membraneResolution*i, 0);
+		vertices2D.emplace_back(cellDimensions, -cellDimensions + 2*cellDimensions/membraneResolution*i, 0);
 	}
 	for(int i=0; i<membraneResolution; i++)
 	{
-		Vertices2D.emplace_back(cellDimensions - 2*cellDimensions/membraneResolution*i, cellDimensions, 0);
+		vertices2D.emplace_back(cellDimensions - 2*cellDimensions/membraneResolution*i, cellDimensions, 0);
 	}
 	for(int i=0; i<membraneResolution; i++)
 	{
-		Vertices2D.emplace_back(-cellDimensions, cellDimensions - 2*cellDimensions/membraneResolution*i, 0);
+		vertices2D.emplace_back(-cellDimensions, cellDimensions - 2*cellDimensions/membraneResolution*i, 0);
 	}
 
 	for(int i=0; i<200; i++)
-	{
-		DrawMembrane();
-	}
+    {
+        DrawMembrane();
+    }
 }
 
-bool Membrane::Update()
+bool Membrane::Update(vector<Ogre::Vector3> organellePositions)
 {
-//	for(size_t i=0, end=organellePos.size(); i<end; i++)
-//	{
-//		organellePos[i].y-=.1;
-//	{
-	DrawMembrane();
-	WriteData(Vertices2D);
+    organellePos = organellePositions;
+
+    organellePos.clear();
+	organellePos.emplace_back(0,0,0);
+	organellePos.emplace_back(0,-2,0);
+	organellePos.emplace_back(0,2,0);
+	organellePos.emplace_back(0,-4,0);
+	organellePos.emplace_back(1.7,-1,0);
+	organellePos.emplace_back(-1.7,-1,0);
+	organellePos.emplace_back(-3.4,-2,0);
+	organellePos.emplace_back(3.4,-2,0);
+	organellePos.emplace_back(-3.4,-4,0);
+	organellePos.emplace_back(3.4,-4,0);
+	organellePos.emplace_back(-1.7,1,0);
+	organellePos.emplace_back(1.7,1,0);
+	organellePos.emplace_back(-1.7,-3,0);
+	organellePos.emplace_back(1.7,-3,0);
+	organellePos.emplace_back(0,4,0);
+
+    MeshPoints.clear();
+	faces.clear();
+
+    DrawMembrane();
+	MakePrism();
+	Subdivide();
 
 	return true;
 }
@@ -61,19 +80,19 @@ bool Membrane::Update()
 void Membrane::DrawMembrane()
 {
     // Stores the temporary positions of the membrane.
-	vector<Ogre::Vector3> newPositions = Vertices2D;
+	vector<Ogre::Vector3> newPositions = vertices2D;
 
     // Loops through all the points in the membrane and relocates them as necessary.
 	for(size_t i=0, end=newPositions.size(); i<end; i++)
 	{
-		Ogre::Vector3 closestOrganelle = FindClosestOrganelles(Vertices2D[i]);
+		Ogre::Vector3 closestOrganelle = FindClosestOrganelles(vertices2D[i]);
 		if(closestOrganelle == Ogre::Vector3(0,0,-1))
 		{
-			newPositions[i] = (Vertices2D[(end+i-1)%end] + Vertices2D[(i+1)%end] + Vertices2D[(end+i-2)%end] + Vertices2D[(i+2)%end])/4;
+			newPositions[i] = (vertices2D[(end+i-1)%end] + vertices2D[(i+1)%end] + vertices2D[(end+i-2)%end] + vertices2D[(i+2)%end])/4;
 		}
 		else
 		{
-			Ogre::Vector3 movementDirection = GetMovement(Vertices2D[i], closestOrganelle);
+			Ogre::Vector3 movementDirection = GetMovement(vertices2D[i], closestOrganelle);
 			newPositions[i].x -= movementDirection.x;
 			newPositions[i].y -= movementDirection.y;
 		}
@@ -102,7 +121,7 @@ void Membrane::DrawMembrane()
 		}
 	}
 
-	Vertices2D = newPositions;
+	vertices2D = newPositions;
 }
 
 Ogre::Vector3 Membrane::FindClosestOrganelles(Ogre::Vector3 target)
@@ -136,55 +155,28 @@ Ogre::Vector3 Membrane::GetMovement(Ogre::Vector3 target, Ogre::Vector3 closestO
 }
 
 
-void Membrane::WriteData(vector<Ogre::Vector3> vertices)
+void Membrane::MakePrism()
 {
-	ofstream outputFile("membrane.txt");
-
-	vector<Ogre::Vector3> membranePrism;
 	double height = 30;
 
-	for(size_t i=0, end=vertices.size(); i<end; i++)
+	for(size_t i=0, end=vertices2D.size(); i<end; i++)
 	{
-		membranePrism.emplace_back(vertices[i%end].x, vertices[i%end].y, vertices[i%end].z+height/2);
-		membranePrism.emplace_back(vertices[(i+1)%end].x, vertices[(i+1)%end].y, vertices[(i+1)%end].z-height/2);
-		membranePrism.emplace_back(vertices[i%end].x, vertices[i%end].y, vertices[i%end].z-height/2);
-		membranePrism.emplace_back(vertices[i%end].x, vertices[i%end].y, vertices[i%end].z+height/2);
-		membranePrism.emplace_back(vertices[(i+1)%end].x, vertices[(i+1)%end].y, vertices[(i+1)%end].z+height/2);
-		membranePrism.emplace_back(vertices[(i+1)%end].x, vertices[(i+1)%end].y, vertices[(i+1)%end].z-height/2);
+		MeshPoints.emplace_back(vertices2D[i%end].x, vertices2D[i%end].y, vertices2D[i%end].z+height/2);
+		MeshPoints.emplace_back(vertices2D[(i+1)%end].x, vertices2D[(i+1)%end].y, vertices2D[(i+1)%end].z-height/2);
+		MeshPoints.emplace_back(vertices2D[i%end].x, vertices2D[i%end].y, vertices2D[i%end].z-height/2);
+		MeshPoints.emplace_back(vertices2D[i%end].x, vertices2D[i%end].y, vertices2D[i%end].z+height/2);
+		MeshPoints.emplace_back(vertices2D[(i+1)%end].x, vertices2D[(i+1)%end].y, vertices2D[(i+1)%end].z+height/2);
+		MeshPoints.emplace_back(vertices2D[(i+1)%end].x, vertices2D[(i+1)%end].y, vertices2D[(i+1)%end].z-height/2);
 	}
 
-	for(size_t i=0, end=vertices.size(); i<end; i++)
+	for(size_t i=0, end=vertices2D.size(); i<end; i++)
 	{
-		membranePrism.emplace_back(vertices[i%end].x, vertices[i%end].y, vertices[i%end].z+height/2);
-		membranePrism.emplace_back(0,0,height/2);
-		membranePrism.emplace_back(vertices[(i+1)%end].x, vertices[(i+1)%end].y, vertices[(i+1)%end].z+height/2);
+		MeshPoints.emplace_back(vertices2D[i%end].x, vertices2D[i%end].y, vertices2D[i%end].z+height/2);
+		MeshPoints.emplace_back(0,0,height/2);
+		MeshPoints.emplace_back(vertices2D[(i+1)%end].x, vertices2D[(i+1)%end].y, vertices2D[(i+1)%end].z+height/2);
 
-		membranePrism.emplace_back(vertices[i%end].x, vertices[i%end].y, vertices[i%end].z-height/2);
-		membranePrism.emplace_back(vertices[(i+1)%end].x, vertices[(i+1)%end].y, vertices[(i+1)%end].z-height/2);
-		membranePrism.emplace_back(0,0,-height/2);
-	}
-
-	if (outputFile.is_open())
-	{
-		outputFile << "Vertex Count: " << membranePrism.size() << endl;
-		outputFile << endl << "Data:" << endl << endl;
-
-		for(size_t i=0; i<membranePrism.size(); i++)
-		{
-			outputFile << membranePrism[i].x/40 << " ";
-			outputFile << membranePrism[i].y/40 << " ";
-			outputFile << membranePrism[i].z/40 << " ";
-			outputFile << ".5" << " ";
-			outputFile << ".5" << " ";
-			outputFile << "0" << " ";
-			outputFile << "0" << " ";
-			outputFile << "-1" << " " << endl;
-		}
-
-		outputFile.close();
-	}
-	else
-	{
-	    MessageBox(NULL, "Could not create file: membrane.txt", "Error", 0);
+		MeshPoints.emplace_back(vertices2D[i%end].x, vertices2D[i%end].y, vertices2D[i%end].z-height/2);
+		MeshPoints.emplace_back(vertices2D[(i+1)%end].x, vertices2D[(i+1)%end].y, vertices2D[(i+1)%end].z-height/2);
+		MeshPoints.emplace_back(0,0,-height/2);
 	}
 }

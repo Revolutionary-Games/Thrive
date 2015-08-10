@@ -219,6 +219,7 @@ class 'Microbe'
 --
 -- @returns microbe
 -- An object of type Microbe
+
 function Microbe.createMicrobeEntity(name, aiControlled, speciesName)
     local entity
     if name then
@@ -815,6 +816,7 @@ function Microbe:update(logicTime)
             end
         end
     end
+	self:_updateAllHexColours()
 end
 
 function Microbe:purgeCompounds()
@@ -942,9 +944,9 @@ end
 --
 -- The simple coloured hexes are a placeholder for proper models.
 function Microbe:_updateAllHexColours()
-    for s, organelle in pairs(self.microbe.organelles) do
-        organelle:updateHexColours()
-    end
+	local sceneNode = OgreSceneNodeComponent()
+	sceneNode.meshName = "membrane"
+	self.entity:addComponent(sceneNode)
 end
 
 

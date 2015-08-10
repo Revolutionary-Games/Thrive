@@ -7,6 +7,9 @@
 #include <memory>
 #include <OgreVector3.h>
 #include <OgreQuaternion.h>
+#include <vector>
+
+#include "microbe_stage/membrane.h"
 
 
 #include <iostream>
@@ -368,6 +371,9 @@ private:
 
     struct Implementation;
     std::unique_ptr<Implementation> m_impl;
+
+    std::vector<Ogre::Vector3> organellePositions;
+    Membrane MyMembrane;
 };
 
 }
