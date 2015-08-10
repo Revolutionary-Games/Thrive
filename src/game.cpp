@@ -69,14 +69,9 @@ Game::run() {
         int fpsTime = 0;
         auto lastUpdate = Implementation::Clock::now();
         m_impl->m_engine.init();
-
-        std::vector<Ogre::Vector3> organellePositions;
-        Membrane MyMembrane(organellePositions);
         // Start game loop
         m_impl->m_quit = false;
         while (not m_impl->m_quit) {
-
-            MyMembrane.Update();
 
             auto now = Implementation::Clock::now();
             auto delta = now - lastUpdate;

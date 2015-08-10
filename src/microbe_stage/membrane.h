@@ -6,7 +6,7 @@
 //
 //  Author: Michael Silver, 2015
 //
-//  Desc: creates a dynamic membrane around organelles
+//  Desc: Creates a dynamic membrane around organelles
 //
 //------------------------------------------------------------------------
 
@@ -17,7 +17,9 @@
 #include <math.h>
 #include <OgreVector3.h>
 
-class Membrane
+#include "general/mesh.h"
+
+class Membrane: public Mesh
 {
 private:
     // The length in pixels of a side of the square that bounds the membrane.
@@ -27,20 +29,17 @@ private:
     int membraneResolution;
 
     // Stores the generated 2-Dimensional membrane.
-    std::vector<Ogre::Vector3>   Vertices2D;
-
-    // Stores the 3-Dimensional membrane such that every 3 points make up a triangle.
-    std::vector<Ogre::Vector3>   Vertices3D;
+    std::vector<Ogre::Vector3>   vertices2D;
 
     // Stores the positions of the organelles.
     std::vector<Ogre::Vector3>   organellePos;
 
 public:
-
-	Membrane(std::vector<Ogre::Vector3> organellePos);
+    // Creates a membrane object from the positions of the organelles.
+	Membrane();
 
 	// This function gives out the commands to create and draw the membrane.
-	bool	Update();
+	bool	Update(std::vector<Ogre::Vector3> organellePos);
 
 	// Creates the 2D points in the membrane by looking at the positions of the organelles.
 	void	DrawMembrane();
@@ -52,5 +51,5 @@ public:
 	Ogre::Vector3	GetMovement(Ogre::Vector3 target, Ogre::Vector3 closestOrganelle);
 
 	// Creates a 3D prism from the 2D vertices.
-	void	WriteData(std::vector<Ogre::Vector3> vertices);
+	void	MakePrism();
 };
