@@ -1,6 +1,5 @@
-#include "Mesh.h"
-
-#include <map>
+#include <windows.h>
+#include "mesh.h"
 
 using namespace std;
 
@@ -10,15 +9,20 @@ Mesh::Mesh()
 
 Mesh::Mesh(vector<Ogre::Vector3> points)
 {
-	VectorToHE(points);
+    VectorToHE(points);
 }
 
-void Mesh::VectorToHE(vector<Ogre::Vector3> points)
+void Mesh::VectorToHE(vector<Ogre::Vector3> vectorPoint)
 {
-	map<pair<Ogre::Vector3, Ogre::Vector3>, HE_edge*> Edges;
+    map<pair<HE_vert, HE_vert>, HE_edge*> Edges;
+
+    vector<HE_vert> points;
+    for(auto &it : vectorPoint)
+    {
+        points.emplace_back(it);
+    }
 
 	faces.clear();
-
 	for(size_t i=0; i<points.size(); i+=3)
 	{
 		faces.emplace_back(new HE_face);
@@ -70,8 +74,10 @@ void Mesh::VectorToHE(vector<Ogre::Vector3> points)
 
 void Mesh::Subdivide()
 {
-	// Every three elements will make a triangle.
-	vector<Ogre::Vector3> MeshPoints;
+    if (faces.size() == 0)
+    {
+        VectorToHE(MeshPoints);
+    }
 
 	for(size_t i=0, end=faces.size(); i<end; i++)
 	{
