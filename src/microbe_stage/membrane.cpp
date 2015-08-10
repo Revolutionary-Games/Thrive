@@ -41,31 +41,14 @@ Membrane::Membrane()
 	}
 
 	for(int i=0; i<500; i++)
-	{
-    	DrawMembrane();
-	}
+    {
+        DrawMembrane();
+    }
 }
 
 bool Membrane::Update(vector<Ogre::Vector3> organellePositions)
 {
-    organellePos = organellePositions;
-
-	organellePos.clear();
-	organellePos.emplace_back(0,0,0);
-	organellePos.emplace_back(0,-2,0);
-	organellePos.emplace_back(0,2,0);
-	organellePos.emplace_back(0,-4,0);
-	organellePos.emplace_back(1.7,-1,0);
-	organellePos.emplace_back(-1.7,-1,0);
-	organellePos.emplace_back(-3.4,-2,0);
-	organellePos.emplace_back(3.4,-2,0);
-	organellePos.emplace_back(-3.4,-4,0);
-	organellePos.emplace_back(3.4,-4,0);
-	organellePos.emplace_back(-1.7,1,0);
-	organellePos.emplace_back(1.7,1,0);
-	organellePos.emplace_back(-1.7,-3,0);
-	organellePos.emplace_back(1.7,-3,0);
-	organellePos.emplace_back(0,4,0);
+    organellePositions = organellePos;
 
     MeshPoints.clear();
 	faces.clear();
