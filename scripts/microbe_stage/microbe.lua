@@ -756,6 +756,8 @@ function Microbe:update(logicTime)
     if not self.microbe.dead then
         -- StorageOrganelles
         self:_updateCompoundAbsorber()
+		-- Membrane
+		self.entity:getComponent(OgreSceneNodeComponent.TYPE_ID).meshName = "membrane"
         -- Regenerate bandwidth
         self.microbe:regenerateBandwidth(logicTime)
         -- Attempt to absorb queued compounds
@@ -816,7 +818,6 @@ function Microbe:update(logicTime)
             end
         end
     end
-	self:_updateAllHexColours()
 end
 
 function Microbe:purgeCompounds()
@@ -919,7 +920,6 @@ function Microbe:_initialize()
         organelle.sceneNode.transform:touch()
         organelle:onAddedToMicrobe(self, q, r)
     end
-    self:_updateAllHexColours()
     self.microbe.initialized = true
 end
 
@@ -944,9 +944,6 @@ end
 --
 -- The simple coloured hexes are a placeholder for proper models.
 function Microbe:_updateAllHexColours()
-	local sceneNode = OgreSceneNodeComponent()
-	sceneNode.meshName = "membrane"
-	self.entity:addComponent(sceneNode)
 end
 
 
