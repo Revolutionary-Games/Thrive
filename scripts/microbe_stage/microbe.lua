@@ -308,10 +308,15 @@ function Microbe:__init(entity)
     if not self.microbe.initialized then
         self:_initialize()
     end
+	for _, organelle in pairs(self.microbe.organelles) do
+		local q = organelle.position.q
+		local r = organelle.position.r
+		local x, y = axialToCartesian(q, r)
+		self.sceneNode:sendOrganelles(x, y)
+		print(self.microbe.speciesName, x, y)
+	end
     self:_updateCompoundAbsorber()
     self.playerAlreadyShownAtpDamage = false
-	-- Send organelle data to draw the membrane
-
 end
 
 -- Getter for microbe species
@@ -759,7 +764,7 @@ function Microbe:update(logicTime)
         -- StorageOrganelles
         self:_updateCompoundAbsorber()
 		-- Membrane
-		self.entity:getComponent(OgreSceneNodeComponent.TYPE_ID).meshName = "membrane"
+		self.sceneNode.meshName = "membrane"
         -- Regenerate bandwidth
         self.microbe:regenerateBandwidth(logicTime)
         -- Attempt to absorb queued compounds
@@ -818,14 +823,13 @@ function Microbe:update(logicTime)
             else
                 self:destroy()
             end
-        end
-    end
-	for _, organelle in pairs(self.microbe.organelles) do
-		local q = organelle.position.q
-		local r = organelle.position.r
-		local x, y = axialToCartesian(q, r)
-		self.entity:getComponent(OgreSceneNodeComponent.TYPE_ID):sendOrganelles(x, y)
+		end
 	end
+end
+
+function SendOrganelles()
+	local count = 5
+	return count
 end
 
 function Microbe:purgeCompounds()

@@ -31,11 +31,11 @@ private:
     // Stores the generated 2-Dimensional membrane.
     std::vector<Ogre::Vector3>   vertices2D;
 
-    // Stores the positions of the organelles.
-    std::vector<Ogre::Vector3>   organellePos;
-
 public:
     bool isInitialized;
+
+    // Stores the positions of the organelles.
+    std::vector<Ogre::Vector3>   organellePos;
 
 public:
     // Creates a membrane object from the positions of the organelles.

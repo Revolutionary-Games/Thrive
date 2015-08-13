@@ -164,7 +164,7 @@ public:
     attachSoundListener();
 
     // Gets organelle positions from the .lua file.
-    void sendOrganelles(int x, int y);
+    void sendOrganelles(double x, double y);
 
     /**
     * @brief The name of the mesh to attach to this scene node
