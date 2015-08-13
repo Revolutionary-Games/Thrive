@@ -8,9 +8,9 @@
 #include <OgreVector3.h>
 #include <OgreQuaternion.h>
 #include <vector>
+#include <map>
 
 #include "microbe_stage/membrane.h"
-
 
 #include <iostream>
 
@@ -163,6 +163,9 @@ public:
     void
     attachSoundListener();
 
+    // Gets organelle positions from the .lua file.
+    void sendOrganelles(int x, int y);
+
     /**
     * @brief The name of the mesh to attach to this scene node
     */
@@ -220,6 +223,9 @@ private:
 
     static bool s_soundListenerAttached;
 
+    std::vector<Ogre::Vector3> organellePositions;
+
+    Membrane MyMembrane;
 };
 
 /**
@@ -367,13 +373,11 @@ public:
     */
     void update(int, int) override;
 
+
 private:
 
     struct Implementation;
     std::unique_ptr<Implementation> m_impl;
-
-    std::vector<Ogre::Vector3> organellePositions;
-    Membrane MyMembrane;
 };
 
 }

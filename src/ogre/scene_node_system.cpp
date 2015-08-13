@@ -120,6 +120,7 @@ OgreSceneNodeComponent::luaBindings() {
         .def("setAnimationSpeed", &OgreSceneNodeComponent::setAnimationSpeed)
         .def("attachObject", &OgreSceneNodeComponent::attachObject)
         .def("attachSoundListener", &OgreSceneNodeComponent::attachSoundListener)
+        .def("sendOrganelles", &OgreSceneNodeComponent::sendOrganelles)
         .def_readonly("transform", &OgreSceneNodeComponent::m_transform)
         .def_readonly("entity", &OgreSceneNodeComponent::m_entity)
         .property("parent", OgreSceneNodeComponent_getParent, OgreSceneNodeComponent_setParent)
@@ -482,7 +483,11 @@ OgreUpdateSceneNodeSystem::update(
             if (component->m_meshName.get() == "membrane")
             {
                 // Get the vertex positions of the membrane.
-                MyMembrane.Update(organellePositions);
+                if(!component->MyMembrane.isInitialized)
+                {
+                    component->MyMembrane.Initialize(component->organellePositions);
+                }
+                component->MyMembrane.Update(component->organellePositions);
 
                 // Create a mesh and a submesh.
                 Ogre::MeshPtr msh = Ogre::MeshManager::getSingleton().createManual("Membrane", "General");
@@ -490,12 +495,12 @@ OgreUpdateSceneNodeSystem::update(
 
                 // Define the vertices.
                 std::vector<double> vertexData;
-                for(size_t i=0, end=MyMembrane.MeshPoints.size(); i<end; i++)
+                for(size_t i=0, end=component->MyMembrane.MeshPoints.size(); i<end; i++)
                 {
                     // Vertex.
-                    vertexData.push_back(MyMembrane.MeshPoints[i].x);
-                    vertexData.push_back(MyMembrane.MeshPoints[i].y);
-                    vertexData.push_back(MyMembrane.MeshPoints[i].z);
+                    vertexData.push_back(component->MyMembrane.MeshPoints[i].x);
+                    vertexData.push_back(component->MyMembrane.MeshPoints[i].y);
+                    vertexData.push_back(component->MyMembrane.MeshPoints[i].z);
 
                     // Normal.
                     vertexData.push_back(0.0);
@@ -589,33 +594,21 @@ OgreUpdateSceneNodeSystem::update(
                 /// Notify -Mesh object that it has been loaded
                 msh->load();
 
-              //  component->m_entity = m_impl->m_sceneManager->createEntity("CustomEntity", "ColourCube", "General");
-
-
-
                 Ogre::MaterialPtr material = Ogre::MaterialManager::getSingleton().create(
                       "Test/ColourTest", Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
                 material->getTechnique(0)->getPass(0)->setVertexColourTracking(Ogre::TVC_AMBIENT);
 
-                /* component->m_entity->setMaterial(material);// setMaterialName("ATP.material", "General");
-                sceneNode->attachObject(component->m_entity);*/
-
-
                 Ogre::Entity* thisEntity = m_impl->m_sceneManager->createEntity("Membrane",  "General");
                 thisEntity->setMaterialName("Test/ColourTest");
 
-                Ogre::SceneNode* thisSceneNode = m_impl->m_sceneManager->getRootSceneNode()->createChildSceneNode();
-                thisSceneNode->setOrientation(component->m_transform.orientation);
-                //thisSceneNode->setScale(component->m_transform.scale);
-                thisSceneNode->setScale(0.15,0.15,0.15);
-                thisSceneNode->setPosition(component->m_transform.position);
-                thisSceneNode->attachObject(thisEntity);
+                sceneNode->setOrientation(component->m_transform.orientation);
+                sceneNode->setScale(component->m_transform.scale);
+                sceneNode->setPosition(component->m_transform.position);
+                sceneNode->attachObject(thisEntity);
 
             }
             else if (component->m_meshName.get().size() > 0) {
-                component->m_entity = m_impl->m_sceneManager->createEntity(
-                    component->m_meshName
-                );
+                component->m_entity = m_impl->m_sceneManager->createEntity(component->m_meshName);
                 sceneNode->attachObject(component->m_entity);
             }
             component->m_meshName.untouch();
@@ -701,4 +694,9 @@ OgreUpdateSceneNodeSystem::update(
             component->m_fullAnimationHalt = false;
         }
     }
+}
+
+void OgreSceneNodeComponent::sendOrganelles(int x, int y)
+{
+    organellePositions.emplace_back(x,y,0);
 }

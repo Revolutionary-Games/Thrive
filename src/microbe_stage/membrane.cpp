@@ -1,27 +1,15 @@
 #include "membrane.h"
 
+#include <string>
+
 using namespace std;
 
-Membrane::Membrane()
+Membrane::Membrane(): isInitialized(false)
 {
-	cellDimensions = 5;
-	membraneResolution = 5;
-
-	organellePos.emplace_back(0,0,0);
-	organellePos.emplace_back(0,-2,0);
-	organellePos.emplace_back(0,2,0);
-	organellePos.emplace_back(0,-4,0);
-	organellePos.emplace_back(1.7,-1,0);
-	organellePos.emplace_back(-1.7,-1,0);
-	organellePos.emplace_back(-3.4,-2,0);
-	organellePos.emplace_back(3.4,-2,0);
-	organellePos.emplace_back(-3.4,-4,0);
-	organellePos.emplace_back(3.4,-4,0);
-	organellePos.emplace_back(-1.7,1,0);
-	organellePos.emplace_back(1.7,1,0);
-	organellePos.emplace_back(-1.7,-3,0);
-	organellePos.emplace_back(1.7,-3,0);
-	organellePos.emplace_back(0,4,0);
+    // Half the side length of the original square that is compressed to make the membrane.
+	cellDimensions = 20;
+	// Amount of segments on one side of the above described square.
+	membraneResolution = 20;
 
 	for(int i=0; i<membraneResolution; i++)
 	{
@@ -40,24 +28,38 @@ Membrane::Membrane()
 		vertices2D.emplace_back(-cellDimensions, cellDimensions - 2*cellDimensions/membraneResolution*i, 0);
 	}
 
-	for(int i=0; i<500; i++)
-    {
-        DrawMembrane();
-    }
+//	for(int i=0; i<500; i++)
+//    {
+//        DrawMembrane();
+//    }
+//	MakePrism();
+//	Subdivide();
 }
 
-bool Membrane::Update(vector<Ogre::Vector3> organellePositions)
+void Membrane::Update(vector<Ogre::Vector3> organellePositions)
 {
-    organellePositions = organellePos;
+    organellePos = organellePositions;
 
     MeshPoints.clear();
 	faces.clear();
 
     DrawMembrane();
 	MakePrism();
-	//Subdivide();
+	Subdivide();
+}
 
-	return true;
+void Membrane::Initialize(vector<Ogre::Vector3> organellePositions)
+{
+    organellePos = organellePositions;
+
+	for(int i=0; i<500; i++)
+    {
+        DrawMembrane();
+    }
+	MakePrism();
+	Subdivide();
+
+	isInitialized = true;
 }
 
 void Membrane::DrawMembrane()
@@ -109,14 +111,14 @@ void Membrane::DrawMembrane()
 
 Ogre::Vector3 Membrane::FindClosestOrganelles(Ogre::Vector3 target)
 {
-	double closestSoFar = 400;
+	double closestSoFar = 4;
 	int closestIndex = -1;
 
 	for (size_t i=0, end=organellePos.size(); i<end; i++)
 	{
 		double lenToObject =  target.squaredDistance(organellePos[i]);
 
-		if(lenToObject < 400 && lenToObject < closestSoFar)
+		if(lenToObject < 4 && lenToObject < closestSoFar)
 		{
 			closestSoFar = lenToObject;
 
@@ -132,7 +134,7 @@ Ogre::Vector3 Membrane::FindClosestOrganelles(Ogre::Vector3 target)
 
 Ogre::Vector3 Membrane::GetMovement(Ogre::Vector3 target, Ogre::Vector3 closestOrganelle)
 {
-	double power = pow(2.7, (-target.distance(closestOrganelle))/100)/5;
+	double power = pow(2.7, (-target.distance(closestOrganelle))/10)/50;
 
 	return (Ogre::Vector3(closestOrganelle)-Ogre::Vector3(target))*power;
 }
@@ -140,7 +142,7 @@ Ogre::Vector3 Membrane::GetMovement(Ogre::Vector3 target, Ogre::Vector3 closestO
 
 void Membrane::MakePrism()
 {
-	double height = 30;
+	double height = 3;
 
 	for(size_t i=0, end=vertices2D.size(); i<end; i++)
 	{

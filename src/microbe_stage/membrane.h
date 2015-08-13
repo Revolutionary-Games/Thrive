@@ -35,11 +35,18 @@ private:
     std::vector<Ogre::Vector3>   organellePos;
 
 public:
+    bool isInitialized;
+
+public:
     // Creates a membrane object from the positions of the organelles.
 	Membrane();
 
 	// This function gives out the commands to create and draw the membrane.
-	bool	Update(std::vector<Ogre::Vector3> organellePos);
+	// At the moment it does nothing to save fps.
+	void	Update(std::vector<Ogre::Vector3> organellePos);
+
+	// Creates a static membrane, pretty much a copy of the update function.
+	void    Initialize(std::vector<Ogre::Vector3> organellePos);
 
 	// Creates the 2D points in the membrane by looking at the positions of the organelles.
 	void	DrawMembrane();

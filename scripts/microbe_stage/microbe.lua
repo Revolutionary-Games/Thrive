@@ -310,6 +310,8 @@ function Microbe:__init(entity)
     end
     self:_updateCompoundAbsorber()
     self.playerAlreadyShownAtpDamage = false
+	-- Send organelle data to draw the membrane
+
 end
 
 -- Getter for microbe species
@@ -818,6 +820,12 @@ function Microbe:update(logicTime)
             end
         end
     end
+	for _, organelle in pairs(self.microbe.organelles) do
+		local q = organelle.position.q
+		local r = organelle.position.r
+		local x, y = axialToCartesian(q, r)
+		self.entity:getComponent(OgreSceneNodeComponent.TYPE_ID):sendOrganelles(x, y)
+	end
 end
 
 function Microbe:purgeCompounds()
@@ -919,6 +927,7 @@ function Microbe:_initialize()
         organelle.sceneNode.transform.position = translation
         organelle.sceneNode.transform:touch()
         organelle:onAddedToMicrobe(self, q, r)
+
     end
     self.microbe.initialized = true
 end
