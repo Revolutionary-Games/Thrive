@@ -1,15 +1,13 @@
 #include "membrane.h"
 
-#include <string>
-
 using namespace std;
 
 Membrane::Membrane(): isInitialized(false)
 {
     // Half the side length of the original square that is compressed to make the membrane.
-	cellDimensions = 20;
+	cellDimensions = 10;
 	// Amount of segments on one side of the above described square.
-	membraneResolution = 20;
+	membraneResolution = 10;
 
 	for(int i=0; i<membraneResolution; i++)
 	{
@@ -27,13 +25,6 @@ Membrane::Membrane(): isInitialized(false)
 	{
 		vertices2D.emplace_back(-cellDimensions, cellDimensions - 2*cellDimensions/membraneResolution*i, 0);
 	}
-
-//	for(int i=0; i<500; i++)
-//    {
-//        DrawMembrane();
-//    }
-//	MakePrism();
-//	Subdivide();
 }
 
 void Membrane::Update(vector<Ogre::Vector3> organellePositions)
@@ -73,7 +64,7 @@ void Membrane::DrawMembrane()
 		Ogre::Vector3 closestOrganelle = FindClosestOrganelles(vertices2D[i]);
 		if(closestOrganelle == Ogre::Vector3(0,0,-1))
 		{
-			newPositions[i] = (vertices2D[(end+i-1)%end] + vertices2D[(i+1)%end] + vertices2D[(end+i-2)%end] + vertices2D[(i+2)%end])/4;
+			newPositions[i] = (vertices2D[(end+i-1)%end] + vertices2D[(i+1)%end])/2;
 		}
 		else
 		{
@@ -111,14 +102,14 @@ void Membrane::DrawMembrane()
 
 Ogre::Vector3 Membrane::FindClosestOrganelles(Ogre::Vector3 target)
 {
-	double closestSoFar = 4;
+	double closestSoFar = 9;
 	int closestIndex = -1;
 
 	for (size_t i=0, end=organellePos.size(); i<end; i++)
 	{
 		double lenToObject =  target.squaredDistance(organellePos[i]);
 
-		if(lenToObject < 4 && lenToObject < closestSoFar)
+		if(lenToObject < 9 && lenToObject < closestSoFar)
 		{
 			closestSoFar = lenToObject;
 

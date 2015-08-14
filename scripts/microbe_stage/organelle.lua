@@ -60,7 +60,7 @@ function Organelle:addHex(q, r)
     hex.sceneNode.transform.position = translation
     hex.sceneNode.transform:touch()
     hex.sceneNode.meshName = "hex.mesh"
-    hex.entity:addComponent(hex.sceneNode)
+    --hex.entity:addComponent(hex.sceneNode)
     -- Collision shape
     self.collisionShape:addChildShape(
         translation,

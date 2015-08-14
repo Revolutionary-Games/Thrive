@@ -484,34 +484,12 @@ OgreUpdateSceneNodeSystem::update(
 
             if (component->m_meshName.get().find("membrane") != std::string::npos)
             {
-                //int value = luabind::call_function<int>(Game::instance().engine().luaState(), "SendOrganelles", false);
-
-                //MessageBox(NULL, std::to_string(value).c_str(), "Test", 0);
-
                 // Get the vertex positions of the membrane.
                 if(!component->MyMembrane.isInitialized)
                 {
                     component->MyMembrane.Initialize(component->organellePositions);
                 }
                 component->MyMembrane.Update(component->organellePositions);
-
-//                std::ofstream outputFile("membrane.txt");
-//
-//                outputFile << "organellePositions:" << " ";
-//                for(size_t i=0; i<component->organellePositions.size(); i++)
-//                {
-//                    outputFile << component->organellePositions[i] << " ";
-//                }
-//                outputFile << std::endl;
-//
-//                outputFile << "organellePos:" << " ";
-//                for(size_t i=0; i<component->MyMembrane.organellePos.size(); i++)
-//                {
-//                    outputFile << component->MyMembrane.organellePos[i] << " ";
-//                }
-//
-//                outputFile.close();
-
 
                 // Create a mesh and a submesh.
                 Ogre::MeshPtr msh = Ogre::MeshManager::getSingleton().createManual(component->m_meshName.get(), "General");
@@ -723,7 +701,4 @@ OgreUpdateSceneNodeSystem::update(
 void OgreSceneNodeComponent::sendOrganelles(double x, double y)
 {
     organellePositions.emplace_back(x,y,0);
-
-//    MessageBox(NULL, std::to_string(x).c_str(), "sent organelles - x", 0);
-//    MessageBox(NULL, std::to_string(y).c_str(), "sent organelles - y", 0);
 }
