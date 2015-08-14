@@ -482,7 +482,7 @@ OgreUpdateSceneNodeSystem::update(
                 component->m_entity = nullptr;
             }
 
-            if (component->m_meshName.get() == "membrane")
+            if (component->m_meshName.get().find("membrane") != std::string::npos)
             {
                 //int value = luabind::call_function<int>(Game::instance().engine().luaState(), "SendOrganelles", false);
 
@@ -514,7 +514,7 @@ OgreUpdateSceneNodeSystem::update(
 
 
                 // Create a mesh and a submesh.
-                Ogre::MeshPtr msh = Ogre::MeshManager::getSingleton().createManual("Membrane", "General");
+                Ogre::MeshPtr msh = Ogre::MeshManager::getSingleton().createManual(component->m_meshName.get(), "General");
                 Ogre::SubMesh* sub = msh->createSubMesh();
 
                 // Define the vertices.
@@ -622,7 +622,7 @@ OgreUpdateSceneNodeSystem::update(
                       "Test/ColourTest", Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
                 material->getTechnique(0)->getPass(0)->setVertexColourTracking(Ogre::TVC_AMBIENT);
 
-                Ogre::Entity* thisEntity = m_impl->m_sceneManager->createEntity("Membrane",  "General");
+                Ogre::Entity* thisEntity = m_impl->m_sceneManager->createEntity(component->m_meshName.get(),  "General");
                 thisEntity->setMaterialName("Test/ColourTest");
 
                 sceneNode->setOrientation(component->m_transform.orientation);

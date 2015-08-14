@@ -308,13 +308,6 @@ function Microbe:__init(entity)
     if not self.microbe.initialized then
         self:_initialize()
     end
-	for _, organelle in pairs(self.microbe.organelles) do
-		local q = organelle.position.q
-		local r = organelle.position.r
-		local x, y = axialToCartesian(q, r)
-		self.sceneNode:sendOrganelles(x, y)
-		print(self.microbe.speciesName, x, y)
-	end
     self:_updateCompoundAbsorber()
     self.playerAlreadyShownAtpDamage = false
 end
@@ -763,8 +756,6 @@ function Microbe:update(logicTime)
     if not self.microbe.dead then
         -- StorageOrganelles
         self:_updateCompoundAbsorber()
-		-- Membrane
-		self.sceneNode.meshName = "membrane"
         -- Regenerate bandwidth
         self.microbe:regenerateBandwidth(logicTime)
         -- Attempt to absorb queued compounds
@@ -1030,6 +1021,14 @@ function MicrobeSystem:update(renderTime, logicTime)
     for entityId in self.entities:addedEntities() do
         local microbe = Microbe(Entity(entityId))
         self.microbes[entityId] = microbe
+        -- Membrane
+		microbe.sceneNode.meshName = "membrane_" .. microbe.microbe.speciesName
+        for _, organelle in pairs(microbe.microbe.organelles) do
+            local q = organelle.position.q
+            local r = organelle.position.r
+            local x, y = axialToCartesian(q, r)
+            microbe.sceneNode:sendOrganelles(x, y)
+        end
     end
     self.entities:clearChanges()
     for _, microbe in pairs(self.microbes) do
