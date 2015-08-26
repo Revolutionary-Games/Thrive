@@ -505,9 +505,16 @@ OgreUpdateSceneNodeSystem::update(
                     vertexData.push_back(component->MyMembrane.MeshPoints[i].z);
 
                     // Normal.
+                    //vertexData.push_back(component->MyMembrane.Normals[i].x);
+                    //vertexData.push_back(component->MyMembrane.Normals[i].y);
+                    //vertexData.push_back(component->MyMembrane.Normals[i].z);
+                    vertexData.push_back(0.0);
                     vertexData.push_back(0.0);
                     vertexData.push_back(1.0);
-                    vertexData.push_back(1.0);
+
+                    // UV coordinates.
+                    vertexData.push_back(component->MyMembrane.UVs[i].x);
+                    vertexData.push_back(component->MyMembrane.UVs[i].y);
                 }
 
                 // Populate the vertex buffer.
@@ -518,17 +525,8 @@ OgreUpdateSceneNodeSystem::update(
                     vertices[i] = vertexData[i];
                 }
 
-                // Use render system to convert color value.
-                Ogre::RenderSystem* rs = Ogre::Root::getSingleton().getRenderSystem();
-                Ogre::RGBA color[vertexData.size()/6];
-                Ogre::RGBA *pColor = color;
-                for(size_t i=0, end=vertexData.size()/6; i<end; i++)
-                {
-                    rs->convertColourValue(Ogre::ColourValue(0.0,1.0,1.0), pColor++);
-                }
-
                 // Populate the index buffer.
-                const size_t indexBufferSize = vertexData.size()/2;
+                const size_t indexBufferSize = vertexData.size()*3/8;
                 unsigned short faces[indexBufferSize];
                 for(size_t i=0, end=indexBufferSize; i<end; i++)
                 {
@@ -537,7 +535,7 @@ OgreUpdateSceneNodeSystem::update(
 
                 // Create vertex data structure for 8 vertices shared between submeshes.
                 msh->sharedVertexData = new Ogre::VertexData();
-                msh->sharedVertexData->vertexCount = vertexData.size()/6;
+                msh->sharedVertexData->vertexCount = vertexData.size()/8;
 
                 /// Create declaration (memory format) of vertex data
                 Ogre::VertexDeclaration* decl = msh->sharedVertexData->vertexDeclaration;
@@ -547,6 +545,9 @@ OgreUpdateSceneNodeSystem::update(
                 offset += Ogre::VertexElement::getTypeSize(Ogre::VET_FLOAT3);
                 decl->addElement(0, offset, Ogre::VET_FLOAT3, Ogre::VES_NORMAL);
                 offset += Ogre::VertexElement::getTypeSize(Ogre::VET_FLOAT3);
+                decl->addElement(0, offset, Ogre::VET_FLOAT2, Ogre::VES_TEXTURE_COORDINATES);
+                offset += Ogre::VertexElement::getTypeSize(Ogre::VET_FLOAT2);
+
                 /// Allocate vertex buffer of the requested number of vertices (vertexCount)
                 /// and bytes per vertex (offset)
                 Ogre::HardwareVertexBufferSharedPtr vbuf =
@@ -559,19 +560,19 @@ OgreUpdateSceneNodeSystem::update(
                 Ogre::VertexBufferBinding* bind = msh->sharedVertexData->vertexBufferBinding;
                 bind->setBinding(0, vbuf);
 
-                // 2nd buffer
-                offset = 0;
-                decl->addElement(1, offset, Ogre::VET_COLOUR, Ogre::VES_DIFFUSE);
-                offset += Ogre::VertexElement::getTypeSize(Ogre::VET_COLOUR);
-                /// Allocate vertex buffer of the requested number of vertices (vertexCount)
-                /// and bytes per vertex (offset)
-                vbuf = Ogre::HardwareBufferManager::getSingleton().createVertexBuffer(
-                    offset, msh->sharedVertexData->vertexCount, Ogre::HardwareBuffer::HBU_STATIC_WRITE_ONLY);
-                /// Upload the vertex data to the card
-                vbuf->writeData(0, vbuf->getSizeInBytes(), color, true);
-
-                /// Set vertex buffer binding so buffer 1 is bound to our colour buffer
-                bind->setBinding(1, vbuf);
+//                // 2nd buffer
+//                offset = 0;
+//                decl->addElement(1, offset, Ogre::VET_COLOUR, Ogre::VES_DIFFUSE);
+//                offset += Ogre::VertexElement::getTypeSize(Ogre::VET_COLOUR);
+//                /// Allocate vertex buffer of the requested number of vertices (vertexCount)
+//                /// and bytes per vertex (offset)
+//                vbuf = Ogre::HardwareBufferManager::getSingleton().createVertexBuffer(
+//                    offset, msh->sharedVertexData->vertexCount, Ogre::HardwareBuffer::HBU_STATIC_WRITE_ONLY);
+//                /// Upload the vertex data to the card
+//                vbuf->writeData(0, vbuf->getSizeInBytes(), NULL, true);
+//
+//                /// Set vertex buffer binding so buffer 1 is bound to our colour buffer
+//                bind->setBinding(1, vbuf);
 
                 /// Allocate index buffer of the requested number of vertices (ibufCount)
                 Ogre::HardwareIndexBufferSharedPtr ibuf = Ogre::HardwareBufferManager::getSingleton().
@@ -596,12 +597,8 @@ OgreUpdateSceneNodeSystem::update(
                 /// Notify -Mesh object that it has been loaded
                 msh->load();
 
-                Ogre::MaterialPtr material = Ogre::MaterialManager::getSingleton().create(
-                      "Test/ColourTest", Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
-                material->getTechnique(0)->getPass(0)->setVertexColourTracking(Ogre::TVC_AMBIENT);
-
                 Ogre::Entity* thisEntity = m_impl->m_sceneManager->createEntity(component->m_meshName.get(),  "General");
-                thisEntity->setMaterialName("Test/ColourTest");
+                thisEntity->setMaterialName("Membrane");
 
                 sceneNode->setOrientation(component->m_transform.orientation);
                 sceneNode->setScale(component->m_transform.scale);

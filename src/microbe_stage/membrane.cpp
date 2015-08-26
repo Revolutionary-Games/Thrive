@@ -36,7 +36,8 @@ void Membrane::Update(vector<Ogre::Vector3> organellePositions)
 
     DrawMembrane();
 	MakePrism();
-	Subdivide();
+	//Subdivide();
+    CalcUVCircle();
 }
 
 void Membrane::Initialize(vector<Ogre::Vector3> organellePositions)
@@ -48,7 +49,8 @@ void Membrane::Initialize(vector<Ogre::Vector3> organellePositions)
         DrawMembrane();
     }
 	MakePrism();
-	Subdivide();
+	//Subdivide();
+	CalcUVCircle();
 
 	isInitialized = true;
 }
@@ -133,7 +135,7 @@ Ogre::Vector3 Membrane::GetMovement(Ogre::Vector3 target, Ogre::Vector3 closestO
 
 void Membrane::MakePrism()
 {
-	double height = 3;
+	double height = .1;
 
 	for(size_t i=0, end=vertices2D.size(); i<end; i++)
 	{

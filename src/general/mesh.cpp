@@ -74,10 +74,7 @@ void Mesh::VectorToHE(vector<Ogre::Vector3> vectorPoint)
 
 void Mesh::Subdivide()
 {
-    if (faces.size() == 0)
-    {
-        VectorToHE(MeshPoints);
-    }
+    VectorToHE(MeshPoints);
 
 	for(size_t i=0, end=faces.size(); i<end; i++)
 	{
@@ -96,6 +93,7 @@ void Mesh::Subdivide()
 		VertAvg(faces[i]->edge->nextEdge->nextEdge->vert);
 	}
 
+	MeshPoints.clear();
 	for(size_t i=0, end=faces.size(); i<end; i++)
 	{
 		MeshPoints.push_back(faces[i]->edge->vert->avg);
@@ -176,4 +174,53 @@ void Mesh::VertAvg(HE_vert* vert)
 	Ogre::Vector3 avg = Ogre::Vector3(vert->x, vert->y, vert->z)*m1 + avgFacePoints*m2 + avgMidEdges*m3;
 
 	vert->avg = avg;
+}
+
+void Mesh::CalcUVCircle()
+{
+    UVs.clear();
+
+    for(size_t i=0, end=MeshPoints.size(); i<end; i++)
+    {
+        double x, y, z, a, b, c;
+        x = MeshPoints[i].x;
+        y = MeshPoints[i].y;
+        z = MeshPoints[i].z;
+
+        double ray = x*x + y*y + z*z;
+
+        double t = Ogre::Math::Sqrt(ray)/(2.0*ray);
+        a = t*x;
+        b = t*y;
+        c = t*z;
+
+        UVs.emplace_back(a+0.5,b+0.5,c+0.5);
+    }
+}
+
+void Mesh::CalcNormals()
+{
+    if (faces.size() == 0)
+    {
+        VectorToHE(MeshPoints);
+    }
+
+    for(HE_face* face : faces)
+	{
+        double x0 = face->edge->vert->x - face->edge->nextEdge->vert->x;
+        double y0 = face->edge->vert->y - face->edge->nextEdge->vert->y;
+        double z0 = face->edge->vert->z - face->edge->nextEdge->vert->z;
+
+        double x1 = face->edge->nextEdge->vert->x - face->edge->nextEdge->nextEdge->vert->x;
+        double y1 = face->edge->nextEdge->vert->y - face->edge->nextEdge->nextEdge->vert->y;
+        double z1 = face->edge->nextEdge->vert->z - face->edge->nextEdge->nextEdge->vert->z;
+
+        Ogre::Vector3 normal = Ogre::Vector3(x0, y0, z0).crossProduct(Ogre::Vector3(x1, y1, z1));
+
+        normal.normalise();
+
+        Normals.push_back(normal);
+        Normals.push_back(normal);
+        Normals.push_back(normal);
+	}
 }

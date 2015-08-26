@@ -119,6 +119,22 @@ public:
     // Carries out the Catmull-Clark subdivision.
 	void Subdivide();
 
+	// Finds the UV coordinates be projecting onto a plane and stretching to fit a circle.
+	void CalcUVCircle();
+
+	// Finds the UV coordinates be projecting onto a plane and stretching to fit a square.
+	void CalcUVSquare();
+
+	// Finds the normals for the mesh.
+	void CalcNormals();
+
+public:
     // Stores the Mesh in a vector such that every 3 points make up a triangle.
     std::vector<Ogre::Vector3> MeshPoints;
+
+    // Stores the UV coordinates for the MeshPoints.
+    std::vector<Ogre::Vector3> UVs;
+
+    // Stores the normals for every point described in MeshPoints.
+    std::vector<Ogre::Vector3> Normals;
 };

@@ -49,7 +49,7 @@ function Organelle:addHex(q, r)
         q = q,
         r = r,
         entity = Entity(),
-        collisionShape = SphereShape(HEX_SIZE),
+        collisionShape = SphereShape(3.0),
         sceneNode = OgreSceneNodeComponent()
     }
     local x, y = axialToCartesian(q, r)
@@ -59,8 +59,8 @@ function Organelle:addHex(q, r)
     hex.sceneNode.parent = self.entity
     hex.sceneNode.transform.position = translation
     hex.sceneNode.transform:touch()
-    hex.sceneNode.meshName = "hex.mesh"
-    --hex.entity:addComponent(hex.sceneNode)
+    --hex.sceneNode.meshName = "hex.mesh"
+    hex.entity:addComponent(hex.sceneNode)
     -- Collision shape
     self.collisionShape:addChildShape(
         translation,
