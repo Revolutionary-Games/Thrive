@@ -14,16 +14,19 @@ function MovementOrganelle:__init(force, torque)
     self.force = force
     self.torque = torque
     self.backwards_multiplier = 0
+	self.x = 0
+	self.y = 0
 end
 
 function MovementOrganelle:onAddedToMicrobe(microbe, q, r)  
     Organelle.onAddedToMicrobe(self, microbe, q,r)
     self.tailEntity = Entity()
     local x, y = axialToCartesian(q, r)
-    local translation = Vector3(0, 0, 0.5)
+	self.x = x
+	self.y = y
     sceneNode = OgreSceneNodeComponent()
     sceneNode.parent = self.entity
-    sceneNode.transform.position = translation
+	sceneNode.transform.position = Vector3(0,0,0)
     sceneNode.meshName = "Flagella.mesh"
     sceneNode:playAnimation("Move", true)
     sceneNode:setAnimationSpeed(0.25)
@@ -31,8 +34,8 @@ function MovementOrganelle:onAddedToMicrobe(microbe, q, r)
     sceneNode.transform.orientation = Quaternion(Radian(Degree(0)), Vector3(0, 0, 1))
     sceneNode.transform:touch()
     self.tailEntity:addComponent(sceneNode)
-    self.tailEntity.sceneNode = sceneNode
-    self.tailEntity:setVolatile(true)
+	self.tailEntity.sceneNode = sceneNode
+	self.tailEntity:setVolatile(true)
     self.movingTail = false
     local organelleX, organelleY = axialToCartesian(q, r)
     local nucleusX, nucleusY = axialToCartesian(0, 0)
@@ -132,6 +135,10 @@ function MovementOrganelle:update(microbe, logicTime)
     Organelle.update(self, microbe, logicTime)
     self:_turnMicrobe(microbe)
     self:_moveMicrobe(microbe, logicTime)
+	local membraneCoords = microbe.sceneNode:getExternOrganellePos(self.x, self.y)
+	local translation = Vector3(membraneCoords[1], membraneCoords[2], 0)
+	self.tailEntity.sceneNode.transform.position = translation - Vector3(self.x, self.y, 0)
+	self.tailEntity.sceneNode.transform:touch()
 end
 
 Organelle.mpCosts["flagellum"] = 25

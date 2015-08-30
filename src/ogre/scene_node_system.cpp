@@ -123,6 +123,7 @@ OgreSceneNodeComponent::luaBindings() {
         .def("attachObject", &OgreSceneNodeComponent::attachObject)
         .def("attachSoundListener", &OgreSceneNodeComponent::attachSoundListener)
         .def("sendOrganelles", &OgreSceneNodeComponent::sendOrganelles)
+        .def("getExternOrganellePos", &OgreSceneNodeComponent::getExternOrganellePos)
         .def_readonly("transform", &OgreSceneNodeComponent::m_transform)
         .def_readonly("entity", &OgreSceneNodeComponent::m_entity)
         .property("parent", OgreSceneNodeComponent_getParent, OgreSceneNodeComponent_setParent)
@@ -698,4 +699,16 @@ OgreUpdateSceneNodeSystem::update(
 void OgreSceneNodeComponent::sendOrganelles(double x, double y)
 {
     organellePositions.emplace_back(x,y,0);
+}
+
+luabind::object OgreSceneNodeComponent::getExternOrganellePos(double x, double y)
+{
+    luabind::object externalOrganellePosition = luabind::newtable(Game::instance().engine().luaState());
+
+    Ogre::Vector3 organelleCoords = MyMembrane.GetExternalOrganelle(x, y);
+    externalOrganellePosition[1] = organelleCoords.x;
+    externalOrganellePosition[2] = organelleCoords.y;
+
+
+    return externalOrganellePosition;
 }

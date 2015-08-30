@@ -51,6 +51,9 @@ public:
 	// Creates the 2D points in the membrane by looking at the positions of the organelles.
 	void	DrawMembrane();
 
+	// Finds the position of external organelles based on its "internal" location.
+	Ogre::Vector3 GetExternalOrganelle(double x, double y);
+
 	// Return the position of the closest organelle to the target point if it is less then a certain threshold away.
 	Ogre::Vector3 FindClosestOrganelles(Ogre::Vector3 target);
 

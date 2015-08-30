@@ -3,6 +3,7 @@
 #include "engine/component.h"
 #include "engine/system.h"
 #include "engine/touchable.h"
+#include "luabind/object.hpp"
 
 #include <memory>
 #include <OgreVector3.h>
@@ -163,8 +164,12 @@ public:
     void
     attachSoundListener();
 
+//These definitely do not belong in this class
     // Gets organelle positions from the .lua file.
     void sendOrganelles(double x, double y);
+
+    // Gets the position of the closest membrane point
+    luabind::object getExternOrganellePos(double x, double y);
 
     /**
     * @brief The name of the mesh to attach to this scene node

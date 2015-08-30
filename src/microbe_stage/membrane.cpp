@@ -158,3 +158,23 @@ void Membrane::MakePrism()
 		MeshPoints.emplace_back(0,0,-height/2);
 	}
 }
+
+Ogre::Vector3 Membrane::GetExternalOrganelle(double x, double y)
+{
+    Ogre::Vector3 coords(x, y, 0);
+
+    double slope = y/x;
+    for(size_t i=0, end=vertices2D.size(); i<end; i++)
+    {
+        if((vertices2D[i].y/vertices2D[i].x)-0.1 <= slope && (vertices2D[i].y/vertices2D[i].x)+0.1 >= slope)
+        {
+            double angle = Ogre::Math::ATan2(vertices2D[i].y, vertices2D[i].x).valueRadians();
+            if(Ogre::Math::ATan2(y,x).valueRadians()-1 <= angle && Ogre::Math::ATan2(y,x).valueRadians()+1 >= angle)
+            {
+                coords = Ogre::Vector3(vertices2D[i].x, vertices2D[i].y, 0);
+            }
+        }
+    }
+
+    return coords;
+}
