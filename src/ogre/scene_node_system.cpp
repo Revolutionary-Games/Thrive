@@ -527,7 +527,7 @@ OgreUpdateSceneNodeSystem::update(
                 }
 
                 // Populate the index buffer.
-                const size_t indexBufferSize = vertexData.size()*3/8;
+                const size_t indexBufferSize = vertexData.size()/8;
                 unsigned short faces[indexBufferSize];
                 for(size_t i=0, end=indexBufferSize; i<end; i++)
                 {
@@ -560,20 +560,6 @@ OgreUpdateSceneNodeSystem::update(
                 /// Set vertex buffer binding so buffer 0 is bound to our vertex buffer
                 Ogre::VertexBufferBinding* bind = msh->sharedVertexData->vertexBufferBinding;
                 bind->setBinding(0, vbuf);
-
-//                // 2nd buffer
-//                offset = 0;
-//                decl->addElement(1, offset, Ogre::VET_COLOUR, Ogre::VES_DIFFUSE);
-//                offset += Ogre::VertexElement::getTypeSize(Ogre::VET_COLOUR);
-//                /// Allocate vertex buffer of the requested number of vertices (vertexCount)
-//                /// and bytes per vertex (offset)
-//                vbuf = Ogre::HardwareBufferManager::getSingleton().createVertexBuffer(
-//                    offset, msh->sharedVertexData->vertexCount, Ogre::HardwareBuffer::HBU_STATIC_WRITE_ONLY);
-//                /// Upload the vertex data to the card
-//                vbuf->writeData(0, vbuf->getSizeInBytes(), NULL, true);
-//
-//                /// Set vertex buffer binding so buffer 1 is bound to our colour buffer
-//                bind->setBinding(1, vbuf);
 
                 /// Allocate index buffer of the requested number of vertices (ibufCount)
                 Ogre::HardwareIndexBufferSharedPtr ibuf = Ogre::HardwareBufferManager::getSingleton().

@@ -441,6 +441,7 @@ function Microbe:getOrganelleAt(q, r)
 end
 
 
+
 -- Removes the organelle at a hex cell
 -- Note that this renders the organelle unusable as we destroy its underlying entity
 --

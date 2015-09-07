@@ -32,6 +32,12 @@ function Organelle:__init()
 end
 
 
+-- Attaches a model to this particular organelle.
+function Organelle:setName(name)
+	self.sceneNode.meshName = name
+end
+
+
 -- Adds a hex to this organelle
 --
 -- @param q, r
@@ -56,11 +62,11 @@ function Organelle:addHex(q, r)
     local translation = Vector3(x, y, 0)
     hex.entity:setVolatile(true)
     -- Scene node
-    hex.sceneNode.parent = self.entity
-    hex.sceneNode.transform.position = translation
-    hex.sceneNode.transform:touch()
+    --hex.sceneNode.parent = self.entity
+    --hex.sceneNode.transform.position = translation
+    --hex.sceneNode.transform:touch()
     --hex.sceneNode.meshName = "hex.mesh"
-    hex.entity:addComponent(hex.sceneNode)
+    --hex.entity:addComponent(hex.sceneNode)
     -- Collision shape
     self.collisionShape:addChildShape(
         translation,
@@ -95,8 +101,8 @@ function Organelle:load(storage)
     end
     self.position.q = storage:get("q", 0)
     self.position.r = storage:get("r", 0)
-    self._colour = storage:get("colour", ColourValue.White)
-    self._internalEdgeColour = storage:get("internalEdgeColour", ColourValue.Grey)
+    --self._colour = storage:get("colour", ColourValue.White)
+    --self._internalEdgeColour = storage:get("internalEdgeColour", ColourValue.Grey)
     --Serializing these causes some minor issues and doesn't serve a purpose anyway
     --self._externalEdgeColour = storage:get("externalEdgeColour", ColourValue.Black)
     self.name = storage:get("name", "<nameless>")
@@ -279,6 +285,31 @@ function OrganelleFactory.makeOrganelle(data)
         if data.name == "" or data.name == nil then data.name = "<nameless>" end
         assert(false, "no organelle by name "..data.name)
     end
+end
+
+-- Draws the hexes and uploads the models in the editor
+function OrganelleFactory.renderOrganelles(data)
+	OrganelleFactory["render_"..data.name](data)
+end
+
+-- Sets the color of the organelle
+function OrganelleFactory.setColour(sceneNode, colour)
+	local subEntity = sceneNode.entity:getSubEntity("center")
+	subEntity:setColour(colour)
+	for i=1, 6 do
+		local sideName = HEX_SIDE_NAME[i]
+		subEntity = sceneNode.entity:getSubEntity(sideName)
+		subEntity:setColour(colour)
+	end
+end
+
+-- Checks which hexes an organelle occupies
+function OrganelleFactory.checkSize(data)
+	if data.name == "mitochondrion" or data.name == "chloroplast" or data.name == "vacuole" then
+		return OrganelleFactory["sizeof_"..data.name](data)
+	else
+		return {}
+	end
 end
 
 -- OrganelleFactory.make_organelle(data) should be defined in the appropriate file

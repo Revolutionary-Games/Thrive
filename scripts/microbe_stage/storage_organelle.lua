@@ -40,7 +40,24 @@ Organelle.mpCosts["vacuole"] = 15
 
 function OrganelleFactory.make_vacuole(data)
     local vacuole = StorageOrganelle(100.0)
+	vacuole:setName("AgentVacuole.mesh")
     vacuole:addHex(0, 0)
-    vacuole:setColour(ColourValue(1, 1, 0, 1))
     return vacuole
+end
+
+function OrganelleFactory.render_vacuole(data)
+	local x, y = axialToCartesian(data.q, data.r)
+	local translation = Vector3(-x, -y, 0)
+	data.sceneNode[1].meshName = "AgentVacuole.mesh"
+	data.sceneNode[1].transform.position = translation
+	data.sceneNode[1].transform.orientation = Quaternion(Radian(Degree(data.rotation)), Vector3(0, 0, 1))
+	
+	data.sceneNode[2].transform.position = translation
+	OrganelleFactory.setColour(data.sceneNode[2], data.colour)
+end
+
+function OrganelleFactory.sizeof_vacuole(data)
+    local hexes = {}
+	hexes[1] = {["q"]=0, ["r"]=0}
+	return hexes
 end
