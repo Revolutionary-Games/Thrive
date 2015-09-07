@@ -16,6 +16,7 @@ function MovementOrganelle:__init(force, torque)
     self.backwards_multiplier = 0
 	self.x = 0
 	self.y = 0
+	self.angle = 0
 end
 
 function MovementOrganelle:onAddedToMicrobe(microbe, q, r)  
@@ -30,7 +31,7 @@ function MovementOrganelle:onAddedToMicrobe(microbe, q, r)
     sceneNode.meshName = "Flagella.mesh"
     sceneNode:playAnimation("Move", true)
     sceneNode:setAnimationSpeed(0.25)
-    sceneNode.transform.scale = Vector3(0.35, 0.6, 0.6)
+    sceneNode.transform.scale = Vector3(1, 1, 1)
     sceneNode.transform.orientation = Quaternion(Radian(Degree(0)), Vector3(0, 0, 1))
     sceneNode.transform:touch()
     self.tailEntity:addComponent(sceneNode)

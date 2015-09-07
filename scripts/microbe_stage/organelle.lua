@@ -32,6 +32,12 @@ function Organelle:__init()
 end
 
 
+-- Attaches a model to this particular organelle.
+function Organelle:setName(name)
+	self.sceneNode.meshName = name
+end
+
+
 -- Adds a hex to this organelle
 --
 -- @param q, r
@@ -59,7 +65,7 @@ function Organelle:addHex(q, r)
     hex.sceneNode.parent = self.entity
     hex.sceneNode.transform.position = translation
     hex.sceneNode.transform:touch()
-    --hex.sceneNode.meshName = "hex.mesh"
+    hex.sceneNode.meshName = "hex.mesh"
     hex.entity:addComponent(hex.sceneNode)
     -- Collision shape
     self.collisionShape:addChildShape(
@@ -279,6 +285,31 @@ function OrganelleFactory.makeOrganelle(data)
         if data.name == "" or data.name == nil then data.name = "<nameless>" end
         assert(false, "no organelle by name "..data.name)
     end
+end
+
+-- Draws the hexes and uploads the models in the editor
+function OrganelleFactory.renderOrganelles(data)
+	OrganelleFactory["render_"..data.name](data)
+end
+
+-- Sets the color of the organelle
+function OrganelleFactory.setColour(sceneNode, colour)
+	local subEntity = sceneNode.entity:getSubEntity("center")
+	subEntity:setColour(colour)
+	for i=1, 6 do
+		local sideName = HEX_SIDE_NAME[i]
+		subEntity = sceneNode.entity:getSubEntity(sideName)
+		subEntity:setColour(colour)
+	end
+end
+
+-- Checks which hexes an organelle occupies
+function OrganelleFactory.checkSize(data)
+	if data.name == "mitochondrion" then
+		return OrganelleFactory["sizeof_"..data.name](data)
+	else
+		return {}
+	end
 end
 
 -- OrganelleFactory.make_organelle(data) should be defined in the appropriate file

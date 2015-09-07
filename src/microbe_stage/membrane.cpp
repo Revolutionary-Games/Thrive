@@ -161,7 +161,7 @@ void Membrane::MakePrism()
 
 Ogre::Vector3 Membrane::GetExternalOrganelle(double x, double y)
 {
-    Ogre::Vector3 coords(x, y, 0);
+    Ogre::Vector3 coords(0, 0, 0);
 
     double slope = y/x;
     for(size_t i=0, end=vertices2D.size(); i<end; i++)
@@ -169,7 +169,7 @@ Ogre::Vector3 Membrane::GetExternalOrganelle(double x, double y)
         if((vertices2D[i].y/vertices2D[i].x)-0.1 <= slope && (vertices2D[i].y/vertices2D[i].x)+0.1 >= slope)
         {
             double angle = Ogre::Math::ATan2(vertices2D[i].y, vertices2D[i].x).valueRadians();
-            if(Ogre::Math::ATan2(y,x).valueRadians()-1 <= angle && Ogre::Math::ATan2(y,x).valueRadians()+1 >= angle)
+            if(Ogre::Math::ATan2(y,x).valueRadians()-0.5 <= angle && Ogre::Math::ATan2(y,x).valueRadians()+0.5 >= angle)
             {
                 coords = Ogre::Vector3(vertices2D[i].x, vertices2D[i].y, 0);
             }

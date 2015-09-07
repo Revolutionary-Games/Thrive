@@ -22,17 +22,17 @@ function MicrobeEditor:__init(hudSystem)
                                ["mitochondrion"] = MicrobeEditor.addOrganelle,
                                ["chloroplast"] = MicrobeEditor.addOrganelle,
                                ["oxytoxy"] = MicrobeEditor.addOrganelle,
-                               
                                ["vacuole"] = MicrobeEditor.addOrganelle,
                              --  ["aminosynthesizer"] = MicrobeEditor.addProcessOrganelle,
                                ["remove"] = MicrobeEditor.removeOrganelle}
     self.actionHistory = nil
     self.actionIndex = 0
+	self.organelleRot = 0
 end
 
 function MicrobeEditor:init(gameState)
     ent = Entity()
-    sceneNode = OgreSceneNodeComponent()
+    local sceneNode = OgreSceneNodeComponent()
     sceneNode.planeTexture = "EditorGridMaterial"
     ent:addComponent(sceneNode)
     self.gridSceneNode = sceneNode
@@ -52,6 +52,31 @@ function MicrobeEditor:activate()
 end
 
 function MicrobeEditor:update(renderTime, logicTime)
+    -- Render the hex under the cursor
+    local sceneNode = {}
+	sceneNode[1] = self.hudSystem.hoverOrganelle:getComponent(OgreSceneNodeComponent.TYPE_ID)
+	for i=2, 8 do
+		sceneNode[i] = self.hudSystem.hoverHex[i-1]:getComponent(OgreSceneNodeComponent.TYPE_ID)
+	end
+	
+	local q, r = self:getMouseHex()
+	if self.activeActionName then
+		local oldData = {["name"]=self.activeActionName, ["q"]=q, ["r"]=r, ["rotation"]=self.organelleRot}
+		local hexes = OrganelleFactory.checkSize(oldData)
+		local colour = ColourValue(0, 2, 0, 1)
+		for _, hex in ipairs(hexes) do
+			if self.currentMicrobe:getOrganelleAt(hex.q + q, hex.r + r) then
+				colour = ColourValue(2, 0, 0, 1)
+			end
+		end
+		--if CEGUIWindow.getWindowUnderMouse():getName() == 'root' then
+		local newData = {["name"]=self.activeActionName, ["q"]=q, ["r"]=r, ["sceneNode"]=sceneNode, ["rotation"]=self.organelleRot, ["colour"]=colour}
+		OrganelleFactory.renderOrganelles(newData)
+		for i=1, 8 do
+			sceneNode[i].transform:touch()
+		end
+	end
+
     -- self.nextMicrobeEntity being a temporary used to pass the microbe from game to editor
     if self.nextMicrobeEntity ~= nil then
         self.currentMicrobe = Microbe(self.nextMicrobeEntity)
@@ -155,12 +180,19 @@ end
 
 function MicrobeEditor:addOrganelle(organelleType)
     local q, r = self:getMouseHex()
-    if self.currentMicrobe:getOrganelleAt(q, r) == nil then
-        local data = {["name"]=organelleType, ["q"]=q, ["r"]=r}
+	local data = {["name"]=organelleType, ["q"]=q, ["r"]=r, ["rotation"]=self.organelleRot}
+	local organelle = OrganelleFactory.makeOrganelle(data)
+	local empty = true
+	for s, hex in pairs(organelle._hexes) do
+		if self.currentMicrobe:getOrganelleAt(hex.q + q, hex.r + r) then
+			empty = false
+		end
+	end
+    if empty then
         self:enqueueAction({
             cost = Organelle.mpCosts[organelleType],
             redo = function()
-                self.currentMicrobe:addOrganelle(q,r, OrganelleFactory.makeOrganelle(data))
+                self.currentMicrobe:addOrganelle(q, r, organelle)
                 self.organelleCount = self.organelleCount + 1
             end,
             undo = function()
