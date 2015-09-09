@@ -290,6 +290,7 @@ end
 -------------------------------------------
 -- factory functions for process organelles
 
+
 Organelle.mpCosts["chloroplast"] = 2
 Organelle.mpCosts["mitochondrion"] = 2
 
@@ -310,7 +311,7 @@ function OrganelleFactory.make_mitochondrion(data)
 		q, r = rotateAxial(q, r)
 	end
 	mito:addHex(q, r)
-	
+
     --mito:setColour(ColourValue(0.8, 0.4, 0.5, 0))
     --mito.colourChangeFactor = 2.0
     return mito

@@ -116,8 +116,6 @@ function MicrobeEditorHudSystem:update(renderTime, logicTime)
     --    sceneNode.transform.position = Vector3(0,0,100)
     --end
     --sceneNode.transform:touch()
-		--print (self.occupiedHexCount)
-		--print (self.occupiedHexes.size)
     
     -- Handle input
     if Engine.mouse:wasButtonPressed(Mouse.MB_Left) then
