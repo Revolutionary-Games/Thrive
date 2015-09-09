@@ -65,10 +65,10 @@ function MicrobeEditor:update(renderTime, logicTime)
 	if self.activeActionName then
 		local oldData = {["name"]=self.activeActionName, ["q"]=q, ["r"]=r, ["rotation"]=self.organelleRot}
 		local hexes = OrganelleFactory.checkSize(oldData)
-		local colour = ColourValue(0, 2, 0, 1)
+		local colour = ColourValue(0, 2, 0, .4)
 		for _, hex in ipairs(hexes) do
 			if self.currentMicrobe:getOrganelleAt(hex.q + q, hex.r + r) then
-				colour = ColourValue(2, 0, 0, 1)
+				colour = ColourValue(2, 0, 0, .4)
 			end
 		end
 		--if CEGUIWindow.getWindowUnderMouse():getName() == 'root' then
@@ -86,7 +86,19 @@ function MicrobeEditor:update(renderTime, logicTime)
         self.currentMicrobe.sceneNode.transform.position = Vector3(0, 0, 0)
         self.currentMicrobe.sceneNode.transform:touch()
         self.nextMicrobeEntity = nil
-    end
+		for _, organelle in pairs(self.currentMicrobe.microbe.organelles) do
+			for s, hex in pairs(organelle._hexes) do
+				local x, y = axialToCartesian(hex.q + organelle.position.q, hex.r + organelle.position.r) 
+				self.occupiedHexes[self.occupiedHexCount] = Entity("membrane-hex" .. self.occupiedHexCount)
+				local sceneNode = OgreSceneNodeComponent()
+				sceneNode.transform.position = Vector3(-x, -y, 0)
+				sceneNode.transform:touch()
+				sceneNode.meshName = "hex.mesh"
+				self.occupiedHexes[self.occupiedHexCount]:addComponent(sceneNode)
+				self.occupiedHexCount = self.occupiedHexCount + 1
+			end
+		end
+	end
     for _, organelle in pairs(self.currentMicrobe.microbe.organelles) do
         if organelle.flashDuration ~= nil then
             organelle.flashDuration = nil
@@ -190,17 +202,15 @@ function MicrobeEditor:addOrganelle(organelleType)
 			empty = false
 		end
 	end
-
     if empty then
 		for s, hex in pairs(organelle._hexes) do
-			local x, y = axialToCartesian(hex.q + q, hex.r + r)
-			self.occupiedHexes[self.occupiedHexCount] = Entity()
+			local x, y = axialToCartesian(hex.q + q, hex.r + r) 
+			self.occupiedHexes[self.occupiedHexCount] = Entity("membrane-hex" .. self.occupiedHexCount)
 			local sceneNode = OgreSceneNodeComponent()
 			sceneNode.transform.position = Vector3(-x, -y, 0)
 			sceneNode.transform:touch()
 			sceneNode.meshName = "hex.mesh"
 			self.occupiedHexes[self.occupiedHexCount]:addComponent(sceneNode)
-			--OrganelleFactory.setColour(sceneNode, ColourValue(0.4,0.4,0.4,0.5))
 			self.occupiedHexCount = self.occupiedHexCount + 1
 		end
         self:enqueueAction({

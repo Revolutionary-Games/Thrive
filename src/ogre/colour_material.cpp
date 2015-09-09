@@ -33,6 +33,7 @@ thrive::getColourMaterial(
         );
         material->setAmbient(0.3 * colour);
         material->setDiffuse(colour);
+        material->setSceneBlending(Ogre::SBT_TRANSPARENT_ALPHA);
     }
     return material;
 }
