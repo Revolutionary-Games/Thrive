@@ -200,7 +200,7 @@ function MicrobeEditor:addOrganelle(organelleType)
 			sceneNode.transform:touch()
 			sceneNode.meshName = "hex.mesh"
 			self.occupiedHexes[self.occupiedHexCount]:addComponent(sceneNode)
-			OrganelleFactory.setColour(sceneNode, ColourValue(0.4,0.4,0.4,0.5))
+			--OrganelleFactory.setColour(sceneNode, ColourValue(0.4,0.4,0.4,0.5))
 			self.occupiedHexCount = self.occupiedHexCount + 1
 		end
         self:enqueueAction({
