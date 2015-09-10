@@ -11,8 +11,6 @@
 #include <vector>
 #include <map>
 
-#include "microbe_stage/membrane.h"
-
 #include <iostream>
 
 namespace luabind {
@@ -164,13 +162,6 @@ public:
     void
     attachSoundListener();
 
-//These definitely do not belong in this class
-    // Gets organelle positions from the .lua file.
-    void sendOrganelles(double x, double y);
-
-    // Gets the position of the closest membrane point
-    luabind::object getExternOrganellePos(double x, double y);
-
     /**
     * @brief The name of the mesh to attach to this scene node
     */
@@ -228,9 +219,8 @@ private:
 
     static bool s_soundListenerAttached;
 
-    std::vector<Ogre::Vector3> organellePositions;
 
-    Membrane MyMembrane;
+
 };
 
 /**

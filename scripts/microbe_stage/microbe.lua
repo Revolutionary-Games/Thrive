@@ -240,6 +240,8 @@ function Microbe.createMicrobeEntity(name, aiControlled, speciesName)
     compoundEmitter.particleLifetime = 5000
     local reactionHandler = CollisionComponent()
     reactionHandler:addCollisionGroup("microbe")
+    local membraneComponent = MembraneComponent()
+    
     local soundComponent = SoundSourceComponent()
     local s1 = nil
     soundComponent:addSound("microbe-release-toxin", "soundeffects/microbe-release-toxin.ogg")
@@ -263,7 +265,8 @@ function Microbe.createMicrobeEntity(name, aiControlled, speciesName)
         reactionHandler,
         rigidBody,
         compoundEmitter,
-        soundComponent
+        soundComponent,
+        membraneComponent
     }
     if aiControlled then
         local aiController = MicrobeAIControllerComponent()
@@ -285,6 +288,7 @@ Microbe.COMPONENTS = {
     compoundEmitter = CompoundEmitterComponent.TYPE_ID,
     collisionHandler = CollisionComponent.TYPE_ID,
     soundSource = SoundSourceComponent.TYPE_ID,
+    membraneComponent = MembraneComponent.TYPE_ID,
 }
 
 
@@ -1028,7 +1032,7 @@ function MicrobeSystem:update(renderTime, logicTime)
             local q = organelle.position.q
             local r = organelle.position.r
             local x, y = axialToCartesian(q, r)
-            microbe.sceneNode:sendOrganelles(x, y)
+            microbe.membraneComponent:sendOrganelles(x, y)
         end
     end
     self.entities:clearChanges()

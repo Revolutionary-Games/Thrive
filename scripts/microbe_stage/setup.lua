@@ -457,6 +457,7 @@ local function createMicrobeStage(name)
             OgreWorkspaceSystem(),
             OgreRemoveSceneNodeSystem(),
             RenderSystem(),
+            MembraneSystem(),
             -- Other
             SoundSourceSystem(),
             PowerupSystem(),
