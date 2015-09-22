@@ -40,7 +40,6 @@ Organelle.mpCosts["vacuole"] = 15
 
 function OrganelleFactory.make_vacuole(data)
     local vacuole = StorageOrganelle(100.0)
-	vacuole:setName("AgentVacuole.mesh")
     vacuole:addHex(0, 0)
     return vacuole
 end

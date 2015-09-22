@@ -32,12 +32,6 @@ function Organelle:__init()
 end
 
 
--- Attaches a model to this particular organelle.
-function Organelle:setName(name)
-	self.sceneNode.meshName = name
-end
-
-
 -- Adds a hex to this organelle
 --
 -- @param q, r
@@ -120,6 +114,23 @@ function Organelle:onAddedToMicrobe(microbe, q, r)
     self.microbe = microbe
     self.position.q = q
     self.position.r = r
+	self.organelleEntity = Entity()
+    local x, y = axialToCartesian(q, r)
+	self.x = x
+	self.y = y
+    sceneNode = OgreSceneNodeComponent()
+    sceneNode.parent = self.entity
+	sceneNode.transform.position = Vector3(0,0,0)
+    sceneNode.meshName = "AgentVacuole.mesh"
+	--sceneNode.meshName = self.name .. ".mesh"
+    --sceneNode:playAnimation("Float", true)
+    --sceneNode:setAnimationSpeed(0.25)
+    sceneNode.transform.scale = Vector3(1, 1, 1)
+    sceneNode.transform.orientation = Quaternion(Radian(Degree(0)), Vector3(0, 0, 1))
+    sceneNode.transform:touch()
+    self.organelleEntity:addComponent(sceneNode)
+	self.organelleEntity.sceneNode = sceneNode
+	self.organelleEntity:setVolatile(true)
 end
 
 

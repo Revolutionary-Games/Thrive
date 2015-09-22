@@ -179,6 +179,9 @@ function ProcessOrganelle:__init()
     self.processes = {}
     self.colourChangeFactor = 1.0
     self.capacityIntervalTimer = PROCESS_CAPACITY_UPDATE_INTERVAL
+	self.x = 0
+	self.y = 0
+	self.angle = 0
 end
 
 -- Adds a process to the processing organelle
@@ -199,6 +202,7 @@ end
 
 -- Overridded from Organelle:onRemovedFromMicrobe
 function ProcessOrganelle:onRemovedFromMicrobe(microbe, q, r)
+	self.organelleEntity:destroy()
     microbe:removeProcessOrganelle(self)
     Organelle.onRemovedFromMicrobe(self, microbe, q, r)
 end
@@ -253,12 +257,11 @@ end
 
 -- Override from Organelle:setColour
 function ProcessOrganelle:setColour(colour)
-    Organelle.setColour(self, colour)
-    self.originalColour = colour
-    self:_updateColourDynamic(0)
-    self._needsColourUpdate = true
+    --Organelle.setColour(self, colour)
+    --self.originalColour = colour
+    --self:_updateColourDynamic(0)
+    --self._needsColourUpdate = true
 end
-
 
 function ProcessOrganelle:storage()
     local storage = Organelle.storage(self)
@@ -297,7 +300,6 @@ Organelle.mpCosts["mitochondrion"] = 2
 function OrganelleFactory.make_mitochondrion(data)
     local mito = ProcessOrganelle()
     mito:addProcess(global_processMap["Respiration"])
-	mito:setName("AgentVacuole.mesh")
 	
 	if data.rotation == nil then
 		data.rotation = 0
@@ -312,15 +314,12 @@ function OrganelleFactory.make_mitochondrion(data)
 	end
 	mito:addHex(q, r)
 
-    --mito:setColour(ColourValue(0.8, 0.4, 0.5, 0))
-    --mito.colourChangeFactor = 2.0
     return mito
 end
 
 function OrganelleFactory.make_chloroplast(data)
     local chloro = ProcessOrganelle()
     chloro:addProcess(global_processMap["Photosynthesis"])
-	chloro:setName("AgentVacuole.mesh")
 	
 	if data.rotation == nil then
 		data.rotation = 0
@@ -341,8 +340,6 @@ function OrganelleFactory.make_chloroplast(data)
 	end
 	chloro:addHex(q, r)
 	
-    --chloro:setColour(ColourValue(0, 1, 0, 0.5))
-    --chloro.colourChangeFactor = 1.0
     return chloro
 end
 
