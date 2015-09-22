@@ -823,11 +823,6 @@ function Microbe:update(logicTime)
 	end
 end
 
-function SendOrganelles()
-	local count = 5
-	return count
-end
-
 function Microbe:purgeCompounds()
     -- Gather excess compounds that are the compounds that the storage organelles automatically emit to stay less than full
     local excessCompounds = {}
@@ -964,7 +959,10 @@ end
 
 -- Must exists for current spawningSystem to function, also used by microbe:kill
 function Microbe:destroy()
-    self.entity:destroy()
+	for _, organelle in pairs(self.microbe.organelles) do
+		organelle:destroy()
+	end
+	self.entity:destroy()
 end
 
 -- The last two functions are only present since the spawn system expects an entity interface.

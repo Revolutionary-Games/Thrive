@@ -65,10 +65,10 @@ function MicrobeEditor:update(renderTime, logicTime)
 	if self.activeActionName then
 		local oldData = {["name"]=self.activeActionName, ["q"]=q, ["r"]=r, ["rotation"]=self.organelleRot}
 		local hexes = OrganelleFactory.checkSize(oldData)
-		local colour = ColourValue(0, 2, 0, .4)
+		local colour = ColourValue(0, 2, 0, 0.4)
 		for _, hex in ipairs(hexes) do
 			if self.currentMicrobe:getOrganelleAt(hex.q + q, hex.r + r) then
-				colour = ColourValue(2, 0, 0, .4)
+				colour = ColourValue(2, 0, 0, 0.4)
 			end
 		end
 		--if CEGUIWindow.getWindowUnderMouse():getName() == 'root' then

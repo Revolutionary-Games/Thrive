@@ -28,7 +28,7 @@ function MovementOrganelle:onAddedToMicrobe(microbe, q, r)
     sceneNode = OgreSceneNodeComponent()
     sceneNode.parent = self.entity
 	sceneNode.transform.position = Vector3(0,0,0)
-    sceneNode.meshName = "Flagella.mesh"
+    sceneNode.meshName = "flagellum.mesh"
     sceneNode:playAnimation("Move", true)
     sceneNode:setAnimationSpeed(0.25)
     sceneNode.transform.scale = Vector3(1, 1, 1)

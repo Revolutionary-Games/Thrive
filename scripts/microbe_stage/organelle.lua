@@ -32,12 +32,6 @@ function Organelle:__init()
 end
 
 
--- Attaches a model to this particular organelle.
-function Organelle:setName(name)
-	self.sceneNode.meshName = name
-end
-
-
 -- Adds a hex to this organelle
 --
 -- @param q, r
@@ -54,13 +48,13 @@ function Organelle:addHex(q, r)
     local hex = {
         q = q,
         r = r,
-        entity = Entity(),
+        --entity = Entity(),
         collisionShape = SphereShape(3.0),
-        sceneNode = OgreSceneNodeComponent()
+        --sceneNode = OgreSceneNodeComponent()
     }
     local x, y = axialToCartesian(q, r)
     local translation = Vector3(x, y, 0)
-    hex.entity:setVolatile(true)
+    --hex.entity:setVolatile(true)
     -- Scene node
     --hex.sceneNode.parent = self.entity
     --hex.sceneNode.transform.position = translation
@@ -120,6 +114,31 @@ function Organelle:onAddedToMicrobe(microbe, q, r)
     self.microbe = microbe
     self.position.q = q
     self.position.r = r
+	
+	local offset = Vector3(0,0,0)
+	local count = 0
+	for _, hex in pairs(self.microbe:getOrganelleAt(q, r)._hexes) do
+		count = count + 1
+		
+		local x, y = axialToCartesian(hex.q, hex.r)
+		offset = offset + Vector3(x,y,0)
+	end
+	offset = offset/count
+	
+	self.organelleEntity = Entity()
+    local sceneNode = OgreSceneNodeComponent()
+    sceneNode.parent = self.entity
+	sceneNode.meshName = "AgentVacuole.mesh"
+	--sceneNode.meshName = self.name .. ".mesh"
+    --sceneNode:playAnimation("Float", true)
+    --sceneNode:setAnimationSpeed(0.25)
+	sceneNode.transform.position = offset
+    sceneNode.transform.scale = Vector3(1, 1, 1)
+    sceneNode.transform.orientation = Quaternion(Radian(Degree(0)), Vector3(0, 0, 1))
+    sceneNode.transform:touch()
+    self.organelleEntity:addComponent(sceneNode)
+	self.organelleEntity.sceneNode = sceneNode
+	self.organelleEntity:setVolatile(true)
 end
 
 
@@ -146,7 +165,7 @@ function Organelle:removeHex(q, r)
     local s = encodeAxial(q, r)
     local hex = table.remove(self._hexes, s)
     if hex then
-        hex.entity:destroy()
+        --hex.entity:destroy()
         self.collisionShape:removeChildShape(hex.collisionShape)
         return true
     else
@@ -155,9 +174,8 @@ function Organelle:removeHex(q, r)
 end
 
 function Organelle:destroy()
-    for _, hex in pairs(self._hexes) do
-        hex.entity:destroy()
-    end
+	assert(false, "destroy not called")
+    self.organelleEntity.sceneNode.meshName = "flagellum.mesh"
     self.entity:destroy()
 end
 
@@ -171,12 +189,12 @@ function Organelle:setColour(colour)
 end
 
 function Organelle:flashColour(duration, colour)
-    if self.flashDuration == nil then
-        self._originalColour = self._colour
-        self._colour = colour
-        self._needsColourUpdate = true
-        self.flashDuration = duration
-    end
+    --if self.flashDuration == nil then
+    --    self._originalColour = self._colour
+    --    self._colour = colour
+    --    self._needsColourUpdate = true
+    --    self.flashDuration = duration
+    --end
 end
 
 function Organelle:storage()
@@ -208,29 +226,29 @@ end
 -- @param logicTime
 --  The time since the last call to update()
 function Organelle:update(microbe, logicTime)
-    if self.flashDuration ~= nil then
-        self.flashDuration = self.flashDuration - logicTime
-        if self.flashDuration <= 0 then
-            self._colour = self._originalColour
-            self._needsColourUpdate = true
-            self.flashDuration = nil
-        end
-    end
-    if self._needsColourUpdate then
-        self:_updateHexColours()
-    end
+    --if self.flashDuration ~= nil then
+    --    self.flashDuration = self.flashDuration - logicTime
+    --    if self.flashDuration <= 0 then
+    --        self._colour = self._originalColour
+    --        self._needsColourUpdate = true
+    --        self.flashDuration = nil
+    --   end
+    --end
+    --if self._needsColourUpdate then
+    --    self:_updateHexColours()
+    --end
 end
 
 
 -- Private function for updating the organelle's colour
 function Organelle:_updateHexColours()
     for _, hex in pairs(self._hexes) do
-        if not hex.sceneNode.entity then
-            self._needsColourUpdate = true
-            return
-        end
-        local center = hex.sceneNode.entity:getSubEntity("center")
-        center:setColour(self._colour)
+        --if not hex.sceneNode.entity then
+        --    self._needsColourUpdate = true
+        --    return
+        --end
+        --local center = hex.sceneNode.entity:getSubEntity("center")
+        --[[center:setColour(self._colour)
         for i, qs, rs in iterateNeighbours(hex.q, hex.r) do
             local neighbourHex = self:getHex(qs, rs)
             local neighbourOrganelle = self.microbe and self.microbe:getOrganelleAt(
@@ -248,14 +266,14 @@ function Organelle:_updateHexColours()
                 edgeColour = self._externalEdgeColour
             end
             subEntity:setColour(edgeColour)
-        end
+        end ]]--
     end
     self._needsColourUpdate = false
 end
 
 function Organelle:setExternalEdgeColour(colour)
-    self._externalEdgeColour = colour
-    self._needsColourUpdate = true
+    --self._externalEdgeColour = colour
+    --self._needsColourUpdate = true
 end
 
 -- Queues a colour update for this organelle
@@ -263,7 +281,7 @@ end
 -- We can't actually update the colour right away because the required objects, 
 -- in particular the Ogre scene nodes may not have been created yet.
 function Organelle:updateHexColours()
-    self._needsColourUpdate = true
+    --self._needsColourUpdate = true
 end
 
 function Organelle:removePhysics()
