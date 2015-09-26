@@ -14,7 +14,21 @@
 
 #include <OgreSceneManager.h>
 #include <OgreMeshManager.h>
+#include <OgreSubMesh.h>
 #include <OgreEntity.h>
+
+
+#include <game.h>
+#include <engine/engine.h>
+#include <engine/rng.h>
+#include <OgreRoot.h>
+#include <OgreSubMesh.h>
+#include <OgreMaterialManager.h>
+#include <OgreTechnique.h>
+
+#include <string>
+#include <iostream>
+#include <fstream>
 
 using namespace thrive;
 
@@ -467,10 +481,10 @@ OgreUpdateSceneNodeSystem::update(
                 m_impl->m_sceneManager->destroyEntity(component->m_entity);
                 component->m_entity = nullptr;
             }
-            if (component->m_meshName.get().size() > 0) {
-                component->m_entity = m_impl->m_sceneManager->createEntity(
-                    component->m_meshName
-                );
+
+
+            if (component->m_meshName.get().find("membrane") == std::string::npos && component->m_meshName.get().size() > 0) {
+                component->m_entity = m_impl->m_sceneManager->createEntity(component->m_meshName);
                 sceneNode->attachObject(component->m_entity);
             }
             component->m_meshName.untouch();

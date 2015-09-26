@@ -4,6 +4,7 @@ local function setupBackground()
     local skyplane = SkyPlaneComponent()
     skyplane.properties.plane.normal = Vector3(0, 0, 2000)
     skyplane.properties.materialName = "background/blue_01"
+	skyplane.properties.scale = 200
     skyplane.properties:touch()
     
     entity:addComponent(skyplane)
@@ -73,7 +74,6 @@ function setupSpecies()
     This function should be the entry point for all initial-species generation
     For now, it can go through the XML and instantiate all the species, but later this 
     would be all procedural.
-
     Together with the mutate function, these would be the only ways species are created
     ]]
     SpeciesRegistry.loadFromXML("../definitions/microbes.xml")
@@ -95,6 +95,7 @@ function setupSpecies()
         end
         -- for _, org in pairs(organelles) do print(org.name, org.q, org.r) end
         speciesComponent.organelles = organelles
+		
 
         -- iterates over all compounds, and sets amounts and priorities
         for compoundID in CompoundRegistry.getCompoundList() do
@@ -455,6 +456,7 @@ local function createMicrobeStage(name)
             OgreWorkspaceSystem(),
             OgreRemoveSceneNodeSystem(),
             RenderSystem(),
+            MembraneSystem(),
             -- Other
             SoundSourceSystem(),
             PowerupSystem(),
