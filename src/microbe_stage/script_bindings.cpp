@@ -7,6 +7,7 @@
 #include "microbe_stage/compound_registry.h"
 #include "microbe_stage/bio_process_registry.h"
 #include "microbe_stage/species_registry.h"
+#include "microbe_stage/membrane_system.h"
 
 luabind::scope
 thrive::MicrobeBindings::luaBindings() {
@@ -16,15 +17,15 @@ thrive::MicrobeBindings::luaBindings() {
         CompoundAbsorberComponent::luaBindings(),
         CompoundEmitterComponent::luaBindings(),
         TimedCompoundEmitterComponent::luaBindings(),
+        MembraneComponent::luaBindings(),
         // Systems
         CompoundMovementSystem::luaBindings(),
         CompoundAbsorberSystem::luaBindings(),
         CompoundEmitterSystem::luaBindings(),
+        MembraneSystem::luaBindings(),
         // Other
         CompoundRegistry::luaBindings(),
         BioProcessRegistry::luaBindings(),
         SpeciesRegistry::luaBindings()
     );
 }
-
-
