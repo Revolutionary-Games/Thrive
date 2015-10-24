@@ -44,6 +44,8 @@ public:
     * - \c transfer(gameState) : transfer(gameState)
     * - \c setVolatile(bool) : setVolatile(bool)
     * - \c stealName(string): stealName(name)
+    * - \c addChild(EntityId) : addChild(child)
+    * - \c hasChhild(EntityId) : hasChildren()
     *
     * Exposes the following \b operators:
     * - \c ==: operator==(const Entity&)
@@ -217,6 +219,29 @@ public:
     */
     bool
     isVolatile() const;
+
+    /**
+    * @brief Adds a child to the current entity
+    *
+    * @param child
+    *
+    * @note
+    *   Parent-child relationships are not serialized
+    * @return
+    */
+    void
+    addChild(
+        Entity& child
+    );
+
+    /**
+    * @brief Returns whether the entity has any children
+    *
+    * @return
+    */
+    bool
+    hasChildren() const;
+
 
     /**
     * @brief Rebinds the name to the new Id

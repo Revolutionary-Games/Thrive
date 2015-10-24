@@ -33,6 +33,7 @@ function MovementOrganelle:onAddedToMicrobe(microbe, q, r)
     self.tailEntity:addComponent(sceneNode)
     self.tailEntity.sceneNode = sceneNode
     self.tailEntity:setVolatile(true)
+    self.entity:addChild(self.tailEntity)
     self.movingTail = false
     local organelleX, organelleY = axialToCartesian(q, r)
     local nucleusX, nucleusY = axialToCartesian(0, 0)
@@ -45,11 +46,6 @@ function MovementOrganelle:onAddedToMicrobe(microbe, q, r)
     angle = (angle * 180/math.pi + 180) % 360
     self.tailEntity:getComponent(OgreSceneNodeComponent.TYPE_ID).transform.orientation = Quaternion(Radian(Degree(angle)), Vector3(0, 0, 1))
 end
-
-function MovementOrganelle:onRemovedFromMicrobe(microbe)
-    self.tailEntity:destroy() --ogre scenenode will be destroyed due to parenting but the rest of the entity wont without this call.
-end
-
 function MovementOrganelle:destroy()
     self.tailEntity:destroy()
     Organelle.destroy(self)
