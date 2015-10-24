@@ -61,6 +61,8 @@ Entity::luaBindings() {
         .def("transfer", &Entity::transfer)
         .def("setVolatile", &Entity::setVolatile)
         .def("stealName", &Entity::stealName)
+        .def("addChild", &Entity::addChild)
+        .def("hasChildren", &Entity::hasChildren)
         .property("id", &Entity::id)
     ;
 }
@@ -218,6 +220,17 @@ Entity::setVolatile(
     m_impl->m_entityManager->setVolatile(m_impl->m_id, isVolatile);
 }
 
+void
+Entity::addChild(
+    Entity& child
+) {
+    m_impl->m_entityManager->addChild(child.m_impl->m_id, m_impl->m_id);
+}
+
+bool
+Entity::hasChildren() const {
+    return m_impl->m_entityManager->hasChildren(m_impl->m_id);
+}
 
 void
 Entity::stealName(
