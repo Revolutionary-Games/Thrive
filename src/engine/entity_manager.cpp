@@ -6,7 +6,6 @@
 
 #include <atomic>
 #include <boost/thread.hpp>
-#include "game_state.h"
 #include <unordered_map>
 #include <unordered_set>
 
@@ -257,8 +256,8 @@ EntityManager::transferEntity(
 
                 newEntityManager.addComponent(newEntityId, std::move(newComponent));
             }
-            this->removeComponent(oldEntityId, pair.first);
         }
+        m_impl->m_entitiesToRemove.push_back(oldEntityId);
     }
 }
 
