@@ -351,6 +351,37 @@ public:
     );
 
     /**
+    * @brief Sets an entity as another entities child
+    *
+    * An entity can be the child of multiple entities,
+    * itself or its children so be careful
+    *
+    * @note
+    *   Parent-child relationships are not serialized
+    *
+    * @param child
+    *
+    * @param parent
+    */
+    void
+    addChild(
+        EntityId child,
+        EntityId parent
+    );
+
+    /**
+    * @brief Returns whether an entity has any children
+    *
+    * @param entity
+    *
+    * @return
+    */
+    bool
+    hasChildren(
+       EntityId entityId
+    ) const;
+
+    /**
     * @brief Gets the name for a given entityId if it exists
     *
     * @param entityId
