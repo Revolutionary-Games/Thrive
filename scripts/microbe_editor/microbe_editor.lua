@@ -219,6 +219,7 @@ function MicrobeEditor:createNewMicrobe()
     local action = {
         redo = function()
             self.organelleCount = 0
+            speciesName = self.currentMicrobe.microbe.speciesName
             if self.currentMicrobe ~= nil then
                 self.currentMicrobe.entity:destroy()
             end
@@ -226,6 +227,7 @@ function MicrobeEditor:createNewMicrobe()
             self.currentMicrobe.entity:stealName("working_microbe")
             self.currentMicrobe.sceneNode.transform.orientation = Quaternion(Radian(Degree(180)), Vector3(0, 0, 1))-- Orientation
             self.currentMicrobe.sceneNode.transform:touch()
+            self.currentMicrobe.microbe.speciesName = speciesName
             self:addNucleus()
             self.mutationPoints = 100
             Engine:playerData():setActiveCreature(self.currentMicrobe.entity.id, GameState.MICROBE_EDITOR)
@@ -241,11 +243,13 @@ function MicrobeEditor:createNewMicrobe()
             organelleStorage[position] = organelle:storage()
         end
         action.undo = function()
+            speciesName = self.currentMicrobe.microbe.speciesName
             self.currentMicrobe.entity:destroy() -- remove the "new" entity that has replaced the previous one
             self.currentMicrobe = Microbe.createMicrobeEntity(nil, false)
             self.currentMicrobe.entity:stealName("working_microbe")
             self.currentMicrobe.sceneNode.transform.orientation = Quaternion(Radian(Degree(180)), Vector3(0, 0, 1))-- Orientation
             self.currentMicrobe.sceneNode.transform:touch()
+            self.currentMicrobe.microbe.speciesName = speciesName
             for position,storage in pairs(organelleStorage) do
                 local q, r = decodeAxial(position)
                 self.currentMicrobe:addOrganelle(q, r, Organelle.loadOrganelle(storage))
