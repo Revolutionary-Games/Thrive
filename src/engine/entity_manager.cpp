@@ -6,7 +6,6 @@
 
 #include <atomic>
 #include <boost/thread.hpp>
-#include "game_state.h"
 #include <unordered_map>
 #include <unordered_set>
 
@@ -44,6 +43,8 @@ struct EntityManager::Implementation {
     std::unordered_map<std::string, EntityId> m_namedIds;
 
     std::unordered_set<EntityId> m_volatileEntities;
+
+    std::unordered_map<EntityId, std::vector<EntityId>*> m_entityChildren;
 
 };
 
@@ -195,6 +196,11 @@ EntityManager::processRemovals() {
             iter->second -= 1;
             if (iter->second == 0) {
                 m_impl->m_entities.erase(iter);
+                auto childIter = m_impl->m_entityChildren.find(entityId);
+                if (childIter != m_impl->m_entityChildren.end()){
+                     m_impl->m_entitiesToRemove.push_back(childIter->first);
+                }
+                m_impl->m_entityChildren.erase(childIter);
             }
             else {
                 assert(iter->second > 0 && "Removed component from non-existent entity");
@@ -203,6 +209,12 @@ EntityManager::processRemovals() {
     }
     m_impl->m_componentsToRemove.clear();
     for (EntityId entityId : m_impl->m_entitiesToRemove) {
+        if (m_impl->m_entityChildren.find(entityId) != m_impl->m_entityChildren.end()){
+            for(EntityId childId : *m_impl->m_entityChildren.at(entityId)){
+                m_impl->m_entitiesToRemove.push_back(childId);
+            }
+            m_impl->m_entityChildren.erase(entityId);
+        }
         for (const auto& pair : m_impl->m_collections) {
             pair.second->removeComponent(entityId);
         }
@@ -244,8 +256,8 @@ EntityManager::transferEntity(
 
                 newEntityManager.addComponent(newEntityId, std::move(newComponent));
             }
-            this->removeComponent(oldEntityId, pair.first);
         }
+        m_impl->m_entitiesToRemove.push_back(oldEntityId);
     }
 }
 
@@ -325,6 +337,25 @@ EntityManager::restore(
         EntityId entityId = entry.get<EntityId>("id");
         this->removeEntity(entityId);
     }
+}
+
+void
+EntityManager::addChild(
+    EntityId child,
+    EntityId parent
+) {
+    if (m_impl->m_entityChildren.find(parent) == m_impl->m_entityChildren.end()){
+        m_impl->m_entityChildren.insert(std::make_pair(parent, new std::vector<EntityId>()));
+    }
+    m_impl->m_entityChildren.at(parent)->push_back(child);
+}
+
+bool
+EntityManager::hasChildren(
+   EntityId entityId
+) const {
+    auto iter = m_impl->m_entityChildren.find(entityId);
+    return iter != m_impl->m_entityChildren.end();
 }
 
 const std::string*

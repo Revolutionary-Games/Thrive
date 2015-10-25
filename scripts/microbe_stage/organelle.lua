@@ -56,6 +56,7 @@ function Organelle:addHex(q, r)
     local translation = Vector3(x, y, 0)
     hex.entity:setVolatile(true)
     -- Scene node
+    self.entity:addChild(hex.entity)
     hex.sceneNode.parent = self.entity
     hex.sceneNode.transform.position = translation
     hex.sceneNode.transform:touch()
@@ -112,6 +113,7 @@ end
 --  Axial coordinates of the organelle's center
 function Organelle:onAddedToMicrobe(microbe, q, r)
     self.microbe = microbe
+    self.microbe.entity:addChild(self.entity)
     self.position.q = q
     self.position.r = r
 end
@@ -151,6 +153,7 @@ end
 function Organelle:destroy()
     for _, hex in pairs(self._hexes) do
         hex.entity:destroy()
+        self.collisionShape:removeChildShape(hex.collisionShape)
     end
     self.entity:destroy()
 end
