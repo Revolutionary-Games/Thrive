@@ -194,6 +194,12 @@ find_package(OpenAL QUIET)
 
 include_directories("${cAudio_INCLUDE_DIRS}")
 
+################
+# Ogre FFMPEG #
+################
+find_package(FFMPEG)
+find_package(OgreFFMPEG)
+include_directories("${OgreFFMPEG_INCLUDE_DIR}")
 
 ######################
 # Configure Compiler #
@@ -235,6 +241,9 @@ set_source_files_properties(
 add_library(ThriveLib STATIC ${SOURCE_FILES})
 
 target_link_libraries(ThriveLib
+    #These two FFMPEG need to be at the top (before ogre?) to avoid linking error
+    ${OgreFFMPEG_LIBRARIES} 
+    ${FFMPEG_LIBRARIES}
     ${Boost_LIBRARIES}
     ${OGRE_LIBRARIES}
     ${OIS_LIBRARIES}
@@ -249,6 +258,8 @@ target_link_libraries(ThriveLib
     luabind
 )
 
+
+    
 target_link_libraries(ThriveLib
 ${cAudio_LIBRARIES}
 )
@@ -432,6 +443,16 @@ install(DIRECTORY
 )
 
 install(DIRECTORY
+    "${ASSET_DIRECTORY}/videos"
+    DESTINATION ./
+    CONFIGURATIONS Release  Debug
+    FILES_MATCHING
+        PATTERN "*.wmv"
+        PATTERN "*.avi"
+        PATTERN "*.mp4"
+)
+
+install(DIRECTORY
     "${ASSET_DIRECTORY}/definitions"
     DESTINATION ./
     CONFIGURATIONS Release  Debug
@@ -492,6 +513,10 @@ if(WIN32)
 		CONFIGURATIONS Debug
 	)
     
+
+
+
+    
     install(FILES
         "${MINGW_ENV}/install/bin/libCEGUIBase-${FIND_CEGUI_VERSION}_d.dll"
         "${MINGW_ENV}/install/bin/libCEGUIOgreRenderer-${FIND_CEGUI_VERSION}_d.dll"
@@ -505,6 +530,11 @@ if(WIN32)
         "${MINGW_ENV}/install/bin/libcAudio.dll"
         "${MINGW_ENV}/install/bin/wrap_oal.dll"
         "${MINGW_ENV}/install/bin/OpenAL32.dll"
+        "${MINGW_ENV}/install/bin/avcodec-56.dll"
+        "${MINGW_ENV}/install/bin/avformat-56.dll"
+        "${MINGW_ENV}/install/bin/avutil-54.dll"
+        "${MINGW_ENV}/install/bin/swscale-3.dll"
+        "${MINGW_ENV}/install/bin/swresample-1.dll"
         DESTINATION bin
 		CONFIGURATIONS Debug
     )
@@ -523,6 +553,11 @@ if(WIN32)
         "${MINGW_ENV}/install/bin/libcAudio.dll"
         "${MINGW_ENV}/install/bin/wrap_oal.dll"
         "${MINGW_ENV}/install/bin/OpenAL32.dll"
+        "${MINGW_ENV}/install/bin/avcodec-56.dll"
+        "${MINGW_ENV}/install/bin/avformat-56.dll"
+        "${MINGW_ENV}/install/bin/avutil-54.dll"
+        "${MINGW_ENV}/install/bin/swscale-3.dll"
+        "${MINGW_ENV}/install/bin/swresample-1.dll"
         DESTINATION bin
 		CONFIGURATIONS Release
     )

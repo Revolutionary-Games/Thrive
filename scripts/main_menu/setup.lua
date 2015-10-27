@@ -24,7 +24,7 @@ local function setupSound()
     local ambientEntity = Entity("main_menu_ambience")
     local soundSource = SoundSourceComponent()
     soundSource.ambientSoundSource = true
-    soundSource.autoLoop = true
+    soundSource.autoLoop = false
     soundSource.volumeMultiplier = 0.8
     ambientEntity:addComponent(soundSource)
     soundSource:addSound("main-menu-theme-1", "main-menu-theme-1.ogg")
@@ -38,6 +38,7 @@ local function setupSound()
     guiSoundEntity:addComponent(soundSource)
     -- Sound
     soundSource:addSound("button-hover-click", "soundeffects/gui/button-hover-click.ogg")
+    soundSource:addSound("intro", "intro-video.ogg") -- Really we should get the video player to decode audio but this is a temp fix
 end
 
 local function createMainMenu(name)
