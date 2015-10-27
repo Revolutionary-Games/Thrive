@@ -17,16 +17,55 @@ function MainMenuHudSystem:init(gameState)
     loadButton:registerEventHandler("Clicked", mainMenuLoadButtonClicked)
     quitButton:registerEventHandler("Clicked", quitButtonClicked)
 	updateLoadButton();
+    self.videoPlayer = CEGUIVideoPlayer("IntroPlayer")
+    root:addChild( self.videoPlayer)
+    self.hasShownIntroVid = false
+    self.vidFadeoutStarted = false
+    self.skippedVideo = false
+    
 end
 
+__soundTimer = 0
 function MainMenuHudSystem:update(renderTime, logicTime)
     if keyCombo(kmp.screenshot) then
         Engine:screenShot("screenshot.png")
+    elseif keyCombo(kmp.skipvideo) then
+        self.videoPlayer:pause()
+        self.videoPlayer:hide()
+        Entity("gui_sounds"):getComponent(SoundSourceComponent.TYPE_ID):interruptPlaying()
+        Entity("main_menu_ambience"):getComponent(SoundSourceComponent.TYPE_ID).autoLoop = true
+        self.skippedVideo = true
+    elseif keyCombo(kmp.forward) then
+    
+    end
+    self.videoPlayer:update()
+    if self.videoPlayer:getCurrentTime() >= self.videoPlayer:getDuration() - 3.0 then
+        if not self.vidFadeoutStarted then
+            self.videoPlayer:playAnimation("fadeout")
+            self.vidFadeoutStarted = true
+        end
+        if not self.skippedVideo and self.videoPlayer:getCurrentTime() >= self.videoPlayer:getDuration() then
+            self.videoPlayer:hide()
+            Entity("main_menu_ambience"):getComponent(SoundSourceComponent.TYPE_ID).autoLoop = true
+        end
+    else
+        __soundTimer = __soundTimer + 1
+        if __soundTimer == 2 then 
+            -- cAudio gives an error if we play this first frame or in active or init
+            -- The manual playing of sound here is a temporary fix until we get the video player to play audio
+            
+            Entity("gui_sounds"):getComponent(SoundSourceComponent.TYPE_ID):playSound("intro")
+        end
     end
 end
 
 function MainMenuHudSystem:activate()
     updateLoadButton();
+    if not self.hasShownIntroVid then
+        self.videoPlayer:setVideo("intro.wmv")
+        self.hasShownIntroVid = true
+        self.videoPlayer:play()
+    end
 end
 function updateLoadButton()
     if Engine:fileExists("quick.sav") then

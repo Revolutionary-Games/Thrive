@@ -1,6 +1,7 @@
 #include "gui/script_bindings.h"
 
 #include "gui/CEGUIWindow.h"
+#include "gui/CEGUIVideoPlayer.h"
 #include "script_wrappers.h"
 #include "scripting/luabind.h"
 
@@ -90,6 +91,7 @@ thrive::GuiBindings::luaBindings() {
         listboxItemBindings(),
         itemEntryBindings(),
         CEGUIWindow::luaBindings(),
+        CEGUIVideoPlayer::luaBindings(),
         ScriptWrappers::StandardItemWrapperBindings()
     );
 }
