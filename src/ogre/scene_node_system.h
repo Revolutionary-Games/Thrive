@@ -3,11 +3,13 @@
 #include "engine/component.h"
 #include "engine/system.h"
 #include "engine/touchable.h"
+#include "luabind/object.hpp"
 
 #include <memory>
 #include <OgreVector3.h>
 #include <OgreQuaternion.h>
-
+#include <vector>
+#include <map>
 
 #include <iostream>
 
@@ -217,6 +219,8 @@ private:
 
     static bool s_soundListenerAttached;
 
+
+
 };
 
 /**
@@ -363,6 +367,7 @@ public:
     * @brief Updates the scene nodes
     */
     void update(int, int) override;
+
 
 private:
 
