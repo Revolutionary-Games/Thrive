@@ -219,6 +219,7 @@ class 'Microbe'
 --
 -- @returns microbe
 -- An object of type Microbe
+
 function Microbe.createMicrobeEntity(name, aiControlled, speciesName)
     local entity
     if name then
@@ -239,6 +240,8 @@ function Microbe.createMicrobeEntity(name, aiControlled, speciesName)
     compoundEmitter.particleLifetime = 5000
     local reactionHandler = CollisionComponent()
     reactionHandler:addCollisionGroup("microbe")
+    local membraneComponent = MembraneComponent()
+    
     local soundComponent = SoundSourceComponent()
     local s1 = nil
     soundComponent:addSound("microbe-release-toxin", "soundeffects/microbe-release-toxin.ogg")
@@ -262,7 +265,8 @@ function Microbe.createMicrobeEntity(name, aiControlled, speciesName)
         reactionHandler,
         rigidBody,
         compoundEmitter,
-        soundComponent
+        soundComponent,
+        membraneComponent
     }
     if aiControlled then
         local aiController = MicrobeAIControllerComponent()
@@ -284,6 +288,7 @@ Microbe.COMPONENTS = {
     compoundEmitter = CompoundEmitterComponent.TYPE_ID,
     collisionHandler = CollisionComponent.TYPE_ID,
     soundSource = SoundSourceComponent.TYPE_ID,
+    membraneComponent = MembraneComponent.TYPE_ID,
 }
 
 
@@ -438,6 +443,7 @@ function Microbe:getOrganelleAt(q, r)
     end
     return nil
 end
+
 
 
 -- Removes the organelle at a hex cell
@@ -813,8 +819,8 @@ function Microbe:update(logicTime)
             else
                 self:destroy()
             end
-        end
-    end
+		end
+	end
 end
 
 function Microbe:purgeCompounds()
@@ -916,8 +922,8 @@ function Microbe:_initialize()
         organelle.sceneNode.transform.position = translation
         organelle.sceneNode.transform:touch()
         organelle:onAddedToMicrobe(self, q, r)
+
     end
-    self:_updateAllHexColours()
     self.microbe.initialized = true
 end
 
@@ -942,9 +948,6 @@ end
 --
 -- The simple coloured hexes are a placeholder for proper models.
 function Microbe:_updateAllHexColours()
-    for s, organelle in pairs(self.microbe.organelles) do
-        organelle:updateHexColours()
-    end
 end
 
 
@@ -956,7 +959,10 @@ end
 
 -- Must exists for current spawningSystem to function, also used by microbe:kill
 function Microbe:destroy()
-    self.entity:destroy()
+	for _, organelle in pairs(self.microbe.organelles) do
+		organelle:destroy()
+	end
+	self.entity:destroy()
 end
 
 -- The last two functions are only present since the spawn system expects an entity interface.
@@ -1018,6 +1024,14 @@ function MicrobeSystem:update(renderTime, logicTime)
     for entityId in self.entities:addedEntities() do
         local microbe = Microbe(Entity(entityId))
         self.microbes[entityId] = microbe
+        -- Membrane
+		microbe.sceneNode.meshName = "membrane_" .. microbe.microbe.speciesName
+        for _, organelle in pairs(microbe.microbe.organelles) do
+            local q = organelle.position.q
+            local r = organelle.position.r
+            local x, y = axialToCartesian(q, r)
+            microbe.membraneComponent:sendOrganelles(x, y)
+        end
     end
     self.entities:clearChanges()
     for _, microbe in pairs(self.microbes) do
