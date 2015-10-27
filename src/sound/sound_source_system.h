@@ -179,6 +179,7 @@ public:
     * - SoundSourceComponent::playSound()
     * - SoundSourceComponent::interpose()
     * - SoundSourceComponent::queueSound()
+    * - SoundSourceComponent::interruptPlaying()
     * - SoundSourceComponent::volumeMultiplier
     * - SoundSourceComponent::ambientSoundSource
     *
@@ -254,6 +255,12 @@ public:
         std::string name
     );
 
+    /**
+    * @brief Stops playing of all songs
+    */
+    void
+    interruptPlaying();
+
 
     void
     load(
@@ -294,6 +301,7 @@ private:
     Sound* m_queuedSound = nullptr;
     int m_autoSoundCountdown = 0;
     bool m_isTransitioningAuto = false;
+    bool m_shouldInteruptPlaying = false;
 
     std::unordered_map<std::string, std::unique_ptr<Sound>> m_sounds;
 
