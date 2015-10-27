@@ -391,6 +391,22 @@ public:
     );
 
     /**
+    * @brief Returns the width of the games window
+    *
+    * @return
+    */
+    int
+    getResolutionWidth() const;
+
+    /**
+    * @brief Returns the width of the games window
+    *
+    * @return
+    */
+    int
+    getResolutionHeight() const;
+
+    /**
     * @brief Keeps a system alive after being shut down for a specified amount of  time
     *
     * Note that this causes update to be called for the specified duration so be careful
