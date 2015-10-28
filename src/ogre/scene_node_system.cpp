@@ -356,6 +356,10 @@ OgreRemoveSceneNodeSystem::update(int, int) {
         // Scene node
         Ogre::SceneNode* node = m_impl->m_sceneNodes[entityId];
         if (node) {
+            Ogre::SceneNode* currentParentNode = node->getParentSceneNode();
+            if (currentParentNode){
+                currentParentNode->removeChild(node);
+            }
             node->detachAllObjects();
             m_impl->m_sceneManager->destroySceneNode(node);
         }
