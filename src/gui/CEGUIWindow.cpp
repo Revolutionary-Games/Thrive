@@ -12,9 +12,7 @@
 
 #include <CEGUI/Element.h>
 #include <CEGUI/InputEvent.h>
-
-#include <CEGUI/widgets/ListWidget.h>
-#include <CEGUI/views/ListView.h>
+#include <CEGUI/Image.h>
 
 #include "cegui_types.h"
 
@@ -36,9 +34,9 @@ handleWindowMove(
     if (static_guiMode) {
 
         auto eventArgs = static_cast<const WindowEventArgs&>(args);
-        
+
         eventArgs.window->getParent();
-        
+
         // Still no idea what's going on
         // Unless this is a really awkward way of allowing windows to move under some conditions
         return true;
@@ -298,7 +296,7 @@ CEGUIWindow::listWidgetAddStandardItem(
         throw std::bad_cast();
 
     auto actualItem = item->getItem();
-    
+
     list->addItem(actualItem);
 
     item->markAttached();
@@ -477,7 +475,7 @@ CEGUIWindow::registerKeyEventHandler(
                 static_cast<int>(static_cast<const CEGUI::TextEventArgs&>(args).character));
             return 0;
         };
-    
+
     m_window->subscribeEvent(CEGUI::Window::EventCharacterKey, callbackLambda);
 }
 

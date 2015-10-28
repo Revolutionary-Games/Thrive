@@ -1,0 +1,140 @@
+#include "gui/CEGUIVideoPlayer.h"
+
+#include "engine/engine.h"
+#include "game.h"
+#include "script_wrappers.h"
+#include "scripting/luabind.h"
+
+#include <OgreVector3.h>
+#include <ogre/OgreMaterialManager.h>
+#include <ogre/OgreMaterial.h>
+#include <ogre/OgreTechnique.h>
+#include <ogre/OgreTextureManager.h>
+#include <luabind/object.hpp>
+#include <functional>
+
+#include <CEGUI/Element.h>
+#include <CEGUI/InputEvent.h>
+#include <CEGUI/Image.h>
+#include <CEGUI/RendererModules/Ogre/Texture.h>
+
+#include "sound/ffmpeg_audio_factory.h"
+
+#include "ogre-ffmpeg/videoplayer.hpp"
+
+using namespace thrive;
+
+CEGUIVideoPlayer::CEGUIVideoPlayer(
+    std::string name,
+    int width,
+    int height
+) : CEGUIWindow("Thrive/Image",name)
+{
+    Ogre::MaterialPtr videoMaterial = Ogre::MaterialManager::getSingleton().create(
+                "VideoMaterial"+name, Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
+    m_videoMaterialPass = videoMaterial->getTechnique( 0 )->getPass( 0 );
+    m_videoPlayer = std::unique_ptr<Video::VideoPlayer>(new Video::VideoPlayer());
+    //m_videoPlayer->setAudioFactory(new FFMPEGAudioFactory()); Don't know what I need to do to make audio work
+    m_videoImage = static_cast<CEGUI::BitmapImage*>(&CEGUI::ImageManager::getSingleton().create("BitmapImage", "ThriveGeneric/VideoImage"));
+    m_window->setWidth(CEGUI::UDim(0,width));
+    m_window->setHeight(CEGUI::UDim(0,height));
+}
+
+CEGUIVideoPlayer::CEGUIVideoPlayer(
+    std::string name
+) : CEGUIVideoPlayer(name, 0, 0)
+{
+    m_window->setWidth(CEGUI::UDim(1.0,0));
+    m_window->setHeight(CEGUI::UDim(1.0,0));
+}
+
+
+CEGUIVideoPlayer::~CEGUIVideoPlayer()
+{
+}
+
+luabind::scope
+CEGUIVideoPlayer::luaBindings() {
+    using namespace luabind;
+    return class_<CEGUIVideoPlayer, CEGUIWindow>("CEGUIVideoPlayer")
+        .def(constructor<std::string, int, int>())
+        .def(constructor<std::string>())
+        .def("play", &CEGUIVideoPlayer::play)
+        .def("pause", &CEGUIVideoPlayer::pause)
+        .def("setVideo", &CEGUIVideoPlayer::setVideo)
+        .def("update", &CEGUIVideoPlayer::update)
+        .def("getDuration", &CEGUIVideoPlayer::getDuration)
+        .def("getCurrentTime", &CEGUIVideoPlayer::getCurrentTime)
+        .def("seek", &CEGUIVideoPlayer::seek)
+    ;
+}
+
+void
+CEGUIVideoPlayer::play() {
+    m_videoPlayer->play();
+}
+
+void
+CEGUIVideoPlayer::pause() {
+
+}
+
+void
+CEGUIVideoPlayer::update() {
+    m_videoPlayer->update();
+}
+
+bool
+CEGUIVideoPlayer::isPaused() {
+    return false;
+}
+
+double
+CEGUIVideoPlayer::getDuration(){
+    return m_videoPlayer->getDuration();
+}
+
+double
+CEGUIVideoPlayer::getCurrentTime(){
+    return m_videoPlayer->getCurrentTime();
+}
+
+void
+CEGUIVideoPlayer::setVideo(
+  std::string videoName
+) {
+    m_window->setProperty("Image", "ThriveGeneric/VideoImage");
+    m_videoPlayer->playVideo(videoName);
+    m_videoMaterialPass->setLightingEnabled( false );
+    Ogre::TextureUnitState *tex = m_videoMaterialPass->createTextureUnitState();
+    tex->setTextureName(m_videoPlayer->getTextureName());
+    auto* renderer = CEGUI::System::getSingleton().getRenderer();
+    CEGUI::Texture& texture = renderer->createTexture("VideoTexture");
+
+    CEGUI::OgreTexture& rendererTexture = static_cast<CEGUI::OgreTexture&>(texture);
+
+    rendererTexture.setOgreTexture(Ogre::TextureManager::getSingleton().getByName(m_videoPlayer->getTextureName()), false);
+
+    CEGUI::OgreRenderer* ogreRenderer = static_cast<CEGUI::OgreRenderer*>(CEGUI::System::getSingleton().getRenderer());
+    bool isTextureTargetVerticallyFlipped = ogreRenderer->isTexCoordSystemFlipped();
+    CEGUI::Rectf imageArea;
+    int videoW = m_videoPlayer->getVideoWidth();
+    int videoH = m_videoPlayer->getVideoHeight();
+    if (isTextureTargetVerticallyFlipped){
+        imageArea= CEGUI::Rectf(0.0f, videoW, videoH, 0.0f);
+    }
+    else {
+        imageArea= CEGUI::Rectf(0.0f, 0.0f, videoW, videoH);
+    }
+    m_videoImage->setImageArea(imageArea);
+    // You most likely don't want autoscaling for RTT images. If you display it in stretched-mode inside a button or Generic/Image widget, then this setting does not play a role anyways.
+    m_videoImage->setAutoScaled(CEGUI::ASM_Disabled);
+    m_videoImage->setTexture(&rendererTexture);
+}
+
+void
+CEGUIVideoPlayer::seek(
+  double time
+) {
+    m_videoPlayer->seek(time);
+}
