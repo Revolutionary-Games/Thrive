@@ -31,6 +31,14 @@
 #include "ogre/render_system.h"
 #include "ogre/scene_node_system.h"
 #include "ogre/sky_system.h"
+#include <ogre/Overlay/OgreOverlay.h>
+#include <ogre/Overlay/OgreOverlaySystem.h>
+#include <ogre/Overlay/OgreOverlayManager.h>
+#include <ogre/Overlay/OgreOverlayContainer.h>
+#include <ogre/OgreMaterialManager.h>
+#include <ogre/OgreMaterial.h>
+#include <ogre/OgreTechnique.h>
+
 
 // Scripting
 #include <luabind/iterator_policy.hpp>
@@ -71,6 +79,7 @@
 #include <unordered_map>
 #include <iostream>
 #include "sound/sound_manager.h"
+#include "ogre-ffmpeg/videoplayer.hpp"
 
 using namespace thrive;
 
@@ -276,7 +285,10 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
             std::perror("Could not open file for saving");
         }
     }
-
+ //   std::auto_ptr<Ogre::OverlaySystem> mOverlaySystem;
+   // Ogre::OverlayContainer* mVideoPanel;
+	//Ogre::Overlay* mVideoOverlay;
+	std::auto_ptr<Video::VideoPlayer> mVideoPlayer;
     void
     setupGraphics() {
         m_graphics.root.reset(new Ogre::Root(PLUGINS_CFG));
@@ -295,6 +307,8 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
         Ogre::TextureManager::getSingleton().setDefaultNumMipmaps(5);
         // initialise all resource groups
         Ogre::ResourceGroupManager::getSingleton().initialiseAllResourceGroups();
+
+
     }
 
     void
@@ -566,6 +580,8 @@ Engine::luaBindings() {
         .def("pauseGame", &Engine::pauseGame)
         .def("resumeGame", &Engine::resumeGame)
         .def("registerConsoleObject", &Engine::registerConsoleObject)
+        .def("getResolutionHeight", &Engine::getResolutionHeight)
+        .def("getResolutionWidth", &Engine::getResolutionWidth)
         .property("componentFactory", &Engine::componentFactory)
         .property("keyboard", &Engine::keyboard)
         .property("mouse", &Engine::mouse)
@@ -945,6 +961,16 @@ Engine::update(
     if (not m_impl->m_serialization.loadFile.empty()) {
         m_impl->loadSavegame();
     }
+}
+
+int
+Engine::getResolutionWidth() const {
+    return m_impl->m_graphics.renderWindow->getWidth();
+}
+
+int
+Engine::getResolutionHeight() const {
+    return m_impl->m_graphics.renderWindow->getHeight();
 }
 
 void

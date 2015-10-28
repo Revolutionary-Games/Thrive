@@ -202,6 +202,7 @@ SoundSourceComponent::luaBindings() {
         .def("playSound", &SoundSourceComponent::playSound)
         .def("queueSound", &SoundSourceComponent::queueSound)
         .def("interpose", &SoundSourceComponent::interpose)
+        .def("interruptPlaying", &SoundSourceComponent::interruptPlaying)
         .property("ambientSoundSource", SoundSourceComponent_getAmbientSoundSource, SoundSourceComponent_setAmbientSoundSource)
         .property("autoLoop", SoundSourceComponent_getAutoLoop, SoundSourceComponent_setAutoLoop)
         .property("volumeMultiplier", SoundSourceComponent_getVolumeMultiplier, SoundSourceComponent_setVolumeMultiplier)
@@ -255,6 +256,10 @@ SoundSourceComponent::queueSound(
     m_queuedSound = m_sounds.at(name).get();
 }
 
+void
+SoundSourceComponent::interruptPlaying(){
+    m_shouldInteruptPlaying = true;
+}
 
 void
 SoundSourceComponent::load(
@@ -568,12 +573,21 @@ SoundSourceSystem::update(
                 sound->m_properties.untouch();
             }
         }
+        if (soundSourceComponent->m_shouldInteruptPlaying){
+            soundSourceComponent->m_shouldInteruptPlaying = false;
+            for (const auto& pair : soundSourceComponent->m_sounds) {
+                Sound* sound = pair.second.get();
+                if (sound->m_sound) {
+                    sound->m_sound->stop();
+                }
+            }
+        }
         if (soundSourceComponent->m_ambientSoundSource.hasChanges()) {
             //Iterate through all existing sounds and set/unset ambience only properties
             for (const auto& pair : soundSourceComponent->m_sounds) {
                 Sound* sound = pair.second.get();
                 auto ogreSound = sound->m_sound;
-                if (sound->m_sound) {
+                if (ogreSound) {
                     ogreSound->disable3D(soundSourceComponent->m_ambientSoundSource.get() || !sceneNodeComponent);
                     if (soundSourceComponent->m_ambientSoundSource.get()) {
                         sound->stop();

@@ -13,7 +13,7 @@ class scope;
 namespace thrive {
 
 class StandardItemWrapper;
-    
+
 class CEGUIWindow {
 
 public:
@@ -264,7 +264,7 @@ public:
     int
     listWidgetGetFirstSelectedID();
 
-    
+
 
 
     /**
@@ -497,6 +497,8 @@ private:
 
     //Private constructor. New window is true if this is the first time a CEGUIWindow is created with the window pointer (for event subscribing)
     CEGUIWindow(CEGUI::Window* window, bool newWindow = true);
+
+protected:
 
     CEGUI::Window* m_window = nullptr;
 
