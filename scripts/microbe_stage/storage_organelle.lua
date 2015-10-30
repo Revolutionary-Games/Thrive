@@ -25,8 +25,8 @@ function StorageOrganelle:storage()
 end
 
 -- Overridded from Organelle:onAddedToMicrobe
-function StorageOrganelle:onAddedToMicrobe(microbe, q, r)
-    Organelle.onAddedToMicrobe(self, microbe, q, r)
+function StorageOrganelle:onAddedToMicrobe(microbe, q, r, rotation)
+    Organelle.onAddedToMicrobe(self, microbe, q, r, rotation)
     parentIndex = microbe:addStorageOrganelle(self)
 end
 
@@ -47,7 +47,7 @@ end
 function OrganelleFactory.render_vacuole(data)
 	local x, y = axialToCartesian(data.q, data.r)
 	local translation = Vector3(-x, -y, 0)
-	data.sceneNode[1].meshName = "AgentVacuole.mesh"
+	data.sceneNode[1].meshName = "vacuole.mesh"
 	data.sceneNode[1].transform.position = translation
 	data.sceneNode[1].transform.orientation = Quaternion(Radian(Degree(data.rotation)), Vector3(0, 0, 1))
 	

@@ -8,6 +8,8 @@
 
 #include "tinyxml.h"
 
+#include <windows.h>
+
 using namespace thrive;
 
 luabind::scope
@@ -28,7 +30,7 @@ SpeciesRegistry::luaBindings() {
 
 namespace {
     struct Organelle { // TODO make Organelle a map of some sort?
-        int q, r;
+        int q, r, rotation;
         std::string internalName;
     };
     struct Compound {
@@ -71,10 +73,12 @@ SpeciesRegistry::getOrganelle(
         table["name"] = organelle.internalName;
         table["q"] = organelle.q;
         table["r"] = organelle.r;
+        table["rotation"] = organelle.rotation;
     } catch (...) {
         table["name"] = "";
         table["q"] = 0;
         table["r"] = 0;
+        table["rotation"] = 0;
     }
     return table;
 }
@@ -154,7 +158,7 @@ SpeciesRegistry::loadFromXML(
         const char* organelleName;
         hOrganelles = TiXmlHandle(pSpecies->FirstChildElement("Organelles"));
         pOrganelle = hOrganelles.FirstChildElement("Organelle").Element();
-        
+
         while (pOrganelle) {
             Organelle organelle;
             if (pOrganelle->QueryIntAttribute("q", &(organelle.q)) != TIXML_SUCCESS) {
@@ -162,6 +166,9 @@ SpeciesRegistry::loadFromXML(
             }
             if (pOrganelle->QueryIntAttribute("r", &(organelle.r)) != TIXML_SUCCESS) {
                 throw std::logic_error("Could not access 'r' attribute on Organelle element of " + filename);
+            }
+            if (pOrganelle->QueryIntAttribute("rotation", &(organelle.rotation)) != TIXML_SUCCESS) {
+                organelle.rotation = 0;
             }
             organelleName = pOrganelle->Attribute("name");
             if (organelleName == nullptr) {

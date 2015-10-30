@@ -195,14 +195,13 @@ end
 
 
 -- Overridded from Organelle:onAddedToMicrobe
-function ProcessOrganelle:onAddedToMicrobe(microbe, q, r)
-    Organelle.onAddedToMicrobe(self, microbe, q, r)
+function ProcessOrganelle:onAddedToMicrobe(microbe, q, r, rotation)
+    Organelle.onAddedToMicrobe(self, microbe, q, r, rotation)
     microbe:addProcessOrganelle(self)
 end
 
 -- Overridded from Organelle:onRemovedFromMicrobe
 function ProcessOrganelle:onRemovedFromMicrobe(microbe, q, r)
-	self.organelleEntity:destroy()
     microbe:removeProcessOrganelle(self)
     Organelle.onRemovedFromMicrobe(self, microbe, q, r)
 end
@@ -301,9 +300,6 @@ function OrganelleFactory.make_mitochondrion(data)
     local mito = ProcessOrganelle()
     mito:addProcess(global_processMap["Respiration"])
 	
-	if data.rotation == nil then
-		data.rotation = 0
-	end
 	local angle = (data.rotation / 60)
 	
 	mito:addHex(0, 0)
@@ -321,9 +317,6 @@ function OrganelleFactory.make_chloroplast(data)
     local chloro = ProcessOrganelle()
     chloro:addProcess(global_processMap["Photosynthesis"])
 	
-	if data.rotation == nil then
-		data.rotation = 0
-	end
 	local angle = (data.rotation / 60)
 	
     chloro:addHex(0, 0)
@@ -363,7 +356,7 @@ function OrganelleFactory.render_mitochondrion(data)
 	data.sceneNode[3].transform.position = translation
 	OrganelleFactory.setColour(data.sceneNode[3], data.colour)
 	
-	data.sceneNode[1].meshName = "AgentVacuole.mesh"
+	data.sceneNode[1].meshName = "mitochondrion.mesh"
 	organelleLocation = organelleLocation/2
 	data.sceneNode[1].transform.position = organelleLocation
 	data.sceneNode[1].transform.orientation = Quaternion(Radian(Degree(data.rotation)), Vector3(0, 0, 1))
@@ -400,7 +393,7 @@ function OrganelleFactory.render_chloroplast(data)
 	data.sceneNode[4].transform.position = translation
 	OrganelleFactory.setColour(data.sceneNode[4], data.colour)
 	
-	data.sceneNode[1].meshName = "AgentVacuole.mesh"
+	data.sceneNode[1].meshName = "chloroplast.mesh"
 	organelleLocation = organelleLocation/3
 	data.sceneNode[1].transform.position = organelleLocation
 	data.sceneNode[1].transform.orientation = Quaternion(Radian(Degree(data.rotation)), Vector3(0, 0, 1))
@@ -409,9 +402,6 @@ end
 function OrganelleFactory.sizeof_mitochondrion(data)
 	local hexes = {}
 	
-	if data.rotation == nil then
-		data.rotation = 0
-	end
 	local angle = (data.rotation / 60)
 	
 	hexes[1] = {["q"]=0, ["r"]=0}
@@ -429,9 +419,6 @@ end
 function OrganelleFactory.sizeof_chloroplast(data)
 	local hexes = {}
 	
-	if data.rotation == nil then
-		data.rotation = 0
-	end
 	local angle = (data.rotation / 60)
 	
 	hexes[1] = {["q"]=0, ["r"]=0}
@@ -443,8 +430,8 @@ function OrganelleFactory.sizeof_chloroplast(data)
 	end
 	hexes[2] = {["q"]=q, ["r"]=r}
 	
-	local q = 0
-	local r = 1
+	q = 0
+	r = 1
 	for i=0, angle do
 		q, r = rotateAxial(q, r)
 	end

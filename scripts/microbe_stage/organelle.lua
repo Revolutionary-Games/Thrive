@@ -24,6 +24,7 @@ function Organelle:__init()
         q = 0,
         r = 0
     }
+	self.rotation = 0
     self._colour = ColourValue(1,1,1,1)
     self._internalEdgeColour = ColourValue.Grey
     self._externalEdgeColour = ColourValue.Black
@@ -95,6 +96,7 @@ function Organelle:load(storage)
     end
     self.position.q = storage:get("q", 0)
     self.position.r = storage:get("r", 0)
+	self.rotation = storage:get("rotation", 0)
     --self._colour = storage:get("colour", ColourValue.White)
     --self._internalEdgeColour = storage:get("internalEdgeColour", ColourValue.Grey)
     --Serializing these causes some minor issues and doesn't serve a purpose anyway
@@ -110,10 +112,11 @@ end
 --
 -- @param q, r
 --  Axial coordinates of the organelle's center
-function Organelle:onAddedToMicrobe(microbe, q, r)
+function Organelle:onAddedToMicrobe(microbe, q, r, rotation)
     self.microbe = microbe
     self.position.q = q
     self.position.r = r
+	self.rotation = rotation
 	
 	local offset = Vector3(0,0,0)
 	local count = 0
@@ -128,13 +131,27 @@ function Organelle:onAddedToMicrobe(microbe, q, r)
 	self.organelleEntity = Entity()
     local sceneNode = OgreSceneNodeComponent()
     sceneNode.parent = self.entity
-	sceneNode.meshName = "AgentVacuole.mesh"
-	--sceneNode.meshName = self.name .. ".mesh"
-    --sceneNode:playAnimation("Float", true)
-    --sceneNode:setAnimationSpeed(0.25)
+	sceneNode.meshName = self.name .. ".mesh"
+	if self.name == "mitochondrion" or self.name == "chloroplast" then
+		sceneNode:playAnimation("Float", true)
+		sceneNode:setAnimationSpeed(0.25)
+	elseif self.name == "flagellum" then
+		sceneNode:playAnimation("Move", true)
+		sceneNode:setAnimationSpeed(0.25)
+		local organelleX, organelleY = axialToCartesian(q, r)
+		local nucleusX, nucleusY = axialToCartesian(0, 0)
+		local deltaX = nucleusX - organelleX
+		local deltaY = nucleusY - organelleY
+		local angle = math.atan2(deltaY, deltaX)
+		if (angle < 0) then
+			angle = angle + 2*math.pi
+		end
+		angle = (angle * 180/math.pi + 180) % 360
+		self.rotation = angle;
+	end
+	sceneNode.transform.orientation = Quaternion(Radian(Degree(self.rotation)), Vector3(0, 0, 1))
 	sceneNode.transform.position = offset
     sceneNode.transform.scale = Vector3(1, 1, 1)
-    sceneNode.transform.orientation = Quaternion(Radian(Degree(0)), Vector3(0, 0, 1))
     sceneNode.transform:touch()
     self.organelleEntity:addComponent(sceneNode)
 	self.organelleEntity.sceneNode = sceneNode
@@ -150,6 +167,7 @@ function Organelle:onRemovedFromMicrobe(microbe)
     self.microbe = nil
     self.position.q = 0
     self.position.r = 0
+	self.rotation = 0
 end
 
 
@@ -174,8 +192,6 @@ function Organelle:removeHex(q, r)
 end
 
 function Organelle:destroy()
-	assert(false, "destroy not called")
-    self.organelleEntity.sceneNode.meshName = "flagellum.mesh"
     self.entity:destroy()
 end
 
@@ -211,6 +227,7 @@ function Organelle:storage()
     storage:set("name", self.name)
     storage:set("q", self.position.q)
     storage:set("r", self.position.r)
+	storage:set("rotation", self.rotation)
     storage:set("colour", self._colour)
     storage:set("internalEdgeColour", self._internalEdgeColour)
     --Serializing these causes some minor issues and doesn't serve a purpose anyway
@@ -226,17 +243,13 @@ end
 -- @param logicTime
 --  The time since the last call to update()
 function Organelle:update(microbe, logicTime)
-    --if self.flashDuration ~= nil then
-    --    self.flashDuration = self.flashDuration - logicTime
-    --    if self.flashDuration <= 0 then
-    --        self._colour = self._originalColour
-    --        self._needsColourUpdate = true
-    --        self.flashDuration = nil
-    --   end
-    --end
-    --if self._needsColourUpdate then
-    --    self:_updateHexColours()
-    --end
+	if self.name == "flagellum" then
+		local x, y = axialToCartesian(self.position.q, self.position.r)
+		local membraneCoords = microbe.membraneComponent:getExternOrganellePos(x, y)
+		local translation = Vector3(membraneCoords[1], membraneCoords[2], 0)
+		self.organelleEntity.sceneNode.transform.position = translation - Vector3(x, y, 0)
+		self.organelleEntity.sceneNode.transform:touch()
+	end
 end
 
 
@@ -291,6 +304,17 @@ end
 -- The basic organelle maker
 class 'OrganelleFactory'
 
+-- Sets the color of the organelle
+function OrganelleFactory.setColour(sceneNode, colour)
+	local subEntity = sceneNode.entity:getSubEntity("center")
+	subEntity:setColour(colour)
+	for i=1, 6 do
+		local sideName = HEX_SIDE_NAME[i]
+		subEntity = sceneNode.entity:getSubEntity(sideName)
+		subEntity:setColour(colour)
+	end
+end
+
 function OrganelleFactory.makeOrganelle(data)
     local make_organelle = function()
         return OrganelleFactory["make_"..data.name](data)
@@ -307,26 +331,19 @@ end
 
 -- Draws the hexes and uploads the models in the editor
 function OrganelleFactory.renderOrganelles(data)
-	OrganelleFactory["render_"..data.name](data)
-end
-
--- Sets the color of the organelle
-function OrganelleFactory.setColour(sceneNode, colour)
-	local subEntity = sceneNode.entity:getSubEntity("center")
-	subEntity:setColour(colour)
-	for i=1, 6 do
-		local sideName = HEX_SIDE_NAME[i]
-		subEntity = sceneNode.entity:getSubEntity(sideName)
-		subEntity:setColour(colour)
+	if data.name == "remove" then
+		return {}
+	else
+		OrganelleFactory["render_"..data.name](data)
 	end
 end
 
 -- Checks which hexes an organelle occupies
 function OrganelleFactory.checkSize(data)
-	if data.name == "mitochondrion" or data.name == "chloroplast" or data.name == "vacuole" then
-		return OrganelleFactory["sizeof_"..data.name](data)
-	else
+	if data.name == "remove" then
 		return {}
+	else
+		return OrganelleFactory["sizeof_"..data.name](data)
 	end
 end
 

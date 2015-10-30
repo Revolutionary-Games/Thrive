@@ -15,13 +15,16 @@ function MicrobeReplacementSystem:activate()
         Engine:playerData():setBool("edited_microbe", false)
 
         workingMicrobe = Microbe(Entity(activeCreatureId, GameState.MICROBE_EDITOR))
+		local i, j = string.find(workingMicrobe.microbe.speciesName, "_")
+		workingMicrobe.microbe.speciesName = string.sub(workingMicrobe.microbe.speciesName, 1, i)
+		workingMicrobe.microbe.speciesName = workingMicrobe.microbe.speciesName .. "_".. self.globalSpeciesNameCounter
 
         speciesEntity = Entity(workingMicrobe.microbe.speciesName, GameState.MICROBE)
         species = SpeciesComponent(workingMicrobe.microbe.speciesName)
         speciesEntity:addComponent(species)
         self.globalSpeciesNameCounter = self.globalSpeciesNameCounter + 1
         species:fromMicrobe(workingMicrobe)
-
+		
         workingMicrobe.entity:destroy()
 
         newMicrobe = Microbe.createMicrobeEntity(PLAYER_NAME, false, workingMicrobe.microbe.speciesName)
@@ -31,7 +34,7 @@ function MicrobeReplacementSystem:activate()
             newMicrobe:storeCompound(CompoundRegistry.getCompoundId("atp"), 10)
         end
 
-        newMicrobe.collisionHandler:addCollisionGroup("powerupable")
+        newMicrobe.collisionHandler:addCollisionGroup("powerupable")		
         newMicrobeEntity = newMicrobe.entity:transfer(GameState.MICROBE)
         newMicrobeEntity:stealName(PLAYER_NAME)
         global_newEditorMicrobe = false

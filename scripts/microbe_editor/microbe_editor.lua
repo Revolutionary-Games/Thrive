@@ -6,8 +6,6 @@
 --------------------------------------------------------------------------------
 class 'MicrobeEditor'
 
-FLAGELIUM_MOMENTUM = 12.5 -- what the heck is this for, and why is it here?
-
 function MicrobeEditor:__init(hudSystem)
     self.currentMicrobe = nil
     self.organelleCount = 0
@@ -197,12 +195,24 @@ function MicrobeEditor:addOrganelle(organelleType)
 	local data = {["name"]=organelleType, ["q"]=q, ["r"]=r, ["rotation"]=self.organelleRot}
 	local organelle = OrganelleFactory.makeOrganelle(data)
 	local empty = true
+	local touching = false;
 	for s, hex in pairs(organelle._hexes) do
 		if self.currentMicrobe:getOrganelleAt(hex.q + q, hex.r + r) then
 			empty = false
 		end
+		
+		for s, hex in pairs(organelle._hexes) do
+			if  self.currentMicrobe:getOrganelleAt(hex.q + q + 0, hex.r + r - 1) or
+				self.currentMicrobe:getOrganelleAt(hex.q + q + 1, hex.r + r - 1) or
+				self.currentMicrobe:getOrganelleAt(hex.q + q + 1, hex.r + r + 0) or
+				self.currentMicrobe:getOrganelleAt(hex.q + q + 0, hex.r + r + 1) or
+				self.currentMicrobe:getOrganelleAt(hex.q + q - 1, hex.r + r + 1) or
+				self.currentMicrobe:getOrganelleAt(hex.q + q - 1, hex.r + r + 0) then
+				touching = true;
+			end
+		end
 	end
-    if empty then
+    if empty and touching then
 		for s, hex in pairs(organelle._hexes) do
 			local x, y = axialToCartesian(hex.q + q, hex.r + r) 
 			self.occupiedHexes[self.occupiedHexCount] = Entity("membrane-hex" .. self.occupiedHexCount)
@@ -216,7 +226,7 @@ function MicrobeEditor:addOrganelle(organelleType)
         self:enqueueAction({
             cost = Organelle.mpCosts[organelleType],
             redo = function()
-                self.currentMicrobe:addOrganelle(q, r, organelle)
+                self.currentMicrobe:addOrganelle(q, r, self.organelleRot, organelle)
                 self.organelleCount = self.organelleCount + 1
             end,
             undo = function()
