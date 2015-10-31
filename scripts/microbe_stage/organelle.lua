@@ -102,7 +102,6 @@ end
 --  Axial coordinates of the organelle's center
 function Organelle:onAddedToMicrobe(microbe, q, r, rotation)
     self.microbe = microbe
-    --self.microbe.entity:addChild(self.entity)
     self.position.q = q
     self.position.r = r
 	self.rotation = rotation
@@ -142,6 +141,7 @@ function Organelle:onAddedToMicrobe(microbe, q, r, rotation)
 	sceneNode.transform.position = offset
     sceneNode.transform.scale = Vector3(1, 1, 1)
     sceneNode.transform:touch()
+    self.microbe.entity:addChild(self.organelleEntity)
     self.organelleEntity:addComponent(sceneNode)
 	self.organelleEntity.sceneNode = sceneNode
 	self.organelleEntity:setVolatile(true)
