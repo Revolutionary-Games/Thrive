@@ -102,7 +102,7 @@ end
 --  Axial coordinates of the organelle's center
 function Organelle:onAddedToMicrobe(microbe, q, r, rotation)
     self.microbe = microbe
-    self.microbe.entity:addChild(self.entity)
+    --self.microbe.entity:addChild(self.entity)
     self.position.q = q
     self.position.r = r
 	self.rotation = rotation
