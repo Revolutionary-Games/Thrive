@@ -6,7 +6,7 @@ function MicrobeEditorHudSystem:__init()
     self.organelleButtons = {}
     self.initialized = false
     self.editor = MicrobeEditor(self)
-    self.hoverHex = nil
+    self.hoverHex = {}
     self.hoverOrganelle = nil
     self.saveLoadPanel = nil
     self.creationsListbox = nil
