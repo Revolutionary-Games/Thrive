@@ -920,6 +920,7 @@ function Microbe:_initialize()
         local q = organelle.position.q
         local r = organelle.position.r
         local x, y = axialToCartesian(q, r)
+        local rotation = organelle.rotation
         local translation = Vector3(x, y, 0)
         -- Collision shape
         self.rigidBody.properties.shape:addChildShape(
@@ -931,7 +932,7 @@ function Microbe:_initialize()
         organelle.sceneNode.parent = self.entity
         organelle.sceneNode.transform.position = translation
         organelle.sceneNode.transform:touch()
-        organelle:onAddedToMicrobe(self, q, r)
+        organelle:onAddedToMicrobe(self, q, r, rotation)
 
     end
     self.microbe.initialized = true
