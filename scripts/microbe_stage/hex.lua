@@ -198,3 +198,10 @@ function decodeAxial(s)
     local q = (s - r - OFFSET) / SHIFT - OFFSET
     return q, r
 end
+
+-- Rotates a hex by 60 degrees about the origin
+function rotateAxial(q, r)
+	local q2 = -1*r
+	local r2 = q + r
+	return q2, r2
+end
