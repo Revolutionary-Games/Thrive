@@ -821,6 +821,16 @@ function Microbe:update(logicTime)
             end
 		end
 	end
+	-- Membrane
+	self.sceneNode.meshName = "membrane_" .. self.microbe.speciesName 
+	for _, organelle in pairs(self.microbe.organelles) do
+		for _, hex in pairs(organelle._hexes) do
+			local q = hex.q + organelle.position.q
+			local r = hex.r + organelle.position.r
+			local x, y = axialToCartesian(q, r)
+			self.membraneComponent:sendOrganelles(x, y)
+		end
+	end
 end
 
 function Microbe:purgeCompounds()
@@ -1024,14 +1034,6 @@ function MicrobeSystem:update(renderTime, logicTime)
     for entityId in self.entities:addedEntities() do
         local microbe = Microbe(Entity(entityId))
         self.microbes[entityId] = microbe
-        -- Membrane
-		microbe.sceneNode.meshName = "membrane_" .. microbe.microbe.speciesName
-        for _, organelle in pairs(microbe.microbe.organelles) do
-            local q = organelle.position.q
-            local r = organelle.position.r
-            local x, y = axialToCartesian(q, r)
-            microbe.membraneComponent:sendOrganelles(x, y)
-        end
     end
     self.entities:clearChanges()
     for _, microbe in pairs(self.microbes) do
