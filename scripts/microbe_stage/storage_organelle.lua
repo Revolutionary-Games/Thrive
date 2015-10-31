@@ -25,8 +25,8 @@ function StorageOrganelle:storage()
 end
 
 -- Overridded from Organelle:onAddedToMicrobe
-function StorageOrganelle:onAddedToMicrobe(microbe, q, r)
-    Organelle.onAddedToMicrobe(self, microbe, q, r)
+function StorageOrganelle:onAddedToMicrobe(microbe, q, r, rotation)
+    Organelle.onAddedToMicrobe(self, microbe, q, r, rotation)
     parentIndex = microbe:addStorageOrganelle(self)
 end
 
