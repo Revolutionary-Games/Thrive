@@ -111,3 +111,20 @@ function OrganelleFactory.make_flagellum(data)
     flagellum:addHex(0, 0)
     return flagellum
 end
+
+function OrganelleFactory.render_flagellum(data)
+	local x, y = axialToCartesian(data.q, data.r)
+	local translation = Vector3(-x, -y, 0)
+	data.sceneNode[1].meshName = "flagellum.mesh"
+	data.sceneNode[1].transform.position = translation
+	data.sceneNode[1].transform.orientation = Quaternion(Radian(Degree(data.rotation)), Vector3(0, 0, 1))
+	
+	data.sceneNode[2].transform.position = translation
+	OrganelleFactory.setColour(data.sceneNode[2], data.colour)
+end
+
+function OrganelleFactory.sizeof_flagellum(data)
+    local hexes = {}
+	hexes[1] = {["q"]=0, ["r"]=0}
+	return hexes
+end
