@@ -1,6 +1,8 @@
 -- Enables a microbe to move and turn
 class 'MovementOrganelle' (Organelle)
 
+FLAGELLUM_MOMENTUM = 12.5 -- what the heck is this for?
+
 -- Constructor
 --
 -- @param force
@@ -19,40 +21,8 @@ function MovementOrganelle:__init(force, torque)
 	self.angle = 0
 end
 
-function MovementOrganelle:onAddedToMicrobe(microbe, q, r)  
-    Organelle.onAddedToMicrobe(self, microbe, q,r)
-    self.tailEntity = Entity()
-    local x, y = axialToCartesian(q, r)
-	self.x = x
-	self.y = y
-    sceneNode = OgreSceneNodeComponent()
-    sceneNode.parent = self.entity
-	sceneNode.transform.position = Vector3(0,0,0)
-    sceneNode.meshName = "Flagella.mesh"
-    sceneNode:playAnimation("Move", true)
-    sceneNode:setAnimationSpeed(0.25)
-    sceneNode.transform.scale = Vector3(1, 1, 1)
-    sceneNode.transform.orientation = Quaternion(Radian(Degree(0)), Vector3(0, 0, 1))
-    sceneNode.transform:touch()
-    self.tailEntity:addComponent(sceneNode)
-    self.tailEntity.sceneNode = sceneNode
-    self.tailEntity:setVolatile(true)
-    self.entity:addChild(self.tailEntity)
-    self.movingTail = false
-    local organelleX, organelleY = axialToCartesian(q, r)
-    local nucleusX, nucleusY = axialToCartesian(0, 0)
-    local deltaX = nucleusX - organelleX
-    local deltaY = nucleusY - organelleY
-    local angle = math.atan2(deltaY, deltaX)
-    if (angle < 0) then
-        angle = angle + 2*math.pi
-    end
-    angle = (angle * 180/math.pi + 180) % 360
-    self.tailEntity:getComponent(OgreSceneNodeComponent.TYPE_ID).transform.orientation = Quaternion(Radian(Degree(angle)), Vector3(0, 0, 1))
-end
-function MovementOrganelle:destroy()
-    self.tailEntity:destroy()
-    Organelle.destroy(self)
+function MovementOrganelle:onAddedToMicrobe(microbe, q, r, rotation)  
+    Organelle.onAddedToMicrobe(self, microbe, q, r, rotation)
 end
 
 function MovementOrganelle:load(storage)
@@ -72,19 +42,8 @@ end
 
 function MovementOrganelle:_moveMicrobe(microbe, milliseconds)
     local direction = microbe.microbe.movementDirection
-    if direction:isZeroLength() or self.force:isZeroLength() then
-        if self.movingTail then
-            self.movingTail = false
-            self.tailEntity.sceneNode:setAnimationSpeed(0.25)
-        end
-        return
-    end 
     local forceMagnitude = self.force:dotProduct(direction)
     if forceMagnitude > 0 then
-        if not self.movingTail then
-            self.movingTail = true
-            self.tailEntity.sceneNode:setAnimationSpeed(1.3)
-        end
         local energy = math.abs(self.energyMultiplier * forceMagnitude * milliseconds / 1000)
         local availableEnergy = microbe:takeCompound(CompoundRegistry.getCompoundId("atp"), energy)
         if availableEnergy < energy then
@@ -96,12 +55,6 @@ function MovementOrganelle:_moveMicrobe(microbe, milliseconds)
         microbe.rigidBody:applyCentralImpulse(
             microbe.sceneNode.transform.orientation * impulse
         )
-
-    else 
-        if self.movingTail then
-        self.movingTail = false
-         self.tailEntity.sceneNode:setAnimationSpeed(0.25)
-        end
     end
 end
 
@@ -148,8 +101,8 @@ function OrganelleFactory.make_flagellum(data)
     local deltaX = nucleusX - organelleX
     local deltaY = nucleusY - organelleY
     local dist = math.sqrt(deltaX^2 + deltaY^2) -- For normalizing vector
-    local momentumX = deltaX / dist * FLAGELIUM_MOMENTUM
-    local momentumY = deltaY / dist * FLAGELIUM_MOMENTUM
+    local momentumX = deltaX / dist * FLAGELLUM_MOMENTUM
+    local momentumY = deltaY / dist * FLAGELLUM_MOMENTUM
     local flagellum = MovementOrganelle(
         Vector3(momentumX, momentumY, 0.0),
         300
