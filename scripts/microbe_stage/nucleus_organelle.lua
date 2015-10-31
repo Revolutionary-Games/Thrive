@@ -129,6 +129,9 @@ function OrganelleFactory.make_nucleus(data)
 		q, r = rotateAxial(q, r)
 	end
 	nucleus:addHex(q, r)
+	
+	return nucleus
+end
 
 function OrganelleFactory.render_nucleus(data)
 	local x, y = axialToCartesian(data.q, data.r)
