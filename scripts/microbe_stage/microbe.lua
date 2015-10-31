@@ -336,7 +336,7 @@ end
 --
 -- @return
 --  returns whether the organelle was added
-function Microbe:addOrganelle(q, r, organelle)
+function Microbe:addOrganelle(q, r, rotation, organelle)
     local s = encodeAxial(q, r)
     if self.microbe.organelles[s] then
         return false
@@ -355,7 +355,7 @@ function Microbe:addOrganelle(q, r, organelle)
     organelle.sceneNode.parent = self.entity
     organelle.sceneNode.transform.position = translation
     organelle.sceneNode.transform:touch()
-    organelle:onAddedToMicrobe(self, q, r)
+    organelle:onAddedToMicrobe(self, q, r, rotation)
     self:_updateAllHexColours()
     self.microbe.hitpoints = (self.microbe.hitpoints/self.microbe.maxHitpoints) * (self.microbe.maxHitpoints + MICROBE_HITPOINTS_PER_ORGANELLE)
     self.microbe.maxHitpoints = self.microbe.maxHitpoints + MICROBE_HITPOINTS_PER_ORGANELLE
