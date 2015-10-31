@@ -85,10 +85,6 @@ function MovementOrganelle:update(microbe, logicTime)
     Organelle.update(self, microbe, logicTime)
     self:_turnMicrobe(microbe)
     self:_moveMicrobe(microbe, logicTime)
-	local membraneCoords = microbe.membraneComponent:getExternOrganellePos(self.x, self.y)
-	local translation = Vector3(membraneCoords[1], membraneCoords[2], 0)
-	self.tailEntity.sceneNode.transform.position = translation - Vector3(self.x, self.y, 0)
-	self.tailEntity.sceneNode.transform:touch()
 end
 
 Organelle.mpCosts["flagellum"] = 25
