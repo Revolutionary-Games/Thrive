@@ -43,6 +43,7 @@ function SpeciesComponent:load(storage)
                 organelle.name = orgData:get("name", "")
                 organelle.q = orgData:get("q", 0)
                 organelle.r = orgData:get("r", 0)
+                organelle.rotation = orgData:get("rotation", 0)
             end
             self.organelles[i] = organelle
             i = i + 1
@@ -65,6 +66,7 @@ function SpeciesComponent:storage()
         orgData:set("name", org.name)
         orgData:set("q", org.q)
         orgData:set("r", org.r)
+        orgData:set("rotation", org.rotation)
         organelles:set(""..i, orgData)
     end
     storage:set("organelleData", organelles)
@@ -93,7 +95,7 @@ function SpeciesComponent:template(microbe)
     -- give it organelles
     for i, orgdata in pairs(self.organelles) do
         organelle = OrganelleFactory.makeOrganelle(orgdata)
-        microbe:addOrganelle(orgdata.q, orgdata.r, organelle)
+        microbe:addOrganelle(orgdata.q, orgdata.r, orgdata.rotation, organelle)
     end
 
     for compoundID, amount in pairs(self.avgCompoundAmounts) do
@@ -126,6 +128,7 @@ function SpeciesComponent:fromMicrobe(microbe)
         data.name = organelle.name
         data.q = organelle.position.q
         data.r = organelle.position.r
+        data.rotation = organelle.rotation
         self.organelles[i] = data
     end
 end
