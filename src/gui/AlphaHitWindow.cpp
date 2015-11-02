@@ -87,7 +87,7 @@ bool AlphaHitWindow::renderingEndedHandler(const CEGUI::EventArgs& args)
     }
 
     // save details about what will be in the buffer
-    d_hitBufferInverted = CEGUI::System::getSingleton().getRenderer()->isTexCoordSystemFlipped();
+    //d_hitBufferInverted = CEGUI::System::getSingleton().getRenderer()->isTexCoordSystemFlipped();
     d_hitBufferSize = tex_sz;
 
     // grab a copy of the data.

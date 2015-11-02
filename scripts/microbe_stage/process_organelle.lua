@@ -192,8 +192,8 @@ end
 
 
 -- Overridded from Organelle:onAddedToMicrobe
-function ProcessOrganelle:onAddedToMicrobe(microbe, q, r)
-    Organelle.onAddedToMicrobe(self, microbe, q, r)
+function ProcessOrganelle:onAddedToMicrobe(microbe, q, r, rotation)
+    Organelle.onAddedToMicrobe(self, microbe, q, r, rotation)
     microbe:addProcessOrganelle(self)
 end
 
@@ -253,10 +253,6 @@ end
 
 -- Override from Organelle:setColour
 function ProcessOrganelle:setColour(colour)
-    Organelle.setColour(self, colour)
-    self.originalColour = colour
-    self:_updateColourDynamic(0)
-    self._needsColourUpdate = true
 end
 
 
@@ -290,23 +286,150 @@ end
 -------------------------------------------
 -- factory functions for process organelles
 
+
 Organelle.mpCosts["chloroplast"] = 20
 Organelle.mpCosts["mitochondrion"] = 20
 
 function OrganelleFactory.make_mitochondrion(data)
     local mito = ProcessOrganelle()
     mito:addProcess(global_processMap["Respiration"])
-    mito:addHex(0, 0)
-    mito:setColour(ColourValue(0.8, 0.4, 0.5, 0))
-    mito.colourChangeFactor = 2.0
+	
+	local angle = (data.rotation / 60)
+	
+	mito:addHex(0, 0)
+	local q = 1
+	local r = 0
+	for i=0, angle do
+		q, r = rotateAxial(q, r)
+	end
+	mito:addHex(q, r)
+
     return mito
 end
 
 function OrganelleFactory.make_chloroplast(data)
     local chloro = ProcessOrganelle()
     chloro:addProcess(global_processMap["Photosynthesis"])
+	
+	local angle = (data.rotation / 60)
+	
     chloro:addHex(0, 0)
-    chloro:setColour(ColourValue(0, 1, 0, 0.5))
-    chloro.colourChangeFactor = 1.0
+	local q = 1
+	local r = 0
+	for i=0, angle do
+		q, r = rotateAxial(q, r)
+	end
+	chloro:addHex(q, r)
+	q = 0
+	r = 1
+	for i=0, angle do
+		q, r = rotateAxial(q, r)
+	end
+	chloro:addHex(q, r)
+	
     return chloro
+end
+
+function OrganelleFactory.render_mitochondrion(data)
+	local x, y = axialToCartesian(data.q, data.r)
+	local translation = Vector3(-x, -y, 0)
+	local organelleLocation = translation
+	
+	data.sceneNode[2].transform.position = translation
+	OrganelleFactory.setColour(data.sceneNode[2], data.colour)
+	
+	local angle = (data.rotation / 60)
+	local q = 1
+	local r = 0
+	for i=0, angle do
+		q, r = rotateAxial(q, r)
+	end
+	x, y = axialToCartesian(q + data.q, r + data.r)
+	translation = Vector3(-x, -y, 0)
+	organelleLocation = organelleLocation + translation
+	data.sceneNode[3].transform.position = translation
+	OrganelleFactory.setColour(data.sceneNode[3], data.colour)
+	
+	data.sceneNode[1].meshName = "mitochondrion.mesh"
+	organelleLocation = organelleLocation/2
+	data.sceneNode[1].transform.position = organelleLocation
+	data.sceneNode[1].transform.orientation = Quaternion(Radian(Degree(data.rotation)), Vector3(0, 0, 1))
+end
+
+function OrganelleFactory.render_chloroplast(data)
+	local x, y = axialToCartesian(data.q, data.r)
+	local translation = Vector3(-x, -y, 0)
+	local organelleLocation = translation
+	
+	data.sceneNode[2].transform.position = translation
+	OrganelleFactory.setColour(data.sceneNode[2], data.colour)
+	
+	local angle = (data.rotation / 60)
+	local q = 1
+	local r = 0
+	for i=0, angle do
+		q, r = rotateAxial(q, r)
+	end
+	x, y = axialToCartesian(q + data.q, r + data.r)
+	translation = Vector3(-x, -y, 0)
+	organelleLocation = organelleLocation + translation
+	data.sceneNode[3].transform.position = translation
+	OrganelleFactory.setColour(data.sceneNode[3], data.colour)
+	
+	q = 0
+	r = 1
+	for i=0, angle do
+		q, r = rotateAxial(q, r)
+	end
+	x, y = axialToCartesian(q + data.q, r + data.r)
+	translation = Vector3(-x, -y, 0)
+	organelleLocation = organelleLocation + translation
+	data.sceneNode[4].transform.position = translation
+	OrganelleFactory.setColour(data.sceneNode[4], data.colour)
+	
+	data.sceneNode[1].meshName = "chloroplast.mesh"
+	organelleLocation = organelleLocation/3
+	data.sceneNode[1].transform.position = organelleLocation
+	data.sceneNode[1].transform.orientation = Quaternion(Radian(Degree(data.rotation)), Vector3(0, 0, 1))
+end
+
+function OrganelleFactory.sizeof_mitochondrion(data)
+	local hexes = {}
+	
+	local angle = (data.rotation / 60)
+	
+	hexes[1] = {["q"]=0, ["r"]=0}
+	
+	local q = 1
+	local r = 0
+	for i=0, angle do
+		q, r = rotateAxial(q, r)
+	end
+	hexes[2] = {["q"]=q, ["r"]=r}
+	
+    return hexes
+end
+
+function OrganelleFactory.sizeof_chloroplast(data)
+	local hexes = {}
+	
+	local angle = (data.rotation / 60)
+	
+	hexes[1] = {["q"]=0, ["r"]=0}
+	
+	local q = 1
+	local r = 0
+	for i=0, angle do
+		q, r = rotateAxial(q, r)
+	end
+	hexes[2] = {["q"]=q, ["r"]=r}
+	
+	q = 0
+	r = 1
+	for i=0, angle do
+		q, r = rotateAxial(q, r)
+	end
+	hexes[3] = {["q"]=q, ["r"]=r}
+	
+    return hexes
 end

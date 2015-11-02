@@ -17,8 +17,8 @@ function AgentVacuole:addProcess(process)
 end
 
 -- Overridded from ProcessOrganelle:onAddedToMicrobe
-function AgentVacuole:onAddedToMicrobe(microbe, q, r)
-    ProcessOrganelle.onAddedToMicrobe(self, microbe, q, r)
+function AgentVacuole:onAddedToMicrobe(microbe, q, r, rotation)
+    ProcessOrganelle.onAddedToMicrobe(self, microbe, q, r, rotation)
     microbe:addSpecialStorageOrganelle(self, self.compoundId)
 end
 
@@ -89,4 +89,21 @@ function OrganelleFactory.make_oxytoxy(data)
     agentVacuole:setColour(ColourValue(0, 1, 1, 0))
     agentVacuole.colourChangeFactor = 0.15
     return agentVacuole
+end
+
+function OrganelleFactory.render_oxytoxy(data)
+	local x, y = axialToCartesian(data.q, data.r)
+	local translation = Vector3(-x, -y, 0)
+	data.sceneNode[1].meshName = "AgentVacuole.mesh"
+	data.sceneNode[1].transform.position = translation
+	data.sceneNode[1].transform.orientation = Quaternion(Radian(Degree(data.rotation)), Vector3(0, 0, 1))
+	
+    data.sceneNode[2].transform.position = translation
+	OrganelleFactory.setColour(data.sceneNode[2], data.colour)
+end
+
+function OrganelleFactory.sizeof_oxytoxy(data)
+    local hexes = {}
+	hexes[1] = {["q"]=0, ["r"]=0}
+	return hexes
 end

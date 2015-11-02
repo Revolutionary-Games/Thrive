@@ -336,7 +336,7 @@ end
 --
 -- @return
 --  returns whether the organelle was added
-function Microbe:addOrganelle(q, r, organelle)
+function Microbe:addOrganelle(q, r, rotation, organelle)
     local s = encodeAxial(q, r)
     if self.microbe.organelles[s] then
         return false
@@ -355,7 +355,7 @@ function Microbe:addOrganelle(q, r, organelle)
     organelle.sceneNode.parent = self.entity
     organelle.sceneNode.transform.position = translation
     organelle.sceneNode.transform:touch()
-    organelle:onAddedToMicrobe(self, q, r)
+    organelle:onAddedToMicrobe(self, q, r, rotation)
     self:_updateAllHexColours()
     self.microbe.hitpoints = (self.microbe.hitpoints/self.microbe.maxHitpoints) * (self.microbe.maxHitpoints + MICROBE_HITPOINTS_PER_ORGANELLE)
     self.microbe.maxHitpoints = self.microbe.maxHitpoints + MICROBE_HITPOINTS_PER_ORGANELLE
@@ -821,6 +821,16 @@ function Microbe:update(logicTime)
             end
 		end
 	end
+	-- Membrane
+	self.sceneNode.meshName = "membrane_" .. self.microbe.speciesName 
+	for _, organelle in pairs(self.microbe.organelles) do
+		for _, hex in pairs(organelle._hexes) do
+			local q = hex.q + organelle.position.q
+			local r = hex.r + organelle.position.r
+			local x, y = axialToCartesian(q, r)
+			self.membraneComponent:sendOrganelles(x, y)
+		end
+	end
 end
 
 function Microbe:purgeCompounds()
@@ -910,6 +920,7 @@ function Microbe:_initialize()
         local q = organelle.position.q
         local r = organelle.position.r
         local x, y = axialToCartesian(q, r)
+        local rotation = organelle.rotation
         local translation = Vector3(x, y, 0)
         -- Collision shape
         self.rigidBody.properties.shape:addChildShape(
@@ -921,7 +932,7 @@ function Microbe:_initialize()
         organelle.sceneNode.parent = self.entity
         organelle.sceneNode.transform.position = translation
         organelle.sceneNode.transform:touch()
-        organelle:onAddedToMicrobe(self, q, r)
+        organelle:onAddedToMicrobe(self, q, r, rotation)
 
     end
     self.microbe.initialized = true
@@ -1024,14 +1035,6 @@ function MicrobeSystem:update(renderTime, logicTime)
     for entityId in self.entities:addedEntities() do
         local microbe = Microbe(Entity(entityId))
         self.microbes[entityId] = microbe
-        -- Membrane
-		microbe.sceneNode.meshName = "membrane_" .. microbe.microbe.speciesName
-        for _, organelle in pairs(microbe.microbe.organelles) do
-            local q = organelle.position.q
-            local r = organelle.position.r
-            local x, y = axialToCartesian(q, r)
-            microbe.membraneComponent:sendOrganelles(x, y)
-        end
     end
     self.entities:clearChanges()
     for _, microbe in pairs(self.microbes) do
