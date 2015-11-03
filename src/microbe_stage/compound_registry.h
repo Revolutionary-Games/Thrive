@@ -58,6 +58,14 @@ public:
     );
 
     /**
+    * @brief loads compounds from a lua config table
+    */
+    static void
+    loadFromLua(
+        luabind::object configTable
+    );
+
+    /**
     * @brief Registers a new compound type
     *
     * @param internalName
@@ -254,14 +262,12 @@ public:
     );
 
     /**
-    * @brief Obtains the scale of the corresponding mesh
+    * @brief Obtains the effect of the corresponding agent
     *
     * @param compoundId
-    *   The id of the compound to acquire the mesh scale from
+    *   The id of the compound to acquire the effect of
     *
-    * @return
-    *   A double equal to the scale of the model
-    *   If compound is not registered an out_of_range exception is thrown.
+    * @return A function pointer, to the agent effect function
     */
     static std::function<bool(EntityId, double)>*
     getAgentEffect(

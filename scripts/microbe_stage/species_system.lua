@@ -41,9 +41,9 @@ function SpeciesComponent:load(storage)
             orgData = organelleData:get(""..i, nil)
             if orgData ~= nil then
                 organelle.name = orgData:get("name", "")
-                organelle.q = orgData:get("q", 0)
-                organelle.r = orgData:get("r", 0)
-                organelle.rotation = orgData:get("rotation", 0)
+                organelle.q = tonumber(orgData:get("q", 0))
+                organelle.r = tonumber(orgData:get("r", 0))
+				organelle.rotation = tonumber(orgData:get("rotation", 0))
             end
             self.organelles[i] = organelle
             i = i + 1

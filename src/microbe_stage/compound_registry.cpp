@@ -14,7 +14,7 @@
 
 #include "tinyxml.h"
 
-#include <luabind/iterator_policy.hpp>
+#include <luabind/iterator_policy.hpp> 
 #include <OgreEntity.h>
 #include <OgreSceneManager.h>
 #include <stdexcept>
@@ -74,6 +74,27 @@ static std::unordered_map<std::string, CompoundId>&
 compoundRegistryMap() {
     static std::unordered_map<std::string, CompoundId> compoundRegistryMap;
     return compoundRegistryMap;
+}
+
+void
+CompoundRegistry::loadFromLua(
+    luabind::object configTable
+) {
+    for (luabind::iterator i(configTable), end; i != end; ++i) {
+        std::string key = luabind::object_cast<std::string>(i.key());
+        luabind::object data = *i;
+        std::string name = luabind::object_cast<std::string>(data["name"]);
+        float weight = luabind::object_cast<float>(data["weight"]);
+        std::string meshname = luabind::object_cast<std::string>(data["mesh"]);
+        float size = luabind::object_cast<float>(data["size"]);
+        registerCompoundType(
+                key,
+                name,
+                meshname,
+                size,
+                weight
+            );
+    }
 }
 
 void
