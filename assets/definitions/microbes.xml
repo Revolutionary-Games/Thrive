@@ -18,11 +18,18 @@
         </Compounds>
         <Organelles>
             <!-- This syntax is pretty unwieldly for many organelles -->
-            <Organelle name="nucleus" q="0" r="0" rotation="0"/>
-            <Organelle name="mitochondrion" q="1" r="-4" rotation="0"/>
-            <Organelle name="mitochondrion" q="-1" r="-3" rotation="0"/>
-            <Organelle name="vacuole" q="0" r="-3" rotation="0"/>
-            <Organelle name="flagellum" q="0" r="-4" rotation="0"/>
+            <Organelle name="nucleus" q="0" r="0"/>
+            <Organelle name="mitochondrion" q="1" r="-1"/>
+            <Organelle name="vacuole" q="0" r="-1"/>
+            <Organelle name="vacuole" q="-1" r="0"/>
+
+            <Organelle name="flagellum" q="0" r="1"/>
+            <Organelle name="flagellum" q="-1" r="1"/>
+            <Organelle name="flagellum" q="1" r="0"/>
+
+            <Organelle name="flagellum" q="0" r="-2"/>
+            <Organelle name="flagellum" q="-1" r="-1"/>
+            <Organelle name="flagellum" q="1" r="-2"/>
             <!-- the least unwieldly improvement I can think of is to make
             <Organelle/> properties also applicable to <Organelles>...</>,
             allow <Organelles>...</> as children of other <Organelles>...</>,

@@ -120,10 +120,10 @@ function Organelle:onAddedToMicrobe(microbe, q, r, rotation)
     local sceneNode = OgreSceneNodeComponent()
     sceneNode.parent = self.entity
 	sceneNode.meshName = self.name .. ".mesh"
-	if self.name == "mitochondrion" or self.name == "chloroplast" then
-		sceneNode:playAnimation("Float", true)
-		sceneNode:setAnimationSpeed(0.25)
-	elseif self.name == "flagellum" then
+	if self.name == "nucleus"  then
+		offset = Vector3(0,0,0)
+		-- TODO: Add specific nucleus animation here.
+	elseif self.name == "flagellum" then -- Add all movement organelles here.
 		sceneNode:playAnimation("Move", true)
 		sceneNode:setAnimationSpeed(0.25)
 		local organelleX, organelleY = axialToCartesian(q, r)
@@ -136,6 +136,9 @@ function Organelle:onAddedToMicrobe(microbe, q, r, rotation)
 		end
 		angle = (angle * 180/math.pi + 180) % 360
 		self.rotation = angle;
+	elseif self.name == "mitochondrion" or self.name == "chloroplast" then -- When all organelles except the above have animations this should just be an else statement
+		sceneNode:playAnimation("Float", true)
+		sceneNode:setAnimationSpeed(0.25)
 	end
 	sceneNode.transform.orientation = Quaternion(Radian(Degree(self.rotation)), Vector3(0, 0, 1))
 	sceneNode.transform.position = offset
