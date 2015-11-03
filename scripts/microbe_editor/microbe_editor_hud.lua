@@ -6,7 +6,8 @@ function MicrobeEditorHudSystem:__init()
     self.organelleButtons = {}
     self.initialized = false
     self.editor = MicrobeEditor(self)
-    self.hoverHex = nil
+    self.hoverHex = {}
+    self.hoverOrganelle = nil
     self.saveLoadPanel = nil
     self.creationsListbox = nil
     self.creationFileMap = {} -- Map from player creation name to filepath
@@ -19,12 +20,19 @@ end
 function MicrobeEditorHudSystem:init(gameState)
     System.init(self, gameState)
     self.editor:init(gameState)
-    self.hoverHex = Entity("hover-hex")
-    local sceneNode = OgreSceneNodeComponent()
-    sceneNode.transform.position = Vector3(0,0,110)
-    sceneNode.transform:touch()
-    sceneNode.meshName = "hex.mesh"
-    self.hoverHex:addComponent(sceneNode)
+    for i=1, 7 do
+		self.hoverHex[i] = Entity("hover-hex" .. i)
+		local sceneNode = OgreSceneNodeComponent()
+		sceneNode.transform.position = Vector3(0,0,0)
+		sceneNode.transform:touch()
+		sceneNode.meshName = "hex.mesh"
+		self.hoverHex[i]:addComponent(sceneNode)
+	end
+	self.hoverOrganelle = Entity("hover-organelle")
+	local sceneNode = OgreSceneNodeComponent()
+	sceneNode.transform.position = Vector3(0,0,0)
+	sceneNode.transform:touch()
+	self.hoverOrganelle:addComponent(sceneNode)
     local root = gameState:rootGUIWindow()
     self.mpLabel = root:getChild("MpPanel"):getChild("MpLabel")
     self.nameLabel = root:getChild("SpeciesNamePanel"):getChild("SpeciesNameLabel")
@@ -96,18 +104,7 @@ end
 
 function MicrobeEditorHudSystem:update(renderTime, logicTime)
     self.editor:update(renderTime, logicTime)
-    -- Render the hex under the cursor
-    local sceneNode = self.hoverHex:getComponent(OgreSceneNodeComponent.TYPE_ID)
-    if CEGUIWindow.getWindowUnderMouse():getName() == 'root' then
-        local x, y = axialToCartesian(self.editor:getMouseHex())
-        local translation = Vector3(-x, -y, 0)
-        
-        sceneNode.transform.position = translation
-    else
-        sceneNode.transform.position = Vector3(0,0,100)
-    end
-    sceneNode.transform:touch()
-    
+
     -- Handle input
     if Engine.mouse:wasButtonPressed(Mouse.MB_Left) then
         self.editor:performLocationAction()
@@ -161,6 +158,14 @@ function MicrobeEditorHudSystem:update(renderTime, logicTime)
     elseif keyCombo(kmp.rename) then
         self:updateMicrobeName()
     end
+    
+    if Engine.keyboard:wasKeyPressed(Keyboard.KC_LEFT) or Engine.keyboard:wasKeyPressed(Keyboard.KC_A) then
+		self.editor.organelleRot = (self.editor.organelleRot + 60)%360
+	end
+	if Engine.keyboard:wasKeyPressed(Keyboard.KC_RIGHT) or Engine.keyboard:wasKeyPressed(Keyboard.KC_D) then
+		self.editor.organelleRot = (self.editor.organelleRot - 60)%360
+	end
+	
     if keyCombo(kmp.screenshot) then
         Engine:screenShot("screenshot.png")
     end
