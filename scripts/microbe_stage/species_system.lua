@@ -57,7 +57,7 @@ function SpeciesComponent:storage()
     storage:set("name", self.name)
     compoundPriorities = StorageContainer()
     for k,v in pairs(self.compoundPriorities) do
-        compoundPriorities:set(k,v)
+        compoundPriorities:set(""..k,v)
     end
     storage:set("compoundPriorities", compoundPriorities)
     organelles = StorageContainer()
