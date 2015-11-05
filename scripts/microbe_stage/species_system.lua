@@ -66,7 +66,7 @@ function SpeciesComponent:storage()
         orgData:set("name", org.name)
         orgData:set("q", org.q)
         orgData:set("r", org.r)
-        orgData:set("rotation", 0)
+        orgData:set("rotation", org.rotation)
         organelles:set(""..i, orgData)
     end
     storage:set("organelleData", organelles)
