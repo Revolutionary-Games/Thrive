@@ -183,6 +183,7 @@ function Organelle:removeHex(q, r)
 end
 
 function Organelle:destroy()
+	self.organelleEntity:destroy()
     self.entity:destroy()
 end
 

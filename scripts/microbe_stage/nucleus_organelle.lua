@@ -71,9 +71,6 @@ function OrganelleFactory.make_nucleus(data)
     nucleus:addProcess(global_processMap["ReproductaseSynthesis"])
     nucleus:addProcess(global_processMap["AminoAcidSynthesis"])
         
-    if data.rotation == nil then
-		data.rotation = 0
-	end
 	local angle = (data.rotation / 60)
 	
     nucleus:addHex(0, 0)
