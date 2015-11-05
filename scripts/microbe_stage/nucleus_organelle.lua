@@ -70,67 +70,17 @@ function OrganelleFactory.make_nucleus(data)
     local nucleus = NucleusOrganelle()
     nucleus:addProcess(global_processMap["ReproductaseSynthesis"])
     nucleus:addProcess(global_processMap["AminoAcidSynthesis"])
-        
-    if data.rotation == nil then
-		data.rotation = 0
-	end
-	local angle = (data.rotation / 60)
 	
     nucleus:addHex(0, 0)
-	local q = 1
-	local r = 0
-	for i=0, angle do
-		q, r = rotateAxial(q, r)
-	end
-	nucleus:addHex(q, r)
-	q = 0
-	r = 1
-	for i=0, angle do
-		q, r = rotateAxial(q, r)
-	end
-	nucleus:addHex(q, r)
-	q = 0
-	r = -1
-	for i=0, angle do
-		q, r = rotateAxial(q, r)
-	end
-	nucleus:addHex(q, r)
-	q = 1
-	r = -1
-	for i=0, angle do
-		q, r = rotateAxial(q, r)
-	end
-	nucleus:addHex(q, r)
-	q = -1
-	r = 1
-	for i=0, angle do
-		q, r = rotateAxial(q, r)
-	end
-	nucleus:addHex(q, r)
-	q = -1
-	r = 0
-	for i=0, angle do
-		q, r = rotateAxial(q, r)
-	end
-	nucleus:addHex(q, r)
-	q = -1
-	r = -1
-	for i=0, angle do
-		q, r = rotateAxial(q, r)
-	end
-	nucleus:addHex(q, r)
-	q = -2
-	r = 0
-	for i=0, angle do
-		q, r = rotateAxial(q, r)
-	end
-	nucleus:addHex(q, r)
-	q = -2
-	r = 1
-	for i=0, angle do
-		q, r = rotateAxial(q, r)
-	end
-	nucleus:addHex(q, r)
+	nucleus:addHex(1, 0)
+	nucleus:addHex(0, 1)
+	nucleus:addHex(0, -1)
+	nucleus:addHex(1, -1)
+	nucleus:addHex(-1, 1)
+	nucleus:addHex(-1, 0)
+	nucleus:addHex(-1, -1)
+	nucleus:addHex(-2, 0)
+	nucleus:addHex(-2, 1)
 	
 	return nucleus
 end
@@ -138,31 +88,7 @@ end
 function OrganelleFactory.render_nucleus(data)
 	local x, y = axialToCartesian(data.q, data.r)
 	local translation = Vector3(-x, -y, 0)
-	
-	data.sceneNode[2].transform.position = translation
-	OrganelleFactory.setColour(data.sceneNode[2], data.colour)
-	
-	local angle = (data.rotation / 60)
-	local q = 1
-	local r = 0
-	for i=0, angle do
-		q, r = rotateAxial(q, r)
-	end
-	x, y = axialToCartesian(q + data.q, r + data.r)
-	translation = Vector3(-x, -y, 0)
-	data.sceneNode[3].transform.position = translation
-	OrganelleFactory.setColour(data.sceneNode[3], data.colour)
-	
-	q = 0
-	r = 1
-	for i=0, angle do
-		q, r = rotateAxial(q, r)
-	end
-	x, y = axialToCartesian(q + data.q, r + data.r)
-	translation = Vector3(-x, -y, 0)
-	data.sceneNode[4].transform.position = translation
-	OrganelleFactory.setColour(data.sceneNode[4], data.colour)
-	
+
 	data.sceneNode[1].meshName = "nucleus.mesh"
 	data.sceneNode[1].transform.position = Vector3(0,0,0)
 	data.sceneNode[1].transform.orientation = Quaternion(Radian(Degree(data.rotation)), Vector3(0, 0, 1))
