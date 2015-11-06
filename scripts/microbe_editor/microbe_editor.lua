@@ -262,7 +262,7 @@ end
 
 function MicrobeEditor:addNucleus()
     local nucleusOrganelle = OrganelleFactory.makeOrganelle({["name"]="nucleus"})
-    self.currentMicrobe:addOrganelle(0, 0, nucleusOrganelle)
+    self.currentMicrobe:addOrganelle(0, 0, 0, nucleusOrganelle)
 end
 
 function MicrobeEditor:loadMicrobe(entityId)
