@@ -17,7 +17,8 @@ end
 function Organelle:__init()
     self.entity = Entity()
     self.entity:setVolatile(true)
-    self.sceneNode = self.entity:getOrCreate(OgreSceneNodeComponent)
+    self.baseSceneNode = self.entity:getOrCreate(OgreSceneNodeComponent)
+    self.sceneNode = nil
     self.collisionShape = CompoundShape()
     self._hexes = {}
     self.position = {
@@ -118,6 +119,7 @@ function Organelle:onAddedToMicrobe(microbe, q, r, rotation)
 	
 	self.organelleEntity = Entity()
     local sceneNode = OgreSceneNodeComponent()
+    self.sceneNode = sceneNode
     sceneNode.parent = self.entity
 	sceneNode.meshName = self.name .. ".mesh"
 	if self.name == "nucleus"  then
@@ -150,6 +152,9 @@ function Organelle:onAddedToMicrobe(microbe, q, r, rotation)
 	self.organelleEntity:setVolatile(true)
 end
 
+function Organelle:setAnimationSpeed()
+    sceneNode:setAnimationSpeed(0.25)
+end
 
 -- Called by a microbe when this organelle has been removed from it
 --

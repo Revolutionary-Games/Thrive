@@ -398,7 +398,8 @@ struct SoundSourceSystem::Implementation {
             soundName.str(),
             sound->filename(),
             STREAM,
-            sound->m_properties.loop
+            sound->m_properties.loop,
+            gameState->name()
         );
 
         // SceneManager is not used here, suppress warning

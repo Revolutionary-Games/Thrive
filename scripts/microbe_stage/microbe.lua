@@ -352,9 +352,9 @@ function Microbe:addOrganelle(q, r, rotation, organelle)
         organelle.collisionShape
     )
     -- Scene node
-    organelle.sceneNode.parent = self.entity
-    organelle.sceneNode.transform.position = translation
-    organelle.sceneNode.transform:touch()
+    organelle.baseSceneNode.parent = self.entity
+    organelle.baseSceneNode.transform.position = translation
+    organelle.baseSceneNode.transform:touch()
     organelle:onAddedToMicrobe(self, q, r, rotation)
     self:_updateAllHexColours()
     self.microbe.hitpoints = (self.microbe.hitpoints/self.microbe.maxHitpoints) * (self.microbe.maxHitpoints + MICROBE_HITPOINTS_PER_ORGANELLE)
