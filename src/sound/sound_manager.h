@@ -46,9 +46,9 @@ public:
             const std::string &name,
             const std::string &fileName,
             bool stream,
-            bool loop
+            bool loop,
+            std::string namespacePrefix
         );
-    
 
     /**
        @brief Returns the listener object which can be moved to change the position of
