@@ -25,9 +25,8 @@ function MicrobeEditor:__init(hudSystem)
                                ["remove"] = MicrobeEditor.removeOrganelle}
     self.actionHistory = nil
     self.actionIndex = 0
-	self.organelleRot = 0
-	self.occupiedHexes = {}
-	self.occupiedHexCount = 0
+    self.organelleRot = 0
+    self.occupiedHexes = {}
 end
 
 function MicrobeEditor:init(gameState)
@@ -49,33 +48,36 @@ function MicrobeEditor:activate()
     self.mutationPoints = 100
     self.actionHistory = {} -- where all user actions will  be registered
     self.actionIndex = 0 -- marks the last action that has been done (not undone, but possibly redone), is 0 if there is none
+    for _, cytoplasm in pairs(self.occupiedHexes) do
+        cytoplasm:destroy()
+    end
 end
 
 function MicrobeEditor:update(renderTime, logicTime)
     -- Render the hex under the cursor
     local sceneNode = {}
-	sceneNode[1] = self.hudSystem.hoverOrganelle:getComponent(OgreSceneNodeComponent.TYPE_ID)
-	for i=2, 8 do
-		sceneNode[i] = self.hudSystem.hoverHex[i-1]:getComponent(OgreSceneNodeComponent.TYPE_ID)
-	end
-	
-	local q, r = self:getMouseHex()
-	if self.activeActionName then
-		local oldData = {["name"]=self.activeActionName, ["q"]=q, ["r"]=r, ["rotation"]=self.organelleRot}
-		local hexes = OrganelleFactory.checkSize(oldData)
-		local colour = ColourValue(0, 2, 0, 0.4)
-		for _, hex in ipairs(hexes) do
-			if self.currentMicrobe:getOrganelleAt(hex.q + q, hex.r + r) then
-				colour = ColourValue(2, 0, 0, 0.4)
-			end
-		end
-		--if CEGUIWindow.getWindowUnderMouse():getName() == 'root' then
-		local newData = {["name"]=self.activeActionName, ["q"]=q, ["r"]=r, ["sceneNode"]=sceneNode, ["rotation"]=self.organelleRot, ["colour"]=colour}
-		OrganelleFactory.renderOrganelles(newData)
-		for i=1, 8 do
-			sceneNode[i].transform:touch()
-		end
-	end
+    sceneNode[1] = self.hudSystem.hoverOrganelle:getComponent(OgreSceneNodeComponent.TYPE_ID)
+    for i=2, 8 do
+        sceneNode[i] = self.hudSystem.hoverHex[i-1]:getComponent(OgreSceneNodeComponent.TYPE_ID)
+    end
+    
+    local q, r = self:getMouseHex()
+    if self.activeActionName then
+        local oldData = {["name"]=self.activeActionName, ["q"]=q, ["r"]=r, ["rotation"]=self.organelleRot}
+        local hexes = OrganelleFactory.checkSize(oldData)
+        local colour = ColourValue(0, 2, 0, 0.4)
+        for _, hex in ipairs(hexes) do
+            if self.currentMicrobe:getOrganelleAt(hex.q + q, hex.r + r) then
+                colour = ColourValue(2, 0, 0, 0.4)
+            end
+        end
+        --if CEGUIWindow.getWindowUnderMouse():getName() == 'root' then
+        local newData = {["name"]=self.activeActionName, ["q"]=q, ["r"]=r, ["sceneNode"]=sceneNode, ["rotation"]=self.organelleRot, ["colour"]=colour}
+        OrganelleFactory.renderOrganelles(newData)
+        for i=1, 8 do
+            sceneNode[i].transform:touch()
+        end
+    end
 
     -- self.nextMicrobeEntity being a temporary used to pass the microbe from game to editor
     if self.nextMicrobeEntity ~= nil then
@@ -84,19 +86,20 @@ function MicrobeEditor:update(renderTime, logicTime)
         self.currentMicrobe.sceneNode.transform.position = Vector3(0, 0, 0)
         self.currentMicrobe.sceneNode.transform:touch()
         self.nextMicrobeEntity = nil
-		for _, organelle in pairs(self.currentMicrobe.microbe.organelles) do
-			for s, hex in pairs(organelle._hexes) do
-				local x, y = axialToCartesian(hex.q + organelle.position.q, hex.r + organelle.position.r) 
-				self.occupiedHexes[self.occupiedHexCount] = Entity("membrane-hex" .. self.occupiedHexCount)
-				local sceneNode = OgreSceneNodeComponent()
-				sceneNode.transform.position = Vector3(-x, -y, 0)
-				sceneNode.transform:touch()
-				sceneNode.meshName = "hex.mesh"
-				self.occupiedHexes[self.occupiedHexCount]:addComponent(sceneNode)
-				self.occupiedHexCount = self.occupiedHexCount + 1
-			end
-		end
-	end
+        for _, organelle in pairs(self.currentMicrobe.microbe.organelles) do
+            for s, hex in pairs(organelle._hexes) do
+                local x, y = axialToCartesian(hex.q + organelle.position.q, hex.r + organelle.position.r)
+                local s = encodeAxial(hex.q + organelle.position.q, hex.r + organelle.position.r)
+                self.occupiedHexes[s] = Entity()
+                local sceneNode = OgreSceneNodeComponent()
+                sceneNode.transform.position = Vector3(-x, -y, 0)
+                sceneNode.transform:touch()
+                sceneNode.meshName = "hex.mesh"
+                self.occupiedHexes[s]:addComponent(sceneNode)
+                self.occupiedHexes[s]:setVolatile(true)
+            end
+        end
+    end
     for _, organelle in pairs(self.currentMicrobe.microbe.organelles) do
         if organelle.flashDuration ~= nil then
             organelle.flashDuration = nil
@@ -192,37 +195,37 @@ end
 
 function MicrobeEditor:addOrganelle(organelleType)
     local q, r = self:getMouseHex()
-	local data = {["name"]=organelleType, ["q"]=q, ["r"]=r, ["rotation"]=self.organelleRot}
-	local organelle = OrganelleFactory.makeOrganelle(data)
-	local empty = true
-	local touching = false;
-	for s, hex in pairs(organelle._hexes) do
-		if self.currentMicrobe:getOrganelleAt(hex.q + q, hex.r + r) then
-			empty = false
-		end
-		
-		for s, hex in pairs(organelle._hexes) do
-			if  self.currentMicrobe:getOrganelleAt(hex.q + q + 0, hex.r + r - 1) or
-				self.currentMicrobe:getOrganelleAt(hex.q + q + 1, hex.r + r - 1) or
-				self.currentMicrobe:getOrganelleAt(hex.q + q + 1, hex.r + r + 0) or
-				self.currentMicrobe:getOrganelleAt(hex.q + q + 0, hex.r + r + 1) or
-				self.currentMicrobe:getOrganelleAt(hex.q + q - 1, hex.r + r + 1) or
-				self.currentMicrobe:getOrganelleAt(hex.q + q - 1, hex.r + r + 0) then
-				touching = true;
-			end
-		end
-	end
+    local data = {["name"]=organelleType, ["q"]=q, ["r"]=r, ["rotation"]=self.organelleRot}
+    local organelle = OrganelleFactory.makeOrganelle(data)
+    local empty = true
+    local touching = false;
+    for s, hex in pairs(organelle._hexes) do
+        if self.currentMicrobe:getOrganelleAt(hex.q + q, hex.r + r) then
+            empty = false
+        end
+        for s, hex in pairs(organelle._hexes) do
+            if  self.currentMicrobe:getOrganelleAt(hex.q + q + 0, hex.r + r - 1) or
+                self.currentMicrobe:getOrganelleAt(hex.q + q + 1, hex.r + r - 1) or
+                self.currentMicrobe:getOrganelleAt(hex.q + q + 1, hex.r + r + 0) or
+                self.currentMicrobe:getOrganelleAt(hex.q + q + 0, hex.r + r + 1) or
+                self.currentMicrobe:getOrganelleAt(hex.q + q - 1, hex.r + r + 1) or
+                self.currentMicrobe:getOrganelleAt(hex.q + q - 1, hex.r + r + 0) then
+                touching = true;
+            end
+        end
+    end
     if empty and touching then
-		for s, hex in pairs(organelle._hexes) do
-			local x, y = axialToCartesian(hex.q + q, hex.r + r) 
-			self.occupiedHexes[self.occupiedHexCount] = Entity("membrane-hex" .. self.occupiedHexCount)
-			local sceneNode = OgreSceneNodeComponent()
-			sceneNode.transform.position = Vector3(-x, -y, 0)
-			sceneNode.transform:touch()
-			sceneNode.meshName = "hex.mesh"
-			self.occupiedHexes[self.occupiedHexCount]:addComponent(sceneNode)
-			self.occupiedHexCount = self.occupiedHexCount + 1
-		end
+        for s, hex in pairs(organelle._hexes) do
+            local x, y = axialToCartesian(hex.q + q, hex.r + r)
+            local s = encodeAxial(hex.q + q, hex.r + r)
+            self.occupiedHexes[s] = Entity()
+            local sceneNode = OgreSceneNodeComponent()
+            sceneNode.transform.position = Vector3(-x, -y, 0)
+            sceneNode.transform:touch()
+            sceneNode.meshName = "hex.mesh"
+            self.occupiedHexes[s]:addComponent(sceneNode)
+            self.occupiedHexes[s]:setVolatile(true)
+        end
         self:enqueueAction({
             cost = Organelle.mpCosts[organelleType],
             redo = function()
@@ -240,19 +243,35 @@ end
 
 function MicrobeEditor:removeOrganelle()
     local q, r = self:getMouseHex()
-    if not (q == 0 and r == 0) then -- Don't remove nucleus
-        local organelle = self.currentMicrobe:getOrganelleAt(q,r)
+    local organelle = self.currentMicrobe:getOrganelleAt(q,r)
+    if not (organelle == nil or organelle.name == "nucleus") then -- Don't remove nucleus
         if organelle then
+            for _, hex in pairs(organelle._hexes) do
+                local s = encodeAxial(hex.q + organelle.position.q, hex.r + organelle.position.r)
+                self.occupiedHexes[s]:destroy()
+            end
             local storage = organelle:storage()
             self:enqueueAction{
                 cost = 10,
                 redo = function()
-                    self.currentMicrobe:removeOrganelle(q, r)
+                    self.currentMicrobe:removeOrganelle(storage:get("q", 0), storage:get("r", 0))
                     self.currentMicrobe.sceneNode.transform:touch()
                     self.organelleCount = self.organelleCount - 1
                 end,
                 undo = function()
-                    self.currentMicrobe:addOrganelle(q, r, Organelle.loadOrganelle(storage))
+                    local organelle = Organelle.loadOrganelle(storage)
+                    self.currentMicrobe:addOrganelle(storage:get("q", 0), storage:get("r", 0), storage:get("rotation", 0), organelle)
+                    for _, hex in pairs(organelle._hexes) do
+                        local x, y = axialToCartesian(hex.q + storage:get("q", 0), hex.r + storage:get("r", 0)) 
+                        local s = encodeAxial(hex.q + storage:get("q", 0), hex.r + storage:get("r", 0))
+                        self.occupiedHexes[s] = Entity()
+                        local sceneNode = OgreSceneNodeComponent()
+                        sceneNode.transform.position = Vector3(-x, -y, 0)
+                        sceneNode.transform:touch()
+                        sceneNode.meshName = "hex.mesh"
+                        self.occupiedHexes[s]:addComponent(sceneNode)
+                        self.occupiedHexes[s]:setVolatile(true)
+                    end
                     self.organelleCount = self.organelleCount + 1
                 end
             }
@@ -261,7 +280,7 @@ function MicrobeEditor:removeOrganelle()
 end
 
 function MicrobeEditor:addNucleus()
-    local nucleusOrganelle = OrganelleFactory.makeOrganelle({["name"]="nucleus"})
+    local nucleusOrganelle = OrganelleFactory.makeOrganelle({["name"]="nucleus", ["q"]=0, ["r"]=0, ["rotation"]=0})
     self.currentMicrobe:addOrganelle(0, 0, 0, nucleusOrganelle)
 end
 
@@ -318,7 +337,7 @@ function MicrobeEditor:createNewMicrobe()
             self.currentMicrobe.microbe.speciesName = speciesName
             for position,storage in pairs(organelleStorage) do
                 local q, r = decodeAxial(position)
-                self.currentMicrobe:addOrganelle(q, r, Organelle.loadOrganelle(storage))
+                self.currentMicrobe:addOrganelle(storage:get("q", 0), storage:get("r", 0), storage:get("rotation", 0), Organelle.loadOrganelle(storage))
             end
             -- no need to add the nucleus manually - it's alreary included in the organelleStorage
             self.mutationPoints = previousMP

@@ -185,7 +185,7 @@ starter_microbes = {
         },
     },
     Algae = {
-        spawnDensity = 1/80000,
+        spawnDensity = 1/8000,
         compounds = {atp = {amount = 20}},
         organelles = {
             {name="nucleus", q=0, r=0, rotation=0},
@@ -247,7 +247,7 @@ starter_microbes = {
             atp = {amount = 30},
         },
         organelles = {
-            {name="nucleus", q="0", r="0", rotation=0},
+            {name="nucleus", q=0, r=0, rotation=0},
             {name="mitochondrion", q=-2,  r=1, rotation=180},
             {name="mitochondrion", q=2, r=-1, rotation=180},
             {name="mitochondrion", q=-3,  r=2, rotation=0},

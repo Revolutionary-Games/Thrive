@@ -161,7 +161,8 @@ end
 -- @param microbe
 --  The organelle's previous owner
 function Organelle:onRemovedFromMicrobe(microbe)
-    self.microbe = nil
+    self:destroy()
+	self.microbe = nil
     self.position.q = 0
     self.position.r = 0
     self.rotation = 0
@@ -188,6 +189,7 @@ function Organelle:removeHex(q, r)
 end
 
 function Organelle:destroy()
+	self.organelleEntity:destroy()
     self.entity:destroy()
 end
 
