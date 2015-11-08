@@ -456,11 +456,11 @@ end
 -- True if an organelle has been removed, false if there was no organelle
 -- at (q,r)
 function Microbe:removeOrganelle(q, r)
-    local s = encodeAxial(q, r)
-    local organelle = self.microbe.organelles[s]
+    local organelle = self:getOrganelleAt(q,r)
     if not organelle then
         return false
     end
+    local s = encodeAxial(organelle.position.q, organelle.position.r)
     self.microbe.organelles[s] = nil
     organelle.position.q = 0
     organelle.position.r = 0
