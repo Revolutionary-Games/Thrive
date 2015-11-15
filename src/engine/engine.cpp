@@ -285,10 +285,7 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
             std::perror("Could not open file for saving");
         }
     }
- //   std::auto_ptr<Ogre::OverlaySystem> mOverlaySystem;
-   // Ogre::OverlayContainer* mVideoPanel;
-	//Ogre::Overlay* mVideoOverlay;
-	std::auto_ptr<Video::VideoPlayer> mVideoPlayer;
+
     void
     setupGraphics() {
         m_graphics.root.reset(new Ogre::Root(PLUGINS_CFG));
@@ -463,7 +460,6 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
     LuaState m_luaState;
 
     GameState* m_currentGameState = nullptr;
-
     CEGUIWindow* m_consoleGUIWindow = nullptr;
 
     ComponentFactory m_componentFactory;
@@ -517,10 +513,7 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
 
     luabind::object m_console;
     std::unique_ptr<SoundManager> m_soundManager;
-
     std::unique_ptr<CEGUI::InputAggregator> m_aggregator;
-
-
 };
 
 
