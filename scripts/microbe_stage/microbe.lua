@@ -837,7 +837,6 @@ function Microbe:purgeCompounds()
     -- Gather excess compounds that are the compounds that the storage organelles automatically emit to stay less than full
     local excessCompounds = {}
     while self.microbe.stored > self.microbe.capacity do
-		print("purge")
         -- Find lowest priority compound type contained in the microbe
         local lowestPriorityId = nil
         local lowestPriority = math.huge
