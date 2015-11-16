@@ -17,8 +17,7 @@ end
 function Organelle:__init()
     self.entity = Entity()
     self.entity:setVolatile(true)
-    self.baseSceneNode = self.entity:getOrCreate(OgreSceneNodeComponent)
-    self.sceneNode = nil
+    self.sceneNode = self.entity:getOrCreate(OgreSceneNodeComponent)
     self.collisionShape = CompoundShape()
     self._hexes = {}
     self.position = {
