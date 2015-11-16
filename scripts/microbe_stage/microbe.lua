@@ -352,9 +352,9 @@ function Microbe:addOrganelle(q, r, rotation, organelle)
         organelle.collisionShape
     )
     -- Scene node
-    organelle.baseSceneNode.parent = self.entity
-    organelle.baseSceneNode.transform.position = translation
-    organelle.baseSceneNode.transform:touch()
+    organelle.sceneNode.parent = self.entity
+    organelle.sceneNode.transform.position = translation
+    organelle.sceneNode.transform:touch()
     organelle:onAddedToMicrobe(self, q, r, rotation)
     self:_updateAllHexColours()
     self.microbe.hitpoints = (self.microbe.hitpoints/self.microbe.maxHitpoints) * (self.microbe.maxHitpoints + MICROBE_HITPOINTS_PER_ORGANELLE)
@@ -836,38 +836,30 @@ end
 function Microbe:purgeCompounds()
     -- Gather excess compounds that are the compounds that the storage organelles automatically emit to stay less than full
     local excessCompounds = {}
-    while self.microbe.stored/self.microbe.capacity > STORAGE_EJECTION_THRESHHOLD+0.01 do
+    while self.microbe.stored > self.microbe.capacity do
+		print("purge")
         -- Find lowest priority compound type contained in the microbe
         local lowestPriorityId = nil
         local lowestPriority = math.huge
         for compoundId,_ in pairs(self.microbe.compounds) do
             assert(self.microbe.compoundPriorities[compoundId] ~= nil, "Compound priority table was missing compound")
-            if self.microbe.compounds[compoundId] > 0  and self.microbe.compoundPriorities[compoundId] < lowestPriority then
+            if self.microbe.compoundPriorities[compoundId] < lowestPriority then
                 lowestPriority = self.microbe.compoundPriorities[compoundId]
                 lowestPriorityId = compoundId
             end
         end
         assert(lowestPriorityId ~= nil, "The microbe didn't seem to contain any compounds but was over the threshold")
         assert(self.microbe.compounds[lowestPriorityId] ~= nil, "Microbe storage was over threshold but didn't have any valid compounds to expell")
-        -- Return an amount that either is how much the microbe contains of the compound or until it goes to the threshhold
-        local amountInExcess
-        
-        amountInExcess = math.min(self.microbe.compounds[lowestPriorityId],self.microbe.stored - self.microbe.capacity * STORAGE_EJECTION_THRESHHOLD)
-        excessCompounds[lowestPriorityId] = self:takeCompound(lowestPriorityId, amountInExcess)
+
+		local totalPriority = 0
+		for compoundId,_ in pairs(self.microbe.compounds) do
+			totalPriority = totalPriority + self.microbe.compoundPriorities[compoundId]
+		end
+
+		local dedicatedStorage = self.microbe.compoundPriorities[lowestPriorityId]/totalPriority*self.microbe.capacity*STORAGE_EJECTION_THRESHHOLD
+        excessCompounds[lowestPriorityId] = self:takeCompound(lowestPriorityId, self.microbe.compounds[lowestPriorityId]-dedicatedStorage)
     end
 
-    -- Expel compounds of priority 0 periodically
-    for compoundId,_ in pairs(self.microbe.compounds) do
-        if self.microbe.compoundPriorities[compoundId] == 0 and self.microbe.compounds[compoundId] > 1 then
-            local uselessCompoundAmount
-            uselessCompoundAmount = self.microbe:getBandwidth(self.microbe.compounds[compoundId], compoundId)
-            if excessCompounds[compoundId] ~= nil then
-                excessCompounds[compoundId] = excessCompounds[compoundId] + self:takeCompound(compoundId, uselessCompoundAmount)
-            else
-                excessCompounds[compoundId] = self:takeCompound(compoundId, uselessCompoundAmount)
-            end
-        end
-    end 
     for compoundId, amount in pairs(excessCompounds) do
         if amount > 0 then
             self:ejectCompound(compoundId, amount, 160, 200)
