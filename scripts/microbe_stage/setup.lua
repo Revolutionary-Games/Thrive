@@ -220,9 +220,9 @@ local function createSpawnSystem()
     --Spawn one emitter on average once in every square of sidelength 10
     -- (square dekaunit?)
 	-- Spawn radius should depend on view rectangle
-    spawnSystem:addSpawnType(spawnOxygenEmitter, 1/500, 50)
-    spawnSystem:addSpawnType(spawnCO2Emitter, 1/500, 50)
-    spawnSystem:addSpawnType(spawnGlucoseEmitter, 1/500, 50)
+    spawnSystem:addSpawnType(spawnOxygenEmitter, 1/600, 50)
+    spawnSystem:addSpawnType(spawnCO2Emitter, 1/700, 50)
+    spawnSystem:addSpawnType(spawnGlucoseEmitter, 1/600, 50)
     spawnSystem:addSpawnType(spawnAmmoniaEmitter, 1/1250, 50)
     spawnSystem:addSpawnType(toxinOrganelleSpawnFunction, 1/17000, 50)
 
