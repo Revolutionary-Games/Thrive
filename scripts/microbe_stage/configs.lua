@@ -145,7 +145,7 @@ in 60 degree intervals counter clockwise.
 
 starter_microbes = {
     Default = {
-        spawnDensity = 1/12000,
+        spawnDensity = 1/14000,
         compounds = {
             atp = {priority=10,amount=40},
             glucose = {amount = 5},
@@ -160,7 +160,7 @@ starter_microbes = {
         },
     },
     Teeny = {
-        spawnDensity = 1/6000,
+        spawnDensity = 1/9000,
         compounds = {atp = {amount = 60}},
         organelles = {
             {name="nucleus",q=0,r=0, rotation=0},
@@ -171,7 +171,7 @@ starter_microbes = {
         },
     },
     Speedy = {
-        spawnDensity = 1/12000,
+        spawnDensity = 1/15000,
         compounds = {atp = {amount = 30}},
         organelles = {
             {name="nucleus",q=0,r=0, rotation=0},
@@ -185,7 +185,7 @@ starter_microbes = {
         },
     },
     Algae = {
-        spawnDensity = 1/8000,
+        spawnDensity = 1/12000,
         compounds = {atp = {amount = 20}},
         organelles = {
             {name="nucleus", q=0, r=0, rotation=0},
@@ -213,10 +213,10 @@ starter_microbes = {
             {name="vacuole", q=-2, r=1, rotation=0},
             {name="vacuole", q=2, r=-1, rotation=0},
             {name="vacuole", q=2, r=-2, rotation=0},
-            {name="oxytoxy", q=0, r=2, rotation=0},
-            {name="oxytoxy", q=-2, r=3, rotation=0},
-            {name="oxytoxy", q=2, r=1, rotation=0},
-            {name="oxytoxy", q=0, r=-3, rotation=0},
+            {name="vacuole", q=0, r=2, rotation=0},
+            {name="vacuole", q=-2, r=3, rotation=0},
+            {name="vacuole", q=2, r=1, rotation=0},
+            {name="vacuole", q=0, r=-3, rotation=0},
             {name="flagellum", q=-2, r=-1, rotation=0},
             {name="flagellum", q=-1, r=-2, rotation=0},
             {name="flagellum", q=2, r=-3, rotation=0},
