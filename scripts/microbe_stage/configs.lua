@@ -223,7 +223,7 @@ starter_microbes = {
             {name="flagellum", q=1, r=-3, rotation=0},
         },
     },
-    Predator = {
+    ToxinPredator = {
         spawnDensity = 1/15000,
         compounds = {
             atp = {amount = 30},
