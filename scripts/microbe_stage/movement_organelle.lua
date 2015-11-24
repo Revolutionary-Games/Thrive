@@ -117,7 +117,6 @@ function OrganelleFactory.make_flagellum(data)
         Vector3(momentumX, momentumY, 0.0),
         300
     )
-    flagellum:setColour(ColourValue(0.8, 0.3, 0.3, 1))
     flagellum:addHex(0, 0)
     return flagellum
 end
