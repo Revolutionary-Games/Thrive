@@ -516,7 +516,7 @@ function Microbe:damage(amount, damageType)
     end
     self.microbe.hitpoints = self.microbe.hitpoints - amount
     for _, organelle in pairs(self.microbe.organelles) do
-        organelle:flashColour(300, ColourValue(1,0.2,0.2,1))
+        organelle:flashColour(3000, ColourValue(1,0.2,0.2,1))
     end
     self:_updateAllHexColours()
     if self.microbe.hitpoints <= 0 then
