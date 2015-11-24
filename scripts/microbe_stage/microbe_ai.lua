@@ -157,7 +157,7 @@ function MicrobeAISystem:update(renderTime, logicTime)
                 while (aiComponent.prey  == nil or not aiComponent.prey:exists() or aiComponent.prey.microbe.dead or
                       (aiComponent.prey.microbe.speciesName ==  microbe.microbe.speciesName) or
                        self.preyEntityToIndexMap[aiComponent.prey.entity.id] == nil) and attempts < 6 do
-                    aiComponent.prey = self.preyCandidates[6]
+                    aiComponent.prey = self.preyCandidates[rng:getInt(0, 6)]
                     attempts = attempts + 1       
                 end
                 if attempts < 6 then
@@ -166,7 +166,7 @@ function MicrobeAISystem:update(renderTime, logicTime)
                        microbe:emitAgent(CompoundRegistry.getCompoundId("oxytoxy"), 1)
                     elseif vec:length() < 17 and microbe.microbe.speciesName == "Gluttonous" and not microbe.microbe.engulfMode then
                         microbe:toggleEngulfMode()
-                    elseif microbe.microbe.speciesName == "Gluttonous" and microbe.microbe.engulfMode then
+                    elseif vec:length() > 20 and microbe.microbe.speciesName == "Gluttonous" and microbe.microbe.engulfMode then
                         microbe:toggleEngulfMode()
                     end
                     
