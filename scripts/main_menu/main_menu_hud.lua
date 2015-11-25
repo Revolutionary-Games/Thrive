@@ -62,6 +62,11 @@ function MainMenuHudSystem:update(renderTime, logicTime)
     end
 end
 
+function MainMenuHudSystem:shutdown()
+    -- Necessary to avoid failed assert in ogre on exit
+    CEGUIVideoPlayer.destroyVideoPlayer(self.videoPlayer)
+end
+
 function MainMenuHudSystem:activate()
     updateLoadButton();
     if  self.videoPlayer and not self.hasShownIntroVid then
@@ -78,10 +83,6 @@ function updateLoadButton()
     end
 end
 
-function MainMenuHudSystem:deactivate()
-    -- We need to make cegui delete video player before player exits game or it causes a crash on exit
-    self.videoPlayer = nil
-end
 
 function mainMenuLoadButtonClicked()
     local guiSoundEntity = Entity("gui_sounds")
