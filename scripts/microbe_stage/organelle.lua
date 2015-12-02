@@ -25,10 +25,6 @@ function Organelle:__init()
         r = 0
     }
     self.rotation = 0
-    self._colour = ColourValue(1,1,1,1)
-    self._internalEdgeColour = ColourValue.Grey
-    self._externalEdgeColour = ColourValue.Black
-    self._needsColourUpdate = false
     self.name = "<nameless>"
 end
 
@@ -118,6 +114,7 @@ function Organelle:onAddedToMicrobe(microbe, q, r, rotation)
 	
 	self.organelleEntity = Entity()
     local sceneNode = OgreSceneNodeComponent()
+    self.sceneNode = sceneNode
     sceneNode.parent = self.entity
 	sceneNode.meshName = self.name .. ".mesh"
 	if self.name == "nucleus"  then
@@ -150,13 +147,17 @@ function Organelle:onAddedToMicrobe(microbe, q, r, rotation)
 	self.organelleEntity:setVolatile(true)
 end
 
+function Organelle:setAnimationSpeed()
+    sceneNode:setAnimationSpeed(0.25)
+end
 
 -- Called by a microbe when this organelle has been removed from it
 --
 -- @param microbe
 --  The organelle's previous owner
 function Organelle:onRemovedFromMicrobe(microbe)
-    self.microbe = nil
+    self:destroy()
+	self.microbe = nil
     self.position.q = 0
     self.position.r = 0
     self.rotation = 0
@@ -183,19 +184,15 @@ function Organelle:removeHex(q, r)
 end
 
 function Organelle:destroy()
+	self.organelleEntity:destroy()
     self.entity:destroy()
 end
 
-
--- Sets the organelle's colour
---
--- Temporary until we use proper models for the organelles
-function Organelle:setColour(colour)
-    self._colour = colour
-    self._needsColourUpdate = true
-end
-
 function Organelle:flashColour(duration, colour)
+	if self.flashDuration == nil then
+        self.colour = colour
+        self.flashDuration = duration
+    end
 end
 
 function Organelle:storage()
@@ -213,8 +210,6 @@ function Organelle:storage()
     storage:set("q", self.position.q)
     storage:set("r", self.position.r)
     storage:set("rotation", self.rotation)
-    storage:set("colour", self._colour)
-    storage:set("internalEdgeColour", self._internalEdgeColour)
     --Serializing these causes some minor issues and doesn't serve a purpose anyway
     --storage:set("externalEdgeColour", self._externalEdgeColour)
     return storage
@@ -235,22 +230,28 @@ function Organelle:update(microbe, logicTime)
 		self.organelleEntity.sceneNode.transform.position = translation - Vector3(x, y, 0)
 		self.organelleEntity.sceneNode.transform:touch()
 	end
+	if self.flashDuration ~= nil then
+        self.flashDuration = self.flashDuration - logicTime
+		if not self.sceneNode.entity or self.name ~= "nucleus" then
+			return
+		end
+		
+		local subEntity = self.sceneNode.entity:getSubEntity(self.name)
+		-- How frequent it flashes, would be nice to update the flash function
+		if math.fmod(self.flashDuration,600) < 300 then
+			subEntity:setColour(self.colour)
+		else
+			subEntity:setMaterial(self.name)
+		end
+		
+        if self.flashDuration <= 0 then
+            self.flashDuration = nil				
+			local subEntity = self.sceneNode.entity:getSubEntity(self.name)
+			subEntity:setMaterial(self.name)
+        end
+    end
 end
 
-
--- Private function for updating the organelle's colour
-function Organelle:_updateHexColours()
-end
-
-function Organelle:setExternalEdgeColour(colour)
-end
-
--- Queues a colour update for this organelle
---
--- We can't actually update the colour right away because the required objects, 
--- in particular the Ogre scene nodes may not have been created yet.
-function Organelle:updateHexColours()
-end
 
 function Organelle:removePhysics()
     self.collisionShape:clear()

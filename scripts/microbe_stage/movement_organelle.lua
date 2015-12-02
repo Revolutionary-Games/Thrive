@@ -19,6 +19,7 @@ function MovementOrganelle:__init(force, torque)
 	self.x = 0
 	self.y = 0
 	self.angle = 0
+    self.movingTail = false
 end
 
 function MovementOrganelle:onAddedToMicrobe(microbe, q, r, rotation)  
@@ -44,6 +45,14 @@ function MovementOrganelle:_moveMicrobe(microbe, milliseconds)
     local direction = microbe.microbe.movementDirection
     local forceMagnitude = self.force:dotProduct(direction)
     if forceMagnitude > 0 then
+        if direction:isZeroLength() or self.force:isZeroLength() then
+            self.movingTail = false
+            self.sceneNode:setAnimationSpeed(0.25)
+            return
+        end 
+        self.movingTail = true
+        self.sceneNode:setAnimationSpeed(1.3)
+        
         local energy = math.abs(self.energyMultiplier * forceMagnitude * milliseconds / 1000)
         local availableEnergy = microbe:takeCompound(CompoundRegistry.getCompoundId("atp"), energy)
         if availableEnergy < energy then
@@ -55,6 +64,11 @@ function MovementOrganelle:_moveMicrobe(microbe, milliseconds)
         microbe.rigidBody:applyCentralImpulse(
             microbe.sceneNode.transform.orientation * impulse
         )
+    else 
+        if self.movingTail then
+            self.movingTail = false
+            self.sceneNode:setAnimationSpeed(0.25)
+        end
     end
 end
 
@@ -103,7 +117,6 @@ function OrganelleFactory.make_flagellum(data)
         Vector3(momentumX, momentumY, 0.0),
         300
     )
-    flagellum:setColour(ColourValue(0.8, 0.3, 0.3, 1))
     flagellum:addHex(0, 0)
     return flagellum
 end

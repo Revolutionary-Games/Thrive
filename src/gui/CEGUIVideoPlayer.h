@@ -116,11 +116,16 @@ public:
         double time
     );
 
+    //Necessary to avoid ogre error when exiting game
+    static void
+    destroyVideoPlayer(CEGUIVideoPlayer* player);
+
 private:
 
     std::unique_ptr<Video::VideoPlayer> m_videoPlayer;
     Ogre::Pass * m_videoMaterialPass = nullptr;
     CEGUI::BitmapImage* m_videoImage = nullptr;
+    Ogre::TextureUnitState* m_tex = nullptr;
 };
 
 }
