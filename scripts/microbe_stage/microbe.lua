@@ -749,9 +749,10 @@ function Microbe:toggleEngulfMode()
         colourToSet = ColourValue.Red
         self.microbe.movementFactor = self.microbe.movementFactor / ENGULFING_MOVEMENT_DIVISION
     end
-    for _, organelle in pairs(self.microbe.organelles) do
-        organelle:setExternalEdgeColour(colourToSet)
-    end
+	-- You should be able to get the membrane to flash blue (or become some color)
+	-- if you are able to get your hands on the membrane entity, which is currently defined in c++
+	-- below line is just an example—it doesn't actually work.
+    -- microbe.membraneComponent.entity:flashColour(3000, ColourValue(1,0.2,0.2,1))
     self.microbe.engulfMode = not self.microbe.engulfMode
 end
 
