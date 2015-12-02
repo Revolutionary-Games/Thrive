@@ -150,9 +150,9 @@ function MicrobeAISystem:update(renderTime, logicTime)
         while aiComponent.intervalRemaining > aiComponent.reevalutationInterval do
             aiComponent.intervalRemaining = aiComponent.intervalRemaining - aiComponent.reevalutationInterval
             local targetPosition = nil
-            if microbe.microbe.speciesName == "ToxinPredator" or microbe.microbe.speciesName == "Glutony" then
+            if microbe.microbe.speciesName == "Predator" or microbe.microbe.speciesName == "Gluttonous" then
                 self.preyCandidates[6] = Microbe(Entity(PLAYER_NAME))
-                self.preyEntityToIndexMap[6] = Entity(PLAYER_NAME).id
+                self.preyEntityToIndexMap[Entity(PLAYER_NAME).id] = 6
                 local attempts = 0
                 while (aiComponent.prey  == nil or not aiComponent.prey:exists() or aiComponent.prey.microbe.dead or
                       (aiComponent.prey.microbe.speciesName ==  microbe.microbe.speciesName) or
@@ -162,14 +162,11 @@ function MicrobeAISystem:update(renderTime, logicTime)
                 end
                 if attempts < 6 then
                     local vec = (aiComponent.prey.sceneNode.transform.position - microbe.sceneNode.transform.position)
-                    
-                    if vec:length() < 10 then 
-                        if microbe.microbe.speciesName == "ToxinPredator" then
-                            microbe:emitAgent(CompoundRegistry.getCompoundId("oxytoxy"), 1)
-                        elseif microbe.microbe.speciesName == "Glutony" and not microbe.microbe.engulfMode then
-                            microbe:toggleEngulfMode()
-                        end
-                    elseif microbe.microbe.speciesName == "Glutony" and microbe.microbe.engulfMode then
+                    if vec:length() < 14 and microbe.microbe.speciesName == "Predator" then 
+                       microbe:emitAgent(CompoundRegistry.getCompoundId("oxytoxy"), 1)
+                    elseif vec:length() < 17 and microbe.microbe.speciesName == "Gluttonous" and not microbe.microbe.engulfMode then
+                        microbe:toggleEngulfMode()
+                    elseif vec:length() > 20 and microbe.microbe.speciesName == "Gluttonous" and microbe.microbe.engulfMode then
                         microbe:toggleEngulfMode()
                     end
                     

@@ -22,6 +22,7 @@
 #include <OgreColourValue.h>
 #include <OgreMath.h>
 #include <OgreMatrix3.h>
+#include <OgreMaterialManager.h>
 #include <OgreRay.h>
 #include <OgreSceneManager.h>
 #include <OgreSphere.h>
@@ -180,11 +181,24 @@ SubEntity_setColour(
 }
 
 
+static void
+SubEntity_setMaterial(
+    SubEntity* self,
+    const String& name
+) {
+    Ogre::MaterialManager& manager = Ogre::MaterialManager::getSingleton();
+    Ogre::MaterialPtr material = manager.getByName(
+        name
+    );
+    self->setMaterial(material);
+}
+
 static luabind::scope
 entityBindings() {
     return (
         class_<SubEntity, MovableObject>("OgreSubEntity")
             .def("setColour", &SubEntity_setColour)
+            .def("setMaterial", &SubEntity_setMaterial)
         ,
         class_<Ogre::Entity, MovableObject>("OgreEntity")
         .def("getSubEntity", static_cast<SubEntity*(Entity::*)(const Ogre::String&)>(&Entity::getSubEntity))

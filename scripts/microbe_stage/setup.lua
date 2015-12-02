@@ -220,10 +220,10 @@ local function createSpawnSystem()
     --Spawn one emitter on average once in every square of sidelength 10
     -- (square dekaunit?)
 	-- Spawn radius should depend on view rectangle
-    spawnSystem:addSpawnType(spawnOxygenEmitter, 1/500, 50)
-    spawnSystem:addSpawnType(spawnCO2Emitter, 1/500, 50)
-    spawnSystem:addSpawnType(spawnGlucoseEmitter, 1/500, 50)
-    spawnSystem:addSpawnType(spawnAmmoniaEmitter, 1/1250, 50)
+    spawnSystem:addSpawnType(spawnOxygenEmitter, 1/1600, 50)
+    spawnSystem:addSpawnType(spawnCO2Emitter, 1/1700, 50)
+    spawnSystem:addSpawnType(spawnGlucoseEmitter, 1/1600, 50)
+    spawnSystem:addSpawnType(spawnAmmoniaEmitter, 1/2250, 50)
     spawnSystem:addSpawnType(toxinOrganelleSpawnFunction, 1/17000, 50)
 
     for name, species in pairs(starter_microbes) do

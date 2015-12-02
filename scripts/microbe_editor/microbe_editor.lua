@@ -369,3 +369,4 @@ function MicrobeEditor:createNewMicrobe()
         action.redo()
     end
 end
+

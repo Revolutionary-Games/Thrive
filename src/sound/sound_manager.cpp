@@ -111,11 +111,12 @@ SoundManager::createSound(
     const std::string &name,
     const std::string &fileName,
     bool stream,
-    bool loop
+    bool loop,
+    std::string namespacePrefix
 ) {
     const std::string finalPath = "../sounds/"+fileName;
 
-    auto soundObj = m_impl->m_audioManager->create(name.c_str(), finalPath.c_str(), stream);
+    auto soundObj = m_impl->m_audioManager->create(std::string(namespacePrefix + name.c_str()).c_str(), finalPath.c_str(), stream);
 
     if(!soundObj){
 

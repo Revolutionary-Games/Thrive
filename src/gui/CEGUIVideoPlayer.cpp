@@ -11,6 +11,7 @@
 #include <ogre/OgreTechnique.h>
 #include <ogre/OgreTextureManager.h>
 #include <luabind/object.hpp>
+#include <luabind/adopt_policy.hpp>
 #include <functional>
 
 #include <CEGUI/Element.h>
@@ -51,6 +52,7 @@ CEGUIVideoPlayer::CEGUIVideoPlayer(
 
 CEGUIVideoPlayer::~CEGUIVideoPlayer()
 {
+    delete m_tex;
 }
 
 luabind::scope
@@ -66,12 +68,22 @@ CEGUIVideoPlayer::luaBindings() {
         .def("getDuration", &CEGUIVideoPlayer::getDuration)
         .def("getCurrentTime", &CEGUIVideoPlayer::getCurrentTime)
         .def("seek", &CEGUIVideoPlayer::seek)
+        .scope
+        [
+            def("destroyVideoPlayer", &destroyVideoPlayer, adopt(_1)) //Static
+        ];
     ;
 }
 
 void
 CEGUIVideoPlayer::play() {
     m_videoPlayer->play();
+}
+
+void
+CEGUIVideoPlayer::destroyVideoPlayer(CEGUIVideoPlayer* player)
+{
+    delete player;
 }
 
 void
@@ -106,8 +118,8 @@ CEGUIVideoPlayer::setVideo(
     m_window->setProperty("Image", "ThriveGeneric/VideoImage");
     m_videoPlayer->playVideo(videoName);
     m_videoMaterialPass->setLightingEnabled( false );
-    Ogre::TextureUnitState *tex = m_videoMaterialPass->createTextureUnitState();
-    tex->setTextureName(m_videoPlayer->getTextureName());
+    Ogre::TextureUnitState *m_tex = m_videoMaterialPass->createTextureUnitState();
+    m_tex->setTextureName(m_videoPlayer->getTextureName());
     auto* renderer = CEGUI::System::getSingleton().getRenderer();
     CEGUI::Texture& texture = renderer->createTexture("VideoTexture");
 
