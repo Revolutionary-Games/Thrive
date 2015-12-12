@@ -248,16 +248,31 @@ target_link_libraries(ThriveLib
     ${OGRE_LIBRARIES}
     ${OIS_LIBRARIES}
     ${CMAKE_THREAD_LIBS_INIT}
-    ${BULLET_DYNAMICS_LIBRARY_DEBUG}
-    ${BULLET_COLLISION_LIBRARY_DEBUG}
-    ${BULLET_MATH_LIBRARY_DEBUG}
-    ${BULLET_SOFTBODY_LIBRARY_DEBUG}
+    ${BULLET_LIBRARIES}
     ${CEGUI_LIBRARY}
     ${TINYXML_LIBRARIES}
     ${OpenAL_LIBRARIES}
     luabind
 )
 
+# Windows requires using Bullet DEBUG libraries to fix broken build
+# But Linux build breaks with those settings 
+if(WIN32)
+  
+  target_link_libraries(ThriveLib
+    ${BULLET_DYNAMICS_LIBRARY_DEBUG}
+    ${BULLET_COLLISION_LIBRARY_DEBUG}
+    ${BULLET_MATH_LIBRARY_DEBUG}
+    ${BULLET_SOFTBODY_LIBRARY_DEBUG}
+    )
+  
+else()
+
+  target_link_libraries(ThriveLib
+    ${BULLET_LIBRARIES}
+    )
+
+endif()
 
     
 target_link_libraries(ThriveLib
