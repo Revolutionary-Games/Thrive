@@ -21,7 +21,6 @@ function MicrobeEditor:__init(hudSystem)
                                ["chloroplast"] = MicrobeEditor.addOrganelle,
                                ["oxytoxy"] = MicrobeEditor.addOrganelle,
                                ["vacuole"] = MicrobeEditor.addOrganelle,
-                             --  ["aminosynthesizer"] = MicrobeEditor.addProcessOrganelle,
                                ["remove"] = MicrobeEditor.removeOrganelle}
     self.actionHistory = nil
     self.actionIndex = 0
@@ -207,7 +206,8 @@ end
 
 function MicrobeEditor:addOrganelle(organelleType)
     local q, r = self:getMouseHex()
-    local data = {["name"]=organelleType, ["q"]=q, ["r"]=r, ["rotation"]=self.organelleRot}
+	local rotation = self.organelleRot
+    local data = {["name"]=organelleType, ["q"]=q, ["r"]=r, ["rotation"]=rotation}
     local organelle = OrganelleFactory.makeOrganelle(data)
     local empty = true
     local touching = false;
@@ -228,10 +228,9 @@ function MicrobeEditor:addOrganelle(organelleType)
         self:enqueueAction({
             cost = Organelle.mpCosts[organelleType],
             redo = function()
-                self.currentMicrobe:addOrganelle(q, r, self.organelleRot, organelle)
-                self.organelleCount = self.organelleCount + 1
+				self.currentMicrobe:addOrganelle(q, r, rotation, OrganelleFactory.makeOrganelle(data))
 				for _, hex in pairs(organelle._hexes) do
-					local x, y = axialToCartesian(hex.q + q, hex.r + r)
+					local x, y = axialToCartesian(hex.q + q, hex.r + r) 
 					local s = encodeAxial(hex.q + q, hex.r + r)
 					self.occupiedHexes[s] = Entity()
 					local sceneNode = OgreSceneNodeComponent()
@@ -241,6 +240,7 @@ function MicrobeEditor:addOrganelle(organelleType)
 					self.occupiedHexes[s]:addComponent(sceneNode)
 					self.occupiedHexes[s]:setVolatile(true)
 				end
+				self.organelleCount = self.organelleCount + 1
             end,
             undo = function()
                 self.currentMicrobe:removeOrganelle(q, r)
@@ -369,4 +369,3 @@ function MicrobeEditor:createNewMicrobe()
         action.redo()
     end
 end
-
