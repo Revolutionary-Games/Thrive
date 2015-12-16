@@ -35,8 +35,7 @@ points.
 0. Requirements
 ---------------
 
-* At least 5 GB of free hard drive space on C:\ drive specifially
-(We want to make it possible to use other drives but not as of yet possible)
+* At least 300 MB of free hard drive space on C:\ drive specifially and 3 GB free space on the drive on which you want to put the dependencies (can also be C:/)
 
 * About 30-60 minutes, depending on the speed of your PC and your internet
   connection
@@ -54,7 +53,7 @@ points.
 
 2a. Downloading required libraries
 ----------------------------------------------
-Step 2a is optional but recommended for beginners to the project.
+Step 2a is optional but recommended for beginners to the project, this will require the 3 GB of dependencies to be on your C:/ drive.
 If you choose step 2a, you should skip forward to step 5. after completion.
 
 *  Download the archive found here:
@@ -94,16 +93,10 @@ yourself. To change that, we have to explicitly set the execution policy to
 * Right-click on "setup.ps1" and select "Run with Powershell"
 
 * In the file dialog that should pop up, select a directory of your choice.
-  C:\MinGW is recommended if you don't have another MinGW installation there
-  already.
+  C:\MinGW is recommended, but otherwise 300 MB will be copied to C:/MinGW regardless.
 
 * This will take quite a while, so be patient. When the script is complete, 
   a message box will inform you.
-
-If you want to install the build environment to another directory, you need to
-have another compiler installed. A standard mingw installation in C:\MinGW or 
-a Visual Studio installation (so that msvc.exe is in the system path) should
-do the trick.
 
 You will also have to point Code::Blocks to your custom directory in step (7).
 
