@@ -21,18 +21,18 @@ function MicrobeEditorHudSystem:init(gameState)
     System.init(self, gameState)
     self.editor:init(gameState)
     for i=1, 7 do
-		self.hoverHex[i] = Entity("hover-hex" .. i)
-		local sceneNode = OgreSceneNodeComponent()
-		sceneNode.transform.position = Vector3(0,0,0)
-		sceneNode.transform:touch()
-		sceneNode.meshName = "hex.mesh"
-		self.hoverHex[i]:addComponent(sceneNode)
-	end
-	self.hoverOrganelle = Entity("hover-organelle")
+	self.hoverHex[i] = Entity("hover-hex" .. i)
 	local sceneNode = OgreSceneNodeComponent()
 	sceneNode.transform.position = Vector3(0,0,0)
 	sceneNode.transform:touch()
-	self.hoverOrganelle:addComponent(sceneNode)
+	sceneNode.meshName = "hex.mesh"
+	self.hoverHex[i]:addComponent(sceneNode)
+    end
+    self.hoverOrganelle = Entity("hover-organelle")
+    local sceneNode = OgreSceneNodeComponent()
+    sceneNode.transform.position = Vector3(0,0,0)
+    sceneNode.transform:touch()
+    self.hoverOrganelle:addComponent(sceneNode)
     local root = gameState:rootGUIWindow()
     self.mpLabel = root:getChild("MpPanel"):getChild("MpLabel")
     self.nameLabel = root:getChild("SpeciesNamePanel"):getChild("SpeciesNameLabel")
@@ -103,8 +103,17 @@ end
 
 
 function MicrobeEditorHudSystem:update(renderTime, logicTime)
+    for i=1, 7 do
+        local sceneNode = self.hoverHex[i]:getComponent(OgreSceneNodeComponent.TYPE_ID)
+        sceneNode.transform.position = Vector3(0,0,0)
+        sceneNode.transform:touch()
+    end
+    local sceneNode = self.hoverOrganelle:getComponent(OgreSceneNodeComponent.TYPE_ID)
+    sceneNode.transform.position = Vector3(0,0,0)
+    sceneNode.transform:touch()
+	
     self.editor:update(renderTime, logicTime)
-
+	
     -- Handle input
     if Engine.mouse:wasButtonPressed(Mouse.MB_Left) then
         self.editor:performLocationAction()
