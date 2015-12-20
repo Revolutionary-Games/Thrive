@@ -1,5 +1,10 @@
 #include "gui/AlphaHitWindow.h"
 
+#include <CEGUI/CoordConverter.h>
+#include <CEGUI/TextureTarget.h>
+#include <CEGUI/Texture.h>
+#include <CEGUI/RenderingWindow.h>
+
 //----------------------------------------------------------------------------//
 const CEGUI::String AlphaHitWindow::WidgetTypeName("AlphaHitWindow");
 
@@ -82,7 +87,7 @@ bool AlphaHitWindow::renderingEndedHandler(const CEGUI::EventArgs& args)
     // allocate buffer to hold data if it's not already allocated
     if (!d_hitTestBuffer)
     {
-        d_hitTestBuffer = new CEGUI::uint32[reqd_capacity];
+        d_hitTestBuffer = new uint32_t[reqd_capacity];
         d_hitBufferCapacity = reqd_capacity;
     }
 

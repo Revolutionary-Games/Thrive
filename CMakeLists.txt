@@ -43,6 +43,11 @@ list(APPEND CMAKE_MODULE_PATH
     "${CMAKE_SOURCE_DIR}/cmake_modules"
 )
 
+if(WIN32)
+  list(APPEND CMAKE_MODULE_PATH
+    "${CMAKE_SOURCE_DIR}/windows/cmake_modules")
+endif()
+
 # Import utility functions
 include(add_to_project)
 include(utils)
@@ -200,6 +205,7 @@ include_directories("${cAudio_INCLUDE_DIRS}")
 find_package(FFMPEG)
 find_package(OgreFFMPEG)
 include_directories("${OgreFFMPEG_INCLUDE_DIR}")
+include_directories("${FFMPEG_INCLUDE_DIRS}")
 
 ######################
 # Configure Compiler #
@@ -244,6 +250,7 @@ target_link_libraries(ThriveLib
     #These two FFMPEG need to be at the top (before ogre?) to avoid linking error
     ${OgreFFMPEG_LIBRARIES} 
     ${FFMPEG_LIBRARIES}
+    ${SWRESAMPLE_LIBRARIES}
     ${Boost_LIBRARIES}
     ${OGRE_LIBRARIES}
     ${OIS_LIBRARIES}

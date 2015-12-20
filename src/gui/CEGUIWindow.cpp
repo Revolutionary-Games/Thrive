@@ -13,6 +13,7 @@
 #include <CEGUI/Element.h>
 #include <CEGUI/InputEvent.h>
 #include <CEGUI/Image.h>
+#include <CEGUI/USize.h>
 
 #include "cegui_types.h"
 
@@ -542,7 +543,7 @@ CEGUIWindow::setPositionAbs(
     float x,
     float y
 ){
-    m_window->setPosition(CEGUI::Vector2<CEGUI::UDim>(CEGUI::UDim(0,x), CEGUI::UDim(0,y)));
+    m_window->setPosition(CEGUI::UVector2(CEGUI::UDim(0,x), CEGUI::UDim(0,y)));
 }
 
 void
@@ -550,7 +551,7 @@ CEGUIWindow::setPositionRel(
     float x,
     float y
 ){
-    m_window->setPosition(CEGUI::Vector2<CEGUI::UDim>(CEGUI::UDim(x, 0), CEGUI::UDim(y, 0)));
+    m_window->setPosition(CEGUI::UVector2(CEGUI::UDim(x, 0), CEGUI::UDim(y, 0)));
 }
 
 void
@@ -558,14 +559,14 @@ CEGUIWindow::setSizeAbs(
     float width,
     float height
 ){
-    m_window->setSize( CEGUI::Size<CEGUI::UDim>(CEGUI::UDim(0, width), CEGUI::UDim(0,height))   );
+    m_window->setSize( CEGUI::USize(CEGUI::UDim(0, width), CEGUI::UDim(0,height))   );
 }
 void
 CEGUIWindow::setSizeRel(
     float width,
     float height
 ){
-    m_window->setSize( CEGUI::Size<CEGUI::UDim>(CEGUI::UDim(width, 0), CEGUI::UDim(height, 0))   );
+    m_window->setSize( CEGUI::USize(CEGUI::UDim(width, 0), CEGUI::UDim(height, 0))   );
 }
 
 std::string

@@ -140,7 +140,6 @@ struct OgreWorkspaceSystem::Implementation {
     removeWorkspace(
         Ogre::CompositorWorkspace* workspace
     ) {
-
         m_root.getCompositorManager2()->removeWorkspace(workspace);
     }
 
@@ -181,7 +180,7 @@ struct OgreWorkspaceSystem::Implementation {
             component->m_name, true, component->m_properties.position);
         
         component->m_workspace = workspace;
-        
+
         m_workspaces.emplace(
             entityId,
             workspace
@@ -196,7 +195,17 @@ struct OgreWorkspaceSystem::Implementation {
 
         if(component->m_workspace){
 
-            removeWorkspace(component->m_workspace);
+            // Destroy the old workspace
+            for (auto iter = m_workspaces.begin(); iter != m_workspaces.end(); ++iter) {
+
+                if (iter->second == component->m_workspace) {
+
+                    removeWorkspace(component->m_workspace);
+                    m_workspaces.erase(iter);
+                    break;
+                }
+            }
+            
             component->m_workspace = nullptr;
         }
 
