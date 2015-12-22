@@ -72,6 +72,8 @@ macro(find_component _component _pkgconfig _library _header)
       ${FFMPEGSDK_INC}
       ${PC_LIB${_component}_INCLUDEDIR}
       ${PC_LIB${_component}_INCLUDE_DIRS}
+      ${MINGW_ENV}/install/include
+      ${MINGW_ENV}/install/include/ogre-ffmpeg
     PATH_SUFFIXES
       ffmpeg
   )
@@ -81,6 +83,9 @@ macro(find_component _component _pkgconfig _library _header)
       ${FFMPEGSDK_LIB}
       ${PC_LIB${_component}_LIBDIR}
       ${PC_LIB${_component}_LIBRARY_DIRS}
+      ${MINGW_ENV}/install/lib
+      ${MINGW_ENV}/install/lib/Debug
+      ${MINGW_ENV}/install/lib/Release
   )
 
   set(${_component}_DEFINITIONS  ${PC_${_component}_CFLAGS_OTHER} CACHE STRING "The ${_component} CFLAGS.")
