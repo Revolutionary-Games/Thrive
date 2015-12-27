@@ -205,7 +205,7 @@ local function createSpawnSystem()
     end
     local ChloroplastOrganelleSpawnFunction = function(pos) 
         powerupEntity = Entity()
-        setSpawnablePhysics(powerupEntity, pos, "AgentVacuole.mesh", 0.9, SphereShape(HEX_SIZE))
+        setSpawnablePhysics(powerupEntity, pos, "chloroplast.mesh", 0.9, SphereShape(HEX_SIZE))
 
         local reactionHandler = CollisionComponent()
         reactionHandler:addCollisionGroup("powerup")
@@ -225,6 +225,7 @@ local function createSpawnSystem()
     spawnSystem:addSpawnType(spawnGlucoseEmitter, 1/1600, 50)
     spawnSystem:addSpawnType(spawnAmmoniaEmitter, 1/2250, 50)
     spawnSystem:addSpawnType(toxinOrganelleSpawnFunction, 1/17000, 50)
+    spawnSystem:addSpawnType(ChloroplastOrganelleSpawnFunction, 1/12000, 50)
 
     for name, species in pairs(starter_microbes) do
         spawnSystem:addSpawnType(
