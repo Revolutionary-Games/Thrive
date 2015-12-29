@@ -20,7 +20,7 @@
 
 macro(GetLibraryPathHints name)
   set(${name}_PATH_HINTS
-    "C:/${name}"
+    "${MINGW_ENV}/${name}"
     "~/${name}"
     "/usr"
     "/usr/lib"
