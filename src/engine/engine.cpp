@@ -31,13 +31,6 @@
 #include "ogre/render_system.h"
 #include "ogre/scene_node_system.h"
 #include "ogre/sky_system.h"
-#include <ogre/Overlay/OgreOverlay.h>
-#include <ogre/Overlay/OgreOverlaySystem.h>
-#include <ogre/Overlay/OgreOverlayManager.h>
-#include <ogre/Overlay/OgreOverlayContainer.h>
-#include <ogre/OgreMaterialManager.h>
-#include <ogre/OgreMaterial.h>
-#include <ogre/OgreTechnique.h>
 
 
 // Scripting
