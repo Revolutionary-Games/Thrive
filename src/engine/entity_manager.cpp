@@ -249,7 +249,7 @@ EntityManager::transferEntity(
         Component* component = pair.second->get(oldEntityId);
         if (component != nullptr){
             if (not component->isVolatile() and not
-                m_impl->m_volatileEntities.count(oldEntityId) > 0
+                (m_impl->m_volatileEntities.count(oldEntityId) > 0)
             ) {
                 auto newComponent = componentFactory.load(componentFactory.getTypeName(pair.first), component->storage());
                 newComponent->setOwner(newEntityId);
