@@ -35,7 +35,7 @@ if(CMAKE_COMPILER_IS_GNUCC OR CMAKE_COMPILER_IS_GNUCXX)
         -Wmissing-include-dirs
         -Wpointer-arith
         -Wredundant-decls
-        -Wstrict-overflow=2
+        -Wstrict-overflow=5
         -Wswitch-default
         -Wswitch-enum
         -Wundef
