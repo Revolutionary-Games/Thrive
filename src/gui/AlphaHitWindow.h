@@ -1,6 +1,6 @@
 #pragma once
 
-#include <CEGUI/widgets/PushButton.h>
+#include <CEGUI/CEGUI.h>
 #include "cegui_types.h"
 
 
@@ -29,7 +29,7 @@ protected:
     bool testClassName_impl(const CEGUI::String& class_name) const;
 
     //! Pointer to buffer holding the render data
-    uint32_t* d_hitTestBuffer;
+    CEGUI::uint32* d_hitTestBuffer;
     //! Size of the hit test buffer (i.e. its capacity)
     size_t d_hitBufferCapacity;
     //! Dimensions in pixels of the data in the hit test buffer
