@@ -44,7 +44,7 @@ set(VORBIS_ROOT ${MINGW_ENV}/install)
 set(OPENAL_ROOT ${MINGW_ENV}/install)
 
 set(SYSTEM_DLLS
-    ${MINGW_ENV}/i686-w64-mingw32/lib/libgcc_s_sjlj-1.dll
+    ${MINGW_ENV}/i686-w64-mingw32/lib/libgcc_s_dw2-1.dll
     ${MINGW_ENV}/i686-w64-mingw32/lib/libstdc++-6.dll
     ${MINGW_ENV}/i686-w64-mingw32/lib/libwinpthread-1.dll
 )
