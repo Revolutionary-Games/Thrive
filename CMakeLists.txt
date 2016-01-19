@@ -374,6 +374,7 @@ install(DIRECTORY "${ASSET_DIRECTORY}/materials"
         PATTERN "*.jpeg"
         PATTERN "*.material"
         PATTERN "*.png"
+        PATTERN "*.cg"
 )
 
 install(DIRECTORY
