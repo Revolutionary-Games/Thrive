@@ -14,6 +14,8 @@
 #include <OgreTimer.h>
 #include <OgreVector3.h>
 
+#include <OgreSceneNode.h>
+
 using namespace thrive;
 
 static const char MATERIAL_NAME[] = "OgreBulletCollisionsDebugDefault";
@@ -48,7 +50,7 @@ struct BulletDebugDrawer::Implementation : public Ogre::FrameListener {
 
         m_lines = sceneManager->createManualObject();
         m_triangles = sceneManager->createManualObject();
-        
+
         m_lines->setDynamic(true);
         m_triangles->setDynamic(true);
         this->setupMaterial();
@@ -57,7 +59,7 @@ struct BulletDebugDrawer::Implementation : public Ogre::FrameListener {
 
         sceneManager->getRootSceneNode()->attachObject(m_lines);
         sceneManager->getRootSceneNode()->attachObject(m_triangles);
-        
+
         Ogre::Root::getSingleton().addFrameListener(this);
     }
 

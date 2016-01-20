@@ -43,6 +43,11 @@ list(APPEND CMAKE_MODULE_PATH
     "${CMAKE_SOURCE_DIR}/cmake_modules"
 )
 
+if(WIN32)
+  list(APPEND CMAKE_MODULE_PATH
+    "${CMAKE_SOURCE_DIR}/windows/cmake_modules")
+endif()
+
 # Import utility functions
 include(add_to_project)
 include(utils)
@@ -200,6 +205,7 @@ include_directories("${cAudio_INCLUDE_DIRS}")
 find_package(FFMPEG)
 find_package(OgreFFMPEG)
 include_directories("${OgreFFMPEG_INCLUDE_DIR}")
+include_directories("${FFMPEG_INCLUDE_DIRS}")
 
 ######################
 # Configure Compiler #
@@ -244,20 +250,36 @@ target_link_libraries(ThriveLib
     #These two FFMPEG need to be at the top (before ogre?) to avoid linking error
     ${OgreFFMPEG_LIBRARIES} 
     ${FFMPEG_LIBRARIES}
+    ${SWRESAMPLE_LIBRARIES}
     ${Boost_LIBRARIES}
     ${OGRE_LIBRARIES}
     ${OIS_LIBRARIES}
     ${CMAKE_THREAD_LIBS_INIT}
-    ${BULLET_DYNAMICS_LIBRARY_DEBUG}
-    ${BULLET_COLLISION_LIBRARY_DEBUG}
-    ${BULLET_MATH_LIBRARY_DEBUG}
-    ${BULLET_SOFTBODY_LIBRARY_DEBUG}
+    ${BULLET_LIBRARIES}
     ${CEGUI_LIBRARY}
     ${TINYXML_LIBRARIES}
     ${OpenAL_LIBRARIES}
     luabind
 )
 
+# Windows requires using Bullet DEBUG libraries to fix broken build
+# But Linux build breaks with those settings 
+if(WIN32)
+  
+  target_link_libraries(ThriveLib
+    ${BULLET_DYNAMICS_LIBRARY_DEBUG}
+    ${BULLET_COLLISION_LIBRARY_DEBUG}
+    ${BULLET_MATH_LIBRARY_DEBUG}
+    ${BULLET_SOFTBODY_LIBRARY_DEBUG}
+    )
+  
+else()
+
+  target_link_libraries(ThriveLib
+    ${BULLET_LIBRARIES}
+    )
+
+endif()
 
     
 target_link_libraries(ThriveLib
