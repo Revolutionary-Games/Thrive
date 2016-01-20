@@ -271,8 +271,7 @@ if(WIN32)
     ${BULLET_COLLISION_LIBRARY_DEBUG}
     ${BULLET_MATH_LIBRARY_DEBUG}
     ${BULLET_SOFTBODY_LIBRARY_DEBUG}
-    )
-  
+    )  
 else()
 
   target_link_libraries(ThriveLib
@@ -291,10 +290,18 @@ set_target_properties(ThriveLib PROPERTIES
     OUTPUT_NAME Thrive
 )
 
-# Compile executable
+if(WIN32)
+  
 add_executable(Thrive
-#WIN32
+ ${CMAKE_CURRENT_SOURCE_DIR}/src/Main.cpp
+ ${CMAKE_CURRENT_SOURCE_DIR}/windows/thrive.rc)
+else()
+ add_executable(Thrive
  ${CMAKE_CURRENT_SOURCE_DIR}/src/Main.cpp)
+endif()
+
+# Compile executable
+
 
 target_link_libraries(Thrive ThriveLib)
 
@@ -585,6 +592,11 @@ if(WIN32)
         "${MINGW_ENV}/install/bin/swresample-1.dll"
         DESTINATION bin
 		CONFIGURATIONS Release
+    )
+    
+    install(FILES
+        "${ASSET_DIRECTORY}/misc/Thrive.exe"
+        DESTINATION ./
     )
 
 elseif(UNIX)
