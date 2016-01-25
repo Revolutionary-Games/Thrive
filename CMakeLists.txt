@@ -83,6 +83,7 @@ set(OGRE_PLUGINS
   #  Plugin_OctreeSceneManager
   #  Plugin_OctreeZone
     Plugin_ParticleFX
+    Plugin_CgProgramManager
   #  Plugin_PCZSceneManager
     RenderSystem_GL
 )
@@ -529,7 +530,7 @@ if(WIN32)
         "${OGRE_PLUGIN_DIR_REL}/OgreMain.dll"
 		"${OGRE_PLUGIN_DIR_REL}/RenderSystem_GL.dll"
 		"${OGRE_PLUGIN_DIR_REL}/OIS.dll"
-        #"${OGRE_PLUGIN_DIR_REL}/cg.dll"
+        "${MINGW_ENV}/install/bin/Release/cg.dll"
 		DESTINATION bin
 		CONFIGURATIONS Release
 	)
@@ -538,7 +539,7 @@ if(WIN32)
         "${OGRE_PLUGIN_DIR_DBG}/OgreMain_d.dll"
 		"${OGRE_PLUGIN_DIR_DBG}/RenderSystem_GL_d.dll"
 		"${OGRE_PLUGIN_DIR_DBG}/OIS_d.dll"
-        #"${OGRE_PLUGIN_DIR_DBG}/cg.dll"
+        "${MINGW_ENV}/install/bin/Debug/cg.dll"
 		DESTINATION bin
 		CONFIGURATIONS Debug
 	)
