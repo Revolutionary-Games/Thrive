@@ -77,7 +77,7 @@ void Membrane::DrawMembrane()
 	}
 
 	// Allows for the addition and deletion of points in the membrane.
-	for(size_t i=0; i<newPositions.size(); i++)
+	for(size_t i=0; i<newPositions.size()-1; i++)
 	{
 		// Check to see if the gap between two points in the membrane is too big.
 		if(newPositions[i].distance(newPositions[(i+1)%newPositions.size()]) > cellDimensions/membraneResolution)

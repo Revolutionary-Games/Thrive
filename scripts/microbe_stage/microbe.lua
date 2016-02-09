@@ -756,6 +756,11 @@ function Microbe:toggleEngulfMode()
     self.microbe.engulfMode = not self.microbe.engulfMode
 end
 
+-- Sets the color of the microbe's membrane.
+function Microbe:setMembraneColour(colour)
+    self.membraneComponent:setColour(colour.x, colour.y, colour.z, 1)
+end
+
 
 -- Updates the microbe's state
 function Microbe:update(logicTime)
