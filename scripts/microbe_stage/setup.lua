@@ -82,6 +82,7 @@ function setupSpecies()
         speciesComponent = SpeciesComponent(name)
         speciesEntity:addComponent(speciesComponent)
         speciesComponent.organelles = data.organelles -- note, shallow assignment
+        speciesComponent.colour = Vector3(data.colour.r, data.colour.g, data.colour.b)
 
         -- iterates over all compounds, and sets amounts and priorities
         for compoundID in CompoundRegistry.getCompoundList() do
