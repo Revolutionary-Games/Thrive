@@ -54,7 +54,7 @@ void Membrane::Initialize(vector<Ogre::Vector3> organellePositions)
 		vertices2D.emplace_back(-cellDimensions, cellDimensions - 2*cellDimensions/membraneResolution*i, 0);
 	}
 
-	for(int i=0; i<500; i++)
+	for(int i=0; i<50*cellDimensions; i++)
     {
         DrawMembrane();
     }
