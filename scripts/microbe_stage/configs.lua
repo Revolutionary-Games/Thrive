@@ -141,6 +141,8 @@ the +r direction.
 
 0 degrees is considered up for the rotation (+r), and you can rotate
 in 60 degree intervals counter clockwise.
+
+The colour of the microbe should never be lower than (0.3, 0.3, 0.3)
 ]]
 
 starter_microbes = {

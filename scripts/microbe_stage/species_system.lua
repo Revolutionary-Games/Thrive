@@ -98,6 +98,7 @@ end
 --  like agent codes, for example.
 function SpeciesComponent:template(microbe)
     microbe.microbe.speciesName = self.name
+    microbe:setMembraneColour(self.colour)
     -- give it organelles
     for i, orgdata in pairs(self.organelles) do
         organelle = OrganelleFactory.makeOrganelle(orgdata)
@@ -114,7 +115,6 @@ function SpeciesComponent:template(microbe)
             microbe:setDefaultCompoundPriority(compoundID, priority)
         end
     end
-    microbe:setMembraneColour(self.colour)
     -- complimentary serving of atp
     --newMicrobe:storeCompound(CompoundRegistry.getCompoundId("atp"), 10)
     return microbe
