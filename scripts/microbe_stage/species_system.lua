@@ -23,6 +23,8 @@ function SpeciesComponent:__init(name)
     self.avgCompoundAmounts = {} -- maps each compound name to the amount a new spawn should get. Nonentries are zero.
                                  -- we could also add some measure of variability to make things more ...variable.
     self.compoundPriorities = {} -- maps compound name to priority.
+    
+    self.colour = Vector3(1,0,1) -- The colour of the species stored as a Vector3.
 end
 
 --is this still todo?
@@ -30,6 +32,7 @@ end
 function SpeciesComponent:load(storage)
     Component.load(self, storage)
     self.name = storage:get("name", "")
+    self.colour = Vector3(storage:get("r", 0), storage:get("g", 0), storage:get("b", 0))
     self.compoundPriorities = {}
     priorityData = storage:get("compoundPriorities", nil)
     organelleData = storage:get("organelleData", nil)
@@ -55,6 +58,9 @@ end
 function SpeciesComponent:storage()
     local storage = Component.storage(self)
     storage:set("name", self.name)
+    storage:set("r", self.colour.x)
+    storage:set("g", self.colour.y)
+    storage:set("b", self.colour.z)
     compoundPriorities = StorageContainer()
     for k,v in pairs(self.compoundPriorities) do
         compoundPriorities:set(""..k,v)
@@ -92,6 +98,7 @@ end
 --  like agent codes, for example.
 function SpeciesComponent:template(microbe)
     microbe.microbe.speciesName = self.name
+    microbe:setMembraneColour(self.colour)
     -- give it organelles
     for i, orgdata in pairs(self.organelles) do
         organelle = OrganelleFactory.makeOrganelle(orgdata)

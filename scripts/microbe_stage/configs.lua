@@ -141,6 +141,8 @@ the +r direction.
 
 0 degrees is considered up for the rotation (+r), and you can rotate
 in 60 degree intervals counter clockwise.
+
+The colour of the microbe should never be lower than (0.3, 0.3, 0.3)
 ]]
 
 starter_microbes = {
@@ -158,6 +160,7 @@ starter_microbes = {
             {name="flagellum",q=1,r=-4, rotation=0},
             {name="flagellum",q=-1,r=-3, rotation=0},
         },
+        colour = {r=1,g=1,b=1},
     },
     Teeny = {
         spawnDensity = 1/9000,
@@ -169,6 +172,7 @@ starter_microbes = {
             {name="mitochondrion",q=2,r=-1, rotation=180},
             {name="flagellum",q=0,r=-3, rotation=0},
         },
+        colour = {r=1,g=1,b=0.3},
     },
     Speedy = {
         spawnDensity = 1/15000,
@@ -183,6 +187,7 @@ starter_microbes = {
             {name="flagellum",q=-2,r=-2, rotation=0},
             {name="flagellum",q=2,r=-4, rotation=0},
         },
+        colour = {r=0.4,g=0.4,b=0.8},
     },
     Algae = {
         spawnDensity = 1/12000,
@@ -198,6 +203,7 @@ starter_microbes = {
             {name="chloroplast", q=2, r=-2, rotation=180},
             {name="chloroplast", q=2, r=0, rotation=180},
         },
+        colour = {r=0.1,g=1,b=0.5},
     },
     Poisonous = {
         spawnDensity = 1/32000,
@@ -222,6 +228,7 @@ starter_microbes = {
             {name="flagellum", q=2, r=-3, rotation=0},
             {name="flagellum", q=1, r=-3, rotation=0},
         },
+        colour = {r=1,g=0.3,b=0.5},
     },
     Predator = {
         spawnDensity = 1/15000,
@@ -240,6 +247,7 @@ starter_microbes = {
             {name="flagellum", q=-1, r=-2, rotation=0},
             {name="oxytoxy", q=0, r=2, rotation=0},
         },
+        colour = {r=0.4,g=0.6,b=1},
     },
     Gluttonous = {
         spawnDensity = 1/18000,
@@ -267,5 +275,6 @@ starter_microbes = {
             {name="flagellum", q=0, r=-3, rotation=0},
             {name="flagellum", q=2, r=-3, rotation=0},
         },
+        colour = {r=0.3,g=1,b=0.8},
     },
 }
