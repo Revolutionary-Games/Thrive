@@ -11,6 +11,7 @@
 #include <luabind/object.hpp>
 #include <memory>
 #include <OgreCommon.h>
+#include <OgreColourValue.h>
 #include <OgreMath.h>
 #include <OgreVector3.h>
 #include <unordered_set>
@@ -49,19 +50,24 @@ public:
     StorageContainer
     storage() const override;
 
+    // The colour of the membrane.
+    Ogre::ColourValue colour;
 
     // Gets organelle positions from the .lua file.
     void sendOrganelles(double x, double y);
+
+    // Sets the colour of the membrane.
+    void setColour(float red, float green, float blue, float alpha);
 
     // Gets the position of the closest membrane point
     luabind::object getExternOrganellePos(double x, double y);
 
 
 private:
-friend class MembraneSystem;
-         Membrane m_membrane;
-std::vector<Ogre::Vector3> organellePositions;
-bool wantsMembrane = true;
+    friend class MembraneSystem;
+    Membrane m_membrane;
+    std::vector<Ogre::Vector3> organellePositions;
+    bool wantsMembrane = true;
 };
 
 

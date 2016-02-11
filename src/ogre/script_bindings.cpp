@@ -23,6 +23,8 @@
 #include <OgreMath.h>
 #include <OgreMatrix3.h>
 #include <OgreMaterialManager.h>
+#include <OgreMaterial.h>
+#include <OgreTechnique.h>
 #include <OgreRay.h>
 #include <OgreSceneManager.h>
 #include <OgreSphere.h>
@@ -193,12 +195,28 @@ SubEntity_setMaterial(
     self->setMaterial(material);
 }
 
+static void
+SubEntity_tintColour(
+    SubEntity* self,
+    const String& groupName,
+    const String& materialName,
+    const Ogre::ColourValue& colour
+) {
+    Ogre::MaterialPtr baseMaterial = Ogre::MaterialManager::getSingleton().getByName(materialName);
+    Ogre::MaterialPtr materialPtr = baseMaterial->clone(groupName);
+    materialPtr->compile();
+    Ogre::TextureUnitState* ptus = materialPtr->getTechnique(0)->getPass(0)->getTextureUnitState(0);
+    ptus->setColourOperationEx(Ogre::LBX_MODULATE, Ogre::LBS_MANUAL, Ogre::LBS_TEXTURE, colour);
+    self->setMaterial(materialPtr);
+}
+
 static luabind::scope
 entityBindings() {
     return (
         class_<SubEntity, MovableObject>("OgreSubEntity")
             .def("setColour", &SubEntity_setColour)
             .def("setMaterial", &SubEntity_setMaterial)
+            .def("tintColour", &SubEntity_tintColour)
         ,
         class_<Ogre::Entity, MovableObject>("OgreEntity")
         .def("getSubEntity", static_cast<SubEntity*(Entity::*)(const Ogre::String&)>(&Entity::getSubEntity))

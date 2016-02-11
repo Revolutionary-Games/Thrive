@@ -5,26 +5,10 @@ using namespace std;
 Membrane::Membrane(): isInitialized(false)
 {
     // Half the side length of the original square that is compressed to make the membrane.
-	cellDimensions = 10;
-	// Amount of segments on one side of the above described square.
-	membraneResolution = 10;
+    cellDimensions = 10;
 
-	for(int i=0; i<membraneResolution; i++)
-	{
-		vertices2D.emplace_back(-cellDimensions + 2*cellDimensions/membraneResolution*i, -cellDimensions, 0);
-	}
-	for(int i=0; i<membraneResolution; i++)
-	{
-		vertices2D.emplace_back(cellDimensions, -cellDimensions + 2*cellDimensions/membraneResolution*i, 0);
-	}
-	for(int i=0; i<membraneResolution; i++)
-	{
-		vertices2D.emplace_back(cellDimensions - 2*cellDimensions/membraneResolution*i, cellDimensions, 0);
-	}
-	for(int i=0; i<membraneResolution; i++)
-	{
-		vertices2D.emplace_back(-cellDimensions, cellDimensions - 2*cellDimensions/membraneResolution*i, 0);
-	}
+    // Amount of segments on one side of the above described square.
+	membraneResolution = 10;
 }
 
 void Membrane::Update(vector<Ogre::Vector3> organellePositions)
@@ -44,7 +28,33 @@ void Membrane::Initialize(vector<Ogre::Vector3> organellePositions)
 {
     organellePos = organellePositions;
 
-	for(int i=0; i<500; i++)
+    for (Ogre::Vector3 pos : organellePos) {
+        if (abs(pos.x) + 1 > cellDimensions) {
+            cellDimensions = abs(pos.x) + 1;
+        }
+        if (abs(pos.y) + 1 > cellDimensions) {
+            cellDimensions = abs(pos.y) + 1;
+        }
+    }
+
+	for(int i=0; i<membraneResolution; i++)
+	{
+		vertices2D.emplace_back(-cellDimensions + 2*cellDimensions/membraneResolution*i, -cellDimensions, 0);
+	}
+	for(int i=0; i<membraneResolution; i++)
+	{
+		vertices2D.emplace_back(cellDimensions, -cellDimensions + 2*cellDimensions/membraneResolution*i, 0);
+	}
+	for(int i=0; i<membraneResolution; i++)
+	{
+		vertices2D.emplace_back(cellDimensions - 2*cellDimensions/membraneResolution*i, cellDimensions, 0);
+	}
+	for(int i=0; i<membraneResolution; i++)
+	{
+		vertices2D.emplace_back(-cellDimensions, cellDimensions - 2*cellDimensions/membraneResolution*i, 0);
+	}
+
+	for(int i=0; i<50*cellDimensions; i++)
     {
         DrawMembrane();
     }
@@ -77,7 +87,7 @@ void Membrane::DrawMembrane()
 	}
 
 	// Allows for the addition and deletion of points in the membrane.
-	for(size_t i=0; i<newPositions.size(); i++)
+	for(size_t i=0; i<newPositions.size()-1; i++)
 	{
 		// Check to see if the gap between two points in the membrane is too big.
 		if(newPositions[i].distance(newPositions[(i+1)%newPositions.size()]) > cellDimensions/membraneResolution)
