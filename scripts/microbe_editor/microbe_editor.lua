@@ -26,6 +26,8 @@ function MicrobeEditor:__init(hudSystem)
     self.actionIndex = 0
     self.organelleRot = 0
     self.occupiedHexes = {}
+    -- 0 is no symmetry, 1 is x-axis symmetry, 2 is 4-way symmetry, and 3 is 6-way symmetry.
+    self.symmetry = 0
 end
 
 function MicrobeEditor:init(gameState)
@@ -53,47 +55,31 @@ function MicrobeEditor:activate()
 end
 
 function MicrobeEditor:update(renderTime, logicTime)
-    -- Render the hex under the cursor
-    local sceneNode = {}
-    sceneNode[1] = self.hudSystem.hoverOrganelle:getComponent(OgreSceneNodeComponent.TYPE_ID)
-    for i=2, 8 do
-        sceneNode[i] = self.hudSystem.hoverHex[i-1]:getComponent(OgreSceneNodeComponent.TYPE_ID)
+    local q, r = self:getMouseHex()
+    
+    if self.symmetry == 0 then    
+        self:renderHighlightedOrganelle(1, q, r, self.organelleRot)
+    elseif self.symmetry == 1 then
+        self:renderHighlightedOrganelle(1, q, r, self.organelleRot)
+        self:renderHighlightedOrganelle(2, -1*q, r+q, 360+(-1*self.organelleRot))
+    elseif self.symmetry == 2 then
+        self:renderHighlightedOrganelle(1, q, r, self.organelleRot)
+        self:renderHighlightedOrganelle(2, -1*q, r+q, 360+(-1*self.organelleRot))
+        self:renderHighlightedOrganelle(3, -1*q, -1*r, self.organelleRot+180)
+        self:renderHighlightedOrganelle(4, q, -1*(r+q), 540+(-1*self.organelleRot))
+    elseif self.symmetry == 3 then
+        self:renderHighlightedOrganelle(1, q, r, self.organelleRot)
+        self:renderHighlightedOrganelle(2, -1*r, r+q, self.organelleRot+60)
+        self:renderHighlightedOrganelle(3, -1*(r+q), q, self.organelleRot+120)
+        self:renderHighlightedOrganelle(4, -1*q, -1*r, self.organelleRot+180)
+        self:renderHighlightedOrganelle(5, r, -1*(r+q), self.organelleRot+240)
+        self:renderHighlightedOrganelle(6, r+q, -1*q, self.organelleRot+300)
     end
     
-    local q, r = self:getMouseHex()
-    if self.activeActionName then		
-        local oldData = {["name"]=self.activeActionName, ["q"]=q, ["r"]=r, ["rotation"]=self.organelleRot}
-        local hexes = OrganelleFactory.checkSize(oldData)
-        local colour = ColourValue(2, 0, 0, 0.4)
-		local touching = false;
-        for _, hex in ipairs(hexes) do
-			if self.currentMicrobe:getOrganelleAt(hex.q + q + 0, hex.r + r - 1) or
-				self.currentMicrobe:getOrganelleAt(hex.q + q + 1, hex.r + r - 1) or
-				self.currentMicrobe:getOrganelleAt(hex.q + q + 1, hex.r + r + 0) or
-				self.currentMicrobe:getOrganelleAt(hex.q + q + 0, hex.r + r + 1) or
-				self.currentMicrobe:getOrganelleAt(hex.q + q - 1, hex.r + r + 1) or
-				self.currentMicrobe:getOrganelleAt(hex.q + q - 1, hex.r + r + 0) then
-				colour = ColourValue(0, 2, 0, 0.4)
-			end
-		end
-        for _, hex in ipairs(hexes) do
-            if self.currentMicrobe:getOrganelleAt(hex.q + q, hex.r + r) then
-                colour = ColourValue(2, 0, 0, 0.4)
-            end
-		end
-        if CEGUIWindow.getWindowUnderMouse():getName() == 'root' then
-			local newData = {["name"]=self.activeActionName, ["q"]=q, ["r"]=r, ["sceneNode"]=sceneNode, ["rotation"]=self.organelleRot, ["colour"]=colour}
-			OrganelleFactory.renderOrganelles(newData)
-			for i=1, 8 do
-				sceneNode[i].transform:touch()
-			end
-		end
-    end
-
     -- self.nextMicrobeEntity being a temporary used to pass the microbe from game to editor
     if self.nextMicrobeEntity ~= nil then
         self.currentMicrobe = Microbe(self.nextMicrobeEntity)
-        self.currentMicrobe.sceneNode.transform.orientation = Quaternion(Radian(Degree(180)), Vector3(0, 0, 1))-- Orientation
+        self.currentMicrobe.sceneNode.transform.orientation = Quaternion(Radian(Degree(0)), Vector3(0, 0, 1))-- Orientation
         self.currentMicrobe.sceneNode.transform.position = Vector3(0, 0, 0)
         self.currentMicrobe.sceneNode.transform:touch()
         self.nextMicrobeEntity = nil
@@ -103,7 +89,7 @@ function MicrobeEditor:update(renderTime, logicTime)
                 local s = encodeAxial(hex.q + organelle.position.q, hex.r + organelle.position.r)
                 self.occupiedHexes[s] = Entity()
                 local sceneNode = OgreSceneNodeComponent()
-                sceneNode.transform.position = Vector3(-x, -y, 0)
+                sceneNode.transform.position = Vector3(x, y, 0)
                 sceneNode.transform:touch()
                 sceneNode.meshName = "hex.mesh"
                 self.occupiedHexes[s]:addComponent(sceneNode)
@@ -111,17 +97,46 @@ function MicrobeEditor:update(renderTime, logicTime)
             end
         end
     end
-    for _, organelle in pairs(self.currentMicrobe.microbe.organelles) do
-        if organelle.flashDuration ~= nil then
-            organelle.flashDuration = nil
-            organelle._colour = organelle._originalColour
-            organelle._needsColourUpdate = true
-        end
-        if organelle._needsColourUpdate then
-            organelle:_updateHexColours()
-        end
-    end
     self.hudSystem:updateMutationPoints()
+end
+
+-- The first parameter states which sceneNodes to use, starting with "start" and going up 6.
+function MicrobeEditor:renderHighlightedOrganelle(start, q, r, rotation)
+    -- Render the hex under the cursor
+    local sceneNode = {}
+    sceneNode[1] = self.hudSystem.hoverOrganelle[start]:getComponent(OgreSceneNodeComponent.TYPE_ID)
+    for i=2, 8 do
+        sceneNode[i] = self.hudSystem.hoverHex[i-1+(start-1)*7]:getComponent(OgreSceneNodeComponent.TYPE_ID)
+    end
+    
+    if self.activeActionName then		
+        local oldData = {["name"]=self.activeActionName, ["q"]=-q, ["r"]=-r, ["rotation"]=180+rotation}
+        local hexes = OrganelleFactory.checkSize(oldData)
+        local colour = ColourValue(2, 0, 0, 0.4)
+		local touching = false;
+        for _, hex in ipairs(hexes) do
+			if self.currentMicrobe:getOrganelleAt(-hex.q + q + 0, -hex.r + r - 1) or
+				self.currentMicrobe:getOrganelleAt(-hex.q + q + 1, -hex.r + r - 1) or
+				self.currentMicrobe:getOrganelleAt(-hex.q + q + 1, -hex.r + r + 0) or
+				self.currentMicrobe:getOrganelleAt(-hex.q + q + 0, -hex.r + r + 1) or
+				self.currentMicrobe:getOrganelleAt(-hex.q + q - 1, -hex.r + r + 1) or
+				self.currentMicrobe:getOrganelleAt(-hex.q + q - 1, -hex.r + r + 0) then
+				colour = ColourValue(0, 2, 0, 0.4)
+			end
+		end
+        for _, hex in ipairs(hexes) do
+            if self.currentMicrobe:getOrganelleAt(-hex.q + q, -hex.r + r) then
+                colour = ColourValue(2, 0, 0, 0.4)
+            end
+		end
+        if CEGUIWindow.getWindowUnderMouse():getName() == 'root' then
+			local newData = {["name"]=self.activeActionName, ["q"]=-q, ["r"]=-r, ["sceneNode"]=sceneNode, ["rotation"]=180+rotation, ["colour"]=colour}
+			OrganelleFactory.renderOrganelles(newData)
+			for i=1, 8 do
+				sceneNode[i].transform:touch()
+			end
+		end
+    end
 end
 
 function MicrobeEditor:takeMutationPoints(amount)
@@ -194,19 +209,21 @@ function MicrobeEditor:redo()
     self.hudSystem.undoButton:enable()
 end
 
+function MicrobeEditor:changeSymmetry()
+    self.symmetry = (self.symmetry+1)%4
+end
+
 function MicrobeEditor:getMouseHex()
     local mousePosition = Engine.mouse:normalizedPosition() 
     -- Get the position of the cursor in the plane that the microbes is floating in
     local rayPoint =  Entity(CAMERA_NAME .. "3"):getComponent(OgreCameraComponent.TYPE_ID):getCameraToViewportRay(mousePosition.x, mousePosition.y):getPoint(0)
     -- Convert to the hex the cursor is currently located over. 
-    local q, r = cartesianToAxial(-rayPoint.x, rayPoint.y) -- Negating X to compensate for the fact that we are looking at the opposite side of the normal coordinate system
+    local q, r = cartesianToAxial(rayPoint.x, -1*rayPoint.y) -- Negating X to compensate for the fact that we are looking at the opposite side of the normal coordinate system
     local qr, rr = cubeToAxial(cubeHexRound(axialToCube(q, r))) -- This requires a conversion to hex cube coordinates and back for proper rounding.
     return qr, rr
 end
 
-function MicrobeEditor:addOrganelle(organelleType)
-    local q, r = self:getMouseHex()
-	local rotation = self.organelleRot
+function MicrobeEditor:_addOrganelle(organelleType, q, r, rotation)
     local data = {["name"]=organelleType, ["q"]=q, ["r"]=r, ["rotation"]=rotation}
     local organelle = OrganelleFactory.makeOrganelle(data)
     local empty = true
@@ -234,7 +251,7 @@ function MicrobeEditor:addOrganelle(organelleType)
 					local s = encodeAxial(hex.q + q, hex.r + r)
 					self.occupiedHexes[s] = Entity()
 					local sceneNode = OgreSceneNodeComponent()
-					sceneNode.transform.position = Vector3(-x, -y, 0)
+					sceneNode.transform.position = Vector3(x, y, 0)
 					sceneNode.transform:touch()
 					sceneNode.meshName = "hex.mesh"
 					self.occupiedHexes[s]:addComponent(sceneNode)
@@ -254,6 +271,30 @@ function MicrobeEditor:addOrganelle(organelleType)
             end
         })
     end
+end
+
+function MicrobeEditor:addOrganelle(organelleType)
+    local q, r = self:getMouseHex()
+    
+    
+    if self.symmetry == 0 then    
+        self:_addOrganelle(organelleType, q, r, self.organelleRot)
+    elseif self.symmetry == 1 then
+        self:_addOrganelle(organelleType, q, r, self.organelleRot)
+        self:_addOrganelle(organelleType, -1*q, r+q, 360+(-1*self.organelleRot)) 
+    elseif self.symmetry == 2 then
+        self:_addOrganelle(organelleType, q, r, self.organelleRot)
+        self:_addOrganelle(organelleType, -1*q, r+q, 360+(-1*self.organelleRot))
+        self:_addOrganelle(organelleType, -1*q, -1*r, self.organelleRot+180)
+        self:_addOrganelle(organelleType, q, -1*(r+q), 540+(-1*self.organelleRot))
+    elseif self.symmetry == 3 then
+        self:_addOrganelle(organelleType, q, r, self.organelleRot)
+        self:_addOrganelle(organelleType, -1*r, r+q, self.organelleRot+60)
+        self:_addOrganelle(organelleType, -1*(r+q), q, self.organelleRot+120)
+        self:_addOrganelle(organelleType, -1*q, -1*r, self.organelleRot+180)
+        self:_addOrganelle(organelleType, r, -1*(r+q), self.organelleRot+240)
+        self:_addOrganelle(organelleType, r+q, -1*q, self.organelleRot+300)
+    end   
 end
 
 function MicrobeEditor:removeOrganelle()
@@ -285,7 +326,7 @@ function MicrobeEditor:removeOrganelle()
                         local s = encodeAxial(hex.q + storage:get("q", 0), hex.r + storage:get("r", 0))
                         self.occupiedHexes[s] = Entity()
                         local sceneNode = OgreSceneNodeComponent()
-                        sceneNode.transform.position = Vector3(-x, -y, 0)
+                        sceneNode.transform.position = Vector3(x, y, 0)
                         sceneNode.transform:touch()
                         sceneNode.meshName = "hex.mesh"
                         self.occupiedHexes[s]:addComponent(sceneNode)
@@ -310,7 +351,7 @@ function MicrobeEditor:loadMicrobe(entityId)
     end
     self.currentMicrobe = Microbe(Entity(entityId))
     self.currentMicrobe.entity:stealName("working_microbe")
-    self.currentMicrobe.sceneNode.transform.orientation = Quaternion(Radian(Degree(180)), Vector3(0, 0, 1))-- Orientation
+    self.currentMicrobe.sceneNode.transform.orientation = Quaternion(Radian(Degree(0)), Vector3(0, 0, 1))-- Orientation
     self.currentMicrobe.sceneNode.transform:touch()
     Engine:playerData():setActiveCreature(entityId, GameState.MICROBE_EDITOR)
     self.mutationPoints = 0
@@ -329,7 +370,7 @@ function MicrobeEditor:createNewMicrobe()
             end
             self.currentMicrobe = Microbe.createMicrobeEntity(nil, false)
             self.currentMicrobe.entity:stealName("working_microbe")
-            self.currentMicrobe.sceneNode.transform.orientation = Quaternion(Radian(Degree(180)), Vector3(0, 0, 1))-- Orientation
+            --self.currentMicrobe.sceneNode.transform.orientation = Quaternion(Radian(Degree(180)), Vector3(0, 0, 1))-- Orientation
             self.currentMicrobe.sceneNode.transform:touch()
             self.currentMicrobe.microbe.speciesName = speciesName
             self:addNucleus()
@@ -351,7 +392,7 @@ function MicrobeEditor:createNewMicrobe()
             self.currentMicrobe.entity:destroy() -- remove the "new" entity that has replaced the previous one
             self.currentMicrobe = Microbe.createMicrobeEntity(nil, false)
             self.currentMicrobe.entity:stealName("working_microbe")
-            self.currentMicrobe.sceneNode.transform.orientation = Quaternion(Radian(Degree(180)), Vector3(0, 0, 1))-- Orientation
+            self.currentMicrobe.sceneNode.transform.orientation = Quaternion(Radian(Degree(0)), Vector3(0, 0, 1))-- Orientation
             self.currentMicrobe.sceneNode.transform:touch()
             self.currentMicrobe.microbe.speciesName = speciesName
             for position,storage in pairs(organelleStorage) do
