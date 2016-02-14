@@ -4,15 +4,15 @@ local function setupBackground()
     local skyplane = SkyPlaneComponent()
     skyplane.properties.plane.normal = Vector3(0, 0, 2000)
     skyplane.properties.materialName = "Background"
-	skyplane.properties.scale = 200
+	skyplane.properties.scale = 4
     skyplane.properties:touch()
     entity:addComponent(skyplane)
     -- Create floating arrow entity
     entity = Entity("directionarrow")
     local sceneNode = OgreSceneNodeComponent()
     sceneNode.meshName = "arrow.mesh"
-    sceneNode.transform.position = Vector3(0,-7,-4)
-    sceneNode.transform.orientation = Quaternion(90,-90,90,-90)
+    sceneNode.transform.position = Vector3(0,5,-4)
+    sceneNode.transform.orientation = Quaternion(Radian(Degree(90)), Vector3(1, 1, 1))
     sceneNode.transform:touch()
     sceneNode:playAnimation("Stand", true)
     entity:addComponent(sceneNode)
@@ -30,6 +30,7 @@ local function setupCamera()
     -- Scene node
     local sceneNode = OgreSceneNodeComponent()
     sceneNode.transform.position.z = 30
+    sceneNode.transform.position.y = -3
     sceneNode.transform:touch()
     entity:addComponent(sceneNode)
     -- Light
