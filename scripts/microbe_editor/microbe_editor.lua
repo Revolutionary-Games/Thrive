@@ -223,7 +223,7 @@ function MicrobeEditor:getMouseHex()
     return qr, rr
 end
 
-function MicrobeEditor:_addOrganelle(organelleType, q, r, rotation)
+function MicrobeEditor:isValidPlacement(organelleType, q, r, rotation)
     local data = {["name"]=organelleType, ["q"]=q, ["r"]=r, ["rotation"]=rotation}
     local organelle = OrganelleFactory.makeOrganelle(data)
     local empty = true
@@ -241,60 +241,102 @@ function MicrobeEditor:_addOrganelle(organelleType, q, r, rotation)
 			touching = true;
 		end
     end
+    
     if empty and touching then
-        self:enqueueAction({
-            cost = Organelle.mpCosts[organelleType],
-            redo = function()
-				self.currentMicrobe:addOrganelle(q, r, rotation, OrganelleFactory.makeOrganelle(data))
-				for _, hex in pairs(organelle._hexes) do
-					local x, y = axialToCartesian(hex.q + q, hex.r + r) 
-					local s = encodeAxial(hex.q + q, hex.r + r)
-					self.occupiedHexes[s] = Entity()
-					local sceneNode = OgreSceneNodeComponent()
-					sceneNode.transform.position = Vector3(x, y, 0)
-					sceneNode.transform:touch()
-					sceneNode.meshName = "hex.mesh"
-					self.occupiedHexes[s]:addComponent(sceneNode)
-					self.occupiedHexes[s]:setVolatile(true)
-				end
-				self.organelleCount = self.organelleCount + 1
-            end,
-            undo = function()
-                self.currentMicrobe:removeOrganelle(q, r)
-                self.currentMicrobe.sceneNode.transform:touch()
-                self.organelleCount = self.organelleCount - 1
-				for _, hex in pairs(organelle._hexes) do
-					local x, y = axialToCartesian(hex.q + q, hex.r + r)
-					local s = encodeAxial(hex.q + q, hex.r + r)
-					self.occupiedHexes[s]:destroy()
-				end
-            end
-        })
+        return organelle
+    else
+        return nil
     end
 end
 
 function MicrobeEditor:addOrganelle(organelleType)
     local q, r = self:getMouseHex()
     
-    
-    if self.symmetry == 0 then    
-        self:_addOrganelle(organelleType, q, r, self.organelleRot)
+    if self.symmetry == 0 then
+        local organelle = self:isValidPlacement(organelleType, q, r, self.organelleRot)
+        if Organelle.mpCosts[organelle.name] > self.mutationPoints then return end
+        
+        if organelle then
+            self:_addOrganelle(organelle, q, r, self.organelleRot)
+        end
     elseif self.symmetry == 1 then
-        self:_addOrganelle(organelleType, q, r, self.organelleRot)
-        self:_addOrganelle(organelleType, -1*q, r+q, 360+(-1*self.organelleRot)) 
+        -- Makes sure that the organelle doesn't overlap on the existing ones.
+        local organelle = self:isValidPlacement(organelleType, q, r, self.organelleRot)
+        local organelle2 = self:isValidPlacement(organelleType, -1*q, r+q, 360+(-1*self.organelleRot))
+        
+        -- Sees if you have enough MP to actually make the organelles.
+        if Organelle.mpCosts[organelle.name]*2 > self.mutationPoints then return end
+        
+        -- If the organelles were successfully created...
+        if organelle and organelle2 then        
+            -- Add the organelles to the microbe.
+            self:_addOrganelle(organelle, q, r, self.organelleRot)
+            self:_addOrganelle(organelle2, -1*q, r+q, 360+(-1*self.organelleRot))
+        end
     elseif self.symmetry == 2 then
-        self:_addOrganelle(organelleType, q, r, self.organelleRot)
-        self:_addOrganelle(organelleType, -1*q, r+q, 360+(-1*self.organelleRot))
-        self:_addOrganelle(organelleType, -1*q, -1*r, self.organelleRot+180)
-        self:_addOrganelle(organelleType, q, -1*(r+q), 540+(-1*self.organelleRot))
+        local organelle = self:isValidPlacement(organelleType, q, r, self.organelleRot)
+        local organelle2 = self:isValidPlacement(organelleType, -1*q, r+q, 360+(-1*self.organelleRot))
+        local organelle3 = self:isValidPlacement(organelleType, -1*q, -1*r, self.organelleRot+180)
+        local organelle4 = self:isValidPlacement(organelleType, q, -1*(r+q), 540+(-1*self.organelleRot))
+        
+        if Organelle.mpCosts[organelle.name]*4 > self.mutationPoints then return end
+        
+        if organelle and organelle2 and organelle3 and organelle4 then
+            self:_addOrganelle(organelle, q, r, self.organelleRot)
+            self:_addOrganelle(organelle2, -1*q, r+q, 360+(-1*self.organelleRot))
+            self:_addOrganelle(organelle3, -1*q, -1*r, self.organelleRot+180)
+            self:_addOrganelle(organelle4, q, -1*(r+q), 540+(-1*self.organelleRot))
+        end
     elseif self.symmetry == 3 then
-        self:_addOrganelle(organelleType, q, r, self.organelleRot)
-        self:_addOrganelle(organelleType, -1*r, r+q, self.organelleRot+60)
-        self:_addOrganelle(organelleType, -1*(r+q), q, self.organelleRot+120)
-        self:_addOrganelle(organelleType, -1*q, -1*r, self.organelleRot+180)
-        self:_addOrganelle(organelleType, r, -1*(r+q), self.organelleRot+240)
-        self:_addOrganelle(organelleType, r+q, -1*q, self.organelleRot+300)
+        local organelle = self:isValidPlacement(organelleType, q, r, self.organelleRot)
+        local organelle2 = self:isValidPlacement(organelleType, -1*r, r+q, self.organelleRot+60)
+        local organelle3 = self:isValidPlacement(organelleType, -1*(r+q), q, self.organelleRot+120)
+        local organelle4 = self:isValidPlacement(organelleType, -1*q, -1*r, self.organelleRot+180)
+        local organelle5 = self:isValidPlacement(organelleType, r, -1*(r+q), self.organelleRot+240)
+        local organelle6 = self:isValidPlacement(organelleType, r+q, -1*q, self.organelleRot+300)
+        
+        if Organelle.mpCosts[organelle.name]*6 > self.mutationPoints then return end
+        
+        if organelle and organelle2 and organelle3 and organelle4 and organelle5 and organelle6 then
+            self:_addOrganelle(organelle, q, r, self.organelleRot)
+            self:_addOrganelle(organelle2, -1*r, r+q, self.organelleRot+60)
+            self:_addOrganelle(organelle3, -1*(r+q), q, self.organelleRot+120)
+            self:_addOrganelle(organelle4, -1*q, -1*r, self.organelleRot+180)
+            self:_addOrganelle(organelle5, r, -1*(r+q), self.organelleRot+240)
+            self:_addOrganelle(organelle6, r+q, -1*q, self.organelleRot+300)
+        end
     end   
+end
+
+function MicrobeEditor:_addOrganelle(organelle, q, r, rotation)
+    self:enqueueAction({
+        cost = Organelle.mpCosts[organelle.name],
+        redo = function()
+            self.currentMicrobe:addOrganelle(q, r, rotation, organelle)
+            for _, hex in pairs(organelle._hexes) do
+                local x, y = axialToCartesian(hex.q + q, hex.r + r) 
+                local s = encodeAxial(hex.q + q, hex.r + r)
+                self.occupiedHexes[s] = Entity()
+                local sceneNode = OgreSceneNodeComponent()
+                sceneNode.transform.position = Vector3(x, y, 0)
+                sceneNode.transform:touch()
+                sceneNode.meshName = "hex.mesh"
+                self.occupiedHexes[s]:addComponent(sceneNode)
+                self.occupiedHexes[s]:setVolatile(true)
+            end
+            self.organelleCount = self.organelleCount + 1
+        end,
+        undo = function()
+            self.currentMicrobe:removeOrganelle(q, r)
+            self.currentMicrobe.sceneNode.transform:touch()
+            self.organelleCount = self.organelleCount - 1
+            for _, hex in pairs(organelle._hexes) do
+                local x, y = axialToCartesian(hex.q + q, hex.r + r)
+                local s = encodeAxial(hex.q + q, hex.r + r)
+                self.occupiedHexes[s]:destroy()
+            end
+        end
+    })
 end
 
 function MicrobeEditor:removeOrganelle()
