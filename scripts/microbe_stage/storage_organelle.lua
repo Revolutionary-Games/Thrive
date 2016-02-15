@@ -37,6 +37,7 @@ function StorageOrganelle:onRemovedFromMicrobe(microbe, q, r)
 end
 
 Organelle.mpCosts["vacuole"] = 15
+Organelle.mpCosts["cytoplasm"] = 5
 
 function OrganelleFactory.make_vacuole(data)
     local vacuole = StorageOrganelle(100.0)
@@ -60,3 +61,24 @@ function OrganelleFactory.sizeof_vacuole(data)
 	hexes[1] = {["q"]=0, ["r"]=0}
 	return hexes
 end
+
+-- Should eventually have its own file.
+function OrganelleFactory.make_cytoplasm(data)
+    local cytoplasm = StorageOrganelle(10.0)
+    cytoplasm:addHex(0, 0)
+    return cytoplasm
+end
+
+function OrganelleFactory.render_cytoplasm(data)
+	local x, y = axialToCartesian(data.q, data.r)
+	local translation = Vector3(-x, -y, 0)
+    
+    data.sceneNode[2].transform.position = translation
+	OrganelleFactory.setColour(data.sceneNode[2], data.colour)
+end
+
+function OrganelleFactory.sizeof_cytoplasm(data)
+    local hexes = {}
+	hexes[1] = {["q"]=0, ["r"]=0}
+	return hexes
+end    
