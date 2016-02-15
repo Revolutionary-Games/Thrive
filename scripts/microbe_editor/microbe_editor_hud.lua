@@ -53,6 +53,7 @@ function MicrobeEditorHudSystem:init(gameState)
     
     local nucleusButton = root:getChild("NewMicrobe")
     local flagellumButton = root:getChild("scrollablepane"):getChild("AddFlagellum")
+    local cytoplasmButton = root:getChild("scrollablepane"):getChild("AddCytoplasm")
     local mitochondriaButton = root:getChild("scrollablepane"):getChild("AddMitochondria")
     local vacuoleButton = root:getChild("scrollablepane"):getChild("AddVacuole")
     local toxinButton = root:getChild("scrollablepane"):getChild("AddToxinVacuole")
@@ -60,6 +61,7 @@ function MicrobeEditorHudSystem:init(gameState)
     
     self.organelleButtons["nucleus"] = nucleusButton
     self.organelleButtons["flagellum"] = flagellumButton
+    self.organelleButtons["cytoplasm"] = cytoplasmButton
     self.organelleButtons["mitochondrion"] = mitochondriaButton
     self.organelleButtons["chloroplast"] = chloroplastButton
     self.organelleButtons["vacuole"] = vacuoleButton
@@ -68,6 +70,7 @@ function MicrobeEditorHudSystem:init(gameState)
     
     nucleusButton:registerEventHandler("Clicked", function() self:nucleusClicked() end)
     flagellumButton:registerEventHandler("Clicked", function() self:flagellumClicked() end)
+    cytoplasmButton:registerEventHandler("Clicked", function() self:cytoplasmClicked() end)
     mitochondriaButton:registerEventHandler("Clicked", function() self:mitochondriaClicked() end)
     chloroplastButton:registerEventHandler("Clicked", function() self:chloroplastClicked() end)
     vacuoleButton:registerEventHandler("Clicked", function() self:vacuoleClicked() end)
@@ -80,7 +83,7 @@ function MicrobeEditorHudSystem:init(gameState)
     self.redoButton = root:getChild("RedoButton")
     self.redoButton:registerEventHandler("Clicked", function() self.editor:redo() end)
     self.symmetryButton = root:getChild("SymmetryButton")
-    self.symmetryButton:registerEventHandler("Clicked", function() self.editor:changeSymmetry() end)
+    self.symmetryButton:registerEventHandler("Clicked", function() self:changeSymmetry() end)
 
     root:getChild("FinishButton"):registerEventHandler("Clicked", playClicked)
     --root:getChild("BottomSection"):getChild("MenuButton"):registerEventHandler("Clicked", self:menuButtonClicked)
@@ -120,14 +123,15 @@ function MicrobeEditorHudSystem:update(renderTime, logicTime)
     for i=1, 42 do
         local sceneNode = self.hoverHex[i]:getComponent(OgreSceneNodeComponent.TYPE_ID)
         sceneNode.transform.position = Vector3(0,0,0)
+        sceneNode.transform.scale = Vector3(0,0,0)
         sceneNode.transform:touch()
     end
     for i=1, 6 do
         local sceneNode = self.hoverOrganelle[i]:getComponent(OgreSceneNodeComponent.TYPE_ID)
         sceneNode.transform.position = Vector3(0,0,0)
+        sceneNode.transform.scale = Vector3(0,0,0)
         sceneNode.transform:touch()
     end
-	
     self.editor:update(renderTime, logicTime)
 	
     -- Handle input
@@ -286,6 +290,15 @@ function MicrobeEditorHudSystem:flagellumClicked()
     self:setActiveAction("flagellum")
 end
 
+function MicrobeEditorHudSystem:cytoplasmClicked()
+    if self.activeButton ~= nil then
+        self.activeButton:enable()
+    end
+    self.activeButton = self.organelleButtons["cytoplasm"]
+    self.activeButton:disable()
+    self:setActiveAction("cytoplasm")
+end
+
 function MicrobeEditorHudSystem:mitochondriaClicked()
     if self.activeButton ~= nil then
         self.activeButton:enable()
@@ -430,6 +443,28 @@ function MicrobeEditorHudSystem:loadByName(name)
     entity = Engine:loadCreation(creationFileMap[name])
     self.editor:loadMicrobe(entity)
     self.nameLabel:setText(self.editor.currentMicrobe.microbe.speciesName)
+end
+
+function MicrobeEditorHudSystem:changeSymmetry()
+    self.editor.symmetry = (self.editor.symmetry+1)%4
+    
+    if self.editor.symmetry == 0 then
+        self.symmetryButton:setProperty("ThriveGeneric/SymmetryNoneNormal", "Image")
+        self.symmetryButton:setProperty("ThriveGeneric/SymmetryNoneHover", "PushedImage")
+        self.symmetryButton:setProperty("ThriveGeneric/SymmetryNoneHover", "HoverImage")
+    elseif self.editor.symmetry == 1 then
+        self.symmetryButton:setProperty("ThriveGeneric/SymmetryTwoNormal", "Image")
+        self.symmetryButton:setProperty("ThriveGeneric/SymmetryTwoHover", "PushedImage")
+        self.symmetryButton:setProperty("ThriveGeneric/SymmetryTwoHover", "HoverImage")
+    elseif self.editor.symmetry == 2 then
+        self.symmetryButton:setProperty("ThriveGeneric/SymmetryFourNormal", "Image")
+        self.symmetryButton:setProperty("ThriveGeneric/SymmetryFourHover", "PushedImage")
+        self.symmetryButton:setProperty("ThriveGeneric/SymmetryFourHover", "HoverImage")
+    elseif self.editor.symmetry == 3 then
+        self.symmetryButton:setProperty("ThriveGeneric/SymmetrySixNormal", "Image")
+        self.symmetryButton:setProperty("ThriveGeneric/SymmetrySixHover", "PushedImage")
+        self.symmetryButton:setProperty("ThriveGeneric/SymmetrySixHover", "HoverImage")
+    end
 end
 
 function saveMicrobe() global_activeMicrobeEditorHudSystem:saveCreationClicked() end
