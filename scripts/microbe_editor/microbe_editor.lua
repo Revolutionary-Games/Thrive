@@ -17,6 +17,7 @@ function MicrobeEditor:__init(hudSystem)
     self.mutationPoints = 100
     self.placementFunctions = {["nucleus"] = MicrobeEditor.createNewMicrobe,
                                ["flagellum"] = MicrobeEditor.addOrganelle,
+                               ["cytoplasm"] = MicrobeEditor.addOrganelle,
                                ["mitochondrion"] = MicrobeEditor.addOrganelle,
                                ["chloroplast"] = MicrobeEditor.addOrganelle,
                                ["oxytoxy"] = MicrobeEditor.addOrganelle,
@@ -125,14 +126,18 @@ function MicrobeEditor:renderHighlightedOrganelle(start, q, r, rotation)
 			end
 		end
         for _, hex in ipairs(hexes) do
-            if self.currentMicrobe:getOrganelleAt(-hex.q + q, -hex.r + r) then
-                colour = ColourValue(2, 0, 0, 0.4)
+            local organelle = self.currentMicrobe:getOrganelleAt(-hex.q + q, -hex.r + r)
+            if organelle then
+                if organelle.name ~= "cytoplasm" then
+                    colour = ColourValue(2, 0, 0, 0.4)
+                end
             end
 		end
         if CEGUIWindow.getWindowUnderMouse():getName() == 'root' then
 			local newData = {["name"]=self.activeActionName, ["q"]=-q, ["r"]=-r, ["sceneNode"]=sceneNode, ["rotation"]=180+rotation, ["colour"]=colour}
 			OrganelleFactory.renderOrganelles(newData)
 			for i=1, 8 do
+                sceneNode[i].transform.scale = Vector3(1,1,1)
 				sceneNode[i].transform:touch()
 			end
 		end
@@ -209,10 +214,6 @@ function MicrobeEditor:redo()
     self.hudSystem.undoButton:enable()
 end
 
-function MicrobeEditor:changeSymmetry()
-    self.symmetry = (self.symmetry+1)%4
-end
-
 function MicrobeEditor:getMouseHex()
     local mousePosition = Engine.mouse:normalizedPosition() 
     -- Get the position of the cursor in the plane that the microbes is floating in
@@ -225,12 +226,15 @@ end
 
 function MicrobeEditor:isValidPlacement(organelleType, q, r, rotation)
     local data = {["name"]=organelleType, ["q"]=q, ["r"]=r, ["rotation"]=rotation}
-    local organelle = OrganelleFactory.makeOrganelle(data)
+    local newOrganelle = OrganelleFactory.makeOrganelle(data)
     local empty = true
     local touching = false;
-    for s, hex in pairs(organelle._hexes) do
-        if self.currentMicrobe:getOrganelleAt(hex.q + q, hex.r + r) then
-            empty = false
+    for s, hex in pairs(newOrganelle._hexes) do
+        local organelle = self.currentMicrobe:getOrganelleAt(hex.q + q, hex.r + r)
+        if organelle then
+            if organelle.name ~= "cytoplasm" then
+                empty = false 
+            end
         end
 		if  self.currentMicrobe:getOrganelleAt(hex.q + q + 0, hex.r + r - 1) or
 			self.currentMicrobe:getOrganelleAt(hex.q + q + 1, hex.r + r - 1) or
@@ -242,8 +246,8 @@ function MicrobeEditor:isValidPlacement(organelleType, q, r, rotation)
 		end
     end
     
-    if empty and touching then
-        return organelle
+    if empty and touching then            
+        return newOrganelle
     else
         return nil
     end
@@ -265,7 +269,7 @@ function MicrobeEditor:addOrganelle(organelleType)
         local organelle2 = self:isValidPlacement(organelleType, -1*q, r+q, 360+(-1*self.organelleRot))
         
         -- If the organelles were successfully created...
-        if organelle and organelle2 then        
+        if organelle and organelle2 then
             -- Sees if you have enough MP to actually make the organelles.
             if Organelle.mpCosts[organelle.name]*2 > self.mutationPoints then return end
         
@@ -310,8 +314,15 @@ function MicrobeEditor:_addOrganelle(organelle, q, r, rotation)
     self:enqueueAction({
         cost = Organelle.mpCosts[organelle.name],
         redo = function()
-            self.currentMicrobe:addOrganelle(q, r, rotation, organelle)
             for _, hex in pairs(organelle._hexes) do
+                -- Check if there is cytoplasm under this organelle.
+                local cytoplasm = self.currentMicrobe:getOrganelleAt(hex.q + q, hex.r + r)
+                if cytoplasm then
+                    if cytoplasm.name == "cytoplasm" then
+                        self:removeOrganelleAt(hex.q + q, hex.r + r)
+                        self.currentMicrobe:removeOrganelle(hex.q + q, hex.r + r)
+                    end
+                end
                 local x, y = axialToCartesian(hex.q + q, hex.r + r) 
                 local s = encodeAxial(hex.q + q, hex.r + r)
                 self.occupiedHexes[s] = Entity()
@@ -322,6 +333,7 @@ function MicrobeEditor:_addOrganelle(organelle, q, r, rotation)
                 self.occupiedHexes[s]:addComponent(sceneNode)
                 self.occupiedHexes[s]:setVolatile(true)
             end
+            self.currentMicrobe:addOrganelle(q, r, rotation, organelle)
             self.organelleCount = self.organelleCount + 1
         end,
         undo = function()
@@ -337,8 +349,7 @@ function MicrobeEditor:_addOrganelle(organelle, q, r, rotation)
     })
 end
 
-function MicrobeEditor:removeOrganelle()
-    local q, r = self:getMouseHex()
+function MicrobeEditor:removeOrganelleAt(q,r)
     local organelle = self.currentMicrobe:getOrganelleAt(q,r)
     if not (organelle == nil or organelle.name == "nucleus") then -- Don't remove nucleus
         if organelle then
@@ -377,6 +388,11 @@ function MicrobeEditor:removeOrganelle()
             }
         end
     end
+end
+
+function MicrobeEditor:removeOrganelle()
+    local q, r = self:getMouseHex()
+    self:removeOrganelleAt(q,r)
 end
 
 function MicrobeEditor:addNucleus()

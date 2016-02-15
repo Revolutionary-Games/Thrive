@@ -181,6 +181,7 @@ CEGUIWindow::luaBindings() {
         .def("setText", &CEGUIWindow::setText)
         .def("appendText", &CEGUIWindow::appendText)
         .def("setImage", &CEGUIWindow::setImage)
+        .def("setProperty", &CEGUIWindow::setProperty)
         .def("getParent", &CEGUIWindow::getParent)
         .def("getChild", &CEGUIWindow::getChild)
         .def("addChild", &CEGUIWindow::addChild)
@@ -284,6 +285,14 @@ CEGUIWindow::setImage(
     const std::string& image
 ) {
     m_window->setProperty("Image", image);
+}
+
+void
+CEGUIWindow::setProperty(
+    const std::string& argument,
+    const std::string& property
+) {
+    m_window->setProperty(property, argument);
 }
 
 void

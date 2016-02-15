@@ -213,6 +213,20 @@ public:
         const std::string& image
     );
 
+    /**
+    * @brief Sets the underlying windows property
+    *
+    * @param text
+    *  The parameter to set
+    * @param text
+    *  The property to be set
+    */
+    void
+    setProperty(
+        const std::string& parameter,
+        const std::string& property
+    );
+
     // Listbox has been removed from cegui.
     // For basic use use ListWidget instead
     // For more advanced view items use ListView
