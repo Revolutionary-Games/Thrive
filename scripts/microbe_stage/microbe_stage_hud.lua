@@ -61,7 +61,12 @@ end
 function HudSystem:update(renderTime)
     local player = Entity("player")
     local playerMicrobe = Microbe(player)
-    self.nameLabel:setText(playerMicrobe.microbe.speciesName)
+    local name = playerMicrobe.microbe.speciesName
+    if string.len(name) > 18 then
+        name = string.sub(playerMicrobe.microbe.speciesName, 1, 15)
+        name = name .. "..."
+    end
+    self.nameLabel:setText(name)
 
     self.hitpointsBar:progressbarSetProgress(playerMicrobe.microbe.hitpoints/playerMicrobe.microbe.maxHitpoints)
     self.hitpointsCountLabel:setText("".. math.floor(playerMicrobe.microbe.hitpoints))

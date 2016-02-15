@@ -3,7 +3,7 @@ local function setupBackground()
     local entity = Entity("background")
     local skyplane = SkyPlaneComponent()
     skyplane.properties.plane.normal = Vector3(0, 0, 2000)
-    skyplane.properties.materialName = "Background"
+    skyplane.properties.materialName = "background/blue_01"
 	skyplane.properties.scale = 4
     skyplane.properties:touch()
     entity:addComponent(skyplane)
@@ -11,8 +11,9 @@ local function setupBackground()
     entity = Entity("directionarrow")
     local sceneNode = OgreSceneNodeComponent()
     sceneNode.meshName = "arrow.mesh"
-    sceneNode.transform.position = Vector3(0,5,-4)
+    sceneNode.transform.position = Vector3(0,7,-4)
     sceneNode.transform.orientation = Quaternion(Radian(Degree(90)), Vector3(1, 1, 1))
+    sceneNode.transform.scale = Vector3(0.5,0.5,0.5)
     sceneNode.transform:touch()
     sceneNode:playAnimation("Stand", true)
     entity:addComponent(sceneNode)
