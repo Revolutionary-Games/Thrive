@@ -94,6 +94,14 @@ function MicrobeEditorHudSystem:init(gameState)
 
     self.helpPanel = root:getChild("HelpPanel")
     root:getChild("HelpButton"):registerEventHandler("Clicked", function() self:helpButtonClicked() end)
+    
+    -- Set species name and cut it off if it is too long.
+    local name = self.nameLabel:getText()
+    if string.len(name) > 18 then
+        name = string.sub(name, 1, 15)
+        name = name .. "..."
+    end
+    self.nameLabel:setText(name)
 end
 
 
@@ -258,7 +266,12 @@ end
 
 function MicrobeEditorHudSystem:updateMicrobeName()
     self.editor.currentMicrobe.microbe.speciesName = self.nameTextbox:getText()
-    self.nameLabel:setText(self.editor.currentMicrobe.microbe.speciesName)
+    local name = self.editor.currentMicrobe.microbe.speciesName
+    if string.len(name) > 18 then
+        name = string.sub(self.editor.currentMicrobe.microbe.speciesName, 1, 15)
+        name = name .. "..."
+    end
+    self.nameLabel:setText(name)
     self.nameTextbox:hide()
     self.nameLabel:show()
 end
