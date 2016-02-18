@@ -308,10 +308,15 @@ function OrganelleFactory.make_mitochondrion(data)
 end
 
 function OrganelleFactory.make_chloroplast(data)
+	local x, y = axialToCartesian(data.q, data.r)
+    
     local chloro = ProcessOrganelle()
     chloro:addProcess(global_processMap["Photosynthesis"])
 	
 	local angle = (data.rotation / 60)
+    if x < 0 then
+        angle = angle + 5
+    end
 	
     chloro:addHex(0, 0)
 	local q = 1
@@ -364,7 +369,11 @@ function OrganelleFactory.render_chloroplast(data)
 	data.sceneNode[2].transform.position = translation
 	OrganelleFactory.setColour(data.sceneNode[2], data.colour)
 	
-	local angle = (data.rotation / 60)
+	local angle = (data.rotation / 60) + 5
+    if x < 0 then
+        angle = angle + 7
+    end
+    
 	local q = 1
 	local r = 0
 	for i=0, angle do
@@ -411,9 +420,13 @@ function OrganelleFactory.sizeof_mitochondrion(data)
 end
 
 function OrganelleFactory.sizeof_chloroplast(data)
+	local x, y = axialToCartesian(data.q, data.r)    
 	local hexes = {}
 	
-	local angle = (data.rotation / 60)
+	local angle = (data.rotation / 60) + 5
+    if x < 0 then
+        angle = angle + 7
+    end
 	
 	hexes[1] = {["q"]=0, ["r"]=0}
 	
