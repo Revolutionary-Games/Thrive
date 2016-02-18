@@ -4,6 +4,9 @@ function SwitchGameStateSystem:__init()
     System.__init(self)
 end
 
+function SwitchGameStateSystem:init()
+    System.init(self, "SwitchGameStateSystem", gameState)
+end
 
 function SwitchGameStateSystem:update(renderTime, logicTime)
     if keyCombo(kmp.altuniverse) then

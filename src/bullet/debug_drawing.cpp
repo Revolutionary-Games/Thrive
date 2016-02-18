@@ -309,7 +309,7 @@ void
 BulletDebugDrawSystem::init(
     GameState* gameState
 ) {
-    System::init(gameState);
+    System::initNamed("BulletDebugDrawSystem", gameState);
     assert(m_impl->m_physicsWorld == nullptr && "Double init of system");
     m_impl->m_debugDrawer.reset(new BulletDebugDrawer(
             gameState->sceneManager()

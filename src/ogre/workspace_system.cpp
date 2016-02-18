@@ -123,16 +123,16 @@ struct OgreWorkspaceSystem::Implementation {
 
     void
     removeAllWorkspaces() {
-        
+
         for (const auto& item : m_entities) {
             OgreWorkspaceComponent* viewportComponent = std::get<0>(item.second);
             viewportComponent->m_workspace = nullptr;
         }
-        
+
         for (const auto& pair : m_workspaces) {
             this->removeWorkspace(pair.second);
         }
-        
+
         m_workspaces.clear();
     }
 
@@ -164,21 +164,21 @@ struct OgreWorkspaceSystem::Implementation {
         }
 
         // TODO: add support for different targets than the main window
-        
+
         // Find camera (if any)
         Ogre::Camera* camera = nullptr;
         auto cameraComponent = m_system.entityManager()->getComponent<OgreCameraComponent>(
             component->m_properties.cameraEntity
         );
-        
+
         if (cameraComponent) {
             camera = cameraComponent->m_camera;
         }
-        
+
         // Create workspace
         auto workspace = m_root.getCompositorManager2()->addWorkspace(m_sceneManager, m_renderWindow, camera,
             component->m_name, true, component->m_properties.position);
-        
+
         component->m_workspace = workspace;
 
         m_workspaces.emplace(
@@ -205,13 +205,13 @@ struct OgreWorkspaceSystem::Implementation {
                     break;
                 }
             }
-            
+
             component->m_workspace = nullptr;
         }
 
         restoreWorkspace(entityId, component);
     }
-    
+
     static
     void createCommonWorkspaceDefinitions(){
 
@@ -238,9 +238,9 @@ struct OgreWorkspaceSystem::Implementation {
 
         // Two stage pass, clear first and then render
         auto nodePasses = sceneNode->addTargetPass("renderwindow");
-        
+
         nodePasses->setNumPasses(2);
-        
+
         // Clear the render target before rendering
         auto clearPass = static_cast<Ogre::CompositorPassClearDef*>(
             nodePasses->addPass(Ogre::PASS_CLEAR));
@@ -257,7 +257,7 @@ struct OgreWorkspaceSystem::Implementation {
 
         // Connect the main render target to the node
         thriveDefault->connectOutput("thrive_default_scene_pass", 0);
-        
+
         workspacesCreated = true;
     }
 
@@ -306,7 +306,7 @@ void
 OgreWorkspaceSystem::init(
     GameState* gameState
 ) {
-    System::init(gameState);
+    System::initNamed("OgreWorkspaceSystem", gameState);
     m_impl->m_renderWindow = this->engine()->renderWindow();
     m_impl->m_sceneManager = gameState->sceneManager();
     m_impl->m_entities.setEntityManager(&gameState->entityManager());
