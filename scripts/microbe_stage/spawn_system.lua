@@ -53,7 +53,7 @@ end
 
 -- Override from System
 function SpawnSystem:init(gameState)
-    System.init(self, gameState)
+    System.init(self, "SpawnSystem", gameState)
     self.entities:init(gameState)
 end
 
@@ -168,9 +168,11 @@ function SpawnSystem:_doSpawnCycle()
                 if distSqr <= spawnType.spawnRadiusSqr and distSqrPrev > spawnType.spawnRadiusSqr then
                     --Second condition passed. Spawn the entity.
                     local entity = spawnType.factoryFunction(playerPos + displacement)
-                    local spawnComponent = SpawnedComponent()
-                    spawnComponent.spawnRadiusSqr = spawnType.spawnRadiusSqr
-                    entity:addComponent(spawnComponent)
+                    if entity then
+                        local spawnComponent = SpawnedComponent()
+                        spawnComponent.spawnRadiusSqr = spawnType.spawnRadiusSqr
+                        entity:addComponent(spawnComponent)
+                    end
                 end
             end
         end
@@ -187,8 +189,7 @@ function SpawnSystem:update(renderTime, logicTime)
     self.timeSinceLastCycle = self.timeSinceLastCycle + logicTime
     
     --Perform spawn cycle if necessary (Reason for "if" rather than "while" stated below)
-    if self.timeSinceLastCycle > SPAWN_INTERVAL then
-        
+    if self.timeSinceLastCycle > SPAWN_INTERVAL then        
         self:_doSpawnCycle()
         
         --Spawn interval does not affect spawning logic. Therefore, at most one spawn

@@ -149,7 +149,7 @@ void
 OgreCameraSystem::init(
     GameState* gameState
 ) {
-    System::init(gameState);
+    System::initNamed("OgreCameraSystem", gameState);
     assert(m_impl->m_sceneManager == nullptr && "Double init of system");
     m_impl->m_sceneManager = gameState->sceneManager();
     m_impl->m_entities.setEntityManager(&gameState->entityManager());

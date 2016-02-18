@@ -8,6 +8,10 @@ function MicrobeCameraSystem:__init()
     self.cameraScenenode = nil
 end
 
+function MicrobeCameraSystem:init()
+    System.init(self, "MicrobeCameraSystem", gameState)
+end
+
 function MicrobeCameraSystem:activate()
     local camera = Entity(CAMERA_NAME)
     self.camera = camera:getComponent(OgreCameraComponent.TYPE_ID)
