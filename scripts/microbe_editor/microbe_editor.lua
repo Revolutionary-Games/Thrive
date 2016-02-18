@@ -246,7 +246,8 @@ function MicrobeEditor:isValidPlacement(organelleType, q, r, rotation)
 		end
     end
     
-    if empty and touching then            
+    if empty and touching then
+        newOrganelle.rotation = data.rotation
         return newOrganelle
     else
         return nil
@@ -319,8 +320,11 @@ function MicrobeEditor:_addOrganelle(organelle, q, r, rotation)
                 local cytoplasm = self.currentMicrobe:getOrganelleAt(hex.q + q, hex.r + r)
                 if cytoplasm then
                     if cytoplasm.name == "cytoplasm" then
-                        self:removeOrganelleAt(hex.q + q, hex.r + r)
                         self.currentMicrobe:removeOrganelle(hex.q + q, hex.r + r)
+                        self.currentMicrobe.sceneNode.transform:touch()
+                        self.organelleCount = self.organelleCount - 1
+                        local s = encodeAxial(hex.q + q, hex.r + r)
+                        self.occupiedHexes[s]:destroy()
                     end
                 end
                 local x, y = axialToCartesian(hex.q + q, hex.r + r) 
