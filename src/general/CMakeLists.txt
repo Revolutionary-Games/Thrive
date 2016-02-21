@@ -9,6 +9,8 @@ add_sources(
     "${CMAKE_CURRENT_SOURCE_DIR}/script_bindings.h"
     "${CMAKE_CURRENT_SOURCE_DIR}/mesh.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/mesh.h"
+    "${CMAKE_CURRENT_SOURCE_DIR}/perlin_noise.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/perlin_noise.h"
 )
 
 

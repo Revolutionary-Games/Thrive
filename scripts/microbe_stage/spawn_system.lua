@@ -182,12 +182,19 @@ function SpawnSystem:_doSpawnCycle()
     self.playerPosPrev.z = playerNode.transform.position.z
 end
 
+counter = 20
+
 -- Override from System
 function SpawnSystem:update(renderTime, logicTime)
     self.timeSinceLastCycle = self.timeSinceLastCycle + logicTime
     
     --Perform spawn cycle if necessary (Reason for "if" rather than "while" stated below)
     if self.timeSinceLastCycle > SPAWN_INTERVAL then
+        -- DELETE THIS:
+        if counter > 0 then
+            Entity("fluidsim"):getComponent(CompoundCloudComponent.TYPE_ID):addCloud(500, 25, 25)
+            counter = counter - 1
+        end
         
         self:_doSpawnCycle()
         

@@ -8,6 +8,11 @@ local function setupBackground()
     skyplane.properties:touch()
     
     entity:addComponent(skyplane)
+    
+    -- Temporary here, creates one type of compound cloud.
+    local fluid = Entity("fluidsim")
+    local compoundCloud = CompoundCloudComponent()
+    fluid:addComponent(compoundCloud)
 end
 
 local function setupCamera()
@@ -136,6 +141,10 @@ local function setSpawnablePhysics(entity, pos, mesh, scale, collisionShape)
     sceneNode.transform.scale = Vector3(scale, scale, scale)
     entity:addComponent(sceneNode)
     return entity
+end
+
+function createCompoundCloud(compound, x, y, amount)
+    Entity("compound_cloud_" .. compound):getComponent(CompoundCloudComponent.TYPE_ID):addCloud(amount, x, y)
 end
 
 local function addEmitter2Entity(entity, compound)
@@ -378,7 +387,7 @@ local function createMicrobeStage(name)
             OgreRemoveSceneNodeSystem(),
             RenderSystem(),
             MembraneSystem(),
-            FluidSystem(),
+            CompoundCloudSystem(),
             -- Other
             SoundSourceSystem(),
             PowerupSystem(),
