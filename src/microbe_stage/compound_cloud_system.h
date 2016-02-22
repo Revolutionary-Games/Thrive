@@ -2,6 +2,7 @@
 
 #include <vector>
 #include <OgreEntity.h>
+#include <OgreSceneManager.h>
 
 #include "engine/component.h"
 #include "engine/system.h"
@@ -10,6 +11,7 @@
 #include "engine/typedefs.h"
 
 #include "general/perlin_noise.h"
+#include "ogre/scene_node_system.h"
 
 namespace thrive {
 
@@ -24,6 +26,7 @@ class CompoundCloudComponent : public Component {
 public:
     /// The size of the compound cloud grid.
 	int width, height;
+	int offsetX, offsetY;
 	float gridSize;
 
     std::vector<  std::vector<float>  > density;
@@ -106,13 +109,16 @@ public:
 private:
     struct Implementation;
     std::unique_ptr<Implementation> m_impl;
-    Ogre::Entity* compoundClouds;
+    GameState* gameState;
+    Ogre::Entity* compoundCloudsPlane;
+    OgreSceneNodeComponent* playerNode;
 
     PerlinNoise fieldPotential;
 	float noiseScale;
 
 	/// The size of the compound cloud grid.
 	int width, height;
+	int offsetX, offsetY;
 	float gridSize;
 
     /// The velocity of the fluid.

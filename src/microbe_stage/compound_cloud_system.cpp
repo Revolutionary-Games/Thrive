@@ -1,4 +1,5 @@
 #include "microbe_stage/compound_cloud_system.h"
+#include "microbe_stage/membrane_system.h"
 
 #include "bullet/collision_system.h"
 #include "bullet/rigid_body_system.h"
@@ -7,6 +8,7 @@
 #include "engine/entity_filter.h"
 #include "engine/entity.h"
 #include "engine/game_state.h"
+#include "engine/player_data.h"
 #include "engine/serialization.h"
 #include "game.h"
 #include "ogre/scene_node_system.h"
@@ -21,8 +23,6 @@
 #include <OgreMaterial.h>
 #include <OgreTextureManager.h>
 #include <OgreTechnique.h>
-#include <OgreEntity.h>
-#include <OgreSceneManager.h>
 #include <OgreRoot.h>
 #include <OgreSubMesh.h>
 
@@ -67,8 +67,10 @@ CompoundCloudComponent::storage() const {
 void
 CompoundCloudComponent::addCloud(float dens, int x, int y) {
 
-    if (x >= 0 && x < width && y >= 0 && y < height) {
-        density[x][y] += dens;
+    if ((x-offsetX)/gridSize+width/2 >= 0 && (x-offsetX)/gridSize+width/2 < width &&
+        (y-offsetY)/gridSize+height/2 >= 0 && (y-offsetY)/gridSize+height/2 < height)
+    {
+        density[(x-offsetX)/gridSize+width/2][(y-offsetY)/gridSize+height/2] += dens;
     }
 
 }
@@ -93,7 +95,11 @@ struct CompoundCloudSystem::Implementation {
 
     EntityFilter<
         CompoundCloudComponent
-    > m_entities = {true};
+    > m_compounds = {true};
+
+    EntityFilter<
+        MembraneComponent
+    > m_absorbers;
 
     Ogre::SceneManager* m_sceneManager = nullptr;
 };
@@ -101,9 +107,12 @@ struct CompoundCloudSystem::Implementation {
 
 CompoundCloudSystem::CompoundCloudSystem()
   : m_impl(new Implementation()),
+    playerNode(NULL),
     noiseScale(5),
     width(50),
     height(50),
+    offsetX(0),
+    offsetY(0),
     gridSize(2),
     xVelocity(width, std::vector<float>(height, 0)),
     yVelocity(width, std::vector<float>(height, 0))
@@ -119,20 +128,21 @@ CompoundCloudSystem::init(
     GameState* gameState
 ) {
     System::init(gameState);
-    m_impl->m_entities.setEntityManager(&gameState->entityManager());
+    m_impl->m_compounds.setEntityManager(&gameState->entityManager());
     m_impl->m_sceneManager = gameState->sceneManager();
+    this->gameState = gameState;
 
-    Ogre::Plane plane(Ogre::Vector3::UNIT_Z, -0.5);
-    Ogre::MeshManager::getSingleton().createPlane("CompoundClouds", "General", plane, width*gridSize, height*gridSize, 1, 1, true, 1, 1, 1, Ogre::Vector3::UNIT_Y);
-    compoundClouds = m_impl->m_sceneManager->createEntity("CompoundClouds", "General");
-    m_impl->m_sceneManager->getRootSceneNode()->createChildSceneNode()->attachObject(compoundClouds);
-    compoundClouds->setMaterialName("CompoundClouds");
+    Ogre::Plane plane(Ogre::Vector3::UNIT_Z, -1.0);
+    Ogre::MeshManager::getSingleton().createPlane("CompoundCloudsPlane", "General", plane, width*gridSize, height*gridSize, 1, 1, true, 1, 1, 1, Ogre::Vector3::UNIT_Y);
+    compoundCloudsPlane = m_impl->m_sceneManager->createEntity("CompoundCloudsPlane", "General");
+    m_impl->m_sceneManager->getRootSceneNode()->createChildSceneNode()->attachObject(compoundCloudsPlane);
+    compoundCloudsPlane->setMaterialName("CompoundClouds");
 }
 
 
 void
 CompoundCloudSystem::shutdown() {
-    m_impl->m_entities.setEntityManager(nullptr);
+    m_impl->m_compounds.setEntityManager(nullptr);
     m_impl->m_sceneManager = nullptr;
     System::shutdown();
 }
@@ -140,22 +150,53 @@ CompoundCloudSystem::shutdown() {
 
 void
 CompoundCloudSystem::update(int renderTime, int) {
-    for (auto& value : m_impl->m_entities.addedEntities()) {
-        std::cout << "AddedEntities" << std::endl;
 
+    if (playerNode == NULL) {
+        playerNode = static_cast<OgreSceneNodeComponent*>(gameState->entityManager().getComponent(
+            Entity(gameState->engine().playerData().playerName(), gameState).id(),
+            OgreSceneNodeComponent::TYPE_ID));
+    }
+
+    if (playerNode->m_transform.position.x > offsetX + width*gridSize/2  ||
+        playerNode->m_transform.position.y > offsetY + height*gridSize/2 ||
+        playerNode->m_transform.position.x < offsetX - width*gridSize/2  ||
+        playerNode->m_transform.position.y < offsetY - height*gridSize/2)
+    {
+        while (playerNode->m_transform.position.x > offsetX + width*gridSize/2 ) offsetX += width*gridSize;
+        while (playerNode->m_transform.position.y > offsetY + height*gridSize/2) offsetY += height*gridSize;
+        while (playerNode->m_transform.position.x < offsetX - width*gridSize/2 ) offsetX -= width*gridSize;
+        while (playerNode->m_transform.position.y < offsetY - height*gridSize/2) offsetY -= height*gridSize;
+
+        compoundCloudsPlane->getParentSceneNode()->setPosition(offsetX, offsetY, -1.0);
+    }
+
+    for (auto& value : m_impl->m_compounds.addedEntities()) {
         CompoundCloudComponent* compoundCloud = std::get<0>(value.second);
 
         compoundCloud->width = width;
         compoundCloud->height = height;
+        compoundCloud->offsetX = offsetX;
+        compoundCloud->offsetY = offsetY;
         compoundCloud->gridSize = gridSize;
 
         compoundCloud->density.resize(width, std::vector<float>(height, 0));
         compoundCloud->oldDens.resize(width, std::vector<float>(height, 0));
     }
-    m_impl->m_entities.clearChanges();
+    m_impl->m_compounds.clearChanges();
 
-    for (auto& value : m_impl->m_entities) {
+    for (auto& value : m_impl->m_compounds) {
         CompoundCloudComponent* compoundCloud = std::get<0>(value.second);
+
+        if (compoundCloud->offsetX != offsetX || compoundCloud->offsetY != offsetY)
+        {
+            compoundCloud->offsetX = offsetX;
+            compoundCloud->offsetY = offsetY;
+
+            compoundCloud->density.clear();
+            compoundCloud->oldDens.clear();
+            compoundCloud->density.resize(width, std::vector<float>(height, 0));
+            compoundCloud->oldDens.resize(width, std::vector<float>(height, 0));
+        }
 
         diffuse(.01, compoundCloud->oldDens, compoundCloud->density, renderTime);
         advect(compoundCloud->oldDens, compoundCloud->density, renderTime);
@@ -284,11 +325,11 @@ CompoundCloudSystem::writeToFile(std::vector<  std::vector<float>  >& density) {
 			}
 			else if (intensity < 255)
 			{
-				red = 0; green = intensity; blue = intensity;
+				red = intensity; green = 0; blue = 0;
 			}
 			else
 			{
-				red = 0; green = 255; blue = 255;
+				red = 255; green = 0; blue = 0;
 			}
 
 			x = i; y = (h - 1) - j;

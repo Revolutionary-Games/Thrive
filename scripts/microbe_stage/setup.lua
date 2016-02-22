@@ -248,34 +248,34 @@ local function createSpawnSystem()
 end
 
 local function setupEmitter()
-    -- Setting up a test emitter
-    local entity = Entity("glucose-emitter")
-    -- Rigid body
-    local rigidBody = RigidBodyComponent()
-    rigidBody.properties.friction = 0.2
-    rigidBody.properties.linearDamping = 0.8
-    rigidBody.properties.shape = CylinderShape(
-        CollisionShape.AXIS_X, 
-        0.4,
-        2.0
-    )
-    rigidBody:setDynamicProperties(
-        Vector3(10, 0, 0),
-        Quaternion(Radian(Degree(0)), Vector3(1, 0, 0)),
-        Vector3(0, 0, 0),
-        Vector3(0, 0, 0)
-    )
-    rigidBody.properties:touch()
-    entity:addComponent(rigidBody)
-    local reactionHandler = CollisionComponent()
-    reactionHandler:addCollisionGroup("emitter")
-    entity:addComponent(reactionHandler)
-    -- Scene node
-    local sceneNode = OgreSceneNodeComponent()
-    sceneNode.meshName = "molecule.mesh"
-    entity:addComponent(sceneNode)
-    -- Emitter test
-    addEmitter2Entity(entity, "glucose")
+    -- -- Setting up a test emitter
+    -- local entity = Entity("glucose-emitter")
+    -- -- Rigid body
+    -- local rigidBody = RigidBodyComponent()
+    -- rigidBody.properties.friction = 0.2
+    -- rigidBody.properties.linearDamping = 0.8
+    -- rigidBody.properties.shape = CylinderShape(
+        -- CollisionShape.AXIS_X, 
+        -- 0.4,
+        -- 2.0
+    -- )
+    -- rigidBody:setDynamicProperties(
+        -- Vector3(10, 0, 0),
+        -- Quaternion(Radian(Degree(0)), Vector3(1, 0, 0)),
+        -- Vector3(0, 0, 0),
+        -- Vector3(0, 0, 0)
+    -- )
+    -- rigidBody.properties:touch()
+    -- entity:addComponent(rigidBody)
+    -- local reactionHandler = CollisionComponent()
+    -- reactionHandler:addCollisionGroup("emitter")
+    -- entity:addComponent(reactionHandler)
+    -- -- Scene node
+    -- local sceneNode = OgreSceneNodeComponent()
+    -- sceneNode.meshName = "molecule.mesh"
+    -- entity:addComponent(sceneNode)
+    -- -- Emitter test
+    -- addEmitter2Entity(entity, "glucose")
 end
 
 function unlockToxin(entityId)
