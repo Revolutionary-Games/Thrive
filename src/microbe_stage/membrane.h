@@ -27,6 +27,9 @@ private:
     // The amount of points on the side of the membrane.
     int membraneResolution;
 
+    // The amount of compounds stored in the membrane.
+    int compoundAmount;
+
     // Stores the generated 2-Dimensional membrane.
     std::vector<Ogre::Vector3>   vertices2D;
 
@@ -42,13 +45,13 @@ public:
 
 	// This function gives out the commands to create and draw the membrane.
 	// At the moment it does nothing to save fps.
-	void	Update(std::vector<Ogre::Vector3> organellePos);
+	void Update(std::vector<Ogre::Vector3> organellePos);
 
 	// Creates a static membrane, pretty much a copy of the update function.
-	void    Initialize(std::vector<Ogre::Vector3> organellePos);
+	void Initialize(std::vector<Ogre::Vector3> organellePos);
 
 	// Creates the 2D points in the membrane by looking at the positions of the organelles.
-	void	DrawMembrane();
+	void DrawMembrane();
 
 	// Finds the position of external organelles based on its "internal" location.
 	Ogre::Vector3 GetExternalOrganelle(double x, double y);
@@ -57,8 +60,18 @@ public:
 	Ogre::Vector3 FindClosestOrganelles(Ogre::Vector3 target);
 
 	// Decides where the point needs to move based on the position of the closest organelle.
-	Ogre::Vector3	GetMovement(Ogre::Vector3 target, Ogre::Vector3 closestOrganelle);
+	Ogre::Vector3 GetMovement(Ogre::Vector3 target, Ogre::Vector3 closestOrganelle);
 
 	// Creates a 3D prism from the 2D vertices.
-	void	MakePrism();
+	void MakePrism();
+
+	// Returns the length of the bounding membrane "box".
+	int getCellDimensions() {return cellDimensions;}
+
+	// Adds absorbed compound to the membrane.
+	// These are later queried and added to the vacuoles.
+	void absorbCompounds(int amount);
+
+	// Sees if the given point is inside the membrane.
+	bool contains(float x, float y);
 };

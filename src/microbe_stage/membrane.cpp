@@ -1,5 +1,9 @@
 #include "membrane.h"
 
+#include <stdio.h>
+#include <iostream>
+#include <string.h>
+
 using namespace std;
 
 Membrane::Membrane(): isInitialized(false)
@@ -9,6 +13,9 @@ Membrane::Membrane(): isInitialized(false)
 
     // Amount of segments on one side of the above described square.
 	membraneResolution = 10;
+
+	// The total amount of compounds.
+	compoundAmount = 0;
 }
 
 void Membrane::Update(vector<Ogre::Vector3> organellePositions)
@@ -185,4 +192,28 @@ Ogre::Vector3 Membrane::GetExternalOrganelle(double x, double y)
     }
 
     return closestSoFar;
+}
+
+void Membrane::absorbCompounds(int amount)
+{
+    compoundAmount += amount;
+}
+
+bool Membrane::contains(float x, float y)
+{
+    bool crosses = false;
+
+    int n = vertices2D.size();
+    for (int i = 0; i < n-1; i++)
+    {
+        if ((vertices2D[i].y <= y && y < vertices2D[i+1].y) || (vertices2D[i+1].y <= y && y < vertices2D[i].y))
+        {
+            if (x < (vertices2D[i+1].x - vertices2D[i].x) * (y - vertices2D[i].y) / (vertices2D[i+1].y - vertices2D[i].y) + vertices2D[i].x)
+            {
+                crosses = !crosses;
+            }
+        }
+    }
+
+    return crosses;
 }

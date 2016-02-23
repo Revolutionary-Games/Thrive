@@ -26,6 +26,8 @@
 #include <OgreRoot.h>
 #include <OgreSubMesh.h>
 
+#include <string.h>
+
 using namespace thrive;
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -75,6 +77,22 @@ CompoundCloudComponent::addCloud(float dens, int x, int y) {
 
 }
 
+int
+CompoundCloudComponent::takeCompound(int x, int y, float rate) {
+
+    if (x >= 0 && x < width && y >= 0 && y < height)
+    {
+        int amountToGive = static_cast<int>(density[x][y])*rate;
+        density[x][y] -= amountToGive;
+        if (density[x][y] < 1) density[x][y] = 0;
+
+        return amountToGive;
+    }
+
+    return -1;
+
+}
+
 REGISTER_COMPONENT(CompoundCloudComponent)
 
 
@@ -98,7 +116,8 @@ struct CompoundCloudSystem::Implementation {
     > m_compounds = {true};
 
     EntityFilter<
-        MembraneComponent
+        MembraneComponent,
+        OgreSceneNodeComponent
     > m_absorbers;
 
     Ogre::SceneManager* m_sceneManager = nullptr;
@@ -129,6 +148,7 @@ CompoundCloudSystem::init(
 ) {
     System::init(gameState);
     m_impl->m_compounds.setEntityManager(&gameState->entityManager());
+    m_impl->m_absorbers.setEntityManager(&gameState->entityManager());
     m_impl->m_sceneManager = gameState->sceneManager();
     this->gameState = gameState;
 
@@ -143,6 +163,7 @@ CompoundCloudSystem::init(
 void
 CompoundCloudSystem::shutdown() {
     m_impl->m_compounds.setEntityManager(nullptr);
+    m_impl->m_absorbers.setEntityManager(nullptr);
     m_impl->m_sceneManager = nullptr;
     System::shutdown();
 }
@@ -184,7 +205,8 @@ CompoundCloudSystem::update(int renderTime, int) {
     }
     m_impl->m_compounds.clearChanges();
 
-    for (auto& value : m_impl->m_compounds) {
+    for (auto& value : m_impl->m_compounds)
+    {
         CompoundCloudComponent* compoundCloud = std::get<0>(value.second);
 
         if (compoundCloud->offsetX != offsetX || compoundCloud->offsetY != offsetY)
@@ -203,6 +225,34 @@ CompoundCloudSystem::update(int renderTime, int) {
 
         writeToFile(compoundCloud->density);
     }
+
+    for (auto& absorber : m_impl->m_absorbers)
+    {
+        MembraneComponent* membrane = std::get<0>(absorber.second);
+        OgreSceneNodeComponent* sceneNode = std::get<1>(absorber.second);
+
+        int sideLength = membrane->m_membrane.getCellDimensions();
+        Ogre::Vector3 origin = sceneNode->m_transform.position;
+
+        for (auto& value : m_impl->m_compounds)
+        {
+            CompoundCloudComponent* compoundCloud = std::get<0>(value.second);
+
+            for (int x = (origin.x - sideLength/2 - offsetX)/gridSize + width/2;
+                     x < (origin.x + sideLength/2 - offsetX)/gridSize + width/2; x++)
+            {
+                for (int y = (origin.y - sideLength/2 - offsetY)/gridSize + height/2;
+                         y < (origin.y + sideLength/2 - offsetY)/gridSize + height/2; y++)
+                {
+                    if (x >= 0 && x < width && y >= 0 && y < height && membrane->m_membrane.contains((x-width/2)*gridSize-origin.x+offsetX,(y-height/2)*gridSize-origin.y+offsetY))
+                    {
+                        membrane->m_membrane.absorbCompounds(compoundCloud->takeCompound(x, y, .2));
+                    }
+                }
+            }
+        }
+    }
+
     Ogre::TexturePtr texture = Ogre::Root::getSingletonPtr()->getTextureManager()->getByName("fluid.bmp");
     texture->reload();
 }
@@ -317,7 +367,7 @@ CompoundCloudSystem::writeToFile(std::vector<  std::vector<float>  >& density) {
 	{
 		for (int j = 0; j < height; j++)
 		{
-			intensity = static_cast<int>(density[i][j] * 10);
+			intensity = static_cast<int>(density[i][j]);
 
 			if (intensity < 0)
 			{
@@ -325,11 +375,11 @@ CompoundCloudSystem::writeToFile(std::vector<  std::vector<float>  >& density) {
 			}
 			else if (intensity < 255)
 			{
-				red = intensity; green = 0; blue = 0;
+				red = 0; green = intensity; blue = intensity;
 			}
 			else
 			{
-				red = 255; green = 0; blue = 0;
+				red = 0; green = 255; blue = 255;
 			}
 
 			x = i; y = (h - 1) - j;

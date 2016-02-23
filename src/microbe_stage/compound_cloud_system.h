@@ -58,6 +58,14 @@ public:
         int x,
         int y
     );
+
+    /// Rate should be less than one.
+    int
+    takeCompound(
+        int x,
+        int y,
+        float rate
+    );
 };
 
 

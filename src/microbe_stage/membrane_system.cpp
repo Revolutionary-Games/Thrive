@@ -88,7 +88,8 @@ struct MembraneSystem::Implementation {
 
     EntityFilter<
         MembraneComponent,
-        OgreSceneNodeComponent
+        OgreSceneNodeComponent,
+        RigidBodyComponent
     > m_entities;
 
     Ogre::SceneManager* m_sceneManager = nullptr;

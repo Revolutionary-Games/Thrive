@@ -20,6 +20,7 @@
 namespace thrive {
 
 class MembraneSystem;
+class CompoundCloudSystem;
 
 /**
 * @brief Emitter for compound particles
@@ -65,6 +66,7 @@ public:
 
 private:
     friend class MembraneSystem;
+    friend class CompoundCloudSystem;
     Membrane m_membrane;
     std::vector<Ogre::Vector3> organellePositions;
     bool wantsMembrane = true;
