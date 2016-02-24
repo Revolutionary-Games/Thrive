@@ -776,6 +776,9 @@ function Microbe:update(logicTime)
                 self:storeCompound(compound, amount, true)
             end
         end
+        local compoundAmount = self.membraneComponent:getAbsorbedCompounds()
+        self:storeCompound(CompoundRegistry.getCompoundId("glucose"), compoundAmount/1000, false)
+        print(compoundAmount)
         -- Distribute compounds to Process Organelles
         for _, processOrg in pairs(self.microbe.processOrganelles) do
             processOrg:update(self, logicTime)

@@ -29,8 +29,19 @@ public:
 	int offsetX, offsetY;
 	float gridSize;
 
+    /// The 2D array that contains the current compound clouds and those from last frame.
     std::vector<  std::vector<float>  > density;
     std::vector<  std::vector<float>  > oldDens;
+
+    /// The 3x3 grid of density tiles around the player for seamless movement.
+    std::vector<  std::vector<float>  > density_11;
+    std::vector<  std::vector<float>  > density_12;
+    std::vector<  std::vector<float>  > density_13;
+    std::vector<  std::vector<float>  > density_21;
+    std::vector<  std::vector<float>  > density_23;
+    std::vector<  std::vector<float>  > density_31;
+    std::vector<  std::vector<float>  > density_32;
+    std::vector<  std::vector<float>  > density_33;
 
 public:
     /**

@@ -60,6 +60,9 @@ public:
     // Sets the colour of the membrane.
     void setColour(float red, float green, float blue, float alpha);
 
+    // Gets the amount of a certain compound the membrane absorbed.
+    int getAbsorbedCompounds();
+
     // Gets the position of the closest membrane point
     luabind::object getExternOrganellePos(double x, double y);
 

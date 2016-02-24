@@ -27,9 +27,6 @@ private:
     // The amount of points on the side of the membrane.
     int membraneResolution;
 
-    // The amount of compounds stored in the membrane.
-    int compoundAmount;
-
     // Stores the generated 2-Dimensional membrane.
     std::vector<Ogre::Vector3>   vertices2D;
 
@@ -38,6 +35,10 @@ public:
 
     // Stores the positions of the organelles.
     std::vector<Ogre::Vector3>   organellePos;
+
+
+    // The amount of compounds stored in the membrane.
+    int compoundAmount;
 
 public:
     // Creates a membrane object from the positions of the organelles.

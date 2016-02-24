@@ -10,7 +10,7 @@ local function setupBackground()
     entity:addComponent(skyplane)
     
     -- Temporary here, creates one type of compound cloud.
-    local fluid = Entity("fluidsim")
+    local fluid = Entity("compound_cloud_glucose")
     local compoundCloud = CompoundCloudComponent()
     fluid:addComponent(compoundCloud)
 end
@@ -226,16 +226,23 @@ local function createSpawnSystem()
         powerupEntity:addComponent(powerupComponent)
         return powerupEntity
     end
+    
+    local spawnGlucoseCloud =  function(pos)
+        createCompoundCloud("glucose", pos.x, pos.y, 25000)
+    end
 
     --Spawn one emitter on average once in every square of sidelength 10
     -- (square dekaunit?)
 	-- Spawn radius should depend on view rectangle
     spawnSystem:addSpawnType(spawnOxygenEmitter, 1/1600, 50)
     spawnSystem:addSpawnType(spawnCO2Emitter, 1/1700, 50)
-    spawnSystem:addSpawnType(spawnGlucoseEmitter, 1/1600, 50)
+    --spawnSystem:addSpawnType(spawnGlucoseEmitter, 1/1600, 50)
     spawnSystem:addSpawnType(spawnAmmoniaEmitter, 1/2250, 50)
+    
     spawnSystem:addSpawnType(toxinOrganelleSpawnFunction, 1/17000, 50)
     spawnSystem:addSpawnType(ChloroplastOrganelleSpawnFunction, 1/12000, 50)
+    
+    spawnSystem:addSpawnType(spawnGlucoseCloud, 1/1600, 50)
 
     for name, species in pairs(starter_microbes) do
         spawnSystem:addSpawnType(

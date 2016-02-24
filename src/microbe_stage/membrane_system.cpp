@@ -44,6 +44,7 @@ MembraneComponent::luaBindings() {
         .def("sendOrganelles", &MembraneComponent::sendOrganelles)
         .def("getExternOrganellePos", &MembraneComponent::getExternOrganellePos)
         .def("setColour", &MembraneComponent::setColour)
+        .def("getAbsorbedCompounds", &MembraneComponent::getAbsorbedCompounds)
     ;
 }
 
@@ -59,6 +60,13 @@ MembraneComponent::load(
 ) {
     Component::load(storage);
     //m_emissionRadius = storage.get<Ogre::Real>("emissionRadius", 0.0);
+}
+
+int
+MembraneComponent::getAbsorbedCompounds() {
+    int amount = m_membrane.compoundAmount;
+    m_membrane.compoundAmount = 0;
+    return amount;
 }
 
 StorageContainer
@@ -88,8 +96,7 @@ struct MembraneSystem::Implementation {
 
     EntityFilter<
         MembraneComponent,
-        OgreSceneNodeComponent,
-        RigidBodyComponent
+        OgreSceneNodeComponent
     > m_entities;
 
     Ogre::SceneManager* m_sceneManager = nullptr;

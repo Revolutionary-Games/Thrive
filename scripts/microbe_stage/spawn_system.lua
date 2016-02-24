@@ -168,9 +168,11 @@ function SpawnSystem:_doSpawnCycle()
                 if distSqr <= spawnType.spawnRadiusSqr and distSqrPrev > spawnType.spawnRadiusSqr then
                     --Second condition passed. Spawn the entity.
                     local entity = spawnType.factoryFunction(playerPos + displacement)
-                    local spawnComponent = SpawnedComponent()
-                    spawnComponent.spawnRadiusSqr = spawnType.spawnRadiusSqr
-                    entity:addComponent(spawnComponent)
+                    if entity then
+                        local spawnComponent = SpawnedComponent()
+                        spawnComponent.spawnRadiusSqr = spawnType.spawnRadiusSqr
+                        entity:addComponent(spawnComponent)
+                    end
                 end
             end
         end
@@ -182,20 +184,12 @@ function SpawnSystem:_doSpawnCycle()
     self.playerPosPrev.z = playerNode.transform.position.z
 end
 
-counter = 1
-
 -- Override from System
 function SpawnSystem:update(renderTime, logicTime)
     self.timeSinceLastCycle = self.timeSinceLastCycle + logicTime
     
     --Perform spawn cycle if necessary (Reason for "if" rather than "while" stated below)
-    if self.timeSinceLastCycle > SPAWN_INTERVAL then
-        -- DELETE THIS:
-        if counter > 0 then
-            Entity("fluidsim"):getComponent(CompoundCloudComponent.TYPE_ID):addCloud(25000, 20, 20)
-            counter = counter - 1
-        end
-        
+    if self.timeSinceLastCycle > SPAWN_INTERVAL then        
         self:_doSpawnCycle()
         
         --Spawn interval does not affect spawning logic. Therefore, at most one spawn
