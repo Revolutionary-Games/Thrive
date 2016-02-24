@@ -407,7 +407,7 @@ CompoundCloudSystem::update(int renderTime, int) {
         OgreSceneNodeComponent* sceneNode = std::get<1>(absorber.second);
 
         // Find the bounding box of the membrane.
-        int sideLength = membrane->m_membrane.getCellDimensions();
+        int sideLength = membrane->getCellDimensions();
         // Find the position of the membrane.
         Ogre::Vector3 origin = sceneNode->m_transform.position;
 
@@ -424,10 +424,10 @@ CompoundCloudSystem::update(int renderTime, int) {
                          y < (origin.y + sideLength/2 - offsetY)/gridSize + height/2; y++)
                 {
                     // Checks if the point is in the density grid and that it is inside the membrane.
-                    if (x >= 0 && x < width && y >= 0 && y < height && membrane->m_membrane.contains((x-width/2)*gridSize-origin.x+offsetX,(y-height/2)*gridSize-origin.y+offsetY))
+                    if (x >= 0 && x < width && y >= 0 && y < height && membrane->contains((x-width/2)*gridSize-origin.x+offsetX,(y-height/2)*gridSize-origin.y+offsetY))
                     {
                         // Absorb .2 (third parameter) of the available compounds.
-                        membrane->m_membrane.absorbCompounds(compoundCloud->takeCompound(x, y, .2));
+                        membrane->absorbCompounds(compoundCloud->takeCompound(x, y, .2));
                     }
                 }
             }

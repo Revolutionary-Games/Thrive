@@ -6,15 +6,13 @@
 #include "scripting/luabind.h"
 #include "engine/typedefs.h"
 
-#include "microbe_stage/membrane.h"
-
 #include <luabind/object.hpp>
-#include <memory>
 #include <OgreCommon.h>
 #include <OgreColourValue.h>
 #include <OgreMath.h>
 #include <OgreVector3.h>
-#include <unordered_set>
+#include <vector>
+#include <algorithm>
 
 
 namespace thrive {
@@ -42,6 +40,7 @@ public:
     static luabind::scope
     luaBindings();
 
+    MembraneComponent();
 
     void
     load(
@@ -63,16 +62,74 @@ public:
     // Gets the amount of a certain compound the membrane absorbed.
     int getAbsorbedCompounds();
 
+    // Creates the 2D points in the membrane by looking at the positions of the organelles.
+	void DrawMembrane();
+
+    // Sees if the given point is inside the membrane.
+	bool contains(float x, float y);
+
+	void Initialize();
+
+	void update();
+
+	// Creates a 3D prism from the 2D vertices.
+	void MakePrism();
+
+	// Returns the length of the bounding membrane "box".
+	int getCellDimensions() {return cellDimensions;}
+
+	// Adds absorbed compound to the membrane.
+	// These are later queried and added to the vacuoles.
+	void absorbCompounds(int amount);
+
+    // Finds the position of external organelles based on its "internal" location.
+	Ogre::Vector3 GetExternalOrganelle(double x, double y);
+
+	// Return the position of the closest organelle to the target point if it is less then a certain threshold away.
+	Ogre::Vector3 FindClosestOrganelles(Ogre::Vector3 target);
+
+	// Decides where the point needs to move based on the position of the closest organelle.
+	Ogre::Vector3 GetMovement(Ogre::Vector3 target, Ogre::Vector3 closestOrganelle);
+
+
     // Gets the position of the closest membrane point
     luabind::object getExternOrganellePos(double x, double y);
+
+    bool isInitialized;
+
+    	// Finds the UV coordinates be projecting onto a plane and stretching to fit a circle.
+	void CalcUVCircle();
+
+	// Finds the normals for the mesh.
+	void CalcNormals();
+
+    // Stores the Mesh in a vector such that every 3 points make up a triangle.
+    std::vector<Ogre::Vector3> MeshPoints;
+
+    // Stores the UV coordinates for the MeshPoints.
+    std::vector<Ogre::Vector3> UVs;
+
+    // Stores the normals for every point described in MeshPoints.
+    std::vector<Ogre::Vector3> Normals;
 
 
 private:
     friend class MembraneSystem;
     friend class CompoundCloudSystem;
-    Membrane m_membrane;
+
+    // Stores the positions of the organelles.
     std::vector<Ogre::Vector3> organellePositions;
-    bool wantsMembrane = true;
+
+    // The length in pixels of a side of the square that bounds the membrane.
+    int cellDimensions;
+    // The amount of points on the side of the membrane.
+    int membraneResolution;
+    // Stores the generated 2-Dimensional membrane.
+    std::vector<Ogre::Vector3>   vertices2D;
+
+
+    // The amount of compounds stored in the membrane.
+    int compoundAmount;
 };
 
 
@@ -121,6 +178,7 @@ public:
     * @brief Updates the system
     */
     void update(int, int) override;
+
 
 private:
 
