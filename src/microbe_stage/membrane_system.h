@@ -70,7 +70,7 @@ public:
 
 	void Initialize();
 
-	void update();
+	void Update();
 
 	// Creates a 3D prism from the 2D vertices.
 	void MakePrism();
@@ -96,6 +96,7 @@ public:
     luabind::object getExternOrganellePos(double x, double y);
 
     bool isInitialized;
+    bool wantsMembrane;
 
     	// Finds the UV coordinates be projecting onto a plane and stretching to fit a circle.
 	void CalcUVCircle();

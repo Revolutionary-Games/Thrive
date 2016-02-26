@@ -76,58 +76,58 @@ CompoundCloudComponent::addCloud(float dens, int x, int y) {
         density[(x-offsetX)/gridSize+width/2][(y-offsetY)/gridSize+height/2] += dens;
     }
     // The added cloud goes into the 8 tiles surrounding the player. These will be "activated" once the player enters them.
-    else if (x > -width*gridSize*3/2 && x < width*gridSize*3/2 &&
-             y > -height*gridSize*3/2 && y < height*gridSize*3/2)
+    else if (x-offsetX > -width*gridSize*3/2 && x-offsetX < width*gridSize*3/2 &&
+             y-offsetY > -height*gridSize*3/2 && y-offsetY < height*gridSize*3/2)
     {
         // Left column.
-        if (x > -width*gridSize*3/2 && x < -width*gridSize/2)
+        if (x-offsetX > -width*gridSize*3/2 && x < -width*gridSize/2)
         {
             // Top left.
-            if (y > height*gridSize/2 && y < height*gridSize*3/2)
+            if (y-offsetY > height*gridSize/2 && y-offsetY < height*gridSize*3/2)
             {
                 density_11[(x-offsetX)/gridSize+width*3/2][(y-offsetY)/gridSize-height/2] += dens;
             }
             // Middle left.
-            else if (y > -height*gridSize/2 && y < height*gridSize/2)
+            else if (y-offsetY > -height*gridSize/2 && y-offsetY < height*gridSize/2)
             {
                 density_21[(x-offsetX)/gridSize+width*3/2][(y-offsetY)/gridSize+height/2] += dens;
             }
             // Bottom left.
-            else if (y > -height*gridSize*3/2 && y < -height*gridSize/2)
+            else if (y-offsetY > -height*gridSize*3/2 && y-offsetY < -height*gridSize/2)
             {
                 density_31[(x-offsetX)/gridSize+width*3/2][(y-offsetY)/gridSize+height*3/2] += dens;
             }
         }
         // Middle column.
-        else if (x > -width*gridSize/2 && x < width*gridSize/2)
+        else if (x-offsetX > -width*gridSize/2 && x < width*gridSize/2)
         {
             // Middle top.
-            if (y > height*gridSize/2 && y < height*gridSize*3/2)
+            if (y-offsetY > height*gridSize/2 && y-offsetY < height*gridSize*3/2)
             {
                 density_12[(x-offsetX)/gridSize+width/2][(y-offsetY)/gridSize+height*3/2] += dens;
             }
             // Middle bottom.
-            else if (y > -height*gridSize*3/2 && y < -height*gridSize/2)
+            else if (y-offsetY > -height*gridSize*3/2 && y-offsetY < -height*gridSize/2)
             {
                 density_32[(x-offsetX)/gridSize+width/2][(y-offsetY)/gridSize-height/2] += dens;
             }
 
         }
         // Right column.
-        else if (x > width*gridSize/2 && x < width*gridSize*3/2)
+        else if (x-offsetX > width*gridSize/2 && x < width*gridSize*3/2)
         {
             // Top right.
-            if (y > height*gridSize/2 && y < height*gridSize*3/2)
+            if (y-offsetY > height*gridSize/2 && y-offsetY < height*gridSize*3/2)
             {
                 density_13[(x-offsetX)/gridSize-width/2][(y-offsetY)/gridSize-height/2] += dens;
             }
             // Middle right.
-            else if (y > -height*gridSize/2 && y < height*gridSize/2)
+            else if (y-offsetY > -height*gridSize/2 && y-offsetY < height*gridSize/2)
             {
                 density_23[(x-offsetX)/gridSize-width/2][(y-offsetY)/gridSize+height/2] += dens;
             }
             // Bottom right.
-            else if (y > -height*gridSize*3/2 && y < -height*gridSize/2)
+            else if (y-offsetY > -height*gridSize*3/2 && y-offsetY < -height*gridSize/2)
             {
                 density_33[(x-offsetX)/gridSize-width/2][(y-offsetY)/gridSize+height*3/2] += dens;
             }
@@ -144,6 +144,20 @@ CompoundCloudComponent::takeCompound(int x, int y, float rate) {
         int amountToGive = static_cast<int>(density[x][y])*rate;
         density[x][y] -= amountToGive;
         if (density[x][y] < 1) density[x][y] = 0;
+
+        return amountToGive;
+    }
+
+    return -1;
+
+}
+
+int
+CompoundCloudComponent::amountAvailable(int x, int y, float rate) {
+
+    if (x >= 0 && x < width && y >= 0 && y < height)
+    {
+        int amountToGive = static_cast<int>(density[x][y])*rate;
 
         return amountToGive;
     }
@@ -176,12 +190,6 @@ struct CompoundCloudSystem::Implementation {
         CompoundCloudComponent
     > m_compounds = {true};
 
-    // All object with a membrane. These are able to absorb the compound from above.
-    EntityFilter<
-        MembraneComponent,
-        OgreSceneNodeComponent
-    > m_absorbers;
-
     Ogre::SceneManager* m_sceneManager = nullptr;
 };
 
@@ -211,7 +219,6 @@ CompoundCloudSystem::init(
 ) {
     System::init(gameState);
     m_impl->m_compounds.setEntityManager(&gameState->entityManager());
-    m_impl->m_absorbers.setEntityManager(&gameState->entityManager());
     m_impl->m_sceneManager = gameState->sceneManager();
     this->gameState = gameState;
 
@@ -227,7 +234,6 @@ CompoundCloudSystem::init(
 void
 CompoundCloudSystem::shutdown() {
     m_impl->m_compounds.setEntityManager(nullptr);
-    m_impl->m_absorbers.setEntityManager(nullptr);
     m_impl->m_sceneManager = nullptr;
     System::shutdown();
 }
@@ -398,40 +404,6 @@ CompoundCloudSystem::update(int renderTime, int) {
         advect(compoundCloud->oldDens, compoundCloud->density, renderTime);
         // Write the density grid of this compound to a bitmap to be read by the fluid shader.
         writeToFile(compoundCloud->density);
-    }
-
-    // For all entities that have a membrane do...
-    for (auto& absorber : m_impl->m_absorbers)
-    {
-        MembraneComponent* membrane = std::get<0>(absorber.second);
-        OgreSceneNodeComponent* sceneNode = std::get<1>(absorber.second);
-
-        // Find the bounding box of the membrane.
-        int sideLength = membrane->getCellDimensions();
-        // Find the position of the membrane.
-        Ogre::Vector3 origin = sceneNode->m_transform.position;
-
-        // Each membrane absorbs a certain amount of each compound.
-        for (auto& value : m_impl->m_compounds)
-        {
-            CompoundCloudComponent* compoundCloud = std::get<0>(value.second);
-
-            // Iterate though all of the points inside the bounding box.
-            for (int x = (origin.x - sideLength/2 - offsetX)/gridSize + width/2;
-                     x < (origin.x + sideLength/2 - offsetX)/gridSize + width/2; x++)
-            {
-                for (int y = (origin.y - sideLength/2 - offsetY)/gridSize + height/2;
-                         y < (origin.y + sideLength/2 - offsetY)/gridSize + height/2; y++)
-                {
-                    // Checks if the point is in the density grid and that it is inside the membrane.
-                    if (x >= 0 && x < width && y >= 0 && y < height && membrane->contains((x-width/2)*gridSize-origin.x+offsetX,(y-height/2)*gridSize-origin.y+offsetY))
-                    {
-                        // Absorb .2 (third parameter) of the available compounds.
-                        membrane->absorbCompounds(compoundCloud->takeCompound(x, y, .2));
-                    }
-                }
-            }
-        }
     }
 
     // Reload the background to have the modified texture.

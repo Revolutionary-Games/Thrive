@@ -77,6 +77,14 @@ public:
         int y,
         float rate
     );
+
+    /// Rate should be less than one.
+    int
+    amountAvailable(
+        int x,
+        int y,
+        float rate
+    );
 };
 
 

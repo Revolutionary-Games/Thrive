@@ -44,7 +44,7 @@ function MicrobeComponent:__init(isPlayerMicrobe, speciesName)
     self:_resetCompoundPriorities()
     self.initialized = false
     self.isPlayerMicrobe = isPlayerMicrobe
-    self.maxBandwidth = 0
+    self.maxBandwidth = 10.0*BANDWIDTH_PER_ORGANELLE
     self.remainingBandwidth = 0
     self.compoundCollectionTimer = EXCESS_COMPOUND_COLLECTION_INTERVAL
     self.isCurrentlyEngulfing = false
@@ -657,22 +657,24 @@ end
 -- @param maxAngle
 -- Relative angle to the microbe. 0 = microbes front. Should be between 0 and 359 and higher or equal than minAngle
 function Microbe:ejectCompound(compoundId, amount, minAngle, maxAngle, radius)
-    local chosenAngle = rng:getReal(minAngle, maxAngle)
-    -- Find the direction the microbe is facing
-    local yAxis = self.sceneNode.transform.orientation:yAxis()
-    local microbeAngle = math.atan2(yAxis.x, yAxis.y)
-    if (microbeAngle < 0) then
-        microbeAngle = microbeAngle + 2*math.pi
-    end
-    microbeAngle = microbeAngle * 180/math.pi
-    -- Take the mirobe angle into account so we get world relative degrees
-    local finalAngle = (chosenAngle + microbeAngle) % 360
-    local _radius = INITIAL_EMISSION_RADIUS
-    if radius then
-        _radius = radius
-    end
+    -- local chosenAngle = rng:getReal(minAngle, maxAngle)
+    -- -- Find the direction the microbe is facing
+    -- local yAxis = self.sceneNode.transform.orientation:yAxis()
+    -- local microbeAngle = math.atan2(yAxis.x, yAxis.y)
+    -- if (microbeAngle < 0) then
+        -- microbeAngle = microbeAngle + 2*math.pi
+    -- end
+    -- microbeAngle = microbeAngle * 180/math.pi
+    -- -- Take the mirobe angle into account so we get world relative degrees
+    -- local finalAngle = (chosenAngle + microbeAngle) % 360
+    -- local _radius = INITIAL_EMISSION_RADIUS
+    -- if radius then
+        -- _radius = radius
+    -- end
     -- Find how far away we should spawn the particle so it doesn't collide with microbe.
-    self.compoundEmitter:emitCompound(compoundId, amount, finalAngle, _radius)
+    local pos = self.membraneComponent:getExternOrganellePos(0, -1);
+    createCompoundCloud("glucose", pos[1], pos[2], amount*1000)
+    -- self.compoundEmitter:emitCompound(compoundId, amount, finalAngle, _radius)
     self.microbe:_updateCompoundPriorities()
 end
 
@@ -776,8 +778,8 @@ function Microbe:update(logicTime)
                 self:storeCompound(compound, amount, true)
             end
         end
-        local compoundAmount = self.membraneComponent:getAbsorbedCompounds()
-        self:storeCompound(CompoundRegistry.getCompoundId("glucose"), compoundAmount/1000, false)
+        --local compoundAmount = self.membraneComponent:getAbsorbedCompounds()
+        --self:storeCompound(CompoundRegistry.getCompoundId("glucose"), compoundAmount/1000, false)
         -- Distribute compounds to Process Organelles
         for _, processOrg in pairs(self.microbe.processOrganelles) do
             processOrg:update(self, logicTime)
@@ -818,7 +820,7 @@ function Microbe:update(logicTime)
         end
         -- Used to detect when engulfing stops
         self.microbe.isBeingEngulfed = false;
-        self.compoundAbsorber:setAbsorbtionCapacity(self.microbe.remainingBandwidth)
+        self.compoundAbsorber:setAbsorbtionCapacity(math.min(self.microbe.capacity - self.microbe.stored, self.microbe.remainingBandwidth))
     else
         self.microbe.deathTimer = self.microbe.deathTimer - logicTime
         if self.microbe.deathTimer <= 0 then

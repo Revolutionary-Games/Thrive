@@ -56,6 +56,9 @@ MembraneComponent::MembraneComponent()
 
 	// The total amount of compounds.
 	compoundAmount = 0;
+
+	isInitialized = false;
+	wantsMembrane = true;
 }
 
 void
@@ -207,7 +210,7 @@ void MembraneComponent::CalcUVCircle()
     }
 }
 
-void MembraneComponent::update()
+void MembraneComponent::Update()
 {
     MeshPoints.clear();
 
@@ -386,10 +389,15 @@ MembraneSystem::update(int, int) {
         MembraneComponent* membraneComponent = std::get<0>(value.second);
         OgreSceneNodeComponent* sceneNodeComponent = std::get<1>(value.second);
 
-        if (!membraneComponent->isInitialized && sceneNodeComponent->m_meshName.get().find("membrane") != std::string::npos)
+        if (membraneComponent->wantsMembrane && sceneNodeComponent->m_meshName.get().find("membrane") != std::string::npos)
         {
-            membraneComponent->Initialize();
-            membraneComponent->update();
+            membraneComponent->wantsMembrane = false;
+            // Get the vertex positions of the membrane.
+            if(!membraneComponent->isInitialized)
+            {
+                membraneComponent->Initialize();
+            }
+            membraneComponent->Update();
 
             //If the mesh already exists, destroy the old one
             Ogre::MeshManager::getSingleton().remove(sceneNodeComponent->m_meshName.get());
@@ -503,4 +511,5 @@ MembraneSystem::update(int, int) {
 
     }
 }
+
 
