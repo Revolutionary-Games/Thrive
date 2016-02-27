@@ -9,9 +9,15 @@ local function setupBackground()
     entity:addComponent(skyplane)
     
     -- Temporary here, creates one type of compound cloud.
-    local fluid = Entity("compound_cloud_glucose")
+    local glucoseCloud = Entity("compound_cloud_glucose")
     local compoundCloud = CompoundCloudComponent()
-    fluid:addComponent(compoundCloud)
+    compoundCloud:initialize("glucose", 0.0, 255.0, 255.0)
+    glucoseCloud:addComponent(compoundCloud)
+    
+    local glucoseCloud2 = Entity("compound_cloud_oxygen")
+    local compoundCloud2 = CompoundCloudComponent()
+    compoundCloud2:initialize("oxygen", 255.0, 0.0, 0.0)
+    glucoseCloud2:addComponent(compoundCloud2)
 end
 
 local function setupCamera()
@@ -229,6 +235,9 @@ local function createSpawnSystem()
     local spawnGlucoseCloud =  function(pos)
         createCompoundCloud("glucose", pos.x, pos.y, 15000)
     end
+    local spawnOxygenCloud =  function(pos)
+        createCompoundCloud("oxygen", pos.x, pos.y, 15000)
+    end
 
     --Spawn one emitter on average once in every square of sidelength 10
     -- (square dekaunit?)
@@ -242,6 +251,7 @@ local function createSpawnSystem()
     spawnSystem:addSpawnType(ChloroplastOrganelleSpawnFunction, 1/12000, 50)
     
     spawnSystem:addSpawnType(spawnGlucoseCloud, 1/5000, 50)
+    spawnSystem:addSpawnType(spawnOxygenCloud, 1/5000, 50)
 
     for name, species in pairs(starter_microbes) do
         spawnSystem:addSpawnType(

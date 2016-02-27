@@ -43,7 +43,16 @@ public:
     std::vector<  std::vector<float>  > density_32;
     std::vector<  std::vector<float>  > density_33;
 
+    /// The color of the compound cloud.
+    Ogre::ColourValue color;
+
+    /// The name of the compound.
+    std::string compound;
+
 public:
+
+    void initialize(std::string name, float red, float green, float blue);
+
     /**
     * @brief Lua bindings
     *
@@ -152,12 +161,17 @@ private:
 	std::vector<  std::vector<float>  > xVelocity;
 	std::vector<  std::vector<float>  > yVelocity;
 
+	/// The location of the .bmp where we are recording the densities.
+	FILE* f;
+
 	void CreateVelocityField();
 	void diffuse(float diffRate, std::vector<  std::vector<float>  >& oldDens, const std::vector<  std::vector<float>  >& density, int dt);
 	void advect(std::vector<  std::vector<float>  >& oldDens, std::vector<  std::vector<float>  >& density, int dt);
 
+    // Clears the density field file to blank (black).
+    void initializeFile(std::string compoundName);
 	// Draws the density field of the compound to a .bmp, which can then be read by the fragment shader.
-	void writeToFile(std::vector<  std::vector<float>  >& density);
+	void writeToFile(std::vector<  std::vector<float>  >& density, std::string compoundName, Ogre::ColourValue color);
 };
 
 }

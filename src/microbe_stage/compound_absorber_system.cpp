@@ -236,7 +236,7 @@ CompoundAbsorberSystem::update(int, int) {
         for (auto& compound : m_impl->m_compounds)
         {
             CompoundCloudComponent* compoundCloud = std::get<0>(compound.second);
-            CompoundId id = CompoundRegistry::getCompoundId("glucose");
+            CompoundId id = CompoundRegistry::getCompoundId(compoundCloud->compound);
 
             // Iterate though all of the points inside the bounding box.
             for (int x = (origin.x - sideLength/2 - compoundCloud->offsetX)/compoundCloud->gridSize + compoundCloud->width/2;

@@ -672,8 +672,7 @@ function Microbe:ejectCompound(compoundId, amount, minAngle, maxAngle, radius)
         -- _radius = radius
     -- end
     -- Find how far away we should spawn the particle so it doesn't collide with microbe.
-    local pos = self.membraneComponent:getExternOrganellePos(0, -1);
-    createCompoundCloud("glucose", pos[1], pos[2], amount*1000)
+    createCompoundCloud("glucose", 0, 0, amount*1000)
     -- self.compoundEmitter:emitCompound(compoundId, amount, finalAngle, _radius)
     self.microbe:_updateCompoundPriorities()
 end
