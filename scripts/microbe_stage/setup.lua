@@ -7,17 +7,6 @@ local function setupBackground()
 	skyplane.properties.scale = 200
     skyplane.properties:touch()
     entity:addComponent(skyplane)
-    
-    -- Temporary here, creates one type of compound cloud.
-    local glucoseCloud = Entity("compound_cloud_glucose")
-    local compoundCloud = CompoundCloudComponent()
-    compoundCloud:initialize("glucose", 0.0, 255.0, 255.0)
-    glucoseCloud:addComponent(compoundCloud)
-    
-    local glucoseCloud2 = Entity("compound_cloud_oxygen")
-    local compoundCloud2 = CompoundCloudComponent()
-    compoundCloud2:initialize("oxygen", 255.0, 0.0, 0.0)
-    glucoseCloud2:addComponent(compoundCloud2)
 end
 
 local function setupCamera()
@@ -53,6 +42,16 @@ end
 
 local function setupCompounds()
     CompoundRegistry.loadFromXML("../scripts/definitions/compounds.xml")
+end
+
+local function setupCompoundClouds()
+    for compoundId in CompoundRegistry.getCompoundList() do
+        local name = CompoundRegistry.getCompoundInternalName(compoundId)
+        local entity = Entity("compound_cloud_" .. name)
+        local compoundCloud = CompoundCloudComponent()
+        compoundCloud:initialize(name, math.random()*255, math.random()*255, math.random()*255)
+        entity:addComponent(compoundCloud)
+    end
 end
 
 --  This isn't a finished solution. Optimally the process class would be moved to CPP and loaded there entirely.
@@ -172,39 +171,6 @@ end
 local function createSpawnSystem()
     local spawnSystem = SpawnSystem()
 
-    local spawnOxygenEmitter = function(pos)
-        local entity = Entity()
-        setSpawnablePhysics(entity, pos, "molecule.mesh", 1, CylinderShape(
-                CollisionShape.AXIS_X, 
-                0.4,
-                2.0
-            ))
-        addEmitter2Entity(entity, "oxygen")
-        return entity
-    end
-    local spawnCO2Emitter = function(pos)
-        local entity = Entity()
-        setSpawnablePhysics(entity, pos, "co2.mesh", 0.4, CylinderShape(
-                CollisionShape.AXIS_X, 
-                0.4,
-                2.0
-            ))
-        addEmitter2Entity(entity, "co2")
-        return entity
-    end
-    local spawnGlucoseEmitter = function(pos)
-        local entity = Entity()
-        setSpawnablePhysics(entity, pos, "glucose.mesh", 1, SphereShape(HEX_SIZE))
-        addEmitter2Entity(entity, "glucose")
-        return entity
-    end
-    local spawnAmmoniaEmitter = function(pos)
-        local entity = Entity()
-        setSpawnablePhysics(entity, pos, "ammonia.mesh", 0.5, SphereShape(HEX_SIZE))
-        addEmitter2Entity(entity, "ammonia")
-        return entity
-    end
-
     local toxinOrganelleSpawnFunction = function(pos) 
         powerupEntity = Entity()
         setSpawnablePhysics(powerupEntity, pos, "AgentVacuole.mesh", 0.9, SphereShape(HEX_SIZE))
@@ -238,6 +204,12 @@ local function createSpawnSystem()
     local spawnOxygenCloud =  function(pos)
         createCompoundCloud("oxygen", pos.x, pos.y, 15000)
     end
+    local spawnCO2Cloud =  function(pos)
+        createCompoundCloud("co2", pos.x, pos.y, 15000)
+    end
+    local spawnAmmoniaCloud =  function(pos)
+        createCompoundCloud("ammonia", pos.x, pos.y, 15000)
+    end
 
     --Spawn one emitter on average once in every square of sidelength 10
     -- (square dekaunit?)
@@ -251,6 +223,8 @@ local function createSpawnSystem()
     spawnSystem:addSpawnType(ChloroplastOrganelleSpawnFunction, 1/12000, 50)
     
     spawnSystem:addSpawnType(spawnGlucoseCloud, 1/5000, 50)
+    spawnSystem:addSpawnType(spawnCO2Cloud, 1/5000, 50)
+    spawnSystem:addSpawnType(spawnAmmoniaCloud, 1/5000, 50)
     spawnSystem:addSpawnType(spawnOxygenCloud, 1/5000, 50)
 
     for name, species in pairs(starter_microbes) do
@@ -264,6 +238,8 @@ local function createSpawnSystem()
 end
 
 local function setupEmitter()
+
+    createCompoundCloud("glucose", 5, 5, 2000000)
     -- -- Setting up a test emitter
     -- local entity = Entity("glucose-emitter")
     -- -- Rigid body
@@ -412,6 +388,7 @@ local function createMicrobeStage(name)
         function()
             setupBackground()
             setupCamera()
+            setupCompoundClouds()
             setupEmitter()
             setupSpecies()
             setupPlayer()

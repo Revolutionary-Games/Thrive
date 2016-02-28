@@ -29,6 +29,8 @@
 #include <string.h>
 #include <cstdio>
 
+#include <chrono>
+
 using namespace thrive;
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -307,17 +309,39 @@ CompoundCloudSystem::update(int renderTime, int) {
         compoundCloud->density_32.resize(width, std::vector<float>(height, 0));
         compoundCloud->density_33.resize(width, std::vector<float>(height, 0));
 
-        // Internalizes the compound cloud texture to a pure black color, so that Ogre MaterialManager can find it.
-        initializeFile(compoundCloud->compound);
-
         // Modifies the material to draw this compound cloud in addition to the others.
         Ogre::MaterialPtr materialPtr = Ogre::MaterialManager::getSingleton().getByName("CompoundClouds", "General");
         Ogre::Pass* pass = materialPtr->getTechnique(0)->createPass();
-        pass->setSceneBlending(Ogre::SBT_ADD);
+        pass->setSceneBlending(Ogre::SBT_TRANSPARENT_ALPHA);
         pass->setVertexProgram("CompoundCloud_VS");
         pass->setFragmentProgram("CompoundCloud_PS");
-        Ogre::TexturePtr texturePtr = Ogre::TextureManager::getSingleton().load(compoundCloud->compound + ".bmp", "General");
-        pass->createTextureUnitState()->setTexture(texturePtr);
+        //Ogre::TexturePtr texturePtr = Ogre::TextureManager::getSingleton().load(compoundCloud->compound + ".bmp", "General");
+        Ogre::TexturePtr texturePtr = Ogre::TextureManager::getSingleton().createManual(compoundCloud->compound, "General", Ogre::TEX_TYPE_2D, width, height,
+                                                                                        0, Ogre::PF_BYTE_BGRA, Ogre::TU_DYNAMIC_WRITE_ONLY_DISCARDABLE);
+        Ogre::HardwarePixelBufferSharedPtr cloud;
+        cloud = texturePtr->getBuffer();
+        cloud->lock(Ogre::HardwareBuffer::HBL_DISCARD);
+        const Ogre::PixelBox& pixelBox = cloud->getCurrentLock();
+        uint8_t* pDest = static_cast<uint8_t*>(pixelBox.data);
+        // Fill in some pixel data. This will give a semi-transparent blue,
+        // but this is of course dependent on the chosen pixel format.
+        for (int i = 0; i < width; i++)
+        {
+            for(int j = 0; j < height; j++)
+            {
+                *pDest++ = 0; // R
+                *pDest++ = 0; // G
+                *pDest++ = 0; // B
+                *pDest++ = 0; // A
+            }
+            pDest += pixelBox.getRowSkip() * Ogre::PixelUtil::getNumElemBytes(pixelBox.format);
+        }
+        // Unlock the pixel buffer
+        cloud->unlock();
+        pass->createTextureUnitState(compoundCloud->compound);
+
+
+
         texturePtr = Ogre::TextureManager::getSingleton().load("PerlinNoise.jpg", "General");
         pass->createTextureUnitState()->setTexture(texturePtr);
     }
@@ -438,9 +462,88 @@ CompoundCloudSystem::update(int renderTime, int) {
         // Move the compound clouds about the velocity field.
         advect(compoundCloud->oldDens, compoundCloud->density, renderTime);
         // Write the density grid of this compound to a bitmap to be read by the fluid shader.
-        writeToFile(compoundCloud->density, compoundCloud->compound, compoundCloud->color);
+        //writeToFile(compoundCloud->density, compoundCloud->compound, compoundCloud->color);
         // Reload the background to have the modified texture.
-        Ogre::Root::getSingletonPtr()->getTextureManager()->getByName(compoundCloud->compound + ".bmp", "General")->reload();
+        //Ogre::Root::getSingletonPtr()->getTextureManager()->getByName(compoundCloud->compound + ".bmp", "General")->reload();
+
+        //auto start = std::chrono::high_resolution_clock::now();
+
+        Ogre::HardwarePixelBufferSharedPtr cloud;
+        cloud = Ogre::TextureManager::getSingleton().getByName(compoundCloud->compound, "General")->getBuffer();
+        cloud->lock(Ogre::HardwareBuffer::HBL_DISCARD);
+        const Ogre::PixelBox& pixelBox = cloud->getCurrentLock();
+        uint8_t* pDest = static_cast<uint8_t*>(pixelBox.data);
+        // Fill in some pixel data. This will give a semi-transparent blue,
+        // but this is of course dependent on the chosen pixel format.
+        for (int j = 0; j < height; j++)
+        {
+            for(int i = 0; i < width; i++)
+            {
+                int intensity = static_cast<int>(compoundCloud->density[i][height-j-1]);
+
+                if (intensity < 0)
+                {
+                    intensity = 0;
+                }
+                else if (intensity > 255)
+                {
+                    intensity = 255;
+                }
+
+
+                *pDest++ = compoundCloud->color.b; // B
+                *pDest++ = compoundCloud->color.g; // G
+                *pDest++ = compoundCloud->color.r; // R
+                *pDest++ = intensity; // A
+            }
+            pDest += pixelBox.getRowSkip() * Ogre::PixelUtil::getNumElemBytes(pixelBox.format);
+        }
+        // Unlock the pixel buffer
+        cloud->unlock();
+
+//        int red, green, blue;
+//
+//        compoundCloud->cloud->lock(Ogre::HardwareBuffer::HBL_DISCARD);
+//        const Ogre::PixelBox& pixelBox = compoundCloud->cloud->getCurrentLock();
+//        uint8_t* pDest = static_cast<uint8_t*>(pixelBox.data);
+//        // Fill in some pixel data. This will give a semi-transparent blue,
+//        // but this is of course dependent on the chosen pixel format.
+//        for (int i = 0; i < width; i++)
+//        {
+//            for(int j = 0; j < height; j++)
+//            {
+//                int intensity = static_cast<int>(compoundCloud->density[i][j]);
+//
+//                if (intensity <= 0)
+//                {
+//                    intensity = 0;
+//                    red = 0; green = 0; blue = 0;
+//                }
+//                else if (intensity < 255)
+//                {
+//                    red = intensity*compoundCloud->color.r/256; green = intensity*compoundCloud->color.g/256; blue = intensity*compoundCloud->color.b/256;
+//                }
+//                else
+//                {
+//                    intensity = 255;
+//                    red = 255*compoundCloud->color.r/256; green = 255*compoundCloud->color.g/256; blue = 255*compoundCloud->color.b/256;
+//                }
+//                if(red < 0 && green < 0 && blue < 0 && intensity < 0) *pDest = 255;
+//
+//                *pDest++ = 255;
+//                *pDest++ = 0;
+//                *pDest++ = 0;
+//                *pDest++ = 10;
+//            }
+//
+//            pDest += pixelBox.getRowSkip() * Ogre::PixelUtil::getNumElemBytes(pixelBox.format);
+//        }
+//        // Unlock the pixel buffer
+//        compoundCloud->cloud->unlock();
+
+        //auto end = std::chrono::high_resolution_clock::now();
+        //auto diff = std::chrono::duration_cast<std::chrono::microseconds>(end-start);
+        //std::cout << diff.count() << std::endl;
     }
 }
 

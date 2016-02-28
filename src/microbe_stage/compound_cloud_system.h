@@ -3,6 +3,7 @@
 #include <vector>
 #include <OgreEntity.h>
 #include <OgreSceneManager.h>
+#include "OgreHardwarePixelBuffer.h"
 
 #include "engine/component.h"
 #include "engine/system.h"
