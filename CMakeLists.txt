@@ -251,7 +251,7 @@ target_link_libraries(ThriveLib
     #These two FFMPEG need to be at the top (before ogre?) to avoid linking error
     ${OgreFFMPEG_LIBRARIES} 
     ${FFMPEG_LIBRARIES}
-    ${SWRESAMPLE_LIBRARIES}
+    ${AVRESAMPLE_LIBRARIES}
     ${Boost_LIBRARIES}
     ${OGRE_LIBRARIES}
     ${OIS_LIBRARIES}
