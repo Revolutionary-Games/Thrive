@@ -264,7 +264,7 @@ CompoundCloudSystem::shutdown() {
 
 void
 CompoundCloudSystem::update(int renderTime, int) {
-
+    std::cout << "Start" << std::endl;
     // If we do not have a reference to the player scene node, get it.
     if (playerNode == NULL) {
         playerNode = static_cast<OgreSceneNodeComponent*>(gameState->entityManager().getComponent(
@@ -285,6 +285,7 @@ CompoundCloudSystem::update(int renderTime, int) {
 
         compoundCloudsPlane->getParentSceneNode()->setPosition(offsetX, offsetY, -1.0);
     }
+    std::cout << "Player moved" << std::endl;
 
     // For all newly created entities, initialize their parameters.
     for (auto& value : m_impl->m_compounds.addedEntities()) {
@@ -352,122 +353,104 @@ CompoundCloudSystem::update(int renderTime, int) {
     for (auto& value : m_impl->m_compounds)
     {
         CompoundCloudComponent* compoundCloud = std::get<0>(value.second);
+        std::cout << "entered update loop for: " << compoundCloud->compound << std::endl;
 
         // If the offset of the compound cloud is different from the fluid systems offset,
         // then the player must have moved, so we need to adjust the 3x3 grid.
-        while (compoundCloud->offsetX != offsetX || compoundCloud->offsetY != offsetY)
+        if (compoundCloud->offsetX != offsetX || compoundCloud->offsetY != offsetY)
         {
+            std::cout << "Getting ready to move: " << std::to_string(compoundCloud->offsetX) << " to "
+                      << std::to_string(offsetX) << " and " << std::to_string(compoundCloud->offsetY) << " to "
+                      << std::to_string(offsetY) << std::endl;
             // If we moved to the top tile.
             if (compoundCloud->offsetX == offsetX && compoundCloud->offsetY < offsetY)
             {
                 // Move bottom row up.
-                compoundCloud->density_31 = compoundCloud->density_21;
-                compoundCloud->density_32 = compoundCloud->density;
-                compoundCloud->density_33 = compoundCloud->density_23;
+                compoundCloud->density_31.swap(compoundCloud->density_21);
+                compoundCloud->density_32.swap(compoundCloud->density);
+                compoundCloud->density_33.swap(compoundCloud->density_23);
 
                 // Move middle row up.
-                compoundCloud->density_21 = compoundCloud->density_11;
-                compoundCloud->density = compoundCloud->density_12;
-                compoundCloud->density_23 = compoundCloud->density_13;
+                compoundCloud->density_21.swap(compoundCloud->density_11);
+                compoundCloud->density.swap(compoundCloud->density_12);
+                compoundCloud->density_23.swap(compoundCloud->density_13);
 
                 // Create the new bottom row and old density .
-                compoundCloud->density_11.clear();
-                compoundCloud->density_12.clear();
-                compoundCloud->density_13.clear();
-                compoundCloud->oldDens.clear();
-
-                compoundCloud->density_11.resize(width, std::vector<float>(height, 0));
-                compoundCloud->density_12.resize(width, std::vector<float>(height, 0));
-                compoundCloud->density_13.resize(width, std::vector<float>(height, 0));
-                compoundCloud->oldDens.resize(width, std::vector<float>(height, 0));
+                std::fill(compoundCloud->density_11.begin(), compoundCloud->density_11.begin()+width, std::vector<float>(height, 0.0));
+                std::fill(compoundCloud->density_12.begin(), compoundCloud->density_12.begin()+width, std::vector<float>(height, 0.0));
+                std::fill(compoundCloud->density_13.begin(), compoundCloud->density_13.begin()+width, std::vector<float>(height, 0.0));
+                std::fill(compoundCloud->oldDens.begin(), compoundCloud->oldDens.begin()+width, std::vector<float>(height, 0.0));
             }
             // If we moved to the right tile.
             else if (compoundCloud->offsetX < offsetX && compoundCloud->offsetY == offsetY)
             {
                 // Move left row right.
-                compoundCloud->density_11 = compoundCloud->density_12;
-                compoundCloud->density_21 = compoundCloud->density;
-                compoundCloud->density_31 = compoundCloud->density_32;
+                compoundCloud->density_11.swap(compoundCloud->density_12);
+                compoundCloud->density_21.swap(compoundCloud->density);
+                compoundCloud->density_31.swap(compoundCloud->density_32);
 
                 // Move middle row right.
-                compoundCloud->density_12 = compoundCloud->density_13;
-                compoundCloud->density = compoundCloud->density_23;
-                compoundCloud->density_32 = compoundCloud->density_33;
+                compoundCloud->density_12.swap(compoundCloud->density_13);
+                compoundCloud->density.swap(compoundCloud->density_23);
+                compoundCloud->density_32.swap(compoundCloud->density_33);
 
                 // Create the new right row and old density.
-                compoundCloud->density_13.clear();
-                compoundCloud->density_23.clear();
-                compoundCloud->density_33.clear();
-                compoundCloud->oldDens.clear();
-
-                compoundCloud->density_13.resize(width, std::vector<float>(height, 0));
-                compoundCloud->density_23.resize(width, std::vector<float>(height, 0));
-                compoundCloud->density_33.resize(width, std::vector<float>(height, 0));
-                compoundCloud->oldDens.resize(width, std::vector<float>(height, 0));
+                std::fill(compoundCloud->density_13.begin(), compoundCloud->density_13.begin()+width, std::vector<float>(height, 0.0));
+                std::fill(compoundCloud->density_23.begin(), compoundCloud->density_23.begin()+width, std::vector<float>(height, 0.0));
+                std::fill(compoundCloud->density_33.begin(), compoundCloud->density_33.begin()+width, std::vector<float>(height, 0.0));
+                std::fill(compoundCloud->oldDens.begin(), compoundCloud->oldDens.begin()+width, std::vector<float>(height, 0.0));
             }
             // If we moved to the left tile.
             else if (compoundCloud->offsetX > offsetX && compoundCloud->offsetY == offsetY)
             {
                 // Move right row left.
-                compoundCloud->density_13 = compoundCloud->density_12;
-                compoundCloud->density_23 = compoundCloud->density;
-                compoundCloud->density_33 = compoundCloud->density_32;
+                compoundCloud->density_13.swap(compoundCloud->density_12);
+                compoundCloud->density_23.swap(compoundCloud->density);
+                compoundCloud->density_33.swap(compoundCloud->density_32);
 
                 // Move middle row left.
-                compoundCloud->density_12 = compoundCloud->density_11;
-                compoundCloud->density = compoundCloud->density_21;
-                compoundCloud->density_32 = compoundCloud->density_31;
+                compoundCloud->density_12.swap(compoundCloud->density_11);
+                compoundCloud->density.swap(compoundCloud->density_21);
+                compoundCloud->density_32.swap(compoundCloud->density_31);
 
                 // Create the new left row and old density.
-                compoundCloud->density_11.clear();
-                compoundCloud->density_21.clear();
-                compoundCloud->density_31.clear();
-                compoundCloud->oldDens.clear();
-
-                compoundCloud->density_11.resize(width, std::vector<float>(height, 0));
-                compoundCloud->density_21.resize(width, std::vector<float>(height, 0));
-                compoundCloud->density_31.resize(width, std::vector<float>(height, 0));
-                compoundCloud->oldDens.resize(width, std::vector<float>(height, 0));
+                std::fill(compoundCloud->density_11.begin(), compoundCloud->density_11.begin()+width, std::vector<float>(height, 0.0));
+                std::fill(compoundCloud->density_21.begin(), compoundCloud->density_21.begin()+width, std::vector<float>(height, 0.0));
+                std::fill(compoundCloud->density_31.begin(), compoundCloud->density_31.begin()+width, std::vector<float>(height, 0.0));
+                std::fill(compoundCloud->oldDens.begin(), compoundCloud->oldDens.begin()+width, std::vector<float>(height, 0.0));
             }
             // If we moved to the bottom tile.
             else if (compoundCloud->offsetX == offsetX && compoundCloud->offsetY > offsetY)
             {
                 // Move top row down.
-                compoundCloud->density_11 = compoundCloud->density_21;
-                compoundCloud->density_12 = compoundCloud->density;
-                compoundCloud->density_13 = compoundCloud->density_23;
+                compoundCloud->density_11.swap(compoundCloud->density_21);
+                compoundCloud->density_12.swap(compoundCloud->density);
+                compoundCloud->density_13.swap(compoundCloud->density_23);
 
                 // Move middle row up.
-                compoundCloud->density_21 = compoundCloud->density_31;
-                compoundCloud->density = compoundCloud->density_32;
-                compoundCloud->density_23 = compoundCloud->density_33;
+                compoundCloud->density_21.swap(compoundCloud->density_31);
+                compoundCloud->density.swap(compoundCloud->density_32);
+                compoundCloud->density_23.swap(compoundCloud->density_33);
 
                 // Create the new top row and old density.
-                compoundCloud->density_31.clear();
-                compoundCloud->density_32.clear();
-                compoundCloud->density_33.clear();
-                compoundCloud->oldDens.clear();
-
-                compoundCloud->density_31.resize(width, std::vector<float>(height, 0));
-                compoundCloud->density_32.resize(width, std::vector<float>(height, 0));
-                compoundCloud->density_33.resize(width, std::vector<float>(height, 0));
-                compoundCloud->oldDens.resize(width, std::vector<float>(height, 0));
+                std::fill(compoundCloud->density_31.begin(), compoundCloud->density_31.begin()+width, std::vector<float>(height, 0.0));
+                std::fill(compoundCloud->density_32.begin(), compoundCloud->density_32.begin()+width, std::vector<float>(height, 0.0));
+                std::fill(compoundCloud->density_33.begin(), compoundCloud->density_33.begin()+width, std::vector<float>(height, 0.0));
+                std::fill(compoundCloud->oldDens.begin(), compoundCloud->oldDens.begin()+width, std::vector<float>(height, 0.0));
             }
             compoundCloud->offsetX = offsetX;
             compoundCloud->offsetY = offsetY;
+            std::cout << "Moved the tiles" << std::endl;
         }
+        std::cout << "Left loop" << std::endl;
 
         // Compound clouds move from area of high concentration to area of low.
         diffuse(.01, compoundCloud->oldDens, compoundCloud->density, renderTime);
         // Move the compound clouds about the velocity field.
         advect(compoundCloud->oldDens, compoundCloud->density, renderTime);
-        // Write the density grid of this compound to a bitmap to be read by the fluid shader.
-        //writeToFile(compoundCloud->density, compoundCloud->compound, compoundCloud->color);
-        // Reload the background to have the modified texture.
-        //Ogre::Root::getSingletonPtr()->getTextureManager()->getByName(compoundCloud->compound + ".bmp", "General")->reload();
 
         //auto start = std::chrono::high_resolution_clock::now();
-
+        std::cout << "Before Buffer" << std::endl;
         Ogre::HardwarePixelBufferSharedPtr cloud;
         cloud = Ogre::TextureManager::getSingleton().getByName(compoundCloud->compound, "General")->getBuffer();
         cloud->lock(Ogre::HardwareBuffer::HBL_DISCARD);
@@ -500,46 +483,7 @@ CompoundCloudSystem::update(int renderTime, int) {
         }
         // Unlock the pixel buffer
         cloud->unlock();
-
-//        int red, green, blue;
-//
-//        compoundCloud->cloud->lock(Ogre::HardwareBuffer::HBL_DISCARD);
-//        const Ogre::PixelBox& pixelBox = compoundCloud->cloud->getCurrentLock();
-//        uint8_t* pDest = static_cast<uint8_t*>(pixelBox.data);
-//        // Fill in some pixel data. This will give a semi-transparent blue,
-//        // but this is of course dependent on the chosen pixel format.
-//        for (int i = 0; i < width; i++)
-//        {
-//            for(int j = 0; j < height; j++)
-//            {
-//                int intensity = static_cast<int>(compoundCloud->density[i][j]);
-//
-//                if (intensity <= 0)
-//                {
-//                    intensity = 0;
-//                    red = 0; green = 0; blue = 0;
-//                }
-//                else if (intensity < 255)
-//                {
-//                    red = intensity*compoundCloud->color.r/256; green = intensity*compoundCloud->color.g/256; blue = intensity*compoundCloud->color.b/256;
-//                }
-//                else
-//                {
-//                    intensity = 255;
-//                    red = 255*compoundCloud->color.r/256; green = 255*compoundCloud->color.g/256; blue = 255*compoundCloud->color.b/256;
-//                }
-//                if(red < 0 && green < 0 && blue < 0 && intensity < 0) *pDest = 255;
-//
-//                *pDest++ = 255;
-//                *pDest++ = 0;
-//                *pDest++ = 0;
-//                *pDest++ = 10;
-//            }
-//
-//            pDest += pixelBox.getRowSkip() * Ogre::PixelUtil::getNumElemBytes(pixelBox.format);
-//        }
-//        // Unlock the pixel buffer
-//        compoundCloud->cloud->unlock();
+        std::cout << "After buffer" << std::endl;
 
         //auto end = std::chrono::high_resolution_clock::now();
         //auto diff = std::chrono::duration_cast<std::chrono::microseconds>(end-start);
