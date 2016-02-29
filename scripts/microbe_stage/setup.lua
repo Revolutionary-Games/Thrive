@@ -238,8 +238,6 @@ local function createSpawnSystem()
 end
 
 local function setupEmitter()
-
-    createCompoundCloud("glucose", 5, 5, 2000000)
     -- -- Setting up a test emitter
     -- local entity = Entity("glucose-emitter")
     -- -- Rigid body
@@ -296,10 +294,10 @@ local function setupPlayer()
     Engine:playerData():lockedMap():addLock("chloroplast")
     Engine:playerData():setActiveCreature(microbe.entity.id, GameState.MICROBE)
     speciesEntity = Entity("defaultMicrobeSpecies")
-    species = SpeciesComponent("defaultMicrobeSpecies")
+    species = SpeciesComponent("Default")
     species:fromMicrobe(microbe)
     speciesEntity:addComponent(species)
-    microbe.microbe.speciesName = "defaultMicrobeSpecies"
+    microbe.microbe.speciesName = "Default"
 end
 
 local function setupSound()

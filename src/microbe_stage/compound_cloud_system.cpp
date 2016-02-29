@@ -264,13 +264,13 @@ CompoundCloudSystem::shutdown() {
 
 void
 CompoundCloudSystem::update(int renderTime, int) {
-    std::cout << "Start" << std::endl;
+    //std::cout << "Start" << std::endl;
     // If we do not have a reference to the player scene node, get it.
-    if (playerNode == NULL) {
+    //if (playerNode == NULL) {
         playerNode = static_cast<OgreSceneNodeComponent*>(gameState->entityManager().getComponent(
             Entity(gameState->engine().playerData().playerName(), gameState).id(),
             OgreSceneNodeComponent::TYPE_ID));
-    }
+    //}
 
     // If the player moves out of the current grid, move the grid.
     if (playerNode->m_transform.position.x > offsetX + width*gridSize/2  ||
@@ -285,7 +285,7 @@ CompoundCloudSystem::update(int renderTime, int) {
 
         compoundCloudsPlane->getParentSceneNode()->setPosition(offsetX, offsetY, -1.0);
     }
-    std::cout << "Player moved" << std::endl;
+    //std::cout << "Player moved" << std::endl;
 
     // For all newly created entities, initialize their parameters.
     for (auto& value : m_impl->m_compounds.addedEntities()) {
@@ -353,15 +353,15 @@ CompoundCloudSystem::update(int renderTime, int) {
     for (auto& value : m_impl->m_compounds)
     {
         CompoundCloudComponent* compoundCloud = std::get<0>(value.second);
-        std::cout << "entered update loop for: " << compoundCloud->compound << std::endl;
+        //std::cout << "entered update loop for: " << compoundCloud->compound << std::endl;
 
         // If the offset of the compound cloud is different from the fluid systems offset,
         // then the player must have moved, so we need to adjust the 3x3 grid.
         if (compoundCloud->offsetX != offsetX || compoundCloud->offsetY != offsetY)
         {
-            std::cout << "Getting ready to move: " << std::to_string(compoundCloud->offsetX) << " to "
-                      << std::to_string(offsetX) << " and " << std::to_string(compoundCloud->offsetY) << " to "
-                      << std::to_string(offsetY) << std::endl;
+            //std::cout << "Getting ready to move: " << std::to_string(compoundCloud->offsetX) << " to "
+            //          << std::to_string(offsetX) << " and " << std::to_string(compoundCloud->offsetY) << " to "
+            //          << std::to_string(offsetY) << std::endl;
             // If we moved to the top tile.
             if (compoundCloud->offsetX == offsetX && compoundCloud->offsetY < offsetY)
             {
@@ -440,9 +440,9 @@ CompoundCloudSystem::update(int renderTime, int) {
             }
             compoundCloud->offsetX = offsetX;
             compoundCloud->offsetY = offsetY;
-            std::cout << "Moved the tiles" << std::endl;
+            //std::cout << "Moved the tiles" << std::endl;
         }
-        std::cout << "Left loop" << std::endl;
+        //std::cout << "Left loop" << std::endl;
 
         // Compound clouds move from area of high concentration to area of low.
         diffuse(.01, compoundCloud->oldDens, compoundCloud->density, renderTime);
@@ -450,7 +450,7 @@ CompoundCloudSystem::update(int renderTime, int) {
         advect(compoundCloud->oldDens, compoundCloud->density, renderTime);
 
         //auto start = std::chrono::high_resolution_clock::now();
-        std::cout << "Before Buffer" << std::endl;
+        //std::cout << "Before Buffer" << std::endl;
         Ogre::HardwarePixelBufferSharedPtr cloud;
         cloud = Ogre::TextureManager::getSingleton().getByName(compoundCloud->compound, "General")->getBuffer();
         cloud->lock(Ogre::HardwareBuffer::HBL_DISCARD);
@@ -483,7 +483,7 @@ CompoundCloudSystem::update(int renderTime, int) {
         }
         // Unlock the pixel buffer
         cloud->unlock();
-        std::cout << "After buffer" << std::endl;
+        //std::cout << "After buffer" << std::endl;
 
         //auto end = std::chrono::high_resolution_clock::now();
         //auto diff = std::chrono::duration_cast<std::chrono::microseconds>(end-start);
@@ -577,139 +577,5 @@ CompoundCloudSystem::advect(std::vector<  std::vector<float>  >& oldDens, std::v
 			density[x1][y0] += oldDens[x][y] * s1 * t0;
 			density[x1][y1] += oldDens[x][y] * s1 * t1;
 		}
-	}
-}
-
-
-void
-CompoundCloudSystem::writeToFile(std::vector<  std::vector<float>  >& density, std::string compoundName, Ogre::ColourValue color) {
-    int w = width;
-	int h = height;
-
-	unsigned char* img = NULL;
-	int filesize = 54 + 3*w*h;
-	if (img)
-		free(img);
-	img = static_cast<unsigned char*>(malloc(3*w*h));
-	memset(img, 0, sizeof(*img));
-
-	int intensity;
-	int red, green, blue;
-	int x, y;
-
-
-    for (int j = h-1; j >= 0; j--)
-    {
-        for (int i = 0; i < width; i++)
-        {
-			intensity = static_cast<int>(density[i][j]);
-
-			if (intensity < 0)
-			{
-				red = 0; green = 0; blue = 0;
-			}
-			else if (intensity < 255)
-			{
-				red = intensity*color.r/256; green = intensity*color.g/256; blue = intensity*color.b/256;
-			}
-			else
-			{
-				red = 255*color.r/256; green = 255*color.g/256; blue = 255*color.b/256;
-			}
-
-			x = i; y = (h - 1) - j;
-
-			img[(x + y*w) * 3 + 2] = static_cast<unsigned char>(red);
-			img[(x + y*w) * 3 + 1] = static_cast<unsigned char>(green);
-			img[(x + y*w) * 3 + 0] = static_cast<unsigned char>(blue);
-		}
-	}
-
-	unsigned char bmpfileheader[14] = { 'B','M', 0,0,0,0, 0,0, 0,0, 54,0,0,0 };
-	unsigned char bmpinfoheader[40] = { 40,0,0,0, 0,0,0,0, 0,0,0,0, 1,0, 24,0 };
-	unsigned char bmppad[3] = { 0,0,0 };
-
-	bmpfileheader[2] = static_cast<unsigned char>(filesize);
-	bmpfileheader[3] = static_cast<unsigned char>(filesize >> 8);
-	bmpfileheader[4] = static_cast<unsigned char>(filesize >> 16);
-	bmpfileheader[5] = static_cast<unsigned char>(filesize >> 24);
-
-	bmpinfoheader[4] = static_cast<unsigned char>(w);
-	bmpinfoheader[5] = static_cast<unsigned char>(w >> 8);
-	bmpinfoheader[6] = static_cast<unsigned char>(w >> 16);
-	bmpinfoheader[7] = static_cast<unsigned char>(w >> 24);
-	bmpinfoheader[8] = static_cast<unsigned char>(h);
-	bmpinfoheader[9] = static_cast<unsigned char>(h >> 8);
-	bmpinfoheader[10]= static_cast<unsigned char>(h >> 16);
-	bmpinfoheader[11]= static_cast<unsigned char>(h >> 24);
-
-    std::string filename = "../tmp/" + compoundName + ".bmp";
-	errno_t err = fopen_s(&f, filename.c_str(), "wb");
-	if (!err) {
-		fwrite(bmpfileheader, 1, 14, f);
-		fwrite(bmpinfoheader, 1, 40, f);
-		for (int i = 0; i < h; i++)
-		{
-			fwrite(img + (w*(h - i - 1) * 3), 3, w, f);
-			fwrite(bmppad, 1, (4 - (w * 3) % 4) % 4, f);
-		}
-		fclose(f);
-	}
-}
-
-void
-CompoundCloudSystem::initializeFile(std::string compoundName) {
-    int w = width;
-	int h = height;
-
-	unsigned char* img = NULL;
-	int filesize = 54 + 3*w*h;
-	if (img)
-		free(img);
-	img = static_cast<unsigned char*>(malloc(3*w*h));
-	memset(img, 0, sizeof(*img));
-
-	int x, y;
-    for (int j = h-1; j >= 0; j--)
-    {
-        for (int i = 0; i < width; i++)
-        {
-			x = i; y = (h - 1) - j;
-
-			img[(x + y*w) * 3 + 2] = static_cast<unsigned char>(0);
-			img[(x + y*w) * 3 + 1] = static_cast<unsigned char>(0);
-			img[(x + y*w) * 3 + 0] = static_cast<unsigned char>(0);
-		}
-	}
-
-	unsigned char bmpfileheader[14] = { 'B','M', 0,0,0,0, 0,0, 0,0, 54,0,0,0 };
-	unsigned char bmpinfoheader[40] = { 40,0,0,0, 0,0,0,0, 0,0,0,0, 1,0, 24,0 };
-	unsigned char bmppad[3] = { 0,0,0 };
-
-	bmpfileheader[2] = static_cast<unsigned char>(filesize);
-	bmpfileheader[3] = static_cast<unsigned char>(filesize >> 8);
-	bmpfileheader[4] = static_cast<unsigned char>(filesize >> 16);
-	bmpfileheader[5] = static_cast<unsigned char>(filesize >> 24);
-
-	bmpinfoheader[4] = static_cast<unsigned char>(w);
-	bmpinfoheader[5] = static_cast<unsigned char>(w >> 8);
-	bmpinfoheader[6] = static_cast<unsigned char>(w >> 16);
-	bmpinfoheader[7] = static_cast<unsigned char>(w >> 24);
-	bmpinfoheader[8] = static_cast<unsigned char>(h);
-	bmpinfoheader[9] = static_cast<unsigned char>(h >> 8);
-	bmpinfoheader[10]= static_cast<unsigned char>(h >> 16);
-	bmpinfoheader[11]= static_cast<unsigned char>(h >> 24);
-
-    std::string filename = "../tmp/" + compoundName + ".bmp";
-	errno_t err = fopen_s(&f, filename.c_str(), "wb");
-	if (!err) {
-		fwrite(bmpfileheader, 1, 14, f);
-		fwrite(bmpinfoheader, 1, 40, f);
-		for (int i = 0; i < h; i++)
-		{
-			fwrite(img + (w*(h - i - 1) * 3), 3, w, f);
-			fwrite(bmppad, 1, (4 - (w * 3) % 4) % 4, f);
-		}
-		fclose(f);
 	}
 }

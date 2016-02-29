@@ -223,6 +223,8 @@ CompoundAbsorberSystem::update(int, int) {
     // For all entities that have a membrane and are able to absorb stuff do...
     for (auto& value : m_impl->m_absorbers)
     {
+        //EntityId entity = value.first;
+
         MembraneComponent* membrane = std::get<0>(value.second);
         CompoundAbsorberComponent* absorber = std::get<1>(value.second);
         OgreSceneNodeComponent* sceneNode = std::get<2>(value.second);
@@ -250,13 +252,13 @@ CompoundAbsorberSystem::update(int, int) {
                         membrane->contains((x-compoundCloud->width/2)*compoundCloud->gridSize-origin.x+compoundCloud->offsetX,(y-compoundCloud->height/2)*compoundCloud->gridSize-origin.y+compoundCloud->offsetY))
                     {
                         if (absorber->m_enabled == true && absorber->canAbsorbCompound(id)) {
+                            float amount = compoundCloud->amountAvailable(x, y, .2) / 1000.0f;
                             //if (CompoundRegistry::isAgentType(id)){
-                            //    (*CompoundRegistry::getAgentEffect(id))(absorberEntity, compound->m_potency);
+                            //    (*CompoundRegistry::getAgentEffect(id))(entity, amount);
                             //    this->entityManager()->removeEntity(compoundEntity);
                             //}
                             //else
-                            float amount = compoundCloud->amountAvailable(x, y, .2) / 1000.0f;
-                            if(absorber->m_absorbtionCapacity >= amount * CompoundRegistry::getCompoundUnitVolume(id)){
+                                if(absorber->m_absorbtionCapacity >= amount * CompoundRegistry::getCompoundUnitVolume(id)){
                                 absorber->m_absorbedCompounds[id] += compoundCloud->takeCompound(x, y, .2) / 1000.0f;
                                 //this->entityManager()->removeEntity(compoundEntity);
                             }
