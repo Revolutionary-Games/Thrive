@@ -225,7 +225,6 @@ CompoundAbsorberSystem::update(int, int) {
     {
         //EntityId entity = value.first;
         MembraneComponent* membrane = std::get<0>(value.second);
-
         CompoundAbsorberComponent* absorber = std::get<1>(value.second);
         OgreSceneNodeComponent* sceneNode = std::get<2>(value.second);
 
@@ -236,10 +235,10 @@ CompoundAbsorberSystem::update(int, int) {
 
 
         // Each membrane absorbs a certain amount of each compound.
-        for (auto& compound : m_impl->m_compounds)
+        for (auto& entry : m_impl->m_compounds)
         {
-            CompoundCloudComponent* compoundCloud = std::get<0>(compound.second);
-            CompoundId id = CompoundRegistry::getCompoundId(compoundCloud->compound);
+            CompoundCloudComponent* compoundCloud = std::get<0>(entry.second);
+            CompoundId id = compoundCloud->m_compoundId;
             int x_start = (origin.x - sideLength/2 - compoundCloud->offsetX)/compoundCloud->gridSize + compoundCloud->width/2;
             x_start = x_start > 0 ? x_start : 0;
             int x_end = (origin.x + sideLength/2 - compoundCloud->offsetX)/compoundCloud->gridSize + compoundCloud->width/2;

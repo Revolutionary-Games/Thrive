@@ -1,7 +1,5 @@
 
 local function setupBackground()
-    print("setupBackground")
-
     local entity = Entity("background")
     local skyplane = SkyPlaneComponent()
     skyplane.properties.plane.normal = Vector3(0, 0, 2000)
@@ -9,12 +7,9 @@ local function setupBackground()
 	skyplane.properties.scale = 200
     skyplane.properties:touch()
     entity:addComponent(skyplane)
-    
-    print("setupBackground - Done")
 end
 
 local function setupCamera()
-    print("setupCamera")
     local entity = Entity(CAMERA_NAME)
     -- Camera
     local camera = OgreCameraComponent("camera")
@@ -38,7 +33,6 @@ local function setupCamera()
     workspaceComponent.properties.position = 0
     workspaceComponent.properties:touch()
     workspaceEntity:addComponent(workspaceComponent)
-    print("setupCamera - Done")
 end
 
 -- there must be some more robust way to script agents than having stuff all over the place.
@@ -47,23 +41,17 @@ function oxytoxyEffect(entityId, potency)
 end
 
 local function setupCompounds()
-    print("setupCompounds")
     CompoundRegistry.loadFromXML("../scripts/definitions/compounds.xml")
-    print("setupCompounds - Done")
 end
 
 local function setupCompoundClouds()
-    
-    print("setupClouds")
     for compoundId in CompoundRegistry.getCompoundList() do
         local name = CompoundRegistry.getCompoundInternalName(compoundId)
         local entity = Entity("compound_cloud_" .. name)
         local compoundCloud = CompoundCloudComponent()
-        compoundCloud:initialize(name, math.random()*255, math.random()*255, math.random()*255)
+        compoundCloud:initialize(compoundId, math.random()*255, math.random()*255, math.random()*255)
         entity:addComponent(compoundCloud)
     end
-    
-    print("setupClouds - Done")
 end
 
 --  This isn't a finished solution. Optimally the process class would be moved to CPP and loaded there entirely.
@@ -160,9 +148,7 @@ local function setSpawnablePhysics(entity, pos, mesh, scale, collisionShape)
 end
 
 function createCompoundCloud(compound, x, y, amount)
-    print("creating cloud")
     Entity("compound_cloud_" .. compound):getComponent(CompoundCloudComponent.TYPE_ID):addCloud(amount, x, y)
-    print(compound)
 end
 
 local function addEmitter2Entity(entity, compound)
@@ -183,7 +169,6 @@ local function addEmitter2Entity(entity, compound)
 end
 
 local function createSpawnSystem()
-    print("createSpawnSystem")
     local spawnSystem = SpawnSystem()
 
     local toxinOrganelleSpawnFunction = function(pos) 
@@ -249,7 +234,6 @@ local function createSpawnSystem()
             end, 
             species.spawnDensity, 60)
     end
-    print("createSpawnSystem - Done")
     return spawnSystem
 end
 
@@ -317,7 +301,6 @@ local function setupPlayer()
 end
 
 local function setupSound()
-    print("setupSound")
     local ambientEntity = Entity("ambience")
     local soundSource = SoundSourceComponent()
     soundSource.ambientSoundSource = true
@@ -351,8 +334,6 @@ local function setupSound()
     local listener = Entity("soundListener")
     local sceneNode = OgreSceneNodeComponent()
     listener:addComponent(sceneNode)
-    
-    print("setupSound - Done")
 end
 
 setupCompounds()
@@ -396,7 +377,7 @@ local function createMicrobeStage(name)
             OgreRemoveSceneNodeSystem(),
             RenderSystem(),
             MembraneSystem(),
-            --CompoundCloudSystem(),
+            CompoundCloudSystem(),
             -- Other
             SoundSourceSystem(),
             PowerupSystem(),

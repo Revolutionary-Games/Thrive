@@ -13,8 +13,11 @@
 
 #include "general/perlin_noise.h"
 #include "ogre/scene_node_system.h"
+#include "microbe_stage/compound_registry.h"
 
 namespace thrive {
+
+static const CompoundId NULL_COMPOUND = 0;
 
 class CompoundCloudSystem;
 
@@ -47,12 +50,14 @@ public:
     /// The color of the compound cloud.
     Ogre::ColourValue color;
 
-    /// The name of the compound.
-    std::string compound;
+    /**
+    * @brief The compound id.
+    */
+    CompoundId m_compoundId = NULL_COMPOUND;
 
 public:
 
-    void initialize(std::string name, float red, float green, float blue);
+    void initialize(CompoundId Id, float red, float green, float blue);
 
     /**
     * @brief Lua bindings

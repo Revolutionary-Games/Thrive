@@ -58,12 +58,12 @@ CompoundCloudComponent::luaBindings() {
 
 void
 CompoundCloudComponent::initialize(
-    std::string name,
+    CompoundId id,
     float red,
     float green,
     float blue
 ) {
-    compound = name;
+    m_compoundId = id;
     color = Ogre::ColourValue(red, green, blue);
 }
 
@@ -73,7 +73,7 @@ CompoundCloudComponent::load(
 ) {
     Component::load(storage);
 
-    compound = storage.get<std::string>("name", "");
+    m_compoundId = storage.get<CompoundId>("id", NULL_COMPOUND);
     color = storage.get<Ogre::ColourValue>("color", Ogre::ColourValue(0,0,0));
     width = storage.get<int>("width", 0);
     height = storage.get<int>("height", 0);
@@ -86,7 +86,7 @@ StorageContainer
 CompoundCloudComponent::storage() const {
     StorageContainer storage = Component::storage();
 
-    storage.set<std::string>("name", compound);
+    storage.set<CompoundId>("id", m_compoundId);
     storage.set<Ogre::ColourValue>("color", color);
     storage.set<int>("width", width);
     storage.set<int>("height", height);
@@ -324,7 +324,7 @@ CompoundCloudSystem::update(int renderTime, int) {
         pass->setVertexProgram("CompoundCloud_VS");
         pass->setFragmentProgram("CompoundCloud_PS");
         //Ogre::TexturePtr texturePtr = Ogre::TextureManager::getSingleton().load(compoundCloud->compound + ".bmp", "General");
-        Ogre::TexturePtr texturePtr = Ogre::TextureManager::getSingleton().createManual(compoundCloud->compound, "General", Ogre::TEX_TYPE_2D, width, height,
+        Ogre::TexturePtr texturePtr = Ogre::TextureManager::getSingleton().createManual(CompoundRegistry::getCompoundInternalName(compoundCloud->m_compoundId), "General", Ogre::TEX_TYPE_2D, width, height,
                                                                                         0, Ogre::PF_BYTE_BGRA, Ogre::TU_DYNAMIC_WRITE_ONLY_DISCARDABLE);
         Ogre::HardwarePixelBufferSharedPtr cloud;
         cloud = texturePtr->getBuffer();
@@ -346,7 +346,7 @@ CompoundCloudSystem::update(int renderTime, int) {
         }
         // Unlock the pixel buffer
         cloud->unlock();
-        pass->createTextureUnitState(compoundCloud->compound);
+        pass->createTextureUnitState(CompoundRegistry::getCompoundInternalName(compoundCloud->m_compoundId));
 
 
 
@@ -459,7 +459,7 @@ CompoundCloudSystem::update(int renderTime, int) {
         //auto start = std::chrono::high_resolution_clock::now();
         //std::cout << "Before Buffer" << std::endl;
         Ogre::HardwarePixelBufferSharedPtr cloud;
-        cloud = Ogre::TextureManager::getSingleton().getByName(compoundCloud->compound, "General")->getBuffer();
+        cloud = Ogre::TextureManager::getSingleton().getByName(CompoundRegistry::getCompoundInternalName(compoundCloud->m_compoundId), "General")->getBuffer();
         cloud->lock(Ogre::HardwareBuffer::HBL_DISCARD);
         const Ogre::PixelBox& pixelBox = cloud->getCurrentLock();
         uint8_t* pDest = static_cast<uint8_t*>(pixelBox.data);
