@@ -59,6 +59,9 @@ public:
     // Sets the colour of the membrane.
     void setColour(float red, float green, float blue, float alpha);
 
+    // Returns the color of the membrane.
+    Ogre::Vector3 getColour();
+
     // Gets the amount of a certain compound the membrane absorbed.
     int getAbsorbedCompounds();
 

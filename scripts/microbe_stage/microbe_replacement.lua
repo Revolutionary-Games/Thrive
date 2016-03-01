@@ -21,6 +21,7 @@ function MicrobeReplacementSystem:activate()
         speciesEntity:addComponent(species)
         self.globalSpeciesNameCounter = self.globalSpeciesNameCounter + 1
         species:fromMicrobe(workingMicrobe)
+        species.colour = workingMicrobe:getComponent(MembraneComponent.TYPE_ID):getColour()
 
         workingMicrobe.entity:destroy()
 

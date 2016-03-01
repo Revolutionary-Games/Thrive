@@ -42,7 +42,7 @@ MembraneComponent::luaBindings() {
         .def("sendOrganelles", &MembraneComponent::sendOrganelles)
         .def("getExternOrganellePos", &MembraneComponent::getExternOrganellePos)
         .def("setColour", &MembraneComponent::setColour)
-        .def("getAbsorbedCompounds", &MembraneComponent::getAbsorbedCompounds)
+        .def("getColour", &MembraneComponent::getColour)
     ;
 }
 
@@ -67,19 +67,18 @@ MembraneComponent::setColour(float red = 1.0f, float green = 1.0f, float blue = 
     colour = Ogre::ColourValue(red, green, blue, alpha);
 }
 
+Ogre::Vector3
+MembraneComponent::getColour()
+{
+    return Ogre::Vector3(colour.r, colour.g, colour.b);
+}
+
 void
 MembraneComponent::load(
     const StorageContainer& storage
 ) {
     Component::load(storage);
     //m_emissionRadius = storage.get<Ogre::Real>("emissionRadius", 0.0);
-}
-
-int
-MembraneComponent::getAbsorbedCompounds() {
-    int amount = compoundAmount;
-    compoundAmount = 0;
-    return amount;
 }
 
 StorageContainer
@@ -162,11 +161,6 @@ Ogre::Vector3 MembraneComponent::GetExternalOrganelle(double x, double y)
     }
 
     return closestSoFar;
-}
-
-void MembraneComponent::absorbCompounds(int amount)
-{
-    compoundAmount += amount;
 }
 
 bool MembraneComponent::contains(float x, float y)

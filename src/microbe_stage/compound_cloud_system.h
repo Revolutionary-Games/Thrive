@@ -35,14 +35,14 @@ public:
     std::vector<  std::vector<float>  > oldDens;
 
     /// The 3x3 grid of density tiles around the player for seamless movement.
-    std::vector<  std::vector<float>  > density_11;
-    std::vector<  std::vector<float>  > density_12;
-    std::vector<  std::vector<float>  > density_13;
-    std::vector<  std::vector<float>  > density_21;
-    std::vector<  std::vector<float>  > density_23;
-    std::vector<  std::vector<float>  > density_31;
-    std::vector<  std::vector<float>  > density_32;
-    std::vector<  std::vector<float>  > density_33;
+    //std::vector<  std::vector<float>  > density_11;
+    //std::vector<  std::vector<float>  > density_12;
+    //std::vector<  std::vector<float>  > density_13;
+    //std::vector<  std::vector<float>  > density_21;
+    //std::vector<  std::vector<float>  > density_23;
+    //std::vector<  std::vector<float>  > density_31;
+    //std::vector<  std::vector<float>  > density_32;
+    //std::vector<  std::vector<float>  > density_33;
 
     /// The color of the compound cloud.
     Ogre::ColourValue color;
@@ -161,9 +161,6 @@ private:
     /// The velocity of the fluid.
 	std::vector<  std::vector<float>  > xVelocity;
 	std::vector<  std::vector<float>  > yVelocity;
-
-	/// The location of the .bmp where we are recording the densities.
-	FILE* f;
 
 	void CreateVelocityField();
 	void diffuse(float diffRate, std::vector<  std::vector<float>  >& oldDens, const std::vector<  std::vector<float>  >& density, int dt);
