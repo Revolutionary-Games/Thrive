@@ -224,8 +224,8 @@ CompoundAbsorberSystem::update(int, int) {
     for (auto& value : m_impl->m_absorbers)
     {
         //EntityId entity = value.first;
-
         MembraneComponent* membrane = std::get<0>(value.second);
+
         CompoundAbsorberComponent* absorber = std::get<1>(value.second);
         OgreSceneNodeComponent* sceneNode = std::get<2>(value.second);
 
@@ -234,23 +234,28 @@ CompoundAbsorberSystem::update(int, int) {
         // Find the position of the membrane.
         Ogre::Vector3 origin = sceneNode->m_transform.position;
 
+
         // Each membrane absorbs a certain amount of each compound.
         for (auto& compound : m_impl->m_compounds)
         {
             CompoundCloudComponent* compoundCloud = std::get<0>(compound.second);
             CompoundId id = CompoundRegistry::getCompoundId(compoundCloud->compound);
+            int x_start = (origin.x - sideLength/2 - compoundCloud->offsetX)/compoundCloud->gridSize + compoundCloud->width/2;
+            x_start = x_start > 0 ? x_start : 0;
+            int x_end = (origin.x + sideLength/2 - compoundCloud->offsetX)/compoundCloud->gridSize + compoundCloud->width/2;
+            x_end = x_end < compoundCloud->width ? x_end : compoundCloud->width;
+
+            int y_start = (origin.y - sideLength/2 - compoundCloud->offsetY)/compoundCloud->gridSize + compoundCloud->height/2;
+            y_start = y_start > 0 ? y_start : 0;
+            int y_end = (origin.y + sideLength/2 - compoundCloud->offsetY)/compoundCloud->gridSize + compoundCloud->height/2;
+            y_end = y_end < compoundCloud->height ? y_end : compoundCloud->height;
 
             // Iterate though all of the points inside the bounding box.
-            for (int x = (origin.x - sideLength/2 - compoundCloud->offsetX)/compoundCloud->gridSize + compoundCloud->width/2;
-                     x < (origin.x + sideLength/2 - compoundCloud->offsetX)/compoundCloud->gridSize + compoundCloud->width/2; x++)
+            for (int x = x_start; x < x_end; x++)
             {
-                for (int y = (origin.y - sideLength/2 - compoundCloud->offsetY)/compoundCloud->gridSize + compoundCloud->height/2;
-                         y < (origin.y + sideLength/2 - compoundCloud->offsetY)/compoundCloud->gridSize + compoundCloud->height/2; y++)
+                for (int y = y_start; y < y_end; y++)
                 {
-                    // Checks if the point is in the density grid and that it is inside the membrane.
-                    if (x >= 0 && x < compoundCloud->width && y >= 0 && y < compoundCloud->height &&
-                        membrane->contains((x-compoundCloud->width/2)*compoundCloud->gridSize-origin.x+compoundCloud->offsetX,(y-compoundCloud->height/2)*compoundCloud->gridSize-origin.y+compoundCloud->offsetY))
-                    {
+                    if (membrane->contains((x-compoundCloud->width/2)*compoundCloud->gridSize-origin.x+compoundCloud->offsetX,(y-compoundCloud->height/2)*compoundCloud->gridSize-origin.y+compoundCloud->offsetY)) {
                         if (absorber->m_enabled == true && absorber->canAbsorbCompound(id)) {
                             float amount = compoundCloud->amountAvailable(x, y, .2) / 1000.0f;
                             //if (CompoundRegistry::isAgentType(id)){
