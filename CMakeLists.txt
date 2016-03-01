@@ -251,7 +251,6 @@ target_link_libraries(ThriveLib
     #These two FFMPEG need to be at the top (before ogre?) to avoid linking error
     ${OgreFFMPEG_LIBRARIES} 
     ${FFMPEG_LIBRARIES}
-    ${AVRESAMPLE_LIBRARIES}
     ${Boost_LIBRARIES}
     ${OGRE_LIBRARIES}
     ${OIS_LIBRARIES}
@@ -262,6 +261,16 @@ target_link_libraries(ThriveLib
     ${OpenAL_LIBRARIES}
     luabind
 )
+
+if(WIN32)
+    target_link_libraries(ThriveLib
+        ${SWRESAMPLE_LIBRARIES}
+    )
+else()
+    target_link_libraries(ThriveLib
+        ${AVRESAMPLE_LIBRARIES}
+    )
+endif()
 
 # Windows requires using Bullet DEBUG libraries to fix broken build
 # But Linux build breaks with those settings 
