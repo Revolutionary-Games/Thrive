@@ -1016,7 +1016,7 @@ end
 
 
 function MicrobeSystem:init(gameState)
-    System.init(self, gameState)
+    System.init(self, "MicrobeSystem", gameState)
     self.entities:init(gameState)
     self.microbeCollisions:init(gameState)
 end

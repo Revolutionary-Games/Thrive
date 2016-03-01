@@ -234,7 +234,7 @@ void
 CompoundCloudSystem::init(
     GameState* gameState
 ) {
-    System::init(gameState);
+    System::initNamed("CompoundCloudSystem", gameState);
     m_impl->m_compounds.setEntityManager(&gameState->entityManager());
     m_impl->m_sceneManager = gameState->sceneManager();
     this->gameState = gameState;

@@ -9,6 +9,10 @@ function MicrobeReplacementSystem:__init()
     System.__init(self)
 end
 
+function MicrobeReplacementSystem:init()
+    System.init(self, "MicrobeReplacementSystem", gameState)
+end
+
 function MicrobeReplacementSystem:activate()
     activeCreatureId = Engine:playerData():activeCreature()
     if Engine:playerData():isBoolSet("edited_microbe") then

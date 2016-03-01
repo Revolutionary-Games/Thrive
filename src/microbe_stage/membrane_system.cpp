@@ -368,7 +368,7 @@ void
 MembraneSystem::init(
     GameState* gameState
 ) {
-    System::init(gameState);
+    System::initNamed("MembraneSystem", gameState);
     m_impl->m_entities.setEntityManager(&gameState->entityManager());
     m_impl->m_sceneManager = gameState->sceneManager();
 }

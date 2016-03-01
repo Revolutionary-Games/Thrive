@@ -177,7 +177,7 @@ void
 CompoundEmitterSystem::init(
     GameState* gameState
 ) {
-    System::init(gameState);
+    System::initNamed("CompoundEmitterSystem", gameState);
     m_impl->m_entities.setEntityManager(&gameState->entityManager());
     m_impl->m_sceneManager = gameState->sceneManager();
 }
