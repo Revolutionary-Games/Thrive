@@ -58,12 +58,12 @@ CompoundCloudComponent::luaBindings() {
 
 void
 CompoundCloudComponent::initialize(
-    std::string name,
+    CompoundId id,
     float red,
     float green,
     float blue
 ) {
-    compound = name;
+    m_compoundId = id;
     color = Ogre::ColourValue(red, green, blue);
 }
 
@@ -72,11 +72,25 @@ CompoundCloudComponent::load(
     const StorageContainer& storage
 ) {
     Component::load(storage);
+
+    m_compoundId = storage.get<CompoundId>("id", NULL_COMPOUND);
+    color = storage.get<Ogre::ColourValue>("color", Ogre::ColourValue(0,0,0));
+    width = storage.get<int>("width", 0);
+    height = storage.get<int>("height", 0);
+    gridSize = storage.get<float>("gridSize", 0.0);
+
+
 }
 
 StorageContainer
 CompoundCloudComponent::storage() const {
     StorageContainer storage = Component::storage();
+
+    storage.set<CompoundId>("id", m_compoundId);
+    storage.set<Ogre::ColourValue>("color", color);
+    storage.set<int>("width", width);
+    storage.set<int>("height", height);
+    storage.set<float>("gridSize", gridSize);
 
     return storage;
 }
@@ -90,64 +104,64 @@ CompoundCloudComponent::addCloud(float dens, int x, int y) {
     {
         density[(x-offsetX)/gridSize+width/2][(y-offsetY)/gridSize+height/2] += dens;
     }
-    // The added cloud goes into the 8 tiles surrounding the player. These will be "activated" once the player enters them.
-    else if (x-offsetX > -width*gridSize*3/2 && x-offsetX < width*gridSize*3/2 &&
-             y-offsetY > -height*gridSize*3/2 && y-offsetY < height*gridSize*3/2)
-    {
-        // Left column.
-        if (x-offsetX > -width*gridSize*3/2 && x-offsetX < -width*gridSize/2)
-        {
-            // Top left.
-            if (y-offsetY > height*gridSize/2 && y-offsetY < height*gridSize*3/2)
-            {
-                density_11[(x-offsetX)/gridSize+width*3/2][(y-offsetY)/gridSize-height/2] += dens;
-            }
-            // Middle left.
-            else if (y-offsetY > -height*gridSize/2 && y-offsetY < height*gridSize/2)
-            {
-                density_21[(x-offsetX)/gridSize+width*3/2][(y-offsetY)/gridSize+height/2] += dens;
-            }
-            // Bottom left.
-            else if (y-offsetY > -height*gridSize*3/2 && y-offsetY < -height*gridSize/2)
-            {
-                density_31[(x-offsetX)/gridSize+width*3/2][(y-offsetY)/gridSize+height*3/2] += dens;
-            }
-        }
-        // Middle column.
-        else if (x-offsetX > -width*gridSize/2 && x-offsetX < width*gridSize/2)
-        {
-            // Middle top.
-            if (y-offsetY > height*gridSize/2 && y-offsetY < height*gridSize*3/2)
-            {
-                density_12[(x-offsetX)/gridSize+width/2][(y-offsetY)/gridSize+height*3/2] += dens;
-            }
-            // Middle bottom.
-            else if (y-offsetY > -height*gridSize*3/2 && y-offsetY < -height*gridSize/2)
-            {
-                density_32[(x-offsetX)/gridSize+width/2][(y-offsetY)/gridSize-height/2] += dens;
-            }
-
-        }
-        // Right column.
-        else if (x-offsetX > width*gridSize/2 && x-offsetX < width*gridSize*3/2)
-        {
-            // Top right.
-            if (y-offsetY > height*gridSize/2 && y-offsetY < height*gridSize*3/2)
-            {
-                density_13[(x-offsetX)/gridSize-width/2][(y-offsetY)/gridSize-height/2] += dens;
-            }
-            // Middle right.
-            else if (y-offsetY > -height*gridSize/2 && y-offsetY < height*gridSize/2)
-            {
-                density_23[(x-offsetX)/gridSize-width/2][(y-offsetY)/gridSize+height/2] += dens;
-            }
-            // Bottom right.
-            else if (y-offsetY > -height*gridSize*3/2 && y-offsetY < -height*gridSize/2)
-            {
-                density_33[(x-offsetX)/gridSize-width/2][(y-offsetY)/gridSize+height*3/2] += dens;
-            }
-        }
-    }
+//    // The added cloud goes into the 8 tiles surrounding the player. These will be "activated" once the player enters them.
+//    else if (x-offsetX > -width*gridSize*3/2 && x-offsetX < width*gridSize*3/2 &&
+//             y-offsetY > -height*gridSize*3/2 && y-offsetY < height*gridSize*3/2)
+//    {
+//        // Left column.
+//        if (x-offsetX > -width*gridSize*3/2 && x-offsetX < -width*gridSize/2)
+//        {
+//            // Top left.
+//            if (y-offsetY > height*gridSize/2 && y-offsetY < height*gridSize*3/2)
+//            {
+//                density_11[(x-offsetX)/gridSize+width*3/2][(y-offsetY)/gridSize-height/2] += dens;
+//            }
+//            // Middle left.
+//            else if (y-offsetY > -height*gridSize/2 && y-offsetY < height*gridSize/2)
+//            {
+//                density_21[(x-offsetX)/gridSize+width*3/2][(y-offsetY)/gridSize+height/2] += dens;
+//            }
+//            // Bottom left.
+//            else if (y-offsetY > -height*gridSize*3/2 && y-offsetY < -height*gridSize/2)
+//            {
+//                density_31[(x-offsetX)/gridSize+width*3/2][(y-offsetY)/gridSize+height*3/2] += dens;
+//            }
+//        }
+//        // Middle column.
+//        else if (x-offsetX > -width*gridSize/2 && x-offsetX < width*gridSize/2)
+//        {
+//            // Middle top.
+//            if (y-offsetY > height*gridSize/2 && y-offsetY < height*gridSize*3/2)
+//            {
+//                density_12[(x-offsetX)/gridSize+width/2][(y-offsetY)/gridSize+height*3/2] += dens;
+//            }
+//            // Middle bottom.
+//            else if (y-offsetY > -height*gridSize*3/2 && y-offsetY < -height*gridSize/2)
+//            {
+//                density_32[(x-offsetX)/gridSize+width/2][(y-offsetY)/gridSize-height/2] += dens;
+//            }
+//
+//        }
+//        // Right column.
+//        else if (x-offsetX > width*gridSize/2 && x-offsetX < width*gridSize*3/2)
+//        {
+//            // Top right.
+//            if (y-offsetY > height*gridSize/2 && y-offsetY < height*gridSize*3/2)
+//            {
+//                density_13[(x-offsetX)/gridSize-width/2][(y-offsetY)/gridSize-height/2] += dens;
+//            }
+//            // Middle right.
+//            else if (y-offsetY > -height*gridSize/2 && y-offsetY < height*gridSize/2)
+//            {
+//                density_23[(x-offsetX)/gridSize-width/2][(y-offsetY)/gridSize+height/2] += dens;
+//            }
+//            // Bottom right.
+//            else if (y-offsetY > -height*gridSize*3/2 && y-offsetY < -height*gridSize/2)
+//            {
+//                density_33[(x-offsetX)/gridSize-width/2][(y-offsetY)/gridSize+height*3/2] += dens;
+//            }
+//        }
+//    }
 
 }
 
@@ -226,7 +240,6 @@ CompoundCloudSystem::CompoundCloudSystem()
 }
 
 CompoundCloudSystem::~CompoundCloudSystem() {
-    delete f;
 }
 
 
@@ -250,12 +263,6 @@ CompoundCloudSystem::init(
 
 void
 CompoundCloudSystem::shutdown() {
-    // Delete all the temporary files created by this system.
-    for (auto& value : m_impl->m_compounds.addedEntities()) {
-        CompoundCloudComponent* compoundCloud = std::get<0>(value.second);
-        std::string filename = "../tmp/" + compoundCloud->compound + ".bmp";
-        remove(filename.c_str());
-    }
     m_impl->m_compounds.setEntityManager(nullptr);
     m_impl->m_sceneManager = nullptr;
     System::shutdown();
@@ -264,13 +271,13 @@ CompoundCloudSystem::shutdown() {
 
 void
 CompoundCloudSystem::update(int renderTime, int) {
-
+    //std::cout << "Start" << std::endl;
     // If we do not have a reference to the player scene node, get it.
-    if (playerNode == NULL) {
+    //if (playerNode == NULL) {
         playerNode = static_cast<OgreSceneNodeComponent*>(gameState->entityManager().getComponent(
             Entity(gameState->engine().playerData().playerName(), gameState).id(),
             OgreSceneNodeComponent::TYPE_ID));
-    }
+    //}
 
     // If the player moves out of the current grid, move the grid.
     if (playerNode->m_transform.position.x > offsetX + width*gridSize/2  ||
@@ -285,6 +292,7 @@ CompoundCloudSystem::update(int renderTime, int) {
 
         compoundCloudsPlane->getParentSceneNode()->setPosition(offsetX, offsetY, -1.0);
     }
+    //std::cout << "Player moved" << std::endl;
 
     // For all newly created entities, initialize their parameters.
     for (auto& value : m_impl->m_compounds.addedEntities()) {
@@ -300,14 +308,14 @@ CompoundCloudSystem::update(int renderTime, int) {
         compoundCloud->density.resize(width, std::vector<float>(height, 0));
         compoundCloud->oldDens.resize(width, std::vector<float>(height, 0));
 
-        compoundCloud->density_11.resize(width, std::vector<float>(height, 0));
-        compoundCloud->density_12.resize(width, std::vector<float>(height, 0));
-        compoundCloud->density_13.resize(width, std::vector<float>(height, 0));
-        compoundCloud->density_21.resize(width, std::vector<float>(height, 0));
-        compoundCloud->density_23.resize(width, std::vector<float>(height, 0));
-        compoundCloud->density_31.resize(width, std::vector<float>(height, 0));
-        compoundCloud->density_32.resize(width, std::vector<float>(height, 0));
-        compoundCloud->density_33.resize(width, std::vector<float>(height, 0));
+//        compoundCloud->density_11.resize(width, std::vector<float>(height, 0));
+//        compoundCloud->density_12.resize(width, std::vector<float>(height, 0));
+//        compoundCloud->density_13.resize(width, std::vector<float>(height, 0));
+//        compoundCloud->density_21.resize(width, std::vector<float>(height, 0));
+//        compoundCloud->density_23.resize(width, std::vector<float>(height, 0));
+//        compoundCloud->density_31.resize(width, std::vector<float>(height, 0));
+//        compoundCloud->density_32.resize(width, std::vector<float>(height, 0));
+//        compoundCloud->density_33.resize(width, std::vector<float>(height, 0));
 
         // Modifies the material to draw this compound cloud in addition to the others.
         Ogre::MaterialPtr materialPtr = Ogre::MaterialManager::getSingleton().getByName("CompoundClouds", "General");
@@ -316,7 +324,7 @@ CompoundCloudSystem::update(int renderTime, int) {
         pass->setVertexProgram("CompoundCloud_VS");
         pass->setFragmentProgram("CompoundCloud_PS");
         //Ogre::TexturePtr texturePtr = Ogre::TextureManager::getSingleton().load(compoundCloud->compound + ".bmp", "General");
-        Ogre::TexturePtr texturePtr = Ogre::TextureManager::getSingleton().createManual(compoundCloud->compound, "General", Ogre::TEX_TYPE_2D, width, height,
+        Ogre::TexturePtr texturePtr = Ogre::TextureManager::getSingleton().createManual(CompoundRegistry::getCompoundInternalName(compoundCloud->m_compoundId), "General", Ogre::TEX_TYPE_2D, width, height,
                                                                                         0, Ogre::PF_BYTE_BGRA, Ogre::TU_DYNAMIC_WRITE_ONLY_DISCARDABLE);
         Ogre::HardwarePixelBufferSharedPtr cloud;
         cloud = texturePtr->getBuffer();
@@ -338,7 +346,7 @@ CompoundCloudSystem::update(int renderTime, int) {
         }
         // Unlock the pixel buffer
         cloud->unlock();
-        pass->createTextureUnitState(compoundCloud->compound);
+        pass->createTextureUnitState(CompoundRegistry::getCompoundInternalName(compoundCloud->m_compoundId));
 
 
 
@@ -352,124 +360,106 @@ CompoundCloudSystem::update(int renderTime, int) {
     for (auto& value : m_impl->m_compounds)
     {
         CompoundCloudComponent* compoundCloud = std::get<0>(value.second);
+        //std::cout << "entered update loop for: " << compoundCloud->compound << std::endl;
 
         // If the offset of the compound cloud is different from the fluid systems offset,
         // then the player must have moved, so we need to adjust the 3x3 grid.
-        while (compoundCloud->offsetX != offsetX || compoundCloud->offsetY != offsetY)
+        if (compoundCloud->offsetX != offsetX || compoundCloud->offsetY != offsetY)
         {
-            // If we moved to the top tile.
-            if (compoundCloud->offsetX == offsetX && compoundCloud->offsetY < offsetY)
-            {
-                // Move bottom row up.
-                compoundCloud->density_31 = compoundCloud->density_21;
-                compoundCloud->density_32 = compoundCloud->density;
-                compoundCloud->density_33 = compoundCloud->density_23;
-
-                // Move middle row up.
-                compoundCloud->density_21 = compoundCloud->density_11;
-                compoundCloud->density = compoundCloud->density_12;
-                compoundCloud->density_23 = compoundCloud->density_13;
-
-                // Create the new bottom row and old density .
-                compoundCloud->density_11.clear();
-                compoundCloud->density_12.clear();
-                compoundCloud->density_13.clear();
-                compoundCloud->oldDens.clear();
-
-                compoundCloud->density_11.resize(width, std::vector<float>(height, 0));
-                compoundCloud->density_12.resize(width, std::vector<float>(height, 0));
-                compoundCloud->density_13.resize(width, std::vector<float>(height, 0));
-                compoundCloud->oldDens.resize(width, std::vector<float>(height, 0));
-            }
-            // If we moved to the right tile.
-            else if (compoundCloud->offsetX < offsetX && compoundCloud->offsetY == offsetY)
-            {
-                // Move left row right.
-                compoundCloud->density_11 = compoundCloud->density_12;
-                compoundCloud->density_21 = compoundCloud->density;
-                compoundCloud->density_31 = compoundCloud->density_32;
-
-                // Move middle row right.
-                compoundCloud->density_12 = compoundCloud->density_13;
-                compoundCloud->density = compoundCloud->density_23;
-                compoundCloud->density_32 = compoundCloud->density_33;
-
-                // Create the new right row and old density.
-                compoundCloud->density_13.clear();
-                compoundCloud->density_23.clear();
-                compoundCloud->density_33.clear();
-                compoundCloud->oldDens.clear();
-
-                compoundCloud->density_13.resize(width, std::vector<float>(height, 0));
-                compoundCloud->density_23.resize(width, std::vector<float>(height, 0));
-                compoundCloud->density_33.resize(width, std::vector<float>(height, 0));
-                compoundCloud->oldDens.resize(width, std::vector<float>(height, 0));
-            }
-            // If we moved to the left tile.
-            else if (compoundCloud->offsetX > offsetX && compoundCloud->offsetY == offsetY)
-            {
-                // Move right row left.
-                compoundCloud->density_13 = compoundCloud->density_12;
-                compoundCloud->density_23 = compoundCloud->density;
-                compoundCloud->density_33 = compoundCloud->density_32;
-
-                // Move middle row left.
-                compoundCloud->density_12 = compoundCloud->density_11;
-                compoundCloud->density = compoundCloud->density_21;
-                compoundCloud->density_32 = compoundCloud->density_31;
-
-                // Create the new left row and old density.
-                compoundCloud->density_11.clear();
-                compoundCloud->density_21.clear();
-                compoundCloud->density_31.clear();
-                compoundCloud->oldDens.clear();
-
-                compoundCloud->density_11.resize(width, std::vector<float>(height, 0));
-                compoundCloud->density_21.resize(width, std::vector<float>(height, 0));
-                compoundCloud->density_31.resize(width, std::vector<float>(height, 0));
-                compoundCloud->oldDens.resize(width, std::vector<float>(height, 0));
-            }
-            // If we moved to the bottom tile.
-            else if (compoundCloud->offsetX == offsetX && compoundCloud->offsetY > offsetY)
-            {
-                // Move top row down.
-                compoundCloud->density_11 = compoundCloud->density_21;
-                compoundCloud->density_12 = compoundCloud->density;
-                compoundCloud->density_13 = compoundCloud->density_23;
-
-                // Move middle row up.
-                compoundCloud->density_21 = compoundCloud->density_31;
-                compoundCloud->density = compoundCloud->density_32;
-                compoundCloud->density_23 = compoundCloud->density_33;
-
-                // Create the new top row and old density.
-                compoundCloud->density_31.clear();
-                compoundCloud->density_32.clear();
-                compoundCloud->density_33.clear();
-                compoundCloud->oldDens.clear();
-
-                compoundCloud->density_31.resize(width, std::vector<float>(height, 0));
-                compoundCloud->density_32.resize(width, std::vector<float>(height, 0));
-                compoundCloud->density_33.resize(width, std::vector<float>(height, 0));
-                compoundCloud->oldDens.resize(width, std::vector<float>(height, 0));
-            }
+//            //std::cout << "Getting ready to move: " << std::to_string(compoundCloud->offsetX) << " to "
+//            //          << std::to_string(offsetX) << " and " << std::to_string(compoundCloud->offsetY) << " to "
+//            //          << std::to_string(offsetY) << std::endl;
+//            // If we moved to the top tile.
+//            if (compoundCloud->offsetX == offsetX && compoundCloud->offsetY < offsetY)
+//            {
+//                // Move bottom row up.
+//                compoundCloud->density_31.swap(compoundCloud->density_21);
+//                compoundCloud->density_32.swap(compoundCloud->density);
+//                compoundCloud->density_33.swap(compoundCloud->density_23);
+//
+//                // Move middle row up.
+//                compoundCloud->density_21.swap(compoundCloud->density_11);
+//                compoundCloud->density.swap(compoundCloud->density_12);
+//                compoundCloud->density_23.swap(compoundCloud->density_13);
+//
+//                // Create the new bottom row and old density .
+//                std::fill(compoundCloud->density_11.begin(), compoundCloud->density_11.begin()+width, std::vector<float>(height, 0.0));
+//                std::fill(compoundCloud->density_12.begin(), compoundCloud->density_12.begin()+width, std::vector<float>(height, 0.0));
+//                std::fill(compoundCloud->density_13.begin(), compoundCloud->density_13.begin()+width, std::vector<float>(height, 0.0));
+//                std::fill(compoundCloud->oldDens.begin(), compoundCloud->oldDens.begin()+width, std::vector<float>(height, 0.0));
+//            }
+//            // If we moved to the right tile.
+//            else if (compoundCloud->offsetX < offsetX && compoundCloud->offsetY == offsetY)
+//            {
+//                // Move left row right.
+//                compoundCloud->density_11.swap(compoundCloud->density_12);
+//                compoundCloud->density_21.swap(compoundCloud->density);
+//                compoundCloud->density_31.swap(compoundCloud->density_32);
+//
+//                // Move middle row right.
+//                compoundCloud->density_12.swap(compoundCloud->density_13);
+//                compoundCloud->density.swap(compoundCloud->density_23);
+//                compoundCloud->density_32.swap(compoundCloud->density_33);
+//
+//                // Create the new right row and old density.
+//                std::fill(compoundCloud->density_13.begin(), compoundCloud->density_13.begin()+width, std::vector<float>(height, 0.0));
+//                std::fill(compoundCloud->density_23.begin(), compoundCloud->density_23.begin()+width, std::vector<float>(height, 0.0));
+//                std::fill(compoundCloud->density_33.begin(), compoundCloud->density_33.begin()+width, std::vector<float>(height, 0.0));
+//                std::fill(compoundCloud->oldDens.begin(), compoundCloud->oldDens.begin()+width, std::vector<float>(height, 0.0));
+//            }
+//            // If we moved to the left tile.
+//            else if (compoundCloud->offsetX > offsetX && compoundCloud->offsetY == offsetY)
+//            {
+//                // Move right row left.
+//                compoundCloud->density_13.swap(compoundCloud->density_12);
+//                compoundCloud->density_23.swap(compoundCloud->density);
+//                compoundCloud->density_33.swap(compoundCloud->density_32);
+//
+//                // Move middle row left.
+//                compoundCloud->density_12.swap(compoundCloud->density_11);
+//                compoundCloud->density.swap(compoundCloud->density_21);
+//                compoundCloud->density_32.swap(compoundCloud->density_31);
+//
+//                // Create the new left row and old density.
+//                std::fill(compoundCloud->density_11.begin(), compoundCloud->density_11.begin()+width, std::vector<float>(height, 0.0));
+//                std::fill(compoundCloud->density_21.begin(), compoundCloud->density_21.begin()+width, std::vector<float>(height, 0.0));
+//                std::fill(compoundCloud->density_31.begin(), compoundCloud->density_31.begin()+width, std::vector<float>(height, 0.0));
+//                std::fill(compoundCloud->oldDens.begin(), compoundCloud->oldDens.begin()+width, std::vector<float>(height, 0.0));
+//            }
+//            // If we moved to the bottom tile.
+//            else if (compoundCloud->offsetX == offsetX && compoundCloud->offsetY > offsetY)
+//            {
+//                // Move top row down.
+//                compoundCloud->density_11.swap(compoundCloud->density_21);
+//                compoundCloud->density_12.swap(compoundCloud->density);
+//                compoundCloud->density_13.swap(compoundCloud->density_23);
+//
+//                // Move middle row up.
+//                compoundCloud->density_21.swap(compoundCloud->density_31);
+//                compoundCloud->density.swap(compoundCloud->density_32);
+//                compoundCloud->density_23.swap(compoundCloud->density_33);
+//
+//                // Create the new top row and old density.
+//                std::fill(compoundCloud->density_31.begin(), compoundCloud->density_31.begin()+width, std::vector<float>(height, 0.0));
+//                std::fill(compoundCloud->density_32.begin(), compoundCloud->density_32.begin()+width, std::vector<float>(height, 0.0));
+//                std::fill(compoundCloud->density_33.begin(), compoundCloud->density_33.begin()+width, std::vector<float>(height, 0.0));
+//                std::fill(compoundCloud->oldDens.begin(), compoundCloud->oldDens.begin()+width, std::vector<float>(height, 0.0));
+//            }
             compoundCloud->offsetX = offsetX;
             compoundCloud->offsetY = offsetY;
+            //std::cout << "Moved the tiles" << std::endl;
         }
+        //std::cout << "Left loop" << std::endl;
 
         // Compound clouds move from area of high concentration to area of low.
         diffuse(.01, compoundCloud->oldDens, compoundCloud->density, renderTime);
         // Move the compound clouds about the velocity field.
         advect(compoundCloud->oldDens, compoundCloud->density, renderTime);
-        // Write the density grid of this compound to a bitmap to be read by the fluid shader.
-        //writeToFile(compoundCloud->density, compoundCloud->compound, compoundCloud->color);
-        // Reload the background to have the modified texture.
-        //Ogre::Root::getSingletonPtr()->getTextureManager()->getByName(compoundCloud->compound + ".bmp", "General")->reload();
 
         //auto start = std::chrono::high_resolution_clock::now();
-
+        //std::cout << "Before Buffer" << std::endl;
         Ogre::HardwarePixelBufferSharedPtr cloud;
-        cloud = Ogre::TextureManager::getSingleton().getByName(compoundCloud->compound, "General")->getBuffer();
+        cloud = Ogre::TextureManager::getSingleton().getByName(CompoundRegistry::getCompoundInternalName(compoundCloud->m_compoundId), "General")->getBuffer();
         cloud->lock(Ogre::HardwareBuffer::HBL_DISCARD);
         const Ogre::PixelBox& pixelBox = cloud->getCurrentLock();
         uint8_t* pDest = static_cast<uint8_t*>(pixelBox.data);
@@ -500,46 +490,7 @@ CompoundCloudSystem::update(int renderTime, int) {
         }
         // Unlock the pixel buffer
         cloud->unlock();
-
-//        int red, green, blue;
-//
-//        compoundCloud->cloud->lock(Ogre::HardwareBuffer::HBL_DISCARD);
-//        const Ogre::PixelBox& pixelBox = compoundCloud->cloud->getCurrentLock();
-//        uint8_t* pDest = static_cast<uint8_t*>(pixelBox.data);
-//        // Fill in some pixel data. This will give a semi-transparent blue,
-//        // but this is of course dependent on the chosen pixel format.
-//        for (int i = 0; i < width; i++)
-//        {
-//            for(int j = 0; j < height; j++)
-//            {
-//                int intensity = static_cast<int>(compoundCloud->density[i][j]);
-//
-//                if (intensity <= 0)
-//                {
-//                    intensity = 0;
-//                    red = 0; green = 0; blue = 0;
-//                }
-//                else if (intensity < 255)
-//                {
-//                    red = intensity*compoundCloud->color.r/256; green = intensity*compoundCloud->color.g/256; blue = intensity*compoundCloud->color.b/256;
-//                }
-//                else
-//                {
-//                    intensity = 255;
-//                    red = 255*compoundCloud->color.r/256; green = 255*compoundCloud->color.g/256; blue = 255*compoundCloud->color.b/256;
-//                }
-//                if(red < 0 && green < 0 && blue < 0 && intensity < 0) *pDest = 255;
-//
-//                *pDest++ = 255;
-//                *pDest++ = 0;
-//                *pDest++ = 0;
-//                *pDest++ = 10;
-//            }
-//
-//            pDest += pixelBox.getRowSkip() * Ogre::PixelUtil::getNumElemBytes(pixelBox.format);
-//        }
-//        // Unlock the pixel buffer
-//        compoundCloud->cloud->unlock();
+        //std::cout << "After buffer" << std::endl;
 
         //auto end = std::chrono::high_resolution_clock::now();
         //auto diff = std::chrono::duration_cast<std::chrono::microseconds>(end-start);
@@ -633,139 +584,5 @@ CompoundCloudSystem::advect(std::vector<  std::vector<float>  >& oldDens, std::v
 			density[x1][y0] += oldDens[x][y] * s1 * t0;
 			density[x1][y1] += oldDens[x][y] * s1 * t1;
 		}
-	}
-}
-
-
-void
-CompoundCloudSystem::writeToFile(std::vector<  std::vector<float>  >& density, std::string compoundName, Ogre::ColourValue color) {
-    int w = width;
-	int h = height;
-
-	unsigned char* img = NULL;
-	int filesize = 54 + 3*w*h;
-	if (img)
-		free(img);
-	img = static_cast<unsigned char*>(malloc(3*w*h));
-	memset(img, 0, sizeof(*img));
-
-	int intensity;
-	int red, green, blue;
-	int x, y;
-
-
-    for (int j = h-1; j >= 0; j--)
-    {
-        for (int i = 0; i < width; i++)
-        {
-			intensity = static_cast<int>(density[i][j]);
-
-			if (intensity < 0)
-			{
-				red = 0; green = 0; blue = 0;
-			}
-			else if (intensity < 255)
-			{
-				red = intensity*color.r/256; green = intensity*color.g/256; blue = intensity*color.b/256;
-			}
-			else
-			{
-				red = 255*color.r/256; green = 255*color.g/256; blue = 255*color.b/256;
-			}
-
-			x = i; y = (h - 1) - j;
-
-			img[(x + y*w) * 3 + 2] = static_cast<unsigned char>(red);
-			img[(x + y*w) * 3 + 1] = static_cast<unsigned char>(green);
-			img[(x + y*w) * 3 + 0] = static_cast<unsigned char>(blue);
-		}
-	}
-
-	unsigned char bmpfileheader[14] = { 'B','M', 0,0,0,0, 0,0, 0,0, 54,0,0,0 };
-	unsigned char bmpinfoheader[40] = { 40,0,0,0, 0,0,0,0, 0,0,0,0, 1,0, 24,0 };
-	unsigned char bmppad[3] = { 0,0,0 };
-
-	bmpfileheader[2] = static_cast<unsigned char>(filesize);
-	bmpfileheader[3] = static_cast<unsigned char>(filesize >> 8);
-	bmpfileheader[4] = static_cast<unsigned char>(filesize >> 16);
-	bmpfileheader[5] = static_cast<unsigned char>(filesize >> 24);
-
-	bmpinfoheader[4] = static_cast<unsigned char>(w);
-	bmpinfoheader[5] = static_cast<unsigned char>(w >> 8);
-	bmpinfoheader[6] = static_cast<unsigned char>(w >> 16);
-	bmpinfoheader[7] = static_cast<unsigned char>(w >> 24);
-	bmpinfoheader[8] = static_cast<unsigned char>(h);
-	bmpinfoheader[9] = static_cast<unsigned char>(h >> 8);
-	bmpinfoheader[10]= static_cast<unsigned char>(h >> 16);
-	bmpinfoheader[11]= static_cast<unsigned char>(h >> 24);
-
-    std::string filename = "../tmp/" + compoundName + ".bmp";
-	errno_t err = fopen_s(&f, filename.c_str(), "wb");
-	if (!err) {
-		fwrite(bmpfileheader, 1, 14, f);
-		fwrite(bmpinfoheader, 1, 40, f);
-		for (int i = 0; i < h; i++)
-		{
-			fwrite(img + (w*(h - i - 1) * 3), 3, w, f);
-			fwrite(bmppad, 1, (4 - (w * 3) % 4) % 4, f);
-		}
-		fclose(f);
-	}
-}
-
-void
-CompoundCloudSystem::initializeFile(std::string compoundName) {
-    int w = width;
-	int h = height;
-
-	unsigned char* img = NULL;
-	int filesize = 54 + 3*w*h;
-	if (img)
-		free(img);
-	img = static_cast<unsigned char*>(malloc(3*w*h));
-	memset(img, 0, sizeof(*img));
-
-	int x, y;
-    for (int j = h-1; j >= 0; j--)
-    {
-        for (int i = 0; i < width; i++)
-        {
-			x = i; y = (h - 1) - j;
-
-			img[(x + y*w) * 3 + 2] = static_cast<unsigned char>(0);
-			img[(x + y*w) * 3 + 1] = static_cast<unsigned char>(0);
-			img[(x + y*w) * 3 + 0] = static_cast<unsigned char>(0);
-		}
-	}
-
-	unsigned char bmpfileheader[14] = { 'B','M', 0,0,0,0, 0,0, 0,0, 54,0,0,0 };
-	unsigned char bmpinfoheader[40] = { 40,0,0,0, 0,0,0,0, 0,0,0,0, 1,0, 24,0 };
-	unsigned char bmppad[3] = { 0,0,0 };
-
-	bmpfileheader[2] = static_cast<unsigned char>(filesize);
-	bmpfileheader[3] = static_cast<unsigned char>(filesize >> 8);
-	bmpfileheader[4] = static_cast<unsigned char>(filesize >> 16);
-	bmpfileheader[5] = static_cast<unsigned char>(filesize >> 24);
-
-	bmpinfoheader[4] = static_cast<unsigned char>(w);
-	bmpinfoheader[5] = static_cast<unsigned char>(w >> 8);
-	bmpinfoheader[6] = static_cast<unsigned char>(w >> 16);
-	bmpinfoheader[7] = static_cast<unsigned char>(w >> 24);
-	bmpinfoheader[8] = static_cast<unsigned char>(h);
-	bmpinfoheader[9] = static_cast<unsigned char>(h >> 8);
-	bmpinfoheader[10]= static_cast<unsigned char>(h >> 16);
-	bmpinfoheader[11]= static_cast<unsigned char>(h >> 24);
-
-    std::string filename = "../tmp/" + compoundName + ".bmp";
-	errno_t err = fopen_s(&f, filename.c_str(), "wb");
-	if (!err) {
-		fwrite(bmpfileheader, 1, 14, f);
-		fwrite(bmpinfoheader, 1, 40, f);
-		for (int i = 0; i < h; i++)
-		{
-			fwrite(img + (w*(h - i - 1) * 3), 3, w, f);
-			fwrite(bmppad, 1, (4 - (w * 3) % 4) % 4, f);
-		}
-		fclose(f);
 	}
 }

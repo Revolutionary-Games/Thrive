@@ -49,7 +49,7 @@ local function setupCompoundClouds()
         local name = CompoundRegistry.getCompoundInternalName(compoundId)
         local entity = Entity("compound_cloud_" .. name)
         local compoundCloud = CompoundCloudComponent()
-        compoundCloud:initialize(name, math.random()*255, math.random()*255, math.random()*255)
+        compoundCloud:initialize(compoundId, math.random()*255, math.random()*255, math.random()*255)
         entity:addComponent(compoundCloud)
     end
 end
@@ -238,8 +238,6 @@ local function createSpawnSystem()
 end
 
 local function setupEmitter()
-
-    createCompoundCloud("glucose", 5, 5, 2000000)
     -- -- Setting up a test emitter
     -- local entity = Entity("glucose-emitter")
     -- -- Rigid body
@@ -296,10 +294,10 @@ local function setupPlayer()
     Engine:playerData():lockedMap():addLock("chloroplast")
     Engine:playerData():setActiveCreature(microbe.entity.id, GameState.MICROBE)
     speciesEntity = Entity("defaultMicrobeSpecies")
-    species = SpeciesComponent("defaultMicrobeSpecies")
+    species = SpeciesComponent("Default")
     species:fromMicrobe(microbe)
     speciesEntity:addComponent(species)
-    microbe.microbe.speciesName = "defaultMicrobeSpecies"
+    microbe.microbe.speciesName = "Default"
 end
 
 local function setupSound()
@@ -399,5 +397,5 @@ local function createMicrobeStage(name)
 end
 
 GameState.MICROBE = createMicrobeStage("microbe")
-GameState.MICROBE_ALTERNATE = createMicrobeStage("microbe_alternate")
+--GameState.MICROBE_ALTERNATE = createMicrobeStage("microbe_alternate")
 --Engine:setCurrentGameState(GameState.MICROBE)

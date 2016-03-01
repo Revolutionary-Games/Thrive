@@ -819,7 +819,7 @@ function Microbe:update(logicTime)
         end
         -- Used to detect when engulfing stops
         self.microbe.isBeingEngulfed = false;
-        self.compoundAbsorber:setAbsorbtionCapacity(math.min(self.microbe.capacity - self.microbe.stored, self.microbe.remainingBandwidth))
+        self.compoundAbsorber:setAbsorbtionCapacity(math.min(self.microbe.capacity - self.microbe.stored + 10, self.microbe.remainingBandwidth))
     else
         self.microbe.deathTimer = self.microbe.deathTimer - logicTime
         if self.microbe.deathTimer <= 0 then
