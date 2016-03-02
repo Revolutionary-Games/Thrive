@@ -672,7 +672,7 @@ function Microbe:ejectCompound(compoundId, amount, minAngle, maxAngle, radius)
         -- _radius = radius
     -- end
     -- Find how far away we should spawn the particle so it doesn't collide with microbe.
-    createCompoundCloud(CompoundRegistry.getCompoundInternalName(compoundId), self.sceneNode.transform.position.x, self.sceneNode.transform.position.y, amount*5000)
+    createCompoundCloud(CompoundRegistry.getCompoundInternalName(compoundId), self.sceneNode.transform.position.x, self.sceneNode.transform.position.y, amount*1000)
     -- self.compoundEmitter:emitCompound(compoundId, amount, finalAngle, _radius)
     self.microbe:_updateCompoundPriorities()
 end

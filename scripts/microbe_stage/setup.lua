@@ -199,16 +199,16 @@ local function createSpawnSystem()
     end
         
     local spawnGlucoseCloud =  function(pos)
-        createCompoundCloud("glucose", pos.x, pos.y, 75000)
+        createCompoundCloud("glucose", pos.x, pos.y, 15000)
     end
     local spawnOxygenCloud =  function(pos)
-        createCompoundCloud("oxygen", pos.x, pos.y, 75000)
+        createCompoundCloud("oxygen", pos.x, pos.y, 15000)
     end
     local spawnCO2Cloud =  function(pos)
-        createCompoundCloud("co2", pos.x, pos.y, 75000)
+        createCompoundCloud("co2", pos.x, pos.y, 15000)
     end
     local spawnAmmoniaCloud =  function(pos)
-        createCompoundCloud("ammonia", pos.x, pos.y, 75000)
+        createCompoundCloud("ammonia", pos.x, pos.y, 15000)
     end
 
     --Spawn one emitter on average once in every square of sidelength 10
