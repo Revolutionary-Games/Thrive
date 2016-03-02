@@ -288,6 +288,9 @@ function unlockChloroplast(entityId)
     return true
 end
 
+SpeciesNames = {
+	"Hemodarpia", "Exvania", "Amix Splum","Harx", "Despithabia", "Vantia","Rogania","Paperix Duos","Bacterium","Thrivium"
+}
 local function setupPlayer()
     microbe = microbeSpawnFunctionGeneric(nil, "Default", false, PLAYER_NAME)
     microbe.collisionHandler:addCollisionGroup("powerupable")
@@ -298,8 +301,8 @@ local function setupPlayer()
     species = SpeciesComponent("defaultMicrobeSpecies")
     species:fromMicrobe(microbe)
     speciesEntity:addComponent(species)
-    microbe.microbe.speciesName = "defaultMicrobeSpecies"
-end
+    microbe.microbe.speciesName = SpeciesNames[math.random(2,11)]
+endv
 
 local function setupSound()
     local ambientEntity = Entity("ambience")
