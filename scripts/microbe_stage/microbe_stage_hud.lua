@@ -28,7 +28,7 @@ function HudSystem:activate()
 end
 
 function HudSystem:init(gameState)
-    System.init(self, "MicrobeStageHudSystem", gameState) ---[[
+    System.init(self, gameState)
     self.rootGUIWindow =  gameState:rootGUIWindow()
     self.compoundListBox = self.rootGUIWindow:getChild("CompoundsOpen"):getChild("CompoundsLabel")
     self.hitpointsBar = self.rootGUIWindow:getChild("HealthPanel"):getChild("LifeBar")
