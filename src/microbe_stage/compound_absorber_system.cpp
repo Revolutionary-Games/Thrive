@@ -256,14 +256,14 @@ CompoundAbsorberSystem::update(int, int) {
                 {
                     if (membrane->contains((x-compoundCloud->width/2)*compoundCloud->gridSize-origin.x+compoundCloud->offsetX,(y-compoundCloud->height/2)*compoundCloud->gridSize-origin.y+compoundCloud->offsetY)) {
                         if (absorber->m_enabled == true && absorber->canAbsorbCompound(id)) {
-                            float amount = compoundCloud->amountAvailable(x, y, .2) / 1000.0f;
+                            float amount = compoundCloud->amountAvailable(x, y, .2) / 5000.0f;
                             //if (CompoundRegistry::isAgentType(id)){
                             //    (*CompoundRegistry::getAgentEffect(id))(entity, amount);
                             //    this->entityManager()->removeEntity(compoundEntity);
                             //}
                             //else
                                 if(absorber->m_absorbtionCapacity >= amount * CompoundRegistry::getCompoundUnitVolume(id)){
-                                absorber->m_absorbedCompounds[id] += compoundCloud->takeCompound(x, y, .2) / 1000.0f;
+                                absorber->m_absorbedCompounds[id] += compoundCloud->takeCompound(x, y, .2) / 5000.0f;
                                 //this->entityManager()->removeEntity(compoundEntity);
                             }
                         }
