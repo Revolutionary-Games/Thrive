@@ -83,7 +83,7 @@ end
 
 -- Override from System
 function PatchSystem:init(gameState)
-    System.init(self, gameState)
+    System.init(self, "PatchSystem", gameState)
     self.entities:init(gameState)
 end
 

@@ -117,7 +117,7 @@ TimedCompoundEmitterComponent::load(
     const StorageContainer& storage
 ) {
     Component::load(storage);
-    m_compoundId = storage.get<CompoundId>("compoundId", NULL_COMPOUND);
+    //m_compoundId = storage.get<CompoundId>("compoundId", NULL_COMPOUND);
     m_particlesPerEmission = storage.get<uint16_t>("particlesPerEmission");
     m_potencyPerParticle = storage.get<float>("potencyPerParticle");
     m_emitInterval = storage.get<Milliseconds>("emitInterval", 1000);
@@ -128,7 +128,7 @@ TimedCompoundEmitterComponent::load(
 StorageContainer
 TimedCompoundEmitterComponent::storage() const {
     StorageContainer storage = Component::storage();
-    storage.set<CompoundId>("compoundId", m_compoundId);
+    //storage.set<CompoundId>("compoundId", m_compoundId);
     storage.set<uint16_t>("particlesPerEmission", m_particlesPerEmission);
     storage.set<float>("potencyPerParticle", m_potencyPerParticle);
     storage.set<Milliseconds>("emitInterval", m_emitInterval);
@@ -177,7 +177,7 @@ void
 CompoundEmitterSystem::init(
     GameState* gameState
 ) {
-    System::init(gameState);
+    System::initNamed("CompoundEmitterSystem", gameState);
     m_impl->m_entities.setEntityManager(&gameState->entityManager());
     m_impl->m_sceneManager = gameState->sceneManager();
 }

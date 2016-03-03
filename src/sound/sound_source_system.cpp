@@ -493,7 +493,7 @@ void
 SoundSourceSystem::init(
     GameState* gameState
 ) {
-    System::init(gameState);
+    System::initNamed("SoundSourceSystem", gameState);
     m_impl->m_entities.setEntityManager(&gameState->entityManager());
     m_impl->m_gameState = gameState;
 }

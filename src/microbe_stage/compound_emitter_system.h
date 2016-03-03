@@ -145,7 +145,7 @@ public:
     /**
     * @brief The compound id to emit
     */
-    CompoundId m_compoundId = NULL_COMPOUND;
+    CompoundId m_compoundId;// = NULL_COMPOUND;
 
     /**
     * @brief The number of particles created per emission interval
