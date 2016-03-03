@@ -45,13 +45,35 @@ local function setupCompounds()
 end
 
 local function setupCompoundClouds()
-    for compoundId in CompoundRegistry.getCompoundList() do
-        local name = CompoundRegistry.getCompoundInternalName(compoundId)
-        local entity = Entity("compound_cloud_" .. name)
-        local compoundCloud = CompoundCloudComponent()
-        compoundCloud:initialize(compoundId, math.random()*255, math.random()*255, math.random()*255)
-        entity:addComponent(compoundCloud)
-    end
+    local compoundId = CompoundRegistry.getCompoundId("glucose")
+    local entity = Entity("compound_cloud_glucose")
+    local compoundCloud = CompoundCloudComponent()
+    compoundCloud:initialize(compoundId, 150, 170, 180)
+    entity:addComponent(compoundCloud)
+    
+    compoundId = CompoundRegistry.getCompoundId("oxygen")
+    entity = Entity("compound_cloud_oxygen")
+    compoundCloud = CompoundCloudComponent()
+    compoundCloud:initialize(compoundId, 60, 160, 180)
+    entity:addComponent(compoundCloud)
+    
+    compoundId = CompoundRegistry.getCompoundId("co2")
+    entity = Entity("compound_cloud_co2")
+    compoundCloud = CompoundCloudComponent()
+    compoundCloud:initialize(compoundId, 20, 50, 100)
+    entity:addComponent(compoundCloud)
+    
+    compoundId = CompoundRegistry.getCompoundId("ammonia")
+    entity = Entity("compound_cloud_ammonia")
+    compoundCloud = CompoundCloudComponent()
+    compoundCloud:initialize(compoundId, 255, 220, 50)
+    entity:addComponent(compoundCloud)
+    
+    compoundId = CompoundRegistry.getCompoundId("aminoacids")
+    entity = Entity("compound_cloud_aminoacids")
+    compoundCloud = CompoundCloudComponent()
+    compoundCloud:initialize(compoundId, 255, 150, 200)
+    entity:addComponent(compoundCloud)
 end
 
 --  This isn't a finished solution. Optimally the process class would be moved to CPP and loaded there entirely.
@@ -148,7 +170,9 @@ local function setSpawnablePhysics(entity, pos, mesh, scale, collisionShape)
 end
 
 function createCompoundCloud(compound, x, y, amount)
-    Entity("compound_cloud_" .. compound):getComponent(CompoundCloudComponent.TYPE_ID):addCloud(amount, x, y)
+    if compound == "aminoacids" or compound == "glucose" or compound == "co2" or compound == "oxygen" or compound == "ammonia" then
+        Entity("compound_cloud_" .. compound):getComponent(CompoundCloudComponent.TYPE_ID):addCloud(amount, x, y)
+    end
 end
 
 local function addEmitter2Entity(entity, compound)

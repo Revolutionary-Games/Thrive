@@ -280,6 +280,8 @@ CompoundCloudSystem::update(int renderTime, int) {
 
         texturePtr = Ogre::TextureManager::getSingleton().load("PerlinNoise.jpg", "General");
         pass->createTextureUnitState()->setTexture(texturePtr);
+
+        compoundCloudsPlane->getSubEntity(0)->setCustomParameter(1, Ogre::Vector4(0.0f, 0.0f, 0.0f, 0.0f));
     }
     // Clear the list of newly added entities so that we don't reinitialize them next frame.
     m_impl->m_compounds.clearChanges();
@@ -287,10 +289,9 @@ CompoundCloudSystem::update(int renderTime, int) {
     // For all types of compound clouds...
     for (auto& value : m_impl->m_compounds)
     {
-
         CompoundCloudComponent* compoundCloud = std::get<0>(value.second);
         // If the offset of the compound cloud is different from the fluid systems offset,
-        // then the player must have moved, so we need to adjust the 3x3 grid.
+        // then the player must have moved, so we need to adjust the texture.
         if (compoundCloud->offsetX != offsetX || compoundCloud->offsetY != offsetY)
         {
             // If we moved up.
@@ -305,8 +306,10 @@ CompoundCloudSystem::update(int renderTime, int) {
                         compoundCloud->density[x][y+height*2/3] = 0.0;
                     }
                 }
+                Ogre::Vector4 offset = compoundCloudsPlane->getSubEntity(0)->getCustomParameter(1);
+                compoundCloudsPlane->getSubEntity(0)->setCustomParameter(1, Ogre::Vector4(offset.x, offset.y-1.0f/3, 0.0f, 0.0f));
             }
-            // If we moved to the right.
+            // If we moved right.
             else if (compoundCloud->offsetX < offsetX && compoundCloud->offsetY == offsetY)
             {
                 for (int x = 0; x < width/3; x++)
@@ -318,8 +321,10 @@ CompoundCloudSystem::update(int renderTime, int) {
                         compoundCloud->density[x+height*2/3][y] = 0.0;
                     }
                 }
+                Ogre::Vector4 offset = compoundCloudsPlane->getSubEntity(0)->getCustomParameter(1);
+                compoundCloudsPlane->getSubEntity(0)->setCustomParameter(1, Ogre::Vector4(offset.x-1.0f/3, offset.y, 0.0f, 0.0f));
             }
-            // If we moved to the left.
+            // If we moved left.
             else if (compoundCloud->offsetX > offsetX && compoundCloud->offsetY == offsetY)
             {
                 for (int x = 0; x < width/3; x++)
@@ -331,8 +336,10 @@ CompoundCloudSystem::update(int renderTime, int) {
                         compoundCloud->density[x][y] = 0.0;
                     }
                 }
+                Ogre::Vector4 offset = compoundCloudsPlane->getSubEntity(0)->getCustomParameter(1);
+                compoundCloudsPlane->getSubEntity(0)->setCustomParameter(1, Ogre::Vector4(offset.x+1.0f/3, offset.y, 0.0f, 0.0f));
             }
-            // If we moved to the bottom.
+            // If we moved downwards.
             else if (compoundCloud->offsetX == offsetX && compoundCloud->offsetY > offsetY)
             {
                 for (int x = 0; x < width; x++)
@@ -344,6 +351,8 @@ CompoundCloudSystem::update(int renderTime, int) {
                         compoundCloud->density[x][y] = 0.0;
                     }
                 }
+                Ogre::Vector4 offset = compoundCloudsPlane->getSubEntity(0)->getCustomParameter(1);
+                compoundCloudsPlane->getSubEntity(0)->setCustomParameter(1, Ogre::Vector4(offset.x, offset.y+1.0f/3, 0.0f, 0.0f));
             }
             compoundCloud->offsetX = offsetX;
             compoundCloud->offsetY = offsetY;
