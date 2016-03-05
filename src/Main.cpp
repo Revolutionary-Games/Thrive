@@ -1,12 +1,10 @@
-#include <fstream>
-#include <iostream>
-#include <string>
-#include <cstdio>
-#include <OgreRoot.h>
-
-#include "game.h"
-
 #include <boost/thread.hpp>
+#include <cstdio>
+#include <fstream>
+#include "game.h"
+#include <iostream>
+#include <OgreRoot.h>
+#include <string>
 
 #if OGRE_PLATFORM == OGRE_PLATFORM_WIN32
 #define WIN32_LEAN_AND_MEAN
@@ -23,7 +21,8 @@ extern "C" {
     *
     * @return: 0 for success, 1 for failure
     **/
-    int initThrive();
+    int
+    initThrive();
 
 #if OGRE_PLATFORM == OGRE_PLATFORM_WIN32
     INT WINAPI WinMain( HINSTANCE hInst, HINSTANCE, LPSTR strCmdLine, INT )
@@ -31,8 +30,7 @@ extern "C" {
     int main(int argc, char *argv[])
 #endif
     {
-        if (initThrive() != 0)
-        {
+        if (initThrive() != 0){
             return -1;
         }
         using namespace thrive;
@@ -41,8 +39,8 @@ extern "C" {
         return 0;
     }
 
-    int initThrive()
-    {
+    int
+    initThrive(){
         std::ifstream versionFile("thriveversion.ver");
         std::ifstream mainLayout("../gui/layouts/MainMenu.layout");
         std::ofstream tempFile("../gui/layouts/MainMenuTemp.layout");
@@ -54,8 +52,7 @@ extern "C" {
         std::string needle = "<Property name=\"Text\" value=\"v";
         std::size_t found = 0;
 
-        while (std::getline(mainLayout, str))
-        {
+        while (std::getline(mainLayout, str)){
             // Process str
             found = str.find(needle);
             if (found != std::string::npos)
@@ -70,15 +67,13 @@ extern "C" {
         mainLayout.close();
         tempFile.close();
 
-        if( remove( "../gui/layouts/MainMenu.layout" ) != 0 )
-        {
+        if( remove( "../gui/layouts/MainMenu.layout" ) != 0 ){
             perror( "Error deleting main menu layout" );
             return 1;
         }
 
         int result = std::rename("../gui/layouts/MainMenuTemp.layout", "../gui/layouts/MainMenu.layout");
-        if ( result != 0 )
-        {
+        if ( result != 0 ){
             perror( "Error renaming file" );
             return 1;
         }
