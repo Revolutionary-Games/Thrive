@@ -233,7 +233,7 @@ void
 RigidBodyInputSystem::init(
     GameState* gameState
 ) {
-    System::initNamed("RigidBodyInputSystem", gameState);
+    System::init(gameState);
     assert(m_impl->m_world == nullptr && "Double init of system");
     m_impl->m_world = gameState->physicsWorld();
     m_impl->m_entities.setEntityManager(&gameState->entityManager());
@@ -485,7 +485,7 @@ void
 RigidBodyOutputSystem::init(
     GameState* gameState
 ) {
-    System::initNamed("RigidBodyOutputSystem", gameState);
+    System::init(gameState);
     m_impl->m_entities.setEntityManager(&gameState->entityManager());
 }
 

@@ -37,7 +37,7 @@ void
 RenderSystem::init(
     GameState* gameState
 ) {
-    System::initNamed("RenderSystem", gameState);
+    System::init(gameState);
     m_impl->m_root = this->engine()->ogreRoot();
     assert(m_impl->m_root != nullptr && "Root object is null. Initialize the Engine first.");
 }

@@ -95,7 +95,7 @@ end
 
 
 function MicrobeAISystem:init(gameState)
-    System.init(self, "MicrobeAISystem", gameState)
+    System.init(self, gameState)
     self.entities:init(gameState)
     self.emitters:init(gameState)
 end
