@@ -250,7 +250,7 @@ void
 OgreAddSceneNodeSystem::init(
     GameState* gameState
 ) {
-    System::init(gameState);
+    System::initNamed("OgreAddSceneNodeSystem", gameState);
     assert(m_impl->m_sceneManager == nullptr && "Double init of system");
     m_impl->m_sceneManager = gameState->sceneManager();
     m_impl->m_entities.setEntityManager(&gameState->entityManager());
@@ -335,7 +335,7 @@ OgreRemoveSceneNodeSystem::init(
 ) {
     Ogre::Animation::setDefaultInterpolationMode(Ogre::Animation::IM_LINEAR);
     Ogre::Animation::setDefaultRotationInterpolationMode(Ogre::Animation::RIM_LINEAR);
-    System::init(gameState);
+    System::initNamed("OgreRemoveSceneNodeSystem", gameState);
     assert(m_impl->m_sceneManager == nullptr && "Double init of system");
     m_impl->m_sceneManager = gameState->sceneManager();
     m_impl->m_entities.setEntityManager(&gameState->entityManager());
@@ -418,7 +418,7 @@ void
 OgreUpdateSceneNodeSystem::init(
     GameState* gameState
 ) {
-    System::init(gameState);
+    System::initNamed("OgreUpdateSceneNodeSystem", gameState);
     m_impl->m_sceneManager = gameState->sceneManager();
     m_impl->m_entities.setEntityManager(&gameState->entityManager());
 }

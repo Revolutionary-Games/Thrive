@@ -107,7 +107,7 @@ void
 PowerupSystem::init(
     GameState* gameState
 ) {
-    System::init(gameState);
+    System::initNamed("PowerupSystem", gameState);
     m_impl->m_entities.setEntityManager(&gameState->entityManager());
     m_impl->m_powerupCollisions.init(gameState);
     m_impl->m_entityManager = &gameState->entityManager();

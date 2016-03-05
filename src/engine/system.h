@@ -1,3 +1,4 @@
+
 #pragma once
 
 #include <memory>
@@ -15,7 +16,7 @@ class GameState;
 /**
 * @brief A system handles one specific part of the game
 *
-* Systems can operate on entities and their components, but they can also 
+* Systems can operate on entities and their components, but they can also
 * handle tasks that don't require components at all, such as issuing a render
 * call to the graphics engine.
 */
@@ -30,7 +31,7 @@ public:
     * - System::active
     * - System::setActive
     *
-    * @return 
+    * @return
     */
     static luabind::scope
     luaBindings();
@@ -48,7 +49,7 @@ public:
     /**
     * @brief Called by GameState::activate()
     *
-    * Override this if you need to restore some internal state when the 
+    * Override this if you need to restore some internal state when the
     * system's game state is activated.
     */
     virtual void
@@ -57,7 +58,7 @@ public:
     /**
     * @brief Called by GameState::deactivate()
     *
-    * Override this if you need to clear some internal state when the 
+    * Override this if you need to clear some internal state when the
     * system's game state is deactivated.
     */
     virtual void
@@ -68,7 +69,7 @@ public:
     *
     * Disabled systems are not being updated
     *
-    * @return 
+    * @return
     */
     bool
     enabled() const;
@@ -76,8 +77,8 @@ public:
     /**
     * @brief The system's engine
     *
-    * @return 
-    *   The system's engine or \c nullptr if the system hasn't been 
+    * @return
+    *   The system's engine or \c nullptr if the system hasn't been
     *   initialized yet.
     */
     Engine*
@@ -112,6 +113,29 @@ public:
     init(
         GameState* gameState
     );
+
+    /**
+    * @brief Initializes the system and gives it a name
+    *
+    * Override init instead and then call this
+    *
+    * @param name
+    *   The name of the system (for debugging)
+    *
+    * @param gameState
+    *   The gameState the system belongs to
+    */
+    virtual void
+    initNamed(
+        std::string name,
+        GameState* gameState
+    );
+
+    /**
+    * @brief Returns system name
+    */
+    std::string
+    getName();
 
     /**
     * @brief Sets the enabled status of this system

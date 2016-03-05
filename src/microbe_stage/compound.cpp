@@ -51,7 +51,7 @@ CompoundComponent::load(
     const StorageContainer& storage
 ) {
     Component::load(storage);
-    m_compoundId = storage.get<CompoundId>("compoundId", NULL_COMPOUND);
+    //m_compoundId = storage.get<CompoundId>("compoundId", NULL_COMPOUND);
     m_potency = storage.get<float>("potency");
     m_velocity = storage.get<Ogre::Vector3>("velocity");
 }
@@ -60,7 +60,7 @@ CompoundComponent::load(
 StorageContainer
 CompoundComponent::storage() const {
     StorageContainer storage = Component::storage();
-    storage.set<CompoundId>("compoundId", m_compoundId);
+    //storage.set<CompoundId>("compoundId", m_compoundId);
     storage.set<float>("potency", m_potency);
     storage.set<Ogre::Vector3>("velocity", m_velocity);
     return storage;
@@ -102,7 +102,7 @@ void
 CompoundMovementSystem::init(
     GameState* gameState
 ) {
-    System::init(gameState);
+    System::initNamed("CompoundMovementSystem", gameState);
     m_impl->m_entities.setEntityManager(&gameState->entityManager());
 }
 

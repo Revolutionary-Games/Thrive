@@ -6,6 +6,9 @@ function QuickSaveSystem:__init()
     self.loadDown = false
 end
 
+function QuickSaveSystem:init()
+    System.init(self, "QuickSaveSystem", gameState)
+end
 
 function QuickSaveSystem:update(renderTime, logicTime)
     local saveDown = Engine.keyboard:isKeyDown(Keyboard.KC_F4)
