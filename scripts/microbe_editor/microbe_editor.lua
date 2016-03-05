@@ -428,13 +428,30 @@ function MicrobeEditor:createNewMicrobe()
             if self.currentMicrobe ~= nil then
                 self.currentMicrobe.entity:destroy()
             end
+            for _, cytoplasm in pairs(self.occupiedHexes) do
+                cytoplasm:destroy()
+            end
             self.currentMicrobe = Microbe.createMicrobeEntity(nil, false)
             self.currentMicrobe.entity:stealName("working_microbe")
             --self.currentMicrobe.sceneNode.transform.orientation = Quaternion(Radian(Degree(180)), Vector3(0, 0, 1))-- Orientation
             self.currentMicrobe.sceneNode.transform:touch()
             self.currentMicrobe.microbe.speciesName = speciesName
             self:addNucleus()
+            for _, organelle in pairs(self.currentMicrobe.microbe.organelles) do
+                for s, hex in pairs(organelle._hexes) do
+                    local x, y = axialToCartesian(hex.q + organelle.position.q, hex.r + organelle.position.r)
+                    local s = encodeAxial(hex.q + organelle.position.q, hex.r + organelle.position.r)
+                    self.occupiedHexes[s] = Entity()
+                    local sceneNode = OgreSceneNodeComponent()
+                    sceneNode.transform.position = Vector3(x, y, 0)
+                    sceneNode.transform:touch()
+                    sceneNode.meshName = "hex.mesh"
+                    self.occupiedHexes[s]:addComponent(sceneNode)
+                    self.occupiedHexes[s]:setVolatile(true)
+                end
+            end
             self.mutationPoints = 100
+            self.activeActionName = "cytoplasm"
             Engine:playerData():setActiveCreature(self.currentMicrobe.entity.id, GameState.MICROBE_EDITOR)
         end
     }
@@ -458,6 +475,22 @@ function MicrobeEditor:createNewMicrobe()
             for position,storage in pairs(organelleStorage) do
                 local q, r = decodeAxial(position)
                 self.currentMicrobe:addOrganelle(storage:get("q", 0), storage:get("r", 0), storage:get("rotation", 0), Organelle.loadOrganelle(storage))
+            end
+            for _, cytoplasm in pairs(self.occupiedHexes) do
+                cytoplasm:destroy()
+            end
+            for _, organelle in pairs(self.currentMicrobe.microbe.organelles) do
+                for s, hex in pairs(organelle._hexes) do
+                    local x, y = axialToCartesian(hex.q + organelle.position.q, hex.r + organelle.position.r)
+                    local s = encodeAxial(hex.q + organelle.position.q, hex.r + organelle.position.r)
+                    self.occupiedHexes[s] = Entity()
+                    local sceneNode = OgreSceneNodeComponent()
+                    sceneNode.transform.position = Vector3(x, y, 0)
+                    sceneNode.transform:touch()
+                    sceneNode.meshName = "hex.mesh"
+                    self.occupiedHexes[s]:addComponent(sceneNode)
+                    self.occupiedHexes[s]:setVolatile(true)
+                end
             end
             -- no need to add the nucleus manually - it's alreary included in the organelleStorage
             self.mutationPoints = previousMP
