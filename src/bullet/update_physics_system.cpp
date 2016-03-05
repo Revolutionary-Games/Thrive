@@ -38,7 +38,7 @@ void
 UpdatePhysicsSystem::init(
     GameState* gameState
 ) {
-    System::init(gameState);
+    System::initNamed("UpdatePhysicsSystem", gameState);
     m_impl->m_world = gameState->physicsWorld();
     assert(m_impl->m_world != nullptr && "World object is null. Initialize the Engine first.");
 }

@@ -21,7 +21,7 @@ end
 
 
 function MicrobeEditorHudSystem:init(gameState)
-    System.init(self, gameState)
+    System.init(self, "MicrobeEditorHudSystem", gameState)
     self.editor:init(gameState)
 
     -- This seems really cluttered, there must be a better way.
