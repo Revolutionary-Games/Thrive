@@ -116,7 +116,7 @@ void
 SkySystem::init(
     GameState* gameState
 ) {
-    System::initNamed("SkySystem", gameState);
+    System::init(gameState);
     assert(m_impl->m_sceneManager == nullptr && "Double init of system");
     m_impl->m_sceneManager = gameState->sceneManager();
     m_impl->m_skyPlanes.setEntityManager(&gameState->entityManager());

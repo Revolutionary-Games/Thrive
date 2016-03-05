@@ -6,7 +6,7 @@ function MainMenuHudSystem:__init()
 end
 
 function MainMenuHudSystem:init(gameState)
-    System.init(self, "MainMenuHudSystem", gameState)
+    System.init(self, gameState)
     root = gameState:rootGUIWindow()
     local microbeButton = root:getChild("Background"):getChild("MainMenuInteractive"):getChild("NewGameButton")
     local microbeEditorButton = root:getChild("Background"):getChild("MainMenuInteractive"):getChild("EditorMenuButton")

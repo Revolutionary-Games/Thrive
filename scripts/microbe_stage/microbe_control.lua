@@ -5,9 +5,6 @@ function MicrobeControlSystem:__init()
     System.__init(self)
 end
 
-function MicrobeControlSystem:init()
-    System.init(self, "MicrobeControlSystem", gameState)
-end
 
 -- Computes the point the mouse cursor is at
 local function getTargetPoint()

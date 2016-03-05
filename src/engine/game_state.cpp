@@ -264,10 +264,7 @@ GameState::update(
 ) {
     for(auto& system : m_impl->m_systems) {
         if (system->enabled()) {
-           //Uncomment to debug mystical crashes and other anomalies
-           //std::cout << "Updating system " << system->getName() << std::endl;
-           system->update(renderTime, logicTime);
-           //std::cout << "Done updating system " << system->getName() << std::endl;
+            system->update(renderTime, logicTime);
         }
     }
     m_impl->m_entityManager.processRemovals();
