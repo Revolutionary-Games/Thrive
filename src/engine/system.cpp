@@ -23,27 +23,11 @@ struct SystemWrapper : System, luabind::wrap_base {
         this->call<void>("init", gameState);
     }
 
-    void
-    initNamed(
-        std::string name,
-        GameState* gameState
-    ) override {
-        this->call<void>("initNamed", name, gameState);
-    }
-
     static void default_init(
         System* self,
         GameState* gameState
     ) {
         self->System::init(gameState);
-    }
-
-    static void default_initNamed(
-        System* self,
-        std::string name,
-        GameState* gameState
-    ) {
-        self->System::initNamed(name, gameState);
     }
 
     void
@@ -108,7 +92,7 @@ System::luaBindings() {
     return class_<System, SystemWrapper>("System")
         .def(constructor<>())
         .def("enabled", &System::enabled)
-        .def("init", &System::initNamed, &SystemWrapper::default_initNamed)
+        .def("init", &System::init, &SystemWrapper::default_init)
         .def("setEnabled", &System::setEnabled)
         .def("activate", &System::activate, &SystemWrapper::default_activate)
         .def("deactivate", &System::deactivate, &SystemWrapper::default_deactivate)
@@ -123,9 +107,6 @@ struct System::Implementation {
     bool m_enabled = true;
 
     GameState* m_gameState = nullptr;
-
-    std::string m_name = "Unknown-System";
-
 
 };
 
@@ -193,21 +174,6 @@ System::init(
     m_impl->m_gameState = gameState;
 }
 
-void
-System::initNamed(
-    std::string name,
-    GameState* gameState
-) {
-    assert(m_impl->m_gameState == nullptr && "Cannot initialize system that is already attached to a GameState");
-    m_impl->m_gameState = gameState;
-    m_impl->m_name = name;
-}
-
-std::string
-System::getName()
-{
-    return m_impl->m_name;
-}
 
 void
 System::setEnabled(
