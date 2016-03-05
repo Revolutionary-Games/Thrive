@@ -48,10 +48,10 @@ struct ExtractComponentType<Optional<ComponentType>> {
 * @brief Filters for entities that contain specific components
 *
 * An entity filter helps a system in finding the entities that have exactly
-* the right components to be relevant for the system. 
+* the right components to be relevant for the system.
 *
 * @tparam ComponentTypes
-*   The component classes to watch for. You can wrap a class with the 
+*   The component classes to watch for. You can wrap a class with the
 *   Optional template if you want to know if it's there, but it's not
 *   required.
 *
@@ -60,7 +60,7 @@ struct ExtractComponentType<Optional<ComponentType>> {
 * class MySystem : public System {
 *
 * private:
-*   
+*
 *   EntityFilter<
 *       MyComponent,
 *       Optional<SomeOtherComponent>
@@ -70,7 +70,7 @@ struct ExtractComponentType<Optional<ComponentType>> {
 * public:
 *
 *   void init(Engine* engine) override {
-*       System::init(engine);
+*       System::initNamed("MySystem", "engine);
 *       m_entities.setEntityFilter(&engine->entityManager());
 *   }
 *
@@ -170,7 +170,7 @@ public:
     * @param id
     *   The entity to check for
     *
-    * @return 
+    * @return
     *   \c true if this id can be found in this filter, \c false otherwise
     */
     bool
@@ -211,14 +211,14 @@ public:
     std::unordered_set<EntityId>&
     removedEntities();
 
-    /** 
+    /**
     * @brief Gets the current entiyManager
     *
     * @return
     */
     EntityManager*
     entityManager();
-    
+
     /**
     * @brief Sets the entity manager this filter applies to
     *

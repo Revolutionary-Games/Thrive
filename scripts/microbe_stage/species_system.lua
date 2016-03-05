@@ -165,7 +165,7 @@ end
 
 -- Override from System
 function SpeciesSystem:init(gameState)
-    System.init(self, gameState)
+    System.init(self, "SpeciesSystem", gameState)
     self.entities:init(gameState)
 end
 
