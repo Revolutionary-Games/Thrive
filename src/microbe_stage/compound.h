@@ -25,7 +25,7 @@ namespace thrive {
 using BoostCompoundMapIterator = boost::range_detail::select_second_mutable_range<std::unordered_map<std::string, CompoundId>>;
 using BoostAbsorbedMapIterator = boost::range_detail::select_first_range<std::unordered_map<CompoundId, float>>;
 
-static const CompoundId NULL_COMPOUND = 0;
+//static const CompoundId NULL_COMPOUND = 0;
 
 CompoundId
 generateCompoundId();
@@ -56,7 +56,7 @@ public:
     /**
     * @brief The compound id
     */
-    CompoundId m_compoundId = NULL_COMPOUND;
+    CompoundId m_compoundId;// = NULL_COMPOUND;
 
     /**
     * @brief The potency of this particle

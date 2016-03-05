@@ -158,7 +158,7 @@ void
 CollisionSystem::init(
     GameState* gameState
 ) {
-    System::init(gameState);
+    System::initNamed("CollisionSystem", gameState);
     m_impl->m_world = gameState->physicsWorld();
 }
 
