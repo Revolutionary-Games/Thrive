@@ -40,23 +40,26 @@ function MicrobeEditor:init(gameState)
 end
 
 function MicrobeEditor:activate()
+    print("activated")
+    if Engine:playerData():activeCreatureGamestate():name() == GameState.MICROBE:name() or Engine:playerData():activeCreatureGamestate():name() == GameState.MICROBE_TUTORIAL:name() then
+        microbeStageMicrobe = Entity(Engine:playerData():activeCreature(), GameState.MICROBE)
+        self.nextMicrobeEntity = microbeStageMicrobe:transfer(GameState.MICROBE_EDITOR)
+        self.nextMicrobeEntity:stealName("working_microbe")
+        Engine:playerData():setBool("edited_microbe", true)
+        Engine:playerData():setActiveCreature(self.nextMicrobeEntity.id, GameState.MICROBE_EDITOR)
+    end
     self.mutationPoints = 100
     self.actionHistory = {} -- where all user actions will  be registered
     self.actionIndex = 0 -- marks the last action that has been done (not undone, but possibly redone), is 0 if there is none
-
-    microbeStageMicrobe = Entity(Engine:playerData():activeCreature(), GameState.MICROBE)
-    self.nextMicrobeEntity = microbeStageMicrobe:transfer(GameState.MICROBE_EDITOR)
-    self.nextMicrobeEntity:stealName("working_microbe")
-    Engine:playerData():setBool("edited_microbe", true)
-    Engine:playerData():setActiveCreature(self.nextMicrobeEntity.id, GameState.MICROBE_EDITOR)
+    for _, cytoplasm in pairs(self.occupiedHexes) do
+        cytoplasm:destroy()
+    end
+    
     self.currentMicrobe = Microbe(self.nextMicrobeEntity)
     self.currentMicrobe.sceneNode.transform.orientation = Quaternion(Radian(Degree(0)), Vector3(0, 0, 1))-- Orientation
     self.currentMicrobe.sceneNode.transform.position = Vector3(0, 0, 0)
     self.currentMicrobe.sceneNode.transform:touch()
     
-    for _, cytoplasm in pairs(self.occupiedHexes) do
-        cytoplasm:destroy()
-    end    
     for _, organelle in pairs(self.currentMicrobe.microbe.organelles) do
         for s, hex in pairs(organelle._hexes) do
             local x, y = axialToCartesian(hex.q + organelle.position.q, hex.r + organelle.position.r)

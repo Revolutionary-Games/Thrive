@@ -16,6 +16,7 @@ end
 
 function MicrobeStageTutorialHudSystem:activate()
     global_activeMicrobeStageHudSystem = self -- Global reference for event handlers
+    self.tutorialStep = 0
 end
 
 function MicrobeStageTutorialHudSystem:init(gameState)
@@ -216,6 +217,7 @@ Press the green button to the left to enter
 the editor.]])
         tutorial:setProperty("{{0,600},{0,100}}", "Size")
     else 
+        Engine:playerData():setActiveCreature(Entity(PLAYER_NAME).id, GameState.MICROBE)
         Engine:setCurrentGameState(GameState.MICROBE)
     end
     
