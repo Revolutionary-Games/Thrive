@@ -40,24 +40,35 @@ function MicrobeEditor:init(gameState)
 end
 
 function MicrobeEditor:activate()
-    if Engine:playerData():activeCreatureGamestate():name() == GameState.MICROBE:name() then 
-        microbeStageMicrobe = Entity(Engine:playerData():activeCreature(), GameState.MICROBE)
-        self.nextMicrobeEntity = microbeStageMicrobe:transfer(GameState.MICROBE_EDITOR)
-        self.nextMicrobeEntity:stealName("working_microbe")
-        Engine:playerData():setBool("edited_microbe", true)
-        Engine:playerData():setActiveCreature(self.nextMicrobeEntity.id, GameState.MICROBE_EDITOR)
-    elseif Engine:playerData():activeCreatureGamestate():name() == GameState.MICROBE_TUTORIAL:name() then 
-        microbeStageMicrobe = Entity(Engine:playerData():activeCreature(), GameState.MICROBE_TUTORIAL)
-        self.nextMicrobeEntity = microbeStageMicrobe:transfer(GameState.MICROBE_EDITOR)
-        self.nextMicrobeEntity:stealName("working_microbe")
-        Engine:playerData():setBool("edited_microbe", true)
-        Engine:playerData():setActiveCreature(self.nextMicrobeEntity.id, GameState.MICROBE_EDITOR)
-    end
     self.mutationPoints = 100
     self.actionHistory = {} -- where all user actions will  be registered
     self.actionIndex = 0 -- marks the last action that has been done (not undone, but possibly redone), is 0 if there is none
+
+    microbeStageMicrobe = Entity(Engine:playerData():activeCreature(), GameState.MICROBE)
+    self.nextMicrobeEntity = microbeStageMicrobe:transfer(GameState.MICROBE_EDITOR)
+    self.nextMicrobeEntity:stealName("working_microbe")
+    Engine:playerData():setBool("edited_microbe", true)
+    Engine:playerData():setActiveCreature(self.nextMicrobeEntity.id, GameState.MICROBE_EDITOR)
+    self.currentMicrobe = Microbe(self.nextMicrobeEntity)
+    self.currentMicrobe.sceneNode.transform.orientation = Quaternion(Radian(Degree(0)), Vector3(0, 0, 1))-- Orientation
+    self.currentMicrobe.sceneNode.transform.position = Vector3(0, 0, 0)
+    self.currentMicrobe.sceneNode.transform:touch()
+    
     for _, cytoplasm in pairs(self.occupiedHexes) do
         cytoplasm:destroy()
+    end    
+    for _, organelle in pairs(self.currentMicrobe.microbe.organelles) do
+        for s, hex in pairs(organelle._hexes) do
+            local x, y = axialToCartesian(hex.q + organelle.position.q, hex.r + organelle.position.r)
+            local s = encodeAxial(hex.q + organelle.position.q, hex.r + organelle.position.r)
+            self.occupiedHexes[s] = Entity()
+            local sceneNode = OgreSceneNodeComponent()
+            sceneNode.transform.position = Vector3(x, y, 0)
+            sceneNode.transform:touch()
+            sceneNode.meshName = "hex.mesh"
+            self.occupiedHexes[s]:addComponent(sceneNode)
+            self.occupiedHexes[s]:setVolatile(true)
+        end
     end
 end
 
@@ -82,28 +93,7 @@ function MicrobeEditor:update(renderTime, logicTime)
         self:renderHighlightedOrganelle(5, r, -1*(r+q), self.organelleRot+240)
         self:renderHighlightedOrganelle(6, r+q, -1*q, self.organelleRot+300)
     end
-    
-    -- self.nextMicrobeEntity being a temporary used to pass the microbe from game to editor
-    if self.nextMicrobeEntity ~= nil then
-        self.currentMicrobe = Microbe(self.nextMicrobeEntity)
-        self.currentMicrobe.sceneNode.transform.orientation = Quaternion(Radian(Degree(0)), Vector3(0, 0, 1))-- Orientation
-        self.currentMicrobe.sceneNode.transform.position = Vector3(0, 0, 0)
-        self.currentMicrobe.sceneNode.transform:touch()
-        self.nextMicrobeEntity = nil
-        for _, organelle in pairs(self.currentMicrobe.microbe.organelles) do
-            for s, hex in pairs(organelle._hexes) do
-                local x, y = axialToCartesian(hex.q + organelle.position.q, hex.r + organelle.position.r)
-                local s = encodeAxial(hex.q + organelle.position.q, hex.r + organelle.position.r)
-                self.occupiedHexes[s] = Entity()
-                local sceneNode = OgreSceneNodeComponent()
-                sceneNode.transform.position = Vector3(x, y, 0)
-                sceneNode.transform:touch()
-                sceneNode.meshName = "hex.mesh"
-                self.occupiedHexes[s]:addComponent(sceneNode)
-                self.occupiedHexes[s]:setVolatile(true)
-            end
-        end
-    end
+        
     self.hudSystem:updateMutationPoints()
 end
 

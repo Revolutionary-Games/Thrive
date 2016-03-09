@@ -57,7 +57,7 @@ You are only one of the many that have evolved.
 
 
 Click to continue or press escape to skip the tutorial.]])
-        tutorial:setProperty("{{0,600},{0,240}}", "Size")
+        tutorial:setProperty("{{0,600},{0,260}}", "Size")
     elseif self.tutorialStep == 1 then
         tutorial:setProperty("{{0, 200},{0, 200}}", "Position")
         tutorial:setText(
@@ -71,14 +71,14 @@ just like you. (Probably not in this release though.)
 
 
 Click to continue or press escape to skip the tutorial.]])
-        tutorial:setProperty("{{0,600},{0,200}}", "Size")
+        tutorial:setProperty("{{0,600},{0,220}}", "Size")
     elseif self.tutorialStep == 2 then
         tutorial:setProperty("{{0, 300},{0, 50}}", "Position")
         tutorial:setText(
 [[Your cell is shown below.
 
 Click anywhere to continue...]])
-        tutorial:setProperty("{{0,400},{0,60}}", "Size")
+        tutorial:setProperty("{{0,400},{0,80}}", "Size")
         if Entity(PLAYER_NAME):getComponent(MicrobeComponent.TYPE_ID) == nil then
             local microbe = microbeSpawnFunctionGeneric(nil, "Default", false, PLAYER_NAME)
             Engine:playerData():setActiveCreature(microbe.entity.id, GameState.MICROBE_TUTORIAL)
@@ -93,7 +93,7 @@ mouse, and use WASD to move around.
 Give it a try!
 
 Leave the green ring to continue...]])
-        tutorial:setProperty("{{0,500},{0,120}}", "Size")
+        tutorial:setProperty("{{0,500},{0,140}}", "Size")
         
         local pos = Entity(PLAYER_NAME):getComponent(OgreSceneNodeComponent.TYPE_ID).transform.position
         if math.sqrt(pos.x*pos.x + pos.y*pos.y) > 30 then
@@ -107,7 +107,7 @@ Leave the green ring to continue...]])
 your cell uses chemical energy.
 
 Click anywhere to continue...]])
-        tutorial:setProperty("{{0,500},{0,80}}", "Size")
+        tutorial:setProperty("{{0,500},{0,100}}", "Size")
     elseif self.tutorialStep == 5 then
         tutorial:setProperty("{{0, 200},{0, 50}}", "Position")
         tutorial:setText(
@@ -117,7 +117,7 @@ cannot find ATP in the environment. ATP must be
 harvested from the compounds you find.
 
 Click anywhere to continue...]])
-        tutorial:setProperty("{{0,600},{0,120}}", "Size")
+        tutorial:setProperty("{{0,600},{0,140}}", "Size")
     elseif self.tutorialStep == 6 then
         local compoundID = CompoundRegistry.getCompoundId("atp")
         local compoundsString = string.format("%s - %d", CompoundRegistry.getCompoundDisplayName(compoundID), Microbe(Entity(PLAYER_NAME)):getCompoundAmount(compoundID))
@@ -135,7 +135,7 @@ compounds panel shown below.
 You currently have only ]] .. math.floor(Microbe(Entity(PLAYER_NAME)):getCompoundAmount(compoundID)) .. [[ ATP. Let's make some more!
 
 Click anywhere to continue...]])
-        tutorial:setProperty("{{0,600},{0,120}}", "Size")
+        tutorial:setProperty("{{0,600},{0,140}}", "Size")
            
     elseif self.tutorialStep == 7 then
 tutorial:setProperty("{{0, 200},{0, 50}}", "Position")
@@ -147,7 +147,7 @@ Glucose is spawned in the environment in the form
 of white clouds, while oxygen is cyan. 
 
 Click anywhere to continue...]])
-        tutorial:setProperty("{{0,600},{0,140}}", "Size")
+        tutorial:setProperty("{{0,600},{0,160}}", "Size")
         
     elseif self.tutorialStep == 8 then
         local player = Entity(PLAYER_NAME)
@@ -164,7 +164,9 @@ Click anywhere to continue...]])
             self.compoundListItems[compoundID] = StandardItemWrapper("[colour='FF004400']" .. compoundsString, compoundID)
             self.compoundListBox:listWidgetAddItem(self.compoundListItems[compoundID])
         end    
-        createCompoundCloud("oxygen", playerPos.x - 10, playerPos.y, 1000)
+        if Microbe(player):getCompoundAmount(CompoundRegistry.getCompoundId("oxygen")) < 10 then
+            createCompoundCloud("oxygen", playerPos.x - 10, playerPos.y, 1000)
+        end
         
         compoundID = CompoundRegistry.getCompoundId("glucose")
         compoundsString = string.format("%s - %d", CompoundRegistry.getCompoundDisplayName(compoundID), Microbe(player):getCompoundAmount(compoundID))
@@ -172,12 +174,14 @@ Click anywhere to continue...]])
             self.compoundListItems[compoundID] = StandardItemWrapper("[colour='FF004400']" .. compoundsString, compoundID)
             self.compoundListBox:listWidgetAddItem(self.compoundListItems[compoundID])
         end
-        createCompoundCloud("glucose", playerPos.x + 10, playerPos.y, 1000)
+        if Microbe(player):getCompoundAmount(CompoundRegistry.getCompoundId("glucose")) < 10 then
+            createCompoundCloud("glucose", playerPos.x + 10, playerPos.y, 1000)
+        end
         
         tutorial:setProperty("{{0, 200},{0, 50}}", "Position")
         tutorial:setText(
 [[Gather the clouds to continue.]])
-        tutorial:setProperty("{{0,600},{0,60}}", "Size")
+        tutorial:setProperty("{{0,600},{0,80}}", "Size")
         
         Engine:resumeGame()
         
@@ -198,7 +202,7 @@ other cells, engulfing cells and bacteria smaller than
 you, and, most importantly, reproducing.
 
 Click anywhere to continue...]])
-        tutorial:setProperty("{{0,600},{0,200}}", "Size")
+        tutorial:setProperty("{{0,600},{0,220}}", "Size")
         
     elseif self.tutorialStep == 10 then
         self.rootGUIWindow:getChild("EditorButton"):show()
@@ -210,7 +214,7 @@ Click anywhere to continue...]])
 
 Press the green button to the left to enter
 the editor.]])
-        tutorial:setProperty("{{0,600},{0,80}}", "Size")
+        tutorial:setProperty("{{0,600},{0,100}}", "Size")
     else 
         Engine:setCurrentGameState(GameState.MICROBE)
     end

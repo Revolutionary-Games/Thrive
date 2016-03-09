@@ -175,5 +175,4 @@ local function createMicrobeStageTutorial(name)
 end
 
 GameState.MICROBE_TUTORIAL = createMicrobeStageTutorial("microbe_tutorial")
---GameState.MICROBE_ALTERNATE = createMicrobeStage("microbe_alternate")
---Engine:setCurrentGameState(GameState.MICROBE)
+--Engine:setCurrentGameState(GameState.MICROBE_TUTORIAL)
