@@ -127,8 +127,6 @@ local function createMicrobeStageTutorial(name)
         Engine:createGameState(
         name,
         {
-            MicrobeReplacementSystem(),
-            SwitchGameStateSystem(),
             QuickSaveSystem(),
             -- Microbe specific
             MicrobeSystem(),

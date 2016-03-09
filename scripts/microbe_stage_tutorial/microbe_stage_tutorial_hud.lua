@@ -189,7 +189,7 @@ Click anywhere to continue...]])
         tutorial:setProperty("{{0, 200},{0, 50}}", "Position")
         tutorial:setText(
 [[Great job! The compounds you collected are stored
-in your only vacuole (light blue organelle) and
+in your only vacuole (light green organelle) and
 are being processed into ATP by your mitochondrion.
 
 Your cell is actually capable of carrying out a large

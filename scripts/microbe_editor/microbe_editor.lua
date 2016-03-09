@@ -46,6 +46,12 @@ function MicrobeEditor:activate()
         self.nextMicrobeEntity:stealName("working_microbe")
         Engine:playerData():setBool("edited_microbe", true)
         Engine:playerData():setActiveCreature(self.nextMicrobeEntity.id, GameState.MICROBE_EDITOR)
+    elseif Engine:playerData():activeCreatureGamestate():name() == GameState.MICROBE_TUTORIAL:name() then 
+        microbeStageMicrobe = Entity(Engine:playerData():activeCreature(), GameState.MICROBE_TUTORIAL)
+        self.nextMicrobeEntity = microbeStageMicrobe:transfer(GameState.MICROBE_EDITOR)
+        self.nextMicrobeEntity:stealName("working_microbe")
+        Engine:playerData():setBool("edited_microbe", true)
+        Engine:playerData():setActiveCreature(self.nextMicrobeEntity.id, GameState.MICROBE_EDITOR)
     end
     self.mutationPoints = 100
     self.actionHistory = {} -- where all user actions will  be registered

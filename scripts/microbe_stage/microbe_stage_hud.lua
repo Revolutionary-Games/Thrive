@@ -22,8 +22,8 @@ function HudSystem:activate()
         showMessage("'E' Releases Toxin")
         global_if_already_displayed = true
     end
-    self.helpOpen = false
-    self.menuOpen = true
+    self.helpOpen = true
+    self.menuOpen = false
     self:updateLoadButton();
 end
 
