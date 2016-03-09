@@ -22,8 +22,8 @@ function HudSystem:activate()
         showMessage("'E' Releases Toxin")
         global_if_already_displayed = true
     end
-    self.helpOpen = false
-    self.menuOpen = true
+    self.helpOpen = true
+    self.menuOpen = false
     self:updateLoadButton();
 end
 
@@ -119,10 +119,10 @@ function HudSystem:update(renderTime)
     newZVal = offset.z + Engine.mouse:scrollChange()/10
     if newZVal < 10 then
         newZVal = 10
-    elseif newZVal > 80 then
-        newZVal = 80
+    elseif newZVal > 70 then
+        newZVal = 70
     end
-    offset.z = newZVal --]]
+    offset.z = newZVal
 end
 
 function showReproductionDialog() global_activeMicrobeStageHudSystem:showReproductionDialog() end

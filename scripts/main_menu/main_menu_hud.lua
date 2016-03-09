@@ -95,7 +95,7 @@ end
 function mainMenuMicrobeStageButtonClicked()
     local guiSoundEntity = Entity("gui_sounds")
     guiSoundEntity:getComponent(SoundSourceComponent.TYPE_ID):playSound("button-hover-click")
-    Engine:setCurrentGameState(GameState.MICROBE)
+    Engine:setCurrentGameState(GameState.MICROBE_TUTORIAL)
 end
 
 function mainMenuMicrobeEditorButtonClicked()
