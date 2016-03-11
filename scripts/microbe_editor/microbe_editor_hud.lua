@@ -15,7 +15,7 @@ function MicrobeEditorHudSystem:__init()
     self.creationsListbox = nil
     self.creationFileMap = {} -- Map from player creation name to filepath
     self.activeButton = nil -- stores button, not name
-    self.helpPanelOpen = false
+    self.helpPanelOpen = true
     self.organelleScrollPane = nil
 end
 
