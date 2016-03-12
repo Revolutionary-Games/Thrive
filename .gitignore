@@ -1,8 +1,15 @@
 # Asset directory
 assets/*
-# We want certain xmls though
-!assets/definitions/
-!assets/definitions/*.xml
+
+# asset symlinks
+/cegui_examples
+/definitions
+/fonts
+/gui
+/materials
+/models
+/sounds
+/videos
 
 # Website directory
 

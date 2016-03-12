@@ -20,11 +20,6 @@
 #include <cAudio.h>
 
 
-__attribute__((unused)) static void toWINSTRNotUnused(){
-#ifndef _WIN32
-    cAudio::toWINSTR(static_cast<const char*>(nullptr));
-#endif
-}
 
 __attribute__((unused)) static void toUTF8NotUnused(){
 

@@ -55,6 +55,11 @@ include(utils)
 # Search path for dynamic libraries at runtime. Only relevant for Linux.
 set(CMAKE_INSTALL_RPATH ".")
 
+# Makes sure that the RPATH is always the install path. Required for linux
+# redistributable
+SET(CMAKE_BUILD_WITH_INSTALL_RPATH TRUE)
+SET(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
+
 # Assure a proper build type
 if (NOT CMAKE_BUILD_TYPE)
   set(CMAKE_BUILD_TYPE
@@ -82,8 +87,8 @@ set(OGRE_PLUGINS
   # Plugin_BSPSceneManager
   #  Plugin_OctreeSceneManager
   #  Plugin_OctreeZone
-    Plugin_ParticleFX
-    Plugin_CgProgramManager
+    #Plugin_ParticleFX
+    #Plugin_CgProgramManager
   #  Plugin_PCZSceneManager
     RenderSystem_GL
 )
@@ -268,7 +273,8 @@ if(WIN32)
     )
 else()
     target_link_libraries(ThriveLib
-        ${AVRESAMPLE_LIBRARIES}
+      ${AVRESAMPLE_LIBRARIES}
+      ${SWRESAMPLE_LIBRARIES}
     )
 endif()
 
@@ -666,3 +672,25 @@ add_custom_target(zip
     DEPENDS Thrive
 )
 
+###############################################################################
+# Linux package
+###############################################################################
+
+if(UNIX)
+
+  file(READ "thriveversion.ver" THRIVE_VERSION)
+  set(LINUX_LIBRARIES "${cAudio_LIBRARIES}" "${BULLET_LIBRARIES}" "${AVRESAMPLE_LIBRARIES}"
+    "${SWRESAMPLE_LIBRARIES}" "${OgreFFMPEG_LIBRARIES}" "${FFMPEG_LIBRARIES}" "${Boost_LIBRARIES}"
+    "${OGRE_LIBRARIES}" "${OIS_LIBRARIES}" "${CMAKE_THREAD_LIBS_INIT}" "${BULLET_LIBRARIES}"
+    "${CEGUI_LIBRARY}" "${TINYXML_LIBRARIES}" "${OpenAL_LIBRARIES}")
+  
+  configure_file("${CMAKE_SOURCE_DIR}/cpack/CreatePackage.sh.in"
+    "${CMAKE_CURRENT_BINARY_DIR}/CreatePackage.sh" @ONLY
+    )
+
+  add_custom_target(linuxrelease
+    COMMAND "./CreatePackage.sh"
+    DEPENDS Thrive doc
+    )
+  
+endif()

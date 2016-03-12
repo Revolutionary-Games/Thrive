@@ -7,11 +7,12 @@ OriginalFolder=$(pwd)
 if [ -f ./thriveversion.ver -o "$InsideFolder" = "thrive" ]; then
 
     # Running from thrive folder
-    StartingDirectory=$(dirname "$(pwd)")
+    cd ..
+    StartingDirectory=$(pwd)
     
 else
     
-    StartingDirectory=$(pwd)
+    StartingDirectory=$(pwd)   
 fi
 
 
@@ -81,20 +82,24 @@ fi
 
 PackageManager="dnf install -y "
 PackagesToInstall="bullet-devel boost gcc-c++ libXaw-devel freetype-devel freeimage-devel \
- zziplib-devel boost-devel ois-devel tinyxml-devel glm-devel ffmpeg-devel ffmpeg-libs openal-soft-devel"
+ zziplib-devel boost-devel ois-devel tinyxml-devel glm-devel ffmpeg-devel ffmpeg-libs \
+ openal-soft-devel libatomic"
 CommonPackages="cmake make git mercurial svn"
 
 if [ "$OS" = "Fedora" ]; then
 
-    echo "Creating CEGUI project folder for $OS"
+    echo "Creating Thrive project folder for $OS"
    
 elif [ "$OS" = "Ubuntu" ]; then
+
+    echo "Creating Thrive project folder for $OS"
 
     PackageManager="apt-get install -y "
          
     PackagesToInstall="bullet-dev boost-dev build-essential automake libtool libfreetype6-dev \
- libfreeimage-dev libzzip-dev libxrandr-dev libxaw7-dev freeglut3-dev libgl1-mesa-dev \
- libglu1-mesa-dev libois-dev libboost-thread-dev tinyxml-dev glm-dev ffmpeg-dev libavutil-dev libopenal-dev"
+      libfreeimage-dev libzzip-dev libxrandr-dev libxaw7-dev freeglut3-dev libgl1-mesa-dev \
+      libglu1-mesa-dev libois-dev libboost-thread-dev tinyxml-dev glm-dev ffmpeg-dev libavutil-dev libopenal-dev \
+      libatomic1"
 else
          
     echo "Unkown linux OS \"$OS\""
@@ -175,10 +180,12 @@ else
 fi
 
 hg update default
+# Working commit
+hg checkout a2e49193409c
 
-mkdir build
+mkdir -p build
 cd build
-cmake .. -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCEGUI_BUILD_APPLICATION_TEMPLATES=OFF -DCEGUI_BUILD_PYTHON_MODULES=OFF -DCEGUI_SAMPLES_ENABLED=OFF
+cmake .. -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCEGUI_BUILD_APPLICATION_TEMPLATES=OFF -DCEGUI_BUILD_PYTHON_MODULES=OFF -DCEGUI_SAMPLES_ENABLED=OFF -DCEGUI_STRING_CLASS=1
 
 cd "$StartingDirectory"
 
@@ -196,8 +203,8 @@ else
 
     #Official repo
     #git clone https://github.com/scrawl/ogre-ffmpeg-videoplayer.git ogre-ffmpeg-videoplayer
-    # Currently working hhyyrylainen's fork
-    git clone https://github.com/hhyyrylainen/ogre-ffmpeg-videoplayer.git ogre-ffmpeg-videoplayer
+    # Currently working Revolutionary games fork
+    git clone https://github.com/Revolutionary-Games/ogre-ffmpeg-videoplayer.git ogre-ffmpeg-videoplayer
     cd ogre-ffmpeg-videoplayer
 fi
 
@@ -215,9 +222,8 @@ echo "cAudio"
 if [ -d cAudio ]; then
 
     cd cAudio
-    #Workaround for broken latest version
-    #git checkout master
-    #git pull origin master
+    git checkout master
+    git pull origin master
 
     
 else
@@ -227,7 +233,7 @@ else
 fi
 
 #Workaround for broken build with latest version
-git checkout 22ff1a97a9a820c72726463708590adfae77008c
+#git checkout 22ff1a97a9a820c72726463708590adfae77008c
 
 mkdir -p build
 cd build
@@ -324,27 +330,36 @@ fi
 
 echo "Making all the links"
 ln -sf assets/cegui_examples cegui_examples
-ln -sf assets/definitions definitions
+#ln -sf assets/definitions definitions
 ln -sf assets/fonts fonts
 ln -sf assets/gui gui
 ln -sf assets/materials materials
 ln -sf assets/models models
 ln -sf assets/sounds sounds
+ln -sf assets/videos videos
+
+mkdir -p build
 
 echo "Copying Ogre resources file"
 cp ogre_cfg/resources.cfg build/resources.cfg
 
 echo "Copying complelety pointless Ogre files"
 
-cp /usr/local/share/OGRE/plugins.cfg build/plugins.cfg
+cp ogre_cfg/plugins.cfg build/plugins.cfg
 
-
+echo "Copying Ogre libs to bin"
+cp $StartingDirectory/ogreBuild/build/ogre/lib/RenderSystem_GL.* build/
+cp $StartingDirectory/ogreBuild/build/ogre/lib/Plugin_ParticleFX.* build/
+#cp $StartingDirectory/ogreBuild/build/ogre/lib/Plugin_CgProgramManager.* build/
+#cp $StartingDirectory/ogreBuild/build/ogre/lib/libOgreMain.* build/
 
 echo "Compiling Thrive"
-mkdir -p build
 cd build
 cmake .. -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
 eval "make $MakeArgs"
+
+echo "Making symlinks to libraries in bin/contrib"
+ln -s contrib/lua/liblua.so liblua.so
 
 echo "."
 echo "."
