@@ -261,7 +261,7 @@ CEGUIWindow::destroy() const {
 
 std::string
 CEGUIWindow::getText() const {
-    return std::string(m_window->getText().c_str());
+    return m_window->getText().c_str();
 }
 
 
@@ -381,7 +381,7 @@ CEGUIWindow::listWidgetGetFirstSelectedItemText(){
     if(!selected)
         return "";
 
-    return std::string(selected->getText().c_str());
+    return selected->getText().c_str();
 }
 
 int
@@ -580,7 +580,7 @@ CEGUIWindow::setSizeRel(
 
 std::string
 CEGUIWindow::getName() {
-    return std::string(m_window->getName().c_str());
+    return m_window->getName().c_str();
 }
 
 void
