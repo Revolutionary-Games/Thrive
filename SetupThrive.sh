@@ -83,7 +83,7 @@ fi
 PackageManager="dnf install -y "
 PackagesToInstall="bullet-devel boost gcc-c++ libXaw-devel freetype-devel freeimage-devel \
  zziplib-devel boost-devel ois-devel tinyxml-devel glm-devel ffmpeg-devel ffmpeg-libs \
- openal-soft-devel libatomic"
+ openal-soft-devel libatomic Cg"
 CommonPackages="cmake make git mercurial svn"
 
 if [ "$OS" = "Fedora" ]; then
@@ -162,7 +162,7 @@ add_subdirectory(ogre)" > CMakeLists.txt
 
 # Run cmake
 cd build
-cmake .. -DCMAKE_BUILD_TYPE=RelWithDebInfo -DOGRE_BUILD_RENDERSYSTEM_GL3PLUS=ON -DOGRE_BUILD_COMPONENT_OVERLAY=OFF -DOGRE_BUILD_COMPONENT_PAGING=OFF -DOGRE_BUILD_COMPONENT_PROPERTY=OFF -DOGRE_BUILD_COMPONENT_TERRAIN=OFF -DOGRE_BUILD_COMPONENT_VOLUME=OFF -DOGRE_BUILD_PLUGIN_BSP=OFF -DOGRE_BUILD_PLUGIN_CG=OFF -DOGRE_BUILD_PLUGIN_OCTREE=OFF -DOGRE_BUILD_PLUGIN_PCZ=OFF -DOGRE_BUILD_SAMPLES=OFF
+cmake .. -DCMAKE_BUILD_TYPE=RelWithDebInfo -DOGRE_BUILD_RENDERSYSTEM_GL3PLUS=ON -DOGRE_BUILD_COMPONENT_OVERLAY=OFF -DOGRE_BUILD_COMPONENT_PAGING=OFF -DOGRE_BUILD_COMPONENT_PROPERTY=OFF -DOGRE_BUILD_COMPONENT_TERRAIN=OFF -DOGRE_BUILD_COMPONENT_VOLUME=OFF -DOGRE_BUILD_PLUGIN_BSP=OFF -DOGRE_BUILD_PLUGIN_CG=ON -DOGRE_BUILD_PLUGIN_OCTREE=OFF -DOGRE_BUILD_PLUGIN_PCZ=OFF -DOGRE_BUILD_SAMPLES=OFF
 
 cd "$StartingDirectory"
 echo "Done"
@@ -181,7 +181,7 @@ fi
 
 hg update default
 # Working commit
-hg checkout a2e49193409c
+hg checkout 06434b5bee01
 
 mkdir -p build
 cd build
@@ -350,7 +350,7 @@ cp ogre_cfg/plugins.cfg build/plugins.cfg
 echo "Copying Ogre libs to bin"
 cp $StartingDirectory/ogreBuild/build/ogre/lib/RenderSystem_GL.* build/
 cp $StartingDirectory/ogreBuild/build/ogre/lib/Plugin_ParticleFX.* build/
-#cp $StartingDirectory/ogreBuild/build/ogre/lib/Plugin_CgProgramManager.* build/
+cp $StartingDirectory/ogreBuild/build/ogre/lib/Plugin_CgProgramManager.* build/
 #cp $StartingDirectory/ogreBuild/build/ogre/lib/libOgreMain.* build/
 
 echo "Compiling Thrive"

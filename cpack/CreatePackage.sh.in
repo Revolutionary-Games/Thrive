@@ -2,7 +2,7 @@
 # Creates a zipped redistributable Thrive package for linux
 version=@THRIVE_VERSION@
 versionedname=Thrive-$version
-stripfiles=1
+stripfiles=0
 
 target=$versionedname
 
@@ -60,19 +60,60 @@ echo "$librariestoinstall" | awk 'BEGIN { RS=";" } { print $0 }' | while read -r
         
         CopyDependency "$line"
         echo ""
+
+        # libboost_thread hack
+        case "$line" in 
+            *boost_thread*)
+                # Copy the actual files
+                libdir=$(dirname "${line}")
+                cp $dirname/libboost_thread.* $target/bin
+            ;;
+        esac
     fi 
 done
 
 # Ogre plugins
 cp ./RenderSystem_GL.* $target/bin
 cp ./Plugin_ParticleFX.* $target/bin
-#cp ./Plugin_CgProgramManager.* $target/bin
+cp ./Plugin_CgProgramManager.* $target/bin
 
 if [ $stripfiles = 1 ] ; then
     strip $target/bin/RenderSystem_GL.*
     strip $target/bin/Plugin_ParticleFX.*
-    #strip $target/bin/Plugin_CgProgramManager.*
+    strip $target/bin/Plugin_CgProgramManager.*
 fi
+
+echo "ldd finds extra dependencies and missing symlinks"
+ldd $target/bin/Thrive | awk '{ print $3 }' | while read -r line ; do
+    
+    case "$line" in
+        *avresample*)
+        ;&
+        *vorbis*)
+        ;&
+        *theora*)
+        ;&
+        *opus*)
+        ;&
+        *pcre*)
+        ;&
+        *ogg*)
+        ;&
+        *tinyxml*)
+        ;&
+        *avcodec*)
+        ;&
+        *avformat*)
+        ;&
+        *avutil*)
+        ;&
+        *swscale*)
+        ;& 
+        *freeimage*)
+            CopyDependency "$line"
+            ;;
+    esac
+done
 
 # Assets
 # TODO: see if these could be symlinks
@@ -126,5 +167,13 @@ echo "Zipping it up"
 
 # Zip it up
 7za a "Thrive.$version.7z" $versionedname
+
+
+(
+    cd $target/bin
+    ldd Thrive
+
+    echo "Please verify above that all uncommon library paths begin with ./"
+)
 
 echo "Package Thrive.$version.7z done"
