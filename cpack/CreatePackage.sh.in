@@ -87,7 +87,7 @@ echo "ldd finds extra dependencies and missing symlinks"
 ldd $target/bin/Thrive | awk '{ print $3 }' | while read -r line ; do
     
     case "$line" in
-        *avresample*)
+        *resample*)
         ;&
         *vorbis*)
         ;&
