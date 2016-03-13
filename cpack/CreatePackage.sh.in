@@ -2,7 +2,7 @@
 # Creates a zipped redistributable Thrive package for linux
 version=@THRIVE_VERSION@
 versionedname=Thrive-$version
-stripfiles=0
+stripfiles=1
 
 target=$versionedname
 
