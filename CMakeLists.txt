@@ -87,8 +87,8 @@ set(OGRE_PLUGINS
   # Plugin_BSPSceneManager
   #  Plugin_OctreeSceneManager
   #  Plugin_OctreeZone
-    #Plugin_ParticleFX
-    #Plugin_CgProgramManager
+    Plugin_ParticleFX
+    Plugin_CgProgramManager
   #  Plugin_PCZSceneManager
     RenderSystem_GL
 )
@@ -111,6 +111,7 @@ set(BOOST_COMPONENTS
     filesystem
     thread
     system
+    atomic
 )
 
 find_package(Boost COMPONENTS ${BOOST_COMPONENTS} REQUIRED QUIET)
