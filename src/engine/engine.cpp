@@ -383,7 +383,7 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
     void
     setupLog() {
         static Ogre::LogManager logManager;
-        logManager.createLog("default", true, false, false);
+        logManager.createLog("ogre.log", true, false, false);
     }
 
     void
