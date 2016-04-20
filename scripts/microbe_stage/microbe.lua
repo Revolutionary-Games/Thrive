@@ -247,16 +247,15 @@ function Microbe.createMicrobeEntity(name, aiControlled, speciesName)
     soundComponent:addSound("microbe-release-toxin", "soundeffects/microbe-release-toxin.ogg")
     soundComponent:addSound("microbe-toxin-damage", "soundeffects/microbe-toxin-damage.ogg")
     soundComponent:addSound("microbe-death", "soundeffects/microbe-death.ogg")
-    soundComponent:addSound("microbe-collision", "soundeffects/microbe-collision.ogg")
     soundComponent:addSound("microbe-pickup-organelle", "soundeffects/microbe-pickup-organelle.ogg")
     s1 = soundComponent:addSound("microbe-movement-1", "soundeffects/microbe-movement-1.ogg")
-    s1.properties.volume = 1
+    s1.properties.volume = 0.4
     s1.properties:touch()
     s1 = soundComponent:addSound("microbe-movement-turn", "soundeffects/microbe-movement-2.ogg")
-    s1.properties.volume = 0.2
+    s1.properties.volume = 0
     s1.properties:touch()
     s1 = soundComponent:addSound("microbe-movement-2", "soundeffects/microbe-movement-3.ogg")
-    s1.properties.volume = 1
+    s1.properties.volume = 0.4
     s1.properties:touch()
     local components = {
         CompoundAbsorberComponent(),
@@ -1051,11 +1050,6 @@ function MicrobeSystem:update(renderTime, logicTime)
             local microbe1Comp = entity1:getComponent(MicrobeComponent.TYPE_ID)
             local microbe2Comp = entity2:getComponent(MicrobeComponent.TYPE_ID)
             if body1~=nil and body2~=nil then
-                -- Play bump sound
-                if ((body1.dynamicProperties.linearVelocity - body2.dynamicProperties.linearVelocity):length()) > RELATIVE_VELOCITY_TO_BUMP_SOUND then
-                    local soundComponent = entity1:getComponent(SoundSourceComponent.TYPE_ID)
-                    soundComponent:playSound("microbe-collision")
-                end
                 -- Engulf initiation
                 checkEngulfment(microbe1Comp, microbe2Comp, body1, entity1, entity2)
                 checkEngulfment(microbe2Comp, microbe1Comp, body2, entity2, entity1)
