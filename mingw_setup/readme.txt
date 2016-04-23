@@ -145,7 +145,7 @@ file in the next step.
 
 * If you are instead using commandline SVN
 
-    svn co http://crovea.net/svn/thrive_assets/ ./assets
+    svn co http://assets.revolutionarygamesstudio.com ./assets
     
 8. Invoke CMake
 ---------------
