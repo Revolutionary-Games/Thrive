@@ -8,7 +8,7 @@ Overview
 ----------------
 
 Repository structure:
-- assets: An SVN repository that doesn't follow with the git repository. This contains all the assets such as models and other binaries. Get it with SVN Checkout http://crovea.net/svn/thrive_assets
+- assets: An SVN repository that doesn't follow with the git repository. This contains all the assets such as models and other binaries. Get it with SVN Checkout http://assets.revolutionarygamesstudio.com
 - cmake_modules: Scripts used by cmake when building the project binaries to find the dependencies. The dependencies will, for windows users, be installed with the mingw_setup directory.
 - contrib: Git submodules and other external code bases we use for the project.
 - cpack: Script used by 7zip.
@@ -28,9 +28,7 @@ to get your development environment set up.
 ### Script Authors
 If you only want to modify the Lua scripts, you can obtain a 
 working copy of the game from official releases here: http://thrivegame.forum-free.ca/t1276-thrive-releases#29017
-alternatively you can request a newer version from developers, compile the project yourself,
-or you can download from our (currently not updating and temporary) build server at
-ftp://nimbal.net/jenkins.
+alternatively you can request a newer version from developers or compile the project yourself.
 
 Be sure to have a look at the [styleguide][styleguide],
 both for guidelines on code formatting and git usage.
