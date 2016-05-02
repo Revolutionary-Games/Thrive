@@ -7,10 +7,15 @@ stripfiles=1
 target=$versionedname
 
 librariestoinstall="@LINUX_LIBRARIES@"
+ceguiversion="@FIND_CEGUI_VERSION@"
 
 mkdir -p $target
 mkdir -p $target/bin
 
+BASEDIR=$(pwd)
+fulltarget="$BASEDIR/$target"
+
+echo "Staging folder is at: $fulltarget"
 
 # Copy all required files
 cp Thrive $target/bin
@@ -61,13 +66,28 @@ echo "$librariestoinstall" | awk 'BEGIN { RS=";" } { print $0 }' | while read -r
         CopyDependency "$line"
         echo ""
 
-        # libboost_thread hack
         case "$line" in 
             *boost_thread*)
+                # libboost_thread hack
                 # Copy the actual files
                 libdir=$(dirname "${line}")
                 cp $dirname/libboost_thread.* $target/bin
-            ;;
+                ;;
+            *CEGUIBase*)
+                # Dynamic CEGUI libs hack
+                
+                ceguibasedir=$(dirname "$line")
+                echo "Got CEGUI base directory: $ceguibasedir"
+
+                # CEGUI components
+                (
+                    cd $ceguibasedir/cegui-$ceguiversion*
+                    for f in *.so; do
+                        echo "Copying CEGUI component $f"
+                        cp "$f" $fulltarget/bin
+                    done
+                )
+                ;;
         esac
     fi 
 done
@@ -83,9 +103,10 @@ if [ $stripfiles = 1 ] ; then
     strip $target/bin/Plugin_CgProgramManager.*
 fi
 
-echo "ldd finds extra dependencies and missing symlinks"
-ldd $target/bin/Thrive | awk '{ print $3 }' | while read -r line ; do
-    
+
+# Copies a library to the staging folder if wanted for this install type
+CheckDependency() {
+
     case "$line" in
         *resample*)
         ;&
@@ -108,12 +129,75 @@ ldd $target/bin/Thrive | awk '{ print $3 }' | while read -r line ; do
         *avutil*)
         ;&
         *swscale*)
-        ;& 
+        ;&
+        *vpx*)
+        ;&
+        *x26*)
+        ;&
+        *libstdc++*)
+        ;&
+        *jpeg*)
+        ;&
+        *jxrglue*)
+        ;&
+        *IlmImf*)
+        ;&
+        *Imath*)
+        ;&
+        *Half*)
+        ;&
+        *Iex*)
+        ;&
+        *IlmThread*)
+        ;&
+        *openjp*)
+        ;&
+        *libraw*)
+        ;&
+        *png*)
+        ;&
+        *gnutls*)
+        ;&
+        *atomic*)
+        ;&
+        *zzip*)
+        ;&
+        *Cg*)
+        ;&
+        *va*)
+        ;&
+        *xvid*)
+        ;&
+        *mp3*)
+        ;&
+        *schroedinger*)
+        ;&
+        *Xaw*)
+        ;&
         *freeimage*)
             CopyDependency "$line"
             ;;
     esac
-done
+}
+
+LDDCheckLib() {
+
+    echo "Using ldd on $1"
+    
+    ldd "$1" | awk '{ print $3 }' | while read -r line ; do
+
+        CheckDependency "$line"
+
+    done
+}
+
+echo "ldd finds extra dependencies and missing symlinks"
+LDDCheckLib "$target/bin/Thrive"
+
+echo "ldd finds more extra deps for Ogre"
+LDDCheckLib $target/bin/Plugin_Cg*
+LDDCheckLib $target/bin/Plugin_ParticleFX*
+
 
 # Assets
 # TODO: see if these could be symlinks
@@ -158,12 +242,13 @@ Note: the script requires root, so you should read through it before running it"
 
 # Delete log files, if ran from the staging folder before
 echo "Deleting log and settings files if they exist"
-rm $target/bin/cAudioEngineLog.html
-rm $target/bin/CEGUI.log
-rm $target/bin/default
-rm $target/bin/ogre.cfg
+rm -f "$target/bin/cAudioEngineLog.html"
+rm -f "$target/bin/CEGUI.log"
+rm -f "$target/bin/default"
+rm -f "$target/bin/ogre.cfg"
 
 echo "Zipping it up"
+
 
 # Zip it up
 7za a "Thrive.$version.7z" $versionedname
