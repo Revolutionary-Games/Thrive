@@ -52,21 +52,15 @@ local function setupSound()
     local soundSource = SoundSourceComponent()
     soundSource.autoLoop = true
     soundSource.ambientSoundSource = true
-    soundSource.volumeMultiplier = 0.2
+    soundSource.volumeMultiplier = 0.6
     ambientEntity:addComponent(soundSource)
-    local ambientEntity = Entity("editor_ambience")
-    local soundCourse = SoundSourceComponent()
-    soundSource.volumeMultiplier = 0.1
-    soundSource.ambientSoundSource = true
-    ambientSound = soundSource:addSound("microbe-ambient", "soundeffects/microbe-ambience.ogg")
-    soundSource.autoLoop = true
-    ambientEntity2:addComponent(soundSource)
+   
     -- Sound
     soundSource:addSound("microbe-editor-theme-1", "microbe-editor-theme-1.ogg")
     soundSource:addSound("microbe-editor-theme-2", "microbe-editor-theme-2.ogg")
     soundSource:addSound("microbe-editor-theme-3", "microbe-editor-theme-3.ogg")
     soundSource:addSound("microbe-editor-theme-4", "microbe-editor-theme-4.ogg")
-    soundSource:addSound("microbe-editor-theme-5", "microbe-editor-theme-5.ogg")   
+    soundSource:addSound("microbe-editor-theme-5", "microbe-editor-theme-5.ogg")  
     -- Gui effects
     local guiSoundEntity = Entity("gui_sounds")
     soundSource = SoundSourceComponent()
@@ -76,6 +70,14 @@ local function setupSound()
     guiSoundEntity:addComponent(soundSource)
     -- Sound
     soundSource:addSound("button-hover-click", "soundeffects/gui/button-hover-click.ogg")
+   
+    local ambientEntity2 = Entity("editor_ambience2")
+    local soundSource2 = SoundSourceComponent()
+    soundSource2.volumeMultiplier = 0.1
+    soundSource2.ambientSoundSource = true
+    soundSource2:addSound("microbe-ambient", "soundeffects/microbe-ambience.ogg")
+    soundSource2.autoLoop = true
+    ambientEntity2:addComponent(soundSource2)
 end
 
 local function createMicrobeEditor(name)
