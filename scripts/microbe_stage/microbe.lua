@@ -249,6 +249,8 @@ function Microbe.createMicrobeEntity(name, aiControlled, speciesName)
     soundComponent:addSound("microbe-death", "soundeffects/microbe-death.ogg")
     soundComponent:addSound("microbe-collision", "soundeffects/microbe-collision.ogg")
     soundComponent:addSound("microbe-pickup-organelle", "soundeffects/microbe-pickup-organelle.ogg")
+    soundComponent:addSound("microbe-engulfment", "soundeffects/engulfment.ogg")
+    soundComponent:addSound("microbe-reproduction", "soundeffects/reproduction.ogg")
     s1 = soundComponent:addSound("microbe-movement-1", "soundeffects/microbe-movement-1.ogg")
     s1.properties.volume = 1
     s1.properties:touch()
@@ -734,6 +736,7 @@ function Microbe:reproduce()
     copy:storeCompound(CompoundRegistry.getCompoundId("atp"), 20, false)
     copy.microbe:_resetCompoundPriorities()  
     copy.entity:addComponent(SpawnedComponent())
+    self.soundSource:playSound("microbe-reproduction")
     if self.microbe.isPlayerMicrobe then
         showReproductionDialog()
     end
@@ -750,6 +753,7 @@ function Microbe:toggleEngulfMode()
         colourToSet = ColourValue.Red
         self.microbe.movementFactor = self.microbe.movementFactor / ENGULFING_MOVEMENT_DIVISION
     end
+    self.soundSource:playSound("microbe-engulfment")
 	-- You should be able to get the membrane to flash blue (or become some color)
 	-- if you are able to get your hands on the membrane entity, which is currently defined in c++
 	-- below line is just an example—it doesn't actually work.
