@@ -38,7 +38,7 @@ function MicrobeStageTutorialHudSystem:update(renderTime)
     
     if Engine.mouse:wasButtonPressed(Mouse.MB_Left) and self.tutorialStep ~= 3 and self.tutorialStep ~= 8 and self.tutorialStep ~= 10 then
         self.tutorialStep = self.tutorialStep + 1
-    elseif Engine.keyboard:wasKeyPressed(Keyboard.KC_ESCAPE) then
+    elseif Engine.keyboard:wasKeyPressed(Keyboard.KC_ESCAPE) and self.tutorialStep <= 2 then
         self.tutorialStep = -1
     end
     

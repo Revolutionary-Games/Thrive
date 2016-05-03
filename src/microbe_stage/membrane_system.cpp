@@ -165,6 +165,8 @@ Ogre::Vector3 MembraneComponent::GetExternalOrganelle(double x, double y)
 
 bool MembraneComponent::contains(float x, float y)
 {
+    //if (x < -cellDimensions/2 || x > cellDimensions/2 || y < -cellDimensions/2 || y > cellDimensions/2) return false;
+
     bool crosses = false;
 
     int n = vertices2D.size();

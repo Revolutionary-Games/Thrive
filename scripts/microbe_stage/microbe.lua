@@ -551,14 +551,33 @@ function Microbe:emitAgent(compoundId, maxAmount)
         self.soundSource:playSound("microbe-release-toxin")
         -- Calculate the emission angle of the agent emitter
         local organelleX, organelleY = axialToCartesian(agentVacuole.position.q, agentVacuole.position.r)
-        local nucleusX, nucleusY = axialToCartesian(0, 0)
-        local deltaX = nucleusX - organelleX
-        local deltaY = nucleusY - organelleY
-        local angle =  math.atan2(-deltaY, -deltaX)
+        local membraneCoords = microbe.membraneComponent:getExternOrganellePos(organelleX, organelleY)
+        
+        local angle =  math.atan2(organelleY, organelleX)
         if (angle < 0) then
             angle = angle + 2*math.pi
         end
         angle = -(angle * 180/math.pi -90 ) % 360
+        --angle = angle * 180/math.pi
+        
+        -- Find the direction the microbe is facing
+        local yAxis = self.sceneNode.transform.orientation:yAxis()
+        local microbeAngle = math.atan2(yAxis.x, yAxis.y)
+        if (microbeAngle < 0) then
+            microbeAngle = microbeAngle + 2*math.pi
+        end
+        microbeAngle = microbeAngle * 180/math.pi
+        -- Take the microbe angle into account so we get world relative degrees
+        local finalAngle = (angle + microbeAngle) % 360        
+        
+        local s = math.sin(finalAngle/180*math.pi);
+        local c = math.cos(finalAngle/180*math.pi);
+
+        local xnew = -membraneCoords[1] * c + membraneCoords[2] * s;
+        local ynew = membraneCoords[1] * s + membraneCoords[2] * c;
+        
+        local direction = Vector3(xnew, ynew, 0)
+
         local amountToEject = math.min(maxAmount, agentVacuole.storedAmount)
         local particleCount = 1
         if amountToEject >= 3 then
@@ -567,7 +586,8 @@ function Microbe:emitAgent(compoundId, maxAmount)
         agentVacuole:takeCompound(compoundId, amountToEject)
         local i
         for i = 1, particleCount do
-            self:ejectCompound(compoundId, amountToEject/particleCount, angle,angle, INITIAL_EMISSION_RADIUS*4)
+            --self:ejectCompound(compoundId, amountToEject/particleCount, angle,angle, INITIAL_EMISSION_RADIUS*4)
+            createAgentCloud(compoundId, self.sceneNode.transform.position.x + xnew, self.sceneNode.transform.position.y + ynew, direction, amountToEject/particleCount)
         end
     end
 end
