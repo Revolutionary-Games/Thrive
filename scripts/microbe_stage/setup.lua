@@ -329,7 +329,7 @@ local function setupSound()
     local soundSource = SoundSourceComponent()
     soundSource.ambientSoundSource = true
     soundSource.autoLoop = true
-    soundSource.volumeMultiplier = 0.5
+    soundSource.volumeMultiplier = 0.3
     ambientEntity:addComponent(soundSource)
     -- Sound
     soundSource:addSound("microbe-theme-1", "microbe-theme-1.ogg")
@@ -340,7 +340,7 @@ local function setupSound()
     soundSource:addSound("microbe-theme-7", "microbe-theme-7.ogg")   
     local ambientEntity2 = Entity("ambience2")
     local soundSource = SoundSourceComponent()
-    soundSource.volumeMultiplier = 0.3
+    soundSource.volumeMultiplier = 0.1
     soundSource.ambientSoundSource = true
     ambientSound = soundSource:addSound("microbe-ambient", "soundeffects/microbe-ambience.ogg")
     soundSource.autoLoop = true
