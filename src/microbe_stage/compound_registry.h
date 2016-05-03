@@ -17,6 +17,8 @@
 
 namespace thrive {
 
+static const CompoundId NULL_COMPOUND = 0;
+
 using BoostCompoundMapIterator = boost::range_detail::select_second_mutable_range<std::unordered_map<std::string, CompoundId>>;
 using BoostAbsorbedMapIterator = boost::range_detail::select_first_range<std::unordered_map<CompoundId, float>>;
 
