@@ -248,7 +248,8 @@ function Microbe.createMicrobeEntity(name, aiControlled, speciesName)
     soundComponent:addSound("microbe-toxin-damage", "soundeffects/microbe-toxin-damage.ogg")
     soundComponent:addSound("microbe-death", "soundeffects/microbe-death.ogg")
     soundComponent:addSound("microbe-pickup-organelle", "soundeffects/microbe-pickup-organelle.ogg")
-    soundComponent:addSound("microbe-engulfment", "soundeffects/engulfment.ogg")
+    local engulfSound = soundComponent:addSound("microbe-engulfment", "soundeffects/engulfment.ogg")
+ --   engulfSound.properties.loop = true
     soundComponent:addSound("microbe-reproduction", "soundeffects/reproduction.ogg")
     s1 = soundComponent:addSound("microbe-movement-1", "soundeffects/microbe-movement-1.ogg")
     s1.properties.volume = 0.4
@@ -741,8 +742,8 @@ function Microbe:kill()
            organelle:removePhysics()
         end
     end
-    if self.microbe.hostileEngulfer then
-        self.microbe.hostileEngulfer.microbe.isCurrentlyEngulfing = false;
+    if self.microbe.wasBeingEngulfed then
+        self:removeEngulfedEffect()
     end
     microbeSceneNode.visible = false
 end
@@ -766,18 +767,25 @@ function Microbe:toggleEngulfMode()
     colourToSet = ColourValue.Black
     if self.microbe.engulfMode then
         self.microbe.movementFactor = self.microbe.movementFactor * ENGULFING_MOVEMENT_DIVISION
-        
+        self.soundSource:stopSound("microbe-engulfment")
         self.rigidBody:reenableAllCollisions()
     else
         colourToSet = ColourValue.Red
         self.microbe.movementFactor = self.microbe.movementFactor / ENGULFING_MOVEMENT_DIVISION
     end
-    self.soundSource:playSound("microbe-engulfment")
 	-- You should be able to get the membrane to flash blue (or become some color)
 	-- if you are able to get your hands on the membrane entity, which is currently defined in c++
 	-- below line is just an example—it doesn't actually work.
     -- microbe.membraneComponent.entity:flashColour(3000, ColourValue(1,0.2,0.2,1))
     self.microbe.engulfMode = not self.microbe.engulfMode
+end
+
+function Microbe:removeEngulfedEffect()
+    self.microbe.movementFactor = self.microbe.movementFactor * ENGULFED_MOVEMENT_DIVISION
+    self.microbe.wasBeingEngulfed = false
+    self.microbe.hostileEngulfer.microbe.isCurrentlyEngulfing = false;
+    self.microbe.hostileEngulfer.rigidBody:reenableAllCollisions()
+    self.microbe.hostileEngulfer.soundSource:stopSound("microbe-engulfment")
 end
 
 -- Sets the color of the microbe's membrane.
@@ -835,10 +843,7 @@ function Microbe:update(logicTime)
             self:damage(logicTime * 0.0005  * self.microbe.maxHitpoints) -- Engulfment damages 5% per second
         -- Else If we were but are no longer, being engulfed
         elseif self.microbe.wasBeingEngulfed then
-            self.microbe.movementFactor = self.microbe.movementFactor * ENGULFED_MOVEMENT_DIVISION
-            self.microbe.wasBeingEngulfed = false
-            self.microbe.hostileEngulfer.microbe.isCurrentlyEngulfing = false;
-            self.microbe.hostileEngulfer.rigidBody:reenableAllCollisions()
+            self:removeEngulfedEffect()
         end
         -- Used to detect when engulfing stops
         self.microbe.isBeingEngulfed = false;
@@ -1063,7 +1068,7 @@ function MicrobeSystem:update(renderTime, logicTime)
     for _, microbe in pairs(self.microbes) do
         microbe:update(logicTime)
     end
-    -- Note that this triggers every frame there is a collision, but the sound system ensures that the sound doesn't overlap itself. Could potentially be optimised
+    -- Note that this triggers every frame there is a collision
     for collision in self.microbeCollisions:collisions() do
         local entity1 = Entity(collision.entityId1)
         local entity2 = Entity(collision.entityId2)
@@ -1084,13 +1089,26 @@ function MicrobeSystem:update(renderTime, logicTime)
 end
 
 function checkEngulfment(microbe1Comp, microbe2Comp, body, entity1, entity2)
-    if microbe1Comp.engulfMode and microbe1Comp.maxHitpoints > ENGULF_HP_RATIO_REQ*microbe2Comp.maxHitpoints 
-                   and not microbe2Comp.wasBeingEngulfed and not microbe1Comp.isCurrentlyEngulfing then
-        microbe2Comp.movementFactor = microbe2Comp.movementFactor / ENGULFED_MOVEMENT_DIVISION
-        microbe1Comp.isCurrentlyEngulfing = true
-        microbe2Comp.isBeingEngulfed = true
-        microbe2Comp.wasBeingEngulfed = true
-        microbe2Comp.hostileEngulfer = Microbe(entity1)
-        body:disableCollisionsWith(entity2.id)     
+    
+    
+    
+    if microbe1Comp.engulfMode and 
+       microbe1Comp.maxHitpoints > ENGULF_HP_RATIO_REQ*microbe2Comp.maxHitpoints and
+       microbe2Comp.dead == false then
+
+        if not microbe1Comp.isCurrentlyEngulfing then
+            --We have just started engulfing
+            microbe1Comp.isCurrentlyEngulfing = true
+            microbe2Comp.wasBeingEngulfed = true
+            microbeObj = Microbe(entity1)
+            microbe2Comp.hostileEngulfer = microbeObj
+            body:disableCollisionsWith(entity2.id)     
+            microbeObj.soundSource:playSound("microbe-engulfment")
+        end
+
+       --isBeingEngulfed is set to false every frame
+       -- we detect engulfment stopped by isBeingEngulfed being false while wasBeingEngulfed is true
+       microbe2Comp.isBeingEngulfed = true
+
     end
 end
