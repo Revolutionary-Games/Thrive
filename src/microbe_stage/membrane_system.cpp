@@ -153,10 +153,10 @@ Ogre::Vector3 MembraneComponent::GetExternalOrganelle(double x, double y)
     Ogre::Vector3 closestSoFar(0, 0, 0);
     float angleToClosest = Ogre::Math::TWO_PI;
 
-    for(Ogre::Vector3 vertex : vertices2D) {
-        if(Ogre::Math::Abs(Ogre::Math::ATan2(vertex.y, vertex.x).valueRadians() - organelleAngle) < angleToClosest) {
-            closestSoFar = Ogre::Vector3(vertex.x, vertex.y, 0);
-            angleToClosest = Ogre::Math::Abs(Ogre::Math::ATan2(vertex.y, vertex.x).valueRadians() - organelleAngle);
+    for(size_t i=0, end=vertices2D.size(); i<end; i++) {
+        if(Ogre::Math::Abs(Ogre::Math::ATan2(vertices2D[i].y, vertices2D[i].x).valueRadians() - organelleAngle) < angleToClosest) {
+            closestSoFar = Ogre::Vector3(vertices2D[i].x, vertices2D[i].y, 0);
+            angleToClosest = Ogre::Math::Abs(Ogre::Math::ATan2(vertices2D[i].y, vertices2D[i].x).valueRadians() - organelleAngle);
         }
     }
 

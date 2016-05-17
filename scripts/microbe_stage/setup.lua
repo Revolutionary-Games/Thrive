@@ -179,11 +179,11 @@ function createAgentCloud(compoundId, x, y, direction, amount)
     local entity = Entity()
     local sceneNode = OgreSceneNodeComponent()
     sceneNode.meshName = "oxytoxy.mesh"
-    sceneNode.transform.position = Vector3(x, y, 0)
+    sceneNode.transform.position = Vector3(x + direction.x/2, y + direction.y/2, 0)
     sceneNode.transform:touch()
     local agent = AgentCloudComponent()
     agent:initialize(compoundId, 255, 0, 255)
-    agent.direction = direction
+    agent.direction = direction*2
     agent.potency = amount
     entity:addComponent(sceneNode)
     entity:addComponent(agent)
