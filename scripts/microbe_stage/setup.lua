@@ -326,7 +326,7 @@ function unlockChloroplast(entityId)
 end
 
 local function setupPlayer()
-    microbe = microbeSpawnFunctionGeneric(nil, "Default", false, PLAYER_NAME)
+    local microbe = microbeSpawnFunctionGeneric(nil, "Default", false, PLAYER_NAME)
     microbe.collisionHandler:addCollisionGroup("powerupable")
     Engine:playerData():lockedMap():addLock("Toxin")
     Engine:playerData():lockedMap():addLock("chloroplast")
