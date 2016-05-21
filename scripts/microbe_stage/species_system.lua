@@ -125,7 +125,7 @@ Modify the species, using a microbe as the template for the new genome.
 
 ]]
 function SpeciesComponent:fromMicrobe(microbe)
-    microbe = microbe.microbe -- shouldn't break, I think
+    local microbe = microbe.microbe -- shouldn't break, I think
     self.name = microbe.speciesName
     --print("self.name: "..self.name)
     -- Create species' organelle data

@@ -552,7 +552,7 @@ function Microbe:emitAgent(compoundId, maxAmount)
         self.soundSource:playSound("microbe-release-toxin")
         -- Calculate the emission angle of the agent emitter
         local organelleX, organelleY = axialToCartesian(agentVacuole.position.q, agentVacuole.position.r)
-        local membraneCoords = microbe.membraneComponent:getExternOrganellePos(organelleX, organelleY)
+        local membraneCoords = self.membraneComponent:getExternOrganellePos(organelleX, organelleY)
         
         local angle =  math.atan2(organelleY, organelleX)
         if (angle < 0) then
@@ -1073,7 +1073,6 @@ function MicrobeSystem:update(renderTime, logicTime)
         local entity1 = Entity(collision.entityId1)
         local entity2 = Entity(collision.entityId2)
         if entity1:exists() and entity2:exists() then
-            microbe.rigidBody.dynamicProperties.linearVelocity:length()
             local body1 = entity1:getComponent(RigidBodyComponent.TYPE_ID)
             local body2 = entity2:getComponent(RigidBodyComponent.TYPE_ID)
             local microbe1Comp = entity1:getComponent(MicrobeComponent.TYPE_ID)
