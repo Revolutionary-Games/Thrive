@@ -115,7 +115,7 @@ function HudSystem:update(renderTime)
         playerMicrobe:toggleEngulfMode()
     end
     
-    offset = Entity(CAMERA_NAME):getComponent(OgreCameraComponent.TYPE_ID).properties.offset
+    local offset = Entity(CAMERA_NAME):getComponent(OgreCameraComponent.TYPE_ID).properties.offset
     
     if Engine.mouse:scrollChange()/10 ~= 0 then
         self.scrollChange = self.scrollChange + Engine.mouse:scrollChange()/10
@@ -123,18 +123,18 @@ function HudSystem:update(renderTime)
     
     local newZVal = offset.z
     if self.scrollChange >= 1 then
-        newZVal = newZVal + 1
+        newZVal = newZVal + 2.5
         self.scrollChange = self.scrollChange - 1
     elseif self.scrollChange <= -1 then
-        newZVal = newZVal - 1
+        newZVal = newZVal - 2.5
         self.scrollChange = self.scrollChange + 1
     end
     
     if newZVal < 10 then
         newZVal = 10
         self.scrollChange = 0
-    elseif newZVal > 70 then
-        newZVal = 70
+    elseif newZVal > 60 then
+        newZVal = 60
         self.scrollChange = 0
     end
     
