@@ -332,7 +332,7 @@ if [ -d assets ]; then
     )   
 else
 
-    svn checkout http://crovea.net/svn/thrive_assets/ assets
+    svn checkout http://assets.revolutionarygamesstudio.com assets
 fi
 
 echo -e "$INFO Making all the links $NC"
