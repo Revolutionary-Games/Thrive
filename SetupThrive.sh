@@ -4,6 +4,12 @@
 InsideFolder=${PWD##*/}
 OriginalFolder=$(pwd)
 
+# Define colors for output
+ERROR="\033[1;31m"
+GOOD="\033[1;32m"
+INFO="\033[1;36m"
+NC="\033[0m" # No Color
+
 if [ -f ./thriveversion.ver -o "$InsideFolder" = "thrive" ]; then
 
     # Running from thrive folder
@@ -17,10 +23,10 @@ fi
 
 # Variable setup
 
-OS=$(lsb_release -si)
+OS=$(cat /etc/*-release | grep ID | cut -c 4- | sed -e "s/\b\(.\)/\u\1/g")
 
 
-THREADS=1
+THREADS=$(nproc)
 DEBUG=0
 VERBOSE=0
 
@@ -29,7 +35,7 @@ THRIVE_BRANCH="master"
 # Parse arguments
 getopt --test > /dev/null
 if [ $? != 4 ]; then
-    echo "I’m sorry, 'getopt --test' failed in this environment."
+    echo -e "$ERROR I’m sorry, 'getopt --test' failed in this environment. $NC"
     exit 1
 fi
 
@@ -61,14 +67,14 @@ while true; do
             break
             ;;
         *)
-            echo "Programming error"
+            echo -e "$ERROR Programming error $NC"
             exit 3
             ;;
     esac
 done
 
-echo "Using $THREADS threads to compile"
-echo "Running in folder $StartingDirectory"
+echo -e -e "$INFO Using $THREADS threads to compile $NC"
+echo -e "$INFO Running in folder $StartingDirectory $NC"
 cd "$StartingDirectory"
 
 MakeArgs="-j $THREADS"
@@ -81,41 +87,48 @@ fi
 
 PackageManager="dnf install -y "
 PackagesToInstall="bullet-devel boost gcc-c++ libXaw-devel freetype-devel freeimage-devel \
- zziplib-devel boost-devel ois-devel tinyxml-devel glm-devel ffmpeg-devel ffmpeg-libs openal-soft-devel"
+                   zziplib-devel boost-devel ois-devel tinyxml-devel glm-devel ffmpeg-devel ffmpeg-libs openal-soft-devel"
 CommonPackages="cmake make git mercurial svn"
 
 if [ "$OS" = "Fedora" ]; then
 
-    echo "Creating CEGUI project folder for $OS"
+    echo -e "$INFO Creating CEGUI project folder for $OS $NC"
    
 elif [ "$OS" = "Ubuntu" ]; then
 
     PackageManager="apt-get install -y "
          
     PackagesToInstall="bullet-dev boost-dev build-essential automake libtool libfreetype6-dev \
- libfreeimage-dev libzzip-dev libxrandr-dev libxaw7-dev freeglut3-dev libgl1-mesa-dev \
- libglu1-mesa-dev libois-dev libboost-thread-dev tinyxml-dev glm-dev ffmpeg-dev libavutil-dev libopenal-dev"
+                       libfreeimage-dev libzzip-dev libxrandr-dev libxaw7-dev freeglut3-dev libgl1-mesa-dev \
+                       libglu1-mesa-dev libois-dev libboost-thread-dev tinyxml-dev glm-dev ffmpeg-dev libavutil-dev libopenal-dev"
+
+elif [ "$OS" = "Arch" ]; then
+    PackageManager="pacman -S --noconfirm --color auto"
+    PackagesToInstall="bullet boost base-devel automake libtool freetype2 \
+                       freeimage zziplib libxrandr libxaw freeglut mesa-libgl \
+                       ois tinyxml glm ffmpeg openal"
+
 else
          
-    echo "Unkown linux OS \"$OS\""
+    echo -e "$ERROR Unkown linux OS \"$OS\" $NC"
     exit 2
 fi
 
 PackagesToInstall="$PackagesToInstall $CommonPackages"
 
-echo "Installing prerequisite libraries, be prepared to type password for sudo"
+echo -e "$INFO Installing prerequisite libraries, be prepared to type password for sudo $NC"
 eval "sudo $PackageManager $PackagesToInstall"
 
 if [ $? -eq 0 ]; then
-    echo "Prerequisites installed successfully"
+    echo -e "$GOOD Prerequisites installed successfully $NC"
 else
-    echo "Package manager failed to install required packages, install \"$PackagesToInstall\" manually"
+    echo -e "$ERROR Package manager failed to install required packages, install \"$PackagesToInstall\" manually $NC"
     exit 1
 fi
 
-echo "Cloning repositories and creating build files..."
+echo -e "$INFO Cloning repositories and creating build files... $NC"
 
-echo "Ogre..."
+echo -e "$INFO Ogre... $NC"
 
 mkdir -p ogreBuild
 cd ogreBuild
@@ -142,7 +155,7 @@ cd ..
 # Build file
 mkdir -p build
 
-echo "cmake_minimum_required(VERSION 2.8.11)
+echo -e "cmake_minimum_required(VERSION 2.8.11)
 
 # Let's try forcing static FreeImage
 
@@ -160,9 +173,9 @@ cd build
 cmake .. -DCMAKE_BUILD_TYPE=RelWithDebInfo -DOGRE_BUILD_RENDERSYSTEM_GL3PLUS=ON -DOGRE_BUILD_COMPONENT_OVERLAY=OFF -DOGRE_BUILD_COMPONENT_PAGING=OFF -DOGRE_BUILD_COMPONENT_PROPERTY=OFF -DOGRE_BUILD_COMPONENT_TERRAIN=OFF -DOGRE_BUILD_COMPONENT_VOLUME=OFF -DOGRE_BUILD_PLUGIN_BSP=OFF -DOGRE_BUILD_PLUGIN_CG=OFF -DOGRE_BUILD_PLUGIN_OCTREE=OFF -DOGRE_BUILD_PLUGIN_PCZ=OFF -DOGRE_BUILD_SAMPLES=OFF
 
 cd "$StartingDirectory"
-echo "Done"
+echo -e "$GOOD Done $NC"
 
-echo "CEGUI..."
+echo -e "$INFO CEGUI... $NC"
 
 if [ -d cegui ]; then
 
@@ -182,9 +195,9 @@ cmake .. -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCEGUI_BUILD_APPLICATION_TEMPLATES=O
 
 cd "$StartingDirectory"
 
-echo "Done"
+echo -e "$GOOD Done $NC"
 
-echo "OgreFFMPEG"
+echo -e "$INFO OgreFFMPEG $NC"
 
 if [ -d ogre-ffmpeg-videoplayer ]; then
 
@@ -207,10 +220,10 @@ cd build
 cmake .. -DCMAKE_BUILD_TYPE=RelWithDebInfo -DBUILD_VIDEOPLAYER_DEMO=OFF
 cd "$StartingDirectory"
 
-echo "Done"
+echo -e "$GOOD Done $NC"
 
 
-echo "cAudio"
+echo -e "$INFO cAudio $NC"
 
 if [ -d cAudio ]; then
 
@@ -234,66 +247,66 @@ cd build
 cmake .. -DCMAKE_BUILD_TYPE=RelWithDebInfo
 
 
-echo "Done"
+echo -e "$GOOD Done $NC"
 
 
-echo "Compiling. This may take a long time!"
+echo -e "$INFO Compiling. This may take a long time! $NC"
 
-echo "Ogre..."
+echo -e "$INFO Ogre... $NC"
 
 cd "$StartingDirectory/ogreBuild/build"
 eval "make $MakeArgs"
 
 
-echo "Done"
+echo -e "$GOOD Done $NC"
 
-echo "CEGUI..."
+echo -e "$INFO CEGUI... $NC"
 
 cd "$StartingDirectory/cegui/build"
 eval "make $MakeArgs"
 
-echo "Done"
+echo -e "$GOOD Done $NC"
 
-echo "OgreFFMPEG..."
+echo -e "$INFO OgreFFMPEG... $NC"
 
 cd "$StartingDirectory/ogre-ffmpeg-videoplayer/build"
 eval "make $MakeArgs"
 
-echo "Done"
+echo -e "$GOOD Done $NC"
 
-echo "cAudio..."
+echo -e "$INFO cAudio... $NC"
 
 cd "$StartingDirectory/cAudio/build"
 eval "make $MakeArgs"
 
-echo "Done"
+echo -e "$GOOD Done $NC"
 
 
-echo "Installing dependencies"
+echo -e "$INFO Installing dependencies $NC"
 
-echo "Installing Ogre, prepare for sudo password"
+echo -e "$INFO Installing Ogre, prepare for sudo password $NC"
 cd "$StartingDirectory/ogreBuild/build"
 sudo make install
 
-echo "Installing CEGUI, prepare for sudo password"
+echo -e "$INFO Installing CEGUI, prepare for sudo password $NC"
 cd "$StartingDirectory/cegui/build"
 sudo make install
 
-echo "Installing OgreFFMPEG, prepare for sudo password"
+echo -e "$INFO Installing OgreFFMPEG, prepare for sudo password $NC"
 cd "$StartingDirectory/ogre-ffmpeg-videoplayer/build"
 sudo make install
 
-echo "Installing cAudio, prepare for sudo password"
+echo -e "$INFO Installing cAudio, prepare for sudo password $NC"
 cd "$StartingDirectory/cAudio/build"
 sudo make install
 
-echo "Done"
+echo -e "$GOOD Done $NC"
 
 
-echo "Setting up Thrive"
+echo -e "$INFO Setting up Thrive $NC"
 cd "$StartingDirectory"
 
-echo "Getting code"
+echo -e "$INFO Getting code $NC"
 
 if [ -d thrive ]; then
 
@@ -310,7 +323,7 @@ git checkout $THRIVE_BRANCH
 git pull --recurse-submodules origin $THRIVE_BRANCH
 git submodule update --recursive
 
-echo "Getting assets"
+echo -e "$INFO Getting assets $NC"
 
 if [ -d assets ]; then
     (
@@ -322,7 +335,7 @@ else
     svn checkout http://crovea.net/svn/thrive_assets/ assets
 fi
 
-echo "Making all the links"
+echo -e "$INFO Making all the links $NC"
 ln -sf assets/cegui_examples cegui_examples
 ln -sf assets/definitions definitions
 ln -sf assets/fonts fonts
@@ -331,27 +344,26 @@ ln -sf assets/materials materials
 ln -sf assets/models models
 ln -sf assets/sounds sounds
 
-echo "Copying Ogre resources file"
+echo -e "$INFO Copying Ogre resources file $NC"
 cp ogre_cfg/resources.cfg build/resources.cfg
 
-echo "Copying complelety pointless Ogre files"
+echo -e "$INFO Copying complelety pointless Ogre files $NC"
 
 cp /usr/local/share/OGRE/plugins.cfg build/plugins.cfg
 
 
 
-echo "Compiling Thrive"
+echo -e "$INFO Compiling Thrive $NC"
 mkdir -p build
 cd build
 cmake .. -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
 eval "make $MakeArgs"
 
-echo "."
-echo "."
-echo "."
+echo -e "$INFO ."
+echo -e "$INFO ."
+echo -e "$INFO ."
 
 cd "$StartingDirectory"
 
-echo "Done, run the game with '$StartingDirectory/thrive/build/Thrive'"
+echo -e "$GOOD Done, run the game with '$StartingDirectory/thrive/build/Thrive' $NC"
 cd "$OriginalFolder"
-
