@@ -331,8 +331,7 @@ if [ -d assets ]; then
         svn up
     )   
 else
-
-    svn checkout http://assets.revolutionarygamesstudio.com assets
+    svn checkout http://assets.revolutionarygamesstudio.com/ assets
 fi
 
 echo -e "$INFO Making all the links $NC"
