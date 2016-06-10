@@ -90,7 +90,7 @@ A good tutorial for converting blender files can be found [here][blender_ogre_tu
 blender that has a corresponding version of blender2ogre to do the conversion.
 
 [blender_ogre_tutorial]: http://www.ogre3d.org/forums/viewtopic.php?f=8&t=79616&p=504590 "Blender to ogre tutorial"
-[asset_repository]: http://crovea.net/svn/thrive_assets "Asset Repository"
+[asset_repository]: http://assets.revolutionarygamesstudio.com/ "Asset Repository"
 [tortoiseSVN]: http://tortoisesvn.net/docs/release/TortoiseSVN_en/ "Tortoise SVN"
 [mingw]: http://www.github.com/Revolutionary-Games/Thrive/blob/master/mingw_setup/readme.txt "MinGW setup guide"
 [styleguide]: http://www.github.com/Revolutionary-Games/Thrive/blob/master/doc/style_guide.dox "Styleguide"
