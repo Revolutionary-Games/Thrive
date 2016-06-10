@@ -138,7 +138,7 @@ file in the next step.
 * If you Installed tortoise SVN
 
     Right click somewhere in the git repository and click SVN Checkout.
-    Under URL enter: http://crovea.net/svn/thrive_assets
+    Under URL enter: http://assets.revolutionarygamesstudio.com/
     Edit the last part of Checkout directory to "/assets" instead of "/trive_assets"
     Click checkout and it will prompt you for a user
     For password and username simply enter 'thrive' and 'thrive'
