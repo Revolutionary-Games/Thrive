@@ -9,12 +9,13 @@ function init() {
 	ERROR="\033[1;31m"
 	GOOD="\033[1;32m"
 	INFO="\033[1;36m"
+	COMMAND="\033[1;37m"
 	NC="\033[0m" # No Color
 
 	if [ -f ./thriveversion.ver -o "$InsideFolder" = "thrive" ]; then
 		# Running from thrive folder
 		StartingDirectory=$(dirname "$(pwd)")
-		
+
 	else
 		StartingDirectory=$(pwd)
 	fi
@@ -81,21 +82,21 @@ function init() {
 }
 
 function install_Packages() {
-	if [ "$OS" = "Fedora" ]; then
+	if [ $OS = "Fedora" ]; then
 		PackageManager="dnf install -y "
 		PackagesToInstall="bullet-devel boost gcc-c++ libXaw-devel freetype-devel freeimage-devel \
 			zziplib-devel boost-devel ois-devel tinyxml-devel glm-devel ffmpeg-devel ffmpeg-libs openal-soft-devel"
 		CommonPackages="cmake make git mercurial svn"
 
 		echo -e "$INFO Creating CEGUI project folder for $OS $NC"
-	   
-	elif [ "$OS" = "Ubuntu" ]; then
+
+	elif [ $OS = "Ubuntu" ]; then
 		PackageManager="apt-get install -y "
 		PackagesToInstall="bullet-dev boost-dev build-essential automake libtool libfreetype6-dev \
 			libfreeimage-dev libzzip-dev libxrandr-dev libxaw7-dev freeglut3-dev libgl1-mesa-dev \
 			libglu1-mesa-dev libois-dev libboost-thread-dev tinyxml-dev glm-dev ffmpeg-dev libavutil-dev libopenal-dev"
 
-	elif [ "$OS" = "Arch" ]; then
+	elif [ $OS = "Arch" ]; then
 		PackageManager="pacman -S --noconfirm --color auto --needed"
 		PackagesToInstall="bullet boost base-devel automake libtool freetype2 \
 			freeimage zziplib libxrandr libxaw freeglut mesa-libgl \
@@ -113,7 +114,7 @@ function install_Packages() {
 
 	if [ $? -eq 0 ]; then
 		echo -e "$GOOD Prerequisites installed successfully $NC"
-	
+
 	else
 		echo -e "$ERROR Package manager failed to install required packages, install \"$PackagesToInstall\" manually $NC"
 		exit 1
@@ -136,7 +137,7 @@ function prepare_Ogre() {
 	if [ -d ogre ]; then
 		cd ogre
 		hg pull
-			
+
 	else
 		hg clone https://bitbucket.org/sinbad/ogre ogre
 		cd ogre
@@ -155,8 +156,8 @@ function prepare_Ogre() {
 
 	echo "cmake_minimum_required(VERSION 2.8.11)
 	# Let's try forcing static FreeImage
-	set(FreeImage_USE_STATIC_LIBS TRUE) 
-	# depencies must be first 
+	set(FreeImage_USE_STATIC_LIBS TRUE)
+	# depencies must be first
 	#add_subdirectory(ogredeps)
 	# actual ogre
 	add_subdirectory(ogre)" > CMakeLists.txt
@@ -164,7 +165,7 @@ function prepare_Ogre() {
 
 	# Run cmake
 	cd build
-check cmake .. -DCMAKE_BUILD_TYPE=RelWithDebInfo -DOGRE_BUILD_RENDERSYSTEM_GL3PLUS=ON -DOGRE_BUILD_COMPONENT_OVERLAY=OFF -DOGRE_BUILD_COMPONENT_PAGING=OFF -DOGRE_BUILD_COMPONENT_PROPERTY=OFF -DOGRE_BUILD_COMPONENT_TERRAIN=OFF -DOGRE_BUILD_COMPONENT_VOLUME=OFF -DOGRE_BUILD_PLUGIN_BSP=OFF -DOGRE_BUILD_PLUGIN_CG=OFF -DOGRE_BUILD_PLUGIN_OCTREE=OFF -DOGRE_BUILD_PLUGIN_PCZ=OFF -DOGRE_BUILD_SAMPLES=OFF
+	check cmake .. -DCMAKE_BUILD_TYPE=RelWithDebInfo -DOGRE_BUILD_RENDERSYSTEM_GL3PLUS=ON -DOGRE_BUILD_COMPONENT_OVERLAY=OFF -DOGRE_BUILD_COMPONENT_PAGING=OFF -DOGRE_BUILD_COMPONENT_PROPERTY=OFF -DOGRE_BUILD_COMPONENT_TERRAIN=OFF -DOGRE_BUILD_COMPONENT_VOLUME=OFF -DOGRE_BUILD_PLUGIN_BSP=OFF -DOGRE_BUILD_PLUGIN_CG=OFF -DOGRE_BUILD_PLUGIN_OCTREE=OFF -DOGRE_BUILD_PLUGIN_PCZ=OFF -DOGRE_BUILD_SAMPLES=OFF
 
 	cd "$StartingDirectory"
 	echo -e "$GOOD Done $NC"
@@ -186,6 +187,7 @@ function prepare_CEGUI() {
 
 	mkdir build
 	cd build
+
 	check cmake .. -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCEGUI_BUILD_APPLICATION_TEMPLATES=OFF -DCEGUI_BUILD_PYTHON_MODULES=OFF -DCEGUI_SAMPLES_ENABLED=OFF
 
 	cd "$StartingDirectory"
@@ -200,7 +202,7 @@ function prepare_OgreFFMPEG() {
 		cd ogre-ffmpeg-videoplayer
 		git checkout master
 		git pull origin master
-		
+
 	else
 		#Official repo
 		#git clone https://github.com/scrawl/ogre-ffmpeg-videoplayer.git ogre-ffmpeg-videoplayer
@@ -213,7 +215,7 @@ function prepare_OgreFFMPEG() {
 	mkdir -p build
 	cd build
 	check cmake .. -DCMAKE_BUILD_TYPE=RelWithDebInfo -DBUILD_VIDEOPLAYER_DEMO=OFF
-	
+
 	cd "$StartingDirectory"
 
 	echo -e "$GOOD Done $NC"
@@ -228,7 +230,7 @@ function prepare_cAudio() {
 		#git checkout master
 		#git pull origin master
 
-		
+
 	else
 		git clone https://github.com/wildicv/cAudio.git
 		cd cAudio
@@ -275,7 +277,7 @@ function build_OgreFFMPEG() {
 
 	cd "$StartingDirectory/ogre-ffmpeg-videoplayer/build"
 	check eval "make $MakeArgs"
-	
+
 	echo -e "$GOOD Done $NC"
 }
 
@@ -329,7 +331,7 @@ function setup_Thrive() {
 
 	if [ -d thrive ]; then
 		cd thrive
-		
+
 	else
 		git clone https://github.com/Revolutionary-Games/Thrive.git thrive
 		cd thrive
@@ -360,19 +362,25 @@ function setup_Thrive() {
 	ln -sf assets/sounds sounds
 
 	echo -e "$INFO Copying Ogre resources file $NC"
-	cp ogre_cfg/resources.cfg build/resources.cfg
+	if [ $OS = "Arch" ]; then
+		cp /usr/local/share/OGRE/resources.cfg ./build/resources.cfg
 
-	echo -e "$INFO Copying complelety pointless Ogre files $NC"
+	else
+		cp ogre_cfg/resources.cfg ./build/resources.cfg
+	fi
 
-	cp /usr/local/share/OGRE/plugins.cfg build/plugins.cfg
+	echo -e "$INFO Copying completety pointless Ogre files $NC"
+
+	cp /usr/local/share/OGRE/plugins.cfg ./build/plugins.cfg
 }
 
 function build_Thrive() {
 	echo -e "$INFO Compiling Thrive $NC"
-	mkdir -p build
-	cd build
+	mkdir -p $StartingDirectory/thrive/build
+	cd $StartingDirectory/thrive/build
+
 	check cmake .. -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
-	
+
 	check eval "make $MakeArgs"
 }
 
@@ -391,10 +399,20 @@ function check() {
 	"$@"
     local status=$?
     if [ $status -ne 0 ]; then
-        echo -e "$ERROR Error with $1 in function ${FUNCNAME[1]} $NC" >&2
-		exit 1
-	else
-    	echo -e "$GOOD Everything went fine with $1 $NC"
+			if [ $1 = "eval" ]; then
+				echo -e "$ERROR Error with $COMMAND $2 $ERROR in function $COMMAND ${FUNCNAME[1]}() $NC" >&2
+				exit 1
+
+			else
+	      echo -e "$ERROR Error with $COMMAND $1 $ERROR in function $COMMAND ${FUNCNAME[1]}() $NC" >&2
+				exit 1
+			fi
+
+		elif [ $1 = "sudo" ]; then
+    	echo -e "$GOOD Everything went fine with $COMMAND $2 $GOOD in function $COMMAND ${FUNCNAME[1]}() $NC"
+
+		else
+			echo -e "$GOOD Everything went fine with $COMMAND $1 $GOOD in function $COMMAND ${FUNCNAME[1]}() $NC"
 	fi
 }
 
