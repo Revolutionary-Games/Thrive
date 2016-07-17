@@ -15,9 +15,8 @@ add_sources(
     "${CMAKE_CURRENT_SOURCE_DIR}/membrane_system.h"
     "${CMAKE_CURRENT_SOURCE_DIR}/compound_cloud_system.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/compound_cloud_system.h"
+    "${CMAKE_CURRENT_SOURCE_DIR}/process_system.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/process_system.h"
     "${CMAKE_CURRENT_SOURCE_DIR}/agent_cloud_system.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/agent_cloud_system.h"
 )
-
-
-

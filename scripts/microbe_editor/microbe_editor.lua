@@ -55,7 +55,7 @@ function MicrobeEditor:activate()
         cytoplasm:destroy()
     end
     
-    self.currentMicrobe = Microbe(self.nextMicrobeEntity)
+    self.currentMicrobe = Microbe(self.nextMicrobeEntity, true)
     self.currentMicrobe.sceneNode.transform.orientation = Quaternion(Radian(Degree(0)), Vector3(0, 0, 1))-- Orientation
     self.currentMicrobe.sceneNode.transform.position = Vector3(0, 0, 0)
     self.currentMicrobe.sceneNode.transform:touch()
@@ -408,7 +408,7 @@ function MicrobeEditor:loadMicrobe(entityId)
     if self.currentMicrobe ~= nil then
         self.currentMicrobe.entity:destroy()
     end
-    self.currentMicrobe = Microbe(Entity(entityId))
+    self.currentMicrobe = Microbe(Entity(entityId), true)
     self.currentMicrobe.entity:stealName("working_microbe")
     self.currentMicrobe.sceneNode.transform.orientation = Quaternion(Radian(Degree(0)), Vector3(0, 0, 1))-- Orientation
     self.currentMicrobe.sceneNode.transform:touch()
@@ -430,7 +430,7 @@ function MicrobeEditor:createNewMicrobe()
             for _, cytoplasm in pairs(self.occupiedHexes) do
                 cytoplasm:destroy()
             end
-            self.currentMicrobe = Microbe.createMicrobeEntity(nil, false)
+            self.currentMicrobe = Microbe.createMicrobeEntity(nil, false, "Editor_Microbe", true)
             self.currentMicrobe.entity:stealName("working_microbe")
             --self.currentMicrobe.sceneNode.transform.orientation = Quaternion(Radian(Degree(180)), Vector3(0, 0, 1))-- Orientation
             self.currentMicrobe.sceneNode.transform:touch()
@@ -466,7 +466,7 @@ function MicrobeEditor:createNewMicrobe()
         action.undo = function()
             speciesName = self.currentMicrobe.microbe.speciesName
             self.currentMicrobe.entity:destroy() -- remove the "new" entity that has replaced the previous one
-            self.currentMicrobe = Microbe.createMicrobeEntity(nil, false)
+            self.currentMicrobe = Microbe.createMicrobeEntity(nil, false, 'Editor_Microbe', true)
             self.currentMicrobe.entity:stealName("working_microbe")
             self.currentMicrobe.sceneNode.transform.orientation = Quaternion(Radian(Degree(0)), Vector3(0, 0, 1))-- Orientation
             self.currentMicrobe.sceneNode.transform:touch()

@@ -136,8 +136,8 @@ function Organelle:onAddedToMicrobe(microbe, q, r, rotation)
 		angle = (angle * 180/math.pi + 180) % 360
 		self.rotation = angle;
 	elseif self.name == "mitochondrion" or self.name == "chloroplast" then -- When all organelles except the above have animations this should just be an else statement
-		sceneNode:playAnimation("Float", true)
-		sceneNode:setAnimationSpeed(0.25)
+		--sceneNode:playAnimation("Float", true)
+		--sceneNode:setAnimationSpeed(0.25)
 	end
 	sceneNode.transform.orientation = Quaternion(Radian(Degree(self.rotation)), Vector3(0, 0, 1))
 	sceneNode.transform.position = offset

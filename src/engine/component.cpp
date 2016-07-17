@@ -94,6 +94,7 @@ Component::luaBindings() {
         .def("storage", &Component::storage, &ComponentWrapper::default_storage)
         .def("typeId", &Component::typeId)
         .def("typeName", &Component::typeName)
+        .def("owner", &Component::owner)
     ;
 }
 

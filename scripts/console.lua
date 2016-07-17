@@ -35,7 +35,7 @@ function ConsoleHud:update()
     local root = gameState:rootGUIWindow()
     local consoleWindow = root:getChild("ConsoleWindow")
     local inputArea = consoleWindow:getChild("TextEntry")
-    if Engine.keyboard:wasKeyPressed(Keyboard.KC_GRAVE) then
+    if Engine.keyboard:wasKeyPressed(Keyboard.KC_F11) then
         self.active = not self.active
         if self.active then
             consoleWindow:show()
@@ -43,7 +43,8 @@ function ConsoleHud:update()
             inputArea:setFocus()
         else
              -- inputArea captures ` before deactivation, we don't want that.
-            text, _ = string.gsub(inputArea:getText(), "`", "")
+            -- text, _ = string.gsub(inputArea:getText(), "`", "")
+            text = inputArea:getText()
             inputArea:setText(text)
             consoleWindow:disable()
             consoleWindow:hide()
@@ -88,7 +89,7 @@ end
 function ConsoleHud:handleKeys(key)
     local consoleWindow = Engine:currentGameState():rootGUIWindow():getChild("ConsoleWindow")
     local inputArea = consoleWindow:getChild("TextEntry")
-    if key == Keyboard.KC_GRAVE then
+    if key == Keyboard.KC_F11 then
         if self.active then
             consoleWindow:disable()
             consoleWindow:hide()

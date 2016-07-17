@@ -55,24 +55,24 @@ compounds = {
     },
 }
 
+-- there must be some more robust way to script agents than having stuff all over the place.
+function oxytoxyEffect(entityId, potency)
+    Microbe(Entity(entityId)):damage(potency*15, "toxin")
+end
+
 agents = {
     oxytoxy = {
         name = "OxyToxy NT",
+        weight = 1,
         mesh = "oxytoxy.mesh",
         size = 0.3,
-        effect = "oxytoxyEffect",
-        --[[
-        we'll have to be careful with this referencing. 
-        should we link the function directly? Or just name? 
-        link should be cleaner to use, but may be more difficult to set up?
-        ]]
+        effect = oxytoxyEffect,
     },
 }
 
 processes = {
     Respiration = {
         speedFactor = 0.1,
-        energyCost = 0,
         inputs = {
             glucose = 1,
             oxygen = 6,
@@ -84,7 +84,6 @@ processes = {
     },
     ReproductaseSynthesis = {
         speedFactor = 0.5,
-        energyCost = 6,
         inputs = {
             aminoacids = 6,
             glucose = 6,
@@ -97,7 +96,6 @@ processes = {
     },
     AminoAcidSynthesis = {
         speedFactor = 1,
-        energyCost = 0,
         inputs = {
             glucose = 1,
             ammonia = 1,
@@ -110,8 +108,8 @@ processes = {
     },
     OxyToxySynthesis = {
         speedFactor = 0.1,
-        energyCost = 1,
         inputs = {
+            atp = 1,
             oxygen = 3,
         },
         outputs = {
@@ -120,7 +118,6 @@ processes = {
     },
     Photosynthesis = {
         speedFactor = 0.03,
-        energyCost = 0,
         inputs = {
             co2 = 6,
         },
@@ -129,6 +126,43 @@ processes = {
             oxygen = 6,
         },
     },
+}
+
+-- currently only stores process capacity data for processing organelles, but can later also store material costs for organelles
+organelles = {
+    nucleus = {
+        processes = {
+            ReproductaseSynthesis = 1,
+            AminoAcidSynthesis = 1,
+        },
+    },
+    mitochondrion = {
+        processes = {
+            Respiration = 1,
+        },
+    },
+    oxytoxy = {
+        processes = {
+            OxyToxySynthesis = 1,
+        },
+    },
+    chloroplast = {
+        processes = {
+            Photosynthesis = 1,
+        },
+    },
+}
+
+
+default_thresholds = {
+    atp = {low = 13, high = 16, vent = 1000},
+    glucose = {low = 16, high = 30, vent = 70},
+    oxygen = {low = 22, high = 40, vent = 70},
+    co2 = {low = 0, high = 0, vent = 0},
+    ammonia = {low = 12, high = 30, vent = 70},
+    aminoacids = {low = 12, high = 30, vent = 70},
+    oxytoxy = {low = 0, high = 0, vent = 5},
+    reproductase = {low = 5, high = 1000, vent = 1000},
 }
 
 --[[

@@ -39,6 +39,8 @@ CompoundRegistry::luaBindings() {
                 )>(&CompoundRegistry::registerAgentType)
             ),
             def("loadFromXML", &CompoundRegistry::loadFromXML),
+            def("loadFromLua", &CompoundRegistry::loadFromLua),
+            def("loadAgentFromLua", &CompoundRegistry::loadAgentFromLua),
             def("getCompoundDisplayName", &CompoundRegistry::getCompoundDisplayName),
             def("getCompoundInternalName", &CompoundRegistry::getCompoundInternalName),
 			def("getCompoundMeshName", &CompoundRegistry::getCompoundMeshName),
@@ -78,9 +80,10 @@ compoundRegistryMap() {
 
 void
 CompoundRegistry::loadFromLua(
-    luabind::object configTable
+    const luabind::object& compoundTable,
+    const luabind::object& agentTable
 ) {
-    for (luabind::iterator i(configTable), end; i != end; ++i) {
+    for (luabind::iterator i(compoundTable), end; i != end; ++i) {
         std::string key = luabind::object_cast<std::string>(i.key());
         luabind::object data = *i;
         std::string name = luabind::object_cast<std::string>(data["name"]);
@@ -95,6 +98,46 @@ CompoundRegistry::loadFromLua(
                 weight
             );
     }
+    for (luabind::iterator i(agentTable), end; i != end; ++i) {
+        std::string key = luabind::object_cast<std::string>(i.key());
+        luabind::object data = *i;
+        std::string name = luabind::object_cast<std::string>(data["name"]);
+        float weight = luabind::object_cast<float>(data["weight"]);
+        std::string meshname = luabind::object_cast<std::string>(data["mesh"]);
+        float size = luabind::object_cast<float>(data["size"]);
+        // std::cerr << "before casting effect" << std::endl;
+        luabind::object effect = data["effect"];
+        registerAgentType(
+                key,
+                name,
+                meshname,
+                size,
+                weight,
+                effect
+            );
+    }
+}
+
+void
+CompoundRegistry::loadAgentFromLua(
+    const luabind::object& internalName,
+    const luabind::object& data
+) {
+    std::string internal_name = luabind::object_cast<std::string>(internalName);
+    std::string name = luabind::object_cast<std::string>(data["name"]);
+    float weight = luabind::object_cast<float>(data["weight"]);
+    std::string meshname = luabind::object_cast<std::string>(data["mesh"]);
+    float size = luabind::object_cast<float>(data["size"]);
+    // std::cerr << "before casting effect" << std::endl;
+    luabind::object effect = data["effect"];
+    registerAgentType(
+            internal_name,
+            name,
+            meshname,
+            size,
+            weight,
+            effect
+        );
 }
 
 void
