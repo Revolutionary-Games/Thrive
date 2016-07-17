@@ -1089,14 +1089,13 @@ end
 
 function checkEngulfment(microbe1Comp, microbe2Comp, body, entity1, entity2)
     
-    
-    
     if microbe1Comp.engulfMode and 
        microbe1Comp.maxHitpoints > ENGULF_HP_RATIO_REQ*microbe2Comp.maxHitpoints and
        microbe2Comp.dead == false then
 
         if not microbe1Comp.isCurrentlyEngulfing then
             --We have just started engulfing
+            microbe2Comp.movementFactor = microbe2Comp.movementFactor / ENGULFED_MOVEMENT_DIVISION
             microbe1Comp.isCurrentlyEngulfing = true
             microbe2Comp.wasBeingEngulfed = true
             microbeObj = Microbe(entity1)
