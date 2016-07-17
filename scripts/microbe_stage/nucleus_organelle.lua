@@ -40,7 +40,7 @@ function NucleusOrganelle:onAddedToMicrobe(microbe, q, r, rotation)
     --sceneNode2:playAnimation("Drift", true)
     --sceneNode2:setAnimationSpeed(0.1)
     sceneNode2.transform.scale = Vector3(1, 1, 1)
-    sceneNode2.transform.orientation = Quaternion(Radian(Degree(rotation)), Vector3(0, 0, 1))
+    sceneNode2.transform.orientation = Quaternion(Radian(Degree(rotation+5)), Vector3(0, 0, 1))
     sceneNode2.transform:touch()
     microbe.entity:addChild(self.ER)
     self.ER:addComponent(sceneNode2)
@@ -68,8 +68,8 @@ end
 
 function OrganelleFactory.make_nucleus(data)
     local nucleus = NucleusOrganelle()
-    nucleus:addProcess(global_processMap["ReproductaseSynthesis"])
-    nucleus:addProcess(global_processMap["AminoAcidSynthesis"])
+    -- nucleus:addProcess(global_processMap["ReproductaseSynthesis"])
+    -- nucleus:addProcess(global_processMap["AminoAcidSynthesis"])
         
     if data.rotation == nil then
 		data.rotation = 0

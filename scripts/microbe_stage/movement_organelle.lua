@@ -56,9 +56,9 @@ function MovementOrganelle:_moveMicrobe(microbe, milliseconds)
         local energy = math.abs(self.energyMultiplier * forceMagnitude * milliseconds / 1000)
         local availableEnergy = microbe:takeCompound(CompoundRegistry.getCompoundId("atp"), energy)
         if availableEnergy < energy then
-            forceMagnitude = sign(forceMagnitude) * availableEnergy * 1000 / milliseconds
+            forceMagnitude = sign(forceMagnitude) * availableEnergy * 1000 / milliseconds / self.energyMultiplier
             self.movingTail = false
-            self.sceneNode:setAnimationSpeed(0.25) 
+            self.sceneNode:setAnimationSpeed(0.25)
         end
         local impulseMagnitude = microbe.microbe.movementFactor * milliseconds * forceMagnitude / 1000
         local impulse = impulseMagnitude * direction

@@ -64,7 +64,14 @@ public:
     */
     static void
     loadFromLua(
-        luabind::object configTable
+        const luabind::object& configTable,
+        const luabind::object& agentTable
+    );
+
+    static void
+    loadAgentFromLua(
+        const luabind::object& internalName,
+        const luabind::object& agentData
     );
 
     /**
