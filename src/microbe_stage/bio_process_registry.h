@@ -34,7 +34,6 @@ public:
     * - BioProcessRegistry::getDisplayName
     * - BioProcessRegistry::getInternalName
     * - BioProcessRegistry::getSpeedFactor
-    * - BioProcessRegistry::getEnergyCost
     * - BioProcessRegistry::getId
     * - BioProcessRegistry::getList
     * - BioProcessRegistry::getInputCompounds
@@ -47,6 +46,11 @@ public:
     static void
     loadFromXML(
         const std::string& filename
+    );
+
+    static void
+    loadFromLua(
+        const luabind::object& processTable
     );
 
     /**
@@ -77,7 +81,6 @@ public:
     registerBioProcess(
         const std::string& internalName,
         const std::string& displayName,
-        int energyCost,
         double speedFactor,
         std::vector<std::pair<CompoundId, int>> inputCompounds,
         std::vector<std::pair<CompoundId, int>> outputCompounds
@@ -113,11 +116,6 @@ public:
 
     static double
     getSpeedFactor(
-        BioProcessId id
-    );
-
-    static int
-    getEnergyCost(
         BioProcessId id
     );
 
