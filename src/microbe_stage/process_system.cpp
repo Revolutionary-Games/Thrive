@@ -279,6 +279,7 @@ ProcessSystem::Implementation::update(int) { // int is logicTime
             float rate = output_rate - input_rate;
             if (rate > 0) {
                 // scale down the rate using the process's bandwidth and smoothing factor
+
                 rate = process.second * (1 - exp(-rate * SMOOTHING_FACTOR/process.second));
 
                 bool will_run = true;

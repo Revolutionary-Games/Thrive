@@ -111,11 +111,17 @@ function Organelle:onAddedToMicrobe(microbe, q, r, rotation)
 		offset = offset + Vector3(x,y,0)
 	end
 	offset = offset/count
+    
+    -- Will cause the color of the organelle to update.
+    self.flashDuration = 0
+    local colorAsVec = microbe:getSpeciesComponent().colour
+    self.colour = ColourValue(colorAsVec.x, colorAsVec.y, colorAsVec.z, 1.0)
 	
 	self.organelleEntity = Entity()
     local sceneNode = OgreSceneNodeComponent()
     self.sceneNode = sceneNode
     sceneNode.parent = self.entity
+    
     if self.name ~= "cytoplasm" then
         sceneNode.meshName = self.name .. ".mesh"
     end
@@ -225,31 +231,22 @@ end
 -- @param logicTime
 --  The time since the last call to update()
 function Organelle:update(microbe, logicTime)
-    if self.name == "flagellum" then
-		local x, y = axialToCartesian(self.position.q, self.position.r)
-		local membraneCoords = microbe.membraneComponent:getExternOrganellePos(x, y)
-		local translation = Vector3(membraneCoords[1], membraneCoords[2], 0)
-		self.organelleEntity.sceneNode.transform.position = translation - Vector3(x, y, 0)
-		self.organelleEntity.sceneNode.transform:touch()
-	end
-	if self.flashDuration ~= nil then
+	if self.flashDuration ~= nil and self.sceneNode.entity ~= nil 
+        and (self.name == "mitochondrion" or self.name == "nucleus" or self.name == "ER" or self.name == "golgi") then
+        
         self.flashDuration = self.flashDuration - logicTime
-		if not self.sceneNode.entity or self.name ~= "nucleus" then
-			return
-		end
 		
-		local subEntity = self.sceneNode.entity:getSubEntity(self.name)
-		-- How frequent it flashes, would be nice to update the flash function
+		local entity = self.sceneNode.entity
+		-- How frequent it flashes, would be nice to update the flash function to have this variable
 		if math.fmod(self.flashDuration,600) < 300 then
-			subEntity:setColour(self.colour)
+            entity:tintColour(self.name, self.colour)
 		else
-			subEntity:setMaterial(self.name)
+			entity:setMaterial(self.name .. math.floor(self.colour.r * 256) .. math.floor(self.colour.g * 256) .. math.floor(self.colour.b * 256))
 		end
 		
         if self.flashDuration <= 0 then
-            self.flashDuration = nil				
-			local subEntity = self.sceneNode.entity:getSubEntity(self.name)
-			subEntity:setMaterial(self.name)
+            self.flashDuration = nil
+			entity:setMaterial(self.name .. math.floor(self.colour.r * 256) .. math.floor(self.colour.g * 256) .. math.floor(self.colour.b * 256))
         end
     end
 end
@@ -264,13 +261,7 @@ class 'OrganelleFactory'
 
 -- Sets the color of the organelle
 function OrganelleFactory.setColour(sceneNode, colour)
-	local subEntity = sceneNode.entity:getSubEntity("center")
-	subEntity:setColour(colour)
-	for i=1, 6 do
-		local sideName = HEX_SIDE_NAME[i]
-		subEntity = sceneNode.entity:getSubEntity(sideName)
-		subEntity:setColour(colour)
-	end
+	sceneNode.entity:setColour(colour)
 end
 
 function OrganelleFactory.makeOrganelle(data)
