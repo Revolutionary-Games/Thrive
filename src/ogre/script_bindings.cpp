@@ -32,6 +32,8 @@
 #include <OgreSubEntity.h>
 #include <OgreEntity.h>
 
+#include <string>
+
 using namespace luabind;
 using namespace Ogre;
 
@@ -182,10 +184,30 @@ SubEntity_setColour(
     self->setMaterial(material);
 }
 
+static void
+Entity_setColour(
+    Entity* self,
+    const Ogre::ColourValue& colour
+) {
+    auto material = thrive::getColourMaterial(colour);
+    self->setMaterial(material);
+}
 
 static void
 SubEntity_setMaterial(
     SubEntity* self,
+    const String& name
+) {
+    Ogre::MaterialManager& manager = Ogre::MaterialManager::getSingleton();
+    Ogre::MaterialPtr material = manager.getByName(
+        name
+    );
+    self->setMaterial(material);
+}
+
+static void
+Entity_setMaterial(
+    Entity* self,
     const String& name
 ) {
     Ogre::MaterialManager& manager = Ogre::MaterialManager::getSingleton();
@@ -210,6 +232,22 @@ SubEntity_tintColour(
     self->setMaterial(materialPtr);
 }
 
+static void
+Entity_tintColour(
+    Entity* self,
+    const String& materialName,
+    const Ogre::ColourValue& colour
+) {
+    Ogre::MaterialPtr baseMaterial = Ogre::MaterialManager::getSingleton().getByName(materialName);
+    Ogre::MaterialPtr materialPtr = baseMaterial->clone(materialName + std::to_string(static_cast<int>(colour.r*256))
+        + std::to_string(static_cast<int>(colour.g*256)) + std::to_string(static_cast<int>(colour.b*256)));
+    materialPtr->compile();
+    Ogre::TextureUnitState* ptus = materialPtr->getTechnique(0)->getPass(0)->getTextureUnitState(0);
+    ptus->setAlphaOperation(Ogre::LBX_MODULATE, Ogre::LBS_MANUAL, Ogre::LBS_TEXTURE, colour.a);
+    ptus->setColourOperationEx(Ogre::LBX_MODULATE, Ogre::LBS_MANUAL, Ogre::LBS_TEXTURE, colour);
+    self->setMaterial(materialPtr);
+}
+
 static luabind::scope
 entityBindings() {
     return (
@@ -221,6 +259,9 @@ entityBindings() {
         class_<Ogre::Entity, MovableObject>("OgreEntity")
         .def("getSubEntity", static_cast<SubEntity*(Entity::*)(const Ogre::String&)>(&Entity::getSubEntity))
         .def("getNumSubEntities", &Entity::getNumSubEntities)
+        .def("setColour", &Entity_setColour)
+        .def("setMaterial", &Entity_setMaterial)
+        .def("tintColour", &Entity_tintColour)
     );
 }
 

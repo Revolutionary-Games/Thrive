@@ -309,7 +309,6 @@ function Microbe:addOrganelle(q, r, rotation, organelle)
     organelle.sceneNode.transform.position = translation
     organelle.sceneNode.transform:touch()
     organelle:onAddedToMicrobe(self, q, r, rotation)
-    self:_updateAllHexColours()
     self.microbe.hitpoints = (self.microbe.hitpoints/self.microbe.maxHitpoints) * (self.microbe.maxHitpoints + MICROBE_HITPOINTS_PER_ORGANELLE)
     self.microbe.maxHitpoints = self.microbe.maxHitpoints + MICROBE_HITPOINTS_PER_ORGANELLE
     self.microbe.maxBandwidth = self.microbe.maxBandwidth + BANDWIDTH_PER_ORGANELLE -- Temporary solution for increasing max bandwidth
@@ -422,7 +421,6 @@ function Microbe:removeOrganelle(q, r)
     self.rigidBody.properties.shape:removeChildShape(
         organelle.collisionShape
     )
-    self:_updateAllHexColours()
     self.microbe.hitpoints = (self.microbe.hitpoints/self.microbe.maxHitpoints) * (self.microbe.maxHitpoints - MICROBE_HITPOINTS_PER_ORGANELLE)
     self.microbe.maxHitpoints = self.microbe.maxHitpoints - MICROBE_HITPOINTS_PER_ORGANELLE
     self.microbe.maxBandwidth = self.microbe.maxBandwidth - BANDWIDTH_PER_ORGANELLE -- Temporary solution for decreasing max bandwidth
@@ -463,7 +461,7 @@ function Microbe:damage(amount, damageType)
     for _, organelle in pairs(self.microbe.organelles) do
         organelle:flashColour(3000, ColourValue(1,0.2,0.2,1))
     end
-    self:_updateAllHexColours()
+    self:flashMembraneColour(3000, ColourValue(1,0.2,0.2,1))
     if self.microbe.hitpoints <= 0 then
         self.microbe.hitpoints = 0
         self:kill()
@@ -679,13 +677,11 @@ end
 
 -- Disables or enabled engulfmode for a microbe, allowing or disallowed it to absorb other microbes
 function Microbe:toggleEngulfMode()
-    colourToSet = ColourValue.Black
     if self.microbe.engulfMode then
         self.microbe.movementFactor = self.microbe.movementFactor * ENGULFING_MOVEMENT_DIVISION
         self.soundSource:stopSound("microbe-engulfment")
         self.rigidBody:reenableAllCollisions()
     else
-        colourToSet = ColourValue.Red
         self.microbe.movementFactor = self.microbe.movementFactor / ENGULFING_MOVEMENT_DIVISION
     end
     -- You should be able to get the membrane to flash blue (or become some color)
@@ -706,6 +702,13 @@ end
 -- Sets the color of the microbe's membrane.
 function Microbe:setMembraneColour(colour)
     self.membraneComponent:setColour(colour.x, colour.y, colour.z, 1)
+end
+
+function Microbe:flashMembraneColour(duration, colour)
+	if self.flashDuration == nil then
+        self.flashColour = colour
+        self.flashDuration = duration
+    end
 end
 
 
@@ -756,6 +759,8 @@ function Microbe:update(logicTime)
             if self:takeCompound(CompoundRegistry.getCompoundId("atp"), cost) < cost then
                 self:toggleEngulfMode()
             end
+            -- Flash the membrane blue.
+            self:flashMembraneColour(3000, ColourValue(0.2,0.5,1.0,0.5))
         end
         if self.microbe.isBeingEngulfed then
             self:damage(logicTime * 0.0005  * self.microbe.maxHitpoints) -- Engulfment damages 5% per second
@@ -766,6 +771,24 @@ function Microbe:update(logicTime)
         -- Used to detect when engulfing stops
         self.microbe.isBeingEngulfed = false;
         self.compoundAbsorber:setAbsorbtionCapacity(math.min(self.microbe.capacity - self.microbe.stored + 10, self.microbe.remainingBandwidth))
+        
+        -- Flash membrane if something happens.
+        if self.flashDuration ~= nil then
+            self.flashDuration = self.flashDuration - logicTime
+            
+            local entity = self.membraneComponent.entity
+            -- How frequent it flashes, would be nice to update the flash function to have this variable
+            if math.fmod(self.flashDuration,600) < 300 then
+                entity:tintColour("Membrane", self.flashColour)
+            else
+                entity:setMaterial(self.sceneNode.meshName)
+            end
+            
+            if self.flashDuration <= 0 then
+                self.flashDuration = nil				
+                entity:setMaterial(self.sceneNode.meshName)
+            end
+        end
     else
         self.microbe.deathTimer = self.microbe.deathTimer - logicTime
         if self.microbe.deathTimer <= 0 then
@@ -880,15 +903,6 @@ function Microbe:_updateCompoundAbsorber()
     end
     
 end
-
-
--- Private function for updating the colours of the organelles
---
--- The simple coloured hexes are a placeholder for proper models.
-function Microbe:_updateAllHexColours()
-end
-
-
 
 -- Must exists for current spawningSystem to function
 function Microbe:exists()

@@ -131,6 +131,8 @@ private:
     // Stores the generated 2-Dimensional membrane.
     std::vector<Ogre::Vector3>   vertices2D;
 
+    // Entity that holds the membrane mesh.
+    Ogre::Entity* m_entity = nullptr;
 
     // The amount of compounds stored in the membrane.
     int compoundAmount;
