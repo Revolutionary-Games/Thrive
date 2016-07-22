@@ -98,7 +98,12 @@ end
 
 
 function MovementOrganelle:update(microbe, logicTime)
-    Organelle.update(self, microbe, logicTime)
+    local x, y = axialToCartesian(self.position.q, self.position.r)
+    local membraneCoords = microbe.membraneComponent:getExternOrganellePos(x, y)
+    local translation = Vector3(membraneCoords[1], membraneCoords[2], 0)
+    self.organelleEntity.sceneNode.transform.position = translation - Vector3(x, y, 0)
+    self.organelleEntity.sceneNode.transform:touch()
+
     self:_turnMicrobe(microbe)
     self:_moveMicrobe(microbe, logicTime)
 end

@@ -18,8 +18,6 @@ function NucleusOrganelle:onAddedToMicrobe(microbe, q, r, rotation)
     sceneNode1.meshName = "golgi.mesh"
     sceneNode1.parent = microbe:getOrganelleAt(q,r).entity
 	sceneNode1.transform.position = Vector3(x,y,0)
-    --sceneNode1:playAnimation("Drift", true)
-    --sceneNode1:setAnimationSpeed(0.25)
     sceneNode1.transform.scale = Vector3(1, 1, 1)
     sceneNode1.transform.orientation = Quaternion(Radian(Degree(rotation)), Vector3(0, 0, 1))
     sceneNode1.transform:touch()
@@ -37,8 +35,6 @@ function NucleusOrganelle:onAddedToMicrobe(microbe, q, r, rotation)
 	--x = (x1+x2+x2+x3)/4
 	--y = (y1+y2+y2+y3)/4
 	sceneNode2.transform.position = Vector3(0,0,0)
-    --sceneNode2:playAnimation("Drift", true)
-    --sceneNode2:setAnimationSpeed(0.1)
     sceneNode2.transform.scale = Vector3(1, 1, 1)
     sceneNode2.transform.orientation = Quaternion(Radian(Degree(rotation+5)), Vector3(0, 0, 1))
     sceneNode2.transform:touch()
@@ -64,6 +60,35 @@ end
 
 function NucleusOrganelle:load(storage)
     ProcessOrganelle.load(self, storage)
+end
+
+function NucleusOrganelle:update(microbe, logicTime)
+    if self.flashDuration ~= nil and self.sceneNode.entity ~= nil then
+        self.flashDuration = self.flashDuration - logicTime
+        
+        local colorSuffix =  "" .. math.floor(self.colour.r * 256) .. math.floor(self.colour.g * 256) .. math.floor(self.colour.b * 256)
+		
+		local entity = self.sceneNode.entity
+        local golgiEntity = self.golgi.sceneNode.entity
+        local ER_entity = self.ER.sceneNode.entity
+		-- How frequent it flashes, would be nice to update the flash function
+		if math.fmod(self.flashDuration,600) < 300 then      
+            entity:tintColour(self.name, self.colour)
+            golgiEntity:tintColour("golgi", self.colour)
+            ER_entity:tintColour("ER", self.colour)            
+		else
+			entity:setMaterial(self.name .. colorSuffix)
+			golgiEntity:setMaterial("golgi" .. colorSuffix)
+			ER_entity:setMaterial("ER" .. colorSuffix)
+		end
+		
+        if self.flashDuration <= 0 then
+            self.flashDuration = nil				
+			entity:setMaterial(self.name .. colorSuffix)
+			golgiEntity:setMaterial("golgi" .. colorSuffix)
+			ER_entity:setMaterial("ER" .. colorSuffix)
+        end
+    end
 end
 
 function OrganelleFactory.make_nucleus(data)

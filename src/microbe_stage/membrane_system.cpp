@@ -43,6 +43,7 @@ MembraneComponent::luaBindings() {
         .def("getExternOrganellePos", &MembraneComponent::getExternOrganellePos)
         .def("setColour", &MembraneComponent::setColour)
         .def("getColour", &MembraneComponent::getColour)
+        .def_readonly("entity", &MembraneComponent::m_entity)
     ;
 }
 
@@ -489,20 +490,19 @@ MembraneSystem::update(int, int) {
             /// Notify -Mesh object that it has been loaded
             msh->load();
 
-            Ogre::Entity* thisEntity = m_impl->m_sceneManager->createEntity(sceneNodeComponent->m_meshName.get(),  "General");
+            membraneComponent->m_entity = m_impl->m_sceneManager->createEntity(sceneNodeComponent->m_meshName.get(),  "General");
 
             Ogre::MaterialPtr baseMaterial = Ogre::MaterialManager::getSingleton().getByName("Membrane");
             Ogre::MaterialPtr materialPtr = baseMaterial->clone(sceneNodeComponent->m_meshName.get());
             materialPtr->compile();
             Ogre::TextureUnitState* ptus = materialPtr->getTechnique(0)->getPass(0)->getTextureUnitState(0);
             ptus->setColourOperationEx(Ogre::LBX_MODULATE, Ogre::LBS_MANUAL, Ogre::LBS_TEXTURE, membraneComponent->colour);
-            thisEntity->setMaterial(materialPtr);
-            //thisEntity->setMaterialName("Membrane");
+            membraneComponent->m_entity->setMaterial(materialPtr);
 
             sceneNodeComponent->m_sceneNode->setOrientation(sceneNodeComponent->m_transform.orientation);
             sceneNodeComponent->m_sceneNode->setScale(sceneNodeComponent->m_transform.scale);
             sceneNodeComponent->m_sceneNode->setPosition(sceneNodeComponent->m_transform.position);
-            sceneNodeComponent->m_sceneNode->attachObject(thisEntity);
+            sceneNodeComponent->m_sceneNode->attachObject(membraneComponent->m_entity);
         }
 
     }
