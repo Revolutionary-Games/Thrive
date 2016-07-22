@@ -171,8 +171,8 @@ struct ProcessSystem::Implementation {
     inline float step_function(float, float, float, float);
     inline float step_2(float, float, float);
 
-    static constexpr float SMOOTHING_FACTOR = 0.1;
-    static constexpr float TIME_SCALING_FACTOR = 1;
+    static constexpr float SMOOTHING_FACTOR = 1.8;
+    static constexpr float TIME_SCALING_FACTOR = 1000;
 };
 
 ProcessSystem::ProcessSystem()
@@ -279,7 +279,7 @@ ProcessSystem::Implementation::update(int) { // int is logicTime
             float rate = output_rate - input_rate;
             if (rate > 0) {
                 // scale down the rate using the process's bandwidth and smoothing factor
-                rate = process.second * (1 - exp(-rate/process.second)) * SMOOTHING_FACTOR;
+                rate = process.second * (1 - exp(-rate * SMOOTHING_FACTOR/process.second));
 
                 bool will_run = true;
                 // can we guarantee that will_run will never be set to false unless there's a bug?
