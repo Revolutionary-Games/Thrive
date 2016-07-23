@@ -1,5 +1,6 @@
 #include "compound_absorber_system.h"
 #include "microbe_stage/compound_cloud_system.h"
+#include "microbe_stage/agent_cloud_system.h"
 #include "microbe_stage/membrane_system.h"
 
 #include "bullet/collision_filter.h"
@@ -23,6 +24,8 @@
 #include <OgreEntity.h>
 #include <OgreSceneManager.h>
 #include <stdexcept>
+
+#include <iostream>
 
 using namespace thrive;
 
@@ -168,10 +171,17 @@ CompoundAbsorberSystem::luaBindings() {
 struct CompoundAbsorberSystem::Implementation {
 
     // All entities that have a compoundCloudsComponent.
-    // These should be the various compounds (glucose, ammonia) as well as toxins.
+    // These should be the various compounds (glucose, ammonia).
     EntityFilter<
         CompoundCloudComponent
-    > m_compounds = {true};
+    > m_compounds;
+
+    // All entities that have a compoundCloudsComponent.
+    // These are all the toxins.
+    EntityFilter<
+        AgentCloudComponent,
+        OgreSceneNodeComponent
+    > m_agents;
 
     // All object with a membrane. These are able to absorb the compound from above.
     EntityFilter<
@@ -199,6 +209,7 @@ CompoundAbsorberSystem::init(
 ) {
     System::initNamed("CompoundAbsorberSystem", gameState);
     m_impl->m_compounds.setEntityManager(&gameState->entityManager());
+    m_impl->m_agents.setEntityManager(&gameState->entityManager());
     m_impl->m_absorbers.setEntityManager(&gameState->entityManager());
     m_impl->m_sceneManager = gameState->sceneManager();
 }
@@ -207,6 +218,7 @@ CompoundAbsorberSystem::init(
 void
 CompoundAbsorberSystem::shutdown() {
     m_impl->m_compounds.setEntityManager(nullptr);
+    m_impl->m_agents.setEntityManager(nullptr);
     m_impl->m_absorbers.setEntityManager(nullptr);
     m_impl->m_sceneManager = nullptr;
     System::shutdown();
@@ -271,6 +283,26 @@ CompoundAbsorberSystem::update(int, int) {
                         //membrane->absorbCompounds();
                     }
                 }
+            }
+        }
+
+        // Each membrane absorbs a certain amount of each agent.
+        for (auto& entry : m_impl->m_agents)
+        {
+            AgentCloudComponent* agent = std::get<0>(entry.second);
+            OgreSceneNodeComponent* agentNode = std::get<1>(entry.second);
+            CompoundId id = agent->m_compoundId;
+
+            if (membrane->contains(agentNode->m_transform.position.x - sceneNode->m_transform.position.x, agentNode->m_transform.position.y - sceneNode->m_transform.position.y)) {
+                if (absorber->m_enabled == true && absorber->canAbsorbCompound(id)) {
+                    float amount = agent->getPotency();
+                    if (CompoundRegistry::isAgentType(id)){
+                        (*CompoundRegistry::getAgentEffect(id))(value.first, amount);
+                        this->entityManager()->removeEntity(entry.first);
+                    }
+                }
+                // Absorb .2 (third parameter) of the available compounds.
+                //membrane->absorbCompounds();
             }
         }
     }

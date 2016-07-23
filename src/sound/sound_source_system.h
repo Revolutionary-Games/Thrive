@@ -226,6 +226,18 @@ public:
         std::string name
     );
 
+    /**
+    * @brief Stops a sound
+    *  This is equivalent to stopping the sound directly
+    *
+    * @param name
+    *   The name of the sound
+    */
+    void
+    stopSound(
+        std::string name
+    );
+
 
     /**
     * @brief Interrupts the current ambient sound and interposes a new one

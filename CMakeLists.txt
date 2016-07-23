@@ -27,7 +27,7 @@ if(NOT IS_DIRECTORY "${ASSET_DIRECTORY}/models")
     message(FATAL_ERROR 
 "Could not find assets in ${ASSET_DIRECTORY}.  
 Please use Subversion to download the assets:
-        svn co http://crovea.net/svn/thrive_assets/ ${ASSET_DIRECTORY}
+        svn co http://assets.revolutionarygamesstudio.com/ ${ASSET_DIRECTORY}
 Use 'thrive' for the username and password
 "
     )
