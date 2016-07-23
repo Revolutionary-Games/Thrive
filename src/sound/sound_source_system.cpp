@@ -200,6 +200,7 @@ SoundSourceComponent::luaBindings() {
         .def("addSound", &SoundSourceComponent::addSound)
         .def("removeSound", &SoundSourceComponent::removeSound)
         .def("playSound", &SoundSourceComponent::playSound)
+        .def("stopSound", &SoundSourceComponent::stopSound)
         .def("queueSound", &SoundSourceComponent::queueSound)
         .def("interpose", &SoundSourceComponent::interpose)
         .def("interruptPlaying", &SoundSourceComponent::interruptPlaying)
@@ -237,6 +238,13 @@ SoundSourceComponent::playSound(
     std::string name
 ){
     m_sounds.at(name).get()->play();
+}
+
+void
+SoundSourceComponent::stopSound(
+    std::string name
+){
+    m_sounds.at(name).get()->stop();
 }
 
 void

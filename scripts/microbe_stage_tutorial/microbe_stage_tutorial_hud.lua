@@ -12,6 +12,7 @@ function MicrobeStageTutorialHudSystem:__init()
     self.populationNumberLabel = nil
     self.rootGUIWindow = nil
     self.tutorialStep = 0
+    self.scrollChange = 0
 end
 
 function MicrobeStageTutorialHudSystem:activate()
@@ -38,13 +39,14 @@ function MicrobeStageTutorialHudSystem:update(renderTime)
     
     if Engine.mouse:wasButtonPressed(Mouse.MB_Left) and self.tutorialStep ~= 3 and self.tutorialStep ~= 8 and self.tutorialStep ~= 10 then
         self.tutorialStep = self.tutorialStep + 1
-    elseif Engine.keyboard:wasKeyPressed(Keyboard.KC_ESCAPE) then
+    elseif Engine.keyboard:wasKeyPressed(Keyboard.KC_ESCAPE) and self.tutorialStep <= 2 then
         self.tutorialStep = -1
     end
     
     if self.tutorialStep == 0 then
         Engine:pauseGame()
-        tutorial:setProperty("{{0, 200},{0, 200}}", "Position")
+        tutorial:setProperty("{{0.25, 0},{0.3, 0}}", "Position")
+        tutorial:setProperty("{{0.5,0},{0.4,0}}", "Size")
         tutorial:setText(
 [[On a distant alien planet, eons of volcanic
 activity and meteor impacts have led to the
@@ -58,9 +60,10 @@ You are only one of the many that have evolved.
 
 
 Click to continue or press escape to skip the tutorial.]])
-        tutorial:setProperty("{{0,600},{0,260}}", "Size")
+
     elseif self.tutorialStep == 1 then
-        tutorial:setProperty("{{0, 200},{0, 200}}", "Position")
+        tutorial:setProperty("{{0.25, 0},{0.35, 0}}", "Position")
+        tutorial:setProperty("{{0.6,0},{0.3,0}}", "Size")
         tutorial:setText(
 [[To survive in this hostile world, you will need to
 collect any compounds that you can find and
@@ -72,45 +75,46 @@ just like you. (Probably not in this release though.)
 
 
 Click to continue or press escape to skip the tutorial.]])
-        tutorial:setProperty("{{0,600},{0,220}}", "Size")
+
     elseif self.tutorialStep == 2 then
-        tutorial:setProperty("{{0, 300},{0, 50}}", "Position")
+        tutorial:setProperty("{{0.31, 0},{0.05, 0}}", "Position")
+        tutorial:setProperty("{{0.38,0},{0.1,0}}", "Size")
         tutorial:setText(
 [[Your cell is shown below.
 
 Click anywhere to continue...]])
-        tutorial:setProperty("{{0,400},{0,80}}", "Size")
         if Entity(PLAYER_NAME):getComponent(MicrobeComponent.TYPE_ID) == nil then
             local microbe = microbeSpawnFunctionGeneric(nil, "Default", false, PLAYER_NAME)
             Engine:playerData():setActiveCreature(microbe.entity.id, GameState.MICROBE_TUTORIAL)
         end
     elseif self.tutorialStep == 3 then
         Engine:resumeGame()
-        tutorial:setProperty("{{0, 250},{0, 50}}", "Position")
+        tutorial:setProperty("{{0.3, 0},{0.05, 0}}", "Position")
+        tutorial:setProperty("{{0.5,0},{0.2,0}}", "Size")
         tutorial:setText(
 [[You can change its orientation with your
 mouse, and use WASD to move around.
 
 Give it a try!
 
-Leave the green ring to continue...]])
-        tutorial:setProperty("{{0,500},{0,140}}", "Size")
-        
+Swim for a while in any direction to continue...]])
         local pos = Entity(PLAYER_NAME):getComponent(OgreSceneNodeComponent.TYPE_ID).transform.position
         if math.sqrt(pos.x*pos.x + pos.y*pos.y) > 30 then
             self.tutorialStep = self.tutorialStep + 1;
         end
     elseif self.tutorialStep == 4 then
         Engine:pauseGame()
-        tutorial:setProperty("{{0, 250},{0, 50}}", "Position")
+        tutorial:setProperty("{{0.3, 0},{0.05, 0}}", "Position")
+        tutorial:setProperty("{{0.4,0},{0.15,0}}", "Size")
         tutorial:setText(
 [[Congratulation! You can swim! To do this,
 your cell uses chemical energy.
 
 Click anywhere to continue...]])
-        tutorial:setProperty("{{0,500},{0,100}}", "Size")
+        
     elseif self.tutorialStep == 5 then
-        tutorial:setProperty("{{0, 200},{0, 50}}", "Position")
+        tutorial:setProperty("{{0.25, 0},{0.05, 0}}", "Position")
+        tutorial:setProperty("{{0.5,0},{0.2,0}}", "Size")
         tutorial:setText(
 [[This energy comes in the form of ATP. ATP is used by
 your cell to move and to stay alive. However, you 
@@ -118,7 +122,7 @@ cannot find ATP in the environment. ATP must be
 harvested from the compounds you find.
 
 Click anywhere to continue...]])
-        tutorial:setProperty("{{0,600},{0,140}}", "Size")
+        
     elseif self.tutorialStep == 6 then
         local compoundID = CompoundRegistry.getCompoundId("atp")
         local compoundsString = string.format("%s - %d", CompoundRegistry.getCompoundDisplayName(compoundID), Microbe(Entity(PLAYER_NAME)):getCompoundAmount(compoundID))
@@ -127,8 +131,8 @@ Click anywhere to continue...]])
             self.compoundListItems[compoundID] = StandardItemWrapper("[colour='FF004400']" .. compoundsString, compoundID)
             self.compoundListBox:listWidgetAddItem(self.compoundListItems[compoundID])
         end
-        
-        tutorial:setProperty("{{0, 200},{0, 50}}", "Position")
+        tutorial:setProperty("{{0.25, 0},{0.05, 0}}", "Position")
+        tutorial:setProperty("{{0.5,0},{0.2,0}}", "Size")
         tutorial:setText(
 [[You can keep track of your ATP by looking at the
 compounds panel shown below.
@@ -136,11 +140,11 @@ compounds panel shown below.
 You currently have only ]] .. math.floor(Microbe(Entity(PLAYER_NAME)):getCompoundAmount(compoundID)) .. [[ ATP. Let's make some more!
 
 Click anywhere to continue...]])
-        tutorial:setProperty("{{0,600},{0,140}}", "Size")
            
     elseif self.tutorialStep == 7 then
-tutorial:setProperty("{{0, 200},{0, 50}}", "Position")
-tutorial:setText(
+        tutorial:setProperty("{{0.25, 0},{0.05, 0}}", "Position")
+        tutorial:setProperty("{{0.5,0},{0.25,0}}", "Size")
+        tutorial:setText(
 [[ATP is automatically made in your mitochondria 
 (purple organelle) out of oxygen and glucose.
 
@@ -148,7 +152,7 @@ Glucose is spawned in the environment in the form
 of white clouds, while oxygen is cyan. 
 
 Click anywhere to continue...]])
-        tutorial:setProperty("{{0,600},{0,160}}", "Size")
+        
         
     elseif self.tutorialStep == 8 then
         local player = Entity(PLAYER_NAME)
@@ -157,16 +161,6 @@ Click anywhere to continue...]])
         local offset = Entity(CAMERA_NAME):getComponent(OgreCameraComponent.TYPE_ID).properties.offset
         if offset.z < 70 then
             offset.z = offset.z + 1
-        end
-        
-        local compoundID = CompoundRegistry.getCompoundId("oxygen")
-        local compoundsString = string.format("%s - %d", CompoundRegistry.getCompoundDisplayName(compoundID), Microbe(player):getCompoundAmount(compoundID))
-        if self.compoundListItems[compoundID] == nil then
-            self.compoundListItems[compoundID] = StandardItemWrapper("[colour='FF004400']" .. compoundsString, compoundID)
-            self.compoundListBox:listWidgetAddItem(self.compoundListItems[compoundID])
-        end    
-        if Microbe(player):getCompoundAmount(CompoundRegistry.getCompoundId("oxygen")) < 10 then
-            createCompoundCloud("oxygen", playerPos.x - 10, playerPos.y, 1000)
         end
         
         compoundID = CompoundRegistry.getCompoundId("glucose")
@@ -179,19 +173,20 @@ Click anywhere to continue...]])
             createCompoundCloud("glucose", playerPos.x + 10, playerPos.y, 1000)
         end
         
-        tutorial:setProperty("{{0, 200},{0, 50}}", "Position")
+        tutorial:setProperty("{{0.3, 0},{0.05, 0}}", "Position")
+        tutorial:setProperty("{{0.5,0},{0.1,0}}", "Size")
         tutorial:setText(
-[[Gather the clouds to continue.]])
-        tutorial:setProperty("{{0,600},{0,80}}", "Size")
+[[Gather the glucose cloud to continue.]])
         
         Engine:resumeGame()
         
-        if Microbe(player):getCompoundAmount(CompoundRegistry.getCompoundId("oxygen")) >= 10 and Microbe(player):getCompoundAmount(CompoundRegistry.getCompoundId("glucose")) >= 10 then
+        if Microbe(player):getCompoundAmount(CompoundRegistry.getCompoundId("glucose")) >= 10 then
             self.tutorialStep = self.tutorialStep + 1
         end
         
     elseif self.tutorialStep == 9 then
-        tutorial:setProperty("{{0, 200},{0, 50}}", "Position")
+        tutorial:setProperty("{{0.25, 0},{0.05, 0}}", "Position")
+        tutorial:setProperty("{{0.5,0},{0.35,0}}", "Size")
         tutorial:setText(
 [[Great job! The compounds you collected are stored
 in your only vacuole (light green organelle) and
@@ -203,19 +198,18 @@ other cells, engulfing cells and bacteria smaller than
 you, and, most importantly, reproducing.
 
 Click anywhere to continue...]])
-        tutorial:setProperty("{{0,600},{0,220}}", "Size")
         
     elseif self.tutorialStep == 10 then
         self.rootGUIWindow:getChild("EditorButton"):show()
         self.rootGUIWindow:getChild("EditorButton"):enable()
         
-        tutorial:setProperty("{{0, 200},{0, 50}}", "Position")
+        tutorial:setProperty("{{0.275, 0},{0.05, 0}}", "Position")
+        tutorial:setProperty("{{0.45,0},{0.15,0}}", "Size")
         tutorial:setText(
 [[In fact, you are ready to reproduce right now!
 
 Press the green button to the left to enter
 the editor.]])
-        tutorial:setProperty("{{0,600},{0,100}}", "Size")
     else 
         Engine:playerData():setActiveCreature(Entity(PLAYER_NAME).id, GameState.MICROBE)
         Engine:setCurrentGameState(GameState.MICROBE)
@@ -233,6 +227,32 @@ the editor.]])
     if keyCombo(kmp.screenshot) then
         Engine:screenShot("screenshot.png")
     end
+    
+    -- Change zoom.
+    local offset = Entity(CAMERA_NAME):getComponent(OgreCameraComponent.TYPE_ID).properties.offset
+    
+    if Engine.mouse:scrollChange()/10 ~= 0 then
+        self.scrollChange = self.scrollChange + Engine.mouse:scrollChange()/10
+    end
+    
+    local newZVal = offset.z
+    if self.scrollChange >= 1 then
+        newZVal = newZVal + 2.5
+        self.scrollChange = self.scrollChange - 1
+    elseif self.scrollChange <= -1 then
+        newZVal = newZVal - 2.5
+        self.scrollChange = self.scrollChange + 1
+    end
+    
+    if newZVal < 10 then
+        newZVal = 10
+        self.scrollChange = 0
+    elseif newZVal > 60 then
+        newZVal = 60
+        self.scrollChange = 0
+    end
+    
+    offset.z = newZVal
 end
 
 function MicrobeStageTutorialHudSystem:openCompoundPanel()

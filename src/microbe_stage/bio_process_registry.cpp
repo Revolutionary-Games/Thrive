@@ -17,10 +17,10 @@ BioProcessRegistry::luaBindings() {
         .scope
         [
             def("loadFromXML", &BioProcessRegistry::loadFromXML),
+            def("loadFromLua", &BioProcessRegistry::loadFromLua),
             //def("registerBioProcess", &BioProcessRegistry::registerBioProcess),
             def("getDisplayName", &BioProcessRegistry::getDisplayName),
             def("getInternalName", &BioProcessRegistry::getInternalName),
-            def("getEnergyCost", &BioProcessRegistry::getEnergyCost),
             def("getSpeedFactor", &BioProcessRegistry::getSpeedFactor),
             def("getId", &BioProcessRegistry::getId),
             def("getList", &BioProcessRegistry::getList, return_stl_iterator),
@@ -34,13 +34,11 @@ BioProcessRegistry::luaBindings() {
     );
 }
 
-
 namespace {
     struct BioProcessEntry
     {
         std::string internalName;
         std::string displayName;
-        int energyCost;
         double speedFactor;
         std::vector<std::pair<CompoundId, int>> inputCompounds;
         std::vector<std::pair<CompoundId, int>> outputCompounds;
@@ -59,7 +57,6 @@ processRegistry() {
     return processRegistry;
 }
 
-
 void
 BioProcessRegistry::loadFromXML(
     const std::string& filename
@@ -67,9 +64,9 @@ BioProcessRegistry::loadFromXML(
     TiXmlDocument doc(filename.c_str());
     bool loadOkay = doc.LoadFile();
     if (loadOkay)
-	{
-	    // Handles used for null-safety
-		TiXmlHandle hDoc(&doc),
+    {
+        // Handles used for null-safety
+        TiXmlHandle hDoc(&doc),
                     hProcesses(0),
                     hCompounds(0);
         // Elements used for iteration
@@ -77,14 +74,14 @@ BioProcessRegistry::loadFromXML(
                      * pCompound;
 
         hProcesses=hDoc.FirstChildElement("Processes");
-		pProcess=hProcesses.FirstChild( "Process" ).Element();
+        pProcess=hProcesses.FirstChild( "Process" ).Element();
         while (pProcess)
-		{
-		    std::vector<std::pair<CompoundId, int>> inputs;
-		    std::vector<std::pair<CompoundId, int>> outputs;
-		    const char* compoundName; //Char pointer for null-checks
+        {
+            std::vector<std::pair<CompoundId, int>> inputs;
+            std::vector<std::pair<CompoundId, int>> outputs;
+            const char* compoundName; //Char pointer for null-checks
             int compoundAmount;
-		    hCompounds = TiXmlHandle(pProcess->FirstChildElement("Inputs"));
+            hCompounds = TiXmlHandle(pProcess->FirstChildElement("Inputs"));
             pCompound=hCompounds.FirstChildElement( "Input" ).Element();
             while (pCompound)
             {
@@ -128,25 +125,59 @@ BioProcessRegistry::loadFromXML(
             registerBioProcess(
                processName,
                processName,
-               energyCost,
                speedFactor,
                std::move(inputs),
                std::move(outputs)
             );
             pProcess=pProcess->NextSiblingElement("Process");
-		}
-	}
-	else {
-		throw std::invalid_argument(doc.ErrorDesc());
-	}
+        }
+    }
+    else {
+        throw std::invalid_argument(doc.ErrorDesc());
+    }
 }
 
+void
+BioProcessRegistry::loadFromLua(
+    const luabind::object& processTable
+    )
+{
+    for (luabind::iterator i(processTable), end; i != end; ++i) {
+        std::string key = luabind::object_cast<std::string>(i.key());
+        luabind::object data = *i;
+
+        float speedFactor = luabind::object_cast<float>(data["speedFactor"]);
+        luabind::object inputTable = data["inputs"];
+        luabind::object outputTable = data["outputs"];
+        std::vector<std::pair<CompoundId, int>> inputs;
+        std::vector<std::pair<CompoundId, int>> outputs;
+
+        for (luabind::iterator ii(inputTable), end; ii != end; ++ii) {
+            std::string compound = luabind::object_cast<std::string>(ii.key());
+            float amount = luabind::object_cast<float>(*ii);
+            inputs.push_back({CompoundRegistry::getCompoundId(compound), amount});
+        }
+
+        for (luabind::iterator oi(outputTable), end; oi != end; ++oi) {
+            std::string compound = luabind::object_cast<std::string>(oi.key());
+            float amount = luabind::object_cast<float>(*oi);
+            outputs.push_back({CompoundRegistry::getCompoundId(compound), amount});
+        }
+
+        registerBioProcess(
+               key,
+               key,
+               speedFactor,
+               std::move(inputs),
+               std::move(outputs)
+            );
+    }
+}
 
 BioProcessId
 BioProcessRegistry::registerBioProcess(
     const std::string& internalName,
     const std::string& displayName,
-    int energyCost,
     double speedFactor,
     std::vector<std::pair<CompoundId, int>> inputCompounds,
     std::vector<std::pair<CompoundId, int>> outputCompounds
@@ -155,7 +186,6 @@ BioProcessRegistry::registerBioProcess(
         BioProcessEntry entry;
         entry.internalName = internalName;
         entry.displayName = displayName;
-		entry.energyCost = energyCost;
         entry.speedFactor = speedFactor;
         entry.inputCompounds = inputCompounds;
         entry.outputCompounds = outputCompounds;
@@ -167,7 +197,6 @@ BioProcessRegistry::registerBioProcess(
         throw std::invalid_argument("Duplicate internalName not allowed.");
     }
 }
-
 
 std::string
 BioProcessRegistry::getDisplayName(
@@ -196,16 +225,6 @@ BioProcessRegistry::getSpeedFactor(
         throw std::out_of_range("Index of process does not exist.");
     return processRegistry()[id-1].speedFactor;
 }
-
-int
-BioProcessRegistry::getEnergyCost(
-    BioProcessId id
-) {
-    if (static_cast<std::size_t>(id) > processRegistry().size())
-        throw std::out_of_range("Index of process does not exist.");
-    return processRegistry()[id-1].energyCost;
-}
-
 
 BioProcessId
 BioProcessRegistry::getId(

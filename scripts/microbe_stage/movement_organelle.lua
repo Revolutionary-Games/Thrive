@@ -56,9 +56,9 @@ function MovementOrganelle:_moveMicrobe(microbe, milliseconds)
         local energy = math.abs(self.energyMultiplier * forceMagnitude * milliseconds / 1000)
         local availableEnergy = microbe:takeCompound(CompoundRegistry.getCompoundId("atp"), energy)
         if availableEnergy < energy then
-            forceMagnitude = sign(forceMagnitude) * availableEnergy * 1000 / milliseconds
+            forceMagnitude = sign(forceMagnitude) * availableEnergy * 1000 / milliseconds / self.energyMultiplier
             self.movingTail = false
-            self.sceneNode:setAnimationSpeed(0.25) 
+            self.sceneNode:setAnimationSpeed(0.25)
         end
         local impulseMagnitude = microbe.microbe.movementFactor * milliseconds * forceMagnitude / 1000
         local impulse = impulseMagnitude * direction
@@ -98,7 +98,12 @@ end
 
 
 function MovementOrganelle:update(microbe, logicTime)
-    Organelle.update(self, microbe, logicTime)
+    local x, y = axialToCartesian(self.position.q, self.position.r)
+    local membraneCoords = microbe.membraneComponent:getExternOrganellePos(x, y)
+    local translation = Vector3(membraneCoords[1], membraneCoords[2], 0)
+    self.organelleEntity.sceneNode.transform.position = translation - Vector3(x, y, 0)
+    self.organelleEntity.sceneNode.transform:touch()
+
     self:_turnMicrobe(microbe)
     self:_moveMicrobe(microbe, logicTime)
 end

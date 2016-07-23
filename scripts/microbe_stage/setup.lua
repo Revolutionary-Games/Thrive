@@ -35,13 +35,9 @@ local function setupCamera()
     workspaceEntity:addComponent(workspaceComponent)
 end
 
--- there must be some more robust way to script agents than having stuff all over the place.
-function oxytoxyEffect(entityId, potency)
-    Microbe(Entity(entityId)):damage(potency*15, "toxin")
-end
-
 local function setupCompounds()
-    CompoundRegistry.loadFromXML("../scripts/definitions/compounds.xml")
+    CompoundRegistry.loadFromLua(compounds, agents)
+    --CompoundRegistry.loadFromXML("../scripts/definitions/compounds.xml")
 end
 
 local function setupCompoundClouds()
@@ -79,7 +75,8 @@ end
 --  This isn't a finished solution. Optimally the process class would be moved to CPP and loaded there entirely.
 global_processMap = {}
 local function setupProcesses()
-    BioProcessRegistry.loadFromXML("../scripts/definitions/processes.xml")
+    -- BioProcessRegistry.loadFromXML("../scripts/definitions/processes.xml")
+    BioProcessRegistry.loadFromLua(processes)
     for processId in BioProcessRegistry.getList() do
         local inputCompounds = {}
         local outputCompounds = {}
@@ -93,7 +90,6 @@ local function setupProcesses()
         
         global_processMap[BioProcessRegistry.getInternalName(processId)] = Process(
             BioProcessRegistry.getSpeedFactor(processId),
-            BioProcessRegistry.getEnergyCost(processId),
             inputCompounds,
             outputCompounds
         )
@@ -113,17 +109,60 @@ function setupSpecies()
         speciesComponent = SpeciesComponent(name)
         speciesEntity:addComponent(speciesComponent)
         speciesComponent.organelles = data.organelles -- note, shallow assignment
+        processorComponent = ProcessorComponent()
+        speciesEntity:addComponent(processorComponent)
         speciesComponent.colour = Vector3(data.colour.r, data.colour.g, data.colour.b)
 
         -- iterates over all compounds, and sets amounts and priorities
         for compoundID in CompoundRegistry.getCompoundList() do
             compound = CompoundRegistry.getCompoundInternalName(compoundID)
+            thresholdData = default_thresholds[compound]
+             -- we'll need to generate defaults from species template
+            processorComponent:setThreshold(compoundID, thresholdData.low, thresholdData.high, thresholdData.vent)
             compoundData = data.compounds[compound]
             if compoundData ~= nil then
                 amount = compoundData.amount
-                priority = compoundData.priority
+                -- priority = compoundData.priority
                 speciesComponent.avgCompoundAmounts[compoundID] = amount
-                speciesComponent.compoundPriorities[compoundID] = priority
+                -- speciesComponent.compoundPriorities[compoundID] = priority
+            end
+        end
+        if data[thresholds] ~= nil then
+            local thresholds = data[thresholds]
+            for compoundID in CompoundRegistry.getCompoundList() do
+                compound = CompoundRegistry.getCompoundInternalName(compoundID)
+                if thresholds[compound] ~= nil then
+                    if thresholds[compound].low ~= nil then
+                        processorComponent:setLowThreshold(compoundID, thresholds[compound].low)
+                    end
+                    if thresholds[compound].low ~= nil then
+                        processorComponent:setHighThreshold(compoundID, thresholds[compound].high)
+                    end
+                    if thresholds[compound].vent ~= nil then
+                        processorComponent:setVentThreshold(compoundID, thresholds[compound].vent)
+                    end
+                end
+            end
+        end
+        local capacities = {}
+        for _, organelle in pairs(data.organelles) do
+            if organelles[organelle.name] ~= nil then
+                if organelles[organelle.name]["processes"] ~= nil then
+                    for process, capacity in pairs(organelles[organelle.name]["processes"]) do
+                        if capacities[process] == nil then
+                            capacities[process] = 0
+                        end
+                        capacities[process] = capacities[process] + capacity
+                    end
+                end
+            end
+        end
+        for bioProcessId in BioProcessRegistry.getList() do
+            local name = BioProcessRegistry.getInternalName(bioProcessId)
+            if capacities[name] ~= nil then
+                processorComponent:setCapacity(bioProcessId, capacities[name])
+            -- else
+                -- processorComponent:setCapacity(bioProcessId, 0)
             end
         end
     end
@@ -131,7 +170,7 @@ end
 
 -- speciesName decides the template to use, while individualName is used for referencing the instance
 function microbeSpawnFunctionGeneric(pos, speciesName, aiControlled, individualName)
-    local microbe = Microbe.createMicrobeEntity(individualName, aiControlled)
+    local microbe = Microbe.createMicrobeEntity(individualName, aiControlled, speciesName)
     if pos ~= nil then
         microbe.rigidBody:setDynamicProperties(
             pos, -- Position
@@ -142,7 +181,8 @@ function microbeSpawnFunctionGeneric(pos, speciesName, aiControlled, individualN
     end
     -- set organelles, starting compound amounts, all that
     -- TODO: 
-    Entity(speciesName):getComponent(SpeciesComponent.TYPE_ID):template(microbe)
+    -- Entity(speciesName):getComponent(SpeciesComponent.TYPE_ID):template(microbe)
+    -- microbe.compoundBag:setProcessor(Entity(speciesName):getComponent(ProcessorComponent.TYPE_ID))
     return microbe
 end
 
@@ -169,10 +209,24 @@ local function setSpawnablePhysics(entity, pos, mesh, scale, collisionShape)
     return entity
 end
 
-function createCompoundCloud(compound, x, y, amount)
-    if compound == "aminoacids" or compound == "glucose" or compound == "co2" or compound == "oxygen" or compound == "ammonia" then
-        Entity("compound_cloud_" .. compound):getComponent(CompoundCloudComponent.TYPE_ID):addCloud(amount, x, y)
+function createCompoundCloud(compoundName, x, y, amount)
+    if compoundName == "aminoacids" or compoundName == "glucose" or compoundName == "co2" or compoundName == "oxygen" or compoundName == "ammonia" then
+        Entity("compound_cloud_" .. compoundName):getComponent(CompoundCloudComponent.TYPE_ID):addCloud(amount, x, y)
     end
+end
+
+function createAgentCloud(compoundId, x, y, direction, amount)
+    local entity = Entity()
+    local sceneNode = OgreSceneNodeComponent()
+    sceneNode.meshName = "oxytoxy.mesh"
+    sceneNode.transform.position = Vector3(x + direction.x/2, y + direction.y/2, 0)
+    sceneNode.transform:touch()
+    local agent = AgentCloudComponent()
+    agent:initialize(compoundId, 255, 0, 255)
+    agent.direction = direction*2
+    agent.potency = amount
+    entity:addComponent(sceneNode)
+    entity:addComponent(agent)
 end
 
 local function addEmitter2Entity(entity, compound)
@@ -312,16 +366,11 @@ function unlockChloroplast(entityId)
 end
 
 local function setupPlayer()
-    microbe = microbeSpawnFunctionGeneric(nil, "Default", false, PLAYER_NAME)
+    local microbe = microbeSpawnFunctionGeneric(nil, "Default", false, PLAYER_NAME)
     microbe.collisionHandler:addCollisionGroup("powerupable")
     Engine:playerData():lockedMap():addLock("Toxin")
     Engine:playerData():lockedMap():addLock("chloroplast")
     Engine:playerData():setActiveCreature(microbe.entity.id, GameState.MICROBE)
-    speciesEntity = Entity("defaultMicrobeSpecies")
-    species = SpeciesComponent("Default")
-    species:fromMicrobe(microbe)
-    speciesEntity:addComponent(species)
-    microbe.microbe.speciesName = "Default"
 end
 
 local function setupSound()
@@ -329,7 +378,7 @@ local function setupSound()
     local soundSource = SoundSourceComponent()
     soundSource.ambientSoundSource = true
     soundSource.autoLoop = true
-    soundSource.volumeMultiplier = 0.5
+    soundSource.volumeMultiplier = 0.3
     ambientEntity:addComponent(soundSource)
     -- Sound
     soundSource:addSound("microbe-theme-1", "microbe-theme-1.ogg")
@@ -340,7 +389,7 @@ local function setupSound()
     soundSource:addSound("microbe-theme-7", "microbe-theme-7.ogg")   
     local ambientEntity2 = Entity("ambience2")
     local soundSource = SoundSourceComponent()
-    soundSource.volumeMultiplier = 0.3
+    soundSource.volumeMultiplier = 0.1
     soundSource.ambientSoundSource = true
     ambientSound = soundSource:addSound("microbe-ambient", "soundeffects/microbe-ambience.ogg")
     soundSource.autoLoop = true
@@ -380,6 +429,7 @@ local function createMicrobeStage(name)
             TimedLifeSystem(),
             CompoundMovementSystem(),
             CompoundAbsorberSystem(),
+            ProcessSystem(),
             --PopulationSystem(),
             PatchSystem(),
             SpeciesSystem(),
@@ -402,6 +452,7 @@ local function createMicrobeStage(name)
             RenderSystem(),
             MembraneSystem(),
             CompoundCloudSystem(),
+            AgentCloudSystem(),
             -- Other
             SoundSourceSystem(),
             PowerupSystem(),

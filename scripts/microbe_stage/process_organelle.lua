@@ -22,28 +22,32 @@ MAX_EXPECTED_PROCESS_ATP_COST = 30
 -- @param outputCompounds
 -- A dictionary of produced compoundIds as keys and amounts as values
 --
-function Process:__init(basicRate, atpCost, inputCompounds, outputCompounds)
+function Process:__init(basicRate, inputCompounds, outputCompounds)
+    return
+    --[[
     self.basicRate = basicRate
     self.inputCompounds = inputCompounds
     self.outputCompounds = outputCompounds
     self.priority = 0
     self.inConcentrationFactor = 1.0
     self.outConcentrationFactor = 1.0
-    self.atpCost = atpCost
+    self.atpCost = 0 -- doesn't actually work, but doesn't matter as this code will be replaced soon
     -- costPriorityFactor and inputUnitSum are used as minor precalculation optimizations
-    self.costPriorityFactor = 1 - atpCost* 0.5 / MAX_EXPECTED_PROCESS_ATP_COST
+    self.costPriorityFactor = 1 - self.atpCost* 0.5 / MAX_EXPECTED_PROCESS_ATP_COST
     self.inputUnitSum = 0 
     for _ ,amount in pairs(self.inputCompounds) do
         self.inputUnitSum = self.inputUnitSum + amount
     end
+    --]]
 end
 
 
 function Process:updateFactors(parentMicrobe)
+    --[[
     -- Update processPriority
     self.priority = 0
     for compoundId ,amount in pairs(self.outputCompounds) do
-        self.priority = self.priority + (parentMicrobe.microbe.compoundPriorities[compoundId] * amount)
+        -- self.priority = self.priority + (parentMicrobe.microbe.compoundPriorities[compoundId] * amount)
     end
     -- Update input concentration factor
     self.inConcentrationFactor = 1.0
@@ -69,6 +73,7 @@ function Process:updateFactors(parentMicrobe)
     for compoundId ,_ in pairs(self.outputCompounds) do
         self.outConcentrationFactor = self.outConcentrationFactor * (parentMicrobe:getCompoundAmount(compoundId) / parentMicrobe.microbe.capacity)
     end
+    --]]
 end
 
 INPUT_CONCENTRATION_WEIGHT = 0.7
@@ -80,10 +85,12 @@ CAPACITY_EVEN_FACTOR = 0.4
 -- The simulation time
 --
 function Process:produce(milliseconds, capacityFactor, parentMicrobe, storageTarget)
-    -- Factor here is the value we multiply on to the compound amounts to be produced and consumed,
+    return 0
+    --[[
     -- so a factor=1.0 would mean that respiration would use 1 glucose and produce 6 Oxygen
     -- Lower values for in and out weights here bring the factors closer to constant 1 (no effect)
     -- We want to do 1-concentration for output concentration so that higher concentration gives lower factor
+    -- Factor here is the value we multiply on to the compound amounts to be produced and consumed,
     local factor = (self.inConcentrationFactor^INPUT_CONCENTRATION_WEIGHT) *
                     (1-(OUTPUT_CONCENTRATION_WEIGHT * self.outConcentrationFactor)) *
                     self.basicRate *
@@ -114,9 +121,11 @@ function Process:produce(milliseconds, capacityFactor, parentMicrobe, storageTar
         factor = 0
     end
     return factor
+    --]]
 end
 
 function Process:storage()
+    --[[
     storage:set("basicRate", self.basicRate)
     storage:set("priority", self.priority)
     storage:set("inConcentrationFactor", self.inConcentrationFactor)
@@ -139,11 +148,13 @@ function Process:storage()
         outputCompoundsSt:append(outputStorage)
     end
     storage:set("outputCompounds", outputCompoundsSt)
+    --]]
     return storage
 end
 
 
 function Process:load(storage)
+    --[[
     self.originalColour = self._colour
     self.basicRate = storage:get("basicRate", 0)
     self.priority = storage:get("priority", 0)
@@ -162,6 +173,7 @@ function Process:load(storage)
         local outputStorage = outputCompoundsSt:get(i)
         self.outputCompounds[outputStorage:get("compoundId", 0)] = outputStorage:get("amount", 0)
     end
+    --]]
 end
 
 
@@ -176,7 +188,7 @@ PROCESS_CAPACITY_UPDATE_INTERVAL = 1000
 function ProcessOrganelle:__init()
     Organelle.__init(self)
     self.originalColour = ColourValue(1,1,1,1)
-    self.processes = {}
+    -- self.processes = {}
     self.colourChangeFactor = 1.0
     self.capacityIntervalTimer = PROCESS_CAPACITY_UPDATE_INTERVAL
 end
@@ -187,7 +199,7 @@ end
 -- @param process
 -- The process to add
 function ProcessOrganelle:addProcess(process)
-    table.insert(self.processes, process)
+    -- table.insert(self.processes, process)
 end
 
 
@@ -224,6 +236,7 @@ end
 -- The time since the last call to update()
 function ProcessOrganelle:update(microbe, logicTime)
     Organelle.update(self, microbe, logicTime)
+    --[[
     self.capacityIntervalTimer = self.capacityIntervalTimer + logicTime
     processFactoredPriorities = {}
     factorProduct = 0.0
@@ -248,6 +261,7 @@ function ProcessOrganelle:update(microbe, logicTime)
         self._needsColourUpdate = true -- Update colours for displaying completeness of organelle production
         self:_updateColourDynamic(factorProduct)
     end
+    --]]
 end
 
 
@@ -261,11 +275,13 @@ function ProcessOrganelle:storage()
     storage:set("capacityIntervalTimer", self.capacityIntervalTimer)
     storage:set("originalColour", self.originalColour)
     storage:set("colourChangeFactor", self.colourChangeFactor)
+    --[[
     local processes = StorageList()
     for _, process in ipairs(self.processes) do
         processes:append(process:storage())
     end
     storage:set("processes", processes)
+    --]]
     return storage
 end
 
@@ -275,12 +291,14 @@ function ProcessOrganelle:load(storage)
     self.originalColour =  storage:get("originalColour", ColourValue.White)
     self.capacityIntervalTimer = storage:get("capacityIntervalTimer", 0)
     self.colourChangeFactor = storage:get("colourChangeFactor", 1.0)
+    --[[
     local processes = storage:get("processes", {})
     for i = 1,processes:size() do
         local process = Process(0, 0, {},{})
         process:load(processes:get(i))
         self:addProcess(process)
     end
+    --]]
 end
 
 -------------------------------------------
@@ -292,7 +310,7 @@ Organelle.mpCosts["mitochondrion"] = 20
 
 function OrganelleFactory.make_mitochondrion(data)
     local mito = ProcessOrganelle()
-    mito:addProcess(global_processMap["Respiration"])
+    -- mito:addProcess(global_processMap["Respiration"])
 	
 	local angle = (data.rotation / 60)
 	
@@ -311,7 +329,7 @@ function OrganelleFactory.make_chloroplast(data)
 	local x, y = axialToCartesian(data.q, data.r)
     
     local chloro = ProcessOrganelle()
-    chloro:addProcess(global_processMap["Photosynthesis"])
+    -- chloro:addProcess(global_processMap["Photosynthesis"])
 	
 	local angle = (data.rotation / 60)
     if x < 0 then

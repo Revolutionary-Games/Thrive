@@ -37,11 +37,6 @@ function MicrobeComponent:__init(isPlayerMicrobe, speciesName)
     self.capacity = 0  -- The amount that can be stored in the microbe. NOTE: This does not include special storage organelles
     self.stored = 0 -- The amount stored in the microbe. NOTE: This does not include special storage organelles
     self.compounds = {}
-    self.compoundPriorities = {}
-    self.defaultCompoundPriorities = {}
-    self.defaultCompoundPriorities[CompoundRegistry.getCompoundId("atp")] = 10
-    self.defaultCompoundPriorities[CompoundRegistry.getCompoundId("reproductase")] = 8
-    self:_resetCompoundPriorities()
     self.initialized = false
     self.isPlayerMicrobe = isPlayerMicrobe
     self.maxBandwidth = 10.0*BANDWIDTH_PER_ORGANELLE
@@ -51,61 +46,6 @@ function MicrobeComponent:__init(isPlayerMicrobe, speciesName)
     self.isBeingEngulfed = false
     self.wasBeingEngulfed = false
     self.hostileEngulfer = nil
-end
-
-function MicrobeComponent:_resetCompoundPriorities()
-    for compound in CompoundRegistry.getCompoundList() do
-        self.compoundPriorities[compound] = 0
-    end
-    for k, v in pairs(self.defaultCompoundPriorities) do
-        self.compoundPriorities[k] = v
-    end
-end
-
-function MicrobeComponent:_updateCompoundPriorities() 
-    -- placeholder solution for compound priorities
-    self:_resetCompoundPriorities()
-    for _,procOrg in pairs(self.processOrganelles) do
-        for _,process in ipairs(procOrg.processes) do
-            -- Calculate the value of the process' output
-            local processProductValue = 0
-            for compound,amount in pairs(process.outputCompounds) do
-                processProductValue = processProductValue + self.compoundPriorities[compound]*amount 
-            end
-            -- Calculate new priorities for compounds
-            
-            for compound,amount in pairs(process.inputCompounds) do
-                -- Find the minimum compound concentration in the recipy that isn't this one
-                local minOtherConcentrationFactor = 1.0
-                for compound2,_ in pairs(process.inputCompounds) do
-                    local compoundStored = self.compounds[compound2] 
-                    if compoundStored == nil then
-                        compoundStored = 0
-                    end
-                    local otherConcentration = compoundStored/self.capacity
-                    if otherConcentration < minOtherConcentrationFactor and compound ~= compound2 then
-                        minOtherConcentrationFactor = otherConcentration
-                    end
-                end
-                
-                minOtherConcentrationFactor = 1/(1.5+0.5^minOtherConcentrationFactor) - 0.3 -- Modified sigmoid function
-                local compoundStored = self.compounds[compound] 
-                if compoundStored == nil then
-                    compoundStored = 0
-                end
-                local compoundConcentrationFactor = 1.01-(compoundStored / self.capacity)^0.4
-                local newPriority = processProductValue * 
-                                    amount/process.inputUnitSum * 
-                                    process.costPriorityFactor * 
-                                    (compoundConcentrationFactor+0.01)^4 * -- We quadruple the effect of compoundConcentrationFactor
-                                    (minOtherConcentrationFactor) -- Reduce priority if not limiting input
-                -- We are using max priority as the final priority. However sum and average are also valid options as no aggregation makes perfect sense
-                if newPriority > self.compoundPriorities[compound] then
-                   self.compoundPriorities[compound] = newPriority
-                end
-            end
-        end
-    end
 end
 
 -- Attempts to obtain an amount of bandwidth for immediate use
@@ -158,11 +98,11 @@ function MicrobeComponent:load(storage)
         self.compounds[compound:get("compoundId", 0)] = amount
         self.stored = self.stored + amount
     end
-    local compoundPriorities = storage:get("compoundPriorities", {})
-    for i = 1,compoundPriorities:size() do
-        local compound = compoundPriorities:get(i)
-        self.compoundPriorities[compound:get("compoundId", 0)] = compound:get("priority", 0)
-    end
+    -- local compoundPriorities = storage:get("compoundPriorities", {})
+    -- for i = 1,compoundPriorities:size() do
+    --     local compound = compoundPriorities:get(i)
+    --     self.compoundPriorities[compound:get("compoundId", 0)] = compound:get("priority", 0)
+    -- end
 end
 
 
@@ -183,21 +123,25 @@ function MicrobeComponent:storage()
     storage:set("isPlayerMicrobe", self.isPlayerMicrobe)
     storage:set("speciesName", self.speciesName)
     local storedCompounds = StorageList()
-    for compoundId, amount in pairs(self.compounds) do
-        compound = StorageContainer()
-        compound:set("compoundId", compoundId)
-        compound:set("amount", amount)
-        storedCompounds:append(compound)
+    for compoundId in CompoundRegistry.getCompoundList() do
+        --[[
+        if self:getCompoundAmount(compoundId) > 0 then
+            compound = StorageContainer()
+            compound:set("compoundId", compoundId)
+            compound:set("amount", amount)
+            storedCompounds:append(compound)
+        end
+        --]]
     end
     storage:set("storedCompounds", storedCompounds)
-    local compoundPriorities = StorageList()
-    for compoundId, priority in pairs(self.compoundPriorities) do
-        compound = StorageContainer()
-        compound:set("compoundId", compoundId)
-        compound:set("priority", priority)
-        compoundPriorities:append(compound)
-    end
-    storage:set("compoundPriorities", compoundPriorities)
+    -- local compoundPriorities = StorageList()
+    -- for compoundId, priority in pairs(self.compoundPriorities) do
+    --     compound = StorageContainer()
+    --     compound:set("compoundId", compoundId)
+    --     compound:set("priority", priority)
+    --     compoundPriorities:append(compound)
+    -- end
+    -- storage:set("compoundPriorities", compoundPriorities)
     return storage
 end
 
@@ -220,7 +164,7 @@ class 'Microbe'
 -- @returns microbe
 -- An object of type Microbe
 
-function Microbe.createMicrobeEntity(name, aiControlled, speciesName)
+function Microbe.createMicrobeEntity(name, aiControlled, speciesName, in_editor)
     local entity
     if name then
         entity = Entity(name)
@@ -247,20 +191,24 @@ function Microbe.createMicrobeEntity(name, aiControlled, speciesName)
     soundComponent:addSound("microbe-release-toxin", "soundeffects/microbe-release-toxin.ogg")
     soundComponent:addSound("microbe-toxin-damage", "soundeffects/microbe-toxin-damage.ogg")
     soundComponent:addSound("microbe-death", "soundeffects/microbe-death.ogg")
-    soundComponent:addSound("microbe-collision", "soundeffects/microbe-collision.ogg")
     soundComponent:addSound("microbe-pickup-organelle", "soundeffects/microbe-pickup-organelle.ogg")
+    local engulfSound = soundComponent:addSound("microbe-engulfment", "soundeffects/engulfment.ogg")
+ --   engulfSound.properties.loop = true
+    soundComponent:addSound("microbe-reproduction", "soundeffects/reproduction.ogg")
     s1 = soundComponent:addSound("microbe-movement-1", "soundeffects/microbe-movement-1.ogg")
-    s1.properties.volume = 1
+    s1.properties.volume = 0.4
     s1.properties:touch()
     s1 = soundComponent:addSound("microbe-movement-turn", "soundeffects/microbe-movement-2.ogg")
-    s1.properties.volume = 0.2
+    s1.properties.volume = 0
     s1.properties:touch()
     s1 = soundComponent:addSound("microbe-movement-2", "soundeffects/microbe-movement-3.ogg")
-    s1.properties.volume = 1
+    s1.properties.volume = 0.4
     s1.properties:touch()
+
     local components = {
         CompoundAbsorberComponent(),
         OgreSceneNodeComponent(),
+        CompoundBagComponent(),
         MicrobeComponent(not aiControlled, speciesName),
         reactionHandler,
         rigidBody,
@@ -275,7 +223,7 @@ function Microbe.createMicrobeEntity(name, aiControlled, speciesName)
     for _, component in ipairs(components) do
         entity:addComponent(component)
     end
-    return Microbe(entity)
+    return Microbe(entity, in_editor)
 end
 
 -- I don't feel like checking for each component separately, so let's make a
@@ -289,6 +237,7 @@ Microbe.COMPONENTS = {
     collisionHandler = CollisionComponent.TYPE_ID,
     soundSource = SoundSourceComponent.TYPE_ID,
     membraneComponent = MembraneComponent.TYPE_ID,
+    compoundBag = CompoundBagComponent.TYPE_ID,
 }
 
 
@@ -299,7 +248,7 @@ Microbe.COMPONENTS = {
 --
 -- @param entity
 -- The entity this microbe wraps
-function Microbe:__init(entity)
+function Microbe:__init(entity, in_editor)
     self.entity = entity
     for key, typeId in pairs(Microbe.COMPONENTS) do
         local component = entity:getComponent(typeId)
@@ -311,6 +260,10 @@ function Microbe:__init(entity)
     end
     if not self.microbe.initialized then
         self:_initialize()
+        if in_editor == nil then
+            self.compoundBag:setProcessor(Entity(self.microbe.speciesName):getComponent(ProcessorComponent.TYPE_ID))
+            self:getSpeciesComponent():template(self)
+        end
     end
     self:_updateCompoundAbsorber()
     self.playerAlreadyShownAtpDamage = false
@@ -356,7 +309,6 @@ function Microbe:addOrganelle(q, r, rotation, organelle)
     organelle.sceneNode.transform.position = translation
     organelle.sceneNode.transform:touch()
     organelle:onAddedToMicrobe(self, q, r, rotation)
-    self:_updateAllHexColours()
     self.microbe.hitpoints = (self.microbe.hitpoints/self.microbe.maxHitpoints) * (self.microbe.maxHitpoints + MICROBE_HITPOINTS_PER_ORGANELLE)
     self.microbe.maxHitpoints = self.microbe.maxHitpoints + MICROBE_HITPOINTS_PER_ORGANELLE
     self.microbe.maxBandwidth = self.microbe.maxBandwidth + BANDWIDTH_PER_ORGANELLE -- Temporary solution for increasing max bandwidth
@@ -469,7 +421,6 @@ function Microbe:removeOrganelle(q, r)
     self.rigidBody.properties.shape:removeChildShape(
         organelle.collisionShape
     )
-    self:_updateAllHexColours()
     self.microbe.hitpoints = (self.microbe.hitpoints/self.microbe.maxHitpoints) * (self.microbe.maxHitpoints - MICROBE_HITPOINTS_PER_ORGANELLE)
     self.microbe.maxHitpoints = self.microbe.maxHitpoints - MICROBE_HITPOINTS_PER_ORGANELLE
     self.microbe.maxBandwidth = self.microbe.maxBandwidth - BANDWIDTH_PER_ORGANELLE -- Temporary solution for decreasing max bandwidth
@@ -486,24 +437,16 @@ end
 -- @returns amount
 -- The amount stored in the microbe's storage oraganelles
 function Microbe:getCompoundAmount(compoundId)
-    if self.microbe.specialStorageOrganelles[compoundId] == nil then
-        if self.microbe.compounds[compoundId] == nil then
-            return 0
-        else
-            return self.microbe.compounds[compoundId]
-        end
-    else
-        return self.microbe.specialStorageOrganelles[compoundId].storedAmount
-    end
+    return self.entity:getComponent(CompoundBagComponent.TYPE_ID):getCompoundAmount(compoundId)
 end
 
 -- Sets the default compound priorities
 --
 -- @param compoundId
 -- @param priority
-function Microbe:setDefaultCompoundPriority(compoundId, priority)
-    self.microbe.defaultCompoundPriorities[compoundId] = priority
-end
+-- function Microbe:setDefaultCompoundPriority(compoundId, priority)
+    -- self.microbe.defaultCompoundPriorities[compoundId] = priority
+-- end
 
 -- Damages the microbe, killing it if its hitpoints drop low enough
 --
@@ -518,7 +461,7 @@ function Microbe:damage(amount, damageType)
     for _, organelle in pairs(self.microbe.organelles) do
         organelle:flashColour(3000, ColourValue(1,0.2,0.2,1))
     end
-    self:_updateAllHexColours()
+    self:flashMembraneColour(3000, ColourValue(1,0.2,0.2,1))
     if self.microbe.hitpoints <= 0 then
         self.microbe.hitpoints = 0
         self:kill()
@@ -550,14 +493,33 @@ function Microbe:emitAgent(compoundId, maxAmount)
         self.soundSource:playSound("microbe-release-toxin")
         -- Calculate the emission angle of the agent emitter
         local organelleX, organelleY = axialToCartesian(agentVacuole.position.q, agentVacuole.position.r)
-        local nucleusX, nucleusY = axialToCartesian(0, 0)
-        local deltaX = nucleusX - organelleX
-        local deltaY = nucleusY - organelleY
-        local angle =  math.atan2(-deltaY, -deltaX)
+        local membraneCoords = self.membraneComponent:getExternOrganellePos(organelleX, organelleY)
+        
+        local angle =  math.atan2(organelleY, organelleX)
         if (angle < 0) then
             angle = angle + 2*math.pi
         end
         angle = -(angle * 180/math.pi -90 ) % 360
+        --angle = angle * 180/math.pi
+        
+        -- Find the direction the microbe is facing
+        local yAxis = self.sceneNode.transform.orientation:yAxis()
+        local microbeAngle = math.atan2(yAxis.x, yAxis.y)
+        if (microbeAngle < 0) then
+            microbeAngle = microbeAngle + 2*math.pi
+        end
+        microbeAngle = microbeAngle * 180/math.pi
+        -- Take the microbe angle into account so we get world relative degrees
+        local finalAngle = (angle + microbeAngle) % 360        
+        
+        local s = math.sin(finalAngle/180*math.pi);
+        local c = math.cos(finalAngle/180*math.pi);
+
+        local xnew = -membraneCoords[1] * c + membraneCoords[2] * s;
+        local ynew = membraneCoords[1] * s + membraneCoords[2] * c;
+        
+        local direction = Vector3(xnew, ynew, 0)
+
         local amountToEject = math.min(maxAmount, agentVacuole.storedAmount)
         local particleCount = 1
         if amountToEject >= 3 then
@@ -566,7 +528,8 @@ function Microbe:emitAgent(compoundId, maxAmount)
         agentVacuole:takeCompound(compoundId, amountToEject)
         local i
         for i = 1, particleCount do
-            self:ejectCompound(compoundId, amountToEject/particleCount, angle,angle, INITIAL_EMISSION_RADIUS*4)
+            --self:ejectCompound(compoundId, amountToEject/particleCount, angle,angle, INITIAL_EMISSION_RADIUS*4)
+            createAgentCloud(compoundId, self.sceneNode.transform.position.x + xnew, self.sceneNode.transform.position.y + ynew, direction, amountToEject/particleCount)
         end
     end
 end
@@ -589,29 +552,8 @@ function Microbe:storeCompound(compoundId, amount, bandwidthLimited)
         storedAmount = amount
     end
     storedAmount = math.min(storedAmount , self.microbe.capacity - self.microbe.stored)
-    if self.microbe.specialStorageOrganelles[compoundId] == nil then
-        if self.microbe.compounds[compoundId] == nil then
-            self.microbe.compounds[compoundId] = 0
-        end
-        self.microbe.compounds[compoundId] = self.microbe.compounds[compoundId] + storedAmount
-        self.microbe.stored = self.microbe.stored + storedAmount
-        local remainingAmount = amount - storedAmount
-        -- If there is excess compounds, we will eject them
-        -- This is necessary as bandwidth doesnt prevent or reduce absorbtion of large compound particles
-        if remainingAmount > 0 then
-            local particleCount = 1
-            if remainingAmount >= 3 then
-                particleCount = 3
-            end
-            local i
-            for i = 1, particleCount do
-                self:ejectCompound(compoundId, remainingAmount/particleCount, 160, 200)
-            end
-        end
-    else
-        self.microbe.specialStorageOrganelles[compoundId]:storeCompound(compoundId, storedAmount)
-    end
-    self.microbe:_updateCompoundPriorities()
+    self.entity:getComponent(CompoundBagComponent.TYPE_ID):giveCompound(compoundId, storedAmount)
+    self.microbe.stored = self.microbe.stored + storedAmount
 end
 
 
@@ -626,21 +568,12 @@ end
 -- @returns amount
 -- The amount that was actually taken, between 0.0 and maxAmount.
 function Microbe:takeCompound(compoundId, maxAmount)
-    if self.microbe.specialStorageOrganelles[compoundId] == nil then
-        if self.microbe.compounds[compoundId] == nil then
-            return 0
-        else
-            local takenAmount = math.min(maxAmount, self.microbe.compounds[compoundId])
-            self.microbe.compounds[compoundId] = self.microbe.compounds[compoundId] - takenAmount    
-            self.microbe.stored = self.microbe.stored - takenAmount
-            return takenAmount
-        end
-    else
-        return self.microbe.specialStorageOrganelles:takeCompound(compoundId, maxAmount)
-    end
-    self.microbe:_updateCompoundPriorities()
-end
+    --if self.microbe.specialStorageOrganelles[compoundId] == nil then
 
+    local takenAmount = self.entity:getComponent(CompoundBagComponent.TYPE_ID):takeCompound(compoundId, maxAmount)
+    self.microbe.stored = self.microbe.stored - takenAmount
+    return takenAmount
+end
 
 -- Ejects compounds from the microbes behind position, into the enviroment
 -- Note that the compounds ejected are created in this function and not taken from the microbe
@@ -674,7 +607,7 @@ function Microbe:ejectCompound(compoundId, amount, minAngle, maxAngle, radius)
     -- Find how far away we should spawn the particle so it doesn't collide with microbe.
     createCompoundCloud(CompoundRegistry.getCompoundInternalName(compoundId), self.sceneNode.transform.position.x, self.sceneNode.transform.position.y, amount*5000)
     -- self.compoundEmitter:emitCompound(compoundId, amount, finalAngle, _radius)
-    self.microbe:_updateCompoundPriorities()
+    -- self.microbe:_updateCompoundPriorities()
 end
 
 
@@ -683,8 +616,8 @@ end
 -- Kills the microbe, releasing stored compounds into the enviroment
 function Microbe:kill()
     -- Eject the compounds that was in the microbe
-    for compoundId,amount in pairs(self.microbe.compounds) do
-        local _amount = amount
+    for compoundId in CompoundRegistry.getCompoundList() do
+        local _amount = self:getCompoundAmount(compoundId)
         while _amount > 0 do
             ejectedAmount = self:takeCompound(compoundId, 2.5) -- Eject up to 3 units per particle
             self:ejectCompound(compoundId, ejectedAmount, 0, 359)
@@ -720,20 +653,23 @@ function Microbe:kill()
            organelle:removePhysics()
         end
     end
-    if self.microbe.hostileEngulfer then
-        self.microbe.hostileEngulfer.microbe.isCurrentlyEngulfing = false;
+    if self.microbe.wasBeingEngulfed then
+        self:removeEngulfedEffect()
     end
     microbeSceneNode.visible = false
 end
 
 -- Copies this microbe. The new microbe will not have the stored compounds of this one.
 function Microbe:reproduce()
-    copy = Microbe.createMicrobeEntity(nil, true)
-    self:getSpeciesComponent():template(copy)
+    copy = Microbe.createMicrobeEntity(nil, true, self.microbe.speciesName)
+    print(self.microbe.speciesName.." <> "..copy.microbe.speciesName)
+    -- self:getSpeciesComponent():template(copy)
+    -- copy.compoundBag:setProcessor(Entity(self.microbe.speciesName):getComponent(ProcessorComponent.TYPE_ID))
     copy.rigidBody.dynamicProperties.position = Vector3(self.rigidBody.dynamicProperties.position.x, self.rigidBody.dynamicProperties.position.y, 0)
-    copy:storeCompound(CompoundRegistry.getCompoundId("atp"), 20, false)
-    copy.microbe:_resetCompoundPriorities()  
+    -- copy:storeCompound(CompoundRegistry.getCompoundId("atp"), 20, false)
+    -- copy.microbe:_resetCompoundPriorities()
     copy.entity:addComponent(SpawnedComponent())
+    self.soundSource:playSound("microbe-reproduction")
     if self.microbe.isPlayerMicrobe then
         showReproductionDialog()
     end
@@ -741,25 +677,38 @@ end
 
 -- Disables or enabled engulfmode for a microbe, allowing or disallowed it to absorb other microbes
 function Microbe:toggleEngulfMode()
-    colourToSet = ColourValue.Black
     if self.microbe.engulfMode then
         self.microbe.movementFactor = self.microbe.movementFactor * ENGULFING_MOVEMENT_DIVISION
-        
+        self.soundSource:stopSound("microbe-engulfment")
         self.rigidBody:reenableAllCollisions()
     else
-        colourToSet = ColourValue.Red
         self.microbe.movementFactor = self.microbe.movementFactor / ENGULFING_MOVEMENT_DIVISION
     end
-	-- You should be able to get the membrane to flash blue (or become some color)
-	-- if you are able to get your hands on the membrane entity, which is currently defined in c++
-	-- below line is just an example—it doesn't actually work.
+    -- You should be able to get the membrane to flash blue (or become some color)
+    -- if you are able to get your hands on the membrane entity, which is currently defined in c++
+    -- below line is just an example—it doesn't actually work.
     -- microbe.membraneComponent.entity:flashColour(3000, ColourValue(1,0.2,0.2,1))
     self.microbe.engulfMode = not self.microbe.engulfMode
+end
+
+function Microbe:removeEngulfedEffect()
+    self.microbe.movementFactor = self.microbe.movementFactor * ENGULFED_MOVEMENT_DIVISION
+    self.microbe.wasBeingEngulfed = false
+    self.microbe.hostileEngulfer.microbe.isCurrentlyEngulfing = false;
+    self.microbe.hostileEngulfer.rigidBody:reenableAllCollisions()
+    self.microbe.hostileEngulfer.soundSource:stopSound("microbe-engulfment")
 end
 
 -- Sets the color of the microbe's membrane.
 function Microbe:setMembraneColour(colour)
     self.membraneComponent:setColour(colour.x, colour.y, colour.z, 1)
+end
+
+function Microbe:flashMembraneColour(duration, colour)
+	if self.flashDuration == nil then
+        self.flashColour = colour
+        self.flashDuration = duration
+    end
 end
 
 
@@ -781,7 +730,7 @@ function Microbe:update(logicTime)
         --self:storeCompound(CompoundRegistry.getCompoundId("glucose"), compoundAmount/1000, false)
         -- Distribute compounds to Process Organelles
         for _, processOrg in pairs(self.microbe.processOrganelles) do
-            processOrg:update(self, logicTime)
+            -- processOrg:update(self, logicTime)
         end
         
         self.microbe.compoundCollectionTimer = self.microbe.compoundCollectionTimer + logicTime
@@ -800,26 +749,46 @@ function Microbe:update(logicTime)
         -- Other organelles
         for _, organelle in pairs(self.microbe.organelles) do
             organelle:update(self, logicTime)
+            -- print("updated organelle")
         end
+        -- print("updated all organelles")
+
         if self.microbe.engulfMode then
             -- Drain atp and if we run out then disable engulfmode
             local cost = ENGULFING_ATP_COST_SECOND/1000*logicTime
             if self:takeCompound(CompoundRegistry.getCompoundId("atp"), cost) < cost then
                 self:toggleEngulfMode()
             end
+            -- Flash the membrane blue.
+            self:flashMembraneColour(3000, ColourValue(0.2,0.5,1.0,0.5))
         end
         if self.microbe.isBeingEngulfed then
             self:damage(logicTime * 0.0005  * self.microbe.maxHitpoints) -- Engulfment damages 5% per second
         -- Else If we were but are no longer, being engulfed
         elseif self.microbe.wasBeingEngulfed then
-            self.microbe.movementFactor = self.microbe.movementFactor * ENGULFED_MOVEMENT_DIVISION
-            self.microbe.wasBeingEngulfed = false
-            self.microbe.hostileEngulfer.microbe.isCurrentlyEngulfing = false;
-            self.microbe.hostileEngulfer.rigidBody:reenableAllCollisions()
+            self:removeEngulfedEffect()
         end
         -- Used to detect when engulfing stops
         self.microbe.isBeingEngulfed = false;
         self.compoundAbsorber:setAbsorbtionCapacity(math.min(self.microbe.capacity - self.microbe.stored + 10, self.microbe.remainingBandwidth))
+        
+        -- Flash membrane if something happens.
+        if self.flashDuration ~= nil then
+            self.flashDuration = self.flashDuration - logicTime
+            
+            local entity = self.membraneComponent.entity
+            -- How frequent it flashes, would be nice to update the flash function to have this variable
+            if math.fmod(self.flashDuration,600) < 300 then
+                entity:tintColour("Membrane", self.flashColour)
+            else
+                entity:setMaterial(self.sceneNode.meshName)
+            end
+            
+            if self.flashDuration <= 0 then
+                self.flashDuration = nil				
+                entity:setMaterial(self.sceneNode.meshName)
+            end
+        end
     else
         self.microbe.deathTimer = self.microbe.deathTimer - logicTime
         if self.microbe.deathTimer <= 0 then
@@ -828,56 +797,37 @@ function Microbe:update(logicTime)
             else
                 self:destroy()
             end
-		end
-	end
-	-- Membrane
-	self.sceneNode.meshName = "membrane_" .. self.microbe.speciesName 
-	for _, organelle in pairs(self.microbe.organelles) do
-		for _, hex in pairs(organelle._hexes) do
-			local q = hex.q + organelle.position.q
-			local r = hex.r + organelle.position.r
-			local x, y = axialToCartesian(q, r)
-			self.membraneComponent:sendOrganelles(x, y)
-		end
-	end
+        end
+    end
+    -- Membrane
+    self.sceneNode.meshName = "membrane_" .. self.microbe.speciesName
+    for _, organelle in pairs(self.microbe.organelles) do
+        for _, hex in pairs(organelle._hexes) do
+            local q = hex.q + organelle.position.q
+            local r = hex.r + organelle.position.r
+            local x, y = axialToCartesian(q, r)
+            self.membraneComponent:sendOrganelles(x, y)
+        end
+    end
+    -- print("finished update")
 end
 
+PURGE_SCALE = 0.4
+
 function Microbe:purgeCompounds()
-    -- Gather excess compounds that are the compounds that the storage organelles automatically emit to stay less than full
-    local excessCompounds = {}
-    while self.microbe.stored > self.microbe.capacity do
-        -- Find lowest priority compound type contained in the microbe
-        local lowestPriorityId = nil
-        local lowestPriority = math.huge
-        for compoundId,_ in pairs(self.microbe.compounds) do
-            assert(self.microbe.compoundPriorities[compoundId] ~= nil, "Compound priority table was missing compound")
-            if self.microbe.compoundPriorities[compoundId] < lowestPriority then
-                lowestPriority = self.microbe.compoundPriorities[compoundId]
-                lowestPriorityId = compoundId
-            end
-        end
-        assert(lowestPriorityId ~= nil, "The microbe didn't seem to contain any compounds but was over the threshold")
-        assert(self.microbe.compounds[lowestPriorityId] ~= nil, "Microbe storage was over threshold but didn't have any valid compounds to expell")
+    -- Eject a fraction of all compounds over vent thresholds
+    -- TODO: only eject compounds when microbe is full, and eject excess compounds proportionally to the amount each is in excess
 
-		local totalPriority = 0
-		for compoundId,_ in pairs(self.microbe.compounds) do
-			totalPriority = totalPriority + self.microbe.compoundPriorities[compoundId]
-		end
-
-		local dedicatedStorage = self.microbe.compoundPriorities[lowestPriorityId]/totalPriority*self.microbe.capacity*STORAGE_EJECTION_THRESHHOLD
-        excessCompounds[lowestPriorityId] = self:takeCompound(lowestPriorityId, self.microbe.compounds[lowestPriorityId]-dedicatedStorage)
-    end
-
-    for compoundId, amount in pairs(excessCompounds) do
-        if amount > 0 then
-            self:ejectCompound(compoundId, amount, 160, 200)
-        end
+    for compoundId in CompoundRegistry.getCompoundList() do
+        local amount = self.entity:getComponent(CompoundBagComponent.TYPE_ID):excessAmount(compoundId) * PURGE_SCALE
+        if amount > 0 then amount = self:takeCompound(compoundId, amount) end
+        if amount > 0 then self:ejectCompound(compoundId, amount) end
     end
 end
 
 function Microbe:atpDamage()
     -- Damage microbe if its too low on ATP
-    if self.microbe.compounds[CompoundRegistry.getCompoundId("atp")] ~= nil and self.microbe.compounds[CompoundRegistry.getCompoundId("atp")] < 1.0 then
+    if self:getCompoundAmount(CompoundRegistry.getCompoundId("atp")) < 1.0 then
         if self.microbe.isPlayerMicrobe and not self.playerAlreadyShownAtpDamage then
             self.playerAlreadyShownAtpDamage = true
             showMessage("No ATP hurts you!")
@@ -888,8 +838,8 @@ end
 
 function Microbe:attemptReproduce()
     -- Split microbe if it has enough reproductase
-    if self.microbe.compounds[CompoundRegistry.getCompoundId("reproductase")] ~= nil and self.microbe.compounds[CompoundRegistry.getCompoundId("reproductase")] > REPRODUCTASE_TO_SPLIT then
-        self:takeCompound(CompoundRegistry.getCompoundId("reproductase"), 5)
+    if self:getCompoundAmount(CompoundRegistry.getCompoundId("reproductase")) > REPRODUCTASE_TO_SPLIT then
+        self:takeCompound(CompoundRegistry.getCompoundId("reproductase"), REPRODUCTASE_TO_SPLIT)
         self:reproduce()
     end
 end
@@ -908,7 +858,7 @@ function Microbe:respawn()
     )
     local sceneNode = self.entity:getComponent(OgreSceneNodeComponent.TYPE_ID)
     sceneNode.visible = true
-    self:storeCompound(CompoundRegistry.getCompoundId("atp"), 20, false)
+    self:storeCompound(CompoundRegistry.getCompoundId("atp"), 50, false)
 end
 
 -- Private function for initializing a microbe's components
@@ -920,7 +870,7 @@ function Microbe:_initialize()
         local q = organelle.position.q
         local r = organelle.position.r
         local x, y = axialToCartesian(q, r)
-		local rotation = organelle.rotation
+        local rotation = organelle.rotation
         local translation = Vector3(x, y, 0)
         -- Collision shape
         self.rigidBody.properties.shape:addChildShape(
@@ -954,15 +904,6 @@ function Microbe:_updateCompoundAbsorber()
     
 end
 
-
--- Private function for updating the colours of the organelles
---
--- The simple coloured hexes are a placeholder for proper models.
-function Microbe:_updateAllHexColours()
-end
-
-
-
 -- Must exists for current spawningSystem to function
 function Microbe:exists()
     return self.entity:exists()
@@ -970,10 +911,10 @@ end
 
 -- Must exists for current spawningSystem to function, also used by microbe:kill
 function Microbe:destroy()
-	for _, organelle in pairs(self.microbe.organelles) do
-		organelle:destroy()
-	end
-	self.entity:destroy()
+    for _, organelle in pairs(self.microbe.organelles) do
+        organelle:destroy()
+    end
+    self.entity:destroy()
 end
 
 -- The last two functions are only present since the spawn system expects an entity interface.
@@ -1040,22 +981,16 @@ function MicrobeSystem:update(renderTime, logicTime)
     for _, microbe in pairs(self.microbes) do
         microbe:update(logicTime)
     end
-    -- Note that this triggers every frame there is a collision, but the sound system ensures that the sound doesn't overlap itself. Could potentially be optimised
+    -- Note that this triggers every frame there is a collision
     for collision in self.microbeCollisions:collisions() do
         local entity1 = Entity(collision.entityId1)
         local entity2 = Entity(collision.entityId2)
         if entity1:exists() and entity2:exists() then
-            microbe.rigidBody.dynamicProperties.linearVelocity:length()
             local body1 = entity1:getComponent(RigidBodyComponent.TYPE_ID)
             local body2 = entity2:getComponent(RigidBodyComponent.TYPE_ID)
             local microbe1Comp = entity1:getComponent(MicrobeComponent.TYPE_ID)
             local microbe2Comp = entity2:getComponent(MicrobeComponent.TYPE_ID)
             if body1~=nil and body2~=nil then
-                -- Play bump sound
-                if ((body1.dynamicProperties.linearVelocity - body2.dynamicProperties.linearVelocity):length()) > RELATIVE_VELOCITY_TO_BUMP_SOUND then
-                    local soundComponent = entity1:getComponent(SoundSourceComponent.TYPE_ID)
-                    soundComponent:playSound("microbe-collision")
-                end
                 -- Engulf initiation
                 checkEngulfment(microbe1Comp, microbe2Comp, body1, entity1, entity2)
                 checkEngulfment(microbe2Comp, microbe1Comp, body2, entity2, entity1)
@@ -1066,13 +1001,25 @@ function MicrobeSystem:update(renderTime, logicTime)
 end
 
 function checkEngulfment(microbe1Comp, microbe2Comp, body, entity1, entity2)
-    if microbe1Comp.engulfMode and microbe1Comp.maxHitpoints > ENGULF_HP_RATIO_REQ*microbe2Comp.maxHitpoints 
-                   and not microbe2Comp.wasBeingEngulfed and not microbe1Comp.isCurrentlyEngulfing then
-        microbe2Comp.movementFactor = microbe2Comp.movementFactor / ENGULFED_MOVEMENT_DIVISION
-        microbe1Comp.isCurrentlyEngulfing = true
-        microbe2Comp.isBeingEngulfed = true
-        microbe2Comp.wasBeingEngulfed = true
-        microbe2Comp.hostileEngulfer = Microbe(entity1)
-        body:disableCollisionsWith(entity2.id)     
+    
+    if microbe1Comp.engulfMode and 
+       microbe1Comp.maxHitpoints > ENGULF_HP_RATIO_REQ*microbe2Comp.maxHitpoints and
+       microbe2Comp.dead == false then
+
+        if not microbe1Comp.isCurrentlyEngulfing then
+            --We have just started engulfing
+            microbe2Comp.movementFactor = microbe2Comp.movementFactor / ENGULFED_MOVEMENT_DIVISION
+            microbe1Comp.isCurrentlyEngulfing = true
+            microbe2Comp.wasBeingEngulfed = true
+            microbeObj = Microbe(entity1)
+            microbe2Comp.hostileEngulfer = microbeObj
+            body:disableCollisionsWith(entity2.id)     
+            microbeObj.soundSource:playSound("microbe-engulfment")
+        end
+
+       --isBeingEngulfed is set to false every frame
+       -- we detect engulfment stopped by isBeingEngulfed being false while wasBeingEngulfed is true
+       microbe2Comp.isBeingEngulfed = true
+
     end
 end

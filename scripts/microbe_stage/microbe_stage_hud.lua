@@ -11,6 +11,7 @@ function HudSystem:__init()
     self.rootGuiWindow = nil
     self.populationNumberLabel = nil
     self.rootGUIWindow = nil
+    self.scrollChange = 0
 end
 
 global_if_already_displayed = false
@@ -85,7 +86,6 @@ function HudSystem:update(renderTime)
         end
     end
     
-    
     if keyCombo(kmp.togglemenu) then
         self:menuButtonClicked()
     elseif keyCombo(kmp.gotoeditor) then
@@ -115,13 +115,29 @@ function HudSystem:update(renderTime)
         playerMicrobe:toggleEngulfMode()
     end
     
-    offset = Entity(CAMERA_NAME):getComponent(OgreCameraComponent.TYPE_ID).properties.offset
-    newZVal = offset.z + Engine.mouse:scrollChange()/10
+    local offset = Entity(CAMERA_NAME):getComponent(OgreCameraComponent.TYPE_ID).properties.offset
+    
+    if Engine.mouse:scrollChange()/10 ~= 0 then
+        self.scrollChange = self.scrollChange + Engine.mouse:scrollChange()/10
+    end
+    
+    local newZVal = offset.z
+    if self.scrollChange >= 1 then
+        newZVal = newZVal + 2.5
+        self.scrollChange = self.scrollChange - 1
+    elseif self.scrollChange <= -1 then
+        newZVal = newZVal - 2.5
+        self.scrollChange = self.scrollChange + 1
+    end
+    
     if newZVal < 10 then
         newZVal = 10
-    elseif newZVal > 70 then
-        newZVal = 70
+        self.scrollChange = 0
+    elseif newZVal > 60 then
+        newZVal = 60
+        self.scrollChange = 0
     end
+    
     offset.z = newZVal
 end
 
