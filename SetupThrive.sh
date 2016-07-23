@@ -82,7 +82,9 @@ function init() {
 }
 
 function install_Packages() {
-	if [ $OS = "Fedora" ]; then
+    # My fedora version string contains bunch of junk after like "SION_ID=24\nIANT_ID=Workstation"
+    # So this is matched with a regex
+	if [[ $OS =~ Fedora.* ]]; then
 		PackageManager="dnf install -y "
 		PackagesToInstall="bullet-devel boost gcc-c++ libXaw-devel freetype-devel freeimage-devel \
                 zziplib-devel boost-devel ois-devel tinyxml-devel glm-devel ffmpeg-devel ffmpeg-libs \
@@ -209,8 +211,8 @@ function prepare_OgreFFMPEG() {
 		#git clone https://github.com/scrawl/ogre-ffmpeg-videoplayer.git ogre-ffmpeg-videoplayer
 		# Currently working hhyyrylainen's fork
 		git clone https://github.com/hhyyrylainen/ogre-ffmpeg-videoplayer.git ogre-ffmpeg-videoplayer
-                # Currently working Revolutionary games fork
-                # git clone https://github.com/Revolutionary-Games/ogre-ffmpeg-videoplayer.git ogre-ffmpeg-videoplayer
+        # Currently working Revolutionary games fork
+        # git clone https://github.com/Revolutionary-Games/ogre-ffmpeg-videoplayer.git ogre-ffmpeg-videoplayer
 		cd ogre-ffmpeg-videoplayer
 	fi
 
@@ -244,7 +246,7 @@ function prepare_cAudio() {
 
 	mkdir -p build
 	cd build
-	check cmake .. -DCMAKE_BUILD_TYPE=RelWithDebInfo
+	check cmake .. -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCAUDIO_BUILD_SAMPLES=OFF
 
 	echo -e "$GOOD Done $NC"
 }
