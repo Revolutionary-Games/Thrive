@@ -231,18 +231,17 @@ function prepare_cAudio() {
 
 	if [ -d cAudio ]; then
 		cd cAudio
-		#Workaround for broken latest version
-		#git checkout master
-		#git pull origin master
 
+		git checkout master
+		git pull origin master
 
 	else
-		git clone https://github.com/wildicv/cAudio.git
+        # Official repo
+		#git clone https://github.com/wildicv/cAudio.git
+        # The official repo doesn't merge pull requests so here's a working fork
+        git clone https://github.com/hhyyrylainen/cAudio
 		cd cAudio
 	fi
-
-	#Workaround for broken build with latest version
-	git checkout 22ff1a97a9a820c72726463708590adfae77008c
 
 	mkdir -p build
 	cd build
