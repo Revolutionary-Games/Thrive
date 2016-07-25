@@ -210,8 +210,8 @@ include_directories("${cAudio_INCLUDE_DIRS}")
 # Ogre FFMPEG #
 ################
 find_package(FFMPEG)
-find_package(OgreFFMPEG)
-include_directories("${OgreFFMPEG_INCLUDE_DIR}")
+#find_package(OgreFFMPEG)
+#include_directories("${OgreFFMPEG_INCLUDE_DIR}")
 include_directories("${FFMPEG_INCLUDE_DIRS}")
 
 ######################
@@ -228,9 +228,9 @@ include_directories(
     "${CMAKE_CURRENT_SOURCE_DIR}/src"
 )
 
-# Compile using c++11 and using sse2
+# Compile using c++14 and using sse2
 #no-unused-variable is necessary to supress werror while compiling cAudio
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++0x -msse2 -Wno-unused-function")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14 -msse2 -Wno-unused-function")
 
 
 find_package(Threads)

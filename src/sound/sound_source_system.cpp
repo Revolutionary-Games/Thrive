@@ -215,7 +215,7 @@ SoundSourceComponent::addSound(
     std::string name,
     std::string filename
 ) {
-    auto sound = make_unique<Sound>(name, filename);
+    auto sound = std::make_unique<Sound>(name, filename);
     Sound* rawSound = sound.get();
     m_sounds.emplace(name, std::move(sound));
     m_addedSounds.push_back(rawSound);
