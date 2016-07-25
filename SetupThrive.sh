@@ -82,10 +82,13 @@ function init() {
 }
 
 function install_Packages() {
-	if [ $OS = "Fedora" ]; then
+    # My fedora version string contains bunch of junk after like "SION_ID=24\nIANT_ID=Workstation"
+    # So this is matched with a regex
+	if [[ $OS =~ Fedora.* ]]; then
 		PackageManager="dnf install -y "
 		PackagesToInstall="bullet-devel boost gcc-c++ libXaw-devel freetype-devel freeimage-devel \
-			zziplib-devel boost-devel ois-devel tinyxml-devel glm-devel ffmpeg-devel ffmpeg-libs openal-soft-devel"
+                zziplib-devel boost-devel ois-devel tinyxml-devel glm-devel ffmpeg-devel ffmpeg-libs \
+                openal-soft-devel libatomic Cg"
 		CommonPackages="cmake make git mercurial svn"
 
 		echo -e "$INFO Creating CEGUI project folder for $OS $NC"
@@ -208,6 +211,8 @@ function prepare_OgreFFMPEG() {
 		#git clone https://github.com/scrawl/ogre-ffmpeg-videoplayer.git ogre-ffmpeg-videoplayer
 		# Currently working hhyyrylainen's fork
 		git clone https://github.com/hhyyrylainen/ogre-ffmpeg-videoplayer.git ogre-ffmpeg-videoplayer
+        # Currently working Revolutionary games fork
+        # git clone https://github.com/Revolutionary-Games/ogre-ffmpeg-videoplayer.git ogre-ffmpeg-videoplayer
 		cd ogre-ffmpeg-videoplayer
 	fi
 
@@ -226,22 +231,21 @@ function prepare_cAudio() {
 
 	if [ -d cAudio ]; then
 		cd cAudio
-		#Workaround for broken latest version
-		#git checkout master
-		#git pull origin master
 
+		git checkout master
+		git pull origin master
 
 	else
-		git clone https://github.com/wildicv/cAudio.git
+        # Official repo
+		#git clone https://github.com/wildicv/cAudio.git
+        # The official repo doesn't merge pull requests so here's a working fork
+        git clone https://github.com/hhyyrylainen/cAudio
 		cd cAudio
 	fi
 
-	#Workaround for broken build with latest version
-	git checkout 22ff1a97a9a820c72726463708590adfae77008c
-
 	mkdir -p build
 	cd build
-	check cmake .. -DCMAKE_BUILD_TYPE=RelWithDebInfo
+	check cmake .. -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCAUDIO_BUILD_SAMPLES=OFF
 
 	echo -e "$GOOD Done $NC"
 }
