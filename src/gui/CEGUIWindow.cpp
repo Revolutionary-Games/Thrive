@@ -482,7 +482,7 @@ CEGUIWindow::registerKeyEventHandler(
         {
             luabind::call_function<void>(callback, CEGUIWindow(static_cast<
                     const CEGUI::WindowEventArgs&>(args).window, false),
-                static_cast<int>(static_cast<const CEGUI::TextEventArgs&>(args).character));
+                static_cast<int>(static_cast<const CEGUI::TextEventArgs&>(args).d_character));
             return 0;
         };
 
