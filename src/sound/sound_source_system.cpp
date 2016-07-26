@@ -10,6 +10,7 @@
 #include "sound/sound_manager.h"
 #include "ogre/scene_node_system.h"
 #include "scripting/luabind.h"
+#include "util/make_unique.h"
 
 #include "game.h"
 
@@ -215,7 +216,7 @@ SoundSourceComponent::addSound(
     std::string name,
     std::string filename
 ) {
-    auto sound = std::make_unique<Sound>(name, filename);
+    auto sound = make_unique<Sound>(name, filename);
     Sound* rawSound = sound.get();
     m_sounds.emplace(name, std::move(sound));
     m_addedSounds.push_back(rawSound);

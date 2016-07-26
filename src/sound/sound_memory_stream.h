@@ -4,7 +4,8 @@
 #include <cAudio/IAudioDecoderFactory.h>
 #include <cAudio/IDataSourceFactory.h>
 
-#include <mutex>
+#include <boost/thread/mutex.hpp>
+#include <boost/thread/lock_guard.hpp>
 #include <map>
 
 
@@ -39,7 +40,7 @@ public:
     MemoryDataSourceFactory();
     ~MemoryDataSourceFactory();
 
-        
+
     cAudio::IDataSource*
         CreateDataSource(
             const char* filename,
@@ -67,8 +68,7 @@ private:
     /**
     Locked when managing the VideoPlayer queue
     */
-    std::mutex m_Mutex;
-
+    boost::mutex m_Mutex;
     /**
     Contains streams that can be returned by CreateAudioDecoder to cAudio
     @note m_Mutex must be locked when changing this
@@ -130,21 +130,21 @@ public:
 
     cAudio::cAudioString
         getType() const override;
-    
+
 protected:
 
     /**
     Called when the stream should close or if the VideoPlayer has been closed
     */
     void onStreamEnded();
-    
+
 private:
-    
+
     /**
     This is where the audio data is retrieved when streaming
     */
     VideoPlayer* m_VideoPlayer = nullptr;
 
-    std::mutex Mutex;
+    boost::mutex Mutex;
 };
 }
