@@ -216,7 +216,9 @@ SoundSourceComponent::addSound(
     std::string name,
     std::string filename
 ) {
-    auto sound = make_unique<Sound>(name, filename);
+    // For some reason std::make_unique was in scope here, so force the global namespace
+    // version to avoid c++14
+    auto sound = ::make_unique<Sound>(name, filename);
     Sound* rawSound = sound.get();
     m_sounds.emplace(name, std::move(sound));
     m_addedSounds.push_back(rawSound);
