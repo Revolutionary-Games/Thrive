@@ -751,7 +751,7 @@ function Microbe:update(logicTime)
             self:flashMembraneColour(3000, ColourValue(0.2,0.5,1.0,0.5))
         end
         if self.microbe.isBeingEngulfed then
-            self:damage(logicTime * 0.00005  * self.microbe.maxHitpoints) -- Engulfment damages 5% per second
+            self:damage(logicTime * 0.00015  * self.microbe.maxHitpoints) -- Engulfment damages 15% per second
         -- Else If we were but are no longer, being engulfed
         elseif self.microbe.wasBeingEngulfed then
             self:removeEngulfedEffect()
@@ -785,6 +785,9 @@ function Microbe:update(logicTime)
             else
                 self:destroy()
             end
+        end
+        if self.microbe.wasBeingEngulfed then
+            self:removeEngulfedEffect()
         end
     end
     -- Membrane
@@ -846,7 +849,24 @@ function Microbe:respawn()
     )
     local sceneNode = self.entity:getComponent(OgreSceneNodeComponent.TYPE_ID)
     sceneNode.visible = true
+    sceneNode.transform.position = Vector3(0,0,0)
+    sceneNode.transform:touch()
+    
     self:storeCompound(CompoundRegistry.getCompoundId("atp"), 50, false)
+    
+    local rand = math.random(0,3)
+    local backgroundEntity = Entity("background")
+    local skyplane = backgroundEntity:getComponent(SkyPlaneComponent.TYPE_ID)
+    if rand == 0 then
+        skyplane.properties.materialName = "Background"
+    elseif rand == 1 then
+        skyplane.properties.materialName = "Background_Vent"
+    elseif rand == 2 then
+        skyplane.properties.materialName = "Background_Abyss"
+    else 
+        skyplane.properties.materialName = "Background_Shallow"
+    end
+    skyplane.properties:touch()
 end
 
 -- Private function for initializing a microbe's components
