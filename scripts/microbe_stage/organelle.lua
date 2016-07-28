@@ -235,18 +235,19 @@ function Organelle:update(microbe, logicTime)
         and (self.name == "mitochondrion" or self.name == "nucleus" or self.name == "ER" or self.name == "golgi") then
         
         self.flashDuration = self.flashDuration - logicTime
+        local speciesColour = microbe:getSpeciesComponent().colour
 		
 		local entity = self.sceneNode.entity
 		-- How frequent it flashes, would be nice to update the flash function to have this variable
 		if math.fmod(self.flashDuration,600) < 300 then
             entity:tintColour(self.name, self.colour)
 		else
-			entity:setMaterial(self.name .. math.floor(self.colour.r * 256) .. math.floor(self.colour.g * 256) .. math.floor(self.colour.b * 256))
+			entity:setMaterial(self.name .. math.floor(speciesColour.x * 256) .. math.floor(speciesColour.y * 256) .. math.floor(speciesColour.z * 256))
 		end
 		
         if self.flashDuration <= 0 then
             self.flashDuration = nil
-			entity:setMaterial(self.name .. math.floor(self.colour.r * 256) .. math.floor(self.colour.g * 256) .. math.floor(self.colour.b * 256))
+			entity:setMaterial(self.name .. math.floor(speciesColour.x * 256) .. math.floor(speciesColour.y * 256) .. math.floor(speciesColour.z * 256))
         end
     end
 end
