@@ -114,8 +114,12 @@ function Organelle:onAddedToMicrobe(microbe, q, r, rotation)
     
     -- Will cause the color of the organelle to update.
     self.flashDuration = 0
-    local colorAsVec = microbe:getSpeciesComponent().colour
-    self.colour = ColourValue(colorAsVec.x, colorAsVec.y, colorAsVec.z, 1.0)
+    if microbe:getSpeciesComponent() ~= nil then
+        local colorAsVec = microbe:getSpeciesComponent().colour
+        self.colour = ColourValue(colorAsVec.x, colorAsVec.y, colorAsVec.z, 1.0)
+    else
+        self.colour = ColourValue(1, 1, 1, 1)
+    end
 	
 	self.organelleEntity = Entity()
     local sceneNode = OgreSceneNodeComponent()
