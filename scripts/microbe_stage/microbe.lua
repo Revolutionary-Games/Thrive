@@ -12,7 +12,7 @@ BANDWIDTH_REFILL_DURATION = 800 -- The amount of time it takes for the microbe t
 STORAGE_EJECTION_THRESHHOLD = 0.8
 EXCESS_COMPOUND_COLLECTION_INTERVAL = 1000 -- The amount of time between each loop to maintaining a fill level below STORAGE_EJECTION_THRESHHOLD and eject useless compounds
 MICROBE_HITPOINTS_PER_ORGANELLE = 10
-MINIMUM_AGENT_EMISSION_AMOUNT = 1
+MINIMUM_AGENT_EMISSION_AMOUNT = .1
 REPRODUCTASE_TO_SPLIT = 5
 RELATIVE_VELOCITY_TO_BUMP_SOUND = 6
 INITIAL_EMISSION_RADIUS = 0.5
@@ -489,7 +489,7 @@ end
 -- The maximum amount to try to emit
 function Microbe:emitAgent(compoundId, maxAmount)
     local agentVacuole = self.microbe.specialStorageOrganelles[compoundId]
-    if agentVacuole ~= nil and agentVacuole.storedAmount > MINIMUM_AGENT_EMISSION_AMOUNT then
+    if agentVacuole ~= nil and self:getCompoundAmount(compoundId) > MINIMUM_AGENT_EMISSION_AMOUNT then
         self.soundSource:playSound("microbe-release-toxin")
         -- Calculate the emission angle of the agent emitter
         local organelleX, organelleY = axialToCartesian(agentVacuole.position.q, agentVacuole.position.r)
@@ -519,18 +519,8 @@ function Microbe:emitAgent(compoundId, maxAmount)
         local ynew = membraneCoords[1] * s + membraneCoords[2] * c;
         
         local direction = Vector3(xnew, ynew, 0)
-
-        local amountToEject = math.min(maxAmount, agentVacuole.storedAmount)
-        local particleCount = 1
-        if amountToEject >= 3 then
-            particleCount = 3
-        end
-        agentVacuole:takeCompound(compoundId, amountToEject)
-        local i
-        for i = 1, particleCount do
-            --self:ejectCompound(compoundId, amountToEject/particleCount, angle,angle, INITIAL_EMISSION_RADIUS*4)
-            createAgentCloud(compoundId, self.sceneNode.transform.position.x + xnew, self.sceneNode.transform.position.y + ynew, direction, amountToEject/particleCount)
-        end
+        local amountToEject = self:takeCompound(compoundId, maxAmount/10.0)
+        createAgentCloud(compoundId, self.sceneNode.transform.position.x + xnew, self.sceneNode.transform.position.y + ynew, direction, amountToEject * 10)
     end
 end
 
@@ -684,10 +674,6 @@ function Microbe:toggleEngulfMode()
     else
         self.microbe.movementFactor = self.microbe.movementFactor / ENGULFING_MOVEMENT_DIVISION
     end
-    -- You should be able to get the membrane to flash blue (or become some color)
-    -- if you are able to get your hands on the membrane entity, which is currently defined in c++
-    -- below line is just an example—it doesn't actually work.
-    -- microbe.membraneComponent.entity:flashColour(3000, ColourValue(1,0.2,0.2,1))
     self.microbe.engulfMode = not self.microbe.engulfMode
 end
 
