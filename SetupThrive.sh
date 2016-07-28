@@ -168,7 +168,7 @@ function prepare_Ogre() {
 
 	# Run cmake
 	cd build
-	check cmake .. -DCMAKE_BUILD_TYPE=RelWithDebInfo -DOGRE_BUILD_RENDERSYSTEM_GL3PLUS=ON -DOGRE_BUILD_COMPONENT_OVERLAY=OFF -DOGRE_BUILD_COMPONENT_PAGING=OFF -DOGRE_BUILD_COMPONENT_PROPERTY=OFF -DOGRE_BUILD_COMPONENT_TERRAIN=OFF -DOGRE_BUILD_COMPONENT_VOLUME=OFF -DOGRE_BUILD_PLUGIN_BSP=OFF -DOGRE_BUILD_PLUGIN_CG=OFF -DOGRE_BUILD_PLUGIN_OCTREE=OFF -DOGRE_BUILD_PLUGIN_PCZ=OFF -DOGRE_BUILD_SAMPLES=OFF
+	check cmake .. -DCMAKE_BUILD_TYPE=RelWithDebInfo -DOGRE_BUILD_RENDERSYSTEM_GL3PLUS=ON -DOGRE_BUILD_COMPONENT_OVERLAY=OFF -DOGRE_BUILD_COMPONENT_PAGING=OFF -DOGRE_BUILD_COMPONENT_PROPERTY=OFF -DOGRE_BUILD_COMPONENT_TERRAIN=OFF -DOGRE_BUILD_COMPONENT_VOLUME=OFF -DOGRE_BUILD_PLUGIN_BSP=OFF -DOGRE_BUILD_PLUGIN_CG=ON -DOGRE_BUILD_PLUGIN_OCTREE=OFF -DOGRE_BUILD_PLUGIN_PCZ=OFF -DOGRE_BUILD_SAMPLES=OFF
 
 	cd "$StartingDirectory"
 	echo -e "$GOOD Done $NC"
@@ -367,10 +367,11 @@ function setup_Thrive() {
 
 	echo -e "$INFO Copying Ogre resources file $NC"
 	if [ $OS = "Arch" ]; then
+        # If anything shouldn't this be specific to plugins.cfg
 		cp /usr/local/share/OGRE/resources.cfg ./build/resources.cfg
 
 	else
-		cp ogre_cfg/resources.cfg ./build/resources.cfg
+        cp ogre_cfg/resources.cfg ./build/resources.cfg
 	fi
 
 	echo -e "$INFO Copying completety pointless Ogre files $NC"
