@@ -2,6 +2,7 @@
 
 #include "sound/sound_manager.h"
 #include "sound/sound_memory_stream.h"
+#include "util/make_unique.h"
 
 extern "C"{
 // FFMPEG includes
@@ -12,25 +13,26 @@ extern "C"{
 #include <libswresample/swresample.h>
 }
 
-    
+
 // Ogre
 #include <OgreResourceGroupManager.h>
 #include <OgreTextureManager.h>
 #include <OgrePixelBox.h>
 #include <OgreHardwarePixelBuffer.h>
+#include <OgrePixelFormat.h>
 
 // cAudio
 #include <cAudio/IAudioSource.h>
 
 #include <limits>
 #include <fstream>
-#include <mutex>
+#include <boost/thread/mutex.hpp>
 #include <chrono>
 
 namespace thrive{
 
 constexpr auto DEFAULT_READ_BUFFER = 32000;
-constexpr auto OGRE_IMAGE_FORMAT = Ogre::PF_BYTE_RGBA;
+constexpr Ogre::PixelFormat OGRE_IMAGE_FORMAT = Ogre::PF_BYTE_RGBA;
 /*Ogre::PF_BYTE_RGBA Ogre::PF_R8G8B8*/
 // This must match OGRE_IMAGE_FORMAT otherwise videos are broken
 constexpr auto FFMPEG_DECODE_TARGET = AV_PIX_FMT_RGBA;
@@ -102,16 +104,16 @@ class VideoPlayerImpl{
 
             av_packet_move_ref(&packet, src);
         }
-        
+
         ~ReadVideoPacket(){
 
             av_packet_unref(&packet);
         }
-        
+
         AVPacket packet;
     };
-    
-    
+
+
 public:
 
     using ClockType = std::chrono::steady_clock;
@@ -122,7 +124,7 @@ public:
 
         std::stringstream stream;
         stream << "VideoPlayerImpl_inner_texture_" << number;
-        
+
         TextureName = stream.str();
     }
 
@@ -132,7 +134,7 @@ public:
         // Ensure all FFMPEG resources are closed
         close();
     }
-    
+
 
     bool
         open(
@@ -140,7 +142,7 @@ public:
         )
     {
         Stream = Ogre::ResourceGroupManager::getSingleton().openResource(resource);
-        
+
         if(Stream.isNull())
             throw std::runtime_error("Failed to open video resource");
 
@@ -149,12 +151,12 @@ public:
 
         if(!readBuffer)
             throw std::bad_alloc();
-        
+
         ResourceReader = avio_alloc_context(readBuffer, DEFAULT_READ_BUFFER, 0, this,
             OgreResource_Read,
             OgreResource_Write,
             OgreResource_Seek);
-        
+
         if(!ResourceReader)
             return false;
 
@@ -179,7 +181,7 @@ public:
         // Find audio and video streams //
         unsigned int videoStream = std::numeric_limits<unsigned int>::max();
         unsigned int audioStream = std::numeric_limits<unsigned int>::max();
-        
+
         for(unsigned int i = 0; i < Context->nb_streams; ++i){
 
             if(Context->streams[i]->codec->codec_type == AVMEDIA_TYPE_VIDEO){
@@ -199,7 +201,7 @@ public:
         if(videoStream >= Context->nb_streams)
             return false;
 
-        
+
         if(videoStream < Context->nb_streams){
 
             // Found a video stream, play it
@@ -221,17 +223,17 @@ public:
 
         FrameWidth = Context->streams[videoStream]->codec->width;
         FrameHeight = Context->streams[videoStream]->codec->height;
-        
+
         // Calculate required size for the converted frame
         ConvertedBufferSize = av_image_get_buffer_size(FFMPEG_DECODE_TARGET,
             FrameWidth, FrameHeight, 1);
 
         ConvertedFrameBuffer = reinterpret_cast<uint8_t*>(av_malloc(
                 ConvertedBufferSize * sizeof(uint8_t)));
-        
+
         if(!ConvertedFrameBuffer)
             throw std::bad_alloc();
-        
+
         if(av_image_fill_arrays(ConvertedFrame->data, ConvertedFrame->linesize,
             ConvertedFrameBuffer, FFMPEG_DECODE_TARGET,
                 FrameWidth, FrameHeight, 1) < 0)
@@ -246,7 +248,7 @@ public:
             Context->streams[VideoIndex]->codec->pix_fmt,
             FrameWidth, FrameHeight, FFMPEG_DECODE_TARGET, SWS_BICUBIC,
             nullptr, nullptr, nullptr);
-        
+
         if(!ImageConverter){
 
             throw std::bad_alloc();
@@ -269,8 +271,7 @@ public:
 
         auto buffer = Texture->getBuffer();
 
-        const auto ogreBufferSize = (buffer->getWidth() * buffer->getHeight()) *
-            Ogre::PixelUtil::getNumElemBytes(OGRE_IMAGE_FORMAT);
+        const auto ogreBufferSize = (buffer->getWidth() * buffer->getHeight()) * 4;
 
         if(ogreBufferSize != ConvertedBufferSize){
 
@@ -307,7 +308,7 @@ public:
                 AudioCodec->channel_layout :
                 // Guess
                 av_get_default_channel_layout(AudioCodec->channels);
-                
+
 
             AudioConverter = swr_alloc_set_opts(AudioConverter, channelLayout,
                 AV_SAMPLE_FMT_S16, AudioCodec->sample_rate,
@@ -324,11 +325,11 @@ public:
                  TextureName + "_sound_source",
                  TextureName + ".video_sound");
         }
-            
-        
+
+
         //dumpInfo();
         resetClock();
-        
+
         PassedTimeSeconds = 0.f;
         NextFrameReady = false;
         CurrentlyDecodedTimeStamp = 0.f;
@@ -358,15 +359,15 @@ public:
             avcodec_free_context(&codecContext);
             throw std::runtime_error("codec failed to open");
         }
-        
-        
+
+
         if(video){
 
             VideoCodec = codecContext;
             VideoIndex = static_cast<int>(index);
             VideoTimeBase = static_cast<float>(VideoCodec->time_base.num) /
                 static_cast<float>(VideoCodec->time_base.den);
-            
+
         } else {
 
             AudioCodec = codecContext;
@@ -390,7 +391,7 @@ public:
         if(!Context)
             return false;
 
-        std::lock_guard<std::mutex> lock(ReadPacketMutex);
+        boost::lock_guard<boost::mutex> lock(ReadPacketMutex);
 
         AVPacket packet;
         //av_init_packet(&packet);
@@ -402,15 +403,15 @@ public:
             //av_packet_unref(&packet);
             return false;
         }
-            
+
         // Is this a packet from the video stream?
         if(packet.stream_index == VideoIndex) {
 
             // Store for decoding //
-            std::lock_guard<std::mutex> lock(ReadVideoDataMutex);
+            boost::lock_guard<boost::mutex> lock(ReadVideoDataMutex);
 
-            ReadVideoData.push_back(std::make_unique<ReadVideoPacket>(&packet));
-                
+            ReadVideoData.push_back(make_unique<ReadVideoPacket>(&packet));
+
         } else if(packet.stream_index == AudioIndex){
 
             // Audio packet //
@@ -440,7 +441,7 @@ public:
                 if(got_frame){
 
                     // Add the data to the queue //
-                    auto newBuffer = std::make_unique<ReadAudioPacket>();
+                    auto newBuffer = make_unique<ReadAudioPacket>();
 
                     // This is verified in open when setting up converting
                     const auto bytesPerSample = 2;
@@ -452,7 +453,7 @@ public:
 
                     //uint8_t* output[] = { &newBuffer->DecodedData[0], nullptr};
                     uint8_t* output = &newBuffer->DecodedData[0];
-                    
+
                     // Convert into the output data
                     if(swr_convert(AudioConverter, &output, totalSize,
                             const_cast<const uint8_t**>(DecodedAudio->data),
@@ -463,11 +464,11 @@ public:
                         AudioCodec = nullptr;
                         continue;
                     }
-                    
+
                     //memcpy(&newBuffer->DecodedData[0],
                     //&DecodedAudio->data[0], totalSize);
-                    
-                    std::lock_guard<std::mutex> lock(AudioMutex);
+
+                    boost::lock_guard<boost::mutex> lock(AudioMutex);
                     ReadAudioData.push_back(std::move(newBuffer));
                 }
 
@@ -475,30 +476,30 @@ public:
 
                 packet.data += len;
                 packet.size -= len;
-                    
+
             } while (packet.size > 0);
-                
+
             av_packet_unref(&orig_pkt);
         }
-        
-        return true;        
+
+        return true;
     }
 
     bool
         decodeFrame(AVPacket &packet)
     {
         int frameFinished = 0;
-        
+
         // Decode video frame
         if(avcodec_decode_video2(VideoCodec, DecodedFrame, &frameFinished, &packet) < 0){
 
             std::cerr << "Decoding video frame failed" << std::endl;
             return false;
         }
-                
+
         // Was it a complete frame
         if(frameFinished){
-                    
+
             // Convert the image from its native format to RGB
             if(sws_scale(ImageConverter, DecodedFrame->data, DecodedFrame->linesize,
                     0, FrameHeight,
@@ -526,7 +527,7 @@ public:
 
         const auto elapsed = now - LastUpdateTime;
         LastUpdateTime = now;
-        
+
         PassedTimeSeconds += std::chrono::duration_cast<
             std::chrono::duration<float>>(elapsed).count();
 
@@ -541,12 +542,12 @@ public:
         // Only decode if there isn't a frame ready
         while(!NextFrameReady){
 
-            std::unique_lock<std::mutex> lock(ReadVideoDataMutex);
+            boost::unique_lock<boost::mutex> lock(ReadVideoDataMutex);
 
             if(ReadVideoData.empty()){
 
                 ReadVideoDataMutex.unlock();
-                
+
                 // Decode a packet if none are in queue
                 if(!readOnePacket()){
 
@@ -583,7 +584,7 @@ public:
         Ogre::HardwarePixelBufferSharedPtr buffer = Texture->getBuffer();
         buffer->blitFromMemory(pixelView);
     }
-    
+
     void
         endReached()
     {
@@ -603,11 +604,11 @@ public:
 
         const auto timeStamp = av_rescale_q(seekPos, AV_TIME_BASE_Q,
             Context->streams[VideoIndex]->time_base);
-        
+
         av_seek_frame(Context, VideoIndex, timeStamp, AVSEEK_FLAG_BACKWARD);
-        
+
     }
-    
+
     void
         dumpInfo()
     {
@@ -624,19 +625,19 @@ public:
 
         // Dump remaining video frames //
         {
-            std::lock_guard<std::mutex> lock(ReadVideoDataMutex);
+            boost::lock_guard<boost::mutex> lock(ReadVideoDataMutex);
 
             ReadVideoData.clear();
         }
-        
+
         unhookAudio();
-        
+
         // Video and Audio codecs are released by Context
         VideoCodec = nullptr;
         AudioCodec = nullptr;
 
         if(ImageConverter){
-            
+
             sws_freeContext(ImageConverter);
             ImageConverter = nullptr;
         }
@@ -660,7 +661,7 @@ public:
                 av_free(ResourceReader->buffer);
                 ResourceReader->buffer = nullptr;
             }
-            
+
             av_free(ResourceReader);
             ResourceReader = nullptr;
         }
@@ -680,20 +681,20 @@ public:
     {
         if(amount < 1 || !AudioStreamer)
             return 0;
-        
-        std::unique_lock<std::mutex> lock(AudioMutex);
+
+        boost::unique_lock<boost::mutex> lock(AudioMutex);
 
         while(ReadAudioData.empty()){
 
             // Will deadlock if we don't unlock this
             lock.unlock();
-            
+
             if(!this->readOnePacket()){
 
                 // Stream ended //
                 return 0;
             }
-            
+
             lock.lock();
         }
 
@@ -707,7 +708,7 @@ public:
             memcpy(output, &dataVector[0], movedDataCount);
 
             ReadAudioData.pop_front();
-            
+
             return movedDataCount;
         }
 
@@ -719,7 +720,7 @@ public:
 
         dataVector = std::vector<uint8_t>(
                 dataVector.end() - leftSize, dataVector.end());
-        
+
         return movedDataCount;
     }
 
@@ -731,16 +732,16 @@ public:
     {
         std::stringstream fileName;
         fileName << TextureName << "_snapshot_" << ++ScreenshotCount << ".ppm";
-  
+
         // Open file
         std::ofstream stream(fileName.str(), std::ios::binary);
 
         if(!stream.is_open())
             return;
-        
+
         // Write header printf format: "P6\n%d %d\n255\n", width, height
         stream << "P6\n" << FrameWidth << " " << FrameHeight << "\n255\n";
-        
+
         // Then dump the pixel data
         for(int32_t y = 0; y < FrameHeight; ++y){
 
@@ -759,12 +760,12 @@ public:
 
         auto readBuffer = Texture->getBuffer();
         readBuffer->lock(Ogre::HardwareBuffer::HBL_NORMAL );
-        const Ogre::PixelBox& pb = readBuffer->getCurrentLock();    
- 
+        const Ogre::PixelBox& pb = readBuffer->getCurrentLock();
+
         Ogre::Image img;
         img.loadDynamicImage (static_cast<uint8_t*>(pb.data), Texture->getWidth(),
             Texture->getHeight(), Texture->getFormat());
-        
+
         img.save(fileName.str());
         readBuffer->unlock();
     }
@@ -777,17 +778,17 @@ public:
         unhookAudio()
     {
         IsPlayingAudio = false;
-        
+
         auto* stream = AudioStreamer;
         AudioStreamer = nullptr;
 
         if(stream)
             stream->onStreamEnded();
 
-        std::lock_guard<std::mutex> lock(AudioMutex);
-        
+        boost::lock_guard<boost::mutex> lock(AudioMutex);
+
         if(PlayingSource){
-            
+
             SoundManager::getSingleton()->destroyAudioSource(PlayingSource);
             PlayingSource = nullptr;
         }
@@ -816,13 +817,13 @@ public:
     How many timestamp units are in a second in the video stream
     */
     float VideoTimeBase = 1.f;
-    
+
     AVCodecContext* AudioCodec = nullptr;
     int AudioIndex = 0;
 
     AVFrame* DecodedFrame = nullptr;
     AVFrame* DecodedAudio = nullptr;
-    
+
 
     /**
     Once a frame has been loaded to DecodedFrame it is converted to a format that Ogre texture
@@ -831,7 +832,7 @@ public:
     AVFrame* ConvertedFrame = nullptr;
 
     uint8_t* ConvertedFrameBuffer = nullptr;
-    
+
     // Required size for a single converted frame
     size_t ConvertedBufferSize = 0;
 
@@ -850,14 +851,14 @@ public:
     int ChannelCount = 0;
 
     std::list<std::unique_ptr<ReadAudioPacket>> ReadAudioData;
-    std::mutex AudioMutex;
+    boost::mutex AudioMutex;
 
     SoundMemoryStream* AudioStreamer = nullptr;
     cAudio::IAudioSource* PlayingSource = nullptr;
 
 
     std::list<std::unique_ptr<ReadVideoPacket>> ReadVideoData;
-    std::mutex ReadVideoDataMutex;
+    boost::mutex ReadVideoDataMutex;
 
     VideoPlayer* OutsidePtr;
 
@@ -867,13 +868,13 @@ public:
     // Timing control
     float PassedTimeSeconds = 0.f;
     float CurrentlyDecodedTimeStamp = 0.f;
-    
+
     bool NextFrameReady = false;
 
-    
+
     ClockType::time_point LastUpdateTime;
 
-    std::mutex ReadPacketMutex;
+    boost::mutex ReadPacketMutex;
 };
 
 
@@ -935,8 +936,8 @@ int64_t
 }
 
 
-VideoPlayer::VideoPlayer() : p_impl(std::make_unique<VideoPlayerImpl>(this)){
-    
+VideoPlayer::VideoPlayer() : p_impl(make_unique<VideoPlayerImpl>(this)){
+
 }
 
 VideoPlayer::~VideoPlayer(){
@@ -1002,13 +1003,13 @@ void
 void
     VideoPlayer::play()
 {
-    
+
 }
 
 void
     VideoPlayer::pause()
 {
-    
+
 }
 
 bool
@@ -1077,8 +1078,8 @@ void
     // There might be a race condition with this
     if(!p_impl)
         return;
-    
-    std::lock_guard<std::mutex> lock(p_impl->AudioMutex);
+
+    boost::lock_guard<boost::mutex> lock(p_impl->AudioMutex);
 
     p_impl->AudioStreamer = stream;
 }

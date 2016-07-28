@@ -16,7 +16,7 @@ public:
 
         return Player != nullptr;
     }
-    
+
     int getCurrentPos() override{
 
         return 0;
@@ -26,7 +26,7 @@ public:
 
         return 0;
     }
-    
+
     int read(void* output, int size) override{
 
         (void)output;
@@ -73,11 +73,11 @@ cAudio::IDataSource*
         abort();
         return nullptr;
     }
-    
-    std::lock_guard<std::mutex> lock(m_Mutex);
+
+    boost::lock_guard<boost::mutex> lock(m_Mutex);
 
     auto iter = m_OpenStream.find(std::string(filename));
-    
+
     if(iter == m_OpenStream.end()){
 
         std::cerr << "CreateDataSource trying to open stream for non-existant video"
@@ -97,8 +97,8 @@ void
     const std::string &fakeFileName,
     VideoPlayer* streamSource)
 {
-    std::lock_guard<std::mutex> lock(m_Mutex);
-    
+    boost::lock_guard<boost::mutex> lock(m_Mutex);
+
     m_OpenStream[fakeFileName] = streamSource;
 }
 
@@ -106,7 +106,7 @@ void
     MemoryDataSourceFactory::unReserveStream(
     VideoPlayer* streamSource)
 {
-    std::lock_guard<std::mutex> lock(m_Mutex);
+    boost::lock_guard<boost::mutex> lock(m_Mutex);
 
     for(auto iter = m_OpenStream.begin(); iter != m_OpenStream.end(); ++iter){
 
@@ -127,7 +127,7 @@ SoundMemoryStream::SoundMemoryStream(
     IAudioDecoder(static_cast<cAudio::IDataSource*>(source)),
     m_VideoPlayer(audioSource)
 {
-    std::lock_guard<std::mutex> lock(Mutex);
+    boost::lock_guard<boost::mutex> lock(Mutex);
 
     if(m_VideoPlayer)
         m_VideoPlayer->streamReportingIn(this);
@@ -146,18 +146,18 @@ SoundMemoryStream::~SoundMemoryStream(){
 cAudio::AudioFormats
     SoundMemoryStream::getFormat()
 {
-    std::lock_guard<std::mutex> lock(Mutex);
+    boost::lock_guard<boost::mutex> lock(Mutex);
 
     if(m_VideoPlayer && m_VideoPlayer->getAudioChannelCount() > 1)
         return cAudio::EAF_16BIT_STEREO;
-    
+
     return cAudio::EAF_16BIT_MONO;
 }
 
 int
     SoundMemoryStream::getFrequency()
 {
-    std::lock_guard<std::mutex> lock(Mutex);
+    boost::lock_guard<boost::mutex> lock(Mutex);
 
     if(!m_VideoPlayer)
         return -1;
@@ -174,7 +174,7 @@ bool
 bool
     SoundMemoryStream::isValid()
 {
-    std::lock_guard<std::mutex> lock(Mutex);
+    boost::lock_guard<boost::mutex> lock(Mutex);
     return m_VideoPlayer != nullptr;
 }
 
@@ -182,7 +182,7 @@ int
     SoundMemoryStream::readAudioData(void* output,
         int amount)
 {
-    std::lock_guard<std::mutex> lock(Mutex);
+    boost::lock_guard<boost::mutex> lock(Mutex);
 
     if(!m_VideoPlayer)
         return 0;
@@ -253,7 +253,7 @@ cAudio::cAudioString
 void
     SoundMemoryStream::onStreamEnded()
 {
-    std::lock_guard<std::mutex> lock(Mutex);
+    boost::lock_guard<boost::mutex> lock(Mutex);
 
     m_VideoPlayer->streamReportingIn(nullptr);
     m_VideoPlayer = nullptr;

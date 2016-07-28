@@ -230,7 +230,7 @@ include_directories(
 
 # Compile using c++14 and using sse2
 #no-unused-variable is necessary to supress werror while compiling cAudio
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14 -msse2 -Wno-unused-function")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++1y -msse2 -Wno-unused-function")
 
 
 find_package(Threads)
