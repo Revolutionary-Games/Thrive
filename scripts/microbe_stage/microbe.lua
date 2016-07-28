@@ -742,14 +742,16 @@ function Microbe:update(logicTime)
         if self.microbe.engulfMode then
             -- Drain atp and if we run out then disable engulfmode
             local cost = ENGULFING_ATP_COST_SECOND/1000*logicTime
-            if self:takeCompound(CompoundRegistry.getCompoundId("atp"), cost) < cost then
+            
+            if self:takeCompound(CompoundRegistry.getCompoundId("atp"), cost) < cost - 0.001 then
+                print ("too little atp, disabling - 749")
                 self:toggleEngulfMode()
             end
             -- Flash the membrane blue.
             self:flashMembraneColour(3000, ColourValue(0.2,0.5,1.0,0.5))
         end
         if self.microbe.isBeingEngulfed then
-            self:damage(logicTime * 0.0005  * self.microbe.maxHitpoints) -- Engulfment damages 5% per second
+            self:damage(logicTime * 0.00005  * self.microbe.maxHitpoints) -- Engulfment damages 5% per second
         -- Else If we were but are no longer, being engulfed
         elseif self.microbe.wasBeingEngulfed then
             self:removeEngulfedEffect()
