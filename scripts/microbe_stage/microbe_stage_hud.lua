@@ -119,6 +119,10 @@ function HudSystem:update(renderTime)
     
     if Engine.mouse:scrollChange()/10 ~= 0 then
         self.scrollChange = self.scrollChange + Engine.mouse:scrollChange()/10
+    elseif keyCombo(kmp.plus) or keyCombo(kmp.add) then
+        self.scrollChange = self.scrollChange - 5
+    elseif keyCombo(kmp.minus) or keyCombo(kmp.subtract) then
+        self.scrollChange = self.scrollChange + 5
     end
     
     local newZVal = offset.z
