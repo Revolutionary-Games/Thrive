@@ -58,7 +58,7 @@ function SpeciesSystem.initProcessorComponent(entity, speciesComponent)
     if sc == nil then
         entity:addComponent(speciesComponent)
     end
-    print('SpeciesComponent:initProcessorComponent for species '..speciesComponent.name)
+
     local pc = entity:getComponent(ProcessorComponent.TYPE_ID)
     if pc == nil then
         pc = ProcessorComponent()
@@ -114,9 +114,6 @@ end
 -- Given a newly-created microbe, this sets the organelles and all other species-specific microbe data
 --  like agent codes, for example.
 function SpeciesSystem.template(microbe, species)
-    if species == nil then
-        print("species nil now")
-    end
     -- TODO: Make this also set the microbe's ProcessorComponent
     microbe.microbe.speciesName = species.name
     microbe:setMembraneColour(species.colour)
@@ -126,21 +123,11 @@ function SpeciesSystem.template(microbe, species)
         microbe:addOrganelle(orgdata.q, orgdata.r, orgdata.rotation, organelle)
     end
 
-    -- print(self.name)
     for compoundID, amount in pairs(species.avgCompoundAmounts) do
         if amount ~= 0 then
-            -- print(compoundID..":"..amount)
             microbe:storeCompound(compoundID, amount, false)
         end
     end
-    -- print("--")
-    -- for compoundID, priority in pairs(self.compoundPriorities) do
-        -- if priority ~= 0 then
-            -- microbe:setDefaultCompoundPriority(compoundID, priority)
-        -- end
-    -- end
-    -- complimentary serving of atp
-    --newMicrobe:storeCompound(CompoundRegistry.getCompoundId("atp"), 10)
     return microbe
 end
 

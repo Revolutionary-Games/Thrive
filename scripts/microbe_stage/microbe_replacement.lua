@@ -22,15 +22,12 @@ function MicrobeReplacementSystem:activate()
 
         local new_species_name = workingMicrobe.microbe.speciesName .. global_speciesNameCounter
         global_speciesNameCounter = global_speciesNameCounter + 1
-        print("NEW SPECIES: "..new_species_name)
 
         local speciesEntity = Entity(new_species_name)
         local species = SpeciesComponent(new_species_name)
-        print("initted")
         speciesEntity:addComponent(species)
 
         SpeciesSystem.fromMicrobe(workingMicrobe, species)
-        print("frommicrobed")
         workingMicrobe.entity:destroy()
 
         species.avgCompoundAmounts = {}
@@ -39,7 +36,6 @@ function MicrobeReplacementSystem:activate()
         species.avgCompoundAmounts[CompoundRegistry.getCompoundId("oxygen")] = 30
 
         SpeciesSystem.initProcessorComponent(speciesEntity, species)
-        print("initted processor")
 
         local newMicrobe = Microbe.createMicrobeEntity(nil, false, new_species_name)
         print(": "..newMicrobe.microbe.speciesName)

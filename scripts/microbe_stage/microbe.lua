@@ -262,16 +262,6 @@ function Microbe:__init(entity, in_editor)
         self:_initialize()
         if in_editor == nil then
             self.compoundBag:setProcessor(Entity(self.microbe.speciesName):getComponent(ProcessorComponent.TYPE_ID))
-            print("About to template microbe with species "..self.microbe.speciesName)
-            if self:getSpeciesComponent() == nil then
-                print("nil species component")
-            else
-                print("methods")
-                print_r(class_info(self:getSpeciesComponent()).methods)
-                print("attributes")
-                print_r(class_info(self:getSpeciesComponent()).attributes)
-                print("typename: "..class_info(self:getSpeciesComponent()).methods.typeName(self:getSpeciesComponent()))
-            end
             SpeciesSystem.template(self, self:getSpeciesComponent())
         end
     end
