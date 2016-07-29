@@ -108,7 +108,7 @@ fi
 CheckDependency() {
 
     case "$line" in
-        *resample*)
+        *swresample*)
         ;&
         *vorbis*)
         ;&

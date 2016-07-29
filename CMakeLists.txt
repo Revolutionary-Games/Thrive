@@ -268,16 +268,9 @@ target_link_libraries(ThriveLib
     luabind
 )
 
-if(WIN32)
-    target_link_libraries(ThriveLib
-        ${SWRESAMPLE_LIBRARIES}
-    )
-else()
-    target_link_libraries(ThriveLib
-      ${AVRESAMPLE_LIBRARIES}
-      ${SWRESAMPLE_LIBRARIES}
-    )
-endif()
+target_link_libraries(ThriveLib
+  ${SWRESAMPLE_LIBRARIES}
+  )
 
 # Windows requires using Bullet DEBUG libraries to fix broken build
 # But Linux build breaks with those settings 
@@ -680,10 +673,10 @@ add_custom_target(zip
 if(UNIX)
 
   file(READ "thriveversion.ver" THRIVE_VERSION)
-  set(LINUX_LIBRARIES "${cAudio_LIBRARIES}" "${BULLET_LIBRARIES}" "${AVRESAMPLE_LIBRARIES}"
-    "${SWRESAMPLE_LIBRARIES}" "${OgreFFMPEG_LIBRARIES}" "${FFMPEG_LIBRARIES}" "${Boost_LIBRARIES}"
-    "${OGRE_LIBRARIES}" "${OIS_LIBRARIES}" "${CMAKE_THREAD_LIBS_INIT}" "${BULLET_LIBRARIES}"
-    "${CEGUI_LIBRARY}" "${TINYXML_LIBRARIES}" "${OpenAL_LIBRARIES}")
+  set(LINUX_LIBRARIES "${cAudio_LIBRARIES}" "${BULLET_LIBRARIES}"
+    "${SWRESAMPLE_LIBRARIES}" "${OgreFFMPEG_LIBRARIES}" "${FFMPEG_LIBRARIES}"
+    "${Boost_LIBRARIES}" "${OGRE_LIBRARIES}" "${OIS_LIBRARIES}" "${CMAKE_THREAD_LIBS_INIT}"
+    "${BULLET_LIBRARIES}" "${CEGUI_LIBRARY}" "${TINYXML_LIBRARIES}" "${OpenAL_LIBRARIES}")
   
   configure_file("${CMAKE_SOURCE_DIR}/cpack/CreatePackage.sh.in"
     "${CMAKE_CURRENT_BINARY_DIR}/CreatePackage.sh" @ONLY
