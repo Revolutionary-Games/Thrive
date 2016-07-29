@@ -19,4 +19,6 @@ add_sources(
     "${CMAKE_CURRENT_SOURCE_DIR}/process_system.h"
     "${CMAKE_CURRENT_SOURCE_DIR}/agent_cloud_system.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/agent_cloud_system.h"
+    "${CMAKE_CURRENT_SOURCE_DIR}/species_component.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/species_component.h"
 )
