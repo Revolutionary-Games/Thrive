@@ -164,7 +164,7 @@ class 'Microbe'
 -- @returns microbe
 -- An object of type Microbe
 
-function Microbe.createMicrobeEntity(name, aiControlled, speciesName, in_editor)
+function Microbe.createMicrobeEntity(name, aiControlled, speciesName)
     local entity
     if name then
         entity = Entity(name)
@@ -262,6 +262,12 @@ function Microbe:__init(entity, in_editor)
         self:_initialize()
         if in_editor == nil then
             self.compoundBag:setProcessor(Entity(self.microbe.speciesName):getComponent(ProcessorComponent.TYPE_ID))
+            print("About to template microbe with species "..self.microbe.speciesName)
+            -- if self:getSpeciesComponent() == nil then
+            --     print("nil species component")
+            -- else
+            --     print("TYPE_ID: "..class_info(self:getSpeciesComponent()).TYPE_ID.." "..SpeciesComponent.TYPE_ID)
+            -- end
             self:getSpeciesComponent():template(self)
         end
     end
@@ -273,7 +279,7 @@ end
 -- 
 -- returns the species component or nil if it doesn't have a valid species
 function Microbe:getSpeciesComponent()
-    return Entity(self.microbe.speciesName):getComponent(SpeciesComponent.TYPE_ID)
+    return Entity(self.microbe.speciesName, GameState.MICROBE):getComponent(SpeciesComponent.TYPE_ID)
 end
 
 -- Adds a new organelle
