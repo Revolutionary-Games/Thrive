@@ -209,6 +209,7 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
         namespace fs = boost::filesystem;
         fs::path manifestPath = directory / "manifest.txt";
         if (not fs::exists(manifestPath)) {
+            throw std::runtime_error("Missing manifest file: " + manifestPath.string());
             return;
         }
         std::ifstream manifest(manifestPath.string());
@@ -348,8 +349,7 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
         // Using the handling on keydown mode to detect when inputs are consumed
         m_aggregator->initialise(false);
 
-        CEGUI::System::getSingleton().getDefaultGUIContext().setDefaultTooltipType(
-            reinterpret_cast<const CEGUI::utf8*>("Thrive/Tooltip") );
+        CEGUI::System::getSingleton().getDefaultGUIContext().setDefaultTooltipType("Thrive/Tooltip");
 
         // For demos
         // This file is renamed in newer CEGUI versions
@@ -361,7 +361,7 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
       //  CEGUI::ImageManager::getSingleton().loadImageset("GameMenu.imageset");
        // CEGUI::ImageManager::getSingleton().loadImageset("HUDDemo.imageset");
 
-        CEGUI::System::getSingleton().getDefaultGUIContext().setDefaultTooltipType( reinterpret_cast<const CEGUI::utf8*>("Thrive/Tooltip") );
+        CEGUI::System::getSingleton().getDefaultGUIContext().setDefaultTooltipType("Thrive/Tooltip");
         CEGUI::AnimationManager::getSingleton().loadAnimationsFromXML("thrive.anims");
 
         //For demos:
