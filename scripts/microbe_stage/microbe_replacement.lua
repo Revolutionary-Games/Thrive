@@ -33,7 +33,11 @@ function MicrobeReplacementSystem:activate()
         print("frommicrobed")
         workingMicrobe.entity:destroy()
 
-        species.avgCompoundAmounts = {atp=10,glucose=20,oxygen=30}
+        species.avgCompoundAmounts = {}
+        species.avgCompoundAmounts[CompoundRegistry.getCompoundId("atp")] = 10
+        species.avgCompoundAmounts[CompoundRegistry.getCompoundId("glucose")] = 20
+        species.avgCompoundAmounts[CompoundRegistry.getCompoundId("oxygen")] = 30
+
         SpeciesSystem.initProcessorComponent(speciesEntity, species)
         print("initted processor")
 
@@ -41,7 +45,7 @@ function MicrobeReplacementSystem:activate()
         print(": "..newMicrobe.microbe.speciesName)
 
         newMicrobe.collisionHandler:addCollisionGroup("powerupable")
-        -- newMicrobeEntity = newMicrobe.entity:transfer(GameState.MICROBE)
+        newMicrobeEntity = newMicrobe.entity:transfer(GameState.MICROBE)
         newMicrobeEntity:stealName(PLAYER_NAME)
         global_newEditorMicrobe = false
         Engine:playerData():setActiveCreature(newMicrobeEntity.id, GameState.MICROBE)
