@@ -179,10 +179,6 @@ function microbeSpawnFunctionGeneric(pos, speciesName, aiControlled, individualN
             Vector3(0, 0, 0)  -- Angular velocity
         )
     end
-    -- set organelles, starting compound amounts, all that
-    -- TODO: 
-    -- Entity(speciesName):getComponent(SpeciesComponent.TYPE_ID):template(microbe)
-    -- microbe.compoundBag:setProcessor(Entity(speciesName):getComponent(ProcessorComponent.TYPE_ID))
     return microbe
 end
 
@@ -418,7 +414,7 @@ local function createMicrobeStage(name)
         name,
         {
             MicrobeReplacementSystem(),
-            SwitchGameStateSystem(),
+            -- SwitchGameStateSystem(),
             QuickSaveSystem(),
             -- Microbe specific
             MicrobeSystem(),

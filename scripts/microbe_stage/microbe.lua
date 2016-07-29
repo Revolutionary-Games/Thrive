@@ -164,7 +164,7 @@ class 'Microbe'
 -- @returns microbe
 -- An object of type Microbe
 
-function Microbe.createMicrobeEntity(name, aiControlled, speciesName, in_editor)
+function Microbe.createMicrobeEntity(name, aiControlled, speciesName)
     local entity
     if name then
         entity = Entity(name)
@@ -262,7 +262,7 @@ function Microbe:__init(entity, in_editor)
         self:_initialize()
         if in_editor == nil then
             self.compoundBag:setProcessor(Entity(self.microbe.speciesName):getComponent(ProcessorComponent.TYPE_ID))
-            self:getSpeciesComponent():template(self)
+            SpeciesSystem.template(self, self:getSpeciesComponent())
         end
     end
     self:_updateCompoundAbsorber()
@@ -526,16 +526,18 @@ end
 --
 -- @param bandwidthLimited
 -- Determines if the storage operation is to be limited by the bandwidth of the microbe
+-- 
+-- @returns leftover
+-- The amount of compound not stored, due to bandwidth or being full
 function Microbe:storeCompound(compoundId, amount, bandwidthLimited)
-    local storedAmount = 0
+    local storedAmount = amount + 0
     if bandwidthLimited then
         storedAmount = self.microbe:getBandwidth(amount, compoundId)
-    else
-        storedAmount = amount
     end
     storedAmount = math.min(storedAmount , self.microbe.capacity - self.microbe.stored)
     self.entity:getComponent(CompoundBagComponent.TYPE_ID):giveCompound(compoundId, storedAmount)
     self.microbe.stored = self.microbe.stored + storedAmount
+    return amount - storedAmount
 end
 
 
