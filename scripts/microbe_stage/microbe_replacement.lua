@@ -24,14 +24,15 @@ function MicrobeReplacementSystem:activate()
         global_speciesNameCounter = global_speciesNameCounter + 1
         print("NEW SPECIES: "..new_species_name)
 
+        local speciesEntity = Entity(new_species_name)
         local species = SpeciesComponent(new_species_name)
+        speciesEntity:addComponent(species)
+
         species:fromMicrobe(workingMicrobe)
         workingMicrobe.entity:destroy()
 
-        local speciesEntity = Entity(new_species_name, GameState.MICROBE)
         species.avgCompoundAmounts = {atp=10,glucose=20,oxygen=30}
         SpeciesSystem.initProcessorComponent(speciesEntity, species)
-        speciesEntity:addComponent(species)
 
         local newMicrobe = Microbe.createMicrobeEntity(nil, false, new_species_name)
         print(": "..newMicrobe.microbe.speciesName)

@@ -263,11 +263,14 @@ function Microbe:__init(entity, in_editor)
         if in_editor == nil then
             self.compoundBag:setProcessor(Entity(self.microbe.speciesName):getComponent(ProcessorComponent.TYPE_ID))
             print("About to template microbe with species "..self.microbe.speciesName)
-            -- if self:getSpeciesComponent() == nil then
-            --     print("nil species component")
-            -- else
-            --     print("TYPE_ID: "..class_info(self:getSpeciesComponent()).TYPE_ID.." "..SpeciesComponent.TYPE_ID)
-            -- end
+            if self:getSpeciesComponent() == nil then
+                print("nil species component")
+            else
+                print("methods")
+                print_r(class_info(self:getSpeciesComponent()).methods)
+                print("attributes")
+                print_r(class_info(self:getSpeciesComponent()).attributes)
+            end
             self:getSpeciesComponent():template(self)
         end
     end
@@ -279,7 +282,7 @@ end
 -- 
 -- returns the species component or nil if it doesn't have a valid species
 function Microbe:getSpeciesComponent()
-    return Entity(self.microbe.speciesName, GameState.MICROBE):getComponent(SpeciesComponent.TYPE_ID)
+    return Entity(self.microbe.speciesName):getComponent(SpeciesComponent.TYPE_ID)
 end
 
 -- Adds a new organelle
