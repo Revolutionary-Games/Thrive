@@ -26,15 +26,9 @@ function MicrobeReplacementSystem:activate()
 
         speciesEntity = Entity(new_species_name, GameState.MICROBE)
         species = SpeciesComponent(new_species_name)
-        speciesEntity:addComponent(species)
-        processorComponent = ProcessorComponent()
-        speciesEntity:addComponent(processorComponent)
-        for compoundID in CompoundRegistry.getCompoundList() do
-            processorComponent:setThreshold(compoundID, 10, 50, 100) -- we currently just generate a new processor for the new species
-        end
         species:fromMicrobe(workingMicrobe)
-        -- below folded into :fromMicrobe()
-        -- species.colour = workingMicrobe:getComponent(MembraneComponent.TYPE_ID):getColour()
+        speciesEntity:addComponent(species)
+        SpeciesSystem.initProcessorComponent(speciesEntity, species)
 
         newMicrobe = Microbe.createMicrobeEntity(nil, false, new_species_name)
         print(": "..newMicrobe.microbe.speciesName)
@@ -54,7 +48,6 @@ function MicrobeReplacementSystem:activate()
         global_newEditorMicrobe = false
         Engine:playerData():setActiveCreature(newMicrobeEntity.id, GameState.MICROBE)
     end
-   
 end
 
 function MicrobeReplacementSystem:update(renderTime, logicTime)
