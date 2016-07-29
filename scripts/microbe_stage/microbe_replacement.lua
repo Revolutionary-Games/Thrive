@@ -26,13 +26,16 @@ function MicrobeReplacementSystem:activate()
 
         local speciesEntity = Entity(new_species_name)
         local species = SpeciesComponent(new_species_name)
+        print("initted")
         speciesEntity:addComponent(species)
 
-        species:fromMicrobe(workingMicrobe)
+        SpeciesSystem.fromMicrobe(workingMicrobe, species)
+        print("frommicrobed")
         workingMicrobe.entity:destroy()
 
         species.avgCompoundAmounts = {atp=10,glucose=20,oxygen=30}
         SpeciesSystem.initProcessorComponent(speciesEntity, species)
+        print("initted processor")
 
         local newMicrobe = Microbe.createMicrobeEntity(nil, false, new_species_name)
         print(": "..newMicrobe.microbe.speciesName)

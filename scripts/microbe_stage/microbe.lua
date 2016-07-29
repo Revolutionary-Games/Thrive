@@ -270,8 +270,9 @@ function Microbe:__init(entity, in_editor)
                 print_r(class_info(self:getSpeciesComponent()).methods)
                 print("attributes")
                 print_r(class_info(self:getSpeciesComponent()).attributes)
+                print("typename: "..class_info(self:getSpeciesComponent()).methods.typeName(self:getSpeciesComponent()))
             end
-            self:getSpeciesComponent():template(self)
+            SpeciesSystem.template(self, self:getSpeciesComponent())
         end
     end
     self:_updateCompoundAbsorber()
@@ -543,16 +544,18 @@ end
 --
 -- @param bandwidthLimited
 -- Determines if the storage operation is to be limited by the bandwidth of the microbe
+-- 
+-- @returns leftover
+-- The amount of compound not stored, due to bandwidth or being full
 function Microbe:storeCompound(compoundId, amount, bandwidthLimited)
-    local storedAmount = 0
+    local storedAmount = amount + 0
     if bandwidthLimited then
         storedAmount = self.microbe:getBandwidth(amount, compoundId)
-    else
-        storedAmount = amount
     end
     storedAmount = math.min(storedAmount , self.microbe.capacity - self.microbe.stored)
     self.entity:getComponent(CompoundBagComponent.TYPE_ID):giveCompound(compoundId, storedAmount)
     self.microbe.stored = self.microbe.stored + storedAmount
+    return amount - storedAmount
 end
 
 
