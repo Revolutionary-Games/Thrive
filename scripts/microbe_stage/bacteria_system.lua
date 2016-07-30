@@ -67,7 +67,6 @@ function Bacterium.createBacterium(speciesName, pos)
         Vector3(0, 0, 0)
     )
     rigidBody.properties:touch()
-    entity:addComponent(rigidBody)
     -- Scene node
     local sceneNode = OgreSceneNodeComponent()
     sceneNode.meshName = "mitochondrion.mesh"
@@ -162,6 +161,10 @@ end
 function BacteriaSystem:init(gameState)
     System.init(self, "BacteriaSystem", gameState)
     self.entities:init(gameState)
+end
+
+function BacteriaSystem:shutdown()
+    self.entities:shutdown()
 end
 
 function BacteriaSystem:update(renderTime, logicTime)
