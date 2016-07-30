@@ -179,7 +179,7 @@ function microbeSpawnFunctionGeneric(pos, speciesName, aiControlled, individualN
             Vector3(0, 0, 0)  -- Angular velocity
         )
     end
-    return microbe.entity
+    return microbe
 end
 
 local function setSpawnablePhysics(entity, pos, mesh, scale, collisionShape)
