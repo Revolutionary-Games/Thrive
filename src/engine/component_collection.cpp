@@ -5,7 +5,7 @@
 #include <iostream>
 #include <unordered_set>
 #include <stdexcept>
-
+#include <assert.h>
 
 using namespace thrive;
 
@@ -56,7 +56,10 @@ ComponentCollection::addComponent(
 ) {
     bool isNew = true;
     // Check if we are overwriting an old component
-    if (m_impl->m_components.erase(entityId) > 0) {
+    auto iter = m_impl->m_components.find(entityId);
+    if (iter != m_impl->m_components.end()) {
+        assert(iter->second.get() != component.get() && "Replacing component with the same component. Did you add the same component twice?");
+        m_impl->m_components.erase(entityId);
         isNew = false;
         for (auto& value : m_impl->m_changeCallbacks) {
             value.second.second(entityId, *component);
