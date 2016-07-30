@@ -71,7 +71,8 @@ echo "$librariestoinstall" | awk 'BEGIN { RS=";" } { print $0 }' | while read -r
                 # libboost_thread hack
                 # Copy the actual files
                 libdir=$(dirname "${line}")
-                cp $dirname/libboost_thread.* $target/bin
+                echo "Finding the actual libboost files in $libdir for ${line}"
+                cp $libdir/libboost_thread.* $target/bin
                 ;;
             *CEGUIBase*)
                 # Dynamic CEGUI libs hack
