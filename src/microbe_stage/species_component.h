@@ -29,7 +29,7 @@ public:
     StorageContainer
     storage() const override;
 private:
-	static uint SPECIES_NUM;
+	static unsigned int SPECIES_NUM;
 };
 
 }

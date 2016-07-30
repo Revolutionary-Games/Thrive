@@ -9,7 +9,7 @@
 
 using namespace thrive;
 
-uint SpeciesComponent::SPECIES_NUM = 0;
+unsigned int SpeciesComponent::SPECIES_NUM = 0;
 
 luabind::scope
 SpeciesComponent::luaBindings() {
@@ -55,7 +55,7 @@ SpeciesComponent::load(const StorageContainer& storage) {
 	organelles = luabind::newtable(lua_state);
 	StorageContainer orgs = storage.get<StorageContainer>("organelles");
 
-	uint i = 0;
+	unsigned int i = 0;
 	while (orgs.contains("" + i)) {
 		StorageContainer org = orgs.get<StorageContainer>("" + i);
 		luabind::object organelle = luabind::newtable(lua_state);
@@ -83,7 +83,7 @@ SpeciesComponent::storage() const {
 
 	StorageContainer orgs;
 
-	uint i = 0;
+	unsigned int i = 0;
 	for (luabind::iterator it(organelles), end; it != end; ++it, ++i) {
         const luabind::object& data = *it;
 
