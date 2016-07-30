@@ -179,7 +179,7 @@ function microbeSpawnFunctionGeneric(pos, speciesName, aiControlled, individualN
             Vector3(0, 0, 0)  -- Angular velocity
         )
     end
-    return microbe
+    return microbe.entity
 end
 
 local function setSpawnablePhysics(entity, pos, mesh, scale, collisionShape)
@@ -286,7 +286,7 @@ local function createSpawnSystem()
     end
 
     local spawnBacterium = function(pos)
-        return Bacterium.createBacterium("Default_Bacterium", pos)
+        return Bacterium.createBacterium("Default_Bacterium", pos).entity
     end
 
     --Spawn one emitter on average once in every square of sidelength 10

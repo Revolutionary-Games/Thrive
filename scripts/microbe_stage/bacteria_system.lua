@@ -5,19 +5,19 @@
 class 'BacteriaComponent' (Component)
 
 function BacteriaComponent:__init(speciesName)
-	Component.__init(self)
-	self.speciesName = speciesName
+    Component.__init(self)
+    self.speciesName = speciesName
 end
 
 function BacteriaComponent:load(storage)
-	Component.load(self, storage)
-	self.speciesName = storage:get("speciesName", "Default_Bacterium")
+    Component.load(self, storage)
+    self.speciesName = storage:get("speciesName", "Default_Bacterium")
 end
 
 function BacteriaComponent:storage()
-	storage = Component.storage(self)
-	storage:set("speciesName", self.speciesName)
-	return storage
+    storage = Component.storage(self)
+    storage:set("speciesName", self.speciesName)
+    return storage
 end
 
 REGISTER_COMPONENT('BacteriaComponent', BacteriaComponent)
@@ -27,22 +27,22 @@ REGISTER_COMPONENT('BacteriaComponent', BacteriaComponent)
 -- 
 
 function defaultBacteriumSpecies()
-	local speciesEntity = Entity("Default_Bacterium")
-	local processorComponent = ProcessorComponent()
-	speciesEntity:addComponent(processorComponent)
+    local speciesEntity = Entity("Default_Bacterium")
+    local processorComponent = ProcessorComponent()
+    speciesEntity:addComponent(processorComponent)
 
-	oxygen = CompoundRegistry.getCompoundId("oxygen")
-	glucose = CompoundRegistry.getCompoundId("glucose")
-	co2 = CompoundRegistry.getCompoundId("co2")
+    oxygen = CompoundRegistry.getCompoundId("oxygen")
+    glucose = CompoundRegistry.getCompoundId("glucose")
+    co2 = CompoundRegistry.getCompoundId("co2")
 
-	-- purge thresholds are lower than low thresholds so the bacteria will release what they make
-	processorComponent:setThreshold(oxygen, 15, 60, 10)
-	processorComponent:setThreshold(glucose, 15, 60, 10)
-	-- force the bacteria to reduce co2 levels, without purging
-	processorComponent:setThreshold(co2, 0, 0, 600)
+    -- purge thresholds are lower than low thresholds so the bacteria will release what they make
+    processorComponent:setThreshold(oxygen, 15, 60, 10)
+    processorComponent:setThreshold(glucose, 15, 60, 10)
+    -- force the bacteria to reduce co2 levels, without purging
+    processorComponent:setThreshold(co2, 0, 0, 600)
 
-	photo = BioProcessRegistry.getId("Photosynthesis")
-	processorComponent:setCapacity(photo, 1)
+    photo = BioProcessRegistry.getId("Photosynthesis")
+    processorComponent:setCapacity(photo, 1)
 end
 
 -- 
@@ -52,12 +52,11 @@ end
 class 'Bacterium'
 
 function Bacterium.createBacterium(speciesName, pos)
-	local entity = Entity()
-	local bacteriaComponent = BacteriaComponent(speciesName)
-	entity:addComponent(bacteriaComponent)
+    local entity = Entity()
+    local bacteriaComponent = BacteriaComponent(speciesName)
 
-	local rigidBody = RigidBodyComponent()
-	rigidBody.properties.friction = 0.2
+    local rigidBody = RigidBodyComponent()
+    rigidBody.properties.friction = 0.2
     rigidBody.properties.linearDamping = 0.8
 
     rigidBody.properties.shape = SphereShape(HEX_SIZE)
@@ -72,7 +71,10 @@ function Bacterium.createBacterium(speciesName, pos)
     -- Scene node
     local sceneNode = OgreSceneNodeComponent()
     sceneNode.meshName = "mitochondrion.mesh"
+    sceneNode.visible = true
     sceneNode.transform.scale = Vector3(1, 1, 1)
+    sceneNode.transform.position = pos
+    sceneNode.transform:touch()
     
     compoundBag = CompoundBagComponent()
 
@@ -83,18 +85,18 @@ function Bacterium.createBacterium(speciesName, pos)
     reactionHandler:addCollisionGroup("bacteria")
 
     local components = {
-    	compoundBag,
-    	bacteriaComponent,
-    	rigidBody,
-    	sceneNode,
-    	reactionHandler,
-	}
+        compoundBag,
+        bacteriaComponent,
+        rigidBody,
+        sceneNode,
+        reactionHandler,
+    }
 
-	for _, component in ipairs(components) do
-		entity:addComponent(component)
-	end
-	print("about to init bacterium")
-	return Bacterium(entity)
+    for _, component in ipairs(components) do
+        entity:addComponent(component)
+    end
+    print("about to init bacterium")
+    return Bacterium(entity)
 end
 
 Bacterium.COMPONENTS = {
@@ -106,24 +108,23 @@ Bacterium.COMPONENTS = {
 }
 
 function Bacterium:__init(entity)
-	self.entity = entity
-	print ("init bacterium")
-	for key, typeId in pairs(Bacterium.COMPONENTS) do
-		print(key)
+    print("quag")
+    self.entity = entity
+    print ("init bacterium")
+    for key, typeId in pairs(Bacterium.COMPONENTS) do
+        print(key)
         local component = entity:getComponent(typeId)
-        print ("success 1")
         assert(component ~= nil, "Can't create bacterium from this entity, it's missing " .. key)
         self[key] = entity:getComponent(typeId)
     end
-    print("gwak")
 end
 
 function Bacterium:update(milliseconds)
-	self:purgeCompounds()
+    self:purgeCompounds()
 end
 
 function Bacterium:purgeCompounds()
-	for compoundId in CompoundRegistry.getCompoundList() do
+    for compoundId in CompoundRegistry.getCompoundList() do
         local amount = self.compoundBag:excessAmount(compoundId) * 0.5
         if amount > 0 then amount = self:takeCompound(compoundId, amount) end
         if amount > 0 then self:ejectCompound(compoundId, amount) end
