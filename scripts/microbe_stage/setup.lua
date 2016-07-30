@@ -285,6 +285,10 @@ local function createSpawnSystem()
         createCompoundCloud("ammonia", pos.x, pos.y, 75000)
     end
 
+    local spawnBacterium = function(pos)
+        return Bacterium.createBacterium("Default_Bacterium", pos)
+    end
+
     --Spawn one emitter on average once in every square of sidelength 10
     -- (square dekaunit?)
 	-- Spawn radius should depend on view rectangle
@@ -300,6 +304,8 @@ local function createSpawnSystem()
     spawnSystem:addSpawnType(spawnCO2Cloud, 1/5000, 50)
     spawnSystem:addSpawnType(spawnAmmoniaCloud, 1/5000, 50)
     spawnSystem:addSpawnType(spawnOxygenCloud, 1/5000, 50)
+
+    spawnSystem:addSpawnType(spawnBacterium, 1/2000, 50)
 
     for name, species in pairs(starter_microbes) do
         spawnSystem:addSpawnType(
@@ -426,6 +432,7 @@ local function createMicrobeStage(name)
             CompoundMovementSystem(),
             CompoundAbsorberSystem(),
             ProcessSystem(),
+            BacteriaSystem(),
             --PopulationSystem(),
             PatchSystem(),
             SpeciesSystem(),
@@ -460,6 +467,7 @@ local function createMicrobeStage(name)
             setupCompoundClouds()
             setupEmitter()
             setupSpecies()
+            defaultBacteriumSpecies()
             setupPlayer()
             setupSound()
         end,
