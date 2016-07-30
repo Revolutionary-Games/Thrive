@@ -27,7 +27,7 @@ to get your development environment set up.
 
 ### Script Authors
 If you only want to modify the Lua scripts, you can obtain a 
-working copy of the game from official releases here: http://revolutionarygamesstudio.com/releases/
+working copy of the game from official releases here: http://thrivegame.forum-free.ca/t1276-thrive-releases#29017
 alternatively you can request a newer version from developers or compile the project yourself.
 
 Be sure to have a look at the [styleguide][styleguide],
@@ -63,7 +63,7 @@ both for guidelines on code formatting and git usage.
 
 ### Modellers, texture and GUI artists, and Sound Engineers
 To work on the art assets you will want a working copy of the game.
-You can find official releases here: http://revolutionarygamesstudio.com/releases/
+You can find official releases here: http://thrivegame.forum-free.ca/t1276-thrive-releases#29017
 alternatively you can request a newer version from developers, compile the project yourself,
 or you can download from our (currently not updating and temporary) build server at ftp://nimbal.net/jenkins.
  

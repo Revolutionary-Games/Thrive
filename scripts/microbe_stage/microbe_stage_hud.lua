@@ -24,14 +24,14 @@ function HudSystem:activate()
         global_if_already_displayed = true
     end
     self.helpOpen = true
-    self.menuOpen = true
+    self.menuOpen = false
     self:updateLoadButton();
 end
 
 function HudSystem:init(gameState)
     System.init(self, "MicrobeStageHudSystem", gameState)
     self.rootGUIWindow =  gameState:rootGUIWindow()
-    self.compoundListBox = self.rootGUIWindow:getChild("CompoundsOpen")
+    self.compoundListBox = self.rootGUIWindow:getChild("CompoundsOpen"):getChild("CompoundsLabel")
     self.hitpointsBar = self.rootGUIWindow:getChild("HealthPanel"):getChild("LifeBar")
     self.hitpointsCountLabel = self.hitpointsBar:getChild("NumberLabel")
     self.nameLabel = self.rootGUIWindow:getChild("SpeciesNamePanel"):getChild("SpeciesNameLabel")
@@ -40,21 +40,19 @@ function HudSystem:init(gameState)
     local loadButton = self.rootGUIWindow:getChild("LoadGameButton")	
     --local collapseButton = self.rootGUIWindow:getChild() collapseButtonClicked
     local helpButton = self.rootGUIWindow:getChild("HelpButton")
-    local helpPanel = self.rootGUIWindow:getChild("HelpPanel")
     self.editorButton = self.rootGUIWindow:getChild("EditorButton")
     --local returnButton = self.rootGUIWindow:getChild("MenuButton")
     local compoundButton = self.rootGUIWindow:getChild("CompoundsClosed")
-    --local compoundPanel = self.rootGUIWindow:getChild("CompoundsOpen")
+    local compoundPanel = self.rootGUIWindow:getChild("CompoundsOpen")
     local quitButton = self.rootGUIWindow:getChild("QuitButton")
     saveButton:registerEventHandler("Clicked", function() self:saveButtonClicked() end)
     loadButton:registerEventHandler("Clicked", function() self:loadButtonClicked() end)
     menuButton:registerEventHandler("Clicked", function() self:menuButtonClicked() end)
     helpButton:registerEventHandler("Clicked", function() self:helpButtonClicked() end)
-    helpPanel:registerEventHandler("Clicked", function() self:helpButtonClicked() end)
     self.editorButton:registerEventHandler("Clicked", function() self:editorButtonClicked() end)
     --returnButton:registerEventHandler("Clicked", returnButtonClicked)
     compoundButton:registerEventHandler("Clicked", function() self:openCompoundPanel() end)
-    --compoundPanel:registerEventHandler("Clicked", function() self:closeCompoundPanel() end)
+    compoundPanel:registerEventHandler("Clicked", function() self:closeCompoundPanel() end)
     quitButton:registerEventHandler("Clicked", quitButtonClicked)
     self.rootGUIWindow:getChild("MainMenuButton"):registerEventHandler("Clicked", menuMainMenuClicked) -- in microbe_editor_hud.lua
     self:updateLoadButton();
@@ -121,10 +119,6 @@ function HudSystem:update(renderTime)
     
     if Engine.mouse:scrollChange()/10 ~= 0 then
         self.scrollChange = self.scrollChange + Engine.mouse:scrollChange()/10
-    elseif keyCombo(kmp.plus) or keyCombo(kmp.add) then
-        self.scrollChange = self.scrollChange - 5
-    elseif keyCombo(kmp.minus) or keyCombo(kmp.subtract) then
-        self.scrollChange = self.scrollChange + 5
     end
     
     local newZVal = offset.z

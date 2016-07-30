@@ -150,12 +150,3 @@ function memoize(fn)
     end
     return foo
 end
-
-function print_r (t, indent) -- alt version, abuse to http://richard.warburton.it
-  local indent=indent or ''
-  for key,value in pairs(t) do
-    io.write(indent,'[',tostring(key),']')
-    if type(value)=="table" then io.write(':\n') print_r(value,indent..'\t')
-    else io.write(' = ',tostring(value),'\n') end
-  end
-end

@@ -66,8 +66,7 @@ function NucleusOrganelle:update(microbe, logicTime)
     if self.flashDuration ~= nil and self.sceneNode.entity ~= nil then
         self.flashDuration = self.flashDuration - logicTime
         
-        local speciesColour = microbe:getSpeciesComponent().colour
-        local colorSuffix =  "" .. math.floor(speciesColour.x * 256) .. math.floor(speciesColour.y * 256) .. math.floor(speciesColour.z * 256)
+        local colorSuffix =  "" .. math.floor(self.colour.r * 256) .. math.floor(self.colour.g * 256) .. math.floor(self.colour.b * 256)
 		
 		local entity = self.sceneNode.entity
         local golgiEntity = self.golgi.sceneNode.entity

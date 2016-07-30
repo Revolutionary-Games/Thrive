@@ -10,7 +10,6 @@
 #include "microbe_stage/compound_cloud_system.h"
 #include "microbe_stage/process_system.h"
 #include "microbe_stage/agent_cloud_system.h"
-#include "microbe_stage/species_component.h"
 
 luabind::scope
 thrive::MicrobeBindings::luaBindings() {
@@ -25,7 +24,6 @@ thrive::MicrobeBindings::luaBindings() {
         MembraneComponent::luaBindings(),
         CompoundCloudComponent::luaBindings(),
         AgentCloudComponent::luaBindings(),
-        SpeciesComponent::luaBindings(),
         // Systems
         CompoundMovementSystem::luaBindings(),
         CompoundAbsorberSystem::luaBindings(),

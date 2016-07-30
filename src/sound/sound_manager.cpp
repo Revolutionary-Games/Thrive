@@ -72,8 +72,6 @@ SoundManager::init(
     m_impl = std::move(std::unique_ptr<Implementation>(new Implementation()));
     // TODO: allow selecting a specific audio device
 
-    cAudio::getLogger()->setLogLevel(cAudio::ELL_ERROR);
-
     m_impl->m_audioManager = cAudio::createAudioManager(false);
 
     assert(m_impl->m_audioManager && "Failed to create audio manager");

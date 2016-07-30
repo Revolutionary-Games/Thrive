@@ -161,7 +161,7 @@ default_thresholds = {
     co2 = {low = 0, high = 0, vent = 0},
     ammonia = {low = 12, high = 30, vent = 70},
     aminoacids = {low = 12, high = 30, vent = 70},
-    oxytoxy = {low = 1, high = 5, vent = 5},
+    oxytoxy = {low = 0, high = 0, vent = 5},
     reproductase = {low = 5, high = 1000, vent = 1000},
 }
 

@@ -162,7 +162,7 @@ function MicrobeAISystem:update(renderTime, logicTime)
                 end
                 if attempts < 6 then
                     local vec = (aiComponent.prey.sceneNode.transform.position - microbe.sceneNode.transform.position)
-                    if vec:length() < 25 and microbe.microbe.speciesName == "Predator" then 
+                    if vec:length() < 14 and microbe.microbe.speciesName == "Predator" then 
                        microbe:emitAgent(CompoundRegistry.getCompoundId("oxytoxy"), 1)
                     elseif vec:length() < 17 and microbe.microbe.speciesName == "Gluttonous" and not microbe.microbe.engulfMode then
                         microbe:toggleEngulfMode()
