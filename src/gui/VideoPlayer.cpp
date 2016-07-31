@@ -546,7 +546,7 @@ public:
 
             if(ReadVideoData.empty()){
 
-                ReadVideoDataMutex.unlock();
+                lock.unlock();
 
                 // Decode a packet if none are in queue
                 if(!readOnePacket()){
@@ -556,7 +556,7 @@ public:
                     return;
                 }
 
-                ReadVideoDataMutex.lock();
+                lock.lock();
             }
 
             // Decode packets until a frame is done
