@@ -262,7 +262,7 @@ function Microbe:__init(entity, in_editor)
         self:_initialize()
         if in_editor == nil then
             self.compoundBag:setProcessor(Entity(self.microbe.speciesName):getComponent(ProcessorComponent.TYPE_ID))
-            self:getSpeciesComponent():template(self)
+            SpeciesSystem.template(self, self:getSpeciesComponent())
         end
     end
     self:_updateCompoundAbsorber()
@@ -440,14 +440,6 @@ function Microbe:getCompoundAmount(compoundId)
     return self.entity:getComponent(CompoundBagComponent.TYPE_ID):getCompoundAmount(compoundId)
 end
 
--- Sets the default compound priorities
---
--- @param compoundId
--- @param priority
--- function Microbe:setDefaultCompoundPriority(compoundId, priority)
-    -- self.microbe.defaultCompoundPriorities[compoundId] = priority
--- end
-
 -- Damages the microbe, killing it if its hitpoints drop low enough
 --
 -- @param amount
@@ -534,16 +526,18 @@ end
 --
 -- @param bandwidthLimited
 -- Determines if the storage operation is to be limited by the bandwidth of the microbe
+-- 
+-- @returns leftover
+-- The amount of compound not stored, due to bandwidth or being full
 function Microbe:storeCompound(compoundId, amount, bandwidthLimited)
-    local storedAmount = 0
+    local storedAmount = amount + 0
     if bandwidthLimited then
         storedAmount = self.microbe:getBandwidth(amount, compoundId)
-    else
-        storedAmount = amount
     end
     storedAmount = math.min(storedAmount , self.microbe.capacity - self.microbe.stored)
     self.entity:getComponent(CompoundBagComponent.TYPE_ID):giveCompound(compoundId, storedAmount)
     self.microbe.stored = self.microbe.stored + storedAmount
+    return amount - storedAmount
 end
 
 
@@ -615,10 +609,11 @@ function Microbe:kill()
         end
     end    
     for compoundId, specialStorageOrg in pairs(self.microbe.specialStorageOrganelles) do
-        local _amount = specialStorageOrg.storedAmount
+        local _amount = self:getCompoundAmount(compoundId)
         while _amount > 0 do
-            ejectedAmount = specialStorageOrg:takeCompound(compoundId, 3) -- Eject up to 3 units per particle
-            self:ejectCompound(compoundId, ejectedAmount, 0, 359)
+            ejectedAmount = self:takeCompound(compoundId, 3) -- Eject up to 3 units per particle
+            local direction = Vector3(math.random(), math.random(), math.random())
+            createAgentCloud(compoundId, self.sceneNode.transform.position.x, self.sceneNode.transform.position.y, direction, amountToEject)
             _amount = _amount - ejectedAmount
         end
     end    
@@ -712,11 +707,22 @@ function Microbe:update(logicTime)
                 self:storeCompound(compound, amount, true)
             end
         end
-        --local compoundAmount = self.membraneComponent:getAbsorbedCompounds()
-        --self:storeCompound(CompoundRegistry.getCompoundId("glucose"), compoundAmount/1000, false)
-        -- Distribute compounds to Process Organelles
-        for _, processOrg in pairs(self.microbe.processOrganelles) do
-            -- processOrg:update(self, logicTime)
+        -- Flash membrane if something happens.
+        if self.flashDuration ~= nil and self.flashColour ~= nil then
+            self.flashDuration = self.flashDuration - logicTime
+            
+            local entity = self.membraneComponent.entity
+            -- How frequent it flashes, would be nice to update the flash function to have this variable
+            if math.fmod(self.flashDuration,600) < 300 then
+                entity:tintColour("Membrane", self.flashColour)
+            else
+                entity:setMaterial(self.sceneNode.meshName)
+            end
+            
+            if self.flashDuration <= 0 then
+                self.flashDuration = nil				
+                entity:setMaterial(self.sceneNode.meshName)
+            end
         end
         
         self.microbe.compoundCollectionTimer = self.microbe.compoundCollectionTimer + logicTime
@@ -750,8 +756,8 @@ function Microbe:update(logicTime)
             -- Flash the membrane blue.
             self:flashMembraneColour(3000, ColourValue(0.2,0.5,1.0,0.5))
         end
-        if self.microbe.isBeingEngulfed then
-            self:damage(logicTime * 0.00005  * self.microbe.maxHitpoints) -- Engulfment damages 5% per second
+        if self.microbe.isBeingEngulfed and self.microbe.wasBeingEngulfed then
+            self:damage(logicTime * 0.00025  * self.microbe.maxHitpoints) -- Engulfment damages 25% per second
         -- Else If we were but are no longer, being engulfed
         elseif self.microbe.wasBeingEngulfed then
             self:removeEngulfedEffect()
@@ -759,26 +765,9 @@ function Microbe:update(logicTime)
         -- Used to detect when engulfing stops
         self.microbe.isBeingEngulfed = false;
         self.compoundAbsorber:setAbsorbtionCapacity(math.min(self.microbe.capacity - self.microbe.stored + 10, self.microbe.remainingBandwidth))
-        
-        -- Flash membrane if something happens.
-        if self.flashDuration ~= nil then
-            self.flashDuration = self.flashDuration - logicTime
-            
-            local entity = self.membraneComponent.entity
-            -- How frequent it flashes, would be nice to update the flash function to have this variable
-            if math.fmod(self.flashDuration,600) < 300 then
-                entity:tintColour("Membrane", self.flashColour)
-            else
-                entity:setMaterial(self.sceneNode.meshName)
-            end
-            
-            if self.flashDuration <= 0 then
-                self.flashDuration = nil				
-                entity:setMaterial(self.sceneNode.meshName)
-            end
-        end
     else
         self.microbe.deathTimer = self.microbe.deathTimer - logicTime
+        self.flashDuration = 0
         if self.microbe.deathTimer <= 0 then
             if self.microbe.isPlayerMicrobe  == true then
                 self:respawn()
@@ -846,7 +835,24 @@ function Microbe:respawn()
     )
     local sceneNode = self.entity:getComponent(OgreSceneNodeComponent.TYPE_ID)
     sceneNode.visible = true
+    sceneNode.transform.position = Vector3(0, 0, 0)
+    sceneNode.transform:touch()
+    
     self:storeCompound(CompoundRegistry.getCompoundId("atp"), 50, false)
+    
+    local rand = math.random(0,3)
+    local backgroundEntity = Entity("background")
+    local skyplane = backgroundEntity:getComponent(SkyPlaneComponent.TYPE_ID)
+    if rand == 0 then
+        skyplane.properties.materialName = "Background"
+    elseif rand == 1 then
+        skyplane.properties.materialName = "Background_Vent"
+    elseif rand == 2 then
+        skyplane.properties.materialName = "Background_Abyss"
+    else 
+        skyplane.properties.materialName = "Background_Shallow"
+    end
+    skyplane.properties:touch()
 end
 
 -- Private function for initializing a microbe's components
@@ -992,7 +998,7 @@ function checkEngulfment(microbe1Comp, microbe2Comp, body, entity1, entity2)
     
     if microbe1Comp.engulfMode and 
        microbe1Comp.maxHitpoints > ENGULF_HP_RATIO_REQ*microbe2Comp.maxHitpoints and
-       microbe2Comp.dead == false then
+       microbe1Comp.dead == false and microbe2Comp.dead == false then
 
         if not microbe1Comp.isCurrentlyEngulfing then
             --We have just started engulfing

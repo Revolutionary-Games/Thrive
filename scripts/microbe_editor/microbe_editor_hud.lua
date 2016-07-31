@@ -94,6 +94,7 @@ function MicrobeEditorHudSystem:init(gameState)
 
     self.helpPanel = root:getChild("HelpPanel")
     root:getChild("HelpButton"):registerEventHandler("Clicked", function() self:helpButtonClicked() end)
+    self.helpPanel:registerEventHandler("Clicked", function() self:helpButtonClicked() end)
     
     -- Set species name and cut it off if it is too long.
     local name = self.nameLabel:getText()
