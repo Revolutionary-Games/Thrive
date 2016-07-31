@@ -53,7 +53,7 @@ include(add_to_project)
 include(utils)
 
 # Search path for dynamic libraries at runtime. Only relevant for Linux.
-set(CMAKE_INSTALL_RPATH ".")
+set(CMAKE_INSTALL_RPATH ".:$ORIGIN")
 
 # Makes sure that the RPATH is always the install path. Required for linux
 # redistributable

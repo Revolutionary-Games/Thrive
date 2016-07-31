@@ -3,6 +3,7 @@
 version=@THRIVE_VERSION@
 versionedname=Thrive-$version
 stripfiles=1
+dopackage=1
 
 target=$versionedname
 
@@ -137,7 +138,7 @@ CheckDependency() {
         ;&
         *vpx*)
         ;&
-        *x26*)
+        *x2*)
         ;&
         *libstdc++*)
         ;&
@@ -174,6 +175,12 @@ CheckDependency() {
         *xvid*)
         ;&
         *mp3*)
+        ;&
+        *bluray*)
+        ;&
+        *OpenCL*)
+        ;&
+        *webp*)
         ;&
         *schroedinger*)
         ;&
@@ -222,9 +229,13 @@ cp resources.cfg $target/bin
 cp plugins.cfg $target/bin
 
 # Launch links
-echo "#!/bin/sh
+launchFile='#!/bin/sh
 cd bin
-./Thrive" > $target/launch.sh
+LD_LIBRARY_PATH="$(pwd)"
+export LD_LIBRARY_PATH
+./Thrive'
+
+echo "$launchFile" > $target/launch.sh
 chmod +x $target/launch.sh
 
 # Info files
@@ -251,6 +262,14 @@ rm -f "$target/bin/cAudioEngineLog.html"
 rm -f "$target/bin/CEGUI.log"
 rm -f "$target/bin/default"
 rm -f "$target/bin/ogre.cfg"
+
+if [ $dopackage -eq 0 ]; then
+    
+    echo "Skipping zip";
+    rm -f "Thrive.$version.7z"
+    
+    exit 0;
+fi
 
 echo "Zipping it up"
 
