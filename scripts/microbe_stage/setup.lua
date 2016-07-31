@@ -300,12 +300,12 @@ local function createSpawnSystem()
     spawnSystem:addSpawnType(toxinOrganelleSpawnFunction, 1/17000, 50)
     spawnSystem:addSpawnType(ChloroplastOrganelleSpawnFunction, 1/12000, 50)
     
-    spawnSystem:addSpawnType(spawnGlucoseCloud, 1/5000, 50)
+    -- spawnSystem:addSpawnType(spawnGlucoseCloud, 1/5000, 50)
     spawnSystem:addSpawnType(spawnCO2Cloud, 1/5000, 50)
-    spawnSystem:addSpawnType(spawnAmmoniaCloud, 1/5000, 50)
-    spawnSystem:addSpawnType(spawnOxygenCloud, 1/5000, 50)
+    -- spawnSystem:addSpawnType(spawnAmmoniaCloud, 1/5000, 50)
+    -- spawnSystem:addSpawnType(spawnOxygenCloud, 1/5000, 50)
 
-    spawnSystem:addSpawnType(spawnBacterium, 1/2000, 50)
+    spawnSystem:addSpawnType(spawnBacterium, 1/500, 50)
 
     for name, species in pairs(starter_microbes) do
         spawnSystem:addSpawnType(

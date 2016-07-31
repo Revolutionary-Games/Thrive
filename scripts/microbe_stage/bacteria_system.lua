@@ -36,13 +36,13 @@ function defaultBacteriumSpecies()
     co2 = CompoundRegistry.getCompoundId("co2")
 
     -- purge thresholds are lower than low thresholds so the bacteria will release what they make
-    processorComponent:setThreshold(oxygen, 15, 60, 10)
-    processorComponent:setThreshold(glucose, 15, 60, 10)
+    processorComponent:setThreshold(oxygen, 25, 60, 6)
+    processorComponent:setThreshold(glucose, 25, 60, 1)
     -- force the bacteria to reduce co2 levels, without purging
     processorComponent:setThreshold(co2, 0, 0, 600)
 
     photo = BioProcessRegistry.getId("Photosynthesis")
-    processorComponent:setCapacity(photo, 1)
+    processorComponent:setCapacity(photo, 0.1)
 end
 
 -- 
@@ -50,6 +50,8 @@ end
 -- 
 
 class 'Bacterium'
+
+Bacterium.SIMULATION_INTERVAL = 500
 
 function Bacterium.createBacterium(speciesName, pos)
     local entity = Entity()
@@ -77,7 +79,7 @@ function Bacterium.createBacterium(speciesName, pos)
     
     compoundBag = CompoundBagComponent()
 
-    compoundBag:giveCompound(CompoundRegistry.getCompoundId("co2"), 30)
+    compoundBag:giveCompound(CompoundRegistry.getCompoundId("co2"), 24)
     compoundBag:setProcessor(Entity(speciesName):getComponent(ProcessorComponent.TYPE_ID))
 
     local reactionHandler = CollisionComponent()
@@ -107,25 +109,31 @@ Bacterium.COMPONENTS = {
 }
 
 function Bacterium:__init(entity)
-    print("quag")
     self.entity = entity
-    print ("init bacterium")
     for key, typeId in pairs(Bacterium.COMPONENTS) do
         print(key)
         local component = entity:getComponent(typeId)
         assert(component ~= nil, "Can't create bacterium from this entity, it's missing " .. key)
         self[key] = entity:getComponent(typeId)
     end
+
+    self.timer = 0
 end
 
 function Bacterium:update(milliseconds)
-    self:purgeCompounds()
+    self.timer = self.timer + milliseconds
+    while self.timer > Bacterium.SIMULATION_INTERVAL do
+        self.timer = self.timer - Bacterium.SIMULATION_INTERVAL
+        self:purgeCompounds()
+    end
 end
+
+Bacterium.EXCESS_LIMIT = 2
 
 function Bacterium:purgeCompounds()
     for compoundId in CompoundRegistry.getCompoundList() do
-        local amount = self.compoundBag:excessAmount(compoundId) * 0.5
-        if amount > 0 then amount = self:takeCompound(compoundId, amount) end
+        local amount = self.compoundBag:excessAmount(compoundId)
+        if amount > Bacterium.EXCESS_LIMIT then amount = self:takeCompound(compoundId, amount) end
         if amount > 0 then self:ejectCompound(compoundId, amount) end
     end
 end
