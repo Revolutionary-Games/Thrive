@@ -164,7 +164,7 @@ class 'Microbe'
 -- @returns microbe
 -- An object of type Microbe
 
-function Microbe.createMicrobeEntity(name, aiControlled, speciesName)
+function Microbe.createMicrobeEntity(name, aiControlled, speciesName, in_editor)
     local entity
     if name then
         entity = Entity(name)
