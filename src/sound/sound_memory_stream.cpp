@@ -80,8 +80,8 @@ cAudio::IDataSource*
 
     if(iter == m_OpenStream.end()){
 
-        std::cerr << "CreateDataSource trying to open stream for non-existant video"
-            << std::endl;
+        // This occurs during normal use, as any sound created will try to open
+        // a video audio stream, so just silently fail and everything will be fine
         return nullptr;
     }
 
