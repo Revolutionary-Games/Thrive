@@ -38,7 +38,6 @@ local function setupSound()
     guiSoundEntity:addComponent(soundSource)
     -- Sound
     soundSource:addSound("button-hover-click", "soundeffects/gui/button-hover-click.ogg")
-    soundSource:addSound("intro", "intro-video.ogg") -- Really we should get the video player to decode audio but this is a temp fix
 end
 
 local function createMainMenu(name)

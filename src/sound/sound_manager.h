@@ -2,6 +2,11 @@
 #include <memory>
 #include <string>
 
+namespace cAudio {
+
+class IAudioSource;
+}
+
 namespace Ogre {
 
     class SceneManager;
@@ -11,8 +16,12 @@ namespace thrive{
 
 class SoundListener;
 class SoundEmitter;
+
+class VideoPlayerImpl;
+class VideoPlayer;
     
 class SoundManager final{
+    friend VideoPlayerImpl;
 public:
 
     SoundManager();
@@ -60,6 +69,23 @@ public:
        @brief Returns a pointer to the global instance
     */
     static SoundManager* getSingleton();
+
+protected:
+
+    void
+        destroyAudioSource(
+            cAudio::IAudioSource* source);
+
+    cAudio::IAudioSource*
+        createVideoSound(
+            VideoPlayer* player,
+            const std::string &nameIdentifier,
+        const std::string &fileName
+        );
+
+    void
+        cancelVideoSoundCreation(
+            VideoPlayer* player);
 
 private:
 

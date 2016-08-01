@@ -1,11 +1,13 @@
 #include "sound_listener.h"
 #include "sound_manager.h"
+#include "sound_memory_stream.h"
 
 #include "caudio_include.h"
 
 #include <assert.h>
 #include <iostream>
 #include "sound_emitter.h"
+#include "util/make_unique.h"
 
 #include <chrono>
 #include <thread>
@@ -36,6 +38,9 @@ struct SoundManager::Implementation{
     bool m_initialized;
     cAudio::IAudioManager* m_audioManager;
     std::unique_ptr<SoundListener> m_listener;
+
+    std::unique_ptr<SoundMemoryStreamFactory> m_SoundMemoryStreamFactory;
+    std::unique_ptr<MemoryDataSourceFactory> m_MemoryDataSourceFactory;
 };
 
 
@@ -132,13 +137,35 @@ SoundManager::init(
     if(!succeeded)
         assert(false && "Failed to initialize openAL (cAudio) after 10 attempts");
 
-    m_impl->m_listener = std::move(std::unique_ptr<SoundListener>(new SoundListener(m_impl->m_audioManager->getListener())));
+    m_impl->m_listener = make_unique<SoundListener>(
+        m_impl->m_audioManager->getListener());
+
+    // Setup audio for video playback
+    m_impl->m_SoundMemoryStreamFactory = make_unique<SoundMemoryStreamFactory>();
+    m_impl->m_MemoryDataSourceFactory = make_unique<MemoryDataSourceFactory>();
+
+    if(!m_impl->m_audioManager->registerAudioDecoder(m_impl->m_SoundMemoryStreamFactory.get(),
+            "video_sound"))
+    {
+        std::cerr << "Failed to register audio decoder for video" << std::endl;
+        abort();
+    }
+
+    if(!m_impl->m_audioManager->registerDataSource(m_impl->m_MemoryDataSourceFactory.get(),
+            "Thrive FFMPEG Video Sound", 1))
+    {
+        std::cerr << "Failed to register audio source for video" << std::endl;
+        abort();
+    }
+
+
 
     m_impl->m_initialized = true;
 
 
-
     assert(m_impl->m_initialized && "Failed to initalize SoundManager");
+
+
 }
 
 void
@@ -173,5 +200,33 @@ SoundManager::createSound(
     soundObj->loop(loop);
 
     return new SoundEmitter(soundObj);
+}
+
+
+cAudio::IAudioSource*
+    SoundManager::createVideoSound(
+        VideoPlayer* player,
+        const std::string &nameIdentifier,
+        const std::string &fileName
+    )
+{
+    m_impl->m_MemoryDataSourceFactory->reserveStream(fileName, player);
+
+    return m_impl->m_audioManager->create(nameIdentifier.c_str(), fileName.c_str(),
+        true);
+}
+
+void
+    SoundManager::cancelVideoSoundCreation(
+        VideoPlayer* player)
+{
+    m_impl->m_MemoryDataSourceFactory->unReserveStream(player);
+}
+
+void
+    SoundManager::destroyAudioSource(
+        cAudio::IAudioSource* source)
+{
+    m_impl->m_audioManager->release(source);
 }
 
