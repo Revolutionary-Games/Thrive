@@ -32,6 +32,8 @@
 #include "ogre/scene_node_system.h"
 #include "ogre/sky_system.h"
 
+// FFMPEG Initialization
+#include "gui/VideoPlayer.h"
 
 // Scripting
 #include <luabind/iterator_policy.hpp>
@@ -299,7 +301,8 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
         // initialise all resource groups
         Ogre::ResourceGroupManager::getSingleton().initialiseAllResourceGroups();
 
-
+        // Load video player
+        VideoPlayer::loadFFMPEG();
     }
 
     void

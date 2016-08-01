@@ -19,9 +19,7 @@
 #include <CEGUI/Image.h>
 #include <CEGUI/RendererModules/Ogre/Texture.h>
 
-#include "sound/ffmpeg_audio_factory.h"
-
-#include "ogre-ffmpeg/videoplayer.hpp"
+#include "VideoPlayer.h"
 
 using namespace thrive;
 
@@ -34,9 +32,12 @@ CEGUIVideoPlayer::CEGUIVideoPlayer(
     Ogre::MaterialPtr videoMaterial = Ogre::MaterialManager::getSingleton().create(
                 "VideoMaterial"+name, Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
     m_videoMaterialPass = videoMaterial->getTechnique( 0 )->getPass( 0 );
-    m_videoPlayer = std::unique_ptr<Video::VideoPlayer>(new Video::VideoPlayer());
-    //m_videoPlayer->setAudioFactory(new FFMPEGAudioFactory()); Don't know what I need to do to make audio work
-    m_videoImage = static_cast<CEGUI::BitmapImage*>(&CEGUI::ImageManager::getSingleton().create("BitmapImage", "ThriveGeneric/VideoImage"));
+    m_videoPlayer = std::unique_ptr<VideoPlayer>(new VideoPlayer());
+
+    m_videoImage = static_cast<CEGUI::BitmapImage*>(
+        &CEGUI::ImageManager::getSingleton().create(
+            "BitmapImage", "ThriveGeneric/VideoImage"));
+    
     m_window->setWidth(CEGUI::UDim(0,width));
     m_window->setHeight(CEGUI::UDim(0,height));
 }

@@ -10,6 +10,8 @@ add_sources(
     "${CMAKE_CURRENT_SOURCE_DIR}/script_wrappers.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/CEGUIVideoPlayer.h"
     "${CMAKE_CURRENT_SOURCE_DIR}/CEGUIVideoPlayer.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/VideoPlayer.h"
+    "${CMAKE_CURRENT_SOURCE_DIR}/VideoPlayer.cpp"
 )
 
 
