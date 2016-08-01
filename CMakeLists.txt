@@ -228,7 +228,7 @@ include_directories(
     "${CMAKE_CURRENT_SOURCE_DIR}/src"
 )
 
-# Compile using c++11 and using sse2
+# Compile using c++14 and using sse2
 #no-unused-variable is necessary to supress werror while compiling cAudio
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++1y -msse2 -Wno-unused-function")
 
