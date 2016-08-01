@@ -25,7 +25,6 @@ function MainMenuHudSystem:init(gameState)
     
 end
 
-__soundTimer = 0
 function MainMenuHudSystem:update(renderTime, logicTime)
     if keyCombo(kmp.screenshot) then
         Engine:screenShot("screenshot.png")
@@ -50,13 +49,6 @@ function MainMenuHudSystem:update(renderTime, logicTime)
             if not self.skippedVideo and self.videoPlayer:getCurrentTime() >= self.videoPlayer:getDuration() then
                 self.videoPlayer:hide()
                 Entity("main_menu_ambience"):getComponent(SoundSourceComponent.TYPE_ID).autoLoop = true
-            end
-        else
-            __soundTimer = __soundTimer + 1
-            if __soundTimer == 2 then 
-                -- cAudio gives an error if we play this first frame or in active or init
-                -- The manual playing of sound here is a temporary fix until we get the video player to play audio
-                Entity("gui_sounds"):getComponent(SoundSourceComponent.TYPE_ID):playSound("intro")
             end
         end
     end

@@ -12,8 +12,8 @@ add_sources(
     "${CMAKE_CURRENT_SOURCE_DIR}/sound_listener.h"
     "${CMAKE_CURRENT_SOURCE_DIR}/sound_manager.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/sound_manager.h"
-    "${CMAKE_CURRENT_SOURCE_DIR}/ffmpeg_audio_factory.cpp"
-    "${CMAKE_CURRENT_SOURCE_DIR}/ffmpeg_audio_factory.h"
+    "${CMAKE_CURRENT_SOURCE_DIR}/sound_memory_stream.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/sound_memory_stream.h"
 )
 
 add_test_sources(
