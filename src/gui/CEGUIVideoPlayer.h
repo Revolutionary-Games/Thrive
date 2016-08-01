@@ -11,16 +11,14 @@ namespace luabind {
 class scope;
 }
 
-namespace Video {
-class VideoPlayer;
-}
-
 namespace Ogre {
     class BitmapImage;
     class Pass;
 }
 
 namespace thrive {
+
+class VideoPlayer;
 
 //Note, currently doesn't support multiple video players (crashes) but since this isn't needed atm it's left unfixed
 
@@ -122,7 +120,7 @@ public:
 
 private:
 
-    std::unique_ptr<Video::VideoPlayer> m_videoPlayer;
+    std::unique_ptr<VideoPlayer> m_videoPlayer;
     Ogre::Pass * m_videoMaterialPass = nullptr;
     CEGUI::BitmapImage* m_videoImage = nullptr;
     Ogre::TextureUnitState* m_tex = nullptr;

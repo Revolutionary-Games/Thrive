@@ -53,7 +53,7 @@ include(add_to_project)
 include(utils)
 
 # Search path for dynamic libraries at runtime. Only relevant for Linux.
-set(CMAKE_INSTALL_RPATH ".")
+set(CMAKE_INSTALL_RPATH ".:$ORIGIN")
 
 # Makes sure that the RPATH is always the install path. Required for linux
 # redistributable
@@ -210,8 +210,8 @@ include_directories("${cAudio_INCLUDE_DIRS}")
 # Ogre FFMPEG #
 ################
 find_package(FFMPEG)
-find_package(OgreFFMPEG)
-include_directories("${OgreFFMPEG_INCLUDE_DIR}")
+#find_package(OgreFFMPEG)
+#include_directories("${OgreFFMPEG_INCLUDE_DIR}")
 include_directories("${FFMPEG_INCLUDE_DIRS}")
 
 ######################
@@ -230,7 +230,7 @@ include_directories(
 
 # Compile using c++11 and using sse2
 #no-unused-variable is necessary to supress werror while compiling cAudio
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++0x -msse2 -Wno-unused-function")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++1y -msse2 -Wno-unused-function")
 
 
 find_package(Threads)
@@ -268,16 +268,9 @@ target_link_libraries(ThriveLib
     luabind
 )
 
-if(WIN32)
-    target_link_libraries(ThriveLib
-        ${SWRESAMPLE_LIBRARIES}
-    )
-else()
-    target_link_libraries(ThriveLib
-      ${AVRESAMPLE_LIBRARIES}
-      ${SWRESAMPLE_LIBRARIES}
-    )
-endif()
+target_link_libraries(ThriveLib
+  ${SWRESAMPLE_LIBRARIES}
+  )
 
 # Windows requires using Bullet DEBUG libraries to fix broken build
 # But Linux build breaks with those settings 
@@ -680,10 +673,10 @@ add_custom_target(zip
 if(UNIX)
 
   file(READ "thriveversion.ver" THRIVE_VERSION)
-  set(LINUX_LIBRARIES "${cAudio_LIBRARIES}" "${BULLET_LIBRARIES}" "${AVRESAMPLE_LIBRARIES}"
-    "${SWRESAMPLE_LIBRARIES}" "${OgreFFMPEG_LIBRARIES}" "${FFMPEG_LIBRARIES}" "${Boost_LIBRARIES}"
-    "${OGRE_LIBRARIES}" "${OIS_LIBRARIES}" "${CMAKE_THREAD_LIBS_INIT}" "${BULLET_LIBRARIES}"
-    "${CEGUI_LIBRARY}" "${TINYXML_LIBRARIES}" "${OpenAL_LIBRARIES}")
+  set(LINUX_LIBRARIES "${cAudio_LIBRARIES}" "${BULLET_LIBRARIES}"
+    "${SWRESAMPLE_LIBRARIES}" "${OgreFFMPEG_LIBRARIES}" "${FFMPEG_LIBRARIES}"
+    "${Boost_LIBRARIES}" "${OGRE_LIBRARIES}" "${OIS_LIBRARIES}" "${CMAKE_THREAD_LIBS_INIT}"
+    "${BULLET_LIBRARIES}" "${CEGUI_LIBRARY}" "${TINYXML_LIBRARIES}" "${OpenAL_LIBRARIES}")
   
   configure_file("${CMAKE_SOURCE_DIR}/cpack/CreatePackage.sh.in"
     "${CMAKE_CURRENT_BINARY_DIR}/CreatePackage.sh" @ONLY
