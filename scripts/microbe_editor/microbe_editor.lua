@@ -14,7 +14,7 @@ function MicrobeEditor:__init(hudSystem)
     self.nextMicrobeEntity = nil
     self.gridSceneNode = nil
     self.gridVisible = true
-    self.mutationPoints = 100
+    self.mutationPoints = 50
     self.placementFunctions = {["nucleus"] = MicrobeEditor.createNewMicrobe,
                                ["flagellum"] = MicrobeEditor.addOrganelle,
                                ["cytoplasm"] = MicrobeEditor.addOrganelle,
