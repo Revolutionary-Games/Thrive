@@ -212,17 +212,46 @@ function createCompoundCloud(compoundName, x, y, amount)
 end
 
 function createAgentCloud(compoundId, x, y, direction, amount)
-    local entity = Entity()
+    -- local entity = Entity()
+    -- local sceneNode = OgreSceneNodeComponent()
+    -- sceneNode.meshName = "oxytoxy.mesh"
+    -- sceneNode.transform.position = Vector3(x + direction.x/2, y + direction.y/2, 0)
+    -- sceneNode.transform:touch()
+    -- local agent = AgentCloudComponent()
+    -- agent:initialize(compoundId, 255, 0, 255)
+    -- agent.direction = direction*2
+    -- agent.potency = amount
+    -- entity:addComponent(sceneNode)
+    -- entity:addComponent(agent)
+    
+    
+    local agentEntity = Entity()
+
+    local reactionHandler = CollisionComponent()
+    reactionHandler:addCollisionGroup("agent")
+    agentEntity:addComponent(reactionHandler)
+        
+    local rigidBody = RigidBodyComponent()
+    rigidBody.properties.friction = 0.4
+    rigidBody.properties.linearDamping = 0.4
+    rigidBody.properties.shape = SphereShape(HEX_SIZE)
+    rigidBody:setDynamicProperties(
+        Vector3(x,y,0) + direction,
+        Quaternion(Radian(Degree(math.random()*360)), Vector3(0, 0, 1)),
+        direction * 3,
+        Vector3(0, 0, 0)
+    )
+    rigidBody.properties:touch()
+    agentEntity:addComponent(rigidBody)
+    
     local sceneNode = OgreSceneNodeComponent()
     sceneNode.meshName = "oxytoxy.mesh"
-    sceneNode.transform.position = Vector3(x + direction.x/2, y + direction.y/2, 0)
-    sceneNode.transform:touch()
-    local agent = AgentCloudComponent()
-    agent:initialize(compoundId, 255, 0, 255)
-    agent.direction = direction*2
-    agent.potency = amount
-    entity:addComponent(sceneNode)
-    entity:addComponent(agent)
+    agentEntity:addComponent(sceneNode)
+    
+    local timedLifeComponent = TimedLifeComponent()
+    timedLifeComponent.timeToLive = 4000
+    agentEntity:addComponent(timedLifeComponent)
+    
 end
 
 local function addEmitter2Entity(entity, compound)
@@ -448,7 +477,7 @@ local function createMicrobeStage(name)
             RenderSystem(),
             MembraneSystem(),
             CompoundCloudSystem(),
-            AgentCloudSystem(),
+            --AgentCloudSystem(),
             -- Other
             SoundSourceSystem(),
             PowerupSystem(),
