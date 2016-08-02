@@ -8,7 +8,7 @@ class 'MicrobeComponent' (Component)
 
 COMPOUND_PROCESS_DISTRIBUTION_INTERVAL = 100 -- quantity of physics time between each loop distributing compounds to organelles. TODO: Modify to reflect microbe size.
 BANDWIDTH_PER_ORGANELLE = 1.0 -- amount the microbes maxmimum bandwidth increases with per organelle added. This is a temporary replacement for microbe surface area
-BANDWIDTH_REFILL_DURATION = 800 -- The amount of time it takes for the microbe to regenerate an amount of bandwidth equal to maxBandwidth
+BANDWIDTH_REFILL_DURATION = 800 -- The of time it takes for the microbe to regenerate an amount of bandwidth equal to maxBandwidth
 STORAGE_EJECTION_THRESHHOLD = 0.8
 EXCESS_COMPOUND_COLLECTION_INTERVAL = 1000 -- The amount of time between each loop to maintaining a fill level below STORAGE_EJECTION_THRESHHOLD and eject useless compounds
 MICROBE_HITPOINTS_PER_ORGANELLE = 10
@@ -446,6 +446,9 @@ end
 --  amount of hitpoints to substract
 function Microbe:damage(amount, damageType)
     assert(amount >= 0, "Can't deal negative damage. Use Microbe:heal instead")
+    
+    --print("damaged by: " .. damageType)
+    
     if damageType ~= nil and damageType == "toxin" then
         self.soundSource:playSound("microbe-toxin-damage")
     end
@@ -458,6 +461,7 @@ function Microbe:damage(amount, damageType)
         self.microbe.hitpoints = 0
         self:kill()
     end
+    --print ("end damage")
 end
 
 -- Heals the microbe, restoring hitpoints, cannot exceed the microbes max hitpoints
@@ -511,8 +515,9 @@ function Microbe:emitAgent(compoundId, maxAmount)
         local ynew = membraneCoords[1] * s + membraneCoords[2] * c;
         
         local direction = Vector3(xnew, ynew, 0)
+        direction:normalise()
         local amountToEject = self:takeCompound(compoundId, maxAmount/10.0)
-        createAgentCloud(compoundId, self.sceneNode.transform.position.x + xnew, self.sceneNode.transform.position.y + ynew, direction, amountToEject * 10)
+        createAgentCloud(compoundId, self.sceneNode.transform.position.x + xnew, self.sceneNode.transform.position.y + ynew, direction * 5, amountToEject * 10)
     end
 end
 
@@ -664,7 +669,7 @@ end
 function Microbe:toggleEngulfMode()
     if self.microbe.engulfMode then
         self.microbe.movementFactor = self.microbe.movementFactor * ENGULFING_MOVEMENT_DIVISION
-        self.soundSource:stopSound("microbe-engulfment")
+        self.soundSource:stopSound("microbe-engulfment") -- Possibly comment out. If version > 0.3.2 delete.
         self.rigidBody:reenableAllCollisions()
     else
         self.microbe.movementFactor = self.microbe.movementFactor / ENGULFING_MOVEMENT_DIVISION
@@ -677,7 +682,8 @@ function Microbe:removeEngulfedEffect()
     self.microbe.wasBeingEngulfed = false
     self.microbe.hostileEngulfer.microbe.isCurrentlyEngulfing = false;
     self.microbe.hostileEngulfer.rigidBody:reenableAllCollisions()
-    self.microbe.hostileEngulfer.soundSource:stopSound("microbe-engulfment")
+    -- Causes crash because sound was already stopped.
+    --self.microbe.hostileEngulfer.soundSource:stopSound("microbe-engulfment")
 end
 
 -- Sets the color of the microbe's membrane.
@@ -757,7 +763,7 @@ function Microbe:update(logicTime)
             self:flashMembraneColour(3000, ColourValue(0.2,0.5,1.0,0.5))
         end
         if self.microbe.isBeingEngulfed and self.microbe.wasBeingEngulfed then
-            self:damage(logicTime * 0.00025  * self.microbe.maxHitpoints) -- Engulfment damages 25% per second
+            self:damage(logicTime * 0.00025  * self.microbe.maxHitpoints, "isBeingEngulfed - 764") -- Engulfment damages 25% per second
         -- Else If we were but are no longer, being engulfed
         elseif self.microbe.wasBeingEngulfed then
             self:removeEngulfedEffect()
@@ -809,7 +815,7 @@ function Microbe:atpDamage()
             self.playerAlreadyShownAtpDamage = true
             showMessage("No ATP hurts you!")
         end
-        self:damage(EXCESS_COMPOUND_COLLECTION_INTERVAL * 0.00002  * self.microbe.maxHitpoints) -- Microbe takes 2% of max hp per second in damage
+        self:damage(EXCESS_COMPOUND_COLLECTION_INTERVAL * 0.00002  * self.microbe.maxHitpoints, "no ATP - 816") -- Microbe takes 2% of max hp per second in damage
     end
 end
 
@@ -946,6 +952,11 @@ function MicrobeSystem:__init()
         "microbe",
         "microbe"
     );
+    -- Temporary for 0.3.2, should be moved to separate system.
+    self.agentCollisions = CollisionFilter(
+        "microbe",
+        "agent"
+    );
     self.microbes = {}
 end
 
@@ -954,12 +965,16 @@ function MicrobeSystem:init(gameState)
     System.init(self, "MicrobeSystem", gameState)
     self.entities:init(gameState)
     self.microbeCollisions:init(gameState)
+    
+    self.agentCollisions:init(gameState)
 end
 
 
 function MicrobeSystem:shutdown()
     self.entities:shutdown()
     self.microbeCollisions:shutdown()
+    
+    self.agentCollisions:shutdown()
 end
 
 
@@ -992,6 +1007,20 @@ function MicrobeSystem:update(renderTime, logicTime)
         end
     end
     self.microbeCollisions:clearCollisions()
+    
+    
+    
+    -- TEMP, DELETE FOR 0.3.3!!!!!!!!
+    for collision in self.agentCollisions:collisions() do
+        local entity = Entity(collision.entityId1)
+        local agent = Entity(collision.entityId2)
+        
+        if entity:exists() and agent:exists() then
+            Microbe(entity):damage(5, "toxin")
+            agent:destroy()
+        end
+    end
+    self.agentCollisions:clearCollisions()
 end
 
 function checkEngulfment(microbe1Comp, microbe2Comp, body, entity1, entity2)
