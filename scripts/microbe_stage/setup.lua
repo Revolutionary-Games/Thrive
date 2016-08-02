@@ -232,6 +232,7 @@ function createAgentCloud(compoundId, x, y, direction, amount)
     agentEntity:addComponent(reactionHandler)
         
     local rigidBody = RigidBodyComponent()
+    rigidBody.properties.mass = 0.001
     rigidBody.properties.friction = 0.4
     rigidBody.properties.linearDamping = 0.4
     rigidBody.properties.shape = SphereShape(HEX_SIZE)
@@ -249,7 +250,7 @@ function createAgentCloud(compoundId, x, y, direction, amount)
     agentEntity:addComponent(sceneNode)
     
     local timedLifeComponent = TimedLifeComponent()
-    timedLifeComponent.timeToLive = 4000
+    timedLifeComponent.timeToLive = 2000
     agentEntity:addComponent(timedLifeComponent)
     
 end
