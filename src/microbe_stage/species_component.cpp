@@ -100,10 +100,10 @@ SpeciesComponent::storage() const {
 
 	StorageContainer amts;
 	for (luabind::iterator it(avgCompoundAmounts), end; it != end; ++it) {
-		const std::string& key = luabind::object_cast<std::string>(it.key());
+		const int& key = luabind::object_cast<int>(it.key());
         const Ogre::Real& data = luabind::object_cast<Ogre::Real>(*it);
 
-        amts.set<Ogre::Real>(key, data);
+        amts.set<Ogre::Real>(std::to_string(key), data);
 	}
 
 	storage.set<StorageContainer>("avgCompoundAmounts", amts);
