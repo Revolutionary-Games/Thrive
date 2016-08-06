@@ -129,12 +129,26 @@ void
 CompoundBagComponent::load(const StorageContainer& storage)
 {
     Component::load(storage);
+
+    StorageContainer compounds = storage.get<StorageContainer>("compounds");
+
+    for (const std::string& id : compounds.keys())
+    {
+        this->compounds[atoi(id.c_str())] = compounds.get<float>(id);
+	}
 }
 
 StorageContainer
 CompoundBagComponent::storage() const
 {
     StorageContainer storage = Component::storage();
+
+    StorageContainer compounds;
+    for (auto entry : this->compounds) {
+        compounds.set<float>(""+entry.first, entry.second);
+    }
+    storage.set("compounds", std::move(compounds));
+
     return storage;
 }
 
