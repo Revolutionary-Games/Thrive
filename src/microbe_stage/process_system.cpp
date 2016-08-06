@@ -38,17 +38,34 @@ ProcessorComponent::luaBindings() {
 
 
 void
-ProcessorComponent::load(const StorageContainer&)
+ProcessorComponent::load(const StorageContainer& storage)
 {
+    Component::load(storage);
 
+    for (const std::string& id : storage.keys())
+    {
+        StorageContainer threshold = storage.get<StorageContainer>(id);
+        float low = threshold.get<float>("low");
+        float high = threshold.get<float>("high");
+        float vent = threshold.get<float>("vent");
+		this->thresholds[std::stoi(id)] = std::tuple<float, float, float>(low, high, vent);
+	}
 }
 
 StorageContainer
-ProcessorComponent::storage() const 
+ProcessorComponent::storage() const
 {
-    StorageContainer storage = Component::storage();
-    //storage.set<float>("potency", m_potency);
-    return storage;
+	StorageContainer storage = Component::storage();
+
+	for (auto entry : this->thresholds) {
+        StorageContainer threshold;
+        threshold.set<float>("low", std::get<0>(entry.second));
+        threshold.set<float>("high", std::get<1>(entry.second));
+        threshold.set<float>("vent", std::get<2>(entry.second));
+        storage.set<StorageContainer>(std::to_string(static_cast<int>(entry.first)), threshold);
+	}
+
+	return storage;
 }
 
 void
@@ -109,9 +126,9 @@ CompoundBagComponent::CompoundBagComponent() {
 }
 
 void
-CompoundBagComponent::load(const StorageContainer&)
+CompoundBagComponent::load(const StorageContainer& storage)
 {
-
+    Component::load(storage);
 }
 
 StorageContainer
@@ -186,14 +203,14 @@ ProcessSystem::~ProcessSystem()
 
 }
 
-void 
+void
 ProcessSystem::init(GameState* gameState)
 {
     System::initNamed("ProcessSystem", gameState);
     m_impl->m_entities.setEntityManager(&gameState->entityManager());
 }
 
-void 
+void
 ProcessSystem::shutdown()
 {
 
