@@ -118,7 +118,7 @@ function SpeciesSystem.template(microbe, species)
     microbe.microbe.speciesName = species.name
     microbe:setMembraneColour(species.colour)
     -- give it organelles
-    for i, orgdata in pairs(species.organelles) do
+    for _, orgdata in pairs(species.organelles) do
         organelle = OrganelleFactory.makeOrganelle(orgdata)
         microbe:addOrganelle(orgdata.q, orgdata.r, orgdata.rotation, organelle)
     end

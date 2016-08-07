@@ -42,13 +42,20 @@ ProcessorComponent::load(const StorageContainer& storage)
 {
     Component::load(storage);
 
-    for (const std::string& id : storage.keys())
+    StorageContainer lua_thresholds = storage.get<StorageContainer>("thresholds");
+    for (const std::string& id : lua_thresholds.keys())
     {
-        StorageContainer threshold = storage.get<StorageContainer>(id);
+        StorageContainer threshold = lua_thresholds.get<StorageContainer>(id);
         float low = threshold.get<float>("low");
         float high = threshold.get<float>("high");
         float vent = threshold.get<float>("vent");
-		this->thresholds[std::stoi(id)] = std::tuple<float, float, float>(low, high, vent);
+		this->thresholds[std::atoi(id.c_str())] = std::tuple<float, float, float>(low, high, vent);
+	}
+
+    StorageContainer processes = storage.get<StorageContainer>("processes");
+    for (const std::string& id : processes.keys())
+    {
+        this->process_capacities[std::atoi(id.c_str())] = processes.get<float>(id);
 	}
 }
 
@@ -57,13 +64,22 @@ ProcessorComponent::storage() const
 {
 	StorageContainer storage = Component::storage();
 
+	StorageContainer lua_thresholds;
 	for (auto entry : this->thresholds) {
         StorageContainer threshold;
         threshold.set<float>("low", std::get<0>(entry.second));
         threshold.set<float>("high", std::get<1>(entry.second));
         threshold.set<float>("vent", std::get<2>(entry.second));
-        storage.set<StorageContainer>(std::to_string(static_cast<int>(entry.first)), threshold);
+        lua_thresholds.set<StorageContainer>(std::to_string(static_cast<int>(entry.first)), threshold);
 	}
+    storage.set<StorageContainer>("thresholds", lua_thresholds);
+
+	StorageContainer processes;
+    for (auto entry : this->process_capacities) {
+        processes.set<float>(std::to_string(static_cast<int>(entry.first)), entry.second);
+    }
+    storage.set<StorageContainer>("processes", processes);
+
 
 	return storage;
 }
@@ -134,8 +150,10 @@ CompoundBagComponent::load(const StorageContainer& storage)
 
     for (const std::string& id : compounds.keys())
     {
-        this->compounds[atoi(id.c_str())] = compounds.get<float>(id);
+        this->compounds[std::atoi(id.c_str())] = compounds.get<float>(id);
 	}
+
+	//this->processor = storage.get<ProcessorComponent>("processor");
 }
 
 StorageContainer
@@ -148,6 +166,8 @@ CompoundBagComponent::storage() const
         compounds.set<float>(""+entry.first, entry.second);
     }
     storage.set("compounds", std::move(compounds));
+
+    //storage.set("processor", *(this->processor));
 
     return storage;
 }

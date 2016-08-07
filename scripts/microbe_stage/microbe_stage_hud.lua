@@ -76,9 +76,7 @@ function HudSystem:update(renderTime)
     local playerSpecies = playerMicrobe:getSpeciesComponent()
     --TODO display population in home patch here
     for compoundID in CompoundRegistry.getCompoundList() do
-    
-        if CompoundRegistry.getCompoundDisplayName(compoundID) == "ATP" then print("ATP: " .. compoundID) end
-        
+            
         local compoundsString = string.format("%s - %d", CompoundRegistry.getCompoundDisplayName(compoundID), playerMicrobe:getCompoundAmount(compoundID))
         if self.compoundListItems[compoundID] == nil then
            -- TODO: fix this colour

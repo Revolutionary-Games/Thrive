@@ -36,7 +36,20 @@ local function setupCamera()
 end
 
 local function setupCompounds()
-    CompoundRegistry.loadFromLua(compounds, agents)
+
+    local ordered_keys = {}
+
+    for k in pairs(compounds) do
+        table.insert(ordered_keys, k)
+    end
+
+    table.sort(ordered_keys)
+    for i = 1, #ordered_keys do
+        local k, v = ordered_keys[i], compounds[ ordered_keys[i] ]
+        print (k)
+        CompoundRegistry.registerCompoundType(k, v["name"], v["mesh"], v["size"], v["weight"])
+    end    
+    CompoundRegistry.loadFromLua({}, agents)
     --CompoundRegistry.loadFromXML("../scripts/definitions/compounds.xml")
 end
 
@@ -108,7 +121,14 @@ function setupSpecies()
         speciesEntity = Entity(name)
         speciesComponent = SpeciesComponent(name)
         speciesEntity:addComponent(speciesComponent)
-        speciesComponent.organelles = data.organelles -- note, shallow assignment
+        for i, organelle in pairs(data.organelles) do
+            local org = {}
+            org.name = organelle.name
+            org.q = organelle.q
+            org.r = organelle.r
+            org.rotation = organelle.rotation
+            speciesComponent.organelles[i] = org
+        end
         processorComponent = ProcessorComponent()
         speciesEntity:addComponent(processorComponent)
         speciesComponent.colour = Vector3(data.colour.r, data.colour.g, data.colour.b)
@@ -123,7 +143,7 @@ function setupSpecies()
             if compoundData ~= nil then
                 amount = compoundData.amount
                 -- priority = compoundData.priority
-                speciesComponent.avgCompoundAmounts[compoundID] = amount
+                speciesComponent.avgCompoundAmounts["" .. compoundID] = amount
                 -- speciesComponent.compoundPriorities[compoundID] = priority
             end
         end
@@ -373,6 +393,7 @@ local function setupEmitter()
 end
 
 function unlockToxin(entityId)
+    if math.random(1,4) > 1 then return end
     if Engine:playerData():lockedMap():isLocked("Toxin") then
         showMessage("Toxin Unlocked!")
         Engine:playerData():lockedMap():unlock("Toxin")
@@ -382,6 +403,7 @@ function unlockToxin(entityId)
     return true
 end
 function unlockChloroplast(entityId)
+    if math.random(1,3) > 1 then return end
     if Engine:playerData():lockedMap():isLocked("chloroplast") then
         showMessage("Chloroplast Unlocked!")
         Engine:playerData():lockedMap():unlock("chloroplast")
