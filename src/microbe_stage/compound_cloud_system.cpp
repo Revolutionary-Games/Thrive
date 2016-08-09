@@ -77,9 +77,12 @@ CompoundCloudComponent::load(
     color = storage.get<Ogre::ColourValue>("color", Ogre::ColourValue(0,0,0));
     width = storage.get<int>("width", 0);
     height = storage.get<int>("height", 0);
+    offsetX = storage.get<int>("offsetX", 0);
+    offsetY = storage.get<int>("offsetY", 0);
     gridSize = storage.get<float>("gridSize", 0.0);
 
-
+    density.resize(width, std::vector<float>(height, 0));
+    oldDens.resize(width, std::vector<float>(height, 0));
 }
 
 StorageContainer
@@ -90,6 +93,8 @@ CompoundCloudComponent::storage() const {
     storage.set<Ogre::ColourValue>("color", color);
     storage.set<int>("width", width);
     storage.set<int>("height", height);
+    storage.set<int>("offsetX", offsetX);
+    storage.set<int>("offsetY", offsetY);
     storage.set<float>("gridSize", gridSize);
 
     return storage;

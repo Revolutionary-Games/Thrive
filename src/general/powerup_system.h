@@ -36,6 +36,17 @@ public:
     static luabind::scope
     luaBindings();
 
+    /**
+    * @brief Sets the effect to use upon activation of the powerup
+    *
+    * @param effect
+    *  Function taking the entityId of the activating entity.
+    */
+    void
+    setEffect(
+        const std::string&
+    );
+
 
     /**
     * @brief Sets the effect to use upon activation of the powerup
@@ -46,18 +57,6 @@ public:
     void
     setEffect(
         std::function<bool(EntityId)>* effect
-    );
-
-    /**
-    * @brief Sets the effect to use upon activation of the powerup
-    *  The effect does not get saved when the game is saved.
-    *
-    * @param effect
-    *  Lua function taking the entityId of the activating entity.
-    */
-    void
-    setEffect(
-        const luabind::object& effect
     );
 
     void
@@ -76,6 +75,11 @@ private:
     * @brief The function to be called when the powerup is activated for an entity
     */
     std::function<bool(EntityId)>* m_effect;
+
+    /**
+    * @brief The name of the effect function that is defined in configs.lua
+    */
+    std::string effectName;
 
 };
 

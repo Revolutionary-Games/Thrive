@@ -4,6 +4,7 @@
 
 #include "engine/component_factory.h"
 #include "engine/engine.h"
+#include "engine/entity.h"
 #include "engine/game_state.h"
 #include "engine/entity_filter.h"
 #include "engine/serialization.h"
@@ -38,17 +39,50 @@ ProcessorComponent::luaBindings() {
 
 
 void
-ProcessorComponent::load(const StorageContainer&)
+ProcessorComponent::load(const StorageContainer& storage)
 {
+    Component::load(storage);
 
+    StorageContainer lua_thresholds = storage.get<StorageContainer>("thresholds");
+    for (const std::string& id : lua_thresholds.keys())
+    {
+        StorageContainer threshold = lua_thresholds.get<StorageContainer>(id);
+        float low = threshold.get<float>("low");
+        float high = threshold.get<float>("high");
+        float vent = threshold.get<float>("vent");
+		this->thresholds[std::atoi(id.c_str())] = std::tuple<float, float, float>(low, high, vent);
+	}
+
+    StorageContainer processes = storage.get<StorageContainer>("processes");
+    for (const std::string& id : processes.keys())
+    {
+        this->process_capacities[std::atoi(id.c_str())] = processes.get<float>(id);
+	}
 }
 
 StorageContainer
-ProcessorComponent::storage() const 
+ProcessorComponent::storage() const
 {
-    StorageContainer storage = Component::storage();
-    //storage.set<float>("potency", m_potency);
-    return storage;
+	StorageContainer storage = Component::storage();
+
+	StorageContainer lua_thresholds;
+	for (auto entry : this->thresholds) {
+        StorageContainer threshold;
+        threshold.set<float>("low", std::get<0>(entry.second));
+        threshold.set<float>("high", std::get<1>(entry.second));
+        threshold.set<float>("vent", std::get<2>(entry.second));
+        lua_thresholds.set<StorageContainer>(std::to_string(static_cast<int>(entry.first)), threshold);
+	}
+    storage.set<StorageContainer>("thresholds", lua_thresholds);
+
+	StorageContainer processes;
+    for (auto entry : this->process_capacities) {
+        processes.set<float>(std::to_string(static_cast<int>(entry.first)), entry.second);
+    }
+    storage.set<StorageContainer>("processes", processes);
+
+
+	return storage;
 }
 
 void
@@ -109,21 +143,41 @@ CompoundBagComponent::CompoundBagComponent() {
 }
 
 void
-CompoundBagComponent::load(const StorageContainer&)
+CompoundBagComponent::load(const StorageContainer& storage)
 {
+    Component::load(storage);
 
+    StorageContainer compounds = storage.get<StorageContainer>("compounds");
+
+    for (const std::string& id : compounds.keys())
+    {
+        this->compounds[std::atoi(id.c_str())] = compounds.get<float>(id);
+	}
+
+	this->speciesName = storage.get<std::string>("speciesName");
+	this->processor = static_cast<ProcessorComponent*>(Entity(this->speciesName).getComponent(ProcessorComponent::TYPE_ID));
 }
 
 StorageContainer
 CompoundBagComponent::storage() const
 {
     StorageContainer storage = Component::storage();
+
+    StorageContainer compounds;
+    for (auto entry : this->compounds) {
+        compounds.set<float>(""+entry.first, entry.second);
+    }
+    storage.set("compounds", std::move(compounds));
+
+    storage.set("speciesName", this->speciesName);
+
     return storage;
 }
 
 void
-CompoundBagComponent::setProcessor(ProcessorComponent& processor) {
+CompoundBagComponent::setProcessor(ProcessorComponent& processor, const std::string& speciesName) {
     this->processor = &processor;
+    this->speciesName = speciesName;
 }
 
 // helper methods for integrating compound bags with current, un-refactored, lua microbes
@@ -186,14 +240,14 @@ ProcessSystem::~ProcessSystem()
 
 }
 
-void 
+void
 ProcessSystem::init(GameState* gameState)
 {
     System::initNamed("ProcessSystem", gameState);
     m_impl->m_entities.setEntityManager(&gameState->entityManager());
 }
 
-void 
+void
 ProcessSystem::shutdown()
 {
 

@@ -55,16 +55,18 @@ SpeciesComponent::load(const StorageContainer& storage) {
 	organelles = luabind::newtable(lua_state);
 	StorageContainer orgs = storage.get<StorageContainer>("organelles");
 
-	unsigned int i = 0;
-	while (orgs.contains("" + i)) {
-		StorageContainer org = orgs.get<StorageContainer>("" + i);
+	int i = 1;
+	while (orgs.contains(std::to_string(i))) {
+		StorageContainer org = orgs.get<StorageContainer>(std::to_string(i));
 		luabind::object organelle = luabind::newtable(lua_state);
 
 		organelle["name"] = org.get<std::string>("name");
 		organelle["q"] = org.get<int>("q");
 		organelle["r"] = org.get<int>("r");
 		organelle["rotation"] = org.get<Ogre::Real>("rotation");
-		organelles["" + ++i] = organelle;
+		organelles[std::to_string(i)] = organelle;
+
+		i++;
 	}
 
 	avgCompoundAmounts = luabind::newtable(lua_state);
@@ -83,8 +85,8 @@ SpeciesComponent::storage() const {
 
 	StorageContainer orgs;
 
-	unsigned int i = 0;
-	for (luabind::iterator it(organelles), end; it != end; ++it, ++i) {
+	int i = 1;
+	for (luabind::iterator it(organelles), end; it != end; it++, i++) {
         const luabind::object& data = *it;
 
         StorageContainer org;
@@ -93,17 +95,16 @@ SpeciesComponent::storage() const {
         org.set<int>("r", luabind::object_cast<int>(data["r"]));
         org.set<Ogre::Real>("rotation", luabind::object_cast<Ogre::Real>(data["rotation"]));
 
-        orgs.set<StorageContainer>("" + i, org);
+        orgs.set<StorageContainer>(std::to_string(i), org);
 	}
-
 	storage.set<StorageContainer>("organelles", orgs);
 
 	StorageContainer amts;
-	for (luabind::iterator it(avgCompoundAmounts), end; it != end; ++it) {
-		const int& key = luabind::object_cast<int>(it.key());
+	for (luabind::iterator it(avgCompoundAmounts), end; it != end; it++) {
+		const std::string& key = luabind::object_cast<std::string>(it.key());
         const Ogre::Real& data = luabind::object_cast<Ogre::Real>(*it);
 
-        amts.set<Ogre::Real>(std::to_string(key), data);
+        amts.set<Ogre::Real>(key, data);
 	}
 
 	storage.set<StorageContainer>("avgCompoundAmounts", amts);

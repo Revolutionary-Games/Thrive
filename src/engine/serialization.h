@@ -13,7 +13,7 @@
 #include <vector>
 
 static_assert(
-    CHAR_BIT == 8, 
+    CHAR_BIT == 8,
     "char must be 8 bit long for properly portable serialization."
 );
 
@@ -140,8 +140,8 @@ public:
     *   The value to return when the key is not present (or the value has the
     *   wrong type)
     *
-    * @return 
-    *   The value associated with \a key or \a defaultValue if the key could 
+    * @return
+    *   The value associated with \a key or \a defaultValue if the key could
     *   not be found or has a value associated with it that is not \a T.
     */
     template<typename T>
@@ -164,7 +164,7 @@ public:
     * @param key
     * @param defaultValue
     *
-    * @return 
+    * @return
     */
     luabind::object
     luaGet(
@@ -191,13 +191,13 @@ public:
         T value
     );
 
-    friend std::ostream& 
+    friend std::ostream&
     operator << (
         std::ostream& stream,
         const StorageContainer& storage
     );
 
-    friend std::istream& 
+    friend std::istream&
     operator >> (
         std::istream& stream,
         StorageContainer& storage
@@ -215,7 +215,7 @@ private:
 * @param stream
 * @param storage
 *
-* @return 
+* @return
 */
 std::ostream&
 operator << (
@@ -229,7 +229,7 @@ operator << (
 * @param stream
 * @param storage
 *
-* @return 
+* @return
 */
 std::istream&
 operator >> (
@@ -252,7 +252,7 @@ public:
     * - StorageList::get
     * - StorageList::size
     *
-    * @return 
+    * @return
     */
     static luabind::scope
     luaBindings();
