@@ -31,9 +31,9 @@ function MicrobeReplacementSystem:activate()
         workingMicrobe.entity:destroy()
 
         species.avgCompoundAmounts = {}
-        species.avgCompoundAmounts[CompoundRegistry.getCompoundId("atp")] = 10
-        species.avgCompoundAmounts[CompoundRegistry.getCompoundId("glucose")] = 20
-        species.avgCompoundAmounts[CompoundRegistry.getCompoundId("oxygen")] = 30
+        species.avgCompoundAmounts["" .. CompoundRegistry.getCompoundId("atp")] = 10
+        species.avgCompoundAmounts["" .. CompoundRegistry.getCompoundId("glucose")] = 20
+        species.avgCompoundAmounts["" .. CompoundRegistry.getCompoundId("oxygen")] = 30
 
         SpeciesSystem.initProcessorComponent(speciesEntity, species)
 

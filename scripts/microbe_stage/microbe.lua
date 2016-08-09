@@ -261,7 +261,7 @@ function Microbe:__init(entity, in_editor)
     if not self.microbe.initialized then
         self:_initialize()
         if in_editor == nil then
-            self.compoundBag:setProcessor(Entity(self.microbe.speciesName):getComponent(ProcessorComponent.TYPE_ID))
+            self.compoundBag:setProcessor(Entity(self.microbe.speciesName):getComponent(ProcessorComponent.TYPE_ID), self.microbe.speciesName)
             SpeciesSystem.template(self, self:getSpeciesComponent())
         end
     end
@@ -540,7 +540,7 @@ function Microbe:storeCompound(compoundId, amount, bandwidthLimited)
         storedAmount = self.microbe:getBandwidth(amount, compoundId)
     end
     storedAmount = math.min(storedAmount , self.microbe.capacity - self.microbe.stored)
-    self.entity:getComponent(CompoundBagComponent.TYPE_ID):giveCompound(compoundId, storedAmount)
+    self.entity:getComponent(CompoundBagComponent.TYPE_ID):giveCompound(tonumber(compoundId), storedAmount)
     self.microbe.stored = self.microbe.stored + storedAmount
     return amount - storedAmount
 end

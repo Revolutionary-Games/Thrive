@@ -36,7 +36,19 @@ local function setupCamera()
 end
 
 local function setupCompounds()
-    CompoundRegistry.loadFromLua(compounds, agents)
+
+    local ordered_keys = {}
+
+    for k in pairs(compounds) do
+        table.insert(ordered_keys, k)
+    end
+
+    table.sort(ordered_keys)
+    for i = 1, #ordered_keys do
+        local k, v = ordered_keys[i], compounds[ ordered_keys[i] ]
+        CompoundRegistry.registerCompoundType(k, v["name"], v["mesh"], v["size"], v["weight"])
+    end    
+    CompoundRegistry.loadFromLua({}, agents)
     --CompoundRegistry.loadFromXML("../scripts/definitions/compounds.xml")
 end
 
@@ -108,7 +120,14 @@ function setupSpecies()
         speciesEntity = Entity(name)
         speciesComponent = SpeciesComponent(name)
         speciesEntity:addComponent(speciesComponent)
-        speciesComponent.organelles = data.organelles -- note, shallow assignment
+        for i, organelle in pairs(data.organelles) do
+            local org = {}
+            org.name = organelle.name
+            org.q = organelle.q
+            org.r = organelle.r
+            org.rotation = organelle.rotation
+            speciesComponent.organelles[i] = org
+        end
         processorComponent = ProcessorComponent()
         speciesEntity:addComponent(processorComponent)
         speciesComponent.colour = Vector3(data.colour.r, data.colour.g, data.colour.b)
@@ -123,7 +142,7 @@ function setupSpecies()
             if compoundData ~= nil then
                 amount = compoundData.amount
                 -- priority = compoundData.priority
-                speciesComponent.avgCompoundAmounts[compoundID] = amount
+                speciesComponent.avgCompoundAmounts["" .. compoundID] = amount
                 -- speciesComponent.compoundPriorities[compoundID] = priority
             end
         end
@@ -275,7 +294,7 @@ end
 local function createSpawnSystem()
     local spawnSystem = SpawnSystem()
 
-    local toxinOrganelleSpawnFunction = function(pos) 
+    local toxinOrganelleSpawnFunction = function(pos)
         powerupEntity = Entity()
         setSpawnablePhysics(powerupEntity, pos, "AgentVacuole.mesh", 0.9, SphereShape(HEX_SIZE))
 
@@ -284,7 +303,8 @@ local function createSpawnSystem()
         powerupEntity:addComponent(reactionHandler)
         
         local powerupComponent = PowerupComponent()
-        powerupComponent:setEffect(unlockToxin)
+        -- Function name must be in configs.lua
+        powerupComponent:setEffect("toxinEffect")
         powerupEntity:addComponent(powerupComponent)
         return powerupEntity
     end
@@ -297,7 +317,8 @@ local function createSpawnSystem()
         powerupEntity:addComponent(reactionHandler)
         
         local powerupComponent = PowerupComponent()
-        powerupComponent:setEffect(unlockChloroplast)
+        -- Function name must be in configs.lua
+        powerupComponent:setEffect("chloroplastEffect")
         powerupEntity:addComponent(powerupComponent)
         return powerupEntity
     end
@@ -370,25 +391,6 @@ local function setupEmitter()
     -- entity:addComponent(sceneNode)
     -- -- Emitter test
     -- addEmitter2Entity(entity, "glucose")
-end
-
-function unlockToxin(entityId)
-    if Engine:playerData():lockedMap():isLocked("Toxin") then
-        showMessage("Toxin Unlocked!")
-        Engine:playerData():lockedMap():unlock("Toxin")
-        local guiSoundEntity = Entity("gui_sounds")
-        guiSoundEntity:getComponent(SoundSourceComponent.TYPE_ID):playSound("microbe-pickup-organelle")
-    end
-    return true
-end
-function unlockChloroplast(entityId)
-    if Engine:playerData():lockedMap():isLocked("chloroplast") then
-        showMessage("Chloroplast Unlocked!")
-        Engine:playerData():lockedMap():unlock("chloroplast")
-        local guiSoundEntity = Entity("gui_sounds")
-        guiSoundEntity:getComponent(SoundSourceComponent.TYPE_ID):playSound("microbe-pickup-organelle")
-    end
-    return true
 end
 
 local function setupPlayer()

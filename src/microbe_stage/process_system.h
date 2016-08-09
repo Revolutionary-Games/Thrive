@@ -65,14 +65,15 @@ public:
     storage() const override;
 
     ProcessorComponent* processor;
+    std::string speciesName;
     std::unordered_map<CompoundId, float> compounds;
 
     void
-    setProcessor(ProcessorComponent& processor);
+    setProcessor(ProcessorComponent& processor, const std::string& speciesName);
 
     float
     getCompoundAmount(CompoundId);
-    
+
     float
     takeCompound(CompoundId, float); // remove up to a certain amount of compound, returning how much was removed
 

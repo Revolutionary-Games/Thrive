@@ -65,6 +65,30 @@ agents = {
     },
 }
 
+
+function toxinEffect(entityId)
+    print ("toxin called")
+    if math.random(1,4) > 1 then return true end
+    if Engine:playerData():lockedMap():isLocked("Toxin") then
+        showMessage("Toxin Unlocked!")
+        Engine:playerData():lockedMap():unlock("Toxin")
+        local guiSoundEntity = Entity("gui_sounds")
+        guiSoundEntity:getComponent(SoundSourceComponent.TYPE_ID):playSound("microbe-pickup-organelle")
+    end
+    return true
+end
+
+function chloroplastEffect(entityId)
+    if math.random(1,3) > 1 then return true end
+    if Engine:playerData():lockedMap():isLocked("chloroplast") then
+        showMessage("Chloroplast Unlocked!")
+        Engine:playerData():lockedMap():unlock("chloroplast")
+        local guiSoundEntity = Entity("gui_sounds")
+        guiSoundEntity:getComponent(SoundSourceComponent.TYPE_ID):playSound("microbe-pickup-organelle")
+    end
+    return true
+end
+
 processes = {
     Respiration = {
         speedFactor = 0.1,
