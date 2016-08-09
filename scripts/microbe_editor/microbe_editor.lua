@@ -48,7 +48,7 @@ function MicrobeEditor:activate()
         Engine:playerData():setBool("edited_microbe", true)
         Engine:playerData():setActiveCreature(self.nextMicrobeEntity.id, GameState.MICROBE_EDITOR)
     end
-    self.mutationPoints = 100
+    self.mutationPoints = 50
     self.actionHistory = {} -- where all user actions will  be registered
     self.actionIndex = 0 -- marks the last action that has been done (not undone, but possibly redone), is 0 if there is none
     for _, cytoplasm in pairs(self.occupiedHexes) do

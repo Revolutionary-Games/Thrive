@@ -46,7 +46,6 @@ local function setupCompounds()
     table.sort(ordered_keys)
     for i = 1, #ordered_keys do
         local k, v = ordered_keys[i], compounds[ ordered_keys[i] ]
-        print (k)
         CompoundRegistry.registerCompoundType(k, v["name"], v["mesh"], v["size"], v["weight"])
     end    
     CompoundRegistry.loadFromLua({}, agents)
@@ -295,7 +294,7 @@ end
 local function createSpawnSystem()
     local spawnSystem = SpawnSystem()
 
-    local toxinOrganelleSpawnFunction = function(pos) 
+    local toxinOrganelleSpawnFunction = function(pos)
         powerupEntity = Entity()
         setSpawnablePhysics(powerupEntity, pos, "AgentVacuole.mesh", 0.9, SphereShape(HEX_SIZE))
 
@@ -304,7 +303,8 @@ local function createSpawnSystem()
         powerupEntity:addComponent(reactionHandler)
         
         local powerupComponent = PowerupComponent()
-        powerupComponent:setEffect(unlockToxin)
+        -- Function name must be in configs.lua
+        powerupComponent:setEffect("toxinEffect")
         powerupEntity:addComponent(powerupComponent)
         return powerupEntity
     end
@@ -317,7 +317,8 @@ local function createSpawnSystem()
         powerupEntity:addComponent(reactionHandler)
         
         local powerupComponent = PowerupComponent()
-        powerupComponent:setEffect(unlockChloroplast)
+        -- Function name must be in configs.lua
+        powerupComponent:setEffect("chloroplastEffect")
         powerupEntity:addComponent(powerupComponent)
         return powerupEntity
     end
@@ -390,27 +391,6 @@ local function setupEmitter()
     -- entity:addComponent(sceneNode)
     -- -- Emitter test
     -- addEmitter2Entity(entity, "glucose")
-end
-
-function unlockToxin(entityId)
-    if math.random(1,4) > 1 then return end
-    if Engine:playerData():lockedMap():isLocked("Toxin") then
-        showMessage("Toxin Unlocked!")
-        Engine:playerData():lockedMap():unlock("Toxin")
-        local guiSoundEntity = Entity("gui_sounds")
-        guiSoundEntity:getComponent(SoundSourceComponent.TYPE_ID):playSound("microbe-pickup-organelle")
-    end
-    return true
-end
-function unlockChloroplast(entityId)
-    if math.random(1,3) > 1 then return end
-    if Engine:playerData():lockedMap():isLocked("chloroplast") then
-        showMessage("Chloroplast Unlocked!")
-        Engine:playerData():lockedMap():unlock("chloroplast")
-        local guiSoundEntity = Entity("gui_sounds")
-        guiSoundEntity:getComponent(SoundSourceComponent.TYPE_ID):playSound("microbe-pickup-organelle")
-    end
-    return true
 end
 
 local function setupPlayer()

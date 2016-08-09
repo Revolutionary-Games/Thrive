@@ -4,6 +4,7 @@
 
 #include "engine/component_factory.h"
 #include "engine/engine.h"
+#include "engine/entity.h"
 #include "engine/game_state.h"
 #include "engine/entity_filter.h"
 #include "engine/serialization.h"
@@ -153,7 +154,8 @@ CompoundBagComponent::load(const StorageContainer& storage)
         this->compounds[std::atoi(id.c_str())] = compounds.get<float>(id);
 	}
 
-	//this->processor = storage.get<ProcessorComponent>("processor");
+	this->speciesName = storage.get<std::string>("speciesName");
+	this->processor = static_cast<ProcessorComponent*>(Entity(this->speciesName).getComponent(ProcessorComponent::TYPE_ID));
 }
 
 StorageContainer
@@ -167,14 +169,15 @@ CompoundBagComponent::storage() const
     }
     storage.set("compounds", std::move(compounds));
 
-    //storage.set("processor", *(this->processor));
+    storage.set("speciesName", this->speciesName);
 
     return storage;
 }
 
 void
-CompoundBagComponent::setProcessor(ProcessorComponent& processor) {
+CompoundBagComponent::setProcessor(ProcessorComponent& processor, const std::string& speciesName) {
     this->processor = &processor;
+    this->speciesName = speciesName;
 }
 
 // helper methods for integrating compound bags with current, un-refactored, lua microbes

@@ -65,10 +65,11 @@ public:
     storage() const override;
 
     ProcessorComponent* processor;
+    std::string speciesName;
     std::unordered_map<CompoundId, float> compounds;
 
     void
-    setProcessor(ProcessorComponent& processor);
+    setProcessor(ProcessorComponent& processor, const std::string& speciesName);
 
     float
     getCompoundAmount(CompoundId);

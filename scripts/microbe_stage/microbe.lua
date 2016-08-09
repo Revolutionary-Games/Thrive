@@ -261,7 +261,7 @@ function Microbe:__init(entity, in_editor)
     if not self.microbe.initialized then
         self:_initialize()
         if in_editor == nil then
-            self.compoundBag:setProcessor(Entity(self.microbe.speciesName):getComponent(ProcessorComponent.TYPE_ID))
+            self.compoundBag:setProcessor(Entity(self.microbe.speciesName):getComponent(ProcessorComponent.TYPE_ID), self.microbe.speciesName)
             SpeciesSystem.template(self, self:getSpeciesComponent())
         end
     end
