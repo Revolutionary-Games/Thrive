@@ -186,7 +186,9 @@ function prepare_CEGUI() {
 		cd cegui
 	fi
 
-	hg update default
+    # Let's use this commit for now
+    hg update 869014de5669
+	#hg update default
 
 	mkdir build
 	cd build
