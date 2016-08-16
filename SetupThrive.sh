@@ -130,7 +130,6 @@ function prepare_Deps() {
 	echo -e "$INFO Cloning repositories and creating build files... $NC"
 	prepare_Ogre
 	prepare_CEGUI
-	prepare_OgreFFMPEG
 	prepare_cAudio
 }
 
@@ -202,34 +201,6 @@ function prepare_CEGUI() {
 	echo -e "$GOOD Done $NC"
 }
 
-function prepare_OgreFFMPEG() {
-	echo -e "$INFO OgreFFMPEG $NC"
-
-	if [ -d ogre-ffmpeg-videoplayer ]; then
-		cd ogre-ffmpeg-videoplayer
-		git checkout master
-		git pull origin master
-
-	else
-		#Official repo
-		#git clone https://github.com/scrawl/ogre-ffmpeg-videoplayer.git ogre-ffmpeg-videoplayer
-		# Currently working hhyyrylainen's fork
-		git clone https://github.com/hhyyrylainen/ogre-ffmpeg-videoplayer.git ogre-ffmpeg-videoplayer
-        # Currently working Revolutionary games fork
-        # git clone https://github.com/Revolutionary-Games/ogre-ffmpeg-videoplayer.git ogre-ffmpeg-videoplayer
-		cd ogre-ffmpeg-videoplayer
-	fi
-
-
-	mkdir -p build
-	cd build
-	check cmake .. -DCMAKE_BUILD_TYPE=RelWithDebInfo -DBUILD_VIDEOPLAYER_DEMO=OFF
-
-	cd "$StartingDirectory"
-
-	echo -e "$GOOD Done $NC"
-}
-
 function prepare_cAudio() {
 	echo -e "$INFO cAudio $NC"
 
@@ -258,7 +229,6 @@ function build_Deps() {
 	echo -e "$INFO Compiling. This may take a long time! $NC"
 	build_Ogre
 	build_CEGUI
-	build_OgreFFMPEG
 	build_cAudio
 }
 
@@ -280,15 +250,6 @@ function build_CEGUI() {
 	echo -e "$GOOD Done $NC"
 }
 
-function build_OgreFFMPEG() {
-	echo -e "$INFO OgreFFMPEG... $NC"
-
-	cd "$StartingDirectory/ogre-ffmpeg-videoplayer/build"
-	check eval "make $MakeArgs"
-
-	echo -e "$GOOD Done $NC"
-}
-
 function build_cAudio() {
 	echo -e "$INFO cAudio... $NC"
 
@@ -302,7 +263,6 @@ function install_Deps() {
 	echo -e "$INFO Installing dependencies $NC"
 	install_Ogre
     install_CEGUI
-    install_OgreFFMPEG
     install_cAudio
 	echo -e "$GOOD Done $NC"
 }
@@ -316,12 +276,6 @@ function install_Ogre() {
 function install_CEGUI() {
 	echo -e "$INFO Installing CEGUI, prepare for sudo password $NC"
 	cd "$StartingDirectory/cegui/build"
-	check sudo make install
-}
-
-function install_OgreFFMPEG() {
-	echo -e "$INFO Installing OgreFFMPEG, prepare for sudo password $NC"
-	cd "$StartingDirectory/ogre-ffmpeg-videoplayer/build"
 	check sudo make install
 }
 
