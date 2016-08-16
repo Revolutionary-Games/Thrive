@@ -325,13 +325,7 @@ function setup_Thrive() {
     ln -sf assets/videos videos
 
 	echo -e "$INFO Copying Ogre resources file $NC"
-	if [ $OS = "Arch" ]; then
-        # If anything shouldn't this be specific to plugins.cfg
-		cp /usr/local/share/OGRE/resources.cfg ./build/resources.cfg
-
-	else
-        cp ogre_cfg/resources.cfg ./build/resources.cfg
-	fi
+    cp ogre_cfg/resources.cfg ./build/resources.cfg
 
 	echo -e "$INFO Copying completety pointless Ogre files $NC"
 
