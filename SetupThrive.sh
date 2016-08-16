@@ -82,6 +82,9 @@ function init() {
 }
 
 function install_Packages() {
+
+    CommonPackages="cmake make git mercurial svn"
+    
     # My fedora version string contains bunch of junk after like "SION_ID=24\nIANT_ID=Workstation"
     # So this is matched with a regex
 	if [[ $OS =~ Fedora.* ]]; then
@@ -89,9 +92,6 @@ function install_Packages() {
 		PackagesToInstall="bullet-devel boost gcc-c++ libXaw-devel freetype-devel freeimage-devel \
                 zziplib-devel boost-devel ois-devel tinyxml-devel glm-devel ffmpeg-devel ffmpeg-libs \
                 openal-soft-devel libatomic Cg"
-		CommonPackages="cmake make git mercurial svn"
-
-		echo -e "$INFO Creating CEGUI project folder for $OS $NC"
 
 	elif [ $OS = "Ubuntu" ]; then
 		PackageManager="apt-get install -y "
@@ -110,7 +110,9 @@ function install_Packages() {
 		exit 2
 	fi
 
-	PackagesToInstall="$PackagesToInstall $CommonPackages"
+    echo -e "$INFO Creating CEGUI project folder for $OS $NC"
+    
+	PackagesToInstall="$CommonPackages $PackagesToInstall"
 
 	echo -e "$INFO Installing prerequisite libraries, be prepared to type password for sudo $NC"
 	eval "sudo $PackageManager $PackagesToInstall"
@@ -193,7 +195,7 @@ function prepare_CEGUI() {
 	mkdir build
 	cd build
 
-	check cmake .. -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCEGUI_BUILD_APPLICATION_TEMPLATES=OFF -DCEGUI_BUILD_PYTHON_MODULES=OFF -DCEGUI_SAMPLES_ENABLED=OFF -DCEGUI_STRING_CLASS=1 -DCEGUI_USE_FRIBIDI=OFF
+	check cmake .. -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCEGUI_BUILD_APPLICATION_TEMPLATES=OFF -DCEGUI_BUILD_PYTHON_MODULES=OFF -DCEGUI_SAMPLES_ENABLED=OFF -DCEGUI_STRING_CLASS=1 -DCEGUI_USE_FRIBIDI=OFF -DCEGUI_BUILD_RENDERER_OPENGLES=OFF
 
 	cd "$StartingDirectory"
 
