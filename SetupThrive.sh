@@ -322,6 +322,7 @@ function setup_Thrive() {
 	ln -sf assets/materials materials
 	ln -sf assets/models models
 	ln -sf assets/sounds sounds
+    ln -sf assets/videos videos
 
 	echo -e "$INFO Copying Ogre resources file $NC"
 	if [ $OS = "Arch" ]; then
