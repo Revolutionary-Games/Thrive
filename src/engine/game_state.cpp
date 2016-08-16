@@ -11,6 +11,7 @@
 
 
 #include <OgreRoot.h>
+#include <OgreSceneManager.h>
 
 using namespace thrive;
 
