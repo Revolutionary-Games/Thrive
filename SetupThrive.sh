@@ -21,8 +21,15 @@ function init() {
 	fi
 
 	# Variable setup
-	OS=$(cat /etc/*-release | grep ID | cut -c 4- | sed -e "s/\b\(.\)/\u\1/g")
-
+		#OS Check
+	x=`lsb_release`
+	if [[ "$X" =~ LSB.Version.* ]]; then
+		OS=$(lsb_release -is) #For reasonable operating systems
+	else
+		echo "$ERROR lsb_release not available, quitting. $NC" 
+		exit 1
+	fi
+	
 	THREADS=$(nproc)
 	DEBUG=0
 	VERBOSE=0
@@ -87,7 +94,7 @@ function install_Packages() {
     
     # My fedora version string contains bunch of junk after like "SION_ID=24\nIANT_ID=Workstation"
     # So this is matched with a regex
-	if [[ $OS =~ Fedora.* ]]; then
+	if [ $OS = "Fedora" ]; then
 		PackageManager="dnf install -y "
 		PackagesToInstall="bullet-devel boost gcc-c++ libXaw-devel freetype-devel freeimage-devel \
                 zziplib-devel boost-devel ois-devel tinyxml-devel glm-devel ffmpeg-devel ffmpeg-libs \
@@ -101,9 +108,17 @@ function install_Packages() {
 
 	elif [ $OS = "Arch" ]; then
 		PackageManager="pacman -S --noconfirm --color auto --needed"
-		PackagesToInstall="bullet boost base-devel automake libtool freetype2 \
-			freeimage zziplib libxrandr libxaw freeglut mesa-libgl \
+		PackagesToInstall="bullet boost automake libtool freetype2 \
+			freeimage zziplib libxrandr libxaw freeglut libgl \
 			ois tinyxml glm ffmpeg openal"
+		x=`pacman -Qs gcc-multilib`
+		if [ -n "$x" ]; then
+			PackagesToInstall="$PackagesToInstall gcc-multilib autoconf automake binutils \
+				bison fakeroot file findutils flex gawk gettext grep groff gzip libtool \
+				m4 make pacman patch pkg-config sed sudo texinfo util-linux which"
+		else
+			PackagesToInstall="$PackagesToInstall base-devel"
+		fi
 
 	else
 		echo -e "$ERROR Unkown linux OS \"$OS\" $NC"
