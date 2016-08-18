@@ -324,7 +324,7 @@ function setup_Thrive() {
 	if [ -d assets ]; then
 			cd assets
 			svn up
-
+			cd ..
 	else
 		svn checkout http://assets.revolutionarygamesstudio.com/ assets
 	fi
