@@ -64,8 +64,7 @@ both for guidelines on code formatting and git usage.
 ### Modellers, texture and GUI artists, and Sound Engineers
 To work on the art assets you will want a working copy of the game.
 You can find official releases here: http://revolutionarygamesstudio.com/releases/
-alternatively you can request a newer version from developers, compile the project yourself,
-or you can download from our (currently not updating and temporary) build server at ftp://nimbal.net/jenkins.
+alternatively you can request a newer version from developers, or compile the project yourself.
  
 After you have obtained a working version of the game, you can place any new assets in the corresponding subdirectories:
 sound, models, materials and gui and the game will automatically detect up your new files, which you can then use in scripts.
