@@ -571,11 +571,11 @@ if(WIN32)
         "${MINGW_ENV}/install/bin/libcAudio.dll"
         "${MINGW_ENV}/install/bin/wrap_oal.dll"
         "${MINGW_ENV}/install/bin/OpenAL32.dll"
-        "${MINGW_ENV}/install/bin/avcodec-56.dll"
-        "${MINGW_ENV}/install/bin/avformat-56.dll"
-        "${MINGW_ENV}/install/bin/avutil-54.dll"
-        "${MINGW_ENV}/install/bin/swscale-3.dll"
-        "${MINGW_ENV}/install/bin/swresample-1.dll"
+        "${MINGW_ENV}/install/bin/avcodec-57.dll"
+        "${MINGW_ENV}/install/bin/avformat-57.dll"
+        "${MINGW_ENV}/install/bin/avutil-55.dll"
+        "${MINGW_ENV}/install/bin/swscale-4.dll"
+        "${MINGW_ENV}/install/bin/swresample-2.dll"
         DESTINATION bin
 		CONFIGURATIONS Debug
     )
@@ -595,11 +595,11 @@ if(WIN32)
         "${MINGW_ENV}/install/bin/libcAudio.dll"
         "${MINGW_ENV}/install/bin/wrap_oal.dll"
         "${MINGW_ENV}/install/bin/OpenAL32.dll"
-        "${MINGW_ENV}/install/bin/avcodec-56.dll"
-        "${MINGW_ENV}/install/bin/avformat-56.dll"
-        "${MINGW_ENV}/install/bin/avutil-54.dll"
-        "${MINGW_ENV}/install/bin/swscale-3.dll"
-        "${MINGW_ENV}/install/bin/swresample-1.dll"
+        "${MINGW_ENV}/install/bin/avcodec-57.dll"
+        "${MINGW_ENV}/install/bin/avformat-57.dll"
+        "${MINGW_ENV}/install/bin/avutil-55.dll"
+        "${MINGW_ENV}/install/bin/swscale-4.dll"
+        "${MINGW_ENV}/install/bin/swresample-2.dll"
         DESTINATION bin
 		CONFIGURATIONS Release
     )
