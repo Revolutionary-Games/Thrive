@@ -74,7 +74,6 @@
 #include <unordered_map>
 #include <iostream>
 #include "sound/sound_manager.h"
-#include "ogre-ffmpeg/videoplayer.hpp"
 
 using namespace thrive;
 

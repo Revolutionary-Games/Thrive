@@ -58,7 +58,7 @@ If you choose step 2a, you should skip forward to step 5. after completion.
 
 *  Download the archive found here:
     
-    https://mega.nz/#!JVRw3IrS!K1s5y4dlbVc2HFfUlea_fZBDKjg_34u_5_Hk4W3wgRM  
+    https://mega.nz/#!ocBmmQBJ!DTCUagD7NDo5MUEwDY7qwbEmE40zTMgp2HcNXrkpBsk
 
 *  Extract to C:\mingw
 
