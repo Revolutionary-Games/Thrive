@@ -88,7 +88,7 @@ int64_t
 class VideoPlayerImpl{
 
     /**
-    Holds converted audio data before being read by readAudioData
+    Holds converted audio data that could not be immediately returned by readAudioData
     */
     struct ReadAudioPacket{
 
@@ -96,16 +96,16 @@ class VideoPlayerImpl{
     };
 
     /**
-    Holds raw video packets before decoding
+    Holds raw packets before sending
     */
-    struct ReadVideoPacket{
+    struct ReadPacket{
 
-        ReadVideoPacket(AVPacket* src){
+        ReadPacket(AVPacket* src){
 
             av_packet_move_ref(&packet, src);
         }
 
-        ~ReadVideoPacket(){
+        ~ReadPacket(){
 
             av_packet_unref(&packet);
         }
@@ -117,6 +117,19 @@ class VideoPlayerImpl{
 public:
 
     using ClockType = std::chrono::steady_clock;
+
+    enum class DECODE_PRIORITY {
+
+        VIDEO,
+        AUDIO
+    };
+
+    enum class PACKET_READ_RESULT {
+
+        ENDED,
+        OK,
+        QUEUE_FULL
+    };
 
     VideoPlayerImpl(VideoPlayer* outside) : OutsidePtr(outside)
     {
@@ -158,11 +171,11 @@ public:
             OgreResource_Seek);
 
         if(!ResourceReader)
-            return false;
+            throw std::bad_alloc();
 
         Context = avformat_alloc_context();
         if(!Context)
-            return false;
+            throw std::bad_alloc();
 
         Context->pb = ResourceReader;
 
@@ -170,11 +183,13 @@ public:
 
             // Context was freed automatically
             Context = nullptr;
+            std::cerr << "FFMPEG failed to open video stream file resource" << std::endl;
             return false;
         }
 
         if(avformat_find_stream_info(Context, nullptr) < 0){
 
+            std::cerr << "Failed to read video stream info" << std::endl;
             return false;
         }
 
@@ -184,13 +199,13 @@ public:
 
         for(unsigned int i = 0; i < Context->nb_streams; ++i){
 
-            if(Context->streams[i]->codec->codec_type == AVMEDIA_TYPE_VIDEO){
+            if(Context->streams[i]->codecpar->codec_type == AVMEDIA_TYPE_VIDEO){
 
                 videoStream = i;
                 continue;
             }
 
-            if(Context->streams[i]->codec->codec_type == AVMEDIA_TYPE_AUDIO){
+            if(Context->streams[i]->codecpar->codec_type == AVMEDIA_TYPE_AUDIO){
 
                 audioStream = i;
                 continue;
@@ -221,8 +236,8 @@ public:
         if(!DecodedFrame || !ConvertedFrame || !DecodedAudio)
             throw std::bad_alloc();
 
-        FrameWidth = Context->streams[videoStream]->codec->width;
-        FrameHeight = Context->streams[videoStream]->codec->height;
+        FrameWidth = Context->streams[videoStream]->codecpar->width;
+        FrameHeight = Context->streams[videoStream]->codecpar->height;
 
         // Calculate required size for the converted frame
         ConvertedBufferSize = av_image_get_buffer_size(FFMPEG_DECODE_TARGET,
@@ -245,7 +260,7 @@ public:
         // TODO: allow controlling how good conversion is done
         // SWS_FAST_BILINEAR is the fastest
         ImageConverter = sws_getContext(FrameWidth, FrameHeight,
-            Context->streams[VideoIndex]->codec->pix_fmt,
+            static_cast<AVPixelFormat>(Context->streams[VideoIndex]->codecpar->format),
             FrameWidth, FrameHeight, FFMPEG_DECODE_TARGET, SWS_BICUBIC,
             nullptr, nullptr, nullptr);
 
@@ -277,7 +292,7 @@ public:
 
             std::cerr << "OGRE_IMAGE_FORMAT is incompatible with FFMPEG_DECODE_TARGET"
                 << std::endl;
-            std::cerr << ogreBufferSize << " size is not" << ConvertedBufferSize <<
+            std::cerr << ogreBufferSize << " size is not " << ConvertedBufferSize <<
                 std::endl;
             abort();
             return false;
@@ -334,6 +349,8 @@ public:
         NextFrameReady = false;
         CurrentlyDecodedTimeStamp = 0.f;
 
+        StreamValid = true;
+
         return true;
     }
 
@@ -343,30 +360,53 @@ public:
             bool video
         )
     {
-        auto* codec = avcodec_find_decoder(Context->streams[index]->codec->codec_id);
+        auto* codec = avcodec_find_decoder(Context->streams[index]->codecpar->codec_id);
 
         if(!codec){
 
             throw std::runtime_error("unsupported codec used in video file");
         }
 
-        auto* codecContext = Context->streams[index]->codec;
+        auto* codecContext = avcodec_alloc_context3(codec);
+
+        if(!codecContext){
+
+            throw std::runtime_error("failed to allocate codec context");
+        }
+
+        // Try copying parameters //
+        if(avcodec_parameters_to_context(codecContext,
+                Context->streams[index]->codecpar) < 0)
+        {
+            avcodec_free_context(&codecContext);
+            throw std::runtime_error("failed to copy parameters to codec context");
+        }
 
         // Open the codec this is important to avoid segfaulting //
         // FFMPEG documentation warns that this is not thread safe
-        if(avcodec_open2(codecContext, codec, nullptr) < 0){
+        const auto codecOpenResult = avcodec_open2(codecContext, codec, nullptr);
 
+        if(codecOpenResult < 0){
+
+            std::string errorMessage;
+            errorMessage.resize(40);
+            memset(&errorMessage[0], ' ', errorMessage.size());
+            av_strerror(codecOpenResult, &errorMessage[0], errorMessage.size());
+            
+            std::cerr << "Error opening codec context: " << codecOpenResult <<
+                "(" << errorMessage << ")" << std::endl;
             avcodec_free_context(&codecContext);
             throw std::runtime_error("codec failed to open");
         }
-
 
         if(video){
 
             VideoCodec = codecContext;
             VideoIndex = static_cast<int>(index);
-            VideoTimeBase = static_cast<float>(VideoCodec->time_base.num) /
-                static_cast<float>(VideoCodec->time_base.den);
+            VideoTimeBase = static_cast<float>(Context->streams[index]->time_base.num) /
+               static_cast<float>(Context->streams[index]->time_base.den);
+            // VideoTimeBase = static_cast<float>(VideoCodec->time_base.num) /
+            //     static_cast<float>(VideoCodec->time_base.den);
 
         } else {
 
@@ -378,134 +418,177 @@ public:
     bool
         isOpen() const
     {
-        return VideoCodec != nullptr && ConvertedFrameBuffer != nullptr;
+        return StreamValid && VideoCodec != nullptr && ConvertedFrameBuffer != nullptr;
     }
 
     /**
     @brief Reads a single packet from either stream and pushes it into a queue
     */
-    bool
-        readOnePacket()
+    PACKET_READ_RESULT
+        readOnePacket(DECODE_PRIORITY priority)
     {
         // Apparently Lua wants to call this after closing
-        if(!Context)
-            return false;
+        if(!Context || !StreamValid)
+            return PACKET_READ_RESULT::ENDED;
 
         boost::lock_guard<boost::mutex> lock(ReadPacketMutex);
+
+        // Decode queued packets first
+        if(priority == DECODE_PRIORITY::VIDEO && !WaitingVideoPackets.empty()){
+
+            // Try to send it //
+            const auto result = avcodec_send_packet(VideoCodec,
+                &WaitingVideoPackets.front()->packet);
+            
+            if(result == AVERROR(EAGAIN)){
+
+                // Still wailing to send //
+                return PACKET_READ_RESULT::QUEUE_FULL;
+            }
+
+            if(result < 0){
+
+                // An error occured //
+                std::cerr << "Video stream send error from queue, stopping playback"
+                    << std::endl;
+                StreamValid = false;
+                return PACKET_READ_RESULT::ENDED;
+            }
+
+            // Successfully sent the first in the queue //
+            WaitingVideoPackets.pop_front();
+            return PACKET_READ_RESULT::OK;
+            
+        }
+        if(priority == DECODE_PRIORITY::AUDIO && !WaitingAudioPackets.empty()){
+
+            // Try to send it //
+            const auto result = avcodec_send_packet(AudioCodec,
+                &WaitingAudioPackets.front()->packet);
+            
+            if(result == AVERROR(EAGAIN)){
+
+                // Still wailing to send //
+                return PACKET_READ_RESULT::QUEUE_FULL;
+            } 
+
+            if(result < 0){
+
+                // An error occured //
+                std::cerr << "Audio stream send error from queue, stopping playback"
+                    << std::endl;
+                StreamValid = false;
+                return PACKET_READ_RESULT::ENDED;
+            }
+
+            // Successfully sent the first in the queue //
+            WaitingAudioPackets.pop_front();
+            return PACKET_READ_RESULT::OK;
+        }
+
+        // If we had nothing in the right queue try to read more frames //
 
         AVPacket packet;
         //av_init_packet(&packet);
 
-        // Decode data until a frame has been read
         if(av_read_frame(Context, &packet) < 0){
 
             // Stream ended //
             //av_packet_unref(&packet);
-            return false;
+            return PACKET_READ_RESULT::ENDED;
+        }
+
+        if(!StreamValid){
+
+            av_packet_unref(&packet);
+            return PACKET_READ_RESULT::ENDED;
         }
 
         // Is this a packet from the video stream?
         if(packet.stream_index == VideoIndex) {
 
-            // Store for decoding //
-            boost::lock_guard<boost::mutex> lock(ReadVideoDataMutex);
+            // If not wanting this stream don't send it //
+            if(priority != DECODE_PRIORITY::VIDEO){
 
-            ReadVideoData.push_back(make_unique<ReadVideoPacket>(&packet));
-
-        } else if(packet.stream_index == AudioIndex){
-
-            // Audio packet //
-            if(!AudioCodec){
-
-                // Audio has been invalidated
-                av_packet_unref(&packet);
-                return false;
+                WaitingVideoPackets.push_back(make_unique<ReadPacket>(&packet));
+                return PACKET_READ_RESULT::OK;
             }
 
-            // TODO: move this to readAudioData
-            AVPacket orig_pkt = packet;
-            do {
+            // Send it to the decoder //
+            const auto result = avcodec_send_packet(VideoCodec, &packet);
 
-                int got_frame = 0;
-                auto len = avcodec_decode_audio4(AudioCodec, DecodedAudio,
-                    &got_frame, &packet);
+            if(result == AVERROR(EAGAIN)){
 
-                if(len < 0){
+                // Add to queue //
+                WaitingVideoPackets.push_back(make_unique<ReadPacket>(&packet));
+                return PACKET_READ_RESULT::QUEUE_FULL;
+            }
 
-                    std::cerr << "Invalid audio stream, stopping audio playback"
-                        << std::endl;
-                    AudioCodec = nullptr;
-                    break;
-                }
+            av_packet_unref(&packet);
+            
+            if(result < 0){
 
-                if(got_frame){
+                std::cerr << "Video stream send error, stopping playback"
+                    << std::endl;
+                StreamValid = false;
+                return PACKET_READ_RESULT::ENDED;
+            }
 
-                    // Add the data to the queue //
-                    auto newBuffer = make_unique<ReadAudioPacket>();
+            return PACKET_READ_RESULT::OK;
 
-                    // This is verified in open when setting up converting
-                    const auto bytesPerSample = 2;
+        } else if(packet.stream_index == AudioIndex && AudioCodec){
+            
+            // If audio codec is null audio playback is disabled //
+            
+            // If not wanting this stream don't send it //
+            if(priority != DECODE_PRIORITY::AUDIO){
 
-                    const auto totalSize = bytesPerSample * (DecodedAudio->nb_samples
-                        * ChannelCount);
+                WaitingAudioPackets.push_back(make_unique<ReadPacket>(&packet));
+                return PACKET_READ_RESULT::OK;
+            }
+            
+            const auto result = avcodec_send_packet(AudioCodec, &packet);
 
-                    newBuffer->DecodedData.resize(totalSize);
+            if(result == AVERROR(EAGAIN)){
 
-                    //uint8_t* output[] = { &newBuffer->DecodedData[0], nullptr};
-                    uint8_t* output = &newBuffer->DecodedData[0];
+                // Add to queue //
+                WaitingAudioPackets.push_back(make_unique<ReadPacket>(&packet));
+                return PACKET_READ_RESULT::QUEUE_FULL;
+            }
 
-                    // Convert into the output data
-                    if(swr_convert(AudioConverter, &output, totalSize,
-                            const_cast<const uint8_t**>(DecodedAudio->data),
-                            DecodedAudio->nb_samples) < 0)
-                    {
-                        std::cerr << "Invalid audio stream, converting failed"
-                            << std::endl;
-                        AudioCodec = nullptr;
-                        continue;
-                    }
+            av_packet_unref(&packet);
 
-                    //memcpy(&newBuffer->DecodedData[0],
-                    //&DecodedAudio->data[0], totalSize);
+            if(result < 0){
 
-                    boost::lock_guard<boost::mutex> lock(AudioMutex);
-                    ReadAudioData.push_back(std::move(newBuffer));
-                }
+                std::cerr << "Audio stream send error, stopping audio playback"
+                    << std::endl;
+                StreamValid = false;
+                return PACKET_READ_RESULT::ENDED;
+            }
 
-                len = std::min(len, packet.size);
-
-                packet.data += len;
-                packet.size -= len;
-
-            } while (packet.size > 0);
-
-            av_packet_unref(&orig_pkt);
+            av_packet_unref(&packet);
+            return PACKET_READ_RESULT::OK;
         }
 
-        return true;
+        // Unknown stream, ignore
+        av_packet_unref(&packet);
+        return PACKET_READ_RESULT::OK;
     }
 
     bool
-        decodeFrame(AVPacket &packet)
+        decodeFrame()
     {
-        int frameFinished = 0;
+        const auto result = avcodec_receive_frame(VideoCodec, DecodedFrame);
 
-        // Decode video frame
-        if(avcodec_decode_video2(VideoCodec, DecodedFrame, &frameFinished, &packet) < 0){
+        if(result >= 0){
 
-            std::cerr << "Decoding video frame failed" << std::endl;
-            return false;
-        }
-
-        // Was it a complete frame
-        if(frameFinished){
-
+            // Worked //
+            
             // Convert the image from its native format to RGB
             if(sws_scale(ImageConverter, DecodedFrame->data, DecodedFrame->linesize,
                     0, FrameHeight,
                     ConvertedFrame->data, ConvertedFrame->linesize) < 0)
             {
-
                 // Failed to convert frame //
                 std::cerr << "Converting video frame failed" << std::endl;
                 return false;
@@ -513,16 +596,29 @@ public:
 
             // Seems like DecodedFrame->pts contains garbage
             // and packet.pts is the timestamp in VideoCodec->time_base
-            CurrentlyDecodedTimeStamp = packet.pts * VideoTimeBase;
+            // so we access that through pkt_pts
+            //CurrentlyDecodedTimeStamp = DecodedFrame->pkt_pts * VideoTimeBase;
+            //VideoTimeBase = VideoCodec->time_base.num / VideoCodec->time_base.den;
+            CurrentlyDecodedTimeStamp = DecodedFrame->pkt_pts * VideoTimeBase;
             return true;
         }
 
+        if(result == AVERROR(EAGAIN)){
+
+            // Waiting for data //
+            return false;
+        }
+
+        std::cerr << "Video frame receive failed, error: " << result << std::endl;
         return false;
     }
 
     void
         update()
     {
+        if(!StreamValid)
+            return;
+        
         const auto now = ClockType::now();
 
         const auto elapsed = now - LastUpdateTime;
@@ -533,7 +629,7 @@ public:
 
         // Start playing audio. Hopefully at the same time as the first frame of the
         // video is decoded
-        if(!IsPlayingAudio && PlayingSource){
+        if(!IsPlayingAudio && PlayingSource && AudioCodec){
 
             IsPlayingAudio = true;
             PlayingSource->play2d(false);
@@ -542,30 +638,20 @@ public:
         // Only decode if there isn't a frame ready
         while(!NextFrameReady){
 
-            boost::unique_lock<boost::mutex> lock(ReadVideoDataMutex);
+            // Decode a packet if none are in queue
+            if(readOnePacket(DECODE_PRIORITY::VIDEO) == PACKET_READ_RESULT::ENDED){
 
-            if(ReadVideoData.empty()){
-
-                lock.unlock();
-
-                // Decode a packet if none are in queue
-                if(!readOnePacket()){
-
-                    // There are no more frames, end the playback
-                    endReached();
-                    return;
-                }
-
-                lock.lock();
+                // There are no more frames, end the playback
+                endReached();
+                return;
             }
 
-            // Decode packets until a frame is done
-            NextFrameReady = decodeFrame(ReadVideoData.front()->packet);
-
-            ReadVideoData.pop_front();
+            NextFrameReady = decodeFrame();
         }
 
         if(PassedTimeSeconds >= CurrentlyDecodedTimeStamp){
+
+            //std::cout << "Showing frame at: " << PassedTimeSeconds << std::endl;
             // Update the Ogre texture //
             updateOgreTexture();
             NextFrameReady = false;
@@ -607,6 +693,7 @@ public:
 
         av_seek_frame(Context, VideoIndex, timeStamp, AVSEEK_FLAG_BACKWARD);
 
+        std::cerr << "Audio seeking not implemented. " << std::endl;
     }
 
     void
@@ -622,17 +709,24 @@ public:
     void
         close()
     {
+        StreamValid = false;
 
         // Dump remaining video frames //
         {
-            boost::lock_guard<boost::mutex> lock(ReadVideoDataMutex);
+            boost::lock_guard<boost::mutex> lock(ReadPacketMutex);
 
-            ReadVideoData.clear();
+            WaitingVideoPackets.clear();
+            WaitingAudioPackets.clear();
         }
 
         unhookAudio();
 
         // Video and Audio codecs are released by Context
+        if(VideoCodec)
+            avcodec_free_context(&VideoCodec);
+        if(AudioCodec)
+            avcodec_free_context(&AudioCodec);
+        
         VideoCodec = nullptr;
         AudioCodec = nullptr;
 
@@ -679,25 +773,112 @@ public:
         readAudioData(uint8_t* output,
             size_t amount)
     {
-        if(amount < 1 || !AudioStreamer)
+        boost::lock_guard<boost::mutex> lock(AudioMutex);
+        
+        if(amount < 1 || !AudioStreamer || !AudioCodec || !StreamValid)
             return 0;
 
-        boost::unique_lock<boost::mutex> lock(AudioMutex);
+        // Receive audio packet //
+        while(true){
 
-        while(ReadAudioData.empty()){
+            // First return from queue //
+            if(!ReadAudioData.empty()){
 
-            // Will deadlock if we don't unlock this
-            lock.unlock();
+                // Try to read from the queue //
+                const auto readAmount = readDataFromAudioQueue(lock, output, amount);
 
-            if(!this->readOnePacket()){
+                if(readAmount == 0){
 
-                // Stream ended //
+                    // Queue is invalid... //
+                    std::cerr << "Invalid audio queue, emptying the queue" << std::endl;
+                    ReadAudioData.clear();
+                    continue;
+                }
+
+                return readAmount;
+            }
+
+            const auto readResult = avcodec_receive_frame(AudioCodec, DecodedAudio);
+            
+            if(readResult == AVERROR(EAGAIN)){
+
+                if(this->readOnePacket(DECODE_PRIORITY::AUDIO) == PACKET_READ_RESULT::ENDED){
+
+                    // Stream ended //
+                    return 0;
+                }
+
+                continue;
+            }
+
+            if(readResult < 0){
+
+                // Some error //
+                std::cerr << "Failed receiving audio packet, stopping audio playback"
+                    << std::endl;
+                StreamValid = false;
                 return 0;
             }
 
-            lock.lock();
+            // Received audio data //
+
+            // This is verified in open when setting up converting
+            const auto bytesPerSample = 2;
+
+            const auto totalSize = bytesPerSample * (DecodedAudio->nb_samples
+                * ChannelCount);
+
+            if(amount >= static_cast<size_t>(totalSize)){
+                
+                // Lets try to directly feed the converted data to the requester //
+                if(swr_convert(AudioConverter, &output, totalSize,
+                        const_cast<const uint8_t**>(DecodedAudio->data),
+                        DecodedAudio->nb_samples) < 0)
+                {
+                    std::cerr << "Invalid audio stream, converting to audio read buffer failed"
+                        << std::endl;
+                    StreamValid = false;
+                    return 0;
+                }
+
+                return totalSize;
+            }
+            
+            // We need a temporary buffer //
+            auto newBuffer = make_unique<ReadAudioPacket>();
+
+            newBuffer->DecodedData.resize(totalSize);
+
+            uint8_t* decodeOutput = &newBuffer->DecodedData[0];
+
+            // Convert into the output data
+            if(swr_convert(AudioConverter, &decodeOutput, totalSize,
+                    const_cast<const uint8_t**>(DecodedAudio->data),
+                    DecodedAudio->nb_samples) < 0)
+            {
+                std::cerr << "Invalid audio stream, converting failed"
+                    << std::endl;
+                StreamValid = false;
+                return 0;
+            }
+                    
+            ReadAudioData.push_back(std::move(newBuffer));
+            continue;
         }
 
+        // Execution never reaches here
+    }
+
+    size_t
+        readDataFromAudioQueue(boost::lock_guard<boost::mutex> &audioLock,
+            uint8_t* output,
+            size_t amount)
+    {
+        (void)audioLock;
+
+        if(ReadAudioData.empty())
+            return 0;
+        
         auto& dataVector = ReadAudioData.front()->DecodedData;
 
         if(amount >= dataVector.size()){
@@ -719,7 +900,7 @@ public:
         memcpy(output, &dataVector[0], movedDataCount);
 
         dataVector = std::vector<uint8_t>(
-                dataVector.end() - leftSize, dataVector.end());
+            dataVector.end() - leftSize, dataVector.end());
 
         return movedDataCount;
     }
@@ -856,10 +1037,6 @@ public:
     SoundMemoryStream* AudioStreamer = nullptr;
     cAudio::IAudioSource* PlayingSource = nullptr;
 
-
-    std::list<std::unique_ptr<ReadVideoPacket>> ReadVideoData;
-    boost::mutex ReadVideoDataMutex;
-
     VideoPlayer* OutsidePtr;
 
     //! Used to start the audio playback once
@@ -871,10 +1048,15 @@ public:
 
     bool NextFrameReady = false;
 
+    //! Set to false if an error occurs and playback should stop
+    bool StreamValid = false;
+
 
     ClockType::time_point LastUpdateTime;
 
     boost::mutex ReadPacketMutex;
+    std::list<std::unique_ptr<ReadPacket>> WaitingVideoPackets;
+    std::list<std::unique_ptr<ReadPacket>> WaitingAudioPackets;
 };
 
 
