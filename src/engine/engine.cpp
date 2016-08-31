@@ -316,7 +316,7 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
         ));
 #if defined OIS_WIN32_PLATFORM
         parameters.insert(std::make_pair(std::string("w32_mouse"), std::string("DISCL_FOREGROUND" )));
-        parameters.insert(std::make_pair(std::string("w32_mouse"), std::string("DISCL_NONEXCLUSIVE")));
+        parameters.insert(std::make_pair(std::string("w32_mouse"), std::string("DISCL_EXCLUSIVE")));
         parameters.insert(std::make_pair(std::string("w32_keyboard"), std::string("DISCL_FOREGROUND")));
         parameters.insert(std::make_pair(std::string("w32_keyboard"), std::string("DISCL_NONEXCLUSIVE")));
 #elif defined OIS_LINUX_PLATFORM
