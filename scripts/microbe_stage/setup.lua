@@ -3,6 +3,7 @@ local function setupBackground()
     local entity = Entity("background")
     local skyplane = SkyPlaneComponent()
     skyplane.properties.plane.normal = Vector3(0, 0, 2000)
+    math.randomseed( os.time() )
     local rand = math.random(0,3)
     if rand == 0 then
         skyplane.properties.materialName = "Background"
