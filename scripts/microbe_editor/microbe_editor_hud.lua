@@ -193,7 +193,7 @@ function MicrobeEditorHudSystem:update(renderTime, logicTime)
         end
     elseif keyCombo(kmp.gotostage) then
         playClicked()
-    elseif keyCombo(kmp.rename) then
+    elseif keyCombo(kmp.rename) or keyCombo(kmp.rename2) then
         self:updateMicrobeName()
     end
     
