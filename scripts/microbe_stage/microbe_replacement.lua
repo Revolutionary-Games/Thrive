@@ -4,8 +4,8 @@ class 'MicrobeReplacementSystem' (System)
 -- Global boolean for whether a new microbe is avaliable in the microbe editor.
 global_newEditorMicrobe = false
 --global_speciesNameCounter = 1  SERVES NO PURPOSE--
-        global_speciesNamePrefix = { 'Ar',' Sp', ' Th',' Co', ' So', ' Pu', ' Cr', ' Cy', ' Gr', ' Re', ' Ty', ' Tr' }
-        global_speciesNameCofix = { 'nan', 'mo', 'na', 'yt', 'yn', 'il', 'li', 'op', 'un', 'rive','ec' }
+        global_speciesNamePrefix = {' Ce', ' Ar',' Sp', ' Th',' Co', ' So', ' Pu', ' Cr', ' Cy', ' Gr', ' Re', ' Ty', ' Tr' }
+        global_speciesNameCofix = { 'nan', 'mo', 'na', 'yt', 'yn', 'il', 'li','le', 'op', 'un', 'rive','ec' }
         global_speciesNameSuffix = { 'pien', 'olera', 'rius', 'nien', 'ster', 'ilia', 'canus', 'tus', 'cys','ium'}
 global_Genus_Picked = 0
 
@@ -35,8 +35,8 @@ function MicrobeReplacementSystem:activate()
 		global_speciesGenName = (global_speciesNamePrefix[math.random(#global_speciesNamePrefix)]) .. (global_speciesNameCofix[math.random(#global_speciesNameCofix)]) .. (global_speciesNameSuffix[math.random(#global_speciesNameSuffix)])
         local new_species_name = global_Genus_Name .. global_speciesGenName
 		global_speciesPreviousName = global_speciesNamePrefix
-        global_speciesNamePrefix = { 'Ar',' Sp', ' Th',' Co', ' So', ' Pu', ' Cr', ' Cy', ' Gr', ' Re', ' Ty', ' Tr' }
-        global_speciesNameCofix = { 'nan', 'mo', 'na', 'yt', 'yn', 'il', 'li', 'op', 'un', 'rive','ec' }
+        global_speciesNamePrefix = {' Ce', ' Ar',' Sp', ' Th',' Co', ' So', ' Pu', ' Cr', ' Cy', ' Gr', ' Re', ' Ty', ' Tr' }
+        global_speciesNameCofix = { 'nan', 'mo', 'na', 'yt', 'yn', 'il', 'li','le', 'op', 'un', 'rive','ec' }
         global_speciesNameSuffix = { 'pien', 'olera', 'rius', 'nien', 'ster', 'ilia', 'canus', 'tus', 'cys','ium'}
         
         local speciesEntity = Entity(new_species_name)
