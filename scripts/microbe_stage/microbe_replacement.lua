@@ -26,12 +26,13 @@ function MicrobeReplacementSystem:activate()
         activeCreatureId = Engine:playerData():activeCreature()
         local workingMicrobe = Microbe(Entity(activeCreatureId, GameState.MICROBE_EDITOR), true)
 		
-
-		global_Genus_Name = workingMicrobe.microbe.speciesName
-
+        if global_Genus_Picked == 0 then
+            global_Genus_Picked = 1;
+            global_Genus_Name = workingMicrobe.microbe.speciesName
+        end
 			
         math.randomseed(os.time())
-		global_speciesGenName = (global_speciesNamePrefix[math.random(12)]) .. (global_speciesNameCofix[math.random(10)]) .. (global_speciesNameSuffix[math.random(10)])
+		global_speciesGenName = (global_speciesNamePrefix[math.random(#global_speciesNamePrefix)]) .. (global_speciesNameCofix[math.random(#global_speciesNameCofix)]) .. (global_speciesNameSuffix[math.random(#global_speciesNameSuffix)])
         local new_species_name = global_Genus_Name .. global_speciesGenName
 		global_speciesPreviousName = global_speciesNamePrefix
         global_speciesNamePrefix = { 'Ar',' Sp', ' Th',' Co', ' So', ' Pu', ' Cr', ' Cy', ' Gr', ' Re', ' Ty', ' Tr' }

@@ -266,12 +266,14 @@ function MicrobeEditorHudSystem:nameClicked()
 end
 
 function MicrobeEditorHudSystem:updateMicrobeName()
+    global_Genus_Picked = 0;
     self.editor.currentMicrobe.microbe.speciesName = self.nameTextbox:getText()
     local name = self.editor.currentMicrobe.microbe.speciesName
     if string.len(name) > 18 then
         name = string.sub(self.editor.currentMicrobe.microbe.speciesName, 1, 15)
         name = name .. "..."
     end
+    global_Genus_Name  = name
     self.nameLabel:setText(name)
     self.nameTextbox:hide()
     self.nameLabel:show()
