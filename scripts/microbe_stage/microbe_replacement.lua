@@ -4,9 +4,9 @@ class 'MicrobeReplacementSystem' (System)
 -- Global boolean for whether a new microbe is avaliable in the microbe editor.
 global_newEditorMicrobe = false
 --global_speciesNameCounter = 1  SERVES NO PURPOSE--
-global_speciesNamePrefix = { ' Co', ' So', ' Pu', ' Cr', ' Cy', ' Gr', ' Re', ' Ty', ' Tr' }
-global_speciesNameCofix = { 'nan', 'mo', 'na', 'yt', 'yn', 'il', 'li', 'op', 'un' }
-global_speciesNameSuffix = { 'pien', 'olera', 'rius', 'nien', 'ster', 'ilia', 'canus', 'tus', 'cys'}
+        global_speciesNamePrefix = { 'Ar',' Sp', ' Th',' Co', ' So', ' Pu', ' Cr', ' Cy', ' Gr', ' Re', ' Ty', ' Tr' }
+        global_speciesNameCofix = { 'nan', 'mo', 'na', 'yt', 'yn', 'il', 'li', 'op', 'un', 'rive','ec' }
+        global_speciesNameSuffix = { 'pien', 'olera', 'rius', 'nien', 'ster', 'ilia', 'canus', 'tus', 'cys','ium'}
 global_Genus_Picked = 0
 
 
@@ -26,18 +26,17 @@ function MicrobeReplacementSystem:activate()
         activeCreatureId = Engine:playerData():activeCreature()
         local workingMicrobe = Microbe(Entity(activeCreatureId, GameState.MICROBE_EDITOR), true)
 		
-		if global_Genus_Picked == 0 then
-			global_Genus_Name = workingMicrobe.microbe.speciesName
-			global_Genus_Picked = 1
-		end
+
+		global_Genus_Name = workingMicrobe.microbe.speciesName
+
 			
         math.randomseed(os.time())
 		global_speciesGenName = (global_speciesNamePrefix[math.random(9)]) .. (global_speciesNameCofix[math.random(9)]) .. (global_speciesNameSuffix[math.random(9)])
         local new_species_name = global_Genus_Name .. global_speciesGenName
 		global_speciesPreviousName = global_speciesNamePrefix
-		global_speciesNamePrefix = { ' Co', ' So', ' Pu', ' Cr', ' Cy', ' Gr', ' Re', ' Ty', ' Tr' }
-		global_speciesNameCofix = { 'nan', 'mo', 'na', 'yt', 'yn', 'il', 'li', 'op', 'un' }
-		global_speciesNameSuffix = { 'pien', 'olera', 'rius', 'nien', 'ster', 'ilia', 'canus', 'tus', 'cys'}
+        global_speciesNamePrefix = { 'Ar',' Sp', ' Th',' Co', ' So', ' Pu', ' Cr', ' Cy', ' Gr', ' Re', ' Ty', ' Tr' }
+        global_speciesNameCofix = { 'nan', 'mo', 'na', 'yt', 'yn', 'il', 'li', 'op', 'un', 'rive','ec' }
+        global_speciesNameSuffix = { 'pien', 'olera', 'rius', 'nien', 'ster', 'ilia', 'canus', 'tus', 'cys','ium'}
         
         local speciesEntity = Entity(new_species_name)
         local species = SpeciesComponent(new_species_name)

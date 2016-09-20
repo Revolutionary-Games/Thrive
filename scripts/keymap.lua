@@ -19,7 +19,7 @@ kmp.chloroplast = {"P"}
 
 kmp.togglegrid = {"G"}
 
-kmp.rename = {"F12"}
+kmp.rename = {"ESCAPE"}
 kmp.gotostage = {"F2"}
 
 -- Microbe Stage --
