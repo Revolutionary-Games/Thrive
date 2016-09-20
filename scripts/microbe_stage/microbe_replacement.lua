@@ -31,7 +31,7 @@ function MicrobeReplacementSystem:activate()
 
 			
         math.randomseed(os.time())
-		global_speciesGenName = (global_speciesNamePrefix[math.random(9)]) .. (global_speciesNameCofix[math.random(9)]) .. (global_speciesNameSuffix[math.random(9)])
+		global_speciesGenName = (global_speciesNamePrefix[math.random(12)]) .. (global_speciesNameCofix[math.random(10)]) .. (global_speciesNameSuffix[math.random(10)])
         local new_species_name = global_Genus_Name .. global_speciesGenName
 		global_speciesPreviousName = global_speciesNamePrefix
         global_speciesNamePrefix = { 'Ar',' Sp', ' Th',' Co', ' So', ' Pu', ' Cr', ' Cy', ' Gr', ' Re', ' Ty', ' Tr' }
