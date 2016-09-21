@@ -3,11 +3,8 @@ class 'MicrobeReplacementSystem' (System)
 
 -- Global boolean for whether a new microbe is avaliable in the microbe editor.
 global_newEditorMicrobe = false
---global_speciesNameCounter = 1  SERVES NO PURPOSE--
-        global_speciesNamePrefix = {' Ce', ' Ar',' Sp', ' Th',' Co', ' So', ' Pu', ' Cr', ' Cy', ' Gr', ' Re', ' Ty', ' Tr', ' Ac' }
-        global_speciesNameCofix = { 'nan', 'mo', 'na', 'yt', 'yn', 'il', 'li','le', 'op', 'un', 'rive','ec', 'ro','lar' }
-        global_speciesNameSuffix = { 'pien', 'olera', 'rius', 'nien', 'ster', 'ilia', 'canus', 'tus', 'cys','ium'}
-global_Genus_Picked = 0
+--set it up so the game knows whether or not to replace the genus.
+global_Genus_Picked = false
 
 
 function MicrobeReplacementSystem:__init()
@@ -26,16 +23,12 @@ function MicrobeReplacementSystem:activate()
         activeCreatureId = Engine:playerData():activeCreature()
         local workingMicrobe = Microbe(Entity(activeCreatureId, GameState.MICROBE_EDITOR), true)
 		
-        if global_Genus_Picked == 0 then
-            global_Genus_Picked = 1;
+        if not global_Genus_Picked  then
+            global_Genus_Picked = true;
             global_Genus_Name = workingMicrobe.microbe.speciesName
         end
 			
-        math.randomseed(os.time())
-		global_speciesGenName = (global_speciesNamePrefix[math.random(#global_speciesNamePrefix)]) .. (global_speciesNameCofix[math.random(#global_speciesNameCofix)]) .. (global_speciesNameSuffix[math.random(#global_speciesNameSuffix)])
-        local new_species_name = global_Genus_Name .. global_speciesGenName
-		global_speciesPreviousName = global_speciesNamePrefix
-        
+        new_species_name = self:generateSpeciesName();
         local speciesEntity = Entity(new_species_name)
         local species = SpeciesComponent(new_species_name)
         speciesEntity:addComponent(species)
@@ -59,6 +52,21 @@ function MicrobeReplacementSystem:activate()
         global_newEditorMicrobe = false
         Engine:playerData():setActiveCreature(newMicrobeEntity.id, GameState.MICROBE)
     end
+end
+
+--Faux-latin name generation routine (Move to own file eventually?)
+function MicrobeReplacementSystem:generateSpeciesName()
+
+    --prefix,cofix,suffix list
+    speciesNamePrefix = {' Ce', ' Ar',' Sp', ' Th',' Co', ' So', ' Pu', ' Cr', ' Cy', ' Gr', ' Re', ' Ty', ' Tr', ' Ac',' Pr' }
+    speciesNameCofix = { 'nan', 'mo', 'na', 'yt', 'yn', 'il', 'li','le', 'op', 'un', 'rive','ec', 'ro','lar','im' }
+    speciesNameSuffix = { 'pien', 'olera', 'rius', 'nien', 'ster', 'ilia', 'canus', 'tus', 'cys','ium','um'}
+
+    --Generate random seed
+    math.randomseed(os.time())    
+    speciesGenName = (speciesNamePrefix[math.random(#speciesNamePrefix)]) .. (speciesNameCofix[math.random(#speciesNameCofix)]) .. (speciesNameSuffix[math.random(#speciesNameSuffix)])
+    local new_species_name = global_Genus_Name .. speciesGenName
+    return new_species_name;   
 end
 
 function MicrobeReplacementSystem:update(renderTime, logicTime)

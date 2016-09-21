@@ -266,7 +266,8 @@ function MicrobeEditorHudSystem:nameClicked()
 end
 
 function MicrobeEditorHudSystem:updateMicrobeName()
-    global_Genus_Picked = 0;
+    --set genus_picked to false so it knows to update the name properly when microbe_replacement runs
+    global_Genus_Picked = false;
     self.editor.currentMicrobe.microbe.speciesName = self.nameTextbox:getText()
     local name = self.editor.currentMicrobe.microbe.speciesName
     if string.len(name) > 18 then
