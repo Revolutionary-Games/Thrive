@@ -34,7 +34,6 @@ function MicrobeReplacementSystem:activate()
         math.randomseed(os.time())
 		global_speciesGenName = (global_speciesNamePrefix[math.random(#global_speciesNamePrefix)]) .. (global_speciesNameCofix[math.random(#global_speciesNameCofix)]) .. (global_speciesNameSuffix[math.random(#global_speciesNameSuffix)])
         local new_species_name = global_Genus_Name .. global_speciesGenName
-		global_speciesPreviousName = global_speciesNamePrefix
         
         local speciesEntity = Entity(new_species_name)
         local species = SpeciesComponent(new_species_name)
