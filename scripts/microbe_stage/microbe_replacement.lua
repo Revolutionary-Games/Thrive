@@ -28,7 +28,7 @@ function MicrobeReplacementSystem:activate()
         local workingMicrobe = Microbe(Entity(activeCreatureId, GameState.MICROBE_EDITOR), true)
  
         
-        if not global_Genus_Picked  then
+        if not global_genusPicked  then
             global_genusPicked = true;
             global_genusName = workingMicrobe.microbe.speciesName
         end
