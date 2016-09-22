@@ -376,7 +376,7 @@ function MicrobeEditor:removeOrganelleAt(q,r)
                 self.occupiedHexes[s]:destroy()
             end
             local storage = organelle:storage()
-            self:enqueueAction{
+            self:enqueueAction({
                 cost = 10,
                 redo = function()
                     self.currentMicrobe:removeOrganelle(storage:get("q", 0), storage:get("r", 0))
@@ -403,7 +403,7 @@ function MicrobeEditor:removeOrganelleAt(q,r)
                     end
                     self.organelleCount = self.organelleCount + 1
                 end
-            }
+            })
         end
     end
 end
