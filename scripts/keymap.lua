@@ -4,7 +4,7 @@ kmp = {}
 
 -- Microbe Editor --
 
-kmp.undo = {"ctrl", "U"}
+kmp.undo = {"ctrl", "Z"}
 kmp.redo = {"ctrl", "R"}
 
 kmp.remove = {"R"}
@@ -48,7 +48,6 @@ kmp.subtract = {"SUBTRACT"}
 -- it shouldn't require anything in Lua, it'll just get a table of strings, and do comparisons
 function keyCombo(combo)
     -- Boolean function, used to check if key combo is pressed
-    -- doesn't handle modifier keys properly yet (eg, ctrl+R will activate R)
 
     mods = {} -- holds whether each particular modifier key (left-right-agnostic) is pressed
     mods.ctrl = false
