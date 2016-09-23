@@ -5,12 +5,12 @@ kmp = {}
 -- Microbe Editor --
 
 kmp.undo = {"ctrl", "Z"}
-kmp.redo = {"ctrl", "R"}
+kmp.redo = {"ctrl", "Y"}
 
 kmp.remove = {"R"}
 kmp.newmicrobe = {"C"}
 
-kmp.vacuole = {"S"}
+kmp.vacuole = {"V"}
 kmp.mitochondrion = {"M"}
 kmp.oxytoxyvacuole = {"T"}
 kmp.flagellum = {"F"}
