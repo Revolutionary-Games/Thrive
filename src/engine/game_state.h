@@ -41,7 +41,7 @@ class System;
 class GameState {
 
 public:
-
+    bool special;
     /**
     * @brief Typedef for the game state's initializer function
     */
@@ -168,13 +168,16 @@ private:
     * @param initializer
     *   A function that is called after initializing the game
     *   state. You can set up basic entities in this callback.
+    * @param special
+    *   a boolean  that is used to determine if there is something special about this GameState (eg it s a freebuild version of the editor)
     */
     GameState(
         Engine& engine,
         std::string name,
         std::vector<std::unique_ptr<System>> systems,
         Initializer initializer,
-        std::string guiLayoutName
+        std::string guiLayoutName,
+        bool special
     );
 
     /**
@@ -182,6 +185,12 @@ private:
     */
     void
     activate();
+
+    /**
+    *@returns whether this gamestate has the "special" flag.
+    */
+    bool
+    getIsSpecial();
 
     /**
     * @brief Called by the engine when the game state is deactivated
