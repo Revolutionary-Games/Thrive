@@ -518,8 +518,7 @@ Engine_createGameState(
     std::string name,
     luabind::object luaSystems,
     luabind::object luaInitializer,
-    std::string guiLayoutName,
-    bool special
+    std::string guiLayoutName
 ) {
     std::vector<std::unique_ptr<System>> systems;
     for (luabind::iterator iter(luaSystems), end; iter != end; ++iter) {
@@ -541,8 +540,7 @@ Engine_createGameState(
         name,
         std::move(systems),
         initializer,
-        guiLayoutName,
-        special
+        guiLayoutName
     );
 }
 
@@ -608,8 +606,7 @@ Engine::createGameState(
     std::string name,
     std::vector<std::unique_ptr<System>> systems,
     GameState::Initializer initializer,
-    std::string guiLayoutName,
-    bool special
+    std::string guiLayoutName
 ) {
     assert(m_impl->m_gameStates.find(name) == m_impl->m_gameStates.end() && "Duplicate GameState name");
     std::unique_ptr<GameState> gameState(new GameState(
@@ -617,8 +614,7 @@ Engine::createGameState(
         name,
         std::move(systems),
         initializer,
-        guiLayoutName,
-        special
+        guiLayoutName
     ));
     GameState* rawGameState = gameState.get();
     m_impl->m_gameStates.insert(std::make_pair(

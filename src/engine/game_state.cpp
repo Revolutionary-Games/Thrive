@@ -101,7 +101,7 @@ GameState::luaBindings() {
     return class_<GameState>("GameState")
         .def("name", &GameState::name)
         .def("rootGUIWindow", &GameState::rootGUIWindow)
-        .def("getIsSpecial", &GameState::getIsSpecial)
+        .def("getFLag", &GameState::getFlag)
         .def("entityManager", static_cast<EntityManager&(GameState::*)()>(&GameState::entityManager))
     ;
 }
@@ -112,11 +112,10 @@ GameState::GameState(
     std::string name,
     std::vector<std::unique_ptr<System>> systems,
     Initializer initializer,
-    std::string guiLayoutName,
-    bool special
+    std::string guiLayoutName
 ) : m_impl(new Implementation(engine, name, std::move(systems), initializer, guiLayoutName))
 {
-    this->special = special;
+
 }
 
 
@@ -133,8 +132,8 @@ GameState::activate() {
 }
 
 bool
-GameState::getIsSpecial() {
-    return special;
+GameState::getFlag() {
+    return false;
 }
 
 void

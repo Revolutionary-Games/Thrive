@@ -123,9 +123,6 @@ public:
     * @param initializer
     *   The initialization function for the game state
     *
-    * @param special
-    *   a boolean  that is used to determine if there is something special about this GameState (eg it s a freebuild version of the editor)
-    *
     * @return
     *   The new game state. Will never be \c null. It is returned as a pointer
     *   as a convenience for Lua bindings, which don't handle references well.
@@ -135,8 +132,7 @@ public:
         std::string name,
         std::vector<std::unique_ptr<System>> systems,
         GameState::Initializer initializer,
-        std::string guiLayoutName,
-        bool special
+        std::string guiLayoutName
     );
 
     /**
