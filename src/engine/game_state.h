@@ -42,6 +42,7 @@ Flag
 {
     int intFlag; //bools/ints
     std::string stringFlag; //String variables
+    enum type{ num, string};
     Flag() : intFlag(0), stringFlag("") {}
 };
 
