@@ -48,7 +48,6 @@ function MicrobeEditor:activate()
         Engine:playerData():setBool("edited_microbe", true)
         Engine:playerData():setActiveCreature(self.nextMicrobeEntity.id, GameState.MICROBE_EDITOR)
     end
-    self.mutationPoints = 50
     self.actionHistory = {} -- where all user actions will  be registered
     self.actionIndex = 0 -- marks the last action that has been done (not undone, but possibly redone), is 0 if there is none
     for _, cytoplasm in pairs(self.occupiedHexes) do
@@ -144,12 +143,16 @@ function MicrobeEditor:renderHighlightedOrganelle(start, q, r, rotation)
 end
 
 function MicrobeEditor:takeMutationPoints(amount)
-    if amount <= self.mutationPoints then
-        self.mutationPoints = self.mutationPoints - amount
-        return true
-    else
-        return false
-    end
+    if global_freeBuild == 0 then
+		if amount <= self.mutationPoints then
+			self.mutationPoints = self.mutationPoints - amount
+			return true
+		else
+			return false
+		end
+	else
+		return true
+	end	
 end
 
 function MicrobeEditor:performLocationAction()
@@ -266,61 +269,46 @@ function MicrobeEditor:addOrganelle(organelleType)
     elseif self.symmetry == 1 then
         -- Makes sure that the organelle doesn't overlap on the existing ones.
         local organelle = self:isValidPlacement(organelleType, q, r, self.organelleRot)
-        if (q ~= -1*q or r ~= r+q) then -- If two organelles aren't overlapping
-            local organelle2 = self:isValidPlacement(organelleType, -1*q, r+q, 360+(-1*self.organelleRot))
-            
-            -- If the organelles were successfully created and have enough MP...
-            if organelle and organelle2 and Organelle.mpCosts[organelle.name]*2 <= self.mutationPoints then            
-                -- Add the organelles to the microbe.
-                self:_addOrganelle(organelle, q, r, self.organelleRot)
-                self:_addOrganelle(organelle2, -1*q, r+q, 360+(-1*self.organelleRot))
-            end
-        else
-            if organelle and Organelle.mpCosts[organelle.name] <= self.mutationPoints then            
-                -- Add a organelle to the microbe.
-                self:_addOrganelle(organelle, q, r, self.organelleRot)
-            end
+        local organelle2 = self:isValidPlacement(organelleType, -1*q, r+q, 360+(-1*self.organelleRot))
+        
+        -- If the organelles were successfully created...
+        if organelle and organelle2 then
+            -- Sees if you have enough MP to actually make the organelles.
+            if Organelle.mpCosts[organelle.name]*2 > self.mutationPoints then return end
+        
+            -- Add the organelles to the microbe.
+            self:_addOrganelle(organelle, q, r, self.organelleRot)
+            self:_addOrganelle(organelle2, -1*q, r+q, 360+(-1*self.organelleRot))
         end
     elseif self.symmetry == 2 then
         local organelle = self:isValidPlacement(organelleType, q, r, self.organelleRot)
-        if q ~= -1*q or r ~= r+q then -- If two organelles aren't overlapping, none are
-            local organelle2 = self:isValidPlacement(organelleType, -1*q, r+q, 360+(-1*self.organelleRot))
-            local organelle3 = self:isValidPlacement(organelleType, -1*q, -1*r, self.organelleRot+180)
-            local organelle4 = self:isValidPlacement(organelleType, q, -1*(r+q), 540+(-1*self.organelleRot))
-            
-            if organelle and organelle2 and organelle3 and organelle4 and Organelle.mpCosts[organelle.name]*4 <= self.mutationPoints then
-                self:_addOrganelle(organelle, q, r, self.organelleRot)
-                self:_addOrganelle(organelle2, -1*q, r+q, 360+(-1*self.organelleRot))
-                self:_addOrganelle(organelle3, -1*q, -1*r, self.organelleRot+180)
-                self:_addOrganelle(organelle4, q, -1*(r+q), 540+(-1*self.organelleRot))
-            end
-        else
-            if organelle and Organelle.mpCosts[organelle.name] <= self.mutationPoints then
-                self:_addOrganelle(organelle, q, r, self.organelleRot)
-            end
+        local organelle2 = self:isValidPlacement(organelleType, -1*q, r+q, 360+(-1*self.organelleRot))
+        local organelle3 = self:isValidPlacement(organelleType, -1*q, -1*r, self.organelleRot+180)
+        local organelle4 = self:isValidPlacement(organelleType, q, -1*(r+q), 540+(-1*self.organelleRot))
+        
+        if organelle and organelle2 and organelle3 and organelle4 then
+            if Organelle.mpCosts[organelle.name]*4 > self.mutationPoints then return end
+            self:_addOrganelle(organelle, q, r, self.organelleRot)
+            self:_addOrganelle(organelle2, -1*q, r+q, 360+(-1*self.organelleRot))
+            self:_addOrganelle(organelle3, -1*q, -1*r, self.organelleRot+180)
+            self:_addOrganelle(organelle4, q, -1*(r+q), 540+(-1*self.organelleRot))
         end
     elseif self.symmetry == 3 then
         local organelle = self:isValidPlacement(organelleType, q, r, self.organelleRot)
-        if q ~= -1*r or r ~= r+q then -- If two organelles aren't overlapping, none are
-            local organelle2 = self:isValidPlacement(organelleType, -1*r, r+q, self.organelleRot+60)
-            local organelle3 = self:isValidPlacement(organelleType, -1*(r+q), q, self.organelleRot+120)
-            local organelle4 = self:isValidPlacement(organelleType, -1*q, -1*r, self.organelleRot+180)
-            local organelle5 = self:isValidPlacement(organelleType, r, -1*(r+q), self.organelleRot+240)
-            local organelle6 = self:isValidPlacement(organelleType, r+q, -1*q, self.organelleRot+300)
-            
-            if organelle and organelle2 and organelle3 and organelle4 and organelle5 and organelle6 
-                         and Organelle.mpCosts[organelle.name]*6 <= self.mutationPoints then
-                self:_addOrganelle(organelle, q, r, self.organelleRot)
-                self:_addOrganelle(organelle2, -1*r, r+q, self.organelleRot+60)
-                self:_addOrganelle(organelle3, -1*(r+q), q, self.organelleRot+120)
-                self:_addOrganelle(organelle4, -1*q, -1*r, self.organelleRot+180)
-                self:_addOrganelle(organelle5, r, -1*(r+q), self.organelleRot+240)
-                self:_addOrganelle(organelle6, r+q, -1*q, self.organelleRot+300)
-            end
-        else
-            if organelle and Organelle.mpCosts[organelle.name] <= self.mutationPoints then 
-                 self:_addOrganelle(organelle, q, r, self.organelleRot)
-            end
+        local organelle2 = self:isValidPlacement(organelleType, -1*r, r+q, self.organelleRot+60)
+        local organelle3 = self:isValidPlacement(organelleType, -1*(r+q), q, self.organelleRot+120)
+        local organelle4 = self:isValidPlacement(organelleType, -1*q, -1*r, self.organelleRot+180)
+        local organelle5 = self:isValidPlacement(organelleType, r, -1*(r+q), self.organelleRot+240)
+        local organelle6 = self:isValidPlacement(organelleType, r+q, -1*q, self.organelleRot+300)
+        
+        if organelle and organelle2 and organelle3 and organelle4 and organelle5 and organelle6 then
+            if Organelle.mpCosts[organelle.name]*6 > self.mutationPoints then return end
+            self:_addOrganelle(organelle, q, r, self.organelleRot)
+            self:_addOrganelle(organelle2, -1*r, r+q, self.organelleRot+60)
+            self:_addOrganelle(organelle3, -1*(r+q), q, self.organelleRot+120)
+            self:_addOrganelle(organelle4, -1*q, -1*r, self.organelleRot+180)
+            self:_addOrganelle(organelle5, r, -1*(r+q), self.organelleRot+240)
+            self:_addOrganelle(organelle6, r+q, -1*q, self.organelleRot+300)
         end
     end   
 end
