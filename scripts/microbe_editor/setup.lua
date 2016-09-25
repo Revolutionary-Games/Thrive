@@ -3,7 +3,13 @@ local function setupBackground()
     local entity = Entity("background")
     local skyplane = SkyPlaneComponent()
     skyplane.properties.plane.normal = Vector3(0, 0, 2000)
-    skyplane.properties.materialName = "background/blue_01"
+	
+	if global_freeBuild == 0 then
+		 skyplane.properties.materialName = "Background_Abyss"
+	else
+		 skyplane.properties.materialName = "Background_Vent"
+	end
+   
 	skyplane.properties.scale = 4
     skyplane.properties:touch()
     entity:addComponent(skyplane)
