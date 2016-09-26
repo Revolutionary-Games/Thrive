@@ -103,6 +103,7 @@ GameState::luaBindings() {
         .def("rootGUIWindow", &GameState::rootGUIWindow)
         .def("getFLag", &GameState::getFlag)
         .def("entityManager", static_cast<EntityManager&(GameState::*)()>(&GameState::entityManager))
+        .def("defineFlags", &GameState::defineFlags)
     ;
 }
 
@@ -117,7 +118,7 @@ GameState::GameState(
 {
 
 }
-
+//the lua uses vectors!     std::vector<std::unique_ptr<System>> systems,
 
 GameState::~GameState() {}
 
@@ -209,6 +210,14 @@ GameState::name() const {
     return m_impl->m_name;
 }
 
+
+void
+GameState::defineFlags(
+    std::vector<Flag> flags
+)
+{
+flagList= std::move(flags);
+}
 
 btDiscreteDynamicsWorld*
 GameState::physicsWorld() const {

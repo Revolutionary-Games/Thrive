@@ -545,6 +545,7 @@ Engine_createGameState(
 }
 
 
+//Defined here
 luabind::scope
 Engine::luaBindings() {
     using namespace luabind;

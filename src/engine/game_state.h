@@ -65,6 +65,8 @@ public:
     * - GameState::name()
     * - GameState::rootGUIWindow()
     * - GameState::entityManager() // NOTE: Entitymanager class may not be exposed to luabind
+    * - GameState::getFlag()
+    * - GameState defineFlags()
     *
     * @return
     */
@@ -157,6 +159,16 @@ public:
         }
         return nullptr;
     }
+
+/**
+* @brief define the flags for a gamestate using a vector of flags
+*
+* @return Void
+**/
+    void
+    defineFlags(
+    std::vector<Flag> flags
+);
 
 private:
 
