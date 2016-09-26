@@ -66,6 +66,7 @@ public:
     * - GameState::rootGUIWindow()
     * - GameState::entityManager() // NOTE: Entitymanager class may not be exposed to luabind
     * - GameState::getFlag()
+    * - GameState::getFlag() (overloaded string version)
     * - GameState defineFlags()
     *
     * @return
@@ -207,10 +208,16 @@ private:
     activate();
 
     /**
-    *@returns whether this gamestate has the "special" flag.
+    *@returns integer data from a flag by index
     */
-    bool
-    getFlag();
+    int
+    getFlag(int index);
+
+    /**
+    *@returns integer data from a flag by name
+    */
+    int
+    getFlagString(std::string name);
 
     /**
     * @brief Called by the engine when the game state is deactivated

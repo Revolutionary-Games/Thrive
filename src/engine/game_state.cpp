@@ -101,7 +101,8 @@ GameState::luaBindings() {
     return class_<GameState>("GameState")
         .def("name", &GameState::name)
         .def("rootGUIWindow", &GameState::rootGUIWindow)
-        .def("getFLag", &GameState::getFlag)
+        .def("getFlag",  &GameState::getFlagString)
+        .def("getFlag",  &GameState::getFlag)
         .def("entityManager", static_cast<EntityManager&(GameState::*)()>(&GameState::entityManager))
         .def("defineFlags", &GameState::defineFlags)
     ;
@@ -132,11 +133,30 @@ GameState::activate() {
     }
 }
 
-bool
-GameState::getFlag() {
-    return false;
+int
+GameState::getFlag(int index) {
+    int listSize = flagList.size();
+    //O(1)
+    if (index < listSize){
+        return flagList.at(index).intFlag;
+        }
+    return -1;
 }
 
+int
+GameState::getFlagString(std::string name) {
+    int listSize = flagList.size();
+    if (listSize > 0){
+            //O(n) but hey we have  a handy identfier
+        for(int i=0; i<listSize; ++i){
+            if (flagList[i].stringFlag == name){
+                return flagList[i].intFlag;
+                }
+        }
+        }
+    return -1;
+}
+//TODO add means of getting other data from flags (like the string) seperately)/replace index with an "ID"
 void
 GameState::deactivate() {
     for (const auto& system : m_impl->m_systems) {
