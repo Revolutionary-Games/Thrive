@@ -4,13 +4,13 @@ kmp = {}
 
 -- Microbe Editor --
 
-kmp.undo = {"ctrl", "U"}
-kmp.redo = {"ctrl", "R"}
+kmp.undo = {"ctrl", "Z"}
+kmp.redo = {"ctrl", "Y"}
 
 kmp.remove = {"R"}
 kmp.newmicrobe = {"C"}
 
-kmp.vacuole = {"S"}
+kmp.vacuole = {"V"}
 kmp.mitochondrion = {"M"}
 kmp.oxytoxyvacuole = {"T"}
 kmp.flagellum = {"F"}
@@ -19,7 +19,8 @@ kmp.chloroplast = {"P"}
 
 kmp.togglegrid = {"G"}
 
-kmp.rename = {"F12"}
+kmp.rename = {"ESCAPE"}
+kmp.rename2 = {"F12"}
 kmp.gotostage = {"F2"}
 
 -- Microbe Stage --
@@ -47,7 +48,6 @@ kmp.subtract = {"SUBTRACT"}
 -- it shouldn't require anything in Lua, it'll just get a table of strings, and do comparisons
 function keyCombo(combo)
     -- Boolean function, used to check if key combo is pressed
-    -- doesn't handle modifier keys properly yet (eg, ctrl+R will activate R)
 
     mods = {} -- holds whether each particular modifier key (left-right-agnostic) is pressed
     mods.ctrl = false

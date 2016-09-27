@@ -193,7 +193,7 @@ function MicrobeEditorHudSystem:update(renderTime, logicTime)
         end
     elseif keyCombo(kmp.gotostage) then
         playClicked()
-    elseif keyCombo(kmp.rename) then
+    elseif keyCombo(kmp.rename) or keyCombo(kmp.rename2) then
         self:updateMicrobeName()
     end
     
@@ -266,12 +266,15 @@ function MicrobeEditorHudSystem:nameClicked()
 end
 
 function MicrobeEditorHudSystem:updateMicrobeName()
+    --set genus_picked to false so it knows to update the name properly when microbe_replacement runs
+    global_genusPicked = false
     self.editor.currentMicrobe.microbe.speciesName = self.nameTextbox:getText()
     local name = self.editor.currentMicrobe.microbe.speciesName
     if string.len(name) > 18 then
         name = string.sub(self.editor.currentMicrobe.microbe.speciesName, 1, 15)
         name = name .. "..."
     end
+    global_genusName  = name
     self.nameLabel:setText(name)
     self.nameTextbox:hide()
     self.nameLabel:show()
