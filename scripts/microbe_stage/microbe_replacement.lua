@@ -3,15 +3,16 @@ class 'MicrobeReplacementSystem' (System)
 
 -- Global boolean for whether a new microbe is avaliable in the microbe editor.
 global_newEditorMicrobe = false
---global_speciesNameCounter = 1  SERVES NO PURPOSE--
-global_speciesNamePrefix = { ' Co', ' So', ' Pu', ' Cr', ' Cy', ' Gr', ' Re', ' Ty', ' Tr' }
-global_speciesNameCofix = { 'nan', 'mo', 'na', 'yt', 'yn', 'il', 'li', 'op', 'un' }
-global_speciesNameSuffix = { 'pien', 'olera', 'rius', 'nien', 'ster', 'ilia', 'canus', 'tus', 'cys'}
-global_Genus_Picked = 0
+--set it up so the game knows whether or not to replace the genus.
+global_genusPicked = false
 
 
 function MicrobeReplacementSystem:__init()
     System.__init(self)
+    --prefix,cofix,suffix list
+    self.speciesNamePrefix = {' Ce', ' Ar',' Sp', ' Th',' Co', ' So', ' Pu', ' Cr', ' Cy', ' Gr', ' Re', ' Ty', ' Tr', ' Ac',' Pr' }
+    self.speciesNameCofix = { 'nan', 'mo', 'na', 'yt', 'yn', 'il', 'li','le', 'op', 'un', 'rive','ec', 'ro','lar','im' }
+    self.speciesNameSuffix = { 'pien', 'olera', 'rius', 'nien', 'ster', 'ilia', 'canus', 'tus', 'cys','ium','um'} 
 end
 
 function MicrobeReplacementSystem:init()
@@ -25,6 +26,7 @@ function MicrobeReplacementSystem:activate()
 
         activeCreatureId = Engine:playerData():activeCreature()
         local workingMicrobe = Microbe(Entity(activeCreatureId, GameState.MICROBE_EDITOR), true)
+<<<<<<< HEAD
         
         if global_Genus_Picked == 0 then
             global_Genus_Name = workingMicrobe.microbe.speciesName
@@ -38,9 +40,18 @@ function MicrobeReplacementSystem:activate()
         global_speciesNamePrefix = { ' Co', ' So', ' Pu', ' Cr', ' Cy', ' Gr', ' Re', ' Ty', ' Tr' }
         global_speciesNameCofix = { 'nan', 'mo', 'na', 'yt', 'yn', 'il', 'li', 'op', 'un' }
         global_speciesNameSuffix = { 'pien', 'olera', 'rius', 'nien', 'ster', 'ilia', 'canus', 'tus', 'cys'}
+=======
+ 
+>>>>>>> e684ebb8649d0be9c67079dba6381dbcbccc1a69
         
-        local speciesEntity = Entity(new_species_name)
-        local species = SpeciesComponent(new_species_name)
+        if not global_genusPicked  then
+            global_genusPicked = true;
+            global_genusName = workingMicrobe.microbe.speciesName
+        end
+			
+        newSpeciesName = self:generateSpeciesName();
+        local speciesEntity = Entity(newSpeciesName)
+        local species = SpeciesComponent(newSpeciesName)
         speciesEntity:addComponent(species)
 
         SpeciesSystem.fromMicrobe(workingMicrobe, species)
@@ -53,7 +64,7 @@ function MicrobeReplacementSystem:activate()
 
         SpeciesSystem.initProcessorComponent(speciesEntity, species)
 
-        local newMicrobe = Microbe.createMicrobeEntity(nil, false, new_species_name)
+        local newMicrobe = Microbe.createMicrobeEntity(nil, false, newSpeciesName)
         print(": "..newMicrobe.microbe.speciesName)
 
         newMicrobe.collisionHandler:addCollisionGroup("powerupable")
@@ -62,6 +73,14 @@ function MicrobeReplacementSystem:activate()
         global_newEditorMicrobe = false
         Engine:playerData():setActiveCreature(newMicrobeEntity.id, GameState.MICROBE)
     end
+end
+
+--Faux-latin name generation routine (Move to own file eventually?)
+function MicrobeReplacementSystem:generateSpeciesName()
+    --Generate random seed
+    math.randomseed(os.time())    
+    local speciesGenName = (self.speciesNamePrefix[math.random(#self.speciesNamePrefix)]) .. (self.speciesNameCofix[math.random(#self.speciesNameCofix)]) .. (self.speciesNameSuffix[math.random(#self.speciesNameSuffix)])
+    return global_genusName .. speciesGenName;
 end
 
 function MicrobeReplacementSystem:update(renderTime, logicTime)
