@@ -109,14 +109,14 @@ end
 function MicrobeEditorHudSystem:activate()
     global_activeMicrobeEditorHudSystem = self -- Global reference for event handlers
     self.editor:activate()
-	
-	--Checks if freebuild is unlocked
-	if global_freeBuild == 1 then
-		setupFreeEditor(self)
-	else
-		setupRealEditor(self)
-	end	
-	
+    
+    --Checks if freebuild is unlocked
+    if global_freeBuild == 1 then
+        setupFreeEditor(self)
+    else
+        setupRealEditor(self)
+    end
+    
     for typeName,button in pairs(global_activeMicrobeEditorHudSystem.organelleButtons) do
         print(typeName)
         if Engine:playerData():lockedMap():isLocked(typeName) then
@@ -137,26 +137,25 @@ function setupFreeEditor(ref)
     self.helpPanelOpen = not self.helpPanelOpen
     self.editor.mutationPoints = 9999
     self.mpLabel:setText('∞')
-	Engine:playerData():lockedMap():unlock("Toxin")
-	Engine:playerData():lockedMap():unlock("chloroplast")
+    Engine:playerData():lockedMap():unlock("Toxin")
+    Engine:playerData():lockedMap():unlock("chloroplast")
 end
 
 function setupRealEditor(ref)
-	self=ref
+    self=ref
     for typeName,button in pairs(global_activeMicrobeEditorHudSystem.organelleButtons) do
         if Engine:playerData():lockedMap():isLocked(typeName) then
             button:disable()
         else
             button:enable()
         end
-	end
+    end
     self.helpPanel:setText("Welcome to the Microbe Editor!\nHere you have a chance to mutate your species, getting better adapted to your surroundings.\nEvolution happens progressively, so we limit you to a budget of 100 'Mutation Points' every time you evolve.\nModify your species by attaching organelles, selected on the right, to your cell.\nClick on the top-left to change the name of your species.")
     self.helpPanel:show()
-	self.editor.mutationPoints = 50
+    self.editor.mutationPoints = 50
     self.helpPanelOpen = not self.helpPanelOpen
 end
-	
-	
+
 
 function MicrobeEditorHudSystem:setActiveAction(actionName)
     self.editor:setActiveAction(actionName)
@@ -219,14 +218,14 @@ function MicrobeEditorHudSystem:update(renderTime, logicTime)
     --    self.editor:performLocationAction()
     elseif keyCombo(kmp.chloroplast) then
         if global_freeBuild == 0 then
-			if not Engine:playerData():lockedMap():isLocked("Chloroplast") then
-				self:chloroplastClicked()
-				self.editor:performLocationAction()
-			end
-		else
-			self:chloroplastClicked()
-			self.editor:performLocationAction()
-		end
+            if not Engine:playerData():lockedMap():isLocked("Chloroplast") then
+                self:chloroplastClicked()
+                self.editor:performLocationAction()
+            end
+        else
+            self:chloroplastClicked()
+            self.editor:performLocationAction()
+            end
     elseif keyCombo(kmp.togglegrid) then
         if self.editor.gridVisible then
             self.editor.gridSceneNode.visible = false;
@@ -242,12 +241,12 @@ function MicrobeEditorHudSystem:update(renderTime, logicTime)
     end
     
     if Engine.keyboard:wasKeyPressed(Keyboard.KC_LEFT) or Engine.keyboard:wasKeyPressed(Keyboard.KC_A) then
-		self.editor.organelleRot = (self.editor.organelleRot + 60)%360
-	end
-	if Engine.keyboard:wasKeyPressed(Keyboard.KC_RIGHT) or Engine.keyboard:wasKeyPressed(Keyboard.KC_D) then
-		self.editor.organelleRot = (self.editor.organelleRot - 60)%360
-	end
-	
+        self.editor.organelleRot = (self.editor.organelleRot + 60)%360
+    end
+    if Engine.keyboard:wasKeyPressed(Keyboard.KC_RIGHT) or Engine.keyboard:wasKeyPressed(Keyboard.KC_D) then
+        self.editor.organelleRot = (self.editor.organelleRot - 60)%360
+    end
+    
     if keyCombo(kmp.screenshot) then
         Engine:screenShot("screenshot.png")
     end
@@ -277,10 +276,10 @@ end
 function MicrobeEditorHudSystem:updateMutationPoints() 
     --self.mpProgressBar:progressbarSetProgress(self.editor.mutationPoints/100)
     if global_freeBuild == 0 then
-		self.mpLabel:setText("" .. self.editor.mutationPoints)
-	else
-		self.mpLabel:setText('∞')
-	end
+        self.mpLabel:setText("" .. self.editor.mutationPoints)
+    else
+        self.mpLabel:setText('∞')
+    end
 end
 
 -----------------------------------------------------------------
@@ -298,7 +297,7 @@ end
 
 function menuPlayClicked()
     local guiSoundEntity = Entity("gui_sounds")
-	--self:updateMicrobeName()--
+    --self:updateMicrobeName()--
     guiSoundEntity:getComponent(SoundSourceComponent.TYPE_ID):playSound("button-hover-click")
     Engine:currentGameState():rootGUIWindow():getChild("MenuPanel"):hide()
     playClicked()
@@ -327,8 +326,8 @@ function MicrobeEditorHudSystem:updateMicrobeName()
     end
     self.nameTextbox:hide()
     self.nameLabel:show()
-	global_Editor_Genus_Name = name
-	--self:updateMicrobeName()--
+    global_Editor_Genus_Name = name
+    --self:updateMicrobeName()--
 end
 
 function MicrobeEditorHudSystem:helpButtonClicked()

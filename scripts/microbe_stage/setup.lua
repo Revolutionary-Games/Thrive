@@ -16,7 +16,7 @@ local function setupBackground()
         skyplane.properties.materialName = "Background_Shallow"
     end
     global_lastBiome = skyplane.properties.materialName
-	skyplane.properties.scale = 200
+    skyplane.properties.scale = 200
     skyplane.properties:touch()
     entity:addComponent(skyplane)
     

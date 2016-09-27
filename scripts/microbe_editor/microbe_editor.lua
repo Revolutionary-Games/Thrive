@@ -41,7 +41,6 @@ end
 
 function MicrobeEditor:activate()
     print("activated")
-	
     if Engine:playerData():activeCreatureGamestate():name() == GameState.MICROBE:name() or Engine:playerData():activeCreatureGamestate():name() == GameState.MICROBE_TUTORIAL:name() then
         microbeStageMicrobe = Entity(Engine:playerData():activeCreature(), GameState.MICROBE)
         self.nextMicrobeEntity = microbeStageMicrobe:transfer(GameState.MICROBE_EDITOR)
@@ -73,15 +72,15 @@ function MicrobeEditor:activate()
             self.occupiedHexes[s]:setVolatile(true)
         end
     end
-	local backgroundEntity = Entity("background")
+    local backgroundEntity = Entity("background")
     local skyplane = backgroundEntity:getComponent(SkyPlaneComponent.TYPE_ID)
     if global_freeBuild == 0 then
         skyplane.properties.materialName = global_lastBiome
-		print ("RealEditorStart")
+        print ("RealEditorStart")
     else
         skyplane.properties.materialName = "Background_Shallow"
-		print ("FreeEditorStart")
-	end
+        print ("FreeEditorStart")
+    end
     skyplane.properties:touch()
 end
 
@@ -123,17 +122,17 @@ function MicrobeEditor:renderHighlightedOrganelle(start, q, r, rotation)
         local oldData = {["name"]=self.activeActionName, ["q"]=-q, ["r"]=-r, ["rotation"]=180+rotation}
         local hexes = OrganelleFactory.checkSize(oldData)
         local colour = ColourValue(2, 0, 0, 0.4)
-		local touching = false;
+        local touching = false;
         for _, hex in ipairs(hexes) do
-			if self.currentMicrobe:getOrganelleAt(-hex.q + q + 0, -hex.r + r - 1) or
-				self.currentMicrobe:getOrganelleAt(-hex.q + q + 1, -hex.r + r - 1) or
-				self.currentMicrobe:getOrganelleAt(-hex.q + q + 1, -hex.r + r + 0) or
-				self.currentMicrobe:getOrganelleAt(-hex.q + q + 0, -hex.r + r + 1) or
-				self.currentMicrobe:getOrganelleAt(-hex.q + q - 1, -hex.r + r + 1) or
-				self.currentMicrobe:getOrganelleAt(-hex.q + q - 1, -hex.r + r + 0) then
-				colour = ColourValue(0, 2, 0, 0.4)
-			end
-		end
+            if self.currentMicrobe:getOrganelleAt(-hex.q + q + 0, -hex.r + r - 1) or
+                self.currentMicrobe:getOrganelleAt(-hex.q + q + 1, -hex.r + r - 1) or
+                self.currentMicrobe:getOrganelleAt(-hex.q + q + 1, -hex.r + r + 0) or
+                self.currentMicrobe:getOrganelleAt(-hex.q + q + 0, -hex.r + r + 1) or
+                self.currentMicrobe:getOrganelleAt(-hex.q + q - 1, -hex.r + r + 1) or
+                self.currentMicrobe:getOrganelleAt(-hex.q + q - 1, -hex.r + r + 0) then
+                colour = ColourValue(0, 2, 0, 0.4)
+            end
+        end
         for _, hex in ipairs(hexes) do
             local organelle = self.currentMicrobe:getOrganelleAt(-hex.q + q, -hex.r + r)
             if organelle then
@@ -141,29 +140,29 @@ function MicrobeEditor:renderHighlightedOrganelle(start, q, r, rotation)
                     colour = ColourValue(2, 0, 0, 0.4)
                 end
             end
-		end
+        end
         if CEGUIWindow.getWindowUnderMouse():getName() == 'root' then
-			local newData = {["name"]=self.activeActionName, ["q"]=-q, ["r"]=-r, ["sceneNode"]=sceneNode, ["rotation"]=180+rotation, ["colour"]=colour}
-			OrganelleFactory.renderOrganelles(newData)
-			for i=1, 8 do
+            local newData = {["name"]=self.activeActionName, ["q"]=-q, ["r"]=-r, ["sceneNode"]=sceneNode, ["rotation"]=180+rotation, ["colour"]=colour}
+            OrganelleFactory.renderOrganelles(newData)
+            for i=1, 8 do
                 sceneNode[i].transform.scale = Vector3(1,1,1)
-				sceneNode[i].transform:touch()
-			end
-		end
+            sceneNode[i].transform:touch()
+            end
+        end
     end
 end
 
 function MicrobeEditor:takeMutationPoints(amount)
     if global_freeBuild == 0 then
-		if amount <= self.mutationPoints then
-			self.mutationPoints = self.mutationPoints - amount
-			return true
-		else
-			return false
-		end
-	else
-		return true
-	end	
+        if amount <= self.mutationPoints then
+        self.mutationPoints = self.mutationPoints - amount
+            return true
+        else
+            return false
+        end
+    else
+        return true
+    end	
 end
 
 function MicrobeEditor:performLocationAction()
@@ -249,14 +248,14 @@ function MicrobeEditor:isValidPlacement(organelleType, q, r, rotation)
                 empty = false 
             end
         end
-		if  self.currentMicrobe:getOrganelleAt(hex.q + q + 0, hex.r + r - 1) or
-			self.currentMicrobe:getOrganelleAt(hex.q + q + 1, hex.r + r - 1) or
-			self.currentMicrobe:getOrganelleAt(hex.q + q + 1, hex.r + r + 0) or
-			self.currentMicrobe:getOrganelleAt(hex.q + q + 0, hex.r + r + 1) or
-			self.currentMicrobe:getOrganelleAt(hex.q + q - 1, hex.r + r + 1) or
-			self.currentMicrobe:getOrganelleAt(hex.q + q - 1, hex.r + r + 0) then
-			touching = true;
-		end
+        if  self.currentMicrobe:getOrganelleAt(hex.q + q + 0, hex.r + r - 1) or
+            self.currentMicrobe:getOrganelleAt(hex.q + q + 1, hex.r + r - 1) or
+            self.currentMicrobe:getOrganelleAt(hex.q + q + 1, hex.r + r + 0) or
+            self.currentMicrobe:getOrganelleAt(hex.q + q + 0, hex.r + r + 1) or
+            self.currentMicrobe:getOrganelleAt(hex.q + q - 1, hex.r + r + 1) or
+            self.currentMicrobe:getOrganelleAt(hex.q + q - 1, hex.r + r + 0) then
+            touching = true;
+        end
     end
     
     if empty and touching then
@@ -381,10 +380,10 @@ function MicrobeEditor:removeOrganelleAt(q,r)
                     self.currentMicrobe:removeOrganelle(storage:get("q", 0), storage:get("r", 0))
                     self.currentMicrobe.sceneNode.transform:touch()
                     self.organelleCount = self.organelleCount - 1
-					for _, cytoplasm in pairs(organelle._hexes) do
-						local s = encodeAxial(cytoplasm.q + storage:get("q", 0), cytoplasm.r + storage:get("r", 0))
-						self.occupiedHexes[s]:destroy()
-					end
+                    for _, cytoplasm in pairs(organelle._hexes) do
+                        local s = encodeAxial(cytoplasm.q + storage:get("q", 0), cytoplasm.r + storage:get("r", 0))
+                        self.occupiedHexes[s]:destroy()
+                    end
                 end,
                 undo = function()
                     local organelle = Organelle.loadOrganelle(storage)
