@@ -136,7 +136,7 @@ function setupFreeEditor(ref)
     self.helpPanel:show()
     self.helpPanelOpen = not self.helpPanelOpen
     self.editor.mutationPoints = 9999
-    self.mpLabel:setText("Inf")
+    self.mpLabel:setText('∞')
 	Engine:playerData():lockedMap():unlock("Toxin")
 	Engine:playerData():lockedMap():unlock("chloroplast")
 end
@@ -279,7 +279,7 @@ function MicrobeEditorHudSystem:updateMutationPoints()
     if global_freeBuild == 0 then
 		self.mpLabel:setText("" .. self.editor.mutationPoints)
 	else
-		self.mpLabel:setText("Inf")
+		self.mpLabel:setText('∞')
 	end
 end
 
