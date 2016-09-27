@@ -109,11 +109,14 @@ end
 function MicrobeEditorHudSystem:activate()
     global_activeMicrobeEditorHudSystem = self -- Global reference for event handlers
     self.editor:activate()
+	
+	--Checks if freebuild is unlocked
 	if global_freeBuild == 1 then
 		setupFreeEditor(self)
 	else
 		setupRealEditor(self)
 	end	
+	
     for typeName,button in pairs(global_activeMicrobeEditorHudSystem.organelleButtons) do
         print(typeName)
         if Engine:playerData():lockedMap():isLocked(typeName) then
@@ -134,6 +137,8 @@ function setupFreeEditor(ref)
     self.helpPanelOpen = not self.helpPanelOpen
     self.editor.mutationPoints = 9999
     self.mpLabel:setText("Inf")
+	Engine:playerData():lockedMap():unlock("Toxin")
+	Engine:playerData():lockedMap():unlock("chloroplast")
 end
 
 function setupRealEditor(ref)
@@ -283,6 +288,8 @@ end
 
 function playClicked()
 	--self:updateMicrobeName()--
+	Engine:playerData():lockedMap():addLock("Toxin")
+	Engine:playerData():lockedMap():addLock("chloroplast")
 	global_freeBuild = 0
     local guiSoundEntity = Entity("gui_sounds")
     guiSoundEntity:getComponent(SoundSourceComponent.TYPE_ID):playSound("button-hover-click")

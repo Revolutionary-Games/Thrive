@@ -41,6 +41,7 @@ end
 
 function MicrobeEditor:activate()
     print("activated")
+	
     if Engine:playerData():activeCreatureGamestate():name() == GameState.MICROBE:name() or Engine:playerData():activeCreatureGamestate():name() == GameState.MICROBE_TUTORIAL:name() then
         microbeStageMicrobe = Entity(Engine:playerData():activeCreature(), GameState.MICROBE)
         self.nextMicrobeEntity = microbeStageMicrobe:transfer(GameState.MICROBE_EDITOR)
@@ -72,6 +73,16 @@ function MicrobeEditor:activate()
             self.occupiedHexes[s]:setVolatile(true)
         end
     end
+	local backgroundEntity = Entity("background")
+    local skyplane = backgroundEntity:getComponent(SkyPlaneComponent.TYPE_ID)
+    if global_freeBuild == 0 then
+        skyplane.properties.materialName = global_lastBiome
+		print ("RealEditorStart")
+    else
+        skyplane.properties.materialName = "Background_Shallow"
+		print ("FreeEditorStart")
+	end
+    skyplane.properties:touch()
 end
 
 function MicrobeEditor:update(renderTime, logicTime)
