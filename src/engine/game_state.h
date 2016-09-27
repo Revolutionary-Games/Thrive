@@ -40,10 +40,28 @@ class System;
 struct
 Flag
 {
+    typedef int Id;
+    Id flagID;
     int intFlag; //bools/ints
     std::string stringFlag; //String variables
-    enum type{ num, string};
-    Flag() : intFlag(0), stringFlag("") {}
+
+    /**
+    @brief Constructor
+    **/
+
+    Flag(int intFlag, std::string stringFlag);
+
+    /**
+    * @brief Lua bindings
+    *
+    * Exposes:
+    *-constructor
+    *-intFlag as intFlag
+    *-stringFlag as stringFlag
+    **/
+
+    static luabind::scope
+    luaBindings();
 };
 
 
@@ -51,7 +69,7 @@ class GameState {
 
 public:
     //Define the flaglist vector
-    std::vector<Flag> flagList;
+   std::vector<Flag*> flagList;
 
     /**
     * @brief Typedef for the game state's initializer function
@@ -68,6 +86,7 @@ public:
     * - GameState::getFlag()
     * - GameState::getFlag() (overloaded string version)
     * - GameState defineFlags()
+    * - GameState createFlag()
     *
     * @return
     */
@@ -168,7 +187,7 @@ public:
 **/
     void
     defineFlags(
-    std::vector<Flag> flags
+    std::vector<Flag*> flags
 );
 
 private:
@@ -219,6 +238,12 @@ private:
     int
     getFlagString(std::string name);
 
+    /**
+    *creates a Flag
+    *@returns a FLag
+    */
+    Flag*
+    createFlag(int intFlag, std::string stringFlag);
     /**
     * @brief Called by the engine when the game state is deactivated
     */
