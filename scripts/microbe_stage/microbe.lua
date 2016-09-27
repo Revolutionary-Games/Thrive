@@ -851,12 +851,16 @@ function Microbe:respawn()
     local skyplane = backgroundEntity:getComponent(SkyPlaneComponent.TYPE_ID)
     if rand == 0 then
         skyplane.properties.materialName = "Background"
+		global_lastBiome = "Background"
     elseif rand == 1 then
         skyplane.properties.materialName = "Background_Vent"
+		global_lastBiome = "Background_Vent"
     elseif rand == 2 then
         skyplane.properties.materialName = "Background_Abyss"
+		global_lastBiome = "Background_Abyss"
     else 
         skyplane.properties.materialName = "Background_Shallow"
+		global_lastBiome = "Background_Shallow"
     end
     skyplane.properties:touch()
 end

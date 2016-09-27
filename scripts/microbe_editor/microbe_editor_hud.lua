@@ -99,7 +99,7 @@ function MicrobeEditorHudSystem:init(gameState)
     -- Set species name and cut it off if it is too long.
     local name = self.nameLabel:getText()
     if string.len(name) > 18 then
-        name = string.sub(name, 1, 15)
+        name = string.sub(name) --(1, 15) for regular naming)--
         name = name .. "..."
     end
     self.nameLabel:setText(name)
@@ -109,6 +109,14 @@ end
 function MicrobeEditorHudSystem:activate()
     global_activeMicrobeEditorHudSystem = self -- Global reference for event handlers
     self.editor:activate()
+	
+	--Checks if freebuild is unlocked
+	if global_freeBuild == 1 then
+		setupFreeEditor(self)
+	else
+		setupRealEditor(self)
+	end	
+	
     for typeName,button in pairs(global_activeMicrobeEditorHudSystem.organelleButtons) do
         print(typeName)
         if Engine:playerData():lockedMap():isLocked(typeName) then
@@ -116,8 +124,39 @@ function MicrobeEditorHudSystem:activate()
         else
             button:enable()
         end
-    end    
+    end
 end
+
+function setupFreeEditor(ref)
+	self=ref
+    for typeName,button in pairs(global_activeMicrobeEditorHudSystem.organelleButtons) do
+        button:enable()
+        end
+    self.helpPanel:setText("Welcome to the Microbe Editor!\nThis is FreeBuild Mode\nLoad up a microbe and twiddle to your hearts content\nOr make one from scratch.\nWhat will you create?")
+    self.helpPanel:show()
+    self.helpPanelOpen = not self.helpPanelOpen
+    self.editor.mutationPoints = 9999
+    self.mpLabel:setText("Inf")
+	Engine:playerData():lockedMap():unlock("Toxin")
+	Engine:playerData():lockedMap():unlock("chloroplast")
+end
+
+function setupRealEditor(ref)
+	self=ref
+    for typeName,button in pairs(global_activeMicrobeEditorHudSystem.organelleButtons) do
+        if Engine:playerData():lockedMap():isLocked(typeName) then
+            button:disable()
+        else
+            button:enable()
+        end
+	end
+    self.helpPanel:setText("Welcome to the Microbe Editor!\nHere you have a chance to mutate your species, getting better adapted to your surroundings.\nEvolution happens progressively, so we limit you to a budget of 100 'Mutation Points' every time you evolve.\nModify your species by attaching organelles, selected on the right, to your cell.\nClick on the top-left to change the name of your species.")
+    self.helpPanel:show()
+	self.editor.mutationPoints = 50
+    self.helpPanelOpen = not self.helpPanelOpen
+end
+	
+	
 
 function MicrobeEditorHudSystem:setActiveAction(actionName)
     self.editor:setActiveAction(actionName)
@@ -179,10 +218,15 @@ function MicrobeEditorHudSystem:update(renderTime, logicTime)
     --    self:aminoSynthesizerClicked()
     --    self.editor:performLocationAction()
     elseif keyCombo(kmp.chloroplast) then
-        if not Engine:playerData():lockedMap():isLocked("Chloroplast") then
-            self:chloroplastClicked()
-            self.editor:performLocationAction()
-        end
+        if global_freeBuild == 0 then
+			if not Engine:playerData():lockedMap():isLocked("Chloroplast") then
+				self:chloroplastClicked()
+				self.editor:performLocationAction()
+			end
+		else
+			self:chloroplastClicked()
+			self.editor:performLocationAction()
+		end
     elseif keyCombo(kmp.togglegrid) then
         if self.editor.gridVisible then
             self.editor.gridSceneNode.visible = false;
@@ -232,13 +276,21 @@ end
 
 function MicrobeEditorHudSystem:updateMutationPoints() 
     --self.mpProgressBar:progressbarSetProgress(self.editor.mutationPoints/100)
-    self.mpLabel:setText("" .. self.editor.mutationPoints)
+    if global_freeBuild == 0 then
+		self.mpLabel:setText("" .. self.editor.mutationPoints)
+	else
+		self.mpLabel:setText("Inf")
+	end
 end
 
 -----------------------------------------------------------------
 -- Event handlers -----------------------------------------------
 
 function playClicked()
+	--self:updateMicrobeName()--
+	Engine:playerData():lockedMap():addLock("Toxin")
+	Engine:playerData():lockedMap():addLock("chloroplast")
+	global_freeBuild = 0
     local guiSoundEntity = Entity("gui_sounds")
     guiSoundEntity:getComponent(SoundSourceComponent.TYPE_ID):playSound("button-hover-click")
     Engine:setCurrentGameState(GameState.MICROBE)
@@ -246,6 +298,7 @@ end
 
 function menuPlayClicked()
     local guiSoundEntity = Entity("gui_sounds")
+	--self:updateMicrobeName()--
     guiSoundEntity:getComponent(SoundSourceComponent.TYPE_ID):playSound("button-hover-click")
     Engine:currentGameState():rootGUIWindow():getChild("MenuPanel"):hide()
     playClicked()
@@ -269,12 +322,13 @@ function MicrobeEditorHudSystem:updateMicrobeName()
     self.editor.currentMicrobe.microbe.speciesName = self.nameTextbox:getText()
     local name = self.editor.currentMicrobe.microbe.speciesName
     if string.len(name) > 18 then
-        name = string.sub(self.editor.currentMicrobe.microbe.speciesName, 1, 15)
+        name = string.sub(playerMicrobe.microbe.speciesName, 1, 15)
         name = name .. "..."
     end
-    self.nameLabel:setText(name)
     self.nameTextbox:hide()
     self.nameLabel:show()
+	global_Editor_Genus_Name = name
+	--self:updateMicrobeName()--
 end
 
 function MicrobeEditorHudSystem:helpButtonClicked()
