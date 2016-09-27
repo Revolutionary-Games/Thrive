@@ -42,15 +42,15 @@ struct Keyboard::Implementation : public OIS::KeyListener{
         if(m_aggregator->injectKeyDown(static_cast<CEGUI::Key::Scan>(
                     static_cast<int>(event.key))))
         {
-            
-            return true;
-        }      
 
-        if(m_aggregator->injectChar(event.text)){
-            
             return true;
         }
-            
+
+        if(m_aggregator->injectChar(event.text)){
+
+            return true;
+        }
+
         m_keysHeld.data()[event.key] = 1;
         m_previousKeyStates->data()[event.key] = 1;
         this->queueEvent(event, true);
@@ -61,10 +61,15 @@ struct Keyboard::Implementation : public OIS::KeyListener{
     keyReleased(
         const OIS::KeyEvent& event
     ) {
+        m_aggregator->setModifierKeys(
+            m_keyboard->isModifierDown(OIS::Keyboard::Shift),
+            m_keyboard->isModifierDown(OIS::Keyboard::Alt),
+            m_keyboard->isModifierDown(OIS::Keyboard::Ctrl)
+        );
         // Aggregator is not configured to handle keys in key up so the result can always
         // be ignored
         m_aggregator->injectKeyUp(static_cast<CEGUI::Key::Scan>(static_cast<int>(event.key)));
-        
+
 
         m_keysHeld.data()[event.key] = 0;
         this->queueEvent(event, false);
@@ -344,6 +349,3 @@ Keyboard::wasKeyReleased(
     bool current = m_impl->m_currentKeyStates->at(key);
     return previous and not current;
 }
-
-
-
