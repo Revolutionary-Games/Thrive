@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 -- Updates the hud with relevant information
 class 'MicrobeEditorHudSystem' (System)
 
