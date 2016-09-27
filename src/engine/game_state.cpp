@@ -105,6 +105,7 @@ GameState::luaBindings() {
         .def("getFlag",  &GameState::getFlag)
         .def("entityManager", static_cast<EntityManager&(GameState::*)()>(&GameState::entityManager))
         .def("defineFlags", &GameState::defineFlags)
+        .def("createFlag", &GameState::createFlag)
     ;
 }
 
@@ -138,24 +139,40 @@ GameState::getFlag(int index) {
     int listSize = flagList.size();
     //O(1)
     if (index < listSize){
-        return flagList.at(index).intFlag;
+        return flagList.at(index)->intFlag;
         }
     return -1;
 }
 
 int
+
 GameState::getFlagString(std::string name) {
     int listSize = flagList.size();
     if (listSize > 0){
             //O(n) but hey we have  a handy identfier
         for(int i=0; i<listSize; ++i){
-            if (flagList[i].stringFlag == name){
-                return flagList[i].intFlag;
+            if (flagList[i]->stringFlag == name){
+                return flagList[i]->intFlag;
                 }
         }
         }
     return -1;
 }
+
+Flag*
+GameState::createFlag(int intFlag, std::string stringFlag) {
+
+    return new Flag(intFlag, stringFlag);
+}
+
+void
+GameState::defineFlags(
+    std::vector<Flag*> flags
+)
+{
+flagList= std::move(flags);
+}
+
 //TODO add means of getting other data from flags (like the string) seperately)/replace index with an "ID"
 void
 GameState::deactivate() {
@@ -230,15 +247,6 @@ GameState::name() const {
     return m_impl->m_name;
 }
 
-
-void
-GameState::defineFlags(
-    std::vector<Flag> flags
-)
-{
-flagList= std::move(flags);
-}
-
 btDiscreteDynamicsWorld*
 GameState::physicsWorld() const {
     return m_impl->m_physics.world.get();
@@ -308,3 +316,20 @@ GameState::update(
     }
     m_impl->m_entityManager.processRemovals();
 }
+
+//Flag constructor
+
+Flag::Flag(int intFlag, std::string stringFlag) : flagID(0), intFlag(intFlag), stringFlag(stringFlag){
+}
+
+//allow the user to read and write to the flags with ease
+luabind::scope
+Flag::luaBindings() {
+    using namespace luabind;
+    return class_<Flag>("Flag")
+        .def(constructor<int, std::string>())
+        .def_readwrite("intFlag", &Flag::intFlag)
+        .def_readwrite("stringFlag", &Flag::stringFlag)
+    ;
+}
+
