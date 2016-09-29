@@ -150,7 +150,7 @@ function setupRealEditor(ref)
             button:enable()
         end
     end
-    self.helpPanel:setText("Welcome to the Microbe Editor!\nHere you have a chance to mutate your species, getting better adapted to your surroundings.\nEvolution happens progressively, so we limit you to a budget of 100 'Mutation Points' every time you evolve.\nModify your species by attaching organelles, selected on the right, to your cell.\nClick on the top-left to change the name of your species.")
+    self.helpPanel:setText("Welcome to the Microbe Editor!\nHere you have a chance to mutate your species, getting better adapted to your surroundings.\nEvolution happens progressively, so we limit you to a budget of 50 'Mutation Points' every time you evolve.\nModify your species by attaching organelles, selected on the right, to your cell.\nClick on the top-left to change the genus name of your species.")
     self.helpPanel:show()
     self.editor.mutationPoints = 50
     self.helpPanelOpen = not self.helpPanelOpen
