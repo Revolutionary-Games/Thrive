@@ -104,8 +104,9 @@ GameState::luaBindings() {
         .def("getFlag",  &GameState::getFlagString)
         .def("getFlag",  &GameState::getFlag)
         .def("entityManager", static_cast<EntityManager&(GameState::*)()>(&GameState::entityManager))
-        .def("defineFlags", &GameState::defineFlags)
         .def("createFlag", &GameState::createFlag)
+        .def("removeFlag", &GameState::removeFlag)
+        .def("removeFlag", &GameState::removeFlagString)
     ;
 }
 
@@ -134,6 +135,7 @@ GameState::activate() {
     }
 }
 
+
 int
 GameState::getFlag(int index) {
     int listSize = flagList.size();
@@ -144,8 +146,8 @@ GameState::getFlag(int index) {
     return -1;
 }
 
-int
 
+int
 GameState::getFlagString(std::string name) {
     int listSize = flagList.size();
     if (listSize > 0){
@@ -159,21 +161,51 @@ GameState::getFlagString(std::string name) {
     return -1;
 }
 
-Flag*
+
+int
 GameState::createFlag(int intFlag, std::string stringFlag) {
-
-    return new Flag(intFlag, stringFlag);
+    int size1 = flagList.size()-1;
+    Flag *newFlag = new Flag(intFlag, stringFlag);
+    newFlag->flagID = size1;
+    flagList.push_back(newFlag);
+    return size1;
 }
 
-void
-GameState::defineFlags(
-    std::vector<Flag*> flags
-)
-{
-flagList= std::move(flags);
+
+bool
+GameState::removeFlag(int flagID) {
+    try{
+    if (flagList.at(flagID) != NULL)
+        {
+        flagList.erase(flagList.begin() + flagID);
+        return true;
+        }
+    }
+    catch (const std::out_of_range& oor) {
+    std::cerr << "Flag does NOT exist" << '\n';
+  }
+    return false;
 }
 
-//TODO add means of getting other data from flags (like the string) seperately)/replace index with an "ID"
+
+bool
+GameState::removeFlagString(std::string flagName) {
+    int listSize = flagList.size();
+    if (listSize > 0){
+        //O(n) but hey we have  a handy identfier
+        for(int i=0; i<listSize; ++i){
+            if (flagList[i]->stringFlag == flagName){
+                return removeFlag(i);
+                }
+        }
+        //if we reach end of list without removing anything
+        std::cout << "Flag does NOT exist" << '\n';
+        }
+
+        return false;
+}
+
+
 void
 GameState::deactivate() {
     for (const auto& system : m_impl->m_systems) {

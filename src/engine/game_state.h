@@ -85,8 +85,9 @@ public:
     * - GameState::entityManager() // NOTE: Entitymanager class may not be exposed to luabind
     * - GameState::getFlag()
     * - GameState::getFlag() (overloaded string version)
-    * - GameState defineFlags()
     * - GameState createFlag()
+    * - GameState removeFlag()
+    * - GameState removeFlag() (overloaded string version)
     *
     * @return
     */
@@ -240,10 +241,25 @@ private:
 
     /**
     *creates a Flag
-    *@returns a FLag
+    *@returns Id of flag
     */
-    Flag*
+    int
     createFlag(int intFlag, std::string stringFlag);
+
+    /**
+    *removes a Flag
+    *@returns boolean that tells if remove was successful
+    */
+    bool
+    removeFlag(int flagID);
+
+    /**
+    *removes a Flag by string
+    *@returns boolean that tells if remove was successful
+    */
+    bool
+    removeFlagString(std::string flagName);
+
     /**
     * @brief Called by the engine when the game state is deactivated
     */

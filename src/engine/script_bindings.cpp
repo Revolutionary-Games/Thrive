@@ -23,6 +23,7 @@ thrive::EngineBindings::luaBindings() {
         ComponentFactory::luaBindings(),
         Entity::luaBindings(),
         Touchable::luaBindings(),
+        Flag::luaBindings(),
         GameState::luaBindings(),
         Engine::luaBindings(),
         RNG::luaBindings(),
