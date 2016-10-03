@@ -122,9 +122,7 @@ GameState::GameState(
 }
 //the lua uses vectors!     std::vector<std::unique_ptr<System>> systems,
 
-GameState::~GameState() {
-    delete this->flagList;
-}
+GameState::~GameState() {}
 
 
 void
