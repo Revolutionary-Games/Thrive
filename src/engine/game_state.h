@@ -88,6 +88,7 @@ public:
     * - GameState createFlag()
     * - GameState removeFlag()
     * - GameState removeFlag() (overloaded string version)
+    * - GameState cleanFlags()
     *
     * @return
     */
@@ -259,6 +260,11 @@ private:
     */
     bool
     removeFlagString(std::string flagName);
+
+    /**
+    * @brief clears data from the flaglist vector
+    */
+    void cleanFlags();
 
     /**
     * @brief Called by the engine when the game state is deactivated

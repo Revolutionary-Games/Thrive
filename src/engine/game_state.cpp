@@ -13,6 +13,8 @@
 #include <OgreRoot.h>
 #include <OgreSceneManager.h>
 
+
+
 using namespace thrive;
 
 struct GameState::Implementation {
@@ -107,6 +109,7 @@ GameState::luaBindings() {
         .def("createFlag", &GameState::createFlag)
         .def("removeFlag", &GameState::removeFlag)
         .def("removeFlag", &GameState::removeFlagString)
+        .def("cleanFlags", &GameState::cleanFlags)
     ;
 }
 
@@ -205,6 +208,44 @@ GameState::removeFlagString(std::string flagName) {
         return false;
 }
 
+void
+GameState::cleanFlags() {
+    //for now just clear it
+    flagList.clear();
+}
+
+
+/*
+void
+GameState::_defineFlags(luabind::object luaFlags)
+    {
+    flagList.clear();
+
+    for (luabind::iterator iter(luaFlags), end; iter != end; ++iter)
+    {
+        Flag* flag = luabind::object_cast<Flag*>(
+            *iter,
+            luabind::adopt(luabind::result)
+        );
+        flagList.emplace_back(flag);
+    }
+    // We can't just capture the luaInitializer in the lambda here, because
+    // luabind::object's call operator is not const
+    auto initializer = std::bind<void>(
+        [](luabind::object luaInitializer) {
+            luaInitializer();
+        },
+        luaInitializer
+    );
+    }
+*/
+
+void
+GameState::defineFlags(std::vector<Flag*> flags)
+    {
+    flagList.clear();
+    flagList.swap(flags);
+    }
 
 void
 GameState::deactivate() {

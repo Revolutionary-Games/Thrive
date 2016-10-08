@@ -64,6 +64,7 @@ public:
     * - Engine::currentGameState()
     * - Engine::getGameState()
     * - Engine::setCurrentGameState()
+    * - Engine::setCurrentGameState() (Overloaded version)
     * - Engine::playerData()
     * - Engine::load()
     * - Engine::fileExists()
@@ -344,6 +345,24 @@ public:
     void
     setCurrentGameState(
         GameState* gameState
+    );
+    /**
+    * @brief Sets the current game state
+    *
+    * The game state will be activated at the beginning of the next frame.
+    *
+    * \a gameState must not be \c null. It's passed by pointer as a
+    * convenience for the Lua bindings (which can't handle references well).
+    *
+    * @param gameState
+    *   The new game state
+    * @param vectot of flags
+    *   The new game state
+    */
+    void
+    setCurrentGameStateFlags(
+        GameState* gameState,
+        std::vector<Flag*> flags
     );
 
     /**

@@ -554,6 +554,7 @@ Engine::luaBindings() {
         .def("currentGameState", &Engine::currentGameState)
         .def("getGameState", &Engine::getGameState)
         .def("setCurrentGameState", &Engine::setCurrentGameState)
+        .def("setCurrentGameState", &Engine::setCurrentGameStateFlags)
         .def("playerData", &Engine::playerData)
         .def("load", &Engine::load)
         .def("save", &Engine::save)
@@ -860,6 +861,19 @@ Engine::setCurrentGameState(
     m_impl->m_nextShutdownSystems = m_impl->m_prevShutdownSystems;
     m_impl->m_nextShutdownSystems->clear();
 }
+
+void
+Engine::setCurrentGameStateFlags(
+    GameState* gameState,
+    std::vector<Flag*> flags
+) {
+    int listSize = flags.size();
+    if (listSize > 0){
+        gameState->defineFlags(flags);
+        }
+   setCurrentGameState(gameState);
+}
+
 
 PlayerData&
 Engine::playerData(){
