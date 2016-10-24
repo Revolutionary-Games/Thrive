@@ -69,6 +69,7 @@ function MicrobeEditor:activate()
             sceneNode.transform.position = Vector3(x, y, 0)
             sceneNode.transform:touch()
             sceneNode.meshName = "hex.mesh"
+            sceneNode.transform.scale = Vector3(HEX_SIZE, HEX_SIZE, HEX_SIZE)
             self.occupiedHexes[s]:addComponent(sceneNode)
             self.occupiedHexes[s]:setVolatile(true)
         end
@@ -136,7 +137,7 @@ function MicrobeEditor:renderHighlightedOrganelle(start, q, r, rotation)
 			local newData = {["name"]=self.activeActionName, ["q"]=-q, ["r"]=-r, ["sceneNode"]=sceneNode, ["rotation"]=180+rotation, ["colour"]=colour}
 			OrganelleFactory.renderOrganelles(newData)
 			for i=1, 8 do
-                sceneNode[i].transform.scale = Vector3(1,1,1)
+                sceneNode[i].transform.scale = Vector3(HEX_SIZE, HEX_SIZE, HEX_SIZE) --Vector3(1,1,1)
 				sceneNode[i].transform:touch()
 			end
 		end
@@ -348,6 +349,7 @@ function MicrobeEditor:_addOrganelle(organelle, q, r, rotation)
                 sceneNode.transform.position = Vector3(x, y, 0)
                 sceneNode.transform:touch()
                 sceneNode.meshName = "hex.mesh"
+                sceneNode.transform.scale = Vector3(HEX_SIZE, HEX_SIZE, HEX_SIZE)
                 self.occupiedHexes[s]:addComponent(sceneNode)
                 self.occupiedHexes[s]:setVolatile(true)
             end
@@ -398,6 +400,7 @@ function MicrobeEditor:removeOrganelleAt(q,r)
                         sceneNode.transform.position = Vector3(x, y, 0)
                         sceneNode.transform:touch()
                         sceneNode.meshName = "hex.mesh"
+                        sceneNode.transform.scale = Vector3(HEX_SIZE, HEX_SIZE, HEX_SIZE)
                         self.occupiedHexes[s]:addComponent(sceneNode)
                         self.occupiedHexes[s]:setVolatile(true)
                     end
@@ -460,6 +463,7 @@ function MicrobeEditor:createNewMicrobe()
                     sceneNode.transform.position = Vector3(x, y, 0)
                     sceneNode.transform:touch()
                     sceneNode.meshName = "hex.mesh"
+                    sceneNode.transform.scale = Vector3(HEX_SIZE, HEX_SIZE, HEX_SIZE)
                     self.occupiedHexes[s]:addComponent(sceneNode)
                     self.occupiedHexes[s]:setVolatile(true)
                 end
@@ -502,6 +506,7 @@ function MicrobeEditor:createNewMicrobe()
                     sceneNode.transform.position = Vector3(x, y, 0)
                     sceneNode.transform:touch()
                     sceneNode.meshName = "hex.mesh"
+                    sceneNode.transform.scale = Vector3(HEX_SIZE, HEX_SIZE, HEX_SIZE)
                     self.occupiedHexes[s]:addComponent(sceneNode)
                     self.occupiedHexes[s]:setVolatile(true)
                 end
