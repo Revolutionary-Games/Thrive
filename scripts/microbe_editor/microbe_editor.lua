@@ -36,6 +36,9 @@ function MicrobeEditor:init(gameState)
     local sceneNode = OgreSceneNodeComponent()
     sceneNode.planeTexture = "EditorGridMaterial"
     ent:addComponent(sceneNode)
+    sceneNode.transform.scale = Vector3(HEX_SIZE, HEX_SIZE, 1)
+    sceneNode.transform:touch()
+    
     self.gridSceneNode = sceneNode
 end
 
