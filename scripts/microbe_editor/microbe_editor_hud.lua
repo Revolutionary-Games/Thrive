@@ -31,6 +31,7 @@ function MicrobeEditorHudSystem:init(gameState)
         sceneNode.transform.position = Vector3(0,0,0)
         sceneNode.transform:touch()
         sceneNode.meshName = "hex.mesh"
+        sceneNode.transform.scale = Vector3(HEX_SIZE, HEX_SIZE, HEX_SIZE)
         self.hoverHex[i]:addComponent(sceneNode)
     end
     for i=1, 6 do
@@ -38,6 +39,7 @@ function MicrobeEditorHudSystem:init(gameState)
         local sceneNode = OgreSceneNodeComponent()
         sceneNode.transform.position = Vector3(0,0,0)
         sceneNode.transform:touch()
+        sceneNode.transform.scale = Vector3(HEX_SIZE, HEX_SIZE, HEX_SIZE)
         self.hoverOrganelle[i]:addComponent(sceneNode)
     end
     
