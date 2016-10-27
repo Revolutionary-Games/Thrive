@@ -18,6 +18,7 @@ function Organelle:__init()
     self.entity = Entity()
     self.entity:setVolatile(true)
     self.sceneNode = self.entity:getOrCreate(OgreSceneNodeComponent)
+	self.sceneNode.transform.scale = Vector3(HEX_SIZE,HEX_SIZE,HEX_SIZE)
     self.collisionShape = CompoundShape()
     self._hexes = {}
     self.position = {

@@ -5,7 +5,7 @@
 -- We use flat-topped hexagons with axial coordinates.
 
 -- Size of a single hex, that is the distance from the center to a corner
-HEX_SIZE = 1.0
+HEX_SIZE = 0.75
 
 
 -- Enumeration of the hex sides, clock-wise
