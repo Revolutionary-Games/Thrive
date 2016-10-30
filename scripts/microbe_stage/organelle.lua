@@ -19,6 +19,7 @@ function Organelle:__init()
     self.entity:setVolatile(true)
     self.sceneNode = self.entity:getOrCreate(OgreSceneNodeComponent)
     self.collisionShape = CompoundShape()
+    self.mass = 0.1 --default
     self._hexes = {}
     self.position = {
         q = 0,
@@ -84,6 +85,7 @@ function Organelle:load(storage)
     end
     self.position.q = storage:get("q", 0)
     self.position.r = storage:get("r", 0)
+    self.mass = storage:get("mass", 0.1)
     self.rotation = storage:get("rotation", 0)
     self.name = storage:get("name", "<nameless>")
 end
@@ -222,6 +224,7 @@ function Organelle:storage()
     storage:set("q", self.position.q)
     storage:set("r", self.position.r)
     storage:set("rotation", self.rotation)
+    storage:set("mass", self.mass)
     --Serializing these causes some minor issues and doesn't serve a purpose anyway
     --storage:set("externalEdgeColour", self._externalEdgeColour)
     return storage

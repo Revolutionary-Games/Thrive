@@ -7,8 +7,12 @@ class 'StorageOrganelle' (Organelle)
 --
 -- @param capacity
 -- The maximum stored amount
-function StorageOrganelle:__init(capacity)
+--
+-- @param mass
+-- How heavy this organelle is
+function StorageOrganelle:__init(capacity, mass)
     Organelle.__init(self)
+    self.mass = mass
     self.capacity = capacity
     self.parentIndex = 0
 end
@@ -40,7 +44,8 @@ Organelle.mpCosts["vacuole"] = 15
 Organelle.mpCosts["cytoplasm"] = 5
 
 function OrganelleFactory.make_vacuole(data)
-    local vacuole = StorageOrganelle(100.0)
+    local mass = 0.4
+    local vacuole = StorageOrganelle(100.0, mass)
     vacuole:addHex(0, 0)
     return vacuole
 end
@@ -64,7 +69,8 @@ end
 
 -- Should eventually have its own file.
 function OrganelleFactory.make_cytoplasm(data)
-    local cytoplasm = StorageOrganelle(10.0)
+    local mass = 0.1
+    local cytoplasm = StorageOrganelle(10.0, mass)
     cytoplasm:addHex(0, 0)
     return cytoplasm
 end

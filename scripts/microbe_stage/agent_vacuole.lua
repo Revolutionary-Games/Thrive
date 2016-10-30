@@ -5,7 +5,8 @@ class 'AgentVacuole' (ProcessOrganelle)
 
 -- Constructor
 function AgentVacuole:__init(compoundId, process)
-    ProcessOrganelle.__init(self)
+    local mass = 0.3
+    ProcessOrganelle.__init(self, mass)
     self.process = process
     self.compoundId = compoundId
 end

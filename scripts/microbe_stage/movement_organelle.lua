@@ -10,11 +10,15 @@ FLAGELLUM_MOMENTUM = 12.5 -- what the heck is this for?
 --
 -- @param torque
 --  The torque this organelle can exert to turn a microbe
-function MovementOrganelle:__init(force, torque)
+--
+-- @param mass
+--  How heavy this organelle is
+function MovementOrganelle:__init(force, torque, mass)
     Organelle.__init(self)
     self.energyMultiplier = 0.025
     self.force = force
     self.torque = torque
+    self.mass = mass
     self.backwards_multiplier = 0
 	self.x = 0
 	self.y = 0
@@ -113,6 +117,7 @@ Organelle.mpCosts["flagellum"] = 25
 -- factory functions
 function OrganelleFactory.make_flagellum(data)
     -- Calculate the momentum of the movement organelle based on angle towards nucleus
+    local mass = 0.3
     local organelleX, organelleY = axialToCartesian(data.q, data.r)
     local nucleusX, nucleusY = axialToCartesian(0, 0)
     local deltaX = nucleusX - organelleX
@@ -122,7 +127,8 @@ function OrganelleFactory.make_flagellum(data)
     local momentumY = deltaY / dist * FLAGELLUM_MOMENTUM
     local flagellum = MovementOrganelle(
         Vector3(momentumX, momentumY, 0.0),
-        300
+        300,
+        mass
     )
     flagellum:addHex(0, 0)
     return flagellum
