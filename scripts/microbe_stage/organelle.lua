@@ -14,12 +14,12 @@ end
 
 
 -- Constructor
-function Organelle:__init()
+function Organelle:__init(mass)
     self.entity = Entity()
     self.entity:setVolatile(true)
     self.sceneNode = self.entity:getOrCreate(OgreSceneNodeComponent)
     self.collisionShape = CompoundShape()
-    self.mass = 0.1 --default
+    self.mass = mass
     self._hexes = {}
     self.position = {
         q = 0,

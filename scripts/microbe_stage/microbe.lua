@@ -884,7 +884,6 @@ function Microbe:_initialize()
             Quaternion(Radian(0), Vector3(1,0,0)),
             organelle.collisionShape
         )
-        print(organelle.name)
         self.rigidBody.properties.mass = self.rigidBody.properties.mass + organelle.mass
         -- Scene node
         organelle.sceneNode.parent = self.entity

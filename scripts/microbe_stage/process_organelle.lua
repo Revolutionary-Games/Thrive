@@ -186,9 +186,8 @@ PROCESS_CAPACITY_UPDATE_INTERVAL = 1000
 
 -- Constructor
 function ProcessOrganelle:__init(mass)
-    Organelle.__init(self)
+    Organelle.__init(self, mass)
     self.originalColour = ColourValue(1,1,1,1)
-    self.mass = mass
     -- self.processes = {}
     self.colourChangeFactor = 1.0
     self.capacityIntervalTimer = PROCESS_CAPACITY_UPDATE_INTERVAL

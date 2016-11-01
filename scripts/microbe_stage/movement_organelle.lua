@@ -14,11 +14,10 @@ FLAGELLUM_MOMENTUM = 12.5 -- what the heck is this for?
 -- @param mass
 --  How heavy this organelle is
 function MovementOrganelle:__init(force, torque, mass)
-    Organelle.__init(self)
+    Organelle.__init(self, mass)
     self.energyMultiplier = 0.025
     self.force = force
     self.torque = torque
-    self.mass = mass
     self.backwards_multiplier = 0
 	self.x = 0
 	self.y = 0

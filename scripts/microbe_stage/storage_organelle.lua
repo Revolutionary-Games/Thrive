@@ -11,8 +11,7 @@ class 'StorageOrganelle' (Organelle)
 -- @param mass
 -- How heavy this organelle is
 function StorageOrganelle:__init(capacity, mass)
-    Organelle.__init(self)
-    self.mass = mass
+    Organelle.__init(self, mass)
     self.capacity = capacity
     self.parentIndex = 0
 end
