@@ -5,7 +5,8 @@ class 'NucleusOrganelle' (ProcessOrganelle)
 
 -- Constructor
 function NucleusOrganelle:__init()
-    ProcessOrganelle.__init(self)
+    local mass = 0.7
+    ProcessOrganelle.__init(self, mass)
     self.golgi = Entity()
 	self.ER = Entity()
 end

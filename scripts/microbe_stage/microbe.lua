@@ -175,6 +175,7 @@ function Microbe.createMicrobeEntity(name, aiControlled, speciesName, in_editor)
     rigidBody.properties.shape = CompoundShape()
     rigidBody.properties.linearDamping = 0.5
     rigidBody.properties.friction = 0.2
+    rigidBody.properties.mass = 0.0
     rigidBody.properties.linearFactor = Vector3(1, 1, 0)
     rigidBody.properties.angularFactor = Vector3(0, 0, 1)
     rigidBody.properties:touch()
@@ -304,6 +305,8 @@ function Microbe:addOrganelle(q, r, rotation, organelle)
         Quaternion(Radian(0), Vector3(1,0,0)),
         organelle.collisionShape
     )
+    self.rigidBody.properties.mass = self.rigidBody.properties.mass + organelle.mass
+    self.rigidBody.properties:touch()
     -- Scene node
     organelle.sceneNode.parent = self.entity
     organelle.sceneNode.transform.position = translation
@@ -414,6 +417,8 @@ function Microbe:removeOrganelle(q, r)
     end
     local s = encodeAxial(organelle.position.q, organelle.position.r)
     self.microbe.organelles[s] = nil
+    self.rigidBody.properties.mass = self.rigidBody.properties.mass - organelle.mass
+    self.rigidBody.properties:touch()
     organelle.position.q = 0
     organelle.position.r = 0
     organelle:onRemovedFromMicrobe(self)
@@ -864,6 +869,7 @@ end
 -- Private function for initializing a microbe's components
 function Microbe:_initialize()
     self.rigidBody.properties.shape:clear()
+    self.rigidBody.properties.mass = 0.0
     -- Organelles
     for s, organelle in pairs(self.microbe.organelles) do
         organelle.microbe = self
@@ -878,6 +884,7 @@ function Microbe:_initialize()
             Quaternion(Radian(0), Vector3(1,0,0)),
             organelle.collisionShape
         )
+        self.rigidBody.properties.mass = self.rigidBody.properties.mass + organelle.mass
         -- Scene node
         organelle.sceneNode.parent = self.entity
         organelle.sceneNode.transform.position = translation
@@ -885,6 +892,7 @@ function Microbe:_initialize()
         organelle:onAddedToMicrobe(self, q, r, rotation)
 
     end
+    self.rigidBody.properties:touch()
     self.microbe.initialized = true
 end
 
