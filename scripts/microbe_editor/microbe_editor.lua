@@ -31,6 +31,29 @@ function MicrobeEditor:__init(hudSystem)
     self.symmetry = 0
 end
 
+function MicrobeEditor:createHexComponent(q, r)
+    local x, y = axialToCartesian(q, r)
+    local s = encodeAxial(q, r)
+    self.occupiedHexes[s] = Entity()
+    local sceneNode = OgreSceneNodeComponent()
+    sceneNode.transform.position = Vector3(x, y, 0)
+    sceneNode.transform:touch()
+    sceneNode.meshName = "hex.mesh"
+    sceneNode.transform.scale = Vector3(HEX_SIZE, HEX_SIZE, HEX_SIZE)
+    self.occupiedHexes[s]:addComponent(sceneNode)
+    self.occupiedHexes[s]:setVolatile(true)
+end
+
+-- checks whether the hex at q, r has an organelle in its surroundeng hexes.
+function MicrobeEditor:surroundsOrganelle(q, r)
+    return  self.currentMicrobe:getOrganelleAt(q + 0, r - 1) or
+            self.currentMicrobe:getOrganelleAt(q + 1, r - 1) or
+			self.currentMicrobe:getOrganelleAt(q + 1, r + 0) or
+			self.currentMicrobe:getOrganelleAt(q + 0, r + 1) or
+			self.currentMicrobe:getOrganelleAt(q - 1, r + 1) or
+			self.currentMicrobe:getOrganelleAt(q - 1, r + 0)
+end
+
 function MicrobeEditor:init(gameState)
     ent = Entity()
     local sceneNode = OgreSceneNodeComponent()
@@ -65,16 +88,7 @@ function MicrobeEditor:activate()
     
     for _, organelle in pairs(self.currentMicrobe.microbe.organelles) do
         for s, hex in pairs(organelle._hexes) do
-            local x, y = axialToCartesian(hex.q + organelle.position.q, hex.r + organelle.position.r)
-            local s = encodeAxial(hex.q + organelle.position.q, hex.r + organelle.position.r)
-            self.occupiedHexes[s] = Entity()
-            local sceneNode = OgreSceneNodeComponent()
-            sceneNode.transform.position = Vector3(x, y, 0)
-            sceneNode.transform:touch()
-            sceneNode.meshName = "hex.mesh"
-            sceneNode.transform.scale = Vector3(HEX_SIZE, HEX_SIZE, HEX_SIZE)
-            self.occupiedHexes[s]:addComponent(sceneNode)
-            self.occupiedHexes[s]:setVolatile(true)
+            self:createHexComponent(hex.q + organelle.position.q, hex.r + organelle.position.r)
         end
     end
 end
@@ -119,12 +133,7 @@ function MicrobeEditor:renderHighlightedOrganelle(start, q, r, rotation)
         local colour = ColourValue(2, 0, 0, 0.4)
 		local touching = false;
         for _, hex in ipairs(hexes) do
-			if self.currentMicrobe:getOrganelleAt(-hex.q + q + 0, -hex.r + r - 1) or
-				self.currentMicrobe:getOrganelleAt(-hex.q + q + 1, -hex.r + r - 1) or
-				self.currentMicrobe:getOrganelleAt(-hex.q + q + 1, -hex.r + r + 0) or
-				self.currentMicrobe:getOrganelleAt(-hex.q + q + 0, -hex.r + r + 1) or
-				self.currentMicrobe:getOrganelleAt(-hex.q + q - 1, -hex.r + r + 1) or
-				self.currentMicrobe:getOrganelleAt(-hex.q + q - 1, -hex.r + r + 0) then
+			if self:surroundsOrganelle(-hex.q + q, -hex.r + r) then
 				colour = ColourValue(0, 2, 0, 0.4)
 			end
 		end
@@ -239,12 +248,7 @@ function MicrobeEditor:isValidPlacement(organelleType, q, r, rotation)
                 empty = false 
             end
         end
-		if  self.currentMicrobe:getOrganelleAt(hex.q + q + 0, hex.r + r - 1) or
-			self.currentMicrobe:getOrganelleAt(hex.q + q + 1, hex.r + r - 1) or
-			self.currentMicrobe:getOrganelleAt(hex.q + q + 1, hex.r + r + 0) or
-			self.currentMicrobe:getOrganelleAt(hex.q + q + 0, hex.r + r + 1) or
-			self.currentMicrobe:getOrganelleAt(hex.q + q - 1, hex.r + r + 1) or
-			self.currentMicrobe:getOrganelleAt(hex.q + q - 1, hex.r + r + 0) then
+		if  self:surroundsOrganelle(hex.q + q, hex.r + r) then
 			touching = true;
 		end
     end
@@ -345,16 +349,7 @@ function MicrobeEditor:_addOrganelle(organelle, q, r, rotation)
                         self.occupiedHexes[s]:destroy()
                     end
                 end
-                local x, y = axialToCartesian(hex.q + q, hex.r + r) 
-                local s = encodeAxial(hex.q + q, hex.r + r)
-                self.occupiedHexes[s] = Entity()
-                local sceneNode = OgreSceneNodeComponent()
-                sceneNode.transform.position = Vector3(x, y, 0)
-                sceneNode.transform:touch()
-                sceneNode.meshName = "hex.mesh"
-                sceneNode.transform.scale = Vector3(HEX_SIZE, HEX_SIZE, HEX_SIZE)
-                self.occupiedHexes[s]:addComponent(sceneNode)
-                self.occupiedHexes[s]:setVolatile(true)
+                self:createHexComponent(hex.q + q, hex.r + r)
             end
             self.currentMicrobe:addOrganelle(q, r, rotation, organelle)
             self.organelleCount = self.organelleCount + 1
@@ -396,16 +391,7 @@ function MicrobeEditor:removeOrganelleAt(q,r)
                     local organelle = Organelle.loadOrganelle(storage)
                     self.currentMicrobe:addOrganelle(storage:get("q", 0), storage:get("r", 0), storage:get("rotation", 0), organelle)
                     for _, hex in pairs(organelle._hexes) do
-                        local x, y = axialToCartesian(hex.q + storage:get("q", 0), hex.r + storage:get("r", 0)) 
-                        local s = encodeAxial(hex.q + storage:get("q", 0), hex.r + storage:get("r", 0))
-                        self.occupiedHexes[s] = Entity()
-                        local sceneNode = OgreSceneNodeComponent()
-                        sceneNode.transform.position = Vector3(x, y, 0)
-                        sceneNode.transform:touch()
-                        sceneNode.meshName = "hex.mesh"
-                        sceneNode.transform.scale = Vector3(HEX_SIZE, HEX_SIZE, HEX_SIZE)
-                        self.occupiedHexes[s]:addComponent(sceneNode)
-                        self.occupiedHexes[s]:setVolatile(true)
+                        self:createHexComponent(hex.q + storage:get("q", 0), hex.r + storage:get("r", 0))
                     end
                     self.organelleCount = self.organelleCount + 1
                 end
@@ -459,16 +445,7 @@ function MicrobeEditor:createNewMicrobe()
             self:addNucleus()
             for _, organelle in pairs(self.currentMicrobe.microbe.organelles) do
                 for s, hex in pairs(organelle._hexes) do
-                    local x, y = axialToCartesian(hex.q + organelle.position.q, hex.r + organelle.position.r)
-                    local s = encodeAxial(hex.q + organelle.position.q, hex.r + organelle.position.r)
-                    self.occupiedHexes[s] = Entity()
-                    local sceneNode = OgreSceneNodeComponent()
-                    sceneNode.transform.position = Vector3(x, y, 0)
-                    sceneNode.transform:touch()
-                    sceneNode.meshName = "hex.mesh"
-                    sceneNode.transform.scale = Vector3(HEX_SIZE, HEX_SIZE, HEX_SIZE)
-                    self.occupiedHexes[s]:addComponent(sceneNode)
-                    self.occupiedHexes[s]:setVolatile(true)
+                    self:createHexComponent(hex.q + organelle.position.q, hex.r + organelle.position.r)
                 end
             end
             self.mutationPoints = 100
@@ -502,16 +479,7 @@ function MicrobeEditor:createNewMicrobe()
             end
             for _, organelle in pairs(self.currentMicrobe.microbe.organelles) do
                 for s, hex in pairs(organelle._hexes) do
-                    local x, y = axialToCartesian(hex.q + organelle.position.q, hex.r + organelle.position.r)
-                    local s = encodeAxial(hex.q + organelle.position.q, hex.r + organelle.position.r)
-                    self.occupiedHexes[s] = Entity()
-                    local sceneNode = OgreSceneNodeComponent()
-                    sceneNode.transform.position = Vector3(x, y, 0)
-                    sceneNode.transform:touch()
-                    sceneNode.meshName = "hex.mesh"
-                    sceneNode.transform.scale = Vector3(HEX_SIZE, HEX_SIZE, HEX_SIZE)
-                    self.occupiedHexes[s]:addComponent(sceneNode)
-                    self.occupiedHexes[s]:setVolatile(true)
+                    self:createHexComponent(hex.q + organelle.position.q, hex.r + organelle.position.r)
                 end
             end
             -- no need to add the nucleus manually - it's alreary included in the organelleStorage
