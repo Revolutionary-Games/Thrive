@@ -185,8 +185,8 @@ class 'ProcessOrganelle' (Organelle)
 PROCESS_CAPACITY_UPDATE_INTERVAL = 1000
 
 -- Constructor
-function ProcessOrganelle:__init()
-    Organelle.__init(self)
+function ProcessOrganelle:__init(mass)
+    Organelle.__init(self, mass)
     self.originalColour = ColourValue(1,1,1,1)
     -- self.processes = {}
     self.colourChangeFactor = 1.0
@@ -309,7 +309,8 @@ Organelle.mpCosts["chloroplast"] = 20
 Organelle.mpCosts["mitochondrion"] = 20
 
 function OrganelleFactory.make_mitochondrion(data)
-    local mito = ProcessOrganelle()
+    local mass = 0.3
+    local mito = ProcessOrganelle(mass)
     -- mito:addProcess(global_processMap["Respiration"])
 	
 	local angle = (data.rotation / 60)
@@ -326,9 +327,10 @@ function OrganelleFactory.make_mitochondrion(data)
 end
 
 function OrganelleFactory.make_chloroplast(data)
+    local mass = 0.4
 	local x, y = axialToCartesian(data.q, data.r)
     
-    local chloro = ProcessOrganelle()
+    local chloro = ProcessOrganelle(mass)
     -- chloro:addProcess(global_processMap["Photosynthesis"])
 	
 	local angle = (data.rotation / 60)
