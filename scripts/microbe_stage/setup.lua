@@ -1,3 +1,10 @@
+--setting up the population
+POPULATION_SIZE = 6
+
+for i = 1, POPULATION_SIZE do
+    local newMicrobe = createNewSpecie()
+    starter_microbes["aaa" .. tostring(i)] = newMicrobe
+end
 
 local function setupBackground()
     local entity = Entity("background")
