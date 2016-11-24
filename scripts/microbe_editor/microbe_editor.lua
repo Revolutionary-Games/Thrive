@@ -54,15 +54,22 @@ function MicrobeEditor:activate()
     self.mutationPoints = 50
     self.actionHistory = {} -- where all user actions will  be registered
     self.actionIndex = 0 -- marks the last action that has been done (not undone, but possibly redone), is 0 if there is none
-    for _, cytoplasm in pairs(self.occupiedHexes) do
-        cytoplasm:destroy()
-    end
+
     
     self.currentMicrobe = Microbe(self.nextMicrobeEntity, true)
     self.currentMicrobe.sceneNode.transform.orientation = Quaternion(Radian(Degree(0)), Vector3(0, 0, 1))-- Orientation
     self.currentMicrobe.sceneNode.transform.position = Vector3(0, 0, 0)
     self.currentMicrobe.sceneNode.transform:touch()
-    
+
+	self:updateCytoPlasm()
+end
+
+function MicrobeEditor:updateCytoPlasm()
+
+    for _, cytoplasm in pairs(self.occupiedHexes) do
+        cytoplasm:destroy()
+    end
+
     for _, organelle in pairs(self.currentMicrobe.microbe.organelles) do
         for s, hex in pairs(organelle._hexes) do
             local x, y = axialToCartesian(hex.q + organelle.position.q, hex.r + organelle.position.r)
@@ -77,6 +84,7 @@ function MicrobeEditor:activate()
             self.occupiedHexes[s]:setVolatile(true)
         end
     end
+
 end
 
 function MicrobeEditor:update(renderTime, logicTime)
@@ -438,6 +446,7 @@ function MicrobeEditor:loadMicrobe(entityId)
     -- resetting the action history - it should not become entangled with the local file system
     self.actionHistory = {}
     self.actionIndex = 0
+	self:updateCytoPlasm()
 end
 
 function MicrobeEditor:createNewMicrobe()
