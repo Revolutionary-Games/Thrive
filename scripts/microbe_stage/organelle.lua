@@ -26,6 +26,17 @@ function Organelle:__init()
     }
     self.rotation = nil
     self.name = "<nameless>"
+	
+	-- The "Health Bar" of the organelle constrained to [0,2]
+	-- 0 means the organelle is dead, 1 means its normal, and 2 means
+	-- its ready to divide.
+	self.compoundBin = 1.0
+	-- Whether or not this organelle has already divided.
+	self.split = false
+    -- The compounds needed to divide this organelle.
+    self.numGlucose = 3
+    self.numAminoAcids = 2
+    self.numFattyAcids = 0
 end
 
 
@@ -120,7 +131,7 @@ function Organelle:onAddedToMicrobe(microbe, q, r, rotation)
     else
         self.colour = ColourValue(1, 1, 1, 1)
     end
-	
+    
 	self.organelleEntity = Entity()
     local sceneNode = OgreSceneNodeComponent()
     self.sceneNode = sceneNode
@@ -254,6 +265,36 @@ function Organelle:update(microbe, logicTime)
 			entity:setMaterial(self.name .. math.floor(speciesColour.x * 256) .. math.floor(speciesColour.y * 256) .. math.floor(speciesColour.z * 256))
         end
     end
+end
+
+
+-- Abstract method, must be overloaded.
+--
+-- Override to make each organelle larger
+function Organelle:grow(compoundBagComponent)
+    -- Finds the total number of needed compounds.
+    local sum = self.numGlucose + self.numAminoAcids + self.numFattyAcids
+    -- Finds which compounds the cell currently has.
+    if compoundBagComponent:getCompoundAmount(CompoundRegistry.getCompoundId("glucose")) then
+        --sum = sum + 
+    end
+    if compoundBagComponent:getCompoundAmount(CompoundRegistry.getCompoundId("amino acids")) then
+        --sum = sum + 
+    end
+    if compoundBagComponent:getCompoundAmount(CompoundRegistry.getCompoundId("fatty acids")) then
+        --sum = sum 
+    end
+    
+    -- Randomly choose which of the three compounds: glucose, amino acids, and fatty acids
+    -- that are used in reproductions.
+    local id = math.random(1,sum)
+    
+    -- Find out which compound was chosen.
+    --if id > 0 or id < self.num
+    
+    
+    
+    compoundBagComponent:takeCompound(compoundId, maxAmount)
 end
 
 

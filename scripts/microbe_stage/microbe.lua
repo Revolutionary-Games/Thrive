@@ -744,12 +744,23 @@ function Microbe:update(logicTime)
             self:attemptReproduce()
         end
 
-        -- Other organelles
+        -- Make organelles larger.
         for _, organelle in pairs(self.microbe.organelles) do
+            -- Update the organelle.
             organelle:update(self, logicTime)
-            -- print("updated organelle")
+        
+            -- If the organelle is not split, give it some compounds to make it larger.
+            if organelle.compoundBin < 2.0 and not organelle.wasSplit then
+                -- Give the organelle access to the compound back to take some compound.
+                organelle.grow(self.entity:getComponent(CompoundBagComponent.TYPE_ID))
+                print("growing " .. organelle.name)
+            elseif organelle.compoundBin == 2.0 then
+                -- If the organelle is twice its size...
+                organelle.compoundBin == 1.0
+                organelle.wasSplit = true
+                print("split " .. organelle.name .. " in half")
+            end
         end
-        -- print("updated all organelles")
 
         if self.microbe.engulfMode then
             -- Drain atp and if we run out then disable engulfmode
@@ -821,10 +832,10 @@ end
 
 function Microbe:attemptReproduce()
     -- Split microbe if it has enough reproductase
-    if self:getCompoundAmount(CompoundRegistry.getCompoundId("reproductase")) > REPRODUCTASE_TO_SPLIT then
-        self:takeCompound(CompoundRegistry.getCompoundId("reproductase"), REPRODUCTASE_TO_SPLIT)
-        self:reproduce()
-    end
+    --if self:getCompoundAmount(CompoundRegistry.getCompoundId("reproductase")) > REPRODUCTASE_TO_SPLIT then
+    --    self:takeCompound(CompoundRegistry.getCompoundId("reproductase"), REPRODUCTASE_TO_SPLIT)
+    --    self:reproduce()
+    --end
 end
 
 function Microbe:respawn()

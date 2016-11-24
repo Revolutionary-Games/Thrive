@@ -57,10 +57,9 @@ local function setupCompounds()
     table.sort(ordered_keys)
     for i = 1, #ordered_keys do
         local k, v = ordered_keys[i], compounds[ ordered_keys[i] ]
-        CompoundRegistry.registerCompoundType(k, v["name"], v["mesh"], v["size"], v["weight"])
+        CompoundRegistry.registerCompoundType(k, v["name"], "placeholder.mesh", v["size"], v["weight"])
     end    
     CompoundRegistry.loadFromLua({}, agents)
-    --CompoundRegistry.loadFromXML("../scripts/definitions/compounds.xml")
 end
 
 local function setupCompoundClouds()

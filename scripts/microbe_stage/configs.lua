@@ -23,12 +23,6 @@ compounds = {
         mesh = "molecule.mesh",
         size = 0.3,
     },
-    reproductase = {
-        name = "Reproductase",
-        weight = 1,
-        mesh = "reproductase.mesh",
-        size = 0.09,
-    },
     aminoacids = {
         name = "Amino Acids",
         weight = 1,
@@ -51,6 +45,12 @@ compounds = {
         name = "CO2",
         weight = 1,
         mesh = "co2.mesh",
+        size = 0.16,
+    },
+    fattyacids = {
+        name = "Fatty Acids",
+        weight = 1,
+        mesh = "fattyacid.mesh",
         size = 0.16,
     },
 }
@@ -101,18 +101,6 @@ processes = {
             atp = 36,
         },
     },
-    ReproductaseSynthesis = {
-        speedFactor = 0.5,
-        inputs = {
-            aminoacids = 6,
-            glucose = 6,
-            oxygen = 6,
-            atp = 6,
-        },
-        outputs = {
-            reproductase = 5,
-        },
-    },
     AminoAcidSynthesis = {
         speedFactor = 1,
         inputs = {
@@ -151,7 +139,6 @@ processes = {
 organelles = {
     nucleus = {
         processes = {
-            ReproductaseSynthesis = 1,
             AminoAcidSynthesis = 1,
         },
     },
@@ -179,9 +166,9 @@ default_thresholds = {
     oxygen = {low = 22, high = 40, vent = 70},
     co2 = {low = 0, high = 0, vent = 0},
     ammonia = {low = 12, high = 30, vent = 70},
-    aminoacids = {low = 12, high = 30, vent = 70},
+    aminoacids = {low = 1, high = 30, vent = 70},
+    fattyacids = {low = 1, high = 30, vent = 70},
     oxytoxy = {low = 1, high = 5, vent = 5},
-    reproductase = {low = 5, high = 1000, vent = 1000},
 }
 
 --[[
