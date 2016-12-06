@@ -20,20 +20,20 @@ local MIN_COLOR = 0.3
 local MAX_COLOR = 1.0
 
 --sets up the spawn of the species
-function setupSpeciesSpawn(name, spawnDensity)
-    currentSpawnSystem:addSpawnType
+function Species:setupSpawn()
+    local name = self.name --this line is important, otherwise the game only spawns the las microbe generated
+    self.id = currentSpawnSystem:addSpawnType
     (
         function(pos)
             return microbeSpawnFunctionGeneric(pos, name, true, nil)
         end, 
-        spawnDensity, 
+        DEFAULT_SPAWN_DENSITY, --spawnDensity should depend on population
         DEFAULT_SPAWN_RADIUS
     )
 end
 
 --copy-pasted from setupSpecies in setup.lua
 function createSpeciesTemplate(name, organelles, colour, compounds, speciesThresholds)
-    print(name)
     speciesEntity = Entity(name)
     speciesComponent = SpeciesComponent(name)
     speciesEntity:addComponent(speciesComponent)
@@ -113,6 +113,7 @@ function Species:init()
         local newLetterIndex = math.random(#VALID_LETTERS)
         self.stringCode = self.stringCode .. VALID_LETTERS[newLetterIndex]
     end
+    print(self.stringCode)
     
     local organelles = positionOrganelles(self.stringCode)
 
@@ -129,7 +130,7 @@ function Species:init()
     }
 
     self.template = createSpeciesTemplate(self.name, organelles, self.colour, initial_compounds, nil)
-    setupSpeciesSpawn(self.name, DEFAULT_SPAWN_DENSITY) --spawnDensity should depend on population
+    self:setupSpawn()
     return self
 end
 
@@ -138,20 +139,20 @@ function Species:updatePopulation()
     --TODO:
     --fill me
     --with code
-    self.population = INITIAL_POPULATION + 1 --math.random(-400, 400)
+    self.population = INITIAL_POPULATION + math.random(-400, 400)
 end
 
 --delete a species
 function Species.extinguish()
     self.template:destroy()
-    --delete spawn
+    currentSpawnSystem:removeSpawnType(self.id)
 end
 
 --returns a mutated version of the species and reduces the species population by half
 function Species.getChild()
     --TODO: implement this
     self.population = math.floor(self.population / 2)
-    return 2
+    return Species:init()
 end
 --------------------------------------------------------------------------------
 -- SpeciesSystem
@@ -249,28 +250,37 @@ function SpeciesSystem:update(_, milliseconds)
             currentSpecies = self.species[index]
             currentSpecies:updatePopulation()
             local population = currentSpecies.population
+
+            --extinction
             if population < MIN_POP_SIZE then
+                print("Extinguishing someone")
                 currentSpecies:extinguish()
                 table.remove(self.species, index)
                 self.number_of_species = self.number_of_species - 1
             end
-            
+
+            --reproduction/mutation
             if population > MAX_POP_SIZE then
+                print("reproducing species")
                 local newSpecies = currentSpecies:getChild()
                 table.insert(self.speces, newSpecies)
                 self.number_of_species = self.number_of_species + 1
             end
         end
-        
+
+        --new species
         if self.number_of_species < MIN_SPECIES then
+            print("Creating new species!")
             for i = self.number_of_species, INITIAL_SPECIES - 1 do
                 newSpecies = Species:init()
                 table.insert(self.species, newSpecies)
                 self.number_of_species = self.number_of_species + 1
             end
         end
-        
+
+        --mass extinction
         if self.number_of_species > MAX_SPECIES then
+            print("Mass extinction!")
             self:doMassExtinction()
         end
 
