@@ -35,6 +35,8 @@ REGISTER_COMPONENT("SpawnedComponent", SpawnedComponent)
 --------------------------------------------------------------------------------
 class 'SpawnSystem' (System)
 
+currentSpawnSystem = nil
+
 function SpawnSystem:__init()
     System.__init(self)
     
@@ -49,6 +51,8 @@ function SpawnSystem:__init()
     self.playerPosPrev = nil --A Vector3 that remembers the player's position in the last spawn cycle
     
     self.timeSinceLastCycle = 0 --Stores how much time has passed since the last spawn cycle
+    
+    currentSpawnSystem = self
 end
 
 -- Override from System

@@ -14,7 +14,7 @@ organelleLetters = {
     ["C"] = "cilia"
 }
 
-validLetters = {"Y", "H", "T", "M", "V", "F"}
+VALID_LETTERS = {"Y", "H", "T", "M", "V", "F"}
 
 --checks whether an organelle in a certain position would fit within a list of other organelles.
 function isValidPlacement(organelleName, q, r, rotation, organelleList)

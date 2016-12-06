@@ -1,14 +1,187 @@
 --------------------------------------------------------------------------------
+-- Species class
+--
+-- Class for representing an individual species
+--------------------------------------------------------------------------------
+class 'Species'
+
+--How big is a newly created species's population.
+INITIAL_POPULATION = 1337
+
+--limits the size of the initial stringCodes
+local MIN_INITIAL_LENGTH = 5
+local MAX_INITIAL_LENGTH = 15
+
+local DEFAULT_SPAWN_DENSITY = 1/9000 --same as Teeny
+
+local DEFAULT_SPAWN_RADIUS = 60
+
+local MIN_COLOR = 0.3
+local MAX_COLOR = 1.0
+
+--sets up the spawn of the species
+function setupSpeciesSpawn(name, spawnDensity)
+    currentSpawnSystem:addSpawnType
+    (
+        function(pos)
+            return microbeSpawnFunctionGeneric(pos, name, true, nil)
+        end, 
+        spawnDensity, 
+        DEFAULT_SPAWN_RADIUS
+    )
+end
+
+--copy-pasted from setupSpecies in setup.lua
+function createSpeciesTemplate(name, organelles, colour, compounds, speciesThresholds)
+    print(name)
+    speciesEntity = Entity(name)
+    speciesComponent = SpeciesComponent(name)
+    speciesEntity:addComponent(speciesComponent)
+    for i, organelle in pairs(organelles) do
+        local org = {}
+            org.name = organelle.name
+            org.q = organelle.q
+            org.r = organelle.r
+            org.rotation = organelle.rotation
+            speciesComponent.organelles[i] = org
+    end
+    processorComponent = ProcessorComponent()
+    speciesEntity:addComponent(processorComponent)
+    speciesComponent.colour = Vector3(colour.r, colour.g, colour.b)
+     -- iterates over all compounds, and sets amounts and priorities
+    for compoundID in CompoundRegistry.getCompoundList() do
+        compound = CompoundRegistry.getCompoundInternalName(compoundID)
+        thresholdData = default_thresholds[compound]
+         -- we'll need to generate defaults from species template
+        processorComponent:setThreshold(compoundID, thresholdData.low, thresholdData.high, thresholdData.vent)
+        compoundData = compounds[compound]
+        if compoundData ~= nil then
+            amount = compoundData.amount
+            -- priority = compoundData.priority
+            speciesComponent.avgCompoundAmounts["" .. compoundID] = amount
+             -- speciesComponent.compoundPriorities[compoundID] = priority
+        end
+    end
+    if speciesThresholds ~= nil then
+        local thresholds = speciesThresholds
+        for compoundID in CompoundRegistry.getCompoundList() do
+            compound = CompoundRegistry.getCompoundInternalName(compoundID)
+            if thresholds[compound] ~= nil then
+                if thresholds[compound].low ~= nil then
+                    processorComponent:setLowThreshold(compoundID, thresholds[compound].low)
+                end
+                if thresholds[compound].low ~= nil then
+                    processorComponent:setHighThreshold(compoundID, thresholds[compound].high)
+                end
+                if thresholds[compound].vent ~= nil then
+                    processorComponent:setVentThreshold(compoundID, thresholds[compound].vent)
+                end
+            end
+        end
+    end
+    local capacities = {}
+    for _, organelle in pairs(organelles) do
+        if organelles[organelle.name] ~= nil then
+            if organelles[organelle.name]["processes"] ~= nil then
+                for process, capacity in pairs(organelles[organelle.name]["processes"]) do
+                    if capacities[process] == nil then
+                        capacities[process] = 0
+                    end
+                    capacities[process] = capacities[process] + capacity
+                end
+            end
+        end
+    end
+    for bioProcessId in BioProcessRegistry.getList() do
+        local name = BioProcessRegistry.getInternalName(bioProcessId)
+        if capacities[name] ~= nil then
+            processorComponent:setCapacity(bioProcessId, capacities[name])
+        -- else
+            -- processorComponent:setCapacity(bioProcessId, 0)
+        end
+    end
+    return speciesEntity
+end
+
+function Species:init()
+    self.population = INITIAL_POPULATION
+    self.name = "Species_" .. tostring(math.random()) --gotta use the latin names
+    
+    local stringSize = math.random(MIN_INITIAL_LENGTH, MAX_INITIAL_LENGTH)
+    self.stringCode = "NY" --it should always have a nucleus and a cytoplasm.
+    for i = 1, stringSize do
+        local newLetterIndex = math.random(#VALID_LETTERS)
+        self.stringCode = self.stringCode .. VALID_LETTERS[newLetterIndex]
+    end
+    
+    local organelles = positionOrganelles(self.stringCode)
+
+    local initial_compounds = {
+            atp = {priority=10,amount=40},
+            glucose = {amount = 5},
+            reproductase = {priority = 8},
+        }
+
+    self.colour = {
+        r = math.random() * (MAX_COLOR - MIN_COLOR) + MIN_COLOR,
+        g = math.random() * (MAX_COLOR - MIN_COLOR) + MIN_COLOR,
+        b = math.random() * (MAX_COLOR - MIN_COLOR) + MIN_COLOR,
+    }
+
+    self.template = createSpeciesTemplate(self.name, organelles, self.colour, initial_compounds, nil)
+    setupSpeciesSpawn(self.name, DEFAULT_SPAWN_DENSITY) --spawnDensity should depend on population
+    return self
+end
+
+--updates the population count of the species
+function Species:updatePopulation()
+    --TODO:
+    --fill me
+    --with code
+    self.population = INITIAL_POPULATION + 1 --math.random(-400, 400)
+end
+
+--delete a species
+function Species.extinguish()
+    self.template:destroy()
+    --delete spawn
+end
+
+--returns a mutated version of the species and reduces the species population by half
+function Species.getChild()
+    --TODO: implement this
+    self.population = math.floor(self.population / 2)
+    return 2
+end
+--------------------------------------------------------------------------------
 -- SpeciesSystem
 --
 -- System for estimating and simulating population count for various species
 --------------------------------------------------------------------------------
 
+--how much time does it take for the simulation to update.
 SPECIES_SIM_INTERVAL = 20000
+
+--if a specie's population goes below this it goes extinct.
+MIN_POP_SIZE = 500
+
+--if a specie's population goes above this it gets split in half and a new mutated specie apears.
+MAX_POP_SIZE = 10000
+
+--the amount of species at the start of the microbe stage (not counting Default/Player)
+INITIAL_SPECIES = 10
+
+--if there are more species than this the ones with less population
+--should go extinct and the rest have their population reduced.
+MAX_SPECIES = 30
+
+--if there are less species than this create new ones.
+MIN_SPECIES = 3
 
 class 'SpeciesSystem' (System)
 
-function SpeciesSystem:__init()
+function SpeciesSystem:__init(spawnSystem)
+    gSpawnSystem = spawnSystem
     System.__init(self)
     
     self.entities = EntityFilter(
@@ -25,6 +198,20 @@ end
 function SpeciesSystem:init(gameState)
     System.init(self, "SpeciesSystem", gameState)
     self.entities:init(gameState)
+
+    self.species = {}
+    self.number_of_species = 0
+
+    --doing this crashes the game
+    --probably because init gets called twice
+    --running this in only one of those calls crashes the game
+    --(somehow)
+
+    --for i = 1, INITIAL_SPECIES do
+    --    newSpecies = Species:init()
+    --    table.insert(self.species, newSpecies)
+    --    self.number_of_species = self.number_of_species + 1
+    --end
 end
 
 -- Override from System
@@ -44,11 +231,49 @@ function SpeciesSystem:activate()
     --]]
 end
 
+function SpeciesSystem:doMassExtinction()
+    --TODO: implement this
+end
+
 -- Override from System
 function SpeciesSystem:update(_, milliseconds)
     self.timeSinceLastCycle = self.timeSinceLastCycle + milliseconds
     while self.timeSinceLastCycle > SPECIES_SIM_INTERVAL do
         -- do mutation-management here
+        --update population numbers and split/extinct species as needed
+        local numberOfSpecies = self.number_of_species
+        for i = 1, numberOfSpecies do
+            local index = numberOfSpecies - i + 1   --traversing the population backwards to avoid
+                                                    --"chopping down the branch i'm sitting in"
+
+            currentSpecies = self.species[index]
+            currentSpecies:updatePopulation()
+            local population = currentSpecies.population
+            if population < MIN_POP_SIZE then
+                currentSpecies:extinguish()
+                table.remove(self.species, index)
+                self.number_of_species = self.number_of_species - 1
+            end
+            
+            if population > MAX_POP_SIZE then
+                local newSpecies = currentSpecies:getChild()
+                table.insert(self.speces, newSpecies)
+                self.number_of_species = self.number_of_species + 1
+            end
+        end
+        
+        if self.number_of_species < MIN_SPECIES then
+            for i = self.number_of_species, INITIAL_SPECIES - 1 do
+                newSpecies = Species:init()
+                table.insert(self.species, newSpecies)
+                self.number_of_species = self.number_of_species + 1
+            end
+        end
+        
+        if self.number_of_species > MAX_SPECIES then
+            self:doMassExtinction()
+        end
+
         self.timeSinceLastCycle = self.timeSinceLastCycle - SPECIES_SIM_INTERVAL
     end
 end
