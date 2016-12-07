@@ -12,12 +12,26 @@ INITIAL_POPULATION = 1337
 local MIN_INITIAL_LENGTH = 5
 local MAX_INITIAL_LENGTH = 15
 
-local DEFAULT_SPAWN_DENSITY = 1/9000 --same as Teeny
+local DEFAULT_SPAWN_DENSITY = 1/15000 --same as Speedy
 
 local DEFAULT_SPAWN_RADIUS = 60
 
 local MIN_COLOR = 0.3
 local MAX_COLOR = 1.0
+
+local MUTATION_CREATION_RATE = 0.1
+local MUTATION_DELETION_RATE = 0.1
+
+local function randomColour()
+    return  math.random() * (MAX_COLOR - MIN_COLOR) + MIN_COLOR
+end
+
+local DEFAULT_INITIAL_COMPOUNDS =
+{
+    atp = {priority=10,amount=40},
+    glucose = {amount = 5},
+    reproductase = {priority = 8},
+}
 
 --sets up the spawn of the species
 function Species:setupSpawn()
@@ -110,26 +124,18 @@ function Species:init()
     local stringSize = math.random(MIN_INITIAL_LENGTH, MAX_INITIAL_LENGTH)
     self.stringCode = "NY" --it should always have a nucleus and a cytoplasm.
     for i = 1, stringSize do
-        local newLetterIndex = math.random(#VALID_LETTERS)
-        self.stringCode = self.stringCode .. VALID_LETTERS[newLetterIndex]
+        self.stringCode = self.stringCode .. getRandomLetter()
     end
-    print(self.stringCode)
     
     local organelles = positionOrganelles(self.stringCode)
 
-    local initial_compounds = {
-            atp = {priority=10,amount=40},
-            glucose = {amount = 5},
-            reproductase = {priority = 8},
-        }
-
     self.colour = {
-        r = math.random() * (MAX_COLOR - MIN_COLOR) + MIN_COLOR,
-        g = math.random() * (MAX_COLOR - MIN_COLOR) + MIN_COLOR,
-        b = math.random() * (MAX_COLOR - MIN_COLOR) + MIN_COLOR,
+        r = randomColour(),
+        g = randomColour(),
+        b = randomColour()
     }
 
-    self.template = createSpeciesTemplate(self.name, organelles, self.colour, initial_compounds, nil)
+    self.template = createSpeciesTemplate(self.name, organelles, self.colour, DEFAULT_INITIAL_COMPOUNDS, nil)
     self:setupSpawn()
     return self
 end
@@ -139,20 +145,68 @@ function Species:updatePopulation()
     --TODO:
     --fill me
     --with code
-    self.population = INITIAL_POPULATION + math.random(-400, 400)
+    self.population = self.population + math.random(-200, 200)
 end
 
 --delete a species
-function Species.extinguish()
+function Species:extinguish()
     self.template:destroy()
     currentSpawnSystem:removeSpawnType(self.id)
 end
 
+local function mutate(stringCode)
+    --moving the stringCode to a table to facilitate changes
+    local chromosomes = {}
+    local originalStringSize = 0
+    for i = 3, string.len(stringCode) do
+        table.insert(chromosomes, string.sub(stringCode, i, i))
+        originalStringSize = originalStringSize + 1
+    end
+    
+    --try to insert a letter at the end of the table.
+    if math.random() < MUTATION_CREATION_RATE then
+        table.insert(chromosomes, getRandomLetter())
+    end
+
+    --modifies the rest of the table.
+    for i = 0, originalStringSize - 1 do
+        index = originalStringSize - i
+
+        if math.random() < MUTATION_DELETION_RATE then
+            table.remove(chromosomes, index)
+        end
+        
+        if math.random() < MUTATION_CREATION_RATE then
+            table.insert(chromosomes, index, getRandomLetter())
+        end
+    end
+
+    --transforming the table back into a string
+    local newString = "NY"
+    for _, letter in pairs(chromosomes) do
+        newString = newString .. letter
+    end
+
+    return newString
+end
+
 --returns a mutated version of the species and reduces the species population by half
-function Species.getChild()
-    --TODO: implement this
-    self.population = math.floor(self.population / 2)
-    return Species:init()
+function Species:getChild(parent, r, g, b)
+    self.name = "Species_" .. tostring(math.random())
+    self.colour = {}
+    self.colour.r = (r + randomColour()) / 2
+    self.colour.g = (g + randomColour()) / 2
+    self.colour.b = (b + randomColour()) / 2
+    self.population = math.floor(parent.population / 2)
+    self.stringCode = mutate(parent.stringCode)
+
+    local organelles = positionOrganelles(parent.stringCode)
+
+    self.template = createSpeciesTemplate(self.name, organelles, self.colour, DEFAULT_INITIAL_COMPOUNDS, nil)
+    self:setupSpawn()
+
+    parent.population = math.ceil(parent.population / 2)
+    return self
 end
 --------------------------------------------------------------------------------
 -- SpeciesSystem
@@ -167,14 +221,13 @@ SPECIES_SIM_INTERVAL = 20000
 MIN_POP_SIZE = 500
 
 --if a specie's population goes above this it gets split in half and a new mutated specie apears.
-MAX_POP_SIZE = 10000
+MAX_POP_SIZE = 2000
 
 --the amount of species at the start of the microbe stage (not counting Default/Player)
-INITIAL_SPECIES = 10
+INITIAL_SPECIES = 7
 
---if there are more species than this the ones with less population
---should go extinct and the rest have their population reduced.
-MAX_SPECIES = 30
+--if there are more species than this then all species get their population reduced by half
+MAX_SPECIES = 15
 
 --if there are less species than this create new ones.
 MIN_SPECIES = 3
@@ -233,7 +286,9 @@ function SpeciesSystem:activate()
 end
 
 function SpeciesSystem:doMassExtinction()
-    --TODO: implement this
+    for _, currentSpecies in pairs(self.species) do
+        currentSpecies.population = math.floor(currentSpecies.population / 2)
+    end
 end
 
 -- Override from System
@@ -243,13 +298,25 @@ function SpeciesSystem:update(_, milliseconds)
         -- do mutation-management here
         --update population numbers and split/extinct species as needed
         local numberOfSpecies = self.number_of_species
-        for i = 1, numberOfSpecies do
-            local index = numberOfSpecies - i + 1   --traversing the population backwards to avoid
-                                                    --"chopping down the branch i'm sitting in"
+        for i = 0, numberOfSpecies - 1 do
+            local index = numberOfSpecies - i   --traversing the population backwards to avoid
+                                                --"chopping down the branch i'm sitting in"
 
             currentSpecies = self.species[index]
             currentSpecies:updatePopulation()
             local population = currentSpecies.population
+            print(population)
+
+            --reproduction/mutation
+            if population > MAX_POP_SIZE then
+                print("reproducing species")
+                local newSpecies = Species:getChild(currentSpecies,
+                                                    currentSpecies.colour.r,
+                                                    currentSpecies.colour.g,
+                                                    currentSpecies.colour.b)
+                table.insert(self.species, newSpecies)
+                self.number_of_species = self.number_of_species + 1
+            end
 
             --extinction
             if population < MIN_POP_SIZE then
@@ -257,14 +324,6 @@ function SpeciesSystem:update(_, milliseconds)
                 currentSpecies:extinguish()
                 table.remove(self.species, index)
                 self.number_of_species = self.number_of_species - 1
-            end
-
-            --reproduction/mutation
-            if population > MAX_POP_SIZE then
-                print("reproducing species")
-                local newSpecies = currentSpecies:getChild()
-                table.insert(self.speces, newSpecies)
-                self.number_of_species = self.number_of_species + 1
             end
         end
 

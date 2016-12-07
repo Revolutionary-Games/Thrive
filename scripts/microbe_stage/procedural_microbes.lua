@@ -16,6 +16,11 @@ organelleLetters = {
 
 VALID_LETTERS = {"Y", "H", "T", "M", "V", "F"}
 
+--returns a random organelle letter
+function getRandomLetter()
+    return VALID_LETTERS[math.random(1, #VALID_LETTERS)]
+end
+
 --checks whether an organelle in a certain position would fit within a list of other organelles.
 function isValidPlacement(organelleName, q, r, rotation, organelleList)
     --this is super hacky :/
