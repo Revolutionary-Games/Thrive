@@ -40,10 +40,12 @@ MembraneComponent::luaBindings() {
         ]
         .def(constructor<>())
         .def("sendOrganelles", &MembraneComponent::sendOrganelles)
+        .def("clear", &MembraneComponent::clear)
         .def("getExternOrganellePos", &MembraneComponent::getExternOrganellePos)
         .def("setColour", &MembraneComponent::setColour)
         .def("getColour", &MembraneComponent::getColour)
         .def_readonly("entity", &MembraneComponent::m_entity)
+        .def_readonly("dimensions", &MembraneComponent::cellDimensions)
     ;
 }
 
@@ -91,14 +93,15 @@ MembraneComponent::storage() const {
 
 Ogre::Vector3 MembraneComponent::FindClosestOrganelles(Ogre::Vector3 target)
 {
-	double closestSoFar = 9;
+    // The distance we want the membrane to be from the organelles squared.
+	double closestSoFar = 4;
 	int closestIndex = -1;
 
 	for (size_t i=0, end=organellePositions.size(); i<end; i++)
 	{
 		double lenToObject =  target.squaredDistance(organellePositions[i]);
 
-		if(lenToObject < 9 && lenToObject < closestSoFar)
+		if(lenToObject < 4 && lenToObject < closestSoFar)
 		{
 			closestSoFar = lenToObject;
 
@@ -309,6 +312,16 @@ void MembraneComponent::sendOrganelles(double x, double y)
     organellePositions.emplace_back(x,y,0);
 }
 
+void MembraneComponent::clear()
+{
+    wantsMembrane = true;
+    isInitialized = false;
+    MeshPoints.clear();
+    vertices2D.clear();
+    Ogre::MeshManager::getSingleton().remove(m_meshName);
+    m_entity->detachFromParent();
+}
+
 luabind::object MembraneComponent::getExternOrganellePos(double x, double y)
 {
     luabind::object externalOrganellePosition = luabind::newtable(Game::instance().engine().luaState());
@@ -395,6 +408,8 @@ MembraneSystem::update(int, int) {
                 membraneComponent->Initialize();
             }
             membraneComponent->Update();
+
+            membraneComponent->m_meshName = sceneNodeComponent->m_meshName.get();
 
             //If the mesh already exists, destroy the old one
             Ogre::MeshManager::getSingleton().remove(sceneNodeComponent->m_meshName.get());

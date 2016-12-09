@@ -1,7 +1,7 @@
 -- Enables a microbe to move and turn
 class 'MovementOrganelle' (Organelle)
 
-FLAGELLUM_MOMENTUM = 12.5 -- what the heck is this for?
+FLAGELLUM_MOMENTUM = 50.5 -- what the heck is this for?
 
 -- Constructor
 --
@@ -25,8 +25,21 @@ function MovementOrganelle:__init(force, torque, mass)
     self.movingTail = false
 end
 
-function MovementOrganelle:onAddedToMicrobe(microbe, q, r, rotation)  
-    Organelle.onAddedToMicrobe(self, microbe, q, r, rotation)
+function MovementOrganelle:onAddedToMicrobe(microbe, q, r, rotation)
+    local organelleX, organelleY = axialToCartesian(q, r)
+    local nucleusX, nucleusY = axialToCartesian(0, 0)
+    local deltaX = nucleusX - organelleX
+    local deltaY = nucleusY - organelleY
+    local angle = math.atan2(deltaY, deltaX)
+    if (angle < 0) then
+        angle = angle + 2*math.pi
+    end
+    angle = (angle * 180/math.pi + 180) % 360
+    
+    Organelle.onAddedToMicrobe(self, microbe, q, r, angle)
+    
+    self.sceneNode:playAnimation("Move", true)
+    self.sceneNode:setAnimationSpeed(0.25)
 end
 
 function MovementOrganelle:load(storage)
@@ -104,8 +117,8 @@ function MovementOrganelle:update(microbe, logicTime)
     local x, y = axialToCartesian(self.position.q, self.position.r)
     local membraneCoords = microbe.membraneComponent:getExternOrganellePos(x, y)
     local translation = Vector3(membraneCoords[1], membraneCoords[2], 0)
-    self.organelleEntity.sceneNode.transform.position = translation - Vector3(x, y, 0)
-    self.organelleEntity.sceneNode.transform:touch()
+    self.sceneNode.transform.position = translation
+    self.sceneNode.transform:touch()
 
     self:_turnMicrobe(microbe)
     self:_moveMicrobe(microbe, logicTime)

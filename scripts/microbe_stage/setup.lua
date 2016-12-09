@@ -1,3 +1,5 @@
+-- Copy paste for quick debugging. Prints the line of the print statement.
+--print(debug.getinfo(1).currentline)
 
 local function setupBackground()
     local entity = Entity("background")

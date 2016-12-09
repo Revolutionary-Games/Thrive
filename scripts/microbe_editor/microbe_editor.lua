@@ -45,12 +45,16 @@ end
 function MicrobeEditor:activate()
     print("activated")
     if Engine:playerData():activeCreatureGamestate():name() == GameState.MICROBE:name() or Engine:playerData():activeCreatureGamestate():name() == GameState.MICROBE_TUTORIAL:name() then
-        microbeStageMicrobe = Entity(Engine:playerData():activeCreature(), GameState.MICROBE)
+        microbeStageMicrobe = Entity(Engine:playerData():activeCreature(), GameState.MICROBE)       
         self.nextMicrobeEntity = microbeStageMicrobe:transfer(GameState.MICROBE_EDITOR)
+        -- Transfer the compounds
+        Microbe.transferCompounds(Microbe(microbeStageMicrobe), Microbe(self.nextMicrobeEntity, true))
         self.nextMicrobeEntity:stealName("working_microbe")
         Engine:playerData():setBool("edited_microbe", true)
         Engine:playerData():setActiveCreature(self.nextMicrobeEntity.id, GameState.MICROBE_EDITOR)
     end
+    
+
     self.mutationPoints = 50
     self.actionHistory = {} -- where all user actions will  be registered
     self.actionIndex = 0 -- marks the last action that has been done (not undone, but possibly redone), is 0 if there is none
@@ -119,7 +123,7 @@ function MicrobeEditor:renderHighlightedOrganelle(start, q, r, rotation)
         local colour = ColourValue(2, 0, 0, 0.4)
 		local touching = false;
         for _, hex in ipairs(hexes) do
-			if self.currentMicrobe:getOrganelleAt(-hex.q + q + 0, -hex.r + r - 1) or
+			if  self.currentMicrobe:getOrganelleAt(-hex.q + q + 0, -hex.r + r - 1) or
 				self.currentMicrobe:getOrganelleAt(-hex.q + q + 1, -hex.r + r - 1) or
 				self.currentMicrobe:getOrganelleAt(-hex.q + q + 1, -hex.r + r + 0) or
 				self.currentMicrobe:getOrganelleAt(-hex.q + q + 0, -hex.r + r + 1) or

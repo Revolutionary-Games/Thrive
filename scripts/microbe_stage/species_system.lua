@@ -117,18 +117,31 @@ function SpeciesSystem.template(microbe, species)
     -- TODO: Make this also set the microbe's ProcessorComponent
     microbe.microbe.speciesName = species.name
     microbe:setMembraneColour(species.colour)
-    -- give it organelles
-    for _, orgdata in pairs(species.organelles) do
-        organelle = OrganelleFactory.makeOrganelle(orgdata)
-        microbe:addOrganelle(orgdata.q, orgdata.r, orgdata.rotation, organelle)
-    end
 
+    SpeciesSystem.restoreOrganelleLayout(microbe, species)
+    
     for compoundID, amount in pairs(species.avgCompoundAmounts) do
         if amount ~= 0 then
             microbe:storeCompound(compoundID, amount, false)
         end
     end
+    
     return microbe
+end
+
+function SpeciesSystem.restoreOrganelleLayout(microbe, species)
+    -- delete the the previous organelles.
+    for s, organelle in pairs(microbe.microbe.organelles) do
+        local q = organelle.position.q
+        local r = organelle.position.r
+        microbe:removeOrganelle(q, r)
+    end
+    microbe.microbe.organelles = {}
+    -- give it organelles
+    for _, orgdata in pairs(species.organelles) do
+        organelle = OrganelleFactory.makeOrganelle(orgdata)
+        microbe:addOrganelle(orgdata.q, orgdata.r, orgdata.rotation, organelle)
+    end
 end
 
 function SpeciesSystem.fromMicrobe(microbe, species)
@@ -145,6 +158,12 @@ function SpeciesSystem.fromMicrobe(microbe, species)
         data.r = organelle.position.r
         data.rotation = organelle.rotation
         species.organelles[i] = data
+    end
+    -- This microbes compound amounts will be the new population average.
+    species.avgCompoundAmounts = {}
+    for compoundID in CompoundRegistry.getCompoundList() do
+        local amount = microbe:getCompoundAmount(compoundID)
+        species.avgCompoundAmounts["" .. compoundID] = amount
     end
     -- TODO: make this update the ProcessorComponent based on microbe thresholds
 end

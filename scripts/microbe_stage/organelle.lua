@@ -15,10 +15,11 @@ end
 
 -- Constructor
 function Organelle:__init(mass)
-    self.entity = Entity()
-    self.entity:setVolatile(true)
-    self.sceneNode = self.entity:getOrCreate(OgreSceneNodeComponent)
-	self.sceneNode.transform.scale = Vector3(HEX_SIZE,HEX_SIZE,HEX_SIZE)
+    self.organelleEntity = Entity()
+    self.sceneNode = OgreSceneNodeComponent()
+    self.organelleEntity:setVolatile(true)
+    self.organelleEntity:addComponent(self.sceneNode)
+    
     self.collisionShape = CompoundShape()
     self.mass = mass
     self._hexes = {}
@@ -28,6 +29,9 @@ function Organelle:__init(mass)
     }
     self.rotation = nil
     self.name = "<nameless>"
+    
+    -- The deviation of the organelle color from the species color
+    self.colourTint = Vector3(1.0, 1.0, 1.0)
 	
 	-- The "Health Bar" of the organelle constrained to [0,2]
 	-- 0 means the organelle is dead, 1 means its normal, and 2 means
@@ -35,10 +39,19 @@ function Organelle:__init(mass)
 	self.compoundBin = 1.0
 	-- Whether or not this organelle has already divided.
 	self.split = false
-    -- The compounds needed to divide this organelle.
-    self.numGlucose = 3
-    self.numAminoAcids = 2
+    -- If this organelle is a duplicate of another organelle caused by splitting.
+    self.isDuplicate = false
+    -- The compounds left to divide this organelle.
+    -- Decreases every time one compound is absorbed.
+    self.numGlucose = 2
+    self.numAminoAcids = 3
     self.numFattyAcids = 0
+    -- The compounds that make up this organelle.
+    self.numGlucoseLeft = self.numGlucose
+    self.numAminoAcidsLeft = self.numAminoAcids
+    self.numFattyAcidsLeft = self.numFattyAcids
+    -- The total number of compounds we need before we can split.
+    self.organelleCost = self.numGlucose + self.numAminoAcids + self.numFattyAcids
 end
 
 
@@ -58,7 +71,7 @@ function Organelle:addHex(q, r)
     local hex = {
         q = q,
         r = r,
-        collisionShape = SphereShape(3.0)
+        collisionShape = SphereShape(2)
     }
     local x, y = axialToCartesian(q, r)
     local translation = Vector3(x, y, 0)
@@ -114,6 +127,8 @@ function Organelle:onAddedToMicrobe(microbe, q, r, rotation)
     self.microbe = microbe
     self.position.q = q
     self.position.r = r
+    local x, y = axialToCartesian(q, r)
+    self.position.cartesian = Vector3(x,y,0)
     self.rotation = rotation
 	
 	local offset = Vector3(0,0,0)
@@ -126,55 +141,27 @@ function Organelle:onAddedToMicrobe(microbe, q, r, rotation)
 	end
 	offset = offset/count
     
+    if self.name ~= "cytoplasm" then
+        self.sceneNode.meshName = self.name .. ".mesh"
+    end
+    
+	self.sceneNode.transform.orientation = Quaternion(Radian(Degree(self.rotation)), Vector3(0, 0, 1))
+	self.sceneNode.transform.position = offset + self.position.cartesian
+    self.sceneNode.transform.scale = Vector3(HEX_SIZE, HEX_SIZE, HEX_SIZE)
+    self.sceneNode.transform:touch()
+    
     -- Will cause the color of the organelle to update.
-    self.flashDuration = 0
     if microbe:getSpeciesComponent() ~= nil then
         local colorAsVec = microbe:getSpeciesComponent().colour
         self.colour = ColourValue(colorAsVec.x, colorAsVec.y, colorAsVec.z, 1.0)
     else
-        self.colour = ColourValue(1, 1, 1, 1)
+        self.colour = ColourValue(1, 0, 1, 1)
     end
-    
-	self.organelleEntity = Entity()
-    local sceneNode = OgreSceneNodeComponent()
-    self.sceneNode = sceneNode
-    sceneNode.parent = self.entity
-    
-    if self.name ~= "cytoplasm" then
-        sceneNode.meshName = self.name .. ".mesh"
-    end
-	if self.name == "nucleus"  then
-		offset = Vector3(0,0,0)
-		-- TODO: Add specific nucleus animation here.
-	elseif self.name == "flagellum" then -- Add all movement organelles here.
-		sceneNode:playAnimation("Move", true)
-		sceneNode:setAnimationSpeed(0.25)
-		local organelleX, organelleY = axialToCartesian(q, r)
-		local nucleusX, nucleusY = axialToCartesian(0, 0)
-		local deltaX = nucleusX - organelleX
-		local deltaY = nucleusY - organelleY
-		local angle = math.atan2(deltaY, deltaX)
-		if (angle < 0) then
-			angle = angle + 2*math.pi
-		end
-		angle = (angle * 180/math.pi + 180) % 360
-		self.rotation = angle;
-	elseif self.name == "mitochondrion" or self.name == "chloroplast" then -- When all organelles except the above have animations this should just be an else statement
-		--sceneNode:playAnimation("Float", true)
-		--sceneNode:setAnimationSpeed(0.25)
-	end
-	sceneNode.transform.orientation = Quaternion(Radian(Degree(self.rotation)), Vector3(0, 0, 1))
-	sceneNode.transform.position = offset
-    sceneNode.transform.scale = Vector3(1, 1, 1)
-    sceneNode.transform:touch()
-    self.microbe.entity:addChild(self.organelleEntity)
-    self.organelleEntity:addComponent(sceneNode)
-	self.organelleEntity.sceneNode = sceneNode
-	self.organelleEntity:setVolatile(true)
+    self:setColour(ColourValue(1, 0, 1, 1))
 end
 
 function Organelle:setAnimationSpeed()
-    sceneNode:setAnimationSpeed(0.25)
+    self.sceneNode:setAnimationSpeed(0.25)
 end
 
 -- Called by a microbe when this organelle has been removed from it
@@ -211,13 +198,22 @@ end
 
 function Organelle:destroy()
 	self.organelleEntity:destroy()
-    self.entity:destroy()
 end
 
 function Organelle:flashColour(duration, colour)
 	if self.flashDuration == nil then
         self.colour = colour
         self.flashDuration = duration
+    end
+end
+
+function Organelle:setColour(colour)
+print("setting")
+    if self.sceneNode.entity ~= nil
+        and (self.name == "mitochondrion" or self.name == "nucleus" or self.name == "ER" or self.name == "golgi") then
+        print("set")
+		local entity = self.sceneNode.entity
+        entity:setMaterialColour(colour)
     end
 end
 
@@ -250,6 +246,7 @@ end
 -- @param logicTime
 --  The time since the last call to update()
 function Organelle:update(microbe, logicTime)
+--print(self.sceneNode.transform.position)
 	if self.flashDuration ~= nil and self.sceneNode.entity ~= nil 
         and (self.name == "mitochondrion" or self.name == "nucleus" or self.name == "ER" or self.name == "golgi") then
         
@@ -261,12 +258,14 @@ function Organelle:update(microbe, logicTime)
 		if math.fmod(self.flashDuration,600) < 300 then
             entity:tintColour(self.name, self.colour)
 		else
-			entity:setMaterial(self.name .. math.floor(speciesColour.x * 256) .. math.floor(speciesColour.y * 256) .. math.floor(speciesColour.z * 256))
+			entity:setMaterial(self.name .. math.floor(speciesColour.x * 256) .. math.floor(speciesColour.y * 256) .. math.floor(speciesColour.z * 256)
+                                         .. math.floor(self.colourTint.x * 256) .. math.floor(self.colourTint.y * 256) .. math.floor(self.colourTint.z * 256))
 		end
 		
         if self.flashDuration <= 0 then
             self.flashDuration = nil
-			entity:setMaterial(self.name .. math.floor(speciesColour.x * 256) .. math.floor(speciesColour.y * 256) .. math.floor(speciesColour.z * 256))
+			entity:setMaterial(self.name .. math.floor(speciesColour.x * 256) .. math.floor(speciesColour.y * 256) .. math.floor(speciesColour.z * 256)
+                                         .. math.floor(self.colourTint.x * 256) .. math.floor(self.colourTint.y * 256) .. math.floor(self.colourTint.z * 256))
         end
     end
 end
@@ -277,28 +276,101 @@ end
 -- Override to make each organelle larger
 function Organelle:grow(compoundBagComponent)
     -- Finds the total number of needed compounds.
-    local sum = self.numGlucose + self.numAminoAcids + self.numFattyAcids
+    local sum = 0
+
     -- Finds which compounds the cell currently has.
-    if compoundBagComponent:getCompoundAmount(CompoundRegistry.getCompoundId("glucose")) then
-        --sum = sum + 
+    if compoundBagComponent:aboveLowThreshold(CompoundRegistry.getCompoundId("glucose")) >= 1 then
+        sum = sum + self.numGlucoseLeft
     end
-    if compoundBagComponent:getCompoundAmount(CompoundRegistry.getCompoundId("amino acids")) then
-        --sum = sum + 
+    if compoundBagComponent:aboveLowThreshold(CompoundRegistry.getCompoundId("aminoacids")) >= 1 then
+        sum = sum + self.numAminoAcidsLeft
     end
-    if compoundBagComponent:getCompoundAmount(CompoundRegistry.getCompoundId("fatty acids")) then
-        --sum = sum 
+    if compoundBagComponent:aboveLowThreshold(CompoundRegistry.getCompoundId("fattyacids")) >= 1 then
+        sum = sum + self.numFattyAcidsLeft
     end
     
+    -- If sum is 0, we either have no compounds, in which case we cannot grow the organelle, or the
+    -- organelle is ready to split (i.e. compoundBin = 2), in which case we wait for the microbe to
+    -- handle the split.
+    if sum == 0 then return end
+       
     -- Randomly choose which of the three compounds: glucose, amino acids, and fatty acids
     -- that are used in reproductions.
-    local id = math.random(1,sum)
+    local id = math.random()*sum
     
-    -- Find out which compound was chosen.
-    --if id > 0 or id < self.num
+    -- The random number is a glucose, so attempt to take it.
+    if id - self.numGlucoseLeft < 0 then
+        compoundBagComponent:takeCompound(CompoundRegistry.getCompoundId("glucose"), 1)
+        self.numGlucoseLeft = self.numGlucoseLeft - 1
+    elseif id - self.numGlucoseLeft - self.numAminoAcidsLeft < 0 then
+        compoundBagComponent:takeCompound(CompoundRegistry.getCompoundId("aminoacids"), 1)
+        self.numAminoAcidsLeft = self.numAminoAcidsLeft - 1
+    else
+        compoundBagComponent:takeCompound(CompoundRegistry.getCompoundId("fattyacids"), 1)
+        self.numFattyAcidsLeft = self.numFattyAcidsLeft - 1
+    end
     
+    -- Calculate the new growth value.
+    self:recalculateBin()
+end
+
+function Organelle:damage(amount)
+print(self.name .. " lost " .. amount .. "/2.0 health") 
+    -- Flash the organelle that was damaged.
+    self:flashColour(3000, ColourValue(1,0.2,0.2,1))
     
+    -- Calculate the total number of compounds we need to divide now, so that we can keep this ratio.
+    local totalLeft = self.numGlucoseLeft + self.numAminoAcidsLeft + self.numFattyAcidsLeft
     
-    compoundBagComponent:takeCompound(compoundId, maxAmount)
+    -- Calculate how much compounds the organelle needs to have to result in a health equal to compoundBin - amount.
+    local damageFactor = (2.0 - self.compoundBin + amount) * self.organelleCost / totalLeft
+    self.numGlucoseLeft    = self.numGlucoseLeft * damageFactor
+    self.numAminoAcidsLeft = self.numAminoAcidsLeft * damageFactor
+    self.numFattyAcidsLeft = self.numFattyAcidsLeft * damageFactor
+    
+    -- Calculate the new growth value.
+    self:recalculateBin()
+end
+
+function Organelle:recalculateBin()
+    -- Calculate the new growth growth
+    self.compoundBin = 2.0 - (self.numGlucoseLeft + self.numAminoAcidsLeft + self.numFattyAcidsLeft)/self.organelleCost
+    -- If the organelle is damaged...
+    if self.compoundBin < 1.0 then
+        if self.compoundBin <= 0.0 then
+            -- If it was split from a primary organelle, destroy it.
+            if self.isDuplicate == true then
+                self.microbe.removeOrganelle(self.position.q, self.position.r)
+                return
+                
+            -- If it is a primary organelle, make sure that it's compound bin is not less than 0.
+            else
+                self.compoundBin = 0
+                self.numGlucoseLeft    = 2 * self.numGlucose
+                self.numAminoAcidsLeft = 2 * self.numAminoAcids
+                self.numFattyAcidsLeft = 2 * self.numFattyAcids
+            end
+        end
+        -- Scale the model at a slower rate (so that 0.0 is half size).
+        print(self.compoundBin)
+        self.sceneNode.transform.scale = Vector3((1.0 + self.compoundBin)/2, (1.0 + self.compoundBin)/2, (1.0 + self.compoundBin)/2)*HEX_SIZE
+        self.sceneNode.transform:touch()
+        
+        -- Darken the color. Will be updated on next call of update()
+        self.flashDuration = 0.0
+        self.colourTint = Vector3((1.0 + self.compoundBin)/2, self.compoundBin, self.compoundBin)
+    else
+        -- Scale the organelle model to reflect the new size.
+        self.sceneNode.transform.scale = Vector3(self.compoundBin, self.compoundBin, self.compoundBin)*HEX_SIZE
+        self.sceneNode.transform:touch()  
+    end
+end
+
+function Organelle:reset()
+    self.compoundBin = 1.0
+    self.numGlucoseLeft    = self.numGlucose
+    self.numAminoAcidsLeft = self.numAminoAcids
+    self.numFattyAcidsLeft = self.numFattyAcids
 end
 
 

@@ -31,6 +31,7 @@
 #include <OgreVector3.h>
 #include <OgreSubEntity.h>
 #include <OgreEntity.h>
+#include <OgreSubMesh.h>
 
 #include <string>
 
@@ -248,6 +249,32 @@ Entity_tintColour(
     self->setMaterial(materialPtr);
 }
 
+static void
+Entity_cloneMaterial(
+    Entity* self,
+    const String& materialName
+) {
+    static int clonedIndex = 0;
+    Ogre::MaterialPtr baseMaterial = Ogre::MaterialManager::getSingleton().getByName(materialName);
+    Ogre::MaterialPtr materialPtr = baseMaterial->clone(materialName + std::to_string(clonedIndex));
+    clonedIndex++;
+    materialPtr->compile();
+    self->setMaterial(materialPtr);
+}
+
+static void
+Entity_setMaterialColour(
+    Entity* self,
+    const Ogre::ColourValue& colour
+) {
+    Ogre::SubMesh* sub = self->getMesh()->getSubMesh(0);
+    Ogre::MaterialPtr materialPtr = Ogre::MaterialManager::getSingleton().getByName(sub->getMaterialName());
+    Ogre::TextureUnitState* ptus = materialPtr->getTechnique(0)->getPass(0)->getTextureUnitState(0);
+    ptus->setColourOperationEx(Ogre::LBX_MODULATE, Ogre::LBS_MANUAL, Ogre::LBS_TEXTURE, colour);
+    ptus->setAlphaOperation(Ogre::LBX_MODULATE, Ogre::LBS_MANUAL, Ogre::LBS_TEXTURE, colour.a);
+    self->setMaterial(materialPtr);
+}
+
 static luabind::scope
 entityBindings() {
     return (
@@ -261,6 +288,8 @@ entityBindings() {
         .def("getNumSubEntities", &Entity::getNumSubEntities)
         .def("setColour", &Entity_setColour)
         .def("setMaterial", &Entity_setMaterial)
+        .def("cloneMaterial", &Entity_cloneMaterial)
+        .def("setMaterialColour", &Entity_setMaterialColour)
         .def("tintColour", &Entity_tintColour)
     );
 }

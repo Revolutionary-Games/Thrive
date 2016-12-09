@@ -14,43 +14,36 @@ compounds = {
     atp = {
         name = "ATP",
         weight = 1,
-        mesh = "ATP.mesh",
         size = 0.1,
     },
     oxygen = {
         name = "Oxygen",
         weight = 1,
-        mesh = "molecule.mesh",
         size = 0.3,
     },
     aminoacids = {
         name = "Amino Acids",
         weight = 1,
-        mesh = "aminoacid.mesh",
         size = 0.2,
     },
     ammonia = {
         name = "Ammonia",
         weight = 1,
-        mesh = "ammonia.mesh",
         size = 0.16,
     },
     glucose = {
         name = "Glucose",
         weight = 1,
-        mesh = "glucose.mesh",
         size = 0.3,
     },
     co2 = {
         name = "CO2",
         weight = 1,
-        mesh = "co2.mesh",
         size = 0.16,
     },
     fattyacids = {
         name = "Fatty Acids",
         weight = 1,
-        mesh = "fattyacid.mesh",
         size = 0.16,
     },
 }
@@ -113,6 +106,18 @@ processes = {
             aminoacids = 1,
         },
     },
+    FattyAcidSynthesis = {
+        speedFactor = 1,
+        inputs = {
+            glucose = 1,
+            ammonia = 1,
+        },
+        outputs = {
+            co2 = 1,
+            atp = 1,
+            fattyacids = 1,
+        },
+    },
     OxyToxySynthesis = {
         speedFactor = 0.1,
         inputs = {
@@ -140,6 +145,7 @@ organelles = {
     nucleus = {
         processes = {
             AminoAcidSynthesis = 1,
+            FattyAcidSynthesis = 1,
         },
     },
     mitochondrion = {
@@ -166,8 +172,8 @@ default_thresholds = {
     oxygen = {low = 22, high = 40, vent = 70},
     co2 = {low = 0, high = 0, vent = 0},
     ammonia = {low = 12, high = 30, vent = 70},
-    aminoacids = {low = 1, high = 30, vent = 70},
-    fattyacids = {low = 1, high = 30, vent = 70},
+    aminoacids = {low = 0, high = 30, vent = 70},
+    fattyacids = {low = 0, high = 30, vent = 70},
     oxytoxy = {low = 1, high = 5, vent = 5},
 }
 
@@ -189,9 +195,8 @@ starter_microbes = {
     Default = {
         spawnDensity = 1/14000,
         compounds = {
-            atp = {priority=10,amount=40},
+            atp = {amount=20},
             glucose = {amount = 5},
-            reproductase = {priority = 8},
         },
         organelles = {
             {name="nucleus",q=0,r=0, rotation=0},
