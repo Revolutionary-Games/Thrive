@@ -249,30 +249,38 @@ Entity_tintColour(
     self->setMaterial(materialPtr);
 }
 
+static int clonedIndex = 0;
+
 static void
 Entity_cloneMaterial(
     Entity* self,
     const String& materialName
 ) {
-    static int clonedIndex = 0;
     Ogre::MaterialPtr baseMaterial = Ogre::MaterialManager::getSingleton().getByName(materialName);
     Ogre::MaterialPtr materialPtr = baseMaterial->clone(materialName + std::to_string(clonedIndex));
-    clonedIndex++;
     materialPtr->compile();
-    self->setMaterial(materialPtr);
+    self->setMaterialName(materialName + std::to_string(clonedIndex));
+    clonedIndex++;
 }
 
 static void
 Entity_setMaterialColour(
     Entity* self,
+    //const String& materialName,
     const Ogre::ColourValue& colour
 ) {
+    //Ogre::MaterialPtr baseMaterial = Ogre::MaterialManager::getSingleton().getByName(materialName);
+    //Ogre::MaterialPtr materialPtr = baseMaterial->clone(materialName + std::to_string(clonedIndex));
+    //materialPtr->compile();
+    //self->setMaterialName(materialName + std::to_string(clonedIndex));
+    //clonedIndex++;
+
     Ogre::SubMesh* sub = self->getMesh()->getSubMesh(0);
     Ogre::MaterialPtr materialPtr = Ogre::MaterialManager::getSingleton().getByName(sub->getMaterialName());
     Ogre::TextureUnitState* ptus = materialPtr->getTechnique(0)->getPass(0)->getTextureUnitState(0);
     ptus->setColourOperationEx(Ogre::LBX_MODULATE, Ogre::LBS_MANUAL, Ogre::LBS_TEXTURE, colour);
     ptus->setAlphaOperation(Ogre::LBX_MODULATE, Ogre::LBS_MANUAL, Ogre::LBS_TEXTURE, colour.a);
-    self->setMaterial(materialPtr);
+    //self->setMaterial(materialPtr);
 }
 
 static luabind::scope

@@ -32,6 +32,7 @@ function Organelle:__init(mass)
     
     -- The deviation of the organelle color from the species color
     self.colourTint = Vector3(1.0, 1.0, 1.0)
+    self._needsColourUpdate = true
 	
 	-- The "Health Bar" of the organelle constrained to [0,2]
 	-- 0 means the organelle is dead, 1 means its normal, and 2 means
@@ -149,15 +150,12 @@ function Organelle:onAddedToMicrobe(microbe, q, r, rotation)
 	self.sceneNode.transform.position = offset + self.position.cartesian
     self.sceneNode.transform.scale = Vector3(HEX_SIZE, HEX_SIZE, HEX_SIZE)
     self.sceneNode.transform:touch()
-    
-    -- Will cause the color of the organelle to update.
-    if microbe:getSpeciesComponent() ~= nil then
-        local colorAsVec = microbe:getSpeciesComponent().colour
-        self.colour = ColourValue(colorAsVec.x, colorAsVec.y, colorAsVec.z, 1.0)
-    else
-        self.colour = ColourValue(1, 0, 1, 1)
-    end
-    self:setColour(ColourValue(1, 0, 1, 1))
+        
+    -- Change the colour of this species to be tinted by the membrane.
+    self.colour = ColourValue(microbe:getSpeciesComponent().colour.x, 
+                              microbe:getSpeciesComponent().colour.y,
+                              microbe:getSpeciesComponent().colour.z, 1)
+    self._needsColourUpdate = true
 end
 
 function Organelle:setAnimationSpeed()
@@ -200,20 +198,30 @@ function Organelle:destroy()
 	self.organelleEntity:destroy()
 end
 
-function Organelle:flashColour(duration, colour)
+function Organelle:flashOrganelle(duration, colour)
 	if self.flashDuration == nil then
-        self.colour = colour
+        self.flashColour = colour
         self.flashDuration = duration
     end
 end
 
-function Organelle:setColour(colour)
-print("setting")
+function Organelle:updateColour()
+    -- If the material was not cloned, clone it. This is a dumb workaround because
+    -- entity doesn't exist when onAddedToMicrobe is called.
+    --if self.clonedMaterial == nil and self.sceneNode.entity ~= nil    
+    --    and (self.name == "chloroplast" or self.name == "mitochondrion" or self.name == "nucleus" or self.name == "ER" or self.name == "golgi") then
+        
+    --    self.scenenNode.entity:tintColour(self.name, self.colour)
+        
+    --    self.clonedMaterial = true
+    --end
+
     if self.sceneNode.entity ~= nil
-        and (self.name == "mitochondrion" or self.name == "nucleus" or self.name == "ER" or self.name == "golgi") then
-        print("set")
+        and (self.name == "chloroplast" or self.name == "mitochondrion" or self.name == "nucleus" or self.name == "ER" or self.name == "golgi") then
 		local entity = self.sceneNode.entity
-        entity:setMaterialColour(colour)
+        entity:tintColour(self.name, self.colour)
+        
+        self._needsColourUpdate = false
     end
 end
 
@@ -246,27 +254,32 @@ end
 -- @param logicTime
 --  The time since the last call to update()
 function Organelle:update(microbe, logicTime)
---print(self.sceneNode.transform.position)
-	if self.flashDuration ~= nil and self.sceneNode.entity ~= nil 
+	if self.flashDuration ~= nil
         and (self.name == "mitochondrion" or self.name == "nucleus" or self.name == "ER" or self.name == "golgi") then
         
         self.flashDuration = self.flashDuration - logicTime
-        local speciesColour = microbe:getSpeciesComponent().colour
+        local speciesColour = ColourValue(microbe:getSpeciesComponent().colour.x, 
+                                          microbe:getSpeciesComponent().colour.y,
+                                          microbe:getSpeciesComponent().colour.z, 1)
 		
 		local entity = self.sceneNode.entity
 		-- How frequent it flashes, would be nice to update the flash function to have this variable
 		if math.fmod(self.flashDuration,600) < 300 then
-            entity:tintColour(self.name, self.colour)
+            self.colour = self.flashColour
 		else
-			entity:setMaterial(self.name .. math.floor(speciesColour.x * 256) .. math.floor(speciesColour.y * 256) .. math.floor(speciesColour.z * 256)
-                                         .. math.floor(self.colourTint.x * 256) .. math.floor(self.colourTint.y * 256) .. math.floor(self.colourTint.z * 256))
+			self.colour = speciesColour
 		end
 		
         if self.flashDuration <= 0 then
             self.flashDuration = nil
-			entity:setMaterial(self.name .. math.floor(speciesColour.x * 256) .. math.floor(speciesColour.y * 256) .. math.floor(speciesColour.z * 256)
-                                         .. math.floor(self.colourTint.x * 256) .. math.floor(self.colourTint.y * 256) .. math.floor(self.colourTint.z * 256))
+			self.colour = speciesColour
         end
+        
+        self._needsColourUpdate = true
+    end
+    
+    if self._needsColourUpdate == true then
+        self:updateColour()
     end
 end
 
@@ -317,7 +330,7 @@ end
 function Organelle:damage(amount)
 print(self.name .. " lost " .. amount .. "/2.0 health") 
     -- Flash the organelle that was damaged.
-    self:flashColour(3000, ColourValue(1,0.2,0.2,1))
+    self:flashOrganelle(3000, ColourValue(1,0.2,0.2,1))
     
     -- Calculate the total number of compounds we need to divide now, so that we can keep this ratio.
     local totalLeft = self.numGlucoseLeft + self.numAminoAcidsLeft + self.numFattyAcidsLeft
@@ -357,7 +370,6 @@ function Organelle:recalculateBin()
         self.sceneNode.transform:touch()
         
         -- Darken the color. Will be updated on next call of update()
-        self.flashDuration = 0.0
         self.colourTint = Vector3((1.0 + self.compoundBin)/2, self.compoundBin, self.compoundBin)
     else
         -- Scale the organelle model to reflect the new size.
@@ -371,6 +383,10 @@ function Organelle:reset()
     self.numGlucoseLeft    = self.numGlucose
     self.numAminoAcidsLeft = self.numAminoAcids
     self.numFattyAcidsLeft = self.numFattyAcids
+    
+    -- Scale the organelle model to reflect the new size.
+    self.sceneNode.transform.scale = Vector3(self.compoundBin, self.compoundBin, self.compoundBin)*HEX_SIZE
+    self.sceneNode.transform:touch() 
 end
 
 
@@ -381,7 +397,7 @@ end
 -- The basic organelle maker
 class 'OrganelleFactory'
 
--- Sets the color of the organelle
+-- Sets the color of the organelle (used in editor for valid/nonvalid placement)
 function OrganelleFactory.setColour(sceneNode, colour)
 	sceneNode.entity:setColour(colour)
 end

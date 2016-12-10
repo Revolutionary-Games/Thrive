@@ -975,6 +975,11 @@ function Microbe:respawn()
     self.microbe.deathTimer = 0
     self.residuePhysicsTime = 0
     self.microbe.hitpoints = self.microbe.maxHitpoints
+    
+    -- Reset the growth bins of the organelles to full health.
+    for _, organelle in pairs(self.microbe.organelles) do
+        organelle:reset()
+    end
 
     self.rigidBody:setDynamicProperties(
         Vector3(0,0,0), -- Position
@@ -1164,7 +1169,7 @@ function MicrobeSystem:update(renderTime, logicTime)
         local agent = Entity(collision.entityId2)
         
         if entity:exists() and agent:exists() then
-            Microbe(entity):damage(5, "toxin")
+            Microbe(entity):damage(.5, "toxin")
             agent:destroy()
         end
     end

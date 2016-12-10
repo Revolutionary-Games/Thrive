@@ -65,34 +65,23 @@ function NucleusOrganelle:load(storage)
     ProcessOrganelle.load(self, storage)
 end
 
-function NucleusOrganelle:update(microbe, logicTime)
-    if self.flashDuration ~= nil and self.sceneNode.entity ~= nil then
-        self.flashDuration = self.flashDuration - logicTime
-        
-        local speciesColour = microbe:getSpeciesComponent().colour
-        local colorSuffix =  "" .. math.floor(speciesColour.x * 256) .. math.floor(speciesColour.y * 256) .. math.floor(speciesColour.z * 256)
-		
-		local entity = self.sceneNode.entity
+function NucleusOrganelle:updateColour()
+    -- Update the colours of the additional organelle models.
+    if self.sceneNode.entity ~= nil then
+        local entity = self.sceneNode.entity
         local golgiEntity = self.golgi.sceneNode.entity
         local ER_entity = self.ER.sceneNode.entity
-		-- How frequent it flashes, would be nice to update the flash function
-		if math.fmod(self.flashDuration,600) < 300 then      
-            entity:tintColour(self.name, self.colour)
-            golgiEntity:tintColour("golgi", self.colour)
-            ER_entity:tintColour("ER", self.colour)            
-		else
-			entity:setMaterial(self.name .. colorSuffix)
-			golgiEntity:setMaterial("golgi" .. colorSuffix)
-			ER_entity:setMaterial("ER" .. colorSuffix)
-		end
-		
-        if self.flashDuration <= 0 then
-            self.flashDuration = nil				
-			entity:setMaterial(self.name .. colorSuffix)
-			golgiEntity:setMaterial("golgi" .. colorSuffix)
-			ER_entity:setMaterial("ER" .. colorSuffix)
-        end
+        
+        entity:tintColour(self.name, self.colour)
+        golgiEntity:tintColour("golgi", self.colour)
+        ER_entity:tintColour("ER", self.colour)
+        
+        self._needsColourUpdate = false
     end
+end
+
+function NucleusOrganelle:update(microbe, logicTime)
+    Organelle.update(self, microbe, logicTime)
 end
 
 -- Makes nucleus larger
@@ -135,7 +124,7 @@ function NucleusOrganelle:damage(amount)
 print("Nucleus damaged: " .. amount)
 
     -- Flash the nucleus.
-    self:flashColour(3000, ColourValue(1,0.2,0.2,1))
+    self:flashOrganelle(3000, ColourValue(1,0.2,0.2,1))
     
     -- Calculate the total number of compounds we need to divide now, so that we can keep this ratio.
     local totalLeft = self.numProteinLeft + self.numNucleicAcidsLeft
@@ -162,12 +151,12 @@ function NucleusOrganelle:recalculateBin()
         -- Darken the color.
         local speciesColour = self.microbe:getSpeciesComponent().colour
         local colorSuffix =  "" .. math.floor(speciesColour.x * 256) .. math.floor(speciesColour.y * 256) .. math.floor(speciesColour.z * 256)
-        self.sceneNode.entity:tintColour(self.name .. colorSuffix, ColourValue((1.0 + self.compoundBin)/2, self.compoundBin, self.compoundBin, 1.0))      
+        --self.sceneNode.entity:tintColour(self.name .. colorSuffix, ColourValue((1.0 + self.compoundBin)/2, self.compoundBin, self.compoundBin, 1.0))      
     else
         -- Darken the nucleus as more DNA is made.
         local speciesColour = self.microbe:getSpeciesComponent().colour
         local colorSuffix =  "" .. math.floor(speciesColour.x * 256) .. math.floor(speciesColour.y * 256) .. math.floor(speciesColour.z * 256)
-        self.sceneNode.entity:tintColour(self.name .. colorSuffix, ColourValue(2-self.compoundBin, 2-self.compoundBin, 2-self.compoundBin, 1.0))
+        --self.sceneNode.entity:tintColour(self.name .. colorSuffix, ColourValue(2-self.compoundBin, 2-self.compoundBin, 2-self.compoundBin, 1.0))
     end
 end
 
