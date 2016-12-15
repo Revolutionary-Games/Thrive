@@ -44,7 +44,7 @@ function MicrobeEditor:createHexComponent(q, r)
     self.occupiedHexes[s]:setVolatile(true)
 end
 
--- checks whether the hex at q, r has an organelle in its surroundeng hexes.
+-- checks whether the hex at q, r has an organelle in its surroundeing hexes.
 function MicrobeEditor:surroundsOrganelle(q, r)
     return  self.currentMicrobe:getOrganelleAt(q + 0, r - 1) or
             self.currentMicrobe:getOrganelleAt(q + 1, r - 1) or
@@ -77,28 +77,20 @@ function MicrobeEditor:activate()
     self.mutationPoints = 50
     self.actionHistory = {} -- where all user actions will  be registered
     self.actionIndex = 0 -- marks the last action that has been done (not undone, but possibly redone), is 0 if there is none
-
+    for _, cytoplasm in pairs(self.occupiedHexes) do
+        cytoplasm:destroy()
+    end
     
     self.currentMicrobe = Microbe(self.nextMicrobeEntity, true)
     self.currentMicrobe.sceneNode.transform.orientation = Quaternion(Radian(Degree(0)), Vector3(0, 0, 1))-- Orientation
     self.currentMicrobe.sceneNode.transform.position = Vector3(0, 0, 0)
     self.currentMicrobe.sceneNode.transform:touch()
-
-	self:updateCytoPlasm()
-end
-
-function MicrobeEditor:updateCytoPlasm()
-
-    for _, cytoplasm in pairs(self.occupiedHexes) do
-        cytoplasm:destroy()
-    end
-
+    
     for _, organelle in pairs(self.currentMicrobe.microbe.organelles) do
         for s, hex in pairs(organelle._hexes) do
             self:createHexComponent(hex.q + organelle.position.q, hex.r + organelle.position.r)
         end
     end
-
 end
 
 function MicrobeEditor:update(renderTime, logicTime)
@@ -112,15 +104,15 @@ function MicrobeEditor:update(renderTime, logicTime)
     elseif self.symmetry == 2 then
         self:renderHighlightedOrganelle(1, q, r, self.organelleRot)
         self:renderHighlightedOrganelle(2, -1*q, r+q, 360+(-1*self.organelleRot))
-        self:renderHighlightedOrganelle(3, -1*q, -1*r, self.organelleRot+180)
-        self:renderHighlightedOrganelle(4, q, -1*(r+q), 540+(-1*self.organelleRot))
+        self:renderHighlightedOrganelle(3, -1*q, -1*r, (self.organelleRot+180) % 360)
+        self:renderHighlightedOrganelle(4, q, -1*(r+q), 540+(-1*self.organelleRot) % 360)
     elseif self.symmetry == 3 then
         self:renderHighlightedOrganelle(1, q, r, self.organelleRot)
-        self:renderHighlightedOrganelle(2, -1*r, r+q, self.organelleRot+60)
-        self:renderHighlightedOrganelle(3, -1*(r+q), q, self.organelleRot+120)
-        self:renderHighlightedOrganelle(4, -1*q, -1*r, self.organelleRot+180)
-        self:renderHighlightedOrganelle(5, r, -1*(r+q), self.organelleRot+240)
-        self:renderHighlightedOrganelle(6, r+q, -1*q, self.organelleRot+300)
+        self:renderHighlightedOrganelle(2, -1*r, r+q, (self.organelleRot+60) % 360)
+        self:renderHighlightedOrganelle(3, -1*(r+q), q, (self.organelleRot+120) % 360)
+        self:renderHighlightedOrganelle(4, -1*q, -1*r, (self.organelleRot+180) % 360)
+        self:renderHighlightedOrganelle(5, r, -1*(r+q), (self.organelleRot+240) % 360)
+        self:renderHighlightedOrganelle(6, r+q, -1*q, (self.organelleRot+300) % 360)
     end
         
     self.hudSystem:updateMutationPoints()
@@ -136,7 +128,7 @@ function MicrobeEditor:renderHighlightedOrganelle(start, q, r, rotation)
     end
     
     if self.activeActionName then		
-        local oldData = {["name"]=self.activeActionName, ["q"]=-q, ["r"]=-r, ["rotation"]=180+rotation}
+        local oldData = {["name"]=self.activeActionName, ["q"]=-q, ["r"]=-r, ["rotation"]=(180+rotation) % 360}
         local hexes = OrganelleFactory.checkSize(oldData)
         local colour = ColourValue(2, 0, 0, 0.4)
 		local touching = false;
@@ -154,7 +146,7 @@ function MicrobeEditor:renderHighlightedOrganelle(start, q, r, rotation)
             end
 		end
         if CEGUIWindow.getWindowUnderMouse():getName() == 'root' then
-			local newData = {["name"]=self.activeActionName, ["q"]=-q, ["r"]=-r, ["sceneNode"]=sceneNode, ["rotation"]=180+rotation, ["colour"]=colour}
+			local newData = {["name"]=self.activeActionName, ["q"]=-q, ["r"]=-r, ["sceneNode"]=sceneNode, ["rotation"]=(180+rotation) % 360, ["colour"]=colour}
 			OrganelleFactory.renderOrganelles(newData)
 			for i=1, 8 do
                 sceneNode[i].transform.scale = Vector3(HEX_SIZE, HEX_SIZE, HEX_SIZE) --Vector3(1,1,1)
@@ -249,7 +241,7 @@ function MicrobeEditor:isValidPlacement(organelleType, q, r, rotation)
     local newOrganelle = OrganelleFactory.makeOrganelle(data)
     local empty = true
     local touching = false;
-    for s, hex in pairs(newOrganelle._hexes) do
+    for s, hex in pairs(OrganelleFactory.checkSize(data)) do
         local organelle = self.currentMicrobe:getOrganelleAt(hex.q + q, hex.r + r)
         if organelle then
             if organelle.name ~= "cytoplasm" then
@@ -301,14 +293,14 @@ function MicrobeEditor:addOrganelle(organelleType)
         local organelle = self:isValidPlacement(organelleType, q, r, self.organelleRot)
         if q ~= -1*q or r ~= r+q then -- If two organelles aren't overlapping, none are
             local organelle2 = self:isValidPlacement(organelleType, -1*q, r+q, 360+(-1*self.organelleRot))
-            local organelle3 = self:isValidPlacement(organelleType, -1*q, -1*r, self.organelleRot+180)
-            local organelle4 = self:isValidPlacement(organelleType, q, -1*(r+q), 540+(-1*self.organelleRot))
+            local organelle3 = self:isValidPlacement(organelleType, -1*q, -1*r, (self.organelleRot+180) % 360)
+            local organelle4 = self:isValidPlacement(organelleType, q, -1*(r+q), (540+(-1*self.organelleRot)) % 360)
             
             if organelle and organelle2 and organelle3 and organelle4 and Organelle.mpCosts[organelle.name]*4 <= self.mutationPoints then
                 self:_addOrganelle(organelle, q, r, self.organelleRot)
                 self:_addOrganelle(organelle2, -1*q, r+q, 360+(-1*self.organelleRot))
-                self:_addOrganelle(organelle3, -1*q, -1*r, self.organelleRot+180)
-                self:_addOrganelle(organelle4, q, -1*(r+q), 540+(-1*self.organelleRot))
+                self:_addOrganelle(organelle3, -1*q, -1*r, (self.organelleRot+180) % 360)
+                self:_addOrganelle(organelle4, q, -1*(r+q), (540+(-1*self.organelleRot)) % 360)
             end
         else
             if organelle and Organelle.mpCosts[organelle.name] <= self.mutationPoints then
@@ -318,20 +310,20 @@ function MicrobeEditor:addOrganelle(organelleType)
     elseif self.symmetry == 3 then
         local organelle = self:isValidPlacement(organelleType, q, r, self.organelleRot)
         if q ~= -1*r or r ~= r+q then -- If two organelles aren't overlapping, none are
-            local organelle2 = self:isValidPlacement(organelleType, -1*r, r+q, self.organelleRot+60)
-            local organelle3 = self:isValidPlacement(organelleType, -1*(r+q), q, self.organelleRot+120)
-            local organelle4 = self:isValidPlacement(organelleType, -1*q, -1*r, self.organelleRot+180)
-            local organelle5 = self:isValidPlacement(organelleType, r, -1*(r+q), self.organelleRot+240)
-            local organelle6 = self:isValidPlacement(organelleType, r+q, -1*q, self.organelleRot+300)
+            local organelle2 = self:isValidPlacement(organelleType, -1*r, r+q, (self.organelleRot+60) % 360)
+            local organelle3 = self:isValidPlacement(organelleType, -1*(r+q), q, (self.organelleRot+120) % 360)
+            local organelle4 = self:isValidPlacement(organelleType, -1*q, -1*r, (self.organelleRot+180) % 360)
+            local organelle5 = self:isValidPlacement(organelleType, r, -1*(r+q), (self.organelleRot+240) % 360)
+            local organelle6 = self:isValidPlacement(organelleType, r+q, -1*q, (self.organelleRot+300) % 360)
             
             if organelle and organelle2 and organelle3 and organelle4 and organelle5 and organelle6 
                          and Organelle.mpCosts[organelle.name]*6 <= self.mutationPoints then
                 self:_addOrganelle(organelle, q, r, self.organelleRot)
-                self:_addOrganelle(organelle2, -1*r, r+q, self.organelleRot+60)
-                self:_addOrganelle(organelle3, -1*(r+q), q, self.organelleRot+120)
-                self:_addOrganelle(organelle4, -1*q, -1*r, self.organelleRot+180)
-                self:_addOrganelle(organelle5, r, -1*(r+q), self.organelleRot+240)
-                self:_addOrganelle(organelle6, r+q, -1*q, self.organelleRot+300)
+                self:_addOrganelle(organelle2, -1*r, r+q, (self.organelleRot+60) % 360)
+                self:_addOrganelle(organelle3, -1*(r+q), q, (self.organelleRot+120) % 360)
+                self:_addOrganelle(organelle4, -1*q, -1*r, (self.organelleRot+180) % 360)
+                self:_addOrganelle(organelle5, r, -1*(r+q), (self.organelleRot+240) % 360)
+                self:_addOrganelle(organelle6, r+q, -1*q, (self.organelleRot+300) % 360)
             end
         else
             if organelle and Organelle.mpCosts[organelle.name] <= self.mutationPoints then 
@@ -432,7 +424,6 @@ function MicrobeEditor:loadMicrobe(entityId)
     -- resetting the action history - it should not become entangled with the local file system
     self.actionHistory = {}
     self.actionIndex = 0
-	self:updateCytoPlasm()
 end
 
 function MicrobeEditor:createNewMicrobe()

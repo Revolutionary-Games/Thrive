@@ -60,9 +60,8 @@ function OrganelleFactory.render_vacuole(data)
 	OrganelleFactory.setColour(data.sceneNode[2], data.colour)
 end
 
-function OrganelleFactory.sizeof_vacuole(data)
-    local hexes = {}
-	hexes[1] = {["q"]=0, ["r"]=0}
+function OrganelleFactory.sizeof_vacuole()
+    local hexes = {{["q"]=0, ["r"]=0}}
 	return hexes
 end
 
@@ -82,8 +81,7 @@ function OrganelleFactory.render_cytoplasm(data)
 	OrganelleFactory.setColour(data.sceneNode[2], data.colour)
 end
 
-function OrganelleFactory.sizeof_cytoplasm(data)
-    local hexes = {}
-	hexes[1] = {["q"]=0, ["r"]=0}
+function OrganelleFactory.sizeof_cytoplasm()
+    local hexes = {{["q"]=0, ["r"]=0}}
 	return hexes
 end    

@@ -206,9 +206,19 @@ function rotateAxial(q, r)
 	return q2, r2
 end
 
--- Flips a hex vertically about 0,0.
+-- Rotates a hex by (60 * n) degrees about the origin clock-wise.
+function rotateAxialNTimes(q0, r0, n)
+    q = q0
+    r = r0
+    for i = 1, n do
+        q, r = rotateAxial(q, r)
+    end
+    return q, r
+end
+
+-- Symmetrizes a hex horizontally about the 0,x axis.
 function flipHorizontally(q,r)
     local q2 = -q
-    local r2 = q + r2
+    local r2 = q + r
     return q2, r2
 end

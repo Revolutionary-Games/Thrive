@@ -86,8 +86,7 @@ function OrganelleFactory.render_oxytoxy(data)
 	OrganelleFactory.setColour(data.sceneNode[2], data.colour)
 end
 
-function OrganelleFactory.sizeof_oxytoxy(data)
-    local hexes = {}
-	hexes[1] = {["q"]=0, ["r"]=0}
+function OrganelleFactory.sizeof_oxytoxy()
+    local hexes = {{["q"]=0, ["r"]=0}}
 	return hexes
 end

@@ -390,9 +390,9 @@ function OrganelleFactory.render_chloroplast(data)
 	OrganelleFactory.setColour(data.sceneNode[2], data.colour)
 	
 	local angle = (data.rotation / 60) + 5
-    if x < 0 then
-        angle = angle + 7
-    end
+    --if x < 0 then
+    --    angle = angle + 7
+    --end
     
 	local q = 1
 	local r = 0
@@ -422,10 +422,13 @@ function OrganelleFactory.render_chloroplast(data)
 	data.sceneNode[1].transform.orientation = Quaternion(Radian(Degree(data.rotation)), Vector3(0, 0, 1))
 end
 
-function OrganelleFactory.sizeof_mitochondrion(data)
-	local hexes = {}
+function OrganelleFactory.sizeof_mitochondrion()
+	local hexes = {
+        {["q"]=0, ["r"]=0},
+        {["q"]=0, ["r"]=1}
+    }
 	
-	local angle = (data.rotation / 60)
+	--[[local angle = (data.rotation / 60)
 	
 	hexes[1] = {["q"]=0, ["r"]=0}
 	
@@ -434,15 +437,19 @@ function OrganelleFactory.sizeof_mitochondrion(data)
 	for i=0, angle do
 		q, r = rotateAxial(q, r)
 	end
-	hexes[2] = {["q"]=q, ["r"]=r}
+	hexes[2] = {["q"]=q, ["r"]=r}]]
 	
     return hexes
 end
 
-function OrganelleFactory.sizeof_chloroplast(data)
-	local x, y = axialToCartesian(data.q, data.r)    
-	local hexes = {}
-	
+function OrganelleFactory.sizeof_chloroplast() 
+	local hexes = {
+        {["q"]=0,   ["r"]=0},
+        {["q"]=1,   ["r"]=0},
+        {["q"]=0,   ["r"]=1}
+    }
+
+	--[[local x, y = axialToCartesian(data.q, data.r)   
 	local angle = (data.rotation / 60) + 5
     if x < 0 then
         angle = angle + 7
@@ -462,7 +469,7 @@ function OrganelleFactory.sizeof_chloroplast(data)
 	for i=0, angle do
 		q, r = rotateAxial(q, r)
 	end
-	hexes[3] = {["q"]=q, ["r"]=r}
+	hexes[3] = {["q"]=q, ["r"]=r}]]
 	
     return hexes
 end

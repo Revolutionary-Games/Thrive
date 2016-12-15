@@ -301,7 +301,21 @@ function OrganelleFactory.checkSize(data)
 	if data.name == "remove" then
 		return {}
 	else
-		return OrganelleFactory["sizeof_"..data.name](data)
+        --getting the hex table of the organelle.
+		hexes = OrganelleFactory["sizeof_"..data.name]()
+
+        --getting the angle the organelle has
+        --(and setting one if it doesn't have one).
+        if data.rotation == nil then
+            data.rotation = 0
+        end
+        angle = data.rotation / 60
+
+        --rotating each hex by the organelle angle
+        for _, hex in pairs(hexes) do
+            hex.q, hex.r = rotateAxialNTimes(hex.q, hex.r, angle)
+        end
+        return hexes
 	end
 end
 

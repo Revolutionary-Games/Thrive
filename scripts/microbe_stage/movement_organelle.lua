@@ -144,8 +144,7 @@ function OrganelleFactory.render_flagellum(data)
 	OrganelleFactory.setColour(data.sceneNode[2], data.colour)
 end
 
-function OrganelleFactory.sizeof_flagellum(data)
-    local hexes = {}
-	hexes[1] = {["q"]=0, ["r"]=0}
+function OrganelleFactory.sizeof_flagellum()
+    local hexes = {{["q"]=0, ["r"]=0}}
 	return hexes
 end

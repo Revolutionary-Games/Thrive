@@ -195,10 +195,21 @@ function OrganelleFactory.render_nucleus(data)
 	data.sceneNode[1].transform.orientation = Quaternion(Radian(Degree(data.rotation)), Vector3(0, 0, 1))
 end
 
-function OrganelleFactory.sizeof_nucleus(data)
-	local hexes = {}
+function OrganelleFactory.sizeof_nucleus()
+	local hexes = {
+        {["q"]=0,   ["r"]=0},
+        {["q"]=1,   ["r"]=0},
+        {["q"]=0,   ["r"]=1},
+        {["q"]=0,   ["r"]=-1},
+        {["q"]=1,   ["r"]=-1},
+        {["q"]=-1,  ["r"]=1},
+        {["q"]=-1,  ["r"]=0},
+        {["q"]=-1,  ["r"]=-1},
+        {["q"]=-2,  ["r"]=0},
+        {["q"]=-2,  ["r"]=1}
+    }
 	
-	if data.rotation == nil then
+--[[	if data.rotation == nil then
 		data.rotation = 0
 	end
 	local angle = (data.rotation / 60)
@@ -266,7 +277,7 @@ function OrganelleFactory.sizeof_nucleus(data)
 	for i=0, angle do
 		q, r = rotateAxial(q, r)
 	end
-	hexes[10] = {["q"]=q, ["r"]=r}
+	hexes[10] = {["q"]=q, ["r"]=r}]]
 	
     return hexes
 end
