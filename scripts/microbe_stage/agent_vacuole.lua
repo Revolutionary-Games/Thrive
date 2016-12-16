@@ -69,7 +69,6 @@ Organelle.mpCosts["oxytoxy"] = 40
 -- factory functions
 function OrganelleFactory.make_oxytoxy(data)
     local agentVacuole = AgentVacuole(CompoundRegistry.getCompoundId("oxytoxy"), global_processMap["OxyToxySynthesis"])
-    agentVacuole:addHex(0, 0)
     agentVacuole:setColour(ColourValue(0, 1, 1, 0))
     agentVacuole.colourChangeFactor = 0.15
     return agentVacuole
@@ -84,9 +83,4 @@ function OrganelleFactory.render_oxytoxy(data)
 	
     data.sceneNode[2].transform.position = translation
 	OrganelleFactory.setColour(data.sceneNode[2], data.colour)
-end
-
-function OrganelleFactory.sizeof_oxytoxy()
-    local hexes = {{["q"]=0, ["r"]=0}}
-	return hexes
 end

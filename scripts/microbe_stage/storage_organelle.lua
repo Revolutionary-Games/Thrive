@@ -45,7 +45,6 @@ Organelle.mpCosts["cytoplasm"] = 5
 function OrganelleFactory.make_vacuole(data)
     local mass = 0.4
     local vacuole = StorageOrganelle(100.0, mass)
-    vacuole:addHex(0, 0)
     return vacuole
 end
 
@@ -60,16 +59,10 @@ function OrganelleFactory.render_vacuole(data)
 	OrganelleFactory.setColour(data.sceneNode[2], data.colour)
 end
 
-function OrganelleFactory.sizeof_vacuole()
-    local hexes = {{["q"]=0, ["r"]=0}}
-	return hexes
-end
-
 -- Should eventually have its own file.
 function OrganelleFactory.make_cytoplasm(data)
     local mass = 0.1
     local cytoplasm = StorageOrganelle(10.0, mass)
-    cytoplasm:addHex(0, 0)
     return cytoplasm
 end
 
@@ -80,8 +73,3 @@ function OrganelleFactory.render_cytoplasm(data)
     data.sceneNode[2].transform.position = translation
 	OrganelleFactory.setColour(data.sceneNode[2], data.colour)
 end
-
-function OrganelleFactory.sizeof_cytoplasm()
-    local hexes = {{["q"]=0, ["r"]=0}}
-	return hexes
-end    

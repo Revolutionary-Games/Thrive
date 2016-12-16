@@ -312,45 +312,15 @@ function OrganelleFactory.make_mitochondrion(data)
     local mass = 0.3
     local mito = ProcessOrganelle(mass)
     -- mito:addProcess(global_processMap["Respiration"])
-	
-	local angle = (data.rotation / 60)
-	
-	mito:addHex(0, 0)
-	local q = 1
-	local r = 0
-	for i=0, angle do
-		q, r = rotateAxial(q, r)
-	end
-	mito:addHex(q, r)
 
     return mito
 end
 
 function OrganelleFactory.make_chloroplast(data)
     local mass = 0.4
-	local x, y = axialToCartesian(data.q, data.r)
     
     local chloro = ProcessOrganelle(mass)
     -- chloro:addProcess(global_processMap["Photosynthesis"])
-	
-	local angle = (data.rotation / 60)
-    if x < 0 then
-        angle = angle + 5
-    end
-	
-    chloro:addHex(0, 0)
-	local q = 1
-	local r = 0
-	for i=0, angle do
-		q, r = rotateAxial(q, r)
-	end
-	chloro:addHex(q, r)
-	q = 0
-	r = 1
-	for i=0, angle do
-		q, r = rotateAxial(q, r)
-	end
-	chloro:addHex(q, r)
 	
     return chloro
 end
@@ -420,56 +390,4 @@ function OrganelleFactory.render_chloroplast(data)
 	organelleLocation = organelleLocation/3
 	data.sceneNode[1].transform.position = organelleLocation
 	data.sceneNode[1].transform.orientation = Quaternion(Radian(Degree(data.rotation)), Vector3(0, 0, 1))
-end
-
-function OrganelleFactory.sizeof_mitochondrion()
-	local hexes = {
-        {["q"]=0, ["r"]=0},
-        {["q"]=0, ["r"]=1}
-    }
-	
-	--[[local angle = (data.rotation / 60)
-	
-	hexes[1] = {["q"]=0, ["r"]=0}
-	
-	local q = 1
-	local r = 0
-	for i=0, angle do
-		q, r = rotateAxial(q, r)
-	end
-	hexes[2] = {["q"]=q, ["r"]=r}]]
-	
-    return hexes
-end
-
-function OrganelleFactory.sizeof_chloroplast() 
-	local hexes = {
-        {["q"]=0,   ["r"]=0},
-        {["q"]=1,   ["r"]=0},
-        {["q"]=0,   ["r"]=1}
-    }
-
-	--[[local x, y = axialToCartesian(data.q, data.r)   
-	local angle = (data.rotation / 60) + 5
-    if x < 0 then
-        angle = angle + 7
-    end
-	
-	hexes[1] = {["q"]=0, ["r"]=0}
-	
-	local q = 1
-	local r = 0
-	for i=0, angle do
-		q, r = rotateAxial(q, r)
-	end
-	hexes[2] = {["q"]=q, ["r"]=r}
-	
-	q = 0
-	r = 1
-	for i=0, angle do
-		q, r = rotateAxial(q, r)
-	end
-	hexes[3] = {["q"]=q, ["r"]=r}]]
-	
-    return hexes
 end

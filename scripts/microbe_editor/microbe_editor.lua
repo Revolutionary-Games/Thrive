@@ -66,7 +66,6 @@ function MicrobeEditor:init(gameState)
 end
 
 function MicrobeEditor:activate()
-    print("activated")
     if Engine:playerData():activeCreatureGamestate():name() == GameState.MICROBE:name() or Engine:playerData():activeCreatureGamestate():name() == GameState.MICROBE_TUTORIAL:name() then
         microbeStageMicrobe = Entity(Engine:playerData():activeCreature(), GameState.MICROBE)
         self.nextMicrobeEntity = microbeStageMicrobe:transfer(GameState.MICROBE_EDITOR)
@@ -127,7 +126,7 @@ function MicrobeEditor:renderHighlightedOrganelle(start, q, r, rotation)
         sceneNode[i] = self.hudSystem.hoverHex[i-1+(start-1)*7]:getComponent(OgreSceneNodeComponent.TYPE_ID)
     end
     
-    if self.activeActionName then		
+    if self.activeActionName then
         local oldData = {["name"]=self.activeActionName, ["q"]=-q, ["r"]=-r, ["rotation"]=(180+rotation) % 360}
         local hexes = OrganelleFactory.checkSize(oldData)
         local colour = ColourValue(2, 0, 0, 0.4)
@@ -146,8 +145,17 @@ function MicrobeEditor:renderHighlightedOrganelle(start, q, r, rotation)
             end
 		end
         if CEGUIWindow.getWindowUnderMouse():getName() == 'root' then
-			local newData = {["name"]=self.activeActionName, ["q"]=-q, ["r"]=-r, ["sceneNode"]=sceneNode, ["rotation"]=(180+rotation) % 360, ["colour"]=colour}
-			OrganelleFactory.renderOrganelles(newData)
+
+			local newData = {
+                ["name"]=self.activeActionName,
+                ["q"]=-q,
+                ["r"]=-r,
+                ["sceneNode"]=sceneNode,
+                ["rotation"]=(180+rotation) % 360,
+                ["colour"]=colour
+            }
+
+            OrganelleFactory.renderOrganelles(newData)
 			for i=1, 8 do
                 sceneNode[i].transform.scale = Vector3(HEX_SIZE, HEX_SIZE, HEX_SIZE) --Vector3(1,1,1)
 				sceneNode[i].transform:touch()
@@ -233,6 +241,7 @@ function MicrobeEditor:getMouseHex()
     -- Convert to the hex the cursor is currently located over. 
     local q, r = cartesianToAxial(rayPoint.x, -1*rayPoint.y) -- Negating X to compensate for the fact that we are looking at the opposite side of the normal coordinate system
     local qr, rr = cubeToAxial(cubeHexRound(axialToCube(q, r))) -- This requires a conversion to hex cube coordinates and back for proper rounding.
+    --print(qr, rr)
     return qr, rr
 end
 
@@ -429,6 +438,7 @@ end
 function MicrobeEditor:createNewMicrobe()
     local action = {
         redo = function()
+            print("miau")
             self.organelleCount = 0
             speciesName = self.currentMicrobe.microbe.speciesName
             if self.currentMicrobe ~= nil then

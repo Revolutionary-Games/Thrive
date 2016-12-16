@@ -273,9 +273,32 @@ function OrganelleFactory.setColour(sceneNode, colour)
 	sceneNode.entity:setColour(colour)
 end
 
+local function makeOrganelle(data)
+    --getting the angle the organelle has
+    --(and setting one if it doesn't have one).
+    if data.rotation == nil then
+        data.rotation = 0
+    end
+    local angle = data.rotation / 60
+    
+    local organelle = OrganelleFactory["make_"..data.name](data)
+
+    --getting the hex table of the organelle rotated by the angle
+    local hexes = rotateHexListNTimes(organelleTable[data.name].hexes, angle)
+
+    --adding the hexes to the organelle
+    for _, hex in pairs(hexes) do
+        organelle:addHex(hex.q, hex.r)
+    end
+
+    --setting the organelle colour
+
+    return organelle
+end
+
 function OrganelleFactory.makeOrganelle(data)
     local make_organelle = function()
-        return OrganelleFactory["make_"..data.name](data)
+        return makeOrganelle(data)
     end
     local success, organelle = pcall(make_organelle)
     if success then
@@ -298,25 +321,20 @@ end
 
 -- Checks which hexes an organelle occupies
 function OrganelleFactory.checkSize(data)
-	if data.name == "remove" then
-		return {}
-	else
-        --getting the hex table of the organelle.
-		hexes = OrganelleFactory["sizeof_"..data.name]()
-
+    if data.name == "remove" then
+        return {}
+    else
         --getting the angle the organelle has
         --(and setting one if it doesn't have one).
         if data.rotation == nil then
             data.rotation = 0
         end
-        angle = data.rotation / 60
+        local angle = data.rotation / 60
 
-        --rotating each hex by the organelle angle
-        for _, hex in pairs(hexes) do
-            hex.q, hex.r = rotateAxialNTimes(hex.q, hex.r, angle)
-        end
+        --getting the hex table of the organelle rotated by the angle
+        local hexes = rotateHexListNTimes(organelleTable[data.name].hexes, angle)
         return hexes
-	end
+    end
 end
 
 -- OrganelleFactory.make_organelle(data) should be defined in the appropriate file
