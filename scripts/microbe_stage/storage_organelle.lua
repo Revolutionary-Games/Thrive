@@ -39,9 +39,6 @@ function StorageOrganelle:onRemovedFromMicrobe(microbe, q, r)
     microbe:removeStorageOrganelle(self)
 end
 
-Organelle.mpCosts["vacuole"] = 15
-Organelle.mpCosts["cytoplasm"] = 5
-
 function OrganelleFactory.make_vacuole(data)
     local mass = 0.4
     local vacuole = StorageOrganelle(100.0, mass)

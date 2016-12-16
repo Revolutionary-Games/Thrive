@@ -304,10 +304,6 @@ end
 -------------------------------------------
 -- factory functions for process organelles
 
-
-Organelle.mpCosts["chloroplast"] = 20
-Organelle.mpCosts["mitochondrion"] = 20
-
 function OrganelleFactory.make_mitochondrion(data)
     local mass = 0.3
     local mito = ProcessOrganelle(mass)

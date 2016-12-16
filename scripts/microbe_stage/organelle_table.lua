@@ -20,7 +20,7 @@ organelleTable = {
     ["cytoplasm"] = {
         mass = 0.1,
         mpCost = 5,
-        mesh = nil,
+        mesh = nil, --it's an empty hex
         hexes = {
         {["q"]=0,   ["r"]=0}
         }

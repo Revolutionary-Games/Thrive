@@ -1,8 +1,6 @@
 -- Base class for microbe organelles
 class 'Organelle'
 
-Organelle.mpCosts = {}
-
 -- Factory function for organelles
 function Organelle.loadOrganelle(storage)
     local className = storage:get("className", "")
@@ -281,10 +279,14 @@ local function makeOrganelle(data)
     end
     local angle = data.rotation / 60
     
+    --retrieveing the organelle info from the table
+    local organelleInfo = organelleTable[data.name]
+    
     local organelle = OrganelleFactory["make_"..data.name](data)
+    --local organelle = Organelle:__init(organelleInfo.mass)
 
     --getting the hex table of the organelle rotated by the angle
-    local hexes = rotateHexListNTimes(organelleTable[data.name].hexes, angle)
+    local hexes = rotateHexListNTimes(organelleInfo.hexes, angle)
 
     --adding the hexes to the organelle
     for _, hex in pairs(hexes) do

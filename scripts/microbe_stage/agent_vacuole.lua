@@ -64,8 +64,6 @@ function AgentVacuole:load(storage)
     self.process = process
 end
 
-Organelle.mpCosts["oxytoxy"] = 40
-
 -- factory functions
 function OrganelleFactory.make_oxytoxy(data)
     local agentVacuole = AgentVacuole(CompoundRegistry.getCompoundId("oxytoxy"), global_processMap["OxyToxySynthesis"])

@@ -277,7 +277,7 @@ function MicrobeEditor:addOrganelle(organelleType)
         local organelle = self:isValidPlacement(organelleType, q, r, self.organelleRot)
         
         if organelle then
-            if Organelle.mpCosts[organelle.name] > self.mutationPoints then return end
+            if organelleTable[organelle.name].mpCost > self.mutationPoints then return end
             self:_addOrganelle(organelle, q, r, self.organelleRot)
         end
     elseif self.symmetry == 1 then
@@ -287,13 +287,13 @@ function MicrobeEditor:addOrganelle(organelleType)
             local organelle2 = self:isValidPlacement(organelleType, -1*q, r+q, 360+(-1*self.organelleRot))
             
             -- If the organelles were successfully created and have enough MP...
-            if organelle and organelle2 and Organelle.mpCosts[organelle.name]*2 <= self.mutationPoints then            
+            if organelle and organelle2 and organelleTable[organelle.name].mpCost*2 <= self.mutationPoints then            
                 -- Add the organelles to the microbe.
                 self:_addOrganelle(organelle, q, r, self.organelleRot)
                 self:_addOrganelle(organelle2, -1*q, r+q, 360+(-1*self.organelleRot))
             end
         else
-            if organelle and Organelle.mpCosts[organelle.name] <= self.mutationPoints then            
+            if organelle and organelleTable[organelle.name].mpCost <= self.mutationPoints then            
                 -- Add a organelle to the microbe.
                 self:_addOrganelle(organelle, q, r, self.organelleRot)
             end
@@ -305,14 +305,14 @@ function MicrobeEditor:addOrganelle(organelleType)
             local organelle3 = self:isValidPlacement(organelleType, -1*q, -1*r, (self.organelleRot+180) % 360)
             local organelle4 = self:isValidPlacement(organelleType, q, -1*(r+q), (540+(-1*self.organelleRot)) % 360)
             
-            if organelle and organelle2 and organelle3 and organelle4 and Organelle.mpCosts[organelle.name]*4 <= self.mutationPoints then
+            if organelle and organelle2 and organelle3 and organelle4 and organelleTable[organelle.name].mpCost*4 <= self.mutationPoints then
                 self:_addOrganelle(organelle, q, r, self.organelleRot)
                 self:_addOrganelle(organelle2, -1*q, r+q, 360+(-1*self.organelleRot))
                 self:_addOrganelle(organelle3, -1*q, -1*r, (self.organelleRot+180) % 360)
                 self:_addOrganelle(organelle4, q, -1*(r+q), (540+(-1*self.organelleRot)) % 360)
             end
         else
-            if organelle and Organelle.mpCosts[organelle.name] <= self.mutationPoints then
+            if organelle and organelleTable[organelle.name].mpCost <= self.mutationPoints then
                 self:_addOrganelle(organelle, q, r, self.organelleRot)
             end
         end
@@ -326,7 +326,7 @@ function MicrobeEditor:addOrganelle(organelleType)
             local organelle6 = self:isValidPlacement(organelleType, r+q, -1*q, (self.organelleRot+300) % 360)
             
             if organelle and organelle2 and organelle3 and organelle4 and organelle5 and organelle6 
-                         and Organelle.mpCosts[organelle.name]*6 <= self.mutationPoints then
+                         and organelleTable[organelle.name].mpCost*6 <= self.mutationPoints then
                 self:_addOrganelle(organelle, q, r, self.organelleRot)
                 self:_addOrganelle(organelle2, -1*r, r+q, (self.organelleRot+60) % 360)
                 self:_addOrganelle(organelle3, -1*(r+q), q, (self.organelleRot+120) % 360)
@@ -335,7 +335,7 @@ function MicrobeEditor:addOrganelle(organelleType)
                 self:_addOrganelle(organelle6, r+q, -1*q, (self.organelleRot+300) % 360)
             end
         else
-            if organelle and Organelle.mpCosts[organelle.name] <= self.mutationPoints then 
+            if organelle and organelleTable[organelle.name].mpCost <= self.mutationPoints then 
                  self:_addOrganelle(organelle, q, r, self.organelleRot)
             end
         end
@@ -344,7 +344,7 @@ end
 
 function MicrobeEditor:_addOrganelle(organelle, q, r, rotation)
     self:enqueueAction({
-        cost = Organelle.mpCosts[organelle.name],
+        cost = organelleTable[organelle.name].mpCost,
         redo = function()
             for _, hex in pairs(organelle._hexes) do
                 -- Check if there is cytoplasm under this organelle.

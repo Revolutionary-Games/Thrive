@@ -3,6 +3,20 @@ class 'MovementOrganelle' (Organelle)
 
 FLAGELLUM_MOMENTUM = 12.5 -- what the heck is this for?
 
+-- Calculate the momentum of the movement organelle based on angle towards nucleus
+local function calculateForce(q, r)
+    if q == nil then return 1.0 end --placeholder value for the storage
+    local organelleX, organelleY = axialToCartesian(q, r)
+    local nucleusX, nucleusY = axialToCartesian(0, 0)
+    local deltaX = nucleusX - organelleX
+    local deltaY = nucleusY - organelleY
+    local dist = math.sqrt(deltaX^2 + deltaY^2) -- For normalizing vector
+    local momentumX = deltaX / dist * FLAGELLUM_MOMENTUM
+    local momentumY = deltaY / dist * FLAGELLUM_MOMENTUM
+    local force = Vector3(momentumX, momentumY, 0.0)
+    return force
+end
+
 -- Constructor
 --
 -- @param force
@@ -13,10 +27,10 @@ FLAGELLUM_MOMENTUM = 12.5 -- what the heck is this for?
 --
 -- @param mass
 --  How heavy this organelle is
-function MovementOrganelle:__init(force, torque, mass)
+function MovementOrganelle:__init(q, r, torque, mass)
     Organelle.__init(self, mass)
     self.energyMultiplier = 0.025
-    self.force = force
+    self.force = calculateForce(q, r)
     self.torque = torque
     self.backwards_multiplier = 0
 	self.x = 0
@@ -111,24 +125,10 @@ function MovementOrganelle:update(microbe, logicTime)
     self:_moveMicrobe(microbe, logicTime)
 end
 
-Organelle.mpCosts["flagellum"] = 25
-
 -- factory functions
 function OrganelleFactory.make_flagellum(data)
-    -- Calculate the momentum of the movement organelle based on angle towards nucleus
     local mass = 0.3
-    local organelleX, organelleY = axialToCartesian(data.q, data.r)
-    local nucleusX, nucleusY = axialToCartesian(0, 0)
-    local deltaX = nucleusX - organelleX
-    local deltaY = nucleusY - organelleY
-    local dist = math.sqrt(deltaX^2 + deltaY^2) -- For normalizing vector
-    local momentumX = deltaX / dist * FLAGELLUM_MOMENTUM
-    local momentumY = deltaY / dist * FLAGELLUM_MOMENTUM
-    local flagellum = MovementOrganelle(
-        Vector3(momentumX, momentumY, 0.0),
-        300,
-        mass
-    )
+    local flagellum = MovementOrganelle(data.q, data.r, 300, mass)
     return flagellum
 end
 
