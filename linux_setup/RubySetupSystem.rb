@@ -1047,7 +1047,11 @@ class CEGUI < BaseDep
 
   def DoUpdate
     system "hg pull"
-    system "hg update default"
+    #system "hg update default"
+
+    # TODO: allow configuring this commit
+    system "hg update 869014de5669"
+    
     $?.exitstatus == 0
   end
 

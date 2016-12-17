@@ -30,12 +30,10 @@ SkipPackageManager = false
 
 require_relative 'linux_setup/RubySetupSystem.rb'
 
-exit 0
-
 # Install packages
 if BuildPlatform == "linux" and not SkipPackageManager
 
-  LinuxOS = `lsb_release -is`
+  LinuxOS = `lsb_release -is`.strip
 
   onError "failed to run lsb_release" if LinuxOS.empty?
 
@@ -54,6 +52,7 @@ if BuildPlatform == "linux" and not SkipPackageManager
   elsif LinuxOS.casecmp("Ubuntu") == 0
 
     PackageManager = "apt-get install -y "
+    
 	PackagesToInstall = "bullet-dev boost-dev build-essential automake libtool " +
                         "libfreetype6-dev libfreeimage-dev libzzip-dev libxrandr-dev " +
                         "libxaw7-dev freeglut3-dev libgl1-mesa-dev libglu1-mesa-dev " +
@@ -84,19 +83,20 @@ if BuildPlatform == "linux" and not SkipPackageManager
     
   end
 
-  PackagesToInstall = CommonPackages + " " + PackagesToInstall
-
   info "Installing prerequisite libraries, be prepared to type password for sudo"
 
-  system "sudo #{PackageManager} #{PackagesToInstall}"
+  system "sudo #{PackageManager} #{CommonPackages} #{PackagesToInstall}"
   onError "Failed to install package manager dependencies" if $?.exitstatus > 0
     
   success "Packages installed"
   
 end
 
-
-installer = Installer.new(Array[CAudio.new, Ogre.new, CEGUI.new])
+installer = Installer.new(
+  Array[CAudio.new, Ogre.new,
+        # CEGUI uses commit 869014de5669
+        CEGUI.new
+       ])
 
 installer.run
 
@@ -185,8 +185,8 @@ Dir.chdir("thrive/build") do
   runCMakeConfigure "-DCMAKE_EXPORT_COMPILE_COMMANDS=ON"
 
   if $?.exitstatus > 0
-    onError "Failed to configure Thrive. Are you using a broken version, or did a dependency fail "+
-            "to install?"
+    onError "Failed to configure Thrive. Are you using a broken version, " +
+            "or did a dependency fail to install?"
   end
 
   runCompiler CompileThreads
