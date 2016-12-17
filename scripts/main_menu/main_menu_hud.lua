@@ -78,6 +78,7 @@ end
 
 function mainMenuLoadButtonClicked()
     local guiSoundEntity = Entity("gui_sounds")
+    resetAutoEvo() --the auto-evo species should be saved eventually
     guiSoundEntity:getComponent(SoundSourceComponent.TYPE_ID):playSound("button-hover-click")
     Engine:setCurrentGameState(GameState.MICROBE)
     Engine:load("quick.sav")
@@ -86,12 +87,14 @@ end
 
 function mainMenuMicrobeStageButtonClicked()
     local guiSoundEntity = Entity("gui_sounds")
+    resetAutoEvo()
     guiSoundEntity:getComponent(SoundSourceComponent.TYPE_ID):playSound("button-hover-click")
     Engine:setCurrentGameState(GameState.MICROBE_TUTORIAL)
 end
 
 function mainMenuMicrobeEditorButtonClicked()
     local guiSoundEntity = Entity("gui_sounds")
+    resetAutoEvo()
     guiSoundEntity:getComponent(SoundSourceComponent.TYPE_ID):playSound("button-hover-click")
     Engine:setCurrentGameState(GameState.MICROBE_EDITOR)
 end

@@ -5,14 +5,11 @@
 --------------------------------------------------------------------------------
 class 'Species'
 
---How big is a newly created species's population.
-INITIAL_POPULATION = 1337
-
 --limits the size of the initial stringCodes
 local MIN_INITIAL_LENGTH = 5
 local MAX_INITIAL_LENGTH = 15
 
-local DEFAULT_SPAWN_DENSITY = 1/15000 --same as Speedy
+local DEFAULT_SPAWN_DENSITY = 1/25000
 
 local DEFAULT_SPAWN_RADIUS = 60
 
@@ -21,6 +18,8 @@ local MAX_COLOR = 1.0
 
 local MUTATION_CREATION_RATE = 0.1
 local MUTATION_DELETION_RATE = 0.1
+
+local gSpeciesSystem = nil
 
 local function randomColour()
     return  math.random() * (MAX_COLOR - MIN_COLOR) + MIN_COLOR
@@ -214,14 +213,17 @@ end
 -- System for estimating and simulating population count for various species
 --------------------------------------------------------------------------------
 
+--How big is a newly created species's population.
+INITIAL_POPULATION = 2000
+
 --how much time does it take for the simulation to update.
 SPECIES_SIM_INTERVAL = 20000
 
 --if a specie's population goes below this it goes extinct.
-MIN_POP_SIZE = 500
+MIN_POP_SIZE = 100
 
 --if a specie's population goes above this it gets split in half and a new mutated specie apears.
-MAX_POP_SIZE = 2000
+MAX_POP_SIZE = 5000
 
 --the amount of species at the start of the microbe stage (not counting Default/Player)
 INITIAL_SPECIES = 7
@@ -248,6 +250,17 @@ function SpeciesSystem:__init(spawnSystem)
     self.timeSinceLastCycle = 0
 end
 
+function resetAutoEvo()
+    if gSpeciesSystem.species ~= nil then
+        for _, species in pairs(gSpeciesSystem.species) do
+            species:extinguish()
+        end
+
+        gSpeciesSystem.species = {}
+        gSpeciesSystem.number_of_species = 0
+    end
+end
+
 -- Override from System
 function SpeciesSystem:init(gameState)
     System.init(self, "SpeciesSystem", gameState)
@@ -266,6 +279,7 @@ function SpeciesSystem:init(gameState)
     --    table.insert(self.species, newSpecies)
     --    self.number_of_species = self.number_of_species + 1
     --end
+    gSpeciesSystem = self
 end
 
 -- Override from System
@@ -293,6 +307,7 @@ end
 
 -- Override from System
 function SpeciesSystem:update(_, milliseconds)
+    gSpeciesSystem = self --so hacky :c
     self.timeSinceLastCycle = self.timeSinceLastCycle + milliseconds
     while self.timeSinceLastCycle > SPECIES_SIM_INTERVAL do
         -- do mutation-management here
@@ -305,11 +320,9 @@ function SpeciesSystem:update(_, milliseconds)
             currentSpecies = self.species[index]
             currentSpecies:updatePopulation()
             local population = currentSpecies.population
-            print(population)
 
             --reproduction/mutation
             if population > MAX_POP_SIZE then
-                print("reproducing species")
                 local newSpecies = Species:getChild(currentSpecies,
                                                     currentSpecies.colour.r,
                                                     currentSpecies.colour.g,
@@ -320,7 +333,6 @@ function SpeciesSystem:update(_, milliseconds)
 
             --extinction
             if population < MIN_POP_SIZE then
-                print("Extinguishing someone")
                 currentSpecies:extinguish()
                 table.remove(self.species, index)
                 self.number_of_species = self.number_of_species - 1
@@ -329,7 +341,6 @@ function SpeciesSystem:update(_, milliseconds)
 
         --new species
         if self.number_of_species < MIN_SPECIES then
-            print("Creating new species!")
             for i = self.number_of_species, INITIAL_SPECIES - 1 do
                 newSpecies = Species:init()
                 table.insert(self.species, newSpecies)
@@ -339,7 +350,6 @@ function SpeciesSystem:update(_, milliseconds)
 
         --mass extinction
         if self.number_of_species > MAX_SPECIES then
-            print("Mass extinction!")
             self:doMassExtinction()
         end
 
@@ -429,10 +439,8 @@ function SpeciesSystem.fromMicrobe(microbe, species)
     local microbe_ = microbe.microbe -- shouldn't break, I think
     -- self.name = microbe_.speciesName
     species.colour = microbe:getComponent(MembraneComponent.TYPE_ID):getColour()
-    --print("self.name: "..self.name)
     -- Create species' organelle data
     for i, organelle in pairs(microbe_.organelles) do
-        --print(i)
         local data = {}
         data.name = organelle.name
         data.q = organelle.position.q
