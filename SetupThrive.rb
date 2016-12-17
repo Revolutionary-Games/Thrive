@@ -166,6 +166,8 @@ Dir.chdir(File.join(CurrentDir, "thrive")) do
   success "Assets are good to go"
   
   FileUtils.mkdir_p "build"
+  FileUtils.mkdir_p "build/dist"
+  FileUtils.mkdir_p "build/dist/bin"
 
   info "Making links"
 
@@ -177,6 +179,10 @@ Dir.chdir(File.join(CurrentDir, "thrive")) do
   FileUtils.ln_sf "assets/models", "models"
   FileUtils.ln_sf "assets/sounds", "sounds"
   FileUtils.ln_sf "assets/videos", "videos"
+
+  Dir.chdir("build") do
+    FileUtils.ln_sf "dist/bin/Thrive", "Thrive"
+  end
 
   info "Copying Ogre resources file"
   FileUtils.cp "ogre_cfg/resources.cfg", "./build/resources.cfg"
@@ -211,7 +217,17 @@ end
 
 success "Done compiling thrive"
 
+# Create a link from liblua.so to fix undefined symbol: _Z13luaL_newstatev
+Dir.chdir(File.join(CurrentDir, "thrive", "build")) do
+
+  FileUtils.ln_sf "contrib/lua/liblua.so", "liblua.so"
+  
+end
+
+
 info "run the game with '#{CurrentDir}/thrive/build/Thrive'"
+
+success "Done"
 
 exit 0
 

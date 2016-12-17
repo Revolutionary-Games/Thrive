@@ -501,7 +501,9 @@ class CAudio < BaseDep
   end
 
   def DoClone
-    system "git clone https://github.com/R4stl1n/cAudio.git"
+    #system "git clone https://github.com/R4stl1n/cAudio.git"
+    # Official repo is broken
+    system "git clone https://github.com/hhyyrylainen/cAudio.git"
     $?.exitstatus == 0
   end
 
