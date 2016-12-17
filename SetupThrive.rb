@@ -26,6 +26,7 @@ def checkRunFolder(suggestedfolder)
 end
 
 ThriveBranch = "master"
+#ThriveBranch = "ruby_setup"
 SkipPackageManager = false
 
 require_relative 'linux_setup/RubySetupSystem.rb'
@@ -102,33 +103,47 @@ installer.run
 
 info "Thrive folder setup"
 
-if not File.exist? "thrive"
+
+
+if not File.exist? File.join(CurrentDir, "thrive")
 
   info "Thrive folder doesn't exist, cloning from git"
 
-
-  system "git clone https://github.com/Revolutionary-Games/Thrive.git thrive"
-  onError "Failed to clone repository" if $?.exitstatus > 0
-  
-  Dir.chdir("thrive") do
-
-    systemChecked "git submodule update --init --recursive"
+  Dir.chdir(CurrentDir) do
     
-  end
+    system "git clone https://github.com/Revolutionary-Games/Thrive.git thrive"
+    onError "Failed to clone repository" if $?.exitstatus > 0
+    
+    Dir.chdir("thrive") do
 
+      systemChecked "git submodule update --init --recursive"
+      
+    end
+  end
 end
 
 success "Thrive folder exists"
 
-Dir.chdir("thrive") do
+Dir.chdir(File.join(CurrentDir, "thrive")) do
   
-  systemChecked "git checkout #{THRIVE_BRANCH}"
-  systemChecked "git pull --recurse-submodules origin #{THRIVE_BRANCH}"
+  systemChecked "git checkout #{ThriveBranch}"
+  systemChecked "git pull --recurse-submodules origin #{ThriveBranch}"
   systemChecked "git submodule update --recursive"
+
+  # submodule init check
+  if not File.exists? File.join(CurrentDir, "thrive", "contrib/luabind", "object.hpp")
+
+    warning "Submodules haven't been initialized, initializing now"
+    
+    systemChecked "git submodule update --init --recursive"
+
+    success "Submodules are now initialized"
+
+  end
 
   info "Checking assets"
 
-  if not File.exist? "thrive"
+  if not File.exist? "assets"
     
     info "Getting assets"
     
@@ -154,21 +169,21 @@ Dir.chdir("thrive") do
 
   info "Making links"
 
-  FileUtils.ln_sf "assets/cegui_examples" "cegui_examples"
-  FileUtils.ln_sf "assets/definitions" "definitions"
-  FileUtils.ln_sf "assets/fonts" "fonts"
-  FileUtils.ln_sf "assets/gui" "gui"
-  FileUtils.ln_sf "assets/materials" "materials"
-  FileUtils.ln_sf "assets/models" "models"
-  FileUtils.ln_sf "assets/sounds" "sounds"
-  FileUtils.ln_sf "assets/videos" "videos"
+  FileUtils.ln_sf "assets/cegui_examples", "cegui_examples"
+  FileUtils.ln_sf "assets/definitions", "definitions"
+  FileUtils.ln_sf "assets/fonts", "fonts"
+  FileUtils.ln_sf "assets/gui", "gui"
+  FileUtils.ln_sf "assets/materials", "materials"
+  FileUtils.ln_sf "assets/models", "models"
+  FileUtils.ln_sf "assets/sounds", "sounds"
+  FileUtils.ln_sf "assets/videos", "videos"
 
   info "Copying Ogre resources file"
-  FileUtils.cp "ogre_cfg/resources.cfg" "./build/resources.cfg"
+  FileUtils.cp "ogre_cfg/resources.cfg", "./build/resources.cfg"
 
   info "Copying completety pointless Ogre files"
 
-  FileUtils.cp "/usr/local/share/OGRE/plugins.cfg" "./build/plugins.cfg"
+  FileUtils.cp "/usr/local/share/OGRE/plugins.cfg", "./build/plugins.cfg"
   
 end
 
@@ -180,7 +195,7 @@ info "Compiling thrive"
 
 # Build directory is made earlier
 
-Dir.chdir("thrive/build") do
+Dir.chdir(File.join(CurrentDir, "thrive", "build")) do
 
   runCMakeConfigure "-DCMAKE_EXPORT_COMPILE_COMMANDS=ON"
 

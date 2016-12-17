@@ -51,6 +51,7 @@ VSToolsEnv = "VS140COMNTOOLS"
 # This verifies that CurrentDir is good and assigns it to CurrentDir
 CurrentDir = checkRunFolder Dir.pwd
 
+
 info "Running in dir '#{CurrentDir}'"
 
 if BuildPlatform == "windows"
@@ -102,7 +103,7 @@ class Installer
 
       info "Configuring dependencies"
 
-      depobjects.each do |x|
+      @Libraries.each do |x|
 
         x.Setup
         x.Compile
@@ -124,7 +125,6 @@ class Installer
   end
   
 end
-
 
 # Path helper
 # For breakpad depot tools
@@ -287,7 +287,7 @@ class BaseDep
 
     @Name = name
     
-    @Folder = File.join(CurrentDir, "..", foldername)
+    @Folder = File.join(CurrentDir, foldername)
     @FolderName = foldername
     
   end
@@ -299,23 +299,27 @@ class BaseDep
   def Retrieve
     info "Retrieving #{@Name}"
 
-    Dir.chdir("..") do
+    Dir.chdir(CurrentDir) do
       
       if self.RequiresClone
         
         info "Cloning #{@Name} into #{@Folder}"
-        
+
         if not self.DoClone
           onError "Failed to clone repository"
         end
+
       end
-    end
 
-    onError "Retrieve Didn't create a folder for #{@Name} at #{@Folder}" if not File.exist?(@Folder)
+      if not File.exist?(@Folder)
+        onError "Retrieve Didn't create a folder for #{@Name} at #{@Folder}"
+      end
 
-    if not self.Update
-      # Not fatal
-      warning "Failed to update dependency #{@Name}"
+      if not self.Update
+        # Not fatal
+        warning "Failed to update dependency #{@Name}"
+      end
+
     end
     
     success "Successfully retrieved #{@Name}"
@@ -676,7 +680,7 @@ end
 class Breakpad < BaseDep
   def initialize
     super("Google Breakpad", "breakpad")
-    @DepotFolder = File.join(CurrentDir, "..", "depot_tools")
+    @DepotFolder = File.join(CurrentDir, "depot_tools")
     @CreatedNewFolder = false
   end
 
@@ -802,9 +806,9 @@ class Breakpad < BaseDep
         
         info "Please open the solution at and compile breakpad client in Release and x64. " +
              "Remember to disable treat warnings as errors first: "+
-             "#{CurrentDir}/../breakpad/src/src/client/windows/breakpad_client.sln"
+             "#{CurrentDir}/breakpad/src/src/client/windows/breakpad_client.sln"
         
-        system "start #{CurrentDir}/../breakpad/src/src/client/windows/breakpad_client.sln" if AutoOpenVS
+        system "start #{CurrentDir}/breakpad/src/src/client/windows/breakpad_client.sln" if AutoOpenVS
         system "pause"
       end
     end
@@ -1028,7 +1032,7 @@ class CEGUIDependencies < BaseDep
   def DoInstall
 
     FileUtils.copy_entry File.join(@Folder, "build", "dependencies"),
-                         File.join(CurrentDir, "../cegui", "dependencies")
+                         File.join(CurrentDir, "cegui", "dependencies")
     $?.exitstatus == 0
   end
 end
