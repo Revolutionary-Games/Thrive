@@ -17,11 +17,11 @@ function NucleusOrganelle:onAddedToMicrobe(microbe, q, r, rotation)
     local x, y = axialToCartesian(q-1, r-1)
     local sceneNode1 = OgreSceneNodeComponent()
     sceneNode1.meshName = "golgi.mesh"
-    sceneNode1.parent = self.organelleEntity
 	sceneNode1.transform.position = Vector3(x,y,0)
-    sceneNode1.transform.scale = Vector3(1, 1, 1)
+    sceneNode1.transform.scale = Vector3(HEX_SIZE, HEX_SIZE, HEX_SIZE)
     sceneNode1.transform.orientation = Quaternion(Radian(Degree(rotation)), Vector3(0, 0, 1))
     sceneNode1.transform:touch()
+    sceneNode1.parent = microbe.entity
     microbe.entity:addChild(self.golgi)
     self.golgi:addComponent(sceneNode1)
 	self.golgi.sceneNode = sceneNode1
@@ -29,14 +29,15 @@ function NucleusOrganelle:onAddedToMicrobe(microbe, q, r, rotation)
 	
 	local sceneNode2 = OgreSceneNodeComponent()
     sceneNode2.meshName = "ER.mesh"
-	sceneNode2.parent = self.organelleEntity
 	sceneNode2.transform.position = Vector3(0,0,0)
-    sceneNode2.transform.scale = Vector3(1, 1, 1)
-    sceneNode2.transform.orientation = Quaternion(Radian(Degree(rotation+5)), Vector3(0, 0, 1))
+    sceneNode2.transform.scale = Vector3(HEX_SIZE, HEX_SIZE, HEX_SIZE)
+    sceneNode2.transform.orientation = Quaternion(Radian(Degree(rotation+10)), Vector3(0, 0, 1))
     sceneNode2.transform:touch()
+	sceneNode2.parent = microbe.entity
     microbe.entity:addChild(self.ER)
-    self.ER:addComponent(sceneNode2)
+    self.ER:addComponent(sceneNode2) 
 	self.ER.sceneNode = sceneNode2
+    --self.ER.sceneNode.parent = microbe.entity
 	self.ER:setVolatile(true)
     
     self.numProteinLeft = 2
@@ -51,6 +52,8 @@ end
 
 -- Overridded from Organelle:onRemovedFromMicrobe
 function NucleusOrganelle:onRemovedFromMicrobe(microbe, q, r)
+    self.golgi:destroy()
+    self.ER:destroy()
     ProcessOrganelle.onRemovedFromMicrobe(self, microbe, q, r)
 end
 
@@ -142,6 +145,9 @@ function NucleusOrganelle:recalculateBin()
     -- Calculate the new growth growth
     self.compoundBin = 2.0 - (self.numProteinLeft + self.numNucleicAcidsLeft)/self.organelleCost
     
+    local speciesColour = self.microbe:getSpeciesComponent().colour
+    local colorSuffix =  "" .. math.floor(speciesColour.x * 256) .. math.floor(speciesColour.y * 256) .. math.floor(speciesColour.z * 256)
+    
     -- If the organelle is damaged...
     if self.compoundBin < 1.0 then
         -- Make the nucleus smaller.
@@ -151,19 +157,17 @@ function NucleusOrganelle:recalculateBin()
         -- Darken the color.
         local speciesColour = self.microbe:getSpeciesComponent().colour
         local colorSuffix =  "" .. math.floor(speciesColour.x * 256) .. math.floor(speciesColour.y * 256) .. math.floor(speciesColour.z * 256)
-        --self.sceneNode.entity:tintColour(self.name .. colorSuffix, ColourValue((1.0 + self.compoundBin)/2, self.compoundBin, self.compoundBin, 1.0))      
+        self.sceneNode.entity:tintColour(self.name .. colorSuffix, ColourValue((1.0 + self.compoundBin)/2, self.compoundBin, self.compoundBin, 1.0))      
     else
         -- Darken the nucleus as more DNA is made.
         local speciesColour = self.microbe:getSpeciesComponent().colour
         local colorSuffix =  "" .. math.floor(speciesColour.x * 256) .. math.floor(speciesColour.y * 256) .. math.floor(speciesColour.z * 256)
-        --self.sceneNode.entity:tintColour(self.name .. colorSuffix, ColourValue(2-self.compoundBin, 2-self.compoundBin, 2-self.compoundBin, 1.0))
+        self.sceneNode.entity:tintColour(self.name .. colorSuffix, ColourValue(2-self.compoundBin, 2-self.compoundBin, 2-self.compoundBin, 1.0))
     end
 end
 
 function OrganelleFactory.make_nucleus(data)
     local nucleus = NucleusOrganelle()
-    -- nucleus:addProcess(global_processMap["ReproductaseSynthesis"])
-    -- nucleus:addProcess(global_processMap["AminoAcidSynthesis"])
         
     if data.rotation == nil then
 		data.rotation = 0

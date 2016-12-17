@@ -310,8 +310,6 @@ function Microbe:addOrganelle(q, r, rotation, organelle)
     self.rigidBody.properties.mass = self.rigidBody.properties.mass + organelle.mass
     self.rigidBody.properties:touch()
     
-    organelle.sceneNode.parent = self.entity
-    self.entity:addChild(organelle.organelleEntity)
     organelle:onAddedToMicrobe(self, q, r, rotation)
     
     self.microbe.hitpoints = (self.microbe.hitpoints/self.microbe.maxHitpoints) * (self.microbe.maxHitpoints + MICROBE_HITPOINTS_PER_ORGANELLE)
@@ -425,21 +423,23 @@ function Microbe:removeOrganelle(q, r)
     if not organelle then
         return false
     end
+    
     local s = encodeAxial(organelle.position.q, organelle.position.r)
     self.microbe.organelles[s] = nil
+    
     self.rigidBody.properties.mass = self.rigidBody.properties.mass - organelle.mass
     self.rigidBody.properties:touch()
-    organelle.position.q = 0
-    organelle.position.r = 0
-    organelle:onRemovedFromMicrobe(self)
-    organelle:destroy()
     self.rigidBody.properties.shape:removeChildShape(
         organelle.collisionShape
     )
+    
+    organelle:onRemovedFromMicrobe(self)
+    
     self.microbe.hitpoints = (self.microbe.hitpoints/self.microbe.maxHitpoints) * (self.microbe.maxHitpoints - MICROBE_HITPOINTS_PER_ORGANELLE)
     self.microbe.maxHitpoints = self.microbe.maxHitpoints - MICROBE_HITPOINTS_PER_ORGANELLE
     self.microbe.maxBandwidth = self.microbe.maxBandwidth - BANDWIDTH_PER_ORGANELLE -- Temporary solution for decreasing max bandwidth
     self.microbe.remainingBandwidth = self.microbe.maxBandwidth
+    
     return true
 end
 
@@ -468,7 +468,7 @@ function Microbe:damage(amount, damageType)
     
     -- Choose a random organelle or membrane to damage.
     -- TODO: CHANGE TO USE AGENT CODES FOR DAMAGE.
-    local rand = math.random(1,self.microbe.maxHitpoints/MICROBE_HITPOINTS_PER_ORGANELLE)
+    local rand = math.random(1,self.microbe.maxHitpoints/MICROBE_HITPOINTS_PER_ORGANELLE- 1)
     local i = 1
     for _, organelle in pairs(self.microbe.organelles) do
         -- If this is the organelle we have chosen...
@@ -477,11 +477,6 @@ function Microbe:damage(amount, damageType)
             organelle:damage(amount)
         end
         i = i + 1
-    end
-    if i == rand then
-        -- Damage the membrane.
-        self.membraneHealth = self.membraneHealth - amount
-        self:flashMembraneColour(3000, ColourValue(1,0.2,0.2,1))
     end
     
     -- Find out the amount of health the microbe has.
@@ -802,20 +797,34 @@ function Microbe:update(logicTime)
         end
 
         local reproductionStageComplete = true
+        
+        -- First organelle run: updates all the organelles and heals the broken ones.
         for _, organelle in pairs(self.microbe.organelles) do
             -- Update the organelle.
             organelle:update(self, logicTime)
             
+            -- We are in G1 phase of the cell cycle and the organelle is hurt.
+            if organelle.name ~= "nucleus" and self.reproductionStage == 0 and organelle.compoundBin < 1.0 then
+                -- Give the organelle access to the compound bag to take some compound.
+                organelle:grow(self.entity:getComponent(CompoundBagComponent.TYPE_ID))
+            end
+        end
+        -- Second organelle run: grow all the large organelles.
+        for _, organelle in pairs(self.microbe.organelles) do   
             -- We are in G1 phase of the cell cycle, duplicate all organelles.
             if organelle.name ~= "nucleus" and self.reproductionStage == 0 then
                 
                 -- If the organelle is not split, give it some compounds to make it larger.
                 if organelle.compoundBin < 2.0 and not organelle.wasSplit then
-                    -- Give the organelle access to the compound back to take some compound.
+                    -- Give the organelle access to the compound bag to take some compound.
                     organelle:grow(self.entity:getComponent(CompoundBagComponent.TYPE_ID))
                     reproductionStageComplete = false
+                -- If the organelle was split and has a bin less then 1, it must have been damaged.
+                elseif organelle.compoundBin < 1.0 and organelle.wasSplit then
+                    -- Give the organelle access to the compound bag to take some compound.
+                    organelle:grow(self.entity:getComponent(CompoundBagComponent.TYPE_ID))
                 -- If the organelle is twice its size...
-                elseif organelle.compoundBin == 2.0 then
+                elseif organelle.compoundBin >= 2.0 then
                     print("ready to split " .. organelle.name)
                     -- Mark this organelle as done and return to its normal size.
                     organelle:reset()
@@ -824,6 +833,7 @@ function Microbe:update(logicTime)
                     local organelle2 = self:splitOrganelle(organelle)
                     organelle2.wasSplit = true
                     organelle2.isDuplicate = true
+                    organelle2.sisterOrganelle = organelle
 
                     -- Redo the cell membrane.
                     self.membraneComponent:clear()
@@ -844,15 +854,15 @@ function Microbe:update(logicTime)
         -- To finish the G2 phase we just need more than a threshold of compounds.
         if self.reproductionStage == 2 or self.reproductionStage == 3 then
             -- If we have more than the threshold,
-            if self:getCompoundAmount(CompoundRegistry.getCompoundId("fattyacids")) > 1 and 
-                self:getCompoundAmount(CompoundRegistry.getCompoundId("glucose")) > 5 and
-                self:getCompoundAmount(CompoundRegistry.getCompoundId("aminoacids")) > 1 and
-                self:getCompoundAmount(CompoundRegistry.getCompoundId("atp")) > 10 then
-               
+            --if self:getCompoundAmount(CompoundRegistry.getCompoundId("fattyacids")) > 1 and 
+            --    self:getCompoundAmount(CompoundRegistry.getCompoundId("glucose")) > 5 and
+            --    self:getCompoundAmount(CompoundRegistry.getCompoundId("aminoacids")) > 1 and
+            --    self:getCompoundAmount(CompoundRegistry.getCompoundId("atp")) > 10 then
+            --   
                 showReproductionDialog()
-            else
-                hideReproductionDialog()
-            end
+            --end
+        else
+            hideReproductionDialog()
         end
 
         if self.microbe.engulfMode then
@@ -867,7 +877,7 @@ function Microbe:update(logicTime)
             self:flashMembraneColour(3000, ColourValue(0.2,0.5,1.0,0.5))
         end
         if self.microbe.isBeingEngulfed and self.microbe.wasBeingEngulfed then
-            self:damage(logicTime * 0.00025  * self.microbe.maxHitpoints, "isBeingEngulfed - 764") -- Engulfment damages 25% per second
+            self:damage(logicTime * 0.000025  * self.microbe.maxHitpoints, "isBeingEngulfed - Microbe:update()s")
         -- Else If we were but are no longer, being engulfed
         elseif self.microbe.wasBeingEngulfed then
             self:removeEngulfedEffect()
@@ -894,7 +904,7 @@ function Microbe:calculateHealthFromOrganelles()
     for _, organelle in pairs(self.microbe.organelles) do
         self.microbe.hitpoints = self.microbe.hitpoints + (organelle.compoundBin < 1.0 and organelle.compoundBin or 1.0) * MICROBE_HITPOINTS_PER_ORGANELLE
     end
-    self.microbe.hitpoints = self.microbe.hitpoints + self.membraneHealth * MICROBE_HITPOINTS_PER_ORGANELLE
+    --self.microbe.hitpoints = self.microbe.hitpoints + self.membraneHealth * MICROBE_HITPOINTS_PER_ORGANELLE
 end
 
 function Microbe:splitOrganelle(organelle)
@@ -1015,25 +1025,9 @@ function Microbe:_initialize()
     self.rigidBody.properties.mass = 0.0
     -- Organelles
     for s, organelle in pairs(self.microbe.organelles) do
-        organelle.microbe = self
-        local q = organelle.position.q
-        local r = organelle.position.r
-        local x, y = axialToCartesian(q, r)
-        local rotation = organelle.rotation
-        local translation = Vector3(x, y, 0)
-        -- Collision shape
-        self.rigidBody.properties.shape:addChildShape(
-            translation,
-            Quaternion(Radian(0), Vector3(1,0,0)),
-            organelle.collisionShape
-        )
+        organelle:onAddedToMicrobe(self, organelle.position.q, organelle.position.r, organelle.rotation)   
+        organelle:reset()
         self.rigidBody.properties.mass = self.rigidBody.properties.mass + organelle.mass
-        -- Scene node
-        organelle.sceneNode.parent = self.entity
-        organelle.sceneNode.transform.position = translation
-        organelle.sceneNode.transform:touch()
-        organelle:onAddedToMicrobe(self, q, r, rotation)
-
     end
     -- Membrane
     self.sceneNode.meshName = "membrane_" .. self.microbe.speciesName
@@ -1065,7 +1059,7 @@ end
 -- Must exists for current spawningSystem to function, also used by microbe:kill
 function Microbe:destroy()
     for _, organelle in pairs(self.microbe.organelles) do
-        organelle:destroy()
+        organelle:onRemovedFromMicrobe(self)
     end
     self.entity:destroy()
 end

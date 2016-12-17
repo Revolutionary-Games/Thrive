@@ -197,6 +197,7 @@ starter_microbes = {
         compounds = {
             atp = {amount=20},
             glucose = {amount = 5},
+            oxygen = {amount = 10},
         },
         organelles = {
             {name="nucleus",q=0,r=0, rotation=0},

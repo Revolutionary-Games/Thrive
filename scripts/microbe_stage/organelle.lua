@@ -14,12 +14,7 @@ end
 
 
 -- Constructor
-function Organelle:__init(mass)
-    self.organelleEntity = Entity()
-    self.sceneNode = OgreSceneNodeComponent()
-    self.organelleEntity:setVolatile(true)
-    self.organelleEntity:addComponent(self.sceneNode)
-    
+function Organelle:__init(mass)    
     self.collisionShape = CompoundShape()
     self.mass = mass
     self._hexes = {}
@@ -124,15 +119,15 @@ end
 --
 -- @param q, r
 --  Axial coordinates of the organelle's center
-function Organelle:onAddedToMicrobe(microbe, q, r, rotation)
+function Organelle:onAddedToMicrobe(microbe, q, r, rotation)    
     self.microbe = microbe
     self.position.q = q
     self.position.r = r
     local x, y = axialToCartesian(q, r)
     self.position.cartesian = Vector3(x,y,0)
     self.rotation = rotation
-	
-	local offset = Vector3(0,0,0)
+		
+    local offset = Vector3(0,0,0)
 	local count = 0
 	for _, hex in pairs(self.microbe:getOrganelleAt(q, r)._hexes) do
 		count = count + 1
@@ -142,19 +137,31 @@ function Organelle:onAddedToMicrobe(microbe, q, r, rotation)
 	end
 	offset = offset/count
     
-    if self.name ~= "cytoplasm" then
-        self.sceneNode.meshName = self.name .. ".mesh"
-    end
-    
+    self.organelleEntity = Entity()
+    self.sceneNode = OgreSceneNodeComponent()
 	self.sceneNode.transform.orientation = Quaternion(Radian(Degree(self.rotation)), Vector3(0, 0, 1))
 	self.sceneNode.transform.position = offset + self.position.cartesian
     self.sceneNode.transform.scale = Vector3(HEX_SIZE, HEX_SIZE, HEX_SIZE)
     self.sceneNode.transform:touch()
+    
+    self.sceneNode.parent = microbe.entity
+    microbe.entity:addChild(self.organelleEntity)
+    
+    self.organelleEntity:setVolatile(true)
+    self.organelleEntity:addComponent(self.sceneNode)
         
+    if self.name ~= "cytoplasm" then
+        self.sceneNode.meshName = self.name .. ".mesh"
+    end
+            
     -- Change the colour of this species to be tinted by the membrane.
-    self.colour = ColourValue(microbe:getSpeciesComponent().colour.x, 
-                              microbe:getSpeciesComponent().colour.y,
-                              microbe:getSpeciesComponent().colour.z, 1)
+    if microbe:getSpeciesComponent() ~= nil then
+        self.colour = ColourValue(microbe:getSpeciesComponent().colour.x, 
+                                  microbe:getSpeciesComponent().colour.y,
+                                  microbe:getSpeciesComponent().colour.z, 1)
+    else
+        self.colour = ColourValue(1,0,1,1)
+    end
     self._needsColourUpdate = true
 end
 
@@ -167,11 +174,11 @@ end
 -- @param microbe
 --  The organelle's previous owner
 function Organelle:onRemovedFromMicrobe(microbe)
-    self:destroy()
 	self.microbe = nil
     self.position.q = 0
     self.position.r = 0
     self.rotation = 0
+    self.organelleEntity:destroy()
 end
 
 
@@ -192,10 +199,6 @@ function Organelle:removeHex(q, r)
     else
         return false
     end
-end
-
-function Organelle:destroy()
-	self.organelleEntity:destroy()
 end
 
 function Organelle:flashOrganelle(duration, colour)
@@ -288,6 +291,9 @@ end
 --
 -- Override to make each organelle larger
 function Organelle:grow(compoundBagComponent)
+if self.compoundBin < 1.0 then
+    print(self.name .. ": " .. self.compoundBin .. "(" .. self.numGlucoseLeft .. ", " .. self.numAminoAcidsLeft .. ", " .. self.numFattyAcidsLeft .. ")")
+end
     -- Finds the total number of needed compounds.
     local sum = 0
 
@@ -354,6 +360,9 @@ function Organelle:recalculateBin()
             -- If it was split from a primary organelle, destroy it.
             if self.isDuplicate == true then
                 self.microbe.removeOrganelle(self.position.q, self.position.r)
+                
+                -- Notify the organelle the sister organelle it is no longer split.
+                self.sisterOrganelle.wasSplit = false
                 return
                 
             -- If it is a primary organelle, make sure that it's compound bin is not less than 0.
@@ -386,7 +395,14 @@ function Organelle:reset()
     
     -- Scale the organelle model to reflect the new size.
     self.sceneNode.transform.scale = Vector3(self.compoundBin, self.compoundBin, self.compoundBin)*HEX_SIZE
-    self.sceneNode.transform:touch() 
+    self.sceneNode.transform:touch()
+    
+    -- If it was split from a primary organelle, destroy it.
+    if self.isDuplicate == true then
+        self.microbe.removeOrganelle(self.position.q, self.position.r)
+    else
+        self.wasSplit = false
+    end
 end
 
 
