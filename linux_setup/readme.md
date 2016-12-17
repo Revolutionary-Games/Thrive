@@ -38,10 +38,11 @@ These ruby gems for running the setup script:
 * colorize
 * etc
 * os
+* nokogiri (This is only required for the packaging script and windows users. 
+You need to have ruby development files installed to use this)
 
 If in the future the script is made to support windows then also these gems are required:
 
-* nokogiri
 * win32ole
 
 Fedora example commands
