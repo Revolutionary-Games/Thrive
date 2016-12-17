@@ -599,7 +599,12 @@ public:
             // so we access that through pkt_pts
             //CurrentlyDecodedTimeStamp = DecodedFrame->pkt_pts * VideoTimeBase;
             //VideoTimeBase = VideoCodec->time_base.num / VideoCodec->time_base.den;
-            CurrentlyDecodedTimeStamp = DecodedFrame->pkt_pts * VideoTimeBase;
+            //CurrentlyDecodedTimeStamp = DecodedFrame->pkt_pts * VideoTimeBase;
+
+            // Seems that the latest FFMPEG version has fixed this.
+            // I would put this in a #IF macro block if ffmpeg provided a way to check the
+            // version at compile time
+            CurrentlyDecodedTimeStamp = DecodedFrame->pts * VideoTimeBase;
             return true;
         }
 
