@@ -82,4 +82,4 @@ blender that has a corresponding version of blender2ogre to do the conversion.
 [mingw]: http://www.github.com/Revolutionary-Games/Thrive/blob/master/mingw_setup/readme.txt "MinGW setup guide"
 [styleguide]: http://www.github.com/Revolutionary-Games/Thrive/blob/master/doc/style_guide.dox "Styleguide"
 [mingwsetupguide]: http://www.github.com/Revolutionary-Games/Thrive/blob/master/mingw_setup/readme.txt "mingw setup guide" 
-[linuxsetupguide]: http://www.github.com/Revolutionary-Games/Thrive/blob/master/linux_setup/readme.txt "linux setup guide"
+[linuxsetupguide]: https://github.com/Revolutionary-Games/Thrive/blob/master/linux_setup/readme.md "linux setup guide"
