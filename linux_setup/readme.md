@@ -37,6 +37,12 @@ These ruby gems for running the setup script:
 * fileutils
 * colorize
 * etc
+* os
+
+If in the future the script is made to support windows then also these gems are required:
+
+* nokogiri
+* win32ole
 
 Fedora example commands
 -----------------------
@@ -44,14 +50,14 @@ Fedora example commands
 These commands install the required packages on Fedora.
 
     sudo dnf install git cmake ruby
-    gem install fileutils colorize etc
+    gem install fileutils colorize etc os
 
 
 Ubuntu example commands
 -----------------------
 
     sudo apt-get install build-essential git cmake ruby
-    gem install fileutils colorize etc
+    gem install fileutils colorize etc os
 
 
 Running the Setup Script
@@ -68,6 +74,8 @@ to [Thrive Github][thrivegh] and click the "Clone or Download" button
 to get the link for clone. And replace the url in this command with it:
 
     git clone git@github.com:Revolutionary-Games/Thrive.git thrive
+    cd thrive
+    git submodule update --init --recursive
     
 1. Run Setup
 ------------
