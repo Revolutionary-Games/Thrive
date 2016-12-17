@@ -131,7 +131,7 @@ Dir.chdir(File.join(CurrentDir, "thrive")) do
   systemChecked "git submodule update --recursive"
 
   # submodule init check
-  if not File.exists? File.join(CurrentDir, "thrive", "contrib/luabind", "object.hpp")
+  if not File.exists? File.join(CurrentDir, "thrive", "contrib/luabind/luabind", "object.hpp")
 
     warning "Submodules haven't been initialized, initializing now"
     
