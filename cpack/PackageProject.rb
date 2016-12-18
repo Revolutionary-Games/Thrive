@@ -179,7 +179,6 @@ info "Copying Ogre scripts"
 File.open(File.join(TargetRoot, "bin/plugins.cfg"), 'w') {
   |file| file.write(<<-eos)
 # Defines plugins to load
- Define plugin folder
 PluginFolder=./
  Define plugins
 # Plugin=RenderSystem_Direct3D9
