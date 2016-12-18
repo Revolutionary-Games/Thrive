@@ -7,6 +7,15 @@
 require 'fileutils'
 require 'nokogiri'
 
+# Setup
+# If true 'strip' is used to get rid of debugging info
+StripFiles = true
+
+# If false will skip compressing the staging folder, useful for checking which files would
+# be included without having to compress them
+ZipIt = true
+
+
 if ARGV.count > 1
 
   onError "Expected 0 or 1 argument. The argument is the build directory to use"
@@ -38,7 +47,6 @@ info "Running Thrive packaging script for linux"
 
 doc = File.open(File.join(CurrentDir, "CMakeLibraryList.xml")) { |f| Nokogiri::XML(f) }
 
-
 ThriveVersion = doc.at_xpath("//version").content.strip
 
 LibraryList = doc.at_xpath("//libraries").content.split(';')
@@ -48,6 +56,120 @@ CEGUIVersion = doc.at_xpath("//CEGUI_version").content.strip
 info "For version #{ThriveVersion} with #{LibraryList.count} libraries and "+
      "CEGUI #{CEGUIVersion}"
 
+
+# Constant name stuff (these aren't configuration options)
+PackageName = "Thrive-#{ThriveVersion}"
+
+# Add Ogre plugins to the library list
+findOgrePlugins(LibraryList, ["RenderSystem_GL", "RenderSystem_GL3Plus", "Plugin_ParticleFX",
+                              "Plugin_CgProgramManager"])
+
+# Add CEGUI plugins to the list
+findCEGUIPlugins(LibraryList, CEGUIVersion)
+
+# Find actual libboost_thread files
+findRealBoostThread(LibraryList)
+
+
+# Create staging folder
+Dir.chdir(CurrentDir) do
+
+  FileUtils.mkdir_p PackageName
+  FileUtils.mkdir_p File.join(PackageName, "bin")
+  
+end
+
+TargetRoot = File.join(CurrentDir, PackageName)
+
+info "Copying all the files to staging directory at: #{TargetRoot}"
+
+info "Copying core files"
+
+# Copy all required files
+Dir.chdir(CurrentDir) do
+
+  copyPossibleSymlink("Thrive", File.join(TargetRoot, "bin/"), StripFiles, true)
+  copyPossibleSymlink("liblua.so", File.join(TargetRoot, "bin/"), StripFiles, true)
+
+end
+
+success "Core Thrive binaries copied"
+
+info "Copying direct dependencies"
+
+puts LibraryList
+
+copyDependencyLibraries(LibraryList, File.join(TargetRoot, "bin/"), StripFiles, true)
+
+success "Copied direct libraries"
+
+# Use ldd to find more dependencies
+lddfound = lddFindLibraries File.join(TargetRoot, "bin/Thrive")
+
+info "Copying #{lddfound.count} libraries found by ldd on Thrive binary"
+
+copyDependencyLibraries(lddfound, File.join(TargetRoot, "bin/"), StripFiles, true)
+
+
+# Find dependencies of dynamic Ogre libraries
+lddfound = lddFindLibraries File.join(TargetRoot, "bin/Plugin_CgProgramManager.so")
+lddfound += lddFindLibraries File.join(TargetRoot, "bin/Plugin_ParticleFX.so")
+
+info "Copying #{lddfound.count} libraries found by ldd on random things"
+
+copyDependencyLibraries(lddfound, File.join(TargetRoot, "bin/"), StripFiles, true)
+
+success "Copied ldd found libraries"
+
+info "Copied #{HandledLibraries.count} libraries to staging directory"
+
+
+info "Copying documentation and creating scripts"
+
+
+
+
+info "Copying Ogre scripts"
+
+File.open(File.join(TargetRoot, "bin/plugins.cfg"), 'w') {
+  |file| file.write(<<-eos)
+  # Defines plugins to load
+
+  # Define plugin folder
+  PluginFolder=./
+
+  # Define plugins
+  # Plugin=RenderSystem_Direct3D9
+  # Plugin=RenderSystem_Direct3D11
+  Plugin=RenderSystem_GL
+  Plugin=RenderSystem_GL3Plus
+  # Plugin=RenderSystem_GLES
+  # Plugin=RenderSystem_GLES2
+  Plugin=Plugin_ParticleFX
+  Plugin=Plugin_CgProgramManager
+  eos
+}
+
+Dir.chdir(File.join(CurrentDir, "../ogre_cfg")) do
+  
+  FileUtils.cp "resources.cfg", File.join(TargetRoot, "bin")
+
+end
+
+success "Done"
+
+
+success "Done copying"
+
+if ZipIt
+  
+  info "Creating a zip of the staging folder"
+
+  
+  
+  success "Zip completed"
+  
+end
 
 success "Package completed"
 

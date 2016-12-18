@@ -34,9 +34,7 @@ require_relative 'linux_setup/RubySetupSystem.rb'
 # Install packages
 if BuildPlatform == "linux" and not SkipPackageManager
 
-  LinuxOS = `lsb_release -is`.strip
-
-  onError "failed to run lsb_release" if LinuxOS.empty?
+  LinuxOS = getLinuxOS
 
   info "Installing packages"
 
