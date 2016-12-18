@@ -24,11 +24,7 @@ end
 --
 -- @param torque
 --  The torque this organelle can exert to turn a microbe
---
--- @param mass
---  How heavy this organelle is
-function MovementOrganelle:__init(q, r, torque, mass)
-    Organelle.__init(self, mass)
+function MovementOrganelle:__init(q, r, torque)
     self.energyMultiplier = 0.025
     self.force = calculateForce(q, r)
     self.torque = torque
@@ -40,18 +36,18 @@ function MovementOrganelle:__init(q, r, torque, mass)
 end
 
 function MovementOrganelle:onAddedToMicrobe(microbe, q, r, rotation)  
-    Organelle.onAddedToMicrobe(self, microbe, q, r, rotation)
+    --Organelle.onAddedToMicrobe(self, microbe, q, r, rotation)
 end
 
 function MovementOrganelle:load(storage)
-    Organelle.load(self, storage)
+    --Organelle.load(self, storage)
     self.energyMultiplier = storage:get("energyMultiplier", 0.025)
     self.force = storage:get("force", Vector3(0,0,0))
     self.torque = storage:get("torque", Vector3(0,0,0))
 end
 
-function MovementOrganelle:storage()
-    local storage = Organelle.storage(self)
+function MovementOrganelle:storage(storage)
+    --local storage = Organelle.storage(self)
     storage:set("energyMultiplier", self.energyMultiplier)
     storage:set("force", self.force)
     storage:set("torque", self.torque)
@@ -121,15 +117,13 @@ function MovementOrganelle:update(microbe, logicTime)
     self.organelleEntity.sceneNode.transform.position = translation - Vector3(x, y, 0)
     self.organelleEntity.sceneNode.transform:touch()
 
-    self:_turnMicrobe(microbe)
-    self:_moveMicrobe(microbe, logicTime)
+    MovementOrganelle._turnMicrobe(self, microbe)
+    MovementOrganelle._moveMicrobe(self, microbe, logicTime)
 end
 
 -- factory functions
-function OrganelleFactory.make_flagellum(data)
-    local mass = 0.3
-    local flagellum = MovementOrganelle(data.q, data.r, 300, mass)
-    return flagellum
+function OrganelleFactory.make_flagellum(data, baseOrganelle)
+    MovementOrganelle.__init(baseOrganelle, data.q, data.r, 300)
 end
 
 function OrganelleFactory.render_flagellum(data)

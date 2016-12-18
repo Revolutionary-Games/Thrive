@@ -87,6 +87,13 @@ function Organelle:load(storage)
     self.mass = storage:get("mass", 0.1)
     self.rotation = storage:get("rotation", 0)
     self.name = storage:get("name", "<nameless>")
+
+    for _, componentName in pairs(organelleTable[self.name].components) do
+        local componentType = _G[componentName]
+        if componentType.load ~= nil then
+            componentType.load(self, storage)
+        end
+    end
 end
 
 
@@ -98,6 +105,14 @@ end
 -- @param q, r
 --  Axial coordinates of the organelle's center
 function Organelle:onAddedToMicrobe(microbe, q, r, rotation)
+
+    for _, componentName in pairs(organelleTable[self.name].components) do
+        local componentType = _G[componentName]
+        if componentType.onAddedToMicrobe ~= nil then
+            componentType.onAddedToMicrobe(self, microbe, q, r, rotation)
+        end
+    end
+
     self.microbe = microbe
     self.position.q = q
     self.position.r = r
@@ -158,6 +173,7 @@ function Organelle:onAddedToMicrobe(microbe, q, r, rotation)
     self.organelleEntity:addComponent(sceneNode)
 	self.organelleEntity.sceneNode = sceneNode
 	self.organelleEntity:setVolatile(true)
+
 end
 
 function Organelle:setAnimationSpeed()
@@ -169,6 +185,13 @@ end
 -- @param microbe
 --  The organelle's previous owner
 function Organelle:onRemovedFromMicrobe(microbe)
+
+    for _, componentName in pairs(organelleTable[self.name].components) do
+        local componentType = _G[componentName]
+        if componentType.onRemovedFromMicrobe ~= nil then
+            componentType.onRemovedFromMicrobe(self, microbe)
+        end
+    end
     self:destroy()
 	self.microbe = nil
     self.position.q = 0
@@ -226,6 +249,14 @@ function Organelle:storage()
     storage:set("mass", self.mass)
     --Serializing these causes some minor issues and doesn't serve a purpose anyway
     --storage:set("externalEdgeColour", self._externalEdgeColour)
+    
+    for _, componentName in pairs(organelleTable[self.name].components) do
+        local componentType = _G[componentName]
+        if componentType.storage ~= nil then
+            componentType.storage(self, storage)
+        end
+    end
+
     return storage
 end
 
@@ -237,6 +268,14 @@ end
 -- @param logicTime
 --  The time since the last call to update()
 function Organelle:update(microbe, logicTime)
+
+    for _, componentName in pairs(organelleTable[self.name].components) do
+        local componentType = _G[componentName]
+        if componentType.update ~= nil and componentType.update ~= Organelle.update then
+            componentType.update(self, microbe, logicTime)
+        end
+    end
+
 	if self.flashDuration ~= nil and self.sceneNode.entity ~= nil 
         and (self.name == "mitochondrion" or self.name == "nucleus" or self.name == "ER" or self.name == "golgi") then
         
@@ -282,8 +321,8 @@ local function makeOrganelle(data)
     --retrieveing the organelle info from the table
     local organelleInfo = organelleTable[data.name]
     
-    local organelle = OrganelleFactory["make_"..data.name](data)
-    --local organelle = Organelle:__init(organelleInfo.mass)
+    local organelle = Organelle(organelleInfo.mass)
+    OrganelleFactory["make_"..data.name](data, organelle)
 
     --getting the hex table of the organelle rotated by the angle
     local hexes = rotateHexListNTimes(organelleInfo.hexes, angle)
@@ -299,9 +338,13 @@ local function makeOrganelle(data)
 end
 
 function OrganelleFactory.makeOrganelle(data)
-    local make_organelle = function()
-        return makeOrganelle(data)
+    --local make_organelle = function()
+    if not (data.name == "" or data.name == nil) then
+        local organelle = makeOrganelle(data)
+        organelle.name = data.name
+        return organelle
     end
+    --[[end
     local success, organelle = pcall(make_organelle)
     if success then
         organelle.name = data.name
@@ -309,7 +352,7 @@ function OrganelleFactory.makeOrganelle(data)
     else
         if data.name == "" or data.name == nil then data.name = "<nameless>" end
         assert(false, "no organelle by name "..data.name)
-    end
+    end]]
 end
 
 -- Draws the hexes and uploads the models in the editor

@@ -5,8 +5,7 @@ class 'AgentVacuole' (ProcessOrganelle)
 
 -- Constructor
 function AgentVacuole:__init(compoundId, process)
-    local mass = 0.3
-    ProcessOrganelle.__init(self, mass)
+    ProcessOrganelle.__init(self, baseOrganelle)
     self.process = process
     self.compoundId = compoundId
 end
@@ -38,7 +37,7 @@ end
 -- @param logicTime
 -- The time since the last call to update()
 function AgentVacuole:update(microbe, logicTime)
-    Organelle.update(self, microbe, logicTime)
+    --Organelle.update(self, microbe, logicTime)
     
     self.capacityIntervalTimer = self.capacityIntervalTimer + logicTime
     if self.capacityIntervalTimer > PROCESS_CAPACITY_UPDATE_INTERVAL then
@@ -48,8 +47,8 @@ function AgentVacuole:update(microbe, logicTime)
 end
 
 
-function AgentVacuole:storage()
-    local storage = ProcessOrganelle.storage(self)
+function AgentVacuole:storage(storage)
+    ProcessOrganelle.storage(self, storage)
     storage:set("compoundId", self.compoundId)
     storage:set("process", self.process:storage())
     return storage
@@ -65,11 +64,11 @@ function AgentVacuole:load(storage)
 end
 
 -- factory functions
-function OrganelleFactory.make_oxytoxy(data)
-    local agentVacuole = AgentVacuole(CompoundRegistry.getCompoundId("oxytoxy"), global_processMap["OxyToxySynthesis"])
-    agentVacuole:setColour(ColourValue(0, 1, 1, 0))
-    agentVacuole.colourChangeFactor = 0.15
-    return agentVacuole
+function OrganelleFactory.make_oxytoxy(data, baseOrganelle)
+    AgentVacuole.__init(baseOrganelle, CompoundRegistry.getCompoundId("oxytoxy"), global_processMap["OxyToxySynthesis"])
+    --agentVacuole:setColour(ColourValue(0, 1, 1, 0))
+    --agentVacuole.colourChangeFactor = 0.15 --did this do anything anyways?
+    --return agentVacuole
 end
 
 function OrganelleFactory.render_oxytoxy(data)

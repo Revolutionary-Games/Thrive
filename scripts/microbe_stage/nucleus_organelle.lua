@@ -5,8 +5,7 @@ class 'NucleusOrganelle' (ProcessOrganelle)
 
 -- Constructor
 function NucleusOrganelle:__init()
-    local mass = 0.7
-    ProcessOrganelle.__init(self, mass)
+    ProcessOrganelle.__init(self)
     self.golgi = Entity()
 	self.ER = Entity()
 end
@@ -53,13 +52,15 @@ function NucleusOrganelle:onRemovedFromMicrobe(microbe, q, r)
 end
 
 
-function NucleusOrganelle:storage()
-    local storage = ProcessOrganelle.storage(self)
+function NucleusOrganelle:storage(storage)
+    ProcessOrganelle.storage(self, storage)
     return storage
 end
 
 
 function NucleusOrganelle:load(storage)
+    self.golgi = Entity()
+	self.ER = Entity()
     ProcessOrganelle.load(self, storage)
 end
 
@@ -93,12 +94,10 @@ function NucleusOrganelle:update(microbe, logicTime)
     end
 end
 
-function OrganelleFactory.make_nucleus(data)
-    local nucleus = NucleusOrganelle()
+function OrganelleFactory.make_nucleus(data, baseOrganelle)
+    NucleusOrganelle.__init(baseOrganelle)
     -- nucleus:addProcess(global_processMap["ReproductaseSynthesis"])
     -- nucleus:addProcess(global_processMap["AminoAcidSynthesis"])
-	
-	return nucleus
 end
 
 function OrganelleFactory.render_nucleus(data)

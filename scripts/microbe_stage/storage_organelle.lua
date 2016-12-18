@@ -10,39 +10,36 @@ class 'StorageOrganelle' (Organelle)
 --
 -- @param mass
 -- How heavy this organelle is
-function StorageOrganelle:__init(capacity, mass)
-    Organelle.__init(self, mass)
+function StorageOrganelle:__init(capacity)
     self.capacity = capacity
     self.parentIndex = 0
 end
 
 function StorageOrganelle:load(storage)
-    Organelle.load(self, storage)
+    --Organelle.load(self, storage)
     self.capacity = storage:get("capacity", 100)
 end
 
-function StorageOrganelle:storage()
-    local storage = Organelle.storage(self)
+function StorageOrganelle:storage(storage)
+    --local storage = Organelle.storage(self)
     storage:set("capacity", self.capacity)
     return storage
 end
 
 -- Overridded from Organelle:onAddedToMicrobe
 function StorageOrganelle:onAddedToMicrobe(microbe, q, r, rotation)
-    Organelle.onAddedToMicrobe(self, microbe, q, r, rotation)
+    --Organelle.onAddedToMicrobe(self, microbe, q, r, rotation)
     parentIndex = microbe:addStorageOrganelle(self)
 end
 
 -- Overridded from Organelle:onRemovedFromMicrobe
 function StorageOrganelle:onRemovedFromMicrobe(microbe, q, r)
-    Organelle.onRemovedFromMicrobe(self, microbe, q, r)
+    --Organelle.onRemovedFromMicrobe(self, microbe, q, r)
     microbe:removeStorageOrganelle(self)
 end
 
-function OrganelleFactory.make_vacuole(data)
-    local mass = 0.4
-    local vacuole = StorageOrganelle(100.0, mass)
-    return vacuole
+function OrganelleFactory.make_vacuole(data, baseOrganelle)
+    StorageOrganelle.__init(baseOrganelle, 100.0)
 end
 
 function OrganelleFactory.render_vacuole(data)
@@ -57,10 +54,8 @@ function OrganelleFactory.render_vacuole(data)
 end
 
 -- Should eventually have its own file.
-function OrganelleFactory.make_cytoplasm(data)
-    local mass = 0.1
-    local cytoplasm = StorageOrganelle(10.0, mass)
-    return cytoplasm
+function OrganelleFactory.make_cytoplasm(data, baseOrganelle)
+    StorageOrganelle.__init(baseOrganelle, 10.0)
 end
 
 function OrganelleFactory.render_cytoplasm(data)

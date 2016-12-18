@@ -185,8 +185,7 @@ class 'ProcessOrganelle' (Organelle)
 PROCESS_CAPACITY_UPDATE_INTERVAL = 1000
 
 -- Constructor
-function ProcessOrganelle:__init(mass)
-    Organelle.__init(self, mass)
+function ProcessOrganelle:__init()
     self.originalColour = ColourValue(1,1,1,1)
     -- self.processes = {}
     self.colourChangeFactor = 1.0
@@ -205,14 +204,14 @@ end
 
 -- Overridded from Organelle:onAddedToMicrobe
 function ProcessOrganelle:onAddedToMicrobe(microbe, q, r, rotation)
-    Organelle.onAddedToMicrobe(self, microbe, q, r, rotation)
+    --Organelle.onAddedToMicrobe(self, microbe, q, r, rotation)
     microbe:addProcessOrganelle(self)
 end
 
 -- Overridded from Organelle:onRemovedFromMicrobe
 function ProcessOrganelle:onRemovedFromMicrobe(microbe, q, r)
     microbe:removeProcessOrganelle(self)
-    Organelle.onRemovedFromMicrobe(self, microbe, q, r)
+    --Organelle.onRemovedFromMicrobe(self, microbe, q, r)
 end
 
 -- Private function used to update colour of organelle based on how full it is
@@ -235,7 +234,7 @@ end
 -- @param logicTime
 -- The time since the last call to update()
 function ProcessOrganelle:update(microbe, logicTime)
-    Organelle.update(self, microbe, logicTime)
+    --Organelle.update(self, microbe, logicTime)
     --[[
     self.capacityIntervalTimer = self.capacityIntervalTimer + logicTime
     processFactoredPriorities = {}
@@ -270,8 +269,8 @@ function ProcessOrganelle:setColour(colour)
 end
 
 
-function ProcessOrganelle:storage()
-    local storage = Organelle.storage(self)
+function ProcessOrganelle:storage(storage)
+    --local storage = Organelle.storage(self)
     storage:set("capacityIntervalTimer", self.capacityIntervalTimer)
     storage:set("originalColour", self.originalColour)
     storage:set("colourChangeFactor", self.colourChangeFactor)
@@ -287,7 +286,7 @@ end
 
 
 function ProcessOrganelle:load(storage)
-    Organelle.load(self, storage)
+    --Organelle.load(self, storage)
     self.originalColour =  storage:get("originalColour", ColourValue.White)
     self.capacityIntervalTimer = storage:get("capacityIntervalTimer", 0)
     self.colourChangeFactor = storage:get("colourChangeFactor", 1.0)
@@ -304,21 +303,14 @@ end
 -------------------------------------------
 -- factory functions for process organelles
 
-function OrganelleFactory.make_mitochondrion(data)
-    local mass = 0.3
-    local mito = ProcessOrganelle(mass)
+function OrganelleFactory.make_mitochondrion(data, baseOrganelle)
+    ProcessOrganelle.__init(baseOrganelle)
     -- mito:addProcess(global_processMap["Respiration"])
-
-    return mito
 end
 
-function OrganelleFactory.make_chloroplast(data)
-    local mass = 0.4
-    
-    local chloro = ProcessOrganelle(mass)
+function OrganelleFactory.make_chloroplast(data, baseOrganelle)
+    ProcessOrganelle.__init(baseOrganelle)
     -- chloro:addProcess(global_processMap["Photosynthesis"])
-	
-    return chloro
 end
 
 function OrganelleFactory.render_mitochondrion(data)
