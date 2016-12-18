@@ -7,9 +7,10 @@ changes this should be usable with any linux distribution. You will
 need sudo access in order to install the dependencies.
 
 Before starting make sure that you don't have any conflicting
-libraries installed. Lua and old versions of Ogre (pre 2.0) are known
-to cause issues compiling or running the game. So uninstall these
-before starting if possible, or you will have a bad time.
+libraries installed. Old versions of Ogre (pre 2.0) are known to cause
+issues compiling or running the game. Also you will need a really new
+version of ffmpeg. So uninstall these old versions before starting if
+possible, or you will have a bad time.
 
 
 Important Note: If you run into any trouble with the setup scripts, please 

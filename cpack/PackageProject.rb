@@ -1,8 +1,8 @@
 #!/usr/bin/env ruby
 #
 # This is a packaging script for Thrive linux releases
-# It creates two packaes one universal with literally every library ever in it
-# and one with only the Thrive specific libraries
+# It creates two packages one universal with literally every library ever in it
+# (and one with only the Thrive specific libraries, todo: do this)
 
 require 'fileutils'
 require 'nokogiri'
