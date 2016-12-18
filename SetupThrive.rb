@@ -34,9 +34,7 @@ require_relative 'linux_setup/RubySetupSystem.rb'
 # Install packages
 if BuildPlatform == "linux" and not SkipPackageManager
 
-  LinuxOS = `lsb_release -is`.strip
-
-  onError "failed to run lsb_release" if LinuxOS.empty?
+  LinuxOS = getLinuxOS
 
   info "Installing packages"
 
@@ -171,14 +169,15 @@ Dir.chdir(File.join(CurrentDir, "thrive")) do
 
   info "Making links"
 
-  FileUtils.ln_sf "assets/cegui_examples", "cegui_examples"
-  FileUtils.ln_sf "assets/definitions", "definitions"
-  FileUtils.ln_sf "assets/fonts", "fonts"
-  FileUtils.ln_sf "assets/gui", "gui"
-  FileUtils.ln_sf "assets/materials", "materials"
-  FileUtils.ln_sf "assets/models", "models"
-  FileUtils.ln_sf "assets/sounds", "sounds"
-  FileUtils.ln_sf "assets/videos", "videos"
+  # It seems that if the link is created when it already exists a llink is created into
+  # the target folder for some reason
+  createLinkIfDoesntExist "assets/cegui_examples", "cegui_examples"
+  createLinkIfDoesntExist "assets/fonts", "fonts"
+  createLinkIfDoesntExist "assets/gui", "gui"
+  createLinkIfDoesntExist "assets/materials", "materials"
+  createLinkIfDoesntExist "assets/models", "models"
+  createLinkIfDoesntExist "assets/sounds", "sounds"
+  createLinkIfDoesntExist "assets/videos", "videos"
 
   Dir.chdir("build") do
     FileUtils.ln_sf "dist/bin/Thrive", "Thrive"
