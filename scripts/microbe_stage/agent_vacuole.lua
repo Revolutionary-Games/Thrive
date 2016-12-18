@@ -1,11 +1,10 @@
 --------------------------------------------------------------------------------
 -- Class for Organelles capable of producing and storing agents
 --------------------------------------------------------------------------------
-class 'AgentVacuole' (ProcessOrganelle)
+class 'AgentVacuole' (Organelle)
 
 -- Constructor
 function AgentVacuole:__init(arguments, data)
-    ProcessOrganelle.__init(self, arguments, data)
     self.process = global_processMap[arguments.process]
     self.compoundId = CompoundRegistry.getCompoundId(arguments.compound)
 end
@@ -17,14 +16,12 @@ end
 
 -- Overridded from ProcessOrganelle:onAddedToMicrobe
 function AgentVacuole:onAddedToMicrobe(microbe, q, r, rotation)
-    ProcessOrganelle.onAddedToMicrobe(self, microbe, q, r, rotation)
     microbe:addSpecialStorageOrganelle(self, self.compoundId)
 end
 
 -- Overridded from ProcessOrganelle:onRemovedFromMicrobe
 function AgentVacuole:onRemovedFromMicrobe(microbe, q, r)
     microbe:removeSpecialStorageOrganelle(self, self.compoundId)
-    ProcessOrganelle.onRemovedFromMicrobe(self, microbe, q, r)
 end
 
 -- Called by Microbe:update
@@ -37,8 +34,6 @@ end
 -- @param logicTime
 -- The time since the last call to update()
 function AgentVacuole:update(microbe, logicTime)
-    --Organelle.update(self, microbe, logicTime)
-    
     self.capacityIntervalTimer = self.capacityIntervalTimer + logicTime
     if self.capacityIntervalTimer > PROCESS_CAPACITY_UPDATE_INTERVAL then
         factorProduct = self.process:produce(self.capacityIntervalTimer, 1.0, microbe, self)
@@ -48,7 +43,6 @@ end
 
 
 function AgentVacuole:storage(storage)
-    ProcessOrganelle.storage(self, storage)
     storage:set("compoundId", self.compoundId)
     storage:set("process", self.process:storage())
     return storage
@@ -56,7 +50,6 @@ end
 
 
 function AgentVacuole:load(storage)
-    ProcessOrganelle.load(self, storage)
     self.compoundId = storage:get("compoundId", 0)
     local process = Process(0, 0, {},{})
     process:load(storage:get("process", 0))

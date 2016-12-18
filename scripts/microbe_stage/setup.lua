@@ -407,8 +407,8 @@ end
 local function setupPlayer()
     local microbe = microbeSpawnFunctionGeneric(nil, "Default", false, PLAYER_NAME)
     microbe.collisionHandler:addCollisionGroup("powerupable")
-    Engine:playerData():lockedMap():addLock("Toxin")
-    Engine:playerData():lockedMap():addLock("chloroplast")
+    --Engine:playerData():lockedMap():addLock("Toxin")
+    --Engine:playerData():lockedMap():addLock("chloroplast")
     Engine:playerData():setActiveCreature(microbe.entity.id, GameState.MICROBE)
 end
 

@@ -16,25 +16,21 @@ function StorageOrganelle:__init(arguments, data)
 end
 
 function StorageOrganelle:load(storage)
-    --Organelle.load(self, storage)
     self.capacity = storage:get("capacity", 100)
 end
 
 function StorageOrganelle:storage(storage)
-    --local storage = Organelle.storage(self)
     storage:set("capacity", self.capacity)
     return storage
 end
 
 -- Overridded from Organelle:onAddedToMicrobe
 function StorageOrganelle:onAddedToMicrobe(microbe, q, r, rotation)
-    --Organelle.onAddedToMicrobe(self, microbe, q, r, rotation)
     parentIndex = microbe:addStorageOrganelle(self)
 end
 
 -- Overridded from Organelle:onRemovedFromMicrobe
 function StorageOrganelle:onRemovedFromMicrobe(microbe, q, r)
-    --Organelle.onRemovedFromMicrobe(self, microbe, q, r)
     microbe:removeStorageOrganelle(self)
 end
 

@@ -1,11 +1,10 @@
 --------------------------------------------------------------------------------
 -- Class for the single core organelle of any microbe
 --------------------------------------------------------------------------------
-class 'NucleusOrganelle' (ProcessOrganelle)
+class 'NucleusOrganelle' (Organelle)
 
 -- Constructor
 function NucleusOrganelle:__init(arguments, data)
-    ProcessOrganelle.__init(self, arguments, data)
     self.golgi = Entity()
 	self.ER = Entity()
 end
@@ -42,18 +41,14 @@ function NucleusOrganelle:onAddedToMicrobe(microbe, q, r, rotation)
     self.ER:addComponent(sceneNode2)
 	self.ER.sceneNode = sceneNode2
 	self.ER:setVolatile(true)
-	
-    ProcessOrganelle.onAddedToMicrobe(self, microbe, q, r, rotation)
 end
 
 -- Overridded from Organelle:onRemovedFromMicrobe
 function NucleusOrganelle:onRemovedFromMicrobe(microbe, q, r)
-    ProcessOrganelle.onRemovedFromMicrobe(self, microbe, q, r)
 end
 
 
 function NucleusOrganelle:storage(storage)
-    ProcessOrganelle.storage(self, storage)
     return storage
 end
 
@@ -61,7 +56,6 @@ end
 function NucleusOrganelle:load(storage)
     self.golgi = Entity()
 	self.ER = Entity()
-    ProcessOrganelle.load(self, storage)
 end
 
 function NucleusOrganelle:update(microbe, logicTime)

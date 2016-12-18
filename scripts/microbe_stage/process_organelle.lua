@@ -204,14 +204,12 @@ end
 
 -- Overridded from Organelle:onAddedToMicrobe
 function ProcessOrganelle:onAddedToMicrobe(microbe, q, r, rotation)
-    --Organelle.onAddedToMicrobe(self, microbe, q, r, rotation)
     microbe:addProcessOrganelle(self)
 end
 
 -- Overridded from Organelle:onRemovedFromMicrobe
 function ProcessOrganelle:onRemovedFromMicrobe(microbe, q, r)
     microbe:removeProcessOrganelle(self)
-    --Organelle.onRemovedFromMicrobe(self, microbe, q, r)
 end
 
 -- Private function used to update colour of organelle based on how full it is
@@ -234,7 +232,6 @@ end
 -- @param logicTime
 -- The time since the last call to update()
 function ProcessOrganelle:update(microbe, logicTime)
-    --Organelle.update(self, microbe, logicTime)
     --[[
     self.capacityIntervalTimer = self.capacityIntervalTimer + logicTime
     processFactoredPriorities = {}
@@ -270,7 +267,6 @@ end
 
 
 function ProcessOrganelle:storage(storage)
-    --local storage = Organelle.storage(self)
     storage:set("capacityIntervalTimer", self.capacityIntervalTimer)
     storage:set("originalColour", self.originalColour)
     storage:set("colourChangeFactor", self.colourChangeFactor)
@@ -286,7 +282,6 @@ end
 
 
 function ProcessOrganelle:load(storage)
-    --Organelle.load(self, storage)
     self.originalColour =  storage:get("originalColour", ColourValue.White)
     self.capacityIntervalTimer = storage:get("capacityIntervalTimer", 0)
     self.colourChangeFactor = storage:get("colourChangeFactor", 1.0)

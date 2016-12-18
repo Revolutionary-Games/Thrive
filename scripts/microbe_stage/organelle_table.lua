@@ -2,6 +2,7 @@ organelleTable = {
     ["nucleus"] = {
         mass = 0.7,
         components = {
+            ["ProcessOrganelle"] = {},
             ["NucleusOrganelle"] = {}
         },
         mpCost = 0, --it's not supossed to be purchased.
@@ -50,6 +51,7 @@ organelleTable = {
 
     ["oxytoxy"] = {
         components = {
+            ["ProcessOrganelle"] = {},
             ["AgentVacuole"] = {
                 compound = "oxytoxy",
                 process = "OxyToxySynthesis"

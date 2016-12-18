@@ -32,12 +32,10 @@ function MovementOrganelle:__init(arguments, data)
     self.movingTail = false
 end
 
-function MovementOrganelle:onAddedToMicrobe(microbe, q, r, rotation)  
-    --Organelle.onAddedToMicrobe(self, microbe, q, r, rotation)
+function MovementOrganelle:onAddedToMicrobe(microbe, q, r, rotation)
 end
 
 function MovementOrganelle:load(storage)
-    --Organelle.load(self, storage)
     self.energyMultiplier = storage:get("energyMultiplier", 0.025)
     self.force = storage:get("force", Vector3(0,0,0))
     self.torque = storage:get("torque", Vector3(0,0,0))
