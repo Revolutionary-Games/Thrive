@@ -306,6 +306,16 @@ end
 
 
 
+def createLinkIfDoesntExist(source, linkfile)
+
+  if File.exist? linkfile
+    return
+  end
+
+  FileUtils.ln_sf source, linkfile
+  
+end
+
 ### Download settings ###
 class BaseDep
   def initialize(name, foldername)
