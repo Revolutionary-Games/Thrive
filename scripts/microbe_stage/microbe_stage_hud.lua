@@ -25,7 +25,9 @@ function HudSystem:activate()
     end
     self.helpOpen = true
     self.menuOpen = true
-    self:updateLoadButton();
+    self:updateLoadButton()
+    -- Always start the game without being able to reproduce.
+    self.editorButton:disable()
 end
 
 function HudSystem:init(gameState)

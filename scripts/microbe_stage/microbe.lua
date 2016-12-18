@@ -24,8 +24,8 @@ ENGULF_HP_RATIO_REQ = 1.5
 function MicrobeComponent:__init(isPlayerMicrobe, speciesName)
     Component.__init(self)
     self.speciesName = speciesName
-    self.hitpoints = 10
-    self.maxHitpoints = 10
+    self.hitpoints = 0
+    self.maxHitpoints = 0
     self.dead = false
     self.deathTimer = 0
     self.organelles = {}
@@ -179,10 +179,6 @@ function Microbe.createMicrobeEntity(name, aiControlled, speciesName, in_editor)
     rigidBody.properties.linearFactor = Vector3(1, 1, 0)
     rigidBody.properties.angularFactor = Vector3(0, 0, 1)
     rigidBody.properties:touch()
-    local compoundEmitter = CompoundEmitterComponent() -- Emitter for excess compounds
-    compoundEmitter.minInitialSpeed = 3
-    compoundEmitter.maxInitialSpeed = 4
-    compoundEmitter.particleLifetime = 5000
     local reactionHandler = CollisionComponent()
     reactionHandler:addCollisionGroup("microbe")
     local membraneComponent = MembraneComponent()
@@ -213,7 +209,6 @@ function Microbe.createMicrobeEntity(name, aiControlled, speciesName, in_editor)
         MicrobeComponent(not aiControlled, speciesName),
         reactionHandler,
         rigidBody,
-        compoundEmitter,
         soundComponent,
         membraneComponent
     }
@@ -234,7 +229,6 @@ Microbe.COMPONENTS = {
     microbe = MicrobeComponent.TYPE_ID,
     rigidBody = RigidBodyComponent.TYPE_ID,
     sceneNode = OgreSceneNodeComponent.TYPE_ID,
-    compoundEmitter = CompoundEmitterComponent.TYPE_ID,
     collisionHandler = CollisionComponent.TYPE_ID,
     soundSource = SoundSourceComponent.TYPE_ID,
     membraneComponent = MembraneComponent.TYPE_ID,
@@ -312,8 +306,7 @@ function Microbe:addOrganelle(q, r, rotation, organelle)
     
     organelle:onAddedToMicrobe(self, q, r, rotation)
     
-    self.microbe.hitpoints = (self.microbe.hitpoints/self.microbe.maxHitpoints) * (self.microbe.maxHitpoints + MICROBE_HITPOINTS_PER_ORGANELLE)
-    self.microbe.maxHitpoints = self.microbe.maxHitpoints + MICROBE_HITPOINTS_PER_ORGANELLE
+    self:calculateHealthFromOrganelles()
     self.microbe.maxBandwidth = self.microbe.maxBandwidth + BANDWIDTH_PER_ORGANELLE -- Temporary solution for increasing max bandwidth
     self.microbe.remainingBandwidth = self.microbe.maxBandwidth
     
@@ -435,8 +428,7 @@ function Microbe:removeOrganelle(q, r)
     
     organelle:onRemovedFromMicrobe(self)
     
-    self.microbe.hitpoints = (self.microbe.hitpoints/self.microbe.maxHitpoints) * (self.microbe.maxHitpoints - MICROBE_HITPOINTS_PER_ORGANELLE)
-    self.microbe.maxHitpoints = self.microbe.maxHitpoints - MICROBE_HITPOINTS_PER_ORGANELLE
+    self:calculateHealthFromOrganelles()
     self.microbe.maxBandwidth = self.microbe.maxBandwidth - BANDWIDTH_PER_ORGANELLE -- Temporary solution for decreasing max bandwidth
     self.microbe.remainingBandwidth = self.microbe.maxBandwidth
     
@@ -468,7 +460,7 @@ function Microbe:damage(amount, damageType)
     
     -- Choose a random organelle or membrane to damage.
     -- TODO: CHANGE TO USE AGENT CODES FOR DAMAGE.
-    local rand = math.random(1,self.microbe.maxHitpoints/MICROBE_HITPOINTS_PER_ORGANELLE- 1)
+    local rand = math.random(1,self.microbe.maxHitpoints/MICROBE_HITPOINTS_PER_ORGANELLE)
     local i = 1
     for _, organelle in pairs(self.microbe.organelles) do
         -- If this is the organelle we have chosen...
@@ -750,11 +742,6 @@ end
 
 -- Updates the microbe's state
 function Microbe:update(logicTime)
-    if self.microbe.isPlayerMicrobe == true then
-        --print("update " .. self:getCompoundAmount(CompoundRegistry.getCompoundId("glucose")))
-    end
-    
-    
     if not self.microbe.dead then
         -- StorageOrganelles
         self:_updateCompoundAbsorber()
@@ -795,74 +782,82 @@ function Microbe:update(logicTime)
 
             self:atpDamage()
         end
-
-        local reproductionStageComplete = true
         
         -- First organelle run: updates all the organelles and heals the broken ones.
-        for _, organelle in pairs(self.microbe.organelles) do
-            -- Update the organelle.
-            organelle:update(self, logicTime)
-            
-            -- We are in G1 phase of the cell cycle and the organelle is hurt.
-            if organelle.name ~= "nucleus" and self.reproductionStage == 0 and organelle.compoundBin < 1.0 then
-                -- Give the organelle access to the compound bag to take some compound.
-                organelle:grow(self.entity:getComponent(CompoundBagComponent.TYPE_ID))
-            end
-        end
-        -- Second organelle run: grow all the large organelles.
-        for _, organelle in pairs(self.microbe.organelles) do   
-            -- We are in G1 phase of the cell cycle, duplicate all organelles.
-            if organelle.name ~= "nucleus" and self.reproductionStage == 0 then
+        if self.microbe.hitpoints < self.microbe.maxHitpoints then
+            for _, organelle in pairs(self.microbe.organelles) do
+                -- Update the organelle.
+                organelle:update(self, logicTime)
                 
-                -- If the organelle is not split, give it some compounds to make it larger.
-                if organelle.compoundBin < 2.0 and not organelle.wasSplit then
+                -- We are in G1 phase of the cell cycle and the organelle is hurt.
+                if organelle.name ~= "nucleus" and self.reproductionStage == 0 and organelle.compoundBin < 1.0 then
                     -- Give the organelle access to the compound bag to take some compound.
                     organelle:grow(self.entity:getComponent(CompoundBagComponent.TYPE_ID))
-                    reproductionStageComplete = false
-                -- If the organelle was split and has a bin less then 1, it must have been damaged.
-                elseif organelle.compoundBin < 1.0 and organelle.wasSplit then
-                    -- Give the organelle access to the compound bag to take some compound.
-                    organelle:grow(self.entity:getComponent(CompoundBagComponent.TYPE_ID))
-                -- If the organelle is twice its size...
-                elseif organelle.compoundBin >= 2.0 then
-                    print("ready to split " .. organelle.name)
-                    -- Mark this organelle as done and return to its normal size.
-                    organelle:reset()
-                    organelle.wasSplit = true
-                    -- Create a second organelle.
-                    local organelle2 = self:splitOrganelle(organelle)
-                    organelle2.wasSplit = true
-                    organelle2.isDuplicate = true
-                    organelle2.sisterOrganelle = organelle
-
-                    -- Redo the cell membrane.
-                    self.membraneComponent:clear()
-                end
-            -- In the S phase, the nucleus grows as chromatin is duplicated.
-            elseif organelle.name == "nucleus" and self.reproductionStage == 1 then
-                -- If the nucleus hasn't finished replicating its DNA, give it some compounds.
-                if organelle.compoundBin < 2.0 then
-                    -- Give the organelle access to the compound back to take some compound.
-                    organelle:grow(self.entity:getComponent(CompoundBagComponent.TYPE_ID))
-                    reproductionStageComplete = false
+                    -- An organelle was damaged and we tried to heal it, so out health might be different.
+                    self:calculateHealthFromOrganelles()
                 end
             end
-        end
-        if reproductionStageComplete and self.reproductionStage < 2 then
-            self.reproductionStage = self.reproductionStage + 1
-        end
-        -- To finish the G2 phase we just need more than a threshold of compounds.
-        if self.reproductionStage == 2 or self.reproductionStage == 3 then
-            -- If we have more than the threshold,
-            --if self:getCompoundAmount(CompoundRegistry.getCompoundId("fattyacids")) > 1 and 
-            --    self:getCompoundAmount(CompoundRegistry.getCompoundId("glucose")) > 5 and
-            --    self:getCompoundAmount(CompoundRegistry.getCompoundId("aminoacids")) > 1 and
-            --    self:getCompoundAmount(CompoundRegistry.getCompoundId("atp")) > 10 then
-            --   
-                showReproductionDialog()
-            --end
         else
-            hideReproductionDialog()
+            local reproductionStageComplete = true
+        
+            -- Second organelle run: grow all the large organelles.
+            for _, organelle in pairs(self.microbe.organelles) do
+                -- Update the organelle.
+                organelle:update(self, logicTime)
+                
+                -- We are in G1 phase of the cell cycle, duplicate all organelles.
+                if organelle.name ~= "nucleus" and self.reproductionStage == 0 then
+                    
+                    -- If the organelle is not split, give it some compounds to make it larger.
+                    if organelle.compoundBin < 2.0 and not organelle.wasSplit then
+                        -- Give the organelle access to the compound bag to take some compound.
+                        organelle:grow(self.entity:getComponent(CompoundBagComponent.TYPE_ID))
+                        reproductionStageComplete = false
+                    -- If the organelle was split and has a bin less then 1, it must have been damaged.
+                    elseif organelle.compoundBin < 1.0 and organelle.wasSplit then
+                        -- Give the organelle access to the compound bag to take some compound.
+                        organelle:grow(self.entity:getComponent(CompoundBagComponent.TYPE_ID))
+                    -- If the organelle is twice its size...
+                    elseif organelle.compoundBin >= 2.0 then
+                        print("ready to split " .. organelle.name)
+                        -- Mark this organelle as done and return to its normal size.
+                        organelle:reset()
+                        organelle.wasSplit = true
+                        -- Create a second organelle.
+                        local organelle2 = self:splitOrganelle(organelle)
+                        organelle2.wasSplit = true
+                        organelle2.isDuplicate = true
+                        organelle2.sisterOrganelle = organelle
+
+                        -- Redo the cell membrane.
+                        self.membraneComponent:clear()
+                    end
+                -- In the S phase, the nucleus grows as chromatin is duplicated.
+                elseif organelle.name == "nucleus" and self.reproductionStage == 1 then
+                    -- If the nucleus hasn't finished replicating its DNA, give it some compounds.
+                    if organelle.compoundBin < 2.0 then
+                        -- Give the organelle access to the compound back to take some compound.
+                        organelle:grow(self.entity:getComponent(CompoundBagComponent.TYPE_ID))
+                        reproductionStageComplete = false
+                    end
+                end
+            end
+            if reproductionStageComplete and self.reproductionStage < 2 then
+                self.reproductionStage = self.reproductionStage + 1
+            end
+            -- To finish the G2 phase we just need more than a threshold of compounds.
+            if self.reproductionStage == 2 or self.reproductionStage == 3 then
+                -- If we have more than the threshold,
+                --if self:getCompoundAmount(CompoundRegistry.getCompoundId("fattyacids")) > 1 and 
+                --    self:getCompoundAmount(CompoundRegistry.getCompoundId("glucose")) > 5 and
+                --    self:getCompoundAmount(CompoundRegistry.getCompoundId("aminoacids")) > 1 and
+                --    self:getCompoundAmount(CompoundRegistry.getCompoundId("atp")) > 10 then
+                --   
+                    showReproductionDialog()
+                --else
+                --    hideReproductionDialog()
+                --end
+            end
         end
 
         if self.microbe.engulfMode then
@@ -901,8 +896,10 @@ end
 
 function Microbe:calculateHealthFromOrganelles()
     self.microbe.hitpoints = 0
+    self.microbe.maxHitpoints = 0
     for _, organelle in pairs(self.microbe.organelles) do
         self.microbe.hitpoints = self.microbe.hitpoints + (organelle.compoundBin < 1.0 and organelle.compoundBin or 1.0) * MICROBE_HITPOINTS_PER_ORGANELLE
+        self.microbe.maxHitpoints = self.microbe.maxHitpoints + MICROBE_HITPOINTS_PER_ORGANELLE
     end
     --self.microbe.hitpoints = self.microbe.hitpoints + self.membraneHealth * MICROBE_HITPOINTS_PER_ORGANELLE
 end
@@ -910,6 +907,7 @@ end
 function Microbe:splitOrganelle(organelle)
     -- Find an empty place where the organelle can be placed.
     for _, q, r in iterateNeighbours(organelle.position.q, organelle.position.r) do
+    print("trying to put an organelle at " .. q .. ", " .. r)
         if self:getOrganelleAt(q,r) == nil then
             for i=0, 6 do
                 local data = {["name"]=organelle.name, ["q"]=q, ["r"]=r, ["rotation"]=i*60}
@@ -924,7 +922,8 @@ function Microbe:splitOrganelle(organelle)
         end
     end
     
-
+    print("could not place organelle")
+    return false
 end
 
 function Microbe:validPlacement(organelle, q, r)
@@ -984,12 +983,12 @@ function Microbe:respawn()
     self.microbe.dead = false
     self.microbe.deathTimer = 0
     self.residuePhysicsTime = 0
-    self.microbe.hitpoints = self.microbe.maxHitpoints
     
     -- Reset the growth bins of the organelles to full health.
     for _, organelle in pairs(self.microbe.organelles) do
         organelle:reset()
     end
+    self:calculateHealthFromOrganelles()
 
     self.rigidBody:setDynamicProperties(
         Vector3(0,0,0), -- Position

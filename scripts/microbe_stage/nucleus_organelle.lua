@@ -124,7 +124,7 @@ function NucleusOrganelle:grow(compoundBagComponent)
 end
 
 function NucleusOrganelle:damage(amount)
-print("Nucleus damaged: " .. amount)
+--print("Nucleus damaged: " .. amount)
 
     -- Flash the nucleus.
     self:flashOrganelle(3000, ColourValue(1,0.2,0.2,1))
@@ -143,7 +143,7 @@ end
 
 function NucleusOrganelle:recalculateBin()
     -- Calculate the new growth growth
-    self.compoundBin = 2.0 - (self.numProteinLeft + self.numNucleicAcidsLeft)/self.organelleCost
+    self.compoundBin = 2.0 - (self.numProteinLeft + self.numNucleicAcidsLeft)/self.nucleusCost
     
     local speciesColour = self.microbe:getSpeciesComponent().colour
     local colorSuffix =  "" .. math.floor(speciesColour.x * 256) .. math.floor(speciesColour.y * 256) .. math.floor(speciesColour.z * 256)

@@ -298,7 +298,7 @@ starter_microbes = {
     Gluttonous = {
         spawnDensity = 1/18000,
         compounds = {
-            atp = {amount = 30},
+            atp = {amount = 60},
         },
         organelles = {
             {name="nucleus", q=0, r=0, rotation=0},

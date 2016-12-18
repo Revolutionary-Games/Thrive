@@ -292,7 +292,7 @@ end
 -- Override to make each organelle larger
 function Organelle:grow(compoundBagComponent)
 if self.compoundBin < 1.0 then
-    print(self.name .. ": " .. self.compoundBin .. "(" .. self.numGlucoseLeft .. ", " .. self.numAminoAcidsLeft .. ", " .. self.numFattyAcidsLeft .. ")")
+    --print(self.name .. ": " .. self.compoundBin .. "(" .. self.numGlucoseLeft .. ", " .. self.numAminoAcidsLeft .. ", " .. self.numFattyAcidsLeft .. ")")
 end
     -- Finds the total number of needed compounds.
     local sum = 0
@@ -334,7 +334,7 @@ end
 end
 
 function Organelle:damage(amount)
-print(self.name .. " lost " .. amount .. "/2.0 health") 
+--print(self.name .. " lost " .. amount .. "/2.0 health") 
     -- Flash the organelle that was damaged.
     self:flashOrganelle(3000, ColourValue(1,0.2,0.2,1))
     
@@ -359,7 +359,7 @@ function Organelle:recalculateBin()
         if self.compoundBin <= 0.0 then
             -- If it was split from a primary organelle, destroy it.
             if self.isDuplicate == true then
-                self.microbe.removeOrganelle(self.position.q, self.position.r)
+                self.microbe:removeOrganelle(self.position.q, self.position.r)
                 
                 -- Notify the organelle the sister organelle it is no longer split.
                 self.sisterOrganelle.wasSplit = false
@@ -374,7 +374,6 @@ function Organelle:recalculateBin()
             end
         end
         -- Scale the model at a slower rate (so that 0.0 is half size).
-        print(self.compoundBin)
         self.sceneNode.transform.scale = Vector3((1.0 + self.compoundBin)/2, (1.0 + self.compoundBin)/2, (1.0 + self.compoundBin)/2)*HEX_SIZE
         self.sceneNode.transform:touch()
         
