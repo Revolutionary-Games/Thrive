@@ -1,7 +1,7 @@
 --------------------------------------------------------------------------------
 -- A storage organelle class
 --------------------------------------------------------------------------------
-class 'StorageOrganelle' (Organelle)
+class 'StorageOrganelle' (OrganelleComponent)
 
 -- Constructor
 --

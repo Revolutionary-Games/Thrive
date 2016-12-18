@@ -1,17 +1,12 @@
 --------------------------------------------------------------------------------
 -- Class for Organelles capable of producing and storing agents
 --------------------------------------------------------------------------------
-class 'AgentVacuole' (Organelle)
+class 'AgentVacuole' (OrganelleComponent)
 
 -- Constructor
 function AgentVacuole:__init(arguments, data)
     self.process = global_processMap[arguments.process]
     self.compoundId = CompoundRegistry.getCompoundId(arguments.compound)
-end
-
--- Overwridden from ProcessOrganelle
-function AgentVacuole:addProcess(process)
-    assert(false, "AgentVacuoles are not supposed to have additional processes")
 end
 
 -- Overridded from ProcessOrganelle:onAddedToMicrobe

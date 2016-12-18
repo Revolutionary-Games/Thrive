@@ -180,7 +180,7 @@ end
 --------------------------------------------------------------------------------
 -- Class for Organelles capable of producing compounds
 --------------------------------------------------------------------------------
-class 'ProcessOrganelle' (Organelle)
+class 'ProcessOrganelle' (OrganelleComponent)
 
 PROCESS_CAPACITY_UPDATE_INTERVAL = 1000
 

@@ -1,7 +1,7 @@
 --------------------------------------------------------------------------------
 -- Class for the single core organelle of any microbe
 --------------------------------------------------------------------------------
-class 'NucleusOrganelle' (Organelle)
+class 'NucleusOrganelle' (OrganelleComponent)
 
 -- Constructor
 function NucleusOrganelle:__init(arguments, data)
@@ -42,16 +42,6 @@ function NucleusOrganelle:onAddedToMicrobe(microbe, q, r, rotation)
 	self.ER.sceneNode = sceneNode2
 	self.ER:setVolatile(true)
 end
-
--- Overridded from Organelle:onRemovedFromMicrobe
-function NucleusOrganelle:onRemovedFromMicrobe(microbe, q, r)
-end
-
-
-function NucleusOrganelle:storage(storage)
-    return storage
-end
-
 
 function NucleusOrganelle:load(storage)
     self.golgi = Entity()

@@ -1,5 +1,5 @@
 -- Enables a microbe to move and turn
-class 'MovementOrganelle' (Organelle)
+class 'MovementOrganelle' (OrganelleComponent)
 
 -- Calculate the momentum of the movement organelle based on angle towards nucleus
 local function calculateForce(q, r, momentum)
@@ -30,9 +30,6 @@ function MovementOrganelle:__init(arguments, data)
 	self.y = 0
 	self.angle = 0
     self.movingTail = false
-end
-
-function MovementOrganelle:onAddedToMicrobe(microbe, q, r, rotation)
 end
 
 function MovementOrganelle:load(storage)

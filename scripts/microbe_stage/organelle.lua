@@ -88,9 +88,7 @@ function Organelle:load(storage)
 
     for componentName, _ in pairs(organelleTable[self.name].components) do
         local componentType = _G[componentName]
-        if componentType.load ~= nil then
-            componentType.load(self, storage)
-        end
+        componentType.load(self, storage)
     end
 end
 
@@ -106,9 +104,7 @@ function Organelle:onAddedToMicrobe(microbe, q, r, rotation)
 
     for componentName, _ in pairs(organelleTable[self.name].components) do
         local componentType = _G[componentName]
-        if componentType.onAddedToMicrobe ~= nil then
-            componentType.onAddedToMicrobe(self, microbe, q, r, rotation)
-        end
+        componentType.onAddedToMicrobe(self, microbe, q, r, rotation)
     end
 
     self.microbe = microbe
@@ -186,9 +182,7 @@ function Organelle:onRemovedFromMicrobe(microbe)
 
     for componentName, _ in pairs(organelleTable[self.name].components) do
         local componentType = _G[componentName]
-        if componentType.onRemovedFromMicrobe ~= nil then
-            componentType.onRemovedFromMicrobe(self, microbe)
-        end
+        componentType.onRemovedFromMicrobe(self, microbe)
     end
     self:destroy()
 	self.microbe = nil
@@ -249,9 +243,7 @@ function Organelle:storage()
     
     for componentName, _ in pairs(organelleTable[self.name].components) do
         local componentType = _G[componentName]
-        if componentType.storage ~= nil then
-            componentType.storage(self, storage)
-        end
+        componentType.storage(self, storage)
     end
 
     return storage
@@ -265,12 +257,9 @@ end
 -- @param logicTime
 --  The time since the last call to update()
 function Organelle:update(microbe, logicTime)
-
     for componentName, _ in pairs(organelleTable[self.name].components) do
         local componentType = _G[componentName]
-        if componentType.update ~= nil and componentType.update ~= Organelle.update then
-            componentType.update(self, microbe, logicTime)
-        end
+        componentType.update(self, microbe, logicTime)
     end
 
 	if self.flashDuration ~= nil and self.sceneNode.entity ~= nil 
