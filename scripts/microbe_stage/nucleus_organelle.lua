@@ -4,8 +4,8 @@
 class 'NucleusOrganelle' (ProcessOrganelle)
 
 -- Constructor
-function NucleusOrganelle:__init()
-    ProcessOrganelle.__init(self)
+function NucleusOrganelle:__init(arguments, data)
+    ProcessOrganelle.__init(self, arguments, data)
     self.golgi = Entity()
 	self.ER = Entity()
 end
@@ -92,12 +92,6 @@ function NucleusOrganelle:update(microbe, logicTime)
 			ER_entity:setMaterial("ER" .. colorSuffix)
         end
     end
-end
-
-function OrganelleFactory.make_nucleus(data, baseOrganelle)
-    NucleusOrganelle.__init(baseOrganelle)
-    -- nucleus:addProcess(global_processMap["ReproductaseSynthesis"])
-    -- nucleus:addProcess(global_processMap["AminoAcidSynthesis"])
 end
 
 function OrganelleFactory.render_nucleus(data)

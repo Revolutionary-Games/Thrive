@@ -185,7 +185,7 @@ class 'ProcessOrganelle' (Organelle)
 PROCESS_CAPACITY_UPDATE_INTERVAL = 1000
 
 -- Constructor
-function ProcessOrganelle:__init()
+function ProcessOrganelle:__init(arguments, data)
     self.originalColour = ColourValue(1,1,1,1)
     -- self.processes = {}
     self.colourChangeFactor = 1.0
@@ -302,16 +302,6 @@ end
 
 -------------------------------------------
 -- factory functions for process organelles
-
-function OrganelleFactory.make_mitochondrion(data, baseOrganelle)
-    ProcessOrganelle.__init(baseOrganelle)
-    -- mito:addProcess(global_processMap["Respiration"])
-end
-
-function OrganelleFactory.make_chloroplast(data, baseOrganelle)
-    ProcessOrganelle.__init(baseOrganelle)
-    -- chloro:addProcess(global_processMap["Photosynthesis"])
-end
 
 function OrganelleFactory.render_mitochondrion(data)
 	local x, y = axialToCartesian(data.q, data.r)

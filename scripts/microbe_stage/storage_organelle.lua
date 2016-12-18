@@ -10,8 +10,8 @@ class 'StorageOrganelle' (Organelle)
 --
 -- @param mass
 -- How heavy this organelle is
-function StorageOrganelle:__init(capacity)
-    self.capacity = capacity
+function StorageOrganelle:__init(arguments, data)
+    self.capacity = arguments.capacity
     self.parentIndex = 0
 end
 
@@ -38,10 +38,6 @@ function StorageOrganelle:onRemovedFromMicrobe(microbe, q, r)
     microbe:removeStorageOrganelle(self)
 end
 
-function OrganelleFactory.make_vacuole(data, baseOrganelle)
-    StorageOrganelle.__init(baseOrganelle, 100.0)
-end
-
 function OrganelleFactory.render_vacuole(data)
 	local x, y = axialToCartesian(data.q, data.r)
 	local translation = Vector3(-x, -y, 0)
@@ -51,11 +47,6 @@ function OrganelleFactory.render_vacuole(data)
 	
 	data.sceneNode[2].transform.position = translation
 	OrganelleFactory.setColour(data.sceneNode[2], data.colour)
-end
-
--- Should eventually have its own file.
-function OrganelleFactory.make_cytoplasm(data, baseOrganelle)
-    StorageOrganelle.__init(baseOrganelle, 10.0)
 end
 
 function OrganelleFactory.render_cytoplasm(data)

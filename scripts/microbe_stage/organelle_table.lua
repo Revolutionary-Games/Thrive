@@ -2,7 +2,7 @@ organelleTable = {
     ["nucleus"] = {
         mass = 0.7,
         components = {
-            "NucleusOrganelle"
+            ["NucleusOrganelle"] = {}
         },
         mpCost = 0, --it's not supossed to be purchased.
         mesh = "nucleus.mesh",
@@ -22,7 +22,9 @@ organelleTable = {
 
     ["cytoplasm"] = {
         components = {
-            "StorageOrganelle"
+            ["StorageOrganelle"] = {
+                capacity = 10.0
+            }
         },
         mass = 0.1,
         mpCost = 5,
@@ -34,7 +36,7 @@ organelleTable = {
 
     ["chloroplast"] = {
         components = {
-            "ProcessOrganelle"
+            ["ProcessOrganelle"] = {}
         },
         mass = 0.4,
         mpCost = 20,
@@ -48,8 +50,11 @@ organelleTable = {
 
     ["oxytoxy"] = {
         components = {
-            "AgentVacuole"
-        },
+            ["AgentVacuole"] = {
+                compound = "oxytoxy",
+                process = "OxyToxySynthesis"
+            }
+        }, --agentVacuole.colourChangeFactor = 0.15
         mass = 0.3,
         mpCost = 40,
         mesh = "AgentVacuole.mesh",
@@ -61,7 +66,7 @@ organelleTable = {
 
     ["mitochondrion"] = {
         components = {
-            "ProcessOrganelle"
+            ["ProcessOrganelle"] = {}
         },
         mass = 0.3,
         mpCost = 20,
@@ -74,7 +79,9 @@ organelleTable = {
 
     ["vacuole"] = {
         components = {
-            "StorageOrganelle"
+            ["StorageOrganelle"] = {
+                capacity = 100.0
+            }
         },
         mass = 0.4,
         mpCost = 15,
@@ -86,7 +93,10 @@ organelleTable = {
 
     ["flagellum"] = {
         components = {
-            "MovementOrganelle"
+            ["MovementOrganelle"] = {
+                momentum = 12.5,
+                torque = 300
+            }
         },
         mass = 0.3,
         mpCost = 25,

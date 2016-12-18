@@ -1,18 +1,15 @@
 -- Enables a microbe to move and turn
 class 'MovementOrganelle' (Organelle)
 
-FLAGELLUM_MOMENTUM = 12.5 -- what the heck is this for?
-
 -- Calculate the momentum of the movement organelle based on angle towards nucleus
-local function calculateForce(q, r)
-    if q == nil then return 1.0 end --placeholder value for the storage
+local function calculateForce(q, r, momentum)
     local organelleX, organelleY = axialToCartesian(q, r)
     local nucleusX, nucleusY = axialToCartesian(0, 0)
     local deltaX = nucleusX - organelleX
     local deltaY = nucleusY - organelleY
     local dist = math.sqrt(deltaX^2 + deltaY^2) -- For normalizing vector
-    local momentumX = deltaX / dist * FLAGELLUM_MOMENTUM
-    local momentumY = deltaY / dist * FLAGELLUM_MOMENTUM
+    local momentumX = deltaX / dist * momentum
+    local momentumY = deltaY / dist * momentum
     local force = Vector3(momentumX, momentumY, 0.0)
     return force
 end
@@ -24,10 +21,10 @@ end
 --
 -- @param torque
 --  The torque this organelle can exert to turn a microbe
-function MovementOrganelle:__init(q, r, torque)
+function MovementOrganelle:__init(arguments, data)
     self.energyMultiplier = 0.025
-    self.force = calculateForce(q, r)
-    self.torque = torque
+    self.force = calculateForce(data.q, data.r, arguments.momentum)
+    self.torque = arguments.torque
     self.backwards_multiplier = 0
 	self.x = 0
 	self.y = 0
@@ -119,11 +116,6 @@ function MovementOrganelle:update(microbe, logicTime)
 
     MovementOrganelle._turnMicrobe(self, microbe)
     MovementOrganelle._moveMicrobe(self, microbe, logicTime)
-end
-
--- factory functions
-function OrganelleFactory.make_flagellum(data, baseOrganelle)
-    MovementOrganelle.__init(baseOrganelle, data.q, data.r, 300)
 end
 
 function OrganelleFactory.render_flagellum(data)

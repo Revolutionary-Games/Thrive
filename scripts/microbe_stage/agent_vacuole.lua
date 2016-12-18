@@ -4,10 +4,10 @@
 class 'AgentVacuole' (ProcessOrganelle)
 
 -- Constructor
-function AgentVacuole:__init(compoundId, process)
-    ProcessOrganelle.__init(self, baseOrganelle)
-    self.process = process
-    self.compoundId = compoundId
+function AgentVacuole:__init(arguments, data)
+    ProcessOrganelle.__init(self, arguments, data)
+    self.process = global_processMap[arguments.process]
+    self.compoundId = CompoundRegistry.getCompoundId(arguments.compound)
 end
 
 -- Overwridden from ProcessOrganelle
@@ -61,14 +61,6 @@ function AgentVacuole:load(storage)
     local process = Process(0, 0, {},{})
     process:load(storage:get("process", 0))
     self.process = process
-end
-
--- factory functions
-function OrganelleFactory.make_oxytoxy(data, baseOrganelle)
-    AgentVacuole.__init(baseOrganelle, CompoundRegistry.getCompoundId("oxytoxy"), global_processMap["OxyToxySynthesis"])
-    --agentVacuole:setColour(ColourValue(0, 1, 1, 0))
-    --agentVacuole.colourChangeFactor = 0.15 --did this do anything anyways?
-    --return agentVacuole
 end
 
 function OrganelleFactory.render_oxytoxy(data)

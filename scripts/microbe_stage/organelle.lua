@@ -3,9 +3,7 @@ class 'Organelle'
 
 -- Factory function for organelles
 function Organelle.loadOrganelle(storage)
-    local className = storage:get("className", "")
-    local cls = _G[className]
-    local organelle = cls()
+    local organelle = Organelle(0.1)
     organelle:load(storage)
     return organelle
 end
@@ -88,7 +86,7 @@ function Organelle:load(storage)
     self.rotation = storage:get("rotation", 0)
     self.name = storage:get("name", "<nameless>")
 
-    for _, componentName in pairs(organelleTable[self.name].components) do
+    for componentName, _ in pairs(organelleTable[self.name].components) do
         local componentType = _G[componentName]
         if componentType.load ~= nil then
             componentType.load(self, storage)
@@ -106,7 +104,7 @@ end
 --  Axial coordinates of the organelle's center
 function Organelle:onAddedToMicrobe(microbe, q, r, rotation)
 
-    for _, componentName in pairs(organelleTable[self.name].components) do
+    for componentName, _ in pairs(organelleTable[self.name].components) do
         local componentType = _G[componentName]
         if componentType.onAddedToMicrobe ~= nil then
             componentType.onAddedToMicrobe(self, microbe, q, r, rotation)
@@ -186,7 +184,7 @@ end
 --  The organelle's previous owner
 function Organelle:onRemovedFromMicrobe(microbe)
 
-    for _, componentName in pairs(organelleTable[self.name].components) do
+    for componentName, _ in pairs(organelleTable[self.name].components) do
         local componentType = _G[componentName]
         if componentType.onRemovedFromMicrobe ~= nil then
             componentType.onRemovedFromMicrobe(self, microbe)
@@ -233,7 +231,6 @@ end
 
 function Organelle:storage()
     storage = StorageContainer()
-    storage:set("className", class_info(self).name)
     hexes = StorageList()
     for _, hex in pairs(self._hexes) do
         hexStorage = StorageContainer()
@@ -250,7 +247,7 @@ function Organelle:storage()
     --Serializing these causes some minor issues and doesn't serve a purpose anyway
     --storage:set("externalEdgeColour", self._externalEdgeColour)
     
-    for _, componentName in pairs(organelleTable[self.name].components) do
+    for componentName, _ in pairs(organelleTable[self.name].components) do
         local componentType = _G[componentName]
         if componentType.storage ~= nil then
             componentType.storage(self, storage)
@@ -269,7 +266,7 @@ end
 --  The time since the last call to update()
 function Organelle:update(microbe, logicTime)
 
-    for _, componentName in pairs(organelleTable[self.name].components) do
+    for componentName, _ in pairs(organelleTable[self.name].components) do
         local componentType = _G[componentName]
         if componentType.update ~= nil and componentType.update ~= Organelle.update then
             componentType.update(self, microbe, logicTime)
@@ -320,9 +317,15 @@ local function makeOrganelle(data)
     
     --retrieveing the organelle info from the table
     local organelleInfo = organelleTable[data.name]
-    
+
+    --creating an empty organelle
     local organelle = Organelle(organelleInfo.mass)
-    OrganelleFactory["make_"..data.name](data, organelle)
+
+    --adding all of the components.
+    for componentName, arguments in pairs(organelleInfo.components) do
+        local componentType = _G[componentName]
+        componentType.__init(organelle, arguments, data)
+    end
 
     --getting the hex table of the organelle rotated by the angle
     local hexes = rotateHexListNTimes(organelleInfo.hexes, angle)
