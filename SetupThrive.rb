@@ -172,7 +172,6 @@ Dir.chdir(File.join(CurrentDir, "thrive")) do
   # It seems that if the link is created when it already exists a llink is created into
   # the target folder for some reason
   createLinkIfDoesntExist "assets/cegui_examples", "cegui_examples"
-  createLinkIfDoesntExist "assets/definitions", "definitions"
   createLinkIfDoesntExist "assets/fonts", "fonts"
   createLinkIfDoesntExist "assets/gui", "gui"
   createLinkIfDoesntExist "assets/materials", "materials"
