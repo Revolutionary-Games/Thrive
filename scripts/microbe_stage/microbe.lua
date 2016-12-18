@@ -1032,6 +1032,7 @@ function Microbe:_initialize()
     self.sceneNode.meshName = "membrane_" .. self.microbe.speciesName
     self.rigidBody.properties:touch()
     self.microbe.initialized = true
+    self.reproductionStage = 0
 end
 
 
