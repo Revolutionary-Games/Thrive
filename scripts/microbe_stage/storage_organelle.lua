@@ -3,13 +3,13 @@
 --------------------------------------------------------------------------------
 class 'StorageOrganelle' (OrganelleComponent)
 
+-- See organelle_component.lua for more information about the 
+-- organelle component methods and the arguments they receive.
+
 -- Constructor
 --
--- @param capacity
+-- @param arguments.capacity
 -- The maximum stored amount
---
--- @param mass
--- How heavy this organelle is
 function StorageOrganelle:__init(arguments, data)
     --making sure this doesn't run when load() is called
     if arguments == nil and data == nil then

@@ -3,6 +3,9 @@
 --------------------------------------------------------------------------------
 class 'NucleusOrganelle' (OrganelleComponent)
 
+-- See organelle_component.lua for more information about the 
+-- organelle component methods and the arguments they receive.
+
 -- Constructor
 function NucleusOrganelle:__init(arguments, data)
     --making sure this doesn't run when load() is called

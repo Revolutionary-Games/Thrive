@@ -183,6 +183,9 @@ end
 --------------------------------------------------------------------------------
 class 'ProcessOrganelle' (OrganelleComponent)
 
+-- See organelle_component.lua for more information about the 
+-- organelle component methods and the arguments they receive.
+
 PROCESS_CAPACITY_UPDATE_INTERVAL = 1000
 
 -- Constructor

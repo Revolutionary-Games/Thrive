@@ -1,6 +1,9 @@
 -- Enables a microbe to move and turn
 class 'MovementOrganelle' (OrganelleComponent)
 
+-- See organelle_component.lua for more information about the 
+-- organelle component methods and the arguments they receive.
+
 -- Calculate the momentum of the movement organelle based on angle towards nucleus
 local function calculateForce(q, r, momentum)
     local organelleX, organelleY = axialToCartesian(q, r)
@@ -16,11 +19,11 @@ end
 
 -- Constructor
 --
--- @param force
---  The force this organelle can exert to move a microbe
+-- @param arguments.momentum
+--  The force this organelle can exert to move a microbe.
 --
--- @param torque
---  The torque this organelle can exert to turn a microbe
+-- @param arguments.torque
+--  The torque this organelle can exert to turn a microbe.
 function MovementOrganelle:__init(arguments, data)
     --making sure this doesn't run when load() is called
     if arguments == nil and data == nil then

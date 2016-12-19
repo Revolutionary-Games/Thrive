@@ -3,7 +3,16 @@
 --------------------------------------------------------------------------------
 class 'AgentVacuole' (OrganelleComponent)
 
+-- See organelle_component.lua for more information about the 
+-- organelle component methods and the arguments they receive.
+
 -- Constructor
+--
+-- @param arguments.process
+--  The process that creates the agent this organelle produces.
+--
+-- @param arguments.compound
+--  The agent this organelle produces.
 function AgentVacuole:__init(arguments, data)
     --making sure this doesn't run when load() is called
     if arguments == nil and data == nil then
