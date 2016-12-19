@@ -379,6 +379,7 @@ function Organelle:recalculateBin()
         
         -- Darken the color. Will be updated on next call of update()
         self.colourTint = Vector3((1.0 + self.compoundBin)/2, self.compoundBin, self.compoundBin)
+        self._needsColourUpdate = true
     else
         -- Scale the organelle model to reflect the new size.
         self.sceneNode.transform.scale = Vector3(self.compoundBin, self.compoundBin, self.compoundBin)*HEX_SIZE

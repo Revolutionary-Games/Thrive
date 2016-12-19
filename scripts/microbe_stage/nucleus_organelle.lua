@@ -154,10 +154,12 @@ function NucleusOrganelle:recalculateBin()
         self.sceneNode.transform.scale = Vector3((1.0 + self.compoundBin)/2, (1.0 + self.compoundBin)/2, (1.0 + self.compoundBin)/2)*HEX_SIZE
         self.sceneNode.transform:touch()
         
-        -- Darken the color.
-        local speciesColour = self.microbe:getSpeciesComponent().colour
-        local colorSuffix =  "" .. math.floor(speciesColour.x * 256) .. math.floor(speciesColour.y * 256) .. math.floor(speciesColour.z * 256)
-        self.sceneNode.entity:tintColour(self.name .. colorSuffix, ColourValue((1.0 + self.compoundBin)/2, self.compoundBin, self.compoundBin, 1.0))      
+        if self.sceneNode.entity ~= nil then
+            -- Darken the color.
+            local speciesColour = self.microbe:getSpeciesComponent().colour
+            local colorSuffix =  "" .. math.floor(speciesColour.x * 256) .. math.floor(speciesColour.y * 256) .. math.floor(speciesColour.z * 256)
+            self.sceneNode.entity:tintColour(self.name .. colorSuffix, ColourValue((1.0 + self.compoundBin)/2, self.compoundBin, self.compoundBin, 1.0))
+        end
     else
         -- Darken the nucleus as more DNA is made.
         local speciesColour = self.microbe:getSpeciesComponent().colour
