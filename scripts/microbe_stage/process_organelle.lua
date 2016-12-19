@@ -125,6 +125,7 @@ function Process:produce(milliseconds, capacityFactor, parentMicrobe, storageTar
 end
 
 function Process:storage()
+    local storage = StorageContainer()
     --[[
     storage:set("basicRate", self.basicRate)
     storage:set("priority", self.priority)
@@ -186,10 +187,16 @@ PROCESS_CAPACITY_UPDATE_INTERVAL = 1000
 
 -- Constructor
 function ProcessOrganelle:__init(arguments, data)
+    --making sure this doesn't run when load() is called
+    if arguments == nil and data == nil then
+        return
+    end
+
     self.originalColour = ColourValue(1,1,1,1)
     -- self.processes = {}
     self.colourChangeFactor = 1.0
     self.capacityIntervalTimer = PROCESS_CAPACITY_UPDATE_INTERVAL
+    return self
 end
 
 -- Adds a process to the processing organelle
@@ -231,7 +238,7 @@ end
 --
 -- @param logicTime
 -- The time since the last call to update()
-function ProcessOrganelle:update(microbe, logicTime)
+function ProcessOrganelle:update(microbe, organelle, logicTime)
     --[[
     self.capacityIntervalTimer = self.capacityIntervalTimer + logicTime
     processFactoredPriorities = {}
@@ -267,6 +274,7 @@ end
 
 
 function ProcessOrganelle:storage(storage)
+    local storage = StorageContainer()
     storage:set("capacityIntervalTimer", self.capacityIntervalTimer)
     storage:set("originalColour", self.originalColour)
     storage:set("colourChangeFactor", self.colourChangeFactor)

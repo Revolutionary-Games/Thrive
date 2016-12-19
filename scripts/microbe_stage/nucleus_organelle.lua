@@ -5,8 +5,14 @@ class 'NucleusOrganelle' (OrganelleComponent)
 
 -- Constructor
 function NucleusOrganelle:__init(arguments, data)
+    --making sure this doesn't run when load() is called
+    if arguments == nil and data == nil then
+        return
+    end
+
     self.golgi = Entity()
 	self.ER = Entity()
+    return self
 end
 
 
@@ -48,30 +54,30 @@ function NucleusOrganelle:load(storage)
 	self.ER = Entity()
 end
 
-function NucleusOrganelle:update(microbe, logicTime)
-    if self.flashDuration ~= nil and self.sceneNode.entity ~= nil then
-        self.flashDuration = self.flashDuration - logicTime
+function NucleusOrganelle:update(microbe, organelle, logicTime)
+    if organelle.flashDuration ~= nil and organelle.sceneNode.entity ~= nil then
+        organelle.flashDuration = organelle.flashDuration - logicTime
         
         local speciesColour = microbe:getSpeciesComponent().colour
         local colorSuffix =  "" .. math.floor(speciesColour.x * 256) .. math.floor(speciesColour.y * 256) .. math.floor(speciesColour.z * 256)
 		
-		local entity = self.sceneNode.entity
+		local entity = organelle.sceneNode.entity
         local golgiEntity = self.golgi.sceneNode.entity
         local ER_entity = self.ER.sceneNode.entity
 		-- How frequent it flashes, would be nice to update the flash function
-		if math.fmod(self.flashDuration,600) < 300 then      
-            entity:tintColour(self.name, self.colour)
-            golgiEntity:tintColour("golgi", self.colour)
-            ER_entity:tintColour("ER", self.colour)            
+		if math.fmod(organelle.flashDuration,600) < 300 then      
+            entity:tintColour(organelle.name, organelle.colour)
+            golgiEntity:tintColour("golgi", organelle.colour)
+            ER_entity:tintColour("ER", organelle.colour)            
 		else
-			entity:setMaterial(self.name .. colorSuffix)
+			entity:setMaterial(organelle.name .. colorSuffix)
 			golgiEntity:setMaterial("golgi" .. colorSuffix)
 			ER_entity:setMaterial("ER" .. colorSuffix)
 		end
 		
-        if self.flashDuration <= 0 then
-            self.flashDuration = nil				
-			entity:setMaterial(self.name .. colorSuffix)
+        if organelle.flashDuration <= 0 then
+            organelle.flashDuration = nil				
+			entity:setMaterial(organelle.name .. colorSuffix)
 			golgiEntity:setMaterial("golgi" .. colorSuffix)
 			ER_entity:setMaterial("ER" .. colorSuffix)
         end

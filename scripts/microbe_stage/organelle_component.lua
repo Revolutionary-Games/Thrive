@@ -11,10 +11,11 @@ end
 function OrganelleComponent:onRemovedFromMicrobe(microbe, q, r)
 end
 
-function OrganelleComponent:update(microbe, logicTime)
+function OrganelleComponent:update(microbe, organelle, logicTime)
 end
 
-function OrganelleComponent:storage(storage)
+function OrganelleComponent:storage()
+    return StorageContainer()
 end
 
 function OrganelleComponent:load(storage)

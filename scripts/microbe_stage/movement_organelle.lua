@@ -22,6 +22,11 @@ end
 -- @param torque
 --  The torque this organelle can exert to turn a microbe
 function MovementOrganelle:__init(arguments, data)
+    --making sure this doesn't run when load() is called
+    if arguments == nil and data == nil then
+        return
+    end
+
     self.energyMultiplier = 0.025
     self.force = calculateForce(data.q, data.r, arguments.momentum)
     self.torque = arguments.torque
@@ -30,40 +35,42 @@ function MovementOrganelle:__init(arguments, data)
 	self.y = 0
 	self.angle = 0
     self.movingTail = false
+    return self
 end
 
 function MovementOrganelle:load(storage)
+    self.position = {}
     self.energyMultiplier = storage:get("energyMultiplier", 0.025)
     self.force = storage:get("force", Vector3(0,0,0))
-    self.torque = storage:get("torque", Vector3(0,0,0))
+    self.torque = storage:get("torque", 500)
 end
 
-function MovementOrganelle:storage(storage)
-    --local storage = Organelle.storage(self)
+function MovementOrganelle:storage()
+    local storage = StorageContainer()
     storage:set("energyMultiplier", self.energyMultiplier)
     storage:set("force", self.force)
     storage:set("torque", self.torque)
     return storage
 end
 
-function MovementOrganelle:_moveMicrobe(microbe, milliseconds)
+function MovementOrganelle:_moveMicrobe(microbe, organelle, milliseconds)
     local direction = microbe.microbe.movementDirection
     local forceMagnitude = self.force:dotProduct(direction)
     if forceMagnitude > 0 then
         if direction:isZeroLength() or self.force:isZeroLength()  then
             self.movingTail = false
-            self.sceneNode:setAnimationSpeed(0.25)
+            organelle.sceneNode:setAnimationSpeed(0.25)
             return
         end 
         self.movingTail = true
-        self.sceneNode:setAnimationSpeed(1.3)
+        organelle.sceneNode:setAnimationSpeed(1.3)
         
         local energy = math.abs(self.energyMultiplier * forceMagnitude * milliseconds / 1000)
         local availableEnergy = microbe:takeCompound(CompoundRegistry.getCompoundId("atp"), energy)
         if availableEnergy < energy then
             forceMagnitude = sign(forceMagnitude) * availableEnergy * 1000 / milliseconds / self.energyMultiplier
             self.movingTail = false
-            self.sceneNode:setAnimationSpeed(0.25)
+            organelle.sceneNode:setAnimationSpeed(0.25)
         end
         local impulseMagnitude = microbe.microbe.movementFactor * milliseconds * forceMagnitude / 1000
         local impulse = impulseMagnitude * direction
@@ -74,7 +81,7 @@ function MovementOrganelle:_moveMicrobe(microbe, milliseconds)
     else 
         if self.movingTail then
             self.movingTail = false
-            self.sceneNode:setAnimationSpeed(0.25)
+            organelle.sceneNode:setAnimationSpeed(0.25)
         end
     end
 end
@@ -102,15 +109,15 @@ function MovementOrganelle:_turnMicrobe(microbe)
 end
 
 
-function MovementOrganelle:update(microbe, logicTime)
-    local x, y = axialToCartesian(self.position.q, self.position.r)
+function MovementOrganelle:update(microbe, organelle, logicTime)
+    local x, y = axialToCartesian(organelle.position.q, organelle.position.r)
     local membraneCoords = microbe.membraneComponent:getExternOrganellePos(x, y)
     local translation = Vector3(membraneCoords[1], membraneCoords[2], 0)
-    self.organelleEntity.sceneNode.transform.position = translation - Vector3(x, y, 0)
-    self.organelleEntity.sceneNode.transform:touch()
+    organelle.organelleEntity.sceneNode.transform.position = translation - Vector3(x, y, 0)
+    organelle.organelleEntity.sceneNode.transform:touch()
 
     MovementOrganelle._turnMicrobe(self, microbe)
-    MovementOrganelle._moveMicrobe(self, microbe, logicTime)
+    MovementOrganelle._moveMicrobe(self, microbe, organelle, logicTime)
 end
 
 function OrganelleFactory.render_flagellum(data)
