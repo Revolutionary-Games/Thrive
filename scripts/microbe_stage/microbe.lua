@@ -656,6 +656,7 @@ end
 function Microbe:readyToReproduce()
     if self.microbe.isPlayerMicrobe then
         showReproductionDialog()
+        self.reproductionStage = 0
     else
         -- Return the first cell to its normal, non duplicated cell arangement.
         SpeciesSystem.template(self, self:getSpeciesComponent())
@@ -664,18 +665,13 @@ function Microbe:readyToReproduce()
 end
 
 function Microbe:divide()
-    print("divide")
+    print("dividing cell ")
     -- Create the two daughter cells.
     local copy = Microbe.createMicrobeEntity(nil, true, self.microbe.speciesName)
-    print(self.microbe.speciesName.." <> "..copy.microbe.speciesName)
     
     --Separate the two cells.
     copy.rigidBody.dynamicProperties.position = Vector3(self.rigidBody.dynamicProperties.position.x - self.membraneComponent.dimensions/2, self.rigidBody.dynamicProperties.position.y, 0)
     self.rigidBody.dynamicProperties.position = Vector3(self.rigidBody.dynamicProperties.position.x + self.membraneComponent.dimensions/2, self.rigidBody.dynamicProperties.position.y, 0)
-    
-    if self.microbe.isPlayerMicrobe == true then
-        --print("before " .. self:getCompoundAmount(CompoundRegistry.getCompoundId("glucose")))
-    end
     
     -- Split the compounds evenly between the two cells.
     for compoundID in CompoundRegistry.getCompoundList() do
@@ -687,9 +683,8 @@ function Microbe:divide()
         end
     end
     
-    if self.microbe.isPlayerMicrobe == true then
-        --print("divided " .. self:getCompoundAmount(CompoundRegistry.getCompoundId("glucose")))
-    end
+    self.reproductionStage = 0
+    copy.reproductionStage = 0
     
     copy.entity:addComponent(SpawnedComponent())
     self.soundSource:playSound("microbe-reproduction")
@@ -789,8 +784,8 @@ function Microbe:update(logicTime)
                 -- Update the organelle.
                 organelle:update(self, logicTime)
                 
-                -- We are in G1 phase of the cell cycle and the organelle is hurt.
-                if organelle.name ~= "nucleus" and self.reproductionStage == 0 and organelle.compoundBin < 1.0 then
+                -- If the organelle is hurt.
+                if organelle.compoundBin < 1.0 then
                     -- Give the organelle access to the compound bag to take some compound.
                     organelle:grow(self.entity:getComponent(CompoundBagComponent.TYPE_ID))
                     -- An organelle was damaged and we tried to heal it, so out health might be different.
@@ -800,7 +795,7 @@ function Microbe:update(logicTime)
         else
             local reproductionStageComplete = true
         
-            -- Second organelle run: grow all the large organelles.
+            -- Grow all the large organelles.
             for _, organelle in pairs(self.microbe.organelles) do
                 -- Update the organelle.
                 organelle:update(self, logicTime)
@@ -845,6 +840,7 @@ function Microbe:update(logicTime)
             if reproductionStageComplete and self.reproductionStage < 2 then
                 self.reproductionStage = self.reproductionStage + 1
             end
+            
             -- To finish the G2 phase we just need more than a threshold of compounds.
             if self.reproductionStage == 2 or self.reproductionStage == 3 then
                 -- If we have more than the threshold,
@@ -853,7 +849,7 @@ function Microbe:update(logicTime)
                 --    self:getCompoundAmount(CompoundRegistry.getCompoundId("aminoacids")) > 1 and
                 --    self:getCompoundAmount(CompoundRegistry.getCompoundId("atp")) > 10 then
                 --   
-                    showReproductionDialog()
+                    self:readyToReproduce()
                 --else
                 --    hideReproductionDialog()
                 --end

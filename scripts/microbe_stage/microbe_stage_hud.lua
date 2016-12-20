@@ -27,7 +27,8 @@ function HudSystem:activate()
     self.menuOpen = true
     self:updateLoadButton()
     -- Always start the game without being able to reproduce.
-    self.editorButton:disable()
+    
+    self:hideReproductionDialog()
 end
 
 function HudSystem:init(gameState)
