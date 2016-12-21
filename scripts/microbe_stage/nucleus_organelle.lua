@@ -68,6 +68,13 @@ function NucleusOrganelle:update(microbe, organelle, logicTime)
         local golgiEntity = self.golgi.sceneNode.entity
         local ER_entity = self.ER.sceneNode.entity
 		-- How frequent it flashes, would be nice to update the flash function
+
+        --Poor people's error handling.
+        if golgiEntity == nil then
+            print("Golgi not initialized")
+            return
+        end
+
 		if math.fmod(organelle.flashDuration,600) < 300 then      
             entity:tintColour(organelle.name, organelle.colour)
             golgiEntity:tintColour("golgi", organelle.colour)

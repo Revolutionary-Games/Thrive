@@ -189,6 +189,9 @@ class 'ProcessOrganelle' (OrganelleComponent)
 PROCESS_CAPACITY_UPDATE_INTERVAL = 1000
 
 -- Constructor
+--
+-- @param arguments.colourChangeFactor
+--  I got absolutely no idea what this does :P.
 function ProcessOrganelle:__init(arguments, data)
     --making sure this doesn't run when load() is called
     if arguments == nil and data == nil then
@@ -197,7 +200,7 @@ function ProcessOrganelle:__init(arguments, data)
 
     self.originalColour = ColourValue(1,1,1,1)
     -- self.processes = {}
-    self.colourChangeFactor = 1.0
+    self.colourChangeFactor = arguments.colourChangeFactor
     self.capacityIntervalTimer = PROCESS_CAPACITY_UPDATE_INTERVAL
     return self
 end

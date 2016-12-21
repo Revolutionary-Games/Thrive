@@ -1,8 +1,29 @@
+--[[
+Organelle atributes:
+    mass:   how heavy an organelle is. Affects speed, mostly.
+
+    components: a table with the components an organelle has, plus
+                the arguments the component needs to initialize.
+                Refer to the particular component's lua file for
+                more information.
+
+    mpCost: The cost (in mutation points) an organelle costs in the
+            microbe editor.
+
+    mesh:   The name of the mesh file of the organelle.
+            It has to be in the models folder.
+
+    hexes:  A table of the hexes that the organelle occupies.
+            Each hex it's represented by a table that looks like this:
+                {["q"]=q,   ["r"]=r}
+            where q and r are the hex position in axial coordinates.
+]]
+
 organelleTable = {
     ["nucleus"] = {
         mass = 0.7,
         components = {
-            ["ProcessOrganelle"] = {},
+            ["ProcessOrganelle"] = {colourChangeFactor = 1.0},
             ["NucleusOrganelle"] = {}
         },
         mpCost = 0, --it's not supossed to be purchased.
@@ -37,7 +58,7 @@ organelleTable = {
 
     ["chloroplast"] = {
         components = {
-            ["ProcessOrganelle"] = {}
+            ["ProcessOrganelle"] = {colourChangeFactor = 1.0}
         },
         mass = 0.4,
         mpCost = 20,
@@ -51,16 +72,15 @@ organelleTable = {
 
     ["oxytoxy"] = {
         components = {
-            ["ProcessOrganelle"] = {},
+            ["ProcessOrganelle"] = {colourChangeFactor = 0.15},
             ["AgentVacuole"] = {
                 compound = "oxytoxy",
                 process = "OxyToxySynthesis"
             }
-        }, --agentVacuole.colourChangeFactor = 0.15
+        },
         mass = 0.3,
         mpCost = 40,
         mesh = "AgentVacuole.mesh",
-        colour = ColourValue(0, 1, 1, 0),
         hexes = {
             {["q"]=0,   ["r"]=0}
         }
@@ -68,7 +88,7 @@ organelleTable = {
 
     ["mitochondrion"] = {
         components = {
-            ["ProcessOrganelle"] = {}
+            ["ProcessOrganelle"] = {colourChangeFactor = 1.0}
         },
         mass = 0.3,
         mpCost = 20,

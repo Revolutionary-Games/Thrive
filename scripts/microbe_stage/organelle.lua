@@ -336,8 +336,6 @@ function OrganelleFactory.makeOrganelle(data)
             organelle:addHex(hex.q, hex.r)
         end
 
-        --setting the organelle colour
-
         return organelle
     end
 end
