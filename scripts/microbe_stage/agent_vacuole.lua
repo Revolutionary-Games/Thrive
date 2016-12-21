@@ -77,14 +77,3 @@ function AgentVacuole:load(storage)
     process:load(storage:get("process", 0))
     self.process = process
 end
-
-function OrganelleFactory.render_oxytoxy(data)
-	local x, y = axialToCartesian(data.q, data.r)
-	local translation = Vector3(-x, -y, 0)
-	data.sceneNode[1].meshName = "AgentVacuole.mesh"
-	data.sceneNode[1].transform.position = translation
-	data.sceneNode[1].transform.orientation = Quaternion(Radian(Degree(data.rotation)), Vector3(0, 0, 1))
-	
-    data.sceneNode[2].transform.position = translation
-	OrganelleFactory.setColour(data.sceneNode[2], data.colour)
-end

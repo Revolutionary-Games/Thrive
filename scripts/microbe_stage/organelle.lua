@@ -10,7 +10,7 @@ end
 
 
 -- Constructor
-function Organelle:__init(mass)
+function Organelle:__init(mass, name)
     self.entity = Entity()
     self.entity:setVolatile(true)
     self.sceneNode = self.entity:getOrCreate(OgreSceneNodeComponent)
@@ -24,7 +24,13 @@ function Organelle:__init(mass)
         r = 0
     }
     self.rotation = nil
-    self.name = "<nameless>"
+
+    --Naming the organelle.
+    if name == nil then
+        self.name = "<nameless>"
+    else
+        self.name = name
+    end
 end
 
 
@@ -141,10 +147,13 @@ function Organelle:onAddedToMicrobe(microbe, q, r, rotation)
     local sceneNode = OgreSceneNodeComponent()
     self.sceneNode = sceneNode
     sceneNode.parent = self.entity
-    
-    if self.name ~= "cytoplasm" then
-        sceneNode.meshName = self.name .. ".mesh"
+
+    --Adding a mesh to the organelle.
+    local mesh = organelleTable[self.name].mesh
+    if mesh ~= nil then
+        sceneNode.meshName = mesh
     end
+
 	if self.name == "nucleus"  then
 		offset = Vector3(0,0,0)
 		-- TODO: Add specific nucleus animation here.
@@ -306,18 +315,12 @@ function OrganelleFactory.setColour(sceneNode, colour)
 end
 
 function OrganelleFactory.makeOrganelle(data)
-    if not (data.name == "" or data.name == nil) then--getting the angle the organelle has
-        --(and setting one if it doesn't have one).
-        if data.rotation == nil then
-            data.rotation = 0
-        end
-        local angle = data.rotation / 60
-        
+    if not (data.name == "" or data.name == nil) then
         --retrieveing the organelle info from the table
         local organelleInfo = organelleTable[data.name]
 
         --creating an empty organelle
-        local organelle = Organelle(organelleInfo.mass)
+        local organelle = Organelle(organelleInfo.mass, data.name)
 
         --adding all of the components.
         for componentName, arguments in pairs(organelleInfo.components) do
@@ -326,7 +329,7 @@ function OrganelleFactory.makeOrganelle(data)
         end
 
         --getting the hex table of the organelle rotated by the angle
-        local hexes = rotateHexListNTimes(organelleInfo.hexes, angle)
+        local hexes = OrganelleFactory.checkSize(data)
 
         --adding the hexes to the organelle
         for _, hex in pairs(hexes) do
@@ -335,7 +338,6 @@ function OrganelleFactory.makeOrganelle(data)
 
         --setting the organelle colour
 
-        organelle.name = data.name
         return organelle
     end
 end
@@ -345,7 +347,40 @@ function OrganelleFactory.renderOrganelles(data)
 	if data.name == "remove" then
 		return {}
 	else
-		OrganelleFactory["render_"..data.name](data)
+        --Getting the list hexes occupied by this organelle.
+        occupiedHexList = OrganelleFactory.checkSize(data)
+
+        --Used to get the average x and y values.
+        local xSum = 0
+        local ySum = 0
+
+        --Rendering a cytoplasm in each of those hexes.
+        --Note: each scenenode after the first one is considered a cytoplasm by the engine automatically.
+        local i = 2
+        for _, hex in pairs(occupiedHexList) do
+            local organelleX, organelleY = axialToCartesian(data.q, data.r)
+            local hexX, hexY = axialToCartesian(hex.q, hex.r)
+            local x = organelleX + hexX
+            local y = organelleY + hexY
+            local translation = Vector3(-x, -y, 0)
+            data.sceneNode[i].transform.position = translation
+            data.sceneNode[i].transform.orientation = Quaternion(Radian(Degree(data.rotation)), Vector3(0, 0, 1))
+            xSum = xSum + x
+            ySum = ySum + y
+            i = i + 1
+        end
+
+        --Getting the average x and y values to render the organelle mesh in the middle.
+        local xAverage = xSum / (i - 2) -- Number of occupied hexes = (i - 2).
+        local yAverage = ySum / (i - 2)
+
+        --Rendering the organelle mesh (if it has one).
+        local mesh = organelleTable[data.name].mesh
+        if(mesh ~= nil) then
+            data.sceneNode[1].meshName = mesh
+            data.sceneNode[1].transform.position = Vector3(-xAverage, -yAverage, 0)
+            data.sceneNode[1].transform.orientation = Quaternion(Radian(Degree(data.rotation)), Vector3(0, 0, 1))
+        end
 	end
 end
 
