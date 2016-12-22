@@ -1,4 +1,3 @@
-
 local function setupBackground()
     local entity = Entity("background")
     local skyplane = SkyPlaneComponent()

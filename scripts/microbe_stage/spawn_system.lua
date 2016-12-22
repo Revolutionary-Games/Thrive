@@ -35,6 +35,8 @@ REGISTER_COMPONENT("SpawnedComponent", SpawnedComponent)
 --------------------------------------------------------------------------------
 class 'SpawnSystem' (System)
 
+currentSpawnSystem = nil
+
 function SpawnSystem:__init()
     System.__init(self)
     
@@ -43,12 +45,14 @@ function SpawnSystem:__init()
             SpawnedComponent
         }
     )
-    
+    self.nextId = 1
     self.spawnTypes = {} --Keeps track of factory functions.
     
     self.playerPosPrev = nil --A Vector3 that remembers the player's position in the last spawn cycle
     
     self.timeSinceLastCycle = 0 --Stores how much time has passed since the last spawn cycle
+    
+    currentSpawnSystem = self
 end
 
 -- Override from System
@@ -64,7 +68,7 @@ function SpawnSystem:shutdown()
 end
 
 -- Adds a new type of entity to spawn in the SpawnSystem
---
+-- Also returns an unique id to reference it.
 -- Note that SpawnedComponent will be added automatically and should not be done by the factory function
 --
 -- @param factoryFunction
@@ -87,7 +91,18 @@ function SpawnSystem:addSpawnType(factoryFunction, spawnDensity, spawnRadius)
     --that is the area of the square region where entities attempt to spawn.
     newSpawnType.spawnFrequency = spawnDensity * spawnRadius * spawnRadius * 4
     
-    table.insert(self.spawnTypes, newSpawnType)
+    id = "spawnType" .. self.nextId
+    self.nextId = self.nextId + 1
+    self.spawnTypes[id] = newSpawnType
+    return id
+end
+
+--removes an element
+--
+-- @param id
+--  The id of the element to be removed
+function SpawnSystem:removeSpawnType(id)
+    self.spawnTypes[id] = nil
 end
 
 -- For each entity type, spawns the appropriate number of entities within the spawn
@@ -133,7 +148,7 @@ function SpawnSystem:_doSpawnCycle()
 
     
     --Spawn entities
-    for _,spawnType in pairs(self.spawnTypes) do
+    for id,spawnType in pairs(self.spawnTypes) do
         --To actually spawn a given entity for a given attempt, two conditions should be met.
         --The first condition is a random chance that adjusts the spawn frequency to the approprate
         --amount. The second condition is whether the entity will spawn in a valid position.
