@@ -214,6 +214,25 @@ starter_microbes = {
             {name="flagellum",q=-1,r=-3, rotation=0},
         },
         colour = {r=1,g=1,b=1},
+    }}
+
+--[[ RIP in peace
+starter_microbes = {
+    Default = {
+        spawnDensity = 1/14000,
+        compounds = {
+            atp = {priority=10,amount=40},
+            glucose = {amount = 5},
+            reproductase = {priority = 8},
+        },
+        organelles = {
+            {name="nucleus",q=0,r=0, rotation=0},
+            {name="mitochondrion",q=-1,r=-2, rotation=240},
+            {name="vacuole",q=1,r=-3, rotation=0},
+            {name="flagellum",q=1,r=-4, rotation=0},
+            {name="flagellum",q=-1,r=-3, rotation=0},
+        },
+        colour = {r=1,g=1,b=1},
     },
     Teeny = {
         spawnDensity = 1/9000,
@@ -330,4 +349,4 @@ starter_microbes = {
         },
         colour = {r=0.3,g=1,b=0.8},
     },
-}
+}]]
