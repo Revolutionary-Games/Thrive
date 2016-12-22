@@ -125,6 +125,7 @@ function Process:produce(milliseconds, capacityFactor, parentMicrobe, storageTar
 end
 
 function Process:storage()
+    local storage = StorageContainer()
     --[[
     storage:set("basicRate", self.basicRate)
     storage:set("priority", self.priority)
@@ -180,17 +181,28 @@ end
 --------------------------------------------------------------------------------
 -- Class for Organelles capable of producing compounds
 --------------------------------------------------------------------------------
-class 'ProcessOrganelle' (Organelle)
+class 'ProcessOrganelle' (OrganelleComponent)
+
+-- See organelle_component.lua for more information about the 
+-- organelle component methods and the arguments they receive.
 
 PROCESS_CAPACITY_UPDATE_INTERVAL = 1000
 
 -- Constructor
-function ProcessOrganelle:__init(mass)
-    Organelle.__init(self, mass)
+--
+-- @param arguments.colourChangeFactor
+--  I got absolutely no idea what this does :P.
+function ProcessOrganelle:__init(arguments, data)
+    --making sure this doesn't run when load() is called
+    if arguments == nil and data == nil then
+        return
+    end
+
     self.originalColour = ColourValue(1,1,1,1)
     -- self.processes = {}
-    self.colourChangeFactor = 1.0
+    self.colourChangeFactor = arguments.colourChangeFactor
     self.capacityIntervalTimer = PROCESS_CAPACITY_UPDATE_INTERVAL
+    return self
 end
 
 -- Adds a process to the processing organelle
@@ -205,14 +217,12 @@ end
 
 -- Overridded from Organelle:onAddedToMicrobe
 function ProcessOrganelle:onAddedToMicrobe(microbe, q, r, rotation)
-    Organelle.onAddedToMicrobe(self, microbe, q, r, rotation)
     microbe:addProcessOrganelle(self)
 end
 
 -- Overridded from Organelle:onRemovedFromMicrobe
 function ProcessOrganelle:onRemovedFromMicrobe(microbe, q, r)
     microbe:removeProcessOrganelle(self)
-    Organelle.onRemovedFromMicrobe(self, microbe, q, r)
 end
 
 -- Private function used to update colour of organelle based on how full it is
@@ -234,8 +244,7 @@ end
 --
 -- @param logicTime
 -- The time since the last call to update()
-function ProcessOrganelle:update(microbe, logicTime)
-    Organelle.update(self, microbe, logicTime)
+function ProcessOrganelle:update(microbe, organelle, logicTime)
     --[[
     self.capacityIntervalTimer = self.capacityIntervalTimer + logicTime
     processFactoredPriorities = {}
@@ -270,8 +279,8 @@ function ProcessOrganelle:setColour(colour)
 end
 
 
-function ProcessOrganelle:storage()
-    local storage = Organelle.storage(self)
+function ProcessOrganelle:storage(storage)
+    local storage = StorageContainer()
     storage:set("capacityIntervalTimer", self.capacityIntervalTimer)
     storage:set("originalColour", self.originalColour)
     storage:set("colourChangeFactor", self.colourChangeFactor)
@@ -287,7 +296,6 @@ end
 
 
 function ProcessOrganelle:load(storage)
-    Organelle.load(self, storage)
     self.originalColour =  storage:get("originalColour", ColourValue.White)
     self.capacityIntervalTimer = storage:get("capacityIntervalTimer", 0)
     self.colourChangeFactor = storage:get("colourChangeFactor", 1.0)
@@ -299,170 +307,4 @@ function ProcessOrganelle:load(storage)
         self:addProcess(process)
     end
     --]]
-end
-
--------------------------------------------
--- factory functions for process organelles
-
-
-Organelle.mpCosts["chloroplast"] = 20
-Organelle.mpCosts["mitochondrion"] = 20
-
-function OrganelleFactory.make_mitochondrion(data)
-    local mass = 0.3
-    local mito = ProcessOrganelle(mass)
-    -- mito:addProcess(global_processMap["Respiration"])
-	
-	local angle = (data.rotation / 60)
-	
-	mito:addHex(0, 0)
-	local q = 1
-	local r = 0
-	for i=0, angle do
-		q, r = rotateAxial(q, r)
-	end
-	mito:addHex(q, r)
-
-    return mito
-end
-
-function OrganelleFactory.make_chloroplast(data)
-    local mass = 0.4
-	local x, y = axialToCartesian(data.q, data.r)
-    
-    local chloro = ProcessOrganelle(mass)
-    -- chloro:addProcess(global_processMap["Photosynthesis"])
-	
-	local angle = (data.rotation / 60)
-    if x < 0 then
-        angle = angle + 5
-    end
-	
-    chloro:addHex(0, 0)
-	local q = 1
-	local r = 0
-	for i=0, angle do
-		q, r = rotateAxial(q, r)
-	end
-	chloro:addHex(q, r)
-	q = 0
-	r = 1
-	for i=0, angle do
-		q, r = rotateAxial(q, r)
-	end
-	chloro:addHex(q, r)
-	
-    return chloro
-end
-
-function OrganelleFactory.render_mitochondrion(data)
-	local x, y = axialToCartesian(data.q, data.r)
-	local translation = Vector3(-x, -y, 0)
-	local organelleLocation = translation
-	
-	data.sceneNode[2].transform.position = translation
-	OrganelleFactory.setColour(data.sceneNode[2], data.colour)
-	
-	local angle = (data.rotation / 60)
-	local q = 1
-	local r = 0
-	for i=0, angle do
-		q, r = rotateAxial(q, r)
-	end
-	x, y = axialToCartesian(q + data.q, r + data.r)
-	translation = Vector3(-x, -y, 0)
-	organelleLocation = organelleLocation + translation
-	data.sceneNode[3].transform.position = translation
-	OrganelleFactory.setColour(data.sceneNode[3], data.colour)
-	
-	data.sceneNode[1].meshName = "mitochondrion.mesh"
-	organelleLocation = organelleLocation/2
-	data.sceneNode[1].transform.position = organelleLocation
-	data.sceneNode[1].transform.orientation = Quaternion(Radian(Degree(data.rotation)), Vector3(0, 0, 1))
-end
-
-function OrganelleFactory.render_chloroplast(data)
-	local x, y = axialToCartesian(data.q, data.r)
-	local translation = Vector3(-x, -y, 0)
-	local organelleLocation = translation
-	
-	data.sceneNode[2].transform.position = translation
-	OrganelleFactory.setColour(data.sceneNode[2], data.colour)
-	
-	local angle = (data.rotation / 60) + 5
-    if x < 0 then
-        angle = angle + 7
-    end
-    
-	local q = 1
-	local r = 0
-	for i=0, angle do
-		q, r = rotateAxial(q, r)
-	end
-	x, y = axialToCartesian(q + data.q, r + data.r)
-	translation = Vector3(-x, -y, 0)
-	organelleLocation = organelleLocation + translation
-	data.sceneNode[3].transform.position = translation
-	OrganelleFactory.setColour(data.sceneNode[3], data.colour)
-	
-	q = 0
-	r = 1
-	for i=0, angle do
-		q, r = rotateAxial(q, r)
-	end
-	x, y = axialToCartesian(q + data.q, r + data.r)
-	translation = Vector3(-x, -y, 0)
-	organelleLocation = organelleLocation + translation
-	data.sceneNode[4].transform.position = translation
-	OrganelleFactory.setColour(data.sceneNode[4], data.colour)
-	
-	data.sceneNode[1].meshName = "chloroplast.mesh"
-	organelleLocation = organelleLocation/3
-	data.sceneNode[1].transform.position = organelleLocation
-	data.sceneNode[1].transform.orientation = Quaternion(Radian(Degree(data.rotation)), Vector3(0, 0, 1))
-end
-
-function OrganelleFactory.sizeof_mitochondrion(data)
-	local hexes = {}
-	
-	local angle = (data.rotation / 60)
-	
-	hexes[1] = {["q"]=0, ["r"]=0}
-	
-	local q = 1
-	local r = 0
-	for i=0, angle do
-		q, r = rotateAxial(q, r)
-	end
-	hexes[2] = {["q"]=q, ["r"]=r}
-	
-    return hexes
-end
-
-function OrganelleFactory.sizeof_chloroplast(data)
-	local x, y = axialToCartesian(data.q, data.r)    
-	local hexes = {}
-	
-	local angle = (data.rotation / 60) + 5
-    if x < 0 then
-        angle = angle + 7
-    end
-	
-	hexes[1] = {["q"]=0, ["r"]=0}
-	
-	local q = 1
-	local r = 0
-	for i=0, angle do
-		q, r = rotateAxial(q, r)
-	end
-	hexes[2] = {["q"]=q, ["r"]=r}
-	
-	q = 0
-	r = 1
-	for i=0, angle do
-		q, r = rotateAxial(q, r)
-	end
-	hexes[3] = {["q"]=q, ["r"]=r}
-	
-    return hexes
 end
