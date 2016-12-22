@@ -1,33 +1,36 @@
 -- Base class for microbe organelles
 class 'Organelle'
 
-Organelle.mpCosts = {}
-
 -- Factory function for organelles
 function Organelle.loadOrganelle(storage)
-    local className = storage:get("className", "")
-    local cls = _G[className]
-    local organelle = cls()
+    local organelle = Organelle(0.1)
     organelle:load(storage)
     return organelle
 end
 
 
 -- Constructor
-function Organelle:__init(mass)
+function Organelle:__init(mass, name)
     self.entity = Entity()
     self.entity:setVolatile(true)
     self.sceneNode = self.entity:getOrCreate(OgreSceneNodeComponent)
 	self.sceneNode.transform.scale = Vector3(HEX_SIZE,HEX_SIZE,HEX_SIZE)
     self.collisionShape = CompoundShape()
     self.mass = mass
+    self.components = {}
     self._hexes = {}
     self.position = {
         q = 0,
         r = 0
     }
     self.rotation = nil
-    self.name = "<nameless>"
+
+    --Naming the organelle.
+    if name == nil then
+        self.name = "<nameless>"
+    else
+        self.name = name
+    end
 end
 
 
@@ -89,6 +92,17 @@ function Organelle:load(storage)
     self.mass = storage:get("mass", 0.1)
     self.rotation = storage:get("rotation", 0)
     self.name = storage:get("name", "<nameless>")
+
+    --loading all of the components
+    local componentStorage = storage:get("componentStorage", {})
+    for i = 1, componentStorage:size() do
+        local componentData = componentStorage:get(i)
+        local componentName = componentData:get("name", "i dunno")
+        local componentType = _G[componentName]
+        local newComponent = componentType(nil, nil)
+        newComponent:load(componentData)
+        self.components[componentName] = newComponent
+    end
 end
 
 
@@ -100,6 +114,11 @@ end
 -- @param q, r
 --  Axial coordinates of the organelle's center
 function Organelle:onAddedToMicrobe(microbe, q, r, rotation)
+    --iterating on each OrganelleComponent
+    for _, component in pairs(self.components) do
+        component:onAddedToMicrobe(microbe, q, r, rotation)
+    end
+
     self.microbe = microbe
     self.position.q = q
     self.position.r = r
@@ -128,10 +147,13 @@ function Organelle:onAddedToMicrobe(microbe, q, r, rotation)
     local sceneNode = OgreSceneNodeComponent()
     self.sceneNode = sceneNode
     sceneNode.parent = self.entity
-    
-    if self.name ~= "cytoplasm" then
-        sceneNode.meshName = self.name .. ".mesh"
+
+    --Adding a mesh to the organelle.
+    local mesh = organelleTable[self.name].mesh
+    if mesh ~= nil then
+        sceneNode.meshName = mesh
     end
+
 	if self.name == "nucleus"  then
 		offset = Vector3(0,0,0)
 		-- TODO: Add specific nucleus animation here.
@@ -171,6 +193,11 @@ end
 -- @param microbe
 --  The organelle's previous owner
 function Organelle:onRemovedFromMicrobe(microbe)
+    --iterating on each OrganelleComponent
+    for _, component in pairs(self.components) do
+        component:onRemovedFromMicrobe(microbe)
+    end
+
     self:destroy()
 	self.microbe = nil
     self.position.q = 0
@@ -211,9 +238,8 @@ function Organelle:flashColour(duration, colour)
 end
 
 function Organelle:storage()
-    storage = StorageContainer()
-    storage:set("className", class_info(self).name)
-    hexes = StorageList()
+    local storage = StorageContainer()
+    local hexes = StorageList()
     for _, hex in pairs(self._hexes) do
         hexStorage = StorageContainer()
         hexStorage:set("q", hex.q)
@@ -228,6 +254,16 @@ function Organelle:storage()
     storage:set("mass", self.mass)
     --Serializing these causes some minor issues and doesn't serve a purpose anyway
     --storage:set("externalEdgeColour", self._externalEdgeColour)
+
+    --iterating on each OrganelleComponent
+    local componentStorage = StorageList()
+    for componentName, component in pairs(self.components) do
+        local componentData = component:storage(storage)
+        componentData:set("name", componentName)
+        componentStorage:append(componentData)
+    end
+    storage:set("componentStorage", componentStorage)
+
     return storage
 end
 
@@ -239,6 +275,11 @@ end
 -- @param logicTime
 --  The time since the last call to update()
 function Organelle:update(microbe, logicTime)
+    --iterating on each OrganelleComponent
+    for _, component in pairs(self.components) do
+        component:update(microbe, self, logicTime)
+    end
+
 	if self.flashDuration ~= nil and self.sceneNode.entity ~= nil 
         and (self.name == "mitochondrion" or self.name == "nucleus" or self.name == "ER" or self.name == "golgi") then
         
@@ -274,16 +315,28 @@ function OrganelleFactory.setColour(sceneNode, colour)
 end
 
 function OrganelleFactory.makeOrganelle(data)
-    local make_organelle = function()
-        return OrganelleFactory["make_"..data.name](data)
-    end
-    local success, organelle = pcall(make_organelle)
-    if success then
-        organelle.name = data.name
+    if not (data.name == "" or data.name == nil) then
+        --retrieveing the organelle info from the table
+        local organelleInfo = organelleTable[data.name]
+
+        --creating an empty organelle
+        local organelle = Organelle(organelleInfo.mass, data.name)
+
+        --adding all of the components.
+        for componentName, arguments in pairs(organelleInfo.components) do
+            local componentType = _G[componentName]
+            organelle.components[componentName] = componentType:__init(arguments, data)
+        end
+
+        --getting the hex table of the organelle rotated by the angle
+        local hexes = OrganelleFactory.checkSize(data)
+
+        --adding the hexes to the organelle
+        for _, hex in pairs(hexes) do
+            organelle:addHex(hex.q, hex.r)
+        end
+
         return organelle
-    else
-        if data.name == "" or data.name == nil then data.name = "<nameless>" end
-        assert(false, "no organelle by name "..data.name)
     end
 end
 
@@ -292,17 +345,59 @@ function OrganelleFactory.renderOrganelles(data)
 	if data.name == "remove" then
 		return {}
 	else
-		OrganelleFactory["render_"..data.name](data)
+        --Getting the list hexes occupied by this organelle.
+        occupiedHexList = OrganelleFactory.checkSize(data)
+
+        --Used to get the average x and y values.
+        local xSum = 0
+        local ySum = 0
+
+        --Rendering a cytoplasm in each of those hexes.
+        --Note: each scenenode after the first one is considered a cytoplasm by the engine automatically.
+        local i = 2
+        for _, hex in pairs(occupiedHexList) do
+            local organelleX, organelleY = axialToCartesian(data.q, data.r)
+            local hexX, hexY = axialToCartesian(hex.q, hex.r)
+            local x = organelleX + hexX
+            local y = organelleY + hexY
+            local translation = Vector3(-x, -y, 0)
+            data.sceneNode[i].transform.position = translation
+            data.sceneNode[i].transform.orientation = Quaternion(Radian(Degree(data.rotation)), Vector3(0, 0, 1))
+            xSum = xSum + x
+            ySum = ySum + y
+            i = i + 1
+        end
+
+        --Getting the average x and y values to render the organelle mesh in the middle.
+        local xAverage = xSum / (i - 2) -- Number of occupied hexes = (i - 2).
+        local yAverage = ySum / (i - 2)
+
+        --Rendering the organelle mesh (if it has one).
+        local mesh = organelleTable[data.name].mesh
+        if(mesh ~= nil) then
+            data.sceneNode[1].meshName = mesh
+            data.sceneNode[1].transform.position = Vector3(-xAverage, -yAverage, 0)
+            data.sceneNode[1].transform.orientation = Quaternion(Radian(Degree(data.rotation)), Vector3(0, 0, 1))
+        end
 	end
 end
 
 -- Checks which hexes an organelle occupies
 function OrganelleFactory.checkSize(data)
-	if data.name == "remove" then
-		return {}
-	else
-		return OrganelleFactory["sizeof_"..data.name](data)
-	end
+    if data.name == "remove" then
+        return {}
+    else
+        --getting the angle the organelle has
+        --(and setting one if it doesn't have one).
+        if data.rotation == nil then
+            data.rotation = 0
+        end
+        local angle = data.rotation / 60
+
+        --getting the hex table of the organelle rotated by the angle
+        local hexes = rotateHexListNTimes(organelleTable[data.name].hexes, angle)
+        return hexes
+    end
 end
 
 -- OrganelleFactory.make_organelle(data) should be defined in the appropriate file
