@@ -679,14 +679,18 @@ if(UNIX)
     "${SWRESAMPLE_LIBRARIES}" "${OgreFFMPEG_LIBRARIES}" "${FFMPEG_LIBRARIES}"
     "${Boost_LIBRARIES}" "${OGRE_LIBRARIES}" "${OIS_LIBRARIES}" "${CMAKE_THREAD_LIBS_INIT}"
     "${BULLET_LIBRARIES}" "${CEGUI_LIBRARY}" "${TINYXML_LIBRARIES}" "${OpenAL_LIBRARIES}")
-  
-  configure_file("${CMAKE_SOURCE_DIR}/cpack/CreatePackage.sh.in"
-    "${CMAKE_CURRENT_BINARY_DIR}/CreatePackage.sh" @ONLY
+
+  # Linux setup
+  configure_file("${CMAKE_SOURCE_DIR}/cpack/CMakeLibraryList.xml.in"
+    "${CMAKE_CURRENT_BINARY_DIR}/CMakeLibraryList.xml" @ONLY
     )
 
   add_custom_target(linuxrelease
-    COMMAND "./CreatePackage.sh"
-    DEPENDS Thrive doc
+    COMMAND "${CMAKE_SOURCE_DIR}/cpack/PackageProject.rb" "${CMAKE_CURRENT_BINARY_DIR}"
+    WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}/cpack"
+    DEPENDS ThriveLib doc
     )
+  # The name of the Thrive target somehow breaks in the above command
+  add_dependencies(linuxrelease dist/bin/Thrive)
   
 endif()
