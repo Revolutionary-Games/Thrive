@@ -451,7 +451,7 @@ function OrganelleFactory.makeOrganelle(data)
         --adding all of the components.
         for componentName, arguments in pairs(organelleInfo.components) do
             local componentType = _G[componentName]
-            organelle.components[componentName] = componentType:__init(arguments, data)
+            organelle.components[componentName] = componentType(arguments, data)
         end
 
         --getting the hex table of the organelle rotated by the angle
