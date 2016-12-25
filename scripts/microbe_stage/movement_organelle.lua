@@ -6,7 +6,6 @@ class 'MovementOrganelle' (OrganelleComponent)
 
 -- Calculate the momentum of the movement organelle based on angle towards nucleus
 local function calculateForce(q, r, momentum)
-print("calculateForce")
     local organelleX, organelleY = axialToCartesian(q, r)
     local nucleusX, nucleusY = axialToCartesian(0, 0)
     local deltaX = nucleusX - organelleX
@@ -34,8 +33,7 @@ function MovementOrganelle:__init(arguments, data)
     
 
     self.energyMultiplier = 0.025
-    self.force = calculateForce(data.q, data.r, arguments.momentum)    
-    print("init: " .. tostring(self.force))
+    self.force = calculateForce(data.q, data.r, arguments.momentum)
     self.torque = arguments.torque
     self.backwards_multiplier = 0
 	self.x = 0
@@ -81,8 +79,6 @@ end
 
 function MovementOrganelle:_moveMicrobe(microbe, organelle, milliseconds)
     local direction = microbe.microbe.movementDirection
-    
-    if microbe.microbe.isPlayerMicrobe then print(tostring(self.force.x)) end
     
     local forceMagnitude = self.force:dotProduct(direction)
     if forceMagnitude > 0 then
@@ -145,6 +141,6 @@ function MovementOrganelle:update(microbe, organelle, logicTime)
     organelle.sceneNode.transform.position = translation
     organelle.sceneNode.transform:touch()
 
-    MovementOrganelle:_turnMicrobe(microbe)
-    MovementOrganelle:_moveMicrobe(microbe, organelle, logicTime)
+    self:_turnMicrobe(microbe)
+    self:_moveMicrobe(microbe, organelle, logicTime)
 end
