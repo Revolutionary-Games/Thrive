@@ -1,19 +1,26 @@
 --------------------------------------------------------------------------------
 -- Class for the single core organelle of any microbe
 --------------------------------------------------------------------------------
-class 'NucleusOrganelle' (ProcessOrganelle)
+class 'NucleusOrganelle' (OrganelleComponent)
+
+-- See organelle_component.lua for more information about the 
+-- organelle component methods and the arguments they receive.
 
 -- Constructor
-function NucleusOrganelle:__init()
-    local mass = 0.7
-    ProcessOrganelle.__init(self, mass)
+function NucleusOrganelle:__init(arguments, data)
+    --making sure this doesn't run when load() is called
+    if arguments == nil and data == nil then
+        return
+    end
+
     self.golgi = Entity()
 	self.ER = Entity()
+    return self
 end
 
 
 -- Overridded from Organelle:onAddedToMicrobe
-function NucleusOrganelle:onAddedToMicrobe(microbe, q, r, rotation)
+function NucleusOrganelle:onAddedToMicrobe(microbe, q, r, rotation, organelle)
     local x, y = axialToCartesian(q-1, r-1)
     local sceneNode1 = OgreSceneNodeComponent()
     sceneNode1.meshName = "golgi.mesh"
@@ -37,54 +44,71 @@ function NucleusOrganelle:onAddedToMicrobe(microbe, q, r, rotation)
     microbe.entity:addChild(self.ER)
     self.ER:addComponent(sceneNode2) 
 	self.ER.sceneNode = sceneNode2
-    --self.ER.sceneNode.parent = microbe.entity
 	self.ER:setVolatile(true)
+    
+    -- Center the nucleus model.
+    organelle.sceneNode.transform.position = Vector3(0,0,0)
+    organelle.sceneNode.transform:touch()
     
     self.numProteinLeft = 2
     self.numNucleicAcidsLeft = 2
     self.nucleusCost = self.numProteinLeft + self.numNucleicAcidsLeft
-	
-    ProcessOrganelle.onAddedToMicrobe(self, microbe, q, r, rotation)
     
-    self.sceneNode.transform.position = Vector3(0,0,0)
-    self.sceneNode.transform:touch()
+    self._needsColourUpdate = true
 end
 
--- Overridded from Organelle:onRemovedFromMicrobe
 function NucleusOrganelle:onRemovedFromMicrobe(microbe, q, r)
     self.golgi:destroy()
     self.ER:destroy()
-    ProcessOrganelle.onRemovedFromMicrobe(self, microbe, q, r)
 end
-
-
-function NucleusOrganelle:storage()
-    local storage = ProcessOrganelle.storage(self)
-    return storage
-end
-
 
 function NucleusOrganelle:load(storage)
-    ProcessOrganelle.load(self, storage)
+    self.golgi = Entity()
+	self.ER = Entity()
 end
 
-function NucleusOrganelle:updateColour()
+function NucleusOrganelle:updateColour(organelle)
     -- Update the colours of the additional organelle models.
-    if self.sceneNode.entity ~= nil then
-        local entity = self.sceneNode.entity
+    if organelle.sceneNode.entity ~= nil and self.golgi.sceneNode.entity ~= nil then
+		local entity = organelle.sceneNode.entity
         local golgiEntity = self.golgi.sceneNode.entity
         local ER_entity = self.ER.sceneNode.entity
         
-        entity:tintColour(self.name, self.colour)
-        golgiEntity:tintColour("golgi", self.colour)
-        ER_entity:tintColour("ER", self.colour)
+        entity:tintColour(organelle.name, organelle.colour)
+        golgiEntity:tintColour("golgi", organelle.colour)
+        ER_entity:tintColour("ER", organelle.colour)
         
         self._needsColourUpdate = false
     end
 end
 
-function NucleusOrganelle:update(microbe, logicTime)
-    Organelle.update(self, microbe, logicTime)
+function NucleusOrganelle:update(microbe, organelle, logicTime)
+    if organelle.flashDuration ~= nil and organelle.sceneNode.entity ~= nil then
+        organelle.flashDuration = organelle.flashDuration - logicTime
+		
+		local entity = organelle.sceneNode.entity
+        local golgiEntity = self.golgi.sceneNode.entity
+        local ER_entity = self.ER.sceneNode.entity
+
+		if math.fmod(organelle.flashDuration,600) < 300 then      
+            organelle.colour = organelle.flashColour          
+		else
+			organelle.colour = ColourValue(microbe:getSpeciesComponent().colour.x, 
+                                           microbe:getSpeciesComponent().colour.y,
+                                           microbe:getSpeciesComponent().colour.z, 1)
+		end
+		
+        if organelle.flashDuration <= 0 then
+            organelle.flashDuration = nil				
+			organelle.colour = ColourValue(microbe:getSpeciesComponent().colour.x, 
+                                           microbe:getSpeciesComponent().colour.y,
+                                           microbe:getSpeciesComponent().colour.z, 1)
+        end
+    end
+    
+    if self._needsColourUpdate then
+        self:updateColour(organelle)
+    end
 end
 
 -- Makes nucleus larger
@@ -168,178 +192,3 @@ function NucleusOrganelle:recalculateBin()
     end
 end
 
-function OrganelleFactory.make_nucleus(data)
-    local nucleus = NucleusOrganelle()
-        
-    if data.rotation == nil then
-		data.rotation = 0
-	end
-	local angle = (data.rotation / 60)
-	
-    nucleus:addHex(0, 0)
-	local q = 1
-	local r = 0
-	for i=0, angle do
-		q, r = rotateAxial(q, r)
-	end
-	nucleus:addHex(q, r)
-	q = 0
-	r = 1
-	for i=0, angle do
-		q, r = rotateAxial(q, r)
-	end
-	nucleus:addHex(q, r)
-	q = 0
-	r = -1
-	for i=0, angle do
-		q, r = rotateAxial(q, r)
-	end
-	nucleus:addHex(q, r)
-	q = 1
-	r = -1
-	for i=0, angle do
-		q, r = rotateAxial(q, r)
-	end
-	nucleus:addHex(q, r)
-	q = -1
-	r = 1
-	for i=0, angle do
-		q, r = rotateAxial(q, r)
-	end
-	nucleus:addHex(q, r)
-	q = -1
-	r = 0
-	for i=0, angle do
-		q, r = rotateAxial(q, r)
-	end
-	nucleus:addHex(q, r)
-	q = -1
-	r = -1
-	for i=0, angle do
-		q, r = rotateAxial(q, r)
-	end
-	nucleus:addHex(q, r)
-	q = -2
-	r = 0
-	for i=0, angle do
-		q, r = rotateAxial(q, r)
-	end
-	nucleus:addHex(q, r)
-	q = -2
-	r = 1
-	for i=0, angle do
-		q, r = rotateAxial(q, r)
-	end
-	nucleus:addHex(q, r)
-	
-	return nucleus
-end
-
-function OrganelleFactory.render_nucleus(data)
-	local x, y = axialToCartesian(data.q, data.r)
-	local translation = Vector3(-x, -y, 0)
-	
-	data.sceneNode[2].transform.position = translation
-	OrganelleFactory.setColour(data.sceneNode[2], data.colour)
-	
-	local angle = (data.rotation / 60)
-	local q = 1
-	local r = 0
-	for i=0, angle do
-		q, r = rotateAxial(q, r)
-	end
-	x, y = axialToCartesian(q + data.q, r + data.r)
-	translation = Vector3(-x, -y, 0)
-	data.sceneNode[3].transform.position = translation
-	OrganelleFactory.setColour(data.sceneNode[3], data.colour)
-	
-	q = 0
-	r = 1
-	for i=0, angle do
-		q, r = rotateAxial(q, r)
-	end
-	x, y = axialToCartesian(q + data.q, r + data.r)
-	translation = Vector3(-x, -y, 0)
-	data.sceneNode[4].transform.position = translation
-	OrganelleFactory.setColour(data.sceneNode[4], data.colour)
-	
-	data.sceneNode[1].meshName = "nucleus.mesh"
-	data.sceneNode[1].transform.position = Vector3(0,0,0)
-	data.sceneNode[1].transform.orientation = Quaternion(Radian(Degree(data.rotation)), Vector3(0, 0, 1))
-end
-
-function OrganelleFactory.sizeof_nucleus(data)
-	local hexes = {}
-	
-	if data.rotation == nil then
-		data.rotation = 0
-	end
-	local angle = (data.rotation / 60)
-	
-	hexes[1] = {["q"]=0, ["r"]=0}
-	
-	local q = 1
-	local r = 0
-	for i=0, angle do
-		q, r = rotateAxial(q, r)
-	end
-	hexes[2] = {["q"]=q, ["r"]=r}
-	
-	local q = 0
-	local r = 1
-	for i=0, angle do
-		q, r = rotateAxial(q, r)
-	end
-	hexes[3] = {["q"]=q, ["r"]=r}
-	
-	local q = 0
-	local r = -1
-	for i=0, angle do
-		q, r = rotateAxial(q, r)
-	end
-	hexes[4] = {["q"]=q, ["r"]=r}
-	
-	local q = 1
-	local r = -1
-	for i=0, angle do
-		q, r = rotateAxial(q, r)
-	end
-	hexes[5] = {["q"]=q, ["r"]=r}
-	
-	local q = -1
-	local r = 1
-	for i=0, angle do
-		q, r = rotateAxial(q, r)
-	end
-	hexes[6] = {["q"]=q, ["r"]=r}
-	
-	local q = -1
-	local r = 0
-	for i=0, angle do
-		q, r = rotateAxial(q, r)
-	end
-	hexes[7] = {["q"]=q, ["r"]=r}
-	
-	local q = -1
-	local r = -1
-	for i=0, angle do
-		q, r = rotateAxial(q, r)
-	end
-	hexes[8] = {["q"]=q, ["r"]=r}
-	
-	local q = -2
-	local r = 0
-	for i=0, angle do
-		q, r = rotateAxial(q, r)
-	end
-	hexes[9] = {["q"]=q, ["r"]=r}
-	
-	local q = -2
-	local r = 1
-	for i=0, angle do
-		q, r = rotateAxial(q, r)
-	end
-	hexes[10] = {["q"]=q, ["r"]=r}
-	
-    return hexes
-end
