@@ -28,8 +28,10 @@ end
 local DEFAULT_INITIAL_COMPOUNDS =
 {
     atp = {priority=10,amount=40},
-    glucose = {amount = 5},
+    glucose = {amount = 10},
     reproductase = {priority = 8},
+    oxygen = {amount = 10},
+    oxytoxy = {amount = 1}
 }
 
 --sets up the spawn of the species

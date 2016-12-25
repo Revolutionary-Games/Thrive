@@ -80,7 +80,7 @@ organelleTable = {
         },
         mass = 0.3,
         mpCost = 40,
-        mesh = "AgentVacuole.mesh",
+        mesh = "oxytoxy.mesh",
         hexes = {
             {["q"]=0,   ["r"]=0}
         }
