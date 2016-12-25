@@ -60,16 +60,22 @@ function getPosition(organelleName, organelleList)
         end
     end
 
+    --Moving the center one hex to the bottom.
+    --This way organelles are "encouraged" to be on the bottom, rather than on the top,
+    --which in turn means the flagellum are more likely to be on the back side of the cell.
+    q = q + HEX_NEIGHBOUR_OFFSET[HEX_SIDE.BOTTOM][1]
+    r = r + HEX_NEIGHBOUR_OFFSET[HEX_SIDE.BOTTOM][2]
+
+    --Spiral search for space for the organelle
     local radius = 1
     while true do
-        --Moves into the ring of radius "radius" and center (0, 0)
+        --Moves into the ring of radius "radius" and center (0, -1)
         q = q + HEX_NEIGHBOUR_OFFSET[HEX_SIDE.BOTTOM_LEFT][1]
         r = r + HEX_NEIGHBOUR_OFFSET[HEX_SIDE.BOTTOM_LEFT][2]
 
         --Iterates in the ring
         for side = 1, 6 do --necesary due to lua not ordering the tables.
             local offset = HEX_NEIGHBOUR_OFFSET[side]
-            print(name)
             --Moves "radius" times into each direction
             for i = 1, radius do
                 q = q + offset[1]
