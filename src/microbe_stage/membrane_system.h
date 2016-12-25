@@ -56,6 +56,9 @@ public:
     // Gets organelle positions from the .lua file.
     void sendOrganelles(double x, double y);
 
+    // Deletes the membrane mesh.
+    void clear();
+
     // Sets the colour of the membrane.
     void setColour(float red, float green, float blue, float alpha);
 
@@ -130,6 +133,8 @@ private:
     int membraneResolution;
     // Stores the generated 2-Dimensional membrane.
     std::vector<Ogre::Vector3>   vertices2D;
+
+    std::string m_meshName;
 
     // Entity that holds the membrane mesh.
     Ogre::Entity* m_entity = nullptr;

@@ -26,7 +26,6 @@ function MicrobeReplacementSystem:activate()
 
         activeCreatureId = Engine:playerData():activeCreature()
         local workingMicrobe = Microbe(Entity(activeCreatureId, GameState.MICROBE_EDITOR), true)
- 
         
         if not global_genusPicked  then
             global_genusPicked = true;
@@ -37,25 +36,22 @@ function MicrobeReplacementSystem:activate()
         local speciesEntity = Entity(newSpeciesName)
         local species = SpeciesComponent(newSpeciesName)
         speciesEntity:addComponent(species)
-
         SpeciesSystem.fromMicrobe(workingMicrobe, species)
-        workingMicrobe.entity:destroy()
-
-        species.avgCompoundAmounts = {}
-        species.avgCompoundAmounts["" .. CompoundRegistry.getCompoundId("atp")] = 10
-        species.avgCompoundAmounts["" .. CompoundRegistry.getCompoundId("glucose")] = 20
-        species.avgCompoundAmounts["" .. CompoundRegistry.getCompoundId("oxygen")] = 30
-
         SpeciesSystem.initProcessorComponent(speciesEntity, species)
 
         local newMicrobe = Microbe.createMicrobeEntity(nil, false, newSpeciesName)
+        newMicrobe:divide()
+                
         print(": "..newMicrobe.microbe.speciesName)
-
+        
         newMicrobe.collisionHandler:addCollisionGroup("powerupable")
         newMicrobeEntity = newMicrobe.entity:transfer(GameState.MICROBE)
         newMicrobeEntity:stealName(PLAYER_NAME)
+        
         global_newEditorMicrobe = false
         Engine:playerData():setActiveCreature(newMicrobeEntity.id, GameState.MICROBE)
+        
+        workingMicrobe.entity:destroy()
     end
 end
 

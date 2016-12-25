@@ -30,7 +30,10 @@ end
 -- @param rotation
 --  The rotation this organelle has on the microbe.
 --  it can be either 0, 60, 120, 180, 240 or 280.
-function OrganelleComponent:onAddedToMicrobe(microbe, q, r, rotation)
+--
+-- @param self
+--  The organelle object that is made up of these components.
+function OrganelleComponent:onAddedToMicrobe(microbe, q, r, rotation, self)
 end
 
 -- Event handler for an organelle removed from a microbe.

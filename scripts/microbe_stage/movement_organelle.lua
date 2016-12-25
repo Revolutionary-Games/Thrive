@@ -6,6 +6,7 @@ class 'MovementOrganelle' (OrganelleComponent)
 
 -- Calculate the momentum of the movement organelle based on angle towards nucleus
 local function calculateForce(q, r, momentum)
+print("calculateForce")
     local organelleX, organelleY = axialToCartesian(q, r)
     local nucleusX, nucleusY = axialToCartesian(0, 0)
     local deltaX = nucleusX - organelleX
@@ -15,6 +16,7 @@ local function calculateForce(q, r, momentum)
     local momentumY = deltaY / dist * momentum
     local force = Vector3(momentumX, momentumY, 0.0)
     return force
+    
 end
 
 -- Constructor
@@ -29,9 +31,11 @@ function MovementOrganelle:__init(arguments, data)
     if arguments == nil and data == nil then
         return
     end
+    
 
     self.energyMultiplier = 0.025
-    self.force = calculateForce(data.q, data.r, arguments.momentum)
+    self.force = calculateForce(data.q, data.r, arguments.momentum)    
+    print("init: " .. tostring(self.force))
     self.torque = arguments.torque
     self.backwards_multiplier = 0
 	self.x = 0
@@ -39,6 +43,25 @@ function MovementOrganelle:__init(arguments, data)
 	self.angle = 0
     self.movingTail = false
     return self
+end
+
+function MovementOrganelle:onAddedToMicrobe(microbe, q, r, rotation, organelle)
+    local organelleX, organelleY = axialToCartesian(q, r)
+    local nucleusX, nucleusY = axialToCartesian(0, 0)
+    local deltaX = nucleusX - organelleX
+    local deltaY = nucleusY - organelleY
+    local angle = math.atan2(deltaY, deltaX)
+    if (angle < 0) then
+        angle = angle + 2*math.pi
+    end
+    angle = (angle * 180/math.pi + 180) % 360
+    
+    self.rotation = angle
+    organelle.sceneNode.transform.orientation = Quaternion(Radian(Degree(angle)), Vector3(0, 0, 1))
+    organelle.sceneNode.transform:touch()
+    
+    organelle.sceneNode:playAnimation("Move", true)
+    organelle.sceneNode:setAnimationSpeed(0.25)
 end
 
 function MovementOrganelle:load(storage)
@@ -58,6 +81,9 @@ end
 
 function MovementOrganelle:_moveMicrobe(microbe, organelle, milliseconds)
     local direction = microbe.microbe.movementDirection
+    
+    if microbe.microbe.isPlayerMicrobe then print(tostring(self.force.x)) end
+    
     local forceMagnitude = self.force:dotProduct(direction)
     if forceMagnitude > 0 then
         if direction:isZeroLength() or self.force:isZeroLength()  then
@@ -112,13 +138,13 @@ function MovementOrganelle:_turnMicrobe(microbe)
 end
 
 
-function MovementOrganelle:update(microbe, organelle, logicTime)
+function MovementOrganelle:update(microbe, organelle, logicTime)    
     local x, y = axialToCartesian(organelle.position.q, organelle.position.r)
     local membraneCoords = microbe.membraneComponent:getExternOrganellePos(x, y)
     local translation = Vector3(membraneCoords[1], membraneCoords[2], 0)
-    organelle.organelleEntity.sceneNode.transform.position = translation - Vector3(x, y, 0)
-    organelle.organelleEntity.sceneNode.transform:touch()
+    organelle.sceneNode.transform.position = translation
+    organelle.sceneNode.transform:touch()
 
-    MovementOrganelle._turnMicrobe(self, microbe)
-    MovementOrganelle._moveMicrobe(self, microbe, organelle, logicTime)
+    MovementOrganelle:_turnMicrobe(microbe)
+    MovementOrganelle:_moveMicrobe(microbe, organelle, logicTime)
 end
