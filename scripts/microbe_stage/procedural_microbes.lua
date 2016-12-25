@@ -49,23 +49,34 @@ end
 --maybe the values should be saved?
 function getPosition(organelleName, organelleList)
 
-    local radius = 0
     local q = 0
     local r = 0
 
+    --Checks whether the center is free.
+    for j = 0, 5 do
+        rotation = 360 * j / 6
+        if isValidPlacement(organelleName, q, r, rotation, organelleList) then
+            return q, r, rotation
+        end
+    end
+
+    local radius = 1
     while true do
         --Moves into the ring of radius "radius" and center (0, 0)
         q = q + HEX_NEIGHBOUR_OFFSET[HEX_SIDE.BOTTOM_LEFT][1]
         r = r + HEX_NEIGHBOUR_OFFSET[HEX_SIDE.BOTTOM_LEFT][2]
 
         --Iterates in the ring
-        for _, offset in pairs(HEX_NEIGHBOUR_OFFSET) do
+        for side = 1, 6 do --necesary due to lua not ordering the tables.
+            local offset = HEX_NEIGHBOUR_OFFSET[side]
+            print(name)
+            --Moves "radius" times into each direction
             for i = 1, radius do
                 q = q + offset[1]
                 r = r + offset[2]
                 --print(q, r)
 
-                --Moves "radius" times into each direction
+                --Checks every possible rotation value.
                 for j = 0, 5 do
                     rotation = 360 * j / 6
                     if isValidPlacement(organelleName, q, r, rotation, organelleList) then
