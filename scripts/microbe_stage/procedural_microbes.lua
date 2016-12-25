@@ -2,19 +2,17 @@
 local MIN_INITIAL_LENGTH = 5
 local MAX_INITIAL_LENGTH = 15
 
-organelleLetters = {
-    ["N"] = "nucleus",
-    ["Y"] = "cytoplasm",
-    ["H"] = "chloroplast",
-    ["T"] = "oxytoxy",
-    ["M"] = "mitochondrion",
-    ["V"] = "vacuole",
-    ["F"] = "flagellum",
-    ["P"] = "pilus",
-    ["C"] = "cilia"
-}
+organelleLetters = {}
+VALID_LETTERS = {}
 
-VALID_LETTERS = {"Y", "H", "T", "M", "V", "F"}
+--Getting the organelle letters from the organelle table.
+for organelleName, organelleInfo in pairs(organelleTable) do
+    organelleLetters[organelleInfo.gene] = organelleName
+
+    if organelleInfo.components.NucleusOrganelle == nil then
+        table.insert(VALID_LETTERS, organelleInfo.gene)
+    end
+end
 
 --returns a random organelle letter
 function getRandomLetter()
