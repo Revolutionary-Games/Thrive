@@ -14,6 +14,8 @@ class 'AgentVacuole' (OrganelleComponent)
 -- @param arguments.compound
 --  The agent this organelle produces.
 function AgentVacuole:__init(arguments, data)
+    OrganelleComponent.__init(self, arguments, data)
+    
     --making sure this doesn't run when load() is called
     if arguments == nil and data == nil then
         return
@@ -22,14 +24,14 @@ function AgentVacuole:__init(arguments, data)
     self.position = {}
     self.position.q = data.q
     self.position.r = data.r
-    self.process = global_processMap[arguments.process]
     self.compoundId = CompoundRegistry.getCompoundId(arguments.compound)
     self.capacityIntervalTimer = PROCESS_CAPACITY_UPDATE_INTERVAL
     return self
 end
 
 -- Overridded from ProcessOrganelle:onAddedToMicrobe
-function AgentVacuole:onAddedToMicrobe(microbe, q, r, rotation)
+function AgentVacuole:onAddedToMicrobe(microbe, q, r, rotation, organelle)
+    OrganelleComponent.onAddedToMicrobe(self, microbe, q, r, rotation, organelle)
     microbe:addSpecialStorageOrganelle(self, self.compoundId)
 end
 
@@ -48,11 +50,10 @@ end
 -- @param logicTime
 -- The time since the last call to update()
 function AgentVacuole:update(microbe, organelle, logicTime)
-    self.capacityIntervalTimer = self.capacityIntervalTimer + logicTime
-    if self.capacityIntervalTimer > PROCESS_CAPACITY_UPDATE_INTERVAL then
-        factorProduct = self.process:produce(self.capacityIntervalTimer, 1.0, microbe, self)
-        self.capacityIntervalTimer = 0
-    end
+end
+
+-- Empty override function to prevent mesh from being altered.
+function AgentVacuole:updateColour(organelle)
 end
 
 
@@ -61,7 +62,6 @@ function AgentVacuole:storage()
     storage:set("compoundId", self.compoundId)
     storage:set("q", self.position.q)
     storage:set("r", self.position.r)
-    storage:set("process", self.process:storage())
     storage:set("capacityIntervalTimer", self.capacityIntervalTimer)
     return storage
 end
@@ -73,7 +73,4 @@ function AgentVacuole:load(storage)
     self.position.q = storage:get("q", 0)
     self.position.r = storage:get("r", 0)
     self.capacityIntervalTimer = storage:get("capacityIntervalTimer", 0)
-    local process = Process(0, 0, {},{})
-    process:load(storage:get("process", 0))
-    self.process = process
 end

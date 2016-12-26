@@ -93,28 +93,8 @@ local function setupCompoundClouds()
     entity:addComponent(compoundCloud)
 end
 
---  This isn't a finished solution. Optimally the process class would be moved to CPP and loaded there entirely.
-global_processMap = {}
 local function setupProcesses()
-    -- BioProcessRegistry.loadFromXML("../scripts/definitions/processes.xml")
     BioProcessRegistry.loadFromLua(processes)
-    for processId in BioProcessRegistry.getList() do
-        local inputCompounds = {}
-        local outputCompounds = {}
-        
-        for recipyCompound in BioProcessRegistry.getInputCompounds(processId) do
-            inputCompounds[recipyCompound.compoundId] = recipyCompound.amount
-        end
-        for recipyCompound in BioProcessRegistry.getOutputCompounds(processId) do
-            outputCompounds[recipyCompound.compoundId] = recipyCompound.amount
-        end
-        
-        global_processMap[BioProcessRegistry.getInternalName(processId)] = Process(
-            BioProcessRegistry.getSpeedFactor(processId),
-            inputCompounds,
-            outputCompounds
-        )
-    end
 end
 
 function setupSpecies()

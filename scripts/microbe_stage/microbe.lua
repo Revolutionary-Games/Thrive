@@ -466,7 +466,7 @@ function Microbe:damage(amount, damageType)
         -- If this is the organelle we have chosen...
         if i == rand then
             -- Deplete its health/compoundBin.
-            organelle:damage(amount)
+            organelle:damageOrganelle(amount)
         end
         i = i + 1
     end
@@ -785,9 +785,9 @@ function Microbe:update(logicTime)
                 organelle:update(self, logicTime)
                 
                 -- If the organelle is hurt.
-                if organelle.compoundBin < 1.0 then
+                if organelle:getCompoundBin() < 1.0 then
                     -- Give the organelle access to the compound bag to take some compound.
-                    organelle:grow(self.entity:getComponent(CompoundBagComponent.TYPE_ID))
+                    organelle:growOrganelle(self.entity:getComponent(CompoundBagComponent.TYPE_ID))
                     -- An organelle was damaged and we tried to heal it, so out health might be different.
                     self:calculateHealthFromOrganelles()
                 end
@@ -804,16 +804,16 @@ function Microbe:update(logicTime)
                 if organelle.name ~= "nucleus" and self.reproductionStage == 0 then
                     
                     -- If the organelle is not split, give it some compounds to make it larger.
-                    if organelle.compoundBin < 2.0 and not organelle.wasSplit then
+                    if organelle:getCompoundBin() < 2.0 and not organelle.wasSplit then
                         -- Give the organelle access to the compound bag to take some compound.
-                        organelle:grow(self.entity:getComponent(CompoundBagComponent.TYPE_ID))
+                        organelle:growOrganelle(self.entity:getComponent(CompoundBagComponent.TYPE_ID))
                         reproductionStageComplete = false
                     -- If the organelle was split and has a bin less then 1, it must have been damaged.
-                    elseif organelle.compoundBin < 1.0 and organelle.wasSplit then
+                    elseif organelle:getCompoundBin() < 1.0 and organelle.wasSplit then
                         -- Give the organelle access to the compound bag to take some compound.
-                        organelle:grow(self.entity:getComponent(CompoundBagComponent.TYPE_ID))
+                        organelle:growOrganelle(self.entity:getComponent(CompoundBagComponent.TYPE_ID))
                     -- If the organelle is twice its size...
-                    elseif organelle.compoundBin >= 2.0 then
+                    elseif organelle:getCompoundBin() >= 2.0 then
                         print("ready to split " .. organelle.name)
                         -- Mark this organelle as done and return to its normal size.
                         organelle:reset()
@@ -830,9 +830,9 @@ function Microbe:update(logicTime)
                 -- In the S phase, the nucleus grows as chromatin is duplicated.
                 elseif organelle.name == "nucleus" and self.reproductionStage == 1 then
                     -- If the nucleus hasn't finished replicating its DNA, give it some compounds.
-                    if organelle.compoundBin < 2.0 then
+                    if organelle:getCompoundBin() < 2.0 then
                         -- Give the organelle access to the compound back to take some compound.
-                        organelle:grow(self.entity:getComponent(CompoundBagComponent.TYPE_ID))
+                        organelle:growOrganelle(self.entity:getComponent(CompoundBagComponent.TYPE_ID))
                         reproductionStageComplete = false
                     end
                 end
@@ -894,7 +894,7 @@ function Microbe:calculateHealthFromOrganelles()
     self.microbe.hitpoints = 0
     self.microbe.maxHitpoints = 0
     for _, organelle in pairs(self.microbe.organelles) do
-        self.microbe.hitpoints = self.microbe.hitpoints + (organelle.compoundBin < 1.0 and organelle.compoundBin or 1.0) * MICROBE_HITPOINTS_PER_ORGANELLE
+        self.microbe.hitpoints = self.microbe.hitpoints + (organelle:getCompoundBin() < 1.0 and organelle:getCompoundBin() or 1.0) * MICROBE_HITPOINTS_PER_ORGANELLE
         self.microbe.maxHitpoints = self.microbe.maxHitpoints + MICROBE_HITPOINTS_PER_ORGANELLE
     end
     --self.microbe.hitpoints = self.microbe.hitpoints + self.membraneHealth * MICROBE_HITPOINTS_PER_ORGANELLE
