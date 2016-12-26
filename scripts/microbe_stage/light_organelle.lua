@@ -72,6 +72,7 @@ function LightOrganelle:onAddedToMicrobe(microbe, q, r, rotation)
     lightComponent.properties.type = OgreLightComponent.LT_POINT
     lightComponent:setRange(self.range)
     lightComponent.properties.diffuseColour = ColourValue(self.r, self.g, self.b, self.alpha)
+    lightComponent.properties.specularColour = ColourValue((self.r + 1) * 2 / 3, (self.g + 1) * 2 / 3, (self.b + 1) * 2 / 3, self.alpha)
 
     --Setting up the scene node component.
     local sceneNode = OgreSceneNodeComponent()
