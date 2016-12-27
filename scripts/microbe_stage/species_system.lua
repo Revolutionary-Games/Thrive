@@ -28,17 +28,18 @@ end
 local DEFAULT_INITIAL_COMPOUNDS =
 {
     atp = {priority=10,amount=40},
-    glucose = {amount = 5},
+    glucose = {amount = 10},
     reproductase = {priority = 8},
+    oxygen = {amount = 10},
+    oxytoxy = {amount = 1}
 }
 
 --sets up the spawn of the species
 function Species:setupSpawn()
-    local name = self.name --this line is important, otherwise the game only spawns the las microbe generated
     self.id = currentSpawnSystem:addSpawnType
     (
         function(pos)
-            return microbeSpawnFunctionGeneric(pos, name, true, nil)
+            return microbeSpawnFunctionGeneric(pos, self.name, true, nil)
         end, 
         DEFAULT_SPAWN_DENSITY, --spawnDensity should depend on population
         DEFAULT_SPAWN_RADIUS
@@ -116,12 +117,12 @@ function createSpeciesTemplate(name, organelles, colour, compounds, speciesThres
     return speciesEntity
 end
 
-function Species:init()
+function Species:__init()
     self.population = INITIAL_POPULATION
     self.name = "Species_" .. tostring(math.random()) --gotta use the latin names
     
     local stringSize = math.random(MIN_INITIAL_LENGTH, MAX_INITIAL_LENGTH)
-    self.stringCode = "NY" --it should always have a nucleus and a cytoplasm.
+    self.stringCode = organelleTable.nucleus.gene .. organelleTable.cytoplasm.gene --it should always have a nucleus and a cytoplasm.
     for i = 1, stringSize do
         self.stringCode = self.stringCode .. getRandomLetter()
     end
@@ -149,8 +150,8 @@ end
 
 --delete a species
 function Species:extinguish()
-    self.template:destroy()
     currentSpawnSystem:removeSpawnType(self.id)
+    --self.template:destroy() --game crashes if i do that.
 end
 
 local function mutate(stringCode)
@@ -310,7 +311,6 @@ function SpeciesSystem:update(_, milliseconds)
     gSpeciesSystem = self --so hacky :c
     self.timeSinceLastCycle = self.timeSinceLastCycle + milliseconds
     while self.timeSinceLastCycle > SPECIES_SIM_INTERVAL do
-        -- do mutation-management here
         --update population numbers and split/extinct species as needed
         local numberOfSpecies = self.number_of_species
         for i = 0, numberOfSpecies - 1 do
@@ -342,7 +342,7 @@ function SpeciesSystem:update(_, milliseconds)
         --new species
         if self.number_of_species < MIN_SPECIES then
             for i = self.number_of_species, INITIAL_SPECIES - 1 do
-                newSpecies = Species:init()
+                newSpecies = Species()
                 table.insert(self.species, newSpecies)
                 self.number_of_species = self.number_of_species + 1
             end

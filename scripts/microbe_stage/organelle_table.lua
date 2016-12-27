@@ -1,8 +1,8 @@
 --[[
 Organelle atributes:
-    mass:   how heavy an organelle is. Affects speed, mostly.
+    mass:   How heavy an organelle is. Affects speed, mostly.
 
-    components: a table with the components an organelle has, plus
+    components: A table with the components an organelle has, plus
                 the arguments the component needs to initialize.
                 Refer to the particular component's lua file for
                 more information.
@@ -17,11 +17,15 @@ Organelle atributes:
             Each hex it's represented by a table that looks like this:
                 {["q"]=q,   ["r"]=r}
             where q and r are the hex position in axial coordinates.
+
+    gene:   The letter that will be used by the auto-evo system to
+            identify this organelle.
 ]]
 
 organelleTable = {
     ["nucleus"] = {
         mass = 0.7,
+        gene = "N",
         components = {
             ["NucleusOrganelle"] = {}
         },
@@ -48,6 +52,7 @@ organelleTable = {
             }
         },
         mass = 0.1,
+        gene = "Y",
         mpCost = 5,
         mesh = nil, --it's an empty hex
         hexes = {
@@ -60,6 +65,7 @@ organelleTable = {
             ["ProcessOrganelle"] = {colourChangeFactor = 1.0}
         },
         mass = 0.4,
+        gene = "H",
         mpCost = 20,
         mesh = "chloroplast.mesh",
         hexes = {
@@ -77,8 +83,9 @@ organelleTable = {
             }
         },
         mass = 0.3,
+        gene = "T",
         mpCost = 40,
-        mesh = "AgentVacuole.mesh",
+        mesh = "oxytoxy.mesh",
         hexes = {
             {["q"]=0,   ["r"]=0}
         }
@@ -89,6 +96,7 @@ organelleTable = {
             ["ProcessOrganelle"] = {colourChangeFactor = 1.0}
         },
         mass = 0.3,
+        gene = "M",
         mpCost = 20,
         mesh = "mitochondrion.mesh",
         hexes = {
@@ -104,6 +112,7 @@ organelleTable = {
             }
         },
         mass = 0.4,
+        gene = "V",
         mpCost = 15,
         mesh = "vacuole.mesh",
         hexes = {
@@ -119,6 +128,7 @@ organelleTable = {
             }
         },
         mass = 0.3,
+        gene = "F",
         mpCost = 25,
         mesh = "flagellum.mesh",
         hexes = {
