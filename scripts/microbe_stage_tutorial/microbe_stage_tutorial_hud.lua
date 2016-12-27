@@ -212,6 +212,7 @@ Click anywhere to continue...]])
 Press the green button to the left to enter
 the editor.]])
     else 
+        Engine:resumeGame()
         Engine:playerData():setActiveCreature(Entity(PLAYER_NAME).id, GameState.MICROBE)
         Engine:setCurrentGameState(GameState.MICROBE)
     end
@@ -273,6 +274,7 @@ end
 function MicrobeStageTutorialHudSystem:editorButtonClicked()
     local guiSoundEntity = Entity("gui_sounds")
     guiSoundEntity:getComponent(SoundSourceComponent.TYPE_ID):playSound("button-hover-click")
+    Engine:resumeGame()
     Engine:setCurrentGameState(GameState.MICROBE_EDITOR)
 end
 
