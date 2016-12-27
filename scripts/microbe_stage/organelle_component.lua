@@ -18,13 +18,13 @@ function OrganelleComponent:__init(arguments, data)
 
 
     -- The "Health Bar" of the organelle constrained to [0,2]
-	-- 0 means the organelle is dead, 1 means its normal, and 2 means
-	-- its ready to divide.
-	self.compoundBin = 1.0
+    -- 0 means the organelle is dead, 1 means its normal, and 2 means
+    -- its ready to divide.
+    self.compoundBin = 1.0
     -- The compounds left to divide this organelle.
     -- Decreases every time one compound is absorbed.
-    self.numGlucose = 1--2
-    self.numAminoAcids = 0--3
+    self.numGlucose = 2
+    self.numAminoAcids = 3
     self.numFattyAcids = 0
     -- The compounds that make up this organelle.
     self.numGlucoseLeft = self.numGlucose
@@ -57,18 +57,18 @@ end
 --  The organelle object that is made up of these components.
 function OrganelleComponent:onAddedToMicrobe(microbe, q, r, rotation, organelle)
     local offset = Vector3(0,0,0)
-	local count = 0
-	for _, hex in pairs(organelle.microbe:getOrganelleAt(q, r)._hexes) do
-		count = count + 1
-		
-		local x, y = axialToCartesian(hex.q, hex.r)
-		offset = offset + Vector3(x,y,0)
-	end
-	offset = offset/count
-    
+    local count = 0
+    for _, hex in pairs(organelle.microbe:getOrganelleAt(q, r)._hexes) do
+        count = count + 1
+
+        local x, y = axialToCartesian(hex.q, hex.r)
+       offset = offset + Vector3(x,y,0)
+    end
+    offset = offset/count
+  
     self.sceneNode = OgreSceneNodeComponent()
-	self.sceneNode.transform.orientation = Quaternion(Radian(Degree(organelle.rotation)), Vector3(0, 0, 1))
-	self.sceneNode.transform.position = offset + organelle.position.cartesian
+    self.sceneNode.transform.orientation = Quaternion(Radian(Degree(organelle.rotation)), Vector3(0, 0, 1))
+    self.sceneNode.transform.position = offset + organelle.position.cartesian
     self.sceneNode.transform.scale = Vector3(HEX_SIZE, HEX_SIZE, HEX_SIZE)
     self.sceneNode.transform:touch()
     self.sceneNode.parent = microbe.entity
@@ -116,7 +116,7 @@ end
 
 function OrganelleComponent:updateColour(organelle)
     if self.sceneNode.entity ~= nil then
-		local entity = self.sceneNode.entity
+        local entity = self.sceneNode.entity
         entity:tintColour(organelle.name, organelle.colour)
         
         organelle._needsColourUpdate = false
