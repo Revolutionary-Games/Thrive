@@ -24,8 +24,8 @@ ENGULF_HP_RATIO_REQ = 1.5
 function MicrobeComponent:__init(isPlayerMicrobe, speciesName)
     Component.__init(self)
     self.speciesName = speciesName
-    self.hitpoints = 10
-    self.maxHitpoints = 10
+    self.hitpoints = 0
+    self.maxHitpoints = 0
     self.dead = false
     self.deathTimer = 0
     self.organelles = {}
@@ -179,10 +179,6 @@ function Microbe.createMicrobeEntity(name, aiControlled, speciesName, in_editor)
     rigidBody.properties.linearFactor = Vector3(1, 1, 0)
     rigidBody.properties.angularFactor = Vector3(0, 0, 1)
     rigidBody.properties:touch()
-    local compoundEmitter = CompoundEmitterComponent() -- Emitter for excess compounds
-    compoundEmitter.minInitialSpeed = 3
-    compoundEmitter.maxInitialSpeed = 4
-    compoundEmitter.particleLifetime = 5000
     local reactionHandler = CollisionComponent()
     reactionHandler:addCollisionGroup("microbe")
     local membraneComponent = MembraneComponent()
@@ -193,9 +189,9 @@ function Microbe.createMicrobeEntity(name, aiControlled, speciesName, in_editor)
     soundComponent:addSound("microbe-toxin-damage", "soundeffects/microbe-toxin-damage.ogg")
     soundComponent:addSound("microbe-death", "soundeffects/microbe-death.ogg")
     soundComponent:addSound("microbe-pickup-organelle", "soundeffects/microbe-pickup-organelle.ogg")
-    local engulfSound = soundComponent:addSound("microbe-engulfment", "soundeffects/engulfment.ogg")
- --   engulfSound.properties.loop = true
+    soundComponent:addSound("microbe-engulfment", "soundeffects/engulfment.ogg")
     soundComponent:addSound("microbe-reproduction", "soundeffects/reproduction.ogg")
+    
     s1 = soundComponent:addSound("microbe-movement-1", "soundeffects/microbe-movement-1.ogg")
     s1.properties.volume = 0.4
     s1.properties:touch()
@@ -213,7 +209,6 @@ function Microbe.createMicrobeEntity(name, aiControlled, speciesName, in_editor)
         MicrobeComponent(not aiControlled, speciesName),
         reactionHandler,
         rigidBody,
-        compoundEmitter,
         soundComponent,
         membraneComponent
     }
@@ -234,7 +229,6 @@ Microbe.COMPONENTS = {
     microbe = MicrobeComponent.TYPE_ID,
     rigidBody = RigidBodyComponent.TYPE_ID,
     sceneNode = OgreSceneNodeComponent.TYPE_ID,
-    compoundEmitter = CompoundEmitterComponent.TYPE_ID,
     collisionHandler = CollisionComponent.TYPE_ID,
     soundSource = SoundSourceComponent.TYPE_ID,
     membraneComponent = MembraneComponent.TYPE_ID,
@@ -268,6 +262,8 @@ function Microbe:__init(entity, in_editor)
     end
     self:_updateCompoundAbsorber()
     self.playerAlreadyShownAtpDamage = false
+    self.membraneHealth = 1.0
+    self.reproductionStage = 0 -- 1 for G1 complete, 2 for S complete, 3 for G2 complete, and 4 for reproduction finished.
 end
 
 -- Getter for microbe species
@@ -307,18 +303,23 @@ function Microbe:addOrganelle(q, r, rotation, organelle)
     )
     self.rigidBody.properties.mass = self.rigidBody.properties.mass + organelle.mass
     self.rigidBody.properties:touch()
-    -- Scene node
-    organelle.sceneNode.parent = self.entity
-    organelle.sceneNode.transform.position = translation
-    organelle.sceneNode.transform:touch()
+    
     organelle:onAddedToMicrobe(self, q, r, rotation)
-    self.microbe.hitpoints = (self.microbe.hitpoints/self.microbe.maxHitpoints) * (self.microbe.maxHitpoints + MICROBE_HITPOINTS_PER_ORGANELLE)
-    self.microbe.maxHitpoints = self.microbe.maxHitpoints + MICROBE_HITPOINTS_PER_ORGANELLE
+    
+    self:calculateHealthFromOrganelles()
     self.microbe.maxBandwidth = self.microbe.maxBandwidth + BANDWIDTH_PER_ORGANELLE -- Temporary solution for increasing max bandwidth
     self.microbe.remainingBandwidth = self.microbe.maxBandwidth
+    
+    -- Send the organelles to the membraneComponent so that the membrane can "grow"
     local localQ = q - organelle.position.q
     local localR = r - organelle.position.r
     if organelle:getHex(localQ, localR) ~= nil then
+        for _, hex in pairs(organelle._hexes) do
+            local q = hex.q + organelle.position.q
+            local r = hex.r + organelle.position.r
+            local x, y = axialToCartesian(q, r)
+            self.membraneComponent:sendOrganelles(x, y)
+        end
         return organelle
     end
        
@@ -415,21 +416,22 @@ function Microbe:removeOrganelle(q, r)
     if not organelle then
         return false
     end
+    
     local s = encodeAxial(organelle.position.q, organelle.position.r)
     self.microbe.organelles[s] = nil
+    
     self.rigidBody.properties.mass = self.rigidBody.properties.mass - organelle.mass
     self.rigidBody.properties:touch()
-    organelle.position.q = 0
-    organelle.position.r = 0
-    organelle:onRemovedFromMicrobe(self)
-    organelle:destroy()
     self.rigidBody.properties.shape:removeChildShape(
         organelle.collisionShape
     )
-    self.microbe.hitpoints = (self.microbe.hitpoints/self.microbe.maxHitpoints) * (self.microbe.maxHitpoints - MICROBE_HITPOINTS_PER_ORGANELLE)
-    self.microbe.maxHitpoints = self.microbe.maxHitpoints - MICROBE_HITPOINTS_PER_ORGANELLE
+    
+    organelle:onRemovedFromMicrobe(self)
+    
+    self:calculateHealthFromOrganelles()
     self.microbe.maxBandwidth = self.microbe.maxBandwidth - BANDWIDTH_PER_ORGANELLE -- Temporary solution for decreasing max bandwidth
     self.microbe.remainingBandwidth = self.microbe.maxBandwidth
+    
     return true
 end
 
@@ -452,33 +454,31 @@ end
 function Microbe:damage(amount, damageType)
     assert(amount >= 0, "Can't deal negative damage. Use Microbe:heal instead")
     
-    --print("damaged by: " .. damageType)
-    
     if damageType ~= nil and damageType == "toxin" then
         self.soundSource:playSound("microbe-toxin-damage")
     end
-    self.microbe.hitpoints = self.microbe.hitpoints - amount
+    
+    -- Choose a random organelle or membrane to damage.
+    -- TODO: CHANGE TO USE AGENT CODES FOR DAMAGE.
+    local rand = math.random(1,self.microbe.maxHitpoints/MICROBE_HITPOINTS_PER_ORGANELLE)
+    local i = 1
     for _, organelle in pairs(self.microbe.organelles) do
-        organelle:flashColour(3000, ColourValue(1,0.2,0.2,1))
+        -- If this is the organelle we have chosen...
+        if i == rand then
+            -- Deplete its health/compoundBin.
+            organelle:damageOrganelle(amount)
+        end
+        i = i + 1
     end
-    self:flashMembraneColour(3000, ColourValue(1,0.2,0.2,1))
+    
+    -- Find out the amount of health the microbe has.
+    self:calculateHealthFromOrganelles()
+    
     if self.microbe.hitpoints <= 0 then
         self.microbe.hitpoints = 0
         self:kill()
     end
     --print ("end damage")
-end
-
--- Heals the microbe, restoring hitpoints, cannot exceed the microbes max hitpoints
---
--- @param amount
---  amount of hitpoints heal
-function Microbe:heal(amount)
-    assert(amount >= 0, "Can't heal for negative amount of hitpoints. Use Microbe:damage instead")
-    self.microbe.hitpoints = (self.microbe.hitpoints + amount)
-    if self.microbe.hitpoints > self.microbe.maxHitpoints then
-        self.microbe.hitpoints = self.microbe.maxHitpoints
-    end
 end
 
 -- Drains an agent from the microbes special storage and emits it
@@ -563,7 +563,7 @@ end
 -- The amount that was actually taken, between 0.0 and maxAmount.
 function Microbe:takeCompound(compoundId, maxAmount)
     --if self.microbe.specialStorageOrganelles[compoundId] == nil then
-
+    
     local takenAmount = self.entity:getComponent(CompoundBagComponent.TYPE_ID):takeCompound(compoundId, maxAmount)
     self.microbe.stored = self.microbe.stored - takenAmount
     return takenAmount
@@ -577,31 +577,32 @@ end
 --
 -- @param amount
 -- The amount to eject
---
--- @param minAngle
--- Relative angle to the microbe. 0 = microbes front. Should be between 0 and 359 and lower or equal than maxAngle
---
--- @param maxAngle
--- Relative angle to the microbe. 0 = microbes front. Should be between 0 and 359 and higher or equal than minAngle
-function Microbe:ejectCompound(compoundId, amount, minAngle, maxAngle, radius)
-    -- local chosenAngle = rng:getReal(minAngle, maxAngle)
-    -- -- Find the direction the microbe is facing
-    -- local yAxis = self.sceneNode.transform.orientation:yAxis()
-    -- local microbeAngle = math.atan2(yAxis.x, yAxis.y)
-    -- if (microbeAngle < 0) then
-        -- microbeAngle = microbeAngle + 2*math.pi
-    -- end
-    -- microbeAngle = microbeAngle * 180/math.pi
-    -- -- Take the mirobe angle into account so we get world relative degrees
-    -- local finalAngle = (chosenAngle + microbeAngle) % 360
-    -- local _radius = INITIAL_EMISSION_RADIUS
-    -- if radius then
-        -- _radius = radius
-    -- end
-    -- Find how far away we should spawn the particle so it doesn't collide with microbe.
-    createCompoundCloud(CompoundRegistry.getCompoundInternalName(compoundId), self.sceneNode.transform.position.x, self.sceneNode.transform.position.y, amount*5000)
-    -- self.compoundEmitter:emitCompound(compoundId, amount, finalAngle, _radius)
-    -- self.microbe:_updateCompoundPriorities()
+function Microbe:ejectCompound(compoundId, amount)
+    -- The back of the microbe
+    local exitX, exitY = axialToCartesian(0, 1)
+    local membraneCoords = self.membraneComponent:getExternOrganellePos(exitX, exitY)
+    
+    local angle = 180
+    -- Find the direction the microbe is facing
+    local yAxis = self.sceneNode.transform.orientation:yAxis()
+    local microbeAngle = math.atan2(yAxis.x, yAxis.y)
+    if (microbeAngle < 0) then
+        microbeAngle = microbeAngle + 2*math.pi
+    end
+    microbeAngle = microbeAngle * 180/math.pi
+    -- Take the microbe angle into account so we get world relative degrees
+    local finalAngle = (angle + microbeAngle) % 360        
+    
+    local s = math.sin(finalAngle/180*math.pi);
+    local c = math.cos(finalAngle/180*math.pi);
+
+    local xnew = -membraneCoords[1] * c + membraneCoords[2] * s;
+    local ynew = membraneCoords[1] * s + membraneCoords[2] * c;
+    
+    local direction = Vector3(xnew, ynew, 0)
+    direction:normalise()
+    local amountToEject = self:takeCompound(compoundId, amount/10.0)
+    createCompoundCloud(CompoundRegistry.getCompoundInternalName(compoundId), self.sceneNode.transform.position.x + xnew*1.1, self.sceneNode.transform.position.y + ynew*1.1, amount*5000)
 end
 
 
@@ -611,12 +612,9 @@ end
 function Microbe:kill()
     -- Eject the compounds that was in the microbe
     for compoundId in CompoundRegistry.getCompoundList() do
-        local _amount = self:getCompoundAmount(compoundId)
-        while _amount > 0 do
-            ejectedAmount = self:takeCompound(compoundId, 2.5) -- Eject up to 3 units per particle
-            self:ejectCompound(compoundId, ejectedAmount, 0, 359)
-            _amount = _amount - ejectedAmount
-        end
+        local total = self:getCompoundAmount(compoundId)
+        ejectedAmount = self:takeCompound(compoundId, total)
+        self:ejectCompound(compoundId, ejectedAmount)
     end    
     for compoundId, specialStorageOrg in pairs(self.microbe.specialStorageOrganelles) do
         local _amount = self:getCompoundAmount(compoundId)
@@ -655,18 +653,51 @@ function Microbe:kill()
 end
 
 -- Copies this microbe. The new microbe will not have the stored compounds of this one.
-function Microbe:reproduce()
-    copy = Microbe.createMicrobeEntity(nil, true, self.microbe.speciesName)
-    print(self.microbe.speciesName.." <> "..copy.microbe.speciesName)
-    -- self:getSpeciesComponent():template(copy)
-    -- copy.compoundBag:setProcessor(Entity(self.microbe.speciesName):getComponent(ProcessorComponent.TYPE_ID))
-    copy.rigidBody.dynamicProperties.position = Vector3(self.rigidBody.dynamicProperties.position.x, self.rigidBody.dynamicProperties.position.y, 0)
-    -- copy:storeCompound(CompoundRegistry.getCompoundId("atp"), 20, false)
-    -- copy.microbe:_resetCompoundPriorities()
-    copy.entity:addComponent(SpawnedComponent())
-    self.soundSource:playSound("microbe-reproduction")
+function Microbe:readyToReproduce()
     if self.microbe.isPlayerMicrobe then
         showReproductionDialog()
+        self.reproductionStage = 0
+    else
+        -- Return the first cell to its normal, non duplicated cell arangement.
+        SpeciesSystem.template(self, self:getSpeciesComponent())
+        self:divide()
+    end
+end
+
+function Microbe:divide()
+    print("dividing cell ")
+    -- Create the two daughter cells.
+    local copy = Microbe.createMicrobeEntity(nil, true, self.microbe.speciesName)
+    
+    --Separate the two cells.
+    copy.rigidBody.dynamicProperties.position = Vector3(self.rigidBody.dynamicProperties.position.x - self.membraneComponent.dimensions/2, self.rigidBody.dynamicProperties.position.y, 0)
+    self.rigidBody.dynamicProperties.position = Vector3(self.rigidBody.dynamicProperties.position.x + self.membraneComponent.dimensions/2, self.rigidBody.dynamicProperties.position.y, 0)
+    
+    -- Split the compounds evenly between the two cells.
+    for compoundID in CompoundRegistry.getCompoundList() do
+        local amount = self:getCompoundAmount(compoundID)
+    
+        if amount ~= 0 then
+            self:takeCompound(compoundID, amount/2, false)
+            copy:storeCompound(compoundID, amount/2, false)
+        end
+    end
+    
+    self.reproductionStage = 0
+    copy.reproductionStage = 0
+    
+    copy.entity:addComponent(SpawnedComponent())
+    self.soundSource:playSound("microbe-reproduction")
+end
+
+function Microbe.transferCompounds(from, to)
+    for compoundID in CompoundRegistry.getCompoundList() do
+        local amount = from:getCompoundAmount(compoundID)
+    
+        if amount ~= 0 then
+            from:takeCompound(compoundID, amount, false)
+            to:storeCompound(compoundID, amount, false)
+        end
     end
 end
 
@@ -745,16 +776,85 @@ function Microbe:update(logicTime)
             self:purgeCompounds()
 
             self:atpDamage()
-
-            self:attemptReproduce()
         end
+        
+        -- First organelle run: updates all the organelles and heals the broken ones.
+        if self.microbe.hitpoints < self.microbe.maxHitpoints then
+            for _, organelle in pairs(self.microbe.organelles) do
+                -- Update the organelle.
+                organelle:update(self, logicTime)
+                
+                -- If the organelle is hurt.
+                if organelle:getCompoundBin() < 1.0 then
+                    -- Give the organelle access to the compound bag to take some compound.
+                    organelle:growOrganelle(self.entity:getComponent(CompoundBagComponent.TYPE_ID))
+                    -- An organelle was damaged and we tried to heal it, so out health might be different.
+                    self:calculateHealthFromOrganelles()
+                end
+            end
+        else
+            local reproductionStageComplete = true
+        
+            -- Grow all the large organelles.
+            for _, organelle in pairs(self.microbe.organelles) do
+                -- Update the organelle.
+                organelle:update(self, logicTime)
+                
+                -- We are in G1 phase of the cell cycle, duplicate all organelles.
+                if organelle.name ~= "nucleus" and self.reproductionStage == 0 then
+                    
+                    -- If the organelle is not split, give it some compounds to make it larger.
+                    if organelle:getCompoundBin() < 2.0 and not organelle.wasSplit then
+                        -- Give the organelle access to the compound bag to take some compound.
+                        organelle:growOrganelle(self.entity:getComponent(CompoundBagComponent.TYPE_ID))
+                        reproductionStageComplete = false
+                    -- If the organelle was split and has a bin less then 1, it must have been damaged.
+                    elseif organelle:getCompoundBin() < 1.0 and organelle.wasSplit then
+                        -- Give the organelle access to the compound bag to take some compound.
+                        organelle:growOrganelle(self.entity:getComponent(CompoundBagComponent.TYPE_ID))
+                    -- If the organelle is twice its size...
+                    elseif organelle:getCompoundBin() >= 2.0 then
+                        print("ready to split " .. organelle.name)
+                        -- Mark this organelle as done and return to its normal size.
+                        organelle:reset()
+                        organelle.wasSplit = true
+                        -- Create a second organelle.
+                        local organelle2 = self:splitOrganelle(organelle)
+                        organelle2.wasSplit = true
+                        organelle2.isDuplicate = true
+                        organelle2.sisterOrganelle = organelle
 
-        -- Other organelles
-        for _, organelle in pairs(self.microbe.organelles) do
-            organelle:update(self, logicTime)
-            -- print("updated organelle")
+                        -- Redo the cell membrane.
+                        self.membraneComponent:clear()
+                    end
+                -- In the S phase, the nucleus grows as chromatin is duplicated.
+                elseif organelle.name == "nucleus" and self.reproductionStage == 1 then
+                    -- If the nucleus hasn't finished replicating its DNA, give it some compounds.
+                    if organelle:getCompoundBin() < 2.0 then
+                        -- Give the organelle access to the compound back to take some compound.
+                        organelle:growOrganelle(self.entity:getComponent(CompoundBagComponent.TYPE_ID))
+                        reproductionStageComplete = false
+                    end
+                end
+            end
+            if reproductionStageComplete and self.reproductionStage < 2 then
+                self.reproductionStage = self.reproductionStage + 1
+            end
+            
+            -- To finish the G2 phase we just need more than a threshold of compounds.
+            if self.reproductionStage == 2 or self.reproductionStage == 3 then
+                -- If we have more than the threshold,
+                --if self:getCompoundAmount(CompoundRegistry.getCompoundId("fattyacids")) > 1 and 
+                --    self:getCompoundAmount(CompoundRegistry.getCompoundId("glucose")) > 5 and
+                --    self:getCompoundAmount(CompoundRegistry.getCompoundId("aminoacids")) > 1 and
+                --    self:getCompoundAmount(CompoundRegistry.getCompoundId("atp")) > 10 then
+                --   
+                    self:readyToReproduce()
+                --else
+                --    hideReproductionDialog()
+                --end
+            end
         end
-        -- print("updated all organelles")
 
         if self.microbe.engulfMode then
             -- Drain atp and if we run out then disable engulfmode
@@ -768,7 +868,7 @@ function Microbe:update(logicTime)
             self:flashMembraneColour(3000, ColourValue(0.2,0.5,1.0,0.5))
         end
         if self.microbe.isBeingEngulfed and self.microbe.wasBeingEngulfed then
-            self:damage(logicTime * 0.00025  * self.microbe.maxHitpoints, "isBeingEngulfed - 764") -- Engulfment damages 25% per second
+            self:damage(logicTime * 0.000025  * self.microbe.maxHitpoints, "isBeingEngulfed - Microbe:update()s")
         -- Else If we were but are no longer, being engulfed
         elseif self.microbe.wasBeingEngulfed then
             self:removeEngulfedEffect()
@@ -780,24 +880,75 @@ function Microbe:update(logicTime)
         self.microbe.deathTimer = self.microbe.deathTimer - logicTime
         self.flashDuration = 0
         if self.microbe.deathTimer <= 0 then
-            if self.microbe.isPlayerMicrobe  == true then
+            if self.microbe.isPlayerMicrobe == true then
                 self:respawn()
             else
                 self:destroy()
             end
         end
     end
-    -- Membrane
-    self.sceneNode.meshName = "membrane_" .. self.microbe.speciesName
+    -- print("finished update")
+end
+
+function Microbe:calculateHealthFromOrganelles()
+    self.microbe.hitpoints = 0
+    self.microbe.maxHitpoints = 0
     for _, organelle in pairs(self.microbe.organelles) do
-        for _, hex in pairs(organelle._hexes) do
-            local q = hex.q + organelle.position.q
-            local r = hex.r + organelle.position.r
-            local x, y = axialToCartesian(q, r)
-            self.membraneComponent:sendOrganelles(x, y)
+        self.microbe.hitpoints = self.microbe.hitpoints + (organelle:getCompoundBin() < 1.0 and organelle:getCompoundBin() or 1.0) * MICROBE_HITPOINTS_PER_ORGANELLE
+        self.microbe.maxHitpoints = self.microbe.maxHitpoints + MICROBE_HITPOINTS_PER_ORGANELLE
+    end
+    --self.microbe.hitpoints = self.microbe.hitpoints + self.membraneHealth * MICROBE_HITPOINTS_PER_ORGANELLE
+end
+
+function Microbe:splitOrganelle(organelle)
+    -- Find an empty place where the organelle can be placed.
+    for _, q, r in iterateNeighbours(organelle.position.q, organelle.position.r) do
+    print("trying to put an organelle at " .. q .. ", " .. r)
+        if self:getOrganelleAt(q,r) == nil then
+            for i=0, 6 do
+                local data = {["name"]=organelle.name, ["q"]=q, ["r"]=r, ["rotation"]=i*60}
+                newOrganelle = OrganelleFactory.makeOrganelle(data)
+                
+                if self:validPlacement(newOrganelle, q, r) then
+                    print("placed " .. organelle.name .. " at " .. q .. " " .. r)
+                    self:addOrganelle(q, r, i*60, newOrganelle)
+                    return newOrganelle
+                end
+            end
         end
     end
-    -- print("finished update")
+    
+    print("could not place organelle")
+    return false
+end
+
+function Microbe:validPlacement(organelle, q, r)
+    local empty = true
+    local touching = false;
+    for s, hex in pairs(organelle._hexes) do
+        
+        local organelle = self:getOrganelleAt(hex.q + q, hex.r + r)
+        if organelle then
+            if organelle.name ~= "cytoplasm" then
+                empty = false 
+            end
+        end
+        
+		if  self:getOrganelleAt(hex.q + q + 0, hex.r + r - 1) or
+			self:getOrganelleAt(hex.q + q + 1, hex.r + r - 1) or
+			self:getOrganelleAt(hex.q + q + 1, hex.r + r + 0) or
+			self:getOrganelleAt(hex.q + q + 0, hex.r + r + 1) or
+			self:getOrganelleAt(hex.q + q - 1, hex.r + r + 1) or
+			self:getOrganelleAt(hex.q + q - 1, hex.r + r + 0) then
+			touching = true;
+		end
+    end
+    
+    if empty and touching then
+        return true
+    else
+        return false
+    end
 end
 
 PURGE_SCALE = 0.4
@@ -820,15 +971,7 @@ function Microbe:atpDamage()
             self.playerAlreadyShownAtpDamage = true
             showMessage("No ATP hurts you!")
         end
-        self:damage(EXCESS_COMPOUND_COLLECTION_INTERVAL * 0.00002  * self.microbe.maxHitpoints, "no ATP - 816") -- Microbe takes 2% of max hp per second in damage
-    end
-end
-
-function Microbe:attemptReproduce()
-    -- Split microbe if it has enough reproductase
-    if self:getCompoundAmount(CompoundRegistry.getCompoundId("reproductase")) > REPRODUCTASE_TO_SPLIT then
-        self:takeCompound(CompoundRegistry.getCompoundId("reproductase"), REPRODUCTASE_TO_SPLIT)
-        self:reproduce()
+        self:damage(EXCESS_COMPOUND_COLLECTION_INTERVAL * 0.000002  * self.microbe.maxHitpoints, "atpDamage") -- Microbe takes 2% of max hp per second in damage
     end
 end
 
@@ -836,7 +979,12 @@ function Microbe:respawn()
     self.microbe.dead = false
     self.microbe.deathTimer = 0
     self.residuePhysicsTime = 0
-    self.microbe.hitpoints = self.microbe.maxHitpoints
+    
+    -- Reset the growth bins of the organelles to full health.
+    for _, organelle in pairs(self.microbe.organelles) do
+        organelle:reset()
+    end
+    self:calculateHealthFromOrganelles()
 
     self.rigidBody:setDynamicProperties(
         Vector3(0,0,0), -- Position
@@ -872,28 +1020,15 @@ function Microbe:_initialize()
     self.rigidBody.properties.mass = 0.0
     -- Organelles
     for s, organelle in pairs(self.microbe.organelles) do
-        organelle.microbe = self
-        local q = organelle.position.q
-        local r = organelle.position.r
-        local x, y = axialToCartesian(q, r)
-        local rotation = organelle.rotation
-        local translation = Vector3(x, y, 0)
-        -- Collision shape
-        self.rigidBody.properties.shape:addChildShape(
-            translation,
-            Quaternion(Radian(0), Vector3(1,0,0)),
-            organelle.collisionShape
-        )
+        organelle:onAddedToMicrobe(self, organelle.position.q, organelle.position.r, organelle.rotation)   
+        organelle:reset()
         self.rigidBody.properties.mass = self.rigidBody.properties.mass + organelle.mass
-        -- Scene node
-        organelle.sceneNode.parent = self.entity
-        organelle.sceneNode.transform.position = translation
-        organelle.sceneNode.transform:touch()
-        organelle:onAddedToMicrobe(self, q, r, rotation)
-
     end
+    -- Membrane
+    self.sceneNode.meshName = "membrane_" .. self.microbe.speciesName
     self.rigidBody.properties:touch()
     self.microbe.initialized = true
+    self.reproductionStage = 0
 end
 
 
@@ -920,7 +1055,7 @@ end
 -- Must exists for current spawningSystem to function, also used by microbe:kill
 function Microbe:destroy()
     for _, organelle in pairs(self.microbe.organelles) do
-        organelle:destroy()
+        organelle:onRemovedFromMicrobe(self)
     end
     self.entity:destroy()
 end
@@ -1024,7 +1159,7 @@ function MicrobeSystem:update(renderTime, logicTime)
         local agent = Entity(collision.entityId2)
         
         if entity:exists() and agent:exists() then
-            Microbe(entity):damage(5, "toxin")
+            Microbe(entity):damage(.5, "toxin")
             agent:destroy()
         end
     end

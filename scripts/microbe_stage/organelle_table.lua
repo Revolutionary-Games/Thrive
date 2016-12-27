@@ -23,7 +23,6 @@ organelleTable = {
     ["nucleus"] = {
         mass = 0.7,
         components = {
-            ["ProcessOrganelle"] = {colourChangeFactor = 1.0},
             ["NucleusOrganelle"] = {}
         },
         mpCost = 0, --it's not supossed to be purchased.
@@ -72,7 +71,6 @@ organelleTable = {
 
     ["oxytoxy"] = {
         components = {
-            ["ProcessOrganelle"] = {colourChangeFactor = 0.15},
             ["AgentVacuole"] = {
                 compound = "oxytoxy",
                 process = "OxyToxySynthesis"
@@ -116,7 +114,7 @@ organelleTable = {
     ["flagellum"] = {
         components = {
             ["MovementOrganelle"] = {
-                momentum = 12.5,
+                momentum = 50,
                 torque = 300
             }
         },
