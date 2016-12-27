@@ -1462,6 +1462,8 @@ def isGoodLDDFound(lib)
     true
   when /.*png.*/i
     true
+  when /.*freeimage.*/i
+    true
   when /.*gnutls.*/i
     true
   when /.*atomic.*/i
@@ -1473,6 +1475,27 @@ def isGoodLDDFound(lib)
   when /.*va.*/i
     true
   when /.*xvid.*/i
+    true
+  when /.*zvbi.*/i
+    true
+  when /.*amr.*/i
+    true
+  when /.*mfx.*/i
+    true
+  when /.*aac.*/i
+    true
+  # nvidia stuff for ffmpeg
+  when /.*nvcu.*/i
+    true
+  when /.*cuda.*/i
+    true
+  when /.*nvidia-fatbinary.*/i
+    true
+  when /.*vdpau.*/i
+    true
+  when /.*twolame.*/i
+    true
+  when /.*h26.*/i
     true
   when /.*mp3.*/i
     true
