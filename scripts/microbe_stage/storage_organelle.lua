@@ -11,6 +11,8 @@ class 'StorageOrganelle' (OrganelleComponent)
 -- @param arguments.capacity
 -- The maximum stored amount
 function StorageOrganelle:__init(arguments, data)
+    OrganelleComponent.__init(self, arguments, data)
+    
     --making sure this doesn't run when load() is called
     if arguments == nil and data == nil then
         return
@@ -32,11 +34,16 @@ function StorageOrganelle:storage(storage)
 end
 
 -- Overridded from Organelle:onAddedToMicrobe
-function StorageOrganelle:onAddedToMicrobe(microbe, q, r, rotation)
-    parentIndex = microbe:addStorageOrganelle(self)
+function StorageOrganelle:onAddedToMicrobe(microbe, q, r, rotation, organelle)
+    OrganelleComponent.onAddedToMicrobe(self, microbe, q, r, rotation, organelle)
+    self.parentIndex = microbe:addStorageOrganelle(self)
 end
 
 -- Overridded from Organelle:onRemovedFromMicrobe
 function StorageOrganelle:onRemovedFromMicrobe(microbe, q, r)
     microbe:removeStorageOrganelle(self)
+end
+
+-- Empty override function to prevent mesh from being altered.
+function StorageOrganelle:updateColour(organelle)
 end

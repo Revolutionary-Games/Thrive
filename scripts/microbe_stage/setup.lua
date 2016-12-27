@@ -56,10 +56,9 @@ local function setupCompounds()
     table.sort(ordered_keys)
     for i = 1, #ordered_keys do
         local k, v = ordered_keys[i], compounds[ ordered_keys[i] ]
-        CompoundRegistry.registerCompoundType(k, v["name"], v["mesh"], v["size"], v["weight"])
+        CompoundRegistry.registerCompoundType(k, v["name"], "placeholder.mesh", v["size"], v["weight"])
     end    
     CompoundRegistry.loadFromLua({}, agents)
-    --CompoundRegistry.loadFromXML("../scripts/definitions/compounds.xml")
 end
 
 local function setupCompoundClouds()
@@ -94,28 +93,8 @@ local function setupCompoundClouds()
     entity:addComponent(compoundCloud)
 end
 
---  This isn't a finished solution. Optimally the process class would be moved to CPP and loaded there entirely.
-global_processMap = {}
 local function setupProcesses()
-    -- BioProcessRegistry.loadFromXML("../scripts/definitions/processes.xml")
     BioProcessRegistry.loadFromLua(processes)
-    for processId in BioProcessRegistry.getList() do
-        local inputCompounds = {}
-        local outputCompounds = {}
-        
-        for recipyCompound in BioProcessRegistry.getInputCompounds(processId) do
-            inputCompounds[recipyCompound.compoundId] = recipyCompound.amount
-        end
-        for recipyCompound in BioProcessRegistry.getOutputCompounds(processId) do
-            outputCompounds[recipyCompound.compoundId] = recipyCompound.amount
-        end
-        
-        global_processMap[BioProcessRegistry.getInternalName(processId)] = Process(
-            BioProcessRegistry.getSpeedFactor(processId),
-            inputCompounds,
-            outputCompounds
-        )
-    end
 end
 
 function setupSpecies()
@@ -284,6 +263,11 @@ function createAgentCloud(compoundId, x, y, direction, amount)
     
 end
 
+-- Copy paste for quick debugging. Prints the line of the print statement.
+function printLine()
+    print(debug.getinfo(1).currentline)
+end
+
 local function addEmitter2Entity(entity, compound)
     local compoundEmitter = CompoundEmitterComponent()
     entity:addComponent(compoundEmitter)
@@ -345,14 +329,6 @@ local function createSpawnSystem()
     local spawnAmmoniaCloud =  function(pos)
         createCompoundCloud("ammonia", pos.x, pos.y, 75000)
     end
-
-    --Spawn one emitter on average once in every square of sidelength 10
-    -- (square dekaunit?)
-	-- Spawn radius should depend on view rectangle
-    --spawnSystem:addSpawnType(spawnOxygenEmitter, 1/1600, 50)
-    --spawnSystem:addSpawnType(spawnCO2Emitter, 1/1700, 50)
-    --spawnSystem:addSpawnType(spawnGlucoseEmitter, 1/1600, 50)
-    --spawnSystem:addSpawnType(spawnAmmoniaEmitter, 1/2250, 50)
     
     spawnSystem:addSpawnType(toxinOrganelleSpawnFunction, 1/17000, 50)
     spawnSystem:addSpawnType(ChloroplastOrganelleSpawnFunction, 1/12000, 50)
@@ -370,37 +346,6 @@ local function createSpawnSystem()
             species.spawnDensity, 60)
     end
     return spawnSystem
-end
-
-local function setupEmitter()
-    -- -- Setting up a test emitter
-    -- local entity = Entity("glucose-emitter")
-    -- -- Rigid body
-    -- local rigidBody = RigidBodyComponent()
-    -- rigidBody.properties.friction = 0.2
-    -- rigidBody.properties.linearDamping = 0.8
-    -- rigidBody.properties.shape = CylinderShape(
-        -- CollisionShape.AXIS_X, 
-        -- 0.4,
-        -- 2.0
-    -- )
-    -- rigidBody:setDynamicProperties(
-        -- Vector3(10, 0, 0),
-        -- Quaternion(Radian(Degree(0)), Vector3(1, 0, 0)),
-        -- Vector3(0, 0, 0),
-        -- Vector3(0, 0, 0)
-    -- )
-    -- rigidBody.properties:touch()
-    -- entity:addComponent(rigidBody)
-    -- local reactionHandler = CollisionComponent()
-    -- reactionHandler:addCollisionGroup("emitter")
-    -- entity:addComponent(reactionHandler)
-    -- -- Scene node
-    -- local sceneNode = OgreSceneNodeComponent()
-    -- sceneNode.meshName = "molecule.mesh"
-    -- entity:addComponent(sceneNode)
-    -- -- Emitter test
-    -- addEmitter2Entity(entity, "glucose")
 end
 
 local function setupPlayer()
@@ -500,7 +445,6 @@ local function createMicrobeStage(name)
             setupBackground()
             setupCamera()
             setupCompoundClouds()
-            setupEmitter()
             setupSpecies()
             setupPlayer()
             setupSound()

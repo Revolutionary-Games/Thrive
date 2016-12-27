@@ -1,4 +1,3 @@
-
 #include <iostream>
 #include <cmath>
 
@@ -133,6 +132,7 @@ CompoundBagComponent::luaBindings() {
         .def("takeCompound", &CompoundBagComponent::takeCompound)
         .def("getCompoundAmount", &CompoundBagComponent::getCompoundAmount)
         .def("excessAmount", &CompoundBagComponent::excessAmount)
+        .def("aboveLowThreshold", &CompoundBagComponent::aboveLowThreshold)
     ;
 }
 
@@ -203,6 +203,13 @@ float
 CompoundBagComponent::excessAmount(CompoundId id) {
     float amt = compounds[id];
     float threshold = std::get<2>(this->processor->thresholds[id]);
+    return amt > threshold ? amt - threshold : 0;
+}
+
+float
+CompoundBagComponent::aboveLowThreshold(CompoundId id) {
+    float amt = compounds[id];
+    float threshold = std::get<0>(this->processor->thresholds[id]);
     return amt > threshold ? amt - threshold : 0;
 }
 

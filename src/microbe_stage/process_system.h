@@ -82,6 +82,9 @@ public:
 
     float
     excessAmount(CompoundId); // return the amount of compound in excess
+
+    float
+    aboveLowThreshold(CompoundId id); // the amount of compound above low threshold
 };
 
 class ProcessSystem : public System {
