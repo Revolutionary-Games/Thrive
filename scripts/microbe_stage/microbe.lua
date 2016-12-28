@@ -998,20 +998,9 @@ function Microbe:respawn()
     sceneNode.transform:touch()
     
     self:storeCompound(CompoundRegistry.getCompoundId("atp"), 50, false)
-    
-    local rand = math.random(0,3)
-    local backgroundEntity = Entity("background")
-    local skyplane = backgroundEntity:getComponent(SkyPlaneComponent.TYPE_ID)
-    if rand == 0 then
-        skyplane.properties.materialName = "Background"
-    elseif rand == 1 then
-        skyplane.properties.materialName = "Background_Vent"
-    elseif rand == 2 then
-        skyplane.properties.materialName = "Background_Abyss"
-    else 
-        skyplane.properties.materialName = "Background_Shallow"
-    end
-    skyplane.properties:touch()
+
+    setRandomBiome()
+    resetBackground()
 end
 
 -- Private function for initializing a microbe's components
