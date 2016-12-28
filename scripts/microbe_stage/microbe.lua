@@ -901,25 +901,41 @@ function Microbe:calculateHealthFromOrganelles()
 end
 
 function Microbe:splitOrganelle(organelle)
-    -- Find an empty place where the organelle can be placed.
-    for _, q, r in iterateNeighbours(organelle.position.q, organelle.position.r) do
-    print("trying to put an organelle at " .. q .. ", " .. r)
-        if self:getOrganelleAt(q,r) == nil then
-            for i=0, 6 do
-                local data = {["name"]=organelle.name, ["q"]=q, ["r"]=r, ["rotation"]=i*60}
-                newOrganelle = OrganelleFactory.makeOrganelle(data)
-                
-                if self:validPlacement(newOrganelle, q, r) then
-                    print("placed " .. organelle.name .. " at " .. q .. " " .. r)
-                    self:addOrganelle(q, r, i*60, newOrganelle)
-                    return newOrganelle
+    local q = organelle.position.q
+    local r = organelle.position.r
+
+    --Spiral search for space for the organelle
+    local radius = 1
+    while true do
+        --Moves into the ring of radius "radius" and center the old organelle
+        q = q + HEX_NEIGHBOUR_OFFSET[HEX_SIDE.BOTTOM_LEFT][1]
+        r = r + HEX_NEIGHBOUR_OFFSET[HEX_SIDE.BOTTOM_LEFT][2]
+
+        --Iterates in the ring
+        for side = 1, 6 do --necesary due to lua not ordering the tables.
+            local offset = HEX_NEIGHBOUR_OFFSET[side]
+            --Moves "radius" times into each direction
+            for i = 1, radius do
+                q = q + offset[1]
+                r = r + offset[2]
+
+                --Checks every possible rotation value.
+                for j = 0, 5 do
+                    local rotation = 360 * j / 6
+                    local data = {["name"]=organelle.name, ["q"]=q, ["r"]=r, ["rotation"]=i*60}
+                    local newOrganelle = OrganelleFactory.makeOrganelle(data)
+
+                    if self:validPlacement(newOrganelle, q, r) then
+                        print("placed " .. organelle.name .. " at " .. q .. " " .. r)
+                        self:addOrganelle(q, r, i*60, newOrganelle)
+                        return newOrganelle
+                    end
                 end
             end
         end
+
+        radius = radius + 1
     end
-    
-    print("could not place organelle")
-    return false
 end
 
 function Microbe:validPlacement(organelle, q, r)
