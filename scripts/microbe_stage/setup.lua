@@ -1,34 +1,5 @@
-gCurrentBiome = "default"
-
-function setRandomBiome()
-    --Getting the size of the biome table.
-    local numberOfBiomes = 0
-    local biomeNameTable = {}
-    for biomeName, _ in pairs(biomeTable) do
-        numberOfBiomes = numberOfBiomes + 1
-        table.insert(biomeNameTable, biomeName)
-    end
-
-    --Selecting a random biome.
-    math.randomseed(os.time())
-    local rand = math.random(1, numberOfBiomes)
-    gCurrentBiome = biomeNameTable[rand]
-end
-
-function resetBackground()
-    local entity = Entity("background")
-    local skyplane = SkyPlaneComponent()
-    skyplane.properties.plane.normal = Vector3(0, 0, 2000)
-
-    skyplane.properties.materialName = biomeTable[gCurrentBiome].background
-	skyplane.properties.scale = 200
-    skyplane.properties:touch()
-    entity:addComponent(skyplane)
-end
-
 local function setupBackground()
     setRandomBiome()
-    resetBackground()
 end
 
 local function setupCamera()

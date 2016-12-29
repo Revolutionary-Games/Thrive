@@ -1000,7 +1000,6 @@ function Microbe:respawn()
     self:storeCompound(CompoundRegistry.getCompoundId("atp"), 50, false)
 
     setRandomBiome()
-    resetBackground()
 end
 
 -- Private function for initializing a microbe's components

@@ -1,7 +1,8 @@
+--The biome in which the tutorial is played.
+TUTORIAL_BIOME = "default"
 
 local function setupBackground()
-    gCurrentBiome = "default"
-    resetBackground()
+    setBiome(TUTORIAL_BIOME)
 end
 
 local function setupCamera()
