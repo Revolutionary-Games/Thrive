@@ -793,8 +793,10 @@ function Microbe:update(logicTime)
                 end
             end
         else
+
             local reproductionStageComplete = true
-        
+            local organellesToAdd = {}
+
             -- Grow all the large organelles.
             for _, organelle in pairs(self.microbe.organelles) do
                 -- Update the organelle.
@@ -814,19 +816,11 @@ function Microbe:update(logicTime)
                         organelle:growOrganelle(self.entity:getComponent(CompoundBagComponent.TYPE_ID))
                     -- If the organelle is twice its size...
                     elseif organelle:getCompoundBin() >= 2.0 then
-                        print("ready to split " .. organelle.name)
-                        -- Mark this organelle as done and return to its normal size.
-                        organelle:reset()
-                        organelle.wasSplit = true
-                        -- Create a second organelle.
-                        local organelle2 = self:splitOrganelle(organelle)
-                        organelle2.wasSplit = true
-                        organelle2.isDuplicate = true
-                        organelle2.sisterOrganelle = organelle
-
-                        -- Redo the cell membrane.
-                        self.membraneComponent:clear()
+                        --Queue this organelle for splitting after the loop.
+                        --(To avoid "cutting down the branch we're sitting on").
+                        table.insert(organellesToAdd, organelle)
                     end
+                   
                 -- In the S phase, the nucleus grows as chromatin is duplicated.
                 elseif organelle.name == "nucleus" and self.reproductionStage == 1 then
                     -- If the nucleus hasn't finished replicating its DNA, give it some compounds.
@@ -836,7 +830,25 @@ function Microbe:update(logicTime)
                         reproductionStageComplete = false
                     end
                 end
+
             end
+
+            --Splitting the queued organelles.
+            for _, organelle in pairs(organellesToAdd) do
+                print("ready to split " .. organelle.name)
+                -- Mark this organelle as done and return to its normal size.
+                organelle:reset()
+                organelle.wasSplit = true
+                -- Create a second organelle.
+                local organelle2 = self:splitOrganelle(organelle)
+                organelle2.wasSplit = true
+                organelle2.isDuplicate = true
+                organelle2.sisterOrganelle = organelle
+
+                -- Redo the cell membrane.
+                self.membraneComponent:clear()
+            end
+
             if reproductionStageComplete and self.reproductionStage < 2 then
                 self.reproductionStage = self.reproductionStage + 1
             end
