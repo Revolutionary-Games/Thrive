@@ -1,14 +1,20 @@
-local currentBiome = {}
+currentBiome = {}
 
 function setBiome(biomeName)
-    currentBiome = {}
+    --Getting the base biome to change to.
     local baseBiome = biomeTable[biomeName]
 
     --Setting the new biome attributes
+    currentBiome = {}
     currentBiome.name = biomeName
     currentBiome.temperature = baseBiome.temperature
     currentBiome.sunlight = baseBiome.sunlight
     currentBiome.background = baseBiome.background
+    currentBiome.compounds = {}
+
+    for compoundName, amount in pairs(baseBiome.compounds) do
+        currentBiome.compounds[compoundName] = amount
+    end
 
     --Changing the background.
     local entity = Entity("background")

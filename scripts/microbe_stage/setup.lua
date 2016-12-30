@@ -196,7 +196,9 @@ local function setSpawnablePhysics(entity, pos, mesh, scale, collisionShape)
     return entity
 end
 
-function createCompoundCloud(compoundName, x, y, amount)
+function createCompoundCloud(compoundName, x, y)
+    local amount = currentBiome.compounds[compoundName]
+    if amount == nil then amount = 0 end
     if compoundName == "aminoacids" or compoundName == "glucose" or compoundName == "co2" or compoundName == "oxygen" or compoundName == "ammonia" then
         Entity("compound_cloud_" .. compoundName):getComponent(CompoundCloudComponent.TYPE_ID):addCloud(amount, x, y)
     end
@@ -301,16 +303,16 @@ local function createSpawnSystem()
     end
         
     local spawnGlucoseCloud =  function(pos)
-        createCompoundCloud("glucose", pos.x, pos.y, 75000)
+        createCompoundCloud("glucose", pos.x, pos.y)
     end
     local spawnOxygenCloud =  function(pos)
-        createCompoundCloud("oxygen", pos.x, pos.y, 75000)
+        createCompoundCloud("oxygen", pos.x, pos.y)
     end
     local spawnCO2Cloud =  function(pos)
-        createCompoundCloud("co2", pos.x, pos.y, 75000)
+        createCompoundCloud("co2", pos.x, pos.y)
     end
     local spawnAmmoniaCloud =  function(pos)
-        createCompoundCloud("ammonia", pos.x, pos.y, 75000)
+        createCompoundCloud("ammonia", pos.x, pos.y)
     end
     
     spawnSystem:addSpawnType(toxinOrganelleSpawnFunction, 1/17000, 50)
