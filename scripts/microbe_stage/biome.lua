@@ -1,5 +1,7 @@
+--Global table which stores the current biome the player is in.
 currentBiome = {}
 
+--Setting the current biome to the one with the specified name.
 function setBiome(biomeName)
     --Getting the base biome to change to.
     local baseBiome = biomeTable[biomeName]
@@ -26,6 +28,7 @@ function setBiome(biomeName)
     entity:addComponent(skyplane)
 end
 
+--Setting the current biome to a random biome selected from the biome table.
 function setRandomBiome()
     --Getting the size of the biome table.
     local numberOfBiomes = 0
