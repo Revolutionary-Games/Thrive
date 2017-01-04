@@ -577,19 +577,35 @@ end
 --
 -- @param amount
 -- The amount to eject
+local EJECTION_DISTANCE = 3.0
 function Microbe:ejectCompound(compoundId, amount)
     -- The back of the microbe
     local exitX, exitY = axialToCartesian(0, 1)
     local membraneCoords = self.membraneComponent:getExternOrganellePos(exitX, exitY)
-    
+
+    --Get the distance to eject the compunds
+    local maxR = 0
+    for _, organelle in pairs(self.microbe.organelles) do
+        for _, hex in pairs(organelle._hexes) do
+            if hex.r + organelle.position.r > maxR then
+                maxR = hex.r + organelle.position.r
+            end
+        end
+    end
+
+    --The distance is two hexes away from the back of the microbe.
+    --This distance could be precalculated when adding/removing an organelle
+    --for more efficient pooping.
+    local ejectionDistance = (maxR + 3) * HEX_SIZE
+
     local angle = 180
     -- Find the direction the microbe is facing
     local yAxis = self.sceneNode.transform.orientation:yAxis()
     local microbeAngle = math.atan2(yAxis.x, yAxis.y)
     if (microbeAngle < 0) then
-        microbeAngle = microbeAngle + 2*math.pi
+        microbeAngle = microbeAngle + 2 * math.pi
     end
-    microbeAngle = microbeAngle * 180/math.pi
+    microbeAngle = microbeAngle * 180 / math.pi
     -- Take the microbe angle into account so we get world relative degrees
     local finalAngle = (angle + microbeAngle) % 360        
     
@@ -598,11 +614,12 @@ function Microbe:ejectCompound(compoundId, amount)
 
     local xnew = -membraneCoords[1] * c + membraneCoords[2] * s;
     local ynew = membraneCoords[1] * s + membraneCoords[2] * c;
-    
-    local direction = Vector3(xnew, ynew, 0)
-    direction:normalise()
+
     local amountToEject = self:takeCompound(compoundId, amount/10.0)
-    createCompoundCloud(CompoundRegistry.getCompoundInternalName(compoundId), self.sceneNode.transform.position.x + xnew*1.1, self.sceneNode.transform.position.y + ynew*1.1, amount*5000)
+    createCompoundCloud(CompoundRegistry.getCompoundInternalName(compoundId),
+                        self.sceneNode.transform.position.x + xnew * ejectionDistance,
+                        self.sceneNode.transform.position.y + ynew * ejectionDistance,
+                        amount * 5000)
 end
 
 
