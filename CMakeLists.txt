@@ -304,18 +304,19 @@ if(WIN32)
  
 file(MAKE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/dist/bin) 
 
-add_executable(dist/bin/Thrive
+add_executable(Thrive
  ${CMAKE_CURRENT_SOURCE_DIR}/src/Main.cpp
  ${CMAKE_CURRENT_SOURCE_DIR}/windows/thrive.rc)
 else()
- add_executable(dist/bin/Thrive
+ add_executable(Thrive
  ${CMAKE_CURRENT_SOURCE_DIR}/src/Main.cpp)
 endif()
+set_target_properties (Thrive PROPERTIES RUNTIME_OUTPUT_DIRECTORY dist/bin) 
 
 # Compile executable
 
 
-target_link_libraries(dist/bin/Thrive ThriveLib)
+target_link_libraries(Thrive ThriveLib)
 
 #################
 # Compile tests #
@@ -361,7 +362,7 @@ endif()
 ###########
 
 # Executable
-install(TARGETS dist/bin/Thrive
+install(TARGETS Thrive
     RUNTIME DESTINATION bin
     LIBRARY DESTINATION bin
 )
@@ -691,6 +692,6 @@ if(UNIX)
     DEPENDS ThriveLib doc
     )
   # The name of the Thrive target somehow breaks in the above command
-  add_dependencies(linuxrelease dist/bin/Thrive)
+  add_dependencies(linuxrelease Thrive)
   
 endif()

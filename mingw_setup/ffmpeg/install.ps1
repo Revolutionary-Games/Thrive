@@ -56,26 +56,24 @@ if (-Not (Get-Command $7z -errorAction SilentlyContinue))
 #    Write-Output "Found archive file, skipping download."
 #}
 
-
-
 #Download FFMPEG dependency libraries
-$FFMPEG_DEV_DESTINATION = Join-Path $WORKING_DIR "ffmpeg-20160825-01aee81-win32-dev"
+$FFMPEG_DEV_DESTINATION = Join-Path $WORKING_DIR "ffmpeg-20161230-6993bb4-win32-dev"
 $FFMPEG_DEV_DESTINATION_FILE = $FFMPEG_DEV_DESTINATION + ".zip"
 if (-Not (Test-Path $FFMPEG_DEV_DESTINATION_FILE)) {
     Write-Output "Downloading archive..."
     $CLIENT = New-Object System.Net.WebClient
-    $CLIENT.DownloadFile("https://ffmpeg.zeranoe.com/builds/win32/dev/ffmpeg-20160825-01aee81-win32-dev.zip", $FFMPEG_DEV_DESTINATION_FILE)
+    $CLIENT.DownloadFile("https://ffmpeg.zeranoe.com/builds/win32/dev/ffmpeg-20161230-6993bb4-win32-dev.zip", $FFMPEG_DEV_DESTINATION_FILE)
 }
 else {
     Write-Output "Found archive file, skipping download."
 }
 #Download FFMPEG dependency binaries
-$FFMPEG_BIN_DESTINATION = Join-Path $WORKING_DIR "ffmpeg-20160825-01aee81-win32-shared"
+$FFMPEG_BIN_DESTINATION = Join-Path $WORKING_DIR "ffmpeg-20161230-6993bb4-win32-shared"
 $FFMPEG_BIN_DESTINATION_FILE = $FFMPEG_BIN_DESTINATION + ".zip"
 if (-Not (Test-Path $FFMPEG_BIN_DESTINATION_FILE)) {
     Write-Output "Downloading archive..."
     $CLIENT = New-Object System.Net.WebClient
-    $CLIENT.DownloadFile("https://ffmpeg.zeranoe.com/builds/win32/shared/ffmpeg-20160825-01aee81-win32-shared.zip", $FFMPEG_BIN_DESTINATION_FILE)
+    $CLIENT.DownloadFile("https://ffmpeg.zeranoe.com/builds/win32/shared/ffmpeg-20161230-6993bb4-win32-shared.zip", $FFMPEG_BIN_DESTINATION_FILE)
 }
 else {
     Write-Output "Found archive file, skipping download."
