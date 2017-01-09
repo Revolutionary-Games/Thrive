@@ -15,8 +15,8 @@ function MicrobeEditorHudSystem:__init()
     self.creationsListbox = nil
     self.creationFileMap = {} -- Map from player creation name to filepath
     self.activeButton = nil -- stores button, not name
-    self.helpPanelOpen = true
-    self.organelleScrollPane = nil
+    self.helpPanelOpen = false
+    self.menuOpen = false
 end
 
 
@@ -31,7 +31,6 @@ function MicrobeEditorHudSystem:init(gameState)
         sceneNode.transform.position = Vector3(0,0,0)
         sceneNode.transform:touch()
         sceneNode.meshName = "hex.mesh"
-        sceneNode.transform.scale = Vector3(HEX_SIZE, HEX_SIZE, HEX_SIZE)
         self.hoverHex[i]:addComponent(sceneNode)
     end
     for i=1, 6 do
@@ -39,27 +38,22 @@ function MicrobeEditorHudSystem:init(gameState)
         local sceneNode = OgreSceneNodeComponent()
         sceneNode.transform.position = Vector3(0,0,0)
         sceneNode.transform:touch()
-        sceneNode.transform.scale = Vector3(HEX_SIZE, HEX_SIZE, HEX_SIZE)
         self.hoverOrganelle[i]:addComponent(sceneNode)
     end
     
 
     local root = gameState:rootGUIWindow()
-    self.mpLabel = root:getChild("MpPanel"):getChild("MpLabel")
-    self.nameLabel = root:getChild("SpeciesNamePanel"):getChild("SpeciesNameLabel")
-    self.nameTextbox = root:getChild("SpeciesNamePanel"):getChild("NameTextbox")
-    root:getChild("SpeciesNamePanel"):registerEventHandler("Clicked", 
-        function() global_activeMicrobeEditorHudSystem:nameClicked() end)
-    -- self.mpProgressBar = root:getChild("BottomSection"):getChild("MutationPoints"):getChild("MPBar")
-    self.organelleScrollPane = root:getChild("scrollablepane");
+    self.mpLabel = root:getChild("MpPanel"):getChild("MpBar"):getChild("NumberLabel")
+    self.mpProgressBar = root:getChild("MpPanel"):getChild("MpBar")
+    self.mpProgressBar:setProperty("ThriveGeneric/MpBar", "FillImage") 
     
-    local nucleusButton = root:getChild("NewMicrobe")
-    local flagellumButton = root:getChild("scrollablepane"):getChild("AddFlagellum")
-    local cytoplasmButton = root:getChild("scrollablepane"):getChild("AddCytoplasm")
-    local mitochondriaButton = root:getChild("scrollablepane"):getChild("AddMitochondria")
-    local vacuoleButton = root:getChild("scrollablepane"):getChild("AddVacuole")
-    local toxinButton = root:getChild("scrollablepane"):getChild("AddToxinVacuole")
-    local chloroplastButton = root:getChild("scrollablepane"):getChild("AddChloroplast")
+    local nucleusButton = root:getChild("NewButton")
+    local flagellumButton = root:getChild("EditPanel"):getChild("StructurePanel"):getChild("AddFlagellum")
+    local cytoplasmButton = root:getChild("EditPanel"):getChild("StructurePanel"):getChild("AddCytoplasm")
+    local mitochondriaButton = root:getChild("EditPanel"):getChild("StructurePanel"):getChild("AddMitochondrion")
+    local vacuoleButton = root:getChild("EditPanel"):getChild("StructurePanel"):getChild("AddVacuole")
+    local toxinButton = root:getChild("EditPanel"):getChild("StructurePanel"):getChild("AddToxinVacuole")
+    local chloroplastButton = root:getChild("EditPanel"):getChild("StructurePanel"):getChild("AddChloroplast")
     
     self.organelleButtons["nucleus"] = nucleusButton
     self.organelleButtons["flagellum"] = flagellumButton
@@ -78,8 +72,8 @@ function MicrobeEditorHudSystem:init(gameState)
     vacuoleButton:registerEventHandler("Clicked", function() self:vacuoleClicked() end)
     toxinButton:registerEventHandler("Clicked", function() self:toxinClicked() end)
     
-    self.saveLoadPanel = root:getChild("SaveLoadPanel")
-    self.creationsListbox = self.saveLoadPanel:getChild("SavedCreations")
+    -- self.saveLoadPanel = root:getChild("SaveLoadPanel")
+    -- self.creationsListbox = self.saveLoadPanel:getChild("SavedCreations")
     self.undoButton = root:getChild("UndoButton")
     self.undoButton:registerEventHandler("Clicked", function() self.editor:undo() end)
     self.redoButton = root:getChild("RedoButton")
@@ -89,31 +83,25 @@ function MicrobeEditorHudSystem:init(gameState)
 
     root:getChild("FinishButton"):registerEventHandler("Clicked", playClicked)
     --root:getChild("BottomSection"):getChild("MenuButton"):registerEventHandler("Clicked", self:menuButtonClicked)
-    root:getChild("MenuButton"):registerEventHandler("Clicked", menuMainMenuClicked)
-    --root:getChild("MenuPanel"):getChild("QuitButton"):registerEventHandler("Clicked", self:quitButtonClicked)
-    root:getChild("SaveMicrobeButton"):registerEventHandler("Clicked", function() self:saveCreationClicked() end)
-    root:getChild("LoadMicrobeButton"):registerEventHandler("Clicked", function() self:rootLoadCreationClicked() end)
-	self.saveLoadPanel:getChild("LoadButton"):registerEventHandler("Clicked", function() self:loadCreationClicked() end)
-	self.saveLoadPanel:getChild("SavedCreations"):registerEventHandler("SelectionChanged", function() self:loadmicrobeSelectionChanged() end)
-	
-    self.helpPanel = root:getChild("HelpPanel")
-    root:getChild("HelpButton"):registerEventHandler("Clicked", function() self:helpButtonClicked() end)
-    self.helpPanel:registerEventHandler("Clicked", function() self:helpButtonClicked() end)
+    root:getChild("MenuButton"):registerEventHandler("Clicked", function() self:menuButtonClicked() end)
+    root:getChild("PauseMenu"):getChild("MainMenuButton"):registerEventHandler("Clicked", function() self:menuMainMenuClicked() end)
+    root:getChild("PauseMenu"):getChild("ResumeButton"):registerEventHandler("Clicked", function() self:resumeButtonClicked() end)
+    root:getChild("PauseMenu"):getChild("CloseHelpButton"):registerEventHandler("Clicked", function() self:closeHelpButtonClicked() end)
+    root:getChild("PauseMenu"):getChild("QuitButton"):registerEventHandler("Clicked", function() self:quitButtonClicked() end)
+    --root:getChild("SaveMicrobeButton"):registerEventHandler("Clicked", function() self:saveCreationClicked() end)
+    --root:getChild("LoadMicrobeButton"):registerEventHandler("Clicked", function() self:loadCreationClicked() end)
+
+    self.helpPanel = root:getChild("PauseMenu"):getChild("HelpPanel")
+    root:getChild("PauseMenu"):getChild("HelpButton"):registerEventHandler("Clicked", function() self:helpButtonClicked() end)
     
     -- Set species name and cut it off if it is too long.
-    local name = self.nameLabel:getText()
+    --[[ local name = self.nameLabel:getText()
     if string.len(name) > 18 then
         name = string.sub(name, 1, 15)
         name = name .. "..."
     end
-    self.nameLabel:setText(name)
+    self.nameLabel:setText(name) --]]
 end
-
-function MicrobeEditorHudSystem:loadmicrobeSelectionChanged()
-	local guiSoundEntity = Entity("gui_sounds")
-    guiSoundEntity:getComponent(SoundSourceComponent.TYPE_ID):playSound("button-hover-click")
-end
-
 
 
 function MicrobeEditorHudSystem:activate()
@@ -161,7 +149,9 @@ function MicrobeEditorHudSystem:update(renderTime, logicTime)
         self:removeClicked()
         self.editor:performLocationAction()
     end	            
-    if keyCombo(kmp.newmicrobe) then
+    if keyCombo(kmp.togglemenu) then
+        self:menuButtonClicked()
+    elseif keyCombo(kmp.newmicrobe) then
         -- These global event handlers are defined in microbe_editor_hud.lua
         self:nucleusClicked()
     elseif keyCombo(kmp.redo) then
@@ -203,8 +193,8 @@ function MicrobeEditorHudSystem:update(renderTime, logicTime)
         end
     elseif keyCombo(kmp.gotostage) then
         playClicked()
-    elseif keyCombo(kmp.rename) or keyCombo(kmp.rename2) then
-        self:microbeNameChanged()
+    elseif keyCombo(kmp.rename) then
+        self:updateMicrobeName()
     end
     
     if Engine.keyboard:wasKeyPressed(Keyboard.KC_LEFT) or Engine.keyboard:wasKeyPressed(Keyboard.KC_A) then
@@ -229,24 +219,18 @@ function MicrobeEditorHudSystem:update(renderTime, logicTime)
         properties.fovY = newFovY
         properties:touch()
     else
-        local organelleScrollVal = self.organelleScrollPane:scrollingpaneGetVerticalPosition() + Engine.mouse:scrollChange()/1000
-        if organelleScrollVal < 0 then
-            organelleScrollVal = 0
-        elseif organelleScrollVal > 1.0 then
-            organelleScrollVal = 1.0
-        end
-        self.organelleScrollPane:scrollingpaneSetVerticalPosition(organelleScrollVal)
         
     end
 end
 
 function MicrobeEditorHudSystem:updateMutationPoints() 
-    --self.mpProgressBar:progressbarSetProgress(self.editor.mutationPoints/100)
+    self.mpProgressBar:progressbarSetProgress(self.editor.mutationPoints/50)
     self.mpLabel:setText("" .. self.editor.mutationPoints)
 end
 
 -----------------------------------------------------------------
 -- Event handlers -----------------------------------------------
+
 
 function playClicked()
     local guiSoundEntity = Entity("gui_sounds")
@@ -261,50 +245,52 @@ function menuPlayClicked()
     playClicked()
 end
 
-function menuMainMenuClicked()
+function MicrobeEditorHudSystem:menuMainMenuClicked()
     local guiSoundEntity = Entity("gui_sounds")
     guiSoundEntity:getComponent(SoundSourceComponent.TYPE_ID):playSound("button-hover-click")
     Engine:setCurrentGameState(GameState.MAIN_MENU)
 end
 
+function MicrobeEditorHudSystem:quitButtonClicked()
+    local guiSoundEntity = Entity("gui_sounds")
+    guiSoundEntity:getComponent(SoundSourceComponent.TYPE_ID):playSound("button-hover-click")
+    Engine:quit()
+end
+
 -- the rest of the event handlers are MicrobeEditorHudSystem methods
-
-function MicrobeEditorHudSystem:nameClicked()
-    self.nameLabel:hide()
-    self.nameTextbox:show()
-    self.nameTextbox:setFocus()
-end
-
-function MicrobeEditorHudSystem:updateMicrobeName(name)
-	print(name)
-    --set genus_picked to false so it knows to update the name properly when microbe_replacement runs
-    global_genusPicked = false
-    self.editor.currentMicrobe.microbe.speciesName = name
-    local name = self.editor.currentMicrobe.microbe.speciesName
-    if string.len(name) > 18 then
-        name = string.sub(self.editor.currentMicrobe.microbe.speciesName, 1, 15)
-        name = name .. "..."
-    end
-    global_genusName  = name
-    self.nameLabel:setText(name)
-    self.nameTextbox:hide()
-	self.nameTextbox:setText(name)
-    self.nameLabel:show()
-end
-
-function MicrobeEditorHudSystem:microbeNameChanged()
-	self:updateMicrobeName(self.nameTextbox:getText())
-end
 
 function MicrobeEditorHudSystem:helpButtonClicked()
     local guiSoundEntity = Entity("gui_sounds")
     guiSoundEntity:getComponent(SoundSourceComponent.TYPE_ID):playSound("button-hover-click")
-    if self.helpPanelOpen then
-        self.helpPanel:hide()
-    else
-        self.helpPanel:show()
-    end
-    self.helpPanelOpen = not self.helpPanelOpen
+    Engine:currentGameState():rootGUIWindow():getChild("PauseMenu"):getChild("HelpPanel"):show()
+    Engine:currentGameState():rootGUIWindow():getChild("PauseMenu"):getChild("CloseHelpButton"):show()
+    Engine:currentGameState():rootGUIWindow():getChild("PauseMenu"):getChild("ResumeButton"):hide()
+    Engine:currentGameState():rootGUIWindow():getChild("PauseMenu"):getChild("QuicksaveButton"):hide()
+    Engine:currentGameState():rootGUIWindow():getChild("PauseMenu"):getChild("SaveGameButton"):hide()
+    Engine:currentGameState():rootGUIWindow():getChild("PauseMenu"):getChild("LoadGameButton"):hide()
+    Engine:currentGameState():rootGUIWindow():getChild("PauseMenu"):getChild("StatsButton"):hide()
+    Engine:currentGameState():rootGUIWindow():getChild("PauseMenu"):getChild("HelpButton"):hide()
+    Engine:currentGameState():rootGUIWindow():getChild("PauseMenu"):getChild("OptionsButton"):hide()
+    Engine:currentGameState():rootGUIWindow():getChild("PauseMenu"):getChild("MainMenuButton"):hide()
+    Engine:currentGameState():rootGUIWindow():getChild("PauseMenu"):getChild("QuitButton"):hide()
+    self.helpOpen = not self.helpOpen
+end
+
+function MicrobeEditorHudSystem:closeHelpButtonClicked()
+    local guiSoundEntity = Entity("gui_sounds")
+    guiSoundEntity:getComponent(SoundSourceComponent.TYPE_ID):playSound("button-hover-click")
+    Engine:currentGameState():rootGUIWindow():getChild("PauseMenu"):getChild("HelpPanel"):hide()
+    Engine:currentGameState():rootGUIWindow():getChild("PauseMenu"):getChild("CloseHelpButton"):hide()
+    Engine:currentGameState():rootGUIWindow():getChild("PauseMenu"):getChild("ResumeButton"):show()
+    Engine:currentGameState():rootGUIWindow():getChild("PauseMenu"):getChild("QuicksaveButton"):show()
+    Engine:currentGameState():rootGUIWindow():getChild("PauseMenu"):getChild("SaveGameButton"):show()
+    Engine:currentGameState():rootGUIWindow():getChild("PauseMenu"):getChild("LoadGameButton"):show()
+    Engine:currentGameState():rootGUIWindow():getChild("PauseMenu"):getChild("StatsButton"):show()
+    Engine:currentGameState():rootGUIWindow():getChild("PauseMenu"):getChild("HelpButton"):show()
+    Engine:currentGameState():rootGUIWindow():getChild("PauseMenu"):getChild("OptionsButton"):show()
+    Engine:currentGameState():rootGUIWindow():getChild("PauseMenu"):getChild("MainMenuButton"):show()
+    Engine:currentGameState():rootGUIWindow():getChild("PauseMenu"):getChild("QuitButton"):show()
+    self.helpOpen = not self.helpOpen
 end
 
 function MicrobeEditorHudSystem:nucleusClicked()
@@ -390,37 +376,42 @@ function MicrobeEditorHudSystem:rootSaveCreationClicked()
     local guiSoundEntity = Entity("gui_sounds")
     guiSoundEntity:getComponent(SoundSourceComponent.TYPE_ID):playSound("button-hover-click")
     print ("Save button clicked")
-
+    --[[
     panel = self.saveLoadPanel
+    panel:getChild("SaveButton"):show()
+    panel:getChild("NameTextbox"):show()
+    panel:getChild("CreationNameDialogLabel"):show()
     panel:getChild("LoadButton"):hide()
     panel:getChild("SavedCreations"):hide()
-    panel:show()
+    panel:show()--]]
 end
-
+--[[
 function MicrobeEditorHudSystem:rootLoadCreationClicked()
     local guiSoundEntity = Entity("gui_sounds")
     guiSoundEntity:getComponent(SoundSourceComponent.TYPE_ID):playSound("button-hover-click")
     panel = self.saveLoadPanel
-   -- panel:getChild("SaveButton"):hide()
-  --  root:getChild("CreationNameDialogLabel"):hide()
+    panel:getChild("SaveButton"):hide()
+    panel:getChild("NameTextbox"):hide()
+    panel:getChild("CreationNameDialogLabel"):hide()
     panel:getChild("LoadButton"):show()
     panel:getChild("SavedCreations"):show()
     panel:show()
-    self.creationsListbox:listWidgetResetList()
+    self.creationsListbox:itemListboxResetList()
     self.creationFileMap = {}
     i = 0
     pathsString = Engine:getCreationFileList("microbe")
     -- using pattern matching for splitting on spaces
     for path in string.gmatch(pathsString, "%S+")  do
         -- this is unsafe when one of the paths is, for example, C:\\Application Data\Thrive\saves
+        item = CEGUIWindow("Thrive/ListboxItem", "creationItems"..i)
         pathSep = package.config:sub(1,1) -- / for unix, \ for windows
         text = string.sub(path, string.len(path) - string.find(path:reverse(), pathSep) + 2)
-
-        self.creationsListbox:listWidgetAddItem(text)
+        item:setText(text)
+        self.creationsListbox:itemListboxAddItem(item)
         self.creationFileMap[text] = path
         i = i + 1
     end
-   -- self.creationsListbox:itemListboxHandleUpdatedItemData()
+    self.creationsListbox:itemListboxHandleUpdatedItemData()
 end
 
 function MicrobeEditorHudSystem:saveCreationClicked()
@@ -435,24 +426,19 @@ function MicrobeEditorHudSystem:saveCreationClicked()
     elseif string.len(name) > 0 then
         Engine:saveCreation(self.editor.currentMicrobe.entity.id, name, "microbe")
     end
-	
 end
 
 function MicrobeEditorHudSystem:loadCreationClicked()
     local guiSoundEntity = Entity("gui_sounds")
     guiSoundEntity:getComponent(SoundSourceComponent.TYPE_ID):playSound("button-hover-click")
-	item = self.creationsListbox:listWidgetGetFirstSelectedItemText()
-    if self.creationFileMap[item] ~= nil then 
-        entity = Engine:loadCreation(self.creationFileMap[item])
-		
-		
-		
-		
-		self:updateMicrobeName(Microbe(Entity(entity), true).microbe.speciesName)
+    item = self.creationsListbox:itemListboxGetLastSelectedItem()
+    if not item:isNull() then 
+        entity = Engine:loadCreation(self.creationFileMap[item:getText()])
         self.editor:loadMicrobe(entity)
         panel:hide()
     end
 end
+--]]
 
 -- useful debug functions
 
@@ -476,30 +462,49 @@ function MicrobeEditorHudSystem:loadByName(name)
     end
     entity = Engine:loadCreation(creationFileMap[name])
     self.editor:loadMicrobe(entity)
-    self.nameLabel:setText(self.editor.currentMicrobe.microbe.speciesName)
+    --self.nameLabel:setText(self.editor.currentMicrobe.microbe.speciesName)
 end
 
 function MicrobeEditorHudSystem:changeSymmetry()
     self.editor.symmetry = (self.editor.symmetry+1)%4
     
     if self.editor.symmetry == 0 then
-        self.symmetryButton:setProperty("ThriveGeneric/SymmetryNoneNormal", "Image")
-        self.symmetryButton:setProperty("ThriveGeneric/SymmetryNoneHover", "PushedImage")
-        self.symmetryButton:setProperty("ThriveGeneric/SymmetryNoneHover", "HoverImage")
+        self.symmetryButton:getChild("2xSymmetry"):hide()
+        self.symmetryButton:getChild("4xSymmetry"):hide()
+        self.symmetryButton:getChild("6xSymmetry"):hide()
     elseif self.editor.symmetry == 1 then
-        self.symmetryButton:setProperty("ThriveGeneric/SymmetryTwoNormal", "Image")
-        self.symmetryButton:setProperty("ThriveGeneric/SymmetryTwoHover", "PushedImage")
-        self.symmetryButton:setProperty("ThriveGeneric/SymmetryTwoHover", "HoverImage")
+        self.symmetryButton:getChild("2xSymmetry"):show()
+        self.symmetryButton:getChild("4xSymmetry"):hide()
+        self.symmetryButton:getChild("6xSymmetry"):hide()
     elseif self.editor.symmetry == 2 then
-        self.symmetryButton:setProperty("ThriveGeneric/SymmetryFourNormal", "Image")
-        self.symmetryButton:setProperty("ThriveGeneric/SymmetryFourHover", "PushedImage")
-        self.symmetryButton:setProperty("ThriveGeneric/SymmetryFourHover", "HoverImage")
+        self.symmetryButton:getChild("2xSymmetry"):hide()
+        self.symmetryButton:getChild("4xSymmetry"):show()
+        self.symmetryButton:getChild("6xSymmetry"):hide()
     elseif self.editor.symmetry == 3 then
-        self.symmetryButton:setProperty("ThriveGeneric/SymmetrySixNormal", "Image")
-        self.symmetryButton:setProperty("ThriveGeneric/SymmetrySixHover", "PushedImage")
-        self.symmetryButton:setProperty("ThriveGeneric/SymmetrySixHover", "HoverImage")
+        self.symmetryButton:getChild("2xSymmetry"):hide()
+        self.symmetryButton:getChild("4xSymmetry"):hide()
+        self.symmetryButton:getChild("6xSymmetry"):show()
     end
 end
 
 function saveMicrobe() global_activeMicrobeEditorHudSystem:saveCreationClicked() end
 function loadMicrobe(name) global_activeMicrobeEditorHudSystem:loadByName(name) end
+
+function MicrobeEditorHudSystem:menuButtonClicked()
+    local guiSoundEntity = Entity("gui_sounds")
+    guiSoundEntity:getComponent(SoundSourceComponent.TYPE_ID):playSound("button-hover-click")
+    print("played sound")
+    Engine:currentGameState():rootGUIWindow():getChild("PauseMenu"):show()
+    Engine:currentGameState():rootGUIWindow():getChild("PauseMenu"):moveToFront()
+    Engine:pauseGame()
+    self.menuOpen = true
+end
+
+function MicrobeEditorHudSystem:resumeButtonClicked()
+    local guiSoundEntity = Entity("gui_sounds")
+    guiSoundEntity:getComponent(SoundSourceComponent.TYPE_ID):playSound("button-hover-click")
+    print("played sound")
+    Engine:currentGameState():rootGUIWindow():getChild("PauseMenu"):hide()
+    Engine:resumeGame()
+    self.menuOpen = false
+end

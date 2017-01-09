@@ -1,4 +1,3 @@
-
 -- Updates the hud with relevant information
 class 'HudSystem' (System)
 
@@ -6,6 +5,7 @@ function HudSystem:__init()
     System.__init(self)
 	self.compoundListBox = nil
 	self.hitpointsCountLabel = nil
+        self.hitpointsMaxLabel = nil
 	self.hitpointsBar = nil
 	self.compoundListItems = {}
     self.rootGuiWindow = nil
@@ -23,14 +23,11 @@ function HudSystem:activate()
         showMessage("'E' Releases Toxin")
         global_if_already_displayed = true
     end
-    self.helpOpen = true
-    self.menuOpen = true
+    self.helpOpen = false
+    self.menuOpen = false
     self.compoundsOpen = true
     Engine:resumeGame()
-    self:updateLoadButton()
-    -- Always start the game without being able to reproduce.
-    
-    self:hideReproductionDialog()
+    self:updateLoadButton();
 end
 
 function HudSystem:init(gameState)
@@ -39,6 +36,8 @@ function HudSystem:init(gameState)
     self.compoundListBox = self.rootGUIWindow:getChild("CompoundsOpen")
     self.hitpointsBar = self.rootGUIWindow:getChild("HealthPanel"):getChild("LifeBar")
     self.hitpointsCountLabel = self.hitpointsBar:getChild("NumberLabel")
+    self.hitpointsMaxLabel = self.rootGUIWindow:getChild("HealthPanel"):getChild("HealthTotal")
+    self.hitpointsBar:setProperty("ThriveGeneric/HitpointsBar", "FillImage") 
     local menuButton = self.rootGUIWindow:getChild("MenuButton")
     local saveButton = self.rootGUIWindow:getChild("PauseMenu"):getChild("SaveGameButton") 
     local loadButton = self.rootGUIWindow:getChild("PauseMenu"):getChild("LoadGameButton")
@@ -66,11 +65,16 @@ function HudSystem:init(gameState)
     suicideButton:registerEventHandler("Clicked", function() self:suicideButtonClicked() end)
     self.editorButton:registerEventHandler("Clicked", function() self:editorButtonClicked() end)
     --returnButton:registerEventHandler("Clicked", returnButtonClicked)
-    compoundButton:registerEventHandler("Clicked", function() self:openCompoundPanel() end)
+    compoundButton:registerEventHandler("Clicked", function() self:toggleCompoundPanel() end)
     --compoundPanel:registerEventHandler("Clicked", function() self:closeCompoundPanel() end)
     quitButton:registerEventHandler("Clicked", quitButtonClicked)
     self.rootGUIWindow:getChild("PauseMenu"):getChild("MainMenuButton"):registerEventHandler("Clicked", function() self:menuMainMenuClicked() end)
     self:updateLoadButton();
+
+    self.atpBar = self.rootGUIWindow:getChild("CompoundPanel"):getChild("ATPBar"):getChild("ATPBar")
+    self.atpCountLabel = self.atpBar:getChild("NumberLabel")
+    self.atpMaxLabel = self.rootGUIWindow:getChild("CompoundPanel"):getChild("ATPBar"):getChild("ATPTotal")
+    self.atpBar:setProperty("ThriveGeneric/ATPBar", "FillImage") 
 end
 
 
@@ -80,6 +84,12 @@ function HudSystem:update(renderTime)
 
     self.hitpointsBar:progressbarSetProgress(playerMicrobe.microbe.hitpoints/playerMicrobe.microbe.maxHitpoints)
     self.hitpointsCountLabel:setText("".. math.floor(playerMicrobe.microbe.hitpoints))
+    self.hitpointsMaxLabel:setText("/ ".. math.floor(playerMicrobe.microbe.maxHitpoints))
+
+    self.atpBar:progressbarSetProgress(playerMicrobe.microbe.hitpoints/playerMicrobe.microbe.maxHitpoints)
+    self.atpCountLabel:setText("".. math.floor(playerMicrobe:getCompoundAmount(CompoundRegistry.getCompoundId("atp"))))
+    self.atpMaxLabel:setText("/ ".. math.floor(playerMicrobe.microbe.maxHitpoints))
+
     local playerSpecies = playerMicrobe:getSpeciesComponent()
     --TODO display population in home patch here
     for compoundID in CompoundRegistry.getCompoundList() do
@@ -101,9 +111,9 @@ function HudSystem:update(renderTime)
     elseif keyCombo(kmp.gotoeditor) then
         self:editorButtonClicked()
     elseif keyCombo(kmp.shootoxytoxy) then
-        playerMicrobe:emitAgent(CompoundRegistry.getCompoundId("oxytoxy"), 1)
+        playerMicrobe:emitAgent(CompoundRegistry.getCompoundId("oxytoxy"), 3)
     elseif keyCombo(kmp.reproduce) then
-        playerMicrobe:readyToReproduce()
+        playerMicrobe:reproduce()
     end
     local direction = Vector3(0, 0, 0)
     if keyCombo(kmp.forward) then
@@ -158,13 +168,9 @@ end
 function showReproductionDialog() global_activeMicrobeStageHudSystem:showReproductionDialog() end
 
 function HudSystem:showReproductionDialog()
+   -- print("Reproduction Dialog called but currently disabled. Is it needed? Note that the editor button has been enabled")
+    --global_activeMicrobeStageHudSystem.rootGUIWindow:getChild("ReproductionPanel"):show()
     self.editorButton:enable()
-end
-
-function hideReproductionDialog() global_activeMicrobeStageHudSystem:hideReproductionDialog() end
-
-function HudSystem:hideReproductionDialog()
-    self.editorButton:disable()
 end
 
 function showMessage(msg)
@@ -207,7 +213,6 @@ function HudSystem:menuButtonClicked()
     self:updateLoadButton();
     Engine:pauseGame()
     self.menuOpen = true
-    end
 end
 
 function HudSystem:resumeButtonClicked()
@@ -219,6 +224,7 @@ function HudSystem:resumeButtonClicked()
     Engine:resumeGame()
     self.menuOpen = false
 end
+
 
 function HudSystem:toggleCompoundPanel()
     local guiSoundEntity = Entity("gui_sounds")
@@ -276,16 +282,12 @@ function HudSystem:menuMainMenuClicked()
     Engine:setCurrentGameState(GameState.MAIN_MENU)
 end
 
+
 function HudSystem:editorButtonClicked()
-    local player = Entity("player")
-    local playerMicrobe = Microbe(player)
-    -- Return the first cell to its normal, non duplicated cell arangement.
-    SpeciesSystem.restoreOrganelleLayout(playerMicrobe, playerMicrobe:getSpeciesComponent()) 
-    
     local guiSoundEntity = Entity("gui_sounds")
     guiSoundEntity:getComponent(SoundSourceComponent.TYPE_ID):playSound("button-hover-click")
     self.editorButton:disable()
-    Engine:setCurrentGameState(GameState.MICROBE_EDITOR)        
+    Engine:setCurrentGameState(GameState.MICROBE_EDITOR)
 end
 
 function HudSystem:editorInfoOpenClicked()
