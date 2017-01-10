@@ -31,6 +31,7 @@ function MicrobeEditorHudSystem:init(gameState)
         sceneNode.transform.position = Vector3(0,0,0)
         sceneNode.transform:touch()
         sceneNode.meshName = "hex.mesh"
+        sceneNode.transform.scale = Vector3(HEX_SIZE, HEX_SIZE, HEX_SIZE)
         self.hoverHex[i]:addComponent(sceneNode)
     end
     for i=1, 6 do
@@ -38,6 +39,7 @@ function MicrobeEditorHudSystem:init(gameState)
         local sceneNode = OgreSceneNodeComponent()
         sceneNode.transform.position = Vector3(0,0,0)
         sceneNode.transform:touch()
+        sceneNode.transform.scale = Vector3(HEX_SIZE, HEX_SIZE, HEX_SIZE)
         self.hoverOrganelle[i]:addComponent(sceneNode)
     end
     
@@ -103,6 +105,10 @@ function MicrobeEditorHudSystem:init(gameState)
     self.nameLabel:setText(name) --]]
 end
 
+function MicrobeEditorHudSystem:loadmicrobeSelectionChanged()
+	local guiSoundEntity = Entity("gui_sounds")
+    guiSoundEntity:getComponent(SoundSourceComponent.TYPE_ID):playSound("button-hover-click")
+end
 
 function MicrobeEditorHudSystem:activate()
     global_activeMicrobeEditorHudSystem = self -- Global reference for event handlers
@@ -390,28 +396,25 @@ function MicrobeEditorHudSystem:rootLoadCreationClicked()
     local guiSoundEntity = Entity("gui_sounds")
     guiSoundEntity:getComponent(SoundSourceComponent.TYPE_ID):playSound("button-hover-click")
     panel = self.saveLoadPanel
-    panel:getChild("SaveButton"):hide()
-    panel:getChild("NameTextbox"):hide()
-    panel:getChild("CreationNameDialogLabel"):hide()
+    -- panel:getChild("SaveButton"):hide()
+    -- root:getChild("CreationNameDialogLabel"):hide()
     panel:getChild("LoadButton"):show()
     panel:getChild("SavedCreations"):show()
     panel:show()
-    self.creationsListbox:itemListboxResetList()
+    self.creationsListbox:listWidgetResetList()
     self.creationFileMap = {}
     i = 0
     pathsString = Engine:getCreationFileList("microbe")
     -- using pattern matching for splitting on spaces
     for path in string.gmatch(pathsString, "%S+")  do
         -- this is unsafe when one of the paths is, for example, C:\\Application Data\Thrive\saves
-        item = CEGUIWindow("Thrive/ListboxItem", "creationItems"..i)
         pathSep = package.config:sub(1,1) -- / for unix, \ for windows
         text = string.sub(path, string.len(path) - string.find(path:reverse(), pathSep) + 2)
-        item:setText(text)
-        self.creationsListbox:itemListboxAddItem(item)
+        self.creationsListbox:listWidgetAddItem(text)
         self.creationFileMap[text] = path
         i = i + 1
     end
-    self.creationsListbox:itemListboxHandleUpdatedItemData()
+    -- self.creationsListbox:itemListboxHandleUpdatedItemData()
 end
 
 function MicrobeEditorHudSystem:saveCreationClicked()
@@ -431,9 +434,10 @@ end
 function MicrobeEditorHudSystem:loadCreationClicked()
     local guiSoundEntity = Entity("gui_sounds")
     guiSoundEntity:getComponent(SoundSourceComponent.TYPE_ID):playSound("button-hover-click")
-    item = self.creationsListbox:itemListboxGetLastSelectedItem()
-    if not item:isNull() then 
-        entity = Engine:loadCreation(self.creationFileMap[item:getText()])
+	item = self.creationsListbox:listWidgetGetFirstSelectedItemText()
+    if self.creationFileMap[item] ~= nil then 
+        entity = Engine:loadCreation(self.creationFileMap[item])
+		self:updateMicrobeName(Microbe(Entity(entity), true).microbe.speciesName)
         self.editor:loadMicrobe(entity)
         panel:hide()
     end

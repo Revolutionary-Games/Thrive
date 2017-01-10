@@ -5,7 +5,7 @@ function HudSystem:__init()
     System.__init(self)
 	self.compoundListBox = nil
 	self.hitpointsCountLabel = nil
-        self.hitpointsMaxLabel = nil
+    self.hitpointsMaxLabel = nil
 	self.hitpointsBar = nil
 	self.compoundListItems = {}
     self.rootGuiWindow = nil
@@ -27,7 +27,10 @@ function HudSystem:activate()
     self.menuOpen = false
     self.compoundsOpen = true
     Engine:resumeGame()
-    self:updateLoadButton();
+    self:updateLoadButton()
+    -- Always start the game without being able to reproduce.
+    
+    self:hideReproductionDialog()
 end
 
 function HudSystem:init(gameState)
@@ -111,9 +114,9 @@ function HudSystem:update(renderTime)
     elseif keyCombo(kmp.gotoeditor) then
         self:editorButtonClicked()
     elseif keyCombo(kmp.shootoxytoxy) then
-        playerMicrobe:emitAgent(CompoundRegistry.getCompoundId("oxytoxy"), 3)
+        playerMicrobe:emitAgent(CompoundRegistry.getCompoundId("oxytoxy"), 1)
     elseif keyCombo(kmp.reproduce) then
-        playerMicrobe:reproduce()
+        playerMicrobe:readyToReproduce()
     end
     local direction = Vector3(0, 0, 0)
     if keyCombo(kmp.forward) then
@@ -168,9 +171,13 @@ end
 function showReproductionDialog() global_activeMicrobeStageHudSystem:showReproductionDialog() end
 
 function HudSystem:showReproductionDialog()
-   -- print("Reproduction Dialog called but currently disabled. Is it needed? Note that the editor button has been enabled")
-    --global_activeMicrobeStageHudSystem.rootGUIWindow:getChild("ReproductionPanel"):show()
     self.editorButton:enable()
+end
+
+function hideReproductionDialog() global_activeMicrobeStageHudSystem:hideReproductionDialog() end
+
+function HudSystem:hideReproductionDialog()
+    self.editorButton:disable()
 end
 
 function showMessage(msg)
@@ -284,10 +291,15 @@ end
 
 
 function HudSystem:editorButtonClicked()
+    local player = Entity("player")
+    local playerMicrobe = Microbe(player)
+    -- Return the first cell to its normal, non duplicated cell arangement.
+    SpeciesSystem.restoreOrganelleLayout(playerMicrobe, playerMicrobe:getSpeciesComponent()) 
+    
     local guiSoundEntity = Entity("gui_sounds")
     guiSoundEntity:getComponent(SoundSourceComponent.TYPE_ID):playSound("button-hover-click")
     self.editorButton:disable()
-    Engine:setCurrentGameState(GameState.MICROBE_EDITOR)
+    Engine:setCurrentGameState(GameState.MICROBE_EDITOR)        
 end
 
 function HudSystem:editorInfoOpenClicked()
