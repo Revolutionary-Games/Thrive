@@ -129,13 +129,6 @@ organelles = {
 
 
 default_thresholds = {
-    atp = {low = 13, high = 16, vent = 1000},
-    glucose = {low = 16, high = 30, vent = 70},
-    oxygen = {low = 22, high = 40, vent = 70},
-    co2 = {low = 0, high = 0, vent = 0},
-    ammonia = {low = 12, high = 30, vent = 70},
-    aminoacids = {low = 0, high = 30, vent = 70},
-    fattyacids = {low = 0, high = 30, vent = 70},
     oxytoxy = {low = 1, high = 5, vent = 5},
 }
 

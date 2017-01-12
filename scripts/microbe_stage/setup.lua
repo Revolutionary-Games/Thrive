@@ -1,4 +1,4 @@
-DEFAULT_CLOUD_AMOUNT = 750000
+DEFAULT_CLOUD_AMOUNT = 75000
 CLOUD_SPAWN_RADIUS = 50
 CLOUD_SPAWN_DENSITY = 1/5000
 
@@ -53,20 +53,20 @@ local function setupCompounds()
 
     local ordered_keys = {}
 
-    for k in pairs(compounds) do
+    for k in pairs(compoundTable) do
         table.insert(ordered_keys, k)
     end
 
     table.sort(ordered_keys)
     for i = 1, #ordered_keys do
-        local k, v = ordered_keys[i], compounds[ ordered_keys[i] ]
+        local k, v = ordered_keys[i], compoundTable[ ordered_keys[i] ]
         CompoundRegistry.registerCompoundType(k, v["name"], "placeholder.mesh", v["size"], v["weight"])
     end    
     CompoundRegistry.loadFromLua({}, agents)
 end
 
 local function setupCompoundClouds()
-    for compoundName, compoundInfo in pairs(compounds) do
+    for compoundName, compoundInfo in pairs(compoundTable) do
         if compoundInfo.isCloud then
             local compoundId = CompoundRegistry.getCompoundId(compoundName)
             local entity = Entity("compound_cloud_" .. compoundName)
@@ -109,7 +109,13 @@ function setupSpecies()
         -- iterates over all compounds, and sets amounts and priorities
         for compoundID in CompoundRegistry.getCompoundList() do
             compound = CompoundRegistry.getCompoundInternalName(compoundID)
-            thresholdData = default_thresholds[compound]
+
+            if agents[compound] then
+                thresholdData = default_thresholds[compound]
+            else
+                thresholdData = compoundTable[compound].default_treshold
+            end
+
              -- we'll need to generate defaults from species template
             processorComponent:setThreshold(compoundID, thresholdData.low, thresholdData.high, thresholdData.vent)
             compoundData = data.compounds[compound]
@@ -199,7 +205,7 @@ local function setSpawnablePhysics(entity, pos, mesh, scale, collisionShape)
 end
 
 function createCompoundCloud(compoundName, x, y, amount)
-    if compounds[compoundName] and compounds[compoundName].isCloud then
+    if compoundTable[compoundName] and compoundTable[compoundName].isCloud then
         Entity("compound_cloud_" .. compoundName):getComponent(CompoundCloudComponent.TYPE_ID):addCloud(amount, x, y)
     end
 end
@@ -302,7 +308,7 @@ local function createSpawnSystem()
         return powerupEntity
     end
 
-    for compoundName, compoundInfo in pairs(compounds) do
+    for compoundName, compoundInfo in pairs(compoundTable) do
         if compoundInfo.isCloud then
             local spawnCloud =  function(pos)
                 createCompoundCloud(compoundName, pos.x, pos.y, DEFAULT_CLOUD_AMOUNT)

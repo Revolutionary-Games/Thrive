@@ -36,7 +36,7 @@ local function setupCamera()
 end
 
 local function setupCompoundClouds()
-    for compoundName, compoundInfo in pairs(compounds) do
+    for compoundName, compoundInfo in pairs(compoundTable) do
         if compoundInfo.isCloud then
             local compoundId = CompoundRegistry.getCompoundId(compoundName)
             local entity = Entity("compound_cloud_" .. compoundName)
