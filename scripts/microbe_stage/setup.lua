@@ -1,3 +1,7 @@
+DEFAULT_CLOUD_AMOUNT = 750000
+CLOUD_SPAWN_RADIUS = 50
+CLOUD_SPAWN_DENSITY = 1/5000
+
 local function setupBackground()
     local entity = Entity("background")
     local skyplane = SkyPlaneComponent()
@@ -62,35 +66,16 @@ local function setupCompounds()
 end
 
 local function setupCompoundClouds()
-    local compoundId = CompoundRegistry.getCompoundId("glucose")
-    local entity = Entity("compound_cloud_glucose")
-    local compoundCloud = CompoundCloudComponent()
-    compoundCloud:initialize(compoundId, 150, 170, 180)
-    entity:addComponent(compoundCloud)
-    
-    compoundId = CompoundRegistry.getCompoundId("oxygen")
-    entity = Entity("compound_cloud_oxygen")
-    compoundCloud = CompoundCloudComponent()
-    compoundCloud:initialize(compoundId, 60, 160, 180)
-    entity:addComponent(compoundCloud)
-    
-    compoundId = CompoundRegistry.getCompoundId("co2")
-    entity = Entity("compound_cloud_co2")
-    compoundCloud = CompoundCloudComponent()
-    compoundCloud:initialize(compoundId, 20, 50, 100)
-    entity:addComponent(compoundCloud)
-    
-    compoundId = CompoundRegistry.getCompoundId("ammonia")
-    entity = Entity("compound_cloud_ammonia")
-    compoundCloud = CompoundCloudComponent()
-    compoundCloud:initialize(compoundId, 255, 220, 50)
-    entity:addComponent(compoundCloud)
-    
-    compoundId = CompoundRegistry.getCompoundId("aminoacids")
-    entity = Entity("compound_cloud_aminoacids")
-    compoundCloud = CompoundCloudComponent()
-    compoundCloud:initialize(compoundId, 255, 150, 200)
-    entity:addComponent(compoundCloud)
+    for compoundName, compoundInfo in pairs(compounds) do
+        if compoundInfo.isCloud then
+            local compoundId = CompoundRegistry.getCompoundId(compoundName)
+            local entity = Entity("compound_cloud_" .. compoundName)
+            local compoundCloud = CompoundCloudComponent()
+            local colour = compoundInfo.colour
+            compoundCloud:initialize(compoundId, colour.r, colour.g, colour.b)
+            entity:addComponent(compoundCloud)
+        end
+    end
 end
 
 local function setupProcesses()
@@ -214,7 +199,7 @@ local function setSpawnablePhysics(entity, pos, mesh, scale, collisionShape)
 end
 
 function createCompoundCloud(compoundName, x, y, amount)
-    if compoundName == "aminoacids" or compoundName == "glucose" or compoundName == "co2" or compoundName == "oxygen" or compoundName == "ammonia" then
+    if compounds[compoundName] and compounds[compoundName].isCloud then
         Entity("compound_cloud_" .. compoundName):getComponent(CompoundCloudComponent.TYPE_ID):addCloud(amount, x, y)
     end
 end
@@ -316,27 +301,19 @@ local function createSpawnSystem()
         powerupEntity:addComponent(powerupComponent)
         return powerupEntity
     end
-        
-    local spawnGlucoseCloud =  function(pos)
-        createCompoundCloud("glucose", pos.x, pos.y, 75000)
+
+    for compoundName, compoundInfo in pairs(compounds) do
+        if compoundInfo.isCloud then
+            local spawnCloud =  function(pos)
+                createCompoundCloud(compoundName, pos.x, pos.y, DEFAULT_CLOUD_AMOUNT)
+            end
+
+            spawnSystem:addSpawnType(spawnCloud, CLOUD_SPAWN_DENSITY, CLOUD_SPAWN_RADIUS)
+        end
     end
-    local spawnOxygenCloud =  function(pos)
-        createCompoundCloud("oxygen", pos.x, pos.y, 75000)
-    end
-    local spawnCO2Cloud =  function(pos)
-        createCompoundCloud("co2", pos.x, pos.y, 75000)
-    end
-    local spawnAmmoniaCloud =  function(pos)
-        createCompoundCloud("ammonia", pos.x, pos.y, 75000)
-    end
-    
+
     spawnSystem:addSpawnType(toxinOrganelleSpawnFunction, 1/17000, 50)
     spawnSystem:addSpawnType(ChloroplastOrganelleSpawnFunction, 1/12000, 50)
-    
-    spawnSystem:addSpawnType(spawnGlucoseCloud, 1/5000, 50)
-    spawnSystem:addSpawnType(spawnCO2Cloud, 1/5000, 50)
-    spawnSystem:addSpawnType(spawnAmmoniaCloud, 1/5000, 50)
-    spawnSystem:addSpawnType(spawnOxygenCloud, 1/5000, 50)
 
     for name, species in pairs(starter_microbes) do
         spawnSystem:addSpawnType(
