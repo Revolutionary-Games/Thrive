@@ -77,7 +77,39 @@ function HudSystem:init(gameState)
     self.atpBar = self.rootGUIWindow:getChild("CompoundPanel"):getChild("ATPBar"):getChild("ATPBar")
     self.atpCountLabel = self.atpBar:getChild("NumberLabel")
     self.atpMaxLabel = self.rootGUIWindow:getChild("CompoundPanel"):getChild("ATPBar"):getChild("ATPTotal")
-    self.atpBar:setProperty("ThriveGeneric/ATPBar", "FillImage") 
+    self.atpBar:setProperty("ThriveGeneric/ATPBar", "FillImage")
+	
+    self.atpCountLabel2 = self.rootGUIWindow:getChild("CompoundBar"):getChild("ATPLabel")
+	
+    self.oxygenBar = self.rootGUIWindow:getChild("CompoundPanel"):getChild("OxygenBar"):getChild("OxygenBar")
+    self.oxygenCountLabel = self.oxygenBar:getChild("NumberLabel")
+    self.oxygenMaxLabel = self.rootGUIWindow:getChild("CompoundPanel"):getChild("OxygenBar"):getChild("OxygenTotal")
+    self.oxygenBar:setProperty("ThriveGeneric/OxygenBar", "FillImage")
+	
+    self.aminoacidsBar = self.rootGUIWindow:getChild("CompoundPanel"):getChild("AminoAcidsBar"):getChild("AminoAcidsBar")
+    self.aminoacidsCountLabel = self.aminoacidsBar:getChild("NumberLabel")
+    self.aminoacidsMaxLabel = self.rootGUIWindow:getChild("CompoundPanel"):getChild("AminoAcidsBar"):getChild("AminoAcidsTotal")
+    self.aminoacidsBar:setProperty("ThriveGeneric/AminoAcidsBar", "FillImage")
+	
+    self.ammoniaBar = self.rootGUIWindow:getChild("CompoundPanel"):getChild("AmmoniaBar"):getChild("AmmoniaBar")
+    self.ammoniaCountLabel = self.ammoniaBar:getChild("NumberLabel")
+    self.ammoniaMaxLabel = self.rootGUIWindow:getChild("CompoundPanel"):getChild("AmmoniaBar"):getChild("AmmoniaTotal")
+    self.ammoniaBar:setProperty("ThriveGeneric/AmmoniaBar", "FillImage")
+	
+    self.glucoseBar = self.rootGUIWindow:getChild("CompoundPanel"):getChild("GlucoseBar"):getChild("GlucoseBar")
+    self.glucoseCountLabel = self.glucoseBar:getChild("NumberLabel")
+    self.glucoseMaxLabel = self.rootGUIWindow:getChild("CompoundPanel"):getChild("GlucoseBar"):getChild("GlucoseTotal")
+    self.glucoseBar:setProperty("ThriveGeneric/GlucoseBar", "FillImage")
+	
+    self.co2Bar = self.rootGUIWindow:getChild("CompoundPanel"):getChild("CO2Bar"):getChild("CO2Bar")
+    self.co2CountLabel = self.co2Bar:getChild("NumberLabel")
+    self.co2MaxLabel = self.rootGUIWindow:getChild("CompoundPanel"):getChild("CO2Bar"):getChild("CO2Total")
+    self.co2Bar:setProperty("ThriveGeneric/CO2Bar", "FillImage")
+	
+    self.fattyacidsBar = self.rootGUIWindow:getChild("CompoundPanel"):getChild("FattyAcidsBar"):getChild("FattyAcidsBar")
+    self.fattyacidsCountLabel = self.fattyacidsBar:getChild("NumberLabel")
+    self.fattyacidsMaxLabel = self.rootGUIWindow:getChild("CompoundPanel"):getChild("FattyAcidsBar"):getChild("FattyAcidsTotal")
+    self.fattyacidsBar:setProperty("ThriveGeneric/FattyAcidsBar", "FillImage")
 end
 
 
@@ -92,6 +124,32 @@ function HudSystem:update(renderTime)
     self.atpBar:progressbarSetProgress(playerMicrobe.microbe.hitpoints/playerMicrobe.microbe.maxHitpoints)
     self.atpCountLabel:setText("".. math.floor(playerMicrobe:getCompoundAmount(CompoundRegistry.getCompoundId("atp"))))
     self.atpMaxLabel:setText("/ ".. math.floor(playerMicrobe.microbe.maxHitpoints))
+	
+    self.atpCountLabel2:setText("".. math.floor(playerMicrobe:getCompoundAmount(CompoundRegistry.getCompoundId("atp"))))
+	
+    self.oxygenBar:progressbarSetProgress(playerMicrobe:getCompoundAmount(CompoundRegistry.getCompoundId("oxygen"))/(playerMicrobe.microbe.capacity/CompoundRegistry.getCompoundUnitVolume(CompoundRegistry.getCompoundId("oxygen"))))
+    self.oxygenCountLabel:setText("".. math.floor(playerMicrobe:getCompoundAmount(CompoundRegistry.getCompoundId("oxygen"))))
+    self.oxygenMaxLabel:setText("/ ".. math.floor(playerMicrobe.microbe.capacity/CompoundRegistry.getCompoundUnitVolume(CompoundRegistry.getCompoundId("oxygen"))))
+	
+    self.aminoacidsBar:progressbarSetProgress(playerMicrobe:getCompoundAmount(CompoundRegistry.getCompoundId("aminoacids"))/(playerMicrobe.microbe.capacity/CompoundRegistry.getCompoundUnitVolume(CompoundRegistry.getCompoundId("aminoacids"))))
+    self.aminoacidsCountLabel:setText("".. math.floor(playerMicrobe:getCompoundAmount(CompoundRegistry.getCompoundId("aminoacids"))))
+    self.aminoacidsMaxLabel:setText("/ ".. math.floor(playerMicrobe.microbe.capacity/CompoundRegistry.getCompoundUnitVolume(CompoundRegistry.getCompoundId("aminoacids"))))
+	
+    self.ammoniaBar:progressbarSetProgress(playerMicrobe:getCompoundAmount(CompoundRegistry.getCompoundId("ammonia"))/(playerMicrobe.microbe.capacity/CompoundRegistry.getCompoundUnitVolume(CompoundRegistry.getCompoundId("ammonia"))))
+    self.ammoniaCountLabel:setText("".. math.floor(playerMicrobe:getCompoundAmount(CompoundRegistry.getCompoundId("ammonia"))))
+    self.ammoniaMaxLabel:setText("/ ".. math.floor(playerMicrobe.microbe.capacity/CompoundRegistry.getCompoundUnitVolume(CompoundRegistry.getCompoundId("ammonia"))))
+	
+    self.glucoseBar:progressbarSetProgress(playerMicrobe:getCompoundAmount(CompoundRegistry.getCompoundId("glucose"))/(playerMicrobe.microbe.capacity/CompoundRegistry.getCompoundUnitVolume(CompoundRegistry.getCompoundId("glucose"))))
+    self.glucoseCountLabel:setText("".. math.floor(playerMicrobe:getCompoundAmount(CompoundRegistry.getCompoundId("glucose"))))
+    self.glucoseMaxLabel:setText("/ ".. math.floor(playerMicrobe.microbe.capacity/CompoundRegistry.getCompoundUnitVolume(CompoundRegistry.getCompoundId("glucose"))))
+	
+    self.co2Bar:progressbarSetProgress(playerMicrobe:getCompoundAmount(CompoundRegistry.getCompoundId("co2"))/(playerMicrobe.microbe.capacity/CompoundRegistry.getCompoundUnitVolume(CompoundRegistry.getCompoundId("co2"))))
+    self.co2CountLabel:setText("".. math.floor(playerMicrobe:getCompoundAmount(CompoundRegistry.getCompoundId("co2"))))
+    self.co2MaxLabel:setText("/ ".. math.floor(playerMicrobe.microbe.capacity/CompoundRegistry.getCompoundUnitVolume(CompoundRegistry.getCompoundId("co2"))))
+	
+    self.fattyacidsBar:progressbarSetProgress(playerMicrobe:getCompoundAmount(CompoundRegistry.getCompoundId("fattyacids"))/(playerMicrobe.microbe.capacity/CompoundRegistry.getCompoundUnitVolume(CompoundRegistry.getCompoundId("fattyacids"))))
+    self.fattyacidsCountLabel:setText("".. math.floor(playerMicrobe:getCompoundAmount(CompoundRegistry.getCompoundId("fattyacids"))))
+    self.fattyacidsMaxLabel:setText("/ ".. math.floor(playerMicrobe.microbe.capacity/CompoundRegistry.getCompoundUnitVolume(CompoundRegistry.getCompoundId("fattyacids"))))
 
     local playerSpecies = playerMicrobe:getSpeciesComponent()
     --TODO display population in home patch here
