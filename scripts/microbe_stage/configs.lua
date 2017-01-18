@@ -14,43 +14,36 @@ compounds = {
     atp = {
         name = "ATP",
         weight = 1,
-        mesh = "ATP.mesh",
         size = 0.1,
     },
     oxygen = {
         name = "Oxygen",
         weight = 1,
-        mesh = "molecule.mesh",
         size = 0.3,
-    },
-    reproductase = {
-        name = "Reproductase",
-        weight = 1,
-        mesh = "reproductase.mesh",
-        size = 0.09,
     },
     aminoacids = {
         name = "Amino Acids",
         weight = 1,
-        mesh = "aminoacid.mesh",
         size = 0.2,
     },
     ammonia = {
         name = "Ammonia",
         weight = 1,
-        mesh = "ammonia.mesh",
         size = 0.16,
     },
     glucose = {
         name = "Glucose",
         weight = 1,
-        mesh = "glucose.mesh",
         size = 0.3,
     },
     co2 = {
         name = "CO2",
         weight = 1,
-        mesh = "co2.mesh",
+        size = 0.16,
+    },
+    fattyacids = {
+        name = "Fatty Acids",
+        weight = 1,
         size = 0.16,
     },
 }
@@ -101,18 +94,6 @@ processes = {
             atp = 36,
         },
     },
-    ReproductaseSynthesis = {
-        speedFactor = 0.5,
-        inputs = {
-            aminoacids = 6,
-            glucose = 6,
-            oxygen = 6,
-            atp = 6,
-        },
-        outputs = {
-            reproductase = 5,
-        },
-    },
     AminoAcidSynthesis = {
         speedFactor = 1,
         inputs = {
@@ -123,6 +104,18 @@ processes = {
             co2 = 1,
             atp = 1,
             aminoacids = 1,
+        },
+    },
+    FattyAcidSynthesis = {
+        speedFactor = 1,
+        inputs = {
+            glucose = 1,
+            ammonia = 1,
+        },
+        outputs = {
+            co2 = 1,
+            atp = 1,
+            fattyacids = 1,
         },
     },
     OxyToxySynthesis = {
@@ -151,8 +144,8 @@ processes = {
 organelles = {
     nucleus = {
         processes = {
-            ReproductaseSynthesis = 1,
             AminoAcidSynthesis = 1,
+            FattyAcidSynthesis = 1,
         },
     },
     mitochondrion = {
@@ -179,9 +172,9 @@ default_thresholds = {
     oxygen = {low = 22, high = 40, vent = 70},
     co2 = {low = 0, high = 0, vent = 0},
     ammonia = {low = 12, high = 30, vent = 70},
-    aminoacids = {low = 12, high = 30, vent = 70},
+    aminoacids = {low = 0, high = 30, vent = 70},
+    fattyacids = {low = 0, high = 30, vent = 70},
     oxytoxy = {low = 1, high = 5, vent = 5},
-    reproductase = {low = 5, high = 1000, vent = 1000},
 }
 
 --[[
@@ -198,6 +191,44 @@ in 60 degree intervals counter clockwise.
 The colour of the microbe should never be lower than (0.3, 0.3, 0.3)
 ]]
 
+starter_microbes = {
+    Default = {
+        spawnDensity = 1/14000,
+        compounds = {
+            atp = {amount=20},
+            glucose = {amount = 5},
+            oxygen = {amount = 10},
+        },
+        organelles = {
+            {name="nucleus",q=0,r=0, rotation=0},
+            {name="mitochondrion",q=-1,r=-2, rotation=240},
+            {name="vacuole",q=1,r=-3, rotation=0},
+            {name="flagellum",q=-1,r=-3, rotation=0},
+            {name="flagellum",q=1,r=-4, rotation=0},
+        },
+        colour = {r=1,g=1,b=1},
+    }}
+
+--[[ RIP in peace
+starter_microbes = {
+    Default = {
+        spawnDensity = 1/14000,
+        compounds = {
+            atp = {priority=10,amount=40},
+            glucose = {amount = 5},
+            reproductase = {priority = 8},
+        },
+        organelles = {
+            {name="nucleus",q=0,r=0, rotation=0},
+            {name="mitochondrion",q=-1,r=-2, rotation=240},
+            {name="vacuole",q=1,r=-3, rotation=0},
+            {name="flagellum",q=1,r=-4, rotation=0},
+            {name="flagellum",q=-1,r=-3, rotation=0},
+        },
+        colour = {r=1,g=1,b=1},
+    }}
+
+--[[ RIP in peace
 starter_microbes = {
     Default = {
         spawnDensity = 1/14000,
@@ -305,7 +336,7 @@ starter_microbes = {
     Gluttonous = {
         spawnDensity = 1/18000,
         compounds = {
-            atp = {amount = 30},
+            atp = {amount = 60},
         },
         organelles = {
             {name="nucleus", q=0, r=0, rotation=0},
@@ -330,4 +361,4 @@ starter_microbes = {
         },
         colour = {r=0.3,g=1,b=0.8},
     },
-}
+}]]

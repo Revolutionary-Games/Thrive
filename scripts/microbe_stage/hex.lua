@@ -3,9 +3,10 @@
 -- For more information on hex grids, see www.redblobgames.com/grids/hexagons.
 --
 -- We use flat-topped hexagons with axial coordinates.
+-- please note the coordinate system we use is horizontally symmetric to the one in the page
 
 -- Size of a single hex, that is the distance from the center to a corner
-HEX_SIZE = 1.0
+HEX_SIZE = 0.75
 
 
 -- Enumeration of the hex sides, clock-wise
@@ -206,9 +207,34 @@ function rotateAxial(q, r)
 	return q2, r2
 end
 
--- Flips a hex vertically about 0,0.
+-- Rotates a hex by (60 * n) degrees about the origin clock-wise.
+function rotateAxialNTimes(q0, r0, n)
+    q = q0
+    r = r0
+    for i = 1, n do
+        q, r = rotateAxial(q, r)
+    end
+    return q, r
+end
+
+-- Rotates a list of hexes by (60 * n) degrees about the origin clock-wise.
+function rotateHexListNTimes(hexes, n)
+    local rotatedList = {}
+    for _, hex in pairs(hexes) do
+        table.insert(rotatedList, {["q"]=hex.q, ["r"]=hex.r})
+    end
+
+    --rotating each hex by the designated angle
+    for _, hex in pairs(rotatedList) do
+        hex.q, hex.r = rotateAxialNTimes(hex.q, hex.r, n)
+    end
+
+    return rotatedList
+end
+
+-- Symmetrizes a hex horizontally about the 0,x axis.
 function flipHorizontally(q,r)
     local q2 = -q
-    local r2 = q + r2
+    local r2 = q + r
     return q2, r2
 end

@@ -149,8 +149,11 @@ function MicrobeAISystem:update(renderTime, logicTime)
         aiComponent.intervalRemaining = aiComponent.intervalRemaining + logicTime
         while aiComponent.intervalRemaining > aiComponent.reevalutationInterval do
             aiComponent.intervalRemaining = aiComponent.intervalRemaining - aiComponent.reevalutationInterval
+
+            local compoundId = CompoundRegistry.getCompoundId("oxytoxy")
             local targetPosition = nil
-            if microbe.microbe.speciesName == "Predator" or microbe.microbe.speciesName == "Gluttonous" then
+            local agentVacuole = microbe.microbe.specialStorageOrganelles[compoundId]
+            if agentVacuole ~= nil or microbe.microbe.maxHitpoints > 100 then
                 self.preyCandidates[6] = Microbe(Entity(PLAYER_NAME))
                 self.preyEntityToIndexMap[Entity(PLAYER_NAME).id] = 6
                 local attempts = 0
@@ -162,11 +165,11 @@ function MicrobeAISystem:update(renderTime, logicTime)
                 end
                 if attempts < 6 then
                     local vec = (aiComponent.prey.sceneNode.transform.position - microbe.sceneNode.transform.position)
-                    if vec:length() < 25 and microbe.microbe.speciesName == "Predator" then 
-                       microbe:emitAgent(CompoundRegistry.getCompoundId("oxytoxy"), 1)
-                    elseif vec:length() < 17 and microbe.microbe.speciesName == "Gluttonous" and not microbe.microbe.engulfMode then
+                    if vec:length() < 25 and microbe:getCompoundAmount(compoundId) > MINIMUM_AGENT_EMISSION_AMOUNT then
+                        microbe:emitAgent(CompoundRegistry.getCompoundId("oxytoxy"), 1)
+                    elseif vec:length() < 17 and microbe.microbe.maxHitpoints > ENGULF_HP_RATIO_REQ * aiComponent.prey.microbe.maxHitpoints and not microbe.microbe.engulfMode then
                         microbe:toggleEngulfMode()
-                    elseif vec:length() > 20 and microbe.microbe.speciesName == "Gluttonous" and microbe.microbe.engulfMode then
+                    elseif vec:length() > 20 and microbe.microbe.engulfMode then
                         microbe:toggleEngulfMode()
                     end
                     

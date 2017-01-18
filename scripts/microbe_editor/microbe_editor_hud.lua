@@ -31,6 +31,7 @@ function MicrobeEditorHudSystem:init(gameState)
         sceneNode.transform.position = Vector3(0,0,0)
         sceneNode.transform:touch()
         sceneNode.meshName = "hex.mesh"
+        sceneNode.transform.scale = Vector3(HEX_SIZE, HEX_SIZE, HEX_SIZE)
         self.hoverHex[i]:addComponent(sceneNode)
     end
     for i=1, 6 do
@@ -38,6 +39,7 @@ function MicrobeEditorHudSystem:init(gameState)
         local sceneNode = OgreSceneNodeComponent()
         sceneNode.transform.position = Vector3(0,0,0)
         sceneNode.transform:touch()
+        sceneNode.transform.scale = Vector3(HEX_SIZE, HEX_SIZE, HEX_SIZE)
         self.hoverOrganelle[i]:addComponent(sceneNode)
     end
     
@@ -76,8 +78,8 @@ function MicrobeEditorHudSystem:init(gameState)
     vacuoleButton:registerEventHandler("Clicked", function() self:vacuoleClicked() end)
     toxinButton:registerEventHandler("Clicked", function() self:toxinClicked() end)
     
-    -- self.saveLoadPanel = root:getChild("SaveLoadPanel")
-    -- self.creationsListbox = self.saveLoadPanel:getChild("SavedCreations")
+    self.saveLoadPanel = root:getChild("SaveLoadPanel")
+    self.creationsListbox = self.saveLoadPanel:getChild("SavedCreations")
     self.undoButton = root:getChild("UndoButton")
     self.undoButton:registerEventHandler("Clicked", function() self.editor:undo() end)
     self.redoButton = root:getChild("RedoButton")
@@ -90,8 +92,10 @@ function MicrobeEditorHudSystem:init(gameState)
     root:getChild("MenuButton"):registerEventHandler("Clicked", menuMainMenuClicked)
     --root:getChild("MenuPanel"):getChild("QuitButton"):registerEventHandler("Clicked", self:quitButtonClicked)
     root:getChild("SaveMicrobeButton"):registerEventHandler("Clicked", function() self:saveCreationClicked() end)
-    --root:getChild("LoadMicrobeButton"):registerEventHandler("Clicked", function() self:loadCreationClicked() end)
-
+    root:getChild("LoadMicrobeButton"):registerEventHandler("Clicked", function() self:rootLoadCreationClicked() end)
+	self.saveLoadPanel:getChild("LoadButton"):registerEventHandler("Clicked", function() self:loadCreationClicked() end)
+	self.saveLoadPanel:getChild("SavedCreations"):registerEventHandler("SelectionChanged", function() self:loadmicrobeSelectionChanged() end)
+	
     self.helpPanel = root:getChild("HelpPanel")
     root:getChild("HelpButton"):registerEventHandler("Clicked", function() self:helpButtonClicked() end)
     self.helpPanel:registerEventHandler("Clicked", function() self:helpButtonClicked() end)
@@ -104,6 +108,12 @@ function MicrobeEditorHudSystem:init(gameState)
     end
     self.nameLabel:setText(name)
 end
+
+function MicrobeEditorHudSystem:loadmicrobeSelectionChanged()
+	local guiSoundEntity = Entity("gui_sounds")
+    guiSoundEntity:getComponent(SoundSourceComponent.TYPE_ID):playSound("button-hover-click")
+end
+
 
 
 function MicrobeEditorHudSystem:activate()
@@ -236,8 +246,8 @@ function MicrobeEditorHudSystem:update(renderTime, logicTime)
         end
     elseif keyCombo(kmp.gotostage) then
         playClicked()
-    elseif keyCombo(kmp.rename or kmp.rename2) then
-        self:updateMicrobeName()
+    elseif keyCombo(kmp.rename) or keyCombo(kmp.rename2) then
+        self:microbeNameChanged()
     end
     
     if Engine.keyboard:wasKeyPressed(Keyboard.KC_LEFT) or Engine.keyboard:wasKeyPressed(Keyboard.KC_A) then
@@ -317,10 +327,11 @@ function MicrobeEditorHudSystem:nameClicked()
     self.nameTextbox:setFocus()
 end
 
-function MicrobeEditorHudSystem:updateMicrobeName()
+function MicrobeEditorHudSystem:updateMicrobeName(name)
+	print(name)
     --set genus_picked to false so it knows to update the name properly when microbe_replacement runs
     global_genusPicked = false
-    self.editor.currentMicrobe.microbe.speciesName = self.nameTextbox:getText()
+    self.editor.currentMicrobe.microbe.speciesName = name
     local name = self.editor.currentMicrobe.microbe.speciesName
     if string.len(name) > 18 then
         name = string.sub(self.editor.currentMicrobe.microbe.speciesName, 1, 15)
@@ -329,7 +340,12 @@ function MicrobeEditorHudSystem:updateMicrobeName()
     global_genusName  = name
     self.nameLabel:setText(name)
     self.nameTextbox:hide()
+	self.nameTextbox:setText(name)
     self.nameLabel:show()
+end
+
+function MicrobeEditorHudSystem:microbeNameChanged()
+	self:updateMicrobeName(self.nameTextbox:getText())
 end
 
 function MicrobeEditorHudSystem:helpButtonClicked()
@@ -426,42 +442,37 @@ function MicrobeEditorHudSystem:rootSaveCreationClicked()
     local guiSoundEntity = Entity("gui_sounds")
     guiSoundEntity:getComponent(SoundSourceComponent.TYPE_ID):playSound("button-hover-click")
     print ("Save button clicked")
-    --[[
+
     panel = self.saveLoadPanel
-    panel:getChild("SaveButton"):show()
-    panel:getChild("NameTextbox"):show()
-    panel:getChild("CreationNameDialogLabel"):show()
     panel:getChild("LoadButton"):hide()
     panel:getChild("SavedCreations"):hide()
-    panel:show()--]]
+    panel:show()
 end
 
 function MicrobeEditorHudSystem:rootLoadCreationClicked()
     local guiSoundEntity = Entity("gui_sounds")
     guiSoundEntity:getComponent(SoundSourceComponent.TYPE_ID):playSound("button-hover-click")
     panel = self.saveLoadPanel
-    panel:getChild("SaveButton"):hide()
-    panel:getChild("NameTextbox"):hide()
-    panel:getChild("CreationNameDialogLabel"):hide()
+   -- panel:getChild("SaveButton"):hide()
+  --  root:getChild("CreationNameDialogLabel"):hide()
     panel:getChild("LoadButton"):show()
     panel:getChild("SavedCreations"):show()
     panel:show()
-    self.creationsListbox:itemListboxResetList()
+    self.creationsListbox:listWidgetResetList()
     self.creationFileMap = {}
     i = 0
     pathsString = Engine:getCreationFileList("microbe")
     -- using pattern matching for splitting on spaces
     for path in string.gmatch(pathsString, "%S+")  do
         -- this is unsafe when one of the paths is, for example, C:\\Application Data\Thrive\saves
-        item = CEGUIWindow("Thrive/ListboxItem", "creationItems"..i)
         pathSep = package.config:sub(1,1) -- / for unix, \ for windows
         text = string.sub(path, string.len(path) - string.find(path:reverse(), pathSep) + 2)
-        item:setText(text)
-        self.creationsListbox:itemListboxAddItem(item)
+
+        self.creationsListbox:listWidgetAddItem(text)
         self.creationFileMap[text] = path
         i = i + 1
     end
-    self.creationsListbox:itemListboxHandleUpdatedItemData()
+   -- self.creationsListbox:itemListboxHandleUpdatedItemData()
 end
 
 function MicrobeEditorHudSystem:saveCreationClicked()
@@ -476,14 +487,20 @@ function MicrobeEditorHudSystem:saveCreationClicked()
     elseif string.len(name) > 0 then
         Engine:saveCreation(self.editor.currentMicrobe.entity.id, name, "microbe")
     end
+	
 end
 
 function MicrobeEditorHudSystem:loadCreationClicked()
     local guiSoundEntity = Entity("gui_sounds")
     guiSoundEntity:getComponent(SoundSourceComponent.TYPE_ID):playSound("button-hover-click")
-    item = self.creationsListbox:itemListboxGetLastSelectedItem()
-    if not item:isNull() then 
-        entity = Engine:loadCreation(self.creationFileMap[item:getText()])
+	item = self.creationsListbox:listWidgetGetFirstSelectedItemText()
+    if self.creationFileMap[item] ~= nil then 
+        entity = Engine:loadCreation(self.creationFileMap[item])
+		
+		
+		
+		
+		self:updateMicrobeName(Microbe(Entity(entity), true).microbe.speciesName)
         self.editor:loadMicrobe(entity)
         panel:hide()
     end

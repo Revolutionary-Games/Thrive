@@ -304,18 +304,19 @@ if(WIN32)
  
 file(MAKE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/dist/bin) 
 
-add_executable(dist/bin/Thrive
+add_executable(Thrive
  ${CMAKE_CURRENT_SOURCE_DIR}/src/Main.cpp
  ${CMAKE_CURRENT_SOURCE_DIR}/windows/thrive.rc)
 else()
- add_executable(dist/bin/Thrive
+ add_executable(Thrive
  ${CMAKE_CURRENT_SOURCE_DIR}/src/Main.cpp)
 endif()
+set_target_properties (Thrive PROPERTIES RUNTIME_OUTPUT_DIRECTORY dist/bin) 
 
 # Compile executable
 
 
-target_link_libraries(dist/bin/Thrive ThriveLib)
+target_link_libraries(Thrive ThriveLib)
 
 #################
 # Compile tests #
@@ -361,7 +362,7 @@ endif()
 ###########
 
 # Executable
-install(TARGETS dist/bin/Thrive
+install(TARGETS Thrive
     RUNTIME DESTINATION bin
     LIBRARY DESTINATION bin
 )
@@ -679,14 +680,18 @@ if(UNIX)
     "${SWRESAMPLE_LIBRARIES}" "${OgreFFMPEG_LIBRARIES}" "${FFMPEG_LIBRARIES}"
     "${Boost_LIBRARIES}" "${OGRE_LIBRARIES}" "${OIS_LIBRARIES}" "${CMAKE_THREAD_LIBS_INIT}"
     "${BULLET_LIBRARIES}" "${CEGUI_LIBRARY}" "${TINYXML_LIBRARIES}" "${OpenAL_LIBRARIES}")
-  
-  configure_file("${CMAKE_SOURCE_DIR}/cpack/CreatePackage.sh.in"
-    "${CMAKE_CURRENT_BINARY_DIR}/CreatePackage.sh" @ONLY
+
+  # Linux setup
+  configure_file("${CMAKE_SOURCE_DIR}/cpack/CMakeLibraryList.xml.in"
+    "${CMAKE_CURRENT_BINARY_DIR}/CMakeLibraryList.xml" @ONLY
     )
 
   add_custom_target(linuxrelease
-    COMMAND "./CreatePackage.sh"
-    DEPENDS Thrive doc
+    COMMAND "${CMAKE_SOURCE_DIR}/cpack/PackageProject.rb" "${CMAKE_CURRENT_BINARY_DIR}"
+    WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}/cpack"
+    DEPENDS ThriveLib doc
     )
+  # The name of the Thrive target somehow breaks in the above command
+  add_dependencies(linuxrelease Thrive)
   
 endif()
