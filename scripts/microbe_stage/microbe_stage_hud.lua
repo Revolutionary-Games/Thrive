@@ -110,6 +110,11 @@ function HudSystem:init(gameState)
     self.fattyacidsCountLabel = self.fattyacidsBar:getChild("NumberLabel")
     self.fattyacidsMaxLabel = self.rootGUIWindow:getChild("CompoundPanel"):getChild("FattyAcidsBar"):getChild("FattyAcidsTotal")
     self.fattyacidsBar:setProperty("ThriveGeneric/FattyAcidsBar", "FillImage")
+	
+    self.oxytoxyBar = self.rootGUIWindow:getChild("CompoundPanel"):getChild("CompoundScroll"):getChild("OxyToxyNTBar"):getChild("OxyToxyNTBar")
+    self.oxytoxyCountLabel = self.oxytoxyBar:getChild("NumberLabel")
+    self.oxytoxyMaxLabel = self.rootGUIWindow:getChild("CompoundPanel"):getChild("CompoundScroll"):getChild("OxyToxyNTBar"):getChild("OxyToxyNTTotal")
+    self.oxytoxyBar:setProperty("ThriveGeneric/OxyToxyBar", "FillImage")
 end
 
 
@@ -150,6 +155,10 @@ function HudSystem:update(renderTime)
     self.fattyacidsBar:progressbarSetProgress(playerMicrobe:getCompoundAmount(CompoundRegistry.getCompoundId("fattyacids"))/(playerMicrobe.microbe.capacity/CompoundRegistry.getCompoundUnitVolume(CompoundRegistry.getCompoundId("fattyacids"))))
     self.fattyacidsCountLabel:setText("".. math.floor(playerMicrobe:getCompoundAmount(CompoundRegistry.getCompoundId("fattyacids"))))
     self.fattyacidsMaxLabel:setText("/ ".. math.floor(playerMicrobe.microbe.capacity/CompoundRegistry.getCompoundUnitVolume(CompoundRegistry.getCompoundId("fattyacids"))))
+	
+    self.oxytoxyBar:progressbarSetProgress(playerMicrobe:getCompoundAmount(CompoundRegistry.getCompoundId("oxytoxy"))/(playerMicrobe.microbe.capacity/CompoundRegistry.getCompoundUnitVolume(CompoundRegistry.getCompoundId("oxytoxy"))))
+    self.oxytoxyCountLabel:setText("".. math.floor(playerMicrobe:getCompoundAmount(CompoundRegistry.getCompoundId("oxytoxy"))))
+    self.oxytoxyMaxLabel:setText("/ ".. math.floor(playerMicrobe.microbe.capacity/CompoundRegistry.getCompoundUnitVolume(CompoundRegistry.getCompoundId("oxytoxy"))))
 
     local playerSpecies = playerMicrobe:getSpeciesComponent()
     --TODO display population in home patch here
