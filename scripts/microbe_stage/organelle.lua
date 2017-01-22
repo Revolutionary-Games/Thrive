@@ -289,7 +289,7 @@ function Organelle:reset()
         
     -- If it was split from a primary organelle, destroy it.
     if self.isDuplicate == true then
-        self.microbe.removeOrganelle(self.position.q, self.position.r)
+        self.microbe:removeOrganelle(self.position.q, self.position.r)
     else
         self.wasSplit = false
     end
