@@ -23,20 +23,65 @@ end
 function MicrobeStageTutorialHudSystem:init(gameState)
     System.init(self, "MicrobeStageTutorialHudSystem", gameState)
     self.rootGUIWindow = gameState:rootGUIWindow()
-    self.rootGUIWindow:getChild("MainMenuButton"):registerEventHandler("Clicked", menuMainMenuClicked) -- Defined in microbe_editor_hud.lua
-    local quitButton = self.rootGUIWindow:getChild("QuitButton")
+    self.rootGUIWindow:getChild("PauseMenu"):getChild("MainMenuButton"):registerEventHandler("Clicked", function() self:menuMainMenuClicked() end)
+    local quitButton = self.rootGUIWindow:getChild("PauseMenu"):getChild("QuitButton")
     quitButton:registerEventHandler("Clicked", quitButtonClicked)
-    self.rootGUIWindow:getChild("HelpPanel"):registerEventHandler("Clicked", function() self.tutorialStep = self.tutorialStep + 1 end)
-    self.compoundListBox = self.rootGUIWindow:getChild("CompoundsOpen")
-    self.compoundListBox:hide()
+    self.rootGUIWindow:getChild("TutorialPanel"):registerEventHandler("Clicked", function() self.tutorialStep = self.tutorialStep + 1 end)
     local editorButton = self.rootGUIWindow:getChild("EditorButton")
     editorButton:registerEventHandler("Clicked", function() self:editorButtonClicked() end)
+	
+    self.hitpointsBar = self.rootGUIWindow:getChild("HealthPanel"):getChild("LifeBar")
+    self.hitpointsCountLabel = self.hitpointsBar:getChild("NumberLabel")
+    self.hitpointsMaxLabel = self.rootGUIWindow:getChild("HealthPanel"):getChild("HealthTotal")
+    self.hitpointsBar:setProperty("ThriveGeneric/HitpointsBar", "FillImage") 
+	
+    self.atpBar = self.rootGUIWindow:getChild("CompoundPanel"):getChild("CompoundScroll"):getChild("ATPBar"):getChild("ATPBar")
+    self.atpCountLabel = self.atpBar:getChild("NumberLabel")
+    self.atpMaxLabel = self.rootGUIWindow:getChild("CompoundPanel"):getChild("CompoundScroll"):getChild("ATPBar"):getChild("ATPTotal")
+    self.atpBar:setProperty("ThriveGeneric/ATPBar", "FillImage")
+	
+    self.atpCountLabel2 = self.rootGUIWindow:getChild("CompoundBar"):getChild("ATPLabel")
+	
+    self.oxygenBar = self.rootGUIWindow:getChild("CompoundPanel"):getChild("CompoundScroll"):getChild("OxygenBar"):getChild("OxygenBar")
+    self.oxygenCountLabel = self.oxygenBar:getChild("NumberLabel")
+    self.oxygenMaxLabel = self.rootGUIWindow:getChild("CompoundPanel"):getChild("CompoundScroll"):getChild("OxygenBar"):getChild("OxygenTotal")
+    self.oxygenBar:setProperty("ThriveGeneric/OxygenBar", "FillImage")
+	
+    self.aminoacidsBar = self.rootGUIWindow:getChild("CompoundPanel"):getChild("CompoundScroll"):getChild("AminoAcidsBar"):getChild("AminoAcidsBar")
+    self.aminoacidsCountLabel = self.aminoacidsBar:getChild("NumberLabel")
+    self.aminoacidsMaxLabel = self.rootGUIWindow:getChild("CompoundPanel"):getChild("CompoundScroll"):getChild("AminoAcidsBar"):getChild("AminoAcidsTotal")
+    self.aminoacidsBar:setProperty("ThriveGeneric/AminoAcidsBar", "FillImage")
+	
+    self.ammoniaBar = self.rootGUIWindow:getChild("CompoundPanel"):getChild("CompoundScroll"):getChild("AmmoniaBar"):getChild("AmmoniaBar")
+    self.ammoniaCountLabel = self.ammoniaBar:getChild("NumberLabel")
+    self.ammoniaMaxLabel = self.rootGUIWindow:getChild("CompoundPanel"):getChild("CompoundScroll"):getChild("AmmoniaBar"):getChild("AmmoniaTotal")
+    self.ammoniaBar:setProperty("ThriveGeneric/AmmoniaBar", "FillImage")
+	
+    self.glucoseBar = self.rootGUIWindow:getChild("CompoundPanel"):getChild("CompoundScroll"):getChild("GlucoseBar"):getChild("GlucoseBar")
+    self.glucoseCountLabel = self.glucoseBar:getChild("NumberLabel")
+    self.glucoseMaxLabel = self.rootGUIWindow:getChild("CompoundPanel"):getChild("CompoundScroll"):getChild("GlucoseBar"):getChild("GlucoseTotal")
+    self.glucoseBar:setProperty("ThriveGeneric/GlucoseBar", "FillImage")
+	
+    self.co2Bar = self.rootGUIWindow:getChild("CompoundPanel"):getChild("CompoundScroll"):getChild("CO2Bar"):getChild("CO2Bar")
+    self.co2CountLabel = self.co2Bar:getChild("NumberLabel")
+    self.co2MaxLabel = self.rootGUIWindow:getChild("CompoundPanel"):getChild("CompoundScroll"):getChild("CO2Bar"):getChild("CO2Total")
+    self.co2Bar:setProperty("ThriveGeneric/CO2Bar", "FillImage")
+	
+    self.fattyacidsBar = self.rootGUIWindow:getChild("CompoundPanel"):getChild("CompoundScroll"):getChild("FattyAcidsBar"):getChild("FattyAcidsBar")
+    self.fattyacidsCountLabel = self.fattyacidsBar:getChild("NumberLabel")
+    self.fattyacidsMaxLabel = self.rootGUIWindow:getChild("CompoundPanel"):getChild("CompoundScroll"):getChild("FattyAcidsBar"):getChild("FattyAcidsTotal")
+    self.fattyacidsBar:setProperty("ThriveGeneric/FattyAcidsBar", "FillImage")
+	
+    self.oxytoxyBar = self.rootGUIWindow:getChild("CompoundPanel"):getChild("CompoundScroll"):getChild("OxyToxyNTBar"):getChild("OxyToxyNTBar")
+    self.oxytoxyCountLabel = self.oxytoxyBar:getChild("NumberLabel")
+    self.oxytoxyMaxLabel = self.rootGUIWindow:getChild("CompoundPanel"):getChild("CompoundScroll"):getChild("OxyToxyNTBar"):getChild("OxyToxyNTTotal")
+    self.oxytoxyBar:setProperty("ThriveGeneric/OxyToxyBar", "FillImage")
 end
 
 
 function MicrobeStageTutorialHudSystem:update(renderTime)
 
-    local tutorial = self.rootGUIWindow:getChild("HelpPanel")
+    local tutorial = self.rootGUIWindow:getChild("TutorialPanel")
     
     if Engine.mouse:wasButtonPressed(Mouse.MB_Left) and self.tutorialStep ~= 3 and self.tutorialStep ~= 8 and self.tutorialStep ~= 10 then
         self.tutorialStep = self.tutorialStep + 1
@@ -128,7 +173,7 @@ Click anywhere to continue...]])
         local compoundID = CompoundRegistry.getCompoundId("atp")
         local compoundsString = string.format("%s - %d", CompoundRegistry.getCompoundDisplayName(compoundID), Microbe(Entity(PLAYER_NAME)):getCompoundAmount(compoundID))
         if self.compoundListItems[compoundID] == nil then
-            self.rootGUIWindow:getChild("CompoundsOpen"):show()
+            self.rootGUIWindow:getChild("CompoundPanel"):show()
             self.compoundListItems[compoundID] = StandardItemWrapper("[colour='FF004400']" .. compoundsString, compoundID)
             self.compoundListBox:listWidgetAddItem(self.compoundListItems[compoundID])
         end
@@ -257,18 +302,20 @@ the editor.]])
     offset.z = newZVal
 end
 
-function MicrobeStageTutorialHudSystem:openCompoundPanel()
+function HudSystem:toggleCompoundPanel()
     local guiSoundEntity = Entity("gui_sounds")
     guiSoundEntity:getComponent(SoundSourceComponent.TYPE_ID):playSound("button-hover-click")
-    self.rootGUIWindow:getChild("CompoundsOpen"):show()
-    self.rootGUIWindow:getChild("CompoundsClosed"):hide()
-end
-
-function MicrobeStageTutorialHudSystem:closeCompoundPanel()
-    local guiSoundEntity = Entity("gui_sounds")
-    guiSoundEntity:getComponent(SoundSourceComponent.TYPE_ID):playSound("button-hover-click")
-    self.rootGUIWindow:getChild("CompoundsOpen"):hide()
-    self.rootGUIWindow:getChild("CompoundsClosed"):show()
+    if self.compoundsOpen then
+    self.rootGUIWindow:getChild("CompoundPanel"):hide()
+    self.rootGUIWindow:getChild("CompoundExpandButton"):getChild("CompoundExpandIcon"):hide()
+    self.rootGUIWindow:getChild("CompoundExpandButton"):getChild("CompoundContractIcon"):show()
+    self.compoundsOpen = false
+    else
+    self.rootGUIWindow:getChild("CompoundPanel"):show()
+    self.rootGUIWindow:getChild("CompoundExpandButton"):getChild("CompoundExpandIcon"):show()
+    self.rootGUIWindow:getChild("CompoundExpandButton"):getChild("CompoundContractIcon"):hide()
+    self.compoundsOpen = true
+    end
 end
 
 function MicrobeStageTutorialHudSystem:editorButtonClicked()
