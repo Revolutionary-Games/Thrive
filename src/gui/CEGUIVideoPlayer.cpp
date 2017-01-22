@@ -37,7 +37,7 @@ CEGUIVideoPlayer::CEGUIVideoPlayer(
     m_videoImage = static_cast<CEGUI::BitmapImage*>(
         &CEGUI::ImageManager::getSingleton().create(
             "BitmapImage", "ThriveGeneric/VideoImage"));
-    
+
     m_window->setWidth(CEGUI::UDim(0,width));
     m_window->setHeight(CEGUI::UDim(0,height));
 }
@@ -63,7 +63,7 @@ CEGUIVideoPlayer::luaBindings() {
         .def(constructor<std::string, int, int>())
         .def(constructor<std::string>())
         .def("play", &CEGUIVideoPlayer::play)
-        .def("pause", &CEGUIVideoPlayer::pause)
+        .def("close", &CEGUIVideoPlayer::close)
         .def("setVideo", &CEGUIVideoPlayer::setVideo)
         .def("update", &CEGUIVideoPlayer::update)
         .def("getDuration", &CEGUIVideoPlayer::getDuration)
@@ -90,6 +90,11 @@ CEGUIVideoPlayer::destroyVideoPlayer(CEGUIVideoPlayer* player)
 void
 CEGUIVideoPlayer::pause() {
 
+}
+
+void
+CEGUIVideoPlayer::close() {
+    m_videoPlayer->close();
 }
 
 void
