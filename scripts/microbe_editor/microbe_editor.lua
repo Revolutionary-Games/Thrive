@@ -75,12 +75,8 @@ function MicrobeEditor:activate()
         Engine:playerData():setBool("edited_microbe", true)
         Engine:playerData():setActiveCreature(self.nextMicrobeEntity.id, GameState.MICROBE_EDITOR)
     end
-<<<<<<< HEAD
-=======
-    
 
     self.mutationPoints = 50
->>>>>>> 17e01537d63f0b6ac49af46e6213be346ecfd58f
     self.actionHistory = {} -- where all user actions will  be registered
     self.actionIndex = 0 -- marks the last action that has been done (not undone, but possibly redone), is 0 if there is none
     for _, cytoplasm in pairs(self.occupiedHexes) do
@@ -147,24 +143,14 @@ function MicrobeEditor:renderHighlightedOrganelle(start, q, r, rotation)
         local oldData = {["name"]=self.activeActionName, ["q"]=-q, ["r"]=-r, ["rotation"]=(180+rotation) % 360}
         local hexes = OrganelleFactory.checkSize(oldData)
         local colour = ColourValue(2, 0, 0, 0.4)
-        local touching = false;
+        local touching = false
+
         for _, hex in ipairs(hexes) do
-<<<<<<< HEAD
-            if self.currentMicrobe:getOrganelleAt(-hex.q + q + 0, -hex.r + r - 1) or
-                self.currentMicrobe:getOrganelleAt(-hex.q + q + 1, -hex.r + r - 1) or
-                self.currentMicrobe:getOrganelleAt(-hex.q + q + 1, -hex.r + r + 0) or
-                self.currentMicrobe:getOrganelleAt(-hex.q + q + 0, -hex.r + r + 1) or
-                self.currentMicrobe:getOrganelleAt(-hex.q + q - 1, -hex.r + r + 1) or
-                self.currentMicrobe:getOrganelleAt(-hex.q + q - 1, -hex.r + r + 0) then
-                colour = ColourValue(0, 2, 0, 0.4)
-            end
-        end
-=======
             if self:surroundsOrganelle(-hex.q + q, -hex.r + r) then
                 colour = ColourValue(0, 2, 0, 0.4)
 			end
 		end
->>>>>>> 17e01537d63f0b6ac49af46e6213be346ecfd58f
+
         for _, hex in ipairs(hexes) do
             local organelle = self.currentMicrobe:getOrganelleAt(-hex.q + q, -hex.r + r)
             if organelle then
@@ -174,17 +160,7 @@ function MicrobeEditor:renderHighlightedOrganelle(start, q, r, rotation)
             end
         end
         if CEGUIWindow.getWindowUnderMouse():getName() == 'root' then
-<<<<<<< HEAD
-            local newData = {["name"]=self.activeActionName, ["q"]=-q, ["r"]=-r, ["sceneNode"]=sceneNode, ["rotation"]=180+rotation, ["colour"]=colour}
-            OrganelleFactory.renderOrganelles(newData)
-            for i=1, 8 do
-                sceneNode[i].transform.scale = Vector3(1,1,1)
-            sceneNode[i].transform:touch()
-            end
-        end
-=======
-
-			local newData = {
+            local newData = {
                 ["name"]=self.activeActionName,
                 ["q"]=-q,
                 ["r"]=-r,
@@ -199,7 +175,6 @@ function MicrobeEditor:renderHighlightedOrganelle(start, q, r, rotation)
 				sceneNode[i].transform:touch()
 			end
 		end
->>>>>>> 17e01537d63f0b6ac49af46e6213be346ecfd58f
     end
 end
 
@@ -300,20 +275,10 @@ function MicrobeEditor:isValidPlacement(organelleType, q, r, rotation)
                 empty = false 
             end
         end
-<<<<<<< HEAD
-        if  self.currentMicrobe:getOrganelleAt(hex.q + q + 0, hex.r + r - 1) or
-            self.currentMicrobe:getOrganelleAt(hex.q + q + 1, hex.r + r - 1) or
-            self.currentMicrobe:getOrganelleAt(hex.q + q + 1, hex.r + r + 0) or
-            self.currentMicrobe:getOrganelleAt(hex.q + q + 0, hex.r + r + 1) or
-            self.currentMicrobe:getOrganelleAt(hex.q + q - 1, hex.r + r + 1) or
-            self.currentMicrobe:getOrganelleAt(hex.q + q - 1, hex.r + r + 0) then
-            touching = true;
-        end
-=======
+
 		if  self:surroundsOrganelle(hex.q + q, hex.r + r) then
 			touching = true;
 		end
->>>>>>> 17e01537d63f0b6ac49af46e6213be346ecfd58f
     end
     
     if empty and touching then
