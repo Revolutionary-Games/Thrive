@@ -1,3 +1,6 @@
+CLOUD_SPAWN_RADIUS = 50
+CLOUD_SPAWN_DENSITY = 1/5000
+
 local function setupBackground()
     setRandomBiome()
 end
@@ -32,48 +35,29 @@ local function setupCompounds()
 
     local ordered_keys = {}
 
-    for k in pairs(compounds) do
+    for k in pairs(compoundTable) do
         table.insert(ordered_keys, k)
     end
 
     table.sort(ordered_keys)
     for i = 1, #ordered_keys do
-        local k, v = ordered_keys[i], compounds[ ordered_keys[i] ]
+        local k, v = ordered_keys[i], compoundTable[ ordered_keys[i] ]
         CompoundRegistry.registerCompoundType(k, v["name"], "placeholder.mesh", v["size"], v["weight"])
     end    
     CompoundRegistry.loadFromLua({}, agents)
 end
 
 local function setupCompoundClouds()
-    local compoundId = CompoundRegistry.getCompoundId("glucose")
-    local entity = Entity("compound_cloud_glucose")
-    local compoundCloud = CompoundCloudComponent()
-    compoundCloud:initialize(compoundId, 150, 170, 180)
-    entity:addComponent(compoundCloud)
-    
-    compoundId = CompoundRegistry.getCompoundId("oxygen")
-    entity = Entity("compound_cloud_oxygen")
-    compoundCloud = CompoundCloudComponent()
-    compoundCloud:initialize(compoundId, 60, 160, 180)
-    entity:addComponent(compoundCloud)
-    
-    compoundId = CompoundRegistry.getCompoundId("co2")
-    entity = Entity("compound_cloud_co2")
-    compoundCloud = CompoundCloudComponent()
-    compoundCloud:initialize(compoundId, 20, 50, 100)
-    entity:addComponent(compoundCloud)
-    
-    compoundId = CompoundRegistry.getCompoundId("ammonia")
-    entity = Entity("compound_cloud_ammonia")
-    compoundCloud = CompoundCloudComponent()
-    compoundCloud:initialize(compoundId, 255, 220, 50)
-    entity:addComponent(compoundCloud)
-    
-    compoundId = CompoundRegistry.getCompoundId("aminoacids")
-    entity = Entity("compound_cloud_aminoacids")
-    compoundCloud = CompoundCloudComponent()
-    compoundCloud:initialize(compoundId, 255, 150, 200)
-    entity:addComponent(compoundCloud)
+    for compoundName, compoundInfo in pairs(compoundTable) do
+        if compoundInfo.isCloud then
+            local compoundId = CompoundRegistry.getCompoundId(compoundName)
+            local entity = Entity("compound_cloud_" .. compoundName)
+            local compoundCloud = CompoundCloudComponent()
+            local colour = compoundInfo.colour
+            compoundCloud:initialize(compoundId, colour.r, colour.g, colour.b)
+            entity:addComponent(compoundCloud)
+        end
+    end
 end
 
 local function setupProcesses()
@@ -107,7 +91,13 @@ function setupSpecies()
         -- iterates over all compounds, and sets amounts and priorities
         for compoundID in CompoundRegistry.getCompoundList() do
             compound = CompoundRegistry.getCompoundInternalName(compoundID)
-            thresholdData = default_thresholds[compound]
+
+            if agents[compound] then
+                thresholdData = default_thresholds[compound]
+            else
+                thresholdData = compoundTable[compound].default_treshold
+            end
+
              -- we'll need to generate defaults from species template
             processorComponent:setThreshold(compoundID, thresholdData.low, thresholdData.high, thresholdData.vent)
             compoundData = data.compounds[compound]
@@ -196,10 +186,11 @@ local function setSpawnablePhysics(entity, pos, mesh, scale, collisionShape)
     return entity
 end
 
-function createCompoundCloud(compoundName, x, y)
-    local amount = currentBiome.compounds[compoundName]
+function createCompoundCloud(compoundName, x, y, amount)
+    if amount == nil then amount = currentBiome.compounds[compoundName] end
     if amount == nil then amount = 0 end
-    if compoundName == "aminoacids" or compoundName == "glucose" or compoundName == "co2" or compoundName == "oxygen" or compoundName == "ammonia" then
+
+    if compoundTable[compoundName] and compoundTable[compoundName].isCloud then
         Entity("compound_cloud_" .. compoundName):getComponent(CompoundCloudComponent.TYPE_ID):addCloud(amount, x, y)
     end
 end
@@ -301,27 +292,19 @@ local function createSpawnSystem()
         powerupEntity:addComponent(powerupComponent)
         return powerupEntity
     end
-        
-    local spawnGlucoseCloud =  function(pos)
-        createCompoundCloud("glucose", pos.x, pos.y)
+
+    for compoundName, compoundInfo in pairs(compoundTable) do
+        if compoundInfo.isCloud then
+            local spawnCloud =  function(pos)
+                createCompoundCloud(compoundName, pos.x, pos.y)
+            end
+
+            spawnSystem:addSpawnType(spawnCloud, CLOUD_SPAWN_DENSITY, CLOUD_SPAWN_RADIUS)
+        end
     end
-    local spawnOxygenCloud =  function(pos)
-        createCompoundCloud("oxygen", pos.x, pos.y)
-    end
-    local spawnCO2Cloud =  function(pos)
-        createCompoundCloud("co2", pos.x, pos.y)
-    end
-    local spawnAmmoniaCloud =  function(pos)
-        createCompoundCloud("ammonia", pos.x, pos.y)
-    end
-    
+
     spawnSystem:addSpawnType(toxinOrganelleSpawnFunction, 1/17000, 50)
     spawnSystem:addSpawnType(ChloroplastOrganelleSpawnFunction, 1/12000, 50)
-    
-    spawnSystem:addSpawnType(spawnGlucoseCloud, 1/5000, 50)
-    spawnSystem:addSpawnType(spawnCO2Cloud, 1/5000, 50)
-    spawnSystem:addSpawnType(spawnAmmoniaCloud, 1/5000, 50)
-    spawnSystem:addSpawnType(spawnOxygenCloud, 1/5000, 50)
 
     for name, species in pairs(starter_microbes) do
         spawnSystem:addSpawnType(
