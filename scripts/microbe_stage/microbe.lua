@@ -577,19 +577,35 @@ end
 --
 -- @param amount
 -- The amount to eject
+local EJECTION_DISTANCE = 3.0
 function Microbe:ejectCompound(compoundId, amount)
     -- The back of the microbe
     local exitX, exitY = axialToCartesian(0, 1)
     local membraneCoords = self.membraneComponent:getExternOrganellePos(exitX, exitY)
-    
+
+    --Get the distance to eject the compunds
+    local maxR = 0
+    for _, organelle in pairs(self.microbe.organelles) do
+        for _, hex in pairs(organelle._hexes) do
+            if hex.r + organelle.position.r > maxR then
+                maxR = hex.r + organelle.position.r
+            end
+        end
+    end
+
+    --The distance is two hexes away from the back of the microbe.
+    --This distance could be precalculated when adding/removing an organelle
+    --for more efficient pooping.
+    local ejectionDistance = (maxR + 3) * HEX_SIZE
+
     local angle = 180
     -- Find the direction the microbe is facing
     local yAxis = self.sceneNode.transform.orientation:yAxis()
     local microbeAngle = math.atan2(yAxis.x, yAxis.y)
     if (microbeAngle < 0) then
-        microbeAngle = microbeAngle + 2*math.pi
+        microbeAngle = microbeAngle + 2 * math.pi
     end
-    microbeAngle = microbeAngle * 180/math.pi
+    microbeAngle = microbeAngle * 180 / math.pi
     -- Take the microbe angle into account so we get world relative degrees
     local finalAngle = (angle + microbeAngle) % 360        
     
@@ -598,11 +614,12 @@ function Microbe:ejectCompound(compoundId, amount)
 
     local xnew = -membraneCoords[1] * c + membraneCoords[2] * s;
     local ynew = membraneCoords[1] * s + membraneCoords[2] * c;
-    
-    local direction = Vector3(xnew, ynew, 0)
-    direction:normalise()
+
     local amountToEject = self:takeCompound(compoundId, amount/10.0)
-    createCompoundCloud(CompoundRegistry.getCompoundInternalName(compoundId), self.sceneNode.transform.position.x + xnew*1.1, self.sceneNode.transform.position.y + ynew*1.1, amount*5000)
+    createCompoundCloud(CompoundRegistry.getCompoundInternalName(compoundId),
+                        self.sceneNode.transform.position.x + xnew * ejectionDistance,
+                        self.sceneNode.transform.position.y + ynew * ejectionDistance,
+                        amount * 5000)
 end
 
 
@@ -793,8 +810,10 @@ function Microbe:update(logicTime)
                 end
             end
         else
+
             local reproductionStageComplete = true
-        
+            local organellesToAdd = {}
+
             -- Grow all the large organelles.
             for _, organelle in pairs(self.microbe.organelles) do
                 -- Update the organelle.
@@ -814,19 +833,11 @@ function Microbe:update(logicTime)
                         organelle:growOrganelle(self.entity:getComponent(CompoundBagComponent.TYPE_ID))
                     -- If the organelle is twice its size...
                     elseif organelle:getCompoundBin() >= 2.0 then
-                        print("ready to split " .. organelle.name)
-                        -- Mark this organelle as done and return to its normal size.
-                        organelle:reset()
-                        organelle.wasSplit = true
-                        -- Create a second organelle.
-                        local organelle2 = self:splitOrganelle(organelle)
-                        organelle2.wasSplit = true
-                        organelle2.isDuplicate = true
-                        organelle2.sisterOrganelle = organelle
-
-                        -- Redo the cell membrane.
-                        self.membraneComponent:clear()
+                        --Queue this organelle for splitting after the loop.
+                        --(To avoid "cutting down the branch we're sitting on").
+                        table.insert(organellesToAdd, organelle)
                     end
+                   
                 -- In the S phase, the nucleus grows as chromatin is duplicated.
                 elseif organelle.name == "nucleus" and self.reproductionStage == 1 then
                     -- If the nucleus hasn't finished replicating its DNA, give it some compounds.
@@ -836,7 +847,25 @@ function Microbe:update(logicTime)
                         reproductionStageComplete = false
                     end
                 end
+
             end
+
+            --Splitting the queued organelles.
+            for _, organelle in pairs(organellesToAdd) do
+                print("ready to split " .. organelle.name)
+                -- Mark this organelle as done and return to its normal size.
+                organelle:reset()
+                organelle.wasSplit = true
+                -- Create a second organelle.
+                local organelle2 = self:splitOrganelle(organelle)
+                organelle2.wasSplit = true
+                organelle2.isDuplicate = true
+                organelle2.sisterOrganelle = organelle
+
+                -- Redo the cell membrane.
+                self.membraneComponent:clear()
+            end
+
             if reproductionStageComplete and self.reproductionStage < 2 then
                 self.reproductionStage = self.reproductionStage + 1
             end
@@ -901,25 +930,41 @@ function Microbe:calculateHealthFromOrganelles()
 end
 
 function Microbe:splitOrganelle(organelle)
-    -- Find an empty place where the organelle can be placed.
-    for _, q, r in iterateNeighbours(organelle.position.q, organelle.position.r) do
-    print("trying to put an organelle at " .. q .. ", " .. r)
-        if self:getOrganelleAt(q,r) == nil then
-            for i=0, 6 do
-                local data = {["name"]=organelle.name, ["q"]=q, ["r"]=r, ["rotation"]=i*60}
-                newOrganelle = OrganelleFactory.makeOrganelle(data)
-                
-                if self:validPlacement(newOrganelle, q, r) then
-                    print("placed " .. organelle.name .. " at " .. q .. " " .. r)
-                    self:addOrganelle(q, r, i*60, newOrganelle)
-                    return newOrganelle
+    local q = organelle.position.q
+    local r = organelle.position.r
+
+    --Spiral search for space for the organelle
+    local radius = 1
+    while true do
+        --Moves into the ring of radius "radius" and center the old organelle
+        q = q + HEX_NEIGHBOUR_OFFSET[HEX_SIDE.BOTTOM_LEFT][1]
+        r = r + HEX_NEIGHBOUR_OFFSET[HEX_SIDE.BOTTOM_LEFT][2]
+
+        --Iterates in the ring
+        for side = 1, 6 do --necesary due to lua not ordering the tables.
+            local offset = HEX_NEIGHBOUR_OFFSET[side]
+            --Moves "radius" times into each direction
+            for i = 1, radius do
+                q = q + offset[1]
+                r = r + offset[2]
+
+                --Checks every possible rotation value.
+                for j = 0, 5 do
+                    local rotation = 360 * j / 6
+                    local data = {["name"]=organelle.name, ["q"]=q, ["r"]=r, ["rotation"]=i*60}
+                    local newOrganelle = OrganelleFactory.makeOrganelle(data)
+
+                    if self:validPlacement(newOrganelle, q, r) then
+                        print("placed " .. organelle.name .. " at " .. q .. " " .. r)
+                        self:addOrganelle(q, r, i*60, newOrganelle)
+                        return newOrganelle
+                    end
                 end
             end
         end
+
+        radius = radius + 1
     end
-    
-    print("could not place organelle")
-    return false
 end
 
 function Microbe:validPlacement(organelle, q, r)
@@ -998,20 +1043,8 @@ function Microbe:respawn()
     sceneNode.transform:touch()
     
     self:storeCompound(CompoundRegistry.getCompoundId("atp"), 50, false)
-    
-    local rand = math.random(0,3)
-    local backgroundEntity = Entity("background")
-    local skyplane = backgroundEntity:getComponent(SkyPlaneComponent.TYPE_ID)
-    if rand == 0 then
-        skyplane.properties.materialName = "Background"
-    elseif rand == 1 then
-        skyplane.properties.materialName = "Background_Vent"
-    elseif rand == 2 then
-        skyplane.properties.materialName = "Background_Abyss"
-    else 
-        skyplane.properties.materialName = "Background_Shallow"
-    end
-    skyplane.properties:touch()
+
+    setRandomBiome()
 end
 
 -- Private function for initializing a microbe's components

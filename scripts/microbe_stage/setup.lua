@@ -3,24 +3,7 @@ CLOUD_SPAWN_RADIUS = 50
 CLOUD_SPAWN_DENSITY = 1/5000
 
 local function setupBackground()
-    local entity = Entity("background")
-    local skyplane = SkyPlaneComponent()
-    skyplane.properties.plane.normal = Vector3(0, 0, 2000)
-    math.randomseed( os.time() )
-    local rand = math.random(0,3)
-    if rand == 0 then
-        skyplane.properties.materialName = "Background"
-    elseif rand == 1 then
-        skyplane.properties.materialName = "Background_Vent"
-    elseif rand == 2 then
-        skyplane.properties.materialName = "Background_Abyss"
-    else 
-        skyplane.properties.materialName = "Background_Shallow"
-    end
-	skyplane.properties.scale = 200
-    skyplane.properties:touch()
-    entity:addComponent(skyplane)
-    
+    setRandomBiome()
 end
 
 local function setupCamera()
@@ -204,7 +187,9 @@ local function setSpawnablePhysics(entity, pos, mesh, scale, collisionShape)
     return entity
 end
 
-function createCompoundCloud(compoundName, x, y, amount)
+function createCompoundCloud(compoundName, x, y)
+    local amount = currentBiome.compounds[compoundName]
+    if amount == nil then amount = 0 end
     if compoundTable[compoundName] and compoundTable[compoundName].isCloud then
         Entity("compound_cloud_" .. compoundName):getComponent(CompoundCloudComponent.TYPE_ID):addCloud(amount, x, y)
     end
@@ -311,7 +296,7 @@ local function createSpawnSystem()
     for compoundName, compoundInfo in pairs(compoundTable) do
         if compoundInfo.isCloud then
             local spawnCloud =  function(pos)
-                createCompoundCloud(compoundName, pos.x, pos.y, DEFAULT_CLOUD_AMOUNT)
+                createCompoundCloud(compoundName, pos.x, pos.y)
             end
 
             spawnSystem:addSpawnType(spawnCloud, CLOUD_SPAWN_DENSITY, CLOUD_SPAWN_RADIUS)

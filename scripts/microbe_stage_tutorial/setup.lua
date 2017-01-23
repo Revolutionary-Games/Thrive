@@ -1,9 +1,13 @@
+--The biome in which the tutorial is played.
+TUTORIAL_BIOME = "default"
 
 local function setupBackground()
+    --Actually changing the biome makes the biome after the tutorial be default
+    --but with a different background.
     local entity = Entity("background")
     local skyplane = SkyPlaneComponent()
     skyplane.properties.plane.normal = Vector3(0, 0, 2000)
-    skyplane.properties.materialName = "Background"
+    skyplane.properties.materialName = biomeTable[TUTORIAL_BIOME].background
 	skyplane.properties.scale = 200
     skyplane.properties:touch()
     entity:addComponent(skyplane)
