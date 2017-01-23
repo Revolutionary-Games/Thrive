@@ -1,4 +1,3 @@
-DEFAULT_CLOUD_AMOUNT = 75000
 CLOUD_SPAWN_RADIUS = 50
 CLOUD_SPAWN_DENSITY = 1/5000
 
@@ -187,9 +186,10 @@ local function setSpawnablePhysics(entity, pos, mesh, scale, collisionShape)
     return entity
 end
 
-function createCompoundCloud(compoundName, x, y)
-    local amount = currentBiome.compounds[compoundName]
+function createCompoundCloud(compoundName, x, y, amount)
+    if amount == nil then amount = currentBiome.compounds[compoundName] end
     if amount == nil then amount = 0 end
+
     if compoundTable[compoundName] and compoundTable[compoundName].isCloud then
         Entity("compound_cloud_" .. compoundName):getComponent(CompoundCloudComponent.TYPE_ID):addCloud(amount, x, y)
     end
