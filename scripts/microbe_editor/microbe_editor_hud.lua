@@ -50,12 +50,12 @@ function MicrobeEditorHudSystem:init(gameState)
     self.mpProgressBar:setProperty("ThriveGeneric/MpBar", "FillImage") 
     
     local nucleusButton = root:getChild("NewButton")
-    local flagellumButton = root:getChild("EditPanel"):getChild("StructurePanel"):getChild("AddFlagellum")
-    local cytoplasmButton = root:getChild("EditPanel"):getChild("StructurePanel"):getChild("AddCytoplasm")
-    local mitochondriaButton = root:getChild("EditPanel"):getChild("StructurePanel"):getChild("AddMitochondrion")
-    local vacuoleButton = root:getChild("EditPanel"):getChild("StructurePanel"):getChild("AddVacuole")
-    local toxinButton = root:getChild("EditPanel"):getChild("StructurePanel"):getChild("AddToxinVacuole")
-    local chloroplastButton = root:getChild("EditPanel"):getChild("StructurePanel"):getChild("AddChloroplast")
+    local flagellumButton = root:getChild("EditPanel"):getChild("StructurePanel"):getChild("StructureScroll"):getChild("AddFlagellum")
+    local cytoplasmButton = root:getChild("EditPanel"):getChild("StructurePanel"):getChild("StructureScroll"):getChild("AddCytoplasm")
+    local mitochondriaButton = root:getChild("EditPanel"):getChild("StructurePanel"):getChild("StructureScroll"):getChild("AddMitochondrion")
+    local vacuoleButton = root:getChild("EditPanel"):getChild("StructurePanel"):getChild("StructureScroll"):getChild("AddVacuole")
+    local toxinButton = root:getChild("EditPanel"):getChild("StructurePanel"):getChild("StructureScroll"):getChild("AddToxinVacuole")
+    local chloroplastButton = root:getChild("EditPanel"):getChild("StructurePanel"):getChild("StructureScroll"):getChild("AddChloroplast")
     
     self.organelleButtons["nucleus"] = nucleusButton
     self.organelleButtons["flagellum"] = flagellumButton
