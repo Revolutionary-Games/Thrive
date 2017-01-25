@@ -8,6 +8,7 @@ function MicrobeStageTutorialHudSystem:__init()
 	self.hitpointsCountLabel = nil
 	self.hitpointsBar = nil
 	self.compoundListItems = {}
+	self.compoundsOpen = false
     self.rootGuiWindow = nil
     self.populationNumberLabel = nil
     self.rootGUIWindow = nil
