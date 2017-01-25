@@ -3,7 +3,6 @@ class 'HudSystem' (System)
 
 function HudSystem:__init()
     System.__init(self)
-	self.compoundListBox = nil
 	self.hitpointsCountLabel = nil
     self.hitpointsMaxLabel = nil
 	self.hitpointsBar = nil
@@ -36,7 +35,6 @@ end
 function HudSystem:init(gameState)
     System.init(self, "MicrobeStageHudSystem", gameState)
     self.rootGUIWindow =  gameState:rootGUIWindow()
-    self.compoundListBox = self.rootGUIWindow:getChild("CompoundsOpen")
     self.hitpointsBar = self.rootGUIWindow:getChild("HealthPanel"):getChild("LifeBar")
     self.hitpointsCountLabel = self.hitpointsBar:getChild("NumberLabel")
     self.hitpointsMaxLabel = self.rootGUIWindow:getChild("HealthPanel"):getChild("HealthTotal")
@@ -74,41 +72,41 @@ function HudSystem:init(gameState)
     self.rootGUIWindow:getChild("PauseMenu"):getChild("MainMenuButton"):registerEventHandler("Clicked", function() self:menuMainMenuClicked() end)
     self:updateLoadButton();
 
-    self.atpBar = self.rootGUIWindow:getChild("CompoundPanel"):getChild("ATPBar"):getChild("ATPBar")
+    self.atpBar = self.rootGUIWindow:getChild("CompoundPanel"):getChild("CompoundScroll"):getChild("ATPBar"):getChild("ATPBar")
     self.atpCountLabel = self.atpBar:getChild("NumberLabel")
-    self.atpMaxLabel = self.rootGUIWindow:getChild("CompoundPanel"):getChild("ATPBar"):getChild("ATPTotal")
+    self.atpMaxLabel = self.rootGUIWindow:getChild("CompoundPanel"):getChild("CompoundScroll"):getChild("ATPBar"):getChild("ATPTotal")
     self.atpBar:setProperty("ThriveGeneric/ATPBar", "FillImage")
 	
     self.atpCountLabel2 = self.rootGUIWindow:getChild("CompoundBar"):getChild("ATPLabel")
 	
-    self.oxygenBar = self.rootGUIWindow:getChild("CompoundPanel"):getChild("OxygenBar"):getChild("OxygenBar")
+    self.oxygenBar = self.rootGUIWindow:getChild("CompoundPanel"):getChild("CompoundScroll"):getChild("OxygenBar"):getChild("OxygenBar")
     self.oxygenCountLabel = self.oxygenBar:getChild("NumberLabel")
-    self.oxygenMaxLabel = self.rootGUIWindow:getChild("CompoundPanel"):getChild("OxygenBar"):getChild("OxygenTotal")
+    self.oxygenMaxLabel = self.rootGUIWindow:getChild("CompoundPanel"):getChild("CompoundScroll"):getChild("OxygenBar"):getChild("OxygenTotal")
     self.oxygenBar:setProperty("ThriveGeneric/OxygenBar", "FillImage")
 	
-    self.aminoacidsBar = self.rootGUIWindow:getChild("CompoundPanel"):getChild("AminoAcidsBar"):getChild("AminoAcidsBar")
+    self.aminoacidsBar = self.rootGUIWindow:getChild("CompoundPanel"):getChild("CompoundScroll"):getChild("AminoAcidsBar"):getChild("AminoAcidsBar")
     self.aminoacidsCountLabel = self.aminoacidsBar:getChild("NumberLabel")
-    self.aminoacidsMaxLabel = self.rootGUIWindow:getChild("CompoundPanel"):getChild("AminoAcidsBar"):getChild("AminoAcidsTotal")
+    self.aminoacidsMaxLabel = self.rootGUIWindow:getChild("CompoundPanel"):getChild("CompoundScroll"):getChild("AminoAcidsBar"):getChild("AminoAcidsTotal")
     self.aminoacidsBar:setProperty("ThriveGeneric/AminoAcidsBar", "FillImage")
 	
-    self.ammoniaBar = self.rootGUIWindow:getChild("CompoundPanel"):getChild("AmmoniaBar"):getChild("AmmoniaBar")
+    self.ammoniaBar = self.rootGUIWindow:getChild("CompoundPanel"):getChild("CompoundScroll"):getChild("AmmoniaBar"):getChild("AmmoniaBar")
     self.ammoniaCountLabel = self.ammoniaBar:getChild("NumberLabel")
-    self.ammoniaMaxLabel = self.rootGUIWindow:getChild("CompoundPanel"):getChild("AmmoniaBar"):getChild("AmmoniaTotal")
+    self.ammoniaMaxLabel = self.rootGUIWindow:getChild("CompoundPanel"):getChild("CompoundScroll"):getChild("AmmoniaBar"):getChild("AmmoniaTotal")
     self.ammoniaBar:setProperty("ThriveGeneric/AmmoniaBar", "FillImage")
 	
-    self.glucoseBar = self.rootGUIWindow:getChild("CompoundPanel"):getChild("GlucoseBar"):getChild("GlucoseBar")
+    self.glucoseBar = self.rootGUIWindow:getChild("CompoundPanel"):getChild("CompoundScroll"):getChild("GlucoseBar"):getChild("GlucoseBar")
     self.glucoseCountLabel = self.glucoseBar:getChild("NumberLabel")
-    self.glucoseMaxLabel = self.rootGUIWindow:getChild("CompoundPanel"):getChild("GlucoseBar"):getChild("GlucoseTotal")
+    self.glucoseMaxLabel = self.rootGUIWindow:getChild("CompoundPanel"):getChild("CompoundScroll"):getChild("GlucoseBar"):getChild("GlucoseTotal")
     self.glucoseBar:setProperty("ThriveGeneric/GlucoseBar", "FillImage")
 	
-    self.co2Bar = self.rootGUIWindow:getChild("CompoundPanel"):getChild("CO2Bar"):getChild("CO2Bar")
+    self.co2Bar = self.rootGUIWindow:getChild("CompoundPanel"):getChild("CompoundScroll"):getChild("CO2Bar"):getChild("CO2Bar")
     self.co2CountLabel = self.co2Bar:getChild("NumberLabel")
-    self.co2MaxLabel = self.rootGUIWindow:getChild("CompoundPanel"):getChild("CO2Bar"):getChild("CO2Total")
+    self.co2MaxLabel = self.rootGUIWindow:getChild("CompoundPanel"):getChild("CompoundScroll"):getChild("CO2Bar"):getChild("CO2Total")
     self.co2Bar:setProperty("ThriveGeneric/CO2Bar", "FillImage")
 	
-    self.fattyacidsBar = self.rootGUIWindow:getChild("CompoundPanel"):getChild("FattyAcidsBar"):getChild("FattyAcidsBar")
+    self.fattyacidsBar = self.rootGUIWindow:getChild("CompoundPanel"):getChild("CompoundScroll"):getChild("FattyAcidsBar"):getChild("FattyAcidsBar")
     self.fattyacidsCountLabel = self.fattyacidsBar:getChild("NumberLabel")
-    self.fattyacidsMaxLabel = self.rootGUIWindow:getChild("CompoundPanel"):getChild("FattyAcidsBar"):getChild("FattyAcidsTotal")
+    self.fattyacidsMaxLabel = self.rootGUIWindow:getChild("CompoundPanel"):getChild("CompoundScroll"):getChild("FattyAcidsBar"):getChild("FattyAcidsTotal")
     self.fattyacidsBar:setProperty("ThriveGeneric/FattyAcidsBar", "FillImage")
 	
     self.oxytoxyBar = self.rootGUIWindow:getChild("CompoundPanel"):getChild("CompoundScroll"):getChild("OxyToxyNTBar"):getChild("OxyToxyNTBar")
