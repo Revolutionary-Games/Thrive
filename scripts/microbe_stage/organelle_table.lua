@@ -20,15 +20,26 @@ Organelle atributes:
 
     gene:   The letter that will be used by the auto-evo system to
             identify this organelle.
+
+    processes:  A table with all the processes this organelle does,
+                and the capacity of the process
+                TODO: put it in the procesOrganelle component?
 ]]
 
 organelleTable = {
     ["nucleus"] = {
         mass = 0.7,
         gene = "N",
+
         components = {
             ["NucleusOrganelle"] = {}
         },
+
+        processes = {
+            ["FattyAcidSynthesis"] = 1,
+            ["AminoAcidSynthesis"] = 1
+        },
+
         mpCost = 0, --it's not supossed to be purchased.
         mesh = "nucleus.mesh",
         hexes = {
@@ -51,6 +62,7 @@ organelleTable = {
                 capacity = 10.0
             }
         },
+
         mass = 0.1,
         gene = "Y",
         mpCost = 5,
@@ -62,8 +74,17 @@ organelleTable = {
 
     ["chloroplast"] = {
         components = {
-            ["ProcessOrganelle"] = {colourChangeFactor = 1.0}
+            ["ProcessOrganelle"] = {
+                colourChangeFactor = 1.0,
+
+
+            }
         },
+
+        processes = {
+            ["Photosynthesis"] = 1
+        },
+
         mass = 0.4,
         gene = "H",
         mpCost = 20,
@@ -82,6 +103,11 @@ organelleTable = {
                 process = "OxyToxySynthesis"
             }
         },
+
+        processes = {
+            ["OxyToxySynthesis"] = 1
+        },
+
         mass = 0.3,
         gene = "T",
         mpCost = 40,
@@ -93,8 +119,15 @@ organelleTable = {
 
     ["mitochondrion"] = {
         components = {
-            ["ProcessOrganelle"] = {colourChangeFactor = 1.0}
+            ["ProcessOrganelle"] = {
+                colourChangeFactor = 1.0,
+            }
         },
+
+        processes = {
+            ["Respiration"] = 1
+        },
+
         mass = 0.3,
         gene = "M",
         mpCost = 20,
@@ -111,6 +144,7 @@ organelleTable = {
                 capacity = 100.0
             }
         },
+
         mass = 0.4,
         gene = "V",
         mpCost = 15,
@@ -123,10 +157,11 @@ organelleTable = {
     ["flagellum"] = {
         components = {
             ["MovementOrganelle"] = {
-                momentum = 50,
+                momentum = 12.5,
                 torque = 300
             }
         },
+
         mass = 0.3,
         gene = "F",
         mpCost = 25,

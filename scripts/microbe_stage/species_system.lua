@@ -95,9 +95,9 @@ function createSpeciesTemplate(name, organelles, colour, compounds, speciesThres
     end
     local capacities = {}
     for _, organelle in pairs(organelles) do
-        if organelles[organelle.name] ~= nil then
-            if organelles[organelle.name]["processes"] ~= nil then
-                for process, capacity in pairs(organelles[organelle.name]["processes"]) do
+        if organelleTable[organelle.name] ~= nil then
+            if organelleTable[organelle.name]["processes"] ~= nil then
+                for process, capacity in pairs(organelleTable[organelle.name]["processes"]) do
                     if capacities[process] == nil then
                         capacities[process] = 0
                     end

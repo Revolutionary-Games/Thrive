@@ -82,32 +82,6 @@ function chloroplastEffect(entityId)
     return true
 end
 
--- currently only stores process capacity data for processing organelles, but can later also store material costs for organelles
-organelles = {
-    nucleus = {
-        processes = {
-            AminoAcidSynthesis = 1,
-            FattyAcidSynthesis = 1,
-        },
-    },
-    mitochondrion = {
-        processes = {
-            Respiration = 1,
-        },
-    },
-    oxytoxy = {
-        processes = {
-            OxyToxySynthesis = 1,
-        },
-    },
-    chloroplast = {
-        processes = {
-            Photosynthesis = 1,
-        },
-    },
-}
-
-
 default_thresholds = {
     atp = {low = 13, high = 16, vent = 1000},
     glucose = {low = 16, high = 30, vent = 70},
