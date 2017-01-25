@@ -98,6 +98,9 @@ public:
     pause();
 
     void
+    close();
+
+    void
     update();
 
     bool
