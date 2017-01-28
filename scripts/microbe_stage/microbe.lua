@@ -29,7 +29,6 @@ function MicrobeComponent:__init(isPlayerMicrobe, speciesName)
     self.dead = false
     self.deathTimer = 0
     self.organelles = {}
-    self.processOrganelles = {} -- Organelles responsible for producing compounds from other compounds
     self.specialStorageOrganelles = {} -- Organelles with complete resonsiblity for a specific compound (such as agentvacuoles)
     self.movementDirection = Vector3(0, 0, 0)
     self.facingTargetPoint = Vector3(0, 0, 0)
@@ -344,24 +343,6 @@ end
 --   An object of type StorageOrganelle
 function Microbe:removeStorageOrganelle(storageOrganelle)
     self.microbe.capacity = self.microbe.capacity - storageOrganelle.capacity
-end
-
--- Removes a process organelle
--- This will be called automatically by process organelles removed with with removeOrganelle(...)
---
--- @param processOrganelle
---   An object of type ProcessOrganelle
-function Microbe:removeProcessOrganelle(processOrganelle)
-    self.microbe.processOrganelles[processOrganelle] = nil
-end
-
--- Adds a process organelle
--- This will be called automatically by process organelles added with addOrganelle(...)
---
--- @param processOrganelle
---   An object of type ProcessOrganelle
-function Microbe:addProcessOrganelle(processOrganelle)
-    self.microbe.processOrganelles[processOrganelle] = processOrganelle
 end
 
 -- Removes a special storage organelle
