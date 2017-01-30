@@ -51,7 +51,7 @@ Fedora example commands
 
 These commands install the required packages on Fedora.
 
-    sudo dnf install git cmake ruby
+    sudo dnf install git cmake ruby subversion
     gem install fileutils colorize etc os
 
 
