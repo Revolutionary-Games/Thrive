@@ -48,8 +48,6 @@ function HudSystem:init(gameState)
     local helpButton = self.rootGUIWindow:getChild("PauseMenu"):getChild("HelpButton")
     local helpPanel = self.rootGUIWindow:getChild("PauseMenu"):getChild("HelpPanel")
     self.editorButton = self.rootGUIWindow:getChild("EditorButton")
-    local editorInfoOpen = self.rootGUIWindow:getChild("EditorInfoOpen")
-    local editorInfoClosed = self.rootGUIWindow:getChild("EditorInfoClosed")
     local suicideButton = self.rootGUIWindow:getChild("SuicideButton")
     --local returnButton = self.rootGUIWindow:getChild("MenuButton")
     local compoundButton = self.rootGUIWindow:getChild("CompoundExpandButton")
@@ -61,8 +59,6 @@ function HudSystem:init(gameState)
     resumeButton:registerEventHandler("Clicked", function() self:resumeButtonClicked() end)
     closeHelpButton:registerEventHandler("Clicked", function() self:closeHelpButtonClicked() end)
     helpButton:registerEventHandler("Clicked", function() self:helpButtonClicked() end)
-    editorInfoOpen:registerEventHandler("Clicked", function() self:editorInfoOpenClicked() end)
-    editorInfoClosed:registerEventHandler("Clicked", function() self:editorInfoClosedClicked() end)
     suicideButton:registerEventHandler("Clicked", function() self:suicideButtonClicked() end)
     self.editorButton:registerEventHandler("Clicked", function() self:editorButtonClicked() end)
     --returnButton:registerEventHandler("Clicked", returnButtonClicked)
@@ -365,20 +361,6 @@ function HudSystem:editorButtonClicked()
     guiSoundEntity:getComponent(SoundSourceComponent.TYPE_ID):playSound("button-hover-click")
     self.editorButton:disable()
     Engine:setCurrentGameState(GameState.MICROBE_EDITOR)        
-end
-
-function HudSystem:editorInfoOpenClicked()
-    local guiSoundEntity = Entity("gui_sounds")
-    guiSoundEntity:getComponent(SoundSourceComponent.TYPE_ID):playSound("button-hover-click")
-    self.rootGUIWindow:getChild("EditorInfoClosed"):show()
-    self.rootGUIWindow:getChild("EditorInfoOpen"):hide()
-end
-
-function HudSystem:editorInfoClosedClicked()
-    local guiSoundEntity = Entity("gui_sounds")
-    guiSoundEntity:getComponent(SoundSourceComponent.TYPE_ID):playSound("button-hover-click")
-    self.rootGUIWindow:getChild("EditorInfoClosed"):hide()
-    self.rootGUIWindow:getChild("EditorInfoOpen"):show()
 end
 
 --[[
