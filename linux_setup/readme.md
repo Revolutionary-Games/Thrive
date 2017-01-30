@@ -59,7 +59,7 @@ These commands install the required packages on Fedora.
 Ubuntu example commands
 -----------------------
 
-    sudo apt-get install build-essential git cmake ruby
+    sudo apt-get install build-essential git cmake ruby subversion
     gem install fileutils colorize etc os
 
 
