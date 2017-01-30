@@ -84,7 +84,6 @@ to get the link for clone. And replace the url in this command with it:
 
 Then go to the directory and run the setup script.
 
-    cd thrive
     ./SetupThrive.rb
     
 If you installed ruby correctly you should now be prompted for your
