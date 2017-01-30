@@ -30,6 +30,7 @@ you install these with your package manager. Additional dependencies
 will be installed by the setup script.
 
 * git
+* SVN
 * CMake
 * ruby
 
