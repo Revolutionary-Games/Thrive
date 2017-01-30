@@ -8,7 +8,6 @@ function MicrobeStageTutorialHudSystem:__init()
 	self.hitpointsCountLabel = nil
 	self.hitpointsBar = nil
 	self.compoundListItems = {}
-	self.compoundsOpen = false
     self.rootGuiWindow = nil
     self.populationNumberLabel = nil
     self.rootGUIWindow = nil
@@ -31,50 +30,50 @@ function MicrobeStageTutorialHudSystem:init(gameState)
     local editorButton = self.rootGUIWindow:getChild("EditorButton")
     editorButton:registerEventHandler("Clicked", function() self:editorButtonClicked() end)
 	
-    self.hitpointsBar = self.rootGUIWindow:getChild("HealthPanel"):getChild("LifeBar")
+	self.hitpointsBar = self.rootGUIWindow:getChild("HealthPanel"):getChild("LifeBar")
     self.hitpointsCountLabel = self.hitpointsBar:getChild("NumberLabel")
     self.hitpointsMaxLabel = self.rootGUIWindow:getChild("HealthPanel"):getChild("HealthTotal")
     self.hitpointsBar:setProperty("ThriveGeneric/HitpointsBar", "FillImage") 
 	
-    self.atpBar = self.rootGUIWindow:getChild("CompoundPanel"):getChild("CompoundScroll"):getChild("ATPBar"):getChild("ATPBar")
+	self.atpBar = self.rootGUIWindow:getChild("CompoundPanel"):getChild("CompoundScroll"):getChild("ATPBar"):getChild("ATPBar")
     self.atpCountLabel = self.atpBar:getChild("NumberLabel")
     self.atpMaxLabel = self.rootGUIWindow:getChild("CompoundPanel"):getChild("CompoundScroll"):getChild("ATPBar"):getChild("ATPTotal")
     self.atpBar:setProperty("ThriveGeneric/ATPBar", "FillImage")
 	
-    self.atpCountLabel2 = self.rootGUIWindow:getChild("CompoundBar"):getChild("ATPLabel")
+	self.atpCountLabel2 = self.rootGUIWindow:getChild("CompoundBar"):getChild("ATPLabel")
 	
-    self.oxygenBar = self.rootGUIWindow:getChild("CompoundPanel"):getChild("CompoundScroll"):getChild("OxygenBar"):getChild("OxygenBar")
+	self.oxygenBar = self.rootGUIWindow:getChild("CompoundPanel"):getChild("CompoundScroll"):getChild("OxygenBar"):getChild("OxygenBar")
     self.oxygenCountLabel = self.oxygenBar:getChild("NumberLabel")
     self.oxygenMaxLabel = self.rootGUIWindow:getChild("CompoundPanel"):getChild("CompoundScroll"):getChild("OxygenBar"):getChild("OxygenTotal")
     self.oxygenBar:setProperty("ThriveGeneric/OxygenBar", "FillImage")
 	
-    self.aminoacidsBar = self.rootGUIWindow:getChild("CompoundPanel"):getChild("CompoundScroll"):getChild("AminoAcidsBar"):getChild("AminoAcidsBar")
+	self.aminoacidsBar = self.rootGUIWindow:getChild("CompoundPanel"):getChild("CompoundScroll"):getChild("AminoAcidsBar"):getChild("AminoAcidsBar")
     self.aminoacidsCountLabel = self.aminoacidsBar:getChild("NumberLabel")
     self.aminoacidsMaxLabel = self.rootGUIWindow:getChild("CompoundPanel"):getChild("CompoundScroll"):getChild("AminoAcidsBar"):getChild("AminoAcidsTotal")
     self.aminoacidsBar:setProperty("ThriveGeneric/AminoAcidsBar", "FillImage")
 	
-    self.ammoniaBar = self.rootGUIWindow:getChild("CompoundPanel"):getChild("CompoundScroll"):getChild("AmmoniaBar"):getChild("AmmoniaBar")
+	self.ammoniaBar = self.rootGUIWindow:getChild("CompoundPanel"):getChild("CompoundScroll"):getChild("AmmoniaBar"):getChild("AmmoniaBar")
     self.ammoniaCountLabel = self.ammoniaBar:getChild("NumberLabel")
     self.ammoniaMaxLabel = self.rootGUIWindow:getChild("CompoundPanel"):getChild("CompoundScroll"):getChild("AmmoniaBar"):getChild("AmmoniaTotal")
     self.ammoniaBar:setProperty("ThriveGeneric/AmmoniaBar", "FillImage")
 	
-    self.glucoseBar = self.rootGUIWindow:getChild("CompoundPanel"):getChild("CompoundScroll"):getChild("GlucoseBar"):getChild("GlucoseBar")
+	self.glucoseBar = self.rootGUIWindow:getChild("CompoundPanel"):getChild("CompoundScroll"):getChild("GlucoseBar"):getChild("GlucoseBar")
     self.glucoseCountLabel = self.glucoseBar:getChild("NumberLabel")
     self.glucoseMaxLabel = self.rootGUIWindow:getChild("CompoundPanel"):getChild("CompoundScroll"):getChild("GlucoseBar"):getChild("GlucoseTotal")
     self.glucoseBar:setProperty("ThriveGeneric/GlucoseBar", "FillImage")
 	
-    self.co2Bar = self.rootGUIWindow:getChild("CompoundPanel"):getChild("CompoundScroll"):getChild("CO2Bar"):getChild("CO2Bar")
+	self.co2Bar = self.rootGUIWindow:getChild("CompoundPanel"):getChild("CompoundScroll"):getChild("CO2Bar"):getChild("CO2Bar")
     self.co2CountLabel = self.co2Bar:getChild("NumberLabel")
     self.co2MaxLabel = self.rootGUIWindow:getChild("CompoundPanel"):getChild("CompoundScroll"):getChild("CO2Bar"):getChild("CO2Total")
     self.co2Bar:setProperty("ThriveGeneric/CO2Bar", "FillImage")
 	
-    self.fattyacidsBar = self.rootGUIWindow:getChild("CompoundPanel"):getChild("CompoundScroll"):getChild("FattyAcidsBar"):getChild("FattyAcidsBar")
-    self.fattyacidsCountLabel = self.fattyacidsBar:getChild("NumberLabel")
+	self.fattyacidsBar = self.rootGUIWindow:getChild("CompoundPanel"):getChild("CompoundScroll"):getChild("FattyAcidsBar"):getChild("FattyAcidsBar")
+	self.fattyacidsCountLabel = self.fattyacidsBar:getChild("NumberLabel")
     self.fattyacidsMaxLabel = self.rootGUIWindow:getChild("CompoundPanel"):getChild("CompoundScroll"):getChild("FattyAcidsBar"):getChild("FattyAcidsTotal")
     self.fattyacidsBar:setProperty("ThriveGeneric/FattyAcidsBar", "FillImage")
 	
-    self.oxytoxyBar = self.rootGUIWindow:getChild("CompoundPanel"):getChild("CompoundScroll"):getChild("OxyToxyNTBar"):getChild("OxyToxyNTBar")
-    self.oxytoxyCountLabel = self.oxytoxyBar:getChild("NumberLabel")
+	self.oxytoxyBar = self.rootGUIWindow:getChild("CompoundPanel"):getChild("CompoundScroll"):getChild("OxyToxyNTBar"):getChild("OxyToxyNTBar")
+	self.oxytoxyCountLabel = self.oxytoxyBar:getChild("NumberLabel")
     self.oxytoxyMaxLabel = self.rootGUIWindow:getChild("CompoundPanel"):getChild("CompoundScroll"):getChild("OxyToxyNTBar"):getChild("OxyToxyNTTotal")
     self.oxytoxyBar:setProperty("ThriveGeneric/OxyToxyBar", "FillImage")
 end
@@ -83,7 +82,34 @@ end
 function MicrobeStageTutorialHudSystem:update(renderTime)
 
     local tutorial = self.rootGUIWindow:getChild("TutorialPanel")
-    
+
+    -- Updating the GUI:
+    if self.tutorialStep > 2 then--where the player microbe is created.
+        -- Updating the ATP label.
+        local atpID = CompoundRegistry.getCompoundId("atp")
+        local atpString = string.format("%d", math.floor(Microbe(Entity(PLAYER_NAME)):getCompoundAmount(atpID)))
+        self.atpCountLabel2:setText(atpString)
+
+        -- Updating the compound panel.
+        local glucoseID = CompoundRegistry.getCompoundId("glucose")
+        local glucoseString = string.format("%d", math.floor(Microbe(Entity(PLAYER_NAME)):getCompoundAmount(glucoseID)))
+        self.atpCountLabel:setText(atpString)
+        self.glucoseCountLabel:setText(glucoseString)
+
+        -- The default cell has a vacuole, which means it has 100 storage points.
+        -- I'm too lazy to check for the microbe's storage space. :/
+        self.atpMaxLabel:setText("/ 100")
+        self.glucoseMaxLabel:setText("/ 100")
+
+        self.atpBar:progressbarSetProgress(atpString / 100)
+        self.glucoseBar:progressbarSetProgress(glucoseString / 100)
+    else
+        self.atpCountLabel2:hide()
+        self.rootGUIWindow:getChild("CompoundBar"):getChild("ATPIcon"):hide()
+        self.rootGUIWindow:getChild("EditorButton"):hide()
+        self.rootGUIWindow:getChild("CompoundPanel"):hide()
+    end
+
     if Engine.mouse:wasButtonPressed(Mouse.MB_Left) and self.tutorialStep ~= 3 and self.tutorialStep ~= 8 and self.tutorialStep ~= 10 then
         self.tutorialStep = self.tutorialStep + 1
     elseif Engine.keyboard:wasKeyPressed(Keyboard.KC_ESCAPE) and self.tutorialStep <= 2 then
@@ -134,6 +160,8 @@ Click anywhere to continue...]])
             local microbe = microbeSpawnFunctionGeneric(nil, "Default", false, PLAYER_NAME)
             Engine:playerData():setActiveCreature(microbe.entity.id, GameState.MICROBE_TUTORIAL)
         end
+		
+		
     elseif self.tutorialStep == 3 then
         Engine:resumeGame()
         tutorial:setProperty("{{0.3, 0},{0.05, 0}}", "Position")
@@ -171,20 +199,17 @@ harvested from the compounds you find.
 Click anywhere to continue...]])
         
     elseif self.tutorialStep == 6 then
-        local compoundID = CompoundRegistry.getCompoundId("atp")
-        local compoundsString = string.format("%s - %d", CompoundRegistry.getCompoundDisplayName(compoundID), Microbe(Entity(PLAYER_NAME)):getCompoundAmount(compoundID))
-        if self.compoundListItems[compoundID] == nil then
-            self.rootGUIWindow:getChild("CompoundPanel"):show()
-            self.compoundListItems[compoundID] = StandardItemWrapper("[colour='FF004400']" .. compoundsString, compoundID)
-            self.compoundListBox:listWidgetAddItem(self.compoundListItems[compoundID])
-        end
+        self.atpCountLabel2:show()
+        self.rootGUIWindow:getChild("CompoundBar"):getChild("ATPIcon"):show()
+        local atpID = CompoundRegistry.getCompoundId("atp")
+
         tutorial:setProperty("{{0.25, 0},{0.05, 0}}", "Position")
         tutorial:setProperty("{{0.5,0},{0.2,0}}", "Size")
         tutorial:setText(
 [[You can keep track of your ATP by looking at the
 compounds panel shown below.
 
-You currently have only ]] .. math.floor(Microbe(Entity(PLAYER_NAME)):getCompoundAmount(compoundID)) .. [[ ATP. Let's make some more!
+You currently have only ]] .. math.floor(Microbe(Entity(PLAYER_NAME)):getCompoundAmount(atpID)) .. [[ ATP. Let's make some more!
 
 Click anywhere to continue...]])
            
@@ -209,13 +234,9 @@ Click anywhere to continue...]])
         if offset.z < 70 then
             offset.z = offset.z + 1
         end
-        
-        compoundID = CompoundRegistry.getCompoundId("glucose")
-        compoundsString = string.format("%s - %d", CompoundRegistry.getCompoundDisplayName(compoundID), Microbe(player):getCompoundAmount(compoundID))
-        if self.compoundListItems[compoundID] == nil then
-            self.compoundListItems[compoundID] = StandardItemWrapper("[colour='FF004400']" .. compoundsString, compoundID)
-            self.compoundListBox:listWidgetAddItem(self.compoundListItems[compoundID])
-        end
+
+        self.rootGUIWindow:getChild("CompoundPanel"):show()
+
         if Microbe(player):getCompoundAmount(CompoundRegistry.getCompoundId("glucose")) < 10 then
             createCompoundCloud("glucose", playerPos.x + 10, playerPos.y, 1000)
         end
@@ -255,10 +276,9 @@ Click anywhere to continue...]])
         tutorial:setText(
 [[In fact, you are ready to reproduce right now!
 
-Press the green button to the left to enter
+Press the button on the top right corner to enter
 the editor.]])
     else 
-        Engine:resumeGame()
         Engine:playerData():setActiveCreature(Entity(PLAYER_NAME).id, GameState.MICROBE)
         Engine:setCurrentGameState(GameState.MICROBE)
     end
@@ -319,10 +339,16 @@ function HudSystem:toggleCompoundPanel()
     end
 end
 
+function MicrobeStageTutorialHudSystem:closeCompoundPanel()
+    local guiSoundEntity = Entity("gui_sounds")
+    guiSoundEntity:getComponent(SoundSourceComponent.TYPE_ID):playSound("button-hover-click")
+    self.rootGUIWindow:getChild("CompoundsOpen"):hide()
+    self.rootGUIWindow:getChild("CompoundsClosed"):show()
+end
+
 function MicrobeStageTutorialHudSystem:editorButtonClicked()
     local guiSoundEntity = Entity("gui_sounds")
     guiSoundEntity:getComponent(SoundSourceComponent.TYPE_ID):playSound("button-hover-click")
-    Engine:resumeGame()
     Engine:setCurrentGameState(GameState.MICROBE_EDITOR)
 end
 
