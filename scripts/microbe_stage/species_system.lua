@@ -380,7 +380,12 @@ function SpeciesSystem.initProcessorComponent(entity, speciesComponent)
 
     for compoundID in CompoundRegistry.getCompoundList() do
         compound = CompoundRegistry.getCompoundInternalName(compoundID)
-        thresholdData = default_thresholds[compound]
+        if compoundTable[compound] then
+            thresholdData = compoundTable[compound].default_treshold
+        else
+            thresholdData = default_thresholds[compound]
+        end
+
         thresholds[compoundID] = {low = thresholdData.low, high = thresholdData.high, vent = thresholdData.vent}
     end
 
@@ -403,9 +408,9 @@ function SpeciesSystem.initProcessorComponent(entity, speciesComponent)
 
     local capacities = {}
     for _, organelle in pairs(speciesComponent.organelles) do
-        if organelles[organelle.name] ~= nil then
-            if organelles[organelle.name]["processes"] ~= nil then
-                for process, capacity in pairs(organelles[organelle.name]["processes"]) do
+        if organelleTable[organelle.name] ~= nil then
+            if organelleTable[organelle.name]["processes"] ~= nil then
+                for process, capacity in pairs(organelleTable[organelle.name]["processes"]) do
                     if capacities[process] == nil then
                         capacities[process] = 0
                     end
