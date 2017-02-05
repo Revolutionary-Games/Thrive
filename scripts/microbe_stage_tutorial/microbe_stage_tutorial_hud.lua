@@ -40,7 +40,7 @@ function MicrobeStageTutorialHudSystem:init(gameState)
     self.atpMaxLabel = self.rootGUIWindow:getChild("CompoundPanel"):getChild("CompoundScroll"):getChild("ATPBar"):getChild("ATPTotal")
     self.atpBar:setProperty("ThriveGeneric/ATPBar", "FillImage")
 	
-	self.atpCountLabel2 = self.rootGUIWindow:getChild("CompoundBar"):getChild("ATPLabel")
+	self.atpCountLabel2 = self.rootGUIWindow:getChild("HealthPanel"):getChild("ATPValue")
 	
 	self.oxygenBar = self.rootGUIWindow:getChild("CompoundPanel"):getChild("CompoundScroll"):getChild("OxygenBar"):getChild("OxygenBar")
     self.oxygenCountLabel = self.oxygenBar:getChild("NumberLabel")
@@ -105,7 +105,8 @@ function MicrobeStageTutorialHudSystem:update(renderTime)
         self.glucoseBar:progressbarSetProgress(glucoseString / 100)
     else
         self.atpCountLabel2:hide()
-        self.rootGUIWindow:getChild("CompoundBar"):getChild("ATPIcon"):hide()
+        self.rootGUIWindow:getChild("HealthPanel"):getChild("ATPIcon"):hide()
+	self.rootGUIWindow:getChild("HealthPanel"):getChild("ATPLabel"):hide()
         self.rootGUIWindow:getChild("EditorButton"):hide()
         self.rootGUIWindow:getChild("CompoundPanel"):hide()
     end
@@ -199,8 +200,10 @@ harvested from the compounds you find.
 Click anywhere to continue...]])
         
     elseif self.tutorialStep == 6 then
+        self.rootGUIWindow:getChild("HealthPanel"):show()
         self.atpCountLabel2:show()
-        self.rootGUIWindow:getChild("CompoundBar"):getChild("ATPIcon"):show()
+        self.rootGUIWindow:getChild("HealthPanel"):getChild("ATPIcon"):show()
+	self.rootGUIWindow:getChild("HealthPanel"):getChild("ATPLabel"):show()
         local atpID = CompoundRegistry.getCompoundId("atp")
 
         tutorial:setProperty("{{0.25, 0},{0.05, 0}}", "Position")
