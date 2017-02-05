@@ -72,7 +72,7 @@ function HudSystem:init(gameState)
     self.atpMaxLabel = self.rootGUIWindow:getChild("CompoundPanel"):getChild("CompoundScroll"):getChild("ATPBar"):getChild("ATPTotal")
     self.atpBar:setProperty("ThriveGeneric/ATPBar", "FillImage")
 	
-	self.atpCountLabel2 = self.rootGUIWindow:getChild("CompoundBar"):getChild("ATPLabel")
+	self.atpCountLabel2 = self.rootGUIWindow:getChild("HealthPanel"):getChild("ATPValue")
 	
 	self.oxygenBar = self.rootGUIWindow:getChild("CompoundPanel"):getChild("CompoundScroll"):getChild("OxygenBar"):getChild("OxygenBar")
     self.oxygenCountLabel = self.oxygenBar:getChild("NumberLabel")
