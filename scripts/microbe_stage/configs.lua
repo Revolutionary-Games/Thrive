@@ -10,44 +10,6 @@ Style tips:
     Google it, it is the right way to end text files.
 ]]
 
-compounds = {
-    atp = {
-        name = "ATP",
-        weight = 1,
-        size = 0.1,
-    },
-    oxygen = {
-        name = "Oxygen",
-        weight = 1,
-        size = 0.3,
-    },
-    aminoacids = {
-        name = "Amino Acids",
-        weight = 1,
-        size = 0.2,
-    },
-    ammonia = {
-        name = "Ammonia",
-        weight = 1,
-        size = 0.16,
-    },
-    glucose = {
-        name = "Glucose",
-        weight = 1,
-        size = 0.3,
-    },
-    co2 = {
-        name = "CO2",
-        weight = 1,
-        size = 0.16,
-    },
-    fattyacids = {
-        name = "Fatty Acids",
-        weight = 1,
-        size = 0.16,
-    },
-}
-
 agents = {
     oxytoxy = {
         name = "OxyToxy NT",
@@ -167,13 +129,6 @@ organelles = {
 
 
 default_thresholds = {
-    atp = {low = 13, high = 16, vent = 1000},
-    glucose = {low = 16, high = 30, vent = 70},
-    oxygen = {low = 22, high = 40, vent = 70},
-    co2 = {low = 0, high = 0, vent = 0},
-    ammonia = {low = 12, high = 30, vent = 70},
-    aminoacids = {low = 0, high = 30, vent = 70},
-    fattyacids = {low = 0, high = 30, vent = 70},
     oxytoxy = {low = 1, high = 5, vent = 5},
 }
 

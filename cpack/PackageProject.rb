@@ -152,7 +152,8 @@ info "Creating launch scripts"
 File.open(File.join(TargetRoot, "launch.sh"), 'w') {
   |file| file.write(<<-eos)
 #!/bin/sh
-( cd bin
+SCRIPTPATH=$( cd $(dirname $0) ; pwd -P )
+( cd "$SCRIPTPATH/bin"
 LD_LIBRARY_PATH="$(pwd)"
 export LD_LIBRARY_PATH
 ./Thrive

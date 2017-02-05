@@ -28,7 +28,7 @@ function MainMenuHudSystem:update(renderTime, logicTime)
         Engine:screenShot("screenshot.png")
     elseif keyCombo(kmp.skipvideo) then
         if self.videoPlayer then
-            self.videoPlayer:pause()
+            self.videoPlayer:close()
             self.videoPlayer:hide()
             Entity("gui_sounds"):getComponent(SoundSourceComponent.TYPE_ID):interruptPlaying()
             Entity("main_menu_ambience"):getComponent(SoundSourceComponent.TYPE_ID).autoLoop = true

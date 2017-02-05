@@ -65,7 +65,14 @@ function createSpeciesTemplate(name, organelles, colour, compounds, speciesThres
      -- iterates over all compounds, and sets amounts and priorities
     for compoundID in CompoundRegistry.getCompoundList() do
         compound = CompoundRegistry.getCompoundInternalName(compoundID)
-        thresholdData = default_thresholds[compound]
+
+
+        if agents[compound] then
+            thresholdData = default_thresholds[compound]
+        else
+            thresholdData = compoundTable[compound].default_treshold
+        end
+
          -- we'll need to generate defaults from species template
         processorComponent:setThreshold(compoundID, thresholdData.low, thresholdData.high, thresholdData.vent)
         compoundData = compounds[compound]
@@ -373,7 +380,12 @@ function SpeciesSystem.initProcessorComponent(entity, speciesComponent)
 
     for compoundID in CompoundRegistry.getCompoundList() do
         compound = CompoundRegistry.getCompoundInternalName(compoundID)
-        thresholdData = default_thresholds[compound]
+        if compoundTable[compound] then
+            thresholdData = compoundTable[compound].default_treshold
+        else
+            thresholdData = default_thresholds[compound]
+        end
+
         thresholds[compoundID] = {low = thresholdData.low, high = thresholdData.high, vent = thresholdData.vent}
     end
 

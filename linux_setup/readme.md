@@ -30,6 +30,7 @@ you install these with your package manager. Additional dependencies
 will be installed by the setup script.
 
 * git
+* SVN
 * CMake
 * ruby
 
@@ -51,14 +52,14 @@ Fedora example commands
 
 These commands install the required packages on Fedora.
 
-    sudo dnf install git cmake ruby
+    sudo dnf install git cmake ruby subversion
     gem install fileutils colorize etc os
 
 
 Ubuntu example commands
 -----------------------
 
-    sudo apt-get install build-essential git cmake ruby
+    sudo apt-get install build-essential git cmake ruby subversion
     gem install fileutils colorize etc os
 
 
@@ -84,7 +85,6 @@ to get the link for clone. And replace the url in this command with it:
 
 Then go to the directory and run the setup script.
 
-    cd thrive
     ./SetupThrive.rb
     
 If you installed ruby correctly you should now be prompted for your
