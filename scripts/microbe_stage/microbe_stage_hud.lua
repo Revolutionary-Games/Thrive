@@ -6,7 +6,7 @@ function HudSystem:__init()
     System.__init(self)
 	self.compoundListBox = nil
 	self.hitpointsCountLabel = nil
-        self.hitpointsMaxLabel = nil
+    self.hitpointsMaxLabel = nil
 	self.hitpointsBar = nil
 	self.compoundListItems = {}
     self.rootGuiWindow = nil
@@ -39,7 +39,7 @@ function HudSystem:init(gameState)
     self.hitpointsMaxLabel = self.rootGUIWindow:getChild("HealthPanel"):getChild("HealthTotal")
     self.hitpointsBar:setProperty("ThriveGeneric/HitpointsBar", "FillImage") 
     local menuButton = self.rootGUIWindow:getChild("MenuButton")
-    local saveButton = self.rootGUIWindow:getChild("PauseMenu"):getChild("SaveGameButton") 
+    local saveButton = self.rootGUIWindow:getChild("PauseMenu"):getChild("QuicksaveButton") 
     local loadButton = self.rootGUIWindow:getChild("PauseMenu"):getChild("LoadGameButton")
     local resumeButton = self.rootGUIWindow:getChild("PauseMenu"):getChild("ResumeButton")
     local closeHelpButton = self.rootGUIWindow:getChild("PauseMenu"):getChild("CloseHelpButton")
@@ -164,7 +164,7 @@ function HudSystem:update(renderTime)
     elseif keyCombo(kmp.shootoxytoxy) then
         playerMicrobe:emitAgent(CompoundRegistry.getCompoundId("oxytoxy"), 3)
     elseif keyCombo(kmp.reproduce) then
-        playerMicrobe:reproduce()
+        playerMicrobe:readyToReproduce()
     end
     local direction = Vector3(0, 0, 0)
     if keyCombo(kmp.forward) then

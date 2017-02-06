@@ -83,6 +83,7 @@ function MovementOrganelle:load(storage)
 end
 
 function MovementOrganelle:storage()
+    print("storing")
     local storage = StorageContainer()
     storage:set("energyMultiplier", self.energyMultiplier)
     storage:set("force", self.force)

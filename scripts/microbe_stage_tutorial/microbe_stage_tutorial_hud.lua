@@ -111,7 +111,7 @@ function MicrobeStageTutorialHudSystem:update(renderTime)
         self.rootGUIWindow:getChild("CompoundPanel"):hide()
     end
 
-    if Engine.mouse:wasButtonPressed(Mouse.MB_Left) and self.tutorialStep ~= 3 and self.tutorialStep ~= 8 and self.tutorialStep ~= 10 then
+    if Engine.mouse:wasButtonPressed(Mouse.MB_Left) and self.tutorialStep ~= 3 and self.tutorialStep ~= 8 and self.tutorialStep ~= 11 then
         self.tutorialStep = self.tutorialStep + 1
     elseif Engine.keyboard:wasKeyPressed(Keyboard.KC_ESCAPE) and self.tutorialStep <= 2 then
         self.tutorialStep = -1
@@ -269,8 +269,24 @@ other cells, engulfing cells and bacteria smaller than
 you, and, most importantly, reproducing.
 
 Click anywhere to continue...]])
-        
+
     elseif self.tutorialStep == 10 then
+        tutorial:setProperty("{{0.25, 0},{0.05, 0}}", "Position")
+        tutorial:setProperty("{{0.5,0},{0.4,0}}", "Size")
+        tutorial:setText(
+[[To reproduce you need to divide each of your 
+organelles into two and then duplicate the DNA
+in your nucleus. Each organelle needs 2 glucose
+and 1 amino acids (made from 1 glucose and 1 ammonia)
+to split in half. 
+
+Make sure your glucose (white clouds) store is always
+above 16 and your ammonia (yellow clouds) store is 
+above 12 and you'll be fine.
+
+Click anywhere to continue...]])
+        
+    elseif self.tutorialStep == 11 then
         self.rootGUIWindow:getChild("EditorButton"):show()
         self.rootGUIWindow:getChild("EditorButton"):enable()
         
