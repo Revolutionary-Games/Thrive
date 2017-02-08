@@ -1,21 +1,17 @@
 #include "gui/AlphaHitWindow.h"
 
 #include <CEGUI/CoordConverter.h>
-#include <CEGUI/TextureTarget.h>
-#include <CEGUI/Texture.h>
-#include <CEGUI/RenderingWindow.h>
 
-#include "OgreRoot.h"
-#include "OgreTextureManager.h"
-#include "OgreHardwarePixelBuffer.h"
-
-#include <CEGUI/ImageManager.h>
+#include <OgreRoot.h>
+#include <OgreTextureManager.h>
+#include <OgreHardwarePixelBuffer.h>
 
 //----------------------------------------------------------------------------//
 class TextureAlphaCheckArea{
 public:
 
-    TextureAlphaCheckArea(const Ogre::TexturePtr &texture, uint32_t x, uint32_t y,
+    TextureAlphaCheckArea(const Ogre::TexturePtr &texture,
+        uint32_t x, uint32_t y,
         uint32_t width, uint32_t height) :
         m_texture(texture), m_x(x), m_y(y), m_width(width), m_height(height),
         m_readPixel(1, 1, 1, Ogre::PixelFormat::PF_A8R8G8B8)
@@ -92,7 +88,6 @@ public:
 
     Ogre::PixelBox m_readPixel;
 };
-
 
 
 //----------------------------------------------------------------------------//
@@ -179,7 +174,8 @@ void
 std::unique_ptr<TextureAlphaCheckArea>
     AlphaHitWindow::getTextureFromCEGUIImageName(const CEGUI::String& name)
 {
-    // Extract the part of name after /. This is an example name: ThriveGeneric/MenuNormal //
+    // Extract the part of name after /.
+    // Here's an example: ThriveGeneric/MenuNormal
     const auto slash = name.find_last_of('/');
 
     if(slash == std::string::npos)
@@ -204,19 +200,14 @@ std::unique_ptr<TextureAlphaCheckArea>
             Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME)).
         dynamicCast<Ogre::Texture>();
 
-    if(texture.isNull()){
-
+    if(texture.isNull())
         throw std::runtime_error("AlphaHitWindow: didn't find texture file for image");
-    }
-
     
     // Find the offset into the file //
     std::ifstream imageset("../gui/imagesets/" + setName + ".imageset");
 
-    if(!imageset.good()){
-
+    if(!imageset.good())
         throw std::runtime_error("AlphaHitWindow: didn't find imageset file for image");
-    }
 
     // Read the file until a name="our image here" //
     while(imageset.good()){
@@ -225,7 +216,7 @@ std::unique_ptr<TextureAlphaCheckArea>
             continue;
 
         // We found an 'n'
-        // We should get next name="
+        // We should get next "name=""
         if(imageset.get() != 'a')
             continue;
         if(imageset.get() != 'm')

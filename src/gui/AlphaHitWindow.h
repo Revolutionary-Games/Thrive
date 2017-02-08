@@ -7,6 +7,12 @@
 
 class TextureAlphaCheckArea;
 
+//! \brief Implements a window type that handles hit detection by
+//! image alpha channel
+//! \todo This doesn't support scaled images. So
+//! if that is needed the pixel check needs to be converted to use
+//! percentages or a more complex approach for different CEGUI auto
+//! scaling types
 class AlphaHitWindow : public CEGUI::PushButton
 {
 public:
@@ -26,13 +32,14 @@ public:
     ) const override;
 
     //! Handles finding a texture and the position in it for an image name
+    //! \todo This could be cached (or processed at start up) to
+    //! improve performance
     static std::unique_ptr<TextureAlphaCheckArea>
         getTextureFromCEGUIImageName(const CEGUI::String& name);
     
 protected:
     // overridden from Window base class
     bool testClassName_impl(const CEGUI::String& class_name) const;
-
 
     //! Once the texture and position in it has been determine it is stored here
     //!
