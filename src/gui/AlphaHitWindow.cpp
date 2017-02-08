@@ -52,9 +52,9 @@ public:
         const auto offsetY = y + m_y;
 
         // Return empty if out of range
-        if(offsetX - 1 < m_x || offsetY - 1 < m_y ||
-            offsetX + 1 > m_x + m_width ||
-            offsetY + 1 > m_y + m_height)
+        if(offsetX < m_x || offsetY < m_y ||
+            offsetX > m_x + m_width ||
+            offsetY > m_y + m_height)
         {
             return Ogre::ColourValue::ZERO;
         }
