@@ -96,13 +96,12 @@ function Organelle:load(storage)
     self.mass = storage:get("mass", 0.1)
     self.rotation = storage:get("rotation", 0)
     self.name = storage:get("name", "<nameless>")
-
-    --loading all of the components
-    local componentStorage = storage:get("componentStorage", {})
-    for i = 1, componentStorage:size() do
-        local componentData = componentStorage:get(i)
-        local componentName = componentData:get("name", "i dunno")
+    
+    local organelleInfo = organelleTable[self.name]
+    --adding all of the components.
+    for componentName, _ in pairs(organelleInfo.components) do
         local componentType = _G[componentName]
+        local componentData = storage:get(componentName, componentType())
         local newComponent = componentType(nil, nil)
         newComponent:load(componentData)
         self.components[componentName] = newComponent
@@ -204,13 +203,9 @@ function Organelle:storage()
     --storage:set("externalEdgeColour", self._externalEdgeColour)
 
     --iterating on each OrganelleComponent
-    local componentStorage = StorageList()
     for componentName, component in pairs(self.components) do
-        local componentData = component:storage(storage)
-        componentData:set("name", componentName)
-        componentStorage:append(componentData)
+        storage:set(componentName, component:storage())
     end
-    storage:set("componentStorage", componentStorage)
 
     return storage
 end
