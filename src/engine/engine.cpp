@@ -62,6 +62,7 @@
 #include <OgreConfigFile.h>
 #include <OgreLogManager.h>
 #include <OgreRenderWindow.h>
+#include <OgreResourceBackgroundQueue.h>
 #include <OgreRoot.h>
 #include <OgreWindowEventUtilities.h>
 #include <OISInputManager.h>
@@ -332,6 +333,13 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
 
     void
     setupGUI(){
+
+        // Start loading gui Images needed by AlphaHitWindow //
+        // TODO: see if we can use the same Texture that CEGUI loads for itself
+        Ogre::ResourceBackgroundQueue::getSingleton().load(
+            Ogre::Root::getSingleton().getTextureManager()->getResourceType(),
+            "ThriveGeneric.png", Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
+        
         CEGUI::WindowFactoryManager::addFactory<CEGUI::TplWindowFactory<AlphaHitWindow> >();
 
         CEGUI::OgreRenderer::bootstrapSystem();

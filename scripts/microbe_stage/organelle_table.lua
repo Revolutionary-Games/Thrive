@@ -123,7 +123,7 @@ organelleTable = {
     ["flagellum"] = {
         components = {
             ["MovementOrganelle"] = {
-                momentum = 12.5,
+                momentum = 20,
                 torque = 300
             }
         },

@@ -3,7 +3,16 @@
 #include <CEGUI/widgets/PushButton.h>
 #include "cegui_types.h"
 
+#include <memory>
 
+class TextureAlphaCheckArea;
+
+//! \brief Implements a window type that handles hit detection by
+//! image alpha channel
+//! \todo This doesn't support scaled images. So
+//! if that is needed the pixel check needs to be converted to use
+//! percentages or a more complex approach for different CEGUI auto
+//! scaling types
 class AlphaHitWindow : public CEGUI::PushButton
 {
 public:
@@ -21,19 +30,19 @@ public:
         const CEGUIVector2& position,
         const bool allow_disabled = false
     ) const override;
+
+    //! Handles finding a texture and the position in it for an image name
+    //! \todo This could be cached (or processed at start up) to
+    //! improve performance
+    static std::unique_ptr<TextureAlphaCheckArea>
+        getTextureFromCEGUIImageName(const CEGUI::String& name);
     
 protected:
-    //! handler to copy rendered data to a memory buffer
-    bool renderingEndedHandler(const CEGUI::EventArgs& args);
     // overridden from Window base class
     bool testClassName_impl(const CEGUI::String& class_name) const;
 
-    //! Pointer to buffer holding the render data
-    uint32_t* d_hitTestBuffer;
-    //! Size of the hit test buffer (i.e. its capacity)
-    size_t d_hitBufferCapacity;
-    //! Dimensions in pixels of the data in the hit test buffer
-    CEGUI::Sizef d_hitBufferSize;
-    //! whether data in hit test buffer is inverted.
-    bool d_hitBufferInverted;
+    //! Once the texture and position in it has been determine it is stored here
+    //!
+    //! This is mutable because isHit has to be a const method
+    mutable std::unique_ptr<TextureAlphaCheckArea> m_hitTestTexture;
 };
