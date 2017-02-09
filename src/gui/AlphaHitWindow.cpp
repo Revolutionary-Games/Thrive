@@ -46,7 +46,7 @@ public:
         
         auto buffer = m_texture->getBuffer();
     
-        assert(buffer);
+        assert(buffer != nullptr);
 
         const auto offsetX = x + m_x;
         const auto offsetY = y + m_y;
@@ -271,5 +271,6 @@ std::unique_ptr<TextureAlphaCheckArea>
         throw std::runtime_error("AlphaHitWindow: couldn't read numbers after "
             "image name");
 
-    return std::make_unique<TextureAlphaCheckArea>(texture, x, y, width, height);
+    return std::unique_ptr<TextureAlphaCheckArea>(
+        new TextureAlphaCheckArea(texture, x, y, width, height));
 }
