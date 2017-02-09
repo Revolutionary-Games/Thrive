@@ -5,6 +5,7 @@
 # TODO: remove awk usage for windows compatibility and test this on windows
 
 require_relative 'RubyCommon.rb'
+require_relative 'DepGlobber.rb'
 
 require 'fileutils'
 require 'etc'
@@ -22,19 +23,23 @@ CMakeBuildType = "RelWithDebInfo"
 CompileThreads = Etc.nprocessors
 
 # If set to true will install CEGUI editor
+# Note: this doesn't work
 InstallCEED = false
 
 # If set to false won't install libs that need sudo
 DoSudoInstalls = true
 
 # If true dependencies won't be updated from remote repositories
-SkipPullUpdates = false
+SkipPullUpdates = true
 
 # If true skips all dependencies
 OnlyMainProject = false
 
 # If true skips the main project
 OnlyDependencies = false
+
+# If true new version of depot tools and breakpad won't be fetched on install
+NoBreakpadUpdateOnWindows = false
 
 # On windows visual studio will be automatically opened if required
 AutoOpenVS = true
@@ -51,6 +56,17 @@ VSToolsEnv = "VS140COMNTOOLS"
 
 # This verifies that CurrentDir is good and assigns it to CurrentDir
 CurrentDir = checkRunFolder Dir.pwd
+
+ProjectDir = projectFolder CurrentDir
+
+ProjectDebDir = File.join ProjectDir, "libraries"
+
+ProjectDebDirLibs = File.join ProjectDebDir, "lib"
+
+ProjectDebDirBinaries = File.join ProjectDebDir, "bin"
+
+ProjectDebDirInclude = File.join ProjectDebDir, "include"
+
 
 
 info "Running in dir '#{CurrentDir}'"
@@ -88,7 +104,7 @@ class Installer
   # calls onError if fails
   def run()
 
-    if not SkipPullUpdates
+    if not SkipPullUpdates and not OnlyMainProject
       info "Retrieving dependencies"
 
       @Libraries.each do |x|
@@ -304,6 +320,15 @@ def isInSubdirectory(directory, possiblesub)
   
 end
 
+def createDependencyTargetFolder()
+
+  FileUtils.mkdir_p ProjectDebDirLibs
+  
+  FileUtils.mkdir_p ProjectDebDirBinaries
+  
+  FileUtils.mkdir_p ProjectDebDirInclude
+  
+end
 
 
 def createLinkIfDoesntExist(source, linkfile)
@@ -608,8 +633,10 @@ def lddFindLibraries(binary)
 end
 
 
+#
 #### Library Install Definitions ###
 # These are all the libraries that this script can install
+#
 
 class Newton < BaseDep
   def initialize
@@ -660,27 +687,27 @@ class Newton < BaseDep
   end
   
   def DoInstall
-    # Copy files to Leviathan folder
-    libfolder = File.join(CurrentDir, "Newton", "lib")
-    binfolder = File.join(CurrentDir, "Newton", "bin")
-    includefolder = File.join(CurrentDir, "Newton", "include")
     
-    FileUtils.mkdir_p libfolder
-    FileUtils.mkdir_p binfolder
-    FileUtils.mkdir_p includefolder
+    # Copy files to ProjectDir dependencies folder
+    createDependencyTargetFolder
 
-    FileUtils.cp File.join(@Folder, "coreLibrary_300/source/newton", "Newton.h"), includefolder
+    runGlobberAndCopy(Globber.new("Newton.h", File.join(@Folder, "coreLibrary_300/source")),
+                          ProjectDebDirInclude)
     
     if BuildPlatform == "linux"
 
-      FileUtils.cp File.join(@Folder, "build/lib", "libNewton.so"), binfolder
-      
+      runGlobberAndCopy(Globber.new("libNewton.so", File.join(@Folder, "build/lib")),
+                            ProjectDebDirLibs)
+
     else
-      
-      basePath = "coreLibrary_300/projects/windows/project_vs2015_dll/x64/newton/release"
-      
-      FileUtils.cp File.join(@Folder, basePath, "newton.dll"), binfolder
-      FileUtils.cp File.join(@Folder, basePath, "newton.lib"), libfolder
+
+      runGlobberAndCopy(Globber.new("newton.dll",
+                                    File.join(@Folder, "coreLibrary_300/projects/windows")),
+                            ProjectDebDirBinaries)
+
+      runGlobberAndCopy(Globber.new("newton.lib",
+                                    File.join(@Folder, "coreLibrary_300/projects/windows")),
+                            ProjectDebDirLibs)
     end
     true
   end
@@ -847,7 +874,7 @@ class AngelScript < BaseDep
   end
 
   def DoSetup
-    if BuildPlatform == "linux"
+    if BuildPlatform == "windows"
       
       return File.exist? "sdk/angelscript/projects/msvc2015/angelscript.sln"
     else
@@ -881,16 +908,16 @@ class AngelScript < BaseDep
   
   def DoInstall
 
-    # Copy files to Leviathan folder
-    FileUtils.mkdir_p File.join(CurrentDir, "AngelScript", "include")
-    FileUtils.mkdir_p File.join(CurrentDir, "AngelScript", "add_on")
-    
+    # Copy files to Project folder
+    createDependencyTargetFolder
+
     # First header files and addons
     FileUtils.cp File.join(@Folder, "sdk/angelscript/include", "angelscript.h"),
-                 File.join(CurrentDir, "AngelScript", "include")
+                 ProjectDebDirInclude
 
-    addondir = File.join(CurrentDir, "AngelScript", "add_on")
+    addondir = File.join(ProjectDebDirInclude, "add_on")
 
+    FileUtils.mkdir_p addondir
 
     # All the addons from
     # `ls -m | awk 'BEGIN { RS = ","; ORS = ", "}; NF { print "\""$1"\""};'`
@@ -906,18 +933,15 @@ class AngelScript < BaseDep
                            File.join(addondir, x)
     end
 
-    
     # Then the library
-    libfolder = File.join(CurrentDir, "AngelScript", "lib")
-    
-    FileUtils.mkdir_p libfolder
-    
     if BuildPlatform == "linux"
 
-      FileUtils.cp File.join(@Folder, "sdk/angelscript/lib", "libangelscript.a"), libfolder
+      FileUtils.cp File.join(@Folder, "sdk/angelscript/lib", "libangelscript.a"),
+                   ProjectDebDirLibs
       
     else
-      FileUtils.cp File.join(@Folder, "sdk/angelscript/lib", "angelscript64.lib"), libfolder
+      FileUtils.cp File.join(@Folder, "sdk/angelscript/lib", "angelscript64.lib"),
+                   ProjectDebDirLibs
     end
     true
   end

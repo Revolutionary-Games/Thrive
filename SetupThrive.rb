@@ -25,6 +25,12 @@ def checkRunFolder(suggestedfolder)
   end
 end
 
+def projectFolder(baseDir)
+
+  return File.join baseDir, "thrive"
+  
+end
+
 ThriveBranch = "master"
 #ThriveBranch = "ruby_setup"
 SkipPackageManager = false
@@ -129,7 +135,7 @@ Dir.chdir(File.join(CurrentDir, "thrive")) do
   systemChecked "git submodule update --recursive"
 
   # submodule init check
-  if not File.exists? File.join(CurrentDir, "thrive", "contrib/luabind/luabind", "object.hpp")
+  if not File.exists? File.join(CurrentDir, "thrive", "contrib/lua/luajit/src", "lua.hpp")
 
     warning "Submodules haven't been initialized, initializing now"
     
@@ -162,6 +168,18 @@ Dir.chdir(File.join(CurrentDir, "thrive")) do
   end
   
   success "Assets are good to go"
+
+  info "Building luajit"
+
+  Dir.chdir(File.join(CurrentDir, "thrive", "contrib/lua/luajit/src")) do
+
+    runCompiler CompileThreads
+    
+    onError "Failed to compile luajit" if $?.exitstatus > 0
+    
+  end
+
+  success "luajit is ok"
   
   FileUtils.mkdir_p "build"
   FileUtils.mkdir_p "build/dist"
