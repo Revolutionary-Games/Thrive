@@ -137,21 +137,27 @@ find_package(Bullet REQUIRED QUIET)
 
 include_directories(SYSTEM ${BULLET_INCLUDE_DIRS})
 
-##########
-# TinyXML #
-##########
-
-find_package(TinyXML REQUIRED QUIET)
-
 #######
 # Lua #
 #######
 
 include_directories(
-    SYSTEM
-    "${CMAKE_CURRENT_SOURCE_DIR}/contrib/lua/lua/src"
-    "${CMAKE_CURRENT_SOURCE_DIR}/contrib/luabind/"
-)
+  "${CMAKE_CURRENT_SOURCE_DIR}/contrib/lua/luajit/src"
+  "${CMAKE_CURRENT_SOURCE_DIR}/contrib/lua"
+  )
+
+link_directories(
+  "${CMAKE_CURRENT_SOURCE_DIR}/contrib/lua/luajit/src"
+  )
+
+set(LUA_FOUND TRUE)
+
+if(WIN32)
+  set(LUA_LIBRARIES luajit.lib)
+else()
+  set(LUA_LIBRARIES luajit.a)
+endif()
+
 
 #######
 # CEGUI #
@@ -176,26 +182,6 @@ include_directories(SYSTEM ${CEGUI_INCLUDE_DIR})
 find_package(TinyXML REQUIRED QUIET)
 
 include_directories(SYSTEM ${TINYXML_INCLUDE_DIR})
-
-if(WIN32)
-    add_definitions(-DLUA_BUILD_AS_DLL)
-endif()
-
-add_subdirectory(
-    "${CMAKE_CURRENT_SOURCE_DIR}/contrib/lua/"
-)
-
-set(LUA_FOUND TRUE)
-set(LUA_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/contrib/lua/lua/src")
-set(LUA_LIBRARIES lua)
-#set(BUILD_SHARED_LUABIND ON)
-#set(INSTALL_LUABIND ON)
-set(LIB_DIR bin)
-add_definitions(-DLUABIND_CPLUSPLUS_LUA)
-
-add_subdirectory(
-    "${CMAKE_CURRENT_SOURCE_DIR}/contrib/luabind/"
-)
 
 ################
 # cAudio #
@@ -265,7 +251,7 @@ target_link_libraries(ThriveLib
     ${CEGUI_LIBRARY}
     ${TINYXML_LIBRARIES}
     ${OpenAL_LIBRARIES}
-    luabind
+    ${LUA_LIBRARIES}
 )
 
 target_link_libraries(ThriveLib
@@ -365,10 +351,6 @@ endif()
 install(TARGETS Thrive
     RUNTIME DESTINATION bin
     LIBRARY DESTINATION bin
-)
-
-install(EXPORT lua
-    DESTINATION bin
 )
 
 # Version file
