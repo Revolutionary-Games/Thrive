@@ -6,8 +6,8 @@
 #include <OgreVector3.h>
 #include <OgreQuaternion.h>
 
-namespace luabind {
-    class scope;
+namespace sol {
+class state;
 }
 
 namespace thrive {

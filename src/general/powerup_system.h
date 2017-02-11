@@ -8,8 +8,8 @@
 
 #include <luabind/object.hpp>
 
-namespace luabind {
-class scope;
+namespace sol {
+class state;
 }
 
 

@@ -2,8 +2,8 @@
 
 #include "engine/system.h"
 
-namespace luabind {
-    class scope;
+namespace sol {
+class state;
 }
 
 namespace thrive {

@@ -3,8 +3,8 @@
 
 #include <memory>
 
-namespace luabind {
-class scope;
+namespace sol {
+class state;
 }
 
 namespace thrive {

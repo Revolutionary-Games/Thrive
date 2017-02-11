@@ -10,8 +10,8 @@
 #include <vector>
 #include <unordered_map>
 
-namespace luabind {
-class scope;
+namespace sol {
+class state;
 }
 
 namespace thrive {

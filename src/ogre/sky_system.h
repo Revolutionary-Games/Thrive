@@ -8,8 +8,8 @@
 #include <OgrePlane.h>
 #include <OgreResourceGroupManager.h>
 
-namespace luabind {
-class scope;
+namespace sol {
+class state;
 }
 
 namespace thrive {

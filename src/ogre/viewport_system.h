@@ -8,8 +8,8 @@
 #include <OgreCommon.h>
 #include <OgreColourValue.h>
 
-namespace luabind {
-class scope;
+namespace sol {
+class state;
 }
 
 namespace Ogre {

@@ -7,9 +7,8 @@ namespace CEGUI {
     class StandardItem;
 }
 
-namespace luabind {
-
-    class scope;
+namespace sol {
+class state;
 }
 
 namespace thrive {

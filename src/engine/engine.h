@@ -12,8 +12,8 @@
 class btDiscreteDynamicsWorld;
 class lua_State;
 
-namespace luabind {
-    class scope;
+namespace sol {
+class state;
 }
 
 namespace Ogre {

@@ -9,8 +9,8 @@
 #include <OgreMath.h>
 #include <OgreVector3.h>
 
-namespace luabind {
-class scope;
+namespace sol {
+class state;
 }
 
 namespace Ogre {

@@ -5,8 +5,9 @@
 
 #include <string>
 #include <iostream>
-namespace luabind {
-class scope;
+
+namespace sol {
+class state;
 }
 
 namespace thrive {

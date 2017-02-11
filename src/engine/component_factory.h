@@ -3,8 +3,8 @@
 #include "engine/component.h"
 #include "util/make_unique.h"
 
-namespace luabind {
-    class scope;
+namespace sol {
+class state;
 }
 
 namespace thrive {

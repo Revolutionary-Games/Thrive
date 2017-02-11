@@ -6,8 +6,8 @@
 #include "scripting/luabind.h"
 
 
-namespace luabind {
-class scope;
+namespace sol {
+class state;
 }
 
 

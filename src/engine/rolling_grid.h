@@ -5,8 +5,8 @@
 
 // Defines a basic grid that fits the criteria set on issue 165
 
-namespace luabind {
-    class scope;
+namespace sol {
+class state;
 }
 
 namespace thrive {

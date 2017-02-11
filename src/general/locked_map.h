@@ -8,8 +8,8 @@
 #include <string>
 #include <unordered_set>
 
-namespace luabind {
-class scope;
+namespace sol {
+class state;
 }
 
 
