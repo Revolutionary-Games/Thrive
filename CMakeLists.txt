@@ -142,7 +142,6 @@ include_directories(SYSTEM ${BULLET_INCLUDE_DIRS})
 #######
 
 include_directories(
-  "${CMAKE_CURRENT_SOURCE_DIR}/contrib/lua/luajit/src"
   "${CMAKE_CURRENT_SOURCE_DIR}/contrib/lua"
   )
 

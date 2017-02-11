@@ -21,8 +21,6 @@ add_sources(
     "${CMAKE_CURRENT_SOURCE_DIR}/rng.h"
     "${CMAKE_CURRENT_SOURCE_DIR}/rolling_grid.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/rolling_grid.h"
-    "${CMAKE_CURRENT_SOURCE_DIR}/script_bindings.cpp"
-    "${CMAKE_CURRENT_SOURCE_DIR}/script_bindings.h"
     "${CMAKE_CURRENT_SOURCE_DIR}/serialization.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/serialization.h"
     "${CMAKE_CURRENT_SOURCE_DIR}/system.cpp"
