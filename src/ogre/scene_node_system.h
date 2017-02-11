@@ -3,7 +3,6 @@
 #include "engine/component.h"
 #include "engine/system.h"
 #include "engine/touchable.h"
-#include "luabind/object.hpp"
 
 #include <memory>
 #include <OgreVector3.h>
@@ -86,8 +85,8 @@ public:
     *
     * @return
     */
-    static luabind::scope
-    luaBindings();
+    static void luaBindings(sol::state &lua);
+    
 
     void
     load(
@@ -238,8 +237,7 @@ public:
     *
     * @return
     */
-    static luabind::scope
-    luaBindings();
+    static void luaBindings(sol::state &lua);
 
     /**
     * @brief Constructor
@@ -289,8 +287,7 @@ public:
     *
     * @return
     */
-    static luabind::scope
-    luaBindings();
+    static void luaBindings(sol::state &lua);
 
     /**
     * @brief Constructor
@@ -339,8 +336,7 @@ public:
     *
     * @return
     */
-    static luabind::scope
-    luaBindings();
+    static void luaBindings(sol::state &lua);
 
     /**
     * @brief Constructor

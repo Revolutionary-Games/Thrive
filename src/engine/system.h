@@ -28,13 +28,17 @@ public:
     * @brief Lua bindings
     *
     * Exposes:
-    * - System::active
-    * - System::setActive
+    * - System::enabled
+    * - System::init
+    * - System::setEnabled
+    * - System::activate
+    * - System::deactivate
+    * - System::shutdown
+    * - System::update
     *
     * @return
     */
-    static luabind::scope
-    luaBindings();
+    static void luaBindings(sol::state &lua);
 
     /**
     * @brief Constructor
@@ -127,7 +131,7 @@ public:
     */
     virtual void
     initNamed(
-        std::string name,
+        const std::string &name,
         GameState* gameState
     );
 
@@ -186,5 +190,13 @@ private:
     struct Implementation;
     std::unique_ptr<Implementation> m_impl;
 };
+
+//! Binding helper for System inheriting classes
+//! \note This is required because sol documentation doesn't recommend
+//! using the sol base class feature:
+//! http://sol2.readthedocs.io/en/latest/api/usertype.html#inheritance
+//! BUT due to how Thrive code is structured this is quite difficult to use
+//! so actual inheritance is used for now. TODO: check is it a problem
+#define THRIVE_BIND_SOL_DERIVED_SYSTEM(class) "enabled", &class::enabled,
 
 }

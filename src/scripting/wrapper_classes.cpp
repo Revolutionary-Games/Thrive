@@ -72,8 +72,8 @@ StandardItemWrapper::StandardItemWrapper(
     int id) :
     m_attached(false)
 {
-        
-    m_item = new CEGUI::StandardItem(text, id);
+    
+    m_item = new CEGUI::StandardItem(text.c_str(), id);
 }
 
 StandardItemWrapper::~StandardItemWrapper(){
@@ -95,5 +95,50 @@ void
     StandardItemWrapper::markAttached(){
 
     m_attached = true;
+}
+
+// ------------------------------------ //
+// SystemWrapper
+// ------------------------------------ //
+SystemWrapper::SystemWrapper(sol::table obj) : ScriptWrapper(obj){
+    
+}
+
+void SystemWrapper::init(
+    GameState* gameState
+) {
+    System::init(gameState);
+    m_luaObject.get<sol::protected_function>("init")(gameState);
+}
+
+void SystemWrapper::initNamed(
+    const std::string &name,
+    GameState* gameState
+) {
+    System::initNamed(name, gameState);
+    m_luaObject.get<sol::protected_function>("initNamed")(name, gameState);
+}
+
+void SystemWrapper::shutdown(){
+
+    System::shutdown();
+    m_luaObject.get<sol::protected_function>("shutdown")();
+}
+
+void SystemWrapper::activate(){
+    
+    m_luaObject.get<sol::protected_function>("activate")();
+}
+
+void SystemWrapper::deactivate(){
+    
+    m_luaObject.get<sol::protected_function>("deactivate")();
+}
+
+void SystemWrapper::update(
+    int renderTime,
+    int logicTime
+) {
+    m_luaObject.get<sol::protected_function>("update")(renderTime, logicTime);
 }
 
