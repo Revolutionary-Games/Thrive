@@ -2,8 +2,9 @@
 
 #include "engine/engine.h"
 #include "engine/typedefs.h"
-#include "scripting/luabind.h"
 #include "util/make_unique.h"
+
+#include "scripting/luajit.h"
 
 #include <boost/thread.hpp>
 #include <type_traits>
@@ -91,8 +92,9 @@ Game::run() {
         }
         m_impl->m_engine.shutdown();
     }
-    catch (const luabind::error& e) {
-        printLuaError(e);
+    catch (const sol::error& e) {
+
+        std::cerr << e.what() << std::endl;
     }
 }
 

@@ -36,9 +36,8 @@
 #include "gui/VideoPlayer.h"
 
 // Scripting
-#include <luabind/iterator_policy.hpp>
-#include "scripting/luabind.h"
-#include "scripting/lua_state.h"
+#include "luajit/src/lua.hpp"
+#include "sol.hpp"
 #include "scripting/script_initializer.h"
 
 // Microbe
@@ -58,11 +57,12 @@
 #include <forward_list>
 #include <fstream>
 #include <iostream>
-#include <luabind/adopt_policy.hpp>
 #include <OgreConfigFile.h>
 #include <OgreLogManager.h>
 #include <OgreRenderWindow.h>
 #include <OgreResourceBackgroundQueue.h>
+#include <OgreTextureManager.h>
+#include <OgreWindowEventUtilities.h>
 #include <OgreRoot.h>
 #include <OgreWindowEventUtilities.h>
 #include <OISInputManager.h>
@@ -75,6 +75,8 @@
 #include <unordered_map>
 #include <iostream>
 #include "sound/sound_manager.h"
+
+#include <fstream>
 
 using namespace thrive;
 
@@ -115,7 +117,8 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
         if (gameState) {
             gameState->activate();
             gameState->rootGUIWindow().addChild(m_consoleGUIWindow);
-            luabind::call_member<void>(m_console, "registerEvents", gameState);
+            
+            m_console.get<sol::protected_function>("registerEvents")(gameState);
         }
     }
 
@@ -455,12 +458,19 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
         CEGUI::System::getSingleton().getRenderer()->setDisplaySize(CEGUI::Sizef(window->getWidth(), window->getHeight()));
     }
 
-    // Lua state must be one of the last to be destroyed, so keep it at top.
-    // The reason for that is that some components keep luabind::object
-    // instances around that rely on the lua state to still exist when they
-    // are destroyed. Since those components are destroyed with the entity
-    // manager, the lua state has to live longer than the manager.
-    LuaState m_luaState;
+    void registerConsoleObject(
+        sol::table consoleObject
+    ){
+        m_console = consoleObject;
+    }
+
+    // Lua state must be one of the last to be destroyed, so keep it
+    // at top. The reason for that is that some components keep
+    // sol::object instances around that rely on the lua state to
+    // still exist when they are destroyed. Since those components are
+    // destroyed with the entity manager, the lua state has to live
+    // longer than the manager.
+    sol::state m_luaState;
 
     GameState* m_currentGameState = nullptr;
     CEGUIWindow* m_consoleGUIWindow = nullptr;
@@ -514,7 +524,7 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
 
     } m_serialization;
 
-    luabind::object m_console;
+    sol::table m_console;
     std::unique_ptr<SoundManager> m_soundManager;
     std::unique_ptr<CEGUI::InputAggregator> m_aggregator;
 };

@@ -7,8 +7,6 @@
 #include <vector>
 #include <set>
 
-#include <luabind/object.hpp>
-
 class btDiscreteDynamicsWorld;
 class lua_State;
 
@@ -84,8 +82,7 @@ public:
     *
     * @return
     */
-    static luabind::scope
-    luaBindings();
+    static void luaBindings(sol::state &lua);
 
     /**
     * @brief Constructor
@@ -461,13 +458,6 @@ public:
     */
     Ogre::RenderWindow*
     renderWindow() const;
-
-    /**
-    * @brief Registers the console object
-    */
-    void
-    registerConsoleObject(luabind::object consoleObject);
-
 
     /**
     * @brief Gets the current version of thrive as a string.
