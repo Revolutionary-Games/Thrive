@@ -1,6 +1,6 @@
 #pragma once
 
-#include "scripting/luabind.h"
+#include "scripting/luajit.h"
 
 #include <cstdint>
 #include <OgreColourValue.h>
@@ -45,8 +45,7 @@ public:
     * - StorageContainer::set
     *
     */
-    static luabind::scope
-    luaBindings();
+    static void luaBindings(sol::state &lua);
 
     /**
     * @brief Constructor
@@ -166,10 +165,9 @@ public:
     *
     * @return
     */
-    luabind::object
-    luaGet(
+    sol::object luaGet(
         const std::string& key,
-        luabind::object defaultValue
+        sol::object defaultValue
     ) const;
 
     /**
@@ -254,8 +252,7 @@ public:
     *
     * @return
     */
-    static luabind::scope
-    luaBindings();
+    static void luaBindings(sol::state &lua);
 
     /**
     * @brief Constructor
