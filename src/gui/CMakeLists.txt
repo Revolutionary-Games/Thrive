@@ -12,6 +12,8 @@ add_sources(
     "${CMAKE_CURRENT_SOURCE_DIR}/CEGUIVideoPlayer.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/VideoPlayer.h"
     "${CMAKE_CURRENT_SOURCE_DIR}/VideoPlayer.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/gui_texture_helper.h"
+    "${CMAKE_CURRENT_SOURCE_DIR}/gui_texture_helper.cpp"
 )
 
 
