@@ -1,7 +1,7 @@
 #include "bullet/update_physics_system.h"
 
 #include "engine/game_state.h"
-#include "scripting/luabind.h"
+#include "scripting/luajit.h"
 
 #include <assert.h>
 #include <btBulletDynamicsCommon.h>
@@ -9,14 +9,16 @@
 
 using namespace thrive;
 
-luabind::scope
-UpdatePhysicsSystem::luaBindings() {
-    using namespace luabind;
-    return class_<UpdatePhysicsSystem, System>("UpdatePhysicsSystem")
-        .def(constructor<>())
-    ;
-}
+void UpdatePhysicsSystem::luaBindings(
+    sol::state &lua
+){
+    lua.new_usertype<UpdatePhysicsSystem>("UpdatePhysicsSystem",
 
+        sol::constructors<sol::types<>>(),
+        
+        sol::base_classes, sol::bases<System>()
+    );
+}
 
 struct UpdatePhysicsSystem::Implementation {
 

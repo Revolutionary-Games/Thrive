@@ -2,7 +2,8 @@
 
 #include "bullet/bullet_ogre_conversion.h"
 #include "engine/game_state.h"
-#include "scripting/luabind.h"
+
+#include "scripting/luajit.h"
 
 #include <OgreColourValue.h>
 #include <OgreFrameListener.h>
@@ -278,14 +279,14 @@ BulletDebugDrawer::getDebugMode() const
 // BulletDebugDrawSystem
 ////////////////////////////////////////////////////////////////////////////////
 
-luabind::scope
-BulletDebugDrawSystem::luaBindings() {
-    using namespace luabind;
-    return class_<BulletDebugDrawSystem, System>("BulletDebugDrawSystem")
-        .def(constructor<>())
-    ;
-}
+void BulletDebugDrawSystem::luaBindings(
+    sol::state &lua
+){
+    lua.new_usertype<BulletDebugDrawSystem>("BulletDebugDrawSystem",
 
+        sol::constructors<sol::types<>>()
+    );
+}
 
 struct BulletDebugDrawSystem::Implementation {
 

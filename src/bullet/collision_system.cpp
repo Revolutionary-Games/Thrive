@@ -1,6 +1,6 @@
 #include "bullet/collision_system.h"
 
-#include "scripting/luabind.h"
+#include "scripting/luajit.h"
 
 #include "bullet/collision_filter.h"
 #include "engine/component_factory.h"
@@ -29,20 +29,20 @@ CollisionComponent::CollisionComponent(
 {
 }
 
-luabind::scope
-CollisionComponent::luaBindings() {
-    using namespace luabind;
-    return class_<CollisionComponent, Component>("CollisionComponent")
-        .enum_("ID") [
-            value("TYPE_ID", CollisionComponent::TYPE_ID)
-        ]
-        .scope [
-            def("TYPE_NAME", &CollisionComponent::TYPE_NAME)
-        ]
-        .def(constructor<>())
-        .def(constructor<const std::string&>())
-        .def("addCollisionGroup", &CollisionComponent::addCollisionGroup)
-    ;
+void CollisionComponent::luaBindings(
+    sol::state &lua
+){
+    lua.new_usertype<CollisionComponent>("CollisionComponent",
+
+        sol::constructors<sol::types<>, sol::types<const std::string&>>(),
+
+        sol::base_classes, sol::bases<Component>(),
+
+        "ID", sol::var(lua.create_table_with("TYPE_ID", CollisionComponent::TYPE_ID)),
+        "TYPE_NAME", &CollisionComponent::TYPE_NAME,
+
+        "addCollisionGroup", &CollisionComponent::addCollisionGroup
+    );
 }
 
 void
@@ -110,15 +110,17 @@ Collision::Collision(
 {
 }
 
-luabind::scope
-Collision::luaBindings() {
-    using namespace luabind;
-    return class_<Collision>("Collision")
-        .def(constructor<EntityId, EntityId, int>())
-        .def_readonly("entityId1", &Collision::entityId1)
-        .def_readonly("entityId2", &Collision::entityId2)
-        .def_readonly("addedCollisionDuration", &Collision::addedCollisionDuration)
-    ;
+void Collision::luaBindings(
+    sol::state &lua
+){
+    lua.new_usertype<Collision>("Collision",
+
+        sol::constructors<sol::types<EntityId, EntityId, int>>(),
+        
+        "entityId1", sol::readonly(&Collision::entityId1),
+        "entityId2", sol::readonly(&Collision::entityId2),
+        "addedCollisionDuration", sol::readonly(&Collision::addedCollisionDuration)
+    );
 }
 
 
@@ -144,15 +146,16 @@ CollisionSystem::CollisionSystem()
 
 CollisionSystem::~CollisionSystem() {}
 
+void CollisionSystem::luaBindings(
+    sol::state &lua
+){
+    lua.new_usertype<CollisionSystem>("CollisionSystem",
 
-luabind::scope
-CollisionSystem::luaBindings() {
-    using namespace luabind;
-    return class_<CollisionSystem, System>("CollisionSystem")
-        .def(constructor<>())
-    ;
+        sol::constructors<sol::types<>>(),
+        
+        sol::base_classes, sol::bases<System>()
+    );
 }
-
 
 void
 CollisionSystem::init(

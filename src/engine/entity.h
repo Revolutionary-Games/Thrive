@@ -51,8 +51,7 @@ public:
     * Exposes the following \b operators:
     * - \c ==: operator==(const Entity&)
     */
-    static luabind::scope
-    luaBindings();
+    static void luaBindings(sol::state &lua);
 
     /**
     * @brief Constructor

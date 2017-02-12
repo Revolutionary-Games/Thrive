@@ -2,7 +2,6 @@
 
 #include "bullet/bullet_ogre_conversion.h"
 #include "engine/serialization.h"
-#include "scripting/luabind.h"
 #include "util/make_unique.h"
 
 using namespace thrive;
@@ -36,17 +35,18 @@ CollisionShape::load(
     }
 }
 
+void CollisionShape::luaBindings(
+    sol::state &lua
+){
+    lua.new_usertype<CollisionShape>("CollisionShape"
 
-luabind::scope
-CollisionShape::luaBindings() {
-    using namespace luabind;
-    return class_<CollisionShape, std::shared_ptr<CollisionShape>>("CollisionShape")
-        .enum_("Axis") [
-            value("AXIS_X", CollisionShape::AXIS_X),
-            value("AXIS_Y", CollisionShape::AXIS_Y),
-            value("AXIS_Z", CollisionShape::AXIS_Z)
-        ]
-    ;
+    );
+
+    lua.new_enum("SHAPE_AXIS",
+        "X", CollisionShape::AXIS_X,
+        "Y", CollisionShape::AXIS_Y,
+        "Z", CollisionShape::AXIS_Z
+    );
 }
 
 
@@ -92,14 +92,16 @@ BoxShape::load(
 *
 * @return 
 */
-luabind::scope
-BoxShape::luaBindings() {
-    using namespace luabind;
-    return class_<BoxShape, CollisionShape, std::shared_ptr<CollisionShape>>("BoxShape")
-        .def(constructor<Ogre::Vector3>())
-    ;
-}
+void BoxShape::luaBindings(
+    sol::state &lua
+){
+    lua.new_usertype<BoxShape>("BoxShape",
 
+        sol::constructors<sol::types<Ogre::Vector3>>(),
+        
+        sol::base_classes, sol::bases<CollisionShape>()
+    );
+}
 
 BoxShape::BoxShape(
     const Ogre::Vector3& extents
@@ -157,14 +159,16 @@ CapsuleShape::load(
 *
 * @return 
 */
-luabind::scope
-CapsuleShape::luaBindings() {
-    using namespace luabind;
-    return class_<CapsuleShape, CollisionShape, std::shared_ptr<CollisionShape>>("CapsuleShape")
-        .def(constructor<CollisionShape::Axis, btScalar, btScalar>())
-    ;
-}
+void CapsuleShape::luaBindings(
+    sol::state &lua
+){    
+    lua.new_usertype<CapsuleShape>("CapsuleShape",
 
+        sol::constructors<sol::types<CollisionShape::Axis, btScalar, btScalar>>(),
+        
+        sol::base_classes, sol::bases<CollisionShape>()
+    );
+}
 
 CapsuleShape::CapsuleShape(
     CollisionShape::Axis axis,
@@ -251,17 +255,20 @@ CompoundShape::load(
 *
 * @return 
 */
-luabind::scope
-CompoundShape::luaBindings() {
-    using namespace luabind;
-    return class_<CompoundShape, CollisionShape, std::shared_ptr<CollisionShape>>("CompoundShape")
-        .def(constructor<>())
-        .def("addChildShape", &CompoundShape::addChildShape)
-        .def("clear", &CompoundShape::clear)
-        .def("removeChildShape", &CompoundShape::removeChildShape)
-    ;
-}
+void CompoundShape::luaBindings(
+    sol::state &lua
+){
+    lua.new_usertype<CompoundShape>("CompoundShape",
 
+        sol::constructors<sol::types<>>(),
+        
+        sol::base_classes, sol::bases<CollisionShape>(),
+
+        "addChildShape", &CompoundShape::addChildShape,
+        "clear", &CompoundShape::clear,
+        "removeChildShape", &CompoundShape::removeChildShape
+    );
+}
 
 CompoundShape::CompoundShape() 
   : m_bulletShape(new btCompoundShape())
@@ -379,14 +386,16 @@ ConeShape::load(
 *
 * @return 
 */
-luabind::scope
-ConeShape::luaBindings() {
-    using namespace luabind;
-    return class_<ConeShape, CollisionShape, std::shared_ptr<CollisionShape>>("ConeShape")
-        .def(constructor<CollisionShape::Axis, btScalar, btScalar>())
-    ;
-}
+void ConeShape::luaBindings(
+    sol::state &lua
+){
+    lua.new_usertype<ConeShape>("ConeShape",
 
+        sol::constructors<sol::types<CollisionShape::Axis, btScalar, btScalar>>(),
+        
+        sol::base_classes, sol::bases<CollisionShape>()
+    );
+}
 
 ConeShape::ConeShape(
     CollisionShape::Axis axis,
@@ -461,14 +470,16 @@ CylinderShape::load(
 *
 * @return 
 */
-luabind::scope
-CylinderShape::luaBindings() {
-    using namespace luabind;
-    return class_<CylinderShape, CollisionShape, std::shared_ptr<CollisionShape>>("CylinderShape")
-        .def(constructor<CollisionShape::Axis, btScalar, btScalar>())
-    ;
-}
+void CylinderShape::luaBindings(
+    sol::state &lua
+){
+    lua.new_usertype<CylinderShape>("CylinderShape",
 
+        sol::constructors<sol::types<CollisionShape::Axis, btScalar, btScalar>>(),
+        
+        sol::base_classes, sol::bases<CollisionShape>()
+    );
+}
 
 CylinderShape::CylinderShape(
     CollisionShape::Axis axis,
@@ -539,14 +550,16 @@ EmptyShape::load(
 *
 * @return 
 */
-luabind::scope
-EmptyShape::luaBindings() {
-    using namespace luabind;
-    return class_<EmptyShape, CollisionShape, std::shared_ptr<CollisionShape>>("EmptyShape")
-        .def(constructor<>())
-    ;
-}
+void EmptyShape::luaBindings(
+    sol::state &lua
+){
+    lua.new_usertype<EmptyShape>("EmptyShape",
 
+        sol::constructors<sol::types<>>(),
+        
+        sol::base_classes, sol::bases<CollisionShape>()
+    );
+}
 
 EmptyShape::EmptyShape() 
   : m_bulletShape(new btEmptyShape())
@@ -593,14 +606,16 @@ SphereShape::load(
 *
 * @return 
 */
-luabind::scope
-SphereShape::luaBindings() {
-    using namespace luabind;
-    return class_<SphereShape, CollisionShape, std::shared_ptr<CollisionShape>>("SphereShape")
-        .def(constructor<btScalar>())
-    ;
-}
+void SphereShape::luaBindings(
+    sol::state &lua
+){
+    lua.new_usertype<SphereShape>("SphereShape",
 
+        sol::constructors<sol::types<btScalar>>(),
+        
+        sol::base_classes, sol::bases<CollisionShape>()
+    );
+}
 
 SphereShape::SphereShape(
     btScalar radius
