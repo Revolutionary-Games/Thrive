@@ -4,7 +4,7 @@
 #include "engine/component_factory.h"
 #include "engine/game_state.h"
 #include "engine/entity_filter.h"
-#include "scripting/luabind.h"
+#include "scripting/luajit.h"
 #include "engine/serialization.h"
 
 #include <cmath>
@@ -12,7 +12,7 @@
 
 using namespace thrive;
 
-const int PI = 3.1416f;
+const auto PI = 3.1416f;
 const float PUSHBACK_DIST = 2.2f; //Used for incrementally pushing emissions out of the emitters body
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -78,48 +78,61 @@ RigidBodyComponent::reenableAllCollisions() {
     m_shouldReenableAllCollisions = true;
 }
 
-luabind::scope
-RigidBodyComponent::luaBindings() {
-    using namespace luabind;
-    return class_<RigidBodyComponent, Component>("RigidBodyComponent")
-        .enum_("ID") [
-            value("TYPE_ID", RigidBodyComponent::TYPE_ID)
-        ]
-        .scope [
-            def("TYPE_NAME", &RigidBodyComponent::TYPE_NAME),
-            class_<DynamicProperties, Touchable>("DynamicProperties")
-                .def_readwrite("position", &DynamicProperties::position)
-                .def_readwrite("rotation", &DynamicProperties::rotation)
-                .def_readwrite("linearVelocity", &DynamicProperties::linearVelocity)
-                .def_readwrite("angularVelocity", &DynamicProperties::angularVelocity),
-            class_<Properties, Touchable>("Properties")
-                .def_readwrite("shape", &Properties::shape)
-                .def_readwrite("restitution", &Properties::restitution)
-                .def_readwrite("linearFactor", &Properties::linearFactor)
-                .def_readwrite("angularFactor", &Properties::angularFactor)
-                .def_readwrite("linearDamping", &Properties::linearDamping)
-                .def_readwrite("angularDamping", &Properties::angularDamping)
-                .def_readwrite("mass", &Properties::mass)
-                .def_readwrite("friction", &Properties::friction)
-                .def_readwrite("rollingFriction", &Properties::rollingFriction)
-                .def_readwrite("hasContactResponse", &Properties::hasContactResponse)
-                .def_readwrite("kinematic", &Properties::kinematic)
-        ]
-        .def(constructor<>())
-        .def("setDynamicProperties", &RigidBodyComponent::setDynamicProperties)
-        .def("applyImpulse", &RigidBodyComponent::applyImpulse)
-        .def("applyCentralImpulse", &RigidBodyComponent::applyCentralImpulse)
-        .def("applyTorque", &RigidBodyComponent::applyTorque)
-        .def("clearForces", &RigidBodyComponent::clearForces)
-        .def("disableCollisionsWith", &RigidBodyComponent::disableCollisionsWith)
-        .def("reenableAllCollisions", &RigidBodyComponent::reenableAllCollisions)
-        .def_readonly("properties", &RigidBodyComponent::m_properties)
-        .def_readonly("dynamicProperties", &RigidBodyComponent::m_dynamicProperties)
-        .def_readwrite("pushbackEntity", &RigidBodyComponent::m_pushbackEntity)
-        .def_readwrite("m_pushbackAngle", &RigidBodyComponent::m_pushbackAngle)
-    ;
-}
+void RigidBodyComponent::luaBindings(
+    sol::state &lua
+){
+    // DynamicProperties
+    lua.new_usertype<DynamicProperties>("RigidBodyComponent.DynamicProperties",
 
+        "new", sol::no_constructor,
+        
+        "position", &DynamicProperties::position,
+        "rotation", &DynamicProperties::rotation,
+        "linearVelocity", &DynamicProperties::linearVelocity,
+        "angularVelocity", &DynamicProperties::angularVelocity
+    );
+
+    // Properties
+    lua.new_usertype<Properties>("RigidBodyComponent.Properties",
+
+        "new", sol::no_constructor,
+        
+        "shape", &Properties::shape,
+        "restitution", &Properties::restitution,
+        "linearFactor", &Properties::linearFactor,
+        "angularFactor", &Properties::angularFactor,
+        "linearDamping", &Properties::linearDamping,
+        "angularDamping", &Properties::angularDamping,
+        "mass", &Properties::mass,
+        "friction", &Properties::friction,
+        "rollingFriction", &Properties::rollingFriction,
+        "hasContactResponse", &Properties::hasContactResponse,
+        "kinematic", &Properties::kinematic
+    );
+    
+    lua.new_usertype<RigidBodyComponent>("RigidBodyComponent",
+
+        sol::constructors<sol::types<>>(),
+        
+        sol::base_classes, sol::bases<Component>(),
+
+        "ID", sol::var(lua.create_table_with("TYPE_ID", RigidBodyComponent::TYPE_ID)),
+        "TYPE_NAME", &RigidBodyComponent::TYPE_NAME,
+
+        "setDynamicProperties", &RigidBodyComponent::setDynamicProperties,
+        "applyImpulse", &RigidBodyComponent::applyImpulse,
+        "applyCentralImpulse", &RigidBodyComponent::applyCentralImpulse,
+        "applyTorque", &RigidBodyComponent::applyTorque,
+        "clearForces", &RigidBodyComponent::clearForces,
+        "disableCollisionsWith", &RigidBodyComponent::disableCollisionsWith,
+        "reenableAllCollisions", &RigidBodyComponent::reenableAllCollisions,
+        
+        "properties", sol::readonly(&RigidBodyComponent::m_properties),
+        "dynamicProperties", sol::readonly(&RigidBodyComponent::m_dynamicProperties),
+        "pushbackEntity", &RigidBodyComponent::m_pushbackEntity,
+        "m_pushbackAngle", &RigidBodyComponent::m_pushbackAngle
+    );
+}
 
 void
 RigidBodyComponent::getWorldTransform(
@@ -199,14 +212,16 @@ REGISTER_COMPONENT(RigidBodyComponent)
 // RigidBodyInputSystem
 ////////////////////////////////////////////////////////////////////////////////
 
-luabind::scope
-RigidBodyInputSystem::luaBindings() {
-    using namespace luabind;
-    return class_<RigidBodyInputSystem, System>("RigidBodyInputSystem")
-        .def(constructor<>())
-    ;
-}
+void RigidBodyInputSystem::luaBindings(
+    sol::state &lua
+){
+    lua.new_usertype<RigidBodyInputSystem>("RigidBodyInputSystem",
 
+        sol::constructors<sol::types<>>(),
+        
+        sol::base_classes, sol::bases<System>()
+    );
+}
 
 struct RigidBodyInputSystem::Implementation {
 
@@ -455,14 +470,16 @@ RigidBodyInputSystem::update(int, int logicTime) {
 // RigidBodyOutputSystem
 ////////////////////////////////////////////////////////////////////////////////
 
-luabind::scope
-RigidBodyOutputSystem::luaBindings() {
-    using namespace luabind;
-    return class_<RigidBodyOutputSystem, System>("RigidBodyOutputSystem")
-        .def(constructor<>())
-    ;
-}
+void RigidBodyOutputSystem::luaBindings(
+    sol::state &lua
+){
+    lua.new_usertype<RigidBodyOutputSystem>("RigidBodyOutputSystem",
 
+        sol::constructors<sol::types<>>(),
+        
+        sol::base_classes, sol::bases<System>()
+    );
+}
 
 struct RigidBodyOutputSystem::Implementation {
 

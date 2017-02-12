@@ -1,9 +1,8 @@
 #include "engine/component_factory.h"
 
-#include "scripting/luabind.h"
+#include "scripting/luajit.h"
 
-#include <luabind/class_info.hpp>
-#include <luabind/adopt_policy.hpp>
+#include "scripting/wrapper_classes.h"
 
 using namespace thrive;
 
@@ -38,41 +37,44 @@ static ComponentTypeId
 ComponentFactory_registerComponentType(
     ComponentFactory* self,
     const std::string& name,
-    luabind::object cls
+    sol::object cls
 ) {
-    lua_State* L = cls.interpreter();
-    auto type = luabind::type(cls);
-    if (type != LUA_TUSERDATA) {
-        std::string typeName(
-            lua_typename(L, type)
-        );
+    
+    auto type = cls.get_type();
+    
+    if (type != sol::type::userdata) {
+
+        std::string typeName(lua_typename(cls.lua_state(), static_cast<int>(type)));
+        
         throw std::runtime_error("Argument 2 must be class object, but is: " + typeName);
     }
+    
     ComponentTypeId typeId = self->registerComponentType(
         name,
         [cls] (const StorageContainer& storage) {
-            luabind::object classTable = cls;
-            luabind::object obj = classTable();
+            sol::object classTable = cls;
+            sol::table obj = classTable.as<sol::table>().get<sol::function>("new")();
             auto component = std::unique_ptr<Component>(
-                luabind::object_cast<Component*>(obj, luabind::adopt(luabind::result))
+                new ComponentWrapper(obj)
             );
             component->load(storage);
             return component;
         }
     );
-    cls["TYPE_ID"] = typeId;
+    
+    cls.as<sol::table>()["TYPE_ID"] = typeId;
     return typeId;
 }
 
+void ComponentFactory::luaBindings(
+    sol::state &lua
+){
+    lua.new_usertype<ComponentFactory>("ComponentFactory",
 
-luabind::scope
-ComponentFactory::luaBindings() {
-    using namespace luabind;
-    return class_<ComponentFactory>("ComponentFactory")
-        .def("registerComponentType", &ComponentFactory_registerComponentType)
-    ;
+        "new", sol::no_constructor,
+        "registerComponentType", &ComponentFactory_registerComponentType
+    );
 }
-
 
 ComponentTypeId
 ComponentFactory::registerGlobalComponentType(
