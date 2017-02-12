@@ -133,29 +133,72 @@ void SystemWrapper::initNamed(
     GameState* gameState
 ) {
     System::initNamed(name, gameState);
-    m_luaObject.get<sol::protected_function>("initNamed")(name, gameState);
+
+    auto func =  m_luaObject.get<sol::protected_function>("initNamed");
+
+    if(!func){
+
+        default_initNamed(this, name, gameState);
+        return;
+    }
+    
+    func(name, gameState);
 }
 
 void SystemWrapper::shutdown(){
 
     System::shutdown();
-    m_luaObject.get<sol::protected_function>("shutdown")();
+
+    auto func = m_luaObject.get<sol::protected_function>("shutdown");
+
+    if(!func){
+
+        default_shutdown(this);
+        return;
+    }
+    
+    func();
 }
 
 void SystemWrapper::activate(){
+
+    auto func = m_luaObject.get<sol::protected_function>("activate");
+
+    if(!func){
+
+        default_activate(this);
+        return;
+    }
     
-    m_luaObject.get<sol::protected_function>("activate")();
+    func();
 }
 
 void SystemWrapper::deactivate(){
+
+    auto func = m_luaObject.get<sol::protected_function>("deactivate");
+
+    if(!func){
+
+        default_deactivate(this);
+        return;
+    }
     
-    m_luaObject.get<sol::protected_function>("deactivate")();
+    func();
 }
 
 void SystemWrapper::update(
     int renderTime,
     int logicTime
 ) {
-    m_luaObject.get<sol::protected_function>("update")(renderTime, logicTime);
+
+    auto func = m_luaObject.get<sol::protected_function>("update");
+
+    if(!func){
+
+        System::update(renderTime, logicTime);
+        return;
+    }
+    
+    func(renderTime, logicTime);
 }
 

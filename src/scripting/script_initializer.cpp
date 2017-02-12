@@ -1001,4 +1001,5 @@ luabind::scope
 
 
 
+StandardItemWrapper::luaBindings;
 
