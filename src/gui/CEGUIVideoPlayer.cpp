@@ -3,15 +3,13 @@
 #include "engine/engine.h"
 #include "game.h"
 #include "script_wrappers.h"
-#include "scripting/luabind.h"
+#include "scripting/luajit.h"
 
 #include <OgreVector3.h>
 #include <OgreMaterialManager.h>
 #include <OgreMaterial.h>
 #include <OgreTechnique.h>
 #include <OgreTextureManager.h>
-#include <luabind/object.hpp>
-#include <luabind/adopt_policy.hpp>
 #include <functional>
 
 #include <CEGUI/Element.h>
@@ -56,25 +54,29 @@ CEGUIVideoPlayer::~CEGUIVideoPlayer()
     delete m_tex;
 }
 
-luabind::scope
-CEGUIVideoPlayer::luaBindings() {
-    using namespace luabind;
-    return class_<CEGUIVideoPlayer, CEGUIWindow>("CEGUIVideoPlayer")
-        .def(constructor<std::string, int, int>())
-        .def(constructor<std::string>())
-        .def("play", &CEGUIVideoPlayer::play)
-        .def("close", &CEGUIVideoPlayer::close)
-        .def("setVideo", &CEGUIVideoPlayer::setVideo)
-        .def("update", &CEGUIVideoPlayer::update)
-        .def("getDuration", &CEGUIVideoPlayer::getDuration)
-        .def("getCurrentTime", &CEGUIVideoPlayer::getCurrentTime)
-        .def("seek", &CEGUIVideoPlayer::seek)
-        .scope
-        [
-            def("destroyVideoPlayer", &destroyVideoPlayer, adopt(_1)) //Static
-        ];
-    ;
+
+void CEGUIVideoPlayer::luaBindings(
+    sol::state &lua
+){
+    lua.new_usertype<CEGUIVideoPlayer>("CEGUIVideoPlayer",
+
+        sol::constructors<sol::types<std::string, int, int>,
+        sol::types<std::string>>(),
+        
+        sol::base_classes, sol::bases<CEGUIWindow>(),
+
+        "play", &CEGUIVideoPlayer::play,
+        "close", &CEGUIVideoPlayer::close,
+        "setVideo", &CEGUIVideoPlayer::setVideo,
+        "update", &CEGUIVideoPlayer::update,
+        "getDuration", &CEGUIVideoPlayer::getDuration,
+        "getCurrentTime", &CEGUIVideoPlayer::getCurrentTime,
+        "seek", &CEGUIVideoPlayer::seek,
+
+        "destroyVideoPlayer", &destroyVideoPlayer //Static
+    );
 }
+
 
 void
 CEGUIVideoPlayer::play() {

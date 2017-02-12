@@ -1,7 +1,6 @@
 #pragma once
 
 #include <CEGUI/CEGUI.h>
-#include <luabind/object.hpp>
 #include <OgreVector2.h>
 #include <OISKeyboard.h>
 
@@ -76,8 +75,7 @@ public:
     *
     * @return
     */
-    static luabind::scope
-    luaBindings();
+    static void luaBindings(sol::state &lua);
 
     /**
     * @brief Sets the video to play

@@ -237,16 +237,14 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
                 this->loadScripts(manifestEntryPath);
             }
             else {
-                int error = 0;
-                error = luaL_loadfile(
-                    m_luaState,
-                    manifestEntryPath.string().c_str()
-                );
-                error = error or luabind::detail::pcall(m_luaState, 0, LUA_MULTRET);
-                if (error) {
-                    std::string errorMessage = lua_tostring(m_luaState, -1);
-                    lua_pop(m_luaState, 1);
-                    std::cerr << errorMessage << std::endl;
+                
+                auto runResult = m_luaState.do_file(manifestEntryPath.string().c_str());
+
+                if(runResult.status() != sol::call_status::ok){
+
+                    std::cerr << "Failed to run Lua file: " << manifestEntryPath.string() <<
+                        std::endl << " error: " << runResult.get<std::string>() <<
+                        std::endl;
                 }
             }
         }
@@ -534,22 +532,38 @@ static GameState*
 Engine_createGameState(
     Engine* self,
     std::string name,
-    luabind::object luaSystems,
-    luabind::object luaInitializer,
+    sol::object luaSystems,
+    sol::object luaInitializer,
     std::string guiLayoutName
 ) {
-    std::vector<std::unique_ptr<System>> systems;
-    for (luabind::iterator iter(luaSystems), end; iter != end; ++iter) {
-        System* system = luabind::object_cast<System*>(
-            *iter,
-            luabind::adopt(luabind::result)
-        );
-        systems.emplace_back(system);
+    std::vector<std::shared_ptr<System>> systems;
+
+    if(!luaSystems.is<sol::table>()){
+
+        // Not a table
+        throw std::runtime_error("luaSystems is not a table");
     }
+
+    {
+        auto table = luaSystems.as<sol::table>();
+    
+
+        for (const auto& pair : table){
+
+            if(pair.second.is<System>()){
+
+                auto system = pair.first.as<std::shared_ptr<System>>();
+
+                if(system)
+                    systems.emplace_back(system);
+            }
+        }
+    }
+    
     // We can't just capture the luaInitializer in the lambda here, because
     // luabind::object's call operator is not const
     auto initializer = std::bind<void>(
-        [](luabind::object luaInitializer) {
+        [](sol::function luaInitializer) {
             luaInitializer();
         },
         luaInitializer
@@ -562,36 +576,42 @@ Engine_createGameState(
     );
 }
 
+void Engine::luaBindings(
+    sol::state &lua
+){
+    lua.new_usertype<Engine>("__Engine",
 
-luabind::scope
-Engine::luaBindings() {
-    using namespace luabind;
-    return class_<Engine>("__Engine")
-        .def("createGameState", Engine_createGameState)
-        .def("currentGameState", &Engine::currentGameState)
-        .def("getGameState", &Engine::getGameState)
-        .def("setCurrentGameState", &Engine::setCurrentGameState)
-        .def("playerData", &Engine::playerData)
-        .def("load", &Engine::load)
-        .def("save", &Engine::save)
-        .def("fileExists", &Engine::fileExists)
-        .def("saveCreation", static_cast<void(Engine::*)(EntityId, std::string, std::string)const>(&Engine::saveCreation))
-        .def("loadCreation", static_cast<EntityId(Engine::*)(std::string)>(&Engine::loadCreation))
-        .def("screenShot", &Engine::screenShot)
-        .def("getCreationFileList", &Engine::getCreationFileList)
-        .def("quit", &Engine::quit)
-        .def("timedSystemShutdown", &Engine::timedSystemShutdown)
-        .def("isSystemTimedShutdown", &Engine::isSystemTimedShutdown)
-        .def("thriveVersion", &Engine::thriveVersion)
-        .def("pauseGame", &Engine::pauseGame)
-        .def("resumeGame", &Engine::resumeGame)
-        .def("registerConsoleObject", &Engine::registerConsoleObject)
-        .def("getResolutionHeight", &Engine::getResolutionHeight)
-        .def("getResolutionWidth", &Engine::getResolutionWidth)
-        .property("componentFactory", &Engine::componentFactory)
-        .property("keyboard", &Engine::keyboard)
-        .property("mouse", &Engine::mouse)
-    ;
+        "new", sol::no_constructor,
+
+        "createGameState", Engine_createGameState,
+        "currentGameState", &Engine::currentGameState,
+        "getGameState", &Engine::getGameState,
+        "setCurrentGameState", &Engine::setCurrentGameState,
+        "playerData", &Engine::playerData,
+        "load", &Engine::load,
+        "save", &Engine::save,
+        "fileExists", &Engine::fileExists,
+        "saveCreation", static_cast<void(Engine::*)(EntityId, std::string,
+            std::string)const>(&Engine::saveCreation),
+        "loadCreation", static_cast<EntityId(Engine::*)(std::string)>(&Engine::loadCreation),
+        "screenShot", &Engine::screenShot,
+        "getCreationFileList", &Engine::getCreationFileList,
+        "quit", &Engine::quit,
+        "timedSystemShutdown", &Engine::timedSystemShutdown,
+        "isSystemTimedShutdown", &Engine::isSystemTimedShutdown,
+        "thriveVersion", &Engine::thriveVersion,
+        "pauseGame", &Engine::pauseGame,
+        "resumeGame", &Engine::resumeGame,
+        "registerConsoleObject", [](Engine &us, sol::table obj, sol::this_state){
+
+            us.m_impl->registerConsoleObject(obj);
+        },
+        "getResolutionHeight", &Engine::getResolutionHeight,
+        "getResolutionWidth", &Engine::getResolutionWidth,
+        "componentFactory", sol::readonly(&Engine::componentFactory),
+        "keyboard", sol::readonly(&Engine::keyboard),
+        "mouse", sol::readonly(&Engine::mouse)
+    );
 }
 
 void
@@ -622,11 +642,12 @@ Engine::componentFactory() {
 GameState*
 Engine::createGameState(
     std::string name,
-    std::vector<std::unique_ptr<System>> systems,
+    std::vector<std::shared_ptr<System>> systems,
     GameState::Initializer initializer,
     std::string guiLayoutName
 ) {
-    assert(m_impl->m_gameStates.find(name) == m_impl->m_gameStates.end() && "Duplicate GameState name");
+    assert(m_impl->m_gameStates.find(name) == m_impl->m_gameStates.end() &&
+        "Duplicate GameState name");
     std::unique_ptr<GameState> gameState(new GameState(
         *this,
         name,
@@ -946,7 +967,7 @@ Engine::update(
     assert(m_impl->m_currentGameState != nullptr);
     m_impl->m_currentGameState->update(milliseconds, m_impl->m_paused ? 0 : milliseconds);
 
-    luabind::call_member<void>(m_impl->m_console, "update");
+    m_impl->m_console.get<sol::protected_function>("update")();
 
     CEGUI::System::getSingleton().injectTimePulse(milliseconds/1000.0f);
     CEGUI::System::getSingleton().getDefaultGUIContext().injectTimePulse(milliseconds/1000.0f);
@@ -999,7 +1020,3 @@ Engine::thriveVersion() const {
     return m_impl->m_thriveVersion;
 }
 
-void
-Engine::registerConsoleObject(luabind::object consoleObject) {
-    m_impl->m_console = consoleObject;
-}

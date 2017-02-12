@@ -1,7 +1,8 @@
 #pragma once
 
+#include "scripting/luajit.h"
+
 #include <CEGUI/CEGUI.h>
-#include <luabind/object.hpp>
 #include <OgreVector2.h>
 #include <OISKeyboard.h>
 
@@ -109,8 +110,7 @@ public:
     *
     * @return
     */
-    static luabind::scope
-    luaBindings();
+    static void luaBindings(sol::state &lua);
 
     static void
     setGuiMoveMode(
@@ -361,7 +361,7 @@ public:
     void
     registerEventHandler(
         const std::string& eventName,
-        const luabind::object& callback
+        const sol::function& callback
     ) const ;
 
     /**
@@ -378,7 +378,7 @@ public:
     /// Same as above but for lua callbacks
     void
     registerKeyEventHandler(
-        const luabind::object& callback
+        const sol::function& callback
     ) const ;
 
     /**

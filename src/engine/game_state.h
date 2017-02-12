@@ -171,7 +171,7 @@ private:
     GameState(
         Engine& engine,
         std::string name,
-        std::vector<std::unique_ptr<System>> systems,
+        std::vector<std::shared_ptr<System>> systems,
         Initializer initializer,
         std::string guiLayoutName
     );
@@ -196,7 +196,7 @@ private:
     void
     init();
 
-    const std::vector<std::unique_ptr<System>>&
+    const std::vector<std::shared_ptr<System>>&
     systems() const;
 
     /**

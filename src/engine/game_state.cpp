@@ -20,7 +20,7 @@ struct GameState::Implementation {
     Implementation(
         Engine& engine,
         std::string name,
-        std::vector<std::unique_ptr<System>> systems,
+        std::vector<std::shared_ptr<System>> systems,
         Initializer initializer,
         std::string guiLayoutName
     ) : m_engine(engine),
@@ -86,7 +86,7 @@ struct GameState::Implementation {
 
     } m_physics;
 
-    std::vector<std::unique_ptr<System>> m_systems;
+    std::vector<std::shared_ptr<System>> m_systems;
 
     std::string m_guiLayoutName;
 
@@ -95,21 +95,23 @@ struct GameState::Implementation {
 };
 
 
-luabind::scope
-GameState::luaBindings() {
-    using namespace luabind;
-    return class_<GameState>("GameState")
-        .def("name", &GameState::name)
-        .def("rootGUIWindow", &GameState::rootGUIWindow)
-        .def("entityManager", static_cast<EntityManager&(GameState::*)()>(&GameState::entityManager))
-    ;
-}
+void GameState::luaBindings(
+    sol::state &lua
+){
+    lua.new_usertype<GameState>("GameState",
 
+        "new", sol::no_constructor,
+
+        "name", &GameState::name,
+        "rootGUIWindow", &GameState::rootGUIWindow,
+        "entityManager", static_cast<EntityManager&(GameState::*)()>(&GameState::entityManager)
+    );
+}
 
 GameState::GameState(
     Engine& engine,
     std::string name,
-    std::vector<std::unique_ptr<System>> systems,
+    std::vector<std::shared_ptr<System>> systems,
     Initializer initializer,
     std::string guiLayoutName
 ) : m_impl(new Implementation(engine, name, std::move(systems), initializer, guiLayoutName))
@@ -169,7 +171,7 @@ GameState::init() {
     m_impl->m_initializer();
 }
 
-const std::vector<std::unique_ptr<System>>&
+const std::vector<std::shared_ptr<System>>&
 GameState::systems() const {
     return m_impl->m_systems;
 }
@@ -186,13 +188,10 @@ GameState::load(
             m_impl->m_engine.componentFactory()
         );
     }
-    catch (const luabind::error& e) {
-        luabind::object error_msg(luabind::from_stack(
-            e.state(),
-            -1
-        ));
+    catch (const sol::error& e) {
+
         // TODO: Log error
-        std::cerr << error_msg << std::endl;
+        std::cerr << e.what() << std::endl;
         throw;
     }
 }
@@ -244,13 +243,10 @@ GameState::storage() const {
             m_impl->m_engine.componentFactory()
         );
     }
-    catch (const luabind::error& e) {
-        luabind::object error_msg(luabind::from_stack(
-            e.state(),
-            -1
-        ));
+    catch (const sol::error& e) {
+        
         // TODO: Log error
-        std::cerr << error_msg << std::endl;
+        std::cerr << e.what() << std::endl;
         throw;
     }
     storage.set("entities", std::move(entities));

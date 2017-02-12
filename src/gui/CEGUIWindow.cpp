@@ -4,10 +4,8 @@
 #include "game.h"
 #include "ogre/mouse.h"
 #include "script_wrappers.h"
-#include "scripting/luabind.h"
 
 #include <OgreVector3.h>
-#include <luabind/object.hpp>
 #include <functional>
 
 #include <CEGUI/Element.h>
@@ -166,65 +164,56 @@ CEGUIWindow::~CEGUIWindow()
 {
 }
 
-luabind::scope
-CEGUIWindow::luaBindings() {
-    using namespace luabind;
-    return class_<CEGUIWindow>("CEGUIWindow")
-        //.scope
-        //[
-        //    def("getRootWindow", &CEGUIWindow::getRootWindow) //Better to use gameState::rootGUIWindow
-        //]
-        .def(constructor<std::string>())
-        .def(constructor<std::string, std::string>())
-        .def("isNull", &CEGUIWindow::isNull)
-        .def("getText", &CEGUIWindow::getText)
-        .def("setText", &CEGUIWindow::setText)
-        .def("appendText", &CEGUIWindow::appendText)
-        .def("setImage", &CEGUIWindow::setImage)
-        .def("setProperty", &CEGUIWindow::setProperty)
-        .def("getParent", &CEGUIWindow::getParent)
-        .def("getChild", &CEGUIWindow::getChild)
-        .def("addChild", &CEGUIWindow::addChild)
-        .def("removeChild", &CEGUIWindow::removeChild)
-        .def("registerEventHandler",
-             static_cast<void (CEGUIWindow::*)(const std::string&, const luabind::object&) const>(&CEGUIWindow::registerEventHandler)
-         )
-        .def("enable", &CEGUIWindow::enable)
-        .def("disable", &CEGUIWindow::disable)
-        .def("setFocus", &CEGUIWindow::setFocus)
-        .def("show", &CEGUIWindow::show)
-        .def("hide", &CEGUIWindow::hide)
-        .def("moveToFront", &CEGUIWindow::moveToFront)
-        .def("moveToBack", &CEGUIWindow::moveToBack)
-        .def("moveInFront", &CEGUIWindow::moveInFront)
-        .def("moveBehind", &CEGUIWindow::moveBehind)
-        .def("setPositionAbs", &CEGUIWindow::setPositionAbs)
-        .def("setPositionRel", &CEGUIWindow::setPositionRel)
-        .def("setSizeAbs", &CEGUIWindow::setSizeAbs)
-        .def("setSizeRel", &CEGUIWindow::setSizeRel)
-        .def("getName", &CEGUIWindow::getName)
-        .def("playAnimation", &CEGUIWindow::playAnimation)
-        .def("listWidgetAddItem", &CEGUIWindow::listWidgetAddStandardItem)
-        .def("listWidgetAddItem", &CEGUIWindow::listWidgetAddTextItem)
-        .def("listWidgetAddItem", &CEGUIWindow::listWidgetAddItem)
-        .def("listWidgetResetList", &CEGUIWindow::listWidgetResetList)
-        .def("listWidgetUpdateItem", &CEGUIWindow::listWidgetUpdateItem)
-        .def("listWidgetGetFirstSelectedID", &CEGUIWindow::listWidgetGetFirstSelectedID)
-        .def("listWidgetGetFirstSelectedItemText",
-            &CEGUIWindow::listWidgetGetFirstSelectedItemText)
-        .def("progressbarSetProgress", &CEGUIWindow::progressbarSetProgress)
-        .def("scrollingpaneAddIcon", &CEGUIWindow::scrollingpaneAddIcon)
-        .def("scrollingpaneGetVerticalPosition", &CEGUIWindow::scrollingpaneGetVerticalPosition)
-        .def("scrollingpaneSetVerticalPosition", &CEGUIWindow::scrollingpaneSetVerticalPosition)
-        .def("registerKeyEventHandler",
-            static_cast<void (CEGUIWindow::*)(const luabind::object&) const>(&CEGUIWindow::registerKeyEventHandler)
-        )
-        .scope
-        [
-            def("setGuiMoveMode", &CEGUIWindow::setGuiMoveMode),
-            def("getWindowUnderMouse", &CEGUIWindow::getWindowUnderMouse)
-        ]
-    ;
+void CEGUIWindow::luaBindings(
+    sol::state &lua
+){
+    lua.new_usertype<CEGUIWindow>("CEGUIWindow",
+
+        sol::constructors<sol::types<std::string>, sol::types<std::string, std::string>>(),
+
+        "isNull", &CEGUIWindow::isNull,
+        "getText", &CEGUIWindow::getText,
+        "setText", &CEGUIWindow::setText,
+        "appendText", &CEGUIWindow::appendText,
+        "setImage", &CEGUIWindow::setImage,
+        "setProperty", &CEGUIWindow::setProperty,
+        "getParent", &CEGUIWindow::getParent,
+        "getChild", &CEGUIWindow::getChild,
+        "addChild", &CEGUIWindow::addChild,
+        "removeChild", &CEGUIWindow::removeChild,
+        "registerEventHandler", static_cast<void (CEGUIWindow::*)(const std::string&,
+            const sol::function&) const>(&CEGUIWindow::registerEventHandler),
+        "enable", &CEGUIWindow::enable,
+        "disable", &CEGUIWindow::disable,
+        "setFocus", &CEGUIWindow::setFocus,
+        "show", &CEGUIWindow::show,
+        "hide", &CEGUIWindow::hide,
+        "moveToFront", &CEGUIWindow::moveToFront,
+        "moveToBack", &CEGUIWindow::moveToBack,
+        "moveInFront", &CEGUIWindow::moveInFront,
+        "moveBehind", &CEGUIWindow::moveBehind,
+        "setPositionAbs", &CEGUIWindow::setPositionAbs,
+        "setPositionRel", &CEGUIWindow::setPositionRel,
+        "setSizeAbs", &CEGUIWindow::setSizeAbs,
+        "setSizeRel", &CEGUIWindow::setSizeRel,
+        "getName", &CEGUIWindow::getName,
+        "playAnimation", &CEGUIWindow::playAnimation,
+        "listWidgetAddItem", &CEGUIWindow::listWidgetAddStandardItem,
+        "listWidgetAddItem", &CEGUIWindow::listWidgetAddTextItem,
+        "listWidgetAddItem", &CEGUIWindow::listWidgetAddItem,
+        "listWidgetResetList", &CEGUIWindow::listWidgetResetList,
+        "listWidgetUpdateItem", &CEGUIWindow::listWidgetUpdateItem,
+        "listWidgetGetFirstSelectedID", &CEGUIWindow::listWidgetGetFirstSelectedID,
+        "listWidgetGetFirstSelectedItemText", &CEGUIWindow::listWidgetGetFirstSelectedItemText,
+        "progressbarSetProgress", &CEGUIWindow::progressbarSetProgress,
+        "scrollingpaneAddIcon", &CEGUIWindow::scrollingpaneAddIcon,
+        "scrollingpaneGetVerticalPosition", &CEGUIWindow::scrollingpaneGetVerticalPosition,
+        "scrollingpaneSetVerticalPosition", &CEGUIWindow::scrollingpaneSetVerticalPosition,
+        "registerKeyEventHandler", static_cast<void (CEGUIWindow::*)(const sol::function&)
+        const>(&CEGUIWindow::registerKeyEventHandler),
+        "setGuiMoveMode", &CEGUIWindow::setGuiMoveMode,
+        "getWindowUnderMouse", &CEGUIWindow::getWindowUnderMouse
+    );
 }
 
 bool
@@ -453,13 +442,14 @@ CEGUIWindow::registerEventHandler(
 void
 CEGUIWindow::registerEventHandler(
     const std::string& eventName,
-    const luabind::object& callback
+    const sol::function& callback
 ) const {
 
     // Lambda must return something to avoid an template error.
     auto callbackLambda = [callback](const CEGUI::EventArgs& args) -> bool
         {
-            luabind::call_function<void>(callback, CEGUIWindow(static_cast<const CEGUI::WindowEventArgs&>(args).window, false));
+            callback(CEGUIWindow(static_cast<const CEGUI::WindowEventArgs&>(args).window,
+                    false));
             return 0;
         };
 
@@ -475,12 +465,12 @@ CEGUIWindow::registerKeyEventHandler(
 
 void
 CEGUIWindow::registerKeyEventHandler(
-    const luabind::object& callback
+    const sol::function& callback
 ) const {
     // Event doesn't exist anymore //
     auto callbackLambda = [callback](const CEGUI::EventArgs& args) -> bool
         {
-            luabind::call_function<void>(callback, CEGUIWindow(static_cast<
+            callback(CEGUIWindow(static_cast<
                     const CEGUI::WindowEventArgs&>(args).window, false),
                 static_cast<int>(static_cast<const CEGUI::TextEventArgs&>(args).d_character));
             return 0;

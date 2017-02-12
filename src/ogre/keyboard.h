@@ -71,8 +71,7 @@ public:
     * - <a href="http://code.joyridelabs.de/ois_api/OISKeyboard_8h_source.html#l00031">KeyCode</a>
     *
     */
-    static luabind::scope
-    luaBindings();
+    static void luaBindings(sol::state &lua);
 
     /**
     * @brief Constructor

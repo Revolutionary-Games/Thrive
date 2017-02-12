@@ -127,7 +127,7 @@ public:
     GameState*
     createGameState(
         std::string name,
-        std::vector<std::unique_ptr<System>> systems,
+        std::vector<std::shared_ptr<System>> systems,
         GameState::Initializer initializer,
         std::string guiLayoutName
     );

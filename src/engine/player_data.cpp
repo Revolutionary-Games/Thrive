@@ -3,7 +3,7 @@
 #include "engine/game_state.h"
 #include "engine/serialization.h"
 #include "general/locked_map.h"
-#include "scripting/luabind.h"
+#include "scripting/luajit.h"
 #include "engine/entity.h"
 
 #include <unordered_set>
@@ -29,19 +29,21 @@ struct PlayerData::Implementation {
 
 };
 
-luabind::scope
-PlayerData::luaBindings() {
-    using namespace luabind;
-    return class_<PlayerData>("PlayerData")
-        .def(constructor<std::string>())
-        .def("playerName", &PlayerData::playerName)
-        .def("lockedMap", &PlayerData::lockedMap)
-        .def("activeCreature", &PlayerData::activeCreature)
-        .def("setActiveCreature", &PlayerData::setActiveCreature)
-        .def("activeCreatureGamestate", &PlayerData::activeCreatureGamestate)
-        .def("isBoolSet", &PlayerData::isBoolSet)
-        .def("setBool", &PlayerData::setBool)
-    ;
+void PlayerData::luaBindings(
+    sol::state &lua
+){
+    lua.new_usertype<PlayerData>("PlayerData",
+
+        sol::constructors<sol::types<std::string>>(),
+        
+        "playerName", &PlayerData::playerName,
+        "lockedMap", &PlayerData::lockedMap,
+        "activeCreature", &PlayerData::activeCreature,
+        "setActiveCreature", &PlayerData::setActiveCreature,
+        "activeCreatureGamestate", &PlayerData::activeCreatureGamestate,
+        "isBoolSet", &PlayerData::isBoolSet,
+        "setBool", &PlayerData::setBool
+    );
 }
 
 PlayerData::PlayerData(

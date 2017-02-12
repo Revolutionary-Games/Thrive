@@ -36,8 +36,7 @@ public:
     * - RNG::setSeed(seed)
     * - RNG::getSeed()
     */
-    static luabind::scope
-    luaBindings();
+    static void luaBindings(sol::state &lua);
 
     /**
     * @brief Constructor using proper random seed

@@ -3,7 +3,7 @@
 #include <cstring>
 #include "engine/rolling_grid.h"
 #include <boost/multi_array.hpp>
-#include "scripting/luabind.h"
+#include "scripting/luajit.h"
 
 using namespace thrive;
 
@@ -159,16 +159,16 @@ struct RollingGrid::Implementation {
     }
 };
 
+void RollingGrid::luaBindings(
+    sol::state &lua
+){
+    lua.new_usertype<RollingGrid>("RollingGrid",
 
-luabind::scope
-RollingGrid::luaBindings() {
-    using namespace luabind;
-    return class_<RollingGrid>("RollingGrid")
-        .def(constructor<int, int, int>())
-        .def("move", &RollingGrid::move)
-        .def("get", &RollingGrid::get)
-        .def("set", &RollingGrid::set)
-    ;
+        sol::constructors<sol::types<int, int, int>>(),
+        "move", &RollingGrid::move,
+        "get", &RollingGrid::get,
+        "set", &RollingGrid::set
+    );
 }
 
 RollingGrid::RollingGrid(int width, int height, int resolution) 

@@ -43,8 +43,7 @@ public:
     * - RollingGrid::set(long, long, int)
     * @return
     */
-    static luabind::scope
-    luaBindings();
+    static void luaBindings(sol::state &lua);
 
     // TODO probably not the best move function
     /** 
