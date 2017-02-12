@@ -53,7 +53,7 @@ public:
 
     using CollisionMap = std::unordered_map<CollisionId, Collision, IdHash, IdEquals>;
     using CollisionIterator = boost::range_detail::select_second_mutable_range<CollisionMap>;
-
+    
     /**
     * @brief Constructor
     *
@@ -102,8 +102,7 @@ public:
     * - CollisionFilter::clearCollisions()
     * - CollisionFilter::removeCollision
     */
-    static luabind::scope
-    luaBindings();
+    static void luaBindings(sol::state &lua);
 
     /**
     * @brief Returns the collisions that has occoured
