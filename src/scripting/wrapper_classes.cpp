@@ -25,7 +25,15 @@ ComponentWrapper::ComponentWrapper(
 void ComponentWrapper::load(
         const StorageContainer& storage
 ) {
-    m_luaObject.get<sol::protected_function>("load")(storage);
+    auto func = m_luaObject.get<sol::protected_function>("load");
+
+    if(!func){
+
+        default_load(this, storage);
+        return;
+    }
+    
+    func(storage);
 }
 
 void ComponentWrapper::default_load(
@@ -44,12 +52,21 @@ ComponentTypeId ComponentWrapper::typeId() const
 
 std::string ComponentWrapper::typeName() const
 {
+    // TODO: make sure this is correct
+    // TODOSOL: this actually needs to be set maually in the Lua side
     return m_luaObject[sol::metatable_key]["__name"];
 }
 
 StorageContainer ComponentWrapper::storage() const
 {
-    const auto result = m_luaObject.get<sol::protected_function>("storage")();
+    auto func = m_luaObject.get<sol::protected_function>("storage");
+
+    if(!func){
+
+        return default_storage(this);
+    }
+    
+    const auto result = func();
 
     if(!result.valid())
         throw std::runtime_error("lua component failed to return storage object");
@@ -58,7 +75,7 @@ StorageContainer ComponentWrapper::storage() const
 }
 
 StorageContainer ComponentWrapper::default_storage(
-    Component* self
+    const Component* self
 ) {
     return self->Component::storage();
 }

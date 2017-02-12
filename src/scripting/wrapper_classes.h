@@ -43,7 +43,7 @@ public:
         storage() const override;
 
     static StorageContainer default_storage(
-        Component* self
+        const Component* self
     );
 };
 
