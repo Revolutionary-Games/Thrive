@@ -572,17 +572,15 @@ TypeInfo<Ogre::ColourValue>::convertToStoredType(
 void StorageList::luaBindings(
     sol::state &lua
 ){
-    lua.new_usertype<ship>( "ship", 
-        "bullet_count", &ship::bullets
+    
+    lua.new_usertype<StorageList>("StorageList",
+        
+        sol::constructors<sol::types<>>(),
+        
+        "append", &StorageList::append,
+        "get", &StorageList::get,
+        "size", &StorageList::size
     );
-    
-    return class_<StorageList>("StorageList")
-        .def(constructor<>())
-        .def("append", &StorageList::append)
-        .def("get", &StorageList::get)
-        .def("size", &StorageList::size)
-        ;
-    
 }
 
 

@@ -4,10 +4,7 @@
 #include "engine/entity_manager.h"
 #include "engine/game_state.h"
 #include "game.h"
-#include "scripting/luabind.h"
-
-#include <luabind/operator.hpp>
-#include <luabind/adopt_policy.hpp>
+#include "scripting/luajit.h"
 
 using namespace thrive;
 
@@ -39,34 +36,36 @@ Entity_addComponent(
     );
 }
 
+void Entity::luaBindings(
+    sol::state &lua
+){
+    lua.new_usertype<Entity>("Entity",
 
-luabind::scope
-Entity::luaBindings() {
-    using namespace luabind;
-    return class_<Entity>("Entity")
-        .def(constructor<>())
-        .def(constructor<GameState*>())
-        .def(constructor<EntityId>())
-        .def(constructor<EntityId, GameState*>())
-        .def(constructor<const std::string&>())
-        .def(constructor<const std::string&, GameState*>())
+        sol::constructors<sol::types<>,
+        sol::types<GameState*>,
+        sol::types<EntityId>,
+        sol::types<EntityId, GameState*>,
+        sol::types<const std::string&>,
+        sol::types<const std::string&, GameState*>>(),
 
-        .def(const_self == other<Entity>())
-        .def("addComponent", &Entity_addComponent, adopt(_2))
-        .def("destroy", &Entity::destroy)
-        .def("exists", &Entity::exists)
-        .def("getComponent", &Entity::getComponent)
-        .def("isVolatile", &Entity::isVolatile)
-        .def("removeComponent", &Entity::removeComponent)
-        .def("transfer", &Entity::transfer)
-        .def("setVolatile", &Entity::setVolatile)
-        .def("stealName", &Entity::stealName)
-        .def("addChild", &Entity::addChild)
-        .def("hasChildren", &Entity::hasChildren)
-        .property("id", &Entity::id)
-    ;
+        // This should be automatically bound but here we do it explicitly
+        sol::meta_function::equal_to, &Entity::operator==,
+
+        "addComponent", &Entity_addComponent,
+        "destroy", &Entity::destroy,
+        "exists", &Entity::exists,
+        "getComponent", &Entity::getComponent,
+        "isVolatile", &Entity::isVolatile,
+        "removeComponent", &Entity::removeComponent,
+        "transfer", &Entity::transfer,
+        "setVolatile", &Entity::setVolatile,
+        "stealName", &Entity::stealName,
+        "addChild", &Entity::addChild,
+        "hasChildren", &Entity::hasChildren,
+        "id", &Entity::id
+        
+    );
 }
-
 
 static EntityManager&
 getEntityManager(

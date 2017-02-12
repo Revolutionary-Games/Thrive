@@ -36,8 +36,7 @@ public:
     * - ComponentFactory::registerComponentType
     *
     */
-    static luabind::scope
-    luaBindings();
+    static void luaBindings(sol::state &lua);
 
     /**
     * @brief Constructor

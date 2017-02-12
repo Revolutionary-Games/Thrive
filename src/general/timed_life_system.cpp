@@ -6,29 +6,29 @@
 #include "engine/game_state.h"
 #include "engine/serialization.h"
 #include "game.h"
-#include "scripting/luabind.h"
+#include "scripting/luajit.h"
 
 
 using namespace thrive;
 
 REGISTER_COMPONENT(TimedLifeComponent)
 
+void TimedLifeComponent::luaBindings(
+    sol::state &lua
+){
+    lua.new_usertype<TimedLifeComponent>("TimedLifeComponent",
 
-luabind::scope
-TimedLifeComponent::luaBindings() {
-    using namespace luabind;
-    return class_<TimedLifeComponent, Component>("TimedLifeComponent")
-        .enum_("ID") [
-            value("TYPE_ID", TimedLifeComponent::TYPE_ID)
-        ]
-        .scope [
-            def("TYPE_NAME", &TimedLifeComponent::TYPE_NAME)
-        ]
-        .def(constructor<>())
-        .def_readwrite("timeToLive", &TimedLifeComponent::m_timeToLive)
-    ;
+        sol::constructors<sol::types<>>(),
+        
+        sol::base_classes, sol::bases<Component>(),
+
+        "ID", sol::var(lua.create_table_with(
+                "TYPE_ID", sol::var(TimedLifeComponent::TYPE_ID))),
+        "TYPE_NAME", &TimedLifeComponent::TYPE_NAME,
+
+        "timeToLive", &TimedLifeComponent::m_timeToLive
+    );
 }
-
 
 void
 TimedLifeComponent::load(
@@ -51,14 +51,16 @@ TimedLifeComponent::storage() const {
 // TimedLifeSystem
 ////////////////////////////////////////////////////////////////////////////////
 
-luabind::scope
-TimedLifeSystem::luaBindings() {
-    using namespace luabind;
-    return class_<TimedLifeSystem, System>("TimedLifeSystem")
-        .def(constructor<>())
-    ;
-}
+void TimedLifeSystem::luaBindings(
+    sol::state &lua
+){
+    lua.new_usertype<TimedLifeSystem>("TimedLifeSystem",
 
+        sol::constructors<sol::types<>>(),
+        
+        sol::base_classes, sol::bases<System>()
+    );
+}
 
 struct TimedLifeSystem::Implementation {
 

@@ -2,7 +2,7 @@
 
 #include "engine/engine.h"
 #include "engine/game_state.h"
-#include "scripting/luabind.h"
+#include "scripting/luajit.h"
 
 #include <assert.h>
 
@@ -11,16 +11,19 @@ using namespace thrive;
 void System::luaBindings(
     sol::state &lua
 ){
-    return class_<System, SystemWrapper>("System")
-        .def(constructor<>())
-        .def("enabled", &System::enabled)
-        .def("init", &System::initNamed, &SystemWrapper::default_initNamed)
-        .def("setEnabled", &System::setEnabled)
-        .def("activate", &System::activate, &SystemWrapper::default_activate)
-        .def("deactivate", &System::deactivate, &SystemWrapper::default_deactivate)
-        .def("shutdown", &System::shutdown, &SystemWrapper::default_shutdown)
-        .def("update", &System::update, &SystemWrapper::default_update)
-        ;
+    lua.new_usertype<System>("System",
+
+        // We are an abstract class
+        "new", sol::no_constructor,
+        
+        "enabled", &System::enabled,
+        "init", &System::initNamed, 
+        "setEnabled", &System::setEnabled,
+        "activate", &System::activate, 
+        "deactivate", &System::deactivate, 
+        "shutdown", &System::shutdown, 
+        "update", &System::update
+    );
 }
 
 struct System::Implementation {

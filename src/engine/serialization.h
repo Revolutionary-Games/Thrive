@@ -98,6 +98,25 @@ public:
     );
 
     /**
+    * @brief Required for lua bindings
+    */
+    bool operator ==(
+        const StorageContainer &other
+    ) const {
+        return this == &other;
+    }
+
+    /**
+    * @brief Required for lua bindings
+    */
+    bool operator <(
+        const StorageContainer &other
+    ) const {
+        (void)other;
+        return false;
+    }
+
+    /**
     * @brief Checks for a key
     *
     * @param key
