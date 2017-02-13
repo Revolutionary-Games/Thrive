@@ -5,10 +5,9 @@
 #include "engine/component.h"
 #include "engine/system.h"
 #include "engine/touchable.h"
-#include "scripting/luabind.h"
+#include "scripting/luajit.h"
 #include "engine/typedefs.h"
 
-#include <luabind/object.hpp>
 #include <memory>
 #include <OgreCommon.h>
 #include <OgreMath.h>
@@ -45,8 +44,7 @@ public:
     * - CompoundRegistry::getCompoundMeshScale
     * @return
     */
-    static luabind::scope
-    luaBindings();
+    static void luaBindings(sol::state &lua);
 
     /**
     * @brief Loads compounds from an XML document
@@ -64,14 +62,14 @@ public:
     */
     static void
     loadFromLua(
-        const luabind::object& configTable,
-        const luabind::object& agentTable
+        sol::table configTable,
+        sol::table agentTable
     );
 
     static void
     loadAgentFromLua(
-        const luabind::object& internalName,
-        const luabind::object& agentData
+        sol::object internalName,
+        sol::table agentData
     );
 
     /**
@@ -171,7 +169,7 @@ public:
         const std::string& meshName,
         double meshScale,
         int unitVolume,
-        const luabind::object& effect
+        sol::object effect
     );
 
     /**

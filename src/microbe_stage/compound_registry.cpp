@@ -8,51 +8,69 @@
 #include "engine/serialization.h"
 #include "game.h"
 #include "ogre/scene_node_system.h"
-#include "scripting/luabind.h"
+#include "scripting/luajit.h"
 #include "util/make_unique.h"
 #include "microbe_stage/compound.h"
 
 #include "tinyxml.h"
 
-#include <luabind/iterator_policy.hpp> 
 #include <OgreEntity.h>
 #include <OgreSceneManager.h>
 #include <stdexcept>
 
 using namespace thrive;
 
-luabind::scope
-CompoundRegistry::luaBindings() {
-    using namespace luabind;
-    return class_<CompoundRegistry>("CompoundRegistry")
-        .scope
-        [
-            def("registerCompoundType", &CompoundRegistry::registerCompoundType),
-            def("registerAgentType",
-                static_cast<CompoundId (*)(
-                    const std::string&,
-                    const std::string&,
-                    const std::string&,
-                    double,
-                    int,
-                    const luabind::object&
-                )>(&CompoundRegistry::registerAgentType)
-            ),
-            def("loadFromXML", &CompoundRegistry::loadFromXML),
-            def("loadFromLua", &CompoundRegistry::loadFromLua),
-            def("loadAgentFromLua", &CompoundRegistry::loadAgentFromLua),
-            def("getCompoundDisplayName", &CompoundRegistry::getCompoundDisplayName),
-            def("getCompoundInternalName", &CompoundRegistry::getCompoundInternalName),
-			def("getCompoundMeshName", &CompoundRegistry::getCompoundMeshName),
-            def("getCompoundUnitVolume", &CompoundRegistry::getCompoundUnitVolume),
-            def("getCompoundId", &CompoundRegistry::getCompoundId),
-            def("getCompoundList", &CompoundRegistry::getCompoundList, return_stl_iterator),
-            def("getCompoundMeshScale", &CompoundRegistry::getCompoundMeshScale),
-            def("getAgentEffect", &CompoundRegistry::getAgentEffect)
-        ]
-    ;
-}
+void CompoundRegistry::luaBindings(
+    sol::state &lua
+){
+    lua.new_usertype<CompoundRegistry>("CompoundRegistry",
 
+        "new", sol::no_constructor,
+        
+        "registerCompoundType", &CompoundRegistry::registerCompoundType,
+        "registerAgentType",
+            static_cast<CompoundId (*)(
+                const std::string&,
+                const std::string&,
+                const std::string&,
+                double,
+                int,
+                sol::object
+            )>(&CompoundRegistry::registerAgentType),
+        
+        "loadFromXML", &CompoundRegistry::loadFromXML,
+        "loadFromLua", &CompoundRegistry::loadFromLua,
+        "loadAgentFromLua", &CompoundRegistry::loadAgentFromLua,
+        "getCompoundDisplayName", &CompoundRegistry::getCompoundDisplayName,
+        "getCompoundInternalName", &CompoundRegistry::getCompoundInternalName,
+        "getCompoundMeshName", &CompoundRegistry::getCompoundMeshName,
+        "getCompoundUnitVolume", &CompoundRegistry::getCompoundUnitVolume,
+        "getCompoundId", &CompoundRegistry::getCompoundId,
+
+        // sol:: doesn't like boost wrapped iterators
+        // "getCompoundList", &CompoundRegistry::getCompoundList,
+        "getCompoundList", [](CompoundRegistry &us, sol::this_state s){
+            
+            sol::state_view lua(s);
+            auto list = us.getCompoundList();
+
+            sol::table table = lua.create_table();
+
+            auto iter = list.begin();
+            for(int i = 1; iter != list.end(); ++i, ++iter){
+
+                table[i] = *iter;
+            }
+
+            return table;
+        },
+        
+
+        
+        "getCompoundMeshScale", &CompoundRegistry::getCompoundMeshScale,
+        "getAgentEffect", &CompoundRegistry::getAgentEffect
+    );
+}
 
 namespace {
     struct CompoundRegistryEntry
@@ -80,64 +98,75 @@ compoundRegistryMap() {
 
 void
 CompoundRegistry::loadFromLua(
-    const luabind::object& compoundTable,
-    const luabind::object& agentTable
+    sol::table compoundTable,
+    sol::table agentTable
 ) {
-    for (luabind::iterator i(compoundTable), end; i != end; ++i) {
-        std::string key = luabind::object_cast<std::string>(i.key());
-        luabind::object data = *i;
-        std::string name = luabind::object_cast<std::string>(data["name"]);
-        float weight = luabind::object_cast<float>(data["weight"]);
-        std::string meshname = luabind::object_cast<std::string>(data["mesh"]);
-        float size = luabind::object_cast<float>(data["size"]);
-        registerCompoundType(
-                key,
-                name,
-                meshname,
-                size,
-                weight
-            );
-    }
-    for (luabind::iterator i(agentTable), end; i != end; ++i) {
-        std::string key = luabind::object_cast<std::string>(i.key());
-        luabind::object data = *i;
-        std::string name = luabind::object_cast<std::string>(data["name"]);
-        float weight = luabind::object_cast<float>(data["weight"]);
-        std::string meshname = luabind::object_cast<std::string>(data["mesh"]);
-        float size = luabind::object_cast<float>(data["size"]);
-        // std::cerr << "before casting effect" << std::endl;
-        luabind::object effect = data["effect"];
-        registerAgentType(
-                key,
-                name,
-                meshname,
-                size,
-                weight,
-                effect
-            );
-    }
-}
+    
+    for(const auto& pair : compoundTable){
 
-void
-CompoundRegistry::loadAgentFromLua(
-    const luabind::object& internalName,
-    const luabind::object& data
-) {
-    std::string internal_name = luabind::object_cast<std::string>(internalName);
-    std::string name = luabind::object_cast<std::string>(data["name"]);
-    float weight = luabind::object_cast<float>(data["weight"]);
-    std::string meshname = luabind::object_cast<std::string>(data["mesh"]);
-    float size = luabind::object_cast<float>(data["size"]);
-    // std::cerr << "before casting effect" << std::endl;
-    luabind::object effect = data["effect"];
-    registerAgentType(
-            internal_name,
+        const auto key = pair.first.as<std::string>();
+        auto data = pair.second.as<sol::table>();
+
+        const auto name = data.get<std::string>("name");
+        const auto weight = data.get<float>("weight");
+        const auto meshname = data.get<std::string>("mesh");
+        const auto size = data.get<float>("size");
+        
+        registerCompoundType(
+            key,
+            name,
+            meshname,
+            size,
+            weight
+        );
+    }
+
+    for(const auto& pair : agentTable){
+
+        const auto key = pair.first.as<std::string>();
+        auto data = pair.second.as<sol::table>();
+
+        const auto name = data.get<std::string>("name");
+        const auto weight = data.get<float>("weight");
+        const auto meshname = data.get<std::string>("mesh");
+        const auto size = data.get<float>("size");
+        
+        sol::object effect = data["effect"];
+        
+        registerAgentType(
+            key,
             name,
             meshname,
             size,
             weight,
             effect
         );
+    }
+}
+
+void
+CompoundRegistry::loadAgentFromLua(
+    sol::object internalName,
+    sol::table data
+) {
+    
+    const auto internal_name = internalName.as<std::string>();
+    
+    const auto name = data.get<std::string>("name");
+    const auto weight = data.get<float>("weight");
+    const auto meshname = data.get<std::string>("mesh");
+    const auto size = data.get<float>("size");
+    
+    // std::cerr << "before casting effect" << std::endl;
+    sol::object effect = data["effect"];
+    registerAgentType(
+        internal_name,
+        name,
+        meshname,
+        size,
+        weight,
+        effect
+    );
 }
 
 void
@@ -220,7 +249,8 @@ CompoundRegistry::loadFromXML(
             auto effectLambda = new std::function<bool(EntityId, double)>(
                 [luaFunctionName](EntityId entityId, double potency) -> bool
                 {
-                    luabind::call_function<void>(Game::instance().engine().luaState(), luaFunctionName.c_str(), entityId, potency);
+                    sol::state_view(Game::instance().engine().luaState())[luaFunctionName](
+                        entityId, potency);
                     return true;
                 });
             const char* name = pAgent->Attribute("name");
@@ -277,22 +307,22 @@ CompoundRegistry::registerAgentType(
 	const std::string& meshName,
     double meshScale,
     int unitVolume,
-    const luabind::object& effect
+    sol::object effect
 ) {
     auto effectLambda = new std::function<bool(EntityId, double)>(
         [effect](EntityId entityId, double potency) -> bool
         {
-            luabind::call_function<void>(effect, entityId, potency);
+            effect.as<sol::protected_function>()(entityId, potency);
             return true;
         });
     //Call overload
     return registerAgentType(
         internalName,
-         displayName,
-         meshName,
-         meshScale,
-         unitVolume,
-         effectLambda);
+        displayName,
+        meshName,
+        meshScale,
+        unitVolume,
+        effectLambda);
 }
 
 CompoundId
