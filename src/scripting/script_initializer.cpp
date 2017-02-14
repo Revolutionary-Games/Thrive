@@ -607,8 +607,6 @@ static void ogreEntityBindings(sol::state &lua) {
 
     lua.new_usertype<Ogre::SubEntity>("OgreSubEntity",
 
-        sol::base_classes, sol::bases<Component>(),
-        
         "setColour", &SubEntity_setColour,
         "setMaterial", &SubEntity_setMaterial,
         "tintColour", &SubEntity_tintColour
@@ -821,18 +819,7 @@ static void radianBindings(sol::state &lua) {
     );
 }
 
-static bool
-    Ray_intersects(
-        const Ogre::Ray &self,
-        const Ogre::Plane& plane,
-        Ogre::Real& t
-    ) {
-    bool intersects = false;
-    std::tie(intersects, t) = self.intersects(plane);
-    return intersects;
-}
-
-static void radianBindings(sol::state &lua) {
+static void rayBindings(sol::state &lua) {
 
     using namespace Ogre;
     
@@ -840,145 +827,160 @@ static void radianBindings(sol::state &lua) {
 
         sol::constructors<sol::types<>, sol::types<const Vector3&, const Vector3&>>(),
 
-        sol::meta_function::multiplication, static_cast<Ogre::Radian (Ogre::Radian::*)(
-            Ogre::Real) const>(&Ogre::Radian::operator*),
+        sol::meta_function::multiplication, static_cast<Ogre::Vector3 (Ogre::Ray::*)(
+            Ogre::Real) const>(&Ogre::Ray::operator*),
 
         "setOrigin", &Ray::setOrigin,
         "getOrigin", &Ray::getOrigin,
         "setDirection", &Ray::setDirection,
         "getDirection", &Ray::getDirection,
         "getPoint", &Ray::getPoint,
-        "intersects", &Ray_intersects
+        // returns a tuple now
+        "intersects", static_cast<std::pair<bool, Ogre::Real> (Ogre::Ray::*)(
+            const Ogre::Plane&) const>(&Ray::intersects)
         );
 }
 
-static luabind::scope
-    sceneManagerBindings() {
-    return class_<SceneManager>("SceneManager")
-        .enum_("PrefabType") [
-            value("PT_PLANE", SceneManager::PT_PLANE),
-            value("PT_CUBE", SceneManager::PT_CUBE),
-            value("PT_SPHERE", SceneManager::PT_SPHERE)
-        ]
-        // Fails to compile after upgrade to 2.0
-        // .def("createEntity",
-        //     static_cast<Entity* (SceneManager::*)(
-        //         const Ogre::String&)>(&SceneManager::createEntity)
-        // )
-        // .def("createEntity",
-        //     static_cast<Entity* (SceneManager::*)(
-        //         SceneManager::PrefabType)>(&SceneManager::createEntity)
-        // )
-        .def("setAmbientLight", &SceneManager::setAmbientLight)
-        ;
+
+static void sceneManagerBindings(sol::state &lua) {
+
+    using namespace Ogre;
+    
+    lua.new_usertype<Ogre::SceneManager>("SceneManager",
+
+        "PrefabType", sol::var(lua.create_table_with(
+                "PT_PLANE", SceneManager::PT_PLANE,
+                "PT_CUBE", SceneManager::PT_CUBE,
+                "PT_SPHERE", SceneManager::PT_SPHERE
+            )),
+        
+        "setAmbientLight", &SceneManager::setAmbientLight
+    );
 }
 
+static void sphereBindings(sol::state &lua) {
 
-static luabind::scope
-    sphereBindings() {
-    return class_<Sphere>("Sphere")
-        .def(constructor<>())
-        .def(constructor<const Vector3&, Real>())
-        .def("getRadius", &Sphere::getRadius)
-        .def("setRadius", &Sphere::setRadius)
-        .def("getCenter", &Sphere::getCenter)
-        .def("setCenter", &Sphere::setCenter)
-        .def("intersects",
-            static_cast<bool (Sphere::*)(const Sphere&) const>(&Sphere::intersects)
-        )
-        .def("intersects",
-            static_cast<bool (Sphere::*)(const AxisAlignedBox&) const>(&Sphere::intersects)
-        )
-        .def("intersects",
-            static_cast<bool (Sphere::*)(const Plane&) const>(&Sphere::intersects)
-        )
-        .def("intersects",
+    using namespace Ogre;
+    
+    lua.new_usertype<Ogre::Sphere>("Sphere",
+
+        sol::constructors<sol::types<>, sol::types<const Vector3&, Real>>(),
+
+        "getRadius", &Sphere::getRadius,
+        "setRadius", &Sphere::setRadius,
+        "getCenter", &Sphere::getCenter,
+        "setCenter", &Sphere::setCenter,
+        
+        "intersects", sol::overload(
+            static_cast<bool (Sphere::*)(const Sphere&) const>(&Sphere::intersects),
+            static_cast<bool (Sphere::*)(const AxisAlignedBox&) const>(&Sphere::intersects),
+            static_cast<bool (Sphere::*)(const Plane&) const>(&Sphere::intersects),
             static_cast<bool (Sphere::*)(const Vector3&) const>(&Sphere::intersects)
-        )
-        .def("merge", &Sphere::merge)
-        ;
+        ),
+        
+        "merge", &Sphere::merge
+    );
 }
 
+static void vector3Bindings(sol::state &lua) {
 
-static luabind::scope
-    vector3Bindings() {
-    return class_<Vector3>("Vector3")
-        .def(constructor<>())
-        .def(constructor<const Real, const Real, const Real>())
-        .def(const_self == other<Vector3>())
-        .def(const_self + other<Vector3>())
-        .def(const_self - other<Vector3>())
-        .def(const_self * Real())
-        .def(Real() * const_self)
-        .def(const_self * other<Vector3>())
-        .def(const_self / Real())
-        .def(const_self / other<Vector3>())
-        .def(const_self < other<Vector3>())
-        .def(tostring(self))
-        .def_readwrite("x", &Vector3::x)
-        .def_readwrite("y", &Vector3::y)
-        .def_readwrite("z", &Vector3::z)
-        .def("length", &Vector3::length)
-        .def("squaredLength", &Vector3::squaredLength)
-        .def("distance", &Vector3::distance)
-        .def("squaredDistance", &Vector3::squaredDistance)
-        .def("dotProduct", &Vector3::dotProduct)
-        .def("absDotProduct", &Vector3::absDotProduct)
-        .def("normalise", &Vector3::normalise)
-        .def("crossProduct", &Vector3::crossProduct)
-        .def("midPoint", &Vector3::midPoint)
-        .def("makeFloor", &Vector3::makeFloor)
-        .def("makeCeil", &Vector3::makeCeil)
-        .def("perpendicular", &Vector3::perpendicular)
-        .def("randomDeviant", &Vector3::randomDeviant)
-        .def("angleBetween", &Vector3::angleBetween)
-        .def("getRotationTo", &Vector3::getRotationTo)
-        .def("isZeroLength", &Vector3::isZeroLength)
-        .def("normalisedCopy", &Vector3::normalisedCopy)
-        .def("reflect", &Vector3::reflect)
-        .def("positionEquals", &Vector3::positionEquals)
-        .def("positionCloses", &Vector3::positionCloses)
-        .def("directionEquals", &Vector3::directionEquals)
-        .def("isNaN", &Vector3::isNaN)
-        .def("primaryAxis", &Vector3::primaryAxis)
-        ;
+    using namespace Ogre;
+    
+    lua.new_usertype<Ogre::Vector3>("Vector3",
+
+        sol::constructors<sol::types<>, sol::types<const Real, const Real, const Real>>(),
+
+        //sol::meta_function::equal_to, &Ogre::Vector3::operator==,
+
+        sol::meta_function::less_than, &Ogre::Vector3::operator <,
+        
+        sol::meta_function::addition, static_cast<Ogre::Vector3 (Ogre::Vector3::*)(
+            const Ogre::Vector3&) const>(&Ogre::Vector3::operator+),
+
+        sol::meta_function::subtraction, static_cast<Ogre::Vector3 (Ogre::Vector3::*)(
+            const Ogre::Vector3&) const>(&Ogre::Vector3::operator-),
+
+        sol::meta_function::multiplication, sol::overload(
+            static_cast<Ogre::Vector3 (Ogre::Vector3::*)(const Ogre::Vector3&) const>(
+                &Ogre::Vector3::operator*),
+            static_cast<Ogre::Vector3 (Ogre::Vector3::*)(const Ogre::Real) const>(
+                &Ogre::Vector3::operator*)
+        ),
+
+        
+        sol::meta_function::division, sol::overload(
+            static_cast<Ogre::Vector3 (Ogre::Vector3::*)(const Ogre::Vector3&) const>(
+                &Ogre::Vector3::operator/),
+            static_cast<Ogre::Vector3 (Ogre::Vector3::*)(const Ogre::Real) const>(
+                &Ogre::Vector3::operator/)
+        ),
+
+        //.def(tostring(self))
+
+        "x", &Vector3::x,
+        "y", &Vector3::y,
+        "z", &Vector3::z,
+        
+        "length", &Vector3::length,
+        "squaredLength", &Vector3::squaredLength,
+        "distance", &Vector3::distance,
+        "squaredDistance", &Vector3::squaredDistance,
+        "dotProduct", &Vector3::dotProduct,
+        "absDotProduct", &Vector3::absDotProduct,
+        "normalise", &Vector3::normalise,
+        "crossProduct", &Vector3::crossProduct,
+        "midPoint", &Vector3::midPoint,
+        "makeFloor", &Vector3::makeFloor,
+        "makeCeil", &Vector3::makeCeil,
+        "perpendicular", &Vector3::perpendicular,
+        "randomDeviant", &Vector3::randomDeviant,
+        "angleBetween", &Vector3::angleBetween,
+        "getRotationTo", &Vector3::getRotationTo,
+        "isZeroLength", &Vector3::isZeroLength,
+        "normalisedCopy", &Vector3::normalisedCopy,
+        "reflect", &Vector3::reflect,
+        "positionEquals", &Vector3::positionEquals,
+        "positionCloses", &Vector3::positionCloses,
+        "directionEquals", &Vector3::directionEquals,
+        "isNaN", &Vector3::isNaN,
+        "primaryAxis", &Vector3::primaryAxis
+    );
 }
-
+    
 static void ogreLuaBindings(sol::state &lua){
-
+    
     // Math
-    axisAlignedBoxBindings(),
-        colourValueBindings(),
-        degreeBindings(),
-        matrix3Bindings(),
-        planeBindings(),
-        quaternionBindings(),
-        radianBindings(),
-        rayBindings(),
-        sphereBindings(),
-        vector3Bindings(),
-        // Scene Manager
-        sceneManagerBindings(),
-        movableObjectBindings(),
-        entityBindings(),
-        // Components
-        OgreCameraComponent::luaBindings(),
-        OgreLightComponent::luaBindings(),
-        OgreSceneNodeComponent::luaBindings(),
-        SkyPlaneComponent::luaBindings(),
-        OgreWorkspaceComponent::luaBindings(),
-        // Systems
-        OgreAddSceneNodeSystem::luaBindings(),
-        OgreCameraSystem::luaBindings(),
-        OgreLightSystem::luaBindings(),
-        OgreRemoveSceneNodeSystem::luaBindings(),
-        OgreUpdateSceneNodeSystem::luaBindings(),
-        thrive::RenderSystem::luaBindings(), // Fully qualified because of Ogre::RenderSystem
-        SkySystem::luaBindings(),
-        OgreWorkspaceSystem::luaBindings(),
-        // Other
-        Keyboard::luaBindings(),
-        Mouse::luaBindings()
+    axisAlignedBoxBindings(lua);
+    colourValueBindings(lua);
+    degreeBindings(lua);
+    matrix3Bindings(lua);
+    planeBindings(lua);
+    quaternionBindings(lua);
+    radianBindings(lua);
+    rayBindings(lua);
+    sphereBindings(lua);
+    vector3Bindings(lua);
+    // Scene Manager
+    sceneManagerBindings(lua);
+    ogreEntityBindings(lua);
+    // Components
+    OgreCameraComponent::luaBindings(lua);
+    OgreLightComponent::luaBindings(lua);
+    OgreSceneNodeComponent::luaBindings(lua);
+    SkyPlaneComponent::luaBindings(lua);
+    OgreWorkspaceComponent::luaBindings(lua);
+    // Systems
+    OgreAddSceneNodeSystem::luaBindings(lua);
+    OgreCameraSystem::luaBindings(lua);
+    OgreLightSystem::luaBindings(lua);
+    OgreRemoveSceneNodeSystem::luaBindings(lua);
+    OgreUpdateSceneNodeSystem::luaBindings(lua);
+    thrive::RenderSystem::luaBindings(lua); // Fully qualified because of Ogre::RenderSystem
+    SkySystem::luaBindings(lua);
+    OgreWorkspaceSystem::luaBindings(lua);
+    // Other
+    Keyboard::luaBindings(lua);
+    Mouse::luaBindings(lua);
 }
 
 
