@@ -2,20 +2,22 @@
 
 #include "engine/engine.h"
 #include "engine/game_state.h"
-#include "scripting/luabind.h"
+#include "scripting/luajit.h"
 
 #include <OgreRoot.h>
 
 using namespace thrive;
 
-luabind::scope
-RenderSystem::luaBindings() {
-    using namespace luabind;
-    return class_<RenderSystem, System>("RenderSystem")
-        .def(constructor<>())
-    ;
-}
+void RenderSystem::luaBindings(
+    sol::state &lua
+){
+    lua.new_usertype<RenderSystem>("RenderSystem",
 
+        sol::constructors<sol::types<>>(),
+        
+        sol::base_classes, sol::bases<System>()
+    );
+}
 
 struct RenderSystem::Implementation {
 

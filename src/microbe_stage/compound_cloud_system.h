@@ -8,7 +8,6 @@
 #include "engine/component.h"
 #include "engine/system.h"
 #include "engine/touchable.h"
-#include "scripting/luabind.h"
 #include "engine/typedefs.h"
 
 #include "general/perlin_noise.h"
@@ -65,8 +64,7 @@ public:
     *
     * @return
     */
-    static luabind::scope
-    luaBindings();
+    static void luaBindings(sol::state &lua);
 
     void
     load(
@@ -116,8 +114,7 @@ public:
     *
     * @return
     */
-    static luabind::scope
-    luaBindings();
+    static void luaBindings(sol::state &lua);
 
     /**
     * @brief Constructor

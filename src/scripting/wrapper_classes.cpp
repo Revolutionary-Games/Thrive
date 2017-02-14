@@ -5,12 +5,7 @@
 #include "engine/serialization.h"
 #include "game.h"
 
-#include <CEGUI/CEGUI.h>
-#include <CEGUI/views/StandardItemModel.h>
-
-
 using namespace thrive;
-
 
 // ------------------------------------ //
 // ComponentWrapper
@@ -79,41 +74,6 @@ StorageContainer ComponentWrapper::default_storage(
 ) {
     return self->Component::storage();
 }
-
-
-// ------------------------------------ //
-// StandardItemWrapper
-// ------------------------------------ //
-StandardItemWrapper::StandardItemWrapper(
-    const std::string &text,
-    int id) :
-    m_attached(false)
-{
-    
-    m_item = new CEGUI::StandardItem(text.c_str(), id);
-}
-
-StandardItemWrapper::~StandardItemWrapper(){
-
-    if(!m_attached && m_item){
-
-        delete m_item;
-        m_item = nullptr;
-    }
-}
-
-CEGUI::StandardItem*
-    StandardItemWrapper::getItem(){
-
-    return m_item;
-}
-
-void
-    StandardItemWrapper::markAttached(){
-
-    m_attached = true;
-}
-
 // ------------------------------------ //
 // SystemWrapper
 // ------------------------------------ //

@@ -3,10 +3,10 @@
 #include "engine/component.h"
 #include "engine/system.h"
 #include "engine/touchable.h"
-#include "scripting/luabind.h"
 #include "engine/typedefs.h"
 
-#include <luabind/object.hpp>
+#include "scripting/luajit.h"
+
 #include <OgreCommon.h>
 #include <OgreColourValue.h>
 #include <OgreMath.h>
@@ -37,8 +37,7 @@ public:
     *
     * @return
     */
-    static luabind::scope
-    luaBindings();
+    static void luaBindings(sol::state &lua);
 
     MembraneComponent();
 
@@ -99,7 +98,7 @@ public:
 
 
     // Gets the position of the closest membrane point
-    luabind::object getExternOrganellePos(double x, double y);
+    sol::object getExternOrganellePos(double x, double y);
 
     bool isInitialized;
     bool wantsMembrane;
@@ -160,8 +159,7 @@ public:
     *
     * @return
     */
-    static luabind::scope
-    luaBindings();
+    static void luaBindings(sol::state &lua);
 
     /**
     * @brief Constructor

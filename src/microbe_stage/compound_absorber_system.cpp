@@ -13,14 +13,13 @@
 #include "engine/serialization.h"
 #include "game.h"
 #include "ogre/scene_node_system.h"
-#include "scripting/luabind.h"
+#include "scripting/luajit.h"
 #include "util/make_unique.h"
 #include "microbe_stage/compound.h"
 #include "microbe_stage/compound_registry.h"
 
 #include "tinyxml.h"
 
-#include <luabind/iterator_policy.hpp>
 #include <OgreEntity.h>
 #include <OgreSceneManager.h>
 #include <stdexcept>
@@ -33,25 +32,31 @@ using namespace thrive;
 // CompoundAbsorberComponent
 ////////////////////////////////////////////////////////////////////////////////
 
-luabind::scope
-CompoundAbsorberComponent::luaBindings() {
-    using namespace luabind;
-    return class_<CompoundAbsorberComponent, Component>("CompoundAbsorberComponent")
-        .enum_("ID") [
-            value("TYPE_ID", CompoundAbsorberComponent::TYPE_ID)
-        ]
-        .scope [
-            def("TYPE_NAME", &CompoundAbsorberComponent::TYPE_NAME)
-        ]
-        .def(constructor<>())
-        .def("absorbedCompoundAmount", &CompoundAbsorberComponent::absorbedCompoundAmount)
-        .def("getAbsorbedCompounds", &CompoundAbsorberComponent::getAbsorbedCompounds, return_stl_iterator)
-        .def("setAbsorbedCompoundAmount", &CompoundAbsorberComponent::setAbsorbedCompoundAmount)
-        .def("setCanAbsorbCompound", &CompoundAbsorberComponent::setCanAbsorbCompound)
-        .def("setAbsorbtionCapacity", &CompoundAbsorberComponent::setAbsorbtionCapacity)
-        .def("enable", &CompoundAbsorberComponent::enable)
-        .def("disable", &CompoundAbsorberComponent::disable)
-    ;
+void CompoundAbsorberComponent::luaBindings(
+    sol::state &lua
+){
+    lua.new_usertype<CompoundAbsorberComponent>("CompoundAbsorberComponent",
+
+        sol::constructors<sol::types<>>(),
+
+        sol::base_classes, sol::bases<Component>(),
+
+        "ID", sol::var(lua.create_table_with("TYPE_ID", CompoundAbsorberComponent::TYPE_ID)),
+        "TYPE_NAME", &CompoundAbsorberComponent::TYPE_NAME,
+
+        "absorbedCompoundAmount", &CompoundAbsorberComponent::absorbedCompoundAmount,
+        
+        "getAbsorbedCompounds", [](CompoundAbsorberComponent& us, sol::this_state s){
+            
+            THRIVE_BIND_ITERATOR_TO_TABLE(us.getAbsorbedCompounds());
+        },
+        
+        "setAbsorbedCompoundAmount", &CompoundAbsorberComponent::setAbsorbedCompoundAmount,
+        "setCanAbsorbCompound", &CompoundAbsorberComponent::setCanAbsorbCompound,
+        "setAbsorbtionCapacity", &CompoundAbsorberComponent::setAbsorbtionCapacity,
+        "enable", &CompoundAbsorberComponent::enable,
+        "disable", &CompoundAbsorberComponent::disable
+    );
 }
 
 
@@ -159,13 +164,13 @@ REGISTER_COMPONENT(CompoundAbsorberComponent)
 ////////////////////////////////////////////////////////////////////////////////
 // CompoundAbsorberSystem
 ////////////////////////////////////////////////////////////////////////////////
+    void CompoundAbsorberSystem::luaBindings(
+    sol::state &lua
+){
+    lua.new_usertype<CompoundAbsorberSystem>("CompoundAbsorberSystem",
 
-luabind::scope
-CompoundAbsorberSystem::luaBindings() {
-    using namespace luabind;
-    return class_<CompoundAbsorberSystem, System>("CompoundAbsorberSystem")
-        .def(constructor<>())
-    ;
+        sol::constructors<sol::types<>>()
+    );
 }
 
 struct CompoundAbsorberSystem::Implementation {

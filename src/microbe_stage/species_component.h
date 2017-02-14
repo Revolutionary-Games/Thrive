@@ -1,7 +1,9 @@
 #pragma once
 
-#include "scripting/luabind.h"
 #include "engine/component.h"
+
+#include "scripting/luajit.h"
+
 #include <OgreVector3.h>
 #include <string>
 
@@ -11,13 +13,12 @@ class SpeciesComponent : public Component {
 	COMPONENT(SpeciesComponent)
 
 public:
-	static luabind::scope
-	luaBindings();
+    static void luaBindings(sol::state &lua);
 
 	SpeciesComponent(const std::string& _name = "");
 
-	luabind::object organelles;
-	luabind::object avgCompoundAmounts;
+	sol::table organelles;
+	sol::table avgCompoundAmounts;
 	Ogre::Vector3 colour;
 	std::string name;
 

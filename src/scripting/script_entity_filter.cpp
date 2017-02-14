@@ -5,26 +5,24 @@
 #include "engine/entity_manager.h"
 #include "engine/game_state.h"
 #include "game.h"
-#include "scripting/luabind.h"
-
-#include <luabind/iterator_policy.hpp>
 
 using namespace thrive;
 
 struct ScriptEntityFilter::Implementation {
 
     Implementation(
-        luabind::object componentTypes,
+        sol::table componentTypes,
         bool recordChanges
     ) : m_recordChanges(recordChanges)
     {
-        using namespace luabind;
-        if (luabind::type(componentTypes) != LUA_TTABLE) {
-            throw std::runtime_error("ScriptEntityFilter constructor expects a list (table) of component types");
+        if (componentTypes.get_type() != sol::type::table) {
+            throw std::runtime_error("ScriptEntityFilter constructor expects a list "
+                "(table) of component types");
         }
-        for (luabind::iterator iter(componentTypes), end; iter != end; ++iter) {
-            luabind::object ret = (*iter)["TYPE_ID"];
-            ComponentTypeId typeId = luabind::object_cast<ComponentTypeId>(ret);
+        for (const auto& pair : componentTypes) {
+            ComponentTypeId typeId = pair.second.as<sol::table>().get<
+                ComponentTypeId>("TYPE_ID");
+            
             m_requiredComponents.insert(typeId);
         }
     }
@@ -137,26 +135,25 @@ struct ScriptEntityFilter::Implementation {
 
 };
 
+void ScriptEntityFilter::luaBindings(
+    sol::state &lua
+){
+    lua.new_usertype<ScriptEntityFilter>("EntityFilter",
 
-luabind::scope
-ScriptEntityFilter::luaBindings() {
-    using namespace luabind;
-    return class_<ScriptEntityFilter>("EntityFilter")
-        .def(constructor<luabind::object>())
-        .def(constructor<luabind::object, bool>())
-        .def("addedEntities", &ScriptEntityFilter::addedEntities, return_stl_iterator)
-        .def("clearChanges", &ScriptEntityFilter::clearChanges)
-        .def("containsEntity", &ScriptEntityFilter::containsEntity)
-        .def("entities", &ScriptEntityFilter::entities, return_stl_iterator)
-        .def("init", &ScriptEntityFilter::init)
-        .def("removedEntities", &ScriptEntityFilter::removedEntities, return_stl_iterator)
-        .def("shutdown", &ScriptEntityFilter::shutdown)
-    ;
+        sol::constructors<sol::types<sol::table>, sol::types<sol::table, bool>>(),
+
+        "addedEntities", &ScriptEntityFilter::addedEntities, 
+        "clearChanges", &ScriptEntityFilter::clearChanges,
+        "containsEntity", &ScriptEntityFilter::containsEntity,
+        "entities", &ScriptEntityFilter::entities, 
+        "init", &ScriptEntityFilter::init,
+        "removedEntities", &ScriptEntityFilter::removedEntities, 
+        "shutdown", &ScriptEntityFilter::shutdown
+    );
 }
 
-
 ScriptEntityFilter::ScriptEntityFilter(
-    luabind::object componentTypes,
+    sol::table componentTypes,
     bool recordChanges
 ) : m_impl(new Implementation(componentTypes, recordChanges))
 {
@@ -164,7 +161,7 @@ ScriptEntityFilter::ScriptEntityFilter(
 
 
 ScriptEntityFilter::ScriptEntityFilter(
-    luabind::object componentTypes
+    sol::table componentTypes
 ) : m_impl(new Implementation(componentTypes, false))
 {
 }

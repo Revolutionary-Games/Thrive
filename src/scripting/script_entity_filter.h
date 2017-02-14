@@ -1,9 +1,8 @@
 #pragma once
 
 #include "engine/typedefs.h"
-#include "scripting/luabind.h"
+#include "scripting/luajit.h"
 
-#include <luabind/object.hpp>
 #include <memory>
 #include <unordered_set>
 
@@ -30,8 +29,7 @@ public:
     * - ScriptEntityFilter::shutdown
     *
     */
-    static luabind::scope
-    luaBindings();
+    static void luaBindings(sol::state &lua);
 
     /**
     * @brief Constructor
@@ -44,7 +42,7 @@ public:
     *   and removed during a frame.
     */
     ScriptEntityFilter(
-        luabind::object componentTypes,
+        sol::table componentTypes,
         bool recordChanges
     );
 
@@ -59,7 +57,7 @@ public:
     *   that should be filtered for
     */
     ScriptEntityFilter(
-        luabind::object componentTypes
+        sol::table componentTypes
     );
 
     /**

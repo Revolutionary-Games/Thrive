@@ -48,24 +48,10 @@ void CompoundRegistry::luaBindings(
         "getCompoundId", &CompoundRegistry::getCompoundId,
 
         // sol:: doesn't like boost wrapped iterators
-        // "getCompoundList", &CompoundRegistry::getCompoundList,
         "getCompoundList", [](CompoundRegistry &us, sol::this_state s){
-            
-            sol::state_view lua(s);
-            auto list = us.getCompoundList();
 
-            sol::table table = lua.create_table();
-
-            auto iter = list.begin();
-            for(int i = 1; iter != list.end(); ++i, ++iter){
-
-                table[i] = *iter;
-            }
-
-            return table;
+            THRIVE_BIND_ITERATOR_TO_TABLE(us.getCompoundList());
         },
-        
-
         
         "getCompoundMeshScale", &CompoundRegistry::getCompoundMeshScale,
         "getAgentEffect", &CompoundRegistry::getAgentEffect

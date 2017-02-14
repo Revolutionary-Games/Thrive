@@ -1,25 +1,97 @@
 #include "scripting/script_initializer.h"
 
-#include "bullet/script_bindings.h"
 #include "engine/engine.h"
 #include "engine/rng.h"
-#include "engine/script_bindings.h"
-#include "general/script_bindings.h"
 #include "game.h"
-#include "microbe_stage/script_bindings.h"
-#include "gui/script_bindings.h"
-#include "ogre/script_bindings.h"
-#include "scripting/luabind.h"
-#include "scripting/script_bindings.h"
-#include "sound/script_bindings.h"
+#include "scripting/luajit.h"
+#include "scripting/wrapper_classes.h"
 #include "engine/rolling_grid.h"
 
-#include "luajit.h"
+
+
+
+#include "engine/component.h"
+#include "engine/component_factory.h"
+#include "engine/engine.h"
+#include "engine/entity.h"
+#include "engine/game_state.h"
+#include "engine/serialization.h"
+#include "engine/system.h"
+#include "engine/touchable.h"
+#include "engine/player_data.h"
+#include "engine/rng.h"
+
+#include "bullet/bullet_ogre_conversion.h"
+#include "bullet/bullet_to_ogre_system.h"
+#include "bullet/collision_filter.h"
+#include "bullet/collision_shape.h"
+#include "bullet/collision_system.h"
+#include "bullet/debug_drawing.h"
+#include "bullet/rigid_body_system.h"
+#include "bullet/update_physics_system.h"
+
+#include <utility>
+#include <btBulletCollisionCommon.h>
+#include <memory>
+#include <OgreVector3.h>
+
+#include "gui/script_wrappers.h"
+#include "general/timed_life_system.h"
+#include "general/locked_map.h"
+#include "general/powerup_system.h"
+
+#include "gui/CEGUIWindow.h"
+#include "gui/CEGUIVideoPlayer.h"
+
+#include "ogre/camera_system.h"
+#include "ogre/colour_material.h"
+#include "ogre/keyboard.h"
+#include "ogre/light_system.h"
+#include "ogre/mouse.h"
+#include "ogre/render_system.h"
+#include "ogre/scene_node_system.h"
+#include "ogre/sky_system.h"
+
+#include "ogre/workspace_system.h"
+
+
+#include <OgreAxisAlignedBox.h>
+#include <OgreColourValue.h>
+#include <OgreMath.h>
+#include <OgreMatrix3.h>
+#include <OgreMaterialManager.h>
+#include <OgreMaterial.h>
+#include <OgreTechnique.h>
+#include <OgreRay.h>
+#include <OgreSceneManager.h>
+#include <OgreSphere.h>
+#include <OgreVector3.h>
+#include <OgreSubEntity.h>
+#include <OgreEntity.h>
+#include <OgreSubMesh.h>
+
+#include <string>
+
+
+#include "microbe_stage/compound.h"
+#include "microbe_stage/compound_absorber_system.h"
+#include "microbe_stage/compound_emitter_system.h"
+#include "microbe_stage/compound_registry.h"
+#include "microbe_stage/bio_process_registry.h"
+#include "microbe_stage/membrane_system.h"
+#include "microbe_stage/compound_cloud_system.h"
+#include "microbe_stage/process_system.h"
+#include "microbe_stage/agent_cloud_system.h"
+#include "microbe_stage/species_component.h"
+
+
+#include "sound/sound_source_system.h"
+
 
 #include <forward_list>
 #include <iostream>
-#include <luabind/class_info.hpp>
 
+using namespace thrive;
 
 static int
 constructTraceback(
@@ -54,510 +126,423 @@ constructTraceback(
 //! \exception std::runtime_error if fails
 void bindClassesToLua(sol::state &lua);
 
-void initializeLua(sol::state &lua){
+// Forward declare some binding functions
+static void listboxItemBindings(sol::state &lua);
+static void itemEntryluaBindings(sol::state &lua);
+static void ogreLuaBindings(sol::state &lua);
+
+void thrive::initializeLua(sol::state &lua){
 
     // Class type registering //
     bindClassesToLua(lua);
 
     // Global objects //
-    globals["Engine"] = &(Game::instance().engine());
-    globals["rng"] = &(Game::instance().engine().rng());    
+    lua["Engine"] = &(Game::instance().engine());
+    lua["rng"] = &(Game::instance().engine().rng());    
 }
 
 void bindClassesToLua(sol::state &lua){
 
-    luabind::set_pcall_callback(constructTraceback);
-    luabind::open(L);
-    luabind::bind_class_info(L);
-    luabind::module(L) [
-        EngineBindings::luaBindings(),
-        GeneralBindings::luaBindings(),
-        OgreBindings::luaBindings(),
-        BulletBindings::luaBindings(),
-        ScriptBindings::luaBindings(),
-        MicrobeBindings::luaBindings(),
-        GuiBindings::luaBindings(),
-        SoundBindings::luaBindings(),
-        RollingGrid::luaBindings()
-    ];
-}
+    // Are these the same?
+    //lua.set_panic
+    //luabind::set_pcall_callback(constructTraceback);
 
 
-#include "bullet/script_bindings.h"
+    // Engine bindings
+    {
+        StorageContainer::luaBindings(lua);
+        StorageList::luaBindings(lua);
+        System::luaBindings(lua);
+        Component::luaBindings(lua);
+        ComponentFactory::luaBindings(lua);
+        Entity::luaBindings(lua);
+        Touchable::luaBindings(lua);
+        GameState::luaBindings(lua);
+        Engine::luaBindings(lua);
+        RNG::luaBindings(lua);
+        PlayerData::luaBindings(lua);
+    }
 
-#include "bullet/bullet_ogre_conversion.h"
-#include "bullet/bullet_to_ogre_system.h"
-#include "bullet/collision_filter.h"
-#include "bullet/collision_shape.h"
-#include "bullet/collision_system.h"
-#include "bullet/debug_drawing.h"
-#include "bullet/rigid_body_system.h"
-#include "bullet/update_physics_system.h"
-#include "scripting/luabind.h"
+    // General bindings
+    {
+        // Components
+        TimedLifeComponent::luaBindings(lua);
+        LockedMap::luaBindings(lua);
+        PowerupComponent::luaBindings(lua);
+        // Systems
+        TimedLifeSystem::luaBindings(lua);
+        PowerupSystem::luaBindings(lua);
+        // Other
+    }
 
-#include <utility>
-#include <btBulletCollisionCommon.h>
-#include <memory>
-#include <OgreVector3.h>
+    // Ogre bindings
+    ogreLuaBindings(lua);
 
-using namespace luabind;
-using namespace thrive;
-
-
-luabind::scope
-    thrive::BulletBindings::luaBindings() {
-    return (
+    // Bullet bindings
+    {
         // Shapes
-        CollisionShape::luaBindings(),
-        BoxShape::luaBindings(),
-        CapsuleShape::luaBindings(),
-        CompoundShape::luaBindings(),
-        ConeShape::luaBindings(),
-        CylinderShape::luaBindings(),
-        EmptyShape::luaBindings(),
-        SphereShape::luaBindings(),
+        CollisionShape::luaBindings(lua);
+        BoxShape::luaBindings(lua);
+        CapsuleShape::luaBindings(lua);
+        CompoundShape::luaBindings(lua);
+        ConeShape::luaBindings(lua);
+        CylinderShape::luaBindings(lua);
+        EmptyShape::luaBindings(lua);
+        SphereShape::luaBindings(lua);
         // Components
-        RigidBodyComponent::luaBindings(),
-        CollisionComponent::luaBindings(),
+        RigidBodyComponent::luaBindings(lua);
+        CollisionComponent::luaBindings(lua);
         // Systems
-        BulletToOgreSystem::luaBindings(),
-        RigidBodyInputSystem::luaBindings(),
-        RigidBodyOutputSystem::luaBindings(),
-        BulletDebugDrawSystem::luaBindings(),
-        UpdatePhysicsSystem::luaBindings(),
-        CollisionSystem::luaBindings(),
+        BulletToOgreSystem::luaBindings(lua);
+        RigidBodyInputSystem::luaBindings(lua);
+        RigidBodyOutputSystem::luaBindings(lua);
+        BulletDebugDrawSystem::luaBindings(lua);
+        UpdatePhysicsSystem::luaBindings(lua);
+        CollisionSystem::luaBindings(lua);
         // Other
-        CollisionFilter::luaBindings(),
-        Collision::luaBindings()
-    );
-}
+        CollisionFilter::luaBindings(lua);
+        Collision::luaBindings(lua);
+    }
 
+    // Script bindings
+    {
+        
+    }
 
-
-
-#include "engine/script_bindings.h"
-
-#include "engine/component.h"
-#include "engine/component_factory.h"
-#include "engine/engine.h"
-#include "engine/entity.h"
-#include "engine/game_state.h"
-#include "engine/serialization.h"
-#include "engine/system.h"
-#include "engine/touchable.h"
-#include "engine/player_data.h"
-#include "engine/rng.h"
-#include "scripting/luabind.h"
-
-
-luabind::scope
-    thrive::EngineBindings::luaBindings() {
-    return (
-        StorageContainer::luaBindings(),
-        StorageList::luaBindings(),
-        System::luaBindings(),
-        Component::luaBindings(),
-        ComponentFactory::luaBindings(),
-        Entity::luaBindings(),
-        Touchable::luaBindings(),
-        GameState::luaBindings(),
-        Engine::luaBindings(),
-        RNG::luaBindings(),
-        PlayerData::luaBindings()
-    );
-}
-
-#include "general/script_bindings.h"
-
-#include "scripting/luabind.h"
-#include "general/timed_life_system.h"
-#include "general/locked_map.h"
-#include "general/powerup_system.h"
-
-luabind::scope
-    thrive::GeneralBindings::luaBindings() {
-    return (
+    // Microbe stage bindings
+    {
         // Components
-        TimedLifeComponent::luaBindings(),
-        LockedMap::luaBindings(),
-        PowerupComponent::luaBindings(),
+        CompoundComponent::luaBindings(lua);
+        ProcessorComponent::luaBindings(lua);
+        CompoundBagComponent::luaBindings(lua);
+        CompoundAbsorberComponent::luaBindings(lua);
+        CompoundEmitterComponent::luaBindings(lua);
+        TimedCompoundEmitterComponent::luaBindings(lua);
+        MembraneComponent::luaBindings(lua);
+        CompoundCloudComponent::luaBindings(lua);
+        AgentCloudComponent::luaBindings(lua);
+        SpeciesComponent::luaBindings(lua);
         // Systems
-        TimedLifeSystem::luaBindings(),
-        PowerupSystem::luaBindings()
+        CompoundMovementSystem::luaBindings(lua);
+        CompoundAbsorberSystem::luaBindings(lua);
+        CompoundEmitterSystem::luaBindings(lua);
+        MembraneSystem::luaBindings(lua);
+        CompoundCloudSystem::luaBindings(lua);
+        ProcessSystem::luaBindings(lua);
+        AgentCloudSystem::luaBindings(lua);
         // Other
+        CompoundRegistry::luaBindings(lua);
+        BioProcessRegistry::luaBindings(lua);
+    }
+    
+    // Gui bindings
+    {
+        // Other
+        listboxItemBindings(lua);
+        itemEntryluaBindings(lua);
+        CEGUIWindow::luaBindings(lua);
+        CEGUIVideoPlayer::luaBindings(lua);
+
+        StandardItemWrapper::luaBindings(lua);
+    }
+
+    // Sound bindings
+    {
+        Sound::luaBindings(lua);
+        SoundSourceSystem::luaBindings(lua);
+        SoundSourceComponent::luaBindings(lua);
+    }
+    
+    RollingGrid::luaBindings(lua);
+}
+
+
+
+static void ListboxItem_setColour(
+    CEGUI::ListboxTextItem &self,
+    float r,
+    float g,
+    float b
+) {
+    self.setTextColours(CEGUI::Colour(r,g,b));
+}
+
+static void ListboxItem_setText(
+    CEGUI::ListboxTextItem &self,
+    const std::string& text
+) {
+    self.setText(text);
+}
+
+static void listboxItemBindings(sol::state &lua) {
+
+    lua.new_usertype<CEGUI::ListboxTextItem>("ListboxItem",
+
+        sol::constructors<sol::types<const std::string&>>(),
+        
+        "setTextColours", &ListboxItem_setColour,
+        "setText", &ListboxItem_setText
     );
 }
 
-
-#include "gui/script_bindings.h"
-
-#include "gui/CEGUIWindow.h"
-#include "gui/CEGUIVideoPlayer.h"
-#include "script_wrappers.h"
-#include "scripting/luabind.h"
-
-using namespace luabind;
-
-static void
-    ListboxItem_setColour(
-        CEGUI::ListboxTextItem* self,
-        float r,
-        float g,
-        float b
-    ) {
-    self->setTextColours(CEGUI::Colour(r,g,b));
+static void ItemEntry_setText(
+    CEGUI::ItemEntry &self,
+    const std::string& text
+) {
+    self.setText(text);
 }
 
-static void
-    ListboxItem_setText(
-        CEGUI::ListboxTextItem* self,
-        const std::string& text
-    ) {
-    self->setText(text);
+static bool ItemEntry_isSelected(
+    CEGUI::ItemEntry &self
+) {
+    return self.isSelected();
 }
 
-
-static luabind::scope
-    listboxItemBindings() {
-    return class_<CEGUI::ListboxTextItem>("ListboxItem")
-        .def(constructor<const std::string&>())
-        .def("setTextColours", &ListboxItem_setColour)
-        .def("setText", &ListboxItem_setText)
-        ;
+static void ItemEntry_select(
+    CEGUI::ItemEntry &self
+) {
+    self.select();
 }
 
-static void
-    ItemEntry_setText(
-        CEGUI::ItemEntry* self,
-        const std::string& text
-    ) {
-    self->setText(text);
+static void ItemEntry_deselect(
+    CEGUI::ItemEntry &self
+) {
+    self.deselect();
 }
 
-static bool
-    ItemEntry_isSelected(
-        CEGUI::ItemEntry* self
-    ) {
-    return self->isSelected();
+static void ItemEntry_setSelectable(
+    CEGUI::ItemEntry &self,
+    bool setting
+) {
+    self.setSelectable(setting);
 }
 
-static void
-    ItemEntry_select(
-        CEGUI::ItemEntry* self
-    ) {
-    self->select();
-}
+static void itemEntryluaBindings(sol::state &lua){
 
-static void
-    ItemEntry_deselect(
-        CEGUI::ItemEntry* self
-    ) {
-    self->deselect();
-}
+    lua.new_usertype<CEGUI::ItemEntry>("ItemEntry",
 
-static void
-    ItemEntry_setSelectable(
-        CEGUI::ItemEntry* self,
-        bool setting
-    ) {
-    self->setSelectable(setting);
-}
-
-static luabind::scope
-    itemEntryBindings() {
-    return class_<CEGUI::ItemEntry>("ItemEntry")
-        .def(constructor<const std::string&, const std::string&>())
-        .def("isSelected", &ItemEntry_isSelected)
-        .def("select", &ItemEntry_select)
-        .def("deselect", &ItemEntry_deselect)
-        .def("setSelectable", &ItemEntry_setSelectable)
-        .def("setText", &ItemEntry_setText)
-        ;
-}
-
-luabind::scope
-    thrive::GuiBindings::luaBindings() {
-    return (
-        // Other
-        listboxItemBindings(),
-        itemEntryBindings(),
-        CEGUIWindow::luaBindings(),
-        CEGUIVideoPlayer::luaBindings(),
-        ScriptWrappers::StandardItemWrapperBindings()
+        sol::constructors<sol::types<const std::string&, const std::string&>>(),
+        
+        "isSelected", &ItemEntry_isSelected,
+        "select", &ItemEntry_select,
+        "deselect", &ItemEntry_deselect,
+        "setSelectable", &ItemEntry_setSelectable,
+        "setText", &ItemEntry_setText
     );
 }
 
+static void axisAlignedBoxBindings(sol::state &lua) {
 
+    using namespace Ogre;
 
-#include "microbe_stage/script_bindings.h"
+    lua.new_usertype<Ogre::AxisAlignedBox>("BoxShape",
 
-#include "scripting/luabind.h"
-#include "microbe_stage/compound.h"
-#include "microbe_stage/compound_absorber_system.h"
-#include "microbe_stage/compound_emitter_system.h"
-#include "microbe_stage/compound_registry.h"
-#include "microbe_stage/bio_process_registry.h"
-#include "microbe_stage/membrane_system.h"
-#include "microbe_stage/compound_cloud_system.h"
-#include "microbe_stage/process_system.h"
-#include "microbe_stage/agent_cloud_system.h"
-#include "microbe_stage/species_component.h"
+        sol::constructors<sol::types<>, sol::types<Ogre::AxisAlignedBox::Extent>,
+        sol::types<const Ogre::Vector3&, const Ogre::Vector3&>, sol::types<
+        Ogre::Real, Ogre::Real, Ogre::Real,
+        Ogre::Real, Ogre::Real, Ogre::Real >>(),
 
-luabind::scope
-    thrive::MicrobeBindings::luaBindings() {
-    return (
-        // Components
-        CompoundComponent::luaBindings(),
-        ProcessorComponent::luaBindings(),
-        CompoundBagComponent::luaBindings(),
-        CompoundAbsorberComponent::luaBindings(),
-        CompoundEmitterComponent::luaBindings(),
-        TimedCompoundEmitterComponent::luaBindings(),
-        MembraneComponent::luaBindings(),
-        CompoundCloudComponent::luaBindings(),
-        AgentCloudComponent::luaBindings(),
-        SpeciesComponent::luaBindings(),
-        // Systems
-        CompoundMovementSystem::luaBindings(),
-        CompoundAbsorberSystem::luaBindings(),
-        CompoundEmitterSystem::luaBindings(),
-        MembraneSystem::luaBindings(),
-        CompoundCloudSystem::luaBindings(),
-        ProcessSystem::luaBindings(),
-        AgentCloudSystem::luaBindings(),
-        // Other
-        CompoundRegistry::luaBindings(),
-        BioProcessRegistry::luaBindings()
+        sol::meta_function::equal_to, &Ogre::AxisAlignedBox::operator==,
+
+        "Extent", sol::var(lua.create_table_with(
+                "EXTENT_NULL", Ogre::AxisAlignedBox::EXTENT_NULL,
+                "EXTENT_FINITE", Ogre::AxisAlignedBox::EXTENT_FINITE,
+                "EXTENT_INFINITE", Ogre::AxisAlignedBox::EXTENT_INFINITE
+            )),
+
+        "CornerEnum", sol::var(lua.create_table_with(
+                "FAR_LEFT_BOTTOM", Ogre::AxisAlignedBox::FAR_LEFT_BOTTOM,
+                "FAR_LEFT_TOP", Ogre::AxisAlignedBox::FAR_LEFT_TOP,
+                "FAR_RIGHT_TOP", Ogre::AxisAlignedBox::FAR_RIGHT_TOP,
+                "FAR_RIGHT_BOTTOM", Ogre::AxisAlignedBox::FAR_RIGHT_BOTTOM,
+                "NEAR_RIGHT_BOTTOM", Ogre::AxisAlignedBox::NEAR_RIGHT_BOTTOM,
+                "NEAR_LEFT_BOTTOM", Ogre::AxisAlignedBox::NEAR_LEFT_BOTTOM,
+                "NEAR_LEFT_TOP", Ogre::AxisAlignedBox::NEAR_LEFT_TOP,
+                "NEAR_RIGHT_TOP", Ogre::AxisAlignedBox::NEAR_RIGHT_TOP
+            )),
+        
+        "getMinimum",
+            static_cast<const Vector3& (AxisAlignedBox::*) () const>(
+                &AxisAlignedBox::getMinimum),
+        
+        "getMaximum",
+            static_cast<const Vector3& (AxisAlignedBox::*) () const>(
+                &AxisAlignedBox::getMaximum),
+
+        "setMinimum", sol::overload(
+            static_cast<void (AxisAlignedBox::*) (const Vector3&)>(
+                &AxisAlignedBox::setMinimum),
+            static_cast<void (AxisAlignedBox::*) (Real, Real, Real)>(
+                &AxisAlignedBox::setMinimum)),
+
+        "setMinimumX", &AxisAlignedBox::setMinimumX,
+        "setMinimumY", &AxisAlignedBox::setMinimumY,
+        "setMinimumZ", &AxisAlignedBox::setMinimumZ,
+        
+        "setMaximum", sol::overload(
+            static_cast<void (AxisAlignedBox::*) (const Vector3&)>(
+                &AxisAlignedBox::setMaximum),
+            static_cast<void (AxisAlignedBox::*) (Real, Real, Real)>(
+                &AxisAlignedBox::setMaximum)),
+        
+        "setMaximumX", &AxisAlignedBox::setMaximumX,
+        "setMaximumY", &AxisAlignedBox::setMaximumY,
+        "setMaximumZ", &AxisAlignedBox::setMaximumZ,
+        "setExtents", sol::overload(
+            static_cast<void (AxisAlignedBox::*) (const Vector3&,
+                const Vector3&)>(&AxisAlignedBox::setExtents),
+            static_cast<void (AxisAlignedBox::*) (Real, Real, Real, Real, Real,
+                Real)>(&AxisAlignedBox::setExtents)),
+
+        "getCorner", &AxisAlignedBox::getCorner,
+        "merge", sol::overload(
+            static_cast<void (AxisAlignedBox::*) (const AxisAlignedBox&)>(
+                &AxisAlignedBox::merge),
+            static_cast<void (AxisAlignedBox::*) (const Vector3&)>(
+                &AxisAlignedBox::merge)),
+
+        "setNull", &AxisAlignedBox::setNull,
+        "isNull", &AxisAlignedBox::isNull,
+        "isFinite", &AxisAlignedBox::isFinite,
+        "setInfinite", &AxisAlignedBox::setInfinite,
+        "isInfinite", &AxisAlignedBox::isInfinite,
+        "intersects", sol::overload(
+            static_cast<bool (AxisAlignedBox::*) (const AxisAlignedBox&) const>(
+                &AxisAlignedBox::intersects),
+            static_cast<bool (AxisAlignedBox::*) (const Sphere&) const>(
+                &AxisAlignedBox::intersects),
+            static_cast<bool (AxisAlignedBox::*) (const Plane&) const>(
+                &AxisAlignedBox::intersects),
+            static_cast<bool (AxisAlignedBox::*) (const Vector3&) const>(
+                &AxisAlignedBox::intersects)),
+        
+        "intersection", &AxisAlignedBox::intersection,
+        "volume", &AxisAlignedBox::volume,
+        "scale", &AxisAlignedBox::scale,
+
+        "getCenter", &AxisAlignedBox::getCenter,
+        "getSize", &AxisAlignedBox::getSize,
+        "getHalfSize", &AxisAlignedBox::getHalfSize,
+        "contains", sol::overload(
+            static_cast<bool (AxisAlignedBox::*) (const Vector3&) const>(
+                &AxisAlignedBox::contains),
+            static_cast<bool (AxisAlignedBox::*) (const AxisAlignedBox&) const>(
+                &AxisAlignedBox::contains)),
+
+        "distance", &AxisAlignedBox::distance
     );
 }
 
+static void colourValueBindings(sol::state &lua) {
+
+    using namespace Ogre;
+
+    lua.new_usertype<ColourValue>("ColourValue",
+
+        sol::constructors<sol::types<float, float, float, float>>(),
+
+        sol::meta_function::equal_to, &ColourValue::operator==,
+
+        sol::meta_function::addition, &ColourValue::operator+,
 
 
-#include "ogre/script_bindings.h"
+        sol::meta_function::multiplication, sol::overload(
+            static_cast<ColourValue (ColourValue::*)(const ColourValue&) const>(
+                &ColourValue::operator*),
+            static_cast<ColourValue (ColourValue::*)(const float) const>(
+                &ColourValue::operator*)
+        ),
 
-#include "scripting/luabind.h"
-#include "ogre/camera_system.h"
-#include "ogre/colour_material.h"
-#include "ogre/keyboard.h"
-#include "ogre/light_system.h"
-#include "ogre/mouse.h"
-#include "ogre/render_system.h"
-#include "ogre/scene_node_system.h"
-#include "ogre/script_bindings.h"
-#include "ogre/sky_system.h"
-#include "scripting/luabind.h"
-
-#include "ogre/workspace_system.h"
-
-
-#include <luabind/operator.hpp>
-#include <luabind/out_value_policy.hpp>
-
-#include <OgreAxisAlignedBox.h>
-#include <OgreColourValue.h>
-#include <OgreMath.h>
-#include <OgreMatrix3.h>
-#include <OgreMaterialManager.h>
-#include <OgreMaterial.h>
-#include <OgreTechnique.h>
-#include <OgreRay.h>
-#include <OgreSceneManager.h>
-#include <OgreSphere.h>
-#include <OgreVector3.h>
-#include <OgreSubEntity.h>
-#include <OgreEntity.h>
-#include <OgreSubMesh.h>
-
-#include <string>
-
-using namespace luabind;
-using namespace Ogre;
-
-
-static luabind::scope
-    axisAlignedBoxBindings() {
-    return class_<AxisAlignedBox>("AxisAlignedBox")
-        .enum_("Extent") [
-            value("EXTENT_NULL", AxisAlignedBox::EXTENT_NULL),
-            value("EXTENT_FINITE", AxisAlignedBox::EXTENT_FINITE),
-            value("EXTENT_INFINITE", AxisAlignedBox::EXTENT_INFINITE)
-        ]
-        .enum_("CornerEnum") [
-            value("FAR_LEFT_BOTTOM", AxisAlignedBox::FAR_LEFT_BOTTOM),
-            value("FAR_LEFT_TOP", AxisAlignedBox::FAR_LEFT_TOP),
-            value("FAR_RIGHT_TOP", AxisAlignedBox::FAR_RIGHT_TOP),
-            value("FAR_RIGHT_BOTTOM", AxisAlignedBox::FAR_RIGHT_BOTTOM),
-            value("NEAR_RIGHT_BOTTOM", AxisAlignedBox::NEAR_RIGHT_BOTTOM),
-            value("NEAR_LEFT_BOTTOM", AxisAlignedBox::NEAR_LEFT_BOTTOM),
-            value("NEAR_LEFT_TOP", AxisAlignedBox::NEAR_LEFT_TOP),
-            value("NEAR_RIGHT_TOP", AxisAlignedBox::NEAR_RIGHT_TOP)
-        ]
-        .def(constructor<>())
-        .def(constructor<AxisAlignedBox::Extent>())
-        .def(constructor<const Vector3&, const Vector3&>())
-        .def(constructor<
-            Real, Real, Real,
-            Real, Real, Real >()
-        )
-        .def(const_self == other<AxisAlignedBox>())
-        .def("getMinimum",
-            static_cast<const Vector3& (AxisAlignedBox::*) () const>(&AxisAlignedBox::getMinimum)
-        )
-        .def("getMaximum",
-            static_cast<const Vector3& (AxisAlignedBox::*) () const>(&AxisAlignedBox::getMaximum)
-        )
-        .def("setMinimum",
-            static_cast<void (AxisAlignedBox::*) (const Vector3&)>(&AxisAlignedBox::setMinimum)
-        )
-        .def("setMinimum",
-            static_cast<void (AxisAlignedBox::*) (Real, Real, Real)>(&AxisAlignedBox::setMinimum)
-        )
-        .def("setMinimumX", &AxisAlignedBox::setMinimumX)
-        .def("setMinimumY", &AxisAlignedBox::setMinimumY)
-        .def("setMinimumZ", &AxisAlignedBox::setMinimumZ)
-        .def("setMaximum",
-            static_cast<void (AxisAlignedBox::*) (const Vector3&)>(&AxisAlignedBox::setMaximum)
-        )
-        .def("setMaximum",
-            static_cast<void (AxisAlignedBox::*) (Real, Real, Real)>(&AxisAlignedBox::setMaximum)
-        )
-        .def("setMaximumX", &AxisAlignedBox::setMaximumX)
-        .def("setMaximumY", &AxisAlignedBox::setMaximumY)
-        .def("setMaximumZ", &AxisAlignedBox::setMaximumZ)
-        .def("setExtents",
-            static_cast<void (AxisAlignedBox::*) (const Vector3&, const Vector3&)>(&AxisAlignedBox::setExtents)
-        )
-        .def("setExtents",
-            static_cast<void (AxisAlignedBox::*) (Real, Real, Real, Real, Real, Real)>(&AxisAlignedBox::setExtents)
-        )
-        .def("getCorner", &AxisAlignedBox::getCorner)
-        .def("merge",
-            static_cast<void (AxisAlignedBox::*) (const AxisAlignedBox&)>(&AxisAlignedBox::merge)
-        )
-        .def("merge",
-            static_cast<void (AxisAlignedBox::*) (const Vector3&)>(&AxisAlignedBox::merge)
-        )
-        .def("setNull", &AxisAlignedBox::setNull)
-        .def("isNull", &AxisAlignedBox::isNull)
-        .def("isFinite", &AxisAlignedBox::isFinite)
-        .def("setInfinite", &AxisAlignedBox::setInfinite)
-        .def("isInfinite", &AxisAlignedBox::isInfinite)
-        .def("intersects",
-            static_cast<bool (AxisAlignedBox::*) (const AxisAlignedBox&) const>(&AxisAlignedBox::intersects)
-        )
-        .def("intersection", &AxisAlignedBox::intersection)
-        .def("volume", &AxisAlignedBox::volume)
-        .def("scale", &AxisAlignedBox::scale)
-        .def("intersects",
-            static_cast<bool (AxisAlignedBox::*) (const Sphere&) const>(&AxisAlignedBox::intersects)
-        )
-        .def("intersects",
-            static_cast<bool (AxisAlignedBox::*) (const Plane&) const>(&AxisAlignedBox::intersects)
-        )
-        .def("intersects",
-            static_cast<bool (AxisAlignedBox::*) (const Vector3&) const>(&AxisAlignedBox::intersects)
-        )
-        .def("getCenter", &AxisAlignedBox::getCenter)
-        .def("getSize", &AxisAlignedBox::getSize)
-        .def("getHalfSize", &AxisAlignedBox::getHalfSize)
-        .def("contains",
-            static_cast<bool (AxisAlignedBox::*) (const Vector3&) const>(&AxisAlignedBox::contains)
-        )
-        .def("distance", &AxisAlignedBox::distance)
-        .def("contains",
-            static_cast<bool (AxisAlignedBox::*) (const AxisAlignedBox&) const>(&AxisAlignedBox::contains)
-        )
-        ;
+        sol::meta_function::subtraction, &ColourValue::operator-,
+        
+        "saturate", &ColourValue::saturate,
+        "setHSB", &ColourValue::setHSB,
+        "getHSB", &ColourValue::getHSB,
+        
+        "r", &ColourValue::r,
+        "g", &ColourValue::g,
+        "b", &ColourValue::b,
+        "a", &ColourValue::a
+    );
 }
 
+static void degreeBindings(sol::state &lua) {
 
-static luabind::scope
-    colourValueBindings() {
-    return class_<ColourValue>("ColourValue")
-        .def(constructor<float, float, float, float>())
-        .def(const_self == other<ColourValue>())
-        .def(const_self + other<ColourValue>())
-        .def(const_self - other<ColourValue>())
-        .def(const_self * other<ColourValue>())
-        .def(const_self * other<ColourValue>())
-        .def(const_self * float())
-        .def("saturate", &ColourValue::saturate)
-        .def("setHSB", &ColourValue::setHSB)
-        .def("getHSB", &ColourValue::getHSB,
-            (pure_out_value(_2), pure_out_value(_3), pure_out_value(_4))
-        )
-        .def_readwrite("r", &ColourValue::r)
-        .def_readwrite("g", &ColourValue::g)
-        .def_readwrite("b", &ColourValue::b)
-        .def_readwrite("a", &ColourValue::a)
-        ;
-}
+     lua.new_usertype<Ogre::Degree>("Degree",
 
+         sol::constructors<sol::types<Ogre::Real>, sol::types<const Ogre::Radian&>>(),
 
-static luabind::scope
-    degreeBindings() {
-    return class_<Degree>("Degree")
-        .def(constructor<Real>())
-        .def(constructor<const Radian&>())
-        .def(const_self == other<Degree>())
-        .def(const_self + other<Degree>())
-        .def(const_self - other<Degree>())
-        .def(const_self * other<Degree>())
-        .def(const_self * Real())
-        .def(const_self / Real())
-        .def(const_self < other<Degree>())
-        .def("valueDegrees", &Degree::valueDegrees)
-        ;
+         sol::meta_function::equal_to, &Ogre::Degree::operator==,
+
+         sol::meta_function::less_than, &Ogre::Degree::operator<,
+
+         sol::meta_function::addition, static_cast<Ogre::Degree (Ogre::Degree::*)(
+             const Ogre::Degree&) const>(&Ogre::Degree::operator+),
+
+         sol::meta_function::subtraction, static_cast<Ogre::Degree (Ogre::Degree::*)(
+             const Ogre::Degree&) const>(&Ogre::Degree::operator-),
+
+         sol::meta_function::multiplication, sol::overload(
+             static_cast<Ogre::Degree (Ogre::Degree::*)(const Ogre::Degree&) const>(
+                 &Ogre::Degree::operator*),
+             static_cast<Ogre::Degree (Ogre::Degree::*)(const Ogre::Real) const>(
+                 &Ogre::Degree::operator*)
+         ),
+
+         sol::meta_function::division, &Ogre::Degree::operator/,
+         
+         "valueDegrees", &Ogre::Degree::valueDegrees
+     );
 }
 
 
 static void
     SubEntity_setColour(
-        SubEntity* self,
+        Ogre::SubEntity &self,
         const Ogre::ColourValue& colour
     ) {
     auto material = thrive::getColourMaterial(colour);
-    self->setMaterial(material);
+    self.setMaterial(material);
 }
 
 static void
     Entity_setColour(
-        Entity* self,
+        Ogre::Entity &self,
         const Ogre::ColourValue& colour
     ) {
     auto material = thrive::getColourMaterial(colour);
-    self->setMaterial(material);
+    self.setMaterial(material);
 }
 
 static void
     SubEntity_setMaterial(
-        SubEntity* self,
-        const String& name
+        Ogre::SubEntity &self,
+        const Ogre::String& name
     ) {
     Ogre::MaterialManager& manager = Ogre::MaterialManager::getSingleton();
     Ogre::MaterialPtr material = manager.getByName(
         name
     );
-    self->setMaterial(material);
+    self.setMaterial(material);
 }
 
 static void
     Entity_setMaterial(
-        Entity* self,
-        const String& name
+        Ogre::Entity &self,
+        const Ogre::String& name
     ) {
     Ogre::MaterialManager& manager = Ogre::MaterialManager::getSingleton();
     Ogre::MaterialPtr material = manager.getByName(
         name
     );
-    self->setMaterial(material);
+    self.setMaterial(material);
 }
 
 static void
     SubEntity_tintColour(
-        SubEntity* self,
-        const String& groupName,
-        const String& materialName,
+        Ogre::SubEntity &self,
+        const Ogre::String& groupName,
+        const Ogre::String& materialName,
         const Ogre::ColourValue& colour
     ) {
     Ogre::MaterialPtr baseMaterial = Ogre::MaterialManager::getSingleton().getByName(materialName);
@@ -565,13 +550,13 @@ static void
     materialPtr->compile();
     Ogre::TextureUnitState* ptus = materialPtr->getTechnique(0)->getPass(0)->getTextureUnitState(0);
     ptus->setColourOperationEx(Ogre::LBX_MODULATE, Ogre::LBS_MANUAL, Ogre::LBS_TEXTURE, colour);
-    self->setMaterial(materialPtr);
+    self.setMaterial(materialPtr);
 }
 
 static void
     Entity_tintColour(
-        Entity* self,
-        const String& materialName,
+        Ogre::Entity &self,
+        const Ogre::String& materialName,
         const Ogre::ColourValue& colour
     ) {
     Ogre::MaterialPtr baseMaterial = Ogre::MaterialManager::getSingleton().getByName(materialName);
@@ -581,273 +566,290 @@ static void
     Ogre::TextureUnitState* ptus = materialPtr->getTechnique(0)->getPass(0)->getTextureUnitState(0);
     ptus->setAlphaOperation(Ogre::LBX_MODULATE, Ogre::LBS_MANUAL, Ogre::LBS_TEXTURE, colour.a);
     ptus->setColourOperationEx(Ogre::LBX_MODULATE, Ogre::LBS_MANUAL, Ogre::LBS_TEXTURE, colour);
-    self->setMaterial(materialPtr);
+    self.setMaterial(materialPtr);
 }
 
 static int clonedIndex = 0;
 
 static void
     Entity_cloneMaterial(
-        Entity* self,
-        const String& materialName
+        Ogre::Entity &self,
+        const Ogre::String& materialName
     ) {
     Ogre::MaterialPtr baseMaterial = Ogre::MaterialManager::getSingleton().getByName(materialName);
     Ogre::MaterialPtr materialPtr = baseMaterial->clone(materialName + std::to_string(clonedIndex));
     materialPtr->compile();
-    self->setMaterialName(materialName + std::to_string(clonedIndex));
+    self.setMaterialName(materialName + std::to_string(clonedIndex));
     clonedIndex++;
 }
 
 static void
     Entity_setMaterialColour(
-        Entity* self,
+        Ogre::Entity &self,
         //const String& materialName,
         const Ogre::ColourValue& colour
     ) {
     //Ogre::MaterialPtr baseMaterial = Ogre::MaterialManager::getSingleton().getByName(materialName);
     //Ogre::MaterialPtr materialPtr = baseMaterial->clone(materialName + std::to_string(clonedIndex));
     //materialPtr->compile();
-    //self->setMaterialName(materialName + std::to_string(clonedIndex));
+    //self.setMaterialName(materialName + std::to_string(clonedIndex));
     //clonedIndex++;
 
-    Ogre::SubMesh* sub = self->getMesh()->getSubMesh(0);
+    Ogre::SubMesh* sub = self.getMesh()->getSubMesh(0);
     Ogre::MaterialPtr materialPtr = Ogre::MaterialManager::getSingleton().getByName(sub->getMaterialName());
     Ogre::TextureUnitState* ptus = materialPtr->getTechnique(0)->getPass(0)->getTextureUnitState(0);
     ptus->setColourOperationEx(Ogre::LBX_MODULATE, Ogre::LBS_MANUAL, Ogre::LBS_TEXTURE, colour);
     ptus->setAlphaOperation(Ogre::LBX_MODULATE, Ogre::LBS_MANUAL, Ogre::LBS_TEXTURE, colour.a);
-    //self->setMaterial(materialPtr);
+    //self.setMaterial(materialPtr);
 }
 
-static luabind::scope
-    entityBindings() {
-    return (
-        class_<SubEntity, MovableObject>("OgreSubEntity")
-        .def("setColour", &SubEntity_setColour)
-        .def("setMaterial", &SubEntity_setMaterial)
-        .def("tintColour", &SubEntity_tintColour)
-        ,
-        class_<Ogre::Entity, MovableObject>("OgreEntity")
-        .def("getSubEntity", static_cast<SubEntity*(Entity::*)(const Ogre::String&)>(&Entity::getSubEntity))
-        .def("getNumSubEntities", &Entity::getNumSubEntities)
-        .def("setColour", &Entity_setColour)
-        .def("setMaterial", &Entity_setMaterial)
-        .def("cloneMaterial", &Entity_cloneMaterial)
-        .def("setMaterialColour", &Entity_setMaterialColour)
-        .def("tintColour", &Entity_tintColour)
+static void ogreEntityBindings(sol::state &lua) {
+
+    lua.new_usertype<Ogre::SubEntity>("OgreSubEntity",
+
+        sol::base_classes, sol::bases<Component>(),
+        
+        "setColour", &SubEntity_setColour,
+        "setMaterial", &SubEntity_setMaterial,
+        "tintColour", &SubEntity_tintColour
+    );
+
+    lua.new_usertype<Ogre::Entity>("OgreEntity",
+
+        "getSubEntity", static_cast<Ogre::SubEntity*(Ogre::Entity::*)(const Ogre::String&)>(
+            &Ogre::Entity::getSubEntity),
+        "getNumSubEntities", &Ogre::Entity::getNumSubEntities,
+        "setColour", &Entity_setColour,
+        "setMaterial", &Entity_setMaterial,
+        "cloneMaterial", &Entity_cloneMaterial,
+        "setMaterialColour", &Entity_setMaterialColour,
+        "tintColour", &Entity_tintColour
+    );
+
+    lua.new_usertype<Ogre::MovableObject>("MovableObject",
+
+        sol::base_classes, sol::bases<Ogre::Entity>()
+    );
+}
+
+static void matrix3Bindings(sol::state &lua) {
+
+    using namespace Ogre;
+
+    lua.new_usertype<Ogre::Matrix3>("Matrix3",
+        
+        sol::constructors<sol::types<>, sol::types<
+        Ogre::Real, Ogre::Real, Ogre::Real,
+        Ogre::Real, Ogre::Real, Ogre::Real,
+        Ogre::Real, Ogre::Real, Ogre::Real>>(),
+
+        sol::meta_function::equal_to, &Ogre::Matrix3::operator==,
+
+        sol::meta_function::addition, &Ogre::Matrix3::operator+,
+
+        sol::meta_function::subtraction, static_cast<Ogre::Matrix3 (Ogre::Matrix3::*)(
+            const Ogre::Matrix3&) const>(&Ogre::Matrix3::operator-),
+
+        sol::meta_function::multiplication, sol::overload(
+            static_cast<Ogre::Matrix3 (Ogre::Matrix3::*)(const Ogre::Matrix3&) const>(
+                &Ogre::Matrix3::operator*),
+            static_cast<Ogre::Matrix3 (Ogre::Matrix3::*)(const Ogre::Real) const>(
+                &Ogre::Matrix3::operator*),
+            static_cast<Ogre::Vector3 (Ogre::Matrix3::*)(const Ogre::Vector3&) const>(
+                &Ogre::Matrix3::operator*)
+        ),
+
+        "GetColumn", &Matrix3::GetColumn,
+        "SetColumn", &Matrix3::SetColumn,
+        "FromAxes", &Matrix3::FromAxes,
+        "Transpose", &Matrix3::Transpose,
+        "Inverse",
+        static_cast<bool(Matrix3::*)(Matrix3&, Real) const>(&Matrix3::Inverse),
+
+        "Determinant", &Matrix3::Determinant,
+        "SingularValueDecomposition", &Matrix3::SingularValueDecomposition,
+        "SingularValueComposition", &Matrix3::SingularValueComposition,
+        "Orthonormalize", &Matrix3::Orthonormalize,
+        "QDUDecomposition", &Matrix3::QDUDecomposition,
+        "SpectralNorm", &Matrix3::SpectralNorm,
+        "ToAngleAxis", static_cast<void(Matrix3::*)(Vector3&, Radian&) const>(
+            &Matrix3::ToAngleAxis),
+        
+        "FromAngleAxis", &Matrix3::FromAngleAxis,
+        "ToEulerAnglesXYZ", &Matrix3::ToEulerAnglesXYZ,
+        "ToEulerAnglesXZY", &Matrix3::ToEulerAnglesXZY,
+        "ToEulerAnglesYXZ", &Matrix3::ToEulerAnglesYXZ,
+        "ToEulerAnglesYZX", &Matrix3::ToEulerAnglesYZX,
+        "ToEulerAnglesZXY", &Matrix3::ToEulerAnglesZXY,
+        "ToEulerAnglesZYX", &Matrix3::ToEulerAnglesZYX,
+        "FromEulerAnglesXYZ", &Matrix3::FromEulerAnglesXYZ,
+        "FromEulerAnglesXZY", &Matrix3::FromEulerAnglesXZY,
+        "FromEulerAnglesYXZ", &Matrix3::FromEulerAnglesYXZ,
+        "FromEulerAnglesYZX", &Matrix3::FromEulerAnglesYZX,
+        "FromEulerAnglesZXY", &Matrix3::FromEulerAnglesZXY,
+        "FromEulerAnglesZYX", &Matrix3::FromEulerAnglesZYX,
+        "hasScale", &Matrix3::hasScale
+    );
+}
+
+static void planeBindings(sol::state &lua) {
+
+    using namespace Ogre;
+    
+    lua.new_usertype<Ogre::Plane>("Plane",
+
+        sol::constructors<sol::types<>, sol::types<const Vector3&, Real>,
+        sol::types<Real, Real, Real, Real>, sol::types<const Vector3&, const Vector3&>,
+        sol::types<const Vector3&, const Vector3&, const Vector3&>>(),
+
+        //sol::meta_function::equal_to, &Ogre::Plane::operator==,
+
+        "Side", sol::var(lua.create_table_with(
+                "NO_SIDE", Plane::NO_SIDE,
+                "POSITIVE_SIDE", Plane::POSITIVE_SIDE,
+                "NEGATIVE_SIDE", Plane::NEGATIVE_SIDE,
+                "BOTH_SIDE", Plane::BOTH_SIDE
+            )),
+
+        "getSide", sol::overload(
+            static_cast<Plane::Side (Plane::*) (const Vector3&) const>(&Plane::getSide),
+            static_cast<Plane::Side (Plane::*) (const AxisAlignedBox&) const>(&Plane::getSide),
+            static_cast<Plane::Side (Plane::*) (const Vector3&, const Vector3&) const>(
+                &Plane::getSide)
+        ),
+
+        "getDistance", &Plane::getDistance,
+
+        "redefine", sol::overload(
+            static_cast<void (Plane::*) (const Vector3&, const Vector3&)>(&Plane::redefine),
+            static_cast<void (Plane::*) (const Vector3&, const Vector3&, const Vector3&)>(
+                &Plane::redefine)
+        ),
+
+        "projectVector", &Plane::projectVector,
+        "normalise", &Plane::normalise,
+        "normal", &Plane::normal,
+        "d", &Plane::d
+    );
+}
+
+static void quaternionBindings(sol::state &lua) {
+
+    using namespace Ogre;
+    
+    lua.new_usertype<Ogre::Quaternion>("Quaternion",
+
+        sol::constructors<sol::types<>, sol::types<const Matrix3&>,
+        sol::types<Real, Real, Real, Real>, sol::types<const Radian&, const Vector3&>,
+        sol::types<const Vector3&, const Vector3&, const Vector3&>>(),
+
+        //sol::meta_function::equal_to, &Ogre::Quaternion::operator==,
+
+        sol::meta_function::addition, &Ogre::Quaternion::operator+,
+
+        sol::meta_function::subtraction, static_cast<Ogre::Quaternion (Ogre::Quaternion::*)(
+            const Ogre::Quaternion&) const>(&Ogre::Quaternion::operator-),
+
+        sol::meta_function::multiplication, sol::overload(
+            static_cast<Ogre::Quaternion (Ogre::Quaternion::*)(const Ogre::Quaternion&) const>(
+                &Ogre::Quaternion::operator*),
+            static_cast<Ogre::Quaternion (Ogre::Quaternion::*)(const Ogre::Real) const>(
+                &Ogre::Quaternion::operator*),
+            static_cast<Ogre::Vector3 (Ogre::Quaternion::*)(const Ogre::Vector3&) const>(
+                &Ogre::Quaternion::operator*)
+        ),
+        
+        "FromRotationMatrix", &Quaternion::FromRotationMatrix,
+        "ToRotationMatrix", &Quaternion::ToRotationMatrix,
+        "FromAngleAxis", &Quaternion::FromAngleAxis,
+        "ToAngleAxis", static_cast<void(Quaternion::*)(Radian&, Vector3&) const>(
+            &Quaternion::ToAngleAxis),
+        "FromAxes", static_cast<void(Quaternion::*)(const Vector3&, const Vector3&,
+            const Vector3&)>(&Quaternion::FromAxes),
+        "ToAxes", static_cast<void(Quaternion::*)(Vector3&, Vector3&, Vector3&) const>(
+            &Quaternion::ToAxes),
+        "xAxis", &Quaternion::xAxis,
+        "yAxis", &Quaternion::yAxis,
+        "zAxis", &Quaternion::zAxis,
+        "Dot", &Quaternion::Dot,
+        "Norm", &Quaternion::Norm,
+        "normalise", &Quaternion::normalise,
+        "Inverse", &Quaternion::Inverse,
+        "UnitInverse", &Quaternion::UnitInverse,
+        "Exp", &Quaternion::Exp,
+        "Log", &Quaternion::Log,
+        "getRoll", &Quaternion::getRoll,
+        "getPitch", &Quaternion::getPitch,
+        "getYaw", &Quaternion::getYaw,
+        "equals", &Quaternion::equals,
+        "isNaN", &Quaternion::isNaN
     );
 }
 
 
+static void radianBindings(sol::state &lua) {
 
-static luabind::scope
-    matrix3Bindings() {
-    return class_<Matrix3>("Matrix3")
-        .def(constructor<>())
-        .def(constructor<
-            Real, Real, Real,
-            Real, Real, Real,
-            Real, Real, Real>())
-        .def(const_self == other<Matrix3>())
-        .def(const_self + other<Matrix3>())
-        .def(const_self - other<Matrix3>())
-        .def(const_self * other<Matrix3>())
-        .def(const_self * other<Vector3>())
-        .def(const_self * Real())
-        .def("GetColumn", &Matrix3::GetColumn)
-        .def("SetColumn", &Matrix3::SetColumn)
-        .def("FromAxes", &Matrix3::FromAxes)
-        .def("Transpose", &Matrix3::Transpose)
-        .def("Inverse",
-            static_cast<bool(Matrix3::*)(Matrix3&, Real) const>(&Matrix3::Inverse),
-            pure_out_value(_2)
-        )
-        .def("Determinant", &Matrix3::Determinant)
-        .def("SingularValueDecomposition",
-            &Matrix3::SingularValueDecomposition,
-            (pure_out_value(_2), pure_out_value(_3), pure_out_value(_4))
-        )
-        .def("SingularValueComposition", &Matrix3::SingularValueComposition)
-        .def("Orthonormalize", &Matrix3::Orthonormalize)
-        .def("QDUDecomposition",
-            &Matrix3::QDUDecomposition,
-            (pure_out_value(_2), pure_out_value(_3), pure_out_value(_4))
-        )
-        .def("SpectralNorm", &Matrix3::SpectralNorm)
-        .def("ToAngleAxis",
-            static_cast<void(Matrix3::*)(Vector3&, Radian&) const>(&Matrix3::ToAngleAxis),
-            (pure_out_value(_2), pure_out_value(_3))
-        )
-        .def("FromAngleAxis", &Matrix3::FromAngleAxis)
-        .def("ToEulerAnglesXYZ",
-            &Matrix3::ToEulerAnglesXYZ,
-            (pure_out_value(_2), pure_out_value(_3), pure_out_value(_4))
-        )
-        .def("ToEulerAnglesXZY",
-            &Matrix3::ToEulerAnglesXZY,
-            (pure_out_value(_2), pure_out_value(_3), pure_out_value(_4))
-        )
-        .def("ToEulerAnglesYXZ",
-            &Matrix3::ToEulerAnglesYXZ,
-            (pure_out_value(_2), pure_out_value(_3), pure_out_value(_4))
-        )
-        .def("ToEulerAnglesYZX",
-            &Matrix3::ToEulerAnglesYZX,
-            (pure_out_value(_2), pure_out_value(_3), pure_out_value(_4))
-        )
-        .def("ToEulerAnglesZXY",
-            &Matrix3::ToEulerAnglesZXY,
-            (pure_out_value(_2), pure_out_value(_3), pure_out_value(_4))
-        )
-        .def("ToEulerAnglesZYX",
-            &Matrix3::ToEulerAnglesZYX,
-            (pure_out_value(_2), pure_out_value(_3), pure_out_value(_4))
-        )
-        .def("FromEulerAnglesXYZ", &Matrix3::FromEulerAnglesXYZ)
-        .def("FromEulerAnglesXZY", &Matrix3::FromEulerAnglesXZY)
-        .def("FromEulerAnglesYXZ", &Matrix3::FromEulerAnglesYXZ)
-        .def("FromEulerAnglesYZX", &Matrix3::FromEulerAnglesYZX)
-        .def("FromEulerAnglesZXY", &Matrix3::FromEulerAnglesZXY)
-        .def("FromEulerAnglesZYX", &Matrix3::FromEulerAnglesZYX)
-        .def("hasScale", &Matrix3::hasScale)
-        ;
+    using namespace Ogre;
+    
+    lua.new_usertype<Ogre::Radian>("Radian",
+
+        sol::constructors<sol::types<Real>, sol::types<const Degree&>>(),
+
+        //sol::meta_function::equal_to, &Ogre::Radian::operator==,
+
+        sol::meta_function::less_than, &Ogre::Radian::operator<,
+
+        sol::meta_function::addition, static_cast<Ogre::Radian (Ogre::Radian::*)(
+            const Ogre::Radian&) const>(&Ogre::Radian::operator+),
+
+        sol::meta_function::subtraction, static_cast<Ogre::Radian (Ogre::Radian::*)(
+            const Ogre::Radian&) const>(&Ogre::Radian::operator-),
+
+        sol::meta_function::multiplication, sol::overload(
+            static_cast<Ogre::Radian (Ogre::Radian::*)(const Ogre::Radian&) const>(
+                &Ogre::Radian::operator*),
+            static_cast<Ogre::Radian (Ogre::Radian::*)(const Ogre::Real) const>(
+                &Ogre::Radian::operator*)
+        ),
+
+        sol::meta_function::division, static_cast<Ogre::Radian (Ogre::Radian::*)(
+            const Ogre::Real) const>(&Ogre::Radian::operator/),
+        
+        "valueDegrees", &Radian::valueDegrees,
+        "valueRadians", &Radian::valueRadians,
+        "valueAngleUnits", &Radian::valueAngleUnits
+    );
 }
-
-
-static luabind::scope
-    movableObjectBindings() {
-    return class_<MovableObject>("MovableObject");
-}
-
-
-static luabind::scope
-    planeBindings() {
-    return class_<Plane>("Plane")
-        .enum_("Side") [
-            value("NO_SIDE", Plane::NO_SIDE),
-            value("POSITIVE_SIDE", Plane::POSITIVE_SIDE),
-            value("NEGATIVE_SIDE", Plane::NEGATIVE_SIDE),
-            value("BOTH_SIDE", Plane::BOTH_SIDE)
-        ]
-        .def(constructor<>())
-        .def(constructor<const Vector3&, Real>())
-        .def(constructor<Real, Real, Real, Real>())
-        .def(constructor<const Vector3&, const Vector3&>())
-        .def(constructor<const Vector3&, const Vector3&, const Vector3&>())
-        .def(const_self == other<Plane>())
-        .def("getSide",
-            static_cast<Plane::Side (Plane::*) (const Vector3&) const>(&Plane::getSide)
-        )
-        .def("getSide",
-            static_cast<Plane::Side (Plane::*) (const AxisAlignedBox&) const>(&Plane::getSide)
-        )
-        .def("getSide",
-            static_cast<Plane::Side (Plane::*) (const Vector3&, const Vector3&) const>(&Plane::getSide)
-        )
-        .def("getDistance", &Plane::getDistance)
-        .def("redefine",
-            static_cast<void (Plane::*) (const Vector3&, const Vector3&)>(&Plane::redefine)
-        )
-        .def("redefine",
-            static_cast<void (Plane::*) (const Vector3&, const Vector3&, const Vector3&)>(&Plane::redefine)
-        )
-        .def("projectVector", &Plane::projectVector)
-        .def("normalise", &Plane::normalise)
-        .def_readwrite("normal", &Plane::normal)
-        .def_readwrite("d", &Plane::d)
-        ;
-}
-
-
-static luabind::scope
-    quaternionBindings() {
-    return class_<Quaternion>("Quaternion")
-        .def(constructor<>())
-        .def(constructor<Real, Real, Real, Real>())
-        .def(constructor<const Matrix3&>())
-        .def(constructor<const Radian&, const Vector3&>())
-        .def(constructor<const Vector3&, const Vector3&, const Vector3&>())
-        .def(const_self + other<Quaternion>())
-        .def(const_self - other<Quaternion>())
-        .def(const_self * other<Quaternion>())
-        .def(const_self * Real())
-        .def(const_self * other<Vector3>())
-        .def(const_self == other<Quaternion>())
-        .def("FromRotationMatrix", &Quaternion::FromRotationMatrix)
-        .def("ToRotationMatrix", &Quaternion::ToRotationMatrix, pure_out_value(_2))
-        .def("FromAngleAxis", &Quaternion::FromAngleAxis)
-        .def("ToAngleAxis",
-            static_cast<void(Quaternion::*)(Radian&, Vector3&) const>(&Quaternion::ToAngleAxis),
-            (pure_out_value(_2), pure_out_value(_3))
-        )
-        .def("FromAxes",
-            static_cast<void(Quaternion::*)(const Vector3&, const Vector3&, const Vector3&)>(&Quaternion::FromAxes)
-        )
-        .def("ToAxes",
-            static_cast<void(Quaternion::*)(Vector3&, Vector3&, Vector3&) const>(&Quaternion::ToAxes),
-            (pure_out_value(_2), pure_out_value(_3), pure_out_value(_4))
-        )
-        .def("xAxis", &Quaternion::xAxis)
-        .def("yAxis", &Quaternion::yAxis)
-        .def("zAxis", &Quaternion::zAxis)
-        .def("Dot", &Quaternion::Dot)
-        .def("Norm", &Quaternion::Norm)
-        .def("normalise", &Quaternion::normalise)
-        .def("Inverse", &Quaternion::Inverse)
-        .def("UnitInverse", &Quaternion::UnitInverse)
-        .def("Exp", &Quaternion::Exp)
-        .def("Log", &Quaternion::Log)
-        .def("getRoll", &Quaternion::getRoll)
-        .def("getPitch", &Quaternion::getPitch)
-        .def("getYaw", &Quaternion::getYaw)
-        .def("equals", &Quaternion::equals)
-        .def("isNaN", &Quaternion::isNaN)
-        ;
-}
-
-
-static luabind::scope
-    radianBindings() {
-    return class_<Radian>("Radian")
-        .def(constructor<Real>())
-        .def(constructor<const Degree&>())
-        .def(const_self == other<Radian>())
-        .def(const_self + other<Radian>())
-        .def(const_self - other<Radian>())
-        .def(const_self * other<Radian>())
-        .def(const_self * Real())
-        .def(const_self / Real())
-        .def(const_self < other<Radian>())
-        .def("valueDegrees", &Radian::valueDegrees)
-        .def("valueRadians", &Radian::valueRadians)
-        .def("valueAngleUnits", &Radian::valueAngleUnits)
-        ;
-}
-
 
 static bool
     Ray_intersects(
-        const Ray* self,
-        const Plane& plane,
-        Real& t
+        const Ogre::Ray &self,
+        const Ogre::Plane& plane,
+        Ogre::Real& t
     ) {
     bool intersects = false;
-    std::tie(intersects, t) = self->intersects(plane);
+    std::tie(intersects, t) = self.intersects(plane);
     return intersects;
 }
 
-static luabind::scope
-    rayBindings() {
-    return class_<Ray>("Ray")
-        .def(constructor<>())
-        .def(constructor<const Vector3&, const Vector3&>())
-        .def(const_self * Real())
-        .def("setOrigin", &Ray::setOrigin)
-        .def("getOrigin", &Ray::getOrigin)
-        .def("setDirection", &Ray::setDirection)
-        .def("getDirection", &Ray::getDirection)
-        .def("getPoint", &Ray::getPoint)
-        .def("intersects", Ray_intersects, pure_out_value(_3))
-        ;
+static void radianBindings(sol::state &lua) {
+
+    using namespace Ogre;
+    
+    lua.new_usertype<Ogre::Ray>("Ray",
+
+        sol::constructors<sol::types<>, sol::types<const Vector3&, const Vector3&>>(),
+
+        sol::meta_function::multiplication, static_cast<Ogre::Radian (Ogre::Radian::*)(
+            Ogre::Real) const>(&Ogre::Radian::operator*),
+
+        "setOrigin", &Ray::setOrigin,
+        "getOrigin", &Ray::getOrigin,
+        "setDirection", &Ray::setDirection,
+        "getDirection", &Ray::getDirection,
+        "getPoint", &Ray::getPoint,
+        "intersects", &Ray_intersects
+        );
 }
 
 static luabind::scope
@@ -942,11 +944,10 @@ static luabind::scope
         ;
 }
 
-luabind::scope
-    thrive::OgreBindings::luaBindings() {
-    return (
-        // Math
-        axisAlignedBoxBindings(),
+static void ogreLuaBindings(sol::state &lua){
+
+    // Math
+    axisAlignedBoxBindings(),
         colourValueBindings(),
         degreeBindings(),
         matrix3Bindings(),
@@ -978,28 +979,6 @@ luabind::scope
         // Other
         Keyboard::luaBindings(),
         Mouse::luaBindings()
-    );
 }
 
-
-#include "sound/script_bindings.h"
-
-#include "scripting/luabind.h"
-#include "sound/sound_source_system.h"
-
-using namespace luabind;
-using namespace thrive;
-
-luabind::scope
-    thrive::SoundBindings::luaBindings() {
-    return (
-        Sound::luaBindings(),
-        SoundSourceSystem::luaBindings(),
-        SoundSourceComponent::luaBindings()
-    );
-}
-
-
-
-StandardItemWrapper::luaBindings;
 

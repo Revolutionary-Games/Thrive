@@ -5,7 +5,7 @@
 #include "engine/entity_filter.h"
 #include "engine/serialization.h"
 #include "ogre/scene_node_system.h"
-#include "scripting/luabind.h"
+#include "scripting/luajit.h"
 
 #include <iostream>
 #include <OgreSceneManager.h>
@@ -32,32 +32,39 @@ OgreCameraComponent_getCameraToViewportRay(
     }
 }
 
-luabind::scope
-OgreCameraComponent::luaBindings() {
-    using namespace luabind;
-    return class_<OgreCameraComponent, Component>("OgreCameraComponent")
-        .enum_("ID") [
-            value("TYPE_ID", OgreCameraComponent::TYPE_ID)
-        ]
-        .scope [
-            def("TYPE_NAME", &OgreCameraComponent::TYPE_NAME),
-            class_<Properties, Touchable>("Properties")
-                .def_readwrite("polygonMode", &Properties::polygonMode)
-                .def_readwrite("fovY", &Properties::fovY)
-                .def_readwrite("nearClipDistance", &Properties::nearClipDistance)
-                .def_readwrite("farClipDistance", &Properties::farClipDistance)
-                .def_readwrite("orthographicalMode", &Properties::orthographicalMode)
-                .def_readwrite("offset", &Properties::offset)
-        ]
-        .enum_("PolygonMode") [
-            value("PM_POINTS", Ogre::PM_POINTS),
-            value("PM_WIREFRAME", Ogre::PM_WIREFRAME),
-            value("PM_SOLID", Ogre::PM_SOLID)
-        ]
-        .def(constructor<std::string>())
-        .def("getCameraToViewportRay", OgreCameraComponent_getCameraToViewportRay)
-        .def_readonly("properties", &OgreCameraComponent::m_properties)
-    ;
+void OgreCameraComponent::luaBindings(
+    sol::state &lua
+){
+    lua.new_usertype<Properties>("OgreCameraComponentProperties",
+
+        sol::base_classes, sol::bases<Touchable>(),
+
+        "polygonMode", &Properties::polygonMode,
+        "fovY", &Properties::fovY,
+        "nearClipDistance", &Properties::nearClipDistance,
+        "farClipDistance", &Properties::farClipDistance,
+        "orthographicalMode", &Properties::orthographicalMode,
+        "offset", &Properties::offset
+    );
+    
+    lua.new_usertype<OgreCameraComponent>("OgreCameraComponent",
+
+        sol::constructors<sol::types<std::string>>(),
+
+        sol::base_classes, sol::bases<Component>(),
+
+        "ID", sol::var(lua.create_table_with("TYPE_ID", OgreCameraComponent::TYPE_ID)),
+        "TYPE_NAME", &OgreCameraComponent::TYPE_NAME,
+
+        "PolygonMode", sol::var(lua.create_table_with(
+                "PM_POINTS", Ogre::PM_POINTS,
+                "PM_WIREFRAME", Ogre::PM_WIREFRAME,
+                "PM_SOLID", Ogre::PM_SOLID
+            )),
+
+        "getCameraToViewportRay", OgreCameraComponent_getCameraToViewportRay,
+        "properties", sol::readonly(&OgreCameraComponent::m_properties)
+    );
 }
 
 OgreCameraComponent::OgreCameraComponent(
@@ -114,12 +121,15 @@ REGISTER_COMPONENT(OgreCameraComponent)
 // OgreCameraSystem
 ////////////////////////////////////////////////////////////////////////////////
 
-luabind::scope
-OgreCameraSystem::luaBindings() {
-    using namespace luabind;
-    return class_<OgreCameraSystem, System>("OgreCameraSystem")
-        .def(constructor<>())
-    ;
+void OgreCameraSystem::luaBindings(
+    sol::state &lua
+){
+    lua.new_usertype<OgreCameraSystem>("OgreCameraSystem",
+
+        sol::constructors<sol::types<>>(),
+        
+        sol::base_classes, sol::bases<System>()
+    );
 }
 
 

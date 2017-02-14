@@ -12,7 +12,7 @@
 #include "engine/serialization.h"
 #include "game.h"
 #include "ogre/scene_node_system.h"
-#include "scripting/luabind.h"
+#include "scripting/luajit.h"
 #include "util/make_unique.h"
 
 #include <iostream>
@@ -36,24 +36,24 @@ using namespace thrive;
 ////////////////////////////////////////////////////////////////////////////////
 // CompoundCloudComponent
 ////////////////////////////////////////////////////////////////////////////////
+void CompoundCloudComponent::luaBindings(
+    sol::state &lua
+){
+    lua.new_usertype<CompoundCloudComponent>("CompoundCloudComponent",
 
-luabind::scope
-CompoundCloudComponent::luaBindings() {
-    using namespace luabind;
-    return class_<CompoundCloudComponent, Component>("CompoundCloudComponent")
-        .enum_("ID") [
-            value("TYPE_ID", CompoundCloudComponent::TYPE_ID)
-        ]
-        .scope [
-            def("TYPE_NAME", &CompoundCloudComponent::TYPE_NAME)
-        ]
-        .def(constructor<>())
-        .def("initialize", &CompoundCloudComponent::initialize)
-        .def("addCloud", &CompoundCloudComponent::addCloud)
-        .def_readonly("width", &CompoundCloudComponent::width)
-        .def_readonly("height", &CompoundCloudComponent::height)
-        .def_readonly("gridSize", &CompoundCloudComponent::gridSize)
-    ;
+        sol::constructors<sol::types<>>(),
+
+        sol::base_classes, sol::bases<Component>(),
+
+        "ID", sol::var(lua.create_table_with("TYPE_ID", CompoundCloudComponent::TYPE_ID)),
+        "TYPE_NAME", &CompoundCloudComponent::TYPE_NAME,
+
+        "initialize", &CompoundCloudComponent::initialize,
+        "addCloud", &CompoundCloudComponent::addCloud,
+        "width", sol::readonly(&CompoundCloudComponent::width),
+        "height", sol::readonly(&CompoundCloudComponent::height),
+        "gridSize", sol::readonly(&CompoundCloudComponent::gridSize)
+    );
 }
 
 void
@@ -145,15 +145,16 @@ REGISTER_COMPONENT(CompoundCloudComponent)
 ////////////////////////////////////////////////////////////////////////////////
 // CompoundCloudSystem
 ////////////////////////////////////////////////////////////////////////////////
+    void CompoundCloudSystem::luaBindings(
+    sol::state &lua
+){
+    lua.new_usertype<CompoundCloudSystem>("CompoundCloudSystem",
 
-luabind::scope
-CompoundCloudSystem::luaBindings() {
-    using namespace luabind;
-    return class_<CompoundCloudSystem, System>("CompoundCloudSystem")
-        .def(constructor<>())
-    ;
+        sol::constructors<sol::types<>>(),
+        
+        sol::base_classes, sol::bases<System>()
+    );
 }
-
 
 struct CompoundCloudSystem::Implementation {
     // All entities that have a compoundCloudsComponent.

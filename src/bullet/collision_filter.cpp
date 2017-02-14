@@ -37,22 +37,10 @@ void CollisionFilter::luaBindings(
 
         "init", &CollisionFilter::init,
         "shutdown", &CollisionFilter::shutdown,
-        //"collisions", &CollisionFilter::collisions,
-        // TODO: check  http://sol2.readthedocs.io/en/latest/api/containers.html#for-handling-std-vector-map-set-and-others
-        // for alternate solutions
+
         "collisions", [](CollisionFilter &us, sol::this_state s){
-            sol::state_view lua(s);
-            auto list = us.collisions();
 
-            sol::table table = lua.create_table();
-
-            auto iter = list.begin();
-            for(int i = 1; iter != list.end(); ++i, ++iter){
-
-                table[i] = *iter;
-            }
-
-            return table;
+            THRIVE_BIND_ITERATOR_TO_TABLE(us.collisions());
         },
 
         "clearCollisions", &CollisionFilter::clearCollisions,

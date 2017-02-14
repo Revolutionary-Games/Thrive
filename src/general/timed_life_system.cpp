@@ -22,8 +22,8 @@ void TimedLifeComponent::luaBindings(
         
         sol::base_classes, sol::bases<Component>(),
 
-        "ID", sol::var(lua.create_table_with(
-                "TYPE_ID", sol::var(TimedLifeComponent::TYPE_ID))),
+        "ID", sol::var(lua.create_table_with("TYPE_ID",
+                sol::var(TimedLifeComponent::TYPE_ID))),
         "TYPE_NAME", &TimedLifeComponent::TYPE_NAME,
 
         "timeToLive", &TimedLifeComponent::m_timeToLive

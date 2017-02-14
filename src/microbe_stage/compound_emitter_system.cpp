@@ -11,12 +11,11 @@
 #include "game.h"
 #include "general/timed_life_system.h"
 #include "ogre/scene_node_system.h"
-#include "scripting/luabind.h"
+#include "scripting/luajit.h"
 #include "util/make_unique.h"
 #include "microbe_stage/compound.h"
 #include "microbe_stage/compound_registry.h"
 
-#include <luabind/iterator_policy.hpp>
 #include <OgreEntity.h>
 #include <OgreSceneManager.h>
 #include <stdexcept>
@@ -26,28 +25,27 @@ using namespace thrive;
 ////////////////////////////////////////////////////////////////////////////////
 // CompoundEmitterComponent
 ////////////////////////////////////////////////////////////////////////////////
+void CompoundEmitterComponent::luaBindings(
+    sol::state &lua
+){
+    lua.new_usertype<CompoundEmitterComponent>("CompoundEmitterComponent",
 
-luabind::scope
-CompoundEmitterComponent::luaBindings() {
-    using namespace luabind;
-    return class_<CompoundEmitterComponent, Component>("CompoundEmitterComponent")
-        .enum_("ID") [
-            value("TYPE_ID", CompoundEmitterComponent::TYPE_ID)
-        ]
-        .scope [
-            def("TYPE_NAME", &CompoundEmitterComponent::TYPE_NAME)
-        ]
-        .def(constructor<>())
-        .def("emitCompound", &CompoundEmitterComponent::emitCompound)
-        .def_readwrite("emissionRadius", &CompoundEmitterComponent::m_emissionRadius)
-        .def_readwrite("maxInitialSpeed", &CompoundEmitterComponent::m_maxInitialSpeed)
-        .def_readwrite("minInitialSpeed", &CompoundEmitterComponent::m_minInitialSpeed)
-        .def_readwrite("minEmissionAngle", &CompoundEmitterComponent::m_minEmissionAngle)
-        .def_readwrite("maxEmissionAngle", &CompoundEmitterComponent::m_maxEmissionAngle)
-        .def_readwrite("particleLifetime", &CompoundEmitterComponent::m_particleLifetime)
-    ;
+        sol::constructors<sol::types<>>(),
+
+        sol::base_classes, sol::bases<Component>(),
+
+        "ID", sol::var(lua.create_table_with("TYPE_ID", CompoundEmitterComponent::TYPE_ID)),
+        "TYPE_NAME", &CompoundEmitterComponent::TYPE_NAME,
+
+        "emitCompound", &CompoundEmitterComponent::emitCompound,
+        "emissionRadius", &CompoundEmitterComponent::m_emissionRadius,
+        "maxInitialSpeed", &CompoundEmitterComponent::m_maxInitialSpeed,
+        "minInitialSpeed", &CompoundEmitterComponent::m_minInitialSpeed,
+        "minEmissionAngle", &CompoundEmitterComponent::m_minEmissionAngle,
+        "maxEmissionAngle", &CompoundEmitterComponent::m_maxEmissionAngle,
+        "particleLifetime", &CompoundEmitterComponent::m_particleLifetime
+    );
 }
-
 
 void
 CompoundEmitterComponent::emitCompound(
@@ -93,24 +91,25 @@ REGISTER_COMPONENT(CompoundEmitterComponent)
 // TimedCompoundEmitterComponent
 ////////////////////////////////////////////////////////////////////////////////
 
-luabind::scope
-TimedCompoundEmitterComponent::luaBindings() {
-    using namespace luabind;
-    return class_<TimedCompoundEmitterComponent, Component>("TimedCompoundEmitterComponent")
-        .enum_("ID") [
-            value("TYPE_ID", TimedCompoundEmitterComponent::TYPE_ID)
-        ]
-        .scope [
-            def("TYPE_NAME", &TimedCompoundEmitterComponent::TYPE_NAME)
-        ]
-        .def(constructor<>())
-        .def_readwrite("emitInterval", &TimedCompoundEmitterComponent::m_emitInterval)
-        .def_readwrite("compoundId", &TimedCompoundEmitterComponent::m_compoundId)
-        .def_readwrite("particlesPerEmission", &TimedCompoundEmitterComponent::m_particlesPerEmission)
-        .def_readwrite("potencyPerParticle", &TimedCompoundEmitterComponent::m_potencyPerParticle)
-    ;
-}
+    void TimedCompoundEmitterComponent::luaBindings(
+    sol::state &lua
+){
+    lua.new_usertype<TimedCompoundEmitterComponent>("TimedCompoundEmitterComponent",
 
+        sol::constructors<sol::types<>>(),
+
+        sol::base_classes, sol::bases<Component>(),
+
+        "ID", sol::var(lua.create_table_with("TYPE_ID",
+                TimedCompoundEmitterComponent::TYPE_ID)),
+        "TYPE_NAME", &TimedCompoundEmitterComponent::TYPE_NAME,
+
+        "emitInterval", &TimedCompoundEmitterComponent::m_emitInterval,
+        "compoundId", &TimedCompoundEmitterComponent::m_compoundId,
+        "particlesPerEmission", &TimedCompoundEmitterComponent::m_particlesPerEmission,
+        "potencyPerParticle", &TimedCompoundEmitterComponent::m_potencyPerParticle
+    );
+}
 
 void
 TimedCompoundEmitterComponent::load(
@@ -142,15 +141,16 @@ REGISTER_COMPONENT(TimedCompoundEmitterComponent)
 ////////////////////////////////////////////////////////////////////////////////
 // CompoundEmitterSystem
 ////////////////////////////////////////////////////////////////////////////////
+void CompoundEmitterSystem::luaBindings(
+    sol::state &lua
+){
+    lua.new_usertype<CompoundEmitterSystem>("CompoundEmitterSystem",
 
-luabind::scope
-CompoundEmitterSystem::luaBindings() {
-    using namespace luabind;
-    return class_<CompoundEmitterSystem, System>("CompoundEmitterSystem")
-        .def(constructor<>())
-    ;
+        sol::constructors<sol::types<>>(),
+        
+        sol::base_classes, sol::bases<System>()
+    );
 }
-
 
 struct CompoundEmitterSystem::Implementation {
 

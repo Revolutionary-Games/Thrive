@@ -5,7 +5,7 @@
 #include "engine/entity_filter.h"
 #include "engine/serialization.h"
 #include "ogre/scene_node_system.h"
-#include "scripting/luabind.h"
+#include "scripting/luajit.h"
 
 #include <iostream>
 #include <OgreSceneManager.h>
@@ -28,40 +28,46 @@ OgreLightComponent::setRange(
     m_properties.touch();
 }
 
+void OgreLightComponent::luaBindings(
+    sol::state &lua
+){
 
-luabind::scope
-OgreLightComponent::luaBindings() {
-    using namespace luabind;
-    return class_<OgreLightComponent, Component>("OgreLightComponent")
-        .enum_("ID") [
-            value("TYPE_ID", OgreLightComponent::TYPE_ID)
-        ]
-        .scope [
-            def("TYPE_NAME", &OgreLightComponent::TYPE_NAME),
-            class_<Properties, Touchable>("Properties")
-                .def_readwrite("attenuationConstant", &Properties::attenuationConstant)
-                .def_readwrite("attenuationLinear", &Properties::attenuationLinear)
-                .def_readwrite("attenuationRange", &Properties::attenuationRange)
-                .def_readwrite("attenuationQuadratic", &Properties::attenuationQuadratic)
-                .def_readwrite("diffuseColour", &Properties::diffuseColour)
-                .def_readwrite("specularColour", &Properties::specularColour)
-                .def_readwrite("spotlightFalloff", &Properties::spotlightFalloff)
-                .def_readwrite("spotlightInnerAngle", &Properties::spotlightInnerAngle)
-                .def_readwrite("spotlightNearClipDistance", &Properties::spotlightNearClipDistance)
-                .def_readwrite("spotlightOuterAngle", &Properties::spotlightOuterAngle)
-                .def_readwrite("type", &Properties::type)
-        ]
-        .enum_("LightTypes") [
-            value("LT_POINT", Ogre::Light::LT_POINT),
-            value("LT_DIRECTIONAL", Ogre::Light::LT_DIRECTIONAL),
-            value("LT_SPOTLIGHT", Ogre::Light::LT_SPOTLIGHT)
-        ]
-        .def(constructor<>())
-        .def("setRange", &OgreLightComponent::setRange)
-        .def_readonly("properties", &OgreLightComponent::m_properties)
-    ;
+    lua.new_usertype<Properties>("OgreLightComponentProperties",
+
+        sol::base_classes, sol::bases<Touchable>(),
+
+        "attenuationConstant", &Properties::attenuationConstant,
+        "attenuationLinear", &Properties::attenuationLinear,
+        "attenuationRange", &Properties::attenuationRange,
+        "attenuationQuadratic", &Properties::attenuationQuadratic,
+        "diffuseColour", &Properties::diffuseColour,
+        "specularColour", &Properties::specularColour,
+        "spotlightFalloff", &Properties::spotlightFalloff,
+        "spotlightInnerAngle", &Properties::spotlightInnerAngle,
+        "spotlightNearClipDistance", &Properties::spotlightNearClipDistance,
+        "spotlightOuterAngle", &Properties::spotlightOuterAngle,
+        "type", &Properties::type
+    );
+    
+    lua.new_usertype<OgreLightComponent>("OgreLightComponent",
+
+        sol::constructors<sol::types<>>(),
+
+        sol::base_classes, sol::bases<Component>(),
+
+        "ID", sol::var(lua.create_table_with("TYPE_ID", OgreLightComponent::TYPE_ID)),
+        "TYPE_NAME", &OgreLightComponent::TYPE_NAME,
+
+        "setRange", &OgreLightComponent::setRange,
+        "properties", sol::readonly(&OgreLightComponent::m_properties),
+
+        "LightTypes", sol::var(lua.create_table_with(
+                "LT_POINT", Ogre::Light::LT_POINT,
+                "LT_DIRECTIONAL", Ogre::Light::LT_DIRECTIONAL,
+                "LT_SPOTLIGHT", Ogre::Light::LT_SPOTLIGHT
+            ))
+    );
 }
-
 
 void
 OgreLightComponent::load(
@@ -108,14 +114,16 @@ REGISTER_COMPONENT(OgreLightComponent)
 // OgreLightSystem
 ////////////////////////////////////////////////////////////////////////////////
 
-luabind::scope
-OgreLightSystem::luaBindings() {
-    using namespace luabind;
-    return class_<OgreLightSystem, System>("OgreLightSystem")
-        .def(constructor<>())
-    ;
-}
+void OgreLightSystem::luaBindings(
+    sol::state &lua
+){
+    lua.new_usertype<OgreLightSystem>("OgreLightSystem",
 
+        sol::constructors<sol::types<>>(),
+        
+        sol::base_classes, sol::bases<System>()
+    );
+}
 
 struct OgreLightSystem::Implementation {
 

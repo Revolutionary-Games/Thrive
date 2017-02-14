@@ -3,7 +3,6 @@
 #include "engine/component.h"
 #include "engine/system.h"
 #include "engine/touchable.h"
-#include "scripting/luabind.h"
 #include "engine/typedefs.h"
 
 #include <boost/range/adaptor/map.hpp>
@@ -20,8 +19,7 @@ class ProcessorComponent : public Component {
     COMPONENT(Processor)
 
 public:
-    static luabind::scope
-    luaBindings();
+    static void luaBindings(sol::state &lua);
 
     void
     load(
@@ -51,8 +49,7 @@ class CompoundBagComponent : public Component {
     COMPONENT(CompoundBag)
 
 public:
-    static luabind::scope
-    luaBindings();
+    static void luaBindings(sol::state &lua);
 
     CompoundBagComponent();
 
@@ -90,8 +87,7 @@ public:
 class ProcessSystem : public System {
 
 public:
-    static luabind::scope
-    luaBindings();
+    static void luaBindings(sol::state &lua);
 
     /**
     * @brief Constructor

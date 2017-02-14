@@ -9,7 +9,7 @@
 #include "engine/serialization.h"
 #include "game.h"
 #include "ogre/camera_system.h"
-#include "scripting/luabind.h"
+#include "scripting/luajit.h"
 
 #include <Compositor/OgreCompositorCommon.h>
 #include <Compositor/OgreCompositorManager2.h>
@@ -22,7 +22,6 @@
 #include <Compositor/Pass/PassScene/OgreCompositorPassScene.h>
 #include <OgreRenderWindow.h>
 #include <OgreRoot.h>
-#include <luabind/adopt_policy.hpp>
 
 
 using namespace thrive;
@@ -33,33 +32,42 @@ using namespace thrive;
 
 static Entity
 Properties_getCameraEntity(
-    const OgreWorkspaceComponent::Properties* self
+    const OgreWorkspaceComponent::Properties &self
 ) {
-    return Entity(self->cameraEntity);
+    return Entity(self.cameraEntity);
 }
 
 
 static void
 Properties_setCameraEntity(
-    OgreWorkspaceComponent::Properties* self,
+    OgreWorkspaceComponent::Properties &self,
     const Entity& entity
 ) {
-    self->cameraEntity = entity.id();
+    self.cameraEntity = entity.id();
 }
 
+void OgreWorkspaceComponent::luaBindings(
+    sol::state &lua
+){
+    lua.new_usertype<Properties>("OgreWorkspaceComponentProperties",
 
-luabind::scope
-OgreWorkspaceComponent::luaBindings() {
-    using namespace luabind;
-    return class_<OgreWorkspaceComponent, Component>("OgreWorkspaceComponent")
-        .scope [
-            class_<Properties, Touchable>("Properties")
-            .property("cameraEntity", Properties_getCameraEntity, Properties_setCameraEntity)
-            .def_readwrite("position", &Properties::position)
-        ]
-        .def(constructor<std::string>())
-        .def_readonly("properties", &OgreWorkspaceComponent::m_properties)
-        ;
+        sol::base_classes, sol::bases<Touchable>(),
+        
+        "cameraEntity", sol::property(Properties_getCameraEntity, Properties_setCameraEntity),
+        "position", &Properties::position
+    );
+    
+    lua.new_usertype<OgreWorkspaceComponent>("OgreWorkspaceComponent",
+
+        sol::constructors<sol::types<std::string>>(),
+
+        sol::base_classes, sol::bases<Component>(),
+
+        "ID", sol::var(lua.create_table_with("TYPE_ID", OgreWorkspaceComponent::TYPE_ID)),
+        "TYPE_NAME", &OgreWorkspaceComponent::TYPE_NAME,
+
+        "properties", sol::readonly(&OgreWorkspaceComponent::m_properties)
+    );
 }
 
 OgreWorkspaceComponent::OgreWorkspaceComponent(
@@ -98,15 +106,16 @@ REGISTER_COMPONENT(OgreWorkspaceComponent)
 // OgreWorkspaceSystem
 ////////////////////////////////////////////////////////////////////////////////
 
+void OgreWorkspaceSystem::luaBindings(
+    sol::state &lua
+){
+    lua.new_usertype<OgreWorkspaceSystem>("OgreWorkspaceSystem",
 
-luabind::scope
-OgreWorkspaceSystem::luaBindings() {
-    using namespace luabind;
-    return class_<OgreWorkspaceSystem, System>("OgreWorkspaceSystem")
-        .def(constructor<>())
-        ;
+        sol::constructors<sol::types<>>(),
+        
+        sol::base_classes, sol::bases<System>()
+    );
 }
-
 
 struct OgreWorkspaceSystem::Implementation {
 

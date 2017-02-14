@@ -49,8 +49,7 @@ public:
     *
     * @return
     */
-    static luabind::scope
-    luaBindings();
+    static void luaBindings(sol::state &lua);
 
     /**
     * @brief Play mode of the sound
@@ -185,8 +184,7 @@ public:
     *
     * @return
     **/
-    static luabind::scope
-    luaBindings();
+    static void luaBindings(sol::state &lua);
 
     /**
     * @brief Adds a new sound
@@ -335,8 +333,7 @@ public:
     *
     * @return
     **/
-    static luabind::scope
-    luaBindings();
+    static void luaBindings(sol::state &lua);
 
     /**
     * @brief Constructor

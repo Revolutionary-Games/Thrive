@@ -12,7 +12,7 @@
 #include "engine/serialization.h"
 #include "game.h"
 #include "ogre/scene_node_system.h"
-#include "scripting/luabind.h"
+#include "scripting/luajit.h"
 #include "util/make_unique.h"
 
 #include <iostream>
@@ -37,24 +37,25 @@ using namespace thrive;
 // AgentCloudComponent
 ////////////////////////////////////////////////////////////////////////////////
 
-luabind::scope
-AgentCloudComponent::luaBindings() {
-    using namespace luabind;
-    return class_<AgentCloudComponent, Component>("AgentCloudComponent")
-        .enum_("ID") [
-            value("TYPE_ID", AgentCloudComponent::TYPE_ID)
-        ]
-        .scope [
-            def("TYPE_NAME", &AgentCloudComponent::TYPE_NAME)
-        ]
-        .def(constructor<>())
-        .def("initialize", &AgentCloudComponent::initialize)
-        .def_readwrite("direction", &AgentCloudComponent::direction)
-        .def_readwrite("potency", &AgentCloudComponent::potency)
-        .def_readonly("width", &AgentCloudComponent::width)
-        .def_readonly("height", &AgentCloudComponent::height)
-        .def_readonly("gridSize", &AgentCloudComponent::gridSize)
-    ;
+void AgentCloudComponent::luaBindings(
+    sol::state &lua
+){
+    lua.new_usertype<AgentCloudComponent>("AgentCloudComponent",
+
+        sol::constructors<sol::types<>>(),
+
+        sol::base_classes, sol::bases<Component>(),
+
+        "ID", sol::var(lua.create_table_with("TYPE_ID", AgentCloudComponent::TYPE_ID)),
+        "TYPE_NAME", &AgentCloudComponent::TYPE_NAME,
+
+        "initialize", &AgentCloudComponent::initialize,
+        "direction", &AgentCloudComponent::direction,
+        "potency", &AgentCloudComponent::potency,
+        "width", sol::readonly(&AgentCloudComponent::width),
+        "height", sol::readonly(&AgentCloudComponent::height),
+        "gridSize", sol::readonly(&AgentCloudComponent::gridSize)
+    );
 }
 
 void
@@ -115,14 +116,16 @@ REGISTER_COMPONENT(AgentCloudComponent)
 // AgentCloudSystem
 ////////////////////////////////////////////////////////////////////////////////
 
-luabind::scope
-AgentCloudSystem::luaBindings() {
-    using namespace luabind;
-    return class_<AgentCloudSystem, System>("AgentCloudSystem")
-        .def(constructor<>())
-    ;
-}
+void AgentCloudSystem::luaBindings(
+    sol::state &lua
+){
+    lua.new_usertype<AgentCloudSystem>("AgentCloudSystem",
 
+        sol::constructors<sol::types<>>(),
+        
+        sol::base_classes, sol::bases<System>()
+    );
+}
 
 struct AgentCloudSystem::Implementation {
     // All entities that have an agent CloudsComponent and a scene node.

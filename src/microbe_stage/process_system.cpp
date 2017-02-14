@@ -17,25 +17,25 @@ using namespace thrive;
 
 REGISTER_COMPONENT(ProcessorComponent)
 
-luabind::scope
-ProcessorComponent::luaBindings() {
-    using namespace luabind;
-    return class_<ProcessorComponent, Component>("ProcessorComponent")
-        .enum_("ID") [
-            value("TYPE_ID", ProcessorComponent::TYPE_ID)
-        ]
-        .scope [
-            def("TYPE_NAME", &ProcessorComponent::TYPE_NAME)
-        ]
-        .def(constructor<>())
-        .def("setThreshold", &ProcessorComponent::setThreshold)
-        .def("setLowThreshold", &ProcessorComponent::setLowThreshold)
-        .def("setHighThreshold", &ProcessorComponent::setHighThreshold)
-        .def("setVentThreshold", &ProcessorComponent::setVentThreshold)
-        .def("setCapacity", &ProcessorComponent::setCapacity)
-    ;
-}
+void ProcessorComponent::luaBindings(
+    sol::state &lua
+){
+    lua.new_usertype<ProcessorComponent>("ProcessorComponent",
 
+        sol::constructors<sol::types<>>(),
+
+        sol::base_classes, sol::bases<Component>(),
+
+        "ID", sol::var(lua.create_table_with("TYPE_ID", ProcessorComponent::TYPE_ID)),
+        "TYPE_NAME", &ProcessorComponent::TYPE_NAME,
+
+        "setThreshold", &ProcessorComponent::setThreshold,
+        "setLowThreshold", &ProcessorComponent::setLowThreshold,
+        "setHighThreshold", &ProcessorComponent::setHighThreshold,
+        "setVentThreshold", &ProcessorComponent::setVentThreshold,
+        "setCapacity", &ProcessorComponent::setCapacity
+    );
+}
 
 void
 ProcessorComponent::load(const StorageContainer& storage)
@@ -116,24 +116,25 @@ ProcessorComponent::setCapacity(BioProcessId id, float capacity)
 
 REGISTER_COMPONENT(CompoundBagComponent)
 
-luabind::scope
-CompoundBagComponent::luaBindings() {
-    using namespace luabind;
-    return class_<CompoundBagComponent, Component>("CompoundBagComponent")
-        .enum_("ID") [
-            value("TYPE_ID", CompoundBagComponent::TYPE_ID)
-        ]
-        .scope [
-            def("TYPE_NAME", &CompoundBagComponent::TYPE_NAME)
-        ]
-        .def(constructor<>())
-        .def("setProcessor", &CompoundBagComponent::setProcessor)
-        .def("giveCompound", &CompoundBagComponent::giveCompound)
-        .def("takeCompound", &CompoundBagComponent::takeCompound)
-        .def("getCompoundAmount", &CompoundBagComponent::getCompoundAmount)
-        .def("excessAmount", &CompoundBagComponent::excessAmount)
-        .def("aboveLowThreshold", &CompoundBagComponent::aboveLowThreshold)
-    ;
+void CompoundBagComponent::luaBindings(
+    sol::state &lua
+){
+    lua.new_usertype<CompoundBagComponent>("CompoundBagComponent",
+
+        sol::constructors<sol::types<>>(),
+
+        sol::base_classes, sol::bases<Component>(),
+
+        "ID", sol::var(lua.create_table_with("TYPE_ID", CompoundBagComponent::TYPE_ID)),
+        "TYPE_NAME", &CompoundBagComponent::TYPE_NAME,
+
+        "setProcessor", &CompoundBagComponent::setProcessor,
+        "giveCompound", &CompoundBagComponent::giveCompound,
+        "takeCompound", &CompoundBagComponent::takeCompound,
+        "getCompoundAmount", &CompoundBagComponent::getCompoundAmount,
+        "excessAmount", &CompoundBagComponent::excessAmount,
+        "aboveLowThreshold", &CompoundBagComponent::aboveLowThreshold
+    );
 }
 
 CompoundBagComponent::CompoundBagComponent() {
@@ -165,7 +166,8 @@ CompoundBagComponent::storage() const
 
     StorageContainer compounds;
     for (auto entry : this->compounds) {
-        compounds.set<float>(""+entry.first, entry.second);
+        compounds.set<float>(""+std::to_string(static_cast<int64_t>(entry.first)),
+            entry.second);
     }
     storage.set("compounds", std::move(compounds));
 
@@ -213,13 +215,18 @@ CompoundBagComponent::aboveLowThreshold(CompoundId id) {
     return amt > threshold ? amt - threshold : 0;
 }
 
-luabind::scope
-ProcessSystem::luaBindings() {
-    using namespace luabind;
-    return class_<ProcessSystem, System>("ProcessSystem")
-        .def(constructor<>())
-    ;
+void ProcessSystem::luaBindings(
+    sol::state &lua
+){
+    lua.new_usertype<ProcessSystem>("ProcessSystem",
+
+        sol::constructors<sol::types<>>(),
+        
+        sol::base_classes, sol::bases<System>()
+    );
 }
+
+
 struct ProcessSystem::Implementation {
 
     EntityFilter<

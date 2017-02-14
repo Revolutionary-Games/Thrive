@@ -24,3 +24,22 @@
 #pragma GCC diagnostic pop
 #endif
 
+// Helper macros
+
+// For boost iterators
+// TODO: check  http://sol2.readthedocs.io/en/latest/api/containers.html#for-handling-std-vector-map-set-and-others
+// for alternate solutions
+#define THRIVE_BIND_ITERATOR_TO_TABLE(getList) sol::state_view lua(s);  \
+ const auto list = getList;                                             \
+ sol::table table = lua.create_table();                                 \
+                                                                        \
+ auto iter = list.begin();                                              \
+ for(int i = 1; iter != list.end(); ++i, ++iter){                       \
+     table[i] = *iter;                                                  \
+ }                                                                      \
+                                                                        \
+ return table;                                                          \
+ 
+
+
+

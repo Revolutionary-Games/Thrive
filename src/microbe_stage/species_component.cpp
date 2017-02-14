@@ -1,6 +1,5 @@
 #include "species_component.h"
 
-#include <luabind/iterator_policy.hpp>
 #include <OgreMath.h>
 #include "engine/engine.h"
 #include "engine/serialization.h"
@@ -11,37 +10,38 @@ using namespace thrive;
 
 unsigned int SpeciesComponent::SPECIES_NUM = 0;
 
-luabind::scope
-SpeciesComponent::luaBindings() {
-	using namespace luabind;
-	return class_<SpeciesComponent, Component>("SpeciesComponent")
-		.enum_("ID") [
-			value("TYPE_ID", SpeciesComponent::TYPE_ID)
-		]
-		.scope [
-			def("TYPE_NAME", &SpeciesComponent::TYPE_NAME)
-		]
-		.def(constructor<const std::string&>())
-		.def_readwrite("name", &SpeciesComponent::name)
-		.def_readwrite("organelles", &SpeciesComponent::organelles)
-		.def_readwrite("avgCompoundAmounts", &SpeciesComponent::avgCompoundAmounts)
-		.def_readwrite("colour", &SpeciesComponent::colour)
-		.def("load", &SpeciesComponent::load)
-		.def("storage", &SpeciesComponent::storage)
-	;
+void SpeciesComponent::luaBindings(
+    sol::state &lua
+){
+    lua.new_usertype<SpeciesComponent>("SpeciesComponent",
+
+        sol::constructors<sol::types<const std::string&>>(),
+
+        sol::base_classes, sol::bases<Component>(),
+
+        "ID", sol::var(lua.create_table_with("TYPE_ID", SpeciesComponent::TYPE_ID)),
+        "TYPE_NAME", &SpeciesComponent::TYPE_NAME,
+
+        "name", &SpeciesComponent::name,
+        "organelles", &SpeciesComponent::organelles,
+        "avgCompoundAmounts", &SpeciesComponent::avgCompoundAmounts,
+        "colour", &SpeciesComponent::colour,
+        "load", &SpeciesComponent::load,
+        "storage", &SpeciesComponent::storage
+    );
 }
 
 SpeciesComponent::SpeciesComponent(const std::string& _name)
 	: colour(1,0,1), name(_name) {
 	if (name == "") {
-		name = "noname" + SPECIES_NUM;
+		name = "noname" + std::to_string(SPECIES_NUM);
 		++SPECIES_NUM;
 	}
 
-	lua_State* lua_state = Game::instance().engine().luaState();
+    sol::state_view lua(Game::instance().engine().luaState());
 
-	organelles = luabind::newtable(lua_state);
-	avgCompoundAmounts = luabind::newtable(lua_state);
+	organelles = lua.create_table();
+    avgCompoundAmounts = lua.create_table();
 }
 
 void
@@ -50,15 +50,14 @@ SpeciesComponent::load(const StorageContainer& storage) {
 	name = storage.get<std::string>("name");
 	colour = storage.get<Ogre::Vector3>("colour");
 
-	lua_State* lua_state = Game::instance().engine().luaState();
-
-	organelles = luabind::newtable(lua_state);
+    sol::state_view lua(Game::instance().engine().luaState());
+    
 	StorageContainer orgs = storage.get<StorageContainer>("organelles");
 
 	int i = 1;
 	while (orgs.contains(std::to_string(i))) {
 		StorageContainer org = orgs.get<StorageContainer>(std::to_string(i));
-		luabind::object organelle = luabind::newtable(lua_state);
+		sol::table organelle = lua.create_table();
 
 		organelle["name"] = org.get<std::string>("name");
 		organelle["q"] = org.get<int>("q");
@@ -69,7 +68,7 @@ SpeciesComponent::load(const StorageContainer& storage) {
 		i++;
 	}
 
-	avgCompoundAmounts = luabind::newtable(lua_state);
+	avgCompoundAmounts = lua.create_table();
 	StorageContainer amts = storage.get<StorageContainer>("avgCompoundAmounts");
 
 	for (const std::string& k : amts.keys()) {
@@ -86,23 +85,29 @@ SpeciesComponent::storage() const {
 	StorageContainer orgs;
 
 	int i = 1;
-	for (luabind::iterator it(organelles), end; it != end; it++, i++) {
-        const luabind::object& data = *it;
+	for (const auto& pair : organelles) {
+        
+        sol::table data = pair.second.as<sol::table>();
 
+        
+        
         StorageContainer org;
-        org.set<std::string>("name", luabind::object_cast<std::string>(data["name"]));
-        org.set<int>("q", luabind::object_cast<int>(data["q"]));
-        org.set<int>("r", luabind::object_cast<int>(data["r"]));
-        org.set<Ogre::Real>("rotation", luabind::object_cast<Ogre::Real>(data["rotation"]));
+        org.set<std::string>("name", data.get<std::string>("name"));
+        org.set<int>("q", data.get<int>("q"));
+        org.set<int>("r", data.get<int>("r"));
+        org.set<Ogre::Real>("rotation", data.get<Ogre::Real>("rotation"));
 
         orgs.set<StorageContainer>(std::to_string(i), org);
+
+        ++i;
 	}
 	storage.set<StorageContainer>("organelles", orgs);
 
 	StorageContainer amts;
-	for (luabind::iterator it(avgCompoundAmounts), end; it != end; it++) {
-		const std::string& key = luabind::object_cast<std::string>(it.key());
-        const Ogre::Real& data = luabind::object_cast<Ogre::Real>(*it);
+	for (const auto& pair : avgCompoundAmounts) {
+        
+		const std::string& key = pair.first.as<std::string>();
+        const Ogre::Real& data = pair.second.as<Ogre::Real>();
 
         amts.set<Ogre::Real>(key, data);
 	}
