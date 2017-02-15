@@ -9,7 +9,7 @@
 #include "sound/sound_emitter.h"
 #include "sound/sound_manager.h"
 #include "ogre/scene_node_system.h"
-#include "scripting/luabind.h"
+#include "scripting/luajit.h"
 #include "util/make_unique.h"
 
 #include "game.h"
@@ -26,32 +26,38 @@ static const int FADE_TIME = 5000; //5 seconds
 // Sound
 ////////////////////////////////////////////////////////////////////////////////
 
-luabind::scope
-Sound::luaBindings() {
-    using namespace luabind;
-    return class_<Sound>("Sound")
-        .scope [
-            class_<Properties, Touchable>("Properties")
-                .def_readwrite("playState", &Properties::playState)
-                .def_readwrite("loop", &Properties::loop)
-                .def_readwrite("volume", &Properties::volume)
-                .def_readwrite("maxDistance", &Properties::maxDistance)
-                .def_readwrite("rolloffFactor", &Properties::rolloffFactor)
-                .def_readwrite("referenceDistance", &Properties::referenceDistance)
-                .def_readwrite("priority", &Properties::priority)
-        ]
-        .enum_("PlayState") [
-            value("Play", PlayState::Play),
-            value("Pause", PlayState::Pause),
-            value("Stop", PlayState::Stop)
-        ]
-        .def(constructor<std::string, std::string>())
-        .def("name", &Sound::name)
-        .def("pause", &Sound::pause)
-        .def("play", &Sound::play)
-        .def("stop", &Sound::stop)
-        .def_readonly("properties", &Sound::m_properties)
-    ;
+void Sound::luaBindings(sol::state &lua) {
+
+    lua.new_usertype<Properties>("SoundProperties",
+
+        sol::base_classes, sol::bases<Touchable>(),
+
+        "playState", &Properties::playState,
+        "loop", &Properties::loop,
+        "volume", &Properties::volume,
+        "maxDistance", &Properties::maxDistance,
+        "rolloffFactor", &Properties::rolloffFactor,
+        "referenceDistance", &Properties::referenceDistance,
+        "priority", &Properties::priority
+    );
+    
+    lua.new_usertype<Sound>("Sound",
+
+        sol::constructors<sol::types<std::string, std::string>>(),
+
+        "PlayState", sol::var(lua.create_table_with(
+                "Play", PlayState::Play,
+                "Pause", PlayState::Pause,
+                "Stop", PlayState::Stop
+            )),
+            
+        "name", &Sound::name,
+        "pause", &Sound::pause,
+        "play", &Sound::play,
+        "stop", &Sound::stop,
+
+        "properties", sol::readonly(&Sound::m_properties)
+    );
 }
 
 
@@ -187,28 +193,36 @@ SoundSourceComponent_setVolumeMultiplier(
     self->m_volumeMultiplier = value;
 }
 
-luabind::scope
-SoundSourceComponent::luaBindings() {
-    using namespace luabind;
-    return class_<SoundSourceComponent, Component>("SoundSourceComponent")
-        .enum_("ID") [
-            value("TYPE_ID", SoundSourceComponent::TYPE_ID)
-        ]
-        .scope [
-            def("TYPE_NAME", &SoundSourceComponent::TYPE_NAME)
-        ]
-        .def(constructor<>())
-        .def("addSound", &SoundSourceComponent::addSound)
-        .def("removeSound", &SoundSourceComponent::removeSound)
-        .def("playSound", &SoundSourceComponent::playSound)
-        .def("stopSound", &SoundSourceComponent::stopSound)
-        .def("queueSound", &SoundSourceComponent::queueSound)
-        .def("interpose", &SoundSourceComponent::interpose)
-        .def("interruptPlaying", &SoundSourceComponent::interruptPlaying)
-        .property("ambientSoundSource", SoundSourceComponent_getAmbientSoundSource, SoundSourceComponent_setAmbientSoundSource)
-        .property("autoLoop", SoundSourceComponent_getAutoLoop, SoundSourceComponent_setAutoLoop)
-        .property("volumeMultiplier", SoundSourceComponent_getVolumeMultiplier, SoundSourceComponent_setVolumeMultiplier)
-    ;
+
+
+void SoundSourceComponent::luaBindings(
+    sol::state &lua
+){
+    lua.new_usertype<SoundSourceComponent>("SoundSourceComponent",
+
+        sol::constructors<sol::types<>>(),
+
+        sol::base_classes, sol::bases<Component>(),
+
+        "ID", sol::var(lua.create_table_with("TYPE_ID", SoundSourceComponent::TYPE_ID)),
+        "TYPE_NAME", &SoundSourceComponent::TYPE_NAME,
+
+        "addSound", &SoundSourceComponent::addSound,
+        "removeSound", &SoundSourceComponent::removeSound,
+        "playSound", &SoundSourceComponent::playSound,
+        "stopSound", &SoundSourceComponent::stopSound,
+        "queueSound", &SoundSourceComponent::queueSound,
+        "interpose", &SoundSourceComponent::interpose,
+        "interruptPlaying", &SoundSourceComponent::interruptPlaying,
+
+        // TODOSOL: check do these need to be properties or not
+        // maybe add something like:
+        // THRIVE_SOL_BIND_TOUCHABLE_PROPERTY("ambientSoundSource",
+        //     SoundSourceComponent, m_ambientSoundSource)
+        "ambientSoundSource", &SoundSourceComponent::m_ambientSoundSource,
+        "autoLoop", &SoundSourceComponent::m_autoLoop,
+        "volumeMultiplier", &SoundSourceComponent::m_volumeMultiplier
+    );
 }
 
 Sound*
@@ -313,15 +327,16 @@ REGISTER_COMPONENT(SoundSourceComponent)
 // SoundSourceSystem
 ////////////////////////////////////////////////////////////////////////////////
 
-luabind::scope
-SoundSourceSystem::luaBindings() {
-    using namespace luabind;
-    return class_<SoundSourceSystem, System>("SoundSourceSystem")
-        .def(constructor<>())
-    ;
+void SoundSourceSystem::luaBindings(sol::state &lua) {
+
+    lua.new_usertype<SoundSourceSystem>("SoundSourceSystem",
+
+        sol::constructors<sol::types<>>(),
+
+        sol::base_classes, sol::bases<System>()
+    );
 }
-
-
+    
 struct SoundSourceSystem::Implementation {
 
     //Destroys all sounds, freeing up memory
