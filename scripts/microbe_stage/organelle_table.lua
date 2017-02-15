@@ -124,12 +124,28 @@ organelleTable = {
         components = {
             ["MovementOrganelle"] = {
                 momentum = 20,
-                torque = 300
+                torque = 250
             }
         },
         mass = 0.3,
         gene = "F",
         mpCost = 25,
+        mesh = "flagellum.mesh",
+        hexes = {
+            {["q"]=0,   ["r"]=0},
+        }
+    },
+
+    ["cilia"] = {
+        components = {
+            ["MovementOrganelle"] = {
+                momentum = 3,
+                torque = 600
+            }
+        },
+        mass = 0.2,
+        gene = "C",
+        mpCost = 30,
         mesh = "flagellum.mesh",
         hexes = {
             {["q"]=0,   ["r"]=0},

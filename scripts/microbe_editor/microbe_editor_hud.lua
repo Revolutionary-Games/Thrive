@@ -56,6 +56,7 @@ function MicrobeEditorHudSystem:init(gameState)
     local vacuoleButton = root:getChild("EditPanel"):getChild("StructurePanel"):getChild("StructureScroll"):getChild("AddVacuole")
     local toxinButton = root:getChild("EditPanel"):getChild("StructurePanel"):getChild("StructureScroll"):getChild("AddToxinVacuole")
     local chloroplastButton = root:getChild("EditPanel"):getChild("StructurePanel"):getChild("StructureScroll"):getChild("AddChloroplast")
+    local ciliaButton = root:getChild("EditPanel"):getChild("StructurePanel"):getChild("StructureScroll"):getChild("AddCilia")
     
     self.organelleButtons["nucleus"] = nucleusButton
     self.organelleButtons["flagellum"] = flagellumButton
@@ -64,6 +65,7 @@ function MicrobeEditorHudSystem:init(gameState)
     self.organelleButtons["chloroplast"] = chloroplastButton
     self.organelleButtons["vacuole"] = vacuoleButton
     self.organelleButtons["Toxin"] = toxinButton
+    self.organelleButtons["cilia"] = ciliaButton
     self.activeButton = nil
     
     nucleusButton:registerEventHandler("Clicked", function() self:nucleusClicked() end)
@@ -73,6 +75,7 @@ function MicrobeEditorHudSystem:init(gameState)
     chloroplastButton:registerEventHandler("Clicked", function() self:chloroplastClicked() end)
     vacuoleButton:registerEventHandler("Clicked", function() self:vacuoleClicked() end)
     toxinButton:registerEventHandler("Clicked", function() self:toxinClicked() end)
+    ciliaButton:registerEventHandler("Clicked", function() self:ciliaClicked() end)
     
     -- self.saveLoadPanel = root:getChild("SaveLoadPanel")
     -- self.creationsListbox = self.saveLoadPanel:getChild("SavedCreations")
@@ -367,6 +370,15 @@ function MicrobeEditorHudSystem:toxinClicked()
     self.activeButton = self.organelleButtons["Toxin"]
     self.activeButton:disable()
     self:setActiveAction("oxytoxy")
+end
+
+function MicrobeEditorHudSystem:ciliaClicked()
+    if self.activeButton ~= nil then
+        self.activeButton:enable()
+    end
+    self.activeButton = self.organelleButtons["cilia"]
+    self.activeButton:disable()
+    self:setActiveAction("cilia")
 end
 
 

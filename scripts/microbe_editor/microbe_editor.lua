@@ -22,6 +22,7 @@ function MicrobeEditor:__init(hudSystem)
                                ["chloroplast"] = MicrobeEditor.addOrganelle,
                                ["oxytoxy"] = MicrobeEditor.addOrganelle,
                                ["vacuole"] = MicrobeEditor.addOrganelle,
+                               ["cilia"] = MicrobeEditor.addOrganelle,
                                ["remove"] = MicrobeEditor.removeOrganelle}
     self.actionHistory = nil
     self.actionIndex = 0
