@@ -154,7 +154,7 @@ set(LUA_FOUND TRUE)
 if(WIN32)
   set(LUA_LIBRARIES luajit.lib)
 else()
-  set(LUA_LIBRARIES luajit.a)
+  set(LUA_LIBRARIES luajit.a dl)
 endif()
 
 
@@ -316,7 +316,7 @@ set_source_files_properties(
 )
 
 add_executable(RunTests ${TEST_SOURCE_FILES})
-target_link_libraries(RunTests ThriveLib gtest_main)
+target_link_libraries(RunTests ThriveLib gtest_main ${LUA_LIBRARIES})
 
 #################
 # Documentation #

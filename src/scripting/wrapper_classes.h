@@ -106,14 +106,6 @@ struct SystemWrapper : public System, public ScriptWrapper {
         int renderTime,
         int logicTime
     ) override;
-
-    static void default_update(
-        System*,
-        int,
-        int
-    ) {
-        throw std::runtime_error("System::update has no default implementation");
-    }
 };
 
 }

@@ -150,47 +150,47 @@ Sound::storage() const {
 //Luabind helper functions
 static bool
 SoundSourceComponent_getAmbientSoundSource(
-    const SoundSourceComponent* self
+    const SoundSourceComponent &self
 ) {
-    return self->m_ambientSoundSource;
+    return self.m_ambientSoundSource;
 }
 
 static void
 SoundSourceComponent_setAmbientSoundSource(
-    SoundSourceComponent* self,
+    SoundSourceComponent &self,
     bool value
 ) {
-    self->m_ambientSoundSource = value;
+    self.m_ambientSoundSource = value;
 }
 
 static bool
 SoundSourceComponent_getAutoLoop(
-    const SoundSourceComponent* self
+    const SoundSourceComponent &self
 ) {
-    return self->m_autoLoop;
+    return self.m_autoLoop;
 }
 
 static void
 SoundSourceComponent_setAutoLoop(
-    SoundSourceComponent* self,
+    SoundSourceComponent &self,
     bool value
 ) {
-    self->m_autoLoop = value;
+    self.m_autoLoop = value;
 }
 
 static float
 SoundSourceComponent_getVolumeMultiplier(
-    const SoundSourceComponent* self
+    const SoundSourceComponent &self
 ) {
-    return self->m_volumeMultiplier;
+    return self.m_volumeMultiplier;
 }
 
 static void
 SoundSourceComponent_setVolumeMultiplier(
-    SoundSourceComponent* self,
+    SoundSourceComponent &self,
     float value
 ) {
-    self->m_volumeMultiplier = value;
+    self.m_volumeMultiplier = value;
 }
 
 

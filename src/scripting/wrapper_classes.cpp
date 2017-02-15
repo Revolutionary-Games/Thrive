@@ -3,6 +3,7 @@
 #include "engine/component_factory.h"
 #include "engine/engine.h"
 #include "engine/serialization.h"
+#include "engine/system.h"
 #include "game.h"
 
 using namespace thrive;
@@ -155,7 +156,7 @@ void SystemWrapper::update(
 
     if(!func){
 
-        System::update(renderTime, logicTime);
+        throw std::runtime_error("System::update has no default implementation");
         return;
     }
     
