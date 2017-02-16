@@ -120,6 +120,89 @@ constructTraceback(
     return 1;
 }
 
+/**
+* @brief Thrive lua panic handler
+*/
+int thriveLuaPanic(lua_State* L);
+
+int thriveLuaPanic(lua_State* L){
+
+    const char* message = lua_tostring(L, -1);
+    std::string err = message ? message :
+        "An unexpected error occurred and forced the lua state to call atpanic";
+    
+    lua_Debug d;
+    std::stringstream traceback;
+    // Error message
+    traceback << err << ":" << std::endl;
+    lua_pop(L, 1);
+    
+    // Stacktrace
+    for (
+        int stacklevel = 0;
+        lua_getstack(L, stacklevel, &d);
+        stacklevel++
+    ) {
+        lua_getinfo(L, "Sln", &d);
+        traceback << "    " << d.short_src << ":" << d.currentline;
+        if (d.name != nullptr) {
+            traceback << " (" << d.namewhat << " " << d.name << ")";
+        }
+        traceback << std::endl;
+    }
+    
+    //lua_pushstring(L, traceback.str().c_str());
+
+    // Print error //
+    
+    std::cout << "Lua panic! " << traceback.str() << std::endl;
+    throw sol::error(traceback.str());
+    return 1;
+}
+
+
+
+/**
+* @brief Thrive lua error handler
+*/
+std::string thriveLuaOnError(sol::this_state lua);
+
+std::string thriveLuaOnError(sol::this_state lua){
+
+    lua_State* L = sol::state_view(lua).lua_state();
+
+    const char* message = lua_tostring(L, -1);
+    std::string err = message ? message :
+        "An unexpected error occurred and forced the lua state to call atpanic";
+    
+    lua_Debug d;
+    std::stringstream traceback;
+    // Error message
+    traceback << err << ":" << std::endl;
+    lua_pop(L, 1);
+    
+    // Stacktrace
+    for (
+        int stacklevel = 0;
+        lua_getstack(L, stacklevel, &d);
+        stacklevel++
+    ) {
+        lua_getinfo(L, "Sln", &d);
+        traceback << "    " << d.short_src << ":" << d.currentline;
+        if (d.name != nullptr) {
+            traceback << " (" << d.namewhat << " " << d.name << ")";
+        }
+        traceback << std::endl;
+    }
+    
+    // Print error //
+    std::cout << "Lua error detected! " << traceback.str() << std::endl;
+
+    // Return as the error code
+    return traceback.str();
+}
+
+
 //! \brief Binds all classes usable from Lua
 //!
 //! Needs to be called after global variables are bound.
@@ -133,19 +216,49 @@ static void ogreLuaBindings(sol::state &lua);
 
 void thrive::initializeLua(sol::state &lua){
 
+    // Open lua modules //
+    // see: http://www.lua.org/manual/5.3/manual.html#6 for documentation
+    // about what these modules do
+    lua.open_libraries(
+        sol::lib::base,
+        sol::lib::jit,
+        
+        sol::lib::debug,
+        sol::lib::coroutine,
+        sol::lib::string,
+        sol::lib::math,
+        sol::lib::table,
+        sol::lib::package,
+        sol::lib::io,
+        sol::lib::os
+
+        // These aren't currently used
+        // sol::lib::bit32,
+        // sol::lib::ffi
+    );
+
+
+    // Are these the same?
+    //lua.set_panic
+    lua.set_panic(&thriveLuaPanic);
+    
+    //luabind::set_pcall_callback(constructTraceback);
+
     // Class type registering //
     bindClassesToLua(lua);
 
     // Global objects //
     lua["Engine"] = &(Game::instance().engine());
-    lua["rng"] = &(Game::instance().engine().rng());    
+    lua["rng"] = &(Game::instance().engine().rng());
+
+    // Bind a custom traceback printer
+    // Could probably also be print(debug.traceback())
+    lua["thrivePanic"] = thriveLuaOnError;
 }
 
 void bindClassesToLua(sol::state &lua){
 
-    // Are these the same?
-    //lua.set_panic
-    //luabind::set_pcall_callback(constructTraceback);
+
 
 
     // Engine bindings

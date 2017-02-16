@@ -237,15 +237,24 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
                 this->loadScripts(manifestEntryPath);
             }
             else {
+
+                sol::protected_function fileFunc =
+                    m_luaState.load_file(manifestEntryPath.string().c_str());
+
+                fileFunc.error_handler = m_luaState["thrivePanic"];
                 
-                auto runResult = m_luaState.do_file(manifestEntryPath.string().c_str());
+                auto runResult = fileFunc();
 
                 if(runResult.status() != sol::call_status::ok){
 
                     std::cerr << "Failed to run Lua file: " << manifestEntryPath.string() <<
                         std::endl << " error: " << runResult.get<std::string>() <<
                         std::endl;
+                    // Skip loading the rest //
+                    return;
                 }
+
+                //std::cout << "loaded: " << manifestEntryPath.string() << std::endl;
             }
         }
     }
@@ -964,7 +973,8 @@ Engine::update(
         m_impl->activateGameState(m_impl->m_nextGameState);
         m_impl->m_nextGameState = nullptr;
     }
-    assert(m_impl->m_currentGameState != nullptr);
+    if(m_impl->m_currentGameState == nullptr)
+        throw std::runtime_error("current game state is null");
     m_impl->m_currentGameState->update(milliseconds, m_impl->m_paused ? 0 : milliseconds);
 
     m_impl->m_console.get<sol::protected_function>("update")();
