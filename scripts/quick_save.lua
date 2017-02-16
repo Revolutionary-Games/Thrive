@@ -1,12 +1,17 @@
-class 'QuickSaveSystem' (System)
+-- QuickSaveSystem class usable as a System
+QuickSaveSystem = createSubclass(System)
 
-function QuickSaveSystem:__init()
-    System.__init(self)
-    self.saveDown = false
-    self.loadDown = false
+function QuickSaveSystem:new()
+
+   local newinstance = QuickSaveSystem._createInstance()
+
+   self.saveDown = false
+   self.loadDown = false   
+   
+   return newinstance
 end
 
-function QuickSaveSystem:init()
+function QuickSaveSystem:init(gameState)
     System.init(self, "QuickSaveSystem", gameState)
 end
 
