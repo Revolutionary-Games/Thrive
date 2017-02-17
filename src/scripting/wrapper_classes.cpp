@@ -78,6 +78,17 @@ StorageContainer ComponentWrapper::default_storage(
 // ------------------------------------ //
 // SystemWrapper
 // ------------------------------------ //
+void SystemWrapper::luaBindings(
+    sol::state &lua
+){
+    lua.new_usertype<SystemWrapper>("LuaSystem",
+
+        sol::constructors<sol::types<sol::table>>(),
+
+        sol::base_classes, sol::bases<System>()
+    );
+}
+
 SystemWrapper::SystemWrapper(sol::table obj) : ScriptWrapper(obj){
     
 }
@@ -86,7 +97,7 @@ void SystemWrapper::init(
     GameState* gameState
 ) {
     System::init(gameState);
-    m_luaObject.get<sol::protected_function>("init")(gameState);
+    m_luaObject.get<sol::protected_function>("init")(m_luaObject, gameState);
 }
 
 void SystemWrapper::initNamed(
@@ -103,7 +114,7 @@ void SystemWrapper::initNamed(
         return;
     }
     
-    func(name, gameState);
+    func(m_luaObject, name, gameState);
 }
 
 void SystemWrapper::shutdown(){
@@ -118,7 +129,7 @@ void SystemWrapper::shutdown(){
         return;
     }
     
-    func();
+    func(m_luaObject);
 }
 
 void SystemWrapper::activate(){
@@ -131,7 +142,7 @@ void SystemWrapper::activate(){
         return;
     }
     
-    func();
+    func(m_luaObject);
 }
 
 void SystemWrapper::deactivate(){
@@ -144,7 +155,7 @@ void SystemWrapper::deactivate(){
         return;
     }
     
-    func();
+    func(m_luaObject);
 }
 
 void SystemWrapper::update(
@@ -160,6 +171,6 @@ void SystemWrapper::update(
         return;
     }
     
-    func(renderTime, logicTime);
+    func(m_luaObject, renderTime, logicTime);
 }
 

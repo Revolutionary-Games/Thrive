@@ -52,6 +52,8 @@ public:
 */
 struct SystemWrapper : public System, public ScriptWrapper {
 
+    static void luaBindings(sol::state &lua);
+    
     SystemWrapper(sol::table obj);
 
     void init(
