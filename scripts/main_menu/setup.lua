@@ -2,7 +2,7 @@
 local function setupCamera()
     local entity = Entity(CAMERA_NAME .. "2")
     -- Camera
-    local camera = OgreCameraComponent("camera2")
+    local camera = OgreCameraComponent.new("camera2")
     camera.properties.nearClipDistance = 5
     camera.properties:touch()
     entity:addComponent(camera)
@@ -22,7 +22,7 @@ end
 local function setupSound()
     -- Background music
     local ambientEntity = Entity("main_menu_ambience")
-    local soundSource = SoundSourceComponent()
+    local soundSource = SoundSourceComponent.new()
     soundSource.ambientSoundSource = true
     soundSource.autoLoop = false
     soundSource.volumeMultiplier = 0.8
@@ -31,7 +31,7 @@ local function setupSound()
     soundSource:addSound("main-menu-theme-2", "main-menu-theme-2.ogg")
     -- Gui effects
     local guiSoundEntity = Entity("gui_sounds")
-    soundSource = SoundSourceComponent()
+    soundSource = SoundSourceComponent.new()
     soundSource.ambientSoundSource = true
     soundSource.autoLoop = false
     soundSource.volumeMultiplier = 1.0
@@ -41,19 +41,22 @@ local function setupSound()
 end
 
 local function createMainMenu(name)
+
+   print_r(MainMenuHudSystem)
+   
     return Engine:createGameState(
         name,
         {   
             -- Graphics
-            OgreAddSceneNodeSystem(),
-            OgreUpdateSceneNodeSystem(),
-            OgreCameraSystem(),
-            MainMenuHudSystem(),
-            OgreWorkspaceSystem(),
-            OgreRemoveSceneNodeSystem(),
-            RenderSystem(),
+            OgreAddSceneNodeSystem.new(),
+            OgreUpdateSceneNodeSystem.new(),
+            OgreCameraSystem.new(),
+            MainMenuHudSystem.new(),
+            OgreWorkspaceSystem.new(),
+            OgreRemoveSceneNodeSystem.new(),
+            RenderSystem.new(),
             -- Other
-            SoundSourceSystem(),
+            SoundSourceSystem.new(),
         },
         function()
             setupCamera()

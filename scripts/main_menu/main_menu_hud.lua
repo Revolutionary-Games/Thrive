@@ -1,11 +1,10 @@
 -- Updates the hud with relevant information
-MainMenuHudSystem = createSubclass(System)
 
-function MainMenuHudSystem:new()
+-- Override methods for System
+MainMenuHudSystem = {}
 
-   local newinstance = MainMenuHudSystem._createInstance()
+function MainMenuHudSystem:__init()
 
-   return newinstance
 end
 
 function MainMenuHudSystem:init(gameState)
@@ -55,18 +54,26 @@ function MainMenuHudSystem:update(renderTime, logicTime)
 end
 
 function MainMenuHudSystem:shutdown()
-    -- Necessary to avoid failed assert in ogre on exit
-    CEGUIVideoPlayer.destroyVideoPlayer(self.videoPlayer)
+   -- Necessary to avoid failed assert in ogre on exit
+   CEGUIVideoPlayer.destroyVideoPlayer(self.videoPlayer)
 end
 
 function MainMenuHudSystem:activate()
-    updateLoadButton();
-    if  self.videoPlayer and not self.hasShownIntroVid then
-        self.videoPlayer:setVideo("intro.wmv")
-        self.hasShownIntroVid = true
-        self.videoPlayer:play()
-    end
+   updateLoadButton();
+   if  self.videoPlayer and not self.hasShownIntroVid then
+      self.videoPlayer:setVideo("intro.wmv")
+      self.hasShownIntroVid = true
+      self.videoPlayer:play()
+   end
 end
+
+print("Creating MainMenuHudSystem class from:")
+print_r(MainMenuHudSystem)
+
+MainMenuHudSystem = createLuaSystem(MainMenuHudSystem)
+print("created:")
+print_r(MainMenuHudSystem)
+
 function updateLoadButton()
     if Engine:fileExists("quick.sav") then
         root:getChild("Background"):getChild("MainMenuInteractive"):getChild("LoadGameButton"):enable();

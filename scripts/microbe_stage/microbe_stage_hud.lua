@@ -1,18 +1,38 @@
 
 -- Updates the hud with relevant information
-class 'HudSystem' (System)
+
+-- Override methods for System
+HudSystem = {}
 
 function HudSystem:__init()
-    System.__init(self)
-	self.compoundListBox = nil
-	self.hitpointsCountLabel = nil
-    self.hitpointsMaxLabel = nil
-	self.hitpointsBar = nil
-	self.compoundListItems = {}
-    self.rootGuiWindow = nil
-    self.populationNumberLabel = nil
-    self.rootGUIWindow = nil
-    self.scrollChange = 0
+
+   self.compoundListBox = nil
+   self.hitpointsCountLabel = nil
+   self.hitpointsMaxLabel = nil
+   self.hitpointsBar = nil
+   self.compoundListItems = {}
+   self.rootGuiWindow = nil
+   self.populationNumberLabel = nil
+   self.rootGUIWindow = nil
+   self.scrollChange = 0
+   
+end
+
+function HudSystem:init(gameState)
+   System.init(self, "HudSystem", gameState)
+end
+
+function HudSystem:update(renderTime, logicTime)
+   local saveDown = Engine.keyboard:isKeyDown(Keyboard.KC_F4)
+   local loadDown = Engine.keyboard:isKeyDown(Keyboard.KC_F10)
+   if saveDown and not self.saveDown then
+      Engine:save("quick.sav")
+   end
+   if loadDown and not self.loadDown then
+      Engine:load("quick.sav")
+   end
+   self.saveDown = saveDown
+   self.loadDown = loadDown
 end
 
 global_if_already_displayed = false
@@ -368,3 +388,6 @@ function quitButtonClicked()
     guiSoundEntity:getComponent(SoundSourceComponent.TYPE_ID):playSound("button-hover-click")
     Engine:quit()
 end
+
+HudSystem = createLuaSystem(HudSystem)
+
