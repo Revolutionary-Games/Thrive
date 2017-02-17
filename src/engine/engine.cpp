@@ -556,15 +556,19 @@ Engine_createGameState(
     {
         auto table = luaSystems.as<sol::table>();
     
-
         for (const auto& pair : table){
 
-            if(pair.second.is<System>()){
+            if(pair.second.is<std::shared_ptr<System>>()){
 
-                auto system = pair.first.as<std::shared_ptr<System>>();
+                const auto& system = pair.second.as<std::shared_ptr<System>>();
 
                 if(system)
                     systems.emplace_back(system);
+                
+            } else {
+
+                throw std::runtime_error("luaSystems has something "
+                    "that isn't a System type");
             }
         }
     }
