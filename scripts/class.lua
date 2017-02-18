@@ -1,5 +1,24 @@
 -- Helper file for creating Lua classes that inherit from C++ classes
 
+-- Creates a basic class
+function createClass()
+
+   local newClass = {}
+
+   local metaTable = { __index = newClass }
+
+   -- Helper for creating instances
+   function newClass._createInstance()
+
+      local newinst = {}
+      setmetatable(newinst, metaTable)
+      
+      return newinst
+   end
+
+   return newClass
+end
+
 function createSubclass(baseClass)
 
    assert(baseClass ~= nil, "tried to create subclass of nil")
@@ -42,24 +61,13 @@ function createLuaSystem(overrideMethods)
 
    assert(overrideMethods ~= nil, "lua systems require at least one override")
    
-   print("create system")
-   print_r(overrideMethods)
-   
    local newClass = createSubclass(LuaSystem)
-
-   print("class object")
-   print_r(newClass)
 
    -- Helper for creating instances
    function newClass.new()
 
       assert(overrideMethods ~= nil)
 
-      print("class new. overrides")
-      print_r(overrideMethods)
-      print("class type:")
-      print_r(newClass)
-      
       local instance = newClass._createInstance({overrideMethods})
 
       if overrideMethods["__init"] ~= nil then
@@ -70,8 +78,6 @@ function createLuaSystem(overrideMethods)
       return instance
    end
 
-   print("finished class object")
-   print_r(newClass)
    return newClass
 end
 

@@ -159,3 +159,9 @@ function print_r (t, indent) -- alt version, abuse to http://richard.warburton.i
     else io.write(' = ',tostring(value),'\n') end
   end
 end
+
+--! @brief Returns true if s is not an empty string
+function isNotEmpty(s)
+   return s == nil or s == ''
+end
+
