@@ -14,5 +14,7 @@ add_sources(
     "${CMAKE_CURRENT_SOURCE_DIR}/collision_system.h"
     "${CMAKE_CURRENT_SOURCE_DIR}/collision_filter.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/collision_filter.h"
+    "${CMAKE_CURRENT_SOURCE_DIR}/physical_world.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/physical_world.h"
 )
 

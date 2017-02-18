@@ -29,6 +29,7 @@
 #include "bullet/debug_drawing.h"
 #include "bullet/rigid_body_system.h"
 #include "bullet/update_physics_system.h"
+#include "bullet/physical_world.h"
 
 #include <utility>
 #include <btBulletCollisionCommon.h>
@@ -314,6 +315,7 @@ void bindClassesToLua(sol::state &lua){
         UpdatePhysicsSystem::luaBindings(lua);
         CollisionSystem::luaBindings(lua);
         // Other
+        PhysicalWorld::luaBindings(lua);
         CollisionFilter::luaBindings(lua);
         Collision::luaBindings(lua);
     }
