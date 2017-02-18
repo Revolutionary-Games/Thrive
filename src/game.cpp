@@ -105,32 +105,13 @@ Game::quit() {
 void
 Game::run() {
     try {
-        unsigned int fpsCount = 0;
-        int fpsTime = 0;
-        auto lastUpdate = Implementation::Clock::now();
+        
         m_impl->m_engine.init();
+        
         // Start game loop
         m_impl->m_quit = false;
-        while (not m_impl->m_quit) {
-            auto now = Implementation::Clock::now();
-            auto delta = now - lastUpdate;
-            int milliSeconds = boost::chrono::duration_cast<boost::chrono::milliseconds>(delta).count();
-            lastUpdate = now;
-            m_impl->m_engine.update(milliSeconds);
-            auto frameDuration = Implementation::Clock::now() - now;
-            auto sleepDuration = m_impl->m_targetFrameDuration - frameDuration;
-            if (sleepDuration.count() > 0) {
-                boost::this_thread::sleep_for(sleepDuration);
-            }
-            fpsCount += 1;
-            fpsTime += boost::chrono::duration_cast<boost::chrono::milliseconds>(frameDuration).count();
-            if (fpsTime >= 1000) {
-                float fps = 1000 * float(fpsCount) / float(fpsTime);
-                std::cout << "FPS: " << fps << std::endl;
-                fpsCount = 0;
-                fpsTime = 0;
-            }
-        }
+        m_impl->m_engine.enterLuaMain(this);
+        
         m_impl->m_engine.shutdown();
     }
     catch (const sol::error& e) {

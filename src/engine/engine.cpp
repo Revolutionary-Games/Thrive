@@ -560,6 +560,8 @@ Engine_createGameState(
 
             if(pair.second.is<std::shared_ptr<System>>()){
 
+                System* check = pair.second.as<System*>();
+                std::cout << static_cast<void*>(check) << std::endl;
                 const auto& system = pair.second.as<std::shared_ptr<System>>();
 
                 if(system)
@@ -610,8 +612,6 @@ void Engine::luaBindings(
         "screenShot", &Engine::screenShot,
         "getCreationFileList", &Engine::getCreationFileList,
         "quit", &Engine::quit,
-        "timedSystemShutdown", &Engine::timedSystemShutdown,
-        "isSystemTimedShutdown", &Engine::isSystemTimedShutdown,
         "thriveVersion", &Engine::thriveVersion,
         "pauseGame", &Engine::pauseGame,
         "resumeGame", &Engine::resumeGame,
@@ -712,6 +712,17 @@ Engine::init() {
     m_impl->setupGUI();
     m_impl->setupInputManager();
     m_impl->loadScripts("../scripts");
+
+    // Initialize lua engine side
+    sol::protected_function luaInit = m_impl->m_luaState["g_luaEngine"]["init"];
+
+    luaInit.error_handler = m_impl->m_luaState["thrivePanic"];
+    
+    if(!luaInit(this).valid()){
+
+        throw std::runtime_error("Failed to initialize LuaEngine side");
+    }
+    
     m_impl->loadVersionNumber();
     GameState* previousGameState = m_impl->m_currentGameState;
     for (const auto& pair : m_impl->m_gameStates) {
@@ -725,6 +736,16 @@ Engine::init() {
     m_impl->m_currentGameState = previousGameState;
 }
 
+void
+Engine::enterLuaMain(
+    Game* gameObj
+) {
+    sol::protected_function luaMain = m_impl->m_luaState["enterLuaMain"];
+
+    luaMain.error_handler = m_impl->m_luaState["thrivePanic"];
+
+    luaMain(gameObj);
+}
 
 
 OIS::InputManager*
@@ -973,32 +994,9 @@ Engine::update(
     m_impl->m_input.keyboard.update();
     m_impl->m_input.mouse.update();
 
-    if (m_impl->m_nextGameState) {
-        m_impl->activateGameState(m_impl->m_nextGameState);
-        m_impl->m_nextGameState = nullptr;
-    }
-    if(m_impl->m_currentGameState == nullptr)
-        throw std::runtime_error("current game state is null");
-    m_impl->m_currentGameState->update(milliseconds, m_impl->m_paused ? 0 : milliseconds);
-
-    m_impl->m_console.get<sol::protected_function>("update")();
-
     CEGUI::System::getSingleton().injectTimePulse(milliseconds/1000.0f);
     CEGUI::System::getSingleton().getDefaultGUIContext().injectTimePulse(milliseconds/1000.0f);
-    // Update any timed shutdown systems
-    auto itr = m_impl->m_prevShutdownSystems->begin();
-    while (itr != m_impl->m_prevShutdownSystems->end()) {
-        int updateTime = std::min(itr->second, milliseconds);
-        itr->first->update(updateTime, m_impl->m_paused ? 0 : updateTime);
-        itr->second = itr->second - updateTime;
-        if (itr->second == 0) {
-            // Remove systems that had timed out
-            itr->first->deactivate();
-            m_impl->m_prevShutdownSystems->erase(itr++);
-        } else {
-            ++itr;
-        }
-    }
+
     if (not m_impl->m_serialization.loadFile.empty()) {
         m_impl->loadSavegame();
     }
@@ -1012,21 +1010,6 @@ Engine::getResolutionWidth() const {
 int
 Engine::getResolutionHeight() const {
     return m_impl->m_graphics.renderWindow->getHeight();
-}
-
-void
-Engine::timedSystemShutdown(
-    System& system,
-    int milliseconds
-) {
-    (*m_impl->m_nextShutdownSystems)[&system] = milliseconds;
-}
-
-bool
-Engine::isSystemTimedShutdown(
-    System& system
-) const {
-    return m_impl->m_prevShutdownSystems->find(&system) !=  m_impl->m_prevShutdownSystems->end();
 }
 
 const std::string&

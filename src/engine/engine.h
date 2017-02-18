@@ -23,6 +23,7 @@ namespace Ogre {
 
 namespace thrive{
     class SoundManager;
+    class Game;
 }
 
 namespace OIS {
@@ -72,8 +73,6 @@ public:
     * - Engine::quit()
     * - Engine::pauseGame()
     * - Engine::resumeGame()
-    * - Engine::timedSystemShutdown()
-    * - Engine::isSystemTimedShutdown()
     * - Engine::componentFactory() (as property)
     * - Engine::keyboard() (as property)
     * - Engine::mouse() (as property)
@@ -178,6 +177,15 @@ public:
     */
     void
     init();
+
+    /**
+    * @brief Enters the main loop in lua
+    */
+    void
+    enterLuaMain(
+        Game* gameObj
+    );
+        
 
     /**
     * @brief The engine's input manager
@@ -402,37 +410,6 @@ public:
     */
     int
     getResolutionHeight() const;
-
-    /**
-    * @brief Keeps a system alive after being shut down for a specified amount of  time
-    *
-    * Note that this causes update to be called for the specified duration so be careful
-    * to ensure that the system is not enabled or it will get update calls twice.
-    *
-    * @param system
-    *   The system to keep updated
-    *
-    * @param milliseconds
-    *   The number of milliseconds to keep the system updated for
-    */
-    void
-    timedSystemShutdown(
-        System& system,
-        int milliseconds
-    );
-
-    /**
-    * @brief Returns whether the specified system has already been set for a timed shutdown
-    *
-    * @param system
-    *   The system to check for
-    *
-    * @return
-    */
-    bool
-    isSystemTimedShutdown(
-        System& system
-    ) const;
 
     /**
     * @brief Transfers an entity from one gamestate to another
