@@ -32,6 +32,47 @@ struct Game::Implementation {
 
 };
 
+void Game::luaBindings(sol::state &lua){
+
+    // lua.new_usertype<Implementation::Clock::time_point>("time_point"
+    // );
+
+    lua.new_usertype<Game>("Game",
+
+        "new", sol::no_constructor,
+
+        "shouldQuit", sol::property([](Game &us){
+                return us.m_impl->m_quit;
+            }),
+
+        "now", [](){
+
+            return Implementation::Clock::now();
+        },
+
+        "delta", [](Implementation::Clock::time_point now,
+            Implementation::Clock::time_point lastUpdate)
+        {
+            return now - lastUpdate;
+        },
+
+        "asMS", [](Implementation::Clock::duration duration)
+        {
+            return boost::chrono::duration_cast<boost::chrono::milliseconds>(duration).count();
+        },
+
+        "sleepIfNeeded", [](Game &us,
+            Implementation::Clock::duration frameDuration)
+        {
+            auto sleepDuration = us.m_impl->m_targetFrameDuration - frameDuration;
+            if (sleepDuration.count() > 0) {
+                boost::this_thread::sleep_for(sleepDuration);
+            }
+        }
+    );
+}
+
+
 
 Game&
 Game::instance() {

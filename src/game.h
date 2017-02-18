@@ -3,6 +3,11 @@
 #include <boost/chrono.hpp>
 #include <memory>
 
+namespace sol{
+
+class state;
+}
+
 namespace thrive {
 
 class Engine;
@@ -17,6 +22,19 @@ class Game {
 
 public:
 
+    /**
+    * @brief Lua bindings
+    *
+    * Exposes:
+    * - Game::Implementation::shouldQuit
+    * - now
+    * - delta
+    * - asMS
+    * - sleepIfNeeded
+    *
+    * @return
+    */
+    static void luaBindings(sol::state &lua);
 
     /**
     * @brief Singleton instance

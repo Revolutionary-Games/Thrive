@@ -276,6 +276,9 @@ void bindClassesToLua(sol::state &lua){
         Engine::luaBindings(lua);
         RNG::luaBindings(lua);
         PlayerData::luaBindings(lua);
+
+        Game::luaBindings(lua);
+
     }
 
     // General bindings
