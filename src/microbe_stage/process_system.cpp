@@ -29,10 +29,6 @@ ProcessorComponent::luaBindings() {
             def("TYPE_NAME", &ProcessorComponent::TYPE_NAME)
         ]
         .def(constructor<>())
-        .def("setThreshold", &ProcessorComponent::setThreshold)
-        .def("setLowThreshold", &ProcessorComponent::setLowThreshold)
-        .def("setHighThreshold", &ProcessorComponent::setHighThreshold)
-        .def("setVentThreshold", &ProcessorComponent::setVentThreshold)
         .def("setCapacity", &ProcessorComponent::setCapacity)
     ;
 }
@@ -42,17 +38,6 @@ void
 ProcessorComponent::load(const StorageContainer& storage)
 {
     Component::load(storage);
-
-    StorageContainer lua_thresholds = storage.get<StorageContainer>("thresholds");
-    for (const std::string& id : lua_thresholds.keys())
-    {
-        StorageContainer threshold = lua_thresholds.get<StorageContainer>(id);
-        float low = threshold.get<float>("low");
-        float high = threshold.get<float>("high");
-        float vent = threshold.get<float>("vent");
-		this->thresholds[std::atoi(id.c_str())] = std::tuple<float, float, float>(low, high, vent);
-	}
-
     StorageContainer processes = storage.get<StorageContainer>("processes");
     for (const std::string& id : processes.keys())
     {
@@ -65,16 +50,6 @@ ProcessorComponent::storage() const
 {
 	StorageContainer storage = Component::storage();
 
-	StorageContainer lua_thresholds;
-	for (auto entry : this->thresholds) {
-        StorageContainer threshold;
-        threshold.set<float>("low", std::get<0>(entry.second));
-        threshold.set<float>("high", std::get<1>(entry.second));
-        threshold.set<float>("vent", std::get<2>(entry.second));
-        lua_thresholds.set<StorageContainer>(std::to_string(static_cast<int>(entry.first)), threshold);
-	}
-    storage.set<StorageContainer>("thresholds", lua_thresholds);
-
 	StorageContainer processes;
     for (auto entry : this->process_capacities) {
         processes.set<float>(std::to_string(static_cast<int>(entry.first)), entry.second);
@@ -83,30 +58,6 @@ ProcessorComponent::storage() const
 
 
 	return storage;
-}
-
-void
-ProcessorComponent::setThreshold(CompoundId id, float low, float high, float vent)
-{
-    this->thresholds[id] = std::tuple<float, float, float>(low, high, vent);
-}
-
-void
-ProcessorComponent::setLowThreshold(CompoundId id, float low)
-{
-    std::get<0>(this->thresholds[id]) = low;
-}
-
-void
-ProcessorComponent::setHighThreshold(CompoundId id, float high)
-{
-    std::get<1>(this->thresholds[id]) = high;
-}
-
-void
-ProcessorComponent::setVentThreshold(CompoundId id, float vent)
-{
-    std::get<2>(this->thresholds[id]) = vent;
 }
 
 void
@@ -132,8 +83,6 @@ CompoundBagComponent::luaBindings() {
         .def("giveCompound", &CompoundBagComponent::giveCompound)
         .def("takeCompound", &CompoundBagComponent::takeCompound)
         .def("getCompoundAmount", &CompoundBagComponent::getCompoundAmount)
-        .def("excessAmount", &CompoundBagComponent::excessAmount)
-        .def("aboveLowThreshold", &CompoundBagComponent::aboveLowThreshold)
     ;
 }
 
@@ -200,20 +149,6 @@ CompoundBagComponent::takeCompound(CompoundId id, float to_take) {
     return amt;
 }
 
-float
-CompoundBagComponent::excessAmount(CompoundId id) {
-    float amt = compounds[id];
-    float threshold = std::get<2>(this->processor->thresholds[id]);
-    return amt > threshold ? amt - threshold : 0;
-}
-
-float
-CompoundBagComponent::aboveLowThreshold(CompoundId id) {
-    float amt = compounds[id];
-    float threshold = std::get<0>(this->processor->thresholds[id]);
-    return amt > threshold ? amt - threshold : 0;
-}
-
 luabind::scope
 ProcessSystem::luaBindings() {
     using namespace luabind;
@@ -230,10 +165,7 @@ struct ProcessSystem::Implementation {
     void update(int);
     void updateAddedEntites(int);
     void updateRemovedEntities(int);
-    inline float step_function(float, float, float, float);
-    inline float step_2(float, float, float);
 
-    static constexpr float SMOOTHING_FACTOR = 1.8;
     static constexpr float TIME_SCALING_FACTOR = 1000;
 };
 
@@ -275,35 +207,6 @@ ProcessSystem::Implementation::updateAddedEntites(int) {
     // for (auto& value : this->m_entities.addedEntities()) {
         // std::cerr << &value;
     // }
-}
-
-/*
-#create a step function
-#return positive if below low, negative if above high
-def step_function(value, threshold, high_threshold, vent_threshold):
-    if value >= high_threshold:
-        return -float(value - high_threshold)/(vent_threshold - high_threshold)
-    elif value >= threshold:
-        return 0
-    elif value < threshold and threshold != 0 and value >= 0:
-        return 1 - (float(value)/threshold)
-    else:
-        print "error in step function, I was passed a negative value"
-        return 0
-
-*/
-
-
-// 0 <= value <=> threshold < high_threshold < vent_threshold
-inline float
-ProcessSystem::Implementation::step_function(float value, float threshold, float high_threshold, float vent_threshold) {
-    if (value >= high_threshold) {
-        return (high_threshold - value) / (vent_threshold - high_threshold);
-    }
-    if (value >= threshold) {
-        return 0;
-    }
-    return 1 - (value/threshold);
 }
 
 void

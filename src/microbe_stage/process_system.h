@@ -32,17 +32,6 @@ public:
     storage() const override;
 
     std::unordered_map<BioProcessId, float> process_capacities;
-    std::unordered_map<CompoundId, std::tuple<float, float, float>> thresholds; // low, high, excess
-
-    void
-    setThreshold(CompoundId, float, float, float);
-    void
-    setLowThreshold(CompoundId, float);
-    void
-    setHighThreshold(CompoundId, float);
-    void
-    setVentThreshold(CompoundId, float);
-
     void
     setCapacity(BioProcessId, float);
 };
@@ -79,12 +68,6 @@ public:
 
     void
     giveCompound(CompoundId, float);
-
-    float
-    excessAmount(CompoundId); // return the amount of compound in excess
-
-    float
-    aboveLowThreshold(CompoundId id); // the amount of compound above low threshold
 };
 
 class ProcessSystem : public System {

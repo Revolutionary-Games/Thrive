@@ -91,15 +91,6 @@ function setupSpecies()
         -- iterates over all compounds, and sets amounts and priorities
         for compoundID in CompoundRegistry.getCompoundList() do
             compound = CompoundRegistry.getCompoundInternalName(compoundID)
-
-            if agents[compound] then
-                thresholdData = default_thresholds[compound]
-            else
-                thresholdData = compoundTable[compound].default_treshold
-            end
-
-             -- we'll need to generate defaults from species template
-            processorComponent:setThreshold(compoundID, thresholdData.low, thresholdData.high, thresholdData.vent)
             compoundData = data.compounds[compound]
             if compoundData ~= nil then
                 amount = compoundData.amount
@@ -108,23 +99,7 @@ function setupSpecies()
                 -- speciesComponent.compoundPriorities[compoundID] = priority
             end
         end
-        if data[thresholds] ~= nil then
-            local thresholds = data[thresholds]
-            for compoundID in CompoundRegistry.getCompoundList() do
-                compound = CompoundRegistry.getCompoundInternalName(compoundID)
-                if thresholds[compound] ~= nil then
-                    if thresholds[compound].low ~= nil then
-                        processorComponent:setLowThreshold(compoundID, thresholds[compound].low)
-                    end
-                    if thresholds[compound].low ~= nil then
-                        processorComponent:setHighThreshold(compoundID, thresholds[compound].high)
-                    end
-                    if thresholds[compound].vent ~= nil then
-                        processorComponent:setVentThreshold(compoundID, thresholds[compound].vent)
-                    end
-                end
-            end
-        end
+
         local capacities = {}
         for _, organelle in pairs(data.organelles) do
             if organelleTable[organelle.name] ~= nil then

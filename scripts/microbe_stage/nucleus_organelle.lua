@@ -106,10 +106,10 @@ function NucleusOrganelle:grow(compoundBagComponent)
     local sum = 0
 
     -- Finds which compounds the cell currently has.
-    if compoundBagComponent:aboveLowThreshold(CompoundRegistry.getCompoundId("aminoacids")) >= 1 then
+    if compoundBagComponent:getCompoundAmount(CompoundRegistry.getCompoundId("aminoacids")) >= 0 then
         sum = sum + self.numProteinLeft
     end
-    if compoundBagComponent:aboveLowThreshold(CompoundRegistry.getCompoundId("aminoacids")) >= 1 then
+    if compoundBagComponent:getCompoundAmount(CompoundRegistry.getCompoundId("aminoacids")) >= 0 then
         sum = sum + self.numNucleicAcidsLeft
     end
     

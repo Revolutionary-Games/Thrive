@@ -10,21 +10,13 @@ Compound atributes:
                 automatically in the biomes?). By default is false.
 
     colour: A table with the colour of thecompound, used in the clouds and in the GUI.
-
-    default_treshold:   A table with a treshold. TODO: write what a treshold is (i got no idea).
 ]]
 
 compoundTable = {
     ["atp"] = {
         name = "ATP",
         weight = 1,
-        size = 0.1,
-
-        default_treshold = {
-            low = 13,
-            high = 16,
-            vent = 1000
-        }
+        size = 0.1
     },
 
     ["oxygen"] = {
@@ -37,12 +29,6 @@ compoundTable = {
             r = 60,
             g = 160,
             b = 180
-        },
-
-        default_treshold = {
-            low = 22,
-            high = 40,
-            vent = 70
         }
     },
 
@@ -56,12 +42,6 @@ compoundTable = {
             r = 255,
             g = 150,
             b = 200
-        },
-
-        default_treshold = {
-            low = 0,
-            high = 30,
-            vent = 70
         }
     },
 
@@ -75,12 +55,6 @@ compoundTable = {
             r = 255,
             g = 220,
             b = 50
-        },
-
-        default_treshold = {
-            low = 12,
-            high = 30,
-            vent = 70
         }
     },
 
@@ -94,12 +68,6 @@ compoundTable = {
             r = 150,
             g = 170,
             b = 180
-        },
-
-        default_treshold = {
-            low = 16,
-            high = 30,
-            vent = 70
         }
     },
 
@@ -113,24 +81,12 @@ compoundTable = {
             r = 20,
             g = 50,
             b = 100
-        },
-
-        default_treshold = {
-            low = 0,
-            high = 0,
-            vent = 0
         }
     },
 
     ["fattyacids"] = {
         name = "Fatty Acids",
         weight = 1,
-        size = 0.16,
-
-        default_treshold = {
-            low = 0,
-            high = 30,
-            vent = 70
-        }
+        size = 0.16
     }
 }
