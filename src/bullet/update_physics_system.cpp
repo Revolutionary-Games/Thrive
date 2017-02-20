@@ -1,5 +1,7 @@
 #include "bullet/update_physics_system.h"
 
+
+#include "bullet/physical_world.h"
 #include "engine/game_state.h"
 #include "scripting/luajit.h"
 
@@ -38,10 +40,10 @@ UpdatePhysicsSystem::~UpdatePhysicsSystem() {}
 
 void
 UpdatePhysicsSystem::init(
-    GameState* gameState
+    GameStateData* gameState
 ) {
     System::initNamed("UpdatePhysicsSystem", gameState);
-    m_impl->m_world = gameState->physicsWorld();
+    m_impl->m_world = gameState->physicalWorld()->physicsWorld();
     assert(m_impl->m_world != nullptr && "World object is null. Initialize the Engine first.");
 }
 

@@ -1,17 +1,16 @@
--- QuickSaveSystem class usable as a System
+-- QuickSaveSystem
 
--- Override methods for System
-QuickSaveSystem = {}
+QuickSaveSystem = class(
+   LuaSystem,
+   function(self, gameState)
 
-function QuickSaveSystem:__init()
+      LuaSystem.init(self, "QuickSaveSystem", gameState)
 
-   self.saveDown = false
-   self.loadDown = false   
-end
-
-function QuickSaveSystem:init(gameState)
-   System.init(self, "QuickSaveSystem", gameState)
-end
+      self.saveDown = false
+      self.loadDown = false      
+      
+   end
+)
 
 function QuickSaveSystem:update(renderTime, logicTime)
    local saveDown = Engine.keyboard:isKeyDown(Keyboard.KC_F4)
@@ -26,6 +25,6 @@ function QuickSaveSystem:update(renderTime, logicTime)
    self.loadDown = loadDown
 end
 
-QuickSaveSystem = createLuaSystem(QuickSaveSystem)
+
 
 

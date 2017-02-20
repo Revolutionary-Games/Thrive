@@ -107,38 +107,6 @@ public:
     ComponentFactory&
     componentFactory();
 
-    /**
-    * @brief Creates a new game state
-    *
-    * @param name
-    *   The game state's name
-    *
-    * @param systems
-    *   The systems active in the game state
-    *
-    * @param initializer
-    *   The initialization function for the game state
-    *
-    * @return
-    *   The new game state. Will never be \c null. It is returned as a pointer
-    *   as a convenience for Lua bindings, which don't handle references well.
-    */
-    GameState*
-    createGameState(
-        std::string name,
-        std::vector<std::shared_ptr<System>> systems,
-        GameState::Initializer initializer,
-        std::string guiLayoutName
-    );
-
-    /**
-    * @brief Returns the currently active game state
-    *
-    * If no game state has been set yet, returns \c nullptr
-    *
-    */
-    GameState*
-    currentGameState() const;
 
     /**
     * @brief Object holding generic player data
@@ -153,20 +121,6 @@ public:
     RNG&
     rng();
 
-    /**
-    * @brief Retrieves a game state
-    *
-    * @param name
-    *   The game state's name
-    *
-    * @return
-    *   The game state with \a name or \c nullptr if no game state with
-    *   this name exists.
-    */
-    GameState*
-    getGameState(
-        const std::string& name
-    ) const;
 
     /**
     * @brief Initializes the engine
@@ -335,21 +289,6 @@ public:
         std::string stage
     ) const;
 
-    /**
-    * @brief Sets the current game state
-    *
-    * The game state will be activated at the beginning of the next frame.
-    *
-    * \a gameState must not be \c null. It's passed by pointer as a
-    * convenience for the Lua bindings (which can't handle references well).
-    *
-    * @param gameState
-    *   The new game state
-    */
-    void
-    setCurrentGameState(
-        GameState* gameState
-    );
 
     /**
     * @brief Shuts the engine down
@@ -410,25 +349,6 @@ public:
     */
     int
     getResolutionHeight() const;
-
-    /**
-    * @brief Transfers an entity from one gamestate to another
-    *
-    * @param oldEntityId
-    *  The id of the entity to transfer in the old entitymanager
-    *
-    * @param oldEntityManager
-    *  The old entitymanager which is currently handling the entity
-    *
-    * @param newGameState
-    *  The new gamestate to transfer the entity to
-    */
-    EntityId
-    transferEntityGameState(
-        EntityId oldEntityId,
-        EntityManager* oldEntityManager,
-        GameState* newGameState
-    );
 
     /**
     * @brief The render window

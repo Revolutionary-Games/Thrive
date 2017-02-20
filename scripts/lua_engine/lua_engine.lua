@@ -5,17 +5,14 @@
 --! is fast enough to be the "glue" between C++ systems and Lua
 --! systems and main loop
 
-LuaEngine = createClass()
+LuaEngine = class(
+   function(self)
 
-function LuaEngine.new()
-
-   local self = LuaEngine._createInstance()
-
-   -- The state the engine is switching to on next frame
-   self.nextGameState = nil
-   
-   return self
-end
+      -- The state the engine is switching to on next frame
+      self.nextGameState = nil
+      
+   end
+)
 
 --! @brief Initializes the lua side of the engine
 --! @param cppSide the engine object received from
@@ -23,30 +20,19 @@ end
 function LuaEngine:init(cppSide)
 
    assert(cppSide ~= nil)
-   
+
+   self.Engine = cppSide
    
 end
 
 --! @param name Unique name of the system
---! @param systems Array of systems that are in the new GameState
+--! @param systems Array of systems that are in the new GameState.
+--! Must be created with `table.insert(systems, s)`
 --! @param physics If true creates a physics state in the GameState
-function LuaEngine:createGameState(name, systems, physics)
+--! @todo Make sure that .destroy() is called on these objects
+function LuaEngine:createGameState(name, systems, physics, guiLayoutName)
 
-   local newState = GameState.new()
-
-   for i,s in ipairs(systems) do
-
-      newState:addSystem(s)
-      
-   end
-
-   newState:init(name, self)
-
-   if physics == true then
-
-      newState:initPhysics()
-      
-   end
+   local newState = GameState.new(name, systems, self, physics, guiLayoutName)
 
    return newState
 end
@@ -54,7 +40,7 @@ end
 --! @brief Runs updates on some core systems and the current GameState
 function update(milliseconds)
 
-   Engine.update(milliseconds)
+   self.Engine.update(milliseconds)
 
    -- Update GameStates
    
@@ -70,7 +56,7 @@ function update(milliseconds)
    end
    
    -- Update current GameState
-   local updateTime = if Engine.paused then 0 else milliseconds end
+   local updateTime = if self.Engine.paused then 0 else milliseconds end
    
    self.currentGameState:update(milliseconds, updateTime)
 
@@ -87,7 +73,7 @@ function update(milliseconds)
       local updateTime = min(delayed.timeLeft, milliseconds);
 
       
-      local pauseHelper = if Engine.paused then 0 else updateTime end
+      local pauseHelper = if self.Engine.paused then 0 else updateTime end
 
       delayed.system:update(updateTime, pauseHelper)
       
@@ -137,6 +123,68 @@ function LuaEngine:isSystemTimedShutdown(system)
    return false
 
 end
+
+
+--! @brief Sets the current game state
+--! 
+--! The game state will be activated at the beginning of the next frame.
+--! 
+--! \a gameState must not be \c null. It's passed by pointer as a
+--! convenience for the Lua bindings (which can't handle references well).
+--! 
+--! @param gameState GameState The new game state
+function LuaEngine:setCurrentGameState(gameState)
+
+   
+
+end
+
+
+
+--! @brief Retrieves a game state
+--! @param name The game state's name
+--! @return The GameState with the name or nil
+function LuaEngine:getGameState(name)
+
+
+end
+
+--! @brief Returns the currently active game state or nil
+function LuaEngine:currentGameState()
+
+   
+   
+end
+
+
+
+
+--! @brief Transfers an entity from one gamestate to another
+--!
+--! @param oldEntityId
+--!  The id of the entity to transfer in the old entitymanager
+--!
+--! @param oldEntityManager
+--!  The old entitymanager which is currently handling the entity
+--!
+--! @param newGameState
+--!  The new gamestate to transfer the entity to
+--! @return The new entity id in the new gamestate
+function LuaEngine:transferEntityGameState(oldEntityId,
+                                           oldEntityManager,
+                                           newGameState
+                                          )
+
+   
+   
+   
+end
+
+
+
+
+
+
 
 g_luaEngine = LuaEngine.new()
 

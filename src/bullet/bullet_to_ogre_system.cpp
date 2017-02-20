@@ -39,10 +39,10 @@ BulletToOgreSystem::~BulletToOgreSystem() {}
 
 void
 BulletToOgreSystem::init(
-    GameState* gameState
+    GameStateData* gameState
 ) {
     System::initNamed("BulletToOgreSystem", gameState);
-    m_impl->m_entities.setEntityManager(&gameState->entityManager());
+    m_impl->m_entities.setEntityManager(gameState->entityManager());
 }
 
 

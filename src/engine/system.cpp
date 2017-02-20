@@ -22,7 +22,10 @@ void System::luaBindings(
         "activate", &System::activate, 
         "deactivate", &System::deactivate, 
         "shutdown", &System::shutdown, 
-        "update", &System::update
+        "update", &System::update,
+
+        // Marker for Lua to detect C++ systems
+        "isCppSystem", sol::var(true)
     );
 }
 
@@ -30,7 +33,7 @@ struct System::Implementation {
 
     bool m_enabled = true;
 
-    GameState* m_gameState = nullptr;
+    GameStateData* m_gameState = nullptr;
 
     std::string m_name = "Unknown-System";
 
@@ -64,22 +67,10 @@ System::enabled() const {
     return m_impl->m_enabled;
 }
 
-
-Engine*
-System::engine() const {
-    if (m_impl->m_gameState) {
-        return &m_impl->m_gameState->engine();
-    }
-    else {
-        return nullptr;
-    }
-}
-
-
 EntityManager*
 System::entityManager() const {
     if (m_impl->m_gameState) {
-        return &m_impl->m_gameState->entityManager();
+        return m_impl->m_gameState->entityManager();
     }
     else {
         return nullptr;
@@ -87,7 +78,7 @@ System::entityManager() const {
 }
 
 
-GameState*
+GameStateData*
 System::gameState() const {
     return m_impl->m_gameState;
 }
@@ -95,18 +86,20 @@ System::gameState() const {
 
 void
 System::init(
-    GameState* gameState
+    GameStateData* gameState
 ) {
-    assert(m_impl->m_gameState == nullptr && "Cannot initialize system that is already attached to a GameState");
+    assert(m_impl->m_gameState == nullptr &&
+        "Cannot initialize system that is already attached to a GameState");
     m_impl->m_gameState = gameState;
 }
 
 void
 System::initNamed(
     const std::string &name,
-    GameState* gameState
+    GameStateData* gameState
 ) {
-    assert(m_impl->m_gameState == nullptr && "Cannot initialize system that is already attached to a GameState");
+    assert(m_impl->m_gameState == nullptr &&
+        "Cannot initialize system that is already attached to a GameState");
     m_impl->m_gameState = gameState;
     m_impl->m_name = name;
 }

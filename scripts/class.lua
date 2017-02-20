@@ -1,25 +1,61 @@
--- Helper file for creating Lua classes that inherit from C++ classes
+-- Class creation functions
 
--- Creates a basic class
-function createClass()
-
-   local newClass = {}
-
-   local metaTable = { __index = newClass }
-
-   -- Helper for creating instances
-   function newClass._createInstance()
-
-      local newinst = {}
-      setmetatable(newinst, metaTable)
-      
-      return newinst
+-- see: http://lua-users.org/wiki/SimpleLuaClasses
+-- Modified to use .new for instantiating classes to be consistent with C++ classes
+function class(base, init)
+   local c = {}    -- a new class instance
+   if not init and type(base) == 'function' then
+      init = base
+      base = nil
+   elseif type(base) == 'table' then
+      -- our new class is a shallow copy of the base class!
+      for i,v in pairs(base) do
+         c[i] = v
+      end
+      c._base = base
    end
+   -- the class will be the metatable for all its objects,
+   -- and they will look up their methods in it.
+   c.__index = c
 
-   return newClass
+   -- expose a constructor
+   local mt = {}
+   c.new = function(...)
+      local obj = {}
+      setmetatable(obj, c)
+      if init then
+         -- The init method must explicitly call base init
+         init(obj,...)
+      else 
+         -- make sure that any stuff from the base class is initialized!
+         if base and base.init then
+            base.init(obj, ...)
+         end
+      end
+      return obj
+   end
+   c.init = init
+   c.is_a = function(self, klass)
+      local m = getmetatable(self)
+      while m do 
+         if m == klass then return true end
+         m = m._base
+      end
+      return false
+   end
+   setmetatable(c, mt)
+   return c
 end
 
+
+
+
+
+-- Helper file for creating Lua classes that inherit from C++ classes
+-- Creates a subclass of a C++ class
 function createSubclass(baseClass)
+
+   error("todo: fix this")
 
    assert(baseClass ~= nil, "tried to create subclass of nil")
 
@@ -51,35 +87,5 @@ function createSubclass(baseClass)
 
    return newClass
 end
-
-
--- Function for creating systems
--- overrideMethods is a table of the functions that replace defaults in System
--- "update" must be defined or an exception is thrown
--- if overrideMethods contains __init it is called when creating new instances
-function createLuaSystem(overrideMethods)
-
-   assert(overrideMethods ~= nil, "lua systems require at least one override")
-   
-   local newClass = createSubclass(LuaSystem)
-
-   -- Helper for creating instances
-   function newClass.new()
-
-      assert(overrideMethods ~= nil)
-
-      local instance = newClass._createInstance({overrideMethods})
-
-      if overrideMethods["__init"] ~= nil then
-
-         overrideMethods.__init(instance)
-      end
-
-      return instance
-   end
-
-   return newClass
-end
-
 
 

@@ -209,7 +209,7 @@ public:
     * @param engine
     */
     void init(
-        GameState* gameState
+        GameStateData* gameState
     ) override;
 
     /**

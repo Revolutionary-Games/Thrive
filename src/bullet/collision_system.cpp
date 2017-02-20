@@ -3,6 +3,7 @@
 #include "scripting/luajit.h"
 
 #include "bullet/collision_filter.h"
+#include "bullet/physical_world.h"
 #include "engine/component_factory.h"
 #include "engine/engine.h"
 #include "engine/entity.h"
@@ -159,10 +160,10 @@ void CollisionSystem::luaBindings(
 
 void
 CollisionSystem::init(
-    GameState* gameState
+    GameStateData* gameState
 ) {
     System::initNamed("CollisionSystem", gameState);
-    m_impl->m_world = gameState->physicsWorld();
+    m_impl->m_world = gameState->physicalWorld()->physicsWorld();
 }
 
 
@@ -189,10 +190,10 @@ CollisionSystem::update(
         EntityId entityId1 = (reinterpret_cast<uintptr_t>(objectA->getUserPointer()));
         EntityId entityId2 = (reinterpret_cast<uintptr_t>(objectB->getUserPointer()));
         CollisionComponent* collisionComponent1 = static_cast<CollisionComponent*>(
-                                            System::gameState()->entityManager().getComponent(entityId1, CollisionComponent::TYPE_ID)
+                                            System::gameState()->entityManager()->getComponent(entityId1, CollisionComponent::TYPE_ID)
                                         );
         CollisionComponent* collisionComponent2 = static_cast<CollisionComponent*>(
-                                            System::gameState()->entityManager().getComponent(entityId2, CollisionComponent::TYPE_ID)
+                                            System::gameState()->entityManager()->getComponent(entityId2, CollisionComponent::TYPE_ID)
                                         );
         if (collisionComponent1 && collisionComponent2)
         {

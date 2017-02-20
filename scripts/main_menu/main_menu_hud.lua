@@ -1,11 +1,6 @@
 -- Updates the hud with relevant information
 
--- Override methods for System
-MainMenuHudSystem = {}
-
-function MainMenuHudSystem:__init()
-
-end
+MainMenuHudSystem = class(function() end)
 
 function MainMenuHudSystem:init(gameState)
    System.init(self, "MainMenuHudSystem", gameState)

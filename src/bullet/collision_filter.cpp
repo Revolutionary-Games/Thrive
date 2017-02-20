@@ -59,7 +59,7 @@ CollisionFilter::~CollisionFilter(){}
 
 void
 CollisionFilter::init(
-    GameState* gameState
+    GameStateData* gameState
 ) {
     m_impl->m_collisionSystem = gameState->findSystem<CollisionSystem>();
     m_impl->m_collisionSystem->registerCollisionFilter(*this);

@@ -2,6 +2,8 @@
 
 #include <memory>
 
+struct btDiscreteDynamicsWorld;
+
 namespace sol{
 
 class state;
@@ -29,6 +31,10 @@ public:
 
     //! \brief Creates and sets up all the physics objects
     PhysicalWorld();
+
+
+    btDiscreteDynamicsWorld*
+        physicsWorld();
 
 
 private:

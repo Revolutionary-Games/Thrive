@@ -11,7 +11,7 @@ namespace thrive {
 
 class Engine;
 class EntityManager;
-class GameState;
+class GameStateData;
 
 /**
 * @brief A system handles one specific part of the game
@@ -79,16 +79,6 @@ public:
     enabled() const;
 
     /**
-    * @brief The system's engine
-    *
-    * @return
-    *   The system's engine or \c nullptr if the system hasn't been
-    *   initialized yet.
-    */
-    Engine*
-    engine() const;
-
-    /**
     * @brief Returns the system's entity manager
     *
     * If the system has not been initialized yet, this returns \c nullptr.
@@ -102,7 +92,7 @@ public:
     *
     * If the system has not been initialized yet, this returns \c nullptr.
     */
-    GameState*
+    GameStateData*
     gameState() const;
 
     /**
@@ -115,7 +105,7 @@ public:
     */
     virtual void
     init(
-        GameState* gameState
+        GameStateData* gameState
     );
 
     /**
@@ -132,7 +122,7 @@ public:
     virtual void
     initNamed(
         const std::string &name,
-        GameState* gameState
+        GameStateData* gameState
     );
 
     /**
@@ -190,13 +180,5 @@ private:
     struct Implementation;
     std::unique_ptr<Implementation> m_impl;
 };
-
-//! Binding helper for System inheriting classes
-//! \note This is required because sol documentation doesn't recommend
-//! using the sol base class feature:
-//! http://sol2.readthedocs.io/en/latest/api/usertype.html#inheritance
-//! BUT due to how Thrive code is structured this is quite difficult to use
-//! so actual inheritance is used for now. TODO: check is it a problem
-#define THRIVE_BIND_SOL_DERIVED_SYSTEM(class) "enabled", &class::enabled,
 
 }

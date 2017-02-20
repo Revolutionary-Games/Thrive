@@ -38,7 +38,7 @@ public:
     */
     void
     init(
-        GameState* gameState
+        GameStateData* gameState
     ) override;
 
     /**

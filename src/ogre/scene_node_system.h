@@ -253,7 +253,7 @@ public:
     * @brief Initializes the system
     *
     */
-    void init(GameState* gameState) override;
+    void init(GameStateData* gameState) override;
 
     /**
     * @brief Shuts the system down
@@ -303,7 +303,7 @@ public:
     * @brief Initializes the system
     *
     */
-    void init(GameState* gameState) override;
+    void init(GameStateData* gameState) override;
 
     /**
     * @brief Shuts the system down
@@ -352,7 +352,7 @@ public:
     * @brief Initializes the system
     *
     */
-    void init(GameState* gameState) override;
+    void init(GameStateData* gameState) override;
 
     /**
     * @brief Shuts the system down

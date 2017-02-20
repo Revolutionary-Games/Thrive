@@ -1,6 +1,7 @@
 #include "bullet/rigid_body_system.h"
 
 #include "bullet/bullet_ogre_conversion.h"
+#include "bullet/physical_world.h"
 #include "engine/component_factory.h"
 #include "engine/game_state.h"
 #include "engine/entity_filter.h"
@@ -246,12 +247,12 @@ RigidBodyInputSystem::~RigidBodyInputSystem() {}
 
 void
 RigidBodyInputSystem::init(
-    GameState* gameState
+    GameStateData* gameState
 ) {
     System::initNamed("RigidBodyInputSystem", gameState);
     assert(m_impl->m_world == nullptr && "Double init of system");
-    m_impl->m_world = gameState->physicsWorld();
-    m_impl->m_entities.setEntityManager(&gameState->entityManager());
+    m_impl->m_world = gameState->physicalWorld()->physicsWorld();
+    m_impl->m_entities.setEntityManager(gameState->entityManager());
 }
 
 
@@ -500,10 +501,10 @@ RigidBodyOutputSystem::~RigidBodyOutputSystem() {}
 
 void
 RigidBodyOutputSystem::init(
-    GameState* gameState
+    GameStateData* gameState
 ) {
     System::initNamed("RigidBodyOutputSystem", gameState);
-    m_impl->m_entities.setEntityManager(&gameState->entityManager());
+    m_impl->m_entities.setEntityManager(gameState->entityManager());
 }
 
 
