@@ -22,7 +22,8 @@ Organelle atributes:
             identify this organelle.
 
     processes:  A table with all the processes this organelle does,
-                and the capacity of the process
+                and the capacity of the process (the amount of
+                process that can be made in one second).
                 TODO: put it in the procesOrganelle component?
 ]]
 
@@ -36,8 +37,8 @@ organelleTable = {
         },
 
         processes = {
-            ["FattyAcidSynthesis"] = 1,
-            ["AminoAcidSynthesis"] = 1
+            ["FattyAcidSynthesis"] = 0.7,
+            ["AminoAcidSynthesis"] = 0.7
         },
 
         mpCost = 0, --it's not supossed to be purchased.
@@ -82,7 +83,7 @@ organelleTable = {
         },
 
         processes = {
-            ["Photosynthesis"] = 1
+            ["Photosynthesis"] = 0.2
         },
 
         mass = 0.4,
@@ -105,7 +106,7 @@ organelleTable = {
         },
 
         processes = {
-            ["OxyToxySynthesis"] = 1
+            ["OxyToxySynthesis"] = 0.5
         },
 
         mass = 0.3,
@@ -125,7 +126,7 @@ organelleTable = {
         },
 
         processes = {
-            ["Respiration"] = 1
+            ["Respiration"] = 0.1
         },
 
         mass = 0.3,
