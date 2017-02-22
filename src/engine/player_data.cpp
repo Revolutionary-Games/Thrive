@@ -19,7 +19,7 @@ struct PlayerData::Implementation {
     }
 
     EntityId m_activeCreature = NULL_ENTITY;
-    GameState* m_activeCreatureGamestate = nullptr;
+    GameStateData* m_activeCreatureGamestate = nullptr;
 
     std::string m_playerName;
 
@@ -72,15 +72,15 @@ PlayerData::activeCreature(){
 void
 PlayerData::setActiveCreature(
     EntityId creatureId,
-    GameState& gamestate
+    GameStateData* gamestate
 ){
     m_impl->m_activeCreature = creatureId;
-    m_impl->m_activeCreatureGamestate = &gamestate;
+    m_impl->m_activeCreatureGamestate = gamestate;
 }
 
-GameState&
+GameStateData*
 PlayerData::activeCreatureGamestate(){
-    return *m_impl->m_activeCreatureGamestate;
+    return m_impl->m_activeCreatureGamestate;
 }
 
 bool

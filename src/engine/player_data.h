@@ -11,7 +11,7 @@ class state;
 
 namespace thrive {
 
-class GameState;
+class GameStateData;
 class StorageContainer;
 class LockedMap;
 
@@ -86,7 +86,7 @@ public:
     void
     setActiveCreature(
         EntityId creatureId,
-        GameState& gamestate
+        GameStateData* gamestate
     );
 
     /**
@@ -94,7 +94,7 @@ public:
     *
     * @return
     */
-    GameState&
+    GameStateData*
     activeCreatureGamestate();
 
     /**
