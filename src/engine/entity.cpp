@@ -41,12 +41,9 @@ void Entity::luaBindings(
 ){
     lua.new_usertype<Entity>("Entity",
 
-        sol::constructors<sol::types<>,
-        sol::types<GameState*>,
-        sol::types<EntityId>,
-        sol::types<EntityId, GameState*>,
-        sol::types<const std::string&>,
-        sol::types<const std::string&, GameState*>>(),
+        sol::constructors<sol::types<GameStateData*>,
+        sol::types<EntityId, GameStateData*>,
+        sol::types<const std::string&, GameStateData*>>(),
 
         // This should be automatically bound but here we do it explicitly
         sol::meta_function::equal_to, &Entity::operator==,
@@ -57,7 +54,8 @@ void Entity::luaBindings(
         "getComponent", &Entity::getComponent,
         "isVolatile", &Entity::isVolatile,
         "removeComponent", &Entity::removeComponent,
-        "transfer", &Entity::transfer,
+        // prefer to call LuaEngine:transferEntityGameState. This is slow
+        //"transfer", &Entity::transfer,
         "setVolatile", &Entity::setVolatile,
         "stealName", &Entity::stealName,
         "addChild", &Entity::addChild,
@@ -67,22 +65,21 @@ void Entity::luaBindings(
     );
 }
 
-static EntityManager&
+static EntityManager*
 getEntityManager(
-    GameState* gameState
+    GameStateData* gameState
 ) {
-    if (gameState) {
-        return gameState->entityManager();
-    }
-    else {
-        return Game::instance().engine().currentGameState()->entityManager();
-    }
+    if(gameState == nullptr)
+        throw std::runtime_error("Entity getEntityManager can't get "
+            "manager from null gameState");
+    
+    return gameState->entityManager();
 }
 
 
 Entity::Entity(
-    GameState* gameState
-) : Entity(getEntityManager(gameState).generateNewId(), gameState)
+    GameStateData* gameState
+) : Entity(getEntityManager(gameState)->generateNewId(), gameState)
 {
 
 }
@@ -90,16 +87,16 @@ Entity::Entity(
 
 Entity::Entity(
     EntityId id,
-    GameState* gameState
-) : m_impl(new Implementation(id, &getEntityManager(gameState)))
+    GameStateData* gameState
+) : m_impl(new Implementation(id, getEntityManager(gameState)))
 {
 }
 
 
 Entity::Entity(
     const std::string& name,
-    GameState* gameState
-) : Entity(getEntityManager(gameState).getNamedId(name), gameState)
+    GameStateData* gameState
+) : Entity(getEntityManager(gameState)->getNamedId(name), gameState)
 {
 }
 
@@ -207,9 +204,13 @@ Entity::removeComponent(
 
 Entity
 Entity::transfer(
-    GameState* newGameState
+    GameStateData* newGameStateData
 ) {
-    return Entity(Game::instance().engine().transferEntityGameState(m_impl->m_id, m_impl->m_entityManager, newGameState), newGameState);
+
+    EntityId newID = Game::instance().engine().transferEntityGameState(m_impl->m_id,
+        m_impl->m_entityManager, newGameStateData);
+    
+    return Entity(newID, newGameStateData);
 }
 
 void

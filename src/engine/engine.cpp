@@ -93,9 +93,7 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
         Engine& engine
     ) : m_engine(engine),
         m_rng(),
-        m_playerData("player"),
-        m_nextShutdownSystems(new std::map<System*, int>),
-        m_prevShutdownSystems(new std::map<System*, int>)
+        m_playerData("player")
     {
     }
 
@@ -106,21 +104,6 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
         );
     }
 
-    void
-    activateGameState(
-        GameState* gameState
-    ) {
-        if (m_currentGameState) {
-            m_currentGameState->deactivate();
-        }
-        m_currentGameState = gameState;
-        if (gameState) {
-            gameState->activate();
-            gameState->rootGUIWindow().addChild(m_consoleGUIWindow);
-            
-            m_console.get<sol::protected_function>("registerEvents")(gameState);
-        }
-    }
 
     void
     loadSavegame() {
@@ -139,42 +122,18 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
             std::cerr << "Error loading file: " << e.what() << std::endl;
             throw;
         }
+        
         // Load game states
-        GameState* previousGameState = m_currentGameState;
-        this->activateGameState(nullptr);
-        StorageContainer gameStates = savegame.get<StorageContainer>("gameStates");
-        for (const auto& pair : m_gameStates) {
-            if (gameStates.contains(pair.first)) {
-                // In case anything relies on the current game state
-                // during loading, temporarily switch it
-                m_currentGameState = pair.second.get();
-                pair.second->load(
-                    gameStates.get<StorageContainer>(pair.first)
-                );
-            }
-            else {
-                pair.second->entityManager().clear();
-            }
+        sol::protected_function luaMethod = m_luaState["g_luaEngine"]
+            ["loadSavegameGameStates"];
+
+        luaMethod.error_handler = m_luaState["thrivePanic"];
+    
+        if(!luaMethod(m_luaState["g_luaEngine"], &savegame).valid()){
+
+            throw std::runtime_error("LuaEngine failed to load saved game states");
         }
-        for (auto& kv : *m_prevShutdownSystems) {
-            kv.first->deactivate();
-        }
-        for (auto& kv : *m_nextShutdownSystems) {
-            kv.first->deactivate();
-        }
-        m_prevShutdownSystems->clear();
-        m_nextShutdownSystems->clear();
-        m_currentGameState = nullptr;
-        // Switch gamestate
-        std::string gameStateName = savegame.get<std::string>("currentGameState");
-        auto iter = m_gameStates.find(gameStateName);
-        if (iter != m_gameStates.end()) {
-            this->activateGameState(iter->second.get());
-        }
-        else {
-            this->activateGameState(previousGameState);
-            // TODO: Log error
-        }
+                
         m_playerData.load(savegame.get<StorageContainer>("playerData"));
     }
 
@@ -262,13 +221,18 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
     void
     saveSavegame() {
         StorageContainer savegame;
-        savegame.set("currentGameState", m_currentGameState->name());
-        savegame.set("playerData", m_playerData.storage());
-        StorageContainer gameStates;
-        for (const auto& pair : m_gameStates) {
-            gameStates.set(pair.first, pair.second->storage());
+
+        // Load game states
+        sol::protected_function luaMethod = m_luaState["g_luaEngine"]
+            ["saveCurrentStates"];
+
+        luaMethod.error_handler = m_luaState["thrivePanic"];
+    
+        if(!luaMethod(m_luaState["g_luaEngine"], &savegame).valid()){
+
+            throw std::runtime_error("LuaEngine failed to save game states");
         }
-        savegame.set("gameStates", std::move(gameStates));
+        
         savegame.set("thriveversion", m_thriveVersion);
         std::ofstream stream(
             m_serialization.saveFile,
@@ -396,8 +360,6 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
 
         CEGUI::ImageManager::getSingleton().loadImageset("DriveIcons.imageset");
         CEGUI::ImageManager::getSingleton().loadImageset("HUDDemo.imageset");
-
-        m_consoleGUIWindow = new CEGUIWindow("Console");
     }
 
     void
@@ -464,13 +426,6 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
         }
         CEGUI::System::getSingleton().getRenderer()->setDisplaySize(CEGUI::Sizef(window->getWidth(), window->getHeight()));
     }
-
-    void registerConsoleObject(
-        sol::table consoleObject
-    ){
-        m_console = consoleObject;
-    }
-
     // Lua state must be one of the last to be destroyed, so keep it
     // at top. The reason for that is that some components keep
     // sol::object instances around that rely on the lua state to
@@ -479,16 +434,9 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
     // longer than the manager.
     sol::state m_luaState;
 
-    GameState* m_currentGameState = nullptr;
-    CEGUIWindow* m_consoleGUIWindow = nullptr;
-
     ComponentFactory m_componentFactory;
 
     Engine& m_engine;
-
-    std::map<std::string, std::unique_ptr<GameState>> m_gameStates;
-
-    std::list<std::tuple<EntityId, EntityId, GameState*, GameState*>> m_entitiesToTransferGameState;
 
     RNG m_rng;
 
@@ -497,9 +445,6 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
     bool m_quitRequested = false;
 
     bool m_paused = false;
-
-    std::map<System*, int>* m_nextShutdownSystems;
-    std::map<System*, int>* m_prevShutdownSystems;
 
     struct Graphics {
 
@@ -537,60 +482,6 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
 };
 
 
-static GameState*
-Engine_createGameState(
-    Engine* self,
-    std::string name,
-    sol::object luaSystems,
-    sol::object luaInitializer,
-    std::string guiLayoutName
-) {
-    std::vector<std::shared_ptr<System>> systems;
-
-    if(!luaSystems.is<sol::table>()){
-
-        // Not a table
-        throw std::runtime_error("luaSystems is not a table");
-    }
-
-    {
-        auto table = luaSystems.as<sol::table>();
-    
-        for (const auto& pair : table){
-
-            if(pair.second.is<std::shared_ptr<System>>()){
-
-                System* check = pair.second.as<System*>();
-                std::cout << static_cast<void*>(check) << std::endl;
-                const auto& system = pair.second.as<std::shared_ptr<System>>();
-
-                if(system)
-                    systems.emplace_back(system);
-                
-            } else {
-
-                throw std::runtime_error("luaSystems has something "
-                    "that isn't a System type");
-            }
-        }
-    }
-    
-    // We can't just capture the luaInitializer in the lambda here, because
-    // luabind::object's call operator is not const
-    auto initializer = std::bind<void>(
-        [](sol::function luaInitializer) {
-            luaInitializer();
-        },
-        luaInitializer
-    );
-    return self->createGameState(
-        name,
-        std::move(systems),
-        initializer,
-        guiLayoutName
-    );
-}
-
 void Engine::luaBindings(
     sol::state &lua
 ){
@@ -598,10 +489,6 @@ void Engine::luaBindings(
 
         "new", sol::no_constructor,
 
-        "createGameState", Engine_createGameState,
-        "currentGameState", &Engine::currentGameState,
-        "getGameState", &Engine::getGameState,
-        "setCurrentGameState", &Engine::setCurrentGameState,
         "playerData", &Engine::playerData,
         "load", &Engine::load,
         "save", &Engine::save,
@@ -615,10 +502,6 @@ void Engine::luaBindings(
         "thriveVersion", &Engine::thriveVersion,
         "pauseGame", &Engine::pauseGame,
         "resumeGame", &Engine::resumeGame,
-        "registerConsoleObject", [](Engine &us, sol::table obj, sol::this_state){
-
-            us.m_impl->registerConsoleObject(obj);
-        },
         "getResolutionHeight", &Engine::getResolutionHeight,
         "getResolutionWidth", &Engine::getResolutionWidth,
         "componentFactory", sol::readonly(&Engine::componentFactory),
@@ -651,56 +534,10 @@ Engine::componentFactory() {
     return m_impl->m_componentFactory;
 }
 
-
-GameState*
-Engine::createGameState(
-    std::string name,
-    std::vector<std::shared_ptr<System>> systems,
-    GameState::Initializer initializer,
-    std::string guiLayoutName
-) {
-    assert(m_impl->m_gameStates.find(name) == m_impl->m_gameStates.end() &&
-        "Duplicate GameState name");
-    std::unique_ptr<GameState> gameState(new GameState(
-        *this,
-        name,
-        std::move(systems),
-        initializer,
-        guiLayoutName
-    ));
-    GameState* rawGameState = gameState.get();
-    m_impl->m_gameStates.insert(std::make_pair(
-        name,
-        std::move(gameState)
-    ));
-    return rawGameState;
-}
-
-
-GameState*
-Engine::currentGameState() const {
-    return m_impl->m_currentGameState;
-}
-
 RNG&
 Engine::rng() {
     return m_impl->m_rng;
 }
-
-
-GameState*
-Engine::getGameState(
-    const std::string& name
-) const {
-    auto iter = m_impl->m_gameStates.find(name);
-    if (iter != m_impl->m_gameStates.end()) {
-        return iter->second.get();
-    }
-    else {
-        return nullptr;
-    }
-}
-
 
 void
 Engine::init() {
@@ -708,32 +545,32 @@ Engine::init() {
     std::srand(unsigned(time(0)));
     m_impl->setupLog();
     m_impl->setupScripts();
+    m_impl->loadVersionNumber();
+    
     m_impl->setupGraphics();
     m_impl->setupGUI();
+    
     m_impl->setupInputManager();
+    
     m_impl->loadScripts("../scripts");
 
+
     // Initialize lua engine side
-    sol::protected_function luaInit = m_impl->m_luaState["g_luaEngine"]["init"];
+    sol::protected_function luaInit = m_impl->m_luaState["g_luaEngine"]["attachCpp"];
 
     luaInit.error_handler = m_impl->m_luaState["thrivePanic"];
     
-    if(!luaInit(this).valid()){
+    if(!luaInit(m_impl->m_luaState["g_luaEngine"], this).valid()){
 
         throw std::runtime_error("Failed to initialize LuaEngine side");
     }
     
-    m_impl->loadVersionNumber();
-    GameState* previousGameState = m_impl->m_currentGameState;
-    for (const auto& pair : m_impl->m_gameStates) {
-        const auto& gameState = pair.second;
-        m_impl->m_currentGameState = gameState.get();
-        gameState->init();
-    }
     // OgreOggSoundManager must be initialized after at least one
-    // Ogre::SceneManager has been instantiated
+    // Ogre::SceneManager has been instantiated so we need to hope
+    // that the lua engine had a gamestate to initialize that uses
+    // Ogre
     m_impl->setupSoundManager();
-    m_impl->m_currentGameState = previousGameState;
+
 }
 
 void
@@ -747,6 +584,27 @@ Engine::enterLuaMain(
     luaMain(gameObj);
 }
 
+EntityId
+Engine::transferEntityGameState(
+    EntityId id,
+    EntityManager* entityManager,
+    GameStateData* targetState
+) {
+    sol::protected_function luaMethod = m_impl->m_luaState["g_luaEngine"]
+        ["transferEntityGameState"];
+
+    luaMethod.error_handler = m_impl->m_luaState["thrivePanic"];
+
+    auto result = luaMethod(m_impl->m_luaState["g_luaEngine"],
+        id, entityManager, targetState);
+    
+    if(!result.valid())
+    {
+        throw std::runtime_error("Failed call LuaEngine:transferEntityGameState");
+    }
+
+    return result.get<EntityId>();
+}
 
 OIS::InputManager*
 Engine::inputManager() const {
@@ -820,7 +678,15 @@ Engine::saveCreation(
     std::string name,
     std::string type
 ) const {
-    saveCreation(entityId, this->currentGameState()->entityManager(), name, type);
+
+    // Get current EntityManager
+    EntityManager* currentManager = m_impl->m_luaState["g_luaEngine"]["currentGameState"]
+        ["entityManager"];
+
+    if(currentManager == nullptr)
+        throw std::runtime_error("saveCreation got nullptr as current EntityManager");
+
+    saveCreation(entityId, *currentManager, name, type);
 }
 
 void
@@ -866,7 +732,14 @@ EntityId
 Engine::loadCreation(
     std::string file
 ) {
-    return loadCreation(file, this->currentGameState()->entityManager());
+    // Get current EntityManager
+    EntityManager* currentManager = m_impl->m_luaState["g_luaEngine"]["currentGameState"]
+        ["entityManager"];
+
+    if(currentManager == nullptr)
+        throw std::runtime_error("loadCreation got nullptr as current EntityManager");
+    
+    return loadCreation(file, *currentManager);
 }
 
 EntityId
@@ -918,21 +791,6 @@ Engine::getCreationFileList(
     return stringbuilder.str();
 }
 
-void
-Engine::setCurrentGameState(
-    GameState* gameState
-) {
-    assert(gameState != nullptr && "GameState must not be null");
-    m_impl->m_nextGameState = gameState;
-    for (auto& pair : *m_impl->m_prevShutdownSystems){
-        //Make sure systems are deactivated before any potential reactivations
-        pair.first->deactivate();
-    }
-    m_impl->m_prevShutdownSystems = m_impl->m_nextShutdownSystems;
-    m_impl->m_nextShutdownSystems = m_impl->m_prevShutdownSystems;
-    m_impl->m_nextShutdownSystems->clear();
-}
-
 PlayerData&
 Engine::playerData(){
     return m_impl->m_playerData;
@@ -940,10 +798,16 @@ Engine::playerData(){
 
 void
 Engine::shutdown() {
-    for (const auto& pair : m_impl->m_gameStates) {
-        const auto& gameState = pair.second;
-        gameState->shutdown();
+    
+    sol::protected_function luaInit = m_impl->m_luaState["g_luaEngine"]["shutdown"];
+
+    luaInit.error_handler = m_impl->m_luaState["thrivePanic"];
+    
+    if(!luaInit(m_impl->m_luaState["g_luaEngine"]).valid()){
+
+        throw std::runtime_error("Failed to shutdown LuaEngine side");
     }
+    
     m_impl->shutdownInputManager();
     m_impl->m_graphics.renderWindow->destroy();
 
@@ -959,24 +823,6 @@ Engine::quit(){
 SoundManager*
 Engine::soundManager() const {
     return m_impl->m_soundManager.get();
-}
-
-EntityId
-Engine::transferEntityGameState(
-    EntityId oldEntityId,
-    EntityManager* oldEntityManager,
-    GameState* newGameState
-){
-    EntityId newEntity;
-    const std::string* nameMapping = oldEntityManager->getNameMappingFor(oldEntityId);
-    if (nameMapping){
-        newEntity = newGameState->entityManager().getNamedId(*nameMapping, true);
-    }
-    else{
-        newEntity = newGameState->entityManager().generateNewId();
-    }
-    oldEntityManager->transferEntity(oldEntityId, newEntity, newGameState->entityManager(), m_impl->m_componentFactory);
-    return newEntity;
 }
 
 void

@@ -6,23 +6,55 @@
 --! systems and main loop
 
 LuaEngine = class(
+   --! @brief Initializes the lua side of the engine
+   --! @param cppSide the engine object received from
+   --! c++ code
    function(self)
 
       -- The state the engine is switching to on next frame
       self.nextGameState = nil
-      
+      self.currentGameState = nil
+
+      -- The console object attaches itself here
+      self.console = nil
+      self.consoleGUIWindow = nil
+
+      -- std::list<std::tuple<EntityId, EntityId, GameState*, GameState*>> m_entitiesToTransferGameState;
+      -- std::map<System*, int>* m_nextShutdownSystems;
+      -- std::map<System*, int>* m_prevShutdownSystems;
    end
 )
 
---! @brief Initializes the lua side of the engine
---! @param cppSide the engine object received from
---! c++ code
-function LuaEngine:init(cppSide)
+function LuaEngine:attachCpp(cppSide)
 
    assert(cppSide ~= nil)
 
    self.Engine = cppSide
+
    
+   self.consoleGUIWindow = CEGUIWindow.new("Console")
+
+   -- Initialize states that have been created while loading all the scripts
+   
+   GameState* previousGameState = m_impl->m_currentGameState;
+   for (const auto& pair : m_impl->m_gameStates) {
+      const auto& gameState = pair.second;
+      m_impl->m_currentGameState = gameState.get();
+      gameState->init();
+                                                 }
+
+   m_impl->m_currentGameState = previousGameState;
+
+   
+end
+
+function LuaEngine:shutdown()
+
+   for (const auto& pair : m_impl->m_gameStates) {
+      const auto& gameState = pair.second;
+      gameState->shutdown();
+                                                 }
+
 end
 
 --! @param name Unique name of the system
@@ -34,6 +66,23 @@ function LuaEngine:createGameState(name, systems, physics, guiLayoutName)
 
    local newState = GameState.new(name, systems, self, physics, guiLayoutName)
 
+   assert(m_impl->m_gameStates.find(name) == m_impl->m_gameStates.end() &&
+"Duplicate GameState name");
+std::unique_ptr<GameState> gameState(new GameState(
+                                           *this,
+                                        name,
+                                        std::move(systems),
+                                        initializer,
+                                        guiLayoutName
+                                    ));
+GameState* rawGameState = gameState.get();
+m_impl->m_gameStates.insert(std::make_pair(
+                               name,
+                               std::move(gameState)
+                           ));
+return rawGameState;
+
+   
    return newState
 end
 
@@ -135,7 +184,15 @@ end
 --! @param gameState GameState The new game state
 function LuaEngine:setCurrentGameState(gameState)
 
-   
+   assert(gameState != nullptr && "GameState must not be null");
+   m_impl->m_nextGameState = gameState;
+   for (auto& pair : *m_impl->m_prevShutdownSystems){
+      //Make sure systems are deactivated before any potential reactivations
+      pair.first->deactivate();
+                                                    }
+   m_impl->m_prevShutdownSystems = m_impl->m_nextShutdownSystems;
+   m_impl->m_nextShutdownSystems = m_impl->m_prevShutdownSystems;
+   m_impl->m_nextShutdownSystems->clear();
 
 end
 
@@ -146,6 +203,9 @@ end
 --! @return The GameState with the name or nil
 function LuaEngine:getGameState(name)
 
+         auto iter = m_impl->m_gameStates.find(name);
+         if (iter != m_impl->m_gameStates.end()) {
+   return iter->second.get();
 
 end
 
@@ -165,7 +225,7 @@ end
 --!  The id of the entity to transfer in the old entitymanager
 --!
 --! @param oldEntityManager
---!  The old entitymanager which is currently handling the entity
+--!  The old entitymanager which is currently handling the entity. EntityManager type
 --!
 --! @param newGameState
 --!  The new gamestate to transfer the entity to
@@ -175,15 +235,107 @@ function LuaEngine:transferEntityGameState(oldEntityId,
                                            newGameState
                                           )
 
-   
+   -- TODO: Detect if newGameState is a c++ object GameStateData or a lua GameState object
+
+   EntityId newEntity;
+   const std::string* nameMapping = oldEntityManager->getNameMappingFor(oldEntityId);
+   if (nameMapping){
+      newEntity = newGameState->entityManager().getNamedId(*nameMapping, true);
+                   }
+   else{
+         newEntity = newGameState->entityManager().generateNewId();
+   }
+      oldEntityManager->transferEntity(oldEntityId, newEntity, newGameState->entityManager(), m_impl->m_componentFactory);
+      return newEntity;
    
    
 end
 
 
 
+--! @protected @brief Changes the current GameState right now. May not
+--! be called during an update!
+function LuaEngine:activateGameState(gameState)
+
+   if self.currentGameState ~= nil then
+
+      self.currentGameState:deactivate()
+      
+   end
+
+   self.currentGameState = gameState
+   
+   if self.currentGameState ~= nil then
+      
+      gameState:activate()
+      
+      gameState:rootGUIWindow():addChild(self.consoleGUIWindow)
+      
+      self.console:registerEvents(gameState)
+   end
+
+end
 
 
+--! @protected @brief Called from C++ side to load game states from a StorageContainer
+--! @param saveGame StorageContainer with saved data
+function LuaEngine:loadSavegameGameStates(saveGame)
+
+   GameState* previousGameState = m_currentGameState;
+   this->activateGameState(nullptr);
+   StorageContainer gameStates = savegame.get<StorageContainer>("gameStates");
+   for (const auto& pair : m_gameStates) {
+      if (gameStates.contains(pair.first)) {
+         // In case anything relies on the current game state
+         // during loading, temporarily switch it
+         m_currentGameState = pair.second.get();
+         pair.second->load(
+            gameStates.get<StorageContainer>(pair.first)
+                          );
+                                           }
+      else {
+            pair.second->entityManager().clear();
+      }
+         }
+for (auto& kv : *m_prevShutdownSystems) {
+   kv.first->deactivate();
+                                        }
+for (auto& kv : *m_nextShutdownSystems) {
+   kv.first->deactivate();
+                                        }
+m_prevShutdownSystems->clear();
+m_nextShutdownSystems->clear();
+m_currentGameState = nullptr;
+// Switch gamestate
+std::string gameStateName = savegame.get<std::string>("currentGameState");
+auto iter = m_gameStates.find(gameStateName);
+if (iter != m_gameStates.end()) {
+   this->activateGameState(iter->second.get());
+                                }
+else {
+      this->activateGameState(previousGameState);
+      // TODO: Log error
+}
+
+
+   
+
+   end
+
+--! @protected @brief Called from C++ side to load game states from a StorageContainer
+--! @param saveGame StorageContainer to be filled with saved data
+function LuaEngine:saveCurrentStates(saveGame)
+
+   savegame.set("currentGameState", m_currentGameState->name());
+   savegame.set("playerData", m_playerData.storage());
+   StorageContainer gameStates;
+   for (const auto& pair : m_gameStates) {
+      gameStates.set(pair.first, pair.second->storage());
+                                         }
+   savegame.set("gameStates", std::move(gameStates));
+
+   
+end
 
 
 g_luaEngine = LuaEngine.new()

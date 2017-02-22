@@ -12,7 +12,7 @@ class state;
 
 namespace thrive {
 
-class GameState;
+class GameStateData;
 class EntityManager;
 
 /**
@@ -34,9 +34,9 @@ public:
     * @brief Lua bindings
     *
     * Exposes the following \b constructors:
-    * - \c Entity(): Entity()
-    * - \c Entity(number): Entity(EntityId)
-    * - \c Entity(string): Entity(const std::string&)
+    * - \c Entity(GameStateData)
+    * - \c Entity(EntityId, GameStateData)
+    * - \c Entity(string, GameStateData)
     *
     * Exposes the following \b functions:
     * - \c addComponent(Component): addComponent(std::unique_ptr<Component>)
@@ -64,7 +64,7 @@ public:
     *
     */
     Entity(
-        GameState* gameState = nullptr
+        GameStateData* gameState = nullptr
     );
 
     /**
@@ -82,7 +82,7 @@ public:
     */
     Entity(
         EntityId id,
-        GameState* gameState = nullptr
+        GameStateData* gameState = nullptr
     );
 
     /**
@@ -102,7 +102,7 @@ public:
     */
     Entity(
         const std::string& name,
-        GameState* gameState = nullptr
+        GameStateData* gameState = nullptr
     );
 
     /**
@@ -284,10 +284,15 @@ public:
     * @return
     *  The new entity in the new gamestate.
     *  Note that the actual transfer will take place before next update so the old entity is valid until then.
+    * @note
+    *  This makes a call to lua and is pretty slow so prefer directly calling
+    *  LuaEngine:transferEntityGameState in lua code
+    * @todo
+    *  remove this if this is no longer used
     */
     Entity
     transfer(
-        GameState* newGameState
+        GameStateData* newGameState
     );
 
     /**

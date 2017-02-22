@@ -321,13 +321,7 @@ public:
     soundManager() const;
 
     /**
-    * @brief Renders a single frame
-    *
-    * Before calling update() the first time, you need to call Engine::init().
-    *
-    * @param milliseconds
-    *   The number of milliseconds to advance. For real-time, this is the
-    *   number of milliseconds since the last frame.
+    * @brief Updates C++ side things. Called from lua
     */
     void
     update(
@@ -349,6 +343,17 @@ public:
     */
     int
     getResolutionHeight() const;
+
+
+    /**
+    * @brief Calls the LuaEngine transfer entity method
+    */
+    EntityId
+    transferEntityGameState(
+        EntityId id,
+        EntityManager* entityManager,
+        GameStateData* targetState
+    );
 
     /**
     * @brief The render window
