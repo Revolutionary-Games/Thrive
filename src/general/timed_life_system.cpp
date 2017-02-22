@@ -81,10 +81,10 @@ TimedLifeSystem::~TimedLifeSystem() {}
 
 void
 TimedLifeSystem::init(
-    GameState* gameState
+    GameStateData* gameState
 ) {
     System::initNamed("TimedLifeSystem", gameState);
-    m_impl->m_entities.setEntityManager(&gameState->entityManager());
+    m_impl->m_entities.setEntityManager(gameState->entityManager());
 }
 
 
