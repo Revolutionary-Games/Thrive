@@ -345,6 +345,16 @@ public:
     getResolutionHeight() const;
 
 
+
+    /**
+    * @name Lua wrapper methods
+    *
+    * These are implemented in Lua. These methods make these functions
+    * available but they are slow. so avoid if possible.  Or maybe
+    * rewrite the system that needs thse in Lua.
+    */
+    /**@{*/ 
+
     /**
     * @brief Calls the LuaEngine transfer entity method
     */
@@ -354,6 +364,13 @@ public:
         EntityManager* entityManager,
         GameStateData* targetState
     );
+    
+    bool isSystemTimedShutdown(System* system);
+
+    void timedSystemShutdown(System* system, int timeInMS);
+
+    /**@}*/ 
+    
 
     /**
     * @brief The render window

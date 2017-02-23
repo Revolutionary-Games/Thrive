@@ -175,10 +175,10 @@ CompoundEmitterSystem::~CompoundEmitterSystem() {}
 
 void
 CompoundEmitterSystem::init(
-    GameState* gameState
+    GameStateData* gameState
 ) {
     System::initNamed("CompoundEmitterSystem", gameState);
-    m_impl->m_entities.setEntityManager(&gameState->entityManager());
+    m_impl->m_entities.setEntityManager(gameState->entityManager());
     m_impl->m_sceneManager = gameState->sceneManager();
 }
 
@@ -199,7 +199,8 @@ emitCompound(
     double angle,
     double radius,
     CompoundEmitterComponent* emitterComponent,
-    EntityId emittingEntityId
+    EntityId emittingEntityId,
+    GameStateData* currentState
 ) {
 
     Ogre::Vector3 emissionOffset(0,0,0);
@@ -221,7 +222,7 @@ emitCompound(
         radius * Ogre::Math::Cos(emissionAngle),
         0.0
     );
-    EntityId compoundEntityId = Game::instance().engine().currentGameState()->entityManager().generateNewId();
+    EntityId compoundEntityId = currentState->entityManager()->generateNewId();
     // Scene Node
     auto compoundSceneNodeComponent = make_unique<OgreSceneNodeComponent>();
     auto meshScale = CompoundRegistry::getCompoundMeshScale(compoundId);
@@ -255,7 +256,7 @@ emitCompound(
     components.emplace_back(std::move(compoundRigidBodyComponent));
     components.emplace_back(std::move(collisionHandler));
     for (auto& component : components) {
-        Game::instance().engine().currentGameState()->entityManager().addComponent(
+        currentState->entityManager()->addComponent(
             compoundEntityId,
             std::move(component)
         );
@@ -273,7 +274,9 @@ CompoundEmitterSystem::update(int, int logicTime) {
 
         for (auto emission : emitterComponent->m_compoundEmissions)
         {
-            emitCompound(std::get<0>(emission), std::get<1>(emission), sceneNodeComponent->m_transform.position, std::get<2>(emission), std::get<3>(emission), emitterComponent, value.first);
+            emitCompound(std::get<0>(emission), std::get<1>(emission),
+                sceneNodeComponent->m_transform.position, std::get<2>(emission),
+                std::get<3>(emission), emitterComponent, value.first, gameState());
         }
         emitterComponent->m_compoundEmissions.clear();
         if (timedEmitterComponent)
@@ -289,7 +292,11 @@ CompoundEmitterSystem::update(int, int logicTime) {
                         emitterComponent->m_minEmissionAngle.valueDegrees(),
                         emitterComponent->m_maxEmissionAngle.valueDegrees()
                     );
-                    emitCompound(timedEmitterComponent->m_compoundId, timedEmitterComponent->m_potencyPerParticle, sceneNodeComponent->m_transform.position, angle,  emitterComponent->m_emissionRadius, emitterComponent, value.first);
+                    emitCompound(timedEmitterComponent->m_compoundId,
+                        timedEmitterComponent->m_potencyPerParticle,
+                        sceneNodeComponent->m_transform.position, angle,
+                        emitterComponent->m_emissionRadius, emitterComponent, value.first,
+                        gameState());
                 }
             }
         }

@@ -409,7 +409,7 @@ struct SoundSourceSystem::Implementation {
         Sound* sound,
         bool ambient,
         bool autoLoop,
-        GameState* gameState
+        GameStateData* gameState
     ) {
         static const bool STREAM = true; //Streaming sound from file
 
@@ -418,7 +418,7 @@ struct SoundSourceSystem::Implementation {
             return;
         }
         std::ostringstream soundName;
-        soundName << Game::instance().engine().currentGameState()->name() << sound->name() << entityId;
+        soundName << gameState->name() << sound->name() << entityId;
         auto soundManager = SoundManager::getSingleton();
         auto ogreSound = soundManager->createSound(
             soundName.str(),
@@ -470,7 +470,7 @@ struct SoundSourceSystem::Implementation {
         std::unordered_map<std::string, SoundEmitter*>
         > m_sounds;
 
-    GameState* m_gameState = nullptr;
+    GameStateData* m_gameState = nullptr;
 
 };
 
@@ -502,7 +502,10 @@ SoundSourceSystem::activate() {
 
 void
 SoundSourceSystem::deactivate() {
-    if (this->engine()->isSystemTimedShutdown(*this)) {
+
+    
+    // TODO: avoid going through Lua Engine here for performance ... 
+    if (this->gameState()->engine()->isSystemTimedShutdown(this)) {
         System::deactivate();
         m_impl->removeAllSounds();
     }
@@ -510,17 +513,17 @@ SoundSourceSystem::deactivate() {
         for (auto& value : m_impl->m_entities) {
             std::get<0>(value.second)->m_autoSoundCountdown = 1500;
         }
-        this->engine()->timedSystemShutdown(*this, 1500);
+        this->gameState()->engine()->timedSystemShutdown(this, 1500);
     }
 }
 
 
 void
 SoundSourceSystem::init(
-    GameState* gameState
+    GameStateData* gameState
 ) {
     System::initNamed("SoundSourceSystem", gameState);
-    m_impl->m_entities.setEntityManager(&gameState->entityManager());
+    m_impl->m_entities.setEntityManager(gameState->entityManager());
     m_impl->m_gameState = gameState;
 }
 

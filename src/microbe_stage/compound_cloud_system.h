@@ -131,7 +131,7 @@ public:
     *
     * @param gameState
     */
-    void init(GameState* gameState) override;
+    void init(GameStateData* gameState) override;
 
     /**
     * @brief Shuts the system down
@@ -146,7 +146,8 @@ public:
 private:
     struct Implementation;
     std::unique_ptr<Implementation> m_impl;
-    GameState* gameState;
+    //! \todo Remove this. This is in the base class already
+    GameStateData* gameState;
     Ogre::Entity* compoundCloudsPlane;
     OgreSceneNodeComponent* playerNode;
 

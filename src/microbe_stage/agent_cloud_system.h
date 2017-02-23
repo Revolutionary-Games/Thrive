@@ -105,7 +105,7 @@ public:
     *
     * @param gameState
     */
-    void init(GameState* gameState) override;
+    void init(GameStateData* gameState) override;
 
     /**
     * @brief Shuts the system down
@@ -120,7 +120,8 @@ public:
 private:
     struct Implementation;
     std::unique_ptr<Implementation> m_impl;
-    GameState* gameState;
+    //! \todo Remove this. This is in the base class already
+    GameStateData* gameState;
 
 	void diffuse(float diffRate, std::vector<  std::vector<float>  >& oldDens, const std::vector<  std::vector<float>  >& density, int dt);
 };

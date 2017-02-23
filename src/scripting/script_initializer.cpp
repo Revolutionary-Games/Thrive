@@ -265,12 +265,10 @@ void bindClassesToLua(sol::state &lua){
         StorageContainer::luaBindings(lua);
         StorageList::luaBindings(lua);
         System::luaBindings(lua);
-        SystemWrapper::luaBindings(lua);
         Component::luaBindings(lua);
         ComponentFactory::luaBindings(lua);
         Entity::luaBindings(lua);
         Touchable::luaBindings(lua);
-        GameState::luaBindings(lua);
         GameStateData::luaBindings(lua);
         Engine::luaBindings(lua);
         RNG::luaBindings(lua);

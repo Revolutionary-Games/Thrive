@@ -255,10 +255,10 @@ ProcessSystem::~ProcessSystem()
 }
 
 void
-ProcessSystem::init(GameState* gameState)
+ProcessSystem::init(GameStateData* gameState)
 {
     System::initNamed("ProcessSystem", gameState);
-    m_impl->m_entities.setEntityManager(&gameState->entityManager());
+    m_impl->m_entities.setEntityManager(gameState->entityManager());
 }
 
 void

@@ -507,7 +507,7 @@ public:
 
 private:
 
-    friend class GameState;
+    friend class GameStateData;
 
     //Private constructor. New window is true if this is the first time a CEGUIWindow is created with the window pointer (for event subscribing)
     CEGUIWindow(CEGUI::Window* window, bool newWindow = true);

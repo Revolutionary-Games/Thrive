@@ -8,7 +8,7 @@
 
 namespace thrive {
 
-class GameState;
+class GameStateData;
 
 /**
 * @brief Script version of the EntityFilter
@@ -107,7 +107,7 @@ public:
     */
     void
     init(
-        GameState* gameState
+        GameStateData* gameState
     );
 
     /**

@@ -464,8 +464,6 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
 
     } m_input;
 
-    GameState* m_nextGameState = nullptr;
-
     std::string m_thriveVersion;
 
     struct Serialization {
@@ -476,7 +474,6 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
 
     } m_serialization;
 
-    sol::table m_console;
     std::unique_ptr<SoundManager> m_soundManager;
     std::unique_ptr<CEGUI::InputAggregator> m_aggregator;
 };
@@ -605,6 +602,46 @@ Engine::transferEntityGameState(
 
     return result.get<EntityId>();
 }
+
+bool
+Engine::isSystemTimedShutdown(
+    System* system
+) {
+    sol::protected_function luaMethod = m_impl->m_luaState["g_luaEngine"]
+        ["isSystemTimedShutdown"];
+
+    luaMethod.error_handler = m_impl->m_luaState["thrivePanic"];
+
+    auto result = luaMethod(m_impl->m_luaState["g_luaEngine"],
+        system);
+    
+    if(!result.valid()){
+        
+        throw std::runtime_error("Failed call LuaEngine:isSystemTimedShutdown");
+    }
+
+    return result.get<bool>();
+}
+
+void
+Engine::timedSystemShutdown(
+    System* system,
+    int timeInMS
+) {
+    sol::protected_function luaMethod = m_impl->m_luaState["g_luaEngine"]
+        ["timedSystemShutdown"];
+
+    luaMethod.error_handler = m_impl->m_luaState["thrivePanic"];
+
+    auto result = luaMethod(m_impl->m_luaState["g_luaEngine"],
+        system, timeInMS);
+    
+    if(!result.valid()){
+        
+        throw std::runtime_error("Failed call LuaEngine:timedSystemShutdown");
+    }
+}
+
 
 OIS::InputManager*
 Engine::inputManager() const {

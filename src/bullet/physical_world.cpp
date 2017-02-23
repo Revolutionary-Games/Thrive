@@ -49,3 +49,11 @@ PhysicalWorld::PhysicalWorld(){
     m_physics->world->setGravity(btVector3(0,0,0));
 }
 
+
+btDiscreteDynamicsWorld*
+PhysicalWorld::physicsWorld(){
+
+    return m_physics->world.get();
+}
+
+

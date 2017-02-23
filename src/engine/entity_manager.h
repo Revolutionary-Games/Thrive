@@ -11,7 +11,7 @@ namespace thrive {
 class Component;
 class ComponentCollection;
 class ComponentFactory;
-class GameState;
+class GameStateData;
 class StorageContainer;
 
 /**

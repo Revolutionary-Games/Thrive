@@ -7,6 +7,7 @@ add_sources(
     "${CMAKE_CURRENT_SOURCE_DIR}/script_wrapper.h"
     "${CMAKE_CURRENT_SOURCE_DIR}/wrapper_classes.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/wrapper_classes.h"
+    "${CMAKE_CURRENT_SOURCE_DIR}/script_helpers.h"
 )
 
 add_test_sources(

@@ -189,10 +189,10 @@ CompoundCloudSystem::~CompoundCloudSystem() {
 
 void
 CompoundCloudSystem::init(
-    GameState* gameState
+    GameStateData* gameState
 ) {
     System::initNamed("CompoundCloudSystem", gameState);
-    m_impl->m_compounds.setEntityManager(&gameState->entityManager());
+    m_impl->m_compounds.setEntityManager(gameState->entityManager());
     m_impl->m_sceneManager = gameState->sceneManager();
     this->gameState = gameState;
 
@@ -219,8 +219,8 @@ CompoundCloudSystem::update(int renderTime, int) {
 //auto start = std::chrono::high_resolution_clock::now();
 
     // Get the player's position.
-    playerNode = static_cast<OgreSceneNodeComponent*>(gameState->entityManager().getComponent(
-        Entity(gameState->engine().playerData().playerName(), gameState).id(),
+    playerNode = static_cast<OgreSceneNodeComponent*>(gameState->entityManager()->getComponent(
+            Entity(Game::instance().engine().playerData().playerName(), gameState).id(),
         OgreSceneNodeComponent::TYPE_ID));
 
 

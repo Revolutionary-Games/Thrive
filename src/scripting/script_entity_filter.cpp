@@ -207,10 +207,10 @@ ScriptEntityFilter::entities() {
 
 void
 ScriptEntityFilter::init(
-    GameState* gameState
+    GameStateData* gameState
 ) {
     m_impl->setEntityManager(
-        &gameState->entityManager()
+        gameState->entityManager()
     );
 }
 

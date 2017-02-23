@@ -22,6 +22,7 @@ LuaEngine = class(
       -- std::list<std::tuple<EntityId, EntityId, GameState*, GameState*>> m_entitiesToTransferGameState;
       -- std::map<System*, int>* m_nextShutdownSystems;
       -- std::map<System*, int>* m_prevShutdownSystems;
+      --     GameState* m_nextGameState = nullptr;
    end
 )
 
@@ -30,6 +31,7 @@ function LuaEngine:attachCpp(cppSide)
    assert(cppSide ~= nil)
 
    self.Engine = cppSide
+   self.wrapper = 
 
    
    self.consoleGUIWindow = CEGUIWindow.new("Console")
@@ -154,12 +156,24 @@ end
 --! 
 function LuaEngine:timedSystemShutdown(system, milliseconds)
 
+   local state = self:gameStateFromCpp(system)
+
+   if system ~= nil then
+      system = state
+   end
+
    table.insert(self.prevShutdownSystems, { timeLeft = milliseconds, ["system"] = system })
 
 end
 
 --! @brief Returns true if system is already queued for shutdown
 function LuaEngine:isSystemTimedShutdown(system)
+
+   local state = self:gameStateFromCpp(system)
+
+   if system ~= nil then
+      system = state
+   end
 
    for i,p in ipairs(self.prevShutdownSystems) do
 
@@ -216,8 +230,11 @@ function LuaEngine:currentGameState()
    
 end
 
-
-
+--! @brief Returns a system that has the potential C++ side object
+function LuaEngine:gameStateFromCpp(cppObj)
+   -- TODO: Detect if newGameState is a c++ object GameStateData or a lua GameState object
+   error("todo:")
+end
 
 --! @brief Transfers an entity from one gamestate to another
 --!
@@ -235,6 +252,8 @@ function LuaEngine:transferEntityGameState(oldEntityId,
                                            newGameState
                                           )
 
+   local state = self:gameStateFromCpp(newGameState)
+   
    -- TODO: Detect if newGameState is a c++ object GameStateData or a lua GameState object
 
    EntityId newEntity;

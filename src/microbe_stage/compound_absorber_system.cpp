@@ -210,12 +210,12 @@ CompoundAbsorberSystem::~CompoundAbsorberSystem() {}
 
 void
 CompoundAbsorberSystem::init(
-    GameState* gameState
+    GameStateData* gameState
 ) {
     System::initNamed("CompoundAbsorberSystem", gameState);
-    m_impl->m_compounds.setEntityManager(&gameState->entityManager());
-    m_impl->m_agents.setEntityManager(&gameState->entityManager());
-    m_impl->m_absorbers.setEntityManager(&gameState->entityManager());
+    m_impl->m_compounds.setEntityManager(gameState->entityManager());
+    m_impl->m_agents.setEntityManager(gameState->entityManager());
+    m_impl->m_absorbers.setEntityManager(gameState->entityManager());
     m_impl->m_sceneManager = gameState->sceneManager();
 }
 

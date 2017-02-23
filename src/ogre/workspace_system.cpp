@@ -313,12 +313,12 @@ OgreWorkspaceSystem::deactivate() {
 
 void
 OgreWorkspaceSystem::init(
-    GameState* gameState
+    GameStateData* gameState
 ) {
     System::initNamed("OgreWorkspaceSystem", gameState);
-    m_impl->m_renderWindow = this->engine()->renderWindow();
+    m_impl->m_renderWindow = Game::instance().engine().renderWindow();
     m_impl->m_sceneManager = gameState->sceneManager();
-    m_impl->m_entities.setEntityManager(&gameState->entityManager());
+    m_impl->m_entities.setEntityManager(gameState->entityManager());
 }
 
 void

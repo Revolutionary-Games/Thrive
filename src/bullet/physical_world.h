@@ -34,7 +34,7 @@ public:
 
 
     btDiscreteDynamicsWorld*
-        physicsWorld();
+    physicsWorld();
 
 
 private:

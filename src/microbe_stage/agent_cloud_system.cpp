@@ -150,10 +150,10 @@ AgentCloudSystem::~AgentCloudSystem() {
 
 void
 AgentCloudSystem::init(
-    GameState* gameState
+    GameStateData* gameState
 ) {
     System::initNamed("AgentCloudSystem", gameState);
-    m_impl->m_compounds.setEntityManager(&gameState->entityManager());
+    m_impl->m_compounds.setEntityManager(gameState->entityManager());
     m_impl->m_sceneManager = gameState->sceneManager();
     this->gameState = gameState;
 }

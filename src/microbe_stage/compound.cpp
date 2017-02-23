@@ -101,10 +101,10 @@ CompoundMovementSystem::~CompoundMovementSystem() {}
 
 void
 CompoundMovementSystem::init(
-    GameState* gameState
+    GameStateData* gameState
 ) {
     System::initNamed("CompoundMovementSystem", gameState);
-    m_impl->m_entities.setEntityManager(&gameState->entityManager());
+    m_impl->m_entities.setEntityManager(gameState->entityManager());
 }
 
 

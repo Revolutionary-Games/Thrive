@@ -1,6 +1,7 @@
 #include "ogre/render_system.h"
 
 #include "engine/engine.h"
+#include "game.h"
 #include "engine/game_state.h"
 #include "scripting/luajit.h"
 
@@ -37,10 +38,10 @@ RenderSystem::~RenderSystem() {}
 
 void
 RenderSystem::init(
-    GameState* gameState
+    GameStateData* gameState
 ) {
     System::initNamed("RenderSystem", gameState);
-    m_impl->m_root = this->engine()->ogreRoot();
+    m_impl->m_root = Game::instance().engine().ogreRoot();
     assert(m_impl->m_root != nullptr && "Root object is null. Initialize the Engine first.");
 }
 
