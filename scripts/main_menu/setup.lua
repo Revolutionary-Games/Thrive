@@ -42,8 +42,6 @@ end
 
 local function createMainMenu(name)
 
-   print_r(MainMenuHudSystem)
-   
     return Engine:createGameState(
         name,
         {   

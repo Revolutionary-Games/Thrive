@@ -16,9 +16,10 @@
 
 
 GameState = class(
-   --! @brief Initializes a state to be used.
+   --! @brief Constructs a new GameState. Must be called from derived classes with
+   --! `GameState.create(self)`
    --! @note calls this only through LuaEngine:createGameState
-   function(self, name, systems, engine, physics, guiLayoutName)
+   function(self, name, systems, engine, physics, guiLayoutName, extraInitializer)
 
       assert(name ~= nil)
       assert(systems ~= nil)
@@ -26,6 +27,10 @@ GameState = class(
       assert(engine ~= nil)
       -- Physics must be true or false
       assert(physics ~= nil)
+      -- TODO: make "none" skip creating the CEGUIWindow
+      assert(guiLayoutName ~= nil)
+
+      self.extraInitializer = extraInitializer
 
       -- Systems container
       self.systems = systems
@@ -33,16 +38,8 @@ GameState = class(
       self.engine = engine
       self.guiLayoutName = guiLayoutName
 
-
       -- This is passed to C++ systems
       self.cppData = GameStateData.new(self)
-
-      -- Init systems
-      for i,s in ipairs(self.systems) do
-
-         s:init(self)
-         
-      end
 
       --! @brief Adds physics to this GameState
       if physics == true then
@@ -51,13 +48,33 @@ GameState = class(
          
       end
 
-      -- Create entity manager
-      self.entityManager = EntityManager.new()
-
-      self.guiWindow = CEGUIWindow.new(self.guiLayoutName)
-
    end
 )
+
+--! @brief Initializes a state to be used.
+--! @brief System initializer called once engine is set up
+function GameState:init()
+
+   -- Init systems
+   for i,s in ipairs(self.systems) do
+
+      s:init(self)
+      
+   end
+
+   -- Create entity manager
+   self.entityManager = EntityManager.new()
+
+   self.guiWindow = CEGUIWindow.new(self.guiLayoutName)
+
+   if self.extraInitializer ~= nil then
+
+      self:extraInitializer()
+      
+   end
+   
+end
+
 
 --! @brief Must be called when this gamestate is no longer needed
 --!
@@ -102,8 +119,6 @@ function GameState:deactivate()
    end
 
    self.guiWindow:hide()
-   
-   m_impl->m_guiWindow.hide()
    CEGUIWindow.getRootWindow():removeChild(self.guiWindow)
 
 end

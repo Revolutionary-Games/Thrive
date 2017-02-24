@@ -62,12 +62,7 @@ function MainMenuHudSystem:activate()
    end
 end
 
-print("Creating MainMenuHudSystem class from:")
-print_r(MainMenuHudSystem)
-
 MainMenuHudSystem = createLuaSystem(MainMenuHudSystem)
-print("created:")
-print_r(MainMenuHudSystem)
 
 function updateLoadButton()
     if Engine:fileExists("quick.sav") then

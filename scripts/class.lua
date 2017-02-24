@@ -2,10 +2,10 @@
 
 -- see: http://lua-users.org/wiki/SimpleLuaClasses
 -- Modified to use .new for instantiating classes to be consistent with C++ classes
-function class(base, init)
+function class(base, create)
    local c = {}    -- a new class instance
-   if not init and type(base) == 'function' then
-      init = base
+   if not create and type(base) == 'function' then
+      create = base
       base = nil
    elseif type(base) == 'table' then
       -- our new class is a shallow copy of the base class!
@@ -23,18 +23,18 @@ function class(base, init)
    c.new = function(...)
       local obj = {}
       setmetatable(obj, c)
-      if init then
-         -- The init method must explicitly call base init
-         init(obj,...)
+      if create then
+         -- The create method must explicitly call base create
+         create(obj,...)
       else 
-         -- make sure that any stuff from the base class is initialized!
-         if base and base.init then
-            base.init(obj, ...)
+         -- make sure that any stuff from the base class is createialized!
+         if base and base.create then
+            base.create(obj, ...)
          end
       end
       return obj
    end
-   c.init = init
+   c.create = create
    c.is_a = function(self, klass)
       local m = getmetatable(self)
       while m do 

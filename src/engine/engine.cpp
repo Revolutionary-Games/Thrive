@@ -232,6 +232,8 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
 
             throw std::runtime_error("LuaEngine failed to save game states");
         }
+
+        savegame.set("playerData", m_playerData.storage());
         
         savegame.set("thriveversion", m_thriveVersion);
         std::ofstream stream(
@@ -553,7 +555,7 @@ Engine::init() {
 
 
     // Initialize lua engine side
-    sol::protected_function luaInit = m_impl->m_luaState["g_luaEngine"]["attachCpp"];
+    sol::protected_function luaInit = m_impl->m_luaState["g_luaEngine"]["init"];
 
     luaInit.error_handler = m_impl->m_luaState["thrivePanic"];
     
