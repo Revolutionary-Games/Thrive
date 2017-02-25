@@ -90,7 +90,7 @@ function LuaEngine:createGameState(name,
                                    guiLayoutName,
                                    extraInitializer)
 
-   assert(self.initialized == false,
+   assert(self.initialized ~= true,
           "LuaEngine: trying to create state after init. State wouldn't be initialized!")
    
    if extraInitializer ~= nil then

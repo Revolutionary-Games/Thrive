@@ -2,15 +2,21 @@
 
 QuickSaveSystem = class(
    LuaSystem,
-   function(self, gameState)
+   function(self)
 
-      LuaSystem.init(self, "QuickSaveSystem", gameState)
+      LuaSystem.create(self)
 
-      self.saveDown = false
-      self.loadDown = false      
-      
    end
 )
+
+function QuickSaveSystem:init(gameState)
+
+   LuaSystem.init(self, "QuickSaveSystem", gameState)
+
+   self.saveDown = false 
+   self.loadDown = false 
+
+end
 
 function QuickSaveSystem:update(renderTime, logicTime)
    local saveDown = Engine.keyboard:isKeyDown(Keyboard.KC_F4)

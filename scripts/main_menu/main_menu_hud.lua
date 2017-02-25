@@ -1,19 +1,34 @@
 -- Updates the hud with relevant information
 
-MainMenuHudSystem = class(function() end)
+MainMenuHudSystem = class(
+   LuaSystem,
+   function(self)
+      
+      LuaSystem.create(self)
+      
+   end
+)
 
 function MainMenuHudSystem:init(gameState)
-   System.init(self, "MainMenuHudSystem", gameState)
-   root = gameState:rootGUIWindow()
-   local microbeButton = root:getChild("Background"):getChild("MainMenuInteractive"):getChild("NewGameButton")
-   local quitButton = root:getChild("Background"):getChild("MainMenuInteractive"):getChild("ExitGameButton")
-   local loadButton = root:getChild("Background"):getChild("MainMenuInteractive"):getChild("LoadGameButton")   
+   LuaSystem.init(self, "MainMenuHudSystem", gameState)
+   root = gameState.guiWindow
+   
+   local microbeButton = root:getChild("Background"):
+      getChild("MainMenuInteractive"):getChild("NewGameButton")
+   local quitButton = root:getChild("Background"):
+      getChild("MainMenuInteractive"):getChild("ExitGameButton")
+   local loadButton = root:getChild("Background"):
+      getChild("MainMenuInteractive"):getChild("LoadGameButton")
+   
    microbeButton:registerEventHandler("Clicked", mainMenuMicrobeStageButtonClicked)
    loadButton:registerEventHandler("Clicked", mainMenuLoadButtonClicked)
    quitButton:registerEventHandler("Clicked", quitButtonClicked)
+   
    updateLoadButton();
+   
    self.videoPlayer = CEGUIVideoPlayer.new("IntroPlayer")
    root:addChild( self.videoPlayer)
+   
    self.hasShownIntroVid = false
    self.vidFadeoutStarted = false
    self.skippedVideo = false
@@ -61,8 +76,6 @@ function MainMenuHudSystem:activate()
       self.videoPlayer:play()
    end
 end
-
-MainMenuHudSystem = createLuaSystem(MainMenuHudSystem)
 
 function updateLoadButton()
     if Engine:fileExists("quick.sav") then

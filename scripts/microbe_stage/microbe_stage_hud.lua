@@ -1,28 +1,31 @@
 
 -- Updates the hud with relevant information
 
--- Override methods for System
-HudSystem = {}
+HudSystem = class(
+   LuaSystem,
+   function(self)
+      
+      LuaSystem.create(self)
 
-function HudSystem:__init()
-
-   self.compoundListBox = nil
-   self.hitpointsCountLabel = nil
-   self.hitpointsMaxLabel = nil
-   self.hitpointsBar = nil
-   self.compoundListItems = {}
-   self.rootGuiWindow = nil
-   self.populationNumberLabel = nil
-   self.rootGUIWindow = nil
-   self.scrollChange = 0
-   
-end
+      self.compoundListBox = nil
+      self.hitpointsCountLabel = nil
+      self.hitpointsMaxLabel = nil
+      self.hitpointsBar = nil
+      self.compoundListItems = {}
+      self.rootGuiWindow = nil
+      self.populationNumberLabel = nil
+      self.rootGUIWindow = nil
+      self.scrollChange = 0
+      
+   end
+)
 
 function HudSystem:init(gameState)
-   System.init(self, "HudSystem", gameState)
+   LuaSystem.init(self, "HudSystem", gameState)
 end
 
 function HudSystem:update(renderTime, logicTime)
+   -- TODO: use the QuickSaveSystem here? is this duplicated functionality?
    local saveDown = Engine.keyboard:isKeyDown(Keyboard.KC_F4)
    local loadDown = Engine.keyboard:isKeyDown(Keyboard.KC_F10)
    if saveDown and not self.saveDown then
@@ -52,7 +55,7 @@ function HudSystem:activate()
 end
 
 function HudSystem:init(gameState)
-    System.init(self, "MicrobeStageHudSystem", gameState)
+    LuaSystem.init(self, "MicrobeStageHudSystem", gameState)
     self.rootGUIWindow =  gameState:rootGUIWindow()
     self.hitpointsBar = self.rootGUIWindow:getChild("HealthPanel"):getChild("LifeBar")
     self.hitpointsCountLabel = self.hitpointsBar:getChild("NumberLabel")
@@ -389,5 +392,4 @@ function quitButtonClicked()
     Engine:quit()
 end
 
-HudSystem = createLuaSystem(HudSystem)
 

@@ -37,16 +37,8 @@ GameState = class(
       self.name = name
       self.engine = engine
       self.guiLayoutName = guiLayoutName
-
-      -- This is passed to C++ systems
-      self.cppData = GameStateData.new(self)
-
-      --! @brief Adds physics to this GameState
-      if physics == true then
-         
-         self.physicsWorld = PhysicalWorld.new()
-         
-      end
+      
+      self.usePhysics = physics
 
    end
 )
@@ -66,6 +58,16 @@ function GameState:init()
    self.entityManager = EntityManager.new()
 
    self.guiWindow = CEGUIWindow.new(self.guiLayoutName)
+
+   --! @brief Adds physics to this GameState
+   if self.usePhysics == true then
+      
+      self.physicsWorld = PhysicalWorld.new()
+      
+   end
+
+   -- This is passed to C++ systems
+   self.cppData = GameStateData.new(self, Engine, self.entityManager, self.physicsWorld)
 
    if self.extraInitializer ~= nil then
 
@@ -167,6 +169,13 @@ function GameState:storage()
    storage:set("entities", entities)
    
    return storage
+end
+
+--! @brief Returns self.guiWindow
+function GameState:rootGUIWindow()
+
+   return self.guiWindow
+   
 end
 
 

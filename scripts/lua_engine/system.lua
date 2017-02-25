@@ -1,14 +1,10 @@
 -- Lua System base class
 
 LuaSystem = class(
-   function(self, name, gameState)
+   --! @brief Constructs a new System. Should be called from derived classes with
+   --! `LuaSystem.create(self)`
+   function(self)
 
-      assert(name ~= nil)
-      assert(gameState ~= nil)
-
-      self.name = name
-      self.gameState = gameState
-      
    end
 )
 
@@ -19,11 +15,22 @@ function LuaSystem:update(renderTime, logicTime)
    
 end
 
-
-
 function LuaSystem:destroy()
 
    self.gameState = nil
 
 end
+
+--! Base init. Must be called from derived classes 
+function LuaSystem:init(name, gameState)
+
+   assert(name ~= nil)
+   assert(gameState ~= nil)
+
+   self.name = name
+   self.gameState = gameState
+end
+
+
+
 

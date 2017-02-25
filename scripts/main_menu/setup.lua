@@ -42,28 +42,29 @@ end
 
 local function createMainMenu(name)
 
-    return Engine:createGameState(
-        name,
-        {   
-            -- Graphics
-            OgreAddSceneNodeSystem.new(),
-            OgreUpdateSceneNodeSystem.new(),
-            OgreCameraSystem.new(),
-            MainMenuHudSystem.new(),
-            OgreWorkspaceSystem.new(),
-            OgreRemoveSceneNodeSystem.new(),
-            RenderSystem.new(),
-            -- Other
-            SoundSourceSystem.new(),
-        },
-        function()
-            setupCamera()
-            setupSound()
-        end,
-        "MainMenu"
-    )
+   return g_luaEngine:createGameState(
+      name,
+      {   
+         -- Graphics
+         OgreAddSceneNodeSystem.new(),
+         OgreUpdateSceneNodeSystem.new(),
+         OgreCameraSystem.new(),
+         MainMenuHudSystem.new(),
+         OgreWorkspaceSystem.new(),
+         OgreRemoveSceneNodeSystem.new(),
+         RenderSystem.new(),
+         -- Other
+         SoundSourceSystem.new(),
+      },
+      true,
+      "MainMenu",
+      function()
+         setupCamera()
+         setupSound()
+      end
+   )
 end
 
 GameState.MAIN_MENU = createMainMenu("main_menu")
 
-Engine:setCurrentGameState(GameState.MAIN_MENU)
+g_luaEngine:setCurrentGameState(GameState.MAIN_MENU)
