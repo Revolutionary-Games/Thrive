@@ -744,6 +744,8 @@ function Microbe:update(logicTime)
         --calculate storage.
         self:calculateStorageSpace()
 
+        self.compoundBag.storageSpace = self.microbe.capacity
+
         -- StorageOrganelles
         self:_updateCompoundAbsorber()
         -- Regenerate bandwidth

@@ -53,6 +53,7 @@ public:
     StorageContainer
     storage() const override;
 
+    float storageSpace;
     ProcessorComponent* processor;
     std::string speciesName;
     std::unordered_map<CompoundId, float> compounds;

@@ -163,7 +163,8 @@ function NucleusOrganelle:recalculateBin()
         end
     else
         -- Darken the nucleus as more DNA is made.
-        self.sceneNode.entity:tintColour("nucleus" .. self.colourSuffix, ColourValue(2-self.compoundBin, 2-self.compoundBin, 2-self.compoundBin, 1.0))
+        -- crashes the game for reasons
+        --self.sceneNode.entity:tintColour("nucleus" .. self.colourSuffix, ColourValue(2-self.compoundBin, 2-self.compoundBin, 2-self.compoundBin, 1.0))
     end
 end
 
