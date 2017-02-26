@@ -3,27 +3,29 @@
 --
 -- Component for identifying and determining AI controlled microbes.
 --------------------------------------------------------------------------------
-class 'MicrobeAIControllerComponent' (Component)
 
 OXYGEN_SEARCH_THRESHHOLD = 8
 GLUCOSE_SEARCH_THRESHHOLD = 5
 AI_MOVEMENT_SPEED = 0.5
 
+MicrobeAIControllerComponent = class(
+   function(self)
 
-function MicrobeAIControllerComponent:__init()
-    Component.__init(self)
-    self.movementRadius = 20
-    self.reevalutationInterval = 1000
-    self.intervalRemaining = self.reevalutationInterval
-    self.direction = Vector3(0, 0, 0)
-    self.targetEmitterPosition = nil
-    self.searchedCompoundId = nil
-    self.prey = nil
-end
+      self.movementRadius = 20
+      self.reevalutationInterval = 1000
+      self.intervalRemaining = self.reevalutationInterval
+      self.direction = Vector3(0, 0, 0)
+      self.targetEmitterPosition = nil
+      self.searchedCompoundId = nil
+      self.prey = nil
+      
+   end
+)
 
-function MicrobeAIControllerComponent:storage()
+MicrobeAIControllerComponent.TYPE_NAME = "MicrobeAIControllerComponent"
+
+function MicrobeAIControllerComponent:storage(storage)
    
-    local storage = Component.storage(self)
     storage:set("movementRadius", self.movementRadius)
     storage:set("reevalutationInterval", self.reevalutationInterval)
     storage:set("intervalRemaining", self.intervalRemaining)
@@ -38,7 +40,7 @@ function MicrobeAIControllerComponent:storage()
     else
         storage:set("searchedCompoundId", self.searchedCompoundId)
     end
-    return storage
+    
 end
 
 function MicrobeAIControllerComponent:load(storage)
@@ -68,45 +70,47 @@ REGISTER_COMPONENT("MicrobeAIControllerComponent", MicrobeAIControllerComponent)
 -- Updates AI controlled microbes
 --------------------------------------------------------------------------------
 
-class 'MicrobeAISystem' (System)
+MicrobeAISystem = class(
+   LuaSystem,
+   function(self)
+      
+      LuaSystem.create(self)
 
-function MicrobeAISystem:__init()
-    System.__init(self)
-    self.entities = EntityFilter(
-        {
+      self.entities = EntityFilter(
+         {
             MicrobeAIControllerComponent,
             MicrobeComponent
-        }, 
-        true
-    )
-    self.emitters = EntityFilter(
-        {
+         }, 
+         true
+      )
+      self.emitters = EntityFilter(
+         {
             CompoundEmitterComponent
-        }, 
-        true
-    )
-    self.microbes = {}
-    self.preyCandidates = {}
-    self.preyEntityToIndexMap = {} -- Used for removing from preyCandidates
-    self.currentPreyIndex = 0
-    self.oxygenEmitters = {}
-    self.glucoseEmitters = {}
-end
-
+         }, 
+         true
+      )
+      self.microbes = {}
+      self.preyCandidates = {}
+      self.preyEntityToIndexMap = {} -- Used for removing from preyCandidates
+      self.currentPreyIndex = 0
+      self.oxygenEmitters = {}
+      self.glucoseEmitters = {}
+      
+   end
+)
 
 function MicrobeAISystem:init(gameState)
-    System.init(self, "MicrobeAISystem", gameState)
-    self.entities:init(gameState)
-    self.emitters:init(gameState)
+   LuaSystem.init(self, "MicrobeAISystem", gameState)
+   self.entities:init(gameState)
+   self.emitters:init(gameState)
 end
 
 
 function MicrobeAISystem:shutdown()
-    System.shutdown(self)
-    self.entities:shutdown()
-    self.emitters:shutdown()
+   LuaSystem.shutdown(self)
+   self.entities:shutdown()
+   self.emitters:shutdown()
 end
-
 
 function MicrobeAISystem:update(renderTime, logicTime)
     for entityId in self.entities:removedEntities() do
