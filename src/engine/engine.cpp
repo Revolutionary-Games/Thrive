@@ -209,7 +209,7 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
                     std::cerr << "Failed to run Lua file: " << manifestEntryPath.string() <<
                         std::endl << " error: " << runResult.get<std::string>() <<
                         std::endl;
-                    // Skip loading the rest //
+                    
                     return;
                 }
 
@@ -480,10 +480,9 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
     std::unique_ptr<CEGUI::InputAggregator> m_aggregator;
 };
 
-
 void Engine::luaBindings(
     sol::state &lua
-){
+){    
     lua.new_usertype<Engine>("__Engine",
 
         "new", sol::no_constructor,
@@ -503,9 +502,9 @@ void Engine::luaBindings(
         "resumeGame", &Engine::resumeGame,
         "getResolutionHeight", &Engine::getResolutionHeight,
         "getResolutionWidth", &Engine::getResolutionWidth,
-        "componentFactory", sol::readonly(&Engine::componentFactory),
-        "keyboard", sol::readonly(&Engine::keyboard),
-        "mouse", sol::readonly(&Engine::mouse)
+        "componentFactory", sol::property(&Engine::componentFactory),
+        "keyboard", sol::property(&Engine::keyboard),
+        "mouse", sol::property(&Engine::mouse)
     );
 }
 
