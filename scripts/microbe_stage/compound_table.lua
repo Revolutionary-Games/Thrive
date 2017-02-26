@@ -72,9 +72,9 @@ compoundTable = {
         isCloud = true,
 
         colour = {
-            r = 255,
-            g = 220,
-            b = 50
+            r = 200,
+            g = 180,
+            b = 25
         },
 
         default_treshold = {
@@ -122,10 +122,92 @@ compoundTable = {
         }
     },
 
+    ["pyruvate"] = {
+        name = "Pyruvate",
+        weight = 1,
+        size = 0.16,
+        isCloud = true,
+
+        -- No idea about this one :/
+        colour = {
+            r = 40,
+            g = 160,
+            b = 60
+        },
+
+        default_treshold = {
+            low = 0,
+            high = 30,
+            vent = 70
+        }
+    },
+
     ["fattyacids"] = {
         name = "Fatty Acids",
         weight = 1,
         size = 0.16,
+
+        default_treshold = {
+            low = 0,
+            high = 30,
+            vent = 70
+        }
+    },
+
+    ["proteins"] = {
+        name = "Proteins",
+        weight = 1,
+        size = 0.16,
+        isCloud = true,
+
+        colour = {
+            r = 240,
+            g = 50,
+            b = 30
+        },
+
+        default_treshold = {
+            low = 0,
+            high = 30,
+            vent = 70
+        }
+    },
+
+    ["nucleotide"] = {
+        name = "Nucleotide",
+        weight = 1,
+        size = 0.16,
+
+        default_treshold = {
+            low = 0,
+            high = 30,
+            vent = 70
+        }
+    },
+
+    ["nucleicacids"] = {
+        name = "Nucleic Acids",
+        weight = 1,
+        size = 0.16,
+
+        default_treshold = {
+            low = 0,
+            high = 30,
+            vent = 70
+        }
+    },
+
+    ["hydrogensulfide"] = {
+        name = "Hydrogen Sulfide",
+        weight = 1,
+        size = 0.16,
+        isCloud = true,
+
+        colour = {
+            r = 255,
+            g = 230,
+            b = 100
+        },
 
         default_treshold = {
             low = 0,

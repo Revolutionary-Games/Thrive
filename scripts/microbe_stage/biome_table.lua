@@ -19,7 +19,8 @@ biomeTable = {
             oxygen = 32500,
             co2 = 32500,
             ammonia = 32500,
-            glucose = 32500
+            glucose = 32500,
+            pyruvate = 32500
         }
     },
 
@@ -31,7 +32,9 @@ biomeTable = {
             oxygen = 30000,
             co2 = 75000,
             ammonia = 42500,
-            glucose = 32500
+            glucose = 32500,
+            pyruvate = 30000,
+            hydrogensulfide = 50000
         }
     },
 
@@ -43,7 +46,8 @@ biomeTable = {
             oxygen = 25000,
             co2 = 35000,
             ammonia = 35000,
-            glucose = 40000
+            glucose = 40000,
+            pyruvate = 30000
         }
     },
 
@@ -55,7 +59,8 @@ biomeTable = {
             oxygen = 50000,
             co2 = 35000,
             ammonia = 30000,
-            glucose = 35000
+            glucose = 35000,
+            pyruvate = 45000
         }
     }
 }
