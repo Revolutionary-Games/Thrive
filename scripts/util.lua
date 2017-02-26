@@ -11,10 +11,10 @@
 -- @param cls
 --  The class object of the component type
 function REGISTER_COMPONENT(name, cls)
-    Engine.componentFactory:registerComponentType(
-        name,
-        cls
-    )
+   Engine.componentFactory:registerComponentType(
+      name,
+      cls
+   )
 end
 
 
@@ -25,7 +25,7 @@ end
 function Entity:getOrCreate(componentCls)
     component = self:getComponent(componentCls.TYPE_ID)
     if component == nil then
-        component = componentCls()
+        component = ComponentWrapper.factory(componentCls.new())
         self:addComponent(component)
     end
     return component

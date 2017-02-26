@@ -37,32 +37,46 @@ static ComponentTypeId
 ComponentFactory_registerComponentType(
     ComponentFactory* self,
     const std::string& name,
-    sol::object cls
+    sol::table cls
 ) {
     
     auto type = cls.get_type();
     
-    if (type != sol::type::userdata) {
+    if (type != sol::type::table) {
 
         std::string typeName(lua_typename(cls.lua_state(), static_cast<int>(type)));
         
-        throw std::runtime_error("Argument 2 must be class object, but is: " + typeName);
+        throw std::runtime_error("Argument 2 must be table (class) object, but is: " +
+            typeName);
     }
+
+    // Check 'new' function exists
+    auto factoryFunc = cls.get<sol::optional<sol::protected_function>>("new");
+
+    if(!factoryFunc)
+        throw std::runtime_error("Lua component type is missing 'new' function");
     
     ComponentTypeId typeId = self->registerComponentType(
         name,
         [cls] (const StorageContainer& storage) {
-            sol::object classTable = cls;
-            sol::table obj = classTable.as<sol::table>().get<sol::function>("new")();
+            const auto result = cls.get<sol::protected_function>("new")();
+
+            if(!result.valid())
+                throw std::runtime_error("ComponentFactory failed to call 'new' "
+                    "on Lua component type");
+
+            sol::table obj = result.get<sol::table>();
+            
             auto component = std::unique_ptr<Component>(
                 new ComponentWrapper(obj)
             );
+            
             component->load(storage);
             return component;
         }
     );
     
-    cls.as<sol::table>()["TYPE_ID"] = typeId;
+    cls["TYPE_ID"] = typeId;
     return typeId;
 }
 
