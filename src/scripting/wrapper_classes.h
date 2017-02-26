@@ -20,6 +20,17 @@ namespace thrive {
 class ComponentWrapper : public Component, public ScriptWrapper {
 public:
     
+    /**
+    * @brief Lua bindings
+    *
+    * Exposes:
+    * - ComponentWrapper
+    *
+    * @return
+    */
+    static void
+    luaBindings(sol::state &lua);
+    
     ComponentWrapper(
         sol::table obj
     );
@@ -27,11 +38,6 @@ public:
     void load(
         const StorageContainer& storage
     ) override;
-
-    static void default_load(
-        Component* self, 
-        const StorageContainer& storage
-    );
 
     ComponentTypeId
         typeId() const override;
@@ -41,10 +47,6 @@ public:
 
     StorageContainer
         storage() const override;
-
-    static StorageContainer default_storage(
-        const Component* self
-    );
 };
 
 }

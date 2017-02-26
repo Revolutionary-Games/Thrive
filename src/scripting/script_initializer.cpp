@@ -259,21 +259,21 @@ void thrive::initializeLua(sol::state &lua){
 
 void bindClassesToLua(sol::state &lua){
 
-
     // Engine bindings
     {
         StorageContainer::luaBindings(lua);
         StorageList::luaBindings(lua);
         System::luaBindings(lua);
         Component::luaBindings(lua);
+        ComponentWrapper::luaBindings(lua);
         ComponentFactory::luaBindings(lua);
         Entity::luaBindings(lua);
         Touchable::luaBindings(lua);
         GameStateData::luaBindings(lua);
-        Engine::luaBindings(lua);
         RNG::luaBindings(lua);
         PlayerData::luaBindings(lua);
 
+        Engine::luaBindings(lua);
         Game::luaBindings(lua);
 
     }
