@@ -1,27 +1,30 @@
 --------------------------------------------------------------------------------
 -- A storage organelle class
 --------------------------------------------------------------------------------
-class 'StorageOrganelle' (OrganelleComponent)
+StorageOrganelle = class(
+    OrganelleComponent,
+    -- Constructor
+    --
+    -- @param arguments.capacity
+    -- The maximum stored amount
+    function(self, arguments, data)
+        
+        OrganelleComponent.create(self, arguments, data)
+        
+        --making sure this doesn't run when load() is called
+        if arguments == nil and data == nil then
+            return
+        end
+
+        self.capacity = arguments.capacity
+        self.parentIndex = 0
+        return self
+    end
+)
 
 -- See organelle_component.lua for more information about the 
 -- organelle component methods and the arguments they receive.
 
--- Constructor
---
--- @param arguments.capacity
--- The maximum stored amount
-function StorageOrganelle:__init(arguments, data)
-    OrganelleComponent.__init(self, arguments, data)
-    
-    --making sure this doesn't run when load() is called
-    if arguments == nil and data == nil then
-        return
-    end
-
-    self.capacity = arguments.capacity
-    self.parentIndex = 0
-    return self
-end
 
 function StorageOrganelle:load(storage)
     self.capacity = storage:get("capacity", 100)

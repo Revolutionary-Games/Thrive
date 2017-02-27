@@ -1,40 +1,39 @@
 --Base class for organelle components.
-class "OrganelleComponent"
+OrganelleComponent = class(
+    -- Constructor.
+    --
+    -- @param arguments
+    --  The parameters of the constructor, defined in organelle_table.lua.
+    --
+    -- @param data
+    --  The organelle data taken from the make function in organelle.lua.
+    --
+    -- The return value should be the organelle component itself (A.K.A. self)
+    function(arguments, data)
 
--- Constructor.
---
--- @param arguments
---  The parameters of the constructor, defined in organelle_table.lua.
---
--- @param data
---  The organelle data taken from the make function in organelle.lua.
---
--- The return value should be the organelle component itself (A.K.A. self)
-function OrganelleComponent:__init(arguments, data)
-
-    -- TODO: All organelles except the nucleus use the following compound
-    -- amounts to reproduce. This should be changed to use getter/setters
-    -- as well as unique compound amounts for each component types.
+        -- TODO: All organelles except the nucleus use the following compound
+        -- amounts to reproduce. This should be changed to use getter/setters
+        -- as well as unique compound amounts for each component types.
 
 
-    -- The "Health Bar" of the organelle constrained to [0,2]
-    -- 0 means the organelle is dead, 1 means its normal, and 2 means
-    -- its ready to divide.
-    self.compoundBin = 1.0
-    -- The compounds left to divide this organelle.
-    -- Decreases every time one compound is absorbed.
-    self.numGlucose = 2
-    self.numAminoAcids = 3
-    self.numFattyAcids = 0
-    -- The compounds that make up this organelle.
-    self.numGlucoseLeft = self.numGlucose
-    self.numAminoAcidsLeft = self.numAminoAcids
-    self.numFattyAcidsLeft = self.numFattyAcids
-    -- The total number of compounds we need before we can split.
-    self.organelleCost = self.numGlucose + self.numAminoAcids + self.numFattyAcids
+        -- The "Health Bar" of the organelle constrained to [0,2]
+        -- 0 means the organelle is dead, 1 means its normal, and 2 means
+        -- its ready to divide.
+        self.compoundBin = 1.0
+        -- The compounds left to divide this organelle.
+        -- Decreases every time one compound is absorbed.
+        self.numGlucose = 2
+        self.numAminoAcids = 3
+        self.numFattyAcids = 0
+        -- The compounds that make up this organelle.
+        self.numGlucoseLeft = self.numGlucose
+        self.numAminoAcidsLeft = self.numAminoAcids
+        self.numFattyAcidsLeft = self.numFattyAcids
+        -- The total number of compounds we need before we can split.
+        self.organelleCost = self.numGlucose + self.numAminoAcids + self.numFattyAcids
         
-    return self
-end
+    end
+)
 
 -- Event handler for an organelle added to a microbe.
 --
@@ -128,8 +127,7 @@ end
 -- the data gets retrieved later by OrganelleComponent:load().
 -- The return value should be a new StorageContainer object
 -- filled with the data to save.
-function OrganelleComponent:storage()
-    return StorageContainer()
+function OrganelleComponent:storage(storage)
 end
 
 -- Function for loading organelle information.

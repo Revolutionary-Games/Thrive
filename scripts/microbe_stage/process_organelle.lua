@@ -1,27 +1,29 @@
 --------------------------------------------------------------------------------
 -- Class for Organelles capable of producing compounds
 --------------------------------------------------------------------------------
-class 'ProcessOrganelle' (OrganelleComponent)
+ProcessOrganelle = class(
+    OrganelleComponent,
+    -- Constructor
+    --
+    -- @param arguments.colourChangeFactor
+    --  I got absolutely no idea
+    --  what this does :P. Also it doesn't seem to be used anymore
+    function(self, arguments, data)
+
+        OrganelleComponent.create(self, arguments, data)
+        
+        --making sure this doesn't run when load() is called
+        if arguments == nil and data == nil then
+            return
+        end
+
+    end
+)
 
 -- See organelle_component.lua for more information about the 
 -- organelle component methods and the arguments they receive.
 
 PROCESS_CAPACITY_UPDATE_INTERVAL = 1000
-
--- Constructor
---
--- @param arguments.colourChangeFactor
---  I got absolutely no idea what this does :P.
-function ProcessOrganelle:__init(arguments, data)
-    OrganelleComponent.__init(self, arguments, data)
-    
-    --making sure this doesn't run when load() is called
-    if arguments == nil and data == nil then
-        return
-    end
-
-    return self
-end
 
 -- Adds a process to the processing organelle
 -- The organelle will distribute its capacity between processes
@@ -45,7 +47,7 @@ function ProcessOrganelle:onRemovedFromMicrobe(microbe, q, r)
 end
 
 function ProcessOrganelle:storage(storage)
-    local storage = StorageContainer()
+    local storage = StorageContainer.new()
     return storage
 end
 

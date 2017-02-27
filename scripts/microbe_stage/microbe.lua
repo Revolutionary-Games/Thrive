@@ -1117,7 +1117,7 @@ MicrobeSystem = class(
 
         LuaSystem.create(self)
 
-        self.entities = EntityFilter(
+        self.entities = EntityFilter.new(
             {
                 CompoundAbsorberComponent,
                 MicrobeComponent,
@@ -1127,12 +1127,12 @@ MicrobeSystem = class(
             },
             true
         )
-        self.microbeCollisions = CollisionFilter(
+        self.microbeCollisions = CollisionFilter.new(
             "microbe",
             "microbe"
         );
         -- Temporary for 0.3.2, should be moved to separate system.
-        self.agentCollisions = CollisionFilter(
+        self.agentCollisions = CollisionFilter.new(
             "microbe",
             "agent"
         );

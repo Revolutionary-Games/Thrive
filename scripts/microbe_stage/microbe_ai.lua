@@ -76,14 +76,14 @@ MicrobeAISystem = class(
         
         LuaSystem.create(self)
 
-        self.entities = EntityFilter(
+        self.entities = EntityFilter.new(
             {
                 MicrobeAIControllerComponent,
                 MicrobeComponent
             }, 
             true
         )
-        self.emitters = EntityFilter(
+        self.emitters = EntityFilter.new(
             {
                 CompoundEmitterComponent
             }, 

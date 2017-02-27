@@ -3,7 +3,7 @@ MicrobeReplacementSystem = class(
     LuaSystem,
     function(self)
 
-        LuaSystem.construct(self)
+        LuaSystem.create(self)
         
         --prefix,cofix,suffix list
         self.speciesNamePrefix = {' Ce', ' Ar',' Sp', ' Th',' Co', ' So', ' Pu', ' Cr', ' Cy',

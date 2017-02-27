@@ -39,7 +39,7 @@ SpawnSystem = class(
 
         LuaSystem.create(self)
         
-        self.entities = EntityFilter(
+        self.entities = EntityFilter.new(
             {
                 SpawnedComponent
             }

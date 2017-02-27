@@ -1,27 +1,29 @@
 -- Updates the hud with relevant information
-class 'MicrobeEditorHudSystem' (System)
+MicrobeEditorHudSystem = class(
+    LuaSystem,
+    function(self)
 
-function MicrobeEditorHudSystem:__init()
-    System.__init(self)
-    self.organelleButtons = {}
-    self.initialized = false
-    self.editor = MicrobeEditor(self)
-    
-    -- Scene nodes for the organelle cursors for symmetry.
-    self.hoverHex = {}
-    self.hoverOrganelle = {}
-    
-    self.saveLoadPanel = nil    
-    self.creationsListbox = nil
-    self.creationFileMap = {} -- Map from player creation name to filepath
-    self.activeButton = nil -- stores button, not name
-    self.helpPanelOpen = false
-    self.menuOpen = false
-end
+        LuaSystem.create(self)
+        self.organelleButtons = {}
+        self.initialized = false
+        self.editor = MicrobeEditor(self)
+        
+        -- Scene nodes for the organelle cursors for symmetry.
+        self.hoverHex = {}
+        self.hoverOrganelle = {}
+        
+        self.saveLoadPanel = nil    
+        self.creationsListbox = nil
+        self.creationFileMap = {} -- Map from player creation name to filepath
+        self.activeButton = nil -- stores button, not name
+        self.helpPanelOpen = false
+        self.menuOpen = false
 
+    end
+)
 
 function MicrobeEditorHudSystem:init(gameState)
-    System.init(self, "MicrobeEditorHudSystem", gameState)
+    LuaSystem.init(self, "MicrobeEditorHudSystem", gameState)
     self.editor:init(gameState)
 
     -- This seems really cluttered, there must be a better way.

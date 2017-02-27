@@ -1,19 +1,21 @@
 
 -- Updates the hud with relevant information
-class 'MicrobeStageTutorialHudSystem' (System)
+MicrobeStageTutorialHudSystem = class(
+    LuaSystem,
+    function(self)
 
-function MicrobeStageTutorialHudSystem:__init()
-    System.__init(self)
-	self.compoundListBox = nil
-	self.hitpointsCountLabel = nil
-	self.hitpointsBar = nil
-	self.compoundListItems = {}
-    self.rootGuiWindow = nil
-    self.populationNumberLabel = nil
-    self.rootGUIWindow = nil
-    self.tutorialStep = 0
-    self.scrollChange = 0
-end
+        LuaSystem.create(self)
+        self.compoundListBox = nil
+        self.hitpointsCountLabel = nil
+        self.hitpointsBar = nil
+        self.compoundListItems = {}
+        self.rootGuiWindow = nil
+        self.populationNumberLabel = nil
+        self.rootGUIWindow = nil
+        self.tutorialStep = 0
+        self.scrollChange = 0
+    end
+)
 
 function MicrobeStageTutorialHudSystem:activate()
     global_activeMicrobeStageHudSystem = self -- Global reference for event handlers
@@ -21,7 +23,7 @@ function MicrobeStageTutorialHudSystem:activate()
 end
 
 function MicrobeStageTutorialHudSystem:init(gameState)
-    System.init(self, "MicrobeStageTutorialHudSystem", gameState)
+    LuaSystem.init(self, "MicrobeStageTutorialHudSystem", gameState)
     self.rootGUIWindow = gameState:rootGUIWindow()
     self.rootGUIWindow:getChild("PauseMenu"):getChild("MainMenuButton"):registerEventHandler("Clicked", function() self:menuMainMenuClicked() end)
     local quitButton = self.rootGUIWindow:getChild("PauseMenu"):getChild("QuitButton")

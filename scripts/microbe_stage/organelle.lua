@@ -1,5 +1,35 @@
 -- Container for organelle components for all the organelle components
-class 'Organelle'
+Organelle = class(
+    -- Constructor
+    function(self, mass, name)
+
+        self.collisionShape = CompoundShape()
+        self.mass = mass
+        self.components = {}
+        self._hexes = {}
+        self.position = {
+            q = 0,
+            r = 0
+        }
+        self.rotation = nil
+
+        --Naming the organelle.
+        if name == nil then
+            self.name = "<nameless>"
+        else
+            self.name = name
+        end
+        
+        -- The deviation of the organelle color from the species color
+        self._needsColourUpdate = true
+        
+        -- Whether or not this organelle has already divided.
+        self.split = false
+        -- If this organelle is a duplicate of another organelle caused by splitting.
+        self.isDuplicate = false        
+        
+    end
+)
 
 -- Factory function for organelles
 function Organelle.loadOrganelle(storage)
@@ -7,36 +37,6 @@ function Organelle.loadOrganelle(storage)
     organelle:load(storage)
     return organelle
 end
-
-
--- Constructor
-function Organelle:__init(mass, name)
-    self.collisionShape = CompoundShape()
-    self.mass = mass
-    self.components = {}
-    self._hexes = {}
-    self.position = {
-        q = 0,
-        r = 0
-    }
-    self.rotation = nil
-
-    --Naming the organelle.
-    if name == nil then
-        self.name = "<nameless>"
-    else
-        self.name = name
-    end
-    
-    -- The deviation of the organelle color from the species color
-    self._needsColourUpdate = true
-	
-	-- Whether or not this organelle has already divided.
-	self.split = false
-    -- If this organelle is a duplicate of another organelle caused by splitting.
-    self.isDuplicate = false
-end
-
 
 -- Adds a hex to this organelle
 --
@@ -296,7 +296,11 @@ function Organelle:removePhysics()
 end
 
 -- The basic organelle maker
-class 'OrganelleFactory'
+OrganelleFactory = class(
+    function(self)
+
+    end
+)
 
 -- Sets the color of the organelle (used in editor for valid/nonvalid placement)
 function OrganelleFactory.setColour(sceneNode, colour)

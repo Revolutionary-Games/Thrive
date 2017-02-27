@@ -1,5 +1,34 @@
 -- Enables a microbe to move and turn
-class 'MovementOrganelle' (OrganelleComponent)
+MovementOrganelle = class(
+    OrganelleComponent,
+    -- Constructor
+    --
+    -- @param arguments.momentum
+    --  The force this organelle can exert to move a microbe.
+    --
+    -- @param arguments.torque
+    --  The torque this organelle can exert to turn a microbe.
+    function(self, arguments, data)
+
+        OrganelleComponent.create(self, arguments, data)
+
+        --making sure this doesn't run when load() is called
+        if arguments == nil and data == nil then
+            return
+        end
+        
+
+        self.energyMultiplier = 0.025
+        self.force = calculateForce(data.q, data.r, arguments.momentum)
+        self.torque = arguments.torque
+        self.backwards_multiplier = 0
+        self.x = 0
+        self.y = 0
+        self.angle = 0
+        self.movingTail = false        
+        
+    end
+)
 
 -- See organelle_component.lua for more information about the 
 -- organelle component methods and the arguments they receive.
@@ -16,33 +45,6 @@ local function calculateForce(q, r, momentum)
     local force = Vector3(momentumX, momentumY, 0.0)
     return force
     
-end
-
--- Constructor
---
--- @param arguments.momentum
---  The force this organelle can exert to move a microbe.
---
--- @param arguments.torque
---  The torque this organelle can exert to turn a microbe.
-function MovementOrganelle:__init(arguments, data)
-    OrganelleComponent.__init(self, arguments, data)
-    
-    --making sure this doesn't run when load() is called
-    if arguments == nil and data == nil then
-        return
-    end
-    
-
-    self.energyMultiplier = 0.025
-    self.force = calculateForce(data.q, data.r, arguments.momentum)
-    self.torque = arguments.torque
-    self.backwards_multiplier = 0
-	self.x = 0
-	self.y = 0
-	self.angle = 0
-    self.movingTail = false
-    return self
 end
 
 function MovementOrganelle:onAddedToMicrobe(microbe, q, r, rotation, organelle)

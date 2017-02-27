@@ -262,13 +262,13 @@ local function addEmitter2Entity(entity, compound)
 end
 
 local function createSpawnSystem()
-    local spawnSystem = SpawnSystem()
+    local spawnSystem = SpawnSystem.new()
 
     local toxinOrganelleSpawnFunction = function(pos)
-        powerupEntity = Entity()
+        powerupEntity = Entity.new()
         setSpawnablePhysics(powerupEntity, pos, "AgentVacuole.mesh", 0.9, SphereShape(HEX_SIZE))
 
-        local reactionHandler = CollisionComponent()
+        local reactionHandler = CollisionComponent.new()
         reactionHandler:addCollisionGroup("powerup")
         powerupEntity:addComponent(reactionHandler)
         
@@ -279,14 +279,14 @@ local function createSpawnSystem()
         return powerupEntity
     end
     local ChloroplastOrganelleSpawnFunction = function(pos) 
-        powerupEntity = Entity()
+        powerupEntity = Entity.new()
         setSpawnablePhysics(powerupEntity, pos, "chloroplast.mesh", 0.9, SphereShape(HEX_SIZE))
 
-        local reactionHandler = CollisionComponent()
+        local reactionHandler = CollisionComponent.new()
         reactionHandler:addCollisionGroup("powerup")
         powerupEntity:addComponent(reactionHandler)
         
-        local powerupComponent = PowerupComponent()
+        local powerupComponent = PowerupComponent.new()
         -- Function name must be in configs.lua
         powerupComponent:setEffect("chloroplastEffect")
         powerupEntity:addComponent(powerupComponent)
@@ -325,8 +325,8 @@ local function setupPlayer()
 end
 
 local function setupSound()
-    local ambientEntity = Entity("ambience")
-    local soundSource = SoundSourceComponent()
+    local ambientEntity = Entity.new("ambience")
+    local soundSource = SoundSourceComponent.new()
     soundSource.ambientSoundSource = true
     soundSource.autoLoop = true
     soundSource.volumeMultiplier = 0.3
@@ -338,16 +338,16 @@ local function setupSound()
     soundSource:addSound("microbe-theme-5", "microbe-theme-5.ogg")
     soundSource:addSound("microbe-theme-6", "microbe-theme-6.ogg")   
     soundSource:addSound("microbe-theme-7", "microbe-theme-7.ogg")   
-    local ambientEntity2 = Entity("ambience2")
-    local soundSource = SoundSourceComponent()
+    local ambientEntity2 = Entity.new("ambience2")
+    local soundSource = SoundSourceComponent.new()
     soundSource.volumeMultiplier = 0.1
     soundSource.ambientSoundSource = true
     ambientSound = soundSource:addSound("microbe-ambient", "soundeffects/microbe-ambience.ogg")
     soundSource.autoLoop = true
      ambientEntity2:addComponent(soundSource)
     -- Gui effects
-    local guiSoundEntity = Entity("gui_sounds")
-    soundSource = SoundSourceComponent()
+    local guiSoundEntity = Entity,new("gui_sounds")
+    soundSource = SoundSourceComponent.new()
     soundSource.ambientSoundSource = true
     soundSource.autoLoop = false
     soundSource.volumeMultiplier = 1.0
@@ -355,8 +355,8 @@ local function setupSound()
     -- Sound
     soundSource:addSound("button-hover-click", "soundeffects/gui/button-hover-click.ogg")
     soundSource:addSound("microbe-pickup-organelle", "soundeffects/microbe-pickup-organelle.ogg")
-    local listener = Entity("soundListener")
-    local sceneNode = OgreSceneNodeComponent()
+    local listener = Entity.new("soundListener")
+    local sceneNode = OgreSceneNodeComponent.new()
     listener:addComponent(sceneNode)
 end
 
@@ -365,49 +365,49 @@ setupProcesses()
 
 local function createMicrobeStage(name)
     return 
-        Engine:createGameState(
+        g_luaEngine:createGameState(
         name,
         {
-            MicrobeReplacementSystem(),
-            -- SwitchGameStateSystem(),
-            QuickSaveSystem(),
+            MicrobeReplacementSystem.new(),
+            -- SwitchGameStateSystem.new(),
+            QuickSaveSystem.new(),
             -- Microbe specific
-            MicrobeSystem(),
-            MicrobeCameraSystem(),
-            MicrobeAISystem(),
-            MicrobeControlSystem(),
-            HudSystem(),
-            TimedLifeSystem(),
-            CompoundMovementSystem(),
-            CompoundAbsorberSystem(),
-            ProcessSystem(),
-            --PopulationSystem(),
-            PatchSystem(),
-            SpeciesSystem(),
+            MicrobeSystem.new(),
+            MicrobeCameraSystem.new(),
+            MicrobeAISystem.new(),
+            MicrobeControlSystem.new(),
+            HudSystem.new(),
+            TimedLifeSystem.new(),
+            CompoundMovementSystem.new(),
+            CompoundAbsorberSystem.new(),
+            ProcessSystem.new(),
+            --PopulationSystem.new(),
+            PatchSystem.new(),
+            SpeciesSystem.new(),
             -- Physics
-            RigidBodyInputSystem(),
-            UpdatePhysicsSystem(),
-            RigidBodyOutputSystem(),
-            BulletToOgreSystem(),
-            CollisionSystem(),
+            RigidBodyInputSystem.new(),
+            UpdatePhysicsSystem.new(),
+            RigidBodyOutputSystem.new(),
+            BulletToOgreSystem.new(),
+            CollisionSystem.new(),
             -- Microbe Specific again (order sensitive)
             createSpawnSystem(),
             -- Graphics
-            OgreAddSceneNodeSystem(),
-            OgreUpdateSceneNodeSystem(),
-            OgreCameraSystem(),
-            OgreLightSystem(),
-            SkySystem(),
-            OgreWorkspaceSystem(),
-            OgreRemoveSceneNodeSystem(),
-            RenderSystem(),
-            MembraneSystem(),
-            CompoundCloudSystem(),
-            --AgentCloudSystem(),
+            OgreAddSceneNodeSystem.new(),
+            OgreUpdateSceneNodeSystem.new(),
+            OgreCameraSystem.new(),
+            OgreLightSystem.new(),
+            SkySystem.new(),
+            OgreWorkspaceSystem.new(),
+            OgreRemoveSceneNodeSystem.new(),
+            RenderSystem.new(),
+            MembraneSystem.new(),
+            CompoundCloudSystem.new(),
+            --AgentCloudSystem.new(),
             -- Other
-            SoundSourceSystem(),
-            PowerupSystem(),
-            CompoundEmitterSystem(), -- Keep this after any logic that might eject compounds such that any entites that are queued for destruction will be destroyed after emitting.
+            SoundSourceSystem.new(),
+            PowerupSystem.new(),
+            CompoundEmitterSystem.new(), -- Keep this after any logic that might eject compounds such that any entites that are queued for destruction will be destroyed after emitting.
         },
         function()
             setupBackground()

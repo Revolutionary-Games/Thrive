@@ -1,28 +1,30 @@
 --------------------------------------------------------------------------------
 -- Class for the single core organelle of any microbe
 --------------------------------------------------------------------------------
-class 'NucleusOrganelle' (OrganelleComponent)
+NucleusOrganelle = class(
+    OrganelleComponent,
+    -- Constructor
+    function(self, arguments, data)
+
+        OrganelleComponent.create(self, arguments, data)
+
+        --making sure this doesn't run when load() is called
+        if arguments == nil and data == nil then
+            return
+        end
+        
+        self.numProteinLeft = 2
+        self.numNucleicAcidsLeft = 2
+        self.nucleusCost = self.numProteinLeft + self.numNucleicAcidsLeft
+
+        self.golgi = Entity()
+        self.ER = Entity()
+        
+    end
+)
 
 -- See organelle_component.lua for more information about the 
 -- organelle component methods and the arguments they receive.
-
--- Constructor
-function NucleusOrganelle:__init(arguments, data)
-    OrganelleComponent.__init(self, arguments, data)
-
-    --making sure this doesn't run when load() is called
-    if arguments == nil and data == nil then
-        return
-    end
-    
-    self.numProteinLeft = 2
-    self.numNucleicAcidsLeft = 2
-    self.nucleusCost = self.numProteinLeft + self.numNucleicAcidsLeft
-
-    self.golgi = Entity()
-	self.ER = Entity()
-    return self
-end
 
 
 -- Overridded from Organelle:onAddedToMicrobe

@@ -4,13 +4,12 @@
 -- Controls population management within a certain region of space
 --------------------------------------------------------------------------------
 
-class "PatchComponent" (Component)
-
-function PatchComponent:__init()
-	Component.__init(self)
-	-- map species to populations
-    -- model environment
-end
+PatchComponent = class(
+    function(self)
+        -- map species to populations
+        -- model environment
+    end
+)
 
 --[[
 We need a bunch of stuff handled here:
@@ -40,13 +39,13 @@ REGISTER_COMPONENT("PatchComponent", PatchComponent)
 --
 -- Holds information about a specific population (species \intersect patch)
 --------------------------------------------------------------------------------
-class 'Population'
-
-function Population:__init(species)
-    self.species = species
-    self.heldCompounds = {} -- compounds that are available for intracellular processes
-    self.lockedCompounds = {} -- compounds that aren't, but will be released on deaths
-end
+Population = class(
+    function(self, species)
+        self.species = species
+        self.heldCompounds = {} -- compounds that are available for intracellular processes
+        self.lockedCompounds = {} -- compounds that aren't, but will be released on deaths
+    end
+)
 
 --[[
 Whatever population calculations the patch does that would be useful to factor out will go here
@@ -64,33 +63,35 @@ Getting the effective population number from the lockedCompounds pool is a bit c
 -- System for simulating populations of species and their spatial distributions
 --------------------------------------------------------------------------------
 
-class "PatchSystem" (System)
+PatchSystem = class(
+    LuaSystem,
+    function(self)
+
+        LuaSystem.create(self)
+
+        self.entities = EntityFilter.new(
+            {
+                PatchComponent
+            },
+            true
+        )
+        self.timeSinceLastCycle = 0
+
+    end
+)
 
 PATCH_SIM_INTERVAL = 1200
 
-function PatchSystem:__init()
-	System.__init(self)
-
-    self.entities = EntityFilter(
-        {
-            PatchComponent
-        },
-        true
-    )
-    self.timeSinceLastCycle = 0
-end
-
-
 -- Override from System
 function PatchSystem:init(gameState)
-    System.init(self, "PatchSystem", gameState)
+    LuaSystem.init(self, "PatchSystem", gameState)
     self.entities:init(gameState)
 end
 
 -- Override from System
 function PatchSystem:shutdown()
     self.entities:shutdown()
-    System.shutdown(self)
+    LuaSystem.shutdown(self)
 end
 
 -- Override from System
