@@ -3,7 +3,31 @@
 --
 -- Class for representing an individual species
 --------------------------------------------------------------------------------
-class 'Species'
+Species = class(
+   function(self)
+
+      self.population = INITIAL_POPULATION
+      self.name = "Species_" .. tostring(math.random()) --gotta use the latin names
+      
+      local stringSize = math.random(MIN_INITIAL_LENGTH, MAX_INITIAL_LENGTH)
+      self.stringCode = organelleTable.nucleus.gene .. organelleTable.cytoplasm.gene --it should always have a nucleus and a cytoplasm.
+      for i = 1, stringSize do
+         self.stringCode = self.stringCode .. getRandomLetter()
+      end
+      
+      local organelles = positionOrganelles(self.stringCode)
+
+      self.colour = {
+         r = randomColour(),
+         g = randomColour(),
+         b = randomColour()
+      }
+
+      self.template = createSpeciesTemplate(self.name, organelles, self.colour, DEFAULT_INITIAL_COMPOUNDS, nil)
+      self:setupSpawn()
+      
+   end
+)
 
 --limits the size of the initial stringCodes
 local MIN_INITIAL_LENGTH = 5
@@ -19,6 +43,8 @@ local MAX_COLOR = 1.0
 local MUTATION_CREATION_RATE = 0.1
 local MUTATION_DELETION_RATE = 0.1
 
+-- Why is the latest created species system accessible globally here?
+-- this will cause problems in the future
 local gSpeciesSystem = nil
 
 local function randomColour()
@@ -36,8 +62,7 @@ local DEFAULT_INITIAL_COMPOUNDS =
 
 --sets up the spawn of the species
 function Species:setupSpawn()
-    self.id = currentSpawnSystem:addSpawnType
-    (
+    self.id = currentSpawnSystem:addSpawnType(
         function(pos)
             return microbeSpawnFunctionGeneric(pos, self.name, true, nil)
         end, 
@@ -122,29 +147,6 @@ function createSpeciesTemplate(name, organelles, colour, compounds, speciesThres
         end
     end
     return speciesEntity
-end
-
-function Species:__init()
-    self.population = INITIAL_POPULATION
-    self.name = "Species_" .. tostring(math.random()) --gotta use the latin names
-    
-    local stringSize = math.random(MIN_INITIAL_LENGTH, MAX_INITIAL_LENGTH)
-    self.stringCode = organelleTable.nucleus.gene .. organelleTable.cytoplasm.gene --it should always have a nucleus and a cytoplasm.
-    for i = 1, stringSize do
-        self.stringCode = self.stringCode .. getRandomLetter()
-    end
-    
-    local organelles = positionOrganelles(self.stringCode)
-
-    self.colour = {
-        r = randomColour(),
-        g = randomColour(),
-        b = randomColour()
-    }
-
-    self.template = createSpeciesTemplate(self.name, organelles, self.colour, DEFAULT_INITIAL_COMPOUNDS, nil)
-    self:setupSpawn()
-    return self
 end
 
 --updates the population count of the species
@@ -242,21 +244,26 @@ MAX_SPECIES = 15
 --if there are less species than this create new ones.
 MIN_SPECIES = 3
 
-class 'SpeciesSystem' (System)
 
-function SpeciesSystem:__init(spawnSystem)
-    gSpawnSystem = spawnSystem
-    System.__init(self)
-    
-    self.entities = EntityFilter(
-        {
+SpeciesSystem = class(
+   LuaSystem,
+   function(self)
+      
+      LuaSystem.create(self)
+      
+      gSpawnSystem = self
+      
+      self.entities = EntityFilter.new(
+         {
             SpeciesComponent,
             ProcessorComponent,
-        },
-        true
-    )
-    self.timeSinceLastCycle = 0
-end
+         },
+         true
+      )
+      self.timeSinceLastCycle = 0
+      
+   end
+)
 
 function resetAutoEvo()
     if gSpeciesSystem.species ~= nil then
@@ -271,7 +278,7 @@ end
 
 -- Override from System
 function SpeciesSystem:init(gameState)
-    System.init(self, "SpeciesSystem", gameState)
+    LuaSystem.init(self, "SpeciesSystem", gameState)
     self.entities:init(gameState)
 
     self.species = {}
@@ -293,7 +300,7 @@ end
 -- Override from System
 function SpeciesSystem:shutdown()
     self.entities:shutdown()
-    System.shutdown(self)
+    LuaSystem.shutdown(self)
 end
 
 -- Override from System
