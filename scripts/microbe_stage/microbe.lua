@@ -4,7 +4,37 @@
 -- Holds data common to all microbes. You probably shouldn't use this directly,
 -- use the Microbe class (below) instead.
 --------------------------------------------------------------------------------
-class 'MicrobeComponent' (Component)
+MicrobeComponent = class(
+    function(self, isPlayerMicrobe, speciesName)
+
+        self.speciesName = speciesName
+        self.hitpoints = 0
+        self.maxHitpoints = 0
+        self.dead = false
+        self.deathTimer = 0
+        self.organelles = {}
+        self.processOrganelles = {} -- Organelles responsible for producing compounds from other compounds
+        self.specialStorageOrganelles = {} -- Organelles with complete resonsiblity for a specific compound (such as agentvacuoles)
+        self.movementDirection = Vector3(0, 0, 0)
+        self.facingTargetPoint = Vector3(0, 0, 0)
+        self.movementFactor = 1.0 -- Multiplied on the movement speed of the microbe.
+        self.capacity = 0  -- The amount that can be stored in the microbe. NOTE: This does not include special storage organelles
+        self.stored = 0 -- The amount stored in the microbe. NOTE: This does not include special storage organelles
+        self.compounds = {}
+        self.initialized = false
+        self.isPlayerMicrobe = isPlayerMicrobe
+        self.maxBandwidth = 10.0*BANDWIDTH_PER_ORGANELLE
+        self.remainingBandwidth = 0
+        self.compoundCollectionTimer = EXCESS_COMPOUND_COLLECTION_INTERVAL
+        self.isCurrentlyEngulfing = false
+        self.isBeingEngulfed = false
+        self.wasBeingEngulfed = false
+        self.hostileEngulfer = nil
+        
+    end
+)
+
+MicrobeComponent.TYPE_NAME = "MicrobeComponent"
 
 COMPOUND_PROCESS_DISTRIBUTION_INTERVAL = 100 -- quantity of physics time between each loop distributing compounds to organelles. TODO: Modify to reflect microbe size.
 BANDWIDTH_PER_ORGANELLE = 1.0 -- amount the microbes maxmimum bandwidth increases with per organelle added. This is a temporary replacement for microbe surface area
@@ -20,33 +50,6 @@ ENGULFING_MOVEMENT_DIVISION = 3
 ENGULFED_MOVEMENT_DIVISION = 4
 ENGULFING_ATP_COST_SECOND = 1.5
 ENGULF_HP_RATIO_REQ = 1.5 
-
-function MicrobeComponent:__init(isPlayerMicrobe, speciesName)
-    Component.__init(self)
-    self.speciesName = speciesName
-    self.hitpoints = 0
-    self.maxHitpoints = 0
-    self.dead = false
-    self.deathTimer = 0
-    self.organelles = {}
-    self.processOrganelles = {} -- Organelles responsible for producing compounds from other compounds
-    self.specialStorageOrganelles = {} -- Organelles with complete resonsiblity for a specific compound (such as agentvacuoles)
-    self.movementDirection = Vector3(0, 0, 0)
-    self.facingTargetPoint = Vector3(0, 0, 0)
-    self.movementFactor = 1.0 -- Multiplied on the movement speed of the microbe.
-    self.capacity = 0  -- The amount that can be stored in the microbe. NOTE: This does not include special storage organelles
-    self.stored = 0 -- The amount stored in the microbe. NOTE: This does not include special storage organelles
-    self.compounds = {}
-    self.initialized = false
-    self.isPlayerMicrobe = isPlayerMicrobe
-    self.maxBandwidth = 10.0*BANDWIDTH_PER_ORGANELLE
-    self.remainingBandwidth = 0
-    self.compoundCollectionTimer = EXCESS_COMPOUND_COLLECTION_INTERVAL
-    self.isCurrentlyEngulfing = false
-    self.isBeingEngulfed = false
-    self.wasBeingEngulfed = false
-    self.hostileEngulfer = nil
-end
 
 -- Attempts to obtain an amount of bandwidth for immediate use
 -- This should be in conjunction with most operations ejecting  or absorbing compounds and agents for microbe
@@ -71,9 +74,47 @@ function MicrobeComponent:regenerateBandwidth(logicTime)
     self.remainingBandwidth = math.min(addedBandwidth, self.maxBandwidth)
 end
 
+function MicrobeComponent:storage(storage)
+    
+    -- Organelles
+    local organelles = StorageList()
+    for _, organelle in pairs(self.organelles) do
+        local organelleStorage = organelle:storage()
+        organelles:append(organelleStorage)
+    end
+    storage:set("organelles", organelles)
+    storage:set("hitpoints", self.hitpoints)
+    storage:set("speciesName", self.speciesName)
+    storage:set("maxHitpoints", self.maxHitpoints)
+    storage:set("remainingBandwidth", self.remainingBandwidth)
+    storage:set("maxBandwidth", self.maxBandwidth)
+    storage:set("isPlayerMicrobe", self.isPlayerMicrobe)
+    storage:set("speciesName", self.speciesName)
+    local storedCompounds = StorageList()
+    for compoundId in CompoundRegistry.getCompoundList() do
+        --[[
+            if self:getCompoundAmount(compoundId) > 0 then
+            compound = StorageContainer()
+            compound:set("compoundId", compoundId)
+            compound:set("amount", amount)
+            storedCompounds:append(compound)
+            end
+        --]]
+    end
+    storage:set("storedCompounds", storedCompounds)
+    -- local compoundPriorities = StorageList()
+    -- for compoundId, priority in pairs(self.compoundPriorities) do
+    --     compound = StorageContainer()
+    --     compound:set("compoundId", compoundId)
+    --     compound:set("priority", priority)
+    --     compoundPriorities:append(compound)
+    -- end
+    -- storage:set("compoundPriorities", compoundPriorities)
+    
+end
 
 function MicrobeComponent:load(storage)
-    Component.load(self, storage)
+    
     local organelles = storage:get("organelles", {})
     for i = 1,organelles:size() do
         local organelleStorage = organelles:get(i)
@@ -105,55 +146,60 @@ function MicrobeComponent:load(storage)
     -- end
 end
 
-
-function MicrobeComponent:storage()
-    local storage = Component.storage(self)
-    -- Organelles
-    local organelles = StorageList()
-    for _, organelle in pairs(self.organelles) do
-        local organelleStorage = organelle:storage()
-        organelles:append(organelleStorage)
-    end
-    storage:set("organelles", organelles)
-    storage:set("hitpoints", self.hitpoints)
-    storage:set("speciesName", self.speciesName)
-    storage:set("maxHitpoints", self.maxHitpoints)
-    storage:set("remainingBandwidth", self.remainingBandwidth)
-    storage:set("maxBandwidth", self.maxBandwidth)
-    storage:set("isPlayerMicrobe", self.isPlayerMicrobe)
-    storage:set("speciesName", self.speciesName)
-    local storedCompounds = StorageList()
-    for compoundId in CompoundRegistry.getCompoundList() do
-        --[[
-        if self:getCompoundAmount(compoundId) > 0 then
-            compound = StorageContainer()
-            compound:set("compoundId", compoundId)
-            compound:set("amount", amount)
-            storedCompounds:append(compound)
-        end
-        --]]
-    end
-    storage:set("storedCompounds", storedCompounds)
-    -- local compoundPriorities = StorageList()
-    -- for compoundId, priority in pairs(self.compoundPriorities) do
-    --     compound = StorageContainer()
-    --     compound:set("compoundId", compoundId)
-    --     compound:set("priority", priority)
-    --     compoundPriorities:append(compound)
-    -- end
-    -- storage:set("compoundPriorities", compoundPriorities)
-    return storage
-end
-
 REGISTER_COMPONENT("MicrobeComponent", MicrobeComponent)
-
 
 --------------------------------------------------------------------------------
 -- Microbe class
 --
 -- This class serves mostly as an interface for manipulating microbe entities
 --------------------------------------------------------------------------------
-class 'Microbe'
+Microbe = class(
+    -- Constructor
+    --
+    -- Requires all necessary components (see Microbe.COMPONENTS) to be present in
+    -- the entity.
+    --
+    -- @param entity
+    -- The entity this microbe wraps
+    function(self, entity, in_editor)
+        self.entity = entity
+        for key, typeId in pairs(Microbe.COMPONENTS) do
+            local component = entity:getComponent(typeId)
+            assert(component ~= nil, "Can't create microbe from this entity, it's missing " .. key)
+            self[key] = entity:getComponent(typeId)
+        end
+        for compound in CompoundRegistry.getCompoundList() do
+            self.compoundAbsorber:setCanAbsorbCompound(compound, true)
+        end
+        if not self.microbe.initialized then
+            self:_initialize()
+            if in_editor == nil then
+                self.compoundBag:setProcessor(
+                    Entity(self.microbe.speciesName):getComponent(ProcessorComponent.TYPE_ID),
+                    self.microbe.speciesName)
+                
+                SpeciesSystem.template(self, self:getSpeciesComponent())
+            end
+        end
+        self:_updateCompoundAbsorber()
+        self.playerAlreadyShownAtpDamage = false
+        self.membraneHealth = 1.0
+        self.reproductionStage = 0 -- 1 for G1 complete, 2 for S complete, 3 for G2 complete, and 4 for reproduction finished.
+    end
+)
+
+-- I don't feel like checking for each component separately, so let's make a
+-- loop do it with an assert for good measure (see Microbe.create)
+Microbe.COMPONENTS = {
+    compoundAbsorber = CompoundAbsorberComponent.TYPE_ID,
+    microbe = MicrobeComponent.TYPE_ID,
+    rigidBody = RigidBodyComponent.TYPE_ID,
+    sceneNode = OgreSceneNodeComponent.TYPE_ID,
+    collisionHandler = CollisionComponent.TYPE_ID,
+    soundSource = SoundSourceComponent.TYPE_ID,
+    membraneComponent = MembraneComponent.TYPE_ID,
+    compoundBag = CompoundBagComponent.TYPE_ID,
+}
 
 
 -- Creates a new microbe with all required components
@@ -220,50 +266,6 @@ function Microbe.createMicrobeEntity(name, aiControlled, speciesName, in_editor)
         entity:addComponent(component)
     end
     return Microbe(entity, in_editor)
-end
-
--- I don't feel like checking for each component separately, so let's make a
--- loop do it with an assert for good measure (see Microbe.__init)
-Microbe.COMPONENTS = {
-    compoundAbsorber = CompoundAbsorberComponent.TYPE_ID,
-    microbe = MicrobeComponent.TYPE_ID,
-    rigidBody = RigidBodyComponent.TYPE_ID,
-    sceneNode = OgreSceneNodeComponent.TYPE_ID,
-    collisionHandler = CollisionComponent.TYPE_ID,
-    soundSource = SoundSourceComponent.TYPE_ID,
-    membraneComponent = MembraneComponent.TYPE_ID,
-    compoundBag = CompoundBagComponent.TYPE_ID,
-}
-
-
--- Constructor
---
--- Requires all necessary components (see Microbe.COMPONENTS) to be present in
--- the entity.
---
--- @param entity
--- The entity this microbe wraps
-function Microbe:__init(entity, in_editor)
-    self.entity = entity
-    for key, typeId in pairs(Microbe.COMPONENTS) do
-        local component = entity:getComponent(typeId)
-        assert(component ~= nil, "Can't create microbe from this entity, it's missing " .. key)
-        self[key] = entity:getComponent(typeId)
-    end
-    for compound in CompoundRegistry.getCompoundList() do
-        self.compoundAbsorber:setCanAbsorbCompound(compound, true)
-    end
-    if not self.microbe.initialized then
-        self:_initialize()
-        if in_editor == nil then
-            self.compoundBag:setProcessor(Entity(self.microbe.speciesName):getComponent(ProcessorComponent.TYPE_ID), self.microbe.speciesName)
-            SpeciesSystem.template(self, self:getSpeciesComponent())
-        end
-    end
-    self:_updateCompoundAbsorber()
-    self.playerAlreadyShownAtpDamage = false
-    self.membraneHealth = 1.0
-    self.reproductionStage = 0 -- 1 for G1 complete, 2 for S complete, 3 for G2 complete, and 4 for reproduction finished.
 end
 
 -- Getter for microbe species
@@ -1109,44 +1111,45 @@ end
 --
 -- Updates microbes
 --------------------------------------------------------------------------------
+MicrobeSystem = class(
+    LuaSystem,
+    function(self)
 
-class 'MicrobeSystem' (System)
+        LuaSystem.create(self)
 
-function MicrobeSystem:__init()
-    System.__init(self)
-    self.entities = EntityFilter(
-        {
-            CompoundAbsorberComponent,
-            MicrobeComponent,
-            OgreSceneNodeComponent,
-            RigidBodyComponent,
-            CollisionComponent
-        },
-        true
-    )
-    self.microbeCollisions = CollisionFilter(
-        "microbe",
-        "microbe"
-    );
-    -- Temporary for 0.3.2, should be moved to separate system.
-    self.agentCollisions = CollisionFilter(
-        "microbe",
-        "agent"
-    );
-    self.microbes = {}
-end
-
+        self.entities = EntityFilter(
+            {
+                CompoundAbsorberComponent,
+                MicrobeComponent,
+                OgreSceneNodeComponent,
+                RigidBodyComponent,
+                CollisionComponent
+            },
+            true
+        )
+        self.microbeCollisions = CollisionFilter(
+            "microbe",
+            "microbe"
+        );
+        -- Temporary for 0.3.2, should be moved to separate system.
+        self.agentCollisions = CollisionFilter(
+            "microbe",
+            "agent"
+        );
+        self.microbes = {}
+    end
+)
 
 function MicrobeSystem:init(gameState)
-    System.init(self, "MicrobeSystem", gameState)
+    LuaSystem.init(self, "MicrobeSystem", gameState)
     self.entities:init(gameState)
     self.microbeCollisions:init(gameState)
     
     self.agentCollisions:init(gameState)
 end
 
-
 function MicrobeSystem:shutdown()
+    LuaSystem.shutdown(self)
     self.entities:shutdown()
     self.microbeCollisions:shutdown()
     

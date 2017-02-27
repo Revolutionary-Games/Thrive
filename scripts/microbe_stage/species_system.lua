@@ -4,29 +4,29 @@
 -- Class for representing an individual species
 --------------------------------------------------------------------------------
 Species = class(
-   function(self)
+    function(self)
 
-      self.population = INITIAL_POPULATION
-      self.name = "Species_" .. tostring(math.random()) --gotta use the latin names
-      
-      local stringSize = math.random(MIN_INITIAL_LENGTH, MAX_INITIAL_LENGTH)
-      self.stringCode = organelleTable.nucleus.gene .. organelleTable.cytoplasm.gene --it should always have a nucleus and a cytoplasm.
-      for i = 1, stringSize do
-         self.stringCode = self.stringCode .. getRandomLetter()
-      end
-      
-      local organelles = positionOrganelles(self.stringCode)
+        self.population = INITIAL_POPULATION
+        self.name = "Species_" .. tostring(math.random()) --gotta use the latin names
+        
+        local stringSize = math.random(MIN_INITIAL_LENGTH, MAX_INITIAL_LENGTH)
+        self.stringCode = organelleTable.nucleus.gene .. organelleTable.cytoplasm.gene --it should always have a nucleus and a cytoplasm.
+        for i = 1, stringSize do
+            self.stringCode = self.stringCode .. getRandomLetter()
+        end
+        
+        local organelles = positionOrganelles(self.stringCode)
 
-      self.colour = {
-         r = randomColour(),
-         g = randomColour(),
-         b = randomColour()
-      }
+        self.colour = {
+            r = randomColour(),
+            g = randomColour(),
+            b = randomColour()
+        }
 
-      self.template = createSpeciesTemplate(self.name, organelles, self.colour, DEFAULT_INITIAL_COMPOUNDS, nil)
-      self:setupSpawn()
-      
-   end
+        self.template = createSpeciesTemplate(self.name, organelles, self.colour, DEFAULT_INITIAL_COMPOUNDS, nil)
+        self:setupSpawn()
+        
+    end
 )
 
 --limits the size of the initial stringCodes
@@ -246,23 +246,23 @@ MIN_SPECIES = 3
 
 
 SpeciesSystem = class(
-   LuaSystem,
-   function(self)
-      
-      LuaSystem.create(self)
-      
-      gSpawnSystem = self
-      
-      self.entities = EntityFilter.new(
-         {
-            SpeciesComponent,
-            ProcessorComponent,
-         },
-         true
-      )
-      self.timeSinceLastCycle = 0
-      
-   end
+    LuaSystem,
+    function(self)
+        
+        LuaSystem.create(self)
+        
+        gSpawnSystem = self
+        
+        self.entities = EntityFilter.new(
+            {
+                SpeciesComponent,
+                ProcessorComponent,
+            },
+            true
+        )
+        self.timeSinceLastCycle = 0
+        
+    end
 )
 
 function resetAutoEvo()

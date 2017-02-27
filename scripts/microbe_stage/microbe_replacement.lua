@@ -1,22 +1,28 @@
 -- Needs to be the first system
-class 'MicrobeReplacementSystem' (System)
+MicrobeReplacementSystem = class(
+    LuaSystem,
+    function(self)
+
+        LuaSystem.construct(self)
+        
+        --prefix,cofix,suffix list
+        self.speciesNamePrefix = {' Ce', ' Ar',' Sp', ' Th',' Co', ' So', ' Pu', ' Cr', ' Cy',
+                                  ' Gr', ' Re', ' Ty', ' Tr', ' Ac',' Pr' }
+        self.speciesNameCofix = { 'nan', 'mo', 'na', 'yt', 'yn', 'il', 'li','le', 'op', 'un',
+                                  'rive','ec', 'ro','lar','im' }
+        self.speciesNameSuffix = { 'pien', 'olera', 'rius', 'nien', 'ster', 'ilia', 'canus',
+                                   'tus', 'cys','ium','um'} 
+        
+    end
+)
 
 -- Global boolean for whether a new microbe is avaliable in the microbe editor.
 global_newEditorMicrobe = false
 --set it up so the game knows whether or not to replace the genus.
 global_genusPicked = false
 
-
-function MicrobeReplacementSystem:__init()
-    System.__init(self)
-    --prefix,cofix,suffix list
-    self.speciesNamePrefix = {' Ce', ' Ar',' Sp', ' Th',' Co', ' So', ' Pu', ' Cr', ' Cy', ' Gr', ' Re', ' Ty', ' Tr', ' Ac',' Pr' }
-    self.speciesNameCofix = { 'nan', 'mo', 'na', 'yt', 'yn', 'il', 'li','le', 'op', 'un', 'rive','ec', 'ro','lar','im' }
-    self.speciesNameSuffix = { 'pien', 'olera', 'rius', 'nien', 'ster', 'ilia', 'canus', 'tus', 'cys','ium','um'} 
-end
-
 function MicrobeReplacementSystem:init()
-    System.init(self, "MicrobeReplacementSystem", gameState)
+    LuaSystem.init(self, "MicrobeReplacementSystem", gameState)
 end
 
 function MicrobeReplacementSystem:activate()

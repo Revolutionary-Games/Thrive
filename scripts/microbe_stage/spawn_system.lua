@@ -4,25 +4,25 @@
 --
 -- Holds information about an entity spawned by spawnComponent
 --------------------------------------------------------------------------------
-class 'SpawnedComponent' (Component)
+SpawnedComponent = class(
+    function(self)
+
+        self.spawnRadiusSqr = 1000
+    end
+)
 
 SPAWN_INTERVAL = 100 --Time between spawn cycles
 
-function SpawnedComponent:__init()
-    Component.__init(self)
-    self.spawnRadiusSqr = 1000
-end
-
 function SpawnedComponent:load(storage)
-    Component.load(self, storage)
+
     self.spawnRadiusSqr = storage:get("spawnRadius", 1000)
 end
 
 
-function SpawnedComponent:storage()
-    local storage = Component.storage(self)
+function SpawnedComponent:storage(storage)
+
     storage:set("spawnRadius", self.spawnRadiusSqr)
-    return storage
+
 end
 
 REGISTER_COMPONENT("SpawnedComponent", SpawnedComponent)
@@ -33,38 +33,41 @@ REGISTER_COMPONENT("SpawnedComponent", SpawnedComponent)
 --
 -- System for spawning and despawning entities
 --------------------------------------------------------------------------------
-class 'SpawnSystem' (System)
+SpawnSystem = class(
+    LuaSystem,
+    function(self)
+
+        LuaSystem.create(self)
+        
+        self.entities = EntityFilter(
+            {
+                SpawnedComponent
+            }
+        )
+        self.nextId = 1
+        self.spawnTypes = {} --Keeps track of factory functions.
+        
+        self.playerPosPrev = nil --A Vector3 that remembers the player's position in the last spawn cycle
+        
+        self.timeSinceLastCycle = 0 --Stores how much time has passed since the last spawn cycle
+        
+        currentSpawnSystem = self
+        
+    end
+)
 
 currentSpawnSystem = nil
 
-function SpawnSystem:__init()
-    System.__init(self)
-    
-    self.entities = EntityFilter(
-        {
-            SpawnedComponent
-        }
-    )
-    self.nextId = 1
-    self.spawnTypes = {} --Keeps track of factory functions.
-    
-    self.playerPosPrev = nil --A Vector3 that remembers the player's position in the last spawn cycle
-    
-    self.timeSinceLastCycle = 0 --Stores how much time has passed since the last spawn cycle
-    
-    currentSpawnSystem = self
-end
-
 -- Override from System
 function SpawnSystem:init(gameState)
-    System.init(self, "SpawnSystem", gameState)
+    LuaSystem.init(self, "SpawnSystem", gameState)
     self.entities:init(gameState)
 end
 
 -- Override from System
 function SpawnSystem:shutdown()
     self.entities:shutdown()
-    System.shutdown(self)
+    LuaSystem.shutdown(self)
 end
 
 -- Adds a new type of entity to spawn in the SpawnSystem

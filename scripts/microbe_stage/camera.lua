@@ -1,14 +1,17 @@
 -- This system updates the camera position to stay above the player microbe
-class 'MicrobeCameraSystem' (System)
+MicrobeCameraSystem = class(
+    LuaSystem,
+    function(self)
 
-function MicrobeCameraSystem:__init()
-    System.__init(self)
-    -- The offset from player microbe to camera
-    self.camera = nil
-    self.cameraScenenode = nil
-end
+        LuaSystem.create(self)
 
-function MicrobeCameraSystem:init()
+        -- The offset from player microbe to camera
+        self.camera = nil
+        self.cameraScenenode = nil
+    end
+)
+
+function MicrobeCameraSystem:init(gameState)
     System.init(self, "MicrobeCameraSystem", gameState)
 end
 

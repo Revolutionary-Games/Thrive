@@ -1,12 +1,15 @@
 -- System for processing player input in the microbe stage
-class 'MicrobeControlSystem' (System)
+MicrobeControlSystem = class(
+    LuaSystem,
+    function(self)
+        
+        LuaSystem.create(self)
+        
+    end
+)
 
-function MicrobeControlSystem:__init()
-    System.__init(self)
-end
-
-function MicrobeControlSystem:init()
-    System.init(self, "MicrobeControlSystem", gameState)
+function MicrobeControlSystem:init(gameState)
+    LuaSystem.init(self, "MicrobeControlSystem", gameState)
 end
 
 -- Computes the point the mouse cursor is at
