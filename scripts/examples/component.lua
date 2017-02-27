@@ -1,25 +1,33 @@
 
--- Create class MyComponent, derived from Component
-class 'MyComponent' (Component)
+-- Create class MyComponent
+MyComponent = class(
 
--- Define constructor
-function MyComponent:__init()
-    -- Do not forget to call the constructor of the base class
-    Component.__init(self) 
-    self.data = 0
-end
+    -- Define constructor
+    function(self)
+
+        self.stuff = 20
+        self.prey = nil
+        
+    end
+)
+
+-- Name the component
+MyComponent.TYPE_NAME = "MyComponent"
 
 -- To enable proper serialization, you must override both the storage()
 -- and the load() (see below) functions
-function MyComponent:storage()
-    local storage = Component.storage(self)
-    storage:set("data", self.data)
+function MyComponent:storage(storage)
+    
+    storage:set("movementRadius", self.movementRadius)
+    
 end
 
 function MyComponent:load(storage)
     Component.load(self, storage)
-    self.data = storage:get("data", 0)
+    self.movementRadius = storage:get("movementRadius", 20)
+
 end
 
 -- Register the new component type with the component factory 
 REGISTER_COMPONENT("MyComponent", MyComponent)
+
