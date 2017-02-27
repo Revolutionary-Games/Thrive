@@ -5,6 +5,7 @@
 #include "game.h"
 #include "scripting/luajit.h"
 #include "scripting/wrapper_classes.h"
+#include "scripting/script_entity_filter.h"
 #include "engine/rolling_grid.h"
 
 
@@ -280,6 +281,9 @@ void bindClassesToLua(sol::state &lua){
         GameStateData::luaBindings(lua);
         RNG::luaBindings(lua);
         PlayerData::luaBindings(lua);
+
+
+        ScriptEntityFilter::luaBindings(lua);
 
         Engine::luaBindings(lua);
         Game::luaBindings(lua);
