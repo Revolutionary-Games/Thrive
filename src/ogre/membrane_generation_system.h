@@ -16,6 +16,8 @@ namespace thrive {
 /**
 * @brief A component for a Ogre scene nodes
 *
+* @note This is currently broken because it wasn't in use when systems
+* were moved to the new system
 */
 class MembraneGenerationComponent : public Component {
     COMPONENT(MembraneGenerationComponent)
@@ -31,8 +33,6 @@ public:
     *
     * @return
     */
-    static luabind::scope
-    luaBindings();
 
     void
     load(
@@ -84,8 +84,6 @@ public:
     *
     * @return
     */
-    static luabind::scope
-    luaBindings();
 
     /**
     * @brief Constructor
@@ -101,7 +99,7 @@ public:
     * @brief Initializes the system
     *
     */
-    void init(GameState* gameState) override;
+    void init(GameStateData* gameState) override;
 
     /**
     * @brief Shuts the system down
