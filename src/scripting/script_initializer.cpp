@@ -181,15 +181,23 @@ std::string thriveLuaOnError(sol::this_state lua){
     // Error message
     traceback << err << ":" << std::endl;
     lua_pop(L, 1);
-    
+
     // Stacktrace
     for (
-        int stacklevel = 0;
+        // Starting at 0 always prints [C]:-1 so we start at 1 to get
+        // the first actual stack frame
+        int stacklevel = 1;
         lua_getstack(L, stacklevel, &d);
         stacklevel++
     ) {
-        lua_getinfo(L, "Sln", &d);
+        if(lua_getinfo(L, "Sln", &d) == 0){
+
+            traceback << "    " << "error getting stack frame" << std::endl;
+            continue;
+        }
+        
         traceback << "    " << d.short_src << ":" << d.currentline;
+        
         if (d.name != nullptr) {
             traceback << " (" << d.namewhat << " " << d.name << ")";
         }
