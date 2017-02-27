@@ -9,23 +9,23 @@ GLUCOSE_SEARCH_THRESHHOLD = 5
 AI_MOVEMENT_SPEED = 0.5
 
 MicrobeAIControllerComponent = class(
-   function(self)
+    function(self)
 
-      self.movementRadius = 20
-      self.reevalutationInterval = 1000
-      self.intervalRemaining = self.reevalutationInterval
-      self.direction = Vector3(0, 0, 0)
-      self.targetEmitterPosition = nil
-      self.searchedCompoundId = nil
-      self.prey = nil
-      
-   end
+        self.movementRadius = 20
+        self.reevalutationInterval = 1000
+        self.intervalRemaining = self.reevalutationInterval
+        self.direction = Vector3(0, 0, 0)
+        self.targetEmitterPosition = nil
+        self.searchedCompoundId = nil
+        self.prey = nil
+        
+    end
 )
 
 MicrobeAIControllerComponent.TYPE_NAME = "MicrobeAIControllerComponent"
 
 function MicrobeAIControllerComponent:storage(storage)
-   
+    
     storage:set("movementRadius", self.movementRadius)
     storage:set("reevalutationInterval", self.reevalutationInterval)
     storage:set("intervalRemaining", self.intervalRemaining)
@@ -44,7 +44,7 @@ function MicrobeAIControllerComponent:storage(storage)
 end
 
 function MicrobeAIControllerComponent:load(storage)
-    Component.load(self, storage)
+    
     self.movementRadius = storage:get("movementRadius", 20)
     self.reevalutationInterval = storage:get("reevalutationInterval", 1000)
     self.intervalRemaining = storage:get("intervalRemaining", self.reevalutationInterval)
@@ -71,45 +71,45 @@ REGISTER_COMPONENT("MicrobeAIControllerComponent", MicrobeAIControllerComponent)
 --------------------------------------------------------------------------------
 
 MicrobeAISystem = class(
-   LuaSystem,
-   function(self)
-      
-      LuaSystem.create(self)
+    LuaSystem,
+    function(self)
+        
+        LuaSystem.create(self)
 
-      self.entities = EntityFilter(
-         {
-            MicrobeAIControllerComponent,
-            MicrobeComponent
-         }, 
-         true
-      )
-      self.emitters = EntityFilter(
-         {
-            CompoundEmitterComponent
-         }, 
-         true
-      )
-      self.microbes = {}
-      self.preyCandidates = {}
-      self.preyEntityToIndexMap = {} -- Used for removing from preyCandidates
-      self.currentPreyIndex = 0
-      self.oxygenEmitters = {}
-      self.glucoseEmitters = {}
-      
-   end
+        self.entities = EntityFilter(
+            {
+                MicrobeAIControllerComponent,
+                MicrobeComponent
+            }, 
+            true
+        )
+        self.emitters = EntityFilter(
+            {
+                CompoundEmitterComponent
+            }, 
+            true
+        )
+        self.microbes = {}
+        self.preyCandidates = {}
+        self.preyEntityToIndexMap = {} -- Used for removing from preyCandidates
+        self.currentPreyIndex = 0
+        self.oxygenEmitters = {}
+        self.glucoseEmitters = {}
+        
+    end
 )
 
 function MicrobeAISystem:init(gameState)
-   LuaSystem.init(self, "MicrobeAISystem", gameState)
-   self.entities:init(gameState)
-   self.emitters:init(gameState)
+    LuaSystem.init(self, "MicrobeAISystem", gameState)
+    self.entities:init(gameState)
+    self.emitters:init(gameState)
 end
 
 
 function MicrobeAISystem:shutdown()
-   LuaSystem.shutdown(self)
-   self.entities:shutdown()
-   self.emitters:shutdown()
+    LuaSystem.shutdown(self)
+    self.entities:shutdown()
+    self.emitters:shutdown()
 end
 
 function MicrobeAISystem:update(renderTime, logicTime)
@@ -162,7 +162,7 @@ function MicrobeAISystem:update(renderTime, logicTime)
                 self.preyEntityToIndexMap[Entity(PLAYER_NAME).id] = 6
                 local attempts = 0
                 while (aiComponent.prey  == nil or not aiComponent.prey:exists() or aiComponent.prey.microbe.dead or
-                      (aiComponent.prey.microbe.speciesName ==  microbe.microbe.speciesName) or
+                           (aiComponent.prey.microbe.speciesName ==  microbe.microbe.speciesName) or
                        self.preyEntityToIndexMap[aiComponent.prey.entity.id] == nil) and attempts < 6 do
                     aiComponent.prey = self.preyCandidates[rng:getInt(0, 6)]
                     attempts = attempts + 1       
@@ -205,7 +205,7 @@ function MicrobeAISystem:update(renderTime, logicTime)
                 elseif microbe:getCompoundAmount(CompoundRegistry.getCompoundId("glucose")) <= GLUCOSE_SEARCH_THRESHHOLD then
                     -- If we are NOT currenty heading towards an emitter
                     if aiComponent.targetEmitterPosition == nil or aiComponent.searchedCompoundId ~= CompoundRegistry.getCompoundId("glucose") then
-                    aiComponent.searchedCompoundId = CompoundRegistry.getCompoundId("glucose")
+                        aiComponent.searchedCompoundId = CompoundRegistry.getCompoundId("glucose")
                         local emitterArrayList = {}
                         local i = 0
                         for emitterId, _ in pairs(self.glucoseEmitters) do
