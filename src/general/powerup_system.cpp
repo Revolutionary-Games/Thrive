@@ -110,7 +110,7 @@ void PowerupSystem::luaBindings(
 ){
     lua.new_usertype<PowerupSystem>("PowerupSystem",
 
-        sol::constructors<>(),
+        sol::constructors<sol::types<>>(),
         
         sol::base_classes, sol::bases<System>()
     );
