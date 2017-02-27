@@ -7,7 +7,7 @@ MySystem = class(
         -- Do not forget to call the constructor of the base class
         LuaSystem.create(self)
 
-        self.entities = EntityFilter(
+        self.entities = EntityFilter.new(
             {
                 -- We only want to know about entities that have both a 
                 -- MyComponent and an OgreSceneNodeComponent
