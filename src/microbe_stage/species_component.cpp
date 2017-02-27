@@ -19,7 +19,7 @@ void SpeciesComponent::luaBindings(
 
         sol::base_classes, sol::bases<Component>(),
 
-        "ID", sol::var(lua.create_table_with("TYPE_ID", SpeciesComponent::TYPE_ID)),
+        "TYPE_ID", sol::var(SpeciesComponent::TYPE_ID), 
         "TYPE_NAME", &SpeciesComponent::TYPE_NAME,
 
         "name", &SpeciesComponent::name,

@@ -55,7 +55,7 @@ void OgreLightComponent::luaBindings(
 
         sol::base_classes, sol::bases<Component>(),
 
-        "ID", sol::var(lua.create_table_with("TYPE_ID", OgreLightComponent::TYPE_ID)),
+        "TYPE_ID", sol::var(OgreLightComponent::TYPE_ID), 
         "TYPE_NAME", &OgreLightComponent::TYPE_NAME,
 
         "setRange", &OgreLightComponent::setRange,

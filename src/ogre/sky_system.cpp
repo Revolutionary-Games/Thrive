@@ -40,7 +40,7 @@ void SkyPlaneComponent::luaBindings(
 
         sol::base_classes, sol::bases<Component>(),
 
-        "ID", sol::var(lua.create_table_with("TYPE_ID", SkyPlaneComponent::TYPE_ID)),
+        "TYPE_ID", sol::var(SkyPlaneComponent::TYPE_ID),
         "TYPE_NAME", &SkyPlaneComponent::TYPE_NAME,
 
         "properties", sol::readonly(&SkyPlaneComponent::m_properties)

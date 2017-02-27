@@ -45,7 +45,7 @@ void CompoundCloudComponent::luaBindings(
 
         sol::base_classes, sol::bases<Component>(),
 
-        "ID", sol::var(lua.create_table_with("TYPE_ID", CompoundCloudComponent::TYPE_ID)),
+        "TYPE_ID", sol::var(CompoundCloudComponent::TYPE_ID), 
         "TYPE_NAME", &CompoundCloudComponent::TYPE_NAME,
 
         "initialize", &CompoundCloudComponent::initialize,

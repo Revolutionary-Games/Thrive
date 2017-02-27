@@ -119,7 +119,7 @@ void OgreSceneNodeComponent::luaBindings(
 
         sol::base_classes, sol::bases<Component>(),
 
-        "ID", sol::var(lua.create_table_with("TYPE_ID", OgreSceneNodeComponent::TYPE_ID)),
+        "TYPE_ID", sol::var(OgreSceneNodeComponent::TYPE_ID),
         "TYPE_NAME", &OgreSceneNodeComponent::TYPE_NAME,
 
         "playAnimation", &OgreSceneNodeComponent::playAnimation,

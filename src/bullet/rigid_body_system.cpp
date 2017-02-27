@@ -117,7 +117,7 @@ void RigidBodyComponent::luaBindings(
         
         sol::base_classes, sol::bases<Component>(),
 
-        "ID", sol::var(lua.create_table_with("TYPE_ID", RigidBodyComponent::TYPE_ID)),
+        "TYPE_ID", sol::var(RigidBodyComponent::TYPE_ID),
         "TYPE_NAME", &RigidBodyComponent::TYPE_NAME,
 
         "setDynamicProperties", &RigidBodyComponent::setDynamicProperties,

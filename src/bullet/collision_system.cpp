@@ -39,7 +39,7 @@ void CollisionComponent::luaBindings(
 
         sol::base_classes, sol::bases<Component>(),
 
-        "ID", sol::var(lua.create_table_with("TYPE_ID", CollisionComponent::TYPE_ID)),
+        "TYPE_ID", sol::var(CollisionComponent::TYPE_ID), 
         "TYPE_NAME", &CollisionComponent::TYPE_NAME,
 
         "addCollisionGroup", &CollisionComponent::addCollisionGroup

@@ -53,7 +53,7 @@ void OgreCameraComponent::luaBindings(
 
         sol::base_classes, sol::bases<Component>(),
 
-        "ID", sol::var(lua.create_table_with("TYPE_ID", OgreCameraComponent::TYPE_ID)),
+        "TYPE_ID", sol::var(OgreCameraComponent::TYPE_ID), 
         "TYPE_NAME", &OgreCameraComponent::TYPE_NAME,
 
         "PolygonMode", sol::var(lua.create_table_with(

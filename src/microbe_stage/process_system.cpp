@@ -26,7 +26,7 @@ void ProcessorComponent::luaBindings(
 
         sol::base_classes, sol::bases<Component>(),
 
-        "ID", sol::var(lua.create_table_with("TYPE_ID", ProcessorComponent::TYPE_ID)),
+        "TYPE_ID", sol::var(ProcessorComponent::TYPE_ID), 
         "TYPE_NAME", &ProcessorComponent::TYPE_NAME,
 
         "setThreshold", &ProcessorComponent::setThreshold,
@@ -125,7 +125,7 @@ void CompoundBagComponent::luaBindings(
 
         sol::base_classes, sol::bases<Component>(),
 
-        "ID", sol::var(lua.create_table_with("TYPE_ID", CompoundBagComponent::TYPE_ID)),
+        "TYPE_ID", sol::var(CompoundBagComponent::TYPE_ID), 
         "TYPE_NAME", &CompoundBagComponent::TYPE_NAME,
 
         "setProcessor", &CompoundBagComponent::setProcessor,

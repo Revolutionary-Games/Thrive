@@ -35,7 +35,7 @@ void CompoundComponent::luaBindings(
 
         sol::base_classes, sol::bases<Component>(),
 
-        "ID", sol::var(lua.create_table_with("TYPE_ID", CompoundComponent::TYPE_ID)),
+        "TYPE_ID", sol::var(CompoundComponent::TYPE_ID), 
         "TYPE_NAME", &CompoundComponent::TYPE_NAME,
 
         "compoundId", &CompoundComponent::m_compoundId,

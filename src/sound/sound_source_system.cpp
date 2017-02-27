@@ -204,7 +204,7 @@ void SoundSourceComponent::luaBindings(
 
         sol::base_classes, sol::bases<Component>(),
 
-        "ID", sol::var(lua.create_table_with("TYPE_ID", SoundSourceComponent::TYPE_ID)),
+        "TYPE_ID", sol::var(SoundSourceComponent::TYPE_ID),
         "TYPE_NAME", &SoundSourceComponent::TYPE_NAME,
 
         "addSound", &SoundSourceComponent::addSound,

@@ -34,7 +34,7 @@ void CompoundEmitterComponent::luaBindings(
 
         sol::base_classes, sol::bases<Component>(),
 
-        "ID", sol::var(lua.create_table_with("TYPE_ID", CompoundEmitterComponent::TYPE_ID)),
+        "TYPE_ID", sol::var(CompoundEmitterComponent::TYPE_ID), 
         "TYPE_NAME", &CompoundEmitterComponent::TYPE_NAME,
 
         "emitCompound", &CompoundEmitterComponent::emitCompound,
@@ -100,8 +100,7 @@ REGISTER_COMPONENT(CompoundEmitterComponent)
 
         sol::base_classes, sol::bases<Component>(),
 
-        "ID", sol::var(lua.create_table_with("TYPE_ID",
-                TimedCompoundEmitterComponent::TYPE_ID)),
+        "TYPE_ID", sol::var(TimedCompoundEmitterComponent::TYPE_ID), 
         "TYPE_NAME", &TimedCompoundEmitterComponent::TYPE_NAME,
 
         "emitInterval", &TimedCompoundEmitterComponent::m_emitInterval,

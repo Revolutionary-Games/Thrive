@@ -25,7 +25,7 @@ void PowerupComponent::luaBindings(
 
         sol::base_classes, sol::bases<Component>(),
 
-        "ID", sol::var(lua.create_table_with("TYPE_ID", PowerupComponent::TYPE_ID)),
+        "TYPE_ID", sol::var(PowerupComponent::TYPE_ID), 
         "TYPE_NAME", &PowerupComponent::TYPE_NAME,
 
         "setEffect", static_cast<void (PowerupComponent::*)(

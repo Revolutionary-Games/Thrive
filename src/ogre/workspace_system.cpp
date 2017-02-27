@@ -63,7 +63,7 @@ void OgreWorkspaceComponent::luaBindings(
 
         sol::base_classes, sol::bases<Component>(),
 
-        "ID", sol::var(lua.create_table_with("TYPE_ID", OgreWorkspaceComponent::TYPE_ID)),
+        "TYPE_ID", sol::var(OgreWorkspaceComponent::TYPE_ID), 
         "TYPE_NAME", &OgreWorkspaceComponent::TYPE_NAME,
 
         "properties", sol::readonly(&OgreWorkspaceComponent::m_properties)

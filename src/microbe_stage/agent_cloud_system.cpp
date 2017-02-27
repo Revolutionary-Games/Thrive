@@ -46,7 +46,7 @@ void AgentCloudComponent::luaBindings(
 
         sol::base_classes, sol::bases<Component>(),
 
-        "ID", sol::var(lua.create_table_with("TYPE_ID", AgentCloudComponent::TYPE_ID)),
+        "TYPE_ID", sol::var(AgentCloudComponent::TYPE_ID), 
         "TYPE_NAME", &AgentCloudComponent::TYPE_NAME,
 
         "initialize", &AgentCloudComponent::initialize,
