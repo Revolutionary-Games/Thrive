@@ -166,7 +166,13 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
         }
     }
 
-    void
+    /**
+    * @brief Loads lua scripts from folder.
+    *
+    * Looks for a "manifest.txt" to determine which files to load
+    * @returns True on success, false on failure
+    */
+    bool
     loadScripts(
         const boost::filesystem::path& directory
     ) {
@@ -174,7 +180,7 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
         fs::path manifestPath = directory / "manifest.txt";
         if (not fs::exists(manifestPath)) {
             throw std::runtime_error("Missing manifest file: " + manifestPath.string());
-            return;
+            return false;
         }
         std::ifstream manifest(manifestPath.string());
         if (not manifest.is_open()) {
@@ -193,7 +199,10 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
                 continue;
             }
             else if (fs::is_directory(manifestEntryPath)) {
-                this->loadScripts(manifestEntryPath);
+                bool success = this->loadScripts(manifestEntryPath);
+
+                if(!success)
+                    return false;
             }
             else {
 
@@ -210,12 +219,12 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
                         std::endl << " error: " << runResult.get<std::string>() <<
                         std::endl;
                     
-                    return;
+                    return false;
                 }
-
-                //std::cout << "loaded: " << manifestEntryPath.string() << std::endl;
             }
         }
+
+        return true;
     }
 
     void
@@ -550,7 +559,10 @@ Engine::init() {
     
     m_impl->setupInputManager();
     
-    m_impl->loadScripts("../scripts");
+    if(!m_impl->loadScripts("../scripts")){
+
+        throw std::runtime_error("Engine failed to load Lua scripts");
+    }
 
 
     // Initialize lua engine side
