@@ -1,28 +1,28 @@
 --[[
 Compound atributes:
-    name:   The name of the compound, used in the GUI.
+    name:       The name of the compound, used in the GUI.
+    
+    volume:     The volume of an unit of compound.
 
-    mass:   How heavy an unit of compound is.
-
-    size:   The volume of an unit of compound.
-
-    isCloud:   whether the compound forms clouds (maybe it should be checked
+    isCloud:    Whether the compound forms clouds (maybe it should be checked
                 automatically in the biomes?). By default is false.
 
-    colour: A table with the colour of thecompound, used in the clouds and in the GUI.
+    colour:     A table with the colour of the compound, used in the clouds and in the GUI.
+
+    isUseful:   Whether this compound has some use for microbes besides being transformed
+                into other compounds (i.e.: ATP is useful because the microbe spends it to move).
 ]]
 
 compoundTable = {
     ["atp"] = {
         name = "ATP",
-        weight = 1,
-        size = 0.1
+        volume = 1,
+        isUseful = true
     },
 
     ["oxygen"] = {
         name = "Oxygen",
-        weight = 1,
-        size = 0.3,
+        volume = 1,
         isCloud = true,
 
         colour = {
@@ -34,9 +34,9 @@ compoundTable = {
 
     ["aminoacids"] = {
         name = "Amino Acids",
-        weight = 1,
-        size = 0.2,
+        volume = 1,
         isCloud = true, --Note that in the biome-table branch no aminoacid cloud would form.
+        isUseful = true,
 
         colour = {
             r = 255,
@@ -47,8 +47,7 @@ compoundTable = {
 
     ["ammonia"] = {
         name = "Ammonia",
-        weight = 1,
-        size = 0.16,
+        volume = 1,
         isCloud = true,
 
         colour = {
@@ -60,9 +59,9 @@ compoundTable = {
 
     ["glucose"] = {
         name = "Glucose",
-        weight = 1,
-        size = 0.3,
+        volume = 1,
         isCloud = true,
+        isUseful = true,
 
         colour = {
             r = 150,
@@ -73,8 +72,7 @@ compoundTable = {
 
     ["co2"] = {
         name = "CO2",
-        weight = 1,
-        size = 0.16,
+        volume = 1,
         isCloud = true,
 
         colour = {
@@ -86,7 +84,7 @@ compoundTable = {
 
     ["fattyacids"] = {
         name = "Fatty Acids",
-        weight = 1,
-        size = 0.16
+        volume = 1,
+        isUseful = true
     }
 }

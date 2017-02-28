@@ -101,7 +101,8 @@ public:
         const std::string& displayName,
         const std::string& meshName,
         double meshScale,
-		int unitVolume
+        bool isUseful,
+		float unitVolume
     );
 
     /**
@@ -135,7 +136,8 @@ public:
         const std::string& displayName,
         const std::string& meshName,
         double meshScale,
-        int unitVolume,
+        bool isUseful,
+        float unitVolume,
         std::function<bool(EntityId, double)>* effect
     );
 
@@ -170,7 +172,8 @@ public:
         const std::string& displayName,
         const std::string& meshName,
         double meshScale,
-        int unitVolume,
+        bool isUseful,
+        float unitVolume,
         const luabind::object& effect
     );
 

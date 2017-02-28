@@ -42,7 +42,7 @@ local function setupCompounds()
     table.sort(ordered_keys)
     for i = 1, #ordered_keys do
         local k, v = ordered_keys[i], compoundTable[ ordered_keys[i] ]
-        CompoundRegistry.registerCompoundType(k, v["name"], "placeholder.mesh", v["size"], v["weight"])
+        CompoundRegistry.registerCompoundType(k, v["name"], "placeholder.mesh", 1.0, v["isUseful"] == true, v["volume"])
     end    
     CompoundRegistry.loadFromLua({}, agents)
 end
