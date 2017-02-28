@@ -101,8 +101,8 @@ MicrobeAISystem = class(
 
 function MicrobeAISystem:init(gameState)
     LuaSystem.init(self, "MicrobeAISystem", gameState)
-    self.entities:init(gameState)
-    self.emitters:init(gameState)
+    self.entities:init(gameState.wrapper)
+    self.emitters:init(gameState.wrapper)
 end
 
 

@@ -6,7 +6,7 @@ MicrobeEditorHudSystem = class(
         LuaSystem.create(self)
         self.organelleButtons = {}
         self.initialized = false
-        self.editor = MicrobeEditor(self)
+        self.editor = MicrobeEditor.new(self)
         
         -- Scene nodes for the organelle cursors for symmetry.
         self.hoverHex = {}

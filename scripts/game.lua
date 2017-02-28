@@ -2,7 +2,7 @@
 
 function printStartMessage()
 
-   print("Thrive version " .. " with " _VERSION .. " from " .. jit.version ..
+   print("Thrive version " .. " with " .. _VERSION .. " from " .. jit.version ..
             " ready to go. "
          --.. "Let's rock"
    )
@@ -39,8 +39,8 @@ function enterLuaMain(cppGame)
       cppGame:sleepIfNeeded(frameDuration)
          
       -- update fps counter
-      fpsCount += 1;
-      fpsTime += cppGame:asMS(frameDuration)
+      fpsCount = fpsCount + 1;
+      fpsTime = fpsTime + cppGame:asMS(frameDuration)
       
       if fpsTime >= 1000 then
          

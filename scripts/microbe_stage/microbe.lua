@@ -1142,10 +1142,10 @@ MicrobeSystem = class(
 
 function MicrobeSystem:init(gameState)
     LuaSystem.init(self, "MicrobeSystem", gameState)
-    self.entities:init(gameState)
-    self.microbeCollisions:init(gameState)
+    self.entities:init(gameState.wrapper)
+    self.microbeCollisions:init(gameState.wrapper)
     
-    self.agentCollisions:init(gameState)
+    self.agentCollisions:init(gameState.wrapper)
 end
 
 function MicrobeSystem:shutdown()

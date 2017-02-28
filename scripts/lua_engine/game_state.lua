@@ -16,65 +16,116 @@
 
 
 GameState = class(
-   --! @brief Constructs a new GameState. Must be called from derived classes with
-   --! `GameState.create(self)`
-   --! @note calls this only through LuaEngine:createGameState
-   function(self, name, systems, engine, physics, guiLayoutName, extraInitializer)
+    --! @brief Constructs a new GameState. Must be called from derived classes with
+    --! `GameState.create(self)`
+    --! @note calls this only through LuaEngine:createGameState
+    function(self, name, systems, engine, physics, guiLayoutName, extraInitializer)
 
-      assert(name ~= nil)
-      assert(systems ~= nil)
-      assert(type(systems) == "table")
-      assert(engine ~= nil)
-      -- Physics must be true or false
-      assert(physics ~= nil)
-      -- TODO: make "none" skip creating the CEGUIWindow
-      assert(guiLayoutName ~= nil)
+        assert(name ~= nil)
+        assert(systems ~= nil)
+        assert(type(systems) == "table")
+        assert(engine ~= nil)
+        -- Physics must be true or false
+        assert(physics ~= nil)
+        -- TODO: make "none" skip creating the CEGUIWindow
+        assert(guiLayoutName ~= nil)
 
-      self.extraInitializer = extraInitializer
+        self.extraInitializer = extraInitializer
 
-      -- Systems container
-      self.systems = systems
-      self.name = name
-      self.engine = engine
-      self.guiLayoutName = guiLayoutName
-      
-      self.usePhysics = physics
+        -- Systems container
+        self.systems = systems
+        self.name = name
+        self.engine = engine
+        self.guiLayoutName = guiLayoutName
+        
+        self.usePhysics = physics
 
-   end
+        -- Make sure systems is valid
+        for i,s in ipairs(self.systems) do
+
+            if s.isCppSystem then
+
+                assert(s.init ~= nil, "C++ system object missing init property")
+                
+            else
+
+                local err = nil
+
+                if s.is_a == nil then
+
+                    err = "Lua table in GameState.systems is not a class (no 'is_a' method)!"
+                    
+                else
+
+                    if s:is_a(LuaSystem) == false then
+
+                        err = "Lua table in GameState.systems is not derived from LuaSystem!"
+
+                    end
+                end
+                
+                if err then
+
+                    print(err)
+                    print("Index " .. i .. " table:")
+                    print_r(s)
+                    error(err)                    
+                    
+                end
+                
+
+                assert(s.init ~= nil, "Lua system derived type is missing init")
+                
+            end
+            
+        end
+
+    end
 )
 
 --! @brief Initializes a state to be used.
 --! @brief System initializer called once engine is set up
 function GameState:init()
 
-   -- Init systems
-   for i,s in ipairs(self.systems) do
+    -- Create entity manager
+    self.entityManager = EntityManager.new()
 
-      s:init(self)
-      
-   end
+    self.guiWindow = CEGUIWindow.new(self.guiLayoutName)
 
-   -- Create entity manager
-   self.entityManager = EntityManager.new()
+    --! @brief Adds physics to this GameState
+    if self.usePhysics == true then
+        
+        self.physicsWorld = PhysicalWorld.new()
+        
+    end
 
-   self.guiWindow = CEGUIWindow.new(self.guiLayoutName)
+    -- This is passed to C++ systems
+    self.cppData = GameStateData.new(self, Engine, self.entityManager, self.physicsWorld)
+    -- another name
+    self.wrapper = self.cppData
 
-   --! @brief Adds physics to this GameState
-   if self.usePhysics == true then
-      
-      self.physicsWorld = PhysicalWorld.new()
-      
-   end
+    assert(self.wrapper ~= nil, "GameState failed to create C++ wrapper")
 
-   -- This is passed to C++ systems
-   self.cppData = GameStateData.new(self, Engine, self.entityManager, self.physicsWorld)
+    -- Init systems
+    for i,s in ipairs(self.systems) do
 
-   if self.extraInitializer ~= nil then
+        if s.isCppSystem then
+            
+            s:init(self.wrapper)
+            
+        else
+            
+            s:init(self)
+        end
+        
+    end
 
-      self:extraInitializer()
-      
-   end
-   
+    if self.extraInitializer ~= nil then
+
+        self:extraInitializer()
+        
+    end
+    
 end
 
 
@@ -83,45 +134,45 @@ end
 --! Shuts down all systems and releases the C++ data object
 function GameState:shutdown()
 
-   for i,s in ipairs(self.systems) do
+    for i,s in ipairs(self.systems) do
 
-      s:shutdown()
-      
-   end
-   
-   self.cppData = nil
-   self.physicsWorld = nil
-   self.entityManager = nil
-   self.guiWindow = nil
+        s:shutdown()
+        
+    end
+    
+    self.cppData = nil
+    self.physicsWorld = nil
+    self.entityManager = nil
+    self.guiWindow = nil
 end
 
 
 --! @brief Called when this gamestate is made the active one
 function GameState:active()
 
-   self.guiWindow:show()
-   
-   CEGUIWindow.getRootWindow():addChild(self.guiWindow)
+    self.guiWindow:show()
+    
+    CEGUIWindow.getRootWindow():addChild(self.guiWindow)
 
-   for i,s in ipairs(self.systems) do
+    for i,s in ipairs(self.systems) do
 
-      s:activate()
-      
-   end
+        s:activate()
+        
+    end
 
 end
 
 --! @brief Called when another gamestate becomes active
 function GameState:deactivate()
 
-   for i,s in ipairs(self.systems) do
+    for i,s in ipairs(self.systems) do
 
-      s:deactivate()
-      
-   end
+        s:deactivate()
+        
+    end
 
-   self.guiWindow:hide()
-   CEGUIWindow.getRootWindow():removeChild(self.guiWindow)
+    self.guiWindow:hide()
+    CEGUIWindow.getRootWindow():removeChild(self.guiWindow)
 
 end
 
@@ -129,18 +180,18 @@ end
 --! @brief Updates game logic
 function GameState:update(renderTime, logicTime)
 
-   for i,s in ipairs(self.systems) do
-      if s.enabled then
+    for i,s in ipairs(self.systems) do
+        if s.enabled then
 
-         --Uncomment to debug mystical crashes and other anomalies
-         -- print("Updating system " .. s.name)
-         s:update(renderTime, logicTime)
-         -- print("Done updating system " .. s.name)
-         
-      end
-   end
-   
-   self.entityManager:processRemovals()
+            --Uncomment to debug mystical crashes and other anomalies
+            -- print("Updating system " .. s.name)
+            s:update(renderTime, logicTime)
+            -- print("Done updating system " .. s.name)
+            
+        end
+    end
+    
+    self.entityManager:processRemovals()
 
 end
 
@@ -150,32 +201,51 @@ end
 --! GameState:storage
 function GameState:load(storage)
 
-   local entities = storage:get("entities")
-   
-   self.entityManager:clear()
+    local entities = storage:get("entities")
+    
+    self.entityManager:clear()
 
-   self.entityManager:restore(entities, Engine:componentFactory())
-   
+    self.entityManager:restore(entities, Engine:componentFactory())
+    
 end
 
 --! @brief Saves all current entities into a StorageContainer
 --! @see GameState:load
 --! @returns StorageContainer
 function GameState:storage()
-   
-   local entities = self.entityManager:storage(Engine:componentFactory())
+    
+    local entities = self.entityManager:storage(Engine:componentFactory())
 
-   local storage = StorageContainer.new()
-   storage:set("entities", entities)
-   
-   return storage
+    local storage = StorageContainer.new()
+    storage:set("entities", entities)
+    
+    return storage
 end
 
 --! @brief Returns self.guiWindow
 function GameState:rootGUIWindow()
 
-   return self.guiWindow
-   
+    return self.guiWindow
+    
 end
 
+--! @brief Returns an array of C++ based systems
+function GameState:getCppSystems()
+
+    local result = {}
+    local index = 1
+    
+    for i,s in ipairs(self.systems) do
+
+        if s.isCppSystem then
+
+            result[index] = s
+            index = index + 1
+            
+        end
+    end
+
+    return result
+    
+end
 

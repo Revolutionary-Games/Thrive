@@ -12,11 +12,11 @@ MicrobeCameraSystem = class(
 )
 
 function MicrobeCameraSystem:init(gameState)
-    System.init(self, "MicrobeCameraSystem", gameState)
+    LuaSystem.init(self, "MicrobeCameraSystem", gameState)
 end
 
 function MicrobeCameraSystem:activate()
-    local camera = Entity(CAMERA_NAME)
+    local camera = Entity.new(CAMERA_NAME)
     self.camera = camera:getComponent(OgreCameraComponent.TYPE_ID)
     self.camera.properties.offset = Vector3(0, 0, 30)
     self.camera.properties:touch()
@@ -24,7 +24,7 @@ function MicrobeCameraSystem:activate()
 end
 
 function MicrobeCameraSystem:update(renderTime, logicTime)    
-    local player = Entity(PLAYER_NAME)
+    local player = Entity.new(PLAYER_NAME)
     local playerNode = player:getComponent(OgreSceneNodeComponent.TYPE_ID)
 	self.cameraScenenode.transform.position = playerNode.transform.position + self.camera.properties.offset
 	self.cameraScenenode.transform:touch()

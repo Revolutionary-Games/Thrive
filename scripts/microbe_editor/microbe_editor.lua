@@ -4,42 +4,43 @@
 -- Contains the functionality associated with creating and augmenting microbes
 -- See http://www.redblobgames.com/grids/hexagons/ for mathematical basis of hex related code.
 --------------------------------------------------------------------------------
-class 'MicrobeEditor'
+MicrobeEditor = class(
+    function(self, hudSystem)
 
-function MicrobeEditor:__init(hudSystem)
-    self.currentMicrobe = nil
-    self.organelleCount = 0
-    self.activeActionName = nil
-    self.hudSystem = hudSystem
-    self.nextMicrobeEntity = nil
-    self.gridSceneNode = nil
-    self.gridVisible = true
-    self.mutationPoints = 50
-    self.placementFunctions = {["nucleus"] = MicrobeEditor.createNewMicrobe,
-                               ["flagellum"] = MicrobeEditor.addOrganelle,
-                               ["cytoplasm"] = MicrobeEditor.addOrganelle,
-                               ["mitochondrion"] = MicrobeEditor.addOrganelle,
-                               ["chloroplast"] = MicrobeEditor.addOrganelle,
-                               ["oxytoxy"] = MicrobeEditor.addOrganelle,
-                               ["vacuole"] = MicrobeEditor.addOrganelle,
-                               ["remove"] = MicrobeEditor.removeOrganelle}
-    self.actionHistory = nil
-    self.actionIndex = 0
-    self.organelleRot = 0
-    self.occupiedHexes = {}
-    -- 0 is no symmetry, 1 is x-axis symmetry, 2 is 4-way symmetry, and 3 is 6-way symmetry.
-    self.symmetry = 0
-end
+        self.currentMicrobe = nil
+        self.organelleCount = 0
+        self.activeActionName = nil
+        self.hudSystem = hudSystem
+        self.nextMicrobeEntity = nil
+        self.gridSceneNode = nil
+        self.gridVisible = true
+        self.mutationPoints = 50
+        self.placementFunctions = {["nucleus"] = MicrobeEditor.createNewMicrobe,
+            ["flagellum"] = MicrobeEditor.addOrganelle,
+            ["cytoplasm"] = MicrobeEditor.addOrganelle,
+            ["mitochondrion"] = MicrobeEditor.addOrganelle,
+            ["chloroplast"] = MicrobeEditor.addOrganelle,
+            ["oxytoxy"] = MicrobeEditor.addOrganelle,
+            ["vacuole"] = MicrobeEditor.addOrganelle,
+            ["remove"] = MicrobeEditor.removeOrganelle}
+        self.actionHistory = nil
+        self.actionIndex = 0
+        self.organelleRot = 0
+        self.occupiedHexes = {}
+        -- 0 is no symmetry, 1 is x-axis symmetry, 2 is 4-way symmetry, and 3 is 6-way symmetry.
+        self.symmetry = 0
+    end
+)
 
 function MicrobeEditor:createHexComponent(q, r)
     local x, y = axialToCartesian(q, r)
     local s = encodeAxial(q, r)
-    self.occupiedHexes[s] = Entity()
-    local sceneNode = OgreSceneNodeComponent()
-    sceneNode.transform.position = Vector3(x, y, 0)
+    self.occupiedHexes[s] = Entity.new()
+    local sceneNode = OgreSceneNodeComponent.new()
+    sceneNode.transform.position = Vector3.new(x, y, 0)
     sceneNode.transform:touch()
     sceneNode.meshName = "hex.mesh"
-    sceneNode.transform.scale = Vector3(HEX_SIZE, HEX_SIZE, HEX_SIZE)
+    sceneNode.transform.scale = Vector3.new(HEX_SIZE, HEX_SIZE, HEX_SIZE)
     self.occupiedHexes[s]:addComponent(sceneNode)
     self.occupiedHexes[s]:setVolatile(true)
 end
@@ -55,11 +56,11 @@ function MicrobeEditor:surroundsOrganelle(q, r)
 end
 
 function MicrobeEditor:init(gameState)
-    ent = Entity()
-    local sceneNode = OgreSceneNodeComponent()
+    ent = Entity.new()
+    local sceneNode = OgreSceneNodeComponent.new()
     sceneNode.planeTexture = "EditorGridMaterial"
     ent:addComponent(sceneNode)
-    sceneNode.transform.scale = Vector3(HEX_SIZE, HEX_SIZE, 1)
+    sceneNode.transform.scale = Vector3.new(HEX_SIZE, HEX_SIZE, 1)
     sceneNode.transform:touch()
     
     self.gridSceneNode = sceneNode

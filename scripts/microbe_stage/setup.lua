@@ -409,6 +409,8 @@ local function createMicrobeStage(name)
             PowerupSystem.new(),
             CompoundEmitterSystem.new(), -- Keep this after any logic that might eject compounds such that any entites that are queued for destruction will be destroyed after emitting.
         },
+        true,
+        "MicrobeStage",
         function()
             setupBackground()
             setupCamera()
@@ -416,8 +418,7 @@ local function createMicrobeStage(name)
             setupSpecies()
             setupPlayer()
             setupSound()
-        end,
-        "MicrobeStage"
+        end
     )
 end
 

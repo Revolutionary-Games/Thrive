@@ -82,29 +82,31 @@ end
 
 local function createMicrobeEditor(name)
     
-    return Engine:createGameState(
+    return g_luaEngine:createGameState(
         name,
         {   
-      --      MicrobeSystem(),
-            MicrobeEditorHudSystem(),
+      --      MicrobeSystem.new(),
+            MicrobeEditorHudSystem.new(),
             -- Graphics
-            OgreAddSceneNodeSystem(),
-            OgreUpdateSceneNodeSystem(),
-            OgreCameraSystem(),
-            OgreLightSystem(),
-            SkySystem(),
-            OgreWorkspaceSystem(),
-            OgreRemoveSceneNodeSystem(),
-            RenderSystem(),
+            OgreAddSceneNodeSystem.new(),
+            OgreUpdateSceneNodeSystem.new(),
+            OgreCameraSystem.new(),
+            OgreLightSystem.new(),
+            SkySystem.new(),
+            OgreWorkspaceSystem.new(),
+            OgreRemoveSceneNodeSystem.new(),
+            RenderSystem.new(),
             -- Other
-            SoundSourceSystem(),
+            SoundSourceSystem.new(),
         },
+        -- TODO: check whether physics is required in the editor
+        true,
+        "MicrobeEditor",
         function()
             setupBackground()
             setupCamera()
             setupSound()
-        end,
-        "MicrobeEditor"
+        end
     )
 end
 

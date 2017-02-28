@@ -85,7 +85,7 @@ PATCH_SIM_INTERVAL = 1200
 -- Override from System
 function PatchSystem:init(gameState)
     LuaSystem.init(self, "PatchSystem", gameState)
-    self.entities:init(gameState)
+    self.entities:init(gameState.wrapper)
 end
 
 -- Override from System

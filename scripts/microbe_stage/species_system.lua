@@ -279,7 +279,7 @@ end
 -- Override from System
 function SpeciesSystem:init(gameState)
     LuaSystem.init(self, "SpeciesSystem", gameState)
-    self.entities:init(gameState)
+    self.entities:init(gameState.wrapper)
 
     self.species = {}
     self.number_of_species = 0

@@ -56,7 +56,8 @@ local function createMainMenu(name)
          -- Other
          SoundSourceSystem.new(),
       },
-      true,
+      -- No physics
+      false,
       "MainMenu",
       function()
          setupCamera()

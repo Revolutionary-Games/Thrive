@@ -49,6 +49,8 @@ function LuaEngine:init(cppSide)
    self.Engine = cppSide
 
    self.initialized = true
+
+   print("LuaEngine init started")
    
    self.consoleGUIWindow = CEGUIWindow.new("Console")
 
@@ -84,6 +86,8 @@ end
 --! Must be created with `table.insert(systems, s)`
 --! @param physics If true creates a physics state in the GameState
 --! @todo Make sure that .destroy() is called on these objects
+--! @param extraInitializer Function to be ran just after the GameState
+--! is initialized. The first parameter to the function is the gameState
 function LuaEngine:createGameState(name,
                                    systems,
                                    physics,
@@ -100,6 +104,11 @@ function LuaEngine:createGameState(name,
              "extraInitializer must be a function")
 
    end
+   -- Type check everything for bad calls
+   assert(type(name) == "string")
+   assert(type(systems) == "table")
+   assert(type(physics) == "boolean")
+   assert(type(guiLayoutName) == "string")
    
    assert(self.gameStates[name] == nil, "Duplicate GameState name")
 
@@ -423,6 +432,12 @@ function LuaEngine:saveCurrentStates(saveGame)
    
 end
 
+--! Sets the console object. Called from console.lua
+function LuaEngine:registerConsoleObject(console)
+
+    self.console = console;
+    
+end
 
 --! Global LuaEngine instance
 g_luaEngine = LuaEngine.new()

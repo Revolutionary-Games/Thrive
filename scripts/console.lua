@@ -8,18 +8,16 @@
 -- will try to print out tables recursively, subject to the pretty_print_limit value.
 -- Steve Donovan, 2007
 ----------------------
-
-class "ConsoleHud"
-class "Interpreter"
-
 require "string"
 
-function ConsoleHud:__init(interpreter)
-    self.active = false
-    self.interpreter = interpreter
-    self.inputHistory = {}
-    self.inputHistoryIndex = 0
-end
+ConsoleHud = class(
+    function(self, interpreter)
+        self.active = false
+        self.interpreter = interpreter
+        self.inputHistory = {}
+        self.inputHistoryIndex = 0        
+    end
+)
 
 function ConsoleHud:registerEvents(gameState)
     local root = gameState:rootGUIWindow()
@@ -98,113 +96,116 @@ function ConsoleHud:handleKeys(key)
     end
 end
 
-function Interpreter:__init()
-    self.pretty_print_limit = 20
-    self.max_depth = 7
-    self.table_clever = true
-    self.prompt = '> '
-    self.verbose = false
-    self.strict = false
-    -- suppress strict warnings
-    _ = true
+Interpreter = class(
+    function(self)
 
-    -- imported global functions
-    self.sub = string.sub
-    self.match = string.match
-    self.find = string.find
-    self.push = table.insert
-    self.pop = table.remove
-    self.append = table.insert
-    self.concat = table.concat
-    self.floor = math.floor
-    self.write = io.write 
-    self.read = io.read 
+        self.pretty_print_limit = 20
+        self.max_depth = 7
+        self.table_clever = true
+        self.prompt = '> '
+        self.verbose = false
+        self.strict = false
+        -- suppress strict warnings
+        _ = true
 
-    self.savef = nil
-    self.collisions = {}
-    self.G_LIB = {}
-    self.declared = {}
-    self.line_handler_fn = nil
-    self.global_handler_fn = nil
-    self.print_handlers = {}
+        -- imported global functions
+        self.sub = string.sub
+        self.match = string.match
+        self.find = string.find
+        self.push = table.insert
+        self.pop = table.remove
+        self.append = table.insert
+        self.concat = table.concat
+        self.floor = math.floor
+        self.write = io.write 
+        self.read = io.read 
 
-    self.ilua = {}
-    self.num_prec = nil
-    self.num_all = nil
+        self.savef = nil
+        self.collisions = {}
+        self.G_LIB = {}
+        self.declared = {}
+        self.line_handler_fn = nil
+        self.global_handler_fn = nil
+        self.print_handlers = {}
 
-    self.jstack = {}
+        self.ilua = {}
+        self.num_prec = nil
+        self.num_all = nil
 
-    self.history = ""
+        self.jstack = {}
 
-    -- functions available in scripts
-    function self.ilua.precision(len,prec,all)
-        if not len then num_prec = nil
-        else
-            num_prec = '%'..len..'.'..prec..'f'
-        end
-        num_all = all
-    end 
+        self.history = ""
 
-    function self.ilua.table_options(t)
-        if t.limit then self.pretty_print_limit = t.limit end
-        if t.depth then self.max_depth = t.depth end
-        if t.clever ~= nil then self.table_clever = t.clever end
-    end
-
-    -- inject @tbl into the global namespace
-    function self.ilua.import(tbl,dont_complain,lib)
-        lib = lib or '<unknown>'
-        if type(tbl) == 'table' then
-            for k,v in pairs(tbl) do
-                local key = rawget(_G,k)
-                -- NB to keep track of collisions!
-                if key and k ~= '_M' and k ~= '_NAME' and k ~= '_PACKAGE' and k ~= '_VERSION' then
-                    append(collisions,{k,lib,G_LIB[k]})
-                end
-                _G[k] = v
-                G_LIB[k] = lib
+        -- functions available in scripts
+        function self.ilua.precision(len,prec,all)
+            if not len then num_prec = nil
+            else
+                num_prec = '%'..len..'.'..prec..'f'
             end
+            num_all = all
+        end 
+
+        function self.ilua.table_options(t)
+            if t.limit then self.pretty_print_limit = t.limit end
+            if t.depth then self.max_depth = t.depth end
+            if t.clever ~= nil then self.table_clever = t.clever end
         end
-        if not dont_complain and  #self.collisions > 0  then
-            for i, coll in ipairs(self.collisions) do
-                local name,lib,oldlib = coll[1],coll[2],coll[3]
-                write('warning: ',lib,'.',name,' overwrites ')
-                if oldlib then
-                    self.write(oldlib,'.',name,'\n')
-                else
-                    self.write('global ',name,'\n')
+
+        -- inject @tbl into the global namespace
+        function self.ilua.import(tbl,dont_complain,lib)
+            lib = lib or '<unknown>'
+            if type(tbl) == 'table' then
+                for k,v in pairs(tbl) do
+                    local key = rawget(_G,k)
+                    -- NB to keep track of collisions!
+                    if key and k ~= '_M' and k ~= '_NAME' and k ~= '_PACKAGE' and k ~= '_VERSION' then
+                        append(collisions,{k,lib,G_LIB[k]})
+                    end
+                    _G[k] = v
+                    G_LIB[k] = lib
                 end
             end
+            if not dont_complain and  #self.collisions > 0  then
+                for i, coll in ipairs(self.collisions) do
+                    local name,lib,oldlib = coll[1],coll[2],coll[3]
+                    write('warning: ',lib,'.',name,' overwrites ')
+                    if oldlib then
+                        self.write(oldlib,'.',name,'\n')
+                    else
+                        self.write('global ',name,'\n')
+                    end
+                end
+            end
         end
-    end
 
-    function self.ilua.print_handler(name,handler)
-        self.print_handlers[name] = handler
-    end
-
-    function self.ilua.line_handler(handler)
-        self.line_handler_fn = handler
-    end
-
-    function self.ilua.global_handler(handler)
-        self.global_handler_fn = handler
-    end
-
-    function self.ilua.print_variables()
-        for name,v in pairs(self.declared) do
-            print(name,type(_G[name]))
+        function self.ilua.print_handler(name,handler)
+            self.print_handlers[name] = handler
         end
-    end
 
-    -- any import complaints?
-    self.ilua.import()
-    
-    -- enable 'not declared' error
-    if self.strict then 
-        self:set_strict()
-    end
+        function self.ilua.line_handler(handler)
+            self.line_handler_fn = handler
+        end
 
-end
+        function self.ilua.global_handler(handler)
+            self.global_handler_fn = handler
+        end
+
+        function self.ilua.print_variables()
+            for name,v in pairs(self.declared) do
+                print(name,type(_G[name]))
+            end
+        end
+
+        -- any import complaints?
+        self.ilua.import()
+        
+        -- enable 'not declared' error
+        if self.strict then 
+            self:set_strict()
+        end
+        
+    end
+)
 
 function Interpreter:oprint(...)
     if self.savef then
@@ -388,7 +389,7 @@ function Interpreter:set_strict()
 
 end
 
-interpreter = Interpreter()
+interpreter = Interpreter.new()
 
 function oprint(...)
     interpreter:oprint(...)
@@ -402,5 +403,5 @@ function textAccepted()
     console:eval()
 end
 
-console = ConsoleHud(interpreter)
-Engine:registerConsoleObject(console)
+console = ConsoleHud.new(interpreter)
+g_luaEngine:registerConsoleObject(console)
