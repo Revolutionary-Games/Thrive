@@ -59,12 +59,11 @@ public:
     * Creates a new unnamed entity
     *
     * @param gameState
-    *   The game state the new entity belongs to. If \c null, the current game
-    *   state of the global engine object is used.
+    *   The game state the new entity belongs to. If \c null, throws an error
     *
     */
     Entity(
-        GameStateData* gameState = nullptr
+        GameStateData* gameState
     );
 
     /**
@@ -76,13 +75,12 @@ public:
     *   The entity id to interface to
     *
     * @param gameState
-    *   The game state the entity belongs to. If \c null, the current game
-    *   state of the global engine object is used.
+    *   The game state the entity belongs to. If \c null, throws an error
     *
     */
     Entity(
         EntityId id,
-        GameStateData* gameState = nullptr
+        GameStateData* gameState
     );
 
     /**
@@ -96,13 +94,12 @@ public:
     *   The name of the entity to interface to
     *
     * @param gameState
-    *   The game state the entity belongs to. If \c null, the current game
-    *   state of the global engine object is used.
+    *   The game state the entity belongs to. If \c null, throws an error
     *
     */
     Entity(
         const std::string& name,
-        GameStateData* gameState = nullptr
+        GameStateData* gameState
     );
 
     /**

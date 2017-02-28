@@ -70,7 +70,7 @@ getEntityManager(
     GameStateData* gameState
 ) {
     if(gameState == nullptr)
-        throw std::runtime_error("Entity getEntityManager can't get "
+        throw std::runtime_error("Entity constructor: getEntityManager can't get "
             "manager from null gameState");
     
     return gameState->entityManager();
