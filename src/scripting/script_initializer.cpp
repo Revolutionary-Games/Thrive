@@ -272,6 +272,7 @@ void bindClassesToLua(sol::state &lua){
     {
         StorageContainer::luaBindings(lua);
         StorageList::luaBindings(lua);
+        
         System::luaBindings(lua);
         Component::luaBindings(lua);
         ComponentWrapper::luaBindings(lua);
