@@ -655,6 +655,25 @@ Engine::timedSystemShutdown(
     }
 }
 
+GameStateData*
+Engine::getCurrentGameStateFromLua(
+) {
+
+    sol::optional<GameStateData*> state = m_impl->m_luaState["g_luaEngine"]["currentGameState"]
+        ["wrapper"];
+
+    if(!state)
+        throw std::runtime_error("Engine: getCurrentGameStateFromLua failed to "
+            "get value (is state null?)");
+
+    GameStateData* statePtr = state.value();
+
+    if(!statePtr)
+        throw std::runtime_error("Engine: current GameStateData is nullptr");
+    
+    return statePtr;
+}
+
 
 OIS::InputManager*
 Engine::inputManager() const {

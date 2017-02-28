@@ -369,6 +369,12 @@ public:
 
     void timedSystemShutdown(System* system, int timeInMS);
 
+    /**
+    * @brief Gets the current GameStateData or throws
+    */
+    GameStateData*
+    getCurrentGameStateFromLua();
+
     /**@}*/ 
     
 
