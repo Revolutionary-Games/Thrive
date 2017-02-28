@@ -235,7 +235,9 @@ void OgreAddSceneNodeSystem::luaBindings(
 
         sol::constructors<sol::types<>>(),
         
-        sol::base_classes, sol::bases<System>()
+        sol::base_classes, sol::bases<System>(),
+
+        "init", &OgreAddSceneNodeSystem::init
     );
 }
 
@@ -315,7 +317,9 @@ void OgreRemoveSceneNodeSystem::luaBindings(
 
         sol::constructors<sol::types<>>(),
         
-        sol::base_classes, sol::bases<System>()
+        sol::base_classes, sol::bases<System>(),
+
+        "init", &OgreRemoveSceneNodeSystem::init
     );
 }
 
@@ -402,7 +406,9 @@ void OgreUpdateSceneNodeSystem::luaBindings(
 
         sol::constructors<sol::types<>>(),
         
-        sol::base_classes, sol::bases<System>()
+        sol::base_classes, sol::bases<System>(),
+
+        "init", &OgreUpdateSceneNodeSystem::init
     );
 }
 

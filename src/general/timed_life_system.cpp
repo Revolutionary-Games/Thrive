@@ -57,7 +57,9 @@ void TimedLifeSystem::luaBindings(
 
         sol::constructors<sol::types<>>(),
         
-        sol::base_classes, sol::bases<System>()
+        sol::base_classes, sol::bases<System>(),
+
+        "init", &TimedLifeSystem::init
     );
 }
 

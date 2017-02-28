@@ -113,7 +113,9 @@ void OgreWorkspaceSystem::luaBindings(
 
         sol::constructors<sol::types<>>(),
         
-        sol::base_classes, sol::bases<System>()
+        sol::base_classes, sol::bases<System>(),
+
+        "init", &OgreWorkspaceSystem::init
     );
 }
 

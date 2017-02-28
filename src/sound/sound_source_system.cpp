@@ -333,7 +333,9 @@ void SoundSourceSystem::luaBindings(sol::state &lua) {
 
         sol::constructors<sol::types<>>(),
 
-        sol::base_classes, sol::bases<System>()
+        sol::base_classes, sol::bases<System>(),
+
+        "init", &SoundSourceSystem::init
     );
 }
     

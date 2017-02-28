@@ -164,12 +164,16 @@ REGISTER_COMPONENT(CompoundAbsorberComponent)
 ////////////////////////////////////////////////////////////////////////////////
 // CompoundAbsorberSystem
 ////////////////////////////////////////////////////////////////////////////////
-    void CompoundAbsorberSystem::luaBindings(
+void CompoundAbsorberSystem::luaBindings(
     sol::state &lua
 ){
     lua.new_usertype<CompoundAbsorberSystem>("CompoundAbsorberSystem",
 
-        sol::constructors<sol::types<>>()
+        sol::constructors<sol::types<>>(),
+
+        sol::base_classes, sol::bases<System>(),
+
+        "init", &CompoundAbsorberSystem::init
     );
 }
 

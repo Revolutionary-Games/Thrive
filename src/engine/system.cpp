@@ -17,7 +17,9 @@ void System::luaBindings(
         "new", sol::no_constructor,
         
         "enabled", &System::enabled,
-        "init", &System::initNamed, 
+        // This doesn't need to be called from Lua. Derived systems
+        //register the actual thing
+        //"init", &System::initNamed,
         "setEnabled", &System::setEnabled,
         "activate", &System::activate, 
         "deactivate", &System::deactivate, 
