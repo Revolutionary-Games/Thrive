@@ -13,6 +13,8 @@ function class(base, create)
          c[i] = v
       end
       c._base = base
+   else
+       error("class base is not a table or a constructor")
    end
    -- the class will be the metatable for all its objects,
    -- and they will look up their methods in it.

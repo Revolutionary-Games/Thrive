@@ -7,6 +7,7 @@ Enable more checks
 By default most Lua safety checks are off. To make debugging easier
 you can build thrive with extra safety checks by specifying `LUA_CHECKS=ON`
 when running cmake. Like this:
+
 ```bash
 cmake .. -DLUA_CHECKS=ON
 ```
@@ -61,6 +62,20 @@ that the actual `.collisions` method returns
 
 
 `Ogre::Ray::intersects` now returns a tuple
+
+
+### New calls to C++ functions taking GameState arguments
+
+Now the GameState object is not exposed to C++ instead there is a
+wrapper that needs to be passed to C++. It is stored in
+`GameState.wrapper` so now `self.entities:init(gameState)` becomes
+`self.entities:init(gameState.wrapper)`
+
+
+If you don't pass the wrapper you will get a segmentation fault. But
+if you have turned on LUA_CHECKS then you will get an error message
+like this: `stack index 2, expected userdata, received table`
+
 
 
 C++ notes
