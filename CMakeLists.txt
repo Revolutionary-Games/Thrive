@@ -141,6 +141,16 @@ include_directories(SYSTEM ${BULLET_INCLUDE_DIRS})
 # Lua #
 #######
 
+option(LUA_CHECKS "when ON enables additional Lua safety
+       checks. Lowers performance so only use while debugging"
+       OFF)
+
+if(LUA_CHECKS)
+
+  add_definitions(-DSOL_CHECK_ARGUMENTS)
+  
+endif()
+
 include_directories(
   "${CMAKE_CURRENT_SOURCE_DIR}/contrib/lua"
   )
@@ -669,12 +679,24 @@ if(UNIX)
     "${CMAKE_CURRENT_BINARY_DIR}/CMakeLibraryList.xml" @ONLY
     )
 
-  add_custom_target(linuxrelease
-    COMMAND "${CMAKE_SOURCE_DIR}/cpack/PackageProject.rb" "${CMAKE_CURRENT_BINARY_DIR}"
-    WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}/cpack"
-    DEPENDS ThriveLib doc
-    )
-  # The name of the Thrive target somehow breaks in the above command
-  add_dependencies(linuxrelease Thrive)
+  if(LUA_CHECKS)
+
+    # creating debug releases is bad
+    add_custom_target(linuxrelease
+      # Please don't touch this really complex command output format
+      COMMAND "ruby" "-e" \"puts \\\"\\033[31m\\\"\; puts 'ERROR: LUA_CHECKS is on. release build is disabled. Please run \\'cmake .. -DLUA_CHECKS=OFF\\' and try again'\; puts \\\"\\033[0m\\\"\; exit(3) \"
+      )
+    
+  else()
+    
+    add_custom_target(linuxrelease
+      COMMAND "${CMAKE_SOURCE_DIR}/cpack/PackageProject.rb" "${CMAKE_CURRENT_BINARY_DIR}"
+      WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}/cpack"
+      DEPENDS ThriveLib doc
+      )
+    # The name of the Thrive target somehow breaks in the above command
+    add_dependencies(linuxrelease Thrive)
+
+  endif()
   
 endif()
