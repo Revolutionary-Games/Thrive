@@ -14,6 +14,16 @@
 
 using namespace thrive;
 
+
+void
+EntityManager::luaBindings(sol::state &lua){
+
+    lua.new_usertype<EntityManager>("EntityManager",
+
+        sol::constructors<sol::types<>>()
+    );
+}
+
 struct EntityManager::Implementation {
 
     ComponentCollection&

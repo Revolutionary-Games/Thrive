@@ -10,7 +10,7 @@
 
 
 
-
+#include "engine/entity_manager.h"
 #include "engine/component.h"
 #include "engine/component_factory.h"
 #include "engine/engine.h"
@@ -276,7 +276,10 @@ void bindClassesToLua(sol::state &lua){
         Component::luaBindings(lua);
         ComponentWrapper::luaBindings(lua);
         ComponentFactory::luaBindings(lua);
+        
+        EntityManager::luaBindings(lua);
         Entity::luaBindings(lua);
+        
         Touchable::luaBindings(lua);
         GameStateData::luaBindings(lua);
         RNG::luaBindings(lua);
