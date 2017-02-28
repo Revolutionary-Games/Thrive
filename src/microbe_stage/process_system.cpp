@@ -83,12 +83,14 @@ CompoundBagComponent::luaBindings() {
         .def("giveCompound", &CompoundBagComponent::giveCompound)
         .def("takeCompound", &CompoundBagComponent::takeCompound)
         .def("getCompoundAmount", &CompoundBagComponent::getCompoundAmount)
+        .def("getPrice", &CompoundBagComponent::getPrice)
         .def_readwrite("storageSpace", &CompoundBagComponent::storageSpace)
     ;
 }
 
 CompoundBagComponent::CompoundBagComponent() {
     storageSpace = 0;
+    storageSpaceOccupied = 0;
     for (CompoundId id : CompoundRegistry::getCompoundList()) {
         compounds[id] = 0;
     }
@@ -151,6 +153,15 @@ CompoundBagComponent::takeCompound(CompoundId id, float to_take) {
     return amt;
 }
 
+float
+CompoundBagComponent::getPrice(CompoundId compoundId) {
+    float amount = compounds[compoundId];
+    float spaceOccupiedPerUnit = CompoundRegistry::getCompoundUnitVolume(compoundId);
+    float spaceItOccupies = amount * spaceOccupiedPerUnit;
+    float price = 1 / (amount + 1) - spaceItOccupies / (storageSpace - storageSpaceOccupied + 1);
+    return price;
+}
+
 luabind::scope
 ProcessSystem::luaBindings() {
     using namespace luabind;
@@ -211,6 +222,7 @@ ProcessSystem::Implementation::updateAddedEntites(int) {
     // }
 }
 
+
 void
 ProcessSystem::Implementation::update(int logicTime) {
     //Iterating on each entity with a ProcessorComponent.
@@ -223,6 +235,13 @@ ProcessSystem::Implementation::update(int logicTime) {
         {
             std::unordered_map<CompoundId, float> price;
             std::unordered_map<CompoundId, float> amount;
+
+            //Calculating the storage space occupied;
+            bag->storageSpaceOccupied = 0;
+            for (const auto& compound : bag->compounds) {
+                float compoundAmount = compound.second;
+                bag->storageSpaceOccupied += compoundAmount;
+            }
 
             //Phase one: setting up the prices.
             for (const auto& compound : bag->compounds) {

@@ -54,6 +54,7 @@ public:
     storage() const override;
 
     float storageSpace;
+    float storageSpaceOccupied;
     ProcessorComponent* processor;
     std::string speciesName;
     std::unordered_map<CompoundId, float> compounds;
@@ -63,6 +64,9 @@ public:
 
     float
     getCompoundAmount(CompoundId);
+
+    float
+    getPrice(CompoundId);
 
     float
     takeCompound(CompoundId, float); // remove up to a certain amount of compound, returning how much was removed
