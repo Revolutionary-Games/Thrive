@@ -93,6 +93,7 @@ CompoundBagComponent::CompoundBagComponent() {
     storageSpaceOccupied = 0;
     for (CompoundId id : CompoundRegistry::getCompoundList()) {
         compounds[id] = 0;
+        prices[id] = 1;
     }
 }
 
@@ -102,10 +103,12 @@ CompoundBagComponent::load(const StorageContainer& storage)
     Component::load(storage);
 
     StorageContainer compounds = storage.get<StorageContainer>("compounds");
+    StorageContainer prices = storage.get<StorageContainer>("prices");
 
     for (const std::string& id : compounds.keys())
     {
         this->compounds[std::atoi(id.c_str())] = compounds.get<float>(id);
+        this->prices[std::atoi(id.c_str())] = prices.get<float>(id);
 	}
 
 	this->speciesName = storage.get<std::string>("speciesName");
@@ -121,8 +124,14 @@ CompoundBagComponent::storage() const
     for (auto entry : this->compounds) {
         compounds.set<float>(""+entry.first, entry.second);
     }
-    storage.set("compounds", std::move(compounds));
 
+    StorageContainer prices;
+    for (auto entry : this->prices) {
+        prices.set<float>(""+entry.first, entry.second);
+    }
+
+    storage.set("compounds", std::move(compounds));
+    storage.set("prices", std::move(compounds));
     storage.set("speciesName", this->speciesName);
 
     return storage;
@@ -155,11 +164,7 @@ CompoundBagComponent::takeCompound(CompoundId id, float to_take) {
 
 float
 CompoundBagComponent::getPrice(CompoundId compoundId) {
-    float amount = compounds[compoundId];
-    float spaceOccupiedPerUnit = CompoundRegistry::getCompoundUnitVolume(compoundId);
-    float spaceItOccupies = amount * spaceOccupiedPerUnit;
-    float price = 1 / (amount + 1) - spaceItOccupies / (storageSpace - storageSpaceOccupied + 1);
-    return price;
+    return prices[compoundId];
 }
 
 luabind::scope
@@ -233,9 +238,6 @@ ProcessSystem::Implementation::update(int logicTime) {
         // Avoiding zero-division errors.
         if(bag->storageSpace > 0)
         {
-            std::unordered_map<CompoundId, float> price;
-            std::unordered_map<CompoundId, float> amount;
-
             //Calculating the storage space occupied;
             bag->storageSpaceOccupied = 0;
             for (const auto& compound : bag->compounds) {
@@ -247,7 +249,7 @@ ProcessSystem::Implementation::update(int logicTime) {
             for (const auto& compound : bag->compounds) {
                 CompoundId compoundId = compound.first;
                 float compoundAmount = compound.second;
-                price[compoundId] = 1 / (compoundAmount + 1);
+                bag->prices[compoundId] = 1 / (compoundAmount + 1);
             }
 
             //Phase two: setting up the processes.
@@ -264,7 +266,7 @@ ProcessSystem::Implementation::update(int logicTime) {
                     CompoundId inputId = input.first;
                     int inputNeeded = input.second;
                     float spaceFreed = inputNeeded * CompoundRegistry::getCompoundUnitVolume(inputId);
-                    cost += price[inputId] * inputNeeded - spaceFreed / bag->storageSpace;
+                    cost += bag->prices[inputId] * inputNeeded - spaceFreed / bag->storageSpace;
 
                     //Limiting the process by the amount of this required compound.
                     processLimitCapacity = std::min(processLimitCapacity, bag->compounds[inputId] / inputNeeded);
@@ -276,7 +278,7 @@ ProcessSystem::Implementation::update(int logicTime) {
                     CompoundId outputId = output.first;
                     int outputGenerated = output.second;
                     float spaceUsed = outputGenerated * CompoundRegistry::getCompoundUnitVolume(outputId);
-                    revenue += price[outputId] * outputGenerated - spaceUsed / bag->storageSpace;
+                    revenue += bag->prices[outputId] * outputGenerated - spaceUsed / bag->storageSpace;
                 }
 
                 //Setting the process capacity rate.

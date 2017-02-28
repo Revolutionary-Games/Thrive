@@ -58,6 +58,7 @@ public:
     ProcessorComponent* processor;
     std::string speciesName;
     std::unordered_map<CompoundId, float> compounds;
+    std::unordered_map<CompoundId, float> prices;
 
     void
     setProcessor(ProcessorComponent& processor, const std::string& speciesName);
