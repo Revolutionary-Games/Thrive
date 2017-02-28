@@ -88,7 +88,8 @@ static Entity
 OgreSceneNodeComponent_getParent(
     const OgreSceneNodeComponent &self
 ) {
-    return Entity(self.m_parentId.get());
+    return Entity(self.m_parentId.get(), Game::instance().engine().
+        getCurrentGameStateFromLua());
 }
 
 

@@ -4,9 +4,10 @@
 #include "engine/component_factory.h"
 #include "engine/engine.h"
 #include "engine/entity.h"
-#include "engine/game_state.h"
 #include "engine/entity_filter.h"
+#include "engine/game_state.h"
 #include "engine/serialization.h"
+#include "game.h"
 
 #include "microbe_stage/compound.h"
 #include "microbe_stage/compound_registry.h"
@@ -156,7 +157,9 @@ CompoundBagComponent::load(const StorageContainer& storage)
 	}
 
 	this->speciesName = storage.get<std::string>("speciesName");
-	this->processor = static_cast<ProcessorComponent*>(Entity(this->speciesName).getComponent(ProcessorComponent::TYPE_ID));
+	this->processor = static_cast<ProcessorComponent*>(Entity(this->speciesName,
+            Game::instance().engine().getCurrentGameStateFromLua()).
+        getComponent(ProcessorComponent::TYPE_ID));
 }
 
 StorageContainer

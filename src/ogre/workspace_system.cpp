@@ -34,7 +34,8 @@ static Entity
 Properties_getCameraEntity(
     const OgreWorkspaceComponent::Properties &self
 ) {
-    return Entity(self.cameraEntity);
+    return Entity(self.cameraEntity, Game::instance().engine().
+        getCurrentGameStateFromLua());
 }
 
 

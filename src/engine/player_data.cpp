@@ -107,10 +107,16 @@ void
 PlayerData::load(
     const StorageContainer& storage
 ) {
+
+    if(!m_impl->m_activeCreatureGamestate)
+        throw std::runtime_error("PlayerData.activeCreatureGamestate is null in 'load'");
+    
+    
     m_impl->m_playerName = storage.get<std::string>("playerName");
     StorageContainer lockedMapStorage = storage.get<StorageContainer>("lockedMap");
     //This isn't the prettiest way to do it, but we need to reobtain a reference to the players creature
-    m_impl->m_activeCreature = Entity(m_impl->m_playerName).id();
+    m_impl->m_activeCreature = Entity(m_impl->m_playerName,
+        m_impl->m_activeCreatureGamestate).id();
     StorageList boolValues = storage.get<StorageList>("boolValues");
     for (const StorageContainer& container : boolValues) {
         std::string boolKey = container.get<std::string>("boolKey");
