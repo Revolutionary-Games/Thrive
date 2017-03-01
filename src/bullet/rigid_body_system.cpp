@@ -86,6 +86,8 @@ void RigidBodyComponent::luaBindings(
     lua.new_usertype<DynamicProperties>("RigidBodyComponent.DynamicProperties",
 
         "new", sol::no_constructor,
+
+        sol::base_classes, sol::bases<Touchable>(),
         
         "position", &DynamicProperties::position,
         "rotation", &DynamicProperties::rotation,
@@ -97,6 +99,8 @@ void RigidBodyComponent::luaBindings(
     lua.new_usertype<Properties>("RigidBodyComponent.Properties",
 
         "new", sol::no_constructor,
+
+        sol::base_classes, sol::bases<Touchable>(),
         
         "shape", &Properties::shape,
         "restitution", &Properties::restitution,
