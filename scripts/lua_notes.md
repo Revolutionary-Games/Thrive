@@ -47,6 +47,17 @@ without a stack trace. Then this is most likely what you have done
 wrong.
 
 
+### The .new method
+
+Before all Lua objects were created like this:
+`OgreSceneNodeComponent()` but now you need to call the `.new` method
+like this: `OgreSceneNodeComponent.new()`. Though, for convenience
+some classes expose (one of) their constructors the old way. For
+example the vector class: `Vector3(1, 5, 0)` and `Degree` but only the
+numeric constructors. So if you want to call `Degree` constructor with
+a `Radian` you will need to use `Degree.new(radianVariable)`.
+
+
 Renames and different function signatures
 -----------------------------------------
 

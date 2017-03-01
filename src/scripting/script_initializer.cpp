@@ -622,6 +622,13 @@ static void degreeBindings(sol::state &lua) {
          ),
 
          sol::meta_function::division, &Ogre::Degree::operator/,
+
+         // Support for table call syntax
+         sol::call_constructor, [](Ogre::Real val){
+
+             return Ogre::Degree(val);
+                 
+         },
          
          "valueDegrees", &Ogre::Degree::valueDegrees
      );
@@ -888,6 +895,13 @@ static void quaternionBindings(sol::state &lua) {
             static_cast<Ogre::Vector3 (Ogre::Quaternion::*)(const Ogre::Vector3&) const>(
                 &Ogre::Quaternion::operator*)
         ),
+
+        // Support for table call syntax
+        sol::call_constructor, [](Real fW, Real fX, Real fY, Real fZ){
+
+            return Ogre::Quaternion(fW, fX, fY, fZ);
+                
+        },
         
         "FromRotationMatrix", &Quaternion::FromRotationMatrix,
         "ToRotationMatrix", &Quaternion::ToRotationMatrix,
@@ -944,6 +958,14 @@ static void radianBindings(sol::state &lua) {
 
         sol::meta_function::division, static_cast<Ogre::Radian (Ogre::Radian::*)(
             const Ogre::Real) const>(&Ogre::Radian::operator/),
+
+
+        // Support for table call syntax
+        sol::call_constructor, [](Ogre::Real val){
+
+            return Ogre::Radian(val);
+                 
+        },
         
         "valueDegrees", &Radian::valueDegrees,
         "valueRadians", &Radian::valueRadians,
@@ -1047,6 +1069,13 @@ static void vector3Bindings(sol::state &lua) {
                 &Ogre::Vector3::operator/)
         ),
 
+        // Support for table call syntax
+        sol::call_constructor, [](const Ogre::Real x, const Ogre::Real y, const Ogre::Real z){
+
+            return Ogre::Vector3(x, y, z);
+            
+        },
+        
         //.def(tostring(self))
 
         "x", &Vector3::x,

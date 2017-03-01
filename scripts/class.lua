@@ -36,6 +36,14 @@ function class(base, create)
       end
       return obj
    end
+
+   -- Expose a table call constructor
+   mt.__call = function(class_tbl, ...)
+
+       return class_tbl.new(...)
+       
+   end
+   
    c.create = create
    c.is_a = function(self, klass)
       local m = getmetatable(self)
