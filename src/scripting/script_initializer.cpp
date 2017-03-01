@@ -95,32 +95,6 @@
 
 using namespace thrive;
 
-static int
-constructTraceback(
-    lua_State* L
-) {
-    lua_Debug d;
-    std::stringstream traceback;
-    // Error message
-    traceback << lua_tostring(L, -1) << ":" << std::endl;
-    lua_pop(L, 1);
-    // Stacktrace
-    for (
-        int stacklevel = 0;
-        lua_getstack(L, stacklevel, &d);
-        stacklevel++
-    ) {
-       lua_getinfo(L, "Sln", &d);
-       traceback << "    " << d.short_src << ":" << d.currentline;
-       if (d.name != nullptr) {
-           traceback << " (" << d.namewhat << " " << d.name << ")";
-       }
-       traceback << std::endl;
-    }
-    lua_pushstring(L, traceback.str().c_str());
-    std::cout << traceback.str().c_str() << std::endl;
-    return 1;
-}
 
 /**
 * @brief Thrive lua panic handler
@@ -129,15 +103,20 @@ int thriveLuaPanic(lua_State* L);
 
 int thriveLuaPanic(lua_State* L){
 
-    const char* message = lua_tostring(L, -1);
-    std::string err = message ? message :
-        "An unexpected error occurred and forced the lua state to call atpanic";
+    std::string err = "An unexpected error occurred and forced the lua state to call atpanic";
+    
+    if(lua_isstring(L, -1)){
+    
+        const char* message = lua_tostring(L, -1);
+        std::string err = message;
+        lua_pop(L, 1);
+    }
     
     lua_Debug d;
     std::stringstream traceback;
     // Error message
     traceback << err << ":" << std::endl;
-    lua_pop(L, 1);
+    
     
     // Stacktrace
     for (
@@ -152,6 +131,8 @@ int thriveLuaPanic(lua_State* L){
         }
         traceback << std::endl;
     }
+
+    // TODO: check if we should push this string and is throwing from here a good idea
     
     //lua_pushstring(L, traceback.str().c_str());
 
@@ -167,21 +148,24 @@ int thriveLuaPanic(lua_State* L){
 /**
 * @brief Thrive lua error handler
 */
-std::string thriveLuaOnError(sol::this_state lua);
+std::string thriveLuaOnError(sol::this_state lua, std::string err);
 
-std::string thriveLuaOnError(sol::this_state lua){
+std::string thriveLuaOnError(sol::this_state lua, std::string err){
 
     lua_State* L = sol::state_view(lua).lua_state();
 
-    const char* message = lua_tostring(L, -1);
-    std::string err = message ? message :
-        "An unexpected error occurred and forced the lua state to call atpanic";
+    //const char* message = lua_tostring(L, -1);
+    //std::string err = message ? message :
+    //    "An unexpected error occurred and forced the lua state to call atpanic";
+    //lua_pop(L, 1);
+    
+    if(err.empty())
+        err = "An unexpected error occurred and forced the lua state to call onerror";
     
     lua_Debug d;
     std::stringstream traceback;
     // Error message
     traceback << err << ":" << std::endl;
-    lua_pop(L, 1);
 
     // Stacktrace
     for (
@@ -252,8 +236,6 @@ void thrive::initializeLua(sol::state &lua){
     //lua.set_panic
     lua.set_panic(&thriveLuaPanic);
     
-    //luabind::set_pcall_callback(constructTraceback);
-
     // Class type registering //
     bindClassesToLua(lua);
 

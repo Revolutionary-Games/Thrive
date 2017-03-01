@@ -127,8 +127,6 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
         sol::protected_function luaMethod = m_luaState["g_luaEngine"]
             ["loadSavegameGameStates"];
 
-        luaMethod.error_handler = m_luaState["thrivePanic"];
-    
         if(!luaMethod(m_luaState["g_luaEngine"], &savegame).valid()){
 
             throw std::runtime_error("LuaEngine failed to load saved game states");
@@ -209,8 +207,6 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
                 sol::protected_function fileFunc =
                     m_luaState.load_file(manifestEntryPath.string().c_str());
 
-                fileFunc.error_handler = m_luaState["thrivePanic"];
-                
                 auto runResult = fileFunc();
 
                 if(runResult.status() != sol::call_status::ok){
@@ -235,8 +231,6 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
         sol::protected_function luaMethod = m_luaState["g_luaEngine"]
             ["saveCurrentStates"];
 
-        luaMethod.error_handler = m_luaState["thrivePanic"];
-    
         if(!luaMethod(m_luaState["g_luaEngine"], &savegame).valid()){
 
             throw std::runtime_error("LuaEngine failed to save game states");
@@ -558,6 +552,9 @@ Engine::init() {
     m_impl->setupGUI();
     
     m_impl->setupInputManager();
+
+    // Install the Thrive error handler by default
+    sol::protected_function::set_default_handler(m_impl->m_luaState["thrivePanic"]);
     
     if(!m_impl->loadScripts("../scripts")){
 
@@ -568,8 +565,6 @@ Engine::init() {
     // Initialize lua engine side
     sol::protected_function luaInit = m_impl->m_luaState["g_luaEngine"]["init"];
 
-    luaInit.error_handler = m_impl->m_luaState["thrivePanic"];
-    
     if(!luaInit(m_impl->m_luaState["g_luaEngine"], this).valid()){
 
         throw std::runtime_error("Failed to initialize LuaEngine side");
@@ -589,8 +584,6 @@ Engine::enterLuaMain(
 ) {
     sol::protected_function luaMain = m_impl->m_luaState["enterLuaMain"];
 
-    luaMain.error_handler = m_impl->m_luaState["thrivePanic"];
-
     luaMain(gameObj);
 }
 
@@ -602,8 +595,6 @@ Engine::transferEntityGameState(
 ) {
     sol::protected_function luaMethod = m_impl->m_luaState["g_luaEngine"]
         ["transferEntityGameState"];
-
-    luaMethod.error_handler = m_impl->m_luaState["thrivePanic"];
 
     auto result = luaMethod(m_impl->m_luaState["g_luaEngine"],
         id, entityManager, targetState);
@@ -623,8 +614,6 @@ Engine::isSystemTimedShutdown(
     sol::protected_function luaMethod = m_impl->m_luaState["g_luaEngine"]
         ["isSystemTimedShutdown"];
 
-    luaMethod.error_handler = m_impl->m_luaState["thrivePanic"];
-
     auto result = luaMethod(m_impl->m_luaState["g_luaEngine"],
         system);
     
@@ -643,8 +632,6 @@ Engine::timedSystemShutdown(
 ) {
     sol::protected_function luaMethod = m_impl->m_luaState["g_luaEngine"]
         ["timedSystemShutdown"];
-
-    luaMethod.error_handler = m_impl->m_luaState["thrivePanic"];
 
     auto result = luaMethod(m_impl->m_luaState["g_luaEngine"],
         system, timeInMS);
@@ -870,8 +857,6 @@ Engine::shutdown() {
     
     sol::protected_function luaInit = m_impl->m_luaState["g_luaEngine"]["shutdown"];
 
-    luaInit.error_handler = m_impl->m_luaState["thrivePanic"];
-    
     if(!luaInit(m_impl->m_luaState["g_luaEngine"]).valid()){
 
         throw std::runtime_error("Failed to shutdown LuaEngine side");
