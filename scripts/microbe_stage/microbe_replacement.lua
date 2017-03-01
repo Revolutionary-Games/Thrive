@@ -21,7 +21,7 @@ global_newEditorMicrobe = false
 --set it up so the game knows whether or not to replace the genus.
 global_genusPicked = false
 
-function MicrobeReplacementSystem:init()
+function MicrobeReplacementSystem:init(gameState)
     LuaSystem.init(self, "MicrobeReplacementSystem", gameState)
 end
 

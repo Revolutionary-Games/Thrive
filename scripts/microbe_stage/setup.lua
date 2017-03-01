@@ -1,8 +1,8 @@
 CLOUD_SPAWN_RADIUS = 50
 CLOUD_SPAWN_DENSITY = 1/5000
 
-local function setupBackground()
-    setRandomBiome()
+local function setupBackground(gameState)
+    setRandomBiome(gameState)
 end
 
 local function setupCamera()
@@ -64,7 +64,7 @@ local function setupProcesses()
     BioProcessRegistry.loadFromLua(processes)
 end
 
-function setupSpecies()
+function setupSpecies(gameState)
     --[[
     This function should be the entry point for all initial-species generation
     For now, it can go through the XML and instantiate all the species, but later this 
@@ -73,8 +73,8 @@ function setupSpecies()
     ]]
     
     for name, data in pairs(starter_microbes) do
-        speciesEntity = Entity(name)
-        speciesComponent = SpeciesComponent(name)
+        speciesEntity = Entity.new(name, gameState.wrapper)
+        speciesComponent = SpeciesComponent.new(name)
         speciesEntity:addComponent(speciesComponent)
         for i, organelle in pairs(data.organelles) do
             local org = {}
@@ -84,12 +84,12 @@ function setupSpecies()
             org.rotation = organelle.rotation
             speciesComponent.organelles[i] = org
         end
-        processorComponent = ProcessorComponent()
+        processorComponent = ProcessorComponent.new()
         speciesEntity:addComponent(processorComponent)
         speciesComponent.colour = Vector3(data.colour.r, data.colour.g, data.colour.b)
 
         -- iterates over all compounds, and sets amounts and priorities
-        for compoundID in CompoundRegistry.getCompoundList() do
+        for _, compoundID in pairs(CompoundRegistry.getCompoundList()) do
             compound = CompoundRegistry.getCompoundInternalName(compoundID)
 
             if agents[compound] then
@@ -138,7 +138,7 @@ function setupSpecies()
                 end
             end
         end
-        for bioProcessId in BioProcessRegistry.getList() do
+        for _, bioProcessId in pairs(BioProcessRegistry.getList()) do
             local name = BioProcessRegistry.getInternalName(bioProcessId)
             if capacities[name] ~= nil then
                 processorComponent:setCapacity(bioProcessId, capacities[name])
@@ -411,11 +411,11 @@ local function createMicrobeStage(name)
         },
         true,
         "MicrobeStage",
-        function()
-            setupBackground()
+        function(gameState)
+            setupBackground(gameState)
             setupCamera()
             setupCompoundClouds()
-            setupSpecies()
+            setupSpecies(gameState)
             setupPlayer()
             setupSound()
         end

@@ -61,7 +61,7 @@ currentSpawnSystem = nil
 -- Override from System
 function SpawnSystem:init(gameState)
     LuaSystem.init(self, "SpawnSystem", gameState)
-    self.entities:init(gameState)
+    self.entities:init(gameState.wrapper)
 end
 
 -- Override from System

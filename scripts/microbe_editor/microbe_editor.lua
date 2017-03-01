@@ -37,10 +37,10 @@ function MicrobeEditor:createHexComponent(q, r)
     local s = encodeAxial(q, r)
     self.occupiedHexes[s] = Entity.new()
     local sceneNode = OgreSceneNodeComponent.new()
-    sceneNode.transform.position = Vector3.new(x, y, 0)
+    sceneNode.transform.position = Vector3(x, y, 0)
     sceneNode.transform:touch()
     sceneNode.meshName = "hex.mesh"
-    sceneNode.transform.scale = Vector3.new(HEX_SIZE, HEX_SIZE, HEX_SIZE)
+    sceneNode.transform.scale = Vector3(HEX_SIZE, HEX_SIZE, HEX_SIZE)
     self.occupiedHexes[s]:addComponent(sceneNode)
     self.occupiedHexes[s]:setVolatile(true)
 end
@@ -56,11 +56,11 @@ function MicrobeEditor:surroundsOrganelle(q, r)
 end
 
 function MicrobeEditor:init(gameState)
-    ent = Entity.new()
+    ent = Entity.new(gameState.wrapper)
     local sceneNode = OgreSceneNodeComponent.new()
     sceneNode.planeTexture = "EditorGridMaterial"
     ent:addComponent(sceneNode)
-    sceneNode.transform.scale = Vector3.new(HEX_SIZE, HEX_SIZE, 1)
+    sceneNode.transform.scale = Vector3(HEX_SIZE, HEX_SIZE, 1)
     sceneNode.transform:touch()
     
     self.gridSceneNode = sceneNode

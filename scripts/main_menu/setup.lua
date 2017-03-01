@@ -1,27 +1,27 @@
 
-local function setupCamera()
-    local entity = Entity(CAMERA_NAME .. "2")
+local function setupCamera(gameState)
+    local entity = Entity.new(CAMERA_NAME .. "2", gameState.wrapper)
     -- Camera
     local camera = OgreCameraComponent.new("camera2")
     camera.properties.nearClipDistance = 5
     camera.properties:touch()
     entity:addComponent(camera)
     -- Scene node
-    local sceneNode = OgreSceneNodeComponent()
+    local sceneNode = OgreSceneNodeComponent.new()
     entity:addComponent(sceneNode)
     -- Workspace
-    local workspaceEntity = Entity()
+    local workspaceEntity = Entity.new(gameState.wrapper)
     -- TODO: could create a workspace without shadows
-    local workspaceComponent = OgreWorkspaceComponent("thrive_default")
+    local workspaceComponent = OgreWorkspaceComponent.new("thrive_default")
     workspaceComponent.properties.cameraEntity = entity
     workspaceComponent.properties.position = 0
     workspaceComponent.properties:touch()
     workspaceEntity:addComponent(workspaceComponent)
 end
 
-local function setupSound()
+local function setupSound(gameState)
     -- Background music
-    local ambientEntity = Entity("main_menu_ambience")
+    local ambientEntity = Entity.new("main_menu_ambience", gameState.wrapper)
     local soundSource = SoundSourceComponent.new()
     soundSource.ambientSoundSource = true
     soundSource.autoLoop = false
@@ -30,7 +30,7 @@ local function setupSound()
     soundSource:addSound("main-menu-theme-1", "main-menu-theme-1.ogg")
     soundSource:addSound("main-menu-theme-2", "main-menu-theme-2.ogg")
     -- Gui effects
-    local guiSoundEntity = Entity("gui_sounds")
+    local guiSoundEntity = Entity.new("gui_sounds", gameState.wrapper)
     soundSource = SoundSourceComponent.new()
     soundSource.ambientSoundSource = true
     soundSource.autoLoop = false
@@ -59,9 +59,9 @@ local function createMainMenu(name)
       -- No physics
       false,
       "MainMenu",
-      function()
-         setupCamera()
-         setupSound()
+      function(gameState)
+         setupCamera(gameState)
+         setupSound(gameState)
       end
    )
 end

@@ -6,7 +6,7 @@ local function setupBackground(gameState)
     --but with a different background.
     local entity = Entity.new("background", gameState.wrapper)
     local skyplane = SkyPlaneComponent.new()
-    skyplane.properties.plane.normal = Vector3.new(0, 0, 2000)
+    skyplane.properties.plane.normal = Vector3(0, 0, 2000)
     skyplane.properties.materialName = biomeTable[TUTORIAL_BIOME].background
 	skyplane.properties.scale = 200
     skyplane.properties:touch()
@@ -18,7 +18,7 @@ local function setupCamera(gameState)
     -- Camera
     local camera = OgreCameraComponent.new("camera")
     camera.properties.nearClipDistance = 5
-    camera.properties.offset = Vector3.new(0, 0, 30)
+    camera.properties.offset = Vector3(0, 0, 30)
     camera.properties:touch()
     entity:addComponent(camera)
     -- Scene node
@@ -56,7 +56,7 @@ local function setupPlayer(gameState)
     local entity = Entity.new(PLAYER_NAME, gameState.wrapper)
     local sceneNode = OgreSceneNodeComponent.new()
     entity:addComponent(sceneNode)
-    Engine:playerData():setActiveCreature(entity.id, GameState.MICROBE_TUTORIAL)
+    Engine:playerData():setActiveCreature(entity.id, GameState.MICROBE_TUTORIAL.wrapper)
     -- local microbe = Microbe.createMicrobeEntity(PLAYER_NAME, false)
     -- Entity("Default"):getComponent(SpeciesComponent.TYPE_ID):template(microbe)
     -- microbe.collisionHandler:addCollisionGroup("powerupable")

@@ -2,7 +2,10 @@
 currentBiome = {}
 
 --Setting the current biome to the one with the specified name.
-function setBiome(biomeName)
+function setBiome(biomeName, gameState)
+
+    assert(gameState ~= nil, "setBiome requires gameState")
+    
     --Getting the base biome to change to.
     local baseBiome = biomeTable[biomeName]
 
@@ -19,8 +22,8 @@ function setBiome(biomeName)
     end
 
     --Changing the background.
-    local entity = Entity("background")
-    local skyplane = SkyPlaneComponent()
+    local entity = Entity.new("background", gameState.wrapper)
+    local skyplane = SkyPlaneComponent.new()
     skyplane.properties.plane.normal = Vector3(0, 0, 2000)
     skyplane.properties.materialName = currentBiome.background
 	skyplane.properties.scale = 200
@@ -29,7 +32,7 @@ function setBiome(biomeName)
 end
 
 --Setting the current biome to a random biome selected from the biome table.
-function setRandomBiome()
+function setRandomBiome(gameState)
     --Getting the size of the biome table.
     local numberOfBiomes = 0
     local biomeNameTable = {}
@@ -44,5 +47,5 @@ function setRandomBiome()
     local currentBiomeName = biomeNameTable[rand]
 
     --Switching to that biome.
-    setBiome(currentBiomeName)
+    setBiome(currentBiomeName, gameState)
 end

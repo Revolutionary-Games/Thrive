@@ -28,8 +28,8 @@ function MicrobeEditorHudSystem:init(gameState)
 
     -- This seems really cluttered, there must be a better way.
     for i=1, 42 do
-        self.hoverHex[i] = Entity("hover-hex" .. i)
-        local sceneNode = OgreSceneNodeComponent()
+        self.hoverHex[i] = Entity.new("hover-hex" .. i, gameState.wrapper)
+        local sceneNode = OgreSceneNodeComponent.new()
         sceneNode.transform.position = Vector3(0,0,0)
         sceneNode.transform:touch()
         sceneNode.meshName = "hex.mesh"
@@ -37,8 +37,8 @@ function MicrobeEditorHudSystem:init(gameState)
         self.hoverHex[i]:addComponent(sceneNode)
     end
     for i=1, 6 do
-        self.hoverOrganelle[i] = Entity("hover-organelle" .. i)    
-        local sceneNode = OgreSceneNodeComponent()
+        self.hoverOrganelle[i] = Entity.new("hover-organelle" .. i, gameState.wrapper) 
+        local sceneNode = OgreSceneNodeComponent.new()
         sceneNode.transform.position = Vector3(0,0,0)
         sceneNode.transform:touch()
         sceneNode.transform.scale = Vector3(HEX_SIZE, HEX_SIZE, HEX_SIZE)
