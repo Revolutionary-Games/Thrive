@@ -22,9 +22,9 @@ void BioProcessRegistry::luaBindings(
         "getSpeedFactor", &BioProcessRegistry::getSpeedFactor,
         "getId", &BioProcessRegistry::getId,
         
-        "getList", [](BioProcessRegistry& us, sol::this_state s){
+        "getList", [](sol::this_state s){
 
-            THRIVE_BIND_ITERATOR_TO_TABLE(us.getList());
+            THRIVE_BIND_ITERATOR_TO_TABLE(BioProcessRegistry::getList());
         },
         
         "getInputCompounds", &BioProcessRegistry::getInputCompounds,

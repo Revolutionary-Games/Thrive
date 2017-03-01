@@ -3,6 +3,7 @@
 #include "engine/engine.h"
 #include "engine/entity_manager.h"
 #include "engine/game_state.h"
+#include "scripting/wrapper_classes.h"
 #include "game.h"
 #include "scripting/luajit.h"
 
@@ -51,7 +52,43 @@ void Entity::luaBindings(
         "addComponent", &Entity_addComponent,
         "destroy", &Entity::destroy,
         "exists", &Entity::exists,
+        
         "getComponent", &Entity::getComponent,
+
+        // Gets a component from an entity, creating the component if it's not present
+        //
+        // @param componentCls
+        //  The class object of the component type
+        //
+        // Rest of the parameters are passed to the component constructor if a
+        // new component instance needs to be created
+        "getOrCreate", [](Entity &self, sol::table componentCls,
+            sol::variadic_args va)
+        {
+            Component* component = self.getComponent(componentCls["TYPE_ID"]);
+
+            if(component)
+                return component;
+
+            auto factory = componentCls.get<sol::protected_function>("new");
+
+            auto result = factory(va);
+
+            if(!result.valid())
+                throw std::runtime_error("Entity getOrCreate failed to call "
+                    "Lua component 'new' method:" + result.get<std::string>());
+            
+            auto newComponent = std::make_unique<ComponentWrapper>(
+                result.get<sol::table>()
+            );
+
+            
+            component = newComponent.get();
+            self.addComponent(std::move(newComponent));
+
+            return component;
+        },
+        
         "isVolatile", &Entity::isVolatile,
         "removeComponent", &Entity::removeComponent,
         // prefer to call LuaEngine:transferEntityGameState. This is slow
@@ -60,7 +97,7 @@ void Entity::luaBindings(
         "stealName", &Entity::stealName,
         "addChild", &Entity::addChild,
         "hasChildren", &Entity::hasChildren,
-        "id", &Entity::id
+        "id", sol::property(&Entity::id)
         
     );
 }

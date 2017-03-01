@@ -18,22 +18,6 @@ function REGISTER_COMPONENT(name, cls)
 end
 
 
--- Gets a component from an entity, creating the component if it's not present
---
--- @param componentCls
---  The class object of the component type
---
--- Rest of the parameters are passed to the component constructor if a
--- new component instance needs to be created
-function Entity:getOrCreate(componentCls, ...)
-    component = self:getComponent(componentCls.TYPE_ID)
-    if component == nil then
-        component = ComponentWrapper.factory(componentCls.new(...))
-        self:addComponent(component)
-    end
-    return component
-end
-
 
 -- Computes a number's sign
 --

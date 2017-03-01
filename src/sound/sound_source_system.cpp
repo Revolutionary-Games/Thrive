@@ -215,13 +215,12 @@ void SoundSourceComponent::luaBindings(
         "interpose", &SoundSourceComponent::interpose,
         "interruptPlaying", &SoundSourceComponent::interruptPlaying,
 
-        // TODOSOL: check do these need to be properties or not
-        // maybe add something like:
-        // THRIVE_SOL_BIND_TOUCHABLE_PROPERTY("ambientSoundSource",
-        //     SoundSourceComponent, m_ambientSoundSource)
-        "ambientSoundSource", &SoundSourceComponent::m_ambientSoundSource,
-        "autoLoop", &SoundSourceComponent::m_autoLoop,
-        "volumeMultiplier", &SoundSourceComponent::m_volumeMultiplier
+        "ambientSoundSource", sol::property(&SoundSourceComponent_getAmbientSoundSource,
+            &SoundSourceComponent_setAmbientSoundSource),
+        "autoLoop", sol::property(&SoundSourceComponent_getAutoLoop,
+            &SoundSourceComponent_setAutoLoop),
+        "volumeMultiplier", sol::property(&SoundSourceComponent_getVolumeMultiplier,
+            &SoundSourceComponent_setVolumeMultiplier)
     );
 }
 
