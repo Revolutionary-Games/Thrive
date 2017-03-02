@@ -92,8 +92,9 @@ CompoundBagComponent::CompoundBagComponent() {
     storageSpaceOccupied = 0;
     for (CompoundId id : CompoundRegistry::getCompoundList()) {
         compounds[id].amount = 0;
-        compounds[id].price = 1;
-        compounds[id].demand = 1;
+        compounds[id].price = INITIAL_COMPOUND_PRICE;
+        compounds[id].uninflatedPrice = INITIAL_COMPOUND_PRICE;
+        compounds[id].demand = INITIAL_COMPOUND_DEMAND;
     }
 }
 
@@ -104,6 +105,7 @@ CompoundBagComponent::load(const StorageContainer& storage)
 
     StorageContainer amounts = storage.get<StorageContainer>("amounts");
     StorageContainer prices = storage.get<StorageContainer>("prices");
+    StorageContainer uninflatedPrices = storage.get<StorageContainer>("uninflatedPrices");
     StorageContainer demand = storage.get<StorageContainer>("demand");
 
     for (const std::string& id : amounts.keys())
@@ -111,6 +113,7 @@ CompoundBagComponent::load(const StorageContainer& storage)
         CompoundId compoundId = std::atoi(id.c_str());
         this->compounds[compoundId].amount = amounts.get<float>(id);
         this->compounds[compoundId].price = prices.get<float>(id);
+        this->compounds[compoundId].uninflatedPrice = uninflatedPrices.get<float>(id);
         this->compounds[compoundId].demand = demand.get<float>(id);
 	}
 
@@ -125,6 +128,7 @@ CompoundBagComponent::storage() const
 
     StorageContainer amounts;
     StorageContainer prices;
+    StorageContainer uninflatedPrices;
     StorageContainer demand;
     for (auto entry : this->compounds) {
         CompoundId id = entry.first;
@@ -132,11 +136,13 @@ CompoundBagComponent::storage() const
 
         amounts.set<float>(""+id, data.amount);
         amounts.set<float>(""+id, data.price);
+        amounts.set<float>(""+id, data.uninflatedPrice);
         amounts.set<float>(""+id, data.demand);
     }
 
     storage.set("amounts", std::move(amounts));
     storage.set("prices", std::move(prices));
+    storage.set("uninflatedPrices", std::move(uninflatedPrices));
     storage.set("demand", std::move(demand));
     storage.set("speciesName", this->speciesName);
 
@@ -254,11 +260,28 @@ ProcessSystem::Implementation::update(int logicTime) {
             //Phase one: setting up the prices.
             for (const auto& compound : bag->compounds) {
                 CompoundId compoundId = compound.first;
-                float compoundAmount = compound.second.amount;
+                CompoundData compoundData = bag->compounds[compoundId];
+
+                // Edge case to get the prices above 0 if some demand exists.
+                if(compoundData.demand > 0 && compoundData.uninflatedPrice <= 0)
+                    compoundData.uninflatedPrice = MIN_POSITIVE_COMPOUND_PRICE;
+
+                // Adjusting the prices according to supply and demand.
+                float priceAdjustment = compoundData.demand / (compoundData.amount + 1);
+                compoundData.uninflatedPrice = compoundData.uninflatedPrice * (COMPOUND_PRICE_MOMENTUM + priceAdjustment - COMPOUND_PRICE_MOMENTUM * priceAdjustment);
+
+                // Setting the prices to 0 if they're below MIN_POSITIVE_COMPOUND_PRICE.
+                if(compoundData.price < MIN_POSITIVE_COMPOUND_PRICE)
+                    compoundData.uninflatedPrice = 0;
+
+
+                //Inflating the price if the compound is useful outside of this system.
+                compoundData.price = compoundData.uninflatedPrice;
                 if(CompoundRegistry::isUseful(compoundId))
-                    bag->compounds[compoundId].price = 1 / (compoundAmount + 1);
-                else
-                    bag->compounds[compoundId].price = 0;
+                    compoundData.price += 1 / (compoundData.amount + 1);
+
+                // Setting the demand to 0 in order to recalculate it later.
+                compoundData.demand = 0;
             }
 
             //Phase two: setting up the processes.
@@ -291,21 +314,25 @@ ProcessSystem::Implementation::update(int logicTime) {
                 }
 
                 //Setting the process capacity rate.
-                float rate = 0;
-                if(revenue > cost) rate = std::min(processCapacity * logicTime / 1000, processLimitCapacity);
+                if(revenue > cost) {
+                    float rate = std::min(processCapacity * logicTime / 1000, processLimitCapacity);
 
-                //Running the process at the specified rate, transforming the inputs...
-                for (const auto& input : BioProcessRegistry::getInputCompounds(processId)) {
-                    CompoundId inputId = input.first;
-                    int inputNeeded = input.second;
-                    bag->compounds[inputId].amount -= rate * inputNeeded;
-                }
+                    //Running the process at the specified rate, transforming the inputs...
+                    for (const auto& input : BioProcessRegistry::getInputCompounds(processId)) {
+                        CompoundId inputId = input.first;
+                        int inputNeeded = input.second;
+                        bag->compounds[inputId].amount -= rate * inputNeeded;
 
-                //...into the outputs.
-                for (const auto& output : BioProcessRegistry::getOutputCompounds(processId)) {
-                    CompoundId outputId = output.first;
-                    int outputGenerated = output.second;
-                    bag->compounds[outputId].amount += rate * outputGenerated;
+                        // Increasing the input compound demand.
+                        bag->compounds[inputId].demand += rate * inputNeeded;
+                    }
+
+                    //...into the outputs.
+                    for (const auto& output : BioProcessRegistry::getOutputCompounds(processId)) {
+                        CompoundId outputId = output.first;
+                        int outputGenerated = output.second;
+                        bag->compounds[outputId].amount += rate * outputGenerated;
+                    }
                 }
             }
         }

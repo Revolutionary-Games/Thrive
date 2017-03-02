@@ -10,6 +10,17 @@
 #include <vector>
 #include <unordered_map>
 
+// The minimum positive price a compound can have.
+#define MIN_POSITIVE_COMPOUND_PRICE 0.001
+
+// The "willingness" of the compound prices to change.
+// (between 0.0 and 1.0)
+#define COMPOUND_PRICE_MOMENTUM 0.5
+
+// The initial variables of the system.
+#define INITIAL_COMPOUND_PRICE 1.0
+#define INITIAL_COMPOUND_DEMAND 1.0
+
 namespace luabind {
 class scope;
 }
@@ -39,6 +50,7 @@ public:
 // Helper structure to store the economic information of the compounds.
 struct CompoundData {
     float amount;
+    float uninflatedPrice;
     float price;
     float demand;
 };
