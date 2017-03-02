@@ -301,6 +301,11 @@ public:
         CompoundId id
     );
 
+    static bool
+    isUseful(
+        CompoundId id
+    );
+
     CompoundRegistry() = delete;
 
 };

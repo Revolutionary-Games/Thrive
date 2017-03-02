@@ -480,3 +480,12 @@ CompoundRegistry::isAgentType(
         throw std::out_of_range("Index of compound does not exist.");
     return compoundRegistry()[id-1].isAgent;
 }
+
+bool
+CompoundRegistry::isUseful(
+    CompoundId id
+) {
+    if (static_cast<std::size_t>(id) > compoundRegistry().size())
+        throw std::out_of_range("Index of compound does not exist.");
+    return compoundRegistry()[id-1].isUseful;
+}

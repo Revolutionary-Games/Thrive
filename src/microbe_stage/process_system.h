@@ -36,6 +36,13 @@ public:
     setCapacity(BioProcessId, float);
 };
 
+// Helper structure to store the economic information of the compounds.
+struct CompoundData {
+    float amount;
+    float price;
+    float demand;
+};
+
 class CompoundBagComponent : public Component {
     COMPONENT(CompoundBag)
 
@@ -57,8 +64,7 @@ public:
     float storageSpaceOccupied;
     ProcessorComponent* processor;
     std::string speciesName;
-    std::unordered_map<CompoundId, float> compounds;
-    std::unordered_map<CompoundId, float> prices;
+    std::unordered_map<CompoundId, CompoundData> compounds;
 
     void
     setProcessor(ProcessorComponent& processor, const std::string& speciesName);

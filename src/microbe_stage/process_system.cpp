@@ -33,7 +33,6 @@ ProcessorComponent::luaBindings() {
     ;
 }
 
-
 void
 ProcessorComponent::load(const StorageContainer& storage)
 {
@@ -92,8 +91,9 @@ CompoundBagComponent::CompoundBagComponent() {
     storageSpace = 0;
     storageSpaceOccupied = 0;
     for (CompoundId id : CompoundRegistry::getCompoundList()) {
-        compounds[id] = 0;
-        prices[id] = 1;
+        compounds[id].amount = 0;
+        compounds[id].price = 1;
+        compounds[id].demand = 1;
     }
 }
 
@@ -102,13 +102,16 @@ CompoundBagComponent::load(const StorageContainer& storage)
 {
     Component::load(storage);
 
-    StorageContainer compounds = storage.get<StorageContainer>("compounds");
+    StorageContainer amounts = storage.get<StorageContainer>("amounts");
     StorageContainer prices = storage.get<StorageContainer>("prices");
+    StorageContainer demand = storage.get<StorageContainer>("demand");
 
-    for (const std::string& id : compounds.keys())
+    for (const std::string& id : amounts.keys())
     {
-        this->compounds[std::atoi(id.c_str())] = compounds.get<float>(id);
-        this->prices[std::atoi(id.c_str())] = prices.get<float>(id);
+        CompoundId compoundId = std::atoi(id.c_str());
+        this->compounds[compoundId].amount = amounts.get<float>(id);
+        this->compounds[compoundId].price = prices.get<float>(id);
+        this->compounds[compoundId].demand = demand.get<float>(id);
 	}
 
 	this->speciesName = storage.get<std::string>("speciesName");
@@ -120,18 +123,21 @@ CompoundBagComponent::storage() const
 {
     StorageContainer storage = Component::storage();
 
-    StorageContainer compounds;
-    for (auto entry : this->compounds) {
-        compounds.set<float>(""+entry.first, entry.second);
-    }
-
+    StorageContainer amounts;
     StorageContainer prices;
-    for (auto entry : this->prices) {
-        prices.set<float>(""+entry.first, entry.second);
+    StorageContainer demand;
+    for (auto entry : this->compounds) {
+        CompoundId id = entry.first;
+        CompoundData data = entry.second;
+
+        amounts.set<float>(""+id, data.amount);
+        amounts.set<float>(""+id, data.price);
+        amounts.set<float>(""+id, data.demand);
     }
 
-    storage.set("compounds", std::move(compounds));
-    storage.set("prices", std::move(compounds));
+    storage.set("amounts", std::move(amounts));
+    storage.set("prices", std::move(prices));
+    storage.set("demand", std::move(demand));
     storage.set("speciesName", this->speciesName);
 
     return storage;
@@ -146,17 +152,17 @@ CompoundBagComponent::setProcessor(ProcessorComponent& processor, const std::str
 // helper methods for integrating compound bags with current, un-refactored, lua microbes
 float
 CompoundBagComponent::getCompoundAmount(CompoundId id) {
-    return compounds[id];
+    return compounds[id].amount;
 }
 
 void
 CompoundBagComponent::giveCompound(CompoundId id, float amt) {
-    compounds[id] += amt;
+    compounds[id].amount += amt;
 }
 
 float
 CompoundBagComponent::takeCompound(CompoundId id, float to_take) {
-    float& ref = compounds[id];
+    float& ref = compounds[id].amount;
     float amt = ref > to_take ? to_take : ref;
     ref -= amt;
     return amt;
@@ -164,7 +170,7 @@ CompoundBagComponent::takeCompound(CompoundId id, float to_take) {
 
 float
 CompoundBagComponent::getPrice(CompoundId compoundId) {
-    return prices[compoundId];
+    return compounds[compoundId].price;
 }
 
 luabind::scope
@@ -241,15 +247,18 @@ ProcessSystem::Implementation::update(int logicTime) {
             //Calculating the storage space occupied;
             bag->storageSpaceOccupied = 0;
             for (const auto& compound : bag->compounds) {
-                float compoundAmount = compound.second;
+                float compoundAmount = compound.second.amount;
                 bag->storageSpaceOccupied += compoundAmount;
             }
 
             //Phase one: setting up the prices.
             for (const auto& compound : bag->compounds) {
                 CompoundId compoundId = compound.first;
-                float compoundAmount = compound.second;
-                bag->prices[compoundId] = 1 / (compoundAmount + 1);
+                float compoundAmount = compound.second.amount;
+                if(CompoundRegistry::isUseful(compoundId))
+                    bag->compounds[compoundId].price = 1 / (compoundAmount + 1);
+                else
+                    bag->compounds[compoundId].price = 0;
             }
 
             //Phase two: setting up the processes.
@@ -266,10 +275,10 @@ ProcessSystem::Implementation::update(int logicTime) {
                     CompoundId inputId = input.first;
                     int inputNeeded = input.second;
                     float spaceFreed = inputNeeded * CompoundRegistry::getCompoundUnitVolume(inputId);
-                    cost += bag->prices[inputId] * inputNeeded - spaceFreed / bag->storageSpace;
+                    cost += bag->compounds[inputId].price * inputNeeded - spaceFreed / bag->storageSpace;
 
                     //Limiting the process by the amount of this required compound.
-                    processLimitCapacity = std::min(processLimitCapacity, bag->compounds[inputId] / inputNeeded);
+                    processLimitCapacity = std::min(processLimitCapacity, bag->compounds[inputId].amount / inputNeeded);
                 }
 
                 //Calculating the revenue generated by the process's outputs.
@@ -278,7 +287,7 @@ ProcessSystem::Implementation::update(int logicTime) {
                     CompoundId outputId = output.first;
                     int outputGenerated = output.second;
                     float spaceUsed = outputGenerated * CompoundRegistry::getCompoundUnitVolume(outputId);
-                    revenue += bag->prices[outputId] * outputGenerated - spaceUsed / bag->storageSpace;
+                    revenue += bag->compounds[outputId].price * outputGenerated - spaceUsed / bag->storageSpace;
                 }
 
                 //Setting the process capacity rate.
@@ -289,14 +298,14 @@ ProcessSystem::Implementation::update(int logicTime) {
                 for (const auto& input : BioProcessRegistry::getInputCompounds(processId)) {
                     CompoundId inputId = input.first;
                     int inputNeeded = input.second;
-                    bag->compounds[inputId] -= rate * inputNeeded;
+                    bag->compounds[inputId].amount -= rate * inputNeeded;
                 }
 
                 //...into the outputs.
                 for (const auto& output : BioProcessRegistry::getOutputCompounds(processId)) {
                     CompoundId outputId = output.first;
                     int outputGenerated = output.second;
-                    bag->compounds[outputId] += rate * outputGenerated;
+                    bag->compounds[outputId].amount += rate * outputGenerated;
                 }
             }
         }
