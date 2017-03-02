@@ -5,26 +5,26 @@ local function setupBackground(gameState)
     setRandomBiome(gameState)
 end
 
-local function setupCamera()
-    local entity = Entity(CAMERA_NAME)
+local function setupCamera(gameState)
+    local entity = Entity.new(CAMERA_NAME, gameState.wrapper)
     -- Camera
-    local camera = OgreCameraComponent("camera")
+    local camera = OgreCameraComponent.new("camera")
     camera.properties.nearClipDistance = 5
-    camera.offset = Vector3(0, 0, 30)
+    camera.properties.offset = Vector3(0, 0, 30)
     camera.properties:touch()
     entity:addComponent(camera)
     -- Scene node
-    local sceneNode = OgreSceneNodeComponent()
+    local sceneNode = OgreSceneNodeComponent.new()
     sceneNode.transform.position.z = 30
     sceneNode.transform:touch()
     entity:addComponent(sceneNode)
     -- Light
-    local light = OgreLightComponent()
+    local light = OgreLightComponent.new()
     light:setRange(200)
     entity:addComponent(light)
     -- Workspace
-    local workspaceEntity = Entity()
-    local workspaceComponent = OgreWorkspaceComponent("thrive_default")
+    local workspaceEntity = Entity.new(gameState.wrapper)
+    local workspaceComponent = OgreWorkspaceComponent.new("thrive_default")
     workspaceComponent.properties.cameraEntity = entity
     workspaceComponent.properties.position = 0
     workspaceComponent.properties:touch()
@@ -47,12 +47,12 @@ local function setupCompounds()
     CompoundRegistry.loadFromLua({}, agents)
 end
 
-local function setupCompoundClouds()
+local function setupCompoundClouds(gameState)
     for compoundName, compoundInfo in pairs(compoundTable) do
         if compoundInfo.isCloud then
             local compoundId = CompoundRegistry.getCompoundId(compoundName)
-            local entity = Entity("compound_cloud_" .. compoundName)
-            local compoundCloud = CompoundCloudComponent()
+            local entity = Entity.new("compound_cloud_" .. compoundName, gameState.wrapper)
+            local compoundCloud = CompoundCloudComponent.new()
             local colour = compoundInfo.colour
             compoundCloud:initialize(compoundId, colour.r, colour.g, colour.b)
             entity:addComponent(compoundCloud)
@@ -150,8 +150,12 @@ function setupSpecies(gameState)
 end
 
 -- speciesName decides the template to use, while individualName is used for referencing the instance
-function microbeSpawnFunctionGeneric(pos, speciesName, aiControlled, individualName)
-    local microbe = Microbe.createMicrobeEntity(individualName, aiControlled, speciesName)
+function microbeSpawnFunctionGeneric(pos, speciesName, aiControlled, individualName, gameState)
+
+    assert(gameState ~= nil)
+    
+    local microbe = Microbe.createMicrobeEntity(individualName, aiControlled, speciesName,
+                                                false, gameState)
     if pos ~= nil then
         microbe.rigidBody:setDynamicProperties(
             pos, -- Position
@@ -316,16 +320,20 @@ local function createSpawnSystem()
     return spawnSystem
 end
 
-local function setupPlayer()
-    local microbe = microbeSpawnFunctionGeneric(nil, "Default", false, PLAYER_NAME)
+local function setupPlayer(gameState)
+
+    assert(GameState.MICROBE == gameState)
+    assert(gameState ~= nil)
+    
+    local microbe = microbeSpawnFunctionGeneric(nil, "Default", false, PLAYER_NAME, gameState)
     microbe.collisionHandler:addCollisionGroup("powerupable")
     Engine:playerData():lockedMap():addLock("Toxin")
     Engine:playerData():lockedMap():addLock("chloroplast")
-    Engine:playerData():setActiveCreature(microbe.entity.id, GameState.MICROBE)
+    Engine:playerData():setActiveCreature(microbe.entity.id, gameState)
 end
 
-local function setupSound()
-    local ambientEntity = Entity.new("ambience")
+local function setupSound(gameState)
+    local ambientEntity = Entity.new("ambience", gameState.wrapper)
     local soundSource = SoundSourceComponent.new()
     soundSource.ambientSoundSource = true
     soundSource.autoLoop = true
@@ -338,7 +346,7 @@ local function setupSound()
     soundSource:addSound("microbe-theme-5", "microbe-theme-5.ogg")
     soundSource:addSound("microbe-theme-6", "microbe-theme-6.ogg")   
     soundSource:addSound("microbe-theme-7", "microbe-theme-7.ogg")   
-    local ambientEntity2 = Entity.new("ambience2")
+    local ambientEntity2 = Entity.new("ambience2", gameState.wrapper)
     local soundSource = SoundSourceComponent.new()
     soundSource.volumeMultiplier = 0.1
     soundSource.ambientSoundSource = true
@@ -346,7 +354,7 @@ local function setupSound()
     soundSource.autoLoop = true
      ambientEntity2:addComponent(soundSource)
     -- Gui effects
-    local guiSoundEntity = Entity,new("gui_sounds")
+    local guiSoundEntity = Entity.new("gui_sounds", gameState.wrapper)
     soundSource = SoundSourceComponent.new()
     soundSource.ambientSoundSource = true
     soundSource.autoLoop = false
@@ -355,7 +363,7 @@ local function setupSound()
     -- Sound
     soundSource:addSound("button-hover-click", "soundeffects/gui/button-hover-click.ogg")
     soundSource:addSound("microbe-pickup-organelle", "soundeffects/microbe-pickup-organelle.ogg")
-    local listener = Entity.new("soundListener")
+    local listener = Entity.new("soundListener", gameState.wrapper)
     local sceneNode = OgreSceneNodeComponent.new()
     listener:addComponent(sceneNode)
 end
@@ -413,11 +421,11 @@ local function createMicrobeStage(name)
         "MicrobeStage",
         function(gameState)
             setupBackground(gameState)
-            setupCamera()
-            setupCompoundClouds()
+            setupCamera(gameState)
+            setupCompoundClouds(gameState)
             setupSpecies(gameState)
-            setupPlayer()
-            setupSound()
+            setupPlayer(gameState)
+            setupSound(gameState)
         end
     )
 end
