@@ -260,7 +260,7 @@ ProcessSystem::Implementation::update(int logicTime) {
             //Phase one: setting up the prices.
             for (const auto& compound : bag->compounds) {
                 CompoundId compoundId = compound.first;
-                CompoundData compoundData = bag->compounds[compoundId];
+                CompoundData &compoundData = bag->compounds[compoundId];
 
                 // Edge case to get the prices above 0 if some demand exists.
                 if(compoundData.demand > 0 && compoundData.uninflatedPrice <= 0)
