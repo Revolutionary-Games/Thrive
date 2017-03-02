@@ -51,9 +51,11 @@ void OgreLightComponent::luaBindings(
     
     lua.new_usertype<OgreLightComponent>("OgreLightComponent",
 
-        sol::constructors<sol::types<>>(),
-
         sol::base_classes, sol::bases<Component>(),
+
+        "factory", sol::factories([](){
+                return std::make_unique<OgreLightComponent>();
+            }),
 
         "TYPE_ID", sol::var(OgreLightComponent::TYPE_ID), 
         "TYPE_NAME", &OgreLightComponent::TYPE_NAME,

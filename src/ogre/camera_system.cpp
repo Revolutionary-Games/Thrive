@@ -49,9 +49,11 @@ void OgreCameraComponent::luaBindings(
     
     lua.new_usertype<OgreCameraComponent>("OgreCameraComponent",
 
-        sol::constructors<sol::types<std::string>>(),
-
         sol::base_classes, sol::bases<Component>(),
+
+        "factory", sol::factories([](){
+                return std::make_unique<OgreCameraComponent>();
+            }),
 
         "TYPE_ID", sol::var(OgreCameraComponent::TYPE_ID), 
         "TYPE_NAME", &OgreCameraComponent::TYPE_NAME,

@@ -38,15 +38,29 @@ void Entity::luaBindings(
         // This should be automatically bound but here we do it explicitly
         sol::meta_function::equal_to, &Entity::operator==,
 
-        "addComponent", [](Entity &self, sol::table componentTable){
+        // The first overload is for passing c++ types here. 
+        "addComponent", sol::overload([](Entity &self, std::unique_ptr<Component> &component){
 
-            if(!componentTable.valid())
-                throw std::runtime_error("Entity:addComponent invalid argument");
+                if(!component)
+                    throw std::runtime_error("Entity:addComponent null C++ component");
+
+                // This can probably be bypassed
+                std::unique_ptr<Component> temp;
+                temp.swap(component);
+
+                self.addComponent(
+                    std::move(temp)
+                );
+                
+            }, [](Entity &self, sol::table componentTable){
+                
+                if(!componentTable.valid())
+                    throw std::runtime_error("Entity:addComponent invalid argument");
             
-            self.addComponent(
-                std::make_unique<ComponentWrapper>(componentTable)
-            );
-        },
+                self.addComponent(
+                    std::make_unique<ComponentWrapper>(componentTable)
+                );
+            }),
         
         "destroy", &Entity::destroy,
         "exists", &Entity::exists,

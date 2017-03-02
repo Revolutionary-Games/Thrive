@@ -15,9 +15,11 @@ void SpeciesComponent::luaBindings(
 ){
     lua.new_usertype<SpeciesComponent>("SpeciesComponent",
 
-        sol::constructors<sol::types<const std::string&>>(),
-
         sol::base_classes, sol::bases<Component>(),
+
+        "factory", sol::factories([](){
+                return std::make_unique<SpeciesComponent>();
+            }),
 
         "TYPE_ID", sol::var(SpeciesComponent::TYPE_ID), 
         "TYPE_NAME", &SpeciesComponent::TYPE_NAME,

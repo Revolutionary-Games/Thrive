@@ -17,10 +17,12 @@ void TimedLifeComponent::luaBindings(
     sol::state &lua
 ){
     lua.new_usertype<TimedLifeComponent>("TimedLifeComponent",
-
-        sol::constructors<sol::types<>>(),
         
         sol::base_classes, sol::bases<Component>(),
+
+        "factory", sol::factories([](){
+                return std::make_unique<TimedLifeComponent>();
+            }),
 
         "TYPE_ID", sol::var(TimedLifeComponent::TYPE_ID), 
         "TYPE_NAME", &TimedLifeComponent::TYPE_NAME,

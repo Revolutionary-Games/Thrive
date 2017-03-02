@@ -37,9 +37,11 @@ void CompoundAbsorberComponent::luaBindings(
 ){
     lua.new_usertype<CompoundAbsorberComponent>("CompoundAbsorberComponent",
 
-        sol::constructors<sol::types<>>(),
-
         sol::base_classes, sol::bases<Component>(),
+
+        "factory", sol::factories([](){
+                return std::make_unique<CompoundAbsorberComponent>();
+            }),
 
         "TYPE_ID", sol::var(CompoundAbsorberComponent::TYPE_ID),
         "TYPE_NAME", &CompoundAbsorberComponent::TYPE_NAME,

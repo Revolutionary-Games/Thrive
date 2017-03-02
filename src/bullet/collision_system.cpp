@@ -35,9 +35,11 @@ void CollisionComponent::luaBindings(
 ){
     lua.new_usertype<CollisionComponent>("CollisionComponent",
 
-        sol::constructors<sol::types<>, sol::types<const std::string&>>(),
-
         sol::base_classes, sol::bases<Component>(),
+
+        "factory", sol::factories([](){
+                return std::make_unique<CollisionComponent>();
+            }),
 
         "TYPE_ID", sol::var(CollisionComponent::TYPE_ID), 
         "TYPE_NAME", &CollisionComponent::TYPE_NAME,

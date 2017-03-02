@@ -42,9 +42,11 @@ void AgentCloudComponent::luaBindings(
 ){
     lua.new_usertype<AgentCloudComponent>("AgentCloudComponent",
 
-        sol::constructors<sol::types<>>(),
-
         sol::base_classes, sol::bases<Component>(),
+
+        "factory", sol::factories([](){
+                return std::make_unique<AgentCloudComponent>();
+            }),
 
         "TYPE_ID", sol::var(AgentCloudComponent::TYPE_ID), 
         "TYPE_NAME", &AgentCloudComponent::TYPE_NAME,

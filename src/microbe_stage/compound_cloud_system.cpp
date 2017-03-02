@@ -41,9 +41,11 @@ void CompoundCloudComponent::luaBindings(
 ){
     lua.new_usertype<CompoundCloudComponent>("CompoundCloudComponent",
 
-        sol::constructors<sol::types<>>(),
-
         sol::base_classes, sol::bases<Component>(),
+
+        "factory", sol::factories([](){
+                return std::make_unique<CompoundCloudComponent>();
+            }),
 
         "TYPE_ID", sol::var(CompoundCloudComponent::TYPE_ID), 
         "TYPE_NAME", &CompoundCloudComponent::TYPE_NAME,
