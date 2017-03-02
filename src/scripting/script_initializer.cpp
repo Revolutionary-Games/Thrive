@@ -95,6 +95,34 @@
 
 using namespace thrive;
 
+/**
+* @brief Fills a stringstream with the lua callstack
+*/
+void readLuaCallstack(lua_State* L, lua_Debug &d, std::stringstream &traceback);
+
+void readLuaCallstack(lua_State* L, lua_Debug &d, std::stringstream &traceback){
+
+    for (
+        // Starting at 0 always prints [C]:-1 so we start at 1 to get
+        // the first actual stack frame
+        int stacklevel = 1;
+        lua_getstack(L, stacklevel, &d);
+        stacklevel++
+    ) {
+        if(lua_getinfo(L, "Sln", &d) == 0){
+
+            traceback << "    " << "error getting stack frame" << std::endl;
+            continue;
+        }
+        
+        traceback << "    " << d.short_src << ":" << d.currentline;
+        
+        if (d.name != nullptr) {
+            traceback << " (" << d.namewhat << " " << d.name << ")";
+        }
+        traceback << std::endl;
+    }
+}
 
 /**
 * @brief Thrive lua panic handler
@@ -116,24 +144,11 @@ int thriveLuaPanic(lua_State* L){
     std::stringstream traceback;
     // Error message
     traceback << err << ":" << std::endl;
-    
-    
-    // Stacktrace
-    for (
-        int stacklevel = 0;
-        lua_getstack(L, stacklevel, &d);
-        stacklevel++
-    ) {
-        lua_getinfo(L, "Sln", &d);
-        traceback << "    " << d.short_src << ":" << d.currentline;
-        if (d.name != nullptr) {
-            traceback << " (" << d.namewhat << " " << d.name << ")";
-        }
-        traceback << std::endl;
-    }
+
+    readLuaCallstack(L, d, traceback);
 
     // TODO: check if we should push this string and is throwing from here a good idea
-    
+    // looks like throwing from here is a good idea
     //lua_pushstring(L, traceback.str().c_str());
 
     // Print error //
@@ -168,26 +183,7 @@ std::string thriveLuaOnError(sol::this_state lua, std::string err){
     traceback << err << ":" << std::endl;
 
     // Stacktrace
-    for (
-        // Starting at 0 always prints [C]:-1 so we start at 1 to get
-        // the first actual stack frame
-        int stacklevel = 1;
-        lua_getstack(L, stacklevel, &d);
-        stacklevel++
-    ) {
-        if(lua_getinfo(L, "Sln", &d) == 0){
-
-            traceback << "    " << "error getting stack frame" << std::endl;
-            continue;
-        }
-        
-        traceback << "    " << d.short_src << ":" << d.currentline;
-        
-        if (d.name != nullptr) {
-            traceback << " (" << d.namewhat << " " << d.name << ")";
-        }
-        traceback << std::endl;
-    }
+    readLuaCallstack(L, d, traceback);
     
     // Print error //
     std::cout << "Lua error detected! " << traceback.str() << std::endl;
@@ -231,9 +227,6 @@ void thrive::initializeLua(sol::state &lua){
         // sol::lib::ffi
     );
 
-
-    // Are these the same?
-    //lua.set_panic
     lua.set_panic(&thriveLuaPanic);
     
     // Class type registering //
