@@ -26,17 +26,6 @@ struct Entity::Implementation {
 
 };
 
-
-static void
-Entity_addComponent(
-    Entity* self,
-    Component* nakedComponent
-) {
-    self->addComponent(
-        std::unique_ptr<Component>(nakedComponent)
-    );
-}
-
 void Entity::luaBindings(
     sol::state &lua
 ){
@@ -49,7 +38,16 @@ void Entity::luaBindings(
         // This should be automatically bound but here we do it explicitly
         sol::meta_function::equal_to, &Entity::operator==,
 
-        "addComponent", &Entity_addComponent,
+        "addComponent", [](Entity &self, sol::table componentTable){
+
+            if(!componentTable.valid())
+                throw std::runtime_error("Entity:addComponent invalid argument");
+            
+            self.addComponent(
+                std::make_unique<ComponentWrapper>(componentTable)
+            );
+        },
+        
         "destroy", &Entity::destroy,
         "exists", &Entity::exists,
         
