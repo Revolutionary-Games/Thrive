@@ -111,13 +111,15 @@ Game::run() {
         // Start game loop
         m_impl->m_quit = false;
         m_impl->m_engine.enterLuaMain(this);
-        
-        m_impl->m_engine.shutdown();
     }
     catch (const sol::error& e) {
 
-        std::cerr << e.what() << std::endl;
+        std::cerr << "Main loop/init failed with error: " <<
+            e.what() << std::endl;
     }
+
+    // Shutdown needs to be called even if init/main loop fails
+    m_impl->m_engine.shutdown();
 }
 
 
