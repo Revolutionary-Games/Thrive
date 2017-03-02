@@ -116,11 +116,11 @@ void OgreSceneNodeComponent::luaBindings(
     
     lua.new_usertype<OgreSceneNodeComponent>("OgreSceneNodeComponent",
 
-        sol::base_classes, sol::bases<Component>(),
-
-        "factory", sol::factories([](){
+        "new", sol::factories([](){
                 return std::make_unique<OgreSceneNodeComponent>();
             }),
+
+        sol::base_classes, sol::bases<Component>(),
 
         "TYPE_ID", sol::var(OgreSceneNodeComponent::TYPE_ID),
         "TYPE_NAME", &OgreSceneNodeComponent::TYPE_NAME,

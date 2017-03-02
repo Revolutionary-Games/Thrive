@@ -116,12 +116,12 @@ void RigidBodyComponent::luaBindings(
     );
     
     lua.new_usertype<RigidBodyComponent>("RigidBodyComponent",
-        
-        sol::base_classes, sol::bases<Component>(),
 
-        "factory", sol::factories([](){
+        "new", sol::factories([](){
                 return std::make_unique<RigidBodyComponent>();
             }),
+        
+        sol::base_classes, sol::bases<Component>(),
 
         "TYPE_ID", sol::var(RigidBodyComponent::TYPE_ID),
         "TYPE_NAME", &RigidBodyComponent::TYPE_NAME,

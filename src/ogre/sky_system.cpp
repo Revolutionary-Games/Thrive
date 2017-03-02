@@ -36,11 +36,11 @@ void SkyPlaneComponent::luaBindings(
     
     lua.new_usertype<SkyPlaneComponent>("SkyPlaneComponent",
 
-        sol::base_classes, sol::bases<Component>(),
-
-        "factory", sol::factories([](){
+        "new", sol::factories([](){
                 return std::make_unique<SkyPlaneComponent>();
             }),
+
+        sol::base_classes, sol::bases<Component>(),
 
         "TYPE_ID", sol::var(SkyPlaneComponent::TYPE_ID),
         "TYPE_NAME", &SkyPlaneComponent::TYPE_NAME,

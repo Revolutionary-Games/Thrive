@@ -51,8 +51,8 @@ void OgreCameraComponent::luaBindings(
 
         sol::base_classes, sol::bases<Component>(),
 
-        "factory", sol::factories([](){
-                return std::make_unique<OgreCameraComponent>();
+        "new", sol::factories([](const std::string &name){
+                return std::make_unique<OgreCameraComponent>(name);
             }),
 
         "TYPE_ID", sol::var(OgreCameraComponent::TYPE_ID), 

@@ -57,12 +57,6 @@ example the vector class: `Vector3(1, 5, 0)` and `Degree` but only the
 numeric constructors. So if you want to call `Degree` constructor with
 a `Radian` you will need to use `Degree.new(radianVariable)`.
 
-### C++ factories
-
-Some types need to be created with factory functions. For example to
-create a `SkyPlaneComponent` use `SkyPlaneComponent.factory()`. All
-C++ Component types need to be created like this.
-
 
 Renames and different function signatures
 -----------------------------------------

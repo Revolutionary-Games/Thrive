@@ -60,11 +60,11 @@ void OgreWorkspaceComponent::luaBindings(
     
     lua.new_usertype<OgreWorkspaceComponent>("OgreWorkspaceComponent",
 
-        sol::base_classes, sol::bases<Component>(),
-
-        "factory", sol::factories([](){
-                return std::make_unique<OgreWorkspaceComponent>();
+        "new", sol::factories([](const std::string &name){
+                return std::make_unique<OgreWorkspaceComponent>(name);
             }),
+
+        sol::base_classes, sol::bases<Component>(),
 
         "TYPE_ID", sol::var(OgreWorkspaceComponent::TYPE_ID), 
         "TYPE_NAME", &OgreWorkspaceComponent::TYPE_NAME,

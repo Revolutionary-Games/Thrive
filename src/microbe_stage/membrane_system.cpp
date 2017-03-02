@@ -33,11 +33,11 @@ void MembraneComponent::luaBindings(
 ){
     lua.new_usertype<MembraneComponent>("MembraneComponent",
 
-        sol::base_classes, sol::bases<Component>(),
-
-        "factory", sol::factories([](){
+        "new", sol::factories([](){
                 return std::make_unique<MembraneComponent>();
             }),
+        
+        sol::base_classes, sol::bases<Component>(),
 
         "TYPE_ID", sol::var(MembraneComponent::TYPE_ID), 
         "TYPE_NAME", &MembraneComponent::TYPE_NAME,

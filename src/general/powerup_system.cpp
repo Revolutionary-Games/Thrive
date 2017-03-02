@@ -21,11 +21,11 @@ void PowerupComponent::luaBindings(
 ){
     lua.new_usertype<PowerupComponent>("PowerupComponent",
 
-        sol::base_classes, sol::bases<Component>(),
-
-        "factory", sol::factories([](){
+        "new", sol::factories([](){
                 return std::make_unique<PowerupComponent>();
             }),
+        
+        sol::base_classes, sol::bases<Component>(),
 
         "TYPE_ID", sol::var(PowerupComponent::TYPE_ID), 
         "TYPE_NAME", &PowerupComponent::TYPE_NAME,

@@ -200,11 +200,11 @@ void SoundSourceComponent::luaBindings(
 ){
     lua.new_usertype<SoundSourceComponent>("SoundSourceComponent",
 
-        sol::base_classes, sol::bases<Component>(),
-
-        "factory", sol::factories([](){
+        "new", sol::factories([](){
                 return std::make_unique<SoundSourceComponent>();
             }),
+
+        sol::base_classes, sol::bases<Component>(),
 
         "TYPE_ID", sol::var(SoundSourceComponent::TYPE_ID),
         "TYPE_NAME", &SoundSourceComponent::TYPE_NAME,

@@ -23,11 +23,11 @@ void ProcessorComponent::luaBindings(
 ){
     lua.new_usertype<ProcessorComponent>("ProcessorComponent",
 
-        sol::base_classes, sol::bases<Component>(),
-
-        "factory", sol::factories([](){
+        "new", sol::factories([](){
                 return std::make_unique<ProcessorComponent>();
             }),
+        
+        sol::base_classes, sol::bases<Component>(),
 
         "TYPE_ID", sol::var(ProcessorComponent::TYPE_ID), 
         "TYPE_NAME", &ProcessorComponent::TYPE_NAME,
@@ -124,11 +124,11 @@ void CompoundBagComponent::luaBindings(
 ){
     lua.new_usertype<CompoundBagComponent>("CompoundBagComponent",
 
-        sol::base_classes, sol::bases<Component>(),
-
-        "factory", sol::factories([](){
+        "new", sol::factories([](){
                 return std::make_unique<CompoundBagComponent>();
             }),
+        
+        sol::base_classes, sol::bases<Component>(),
 
         "TYPE_ID", sol::var(CompoundBagComponent::TYPE_ID), 
         "TYPE_NAME", &CompoundBagComponent::TYPE_NAME,

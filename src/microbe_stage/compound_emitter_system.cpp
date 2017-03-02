@@ -30,11 +30,11 @@ void CompoundEmitterComponent::luaBindings(
 ){
     lua.new_usertype<CompoundEmitterComponent>("CompoundEmitterComponent",
 
-        sol::base_classes, sol::bases<Component>(),
-
-        "factory", sol::factories([](){
+        "new", sol::factories([](){
                 return std::make_unique<CompoundEmitterComponent>();
             }),
+        
+        sol::base_classes, sol::bases<Component>(),
 
         "TYPE_ID", sol::var(CompoundEmitterComponent::TYPE_ID), 
         "TYPE_NAME", &CompoundEmitterComponent::TYPE_NAME,
@@ -98,11 +98,11 @@ REGISTER_COMPONENT(CompoundEmitterComponent)
 ){
     lua.new_usertype<TimedCompoundEmitterComponent>("TimedCompoundEmitterComponent",
 
-        sol::base_classes, sol::bases<Component>(),
-
-        "factory", sol::factories([](){
+        "new", sol::factories([](){
                 return std::make_unique<TimedCompoundEmitterComponent>();
             }),
+        
+        sol::base_classes, sol::bases<Component>(),
 
         "TYPE_ID", sol::var(TimedCompoundEmitterComponent::TYPE_ID), 
         "TYPE_NAME", &TimedCompoundEmitterComponent::TYPE_NAME,
