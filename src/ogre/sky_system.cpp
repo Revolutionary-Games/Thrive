@@ -40,10 +40,7 @@ void SkyPlaneComponent::luaBindings(
                 return std::make_unique<SkyPlaneComponent>();
             }),
 
-        sol::base_classes, sol::bases<Component>(),
-
-        "TYPE_ID", sol::var(SkyPlaneComponent::TYPE_ID),
-        "TYPE_NAME", &SkyPlaneComponent::TYPE_NAME,
+        COMPONENT_BINDINGS(SkyPlaneComponent),
 
         "properties", sol::readonly(&SkyPlaneComponent::m_properties)
     );

@@ -13,9 +13,11 @@ ComponentWrapper::luaBindings(sol::state &lua){
 
     lua.new_usertype<ComponentWrapper>("ComponentWrapper",
 
-        sol::constructors<sol::types<sol::table>>()
+        sol::constructors<sol::types<sol::table>>(),
 
+        LUA_CAST_FROM(ComponentWrapper, Component),
         
+        "luaObj", sol::readonly(&ComponentWrapper::m_luaObject)
     );
 }
 

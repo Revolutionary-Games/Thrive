@@ -25,10 +25,7 @@ void PowerupComponent::luaBindings(
                 return std::make_unique<PowerupComponent>();
             }),
         
-        sol::base_classes, sol::bases<Component>(),
-
-        "TYPE_ID", sol::var(PowerupComponent::TYPE_ID), 
-        "TYPE_NAME", &PowerupComponent::TYPE_NAME,
+        COMPONENT_BINDINGS(PowerupComponent),
 
         "setEffect", static_cast<void (PowerupComponent::*)(
             const std::string&)>(&PowerupComponent::setEffect)

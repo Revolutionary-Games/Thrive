@@ -39,10 +39,7 @@ void CollisionComponent::luaBindings(
                 return std::make_unique<CollisionComponent>();
             }),
 
-        sol::base_classes, sol::bases<Component>(),
-
-        "TYPE_ID", sol::var(CollisionComponent::TYPE_ID), 
-        "TYPE_NAME", &CollisionComponent::TYPE_NAME,
+        COMPONENT_BINDINGS(CollisionComponent),
 
         "addCollisionGroup", &CollisionComponent::addCollisionGroup
     );

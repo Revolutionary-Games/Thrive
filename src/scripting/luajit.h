@@ -41,5 +41,9 @@
  return table;                                                          \
  
 
-
+// For "castFrom" functions
+#define LUA_CAST_FROM(className, baseType)                       \
+"castFrom", [](baseType* baseptr){                               \
+    return dynamic_cast<className*>(baseptr);                    \
+}
 

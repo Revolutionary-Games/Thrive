@@ -19,10 +19,7 @@ void SpeciesComponent::luaBindings(
                 return std::make_unique<SpeciesComponent>(name);
             }),
         
-        sol::base_classes, sol::bases<Component>(),
-
-        "TYPE_ID", sol::var(SpeciesComponent::TYPE_ID), 
-        "TYPE_NAME", &SpeciesComponent::TYPE_NAME,
+        COMPONENT_BINDINGS(SpeciesComponent),
 
         "name", &SpeciesComponent::name,
         "organelles", &SpeciesComponent::organelles,

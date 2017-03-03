@@ -49,14 +49,11 @@ void OgreCameraComponent::luaBindings(
     
     lua.new_usertype<OgreCameraComponent>("OgreCameraComponent",
 
-        sol::base_classes, sol::bases<Component>(),
-
         "new", sol::factories([](const std::string &name){
                 return std::make_unique<OgreCameraComponent>(name);
             }),
 
-        "TYPE_ID", sol::var(OgreCameraComponent::TYPE_ID), 
-        "TYPE_NAME", &OgreCameraComponent::TYPE_NAME,
+        COMPONENT_BINDINGS(OgreCameraComponent),
 
         "PolygonMode", sol::var(lua.create_table_with(
                 "PM_POINTS", Ogre::PM_POINTS,

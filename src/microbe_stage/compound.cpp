@@ -35,10 +35,7 @@ void CompoundComponent::luaBindings(
                 return std::make_unique<CompoundComponent>();
             }),
         
-        sol::base_classes, sol::bases<Component>(),
-
-        "TYPE_ID", sol::var(CompoundComponent::TYPE_ID), 
-        "TYPE_NAME", &CompoundComponent::TYPE_NAME,
+        COMPONENT_BINDINGS(CompoundComponent),
 
         "compoundId", &CompoundComponent::m_compoundId,
         "potency", &CompoundComponent::m_potency,

@@ -45,10 +45,7 @@ void CompoundCloudComponent::luaBindings(
                 return std::make_unique<CompoundCloudComponent>();
             }),
         
-        sol::base_classes, sol::bases<Component>(),
-
-        "TYPE_ID", sol::var(CompoundCloudComponent::TYPE_ID), 
-        "TYPE_NAME", &CompoundCloudComponent::TYPE_NAME,
+        COMPONENT_BINDINGS(CompoundCloudComponent),
 
         "initialize", &CompoundCloudComponent::initialize,
         "addCloud", &CompoundCloudComponent::addCloud,

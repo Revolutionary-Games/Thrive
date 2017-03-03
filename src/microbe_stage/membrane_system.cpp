@@ -37,10 +37,7 @@ void MembraneComponent::luaBindings(
                 return std::make_unique<MembraneComponent>();
             }),
         
-        sol::base_classes, sol::bases<Component>(),
-
-        "TYPE_ID", sol::var(MembraneComponent::TYPE_ID), 
-        "TYPE_NAME", &MembraneComponent::TYPE_NAME,
+        COMPONENT_BINDINGS(MembraneComponent),
 
         "sendOrganelles", &MembraneComponent::sendOrganelles,
         "clear", &MembraneComponent::clear,

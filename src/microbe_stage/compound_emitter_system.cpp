@@ -34,10 +34,7 @@ void CompoundEmitterComponent::luaBindings(
                 return std::make_unique<CompoundEmitterComponent>();
             }),
         
-        sol::base_classes, sol::bases<Component>(),
-
-        "TYPE_ID", sol::var(CompoundEmitterComponent::TYPE_ID), 
-        "TYPE_NAME", &CompoundEmitterComponent::TYPE_NAME,
+        COMPONENT_BINDINGS(CompoundEmitterComponent),
 
         "emitCompound", &CompoundEmitterComponent::emitCompound,
         "emissionRadius", &CompoundEmitterComponent::m_emissionRadius,
@@ -102,10 +99,7 @@ REGISTER_COMPONENT(CompoundEmitterComponent)
                 return std::make_unique<TimedCompoundEmitterComponent>();
             }),
         
-        sol::base_classes, sol::bases<Component>(),
-
-        "TYPE_ID", sol::var(TimedCompoundEmitterComponent::TYPE_ID), 
-        "TYPE_NAME", &TimedCompoundEmitterComponent::TYPE_NAME,
+        COMPONENT_BINDINGS(TimedCompoundEmitterComponent),
 
         "emitInterval", &TimedCompoundEmitterComponent::m_emitInterval,
         "compoundId", &TimedCompoundEmitterComponent::m_compoundId,

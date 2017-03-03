@@ -64,10 +64,7 @@ void OgreWorkspaceComponent::luaBindings(
                 return std::make_unique<OgreWorkspaceComponent>(name);
             }),
 
-        sol::base_classes, sol::bases<Component>(),
-
-        "TYPE_ID", sol::var(OgreWorkspaceComponent::TYPE_ID), 
-        "TYPE_NAME", &OgreWorkspaceComponent::TYPE_NAME,
+        COMPONENT_BINDINGS(OgreWorkspaceComponent),
 
         "properties", sol::readonly(&OgreWorkspaceComponent::m_properties)
     );

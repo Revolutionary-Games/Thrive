@@ -186,3 +186,12 @@ private:
     private: \
 
 
+/**
+* @brief Fills in common Lua bindings for derived Components
+*/
+#define COMPONENT_BINDINGS(name)                            \
+sol::base_classes, sol::bases<Component>(),                 \
+LUA_CAST_FROM(name, Component),                             \
+"TYPE_ID", sol::var(name::TYPE_ID),                         \
+"TYPE_NAME", &name::TYPE_NAME                               \
+

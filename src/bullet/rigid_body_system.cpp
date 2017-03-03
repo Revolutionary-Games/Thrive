@@ -121,10 +121,7 @@ void RigidBodyComponent::luaBindings(
                 return std::make_unique<RigidBodyComponent>();
             }),
         
-        sol::base_classes, sol::bases<Component>(),
-
-        "TYPE_ID", sol::var(RigidBodyComponent::TYPE_ID),
-        "TYPE_NAME", &RigidBodyComponent::TYPE_NAME,
+        COMPONENT_BINDINGS(RigidBodyComponent),
 
         "setDynamicProperties", &RigidBodyComponent::setDynamicProperties,
         "applyImpulse", &RigidBodyComponent::applyImpulse,

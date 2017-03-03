@@ -204,10 +204,7 @@ void SoundSourceComponent::luaBindings(
                 return std::make_unique<SoundSourceComponent>();
             }),
 
-        sol::base_classes, sol::bases<Component>(),
-
-        "TYPE_ID", sol::var(SoundSourceComponent::TYPE_ID),
-        "TYPE_NAME", &SoundSourceComponent::TYPE_NAME,
+        COMPONENT_BINDINGS(SoundSourceComponent),
 
         "addSound", &SoundSourceComponent::addSound,
         "removeSound", &SoundSourceComponent::removeSound,

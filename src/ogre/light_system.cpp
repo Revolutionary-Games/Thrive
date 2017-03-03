@@ -55,10 +55,7 @@ void OgreLightComponent::luaBindings(
                 return std::make_unique<OgreLightComponent>();
             }),
 
-        sol::base_classes, sol::bases<Component>(),
-
-        "TYPE_ID", sol::var(OgreLightComponent::TYPE_ID), 
-        "TYPE_NAME", &OgreLightComponent::TYPE_NAME,
+        COMPONENT_BINDINGS(OgreLightComponent),
 
         "setRange", &OgreLightComponent::setRange,
         "properties", sol::readonly(&OgreLightComponent::m_properties),

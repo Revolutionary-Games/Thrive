@@ -22,10 +22,7 @@ void TimedLifeComponent::luaBindings(
                 return std::make_unique<TimedLifeComponent>();
             }),
         
-        sol::base_classes, sol::bases<Component>(),
-
-        "TYPE_ID", sol::var(TimedLifeComponent::TYPE_ID), 
-        "TYPE_NAME", &TimedLifeComponent::TYPE_NAME,
+        COMPONENT_BINDINGS(TimedLifeComponent),
 
         "timeToLive", &TimedLifeComponent::m_timeToLive
     );

@@ -27,10 +27,7 @@ void ProcessorComponent::luaBindings(
                 return std::make_unique<ProcessorComponent>();
             }),
         
-        sol::base_classes, sol::bases<Component>(),
-
-        "TYPE_ID", sol::var(ProcessorComponent::TYPE_ID), 
-        "TYPE_NAME", &ProcessorComponent::TYPE_NAME,
+        COMPONENT_BINDINGS(ProcessorComponent),
 
         "setThreshold", &ProcessorComponent::setThreshold,
         "setLowThreshold", &ProcessorComponent::setLowThreshold,
@@ -128,10 +125,7 @@ void CompoundBagComponent::luaBindings(
                 return std::make_unique<CompoundBagComponent>();
             }),
         
-        sol::base_classes, sol::bases<Component>(),
-
-        "TYPE_ID", sol::var(CompoundBagComponent::TYPE_ID), 
-        "TYPE_NAME", &CompoundBagComponent::TYPE_NAME,
+        COMPONENT_BINDINGS(CompoundBagComponent),
 
         "setProcessor", &CompoundBagComponent::setProcessor,
         "giveCompound", &CompoundBagComponent::giveCompound,

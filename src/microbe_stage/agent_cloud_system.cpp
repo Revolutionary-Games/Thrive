@@ -46,10 +46,7 @@ void AgentCloudComponent::luaBindings(
                 return std::make_unique<AgentCloudComponent>();
             }),
         
-        sol::base_classes, sol::bases<Component>(),
-
-        "TYPE_ID", sol::var(AgentCloudComponent::TYPE_ID), 
-        "TYPE_NAME", &AgentCloudComponent::TYPE_NAME,
+        COMPONENT_BINDINGS(AgentCloudComponent),
 
         "initialize", &AgentCloudComponent::initialize,
         "direction", &AgentCloudComponent::direction,

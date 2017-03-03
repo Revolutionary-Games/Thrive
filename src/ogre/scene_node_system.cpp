@@ -120,10 +120,7 @@ void OgreSceneNodeComponent::luaBindings(
                 return std::make_unique<OgreSceneNodeComponent>();
             }),
 
-        sol::base_classes, sol::bases<Component>(),
-
-        "TYPE_ID", sol::var(OgreSceneNodeComponent::TYPE_ID),
-        "TYPE_NAME", &OgreSceneNodeComponent::TYPE_NAME,
+        COMPONENT_BINDINGS(OgreSceneNodeComponent),
 
         "playAnimation", &OgreSceneNodeComponent::playAnimation,
         "stopAnimation", &OgreSceneNodeComponent::stopAnimation,
@@ -527,7 +524,7 @@ OgreUpdateSceneNodeSystem::update(
             }
             if (component->m_planeTexture.get().length() != 0) {
                 Ogre::Plane plane(Ogre::Vector3::UNIT_Z, 0);
-                std::string planeName("plane" + ++planeNameCounter);
+                std::string planeName("plane" + std::to_string(++planeNameCounter));
                 Ogre::MeshManager::getSingleton().createPlane(planeName,
                     Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME,
                     plane, 10000, 10000);
