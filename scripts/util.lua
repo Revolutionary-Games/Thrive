@@ -19,6 +19,19 @@ end
 
 
 
+--! Unwraps a ComponentWrapper from component and returns the lua object
+--! @return Unwrapped lua object. Or nil if wrapped wasn't a valid wrapper
+function unwrapWrappedComponent(wrapped)
+
+    -- Cast to ComponentWrapper
+    if wrapped.luaObj == nil then
+
+        wrapped = ComponentWrapper.castFrom(wrapped)
+    end
+
+    return wrapped.luaObj
+end
+
 -- Computes a number's sign
 --
 -- @param x

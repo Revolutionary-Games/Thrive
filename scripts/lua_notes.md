@@ -47,6 +47,22 @@ without a stack trace. Then this is most likely what you have done
 wrong.
 
 
+
+### Casting from base Component
+
+`entity:getComponent` returns the base Component type so it is
+required to be casted to a specific type like
+`CompoundAbsorberComponent` to be used. For example:
+`CompoundAbsorberComponent.castFrom(entity:getComponent(CompoundAbsorberComponent.TYPE_ID))`
+
+
+Lua components are handled as ComponentWrapper inside C++ so it s
+required to be unwrapped like this:
+`unwrapWrappedComponent(entity:getComponent(MicrobeComponent.TYPE_ID))`.
+For performance reasons it might be worth it to also move the entity
+manager to Lua, but that hasn't been done yet.
+
+
 ### The .new method
 
 Before all Lua objects were created like this:
