@@ -163,12 +163,26 @@ Microbe = class(
     -- The entity this microbe wraps
     function(self, entity, in_editor)
         self.entity = entity
-        for key, typeId in pairs(Microbe.COMPONENTS) do
+        for key, ctype in pairs(Microbe.COMPONENTS) do
+            local typeId = ctype.TYPE_ID
             local component = entity:getComponent(typeId)
             assert(component ~= nil, "Can't create microbe from this entity, it's missing " .. key)
-            self[key] = entity:getComponent(typeId)
+            
+            self[key] = component
+
+            -- cast c++ object to subclass
+            if ctype.castFrom then
+                self[key] = ctype.castFrom(self[key])
+                assert(self[key], "Casting Component to subclass failed")
+            else
+                -- Unwrap ComponentWrapper
+                self[key] = unwrapWrappedComponent(self[key])
+                assert(self[key], "Unwrapping Lua Component from base Component failed")
+                assert(type(self[key]) == "table")
+            end
         end
-        for compound in CompoundRegistry.getCompoundList() do
+
+        for _, compound in pairs(CompoundRegistry.getCompoundList()) do
             self.compoundAbsorber:setCanAbsorbCompound(compound, true)
         end
         if not self.microbe.initialized then
@@ -191,14 +205,14 @@ Microbe = class(
 -- I don't feel like checking for each component separately, so let's make a
 -- loop do it with an assert for good measure (see Microbe.create)
 Microbe.COMPONENTS = {
-    compoundAbsorber = CompoundAbsorberComponent.TYPE_ID,
-    microbe = MicrobeComponent.TYPE_ID,
-    rigidBody = RigidBodyComponent.TYPE_ID,
-    sceneNode = OgreSceneNodeComponent.TYPE_ID,
-    collisionHandler = CollisionComponent.TYPE_ID,
-    soundSource = SoundSourceComponent.TYPE_ID,
-    membraneComponent = MembraneComponent.TYPE_ID,
-    compoundBag = CompoundBagComponent.TYPE_ID,
+    compoundAbsorber = CompoundAbsorberComponent,
+    microbe = MicrobeComponent,
+    rigidBody = RigidBodyComponent,
+    sceneNode = OgreSceneNodeComponent,
+    collisionHandler = CollisionComponent,
+    soundSource = SoundSourceComponent,
+    membraneComponent = MembraneComponent,
+    compoundBag = CompoundBagComponent,
 }
 
 
@@ -210,26 +224,30 @@ Microbe.COMPONENTS = {
 -- @returns microbe
 -- An object of type Microbe
 
-function Microbe.createMicrobeEntity(name, aiControlled, speciesName, in_editor)
+function Microbe.createMicrobeEntity(name, aiControlled, speciesName, in_editor, gameState)
+
+    assert(gameState ~= nil, "Microbe.createMicrobeEntity requires gameState")
+    assert(type(gameState) == "table")
+    
     local entity
     if name then
-        entity = Entity(name)
+        entity = Entity.new(name, gameState.wrapper)
     else
-        entity = Entity()
+        entity = Entity.new(gameState.wrapper)
     end
-    local rigidBody = RigidBodyComponent()
-    rigidBody.properties.shape = CompoundShape()
+    local rigidBody = RigidBodyComponent.new()
+    rigidBody.properties.shape = CompoundShape.new()
     rigidBody.properties.linearDamping = 0.5
     rigidBody.properties.friction = 0.2
     rigidBody.properties.mass = 0.0
     rigidBody.properties.linearFactor = Vector3(1, 1, 0)
     rigidBody.properties.angularFactor = Vector3(0, 0, 1)
     rigidBody.properties:touch()
-    local reactionHandler = CollisionComponent()
+    local reactionHandler = CollisionComponent.new()
     reactionHandler:addCollisionGroup("microbe")
-    local membraneComponent = MembraneComponent()
+    local membraneComponent = MembraneComponent.new()
     
-    local soundComponent = SoundSourceComponent()
+    local soundComponent = SoundSourceComponent.new()
     local s1 = nil
     soundComponent:addSound("microbe-release-toxin", "soundeffects/microbe-release-toxin.ogg")
     soundComponent:addSound("microbe-toxin-damage", "soundeffects/microbe-toxin-damage.ogg")
@@ -249,17 +267,17 @@ function Microbe.createMicrobeEntity(name, aiControlled, speciesName, in_editor)
     s1.properties:touch()
 
     local components = {
-        CompoundAbsorberComponent(),
-        OgreSceneNodeComponent(),
-        CompoundBagComponent(),
-        MicrobeComponent(not aiControlled, speciesName),
+        CompoundAbsorberComponent.new(),
+        OgreSceneNodeComponent.new(),
+        CompoundBagComponent.new(),
+        MicrobeComponent.new(not aiControlled, speciesName),
         reactionHandler,
         rigidBody,
         soundComponent,
         membraneComponent
     }
     if aiControlled then
-        local aiController = MicrobeAIControllerComponent()
+        local aiController = MicrobeAIControllerComponent.new()
         table.insert(components, aiController)
     end
     for _, component in ipairs(components) do
@@ -272,7 +290,10 @@ end
 -- 
 -- returns the species component or nil if it doesn't have a valid species
 function Microbe:getSpeciesComponent()
-    return Entity(self.microbe.speciesName):getComponent(SpeciesComponent.TYPE_ID)
+    return
+        unwrapWrappedComponent(
+            Entity(self.microbe.speciesName):getComponent(SpeciesComponent.TYPE_ID)
+        )
 end
 
 -- Adds a new organelle
@@ -298,7 +319,9 @@ function Microbe:addOrganelle(q, r, rotation, organelle)
     local x, y = axialToCartesian(q, r)
     local translation = Vector3(x, y, 0)
     -- Collision shape
-    self.rigidBody.properties.shape:addChildShape(
+    -- TODO: cache for performance
+    local compoundShape = CompoundShape.castFrom(self.rigidBody.properties.shape)
+    compoundShape:addChildShape(
         translation,
         Quaternion(Radian(0), Vector3(1,0,0)),
         organelle.collisionShape
@@ -424,7 +447,9 @@ function Microbe:removeOrganelle(q, r)
     
     self.rigidBody.properties.mass = self.rigidBody.properties.mass - organelle.mass
     self.rigidBody.properties:touch()
-    self.rigidBody.properties.shape:removeChildShape(
+    -- TODO: cache for performance
+    local compoundShape = CompoundShape.castFrom(self.rigidBody.properties.shape)
+    compoundShape:removeChildShape(
         organelle.collisionShape
     )
     
@@ -1051,7 +1076,11 @@ end
 
 -- Private function for initializing a microbe's components
 function Microbe:_initialize()
-    self.rigidBody.properties.shape:clear()
+
+    -- TODO: cache for performance
+    local compoundShape = CompoundShape.castFrom(self.rigidBody.properties.shape)
+    assert(compoundShape ~= nil)
+    compoundShape:clear()
     self.rigidBody.properties.mass = 0.0
     -- Organelles
     for s, organelle in pairs(self.microbe.organelles) do
