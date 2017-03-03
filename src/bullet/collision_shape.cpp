@@ -4,6 +4,9 @@
 #include "engine/serialization.h"
 #include "util/make_unique.h"
 
+// TODO: remove
+#include <iostream>
+
 using namespace thrive;
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -97,9 +100,13 @@ void BoxShape::luaBindings(
 ){
     lua.new_usertype<BoxShape>("BoxShape",
 
-        sol::constructors<sol::types<Ogre::Vector3>>(),
+        "new", sol::factories([](const Ogre::Vector3 &extents){
+                return std::make_shared<BoxShape>(extents);
+            }),
         
-        sol::base_classes, sol::bases<CollisionShape>()
+        sol::base_classes, sol::bases<CollisionShape>(),
+
+        LUA_CAST_FROM(BoxShape, CollisionShape)
     );
 }
 
@@ -164,9 +171,16 @@ void CapsuleShape::luaBindings(
 ){    
     lua.new_usertype<CapsuleShape>("CapsuleShape",
 
-        sol::constructors<sol::types<CollisionShape::Axis, btScalar, btScalar>>(),
+        "new", sol::factories([](CollisionShape::Axis axis,
+                // I have no idea if these are the right names for these
+                btScalar extent1, btScalar extent2)
+            {
+                return std::make_shared<CapsuleShape>(axis, extent1, extent2);
+            }),
         
-        sol::base_classes, sol::bases<CollisionShape>()
+        sol::base_classes, sol::bases<CollisionShape>(),
+
+        LUA_CAST_FROM(CapsuleShape, CollisionShape)
     );
 }
 
@@ -260,10 +274,14 @@ void CompoundShape::luaBindings(
 ){
     lua.new_usertype<CompoundShape>("CompoundShape",
 
-        sol::constructors<sol::types<>>(),
+        "new", sol::factories([](){
+                return std::make_shared<CompoundShape>();
+            }),
         
         sol::base_classes, sol::bases<CollisionShape>(),
 
+        LUA_CAST_FROM(CompoundShape, CollisionShape),
+        
         "addChildShape", &CompoundShape::addChildShape,
         "clear", &CompoundShape::clear,
         "removeChildShape", &CompoundShape::removeChildShape
@@ -391,9 +409,16 @@ void ConeShape::luaBindings(
 ){
     lua.new_usertype<ConeShape>("ConeShape",
 
-        sol::constructors<sol::types<CollisionShape::Axis, btScalar, btScalar>>(),
-        
-        sol::base_classes, sol::bases<CollisionShape>()
+        "new", sol::factories([](CollisionShape::Axis axis,
+                // I have no idea if these are the right names for these
+                btScalar extent1, btScalar extent2)
+            {
+                return std::make_shared<ConeShape>(axis, extent1, extent2);
+            }),
+
+        sol::base_classes, sol::bases<CollisionShape>(),
+
+        LUA_CAST_FROM(ConeShape, CollisionShape)
     );
 }
 
@@ -475,9 +500,16 @@ void CylinderShape::luaBindings(
 ){
     lua.new_usertype<CylinderShape>("CylinderShape",
 
-        sol::constructors<sol::types<CollisionShape::Axis, btScalar, btScalar>>(),
-        
-        sol::base_classes, sol::bases<CollisionShape>()
+        "new", sol::factories([](CollisionShape::Axis axis,
+                // I have no idea if these are the right names for these
+                btScalar extent1, btScalar extent2)
+            {
+                return std::make_shared<CylinderShape>(axis, extent1, extent2);
+            }),
+
+        sol::base_classes, sol::bases<CollisionShape>(),
+
+        LUA_CAST_FROM(CylinderShape, CollisionShape)
     );
 }
 
@@ -555,9 +587,15 @@ void EmptyShape::luaBindings(
 ){
     lua.new_usertype<EmptyShape>("EmptyShape",
 
-        sol::constructors<sol::types<>>(),
-        
+        "new", sol::factories([]()
+            {
+                return std::make_shared<EmptyShape>();
+            }),
+
         sol::base_classes, sol::bases<CollisionShape>()
+
+        // This probably won't need a casting function
+        //LUA_CAST_FROM(, CollisionShape)
     );
 }
 
@@ -611,9 +649,14 @@ void SphereShape::luaBindings(
 ){
     lua.new_usertype<SphereShape>("SphereShape",
 
-        sol::constructors<sol::types<btScalar>>(),
+        "new", sol::factories([](btScalar radius)
+            {
+                return std::make_shared<SphereShape>(radius);
+            }),
         
-        sol::base_classes, sol::bases<CollisionShape>()
+        sol::base_classes, sol::bases<CollisionShape>(),
+
+        LUA_CAST_FROM(SphereShape, CollisionShape)
     );
 }
 
