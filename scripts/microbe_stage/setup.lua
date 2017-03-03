@@ -329,7 +329,7 @@ local function setupPlayer(gameState)
     microbe.collisionHandler:addCollisionGroup("powerupable")
     Engine:playerData():lockedMap():addLock("Toxin")
     Engine:playerData():lockedMap():addLock("chloroplast")
-    Engine:playerData():setActiveCreature(microbe.entity.id, gameState)
+    Engine:playerData():setActiveCreature(microbe.entity.id, gameState.wrapper)
 end
 
 local function setupSound(gameState)
