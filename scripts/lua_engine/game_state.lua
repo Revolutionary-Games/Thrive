@@ -151,7 +151,8 @@ end
 function GameState:activate()
 
     self.guiWindow:show()
-    
+
+    -- Make this states' main window (and its children) visible
     CEGUIWindow.getRootWindow():addChild(self.guiWindow)
 
     for i,s in ipairs(self.systems) do

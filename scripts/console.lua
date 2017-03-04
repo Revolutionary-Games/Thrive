@@ -29,11 +29,11 @@ function ConsoleHud:registerEvents(gameState)
 end
 
 function ConsoleHud:update()
-    local gameState = Engine:currentGameState()
-    local root = gameState:rootGUIWindow()
+    local gameState = g_luaEngine.currentGameState
+    local root = gameState.guiWindow
     local consoleWindow = root:getChild("ConsoleWindow")
     local inputArea = consoleWindow:getChild("TextEntry")
-    if Engine.keyboard:wasKeyPressed(Keyboard.KC_F11) then
+    if Engine.keyboard:wasKeyPressed(KEYCODE.KC_F11) then
         self.active = not self.active
         if self.active then
             consoleWindow:show()
@@ -48,7 +48,7 @@ function ConsoleHud:update()
             consoleWindow:hide()
         end
     elseif self.active then
-        if Engine.keyboard:wasKeyPressed(Keyboard.KC_RETURN) then
+        if Engine.keyboard:wasKeyPressed(KEYCODE.KC_RETURN) then
             -- push line to interpreter
             local outputArea = consoleWindow:getChild("History")
             local line = inputArea:getText()
@@ -58,10 +58,10 @@ function ConsoleHud:update()
             self.inputHistoryIndex = #self.inputHistory
             self.inputHistory[self.inputHistoryIndex + 1] = line
             self.inputHistoryIndex = self.inputHistoryIndex + 1
-        elseif Engine.keyboard:wasKeyPressed(Keyboard.KC_UP) and self.inputHistoryIndex > 0 then
+        elseif Engine.keyboard:wasKeyPressed(KEYCODE.KC_UP) and self.inputHistoryIndex > 0 then
             self.inputHistoryIndex = self.inputHistoryIndex - 1
             inputArea:setText(self.inputHistory[self.inputHistoryIndex + 1])
-        elseif Engine.keyboard:wasKeyPressed(Keyboard.KC_DOWN) and self.inputHistoryIndex < #self.inputHistory - 1 then
+        elseif Engine.keyboard:wasKeyPressed(KEYCODE.KC_DOWN) and self.inputHistoryIndex < #self.inputHistory - 1 then
             self.inputHistoryIndex = self.inputHistoryIndex + 1
             inputArea:setText(self.inputHistory[self.inputHistoryIndex + 1])
         end
@@ -71,8 +71,8 @@ end
 function ConsoleHud:eval()
     -- push line to interpreter
     if not self.active then return end
-    local gameState = Engine:currentGameState()
-    local consoleWindow = gameState:rootGUIWindow():getChild("ConsoleWindow")
+    local gameState = g_luaEngine.currentGameState
+    local consoleWindow = gameState.guiWindow:getChild("ConsoleWindow")
     local inputArea = consoleWindow:getChild("TextEntry")
     local outputArea = consoleWindow:getChild("History")
     local line = inputArea:getText()
@@ -85,9 +85,9 @@ function ConsoleHud:eval()
 end
 
 function ConsoleHud:handleKeys(key)
-    local consoleWindow = Engine:currentGameState():rootGUIWindow():getChild("ConsoleWindow")
+    local consoleWindow = g_luaEngine.currentGameState.guiWindow:getChild("ConsoleWindow")
     local inputArea = consoleWindow:getChild("TextEntry")
-    if key == Keyboard.KC_F11 then
+    if key == KEYCODE.KC_F11 then
         if self.active then
             consoleWindow:disable()
             consoleWindow:hide()

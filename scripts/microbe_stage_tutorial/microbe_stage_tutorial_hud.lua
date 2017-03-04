@@ -374,7 +374,11 @@ function MicrobeStageTutorialHudSystem:editorButtonClicked()
 end
 
 function quitButtonClicked()
-    local guiSoundEntity = Entity("gui_sounds")
-    guiSoundEntity:getComponent(SoundSourceComponent.TYPE_ID):playSound("button-hover-click")
+    
+    SoundSourceComponent.castFrom(
+        Entity.new("gui_sounds", g_luaEngine.currentGameState.wrapper):getComponent(
+            SoundSourceComponent.TYPE_ID)
+    ):playSound("button-hover-click")
+    
     Engine:quit()
 end

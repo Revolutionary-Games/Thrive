@@ -61,25 +61,25 @@ function keyCombo(combo)
             mods.shift = true
         elseif key == "alt" then
             mods.alt = true
-        elseif not Engine.keyboard:wasKeyPressed(Keyboard["KC_"..key]) then
+        elseif not Engine.keyboard:wasKeyPressed(KEYCODE["KC_"..key]) then
             return false
         end
     end
     -- fail if any modkey pressed unmatches required mods
 
-    if (Engine.keyboard:isKeyDown(Keyboard.KC_LCONTROL) 
-        or Engine.keyboard:isKeyDown(Keyboard.KC_RCONTROL)
-        ) ~= mods.ctrl then
+    if (Engine.keyboard:isKeyDown(KEYCODE.KC_LCONTROL) 
+            or Engine.keyboard:isKeyDown(KEYCODE.KC_RCONTROL)
+    ) ~= mods.ctrl then
         return false
     end
-    if (Engine.keyboard:isKeyDown(Keyboard.KC_LSHIFT)
-        or Engine.keyboard:isKeyDown(Keyboard.KC_RSHIFT)
-        ) ~= mods.shift then
+    if (Engine.keyboard:isKeyDown(KEYCODE.KC_LSHIFT)
+            or Engine.keyboard:isKeyDown(KEYCODE.KC_RSHIFT)
+    ) ~= mods.shift then
         return false
     end
-    if (Engine.keyboard:isKeyDown(Keyboard.KC_LMENU)
-        or Engine.keyboard:isKeyDown(Keyboard.KC_RMENU)
-        ) ~= mods.alt then
+    if (Engine.keyboard:isKeyDown(KEYCODE.KC_LMENU)
+            or Engine.keyboard:isKeyDown(KEYCODE.KC_RMENU)
+    ) ~= mods.alt then
         return false
     end
     return true

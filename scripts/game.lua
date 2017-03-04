@@ -37,8 +37,8 @@ function enterLuaMain(cppGame)
       local frameDuration = Game.delta(Game.now(), now);
 
       -- sleep if we are going too fast
-      Game.sleepIfNeeded(frameDuration)
-         
+      cppGame:sleepIfNeeded(frameDuration)
+      
       -- update fps counter
       fpsCount = fpsCount + 1;
       fpsTime = fpsTime + Game.asMS(frameDuration)

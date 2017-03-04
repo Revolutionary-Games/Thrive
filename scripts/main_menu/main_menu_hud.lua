@@ -41,8 +41,14 @@ function MainMenuHudSystem:update(renderTime, logicTime)
       if self.videoPlayer then
          self.videoPlayer:close()
          self.videoPlayer:hide()
-         Entity("gui_sounds"):getComponent(SoundSourceComponent.TYPE_ID):interruptPlaying()
-         Entity("main_menu_ambience"):getComponent(SoundSourceComponent.TYPE_ID).autoLoop = true
+         SoundSourceComponent.castFrom(
+             Entity.new("gui_sounds", self.gameState.wrapper):getComponent(
+                 SoundSourceComponent.TYPE_ID)
+         ):interruptPlaying()
+         SoundSourceComponent.castFrom(
+             Entity.new("main_menu_ambience", self.gameState.wrapper):getComponent(
+                 SoundSourceComponent.TYPE_ID)
+         ).autoLoop = true
          self.skippedVideo = true
       end
    elseif keyCombo(kmp.forward) then
@@ -57,7 +63,11 @@ function MainMenuHudSystem:update(renderTime, logicTime)
          end
          if not self.skippedVideo and self.videoPlayer:getCurrentTime() >= self.videoPlayer:getDuration() then
             self.videoPlayer:hide()
-            Entity("main_menu_ambience"):getComponent(SoundSourceComponent.TYPE_ID).autoLoop = true
+
+            SoundSourceComponent.castFrom(
+                Entity.new("main_menu_ambience", self.gameState.wrapper):getComponent(
+                    SoundSourceComponent.TYPE_ID)
+            ).autoLoop = true
          end
       end
    end
