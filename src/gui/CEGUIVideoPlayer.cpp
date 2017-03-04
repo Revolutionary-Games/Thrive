@@ -60,8 +60,14 @@ void CEGUIVideoPlayer::luaBindings(
 ){
     lua.new_usertype<CEGUIVideoPlayer>("CEGUIVideoPlayer",
 
-        sol::constructors<sol::types<std::string, int, int>,
-        sol::types<std::string>>(),
+        "new", sol::factories([](const std::string &name, int width, int height){
+
+                return new CEGUIVideoPlayer(name, width, height);
+
+            }, [](const std::string &name){
+
+                return new CEGUIVideoPlayer(name);
+            }),
         
         sol::base_classes, sol::bases<CEGUIWindow>(),
 

@@ -126,6 +126,27 @@ From here: [safety - sol](https://sol2.readthedocs.io/en/latest/safety.html)
 
 
 
+Running with valgrind
+---------------------
+
+To avoid false positives LuaJIT makefile needs to be altered to enable
+debug info and valgrind support mode. Plus you might need to use a
+luajit valgrind suppression
+file.
+[Some instructions here](https://gist.github.com/deltheil/3d446d00a39cca138978)
+
+
+GDB Debugging
+-------------
+
+LuaJIT can provide source file information for GDB with GDB version
+7+. To use this uncomment `XCFLAGS+= -DLUAJIT_USE_GDBJIT` in the
+LuaJIT makefile. See `lj_gdbjit.c` for instructions how to set
+breakpoints in Lua.
+
+
+
+
 
 
 

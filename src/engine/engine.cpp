@@ -98,6 +98,7 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
     }
 
     ~Implementation() {
+
         Ogre::WindowEventUtilities::removeWindowEventListener(
             m_graphics.renderWindow,
             this
@@ -369,8 +370,7 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
 
     void
     setupLog() {
-        static Ogre::LogManager logManager;
-        logManager.createLog("ogre.log", true, false, false);
+        m_graphics.logManager.createLog("ogre.log", true, false, false);
     }
 
     void
@@ -431,6 +431,19 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
         }
         CEGUI::System::getSingleton().getRenderer()->setDisplaySize(CEGUI::Sizef(window->getWidth(), window->getHeight()));
     }
+
+    // This actually needs to be the last thing destroyed as bunch of Lua owned
+    // objects keep Ogre::SceneManagers and other things alive
+    struct Graphics {
+
+        Ogre::LogManager logManager;
+
+        std::unique_ptr<Ogre::Root> root;
+
+        Ogre::RenderWindow* renderWindow = nullptr;
+
+    } m_graphics;
+    
     // Lua state must be one of the last to be destroyed, so keep it
     // at top. The reason for that is that some components keep
     // sol::object instances around that rely on the lua state to
@@ -450,14 +463,6 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
     bool m_quitRequested = false;
 
     bool m_paused = false;
-
-    struct Graphics {
-
-        std::unique_ptr<Ogre::Root> root;
-
-        Ogre::RenderWindow* renderWindow = nullptr;
-
-    } m_graphics;
 
     struct Input {
 
@@ -501,6 +506,7 @@ void Engine::luaBindings(
         "getCreationFileList", &Engine::getCreationFileList,
         "quit", &Engine::quit,
         "thriveVersion", &Engine::thriveVersion,
+        "update", &Engine::update,
         "pauseGame", &Engine::pauseGame,
         "resumeGame", &Engine::resumeGame,
         "getResolutionHeight", &Engine::getResolutionHeight,
@@ -855,13 +861,18 @@ Engine::playerData(){
 void
 Engine::shutdown() {
     
-    sol::protected_function luaInit = m_impl->m_luaState["g_luaEngine"]["shutdown"];
+    sol::protected_function luaShutdown = m_impl->m_luaState["g_luaEngine"]["shutdown"];
 
-    if(!luaInit(m_impl->m_luaState["g_luaEngine"]).valid()){
+    if(!luaShutdown(m_impl->m_luaState["g_luaEngine"]).valid()){
 
         throw std::runtime_error("Failed to shutdown LuaEngine side");
     }
-    
+
+    // This should release a bunch of objects //
+    // But apparently not enough. So Lua destructors need to check whether
+    // Ogre is still valid
+    m_impl->m_luaState.collect_garbage();
+
     m_impl->shutdownInputManager();
     m_impl->m_graphics.renderWindow->destroy();
 

@@ -47,9 +47,16 @@ GameStateData::GameStateData(
 GameStateData::~GameStateData(){
 
     // Destroy scene manager
-    Ogre::Root::getSingleton().destroySceneManager(
-        m_sceneManager
-    );
+    Ogre::Root* root = Ogre::Root::getSingletonPtr();
+
+    // This object might be destroyed when the Lua state is destroyed so it is not safe
+    // to just assume that root is valid
+    if(root){
+    
+        root->destroySceneManager(
+            m_sceneManager
+        );
+    }
 
     m_sceneManager = nullptr;
 }
