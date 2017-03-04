@@ -57,19 +57,20 @@ void Game::luaBindings(sol::state &lua){
             return Implementation::Clock::now();
         },
 
-        "delta", [](Implementation::Clock::time_point now,
-            Implementation::Clock::time_point lastUpdate) -> Implementation::Clock::duration
+        "delta", [](const Implementation::Clock::time_point &now,
+            const Implementation::Clock::time_point &lastUpdate) ->
+        Implementation::Clock::duration
         {
             return now - lastUpdate;
         },
 
-        "asMS", [](Implementation::Clock::duration duration) -> int32_t
+        "asMS", [](const Implementation::Clock::duration &duration) -> int32_t
         {
             return boost::chrono::duration_cast<boost::chrono::milliseconds>(duration).count();
         },
 
         "sleepIfNeeded", [](Game &us,
-            Implementation::Clock::duration frameDuration)
+            const Implementation::Clock::duration &frameDuration)
         {
             auto sleepDuration = us.m_impl->m_targetFrameDuration - frameDuration;
             if (sleepDuration.count() > 0) {
