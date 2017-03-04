@@ -540,7 +540,10 @@ void Engine::luaBindings(
         "getResolutionWidth", &Engine::getResolutionWidth,
         "componentFactory", sol::property(&Engine::componentFactory),
         "keyboard", sol::property(&Engine::keyboard),
-        "mouse", sol::property(&Engine::mouse)
+        "mouse", sol::property(&Engine::mouse),
+        "paused", sol::property([](Engine &self){
+                return self.m_impl->m_paused;
+            })
     );
 }
 
