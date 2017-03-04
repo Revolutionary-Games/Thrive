@@ -34,8 +34,14 @@ struct Game::Implementation {
 
 void Game::luaBindings(sol::state &lua){
 
-    // lua.new_usertype<Implementation::Clock::time_point>("time_point"
+    // These probably don't need to be exposed
+    // lua.new_usertype<Implementation::Clock::time_point>("boost.time_point"
     // );
+
+    // lua.new_usertype<Implementation::Clock::duration>("boost.duration"
+    // );
+
+    
 
     lua.new_usertype<Game>("Game",
 
@@ -45,18 +51,19 @@ void Game::luaBindings(sol::state &lua){
                 return us.m_impl->m_quit;
             }),
 
-        "now", [](){
+        // Static functions. Access with Game.func
+        "now", []() -> Implementation::Clock::time_point{
 
             return Implementation::Clock::now();
         },
 
         "delta", [](Implementation::Clock::time_point now,
-            Implementation::Clock::time_point lastUpdate)
+            Implementation::Clock::time_point lastUpdate) -> Implementation::Clock::duration
         {
             return now - lastUpdate;
         },
 
-        "asMS", [](Implementation::Clock::duration duration)
+        "asMS", [](Implementation::Clock::duration duration) -> int32_t
         {
             return boost::chrono::duration_cast<boost::chrono::milliseconds>(duration).count();
         },

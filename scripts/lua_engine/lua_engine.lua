@@ -7,36 +7,36 @@
 
 LuaEngine = class(
 
-   function(self)
+    function(self)
 
-      -- The state the engine is switching to on next frame
-      self.nextGameState = nil
+        -- The state the engine is switching to on next frame
+        self.nextGameState = nil
 
-      -- The current main GameState. Touching this directly WILL cause problems
-      -- (unless you are careful, but... don't do it)
-      self.currentGameState = nil
+        -- The current main GameState. Touching this directly WILL cause problems
+        -- (unless you are careful, but... don't do it)
+        self.currentGameState = nil
 
-      -- List of all created GameStates
-      self.gameStates = {}
+        -- List of all created GameStates
+        self.gameStates = {}
 
-      
+        
 
-      -- The console object attaches itself here
-      self.console = nil
-      self.consoleGUIWindow = nil
+        -- The console object attaches itself here
+        self.console = nil
+        self.consoleGUIWindow = nil
 
-      -- std::list<std::tuple<EntityId, EntityId, GameState*, GameState*>> m_entitiesToTransferGameState;
+        -- std::list<std::tuple<EntityId, EntityId, GameState*, GameState*>> m_entitiesToTransferGameState;
 
 
-      -- This is a table of systems that are going to be moved to prevShutdownSystems once
-      -- the GameState changes. So this is used to get all the systems that the current state
-      -- wants to timed shutdown
-      self.nextShutdownSystems = {}
+        -- This is a table of systems that are going to be moved to prevShutdownSystems once
+        -- the GameState changes. So this is used to get all the systems that the current state
+        -- wants to timed shutdown
+        self.nextShutdownSystems = {}
 
-      -- This is a table of currently running systems that need to be shutdown
-      self.prevShutdownSystems = {}
-      
-   end
+        -- This is a table of currently running systems that need to be shutdown
+        self.prevShutdownSystems = {}
+        
+    end
 )
 
 --! @brief Initializes the lua side of the engine
@@ -44,41 +44,41 @@ LuaEngine = class(
 --! c++ code
 function LuaEngine:init(cppSide)
 
-   assert(cppSide ~= nil)
+    assert(cppSide ~= nil)
 
-   self.Engine = cppSide
+    self.Engine = cppSide
 
-   self.initialized = true
+    self.initialized = true
 
-   print("LuaEngine init started")
-   
-   self.consoleGUIWindow = CEGUIWindow.new("Console")
+    print("LuaEngine init started")
+    
+    self.consoleGUIWindow = CEGUIWindow.new("Console")
 
-   -- Store current state
-   local previousGameState = self.currentGameState
+    -- Store current state
+    local previousGameState = self.currentGameState
 
-   -- Initialize states that have been created while loading all the scripts
-   for _,s in pairs(self.gameStates) do
+    -- Initialize states that have been created while loading all the scripts
+    for _,s in pairs(self.gameStates) do
 
-      self.currentGameState = s
+        self.currentGameState = s
 
-      s:init()
-      
-   end
-   
-   -- Restore the state
-   self.currentGameState = previousGameState
-   
+        s:init()
+        
+    end
+    
+    -- Restore the state
+    self.currentGameState = previousGameState
+    
 end
 
 --! @brief Shutsdown all systems
 function LuaEngine:shutdown()
 
-   for _,s in pairs(self.gameStates) do
+    for _,s in pairs(self.gameStates) do
 
-      s:shutdown()
-      
-   end
+        s:shutdown()
+        
+    end
 end
 
 --! @param name Unique name of the system
@@ -94,92 +94,92 @@ function LuaEngine:createGameState(name,
                                    guiLayoutName,
                                    extraInitializer)
 
-   assert(self.initialized ~= true,
-          "LuaEngine: trying to create state after init. State wouldn't be initialized!")
-   
-   if extraInitializer ~= nil then
+    assert(self.initialized ~= true,
+           "LuaEngine: trying to create state after init. State wouldn't be initialized!")
+    
+    if extraInitializer ~= nil then
 
-      -- Initializer must be a function
-      assert(type(extraInitializer) == "function",
-             "extraInitializer must be a function")
+        -- Initializer must be a function
+        assert(type(extraInitializer) == "function",
+               "extraInitializer must be a function")
 
-   end
-   -- Type check everything for bad calls
-   assert(type(name) == "string")
-   assert(type(systems) == "table")
-   assert(type(physics) == "boolean")
-   assert(type(guiLayoutName) == "string")
-   
-   assert(self.gameStates[name] == nil, "Duplicate GameState name")
+    end
+    -- Type check everything for bad calls
+    assert(type(name) == "string")
+    assert(type(systems) == "table")
+    assert(type(physics) == "boolean")
+    assert(type(guiLayoutName) == "string")
+    
+    assert(self.gameStates[name] == nil, "Duplicate GameState name")
 
-   local newState = GameState.new(name, systems, self, physics,
-                                  guiLayoutName, extraInitializer)
+    local newState = GameState.new(name, systems, self, physics,
+                                   guiLayoutName, extraInitializer)
 
-   self.gameStates[name] = newState
-   
-   return newState
+    self.gameStates[name] = newState
+    
+    return newState
 end
 
 --! @brief Runs updates on some core systems and the current GameState
-function update(milliseconds)
+function LuaEngine:update(milliseconds)
 
-   self.Engine.update(milliseconds)
+    self.Engine:update(milliseconds)
 
-   -- Update GameStates
-   
-   if self.nextGameState ~= nil then
-      
-      self:activateGameState(self.nextGameState)
-      self.nextGameState = nil
-      
-   end
+    -- Update GameStates
+    
+    if self.nextGameState ~= nil then
+        
+        self:activateGameState(self.nextGameState)
+        self.nextGameState = nil
+        
+    end
 
-   if self.currentGameState == nil then
-      error("currentGameState is nil")
-   end
-   
-   -- Update current GameState
-   local updateTime = milliseconds
+    if self.currentGameState == nil then
+        error("currentGameState is nil")
+    end
+    
+    -- Update current GameState
+    local updateTime = milliseconds
 
-   if self.Engine.paused then
-      updateTime = 0
-   end
-   
-   self.currentGameState:update(milliseconds, updateTime)
+    if self.Engine.paused then
+        updateTime = 0
+    end
+    
+    self.currentGameState:update(milliseconds, updateTime)
 
-   -- Update console
-   self.console:update()
+    -- Update console
+    self.console:update()
 
 
-   -- Update any timed shutdown systems
-   -- Reverse iterate to safely remove items
-   for i = #self.prevShutdownSystems, 1, -1 do
+    -- Update any timed shutdown systems
+    -- Reverse iterate to safely remove items
+    for i = #self.prevShutdownSystems, 1, -1 do
 
-      local delayed  = self.prevShutdownSystems[i]
-      
-      local updateTime = min(delayed.timeLeft, milliseconds);
+        local delayed  = self.prevShutdownSystems[i]
+        
+        local updateTime = min(delayed.timeLeft, milliseconds);
 
-      
-      local pauseHelper = updateTime
+        
+        local pauseHelper = updateTime
 
-      if self.Engine.paused then
+        if self.Engine.paused then
 
-         pauseHelper = 0
-         
-      end
+            pauseHelper = 0
+            
+        end
 
-      delayed.system:update(updateTime, pauseHelper)
-      
-      delayed.timeLeft = delayed.timeLeft - updateTime
+        delayed.system:update(updateTime, pauseHelper)
+        
+        delayed.timeLeft = delayed.timeLeft - updateTime
 
-      if delayed.timeLeft <= 0 then
+        if delayed.timeLeft <= 0 then
 
-         -- Remove systems that had timed out
-         delayed.system:deactivate()
-         table.remove(self.prevShutdownSystems, i)
-         
-      end
-   end
+            -- Remove systems that had timed out
+            delayed.system:deactivate()
+            table.remove(self.prevShutdownSystems, i)
+            
+        end
+    end
 end
 
 
@@ -198,34 +198,34 @@ end
 --! 
 function LuaEngine:timedSystemShutdown(system, milliseconds)
 
-   local state = self:gameStateFromCpp(system)
+    local state = self:gameStateFromCpp(system)
 
-   if system ~= nil then
-      system = state
-   end
+    if system ~= nil then
+        system = state
+    end
 
-   table.insert(self.prevShutdownSystems, { timeLeft = milliseconds, ["system"] = system })
+    table.insert(self.prevShutdownSystems, { timeLeft = milliseconds, ["system"] = system })
 
 end
 
 --! @brief Returns true if system is already queued for shutdown
 function LuaEngine:isSystemTimedShutdown(system)
 
-   local state = self:gameStateFromCpp(system)
+    local state = self:gameStateFromCpp(system)
 
-   if system ~= nil then
-      system = state
-   end
+    if system ~= nil then
+        system = state
+    end
 
-   for i,p in ipairs(self.prevShutdownSystems) do
+    for i,p in ipairs(self.prevShutdownSystems) do
 
-      if p.system == system then
-         return true
-      end
-      
-   end
+        if p.system == system then
+            return true
+        end
+        
+    end
 
-   return false
+    return false
 
 end
 
@@ -239,20 +239,20 @@ end
 --! @param gameState GameState The new game state
 function LuaEngine:setCurrentGameState(gameState)
 
-   assert(gameState ~= nil, "GameState must not be null")
-   
-   self.nextGameState = gameState;
+    assert(gameState ~= nil, "GameState must not be null")
+    
+    self.nextGameState = gameState;
 
-   --Make sure systems are deactivated before any potential reactivations
+    --Make sure systems are deactivated before any potential reactivations
 
-   for _,p in pairs(self.prevShutdownSystems) do
+    for _,p in pairs(self.prevShutdownSystems) do
 
-      p.system:deactivate()
-      
-   end
+        p.system:deactivate()
+        
+    end
 
-   self.prevShutdownSystems = self.nextShutdownSystems
-   self.nextShutdownSystems = {}
+    self.prevShutdownSystems = self.nextShutdownSystems
+    self.nextShutdownSystems = {}
 
 end
 
@@ -263,27 +263,27 @@ end
 --! @return The GameState with the name or nil
 function LuaEngine:getGameState(name)
 
-   return self.gameStates[name]
-   
+    return self.gameStates[name]
+    
 end
 
 --! @brief Returns a system that has the potential C++ side object
 function LuaEngine:gameStateFromCpp(cppObj)
-   -- TODO: Detect if newGameState is a c++ object GameStateData or a lua GameState object
-   print("type thing: " .. type(cppObj))
-   error("todo:")
+    -- TODO: Detect if newGameState is a c++ object GameStateData or a lua GameState object
+    print("type thing: " .. type(cppObj))
+    error("todo:")
 
-   for _,s in pairs(self.gameStates) do
+    for _,s in pairs(self.gameStates) do
 
-      if s.wrapper == cppObj then
+        if s.wrapper == cppObj then
 
-         return s
+            return s
 
-      end
-      
-   end
+        end
+        
+    end
 
-   return nil
+    return nil
 end
 
 --! @brief Transfers an entity from one gamestate to another
@@ -301,28 +301,28 @@ function LuaEngine:transferEntityGameState(oldEntityId,
                                            oldEntityManager,
                                            newGameState)
 
-   local state = self:gameStateFromCpp(newGameState)
+    local state = self:gameStateFromCpp(newGameState)
 
-   if state ~= nil then
-      newGameState = state
-   end
+    if state ~= nil then
+        newGameState = state
+    end
 
-   local newEntity -- EntityId
-   
-   local nameMapping = oldEntityManager:getNameMappingFor(oldEntityId)
-   
-   if nameMapping ~= nil then
-      
-      newEntity = newGameState.entityManager:getNamedId(nameMapping, true)
+    local newEntity -- EntityId
+    
+    local nameMapping = oldEntityManager:getNameMappingFor(oldEntityId)
+    
+    if nameMapping ~= nil then
+        
+        newEntity = newGameState.entityManager:getNamedId(nameMapping, true)
 
-   else
-         newEntity = newGameState.entityManager:generateNewId()
-   end
-   
-   oldEntityManager:transferEntity(
-      oldEntityId, newEntity, newGameState.entityManager, Engine.componentFactory);
+    else
+        newEntity = newGameState.entityManager:generateNewId()
+    end
+    
+    oldEntityManager:transferEntity(
+        oldEntityId, newEntity, newGameState.entityManager, Engine.componentFactory);
 
-   return newEntity;
+    return newEntity;
 end
 
 
@@ -331,22 +331,22 @@ end
 --! be called during an update!
 function LuaEngine:activateGameState(gameState)
 
-   if self.currentGameState ~= nil then
+    if self.currentGameState ~= nil then
 
-      self.currentGameState:deactivate()
-      
-   end
+        self.currentGameState:deactivate()
+        
+    end
 
-   self.currentGameState = gameState
-   
-   if self.currentGameState ~= nil then
-      
-      gameState:activate()
-      
-      gameState:rootGUIWindow():addChild(self.consoleGUIWindow)
-      
-      self.console:registerEvents(gameState)
-   end
+    self.currentGameState = gameState
+    
+    if self.currentGameState ~= nil then
+        
+        gameState:activate()
+        
+        gameState:rootGUIWindow():addChild(self.consoleGUIWindow)
+        
+        self.console:registerEvents(gameState)
+    end
 
 end
 
@@ -355,61 +355,61 @@ end
 --! @param saveGame StorageContainer with saved data
 function LuaEngine:loadSavegameGameStates(saveGame)
 
-   local previousGameState = self.currentGameState
+    local previousGameState = self.currentGameState
 
-   self:activateGameState(nil)
+    self:activateGameState(nil)
 
-   local gameStatesContainer = savegame:get("gameStates")
+    local gameStatesContainer = savegame:get("gameStates")
 
-   for name, system in pairs(self.gameStates) do
+    for name, system in pairs(self.gameStates) do
 
-      if gameStatesContainer:contains(name) then
-         
-         -- In case anything relies on the current game state
-         -- during loading, temporarily switch it
-         self.currentGameState = system
-         
-         system:load(gameStatesContainer:get(name))
+        if gameStatesContainer:contains(name) then
+            
+            -- In case anything relies on the current game state
+            -- during loading, temporarily switch it
+            self.currentGameState = system
+            
+            system:load(gameStatesContainer:get(name))
 
-      else 
-         system.entityManager:clear()
-      end  
-      
-   end
+        else 
+            system.entityManager:clear()
+        end  
+        
+    end
 
-   for _,p in pairs(self.prevShutdownSystems) do
+    for _,p in pairs(self.prevShutdownSystems) do
 
-      p.system:deactivate()
-      
-   end
+        p.system:deactivate()
+        
+    end
 
-   for _,p in pairs(self.nextShutdownSystems) do
+    for _,p in pairs(self.nextShutdownSystems) do
 
-      p.system:deactivate()
-      
-   end
+        p.system:deactivate()
+        
+    end
 
-   self.nextShutdownSystems = {}
-   self.prevShutdownSystems = {}
-   
-   
-   self.currentGameState = nil
-   
-   -- Switch gamestate
-   local gameStateName = savegame:get("currentGameState")
+    self.nextShutdownSystems = {}
+    self.prevShutdownSystems = {}
+    
+    
+    self.currentGameState = nil
+    
+    -- Switch gamestate
+    local gameStateName = savegame:get("currentGameState")
 
-   local gameState = self:getGameState(gameStateName)
+    local gameState = self:getGameState(gameStateName)
 
-   if gameState ~= nil then
+    if gameState ~= nil then
 
-      self:activateGameState(gameState)
+        self:activateGameState(gameState)
 
-   else
-      
-      self:activateGameState(previousGameState)
-      print("Error loading GameStates: unkown name for 'currentGameState'")
-      
-   end
+    else
+        
+        self:activateGameState(previousGameState)
+        print("Error loading GameStates: unkown name for 'currentGameState'")
+        
+    end
 
 end
 
@@ -418,18 +418,18 @@ end
 --! @param saveGame StorageContainer to be filled with saved data
 function LuaEngine:saveCurrentStates(saveGame)
 
-   savegame:set("currentGameState", self.currentGameState.name)
-   
-   local gameStatesContainer = StorageContainer.new()
+    savegame:set("currentGameState", self.currentGameState.name)
+    
+    local gameStatesContainer = StorageContainer.new()
 
-   for name, system in pairs(self.gameStates) do
+    for name, system in pairs(self.gameStates) do
 
-      gameStatesContainer:set(name, system:storage())
-      
-   end
-   
-   savegame:set("gameStates", gameStatesContainer)
-   
+        gameStatesContainer:set(name, system:storage())
+        
+    end
+    
+    savegame:set("gameStates", gameStatesContainer)
+    
 end
 
 --! Sets the console object. Called from console.lua

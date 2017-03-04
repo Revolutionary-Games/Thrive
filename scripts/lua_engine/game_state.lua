@@ -148,7 +148,7 @@ end
 
 
 --! @brief Called when this gamestate is made the active one
-function GameState:active()
+function GameState:activate()
 
     self.guiWindow:show()
     

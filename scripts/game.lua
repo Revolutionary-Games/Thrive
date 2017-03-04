@@ -11,7 +11,7 @@ end
 
 
 -- Main loop for lua
---! @param cppGame thrive::Game::Implementation object
+--! @param cppGame thrive::Game object
 function enterLuaMain(cppGame)
 
    printStartMessage()
@@ -20,27 +20,27 @@ function enterLuaMain(cppGame)
 
    local fpsTime = 0
 
-   local lastUpdate = cppGame:now()
+   local lastUpdate = Game.now()
    
    while cppGame.shouldQuit == false do
 
-      local now = cppGame:now();
+      local now = Game.now();
       
-      local milliSeconds = cppGame:asMS(cppGame:delta(now, lastUpdate))
+      local milliseconds = Game.asMS(Game.delta(now, lastUpdate))
       
       lastUpdate = now;
 
       -- Update engine stuff and GameStates
-      g_luaEngine.update(milliseconds)
+      g_luaEngine:update(milliseconds)
 
-      local frameDuration = cppGame:delta(cppGame:now(), now);
+      local frameDuration = Game.delta(Game.now(), now);
 
       -- sleep if we are going too fast
-      cppGame:sleepIfNeeded(frameDuration)
+      Game.sleepIfNeeded(frameDuration)
          
       -- update fps counter
       fpsCount = fpsCount + 1;
-      fpsTime = fpsTime + cppGame:asMS(frameDuration)
+      fpsTime = fpsTime + Game.asMS(frameDuration)
       
       if fpsTime >= 1000 then
          
