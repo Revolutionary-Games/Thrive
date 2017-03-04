@@ -212,7 +212,15 @@ void CEGUIWindow::luaBindings(
         "registerKeyEventHandler", static_cast<void (CEGUIWindow::*)(const sol::function&)
         const>(&CEGUIWindow::registerKeyEventHandler),
         "setGuiMoveMode", &CEGUIWindow::setGuiMoveMode,
-        "getWindowUnderMouse", &CEGUIWindow::getWindowUnderMouse
+        "getWindowUnderMouse", &CEGUIWindow::getWindowUnderMouse,
+
+        //! Returns the global root window. Use game_state.guiWindow
+        //! instead unless you really need the global root window
+        "getRootWindow", [](){
+
+            return CEGUIWindow(CEGUI::System::getSingleton().
+                getDefaultGUIContext().getRootWindow(), false);
+        }
     );
 }
 
