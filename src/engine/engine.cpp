@@ -331,9 +331,9 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
         CEGUI::System::getSingleton().getDefaultGUIContext().getCursor().setDefaultImage(
             "ThriveGeneric/MouseArrow");
 
-        m_aggregator = std::move(std::unique_ptr<CEGUI::InputAggregator>(
+        m_aggregator = std::unique_ptr<CEGUI::InputAggregator>(
                 new CEGUI::InputAggregator(&CEGUI::System::getSingleton()
-                    .getDefaultGUIContext())));
+                    .getDefaultGUIContext()));
 
         // Using the handling on keydown mode to detect when inputs are consumed
         m_aggregator->initialise(false);
@@ -382,7 +382,7 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
     setupSoundManager() {
         static const std::string DEVICE_NAME = "";
 
-        m_soundManager = std::move(std::unique_ptr<SoundManager>(new SoundManager()));
+        m_soundManager = std::unique_ptr<SoundManager>(new SoundManager());
 
         m_soundManager->init(DEVICE_NAME);
         //soundManager.setDistanceModel(AL_LINEAR_DISTANCE);
