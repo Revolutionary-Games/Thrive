@@ -390,16 +390,43 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
 
     void
     loadVersionNumber() {
-        std::ifstream versionFile ("thriveversion.ver");
-        if (versionFile.is_open()) {
-            std::getline(versionFile, m_thriveVersion);
+
+        if(!readVersionFile("thriveversion.ver")){
+
+            // Backup location //
+            if(!readVersionFile("../thriveversion.ver")){
+
+                // Unable to find version //
+                m_thriveVersion = "unknown";
+            }
         }
-        else {
-            m_thriveVersion = "unknown";
-        }
-        versionFile.close();
     }
 
+    /**
+    * @brief Helper for loadVersionNumber
+    * @returns True if file was valid
+    */
+    bool
+    readVersionFile(
+        const std::string &file
+    ) {
+        std::ifstream versionFile (file);
+        
+        if(versionFile.is_open()){
+            
+            std::getline(versionFile, m_thriveVersion);
+            
+            // Check for successfull read //
+            if(m_thriveVersion.empty())
+                return false;
+            
+            return true;
+        }
+        
+        return false;
+    }
+
+    
     void
     shutdownInputManager() {
         if (not m_input.inputManager) {
@@ -505,7 +532,7 @@ void Engine::luaBindings(
         "screenShot", &Engine::screenShot,
         "getCreationFileList", &Engine::getCreationFileList,
         "quit", &Engine::quit,
-        "thriveVersion", &Engine::thriveVersion,
+        "thriveVersion", sol::property(&Engine::thriveVersion),
         "update", &Engine::update,
         "pauseGame", &Engine::pauseGame,
         "resumeGame", &Engine::resumeGame,
