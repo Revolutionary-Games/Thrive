@@ -2,8 +2,9 @@
 
 function printStartMessage()
 
-   print("Thrive version " .. " with " .. _VERSION .. " from " .. jit.version ..
-            " ready to go. "
+    print("Thrive version " .. Engine.thriveVersion ..
+              " with " .. _VERSION .. " from " .. jit.version ..
+              " ready to go. "
          --.. "Let's rock"
    )
 
