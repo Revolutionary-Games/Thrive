@@ -20,7 +20,9 @@ EntityManager::luaBindings(sol::state &lua){
 
     lua.new_usertype<EntityManager>("EntityManager",
 
-        sol::constructors<sol::types<>>()
+        sol::constructors<sol::types<>>(),
+
+        "processRemovals", &EntityManager::processRemovals
     );
 }
 
