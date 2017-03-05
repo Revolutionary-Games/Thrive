@@ -5,8 +5,8 @@ function printStartMessage()
     print("Thrive version " .. Engine.thriveVersion ..
               " with " .. _VERSION .. " from " .. jit.version ..
               " ready to go. "
-         --.. "Let's rock"
-   )
+          --.. "Let's rock"
+    )
 
 end
 
@@ -15,50 +15,67 @@ end
 --! @param cppGame thrive::Game object
 function enterLuaMain(cppGame)
 
-   printStartMessage()
+    printStartMessage()
 
-   local fpsCount = 0
+    local fpsCount = 0
 
-   local lastUpdate = Game.now()
+    local lastUpdate = Game.now()
 
-   -- For more accurate FPS counting
-   local lastSecond = Game.now()
-   
-   while cppGame.shouldQuit == false do
+    -- For more accurate FPS counting
+    local lastSecond = Game.now()
 
-      local now = Game.now()
-      
-      local milliseconds = Game.asMS(Game.delta(now, lastUpdate))
-      
-      lastUpdate = now
+    -- Counts frame times
+    local frameTimes = {}
+    
+    while cppGame.shouldQuit == false do
 
-      -- Update engine stuff and GameStates
-      g_luaEngine:update(milliseconds)
+        local now = Game.now()
+        
+        local milliseconds = Game.asMS(Game.delta(now, lastUpdate))
+        
+        lastUpdate = now
 
-      local frameDuration = Game.delta(Game.now(), now)
+        -- Update engine stuff and GameStates
+        g_luaEngine:update(milliseconds)
 
-      -- sleep if we are going too fast
-      cppGame:sleepIfNeeded(frameDuration)
-      
-      -- update fps counter
-      fpsCount = fpsCount + 1
+        local frameDuration = Game.delta(Game.now(), now)
 
-      local fpsTime = Game.asMS(Game.delta(now, lastSecond))
-      if fpsTime >= 1000 then
-         
-         local fps = 1000 * (fpsCount / fpsTime)
-         
-         print("FPS: " .. fps)
+        table.insert(frameTimes, Game.asSeconds(frameDuration))
+        
+        -- sleep if we are going too fast
+        cppGame:sleepIfNeeded(frameDuration)
+        
+        -- update fps counter
+        fpsCount = fpsCount + 1
 
-         lastSecond = now
-         fpsCount = 0
-      end
-   end
+        local fpsTime = Game.asMS(Game.delta(now, lastSecond))
+        if fpsTime >= 1000 then
+            
+            local fps = 1000 * (fpsCount / fpsTime)
+
+            local avgFrameTime = 0
+
+            for i,t in ipairs(frameTimes) do
+
+                avgFrameTime = avgFrameTime + t
+                
+            end
+
+            avgFrameTime = (avgFrameTime / #frameTimes) * 1000
+
+            print(string.format("FPS: %.4f avg frame duration: %.5f ms", fps,
+                                avgFrameTime))
+
+            frameTimes = {}
+            lastSecond = now
+            fpsCount = 0
+        end
+    end
 end
 
 
 
-                       
+
 
 
 

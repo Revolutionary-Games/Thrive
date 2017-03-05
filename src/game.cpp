@@ -69,6 +69,12 @@ void Game::luaBindings(sol::state &lua){
             return boost::chrono::duration_cast<boost::chrono::milliseconds>(duration).count();
         },
 
+        "asSeconds", [](const Implementation::Clock::duration &duration) -> float
+        {
+            return boost::chrono::duration_cast<boost::chrono::duration<float>>(
+                duration).count();
+        },
+
         "sleepIfNeeded", [](Game &us,
             const Implementation::Clock::duration &frameDuration)
         {
