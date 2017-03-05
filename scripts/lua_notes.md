@@ -55,6 +55,10 @@ required to be casted to a specific type like
 `CompoundAbsorberComponent` to be used. For example:
 `CompoundAbsorberComponent.castFrom(entity:getComponent(CompoundAbsorberComponent.TYPE_ID))`
 
+Or you can use the helper `getComponent("main_menu_ambience",
+self.gameState, SoundSourceComponent ).autoLoop = true`
+
+
 
 Lua components are handled as ComponentWrapper inside C++ so it s
 required to be unwrapped like this:

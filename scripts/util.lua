@@ -18,6 +18,41 @@ function REGISTER_COMPONENT(name, cls)
 end
 
 
+--! @brief Returns a component from an entity
+--!
+--! Two alternative signatures:
+--! getComponent(string entityname, GameState gameState, Component componentClass)
+--! getComponent(Entity entity, Component componentClass)
+function getComponent(entityNameOrEntity, gameStateOrClass, componentClass)
+
+    local componentObj
+
+    -- Detect which signature
+    if(type(entityNameOrEntity) == "string") then
+
+        -- First signature
+        componentObj = Entity.new(entityNameOrEntity,
+                                  gameStateOrClass.wrapper):getComponent(
+            componentClass.TYPE_ID)
+
+    else
+
+        -- Second signature
+        componentClass = gameStateOrClass
+        
+        componentObj = entityNameOrEntity:getComponent(componentClass.TYPE_ID)
+    end
+
+    if componentClass.castFrom then
+        
+        return componentClass.castFrom(componentObj)
+        
+    else
+        -- Unwrap ComponentWrapper
+        return unwrapWrappedComponent(componentObj)
+    end
+end
+
 
 --! Unwraps a ComponentWrapper from component and returns the lua object
 --! @return Unwrapped lua object. Or nil if wrapped wasn't a valid wrapper
