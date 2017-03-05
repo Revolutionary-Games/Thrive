@@ -345,8 +345,8 @@ the editor.]])
 end
 
 function HudSystem:toggleCompoundPanel()
-    local guiSoundEntity = Entity("gui_sounds")
-    guiSoundEntity:getComponent(SoundSourceComponent.TYPE_ID):playSound("button-hover-click")
+    getComponent("gui_sounds", g_luaEngine.currentGameState, SoundSourceComponent
+    ):playSound("button-hover-click")
     if self.compoundsOpen then
     self.rootGUIWindow:getChild("CompoundPanel"):hide()
     self.rootGUIWindow:getChild("CompoundExpandButton"):getChild("CompoundExpandIcon"):hide()
@@ -361,23 +361,21 @@ function HudSystem:toggleCompoundPanel()
 end
 
 function MicrobeStageTutorialHudSystem:closeCompoundPanel()
-    local guiSoundEntity = Entity("gui_sounds")
-    guiSoundEntity:getComponent(SoundSourceComponent.TYPE_ID):playSound("button-hover-click")
+    getComponent("gui_sounds", g_luaEngine.currentGameState, SoundSourceComponent
+    ):playSound("button-hover-click")
     self.rootGUIWindow:getChild("CompoundsOpen"):hide()
     self.rootGUIWindow:getChild("CompoundsClosed"):show()
 end
 
 function MicrobeStageTutorialHudSystem:editorButtonClicked()
-    local guiSoundEntity = Entity("gui_sounds")
-    guiSoundEntity:getComponent(SoundSourceComponent.TYPE_ID):playSound("button-hover-click")
+    getComponent("gui_sounds", g_luaEngine.currentGameState, SoundSourceComponent
+    ):playSound("button-hover-click")
     Engine:setCurrentGameState(GameState.MICROBE_EDITOR)
 end
 
 function quitButtonClicked()
-    
-    SoundSourceComponent.castFrom(
-        Entity.new("gui_sounds", g_luaEngine.currentGameState.wrapper):getComponent(
-            SoundSourceComponent.TYPE_ID)
+
+    getComponent("gui_sounds", g_luaEngine.currentGameState, SoundSourceComponent
     ):playSound("button-hover-click")
     
     Engine:quit()
