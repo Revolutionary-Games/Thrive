@@ -16,6 +16,10 @@ ComponentWrapper::luaBindings(sol::state &lua){
         sol::constructors<sol::types<sol::table>>(),
 
         LUA_CAST_FROM(ComponentWrapper, Component),
+
+        "castFromUnsafe", [](Component* component){ 
+            return static_cast<ComponentWrapper*>(component); 
+        },
         
         "luaObj", sol::readonly(&ComponentWrapper::m_luaObject)
     );

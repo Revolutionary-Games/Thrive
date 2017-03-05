@@ -34,7 +34,7 @@ function getComponent(entityNameOrEntity, gameStateOrClass, componentClass)
         componentObj = Entity.new(entityNameOrEntity,
                                   gameStateOrClass.wrapper):getComponent(
             componentClass.TYPE_ID)
-
+        
     else
 
         -- Second signature
@@ -49,13 +49,20 @@ function getComponent(entityNameOrEntity, gameStateOrClass, componentClass)
         
     else
         -- Unwrap ComponentWrapper
-        return unwrapWrappedComponent(componentObj)
+
+        -- We do an unsafe cast for performance reasons
+        return ComponentWrapper.castFromUnsafe(componentObj).luaObj
     end
 end
 
 
---! Unwraps a ComponentWrapper from component and returns the lua object
---! @return Unwrapped lua object. Or nil if wrapped wasn't a valid wrapper
+--! Unwraps a ComponentWrapper from component and returns the lua
+--! object
+--! @return Unwrapped lua object. Or nil if wrapped wasn't a
+--! valid wrapper
+--! @note This is a safe but slow way to unwrap. See
+--! getComponent for a faster way, but one that isn't safe it isn't
+--! certain that wrapped is actually a ComponentWrapper
 function unwrapWrappedComponent(wrapped)
 
     -- Cast to ComponentWrapper
