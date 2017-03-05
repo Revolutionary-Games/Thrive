@@ -11,14 +11,17 @@
 #include <unordered_map>
 
 // The minimum positive price a compound can have.
-#define MIN_POSITIVE_COMPOUND_PRICE 0.001
+#define MIN_POSITIVE_COMPOUND_PRICE 0.00001
 
 // The "willingness" of the compound prices to change.
 // (between 0.0 and 1.0)
-#define COMPOUND_PRICE_MOMENTUM 0.5
+#define COMPOUND_PRICE_MOMENTUM 0.2
+
+// How much the "important" compounds get their price inflated.
+#define IMPORTANT_COMPOUND_BIAS 100.0
 
 // The initial variables of the system.
-#define INITIAL_COMPOUND_PRICE 1.0
+#define INITIAL_COMPOUND_PRICE 10.0
 #define INITIAL_COMPOUND_DEMAND 1.0
 
 namespace luabind {
@@ -53,6 +56,8 @@ struct CompoundData {
     float uninflatedPrice;
     float price;
     float demand;
+    float priceReductionPerUnit;
+    float breakEvenPoint;
 };
 
 class CompoundBagComponent : public Component {
