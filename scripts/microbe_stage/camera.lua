@@ -16,16 +16,16 @@ function MicrobeCameraSystem:init(gameState)
 end
 
 function MicrobeCameraSystem:activate()
-    local camera = Entity.new(CAMERA_NAME)
-    self.camera = camera:getComponent(OgreCameraComponent.TYPE_ID)
+    local camera = Entity.new(CAMERA_NAME, self.gameState.wrapper)
+    self.camera = getComponent(camera, OgreCameraComponent)
     self.camera.properties.offset = Vector3(0, 0, 30)
     self.camera.properties:touch()
-    self.cameraScenenode = camera:getComponent(OgreSceneNodeComponent.TYPE_ID)
+    self.cameraScenenode = getComponent(camera, OgreSceneNodeComponent)
 end
 
 function MicrobeCameraSystem:update(renderTime, logicTime)    
-    local player = Entity.new(PLAYER_NAME)
-    local playerNode = player:getComponent(OgreSceneNodeComponent.TYPE_ID)
+    local player = Entity.new(PLAYER_NAME, self.gameState.wrapper)
+    local playerNode = getComponent(player, OgreSceneNodeComponent)
 	self.cameraScenenode.transform.position = playerNode.transform.position + self.camera.properties.offset
 	self.cameraScenenode.transform:touch()
 end

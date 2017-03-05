@@ -19,8 +19,8 @@ function QuickSaveSystem:init(gameState)
 end
 
 function QuickSaveSystem:update(renderTime, logicTime)
-   local saveDown = Engine.keyboard:isKeyDown(Keyboard.KC_F4)
-   local loadDown = Engine.keyboard:isKeyDown(Keyboard.KC_F10)
+   local saveDown = Engine.keyboard:isKeyDown(KEYCODE.KC_F4)
+   local loadDown = Engine.keyboard:isKeyDown(KEYCODE.KC_F10)
    if saveDown and not self.saveDown then
       Engine:save("quick.sav")
    end

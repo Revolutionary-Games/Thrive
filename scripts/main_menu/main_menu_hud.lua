@@ -95,17 +95,21 @@ end
 
 
 function mainMenuLoadButtonClicked()
-    local guiSoundEntity = Entity("gui_sounds")
-    guiSoundEntity:getComponent(SoundSourceComponent.TYPE_ID):playSound("button-hover-click")
-    Engine:setCurrentGameState(GameState.MICROBE)
+
+    getComponent("gui_sounds", g_luaEngine.currentGameState, SoundSourceComponent
+    ):playSound("button-hover-click")
+    
+    g_luaEngine:setCurrentGameState(GameState.MICROBE)
     Engine:load("quick.sav")
     print("Game loaded");
 end
 
 function mainMenuMicrobeStageButtonClicked()
-    local guiSoundEntity = Entity("gui_sounds")
-    guiSoundEntity:getComponent(SoundSourceComponent.TYPE_ID):playSound("button-hover-click")
-    Engine:setCurrentGameState(GameState.MICROBE_TUTORIAL)
+
+    getComponent("gui_sounds", g_luaEngine.currentGameState, SoundSourceComponent
+    ):playSound("button-hover-click")
+    
+    g_luaEngine:setCurrentGameState(GameState.MICROBE_TUTORIAL)
 end
 
 -- quitButtonClicked is already defined in microbe_stage_hud.lua

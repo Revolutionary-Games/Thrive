@@ -95,17 +95,15 @@ void Mouse::luaBindings(
 
         "new", sol::no_constructor,
 
-        "MouseButton", sol::var(lua.create_table_with(
-
-                "MB_Left", OIS::MB_Left,
-                "MB_Right", OIS::MB_Right,
-                "MB_Middle", OIS::MB_Middle,
-                "MB_Button3", OIS::MB_Button3,
-                "MB_Button4", OIS::MB_Button4,
-                "MB_Button5", OIS::MB_Button5,
-                "MB_Button6", OIS::MB_Button6,
-                "MB_Button7", OIS::MB_Button7
-            )),
+        // MB enum
+        "MB_Left", sol::var(OIS::MB_Left),
+        "MB_Right", sol::var(OIS::MB_Right),
+        "MB_Middle", sol::var(OIS::MB_Middle),
+        "MB_Button3", sol::var(OIS::MB_Button3),
+        "MB_Button4", sol::var(OIS::MB_Button4),
+        "MB_Button5", sol::var(OIS::MB_Button5),
+        "MB_Button6", sol::var(OIS::MB_Button6),
+        "MB_Button7", sol::var(OIS::MB_Button7),
         
         "isButtonDown", &Mouse::isButtonDown,
         "wasButtonPressed", &Mouse::wasButtonPressed,

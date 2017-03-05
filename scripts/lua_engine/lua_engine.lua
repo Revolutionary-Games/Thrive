@@ -157,7 +157,7 @@ function LuaEngine:update(milliseconds)
 
         local delayed  = self.prevShutdownSystems[i]
         
-        local updateTime = min(delayed.timeLeft, milliseconds);
+        local updateTime = math.min(delayed.timeLeft, milliseconds);
 
         
         local pauseHelper = updateTime
@@ -200,7 +200,7 @@ function LuaEngine:timedSystemShutdown(system, milliseconds)
 
     local state = self:gameStateFromCpp(system)
 
-    if system ~= nil then
+    if state ~= nil then
         system = state
     end
 
@@ -213,7 +213,7 @@ function LuaEngine:isSystemTimedShutdown(system)
 
     local state = self:gameStateFromCpp(system)
 
-    if system ~= nil then
+    if state ~= nil then
         system = state
     end
 
@@ -269,10 +269,18 @@ end
 
 --! @brief Returns a system that has the potential C++ side object
 function LuaEngine:gameStateFromCpp(cppObj)
-    -- TODO: Detect if newGameState is a c++ object GameStateData or a lua GameState object
-    print("type thing: " .. type(cppObj))
-    error("todo:")
 
+    local objType = type(cppObj)
+    
+    if objType == "table" then
+
+        -- Already a Lua type
+        return nil
+        
+    end
+
+    assert(objType == "userdata")
+    
     for _,s in pairs(self.gameStates) do
 
         if s.wrapper == cppObj then

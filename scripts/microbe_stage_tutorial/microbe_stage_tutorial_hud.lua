@@ -89,12 +89,18 @@ function MicrobeStageTutorialHudSystem:update(renderTime)
     if self.tutorialStep > 2 then--where the player microbe is created.
         -- Updating the ATP label.
         local atpID = CompoundRegistry.getCompoundId("atp")
-        local atpString = string.format("%d", math.floor(Microbe(Entity(PLAYER_NAME)):getCompoundAmount(atpID)))
+        local atpString = string.format(
+            "%d", math.floor(Microbe(
+                                 Entity(PLAYER_NAME, self.gameState.wrapper)
+                                    ):getCompoundAmount(atpID)))
         self.atpCountLabel2:setText(atpString)
 
         -- Updating the compound panel.
         local glucoseID = CompoundRegistry.getCompoundId("glucose")
-        local glucoseString = string.format("%d", math.floor(Microbe(Entity(PLAYER_NAME)):getCompoundAmount(glucoseID)))
+        local glucoseString = string.format(
+            "%d", math.floor(Microbe(
+                                 Entity(PLAYER_NAME, self.gameState.wrapper)
+                                    ):getCompoundAmount(glucoseID)))
         self.atpCountLabel:setText(atpString)
         self.glucoseCountLabel:setText(glucoseString)
 
@@ -115,7 +121,7 @@ function MicrobeStageTutorialHudSystem:update(renderTime)
 
     if Engine.mouse:wasButtonPressed(Mouse.MB_Left) and self.tutorialStep ~= 3 and self.tutorialStep ~= 8 and self.tutorialStep ~= 11 then
         self.tutorialStep = self.tutorialStep + 1
-    elseif Engine.keyboard:wasKeyPressed(Keyboard.KC_ESCAPE) and self.tutorialStep <= 2 then
+    elseif Engine.keyboard:wasKeyPressed(KEYCODE.KC_ESCAPE) and self.tutorialStep <= 2 then
         self.tutorialStep = -1
     end
     
@@ -159,9 +165,11 @@ Click to continue or press escape to skip the tutorial.]])
 [[Your cell is shown below.
 
 Click anywhere to continue...]])
-        if Entity(PLAYER_NAME):getComponent(MicrobeComponent.TYPE_ID) == nil then
-            local microbe = microbeSpawnFunctionGeneric(nil, "Default", false, PLAYER_NAME)
-            Engine:playerData():setActiveCreature(microbe.entity.id, GameState.MICROBE_TUTORIAL)
+        if getComponent(PLAYER_NAME, self.gameState, MicrobeComponent) == nil then
+            local microbe = microbeSpawnFunctionGeneric(nil, "Default", false,
+                                                        PLAYER_NAME, self.gameState)
+            Engine:playerData():setActiveCreature(microbe.entity.id,
+                                                  GameState.MICROBE_TUTORIAL.wrapper)
         end
 		
 		
@@ -176,7 +184,7 @@ mouse, and use WASD to move around.
 Give it a try!
 
 Swim for a while in any direction to continue...]])
-        local pos = Entity(PLAYER_NAME):getComponent(OgreSceneNodeComponent.TYPE_ID).transform.position
+        local pos = getComponent(PLAYER_NAME, self.gameState, OgreSceneNodeComponent).transform.position
         if math.sqrt(pos.x*pos.x + pos.y*pos.y) > 30 then
             self.tutorialStep = self.tutorialStep + 1;
         end
@@ -214,7 +222,9 @@ Click anywhere to continue...]])
 [[You can keep track of your ATP by looking at the
 compounds panel shown below.
 
-You currently have only ]] .. math.floor(Microbe(Entity(PLAYER_NAME)):getCompoundAmount(atpID)) .. [[ ATP. Let's make some more!
+You currently have only ]] .. math.floor(Microbe(
+                                             Entity.new(PLAYER_NAME, self.gameState.wrapper)
+                                                ):getCompoundAmount(atpID)) .. [[ ATP. Let's make some more!
 
 Click anywhere to continue...]])
            
@@ -232,10 +242,10 @@ Click anywhere to continue...]])
         
         
     elseif self.tutorialStep == 8 then
-        local player = Entity(PLAYER_NAME)
-        local playerPos = player:getComponent(OgreSceneNodeComponent.TYPE_ID).transform.position
+        local player = Entity.new(PLAYER_NAME, self.gameState.wrapper)
+        local playerPos = getComponent(player, OgreSceneNodeComponent).transform.position
         
-        local offset = Entity(CAMERA_NAME):getComponent(OgreCameraComponent.TYPE_ID).properties.offset
+        local offset = getComponent(CAMERA_NAME, self.gameState, OgreCameraComponent).properties.offset
         if offset.z < 70 then
             offset.z = offset.z + 1
         end
@@ -300,8 +310,9 @@ Click anywhere to continue...]])
 Press the button on the top right corner to enter
 the editor.]])
     else 
-        Engine:playerData():setActiveCreature(Entity(PLAYER_NAME).id, GameState.MICROBE)
-        Engine:setCurrentGameState(GameState.MICROBE)
+        Engine:playerData():setActiveCreature(Entity.new(PLAYER_NAME, self.gameState.wrapper).
+                                                  id, GameState.MICROBE)
+        g_luaEngine:setCurrentGameState(GameState.MICROBE)
     end
     
     if self.tutorialStep >= 6 then
@@ -318,7 +329,8 @@ the editor.]])
     end
     
     -- Change zoom.
-    local offset = Entity(CAMERA_NAME):getComponent(OgreCameraComponent.TYPE_ID).properties.offset
+    local offset = getComponent(CAMERA_NAME, self.gameState, OgreCameraComponent
+    ).properties.offset
     
     if Engine.mouse:scrollChange()/10 ~= 0 then
         self.scrollChange = self.scrollChange + Engine.mouse:scrollChange()/10
@@ -344,7 +356,7 @@ the editor.]])
     offset.z = newZVal
 end
 
-function HudSystem:toggleCompoundPanel()
+function MicrobeStageTutorialHudSystem:toggleCompoundPanel()
     getComponent("gui_sounds", g_luaEngine.currentGameState, SoundSourceComponent
     ):playSound("button-hover-click")
     if self.compoundsOpen then
@@ -358,6 +370,12 @@ function HudSystem:toggleCompoundPanel()
     self.rootGUIWindow:getChild("CompoundExpandButton"):getChild("CompoundContractIcon"):hide()
     self.compoundsOpen = true
     end
+end
+
+function MicrobeStageTutorialHudSystem:showReproductionDialog()
+    -- print("Reproduction Dialog called but currently disabled. Is it needed? Note that the editor button has been enabled")
+    --global_activeMicrobeStageHudSystem.rootGUIWindow:getChild("ReproductionPanel"):show()
+    self.editorButton:enable()
 end
 
 function MicrobeStageTutorialHudSystem:closeCompoundPanel()

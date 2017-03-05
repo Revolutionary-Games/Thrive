@@ -28,7 +28,8 @@ function getComponent(entityNameOrEntity, gameStateOrClass, componentClass)
     local componentObj
 
     -- Detect which signature
-    if(type(entityNameOrEntity) == "string") then
+    local param1Type = type(entityNameOrEntity)
+    if(param1Type == "string" or param1Type == "number") then
 
         -- First signature
         componentObj = Entity.new(entityNameOrEntity,
@@ -41,6 +42,11 @@ function getComponent(entityNameOrEntity, gameStateOrClass, componentClass)
         componentClass = gameStateOrClass
         
         componentObj = entityNameOrEntity:getComponent(componentClass.TYPE_ID)
+    end
+
+    if componentObj == nil then
+        -- No such component
+        return nil
     end
 
     if componentClass.castFrom then

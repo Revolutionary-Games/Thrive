@@ -1,3 +1,7 @@
+--
+-- TODO: merge the common things in microbe_stage_tutorial_hud
+--
+
 
 -- Updates the hud with relevant information
 
@@ -42,6 +46,7 @@ global_if_already_displayed = false
 
 function HudSystem:activate()
     global_activeMicrobeStageHudSystem = self -- Global reference for event handlers
+    
     lockedMap = Engine:playerData():lockedMap()
     if lockedMap ~= nil and not lockedMap:isLocked("Toxin") and not ss and not global_if_already_displayed then
         showMessage("'E' Releases Toxin")
@@ -239,7 +244,12 @@ function HudSystem:update(renderTime)
     offset.z = newZVal
 end
 
-function showReproductionDialog() global_activeMicrobeStageHudSystem:showReproductionDialog() end
+function showReproductionDialog()
+    assert(global_activeMicrobeStageHudSystem ~= nil,
+           "no global active global_activeMicrobeStageHudSystem")
+    assert(global_activeMicrobeStageHudSystem.showReproductionDialog)
+    global_activeMicrobeStageHudSystem:showReproductionDialog()
+end
 
 function HudSystem:showReproductionDialog()
    -- print("Reproduction Dialog called but currently disabled. Is it needed? Note that the editor button has been enabled")

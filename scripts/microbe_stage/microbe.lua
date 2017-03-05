@@ -787,7 +787,7 @@ function Microbe:update(logicTime)
         -- Regenerate bandwidth
         self.microbe:regenerateBandwidth(logicTime)
         -- Attempt to absorb queued compounds
-        for compound in self.compoundAbsorber:getAbsorbedCompounds() do 
+        for _, compound in pairs(self.compoundAbsorber:getAbsorbedCompounds()) do 
             local amount = self.compoundAbsorber:absorbedCompoundAmount(compound)
             if amount > 0.0 then
                 self:storeCompound(compound, amount, true)
@@ -1187,11 +1187,11 @@ end
 
 
 function MicrobeSystem:update(renderTime, logicTime)
-    for entityId in self.entities:removedEntities() do
+    for _, entityId in pairs(self.entities:removedEntities()) do
         self.microbes[entityId] = nil
     end
-    for entityId in self.entities:addedEntities() do
-        local microbe = Microbe(Entity(entityId))
+    for _, entityId in pairs(self.entities:addedEntities()) do
+        local microbe = Microbe(Entity.new(entityId, self.gameState.wrapper))
         self.microbes[entityId] = microbe
     end
     self.entities:clearChanges()
@@ -1199,14 +1199,14 @@ function MicrobeSystem:update(renderTime, logicTime)
         microbe:update(logicTime)
     end
     -- Note that this triggers every frame there is a collision
-    for collision in self.microbeCollisions:collisions() do
-        local entity1 = Entity(collision.entityId1)
-        local entity2 = Entity(collision.entityId2)
+    for _, collision in pairs(self.microbeCollisions:collisions()) do
+        local entity1 = Entity.new(collision.entityId1, self.gameState.wrapper)
+        local entity2 = Entity.new(collision.entityId2, self.gameState.wrapper)
         if entity1:exists() and entity2:exists() then
-            local body1 = entity1:getComponent(RigidBodyComponent.TYPE_ID)
-            local body2 = entity2:getComponent(RigidBodyComponent.TYPE_ID)
-            local microbe1Comp = entity1:getComponent(MicrobeComponent.TYPE_ID)
-            local microbe2Comp = entity2:getComponent(MicrobeComponent.TYPE_ID)
+            local body1 = getComponent(entity1, RigidBodyComponent)
+            local body2 = getComponent(entity2, RigidBodyComponent)
+            local microbe1Comp = getComponent(entity1, MicrobeComponent)
+            local microbe2Comp = getComponent(entity2, MicrobeComponent)
             if body1~=nil and body2~=nil then
                 -- Engulf initiation
                 checkEngulfment(microbe1Comp, microbe2Comp, body1, entity1, entity2)
@@ -1219,9 +1219,9 @@ function MicrobeSystem:update(renderTime, logicTime)
     
     
     -- TEMP, DELETE FOR 0.3.3!!!!!!!!
-    for collision in self.agentCollisions:collisions() do
-        local entity = Entity(collision.entityId1)
-        local agent = Entity(collision.entityId2)
+    for _, collision in pairs(self.agentCollisions:collisions()) do
+        local entity = Entity.new(collision.entityId1, self.gameState.wrapper)
+        local agent = Entity.new(collision.entityId2, self.gameState.wrapper)
         
         if entity:exists() and agent:exists() then
             Microbe(entity):damage(.5, "toxin")

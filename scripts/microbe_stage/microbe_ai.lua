@@ -113,15 +113,15 @@ function MicrobeAISystem:shutdown()
 end
 
 function MicrobeAISystem:update(renderTime, logicTime)
-    for entityId in self.entities:removedEntities() do
+    for _, entityId in pairs(self.entities:removedEntities()) do
         self.microbes[entityId] = nil
         if self.preyEntityToIndexMap[entityId] then
             self.preyCandidates[self.preyEntityToIndexMap[entityId]] = nil
             self.preyEntityToIndexMap[entityId] = nil
         end
     end
-    for entityId in self.entities:addedEntities() do
-        local microbe = Microbe(Entity(entityId))
+    for _, entityId in pairs(self.entities:addedEntities()) do
+        local microbe = Microbe(Entity.new(entityId, self.gameState.wrapper))
         self.microbes[entityId] = microbe
         
         -- This is a hack to remember up to 5 recent microbes as candidates for predators. 
@@ -132,12 +132,12 @@ function MicrobeAISystem:update(renderTime, logicTime)
         
     end
     
-    for entityId in self.emitters:removedEntities() do
+    for _, entityId in pairs(self.emitters:removedEntities()) do
         self.oxygenEmitters[entityId] = nil
         self.glucoseEmitters[entityId] = nil
     end
-    for entityId in self.emitters:addedEntities() do
-        local emitterComponent = Entity(entityId):getComponent(CompoundEmitterComponent.TYPE_ID)
+    for _, entityId in pairs(self.emitters:addedEntities()) do
+        local emitterComponent = getComponent(entityId, self.gameState, CompoundEmitterComponent)
 		if emitterComponent ~= nil then -- TODO: Unsure why this is necessary
 			if emitterComponent.compoundId == CompoundRegistry.getCompoundId("oxygen") then
 				self.oxygenEmitters[entityId] = true
@@ -149,7 +149,7 @@ function MicrobeAISystem:update(renderTime, logicTime)
     self.emitters:clearChanges()
     self.entities:clearChanges()
     for _, microbe in pairs(self.microbes) do
-        local aiComponent = microbe:getComponent(MicrobeAIControllerComponent.TYPE_ID)
+        local aiComponent = getComponent(microbe, MicrobeAIControllerComponent)
         aiComponent.intervalRemaining = aiComponent.intervalRemaining + logicTime
         while aiComponent.intervalRemaining > aiComponent.reevalutationInterval do
             aiComponent.intervalRemaining = aiComponent.intervalRemaining - aiComponent.reevalutationInterval
@@ -194,8 +194,11 @@ function MicrobeAISystem:update(renderTime, logicTime)
                             emitterArrayList[i] = emitterId
                         end     
                         if i ~= 0 then
-                            local emitterEntity = Entity(emitterArrayList[rng:getInt(1, i)])
-                            aiComponent.targetEmitterPosition = emitterEntity:getComponent(OgreSceneNodeComponent.TYPE_ID).transform.position     
+                            local emitterEntity = Entity.new(
+                                emitterArrayList[rng:getInt(1, i)], self.gameState.wrapper)
+                            
+                            aiComponent.targetEmitterPosition = getComponent(
+                                emitterEntity, OgreSceneNodeComponent).transform.position     
                         end  
                     end
                     targetPosition = aiComponent.targetEmitterPosition           
@@ -213,8 +216,12 @@ function MicrobeAISystem:update(renderTime, logicTime)
                             emitterArrayList[i] = emitterId
                         end     
                         if i ~= 0 then
-                            local emitterEntity = Entity(emitterArrayList[rng:getInt(1, i)])
-                            aiComponent.targetEmitterPosition = emitterEntity:getComponent(OgreSceneNodeComponent.TYPE_ID).transform.position         
+
+                            local emitterEntity = Entity.new(
+                                emitterArrayList[rng:getInt(1, i)], self.gameState.wrapper)
+                            
+                            aiComponent.targetEmitterPosition = getComponent(
+                                emitterEntity, OgreSceneNodeComponent).transform.position     
                         end
                     end
                     targetPosition = aiComponent.targetEmitterPosition
