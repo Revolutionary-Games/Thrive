@@ -248,12 +248,12 @@ demandSofteningFunction(float processCapacity);
 
 double
 sigmoid(double x) {
-    return 1 / (1 + exp(x));
+    return 1 / (1 + exp(-x));
 }
 
 float
 demandSofteningFunction(float processCapacity) {
-    return 2 * (sigmoid(processCapacity * 100) - 0.5);
+    return 2 * sigmoid(processCapacity * PROCESS_CAPACITY_DEMAND_MULTIPLIER) - 1.0;
 }
 
 void
@@ -372,7 +372,7 @@ ProcessSystem::Implementation::update(int logicTime) {
                     float breakEvenPoint = breakingPoint.first;
 
                     // Calculating the cost.
-                    float cost = breakEvenPoint * inputPriceIncrement + baseInputPrice;
+                    float cost = baseInputPrice + breakEvenPoint * inputPriceIncrement;
 
                     // Calculating the revenue.
                     float baseOutputPrice_l = 0;
@@ -384,15 +384,15 @@ ProcessSystem::Implementation::update(int logicTime) {
 
                         if(compoundData.breakEvenPoint <= breakEvenPoint)
                             // Think about this calculation as a triangle area.
-                            baseOutputPrice += compoundData.breakEvenPoint * compoundData.price / (2 * breakEvenPoint);
+                            baseOutputPrice_l += compoundData.price - compoundData.breakEvenPoint * compoundData.priceReductionPerUnit;
 
                         else {
-                            baseOutputPrice_l += compoundData.price;
+                            baseOutputPrice_l += compoundData.price * outputGenerated;
                             outputPriceDecrement_l += compoundData.priceReductionPerUnit * outputGenerated;
                         }
                     }
 
-                    float revenue = baseOutputPrice - breakEvenPoint * outputPriceDecrement;
+                    float revenue = baseOutputPrice_l - breakEvenPoint * outputPriceDecrement_l;
 
                     // We found the piece :)
                     if(revenue < cost)

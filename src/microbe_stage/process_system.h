@@ -15,10 +15,13 @@
 
 // The "willingness" of the compound prices to change.
 // (between 0.0 and 1.0)
-#define COMPOUND_PRICE_MOMENTUM 0.2
+#define COMPOUND_PRICE_MOMENTUM 0.1
 
 // How much the "important" compounds get their price inflated.
 #define IMPORTANT_COMPOUND_BIAS 100.0
+
+// Used to soften the demand according to the process capacity.
+#define PROCESS_CAPACITY_DEMAND_MULTIPLIER 10.0
 
 // The initial variables of the system.
 #define INITIAL_COMPOUND_PRICE 10.0
