@@ -42,7 +42,7 @@ class OgreViewportSystem;
 class CollisionSystem;
 class System;
 class RNG;
-
+class GUITextureHelper;
 
 /**
 * @brief The heart of the game
@@ -193,6 +193,13 @@ public:
     */
     Ogre::Root*
     ogreRoot() const;
+
+    /**
+    * @brief GUI image loader helper
+    */
+    GUITextureHelper&
+    guiTextureHelper() const;
+        
 
     /**
     * @brief Creates a savegame

@@ -22,6 +22,7 @@
 #include <CEGUI/InputAggregator.h>
 #include "CEGUI/RendererModules/Ogre/Renderer.h"
 #include "gui/AlphaHitWindow.h"
+#include "gui/gui_texture_helper.h"
 
 // Ogre
 #include "ogre/camera_system.h"
@@ -314,11 +315,9 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
     void
     setupGUI(){
 
-        // Start loading gui Images needed by AlphaHitWindow //
-        // TODO: see if we can use the same Texture that CEGUI loads for itself
-        Ogre::ResourceBackgroundQueue::getSingleton().load(
-            Ogre::Root::getSingleton().getTextureManager()->getResourceType(),
-            "ThriveGeneric.png", Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
+        // Load gui Images needed by AlphaHitWindow //
+        // This loads this image before continuing. Could be in a background thread
+        m_guiHelper.getTexture("ThriveGeneric.png");
         
         CEGUI::WindowFactoryManager::addFactory<CEGUI::TplWindowFactory<AlphaHitWindow> >();
 
@@ -513,6 +512,8 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
 
     std::unique_ptr<SoundManager> m_soundManager;
     std::unique_ptr<CEGUI::InputAggregator> m_aggregator;
+
+    GUITextureHelper m_guiHelper;
 };
 
 void Engine::luaBindings(
@@ -748,6 +749,12 @@ Engine::mouse() const {
 Ogre::Root*
 Engine::ogreRoot() const {
     return m_impl->m_graphics.root.get();
+}
+
+GUITextureHelper&
+Engine::guiTextureHelper() const{
+    
+    return m_impl->m_guiHelper;
 }
 
 
