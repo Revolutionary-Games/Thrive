@@ -29,8 +29,8 @@ function MicrobeStageTutorialHudSystem:init(gameState)
     local quitButton = self.rootGUIWindow:getChild("PauseMenu"):getChild("QuitButton")
     quitButton:registerEventHandler("Clicked", quitButtonClicked)
     self.rootGUIWindow:getChild("TutorialPanel"):registerEventHandler("Clicked", function() self.tutorialStep = self.tutorialStep + 1 end)
-    local editorButton = self.rootGUIWindow:getChild("EditorButton")
-    editorButton:registerEventHandler("Clicked", function() self:editorButtonClicked() end)
+    self.editorButton = self.rootGUIWindow:getChild("EditorButton")
+    self.editorButton:registerEventHandler("Clicked", function() self:editorButtonClicked() end)
 	
 	self.hitpointsBar = self.rootGUIWindow:getChild("HealthPanel"):getChild("LifeBar")
     self.hitpointsCountLabel = self.hitpointsBar:getChild("NumberLabel")
@@ -166,6 +166,7 @@ Click to continue or press escape to skip the tutorial.]])
 
 Click anywhere to continue...]])
         if getComponent(PLAYER_NAME, self.gameState, MicrobeComponent) == nil then
+            print("trying to spawn player")
             local microbe = microbeSpawnFunctionGeneric(nil, "Default", false,
                                                         PLAYER_NAME, self.gameState)
             Engine:playerData():setActiveCreature(microbe.entity.id,

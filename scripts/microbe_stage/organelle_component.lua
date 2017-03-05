@@ -9,7 +9,7 @@ OrganelleComponent = class(
     --  The organelle data taken from the make function in organelle.lua.
     --
     -- The return value should be the organelle component itself (A.K.A. self)
-    function(arguments, data)
+    function(self, arguments, data)
 
         -- TODO: All organelles except the nucleus use the following compound
         -- amounts to reproduce. This should be changed to use getter/setters
@@ -65,8 +65,10 @@ function OrganelleComponent:onAddedToMicrobe(microbe, q, r, rotation, organelle)
     end
     offset = offset/count
   
-    self.sceneNode = OgreSceneNodeComponent()
-    self.sceneNode.transform.orientation = Quaternion(Radian(Degree(organelle.rotation)), Vector3(0, 0, 1))
+    self.sceneNode = OgreSceneNodeComponent.new()
+    self.sceneNode.transform.orientation = Quaternion.new(Radian.new(
+                                                              Degree(organelle.rotation)),
+                                                          Vector3(0, 0, 1))
     self.sceneNode.transform.position = offset + organelle.position.cartesian
     self.sceneNode.transform.scale = Vector3(HEX_SIZE, HEX_SIZE, HEX_SIZE)
     self.sceneNode.transform:touch()

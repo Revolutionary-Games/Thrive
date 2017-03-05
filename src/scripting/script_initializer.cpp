@@ -561,6 +561,12 @@ static void colourValueBindings(sol::state &lua) {
         ),
 
         sol::meta_function::subtraction, &ColourValue::operator-,
+
+        sol::call_constructor, [](float r, float g, float b, float a){
+
+            return Ogre::ColourValue(r, g, b, a);
+            
+        },
         
         "saturate", &ColourValue::saturate,
         "setHSB", &ColourValue::setHSB,
@@ -870,13 +876,6 @@ static void quaternionBindings(sol::state &lua) {
             static_cast<Ogre::Vector3 (Ogre::Quaternion::*)(const Ogre::Vector3&) const>(
                 &Ogre::Quaternion::operator*)
         ),
-
-        // Support for table call syntax
-        sol::call_constructor, [](Real fW, Real fX, Real fY, Real fZ){
-
-            return Ogre::Quaternion(fW, fX, fY, fZ);
-                
-        },
         
         "FromRotationMatrix", &Quaternion::FromRotationMatrix,
         "ToRotationMatrix", &Quaternion::ToRotationMatrix,

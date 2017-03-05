@@ -17,8 +17,8 @@ NucleusOrganelle = class(
         self.numNucleicAcidsLeft = 2
         self.nucleusCost = self.numProteinLeft + self.numNucleicAcidsLeft
 
-        self.golgi = Entity()
-        self.ER = Entity()
+        self.golgi = Entity.new(g_luaEngine.currentGameState.wrapper)
+        self.ER = Entity.new(g_luaEngine.currentGameState.wrapper)
         
     end
 )
@@ -30,32 +30,35 @@ NucleusOrganelle = class(
 -- Overridded from Organelle:onAddedToMicrobe
 function NucleusOrganelle:onAddedToMicrobe(microbe, q, r, rotation, organelle)
     local x, y = axialToCartesian(q-1, r-1)
-    local sceneNode1 = OgreSceneNodeComponent()
+    local sceneNode1 = OgreSceneNodeComponent.new()
     sceneNode1.meshName = "golgi.mesh"
 	sceneNode1.transform.position = Vector3(x,y,0)
     sceneNode1.transform.scale = Vector3(HEX_SIZE, HEX_SIZE, HEX_SIZE)
-    sceneNode1.transform.orientation = Quaternion(Radian(Degree(rotation)), Vector3(0, 0, 1))
+    sceneNode1.transform.orientation = Quaternion.new(Radian.new(Degree(rotation)),
+                                                      Vector3(0, 0, 1))
     sceneNode1.transform:touch()
     sceneNode1.parent = microbe.entity
     microbe.entity:addChild(self.golgi)
     self.golgi:addComponent(sceneNode1)
-	self.golgi.sceneNode = sceneNode1
+	self.golgi_sceneNode = sceneNode1
 	self.golgi:setVolatile(true)
 	
-	local sceneNode2 = OgreSceneNodeComponent()
+	local sceneNode2 = OgreSceneNodeComponent.new()
     sceneNode2.meshName = "ER.mesh"
 	sceneNode2.transform.position = Vector3(0,0,0)
     sceneNode2.transform.scale = Vector3(HEX_SIZE, HEX_SIZE, HEX_SIZE)
-    sceneNode2.transform.orientation = Quaternion(Radian(Degree(rotation+10)), Vector3(0, 0, 1))
+    sceneNode2.transform.orientation = Quaternion.new(Radian.new(Degree(rotation+10)), 
+                                                      Vector3(0, 0, 1))
     sceneNode2.transform:touch()
 	sceneNode2.parent = microbe.entity
     microbe.entity:addChild(self.ER)
     self.ER:addComponent(sceneNode2) 
-	self.ER.sceneNode = sceneNode2
+	self.ER_sceneNode = sceneNode2
 	self.ER:setVolatile(true)
     
-    self.sceneNode = OgreSceneNodeComponent()
-	self.sceneNode.transform.orientation = Quaternion(Radian(Degree(organelle.rotation)), Vector3(0, 0, 1))
+    self.sceneNode = OgreSceneNodeComponent.new()
+	self.sceneNode.transform.orientation = Quaternion.new(Radian.new(Degree(organelle.rotation)),
+                                                          Vector3(0, 0, 1))
 	self.sceneNode.transform.position = organelle.position.cartesian
     self.sceneNode.transform.scale = Vector3(HEX_SIZE, HEX_SIZE, HEX_SIZE)
     self.sceneNode.transform:touch()
@@ -81,18 +84,18 @@ function NucleusOrganelle:onRemovedFromMicrobe(microbe, q, r)
 end
 
 function NucleusOrganelle:load(storage)
-    self.golgi = Entity()
-	self.ER = Entity()
+    self.golgi = Entity(g_luaEngine.currentGameState.wrapper)
+	self.ER = Entity(g_luaEngine.currentGameState.wrapper)
 end
 
 function NucleusOrganelle:updateColour(organelle)
     -- Update the colours of the additional organelle models.
-    if self.sceneNode.entity ~= nil and self.golgi.sceneNode.entity ~= nil then
+    if self.sceneNode.entity ~= nil and self.golgi_sceneNode.entity ~= nil then
         --print(organelle.colour.r .. ", " .. organelle.colour.g .. ", " .. organelle.colour.b)
     
 		local entity = self.sceneNode.entity
-        local golgiEntity = self.golgi.sceneNode.entity
-        local ER_entity = self.ER.sceneNode.entity
+        local golgiEntity = self.golgi_sceneNode.entity
+        local ER_entity = self.ER_sceneNode.entity
         
         entity:tintColour("nucleus", organelle.colour)
         golgiEntity:tintColour("golgi", organelle.colour)

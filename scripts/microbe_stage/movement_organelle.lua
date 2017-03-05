@@ -1,4 +1,22 @@
 -- Enables a microbe to move and turn
+
+-- See organelle_component.lua for more information about the 
+-- organelle component methods and the arguments they receive.
+
+-- Calculate the momentum of the movement organelle based on angle towards nucleus
+local function calculateForce(q, r, momentum)
+    local organelleX, organelleY = axialToCartesian(q, r)
+    local nucleusX, nucleusY = axialToCartesian(0, 0)
+    local deltaX = nucleusX - organelleX
+    local deltaY = nucleusY - organelleY
+    local dist = math.sqrt(deltaX^2 + deltaY^2) -- For normalizing vector
+    local momentumX = deltaX / dist * momentum
+    local momentumY = deltaY / dist * momentum
+    local force = Vector3(momentumX, momentumY, 0.0)
+    return force
+    
+end
+
 MovementOrganelle = class(
     OrganelleComponent,
     -- Constructor
@@ -30,22 +48,7 @@ MovementOrganelle = class(
     end
 )
 
--- See organelle_component.lua for more information about the 
--- organelle component methods and the arguments they receive.
 
--- Calculate the momentum of the movement organelle based on angle towards nucleus
-local function calculateForce(q, r, momentum)
-    local organelleX, organelleY = axialToCartesian(q, r)
-    local nucleusX, nucleusY = axialToCartesian(0, 0)
-    local deltaX = nucleusX - organelleX
-    local deltaY = nucleusY - organelleY
-    local dist = math.sqrt(deltaX^2 + deltaY^2) -- For normalizing vector
-    local momentumX = deltaX / dist * momentum
-    local momentumY = deltaY / dist * momentum
-    local force = Vector3(momentumX, momentumY, 0.0)
-    return force
-    
-end
 
 function MovementOrganelle:onAddedToMicrobe(microbe, q, r, rotation, organelle)
     local organelleX, organelleY = axialToCartesian(q, r)
@@ -58,9 +61,10 @@ function MovementOrganelle:onAddedToMicrobe(microbe, q, r, rotation, organelle)
     end
     angle = (angle * 180/math.pi + 180) % 360
         
-    self.sceneNode = OgreSceneNodeComponent()
+    self.sceneNode = OgreSceneNodeComponent.new()
     organelle.rotation = angle
-	self.sceneNode.transform.orientation = Quaternion(Radian(Degree(angle)), Vector3(0, 0, 1))
+	self.sceneNode.transform.orientation = Quaternion.new(Radian.new(Degree(angle)),
+                                                          Vector3(0, 0, 1))
 	self.sceneNode.transform.position = organelle.position.cartesian
     self.sceneNode.transform.scale = Vector3(HEX_SIZE, HEX_SIZE, HEX_SIZE)
     self.sceneNode.transform:touch()
@@ -86,7 +90,7 @@ end
 
 function MovementOrganelle:storage()
     print("storing")
-    local storage = StorageContainer()
+    local storage = StorageContainer.new()
     storage:set("energyMultiplier", self.energyMultiplier)
     storage:set("force", self.force)
     storage:set("torque", self.torque)

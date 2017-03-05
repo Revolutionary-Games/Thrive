@@ -162,7 +162,10 @@ Microbe = class(
     -- @param entity
     -- The entity this microbe wraps
     function(self, entity, in_editor)
+
+        assert(entity ~= nil)
         self.entity = entity
+        
         for key, ctype in pairs(Microbe.COMPONENTS) do
             local typeId = ctype.TYPE_ID
             local component = entity:getComponent(typeId)
@@ -187,10 +190,11 @@ Microbe = class(
         end
         if not self.microbe.initialized then
             self:_initialize()
-            if in_editor == nil then
-                self.compoundBag:setProcessor(
-                    Entity(self.microbe.speciesName):getComponent(ProcessorComponent.TYPE_ID),
-                    self.microbe.speciesName)
+            if in_editor ~= true then
+                local processor = getComponent(self.entity, ProcessorComponent)
+                assert(processor)
+                self.compoundBag:setProcessor(processor,
+                                              self.microbe.speciesName)
                 
                 SpeciesSystem.template(self, self:getSpeciesComponent())
             end
@@ -213,6 +217,7 @@ Microbe.COMPONENTS = {
     soundSource = SoundSourceComponent,
     membraneComponent = MembraneComponent,
     compoundBag = CompoundBagComponent,
+    processor = ProcessorComponent
 }
 
 
@@ -270,6 +275,7 @@ function Microbe.createMicrobeEntity(name, aiControlled, speciesName, in_editor,
         CompoundAbsorberComponent.new(),
         OgreSceneNodeComponent.new(),
         CompoundBagComponent.new(),
+        ProcessorComponent.new(),
         MicrobeComponent.new(not aiControlled, speciesName),
         reactionHandler,
         rigidBody,
@@ -283,17 +289,20 @@ function Microbe.createMicrobeEntity(name, aiControlled, speciesName, in_editor,
     for _, component in ipairs(components) do
         entity:addComponent(component)
     end
-    return Microbe(entity, in_editor)
+
+    local newMicrobe = Microbe(entity, in_editor)
+    assert(newMicrobe)
+    assert(newMicrobe.microbe.initialized == true)
+
+    return newMicrobe
 end
 
 -- Getter for microbe species
 -- 
 -- returns the species component or nil if it doesn't have a valid species
 function Microbe:getSpeciesComponent()
-    return
-        unwrapWrappedComponent(
-            Entity(self.microbe.speciesName):getComponent(SpeciesComponent.TYPE_ID)
-        )
+    return getComponent(self.microbe.speciesName, g_luaEngine.currentGameState,
+                        SpeciesComponent)
 end
 
 -- Adds a new organelle
@@ -323,7 +332,7 @@ function Microbe:addOrganelle(q, r, rotation, organelle)
     local compoundShape = CompoundShape.castFrom(self.rigidBody.properties.shape)
     compoundShape:addChildShape(
         translation,
-        Quaternion(Radian(0), Vector3(1,0,0)),
+        Quaternion.new(Radian(0), Vector3(1,0,0)),
         organelle.collisionShape
     )
     self.rigidBody.properties.mass = self.rigidBody.properties.mass + organelle.mass
@@ -572,7 +581,9 @@ function Microbe:storeCompound(compoundId, amount, bandwidthLimited)
         storedAmount = self.microbe:getBandwidth(amount, compoundId)
     end
     storedAmount = math.min(storedAmount , self.microbe.capacity - self.microbe.stored)
-    self.entity:getComponent(CompoundBagComponent.TYPE_ID):giveCompound(tonumber(compoundId), storedAmount)
+    getComponent(self.entity, CompoundBagComponent
+    ):giveCompound(tonumber(compoundId), storedAmount)
+    
     self.microbe.stored = self.microbe.stored + storedAmount
     return amount - storedAmount
 end
@@ -1029,8 +1040,10 @@ function Microbe:purgeCompounds()
     -- Eject a fraction of all compounds over vent thresholds
     -- TODO: only eject compounds when microbe is full, and eject excess compounds proportionally to the amount each is in excess
 
-    for compoundId in CompoundRegistry.getCompoundList() do
-        local amount = self.entity:getComponent(CompoundBagComponent.TYPE_ID):excessAmount(compoundId) * PURGE_SCALE
+    for _, compoundId in pairs(CompoundRegistry.getCompoundList()) do
+        local amount = getComponent( self.entity, CompoundBagComponent
+        ):excessAmount(compoundId) * PURGE_SCALE
+        
         if amount > 0 then amount = self:takeCompound(compoundId, amount) end
         if amount > 0 then self:ejectCompound(compoundId, amount) end
     end

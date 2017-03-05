@@ -204,6 +204,10 @@ CompoundBagComponent::takeCompound(CompoundId id, float to_take) {
 
 float
 CompoundBagComponent::excessAmount(CompoundId id) {
+
+    if(!this->processor)
+        throw std::runtime_error("CompoundBagComponent doesn't have a processor set");
+    
     float amt = compounds[id];
     float threshold = std::get<2>(this->processor->thresholds[id]);
     return amt > threshold ? amt - threshold : 0;

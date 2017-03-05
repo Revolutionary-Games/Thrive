@@ -3,7 +3,7 @@ Organelle = class(
     -- Constructor
     function(self, mass, name)
 
-        self.collisionShape = CompoundShape()
+        self.collisionShape = CompoundShape.new()
         self.mass = mass
         self.components = {}
         self._hexes = {}
@@ -54,7 +54,7 @@ function Organelle:addHex(q, r)
     local hex = {
         q = q,
         r = r,
-        collisionShape = SphereShape(2)
+        collisionShape = SphereShape.new(2)
     }
     local x, y = axialToCartesian(q, r)
     local translation = Vector3(x, y, 0)
@@ -62,7 +62,7 @@ function Organelle:addHex(q, r)
     -- Collision shape
     self.collisionShape:addChildShape(
         translation,
-        Quaternion(Radian(0), Vector3(1,0,0)),
+        Quaternion.new(Radian(0), Vector3(1,0,0)),
         hex.collisionShape
     )
     self._hexes[s] = hex
@@ -124,7 +124,7 @@ function Organelle:onAddedToMicrobe(microbe, q, r, rotation)
     self.position.cartesian = Vector3(x,y,0)
     self.rotation = rotation
 
-    self.organelleEntity = Entity()
+    self.organelleEntity = Entity.new(g_luaEngine.currentGameState.wrapper)
     self.organelleEntity:setVolatile(true)
     microbe.entity:addChild(self.organelleEntity)
             
