@@ -21,7 +21,7 @@
 #define IMPORTANT_COMPOUND_BIAS 100.0
 
 // Used to soften the demand according to the process capacity.
-#define PROCESS_CAPACITY_DEMAND_MULTIPLIER 10.0
+#define PROCESS_CAPACITY_DEMAND_MULTIPLIER 15.0
 
 // The initial variables of the system.
 #define INITIAL_COMPOUND_PRICE 10.0

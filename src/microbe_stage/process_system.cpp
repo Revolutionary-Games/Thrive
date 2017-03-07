@@ -372,10 +372,10 @@ ProcessSystem::Implementation::update(int logicTime) {
 
                 // Finding the piece of the function that contains the minimum
                 // TODO: make it use binary search or something...
-
-                // Getting the initial revenue values
                 float baseOutputPrice = 0.0;
                 float outputPriceDecrement = 0.0;
+
+                // Getting the initial revenue values
                 for (const auto& output : BioProcessRegistry::getOutputCompounds(processId)) {
                     CompoundId outputId = output.first;
                     int outputGenerated = output.second;
@@ -416,10 +416,9 @@ ProcessSystem::Implementation::update(int logicTime) {
                     outputPriceDecrement = outputPriceDecrement_l;
                 }
 
-                std::cout << "outputPriceDecrement" << outputPriceDecrement << std::endl;
                 // Avoiding zero-division errors.
                 float desiredRate;
-                if(outputPriceDecrement + inputPriceIncrement < 0)
+                if(outputPriceDecrement + inputPriceIncrement > 0)
                     desiredRate = (baseOutputPrice - baseInputPrice) / (outputPriceDecrement + inputPriceIncrement);
                 else
                     desiredRate = 0.0;
