@@ -36,8 +36,10 @@ end
 
 function MainMenuHudSystem:update(renderTime, logicTime)
    if keyCombo(kmp.screenshot) then
-      Engine:screenShot("screenshot.png")
-   elseif keyCombo(kmp.skipvideo) then
+       Engine:screenShot("screenshot.png")
+   -- TODO: re-enable intro vid
+   --elseif keyCombo(kmp.skipvideo) then
+   elseif true then    
       if self.videoPlayer then
          self.videoPlayer:close()
          self.videoPlayer:hide()

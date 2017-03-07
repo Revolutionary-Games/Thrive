@@ -208,8 +208,42 @@ function print_r (t, indent) -- alt version, abuse to http://richard.warburton.i
   end
 end
 
+--! Prints a value along with it's type
+function print_t(val, name)
+
+    if name == nil or type(name) ~= "string" then
+
+        name = debug.getinfo(2).short_src .. ":" .. debug.getinfo(2).currentline
+        
+    end
+
+    print("debug print " .. name .. ":")
+
+    local printVal = "<userdata>"
+    if type(val) ~= "userdata" then
+
+        printVal = tostring(val)
+
+    end
+    
+    print("type: " .. type(val) .. " value: " .. printVal)
+
+    if type(val) == "table" then
+        print_r(val)
+    end
+
+    print("end print")
+    
+end
+
 --! @brief Returns true if s is not an empty string
 function isNotEmpty(s)
-   return s == nil or s == ''
+    return not (s == nil or s == '')
+end
+
+
+-- Call for quick debugging. Prints the line of the function calling this
+function printLine()
+    print(debug.getinfo(2).currentline)
 end
 

@@ -1032,7 +1032,11 @@ static void vector3Bindings(sol::state &lua) {
             static_cast<Ogre::Vector3 (Ogre::Vector3::*)(const Ogre::Vector3&) const>(
                 &Ogre::Vector3::operator*),
             static_cast<Ogre::Vector3 (Ogre::Vector3::*)(const Ogre::Real) const>(
-                &Ogre::Vector3::operator*)
+                &Ogre::Vector3::operator*),
+            [](const Ogre::Real f, const Ogre::Vector3 &vec) -> Ogre::Vector3{
+
+                return f * vec;
+            }
         ),
 
         

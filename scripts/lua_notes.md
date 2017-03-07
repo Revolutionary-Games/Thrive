@@ -94,6 +94,23 @@ that the actual `.collisions` method returns
 
 `Ogre::Ray::intersects` now returns a tuple
 
+Order of multiplication matters (sometimes)
+-------------------------------------------
+
+Now because overloaded operators are only on the user types (by
+default) the complex type needs to be on the left hand side:
+`direction * impulseMagnitude` is correct (where direction is a
+Vector3 and impulseMagnitude is a float). This is wrong and causes an
+error: `direction * impulseMagnitude` (`sol: no matching function call
+takes this number of arguments and the specified types`)
+
+
+This is actually fixed for Vector3 class so the above example works
+both ways. But some other classes might miss this. If they are it is
+quite easy to add, just look at how
+`lua.new_usertype<Ogre::Vector3>("Vector3", ... ` registers its
+addition metamethod overloads.
+
 
 ### New calls to C++ functions taking GameState arguments
 

@@ -149,7 +149,7 @@ function MicrobeAISystem:update(renderTime, logicTime)
     self.emitters:clearChanges()
     self.entities:clearChanges()
     for _, microbe in pairs(self.microbes) do
-        local aiComponent = getComponent(microbe, MicrobeAIControllerComponent)
+        local aiComponent = getComponent(microbe.entity, MicrobeAIControllerComponent)
         aiComponent.intervalRemaining = aiComponent.intervalRemaining + logicTime
         while aiComponent.intervalRemaining > aiComponent.reevalutationInterval do
             aiComponent.intervalRemaining = aiComponent.intervalRemaining - aiComponent.reevalutationInterval
@@ -158,8 +158,9 @@ function MicrobeAISystem:update(renderTime, logicTime)
             local targetPosition = nil
             local agentVacuole = microbe.microbe.specialStorageOrganelles[compoundId]
             if agentVacuole ~= nil or microbe.microbe.maxHitpoints > 100 then
-                self.preyCandidates[6] = Microbe(Entity(PLAYER_NAME))
-                self.preyEntityToIndexMap[Entity(PLAYER_NAME).id] = 6
+                self.preyCandidates[6] = Microbe.new(
+                    Entity.new(PLAYER_NAME, self.gameState.wrapper))
+                self.preyEntityToIndexMap[Entity.new(PLAYER_NAME, self.gameState.wrapper).id] = 6
                 local attempts = 0
                 while (aiComponent.prey  == nil or not aiComponent.prey:exists() or aiComponent.prey.microbe.dead or
                            (aiComponent.prey.microbe.speciesName ==  microbe.microbe.speciesName) or

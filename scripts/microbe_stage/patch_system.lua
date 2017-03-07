@@ -11,6 +11,8 @@ PatchComponent = class(
     end
 )
 
+PatchComponent.TYPE_NAME = "PatchComponent"
+
 --[[
 We need a bunch of stuff handled here:
 Compound movement:

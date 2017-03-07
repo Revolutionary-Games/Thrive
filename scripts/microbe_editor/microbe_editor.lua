@@ -35,7 +35,7 @@ MicrobeEditor = class(
 function MicrobeEditor:createHexComponent(q, r)
     local x, y = axialToCartesian(q, r)
     local s = encodeAxial(q, r)
-    self.occupiedHexes[s] = Entity.new()
+    self.occupiedHexes[s] = Entity.new(g_luaEngine.currentGameState.wrapper)
     local sceneNode = OgreSceneNodeComponent.new()
     sceneNode.transform.position = Vector3(x, y, 0)
     sceneNode.transform:touch()
@@ -67,14 +67,29 @@ function MicrobeEditor:init(gameState)
 end
 
 function MicrobeEditor:activate()
-    if Engine:playerData():activeCreatureGamestate():name() == GameState.MICROBE:name() or Engine:playerData():activeCreatureGamestate():name() == GameState.MICROBE_TUTORIAL:name() then
-        microbeStageMicrobe = Entity(Engine:playerData():activeCreature(), GameState.MICROBE)       
-        self.nextMicrobeEntity = microbeStageMicrobe:transfer(GameState.MICROBE_EDITOR)
+    local creatureState = g_luaEngine:getLuaStateFromWrapper(
+        Engine:playerData():activeCreatureGamestate())
+    
+    if creatureState.name == GameState.MICROBE.name or
+    creatureState.name == GameState.MICROBE_TUTORIAL.name then
+        
+        microbeStageMicrobe = Entity.new(Engine:playerData():activeCreature(),
+                                         GameState.MICROBE.wrapper)
+
+        self.nextMicrobeEntity = Entity.new(
+            g_luaEngine:transferEntityGameState(microbeStageMicrobe.id,
+                                                creatureState.entityManager,
+                                                GameState.MICROBE_EDITOR),
+            GameState.MICROBE_EDITOR.wrapper)
+        
         -- Transfer the compounds
-        Microbe.transferCompounds(Microbe(microbeStageMicrobe), Microbe(self.nextMicrobeEntity, true))
+        Microbe.transferCompounds(Microbe.new(microbeStageMicrobe),
+                                  Microbe.new(self.nextMicrobeEntity, true))
+        
         self.nextMicrobeEntity:stealName("working_microbe")
         Engine:playerData():setBool("edited_microbe", true)
-        Engine:playerData():setActiveCreature(self.nextMicrobeEntity.id, GameState.MICROBE_EDITOR)
+        Engine:playerData():setActiveCreature(self.nextMicrobeEntity.id,
+                                              GameState.MICROBE_EDITOR.wrapper)
     end
     
 
@@ -85,8 +100,9 @@ function MicrobeEditor:activate()
         cytoplasm:destroy()
     end
     
-    self.currentMicrobe = Microbe(self.nextMicrobeEntity, true)
-    self.currentMicrobe.sceneNode.transform.orientation = Quaternion(Radian(Degree(0)), Vector3(0, 0, 1))-- Orientation
+    self.currentMicrobe = Microbe.new(self.nextMicrobeEntity, true)
+    self.currentMicrobe.sceneNode.transform.orientation = Quaternion.new(
+        Radian.new(Degree(0)), Vector3(0, 0, 1))-- Orientation
     self.currentMicrobe.sceneNode.transform.position = Vector3(0, 0, 0)
     self.currentMicrobe.sceneNode.transform:touch()
     
@@ -242,7 +258,10 @@ end
 function MicrobeEditor:getMouseHex()
     local mousePosition = Engine.mouse:normalizedPosition() 
     -- Get the position of the cursor in the plane that the microbes is floating in
-    local rayPoint =  Entity(CAMERA_NAME .. "3"):getComponent(OgreCameraComponent.TYPE_ID):getCameraToViewportRay(mousePosition.x, mousePosition.y):getPoint(0)
+    local rayPoint = getComponent(CAMERA_NAME .. "3", g_luaEngine.currentGameState,
+                                  OgreCameraComponent
+    ):getCameraToViewportRay(mousePosition.x, mousePosition.y):getPoint(0)
+    
     -- Convert to the hex the cursor is currently located over. 
     local q, r = cartesianToAxial(rayPoint.x, -1*rayPoint.y) -- Negating X to compensate for the fact that we are looking at the opposite side of the normal coordinate system
     local qr, rr = cubeToAxial(cubeHexRound(axialToCube(q, r))) -- This requires a conversion to hex cube coordinates and back for proper rounding.
@@ -429,9 +448,11 @@ function MicrobeEditor:loadMicrobe(entityId)
     if self.currentMicrobe ~= nil then
         self.currentMicrobe.entity:destroy()
     end
-    self.currentMicrobe = Microbe(Entity(entityId), true)
+    self.currentMicrobe = Microbe.new(Entity.new(entityId,
+                                                 g_luaEngine.currentGameState.wrapper), true)
     self.currentMicrobe.entity:stealName("working_microbe")
-    self.currentMicrobe.sceneNode.transform.orientation = Quaternion(Radian(Degree(0)), Vector3(0, 0, 1))-- Orientation
+    self.currentMicrobe.sceneNode.transform.orientation = Quaternion.new(Radian.new(Degree(0)),
+                                                                         Vector3(0, 0, 1))-- Orientation
     self.currentMicrobe.sceneNode.transform:touch()
     Engine:playerData():setActiveCreature(entityId, GameState.MICROBE_EDITOR)
     self.mutationPoints = 0
@@ -452,7 +473,8 @@ function MicrobeEditor:createNewMicrobe()
             for _, cytoplasm in pairs(self.occupiedHexes) do
                 cytoplasm:destroy()
             end
-            self.currentMicrobe = Microbe.createMicrobeEntity(nil, false, "Editor_Microbe", true)
+            self.currentMicrobe = Microbe.createMicrobeEntity(
+                nil, false, 'Editor_Microbe', true, g_luaEngine.currentGameState)
             self.currentMicrobe.entity:stealName("working_microbe")
             --self.currentMicrobe.sceneNode.transform.orientation = Quaternion(Radian(Degree(180)), Vector3(0, 0, 1))-- Orientation
             self.currentMicrobe.sceneNode.transform:touch()
@@ -465,7 +487,7 @@ function MicrobeEditor:createNewMicrobe()
             end
             self.mutationPoints = 100
             self.activeActionName = "cytoplasm"
-            Engine:playerData():setActiveCreature(self.currentMicrobe.entity.id, GameState.MICROBE_EDITOR)
+            Engine:playerData():setActiveCreature(self.currentMicrobe.entity.id, GameState.MICROBE_EDITOR.wrapper)
         end
     }
     
@@ -480,7 +502,8 @@ function MicrobeEditor:createNewMicrobe()
         action.undo = function()
             speciesName = self.currentMicrobe.microbe.speciesName
             self.currentMicrobe.entity:destroy() -- remove the "new" entity that has replaced the previous one
-            self.currentMicrobe = Microbe.createMicrobeEntity(nil, false, 'Editor_Microbe', true)
+            self.currentMicrobe = Microbe.createMicrobeEntity(
+                nil, false, 'Editor_Microbe', true, g_luaEngine.currentGameState)
             self.currentMicrobe.entity:stealName("working_microbe")
             self.currentMicrobe.sceneNode.transform.orientation = Quaternion(Radian(Degree(0)), Vector3(0, 0, 1))-- Orientation
             self.currentMicrobe.sceneNode.transform:touch()
@@ -500,7 +523,7 @@ function MicrobeEditor:createNewMicrobe()
             -- no need to add the nucleus manually - it's alreary included in the organelleStorage
             self.mutationPoints = previousMP
             self.organelleCount = previousOrganelleCount
-            Engine:playerData():setActiveCreature(self.currentMicrobe.entity.id, GameState.MICROBE_EDITOR)
+            Engine:playerData():setActiveCreature(self.currentMicrobe.entity.id, GameState.MICROBE_EDITOR.wrapper)
         end
         self:enqueueAction(action)
     else

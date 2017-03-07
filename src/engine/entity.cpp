@@ -56,12 +56,16 @@ void Entity::luaBindings(
                 
                 if(!componentTable.valid())
                     throw std::runtime_error("Entity:addComponent invalid argument");
+
+                // This can be disabled to increase performance
+                if(componentTable.get_or<std::string>("TYPE_NAME", "").empty())
+                    throw std::runtime_error("Lua Component class is missing TYPE_NAME");
             
                 self.addComponent(
                     std::make_unique<ComponentWrapper>(componentTable)
                 );
             }),
-        
+
         "destroy", &Entity::destroy,
         "exists", &Entity::exists,
         

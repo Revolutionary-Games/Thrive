@@ -159,7 +159,7 @@ function microbeSpawnFunctionGeneric(pos, speciesName, aiControlled, individualN
     if pos ~= nil then
         microbe.rigidBody:setDynamicProperties(
             pos, -- Position
-            Quaternion(Radian(Degree(0)), Vector3(1, 0, 0)), -- Orientation
+            Quaternion.new(Radian.new(Degree(0)), Vector3(1, 0, 0)), -- Orientation
             Vector3(0, 0, 0), -- Linear velocity
             Vector3(0, 0, 0)  -- Angular velocity
         )
@@ -169,21 +169,21 @@ end
 
 local function setSpawnablePhysics(entity, pos, mesh, scale, collisionShape)
     -- Rigid body
-    local rigidBody = RigidBodyComponent()
+    local rigidBody = RigidBodyComponent.new()
     rigidBody.properties.friction = 0.2
     rigidBody.properties.linearDamping = 0.8
 
     rigidBody.properties.shape = collisionShape
     rigidBody:setDynamicProperties(
         pos,
-        Quaternion(Radian(Degree(math.random()*360)), Vector3(0, 0, 1)),
+        Quaternion.new(Radian.new(Degree(math.random()*360)), Vector3(0, 0, 1)),
         Vector3(0, 0, 0),
         Vector3(0, 0, 0)
     )
     rigidBody.properties:touch()
     entity:addComponent(rigidBody)
     -- Scene node
-    local sceneNode = OgreSceneNodeComponent()
+    local sceneNode = OgreSceneNodeComponent.new()
     sceneNode.meshName = mesh
     sceneNode.transform.scale = Vector3(scale, scale, scale)
     entity:addComponent(sceneNode)
@@ -195,61 +195,49 @@ function createCompoundCloud(compoundName, x, y, amount)
     if amount == nil then amount = 0 end
 
     if compoundTable[compoundName] and compoundTable[compoundName].isCloud then
-        Entity("compound_cloud_" .. compoundName):getComponent(CompoundCloudComponent.TYPE_ID):addCloud(amount, x, y)
+        -- addCloud requires integer arguments
+        x = math.floor(x)
+        y = math.floor(y)
+        getComponent("compound_cloud_" .. compoundName,
+                     g_luaEngine.currentGameState, CompoundCloudComponent
+        ):addCloud(amount, x, y)
     end
 end
 
-function createAgentCloud(compoundId, x, y, direction, amount)
-    -- local entity = Entity()
-    -- local sceneNode = OgreSceneNodeComponent()
-    -- sceneNode.meshName = "oxytoxy.mesh"
-    -- sceneNode.transform.position = Vector3(x + direction.x/2, y + direction.y/2, 0)
-    -- sceneNode.transform:touch()
-    -- local agent = AgentCloudComponent()
-    -- agent:initialize(compoundId, 255, 0, 255)
-    -- agent.direction = direction*2
-    -- agent.potency = amount
-    -- entity:addComponent(sceneNode)
-    -- entity:addComponent(agent)
+function createAgentCloud(compoundId, x, y, direction, amount)    
     
-    
-    local agentEntity = Entity()
+    local agentEntity = Entity.new(g_luaEngine.currentGameState.wrapper)
 
-    local reactionHandler = CollisionComponent()
+    local reactionHandler = CollisionComponent.new()
     reactionHandler:addCollisionGroup("agent")
     agentEntity:addComponent(reactionHandler)
         
-    local rigidBody = RigidBodyComponent()
+    local rigidBody = RigidBodyComponent.new()
     rigidBody.properties.mass = 0.001
     rigidBody.properties.friction = 0.4
     rigidBody.properties.linearDamping = 0.4
-    rigidBody.properties.shape = SphereShape(HEX_SIZE)
+    rigidBody.properties.shape = SphereShape.new(HEX_SIZE)
     rigidBody:setDynamicProperties(
         Vector3(x,y,0) + direction,
-        Quaternion(Radian(Degree(math.random()*360)), Vector3(0, 0, 1)),
+        Quaternion.new(Radian.new(Degree(math.random()*360)), Vector3(0, 0, 1)),
         direction * 3,
         Vector3(0, 0, 0)
     )
     rigidBody.properties:touch()
     agentEntity:addComponent(rigidBody)
     
-    local sceneNode = OgreSceneNodeComponent()
+    local sceneNode = OgreSceneNodeComponent.new()
     sceneNode.meshName = "oxytoxy.mesh"
     agentEntity:addComponent(sceneNode)
     
-    local timedLifeComponent = TimedLifeComponent()
+    local timedLifeComponent = TimedLifeComponent.new()
     timedLifeComponent.timeToLive = 2000
     agentEntity:addComponent(timedLifeComponent)
     
 end
 
--- Copy paste for quick debugging. Prints the line of the print statement.
-function printLine()
-    print(debug.getinfo(1).currentline)
-end
-
 local function addEmitter2Entity(entity, compound)
-    local compoundEmitter = CompoundEmitterComponent()
+    local compoundEmitter = CompoundEmitterComponent.new()
     entity:addComponent(compoundEmitter)
     compoundEmitter.emissionRadius = 1
     compoundEmitter.maxInitialSpeed = 10
@@ -257,7 +245,7 @@ local function addEmitter2Entity(entity, compound)
     compoundEmitter.minEmissionAngle = Degree(0)
     compoundEmitter.maxEmissionAngle = Degree(360)
     compoundEmitter.particleLifeTime = 5000
-    local timedEmitter = TimedCompoundEmitterComponent()
+    local timedEmitter = TimedCompoundEmitterComponent.new()
     timedEmitter.compoundId = CompoundRegistry.getCompoundId(compound)
     timedEmitter.particlesPerEmission = 1
     timedEmitter.potencyPerParticle = 2.0
@@ -269,22 +257,24 @@ local function createSpawnSystem()
     local spawnSystem = SpawnSystem.new()
 
     local toxinOrganelleSpawnFunction = function(pos)
-        powerupEntity = Entity.new()
-        setSpawnablePhysics(powerupEntity, pos, "AgentVacuole.mesh", 0.9, SphereShape(HEX_SIZE))
+        powerupEntity = Entity.new(g_luaEngine.currentGameState.wrapper)
+        setSpawnablePhysics(powerupEntity, pos, "AgentVacuole.mesh", 0.9,
+                            SphereShape.new(HEX_SIZE))
 
         local reactionHandler = CollisionComponent.new()
         reactionHandler:addCollisionGroup("powerup")
         powerupEntity:addComponent(reactionHandler)
         
-        local powerupComponent = PowerupComponent()
+        local powerupComponent = PowerupComponent.new()
         -- Function name must be in configs.lua
         powerupComponent:setEffect("toxinEffect")
         powerupEntity:addComponent(powerupComponent)
         return powerupEntity
     end
     local ChloroplastOrganelleSpawnFunction = function(pos) 
-        powerupEntity = Entity.new()
-        setSpawnablePhysics(powerupEntity, pos, "chloroplast.mesh", 0.9, SphereShape(HEX_SIZE))
+        powerupEntity = Entity.new(g_luaEngine.currentGameState.wrapper)
+        setSpawnablePhysics(powerupEntity, pos, "chloroplast.mesh", 0.9,
+                            SphereShape.new(HEX_SIZE))
 
         local reactionHandler = CollisionComponent.new()
         reactionHandler:addCollisionGroup("powerup")
@@ -313,7 +303,8 @@ local function createSpawnSystem()
     for name, species in pairs(starter_microbes) do
         spawnSystem:addSpawnType(
             function(pos) 
-                return microbeSpawnFunctionGeneric(pos, name, true, nil)
+                return microbeSpawnFunctionGeneric(pos, name, true, nil,
+                                                   g_luaEngine.currentGameState)
             end, 
             species.spawnDensity, 60)
     end
@@ -330,6 +321,9 @@ local function setupPlayer(gameState)
     Engine:playerData():lockedMap():addLock("Toxin")
     Engine:playerData():lockedMap():addLock("chloroplast")
     Engine:playerData():setActiveCreature(microbe.entity.id, gameState.wrapper)
+
+    -- Give some atp
+    microbe:storeCompound(CompoundRegistry.getCompoundId("atp"), 50, false)
 end
 
 local function setupSound(gameState)

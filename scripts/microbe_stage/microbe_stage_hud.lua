@@ -30,8 +30,8 @@ end
 
 function HudSystem:update(renderTime, logicTime)
    -- TODO: use the QuickSaveSystem here? is this duplicated functionality?
-   local saveDown = Engine.keyboard:isKeyDown(Keyboard.KC_F4)
-   local loadDown = Engine.keyboard:isKeyDown(Keyboard.KC_F10)
+   local saveDown = Engine.keyboard:isKeyDown(KEYCODE.KC_F4)
+   local loadDown = Engine.keyboard:isKeyDown(KEYCODE.KC_F10)
    if saveDown and not self.saveDown then
       Engine:save("quick.sav")
    end
@@ -140,8 +140,8 @@ end
 
 
 function HudSystem:update(renderTime)
-    local player = Entity("player")
-    local playerMicrobe = Microbe(player)
+    local player = Entity.new("player", self.gameState.wrapper)
+    local playerMicrobe = Microbe.new(player)
 
     self.hitpointsBar:progressbarSetProgress(playerMicrobe.microbe.hitpoints/playerMicrobe.microbe.maxHitpoints)
     self.hitpointsCountLabel:setText("".. math.floor(playerMicrobe.microbe.hitpoints))
@@ -210,11 +210,11 @@ function HudSystem:update(renderTime)
     if keyCombo(kmp.rightward) then
         playerMicrobe.soundSource:playSound("microbe-movement-1")
     end
-    if (Engine.keyboard:wasKeyPressed(Keyboard.KC_G)) then
+    if (Engine.keyboard:wasKeyPressed(KEYCODE.KC_G)) then
         playerMicrobe:toggleEngulfMode()
     end
     
-    local offset = Entity(CAMERA_NAME):getComponent(OgreCameraComponent.TYPE_ID).properties.offset
+    local offset = getComponent(CAMERA_NAME, self.gameState, OgreCameraComponent).properties.offset
     
     if Engine.mouse:scrollChange()/10 ~= 0 then
         self.scrollChange = self.scrollChange + Engine.mouse:scrollChange()/10
@@ -274,16 +274,14 @@ end
 
 --Event handlers
 function HudSystem:saveButtonClicked()
-    local guiSoundEntity = Entity("gui_sounds")
-    guiSoundEntity:getComponent(SoundSourceComponent.TYPE_ID):playSound("button-hover-click")
+    getComponent("gui_sounds", self.gameState, SoundSourceComponent):playSound("button-hover-click")
     Engine:save("quick.sav")
     print("Game Saved");
 	--Because using update load button here doesn't seem to work unless you press save twice
     self.rootGUIWindow:getChild("PauseMenu"):getChild("LoadGameButton"):enable();
 end
 function HudSystem:loadButtonClicked()
-    local guiSoundEntity = Entity("gui_sounds")
-    guiSoundEntity:getComponent(SoundSourceComponent.TYPE_ID):playSound("button-hover-click")
+    getComponent("gui_sounds", self.gameState, SoundSourceComponent):playSound("button-hover-click")
     Engine:load("quick.sav")
     print("Game loaded");
     self.rootGUIWindow:getChild("PauseMenu"):hide()
@@ -291,8 +289,7 @@ function HudSystem:loadButtonClicked()
 end
 
 function HudSystem:menuButtonClicked()
-    local guiSoundEntity = Entity("gui_sounds")
-    guiSoundEntity:getComponent(SoundSourceComponent.TYPE_ID):playSound("button-hover-click")
+    getComponent("gui_sounds", self.gameState, SoundSourceComponent):playSound("button-hover-click")
     print("played sound")
     self.rootGUIWindow:getChild("PauseMenu"):show()
     self.rootGUIWindow:getChild("PauseMenu"):moveToFront()
@@ -302,8 +299,7 @@ function HudSystem:menuButtonClicked()
 end
 
 function HudSystem:resumeButtonClicked()
-    local guiSoundEntity = Entity("gui_sounds")
-    guiSoundEntity:getComponent(SoundSourceComponent.TYPE_ID):playSound("button-hover-click")
+    getComponent("gui_sounds", self.gameState, SoundSourceComponent):playSound("button-hover-click")
     print("played sound")
     self.rootGUIWindow:getChild("PauseMenu"):hide()
     self:updateLoadButton();
@@ -313,8 +309,7 @@ end
 
 
 function HudSystem:toggleCompoundPanel()
-    local guiSoundEntity = Entity("gui_sounds")
-    guiSoundEntity:getComponent(SoundSourceComponent.TYPE_ID):playSound("button-hover-click")
+    getComponent("gui_sounds", self.gameState, SoundSourceComponent):playSound("button-hover-click")
     if self.compoundsOpen then
     self.rootGUIWindow:getChild("CompoundPanel"):hide()
     self.rootGUIWindow:getChild("CompoundExpandButton"):getChild("CompoundExpandIcon"):hide()
@@ -329,8 +324,7 @@ function HudSystem:toggleCompoundPanel()
 end
 
 function HudSystem:helpButtonClicked()
-    local guiSoundEntity = Entity("gui_sounds")
-    guiSoundEntity:getComponent(SoundSourceComponent.TYPE_ID):playSound("button-hover-click")
+    getComponent("gui_sounds", self.gameState, SoundSourceComponent):playSound("button-hover-click")
     self.rootGUIWindow:getChild("PauseMenu"):getChild("HelpPanel"):show()
     self.rootGUIWindow:getChild("PauseMenu"):getChild("CloseHelpButton"):show()
     self.rootGUIWindow:getChild("PauseMenu"):getChild("ResumeButton"):hide()
@@ -346,8 +340,7 @@ function HudSystem:helpButtonClicked()
 end
 
 function HudSystem:closeHelpButtonClicked()
-    local guiSoundEntity = Entity("gui_sounds")
-    guiSoundEntity:getComponent(SoundSourceComponent.TYPE_ID):playSound("button-hover-click")
+    getComponent("gui_sounds", self.gameState, SoundSourceComponent):playSound("button-hover-click")
     self.rootGUIWindow:getChild("PauseMenu"):getChild("HelpPanel"):hide()
     self.rootGUIWindow:getChild("PauseMenu"):getChild("CloseHelpButton"):hide()
     self.rootGUIWindow:getChild("PauseMenu"):getChild("ResumeButton"):show()
@@ -363,28 +356,25 @@ function HudSystem:closeHelpButtonClicked()
 end
 
 function HudSystem:menuMainMenuClicked()
-    local guiSoundEntity = Entity("gui_sounds")
-    guiSoundEntity:getComponent(SoundSourceComponent.TYPE_ID):playSound("button-hover-click")
-    Engine:setCurrentGameState(GameState.MAIN_MENU)
+    getComponent("gui_sounds", self.gameState, SoundSourceComponent):playSound("button-hover-click")
+    g_luaEngine:setCurrentGameState(GameState.MAIN_MENU)
 end
 
 
 function HudSystem:editorButtonClicked()
-    local player = Entity("player")
-    local playerMicrobe = Microbe(player)
+    local player = Entity.new("player", self.gameState.wrapper)
+    local playerMicrobe = Microbe.new(player)
     -- Return the first cell to its normal, non duplicated cell arangement.
     SpeciesSystem.restoreOrganelleLayout(playerMicrobe, playerMicrobe:getSpeciesComponent()) 
 
-    local guiSoundEntity = Entity("gui_sounds")
-    guiSoundEntity:getComponent(SoundSourceComponent.TYPE_ID):playSound("button-hover-click")
+    getComponent("gui_sounds", self.gameState, SoundSourceComponent):playSound("button-hover-click")
     self.editorButton:disable()
-    Engine:setCurrentGameState(GameState.MICROBE_EDITOR)
+    g_luaEngine:setCurrentGameState(GameState.MICROBE_EDITOR)
 end
 
 --[[
 function HudSystem:returnButtonClicked()
-    local guiSoundEntity = Entity("gui_sounds")
-    guiSoundEntity:getComponent(SoundSourceComponent.TYPE_ID):playSound("button-hover-click")
+    getComponent("gui_sounds", self.gameState, SoundSourceComponent):playSound("button-hover-click")
     --Engine:currentGameState():rootGUIWindow():getChild("MenuPanel"):hide()
     if Engine:currentGameState():name() == "microbe" then
         Engine:currentGameState():rootGUIWindow():getChild("HelpPanel"):hide()
@@ -397,8 +387,7 @@ function HudSystem:returnButtonClicked()
 end --]]
 
 function quitButtonClicked()
-    local guiSoundEntity = Entity("gui_sounds")
-    guiSoundEntity:getComponent(SoundSourceComponent.TYPE_ID):playSound("button-hover-click")
+    getComponent("gui_sounds", self.gameState, SoundSourceComponent):playSound("button-hover-click")
     Engine:quit()
 end
 

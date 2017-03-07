@@ -12,7 +12,7 @@ AgentVacuole = class(
     --  The agent this organelle produces.
     function(self, arguments, data)
 
-        OrganelleComponent.__init(self, arguments, data)
+        OrganelleComponent.create(self, arguments, data)
         
         --making sure this doesn't run when load() is called
         if arguments == nil and data == nil then

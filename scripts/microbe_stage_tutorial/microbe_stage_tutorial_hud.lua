@@ -91,7 +91,7 @@ function MicrobeStageTutorialHudSystem:update(renderTime)
         local atpID = CompoundRegistry.getCompoundId("atp")
         local atpString = string.format(
             "%d", math.floor(Microbe(
-                                 Entity(PLAYER_NAME, self.gameState.wrapper)
+                                 Entity.new(PLAYER_NAME, self.gameState.wrapper)
                                     ):getCompoundAmount(atpID)))
         self.atpCountLabel2:setText(atpString)
 
@@ -99,7 +99,7 @@ function MicrobeStageTutorialHudSystem:update(renderTime)
         local glucoseID = CompoundRegistry.getCompoundId("glucose")
         local glucoseString = string.format(
             "%d", math.floor(Microbe(
-                                 Entity(PLAYER_NAME, self.gameState.wrapper)
+                                 Entity.new(PLAYER_NAME, self.gameState.wrapper)
                                     ):getCompoundAmount(glucoseID)))
         self.atpCountLabel:setText(atpString)
         self.glucoseCountLabel:setText(glucoseString)
@@ -171,6 +171,9 @@ Click anywhere to continue...]])
                                                         PLAYER_NAME, self.gameState)
             Engine:playerData():setActiveCreature(microbe.entity.id,
                                                   GameState.MICROBE_TUTORIAL.wrapper)
+
+            -- Make sure player doesn't run out of ATP immediately
+            microbe:storeCompound(CompoundRegistry.getCompoundId("atp"), 50, false)
         end
 		
 		
@@ -312,13 +315,17 @@ Press the button on the top right corner to enter
 the editor.]])
     else 
         Engine:playerData():setActiveCreature(Entity.new(PLAYER_NAME, self.gameState.wrapper).
-                                                  id, GameState.MICROBE)
+                                                  id, GameState.MICROBE.wrapper)
         g_luaEngine:setCurrentGameState(GameState.MICROBE)
     end
     
     if self.tutorialStep >= 6 then
-        for compoundID in CompoundRegistry.getCompoundList() do
-            local compoundsString = string.format("%s - %d", CompoundRegistry.getCompoundDisplayName(compoundID), Microbe(Entity(PLAYER_NAME)):getCompoundAmount(compoundID))
+        for _, compoundID in pairs(CompoundRegistry.getCompoundList()) do
+            local compoundsString = string.format(
+                "%s - %d",
+                CompoundRegistry.getCompoundDisplayName(compoundID),
+                Microbe.new(Entity.new(PLAYER_NAME, g_luaEngine.currentGameState.wrapper)
+                ):getCompoundAmount(compoundID))
             if self.compoundListItems[compoundID] ~= nil then
                self.compoundListBox:listWidgetUpdateItem(self.compoundListItems[compoundID], "[colour='FF004400']" .. compoundsString)
             end
@@ -389,7 +396,7 @@ end
 function MicrobeStageTutorialHudSystem:editorButtonClicked()
     getComponent("gui_sounds", g_luaEngine.currentGameState, SoundSourceComponent
     ):playSound("button-hover-click")
-    Engine:setCurrentGameState(GameState.MICROBE_EDITOR)
+    g_luaEngine:setCurrentGameState(GameState.MICROBE_EDITOR)
 end
 
 function quitButtonClicked()

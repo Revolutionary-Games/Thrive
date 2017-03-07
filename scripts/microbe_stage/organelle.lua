@@ -185,10 +185,10 @@ function Organelle:flashOrganelle(duration, colour)
 end
 
 function Organelle:storage()
-    local storage = StorageContainer()
-    local hexes = StorageList()
+    local storage = StorageContainer.new()
+    local hexes = StorageList.new()
     for _, hex in pairs(self._hexes) do
-        hexStorage = StorageContainer()
+        hexStorage = StorageContainer.new()
         hexStorage:set("q", hex.q)
         hexStorage:set("r", hex.r)
         hexes:append(hexStorage)
@@ -204,7 +204,10 @@ function Organelle:storage()
 
     --iterating on each OrganelleComponent
     for componentName, component in pairs(self.components) do
-        storage:set(componentName, component:storage())
+        local s = component:storage()
+        assert(isNotEmpty, componentName)
+        assert(s)
+        storage:set(componentName, s)
     end
 
     return storage
@@ -317,8 +320,11 @@ function OrganelleFactory.makeOrganelle(data)
 
         --adding all of the components.
         for componentName, arguments in pairs(organelleInfo.components) do
+            print("creating organelle component: " .. componentName .. " a: " ..
+                      tostring(isNotEmpty(componentName)))
+            assert(isNotEmpty(componentName))
             local componentType = _G[componentName]
-            organelle.components[componentName] = componentType(arguments, data)
+            organelle.components[componentName] = componentType.new(arguments, data)
         end
 
         --getting the hex table of the organelle rotated by the angle

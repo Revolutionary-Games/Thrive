@@ -17,7 +17,8 @@ void GameStateData::luaBindings(sol::state &lua){
         sol::constructors<sol::types<sol::table, Engine*, EntityManager*,
         PhysicalWorld*>>(),
         
-        "luaEngine", &GameStateData::m_engine
+        "luaEngine", &GameStateData::m_engine,
+        "name", sol::property(&GameStateData::name)
     );
 }
 

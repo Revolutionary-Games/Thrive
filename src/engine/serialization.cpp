@@ -313,7 +313,13 @@ void StorageContainer::luaBindings(
             &StorageContainer::set<Ogre::Plane>,
             &StorageContainer::set<Ogre::Vector3>,
             &StorageContainer::set<Ogre::Quaternion>,
-            &StorageContainer::set<Ogre::ColourValue>)
+            &StorageContainer::set<Ogre::ColourValue>
+            // Extra wrappers
+            // ,[](StorageContainer &self, const std::string &key, const StorageContainer &value){
+
+            //     self.set(key, value);
+            // }
+        )
     );
 }
 

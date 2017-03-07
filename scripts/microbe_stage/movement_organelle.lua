@@ -118,6 +118,7 @@ function MovementOrganelle:_moveMicrobe(microbe, milliseconds)
             self.sceneNode:setAnimationSpeed(0.25)
         end
         local impulseMagnitude = microbe.microbe.movementFactor * milliseconds * forceMagnitude / 1000
+
         local impulse = impulseMagnitude * direction
         local a = microbe.sceneNode.transform.orientation * impulse
         microbe.rigidBody:applyCentralImpulse(

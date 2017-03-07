@@ -77,7 +77,7 @@ end
 function MicrobeComponent:storage(storage)
     
     -- Organelles
-    local organelles = StorageList()
+    local organelles = StorageList.new()
     for _, organelle in pairs(self.organelles) do
         local organelleStorage = organelle:storage()
         organelles:append(organelleStorage)
@@ -90,8 +90,8 @@ function MicrobeComponent:storage(storage)
     storage:set("maxBandwidth", self.maxBandwidth)
     storage:set("isPlayerMicrobe", self.isPlayerMicrobe)
     storage:set("speciesName", self.speciesName)
-    local storedCompounds = StorageList()
-    for compoundId in CompoundRegistry.getCompoundList() do
+    local storedCompounds = StorageList.new()
+    for _, compoundId in pairs(CompoundRegistry.getCompoundList()) do
         --[[
             if self:getCompoundAmount(compoundId) > 0 then
             compound = StorageContainer()
@@ -167,22 +167,10 @@ Microbe = class(
         self.entity = entity
         
         for key, ctype in pairs(Microbe.COMPONENTS) do
-            local typeId = ctype.TYPE_ID
-            local component = entity:getComponent(typeId)
+            local component = getComponent(entity, ctype)
             assert(component ~= nil, "Can't create microbe from this entity, it's missing " .. key)
             
             self[key] = component
-
-            -- cast c++ object to subclass
-            if ctype.castFrom then
-                self[key] = ctype.castFrom(self[key])
-                assert(self[key], "Casting Component to subclass failed")
-            else
-                -- Unwrap ComponentWrapper
-                self[key] = unwrapWrappedComponent(self[key])
-                assert(self[key], "Unwrapping Lua Component from base Component failed")
-                assert(type(self[key]) == "table")
-            end
         end
 
         for _, compound in pairs(CompoundRegistry.getCompoundList()) do
@@ -480,7 +468,7 @@ end
 -- @returns amount
 -- The amount stored in the microbe's storage oraganelles
 function Microbe:getCompoundAmount(compoundId)
-    return self.entity:getComponent(CompoundBagComponent.TYPE_ID):getCompoundAmount(compoundId)
+    return getComponent(self.entity, CompoundBagComponent):getCompoundAmount(compoundId)
 end
 
 -- Damages the microbe, killing it if its hitpoints drop low enough
@@ -602,7 +590,9 @@ end
 function Microbe:takeCompound(compoundId, maxAmount)
     --if self.microbe.specialStorageOrganelles[compoundId] == nil then
     
-    local takenAmount = self.entity:getComponent(CompoundBagComponent.TYPE_ID):takeCompound(compoundId, maxAmount)
+    local takenAmount = getComponent(self.entity, CompoundBagComponent
+    ):takeCompound(compoundId, maxAmount)
+    
     self.microbe.stored = self.microbe.stored - takenAmount
     return takenAmount
 end
@@ -666,7 +656,7 @@ end
 -- Kills the microbe, releasing stored compounds into the enviroment
 function Microbe:kill()
     -- Eject the compounds that was in the microbe
-    for compoundId in CompoundRegistry.getCompoundList() do
+    for _, compoundId in pairs(CompoundRegistry.getCompoundList()) do
         local total = self:getCompoundAmount(compoundId)
         ejectedAmount = self:takeCompound(compoundId, total)
         self:ejectCompound(compoundId, ejectedAmount)
@@ -680,12 +670,12 @@ function Microbe:kill()
             _amount = _amount - ejectedAmount
         end
     end    
-    local microbeSceneNode = self.entity:getComponent(OgreSceneNodeComponent.TYPE_ID)
-    local deathAnimationEntity = Entity()
-    local lifeTimeComponent = TimedLifeComponent()
+    local microbeSceneNode = getComponent(self.entity, OgreSceneNodeComponent)
+    local deathAnimationEntity = Entity.new(g_luaEngine.currentGameState.wrapper)
+    local lifeTimeComponent = TimedLifeComponent.new()
     lifeTimeComponent.timeToLive = 4000
     deathAnimationEntity:addComponent(lifeTimeComponent)
-    local deathAnimSceneNode = OgreSceneNodeComponent()
+    local deathAnimSceneNode = OgreSceneNodeComponent.new()
     deathAnimSceneNode.meshName = "MicrobeDeath.mesh"
     deathAnimSceneNode:playAnimation("Death", false)
     deathAnimSceneNode.transform.position = Vector3(microbeSceneNode.transform.position.x, microbeSceneNode.transform.position.y, 0)
@@ -746,7 +736,7 @@ function Microbe:divide()
 end
 
 function Microbe.transferCompounds(from, to)
-    for compoundID in CompoundRegistry.getCompoundList() do
+    for _, compoundID in pairs(CompoundRegistry.getCompoundList()) do
         local amount = from:getCompoundAmount(compoundID)
     
         if amount ~= 0 then
@@ -842,7 +832,7 @@ function Microbe:update(logicTime)
                 -- If the organelle is hurt.
                 if organelle:getCompoundBin() < 1.0 then
                     -- Give the organelle access to the compound bag to take some compound.
-                    organelle:growOrganelle(self.entity:getComponent(CompoundBagComponent.TYPE_ID))
+                    organelle:growOrganelle(getComponent(self.entity, CompoundBagComponent))
                     -- An organelle was damaged and we tried to heal it, so out health might be different.
                     self:calculateHealthFromOrganelles()
                 end
@@ -863,12 +853,12 @@ function Microbe:update(logicTime)
                     -- If the organelle is not split, give it some compounds to make it larger.
                     if organelle:getCompoundBin() < 2.0 and not organelle.wasSplit then
                         -- Give the organelle access to the compound bag to take some compound.
-                        organelle:growOrganelle(self.entity:getComponent(CompoundBagComponent.TYPE_ID))
+                        organelle:growOrganelle(getComponent(self.entity, CompoundBagComponent))
                         reproductionStageComplete = false
                     -- If the organelle was split and has a bin less then 1, it must have been damaged.
                     elseif organelle:getCompoundBin() < 1.0 and organelle.wasSplit then
                         -- Give the organelle access to the compound bag to take some compound.
-                        organelle:growOrganelle(self.entity:getComponent(CompoundBagComponent.TYPE_ID))
+                        organelle:growOrganelle(getComponent(self.entity, CompoundBagComponent))
                     -- If the organelle is twice its size...
                     elseif organelle:getCompoundBin() >= 2.0 then
                         --Queue this organelle for splitting after the loop.
@@ -881,7 +871,7 @@ function Microbe:update(logicTime)
                     -- If the nucleus hasn't finished replicating its DNA, give it some compounds.
                     if organelle:getCompoundBin() < 2.0 then
                         -- Give the organelle access to the compound back to take some compound.
-                        organelle:growOrganelle(self.entity:getComponent(CompoundBagComponent.TYPE_ID))
+                        organelle:growOrganelle(getComponent(self.entity, CompoundBagComponent))
                         reproductionStageComplete = false
                     end
                 end
@@ -1073,18 +1063,18 @@ function Microbe:respawn()
 
     self.rigidBody:setDynamicProperties(
         Vector3(0,0,0), -- Position
-        Quaternion(Radian(Degree(0)), Vector3(1, 0, 0)), -- Orientation
+        Quaternion.new(Radian.new(Degree(0)), Vector3(1, 0, 0)), -- Orientation
         Vector3(0, 0, 0), -- Linear velocity
         Vector3(0, 0, 0)  -- Angular velocity
     )
-    local sceneNode = self.entity:getComponent(OgreSceneNodeComponent.TYPE_ID)
+    local sceneNode = getComponent(self.entity, OgreSceneNodeComponent)
     sceneNode.visible = true
     sceneNode.transform.position = Vector3(0, 0, 0)
     sceneNode.transform:touch()
     
     self:storeCompound(CompoundRegistry.getCompoundId("atp"), 50, false)
 
-    setRandomBiome()
+    setRandomBiome(g_luaEngine.currentGameState)
 end
 
 -- Private function for initializing a microbe's components
@@ -1143,8 +1133,9 @@ function Microbe:addComponent(component)
     self.entity:addComponent(component)
 end
 
-function Microbe:getComponent(typeid)
-    return self.entity:getComponent(typeid)
+function Microbe:getComponent(typeClass)
+    assert(type(typeClass) ~= "number", "using old syntax of Microbe:getComponent")
+    return getComponent(self.entity, typeClass)
 end
 
 

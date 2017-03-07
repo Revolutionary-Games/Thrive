@@ -11,6 +11,8 @@ SpawnedComponent = class(
     end
 )
 
+SpawnedComponent.TYPE_NAME = "SpawnedComponent"
+
 SPAWN_INTERVAL = 100 --Time between spawn cycles
 
 function SpawnedComponent:load(storage)
@@ -112,9 +114,9 @@ end
 -- radius of the player at its current location but outside of the spawn radius of the player
 -- at its location during the previous spawn cycle.
 function SpawnSystem:_doSpawnCycle()    
-    local player = Entity(PLAYER_NAME)
+    local player = Entity.new(PLAYER_NAME, self.gameState.wrapper)
     
-    local playerNode = player:getComponent(OgreSceneNodeComponent.TYPE_ID)
+    local playerNode = getComponent(player, OgreSceneNodeComponent)
     local playerPos = playerNode.transform.position
     
     --Initialize previous player position if necessary
@@ -122,20 +124,20 @@ function SpawnSystem:_doSpawnCycle()
         self.playerPosPrev = Vector3(playerPos.x, playerPos.y, playerPos.z)
     end
     
-    for entity in self.entities:removedEntities() do
+    for _, entity in pairs(self.entities:removedEntities()) do
         self.microbes[entityId] = nil
     end
-    for entityId in self.entities:addedEntities() do
-        local microbe = Microbe(Entity(entityId))
+    for _, entityId in pairs(self.entities:addedEntities()) do
+        local microbe = Microbe.new(Entity.new(entityId, self.gameState.wrapper))
         self.microbes[entityId] = microbe
     end
     self.entities:clearChanges()
     
     --Despawn entities    
-    for entityId in self.entities:entities() do
-        entity = Entity(entityId)
-        local spawnComponent = entity:getComponent(SpawnedComponent.TYPE_ID)
-        local sceneNode = entity:getComponent(OgreSceneNodeComponent.TYPE_ID)
+    for _, entityId in pairs(self.entities:entities()) do
+        entity = Entity.new(entityId, self.gameState.wrapper)
+        local spawnComponent = getComponent(entity, SpawnedComponent)
+        local sceneNode = getComponent(entity, OgreSceneNodeComponent)
         local entityPos = sceneNode.transform.position
         local distSqr = playerPos:squaredDistance(entityPos)
         
@@ -143,7 +145,7 @@ function SpawnSystem:_doSpawnCycle()
         if distSqr >= spawnComponent.spawnRadiusSqr then
             entity:destroy()
         elseif entityPos.z ~= 0 then
-            local rigidBody = entity:getComponent(RigidBodyComponent.TYPE_ID)
+            local rigidBody = getComponent(entity, RigidBodyComponent)
             rigidBody.dynamicProperties.position.z = 0
             rigidBody.dynamicProperties:touch()
         end
@@ -187,7 +189,7 @@ function SpawnSystem:_doSpawnCycle()
                     --Second condition passed. Spawn the entity.
                     local entity = spawnType.factoryFunction(playerPos + displacement)
                     if entity then
-                        local spawnComponent = SpawnedComponent()
+                        local spawnComponent = SpawnedComponent.new()
                         spawnComponent.spawnRadiusSqr = spawnType.spawnRadiusSqr
                         entity:addComponent(spawnComponent)
                     end

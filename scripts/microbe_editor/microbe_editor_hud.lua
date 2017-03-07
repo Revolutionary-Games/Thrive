@@ -46,7 +46,7 @@ function MicrobeEditorHudSystem:init(gameState)
     end
     
 
-    local root = gameState:rootGUIWindow()
+    local root = self.gameState.guiWindow
     self.mpLabel = root:getChild("MpPanel"):getChild("MpBar"):getChild("NumberLabel")
     self.mpProgressBar = root:getChild("MpPanel"):getChild("MpBar")
     self.mpProgressBar:setProperty("ThriveGeneric/MpBar", "FillImage") 
@@ -108,8 +108,8 @@ function MicrobeEditorHudSystem:init(gameState)
 end
 
 function MicrobeEditorHudSystem:loadmicrobeSelectionChanged()
-	local guiSoundEntity = Entity("gui_sounds")
-    guiSoundEntity:getComponent(SoundSourceComponent.TYPE_ID):playSound("button-hover-click")
+    getComponent("gui_sounds", g_luaEngine.currentGameState, SoundSourceComponent
+    ):playSound("button-hover-click")
 end
 
 function MicrobeEditorHudSystem:activate()
@@ -136,13 +136,13 @@ end
 
 function MicrobeEditorHudSystem:update(renderTime, logicTime)
     for i=1, 42 do
-        local sceneNode = self.hoverHex[i]:getComponent(OgreSceneNodeComponent.TYPE_ID)
+        local sceneNode = getComponent(self.hoverHex[i], OgreSceneNodeComponent)
         sceneNode.transform.position = Vector3(0,0,0)
         sceneNode.transform.scale = Vector3(0,0,0)
         sceneNode.transform:touch()
     end
     for i=1, 6 do
-        local sceneNode = self.hoverOrganelle[i]:getComponent(OgreSceneNodeComponent.TYPE_ID)
+        local sceneNode = getComponent(self.hoverOrganelle[i], OgreSceneNodeComponent)
         sceneNode.transform.position = Vector3(0,0,0)
         sceneNode.transform.scale = Vector3(0,0,0)
         sceneNode.transform:touch()
@@ -205,10 +205,14 @@ function MicrobeEditorHudSystem:update(renderTime, logicTime)
         self:updateMicrobeName()
     end
     
-    if Engine.keyboard:wasKeyPressed(Keyboard.KC_LEFT) or Engine.keyboard:wasKeyPressed(Keyboard.KC_A) then
+    if Engine.keyboard:wasKeyPressed(KEYCODE.KC_LEFT) or
+    Engine.keyboard:wasKeyPressed(KEYCODE.KC_A) then
+        
 		self.editor.organelleRot = (self.editor.organelleRot + 60)%360
 	end
-	if Engine.keyboard:wasKeyPressed(Keyboard.KC_RIGHT) or Engine.keyboard:wasKeyPressed(Keyboard.KC_D) then
+	if Engine.keyboard:wasKeyPressed(KEYCODE.KC_RIGHT) or
+    Engine.keyboard:wasKeyPressed(KEYCODE.KC_D) then
+        
 		self.editor.organelleRot = (self.editor.organelleRot - 60)%360
 	end
 	
@@ -216,8 +220,8 @@ function MicrobeEditorHudSystem:update(renderTime, logicTime)
         Engine:screenShot("screenshot.png")
     end
 
-    if Engine.keyboard:isKeyDown(Keyboard.KC_LSHIFT) then 
-        properties = Entity(CAMERA_NAME .. 3):getComponent(OgreCameraComponent.TYPE_ID).properties
+    if Engine.keyboard:isKeyDown(KEYCODE.KC_LSHIFT) then 
+        properties = getComponent(CAMERA_NAME .. 3, self.gameState, OgreCameraComponent).properties
         newFovY = properties.fovY + Degree(Engine.mouse:scrollChange()/10)
         if newFovY < Degree(10) then
             newFovY = Degree(10)
@@ -241,63 +245,63 @@ end
 
 
 function playClicked()
-    local guiSoundEntity = Entity("gui_sounds")
-    guiSoundEntity:getComponent(SoundSourceComponent.TYPE_ID):playSound("button-hover-click")
+    getComponent("gui_sounds", g_luaEngine.currentGameState, SoundSourceComponent
+    ):playSound("button-hover-click")
     Engine:setCurrentGameState(GameState.MICROBE)
 end
 
 function menuPlayClicked()
-    local guiSoundEntity = Entity("gui_sounds")
-    guiSoundEntity:getComponent(SoundSourceComponent.TYPE_ID):playSound("button-hover-click")
+    getComponent("gui_sounds", g_luaEngine.currentGameState, SoundSourceComponent
+    ):playSound("button-hover-click")
     Engine:currentGameState():rootGUIWindow():getChild("MenuPanel"):hide()
     playClicked()
 end
 
 function MicrobeEditorHudSystem:menuMainMenuClicked()
-    local guiSoundEntity = Entity("gui_sounds")
-    guiSoundEntity:getComponent(SoundSourceComponent.TYPE_ID):playSound("button-hover-click")
+    getComponent("gui_sounds", g_luaEngine.currentGameState, SoundSourceComponent
+    ):playSound("button-hover-click")
     Engine:setCurrentGameState(GameState.MAIN_MENU)
 end
 
 function MicrobeEditorHudSystem:quitButtonClicked()
-    local guiSoundEntity = Entity("gui_sounds")
-    guiSoundEntity:getComponent(SoundSourceComponent.TYPE_ID):playSound("button-hover-click")
+    getComponent("gui_sounds", g_luaEngine.currentGameState, SoundSourceComponent
+    ):playSound("button-hover-click")
     Engine:quit()
 end
 
 -- the rest of the event handlers are MicrobeEditorHudSystem methods
 
 function MicrobeEditorHudSystem:helpButtonClicked()
-    local guiSoundEntity = Entity("gui_sounds")
-    guiSoundEntity:getComponent(SoundSourceComponent.TYPE_ID):playSound("button-hover-click")
-    Engine:currentGameState():rootGUIWindow():getChild("PauseMenu"):getChild("HelpPanel"):show()
-    Engine:currentGameState():rootGUIWindow():getChild("PauseMenu"):getChild("CloseHelpButton"):show()
-    Engine:currentGameState():rootGUIWindow():getChild("PauseMenu"):getChild("ResumeButton"):hide()
-    Engine:currentGameState():rootGUIWindow():getChild("PauseMenu"):getChild("QuicksaveButton"):hide()
-    Engine:currentGameState():rootGUIWindow():getChild("PauseMenu"):getChild("SaveGameButton"):hide()
-    Engine:currentGameState():rootGUIWindow():getChild("PauseMenu"):getChild("LoadGameButton"):hide()
-    Engine:currentGameState():rootGUIWindow():getChild("PauseMenu"):getChild("StatsButton"):hide()
-    Engine:currentGameState():rootGUIWindow():getChild("PauseMenu"):getChild("HelpButton"):hide()
-    Engine:currentGameState():rootGUIWindow():getChild("PauseMenu"):getChild("OptionsButton"):hide()
-    Engine:currentGameState():rootGUIWindow():getChild("PauseMenu"):getChild("MainMenuButton"):hide()
-    Engine:currentGameState():rootGUIWindow():getChild("PauseMenu"):getChild("QuitButton"):hide()
+    getComponent("gui_sounds", g_luaEngine.currentGameState, SoundSourceComponent
+    ):playSound("button-hover-click")
+    self.gameState.guiWindow:getChild("PauseMenu"):getChild("HelpPanel"):show()
+    self.gameState.guiWindow:getChild("PauseMenu"):getChild("CloseHelpButton"):show()
+    self.gameState.guiWindow:getChild("PauseMenu"):getChild("ResumeButton"):hide()
+    self.gameState.guiWindow:getChild("PauseMenu"):getChild("QuicksaveButton"):hide()
+    self.gameState.guiWindow:getChild("PauseMenu"):getChild("SaveGameButton"):hide()
+    self.gameState.guiWindow:getChild("PauseMenu"):getChild("LoadGameButton"):hide()
+    self.gameState.guiWindow:getChild("PauseMenu"):getChild("StatsButton"):hide()
+    self.gameState.guiWindow:getChild("PauseMenu"):getChild("HelpButton"):hide()
+    self.gameState.guiWindow:getChild("PauseMenu"):getChild("OptionsButton"):hide()
+    self.gameState.guiWindow:getChild("PauseMenu"):getChild("MainMenuButton"):hide()
+    self.gameState.guiWindow:getChild("PauseMenu"):getChild("QuitButton"):hide()
     self.helpOpen = not self.helpOpen
 end
 
 function MicrobeEditorHudSystem:closeHelpButtonClicked()
-    local guiSoundEntity = Entity("gui_sounds")
-    guiSoundEntity:getComponent(SoundSourceComponent.TYPE_ID):playSound("button-hover-click")
-    Engine:currentGameState():rootGUIWindow():getChild("PauseMenu"):getChild("HelpPanel"):hide()
-    Engine:currentGameState():rootGUIWindow():getChild("PauseMenu"):getChild("CloseHelpButton"):hide()
-    Engine:currentGameState():rootGUIWindow():getChild("PauseMenu"):getChild("ResumeButton"):show()
-    Engine:currentGameState():rootGUIWindow():getChild("PauseMenu"):getChild("QuicksaveButton"):show()
-    Engine:currentGameState():rootGUIWindow():getChild("PauseMenu"):getChild("SaveGameButton"):show()
-    Engine:currentGameState():rootGUIWindow():getChild("PauseMenu"):getChild("LoadGameButton"):show()
-    Engine:currentGameState():rootGUIWindow():getChild("PauseMenu"):getChild("StatsButton"):show()
-    Engine:currentGameState():rootGUIWindow():getChild("PauseMenu"):getChild("HelpButton"):show()
-    Engine:currentGameState():rootGUIWindow():getChild("PauseMenu"):getChild("OptionsButton"):show()
-    Engine:currentGameState():rootGUIWindow():getChild("PauseMenu"):getChild("MainMenuButton"):show()
-    Engine:currentGameState():rootGUIWindow():getChild("PauseMenu"):getChild("QuitButton"):show()
+    getComponent("gui_sounds", g_luaEngine.currentGameState, SoundSourceComponent
+    ):playSound("button-hover-click")
+    self.gameState.guiWindow:getChild("PauseMenu"):getChild("HelpPanel"):hide()
+    self.gameState.guiWindow:getChild("PauseMenu"):getChild("CloseHelpButton"):hide()
+    self.gameState.guiWindow:getChild("PauseMenu"):getChild("ResumeButton"):show()
+    self.gameState.guiWindow:getChild("PauseMenu"):getChild("QuicksaveButton"):show()
+    self.gameState.guiWindow:getChild("PauseMenu"):getChild("SaveGameButton"):show()
+    self.gameState.guiWindow:getChild("PauseMenu"):getChild("LoadGameButton"):show()
+    self.gameState.guiWindow:getChild("PauseMenu"):getChild("StatsButton"):show()
+    self.gameState.guiWindow:getChild("PauseMenu"):getChild("HelpButton"):show()
+    self.gameState.guiWindow:getChild("PauseMenu"):getChild("OptionsButton"):show()
+    self.gameState.guiWindow:getChild("PauseMenu"):getChild("MainMenuButton"):show()
+    self.gameState.guiWindow:getChild("PauseMenu"):getChild("QuitButton"):show()
     self.helpOpen = not self.helpOpen
 end
 
@@ -381,8 +385,8 @@ function MicrobeEditorHudSystem:removeClicked()
 end
 
 function MicrobeEditorHudSystem:rootSaveCreationClicked()
-    local guiSoundEntity = Entity("gui_sounds")
-    guiSoundEntity:getComponent(SoundSourceComponent.TYPE_ID):playSound("button-hover-click")
+    getComponent("gui_sounds", g_luaEngine.currentGameState, SoundSourceComponent
+    ):playSound("button-hover-click")
     print ("Save button clicked")
     --[[
     panel = self.saveLoadPanel
@@ -395,8 +399,8 @@ function MicrobeEditorHudSystem:rootSaveCreationClicked()
 end
 --[[
 function MicrobeEditorHudSystem:rootLoadCreationClicked()
-    local guiSoundEntity = Entity("gui_sounds")
-    guiSoundEntity:getComponent(SoundSourceComponent.TYPE_ID):playSound("button-hover-click")
+    getComponent("gui_sounds", g_luaEngine.currentGameState, SoundSourceComponent
+    ):playSound("button-hover-click")
     panel = self.saveLoadPanel
     -- panel:getChild("SaveButton"):hide()
     -- root:getChild("CreationNameDialogLabel"):hide()
@@ -420,8 +424,8 @@ function MicrobeEditorHudSystem:rootLoadCreationClicked()
 end
 
 function MicrobeEditorHudSystem:saveCreationClicked()
-    local guiSoundEntity = Entity("gui_sounds")
-    guiSoundEntity:getComponent(SoundSourceComponent.TYPE_ID):playSound("button-hover-click")
+    getComponent("gui_sounds", g_luaEngine.currentGameState, SoundSourceComponent
+    ):playSound("button-hover-click")
     name = self.editor.currentMicrobe.microbe.speciesName
     print("saving "..name)
     -- Todo: Additional input sanitation
@@ -434,8 +438,8 @@ function MicrobeEditorHudSystem:saveCreationClicked()
 end
 
 function MicrobeEditorHudSystem:loadCreationClicked()
-    local guiSoundEntity = Entity("gui_sounds")
-    guiSoundEntity:getComponent(SoundSourceComponent.TYPE_ID):playSound("button-hover-click")
+    getComponent("gui_sounds", g_luaEngine.currentGameState, SoundSourceComponent
+    ):playSound("button-hover-click")
 	item = self.creationsListbox:listWidgetGetFirstSelectedItemText()
     if self.creationFileMap[item] ~= nil then 
         entity = Engine:loadCreation(self.creationFileMap[item])
@@ -497,20 +501,20 @@ function saveMicrobe() global_activeMicrobeEditorHudSystem:saveCreationClicked()
 function loadMicrobe(name) global_activeMicrobeEditorHudSystem:loadByName(name) end
 
 function MicrobeEditorHudSystem:menuButtonClicked()
-    local guiSoundEntity = Entity("gui_sounds")
-    guiSoundEntity:getComponent(SoundSourceComponent.TYPE_ID):playSound("button-hover-click")
+    getComponent("gui_sounds", g_luaEngine.currentGameState, SoundSourceComponent
+    ):playSound("button-hover-click")
     print("played sound")
-    Engine:currentGameState():rootGUIWindow():getChild("PauseMenu"):show()
-    Engine:currentGameState():rootGUIWindow():getChild("PauseMenu"):moveToFront()
+    self.gameState.guiWindow:getChild("PauseMenu"):show()
+    self.gameState.guiWindow:getChild("PauseMenu"):moveToFront()
     Engine:pauseGame()
     self.menuOpen = true
 end
 
 function MicrobeEditorHudSystem:resumeButtonClicked()
-    local guiSoundEntity = Entity("gui_sounds")
-    guiSoundEntity:getComponent(SoundSourceComponent.TYPE_ID):playSound("button-hover-click")
+    getComponent("gui_sounds", g_luaEngine.currentGameState, SoundSourceComponent
+    ):playSound("button-hover-click")
     print("played sound")
-    Engine:currentGameState():rootGUIWindow():getChild("PauseMenu"):hide()
+    self.gameState.guiWindow:getChild("PauseMenu"):hide()
     Engine:resumeGame()
     self.menuOpen = false
 end

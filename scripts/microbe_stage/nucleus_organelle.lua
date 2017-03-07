@@ -83,9 +83,15 @@ function NucleusOrganelle:onRemovedFromMicrobe(microbe, q, r)
     self.ER:destroy()
 end
 
+function NucleusOrganelle:storage()
+
+    return StorageContainer.new()
+    
+end
+
 function NucleusOrganelle:load(storage)
-    self.golgi = Entity(g_luaEngine.currentGameState.wrapper)
-	self.ER = Entity(g_luaEngine.currentGameState.wrapper)
+    self.golgi = Entity.new(g_luaEngine.currentGameState.wrapper)
+	self.ER = Entity.new(g_luaEngine.currentGameState.wrapper)
 end
 
 function NucleusOrganelle:updateColour(organelle)

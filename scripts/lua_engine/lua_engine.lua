@@ -25,9 +25,6 @@ LuaEngine = class(
         self.console = nil
         self.consoleGUIWindow = nil
 
-        -- std::list<std::tuple<EntityId, EntityId, GameState*, GameState*>> m_entitiesToTransferGameState;
-
-
         -- This is a table of systems that are going to be moved to prevShutdownSystems once
         -- the GameState changes. So this is used to get all the systems that the current state
         -- wants to timed shutdown
@@ -198,24 +195,12 @@ end
 --! 
 function LuaEngine:timedSystemShutdown(system, milliseconds)
 
-    local state = self:gameStateFromCpp(system)
-
-    if state ~= nil then
-        system = state
-    end
-
     table.insert(self.prevShutdownSystems, { timeLeft = milliseconds, ["system"] = system })
 
 end
 
 --! @brief Returns true if system is already queued for shutdown
 function LuaEngine:isSystemTimedShutdown(system)
-
-    local state = self:gameStateFromCpp(system)
-
-    if state ~= nil then
-        system = state
-    end
 
     for i,p in ipairs(self.prevShutdownSystems) do
 
@@ -280,10 +265,14 @@ function LuaEngine:gameStateFromCpp(cppObj)
     end
 
     assert(objType == "userdata")
+
+    local cppName = cppObj.name
     
     for _,s in pairs(self.gameStates) do
 
-        if s.wrapper == cppObj then
+        --if s.wrapper == cppObj then
+        -- name compare, this seems to work better than equality
+        if s.name == cppName then
 
             return s
 
@@ -292,6 +281,22 @@ function LuaEngine:gameStateFromCpp(cppObj)
     end
 
     return nil
+end
+
+--! @brief Returns a lua State owning cppWrapper or asserts
+function LuaEngine:getLuaStateFromWrapper(cppWrapper)
+
+    assert(cppWrapper)
+    assert(type(cppWrapper) == "userdata")
+
+    local state = self:gameStateFromCpp(cppWrapper)
+
+    if state ~= nil then
+        
+        return state
+    end
+    
+    assert(false, "getLuaSystemFromWrapper(cppWrapper) failed to find state with wrapper")
 end
 
 --! @brief Transfers an entity from one gamestate to another
