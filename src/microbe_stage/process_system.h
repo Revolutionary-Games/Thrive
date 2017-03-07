@@ -96,6 +96,9 @@ public:
     getPrice(CompoundId);
 
     float
+    getDemand(CompoundId);
+
+    float
     takeCompound(CompoundId, float); // remove up to a certain amount of compound, returning how much was removed
 
     void

@@ -84,6 +84,7 @@ CompoundBagComponent::luaBindings() {
         .def("takeCompound", &CompoundBagComponent::takeCompound)
         .def("getCompoundAmount", &CompoundBagComponent::getCompoundAmount)
         .def("getPrice", &CompoundBagComponent::getPrice)
+        .def("getDemand", &CompoundBagComponent::getDemand)
         .def_readwrite("storageSpace", &CompoundBagComponent::storageSpace)
     ;
 }
@@ -178,6 +179,11 @@ CompoundBagComponent::takeCompound(CompoundId id, float to_take) {
 float
 CompoundBagComponent::getPrice(CompoundId compoundId) {
     return compounds[compoundId].price;
+}
+
+float
+CompoundBagComponent::getDemand(CompoundId compoundId) {
+    return compounds[compoundId].demand;
 }
 
 luabind::scope
@@ -297,7 +303,7 @@ ProcessSystem::Implementation::update(int logicTime) {
                 else {
                     priceAdjustment = compoundData.demand / (compoundData.amount + 2);
                     float reducedPrice = compoundData.uninflatedPrice * (COMPOUND_PRICE_MOMENTUM + priceAdjustment - COMPOUND_PRICE_MOMENTUM * priceAdjustment);
-                    compoundData.priceReductionPerUnit = reducedPrice - compoundData.uninflatedPrice;
+                    compoundData.priceReductionPerUnit = compoundData.uninflatedPrice - reducedPrice;
                 }
 
                 //Inflating the price if the compound is useful outside of this system.
@@ -306,14 +312,14 @@ ProcessSystem::Implementation::update(int logicTime) {
                 {
                     compoundData.price += IMPORTANT_COMPOUND_BIAS / (compoundData.amount + 1);
                     float reducedPrice = IMPORTANT_COMPOUND_BIAS / (compoundData.amount + 2);
-                    compoundData.priceReductionPerUnit += reducedPrice - compoundData.price;
+                    compoundData.priceReductionPerUnit += compoundData.price - reducedPrice;
                 }
 
                 // Calculating the break-even point
                 if(compoundData.price <= 0.0)
                     compoundData.breakEvenPoint = 0;
                 else
-                    compoundData.breakEvenPoint = compoundData.breakEvenPoint / compoundData.price;
+                    compoundData.breakEvenPoint = compoundData.price / compoundData.priceReductionPerUnit;
 
                 // Setting the demand to 0 in order to recalculate it later.
                 compoundData.demand = 0;
@@ -366,8 +372,19 @@ ProcessSystem::Implementation::update(int logicTime) {
 
                 // Finding the piece of the function that contains the minimum
                 // TODO: make it use binary search or something...
-                float baseOutputPrice = 0;
-                float outputPriceDecrement = 0;
+
+                // Getting the initial revenue values
+                float baseOutputPrice = 0.0;
+                float outputPriceDecrement = 0.0;
+                for (const auto& output : BioProcessRegistry::getOutputCompounds(processId)) {
+                    CompoundId outputId = output.first;
+                    int outputGenerated = output.second;
+                    CompoundData &compoundData = bag->compounds[outputId];
+
+                    baseOutputPrice += compoundData.price * outputGenerated;
+                    outputPriceDecrement += compoundData.priceReductionPerUnit * outputGenerated;
+                }
+
                 for (const auto& breakingPoint : outputBreakEvenPoints) {
                     float breakEvenPoint = breakingPoint.first;
 
@@ -375,18 +392,15 @@ ProcessSystem::Implementation::update(int logicTime) {
                     float cost = baseInputPrice + breakEvenPoint * inputPriceIncrement;
 
                     // Calculating the revenue.
-                    float baseOutputPrice_l = 0;
-                    float outputPriceDecrement_l = 0;
+                    float baseOutputPrice_l = 0.0;
+                    float outputPriceDecrement_l = 0.0;
                     for (const auto& output : BioProcessRegistry::getOutputCompounds(processId)) {
                         CompoundId outputId = output.first;
                         int outputGenerated = output.second;
                         CompoundData &compoundData = bag->compounds[outputId];
 
-                        if(compoundData.breakEvenPoint <= breakEvenPoint)
-                            // Think about this calculation as a triangle area.
-                            baseOutputPrice_l += compoundData.price - compoundData.breakEvenPoint * compoundData.priceReductionPerUnit;
-
-                        else {
+                        // The prices are never below 0.
+                        if(compoundData.breakEvenPoint > breakEvenPoint) {
                             baseOutputPrice_l += compoundData.price * outputGenerated;
                             outputPriceDecrement_l += compoundData.priceReductionPerUnit * outputGenerated;
                         }
@@ -394,15 +408,22 @@ ProcessSystem::Implementation::update(int logicTime) {
 
                     float revenue = baseOutputPrice_l - breakEvenPoint * outputPriceDecrement_l;
 
-                    // We found the piece :)
                     if(revenue < cost)
+                        // We found the piece :)
                         break;
 
                     baseOutputPrice = baseOutputPrice_l;
                     outputPriceDecrement = outputPriceDecrement_l;
                 }
 
-                float desiredRate = (baseOutputPrice - baseInputPrice) / (outputPriceDecrement + inputPriceIncrement);
+                std::cout << "outputPriceDecrement" << outputPriceDecrement << std::endl;
+                // Avoiding zero-division errors.
+                float desiredRate;
+                if(outputPriceDecrement + inputPriceIncrement < 0)
+                    desiredRate = (baseOutputPrice - baseInputPrice) / (outputPriceDecrement + inputPriceIncrement);
+                else
+                    desiredRate = 0.0;
+
                 if(desiredRate > 0.0)
                 {
                     float rate = std::min(processCapacity * logicTime / 1000, processLimitCapacity);
