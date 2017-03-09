@@ -179,7 +179,9 @@ Microbe = class(
         if not self.microbe.initialized then
             self:_initialize()
             if in_editor ~= true then
-                local processor = getComponent(self.entity, ProcessorComponent)
+                local processor = getComponent(self.microbe.speciesName,
+                                               g_luaEngine.currentGameState,
+                                               ProcessorComponent)
                 assert(processor)
                 self.compoundBag:setProcessor(processor,
                                               self.microbe.speciesName)
@@ -204,8 +206,7 @@ Microbe.COMPONENTS = {
     collisionHandler = CollisionComponent,
     soundSource = SoundSourceComponent,
     membraneComponent = MembraneComponent,
-    compoundBag = CompoundBagComponent,
-    processor = ProcessorComponent
+    compoundBag = CompoundBagComponent
 }
 
 
@@ -263,7 +264,6 @@ function Microbe.createMicrobeEntity(name, aiControlled, speciesName, in_editor,
         CompoundAbsorberComponent.new(),
         OgreSceneNodeComponent.new(),
         CompoundBagComponent.new(),
-        ProcessorComponent.new(),
         MicrobeComponent.new(not aiControlled, speciesName),
         reactionHandler,
         rigidBody,
@@ -1037,7 +1037,6 @@ function Microbe:purgeCompounds()
     for _, compoundId in pairs(CompoundRegistry.getCompoundList()) do
         local amount = getComponent( self.entity, CompoundBagComponent
         ):excessAmount(compoundId) * PURGE_SCALE
-        
         if amount > 0 then amount = self:takeCompound(compoundId, amount) end
         if amount > 0 then self:ejectCompound(compoundId, amount) end
     end
