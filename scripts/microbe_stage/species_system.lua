@@ -380,13 +380,13 @@ function SpeciesSystem.initProcessorComponent(entity, speciesComponent)
 
     local pc = getComponent(entity, ProcessorComponent)
     if pc == nil then
-        pc = ProcessorComponent()
+        pc = ProcessorComponent.new()
         entity:addComponent(pc)
     end
 
     local thresholds = {}
 
-    for compoundID in CompoundRegistry.getCompoundList() do
+    for _, compoundID in pairs(CompoundRegistry.getCompoundList()) do
         compound = CompoundRegistry.getCompoundInternalName(compoundID)
         if compoundTable[compound] then
             thresholdData = compoundTable[compound].default_treshold
@@ -399,7 +399,7 @@ function SpeciesSystem.initProcessorComponent(entity, speciesComponent)
 
     if starter_microbes[speciesComponent.name] ~= nil and starter_microbes[speciesComponent.name].thresholds ~= nil then
         local c_thresholds = starter_microbes[speciesComponent.name].thresholds
-        for compoundID in CompoundRegistry.getCompoundList() do
+        for _, compoundID in pairs(CompoundRegistry.getCompoundList()) do
             compound = CompoundRegistry.getCompoundInternalName(compoundID)
             if c_thresholds[compound] ~= nil then
                 local t = c_thresholds[compound]
@@ -427,7 +427,7 @@ function SpeciesSystem.initProcessorComponent(entity, speciesComponent)
             end
         end
     end
-    for bioProcessID in BioProcessRegistry.getList() do
+    for _, bioProcessID in pairs(BioProcessRegistry.getList()) do
         local name = BioProcessRegistry.getInternalName(bioProcessID)
         if capacities[name] ~= nil then
             pc:setCapacity(bioProcessID, capacities[name])
@@ -471,7 +471,7 @@ end
 function SpeciesSystem.fromMicrobe(microbe, species)
     local microbe_ = microbe.microbe -- shouldn't break, I think
     -- self.name = microbe_.speciesName
-    species.colour = microbe:getComponent(MembraneComponent.TYPE_ID):getColour()
+    species.colour = microbe:getComponent(MembraneComponent):getColour()
     -- Create species' organelle data
     for i, organelle in pairs(microbe_.organelles) do
         local data = {}
@@ -483,7 +483,7 @@ function SpeciesSystem.fromMicrobe(microbe, species)
     end
     -- This microbes compound amounts will be the new population average.
     species.avgCompoundAmounts = {}
-    for compoundID in CompoundRegistry.getCompoundList() do
+    for _, compoundID in pairs(CompoundRegistry.getCompoundList()) do
         local amount = microbe:getCompoundAmount(compoundID)
         species.avgCompoundAmounts["" .. compoundID] = amount/2
     end

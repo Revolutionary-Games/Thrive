@@ -709,17 +709,21 @@ function Microbe:readyToReproduce()
     end
 end
 
-function Microbe:divide()
+function Microbe:divide(currentGameState)
+
+    assert(currentGameState, "Microbe:divide needs currentGameState")
+    
     print("dividing cell ")
     -- Create the two daughter cells.
-    local copy = Microbe.createMicrobeEntity(nil, true, self.microbe.speciesName)
+    local copy = Microbe.createMicrobeEntity(nil, true, self.microbe.speciesName, self.entity,
+                                             currentGameState)
     
     --Separate the two cells.
     copy.rigidBody.dynamicProperties.position = Vector3(self.rigidBody.dynamicProperties.position.x - self.membraneComponent.dimensions/2, self.rigidBody.dynamicProperties.position.y, 0)
     self.rigidBody.dynamicProperties.position = Vector3(self.rigidBody.dynamicProperties.position.x + self.membraneComponent.dimensions/2, self.rigidBody.dynamicProperties.position.y, 0)
     
     -- Split the compounds evenly between the two cells.
-    for compoundID in CompoundRegistry.getCompoundList() do
+    for _, compoundID in pairs(CompoundRegistry.getCompoundList()) do
         local amount = self:getCompoundAmount(compoundID)
     
         if amount ~= 0 then
@@ -731,7 +735,7 @@ function Microbe:divide()
     self.reproductionStage = 0
     copy.reproductionStage = 0
     
-    copy.entity:addComponent(SpawnedComponent())
+    copy.entity:addComponent(SpawnedComponent.new())
     self.soundSource:playSound("microbe-reproduction")
 end
 
