@@ -294,7 +294,12 @@ void StorageContainer::luaBindings(
 
         sol::constructors<sol::types<>>(),
 
-        "get", &StorageContainer::luaGet,
+        "get", sol::overload([](StorageContainer &self, const std::string &key,
+                sol::this_state s)
+            {
+                return self.luaGet(key, sol::nil, s);
+                
+            }, &StorageContainer::luaGet),
 
         "contains", static_cast<bool(StorageContainer::*)(
             const std::string&) const>(
@@ -379,14 +384,15 @@ StorageContainer::contains(
 sol::object
 StorageContainer::luaGet(
     const std::string& key,
-    sol::object defaultValue
+    sol::object defaultValue,
+    sol::this_state s
 ) const {
     auto iter = m_impl->m_content.find(key);
     if (iter == m_impl->m_content.end()) {
         return defaultValue;
     }
     else {
-        sol::state_view lua(defaultValue.lua_state());
+        sol::state_view lua(s);
         sol::object obj = toLua(lua, iter->second);
         if (obj.valid()) {
             return obj;

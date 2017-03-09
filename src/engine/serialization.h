@@ -186,7 +186,8 @@ public:
     */
     sol::object luaGet(
         const std::string& key,
-        sol::object defaultValue
+        sol::object defaultValue,
+        sol::this_state s
     ) const;
 
     /**
