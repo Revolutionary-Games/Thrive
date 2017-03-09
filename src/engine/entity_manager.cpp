@@ -25,11 +25,21 @@ EntityManager::luaBindings(sol::state &lua){
         "processRemovals", &EntityManager::processRemovals,
         "getNameMappingFor", &EntityManager::getNameMappingFor,
 
-        "getNamedId", [](EntityManager &self, const std::string* name, bool force){
-            if(!name)
-                throw std::runtime_error("name is null");
-            return self.getNamedId(*name, force);
-        },
+        "getNamedId", sol::overload(
+            [](EntityManager &self, const std::string* name, bool force){
+                if(!name)
+                    throw std::runtime_error("name is null");
+                return self.getNamedId(*name, force);
+            
+            }, [](EntityManager &self, const std::string &name, bool force){
+
+                return self.getNamedId(name, force);
+            }),
+
+        "storage", &EntityManager::storage,
+        "restore", &EntityManager::restore,
+        "clear", &EntityManager::clear,
+        
         "generateNewId", &EntityManager::generateNewId,
         "transferEntity", &EntityManager::transferEntity
     );
