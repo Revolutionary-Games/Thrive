@@ -320,9 +320,6 @@ function OrganelleFactory.makeOrganelle(data)
 
         --adding all of the components.
         for componentName, arguments in pairs(organelleInfo.components) do
-            print("creating organelle component: " .. componentName .. " a: " ..
-                      tostring(isNotEmpty(componentName)))
-            assert(isNotEmpty(componentName))
             local componentType = _G[componentName]
             organelle.components[componentName] = componentType.new(arguments, data)
         end
@@ -361,7 +358,8 @@ function OrganelleFactory.renderOrganelles(data)
             local y = organelleY + hexY
             local translation = Vector3(-x, -y, 0)
             data.sceneNode[i].transform.position = translation
-            data.sceneNode[i].transform.orientation = Quaternion(Radian(Degree(data.rotation)), Vector3(0, 0, 1))
+            data.sceneNode[i].transform.orientation = Quaternion.new(
+                Radian.new(Degree(data.rotation)), Vector3(0, 0, 1))
             xSum = xSum + x
             ySum = ySum + y
             i = i + 1
@@ -376,7 +374,8 @@ function OrganelleFactory.renderOrganelles(data)
         if(mesh ~= nil) then
             data.sceneNode[1].meshName = mesh
             data.sceneNode[1].transform.position = Vector3(-xAverage, -yAverage, 0)
-            data.sceneNode[1].transform.orientation = Quaternion(Radian(Degree(data.rotation)), Vector3(0, 0, 1))
+            data.sceneNode[1].transform.orientation = Quaternion.new(
+                Radian.new(Degree(data.rotation)), Vector3(0, 0, 1))
         end
 	end
 end

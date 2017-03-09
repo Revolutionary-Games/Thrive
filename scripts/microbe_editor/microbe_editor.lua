@@ -142,9 +142,10 @@ end
 function MicrobeEditor:renderHighlightedOrganelle(start, q, r, rotation)
     -- Render the hex under the cursor
     local sceneNode = {}
-    sceneNode[1] = self.hudSystem.hoverOrganelle[start]:getComponent(OgreSceneNodeComponent.TYPE_ID)
+    sceneNode[1] = getComponent(self.hudSystem.hoverOrganelle[start], OgreSceneNodeComponent)
     for i=2, 8 do
-        sceneNode[i] = self.hudSystem.hoverHex[i-1+(start-1)*7]:getComponent(OgreSceneNodeComponent.TYPE_ID)
+        sceneNode[i] = getComponent(self.hudSystem.hoverHex[i-1+(start-1)*7],
+                                    OgreSceneNodeComponent)
     end
     
     if self.activeActionName then

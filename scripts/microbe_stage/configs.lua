@@ -28,7 +28,7 @@ function toxinEffect(entityId)
         showMessage("Toxin Unlocked!")
         Engine:playerData():lockedMap():unlock("Toxin")
         local guiSoundEntity = Entity("gui_sounds")
-        guiSoundEntity:getComponent(SoundSourceComponent.TYPE_ID):playSound("microbe-pickup-organelle")
+        getComponent(guiSoundEntity, SoundSourceComponent):playSound("microbe-pickup-organelle")
     end
     return true
 end
@@ -39,7 +39,7 @@ function chloroplastEffect(entityId)
         showMessage("Chloroplast Unlocked!")
         Engine:playerData():lockedMap():unlock("chloroplast")
         local guiSoundEntity = Entity("gui_sounds")
-        guiSoundEntity:getComponent(SoundSourceComponent.TYPE_ID):playSound("microbe-pickup-organelle")
+        getComponent(guiSoundEntity, SoundSourceComponent):playSound("microbe-pickup-organelle")
     end
     return true
 end

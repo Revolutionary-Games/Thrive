@@ -247,20 +247,20 @@ end
 function playClicked()
     getComponent("gui_sounds", g_luaEngine.currentGameState, SoundSourceComponent
     ):playSound("button-hover-click")
-    Engine:setCurrentGameState(GameState.MICROBE)
+    g_luaEngine:setCurrentGameState(GameState.MICROBE)
 end
 
 function menuPlayClicked()
     getComponent("gui_sounds", g_luaEngine.currentGameState, SoundSourceComponent
     ):playSound("button-hover-click")
-    Engine:currentGameState():rootGUIWindow():getChild("MenuPanel"):hide()
+    g_luaEngine.currentGameState.guiWindow:getChild("MenuPanel"):hide()
     playClicked()
 end
 
 function MicrobeEditorHudSystem:menuMainMenuClicked()
     getComponent("gui_sounds", g_luaEngine.currentGameState, SoundSourceComponent
     ):playSound("button-hover-click")
-    Engine:setCurrentGameState(GameState.MAIN_MENU)
+    g_luaEngine:setCurrentGameState(GameState.MAIN_MENU)
 end
 
 function MicrobeEditorHudSystem:quitButtonClicked()
