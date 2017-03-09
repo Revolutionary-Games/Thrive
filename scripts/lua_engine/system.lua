@@ -9,6 +9,7 @@ LuaSystem = class(
         assert(self:is_a(LuaSystem),
                "LuaSystem.construct called on table that isn't a LuaSystem")
 
+        -- This is no longer used to determine which systems to run
         self.enabled = true
 
         self.isLuaSystem = true
@@ -47,28 +48,16 @@ end
 --! Base shutdown. Does nothing. Doesn't need to be called
 function LuaSystem:shutdown()
 
-    -- Set not enabled, just for fun
-    -- This should be destroyed anyway after this method
-    self.enabled = false
-    
 end
 
---! C++ system compatibility
-function LuaSystem:setEnabled(enabled)
-    
-    self.enabled = enabled
-    
-end
+-- Looks like derived systems are really bad at calling these things
+-- so these are now not required to be called as they do nothing
 
 function LuaSystem:activate()
-
-    self.enabled = true
 
 end
 
 function LuaSystem:deactivate()
-
-    self.enabled = false
 
 end
 

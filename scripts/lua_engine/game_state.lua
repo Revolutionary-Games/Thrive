@@ -158,7 +158,6 @@ function GameState:activate()
     for i,s in ipairs(self.systems) do
 
         s:activate()
-        
     end
 
 end
@@ -182,14 +181,10 @@ end
 function GameState:update(renderTime, logicTime)
 
     for i,s in ipairs(self.systems) do
-        if s.enabled then
-
-            --Uncomment to debug mystical crashes and other anomalies
-            -- print("Updating system " .. s.name)
-            s:update(renderTime, logicTime)
-            -- print("Done updating system " .. s.name)
-            
-        end
+        --Uncomment to debug mystical crashes and other anomalies
+        -- print("Updating system " .. s.name)
+        s:update(renderTime, logicTime)
+        -- print("Done updating system " .. s.name)
     end
     
     self.entityManager:processRemovals()
@@ -206,7 +201,7 @@ function GameState:load(storage)
     
     self.entityManager:clear()
 
-    self.entityManager:restore(entities, Engine:componentFactory())
+    self.entityManager:restore(entities, Engine.componentFactory)
     
 end
 
@@ -215,7 +210,7 @@ end
 --! @returns StorageContainer
 function GameState:storage()
     
-    local entities = self.entityManager:storage(Engine:componentFactory())
+    local entities = self.entityManager:storage(Engine.componentFactory)
 
     local storage = StorageContainer.new()
     storage:set("entities", entities)

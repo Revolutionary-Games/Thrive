@@ -141,7 +141,7 @@ function LuaEngine:update(milliseconds)
     if self.Engine.paused then
         updateTime = 0
     end
-    
+
     self.currentGameState:update(milliseconds, updateTime)
 
     -- Update console
@@ -321,7 +321,9 @@ function LuaEngine:transferEntityGameState(oldEntityId,
     end
 
     local newEntity -- EntityId
-    
+
+    assert(oldEntityId)
+    assert(type(oldEntityId) == "number")
     local nameMapping = oldEntityManager:getNameMappingFor(oldEntityId)
     
     if nameMapping ~= nil then
@@ -372,7 +374,7 @@ function LuaEngine:loadSavegameGameStates(saveGame)
 
     self:activateGameState(nil)
 
-    local gameStatesContainer = savegame:get("gameStates")
+    local gameStatesContainer = saveGame:get("gameStates")
 
     for name, system in pairs(self.gameStates) do
 
@@ -409,7 +411,7 @@ function LuaEngine:loadSavegameGameStates(saveGame)
     self.currentGameState = nil
     
     -- Switch gamestate
-    local gameStateName = savegame:get("currentGameState")
+    local gameStateName = saveGame:get("currentGameState")
 
     local gameState = self:getGameState(gameStateName)
 
@@ -431,7 +433,7 @@ end
 --! @param saveGame StorageContainer to be filled with saved data
 function LuaEngine:saveCurrentStates(saveGame)
 
-    savegame:set("currentGameState", self.currentGameState.name)
+    saveGame:set("currentGameState", self.currentGameState.name)
     
     local gameStatesContainer = StorageContainer.new()
 
@@ -441,7 +443,7 @@ function LuaEngine:saveCurrentStates(saveGame)
         
     end
     
-    savegame:set("gameStates", gameStatesContainer)
+    saveGame:set("gameStates", gameStatesContainer)
     
 end
 
