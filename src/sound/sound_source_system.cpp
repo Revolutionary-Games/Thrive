@@ -412,11 +412,10 @@ struct SoundSourceSystem::Implementation {
         GameStateData* gameState
     ) {
         static const bool STREAM = true; //Streaming sound from file
-
         //3D sounds should not be attempted loaded before scenenodes are created
-        if (not ambient && (not sceneNodeComponent || not sceneNodeComponent->m_sceneNode)){
-            return;
-        }
+        //if (not ambient && (not sceneNodeComponent || not sceneNodeComponent->m_sceneNode)){
+        //    return;
+        //}
         std::ostringstream soundName;
         soundName << gameState->name() << sound->name() << entityId;
         auto soundManager = SoundManager::getSingleton();
@@ -567,6 +566,9 @@ SoundSourceSystem::update(
                     soundSourceComponent->m_autoLoop,
                     this->gameState()
                 );
+
+                if(!sound->m_sound)
+                    throw std::runtime_error("Failed to restoreSound for new sound object");
             }
         }
     }
@@ -579,6 +581,26 @@ SoundSourceSystem::update(
             assert(sound->m_sound && "Sound was not intialized");
             if (sound->m_properties.hasChanges()) {
                 const auto& properties = sound->m_properties;
+                
+                if(!sound->m_sound){
+                    
+                    std::cout << "invalid/uninitialized sound: " <<
+                        static_cast<void*>(sound) << " initialized now TODO: fix loading game"
+                        << std::endl;
+
+                    m_impl->restoreSound(
+                        value.first,
+                        sceneNodeComponent,
+                        sound,
+                        soundSourceComponent->m_ambientSoundSource,
+                        soundSourceComponent->m_autoLoop,
+                        this->gameState()
+                    );
+
+                    if(!sound->m_sound)
+                        throw std::runtime_error("Failed to restoreSound on invalid sound");
+                }
+
                 auto ogreSound = sound->m_sound;
                 assert(ogreSound && "Sound was not intialized properly");
                 ogreSound->loop(properties.loop and not soundSourceComponent->m_autoLoop);
