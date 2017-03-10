@@ -38,19 +38,12 @@ end
 -- Overridded from Organelle:onAddedToMicrobe
 function ProcessOrganelle:onAddedToMicrobe(microbe, q, r, rotation, organelle)
     OrganelleComponent.onAddedToMicrobe(self, microbe, q, r, rotation, organelle)
-    microbe:addProcessOrganelle(self)
-end
-
--- Overridded from Organelle:onRemovedFromMicrobe
-function ProcessOrganelle:onRemovedFromMicrobe(microbe, q, r)
-    microbe:removeProcessOrganelle(self)
 end
 
 function ProcessOrganelle:storage(storage)
     local storage = StorageContainer.new()
     return storage
 end
-
 
 function ProcessOrganelle:load(storage)
 end
