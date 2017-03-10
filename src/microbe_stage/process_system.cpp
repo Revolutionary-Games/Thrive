@@ -290,10 +290,18 @@ ProcessSystem::Implementation::update(int logicTime) {
 
                 // Adjusting the prices according to supply and demand.
                 float priceAdjustment = compoundData.demand / (compoundData.amount + 1);
-                compoundData.uninflatedPrice = compoundData.uninflatedPrice * (COMPOUND_PRICE_MOMENTUM + priceAdjustment - COMPOUND_PRICE_MOMENTUM * priceAdjustment);
+                //std::cout << "demand: " << compoundData.demand << std::endl;
+                //std::cout << "amount: " << compoundData.amount << std::endl;
+                //std::cout << "old Price: " << compoundData.uninflatedPrice << std::endl;
+                //std::cout << "priceAdjustment: " << priceAdjustment << std::endl;
+                compoundData.uninflatedPrice = compoundData.demand / (compoundData.amount + 1); //compoundData.uninflatedPrice * (COMPOUND_PRICE_MOMENTUM + priceAdjustment - COMPOUND_PRICE_MOMENTUM * priceAdjustment);
+                //std::cout << "new Price: " << compoundData.uninflatedPrice << std::endl;
+
+                if(compoundData.demand > 0 && compoundData.uninflatedPrice <= MIN_POSITIVE_COMPOUND_PRICE)
+                    compoundData.uninflatedPrice = 2 * MIN_POSITIVE_COMPOUND_PRICE;
 
                 // Setting the prices to 0 if they're below MIN_POSITIVE_COMPOUND_PRICE.
-                if(compoundData.price < MIN_POSITIVE_COMPOUND_PRICE) {
+                if(compoundData.uninflatedPrice < MIN_POSITIVE_COMPOUND_PRICE) {
                     compoundData.uninflatedPrice = 0;
                     compoundData.priceReductionPerUnit = 0;
                 }
@@ -436,6 +444,10 @@ ProcessSystem::Implementation::update(int logicTime) {
 
                         // Increasing the input compound demand.
                         bag->compounds[inputId].demand += desiredRate * inputNeeded * demandSofteningFunction(processCapacity);
+                        //std::cout << "demandSofteningFunction: " << demandSofteningFunction(processCapacity) << std::endl;
+                        //std::cout << "inputNeeded: " << inputNeeded << std::endl;
+                        //std::cout << "desiredRate: " << desiredRate << std::endl;
+                        //std::cout << "demand: " << bag->compounds[inputId].demand << std::endl;
                     }
 
                     //...into the outputs.

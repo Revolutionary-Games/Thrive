@@ -15,7 +15,7 @@
 
 // The "willingness" of the compound prices to change.
 // (between 0.0 and 1.0)
-#define COMPOUND_PRICE_MOMENTUM 0.1
+#define COMPOUND_PRICE_MOMENTUM 0.7
 
 // How much the "important" compounds get their price inflated.
 #define IMPORTANT_COMPOUND_BIAS 100.0
