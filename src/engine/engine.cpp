@@ -37,8 +37,7 @@
 #include "gui/VideoPlayer.h"
 
 // Scripting
-#include "luajit/src/lua.hpp"
-#include "sol.hpp"
+#include "scripting/luajit.h"
 #include "scripting/script_initializer.h"
 
 // Microbe
