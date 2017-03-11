@@ -368,24 +368,6 @@ function Microbe:removeStorageOrganelle(storageOrganelle)
     self.microbe.capacity = self.microbe.capacity - storageOrganelle.capacity
 end
 
--- Removes a process organelle
--- This will be called automatically by process organelles removed with with removeOrganelle(...)
---
--- @param processOrganelle
---   An object of type ProcessOrganelle
-function Microbe:removeProcessOrganelle(processOrganelle)
-    self.microbe.processOrganelles[processOrganelle] = nil
-end
-
--- Adds a process organelle
--- This will be called automatically by process organelles added with addOrganelle(...)
---
--- @param processOrganelle
---   An object of type ProcessOrganelle
-function Microbe:addProcessOrganelle(processOrganelle)
-    self.microbe.processOrganelles[processOrganelle] = processOrganelle
-end
-
 -- Removes a special storage organelle
 -- This will be called automatically by process organelles removed with with removeOrganelle(...)
 --
