@@ -61,7 +61,6 @@ compoundTable = {
         name = "Glucose",
         volume = 1,
         isCloud = true,
-        isUseful = true,
 
         colour = {
             r = 150,
