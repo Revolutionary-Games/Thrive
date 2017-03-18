@@ -449,11 +449,7 @@ ProcessSystem::Implementation::update(int logicTime) {
                         bag->compounds[inputId].amount -= rate * inputNeeded;
 
                         // Increasing the input compound demand.
-                        bag->compounds[inputId].demand += desiredRate * inputNeeded * demandSofteningFunction(processCapacity);
-                        //std::cout << "demandSofteningFunction: " << demandSofteningFunction(processCapacity) << std::endl;
-                        //std::cout << "inputNeeded: " << inputNeeded << std::endl;
-                        //std::cout << "desiredRate: " << desiredRate << std::endl;
-                        //std::cout << "demand: " << bag->compounds[inputId].demand << std::endl;
+                        bag->compounds[inputId].demand += desiredRate * inputNeeded * demandSofteningFunction(processCapacity * inputNeeded);
                     }
 
                     //...into the outputs.
