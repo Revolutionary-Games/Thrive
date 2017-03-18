@@ -10,6 +10,8 @@
 #include "engine/entity_filter.h"
 #include "engine/serialization.h"
 
+#include "general/thrive_math.h"
+
 #include "microbe_stage/compound.h"
 #include "microbe_stage/compound_registry.h"
 #include "microbe_stage/bio_process_registry.h"
@@ -246,16 +248,8 @@ ProcessSystem::Implementation::updateAddedEntites(int) {
     // }
 }
 
-double
-sigmoid(double x);
-
 float
 demandSofteningFunction(float processCapacity);
-
-double
-sigmoid(double x) {
-    return 1 / (1 + exp(-x));
-}
 
 float
 demandSofteningFunction(float processCapacity) {
