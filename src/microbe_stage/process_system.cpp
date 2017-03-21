@@ -298,6 +298,110 @@ _getStorageSpaceChange(BioProcessId processId){
     return spaceChange;
 }
 
+std::map<float, CompoundId>
+_getBreakEvenPointMap(
+    BioProcessId processId,
+    CompoundBagComponent* bag
+);
+
+std::map<float, CompoundId>
+_getBreakEvenPointMap(
+    BioProcessId processId,
+    CompoundBagComponent* bag
+) {
+    std::map<float, CompoundId> outputBreakEvenPoints;
+
+    for (const auto& output : BioProcessRegistry::getOutputCompounds(processId)) {
+        CompoundId outputId = output.first;
+        int outputGenerated = output.second;
+        CompoundData &compoundData = bag->compounds[outputId];
+
+        float breakEvenPoint = compoundData.breakEvenPoint / outputGenerated;
+        outputBreakEvenPoints[breakEvenPoint] = outputId;
+    }
+
+    return outputBreakEvenPoints;
+}
+
+
+float
+_getOptimalProcessRate(
+    BioProcessId processId,
+    float baseInputPrice,
+    float inputPriceIncrement,
+    CompoundBagComponent* bag
+);
+
+float
+_getOptimalProcessRate(
+    BioProcessId processId,
+    float baseInputPrice,
+    float inputPriceIncrement,
+    CompoundBagComponent* bag
+) {
+    // Finding the rate at which the costs equal the benefits.
+    // The benefit curve is piecewise lineal and continuous, and the breaking points are
+    // the break-even points of the output compounds.
+    // So first we have to order said break-even points.
+    std::map<float, CompoundId> outputBreakEvenPoints = _getBreakEvenPointMap(processId, bag);
+
+    // Finding the piece of the function that contains the minimum
+    // TODO: make it use binary search or something...
+    float baseOutputPrice = 0.0;
+    float outputPriceDecrement = 0.0;
+
+    // Getting the initial revenue values
+    for (const auto& output : BioProcessRegistry::getOutputCompounds(processId)) {
+        CompoundId outputId = output.first;
+        int outputGenerated = output.second;
+        CompoundData &compoundData = bag->compounds[outputId];
+
+        baseOutputPrice += compoundData.price * outputGenerated;
+        outputPriceDecrement += compoundData.priceReductionPerUnit * outputGenerated;
+    }
+
+    for (const auto& breakingPoint : outputBreakEvenPoints) {
+        float breakEvenPoint = breakingPoint.first;
+
+        // Calculating the cost.
+        float cost = baseInputPrice + breakEvenPoint * inputPriceIncrement;
+
+        // Calculating the revenue.
+        float baseOutputPrice_l = 0.0;
+        float outputPriceDecrement_l = 0.0;
+        for (const auto& output : BioProcessRegistry::getOutputCompounds(processId)) {
+            CompoundId outputId = output.first;
+            int outputGenerated = output.second;
+            CompoundData &compoundData = bag->compounds[outputId];
+
+            // The prices are never below 0.
+            if(compoundData.breakEvenPoint > breakEvenPoint) {
+                baseOutputPrice_l += compoundData.price * outputGenerated;
+                outputPriceDecrement_l += compoundData.priceReductionPerUnit * outputGenerated;
+            }
+        }
+
+        float revenue = baseOutputPrice_l - breakEvenPoint * outputPriceDecrement_l;
+
+        if(revenue < cost)
+            // We found the piece :)
+            break;
+
+        baseOutputPrice = baseOutputPrice_l;
+        outputPriceDecrement = outputPriceDecrement_l;
+    }
+
+    // Avoiding zero-division errors.
+    float desiredRate;
+    if(outputPriceDecrement + inputPriceIncrement > 0)
+        desiredRate = (baseOutputPrice - baseInputPrice) / (outputPriceDecrement + inputPriceIncrement);
+    else
+        desiredRate = 0.0;
+
+    return desiredRate;
+}
+
+
 void
 ProcessSystem::Implementation::update(int logicTime) {
     //Iterating on each entity with a ProcessorComponent.
@@ -318,7 +422,7 @@ ProcessSystem::Implementation::update(int logicTime) {
             // Calculating the storage space price and price reduction values.
             float storageSpacePrice = _calculateStorageSpacePrice(bag->storageSpace, bag->storageSpaceOccupied);
             float storageSpaceReducedPrice = _calculateStorageSpacePrice(bag->storageSpace + 1, bag->storageSpaceOccupied); // close enough :/
-            float storageSpacePriceReduction = storageSpacePrice - storageSpacePriceReduction;
+            float storageSpacePriceChange = storageSpacePrice - storageSpaceReducedPrice;
 
             // Phase one: setting up the compound information.
             for (const auto& compound : bag->compounds) {
@@ -375,11 +479,13 @@ ProcessSystem::Implementation::update(int logicTime) {
 
                 // We only consider the space change if it's positive.
                 int storageSpaceChange = std::max(_getStorageSpaceChange(processId), 0);
-                std::max(storageSpaceChange, 0); //shut up compiler!!!!
-                std::cout << storageSpaceReducedPrice; // JUST. COMPILE. NOW.
 
                 // The maximum capacity this process could have with the current amount of input compounds.
-                float processLimitCapacity = processCapacity * logicTime;
+                float processLimitCapacity;
+                if(storageSpaceChange > 0)
+                    processLimitCapacity = (bag->storageSpace - bag->storageSpaceOccupied) / storageSpaceChange;
+                else
+                    processLimitCapacity = processCapacity * logicTime; // big enough number.
 
                 for (const auto& input : BioProcessRegistry::getInputCompounds(processId)) {
                     CompoundId inputId = input.first;
@@ -404,77 +510,19 @@ ProcessSystem::Implementation::update(int logicTime) {
                     baseInputPrice += inputNeeded * compoundData.price;
                 }
 
-                // Finding the rate at which the costs equal the benefits.
-                // The benefit curve is piecewise lineal and continuous, and the breaking points are
-                // the break-even points of the output compounds.
-                // So first we have to order said break-even points.
-                std::map<float, CompoundId> outputBreakEvenPoints;
-                for (const auto& output : BioProcessRegistry::getOutputCompounds(processId)) {
-                    CompoundId outputId = output.first;
-                    int outputGenerated = output.second;
-                    CompoundData &compoundData = bag->compounds[outputId];
+                // Calculating the optimal process rate without considering the storage space.
+                float desiredRate = _getOptimalProcessRate(processId, baseInputPrice, inputPriceIncrement, bag);
 
-                    float breakEvenPoint = compoundData.breakEvenPoint / outputGenerated;
-                    outputBreakEvenPoints[breakEvenPoint] = outputId;
-                }
-
-                // Finding the piece of the function that contains the minimum
-                // TODO: make it use binary search or something...
-                float baseOutputPrice = 0.0;
-                float outputPriceDecrement = 0.0;
-
-                // Getting the initial revenue values
-                for (const auto& output : BioProcessRegistry::getOutputCompounds(processId)) {
-                    CompoundId outputId = output.first;
-                    int outputGenerated = output.second;
-                    CompoundData &compoundData = bag->compounds[outputId];
-
-                    baseOutputPrice += compoundData.price * outputGenerated;
-                    outputPriceDecrement += compoundData.priceReductionPerUnit * outputGenerated;
-                }
-
-                for (const auto& breakingPoint : outputBreakEvenPoints) {
-                    float breakEvenPoint = breakingPoint.first;
-
-                    // Calculating the cost.
-                    float cost = baseInputPrice + breakEvenPoint * inputPriceIncrement;
-
-                    // Calculating the revenue.
-                    float baseOutputPrice_l = 0.0;
-                    float outputPriceDecrement_l = 0.0;
-                    for (const auto& output : BioProcessRegistry::getOutputCompounds(processId)) {
-                        CompoundId outputId = output.first;
-                        int outputGenerated = output.second;
-                        CompoundData &compoundData = bag->compounds[outputId];
-
-                        // The prices are never below 0.
-                        if(compoundData.breakEvenPoint > breakEvenPoint) {
-                            baseOutputPrice_l += compoundData.price * outputGenerated;
-                            outputPriceDecrement_l += compoundData.priceReductionPerUnit * outputGenerated;
-                        }
-                    }
-
-                    float revenue = baseOutputPrice_l - breakEvenPoint * outputPriceDecrement_l;
-
-                    if(revenue < cost)
-                        // We found the piece :)
-                        break;
-
-                    baseOutputPrice = baseOutputPrice_l;
-                    outputPriceDecrement = outputPriceDecrement_l;
-                }
-
-                // Avoiding zero-division errors.
-                float desiredRate;
-                if(outputPriceDecrement + inputPriceIncrement > 0)
-                    desiredRate = (baseOutputPrice - baseInputPrice) / (outputPriceDecrement + inputPriceIncrement);
-                else
-                    desiredRate = 0.0;
+                // Calculating the optimal process rate considering the storage space.
+                float desiredRateWithSpace = _getOptimalProcessRate(processId,
+                                                                    baseInputPrice + storageSpacePrice * storageSpaceChange,
+                                                                    inputPriceIncrement + storageSpacePriceChange * storageSpaceChange,
+                                                                    bag);
 
                 if(desiredRate > 0.0)
                 {
                     float rate = std::min(processCapacity * logicTime / 1000, processLimitCapacity);
-                    rate = std::min(rate, desiredRate);
+                    rate = std::min(rate, desiredRateWithSpace);
 
                     // Running the process at the specified rate, transforming the inputs...
                     for (const auto& input : BioProcessRegistry::getInputCompounds(processId)) {
