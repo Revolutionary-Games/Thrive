@@ -249,10 +249,10 @@ ProcessSystem::Implementation::updateAddedEntites(int) {
 }
 
 float
-demandSofteningFunction(float processCapacity);
+_demandSofteningFunction(float processCapacity);
 
 float
-demandSofteningFunction(float processCapacity) {
+_demandSofteningFunction(float processCapacity) {
     return 2 * sigmoid(processCapacity * PROCESS_CAPACITY_DEMAND_MULTIPLIER) - 1.0;
 }
 
@@ -267,6 +267,37 @@ _calculatePrice(float oldPrice, float supply, float demand) {
     return sqrt(demand / (supply + 1)) * COMPOUND_PRICE_MOMENTUM + oldPrice * (1.0 - COMPOUND_PRICE_MOMENTUM);
 }
 
+float
+_calculateStorageSpacePrice(float totalSpace, float usedSpace);
+
+float
+_calculateStorageSpacePrice(float totalSpace, float usedSpace) {
+    return sqrt(usedSpace / (totalSpace + 1));
+}
+
+// Calculates the storage space change that results from running this process at a rate of 1.0.
+int
+_getStorageSpaceChange(BioProcessId processId);
+
+int
+_getStorageSpaceChange(BioProcessId processId){
+    int spaceChange = 0;
+
+    // Adding the storage space used by the outputs.
+    for (const auto& output : BioProcessRegistry::getOutputCompounds(processId)) {
+        int outputGenerated = output.second;
+        spaceChange += outputGenerated;
+    }
+
+    // Subtracting the storage space used by the inputs.
+    for (const auto& input : BioProcessRegistry::getInputCompounds(processId)) {
+        int inputNeeded = input.second;
+        spaceChange -= inputNeeded;
+    }
+
+    return spaceChange;
+}
+
 void
 ProcessSystem::Implementation::update(int logicTime) {
     //Iterating on each entity with a ProcessorComponent.
@@ -277,14 +308,19 @@ ProcessSystem::Implementation::update(int logicTime) {
         // Avoiding zero-division errors.
         if(bag->storageSpace > 0)
         {
-            //Calculating the storage space occupied;
+            // Calculating the storage space occupied;
             bag->storageSpaceOccupied = 0;
             for (const auto& compound : bag->compounds) {
                 float compoundAmount = compound.second.amount;
                 bag->storageSpaceOccupied += compoundAmount;
             }
 
-            //Phase one: setting up the compound information.
+            // Calculating the storage space price and price reduction values.
+            float storageSpacePrice = _calculateStorageSpacePrice(bag->storageSpace, bag->storageSpaceOccupied);
+            float storageSpaceReducedPrice = _calculateStorageSpacePrice(bag->storageSpace + 1, bag->storageSpaceOccupied); // close enough :/
+            float storageSpacePriceReduction = storageSpacePrice - storageSpacePriceReduction;
+
+            // Phase one: setting up the compound information.
             for (const auto& compound : bag->compounds) {
                 CompoundId compoundId = compound.first;
                 CompoundData &compoundData = bag->compounds[compoundId];
@@ -294,7 +330,6 @@ ProcessSystem::Implementation::update(int logicTime) {
                     compoundData.uninflatedPrice = MIN_POSITIVE_COMPOUND_PRICE;
 
                 // Adjusting the prices according to supply and demand.
-
                 float oldPrice = compoundData.uninflatedPrice;
                 compoundData.uninflatedPrice =  _calculatePrice(oldPrice, compoundData.amount, compoundData.demand);
 
@@ -333,19 +368,24 @@ ProcessSystem::Implementation::update(int logicTime) {
                 compoundData.demand = 0;
             }
 
-            //Phase two: setting up the processes.
+            // Phase two: setting up the processes.
             for (const auto& process : processor->process_capacities) {
                 BioProcessId processId = process.first;
                 float processCapacity = process.second;
 
-                //The maximum capacity this process could have with the current amount of input compounds.
+                // We only consider the space change if it's positive.
+                int storageSpaceChange = std::max(_getStorageSpaceChange(processId), 0);
+                std::max(storageSpaceChange, 0); //shut up compiler!!!!
+                std::cout << storageSpaceReducedPrice; // JUST. COMPILE. NOW.
+
+                // The maximum capacity this process could have with the current amount of input compounds.
                 float processLimitCapacity = processCapacity * logicTime;
 
                 for (const auto& input : BioProcessRegistry::getInputCompounds(processId)) {
                     CompoundId inputId = input.first;
                     int inputNeeded = input.second;
 
-                    //Limiting the process by the amount of this required compound.
+                    // Limiting the process by the amount of this required compound.
                     processLimitCapacity = std::min(processLimitCapacity, bag->compounds[inputId].amount / inputNeeded);
                 }
 
@@ -436,17 +476,17 @@ ProcessSystem::Implementation::update(int logicTime) {
                     float rate = std::min(processCapacity * logicTime / 1000, processLimitCapacity);
                     rate = std::min(rate, desiredRate);
 
-                    //Running the process at the specified rate, transforming the inputs...
+                    // Running the process at the specified rate, transforming the inputs...
                     for (const auto& input : BioProcessRegistry::getInputCompounds(processId)) {
                         CompoundId inputId = input.first;
                         int inputNeeded = input.second;
                         bag->compounds[inputId].amount -= rate * inputNeeded;
 
                         // Increasing the input compound demand.
-                        bag->compounds[inputId].demand += desiredRate * inputNeeded * demandSofteningFunction(processCapacity * inputNeeded);
+                        bag->compounds[inputId].demand += desiredRate * inputNeeded * _demandSofteningFunction(processCapacity * inputNeeded);
                     }
 
-                    //...into the outputs.
+                    // ...into the outputs.
                     for (const auto& output : BioProcessRegistry::getOutputCompounds(processId)) {
                         CompoundId outputId = output.first;
                         int outputGenerated = output.second;
