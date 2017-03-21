@@ -20,6 +20,9 @@
 // How much the "important" compounds get their price inflated.
 #define IMPORTANT_COMPOUND_BIAS 100.0
 
+// How important the storage space is considered.
+#define STORAGE_SPACE_BIAS 30.0
+
 // Used to soften the demand according to the process capacity.
 #define PROCESS_CAPACITY_DEMAND_MULTIPLIER 15.0
 

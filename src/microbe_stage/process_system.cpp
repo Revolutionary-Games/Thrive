@@ -272,7 +272,7 @@ _calculateStorageSpacePrice(float totalSpace, float usedSpace);
 
 float
 _calculateStorageSpacePrice(float totalSpace, float usedSpace) {
-    return sqrt(usedSpace / (totalSpace + 1));
+    return STORAGE_SPACE_BIAS / (totalSpace - usedSpace + 1);
 }
 
 // Calculates the storage space change that results from running this process at a rate of 1.0.

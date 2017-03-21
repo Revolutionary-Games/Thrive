@@ -990,10 +990,10 @@ end
 
 function Microbe:purgeCompounds()
     local compoundAmountToDump = self.microbe.stored - self.microbe.capacity
+    compoundBag = self.entity:getComponent(CompoundBagComponent.TYPE_ID)
 
     -- Uncomment to print compound economic information to the console.
     --[[
-    compoundBag = self.entity:getComponent(CompoundBagComponent.TYPE_ID)
     if self.microbe.isPlayerMicrobe then
         for compound, _ in pairs(compoundTable) do
             compoundId = CompoundRegistry.getCompoundId(compound)
