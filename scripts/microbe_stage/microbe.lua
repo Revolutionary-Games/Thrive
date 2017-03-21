@@ -991,6 +991,28 @@ end
 function Microbe:purgeCompounds()
     local compoundAmountToDump = self.microbe.stored - self.microbe.capacity
 
+    -- Uncomment to print compound economic information to the console.
+    --[[
+    compoundBag = self.entity:getComponent(CompoundBagComponent.TYPE_ID)
+    if self.microbe.isPlayerMicrobe then
+        for compound, _ in pairs(compoundTable) do
+            compoundId = CompoundRegistry.getCompoundId(compound)
+            print(compound, compoundBag:getPrice(compoundId), compoundBag:getDemand(compoundId))
+        end
+    end
+    print("")
+    ]]
+
+    -- Dumping all the useless compounds (with price = 0).
+    for compoundId in CompoundRegistry.getCompoundList() do
+        local price = compoundBag:getPrice(compoundId)
+        if price <= 0 then
+            local amountToEject = compoundBag:getCompoundAmount(compoundId)
+            if amount > 0 then amountToEject = self:takeCompound(compoundId, amountToEject) end
+            if amount > 0 then self:ejectCompound(compoundId, amountToEject) end
+        end
+    end
+
     if compoundAmountToDump > 0 then
         --Calculating each compound price to dump proportionally.
         local compoundPrices = {}
@@ -999,7 +1021,7 @@ function Microbe:purgeCompounds()
             local amount = self.entity:getComponent(CompoundBagComponent.TYPE_ID):getCompoundAmount(compoundId)
 
             if amount > 0 then
-                local price = 1 / (amount + 1)
+                local price = compoundBag:getPrice(compoundId)
                 compoundPrices[compoundId] = price
                 priceSum = priceSum + price
             end
