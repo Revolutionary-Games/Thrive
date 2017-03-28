@@ -267,37 +267,6 @@ _calculatePrice(float oldPrice, float supply, float demand) {
     return sqrt(demand / (supply + 1)) * COMPOUND_PRICE_MOMENTUM + oldPrice * (1.0 - COMPOUND_PRICE_MOMENTUM);
 }
 
-float
-_calculateStorageSpacePrice(float totalSpace, float usedSpace);
-
-float
-_calculateStorageSpacePrice(float totalSpace, float usedSpace) {
-    return STORAGE_SPACE_BIAS / (totalSpace - usedSpace + 1);
-}
-
-// Calculates the storage space change that results from running this process at a rate of 1.0.
-int
-_getStorageSpaceChange(BioProcessId processId);
-
-int
-_getStorageSpaceChange(BioProcessId processId){
-    int spaceChange = 0;
-
-    // Adding the storage space used by the outputs.
-    for (const auto& output : BioProcessRegistry::getOutputCompounds(processId)) {
-        int outputGenerated = output.second;
-        spaceChange += outputGenerated;
-    }
-
-    // Subtracting the storage space used by the inputs.
-    for (const auto& input : BioProcessRegistry::getInputCompounds(processId)) {
-        int inputNeeded = input.second;
-        spaceChange -= inputNeeded;
-    }
-
-    return spaceChange;
-}
-
 std::map<float, CompoundId>
 _getBreakEvenPointMap(
     BioProcessId processId,
@@ -323,22 +292,52 @@ _getBreakEvenPointMap(
     return outputBreakEvenPoints;
 }
 
+float
+_spaceSofteningFunction(float availableSpace, float requiredSpace);
+
+float
+_spaceSofteningFunction(float availableSpace, float requiredSpace) {
+    if(availableSpace <= 0) return 0.0;
+    return 1.0 - 2 * sigmoid(requiredSpace / availableSpace * STORAGE_SPACE_MULTIPLIER);
+}
 
 float
 _getOptimalProcessRate(
     BioProcessId processId,
-    float baseInputPrice,
-    float inputPriceIncrement,
-    CompoundBagComponent* bag
+    CompoundBagComponent* bag,
+    bool considersSpaceLimitations,
+    float availableSpace
 );
 
 float
 _getOptimalProcessRate(
     BioProcessId processId,
-    float baseInputPrice,
-    float inputPriceIncrement,
-    CompoundBagComponent* bag
+    CompoundBagComponent* bag,
+    bool considersSpaceLimitations,
+    float availableSpace
 ) {
+    // Calculating the price increment and the base price of the inputs
+    // (the total price is rate * priceIncrement + basePrice).
+    float baseInputPrice = 0;
+    float inputPriceIncrement = 0;
+    for (const auto& input : BioProcessRegistry::getInputCompounds(processId)) {
+        CompoundId inputId = input.first;
+        int inputNeeded = input.second;
+        CompoundData &compoundData = bag->compounds[inputId];
+        float inputVolume = CompoundRegistry::getCompoundUnitVolume(inputId);
+
+        if(considersSpaceLimitations) {
+            float spacePriceDecrement = _spaceSofteningFunction(availableSpace, inputNeeded * inputVolume);
+            inputPriceIncrement += inputNeeded * compoundData.priceReductionPerUnit * spacePriceDecrement;
+            baseInputPrice += inputNeeded * compoundData.price * spacePriceDecrement;
+        }
+
+        else {
+            inputPriceIncrement += inputNeeded * compoundData.priceReductionPerUnit;
+            baseInputPrice += inputNeeded * compoundData.price;
+        }
+    }
+
     // Finding the rate at which the costs equal the benefits.
     // The benefit curve is piecewise lineal and continuous, and the breaking points are
     // the break-even points of the output compounds.
@@ -373,11 +372,20 @@ _getOptimalProcessRate(
             CompoundId outputId = output.first;
             int outputGenerated = output.second;
             CompoundData &compoundData = bag->compounds[outputId];
+            float outputVolume = CompoundRegistry::getCompoundUnitVolume(outputId);
 
             // The prices are never below 0.
             if(compoundData.breakEvenPoint > breakEvenPoint) {
-                baseOutputPrice_l += compoundData.price * outputGenerated;
-                outputPriceDecrement_l += compoundData.priceReductionPerUnit * outputGenerated;
+                if(considersSpaceLimitations) {
+                    float spacePriceDecrement = _spaceSofteningFunction(availableSpace, outputGenerated * outputVolume);
+                    baseOutputPrice_l += compoundData.price * outputGenerated * spacePriceDecrement;
+                    outputPriceDecrement_l += compoundData.priceReductionPerUnit * outputGenerated * spacePriceDecrement;
+                }
+
+                else {
+                    baseOutputPrice_l += compoundData.price * outputGenerated ;
+                    outputPriceDecrement_l += compoundData.priceReductionPerUnit * outputGenerated;
+                }
             }
         }
 
@@ -401,7 +409,6 @@ _getOptimalProcessRate(
     return desiredRate;
 }
 
-
 void
 ProcessSystem::Implementation::update(int logicTime) {
     //Iterating on each entity with a ProcessorComponent.
@@ -419,10 +426,8 @@ ProcessSystem::Implementation::update(int logicTime) {
                 bag->storageSpaceOccupied += compoundAmount;
             }
 
-            // Calculating the storage space price and price reduction values.
-            float storageSpacePrice = _calculateStorageSpacePrice(bag->storageSpace, bag->storageSpaceOccupied);
-            float storageSpaceReducedPrice = _calculateStorageSpacePrice(bag->storageSpace + 1, bag->storageSpaceOccupied); // close enough :/
-            float storageSpacePriceChange = storageSpacePrice - storageSpaceReducedPrice;
+            // Calculating the storage space available.
+            float storageSpaceAvailable = bag->storageSpace - bag->storageSpaceOccupied;
 
             // Phase one: setting up the compound information.
             for (const auto& compound : bag->compounds) {
@@ -477,15 +482,7 @@ ProcessSystem::Implementation::update(int logicTime) {
                 BioProcessId processId = process.first;
                 float processCapacity = process.second;
 
-                // We only consider the space change if it's positive.
-                int storageSpaceChange = std::max(_getStorageSpaceChange(processId), 0);
-
-                // The maximum capacity this process could have with the current amount of input compounds.
-                float processLimitCapacity;
-                if(storageSpaceChange > 0)
-                    processLimitCapacity = (bag->storageSpace - bag->storageSpaceOccupied) / storageSpaceChange;
-                else
-                    processLimitCapacity = processCapacity * logicTime; // big enough number.
+                float processLimitCapacity = processCapacity * logicTime; // big enough number.
 
                 for (const auto& input : BioProcessRegistry::getInputCompounds(processId)) {
                     CompoundId inputId = input.first;
@@ -497,27 +494,17 @@ ProcessSystem::Implementation::update(int logicTime) {
 
                 // Calculating the desired rate, with some liberal use of linearization.
 
-                // Calculating the price increment and the base price of the inputs
-                // (the total price is rate * priceIncrement + basePrice).
-                float baseInputPrice = 0;
-                float inputPriceIncrement = 0;
-                for (const auto& input : BioProcessRegistry::getInputCompounds(processId)) {
-                    CompoundId inputId = input.first;
-                    int inputNeeded = input.second;
-                    CompoundData &compoundData = bag->compounds[inputId];
-
-                    inputPriceIncrement += inputNeeded * compoundData.priceReductionPerUnit;
-                    baseInputPrice += inputNeeded * compoundData.price;
-                }
-
                 // Calculating the optimal process rate without considering the storage space.
-                float desiredRate = _getOptimalProcessRate(processId, baseInputPrice, inputPriceIncrement, bag);
+                float desiredRate = _getOptimalProcessRate(processId,
+                                                           bag,
+                                                           false,
+                                                           storageSpaceAvailable);
 
                 // Calculating the optimal process rate considering the storage space.
                 float desiredRateWithSpace = _getOptimalProcessRate(processId,
-                                                                    baseInputPrice + storageSpacePrice * storageSpaceChange,
-                                                                    inputPriceIncrement + storageSpacePriceChange * storageSpaceChange,
-                                                                    bag);
+                                                                    bag,
+                                                                    true,
+                                                                    storageSpaceAvailable);
 
                 if(desiredRate > 0.0)
                 {
@@ -530,7 +517,7 @@ ProcessSystem::Implementation::update(int logicTime) {
                         int inputNeeded = input.second;
                         bag->compounds[inputId].amount -= rate * inputNeeded;
 
-                        // Increasing the input compound demand.
+                        // Phase 3: increasing the input compound demand.
                         bag->compounds[inputId].demand += desiredRate * inputNeeded * _demandSofteningFunction(processCapacity * inputNeeded);
                     }
 
