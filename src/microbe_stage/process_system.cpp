@@ -297,8 +297,9 @@ _spaceSofteningFunction(float availableSpace, float requiredSpace);
 
 float
 _spaceSofteningFunction(float availableSpace, float requiredSpace) {
-    if(availableSpace <= 0) return 0.0;
-    return 1.0 - 2 * sigmoid(requiredSpace / availableSpace * STORAGE_SPACE_MULTIPLIER);
+    return 2.0 * (1.0 - sigmoid(requiredSpace / (availableSpace + 1.0) * STORAGE_SPACE_MULTIPLIER));
+    //float MIN_AVAILABLE_SPACE = 0.001;
+    //return 1.0 / (1 + requiredSpace / std::max(availableSpace, MIN_AVAILABLE_SPACE));
 }
 
 float
@@ -354,9 +355,18 @@ _getOptimalProcessRate(
         CompoundId outputId = output.first;
         int outputGenerated = output.second;
         CompoundData &compoundData = bag->compounds[outputId];
+        float outputVolume = CompoundRegistry::getCompoundUnitVolume(outputId);
 
-        baseOutputPrice += compoundData.price * outputGenerated;
-        outputPriceDecrement += compoundData.priceReductionPerUnit * outputGenerated;
+        if(considersSpaceLimitations) {
+            float spacePriceDecrement = _spaceSofteningFunction(availableSpace, outputGenerated * outputVolume);
+            baseOutputPrice += compoundData.price * outputGenerated * spacePriceDecrement;
+            outputPriceDecrement += compoundData.priceReductionPerUnit * outputGenerated * spacePriceDecrement;
+        }
+
+        else {
+            baseOutputPrice += compoundData.price * outputGenerated;
+            outputPriceDecrement += compoundData.priceReductionPerUnit * outputGenerated;
+        }
     }
 
     for (const auto& breakingPoint : outputBreakEvenPoints) {
@@ -405,7 +415,7 @@ _getOptimalProcessRate(
         desiredRate = (baseOutputPrice - baseInputPrice) / (outputPriceDecrement + inputPriceIncrement);
     else
         desiredRate = 0.0;
-
+    if(desiredRate <= 0.0) return 0.0;
     return desiredRate;
 }
 
@@ -426,8 +436,9 @@ ProcessSystem::Implementation::update(int logicTime) {
                 bag->storageSpaceOccupied += compoundAmount;
             }
 
-            // Calculating the storage space available.
+            // Calculating the storage space available. The storage space capacity is increased
             float storageSpaceAvailable = bag->storageSpace - bag->storageSpaceOccupied;
+            if(storageSpaceAvailable <= 0.0) storageSpaceAvailable = 0.0;
 
             // Phase one: setting up the compound information.
             for (const auto& compound : bag->compounds) {
@@ -462,8 +473,8 @@ ProcessSystem::Implementation::update(int logicTime) {
                 compoundData.price = compoundData.uninflatedPrice;
                 if(CompoundRegistry::isUseful(compoundId))
                 {
-                    compoundData.price += IMPORTANT_COMPOUND_BIAS / (compoundData.amount + 1);
-                    float reducedPrice = IMPORTANT_COMPOUND_BIAS / (compoundData.amount + 2);
+                    compoundData.price += (IMPORTANT_COMPOUND_BIAS + bag->storageSpace) / (compoundData.amount + 1);
+                    float reducedPrice = (IMPORTANT_COMPOUND_BIAS + bag->storageSpace) / (compoundData.amount + 2);
                     compoundData.priceReductionPerUnit += compoundData.price - reducedPrice;
                 }
 
@@ -506,6 +517,7 @@ ProcessSystem::Implementation::update(int logicTime) {
                                                                     true,
                                                                     storageSpaceAvailable);
 
+                desiredRateWithSpace = std::min(desiredRateWithSpace, desiredRate);
                 if(desiredRate > 0.0)
                 {
                     float rate = std::min(processCapacity * logicTime / 1000, processLimitCapacity);
