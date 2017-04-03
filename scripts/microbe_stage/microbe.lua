@@ -1097,7 +1097,7 @@ end
 -- Toggles the absorber on and off depending on the remaining storage
 -- capacity of the storage organelles.
 function Microbe:_updateCompoundAbsorber()
-    if self.microbe.stored >= self.microbe.capacity or 
+    if --self.microbe.stored >= self.microbe.capacity or 
                self.microbe.remainingBandwidth < 1 or 
                self.microbe.dead then
         self.compoundAbsorber:disable()
