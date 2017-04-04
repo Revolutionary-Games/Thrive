@@ -37,8 +37,8 @@ organelleTable = {
         },
 
         processes = {
-            ["FattyAcidSynthesis"] = 0.7,
-            ["AminoAcidSynthesis"] = 0.7
+            ["FattyAcidSynthesis"] = 0.2,
+            ["AminoAcidSynthesis"] = 0.2
         },
 
         mpCost = 0, --it's not supossed to be purchased.
@@ -106,7 +106,7 @@ organelleTable = {
         },
 
         processes = {
-            ["OxyToxySynthesis"] = 0.5
+            ["OxyToxySynthesis"] = 0.05
         },
 
         mass = 0.3,
@@ -126,7 +126,7 @@ organelleTable = {
         },
 
         processes = {
-            ["Respiration"] = 0.1
+            ["Respiration"] = 0.07
         },
 
         mass = 0.3,
