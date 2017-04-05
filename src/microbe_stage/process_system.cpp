@@ -205,32 +205,36 @@ struct ProcessSystem::Implementation {
     void updateAddedEntites(int);
     void updateRemovedEntities(int);
 
+    float _demandSofteningFunction(float processCapacity);
+    float _calculatePrice(float oldPrice, float supply, float demand);
+    float _spaceSofteningFunction(float availableSpace, float requiredSpace);
+
+    std::map<float, CompoundId>
+    _getBreakEvenPointMap(BioProcessId processId, CompoundBagComponent* bag);
+
+    float _getOptimalProcessRate(
+        BioProcessId processId,
+        CompoundBagComponent* bag,
+        bool considersSpaceLimitations,
+        float availableSpace
+    );
+
     static constexpr float TIME_SCALING_FACTOR = 1000;
 };
 
 ProcessSystem::ProcessSystem()
-    : m_impl(new Implementation())
-{
+    : m_impl(new Implementation()) {}
 
-}
-
-ProcessSystem::~ProcessSystem()
-{
-
-}
+ProcessSystem::~ProcessSystem() {}
 
 void
-ProcessSystem::init(GameState* gameState)
-{
+ProcessSystem::init(GameState* gameState) {
     System::initNamed("ProcessSystem", gameState);
     m_impl->m_entities.setEntityManager(&gameState->entityManager());
 }
 
 void
-ProcessSystem::shutdown()
-{
-
-}
+ProcessSystem::shutdown() {}
 
 void
 ProcessSystem::Implementation::updateRemovedEntities(int) {
@@ -248,19 +252,15 @@ ProcessSystem::Implementation::updateAddedEntites(int) {
     // }
 }
 
-float
-_demandSofteningFunction(float processCapacity);
 
 float
-_demandSofteningFunction(float processCapacity) {
+ProcessSystem::Implementation::_demandSofteningFunction(float processCapacity) {
     return 2 * sigmoid(processCapacity * PROCESS_CAPACITY_DEMAND_MULTIPLIER) - 1.0;
 }
 
-float
-_calculatePrice(float oldPrice, float supply, float demand);
 
 float
-_calculatePrice(float oldPrice, float supply, float demand) {
+ProcessSystem::Implementation::_calculatePrice(float oldPrice, float supply, float demand) {
     // float priceAdjustment = sqrt(demand / (supply + 1));
     // return oldPrice * (COMPOUND_PRICE_MOMENTUM + priceAdjustment - COMPOUND_PRICE_MOMENTUM * priceAdjustment);
     //(void)oldPrice;
@@ -268,13 +268,7 @@ _calculatePrice(float oldPrice, float supply, float demand) {
 }
 
 std::map<float, CompoundId>
-_getBreakEvenPointMap(
-    BioProcessId processId,
-    CompoundBagComponent* bag
-);
-
-std::map<float, CompoundId>
-_getBreakEvenPointMap(
+ProcessSystem::Implementation::_getBreakEvenPointMap(
     BioProcessId processId,
     CompoundBagComponent* bag
 ) {
@@ -293,25 +287,14 @@ _getBreakEvenPointMap(
 }
 
 float
-_spaceSofteningFunction(float availableSpace, float requiredSpace);
-
-float
-_spaceSofteningFunction(float availableSpace, float requiredSpace) {
+ProcessSystem::Implementation::_spaceSofteningFunction(float availableSpace, float requiredSpace) {
     return 2.0 * (1.0 - sigmoid(requiredSpace / (availableSpace + 1.0) * STORAGE_SPACE_MULTIPLIER));
     //float MIN_AVAILABLE_SPACE = 0.001;
     //return 1.0 / (1 + requiredSpace / std::max(availableSpace, MIN_AVAILABLE_SPACE));
 }
 
 float
-_getOptimalProcessRate(
-    BioProcessId processId,
-    CompoundBagComponent* bag,
-    bool considersSpaceLimitations,
-    float availableSpace
-);
-
-float
-_getOptimalProcessRate(
+ProcessSystem::Implementation::_getOptimalProcessRate(
     BioProcessId processId,
     CompoundBagComponent* bag,
     bool considersSpaceLimitations,
@@ -328,7 +311,7 @@ _getOptimalProcessRate(
         float inputVolume = CompoundRegistry::getCompoundUnitVolume(inputId);
 
         if(considersSpaceLimitations) {
-            float spacePriceDecrement = _spaceSofteningFunction(availableSpace, inputNeeded * inputVolume);
+            float spacePriceDecrement = ProcessSystem::Implementation::_spaceSofteningFunction(availableSpace, inputNeeded * inputVolume);
             inputPriceIncrement += inputNeeded * compoundData.priceReductionPerUnit * spacePriceDecrement;
             baseInputPrice += inputNeeded * compoundData.price * spacePriceDecrement;
         }
@@ -343,7 +326,7 @@ _getOptimalProcessRate(
     // The benefit curve is piecewise lineal and continuous, and the breaking points are
     // the break-even points of the output compounds.
     // So first we have to order said break-even points.
-    std::map<float, CompoundId> outputBreakEvenPoints = _getBreakEvenPointMap(processId, bag);
+    std::map<float, CompoundId> outputBreakEvenPoints = ProcessSystem::Implementation::_getBreakEvenPointMap(processId, bag);
 
     // Finding the piece of the function that contains the minimum
     // TODO: make it use binary search or something...
@@ -358,7 +341,7 @@ _getOptimalProcessRate(
         float outputVolume = CompoundRegistry::getCompoundUnitVolume(outputId);
 
         if(considersSpaceLimitations) {
-            float spacePriceDecrement = _spaceSofteningFunction(availableSpace, outputGenerated * outputVolume);
+            float spacePriceDecrement = ProcessSystem::Implementation::_spaceSofteningFunction(availableSpace, outputGenerated * outputVolume);
             baseOutputPrice += compoundData.price * outputGenerated * spacePriceDecrement;
             outputPriceDecrement += compoundData.priceReductionPerUnit * outputGenerated * spacePriceDecrement;
         }
@@ -387,7 +370,7 @@ _getOptimalProcessRate(
             // The prices are never below 0.
             if(compoundData.breakEvenPoint > breakEvenPoint) {
                 if(considersSpaceLimitations) {
-                    float spacePriceDecrement = _spaceSofteningFunction(availableSpace, outputGenerated * outputVolume);
+                    float spacePriceDecrement = ProcessSystem::Implementation::_spaceSofteningFunction(availableSpace, outputGenerated * outputVolume);
                     baseOutputPrice_l += compoundData.price * outputGenerated * spacePriceDecrement;
                     outputPriceDecrement_l += compoundData.priceReductionPerUnit * outputGenerated * spacePriceDecrement;
                 }
@@ -451,7 +434,7 @@ ProcessSystem::Implementation::update(int logicTime) {
 
                 // Adjusting the prices according to supply and demand.
                 float oldPrice = compoundData.uninflatedPrice;
-                compoundData.uninflatedPrice =  _calculatePrice(oldPrice, compoundData.amount, compoundData.demand);
+                compoundData.uninflatedPrice =  ProcessSystem::Implementation::_calculatePrice(oldPrice, compoundData.amount, compoundData.demand);
 
                 if(compoundData.demand > 0 && compoundData.uninflatedPrice <= MIN_POSITIVE_COMPOUND_PRICE)
                     compoundData.uninflatedPrice = MIN_POSITIVE_COMPOUND_PRICE;
@@ -465,7 +448,7 @@ ProcessSystem::Implementation::update(int logicTime) {
                 // Calculating how much the price would fall if we had one more unit,
                 // To make predictions with the demand.
                 else {
-                    float reducedPrice =  _calculatePrice(oldPrice, compoundData.amount + 1, compoundData.demand);
+                    float reducedPrice =  ProcessSystem::Implementation::_calculatePrice(oldPrice, compoundData.amount + 1, compoundData.demand);
                     compoundData.priceReductionPerUnit = compoundData.uninflatedPrice - reducedPrice;
                 }
 
@@ -506,13 +489,15 @@ ProcessSystem::Implementation::update(int logicTime) {
                 // Calculating the desired rate, with some liberal use of linearization.
 
                 // Calculating the optimal process rate without considering the storage space.
-                float desiredRate = _getOptimalProcessRate(processId,
-                                                           bag,
-                                                           false,
-                                                           storageSpaceAvailable);
+                float desiredRate = ProcessSystem::Implementation::_getOptimalProcessRate(
+                                                            processId,
+                                                            bag,
+                                                            false,
+                                                            storageSpaceAvailable);
 
                 // Calculating the optimal process rate considering the storage space.
-                float desiredRateWithSpace = _getOptimalProcessRate(processId,
+                float desiredRateWithSpace = ProcessSystem::Implementation::_getOptimalProcessRate(
+                                                                    processId,
                                                                     bag,
                                                                     true,
                                                                     storageSpaceAvailable);
@@ -530,7 +515,7 @@ ProcessSystem::Implementation::update(int logicTime) {
                         bag->compounds[inputId].amount -= rate * inputNeeded;
 
                         // Phase 3: increasing the input compound demand.
-                        bag->compounds[inputId].demand += desiredRate * inputNeeded * _demandSofteningFunction(processCapacity * inputNeeded);
+                        bag->compounds[inputId].demand += desiredRate * inputNeeded * ProcessSystem::Implementation::_demandSofteningFunction(processCapacity * inputNeeded);
                     }
 
                     // ...into the outputs.

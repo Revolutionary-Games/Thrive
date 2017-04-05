@@ -139,6 +139,7 @@ public:
     * @brief Updates the system
     */
     void update(int renderTime, int logicTime) override;
+
 private:
 
     struct Implementation;
