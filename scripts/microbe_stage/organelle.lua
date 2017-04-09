@@ -1,6 +1,13 @@
 -- Container for organelle components for all the organelle components
 class 'Organelle'
 
+-- How fast organelles grow.
+GROWTH_SPEED_MULTILPIER = 0.5
+
+-- Percentage of the compounds that compose the organelle released
+-- upon death (between 0.0 and 1.0).
+COMPOUND_RELEASE_PERCENTAGE = 0.7
+
 -- Factory function for organelles
 function Organelle.loadOrganelle(storage)
     local organelle = Organelle(0.1)
@@ -259,7 +266,7 @@ end
 
 
 -- Gives organelles more compounds
-function Organelle:growOrganelle(compoundBagComponent)
+function Organelle:growOrganelle(compoundBagComponent, logicTime)
     -- Develop each individual OrganelleComponent
     for _, component in pairs(self.components) do
         component:grow(compoundBagComponent)

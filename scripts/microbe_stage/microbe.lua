@@ -29,6 +29,7 @@ function MicrobeComponent:__init(isPlayerMicrobe, speciesName)
     self.dead = false
     self.deathTimer = 0
     self.organelles = {}
+    self.processOrganelles = {} -- Organelles responsible for producing compounds from other compounds
     self.specialStorageOrganelles = {} -- Organelles with complete resonsiblity for a specific compound (such as agentvacuoles)
     self.movementDirection = Vector3(0, 0, 0)
     self.facingTargetPoint = Vector3(0, 0, 0)
@@ -343,6 +344,24 @@ end
 --   An object of type StorageOrganelle
 function Microbe:removeStorageOrganelle(storageOrganelle)
     self.microbe.capacity = self.microbe.capacity - storageOrganelle.capacity
+end
+
+-- Removes a process organelle
+-- This will be called automatically by process organelles removed with with removeOrganelle(...)
+--
+-- @param processOrganelle
+--   An object of type ProcessOrganelle
+function Microbe:removeProcessOrganelle(processOrganelle)
+    self.microbe.processOrganelles[processOrganelle] = nil
+end
+
+-- Adds a process organelle
+-- This will be called automatically by process organelles added with addOrganelle(...)
+--
+-- @param processOrganelle
+--   An object of type ProcessOrganelle
+function Microbe:addProcessOrganelle(processOrganelle)
+    self.microbe.processOrganelles[processOrganelle] = processOrganelle
 end
 
 -- Removes a special storage organelle
@@ -785,7 +804,7 @@ function Microbe:update(logicTime)
                 -- If the organelle is hurt.
                 if organelle:getCompoundBin() < 1.0 then
                     -- Give the organelle access to the compound bag to take some compound.
-                    organelle:growOrganelle(self.entity:getComponent(CompoundBagComponent.TYPE_ID))
+                    organelle:growOrganelle(self.entity:getComponent(CompoundBagComponent.TYPE_ID), logicTime)
                     -- An organelle was damaged and we tried to heal it, so out health might be different.
                     self:calculateHealthFromOrganelles()
                 end
@@ -806,12 +825,12 @@ function Microbe:update(logicTime)
                     -- If the organelle is not split, give it some compounds to make it larger.
                     if organelle:getCompoundBin() < 2.0 and not organelle.wasSplit then
                         -- Give the organelle access to the compound bag to take some compound.
-                        organelle:growOrganelle(self.entity:getComponent(CompoundBagComponent.TYPE_ID))
+                        organelle:growOrganelle(self.entity:getComponent(CompoundBagComponent.TYPE_ID), logicTime)
                         reproductionStageComplete = false
                     -- If the organelle was split and has a bin less then 1, it must have been damaged.
                     elseif organelle:getCompoundBin() < 1.0 and organelle.wasSplit then
                         -- Give the organelle access to the compound bag to take some compound.
-                        organelle:growOrganelle(self.entity:getComponent(CompoundBagComponent.TYPE_ID))
+                        organelle:growOrganelle(self.entity:getComponent(CompoundBagComponent.TYPE_ID), logicTime)
                     -- If the organelle is twice its size...
                     elseif organelle:getCompoundBin() >= 2.0 then
                         --Queue this organelle for splitting after the loop.
@@ -824,7 +843,7 @@ function Microbe:update(logicTime)
                     -- If the nucleus hasn't finished replicating its DNA, give it some compounds.
                     if organelle:getCompoundBin() < 2.0 then
                         -- Give the organelle access to the compound back to take some compound.
-                        organelle:growOrganelle(self.entity:getComponent(CompoundBagComponent.TYPE_ID))
+                        organelle:growOrganelle(self.entity:getComponent(CompoundBagComponent.TYPE_ID), logicTime)
                         reproductionStageComplete = false
                     end
                 end

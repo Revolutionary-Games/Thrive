@@ -24,6 +24,10 @@ Organelle atributes:
     processes:  A table with all the processes this organelle does,
                 and the capacity of the process
                 TODO: put it in the procesOrganelle component?
+
+    composition:    A table with the compounds that compost the organelle.
+                    They are needed in order to split the organelle, and a
+                    percentage of them is released upon death of the microbe.
 ]]
 
 organelleTable = {
@@ -53,6 +57,10 @@ organelleTable = {
             {["q"]=-1,  ["r"]=-1},
             {["q"]=0,   ["r"]=-2},
             {["q"]=1,   ["r"]=-2}
+        },
+
+        composition = {
+            aminoacids = 4
         }
     },
 
@@ -69,6 +77,12 @@ organelleTable = {
         mesh = nil, --it's an empty hex
         hexes = {
             {["q"]=0,   ["r"]=0}
+        },
+
+        composition = {
+            aminoacids = 3,
+            glucose = 2,
+            -- fattyacids = 0 :/
         }
     },
 
@@ -93,6 +107,12 @@ organelleTable = {
             {["q"]=0,   ["r"]=0},
             {["q"]=1,   ["r"]=0},
             {["q"]=0,   ["r"]=1}
+        },
+
+        composition = {
+            aminoacids = 4,
+            glucose = 2,
+            -- fattyacids = 0 :/
         }
     },
 
@@ -114,6 +134,12 @@ organelleTable = {
         mesh = "oxytoxy.mesh",
         hexes = {
             {["q"]=0,   ["r"]=0}
+        },
+
+        composition = {
+            aminoacids = 4,
+            glucose = 2,
+            -- fattyacids = 0 :/
         }
     },
 
@@ -135,6 +161,12 @@ organelleTable = {
         hexes = {
             {["q"]=0, ["r"]=0},
             {["q"]=0, ["r"]=1}
+        },
+
+        composition = {
+            aminoacids = 4,
+            glucose = 2,
+            -- fattyacids = 0 :/
         }
     },
 
@@ -151,6 +183,12 @@ organelleTable = {
         mesh = "vacuole.mesh",
         hexes = {
             {["q"]=0,   ["r"]=0},
+        },
+
+        composition = {
+            aminoacids = 4,
+            glucose = 2,
+            -- fattyacids = 0 :/
         }
     },
 
@@ -168,6 +206,12 @@ organelleTable = {
         mesh = "flagellum.mesh",
         hexes = {
             {["q"]=0,   ["r"]=0},
+        },
+
+        composition = {
+            aminoacids = 4,
+            glucose = 2,
+            -- fattyacids = 0 :/
         }
     }
 }
