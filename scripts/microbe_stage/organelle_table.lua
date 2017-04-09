@@ -37,7 +37,8 @@ organelleTable = {
 
         processes = {
             ["FattyAcidSynthesis"] = 1,
-            ["AminoAcidSynthesis"] = 1
+            ["AminoAcidSynthesis"] = 1,
+            ["Glycolysis"] = 1
         },
 
         mpCost = 0, --it's not supossed to be purchased.
