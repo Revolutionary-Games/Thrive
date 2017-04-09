@@ -6,7 +6,7 @@ GROWTH_SPEED_MULTILPIER = 0.5
 
 -- Percentage of the compounds that compose the organelle released
 -- upon death (between 0.0 and 1.0).
-COMPOUND_RELEASE_PERCENTAGE = 0.7
+COMPOUND_RELEASE_PERCENTAGE = 0.3
 
 -- Factory function for organelles
 function Organelle.loadOrganelle(storage)

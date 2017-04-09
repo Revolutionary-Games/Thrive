@@ -627,12 +627,29 @@ end
 
 -- Kills the microbe, releasing stored compounds into the enviroment
 function Microbe:kill()
+    local compoundsToRelease = {}
     -- Eject the compounds that was in the microbe
     for compoundId in CompoundRegistry.getCompoundList() do
         local total = self:getCompoundAmount(compoundId)
-        ejectedAmount = self:takeCompound(compoundId, total)
-        self:ejectCompound(compoundId, ejectedAmount)
-    end    
+        local ejectedAmount = self:takeCompound(compoundId, total)
+        compoundsToRelease[compoundId] = ejectedAmount
+    end
+
+    for _, organelle in pairs(self.microbe.organelles) do
+        for compoundName, amount in pairs(organelleTable[organelle.name].composition) do
+            local compoundId = CompoundRegistry.getCompoundId(compoundName)
+            if(compoundsToRelease[compoundId] == nil) then
+                compoundsToRelease[compoundId] = amount * COMPOUND_RELEASE_PERCENTAGE
+            else
+                compoundsToRelease[compoundId] = compoundsToRelease[compoundId] + amount * COMPOUND_RELEASE_PERCENTAGE
+            end
+        end
+    end
+
+    for compoundId, amount in pairs(compoundsToRelease) do
+        self:ejectCompound(compoundId, amount)
+    end
+
     for compoundId, specialStorageOrg in pairs(self.microbe.specialStorageOrganelles) do
         local _amount = self:getCompoundAmount(compoundId)
         while _amount > 0 do
