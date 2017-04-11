@@ -42,6 +42,28 @@ function Organelle:__init(mass, name)
 	self.split = false
     -- If this organelle is a duplicate of another organelle caused by splitting.
     self.isDuplicate = false
+
+    -- The "Health Bar" of the organelle constrained to [0,2]
+    -- 0 means the organelle is dead, 1 means its normal, and 2 means
+    -- its ready to divide.
+    self.compoundBin = 1.0
+
+    -- The compounds left to divide this organelle.
+    -- Decreases every time a required compound is absorbed.
+    self.compoundsLeft = {}
+
+    -- The compounds that make up this organelle. They get reduced each time
+    -- the organelle gets damaged.
+    self.composition = {}
+
+    -- The total number of compounds we need before we can split.
+    self.organelleCost = 0
+
+    for compoundName, amount in pairs(organelleTable[name].composition) do
+        self.compoundsLeft[compoundName] = amount
+        self.composition[compoundName] = amount
+        self.organelleCost = self.organelleCost + amount
+    end
 end
 
 
@@ -143,6 +165,30 @@ function Organelle:onAddedToMicrobe(microbe, q, r, rotation)
         self.colour = ColourValue(1, 0, 1, 1)
     end
     self._needsColourUpdate = true
+
+    local offset = Vector3(0,0,0)
+    local count = 0
+    for _, hex in pairs(self.microbe:getOrganelleAt(q, r)._hexes) do
+        count = count + 1
+
+        local x, y = axialToCartesian(hex.q, hex.r)
+        offset = offset + Vector3(x, y, 0)
+    end
+    offset = offset / count
+  
+    self.sceneNode = OgreSceneNodeComponent()
+    self.sceneNode.transform.orientation = Quaternion(Radian(Degree(organelle.rotation)), Vector3(0, 0, 1))
+    self.sceneNode.transform.position = offset + organelle.position.cartesian
+    self.sceneNode.transform.scale = Vector3(HEX_SIZE, HEX_SIZE, HEX_SIZE)
+    self.sceneNode.transform:touch()
+    self.sceneNode.parent = microbe.entity
+    self.organelleEntity:addComponent(self.sceneNode)
+    
+    --Adding a mesh to the organelle.
+    local mesh = organelleTable[organelle.name].mesh
+    if mesh ~= nil then
+        self.sceneNode.meshName = mesh
+    end
 	
     -- Add each OrganelleComponent
     for _, component in pairs(self.components) do
@@ -245,49 +291,142 @@ function Organelle:update(microbe, logicTime)
         
         self._needsColourUpdate = true
     end
+
+    -- If the organelle is supposed to be another color.
+    if self._needsColourUpdate == true then
+        self:updateColour()
+    end
+
     -- Update each OrganelleComponent
-    for _, component in pairs(self.components) do
+    for componentName, component in pairs(self.components) do
         component:update(microbe, self, logicTime)
     end
 end
 
-function Organelle:getCompoundBin()
-    local count = 0.0
-    local bin = 0.0
-    
-    -- Get each individual OrganelleComponent's bin.
-    for _, component in pairs(self.components) do
-        bin = bin + component.compoundBin
-        count = count + 1.0
+function Organelle:updateColour()
+    if self.sceneNode.entity ~= nil then
+        local entity = self.sceneNode.entity
+        --entity:tintColour(self.name, self.colour) --crashes game
+        
+        self._needsColourUpdate = false
     end
-    
-    return bin / count
+end
+
+function Organelle:getCompoundBin()
+    return self.compoundBin
 end
 
 
 -- Gives organelles more compounds
 function Organelle:growOrganelle(compoundBagComponent, logicTime)
-    -- Develop each individual OrganelleComponent
-    for _, component in pairs(self.components) do
-        component:grow(compoundBagComponent)
+    -- Finds the total number of needed compounds.
+    local sum = 0.0
+
+    -- Finds which compounds the cell currently has.
+    for compoundName, amount in pairs(self.compoundsLeft) do
+        if compoundBagComponent:aboveLowThreshold(CompoundRegistry.getCompoundId(compoundName)) >= 1 then
+            sum = sum + amount
+        end
     end
+    
+    -- If sum is 0, we either have no compounds, in which case we cannot grow the organelle, or the
+    -- organelle is ready to split (i.e. compoundBin = 2), in which case we wait for the microbe to
+    -- handle the split.
+    if sum == 0 then return end
+
+    -- Randomly choose which of the compounds are used in reproduction.
+    -- Uses a roulette selection.
+    local id = math.random() * sum
+
+    for compoundName, amount in pairs(self.compoundsLeft) do
+        if id - amount < 0 then
+            -- The random number is from this compound, so attempt to take it.
+            compoundBagComponent:takeCompound(CompoundRegistry.getCompoundId(compoundName), 1)
+            self.compoundsLeft[compoundName] = self.compoundsLeft[compoundName] - 1.0
+            break
+
+        else
+            id = id - amount
+        end
+    end
+
+    -- Calculate the new growth value.
+    self:recalculateBin()
 end
 
-function Organelle:damageOrganelle(amount)
+function Organelle:damageOrganelle(damageAmount)
     -- Flash the organelle that was damaged.
     self:flashOrganelle(3000, ColourValue(1,0.2,0.2,1))
-    
-    -- Damage each individual OrganelleComponent
-    for _, component in pairs(self.components) do
-        component:damage(amount)
+
+    -- Calculate the total number of compounds we need
+    -- to divide now, so that we can keep this ratio.
+    local totalLeft = 0.0
+    for _, amount in pairs(self.compoundsLeft) do
+        totalLeft = totalLeft + amount
+    end
+
+    -- Calculate how much compounds the organelle needs to have
+    -- to result in a health equal to compoundBin - amount.
+    local damageFactor = (2.0 - self.compoundBin + damageAmount) * self.organelleCost / totalLeft
+    for compoundName, amount in pairs(self.compoundsLeft) do
+        self.compoundsLeft[compoundName] = amount * damageFactor
+    end
+
+    self:recalculateBin()
+end
+
+function Organelle:recalculateBin()
+    -- Calculate the new growth growth
+    local totalCompoundsLeft = 0.0
+    for _, amount in pairs(self.compoundsLeft) do
+        totalCompoundsLeft = totalCompoundsLeft + amount
+    end
+    self.compoundBin = 2.0 - totalCompoundsLeft / self.organelleCost
+
+    -- If the organelle is damaged...
+    if self.compoundBin < 1.0 then
+        if self.compoundBin <= 0.0 then
+            -- If it was split from a primary organelle, destroy it.
+            if self.isDuplicate == true then
+                self.microbe:removeOrganelle(self.position.q, self.position.r)
+                
+                -- Notify the organelle the sister organelle it is no longer split.
+                self.sisterOrganelle.wasSplit = false
+                return
+                
+            -- If it is a primary organelle, make sure that it's compound bin is not less than 0.
+            else
+                self.compoundBin = 0.0
+                for compoundName, amount in pairs(self.composition) do
+                    self.compoundsLeft[compoundName] = 2 * amount
+                end
+            end
+        end
+
+        -- Scale the model at a slower rate (so that 0.0 is half size).
+        self.sceneNode.transform.scale = Vector3((1.0 + self.compoundBin)/2, (1.0 + self.compoundBin)/2, (1.0 + self.compoundBin)/2)*HEX_SIZE
+        self.sceneNode.transform:touch()
+        
+        -- Darken the color. Will be updated on next call of update()
+        self.colourTint = Vector3((1.0 + self.compoundBin)/2, self.compoundBin, self.compoundBin)
+        self._needsColourUpdate = true
+    else
+        -- Scale the organelle model to reflect the new size.
+        self.sceneNode.transform.scale = Vector3(self.compoundBin, self.compoundBin, self.compoundBin)*HEX_SIZE
+        self.sceneNode.transform:touch()  
     end
 end
 
 function Organelle:reset()
-    -- Restores each individual OrganelleComponent to its default state
-    for _, component in pairs(self.components) do
-        component:reset()
+    -- Return the compound bin to its original state
+    self.compoundBin = 1.0
+    for compoundName, amount in pairs(self.composition) do
+        self.compoundsLeft[compoundName] = amount
     end
+    
+    -- Scale the organelle model to reflect the new size.
+    self.sceneNode.transform.scale = Vector3(1, 1, 1)*HEX_SIZE
+    self.sceneNode.transform:touch()
         
     -- If it was split from a primary organelle, destroy it.
     if self.isDuplicate == true then

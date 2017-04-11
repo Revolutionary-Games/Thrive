@@ -14,10 +14,6 @@ function NucleusOrganelle:__init(arguments, data)
     if arguments == nil and data == nil then
         return
     end
-    
-    self.numProteinLeft = 2
-    self.numNucleicAcidsLeft = 2
-    self.nucleusCost = self.numProteinLeft + self.numNucleicAcidsLeft
 
     self.golgi = Entity()
 	self.ER = Entity()
@@ -52,25 +48,13 @@ function NucleusOrganelle:onAddedToMicrobe(microbe, q, r, rotation, organelle)
 	self.ER.sceneNode = sceneNode2
 	self.ER:setVolatile(true)
     
-    self.sceneNode = OgreSceneNodeComponent()
-	self.sceneNode.transform.orientation = Quaternion(Radian(Degree(organelle.rotation)), Vector3(0, 0, 1))
-	self.sceneNode.transform.position = organelle.position.cartesian
-    self.sceneNode.transform.scale = Vector3(HEX_SIZE, HEX_SIZE, HEX_SIZE)
-    self.sceneNode.transform:touch()
-    local mesh = organelleTable[organelle.name].mesh
-    if mesh ~= nil then
-        self.sceneNode.meshName = mesh
-    end
-    self.sceneNode.parent = microbe.entity
-    organelle.organelleEntity:addComponent(self.sceneNode)
+    self.sceneNode = organelle.sceneNode
     
     -- If we are not in the editor, get the color of this species.
     if microbe:getSpeciesComponent() ~= nil then
         local speciesColour = microbe:getSpeciesComponent().colour
         self.colourSuffix = "" .. math.floor(speciesColour.x * 256) .. math.floor(speciesColour.y * 256) .. math.floor(speciesColour.z * 256)
     end
-        
-    self._needsColourUpdate = true
 end
 
 function NucleusOrganelle:onRemovedFromMicrobe(microbe, q, r)
@@ -85,7 +69,7 @@ end
 
 function NucleusOrganelle:updateColour(organelle)
     -- Update the colours of the additional organelle models.
-    if self.sceneNode.entity ~= nil and self.golgi.sceneNode.entity ~= nil then
+    --[[if self.sceneNode.entity ~= nil and self.golgi.sceneNode.entity ~= nil then
         --print(organelle.colour.r .. ", " .. organelle.colour.g .. ", " .. organelle.colour.b)
     
 		local entity = self.sceneNode.entity
@@ -97,60 +81,19 @@ function NucleusOrganelle:updateColour(organelle)
         ER_entity:tintColour("ER", organelle.colour)
         
         organelle._needsColourUpdate = false
-    end
+    end]]
 end
 
 -- Makes nucleus larger
 function NucleusOrganelle:grow(compoundBagComponent)
-    -- Finds the total number of needed compounds.
-    local sum = 0
-
-    -- Finds which compounds the cell currently has.
-    if compoundBagComponent:aboveLowThreshold(CompoundRegistry.getCompoundId("aminoacids")) >= 1 then
-        sum = sum + self.numProteinLeft
-    end
-    if compoundBagComponent:aboveLowThreshold(CompoundRegistry.getCompoundId("aminoacids")) >= 1 then
-        sum = sum + self.numNucleicAcidsLeft
-    end
-    
-    -- If sum is 0, we either have no compounds, in which case we cannot grow the organelle, or the
-    -- DNA duplication is done (i.e. compoundBin = 2), in which case we wait for the microbe to
-    -- handle the split.
-    if sum == 0 then return end
-       
-    -- Randomly choose which of the three compounds: glucose, amino acids, and fatty acids
-    -- that are used in reproductions.
-    local id = math.random()*sum
-    
-    -- The random number is a protein, so attempt to take it.
-    if id <= self.numProteinLeft then
-        compoundBagComponent:takeCompound(CompoundRegistry.getCompoundId("aminoacids"), 1)
-        self.numProteinLeft = self.numProteinLeft - 1
-    -- The random number is a nucleic acid.
-    else
-        compoundBagComponent:takeCompound(CompoundRegistry.getCompoundId("aminoacids"), 1)
-        self.numNucleicAcidsLeft = self.numNucleicAcidsLeft - 1
-    end
-    
-    -- Calculate the new growth growth
-    self:recalculateBin()
 end
 
 function NucleusOrganelle:damage(amount)
-    -- Calculate the total number of compounds we need to divide now, so that we can keep this ratio.
-    local totalLeft = self.numProteinLeft + self.numNucleicAcidsLeft
-    
-    -- Calculate how much compounds the organelle needs to have to result in a health equal to compoundBin - amount.
-    local damageFactor = (2.0 - self.compoundBin + amount) * self.nucleusCost / totalLeft
-    self.numProteinLeft = self.numProteinLeft * damageFactor
-    self.numNucleicAcidsLeft = self.numNucleicAcidsLeft * damageFactor
-    -- Calculate the new growth value.
-    self:recalculateBin()
 end
 
 function NucleusOrganelle:recalculateBin()
     -- Calculate the new growth growth
-    self.compoundBin = 2.0 - (self.numProteinLeft + self.numNucleicAcidsLeft)/self.nucleusCost
+    --[[self.compoundBin = 2.0 - (self.numProteinLeft + self.numNucleicAcidsLeft)/self.nucleusCost
     
     -- If the organelle is damaged...
     if self.compoundBin < 1.0 then
@@ -164,6 +107,6 @@ function NucleusOrganelle:recalculateBin()
     else
         -- Darken the nucleus as more DNA is made.
         self.sceneNode.entity:tintColour("nucleus" .. self.colourSuffix, ColourValue(2-self.compoundBin, 2-self.compoundBin, 2-self.compoundBin, 1.0))
-    end
+    end]]
 end
 

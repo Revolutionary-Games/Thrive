@@ -32,7 +32,6 @@ function MovementOrganelle:__init(arguments, data)
     if arguments == nil and data == nil then
         return
     end
-    
 
     self.energyMultiplier = 0.025
     self.force = calculateForce(data.q, data.r, arguments.momentum)
@@ -55,24 +54,11 @@ function MovementOrganelle:onAddedToMicrobe(microbe, q, r, rotation, organelle)
         angle = angle + 2*math.pi
     end
     angle = (angle * 180/math.pi + 180) % 360
-        
-    self.sceneNode = OgreSceneNodeComponent()
-    organelle.rotation = angle
+
+    self.sceneNode = organelle.sceneNode
 	self.sceneNode.transform.orientation = Quaternion(Radian(Degree(angle)), Vector3(0, 0, 1))
-	self.sceneNode.transform.position = organelle.position.cartesian
-    self.sceneNode.transform.scale = Vector3(HEX_SIZE, HEX_SIZE, HEX_SIZE)
-    self.sceneNode.transform:touch()
-    self.sceneNode.parent = microbe.entity
-    organelle.organelleEntity:addComponent(self.sceneNode)
-    
     self.sceneNode:playAnimation("Move", true)
     self.sceneNode:setAnimationSpeed(0.25)
-    
-    --Adding a mesh to the organelle.
-    local mesh = organelleTable[organelle.name].mesh
-    if mesh ~= nil then
-        self.sceneNode.meshName = mesh
-    end
 end
 
 function MovementOrganelle:load(storage)
@@ -83,7 +69,6 @@ function MovementOrganelle:load(storage)
 end
 
 function MovementOrganelle:storage()
-    print("storing")
     local storage = StorageContainer()
     storage:set("energyMultiplier", self.energyMultiplier)
     storage:set("force", self.force)
