@@ -37,9 +37,9 @@ function Organelle:__init(mass, name)
     
     -- The deviation of the organelle color from the species color
     self._needsColourUpdate = true
-	
-	-- Whether or not this organelle has already divided.
-	self.split = false
+    
+    -- Whether or not this organelle has already divided.
+    self.split = false
     -- If this organelle is a duplicate of another organelle caused by splitting.
     self.isDuplicate = false
 
@@ -189,7 +189,7 @@ function Organelle:onAddedToMicrobe(microbe, q, r, rotation)
     if mesh ~= nil then
         self.sceneNode.meshName = mesh
     end
-	
+    
     -- Add each OrganelleComponent
     for _, component in pairs(self.components) do
         component:onAddedToMicrobe(microbe, q, r, rotation, self)
@@ -230,7 +230,7 @@ function Organelle:removeHex(q, r)
 end
 
 function Organelle:flashOrganelle(duration, colour)
-	if self.flashDuration == nil then
+    if self.flashDuration == nil then
         
         self.flashColour = colour
         self.flashDuration = duration
@@ -271,22 +271,22 @@ end
 -- @param logicTime
 --  The time since the last call to update()
 function Organelle:update(microbe, logicTime)
-	if self.flashDuration ~= nil then
+    if self.flashDuration ~= nil then
         self.flashDuration = self.flashDuration - logicTime
         local speciesColour = ColourValue(microbe:getSpeciesComponent().colour.x, 
                                           microbe:getSpeciesComponent().colour.y,
                                           microbe:getSpeciesComponent().colour.z, 1)
-		
-		-- How frequent it flashes, would be nice to update the flash function to have this variable
-		if math.fmod(self.flashDuration,600) < 300 then
+        
+        -- How frequent it flashes, would be nice to update the flash function to have this variable
+        if math.fmod(self.flashDuration,600) < 300 then
             self.colour = self.flashColour
-		else
-			self.colour = speciesColour
-		end
-		
+        else
+            self.colour = speciesColour
+        end
+        
         if self.flashDuration <= 0 then
             self.flashDuration = nil
-			self.colour = speciesColour
+            self.colour = speciesColour
         end
         
         self._needsColourUpdate = true
@@ -404,16 +404,20 @@ function Organelle:recalculateBin()
         end
 
         -- Scale the model at a slower rate (so that 0.0 is half size).
-        self.sceneNode.transform.scale = Vector3((1.0 + self.compoundBin)/2, (1.0 + self.compoundBin)/2, (1.0 + self.compoundBin)/2)*HEX_SIZE
-        self.sceneNode.transform:touch()
-        
+        if organelleTable[self.name].components["NucleusOrganelle"] == nil then
+            self.sceneNode.transform.scale = Vector3((1.0 + self.compoundBin)/2, (1.0 + self.compoundBin)/2, (1.0 + self.compoundBin)/2)*HEX_SIZE
+            self.sceneNode.transform:touch()
+        end
+
         -- Darken the color. Will be updated on next call of update()
         self.colourTint = Vector3((1.0 + self.compoundBin)/2, self.compoundBin, self.compoundBin)
         self._needsColourUpdate = true
     else
         -- Scale the organelle model to reflect the new size.
-        self.sceneNode.transform.scale = Vector3(self.compoundBin, self.compoundBin, self.compoundBin)*HEX_SIZE
-        self.sceneNode.transform:touch()  
+        if organelleTable[self.name].components["NucleusOrganelle"] == nil then
+            self.sceneNode.transform.scale = Vector3(self.compoundBin, self.compoundBin, self.compoundBin)*HEX_SIZE
+            self.sceneNode.transform:touch()  
+        end
     end
 end
 
@@ -446,7 +450,7 @@ class 'OrganelleFactory'
 
 -- Sets the color of the organelle (used in editor for valid/nonvalid placement)
 function OrganelleFactory.setColour(sceneNode, colour)
-	sceneNode.entity:setColour(colour)
+    sceneNode.entity:setColour(colour)
 end
 
 function OrganelleFactory.makeOrganelle(data)
@@ -477,9 +481,9 @@ end
 
 -- Draws the hexes and uploads the models in the editor
 function OrganelleFactory.renderOrganelles(data)
-	if data.name == "remove" then
-		return {}
-	else
+    if data.name == "remove" then
+        return {}
+    else
         --Getting the list hexes occupied by this organelle.
         occupiedHexList = OrganelleFactory.checkSize(data)
 
@@ -514,7 +518,7 @@ function OrganelleFactory.renderOrganelles(data)
             data.sceneNode[1].transform.position = Vector3(-xAverage, -yAverage, 0)
             data.sceneNode[1].transform.orientation = Quaternion(Radian(Degree(data.rotation)), Vector3(0, 0, 1))
         end
-	end
+    end
 end
 
 -- Checks which hexes an organelle occupies
