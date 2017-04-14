@@ -177,15 +177,15 @@ function Organelle:onAddedToMicrobe(microbe, q, r, rotation)
     offset = offset / count
   
     self.sceneNode = OgreSceneNodeComponent()
-    self.sceneNode.transform.orientation = Quaternion(Radian(Degree(organelle.rotation)), Vector3(0, 0, 1))
-    self.sceneNode.transform.position = offset + organelle.position.cartesian
+    self.sceneNode.transform.orientation = Quaternion(Radian(Degree(self.rotation)), Vector3(0, 0, 1))
+    self.sceneNode.transform.position = offset + self.position.cartesian
     self.sceneNode.transform.scale = Vector3(HEX_SIZE, HEX_SIZE, HEX_SIZE)
     self.sceneNode.transform:touch()
     self.sceneNode.parent = microbe.entity
     self.organelleEntity:addComponent(self.sceneNode)
     
     --Adding a mesh to the organelle.
-    local mesh = organelleTable[organelle.name].mesh
+    local mesh = organelleTable[self.name].mesh
     if mesh ~= nil then
         self.sceneNode.meshName = mesh
     end
@@ -332,7 +332,7 @@ function Organelle:growOrganelle(compoundBagComponent, logicTime)
     -- If sum is 0, we either have no compounds, in which case we cannot grow the organelle, or the
     -- organelle is ready to split (i.e. compoundBin = 2), in which case we wait for the microbe to
     -- handle the split.
-    if sum == 0 then return end
+    if sum <= 0.0 then return end
 
     -- Randomly choose which of the compounds are used in reproduction.
     -- Uses a roulette selection.
