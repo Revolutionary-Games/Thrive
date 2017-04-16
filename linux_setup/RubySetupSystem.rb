@@ -1456,6 +1456,8 @@ def isGoodLDDFound(lib)
     true
   when /.*swscale.*/i
     true
+  when /.*rtmp.*/i
+    true
   when /.*gsm.*/i
     true
   when /.*soxr.*/i
