@@ -28,13 +28,13 @@ struct Mouse::Implementation : public OIS::MouseListener {
 
         switch(id){
         case OIS::MB_Left:
-            m_aggregator->injectMouseButtonDown(CEGUI::MouseButton::LeftButton);
+            m_aggregator->injectMouseButtonDown(CEGUI::MouseButton::Left);
             break;
         case OIS::MB_Right:
-            m_aggregator->injectMouseButtonDown(CEGUI::MouseButton::RightButton);
+            m_aggregator->injectMouseButtonDown(CEGUI::MouseButton::Right);
             break;
         case OIS::MB_Middle:
-            m_aggregator->injectMouseButtonDown(CEGUI::MouseButton::MiddleButton);
+            m_aggregator->injectMouseButtonDown(CEGUI::MouseButton::Middle);
             break;
         default:
             break;
@@ -46,19 +46,19 @@ struct Mouse::Implementation : public OIS::MouseListener {
     bool mouseReleased (const OIS::MouseEvent&, OIS::MouseButtonID id){
         switch(id){
         case OIS::MB_Left:
-            if(!m_aggregator->injectMouseButtonUp(CEGUI::MouseButton::LeftButton)){
+            if(!m_aggregator->injectMouseButtonUp(CEGUI::MouseButton::Left)){
 
                 m_nextClickedStates |= 0x1;
             }
             break;
         case OIS::MB_Right:
-            if(!m_aggregator->injectMouseButtonUp(CEGUI::MouseButton::RightButton)){
+            if(!m_aggregator->injectMouseButtonUp(CEGUI::MouseButton::Right)){
 
                 m_nextClickedStates |= 0x2;
             }
             break;
         case OIS::MB_Middle:
-            if(!m_aggregator->injectMouseButtonUp(CEGUI::MouseButton::MiddleButton)){
+            if(!m_aggregator->injectMouseButtonUp(CEGUI::MouseButton::Middle)){
 
                 m_nextClickedStates |= 0x4;
             }
