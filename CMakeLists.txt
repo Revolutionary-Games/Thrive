@@ -225,7 +225,10 @@ include_directories(
 
 # Compile using c++11 and using sse2
 #no-unused-variable is necessary to supress werror while compiling cAudio
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++1y -msse2 -Wno-unused-function")
+# SOL uses a bunch of recursive templates so unless all lua bindings are written to be
+# less efficient runtime dynamic bindings we need to have bigger template depth.
+# though this may kill compile times
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++1y -msse2 -Wno-unused-function -ftemplate-depth=1500")
 
 
 find_package(Threads)
