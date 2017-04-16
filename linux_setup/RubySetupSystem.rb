@@ -1535,6 +1535,12 @@ def isGoodLDDFound(lib)
     true
   when /.*Xaw.*/i
     true
+  when /.*numa.*/i
+    true
+  when /.*hogweed.*/i
+    true
+  when /.*jasper.*/i
+    true
   else
     false
   end
