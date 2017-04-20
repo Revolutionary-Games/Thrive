@@ -10,7 +10,9 @@ COMPOUND_RELEASE_PERCENTAGE = 0.3
 
 -- Factory function for organelles
 function Organelle.loadOrganelle(storage)
-    local organelle = Organelle(0.1)
+    local name = storage:get("name", "<nameless>")
+    local mass = storage:get("mass", 0.1)
+    local organelle = Organelle(mass, name)
     organelle:load(storage)
     return organelle
 end
@@ -122,9 +124,7 @@ function Organelle:load(storage)
     end
     self.position.q = storage:get("q", 0)
     self.position.r = storage:get("r", 0)
-    self.mass = storage:get("mass", 0.1)
     self.rotation = storage:get("rotation", 0)
-    self.name = storage:get("name", "<nameless>")
     
     local organelleInfo = organelleTable[self.name]
     --adding all of the components.
