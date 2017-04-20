@@ -2,7 +2,7 @@
 class 'Organelle'
 
 -- How fast organelles grow.
-GROWTH_SPEED_MULTILPIER = 0.5
+GROWTH_SPEED_MULTILPIER = 0.5 / 1000
 
 -- Percentage of the compounds that compose the organelle released
 -- upon death (between 0.0 and 1.0).
@@ -341,8 +341,9 @@ function Organelle:growOrganelle(compoundBagComponent, logicTime)
     for compoundName, amount in pairs(self.compoundsLeft) do
         if id - amount < 0 then
             -- The random number is from this compound, so attempt to take it.
-            compoundBagComponent:takeCompound(CompoundRegistry.getCompoundId(compoundName), 1)
-            self.compoundsLeft[compoundName] = self.compoundsLeft[compoundName] - 1.0
+			local amountToTake = math.min(logicTime * GROWTH_SPEED_MULTILPIER, amount)
+            amountToTake = compoundBagComponent:takeCompound(CompoundRegistry.getCompoundId(compoundName), amountToTake)
+            self.compoundsLeft[compoundName] = self.compoundsLeft[compoundName] - amountToTake
             break
 
         else
@@ -429,7 +430,7 @@ function Organelle:reset()
     end
     
     -- Scale the organelle model to reflect the new size.
-    self.sceneNode.transform.scale = Vector3(1, 1, 1)*HEX_SIZE
+    self.sceneNode.transform.scale = Vector3(1, 1, 1) * HEX_SIZE
     self.sceneNode.transform:touch()
         
     -- If it was split from a primary organelle, destroy it.
