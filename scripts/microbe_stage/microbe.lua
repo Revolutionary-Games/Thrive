@@ -29,6 +29,7 @@ function MicrobeComponent:__init(isPlayerMicrobe, speciesName)
     self.dead = false
     self.deathTimer = 0
     self.organelles = {}
+    self.processOrganelles = {} -- Organelles responsible for producing compounds from other compounds
     self.specialStorageOrganelles = {} -- Organelles with complete resonsiblity for a specific compound (such as agentvacuoles)
     self.movementDirection = Vector3(0, 0, 0)
     self.facingTargetPoint = Vector3(0, 0, 0)
@@ -345,6 +346,24 @@ function Microbe:removeStorageOrganelle(storageOrganelle)
     self.microbe.capacity = self.microbe.capacity - storageOrganelle.capacity
 end
 
+-- Removes a process organelle
+-- This will be called automatically by process organelles removed with with removeOrganelle(...)
+--
+-- @param processOrganelle
+--   An object of type ProcessOrganelle
+function Microbe:removeProcessOrganelle(processOrganelle)
+    self.microbe.processOrganelles[processOrganelle] = nil
+end
+
+-- Adds a process organelle
+-- This will be called automatically by process organelles added with addOrganelle(...)
+--
+-- @param processOrganelle
+--   An object of type ProcessOrganelle
+function Microbe:addProcessOrganelle(processOrganelle)
+    self.microbe.processOrganelles[processOrganelle] = processOrganelle
+end
+
 -- Removes a special storage organelle
 -- This will be called automatically by process organelles removed with with removeOrganelle(...)
 --
@@ -607,12 +626,29 @@ end
 
 -- Kills the microbe, releasing stored compounds into the enviroment
 function Microbe:kill()
+    local compoundsToRelease = {}
     -- Eject the compounds that was in the microbe
     for compoundId in CompoundRegistry.getCompoundList() do
         local total = self:getCompoundAmount(compoundId)
-        ejectedAmount = self:takeCompound(compoundId, total)
-        self:ejectCompound(compoundId, ejectedAmount)
-    end    
+        local ejectedAmount = self:takeCompound(compoundId, total)
+        compoundsToRelease[compoundId] = ejectedAmount
+    end
+
+    for _, organelle in pairs(self.microbe.organelles) do
+        for compoundName, amount in pairs(organelleTable[organelle.name].composition) do
+            local compoundId = CompoundRegistry.getCompoundId(compoundName)
+            if(compoundsToRelease[compoundId] == nil) then
+                compoundsToRelease[compoundId] = amount * COMPOUND_RELEASE_PERCENTAGE
+            else
+                compoundsToRelease[compoundId] = compoundsToRelease[compoundId] + amount * COMPOUND_RELEASE_PERCENTAGE
+            end
+        end
+    end
+
+    for compoundId, amount in pairs(compoundsToRelease) do
+        self:ejectCompound(compoundId, amount)
+    end
+
     for compoundId, specialStorageOrg in pairs(self.microbe.specialStorageOrganelles) do
         local _amount = self:getCompoundAmount(compoundId)
         while _amount > 0 do
@@ -795,7 +831,7 @@ function Microbe:update(logicTime)
                 -- If the organelle is hurt.
                 if organelle:getCompoundBin() < 1.0 then
                     -- Give the organelle access to the compound bag to take some compound.
-                    organelle:growOrganelle(self.entity:getComponent(CompoundBagComponent.TYPE_ID))
+                    organelle:growOrganelle(self.entity:getComponent(CompoundBagComponent.TYPE_ID), logicTime)
                     -- An organelle was damaged and we tried to heal it, so out health might be different.
                     self:calculateHealthFromOrganelles()
                 end
@@ -816,12 +852,12 @@ function Microbe:update(logicTime)
                     -- If the organelle is not split, give it some compounds to make it larger.
                     if organelle:getCompoundBin() < 2.0 and not organelle.wasSplit then
                         -- Give the organelle access to the compound bag to take some compound.
-                        organelle:growOrganelle(self.entity:getComponent(CompoundBagComponent.TYPE_ID))
+                        organelle:growOrganelle(self.entity:getComponent(CompoundBagComponent.TYPE_ID), logicTime)
                         reproductionStageComplete = false
                     -- If the organelle was split and has a bin less then 1, it must have been damaged.
                     elseif organelle:getCompoundBin() < 1.0 and organelle.wasSplit then
                         -- Give the organelle access to the compound bag to take some compound.
-                        organelle:growOrganelle(self.entity:getComponent(CompoundBagComponent.TYPE_ID))
+                        organelle:growOrganelle(self.entity:getComponent(CompoundBagComponent.TYPE_ID), logicTime)
                     -- If the organelle is twice its size...
                     elseif organelle:getCompoundBin() >= 2.0 then
                         --Queue this organelle for splitting after the loop.
@@ -834,7 +870,7 @@ function Microbe:update(logicTime)
                     -- If the nucleus hasn't finished replicating its DNA, give it some compounds.
                     if organelle:getCompoundBin() < 2.0 then
                         -- Give the organelle access to the compound back to take some compound.
-                        organelle:growOrganelle(self.entity:getComponent(CompoundBagComponent.TYPE_ID))
+                        organelle:growOrganelle(self.entity:getComponent(CompoundBagComponent.TYPE_ID), logicTime)
                         reproductionStageComplete = false
                     end
                 end
