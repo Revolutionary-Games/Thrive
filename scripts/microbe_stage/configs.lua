@@ -20,7 +20,6 @@ agents = {
     },
 }
 
-
 function toxinEffect(entityId)
     print ("toxin called")
     if math.random(1,4) > 1 then return true end
@@ -43,10 +42,6 @@ function chloroplastEffect(entityId)
     end
     return true
 end
-
-default_thresholds = {
-    oxytoxy = {low = 1, high = 5, vent = 5},
-}
 
 --[[
 Placing organelles can get downright annoying if you don't

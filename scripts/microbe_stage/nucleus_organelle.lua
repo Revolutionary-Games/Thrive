@@ -106,10 +106,10 @@ function NucleusOrganelle:grow(compoundBagComponent)
     local sum = 0
 
     -- Finds which compounds the cell currently has.
-    if compoundBagComponent:aboveLowThreshold(CompoundRegistry.getCompoundId("aminoacids")) >= 1 then
+    if compoundBagComponent:getCompoundAmount(CompoundRegistry.getCompoundId("aminoacids")) >= 1 then
         sum = sum + self.numProteinLeft
     end
-    if compoundBagComponent:aboveLowThreshold(CompoundRegistry.getCompoundId("aminoacids")) >= 1 then
+    if compoundBagComponent:getCompoundAmount(CompoundRegistry.getCompoundId("aminoacids")) >= 1 then
         sum = sum + self.numNucleicAcidsLeft
     end
     
@@ -163,7 +163,8 @@ function NucleusOrganelle:recalculateBin()
         end
     else
         -- Darken the nucleus as more DNA is made.
-        self.sceneNode.entity:tintColour("nucleus" .. self.colourSuffix, ColourValue(2-self.compoundBin, 2-self.compoundBin, 2-self.compoundBin, 1.0))
+        -- crashes the game for reasons
+        --self.sceneNode.entity:tintColour("nucleus" .. self.colourSuffix, ColourValue(2-self.compoundBin, 2-self.compoundBin, 2-self.compoundBin, 1.0))
     end
 end
 
