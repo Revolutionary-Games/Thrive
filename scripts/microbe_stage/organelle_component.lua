@@ -93,9 +93,10 @@ end
 function OrganelleComponent:damage(amount)
 end
 
--- Grows each organelle
+-- Grows each organelle.
 function OrganelleComponent:grow(compoundBagComponent)
 end
 
+-- Resets each organelle.
 function OrganelleComponent:reset()
 end

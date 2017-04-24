@@ -19,7 +19,7 @@ INITIAL_EMISSION_RADIUS = 0.5
 ENGULFING_MOVEMENT_DIVISION = 3
 ENGULFED_MOVEMENT_DIVISION = 4
 ENGULFING_ATP_COST_SECOND = 1.5
-ENGULF_HP_RATIO_REQ = 1.5 
+ENGULF_HP_RATIO_REQ = 1.5
 
 function MicrobeComponent:__init(isPlayerMicrobe, speciesName)
     Component.__init(self)
@@ -577,7 +577,6 @@ end
 --
 -- @param amount
 -- The amount to eject
-local EJECTION_DISTANCE = 3.0
 function Microbe:ejectCompound(compoundId, amount)
     -- The back of the microbe
     local exitX, exitY = axialToCartesian(0, 1)
@@ -768,10 +767,21 @@ function Microbe:flashMembraneColour(duration, colour)
     end
 end
 
+function Microbe:calculateStorageSpace()
+    self.microbe.stored = 0
+    for compoundId in CompoundRegistry.getCompoundList() do
+        self.microbe.stored = self.microbe.stored + self.entity:getComponent(CompoundBagComponent.TYPE_ID):getCompoundAmount(compoundId)
+    end
+end
 
 -- Updates the microbe's state
 function Microbe:update(logicTime)
     if not self.microbe.dead then
+        --calculate storage.
+        self:calculateStorageSpace()
+
+        self.compoundBag.storageSpace = self.microbe.capacity
+
         -- StorageOrganelles
         self:_updateCompoundAbsorber()
         -- Regenerate bandwidth
@@ -1013,16 +1023,52 @@ function Microbe:validPlacement(organelle, q, r)
     end
 end
 
-PURGE_SCALE = 0.4
 
 function Microbe:purgeCompounds()
-    -- Eject a fraction of all compounds over vent thresholds
-    -- TODO: only eject compounds when microbe is full, and eject excess compounds proportionally to the amount each is in excess
+    local compoundAmountToDump = self.microbe.stored - self.microbe.capacity
+    compoundBag = self.entity:getComponent(CompoundBagComponent.TYPE_ID)
 
+    -- Uncomment to print compound economic information to the console.
+    --[[
+    if self.microbe.isPlayerMicrobe then
+        for compound, _ in pairs(compoundTable) do
+            compoundId = CompoundRegistry.getCompoundId(compound)
+            print(compound, compoundBag:getPrice(compoundId), compoundBag:getDemand(compoundId))
+        end
+    end
+    print("")
+    ]]
+
+    -- Dumping all the useless compounds (with price = 0).
     for compoundId in CompoundRegistry.getCompoundList() do
-        local amount = self.entity:getComponent(CompoundBagComponent.TYPE_ID):excessAmount(compoundId) * PURGE_SCALE
-        if amount > 0 then amount = self:takeCompound(compoundId, amount) end
-        if amount > 0 then self:ejectCompound(compoundId, amount) end
+        local price = compoundBag:getPrice(compoundId)
+        if price <= 0 then
+            local amountToEject = compoundBag:getCompoundAmount(compoundId)
+            if amount > 0 then amountToEject = self:takeCompound(compoundId, amountToEject) end
+            if amount > 0 then self:ejectCompound(compoundId, amountToEject) end
+        end
+    end
+
+    if compoundAmountToDump > 0 then
+        --Calculating each compound price to dump proportionally.
+        local compoundPrices = {}
+        local priceSum = 0
+        for compoundId in CompoundRegistry.getCompoundList() do
+            local amount = self.entity:getComponent(CompoundBagComponent.TYPE_ID):getCompoundAmount(compoundId)
+
+            if amount > 0 then
+                local price = compoundBag:getPrice(compoundId)
+                compoundPrices[compoundId] = price
+                priceSum = priceSum + price
+            end
+        end
+
+        --Dumping each compound according to it's price.
+        for compoundId, price in pairs(compoundPrices) do
+            amountToEject = compoundAmountToDump * price / priceSum
+            if amount > 0 then amountToEject = self:takeCompound(compoundId, amountToEject) end
+            if amount > 0 then self:ejectCompound(compoundId, amountToEject) end
+        end
     end
 end
 
@@ -1087,7 +1133,7 @@ end
 -- Toggles the absorber on and off depending on the remaining storage
 -- capacity of the storage organelles.
 function Microbe:_updateCompoundAbsorber()
-    if self.microbe.stored >= self.microbe.capacity or 
+    if --self.microbe.stored >= self.microbe.capacity or 
                self.microbe.remainingBandwidth < 1 or 
                self.microbe.dead then
         self.compoundAbsorber:disable()

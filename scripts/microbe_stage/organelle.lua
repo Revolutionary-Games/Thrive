@@ -324,7 +324,7 @@ function Organelle:growOrganelle(compoundBagComponent, logicTime)
 
     -- Finds which compounds the cell currently has.
     for compoundName, amount in pairs(self.compoundsLeft) do
-        if compoundBagComponent:aboveLowThreshold(CompoundRegistry.getCompoundId(compoundName)) >= 1 then
+        if compoundBagComponent:getCompoundAmount(CompoundRegistry.getCompoundId(compoundName)) >= 1 then
             sum = sum + amount
         end
     end
