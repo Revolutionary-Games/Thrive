@@ -20,7 +20,6 @@ function NucleusOrganelle:__init(arguments, data)
     return self
 end
 
-
 -- Overridded from Organelle:onAddedToMicrobe
 function NucleusOrganelle:onAddedToMicrobe(microbe, q, r, rotation, organelle)
     local x, y = axialToCartesian(q-1, r-1)
@@ -83,30 +82,3 @@ function NucleusOrganelle:updateColour(organelle)
         organelle._needsColourUpdate = false
     end]]
 end
-
--- Makes nucleus larger
-function NucleusOrganelle:grow(compoundBagComponent)
-end
-
-function NucleusOrganelle:damage(amount)
-end
-
-function NucleusOrganelle:recalculateBin()
-    -- Calculate the new growth growth
-    --[[self.compoundBin = 2.0 - (self.numProteinLeft + self.numNucleicAcidsLeft)/self.nucleusCost
-    
-    -- If the organelle is damaged...
-    if self.compoundBin < 1.0 then
-        -- Make the nucleus smaller.
-        self.sceneNode.transform.scale = Vector3((1.0 + self.compoundBin)/2, (1.0 + self.compoundBin)/2, (1.0 + self.compoundBin)/2)*HEX_SIZE
-        self.sceneNode.transform:touch()
-        
-        if self.sceneNode.entity ~= nil then        
-            self.sceneNode.entity:tintColour("nucleus" .. self.colourSuffix, ColourValue((1.0 + self.compoundBin)/2, self.compoundBin, self.compoundBin, 1.0))
-        end
-    else
-        -- Darken the nucleus as more DNA is made.
-        self.sceneNode.entity:tintColour("nucleus" .. self.colourSuffix, ColourValue(2-self.compoundBin, 2-self.compoundBin, 2-self.compoundBin, 1.0))
-    end]]
-end
-
