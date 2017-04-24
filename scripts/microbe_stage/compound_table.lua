@@ -84,6 +84,5 @@ compoundTable = {
     ["fattyacids"] = {
         name = "Fatty Acids",
         volume = 1,
-        isUseful = true
     }
 }

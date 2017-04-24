@@ -1,9 +1,18 @@
 -- Container for organelle components for all the organelle components
 class 'Organelle'
 
+-- How fast organelles grow.
+GROWTH_SPEED_MULTILPIER = 0.5 / 1000
+
+-- Percentage of the compounds that compose the organelle released
+-- upon death (between 0.0 and 1.0).
+COMPOUND_RELEASE_PERCENTAGE = 0.3
+
 -- Factory function for organelles
 function Organelle.loadOrganelle(storage)
-    local organelle = Organelle(0.1)
+    local name = storage:get("name", "<nameless>")
+    local mass = storage:get("mass", 0.1)
+    local organelle = Organelle(mass, name)
     organelle:load(storage)
     return organelle
 end
@@ -30,11 +39,33 @@ function Organelle:__init(mass, name)
     
     -- The deviation of the organelle color from the species color
     self._needsColourUpdate = true
-	
-	-- Whether or not this organelle has already divided.
-	self.split = false
+    
+    -- Whether or not this organelle has already divided.
+    self.split = false
     -- If this organelle is a duplicate of another organelle caused by splitting.
     self.isDuplicate = false
+
+    -- The "Health Bar" of the organelle constrained to [0,2]
+    -- 0 means the organelle is dead, 1 means its normal, and 2 means
+    -- its ready to divide.
+    self.compoundBin = 1.0
+
+    -- The compounds left to divide this organelle.
+    -- Decreases every time a required compound is absorbed.
+    self.compoundsLeft = {}
+
+    -- The compounds that make up this organelle. They get reduced each time
+    -- the organelle gets damaged.
+    self.composition = {}
+
+    -- The total number of compounds we need before we can split.
+    self.organelleCost = 0
+
+    for compoundName, amount in pairs(organelleTable[name].composition) do
+        self.compoundsLeft[compoundName] = amount
+        self.composition[compoundName] = amount
+        self.organelleCost = self.organelleCost + amount
+    end
 end
 
 
@@ -93,9 +124,7 @@ function Organelle:load(storage)
     end
     self.position.q = storage:get("q", 0)
     self.position.r = storage:get("r", 0)
-    self.mass = storage:get("mass", 0.1)
     self.rotation = storage:get("rotation", 0)
-    self.name = storage:get("name", "<nameless>")
     
     local organelleInfo = organelleTable[self.name]
     --adding all of the components.
@@ -136,7 +165,31 @@ function Organelle:onAddedToMicrobe(microbe, q, r, rotation)
         self.colour = ColourValue(1, 0, 1, 1)
     end
     self._needsColourUpdate = true
-	
+
+    local offset = Vector3(0,0,0)
+    local count = 0
+    for _, hex in pairs(self.microbe:getOrganelleAt(q, r)._hexes) do
+        count = count + 1
+
+        local x, y = axialToCartesian(hex.q, hex.r)
+        offset = offset + Vector3(x, y, 0)
+    end
+    offset = offset / count
+  
+    self.sceneNode = OgreSceneNodeComponent()
+    self.sceneNode.transform.orientation = Quaternion(Radian(Degree(self.rotation)), Vector3(0, 0, 1))
+    self.sceneNode.transform.position = offset + self.position.cartesian
+    self.sceneNode.transform.scale = Vector3(HEX_SIZE, HEX_SIZE, HEX_SIZE)
+    self.sceneNode.transform:touch()
+    self.sceneNode.parent = microbe.entity
+    self.organelleEntity:addComponent(self.sceneNode)
+    
+    --Adding a mesh to the organelle.
+    local mesh = organelleTable[self.name].mesh
+    if mesh ~= nil then
+        self.sceneNode.meshName = mesh
+    end
+    
     -- Add each OrganelleComponent
     for _, component in pairs(self.components) do
         component:onAddedToMicrobe(microbe, q, r, rotation, self)
@@ -177,7 +230,7 @@ function Organelle:removeHex(q, r)
 end
 
 function Organelle:flashOrganelle(duration, colour)
-	if self.flashDuration == nil then
+    if self.flashDuration == nil then
         
         self.flashColour = colour
         self.flashDuration = duration
@@ -218,69 +271,167 @@ end
 -- @param logicTime
 --  The time since the last call to update()
 function Organelle:update(microbe, logicTime)
-	if self.flashDuration ~= nil then
+    if self.flashDuration ~= nil then
         self.flashDuration = self.flashDuration - logicTime
         local speciesColour = ColourValue(microbe:getSpeciesComponent().colour.x, 
                                           microbe:getSpeciesComponent().colour.y,
                                           microbe:getSpeciesComponent().colour.z, 1)
-		
-		-- How frequent it flashes, would be nice to update the flash function to have this variable
-		if math.fmod(self.flashDuration,600) < 300 then
+        
+        -- How frequent it flashes, would be nice to update the flash function to have this variable
+        if math.fmod(self.flashDuration,600) < 300 then
             self.colour = self.flashColour
-		else
-			self.colour = speciesColour
-		end
-		
+        else
+            self.colour = speciesColour
+        end
+        
         if self.flashDuration <= 0 then
             self.flashDuration = nil
-			self.colour = speciesColour
+            self.colour = speciesColour
         end
         
         self._needsColourUpdate = true
     end
+
+    -- If the organelle is supposed to be another color.
+    if self._needsColourUpdate == true then
+        self:updateColour()
+    end
+
     -- Update each OrganelleComponent
-    for _, component in pairs(self.components) do
+    for componentName, component in pairs(self.components) do
         component:update(microbe, self, logicTime)
     end
 end
 
-function Organelle:getCompoundBin()
-    local count = 0.0
-    local bin = 0.0
-    
-    -- Get each individual OrganelleComponent's bin.
-    for _, component in pairs(self.components) do
-        bin = bin + component.compoundBin
-        count = count + 1.0
+function Organelle:updateColour()
+    if self.sceneNode.entity ~= nil then
+        local entity = self.sceneNode.entity
+        --entity:tintColour(self.name, self.colour) --crashes game
+        
+        self._needsColourUpdate = false
     end
-    
-    return bin / count
+end
+
+function Organelle:getCompoundBin()
+    return self.compoundBin
 end
 
 
 -- Gives organelles more compounds
-function Organelle:growOrganelle(compoundBagComponent)
-    -- Develop each individual OrganelleComponent
-    for _, component in pairs(self.components) do
-        component:grow(compoundBagComponent)
+function Organelle:growOrganelle(compoundBagComponent, logicTime)
+    -- Finds the total number of needed compounds.
+    local sum = 0.0
+
+    -- Finds which compounds the cell currently has.
+    for compoundName, amount in pairs(self.compoundsLeft) do
+        if compoundBagComponent:getCompoundAmount(CompoundRegistry.getCompoundId(compoundName)) >= 1 then
+            sum = sum + amount
+        end
     end
+    
+    -- If sum is 0, we either have no compounds, in which case we cannot grow the organelle, or the
+    -- organelle is ready to split (i.e. compoundBin = 2), in which case we wait for the microbe to
+    -- handle the split.
+    if sum <= 0.0 then return end
+
+    -- Randomly choose which of the compounds are used in reproduction.
+    -- Uses a roulette selection.
+    local id = math.random() * sum
+
+    for compoundName, amount in pairs(self.compoundsLeft) do
+        if id - amount < 0 then
+            -- The random number is from this compound, so attempt to take it.
+			local amountToTake = math.min(logicTime * GROWTH_SPEED_MULTILPIER, amount)
+            amountToTake = compoundBagComponent:takeCompound(CompoundRegistry.getCompoundId(compoundName), amountToTake)
+            self.compoundsLeft[compoundName] = self.compoundsLeft[compoundName] - amountToTake
+            break
+
+        else
+            id = id - amount
+        end
+    end
+
+    -- Calculate the new growth value.
+    self:recalculateBin()
 end
 
-function Organelle:damageOrganelle(amount)
+function Organelle:damageOrganelle(damageAmount)
     -- Flash the organelle that was damaged.
     self:flashOrganelle(3000, ColourValue(1,0.2,0.2,1))
-    
-    -- Damage each individual OrganelleComponent
-    for _, component in pairs(self.components) do
-        component:damage(amount)
+
+    -- Calculate the total number of compounds we need
+    -- to divide now, so that we can keep this ratio.
+    local totalLeft = 0.0
+    for _, amount in pairs(self.compoundsLeft) do
+        totalLeft = totalLeft + amount
+    end
+
+    -- Calculate how much compounds the organelle needs to have
+    -- to result in a health equal to compoundBin - amount.
+    local damageFactor = (2.0 - self.compoundBin + damageAmount) * self.organelleCost / totalLeft
+    for compoundName, amount in pairs(self.compoundsLeft) do
+        self.compoundsLeft[compoundName] = amount * damageFactor
+    end
+
+    self:recalculateBin()
+end
+
+function Organelle:recalculateBin()
+    -- Calculate the new growth growth
+    local totalCompoundsLeft = 0.0
+    for _, amount in pairs(self.compoundsLeft) do
+        totalCompoundsLeft = totalCompoundsLeft + amount
+    end
+    self.compoundBin = 2.0 - totalCompoundsLeft / self.organelleCost
+
+    -- If the organelle is damaged...
+    if self.compoundBin < 1.0 then
+        if self.compoundBin <= 0.0 then
+            -- If it was split from a primary organelle, destroy it.
+            if self.isDuplicate == true then
+                self.microbe:removeOrganelle(self.position.q, self.position.r)
+                
+                -- Notify the organelle the sister organelle it is no longer split.
+                self.sisterOrganelle.wasSplit = false
+                return
+                
+            -- If it is a primary organelle, make sure that it's compound bin is not less than 0.
+            else
+                self.compoundBin = 0.0
+                for compoundName, amount in pairs(self.composition) do
+                    self.compoundsLeft[compoundName] = 2 * amount
+                end
+            end
+        end
+
+        -- Scale the model at a slower rate (so that 0.0 is half size).
+        if organelleTable[self.name].components["NucleusOrganelle"] == nil then
+            self.sceneNode.transform.scale = Vector3((1.0 + self.compoundBin)/2, (1.0 + self.compoundBin)/2, (1.0 + self.compoundBin)/2)*HEX_SIZE
+            self.sceneNode.transform:touch()
+        end
+
+        -- Darken the color. Will be updated on next call of update()
+        self.colourTint = Vector3((1.0 + self.compoundBin)/2, self.compoundBin, self.compoundBin)
+        self._needsColourUpdate = true
+    else
+        -- Scale the organelle model to reflect the new size.
+        if organelleTable[self.name].components["NucleusOrganelle"] == nil then
+            self.sceneNode.transform.scale = Vector3(self.compoundBin, self.compoundBin, self.compoundBin)*HEX_SIZE
+            self.sceneNode.transform:touch()  
+        end
     end
 end
 
 function Organelle:reset()
-    -- Restores each individual OrganelleComponent to its default state
-    for _, component in pairs(self.components) do
-        component:reset()
+    -- Return the compound bin to its original state
+    self.compoundBin = 1.0
+    for compoundName, amount in pairs(self.composition) do
+        self.compoundsLeft[compoundName] = amount
     end
+    
+    -- Scale the organelle model to reflect the new size.
+    self.sceneNode.transform.scale = Vector3(1, 1, 1) * HEX_SIZE
+    self.sceneNode.transform:touch()
         
     -- If it was split from a primary organelle, destroy it.
     if self.isDuplicate == true then
@@ -300,7 +451,7 @@ class 'OrganelleFactory'
 
 -- Sets the color of the organelle (used in editor for valid/nonvalid placement)
 function OrganelleFactory.setColour(sceneNode, colour)
-	sceneNode.entity:setColour(colour)
+    sceneNode.entity:setColour(colour)
 end
 
 function OrganelleFactory.makeOrganelle(data)
@@ -331,9 +482,9 @@ end
 
 -- Draws the hexes and uploads the models in the editor
 function OrganelleFactory.renderOrganelles(data)
-	if data.name == "remove" then
-		return {}
-	else
+    if data.name == "remove" then
+        return {}
+    else
         --Getting the list hexes occupied by this organelle.
         occupiedHexList = OrganelleFactory.checkSize(data)
 
@@ -368,7 +519,7 @@ function OrganelleFactory.renderOrganelles(data)
             data.sceneNode[1].transform.position = Vector3(-xAverage, -yAverage, 0)
             data.sceneNode[1].transform.orientation = Quaternion(Radian(Degree(data.rotation)), Vector3(0, 0, 1))
         end
-	end
+    end
 end
 
 -- Checks which hexes an organelle occupies
