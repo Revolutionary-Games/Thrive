@@ -1,7 +1,5 @@
 --[[
 Process atributes:
-    speedFactor:   How quicly the inputs get transformed into the outputs (i guess).
-
     inputs:   Table with the input compounds of this process, and its quantities.
 
     outputs:    Table with the output compounds of this process, and its quantities.
@@ -9,8 +7,6 @@ Process atributes:
 
 processes = {
     ["Respiration"] = {
-        speedFactor = 0.1,
-
         inputs = {
             glucose = 1,
             oxygen = 6
@@ -23,8 +19,6 @@ processes = {
     },
 
     ["AminoAcidSynthesis"] = {
-        speedFactor = 1,
-
         inputs = {
             glucose = 1,
             ammonia = 1
@@ -38,8 +32,6 @@ processes = {
     },
 
     ["FattyAcidSynthesis"] = {
-        speedFactor = 1,
-
         inputs = {
             glucose = 1,
             ammonia = 1
@@ -53,8 +45,6 @@ processes = {
     },
 
     ["OxyToxySynthesis"] = {
-        speedFactor = 0.1,
-
         inputs = {
             atp = 1,
             oxygen = 3
@@ -66,8 +56,6 @@ processes = {
     },
 
     ["Photosynthesis"] = {
-        speedFactor = 0.03,
-
         inputs = {
             co2 = 6
         },

@@ -166,13 +166,13 @@ function OrganelleComponent:grow(compoundBagComponent)
     local sum = 0
 
     -- Finds which compounds the cell currently has.
-    if compoundBagComponent:aboveLowThreshold(CompoundRegistry.getCompoundId("glucose")) >= 1 then
+    if compoundBagComponent:getCompoundAmount(CompoundRegistry.getCompoundId("glucose")) >= 1 then
         sum = sum + self.numGlucoseLeft
     end
-    if compoundBagComponent:aboveLowThreshold(CompoundRegistry.getCompoundId("aminoacids")) >= 1 then
+    if compoundBagComponent:getCompoundAmount(CompoundRegistry.getCompoundId("aminoacids")) >= 1 then
         sum = sum + self.numAminoAcidsLeft
     end
-    if compoundBagComponent:aboveLowThreshold(CompoundRegistry.getCompoundId("fattyacids")) >= 1 then
+    if compoundBagComponent:getCompoundAmount(CompoundRegistry.getCompoundId("fattyacids")) >= 1 then
         sum = sum + self.numFattyAcidsLeft
     end
     
