@@ -31,6 +31,12 @@ def checkRunFolder(suggestedfolder)
   end
 end
 
+def projectFolder(baseDir)
+
+  return baseDir
+  
+end
+
 require_relative '../linux_setup/RubySetupSystem'
 
 Dir.chdir(CurrentDir) do

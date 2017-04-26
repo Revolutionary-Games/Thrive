@@ -155,7 +155,7 @@ CEGUIWindow::CEGUIWindow(
     std::string name
 ){
     m_window = CEGUI::WindowManager::getSingleton().createWindow(type, name);
-    //Only used for when the gui movement mode is activated                      );
+    //Only used for when the gui movement mode is activated  
     m_window->subscribeEvent("MouseClick", handleWindowMove);
 }
 
@@ -167,61 +167,74 @@ CEGUIWindow::~CEGUIWindow()
 void CEGUIWindow::luaBindings(
     sol::state &lua
 ){
-    lua.new_usertype<CEGUIWindow>("CEGUIWindow",
-
+    // This needs to be incrementally created usertype because otherwise there are way too
+    // many template instantations and the compiler doesn't like it
+    auto ceguiWindowRegistration = lua.create_simple_usertype<CEGUIWindow>(
         sol::constructors<sol::types<std::string>, sol::types<std::string, std::string>>(),
 
         "isNull", &CEGUIWindow::isNull,
         "getText", &CEGUIWindow::getText,
-        "setText", &CEGUIWindow::setText,
-        "appendText", &CEGUIWindow::appendText,
-        "setImage", &CEGUIWindow::setImage,
-        "setProperty", &CEGUIWindow::setProperty,
-        "getParent", &CEGUIWindow::getParent,
-        "getChild", &CEGUIWindow::getChild,
-        "addChild", &CEGUIWindow::addChild,
-        "removeChild", &CEGUIWindow::removeChild,
-        "registerEventHandler", static_cast<void (CEGUIWindow::*)(const std::string&,
-            const sol::function&) const>(&CEGUIWindow::registerEventHandler),
-        "enable", &CEGUIWindow::enable,
-        "disable", &CEGUIWindow::disable,
-        "setFocus", &CEGUIWindow::setFocus,
-        "show", &CEGUIWindow::show,
-        "hide", &CEGUIWindow::hide,
-        "moveToFront", &CEGUIWindow::moveToFront,
-        "moveToBack", &CEGUIWindow::moveToBack,
-        "moveInFront", &CEGUIWindow::moveInFront,
-        "moveBehind", &CEGUIWindow::moveBehind,
-        "setPositionAbs", &CEGUIWindow::setPositionAbs,
-        "setPositionRel", &CEGUIWindow::setPositionRel,
-        "setSizeAbs", &CEGUIWindow::setSizeAbs,
-        "setSizeRel", &CEGUIWindow::setSizeRel,
-        "getName", &CEGUIWindow::getName,
-        "playAnimation", &CEGUIWindow::playAnimation,
-        "listWidgetAddItem", &CEGUIWindow::listWidgetAddStandardItem,
-        "listWidgetAddItem", &CEGUIWindow::listWidgetAddTextItem,
-        "listWidgetAddItem", &CEGUIWindow::listWidgetAddItem,
-        "listWidgetResetList", &CEGUIWindow::listWidgetResetList,
-        "listWidgetUpdateItem", &CEGUIWindow::listWidgetUpdateItem,
-        "listWidgetGetFirstSelectedID", &CEGUIWindow::listWidgetGetFirstSelectedID,
-        "listWidgetGetFirstSelectedItemText", &CEGUIWindow::listWidgetGetFirstSelectedItemText,
-        "progressbarSetProgress", &CEGUIWindow::progressbarSetProgress,
-        "scrollingpaneAddIcon", &CEGUIWindow::scrollingpaneAddIcon,
-        "scrollingpaneGetVerticalPosition", &CEGUIWindow::scrollingpaneGetVerticalPosition,
-        "scrollingpaneSetVerticalPosition", &CEGUIWindow::scrollingpaneSetVerticalPosition,
-        "registerKeyEventHandler", static_cast<void (CEGUIWindow::*)(const sol::function&)
-        const>(&CEGUIWindow::registerKeyEventHandler),
-        "setGuiMoveMode", &CEGUIWindow::setGuiMoveMode,
-        "getWindowUnderMouse", &CEGUIWindow::getWindowUnderMouse,
+        "setText", &CEGUIWindow::setText
+        
+    );
+    
+    ceguiWindowRegistration.set("appendText", &CEGUIWindow::appendText);
+    ceguiWindowRegistration.set("setImage", &CEGUIWindow::setImage);
+    ceguiWindowRegistration.set("setProperty", &CEGUIWindow::setProperty);
+    ceguiWindowRegistration.set("getParent", &CEGUIWindow::getParent);
+    ceguiWindowRegistration.set("getChild", &CEGUIWindow::getChild);
+    ceguiWindowRegistration.set("addChild", &CEGUIWindow::addChild);
+    ceguiWindowRegistration.set("removeChild", &CEGUIWindow::removeChild);
+    ceguiWindowRegistration.set("registerEventHandler", static_cast<void
+        (CEGUIWindow::*)(const std::string&, const sol::function&)const>(
+            &CEGUIWindow::registerEventHandler));
+    ceguiWindowRegistration.set("enable", &CEGUIWindow::enable);
+    ceguiWindowRegistration.set("disable", &CEGUIWindow::disable);
+    ceguiWindowRegistration.set("setFocus", &CEGUIWindow::setFocus);
+    ceguiWindowRegistration.set("show", &CEGUIWindow::show);
+    ceguiWindowRegistration.set("hide", &CEGUIWindow::hide);
+    ceguiWindowRegistration.set("moveToFront", &CEGUIWindow::moveToFront);
+    ceguiWindowRegistration.set("moveToBack", &CEGUIWindow::moveToBack);
+    ceguiWindowRegistration.set("moveInFront", &CEGUIWindow::moveInFront);
+    ceguiWindowRegistration.set("moveBehind", &CEGUIWindow::moveBehind);
+    ceguiWindowRegistration.set("setPositionAbs", &CEGUIWindow::setPositionAbs);
+    ceguiWindowRegistration.set("setPositionRel", &CEGUIWindow::setPositionRel);
+    ceguiWindowRegistration.set("setSizeAbs", &CEGUIWindow::setSizeAbs);
+    ceguiWindowRegistration.set("setSizeRel", &CEGUIWindow::setSizeRel);
+    ceguiWindowRegistration.set("getName", &CEGUIWindow::getName);
+    ceguiWindowRegistration.set("playAnimation", &CEGUIWindow::playAnimation);
+    ceguiWindowRegistration.set("listWidgetAddItem", &CEGUIWindow::listWidgetAddStandardItem);
+    ceguiWindowRegistration.set("listWidgetAddItem", &CEGUIWindow::listWidgetAddTextItem);
+    ceguiWindowRegistration.set("listWidgetAddItem", &CEGUIWindow::listWidgetAddItem);
+    ceguiWindowRegistration.set("listWidgetResetList", &CEGUIWindow::listWidgetResetList);
+    ceguiWindowRegistration.set("listWidgetUpdateItem", &CEGUIWindow::listWidgetUpdateItem);
+    ceguiWindowRegistration.set("listWidgetGetFirstSelectedID",
+        &CEGUIWindow::listWidgetGetFirstSelectedID);
+    ceguiWindowRegistration.set("listWidgetGetFirstSelectedItemText",
+        &CEGUIWindow::listWidgetGetFirstSelectedItemText); 
+    ceguiWindowRegistration.set("progressbarSetProgress",
+        &CEGUIWindow::progressbarSetProgress);
+    ceguiWindowRegistration.set("scrollingpaneAddIcon", &CEGUIWindow::scrollingpaneAddIcon);
+    ceguiWindowRegistration.set("scrollingpaneGetVerticalPosition",
+        &CEGUIWindow::scrollingpaneGetVerticalPosition);
+    ceguiWindowRegistration.set("scrollingpaneSetVerticalPosition",
+        &CEGUIWindow::scrollingpaneSetVerticalPosition);
+    ceguiWindowRegistration.set("registerKeyEventHandler",
+        static_cast<void (CEGUIWindow::*)(const sol::function&)const>(
+            &CEGUIWindow::registerKeyEventHandler));
+    ceguiWindowRegistration.set("setGuiMoveMode", &CEGUIWindow::setGuiMoveMode);
+    ceguiWindowRegistration.set("getWindowUnderMouse", &CEGUIWindow::getWindowUnderMouse);
 
-        //! Returns the global root window. Use game_state.guiWindow
-        //! instead unless you really need the global root window
-        "getRootWindow", [](){
+    //! Returns the global root window. Use game_state.guiWindow
+    //! instead unless you really need the global root window
+    ceguiWindowRegistration.set("getRootWindow", [](){
 
             return CEGUIWindow(CEGUI::System::getSingleton().
                 getDefaultGUIContext().getRootWindow(), false);
-        }
-    );
+        });
+    
+    // Register it
+    lua.set_usertype("CEGUIWindow", ceguiWindowRegistration);
 }
 
 bool

@@ -195,7 +195,7 @@ Dir.chdir(File.join(CurrentDir, "thrive")) do
 
   info "Making links"
 
-  # It seems that if the link is created when it already exists a llink is created into
+  # It seems that if the link is created when it already exists a link is created into
   # the target folder for some reason
   createLinkIfDoesntExist "assets/cegui_examples", "cegui_examples"
   createLinkIfDoesntExist "assets/fonts", "fonts"
@@ -241,14 +241,6 @@ Dir.chdir(File.join(CurrentDir, "thrive", "build")) do
 end
 
 success "Done compiling thrive"
-
-# Create a link from liblua.so to fix undefined symbol: _Z13luaL_newstatev
-Dir.chdir(File.join(CurrentDir, "thrive", "build")) do
-
-  FileUtils.ln_sf "contrib/lua/liblua.so", "liblua.so"
-  
-end
-
 
 info "run the game with '#{CurrentDir}/thrive/build/Thrive'"
 

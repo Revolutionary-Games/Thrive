@@ -21,7 +21,7 @@ struct Mouse::Implementation : public OIS::MouseListener {
 
         m_aggregator->injectMouseWheelChange(e.state.Z.rel/100);
 
-        
+
         return true;
     }
     bool mousePressed (const OIS::MouseEvent&, OIS::MouseButtonID id){
@@ -104,7 +104,7 @@ void Mouse::luaBindings(
         "MB_Button5", sol::var(OIS::MB_Button5),
         "MB_Button6", sol::var(OIS::MB_Button6),
         "MB_Button7", sol::var(OIS::MB_Button7),
-        
+
         "isButtonDown", &Mouse::isButtonDown,
         "wasButtonPressed", &Mouse::wasButtonPressed,
         "normalizedPosition", &Mouse::normalizedPosition,
