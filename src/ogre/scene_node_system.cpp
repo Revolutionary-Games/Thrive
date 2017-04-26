@@ -113,7 +113,7 @@ void OgreSceneNodeComponent::luaBindings(
         "position", &Transform::position,
         "scale", &Transform::scale
     );
-    
+
     lua.new_usertype<OgreSceneNodeComponent>("OgreSceneNodeComponent",
 
         "new", sol::factories([](){
@@ -234,7 +234,7 @@ void OgreAddSceneNodeSystem::luaBindings(
     lua.new_usertype<OgreAddSceneNodeSystem>("OgreAddSceneNodeSystem",
 
         sol::constructors<sol::types<>>(),
-        
+
         sol::base_classes, sol::bases<System>(),
 
         "init", &OgreAddSceneNodeSystem::init
@@ -316,7 +316,7 @@ void OgreRemoveSceneNodeSystem::luaBindings(
     lua.new_usertype<OgreRemoveSceneNodeSystem>("OgreRemoveSceneNodeSystem",
 
         sol::constructors<sol::types<>>(),
-        
+
         sol::base_classes, sol::bases<System>(),
 
         "init", &OgreRemoveSceneNodeSystem::init
@@ -405,7 +405,7 @@ void OgreUpdateSceneNodeSystem::luaBindings(
     lua.new_usertype<OgreUpdateSceneNodeSystem>("OgreUpdateSceneNodeSystem",
 
         sol::constructors<sol::types<>>(),
-        
+
         sol::base_classes, sol::bases<System>(),
 
         "init", &OgreUpdateSceneNodeSystem::init

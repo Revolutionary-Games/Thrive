@@ -34,14 +34,15 @@ If ([string]::IsNullOrEmpty($MINGW_ENV)) {
 
 mkdir (Join-Path $MINGW_ENV cmake) -force | out-null
 mkdir (Join-Path $MINGW_ENV install) -force | out-null
-
-
+mkdir (Join-Path $MINGW_ENV\install bin) -force | out-null
+mkdir (Join-Path $MINGW_ENV\install\bin Release) -force
+mkdir (Join-Path $MINGW_ENV\install\bin Debug) -force
 
 #####################
 # Install libraries #
 #####################
-#
-$LIBRARIES =  $LIBRARIES =  "7zip","cmake", "mingw", "boost", "ogre_dependencies", "ogre", "bullet", "ogg", "vorbis", "OpenAl", "TinyXML", "cegui_dependencies", "cegui","cAudio", "ffmpeg"
+
+$LIBRARIES =  $LIBRARIES = "7zip","cmake", "mingw", "boost", "ogre_dependencies", "ogre", "bullet", "ogg", "vorbis", "OpenAl", "TinyXML", "cegui_dependencies", "cegui","cAudio", "ffmpeg", "luajit"
 foreach ($LIBRARY in $LIBRARIES) {
     $INSTALL_SCRIPT = Join-Path $DIR (Join-Path $LIBRARY install.ps1)
     & $INSTALL_SCRIPT $MINGW_ENV

@@ -162,7 +162,7 @@ link_directories(
 set(LUA_FOUND TRUE)
 
 if(WIN32)
-  set(LUA_LIBRARIES luajit.lib)
+  set(LUA_LIBRARIES lua51.dll)
 else()
   set(LUA_LIBRARIES luajit.a dl)
 endif()
@@ -225,7 +225,7 @@ include_directories(
 
 # Compile using c++11 and using sse2
 #no-unused-variable is necessary to supress werror while compiling cAudio
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++1y -msse2 -Wno-unused-function")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++1y -msse2 -Wno-unused-function -Wno-error=redundant-decls")
 
 
 find_package(Threads)
@@ -572,6 +572,8 @@ if(WIN32)
         "${MINGW_ENV}/install/bin/avutil-55.dll"
         "${MINGW_ENV}/install/bin/swscale-4.dll"
         "${MINGW_ENV}/install/bin/swresample-2.dll"
+		"${CMAKE_SOURCE_DIR}/contrib/lua/luajit/src/lua51.dll"
+		"${CMAKE_SOURCE_DIR}/contrib/lua/luajit/src/luajit.exe"
         DESTINATION bin
 		CONFIGURATIONS Debug
     )

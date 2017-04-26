@@ -74,6 +74,12 @@ $ARGUMENTS = "x",
 & $7z $ARGUMENTS  | out-null
 
 
+(Get-Content $WORKING_DIR/cAudio-5c932101891e4e63b93b03803d34342fbdb9f0a3/cAudio/include/cAudioString.h) | 
+Foreach-Object {$_ -replace '1023, 0, false',' 1023, 0, (int)false'}  | 
+Out-File -Encoding "UTF8"  $WORKING_DIR/cAudio-5c932101891e4e63b93b03803d34342fbdb9f0a3/cAudio/include/cAudioString.h
+
+
+
 ###########
 # Compile #
 ###########
