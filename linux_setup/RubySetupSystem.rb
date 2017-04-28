@@ -30,7 +30,7 @@ InstallCEED = false
 DoSudoInstalls = true
 
 # If true dependencies won't be updated from remote repositories
-SkipPullUpdates = true
+SkipPullUpdates = false
 
 # If true skips all dependencies
 OnlyMainProject = false
