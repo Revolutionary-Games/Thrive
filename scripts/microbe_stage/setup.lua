@@ -165,8 +165,15 @@ function createCompoundCloud(compoundName, x, y, amount)
     if amount == nil then amount = currentBiome.compounds[compoundName] end
     if amount == nil then amount = 0 end
 
-    if compoundTable[compoundName] and compoundTable[compoundName].isCloud then
-        Entity("compound_cloud_" .. compoundName):getComponent(CompoundCloudComponent.TYPE_ID):addCloud(amount, x, y)
+    if compoundTable[compoundName] and compoundTable[compoundName].convertsTo then
+        for otherCompoundName, otherCompoundAmount in pairs(compoundTable[compoundName].convertsTo) do
+            -- Be careful with infinite loops.
+            createCompoundCloud(otherCompoundName, x, y, amount * otherCompoundAmount)
+        end
+    else
+        if compoundTable[compoundName] and compoundTable[compoundName].isCloud then
+            Entity("compound_cloud_" .. compoundName):getComponent(CompoundCloudComponent.TYPE_ID):addCloud(amount, x, y)
+        end
     end
 end
 

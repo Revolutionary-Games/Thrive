@@ -11,13 +11,23 @@ Compound atributes:
 
     isUseful:   Whether this compound has some use for microbes besides being transformed
                 into other compounds (i.e.: ATP is useful because the microbe spends it to move).
+
+	convertsTo: An optional attribute, a table of compounds with some amount.
+                For each "unit" of the original compound that would be created as a cloud,
+                an amount specified on the table will be created instead.
+                If this attribute is used then the attribute "isCloud" is ignored.
 ]]
 
 compoundTable = {
     ["atp"] = {
         name = "ATP",
         volume = 1,
-        isUseful = true
+        isUseful = true,
+
+        convertsTo = {
+            glucose = 1 / 40,
+            oxygen = 1 / 5
+        } -- should it be less?
     },
 
     ["oxygen"] = {
@@ -84,5 +94,6 @@ compoundTable = {
     ["fattyacids"] = {
         name = "Fatty Acids",
         volume = 1,
+        convertsTo = {ammonia = 0.5}
     }
 }
