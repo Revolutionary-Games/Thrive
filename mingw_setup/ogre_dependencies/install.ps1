@@ -98,6 +98,7 @@ foreach ($BUILD_TYPE in $BUILD_TYPES) {
 
     $ARGUMENTS =
         "-DCMAKE_PROGRAM_PATH=$MINGW_ENV/bin/",
+		"-DCMAKE_CXX_FLAGS:string=-Wno-narrowing",
         "-DCMAKE_TOOLCHAIN_FILE=$TOOLCHAIN_FILE",
         "-DCMAKE_INSTALL_PREFIX=$MINGW_ENV/install",
         "-DCMAKE_C_FLAGS=-shared-libgcc",

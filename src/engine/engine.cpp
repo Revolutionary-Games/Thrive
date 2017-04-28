@@ -37,6 +37,7 @@
 #include "gui/VideoPlayer.h"
 
 // Scripting
+#include "luajit/src/lua.hpp"
 #include "scripting/luajit.h"
 #include "scripting/script_initializer.h"
 
@@ -123,7 +124,7 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
             std::cerr << "Error loading file: " << e.what() << std::endl;
             throw;
         }
-        
+
         // Load game states
         sol::protected_function luaMethod = m_luaState["g_luaEngine"]
             ["loadSavegameGameStates"];
@@ -132,7 +133,7 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
 
             throw std::runtime_error("LuaEngine failed to load saved game states");
         }
-                
+
         m_playerData.load(savegame.get<StorageContainer>("playerData"));
     }
 
@@ -215,7 +216,7 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
                     std::cerr << "Failed to run Lua file: " << manifestEntryPath.string() <<
                         std::endl << " error: " << runResult.get<std::string>() <<
                         std::endl;
-                    
+
                     return false;
                 }
             }
@@ -238,7 +239,7 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
         }
 
         savegame.set("playerData", m_playerData.storage());
-        
+
         savegame.set("thriveversion", m_thriveVersion);
         std::ofstream stream(
             m_serialization.saveFile,
@@ -317,7 +318,7 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
         // Load gui Images needed by AlphaHitWindow //
         // This loads this image before continuing. Could be in a background thread
         m_guiHelper.getTexture("ThriveGeneric.png");
-        
+
         CEGUI::WindowFactoryManager::addFactory<CEGUI::TplWindowFactory<AlphaHitWindow> >();
 
         CEGUI::OgreRenderer::bootstrapSystem();
@@ -409,22 +410,22 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
         const std::string &file
     ) {
         std::ifstream versionFile (file);
-        
+
         if(versionFile.is_open()){
-            
+
             std::getline(versionFile, m_thriveVersion);
-            
+
             // Check for successfull read //
             if(m_thriveVersion.empty())
                 return false;
-            
+
             return true;
         }
-        
+
         return false;
     }
 
-    
+
     void
     shutdownInputManager() {
         if (not m_input.inputManager) {
@@ -468,7 +469,7 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
         Ogre::RenderWindow* renderWindow = nullptr;
 
     } m_graphics;
-    
+
     // Lua state must be one of the last to be destroyed, so keep it
     // at top. The reason for that is that some components keep
     // sol::object instances around that rely on the lua state to
@@ -517,7 +518,7 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
 
 void Engine::luaBindings(
     sol::state &lua
-){    
+){
     lua.new_usertype<Engine>("__Engine",
 
         "new", sol::no_constructor,
@@ -578,20 +579,19 @@ Engine::rng() {
 
 void
 Engine::init() {
-    assert(m_impl->m_currentGameState == nullptr);
     std::srand(unsigned(time(0)));
     m_impl->setupLog();
     m_impl->setupScripts();
     m_impl->loadVersionNumber();
-    
+
     m_impl->setupGraphics();
     m_impl->setupGUI();
-    
+
     m_impl->setupInputManager();
 
     // Install the Thrive error handler by default
     sol::protected_function::set_default_handler(m_impl->m_luaState["thrivePanic"]);
-    
+
     if(!m_impl->loadScripts("../scripts")){
 
         throw std::runtime_error("Engine failed to load Lua scripts");
@@ -605,7 +605,7 @@ Engine::init() {
 
         throw std::runtime_error("Failed to initialize LuaEngine side");
     }
-    
+
     // OgreOggSoundManager must be initialized after at least one
     // Ogre::SceneManager has been instantiated so we need to hope
     // that the lua engine had a gamestate to initialize that uses
@@ -634,7 +634,7 @@ Engine::transferEntityGameState(
 
     auto result = luaMethod(m_impl->m_luaState["g_luaEngine"],
         id, entityManager, targetState);
-    
+
     if(!result.valid())
     {
         throw std::runtime_error("Failed call LuaEngine:transferEntityGameState");
@@ -652,9 +652,9 @@ Engine::isSystemTimedShutdown(
 
     auto result = luaMethod(m_impl->m_luaState["g_luaEngine"],
         system);
-    
+
     if(!result.valid()){
-        
+
         throw std::runtime_error("Failed call LuaEngine:isSystemTimedShutdown");
     }
 
@@ -671,9 +671,9 @@ Engine::timedSystemShutdown(
 
     auto result = luaMethod(m_impl->m_luaState["g_luaEngine"],
         system, timeInMS);
-    
+
     if(!result.valid()){
-        
+
         throw std::runtime_error("Failed call LuaEngine:timedSystemShutdown");
     }
 }
@@ -693,7 +693,7 @@ Engine::getCurrentGameStateFromLua(
 
     if(!statePtr)
         throw std::runtime_error("Engine: current GameStateData is nullptr");
-    
+
     return statePtr;
 }
 
@@ -752,7 +752,7 @@ Engine::ogreRoot() const {
 
 GUITextureHelper&
 Engine::guiTextureHelper() const{
-    
+
     return m_impl->m_guiHelper;
 }
 
@@ -836,7 +836,7 @@ Engine::loadCreation(
 
     if(currentManager == nullptr)
         throw std::runtime_error("loadCreation got nullptr as current EntityManager");
-    
+
     return loadCreation(file, *currentManager);
 }
 
@@ -896,7 +896,7 @@ Engine::playerData(){
 
 void
 Engine::shutdown() {
-    
+
     sol::protected_function luaShutdown = m_impl->m_luaState["g_luaEngine"]["shutdown"];
 
     if(!luaShutdown(m_impl->m_luaState["g_luaEngine"]).valid()){

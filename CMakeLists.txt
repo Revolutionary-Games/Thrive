@@ -162,7 +162,7 @@ link_directories(
 set(LUA_FOUND TRUE)
 
 if(WIN32)
-  set(LUA_LIBRARIES luajit.lib)
+  set(LUA_LIBRARIES lua51.dll)
 else()
   set(LUA_LIBRARIES luajit.a dl)
 endif()
@@ -228,7 +228,7 @@ include_directories(
 # SOL uses a bunch of recursive templates so unless all lua bindings are written to be
 # less efficient runtime dynamic bindings we need to have bigger template depth.
 # though this may kill compile times
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++1y -msse2 -Wno-unused-function -ftemplate-depth=1500")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++1y -msse2 -Wno-unused-function -Wno-error=redundant-decls -ftemplate-depth=1500" )
 
 
 find_package(Threads)
@@ -575,6 +575,8 @@ if(WIN32)
         "${MINGW_ENV}/install/bin/avutil-55.dll"
         "${MINGW_ENV}/install/bin/swscale-4.dll"
         "${MINGW_ENV}/install/bin/swresample-2.dll"
+		"${CMAKE_SOURCE_DIR}/contrib/lua/luajit/src/lua51.dll"
+		"${CMAKE_SOURCE_DIR}/contrib/lua/luajit/src/luajit.exe"
         DESTINATION bin
 		CONFIGURATIONS Debug
     )

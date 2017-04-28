@@ -68,7 +68,7 @@ void CEGUIVideoPlayer::luaBindings(
 
                 return new CEGUIVideoPlayer(name);
             }),
-        
+
         sol::base_classes, sol::bases<CEGUIWindow>(),
 
         "play", &CEGUIVideoPlayer::play,
@@ -154,7 +154,7 @@ CEGUIVideoPlayer::setVideo(
     }
     m_videoImage->setImageArea(imageArea);
     // You most likely don't want autoscaling for RTT images. If you display it in stretched-mode inside a button or Generic/Image widget, then this setting does not play a role anyways.
-    m_videoImage->setAutoScaled(CEGUI::AutoScaledMode::Disabled);
+    m_videoImage->setAutoScaled(CEGUI::AutoScaledMode::ASM_Disabled);
     m_videoImage->setTexture(&rendererTexture);
 }
 

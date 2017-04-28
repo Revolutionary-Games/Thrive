@@ -131,7 +131,7 @@ foreach ($BUILD_TYPE in $BUILD_TYPES) {
         "-DCEGUI_TINYXML_HAS_2_6_API:bool=TRUE",
         "-DTINYXML_H_PATH:path=$MINGW_ENV/install/include/tinyxml",
      #   -"DBoost_INCLUDE_DIR:path=$MINGW_ENV/install/include/boost",
-        "-DTINYXML_LIB_DBG:filepath=$MINGW_ENV/install/lib/libtinyxml.a", #This should be $MINGW_ENV/install... but that causes strange error.
+        "-DTINYXML_LIB_DBG:filepath=$MINGW_ENV/install/lib/libtinyxml.a", 
         "$LIB_SRC"
 
         Write-Output $MINGW_ENV/install/lib/libtinyxml.a
