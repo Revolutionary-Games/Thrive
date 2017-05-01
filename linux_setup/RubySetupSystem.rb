@@ -2,7 +2,7 @@
 # A ruby script for downloading and installing C++ project dependencies
 # Made by Henri Hyyryläinen
 
-# TODO: remove awk usage for windows compatibility and test this on windows
+# TODO: make cmake use extra find paths on windows and test
 
 require_relative 'RubyCommon.rb'
 require_relative 'DepGlobber.rb'
@@ -844,7 +844,7 @@ end
 class AngelScript < BaseDep
   def initialize
     super("AngelScript", "angelscript")
-    @WantedURL = "http://svn.code.sf.net/p/angelscript/code/tags/2.31.0"
+    @WantedURL = "http://svn.code.sf.net/p/angelscript/code/tags/2.31.2"
 
     if @WantedURL[-1, 1] == '/'
       abort "Invalid configuraion in Setup.rb AngelScript tag has an ending '/'. Remove it!"
@@ -859,7 +859,11 @@ class AngelScript < BaseDep
   def DoUpdate
 
     # Check is tag correct
-    currenturl = `svn info | awk '$1 == "URL:" { print $2 }'`.strip!
+    match = `svn info`.strip.match(/.*URL:\s?(.*angelscript\S+).*/i)
+
+    abort("'svn info' unable to find URL with regex") if !match
+    
+    currenturl = match.captures[0]
 
     if currenturl != @WantedURL
       
@@ -1324,7 +1328,7 @@ class CEGUI < BaseDep
     #system "hg update default"
 
     # TODO: allow configuring this commit
-    system "hg update 869014de5669"
+    system "hg update 6510156"
     
     $?.exitstatus == 0
   end
