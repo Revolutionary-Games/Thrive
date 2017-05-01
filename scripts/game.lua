@@ -66,6 +66,9 @@ function enterLuaMain(cppGame)
             print(string.format("FPS: %.4f avg frame duration: %.5f ms", fps,
                                 avgFrameTime))
 
+            -- Use to debug resource leaks in lua
+            --print("Used memory: " .. Engine.luaMemory)
+            
             frameTimes = {}
             lastSecond = now
             fpsCount = 0

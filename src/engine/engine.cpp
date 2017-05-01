@@ -544,6 +544,10 @@ void Engine::luaBindings(
         "mouse", sol::property(&Engine::mouse),
         "paused", sol::property([](Engine &self){
                 return self.m_impl->m_paused;
+            }),
+
+        "luaMemory", sol::property([](Engine &self){
+                return self.m_impl->m_luaState.memory_used();
             })
     );
 }
