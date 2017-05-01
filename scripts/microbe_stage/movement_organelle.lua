@@ -60,11 +60,9 @@ function MovementOrganelle:onAddedToMicrobe(microbe, q, r, rotation, organelle)
         angle = angle + 2*math.pi
     end
     angle = (angle * 180/math.pi + 180) % 360
-        
-    self.sceneNode = OgreSceneNodeComponent.new()
-    organelle.rotation = angle
-	self.sceneNode.transform.orientation = Quaternion.new(Radian.new(Degree(angle)),
-                                                          Vector3(0, 0, 1))
+
+    self.sceneNode = organelle.sceneNode
+	self.sceneNode.transform.orientation = Quaternion.new(Radian.new(Degree(angle)), Vector3(0, 0, 1))
 	self.sceneNode.transform.position = organelle.position.cartesian
     self.sceneNode.transform.scale = Vector3(HEX_SIZE, HEX_SIZE, HEX_SIZE)
     self.sceneNode.transform:touch()
@@ -89,7 +87,6 @@ function MovementOrganelle:load(storage)
 end
 
 function MovementOrganelle:storage()
-    print("storing")
     local storage = StorageContainer.new()
     storage:set("energyMultiplier", self.energyMultiplier)
     storage:set("force", self.force)

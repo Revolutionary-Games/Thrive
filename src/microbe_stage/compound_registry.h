@@ -99,7 +99,8 @@ public:
         const std::string& displayName,
         const std::string& meshName,
         double meshScale,
-		int unitVolume
+        bool isUseful,
+        float unitVolume
     );
 
     /**
@@ -133,7 +134,8 @@ public:
         const std::string& displayName,
         const std::string& meshName,
         double meshScale,
-        int unitVolume,
+        bool isUseful,
+        float unitVolume,
         std::function<bool(EntityId, double)>* effect
     );
 
@@ -168,7 +170,8 @@ public:
         const std::string& displayName,
         const std::string& meshName,
         double meshScale,
-        int unitVolume,
+        bool isUseful,
+        float unitVolume,
         sol::object effect
     );
 
@@ -293,6 +296,11 @@ public:
     */
     static bool
     isAgentType(
+        CompoundId id
+    );
+
+    static bool
+    isUseful(
         CompoundId id
     );
 

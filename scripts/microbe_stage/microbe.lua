@@ -146,7 +146,48 @@ function MicrobeComponent:load(storage)
     -- end
 end
 
+
+function MicrobeComponent:storage()
+    local storage = Component.storage(self)
+    -- Organelles
+    local organelles = StorageList()
+    for _, organelle in pairs(self.organelles) do
+        local organelleStorage = organelle:storage()
+        organelles:append(organelleStorage)
+    end
+    storage:set("organelles", organelles)
+    storage:set("hitpoints", self.hitpoints)
+    storage:set("speciesName", self.speciesName)
+    storage:set("maxHitpoints", self.maxHitpoints)
+    storage:set("remainingBandwidth", self.remainingBandwidth)
+    storage:set("maxBandwidth", self.maxBandwidth)
+    storage:set("isPlayerMicrobe", self.isPlayerMicrobe)
+    storage:set("speciesName", self.speciesName)
+    local storedCompounds = StorageList()
+    for compoundId in CompoundRegistry.getCompoundList() do
+        --[[
+        if self:getCompoundAmount(compoundId) > 0 then
+            compound = StorageContainer()
+            compound:set("compoundId", compoundId)
+            compound:set("amount", amount)
+            storedCompounds:append(compound)
+        end
+        --]]
+    end
+    storage:set("storedCompounds", storedCompounds)
+    -- local compoundPriorities = StorageList()
+    -- for compoundId, priority in pairs(self.compoundPriorities) do
+    --     compound = StorageContainer()
+    --     compound:set("compoundId", compoundId)
+    --     compound:set("priority", priority)
+    --     compoundPriorities:append(compound)
+    -- end
+    -- storage:set("compoundPriorities", compoundPriorities)
+    return storage
+end
+
 REGISTER_COMPONENT("MicrobeComponent", MicrobeComponent)
+
 
 --------------------------------------------------------------------------------
 -- Microbe class
@@ -277,6 +318,8 @@ function Microbe.createMicrobeEntity(name, aiControlled, speciesName, in_editor,
     for _, component in ipairs(components) do
         entity:addComponent(component)
     end
+    return Microbe(entity, in_editor)
+end
 
     local newMicrobe = Microbe(entity, in_editor)
     assert(newMicrobe)
@@ -637,12 +680,29 @@ end
 
 -- Kills the microbe, releasing stored compounds into the enviroment
 function Microbe:kill()
+    local compoundsToRelease = {}
     -- Eject the compounds that was in the microbe
     for _, compoundId in pairs(CompoundRegistry.getCompoundList()) do
         local total = self:getCompoundAmount(compoundId)
-        ejectedAmount = self:takeCompound(compoundId, total)
-        self:ejectCompound(compoundId, ejectedAmount)
-    end    
+        local ejectedAmount = self:takeCompound(compoundId, total)
+        compoundsToRelease[compoundId] = ejectedAmount
+    end
+
+    for _, organelle in pairs(self.microbe.organelles) do
+        for compoundName, amount in pairs(organelleTable[organelle.name].composition) do
+            local compoundId = CompoundRegistry.getCompoundId(compoundName)
+            if(compoundsToRelease[compoundId] == nil) then
+                compoundsToRelease[compoundId] = amount * COMPOUND_RELEASE_PERCENTAGE
+            else
+                compoundsToRelease[compoundId] = compoundsToRelease[compoundId] + amount * COMPOUND_RELEASE_PERCENTAGE
+            end
+        end
+    end
+
+    for compoundId, amount in pairs(compoundsToRelease) do
+        self:ejectCompound(compoundId, amount)
+    end
+
     for compoundId, specialStorageOrg in pairs(self.microbe.specialStorageOrganelles) do
         local _amount = self:getCompoundAmount(compoundId)
         while _amount > 0 do
@@ -818,7 +878,7 @@ function Microbe:update(logicTime)
                 -- If the organelle is hurt.
                 if organelle:getCompoundBin() < 1.0 then
                     -- Give the organelle access to the compound bag to take some compound.
-                    organelle:growOrganelle(getComponent(self.entity, CompoundBagComponent))
+                    organelle:growOrganelle(getComponent(self.entity, CompoundBagComponent), logicTime)
                     -- An organelle was damaged and we tried to heal it, so out health might be different.
                     self:calculateHealthFromOrganelles()
                 end
@@ -839,12 +899,12 @@ function Microbe:update(logicTime)
                     -- If the organelle is not split, give it some compounds to make it larger.
                     if organelle:getCompoundBin() < 2.0 and not organelle.wasSplit then
                         -- Give the organelle access to the compound bag to take some compound.
-                        organelle:growOrganelle(getComponent(self.entity, CompoundBagComponent))
+                        organelle:growOrganelle(getComponent(self.entity, CompoundBagComponent), logicTime)
                         reproductionStageComplete = false
                     -- If the organelle was split and has a bin less then 1, it must have been damaged.
                     elseif organelle:getCompoundBin() < 1.0 and organelle.wasSplit then
                         -- Give the organelle access to the compound bag to take some compound.
-                        organelle:growOrganelle(getComponent(self.entity, CompoundBagComponent))
+                        organelle:growOrganelle(getComponent(self.entity, CompoundBagComponent), logicTime)
                     -- If the organelle is twice its size...
                     elseif organelle:getCompoundBin() >= 2.0 then
                         --Queue this organelle for splitting after the loop.
@@ -857,7 +917,7 @@ function Microbe:update(logicTime)
                     -- If the nucleus hasn't finished replicating its DNA, give it some compounds.
                     if organelle:getCompoundBin() < 2.0 then
                         -- Give the organelle access to the compound back to take some compound.
-                        organelle:growOrganelle(getComponent(self.entity, CompoundBagComponent))
+                        organelle:growOrganelle(getComponent(self.entity, CompoundBagComponent), logicTime)
                         reproductionStageComplete = false
                     end
                 end
@@ -1013,14 +1073,50 @@ end
 PURGE_SCALE = 0.4
 
 function Microbe:purgeCompounds()
-    -- Eject a fraction of all compounds over vent thresholds
-    -- TODO: only eject compounds when microbe is full, and eject excess compounds proportionally to the amount each is in excess
+    local compoundAmountToDump = self.microbe.stored - self.microbe.capacity
+    compoundBag = self.entity:getComponent(CompoundBagComponent.TYPE_ID)
 
-    for _, compoundId in pairs(CompoundRegistry.getCompoundList()) do
-        local amount = getComponent( self.entity, CompoundBagComponent
-        ):excessAmount(compoundId) * PURGE_SCALE
-        if amount > 0 then amount = self:takeCompound(compoundId, amount) end
-        if amount > 0 then self:ejectCompound(compoundId, amount) end
+    -- Uncomment to print compound economic information to the console.
+    --[[
+    if self.microbe.isPlayerMicrobe then
+        for compound, _ in pairs(compoundTable) do
+            compoundId = CompoundRegistry.getCompoundId(compound)
+            print(compound, compoundBag:getPrice(compoundId), compoundBag:getDemand(compoundId))
+        end
+    end
+    print("")
+    ]]
+
+    -- Dumping all the useless compounds (with price = 0).
+    for _, compoundId in CompoundRegistry.getCompoundList() do
+        local price = compoundBag:getPrice(compoundId)
+        if price <= 0 then
+            local amountToEject = compoundBag:getCompoundAmount(compoundId)
+            if amount > 0 then amountToEject = self:takeCompound(compoundId, amountToEject) end
+            if amount > 0 then self:ejectCompound(compoundId, amountToEject) end
+        end
+    end
+
+    if compoundAmountToDump > 0 then
+        --Calculating each compound price to dump proportionally.
+        local compoundPrices = {}
+        local priceSum = 0
+        for _, compoundId in CompoundRegistry.getCompoundList() do
+            local amount = self.entity:getComponent(CompoundBagComponent.TYPE_ID):getCompoundAmount(compoundId)
+
+            if amount > 0 then
+                local price = compoundBag:getPrice(compoundId)
+                compoundPrices[compoundId] = price
+                priceSum = priceSum + price
+            end
+        end
+
+        --Dumping each compound according to it's price.
+        for _, compoundId, price in pairs(compoundPrices) do
+            amountToEject = compoundAmountToDump * price / priceSum
+            if amount > 0 then amountToEject = self:takeCompound(compoundId, amountToEject) end
+            if amount > 0 then self:ejectCompound(compoundId, amountToEject) end
+        end
     end
 end
 
@@ -1089,7 +1185,7 @@ end
 -- Toggles the absorber on and off depending on the remaining storage
 -- capacity of the storage organelles.
 function Microbe:_updateCompoundAbsorber()
-    if self.microbe.stored >= self.microbe.capacity or 
+    if --self.microbe.stored >= self.microbe.capacity or 
                self.microbe.remainingBandwidth < 1 or 
                self.microbe.dead then
         self.compoundAbsorber:disable()
@@ -1165,6 +1261,7 @@ function MicrobeSystem:init(gameState)
     
     self.agentCollisions:init(gameState.wrapper)
 end
+
 
 function MicrobeSystem:shutdown()
     LuaSystem.shutdown(self)

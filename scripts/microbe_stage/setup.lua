@@ -42,7 +42,7 @@ local function setupCompounds()
     table.sort(ordered_keys)
     for i = 1, #ordered_keys do
         local k, v = ordered_keys[i], compoundTable[ ordered_keys[i] ]
-        CompoundRegistry.registerCompoundType(k, v["name"], "placeholder.mesh", v["size"], v["weight"])
+        CompoundRegistry.registerCompoundType(k, v["name"], "placeholder.mesh", 1.0, v["isUseful"] == true, v["volume"])
     end    
     CompoundRegistry.loadFromLua({}, agents)
 end
@@ -91,15 +91,6 @@ function setupSpecies(gameState)
         -- iterates over all compounds, and sets amounts and priorities
         for _, compoundID in pairs(CompoundRegistry.getCompoundList()) do
             compound = CompoundRegistry.getCompoundInternalName(compoundID)
-
-            if agents[compound] then
-                thresholdData = default_thresholds[compound]
-            else
-                thresholdData = compoundTable[compound].default_treshold
-            end
-
-             -- we'll need to generate defaults from species template
-            processorComponent:setThreshold(compoundID, thresholdData.low, thresholdData.high, thresholdData.vent)
             compoundData = data.compounds[compound]
             if compoundData ~= nil then
                 amount = compoundData.amount
@@ -108,23 +99,7 @@ function setupSpecies(gameState)
                 -- speciesComponent.compoundPriorities[compoundID] = priority
             end
         end
-        if data[thresholds] ~= nil then
-            local thresholds = data[thresholds]
-            for compoundID in CompoundRegistry.getCompoundList() do
-                compound = CompoundRegistry.getCompoundInternalName(compoundID)
-                if thresholds[compound] ~= nil then
-                    if thresholds[compound].low ~= nil then
-                        processorComponent:setLowThreshold(compoundID, thresholds[compound].low)
-                    end
-                    if thresholds[compound].low ~= nil then
-                        processorComponent:setHighThreshold(compoundID, thresholds[compound].high)
-                    end
-                    if thresholds[compound].vent ~= nil then
-                        processorComponent:setVentThreshold(compoundID, thresholds[compound].vent)
-                    end
-                end
-            end
-        end
+
         local capacities = {}
         for _, organelle in pairs(data.organelles) do
             if organelleTable[organelle.name] ~= nil then

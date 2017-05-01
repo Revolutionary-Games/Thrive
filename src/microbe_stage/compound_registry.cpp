@@ -34,7 +34,8 @@ void CompoundRegistry::luaBindings(
                 const std::string&,
                 const std::string&,
                 double,
-                int,
+                bool,
+                float,
                 sol::object
             )>(&CompoundRegistry::registerAgentType),
         
@@ -58,15 +59,17 @@ void CompoundRegistry::luaBindings(
     );
 }
 
+
 namespace {
     struct CompoundRegistryEntry
     {
         std::string internalName;
         std::string displayName;
-        int unitVolume;
+        float unitVolume;
 		std::string meshName;
         double meshScale;
         bool isAgent;
+        bool isUseful;
         std::function<bool(EntityId, double)>* effect;
     };
 }
@@ -97,14 +100,16 @@ CompoundRegistry::loadFromLua(
         const auto weight = data.get<float>("weight");
         const auto meshname = data.get<std::string>("mesh");
         const auto size = data.get<float>("size");
-        
+        bool isUseful = data.get<bool>("isUseful");        
+
         registerCompoundType(
-            key,
-            name,
-            meshname,
-            size,
-            weight
-        );
+                key,
+                name,
+                meshname,
+                size,
+                isUseful,
+                weight
+            );
     }
 
     for(const auto& pair : agentTable){
@@ -120,13 +125,14 @@ CompoundRegistry::loadFromLua(
         sol::object effect = data["effect"];
         
         registerAgentType(
-            key,
-            name,
-            meshname,
-            size,
-            weight,
-            effect
-        );
+                key,
+                name,
+                meshname,
+                size,
+                true,
+                weight,
+                effect
+            );
     }
 }
 
@@ -146,15 +152,17 @@ CompoundRegistry::loadAgentFromLua(
     // std::cerr << "before casting effect" << std::endl;
     sol::object effect = data["effect"];
     registerAgentType(
-        internal_name,
-        name,
-        meshname,
-        size,
-        weight,
-        effect
-    );
+            internal_name,
+            name,
+            meshname,
+            size,
+            true,
+            weight,
+            effect
+        );
 }
 
+//Currently unused, need's updating to work properly.
 void
 CompoundRegistry::loadFromXML(
     const std::string& filename
@@ -206,6 +214,7 @@ CompoundRegistry::loadFromXML(
                 displayName,
                 meshname,
                 modelSize,
+                true,
                 molecularWeight
             );
             pCompound=pCompound->NextSiblingElement("Compound");
@@ -257,6 +266,7 @@ CompoundRegistry::loadFromXML(
                 displayName,
                 meshname,
                 modelSize,
+                true,
                 molecularWeight,
                 effectLambda
             );
@@ -274,14 +284,19 @@ CompoundRegistry::registerCompoundType(
     const std::string& displayName,
 	const std::string& meshName,
     double meshScale,
-    int unitVolume
+    bool isUseful,
+    float unitVolume
+
 ) {
-    return registerAgentType(internalName,
-                         displayName,
-                         meshName,
-                         meshScale,
-                         unitVolume,
-                         static_cast<std::function<bool(EntityId, double)>*>(nullptr));
+    return registerAgentType(
+        internalName,
+        displayName,
+        meshName,
+        meshScale,
+        isUseful,
+        unitVolume,
+        static_cast<std::function<bool(EntityId, double)>*>(nullptr)
+    );
 }
 
 
@@ -292,7 +307,8 @@ CompoundRegistry::registerAgentType(
     const std::string& displayName,
 	const std::string& meshName,
     double meshScale,
-    int unitVolume,
+    bool isUseful,
+    float unitVolume,
     sol::object effect
 ) {
     auto effectLambda = new std::function<bool(EntityId, double)>(
@@ -304,11 +320,12 @@ CompoundRegistry::registerAgentType(
     //Call overload
     return registerAgentType(
         internalName,
-        displayName,
-        meshName,
-        meshScale,
-        unitVolume,
-        effectLambda);
+         displayName,
+         meshName,
+         meshScale,
+         isUseful,
+         unitVolume,
+         effectLambda);
 }
 
 CompoundId
@@ -317,7 +334,8 @@ CompoundRegistry::registerAgentType(
     const std::string& displayName,
 	const std::string& meshName,
     double meshScale,
-    int unitVolume,
+    bool isUseful,
+    float unitVolume,
     std::function<bool(EntityId, double)>* effect
 ) {
     if (compoundRegistryMap().count(internalName) == 0)
@@ -330,6 +348,7 @@ CompoundRegistry::registerAgentType(
         entry.unitVolume = unitVolume;
         entry.effect = effect;
         entry.isAgent = (effect != nullptr);
+        entry.isUseful = entry.isAgent || isUseful;
         compoundRegistry().push_back(entry);
         compoundRegistryMap().emplace(std::string(internalName), compoundRegistry().size());
         return compoundRegistry().size();
@@ -425,4 +444,13 @@ CompoundRegistry::isAgentType(
     if (static_cast<std::size_t>(id) > compoundRegistry().size())
         throw std::out_of_range("Index of compound does not exist.");
     return compoundRegistry()[id-1].isAgent;
+}
+
+bool
+CompoundRegistry::isUseful(
+    CompoundId id
+) {
+    if (static_cast<std::size_t>(id) > compoundRegistry().size())
+        throw std::out_of_range("Index of compound does not exist.");
+    return compoundRegistry()[id-1].isUseful;
 }

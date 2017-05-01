@@ -1,13 +1,18 @@
 #include <iostream>
 #include <cmath>
+#include <algorithm>
+#include <map>
 
 #include "engine/component_factory.h"
 #include "engine/engine.h"
 #include "engine/entity.h"
 #include "engine/entity_filter.h"
 #include "engine/game_state.h"
+#include "engine/entity_filter.h"
 #include "engine/serialization.h"
 #include "game.h"
+
+#include "general/thrive_math.h"
 
 #include "microbe_stage/compound.h"
 #include "microbe_stage/compound_registry.h"
@@ -29,29 +34,15 @@ void ProcessorComponent::luaBindings(
         
         COMPONENT_BINDINGS(ProcessorComponent),
 
-        "setThreshold", &ProcessorComponent::setThreshold,
-        "setLowThreshold", &ProcessorComponent::setLowThreshold,
-        "setHighThreshold", &ProcessorComponent::setHighThreshold,
-        "setVentThreshold", &ProcessorComponent::setVentThreshold,
         "setCapacity", &ProcessorComponent::setCapacity
     );
 }
+
 
 void
 ProcessorComponent::load(const StorageContainer& storage)
 {
     Component::load(storage);
-
-    StorageContainer lua_thresholds = storage.get<StorageContainer>("thresholds");
-    for (const std::string& id : lua_thresholds.keys())
-    {
-        StorageContainer threshold = lua_thresholds.get<StorageContainer>(id);
-        float low = threshold.get<float>("low");
-        float high = threshold.get<float>("high");
-        float vent = threshold.get<float>("vent");
-		this->thresholds[std::atoi(id.c_str())] = std::tuple<float, float, float>(low, high, vent);
-	}
-
     StorageContainer processes = storage.get<StorageContainer>("processes");
     for (const std::string& id : processes.keys())
     {
@@ -64,16 +55,6 @@ ProcessorComponent::storage() const
 {
 	StorageContainer storage = Component::storage();
 
-	StorageContainer lua_thresholds;
-	for (auto entry : this->thresholds) {
-        StorageContainer threshold;
-        threshold.set<float>("low", std::get<0>(entry.second));
-        threshold.set<float>("high", std::get<1>(entry.second));
-        threshold.set<float>("vent", std::get<2>(entry.second));
-        lua_thresholds.set<StorageContainer>(std::to_string(static_cast<int>(entry.first)), threshold);
-	}
-    storage.set<StorageContainer>("thresholds", lua_thresholds);
-
 	StorageContainer processes;
     for (auto entry : this->process_capacities) {
         processes.set<float>(std::to_string(static_cast<int>(entry.first)), entry.second);
@@ -82,30 +63,6 @@ ProcessorComponent::storage() const
 
 
 	return storage;
-}
-
-void
-ProcessorComponent::setThreshold(CompoundId id, float low, float high, float vent)
-{
-    this->thresholds[id] = std::tuple<float, float, float>(low, high, vent);
-}
-
-void
-ProcessorComponent::setLowThreshold(CompoundId id, float low)
-{
-    std::get<0>(this->thresholds[id]) = low;
-}
-
-void
-ProcessorComponent::setHighThreshold(CompoundId id, float high)
-{
-    std::get<1>(this->thresholds[id]) = high;
-}
-
-void
-ProcessorComponent::setVentThreshold(CompoundId id, float vent)
-{
-    std::get<2>(this->thresholds[id]) = vent;
 }
 
 void
@@ -131,14 +88,20 @@ void CompoundBagComponent::luaBindings(
         "giveCompound", &CompoundBagComponent::giveCompound,
         "takeCompound", &CompoundBagComponent::takeCompound,
         "getCompoundAmount", &CompoundBagComponent::getCompoundAmount,
-        "excessAmount", &CompoundBagComponent::excessAmount,
-        "aboveLowThreshold", &CompoundBagComponent::aboveLowThreshold
+        "getPrice", &CompoundBagComponent::getPrice,
+        "getDemand", &CompoundBagComponent::getDemand,
+        "storageSpace", &CompoundBagComponent::storageSpace
     );
 }
 
 CompoundBagComponent::CompoundBagComponent() {
+    storageSpace = 0;
+    storageSpaceOccupied = 0;
     for (CompoundId id : CompoundRegistry::getCompoundList()) {
-        compounds[id] = 0;
+        compounds[id].amount = 0;
+        compounds[id].price = INITIAL_COMPOUND_PRICE;
+        compounds[id].uninflatedPrice = INITIAL_COMPOUND_PRICE;
+        compounds[id].demand = INITIAL_COMPOUND_DEMAND;
     }
 }
 
@@ -147,11 +110,18 @@ CompoundBagComponent::load(const StorageContainer& storage)
 {
     Component::load(storage);
 
-    StorageContainer compounds = storage.get<StorageContainer>("compounds");
+    StorageContainer amounts = storage.get<StorageContainer>("amounts");
+    StorageContainer prices = storage.get<StorageContainer>("prices");
+    StorageContainer uninflatedPrices = storage.get<StorageContainer>("uninflatedPrices");
+    StorageContainer demand = storage.get<StorageContainer>("demand");
 
-    for (const std::string& id : compounds.keys())
+    for (const std::string& id : amounts.keys())
     {
-        this->compounds[std::atoi(id.c_str())] = compounds.get<float>(id);
+        CompoundId compoundId = std::atoi(id.c_str());
+        this->compounds[compoundId].amount = amounts.get<float>(id);
+        this->compounds[compoundId].price = prices.get<float>(id);
+        this->compounds[compoundId].uninflatedPrice = uninflatedPrices.get<float>(id);
+        this->compounds[compoundId].demand = demand.get<float>(id);
 	}
 
 	this->speciesName = storage.get<std::string>("speciesName");
@@ -165,13 +135,24 @@ CompoundBagComponent::storage() const
 {
     StorageContainer storage = Component::storage();
 
-    StorageContainer compounds;
+    StorageContainer amounts;
+    StorageContainer prices;
+    StorageContainer uninflatedPrices;
+    StorageContainer demand;
     for (auto entry : this->compounds) {
-        compounds.set<float>(""+std::to_string(static_cast<int64_t>(entry.first)),
-            entry.second);
-    }
-    storage.set("compounds", std::move(compounds));
+        CompoundId id = entry.first;
+        CompoundData data = entry.second;
 
+        amounts.set<float>(""+id, data.amount);
+        amounts.set<float>(""+id, data.price);
+        amounts.set<float>(""+id, data.uninflatedPrice);
+        amounts.set<float>(""+id, data.demand);
+    }
+
+    storage.set("amounts", std::move(amounts));
+    storage.set("prices", std::move(prices));
+    storage.set("uninflatedPrices", std::move(uninflatedPrices));
+    storage.set("demand", std::move(demand));
     storage.set("speciesName", this->speciesName);
 
     return storage;
@@ -186,38 +167,30 @@ CompoundBagComponent::setProcessor(ProcessorComponent& processor, const std::str
 // helper methods for integrating compound bags with current, un-refactored, lua microbes
 float
 CompoundBagComponent::getCompoundAmount(CompoundId id) {
-    return compounds[id];
+    return compounds[id].amount;
 }
 
 void
 CompoundBagComponent::giveCompound(CompoundId id, float amt) {
-    compounds[id] += amt;
+    compounds[id].amount += amt;
 }
 
 float
 CompoundBagComponent::takeCompound(CompoundId id, float to_take) {
-    float& ref = compounds[id];
+    float& ref = compounds[id].amount;
     float amt = ref > to_take ? to_take : ref;
     ref -= amt;
     return amt;
 }
 
 float
-CompoundBagComponent::excessAmount(CompoundId id) {
-
-    if(!this->processor)
-        throw std::runtime_error("CompoundBagComponent doesn't have a processor set");
-    
-    float amt = compounds[id];
-    float threshold = std::get<2>(this->processor->thresholds[id]);
-    return amt > threshold ? amt - threshold : 0;
+CompoundBagComponent::getPrice(CompoundId compoundId) {
+    return compounds[compoundId].price;
 }
 
 float
-CompoundBagComponent::aboveLowThreshold(CompoundId id) {
-    float amt = compounds[id];
-    float threshold = std::get<0>(this->processor->thresholds[id]);
-    return amt > threshold ? amt - threshold : 0;
+CompoundBagComponent::getDemand(CompoundId compoundId) {
+    return compounds[compoundId].demand;
 }
 
 void ProcessSystem::luaBindings(
@@ -243,23 +216,28 @@ struct ProcessSystem::Implementation {
     void update(int);
     void updateAddedEntites(int);
     void updateRemovedEntities(int);
-    inline float step_function(float, float, float, float);
-    inline float step_2(float, float, float);
 
-    static constexpr float SMOOTHING_FACTOR = 1.8;
+    float _demandSofteningFunction(float processCapacity);
+    float _calculatePrice(float oldPrice, float supply, float demand);
+    float _spaceSofteningFunction(float availableSpace, float requiredSpace);
+
+    std::map<float, CompoundId>
+    _getBreakEvenPointMap(BioProcessId processId, CompoundBagComponent* bag);
+
+    float _getOptimalProcessRate(
+        BioProcessId processId,
+        CompoundBagComponent* bag,
+        bool considersSpaceLimitations,
+        float availableSpace
+    );
+
     static constexpr float TIME_SCALING_FACTOR = 1000;
 };
 
 ProcessSystem::ProcessSystem()
-    : m_impl(new Implementation())
-{
+    : m_impl(new Implementation()) {}
 
-}
-
-ProcessSystem::~ProcessSystem()
-{
-
-}
+ProcessSystem::~ProcessSystem() {}
 
 void
 ProcessSystem::init(GameStateData* gameState)
@@ -269,10 +247,7 @@ ProcessSystem::init(GameStateData* gameState)
 }
 
 void
-ProcessSystem::shutdown()
-{
-
-}
+ProcessSystem::shutdown() {}
 
 void
 ProcessSystem::Implementation::updateRemovedEntities(int) {
@@ -290,88 +265,277 @@ ProcessSystem::Implementation::updateAddedEntites(int) {
     // }
 }
 
-/*
-#create a step function
-#return positive if below low, negative if above high
-def step_function(value, threshold, high_threshold, vent_threshold):
-    if value >= high_threshold:
-        return -float(value - high_threshold)/(vent_threshold - high_threshold)
-    elif value >= threshold:
-        return 0
-    elif value < threshold and threshold != 0 and value >= 0:
-        return 1 - (float(value)/threshold)
-    else:
-        print "error in step function, I was passed a negative value"
-        return 0
 
-*/
-
-
-// 0 <= value <=> threshold < high_threshold < vent_threshold
-inline float
-ProcessSystem::Implementation::step_function(float value, float threshold, float high_threshold, float vent_threshold) {
-    if (value >= high_threshold) {
-        return (high_threshold - value) / (vent_threshold - high_threshold);
-    }
-    if (value >= threshold) {
-        return 0;
-    }
-    return 1 - (value/threshold);
+float
+ProcessSystem::Implementation::_demandSofteningFunction(float processCapacity) {
+    return 2 * sigmoid(processCapacity * PROCESS_CAPACITY_DEMAND_MULTIPLIER) - 1.0;
 }
 
-inline float
-ProcessSystem::Implementation::step_2(float value, float threshold, float high_threshold) {
-    if (value > high_threshold)
-        return high_threshold - value;
-    if (value >= threshold) {
-        return 0;
+
+float
+ProcessSystem::Implementation::_calculatePrice(float oldPrice, float supply, float demand) {
+    // float priceAdjustment = sqrt(demand / (supply + 1));
+    // return oldPrice * (COMPOUND_PRICE_MOMENTUM + priceAdjustment - COMPOUND_PRICE_MOMENTUM * priceAdjustment);
+    //(void)oldPrice;
+    return sqrt(demand / (supply + 1)) * COMPOUND_PRICE_MOMENTUM + oldPrice * (1.0 - COMPOUND_PRICE_MOMENTUM);
+}
+
+std::map<float, CompoundId>
+ProcessSystem::Implementation::_getBreakEvenPointMap(
+    BioProcessId processId,
+    CompoundBagComponent* bag
+) {
+    std::map<float, CompoundId> outputBreakEvenPoints;
+
+    for (const auto& output : BioProcessRegistry::getOutputCompounds(processId)) {
+        CompoundId outputId = output.first;
+        int outputGenerated = output.second;
+        CompoundData &compoundData = bag->compounds[outputId];
+
+        float breakEvenPoint = compoundData.breakEvenPoint / outputGenerated;
+        outputBreakEvenPoints[breakEvenPoint] = outputId;
     }
-    return 1 - value/threshold;
+
+    return outputBreakEvenPoints;
+}
+
+float
+ProcessSystem::Implementation::_spaceSofteningFunction(float availableSpace, float requiredSpace) {
+    return 2.0 * (1.0 - sigmoid(requiredSpace / (availableSpace + 1.0) * STORAGE_SPACE_MULTIPLIER));
+    //float MIN_AVAILABLE_SPACE = 0.001;
+    //return 1.0 / (1 + requiredSpace / std::max(availableSpace, MIN_AVAILABLE_SPACE));
+}
+
+float
+ProcessSystem::Implementation::_getOptimalProcessRate(
+    BioProcessId processId,
+    CompoundBagComponent* bag,
+    bool considersSpaceLimitations,
+    float availableSpace
+) {
+    // Calculating the price increment and the base price of the inputs
+    // (the total price is rate * priceIncrement + basePrice).
+    float baseInputPrice = 0;
+    float inputPriceIncrement = 0;
+    for (const auto& input : BioProcessRegistry::getInputCompounds(processId)) {
+        CompoundId inputId = input.first;
+        int inputNeeded = input.second;
+        CompoundData &compoundData = bag->compounds[inputId];
+        float inputVolume = CompoundRegistry::getCompoundUnitVolume(inputId);
+
+        if(considersSpaceLimitations) {
+            float spacePriceDecrement = ProcessSystem::Implementation::_spaceSofteningFunction(availableSpace, inputNeeded * inputVolume);
+            inputPriceIncrement += inputNeeded * compoundData.priceReductionPerUnit * spacePriceDecrement;
+            baseInputPrice += inputNeeded * compoundData.price * spacePriceDecrement;
+        }
+
+        else {
+            inputPriceIncrement += inputNeeded * compoundData.priceReductionPerUnit;
+            baseInputPrice += inputNeeded * compoundData.price;
+        }
+    }
+
+    // Finding the rate at which the costs equal the benefits.
+    // The benefit curve is piecewise lineal and continuous, and the breaking points are
+    // the break-even points of the output compounds.
+    // So first we have to order said break-even points.
+    std::map<float, CompoundId> outputBreakEvenPoints = ProcessSystem::Implementation::_getBreakEvenPointMap(processId, bag);
+
+    // Finding the piece of the function that contains the minimum
+    // TODO: make it use binary search or something...
+    float baseOutputPrice = 0.0;
+    float outputPriceDecrement = 0.0;
+
+    // Getting the initial revenue values
+    for (const auto& output : BioProcessRegistry::getOutputCompounds(processId)) {
+        CompoundId outputId = output.first;
+        int outputGenerated = output.second;
+        CompoundData &compoundData = bag->compounds[outputId];
+        float outputVolume = CompoundRegistry::getCompoundUnitVolume(outputId);
+
+        if(considersSpaceLimitations) {
+            float spacePriceDecrement = ProcessSystem::Implementation::_spaceSofteningFunction(availableSpace, outputGenerated * outputVolume);
+            baseOutputPrice += compoundData.price * outputGenerated * spacePriceDecrement;
+            outputPriceDecrement += compoundData.priceReductionPerUnit * outputGenerated * spacePriceDecrement;
+        }
+
+        else {
+            baseOutputPrice += compoundData.price * outputGenerated;
+            outputPriceDecrement += compoundData.priceReductionPerUnit * outputGenerated;
+        }
+    }
+
+    for (const auto& breakingPoint : outputBreakEvenPoints) {
+        float breakEvenPoint = breakingPoint.first;
+
+        // Calculating the cost.
+        float cost = baseInputPrice + breakEvenPoint * inputPriceIncrement;
+
+        // Calculating the revenue.
+        float baseOutputPrice_l = 0.0;
+        float outputPriceDecrement_l = 0.0;
+        for (const auto& output : BioProcessRegistry::getOutputCompounds(processId)) {
+            CompoundId outputId = output.first;
+            int outputGenerated = output.second;
+            CompoundData &compoundData = bag->compounds[outputId];
+            float outputVolume = CompoundRegistry::getCompoundUnitVolume(outputId);
+
+            // The prices are never below 0.
+            if(compoundData.breakEvenPoint > breakEvenPoint) {
+                if(considersSpaceLimitations) {
+                    float spacePriceDecrement = ProcessSystem::Implementation::_spaceSofteningFunction(availableSpace, outputGenerated * outputVolume);
+                    baseOutputPrice_l += compoundData.price * outputGenerated * spacePriceDecrement;
+                    outputPriceDecrement_l += compoundData.priceReductionPerUnit * outputGenerated * spacePriceDecrement;
+                }
+
+                else {
+                    baseOutputPrice_l += compoundData.price * outputGenerated ;
+                    outputPriceDecrement_l += compoundData.priceReductionPerUnit * outputGenerated;
+                }
+            }
+        }
+
+        float revenue = baseOutputPrice_l - breakEvenPoint * outputPriceDecrement_l;
+
+        if(revenue < cost)
+            // We found the piece :)
+            break;
+
+        baseOutputPrice = baseOutputPrice_l;
+        outputPriceDecrement = outputPriceDecrement_l;
+    }
+
+    // Avoiding zero-division errors.
+    float desiredRate;
+    if(outputPriceDecrement + inputPriceIncrement > 0)
+        desiredRate = (baseOutputPrice - baseInputPrice) / (outputPriceDecrement + inputPriceIncrement);
+    else
+        desiredRate = 0.0;
+    if(desiredRate <= 0.0) return 0.0;
+    return desiredRate;
 }
 
 void
-ProcessSystem::Implementation::update(int) { // int is logicTime
-    // std::cerr << logicTime;
+ProcessSystem::Implementation::update(int logicTime) {
+    //Iterating on each entity with a ProcessorComponent.
     for (auto& value : this->m_entities) {
         CompoundBagComponent* bag = std::get<0>(value.second);
         ProcessorComponent* processor = bag->processor;
-        std::unordered_map<CompoundId, float> actions;
-        for (const auto& compound : bag->compounds) {
-            actions[compound.first] = step_2(compound.second, std::get<0>(processor->thresholds[compound.first]), std::get<1>(processor->thresholds[compound.first]));
-        }
-        for (const auto& process : processor->process_capacities) {
-            if (process.second <= 0) continue;
-            float input_rate = -1, output_rate = -1;
-            for (const auto& input : BioProcessRegistry::getInputCompounds(process.first)) {
-                const float p = actions[input.first];
-                input_rate = input_rate >= p ? input_rate : p;
-            }
-            for (const auto& output : BioProcessRegistry::getOutputCompounds(process.first)) {
-                const float p = actions[output.first];
-                output_rate = output_rate >= p ? output_rate : p;
+
+        // Avoiding zero-division errors.
+        if(bag->storageSpace > 0)
+        {
+            // Calculating the storage space occupied;
+            bag->storageSpaceOccupied = 0;
+            for (const auto& compound : bag->compounds) {
+                float compoundAmount = compound.second.amount;
+                bag->storageSpaceOccupied += compoundAmount;
             }
 
-            float rate = output_rate - input_rate;
-            if (rate > 0) {
-                // scale down the rate using the process's bandwidth and smoothing factor
+            // Calculating the storage space available. The storage space capacity is increased
+            float storageSpaceAvailable = bag->storageSpace - bag->storageSpaceOccupied;
+            if(storageSpaceAvailable <= 0.0) storageSpaceAvailable = 0.0;
 
-                rate = process.second * (1 - exp(-rate * SMOOTHING_FACTOR/process.second));
+            // Phase one: setting up the compound information.
+            for (const auto& compound : bag->compounds) {
+                CompoundId compoundId = compound.first;
+                CompoundData &compoundData = bag->compounds[compoundId];
 
-                bool will_run = true;
-                // can we guarantee that will_run will never be set to false unless there's a bug?
-                // I think so
-                for (const auto& input : BioProcessRegistry::getInputCompounds(process.first)) {
-                    if (rate * input.second >= bag->compounds[input.first]) {
-                        will_run = false;
-                        break;
-                    }
+                // Edge case to get the prices above 0 if some demand exists.
+                if(compoundData.demand > 0 && compoundData.uninflatedPrice <= 0)
+                    compoundData.uninflatedPrice = MIN_POSITIVE_COMPOUND_PRICE;
+
+                // Adjusting the prices according to supply and demand.
+                float oldPrice = compoundData.uninflatedPrice;
+                compoundData.uninflatedPrice =  ProcessSystem::Implementation::_calculatePrice(oldPrice, compoundData.amount, compoundData.demand);
+
+                if(compoundData.demand > 0 && compoundData.uninflatedPrice <= MIN_POSITIVE_COMPOUND_PRICE)
+                    compoundData.uninflatedPrice = MIN_POSITIVE_COMPOUND_PRICE;
+
+                // Setting the prices to 0 if they're below MIN_POSITIVE_COMPOUND_PRICE.
+                if(compoundData.uninflatedPrice < MIN_POSITIVE_COMPOUND_PRICE) {
+                    compoundData.uninflatedPrice = 0;
+                    compoundData.priceReductionPerUnit = 0;
                 }
-                if (will_run) {
-                    for (const auto& input : BioProcessRegistry::getInputCompounds(process.first)) {
-                        bag->compounds[input.first] -= rate * input.second;
+
+                // Calculating how much the price would fall if we had one more unit,
+                // To make predictions with the demand.
+                else {
+                    float reducedPrice =  ProcessSystem::Implementation::_calculatePrice(oldPrice, compoundData.amount + 1, compoundData.demand);
+                    compoundData.priceReductionPerUnit = compoundData.uninflatedPrice - reducedPrice;
+                }
+
+                //Inflating the price if the compound is useful outside of this system.
+                compoundData.price = compoundData.uninflatedPrice;
+                if(CompoundRegistry::isUseful(compoundId))
+                {
+                    compoundData.price += (IMPORTANT_COMPOUND_BIAS + bag->storageSpace) / (compoundData.amount + 1);
+                    float reducedPrice = (IMPORTANT_COMPOUND_BIAS + bag->storageSpace) / (compoundData.amount + 2);
+                    compoundData.priceReductionPerUnit += compoundData.price - reducedPrice;
+                }
+
+                // Calculating the break-even point
+                if(compoundData.price <= 0.0)
+                    compoundData.breakEvenPoint = 0;
+                else
+                    compoundData.breakEvenPoint = compoundData.price / compoundData.priceReductionPerUnit;
+
+                // Setting the demand to 0 in order to recalculate it later.
+                compoundData.demand = 0;
+            }
+
+            // Phase two: setting up the processes.
+            for (const auto& process : processor->process_capacities) {
+                BioProcessId processId = process.first;
+                float processCapacity = process.second;
+
+                float processLimitCapacity = processCapacity * logicTime; // big enough number.
+
+                for (const auto& input : BioProcessRegistry::getInputCompounds(processId)) {
+                    CompoundId inputId = input.first;
+                    int inputNeeded = input.second;
+
+                    // Limiting the process by the amount of this required compound.
+                    processLimitCapacity = std::min(processLimitCapacity, bag->compounds[inputId].amount / inputNeeded);
+                }
+
+                // Calculating the desired rate, with some liberal use of linearization.
+
+                // Calculating the optimal process rate without considering the storage space.
+                float desiredRate = ProcessSystem::Implementation::_getOptimalProcessRate(
+                                                            processId,
+                                                            bag,
+                                                            false,
+                                                            storageSpaceAvailable);
+
+                // Calculating the optimal process rate considering the storage space.
+                float desiredRateWithSpace = ProcessSystem::Implementation::_getOptimalProcessRate(
+                                                                    processId,
+                                                                    bag,
+                                                                    true,
+                                                                    storageSpaceAvailable);
+
+                desiredRateWithSpace = std::min(desiredRateWithSpace, desiredRate);
+                if(desiredRate > 0.0)
+                {
+                    float rate = std::min(processCapacity * logicTime / 1000, processLimitCapacity);
+                    rate = std::min(rate, desiredRateWithSpace);
+
+                    // Running the process at the specified rate, transforming the inputs...
+                    for (const auto& input : BioProcessRegistry::getInputCompounds(processId)) {
+                        CompoundId inputId = input.first;
+                        int inputNeeded = input.second;
+                        bag->compounds[inputId].amount -= rate * inputNeeded;
+
+                        // Phase 3: increasing the input compound demand.
+                        bag->compounds[inputId].demand += desiredRate * inputNeeded * ProcessSystem::Implementation::_demandSofteningFunction(processCapacity * inputNeeded);
                     }
-                    for (const auto& output : BioProcessRegistry::getOutputCompounds(process.first)) {
-                        bag->compounds[output.first] += rate * output.second;
+
+                    // ...into the outputs.
+                    for (const auto& output : BioProcessRegistry::getOutputCompounds(processId)) {
+                        CompoundId outputId = output.first;
+                        int outputGenerated = output.second;
+                        bag->compounds[outputId].amount += rate * outputGenerated;
                     }
                 }
             }

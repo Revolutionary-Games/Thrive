@@ -29,7 +29,6 @@ public:
     * - BioProcessRegistry::registerBioProcess
     * - BioProcessRegistry::getDisplayName
     * - BioProcessRegistry::getInternalName
-    * - BioProcessRegistry::getSpeedFactor
     * - BioProcessRegistry::getId
     * - BioProcessRegistry::getList
     * - BioProcessRegistry::getInputCompounds
@@ -60,9 +59,6 @@ public:
     * @param energyCost
     *  The amount of energy needed for a full cycle of this process
     *
-    * @param speedFactor
-    *  Speed of this process
-    *
     * @param inputCompounds
     *  The compounds and amounts needed for this process
     *
@@ -76,7 +72,6 @@ public:
     registerBioProcess(
         const std::string& internalName,
         const std::string& displayName,
-        double speedFactor,
         std::vector<std::pair<CompoundId, int>> inputCompounds,
         std::vector<std::pair<CompoundId, int>> outputCompounds
     );
@@ -106,11 +101,6 @@ public:
     */
     static std::string
     getInternalName(
-        BioProcessId id
-    );
-
-    static double
-    getSpeedFactor(
         BioProcessId id
     );
 

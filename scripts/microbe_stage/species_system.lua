@@ -92,15 +92,6 @@ function createSpeciesTemplate(name, organelles, colour, compounds, speciesThres
     for _, compoundID in pairs(CompoundRegistry.getCompoundList()) do
         compound = CompoundRegistry.getCompoundInternalName(compoundID)
 
-
-        if agents[compound] then
-            thresholdData = default_thresholds[compound]
-        else
-            thresholdData = compoundTable[compound].default_treshold
-        end
-
-         -- we'll need to generate defaults from species template
-        processorComponent:setThreshold(compoundID, thresholdData.low, thresholdData.high, thresholdData.vent)
         compoundData = compounds[compound]
         if compoundData ~= nil then
             amount = compoundData.amount
@@ -109,23 +100,7 @@ function createSpeciesTemplate(name, organelles, colour, compounds, speciesThres
              -- speciesComponent.compoundPriorities[compoundID] = priority
         end
     end
-    if speciesThresholds ~= nil then
-        local thresholds = speciesThresholds
-        for _, compoundID in pairs(CompoundRegistry.getCompoundList()) do
-            compound = CompoundRegistry.getCompoundInternalName(compoundID)
-            if thresholds[compound] ~= nil then
-                if thresholds[compound].low ~= nil then
-                    processorComponent:setLowThreshold(compoundID, thresholds[compound].low)
-                end
-                if thresholds[compound].low ~= nil then
-                    processorComponent:setHighThreshold(compoundID, thresholds[compound].high)
-                end
-                if thresholds[compound].vent ~= nil then
-                    processorComponent:setVentThreshold(compoundID, thresholds[compound].vent)
-                end
-            end
-        end
-    end
+
     local capacities = {}
     for _, organelle in pairs(organelles) do
         if organelleTable[organelle.name] ~= nil then
@@ -382,36 +357,6 @@ function SpeciesSystem.initProcessorComponent(entity, speciesComponent)
     if pc == nil then
         pc = ProcessorComponent.new()
         entity:addComponent(pc)
-    end
-
-    local thresholds = {}
-
-    for _, compoundID in pairs(CompoundRegistry.getCompoundList()) do
-        compound = CompoundRegistry.getCompoundInternalName(compoundID)
-        if compoundTable[compound] then
-            thresholdData = compoundTable[compound].default_treshold
-        else
-            thresholdData = default_thresholds[compound]
-        end
-
-        thresholds[compoundID] = {low = thresholdData.low, high = thresholdData.high, vent = thresholdData.vent}
-    end
-
-    if starter_microbes[speciesComponent.name] ~= nil and starter_microbes[speciesComponent.name].thresholds ~= nil then
-        local c_thresholds = starter_microbes[speciesComponent.name].thresholds
-        for _, compoundID in pairs(CompoundRegistry.getCompoundList()) do
-            compound = CompoundRegistry.getCompoundInternalName(compoundID)
-            if c_thresholds[compound] ~= nil then
-                local t = c_thresholds[compound]
-                if t.low ~= nil then thresholds[compoundID].low = t.low end
-                if t.high ~= nil then thresholds[compoundID].high = t.high end
-                if t.vent ~= nil then thresholds[compoundID].vent = t.vent end
-            end
-        end
-    end
-
-    for compoundID, t in ipairs(thresholds) do
-        pc:setThreshold(compoundID, t.low, t.high, t.vent)
     end
 
     local capacities = {}

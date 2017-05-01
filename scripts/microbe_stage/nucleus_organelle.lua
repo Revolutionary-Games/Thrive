@@ -56,18 +56,7 @@ function NucleusOrganelle:onAddedToMicrobe(microbe, q, r, rotation, organelle)
 	self.ER_sceneNode = sceneNode2
 	self.ER:setVolatile(true)
     
-    self.sceneNode = OgreSceneNodeComponent.new()
-	self.sceneNode.transform.orientation = Quaternion.new(Radian.new(Degree(organelle.rotation)),
-                                                          Vector3(0, 0, 1))
-	self.sceneNode.transform.position = organelle.position.cartesian
-    self.sceneNode.transform.scale = Vector3(HEX_SIZE, HEX_SIZE, HEX_SIZE)
-    self.sceneNode.transform:touch()
-    local mesh = organelleTable[organelle.name].mesh
-    if mesh ~= nil then
-        self.sceneNode.meshName = mesh
-    end
-    self.sceneNode.parent = microbe.entity
-    organelle.organelleEntity:addComponent(self.sceneNode)
+    self.sceneNode = organelle.sceneNode
     
     -- If we are not in the editor, get the color of this species.
     if microbe:getSpeciesComponent() ~= nil then
@@ -96,19 +85,19 @@ end
 
 function NucleusOrganelle:updateColour(organelle)
     -- Update the colours of the additional organelle models.
-    if self.sceneNode.entity ~= nil and self.golgi_sceneNode.entity ~= nil then
+    --[[if self.sceneNode.entity ~= nil and self.golgi.sceneNode.entity ~= nil then
         --print(organelle.colour.r .. ", " .. organelle.colour.g .. ", " .. organelle.colour.b)
     
 		local entity = self.sceneNode.entity
-        local golgiEntity = self.golgi_sceneNode.entity
-        local ER_entity = self.ER_sceneNode.entity
+        local golgiEntity = self.golgi.sceneNode.entity
+        local ER_entity = self.ER.sceneNode.entity
         
         entity:tintColour("nucleus", organelle.colour)
         golgiEntity:tintColour("golgi", organelle.colour)
         ER_entity:tintColour("ER", organelle.colour)
         
         organelle._needsColourUpdate = false
-    end
+    end]]
 end
 
 -- Makes nucleus larger

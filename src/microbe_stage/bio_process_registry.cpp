@@ -19,7 +19,6 @@ void BioProcessRegistry::luaBindings(
         "loadFromLua", &BioProcessRegistry::loadFromLua,
         "getDisplayName", &BioProcessRegistry::getDisplayName,
         "getInternalName", &BioProcessRegistry::getInternalName,
-        "getSpeedFactor", &BioProcessRegistry::getSpeedFactor,
         "getId", &BioProcessRegistry::getId,
         
         "getList", [](sol::this_state s){
@@ -41,7 +40,6 @@ namespace {
     {
         std::string internalName;
         std::string displayName;
-        double speedFactor;
         std::vector<std::pair<CompoundId, int>> inputCompounds;
         std::vector<std::pair<CompoundId, int>> outputCompounds;
     };
@@ -113,11 +111,7 @@ BioProcessRegistry::loadFromXML(
                 pCompound=pCompound->NextSiblingElement();
             }
             int energyCost;
-            double speedFactor;
             if (pProcess->QueryIntAttribute("energyCost", &energyCost) != TIXML_SUCCESS){
-                throw std::logic_error("Could not access 'speedFactor' attribute on Process element of " + filename);
-            }
-            if (pProcess->QueryDoubleAttribute("speedFactor", &speedFactor) != TIXML_SUCCESS){
                 throw std::logic_error("Could not access 'speedFactor' attribute on Process element of " + filename);
             }
             const char* processName = pProcess->Attribute("name");
@@ -127,7 +121,6 @@ BioProcessRegistry::loadFromXML(
             registerBioProcess(
                processName,
                processName,
-               speedFactor,
                std::move(inputs),
                std::move(outputs)
             );
@@ -173,13 +166,11 @@ BioProcessRegistry::loadFromLua(
         }
 
         registerBioProcess(
-            key,
-            key,
-            speedFactor,
-            std::move(inputs),
-            std::move(outputs)
-        );
-        
+               key,
+               key,
+               std::move(inputs),
+               std::move(outputs)
+            );
     }
 }
 
@@ -187,7 +178,6 @@ BioProcessId
 BioProcessRegistry::registerBioProcess(
     const std::string& internalName,
     const std::string& displayName,
-    double speedFactor,
     std::vector<std::pair<CompoundId, int>> inputCompounds,
     std::vector<std::pair<CompoundId, int>> outputCompounds
 ) {
@@ -195,7 +185,6 @@ BioProcessRegistry::registerBioProcess(
         BioProcessEntry entry;
         entry.internalName = internalName;
         entry.displayName = displayName;
-        entry.speedFactor = speedFactor;
         entry.inputCompounds = inputCompounds;
         entry.outputCompounds = outputCompounds;
         processRegistry().push_back(entry);
@@ -224,15 +213,6 @@ BioProcessRegistry::getInternalName(
     if (static_cast<std::size_t>(id) > processRegistry().size())
         throw std::out_of_range("Index of process does not exist.");
     return processRegistry()[id-1].internalName;
-}
-
-double
-BioProcessRegistry::getSpeedFactor(
-    BioProcessId id
-) {
-    if (static_cast<std::size_t>(id) > processRegistry().size())
-        throw std::out_of_range("Index of process does not exist.");
-    return processRegistry()[id-1].speedFactor;
 }
 
 BioProcessId
