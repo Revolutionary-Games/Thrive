@@ -219,6 +219,8 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
 
                     return false;
                 }
+
+                //std::cout << "Loaded Lua file: " << manifestEntryPath.string() << std::endl;
             }
         }
 
