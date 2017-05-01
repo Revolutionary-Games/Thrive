@@ -94,7 +94,8 @@ end
 -- the data gets retrieved later by OrganelleComponent:load().
 -- The return value should be a new StorageContainer object
 -- filled with the data to save.
-function OrganelleComponent:storage(storage)
+function OrganelleComponent:storage()
+    return StorageContainer.new()
 end
 
 -- Function for loading organelle information.

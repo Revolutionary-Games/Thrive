@@ -1,3 +1,10 @@
+-- How fast organelles grow.
+GROWTH_SPEED_MULTILPIER = 0.5 / 1000
+
+-- Percentage of the compounds that compose the organelle released
+-- upon death (between 0.0 and 1.0).
+COMPOUND_RELEASE_PERCENTAGE = 0.3
+
 -- Container for organelle components for all the organelle components
 Organelle = class(
     -- Constructor
@@ -169,8 +176,9 @@ function Organelle:onAddedToMicrobe(microbe, q, r, rotation)
     end
     offset = offset / count
   
-    self.sceneNode = OgreSceneNodeComponent()
-    self.sceneNode.transform.orientation = Quaternion(Radian(Degree(self.rotation)), Vector3(0, 0, 1))
+    self.sceneNode = OgreSceneNodeComponent.new()
+    self.sceneNode.transform.orientation = Quaternion.new(Radian.new(Degree(self.rotation)),
+                                                          Vector3(0, 0, 1))
     self.sceneNode.transform.position = offset + self.position.cartesian
     self.sceneNode.transform.scale = Vector3(HEX_SIZE, HEX_SIZE, HEX_SIZE)
     self.sceneNode.transform:touch()

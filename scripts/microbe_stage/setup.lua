@@ -61,6 +61,7 @@ local function setupCompoundClouds(gameState)
 end
 
 local function setupProcesses()
+    assert(processes)
     BioProcessRegistry.loadFromLua(processes)
 end
 

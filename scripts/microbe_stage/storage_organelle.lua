@@ -30,7 +30,7 @@ function StorageOrganelle:load(storage)
     self.capacity = storage:get("capacity", 100)
 end
 
-function StorageOrganelle:storage(storage)
+function StorageOrganelle:storage()
     local storage = StorageContainer.new()
     storage:set("capacity", self.capacity)
     return storage

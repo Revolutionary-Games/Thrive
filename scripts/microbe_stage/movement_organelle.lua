@@ -67,7 +67,8 @@ function MovementOrganelle:onAddedToMicrobe(microbe, q, r, rotation, organelle)
     self.sceneNode.transform.scale = Vector3(HEX_SIZE, HEX_SIZE, HEX_SIZE)
     self.sceneNode.transform:touch()
     self.sceneNode.parent = microbe.entity
-    organelle.organelleEntity:addComponent(self.sceneNode)
+    -- self.sceneNode is a nullptr because it is already added to an entity
+    --organelle.organelleEntity:addComponent(self.sceneNode)
     
     self.sceneNode:playAnimation("Move", true)
     self.sceneNode:setAnimationSpeed(0.25)

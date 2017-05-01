@@ -112,7 +112,7 @@ BioProcessRegistry::loadFromXML(
             }
             int energyCost;
             if (pProcess->QueryIntAttribute("energyCost", &energyCost) != TIXML_SUCCESS){
-                throw std::logic_error("Could not access 'speedFactor' attribute on Process element of " + filename);
+                throw std::logic_error("Could not access 'energyCost' attribute on Process element of " + filename);
             }
             const char* processName = pProcess->Attribute("name");
             if (processName == nullptr) {
@@ -137,13 +137,15 @@ BioProcessRegistry::loadFromLua(
     sol::table processTable
     )
 {
-
+    
     for(const auto& pair : processTable){
 
         const auto key = pair.first.as<std::string>();
-        auto data = pair.second.as<sol::table>();
 
-        float speedFactor = data.get<float>("speedFactor");
+        if(!pair.second.is<sol::table>())
+            throw std::runtime_error("BioProcessRegistry value is not a table");
+        
+        auto data = pair.second.as<sol::table>();
 
         sol::table inputTable = data.get<sol::table>("inputs");
         sol::table outputTable = data.get<sol::table>("outputs");

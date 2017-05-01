@@ -60,7 +60,7 @@ end
 
 
 function AgentVacuole:storage()
-    local storage = StorageContainer()
+    local storage = StorageContainer.new()
     storage:set("compoundId", self.compoundId)
     storage:set("q", self.position.q)
     storage:set("r", self.position.r)

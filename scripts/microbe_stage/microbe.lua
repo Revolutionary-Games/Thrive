@@ -147,10 +147,10 @@ function MicrobeComponent:load(storage)
 end
 
 
-function MicrobeComponent:storage()
-    local storage = Component.storage(self)
+function MicrobeComponent:storage(storage)
+
     -- Organelles
-    local organelles = StorageList()
+    local organelles = StorageList.new()
     for _, organelle in pairs(self.organelles) do
         local organelleStorage = organelle:storage()
         organelles:append(organelleStorage)
@@ -163,8 +163,8 @@ function MicrobeComponent:storage()
     storage:set("maxBandwidth", self.maxBandwidth)
     storage:set("isPlayerMicrobe", self.isPlayerMicrobe)
     storage:set("speciesName", self.speciesName)
-    local storedCompounds = StorageList()
-    for compoundId in CompoundRegistry.getCompoundList() do
+    local storedCompounds = StorageList.new()
+    for _, compoundId in pairs(CompoundRegistry.getCompoundList()) do
         --[[
         if self:getCompoundAmount(compoundId) > 0 then
             compound = StorageContainer()
@@ -183,7 +183,6 @@ function MicrobeComponent:storage()
     --     compoundPriorities:append(compound)
     -- end
     -- storage:set("compoundPriorities", compoundPriorities)
-    return storage
 end
 
 REGISTER_COMPONENT("MicrobeComponent", MicrobeComponent)
@@ -318,9 +317,7 @@ function Microbe.createMicrobeEntity(name, aiControlled, speciesName, in_editor,
     for _, component in ipairs(components) do
         entity:addComponent(component)
     end
-    return Microbe(entity, in_editor)
-end
-
+    
     local newMicrobe = Microbe(entity, in_editor)
     assert(newMicrobe)
     assert(newMicrobe.microbe.initialized == true)
@@ -1074,7 +1071,7 @@ PURGE_SCALE = 0.4
 
 function Microbe:purgeCompounds()
     local compoundAmountToDump = self.microbe.stored - self.microbe.capacity
-    compoundBag = self.entity:getComponent(CompoundBagComponent.TYPE_ID)
+    compoundBag = getComponent(self.entity, CompoundBagComponent)
 
     -- Uncomment to print compound economic information to the console.
     --[[
@@ -1088,7 +1085,7 @@ function Microbe:purgeCompounds()
     ]]
 
     -- Dumping all the useless compounds (with price = 0).
-    for _, compoundId in CompoundRegistry.getCompoundList() do
+    for _, compoundId in pairs(CompoundRegistry.getCompoundList()) do
         local price = compoundBag:getPrice(compoundId)
         if price <= 0 then
             local amountToEject = compoundBag:getCompoundAmount(compoundId)
@@ -1102,7 +1099,8 @@ function Microbe:purgeCompounds()
         local compoundPrices = {}
         local priceSum = 0
         for _, compoundId in CompoundRegistry.getCompoundList() do
-            local amount = self.entity:getComponent(CompoundBagComponent.TYPE_ID):getCompoundAmount(compoundId)
+            local amount = getComponent(self.entity, CompoundBagComponent)
+                :getCompoundAmount(compoundId)
 
             if amount > 0 then
                 local price = compoundBag:getPrice(compoundId)

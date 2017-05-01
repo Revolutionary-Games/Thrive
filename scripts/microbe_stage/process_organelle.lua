@@ -40,7 +40,7 @@ function ProcessOrganelle:onAddedToMicrobe(microbe, q, r, rotation, organelle)
     OrganelleComponent.onAddedToMicrobe(self, microbe, q, r, rotation, organelle)
 end
 
-function ProcessOrganelle:storage(storage)
+function ProcessOrganelle:storage()
     local storage = StorageContainer.new()
     return storage
 end
