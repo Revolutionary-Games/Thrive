@@ -52,7 +52,7 @@ if BuildPlatform == "linux" and not SkipPackageManager
     
     PackagesToInstall = "bullet-devel boost gcc-c++ libXaw-devel freetype-devel " +
                         "freeimage-devel zziplib-devel boost-devel ois-devel tinyxml-devel " +
-                        "glm-devel ffmpeg-devel ffmpeg-libs openal-soft-devel libatomic Cg"
+                        "glm-devel ffmpeg-devel ffmpeg-libs openal-soft-devel libatomic"
 
   elsif LinuxOS.casecmp("Ubuntu") == 0
 
@@ -130,8 +130,18 @@ success "Thrive folder exists"
 
 Dir.chdir(File.join(CurrentDir, "thrive")) do
   
-  systemChecked "git checkout #{ThriveBranch}"
-  systemChecked "git pull --recurse-submodules origin #{ThriveBranch}"
+  system "git checkout #{ThriveBranch}"
+
+  if $?.exitstatus > 0
+
+    warning "Failed to checkout target thrive branch"
+
+  else
+    
+    systemChecked "git pull --recurse-submodules origin #{ThriveBranch}"
+    
+  end
+
   systemChecked "git submodule update --recursive"
 
   # submodule init check
