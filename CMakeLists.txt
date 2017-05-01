@@ -88,7 +88,7 @@ set(OGRE_PLUGINS
   #  Plugin_OctreeSceneManager
   #  Plugin_OctreeZone
     Plugin_ParticleFX
-    Plugin_CgProgramManager
+  #  Plugin_CgProgramManager
   #  Plugin_PCZSceneManager
     RenderSystem_GL
 )
@@ -636,6 +636,12 @@ elseif(UNIX)
             OGRE_PLUGIN_LIB_DBG
             OGRE_PLUGIN_LIB_REL
         )
+
+        if(NOT EXISTS "${OGRE_PLUGIN_LIB_REL}" OR NOT EXISTS "${OGRE_PLUGIN_LIB_DBG}")
+          message(SEND_ERROR "Ogre plugin file doesn't exist: ${OGRE_PLUGIN} . Did you build "
+            "all the required Ogre plugins?")
+        endif()
+
         # Release
         InstallFollowingSymlink(
             ${OGRE_PLUGIN_LIB_REL}
