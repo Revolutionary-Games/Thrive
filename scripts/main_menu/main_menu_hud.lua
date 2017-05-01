@@ -32,6 +32,13 @@ function MainMenuHudSystem:init(gameState)
    self.hasShownIntroVid = false
    self.vidFadeoutStarted = false
    self.skippedVideo = false
+
+   -- Set version in GUI
+   local versionLabel = root:getChild("Background"):
+       getChild("MainMenuInteractive"):getChild("VersionLabel")
+   
+   versionLabel:setText("v" .. Engine.thriveVersion)
+
 end
 
 function MainMenuHudSystem:update(renderTime, logicTime)

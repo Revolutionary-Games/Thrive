@@ -64,7 +64,7 @@ function LuaEngine:init(cppSide)
     end
     
     -- Restore the state
-    self.currentGameState = previousGameState
+    self.currentGameState = previousGameState    
     
 end
 
