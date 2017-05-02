@@ -144,13 +144,13 @@ CEGUIVideoPlayer::setVideo(
 
     CEGUI::OgreRenderer* ogreRenderer = static_cast<CEGUI::OgreRenderer*>(
         CEGUI::System::getSingleton().getRenderer());
-    
+
     bool isTextureTargetVerticallyFlipped = ogreRenderer->isTexCoordSystemFlipped();
-    
+
     CEGUI::Rectf imageArea;
     int videoW = m_videoPlayer->getVideoWidth();
     int videoH = m_videoPlayer->getVideoHeight();
-    
+
     if (isTextureTargetVerticallyFlipped){
         imageArea= CEGUI::Rectf(0.0f, videoW, videoH, 0.0f);
     }
@@ -158,11 +158,15 @@ CEGUIVideoPlayer::setVideo(
         imageArea= CEGUI::Rectf(0.0f, 0.0f, videoW, videoH);
     }
     m_videoImage->setImageArea(imageArea);
-    
+
     // You most likely don't want autoscaling for RTT images. If you
     // display it in stretched-mode inside a button or Generic/Image
     // widget, then this setting does not play a role anyways.
+    #ifdef WIN32
+    m_videoImage->setAutoScaled(CEGUI::AutoScaledMode::ASM_Disabled);
+    #else
     m_videoImage->setAutoScaled(CEGUI::AutoScaledMode::Disabled);
+    #endif
     m_videoImage->setTexture(&rendererTexture);
 }
 

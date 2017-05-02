@@ -28,13 +28,25 @@ struct Mouse::Implementation : public OIS::MouseListener {
 
         switch(id){
         case OIS::MB_Left:
+            #ifdef WIN32
+            m_aggregator->injectMouseButtonDown(CEGUI::MouseButton::LeftButton);
+            #elif
             m_aggregator->injectMouseButtonDown(CEGUI::MouseButton::Left);
+            #endif
             break;
         case OIS::MB_Right:
+            #ifdef WIN32
+            m_aggregator->injectMouseButtonDown(CEGUI::MouseButton::RightButton);
+            #elif
             m_aggregator->injectMouseButtonDown(CEGUI::MouseButton::Right);
+            #endif
             break;
         case OIS::MB_Middle:
+            #ifdef WIN32
+            m_aggregator->injectMouseButtonDown(CEGUI::MouseButton::MiddleButton);
+            #elif
             m_aggregator->injectMouseButtonDown(CEGUI::MouseButton::Middle);
+            #endif
             break;
         default:
             break;
@@ -46,20 +58,29 @@ struct Mouse::Implementation : public OIS::MouseListener {
     bool mouseReleased (const OIS::MouseEvent&, OIS::MouseButtonID id){
         switch(id){
         case OIS::MB_Left:
+            #ifdef WIN32
+            if(!m_aggregator->injectMouseButtonUp(CEGUI::MouseButton::LeftButton)){
+            #elif
             if(!m_aggregator->injectMouseButtonUp(CEGUI::MouseButton::Left)){
-
+            #endif
                 m_nextClickedStates |= 0x1;
             }
             break;
         case OIS::MB_Right:
+            #ifdef WIN32
+            if(!m_aggregator->injectMouseButtonUp(CEGUI::MouseButton::RightButton)){
+            #elif
             if(!m_aggregator->injectMouseButtonUp(CEGUI::MouseButton::Right)){
-
+            #endif
                 m_nextClickedStates |= 0x2;
             }
             break;
         case OIS::MB_Middle:
+            #ifdef WIN32
+            if(!m_aggregator->injectMouseButtonUp(CEGUI::MouseButton::MiddleButton)){
+            #elif
             if(!m_aggregator->injectMouseButtonUp(CEGUI::MouseButton::Middle)){
-
+            #endif
                 m_nextClickedStates |= 0x4;
             }
             break;
