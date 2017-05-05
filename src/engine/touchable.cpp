@@ -1,20 +1,19 @@
 #include "engine/touchable.h"
 
-#include "scripting/luabind.h"
+#include "scripting/luajit.h"
 
 using namespace thrive;
 
+void Touchable::luaBindings(
+    sol::state &lua
+){
+    lua.new_usertype<Touchable>("Touchable",
 
-luabind::scope
-Touchable::luaBindings() {
-    using namespace luabind;
-    return class_<Touchable>("Touchable")
-        .def("hasChanges", &Touchable::hasChanges)
-        .def("touch", &Touchable::touch)
-        .def("untouch", &Touchable::untouch)
-    ;
+        "hasChanges", &Touchable::hasChanges,
+        "touch", &Touchable::touch,
+        "untouch", &Touchable::untouch
+    );
 }
-
 
 bool
 Touchable::hasChanges() const {

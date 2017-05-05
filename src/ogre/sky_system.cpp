@@ -4,7 +4,7 @@
 #include "engine/game_state.h"
 #include "engine/entity_filter.h"
 #include "engine/serialization.h"
-#include "scripting/luabind.h"
+#include "scripting/luajit.h"
 
 #include <iostream>
 #include <OgreSceneManager.h>
@@ -15,33 +15,36 @@ using namespace thrive;
 // SkyPlaneComponent
 ////////////////////////////////////////////////////////////////////////////////
 
+void SkyPlaneComponent::luaBindings(
+    sol::state &lua
+){
+    lua.new_usertype<Properties>("SkyPlaneComponentProperties",
 
-luabind::scope
-SkyPlaneComponent::luaBindings() {
-    using namespace luabind;
-    return class_<SkyPlaneComponent, Component>("SkyPlaneComponent")
-        .enum_("ID") [
-            value("TYPE_ID", SkyPlaneComponent::TYPE_ID)
-        ]
-        .scope [
-            def("TYPE_NAME", &SkyPlaneComponent::TYPE_NAME),
-            class_<Properties, Touchable>("Properties")
-                .def_readwrite("enabled", &Properties::enabled)
-                .def_readwrite("plane", &Properties::plane)
-                .def_readwrite("materialName", &Properties::materialName)
-                .def_readwrite("scale", &Properties::scale)
-                .def_readwrite("tiling", &Properties::tiling)
-                .def_readwrite("drawFirst", &Properties::drawFirst)
-                .def_readwrite("bow", &Properties::bow)
-                .def_readwrite("xsegments", &Properties::xsegments)
-                .def_readwrite("ysegments", &Properties::ysegments)
-                .def_readwrite("groupName", &Properties::groupName)
-        ]
-        .def(constructor<>())
-        .def_readonly("properties", &SkyPlaneComponent::m_properties)
-    ;
+        sol::base_classes, sol::bases<Touchable>(),
+
+        "enabled", &Properties::enabled,
+        "plane", &Properties::plane,
+        "materialName", &Properties::materialName,
+        "scale", &Properties::scale,
+        "tiling", &Properties::tiling,
+        "drawFirst", &Properties::drawFirst,
+        "bow", &Properties::bow,
+        "xsegments", &Properties::xsegments,
+        "ysegments", &Properties::ysegments,
+        "groupName", &Properties::groupName
+    );
+    
+    lua.new_usertype<SkyPlaneComponent>("SkyPlaneComponent",
+
+        "new", sol::factories([](){
+                return std::make_unique<SkyPlaneComponent>();
+            }),
+
+        COMPONENT_BINDINGS(SkyPlaneComponent),
+
+        "properties", sol::readonly(&SkyPlaneComponent::m_properties)
+    );
 }
-
 
 void
 SkyPlaneComponent::load(
@@ -84,14 +87,18 @@ REGISTER_COMPONENT(SkyPlaneComponent)
 // SkySystem
 ////////////////////////////////////////////////////////////////////////////////
 
-luabind::scope
-SkySystem::luaBindings() {
-    using namespace luabind;
-    return class_<SkySystem, System>("SkySystem")
-        .def(constructor<>())
-    ;
-}
+void SkySystem::luaBindings(
+    sol::state &lua
+){
+    lua.new_usertype<SkySystem>("SkySystem",
 
+        sol::constructors<sol::types<>>(),
+        
+        sol::base_classes, sol::bases<System>(),
+
+        "init", &SkySystem::init
+    );
+}
 
 struct SkySystem::Implementation {
 
@@ -114,12 +121,12 @@ SkySystem::~SkySystem() {}
 
 void
 SkySystem::init(
-    GameState* gameState
+    GameStateData* gameState
 ) {
     System::initNamed("SkySystem", gameState);
     assert(m_impl->m_sceneManager == nullptr && "Double init of system");
     m_impl->m_sceneManager = gameState->sceneManager();
-    m_impl->m_skyPlanes.setEntityManager(&gameState->entityManager());
+    m_impl->m_skyPlanes.setEntityManager(gameState->entityManager());
 }
 
 

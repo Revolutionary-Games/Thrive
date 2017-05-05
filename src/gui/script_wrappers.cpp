@@ -2,18 +2,19 @@
 
 #include <CEGUI/CEGUI.h>
 #include <CEGUI/views/StandardItemModel.h>
-#include "scripting/luabind.h"
+#include "scripting/luajit.h"
 
 using namespace thrive;
-using namespace luabind;
 
-luabind::scope
-ScriptWrappers::StandardItemWrapperBindings() {
-    return class_<StandardItemWrapper>("StandardItemWrapper")
-        .def(constructor<const std::string&, int>())
-        ;
+
+void StandardItemWrapper::luaBindings(
+    sol::state &lua
+){
+    lua.new_usertype<StandardItemWrapper>("StandardItemWrapper",
+
+        sol::constructors<sol::types<const std::string&, int>>()
+    );
 }
-
 
 StandardItemWrapper::StandardItemWrapper(
     const std::string &text,

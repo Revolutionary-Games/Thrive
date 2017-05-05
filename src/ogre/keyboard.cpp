@@ -1,6 +1,6 @@
 #include "ogre/keyboard.h"
 
-#include "scripting/luabind.h"
+#include "scripting/luajit.h"
 
 #include <CEGUI/CEGUI.h>
 
@@ -109,169 +109,178 @@ struct Keyboard::Implementation : public OIS::KeyListener{
 };
 
 
-luabind::scope
-Keyboard::luaBindings() {
-    using namespace luabind;
-    return class_<Keyboard>("Keyboard")
-        .def("isKeyDown", &Keyboard::isKeyDown)
-        .def("wasKeyPressed", &Keyboard::wasKeyPressed)
-        .def("wasKeyReleased", &Keyboard::wasKeyReleased)
-        .scope [
-            class_<Keyboard::KeyEvent>("KeyEvent")
-                .def_readonly("key", &Keyboard::KeyEvent::key)
-                .def_readonly("alt", &Keyboard::KeyEvent::alt)
-                .def_readonly("ctrl", &Keyboard::KeyEvent::ctrl)
-                .def_readonly("shift", &Keyboard::KeyEvent::shift)
-                .def_readonly("pressed", &Keyboard::KeyEvent::pressed)
-        ]
-        .enum_("KeyCode") [
-            value("KC_UNASSIGNED", OIS::KC_UNASSIGNED),
-            value("KC_ESCAPE", OIS::KC_ESCAPE),
-            value("KC_1", OIS::KC_1),
-            value("KC_2", OIS::KC_2),
-            value("KC_3", OIS::KC_3),
-            value("KC_4", OIS::KC_4),
-            value("KC_5", OIS::KC_5),
-            value("KC_6", OIS::KC_6),
-            value("KC_7", OIS::KC_7),
-            value("KC_8", OIS::KC_8),
-            value("KC_9", OIS::KC_9),
-            value("KC_0", OIS::KC_0),
-            value("KC_MINUS", OIS::KC_MINUS),
-            value("KC_EQUALS", OIS::KC_EQUALS),
-            value("KC_BACK", OIS::KC_BACK),
-            value("KC_TAB", OIS::KC_TAB),
-            value("KC_Q", OIS::KC_Q),
-            value("KC_W", OIS::KC_W),
-            value("KC_E", OIS::KC_E),
-            value("KC_R", OIS::KC_R),
-            value("KC_T", OIS::KC_T),
-            value("KC_Y", OIS::KC_Y),
-            value("KC_U", OIS::KC_U),
-            value("KC_I", OIS::KC_I),
-            value("KC_O", OIS::KC_O),
-            value("KC_P", OIS::KC_P),
-            value("KC_LBRACKET", OIS::KC_LBRACKET),
-            value("KC_RBRACKET", OIS::KC_RBRACKET),
-            value("KC_RETURN", OIS::KC_RETURN),
-            value("KC_LCONTROL", OIS::KC_LCONTROL),
-            value("KC_A", OIS::KC_A),
-            value("KC_S", OIS::KC_S),
-            value("KC_D", OIS::KC_D),
-            value("KC_F", OIS::KC_F),
-            value("KC_G", OIS::KC_G),
-            value("KC_H", OIS::KC_H),
-            value("KC_J", OIS::KC_J),
-            value("KC_K", OIS::KC_K),
-            value("KC_L", OIS::KC_L),
-            value("KC_SEMICOLON", OIS::KC_SEMICOLON),
-            value("KC_APOSTROPHE", OIS::KC_APOSTROPHE),
-            value("KC_GRAVE", OIS::KC_GRAVE),
-            value("KC_LSHIFT", OIS::KC_LSHIFT),
-            value("KC_BACKSLASH", OIS::KC_BACKSLASH),
-            value("KC_Z", OIS::KC_Z),
-            value("KC_X", OIS::KC_X),
-            value("KC_C", OIS::KC_C),
-            value("KC_V", OIS::KC_V),
-            value("KC_B", OIS::KC_B),
-            value("KC_N", OIS::KC_N),
-            value("KC_M", OIS::KC_M),
-            value("KC_COMMA", OIS::KC_COMMA),
-            value("KC_PERIOD", OIS::KC_PERIOD),
-            value("KC_SLASH", OIS::KC_SLASH),
-            value("KC_RSHIFT", OIS::KC_RSHIFT),
-            value("KC_MULTIPLY", OIS::KC_MULTIPLY),
-            value("KC_LMENU", OIS::KC_LMENU),
-            value("KC_SPACE", OIS::KC_SPACE),
-            value("KC_CAPITAL", OIS::KC_CAPITAL),
-            value("KC_F1", OIS::KC_F1),
-            value("KC_F2", OIS::KC_F2),
-            value("KC_F3", OIS::KC_F3),
-            value("KC_F4", OIS::KC_F4),
-            value("KC_F5", OIS::KC_F5),
-            value("KC_F6", OIS::KC_F6),
-            value("KC_F7", OIS::KC_F7),
-            value("KC_F8", OIS::KC_F8),
-            value("KC_F9", OIS::KC_F9),
-            value("KC_F10", OIS::KC_F10),
-            value("KC_NUMLOCK", OIS::KC_NUMLOCK),
-            value("KC_SCROLL", OIS::KC_SCROLL),
-            value("KC_NUMPAD7", OIS::KC_NUMPAD7),
-            value("KC_NUMPAD8", OIS::KC_NUMPAD8),
-            value("KC_NUMPAD9", OIS::KC_NUMPAD9),
-            value("KC_SUBTRACT", OIS::KC_SUBTRACT),
-            value("KC_NUMPAD4", OIS::KC_NUMPAD4),
-            value("KC_NUMPAD5", OIS::KC_NUMPAD5),
-            value("KC_NUMPAD6", OIS::KC_NUMPAD6),
-            value("KC_ADD", OIS::KC_ADD),
-            value("KC_NUMPAD1", OIS::KC_NUMPAD1),
-            value("KC_NUMPAD2", OIS::KC_NUMPAD2),
-            value("KC_NUMPAD3", OIS::KC_NUMPAD3),
-            value("KC_NUMPAD0", OIS::KC_NUMPAD0),
-            value("KC_DECIMAL", OIS::KC_DECIMAL),
-            value("KC_OEM_102", OIS::KC_OEM_102),
-            value("KC_F11", OIS::KC_F11),
-            value("KC_F12", OIS::KC_F12),
-            value("KC_F13", OIS::KC_F13),
-            value("KC_F14", OIS::KC_F14),
-            value("KC_F15", OIS::KC_F15),
-            value("KC_KANA", OIS::KC_KANA),
-            value("KC_ABNT_C1", OIS::KC_ABNT_C1),
-            value("KC_CONVERT", OIS::KC_CONVERT),
-            value("KC_NOCONVERT", OIS::KC_NOCONVERT),
-            value("KC_YEN", OIS::KC_YEN),
-            value("KC_ABNT_C2", OIS::KC_ABNT_C2),
-            value("KC_NUMPADEQUALS", OIS::KC_NUMPADEQUALS),
-            value("KC_PREVTRACK", OIS::KC_PREVTRACK),
-            value("KC_AT", OIS::KC_AT),
-            value("KC_COLON", OIS::KC_COLON),
-            value("KC_UNDERLINE", OIS::KC_UNDERLINE),
-            value("KC_KANJI", OIS::KC_KANJI),
-            value("KC_STOP", OIS::KC_STOP),
-            value("KC_AX", OIS::KC_AX),
-            value("KC_UNLABELED", OIS::KC_UNLABELED),
-            value("KC_NEXTTRACK", OIS::KC_NEXTTRACK),
-            value("KC_NUMPADENTER", OIS::KC_NUMPADENTER),
-            value("KC_RCONTROL", OIS::KC_RCONTROL),
-            value("KC_MUTE", OIS::KC_MUTE),
-            value("KC_CALCULATOR", OIS::KC_CALCULATOR),
-            value("KC_PLAYPAUSE", OIS::KC_PLAYPAUSE),
-            value("KC_MEDIASTOP", OIS::KC_MEDIASTOP),
-            value("KC_VOLUMEDOWN", OIS::KC_VOLUMEDOWN),
-            value("KC_VOLUMEUP", OIS::KC_VOLUMEUP),
-            value("KC_WEBHOME", OIS::KC_WEBHOME),
-            value("KC_NUMPADCOMMA", OIS::KC_NUMPADCOMMA),
-            value("KC_DIVIDE", OIS::KC_DIVIDE),
-            value("KC_SYSRQ", OIS::KC_SYSRQ),
-            value("KC_RMENU", OIS::KC_RMENU),
-            value("KC_PAUSE", OIS::KC_PAUSE),
-            value("KC_HOME", OIS::KC_HOME),
-            value("KC_UP", OIS::KC_UP),
-            value("KC_PGUP", OIS::KC_PGUP),
-            value("KC_LEFT", OIS::KC_LEFT),
-            value("KC_RIGHT", OIS::KC_RIGHT),
-            value("KC_END", OIS::KC_END),
-            value("KC_DOWN", OIS::KC_DOWN),
-            value("KC_PGDOWN", OIS::KC_PGDOWN),
-            value("KC_INSERT", OIS::KC_INSERT),
-            value("KC_DELETE", OIS::KC_DELETE),
-            value("KC_LWIN", OIS::KC_LWIN),
-            value("KC_RWIN", OIS::KC_RWIN),
-            value("KC_APPS", OIS::KC_APPS),
-            value("KC_POWER", OIS::KC_POWER),
-            value("KC_SLEEP", OIS::KC_SLEEP),
-            value("KC_WAKE", OIS::KC_WAKE),
-            value("KC_WEBSEARCH", OIS::KC_WEBSEARCH),
-            value("KC_WEBFAVORITES", OIS::KC_WEBFAVORITES),
-            value("KC_WEBREFRESH", OIS::KC_WEBREFRESH),
-            value("KC_WEBSTOP", OIS::KC_WEBSTOP),
-            value("KC_WEBFORWARD", OIS::KC_WEBFORWARD),
-            value("KC_WEBBACK", OIS::KC_WEBBACK),
-            value("KC_MYCOMPUTER", OIS::KC_MYCOMPUTER),
-            value("KC_MAIL", OIS::KC_MAIL),
-            value("KC_MEDIASELECT", OIS::KC_MEDIASELECT)
-    ]
-    ;
+void Keyboard::luaBindings(
+    sol::state &lua
+){
+    lua.new_usertype<Keyboard::KeyEvent>("KeyboardKeyEvent",
+
+        "key", sol::readonly(&Keyboard::KeyEvent::key),
+        "alt", sol::readonly(&Keyboard::KeyEvent::alt),
+        "ctrl", sol::readonly(&Keyboard::KeyEvent::ctrl),
+        "shift", sol::readonly(&Keyboard::KeyEvent::shift),
+        "pressed", sol::readonly(&Keyboard::KeyEvent::pressed)
+    );
+    
+    lua.new_usertype<Keyboard>("Keyboard",
+
+        "new", sol::no_constructor,
+
+        "isKeyDown", &Keyboard::isKeyDown,
+        "wasKeyPressed", &Keyboard::wasKeyPressed,
+        "wasKeyReleased", &Keyboard::wasKeyReleased
+    );
+
+    // This cannot be a template because template recursion goes too deep
+    auto table = lua.create_table();
+
+    table.set("KC_UNASSIGNED", OIS::KC_UNASSIGNED);
+    table.set("KC_ESCAPE", OIS::KC_ESCAPE);
+    table.set("KC_1", OIS::KC_1);
+    table.set("KC_2", OIS::KC_2);
+    table.set("KC_3", OIS::KC_3);
+    table.set("KC_4", OIS::KC_4);
+    table.set("KC_5", OIS::KC_5);
+    table.set("KC_6", OIS::KC_6);
+    table.set("KC_7", OIS::KC_7);
+    table.set("KC_8", OIS::KC_8);
+    table.set("KC_9", OIS::KC_9);
+    table.set("KC_0", OIS::KC_0);
+    table.set("KC_MINUS", OIS::KC_MINUS);
+    table.set("KC_EQUALS", OIS::KC_EQUALS);
+    table.set("KC_BACK", OIS::KC_BACK);
+    table.set("KC_TAB", OIS::KC_TAB);
+    table.set("KC_Q", OIS::KC_Q);
+    table.set("KC_W", OIS::KC_W);
+    table.set("KC_E", OIS::KC_E);
+    table.set("KC_R", OIS::KC_R);
+    table.set("KC_T", OIS::KC_T);
+    table.set("KC_Y", OIS::KC_Y);
+    table.set("KC_U", OIS::KC_U);
+    table.set("KC_I", OIS::KC_I);
+    table.set("KC_O", OIS::KC_O);
+    table.set("KC_P", OIS::KC_P);
+    table.set("KC_LBRACKET", OIS::KC_LBRACKET);
+    table.set("KC_RBRACKET", OIS::KC_RBRACKET);
+    table.set("KC_RETURN", OIS::KC_RETURN);
+    table.set("KC_LCONTROL", OIS::KC_LCONTROL);
+    table.set("KC_A", OIS::KC_A);
+    table.set("KC_S", OIS::KC_S);
+    table.set("KC_D", OIS::KC_D);
+    table.set("KC_F", OIS::KC_F);
+    table.set("KC_G", OIS::KC_G);
+    table.set("KC_H", OIS::KC_H);
+    table.set("KC_J", OIS::KC_J);
+    table.set("KC_K", OIS::KC_K);
+    table.set("KC_L", OIS::KC_L);
+    table.set("KC_SEMICOLON", OIS::KC_SEMICOLON);
+    table.set("KC_APOSTROPHE", OIS::KC_APOSTROPHE);
+    table.set("KC_GRAVE", OIS::KC_GRAVE);
+    table.set("KC_LSHIFT", OIS::KC_LSHIFT);
+    table.set("KC_BACKSLASH", OIS::KC_BACKSLASH);
+    table.set("KC_Z", OIS::KC_Z);
+    table.set("KC_X", OIS::KC_X);
+    table.set("KC_C", OIS::KC_C);
+    table.set("KC_V", OIS::KC_V);
+    table.set("KC_B", OIS::KC_B);
+    table.set("KC_N", OIS::KC_N);
+    table.set("KC_M", OIS::KC_M);
+    table.set("KC_COMMA", OIS::KC_COMMA);
+    table.set("KC_PERIOD", OIS::KC_PERIOD);
+    table.set("KC_SLASH", OIS::KC_SLASH);
+    table.set("KC_RSHIFT", OIS::KC_RSHIFT);
+    table.set("KC_MULTIPLY", OIS::KC_MULTIPLY);
+    table.set("KC_LMENU", OIS::KC_LMENU);
+    table.set("KC_SPACE", OIS::KC_SPACE);
+    table.set("KC_CAPITAL", OIS::KC_CAPITAL);
+    table.set("KC_F1", OIS::KC_F1);
+    table.set("KC_F2", OIS::KC_F2);
+    table.set("KC_F3", OIS::KC_F3);
+    table.set("KC_F4", OIS::KC_F4);
+    table.set("KC_F5", OIS::KC_F5);
+    table.set("KC_F6", OIS::KC_F6);
+    table.set("KC_F7", OIS::KC_F7);
+    table.set("KC_F8", OIS::KC_F8);
+    table.set("KC_F9", OIS::KC_F9);
+    table.set("KC_F10", OIS::KC_F10);
+    table.set("KC_NUMLOCK", OIS::KC_NUMLOCK);
+    table.set("KC_SCROLL", OIS::KC_SCROLL);
+    table.set("KC_NUMPAD7", OIS::KC_NUMPAD7);
+    table.set("KC_NUMPAD8", OIS::KC_NUMPAD8);
+    table.set("KC_NUMPAD9", OIS::KC_NUMPAD9);
+    table.set("KC_SUBTRACT", OIS::KC_SUBTRACT);
+    table.set("KC_NUMPAD4", OIS::KC_NUMPAD4);
+    table.set("KC_NUMPAD5", OIS::KC_NUMPAD5);
+    table.set("KC_NUMPAD6", OIS::KC_NUMPAD6);
+    table.set("KC_ADD", OIS::KC_ADD);
+    table.set("KC_NUMPAD1", OIS::KC_NUMPAD1);
+    table.set("KC_NUMPAD2", OIS::KC_NUMPAD2);
+    table.set("KC_NUMPAD3", OIS::KC_NUMPAD3);
+    table.set("KC_NUMPAD0", OIS::KC_NUMPAD0);
+    table.set("KC_DECIMAL", OIS::KC_DECIMAL);
+    table.set("KC_OEM_102", OIS::KC_OEM_102);
+    table.set("KC_F11", OIS::KC_F11);
+    table.set("KC_F12", OIS::KC_F12);
+    table.set("KC_F13", OIS::KC_F13);
+    table.set("KC_F14", OIS::KC_F14);
+    table.set("KC_F15", OIS::KC_F15);
+    table.set("KC_KANA", OIS::KC_KANA);
+    table.set("KC_ABNT_C1", OIS::KC_ABNT_C1);
+    table.set("KC_CONVERT", OIS::KC_CONVERT);
+    table.set("KC_NOCONVERT", OIS::KC_NOCONVERT);
+    table.set("KC_YEN", OIS::KC_YEN);
+    table.set("KC_ABNT_C2", OIS::KC_ABNT_C2);
+    table.set("KC_NUMPADEQUALS", OIS::KC_NUMPADEQUALS);
+    table.set("KC_PREVTRACK", OIS::KC_PREVTRACK);
+    table.set("KC_AT", OIS::KC_AT);
+    table.set("KC_COLON", OIS::KC_COLON);
+    table.set("KC_UNDERLINE", OIS::KC_UNDERLINE);
+    table.set("KC_KANJI", OIS::KC_KANJI);
+    table.set("KC_STOP", OIS::KC_STOP);
+    table.set("KC_AX", OIS::KC_AX);
+    table.set("KC_UNLABELED", OIS::KC_UNLABELED);
+    table.set("KC_NEXTTRACK", OIS::KC_NEXTTRACK);
+    table.set("KC_NUMPADENTER", OIS::KC_NUMPADENTER);
+    table.set("KC_RCONTROL", OIS::KC_RCONTROL);
+    table.set("KC_MUTE", OIS::KC_MUTE);
+    table.set("KC_CALCULATOR", OIS::KC_CALCULATOR);
+    table.set("KC_PLAYPAUSE", OIS::KC_PLAYPAUSE);
+    table.set("KC_MEDIASTOP", OIS::KC_MEDIASTOP);
+    table.set("KC_VOLUMEDOWN", OIS::KC_VOLUMEDOWN);
+    table.set("KC_VOLUMEUP", OIS::KC_VOLUMEUP);
+    table.set("KC_WEBHOME", OIS::KC_WEBHOME);
+    table.set("KC_NUMPADCOMMA", OIS::KC_NUMPADCOMMA);
+    table.set("KC_DIVIDE", OIS::KC_DIVIDE);
+    table.set("KC_SYSRQ", OIS::KC_SYSRQ);
+    table.set("KC_RMENU", OIS::KC_RMENU);
+    table.set("KC_PAUSE", OIS::KC_PAUSE);
+    table.set("KC_HOME", OIS::KC_HOME);
+    table.set("KC_UP", OIS::KC_UP);
+    table.set("KC_PGUP", OIS::KC_PGUP);
+    table.set("KC_LEFT", OIS::KC_LEFT);
+    table.set("KC_RIGHT", OIS::KC_RIGHT);
+    table.set("KC_END", OIS::KC_END);
+    table.set("KC_DOWN", OIS::KC_DOWN);
+    table.set("KC_PGDOWN", OIS::KC_PGDOWN);
+    table.set("KC_INSERT", OIS::KC_INSERT);
+    table.set("KC_DELETE", OIS::KC_DELETE);
+    table.set("KC_LWIN", OIS::KC_LWIN);
+    table.set("KC_RWIN", OIS::KC_RWIN);
+    table.set("KC_APPS", OIS::KC_APPS);
+    table.set("KC_POWER", OIS::KC_POWER);
+    table.set("KC_SLEEP", OIS::KC_SLEEP);
+    table.set("KC_WAKE", OIS::KC_WAKE);
+    table.set("KC_WEBSEARCH", OIS::KC_WEBSEARCH);
+    table.set("KC_WEBFAVORITES", OIS::KC_WEBFAVORITES);
+    table.set("KC_WEBREFRESH", OIS::KC_WEBREFRESH);
+    table.set("KC_WEBSTOP", OIS::KC_WEBSTOP);
+    table.set("KC_WEBFORWARD", OIS::KC_WEBFORWARD);
+    table.set("KC_WEBBACK", OIS::KC_WEBBACK);
+    table.set("KC_MYCOMPUTER", OIS::KC_MYCOMPUTER);
+    table.set("KC_MAIL", OIS::KC_MAIL);
+    table.set("KC_MEDIASELECT", OIS::KC_MEDIASELECT);
+    
+    lua["KEYCODE"] = table;
+
 }
 
 

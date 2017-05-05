@@ -1,11 +1,8 @@
 #include "engine/serialization.h"
 
-#include "scripting/luabind.h"
-
 #include <boost/lexical_cast.hpp>
 #include <boost/variant.hpp>
 #include <cfloat>
-#include <luabind/iterator_policy.hpp>
 #include <stdexcept>
 #include <unordered_map>
 
@@ -145,18 +142,18 @@ TYPE_INFO(Ogre::Quaternion, StorageContainer, 320)
 TYPE_INFO(Ogre::ColourValue, uint32_t, 336)
 } // namespace
 
-#define TO_LUA_CASE(typeName) \
-    case TypeInfo<typeName>::Id: \
-    { \
-        using Info = TypeInfo<typeName>; \
-        auto storedValue = boost::get<Info::StoredType>(value.value); \
-        auto value = Info::convertFromStoredType(storedValue); \
-        return luabind::object(L, value); \
-    }
+#define TO_LUA_CASE(typeName)                                       \
+case TypeInfo<typeName>::Id:                                        \
+{                                                                   \
+    using Info = TypeInfo<typeName>;                                \
+    auto storedValue = boost::get<Info::StoredType>(value.value);   \
+    auto value = Info::convertFromStoredType(storedValue);          \
+    return sol::make_object(lua, value);                            \
+}
 
-static luabind::object
+static sol::object
 toLua(
-    lua_State* L,
+    sol::state_view &lua,
     const StoredValue& value
 ) {
     switch(value.typeId) {
@@ -182,7 +179,7 @@ toLua(
         TO_LUA_CASE(Ogre::Quaternion);
         TO_LUA_CASE(Ogre::ColourValue);
         default:
-            return luabind::object();
+            return sol::nil;
     }
 }
 
@@ -289,28 +286,47 @@ GET_SET_CONTAINS(Ogre::Vector3)
 GET_SET_CONTAINS(Ogre::Quaternion)
 GET_SET_CONTAINS(Ogre::ColourValue)
 
-luabind::scope
-StorageContainer::luaBindings() {
-    using namespace luabind;
-    return 
-        class_<StorageContainer>("StorageContainer")
-            .def(constructor<>())
-            .def("contains", static_cast<bool(StorageContainer::*)(const std::string&) const>(&StorageContainer::contains))
-            .def("get", &StorageContainer::luaGet)
-            .def("set", &StorageContainer::set<bool>)
-            .def("set", &StorageContainer::set<double>)
-            .def("set", &StorageContainer::set<std::string>)
-            .def("set", &StorageContainer::set<StorageContainer>)
-            .def("set", &StorageContainer::set<StorageList>)
-            // Compound types
-            .def("set", &StorageContainer::set<Ogre::Degree>)
-            .def("set", &StorageContainer::set<Ogre::Plane>)
-            .def("set", &StorageContainer::set<Ogre::Vector3>)
-            .def("set", &StorageContainer::set<Ogre::Quaternion>)
-            .def("set", &StorageContainer::set<Ogre::ColourValue>)
-    ;
-}
 
+void StorageContainer::luaBindings(
+    sol::state &lua
+){
+    lua.new_usertype<StorageContainer>("StorageContainer",
+
+        sol::constructors<sol::types<>>(),
+
+        "get", sol::overload([](StorageContainer &self, const std::string &key,
+                sol::this_state s)
+            {
+                return self.luaGet(key, sol::nil, s);
+                
+            }, &StorageContainer::luaGet),
+
+        "contains", static_cast<bool(StorageContainer::*)(
+            const std::string&) const>(
+                (&StorageContainer::contains)),
+
+        // Overridden set method //
+        
+        "set", sol::overload(
+            &StorageContainer::set<bool>,
+            &StorageContainer::set<double>,
+            &StorageContainer::set<std::string>,
+            &StorageContainer::set<StorageContainer>,
+            &StorageContainer::set<StorageList>,
+            // Compound types
+            &StorageContainer::set<Ogre::Degree>,
+            &StorageContainer::set<Ogre::Plane>,
+            &StorageContainer::set<Ogre::Vector3>,
+            &StorageContainer::set<Ogre::Quaternion>,
+            &StorageContainer::set<Ogre::ColourValue>
+            // Extra wrappers
+            // ,[](StorageContainer &self, const std::string &key, const StorageContainer &value){
+
+            //     self.set(key, value);
+            // }
+        )
+    );
+}
 
 StorageContainer::StorageContainer()
   : m_impl(new Implementation())
@@ -365,18 +381,20 @@ StorageContainer::contains(
 }
 
 
-luabind::object
+sol::object
 StorageContainer::luaGet(
     const std::string& key,
-    luabind::object defaultValue
+    sol::object defaultValue,
+    sol::this_state s
 ) const {
     auto iter = m_impl->m_content.find(key);
     if (iter == m_impl->m_content.end()) {
         return defaultValue;
     }
     else {
-        luabind::object obj = toLua(defaultValue.interpreter(), iter->second);
-        if (obj) {
+        sol::state_view lua(s);
+        sol::object obj = toLua(lua, iter->second);
+        if (obj.valid()) {
             return obj;
         }
         else {
@@ -563,15 +581,18 @@ TypeInfo<Ogre::ColourValue>::convertToStoredType(
 // StorageList
 ////////////////////////////////////////////////////////////////////////////////
 
-luabind::scope
-StorageList::luaBindings() {
-    using namespace luabind;
-    return class_<StorageList>("StorageList")
-        .def(constructor<>())
-        .def("append", &StorageList::append)
-        .def("get", &StorageList::get)
-        .def("size", &StorageList::size)
-    ;
+void StorageList::luaBindings(
+    sol::state &lua
+){
+    
+    lua.new_usertype<StorageList>("StorageList",
+        
+        sol::constructors<sol::types<>>(),
+        
+        "append", &StorageList::append,
+        "get", &StorageList::get,
+        "size", &StorageList::size
+    );
 }
 
 

@@ -6,8 +6,8 @@
 #include <OgreVector3.h>
 #include <OgreQuaternion.h>
 
-namespace luabind {
-    class scope;
+namespace sol {
+class state;
 }
 
 namespace thrive {
@@ -77,8 +77,7 @@ public:
     *
     * @return 
     */
-    static luabind::scope
-    luaBindings();
+    static void luaBindings(sol::state &lua);
 
     /**
     * @brief Destructor
@@ -122,38 +121,34 @@ public:
 *   The name of the wrapped Bullet shape class
 *
 */
-#define SHAPE_CLASS(cls, type, bulletShapeClass) \
-    public: \
-        \
-        /**
-        * @brief The ShapeType associated with this class
-        */ \
-        static const ShapeType SHAPE_TYPE = type; \
-        \
-        static std::unique_ptr<cls> \
-        load( \
-            const StorageContainer& storage \
-        ); \
-        \
-        static luabind::scope \
-        luaBindings(); \
-        \
-        btCollisionShape* \
-        bulletShape() const override { \
-            return m_bulletShape.get(); \
-        } \
-        \
-        ShapeType \
-        shapeType() const override { \
-            return SHAPE_TYPE; \
-        } \
-        \
-        StorageContainer \
-        storage() const override; \
-        \
-    private: \
-        \
-        std::unique_ptr<bulletShapeClass> m_bulletShape;
+#define SHAPE_CLASS(cls, type, bulletShapeClass)    \
+public:                                             \
+                                                    \
+ static const ShapeType SHAPE_TYPE = type;          \
+                                                    \
+ static std::unique_ptr<cls>                        \
+ load(                                              \
+     const StorageContainer& storage                \
+ );                                                 \
+                                                    \
+ static void luaBindings(sol::state &lua);          \
+                                                    \
+ btCollisionShape*                                  \
+ bulletShape() const override {                     \
+     return m_bulletShape.get();                    \
+ }                                                  \
+                                                    \
+ ShapeType                                          \
+ shapeType() const override {                       \
+     return SHAPE_TYPE;                             \
+ }                                                  \
+                                                    \
+ StorageContainer                                   \
+ storage() const override;                          \
+                                                    \
+private:                                            \
+                                                    \
+ std::unique_ptr<bulletShapeClass> m_bulletShape;
 
 
 ////////////////////////////////////////////////////////////////////////////////

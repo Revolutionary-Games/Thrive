@@ -4,8 +4,8 @@
 #include <memory>
 #include <OISMouse.h>
 
-namespace luabind {
-class scope;
+namespace sol {
+class state;
 }
 
 namespace Ogre {
@@ -39,8 +39,7 @@ public:
     *
     * @return
     */
-    static luabind::scope
-    luaBindings();
+    static void luaBindings(sol::state &lua);
 
     /**
     * @brief Constructor

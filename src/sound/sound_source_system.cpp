@@ -9,7 +9,7 @@
 #include "sound/sound_emitter.h"
 #include "sound/sound_manager.h"
 #include "ogre/scene_node_system.h"
-#include "scripting/luabind.h"
+#include "scripting/luajit.h"
 #include "util/make_unique.h"
 
 #include "game.h"
@@ -26,32 +26,38 @@ static const int FADE_TIME = 5000; //5 seconds
 // Sound
 ////////////////////////////////////////////////////////////////////////////////
 
-luabind::scope
-Sound::luaBindings() {
-    using namespace luabind;
-    return class_<Sound>("Sound")
-        .scope [
-            class_<Properties, Touchable>("Properties")
-                .def_readwrite("playState", &Properties::playState)
-                .def_readwrite("loop", &Properties::loop)
-                .def_readwrite("volume", &Properties::volume)
-                .def_readwrite("maxDistance", &Properties::maxDistance)
-                .def_readwrite("rolloffFactor", &Properties::rolloffFactor)
-                .def_readwrite("referenceDistance", &Properties::referenceDistance)
-                .def_readwrite("priority", &Properties::priority)
-        ]
-        .enum_("PlayState") [
-            value("Play", PlayState::Play),
-            value("Pause", PlayState::Pause),
-            value("Stop", PlayState::Stop)
-        ]
-        .def(constructor<std::string, std::string>())
-        .def("name", &Sound::name)
-        .def("pause", &Sound::pause)
-        .def("play", &Sound::play)
-        .def("stop", &Sound::stop)
-        .def_readonly("properties", &Sound::m_properties)
-    ;
+void Sound::luaBindings(sol::state &lua) {
+
+    lua.new_usertype<Properties>("SoundProperties",
+
+        sol::base_classes, sol::bases<Touchable>(),
+
+        "playState", &Properties::playState,
+        "loop", &Properties::loop,
+        "volume", &Properties::volume,
+        "maxDistance", &Properties::maxDistance,
+        "rolloffFactor", &Properties::rolloffFactor,
+        "referenceDistance", &Properties::referenceDistance,
+        "priority", &Properties::priority
+    );
+    
+    lua.new_usertype<Sound>("Sound",
+
+        sol::constructors<sol::types<std::string, std::string>>(),
+
+        "PlayState", sol::var(lua.create_table_with(
+                "Play", PlayState::Play,
+                "Pause", PlayState::Pause,
+                "Stop", PlayState::Stop
+            )),
+            
+        "name", &Sound::name,
+        "pause", &Sound::pause,
+        "play", &Sound::play,
+        "stop", &Sound::stop,
+
+        "properties", sol::readonly(&Sound::m_properties)
+    );
 }
 
 
@@ -144,71 +150,77 @@ Sound::storage() const {
 //Luabind helper functions
 static bool
 SoundSourceComponent_getAmbientSoundSource(
-    const SoundSourceComponent* self
+    const SoundSourceComponent &self
 ) {
-    return self->m_ambientSoundSource;
+    return self.m_ambientSoundSource;
 }
 
 static void
 SoundSourceComponent_setAmbientSoundSource(
-    SoundSourceComponent* self,
+    SoundSourceComponent &self,
     bool value
 ) {
-    self->m_ambientSoundSource = value;
+    self.m_ambientSoundSource = value;
 }
 
 static bool
 SoundSourceComponent_getAutoLoop(
-    const SoundSourceComponent* self
+    const SoundSourceComponent &self
 ) {
-    return self->m_autoLoop;
+    return self.m_autoLoop;
 }
 
 static void
 SoundSourceComponent_setAutoLoop(
-    SoundSourceComponent* self,
+    SoundSourceComponent &self,
     bool value
 ) {
-    self->m_autoLoop = value;
+    self.m_autoLoop = value;
 }
 
 static float
 SoundSourceComponent_getVolumeMultiplier(
-    const SoundSourceComponent* self
+    const SoundSourceComponent &self
 ) {
-    return self->m_volumeMultiplier;
+    return self.m_volumeMultiplier;
 }
 
 static void
 SoundSourceComponent_setVolumeMultiplier(
-    SoundSourceComponent* self,
+    SoundSourceComponent &self,
     float value
 ) {
-    self->m_volumeMultiplier = value;
+    self.m_volumeMultiplier = value;
 }
 
-luabind::scope
-SoundSourceComponent::luaBindings() {
-    using namespace luabind;
-    return class_<SoundSourceComponent, Component>("SoundSourceComponent")
-        .enum_("ID") [
-            value("TYPE_ID", SoundSourceComponent::TYPE_ID)
-        ]
-        .scope [
-            def("TYPE_NAME", &SoundSourceComponent::TYPE_NAME)
-        ]
-        .def(constructor<>())
-        .def("addSound", &SoundSourceComponent::addSound)
-        .def("removeSound", &SoundSourceComponent::removeSound)
-        .def("playSound", &SoundSourceComponent::playSound)
-        .def("stopSound", &SoundSourceComponent::stopSound)
-        .def("queueSound", &SoundSourceComponent::queueSound)
-        .def("interpose", &SoundSourceComponent::interpose)
-        .def("interruptPlaying", &SoundSourceComponent::interruptPlaying)
-        .property("ambientSoundSource", SoundSourceComponent_getAmbientSoundSource, SoundSourceComponent_setAmbientSoundSource)
-        .property("autoLoop", SoundSourceComponent_getAutoLoop, SoundSourceComponent_setAutoLoop)
-        .property("volumeMultiplier", SoundSourceComponent_getVolumeMultiplier, SoundSourceComponent_setVolumeMultiplier)
-    ;
+
+
+void SoundSourceComponent::luaBindings(
+    sol::state &lua
+){
+    lua.new_usertype<SoundSourceComponent>("SoundSourceComponent",
+
+        "new", sol::factories([](){
+                return std::make_unique<SoundSourceComponent>();
+            }),
+
+        COMPONENT_BINDINGS(SoundSourceComponent),
+
+        "addSound", &SoundSourceComponent::addSound,
+        "removeSound", &SoundSourceComponent::removeSound,
+        "playSound", &SoundSourceComponent::playSound,
+        "stopSound", &SoundSourceComponent::stopSound,
+        "queueSound", &SoundSourceComponent::queueSound,
+        "interpose", &SoundSourceComponent::interpose,
+        "interruptPlaying", &SoundSourceComponent::interruptPlaying,
+
+        "ambientSoundSource", sol::property(&SoundSourceComponent_getAmbientSoundSource,
+            &SoundSourceComponent_setAmbientSoundSource),
+        "autoLoop", sol::property(&SoundSourceComponent_getAutoLoop,
+            &SoundSourceComponent_setAutoLoop),
+        "volumeMultiplier", sol::property(&SoundSourceComponent_getVolumeMultiplier,
+            &SoundSourceComponent_setVolumeMultiplier)
+    );
 }
 
 Sound*
@@ -313,15 +325,18 @@ REGISTER_COMPONENT(SoundSourceComponent)
 // SoundSourceSystem
 ////////////////////////////////////////////////////////////////////////////////
 
-luabind::scope
-SoundSourceSystem::luaBindings() {
-    using namespace luabind;
-    return class_<SoundSourceSystem, System>("SoundSourceSystem")
-        .def(constructor<>())
-    ;
+void SoundSourceSystem::luaBindings(sol::state &lua) {
+
+    lua.new_usertype<SoundSourceSystem>("SoundSourceSystem",
+
+        sol::constructors<sol::types<>>(),
+
+        sol::base_classes, sol::bases<System>(),
+
+        "init", &SoundSourceSystem::init
+    );
 }
-
-
+    
 struct SoundSourceSystem::Implementation {
 
     //Destroys all sounds, freeing up memory
@@ -394,16 +409,15 @@ struct SoundSourceSystem::Implementation {
         Sound* sound,
         bool ambient,
         bool autoLoop,
-        GameState* gameState
+        GameStateData* gameState
     ) {
         static const bool STREAM = true; //Streaming sound from file
-
         //3D sounds should not be attempted loaded before scenenodes are created
-        if (not ambient && (not sceneNodeComponent || not sceneNodeComponent->m_sceneNode)){
-            return;
-        }
+        //if (not ambient && (not sceneNodeComponent || not sceneNodeComponent->m_sceneNode)){
+        //    return;
+        //}
         std::ostringstream soundName;
-        soundName << Game::instance().engine().currentGameState()->name() << sound->name() << entityId;
+        soundName << gameState->name() << sound->name() << entityId;
         auto soundManager = SoundManager::getSingleton();
         auto ogreSound = soundManager->createSound(
             soundName.str(),
@@ -455,7 +469,7 @@ struct SoundSourceSystem::Implementation {
         std::unordered_map<std::string, SoundEmitter*>
         > m_sounds;
 
-    GameState* m_gameState = nullptr;
+    GameStateData* m_gameState = nullptr;
 
 };
 
@@ -487,7 +501,10 @@ SoundSourceSystem::activate() {
 
 void
 SoundSourceSystem::deactivate() {
-    if (this->engine()->isSystemTimedShutdown(*this)) {
+
+    
+    // TODO: avoid going through Lua Engine here for performance ... 
+    if (this->gameState()->engine()->isSystemTimedShutdown(this)) {
         System::deactivate();
         m_impl->removeAllSounds();
     }
@@ -495,17 +512,17 @@ SoundSourceSystem::deactivate() {
         for (auto& value : m_impl->m_entities) {
             std::get<0>(value.second)->m_autoSoundCountdown = 1500;
         }
-        this->engine()->timedSystemShutdown(*this, 1500);
+        this->gameState()->engine()->timedSystemShutdown(this, 1500);
     }
 }
 
 
 void
 SoundSourceSystem::init(
-    GameState* gameState
+    GameStateData* gameState
 ) {
     System::initNamed("SoundSourceSystem", gameState);
-    m_impl->m_entities.setEntityManager(&gameState->entityManager());
+    m_impl->m_entities.setEntityManager(gameState->entityManager());
     m_impl->m_gameState = gameState;
 }
 
@@ -549,6 +566,9 @@ SoundSourceSystem::update(
                     soundSourceComponent->m_autoLoop,
                     this->gameState()
                 );
+
+                if(!sound->m_sound)
+                    throw std::runtime_error("Failed to restoreSound for new sound object");
             }
         }
     }
@@ -561,6 +581,26 @@ SoundSourceSystem::update(
             assert(sound->m_sound && "Sound was not intialized");
             if (sound->m_properties.hasChanges()) {
                 const auto& properties = sound->m_properties;
+                
+                if(!sound->m_sound){
+                    
+                    std::cout << "invalid/uninitialized sound: " <<
+                        static_cast<void*>(sound) << " initialized now TODO: fix loading game"
+                        << std::endl;
+
+                    m_impl->restoreSound(
+                        value.first,
+                        sceneNodeComponent,
+                        sound,
+                        soundSourceComponent->m_ambientSoundSource,
+                        soundSourceComponent->m_autoLoop,
+                        this->gameState()
+                    );
+
+                    if(!sound->m_sound)
+                        throw std::runtime_error("Failed to restoreSound on invalid sound");
+                }
+
                 auto ogreSound = sound->m_sound;
                 assert(ogreSound && "Sound was not intialized properly");
                 ogreSound->loop(properties.loop and not soundSourceComponent->m_autoLoop);

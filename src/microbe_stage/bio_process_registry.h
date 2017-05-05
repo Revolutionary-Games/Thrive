@@ -1,16 +1,12 @@
 #pragma once
 
-#include "scripting/luabind.h"
 #include "engine/typedefs.h"
 
 #include <boost/range/adaptor/map.hpp>
 #include <vector>
 #include <unordered_map>
 
-namespace luabind {
-class scope;
-}
-
+#include "scripting/luajit.h"
 
 namespace thrive {
 
@@ -39,8 +35,7 @@ public:
     * - BioProcessRegistry::getOutputCompounds
     * @return
     */
-    static luabind::scope
-    luaBindings();
+    static void luaBindings(sol::state &lua);
 
     static void
     loadFromXML(
@@ -49,7 +44,7 @@ public:
 
     static void
     loadFromLua(
-        const luabind::object& processTable
+        sol::table processTable
     );
 
     /**

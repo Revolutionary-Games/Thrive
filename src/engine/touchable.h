@@ -1,7 +1,7 @@
 #pragma once
 
-namespace luabind {
-    class scope;
+namespace sol {
+class state;
 }
 
 namespace thrive {
@@ -30,8 +30,7 @@ public:
     *
     * @return 
     */
-    static luabind::scope
-    luaBindings();
+    static void luaBindings(sol::state &lua);
 
     /**
     * @brief Whether this Touchable has unapplied changes

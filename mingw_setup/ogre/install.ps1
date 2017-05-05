@@ -47,8 +47,8 @@ $REPOSITORY_NAME="sinbad"
 
 $REMOTE_DIR="https://bitbucket.org/sinbad/ogre/get"
              
-            
-$COMMIT_ID="9fba1c8ac0be"
+
+$COMMIT_ID="b6eeaf8a7c5d"
 
 $ARCHIVE="$COMMIT_ID.zip"
 
@@ -79,7 +79,7 @@ $ARGUMENTS = "x",
              "-o$WORKING_DIR",
              $DESTINATION
              
-& $7z $ARGUMENTS | out-null
+#& $7z $ARGUMENTS | out-null
 
 
 ###########
@@ -116,7 +116,7 @@ foreach ($BUILD_TYPE in $BUILD_TYPES) {
         "-DOGRE_BUILD_RENDERSYSTEM_D3D11=OFF",
         "-DOGRE_BUILD_SAMPLES=OFF",
         "-DOGRE_BUILD_TOOLS=OFF",
-        "-DCMAKE_CXX_FLAGS:string=-mstackrealign -msse2 -std=c++0x",
+        "-DCMAKE_CXX_FLAGS:string=-mstackrealign -std=c++1y",
         "-DDirectX_DXERR_LIBRARY=$MINGW_ENV/x86_64-mingw32/lib/libdxerr9.a",
         "$WORKING_DIR/sinbad-ogre-$COMMIT_ID"
 

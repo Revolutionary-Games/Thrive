@@ -3,13 +3,11 @@
 #include "engine/system.h"
 #include "engine/touchable.h"
 #include "engine/typedefs.h"
-#include "scripting/luabind.h"
-#include <luabind/object.hpp>
 #include <string>
 #include <unordered_set>
 
-namespace luabind {
-class scope;
+namespace sol {
+class state;
 }
 
 
@@ -35,8 +33,7 @@ public:
     *
     * @return
     */
-    static luabind::scope
-    luaBindings();
+    static void luaBindings(sol::state &lua);
 
 
     /**

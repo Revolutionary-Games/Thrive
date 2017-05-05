@@ -3,15 +3,15 @@
 
 #include <memory>
 
-namespace luabind {
-class scope;
+namespace sol {
+class state;
 }
 
 namespace thrive {
 
 class Engine;
 class EntityManager;
-class GameState;
+class GameStateData;
 
 /**
 * @brief A system handles one specific part of the game
@@ -28,13 +28,17 @@ public:
     * @brief Lua bindings
     *
     * Exposes:
-    * - System::active
-    * - System::setActive
+    * - System::enabled
+    * - System::init
+    * - System::setEnabled
+    * - System::activate
+    * - System::deactivate
+    * - System::shutdown
+    * - System::update
     *
     * @return
     */
-    static luabind::scope
-    luaBindings();
+    static void luaBindings(sol::state &lua);
 
     /**
     * @brief Constructor
@@ -75,16 +79,6 @@ public:
     enabled() const;
 
     /**
-    * @brief The system's engine
-    *
-    * @return
-    *   The system's engine or \c nullptr if the system hasn't been
-    *   initialized yet.
-    */
-    Engine*
-    engine() const;
-
-    /**
     * @brief Returns the system's entity manager
     *
     * If the system has not been initialized yet, this returns \c nullptr.
@@ -98,7 +92,7 @@ public:
     *
     * If the system has not been initialized yet, this returns \c nullptr.
     */
-    GameState*
+    GameStateData*
     gameState() const;
 
     /**
@@ -111,7 +105,7 @@ public:
     */
     virtual void
     init(
-        GameState* gameState
+        GameStateData* gameState
     );
 
     /**
@@ -127,8 +121,8 @@ public:
     */
     virtual void
     initNamed(
-        std::string name,
-        GameState* gameState
+        const std::string &name,
+        GameStateData* gameState
     );
 
     /**

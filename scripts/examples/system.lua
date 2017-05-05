@@ -1,32 +1,38 @@
 
--- Create class MySystem, derived from System
-class 'MySystem' (System)
+-- Create class MySystem, derived from LuaSystem
+MySystem = class(
+    LuaSystem,
+    -- Define constructor
+    function(self)
+        -- Do not forget to call the constructor of the base class
+        LuaSystem.create(self)
 
--- Define constructor
-function MySystem:__init()
-    -- Do not forget to call the constructor of the base class
-    System.__init(self) 
-    self.entities = EntityFilter(
-        {
-            -- We only want to know about entities that have both a 
-            -- MyComponent and an OgreSceneNodeComponent
-            MyComponent,
-            OgreSceneNodeComponent
-        },
-        -- Optional. If true, we can ask the EntityFilter for added and 
-        -- removed entities
-        true 
-    )
-end
+        self.entities = EntityFilter.new(
+            {
+                -- We only want to know about entities that have both a 
+                -- MyComponent and an OgreSceneNodeComponent
+                MyComponent,
+                OgreSceneNodeComponent
+            },
+            -- Optional. If true, we can ask the EntityFilter for added and 
+            -- removed entities
+            true 
+        )
+    end
+)
 
 -- Called once before the first call to update()
-function MySystem:init(engine)
+function MySystem:init(gameState)
+    LuaSystem.init(self, "MySystem", gameState)
+
     -- Enable the EntityFilter
     self.entities:init()
 end
 
 -- Called once after the last call to update()
 function MySystem:shutdown()
+    LuaSystem.shutdown(self)
+
     -- Disable the EntityFilter
     self.entities:shutdown()
 end
@@ -46,4 +52,5 @@ function MySystem:update(renderTime, logicTime)
         print("Updating entity: " .. tostring(entityId))
     end
 end
+
 

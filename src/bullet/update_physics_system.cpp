@@ -1,7 +1,9 @@
 #include "bullet/update_physics_system.h"
 
+
+#include "bullet/physical_world.h"
 #include "engine/game_state.h"
-#include "scripting/luabind.h"
+#include "scripting/luajit.h"
 
 #include <assert.h>
 #include <btBulletDynamicsCommon.h>
@@ -9,14 +11,18 @@
 
 using namespace thrive;
 
-luabind::scope
-UpdatePhysicsSystem::luaBindings() {
-    using namespace luabind;
-    return class_<UpdatePhysicsSystem, System>("UpdatePhysicsSystem")
-        .def(constructor<>())
-    ;
-}
+void UpdatePhysicsSystem::luaBindings(
+    sol::state &lua
+){
+    lua.new_usertype<UpdatePhysicsSystem>("UpdatePhysicsSystem",
 
+        sol::constructors<sol::types<>>(),
+        
+        sol::base_classes, sol::bases<System>(),
+
+        "init", &UpdatePhysicsSystem::init
+    );
+}
 
 struct UpdatePhysicsSystem::Implementation {
 
@@ -36,10 +42,10 @@ UpdatePhysicsSystem::~UpdatePhysicsSystem() {}
 
 void
 UpdatePhysicsSystem::init(
-    GameState* gameState
+    GameStateData* gameState
 ) {
     System::initNamed("UpdatePhysicsSystem", gameState);
-    m_impl->m_world = gameState->physicsWorld();
+    m_impl->m_world = gameState->physicalWorld()->physicsWorld();
     assert(m_impl->m_world != nullptr && "World object is null. Initialize the Engine first.");
 }
 

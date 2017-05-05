@@ -10,31 +10,26 @@
 #include "engine/entity_filter.h"
 #include "engine/game_state.h"
 #include "engine/serialization.h"
-#include "scripting/luabind.h"
+#include "scripting/luajit.h"
 
 #include <iostream>
-#include <lua.h>
-#include <lauxlib.h>
-#include <lualib.h>
-
 
 using namespace thrive;
 
-luabind::scope
-PowerupComponent::luaBindings() {
-    using namespace luabind;
-    return class_<PowerupComponent, Component>("PowerupComponent")
-        .enum_("ID") [
-            value("TYPE_ID", PowerupComponent::TYPE_ID)
-        ]
-        .scope [
-            def("TYPE_NAME", &PowerupComponent::TYPE_NAME)
-        ]
-        .def(constructor<>())
-        .def("setEffect",
-             static_cast<void (PowerupComponent::*)(const std::string&)>(&PowerupComponent::setEffect)
-         )
-    ;
+void PowerupComponent::luaBindings(
+    sol::state &lua
+){
+    lua.new_usertype<PowerupComponent>("PowerupComponent",
+
+        "new", sol::factories([](){
+                return std::make_unique<PowerupComponent>();
+            }),
+        
+        COMPONENT_BINDINGS(PowerupComponent),
+
+        "setEffect", static_cast<void (PowerupComponent::*)(
+            const std::string&)>(&PowerupComponent::setEffect)
+    );
 }
 
 void
@@ -109,14 +104,18 @@ REGISTER_COMPONENT(PowerupComponent)
 // PowerupSystem
 ////////////////////////////////////////////////////////////////////////////////
 
-luabind::scope
-PowerupSystem::luaBindings() {
-    using namespace luabind;
-    return class_<PowerupSystem, System>("PowerupSystem")
-        .def(constructor<>())
-    ;
-}
+void PowerupSystem::luaBindings(
+    sol::state &lua
+){
+    lua.new_usertype<PowerupSystem>("PowerupSystem",
 
+        sol::constructors<sol::types<>>(),
+        
+        sol::base_classes, sol::bases<System>(),
+
+        "init", &PowerupSystem::init
+    );
+}
 
 struct PowerupSystem::Implementation {
 
@@ -146,12 +145,12 @@ PowerupSystem::~PowerupSystem() {}
 
 void
 PowerupSystem::init(
-    GameState* gameState
+    GameStateData* gameState
 ) {
     System::initNamed("PowerupSystem", gameState);
-    m_impl->m_entities.setEntityManager(&gameState->entityManager());
+    m_impl->m_entities.setEntityManager(gameState->entityManager());
     m_impl->m_powerupCollisions.init(gameState);
-    m_impl->m_entityManager = &gameState->entityManager();
+    m_impl->m_entityManager = gameState->entityManager();
 }
 
 

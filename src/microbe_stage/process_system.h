@@ -3,7 +3,6 @@
 #include "engine/component.h"
 #include "engine/system.h"
 #include "engine/touchable.h"
-#include "scripting/luabind.h"
 #include "engine/typedefs.h"
 
 #include <boost/range/adaptor/map.hpp>
@@ -30,8 +29,8 @@
 #define INITIAL_COMPOUND_PRICE 10.0
 #define INITIAL_COMPOUND_DEMAND 1.0
 
-namespace luabind {
-class scope;
+namespace sol {
+class state;
 }
 
 namespace thrive {
@@ -40,8 +39,7 @@ class ProcessorComponent : public Component {
     COMPONENT(Processor)
 
 public:
-    static luabind::scope
-    luaBindings();
+    static void luaBindings(sol::state &lua);
 
     void
     load(
@@ -70,8 +68,7 @@ class CompoundBagComponent : public Component {
     COMPONENT(CompoundBag)
 
 public:
-    static luabind::scope
-    luaBindings();
+    static void luaBindings(sol::state &lua);
 
     CompoundBagComponent();
 
@@ -85,7 +82,7 @@ public:
 
     float storageSpace;
     float storageSpaceOccupied;
-    ProcessorComponent* processor;
+    ProcessorComponent* processor = nullptr;
     std::string speciesName;
     std::unordered_map<CompoundId, CompoundData> compounds;
 
@@ -111,8 +108,7 @@ public:
 class ProcessSystem : public System {
 
 public:
-    static luabind::scope
-    luaBindings();
+    static void luaBindings(sol::state &lua);
 
     /**
     * @brief Constructor
@@ -128,7 +124,7 @@ public:
     * @brief Initializes the system
     *
     */
-    void init(GameState* gameState) override;
+    void init(GameStateData* gameState) override;
 
     /**
     * @brief Shuts the system down

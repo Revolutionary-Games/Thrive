@@ -2,8 +2,8 @@
 
 #include "engine/system.h"
 
-namespace luabind {
-    class scope;
+namespace sol {
+class state;
 }
 
 namespace thrive {
@@ -24,8 +24,7 @@ public:
     *
     * @return 
     */
-    static luabind::scope
-    luaBindings();
+    static void luaBindings(sol::state &lua);
 
     /**
     * @brief Constructor
@@ -43,7 +42,7 @@ public:
     */
     void
     init(
-        GameState* gameState
+        GameStateData* gameState
     ) override;
 
     /**

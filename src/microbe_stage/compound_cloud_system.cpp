@@ -12,7 +12,7 @@
 #include "engine/serialization.h"
 #include "game.h"
 #include "ogre/scene_node_system.h"
-#include "scripting/luabind.h"
+#include "scripting/luajit.h"
 #include "util/make_unique.h"
 
 #include <iostream>
@@ -36,24 +36,23 @@ using namespace thrive;
 ////////////////////////////////////////////////////////////////////////////////
 // CompoundCloudComponent
 ////////////////////////////////////////////////////////////////////////////////
+void CompoundCloudComponent::luaBindings(
+    sol::state &lua
+){
+    lua.new_usertype<CompoundCloudComponent>("CompoundCloudComponent",
 
-luabind::scope
-CompoundCloudComponent::luaBindings() {
-    using namespace luabind;
-    return class_<CompoundCloudComponent, Component>("CompoundCloudComponent")
-        .enum_("ID") [
-            value("TYPE_ID", CompoundCloudComponent::TYPE_ID)
-        ]
-        .scope [
-            def("TYPE_NAME", &CompoundCloudComponent::TYPE_NAME)
-        ]
-        .def(constructor<>())
-        .def("initialize", &CompoundCloudComponent::initialize)
-        .def("addCloud", &CompoundCloudComponent::addCloud)
-        .def_readonly("width", &CompoundCloudComponent::width)
-        .def_readonly("height", &CompoundCloudComponent::height)
-        .def_readonly("gridSize", &CompoundCloudComponent::gridSize)
-    ;
+        "new", sol::factories([](){
+                return std::make_unique<CompoundCloudComponent>();
+            }),
+        
+        COMPONENT_BINDINGS(CompoundCloudComponent),
+
+        "initialize", &CompoundCloudComponent::initialize,
+        "addCloud", &CompoundCloudComponent::addCloud,
+        "width", sol::readonly(&CompoundCloudComponent::width),
+        "height", sol::readonly(&CompoundCloudComponent::height),
+        "gridSize", sol::readonly(&CompoundCloudComponent::gridSize)
+    );
 }
 
 void
@@ -145,15 +144,18 @@ REGISTER_COMPONENT(CompoundCloudComponent)
 ////////////////////////////////////////////////////////////////////////////////
 // CompoundCloudSystem
 ////////////////////////////////////////////////////////////////////////////////
+    void CompoundCloudSystem::luaBindings(
+    sol::state &lua
+){
+    lua.new_usertype<CompoundCloudSystem>("CompoundCloudSystem",
 
-luabind::scope
-CompoundCloudSystem::luaBindings() {
-    using namespace luabind;
-    return class_<CompoundCloudSystem, System>("CompoundCloudSystem")
-        .def(constructor<>())
-    ;
+        sol::constructors<sol::types<>>(),
+        
+        sol::base_classes, sol::bases<System>(),
+
+        "init", &CompoundCloudSystem::init
+    );
 }
-
 
 struct CompoundCloudSystem::Implementation {
     // All entities that have a compoundCloudsComponent.
@@ -188,18 +190,23 @@ CompoundCloudSystem::~CompoundCloudSystem() {
 
 void
 CompoundCloudSystem::init(
-    GameState* gameState
+    GameStateData* gameState
 ) {
     System::initNamed("CompoundCloudSystem", gameState);
-    m_impl->m_compounds.setEntityManager(&gameState->entityManager());
+    m_impl->m_compounds.setEntityManager(gameState->entityManager());
     m_impl->m_sceneManager = gameState->sceneManager();
     this->gameState = gameState;
 
     // Create a background plane on which the fluid clouds will be drawn.
     Ogre::Plane plane(Ogre::Vector3::UNIT_Z, -1.0);
-    Ogre::MeshManager::getSingleton().createPlane("CompoundCloudsPlane", "General", plane, width*gridSize, height*gridSize, 1, 1, true, 1, 1, 1, Ogre::Vector3::UNIT_Y);
-    compoundCloudsPlane = m_impl->m_sceneManager->createEntity("CompoundCloudsPlane", "General");
-    m_impl->m_sceneManager->getRootSceneNode()->createChildSceneNode()->attachObject(compoundCloudsPlane);
+    Ogre::MeshManager::getSingleton().createPlane("CompoundCloudsPlane", "General",
+        plane, width*gridSize, height*gridSize, 1, 1, true, 1, 1, 1, Ogre::Vector3::UNIT_Y);
+    
+    compoundCloudsPlane = m_impl->m_sceneManager->createEntity("CompoundCloudsPlane",
+        "General");
+    m_impl->m_sceneManager->getRootSceneNode()->createChildSceneNode()->attachObject(
+        compoundCloudsPlane);
+    
     compoundCloudsPlane->setMaterialName("CompoundClouds");
 }
 
@@ -215,11 +222,9 @@ CompoundCloudSystem::shutdown() {
 void
 CompoundCloudSystem::update(int renderTime, int) {
 
-//auto start = std::chrono::high_resolution_clock::now();
-
     // Get the player's position.
-    playerNode = static_cast<OgreSceneNodeComponent*>(gameState->entityManager().getComponent(
-        Entity(gameState->engine().playerData().playerName(), gameState).id(),
+    playerNode = static_cast<OgreSceneNodeComponent*>(gameState->entityManager()->getComponent(
+            Entity(Game::instance().engine().playerData().playerName(), gameState).id(),
         OgreSceneNodeComponent::TYPE_ID));
 
 
@@ -229,10 +234,14 @@ CompoundCloudSystem::update(int renderTime, int) {
         playerNode->m_transform.position.x < offsetX - width/3*gridSize/2  ||
         playerNode->m_transform.position.y < offsetY - height/3*gridSize/2)
     {
-        if (playerNode->m_transform.position.x > offsetX + width/3*gridSize/2 ) offsetX += width/3*gridSize;
-        if (playerNode->m_transform.position.y > offsetY + height/3*gridSize/2) offsetY += height/3*gridSize;
-        if (playerNode->m_transform.position.x < offsetX - width/3*gridSize/2 ) offsetX -= width/3*gridSize;
-        if (playerNode->m_transform.position.y < offsetY - height/3*gridSize/2) offsetY -= height/3*gridSize;
+        if (playerNode->m_transform.position.x > offsetX + width/3*gridSize/2 )
+            offsetX += width/3*gridSize;
+        if (playerNode->m_transform.position.y > offsetY + height/3*gridSize/2)
+            offsetY += height/3*gridSize;
+        if (playerNode->m_transform.position.x < offsetX - width/3*gridSize/2 )
+            offsetX -= width/3*gridSize;
+        if (playerNode->m_transform.position.y < offsetY - height/3*gridSize/2)
+            offsetY -= height/3*gridSize;
 
         compoundCloudsPlane->getParentSceneNode()->setPosition(offsetX, offsetY, -1.0);
     }
@@ -252,19 +261,27 @@ CompoundCloudSystem::update(int renderTime, int) {
         compoundCloud->oldDens.resize(width, std::vector<float>(height, 0));
 
         // Modifies the material to draw this compound cloud in addition to the others.
-        Ogre::MaterialPtr materialPtr = Ogre::MaterialManager::getSingleton().getByName("CompoundClouds", "General");
+        Ogre::MaterialPtr materialPtr = Ogre::MaterialManager::getSingleton().getByName(
+            "CompoundClouds", "General");
+        
         Ogre::Pass* pass = materialPtr->getTechnique(0)->createPass();
+        
         pass->setSceneBlending(Ogre::SBT_TRANSPARENT_ALPHA);
         pass->setVertexProgram("CompoundCloud_VS");
         pass->setFragmentProgram("CompoundCloud_PS");
-        //Ogre::TexturePtr texturePtr = Ogre::TextureManager::getSingleton().load(compoundCloud->compound + ".bmp", "General");
-        Ogre::TexturePtr texturePtr = Ogre::TextureManager::getSingleton().createManual(CompoundRegistry::getCompoundInternalName(compoundCloud->m_compoundId), "General", Ogre::TEX_TYPE_2D, width, height,
-                                                                                        0, Ogre::PF_BYTE_BGRA, Ogre::TU_DYNAMIC_WRITE_ONLY_DISCARDABLE);
+        
+        Ogre::TexturePtr texturePtr = Ogre::TextureManager::getSingleton().createManual(
+            CompoundRegistry::getCompoundInternalName(compoundCloud->m_compoundId),
+            "General", Ogre::TEX_TYPE_2D, width, height,
+            0, Ogre::PF_BYTE_BGRA, Ogre::TU_DYNAMIC_WRITE_ONLY_DISCARDABLE);
+        
         Ogre::HardwarePixelBufferSharedPtr cloud;
         cloud = texturePtr->getBuffer();
         cloud->lock(Ogre::HardwareBuffer::HBL_DISCARD);
         const Ogre::PixelBox& pixelBox = cloud->getCurrentLock();
+        
         uint8_t* pDest = static_cast<uint8_t*>(pixelBox.data);
+        
         // Fill in some pixel data. This will give a semi-transparent blue,
         // but this is of course dependent on the chosen pixel format.
         for (int i = 0; i < width; i++)
@@ -281,13 +298,15 @@ CompoundCloudSystem::update(int renderTime, int) {
         }
         // Unlock the pixel buffer
         cloud->unlock();
-        pass->createTextureUnitState(CompoundRegistry::getCompoundInternalName(compoundCloud->m_compoundId));
+        pass->createTextureUnitState()->setTexture(texturePtr);
 
         texturePtr = Ogre::TextureManager::getSingleton().load("PerlinNoise.jpg", "General");
         pass->createTextureUnitState()->setTexture(texturePtr);
 
-        compoundCloudsPlane->getSubEntity(0)->setCustomParameter(1, Ogre::Vector4(0.0f, 0.0f, 0.0f, 0.0f));
+        compoundCloudsPlane->getSubEntity(0)->setCustomParameter(1,
+            Ogre::Vector4(0.0f, 0.0f, 0.0f, 0.0f));
     }
+    
     // Clear the list of newly added entities so that we don't reinitialize them next frame.
     m_impl->m_compounds.clearChanges();
 
@@ -307,12 +326,14 @@ CompoundCloudSystem::update(int renderTime, int) {
                     for (int y = 0; y < height/3; y++)
                     {
                         compoundCloud->density[x][y] = compoundCloud->density[x][y+height/3];
-                        compoundCloud->density[x][y+height/3] = compoundCloud->density[x][y+height*2/3];
+                        compoundCloud->density[x][y+height/3] =
+                            compoundCloud->density[x][y+height*2/3];
                         compoundCloud->density[x][y+height*2/3] = 0.0;
                     }
                 }
                 Ogre::Vector4 offset = compoundCloudsPlane->getSubEntity(0)->getCustomParameter(1);
-                compoundCloudsPlane->getSubEntity(0)->setCustomParameter(1, Ogre::Vector4(offset.x, offset.y-1.0f/3, 0.0f, 0.0f));
+                compoundCloudsPlane->getSubEntity(0)->setCustomParameter(1,
+                    Ogre::Vector4(offset.x, offset.y-1.0f/3, 0.0f, 0.0f));
             }
             // If we moved right.
             else if (compoundCloud->offsetX < offsetX && compoundCloud->offsetY == offsetY)
@@ -322,12 +343,14 @@ CompoundCloudSystem::update(int renderTime, int) {
                     for (int y = 0; y < height; y++)
                     {
                         compoundCloud->density[x][y] = compoundCloud->density[x+height/3][y];
-                        compoundCloud->density[x+height/3][y] = compoundCloud->density[x+height*2/3][y];
+                        compoundCloud->density[x+height/3][y] =
+                            compoundCloud->density[x+height*2/3][y];
                         compoundCloud->density[x+height*2/3][y] = 0.0;
                     }
                 }
                 Ogre::Vector4 offset = compoundCloudsPlane->getSubEntity(0)->getCustomParameter(1);
-                compoundCloudsPlane->getSubEntity(0)->setCustomParameter(1, Ogre::Vector4(offset.x-1.0f/3, offset.y, 0.0f, 0.0f));
+                compoundCloudsPlane->getSubEntity(0)->setCustomParameter(1,
+                    Ogre::Vector4(offset.x-1.0f/3, offset.y, 0.0f, 0.0f));
             }
             // If we moved left.
             else if (compoundCloud->offsetX > offsetX && compoundCloud->offsetY == offsetY)
@@ -336,13 +359,15 @@ CompoundCloudSystem::update(int renderTime, int) {
                 {
                     for (int y = 0; y < height; y++)
                     {
-                        compoundCloud->density[x+height*2/3][y] = compoundCloud->density[x+height/3][y];
+                        compoundCloud->density[x+height*2/3][y] =
+                            compoundCloud->density[x+height/3][y];
                         compoundCloud->density[x+height/3][y] = compoundCloud->density[x][y];
                         compoundCloud->density[x][y] = 0.0;
                     }
                 }
                 Ogre::Vector4 offset = compoundCloudsPlane->getSubEntity(0)->getCustomParameter(1);
-                compoundCloudsPlane->getSubEntity(0)->setCustomParameter(1, Ogre::Vector4(offset.x+1.0f/3, offset.y, 0.0f, 0.0f));
+                compoundCloudsPlane->getSubEntity(0)->setCustomParameter(1,
+                    Ogre::Vector4(offset.x+1.0f/3, offset.y, 0.0f, 0.0f));
             }
             // If we moved downwards.
             else if (compoundCloud->offsetX == offsetX && compoundCloud->offsetY > offsetY)
@@ -351,17 +376,21 @@ CompoundCloudSystem::update(int renderTime, int) {
                 {
                     for (int y = 0; y < height/3; y++)
                     {
-                        compoundCloud->density[x][y+height*2/3] = compoundCloud->density[x][y+height/3];
+                        compoundCloud->density[x][y+height*2/3] =
+                            compoundCloud->density[x][y+height/3];
                         compoundCloud->density[x][y+height/3] = compoundCloud->density[x][y];
                         compoundCloud->density[x][y] = 0.0;
                     }
                 }
                 Ogre::Vector4 offset = compoundCloudsPlane->getSubEntity(0)->getCustomParameter(1);
-                compoundCloudsPlane->getSubEntity(0)->setCustomParameter(1, Ogre::Vector4(offset.x, offset.y+1.0f/3, 0.0f, 0.0f));
+                compoundCloudsPlane->getSubEntity(0)->setCustomParameter(1,
+                    Ogre::Vector4(offset.x, offset.y+1.0f/3, 0.0f, 0.0f));
             }
+            
             compoundCloud->offsetX = offsetX;
             compoundCloud->offsetY = offsetY;
         }
+        
         // Compound clouds move from area of high concentration to area of low.
         diffuse(.01, compoundCloud->oldDens, compoundCloud->density, renderTime);
         // Move the compound clouds about the velocity field.
@@ -369,7 +398,10 @@ CompoundCloudSystem::update(int renderTime, int) {
 
         // Store the pixel data in a hardware buffer for quick access.
         Ogre::HardwarePixelBufferSharedPtr cloud;
-        cloud = Ogre::TextureManager::getSingleton().getByName(CompoundRegistry::getCompoundInternalName(compoundCloud->m_compoundId), "General")->getBuffer();
+        cloud = Ogre::TextureManager::getSingleton().getByName(
+            CompoundRegistry::getCompoundInternalName(compoundCloud->m_compoundId),
+            "General")->getBuffer();
+        
         cloud->lock(Ogre::HardwareBuffer::HBL_DISCARD);
         const Ogre::PixelBox& pixelBox = cloud->getCurrentLock();
         uint8_t* pDest = static_cast<uint8_t*>(pixelBox.data);
@@ -395,14 +427,10 @@ CompoundCloudSystem::update(int renderTime, int) {
             }
             pDest += pixelBox.getRowSkip() * Ogre::PixelUtil::getNumElemBytes(pixelBox.format);
         }
+        
         // Unlock the pixel buffer.
         cloud->unlock();
     }
-
-
-//auto end = std::chrono::high_resolution_clock::now();
-
-//std::cout << "total: " << std::to_string(std::chrono::duration_cast<std::chrono::microseconds>(end-start).count()) << std::endl;
 }
 
 void
@@ -434,7 +462,9 @@ CompoundCloudSystem::CreateVelocityField() {
 }
 
 void
-CompoundCloudSystem::diffuse(float diffRate, std::vector<  std::vector<float>  >& oldDens, const std::vector<  std::vector<float>  >& density, int dt) {
+CompoundCloudSystem::diffuse(float diffRate, std::vector<  std::vector<float>  >& oldDens,
+    const std::vector<  std::vector<float>  >& density, int dt)
+{
     dt = 1;
     float a = dt*diffRate;
 
@@ -449,7 +479,9 @@ CompoundCloudSystem::diffuse(float diffRate, std::vector<  std::vector<float>  >
 }
 
 void
-CompoundCloudSystem::advect(std::vector<  std::vector<float>  >& oldDens, std::vector<  std::vector<float>  >& density, int dt) {
+CompoundCloudSystem::advect(std::vector<  std::vector<float>  >& oldDens,
+    std::vector<  std::vector<float>  >& density, int dt)
+{
     dt = 1;
 
     for (int x = 0; x < width; x++)

@@ -4,19 +4,22 @@
 #include "engine/game_state.h"
 #include "engine/entity_filter.h"
 #include "ogre/scene_node_system.h"
-#include "scripting/luabind.h"
+#include "scripting/luajit.h"
 
 using namespace thrive;
 
+void BulletToOgreSystem::luaBindings(
+    sol::state &lua
+){
+    lua.new_usertype<BulletToOgreSystem>( "BulletToOgreSystem",
+        
+        sol::constructors<sol::types<>>(),
 
-luabind::scope
-BulletToOgreSystem::luaBindings() {
-    using namespace luabind;
-    return class_<BulletToOgreSystem, System>("BulletToOgreSystem")
-        .def(constructor<>())
-    ;
+        sol::base_classes, sol::bases<System>(),
+
+        "init", &BulletToOgreSystem::init
+    );
 }
-
 
 struct BulletToOgreSystem::Implementation {
 
@@ -38,10 +41,10 @@ BulletToOgreSystem::~BulletToOgreSystem() {}
 
 void
 BulletToOgreSystem::init(
-    GameState* gameState
+    GameStateData* gameState
 ) {
     System::initNamed("BulletToOgreSystem", gameState);
-    m_impl->m_entities.setEntityManager(&gameState->entityManager());
+    m_impl->m_entities.setEntityManager(gameState->entityManager());
 }
 
 

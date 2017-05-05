@@ -41,8 +41,10 @@ if (-Not (Get-Command $7z -errorAction SilentlyContinue))
 # Download archive #
 ####################
 
-$REMOTE_DIR="http://sourceforge.net/projects/mingw-w64/files/Toolchains%20targetting%20Win32/Personal%20Builds/mingw-builds/4.8.5/threads-win32/dwarf/"
-$ARCHIVE="i686-4.8.5-release-win32-dwarf-rt_v4-rev0.7z"
+##$REMOTE_DIR="https://sourceforge.net/projects/mingw-w64/files/Toolchains%20targetting%20Win32/Personal%20Builds/mingw-builds/4.9.3/threads-win32/dwarf/"
+##$ARCHIVE="i686-4.9.3-release-win32-dwarf-rt_v4-rev1.7z"
+$REMOTE_DIR="https://sourceforge.net/projects/mingw-w64/files/Toolchains%20targetting%20Win32/Personal%20Builds/mingw-builds/5.4.0/threads-win32/dwarf/"
+$ARCHIVE="i686-5.4.0-release-win32-dwarf-rt_v5-rev0.7z"
 
 $DESTINATION = Join-Path $WORKING_DIR $ARCHIVE
 

@@ -21,8 +21,7 @@ public:
     *
     * @return 
     */
-    static luabind::scope
-    luaBindings();
+    static void luaBindings(sol::state &lua);
 
     /**
     * @brief Constructor
@@ -40,7 +39,7 @@ public:
     */
     void
     init(
-        GameState* gameState
+        GameStateData* gameState
     ) override;
 
     /**

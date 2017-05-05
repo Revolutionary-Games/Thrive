@@ -2,8 +2,9 @@
 
 #include "engine/engine.h"
 #include "engine/typedefs.h"
-#include "scripting/luabind.h"
 #include "util/make_unique.h"
+
+#include "scripting/luajit.h"
 
 #include <boost/thread.hpp>
 #include <type_traits>
@@ -30,6 +31,61 @@ struct Game::Implementation {
     bool m_quit = false;
 
 };
+
+void Game::luaBindings(sol::state &lua){
+
+    // These probably don't need to be exposed
+    // lua.new_usertype<Implementation::Clock::time_point>("boost.time_point"
+    // );
+
+    // lua.new_usertype<Implementation::Clock::duration>("boost.duration"
+    // );
+
+    
+
+    lua.new_usertype<Game>("Game",
+
+        "new", sol::no_constructor,
+
+        "shouldQuit", sol::property([](Game &us){
+                return us.m_impl->m_quit;
+            }),
+
+        // Static functions. Access with Game.func
+        "now", []() -> Implementation::Clock::time_point{
+
+            return Implementation::Clock::now();
+        },
+
+        "delta", [](const Implementation::Clock::time_point &now,
+            const Implementation::Clock::time_point &lastUpdate) ->
+        Implementation::Clock::duration
+        {
+            return now - lastUpdate;
+        },
+
+        "asMS", [](const Implementation::Clock::duration &duration) -> int32_t
+        {
+            return boost::chrono::duration_cast<boost::chrono::milliseconds>(duration).count();
+        },
+
+        "asSeconds", [](const Implementation::Clock::duration &duration) -> float
+        {
+            return boost::chrono::duration_cast<boost::chrono::duration<float>>(
+                duration).count();
+        },
+
+        "sleepIfNeeded", [](Game &us,
+            const Implementation::Clock::duration &frameDuration)
+        {
+            auto sleepDuration = us.m_impl->m_targetFrameDuration - frameDuration;
+            if (sleepDuration.count() > 0) {
+                boost::this_thread::sleep_for(sleepDuration);
+            }
+        }
+    );
+}
+
 
 
 Game&
@@ -63,37 +119,21 @@ Game::quit() {
 void
 Game::run() {
     try {
-        unsigned int fpsCount = 0;
-        int fpsTime = 0;
-        auto lastUpdate = Implementation::Clock::now();
+        
         m_impl->m_engine.init();
+        
         // Start game loop
         m_impl->m_quit = false;
-        while (not m_impl->m_quit) {
-            auto now = Implementation::Clock::now();
-            auto delta = now - lastUpdate;
-            int milliSeconds = boost::chrono::duration_cast<boost::chrono::milliseconds>(delta).count();
-            lastUpdate = now;
-            m_impl->m_engine.update(milliSeconds);
-            auto frameDuration = Implementation::Clock::now() - now;
-            auto sleepDuration = m_impl->m_targetFrameDuration - frameDuration;
-            if (sleepDuration.count() > 0) {
-                boost::this_thread::sleep_for(sleepDuration);
-            }
-            fpsCount += 1;
-            fpsTime += boost::chrono::duration_cast<boost::chrono::milliseconds>(frameDuration).count();
-            if (fpsTime >= 1000) {
-                float fps = 1000 * float(fpsCount) / float(fpsTime);
-                std::cout << "FPS: " << fps << std::endl;
-                fpsCount = 0;
-                fpsTime = 0;
-            }
-        }
-        m_impl->m_engine.shutdown();
+        m_impl->m_engine.enterLuaMain(this);
     }
-    catch (const luabind::error& e) {
-        printLuaError(e);
+    catch (const sol::error& e) {
+
+        std::cerr << "Main loop/init failed with error: " <<
+            e.what() << std::endl;
     }
+
+    // Shutdown needs to be called even if init/main loop fails
+    m_impl->m_engine.shutdown();
 }
 
 

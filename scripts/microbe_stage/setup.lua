@@ -1,30 +1,30 @@
 CLOUD_SPAWN_RADIUS = 50
 CLOUD_SPAWN_DENSITY = 1/5000
 
-local function setupBackground()
-    setRandomBiome()
+local function setupBackground(gameState)
+    setRandomBiome(gameState)
 end
 
-local function setupCamera()
-    local entity = Entity(CAMERA_NAME)
+local function setupCamera(gameState)
+    local entity = Entity.new(CAMERA_NAME, gameState.wrapper)
     -- Camera
-    local camera = OgreCameraComponent("camera")
+    local camera = OgreCameraComponent.new("camera")
     camera.properties.nearClipDistance = 5
-    camera.offset = Vector3(0, 0, 30)
+    camera.properties.offset = Vector3(0, 0, 30)
     camera.properties:touch()
     entity:addComponent(camera)
     -- Scene node
-    local sceneNode = OgreSceneNodeComponent()
+    local sceneNode = OgreSceneNodeComponent.new()
     sceneNode.transform.position.z = 30
     sceneNode.transform:touch()
     entity:addComponent(sceneNode)
     -- Light
-    local light = OgreLightComponent()
+    local light = OgreLightComponent.new()
     light:setRange(200)
     entity:addComponent(light)
     -- Workspace
-    local workspaceEntity = Entity()
-    local workspaceComponent = OgreWorkspaceComponent("thrive_default")
+    local workspaceEntity = Entity.new(gameState.wrapper)
+    local workspaceComponent = OgreWorkspaceComponent.new("thrive_default")
     workspaceComponent.properties.cameraEntity = entity
     workspaceComponent.properties.position = 0
     workspaceComponent.properties:touch()
@@ -47,12 +47,12 @@ local function setupCompounds()
     CompoundRegistry.loadFromLua({}, agents)
 end
 
-local function setupCompoundClouds()
+local function setupCompoundClouds(gameState)
     for compoundName, compoundInfo in pairs(compoundTable) do
         if compoundInfo.isCloud then
             local compoundId = CompoundRegistry.getCompoundId(compoundName)
-            local entity = Entity("compound_cloud_" .. compoundName)
-            local compoundCloud = CompoundCloudComponent()
+            local entity = Entity.new("compound_cloud_" .. compoundName, gameState.wrapper)
+            local compoundCloud = CompoundCloudComponent.new()
             local colour = compoundInfo.colour
             compoundCloud:initialize(compoundId, colour.r, colour.g, colour.b)
             entity:addComponent(compoundCloud)
@@ -61,10 +61,11 @@ local function setupCompoundClouds()
 end
 
 local function setupProcesses()
+    assert(processes)
     BioProcessRegistry.loadFromLua(processes)
 end
 
-function setupSpecies()
+function setupSpecies(gameState)
     --[[
     This function should be the entry point for all initial-species generation
     For now, it can go through the XML and instantiate all the species, but later this 
@@ -73,8 +74,8 @@ function setupSpecies()
     ]]
     
     for name, data in pairs(starter_microbes) do
-        speciesEntity = Entity(name)
-        speciesComponent = SpeciesComponent(name)
+        speciesEntity = Entity.new(name, gameState.wrapper)
+        speciesComponent = SpeciesComponent.new(name)
         speciesEntity:addComponent(speciesComponent)
         for i, organelle in pairs(data.organelles) do
             local org = {}
@@ -84,12 +85,12 @@ function setupSpecies()
             org.rotation = organelle.rotation
             speciesComponent.organelles[i] = org
         end
-        processorComponent = ProcessorComponent()
+        processorComponent = ProcessorComponent.new()
         speciesEntity:addComponent(processorComponent)
         speciesComponent.colour = Vector3(data.colour.r, data.colour.g, data.colour.b)
 
         -- iterates over all compounds, and sets amounts and priorities
-        for compoundID in CompoundRegistry.getCompoundList() do
+        for _, compoundID in pairs(CompoundRegistry.getCompoundList()) do
             compound = CompoundRegistry.getCompoundInternalName(compoundID)
             compoundData = data.compounds[compound]
             if compoundData ~= nil then
@@ -113,7 +114,7 @@ function setupSpecies()
                 end
             end
         end
-        for bioProcessId in BioProcessRegistry.getList() do
+        for _, bioProcessId in pairs(BioProcessRegistry.getList()) do
             local name = BioProcessRegistry.getInternalName(bioProcessId)
             if capacities[name] ~= nil then
                 processorComponent:setCapacity(bioProcessId, capacities[name])
@@ -125,12 +126,16 @@ function setupSpecies()
 end
 
 -- speciesName decides the template to use, while individualName is used for referencing the instance
-function microbeSpawnFunctionGeneric(pos, speciesName, aiControlled, individualName)
-    local microbe = Microbe.createMicrobeEntity(individualName, aiControlled, speciesName)
+function microbeSpawnFunctionGeneric(pos, speciesName, aiControlled, individualName, gameState)
+
+    assert(gameState ~= nil)
+    
+    local microbe = Microbe.createMicrobeEntity(individualName, aiControlled, speciesName,
+                                                false, gameState)
     if pos ~= nil then
         microbe.rigidBody:setDynamicProperties(
             pos, -- Position
-            Quaternion(Radian(Degree(0)), Vector3(1, 0, 0)), -- Orientation
+            Quaternion.new(Radian.new(Degree(0)), Vector3(1, 0, 0)), -- Orientation
             Vector3(0, 0, 0), -- Linear velocity
             Vector3(0, 0, 0)  -- Angular velocity
         )
@@ -140,21 +145,21 @@ end
 
 local function setSpawnablePhysics(entity, pos, mesh, scale, collisionShape)
     -- Rigid body
-    local rigidBody = RigidBodyComponent()
+    local rigidBody = RigidBodyComponent.new()
     rigidBody.properties.friction = 0.2
     rigidBody.properties.linearDamping = 0.8
 
     rigidBody.properties.shape = collisionShape
     rigidBody:setDynamicProperties(
         pos,
-        Quaternion(Radian(Degree(math.random()*360)), Vector3(0, 0, 1)),
+        Quaternion.new(Radian.new(Degree(math.random()*360)), Vector3(0, 0, 1)),
         Vector3(0, 0, 0),
         Vector3(0, 0, 0)
     )
     rigidBody.properties:touch()
     entity:addComponent(rigidBody)
     -- Scene node
-    local sceneNode = OgreSceneNodeComponent()
+    local sceneNode = OgreSceneNodeComponent.new()
     sceneNode.meshName = mesh
     sceneNode.transform.scale = Vector3(scale, scale, scale)
     entity:addComponent(sceneNode)
@@ -166,61 +171,49 @@ function createCompoundCloud(compoundName, x, y, amount)
     if amount == nil then amount = 0 end
 
     if compoundTable[compoundName] and compoundTable[compoundName].isCloud then
-        Entity("compound_cloud_" .. compoundName):getComponent(CompoundCloudComponent.TYPE_ID):addCloud(amount, x, y)
+        -- addCloud requires integer arguments
+        x = math.floor(x)
+        y = math.floor(y)
+        getComponent("compound_cloud_" .. compoundName,
+                     g_luaEngine.currentGameState, CompoundCloudComponent
+        ):addCloud(amount, x, y)
     end
 end
 
-function createAgentCloud(compoundId, x, y, direction, amount)
-    -- local entity = Entity()
-    -- local sceneNode = OgreSceneNodeComponent()
-    -- sceneNode.meshName = "oxytoxy.mesh"
-    -- sceneNode.transform.position = Vector3(x + direction.x/2, y + direction.y/2, 0)
-    -- sceneNode.transform:touch()
-    -- local agent = AgentCloudComponent()
-    -- agent:initialize(compoundId, 255, 0, 255)
-    -- agent.direction = direction*2
-    -- agent.potency = amount
-    -- entity:addComponent(sceneNode)
-    -- entity:addComponent(agent)
+function createAgentCloud(compoundId, x, y, direction, amount)    
     
-    
-    local agentEntity = Entity()
+    local agentEntity = Entity.new(g_luaEngine.currentGameState.wrapper)
 
-    local reactionHandler = CollisionComponent()
+    local reactionHandler = CollisionComponent.new()
     reactionHandler:addCollisionGroup("agent")
     agentEntity:addComponent(reactionHandler)
         
-    local rigidBody = RigidBodyComponent()
+    local rigidBody = RigidBodyComponent.new()
     rigidBody.properties.mass = 0.001
     rigidBody.properties.friction = 0.4
     rigidBody.properties.linearDamping = 0.4
-    rigidBody.properties.shape = SphereShape(HEX_SIZE)
+    rigidBody.properties.shape = SphereShape.new(HEX_SIZE)
     rigidBody:setDynamicProperties(
         Vector3(x,y,0) + direction,
-        Quaternion(Radian(Degree(math.random()*360)), Vector3(0, 0, 1)),
+        Quaternion.new(Radian.new(Degree(math.random()*360)), Vector3(0, 0, 1)),
         direction * 3,
         Vector3(0, 0, 0)
     )
     rigidBody.properties:touch()
     agentEntity:addComponent(rigidBody)
     
-    local sceneNode = OgreSceneNodeComponent()
+    local sceneNode = OgreSceneNodeComponent.new()
     sceneNode.meshName = "oxytoxy.mesh"
     agentEntity:addComponent(sceneNode)
     
-    local timedLifeComponent = TimedLifeComponent()
+    local timedLifeComponent = TimedLifeComponent.new()
     timedLifeComponent.timeToLive = 2000
     agentEntity:addComponent(timedLifeComponent)
     
 end
 
--- Copy paste for quick debugging. Prints the line of the print statement.
-function printLine()
-    print(debug.getinfo(1).currentline)
-end
-
 local function addEmitter2Entity(entity, compound)
-    local compoundEmitter = CompoundEmitterComponent()
+    local compoundEmitter = CompoundEmitterComponent.new()
     entity:addComponent(compoundEmitter)
     compoundEmitter.emissionRadius = 1
     compoundEmitter.maxInitialSpeed = 10
@@ -228,7 +221,7 @@ local function addEmitter2Entity(entity, compound)
     compoundEmitter.minEmissionAngle = Degree(0)
     compoundEmitter.maxEmissionAngle = Degree(360)
     compoundEmitter.particleLifeTime = 5000
-    local timedEmitter = TimedCompoundEmitterComponent()
+    local timedEmitter = TimedCompoundEmitterComponent.new()
     timedEmitter.compoundId = CompoundRegistry.getCompoundId(compound)
     timedEmitter.particlesPerEmission = 1
     timedEmitter.potencyPerParticle = 2.0
@@ -237,31 +230,33 @@ local function addEmitter2Entity(entity, compound)
 end
 
 local function createSpawnSystem()
-    local spawnSystem = SpawnSystem()
+    local spawnSystem = SpawnSystem.new()
 
     local toxinOrganelleSpawnFunction = function(pos)
-        powerupEntity = Entity()
-        setSpawnablePhysics(powerupEntity, pos, "AgentVacuole.mesh", 0.9, SphereShape(HEX_SIZE))
+        powerupEntity = Entity.new(g_luaEngine.currentGameState.wrapper)
+        setSpawnablePhysics(powerupEntity, pos, "AgentVacuole.mesh", 0.9,
+                            SphereShape.new(HEX_SIZE))
 
-        local reactionHandler = CollisionComponent()
+        local reactionHandler = CollisionComponent.new()
         reactionHandler:addCollisionGroup("powerup")
         powerupEntity:addComponent(reactionHandler)
         
-        local powerupComponent = PowerupComponent()
+        local powerupComponent = PowerupComponent.new()
         -- Function name must be in configs.lua
         powerupComponent:setEffect("toxinEffect")
         powerupEntity:addComponent(powerupComponent)
         return powerupEntity
     end
     local ChloroplastOrganelleSpawnFunction = function(pos) 
-        powerupEntity = Entity()
-        setSpawnablePhysics(powerupEntity, pos, "chloroplast.mesh", 0.9, SphereShape(HEX_SIZE))
+        powerupEntity = Entity.new(g_luaEngine.currentGameState.wrapper)
+        setSpawnablePhysics(powerupEntity, pos, "chloroplast.mesh", 0.9,
+                            SphereShape.new(HEX_SIZE))
 
-        local reactionHandler = CollisionComponent()
+        local reactionHandler = CollisionComponent.new()
         reactionHandler:addCollisionGroup("powerup")
         powerupEntity:addComponent(reactionHandler)
         
-        local powerupComponent = PowerupComponent()
+        local powerupComponent = PowerupComponent.new()
         -- Function name must be in configs.lua
         powerupComponent:setEffect("chloroplastEffect")
         powerupEntity:addComponent(powerupComponent)
@@ -284,24 +279,32 @@ local function createSpawnSystem()
     for name, species in pairs(starter_microbes) do
         spawnSystem:addSpawnType(
             function(pos) 
-                return microbeSpawnFunctionGeneric(pos, name, true, nil)
+                return microbeSpawnFunctionGeneric(pos, name, true, nil,
+                                                   g_luaEngine.currentGameState)
             end, 
             species.spawnDensity, 60)
     end
     return spawnSystem
 end
 
-local function setupPlayer()
-    local microbe = microbeSpawnFunctionGeneric(nil, "Default", false, PLAYER_NAME)
+local function setupPlayer(gameState)
+
+    assert(GameState.MICROBE == gameState)
+    assert(gameState ~= nil)
+    
+    local microbe = microbeSpawnFunctionGeneric(nil, "Default", false, PLAYER_NAME, gameState)
     microbe.collisionHandler:addCollisionGroup("powerupable")
     Engine:playerData():lockedMap():addLock("Toxin")
     Engine:playerData():lockedMap():addLock("chloroplast")
-    Engine:playerData():setActiveCreature(microbe.entity.id, GameState.MICROBE)
+    Engine:playerData():setActiveCreature(microbe.entity.id, gameState.wrapper)
+
+    -- Give some atp
+    microbe:storeCompound(CompoundRegistry.getCompoundId("atp"), 50, false)
 end
 
-local function setupSound()
-    local ambientEntity = Entity("ambience")
-    local soundSource = SoundSourceComponent()
+local function setupSound(gameState)
+    local ambientEntity = Entity.new("ambience", gameState.wrapper)
+    local soundSource = SoundSourceComponent.new()
     soundSource.ambientSoundSource = true
     soundSource.autoLoop = true
     soundSource.volumeMultiplier = 0.3
@@ -313,16 +316,16 @@ local function setupSound()
     soundSource:addSound("microbe-theme-5", "microbe-theme-5.ogg")
     soundSource:addSound("microbe-theme-6", "microbe-theme-6.ogg")   
     soundSource:addSound("microbe-theme-7", "microbe-theme-7.ogg")   
-    local ambientEntity2 = Entity("ambience2")
-    local soundSource = SoundSourceComponent()
+    local ambientEntity2 = Entity.new("ambience2", gameState.wrapper)
+    local soundSource = SoundSourceComponent.new()
     soundSource.volumeMultiplier = 0.1
     soundSource.ambientSoundSource = true
     ambientSound = soundSource:addSound("microbe-ambient", "soundeffects/microbe-ambience.ogg")
     soundSource.autoLoop = true
      ambientEntity2:addComponent(soundSource)
     -- Gui effects
-    local guiSoundEntity = Entity("gui_sounds")
-    soundSource = SoundSourceComponent()
+    local guiSoundEntity = Entity.new("gui_sounds", gameState.wrapper)
+    soundSource = SoundSourceComponent.new()
     soundSource.ambientSoundSource = true
     soundSource.autoLoop = false
     soundSource.volumeMultiplier = 1.0
@@ -330,8 +333,8 @@ local function setupSound()
     -- Sound
     soundSource:addSound("button-hover-click", "soundeffects/gui/button-hover-click.ogg")
     soundSource:addSound("microbe-pickup-organelle", "soundeffects/microbe-pickup-organelle.ogg")
-    local listener = Entity("soundListener")
-    local sceneNode = OgreSceneNodeComponent()
+    local listener = Entity.new("soundListener", gameState.wrapper)
+    local sceneNode = OgreSceneNodeComponent.new()
     listener:addComponent(sceneNode)
 end
 
@@ -340,59 +343,60 @@ setupProcesses()
 
 local function createMicrobeStage(name)
     return 
-        Engine:createGameState(
+        g_luaEngine:createGameState(
         name,
         {
-            MicrobeReplacementSystem(),
-            -- SwitchGameStateSystem(),
-            QuickSaveSystem(),
+            MicrobeReplacementSystem.new(),
+            -- SwitchGameStateSystem.new(),
+            QuickSaveSystem.new(),
             -- Microbe specific
-            MicrobeSystem(),
-            MicrobeCameraSystem(),
-            MicrobeAISystem(),
-            MicrobeControlSystem(),
-            HudSystem(),
-            TimedLifeSystem(),
-            CompoundMovementSystem(),
-            CompoundAbsorberSystem(),
-            ProcessSystem(),
-            --PopulationSystem(),
-            PatchSystem(),
-            SpeciesSystem(),
+            MicrobeSystem.new(),
+            MicrobeCameraSystem.new(),
+            MicrobeAISystem.new(),
+            MicrobeControlSystem.new(),
+            HudSystem.new(),
+            TimedLifeSystem.new(),
+            CompoundMovementSystem.new(),
+            CompoundAbsorberSystem.new(),
+            ProcessSystem.new(),
+            --PopulationSystem.new(),
+            PatchSystem.new(),
+            SpeciesSystem.new(),
             -- Physics
-            RigidBodyInputSystem(),
-            UpdatePhysicsSystem(),
-            RigidBodyOutputSystem(),
-            BulletToOgreSystem(),
-            CollisionSystem(),
+            RigidBodyInputSystem.new(),
+            UpdatePhysicsSystem.new(),
+            RigidBodyOutputSystem.new(),
+            BulletToOgreSystem.new(),
+            CollisionSystem.new(),
             -- Microbe Specific again (order sensitive)
             createSpawnSystem(),
             -- Graphics
-            OgreAddSceneNodeSystem(),
-            OgreUpdateSceneNodeSystem(),
-            OgreCameraSystem(),
-            OgreLightSystem(),
-            SkySystem(),
-            OgreWorkspaceSystem(),
-            OgreRemoveSceneNodeSystem(),
-            RenderSystem(),
-            MembraneSystem(),
-            CompoundCloudSystem(),
-            --AgentCloudSystem(),
+            OgreAddSceneNodeSystem.new(),
+            OgreUpdateSceneNodeSystem.new(),
+            OgreCameraSystem.new(),
+            OgreLightSystem.new(),
+            SkySystem.new(),
+            OgreWorkspaceSystem.new(),
+            OgreRemoveSceneNodeSystem.new(),
+            RenderSystem.new(),
+            MembraneSystem.new(),
+            CompoundCloudSystem.new(),
+            --AgentCloudSystem.new(),
             -- Other
-            SoundSourceSystem(),
-            PowerupSystem(),
-            CompoundEmitterSystem(), -- Keep this after any logic that might eject compounds such that any entites that are queued for destruction will be destroyed after emitting.
+            SoundSourceSystem.new(),
+            PowerupSystem.new(),
+            CompoundEmitterSystem.new(), -- Keep this after any logic that might eject compounds such that any entites that are queued for destruction will be destroyed after emitting.
         },
-        function()
-            setupBackground()
-            setupCamera()
-            setupCompoundClouds()
-            setupSpecies()
-            setupPlayer()
-            setupSound()
-        end,
-        "MicrobeStage"
+        true,
+        "MicrobeStage",
+        function(gameState)
+            setupBackground(gameState)
+            setupCamera(gameState)
+            setupCompoundClouds(gameState)
+            setupSpecies(gameState)
+            setupPlayer(gameState)
+            setupSound(gameState)
+        end
     )
 end
 

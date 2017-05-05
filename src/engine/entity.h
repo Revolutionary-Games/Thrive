@@ -5,13 +5,14 @@
 
 #include <string>
 #include <iostream>
-namespace luabind {
-class scope;
+
+namespace sol {
+class state;
 }
 
 namespace thrive {
 
-class GameState;
+class GameStateData;
 class EntityManager;
 
 /**
@@ -33,13 +34,14 @@ public:
     * @brief Lua bindings
     *
     * Exposes the following \b constructors:
-    * - \c Entity(): Entity()
-    * - \c Entity(number): Entity(EntityId)
-    * - \c Entity(string): Entity(const std::string&)
+    * - \c Entity(GameStateData)
+    * - \c Entity(EntityId, GameStateData)
+    * - \c Entity(string, GameStateData)
     *
     * Exposes the following \b functions:
     * - \c addComponent(Component): addComponent(std::unique_ptr<Component>)
     * - \c getComponent(number): getComponent(ComponentTypeId)
+    * - \c getOrCreate(number): getOrCreate(ComponentTypeId, ...) Args for new component
     * - \c removeComponent(number): removeComponent(ComponentTypeId)
     * - \c transfer(gameState) : transfer(gameState)
     * - \c setVolatile(bool) : setVolatile(bool)
@@ -50,8 +52,7 @@ public:
     * Exposes the following \b operators:
     * - \c ==: operator==(const Entity&)
     */
-    static luabind::scope
-    luaBindings();
+    static void luaBindings(sol::state &lua);
 
     /**
     * @brief Constructor
@@ -59,12 +60,11 @@ public:
     * Creates a new unnamed entity
     *
     * @param gameState
-    *   The game state the new entity belongs to. If \c null, the current game
-    *   state of the global engine object is used.
+    *   The game state the new entity belongs to. If \c null, throws an error
     *
     */
     Entity(
-        GameState* gameState = nullptr
+        GameStateData* gameState
     );
 
     /**
@@ -76,13 +76,12 @@ public:
     *   The entity id to interface to
     *
     * @param gameState
-    *   The game state the entity belongs to. If \c null, the current game
-    *   state of the global engine object is used.
+    *   The game state the entity belongs to. If \c null, throws an error
     *
     */
     Entity(
         EntityId id,
-        GameState* gameState = nullptr
+        GameStateData* gameState
     );
 
     /**
@@ -96,13 +95,12 @@ public:
     *   The name of the entity to interface to
     *
     * @param gameState
-    *   The game state the entity belongs to. If \c null, the current game
-    *   state of the global engine object is used.
+    *   The game state the entity belongs to. If \c null, throws an error
     *
     */
     Entity(
         const std::string& name,
-        GameState* gameState = nullptr
+        GameStateData* gameState
     );
 
     /**
@@ -284,10 +282,15 @@ public:
     * @return
     *  The new entity in the new gamestate.
     *  Note that the actual transfer will take place before next update so the old entity is valid until then.
+    * @note
+    *  This makes a call to lua and is pretty slow so prefer directly calling
+    *  LuaEngine:transferEntityGameState in lua code
+    * @todo
+    *  remove this if this is no longer used
     */
     Entity
     transfer(
-        GameState* newGameState
+        GameStateData* newGameState
     );
 
     /**

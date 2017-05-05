@@ -6,7 +6,7 @@
 #include "engine/entity_manager.h"
 #include "engine/game_state.h"
 #include "engine/serialization.h"
-#include "scripting/luabind.h"
+#include "scripting/luajit.h"
 
 #include "sound/sound_source_system.h"
 #include "sound/sound_manager.h"
@@ -35,101 +35,110 @@ using namespace thrive;
 
 static Ogre::String
 OgreSceneNodeComponent_getMeshName(
-    const OgreSceneNodeComponent* self
+    const OgreSceneNodeComponent &self
 ) {
-    return self->m_meshName.get();
+    return self.m_meshName.get();
 }
 
 
 static void
 OgreSceneNodeComponent_setMeshName(
-    OgreSceneNodeComponent* self,
+    OgreSceneNodeComponent &self,
     const Ogre::String& meshName
 ) {
-    self->m_meshName = meshName;
+    self.m_meshName = meshName;
 }
 
 
 static bool
 OgreSceneNodeComponent_getVisible(
-    const OgreSceneNodeComponent* self
+    const OgreSceneNodeComponent &self
 ) {
-    return self->m_visible.get();
+    return self.m_visible.get();
 }
 
 
 static void
 OgreSceneNodeComponent_setVisible(
-    OgreSceneNodeComponent* self,
+    OgreSceneNodeComponent &self,
     bool visible
 ) {
-    self->m_visible = visible; // This should automatically call touch().w
+    self.m_visible = visible; // This should automatically call touch().w
 }
 
 static std::string
 OgreSceneNodeComponent_getPlaneTexture(
-    const OgreSceneNodeComponent* self
+    const OgreSceneNodeComponent &self
 ) {
-    return self->m_planeTexture.get();
+    return self.m_planeTexture.get();
 }
 
 
 static void
 OgreSceneNodeComponent_setPlaneTexture(
-    OgreSceneNodeComponent* self,
+    OgreSceneNodeComponent &self,
     std::string planeTexture
 ) {
-    self->m_planeTexture = planeTexture; // This should automatically call touch().w
+    self.m_planeTexture = planeTexture; // This should automatically call touch().w
 }
 
 
 
 static Entity
 OgreSceneNodeComponent_getParent(
-    const OgreSceneNodeComponent* self
+    const OgreSceneNodeComponent &self
 ) {
-    return Entity(self->m_parentId.get());
+    return Entity(self.m_parentId.get(), Game::instance().engine().
+        getCurrentGameStateFromLua());
 }
 
 
 static void
 OgreSceneNodeComponent_setParent(
-    OgreSceneNodeComponent* self,
+    OgreSceneNodeComponent &self,
     const Entity& entity
 ) {
-    self->m_parentId = entity.id();
-    self->m_parentId.touch();
+    self.m_parentId = entity.id();
+    self.m_parentId.touch();
 }
 
+void OgreSceneNodeComponent::luaBindings(
+    sol::state &lua
+){
+    lua.new_usertype<Transform>("OgreSceneNodeComponentTransform",
 
-luabind::scope
-OgreSceneNodeComponent::luaBindings() {
-    using namespace luabind;
-    return class_<OgreSceneNodeComponent, Component>("OgreSceneNodeComponent")
-        .enum_("ID") [
-            value("TYPE_ID", OgreSceneNodeComponent::TYPE_ID)
-        ]
-        .scope [
-            def("TYPE_NAME", &OgreSceneNodeComponent::TYPE_NAME),
-            class_<Transform, Touchable>("Transform")
-                .def_readwrite("orientation", &Transform::orientation)
-                .def_readwrite("position", &Transform::position)
-                .def_readwrite("scale", &Transform::scale)
-        ]
-        .def(constructor<>())
-        .def("playAnimation", &OgreSceneNodeComponent::playAnimation)
-        .def("stopAnimation", &OgreSceneNodeComponent::stopAnimation)
-        .def("stopAllAnimations", &OgreSceneNodeComponent::stopAllAnimations)
-        .def("setAnimationSpeed", &OgreSceneNodeComponent::setAnimationSpeed)
-        .def("attachObject", &OgreSceneNodeComponent::attachObject)
-        .def("attachSoundListener", &OgreSceneNodeComponent::attachSoundListener)
-        .def_readonly("transform", &OgreSceneNodeComponent::m_transform)
-        .def_readonly("entity", &OgreSceneNodeComponent::m_entity)
-        .property("parent", OgreSceneNodeComponent_getParent, OgreSceneNodeComponent_setParent)
-        .property("meshName", OgreSceneNodeComponent_getMeshName, OgreSceneNodeComponent_setMeshName)
-        .property("visible", OgreSceneNodeComponent_getVisible, OgreSceneNodeComponent_setVisible)
-        .property("planeTexture", OgreSceneNodeComponent_getPlaneTexture, OgreSceneNodeComponent_setPlaneTexture)
-    ;
+        sol::base_classes, sol::bases<Touchable>(),
+
+        "orientation", &Transform::orientation,
+        "position", &Transform::position,
+        "scale", &Transform::scale
+    );
+
+    lua.new_usertype<OgreSceneNodeComponent>("OgreSceneNodeComponent",
+
+        "new", sol::factories([](){
+                return std::make_unique<OgreSceneNodeComponent>();
+            }),
+
+        COMPONENT_BINDINGS(OgreSceneNodeComponent),
+
+        "playAnimation", &OgreSceneNodeComponent::playAnimation,
+        "stopAnimation", &OgreSceneNodeComponent::stopAnimation,
+        "stopAllAnimations", &OgreSceneNodeComponent::stopAllAnimations,
+        "setAnimationSpeed", &OgreSceneNodeComponent::setAnimationSpeed,
+        "attachObject", &OgreSceneNodeComponent::attachObject,
+        "attachSoundListener", &OgreSceneNodeComponent::attachSoundListener,
+        "transform", sol::readonly(&OgreSceneNodeComponent::m_transform),
+        "entity", sol::readonly(&OgreSceneNodeComponent::m_entity),
+        "parent", sol::property(OgreSceneNodeComponent_getParent,
+            OgreSceneNodeComponent_setParent),
+        "meshName", sol::property(OgreSceneNodeComponent_getMeshName,
+            OgreSceneNodeComponent_setMeshName),
+        "visible", sol::property(OgreSceneNodeComponent_getVisible,
+            OgreSceneNodeComponent_setVisible),
+        "planeTexture", sol::property(OgreSceneNodeComponent_getPlaneTexture,
+            OgreSceneNodeComponent_setPlaneTexture)
+    );
 }
 
 bool OgreSceneNodeComponent::s_soundListenerAttached = false;
@@ -219,15 +228,18 @@ REGISTER_COMPONENT(OgreSceneNodeComponent)
 ////////////////////////////////////////////////////////////////////////////////
 // OgreAddSceneNodeSystem
 ////////////////////////////////////////////////////////////////////////////////
+void OgreAddSceneNodeSystem::luaBindings(
+    sol::state &lua
+){
+    lua.new_usertype<OgreAddSceneNodeSystem>("OgreAddSceneNodeSystem",
 
-luabind::scope
-OgreAddSceneNodeSystem::luaBindings() {
-    using namespace luabind;
-    return class_<OgreAddSceneNodeSystem, System>("OgreAddSceneNodeSystem")
-        .def(constructor<>())
-    ;
+        sol::constructors<sol::types<>>(),
+
+        sol::base_classes, sol::bases<System>(),
+
+        "init", &OgreAddSceneNodeSystem::init
+    );
 }
-
 
 struct OgreAddSceneNodeSystem::Implementation {
 
@@ -248,12 +260,12 @@ OgreAddSceneNodeSystem::~OgreAddSceneNodeSystem() {}
 
 void
 OgreAddSceneNodeSystem::init(
-    GameState* gameState
+    GameStateData* gameState
 ) {
     System::initNamed("OgreAddSceneNodeSystem", gameState);
     assert(m_impl->m_sceneManager == nullptr && "Double init of system");
     m_impl->m_sceneManager = gameState->sceneManager();
-    m_impl->m_entities.setEntityManager(&gameState->entityManager());
+    m_impl->m_entities.setEntityManager(gameState->entityManager());
 }
 
 
@@ -298,15 +310,18 @@ OgreAddSceneNodeSystem::update(int, int) {
 ////////////////////////////////////////////////////////////////////////////////
 // OgreRemoveSceneNodeSystem
 ////////////////////////////////////////////////////////////////////////////////
+void OgreRemoveSceneNodeSystem::luaBindings(
+    sol::state &lua
+){
+    lua.new_usertype<OgreRemoveSceneNodeSystem>("OgreRemoveSceneNodeSystem",
 
-luabind::scope
-OgreRemoveSceneNodeSystem::luaBindings() {
-    using namespace luabind;
-    return class_<OgreRemoveSceneNodeSystem, System>("OgreRemoveSceneNodeSystem")
-        .def(constructor<>())
-    ;
+        sol::constructors<sol::types<>>(),
+
+        sol::base_classes, sol::bases<System>(),
+
+        "init", &OgreRemoveSceneNodeSystem::init
+    );
 }
-
 
 struct OgreRemoveSceneNodeSystem::Implementation {
 
@@ -331,14 +346,14 @@ OgreRemoveSceneNodeSystem::~OgreRemoveSceneNodeSystem() {}
 
 void
 OgreRemoveSceneNodeSystem::init(
-    GameState* gameState
+    GameStateData* gameState
 ) {
     Ogre::Animation::setDefaultInterpolationMode(Ogre::Animation::IM_LINEAR);
     Ogre::Animation::setDefaultRotationInterpolationMode(Ogre::Animation::RIM_LINEAR);
     System::initNamed("OgreRemoveSceneNodeSystem", gameState);
     assert(m_impl->m_sceneManager == nullptr && "Double init of system");
     m_impl->m_sceneManager = gameState->sceneManager();
-    m_impl->m_entities.setEntityManager(&gameState->entityManager());
+    m_impl->m_entities.setEntityManager(gameState->entityManager());
 }
 
 
@@ -384,13 +399,17 @@ OgreRemoveSceneNodeSystem::update(int, int) {
 ////////////////////////////////////////////////////////////////////////////////
 // OgreUpdateSceneNodeSystem
 ////////////////////////////////////////////////////////////////////////////////
+void OgreUpdateSceneNodeSystem::luaBindings(
+    sol::state &lua
+){
+    lua.new_usertype<OgreUpdateSceneNodeSystem>("OgreUpdateSceneNodeSystem",
 
-luabind::scope
-OgreUpdateSceneNodeSystem::luaBindings() {
-    using namespace luabind;
-    return class_<OgreUpdateSceneNodeSystem, System>("OgreUpdateSceneNodeSystem")
-        .def(constructor<>())
-    ;
+        sol::constructors<sol::types<>>(),
+
+        sol::base_classes, sol::bases<System>(),
+
+        "init", &OgreUpdateSceneNodeSystem::init
+    );
 }
 
 
@@ -416,11 +435,11 @@ OgreUpdateSceneNodeSystem::~OgreUpdateSceneNodeSystem() {}
 
 void
 OgreUpdateSceneNodeSystem::init(
-    GameState* gameState
+    GameStateData* gameState
 ) {
     System::initNamed("OgreUpdateSceneNodeSystem", gameState);
     m_impl->m_sceneManager = gameState->sceneManager();
-    m_impl->m_entities.setEntityManager(&gameState->entityManager());
+    m_impl->m_entities.setEntityManager(gameState->entityManager());
 }
 
 
@@ -505,7 +524,7 @@ OgreUpdateSceneNodeSystem::update(
             }
             if (component->m_planeTexture.get().length() != 0) {
                 Ogre::Plane plane(Ogre::Vector3::UNIT_Z, 0);
-                std::string planeName("plane" + ++planeNameCounter);
+                std::string planeName("plane" + std::to_string(++planeNameCounter));
                 Ogre::MeshManager::getSingleton().createPlane(planeName,
                     Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME,
                     plane, 10000, 10000);

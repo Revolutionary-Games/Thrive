@@ -1,33 +1,35 @@
 --------------------------------------------------------------------------------
 -- Class for Organelles capable of producing and storing agents
 --------------------------------------------------------------------------------
-class 'AgentVacuole' (OrganelleComponent)
+AgentVacuole = class(
+    OrganelleComponent,
+    -- Constructor
+    --
+    -- @param arguments.process
+    --  The process that creates the agent this organelle produces.
+    --
+    -- @param arguments.compound
+    --  The agent this organelle produces.
+    function(self, arguments, data)
+
+        OrganelleComponent.create(self, arguments, data)
+        
+        --making sure this doesn't run when load() is called
+        if arguments == nil and data == nil then
+            return
+        end
+
+        self.position = {}
+        self.position.q = data.q
+        self.position.r = data.r
+        self.compoundId = CompoundRegistry.getCompoundId(arguments.compound)
+        self.capacityIntervalTimer = PROCESS_CAPACITY_UPDATE_INTERVAL
+        
+    end
+)
 
 -- See organelle_component.lua for more information about the 
 -- organelle component methods and the arguments they receive.
-
--- Constructor
---
--- @param arguments.process
---  The process that creates the agent this organelle produces.
---
--- @param arguments.compound
---  The agent this organelle produces.
-function AgentVacuole:__init(arguments, data)
-    OrganelleComponent.__init(self, arguments, data)
-    
-    --making sure this doesn't run when load() is called
-    if arguments == nil and data == nil then
-        return
-    end
-
-    self.position = {}
-    self.position.q = data.q
-    self.position.r = data.r
-    self.compoundId = CompoundRegistry.getCompoundId(arguments.compound)
-    self.capacityIntervalTimer = PROCESS_CAPACITY_UPDATE_INTERVAL
-    return self
-end
 
 -- Overridded from ProcessOrganelle:onAddedToMicrobe
 function AgentVacuole:onAddedToMicrobe(microbe, q, r, rotation, organelle)
@@ -58,7 +60,7 @@ end
 
 
 function AgentVacuole:storage()
-    local storage = StorageContainer()
+    local storage = StorageContainer.new()
     storage:set("compoundId", self.compoundId)
     storage:set("q", self.position.q)
     storage:set("r", self.position.r)

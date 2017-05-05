@@ -5,18 +5,16 @@
 #include "engine/component.h"
 #include "engine/system.h"
 #include "engine/touchable.h"
-#include "scripting/luabind.h"
 #include "engine/typedefs.h"
 
-#include <luabind/object.hpp>
 #include <memory>
 #include <OgreCommon.h>
 #include <OgreMath.h>
 #include <OgreVector3.h>
 #include <unordered_set>
 
-namespace luabind {
-class scope;
+namespace sol {
+class state;
 }
 
 
@@ -50,8 +48,7 @@ public:
     *
     * @return
     */
-    static luabind::scope
-    luaBindings();
+    static void luaBindings(sol::state &lua);
 
     /**
     * @brief The compound id
@@ -94,8 +91,7 @@ public:
     *
     * @return
     */
-    static luabind::scope
-    luaBindings();
+    static void luaBindings(sol::state &lua);
 
     /**
     * @brief Constructor
@@ -111,7 +107,7 @@ public:
     * @brief Initializes the system
     *
     */
-    void init(GameState* gameState) override;
+    void init(GameStateData* gameState) override;
 
     /**
     * @brief Shuts the system down

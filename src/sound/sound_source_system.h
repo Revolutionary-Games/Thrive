@@ -7,8 +7,8 @@
 #include <list>
 #include <memory>
 
-namespace luabind {
-class scope;
+namespace sol {
+class state;
 }
 
 namespace thrive {
@@ -49,8 +49,7 @@ public:
     *
     * @return
     */
-    static luabind::scope
-    luaBindings();
+    static void luaBindings(sol::state &lua);
 
     /**
     * @brief Play mode of the sound
@@ -185,8 +184,7 @@ public:
     *
     * @return
     **/
-    static luabind::scope
-    luaBindings();
+    static void luaBindings(sol::state &lua);
 
     /**
     * @brief Adds a new sound
@@ -335,8 +333,7 @@ public:
     *
     * @return
     **/
-    static luabind::scope
-    luaBindings();
+    static void luaBindings(sol::state &lua);
 
     /**
     * @brief Constructor
@@ -358,7 +355,7 @@ public:
     * @brief Initializes the system
     *
     */
-    void init(GameState* gameState) override;
+    void init(GameStateData* gameState) override;
 
     /**
     * @brief Shuts the system down

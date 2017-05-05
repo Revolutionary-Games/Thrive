@@ -1,8 +1,9 @@
 #include "bullet/collision_system.h"
 
-#include "scripting/luabind.h"
+#include "scripting/luajit.h"
 
 #include "bullet/collision_filter.h"
+#include "bullet/physical_world.h"
 #include "engine/component_factory.h"
 #include "engine/engine.h"
 #include "engine/entity.h"
@@ -29,20 +30,19 @@ CollisionComponent::CollisionComponent(
 {
 }
 
-luabind::scope
-CollisionComponent::luaBindings() {
-    using namespace luabind;
-    return class_<CollisionComponent, Component>("CollisionComponent")
-        .enum_("ID") [
-            value("TYPE_ID", CollisionComponent::TYPE_ID)
-        ]
-        .scope [
-            def("TYPE_NAME", &CollisionComponent::TYPE_NAME)
-        ]
-        .def(constructor<>())
-        .def(constructor<const std::string&>())
-        .def("addCollisionGroup", &CollisionComponent::addCollisionGroup)
-    ;
+void CollisionComponent::luaBindings(
+    sol::state &lua
+){
+    lua.new_usertype<CollisionComponent>("CollisionComponent",
+
+        "new", sol::factories([](){
+                return std::make_unique<CollisionComponent>();
+            }),
+
+        COMPONENT_BINDINGS(CollisionComponent),
+
+        "addCollisionGroup", &CollisionComponent::addCollisionGroup
+    );
 }
 
 void
@@ -110,15 +110,17 @@ Collision::Collision(
 {
 }
 
-luabind::scope
-Collision::luaBindings() {
-    using namespace luabind;
-    return class_<Collision>("Collision")
-        .def(constructor<EntityId, EntityId, int>())
-        .def_readonly("entityId1", &Collision::entityId1)
-        .def_readonly("entityId2", &Collision::entityId2)
-        .def_readonly("addedCollisionDuration", &Collision::addedCollisionDuration)
-    ;
+void Collision::luaBindings(
+    sol::state &lua
+){
+    lua.new_usertype<Collision>("Collision",
+
+        sol::constructors<sol::types<EntityId, EntityId, int>>(),
+        
+        "entityId1", sol::readonly(&Collision::entityId1),
+        "entityId2", sol::readonly(&Collision::entityId2),
+        "addedCollisionDuration", sol::readonly(&Collision::addedCollisionDuration)
+    );
 }
 
 
@@ -144,22 +146,25 @@ CollisionSystem::CollisionSystem()
 
 CollisionSystem::~CollisionSystem() {}
 
+void CollisionSystem::luaBindings(
+    sol::state &lua
+){
+    lua.new_usertype<CollisionSystem>("CollisionSystem",
 
-luabind::scope
-CollisionSystem::luaBindings() {
-    using namespace luabind;
-    return class_<CollisionSystem, System>("CollisionSystem")
-        .def(constructor<>())
-    ;
+        sol::constructors<sol::types<>>(),
+        
+        sol::base_classes, sol::bases<System>(),
+
+        "init", &CollisionSystem::init
+    );
 }
-
 
 void
 CollisionSystem::init(
-    GameState* gameState
+    GameStateData* gameState
 ) {
     System::initNamed("CollisionSystem", gameState);
-    m_impl->m_world = gameState->physicsWorld();
+    m_impl->m_world = gameState->physicalWorld()->physicsWorld();
 }
 
 
@@ -186,10 +191,10 @@ CollisionSystem::update(
         EntityId entityId1 = (reinterpret_cast<uintptr_t>(objectA->getUserPointer()));
         EntityId entityId2 = (reinterpret_cast<uintptr_t>(objectB->getUserPointer()));
         CollisionComponent* collisionComponent1 = static_cast<CollisionComponent*>(
-                                            System::gameState()->entityManager().getComponent(entityId1, CollisionComponent::TYPE_ID)
+                                            System::gameState()->entityManager()->getComponent(entityId1, CollisionComponent::TYPE_ID)
                                         );
         CollisionComponent* collisionComponent2 = static_cast<CollisionComponent*>(
-                                            System::gameState()->entityManager().getComponent(entityId2, CollisionComponent::TYPE_ID)
+                                            System::gameState()->entityManager()->getComponent(entityId2, CollisionComponent::TYPE_ID)
                                         );
         if (collisionComponent1 && collisionComponent2)
         {

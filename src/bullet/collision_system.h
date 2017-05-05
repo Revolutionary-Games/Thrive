@@ -8,8 +8,8 @@
 #include <utility>
 #include <vector>
 
-namespace luabind {
-class scope;
+namespace sol {
+class state;
 }
 
 namespace thrive {
@@ -51,8 +51,7 @@ public:
     *
     * @return
     */
-    static luabind::scope
-    luaBindings();
+    static void luaBindings(sol::state &lua);
 
     /**
     * @brief Add a collision group
@@ -128,8 +127,7 @@ struct Collision {
     *
     * @return
     */
-    static luabind::scope
-    luaBindings();
+    static void luaBindings(sol::state &lua);
 
     /**
     * @brief First collided entity
@@ -203,8 +201,7 @@ public:
     *
     * @return
     */
-    static luabind::scope
-    luaBindings();
+    static void luaBindings(sol::state &lua);
 
     /**
     * @brief Initializes the engine
@@ -212,7 +209,7 @@ public:
     * @param engine
     */
     void init(
-        GameState* gameState
+        GameStateData* gameState
     ) override;
 
     /**

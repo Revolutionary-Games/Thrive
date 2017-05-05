@@ -8,7 +8,6 @@
 #include "engine/component.h"
 #include "engine/system.h"
 #include "engine/touchable.h"
-#include "scripting/luabind.h"
 #include "engine/typedefs.h"
 
 #include "general/perlin_noise.h"
@@ -58,8 +57,7 @@ public:
     *
     * @return
     */
-    static luabind::scope
-    luaBindings();
+    static void luaBindings(sol::state &lua);
 
     void
     load(
@@ -90,8 +88,7 @@ public:
     *
     * @return
     */
-    static luabind::scope
-    luaBindings();
+    static void luaBindings(sol::state &lua);
 
     /**
     * @brief Constructor
@@ -108,7 +105,7 @@ public:
     *
     * @param gameState
     */
-    void init(GameState* gameState) override;
+    void init(GameStateData* gameState) override;
 
     /**
     * @brief Shuts the system down
@@ -123,7 +120,8 @@ public:
 private:
     struct Implementation;
     std::unique_ptr<Implementation> m_impl;
-    GameState* gameState;
+    //! \todo Remove this. This is in the base class already
+    GameStateData* gameState;
 
 	void diffuse(float diffRate, std::vector<  std::vector<float>  >& oldDens, const std::vector<  std::vector<float>  >& density, int dt);
 };

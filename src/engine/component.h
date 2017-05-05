@@ -9,8 +9,8 @@
 #include <string>
 #include <unordered_map>
 
-namespace luabind {
-class scope;
+namespace sol {
+class state;
 }
 
 namespace thrive {
@@ -43,8 +43,7 @@ public:
     *
     * @return 
     */
-    static luabind::scope
-    luaBindings();
+    static void luaBindings(sol::state &lua);
 
     /**
     * @brief Destructor
@@ -186,4 +185,19 @@ private:
         \
     private: \
 
+
+/**
+* @brief Fills in common Lua bindings for derived Components
+*
+* Uses a faster way to cast than dynamic_cast
+*/
+#define COMPONENT_BINDINGS(name)                            \
+sol::base_classes, sol::bases<Component>(),                 \
+"castFrom", [](Component* baseptr){                         \
+    if(baseptr->typeId() != name::TYPE_ID)                  \
+        return static_cast<name*>(nullptr);                 \
+    return static_cast<name*>(baseptr);                     \
+},                                                          \
+"TYPE_ID", sol::var(name::TYPE_ID),                         \
+"TYPE_NAME", &name::TYPE_NAME                               \
 

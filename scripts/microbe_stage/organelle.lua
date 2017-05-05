@@ -1,12 +1,64 @@
--- Container for organelle components for all the organelle components
-class 'Organelle'
-
 -- How fast organelles grow.
 GROWTH_SPEED_MULTILPIER = 0.5 / 1000
 
 -- Percentage of the compounds that compose the organelle released
 -- upon death (between 0.0 and 1.0).
 COMPOUND_RELEASE_PERCENTAGE = 0.3
+
+-- Container for organelle components for all the organelle components
+Organelle = class(
+    -- Constructor
+    function(self, mass, name)
+
+        self.collisionShape = CompoundShape.new()
+        self.mass = mass
+        self.components = {}
+        self._hexes = {}
+        self.position = {
+            q = 0,
+            r = 0
+        }
+        self.rotation = nil
+
+        --Naming the organelle.
+        if name == nil then
+            self.name = "<nameless>"
+        else
+            self.name = name
+        end
+        
+        -- The deviation of the organelle color from the species color
+        self._needsColourUpdate = true
+        
+        -- Whether or not this organelle has already divided.
+        self.split = false
+        -- If this organelle is a duplicate of another organelle caused by splitting.
+        self.isDuplicate = false        
+        
+        -- The "Health Bar" of the organelle constrained to [0,2]
+        -- 0 means the organelle is dead, 1 means its normal, and 2 means
+        -- its ready to divide.
+        self.compoundBin = 1.0
+
+        -- The compounds left to divide this organelle.
+        -- Decreases every time a required compound is absorbed.
+        self.compoundsLeft = {}
+
+        -- The compounds that make up this organelle. They get reduced each time
+        -- the organelle gets damaged.
+        self.composition = {}
+
+        -- The total number of compounds we need before we can split.
+        self.organelleCost = 0
+
+        for compoundName, amount in pairs(organelleTable[name].composition) do
+            self.compoundsLeft[compoundName] = amount
+            self.composition[compoundName] = amount
+            self.organelleCost = self.organelleCost + amount
+        end
+
+    end
+)
 
 -- Factory function for organelles
 function Organelle.loadOrganelle(storage)
@@ -16,58 +68,6 @@ function Organelle.loadOrganelle(storage)
     organelle:load(storage)
     return organelle
 end
-
-
--- Constructor
-function Organelle:__init(mass, name)
-    self.collisionShape = CompoundShape()
-    self.mass = mass
-    self.components = {}
-    self._hexes = {}
-    self.position = {
-        q = 0,
-        r = 0
-    }
-    self.rotation = nil
-
-    --Naming the organelle.
-    if name == nil then
-        self.name = "<nameless>"
-    else
-        self.name = name
-    end
-    
-    -- The deviation of the organelle color from the species color
-    self._needsColourUpdate = true
-    
-    -- Whether or not this organelle has already divided.
-    self.split = false
-    -- If this organelle is a duplicate of another organelle caused by splitting.
-    self.isDuplicate = false
-
-    -- The "Health Bar" of the organelle constrained to [0,2]
-    -- 0 means the organelle is dead, 1 means its normal, and 2 means
-    -- its ready to divide.
-    self.compoundBin = 1.0
-
-    -- The compounds left to divide this organelle.
-    -- Decreases every time a required compound is absorbed.
-    self.compoundsLeft = {}
-
-    -- The compounds that make up this organelle. They get reduced each time
-    -- the organelle gets damaged.
-    self.composition = {}
-
-    -- The total number of compounds we need before we can split.
-    self.organelleCost = 0
-
-    for compoundName, amount in pairs(organelleTable[name].composition) do
-        self.compoundsLeft[compoundName] = amount
-        self.composition[compoundName] = amount
-        self.organelleCost = self.organelleCost + amount
-    end
-end
-
 
 -- Adds a hex to this organelle
 --
@@ -85,7 +85,7 @@ function Organelle:addHex(q, r)
     local hex = {
         q = q,
         r = r,
-        collisionShape = SphereShape(2)
+        collisionShape = SphereShape.new(2)
     }
     local x, y = axialToCartesian(q, r)
     local translation = Vector3(x, y, 0)
@@ -93,7 +93,7 @@ function Organelle:addHex(q, r)
     -- Collision shape
     self.collisionShape:addChildShape(
         translation,
-        Quaternion(Radian(0), Vector3(1,0,0)),
+        Quaternion.new(Radian(0), Vector3(1,0,0)),
         hex.collisionShape
     )
     self._hexes[s] = hex
@@ -153,7 +153,7 @@ function Organelle:onAddedToMicrobe(microbe, q, r, rotation)
     self.position.cartesian = Vector3(x,y,0)
     self.rotation = rotation
 
-    self.organelleEntity = Entity()
+    self.organelleEntity = Entity.new(g_luaEngine.currentGameState.wrapper)
     self.organelleEntity:setVolatile(true)
     microbe.entity:addChild(self.organelleEntity)
             
@@ -176,8 +176,9 @@ function Organelle:onAddedToMicrobe(microbe, q, r, rotation)
     end
     offset = offset / count
   
-    self.sceneNode = OgreSceneNodeComponent()
-    self.sceneNode.transform.orientation = Quaternion(Radian(Degree(self.rotation)), Vector3(0, 0, 1))
+    self.sceneNode = OgreSceneNodeComponent.new()
+    self.sceneNode.transform.orientation = Quaternion.new(Radian.new(Degree(self.rotation)),
+                                                          Vector3(0, 0, 1))
     self.sceneNode.transform.position = offset + self.position.cartesian
     self.sceneNode.transform.scale = Vector3(HEX_SIZE, HEX_SIZE, HEX_SIZE)
     self.sceneNode.transform:touch()
@@ -238,10 +239,10 @@ function Organelle:flashOrganelle(duration, colour)
 end
 
 function Organelle:storage()
-    local storage = StorageContainer()
-    local hexes = StorageList()
+    local storage = StorageContainer.new()
+    local hexes = StorageList.new()
     for _, hex in pairs(self._hexes) do
-        hexStorage = StorageContainer()
+        hexStorage = StorageContainer.new()
         hexStorage:set("q", hex.q)
         hexStorage:set("r", hex.r)
         hexes:append(hexStorage)
@@ -257,7 +258,10 @@ function Organelle:storage()
 
     --iterating on each OrganelleComponent
     for componentName, component in pairs(self.components) do
-        storage:set(componentName, component:storage())
+        local s = component:storage()
+        assert(isNotEmpty, componentName)
+        assert(s)
+        storage:set(componentName, s)
     end
 
     return storage
@@ -298,7 +302,7 @@ function Organelle:update(microbe, logicTime)
     end
 
     -- Update each OrganelleComponent
-    for componentName, component in pairs(self.components) do
+    for _, component in pairs(self.components) do
         component:update(microbe, self, logicTime)
     end
 end
@@ -447,7 +451,11 @@ function Organelle:removePhysics()
 end
 
 -- The basic organelle maker
-class 'OrganelleFactory'
+OrganelleFactory = class(
+    function(self)
+
+    end
+)
 
 -- Sets the color of the organelle (used in editor for valid/nonvalid placement)
 function OrganelleFactory.setColour(sceneNode, colour)
@@ -465,7 +473,7 @@ function OrganelleFactory.makeOrganelle(data)
         --adding all of the components.
         for componentName, arguments in pairs(organelleInfo.components) do
             local componentType = _G[componentName]
-            organelle.components[componentName] = componentType(arguments, data)
+            organelle.components[componentName] = componentType.new(arguments, data)
         end
 
         --getting the hex table of the organelle rotated by the angle
@@ -502,7 +510,8 @@ function OrganelleFactory.renderOrganelles(data)
             local y = organelleY + hexY
             local translation = Vector3(-x, -y, 0)
             data.sceneNode[i].transform.position = translation
-            data.sceneNode[i].transform.orientation = Quaternion(Radian(Degree(data.rotation)), Vector3(0, 0, 1))
+            data.sceneNode[i].transform.orientation = Quaternion.new(
+                Radian.new(Degree(data.rotation)), Vector3(0, 0, 1))
             xSum = xSum + x
             ySum = ySum + y
             i = i + 1
@@ -517,7 +526,8 @@ function OrganelleFactory.renderOrganelles(data)
         if(mesh ~= nil) then
             data.sceneNode[1].meshName = mesh
             data.sceneNode[1].transform.position = Vector3(-xAverage, -yAverage, 0)
-            data.sceneNode[1].transform.orientation = Quaternion(Radian(Degree(data.rotation)), Vector3(0, 0, 1))
+            data.sceneNode[1].transform.orientation = Quaternion.new(
+                Radian.new(Degree(data.rotation)), Vector3(0, 0, 1))
         end
     end
 end

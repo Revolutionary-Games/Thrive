@@ -1,6 +1,6 @@
 #pragma once
 
-#include "scripting/luabind.h"
+#include "scripting/luajit.h"
 
 #include <cstdint>
 #include <OgreColourValue.h>
@@ -45,8 +45,7 @@ public:
     * - StorageContainer::set
     *
     */
-    static luabind::scope
-    luaBindings();
+    static void luaBindings(sol::state &lua);
 
     /**
     * @brief Constructor
@@ -97,6 +96,25 @@ public:
     operator = (
         StorageContainer&& other
     );
+
+    /**
+    * @brief Required for lua bindings
+    */
+    bool operator ==(
+        const StorageContainer &other
+    ) const {
+        return this == &other;
+    }
+
+    /**
+    * @brief Required for lua bindings
+    */
+    bool operator <(
+        const StorageContainer &other
+    ) const {
+        (void)other;
+        return false;
+    }
 
     /**
     * @brief Checks for a key
@@ -166,10 +184,10 @@ public:
     *
     * @return
     */
-    luabind::object
-    luaGet(
+    sol::object luaGet(
         const std::string& key,
-        luabind::object defaultValue
+        sol::object defaultValue,
+        sol::this_state s
     ) const;
 
     /**
@@ -254,8 +272,7 @@ public:
     *
     * @return
     */
-    static luabind::scope
-    luaBindings();
+    static void luaBindings(sol::state &lua);
 
     /**
     * @brief Constructor

@@ -6,12 +6,16 @@
 #include <memory>
 #include <unordered_set>
 
+namespace sol{
+class state;
+}
+
 namespace thrive {
 
 class Component;
 class ComponentCollection;
 class ComponentFactory;
-class GameState;
+class GameStateData;
 class StorageContainer;
 
 /**
@@ -23,6 +27,18 @@ class StorageContainer;
 class EntityManager {
 
 public:
+
+
+    /**
+    * @brief Lua bindings
+    *
+    * Exposes:
+    * - EntityManager::new
+    *
+    * @return
+    */
+    static void
+    luaBindings(sol::state &lua);
 
     /**
     * @brief Constructor

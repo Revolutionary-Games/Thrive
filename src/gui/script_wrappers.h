@@ -7,9 +7,8 @@ namespace CEGUI {
     class StandardItem;
 }
 
-namespace luabind {
-
-    class scope;
+namespace sol {
+class state;
 }
 
 namespace thrive {
@@ -17,6 +16,9 @@ namespace thrive {
 // StandardItemWrapper
 class StandardItemWrapper{
 public:
+
+    static void luaBindings(sol::state &lua);
+    
     //! @brief Constructs a wrapper around CEGUI::StandardItem(text, id)
     StandardItemWrapper(
         const std::string &text,
@@ -38,13 +40,6 @@ private:
 
     bool m_attached;
     CEGUI::StandardItem* m_item;
-};
-
-class ScriptWrappers final{
-public:  
-    static luabind::scope
-        StandardItemWrapperBindings();
-
 };
 
 }

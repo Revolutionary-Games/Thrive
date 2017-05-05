@@ -3,7 +3,7 @@
 #include "engine/game_state.h"
 #include "engine/serialization.h"
 #include "general/locked_map.h"
-#include "scripting/luabind.h"
+#include "scripting/luajit.h"
 #include "engine/entity.h"
 
 #include <unordered_set>
@@ -19,7 +19,7 @@ struct PlayerData::Implementation {
     }
 
     EntityId m_activeCreature = NULL_ENTITY;
-    GameState* m_activeCreatureGamestate = nullptr;
+    GameStateData* m_activeCreatureGamestate = nullptr;
 
     std::string m_playerName;
 
@@ -29,19 +29,21 @@ struct PlayerData::Implementation {
 
 };
 
-luabind::scope
-PlayerData::luaBindings() {
-    using namespace luabind;
-    return class_<PlayerData>("PlayerData")
-        .def(constructor<std::string>())
-        .def("playerName", &PlayerData::playerName)
-        .def("lockedMap", &PlayerData::lockedMap)
-        .def("activeCreature", &PlayerData::activeCreature)
-        .def("setActiveCreature", &PlayerData::setActiveCreature)
-        .def("activeCreatureGamestate", &PlayerData::activeCreatureGamestate)
-        .def("isBoolSet", &PlayerData::isBoolSet)
-        .def("setBool", &PlayerData::setBool)
-    ;
+void PlayerData::luaBindings(
+    sol::state &lua
+){
+    lua.new_usertype<PlayerData>("PlayerData",
+
+        sol::constructors<sol::types<std::string>>(),
+        
+        "playerName", &PlayerData::playerName,
+        "lockedMap", &PlayerData::lockedMap,
+        "activeCreature", &PlayerData::activeCreature,
+        "setActiveCreature", &PlayerData::setActiveCreature,
+        "activeCreatureGamestate", &PlayerData::activeCreatureGamestate,
+        "isBoolSet", &PlayerData::isBoolSet,
+        "setBool", &PlayerData::setBool
+    );
 }
 
 PlayerData::PlayerData(
@@ -70,15 +72,15 @@ PlayerData::activeCreature(){
 void
 PlayerData::setActiveCreature(
     EntityId creatureId,
-    GameState& gamestate
+    GameStateData* gamestate
 ){
     m_impl->m_activeCreature = creatureId;
-    m_impl->m_activeCreatureGamestate = &gamestate;
+    m_impl->m_activeCreatureGamestate = gamestate;
 }
 
-GameState&
+GameStateData*
 PlayerData::activeCreatureGamestate(){
-    return *m_impl->m_activeCreatureGamestate;
+    return m_impl->m_activeCreatureGamestate;
 }
 
 bool
@@ -105,10 +107,16 @@ void
 PlayerData::load(
     const StorageContainer& storage
 ) {
+
+    if(!m_impl->m_activeCreatureGamestate)
+        throw std::runtime_error("PlayerData.activeCreatureGamestate is null in 'load'");
+    
+    
     m_impl->m_playerName = storage.get<std::string>("playerName");
     StorageContainer lockedMapStorage = storage.get<StorageContainer>("lockedMap");
     //This isn't the prettiest way to do it, but we need to reobtain a reference to the players creature
-    m_impl->m_activeCreature = Entity(m_impl->m_playerName).id();
+    m_impl->m_activeCreature = Entity(m_impl->m_playerName,
+        m_impl->m_activeCreatureGamestate).id();
     StorageList boolValues = storage.get<StorageList>("boolValues");
     for (const StorageContainer& container : boolValues) {
         std::string boolKey = container.get<std::string>("boolKey");

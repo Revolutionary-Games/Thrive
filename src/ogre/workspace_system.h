@@ -6,8 +6,8 @@
 
 #include <memory>
 
-namespace luabind {
-    class scope;
+namespace sol {
+class state;
 }
 
 namespace Ogre {
@@ -66,8 +66,7 @@ public:
      *
      * @return 
      */
-    static luabind::scope
-    luaBindings();
+    static void luaBindings(sol::state &lua);
 
     /**
        @brief Constructor
@@ -133,8 +132,7 @@ public:
      *
      * @return 
      */
-    static luabind::scope
-    luaBindings();
+    static void luaBindings(sol::state &lua);
 
     /**
      * @brief Constructor
@@ -157,7 +155,7 @@ public:
      *
      * @param gameState
      */
-    void init(GameState* gameState) override;
+    void init(GameStateData* gameState) override;
 
     /**
      * @brief Shuts the system down
