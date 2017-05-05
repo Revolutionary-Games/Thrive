@@ -30,21 +30,21 @@ struct Mouse::Implementation : public OIS::MouseListener {
         case OIS::MB_Left:
             #ifdef WIN32
             m_aggregator->injectMouseButtonDown(CEGUI::MouseButton::LeftButton);
-            #elif
+            #else
             m_aggregator->injectMouseButtonDown(CEGUI::MouseButton::Left);
             #endif
             break;
         case OIS::MB_Right:
             #ifdef WIN32
             m_aggregator->injectMouseButtonDown(CEGUI::MouseButton::RightButton);
-            #elif
+            #else
             m_aggregator->injectMouseButtonDown(CEGUI::MouseButton::Right);
             #endif
             break;
         case OIS::MB_Middle:
             #ifdef WIN32
             m_aggregator->injectMouseButtonDown(CEGUI::MouseButton::MiddleButton);
-            #elif
+            #else
             m_aggregator->injectMouseButtonDown(CEGUI::MouseButton::Middle);
             #endif
             break;
@@ -60,7 +60,7 @@ struct Mouse::Implementation : public OIS::MouseListener {
         case OIS::MB_Left:
             #ifdef WIN32
             if(!m_aggregator->injectMouseButtonUp(CEGUI::MouseButton::LeftButton)){
-            #elif
+            #else
             if(!m_aggregator->injectMouseButtonUp(CEGUI::MouseButton::Left)){
             #endif
                 m_nextClickedStates |= 0x1;
@@ -69,7 +69,7 @@ struct Mouse::Implementation : public OIS::MouseListener {
         case OIS::MB_Right:
             #ifdef WIN32
             if(!m_aggregator->injectMouseButtonUp(CEGUI::MouseButton::RightButton)){
-            #elif
+            #else
             if(!m_aggregator->injectMouseButtonUp(CEGUI::MouseButton::Right)){
             #endif
                 m_nextClickedStates |= 0x2;
@@ -78,7 +78,7 @@ struct Mouse::Implementation : public OIS::MouseListener {
         case OIS::MB_Middle:
             #ifdef WIN32
             if(!m_aggregator->injectMouseButtonUp(CEGUI::MouseButton::MiddleButton)){
-            #elif
+            #else
             if(!m_aggregator->injectMouseButtonUp(CEGUI::MouseButton::Middle)){
             #endif
                 m_nextClickedStates |= 0x4;
