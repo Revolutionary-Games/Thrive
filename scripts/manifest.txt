@@ -1,9 +1,13 @@
-colours.lua
-constants.lua
-quick_save.lua
+// utilities and definitions
 util.lua
+colours.lua
+class.lua
+constants.lua
 
-keymap.lua
+// engine stuff like gamestates
+lua_engine
+
+quick_save.lua
 
 main_menu
 microbe_stage
@@ -13,4 +17,7 @@ microbe_editor
 
 console.lua
 console_commands.lua
+
+// main loop is defined here
+game.lua
 

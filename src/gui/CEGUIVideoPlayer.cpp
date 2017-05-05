@@ -3,15 +3,13 @@
 #include "engine/engine.h"
 #include "game.h"
 #include "script_wrappers.h"
-#include "scripting/luabind.h"
+#include "scripting/luajit.h"
 
 #include <OgreVector3.h>
 #include <OgreMaterialManager.h>
 #include <OgreMaterial.h>
 #include <OgreTechnique.h>
 #include <OgreTextureManager.h>
-#include <luabind/object.hpp>
-#include <luabind/adopt_policy.hpp>
 #include <functional>
 
 #include <CEGUI/Element.h>
@@ -38,8 +36,8 @@ CEGUIVideoPlayer::CEGUIVideoPlayer(
         &CEGUI::ImageManager::getSingleton().create(
             "BitmapImage", "ThriveGeneric/VideoImage"));
 
-    m_window->setWidth(CEGUI::UDim(0,width));
-    m_window->setHeight(CEGUI::UDim(0,height));
+    m_window->setWidth(CEGUI::UDim(0, width));
+    m_window->setHeight(CEGUI::UDim(0, height));
 }
 
 CEGUIVideoPlayer::CEGUIVideoPlayer(
@@ -56,25 +54,35 @@ CEGUIVideoPlayer::~CEGUIVideoPlayer()
     delete m_tex;
 }
 
-luabind::scope
-CEGUIVideoPlayer::luaBindings() {
-    using namespace luabind;
-    return class_<CEGUIVideoPlayer, CEGUIWindow>("CEGUIVideoPlayer")
-        .def(constructor<std::string, int, int>())
-        .def(constructor<std::string>())
-        .def("play", &CEGUIVideoPlayer::play)
-        .def("close", &CEGUIVideoPlayer::close)
-        .def("setVideo", &CEGUIVideoPlayer::setVideo)
-        .def("update", &CEGUIVideoPlayer::update)
-        .def("getDuration", &CEGUIVideoPlayer::getDuration)
-        .def("getCurrentTime", &CEGUIVideoPlayer::getCurrentTime)
-        .def("seek", &CEGUIVideoPlayer::seek)
-        .scope
-        [
-            def("destroyVideoPlayer", &destroyVideoPlayer, adopt(_1)) //Static
-        ];
-    ;
+
+void CEGUIVideoPlayer::luaBindings(
+    sol::state &lua
+){
+    lua.new_usertype<CEGUIVideoPlayer>("CEGUIVideoPlayer",
+
+        "new", sol::factories([](const std::string &name, int width, int height){
+
+                return new CEGUIVideoPlayer(name, width, height);
+
+            }, [](const std::string &name){
+
+                return new CEGUIVideoPlayer(name);
+            }),
+
+        sol::base_classes, sol::bases<CEGUIWindow>(),
+
+        "play", &CEGUIVideoPlayer::play,
+        "close", &CEGUIVideoPlayer::close,
+        "setVideo", &CEGUIVideoPlayer::setVideo,
+        "update", &CEGUIVideoPlayer::update,
+        "getDuration", &CEGUIVideoPlayer::getDuration,
+        "getCurrentTime", &CEGUIVideoPlayer::getCurrentTime,
+        "seek", &CEGUIVideoPlayer::seek,
+
+        "destroyVideoPlayer", &destroyVideoPlayer //Static
+    );
 }
+
 
 void
 CEGUIVideoPlayer::play() {
@@ -89,7 +97,7 @@ CEGUIVideoPlayer::destroyVideoPlayer(CEGUIVideoPlayer* player)
 
 void
 CEGUIVideoPlayer::pause() {
-
+    throw std::runtime_error("CEGUIVideoPlayer::pause is unimplemented");
 }
 
 void
@@ -131,13 +139,18 @@ CEGUIVideoPlayer::setVideo(
 
     CEGUI::OgreTexture& rendererTexture = static_cast<CEGUI::OgreTexture&>(texture);
 
-    rendererTexture.setOgreTexture(Ogre::TextureManager::getSingleton().getByName(m_videoPlayer->getTextureName()), false);
+    rendererTexture.setOgreTexture(Ogre::TextureManager::getSingleton().getByName(
+            m_videoPlayer->getTextureName()), false);
 
-    CEGUI::OgreRenderer* ogreRenderer = static_cast<CEGUI::OgreRenderer*>(CEGUI::System::getSingleton().getRenderer());
+    CEGUI::OgreRenderer* ogreRenderer = static_cast<CEGUI::OgreRenderer*>(
+        CEGUI::System::getSingleton().getRenderer());
+
     bool isTextureTargetVerticallyFlipped = ogreRenderer->isTexCoordSystemFlipped();
+
     CEGUI::Rectf imageArea;
     int videoW = m_videoPlayer->getVideoWidth();
     int videoH = m_videoPlayer->getVideoHeight();
+
     if (isTextureTargetVerticallyFlipped){
         imageArea= CEGUI::Rectf(0.0f, videoW, videoH, 0.0f);
     }
@@ -145,8 +158,15 @@ CEGUIVideoPlayer::setVideo(
         imageArea= CEGUI::Rectf(0.0f, 0.0f, videoW, videoH);
     }
     m_videoImage->setImageArea(imageArea);
-    // You most likely don't want autoscaling for RTT images. If you display it in stretched-mode inside a button or Generic/Image widget, then this setting does not play a role anyways.
-    m_videoImage->setAutoScaled(CEGUI::ASM_Disabled);
+
+    // You most likely don't want autoscaling for RTT images. If you
+    // display it in stretched-mode inside a button or Generic/Image
+    // widget, then this setting does not play a role anyways.
+    #ifdef WIN32
+    m_videoImage->setAutoScaled(CEGUI::AutoScaledMode::ASM_Disabled);
+    #else
+    m_videoImage->setAutoScaled(CEGUI::AutoScaledMode::Disabled);
+    #endif
     m_videoImage->setTexture(&rendererTexture);
 }
 

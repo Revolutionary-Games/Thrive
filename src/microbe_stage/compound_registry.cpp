@@ -8,50 +8,55 @@
 #include "engine/serialization.h"
 #include "game.h"
 #include "ogre/scene_node_system.h"
-#include "scripting/luabind.h"
+#include "scripting/luajit.h"
 #include "util/make_unique.h"
 #include "microbe_stage/compound.h"
 
 #include "tinyxml.h"
 
-#include <luabind/iterator_policy.hpp>
 #include <OgreEntity.h>
 #include <OgreSceneManager.h>
 #include <stdexcept>
 
 using namespace thrive;
 
-luabind::scope
-CompoundRegistry::luaBindings() {
-    using namespace luabind;
-    return class_<CompoundRegistry>("CompoundRegistry")
-        .scope
-        [
-            def("registerCompoundType", &CompoundRegistry::registerCompoundType),
-            def("registerAgentType",
-                static_cast<CompoundId (*)(
-                    const std::string&,
-                    const std::string&,
-                    const std::string&,
-                    double,
-                    bool,
-                    float,
-                    const luabind::object&
-                )>(&CompoundRegistry::registerAgentType)
-            ),
-            def("loadFromXML", &CompoundRegistry::loadFromXML),
-            def("loadFromLua", &CompoundRegistry::loadFromLua),
-            def("loadAgentFromLua", &CompoundRegistry::loadAgentFromLua),
-            def("getCompoundDisplayName", &CompoundRegistry::getCompoundDisplayName),
-            def("getCompoundInternalName", &CompoundRegistry::getCompoundInternalName),
-			def("getCompoundMeshName", &CompoundRegistry::getCompoundMeshName),
-            def("getCompoundUnitVolume", &CompoundRegistry::getCompoundUnitVolume),
-            def("getCompoundId", &CompoundRegistry::getCompoundId),
-            def("getCompoundList", &CompoundRegistry::getCompoundList, return_stl_iterator),
-            def("getCompoundMeshScale", &CompoundRegistry::getCompoundMeshScale),
-            def("getAgentEffect", &CompoundRegistry::getAgentEffect)
-        ]
-    ;
+void CompoundRegistry::luaBindings(
+    sol::state &lua
+){
+    lua.new_usertype<CompoundRegistry>("CompoundRegistry",
+
+        "new", sol::no_constructor,
+        
+        "registerCompoundType", &CompoundRegistry::registerCompoundType,
+        "registerAgentType",
+            static_cast<CompoundId (*)(
+                const std::string&,
+                const std::string&,
+                const std::string&,
+                double,
+                bool,
+                float,
+                sol::object
+            )>(&CompoundRegistry::registerAgentType),
+        
+        "loadFromXML", &CompoundRegistry::loadFromXML,
+        "loadFromLua", &CompoundRegistry::loadFromLua,
+        "loadAgentFromLua", &CompoundRegistry::loadAgentFromLua,
+        "getCompoundDisplayName", &CompoundRegistry::getCompoundDisplayName,
+        "getCompoundInternalName", &CompoundRegistry::getCompoundInternalName,
+        "getCompoundMeshName", &CompoundRegistry::getCompoundMeshName,
+        "getCompoundUnitVolume", &CompoundRegistry::getCompoundUnitVolume,
+        "getCompoundId", &CompoundRegistry::getCompoundId,
+
+        // sol:: doesn't like boost wrapped iterators
+        "getCompoundList", [](sol::this_state s){
+
+            THRIVE_BIND_ITERATOR_TO_TABLE(CompoundRegistry::getCompoundList());
+        },
+        
+        "getCompoundMeshScale", &CompoundRegistry::getCompoundMeshScale,
+        "getAgentEffect", &CompoundRegistry::getAgentEffect
+    );
 }
 
 
@@ -82,17 +87,21 @@ compoundRegistryMap() {
 
 void
 CompoundRegistry::loadFromLua(
-    const luabind::object& compoundTable,
-    const luabind::object& agentTable
+    sol::table compoundTable,
+    sol::table agentTable
 ) {
-    for (luabind::iterator i(compoundTable), end; i != end; ++i) {
-        std::string key = luabind::object_cast<std::string>(i.key());
-        luabind::object data = *i;
-        std::string name = luabind::object_cast<std::string>(data["name"]);
-        float weight = luabind::object_cast<float>(data["weight"]);
-        std::string meshname = luabind::object_cast<std::string>(data["mesh"]);
-        bool isUseful = luabind::object_cast<bool>(data["isUseful"]);
-        float size = luabind::object_cast<float>(data["size"]);
+    
+    for(const auto& pair : compoundTable){
+
+        const auto key = pair.first.as<std::string>();
+        auto data = pair.second.as<sol::table>();
+
+        const auto name = data.get<std::string>("name");
+        const auto weight = data.get<float>("weight");
+        const auto meshname = data.get<std::string>("mesh");
+        const auto size = data.get<float>("size");
+        bool isUseful = data.get<bool>("isUseful");        
+
         registerCompoundType(
                 key,
                 name,
@@ -102,15 +111,19 @@ CompoundRegistry::loadFromLua(
                 weight
             );
     }
-    for (luabind::iterator i(agentTable), end; i != end; ++i) {
-        std::string key = luabind::object_cast<std::string>(i.key());
-        luabind::object data = *i;
-        std::string name = luabind::object_cast<std::string>(data["name"]);
-        float weight = luabind::object_cast<float>(data["weight"]);
-        std::string meshname = luabind::object_cast<std::string>(data["mesh"]);
-        float size = luabind::object_cast<float>(data["size"]);
-        // std::cerr << "before casting effect" << std::endl;
-        luabind::object effect = data["effect"];
+
+    for(const auto& pair : agentTable){
+
+        const auto key = pair.first.as<std::string>();
+        auto data = pair.second.as<sol::table>();
+
+        const auto name = data.get<std::string>("name");
+        const auto weight = data.get<float>("weight");
+        const auto meshname = data.get<std::string>("mesh");
+        const auto size = data.get<float>("size");
+        
+        sol::object effect = data["effect"];
+        
         registerAgentType(
                 key,
                 name,
@@ -122,71 +135,22 @@ CompoundRegistry::loadFromLua(
             );
     }
 }
-/*||=== Build: install in Thrive (compiler: GNU GCC Compiler) ===|
-C:\Users\User\Documents\GitHub\Thrive\Thrive\src\microbe_stage\compound_registry.cpp|121|error: no matching function for call to 'thrive::CompoundRegistry::registerAgentType(
-std::string&,
-std::string&,
-std::string&,
-float&,
-bool,
-float&,
-luabind::adl::object&)
 
-static thrive::CompoundId thrive::CompoundRegistry::registerAgentType(
-const string&,
-const string&,
-const string&,
-double, int,
-std::function<bool(unsigned int, double)>*)|
-C:\Users\User\Documents\GitHub\Thrive\Thrive\src\microbe_stage\compound_registry.h|134|note:   candidate expects 6 arguments, 7 provided|
-C:\Users\User\Documents\GitHub\Thrive\Thrive\src\microbe_stage\compound_registry.h|169|note: static thrive::CompoundId thrive::CompoundRegistry::registerAgentType(const string&, const string&, const string&, double, int, const luabind::adl::object&)|
-C:\Users\User\Documents\GitHub\Thrive\Thrive\src\microbe_stage\compound_registry.h|169|note:   candidate expects 6 arguments, 7 provided|
-C:\Users\User\Documents\GitHub\Thrive\Thrive\src\microbe_stage\compound_registry.cpp|145|error: no matching function for call to 'thrive::CompoundRegistry::registerAgentType(std::string&, std::string&, std::string&, float&, bool, float&, luabind::adl::object&)'|
-C:\Users\User\Documents\GitHub\Thrive\Thrive\src\microbe_stage\compound_registry.cpp|145|note: candidates are:|
-C:\Users\User\Documents\GitHub\Thrive\Thrive\src\microbe_stage\compound_registry.h|134|note: static thrive::CompoundId thrive::CompoundRegistry::registerAgentType(const string&, const string&, const string&, double, int, std::function<bool(unsigned int, double)>*)|
-C:\Users\User\Documents\GitHub\Thrive\Thrive\src\microbe_stage\compound_registry.h|134|note:   candidate expects 6 arguments, 7 provided|
-C:\Users\User\Documents\GitHub\Thrive\Thrive\src\microbe_stage\compound_registry.h|169|note: static thrive::CompoundId thrive::CompoundRegistry::registerAgentType(const string&, const string&, const string&, double, int, const luabind::adl::object&)|
-C:\Users\User\Documents\GitHub\Thrive\Thrive\src\microbe_stage\compound_registry.h|169|note:   candidate expects 6 arguments, 7 provided|
-C:\Users\User\Documents\GitHub\Thrive\Thrive\src\microbe_stage\compound_registry.cpp|254|error: no matching function for call to 'thrive::CompoundRegistry::registerAgentType(const char*&, const char*&, const char*&, double&, bool, int&, std::function<bool(unsigned int, double)>*&)'|
-C:\Users\User\Documents\GitHub\Thrive\Thrive\src\microbe_stage\compound_registry.cpp|254|note: candidates are:|
-C:\Users\User\Documents\GitHub\Thrive\Thrive\src\microbe_stage\compound_registry.h|134|note: static thrive::CompoundId thrive::CompoundRegistry::registerAgentType(const string&, const string&, const string&, double, int, std::function<bool(unsigned int, double)>*)|
-C:\Users\User\Documents\GitHub\Thrive\Thrive\src\microbe_stage\compound_registry.h|134|note:   candidate expects 6 arguments, 7 provided|
-C:\Users\User\Documents\GitHub\Thrive\Thrive\src\microbe_stage\compound_registry.h|169|note: static thrive::CompoundId thrive::CompoundRegistry::registerAgentType(const string&, const string&, const string&, double, int, const luabind::adl::object&)|
-C:\Users\User\Documents\GitHub\Thrive\Thrive\src\microbe_stage\compound_registry.h|169|note:   candidate expects 6 arguments, 7 provided|
-C:\Users\User\Documents\GitHub\Thrive\Thrive\src\microbe_stage\compound_registry.cpp|281|error: no matching function for call to 'thrive::CompoundRegistry::registerAgentType(const string&, const string&, const string&, double&, bool&, int&, std::function<bool(unsigned int, double)>*)'|
-C:\Users\User\Documents\GitHub\Thrive\Thrive\src\microbe_stage\compound_registry.cpp|281|note: candidates are:|
-C:\Users\User\Documents\GitHub\Thrive\Thrive\src\microbe_stage\compound_registry.h|134|note: static thrive::CompoundId thrive::CompoundRegistry::registerAgentType(const string&, const string&, const string&, double, int, std::function<bool(unsigned int, double)>*)|
-C:\Users\User\Documents\GitHub\Thrive\Thrive\src\microbe_stage\compound_registry.h|134|note:   candidate expects 6 arguments, 7 provided|
-C:\Users\User\Documents\GitHub\Thrive\Thrive\src\microbe_stage\compound_registry.h|169|note: static thrive::CompoundId thrive::CompoundRegistry::registerAgentType(const string&, const string&, const string&, double, int, const luabind::adl::object&)|
-C:\Users\User\Documents\GitHub\Thrive\Thrive\src\microbe_stage\compound_registry.h|169|note:   candidate expects 6 arguments, 7 provided|
-C:\Users\User\Documents\GitHub\Thrive\Thrive\src\microbe_stage\compound_registry.cpp|309|error: no matching function for call to 'thrive::CompoundRegistry::registerAgentType(const string&, const string&, const string&, double&, int&, bool, std::function<bool(unsigned int, double)>*&)'|
-C:\Users\User\Documents\GitHub\Thrive\Thrive\src\microbe_stage\compound_registry.cpp|309|note: candidates are:|
-C:\Users\User\Documents\GitHub\Thrive\Thrive\src\microbe_stage\compound_registry.h|134|note: static thrive::CompoundId thrive::CompoundRegistry::registerAgentType(const string&, const string&, const string&, double, int, std::function<bool(unsigned int, double)>*)|
-C:\Users\User\Documents\GitHub\Thrive\Thrive\src\microbe_stage\compound_registry.h|134|note:   candidate expects 6 arguments, 7 provided|
-C:\Users\User\Documents\GitHub\Thrive\Thrive\src\microbe_stage\compound_registry.cpp|287|note: static thrive::CompoundId thrive::CompoundRegistry::registerAgentType(const string&, const string&, const string&, double, int, const luabind::adl::object&)|
-C:\Users\User\Documents\GitHub\Thrive\Thrive\src\microbe_stage\compound_registry.cpp|287|note:   candidate expects 6 arguments, 7 provided|
-C:\Users\User\Documents\GitHub\Thrive\Thrive\src\microbe_stage\compound_registry.cpp|313|error: prototype for 'thrive::CompoundId thrive::CompoundRegistry::registerAgentType(const string&, const string&, const string&, double, bool, float, std::function<bool(unsigned int, double)>*)' does not match any in class 'thrive::CompoundRegistry'|
-C:\Users\User\Documents\GitHub\Thrive\Thrive\src\microbe_stage\compound_registry.cpp|287|error: candidates are: static thrive::CompoundId thrive::CompoundRegistry::registerAgentType(const string&, const string&, const string&, double, int, const luabind::adl::object&)|
-C:\Users\User\Documents\GitHub\Thrive\Thrive\src\microbe_stage\compound_registry.h|134|error:                 static thrive::CompoundId thrive::CompoundRegistry::registerAgentType(const string&, const string&, const string&, double, int, std::function<bool(unsigned int, double)>*)|
-C:\Users\User\Documents\GitHub\Thrive\Thrive\src\microbe_stage\compound_registry.cpp|282|error: control reaches end of non-void function [-Werror=return-type]|
-C:\Users\User\Documents\GitHub\Thrive\Thrive\src\microbe_stage\compound_registry.cpp|310|error: control reaches end of non-void function [-Werror=return-type]|
-CMakeFiles\ThriveLib.dir\build.make|962|recipe for target 'CMakeFiles/ThriveLib.dir/src/microbe_stage/compound_registry.cpp.obj' failed|
-CMakeFiles\Makefile2|99|recipe for target 'CMakeFiles/ThriveLib.dir/all' failed|
-C:\Users\User\Documents\GitHub\Thrive\Build\Makefile|126|recipe for target 'all' failed|
-||=== Build failed: 13 error(s), 0 warning(s) (2 minute(s), 21 second(s)) ===|
-*/
 void
 CompoundRegistry::loadAgentFromLua(
-    const luabind::object& internalName,
-    const luabind::object& data
+    sol::object internalName,
+    sol::table data
 ) {
-    std::string internal_name = luabind::object_cast<std::string>(internalName);
-    std::string name = luabind::object_cast<std::string>(data["name"]);
-    float weight = luabind::object_cast<float>(data["weight"]);
-    std::string meshname = luabind::object_cast<std::string>(data["mesh"]);
-    float size = luabind::object_cast<float>(data["size"]);
+    
+    const auto internal_name = internalName.as<std::string>();
+    
+    const auto name = data.get<std::string>("name");
+    const auto weight = data.get<float>("weight");
+    const auto meshname = data.get<std::string>("mesh");
+    const auto size = data.get<float>("size");
+    
     // std::cerr << "before casting effect" << std::endl;
-    luabind::object effect = data["effect"];
+    sol::object effect = data["effect"];
     registerAgentType(
             internal_name,
             name,
@@ -280,7 +244,8 @@ CompoundRegistry::loadFromXML(
             auto effectLambda = new std::function<bool(EntityId, double)>(
                 [luaFunctionName](EntityId entityId, double potency) -> bool
                 {
-                    luabind::call_function<void>(Game::instance().engine().luaState(), luaFunctionName.c_str(), entityId, potency);
+                    sol::state_view(Game::instance().engine().luaState())[luaFunctionName](
+                        entityId, potency);
                     return true;
                 });
             const char* name = pAgent->Attribute("name");
@@ -344,12 +309,12 @@ CompoundRegistry::registerAgentType(
     double meshScale,
     bool isUseful,
     float unitVolume,
-    const luabind::object& effect
+    sol::object effect
 ) {
     auto effectLambda = new std::function<bool(EntityId, double)>(
         [effect](EntityId entityId, double potency) -> bool
         {
-            luabind::call_function<void>(effect, entityId, potency);
+            effect.as<sol::protected_function>()(entityId, potency);
             return true;
         });
     //Call overload

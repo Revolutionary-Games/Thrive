@@ -1,28 +1,28 @@
 
-local function setupCamera()
-    local entity = Entity(CAMERA_NAME .. "2")
+local function setupCamera(gameState)
+    local entity = Entity.new(CAMERA_NAME .. "2", gameState.wrapper)
     -- Camera
-    local camera = OgreCameraComponent("camera2")
+    local camera = OgreCameraComponent.new("camera2")
     camera.properties.nearClipDistance = 5
     camera.properties:touch()
     entity:addComponent(camera)
     -- Scene node
-    local sceneNode = OgreSceneNodeComponent()
+    local sceneNode = OgreSceneNodeComponent.new()
     entity:addComponent(sceneNode)
     -- Workspace
-    local workspaceEntity = Entity()
+    local workspaceEntity = Entity.new(gameState.wrapper)
     -- TODO: could create a workspace without shadows
-    local workspaceComponent = OgreWorkspaceComponent("thrive_default")
+    local workspaceComponent = OgreWorkspaceComponent.new("thrive_default")
     workspaceComponent.properties.cameraEntity = entity
     workspaceComponent.properties.position = 0
     workspaceComponent.properties:touch()
     workspaceEntity:addComponent(workspaceComponent)
 end
 
-local function setupSound()
+local function setupSound(gameState)
     -- Background music
-    local ambientEntity = Entity("main_menu_ambience")
-    local soundSource = SoundSourceComponent()
+    local ambientEntity = Entity.new("main_menu_ambience", gameState.wrapper)
+    local soundSource = SoundSourceComponent.new()
     soundSource.ambientSoundSource = true
     soundSource.autoLoop = false
     soundSource.volumeMultiplier = 0.8
@@ -30,8 +30,8 @@ local function setupSound()
     soundSource:addSound("main-menu-theme-1", "main-menu-theme-1.ogg")
     soundSource:addSound("main-menu-theme-2", "main-menu-theme-2.ogg")
     -- Gui effects
-    local guiSoundEntity = Entity("gui_sounds")
-    soundSource = SoundSourceComponent()
+    local guiSoundEntity = Entity.new("gui_sounds", gameState.wrapper)
+    soundSource = SoundSourceComponent.new()
     soundSource.ambientSoundSource = true
     soundSource.autoLoop = false
     soundSource.volumeMultiplier = 1.0
@@ -41,28 +41,31 @@ local function setupSound()
 end
 
 local function createMainMenu(name)
-    return Engine:createGameState(
-        name,
-        {   
-            -- Graphics
-            OgreAddSceneNodeSystem(),
-            OgreUpdateSceneNodeSystem(),
-            OgreCameraSystem(),
-            MainMenuHudSystem(),
-            OgreWorkspaceSystem(),
-            OgreRemoveSceneNodeSystem(),
-            RenderSystem(),
-            -- Other
-            SoundSourceSystem(),
-        },
-        function()
-            setupCamera()
-            setupSound()
-        end,
-        "MainMenu"
-    )
+
+   return g_luaEngine:createGameState(
+      name,
+      {   
+         -- Graphics
+         OgreAddSceneNodeSystem.new(),
+         OgreUpdateSceneNodeSystem.new(),
+         OgreCameraSystem.new(),
+         MainMenuHudSystem.new(),
+         OgreWorkspaceSystem.new(),
+         OgreRemoveSceneNodeSystem.new(),
+         RenderSystem.new(),
+         -- Other
+         SoundSourceSystem.new(),
+      },
+      -- No physics
+      false,
+      "MainMenu",
+      function(gameState)
+         setupCamera(gameState)
+         setupSound(gameState)
+      end
+   )
 end
 
 GameState.MAIN_MENU = createMainMenu("main_menu")
 
-Engine:setCurrentGameState(GameState.MAIN_MENU)
+g_luaEngine:setCurrentGameState(GameState.MAIN_MENU)

@@ -4,12 +4,9 @@
 #include "engine/system.h"
 #include "engine/touchable.h"
 #include "engine/typedefs.h"
-#include "scripting/luabind.h"
 
-#include <luabind/object.hpp>
-
-namespace luabind {
-class scope;
+namespace sol {
+class state;
 }
 
 
@@ -33,8 +30,7 @@ public:
     *
     * @return
     */
-    static luabind::scope
-    luaBindings();
+    static void luaBindings(sol::state &lua);
 
     /**
     * @brief Sets the effect to use upon activation of the powerup
@@ -99,8 +95,7 @@ public:
     *
     * @return
     */
-    static luabind::scope
-    luaBindings();
+    static void luaBindings(sol::state &lua);
 
     /**
     * @brief Constructor
@@ -116,7 +111,7 @@ public:
     * @brief Initializes the system
     *
     */
-    void init(GameState* gameState) override;
+    void init(GameStateData* gameState) override;
 
     /**
     * @brief Shuts the system down

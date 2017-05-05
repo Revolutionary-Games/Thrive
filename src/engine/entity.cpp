@@ -3,11 +3,9 @@
 #include "engine/engine.h"
 #include "engine/entity_manager.h"
 #include "engine/game_state.h"
+#include "scripting/wrapper_classes.h"
 #include "game.h"
-#include "scripting/luabind.h"
-
-#include <luabind/operator.hpp>
-#include <luabind/adopt_policy.hpp>
+#include "scripting/luajit.h"
 
 using namespace thrive;
 
@@ -28,62 +26,113 @@ struct Entity::Implementation {
 
 };
 
+void Entity::luaBindings(
+    sol::state &lua
+){
+    lua.new_usertype<Entity>("Entity",
 
-static void
-Entity_addComponent(
-    Entity* self,
-    Component* nakedComponent
-) {
-    self->addComponent(
-        std::unique_ptr<Component>(nakedComponent)
+        sol::constructors<sol::types<GameStateData*>,
+        sol::types<EntityId, GameStateData*>,
+        sol::types<const std::string&, GameStateData*>>(),
+
+        // This should be automatically bound but here we do it explicitly
+        sol::meta_function::equal_to, &Entity::operator==,
+
+        // The first overload is for passing c++ types here. 
+        "addComponent", sol::overload([](Entity &self, std::unique_ptr<Component> &component){
+
+                if(!component)
+                    throw std::runtime_error("Entity:addComponent null C++ component");
+
+                // This can probably be bypassed
+                std::unique_ptr<Component> temp;
+                temp.swap(component);
+
+                self.addComponent(
+                    std::move(temp)
+                );
+                
+            }, [](Entity &self, sol::table componentTable){
+                
+                if(!componentTable.valid())
+                    throw std::runtime_error("Entity:addComponent invalid argument");
+
+                // This can be disabled to increase performance
+                if(componentTable.get_or<std::string>("TYPE_NAME", "").empty())
+                    throw std::runtime_error("Lua Component class is missing TYPE_NAME");
+            
+                self.addComponent(
+                    std::make_unique<ComponentWrapper>(componentTable)
+                );
+            }),
+
+        "destroy", &Entity::destroy,
+        "exists", &Entity::exists,
+        
+        "getComponent", &Entity::getComponent,
+
+        // Gets a component from an entity, creating the component if it's not present
+        //
+        // @param componentCls
+        //  The class object of the component type
+        //
+        // Rest of the parameters are passed to the component constructor if a
+        // new component instance needs to be created
+        "getOrCreate", [](Entity &self, sol::table componentCls,
+            sol::variadic_args va)
+        {
+            Component* component = self.getComponent(componentCls["TYPE_ID"]);
+
+            if(component)
+                return component;
+
+            auto factory = componentCls.get<sol::protected_function>("new");
+
+            auto result = factory(va);
+
+            if(!result.valid())
+                throw std::runtime_error("Entity getOrCreate failed to call "
+                    "Lua component 'new' method:" + result.get<std::string>());
+            
+            auto newComponent = std::make_unique<ComponentWrapper>(
+                result.get<sol::table>()
+            );
+
+            
+            component = newComponent.get();
+            self.addComponent(std::move(newComponent));
+
+            return component;
+        },
+        
+        "isVolatile", &Entity::isVolatile,
+        "removeComponent", &Entity::removeComponent,
+        // prefer to call LuaEngine:transferEntityGameState. This is slow
+        //"transfer", &Entity::transfer,
+        "setVolatile", &Entity::setVolatile,
+        "stealName", &Entity::stealName,
+        "addChild", &Entity::addChild,
+        "hasChildren", &Entity::hasChildren,
+        "id", sol::property(&Entity::id)
+        
     );
 }
 
-
-luabind::scope
-Entity::luaBindings() {
-    using namespace luabind;
-    return class_<Entity>("Entity")
-        .def(constructor<>())
-        .def(constructor<GameState*>())
-        .def(constructor<EntityId>())
-        .def(constructor<EntityId, GameState*>())
-        .def(constructor<const std::string&>())
-        .def(constructor<const std::string&, GameState*>())
-
-        .def(const_self == other<Entity>())
-        .def("addComponent", &Entity_addComponent, adopt(_2))
-        .def("destroy", &Entity::destroy)
-        .def("exists", &Entity::exists)
-        .def("getComponent", &Entity::getComponent)
-        .def("isVolatile", &Entity::isVolatile)
-        .def("removeComponent", &Entity::removeComponent)
-        .def("transfer", &Entity::transfer)
-        .def("setVolatile", &Entity::setVolatile)
-        .def("stealName", &Entity::stealName)
-        .def("addChild", &Entity::addChild)
-        .def("hasChildren", &Entity::hasChildren)
-        .property("id", &Entity::id)
-    ;
-}
-
-
-static EntityManager&
+static EntityManager*
 getEntityManager(
-    GameState* gameState
+    GameStateData* gameState
 ) {
-    if (gameState) {
-        return gameState->entityManager();
-    }
-    else {
-        return Game::instance().engine().currentGameState()->entityManager();
-    }
+    if(gameState == nullptr)
+        throw std::runtime_error("Entity constructor: getEntityManager can't get "
+            "manager from null gameState");
+    
+    return gameState->entityManager();
 }
 
 
 Entity::Entity(
-    GameState* gameState
-) : Entity(getEntityManager(gameState).generateNewId(), gameState)
+    GameStateData* gameState
+) : Entity(getEntityManager(gameState)->generateNewId(), gameState)
 {
 
 }
@@ -91,16 +140,16 @@ Entity::Entity(
 
 Entity::Entity(
     EntityId id,
-    GameState* gameState
-) : m_impl(new Implementation(id, &getEntityManager(gameState)))
+    GameStateData* gameState
+) : m_impl(new Implementation(id, getEntityManager(gameState)))
 {
 }
 
 
 Entity::Entity(
     const std::string& name,
-    GameState* gameState
-) : Entity(getEntityManager(gameState).getNamedId(name), gameState)
+    GameStateData* gameState
+) : Entity(getEntityManager(gameState)->getNamedId(name), gameState)
 {
 }
 
@@ -208,9 +257,13 @@ Entity::removeComponent(
 
 Entity
 Entity::transfer(
-    GameState* newGameState
+    GameStateData* newGameStateData
 ) {
-    return Entity(Game::instance().engine().transferEntityGameState(m_impl->m_id, m_impl->m_entityManager, newGameState), newGameState);
+
+    EntityId newID = Game::instance().engine().transferEntityGameState(m_impl->m_id,
+        m_impl->m_entityManager, newGameStateData);
+    
+    return Entity(newID, newGameStateData);
 }
 
 void

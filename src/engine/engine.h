@@ -7,13 +7,11 @@
 #include <vector>
 #include <set>
 
-#include <luabind/object.hpp>
-
 class btDiscreteDynamicsWorld;
 class lua_State;
 
-namespace luabind {
-    class scope;
+namespace sol {
+class state;
 }
 
 namespace Ogre {
@@ -25,6 +23,7 @@ namespace Ogre {
 
 namespace thrive{
     class SoundManager;
+    class Game;
 }
 
 namespace OIS {
@@ -74,8 +73,6 @@ public:
     * - Engine::quit()
     * - Engine::pauseGame()
     * - Engine::resumeGame()
-    * - Engine::timedSystemShutdown()
-    * - Engine::isSystemTimedShutdown()
     * - Engine::componentFactory() (as property)
     * - Engine::keyboard() (as property)
     * - Engine::mouse() (as property)
@@ -84,8 +81,7 @@ public:
     *
     * @return
     */
-    static luabind::scope
-    luaBindings();
+    static void luaBindings(sol::state &lua);
 
     /**
     * @brief Constructor
@@ -111,38 +107,6 @@ public:
     ComponentFactory&
     componentFactory();
 
-    /**
-    * @brief Creates a new game state
-    *
-    * @param name
-    *   The game state's name
-    *
-    * @param systems
-    *   The systems active in the game state
-    *
-    * @param initializer
-    *   The initialization function for the game state
-    *
-    * @return
-    *   The new game state. Will never be \c null. It is returned as a pointer
-    *   as a convenience for Lua bindings, which don't handle references well.
-    */
-    GameState*
-    createGameState(
-        std::string name,
-        std::vector<std::unique_ptr<System>> systems,
-        GameState::Initializer initializer,
-        std::string guiLayoutName
-    );
-
-    /**
-    * @brief Returns the currently active game state
-    *
-    * If no game state has been set yet, returns \c nullptr
-    *
-    */
-    GameState*
-    currentGameState() const;
 
     /**
     * @brief Object holding generic player data
@@ -157,20 +121,6 @@ public:
     RNG&
     rng();
 
-    /**
-    * @brief Retrieves a game state
-    *
-    * @param name
-    *   The game state's name
-    *
-    * @return
-    *   The game state with \a name or \c nullptr if no game state with
-    *   this name exists.
-    */
-    GameState*
-    getGameState(
-        const std::string& name
-    ) const;
 
     /**
     * @brief Initializes the engine
@@ -181,6 +131,15 @@ public:
     */
     void
     init();
+
+    /**
+    * @brief Enters the main loop in lua
+    */
+    void
+    enterLuaMain(
+        Game* gameObj
+    );
+        
 
     /**
     * @brief The engine's input manager
@@ -337,21 +296,6 @@ public:
         std::string stage
     ) const;
 
-    /**
-    * @brief Sets the current game state
-    *
-    * The game state will be activated at the beginning of the next frame.
-    *
-    * \a gameState must not be \c null. It's passed by pointer as a
-    * convenience for the Lua bindings (which can't handle references well).
-    *
-    * @param gameState
-    *   The new game state
-    */
-    void
-    setCurrentGameState(
-        GameState* gameState
-    );
 
     /**
     * @brief Shuts the engine down
@@ -384,13 +328,7 @@ public:
     soundManager() const;
 
     /**
-    * @brief Renders a single frame
-    *
-    * Before calling update() the first time, you need to call Engine::init().
-    *
-    * @param milliseconds
-    *   The number of milliseconds to advance. For real-time, this is the
-    *   number of milliseconds since the last frame.
+    * @brief Updates C++ side things. Called from lua
     */
     void
     update(
@@ -413,68 +351,45 @@ public:
     int
     getResolutionHeight() const;
 
-    /**
-    * @brief Keeps a system alive after being shut down for a specified amount of  time
-    *
-    * Note that this causes update to be called for the specified duration so be careful
-    * to ensure that the system is not enabled or it will get update calls twice.
-    *
-    * @param system
-    *   The system to keep updated
-    *
-    * @param milliseconds
-    *   The number of milliseconds to keep the system updated for
-    */
-    void
-    timedSystemShutdown(
-        System& system,
-        int milliseconds
-    );
+
 
     /**
-    * @brief Returns whether the specified system has already been set for a timed shutdown
+    * @name Lua wrapper methods
     *
-    * @param system
-    *   The system to check for
-    *
-    * @return
+    * These are implemented in Lua. These methods make these functions
+    * available but they are slow. so avoid if possible.  Or maybe
+    * rewrite the system that needs thse in Lua.
     */
-    bool
-    isSystemTimedShutdown(
-        System& system
-    ) const;
+    /**@{*/ 
 
     /**
-    * @brief Transfers an entity from one gamestate to another
-    *
-    * @param oldEntityId
-    *  The id of the entity to transfer in the old entitymanager
-    *
-    * @param oldEntityManager
-    *  The old entitymanager which is currently handling the entity
-    *
-    * @param newGameState
-    *  The new gamestate to transfer the entity to
+    * @brief Calls the LuaEngine transfer entity method
     */
     EntityId
     transferEntityGameState(
-        EntityId oldEntityId,
-        EntityManager* oldEntityManager,
-        GameState* newGameState
+        EntityId id,
+        EntityManager* entityManager,
+        GameStateData* targetState
     );
+    
+    bool isSystemTimedShutdown(System* system);
+
+    void timedSystemShutdown(System* system, int timeInMS);
+
+    /**
+    * @brief Gets the current GameStateData or throws
+    */
+    GameStateData*
+    getCurrentGameStateFromLua();
+
+    /**@}*/ 
+    
 
     /**
     * @brief The render window
     */
     Ogre::RenderWindow*
     renderWindow() const;
-
-    /**
-    * @brief Registers the console object
-    */
-    void
-    registerConsoleObject(luabind::object consoleObject);
-
 
     /**
     * @brief Gets the current version of thrive as a string.

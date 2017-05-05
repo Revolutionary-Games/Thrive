@@ -1,6 +1,6 @@
 #include "ogre/mouse.h"
 
-#include "scripting/luabind.h"
+#include "scripting/luajit.h"
 
 #include <CEGUI/CEGUI.h>
 
@@ -21,20 +21,32 @@ struct Mouse::Implementation : public OIS::MouseListener {
 
         m_aggregator->injectMouseWheelChange(e.state.Z.rel/100);
 
-        
+
         return true;
     }
     bool mousePressed (const OIS::MouseEvent&, OIS::MouseButtonID id){
 
         switch(id){
         case OIS::MB_Left:
+            #ifdef WIN32
             m_aggregator->injectMouseButtonDown(CEGUI::MouseButton::LeftButton);
+            #elif
+            m_aggregator->injectMouseButtonDown(CEGUI::MouseButton::Left);
+            #endif
             break;
         case OIS::MB_Right:
+            #ifdef WIN32
             m_aggregator->injectMouseButtonDown(CEGUI::MouseButton::RightButton);
+            #elif
+            m_aggregator->injectMouseButtonDown(CEGUI::MouseButton::Right);
+            #endif
             break;
         case OIS::MB_Middle:
+            #ifdef WIN32
             m_aggregator->injectMouseButtonDown(CEGUI::MouseButton::MiddleButton);
+            #elif
+            m_aggregator->injectMouseButtonDown(CEGUI::MouseButton::Middle);
+            #endif
             break;
         default:
             break;
@@ -46,20 +58,29 @@ struct Mouse::Implementation : public OIS::MouseListener {
     bool mouseReleased (const OIS::MouseEvent&, OIS::MouseButtonID id){
         switch(id){
         case OIS::MB_Left:
+            #ifdef WIN32
             if(!m_aggregator->injectMouseButtonUp(CEGUI::MouseButton::LeftButton)){
-
+            #elif
+            if(!m_aggregator->injectMouseButtonUp(CEGUI::MouseButton::Left)){
+            #endif
                 m_nextClickedStates |= 0x1;
             }
             break;
         case OIS::MB_Right:
+            #ifdef WIN32
             if(!m_aggregator->injectMouseButtonUp(CEGUI::MouseButton::RightButton)){
-
+            #elif
+            if(!m_aggregator->injectMouseButtonUp(CEGUI::MouseButton::Right)){
+            #endif
                 m_nextClickedStates |= 0x2;
             }
             break;
         case OIS::MB_Middle:
+            #ifdef WIN32
             if(!m_aggregator->injectMouseButtonUp(CEGUI::MouseButton::MiddleButton)){
-
+            #elif
+            if(!m_aggregator->injectMouseButtonUp(CEGUI::MouseButton::Middle)){
+            #endif
                 m_nextClickedStates |= 0x4;
             }
             break;
@@ -88,28 +109,30 @@ struct Mouse::Implementation : public OIS::MouseListener {
 };
 
 
-luabind::scope
-Mouse::luaBindings() {
-    using namespace luabind;
-    return class_<Mouse>("Mouse")
-        .enum_("MouseButton") [
-            value("MB_Left", OIS::MB_Left),
-            value("MB_Right", OIS::MB_Right),
-            value("MB_Middle", OIS::MB_Middle),
-            value("MB_Button3", OIS::MB_Button3),
-            value("MB_Button4", OIS::MB_Button4),
-            value("MB_Button5", OIS::MB_Button5),
-            value("MB_Button6", OIS::MB_Button6),
-            value("MB_Button7", OIS::MB_Button7)
-        ]
-        .def("isButtonDown", &Mouse::isButtonDown)
-        .def("wasButtonPressed", &Mouse::wasButtonPressed)
-        .def("normalizedPosition", &Mouse::normalizedPosition)
-        .def("scrollChange", &Mouse::scrollChange)
-        .def("position", &Mouse::position)
-    ;
-}
+void Mouse::luaBindings(
+    sol::state &lua
+){
+    lua.new_usertype<Mouse>("Mouse",
 
+        "new", sol::no_constructor,
+
+        // MB enum
+        "MB_Left", sol::var(OIS::MB_Left),
+        "MB_Right", sol::var(OIS::MB_Right),
+        "MB_Middle", sol::var(OIS::MB_Middle),
+        "MB_Button3", sol::var(OIS::MB_Button3),
+        "MB_Button4", sol::var(OIS::MB_Button4),
+        "MB_Button5", sol::var(OIS::MB_Button5),
+        "MB_Button6", sol::var(OIS::MB_Button6),
+        "MB_Button7", sol::var(OIS::MB_Button7),
+
+        "isButtonDown", &Mouse::isButtonDown,
+        "wasButtonPressed", &Mouse::wasButtonPressed,
+        "normalizedPosition", &Mouse::normalizedPosition,
+        "scrollChange", &Mouse::scrollChange,
+        "position", &Mouse::position
+    );
+}
 
 Mouse::Mouse()
   : m_impl(new Implementation())

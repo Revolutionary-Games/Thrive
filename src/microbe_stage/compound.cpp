@@ -12,12 +12,11 @@
 #include "game.h"
 #include "general/timed_life_system.h"
 #include "ogre/scene_node_system.h"
-#include "scripting/luabind.h"
+#include "scripting/luajit.h"
 #include "util/make_unique.h"
 
 #include "tinyxml.h"
 
-#include <luabind/iterator_policy.hpp>
 #include <OgreEntity.h>
 #include <OgreSceneManager.h>
 #include <stdexcept>
@@ -27,24 +26,22 @@ using namespace thrive;
 
 REGISTER_COMPONENT(CompoundComponent)
 
+void CompoundComponent::luaBindings(
+    sol::state &lua
+){
+    lua.new_usertype<CompoundComponent>("CompoundComponent",
 
-luabind::scope
-CompoundComponent::luaBindings() {
-    using namespace luabind;
-    return class_<CompoundComponent, Component>("CompoundComponent")
-        .enum_("ID") [
-            value("TYPE_ID", CompoundComponent::TYPE_ID)
-        ]
-        .scope [
-            def("TYPE_NAME", &CompoundComponent::TYPE_NAME)
-        ]
-        .def(constructor<>())
-        .def_readwrite("compoundId", &CompoundComponent::m_compoundId)
-        .def_readwrite("potency", &CompoundComponent::m_potency)
-        .def_readwrite("velocity", &CompoundComponent::m_velocity)
-    ;
+        "new", sol::factories([](){
+                return std::make_unique<CompoundComponent>();
+            }),
+        
+        COMPONENT_BINDINGS(CompoundComponent),
+
+        "compoundId", &CompoundComponent::m_compoundId,
+        "potency", &CompoundComponent::m_potency,
+        "velocity", &CompoundComponent::m_velocity
+    );
 }
-
 
 void
 CompoundComponent::load(
@@ -71,12 +68,17 @@ CompoundComponent::storage() const {
 // CompoundMovementSystem
 ////////////////////////////////////////////////////////////////////////////////
 
-luabind::scope
-CompoundMovementSystem::luaBindings() {
-    using namespace luabind;
-    return class_<CompoundMovementSystem, System>("CompoundMovementSystem")
-        .def(constructor<>())
-    ;
+void CompoundMovementSystem::luaBindings(
+    sol::state &lua
+){
+    lua.new_usertype<CompoundMovementSystem>("CompoundMovementSystem",
+
+        sol::constructors<sol::types<>>(),
+        
+        sol::base_classes, sol::bases<System>(),
+
+        "init", &CompoundMovementSystem::init
+    );
 }
 
 
@@ -100,10 +102,10 @@ CompoundMovementSystem::~CompoundMovementSystem() {}
 
 void
 CompoundMovementSystem::init(
-    GameState* gameState
+    GameStateData* gameState
 ) {
     System::initNamed("CompoundMovementSystem", gameState);
-    m_impl->m_entities.setEntityManager(&gameState->entityManager());
+    m_impl->m_entities.setEntityManager(gameState->entityManager());
 }
 
 

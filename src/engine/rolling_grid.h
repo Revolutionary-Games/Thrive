@@ -5,8 +5,8 @@
 
 // Defines a basic grid that fits the criteria set on issue 165
 
-namespace luabind {
-    class scope;
+namespace sol {
+class state;
 }
 
 namespace thrive {
@@ -43,8 +43,7 @@ public:
     * - RollingGrid::set(long, long, int)
     * @return
     */
-    static luabind::scope
-    luaBindings();
+    static void luaBindings(sol::state &lua);
 
     // TODO probably not the best move function
     /** 

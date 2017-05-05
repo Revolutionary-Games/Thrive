@@ -5,13 +5,13 @@
 #include <string>
 #include <memory>
 
-namespace luabind {
-    class scope;
+namespace sol {
+class state;
 }
 
 namespace thrive {
 
-class GameState;
+class GameStateData;
 class StorageContainer;
 class LockedMap;
 
@@ -48,8 +48,7 @@ public:
     *
     * @return
     */
-    static luabind::scope
-    luaBindings();
+    static void luaBindings(sol::state &lua);
 
     /**
     * @brief Getter for the players name
@@ -87,7 +86,7 @@ public:
     void
     setActiveCreature(
         EntityId creatureId,
-        GameState& gamestate
+        GameStateData* gamestate
     );
 
     /**
@@ -95,7 +94,7 @@ public:
     *
     * @return
     */
-    GameState&
+    GameStateData*
     activeCreatureGamestate();
 
     /**

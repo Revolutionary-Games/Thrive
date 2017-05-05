@@ -2,35 +2,37 @@
 #include "microbe_stage/bio_process_registry.h"
 #include "microbe_stage/compound.h"
 #include "microbe_stage/compound_registry.h"
-#include "scripting/luabind.h"
+#include "scripting/luajit.h"
 
 #include "tinyxml.h"
 
-#include <luabind/iterator_policy.hpp>
-
 using namespace thrive;
 
-luabind::scope
-BioProcessRegistry::luaBindings() {
-    using namespace luabind;
-    return (class_<BioProcessRegistry>("BioProcessRegistry")
-        .scope
-        [
-            def("loadFromXML", &BioProcessRegistry::loadFromXML),
-            def("loadFromLua", &BioProcessRegistry::loadFromLua),
-            //def("registerBioProcess", &BioProcessRegistry::registerBioProcess),
-            def("getDisplayName", &BioProcessRegistry::getDisplayName),
-            def("getInternalName", &BioProcessRegistry::getInternalName),
-            def("getId", &BioProcessRegistry::getId),
-            def("getList", &BioProcessRegistry::getList, return_stl_iterator),
-            def("getInputCompounds", &BioProcessRegistry::getInputCompounds, return_stl_iterator),
-            def("getOutputCompounds", &BioProcessRegistry::getOutputCompounds, return_stl_iterator)
-        ]
-    ,
-        class_<std::pair<CompoundId, int>>("RecipyCompound")
-            .def_readonly("compoundId", &std::pair<CompoundId, int>::first)
-            .def_readonly("amount", &std::pair<CompoundId, int>::second)
+void BioProcessRegistry::luaBindings(
+    sol::state &lua
+){
+    lua.new_usertype<BioProcessRegistry>("BioProcessRegistry",
+
+        "new", sol::no_constructor,
+
+        "loadFromXML", &BioProcessRegistry::loadFromXML,
+        "loadFromLua", &BioProcessRegistry::loadFromLua,
+        "getDisplayName", &BioProcessRegistry::getDisplayName,
+        "getInternalName", &BioProcessRegistry::getInternalName,
+        "getId", &BioProcessRegistry::getId,
+        
+        "getList", [](sol::this_state s){
+
+            THRIVE_BIND_ITERATOR_TO_TABLE(BioProcessRegistry::getList());
+        },
+        
+        "getInputCompounds", &BioProcessRegistry::getInputCompounds,
+        "getOutputCompounds", &BioProcessRegistry::getOutputCompounds
     );
+
+    // class_<std::pair<CompoundId, int>>("RecipyCompound")
+    //     .def_readonly("compoundId", &std::pair<CompoundId, int>::first)
+    //     .def_readonly("amount", &std::pair<CompoundId, int>::second)
 }
 
 namespace {
@@ -110,7 +112,7 @@ BioProcessRegistry::loadFromXML(
             }
             int energyCost;
             if (pProcess->QueryIntAttribute("energyCost", &energyCost) != TIXML_SUCCESS){
-                throw std::logic_error("Could not access 'speedFactor' attribute on Process element of " + filename);
+                throw std::logic_error("Could not access 'energyCost' attribute on Process element of " + filename);
             }
             const char* processName = pProcess->Attribute("name");
             if (processName == nullptr) {
@@ -132,28 +134,37 @@ BioProcessRegistry::loadFromXML(
 
 void
 BioProcessRegistry::loadFromLua(
-    const luabind::object& processTable
+    sol::table processTable
     )
 {
-    for (luabind::iterator i(processTable), end; i != end; ++i) {
-        std::string key = luabind::object_cast<std::string>(i.key());
-        luabind::object data = *i;
+    
+    for(const auto& pair : processTable){
 
-        luabind::object inputTable = data["inputs"];
-        luabind::object outputTable = data["outputs"];
+        const auto key = pair.first.as<std::string>();
+
+        if(!pair.second.is<sol::table>())
+            throw std::runtime_error("BioProcessRegistry value is not a table");
+        
+        auto data = pair.second.as<sol::table>();
+
+        sol::table inputTable = data.get<sol::table>("inputs");
+        sol::table outputTable = data.get<sol::table>("outputs");
+
         std::vector<std::pair<CompoundId, int>> inputs;
         std::vector<std::pair<CompoundId, int>> outputs;
 
-        for (luabind::iterator ii(inputTable), end; ii != end; ++ii) {
-            std::string compound = luabind::object_cast<std::string>(ii.key());
-            float amount = luabind::object_cast<float>(*ii);
-            inputs.push_back({CompoundRegistry::getCompoundId(compound), amount});
+        for(const auto& inputsPair : inputTable){
+
+            const auto compound = inputsPair.first.as<std::string>();
+            const auto amount = inputsPair.second.as<float>();
+            inputs.push_back({CompoundRegistry::getCompoundId(compound), amount}); 
         }
 
-        for (luabind::iterator oi(outputTable), end; oi != end; ++oi) {
-            std::string compound = luabind::object_cast<std::string>(oi.key());
-            float amount = luabind::object_cast<float>(*oi);
-            outputs.push_back({CompoundRegistry::getCompoundId(compound), amount});
+        for(const auto& outputsPair : outputTable){
+
+            const auto compound = outputsPair.first.as<std::string>();
+            const auto amount = outputsPair.second.as<float>();
+            outputs.push_back({CompoundRegistry::getCompoundId(compound), amount}); 
         }
 
         registerBioProcess(

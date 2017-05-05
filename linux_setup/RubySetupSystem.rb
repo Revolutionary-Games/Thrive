@@ -2,9 +2,10 @@
 # A ruby script for downloading and installing C++ project dependencies
 # Made by Henri Hyyryläinen
 
-# TODO: remove awk usage for windows compatibility and test this on windows
+# TODO: make cmake use extra find paths on windows and test
 
 require_relative 'RubyCommon.rb'
+require_relative 'DepGlobber.rb'
 
 require 'fileutils'
 require 'etc'
@@ -22,6 +23,7 @@ CMakeBuildType = "RelWithDebInfo"
 CompileThreads = Etc.nprocessors
 
 # If set to true will install CEGUI editor
+# Note: this doesn't work
 InstallCEED = false
 
 # If set to false won't install libs that need sudo
@@ -35,6 +37,9 @@ OnlyMainProject = false
 
 # If true skips the main project
 OnlyDependencies = false
+
+# If true new version of depot tools and breakpad won't be fetched on install
+NoBreakpadUpdateOnWindows = false
 
 # On windows visual studio will be automatically opened if required
 AutoOpenVS = true
@@ -51,6 +56,17 @@ VSToolsEnv = "VS140COMNTOOLS"
 
 # This verifies that CurrentDir is good and assigns it to CurrentDir
 CurrentDir = checkRunFolder Dir.pwd
+
+ProjectDir = projectFolder CurrentDir
+
+ProjectDebDir = File.join ProjectDir, "libraries"
+
+ProjectDebDirLibs = File.join ProjectDebDir, "lib"
+
+ProjectDebDirBinaries = File.join ProjectDebDir, "bin"
+
+ProjectDebDirInclude = File.join ProjectDebDir, "include"
+
 
 
 info "Running in dir '#{CurrentDir}'"
@@ -88,7 +104,7 @@ class Installer
   # calls onError if fails
   def run()
 
-    if not SkipPullUpdates
+    if not SkipPullUpdates and not OnlyMainProject
       info "Retrieving dependencies"
 
       @Libraries.each do |x|
@@ -304,6 +320,15 @@ def isInSubdirectory(directory, possiblesub)
   
 end
 
+def createDependencyTargetFolder()
+
+  FileUtils.mkdir_p ProjectDebDirLibs
+  
+  FileUtils.mkdir_p ProjectDebDirBinaries
+  
+  FileUtils.mkdir_p ProjectDebDirInclude
+  
+end
 
 
 def createLinkIfDoesntExist(source, linkfile)
@@ -608,8 +633,10 @@ def lddFindLibraries(binary)
 end
 
 
+#
 #### Library Install Definitions ###
 # These are all the libraries that this script can install
+#
 
 class Newton < BaseDep
   def initialize
@@ -660,27 +687,27 @@ class Newton < BaseDep
   end
   
   def DoInstall
-    # Copy files to Leviathan folder
-    libfolder = File.join(CurrentDir, "Newton", "lib")
-    binfolder = File.join(CurrentDir, "Newton", "bin")
-    includefolder = File.join(CurrentDir, "Newton", "include")
     
-    FileUtils.mkdir_p libfolder
-    FileUtils.mkdir_p binfolder
-    FileUtils.mkdir_p includefolder
+    # Copy files to ProjectDir dependencies folder
+    createDependencyTargetFolder
 
-    FileUtils.cp File.join(@Folder, "coreLibrary_300/source/newton", "Newton.h"), includefolder
+    runGlobberAndCopy(Globber.new("Newton.h", File.join(@Folder, "coreLibrary_300/source")),
+                          ProjectDebDirInclude)
     
     if BuildPlatform == "linux"
 
-      FileUtils.cp File.join(@Folder, "build/lib", "libNewton.so"), binfolder
-      
+      runGlobberAndCopy(Globber.new("libNewton.so", File.join(@Folder, "build/lib")),
+                            ProjectDebDirLibs)
+
     else
-      
-      basePath = "coreLibrary_300/projects/windows/project_vs2015_dll/x64/newton/release"
-      
-      FileUtils.cp File.join(@Folder, basePath, "newton.dll"), binfolder
-      FileUtils.cp File.join(@Folder, basePath, "newton.lib"), libfolder
+
+      runGlobberAndCopy(Globber.new("newton.dll",
+                                    File.join(@Folder, "coreLibrary_300/projects/windows")),
+                            ProjectDebDirBinaries)
+
+      runGlobberAndCopy(Globber.new("newton.lib",
+                                    File.join(@Folder, "coreLibrary_300/projects/windows")),
+                            ProjectDebDirLibs)
     end
     true
   end
@@ -817,7 +844,7 @@ end
 class AngelScript < BaseDep
   def initialize
     super("AngelScript", "angelscript")
-    @WantedURL = "http://svn.code.sf.net/p/angelscript/code/tags/2.31.0"
+    @WantedURL = "http://svn.code.sf.net/p/angelscript/code/tags/2.31.2"
 
     if @WantedURL[-1, 1] == '/'
       abort "Invalid configuraion in Setup.rb AngelScript tag has an ending '/'. Remove it!"
@@ -832,7 +859,11 @@ class AngelScript < BaseDep
   def DoUpdate
 
     # Check is tag correct
-    currenturl = `svn info | awk '$1 == "URL:" { print $2 }'`.strip!
+    match = `svn info`.strip.match(/.*URL:\s?(.*angelscript\S+).*/i)
+
+    abort("'svn info' unable to find URL with regex") if !match
+    
+    currenturl = match.captures[0]
 
     if currenturl != @WantedURL
       
@@ -847,7 +878,7 @@ class AngelScript < BaseDep
   end
 
   def DoSetup
-    if BuildPlatform == "linux"
+    if BuildPlatform == "windows"
       
       return File.exist? "sdk/angelscript/projects/msvc2015/angelscript.sln"
     else
@@ -881,16 +912,16 @@ class AngelScript < BaseDep
   
   def DoInstall
 
-    # Copy files to Leviathan folder
-    FileUtils.mkdir_p File.join(CurrentDir, "AngelScript", "include")
-    FileUtils.mkdir_p File.join(CurrentDir, "AngelScript", "add_on")
-    
+    # Copy files to Project folder
+    createDependencyTargetFolder
+
     # First header files and addons
     FileUtils.cp File.join(@Folder, "sdk/angelscript/include", "angelscript.h"),
-                 File.join(CurrentDir, "AngelScript", "include")
+                 ProjectDebDirInclude
 
-    addondir = File.join(CurrentDir, "AngelScript", "add_on")
+    addondir = File.join(ProjectDebDirInclude, "add_on")
 
+    FileUtils.mkdir_p addondir
 
     # All the addons from
     # `ls -m | awk 'BEGIN { RS = ","; ORS = ", "}; NF { print "\""$1"\""};'`
@@ -906,18 +937,15 @@ class AngelScript < BaseDep
                            File.join(addondir, x)
     end
 
-    
     # Then the library
-    libfolder = File.join(CurrentDir, "AngelScript", "lib")
-    
-    FileUtils.mkdir_p libfolder
-    
     if BuildPlatform == "linux"
 
-      FileUtils.cp File.join(@Folder, "sdk/angelscript/lib", "libangelscript.a"), libfolder
+      FileUtils.cp File.join(@Folder, "sdk/angelscript/lib", "libangelscript.a"),
+                   ProjectDebDirLibs
       
     else
-      FileUtils.cp File.join(@Folder, "sdk/angelscript/lib", "angelscript64.lib"), libfolder
+      FileUtils.cp File.join(@Folder, "sdk/angelscript/lib", "angelscript64.lib"),
+                   ProjectDebDirLibs
     end
     true
   end
@@ -1191,7 +1219,7 @@ class Ogre < BaseDep
                         "-DOGRE_BUILD_COMPONENT_OVERLAY=OFF " +
                         "-DOGRE_BUILD_COMPONENT_PAGING=OFF -DOGRE_BUILD_COMPONENT_PROPERTY=OFF " +
                         "-DOGRE_BUILD_COMPONENT_TERRAIN=OFF -DOGRE_BUILD_COMPONENT_VOLUME=OFF "+
-                        "-DOGRE_BUILD_PLUGIN_BSP=OFF -DOGRE_BUILD_PLUGIN_CG=ON " +
+                        "-DOGRE_BUILD_PLUGIN_BSP=OFF -DOGRE_BUILD_PLUGIN_CG=OFF " +
                         "-DOGRE_BUILD_PLUGIN_OCTREE=OFF -DOGRE_BUILD_PLUGIN_PCZ=OFF -DOGRE_BUILD_SAMPLES=OFF " + 
                         additionalCMake
     end
@@ -1300,7 +1328,7 @@ class CEGUI < BaseDep
     #system "hg update default"
 
     # TODO: allow configuring this commit
-    system "hg update 869014de5669"
+    system "hg update 6510156"
     
     $?.exitstatus == 0
   end
@@ -1432,6 +1460,8 @@ def isGoodLDDFound(lib)
     true
   when /.*swscale.*/i
     true
+  when /.*rtmp.*/i
+    true
   when /.*gsm.*/i
     true
   when /.*soxr.*/i
@@ -1508,6 +1538,12 @@ def isGoodLDDFound(lib)
   when /.*schroedinger.*/i
     true
   when /.*Xaw.*/i
+    true
+  when /.*numa.*/i
+    true
+  when /.*hogweed.*/i
+    true
+  when /.*jasper.*/i
     true
   else
     false

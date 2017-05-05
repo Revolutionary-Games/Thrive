@@ -6,7 +6,6 @@
 #include "engine/entity.h"
 #include "engine/entity_filter.h"
 #include "engine/entity_manager.h"
-#include "scripting/luabind.h"
 #include "engine/serialization.h"
 #include "OgreVector2.h"
 #include "util/make_unique.h"
@@ -15,23 +14,6 @@
 #include <math.h>
 
 using namespace thrive;
-
-
-luabind::scope
-MembraneGenerationComponent::luaBindings() {
-    using namespace luabind;
-    return class_<MembraneGenerationComponent, Component>("MembraneGenerationComponent")
-        .enum_("ID") [
-            value("TYPE_ID", MembraneGenerationComponent::TYPE_ID)
-        ]
-        .scope [
-            def("TYPE_NAME", &MembraneGenerationComponent::TYPE_NAME)
-        ]
-        .def(constructor<>())
-        //.def("dqwwqd", &MembraneGenerationComponent::dwqdqwd)
-       // .def_readonly("aasasas", &MembraneGenerationComponent::assasa)
-    ;
-}
 
 
 void
@@ -64,15 +46,6 @@ REGISTER_COMPONENT(MembraneGenerationComponent)
 
 
 
-luabind::scope
-MembraneGenerationSystem::luaBindings() {
-    using namespace luabind;
-    return class_<MembraneGenerationSystem, System>("MembraneGenerationSystem")
-        .def(constructor<>())
-    ;
-}
-
-
 struct MembraneGenerationSystem::Implementation {
     int** table = new int*[256];
     int* tableSizes;
@@ -98,7 +71,7 @@ MembraneGenerationSystem::~MembraneGenerationSystem() {}
 
 void
 MembraneGenerationSystem::init(
-    GameState* gameState
+    GameStateData* gameState
 ) {
     System::init(gameState);
 

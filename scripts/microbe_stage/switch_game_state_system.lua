@@ -1,11 +1,14 @@
-class 'SwitchGameStateSystem' (System)
+SwitchGameStateSystem = class(
+    LuaSystem,
+    function(self)
+        
+        LuaSystem.create(self)
 
-function SwitchGameStateSystem:__init()
-    System.__init(self)
-end
+    end
+)
 
 function SwitchGameStateSystem:init()
-    System.init(self, "SwitchGameStateSystem", gameState)
+    LuaSystem.init(self, "SwitchGameStateSystem", gameState)
 end
 
 function SwitchGameStateSystem:update(renderTime, logicTime)

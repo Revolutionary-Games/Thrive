@@ -9,7 +9,7 @@
 #include "engine/serialization.h"
 #include "game.h"
 #include "ogre/scene_node_system.h"
-#include "scripting/luabind.h"
+#include "scripting/luajit.h"
 #include "util/make_unique.h"
 
 #include <OgreMeshManager.h>
@@ -28,25 +28,25 @@ using namespace thrive;
 // Membrane Component
 ////////////////////////////////////////////////////////////////////////////////
 
-luabind::scope
-MembraneComponent::luaBindings() {
-    using namespace luabind;
-    return class_<MembraneComponent, Component>("MembraneComponent")
-        .enum_("ID") [
-            value("TYPE_ID", MembraneComponent::TYPE_ID)
-        ]
-        .scope [
-            def("TYPE_NAME", &MembraneComponent::TYPE_NAME)
-        ]
-        .def(constructor<>())
-        .def("sendOrganelles", &MembraneComponent::sendOrganelles)
-        .def("clear", &MembraneComponent::clear)
-        .def("getExternOrganellePos", &MembraneComponent::getExternOrganellePos)
-        .def("setColour", &MembraneComponent::setColour)
-        .def("getColour", &MembraneComponent::getColour)
-        .def_readonly("entity", &MembraneComponent::m_entity)
-        .def_readonly("dimensions", &MembraneComponent::cellDimensions)
-    ;
+void MembraneComponent::luaBindings(
+    sol::state &lua
+){
+    lua.new_usertype<MembraneComponent>("MembraneComponent",
+
+        "new", sol::factories([](){
+                return std::make_unique<MembraneComponent>();
+            }),
+        
+        COMPONENT_BINDINGS(MembraneComponent),
+
+        "sendOrganelles", &MembraneComponent::sendOrganelles,
+        "clear", &MembraneComponent::clear,
+        "getExternOrganellePos", &MembraneComponent::getExternOrganellePos,
+        "setColour", &MembraneComponent::setColour,
+        "getColour", &MembraneComponent::getColour,
+        "entity", sol::readonly(&MembraneComponent::m_entity),
+        "dimensions", sol::readonly(&MembraneComponent::cellDimensions)
+    );
 }
 
 MembraneComponent::MembraneComponent()
@@ -322,14 +322,15 @@ void MembraneComponent::clear()
     m_entity->detachFromParent();
 }
 
-luabind::object MembraneComponent::getExternOrganellePos(double x, double y)
+sol::object MembraneComponent::getExternOrganellePos(double x, double y)
 {
-    luabind::object externalOrganellePosition = luabind::newtable(Game::instance().engine().luaState());
+    sol::state_view lua(Game::instance().engine().luaState());
+
+    auto externalOrganellePosition = lua.create_table();
 
     Ogre::Vector3 organelleCoords = GetExternalOrganelle(x, y);
     externalOrganellePosition[1] = organelleCoords.x;
     externalOrganellePosition[2] = organelleCoords.y;
-
 
     return externalOrganellePosition;
 }
@@ -342,15 +343,18 @@ REGISTER_COMPONENT(MembraneComponent)
 ////////////////////////////////////////////////////////////////////////////////
 // MembraneSystem
 ////////////////////////////////////////////////////////////////////////////////
+void MembraneSystem::luaBindings(
+    sol::state &lua
+){
+    lua.new_usertype<MembraneSystem>("MembraneSystem",
 
-luabind::scope
-MembraneSystem::luaBindings() {
-    using namespace luabind;
-    return class_<MembraneSystem, System>("MembraneSystem")
-        .def(constructor<>())
-    ;
+        sol::constructors<sol::types<>>(),
+        
+        sol::base_classes, sol::bases<System>(),
+
+        "init", &MembraneSystem::init
+    );
 }
-
 
 struct MembraneSystem::Implementation {
 
@@ -376,10 +380,10 @@ MembraneSystem::~MembraneSystem() {}
 
 void
 MembraneSystem::init(
-    GameState* gameState
+    GameStateData* gameState
 ) {
     System::initNamed("MembraneSystem", gameState);
-    m_impl->m_entities.setEntityManager(&gameState->entityManager());
+    m_impl->m_entities.setEntityManager(gameState->entityManager());
     m_impl->m_sceneManager = gameState->sceneManager();
 }
 

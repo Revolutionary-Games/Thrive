@@ -1,8 +1,10 @@
 #include "bullet/debug_drawing.h"
 
 #include "bullet/bullet_ogre_conversion.h"
+#include "bullet/physical_world.h"
 #include "engine/game_state.h"
-#include "scripting/luabind.h"
+
+#include "scripting/luajit.h"
 
 #include <OgreColourValue.h>
 #include <OgreFrameListener.h>
@@ -278,14 +280,14 @@ BulletDebugDrawer::getDebugMode() const
 // BulletDebugDrawSystem
 ////////////////////////////////////////////////////////////////////////////////
 
-luabind::scope
-BulletDebugDrawSystem::luaBindings() {
-    using namespace luabind;
-    return class_<BulletDebugDrawSystem, System>("BulletDebugDrawSystem")
-        .def(constructor<>())
-    ;
-}
+void BulletDebugDrawSystem::luaBindings(
+    sol::state &lua
+){
+    lua.new_usertype<BulletDebugDrawSystem>("BulletDebugDrawSystem",
 
+        sol::constructors<sol::types<>>()
+    );
+}
 
 struct BulletDebugDrawSystem::Implementation {
 
@@ -307,14 +309,14 @@ BulletDebugDrawSystem::~BulletDebugDrawSystem() {}
 
 void
 BulletDebugDrawSystem::init(
-    GameState* gameState
+    GameStateData* gameState
 ) {
     System::initNamed("BulletDebugDrawSystem", gameState);
     assert(m_impl->m_physicsWorld == nullptr && "Double init of system");
     m_impl->m_debugDrawer.reset(new BulletDebugDrawer(
             gameState->sceneManager()
     ));
-    m_impl->m_physicsWorld = gameState->physicsWorld();
+    m_impl->m_physicsWorld = gameState->physicalWorld()->physicsWorld();
     m_impl->m_physicsWorld->setDebugDrawer(
         m_impl->m_debugDrawer.get()
     );

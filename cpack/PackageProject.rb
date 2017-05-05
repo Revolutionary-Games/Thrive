@@ -31,6 +31,12 @@ def checkRunFolder(suggestedfolder)
   end
 end
 
+def projectFolder(baseDir)
+
+  return baseDir
+  
+end
+
 require_relative '../linux_setup/RubySetupSystem'
 
 Dir.chdir(CurrentDir) do
@@ -63,8 +69,7 @@ PackageName = "Thrive-#{ThriveVersion}"
 ZipName = "#{PackageName}.7z"
 
 # Add Ogre plugins to the library list
-findOgrePlugins(LibraryList, ["RenderSystem_GL", "RenderSystem_GL3Plus", "Plugin_ParticleFX",
-                              "Plugin_CgProgramManager"])
+findOgrePlugins(LibraryList, ["RenderSystem_GL", "RenderSystem_GL3Plus", "Plugin_ParticleFX"])
 
 # Add CEGUI plugins to the list
 findCEGUIPlugins(LibraryList, CEGUIVersion)
@@ -114,8 +119,7 @@ copyDependencyLibraries(lddfound, File.join(TargetRoot, "bin/"), StripFiles, tru
 
 
 # Find dependencies of dynamic Ogre libraries
-lddfound = lddFindLibraries File.join(TargetRoot, "bin/Plugin_CgProgramManager.so")
-lddfound += lddFindLibraries File.join(TargetRoot, "bin/Plugin_ParticleFX.so")
+lddfound = lddFindLibraries File.join(TargetRoot, "bin/Plugin_ParticleFX.so")
 
 info "Copying #{lddfound.count} libraries found by ldd on random things"
 
@@ -189,7 +193,7 @@ Plugin=RenderSystem_GL3Plus
 # Plugin=RenderSystem_GLES
 # Plugin=RenderSystem_GLES2
  Plugin=Plugin_ParticleFX
- Plugin=Plugin_CgProgramManager
+# Plugin=Plugin_CgProgramManager
 eos
 }
 

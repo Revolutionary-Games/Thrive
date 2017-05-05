@@ -25,6 +25,12 @@ def checkRunFolder(suggestedfolder)
   end
 end
 
+def projectFolder(baseDir)
+
+  return File.join baseDir, "thrive"
+  
+end
+
 ThriveBranch = "master"
 #ThriveBranch = "ruby_setup"
 SkipPackageManager = false
@@ -46,7 +52,7 @@ if BuildPlatform == "linux" and not SkipPackageManager
     
     PackagesToInstall = "bullet-devel boost gcc-c++ libXaw-devel freetype-devel " +
                         "freeimage-devel zziplib-devel boost-devel ois-devel tinyxml-devel " +
-                        "glm-devel ffmpeg-devel ffmpeg-libs openal-soft-devel libatomic Cg"
+                        "glm-devel ffmpeg-devel ffmpeg-libs openal-soft-devel libatomic"
 
   elsif LinuxOS.casecmp("Ubuntu") == 0
 
@@ -124,12 +130,22 @@ success "Thrive folder exists"
 
 Dir.chdir(File.join(CurrentDir, "thrive")) do
   
-  systemChecked "git checkout #{ThriveBranch}"
-  systemChecked "git pull --recurse-submodules origin #{ThriveBranch}"
+  system "git checkout #{ThriveBranch}"
+
+  if $?.exitstatus > 0
+
+    warning "Failed to checkout target thrive branch"
+
+  else
+    
+    systemChecked "git pull --recurse-submodules origin #{ThriveBranch}"
+    
+  end
+
   systemChecked "git submodule update --recursive"
 
   # submodule init check
-  if not File.exists? File.join(CurrentDir, "thrive", "contrib/luabind/luabind", "object.hpp")
+  if not File.exists? File.join(CurrentDir, "thrive", "contrib/lua/luajit/src", "lua.hpp")
 
     warning "Submodules haven't been initialized, initializing now"
     
@@ -162,6 +178,26 @@ Dir.chdir(File.join(CurrentDir, "thrive")) do
   end
   
   success "Assets are good to go"
+
+  info "Building luajit"
+
+  Dir.chdir(File.join(CurrentDir, "thrive", "contrib/lua/luajit/src")) do
+
+    # Make sure XCFLAGS+= -DLUAJIT_ENABLE_LUA52COMPAT is uncommented
+    outdata = File.read("Makefile").gsub(/#XCFLAGS\+= -DLUAJIT_ENABLE_LUA52COMPAT/,
+                                       "XCFLAGS+= -DLUAJIT_ENABLE_LUA52COMPAT")
+
+    File.open("Makefile", 'w') do |out|
+      out << outdata
+    end  
+    
+    runCompiler CompileThreads
+    
+    onError "Failed to compile luajit" if $?.exitstatus > 0
+    
+  end
+
+  success "luajit is ok"
   
   FileUtils.mkdir_p "build"
   FileUtils.mkdir_p "build/dist"
@@ -169,7 +205,7 @@ Dir.chdir(File.join(CurrentDir, "thrive")) do
 
   info "Making links"
 
-  # It seems that if the link is created when it already exists a llink is created into
+  # It seems that if the link is created when it already exists a link is created into
   # the target folder for some reason
   createLinkIfDoesntExist "assets/cegui_examples", "cegui_examples"
   createLinkIfDoesntExist "assets/fonts", "fonts"
@@ -215,14 +251,6 @@ Dir.chdir(File.join(CurrentDir, "thrive", "build")) do
 end
 
 success "Done compiling thrive"
-
-# Create a link from liblua.so to fix undefined symbol: _Z13luaL_newstatev
-Dir.chdir(File.join(CurrentDir, "thrive", "build")) do
-
-  FileUtils.ln_sf "contrib/lua/liblua.so", "liblua.so"
-  
-end
-
 
 info "run the game with '#{CurrentDir}/thrive/build/Thrive'"
 

@@ -1,7 +1,6 @@
 #include "collision_filter.h"
-#include <luabind/iterator_policy.hpp>
 #include "engine/game_state.h"
-#include "scripting/luabind.h"
+#include "scripting/luajit.h"
 
 
 
@@ -24,20 +23,30 @@ struct CollisionFilter::Implementation {
 
 };
 
+void CollisionFilter::luaBindings(
+    sol::state &lua
+){
+    // lua.new_usertype<CollisionIterator>("CollisionIterator",
 
-luabind::scope
-CollisionFilter::luaBindings() {
-    using namespace luabind;
-    return class_<CollisionFilter>("CollisionFilter")
-        .def(constructor<const std::string&, const std::string&>())
-        .def("init", &CollisionFilter::init)
-        .def("shutdown", &CollisionFilter::shutdown)
-        .def("collisions", &CollisionFilter::collisions, return_stl_iterator)
-        .def("clearCollisions", &CollisionFilter::clearCollisions)
-        .def("removeCollision", &CollisionFilter::removeCollision)
-    ;
+        
+    // );
+    
+    lua.new_usertype<CollisionFilter>("CollisionFilter",
+
+        sol::constructors<sol::types<const std::string&, const std::string&>>(),
+
+        "init", &CollisionFilter::init,
+        "shutdown", &CollisionFilter::shutdown,
+
+        "collisions", [](CollisionFilter &us, sol::this_state s){
+
+            THRIVE_BIND_ITERATOR_TO_TABLE(us.collisions());
+        },
+
+        "clearCollisions", &CollisionFilter::clearCollisions,
+        "removeCollision", &CollisionFilter::removeCollision
+    );
 }
-
 
 CollisionFilter::CollisionFilter(
     const std::string& collisionGroup1,
@@ -50,7 +59,7 @@ CollisionFilter::~CollisionFilter(){}
 
 void
 CollisionFilter::init(
-    GameState* gameState
+    GameStateData* gameState
 ) {
     m_impl->m_collisionSystem = gameState->findSystem<CollisionSystem>();
     m_impl->m_collisionSystem->registerCollisionFilter(*this);
@@ -74,7 +83,8 @@ CollisionFilter::addCollision(
 ) {
     CollisionMap::iterator foundCollision = m_impl->m_collisions.find(CollisionId(collision.entityId1, collision.entityId2));
     if (foundCollision != m_impl->m_collisions.end())
-         foundCollision->second.addedCollisionDuration += collision.addedCollisionDuration; //Add collision time.
+        foundCollision->second.addedCollisionDuration +=
+            collision.addedCollisionDuration; //Add collision time.
     else
     {
         CollisionId key(collision.entityId1, collision.entityId2);

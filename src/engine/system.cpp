@@ -2,127 +2,40 @@
 
 #include "engine/engine.h"
 #include "engine/game_state.h"
-#include "scripting/luabind.h"
+#include "scripting/luajit.h"
 
 #include <assert.h>
 
 using namespace thrive;
 
+void System::luaBindings(
+    sol::state &lua
+){
+    lua.new_usertype<System>("System",
 
-/**
-* @brief Wrapper class to enable subclassing System in Lua
-*
-* \cond
-*/
-struct SystemWrapper : System, luabind::wrap_base {
+        // We are an abstract class
+        "new", sol::no_constructor,
+        
+        "enabled", &System::enabled,
+        // This doesn't need to be called from Lua. Derived systems
+        //register the actual thing
+        //"init", &System::initNamed,
+        "setEnabled", &System::setEnabled,
+        "activate", &System::activate, 
+        "deactivate", &System::deactivate, 
+        "shutdown", &System::shutdown, 
+        "update", &System::update,
 
-    void
-    init(
-        GameState* gameState
-    ) override {
-        this->call<void>("init", gameState);
-    }
-
-    void
-    initNamed(
-        std::string name,
-        GameState* gameState
-    ) override {
-        this->call<void>("initNamed", name, gameState);
-    }
-
-    static void default_init(
-        System* self,
-        GameState* gameState
-    ) {
-        self->System::init(gameState);
-    }
-
-    static void default_initNamed(
-        System* self,
-        std::string name,
-        GameState* gameState
-    ) {
-        self->System::initNamed(name, gameState);
-    }
-
-    void
-    shutdown() override {
-        this->call<void>("shutdown");
-    }
-
-    static void default_shutdown(
-        System* self
-    ) {
-        self->System::shutdown();
-    }
-
-    static void default_activate(
-        System* self
-    ) {
-        self->System::activate();
-    }
-
-    void
-    activate() override {
-        this->call<void>("activate");
-    }
-
-    static void default_deactivate(
-        System* self
-    ) {
-        self->System::deactivate();
-    }
-
-    void
-    deactivate() override {
-        this->call<void>("deactivate");
-    }
-
-    void
-    update(
-        int renderTime,
-        int logicTime
-    ) override {
-        this->call<void>("update", renderTime, logicTime);
-    }
-
-    static void default_update(
-        System*,
-        int,
-        int
-    ) {
-        throw std::runtime_error("System::update has no default implementation");
-    }
-
-};
-
-/**
-* \endcond
-*/
-
-
-luabind::scope
-System::luaBindings() {
-    using namespace luabind;
-    return class_<System, SystemWrapper>("System")
-        .def(constructor<>())
-        .def("enabled", &System::enabled)
-        .def("init", &System::initNamed, &SystemWrapper::default_initNamed)
-        .def("setEnabled", &System::setEnabled)
-        .def("activate", &System::activate, &SystemWrapper::default_activate)
-        .def("deactivate", &System::deactivate, &SystemWrapper::default_deactivate)
-        .def("shutdown", &System::shutdown, &SystemWrapper::default_shutdown)
-        .def("update", &System::update, &SystemWrapper::default_update)
-    ;
+        // Marker for Lua to detect C++ systems
+        "isCppSystem", sol::var(true)
+    );
 }
-
 
 struct System::Implementation {
 
     bool m_enabled = true;
 
-    GameState* m_gameState = nullptr;
+    GameStateData* m_gameState = nullptr;
 
     std::string m_name = "Unknown-System";
 
@@ -156,22 +69,10 @@ System::enabled() const {
     return m_impl->m_enabled;
 }
 
-
-Engine*
-System::engine() const {
-    if (m_impl->m_gameState) {
-        return &m_impl->m_gameState->engine();
-    }
-    else {
-        return nullptr;
-    }
-}
-
-
 EntityManager*
 System::entityManager() const {
     if (m_impl->m_gameState) {
-        return &m_impl->m_gameState->entityManager();
+        return m_impl->m_gameState->entityManager();
     }
     else {
         return nullptr;
@@ -179,7 +80,7 @@ System::entityManager() const {
 }
 
 
-GameState*
+GameStateData*
 System::gameState() const {
     return m_impl->m_gameState;
 }
@@ -187,18 +88,20 @@ System::gameState() const {
 
 void
 System::init(
-    GameState* gameState
+    GameStateData* gameState
 ) {
-    assert(m_impl->m_gameState == nullptr && "Cannot initialize system that is already attached to a GameState");
+    assert(m_impl->m_gameState == nullptr &&
+        "Cannot initialize system that is already attached to a GameState");
     m_impl->m_gameState = gameState;
 }
 
 void
 System::initNamed(
-    std::string name,
-    GameState* gameState
+    const std::string &name,
+    GameStateData* gameState
 ) {
-    assert(m_impl->m_gameState == nullptr && "Cannot initialize system that is already attached to a GameState");
+    assert(m_impl->m_gameState == nullptr &&
+        "Cannot initialize system that is already attached to a GameState");
     m_impl->m_gameState = gameState;
     m_impl->m_name = name;
 }

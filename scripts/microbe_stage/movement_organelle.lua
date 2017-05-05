@@ -1,5 +1,4 @@
 -- Enables a microbe to move and turn
-class 'MovementOrganelle' (OrganelleComponent)
 
 -- See organelle_component.lua for more information about the 
 -- organelle component methods and the arguments they receive.
@@ -18,31 +17,38 @@ local function calculateForce(q, r, momentum)
     
 end
 
--- Constructor
---
--- @param arguments.momentum
---  The force this organelle can exert to move a microbe.
---
--- @param arguments.torque
---  The torque this organelle can exert to turn a microbe.
-function MovementOrganelle:__init(arguments, data)
-    OrganelleComponent.__init(self, arguments, data)
-    
-    --making sure this doesn't run when load() is called
-    if arguments == nil and data == nil then
-        return
-    end
+MovementOrganelle = class(
+    OrganelleComponent,
+    -- Constructor
+    --
+    -- @param arguments.momentum
+    --  The force this organelle can exert to move a microbe.
+    --
+    -- @param arguments.torque
+    --  The torque this organelle can exert to turn a microbe.
+    function(self, arguments, data)
 
-    self.energyMultiplier = 0.025
-    self.force = calculateForce(data.q, data.r, arguments.momentum)
-    self.torque = arguments.torque
-    self.backwards_multiplier = 0
-	self.x = 0
-	self.y = 0
-	self.angle = 0
-    self.movingTail = false
-    return self
-end
+        OrganelleComponent.create(self, arguments, data)
+
+        --making sure this doesn't run when load() is called
+        if arguments == nil and data == nil then
+            return
+        end
+        
+
+        self.energyMultiplier = 0.025
+        self.force = calculateForce(data.q, data.r, arguments.momentum)
+        self.torque = arguments.torque
+        self.backwards_multiplier = 0
+        self.x = 0
+        self.y = 0
+        self.angle = 0
+        self.movingTail = false        
+        
+    end
+)
+
+
 
 function MovementOrganelle:onAddedToMicrobe(microbe, q, r, rotation, organelle)
     local organelleX, organelleY = axialToCartesian(q, r)
@@ -56,9 +62,22 @@ function MovementOrganelle:onAddedToMicrobe(microbe, q, r, rotation, organelle)
     angle = (angle * 180/math.pi + 180) % 360
 
     self.sceneNode = organelle.sceneNode
-	self.sceneNode.transform.orientation = Quaternion(Radian(Degree(angle)), Vector3(0, 0, 1))
+	self.sceneNode.transform.orientation = Quaternion.new(Radian.new(Degree(angle)), Vector3(0, 0, 1))
+	self.sceneNode.transform.position = organelle.position.cartesian
+    self.sceneNode.transform.scale = Vector3(HEX_SIZE, HEX_SIZE, HEX_SIZE)
+    self.sceneNode.transform:touch()
+    self.sceneNode.parent = microbe.entity
+    -- self.sceneNode is a nullptr because it is already added to an entity
+    --organelle.organelleEntity:addComponent(self.sceneNode)
+    
     self.sceneNode:playAnimation("Move", true)
     self.sceneNode:setAnimationSpeed(0.25)
+    
+    --Adding a mesh to the organelle.
+    local mesh = organelleTable[organelle.name].mesh
+    if mesh ~= nil then
+        self.sceneNode.meshName = mesh
+    end
 end
 
 function MovementOrganelle:load(storage)
@@ -69,7 +88,7 @@ function MovementOrganelle:load(storage)
 end
 
 function MovementOrganelle:storage()
-    local storage = StorageContainer()
+    local storage = StorageContainer.new()
     storage:set("energyMultiplier", self.energyMultiplier)
     storage:set("force", self.force)
     storage:set("torque", self.torque)
@@ -97,6 +116,7 @@ function MovementOrganelle:_moveMicrobe(microbe, milliseconds)
             self.sceneNode:setAnimationSpeed(0.25)
         end
         local impulseMagnitude = microbe.microbe.movementFactor * milliseconds * forceMagnitude / 1000
+
         local impulse = impulseMagnitude * direction
         local a = microbe.sceneNode.transform.orientation * impulse
         microbe.rigidBody:applyCentralImpulse(

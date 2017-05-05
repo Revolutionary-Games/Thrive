@@ -42,9 +42,9 @@ if (-Not (Get-Command $7z -errorAction SilentlyContinue))
 # Download archive #
 ####################
 
-$REMOTE_DIR="http://downloads.sourceforge.net/project/boost/boost/1.53.0"
+$REMOTE_DIR="http://downloads.sourceforge.net/project/boost/boost/1.63.0"
 
-$ARCHIVE="boost_1_53_0.7z"
+$ARCHIVE="boost_1_63_0.7z"
 
 $DESTINATION = Join-Path $WORKING_DIR $ARCHIVE
 
@@ -72,42 +72,6 @@ $ARGUMENTS = "x",
 & $7z $ARGUMENTS | out-null
 
 
-##################
-# Download tools #
-##################
-
-$TOOLS_REMOTE_DIR="http://downloads.sourceforge.net/project/boost/boost-binaries/1.50.0"
-
-$TOOLS_ARCHIVE="boost_1_50_tools.zip"
-
-$TOOLS_DESTINATION = Join-Path $WORKING_DIR $TOOLS_ARCHIVE
-
-if (-Not (Test-Path $TOOLS_DESTINATION)) {
-    Write-Output "Downloading tools..."
-    $CLIENT = New-Object System.Net.WebClient
-    $CLIENT.DownloadFile("$TOOLS_REMOTE_DIR/$TOOLS_ARCHIVE", $TOOLS_DESTINATION)
-}
-else {
-    Write-Output "Found tools archive file, skipping download."
-}
-
-
-################
-# Unpack tools #
-################
-
-Write-Output "Unpacking tools..."             
-
-$ARGUMENTS = "x",
-             "-y",
-             "-o$WORKING_DIR\tools",
-             $TOOLS_DESTINATION
-
-& $7z $ARGUMENTS  | out-null
-
-Copy-Item (Join-Path $WORKING_DIR "tools\bin\bjam.exe") -destination (Join-Path $WORKING_DIR "boost_1_53_0\bjam.exe")
-
-
 #############################################
 # Create user config for boost build system #
 #############################################
@@ -115,7 +79,7 @@ Copy-Item (Join-Path $WORKING_DIR "tools\bin\bjam.exe") -destination (Join-Path 
 $MINGW_BIN_DIR = (Join-Path $MINGW_ENV bin).replace("\", "\\")
 
 $USER_CONFIG = "
-using gcc : 4.7 : $MINGW_BIN_DIR\\g++.exe
+using gcc : 5.4 : $MINGW_BIN_DIR\\g++.exe
         :
         <rc>$MINGW_BIN_DIR\\windres.exe
         <archiver>$MINGW_BIN_DIR\\ar.exe
@@ -131,7 +95,14 @@ Set-Content $USER_CONFIG_FILE $USER_CONFIG
 # Build #
 #########
 
-pushd (Join-Path $WORKING_DIR "boost_1_53_0")
+pushd (Join-Path $WORKING_DIR "boost_1_63_0\tools\build")
+
+Write-Output "Running bootstrap to generate build tool b2..."        
+& .\bootstrap.bat
+
+
+Write-Output "Building boost.build..."        
+& .\b2 install --prefix=$WORKING_DIR\boostbuild
 
 Write-Output "Building libraries..."             
 
@@ -153,6 +124,13 @@ $ARGUMENTS  =
     "--layout=tagged",
     "install"
 
-& .\bjam $ARGUMENTS
+& .\b2 $ARGUMENTS
+
+Write-Output "Copying header files..."      
+
+#I desperately tried using Copy-Item to copy header files but every attempt always failed to copy everything so I'm calling an xcopy 
+$cmd = "xcopy `$WORKING_DIR\boost_1_63_0\boost\*` `$MINGW_ENV\install\include\boost\*` /s/h/e/k/f/c"
+$cmd = $ExecutionContext.InvokeCommand.ExpandString($cmd)
+cmd.exe /c $cmd
 
 popd

@@ -88,7 +88,7 @@ set(OGRE_PLUGINS
   #  Plugin_OctreeSceneManager
   #  Plugin_OctreeZone
     Plugin_ParticleFX
-    Plugin_CgProgramManager
+  #  Plugin_CgProgramManager
   #  Plugin_PCZSceneManager
     RenderSystem_GL
 )
@@ -137,21 +137,36 @@ find_package(Bullet REQUIRED QUIET)
 
 include_directories(SYSTEM ${BULLET_INCLUDE_DIRS})
 
-##########
-# TinyXML #
-##########
-
-find_package(TinyXML REQUIRED QUIET)
-
 #######
 # Lua #
 #######
 
+option(LUA_CHECKS "when ON enables additional Lua safety
+       checks. Lowers performance so only use while debugging"
+       OFF)
+
+if(LUA_CHECKS)
+
+  add_definitions(-DSOL_CHECK_ARGUMENTS)
+  
+endif()
+
 include_directories(
-    SYSTEM
-    "${CMAKE_CURRENT_SOURCE_DIR}/contrib/lua/lua/src"
-    "${CMAKE_CURRENT_SOURCE_DIR}/contrib/luabind/"
-)
+  "${CMAKE_CURRENT_SOURCE_DIR}/contrib/lua"
+  )
+
+link_directories(
+  "${CMAKE_CURRENT_SOURCE_DIR}/contrib/lua/luajit/src"
+  )
+
+set(LUA_FOUND TRUE)
+
+if(WIN32)
+  set(LUA_LIBRARIES lua51.dll)
+else()
+  set(LUA_LIBRARIES luajit.a dl)
+endif()
+
 
 #######
 # CEGUI #
@@ -176,26 +191,6 @@ include_directories(SYSTEM ${CEGUI_INCLUDE_DIR})
 find_package(TinyXML REQUIRED QUIET)
 
 include_directories(SYSTEM ${TINYXML_INCLUDE_DIR})
-
-if(WIN32)
-    add_definitions(-DLUA_BUILD_AS_DLL)
-endif()
-
-add_subdirectory(
-    "${CMAKE_CURRENT_SOURCE_DIR}/contrib/lua/"
-)
-
-set(LUA_FOUND TRUE)
-set(LUA_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/contrib/lua/lua/src")
-set(LUA_LIBRARIES lua)
-#set(BUILD_SHARED_LUABIND ON)
-#set(INSTALL_LUABIND ON)
-set(LIB_DIR bin)
-add_definitions(-DLUABIND_CPLUSPLUS_LUA)
-
-add_subdirectory(
-    "${CMAKE_CURRENT_SOURCE_DIR}/contrib/luabind/"
-)
 
 ################
 # cAudio #
@@ -230,7 +225,10 @@ include_directories(
 
 # Compile using c++11 and using sse2
 #no-unused-variable is necessary to supress werror while compiling cAudio
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++1y -msse2 -Wno-unused-function")
+# SOL uses a bunch of recursive templates so unless all lua bindings are written to be
+# less efficient runtime dynamic bindings we need to have bigger template depth.
+# though this may kill compile times
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++1y -msse2 -Wno-unused-function -Wno-error=redundant-decls -ftemplate-depth=1500" )
 
 
 find_package(Threads)
@@ -265,7 +263,7 @@ target_link_libraries(ThriveLib
     ${CEGUI_LIBRARY}
     ${TINYXML_LIBRARIES}
     ${OpenAL_LIBRARIES}
-    luabind
+    ${LUA_LIBRARIES}
 )
 
 target_link_libraries(ThriveLib
@@ -331,7 +329,7 @@ set_source_files_properties(
 )
 
 add_executable(RunTests ${TEST_SOURCE_FILES})
-target_link_libraries(RunTests ThriveLib gtest_main)
+target_link_libraries(RunTests ThriveLib gtest_main ${LUA_LIBRARIES})
 
 #################
 # Documentation #
@@ -365,10 +363,6 @@ endif()
 install(TARGETS Thrive
     RUNTIME DESTINATION bin
     LIBRARY DESTINATION bin
-)
-
-install(EXPORT lua
-    DESTINATION bin
 )
 
 # Version file
@@ -581,6 +575,8 @@ if(WIN32)
         "${MINGW_ENV}/install/bin/avutil-55.dll"
         "${MINGW_ENV}/install/bin/swscale-4.dll"
         "${MINGW_ENV}/install/bin/swresample-2.dll"
+		"${CMAKE_SOURCE_DIR}/contrib/lua/luajit/src/lua51.dll"
+		"${CMAKE_SOURCE_DIR}/contrib/lua/luajit/src/luajit.exe"
         DESTINATION bin
 		CONFIGURATIONS Debug
     )
@@ -640,6 +636,12 @@ elseif(UNIX)
             OGRE_PLUGIN_LIB_DBG
             OGRE_PLUGIN_LIB_REL
         )
+
+        if(NOT EXISTS "${OGRE_PLUGIN_LIB_REL}" OR NOT EXISTS "${OGRE_PLUGIN_LIB_DBG}")
+          message(SEND_ERROR "Ogre plugin file doesn't exist: ${OGRE_PLUGIN} . Did you build "
+            "all the required Ogre plugins?")
+        endif()
+
         # Release
         InstallFollowingSymlink(
             ${OGRE_PLUGIN_LIB_REL}
@@ -688,12 +690,24 @@ if(UNIX)
     "${CMAKE_CURRENT_BINARY_DIR}/CMakeLibraryList.xml" @ONLY
     )
 
-  add_custom_target(linuxrelease
-    COMMAND "${CMAKE_SOURCE_DIR}/cpack/PackageProject.rb" "${CMAKE_CURRENT_BINARY_DIR}"
-    WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}/cpack"
-    DEPENDS ThriveLib doc
-    )
-  # The name of the Thrive target somehow breaks in the above command
-  add_dependencies(linuxrelease Thrive)
+  if(LUA_CHECKS)
+
+    # creating debug releases is bad
+    add_custom_target(linuxrelease
+      # Please don't touch this really complex command output format
+      COMMAND "ruby" "-e" \"puts \\\"\\033[31m\\\"\; puts 'ERROR: LUA_CHECKS is on. release build is disabled. Please run \\'cmake .. -DLUA_CHECKS=OFF\\' and try again'\; puts \\\"\\033[0m\\\"\; exit(3) \"
+      )
+    
+  else()
+    
+    add_custom_target(linuxrelease
+      COMMAND "${CMAKE_SOURCE_DIR}/cpack/PackageProject.rb" "${CMAKE_CURRENT_BINARY_DIR}"
+      WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}/cpack"
+      DEPENDS ThriveLib doc
+      )
+    # The name of the Thrive target somehow breaks in the above command
+    add_dependencies(linuxrelease Thrive)
+
+  endif()
   
 endif()

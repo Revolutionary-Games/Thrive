@@ -1,19 +1,21 @@
 
 -- Updates the hud with relevant information
-class 'MicrobeStageTutorialHudSystem' (System)
+MicrobeStageTutorialHudSystem = class(
+    LuaSystem,
+    function(self)
 
-function MicrobeStageTutorialHudSystem:__init()
-    System.__init(self)
-	self.compoundListBox = nil
-	self.hitpointsCountLabel = nil
-	self.hitpointsBar = nil
-	self.compoundListItems = {}
-    self.rootGuiWindow = nil
-    self.populationNumberLabel = nil
-    self.rootGUIWindow = nil
-    self.tutorialStep = 0
-    self.scrollChange = 0
-end
+        LuaSystem.create(self)
+        self.compoundListBox = nil
+        self.hitpointsCountLabel = nil
+        self.hitpointsBar = nil
+        self.compoundListItems = {}
+        self.rootGuiWindow = nil
+        self.populationNumberLabel = nil
+        self.rootGUIWindow = nil
+        self.tutorialStep = 0
+        self.scrollChange = 0
+    end
+)
 
 function MicrobeStageTutorialHudSystem:activate()
     global_activeMicrobeStageHudSystem = self -- Global reference for event handlers
@@ -21,14 +23,14 @@ function MicrobeStageTutorialHudSystem:activate()
 end
 
 function MicrobeStageTutorialHudSystem:init(gameState)
-    System.init(self, "MicrobeStageTutorialHudSystem", gameState)
+    LuaSystem.init(self, "MicrobeStageTutorialHudSystem", gameState)
     self.rootGUIWindow = gameState:rootGUIWindow()
     self.rootGUIWindow:getChild("PauseMenu"):getChild("MainMenuButton"):registerEventHandler("Clicked", function() self:menuMainMenuClicked() end)
     local quitButton = self.rootGUIWindow:getChild("PauseMenu"):getChild("QuitButton")
     quitButton:registerEventHandler("Clicked", quitButtonClicked)
     self.rootGUIWindow:getChild("TutorialPanel"):registerEventHandler("Clicked", function() self.tutorialStep = self.tutorialStep + 1 end)
-    local editorButton = self.rootGUIWindow:getChild("EditorButton")
-    editorButton:registerEventHandler("Clicked", function() self:editorButtonClicked() end)
+    self.editorButton = self.rootGUIWindow:getChild("EditorButton")
+    self.editorButton:registerEventHandler("Clicked", function() self:editorButtonClicked() end)
 	
 	self.hitpointsBar = self.rootGUIWindow:getChild("HealthPanel"):getChild("LifeBar")
     self.hitpointsCountLabel = self.hitpointsBar:getChild("NumberLabel")
@@ -87,12 +89,18 @@ function MicrobeStageTutorialHudSystem:update(renderTime)
     if self.tutorialStep > 2 then--where the player microbe is created.
         -- Updating the ATP label.
         local atpID = CompoundRegistry.getCompoundId("atp")
-        local atpString = string.format("%d", math.floor(Microbe(Entity(PLAYER_NAME)):getCompoundAmount(atpID)))
+        local atpString = string.format(
+            "%d", math.floor(Microbe(
+                                 Entity.new(PLAYER_NAME, self.gameState.wrapper)
+                                    ):getCompoundAmount(atpID)))
         self.atpCountLabel2:setText(atpString)
 
         -- Updating the compound panel.
         local glucoseID = CompoundRegistry.getCompoundId("glucose")
-        local glucoseString = string.format("%d", math.floor(Microbe(Entity(PLAYER_NAME)):getCompoundAmount(glucoseID)))
+        local glucoseString = string.format(
+            "%d", math.floor(Microbe(
+                                 Entity.new(PLAYER_NAME, self.gameState.wrapper)
+                                    ):getCompoundAmount(glucoseID)))
         self.atpCountLabel:setText(atpString)
         self.glucoseCountLabel:setText(glucoseString)
 
@@ -113,7 +121,7 @@ function MicrobeStageTutorialHudSystem:update(renderTime)
 
     if Engine.mouse:wasButtonPressed(Mouse.MB_Left) and self.tutorialStep ~= 3 and self.tutorialStep ~= 8 and self.tutorialStep ~= 11 then
         self.tutorialStep = self.tutorialStep + 1
-    elseif Engine.keyboard:wasKeyPressed(Keyboard.KC_ESCAPE) and self.tutorialStep <= 2 then
+    elseif Engine.keyboard:wasKeyPressed(KEYCODE.KC_ESCAPE) and self.tutorialStep <= 2 then
         self.tutorialStep = -1
     end
     
@@ -157,9 +165,15 @@ Click to continue or press escape to skip the tutorial.]])
 [[Your cell is shown below.
 
 Click anywhere to continue...]])
-        if Entity(PLAYER_NAME):getComponent(MicrobeComponent.TYPE_ID) == nil then
-            local microbe = microbeSpawnFunctionGeneric(nil, "Default", false, PLAYER_NAME)
-            Engine:playerData():setActiveCreature(microbe.entity.id, GameState.MICROBE_TUTORIAL)
+        if getComponent(PLAYER_NAME, self.gameState, MicrobeComponent) == nil then
+            print("trying to spawn player")
+            local microbe = microbeSpawnFunctionGeneric(nil, "Default", false,
+                                                        PLAYER_NAME, self.gameState)
+            Engine:playerData():setActiveCreature(microbe.entity.id,
+                                                  GameState.MICROBE_TUTORIAL.wrapper)
+
+            -- Make sure player doesn't run out of ATP immediately
+            microbe:storeCompound(CompoundRegistry.getCompoundId("atp"), 50, false)
         end
 		
 		
@@ -174,7 +188,7 @@ mouse, and use WASD to move around.
 Give it a try!
 
 Swim for a while in any direction to continue...]])
-        local pos = Entity(PLAYER_NAME):getComponent(OgreSceneNodeComponent.TYPE_ID).transform.position
+        local pos = getComponent(PLAYER_NAME, self.gameState, OgreSceneNodeComponent).transform.position
         if math.sqrt(pos.x*pos.x + pos.y*pos.y) > 30 then
             self.tutorialStep = self.tutorialStep + 1;
         end
@@ -212,7 +226,9 @@ Click anywhere to continue...]])
 [[You can keep track of your ATP by looking at the
 compounds panel shown below.
 
-You currently have only ]] .. math.floor(Microbe(Entity(PLAYER_NAME)):getCompoundAmount(atpID)) .. [[ ATP. Let's make some more!
+You currently have only ]] .. math.floor(Microbe(
+                                             Entity.new(PLAYER_NAME, self.gameState.wrapper)
+                                                ):getCompoundAmount(atpID)) .. [[ ATP. Let's make some more!
 
 Click anywhere to continue...]])
            
@@ -230,10 +246,10 @@ Click anywhere to continue...]])
         
         
     elseif self.tutorialStep == 8 then
-        local player = Entity(PLAYER_NAME)
-        local playerPos = player:getComponent(OgreSceneNodeComponent.TYPE_ID).transform.position
+        local player = Entity.new(PLAYER_NAME, self.gameState.wrapper)
+        local playerPos = getComponent(player, OgreSceneNodeComponent).transform.position
         
-        local offset = Entity(CAMERA_NAME):getComponent(OgreCameraComponent.TYPE_ID).properties.offset
+        local offset = getComponent(CAMERA_NAME, self.gameState, OgreCameraComponent).properties.offset
         if offset.z < 70 then
             offset.z = offset.z + 1
         end
@@ -298,13 +314,18 @@ Click anywhere to continue...]])
 Press the button on the top right corner to enter
 the editor.]])
     else 
-        Engine:playerData():setActiveCreature(Entity(PLAYER_NAME).id, GameState.MICROBE)
-        Engine:setCurrentGameState(GameState.MICROBE)
+        Engine:playerData():setActiveCreature(Entity.new(PLAYER_NAME, self.gameState.wrapper).
+                                                  id, GameState.MICROBE.wrapper)
+        g_luaEngine:setCurrentGameState(GameState.MICROBE)
     end
     
     if self.tutorialStep >= 6 then
-        for compoundID in CompoundRegistry.getCompoundList() do
-            local compoundsString = string.format("%s - %d", CompoundRegistry.getCompoundDisplayName(compoundID), Microbe(Entity(PLAYER_NAME)):getCompoundAmount(compoundID))
+        for _, compoundID in pairs(CompoundRegistry.getCompoundList()) do
+            local compoundsString = string.format(
+                "%s - %d",
+                CompoundRegistry.getCompoundDisplayName(compoundID),
+                Microbe.new(Entity.new(PLAYER_NAME, g_luaEngine.currentGameState.wrapper)
+                ):getCompoundAmount(compoundID))
             if self.compoundListItems[compoundID] ~= nil then
                self.compoundListBox:listWidgetUpdateItem(self.compoundListItems[compoundID], "[colour='FF004400']" .. compoundsString)
             end
@@ -316,7 +337,8 @@ the editor.]])
     end
     
     -- Change zoom.
-    local offset = Entity(CAMERA_NAME):getComponent(OgreCameraComponent.TYPE_ID).properties.offset
+    local offset = getComponent(CAMERA_NAME, self.gameState, OgreCameraComponent
+    ).properties.offset
     
     if Engine.mouse:scrollChange()/10 ~= 0 then
         self.scrollChange = self.scrollChange + Engine.mouse:scrollChange()/10
@@ -342,9 +364,9 @@ the editor.]])
     offset.z = newZVal
 end
 
-function HudSystem:toggleCompoundPanel()
-    local guiSoundEntity = Entity("gui_sounds")
-    guiSoundEntity:getComponent(SoundSourceComponent.TYPE_ID):playSound("button-hover-click")
+function MicrobeStageTutorialHudSystem:toggleCompoundPanel()
+    getComponent("gui_sounds", g_luaEngine.currentGameState, SoundSourceComponent
+    ):playSound("button-hover-click")
     if self.compoundsOpen then
     self.rootGUIWindow:getChild("CompoundPanel"):hide()
     self.rootGUIWindow:getChild("CompoundExpandButton"):getChild("CompoundExpandIcon"):hide()
@@ -358,21 +380,29 @@ function HudSystem:toggleCompoundPanel()
     end
 end
 
+function MicrobeStageTutorialHudSystem:showReproductionDialog()
+    -- print("Reproduction Dialog called but currently disabled. Is it needed? Note that the editor button has been enabled")
+    --global_activeMicrobeStageHudSystem.rootGUIWindow:getChild("ReproductionPanel"):show()
+    self.editorButton:enable()
+end
+
 function MicrobeStageTutorialHudSystem:closeCompoundPanel()
-    local guiSoundEntity = Entity("gui_sounds")
-    guiSoundEntity:getComponent(SoundSourceComponent.TYPE_ID):playSound("button-hover-click")
+    getComponent("gui_sounds", g_luaEngine.currentGameState, SoundSourceComponent
+    ):playSound("button-hover-click")
     self.rootGUIWindow:getChild("CompoundsOpen"):hide()
     self.rootGUIWindow:getChild("CompoundsClosed"):show()
 end
 
 function MicrobeStageTutorialHudSystem:editorButtonClicked()
-    local guiSoundEntity = Entity("gui_sounds")
-    guiSoundEntity:getComponent(SoundSourceComponent.TYPE_ID):playSound("button-hover-click")
-    Engine:setCurrentGameState(GameState.MICROBE_EDITOR)
+    getComponent("gui_sounds", g_luaEngine.currentGameState, SoundSourceComponent
+    ):playSound("button-hover-click")
+    g_luaEngine:setCurrentGameState(GameState.MICROBE_EDITOR)
 end
 
 function quitButtonClicked()
-    local guiSoundEntity = Entity("gui_sounds")
-    guiSoundEntity:getComponent(SoundSourceComponent.TYPE_ID):playSound("button-hover-click")
+
+    getComponent("gui_sounds", g_luaEngine.currentGameState, SoundSourceComponent
+    ):playSound("button-hover-click")
+    
     Engine:quit()
 end

@@ -4,7 +4,37 @@
 -- Holds data common to all microbes. You probably shouldn't use this directly,
 -- use the Microbe class (below) instead.
 --------------------------------------------------------------------------------
-class 'MicrobeComponent' (Component)
+MicrobeComponent = class(
+    function(self, isPlayerMicrobe, speciesName)
+
+        self.speciesName = speciesName
+        self.hitpoints = 0
+        self.maxHitpoints = 0
+        self.dead = false
+        self.deathTimer = 0
+        self.organelles = {}
+        self.processOrganelles = {} -- Organelles responsible for producing compounds from other compounds
+        self.specialStorageOrganelles = {} -- Organelles with complete resonsiblity for a specific compound (such as agentvacuoles)
+        self.movementDirection = Vector3(0, 0, 0)
+        self.facingTargetPoint = Vector3(0, 0, 0)
+        self.movementFactor = 1.0 -- Multiplied on the movement speed of the microbe.
+        self.capacity = 0  -- The amount that can be stored in the microbe. NOTE: This does not include special storage organelles
+        self.stored = 0 -- The amount stored in the microbe. NOTE: This does not include special storage organelles
+        self.compounds = {}
+        self.initialized = false
+        self.isPlayerMicrobe = isPlayerMicrobe
+        self.maxBandwidth = 10.0*BANDWIDTH_PER_ORGANELLE
+        self.remainingBandwidth = 0
+        self.compoundCollectionTimer = EXCESS_COMPOUND_COLLECTION_INTERVAL
+        self.isCurrentlyEngulfing = false
+        self.isBeingEngulfed = false
+        self.wasBeingEngulfed = false
+        self.hostileEngulfer = nil
+        
+    end
+)
+
+MicrobeComponent.TYPE_NAME = "MicrobeComponent"
 
 COMPOUND_PROCESS_DISTRIBUTION_INTERVAL = 100 -- quantity of physics time between each loop distributing compounds to organelles. TODO: Modify to reflect microbe size.
 BANDWIDTH_PER_ORGANELLE = 1.0 -- amount the microbes maxmimum bandwidth increases with per organelle added. This is a temporary replacement for microbe surface area
@@ -19,34 +49,7 @@ INITIAL_EMISSION_RADIUS = 0.5
 ENGULFING_MOVEMENT_DIVISION = 3
 ENGULFED_MOVEMENT_DIVISION = 4
 ENGULFING_ATP_COST_SECOND = 1.5
-ENGULF_HP_RATIO_REQ = 1.5
-
-function MicrobeComponent:__init(isPlayerMicrobe, speciesName)
-    Component.__init(self)
-    self.speciesName = speciesName
-    self.hitpoints = 0
-    self.maxHitpoints = 0
-    self.dead = false
-    self.deathTimer = 0
-    self.organelles = {}
-    self.processOrganelles = {} -- Organelles responsible for producing compounds from other compounds
-    self.specialStorageOrganelles = {} -- Organelles with complete resonsiblity for a specific compound (such as agentvacuoles)
-    self.movementDirection = Vector3(0, 0, 0)
-    self.facingTargetPoint = Vector3(0, 0, 0)
-    self.movementFactor = 1.0 -- Multiplied on the movement speed of the microbe.
-    self.capacity = 0  -- The amount that can be stored in the microbe. NOTE: This does not include special storage organelles
-    self.stored = 0 -- The amount stored in the microbe. NOTE: This does not include special storage organelles
-    self.compounds = {}
-    self.initialized = false
-    self.isPlayerMicrobe = isPlayerMicrobe
-    self.maxBandwidth = 10.0*BANDWIDTH_PER_ORGANELLE
-    self.remainingBandwidth = 0
-    self.compoundCollectionTimer = EXCESS_COMPOUND_COLLECTION_INTERVAL
-    self.isCurrentlyEngulfing = false
-    self.isBeingEngulfed = false
-    self.wasBeingEngulfed = false
-    self.hostileEngulfer = nil
-end
+ENGULF_HP_RATIO_REQ = 1.5 
 
 -- Attempts to obtain an amount of bandwidth for immediate use
 -- This should be in conjunction with most operations ejecting  or absorbing compounds and agents for microbe
@@ -71,9 +74,47 @@ function MicrobeComponent:regenerateBandwidth(logicTime)
     self.remainingBandwidth = math.min(addedBandwidth, self.maxBandwidth)
 end
 
+function MicrobeComponent:storage(storage)
+    
+    -- Organelles
+    local organelles = StorageList.new()
+    for _, organelle in pairs(self.organelles) do
+        local organelleStorage = organelle:storage()
+        organelles:append(organelleStorage)
+    end
+    storage:set("organelles", organelles)
+    storage:set("hitpoints", self.hitpoints)
+    storage:set("speciesName", self.speciesName)
+    storage:set("maxHitpoints", self.maxHitpoints)
+    storage:set("remainingBandwidth", self.remainingBandwidth)
+    storage:set("maxBandwidth", self.maxBandwidth)
+    storage:set("isPlayerMicrobe", self.isPlayerMicrobe)
+    storage:set("speciesName", self.speciesName)
+    local storedCompounds = StorageList.new()
+    for _, compoundId in pairs(CompoundRegistry.getCompoundList()) do
+        --[[
+            if self:getCompoundAmount(compoundId) > 0 then
+            compound = StorageContainer()
+            compound:set("compoundId", compoundId)
+            compound:set("amount", amount)
+            storedCompounds:append(compound)
+            end
+        --]]
+    end
+    storage:set("storedCompounds", storedCompounds)
+    -- local compoundPriorities = StorageList()
+    -- for compoundId, priority in pairs(self.compoundPriorities) do
+    --     compound = StorageContainer()
+    --     compound:set("compoundId", compoundId)
+    --     compound:set("priority", priority)
+    --     compoundPriorities:append(compound)
+    -- end
+    -- storage:set("compoundPriorities", compoundPriorities)
+    
+end
 
 function MicrobeComponent:load(storage)
-    Component.load(self, storage)
+    
     local organelles = storage:get("organelles", {})
     for i = 1,organelles:size() do
         local organelleStorage = organelles:get(i)
@@ -106,10 +147,10 @@ function MicrobeComponent:load(storage)
 end
 
 
-function MicrobeComponent:storage()
-    local storage = Component.storage(self)
+function MicrobeComponent:storage(storage)
+
     -- Organelles
-    local organelles = StorageList()
+    local organelles = StorageList.new()
     for _, organelle in pairs(self.organelles) do
         local organelleStorage = organelle:storage()
         organelles:append(organelleStorage)
@@ -122,8 +163,8 @@ function MicrobeComponent:storage()
     storage:set("maxBandwidth", self.maxBandwidth)
     storage:set("isPlayerMicrobe", self.isPlayerMicrobe)
     storage:set("speciesName", self.speciesName)
-    local storedCompounds = StorageList()
-    for compoundId in CompoundRegistry.getCompoundList() do
+    local storedCompounds = StorageList.new()
+    for _, compoundId in pairs(CompoundRegistry.getCompoundList()) do
         --[[
         if self:getCompoundAmount(compoundId) > 0 then
             compound = StorageContainer()
@@ -142,7 +183,6 @@ function MicrobeComponent:storage()
     --     compoundPriorities:append(compound)
     -- end
     -- storage:set("compoundPriorities", compoundPriorities)
-    return storage
 end
 
 REGISTER_COMPONENT("MicrobeComponent", MicrobeComponent)
@@ -153,7 +193,61 @@ REGISTER_COMPONENT("MicrobeComponent", MicrobeComponent)
 --
 -- This class serves mostly as an interface for manipulating microbe entities
 --------------------------------------------------------------------------------
-class 'Microbe'
+Microbe = class(
+    -- Constructor
+    --
+    -- Requires all necessary components (see Microbe.COMPONENTS) to be present in
+    -- the entity.
+    --
+    -- @param entity
+    -- The entity this microbe wraps
+    function(self, entity, in_editor)
+
+        assert(entity ~= nil)
+        self.entity = entity
+        
+        for key, ctype in pairs(Microbe.COMPONENTS) do
+            local component = getComponent(entity, ctype)
+            assert(component ~= nil, "Can't create microbe from this entity, it's missing " .. key)
+            
+            self[key] = component
+        end
+
+        for _, compound in pairs(CompoundRegistry.getCompoundList()) do
+            self.compoundAbsorber:setCanAbsorbCompound(compound, true)
+        end
+        if not self.microbe.initialized then
+            self:_initialize()
+            if in_editor ~= true then
+                local processor = getComponent(self.microbe.speciesName,
+                                               g_luaEngine.currentGameState,
+                                               ProcessorComponent)
+                assert(processor)
+                self.compoundBag:setProcessor(processor,
+                                              self.microbe.speciesName)
+                
+                SpeciesSystem.template(self, self:getSpeciesComponent())
+            end
+        end
+        self:_updateCompoundAbsorber()
+        self.playerAlreadyShownAtpDamage = false
+        self.membraneHealth = 1.0
+        self.reproductionStage = 0 -- 1 for G1 complete, 2 for S complete, 3 for G2 complete, and 4 for reproduction finished.
+    end
+)
+
+-- I don't feel like checking for each component separately, so let's make a
+-- loop do it with an assert for good measure (see Microbe.create)
+Microbe.COMPONENTS = {
+    compoundAbsorber = CompoundAbsorberComponent,
+    microbe = MicrobeComponent,
+    rigidBody = RigidBodyComponent,
+    sceneNode = OgreSceneNodeComponent,
+    collisionHandler = CollisionComponent,
+    soundSource = SoundSourceComponent,
+    membraneComponent = MembraneComponent,
+    compoundBag = CompoundBagComponent
+}
 
 
 -- Creates a new microbe with all required components
@@ -164,26 +258,30 @@ class 'Microbe'
 -- @returns microbe
 -- An object of type Microbe
 
-function Microbe.createMicrobeEntity(name, aiControlled, speciesName, in_editor)
+function Microbe.createMicrobeEntity(name, aiControlled, speciesName, in_editor, gameState)
+
+    assert(gameState ~= nil, "Microbe.createMicrobeEntity requires gameState")
+    assert(type(gameState) == "table")
+    
     local entity
     if name then
-        entity = Entity(name)
+        entity = Entity.new(name, gameState.wrapper)
     else
-        entity = Entity()
+        entity = Entity.new(gameState.wrapper)
     end
-    local rigidBody = RigidBodyComponent()
-    rigidBody.properties.shape = CompoundShape()
+    local rigidBody = RigidBodyComponent.new()
+    rigidBody.properties.shape = CompoundShape.new()
     rigidBody.properties.linearDamping = 0.5
     rigidBody.properties.friction = 0.2
     rigidBody.properties.mass = 0.0
     rigidBody.properties.linearFactor = Vector3(1, 1, 0)
     rigidBody.properties.angularFactor = Vector3(0, 0, 1)
     rigidBody.properties:touch()
-    local reactionHandler = CollisionComponent()
+    local reactionHandler = CollisionComponent.new()
     reactionHandler:addCollisionGroup("microbe")
-    local membraneComponent = MembraneComponent()
+    local membraneComponent = MembraneComponent.new()
     
-    local soundComponent = SoundSourceComponent()
+    local soundComponent = SoundSourceComponent.new()
     local s1 = nil
     soundComponent:addSound("microbe-release-toxin", "soundeffects/microbe-release-toxin.ogg")
     soundComponent:addSound("microbe-toxin-damage", "soundeffects/microbe-toxin-damage.ogg")
@@ -203,74 +301,36 @@ function Microbe.createMicrobeEntity(name, aiControlled, speciesName, in_editor)
     s1.properties:touch()
 
     local components = {
-        CompoundAbsorberComponent(),
-        OgreSceneNodeComponent(),
-        CompoundBagComponent(),
-        MicrobeComponent(not aiControlled, speciesName),
+        CompoundAbsorberComponent.new(),
+        OgreSceneNodeComponent.new(),
+        CompoundBagComponent.new(),
+        MicrobeComponent.new(not aiControlled, speciesName),
         reactionHandler,
         rigidBody,
         soundComponent,
         membraneComponent
     }
     if aiControlled then
-        local aiController = MicrobeAIControllerComponent()
+        local aiController = MicrobeAIControllerComponent.new()
         table.insert(components, aiController)
     end
     for _, component in ipairs(components) do
         entity:addComponent(component)
     end
-    return Microbe(entity, in_editor)
-end
+    
+    local newMicrobe = Microbe(entity, in_editor)
+    assert(newMicrobe)
+    assert(newMicrobe.microbe.initialized == true)
 
--- I don't feel like checking for each component separately, so let's make a
--- loop do it with an assert for good measure (see Microbe.__init)
-Microbe.COMPONENTS = {
-    compoundAbsorber = CompoundAbsorberComponent.TYPE_ID,
-    microbe = MicrobeComponent.TYPE_ID,
-    rigidBody = RigidBodyComponent.TYPE_ID,
-    sceneNode = OgreSceneNodeComponent.TYPE_ID,
-    collisionHandler = CollisionComponent.TYPE_ID,
-    soundSource = SoundSourceComponent.TYPE_ID,
-    membraneComponent = MembraneComponent.TYPE_ID,
-    compoundBag = CompoundBagComponent.TYPE_ID,
-}
-
-
--- Constructor
---
--- Requires all necessary components (see Microbe.COMPONENTS) to be present in
--- the entity.
---
--- @param entity
--- The entity this microbe wraps
-function Microbe:__init(entity, in_editor)
-    self.entity = entity
-    for key, typeId in pairs(Microbe.COMPONENTS) do
-        local component = entity:getComponent(typeId)
-        assert(component ~= nil, "Can't create microbe from this entity, it's missing " .. key)
-        self[key] = entity:getComponent(typeId)
-    end
-    for compound in CompoundRegistry.getCompoundList() do
-        self.compoundAbsorber:setCanAbsorbCompound(compound, true)
-    end
-    if not self.microbe.initialized then
-        self:_initialize()
-        if in_editor == nil then
-            self.compoundBag:setProcessor(Entity(self.microbe.speciesName):getComponent(ProcessorComponent.TYPE_ID), self.microbe.speciesName)
-            SpeciesSystem.template(self, self:getSpeciesComponent())
-        end
-    end
-    self:_updateCompoundAbsorber()
-    self.playerAlreadyShownAtpDamage = false
-    self.membraneHealth = 1.0
-    self.reproductionStage = 0 -- 1 for G1 complete, 2 for S complete, 3 for G2 complete, and 4 for reproduction finished.
+    return newMicrobe
 end
 
 -- Getter for microbe species
 -- 
 -- returns the species component or nil if it doesn't have a valid species
 function Microbe:getSpeciesComponent()
-    return Entity(self.microbe.speciesName):getComponent(SpeciesComponent.TYPE_ID)
+    return getComponent(self.microbe.speciesName, g_luaEngine.currentGameState,
+                        SpeciesComponent)
 end
 
 -- Adds a new organelle
@@ -296,9 +356,11 @@ function Microbe:addOrganelle(q, r, rotation, organelle)
     local x, y = axialToCartesian(q, r)
     local translation = Vector3(x, y, 0)
     -- Collision shape
-    self.rigidBody.properties.shape:addChildShape(
+    -- TODO: cache for performance
+    local compoundShape = CompoundShape.castFrom(self.rigidBody.properties.shape)
+    compoundShape:addChildShape(
         translation,
-        Quaternion(Radian(0), Vector3(1,0,0)),
+        Quaternion.new(Radian(0), Vector3(1,0,0)),
         organelle.collisionShape
     )
     self.rigidBody.properties.mass = self.rigidBody.properties.mass + organelle.mass
@@ -344,24 +406,6 @@ end
 --   An object of type StorageOrganelle
 function Microbe:removeStorageOrganelle(storageOrganelle)
     self.microbe.capacity = self.microbe.capacity - storageOrganelle.capacity
-end
-
--- Removes a process organelle
--- This will be called automatically by process organelles removed with with removeOrganelle(...)
---
--- @param processOrganelle
---   An object of type ProcessOrganelle
-function Microbe:removeProcessOrganelle(processOrganelle)
-    self.microbe.processOrganelles[processOrganelle] = nil
-end
-
--- Adds a process organelle
--- This will be called automatically by process organelles added with addOrganelle(...)
---
--- @param processOrganelle
---   An object of type ProcessOrganelle
-function Microbe:addProcessOrganelle(processOrganelle)
-    self.microbe.processOrganelles[processOrganelle] = processOrganelle
 end
 
 -- Removes a special storage organelle
@@ -422,7 +466,9 @@ function Microbe:removeOrganelle(q, r)
     
     self.rigidBody.properties.mass = self.rigidBody.properties.mass - organelle.mass
     self.rigidBody.properties:touch()
-    self.rigidBody.properties.shape:removeChildShape(
+    -- TODO: cache for performance
+    local compoundShape = CompoundShape.castFrom(self.rigidBody.properties.shape)
+    compoundShape:removeChildShape(
         organelle.collisionShape
     )
     
@@ -444,7 +490,7 @@ end
 -- @returns amount
 -- The amount stored in the microbe's storage oraganelles
 function Microbe:getCompoundAmount(compoundId)
-    return self.entity:getComponent(CompoundBagComponent.TYPE_ID):getCompoundAmount(compoundId)
+    return getComponent(self.entity, CompoundBagComponent):getCompoundAmount(compoundId)
 end
 
 -- Damages the microbe, killing it if its hitpoints drop low enough
@@ -545,7 +591,9 @@ function Microbe:storeCompound(compoundId, amount, bandwidthLimited)
         storedAmount = self.microbe:getBandwidth(amount, compoundId)
     end
     storedAmount = math.min(storedAmount , self.microbe.capacity - self.microbe.stored)
-    self.entity:getComponent(CompoundBagComponent.TYPE_ID):giveCompound(tonumber(compoundId), storedAmount)
+    getComponent(self.entity, CompoundBagComponent
+    ):giveCompound(tonumber(compoundId), storedAmount)
+    
     self.microbe.stored = self.microbe.stored + storedAmount
     return amount - storedAmount
 end
@@ -564,7 +612,9 @@ end
 function Microbe:takeCompound(compoundId, maxAmount)
     --if self.microbe.specialStorageOrganelles[compoundId] == nil then
     
-    local takenAmount = self.entity:getComponent(CompoundBagComponent.TYPE_ID):takeCompound(compoundId, maxAmount)
+    local takenAmount = getComponent(self.entity, CompoundBagComponent
+    ):takeCompound(compoundId, maxAmount)
+    
     self.microbe.stored = self.microbe.stored - takenAmount
     return takenAmount
 end
@@ -577,6 +627,7 @@ end
 --
 -- @param amount
 -- The amount to eject
+local EJECTION_DISTANCE = 3.0
 function Microbe:ejectCompound(compoundId, amount)
     -- The back of the microbe
     local exitX, exitY = axialToCartesian(0, 1)
@@ -628,7 +679,7 @@ end
 function Microbe:kill()
     local compoundsToRelease = {}
     -- Eject the compounds that was in the microbe
-    for compoundId in CompoundRegistry.getCompoundList() do
+    for _, compoundId in pairs(CompoundRegistry.getCompoundList()) do
         local total = self:getCompoundAmount(compoundId)
         local ejectedAmount = self:takeCompound(compoundId, total)
         compoundsToRelease[compoundId] = ejectedAmount
@@ -658,12 +709,12 @@ function Microbe:kill()
             _amount = _amount - ejectedAmount
         end
     end    
-    local microbeSceneNode = self.entity:getComponent(OgreSceneNodeComponent.TYPE_ID)
-    local deathAnimationEntity = Entity()
-    local lifeTimeComponent = TimedLifeComponent()
+    local microbeSceneNode = getComponent(self.entity, OgreSceneNodeComponent)
+    local deathAnimationEntity = Entity.new(g_luaEngine.currentGameState.wrapper)
+    local lifeTimeComponent = TimedLifeComponent.new()
     lifeTimeComponent.timeToLive = 4000
     deathAnimationEntity:addComponent(lifeTimeComponent)
-    local deathAnimSceneNode = OgreSceneNodeComponent()
+    local deathAnimSceneNode = OgreSceneNodeComponent.new()
     deathAnimSceneNode.meshName = "MicrobeDeath.mesh"
     deathAnimSceneNode:playAnimation("Death", false)
     deathAnimSceneNode.transform.position = Vector3(microbeSceneNode.transform.position.x, microbeSceneNode.transform.position.y, 0)
@@ -697,17 +748,21 @@ function Microbe:readyToReproduce()
     end
 end
 
-function Microbe:divide()
+function Microbe:divide(currentGameState)
+
+    assert(currentGameState, "Microbe:divide needs currentGameState")
+    
     print("dividing cell ")
     -- Create the two daughter cells.
-    local copy = Microbe.createMicrobeEntity(nil, true, self.microbe.speciesName)
+    local copy = Microbe.createMicrobeEntity(nil, true, self.microbe.speciesName, self.entity,
+                                             currentGameState)
     
     --Separate the two cells.
     copy.rigidBody.dynamicProperties.position = Vector3(self.rigidBody.dynamicProperties.position.x - self.membraneComponent.dimensions/2, self.rigidBody.dynamicProperties.position.y, 0)
     self.rigidBody.dynamicProperties.position = Vector3(self.rigidBody.dynamicProperties.position.x + self.membraneComponent.dimensions/2, self.rigidBody.dynamicProperties.position.y, 0)
     
     -- Split the compounds evenly between the two cells.
-    for compoundID in CompoundRegistry.getCompoundList() do
+    for _, compoundID in pairs(CompoundRegistry.getCompoundList()) do
         local amount = self:getCompoundAmount(compoundID)
     
         if amount ~= 0 then
@@ -719,12 +774,12 @@ function Microbe:divide()
     self.reproductionStage = 0
     copy.reproductionStage = 0
     
-    copy.entity:addComponent(SpawnedComponent())
+    copy.entity:addComponent(SpawnedComponent.new())
     self.soundSource:playSound("microbe-reproduction")
 end
 
 function Microbe.transferCompounds(from, to)
-    for compoundID in CompoundRegistry.getCompoundList() do
+    for _, compoundID in pairs(CompoundRegistry.getCompoundList()) do
         local amount = from:getCompoundAmount(compoundID)
     
         if amount ~= 0 then
@@ -767,27 +822,16 @@ function Microbe:flashMembraneColour(duration, colour)
     end
 end
 
-function Microbe:calculateStorageSpace()
-    self.microbe.stored = 0
-    for compoundId in CompoundRegistry.getCompoundList() do
-        self.microbe.stored = self.microbe.stored + self.entity:getComponent(CompoundBagComponent.TYPE_ID):getCompoundAmount(compoundId)
-    end
-end
 
 -- Updates the microbe's state
 function Microbe:update(logicTime)
     if not self.microbe.dead then
-        --calculate storage.
-        self:calculateStorageSpace()
-
-        self.compoundBag.storageSpace = self.microbe.capacity
-
         -- StorageOrganelles
         self:_updateCompoundAbsorber()
         -- Regenerate bandwidth
         self.microbe:regenerateBandwidth(logicTime)
         -- Attempt to absorb queued compounds
-        for compound in self.compoundAbsorber:getAbsorbedCompounds() do 
+        for _, compound in pairs(self.compoundAbsorber:getAbsorbedCompounds()) do 
             local amount = self.compoundAbsorber:absorbedCompoundAmount(compound)
             if amount > 0.0 then
                 self:storeCompound(compound, amount, true)
@@ -831,7 +875,7 @@ function Microbe:update(logicTime)
                 -- If the organelle is hurt.
                 if organelle:getCompoundBin() < 1.0 then
                     -- Give the organelle access to the compound bag to take some compound.
-                    organelle:growOrganelle(self.entity:getComponent(CompoundBagComponent.TYPE_ID), logicTime)
+                    organelle:growOrganelle(getComponent(self.entity, CompoundBagComponent), logicTime)
                     -- An organelle was damaged and we tried to heal it, so out health might be different.
                     self:calculateHealthFromOrganelles()
                 end
@@ -852,12 +896,12 @@ function Microbe:update(logicTime)
                     -- If the organelle is not split, give it some compounds to make it larger.
                     if organelle:getCompoundBin() < 2.0 and not organelle.wasSplit then
                         -- Give the organelle access to the compound bag to take some compound.
-                        organelle:growOrganelle(self.entity:getComponent(CompoundBagComponent.TYPE_ID), logicTime)
+                        organelle:growOrganelle(getComponent(self.entity, CompoundBagComponent), logicTime)
                         reproductionStageComplete = false
                     -- If the organelle was split and has a bin less then 1, it must have been damaged.
                     elseif organelle:getCompoundBin() < 1.0 and organelle.wasSplit then
                         -- Give the organelle access to the compound bag to take some compound.
-                        organelle:growOrganelle(self.entity:getComponent(CompoundBagComponent.TYPE_ID), logicTime)
+                        organelle:growOrganelle(getComponent(self.entity, CompoundBagComponent), logicTime)
                     -- If the organelle is twice its size...
                     elseif organelle:getCompoundBin() >= 2.0 then
                         --Queue this organelle for splitting after the loop.
@@ -870,7 +914,7 @@ function Microbe:update(logicTime)
                     -- If the nucleus hasn't finished replicating its DNA, give it some compounds.
                     if organelle:getCompoundBin() < 2.0 then
                         -- Give the organelle access to the compound back to take some compound.
-                        organelle:growOrganelle(self.entity:getComponent(CompoundBagComponent.TYPE_ID), logicTime)
+                        organelle:growOrganelle(getComponent(self.entity, CompoundBagComponent), logicTime)
                         reproductionStageComplete = false
                     end
                 end
@@ -1023,10 +1067,11 @@ function Microbe:validPlacement(organelle, q, r)
     end
 end
 
+PURGE_SCALE = 0.4
 
 function Microbe:purgeCompounds()
     local compoundAmountToDump = self.microbe.stored - self.microbe.capacity
-    compoundBag = self.entity:getComponent(CompoundBagComponent.TYPE_ID)
+    compoundBag = getComponent(self.entity, CompoundBagComponent)
 
     -- Uncomment to print compound economic information to the console.
     --[[
@@ -1040,7 +1085,7 @@ function Microbe:purgeCompounds()
     ]]
 
     -- Dumping all the useless compounds (with price = 0).
-    for compoundId in CompoundRegistry.getCompoundList() do
+    for _, compoundId in pairs(CompoundRegistry.getCompoundList()) do
         local price = compoundBag:getPrice(compoundId)
         if price <= 0 then
             local amountToEject = compoundBag:getCompoundAmount(compoundId)
@@ -1053,8 +1098,9 @@ function Microbe:purgeCompounds()
         --Calculating each compound price to dump proportionally.
         local compoundPrices = {}
         local priceSum = 0
-        for compoundId in CompoundRegistry.getCompoundList() do
-            local amount = self.entity:getComponent(CompoundBagComponent.TYPE_ID):getCompoundAmount(compoundId)
+        for _, compoundId in CompoundRegistry.getCompoundList() do
+            local amount = getComponent(self.entity, CompoundBagComponent)
+                :getCompoundAmount(compoundId)
 
             if amount > 0 then
                 local price = compoundBag:getPrice(compoundId)
@@ -1064,7 +1110,7 @@ function Microbe:purgeCompounds()
         end
 
         --Dumping each compound according to it's price.
-        for compoundId, price in pairs(compoundPrices) do
+        for _, compoundId, price in pairs(compoundPrices) do
             amountToEject = compoundAmountToDump * price / priceSum
             if amount > 0 then amountToEject = self:takeCompound(compoundId, amountToEject) end
             if amount > 0 then self:ejectCompound(compoundId, amountToEject) end
@@ -1096,23 +1142,27 @@ function Microbe:respawn()
 
     self.rigidBody:setDynamicProperties(
         Vector3(0,0,0), -- Position
-        Quaternion(Radian(Degree(0)), Vector3(1, 0, 0)), -- Orientation
+        Quaternion.new(Radian.new(Degree(0)), Vector3(1, 0, 0)), -- Orientation
         Vector3(0, 0, 0), -- Linear velocity
         Vector3(0, 0, 0)  -- Angular velocity
     )
-    local sceneNode = self.entity:getComponent(OgreSceneNodeComponent.TYPE_ID)
+    local sceneNode = getComponent(self.entity, OgreSceneNodeComponent)
     sceneNode.visible = true
     sceneNode.transform.position = Vector3(0, 0, 0)
     sceneNode.transform:touch()
     
     self:storeCompound(CompoundRegistry.getCompoundId("atp"), 50, false)
 
-    setRandomBiome()
+    setRandomBiome(g_luaEngine.currentGameState)
 end
 
 -- Private function for initializing a microbe's components
 function Microbe:_initialize()
-    self.rigidBody.properties.shape:clear()
+
+    -- TODO: cache for performance
+    local compoundShape = CompoundShape.castFrom(self.rigidBody.properties.shape)
+    assert(compoundShape ~= nil)
+    compoundShape:clear()
     self.rigidBody.properties.mass = 0.0
     -- Organelles
     for s, organelle in pairs(self.microbe.organelles) do
@@ -1162,8 +1212,9 @@ function Microbe:addComponent(component)
     self.entity:addComponent(component)
 end
 
-function Microbe:getComponent(typeid)
-    return self.entity:getComponent(typeid)
+function Microbe:getComponent(typeClass)
+    assert(type(typeClass) ~= "number", "using old syntax of Microbe:getComponent")
+    return getComponent(self.entity, typeClass)
 end
 
 
@@ -1172,44 +1223,46 @@ end
 --
 -- Updates microbes
 --------------------------------------------------------------------------------
+MicrobeSystem = class(
+    LuaSystem,
+    function(self)
 
-class 'MicrobeSystem' (System)
+        LuaSystem.create(self)
 
-function MicrobeSystem:__init()
-    System.__init(self)
-    self.entities = EntityFilter(
-        {
-            CompoundAbsorberComponent,
-            MicrobeComponent,
-            OgreSceneNodeComponent,
-            RigidBodyComponent,
-            CollisionComponent
-        },
-        true
-    )
-    self.microbeCollisions = CollisionFilter(
-        "microbe",
-        "microbe"
-    );
-    -- Temporary for 0.3.2, should be moved to separate system.
-    self.agentCollisions = CollisionFilter(
-        "microbe",
-        "agent"
-    );
-    self.microbes = {}
-end
-
+        self.entities = EntityFilter.new(
+            {
+                CompoundAbsorberComponent,
+                MicrobeComponent,
+                OgreSceneNodeComponent,
+                RigidBodyComponent,
+                CollisionComponent
+            },
+            true
+        )
+        self.microbeCollisions = CollisionFilter.new(
+            "microbe",
+            "microbe"
+        );
+        -- Temporary for 0.3.2, should be moved to separate system.
+        self.agentCollisions = CollisionFilter.new(
+            "microbe",
+            "agent"
+        );
+        self.microbes = {}
+    end
+)
 
 function MicrobeSystem:init(gameState)
-    System.init(self, "MicrobeSystem", gameState)
-    self.entities:init(gameState)
-    self.microbeCollisions:init(gameState)
+    LuaSystem.init(self, "MicrobeSystem", gameState)
+    self.entities:init(gameState.wrapper)
+    self.microbeCollisions:init(gameState.wrapper)
     
-    self.agentCollisions:init(gameState)
+    self.agentCollisions:init(gameState.wrapper)
 end
 
 
 function MicrobeSystem:shutdown()
+    LuaSystem.shutdown(self)
     self.entities:shutdown()
     self.microbeCollisions:shutdown()
     
@@ -1218,11 +1271,11 @@ end
 
 
 function MicrobeSystem:update(renderTime, logicTime)
-    for entityId in self.entities:removedEntities() do
+    for _, entityId in pairs(self.entities:removedEntities()) do
         self.microbes[entityId] = nil
     end
-    for entityId in self.entities:addedEntities() do
-        local microbe = Microbe(Entity(entityId))
+    for _, entityId in pairs(self.entities:addedEntities()) do
+        local microbe = Microbe(Entity.new(entityId, self.gameState.wrapper))
         self.microbes[entityId] = microbe
     end
     self.entities:clearChanges()
@@ -1230,14 +1283,14 @@ function MicrobeSystem:update(renderTime, logicTime)
         microbe:update(logicTime)
     end
     -- Note that this triggers every frame there is a collision
-    for collision in self.microbeCollisions:collisions() do
-        local entity1 = Entity(collision.entityId1)
-        local entity2 = Entity(collision.entityId2)
+    for _, collision in pairs(self.microbeCollisions:collisions()) do
+        local entity1 = Entity.new(collision.entityId1, self.gameState.wrapper)
+        local entity2 = Entity.new(collision.entityId2, self.gameState.wrapper)
         if entity1:exists() and entity2:exists() then
-            local body1 = entity1:getComponent(RigidBodyComponent.TYPE_ID)
-            local body2 = entity2:getComponent(RigidBodyComponent.TYPE_ID)
-            local microbe1Comp = entity1:getComponent(MicrobeComponent.TYPE_ID)
-            local microbe2Comp = entity2:getComponent(MicrobeComponent.TYPE_ID)
+            local body1 = getComponent(entity1, RigidBodyComponent)
+            local body2 = getComponent(entity2, RigidBodyComponent)
+            local microbe1Comp = getComponent(entity1, MicrobeComponent)
+            local microbe2Comp = getComponent(entity2, MicrobeComponent)
             if body1~=nil and body2~=nil then
                 -- Engulf initiation
                 checkEngulfment(microbe1Comp, microbe2Comp, body1, entity1, entity2)
@@ -1250,9 +1303,9 @@ function MicrobeSystem:update(renderTime, logicTime)
     
     
     -- TEMP, DELETE FOR 0.3.3!!!!!!!!
-    for collision in self.agentCollisions:collisions() do
-        local entity = Entity(collision.entityId1)
-        local agent = Entity(collision.entityId2)
+    for _, collision in pairs(self.agentCollisions:collisions()) do
+        local entity = Entity.new(collision.entityId1, self.gameState.wrapper)
+        local agent = Entity.new(collision.entityId2, self.gameState.wrapper)
         
         if entity:exists() and agent:exists() then
             Microbe(entity):damage(.5, "toxin")

@@ -3,8 +3,6 @@
 --
 -- Class for representing an individual species
 --------------------------------------------------------------------------------
-class 'Species'
-
 --limits the size of the initial stringCodes
 local MIN_INITIAL_LENGTH = 5
 local MAX_INITIAL_LENGTH = 15
@@ -19,6 +17,8 @@ local MAX_COLOR = 1.0
 local MUTATION_CREATION_RATE = 0.1
 local MUTATION_DELETION_RATE = 0.1
 
+-- Why is the latest created species system accessible globally here?
+-- this will cause problems in the future
 local gSpeciesSystem = nil
 
 local function randomColour()
@@ -26,20 +26,46 @@ local function randomColour()
 end
 
 local DEFAULT_INITIAL_COMPOUNDS =
-{
-    atp = {priority=10,amount=40},
-    glucose = {amount = 10},
-    reproductase = {priority = 8},
-    oxygen = {amount = 10},
-    oxytoxy = {amount = 1}
-}
+    {
+        atp = {priority=10,amount=40},
+        glucose = {amount = 10},
+        reproductase = {priority = 8},
+        oxygen = {amount = 10},
+        oxytoxy = {amount = 1}
+    }
+
+Species = class(
+    function(self)
+
+        self.population = INITIAL_POPULATION
+        self.name = "Species_" .. tostring(math.random()) --gotta use the latin names
+        
+        local stringSize = math.random(MIN_INITIAL_LENGTH, MAX_INITIAL_LENGTH)
+        self.stringCode = organelleTable.nucleus.gene .. organelleTable.cytoplasm.gene --it should always have a nucleus and a cytoplasm.
+        for i = 1, stringSize do
+            self.stringCode = self.stringCode .. getRandomLetter()
+        end
+        
+        local organelles = positionOrganelles(self.stringCode)
+
+        self.colour = {
+            r = randomColour(),
+            g = randomColour(),
+            b = randomColour()
+        }
+
+        self.template = createSpeciesTemplate(self.name, organelles, self.colour, DEFAULT_INITIAL_COMPOUNDS, nil)
+        self:setupSpawn()
+        
+    end
+)
 
 --sets up the spawn of the species
 function Species:setupSpawn()
-    self.id = currentSpawnSystem:addSpawnType
-    (
+    self.id = currentSpawnSystem:addSpawnType(
         function(pos)
-            return microbeSpawnFunctionGeneric(pos, self.name, true, nil)
+            return microbeSpawnFunctionGeneric(pos, self.name, true, nil,
+                                               g_luaEngine.currentGameState)
         end, 
         DEFAULT_SPAWN_DENSITY, --spawnDensity should depend on population
         DEFAULT_SPAWN_RADIUS
@@ -48,8 +74,8 @@ end
 
 --copy-pasted from setupSpecies in setup.lua
 function createSpeciesTemplate(name, organelles, colour, compounds, speciesThresholds)
-    speciesEntity = Entity(name)
-    speciesComponent = SpeciesComponent(name)
+    speciesEntity = Entity.new(name, g_luaEngine.currentGameState.wrapper)
+    speciesComponent = SpeciesComponent.new(name)
     speciesEntity:addComponent(speciesComponent)
     for i, organelle in pairs(organelles) do
         local org = {}
@@ -59,11 +85,11 @@ function createSpeciesTemplate(name, organelles, colour, compounds, speciesThres
             org.rotation = organelle.rotation
             speciesComponent.organelles[i] = org
     end
-    processorComponent = ProcessorComponent()
+    processorComponent = ProcessorComponent.new()
     speciesEntity:addComponent(processorComponent)
     speciesComponent.colour = Vector3(colour.r, colour.g, colour.b)
      -- iterates over all compounds, and sets amounts and priorities
-    for compoundID in CompoundRegistry.getCompoundList() do
+    for _, compoundID in pairs(CompoundRegistry.getCompoundList()) do
         compound = CompoundRegistry.getCompoundInternalName(compoundID)
 
         compoundData = compounds[compound]
@@ -88,7 +114,7 @@ function createSpeciesTemplate(name, organelles, colour, compounds, speciesThres
             end
         end
     end
-    for bioProcessId in BioProcessRegistry.getList() do
+    for _, bioProcessId in pairs(BioProcessRegistry.getList()) do
         local name = BioProcessRegistry.getInternalName(bioProcessId)
         if capacities[name] ~= nil then
             processorComponent:setCapacity(bioProcessId, capacities[name])
@@ -97,29 +123,6 @@ function createSpeciesTemplate(name, organelles, colour, compounds, speciesThres
         end
     end
     return speciesEntity
-end
-
-function Species:__init()
-    self.population = INITIAL_POPULATION
-    self.name = "Species_" .. tostring(math.random()) --gotta use the latin names
-    
-    local stringSize = math.random(MIN_INITIAL_LENGTH, MAX_INITIAL_LENGTH)
-    self.stringCode = organelleTable.nucleus.gene .. organelleTable.cytoplasm.gene --it should always have a nucleus and a cytoplasm.
-    for i = 1, stringSize do
-        self.stringCode = self.stringCode .. getRandomLetter()
-    end
-    
-    local organelles = positionOrganelles(self.stringCode)
-
-    self.colour = {
-        r = randomColour(),
-        g = randomColour(),
-        b = randomColour()
-    }
-
-    self.template = createSpeciesTemplate(self.name, organelles, self.colour, DEFAULT_INITIAL_COMPOUNDS, nil)
-    self:setupSpawn()
-    return self
 end
 
 --updates the population count of the species
@@ -217,21 +220,26 @@ MAX_SPECIES = 15
 --if there are less species than this create new ones.
 MIN_SPECIES = 3
 
-class 'SpeciesSystem' (System)
 
-function SpeciesSystem:__init(spawnSystem)
-    gSpawnSystem = spawnSystem
-    System.__init(self)
-    
-    self.entities = EntityFilter(
-        {
-            SpeciesComponent,
-            ProcessorComponent,
-        },
-        true
-    )
-    self.timeSinceLastCycle = 0
-end
+SpeciesSystem = class(
+    LuaSystem,
+    function(self)
+        
+        LuaSystem.create(self)
+        
+        gSpawnSystem = self
+        
+        self.entities = EntityFilter.new(
+            {
+                SpeciesComponent,
+                ProcessorComponent,
+            },
+            true
+        )
+        self.timeSinceLastCycle = 0
+        
+    end
+)
 
 function resetAutoEvo()
     if gSpeciesSystem.species ~= nil then
@@ -246,8 +254,8 @@ end
 
 -- Override from System
 function SpeciesSystem:init(gameState)
-    System.init(self, "SpeciesSystem", gameState)
-    self.entities:init(gameState)
+    LuaSystem.init(self, "SpeciesSystem", gameState)
+    self.entities:init(gameState.wrapper)
 
     self.species = {}
     self.number_of_species = 0
@@ -268,7 +276,7 @@ end
 -- Override from System
 function SpeciesSystem:shutdown()
     self.entities:shutdown()
-    System.shutdown(self)
+    LuaSystem.shutdown(self)
 end
 
 -- Override from System
@@ -340,14 +348,14 @@ function SpeciesSystem:update(_, milliseconds)
 end
 
 function SpeciesSystem.initProcessorComponent(entity, speciesComponent)
-    local sc = entity:getComponent(SpeciesComponent.TYPE_ID)
+    local sc = getComponent(entity, SpeciesComponent)
     if sc == nil then
         entity:addComponent(speciesComponent)
     end
 
-    local pc = entity:getComponent(ProcessorComponent.TYPE_ID)
+    local pc = getComponent(entity, ProcessorComponent)
     if pc == nil then
-        pc = ProcessorComponent()
+        pc = ProcessorComponent.new()
         entity:addComponent(pc)
     end
 
@@ -364,7 +372,7 @@ function SpeciesSystem.initProcessorComponent(entity, speciesComponent)
             end
         end
     end
-    for bioProcessID in BioProcessRegistry.getList() do
+    for _, bioProcessID in pairs(BioProcessRegistry.getList()) do
         local name = BioProcessRegistry.getInternalName(bioProcessID)
         if capacities[name] ~= nil then
             pc:setCapacity(bioProcessID, capacities[name])
@@ -408,7 +416,7 @@ end
 function SpeciesSystem.fromMicrobe(microbe, species)
     local microbe_ = microbe.microbe -- shouldn't break, I think
     -- self.name = microbe_.speciesName
-    species.colour = microbe:getComponent(MembraneComponent.TYPE_ID):getColour()
+    species.colour = microbe:getComponent(MembraneComponent):getColour()
     -- Create species' organelle data
     for i, organelle in pairs(microbe_.organelles) do
         local data = {}
@@ -420,7 +428,7 @@ function SpeciesSystem.fromMicrobe(microbe, species)
     end
     -- This microbes compound amounts will be the new population average.
     species.avgCompoundAmounts = {}
-    for compoundID in CompoundRegistry.getCompoundList() do
+    for _, compoundID in pairs(CompoundRegistry.getCompoundList()) do
         local amount = microbe:getCompoundAmount(compoundID)
         species.avgCompoundAmounts["" .. compoundID] = amount/2
     end

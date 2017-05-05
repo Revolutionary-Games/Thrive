@@ -11,12 +11,11 @@
 #include "game.h"
 #include "general/timed_life_system.h"
 #include "ogre/scene_node_system.h"
-#include "scripting/luabind.h"
+#include "scripting/luajit.h"
 #include "util/make_unique.h"
 #include "microbe_stage/compound.h"
 #include "microbe_stage/compound_registry.h"
 
-#include <luabind/iterator_policy.hpp>
 #include <OgreEntity.h>
 #include <OgreSceneManager.h>
 #include <stdexcept>
@@ -26,28 +25,26 @@ using namespace thrive;
 ////////////////////////////////////////////////////////////////////////////////
 // CompoundEmitterComponent
 ////////////////////////////////////////////////////////////////////////////////
+void CompoundEmitterComponent::luaBindings(
+    sol::state &lua
+){
+    lua.new_usertype<CompoundEmitterComponent>("CompoundEmitterComponent",
 
-luabind::scope
-CompoundEmitterComponent::luaBindings() {
-    using namespace luabind;
-    return class_<CompoundEmitterComponent, Component>("CompoundEmitterComponent")
-        .enum_("ID") [
-            value("TYPE_ID", CompoundEmitterComponent::TYPE_ID)
-        ]
-        .scope [
-            def("TYPE_NAME", &CompoundEmitterComponent::TYPE_NAME)
-        ]
-        .def(constructor<>())
-        .def("emitCompound", &CompoundEmitterComponent::emitCompound)
-        .def_readwrite("emissionRadius", &CompoundEmitterComponent::m_emissionRadius)
-        .def_readwrite("maxInitialSpeed", &CompoundEmitterComponent::m_maxInitialSpeed)
-        .def_readwrite("minInitialSpeed", &CompoundEmitterComponent::m_minInitialSpeed)
-        .def_readwrite("minEmissionAngle", &CompoundEmitterComponent::m_minEmissionAngle)
-        .def_readwrite("maxEmissionAngle", &CompoundEmitterComponent::m_maxEmissionAngle)
-        .def_readwrite("particleLifetime", &CompoundEmitterComponent::m_particleLifetime)
-    ;
+        "new", sol::factories([](){
+                return std::make_unique<CompoundEmitterComponent>();
+            }),
+        
+        COMPONENT_BINDINGS(CompoundEmitterComponent),
+
+        "emitCompound", &CompoundEmitterComponent::emitCompound,
+        "emissionRadius", &CompoundEmitterComponent::m_emissionRadius,
+        "maxInitialSpeed", &CompoundEmitterComponent::m_maxInitialSpeed,
+        "minInitialSpeed", &CompoundEmitterComponent::m_minInitialSpeed,
+        "minEmissionAngle", &CompoundEmitterComponent::m_minEmissionAngle,
+        "maxEmissionAngle", &CompoundEmitterComponent::m_maxEmissionAngle,
+        "particleLifetime", &CompoundEmitterComponent::m_particleLifetime
+    );
 }
-
 
 void
 CompoundEmitterComponent::emitCompound(
@@ -93,24 +90,23 @@ REGISTER_COMPONENT(CompoundEmitterComponent)
 // TimedCompoundEmitterComponent
 ////////////////////////////////////////////////////////////////////////////////
 
-luabind::scope
-TimedCompoundEmitterComponent::luaBindings() {
-    using namespace luabind;
-    return class_<TimedCompoundEmitterComponent, Component>("TimedCompoundEmitterComponent")
-        .enum_("ID") [
-            value("TYPE_ID", TimedCompoundEmitterComponent::TYPE_ID)
-        ]
-        .scope [
-            def("TYPE_NAME", &TimedCompoundEmitterComponent::TYPE_NAME)
-        ]
-        .def(constructor<>())
-        .def_readwrite("emitInterval", &TimedCompoundEmitterComponent::m_emitInterval)
-        .def_readwrite("compoundId", &TimedCompoundEmitterComponent::m_compoundId)
-        .def_readwrite("particlesPerEmission", &TimedCompoundEmitterComponent::m_particlesPerEmission)
-        .def_readwrite("potencyPerParticle", &TimedCompoundEmitterComponent::m_potencyPerParticle)
-    ;
-}
+    void TimedCompoundEmitterComponent::luaBindings(
+    sol::state &lua
+){
+    lua.new_usertype<TimedCompoundEmitterComponent>("TimedCompoundEmitterComponent",
 
+        "new", sol::factories([](){
+                return std::make_unique<TimedCompoundEmitterComponent>();
+            }),
+        
+        COMPONENT_BINDINGS(TimedCompoundEmitterComponent),
+
+        "emitInterval", &TimedCompoundEmitterComponent::m_emitInterval,
+        "compoundId", &TimedCompoundEmitterComponent::m_compoundId,
+        "particlesPerEmission", &TimedCompoundEmitterComponent::m_particlesPerEmission,
+        "potencyPerParticle", &TimedCompoundEmitterComponent::m_potencyPerParticle
+    );
+}
 
 void
 TimedCompoundEmitterComponent::load(
@@ -142,15 +138,18 @@ REGISTER_COMPONENT(TimedCompoundEmitterComponent)
 ////////////////////////////////////////////////////////////////////////////////
 // CompoundEmitterSystem
 ////////////////////////////////////////////////////////////////////////////////
+void CompoundEmitterSystem::luaBindings(
+    sol::state &lua
+){
+    lua.new_usertype<CompoundEmitterSystem>("CompoundEmitterSystem",
 
-luabind::scope
-CompoundEmitterSystem::luaBindings() {
-    using namespace luabind;
-    return class_<CompoundEmitterSystem, System>("CompoundEmitterSystem")
-        .def(constructor<>())
-    ;
+        sol::constructors<sol::types<>>(),
+        
+        sol::base_classes, sol::bases<System>(),
+
+        "init", &CompoundEmitterSystem::init
+    );
 }
-
 
 struct CompoundEmitterSystem::Implementation {
 
@@ -175,10 +174,10 @@ CompoundEmitterSystem::~CompoundEmitterSystem() {}
 
 void
 CompoundEmitterSystem::init(
-    GameState* gameState
+    GameStateData* gameState
 ) {
     System::initNamed("CompoundEmitterSystem", gameState);
-    m_impl->m_entities.setEntityManager(&gameState->entityManager());
+    m_impl->m_entities.setEntityManager(gameState->entityManager());
     m_impl->m_sceneManager = gameState->sceneManager();
 }
 
@@ -199,7 +198,8 @@ emitCompound(
     double angle,
     double radius,
     CompoundEmitterComponent* emitterComponent,
-    EntityId emittingEntityId
+    EntityId emittingEntityId,
+    GameStateData* currentState
 ) {
 
     Ogre::Vector3 emissionOffset(0,0,0);
@@ -221,7 +221,7 @@ emitCompound(
         radius * Ogre::Math::Cos(emissionAngle),
         0.0
     );
-    EntityId compoundEntityId = Game::instance().engine().currentGameState()->entityManager().generateNewId();
+    EntityId compoundEntityId = currentState->entityManager()->generateNewId();
     // Scene Node
     auto compoundSceneNodeComponent = make_unique<OgreSceneNodeComponent>();
     auto meshScale = CompoundRegistry::getCompoundMeshScale(compoundId);
@@ -255,7 +255,7 @@ emitCompound(
     components.emplace_back(std::move(compoundRigidBodyComponent));
     components.emplace_back(std::move(collisionHandler));
     for (auto& component : components) {
-        Game::instance().engine().currentGameState()->entityManager().addComponent(
+        currentState->entityManager()->addComponent(
             compoundEntityId,
             std::move(component)
         );
@@ -273,7 +273,9 @@ CompoundEmitterSystem::update(int, int logicTime) {
 
         for (auto emission : emitterComponent->m_compoundEmissions)
         {
-            emitCompound(std::get<0>(emission), std::get<1>(emission), sceneNodeComponent->m_transform.position, std::get<2>(emission), std::get<3>(emission), emitterComponent, value.first);
+            emitCompound(std::get<0>(emission), std::get<1>(emission),
+                sceneNodeComponent->m_transform.position, std::get<2>(emission),
+                std::get<3>(emission), emitterComponent, value.first, gameState());
         }
         emitterComponent->m_compoundEmissions.clear();
         if (timedEmitterComponent)
@@ -289,7 +291,11 @@ CompoundEmitterSystem::update(int, int logicTime) {
                         emitterComponent->m_minEmissionAngle.valueDegrees(),
                         emitterComponent->m_maxEmissionAngle.valueDegrees()
                     );
-                    emitCompound(timedEmitterComponent->m_compoundId, timedEmitterComponent->m_potencyPerParticle, sceneNodeComponent->m_transform.position, angle,  emitterComponent->m_emissionRadius, emitterComponent, value.first);
+                    emitCompound(timedEmitterComponent->m_compoundId,
+                        timedEmitterComponent->m_potencyPerParticle,
+                        sceneNodeComponent->m_transform.position, angle,
+                        emitterComponent->m_emissionRadius, emitterComponent, value.first,
+                        gameState());
                 }
             }
         }

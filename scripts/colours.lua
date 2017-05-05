@@ -12,9 +12,10 @@ local COLOURS = {
     Blue        = {0.0, 0.0, 1.0, 1.0},
 }
 
--- Put the above defined colours into the ColourValue class object
+-- Put the above defined colours into COLOURS table
+COLOURS = {}
 for name, components in pairs(COLOURS) do
-    ColourValue[name] = ColourValue(
+    COLOURS[name] = ColourValue.new(
         components[1],
         components[2],
         components[3],

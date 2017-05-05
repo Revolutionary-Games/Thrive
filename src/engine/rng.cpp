@@ -1,6 +1,6 @@
 #include "rng.h"
 #include "chrono"
-#include "scripting/luabind.h"
+#include "scripting/luajit.h"
 
 using namespace thrive;
 
@@ -25,17 +25,17 @@ struct RNG::Implementation {
     std::mt19937 m_mt;
 };
 
+void RNG::luaBindings(
+    sol::state &lua
+){
+    lua.new_usertype<RNG>("RNG",
 
-luabind::scope
-RNG::luaBindings(){
-    using namespace luabind;
-    return class_<RNG>("RNG")
-        .def("getInt", &RNG::getInt)
-        .def("getReal", &RNG::getDouble)
-        .def("generateRandomSeed", &RNG::generateRandomSeed)
-        .def("setSeed", &RNG::setSeed)
-        .def("getSeed", &RNG::getSeed)
-    ;
+        "getInt", &RNG::getInt,
+        "getReal", &RNG::getDouble,
+        "generateRandomSeed", &RNG::generateRandomSeed,
+        "setSeed", &RNG::setSeed,
+        "getSeed", &RNG::getSeed
+    );
 }
 
 RNG::RNG()

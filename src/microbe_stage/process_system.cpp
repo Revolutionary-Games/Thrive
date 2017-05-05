@@ -6,9 +6,11 @@
 #include "engine/component_factory.h"
 #include "engine/engine.h"
 #include "engine/entity.h"
+#include "engine/entity_filter.h"
 #include "engine/game_state.h"
 #include "engine/entity_filter.h"
 #include "engine/serialization.h"
+#include "game.h"
 
 #include "general/thrive_math.h"
 
@@ -21,20 +23,21 @@ using namespace thrive;
 
 REGISTER_COMPONENT(ProcessorComponent)
 
-luabind::scope
-ProcessorComponent::luaBindings() {
-    using namespace luabind;
-    return class_<ProcessorComponent, Component>("ProcessorComponent")
-        .enum_("ID") [
-            value("TYPE_ID", ProcessorComponent::TYPE_ID)
-        ]
-        .scope [
-            def("TYPE_NAME", &ProcessorComponent::TYPE_NAME)
-        ]
-        .def(constructor<>())
-        .def("setCapacity", &ProcessorComponent::setCapacity)
-    ;
+void ProcessorComponent::luaBindings(
+    sol::state &lua
+){
+    lua.new_usertype<ProcessorComponent>("ProcessorComponent",
+
+        "new", sol::factories([](){
+                return std::make_unique<ProcessorComponent>();
+            }),
+        
+        COMPONENT_BINDINGS(ProcessorComponent),
+
+        "setCapacity", &ProcessorComponent::setCapacity
+    );
 }
+
 
 void
 ProcessorComponent::load(const StorageContainer& storage)
@@ -70,25 +73,25 @@ ProcessorComponent::setCapacity(BioProcessId id, float capacity)
 
 REGISTER_COMPONENT(CompoundBagComponent)
 
-luabind::scope
-CompoundBagComponent::luaBindings() {
-    using namespace luabind;
-    return class_<CompoundBagComponent, Component>("CompoundBagComponent")
-        .enum_("ID") [
-            value("TYPE_ID", CompoundBagComponent::TYPE_ID)
-        ]
-        .scope [
-            def("TYPE_NAME", &CompoundBagComponent::TYPE_NAME)
-        ]
-        .def(constructor<>())
-        .def("setProcessor", &CompoundBagComponent::setProcessor)
-        .def("giveCompound", &CompoundBagComponent::giveCompound)
-        .def("takeCompound", &CompoundBagComponent::takeCompound)
-        .def("getCompoundAmount", &CompoundBagComponent::getCompoundAmount)
-        .def("getPrice", &CompoundBagComponent::getPrice)
-        .def("getDemand", &CompoundBagComponent::getDemand)
-        .def_readwrite("storageSpace", &CompoundBagComponent::storageSpace)
-    ;
+void CompoundBagComponent::luaBindings(
+    sol::state &lua
+){
+    lua.new_usertype<CompoundBagComponent>("CompoundBagComponent",
+
+        "new", sol::factories([](){
+                return std::make_unique<CompoundBagComponent>();
+            }),
+        
+        COMPONENT_BINDINGS(CompoundBagComponent),
+
+        "setProcessor", &CompoundBagComponent::setProcessor,
+        "giveCompound", &CompoundBagComponent::giveCompound,
+        "takeCompound", &CompoundBagComponent::takeCompound,
+        "getCompoundAmount", &CompoundBagComponent::getCompoundAmount,
+        "getPrice", &CompoundBagComponent::getPrice,
+        "getDemand", &CompoundBagComponent::getDemand,
+        "storageSpace", &CompoundBagComponent::storageSpace
+    );
 }
 
 CompoundBagComponent::CompoundBagComponent() {
@@ -122,7 +125,9 @@ CompoundBagComponent::load(const StorageContainer& storage)
 	}
 
 	this->speciesName = storage.get<std::string>("speciesName");
-	this->processor = static_cast<ProcessorComponent*>(Entity(this->speciesName).getComponent(ProcessorComponent::TYPE_ID));
+	this->processor = static_cast<ProcessorComponent*>(Entity(this->speciesName,
+            Game::instance().engine().getCurrentGameStateFromLua()).
+        getComponent(ProcessorComponent::TYPE_ID));
 }
 
 StorageContainer
@@ -188,13 +193,20 @@ CompoundBagComponent::getDemand(CompoundId compoundId) {
     return compounds[compoundId].demand;
 }
 
-luabind::scope
-ProcessSystem::luaBindings() {
-    using namespace luabind;
-    return class_<ProcessSystem, System>("ProcessSystem")
-        .def(constructor<>())
-    ;
+void ProcessSystem::luaBindings(
+    sol::state &lua
+){
+    lua.new_usertype<ProcessSystem>("ProcessSystem",
+
+        sol::constructors<sol::types<>>(),
+        
+        sol::base_classes, sol::bases<System>(),
+
+        "init", &ProcessSystem::init
+    );
 }
+
+
 struct ProcessSystem::Implementation {
 
     EntityFilter<
@@ -228,9 +240,10 @@ ProcessSystem::ProcessSystem()
 ProcessSystem::~ProcessSystem() {}
 
 void
-ProcessSystem::init(GameState* gameState) {
+ProcessSystem::init(GameStateData* gameState)
+{
     System::initNamed("ProcessSystem", gameState);
-    m_impl->m_entities.setEntityManager(&gameState->entityManager());
+    m_impl->m_entities.setEntityManager(gameState->entityManager());
 }
 
 void
