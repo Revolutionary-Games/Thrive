@@ -38,6 +38,9 @@ public:
         {
             return Ogre::ColourValue::ZERO;
         }
+
+        // Return empty if the texture isn't ready yet //
+        // TODO: find a way to do this
         
         // Single pixel from texture
         return m_texture->getColourAt(offsetX, offsetY, 0);

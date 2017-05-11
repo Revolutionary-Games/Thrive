@@ -19,7 +19,8 @@ std::shared_ptr<Ogre::Image> GUITextureHelper::getTexture(const std::string &nam
 
     img->load(name, Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
 
-    std::cout << "Loaded new AlphaHit texture: " << name << std::endl;
+    std::cout << "Loaded new AlphaHit texture: " << name << " (" <<
+        img->getWidth() << "x" << img->getHeight() << ")" << std::endl;
 
     m_loadedImages[name] = img;
 
