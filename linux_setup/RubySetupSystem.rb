@@ -1545,6 +1545,10 @@ def isGoodLDDFound(lib)
     true
   when /.*jasper.*/i
     true
+  when /.*nettle.*/i
+    true
+  when /.*unistring.*/i
+    true
   else
     false
   end
