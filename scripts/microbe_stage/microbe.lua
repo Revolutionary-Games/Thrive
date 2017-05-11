@@ -223,6 +223,7 @@ Microbe = class(
                                                g_luaEngine.currentGameState,
                                                ProcessorComponent)
                 assert(processor)
+                assert(isNotEmpty(self.microbe.speciesName))
                 self.compoundBag:setProcessor(processor,
                                               self.microbe.speciesName)
                 
