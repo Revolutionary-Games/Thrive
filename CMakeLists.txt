@@ -575,8 +575,8 @@ if(WIN32)
         "${MINGW_ENV}/install/bin/avutil-55.dll"
         "${MINGW_ENV}/install/bin/swscale-4.dll"
         "${MINGW_ENV}/install/bin/swresample-2.dll"
-		"${CMAKE_SOURCE_DIR}/contrib/lua/luajit/src/lua51.dll"
-		"${CMAKE_SOURCE_DIR}/contrib/lua/luajit/src/luajit.exe"
+		"${CMAKE_SOURCE_DIR}/mingw_setup/lua51.dll"
+		"${CMAKE_SOURCE_DIR}/mingw_setup/luajit.exe"
         DESTINATION bin
 		CONFIGURATIONS Debug
     )
