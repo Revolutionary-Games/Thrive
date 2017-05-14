@@ -823,10 +823,21 @@ function Microbe:flashMembraneColour(duration, colour)
     end
 end
 
+function Microbe:calculateStorageSpace()
+    self.microbe.stored = 0
+    for _, compoundId in pairs(CompoundRegistry.getCompoundList()) do
+        self.microbe.stored = self.microbe.stored + getComponent(self.entity, CompoundBagComponent):getCompoundAmount(compoundId)
+    end
+end
 
 -- Updates the microbe's state
 function Microbe:update(logicTime)
     if not self.microbe.dead then
+        --calculate storage.
+        self:calculateStorageSpace()
+
+        self.compoundBag.storageSpace = self.microbe.capacity
+
         -- StorageOrganelles
         self:_updateCompoundAbsorber()
         -- Regenerate bandwidth
