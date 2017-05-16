@@ -141,7 +141,7 @@ end
 
 function HudSystem:update(renderTime)
     local player = Entity.new("player", self.gameState.wrapper)
-    local playerMicrobe = Microbe.new(player)
+    local playerMicrobe = Microbe.new(player, nil, self.gameState)
 
     self.hitpointsBar:progressbarSetProgress(playerMicrobe.microbe.hitpoints/playerMicrobe.microbe.maxHitpoints)
     self.hitpointsCountLabel:setText("".. math.floor(playerMicrobe.microbe.hitpoints))
@@ -363,7 +363,7 @@ end
 
 function HudSystem:editorButtonClicked()
     local player = Entity.new("player", self.gameState.wrapper)
-    local playerMicrobe = Microbe.new(player)
+    local playerMicrobe = Microbe.new(player, nil, self.gameState)
     -- Return the first cell to its normal, non duplicated cell arangement.
     SpeciesSystem.restoreOrganelleLayout(playerMicrobe, playerMicrobe:getSpeciesComponent()) 
 

@@ -92,7 +92,7 @@ function MicrobeStageTutorialHudSystem:update(renderTime)
         local atpString = string.format(
             "%d", math.floor(Microbe(
                                  Entity.new(PLAYER_NAME, self.gameState.wrapper)
-                                    ):getCompoundAmount(atpID)))
+                                 , nil, self.gameState):getCompoundAmount(atpID)))
         self.atpCountLabel2:setText(atpString)
 
         -- Updating the compound panel.
@@ -100,7 +100,7 @@ function MicrobeStageTutorialHudSystem:update(renderTime)
         local glucoseString = string.format(
             "%d", math.floor(Microbe(
                                  Entity.new(PLAYER_NAME, self.gameState.wrapper)
-                                    ):getCompoundAmount(glucoseID)))
+                                 , nil, self.gameState):getCompoundAmount(glucoseID)))
         self.atpCountLabel:setText(atpString)
         self.glucoseCountLabel:setText(glucoseString)
 
@@ -227,8 +227,12 @@ Click anywhere to continue...]])
 compounds panel shown below.
 
 You currently have only ]] .. math.floor(Microbe(
-                                             Entity.new(PLAYER_NAME, self.gameState.wrapper)
-                                                ):getCompoundAmount(atpID)) .. [[ ATP. Let's make some more!
+                                             Entity.new(PLAYER_NAME,
+                                             self.gameState.wrapper) ,
+                                             nil,
+                                             self.gameState):getCompoundAmount(atpID))
+                                             .. [[ ATP. Let's make
+                                             some more!
 
 Click anywhere to continue...]])
            
@@ -256,7 +260,8 @@ Click anywhere to continue...]])
 
         self.rootGUIWindow:getChild("CompoundPanel"):show()
 
-        if Microbe(player):getCompoundAmount(CompoundRegistry.getCompoundId("glucose")) < 10 then
+        if Microbe(player, nil, self.gameState
+                  ):getCompoundAmount(CompoundRegistry.getCompoundId("glucose")) < 10 then
             createCompoundCloud("glucose", playerPos.x + 10, playerPos.y, 1000)
         end
         
@@ -267,7 +272,8 @@ Click anywhere to continue...]])
         
         Engine:resumeGame()
         
-        if Microbe(player):getCompoundAmount(CompoundRegistry.getCompoundId("glucose")) >= 10 then
+        if Microbe(player, nil, self.gameState
+                  ):getCompoundAmount(CompoundRegistry.getCompoundId("glucose")) >= 10 then
             self.tutorialStep = self.tutorialStep + 1
         end
         
@@ -324,7 +330,8 @@ the editor.]])
             local compoundsString = string.format(
                 "%s - %d",
                 CompoundRegistry.getCompoundDisplayName(compoundID),
-                Microbe.new(Entity.new(PLAYER_NAME, g_luaEngine.currentGameState.wrapper)
+                Microbe.new(Entity.new(PLAYER_NAME, g_luaEngine.currentGameState.wrapper),
+                            nil, g_luaEngine.currentGameState
                 ):getCompoundAmount(compoundID))
             if self.compoundListItems[compoundID] ~= nil then
                self.compoundListBox:listWidgetUpdateItem(self.compoundListItems[compoundID], "[colour='FF004400']" .. compoundsString)

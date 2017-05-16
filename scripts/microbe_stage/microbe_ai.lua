@@ -121,7 +121,8 @@ function MicrobeAISystem:update(renderTime, logicTime)
         end
     end
     for _, entityId in pairs(self.entities:addedEntities()) do
-        local microbe = Microbe(Entity.new(entityId, self.gameState.wrapper))
+        local microbe = Microbe(Entity.new(entityId, self.gameState.wrapper), nil,
+                                self.gameState.wrapper)
         self.microbes[entityId] = microbe
         
         -- This is a hack to remember up to 5 recent microbes as candidates for predators. 
@@ -159,7 +160,7 @@ function MicrobeAISystem:update(renderTime, logicTime)
             local agentVacuole = microbe.microbe.specialStorageOrganelles[compoundId]
             if agentVacuole ~= nil or microbe.microbe.maxHitpoints > 100 then
                 self.preyCandidates[6] = Microbe.new(
-                    Entity.new(PLAYER_NAME, self.gameState.wrapper))
+                    Entity.new(PLAYER_NAME, self.gameState.wrapper), nil, self.gameState.wrapper)
                 self.preyEntityToIndexMap[Entity.new(PLAYER_NAME, self.gameState.wrapper).id] = 6
                 local attempts = 0
                 while (aiComponent.prey  == nil or not aiComponent.prey:exists() or aiComponent.prey.microbe.dead or

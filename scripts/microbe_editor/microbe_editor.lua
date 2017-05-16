@@ -83,8 +83,9 @@ function MicrobeEditor:activate()
             GameState.MICROBE_EDITOR.wrapper)
         
         -- Transfer the compounds
-        Microbe.transferCompounds(Microbe.new(microbeStageMicrobe),
-                                  Microbe.new(self.nextMicrobeEntity, true))
+        Microbe.transferCompounds(Microbe.new(microbeStageMicrobe, nil, GameState.MICROBE),
+                                  Microbe.new(self.nextMicrobeEntity, true,
+                                              GameState.MICROBE_EDITOR))
         
         self.nextMicrobeEntity:stealName("working_microbe")
         Engine:playerData():setBool("edited_microbe", true)
@@ -100,7 +101,7 @@ function MicrobeEditor:activate()
         cytoplasm:destroy()
     end
     
-    self.currentMicrobe = Microbe.new(self.nextMicrobeEntity, true)
+    self.currentMicrobe = Microbe.new(self.nextMicrobeEntity, true, GameState.MICROBE_EDITOR)
     self.currentMicrobe.sceneNode.transform.orientation = Quaternion.new(
         Radian.new(Degree(0)), Vector3(0, 0, 1))-- Orientation
     self.currentMicrobe.sceneNode.transform.position = Vector3(0, 0, 0)
@@ -450,7 +451,8 @@ function MicrobeEditor:loadMicrobe(entityId)
         self.currentMicrobe.entity:destroy()
     end
     self.currentMicrobe = Microbe.new(Entity.new(entityId,
-                                                 g_luaEngine.currentGameState.wrapper), true)
+                                                 g_luaEngine.currentGameState.wrapper), true,
+                                      g_luaEngine.currentGameState)
     self.currentMicrobe.entity:stealName("working_microbe")
     self.currentMicrobe.sceneNode.transform.orientation = Quaternion.new(Radian.new(Degree(0)),
                                                                          Vector3(0, 0, 1))-- Orientation
