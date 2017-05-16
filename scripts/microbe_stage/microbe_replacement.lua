@@ -39,7 +39,8 @@ function MicrobeReplacementSystem:activate()
 
         -- This is the microbe entity in the editor gamestate
         local workingMicrobe = Microbe.new(
-            Entity.new(activeCreatureId, GameState.MICROBE_EDITOR.wrapper), true)
+            Entity.new(activeCreatureId, GameState.MICROBE_EDITOR.wrapper), true,
+            GameState.MICROBE_EDITOR)
         
         if not global_genusPicked  then
             global_genusPicked = true;

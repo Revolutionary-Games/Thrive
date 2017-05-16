@@ -201,8 +201,9 @@ Microbe = class(
     --
     -- @param entity
     -- The entity this microbe wraps
-    function(self, entity, in_editor)
+    function(self, entity, in_editor, gameState)
 
+        assert(gameState ~= nil, "Microbe.Create requires gameState")
         assert(entity ~= nil)
         self.entity = entity
         
@@ -217,12 +218,26 @@ Microbe = class(
             self.compoundAbsorber:setCanAbsorbCompound(compound, true)
         end
         if not self.microbe.initialized then
+            
             self:_initialize()
+            
             if in_editor ~= true then
+
+                assert(self.microbe.speciesName)
+                
                 local processor = getComponent(self.microbe.speciesName,
-                                               g_luaEngine.currentGameState,
+                                               gameState,
                                                ProcessorComponent)
-                assert(processor)
+                
+                if processor == nil then
+
+                    print("Microbe species '" .. self.microbe.speciesName .. "' doesn't exist")
+                    
+                    assert(processor)
+                    
+                end
+                
+
                 assert(isNotEmpty(self.microbe.speciesName))
                 self.compoundBag:setProcessor(processor,
                                               self.microbe.speciesName)
@@ -263,6 +278,7 @@ function Microbe.createMicrobeEntity(name, aiControlled, speciesName, in_editor,
 
     assert(gameState ~= nil, "Microbe.createMicrobeEntity requires gameState")
     assert(type(gameState) == "table")
+    assert(isNotEmpty(speciesName))
     
     local entity
     if name then
@@ -319,7 +335,7 @@ function Microbe.createMicrobeEntity(name, aiControlled, speciesName, in_editor,
         entity:addComponent(component)
     end
     
-    local newMicrobe = Microbe(entity, in_editor)
+    local newMicrobe = Microbe(entity, in_editor, gameState)
     assert(newMicrobe)
     assert(newMicrobe.microbe.initialized == true)
 
@@ -1287,7 +1303,8 @@ function MicrobeSystem:update(renderTime, logicTime)
         self.microbes[entityId] = nil
     end
     for _, entityId in pairs(self.entities:addedEntities()) do
-        local microbe = Microbe(Entity.new(entityId, self.gameState.wrapper))
+        local microbe = Microbe(Entity.new(entityId, self.gameState.wrapper), nil,
+                                self.gameState)
         self.microbes[entityId] = microbe
     end
     self.entities:clearChanges()
@@ -1305,8 +1322,8 @@ function MicrobeSystem:update(renderTime, logicTime)
             local microbe2Comp = getComponent(entity2, MicrobeComponent)
             if body1~=nil and body2~=nil then
                 -- Engulf initiation
-                checkEngulfment(microbe1Comp, microbe2Comp, body1, entity1, entity2)
-                checkEngulfment(microbe2Comp, microbe1Comp, body2, entity2, entity1)
+                self:checkEngulfment(microbe1Comp, microbe2Comp, body1, entity1, entity2)
+                self:checkEngulfment(microbe2Comp, microbe1Comp, body2, entity2, entity1)
             end
         end
     end
@@ -1320,14 +1337,14 @@ function MicrobeSystem:update(renderTime, logicTime)
         local agent = Entity.new(collision.entityId2, self.gameState.wrapper)
         
         if entity:exists() and agent:exists() then
-            Microbe(entity):damage(.5, "toxin")
+            Microbe(entity, nil, self.gameState):damage(.5, "toxin")
             agent:destroy()
         end
     end
     self.agentCollisions:clearCollisions()
 end
 
-function checkEngulfment(microbe1Comp, microbe2Comp, body, entity1, entity2)
+function MicrobeSystem:checkEngulfment(microbe1Comp, microbe2Comp, body, entity1, entity2)
     
     if microbe1Comp.engulfMode and 
        microbe1Comp.maxHitpoints > ENGULF_HP_RATIO_REQ*microbe2Comp.maxHitpoints and
@@ -1338,7 +1355,7 @@ function checkEngulfment(microbe1Comp, microbe2Comp, body, entity1, entity2)
             microbe2Comp.movementFactor = microbe2Comp.movementFactor / ENGULFED_MOVEMENT_DIVISION
             microbe1Comp.isCurrentlyEngulfing = true
             microbe2Comp.wasBeingEngulfed = true
-            microbeObj = Microbe(entity1)
+            microbeObj = Microbe(entity1, nil, self.gameState)
             microbe2Comp.hostileEngulfer = microbeObj
             body:disableCollisionsWith(entity2.id)     
             microbeObj.soundSource:playSound("microbe-engulfment")

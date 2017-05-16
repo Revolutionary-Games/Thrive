@@ -129,6 +129,24 @@ end
 function microbeSpawnFunctionGeneric(pos, speciesName, aiControlled, individualName, gameState)
 
     assert(gameState ~= nil)
+    assert(isNotEmpty(speciesName))
+
+    -- Workaround. Find a fix for this
+    if gameState ~= g_luaEngine.currentGameState then
+        print("Warning used different gameState than currentGameState in microbe spawn. " ..
+                  "This would have been bad in earlier versions")
+    end
+    
+    local processor = getComponent(speciesName, gameState, ProcessorComponent)
+
+    if processor == nil then
+
+        print("Skipping microbe spawn because species '" .. speciesName ..
+                  "' doesn't have a processor component")
+        
+        return nil
+    end
+    
     
     local microbe = Microbe.createMicrobeEntity(individualName, aiControlled, speciesName,
                                                 false, gameState)
@@ -277,6 +295,10 @@ local function createSpawnSystem()
     spawnSystem:addSpawnType(ChloroplastOrganelleSpawnFunction, 1/12000, 50)
 
     for name, species in pairs(starter_microbes) do
+
+        assert(isNotEmpty(name))
+        assert(species)
+        
         spawnSystem:addSpawnType(
             function(pos) 
                 return microbeSpawnFunctionGeneric(pos, name, true, nil,
