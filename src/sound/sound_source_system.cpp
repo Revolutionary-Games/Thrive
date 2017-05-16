@@ -578,10 +578,9 @@ SoundSourceSystem::update(
         OgreSceneNodeComponent* sceneNodeComponent = std::get<1>(value.second);
         for (const auto& pair : soundSourceComponent->m_sounds) {
             Sound* sound = pair.second.get();
-            assert(sound->m_sound && "Sound was not intialized");
             if (sound->m_properties.hasChanges()) {
                 const auto& properties = sound->m_properties;
-                
+
                 if(!sound->m_sound){
                     
                     std::cout << "invalid/uninitialized sound: " <<
@@ -600,6 +599,7 @@ SoundSourceSystem::update(
                     if(!sound->m_sound)
                         throw std::runtime_error("Failed to restoreSound on invalid sound");
                 }
+
 
                 auto ogreSound = sound->m_sound;
                 assert(ogreSound && "Sound was not intialized properly");
