@@ -31,7 +31,7 @@ void ProcessorComponent::luaBindings(
         "new", sol::factories([](){
                 return std::make_unique<ProcessorComponent>();
             }),
-        
+
         COMPONENT_BINDINGS(ProcessorComponent),
 
         "setCapacity", &ProcessorComponent::setCapacity
@@ -81,7 +81,7 @@ void CompoundBagComponent::luaBindings(
         "new", sol::factories([](){
                 return std::make_unique<CompoundBagComponent>();
             }),
-        
+
         COMPONENT_BINDINGS(CompoundBagComponent),
 
         "setProcessor", &CompoundBagComponent::setProcessor,
@@ -199,7 +199,7 @@ void ProcessSystem::luaBindings(
     lua.new_usertype<ProcessSystem>("ProcessSystem",
 
         sol::constructors<sol::types<>>(),
-        
+
         sol::base_classes, sol::bases<System>(),
 
         "init", &ProcessSystem::init
@@ -538,6 +538,14 @@ ProcessSystem::Implementation::update(int logicTime) {
                         bag->compounds[outputId].amount += rate * outputGenerated;
                     }
                 }
+            }
+
+            // Making sure the compound amount is not negative.
+            for (const auto& compound : bag->compounds) {
+                CompoundId compoundId = compound.first;
+                CompoundData &compoundData = bag->compounds[compoundId];
+                if(compoundData.amount < 0.0)
+                    compoundData.amount = 0.0;
             }
         }
     }
