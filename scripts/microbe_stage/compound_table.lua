@@ -26,9 +26,9 @@ compoundTable = {
         isCloud = true,
 
         colour = {
-            r = 60,
-            g = 160,
-            b = 180
+            r = 100,
+            g = 230,
+            b = 230
         }
     },
 
@@ -63,9 +63,9 @@ compoundTable = {
         isCloud = true,
 
         colour = {
-            r = 150,
-            g = 170,
-            b = 180
+            r = 220,
+            g = 220,
+            b = 220
         }
     },
 
