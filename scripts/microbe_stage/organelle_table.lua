@@ -21,6 +21,9 @@ Organelle atributes:
     gene:   The letter that will be used by the auto-evo system to
             identify this organelle.
 
+    chanceToCreate: The (relative) chance this organelle will appear in a randomly
+                    generated or mutated microbe (to do roulette selection).
+
     processes:  A table with all the processes this organelle does,
                 and the capacity of the process (the amount of
                 process that can be made in one second).
@@ -35,6 +38,7 @@ organelleTable = {
     ["nucleus"] = {
         mass = 0.7,
         gene = "N",
+        chanceToCreate = 0, -- Not randomly generated.
 
         components = {
             ["NucleusOrganelle"] = {}
@@ -74,6 +78,7 @@ organelleTable = {
 
         mass = 0.1,
         gene = "Y",
+        chanceToCreate = 1,
         mpCost = 5,
         mesh = nil, --it's an empty hex
         hexes = {
@@ -102,6 +107,7 @@ organelleTable = {
 
         mass = 0.4,
         gene = "H",
+        chanceToCreate = 2,
         mpCost = 20,
         mesh = "chloroplast.mesh",
         hexes = {
@@ -131,6 +137,7 @@ organelleTable = {
 
         mass = 0.3,
         gene = "T",
+        chanceToCreate = 1,
         mpCost = 40,
         mesh = "oxytoxy.mesh",
         hexes = {
@@ -157,6 +164,7 @@ organelleTable = {
 
         mass = 0.3,
         gene = "M",
+        chanceToCreate = 3,
         mpCost = 20,
         mesh = "mitochondrion.mesh",
         hexes = {
@@ -180,6 +188,7 @@ organelleTable = {
 
         mass = 0.4,
         gene = "V",
+        chanceToCreate = 3,
         mpCost = 15,
         mesh = "vacuole.mesh",
         hexes = {
@@ -203,6 +212,7 @@ organelleTable = {
 
         mass = 0.3,
         gene = "F",
+        chanceToCreate = 3,
         mpCost = 25,
         mesh = "flagellum.mesh",
         hexes = {
