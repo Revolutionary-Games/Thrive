@@ -411,6 +411,7 @@ install(DIRECTORY "${ASSET_DIRECTORY}/materials"
         PATTERN "*.material"
         PATTERN "*.png"
         PATTERN "*.cg"
+        PATTERN "*.program"
         PATTERN "*.ps"
         PATTERN "*.vs"
 )
