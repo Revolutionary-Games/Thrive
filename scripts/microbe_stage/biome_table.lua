@@ -16,10 +16,10 @@ biomeTable = {
         sunlight = 75,
         background = "Background",
         compounds = {
-            oxygen = 32500,
-            co2 = 32500,
-            ammonia = 32500,
-            glucose = 32500
+            oxygen = 65000,
+            co2 = 65000,
+            ammonia = 65000,
+            glucose = 65000
         }
     },
 
@@ -28,10 +28,10 @@ biomeTable = {
         sunlight = 40,
         background = "Background_Vent",
         compounds = {
-            oxygen = 30000,
-            co2 = 75000,
-            ammonia = 42500,
-            glucose = 32500
+            oxygen = 60000,
+            co2 = 100000,
+            ammonia = 85000,
+            glucose = 65000
         }
     },
 
@@ -40,10 +40,10 @@ biomeTable = {
         sunlight = 5,
         background = "Background_Abyss",
         compounds = {
-            oxygen = 25000,
-            co2 = 35000,
-            ammonia = 35000,
-            glucose = 40000
+            oxygen = 50000,
+            co2 = 70000,
+            ammonia = 70000,
+            glucose = 80000
         }
     },
 
@@ -52,10 +52,10 @@ biomeTable = {
         sunlight = 90,
         background = "Background_Shallow",
         compounds = {
-            oxygen = 50000,
-            co2 = 35000,
-            ammonia = 30000,
-            glucose = 35000
+            oxygen = 100000,
+            co2 = 70000,
+            ammonia = 60000,
+            glucose = 70000
         }
     }
 }
