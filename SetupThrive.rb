@@ -42,10 +42,26 @@ end
 
 def parseExtraArgs
 
+  if ARGV.length > 1
+
+    onError("Unrecognized command line options.\n" +
+            "Expected only username in addition to other arguments. Got: #{ARGV.join(' ')}")
+    
+  end
+  
+  $svnUser = ARGV[0]
+  ARGV.shift
+  
 end
 
 require_relative 'RubySetupSystem/RubySetupSystem.rb'
 require_relative 'RubySetupSystem/Libraries/SetupLeviathan.rb'
+
+if !$svnUser
+  $svnUser = "thrive"
+end
+
+WantedURL = "https://#{$svnUser}@boostslair.com/svn/thrive_assets"
 
 leviathan = Leviathan.new(
   version: "develop",
@@ -90,15 +106,17 @@ Dir.chdir(ProjectDir) do
   if not File.exist? "assets"
     
     info "Getting assets"
-    
-    system "svn checkout http://assets.revolutionarygamesstudio.com/ assets"
-    onError "Failed to get thrive assets repository" if $?.exitstatus > 0
+    if runOpen3("svn", "checkout", WantedURL, "assets") != 0
+      onError "Failed to get thrive assets repository"
+    end
     
   else
 
     info "Updating assets"
 
     Dir.chdir("assets") do
+
+      verifySVNUrl(WantedURL)
 
       system "svn up"
       onError "Failed to update thrive assets" if $?.exitstatus > 0
