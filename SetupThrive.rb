@@ -1,159 +1,89 @@
 #!/usr/bin/env ruby
 # coding: utf-8
-# Setup script for Thrive. Windows mode is experimental and isn't tested
+# Setup script for Thrive.
+
+# RubySetupSystem Bootstrap
+if not File.exists? "RubySetupSystem/RubySetupSystem.rb"
+  puts "Initializing RubySetupSystem"
+  system "git submodule init --recursive && git submodule update --recursive"
+
+  if $?.exitstatus != 0
+    abort("Failed to initialize or update git submodules. " +
+          "Please make sure git is in path and " +
+          "you have an ssh key setup for your github account")
+  end
+end
 
 require 'fileutils'
 
-require_relative 'linux_setup/RubyCommon.rb'
 
-def checkRunFolder(suggestedfolder)
+require_relative 'RubySetupSystem/RubyCommon.rb'
 
-  if File.exist? "thriveversion.ver" or File.basename(Dir.getwd) == "thrive"
+def checkRunFolder(suggested)
 
-    # Inside thrive folder
-    info "Running from inside thrive folder"
+  versionFile = File.join(suggested, "thriveversion.ver")
 
-    return File.expand_path("..", Dir.pwd)
-    
-  else
+  onError("Not ran from Thrive base directory!") if not File.exist?(versionFile)
 
-    # Outside, install thrive here
-    info "Running outside thrive folder. Thrive folder will be created here"
+  thirdPartyFolder = File.join suggested, "ThirdParty"
 
-    return Dir.pwd
-    
-  end
+  FileUtils.mkdir_p thirdPartyFolder
+  FileUtils.mkdir_p File.join suggested, "build", "ThirdParty"
+  
+  thirdPartyFolder
+  
 end
 
 def projectFolder(baseDir)
 
-  return File.join baseDir, "thrive"
+  File.expand_path File.join(baseDir, "../")
   
 end
 
-ThriveBranch = "master"
-#ThriveBranch = "ruby_setup"
-SkipPackageManager = false
+def parseExtraArgs
 
-require_relative 'linux_setup/RubySetupSystem.rb'
-
-# Install packages
-if BuildPlatform == "linux" and not SkipPackageManager
-
-  LinuxOS = getLinuxOS
-
-  info "Installing packages"
-
-  CommonPackages = "cmake make git mercurial svn"
-
-  if LinuxOS.casecmp("Fedora") == 0
-
-    PackageManager = "dnf install -y "
-    
-    PackagesToInstall = "bullet-devel boost gcc-c++ libXaw-devel freetype-devel " +
-                        "freeimage-devel zziplib-devel boost-devel ois-devel tinyxml-devel " +
-                        "glm-devel ffmpeg-devel ffmpeg-libs openal-soft-devel libatomic"
-
-  elsif LinuxOS.casecmp("Ubuntu") == 0
-
-    PackageManager = "apt-get install -y "
-    
-	PackagesToInstall = "bullet-dev boost-dev build-essential automake libtool " +
-                        "libfreetype6-dev libfreeimage-dev libzzip-dev libxrandr-dev " +
-                        "libxaw7-dev freeglut3-dev libgl1-mesa-dev libglu1-mesa-dev " +
-                        "libois-dev libboost-thread-dev tinyxml-dev glm-dev ffmpeg-dev " +
-                        "libavutil-dev libopenal-dev"
-
-  elsif LinuxOS.casecmp("Arch") == 0
-
-    PackageManager = "pacman -S --noconfirm --color auto --needed"
-    
-	PackagesToInstall = "bullet boost automake libtool freetype2 freeimage zziplib " +
-                        "libxrandr libxaw freeglut libgl ois tinyxml glm ffmpeg openal"
-    
-	if `pacman -Qs gcc-multilib`
-      
-	  PackagesToInstall += " gcc-multilib autoconf automake binutils bison fakeroot file " +
-                           "findutils flex gawk gettext grep groff gzip libtool m4 make " +
-                           "pacman patch pkg-config sed sudo texinfo util-linux which"
-	else
-      
-	  PackagesToInstall += " base-devel"
-      
-    end
-    
-  else
-
-    onError "Unknown operating system: #{LinuxOS}"
-    
-  end
-
-  info "Installing prerequisite libraries, be prepared to type password for sudo"
-
-  system "sudo #{PackageManager} #{CommonPackages} #{PackagesToInstall}"
-  onError "Failed to install package manager dependencies" if $?.exitstatus > 0
-    
-  success "Packages installed"
-  
 end
 
-installer = Installer.new(
-  Array[CAudio.new, Ogre.new,
-        # CEGUI uses commit 869014de5669
-        CEGUI.new
-       ])
+require_relative 'RubySetupSystem/RubySetupSystem.rb'
+require_relative 'RubySetupSystem/Libraries/SetupLeviathan.rb'
+
+leviathan = Leviathan.new(
+  version: "develop",
+  # Doesn't actually work, but leviathan doesn't install with sudo by
+  # default, or install at all for that matter
+  noInstallSudo: true
+)
+
+puts ""
+puts ""
+
+info "Running the engine compilation"
+
+installer = Installer.new([leviathan])
 
 installer.run
 
 info "Thrive folder setup"
 
+if not File.exist? ProjectDir
 
+  onError "'thrive' folder is missing"
 
-if not File.exist? File.join(CurrentDir, "thrive")
-
-  info "Thrive folder doesn't exist, cloning from git"
-
-  Dir.chdir(CurrentDir) do
-    
-    system "git clone https://github.com/Revolutionary-Games/Thrive.git thrive"
-    onError "Failed to clone repository" if $?.exitstatus > 0
-    
-    Dir.chdir("thrive") do
-
-      systemChecked "git submodule update --init --recursive"
-      
-    end
-  end
 end
 
 success "Thrive folder exists"
 
-Dir.chdir(File.join(CurrentDir, "thrive")) do
+Dir.chdir(ProjectDir) do
   
-  system "git checkout #{ThriveBranch}"
+  system "git pull"
 
   if $?.exitstatus > 0
 
-    warning "Failed to checkout target thrive branch"
-
-  else
-    
-    systemChecked "git pull --recurse-submodules origin #{ThriveBranch}"
+    warning "Failed to pull thrive repo"
     
   end
 
   systemChecked "git submodule update --recursive"
-
-  # submodule init check
-  if not File.exists? File.join(CurrentDir, "thrive", "contrib/lua/luajit/src", "lua.hpp")
-
-    warning "Submodules haven't been initialized, initializing now"
-    
-    systemChecked "git submodule update --init --recursive"
-
-    success "Submodules are now initialized"
-
-  end
 
   info "Checking assets"
 
@@ -200,32 +130,7 @@ Dir.chdir(File.join(CurrentDir, "thrive")) do
   success "luajit is ok"
   
   FileUtils.mkdir_p "build"
-  FileUtils.mkdir_p "build/dist"
-  FileUtils.mkdir_p "build/dist/bin"
 
-  info "Making links"
-
-  # It seems that if the link is created when it already exists a link is created into
-  # the target folder for some reason
-  createLinkIfDoesntExist "assets/cegui_examples", "cegui_examples"
-  createLinkIfDoesntExist "assets/fonts", "fonts"
-  createLinkIfDoesntExist "assets/gui", "gui"
-  createLinkIfDoesntExist "assets/materials", "materials"
-  createLinkIfDoesntExist "assets/models", "models"
-  createLinkIfDoesntExist "assets/sounds", "sounds"
-  createLinkIfDoesntExist "assets/videos", "videos"
-
-  Dir.chdir("build") do
-    FileUtils.ln_sf "dist/bin/Thrive", "Thrive"
-  end
-
-  info "Copying Ogre resources file"
-  FileUtils.cp "ogre_cfg/resources.cfg", "./build/resources.cfg"
-
-  info "Copying completety pointless Ogre files"
-
-  FileUtils.cp "/usr/local/share/OGRE/plugins.cfg", "./build/plugins.cfg"
-  
 end
 
 success "Thrive folder and assets are good to go"
