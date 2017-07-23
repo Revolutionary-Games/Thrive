@@ -129,7 +129,7 @@ Dir.chdir(ProjectDir) do
 
   info "Building luajit"
 
-  Dir.chdir(File.join(CurrentDir, "thrive", "contrib/lua/luajit/src")) do
+  Dir.chdir(File.join(ProjectDir, "contrib/lua/luajit/src")) do
 
     # Make sure XCFLAGS+= -DLUAJIT_ENABLE_LUA52COMPAT is uncommented
     outdata = File.read("Makefile").gsub(/#XCFLAGS\+= -DLUAJIT_ENABLE_LUA52COMPAT/,
@@ -159,9 +159,9 @@ info "Compiling thrive"
 
 # Build directory is made earlier
 
-Dir.chdir(File.join(CurrentDir, "thrive", "build")) do
+Dir.chdir(File.join(ProjectDir, "build")) do
 
-  runCMakeConfigure "-DCMAKE_EXPORT_COMPILE_COMMANDS=ON"
+  runCMakeConfigure ["-DCMAKE_EXPORT_COMPILE_COMMANDS=ON"]
 
   if $?.exitstatus > 0
     onError "Failed to configure Thrive. Are you using a broken version, " +
