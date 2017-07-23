@@ -99,7 +99,7 @@ Dir.chdir(ProjectDir) do
     
   end
 
-  systemChecked "git submodule update --recursive"
+  runOpen3Checked("git", "submodule", "update", "--recursive")
 
   info "Checking assets"
 
