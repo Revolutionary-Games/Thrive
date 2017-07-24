@@ -1,14 +1,238 @@
-add_sources(
-    "${CMAKE_CURRENT_SOURCE_DIR}/game.cpp"
-    "${CMAKE_CURRENT_SOURCE_DIR}/game.h"
-)
 
-add_subdirectory(bullet)
-add_subdirectory(engine)
-add_subdirectory(general)
-add_subdirectory(gui)
-add_subdirectory(microbe_stage)
-add_subdirectory(ogre)
-add_subdirectory(scripting)
-add_subdirectory(sound)
-add_subdirectory(util)
+
+# Add source files to the list
+set(GROUP_BULLET 
+  "bullet/bullet_ogre_conversion.h"
+  "bullet/bullet_to_ogre_system.cpp"
+  "bullet/bullet_to_ogre_system.h"
+  "bullet/collision_shape.cpp"
+  "bullet/collision_shape.h"
+  "bullet/debug_drawing.cpp"
+  "bullet/debug_drawing.h"
+  "bullet/rigid_body_system.cpp"
+  "bullet/rigid_body_system.h"
+  "bullet/update_physics_system.cpp"
+  "bullet/update_physics_system.h"
+  "bullet/collision_system.cpp"
+  "bullet/collision_system.h"
+  "bullet/collision_filter.cpp"
+  "bullet/collision_filter.h"
+  "bullet/physical_world.cpp"
+  "bullet/physical_world.h"
+  )
+
+set(GROUP_ENGINE
+  "engine/component.cpp"
+  "engine/component.h"
+  "engine/component_collection.cpp"
+  "engine/component_collection.h"
+  "engine/component_factory.cpp"
+  "engine/component_factory.h"
+  "engine/engine.cpp"
+  "engine/engine.h"
+  "engine/entity.cpp"
+  "engine/entity.h"
+  "engine/entity_filter.h"
+  "engine/entity_manager.cpp"
+  "engine/entity_manager.h"
+  "engine/game_state.cpp"
+  "engine/game_state.h"
+  "engine/player_data.cpp"
+  "engine/player_data.h"
+  "engine/rng.cpp"
+  "engine/rng.h"
+  "engine/rolling_grid.cpp"
+  "engine/rolling_grid.h"
+  "engine/serialization.cpp"
+  "engine/serialization.h"
+  "engine/system.cpp"
+  "engine/system.h"
+  "engine/touchable.cpp"
+  "engine/touchable.h"
+
+
+  "engine/component.cpp"
+  "engine/component.h"
+  "engine/component_collection.cpp"
+  "engine/component_collection.h"
+  "engine/component_factory.cpp"
+  "engine/component_factory.h"
+  "engine/engine.cpp"
+  "engine/engine.h"
+  "engine/entity.cpp"
+  "engine/entity.h"
+  "engine/entity_filter.h"
+  "engine/entity_manager.cpp"
+  "engine/entity_manager.h"
+  "engine/game_state.cpp"
+  "engine/game_state.h"
+  "engine/player_data.cpp"
+  "engine/player_data.h"
+  "engine/rng.cpp"
+  "engine/rng.h"
+  "engine/rolling_grid.cpp"
+  "engine/rolling_grid.h"
+  "engine/serialization.cpp"
+  "engine/serialization.h"
+  "engine/system.cpp"
+  "engine/system.h"
+  "engine/touchable.cpp"
+  "engine/touchable.h"
+  )
+
+set(GROUP_GENERAL
+  "general/timed_life_system.cpp"
+  "general/timed_life_system.h"
+  "general/locked_map.cpp"
+  "general/locked_map.h"
+  "general/powerup_system.cpp"
+  "general/powerup_system.h"
+  "general/perlin_noise.cpp"
+  "general/perlin_noise.h"
+  "general/thrive_math.cpp"
+  "general/thrive_math.h"
+  )
+
+set(GROUP_MICROBE_STAGE
+  "microbe_stage/compound.cpp"
+  "microbe_stage/compound.h"
+  "microbe_stage/compound_registry.h"
+  "microbe_stage/compound_registry.cpp"
+  "microbe_stage/compound_absorber_system.cpp"
+  "microbe_stage/compound_absorber_system.h"
+  "microbe_stage/compound_emitter_system.cpp"
+  "microbe_stage/compound_emitter_system.h"
+  "microbe_stage/bio_process_registry.cpp"
+  "microbe_stage/bio_process_registry.h"
+  "microbe_stage/membrane_system.cpp"
+  "microbe_stage/membrane_system.h"
+  "microbe_stage/compound_cloud_system.cpp"
+  "microbe_stage/compound_cloud_system.h"
+  "microbe_stage/process_system.cpp"
+  "microbe_stage/process_system.h"
+  "microbe_stage/agent_cloud_system.cpp"
+  "microbe_stage/agent_cloud_system.h"
+  "microbe_stage/species_component.cpp"
+  "microbe_stage/species_component.h"
+  )
+
+set(GROUP_OGRE
+  "ogre/camera_system.cpp"
+  "ogre/camera_system.h"
+  "ogre/colour_material.cpp"
+  "ogre/colour_material.h"
+  "ogre/keyboard.cpp"
+  "ogre/keyboard.h"
+  "ogre/light_system.cpp"
+  "ogre/light_system.h"
+  "ogre/mouse.cpp"
+  "ogre/mouse.h"
+  "ogre/render_system.cpp"
+  "ogre/render_system.h"
+  "ogre/scene_node_system.cpp"
+  "ogre/scene_node_system.h"
+  "ogre/sky_system.cpp"
+  "ogre/sky_system.h"
+  "ogre/workspace_system.h"
+  "ogre/workspace_system.cpp"
+  )
+
+set(GROUP_SCRIPTING
+  "scripting/luajit.h"
+  "scripting/script_entity_filter.cpp"
+  "scripting/script_entity_filter.h"
+  "scripting/script_initializer.cpp"
+  "scripting/script_initializer.h"
+  "scripting/script_wrapper.h"
+  "scripting/wrapper_classes.cpp"
+  "scripting/wrapper_classes.h"
+  "scripting/script_helpers.h"
+  )
+
+set(GROUP_SOUND
+  "sound/sound_source_system.cpp"
+  "sound/sound_source_system.h"
+  "sound/caudio_include.h"
+  "sound/node_attachable.h"
+  "sound/node_attachable.cpp"
+  "sound/sound_emitter.h"
+  "sound/sound_emitter.cpp"
+  "sound/sound_listener.cpp"
+  "sound/sound_listener.h"
+  "sound/sound_manager.cpp"
+  "sound/sound_manager.h"
+  "sound/sound_memory_stream.cpp"
+  "sound/sound_memory_stream.h"
+  )
+  
+set(GROUP_UTIL
+  "util/pair_hash.h"
+  )
+
+
+# Groups for better visual studio experience
+source_group("bullet" FILES ${GROUP_BULLET})
+source_group("engine" FILES ${GROUP_ENGINE})
+source_group("general" FILES ${GROUP_GENERAL})
+source_group("gui" FILES ${GROUP_GUI})
+source_group("microbe_stage" FILES ${GROUP_MICROBE_STAGE})
+source_group("ogre" FILES ${GROUP_OGRE})
+source_group("scripting" FILES ${GROUP_SCRIPTING})
+source_group("sound" FILES ${GROUP_SOUND})
+source_group("util" FILES ${GROUP_UTIL})
+
+set(THRIVE_FILES ${GROUP_BULLET} ${GROUP_ENGINE}
+  ${GROUP_GENERAL} ${GROUP_GUI} ${GROUP_MICROBE_STAGE}
+  ${GROUP_OGRE} ${GROUP_SCRIPTING} ${GROUP_SOUND}
+  ${GROUP_UTIL}
+  )
+
+# Leviathan program setup
+
+set(BaseProgramName "Thrive")
+set(BaseIncludeFileName "thrive_include.h")
+set(BaseSubFolder "src")
+
+configure_file("${LEVIATHAN_SRC}/File Templates/BaseLeviathanProjectIncludes.h.in" 
+  "${PROJECT_SOURCE_DIR}/src/thrive_include.h")
+
+# Set all the settings
+set(ProgramIncludesHeader "${BaseIncludeFileName}")
+set(ProgramAppHeader "ThriveGame.h")
+
+
+# ------------------ ProgramConfiguration ------------------ #
+set(PROGRAMCLASSNAME				ThriveGame)
+set(PROGRAMLOG						ThriveLog)
+set(PROGRAMCONFIGURATION			"./ThriveGame.conf")
+set(PROGRAMKEYCONFIGURATION			"./ThriveKeybindings.conf")
+set(PROGRAMCHECKCONFIGFUNCNAME		"ThriveGame::CheckGameConfigurationVariables")
+set(PROGRAMCHECKKEYCONFIGFUNCNAME	"ThriveGame::CheckGameKeyConfigVariables")
+set(WINDOWTITLEGENFUNCTION			"ThriveGame::GenerateWindowTitle()")
+set(USERREADABLEIDENTIFICATION		"\"Thrive game version \" GAME_VERSIONS")
+
+# Configure the main file
+configure_file("${LEVIATHAN_SRC}/File Templates/BaseLeviathanProjectMain.cpp.in" 
+  "${PROJECT_SOURCE_DIR}/${BaseSubFolder}/Main.cpp")
+
+include_directories(${CMAKE_CURRENT_LIST_DIR})
+
+set(CurrentProjectName Thrive)
+set(AllProjectFiles
+  ${BaseIncludeFileName}
+  "Main.cpp"
+  )
+
+# Compile a common library
+add_library(ThriveLib STATIC ${THRIVE_FILES})
+
+target_link_libraries(ThriveLib ${DEPENDENT_LIBS})
+
+
+# Include the common file
+set(CREATE_CONSOLE_APP OFF)
+include(LeviathanUsingProject)
+
+# The project is now defined
+target_link_libraries(Thrive ThriveLib)
+
