@@ -190,11 +190,11 @@ set(THRIVE_FILES ${GROUP_BULLET} ${GROUP_ENGINE}
 # Leviathan program setup
 
 set(BaseProgramName "Thrive")
-set(BaseIncludeFileName "thrive_include.h")
+set(BaseIncludeFileName "thrive_version.h")
 set(BaseSubFolder "src")
 
 configure_file("${LEVIATHAN_SRC}/File Templates/BaseLeviathanProjectIncludes.h.in" 
-  "${PROJECT_SOURCE_DIR}/src/thrive_include.h")
+  "${PROJECT_SOURCE_DIR}/src/thrive_version.h")
 
 # Set all the settings
 set(ProgramIncludesHeader "${BaseIncludeFileName}")

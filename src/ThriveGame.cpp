@@ -2,6 +2,7 @@
 #include "ThriveGame.h"
 
 #include "thrive_net_handler.h"
+#include "thrive_version.h"
 
 #include "Networking/NetworkHandler.h"
 #include "Rendering/GraphicalInputEntity.h"
@@ -20,7 +21,7 @@ ThriveGame::~ThriveGame(){
 
 std::string ThriveGame::GenerateWindowTitle(){
 
-    return "Fabricators Client";
+    return "Thrive " GAME_VERSIONS;
 }
 
 ThriveGame* ThriveGame::Get(){
