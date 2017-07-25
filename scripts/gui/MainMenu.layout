@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<GUILayout version="4" >
+    <Window type="DefaultWindow" name="MainMenuRoot" >
+        <Window type="Thrive/Image" name="Background" >
+            <Property name="Area" value="{{0,0},{0,0},{1.0,0},{1.0,0}}" />
+            <Property name="MaxSize" value="{{1,0},{1,0}}" />
+            <Property name="Image" value="ThriveBackground/Background" />
+
+            <Window name="Star" type="Thrive/Image" >
+                <Property name="Position" value="{{0,0},{0,0}}" />
+                <Property name="Size" value="{{0,706},{0,710}}" />
+                <Property name="Image" value="ThriveBackground/Star" />
+            </Window>
+
+            <Window name="MoreStars" type="Thrive/Image" >
+                <Property name="Position" value="{{1.0,-418},{1.0,-369}}" />
+                <Property name="Size" value="{{0,418},{0,369}}" />
+                <Property name="Image" value="ThriveBackground/MoreStars" />
+            </Window>
+        
+            <Window name="Planet" type="Thrive/Image" >
+                <Property name="Position" value="{{0.5,-203},{0.268,-169}}" />
+                <Property name="Size" value="{{0,369},{0,338}}" />
+                <Property name="Image" value="ThriveBackground/Planet" />
+            </Window>
+        
+            <Window name="MainMenuInteractive" type="DefaultWindow" >
+                <Window name="ThriveIcon" type="Thrive/Image">
+                    <Property name="Position" value="{{0.5,-140},{0.268,-140}}" />
+                    <Property name="Image" value="ThriveGeneric/ThriveLogo" />
+                    <Property name="Size" value="{{0,280},{0,280}}" />
+                    <Property name="TooltipText" value="Will you Thrive?" />
+                </Window>
+            
+                <Window name="NewGameButton" type="Thrive/PolyButton" >
+                    <Property name="Position" value="{{0.5,-140},{1.0,-380}}" />
+                    <Property name="Image" value="ThriveGeneric/MenuNormal" />
+                    <Property name="PushedImage" value="ThriveGeneric/MenuHover" />
+                    <Property name="HoverImage" value="ThriveGeneric/MenuHover" />
+                    <Property name="DisabledImage" value="ThriveGeneric/MenuDisabled" />
+                    <Property name="Size" value="{{0,280},{0,40}}" />
+                    <Property name="Text" value="New Game" />
+                    <Property name="Font" value="Thrive-15" />
+                    <Property name="NormalTextColour" value="FFFFFFFF" />
+                    <Property name="HoverTextColour" value="FFFFFFFF" />
+                    <Property name="PushedTextColour" value="FFFFFFFF" />
+                    <Property name="DisabledTextColour" value="FFACACAC" />
+                    <Property name="textOffsetY" value="-5" />
+                    <Property name="TooltipText" value="Enter the microbe stage!" />
+                </Window>
+        
+                <Window name="LoadGameButton" type="Thrive/PolyButton" >
+                    <Property name="Position" value="{{0.5,-140},{1.0,-330}}" />
+                    <Property name="Image" value="ThriveGeneric/MenuNormal" />
+                    <Property name="PushedImage" value="ThriveGeneric/MenuHover" />
+                    <Property name="HoverImage" value="ThriveGeneric/MenuHover" />
+                    <Property name="DisabledImage" value="ThriveGeneric/MenuDisabled" />
+                    <Property name="Size" value="{{0,280},{0,40}}" />
+                    <Property name="Text" value="Load Game" />
+                    <Property name="Font" value="Thrive-15" />
+                    <Property name="NormalTextColour" value="FFFFFFFF" />
+                    <Property name="HoverTextColour" value="FFFFFFFF" />
+                    <Property name="PushedTextColour" value="FFFFFFFF" />
+                    <Property name="DisabledTextColour" value="FFACACAC" />
+                    <Property name="textOffsetY" value="-5" />
+                    <Property name="TooltipText" value="Load a previously saved game" />
+                </Window>
+
+                <Window name="OptionsButton" type="Thrive/PolyButton" >
+                    <Property name="Position" value="{{0.5,-140},{1.0,-280}}" />
+                    <Property name="Image" value="ThriveGeneric/MenuNormal" />
+                    <Property name="PushedImage" value="ThriveGeneric/MenuHover" />
+                    <Property name="HoverImage" value="ThriveGeneric/MenuHover" />
+                    <Property name="PushedImage" value="ThriveGeneric/MenuNormal" />
+                    <Property name="HoverImage" value="ThriveGeneric/MenuHover" />
+                    <Property name="DisabledImage" value="ThriveGeneric/MenuDisabled" />
+                    <Property name="Size" value="{{0,280},{0,40}}" />
+                    <Property name="Text" value="Options" />
+                    <Property name="Font" value="Thrive-15" />
+                    <Property name="NormalTextColour" value="FFFFFFFF" />
+                    <Property name="HoverTextColour" value="FFFFFFFF" />
+                    <Property name="PushedTextColour" value="FFFFFFFF" />
+                    <Property name="DisabledTextColour" value="FFACACAC" />
+                    <Property name="Disabled" value="True" />
+                    <Property name="textOffsetY" value="-5" />
+                    <Property name="TooltipText" value="Change your settings" />
+                </Window>
+
+                <Window name="ToolsButton" type="Thrive/PolyButton" >
+                    <Property name="Position" value="{{0.5,-140},{1.0,-230}}" />
+                    <Property name="PushedImage" value="ThriveGeneric/MenuHover" />
+                    <Property name="HoverImage" value="ThriveGeneric/MenuHover" />
+                    <Property name="DisabledImage" value="ThriveGeneric/MenuDisabled" />
+                    <Property name="Size" value="{{0,280},{0,40}}" />
+                    <Property name="Text" value="Tools" />
+                    <Property name="Font" value="Thrive-15" />
+                    <Property name="NormalTextColour" value="FFFFFFFF" />
+                    <Property name="HoverTextColour" value="FFFFFFFF" />
+                    <Property name="PushedTextColour" value="FFFFFFFF" />
+                    <Property name="DisabledTextColour" value="FFACACAC" />
+                    <Property name="Disabled" value="True" />
+                    <Property name="textOffsetY" value="-5" />
+                </Window>
+
+                <Window name="ExtrasButton" type="Thrive/PolyButton" >
+                    <Property name="Position" value="{{0.5,-140},{1.0,-180}}" />
+                    <Property name="PushedImage" value="ThriveGeneric/MenuHover" />
+                    <Property name="HoverImage" value="ThriveGeneric/MenuHover" />
+                    <Property name="DisabledImage" value="ThriveGeneric/MenuDisabled" />
+                    <Property name="Size" value="{{0,280},{0,40}}" />
+                    <Property name="Text" value="Extras" />
+                    <Property name="Font" value="Thrive-15" />
+                    <Property name="NormalTextColour" value="FFFFFFFF" />
+                    <Property name="HoverTextColour" value="FFFFFFFF" />
+                    <Property name="PushedTextColour" value="FFFFFFFF" />
+                    <Property name="DisabledTextColour" value="FFACACAC" />
+                    <Property name="Disabled" value="True" />
+                    <Property name="textOffsetY" value="-5" />
+                </Window>
+
+                <Window name="CreditsButton" type="Thrive/PolyButton" >
+                    <Property name="Position" value="{{0.5,-140},{1.0,-130}}" />
+                    <Property name="PushedImage" value="ThriveGeneric/MenuHover" />
+                    <Property name="HoverImage" value="ThriveGeneric/MenuHover" />
+                    <Property name="DisabledImage" value="ThriveGeneric/MenuDisabled" />
+                    <Property name="Size" value="{{0,280},{0,40}}" />
+                    <Property name="Text" value="Credits" />
+                    <Property name="Font" value="Thrive-15" />
+                    <Property name="NormalTextColour" value="FFFFFFFF" />
+                    <Property name="Disabled" value="True" />
+                    <Property name="HoverTextColour" value="FFFFFFFF" />
+                    <Property name="PushedTextColour" value="FFFFFFFF" />
+                    <Property name="DisabledTextColour" value="FFACACAC" />
+                    <Property name="textOffsetY" value="-5" />
+                </Window>
+
+                <Window name="ExitGameButton" type="Thrive/PolyButton" >
+                    <Property name="Position" value="{{0.5,-140},{1.0,-80}}" />
+                    <Property name="Image" value="ThriveGeneric/MenuNormal" />
+                    <Property name="PushedImage" value="ThriveGeneric/MenuHover" />
+                    <Property name="HoverImage" value="ThriveGeneric/MenuHover" />
+                    <Property name="DisabledImage" value="ThriveGeneric/MenuDisabled" />
+                    <Property name="Size" value="{{0,280},{0,40}}" />
+                    <Property name="Text" value="Exit" />
+                    <Property name="Font" value="Thrive-15" />
+                    <Property name="NormalTextColour" value="FFFFFFFF" />
+                    <Property name="HoverTextColour" value="FFFFFFFF" />
+                    <Property name="PushedTextColour" value="FFFFFFFF" />
+                    <Property name="DisabledTextColour" value="FFACACAC" />
+                    <Property name="textOffsetY" value="-5" />
+                    <Property name="TooltipText" value="Exit to Desktop" />
+                </Window>
+
+                <Window type="Thrive/Label" name="VersionLabel" >
+                    <Property name="Position" value="{{0.465,0},{0.935,0}}" />
+                    <Property name="Size" value="{{0.3,0},{0.1,0}}" />
+                    <Property name="MaxSize" value="{{1,0},{1,0}}" />
+                    <Property name="Text" value="loading version number" />
+                    <Property name="Font" value="Thrive-8" />
+                    <Property name="NormalTextColour" value="FFFFFFFF" />
+                    <Property name="CursorPassThroughEnabled" value="True" />
+                    <Property name="HorizontalAlignment" value="Centre" />
+                </Window>
+                
+                
+                <Window name="OptionsPanel" type="Thrive/Image" >
+                    <Property name="Visible" value="False"/>
+                    <Property name="Position" value="{{0.5,-200},{0.015,0}}" />
+                    <Property name="Size" value="{{0,400 },{0,400}}" />
+                    <Property name="Image" value="ThriveGeneric/HelpPanel" />
+                    
+                    <Window name="CloseOptionsButton" type="Thrive/PolyButton" >
+                        <Property name="Position" value="{{0.5,-143},{1.0,-82}}" />
+                        <Property name="Image" value="ThriveGeneric/MenuNormal" />
+                        <Property name="PushedImage" value="ThriveGeneric/MenuHover" />
+                        <Property name="HoverImage" value="ThriveGeneric/MenuHover" />
+                        <Property name="DisabledImage" value="ThriveGeneric/MenuDisabled" />
+                        <Property name="Size" value="{{0,286},{0,58}}" />
+                        <Property name="Text" value="Save and Exit" />
+                        <Property name="Font" value="Thrive-15" />
+                        <Property name="NormalTextColour" value="FFFFFFFF" />
+                        <Property name="HoverTextColour" value="FFFFFFFF" />
+                        <Property name="PushedTextColour" value="FFFFFFFF" />
+                        <Property name="DisabledTextColour" value="FFACACAC" />
+                        <Property name="textOffsetY" value="-10" />
+                    </Window>
+                    
+                    <Window name="ToggleFullscreenButton" type="Thrive/PolyButton" >
+                        <Property name="Position" value="{{0.5,-143},{0.0,82}}" />
+                        <Property name="Image" value="ThriveGeneric/MenuNormal" />
+                        <Property name="PushedImage" value="ThriveGeneric/MenuHover" />
+                        <Property name="HoverImage" value="ThriveGeneric/MenuHover" />
+                        <Property name="DisabledImage" value="ThriveGeneric/MenuDisabled" />
+                        <Property name="Size" value="{{0,300},{0,58}}" />
+                        <Property name="Text" value="Toggle Fullscreen" />
+                        <Property name="Font" value="Thrive-15" />
+                        <Property name="NormalTextColour" value="FFFFFFFF" />
+                        <Property name="HoverTextColour" value="FFFFFFFF" />
+                        <Property name="PushedTextColour" value="FFFFFFFF" />
+                        <Property name="DisabledTextColour" value="FFACACAC" />
+                        <Property name="textOffsetY" value="-10" />
+                    </Window>
+                    
+                    <Window name="ToggleAntialiasingButton" type="Thrive/PolyButton" >
+                        <Property name="Disabled" value="True" />
+                        <Property name="Position" value="{{0.5,-143},{0.0,140}}" />
+                        <Property name="Image" value="ThriveGeneric/MenuNormal" />
+                        <Property name="PushedImage" value="ThriveGeneric/MenuHover" />
+                        <Property name="HoverImage" value="ThriveGeneric/MenuHover" />
+                        <Property name="DisabledImage" value="ThriveGeneric/MenuDisabled" />
+                        <Property name="Size" value="{{0,300},{0,58}}" />
+                        <Property name="Text" value="Toggle Antialiasing" />
+                        <Property name="Font" value="Thrive-15" />
+                        <Property name="NormalTextColour" value="FFFFFFFF" />
+                        <Property name="HoverTextColour" value="FFFFFFFF" />
+                        <Property name="PushedTextColour" value="FFFFFFFF" />
+                        <Property name="DisabledTextColour" value="FFACACAC" />
+                        <Property name="textOffsetY" value="-10" />
+                    </Window>
+
+                    <Window type="Thrive/Label" name="VersionLabel" >
+                        <Property name="Position" value="{{0,0},{0.5,0}}" />
+                        <Property name="Size" value="{{0.5,0},{0.1,0}}" />
+                        <Property name="MaxSize" value="{{1,0},{1,0}}" />
+                        <Property name="Text" value="Resolution:" />
+                        <Property name="Font" value="Thrive-15" />
+                        <Property name="NormalTextColour" value="FFFFFFFF" />
+                        <Property name="CursorPassThroughEnabled" value="True" />
+                        <Property name="HorizontalAlignment" value="Centre" />
+                    </Window> 
+                    
+                     <Window type="Thrive/ListWidget" name="ResolutionList" >
+                        <Property name="Position" value="{{0,95},{0.6,0}}" />
+                        <Property name="MaxSize" value="{{0.5,0},{0.16,0}}" />
+                        <Property name="Size" value="{{0.5,0},{0.16,0}}" />
+                        <Property name="CursorPassThroughEnabled" value="False" />
+                    </Window>
+                </Window>
+            </Window>
+        </Window>
+    </Window>
+</GUILayout>

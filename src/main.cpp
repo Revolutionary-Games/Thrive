@@ -15,7 +15,7 @@
 #endif
 #endif //USE_BREAKPAD
 
-using namespace Thrive;
+using namespace thrive;
 
 // Don't look at the mess ahead, just set the variables in your cmake file //
 

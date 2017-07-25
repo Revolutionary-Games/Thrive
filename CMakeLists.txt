@@ -51,10 +51,13 @@ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${PROJECT_SOURCE_DIR}/CMake"
   "${LEVIATHAN_SRC}/CMake"
   "${LEVIATHAN_SRC}/LeviathanCMake")
 
+set(LEVIATHAN_SKIP_OPTIONAL_ASSETS ON)
+
 include(LeviathanCompileOptions)
 include(LeviathanSetRPath)
 
-# Find required libraries
+set(LEVIATHAN_FULL_BUILD ON)
+
 set(USE_ANGELSCRIPT ON)
 set(USE_BOOST ON)
 set(USE_OGRE ON)
@@ -105,14 +108,13 @@ set(PROGRAM_VERSIONS_ANSI "\"${PROGRAM_VERSION_STR}\"")
 set(ENGINECONFIGURATION				"./EngineConf.conf")
 set(GAMENAMEIDENTIFICATION			Thrive)
 set(GAMEVERSIONIDENTIFICATION		GAME_VERSIONS)
-set(ProgramNamespace Thrive)
+set(ProgramNamespace thrive)
 set(PROGRAMMASTERSERVERINFO			"MasterServerInformation(\"ThriveMasters.txt\", \"Thrive_\" GAME_VERSIONS, \"http://revolutionarygamesstudio.com/\", \"/Thrive/MastersList.png\", \"ThriveAccountCrecentials.txt\", false)")
 
 # Include dirs
 include_directories("${LEVIATHAN_SRC}/Engine")
 
-set(DEPENDENT_LIBS ${LINK_LIBS_TOENGINE_RELEASE}
-  ${LINK_LIBS_TOENGINE_DEBUG})
+set(DEPENDENT_LIBS ${LEVIATHAN_APPLICATION_LIBRARIES})
 
 
 # Thrive compile setup
@@ -123,14 +125,11 @@ include_directories(
 
 add_subdirectory(src)
 
-
-
-set_target_properties(ThriveLib PROPERTIES
-  OUTPUT_NAME Thrive
-)
-
 add_subdirectory(test)
 
+# Copy script files to the bin folder
+file(GLOB ThriveScripts "scripts/*")
+file(COPY ${ThriveScripts} DESTINATION "${PROJECT_BINARY_DIR}/bin/Data/Scripts")
 
 
 # #######
