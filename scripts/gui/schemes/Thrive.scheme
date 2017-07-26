@@ -1,0 +1,37 @@
+<?xml version="1.0" ?>
+<GUIScheme version="5" name="Thrive">
+    <Imageset filename="ThriveGeneric.imageset" />
+	<Imageset filename="ThriveBackground.imageset" />	
+    <Imageset filename="ThriveEditors.imageset" />
+    
+    <Font filename="Thrive-8.font" />
+    <Font filename="Thrive-10.font" />
+    <Font filename="Thrive-13.font" />
+    <Font filename="Thrive-15.font" />  
+    <Font filename="Thrive-18.font" />
+    <Font filename="Thrive-24.font" />    
+    <Font filename="Jura-8.font" />    
+    <Font filename="Jura-10.font" />    
+    <Font filename="Jura-13.font" />    
+    <Font filename="Jura-15.font" />    
+    
+    <Font filename="Jura-18.font" />    
+    
+    <LookNFeel filename="Thrive.looknfeel" />
+    
+	<FalagardMapping windowType="Thrive/VerticalScrollbar" targetType="CEGUI/Scrollbar" renderer="Core/Scrollbar" lookNFeel="Thrive/VerticalScrollbar" />
+    <FalagardMapping windowType="Thrive/HorizontalScrollbar" targetType="CEGUI/Scrollbar" renderer="Core/Scrollbar" lookNFeel="Thrive/HorizontalScrollbar" />
+	<FalagardMapping windowType="Thrive/Thumb" targetType="CEGUI/Thumb" renderer="Core/Button" lookNFeel="Thrive/Thumb" />
+	<FalagardMapping windowType="Thrive/FrameWindow" targetType="DefaultWindow" renderer="Core/Default" lookNFeel="Thrive/FrameWindow" />
+	<FalagardMapping windowType="Thrive/ListView" targetType="CEGUI/ListView" renderer="Core/ListView" lookNFeel="Thrive/ListView" />
+    <FalagardMapping windowType="Thrive/ListWidget" targetType="CEGUI/ListWidget" renderer="Core/ListView" lookNFeel="Thrive/ListWidget" />
+    <FalagardMapping windowType="Thrive/Button" targetType="CEGUI/PushButton" renderer="Core/Button" lookNFeel="Thrive/Button" />
+	<FalagardMapping windowType="Thrive/PolyButton" targetType="AlphaHitWindow" renderer="Core/Button" lookNFeel="Thrive/PolyButton" />
+	<FalagardMapping windowType="Thrive/Label" targetType="DefaultWindow" renderer="Core/Default" lookNFeel="Thrive/Label" />
+    <FalagardMapping windowType="Thrive/Textbox" targetType="CEGUI/Editbox" renderer="Core/Editbox"  lookNFeel="Thrive/Textbox" />
+    <FalagardMapping windowType="Thrive/Image" targetType="DefaultWindow" renderer="Core/Default" lookNFeel="Thrive/Image" />
+	<FalagardMapping windowType="Thrive/ProgressBar" targetType="CEGUI/ProgressBar" renderer="Core/ProgressBar" lookNFeel="Thrive/ProgressBar" />
+    <FalagardMapping windowType="Thrive/ScrollablePane" targetType="CEGUI/ScrollablePane" renderer="Core/ScrollablePane" lookNFeel="Thrive/ScrollablePane" />
+    <FalagardMapping windowType="Thrive/Tooltip" targetType="CEGUI/Tooltip" renderer="Core/Tooltip" lookNFeel="Thrive/Tooltip" />
+</GUIScheme>
+

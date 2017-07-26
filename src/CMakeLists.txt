@@ -203,7 +203,7 @@ set(ProgramAppHeader "ThriveGame.h")
 
 # ------------------ ProgramConfiguration ------------------ #
 set(PROGRAMCLASSNAME				ThriveGame)
-set(PROGRAMLOG						ThriveLog)
+set(PROGRAMLOG						Thrive)
 set(PROGRAMCONFIGURATION			"./ThriveGame.conf")
 set(PROGRAMKEYCONFIGURATION			"./ThriveKeybindings.conf")
 set(PROGRAMCHECKCONFIGFUNCNAME		"ThriveGame::CheckGameConfigurationVariables")

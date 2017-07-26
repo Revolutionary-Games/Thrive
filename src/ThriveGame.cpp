@@ -7,6 +7,8 @@
 #include "Networking/NetworkHandler.h"
 #include "Rendering/GraphicalInputEntity.h"
 
+#include "CEGUI/SchemeManager.h"
+
 using namespace thrive;
 // ------------------------------------ //
 ThriveGame::ThriveGame(){
@@ -56,18 +58,24 @@ void ThriveGame::CustomizeEnginePostLoad(){
         return;
     }
 
+    // Load the thrive gui theme //
+    Leviathan::Gui::GuiManager::LoadGUITheme("Thrive.scheme");
+
     Leviathan::GraphicalInputEntity* window1 = Engine::GetEngine()->GetWindowEntity();
+
+    // Background needs to be cleared for CEGUI to work correctly
+    // (TODO: check is this still needed)
+    window1->SetAutoClearing("");
 
     Leviathan::Gui::GuiManager* GuiManagerAccess = window1->GetGui();
 
-    if(!GuiManagerAccess->LoadGUIFile("./Data/Scripts/GUI/thrive_menus.txt")){
+    if(!GuiManagerAccess->LoadGUIFile("./Data/Scripts/gui/thrive_menus.txt")){
         
-        LOG_ERROR("Thrive: failed to load the GuiFile, quitting");
+        LOG_ERROR("Thrive: failed to load the main menu gui, quitting");
         StartRelease();
+        return;
     }
 
-    window1->SetAutoClearing("");
-    
 }
 
 void ThriveGame::EnginePreShutdown(){
@@ -75,7 +83,6 @@ void ThriveGame::EnginePreShutdown(){
 }
 // ------------------------------------ //
 void ThriveGame::CheckGameConfigurationVariables(Lock &guard, GameConfiguration* configobj){
-    
     
 }
 
