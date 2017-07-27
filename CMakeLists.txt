@@ -128,8 +128,43 @@ add_subdirectory(src)
 add_subdirectory(test)
 
 # Copy script files to the bin folder
-file(GLOB ThriveScripts "scripts/*")
-file(COPY ${ThriveScripts} DESTINATION "${PROJECT_BINARY_DIR}/bin/Data/Scripts")
+file(GLOB THRIVE_SCRIPTS "scripts/*")
+file(COPY ${THRIVE_SCRIPTS} DESTINATION "${PROJECT_BINARY_DIR}/bin/Data/Scripts")
+
+# Copy other data assets
+file(GLOB THRIVE_LOOKNFEEL "assets/gui/looknfeel/*")
+file(COPY ${THRIVE_LOOKNFEEL} DESTINATION
+  "${PROJECT_BINARY_DIR}/bin/Data/Scripts/gui/looknfeel")
+
+file(GLOB THRIVE_ANIMATIONS "assets/gui/animations/*")
+file(COPY ${THRIVE_ANIMATIONS} DESTINATION
+  "${PROJECT_BINARY_DIR}/bin/Data/Scripts/gui/animations")
+
+file(GLOB THRIVE_TEXTURES "assets/textures/*")
+file(COPY ${THRIVE_TEXTURES} DESTINATION "${PROJECT_BINARY_DIR}/bin/Data/Textures/")
+
+file(GLOB THRIVE_GUI_TEXTURES "assets/gui/imagesets/*")
+file(COPY ${THRIVE_GUI_TEXTURES} DESTINATION "${PROJECT_BINARY_DIR}/bin/Data/Textures/gui/")
+
+file(GLOB THRIVE_FONTS "assets/fonts/*")
+file(COPY ${THRIVE_FONTS} DESTINATION "${PROJECT_BINARY_DIR}/bin/Data/Fonts/")
+
+
+file(GLOB THRIVE_MATERIALS "assets/materials/*")
+file(COPY ${THRIVE_MATERIALS} DESTINATION "${PROJECT_BINARY_DIR}/bin/Data/Materials/")
+
+file(GLOB THRIVE_MODELS "assets/models/*")
+file(COPY ${THRIVE_MODELS} DESTINATION "${PROJECT_BINARY_DIR}/bin/Data/Models/")
+
+file(GLOB THRIVE_SOUNDS "assets/sounds/*")
+file(COPY ${THRIVE_SOUNDS} DESTINATION "${PROJECT_BINARY_DIR}/bin/Data/Sound/")
+
+file(GLOB THRIVE_VIDEOS "assets/videos/*")
+file(COPY ${THRIVE_VIDEOS} DESTINATION "${PROJECT_BINARY_DIR}/bin/Data/Videos/")
+
+
+file(MAKE_DIRECTORY "${PROJECT_BINARY_DIR}/bin/Data/Screenshots")
+file(MAKE_DIRECTORY "${PROJECT_BINARY_DIR}/bin/Data/Cache")
 
 
 # #######
