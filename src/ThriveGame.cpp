@@ -101,6 +101,14 @@ bool ThriveGame::InitLoadCustomScriptTypes(asIScriptEngine* engine){
     {
         ANGELSCRIPT_REGISTERFAIL;
     }
+
+    // if(engine->RegisterObjectMethod("ThriveGame",
+    //         "void Quit()",
+    //         asMETHOD(ThriveGame, ThriveGame::Quit),
+    //         asCALL_THISCALL) < 0)
+    // {
+    //     ANGELSCRIPT_REGISTERFAIL;
+    // }
     
     // if(engine->RegisterObjectMethod("Client",
     //         "bool Connect(const string &in address, string &out errormessage)",
