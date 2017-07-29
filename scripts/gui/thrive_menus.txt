@@ -1,0 +1,56 @@
+// Main menu script of Thrive
+GUIBaseFile = "MainMenu.layout";
+GUIAnimations = ["thrive.anims"];
+RequireCEGUIHooked = true;
+
+
+
+
+// This keeps the GUI always on (no mouse capture is used on the main menu)
+o GuiCollection "OnKeeper"{
+    l params{
+        Enabled = true;
+        KeepsGUIOn = true;
+    }
+}
+
+
+// Top level window
+o GuiCollection "TopLevelMenu"{
+    l params{
+        Enabled = true;
+        AutoTarget = "MainMenuRoot/MainMenuInteractive";
+        //AutoAnimateChildren = true;
+        //AutoAnimationIn = [[AutoTarget], [PopIn]];
+        //AutoAnimationOut = [[AutoTarget], [SinkAway]];
+    }
+}
+
+
+// ------------------------------------ //
+// Version label
+o GuiObject "MainMenuRoot/MainMenuInteractive/VersionLabel"{
+    s{
+        [@Listener="OnInit"]
+        bool WriteVersion(GuiObject@ instance){
+
+            instance.SetText("TODO: ver");
+
+            return true;
+        }
+    @%};
+}
+
+// Quit the game //
+o GuiObject "MainMenuRoot/MainMenuInteractive/ExitGameButton"{
+    s{
+        [@Listener="OnClick"]
+        bool QuitIt(GuiObject@ instance){
+            // Close the game //
+            GetThriveGame().Quit();
+            return true;
+        }
+        @%};
+}
+
+
