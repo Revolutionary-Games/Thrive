@@ -1,0 +1,297 @@
+<Animations>
+
+
+
+    <!-- Hard coded animations -->
+
+    
+    <AnimationDefinition name="MoveToMenuButtonD0" duration="0.5" replayMode="once">
+
+        <Affector property="Position" interpolator="UVector2" applicationMethod="absolute">
+
+            <KeyFrame position="0.0" progression="linear" sourceProperty="Position" />
+
+            <KeyFrame position="0.3" progression="quadratic acceleration" value="{{0.0, 0}, {1.0, -105}}" />
+
+        </Affector>
+
+        <Affector property="Alpha" interpolator="float" applicationMethod="absolute">
+
+            <KeyFrame position="0.0" progression="linear" value="1.0" />
+
+            <KeyFrame position="0.3" progression="quadratic acceleration" value="0.0" />
+
+        </Affector>
+
+    </AnimationDefinition>
+
+    <AnimationDefinition name="MoveToMenuButtonD1" duration="0.5" replayMode="once">
+
+        <Affector property="Position" interpolator="UVector2" applicationMethod="absolute">
+
+            <KeyFrame position="0.0" progression="linear" sourceProperty="Position" />
+
+            <KeyFrame position="0.05" progression="linear" sourceProperty="Position" />
+
+            <KeyFrame position="0.3" progression="quadratic acceleration" value="{{0.0, 0}, {1.0, -105}}" />
+
+        </Affector>
+
+        <Affector property="Alpha" interpolator="float" applicationMethod="absolute">
+
+            <KeyFrame position="0.1" progression="linear" value="1.0" />
+
+            <KeyFrame position="0.3" progression="quadratic acceleration" value="0.0" />
+
+        </Affector>
+
+    </AnimationDefinition>
+
+    <AnimationDefinition name="MoveToMenuButtonD2" duration="0.5" replayMode="once">
+
+        <Affector property="Position" interpolator="UVector2" applicationMethod="absolute">
+
+            <KeyFrame position="0.0" progression="linear" sourceProperty="Position" />
+
+            <KeyFrame position="0.15" progression="linear" sourceProperty="Position" />
+
+            <KeyFrame position="0.3" progression="quadratic acceleration" value="{{0.0, 0}, {1.0, -105}}" />
+
+        </Affector>
+
+        <Affector property="Alpha" interpolator="float" applicationMethod="absolute">
+
+            <KeyFrame position="0.0" progression="linear" value="1.0" />
+
+            <KeyFrame position="0.3" progression="quadratic acceleration" value="0.0" />
+
+        </Affector>
+
+    </AnimationDefinition>
+
+    <AnimationDefinition name="MoveToMenuButtonD3" duration="0.5" replayMode="once">
+
+        <Affector property="Position" interpolator="UVector2" applicationMethod="absolute">
+
+            <KeyFrame position="0.0" progression="linear" sourceProperty="Position" />
+
+            <KeyFrame position="0.2" progression="linear" sourceProperty="Position" />
+
+            <KeyFrame position="0.3" progression="quadratic acceleration" value="{{0.0, 0}, {1.0, -105}}" />
+
+        </Affector>
+
+        <Affector property="Alpha" interpolator="float" applicationMethod="absolute">
+
+            <KeyFrame position="0.0" progression="linear" value="1.0" />
+
+            <KeyFrame position="0.3" progression="quadratic acceleration" value="0.0" />
+
+        </Affector>
+
+    </AnimationDefinition>
+
+    <AnimationDefinition name="MoveToMenuButtonD4" duration="0.5" replayMode="once">
+
+        <Affector property="Position" interpolator="UVector2" applicationMethod="absolute">
+
+            <KeyFrame position="0.0" progression="linear" sourceProperty="Position" />
+
+            <KeyFrame position="0.25" progression="linear" sourceProperty="Position" />
+
+            <KeyFrame position="0.3" progression="quadratic acceleration" value="{{0.0, 0}, {1.0, -30}}" />
+
+        </Affector>
+
+        <Affector property="Alpha" interpolator="float" applicationMethod="absolute">
+
+            <KeyFrame position="0.0" progression="linear" value="1.0" />
+
+            <KeyFrame position="0.3" progression="quadratic acceleration" value="0.0" />
+
+        </Affector>
+
+    </AnimationDefinition>
+
+    
+    <AnimationDefinition name="MoveToStatsButton" duration="0.42" replayMode="once">
+
+        <Affector property="Position" interpolator="UVector2" applicationMethod="absolute">
+
+            <KeyFrame position="0.0" progression="linear" sourceProperty="Position" />
+
+            <KeyFrame position="0.22" progression="linear" sourceProperty="Position" />
+
+            <KeyFrame position="0.42" progression="quadratic decelerating" value="{{0,0},{1.0,-268}}" />
+
+        </Affector>
+
+        <Affector property="Alpha" interpolator="float" applicationMethod="absolute">
+
+            <KeyFrame position="0.0" progression="linear" value="0.0" />
+
+            <KeyFrame position="0.42" progression="quadratic decelerating" value="1.0" />
+
+        </Affector>
+
+    </AnimationDefinition>
+
+    <AnimationDefinition name="MoveToOptionsButton" duration="0.5" replayMode="once">
+
+        <Affector property="Position" interpolator="UVector2" applicationMethod="absolute">
+
+            <KeyFrame position="0.0" progression="linear" sourceProperty="Position" />
+
+            <KeyFrame position="0.15" progression="linear" sourceProperty="Position" />
+
+            <KeyFrame position="0.4" progression="quadratic decelerating" value="{{0,50},{1.0,-242}}" />
+
+        </Affector>
+        <Affector property="Alpha" interpolator="float" applicationMethod="absolute">
+
+            <KeyFrame position="0.0" progression="linear" value="0.0" />
+
+            <KeyFrame position="0.4" progression="quadratic decelerating" value="1.0" />
+
+        </Affector>
+
+    </AnimationDefinition>
+
+    <AnimationDefinition name="MoveToHelpButton" duration="0.5" replayMode="once">
+
+        <Affector property="Position" interpolator="UVector2" applicationMethod="absolute">
+
+            <KeyFrame position="0.0" progression="linear" sourceProperty="Position" />
+
+            <KeyFrame position="0.1" progression="linear" sourceProperty="Position" />
+
+            <KeyFrame position="0.4" progression="quadratic decelerating" value="{{0,0},{1.0,-209}}" />
+
+        </Affector>
+
+        <Affector property="Alpha" interpolator="float" applicationMethod="absolute">
+
+            <KeyFrame position="0.0" progression="linear" value="0.0" />
+
+            <KeyFrame position="0.4" progression="quadratic decelerating" value="1.0" />
+
+        </Affector>
+
+    </AnimationDefinition>
+
+    <AnimationDefinition name="MoveToLoadGameButton" duration="0.5" replayMode="once">
+
+        <Affector property="Position" interpolator="UVector2" applicationMethod="absolute">
+
+            <KeyFrame position="0.0" progression="linear" sourceProperty="Position" />
+
+            <KeyFrame position="0.3" progression="quadratic decelerating" value="{{0,90},{1.0,-45}}" />
+
+        </Affector>
+
+        <Affector property="Alpha" interpolator="float" applicationMethod="absolute">
+
+            <KeyFrame position="0.0" progression="linear" value="0.0" />
+
+            <KeyFrame position="0.3" progression="quadratic decelerating" value="1.0" />
+
+        </Affector>
+
+    </AnimationDefinition>
+
+    <AnimationDefinition name="MoveToSaveGameButton" duration="0.5" replayMode="once">
+
+        <Affector property="Position" interpolator="UVector2" applicationMethod="absolute">
+
+            <KeyFrame position="0.0" progression="linear" sourceProperty="Position" />
+
+            <KeyFrame position="0.05" progression="linear" sourceProperty="Position" />
+
+            <KeyFrame position="0.35" progression="quadratic decelerating" value="{{0,62},{1.0,-168}}" />
+
+        </Affector>
+
+        <Affector property="Alpha" interpolator="float" applicationMethod="absolute">
+
+            <KeyFrame position="0.0" progression="linear" value="0.0" />
+
+            <KeyFrame position="0.35" progression="quadratic decelerating" value="1.0" />
+
+        </Affector>
+
+    </AnimationDefinition>
+
+    
+    
+
+    <AnimationDefinition name="movelowleft" duration="0.5" replayMode="once">
+
+        <Affector property="Position" interpolator="UVector2" applicationMethod="absolute">
+
+            <KeyFrame position="0.0" progression="linear" sourceProperty="Position" />
+
+            <KeyFrame position="0.5" progression="quadratic acceleration" value="{{0.0, 0}, {1.0, 0}}" />
+
+        </Affector>
+
+        <Affector property="Alpha" interpolator="float" applicationMethod="absolute">
+
+            <KeyFrame position="0.0" progression="linear" value="0.0" />
+
+            <KeyFrame position="0.5" progression="quadratic acceleration" value="1.0" />
+
+        </Affector>
+
+    </AnimationDefinition>
+
+
+    
+    <AnimationDefinition name="rotate180right" duration="3.0" replayMode="once">
+
+        <Affector property="Rotation" interpolator="QuaternionSlerp" applicationMethod="relative">
+
+            <KeyFrame position="0.0" progression="linear" value="x:0 y:0 z:0" />
+
+            <KeyFrame position="3.0" progression="linear" value="x:0 y:0 z:180" />
+
+        </Affector>
+
+    </AnimationDefinition>
+
+    <AnimationDefinition name="rotate180left" duration="0.8" replayMode="once">
+
+        <Affector property="Rotation" interpolator="QuaternionSlerp" applicationMethod="relative">
+
+            <KeyFrame position="0.0" progression="linear" value="0" />
+
+            <KeyFrame position="0.45" progression="quadratic decelerating" value="-180" />
+
+        </Affector>
+
+    </AnimationDefinition>
+
+    <AnimationDefinition name="fadeout" duration="2.5" replayMode="once">
+
+        <Affector property="Alpha" interpolator="float" applicationMethod="absolute">
+
+            <KeyFrame position="0.0"  progression="quadratic acceleration" value="1.0" />
+
+            <KeyFrame position="2.5" progression="quadratic acceleration" value="0.0" />
+
+        </Affector>
+
+    </AnimationDefinition>
+
+
+    <AnimationDefinition name="fadein" duration="2.5" replayMode="once">
+
+        <Affector property="Alpha" interpolator="float" applicationMethod="absolute">
+
+            <KeyFrame position="0.0"  progression="quadratic acceleration" value="0.0" />
+
+            <KeyFrame position="2.5" progression="quadratic acceleration" value="1.0" />
+
+        </Affector>
+
+    </AnimationDefinition>
+</Animations>
