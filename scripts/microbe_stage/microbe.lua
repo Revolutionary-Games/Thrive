@@ -1099,7 +1099,7 @@ PURGE_SCALE = 0.4
 
 function Microbe:purgeCompounds()
     local compoundAmountToDump = self.microbe.stored - self.microbe.capacity
-    compoundBag = getComponent(self.entity, CompoundBagComponent)
+    local compoundBag = getComponent(self.entity, CompoundBagComponent)
 
     -- Uncomment to print compound economic information to the console.
     --[[

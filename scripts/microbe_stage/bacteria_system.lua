@@ -129,11 +129,11 @@ function Bacterium:purgeCompounds()
 
     -- Dumping all the useless compounds (with price = 0).
     for _, compoundId in pairs(CompoundRegistry.getCompoundList()) do
-        local price = compoundBag:getPrice(compoundId)
+        local price = self.compoundBag:getPrice(compoundId)
         if price <= 0 then
-            local amount = compoundBag:getCompoundAmount(compoundId)
+            local amount = self.compoundBag:getCompoundAmount(compoundId)
             if amount > 0 then
-            	amountToEject = compoundBag:takeCompound(compoundId, amountToEject)
+            	local amountToEject = self.compoundBag:takeCompound(compoundId, amount)
             	self:ejectCompound(compoundId, amountToEject)
             end
         end
@@ -148,7 +148,7 @@ function Bacterium:purgeCompounds()
                 :getCompoundAmount(compoundId)
 
             if amount > 0 then
-                local price = compoundBag:getPrice(compoundId)
+                local price = self.compoundBag:getPrice(compoundId)
                 compoundPrices[compoundId] = price
                 priceSum = priceSum + price
             end
@@ -156,8 +156,8 @@ function Bacterium:purgeCompounds()
 
         --Dumping each compound according to it's price.
         for compoundId, price in pairs(compoundPrices) do
-            amountToEject = compoundAmountToDump * price / priceSum
-            if amount > 0 then amountToEject = compoundBag:takeCompound(compoundId, amountToEject) end
+            local amountToEject = compoundAmountToDump * price / priceSum
+            if amount > 0 then amountToEject = self.compoundBag:takeCompound(compoundId, amountToEject) end
             if amount > 0 then self:ejectCompound(compoundId, amountToEject) end
         end
     end
