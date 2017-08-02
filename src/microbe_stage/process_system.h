@@ -93,6 +93,9 @@ public:
     getCompoundAmount(CompoundId);
 
     float
+    getStorageSpaceUsed() const;
+
+    float
     getPrice(CompoundId);
 
     float

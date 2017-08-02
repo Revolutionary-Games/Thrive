@@ -88,6 +88,7 @@ void CompoundBagComponent::luaBindings(
         "giveCompound", &CompoundBagComponent::giveCompound,
         "takeCompound", &CompoundBagComponent::takeCompound,
         "getCompoundAmount", &CompoundBagComponent::getCompoundAmount,
+        "getStorageSpaceUsed", &CompoundBagComponent::getStorageSpaceUsed,
         "getPrice", &CompoundBagComponent::getPrice,
         "getDemand", &CompoundBagComponent::getDemand,
         "storageSpace", &CompoundBagComponent::storageSpace
@@ -124,6 +125,8 @@ CompoundBagComponent::load(const StorageContainer& storage)
         this->compounds[compoundId].demand = demand.get<float>(id);
 	}
 
+    this->storageSpace = storage.get<float>("storageSpace");
+
 	this->speciesName = storage.get<std::string>("speciesName");
 	this->processor = static_cast<ProcessorComponent*>(Entity(this->speciesName,
             Game::instance().engine().getCurrentGameStateFromLua()).
@@ -154,6 +157,7 @@ CompoundBagComponent::storage() const
     storage.set("uninflatedPrices", std::move(uninflatedPrices));
     storage.set("demand", std::move(demand));
     storage.set("speciesName", this->speciesName);
+    storage.set("storageSpace", this->storageSpace);
 
     return storage;
 }
@@ -168,6 +172,16 @@ CompoundBagComponent::setProcessor(ProcessorComponent& processor, const std::str
 float
 CompoundBagComponent::getCompoundAmount(CompoundId id) {
     return compounds[id].amount;
+}
+
+float
+CompoundBagComponent::getStorageSpaceUsed() const {
+    float sso = 0;
+    for (const auto& compound : compounds) {
+        float compoundAmount = compound.second.amount;
+        sso += compoundAmount;
+    }
+    return sso;
 }
 
 void

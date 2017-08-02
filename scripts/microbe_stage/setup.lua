@@ -291,6 +291,13 @@ local function createSpawnSystem()
         end
     end
 
+
+    local TestBacteriumSpawn = function(pos)
+        Bacterium.createBacterium("DefaultBacterium", pos, g_luaEngine.currentGameState)
+    end
+
+    spawnSystem:addSpawnType(TestBacteriumSpawn, 1/2000, 50)
+
     spawnSystem:addSpawnType(toxinOrganelleSpawnFunction, 1/17000, 50)
     spawnSystem:addSpawnType(ChloroplastOrganelleSpawnFunction, 1/12000, 50)
 
@@ -384,6 +391,7 @@ local function createMicrobeStage(name)
             --PopulationSystem.new(),
             PatchSystem.new(),
             SpeciesSystem.new(),
+            BacteriaSystem.new(),
             -- Physics
             RigidBodyInputSystem.new(),
             UpdatePhysicsSystem.new(),
@@ -416,6 +424,7 @@ local function createMicrobeStage(name)
             setupCamera(gameState)
             setupCompoundClouds(gameState)
             setupSpecies(gameState)
+            initBacterialSpecies(gameState)
             setupPlayer(gameState)
             setupSound(gameState)
         end
