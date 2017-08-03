@@ -479,7 +479,7 @@ function MicrobeEditor:createNewMicrobe()
             self.currentMicrobe = Microbe.createMicrobeEntity(
                 nil, false, 'Editor_Microbe', true, g_luaEngine.currentGameState)
             self.currentMicrobe.entity:stealName("working_microbe")
-            --self.currentMicrobe.sceneNode.transform.orientation = Quaternion(Radian(Degree(180)), Vector3(0, 0, 1))-- Orientation
+            --self.currentMicrobe.sceneNode.transform.orientation = Quaternion.new(Radian.new(Degree(180)), Vector3(0, 0, 1))-- Orientation
             self.currentMicrobe.sceneNode.transform:touch()
             self.currentMicrobe.microbe.speciesName = speciesName
             self:addNucleus()
@@ -508,7 +508,7 @@ function MicrobeEditor:createNewMicrobe()
             self.currentMicrobe = Microbe.createMicrobeEntity(
                 nil, false, 'Editor_Microbe', true, g_luaEngine.currentGameState)
             self.currentMicrobe.entity:stealName("working_microbe")
-            self.currentMicrobe.sceneNode.transform.orientation = Quaternion(Radian(Degree(0)), Vector3(0, 0, 1))-- Orientation
+            self.currentMicrobe.sceneNode.transform.orientation = Quaternion.new(Radian(0), Vector3(0, 0, 1))-- Orientation
             self.currentMicrobe.sceneNode.transform:touch()
             self.currentMicrobe.microbe.speciesName = speciesName
             for position,storage in pairs(organelleStorage) do
