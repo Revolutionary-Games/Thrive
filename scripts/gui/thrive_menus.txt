@@ -19,7 +19,7 @@ o GuiCollection "OnKeeper"{
 o GuiCollection "TopLevelMenu"{
     l params{
         Enabled = true;
-        AutoTarget = "MainMenuRoot/MainMenuInteractive";
+        AutoTarget = "Background/MainMenuInteractive";
         //AutoAnimateChildren = true;
         //AutoAnimationIn = [[AutoTarget], [PopIn]];
         //AutoAnimationOut = [[AutoTarget], [SinkAway]];
@@ -29,12 +29,12 @@ o GuiCollection "TopLevelMenu"{
 
 // ------------------------------------ //
 // Version label
-o GuiObject "MainMenuRoot/MainMenuInteractive/VersionLabel"{
+o GuiObject "Background/MainMenuInteractive/VersionLabel"{
     s{
         [@Listener="OnInit"]
         bool WriteVersion(GuiObject@ instance){
 
-            instance.SetText("TODO: ver");
+            instance.GetTargetWindow().SetText("TODO: ver");
 
             return true;
         }
@@ -42,7 +42,7 @@ o GuiObject "MainMenuRoot/MainMenuInteractive/VersionLabel"{
 }
 
 // Quit the game //
-o GuiObject "MainMenuRoot/MainMenuInteractive/ExitGameButton"{
+o GuiObject "Background/MainMenuInteractive/ExitGameButton"{
     s{
         [@Listener="OnClick"]
         bool QuitIt(GuiObject@ instance){

@@ -59,15 +59,19 @@ void ThriveGame::CustomizeEnginePostLoad(){
     }
 
     // Load the thrive gui theme //
-    Leviathan::Gui::GuiManager::LoadGUITheme("Thrive.scheme");
+    Leviathan::GUI::GuiManager::LoadGUITheme("Thrive.scheme");
 
-    Leviathan::GraphicalInputEntity* window1 = Engine::GetEngine()->GetWindowEntity();
+    Leviathan::GraphicalInputEntity* window1 = Engine::GetEngine()->GetWindowEntity();    
 
     // Background needs to be cleared for CEGUI to work correctly
     // (TODO: check is this still needed)
     window1->SetAutoClearing("");
 
-    Leviathan::Gui::GuiManager* GuiManagerAccess = window1->GetGui();
+    Leviathan::GUI::GuiManager* GuiManagerAccess = window1->GetGui();
+
+    // Enable thrive mouse and tooltip style //
+    GuiManagerAccess->SetMouseTheme("ThriveGeneric/MouseArrow");
+    GuiManagerAccess->SetTooltipType("Thrive/Tooltip");
 
     if(!GuiManagerAccess->LoadGUIFile("./Data/Scripts/gui/thrive_menus.txt")){
         
