@@ -251,8 +251,7 @@ function BacteriaSystem:update(renderTime, logicTime)
         self.bacteria[entityId] = nil
     end
     for _, entityId in pairs(self.entities:addedEntities()) do
-        local bacterium = Bacterium(Entity.new(entityId, self.gameState.wrapper), nil,
-                                self.gameState)
+        local bacterium = Bacterium(Entity.new(entityId, self.gameState.wrapper))
         self.bacteria[entityId] = bacterium
     end
     self.entities:clearChanges()
