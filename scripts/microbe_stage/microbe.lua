@@ -206,7 +206,6 @@ Microbe = class(
         assert(gameState ~= nil, "Microbe.Create requires gameState")
         assert(entity ~= nil)
         self.entity = entity
-        
         local all_components_available = true
 
         for key, ctype in pairs(Microbe.COMPONENTS) do
@@ -1358,10 +1357,17 @@ function MicrobeSystem:update(renderTime, logicTime)
 
         if microbe_entity:exists() and bacterium_entity:exists() then
             -- local microbe = Microbe(microbe_entity, nil, self.gameState)
-            local bacterium = Bacterium(bacterium_entity)
-            bacterium:damage(4)
+            print("Bacterium ID:", collision.entityId2, "Does it have components:", getComponent(bacterium_entity, Bacterium.COMPONENTS.bacterium) == nil)
+            if not (getComponent(bacterium_entity, Bacterium.COMPONENTS.bacterium) == nil) then
+                print("It worked!")
+                local bacterium = Bacterium(bacterium_entity)
+                bacterium:damage(4)
+            else
+                print("It didn't work!")
+            end
         end
     end
+    self.bacteriaCollisions:clearCollisions()
 end
 
 function MicrobeSystem:checkEngulfment(microbe1Comp, microbe2Comp, body, entity1, entity2)
