@@ -1,8 +1,10 @@
 -- BacteriaComponent: bacterial analogue to MicrobeComponent
 
 BacteriaComponent = class(
-	function(self, speciesName)
+	function(self, speciesName, health)
 		self.speciesName = speciesName
+		self.invincibility_timer = 0
+		self.health = health
 	end
 )
 
@@ -10,11 +12,15 @@ BacteriaComponent.TYPE_NAME = "BacteriaComponent"
 
 function BacteriaComponent:load(storage)
 	self.speciesName = storage:get("speciesName", "DefaultBacterium")
+	self.invincibility_timer = storage:get("invincibility_timer", 0)
+	self.health = storage:get("health", 1)
 end
 
 function BacteriaComponent:storage()
 	storage = StorageContainer.new()
 	storage:set("speciesName", self.speciesName)
+	storage:set("invincibility_timer", self.invincibility_timer)
+	storage:set("health", self.health)
 	return storage
 end
 
@@ -63,8 +69,6 @@ Bacterium = class(
 			self[key] = component
 		end
         assert(all_components_available, "Can't create bacterium from this entity")
-		self.invincibility_timer = 0
-		self.health = 1
 	end
 )
 
@@ -80,7 +84,8 @@ function Bacterium.createBacterium(speciesName, pos, gameState)
 	print("BS:"..speciesName)
 	local entity = Entity.new(gameState.wrapper)
 	local species_data = bacterial_species[speciesName]
-	local bacteriaComponent = BacteriaComponent.new(speciesName)
+	local bacteriaComponent = BacteriaComponent.new(speciesName,
+							bacterial_species[speciesName].health)
 
 	local rigidBody = RigidBodyComponent.new()
 	rigidBody.properties.shape = SphereShape.new(HEX_SIZE)
@@ -125,7 +130,6 @@ function Bacterium.createBacterium(speciesName, pos, gameState)
 	end
 
 	local bacterium = Bacterium(entity)
-	bacterium.health = bacterial_species[speciesName].health
 	return bacterium
 end
 
@@ -180,12 +184,12 @@ end
 Bacterium.INVINCIBILITY_TIME = 250
 
 function Bacterium:damage(amount)
-	if self.invincibility_timer > 0 then return end
-	self.health = self.health - amount
-	if self.health < 0 then
+	if self.bacterium.invincibility_timer > 0 then return end
+	self.bacterium.health = self.bacterium.health - amount
+	if self.bacterium.health < 0 then
 		self:kill()
 	end
-	self.invincibility_timer = Bacterium.INVINCIBILITY_TIME
+	self.bacterium.invincibility_timer = Bacterium.INVINCIBILITY_TIME
 end
 
 function Bacterium:kill()
@@ -207,8 +211,8 @@ end
 
 function Bacterium:update(logicTime)
 	self:purgeCompounds()
-	if self.invincibility_timer > 0 then
-		self.invincibility_timer = self.invincibility_timer - logicTime
+	if self.bacterium.invincibility_timer > 0 then
+		self.bacterium.invincibility_timer = self.bacterium.invincibility_timer - logicTime
 	end
 end
 
