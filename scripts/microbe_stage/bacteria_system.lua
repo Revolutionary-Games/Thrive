@@ -33,6 +33,7 @@ bacterial_species = {
 		},
 		capacity = 50,
 		mass = 0.4,
+		health = 10,
 	},
 }
 
@@ -52,13 +53,18 @@ end
 Bacterium = class(
 	function(self, entity)
 		self.entity = entity
+		local all_components_available = true
 		for key, cType in pairs(Bacterium.COMPONENTS) do
 			local component = getComponent(entity, cType)
-			assert(component ~= nil, "Can't create bacterium from this entity, it's missing " .. key)
+			if component == nil then
+                print("entity is missing component: " .. key)
+                all_components_available = false
+            end
 			self[key] = component
 		end
-		self.timer = 0
-
+        assert(all_components_available, "Can't create bacterium from this entity")
+		self.invincibility_timer = 0
+		self.health = 1
 	end
 )
 
@@ -119,6 +125,7 @@ function Bacterium.createBacterium(speciesName, pos, gameState)
 	end
 
 	local bacterium = Bacterium(entity)
+	bacterium.health = bacterial_species[speciesName].health
 	return bacterium
 end
 
@@ -163,12 +170,46 @@ function Bacterium:purgeCompounds()
     end
 end
 
-local EJECTION_DISTANCE = 3.0
 function Bacterium:ejectCompound(compoundId, amount)
     createCompoundCloud(CompoundRegistry.getCompoundInternalName(compoundId),
                         self.sceneNode.transform.position.x,
                         self.sceneNode.transform.position.y,
                         amount * 5000)
+end
+
+Bacterium.INVINCIBILITY_TIME = 250
+
+function Bacterium:damage(amount)
+	if self.invincibility_timer > 0 then return end
+	self.health = self.health - amount
+	if self.health < 0 then
+		self:kill()
+	end
+	self.invincibility_timer = Bacterium.INVINCIBILITY_TIME
+end
+
+function Bacterium:kill()
+    local compoundsToRelease = {}
+
+    for _, compoundId in pairs(CompoundRegistry.getCompoundList()) do
+        local total = self.compoundBag:getCompoundAmount(compoundId)
+        local ejectedAmount = self.compoundBag:takeCompound(compoundId, total)
+        compoundsToRelease[compoundId] = ejectedAmount
+    end
+
+    -- todo: add compounds locked in bacterium
+
+    for compoundId, amount in pairs(compoundsToRelease) do
+        self:ejectCompound(compoundId, amount)
+    end
+    self.entity:destroy()
+end
+
+function Bacterium:update(logicTime)
+	self:purgeCompounds()
+	if self.invincibility_timer > 0 then
+		self.invincibility_timer = self.invincibility_timer - logicTime
+	end
 end
 
 -- BacteriaSystem
@@ -216,10 +257,8 @@ function BacteriaSystem:update(renderTime, logicTime)
     end
     self.entities:clearChanges()
     for _, bacterium in pairs(self.bacteria) do
-        -- bacterium:update(logicTime)
-    	bacterium:purgeCompounds()
+        bacterium:update(logicTime)
     end
-
 end
 
 

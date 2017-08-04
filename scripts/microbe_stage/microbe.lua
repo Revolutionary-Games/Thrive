@@ -1275,12 +1275,18 @@ MicrobeSystem = class(
         self.microbeCollisions = CollisionFilter.new(
             "microbe",
             "microbe"
-        );
+        )
         -- Temporary for 0.3.2, should be moved to separate system.
         self.agentCollisions = CollisionFilter.new(
             "microbe",
             "agent"
-        );
+        )
+
+        self.bacteriaCollisions = CollisionFilter.new(
+            "microbe",
+            "bacteria"
+        )
+
         self.microbes = {}
     end
 )
@@ -1289,8 +1295,8 @@ function MicrobeSystem:init(gameState)
     LuaSystem.init(self, "MicrobeSystem", gameState)
     self.entities:init(gameState.wrapper)
     self.microbeCollisions:init(gameState.wrapper)
-    
     self.agentCollisions:init(gameState.wrapper)
+    self.bacteriaCollisions:init(gameState.wrapper)
 end
 
 
@@ -1298,8 +1304,8 @@ function MicrobeSystem:shutdown()
     LuaSystem.shutdown(self)
     self.entities:shutdown()
     self.microbeCollisions:shutdown()
-    
     self.agentCollisions:shutdown()
+    self.bacteriaCollisions:shutdown()
 end
 
 
@@ -1334,8 +1340,6 @@ function MicrobeSystem:update(renderTime, logicTime)
     end
     self.microbeCollisions:clearCollisions()
     
-    
-    
     -- TEMP, DELETE FOR 0.3.3!!!!!!!!
     for _, collision in pairs(self.agentCollisions:collisions()) do
         local entity = Entity.new(collision.entityId1, self.gameState.wrapper)
@@ -1347,6 +1351,17 @@ function MicrobeSystem:update(renderTime, logicTime)
         end
     end
     self.agentCollisions:clearCollisions()
+
+    for _, collision in pairs(self.bacteriaCollisions:collisions()) do
+        local microbe_entity = Entity.new(collision.entityId1, self.gameState.wrapper)
+        local bacterium_entity = Entity.new(collision.entityId2, self.gameState.wrapper)
+
+        if microbe_entity:exists() and bacterium_entity:exists() then
+            -- local microbe = Microbe(microbe_entity, nil, self.gameState)
+            local bacterium = Bacterium(bacterium_entity)
+            bacterium:damage(4)
+        end
+    end
 end
 
 function MicrobeSystem:checkEngulfment(microbe1Comp, microbe2Comp, body, entity1, entity2)
