@@ -207,12 +207,17 @@ Microbe = class(
         assert(entity ~= nil)
         self.entity = entity
         
+        local all_components_available = true
+
         for key, ctype in pairs(Microbe.COMPONENTS) do
             local component = getComponent(entity, ctype)
-            assert(component ~= nil, "Can't create microbe from this entity, it's missing " .. key)
-            
+            if component == nil then
+                print("entity is missing component: " .. key)
+                all_components_available = false
+            end
             self[key] = component
         end
+        assert(all_components_available, "Can't create microbe from this entity")
 
         for _, compound in pairs(CompoundRegistry.getCompoundList()) do
             self.compoundAbsorber:setCanAbsorbCompound(compound, true)
