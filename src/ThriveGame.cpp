@@ -7,6 +7,8 @@
 #include "Networking/NetworkHandler.h"
 #include "Rendering/GraphicalInputEntity.h"
 
+#include "GUI/AlphaHitCache.h"
+
 #include "CEGUI/SchemeManager.h"
 
 using namespace thrive;
@@ -73,6 +75,13 @@ void ThriveGame::CustomizeEnginePostLoad(){
     GuiManagerAccess->SetMouseTheme("ThriveGeneric/MouseArrow");
     GuiManagerAccess->SetTooltipType("Thrive/Tooltip");
 
+    Leviathan::GUI::AlphaHitCache* cache = Leviathan::GUI::AlphaHitCache::Get();
+    
+    // One image from each used alphahit texture should be
+    // loaded. Loading all from each set is probably only a tiny bit
+    // faster during gameplay so that it is not worth the effort here
+    cache->PreLoadImage("ThriveGeneric/MenuNormal");
+        
     if(!GuiManagerAccess->LoadGUIFile("./Data/Scripts/gui/thrive_menus.txt")){
         
         LOG_ERROR("Thrive: failed to load the main menu gui, quitting");
