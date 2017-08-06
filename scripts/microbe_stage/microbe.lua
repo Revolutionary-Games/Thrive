@@ -1356,14 +1356,13 @@ function MicrobeSystem:update(renderTime, logicTime)
         local bacterium_entity = Entity.new(collision.entityId2, self.gameState.wrapper)
 
         if microbe_entity:exists() and bacterium_entity:exists() then
-            -- local microbe = Microbe(microbe_entity, nil, self.gameState)
-            print("Bacterium ID:", collision.entityId2, "Does it have components:", getComponent(bacterium_entity, Bacterium.COMPONENTS.bacterium) ~= nil)
+            -- print("Bacterium ID:", collision.entityId2, "Does it have components:", getComponent(bacterium_entity, Bacterium.COMPONENTS.bacterium) ~= nil)
             if not (getComponent(bacterium_entity, Bacterium.COMPONENTS.bacterium) == nil) then
-                print("It worked!")
+                -- print("It worked!")
                 local bacterium = Bacterium(bacterium_entity)
                 bacterium:damage(4)
             else
-                print("It didn't work!")
+                -- print("It didn't work!")
             end
         end
     end

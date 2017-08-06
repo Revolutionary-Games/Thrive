@@ -81,7 +81,7 @@ Bacterium.COMPONENTS = {
 }
 
 function Bacterium.createBacterium(speciesName, pos, gameState)
-	print("BS:"..speciesName)
+	-- print("BS:"..speciesName)
 	local entity = Entity.new(gameState.wrapper)
 	local species_data = bacterial_species[speciesName]
 	local bacteriaComponent = BacteriaComponent.new(speciesName,
