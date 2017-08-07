@@ -62,14 +62,15 @@ Species = class(
 
 --sets up the spawn of the species
 function Species:setupSpawn()
-    self.id = currentSpawnSystem:addSpawnType(
-        function(pos)
-            return microbeSpawnFunctionGeneric(pos, self.name, true, nil,
-                                               g_luaEngine.currentGameState)
-        end, 
-        DEFAULT_SPAWN_DENSITY, --spawnDensity should depend on population
-        DEFAULT_SPAWN_RADIUS
-    )
+    print(gSpawnSystem == nil)
+    --self.id = gSpawnSystem:addSpawnType(
+    --    function(pos)
+    --        return microbeSpawnFunctionGeneric(pos, self.name, true, nil,
+    --                                           g_luaEngine.currentGameState)
+    --    end, 
+    --    DEFAULT_SPAWN_DENSITY, --spawnDensity should depend on population
+    --    DEFAULT_SPAWN_RADIUS
+    --)
 end
 
 --copy-pasted from setupSpecies in setup.lua

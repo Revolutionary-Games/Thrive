@@ -247,8 +247,8 @@ local function addEmitter2Entity(entity, compound)
     entity:addComponent(timedEmitter)
 end
 
-local function createSpawnSystem()
-    local spawnSystem = SpawnSystem.new()
+local function setupSpawnSystem(gameState)
+    gSpawnSystem = SpawnSystem.new()
 
     local toxinOrganelleSpawnFunction = function(pos)
         powerupEntity = Entity.new(g_luaEngine.currentGameState.wrapper)
@@ -287,26 +287,27 @@ local function createSpawnSystem()
                 createCompoundCloud(compoundName, pos.x, pos.y)
             end
 
-            spawnSystem:addSpawnType(spawnCloud, CLOUD_SPAWN_DENSITY, CLOUD_SPAWN_RADIUS)
+            --gSpawnSystem:addSpawnType(spawnCloud, CLOUD_SPAWN_DENSITY, CLOUD_SPAWN_RADIUS)
         end
     end
 
-    spawnSystem:addSpawnType(toxinOrganelleSpawnFunction, 1/17000, 50)
-    spawnSystem:addSpawnType(ChloroplastOrganelleSpawnFunction, 1/12000, 50)
+    gSpawnSystem:addSpawnType(toxinOrganelleSpawnFunction, 1/17000, 50)
+    gSpawnSystem:addSpawnType(ChloroplastOrganelleSpawnFunction, 1/12000, 50)
 
-    for name, species in pairs(starter_microbes) do
+    --for name, species in pairs(starter_microbes) do
 
-        assert(isNotEmpty(name))
-        assert(species)
+    --    assert(isNotEmpty(name))
+    --    assert(species)
         
-        spawnSystem:addSpawnType(
-            function(pos) 
-                return microbeSpawnFunctionGeneric(pos, name, true, nil,
-                                                   g_luaEngine.currentGameState)
-            end, 
-            species.spawnDensity, 60)
-    end
-    return spawnSystem
+    --    gSpawnSystem:addSpawnType(
+    --        function(pos) 
+    --            return microbeSpawnFunctionGeneric(pos, name, true, nil,
+    --                                               g_luaEngine.currentGameState)
+    --        end, 
+    --        species.spawnDensity, 60)
+    --end
+
+    return gSpawnSystem
 end
 
 local function setupPlayer(gameState)
@@ -391,7 +392,7 @@ local function createMicrobeStage(name)
             BulletToOgreSystem.new(),
             CollisionSystem.new(),
             -- Microbe Specific again (order sensitive)
-            createSpawnSystem(),
+            setupSpawnSystem(),
             -- Graphics
             OgreAddSceneNodeSystem.new(),
             OgreUpdateSceneNodeSystem.new(),

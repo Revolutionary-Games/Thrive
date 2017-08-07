@@ -2,9 +2,7 @@
 
 #include "engine/component.h"
 #include "engine/system.h"
-#include "luajit/src/lua.hpp"
 #include "scripting/luajit.h"
-#include "scripting/script_initializer.h"
 
 // Time between spawn cycles
 #define SPAWN_INTERVAL 100
