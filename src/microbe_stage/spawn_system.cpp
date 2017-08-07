@@ -25,7 +25,7 @@ struct SpawnType {
     double spawnRadius = 0.0;
     double spawnRadiusSqr = 0.0;
     double spawnFrequency = 0.0;
-    int factoryFunction = 0; // to do
+    sol::protected_function factoryFunction;
     SpawnerTypeId id = 0;
 };
 
@@ -63,7 +63,6 @@ SpawnedComponent::storage() const {
 }
 
 REGISTER_COMPONENT(SpawnedComponent)
-//const ComponentTypeId SpawnedComponent::TYPE_ID = thrive::ComponentFactory::registerGlobalComponentType<SpawnedComponent>();
 
 ////////////////////////////////////////////////////////////////////////////////
 // SpawnSystem
@@ -76,7 +75,24 @@ struct SpawnSystem::Implementation {
     unsigned int timeSinceLastUpdate = 0;
 };
 
-SpawnerTypeId SpawnSystem::addSpawnType(int factoryFunction, double spawnDensity, double spawnRadius) {
+void SpawnSystem::luaBindings(
+    sol::state &lua
+){
+    lua.new_usertype<SpawnSystem>("SpawnSystem",
+
+        sol::constructors<sol::types<>>(),
+
+        sol::base_classes, sol::bases<System>(),
+
+        "init", &SpawnSystem::init,
+
+        "addSpawnType", &SpawnSystem::addSpawnType,
+
+        "removeSpawnType", &SpawnSystem::removeSpawnType
+    );
+}
+
+SpawnerTypeId SpawnSystem::addSpawnType(sol::protected_function factoryFunction, double spawnDensity, double spawnRadius) {
     SpawnType newSpawnType;
     newSpawnType.factoryFunction = factoryFunction;
     newSpawnType.spawnRadius = spawnRadius;
@@ -151,7 +167,14 @@ void SpawnSystem::doSpawnCycle() {
 
                 if(squaredDistance <= spawnType.spawnRadiusSqr && previousSquaredDistance > spawnType.spawnRadiusSqr) {
                     // Second condition passed. Spawn the entity.
-                    // To do
+                    Entity* spawnedEntity = spawnType.factoryFunction(playerPosition + displacement);
+
+                    // Giving the new entity a spawn component.
+                    if(spawnedEntity) {
+                        std::unique_ptr<SpawnedComponent> spawnedComponent(new SpawnedComponent());
+                        spawnedComponent->spawnRadiusSqr = spawnType.spawnRadiusSqr;
+                        spawnedEntity->addComponent(std::move(spawnedComponent));
+                    }
                 }
             }
     }
@@ -166,19 +189,6 @@ SpawnSystem::SpawnSystem()
 }
 
 SpawnSystem::~SpawnSystem() {}
-
-void SpawnSystem::luaBindings(
-    sol::state &lua
-){
-    lua.new_usertype<SpawnSystem>("SpawnSystem",
-
-        sol::constructors<sol::types<>>(),
-
-        sol::base_classes, sol::bases<System>(),
-
-        "init", &SpawnSystem::init
-    );
-}
 
 void
 SpawnSystem::init(

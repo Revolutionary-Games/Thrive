@@ -2,6 +2,9 @@
 
 #include "engine/component.h"
 #include "engine/system.h"
+#include "luajit/src/lua.hpp"
+#include "scripting/luajit.h"
+#include "scripting/script_initializer.h"
 
 // Time between spawn cycles
 #define SPAWN_INTERVAL 100
@@ -78,7 +81,10 @@ public:
     * @brief Lua bindings
     *
     * Exposes:
-    * - SpawnSystem()
+    * - SpawnSystem
+    * - init
+    * - AddSpawnType
+    * - RemoveSpawnType
     *
     * @return
     */
@@ -108,7 +114,7 @@ public:
         int logicTime
     ) override;
 
-    SpawnerTypeId addSpawnType(int factoryFunction, double spawnDensity, double spawnRadius);
+    SpawnerTypeId addSpawnType(sol::protected_function factoryFunction, double spawnDensity, double spawnRadius);
 
     void removeSpawnType(SpawnerTypeId spawnId);
 
