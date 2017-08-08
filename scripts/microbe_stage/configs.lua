@@ -19,28 +19,47 @@ agents = {
         effect = oxytoxyEffect,
     },
 }
+-- must be global
+chloroplast_Organelle_Number = 0
+toxin_Organelle_Number = 0
 
+-- this count the toxin Organelle Number
+function  toxin_number()
+toxin_Organelle_Number = toxin_Organelle_Number + 1
+print (toxin_Organelle_Number)
+if toxin_Organelle_Number >= 3 then -- 3 is an example
+toxinEffect()
+end   
+    return true
+end
+--this where the Unlock Happen
 function toxinEffect(entityId)
-    print ("toxin called")
-    if math.random(1,4) > 1 then return true end
-    if Engine:playerData():lockedMap():isLocked("Toxin") then
+ if Engine:playerData():lockedMap():isLocked("Toxin") then
         showMessage("Toxin Unlocked!")
         Engine:playerData():lockedMap():unlock("Toxin")
         local guiSoundEntity = Entity("gui_sounds")
         getComponent(guiSoundEntity, SoundSourceComponent):playSound("microbe-pickup-organelle")
     end
+end
+
+-- this count the chloroplast Organelle Number
+function chloroplast_number()
+      chloroplast_Organelle_Number = chloroplast_Organelle_Number + 1
+	    print (chloroplast_Organelle_Number)
+    if chloroplast_Organelle_Number >= 3 then  -- 3 is an example
+	chloroplastEffect()
+	end
     return true
 end
 
+--this where the Unlock Happen
 function chloroplastEffect(entityId)
-    if math.random(1,3) > 1 then return true end
-    if Engine:playerData():lockedMap():isLocked("chloroplast") then
+if Engine:playerData():lockedMap():isLocked("chloroplast") then
         showMessage("Chloroplast Unlocked!")
         Engine:playerData():lockedMap():unlock("chloroplast")
         local guiSoundEntity = Entity("gui_sounds")
         getComponent(guiSoundEntity, SoundSourceComponent):playSound("microbe-pickup-organelle")
     end
-    return true
 end
 
 --[[
@@ -50,10 +69,8 @@ off the internet. Before you print them though, set up the axes
 properly. See http://i.imgur.com/kTxHFMC.png for how. When you're
 drawing out your microbe, keep in mind that it faces forward along
 the +r direction.
-
 0 degrees is considered up for the rotation (+r), and you can rotate
 in 60 degree intervals counter clockwise.
-
 The colour of the microbe should never be lower than (0.3, 0.3, 0.3)
 ]]
 
