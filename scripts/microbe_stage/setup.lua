@@ -261,7 +261,7 @@ local function createSpawnSystem()
         
         local powerupComponent = PowerupComponent.new()
         -- Function name must be in configs.lua
-        powerupComponent:setEffect("toxinEffect")
+        powerupComponent:setEffect("toxin_number")
         powerupEntity:addComponent(powerupComponent)
         return powerupEntity
     end
@@ -276,7 +276,7 @@ local function createSpawnSystem()
         
         local powerupComponent = PowerupComponent.new()
         -- Function name must be in configs.lua
-        powerupComponent:setEffect("chloroplastEffect")
+        powerupComponent:setEffect("chloroplast_number")
         powerupEntity:addComponent(powerupComponent)
         return powerupEntity
     end
