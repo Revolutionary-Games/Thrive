@@ -170,7 +170,7 @@ void SpawnSystem::doSpawnCycle() {
                     Entity* spawnedEntity = spawnType.factoryFunction(playerPosition + displacement);
 
                     // Giving the new entity a spawn component.
-                    if(spawnedEntity) {
+                    if(spawnedEntity->exists()) {
                         std::unique_ptr<SpawnedComponent> spawnedComponent(new SpawnedComponent());
                         spawnedComponent->spawnRadiusSqr = spawnType.spawnRadiusSqr;
                         spawnedEntity->addComponent(std::move(spawnedComponent));
