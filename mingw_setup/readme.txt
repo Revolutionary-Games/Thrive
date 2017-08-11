@@ -228,9 +228,6 @@ replace it. Finally, click okay and exit.
 Note that the build/Thrive.exe will not work as it is not placed with the 
 necessary DLL files.
 
-* An ogre config will show up when you start Thrive. Selecting a non-0 value for FSAA anti aliasing may or may not prevent a current
-issue with flickering on windows.
-
 
 Older Windows Platforms
 =======================
