@@ -201,9 +201,8 @@ function createCompoundCloud(compoundName, x, y, amount)
         ):addCloud(amount, x, y)
     end
 
-    local ent = Entity.new(g_luaEngine.currentGameState.wrapper)
-    ent:addComponent(OgreSceneNodeComponent.new())
-    return ent
+    -- The spawn system expects an entity.
+    return Entity.new(g_luaEngine.currentGameState.wrapper)
 end
 
 function createAgentCloud(compoundId, x, y, direction, amount)    
@@ -292,10 +291,10 @@ local function setupSpawnSystem(gameState)
     for compoundName, compoundInfo in pairs(compoundTable) do
         if compoundInfo.isCloud then
             local spawnCloud =  function(pos)
-                createCompoundCloud(compoundName, pos.x, pos.y)
+                return createCompoundCloud(compoundName, pos.x, pos.y)
             end
 
-            --gSpawnSystem:addSpawnType(spawnCloud, CLOUD_SPAWN_DENSITY, CLOUD_SPAWN_RADIUS)
+            gSpawnSystem:addSpawnType(spawnCloud, CLOUD_SPAWN_DENSITY, CLOUD_SPAWN_RADIUS)
         end
     end
 
