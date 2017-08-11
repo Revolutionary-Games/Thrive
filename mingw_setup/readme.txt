@@ -131,13 +131,46 @@ file in the next step.
     
     and install it
 
+7. Download git and tortoisegit 
+_______________
+Download git from here:
 
-7. Get the assets
+https://git-scm.com/download/
+
+and install it
+
+then Download tortoisegit from here:
+
+https://tortoisegit.org/download/
+
+and install it
+
+
+9.Get the project
+_______________
+now right click in the place you want to put your project into for me i prefer to make folder called building thrive 
+(put it in the place you like)and inside it Right-click and choose git clone in URL write:
+
+https://github.com/Revolutionary-Games/Thrive.git
+
+and in Directory the place you want to put the project files in and then \new_name_for_file_here 
+(ex. D:\bulding thrive\Thrive)
+
+then click ok
+
+10.adding the project to system path
+_______________
+
+open the system paths (google it if you do not know how for your pc)
+
+and then add the path of the folder appeared after tortoisegit finished (ex. ;D:\bulding thrive\Thrive)
+
+11. Get the assets
 ---------------
 
 * If you Installed tortoise SVN
 
-    Right click somewhere in the git repository and click SVN Checkout.
+    Right click somewhere inside the folder that appeared  and click SVN Checkout.
     Under URL enter: http://assets.revolutionarygamesstudio.com/
     Edit the last part of Checkout directory to "/assets" instead of "/trive_assets"
     Click checkout and it will prompt you for a user
@@ -147,12 +180,12 @@ file in the next step.
 
     svn co http://assets.revolutionarygamesstudio.com ./assets
     
-8. Invoke CMake
+12. Invoke CMake
 ---------------
 
 * Start the CMake GUI from your start menu
 
-* Set the source code directory to Thrive's root directory. That should be one
+* Set the source code directory to Thrive's root directory (ex.D:\bulding thrive\Thrive). That should be one
   directory above where this readme is located.
 
 * Set the build directory to an empty directory where you want to put the 
@@ -172,7 +205,7 @@ The toolchain file was configured during the setup script to contain paths to
 the compiler executable and all accompanying tools. It's usually used for 
 cross-compiling, but it's convenient for us, too.
 
-9. Building Thrive
+13. Building Thrive
 ---------------------------
 
 * Open "Thrive.cbp" in your selected build directory with Code::Blocks
@@ -188,7 +221,7 @@ cross-compiling, but it's convenient for us, too.
   build Thrive
 
 
-10. Running Thrive
+14. Running Thrive
 -----------------
 
 * In Code::Blocks, go to Project->Properties->Build Targets then select Install on the left and change Type: from GUI Application to Console Application. Next, change Output Filename to "dist\bin\Thrive.exe" (without the quotes). If asks you to replace the file, replace it. Finally, click okay and exit.
