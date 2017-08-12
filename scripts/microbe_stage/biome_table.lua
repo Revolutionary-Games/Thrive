@@ -20,6 +20,10 @@ biomeTable = {
             co2 = 65000,
             ammonia = 65000,
             glucose = 65000
+        },
+
+        bacteria = {
+            Rickettsia = 20
         }
     },
 
@@ -32,6 +36,10 @@ biomeTable = {
             co2 = 100000,
             ammonia = 85000,
             glucose = 65000
+        },
+
+        bacteria = {
+            Rickettsia = 20
         }
     },
 
@@ -44,6 +52,10 @@ biomeTable = {
             co2 = 70000,
             ammonia = 70000,
             glucose = 80000
+        },
+
+        bacteria = {
+            Rickettsia = 20
         }
     },
 
@@ -56,6 +68,10 @@ biomeTable = {
             co2 = 70000,
             ammonia = 60000,
             glucose = 70000
+        },
+
+        bacteria = {
+            Rickettsia = 20
         }
     }
 }

@@ -26,25 +26,9 @@ end
 
 REGISTER_COMPONENT("BacteriaComponent", BacteriaComponent)
 
--- Simple default bacterium species
-
-bacterial_species = {
-	["DefaultBacterium"] = {
-		mesh = "mitochondrion.mesh",
-		processes = {
-			["Photosynthesis"] = 0.6,
-		},
-		compounds = {
-			["co2"] = 80,
-		},
-		capacity = 50,
-		mass = 0.4,
-		health = 10,
-	},
-}
 
 function initBacterialSpecies(gameState)
-	for name, data in pairs(bacterial_species) do
+	for name, data in pairs(bacteriaTable) do
 		local speciesEntity = Entity.new(name, gameState.wrapper)
 		local processorComponent = ProcessorComponent.new()
 		for process, capacity in pairs(data.processes) do
@@ -83,13 +67,13 @@ Bacterium.COMPONENTS = {
 function Bacterium.createBacterium(speciesName, pos, gameState)
 	-- print("BS:"..speciesName)
 	local entity = Entity.new(gameState.wrapper)
-	local species_data = bacterial_species[speciesName]
+	local species_data = bacteriaTable[speciesName]
 	local bacteriaComponent = BacteriaComponent.new(speciesName,
-							bacterial_species[speciesName].health)
+							bacteriaTable[speciesName].health)
 
 	local rigidBody = RigidBodyComponent.new()
 	rigidBody.properties.shape = SphereShape.new(HEX_SIZE)
-	rigidBody.properties.mass = bacterial_species[speciesName].mass
+	rigidBody.properties.mass = bacteriaTable[speciesName].mass
 	rigidBody.properties.friction = 0.2
 	rigidBody.properties.linearDamping = 0.8
 	rigidBody:setDynamicProperties(
@@ -130,7 +114,7 @@ function Bacterium.createBacterium(speciesName, pos, gameState)
 	end
 
 	local bacterium = Bacterium(entity)
-	return bacterium
+	return entity
 end
 
 function Bacterium:purgeCompounds()

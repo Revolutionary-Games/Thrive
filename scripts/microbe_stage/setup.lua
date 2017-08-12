@@ -1,6 +1,9 @@
 CLOUD_SPAWN_RADIUS = 50
 CLOUD_SPAWN_DENSITY = 1/5000
 
+BACTERIA_SPAWN_RADIUS = 50
+BACTERIA_SPAWN_DENSITY = 1/4000
+
 local function setupBackground(gameState)
     setRandomBiome(gameState)
 end
@@ -291,12 +294,14 @@ local function createSpawnSystem()
         end
     end
 
+    for bacteriaName, _ in pairs(bacteriaTable) do
+        local spawnBacteria =  function(pos)
+            Bacterium.createBacterium(bacteriaName, pos, g_luaEngine.currentGameState)
+        end
 
-    local TestBacteriumSpawn = function(pos)
-        Bacterium.createBacterium("DefaultBacterium", pos, g_luaEngine.currentGameState)
+        -- TODO: make the density change on biome change.
+        spawnSystem:addSpawnType(spawnBacteria, BACTERIA_SPAWN_DENSITY, BACTERIA_SPAWN_RADIUS)
     end
-
-    spawnSystem:addSpawnType(TestBacteriumSpawn, 1/2000, 50)
 
     spawnSystem:addSpawnType(toxinOrganelleSpawnFunction, 1/17000, 50)
     spawnSystem:addSpawnType(ChloroplastOrganelleSpawnFunction, 1/12000, 50)
