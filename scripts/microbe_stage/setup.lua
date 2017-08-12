@@ -164,7 +164,7 @@ function microbeSpawnFunctionGeneric(pos, speciesName, aiControlled, individualN
     return microbe
 end
 
-local function setSpawnablePhysics(entity, pos, mesh, scale, collisionShape)
+function setSpawnablePhysics(entity, pos, mesh, scale, collisionShape)
     -- Rigid body
     local rigidBody = RigidBodyComponent.new()
     rigidBody.properties.friction = 0.2

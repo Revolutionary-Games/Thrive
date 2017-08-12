@@ -11,7 +11,7 @@ BacteriaComponent = class(
 BacteriaComponent.TYPE_NAME = "BacteriaComponent"
 
 function BacteriaComponent:load(storage)
-	self.speciesName = storage:get("speciesName", "DefaultBacterium")
+	self.speciesName = storage:get("speciesName", "Rickettsia")
 	self.invincibility_timer = storage:get("invincibility_timer", 0)
 	self.health = storage:get("health", 1)
 end
@@ -190,6 +190,27 @@ function Bacterium:kill()
     for compoundId, amount in pairs(compoundsToRelease) do
         self:ejectCompound(compoundId, amount)
     end
+
+    -- Releasing the organelle if needed.
+    local speciesName = self.bacterium.speciesName
+    if bacteriaTable[speciesName].organelle ~= nil then
+        local organelleName = bacteriaTable[speciesName].organelle
+        
+        -- Creating a powerup entity
+        local powerupEntity = Entity.new(g_luaEngine.currentGameState.wrapper)
+        setSpawnablePhysics(powerupEntity, self.sceneNode.transform.position,
+                            organelleTable[organelleName].mesh, 0.9, SphereShape.new(HEX_SIZE))
+
+        local reactionHandler = CollisionComponent.new()
+        reactionHandler:addCollisionGroup("powerup")
+        powerupEntity:addComponent(reactionHandler)
+        
+        local powerupComponent = PowerupComponent.new()
+        -- Function name must be in configs.lua
+        powerupComponent:setEffect(organelleName .. "Effect")
+        powerupEntity:addComponent(powerupComponent)
+    end
+
     self.entity:destroy()
 end
 
