@@ -126,7 +126,7 @@ function HudSystem:init(gameState)
     self.co2CountLabel = self.co2Bar:getChild("NumberLabel")
     self.co2MaxLabel = self.rootGUIWindow:getChild("CompoundPanel"):getChild("CompoundScroll"):getChild("CO2Bar"):getChild("CO2Total")
     self.co2Bar:setProperty("ThriveGeneric/CO2Bar", "FillImage")
-	
+	--[[
 	self.fattyacidsBar = self.rootGUIWindow:getChild("CompoundPanel"):getChild("CompoundScroll"):getChild("FattyAcidsBar"):getChild("FattyAcidsBar")
 	self.fattyacidsCountLabel = self.fattyacidsBar:getChild("NumberLabel")
     self.fattyacidsMaxLabel = self.rootGUIWindow:getChild("CompoundPanel"):getChild("CompoundScroll"):getChild("FattyAcidsBar"):getChild("FattyAcidsTotal")
@@ -136,6 +136,16 @@ function HudSystem:init(gameState)
 	self.oxytoxyCountLabel = self.oxytoxyBar:getChild("NumberLabel")
     self.oxytoxyMaxLabel = self.rootGUIWindow:getChild("CompoundPanel"):getChild("CompoundScroll"):getChild("OxyToxyNTBar"):getChild("OxyToxyNTTotal")
     self.oxytoxyBar:setProperty("ThriveGeneric/OxyToxyBar", "FillImage")
+	]]
+	self.hydrogensulfideBar = self.rootGUIWindow:getChild("CompoundPanel"):getChild("CompoundScroll"):getChild("HydrogenSulfideBar"):getChild("HydrogenSulfideBar")
+    self.hydrogensulfideCountLabel = self.hydrogensulfideBar:getChild("NumberLabel")
+    self.hydrogensulfideMaxLabel = self.rootGUIWindow:getChild("CompoundPanel"):getChild("CompoundScroll"):getChild("HydrogenSulfideBar"):getChild("HydrogenSulfideTotal")
+    self.hydrogensulfideBar:setProperty("ThriveGeneric/FattyAcidsBar", "FillImage")
+	
+	self.sulfurBar = self.rootGUIWindow:getChild("CompoundPanel"):getChild("CompoundScroll"):getChild("SulfurBar"):getChild("SulfurBar")
+    self.sulfurCountLabel = self.sulfurBar:getChild("NumberLabel")
+    self.sulfurMaxLabel = self.rootGUIWindow:getChild("CompoundPanel"):getChild("CompoundScroll"):getChild("SulfurBar"):getChild("SulfurTotal")
+    self.sulfurBar:setProperty("ThriveGeneric/OxyToxyBar", "FillImage")
 end
 
 
@@ -172,7 +182,7 @@ function HudSystem:update(renderTime)
 	self.co2Bar:progressbarSetProgress(playerMicrobe:getCompoundAmount(CompoundRegistry.getCompoundId("co2"))/(playerMicrobe.microbe.capacity/CompoundRegistry.getCompoundUnitVolume(CompoundRegistry.getCompoundId("co2"))))
     self.co2CountLabel:setText("".. math.floor(playerMicrobe:getCompoundAmount(CompoundRegistry.getCompoundId("co2"))))
     self.co2MaxLabel:setText("/ ".. math.floor(playerMicrobe.microbe.capacity/CompoundRegistry.getCompoundUnitVolume(CompoundRegistry.getCompoundId("co2"))))
-	
+	--[[
 	self.fattyacidsBar:progressbarSetProgress(playerMicrobe:getCompoundAmount(CompoundRegistry.getCompoundId("fattyacids"))/(playerMicrobe.microbe.capacity/CompoundRegistry.getCompoundUnitVolume(CompoundRegistry.getCompoundId("fattyacids"))))
     self.fattyacidsCountLabel:setText("".. math.floor(playerMicrobe:getCompoundAmount(CompoundRegistry.getCompoundId("fattyacids"))))
     self.fattyacidsMaxLabel:setText("/ ".. math.floor(playerMicrobe.microbe.capacity/CompoundRegistry.getCompoundUnitVolume(CompoundRegistry.getCompoundId("fattyacids"))))
@@ -180,6 +190,14 @@ function HudSystem:update(renderTime)
 	self.oxytoxyBar:progressbarSetProgress(playerMicrobe:getCompoundAmount(CompoundRegistry.getCompoundId("oxytoxy"))/(playerMicrobe.microbe.capacity/CompoundRegistry.getCompoundUnitVolume(CompoundRegistry.getCompoundId("oxytoxy"))))
     self.oxytoxyCountLabel:setText("".. math.floor(playerMicrobe:getCompoundAmount(CompoundRegistry.getCompoundId("oxytoxy"))))
     self.oxytoxyMaxLabel:setText("/ ".. math.floor(playerMicrobe.microbe.capacity/CompoundRegistry.getCompoundUnitVolume(CompoundRegistry.getCompoundId("oxytoxy"))))
+	]]
+	self.hydrogensulfideBar:progressbarSetProgress(playerMicrobe:getCompoundAmount(CompoundRegistry.getCompoundId("hydrogensulfide"))/(playerMicrobe.microbe.capacity/CompoundRegistry.getCompoundUnitVolume(CompoundRegistry.getCompoundId("hydrogensulfide"))))
+    self.hydrogensulfideCountLabel:setText("".. math.floor(playerMicrobe:getCompoundAmount(CompoundRegistry.getCompoundId("hydrogensulfide"))))
+    self.hydrogensulfideMaxLabel:setText("/ ".. math.floor(playerMicrobe.microbe.capacity/CompoundRegistry.getCompoundUnitVolume(CompoundRegistry.getCompoundId("hydrogensulfide"))))
+	
+	self.sulfurBar:progressbarSetProgress(playerMicrobe:getCompoundAmount(CompoundRegistry.getCompoundId("sulfur"))/(playerMicrobe.microbe.capacity/CompoundRegistry.getCompoundUnitVolume(CompoundRegistry.getCompoundId("sulfur"))))
+    self.sulfurCountLabel:setText("".. math.floor(playerMicrobe:getCompoundAmount(CompoundRegistry.getCompoundId("sulfur"))))
+    self.sulfurMaxLabel:setText("/ ".. math.floor(playerMicrobe.microbe.capacity/CompoundRegistry.getCompoundUnitVolume(CompoundRegistry.getCompoundId("sulfur"))))
 
     local playerSpecies = playerMicrobe:getSpeciesComponent()
     --TODO display population in home patch here

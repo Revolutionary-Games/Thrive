@@ -31,7 +31,8 @@ biomeTable = {
             oxygen = 60000,
             co2 = 100000,
             ammonia = 85000,
-            glucose = 65000
+            glucose = 65000,
+            hydrogensulfide = 80000
         }
     },
 

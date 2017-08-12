@@ -224,5 +224,62 @@ organelleTable = {
             glucose = 2,
             -- fattyacids = 0 :/
         }
+    },
+
+    ["chemoplast"] = {
+        components = {
+            ["ProcessOrganelle"] = {
+                colourChangeFactor = 1.0,
+            }
+        },
+
+        processes = {
+            ["Chemosynthesis"] = 0.2
+        },
+
+        mass = 0.3,
+        gene = "C",
+        chanceToCreate = 3,
+        mpCost = 15,
+        mesh = "chloroplast.mesh",
+        hexes = {
+            {["q"]=0,   ["r"]=0},
+            {["q"]=1,   ["r"]=0},
+            {["q"]=0,   ["r"]=1}
+        },
+
+        composition = {
+            aminoacids = 4,
+            glucose = 2,
+            -- fattyacids = 0 :/
+        }
+    },
+
+    ["sulfurmitochondrion"] = {
+        components = {
+            ["ProcessOrganelle"] = {
+                colourChangeFactor = 1.0,
+            }
+        },
+
+        processes = {
+            ["SulfurRespiration"] = 0.08
+        },
+
+        mass = 0.3,
+        gene = "S",
+        chanceToCreate = 3,
+        mpCost = 15,
+        mesh = "mitochondrion.mesh",
+        hexes = {
+            {["q"]=0, ["r"]=0},
+            {["q"]=0, ["r"]=1}
+        },
+
+        composition = {
+            aminoacids = 4,
+            glucose = 2,
+            -- fattyacids = 0 :/
+        }
     }
 }

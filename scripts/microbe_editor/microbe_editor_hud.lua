@@ -58,6 +58,8 @@ function MicrobeEditorHudSystem:init(gameState)
     local vacuoleButton = root:getChild("EditPanel"):getChild("StructurePanel"):getChild("StructureScroll"):getChild("AddVacuole")
     local toxinButton = root:getChild("EditPanel"):getChild("StructurePanel"):getChild("StructureScroll"):getChild("AddToxinVacuole")
     local chloroplastButton = root:getChild("EditPanel"):getChild("StructurePanel"):getChild("StructureScroll"):getChild("AddChloroplast")
+    local chemoplastButton = root:getChild("EditPanel"):getChild("StructurePanel"):getChild("StructureScroll"):getChild("AddChemoplast")
+    local sulfurmitochondrionButton = root:getChild("EditPanel"):getChild("StructurePanel"):getChild("StructureScroll"):getChild("AddSulfurMitochondrion")
     
     self.organelleButtons["nucleus"] = nucleusButton
     self.organelleButtons["flagellum"] = flagellumButton
@@ -66,6 +68,8 @@ function MicrobeEditorHudSystem:init(gameState)
     self.organelleButtons["chloroplast"] = chloroplastButton
     self.organelleButtons["vacuole"] = vacuoleButton
     self.organelleButtons["Toxin"] = toxinButton
+    self.organelleButtons["chemoplast"] = chemoplastButton
+    self.organelleButtons["sulfurmitochondrion"] = sulfurmitochondrionButton
     self.activeButton = nil
     
     nucleusButton:registerEventHandler("Clicked", function() self:nucleusClicked() end)
@@ -75,6 +79,8 @@ function MicrobeEditorHudSystem:init(gameState)
     chloroplastButton:registerEventHandler("Clicked", function() self:chloroplastClicked() end)
     vacuoleButton:registerEventHandler("Clicked", function() self:vacuoleClicked() end)
     toxinButton:registerEventHandler("Clicked", function() self:toxinClicked() end)
+    chemoplastButton:registerEventHandler("Clicked", function() self:chemoplastClicked() end)
+    sulfurmitochondrionButton:registerEventHandler("Clicked", function() self:sulfurmitochondrionClicked() end)
     
     -- self.saveLoadPanel = root:getChild("SaveLoadPanel")
     -- self.creationsListbox = self.saveLoadPanel:getChild("SavedCreations")
@@ -373,6 +379,24 @@ function MicrobeEditorHudSystem:toxinClicked()
     self.activeButton = self.organelleButtons["Toxin"]
     self.activeButton:disable()
     self:setActiveAction("oxytoxy")
+end
+
+function MicrobeEditorHudSystem:chemoplastClicked()
+    if self.activeButton ~= nil then
+        self.activeButton:enable()
+    end
+    self.activeButton = self.organelleButtons["chemoplast"]
+    self.activeButton:disable()
+    self:setActiveAction("chemoplast")
+end
+
+function MicrobeEditorHudSystem:sulfurmitochondrionClicked()
+    if self.activeButton ~= nil then
+        self.activeButton:enable()
+    end
+    self.activeButton = self.organelleButtons["sulfurmitochondrion"]
+    self.activeButton:disable()
+    self:setActiveAction("sulfurmitochondrion")
 end
 
 

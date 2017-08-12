@@ -84,5 +84,22 @@ compoundTable = {
     ["fattyacids"] = {
         name = "Fatty Acids",
         volume = 1,
+    },
+
+    ["hydrogensulfide"] = {
+        name = "Hydrogen sulfide",
+        volume = 1,
+        isCloud = true,
+
+        colour = {
+            r = 255,
+            g = 100,
+            b = 50
+        }
+    },
+
+    ["sulfur"] = {
+        name = "Sulfur",
+        volume = 1
     }
 }

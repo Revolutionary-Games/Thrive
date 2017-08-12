@@ -64,5 +64,30 @@ processes = {
             glucose = 1,
             oxygen = 6
         }
+    },
+
+    ["SulfurRespiration"] = {
+        inputs = {
+            glucose = 1,
+            sulfur = 6
+        },
+
+        outputs = {
+            co2 = 6,
+            hydrogensulfide = 6,
+            atp = 16
+        }
+    },
+
+    ["Chemosynthesis"] = {
+        inputs = {
+            co2 = 6,
+            hydrogensulfide = 12
+        },
+
+        outputs = {
+            glucose = 1,
+            sulfur = 12
+        }
     }
 }
