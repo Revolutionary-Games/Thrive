@@ -20,8 +20,8 @@ agents = {
     },
 }
 -- must be global
-chloroplast_Organelle_Number = 2
-toxin_Organelle_Number = 2
+chloroplast_Organelle_Number = 0
+toxin_Organelle_Number = 0
 chloroplast_unlocked = false
 toxin_unlocked = false
 
