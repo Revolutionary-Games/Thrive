@@ -216,6 +216,7 @@ function HudSystem:update(renderTime)
  
    if t3 == 300 then
    print ("Editor notification disabled")
+   
    global_activeMicrobeStageHudSystem:editornotificationdisable()
    end
    end
@@ -438,6 +439,8 @@ function HudSystem:editorButtonClicked()
 
     getComponent("gui_sounds", self.gameState, SoundSourceComponent):playSound("button-hover-click")
     self.editorButton:disable()
+	b3 = false
+	t3 = 0
     g_luaEngine:setCurrentGameState(GameState.MICROBE_EDITOR)
 end
 
