@@ -3,8 +3,10 @@
 -- notification setting up
 t1 = 0
 t2 = 0
+t3 = 0
 b1 = false
 b2 = false
+b3 = false
 
 -- Updates the hud with relevant information
 
@@ -207,6 +209,16 @@ function HudSystem:update(renderTime)
    global_activeMicrobeStageHudSystem:toxinNotificationdisable()
    end
    end
+   
+   if b3 == true and t3 < 300 then
+ t3 = t3 + 2
+ print (t3)
+ 
+   if t3 == 300 then
+   print ("Editor notification disabled")
+   global_activeMicrobeStageHudSystem:editornotificationdisable()
+   end
+   end
     --TODO display population in home patch here
     
     
@@ -279,6 +291,12 @@ end
 function HudSystem:showReproductionDialog()
    -- print("Reproduction Dialog called but currently disabled. Is it needed? Note that the editor button has been enabled")
     --global_activeMicrobeStageHudSystem.rootGUIWindow:getChild("ReproductionPanel"):show()
+	if b3 == false then
+	getComponent("gui_sounds", g_luaEngine.currentGameState, SoundSourceComponent
+    ):playSound("microbe-pickup-organelle")
+self.rootGUIWindow:getChild("editornotification"):show()
+b3 = true
+end
     self.editorButton:enable()
 end
 
@@ -355,9 +373,11 @@ self.rootGUIWindow:getChild("chloroplastUnlockNotification"):show()
 b1 = true
 self.rootGUIWindow:getChild("toxinUnlockNotification"):hide()
 end
+
 function HudSystem:chloroplastNotificationdisable()
 self.rootGUIWindow:getChild("chloroplastUnlockNotification"):hide()
 end
+
 function HudSystem:toxinNotificationenable()
 getComponent("gui_sounds", g_luaEngine.currentGameState, SoundSourceComponent
     ):playSound("microbe-pickup-organelle")
@@ -365,10 +385,13 @@ self.rootGUIWindow:getChild("toxinUnlockNotification"):show()
 b2 = true
 self.rootGUIWindow:getChild("chloroplastUnlockNotification"):hide()
 end
+
 function HudSystem:toxinNotificationdisable()
 self.rootGUIWindow:getChild("toxinUnlockNotification"):hide()
 end
-
+function HudSystem:editornotificationdisable()
+self.rootGUIWindow:getChild("editornotification"):hide()
+end
 function HudSystem:helpButtonClicked()
     getComponent("gui_sounds", self.gameState, SoundSourceComponent):playSound("button-hover-click")
     self.rootGUIWindow:getChild("PauseMenu"):getChild("HelpPanel"):show()
