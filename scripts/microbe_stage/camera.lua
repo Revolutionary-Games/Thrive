@@ -26,7 +26,7 @@ end
 function MicrobeCameraSystem:update(renderTime, logicTime)    
     local player = Entity.new(PLAYER_NAME, self.gameState.wrapper)
     local playerNode = getComponent(player, OgreSceneNodeComponent)
-	self.cameraScenenode.transform.position = playerNode.transform.position + self.camera.properties.offset
+	self.cameraScenenode.transform.position = playerNode.transform.position + self.camera.properties.offset + Vector3(0, 0, 60)
 	self.cameraScenenode.transform:touch()
 end
 

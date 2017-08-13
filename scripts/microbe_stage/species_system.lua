@@ -9,8 +9,6 @@ local MAX_INITIAL_LENGTH = 15
 
 local DEFAULT_SPAWN_DENSITY = 1/25000
 
-local DEFAULT_SPAWN_RADIUS = 60
-
 local MIN_COLOR = 0.3
 local MAX_COLOR = 1.0
 
@@ -68,7 +66,7 @@ function Species:setupSpawn()
                                                g_luaEngine.currentGameState)
         end, 
         DEFAULT_SPAWN_DENSITY, --spawnDensity should depend on population
-        DEFAULT_SPAWN_RADIUS
+        MICROBE_SPAWN_RADIUS
     )
 end
 
