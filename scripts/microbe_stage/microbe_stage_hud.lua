@@ -1,7 +1,10 @@
 --
 -- TODO: merge the common things in microbe_stage_tutorial_hud
---
-
+-- notification setting up
+t1 = 0
+t2 = 0
+b1 = false
+b2 = false
 
 -- Updates the hud with relevant information
 
@@ -71,6 +74,8 @@ function HudSystem:init(gameState)
     local loadButton = self.rootGUIWindow:getChild("PauseMenu"):getChild("LoadGameButton")
     local resumeButton = self.rootGUIWindow:getChild("PauseMenu"):getChild("ResumeButton")
     local closeHelpButton = self.rootGUIWindow:getChild("PauseMenu"):getChild("CloseHelpButton")
+	local chloroplast_unlock_notification = self.rootGUIWindow:getChild("chloroplastUnlockNotification")
+	local toxin_unlock_notification = self.rootGUIWindow:getChild("toxinUnlockNotification")
     --local collapseButton = self.rootGUIWindow:getChild() collapseButtonClicked
     local helpButton = self.rootGUIWindow:getChild("PauseMenu"):getChild("HelpButton")
     local helpPanel = self.rootGUIWindow:getChild("PauseMenu"):getChild("HelpPanel")
@@ -182,6 +187,26 @@ function HudSystem:update(renderTime)
     self.oxytoxyMaxLabel:setText("/ ".. math.floor(playerMicrobe.microbe.capacity/CompoundRegistry.getCompoundUnitVolume(CompoundRegistry.getCompoundId("oxytoxy"))))
 
     local playerSpecies = playerMicrobe:getSpeciesComponent()
+	--notification setting up
+	if b1 == true and t1 < 300 then
+ t1 = t1 + 2
+ print (t1)
+ 
+   if t1 == 300 then
+   print ("chloroplast notification disabled")
+   global_activeMicrobeStageHudSystem:chloroplastNotificationdisable()
+  end
+   end
+   
+   if b2 == true and t2 < 300 then
+ t2 = t2 + 2
+ print (t2)
+ 
+   if t2 == 300 then
+   print ("toxin notification disabled")
+   global_activeMicrobeStageHudSystem:toxinNotificationdisable()
+   end
+   end
     --TODO display population in home patch here
     
     
@@ -323,6 +348,27 @@ function HudSystem:toggleCompoundPanel()
     end
 end
 
+function HudSystem:chloroplastNotificationenable()
+getComponent("gui_sounds", g_luaEngine.currentGameState, SoundSourceComponent
+    ):playSound("microbe-pickup-organelle")
+self.rootGUIWindow:getChild("chloroplastUnlockNotification"):show()
+b1 = true
+self.rootGUIWindow:getChild("toxinUnlockNotification"):hide()
+end
+function HudSystem:chloroplastNotificationdisable()
+self.rootGUIWindow:getChild("chloroplastUnlockNotification"):hide()
+end
+function HudSystem:toxinNotificationenable()
+getComponent("gui_sounds", g_luaEngine.currentGameState, SoundSourceComponent
+    ):playSound("microbe-pickup-organelle")
+self.rootGUIWindow:getChild("toxinUnlockNotification"):show()
+b2 = true
+self.rootGUIWindow:getChild("chloroplastUnlockNotification"):hide()
+end
+function HudSystem:toxinNotificationdisable()
+self.rootGUIWindow:getChild("toxinUnlockNotification"):hide()
+end
+
 function HudSystem:helpButtonClicked()
     getComponent("gui_sounds", self.gameState, SoundSourceComponent):playSound("button-hover-click")
     self.rootGUIWindow:getChild("PauseMenu"):getChild("HelpPanel"):show()
@@ -390,5 +436,3 @@ function quitButtonClicked()
     getComponent("gui_sounds", self.gameState, SoundSourceComponent):playSound("button-hover-click")
     Engine:quit()
 end
-
-
