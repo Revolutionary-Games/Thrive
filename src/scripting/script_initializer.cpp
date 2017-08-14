@@ -83,6 +83,7 @@
 #include "microbe_stage/membrane_system.h"
 #include "microbe_stage/compound_cloud_system.h"
 #include "microbe_stage/process_system.h"
+#include "microbe_stage/spawn_system.h"
 #include "microbe_stage/agent_cloud_system.h"
 #include "microbe_stage/species_component.h"
 
@@ -114,9 +115,9 @@ void readLuaCallstack(lua_State* L, lua_Debug &d, std::stringstream &traceback){
             traceback << "    " << "error getting stack frame" << std::endl;
             continue;
         }
-        
+
         traceback << "    " << d.short_src << ":" << d.currentline;
-        
+
         if (d.name != nullptr) {
             traceback << " (" << d.namewhat << " " << d.name << ")";
         }
@@ -132,14 +133,14 @@ int thriveLuaPanic(lua_State* L);
 int thriveLuaPanic(lua_State* L){
 
     std::string err = "An unexpected error occurred and forced the lua state to call atpanic";
-    
+
     if(lua_isstring(L, -1)){
-    
+
         const char* message = lua_tostring(L, -1);
         std::string err = message;
         lua_pop(L, 1);
     }
-    
+
     lua_Debug d;
     std::stringstream traceback;
     // Error message
@@ -152,7 +153,7 @@ int thriveLuaPanic(lua_State* L){
     //lua_pushstring(L, traceback.str().c_str());
 
     // Print error //
-    
+
     std::cout << "Lua panic! " << traceback.str() << std::endl;
     throw sol::error(traceback.str());
     return 1;
@@ -173,10 +174,10 @@ std::string thriveLuaOnError(sol::this_state lua, std::string err){
     //std::string err = message ? message :
     //    "An unexpected error occurred and forced the lua state to call atpanic";
     //lua_pop(L, 1);
-    
+
     if(err.empty())
         err = "An unexpected error occurred and forced the lua state to call onerror";
-    
+
     lua_Debug d;
     std::stringstream traceback;
     // Error message
@@ -184,7 +185,7 @@ std::string thriveLuaOnError(sol::this_state lua, std::string err){
 
     // Stacktrace
     readLuaCallstack(L, d, traceback);
-    
+
     // Print error //
     std::cout << "Lua error detected! " << traceback.str() << std::endl;
 
@@ -212,7 +213,7 @@ void thrive::initializeLua(sol::state &lua){
     lua.open_libraries(
         sol::lib::base,
         sol::lib::jit,
-        
+
         sol::lib::debug,
         sol::lib::coroutine,
         sol::lib::string,
@@ -228,7 +229,7 @@ void thrive::initializeLua(sol::state &lua){
     );
 
     lua.set_panic(&thriveLuaPanic);
-    
+
     // Class type registering //
     bindClassesToLua(lua);
 
@@ -247,15 +248,15 @@ void bindClassesToLua(sol::state &lua){
     {
         StorageContainer::luaBindings(lua);
         StorageList::luaBindings(lua);
-        
+
         System::luaBindings(lua);
         Component::luaBindings(lua);
         ComponentWrapper::luaBindings(lua);
         ComponentFactory::luaBindings(lua);
-        
+
         EntityManager::luaBindings(lua);
         Entity::luaBindings(lua);
-        
+
         Touchable::luaBindings(lua);
         GameStateData::luaBindings(lua);
         RNG::luaBindings(lua);
@@ -313,7 +314,7 @@ void bindClassesToLua(sol::state &lua){
 
     // Script bindings
     {
-        
+
     }
 
     // Microbe stage bindings
@@ -329,6 +330,7 @@ void bindClassesToLua(sol::state &lua){
         CompoundCloudComponent::luaBindings(lua);
         AgentCloudComponent::luaBindings(lua);
         SpeciesComponent::luaBindings(lua);
+        SpawnedComponent::luaBindings(lua);
         // Systems
         CompoundMovementSystem::luaBindings(lua);
         CompoundAbsorberSystem::luaBindings(lua);
@@ -337,11 +339,12 @@ void bindClassesToLua(sol::state &lua){
         CompoundCloudSystem::luaBindings(lua);
         ProcessSystem::luaBindings(lua);
         AgentCloudSystem::luaBindings(lua);
+        SpawnSystem::luaBindings(lua);
         // Other
         CompoundRegistry::luaBindings(lua);
         BioProcessRegistry::luaBindings(lua);
     }
-    
+
     // Gui bindings
     {
         // Other
@@ -359,7 +362,7 @@ void bindClassesToLua(sol::state &lua){
         SoundSourceSystem::luaBindings(lua);
         SoundSourceComponent::luaBindings(lua);
     }
-    
+
     RollingGrid::luaBindings(lua);
 }
 
@@ -386,7 +389,7 @@ static void listboxItemBindings(sol::state &lua) {
     lua.new_usertype<CEGUI::ListboxTextItem>("ListboxItem",
 
         sol::constructors<sol::types<const std::string&>>(),
-        
+
         "setTextColours", &ListboxItem_setColour,
         "setText", &ListboxItem_setText
     );
@@ -429,7 +432,7 @@ static void itemEntryluaBindings(sol::state &lua){
     lua.new_usertype<CEGUI::ItemEntry>("ItemEntry",
 
         sol::constructors<sol::types<const std::string&, const std::string&>>(),
-        
+
         "isSelected", &ItemEntry_isSelected,
         "select", &ItemEntry_select,
         "deselect", &ItemEntry_deselect,
@@ -467,11 +470,11 @@ static void axisAlignedBoxBindings(sol::state &lua) {
                 "NEAR_LEFT_TOP", Ogre::AxisAlignedBox::NEAR_LEFT_TOP,
                 "NEAR_RIGHT_TOP", Ogre::AxisAlignedBox::NEAR_RIGHT_TOP
             )),
-        
+
         "getMinimum",
             static_cast<const Vector3& (AxisAlignedBox::*) () const>(
                 &AxisAlignedBox::getMinimum),
-        
+
         "getMaximum",
             static_cast<const Vector3& (AxisAlignedBox::*) () const>(
                 &AxisAlignedBox::getMaximum),
@@ -485,13 +488,13 @@ static void axisAlignedBoxBindings(sol::state &lua) {
         "setMinimumX", &AxisAlignedBox::setMinimumX,
         "setMinimumY", &AxisAlignedBox::setMinimumY,
         "setMinimumZ", &AxisAlignedBox::setMinimumZ,
-        
+
         "setMaximum", sol::overload(
             static_cast<void (AxisAlignedBox::*) (const Vector3&)>(
                 &AxisAlignedBox::setMaximum),
             static_cast<void (AxisAlignedBox::*) (Real, Real, Real)>(
                 &AxisAlignedBox::setMaximum)),
-        
+
         "setMaximumX", &AxisAlignedBox::setMaximumX,
         "setMaximumY", &AxisAlignedBox::setMaximumY,
         "setMaximumZ", &AxisAlignedBox::setMaximumZ,
@@ -522,7 +525,7 @@ static void axisAlignedBoxBindings(sol::state &lua) {
                 &AxisAlignedBox::intersects),
             static_cast<bool (AxisAlignedBox::*) (const Vector3&) const>(
                 &AxisAlignedBox::intersects)),
-        
+
         "intersection", &AxisAlignedBox::intersection,
         "volume", &AxisAlignedBox::volume,
         "scale", &AxisAlignedBox::scale,
@@ -565,13 +568,13 @@ static void colourValueBindings(sol::state &lua) {
         sol::call_constructor, [](float r, float g, float b, float a){
 
             return Ogre::ColourValue(r, g, b, a);
-            
+
         },
-        
+
         "saturate", &ColourValue::saturate,
         "setHSB", &ColourValue::setHSB,
         "getHSB", &ColourValue::getHSB,
-        
+
         "r", &ColourValue::r,
         "g", &ColourValue::g,
         "b", &ColourValue::b,
@@ -608,9 +611,9 @@ static void degreeBindings(sol::state &lua) {
          sol::call_constructor, [](Ogre::Real val){
 
              return Ogre::Degree(val);
-                 
+
          },
-         
+
          "valueDegrees", &Ogre::Degree::valueDegrees
      );
 }
@@ -755,7 +758,7 @@ static void matrix3Bindings(sol::state &lua) {
     using namespace Ogre;
 
     lua.new_usertype<Ogre::Matrix3>("Matrix3",
-        
+
         sol::constructors<sol::types<>, sol::types<
         Ogre::Real, Ogre::Real, Ogre::Real,
         Ogre::Real, Ogre::Real, Ogre::Real,
@@ -792,7 +795,7 @@ static void matrix3Bindings(sol::state &lua) {
         "SpectralNorm", &Matrix3::SpectralNorm,
         "ToAngleAxis", static_cast<void(Matrix3::*)(Vector3&, Radian&) const>(
             &Matrix3::ToAngleAxis),
-        
+
         "FromAngleAxis", &Matrix3::FromAngleAxis,
         "ToEulerAnglesXYZ", &Matrix3::ToEulerAnglesXYZ,
         "ToEulerAnglesXZY", &Matrix3::ToEulerAnglesXZY,
@@ -813,7 +816,7 @@ static void matrix3Bindings(sol::state &lua) {
 static void planeBindings(sol::state &lua) {
 
     using namespace Ogre;
-    
+
     lua.new_usertype<Ogre::Plane>("Plane",
 
         sol::constructors<sol::types<>, sol::types<const Vector3&, Real>,
@@ -854,7 +857,7 @@ static void planeBindings(sol::state &lua) {
 static void quaternionBindings(sol::state &lua) {
 
     using namespace Ogre;
-    
+
     lua.new_usertype<Ogre::Quaternion>("Quaternion",
 
         sol::constructors<sol::types<>, sol::types<const Matrix3&>,
@@ -876,7 +879,7 @@ static void quaternionBindings(sol::state &lua) {
             static_cast<Ogre::Vector3 (Ogre::Quaternion::*)(const Ogre::Vector3&) const>(
                 &Ogre::Quaternion::operator*)
         ),
-        
+
         "FromRotationMatrix", &Quaternion::FromRotationMatrix,
         "ToRotationMatrix", &Quaternion::ToRotationMatrix,
         "FromAngleAxis", &Quaternion::FromAngleAxis,
@@ -908,7 +911,7 @@ static void quaternionBindings(sol::state &lua) {
 static void radianBindings(sol::state &lua) {
 
     using namespace Ogre;
-    
+
     lua.new_usertype<Ogre::Radian>("Radian",
 
         sol::constructors<sol::types<Real>, sol::types<const Degree&>>(),
@@ -938,9 +941,9 @@ static void radianBindings(sol::state &lua) {
         sol::call_constructor, [](Ogre::Real val){
 
             return Ogre::Radian(val);
-                 
+
         },
-        
+
         "valueDegrees", &Radian::valueDegrees,
         "valueRadians", &Radian::valueRadians,
         "valueAngleUnits", &Radian::valueAngleUnits
@@ -950,7 +953,7 @@ static void radianBindings(sol::state &lua) {
 static void rayBindings(sol::state &lua) {
 
     using namespace Ogre;
-    
+
     lua.new_usertype<Ogre::Ray>("Ray",
 
         sol::constructors<sol::types<>, sol::types<const Vector3&, const Vector3&>>(),
@@ -973,7 +976,7 @@ static void rayBindings(sol::state &lua) {
 static void sceneManagerBindings(sol::state &lua) {
 
     using namespace Ogre;
-    
+
     lua.new_usertype<Ogre::SceneManager>("SceneManager",
 
         "PrefabType", sol::var(lua.create_table_with(
@@ -981,7 +984,7 @@ static void sceneManagerBindings(sol::state &lua) {
                 "PT_CUBE", SceneManager::PT_CUBE,
                 "PT_SPHERE", SceneManager::PT_SPHERE
             )),
-        
+
         "setAmbientLight", &SceneManager::setAmbientLight
     );
 }
@@ -989,7 +992,7 @@ static void sceneManagerBindings(sol::state &lua) {
 static void sphereBindings(sol::state &lua) {
 
     using namespace Ogre;
-    
+
     lua.new_usertype<Ogre::Sphere>("Sphere",
 
         sol::constructors<sol::types<>, sol::types<const Vector3&, Real>>(),
@@ -998,14 +1001,14 @@ static void sphereBindings(sol::state &lua) {
         "setRadius", &Sphere::setRadius,
         "getCenter", &Sphere::getCenter,
         "setCenter", &Sphere::setCenter,
-        
+
         "intersects", sol::overload(
             static_cast<bool (Sphere::*)(const Sphere&) const>(&Sphere::intersects),
             static_cast<bool (Sphere::*)(const AxisAlignedBox&) const>(&Sphere::intersects),
             static_cast<bool (Sphere::*)(const Plane&) const>(&Sphere::intersects),
             static_cast<bool (Sphere::*)(const Vector3&) const>(&Sphere::intersects)
         ),
-        
+
         "merge", &Sphere::merge
     );
 }
@@ -1013,7 +1016,7 @@ static void sphereBindings(sol::state &lua) {
 static void vector3Bindings(sol::state &lua) {
 
     using namespace Ogre;
-    
+
     lua.new_usertype<Ogre::Vector3>("Vector3",
 
         sol::constructors<sol::types<>, sol::types<const Real, const Real, const Real>>(),
@@ -1021,7 +1024,7 @@ static void vector3Bindings(sol::state &lua) {
         //sol::meta_function::equal_to, &Ogre::Vector3::operator==,
 
         sol::meta_function::less_than, &Ogre::Vector3::operator <,
-        
+
         sol::meta_function::addition, static_cast<Ogre::Vector3 (Ogre::Vector3::*)(
             const Ogre::Vector3&) const>(&Ogre::Vector3::operator+),
 
@@ -1039,7 +1042,7 @@ static void vector3Bindings(sol::state &lua) {
             }
         ),
 
-        
+
         sol::meta_function::division, sol::overload(
             static_cast<Ogre::Vector3 (Ogre::Vector3::*)(const Ogre::Vector3&) const>(
                 &Ogre::Vector3::operator/),
@@ -1051,15 +1054,15 @@ static void vector3Bindings(sol::state &lua) {
         sol::call_constructor, [](const Ogre::Real x, const Ogre::Real y, const Ogre::Real z){
 
             return Ogre::Vector3(x, y, z);
-            
+
         },
-        
+
         //.def(tostring(self))
 
         "x", &Vector3::x,
         "y", &Vector3::y,
         "z", &Vector3::z,
-        
+
         "length", &Vector3::length,
         "squaredLength", &Vector3::squaredLength,
         "distance", &Vector3::distance,
@@ -1085,9 +1088,9 @@ static void vector3Bindings(sol::state &lua) {
         "primaryAxis", &Vector3::primaryAxis
     );
 }
-    
+
 static void ogreLuaBindings(sol::state &lua){
-    
+
     // Math
     axisAlignedBoxBindings(lua);
     colourValueBindings(lua);

@@ -32,7 +32,6 @@ public:
     * @brief Lua bindings
     *
     * Exposes:
-    * - CompoundRegistry::loadFromXML
     * - CompoundRegistry::registerCompoundType
     * - CompoundRegistry::registerAgentType
     * - CompoundRegistry::getCompoundDisplayName
@@ -45,17 +44,6 @@ public:
     * @return
     */
     static void luaBindings(sol::state &lua);
-
-    /**
-    * @brief Loads compounds from an XML document
-    *
-    * @param filename
-    *  The document to load from
-    */
-    static void
-    loadFromXML(
-        const std::string& filename
-    );
 
     /**
     * @brief loads compounds from a lua config table

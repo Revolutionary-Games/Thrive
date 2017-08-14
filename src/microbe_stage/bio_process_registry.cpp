@@ -4,8 +4,6 @@
 #include "microbe_stage/compound_registry.h"
 #include "scripting/luajit.h"
 
-#include "tinyxml.h"
-
 using namespace thrive;
 
 void BioProcessRegistry::luaBindings(
@@ -15,17 +13,16 @@ void BioProcessRegistry::luaBindings(
 
         "new", sol::no_constructor,
 
-        "loadFromXML", &BioProcessRegistry::loadFromXML,
         "loadFromLua", &BioProcessRegistry::loadFromLua,
         "getDisplayName", &BioProcessRegistry::getDisplayName,
         "getInternalName", &BioProcessRegistry::getInternalName,
         "getId", &BioProcessRegistry::getId,
-        
+
         "getList", [](sol::this_state s){
 
             THRIVE_BIND_ITERATOR_TO_TABLE(BioProcessRegistry::getList());
         },
-        
+
         "getInputCompounds", &BioProcessRegistry::getInputCompounds,
         "getOutputCompounds", &BioProcessRegistry::getOutputCompounds
     );
@@ -58,93 +55,18 @@ processRegistry() {
 }
 
 void
-BioProcessRegistry::loadFromXML(
-    const std::string& filename
-) {
-    TiXmlDocument doc(filename.c_str());
-    bool loadOkay = doc.LoadFile();
-    if (loadOkay)
-    {
-        // Handles used for null-safety
-        TiXmlHandle hDoc(&doc),
-                    hProcesses(0),
-                    hCompounds(0);
-        // Elements used for iteration
-        TiXmlElement * pProcess,
-                     * pCompound;
-
-        hProcesses=hDoc.FirstChildElement("Processes");
-        pProcess=hProcesses.FirstChild( "Process" ).Element();
-        while (pProcess)
-        {
-            std::vector<std::pair<CompoundId, int>> inputs;
-            std::vector<std::pair<CompoundId, int>> outputs;
-            const char* compoundName; //Char pointer for null-checks
-            int compoundAmount;
-            hCompounds = TiXmlHandle(pProcess->FirstChildElement("Inputs"));
-            pCompound=hCompounds.FirstChildElement( "Input" ).Element();
-            while (pCompound)
-            {
-                if (pCompound->QueryIntAttribute("amount", &compoundAmount) != TIXML_SUCCESS){
-                    throw std::logic_error("Could not access 'amount' attribute on Input element of " + filename);
-                }
-                compoundName = pCompound->Attribute("compound");
-                if (compoundName == nullptr) {
-                    throw std::logic_error("Could not access 'compound' attribute on Input element of " + filename);
-                }
-                inputs.push_back({CompoundRegistry::getCompoundId(compoundName), compoundAmount});
-                pCompound=pCompound->NextSiblingElement();
-            }
-            hCompounds = TiXmlHandle(pProcess->FirstChildElement("Outputs"));
-            pCompound=hCompounds.FirstChildElement( "Output" ).Element();
-            while (pCompound)
-            {
-                if (pCompound->QueryIntAttribute("amount", &compoundAmount) != TIXML_SUCCESS){
-                    throw std::logic_error("Could not access 'amount' attribute on Input element of " + filename);
-                }
-                compoundName = pCompound->Attribute("compound");
-                if (compoundName == nullptr) {
-                    throw std::logic_error("Could not access 'compound' attribute on Input element of " + filename);
-                }
-                outputs.push_back({CompoundRegistry::getCompoundId(compoundName), compoundAmount});
-
-                pCompound=pCompound->NextSiblingElement();
-            }
-            int energyCost;
-            if (pProcess->QueryIntAttribute("energyCost", &energyCost) != TIXML_SUCCESS){
-                throw std::logic_error("Could not access 'energyCost' attribute on Process element of " + filename);
-            }
-            const char* processName = pProcess->Attribute("name");
-            if (processName == nullptr) {
-                throw std::logic_error("Could not access 'name' attribute on Process element of " + filename);
-            }
-            registerBioProcess(
-               processName,
-               processName,
-               std::move(inputs),
-               std::move(outputs)
-            );
-            pProcess=pProcess->NextSiblingElement("Process");
-        }
-    }
-    else {
-        throw std::invalid_argument(doc.ErrorDesc());
-    }
-}
-
-void
 BioProcessRegistry::loadFromLua(
     sol::table processTable
     )
 {
-    
+
     for(const auto& pair : processTable){
 
         const auto key = pair.first.as<std::string>();
 
         if(!pair.second.is<sol::table>())
             throw std::runtime_error("BioProcessRegistry value is not a table");
-        
+
         auto data = pair.second.as<sol::table>();
 
         sol::table inputTable = data.get<sol::table>("inputs");
@@ -157,14 +79,14 @@ BioProcessRegistry::loadFromLua(
 
             const auto compound = inputsPair.first.as<std::string>();
             const auto amount = inputsPair.second.as<float>();
-            inputs.push_back({CompoundRegistry::getCompoundId(compound), amount}); 
+            inputs.push_back({CompoundRegistry::getCompoundId(compound), amount});
         }
 
         for(const auto& outputsPair : outputTable){
 
             const auto compound = outputsPair.first.as<std::string>();
             const auto amount = outputsPair.second.as<float>();
-            outputs.push_back({CompoundRegistry::getCompoundId(compound), amount}); 
+            outputs.push_back({CompoundRegistry::getCompoundId(compound), amount});
         }
 
         registerBioProcess(
