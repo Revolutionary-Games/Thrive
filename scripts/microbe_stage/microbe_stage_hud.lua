@@ -29,6 +29,8 @@ HudSystem = class(
    end
 )
 
+-- This methods would get overriden by their duplicates below.
+--[[
 function HudSystem:init(gameState)
    LuaSystem.init(self, "HudSystem", gameState)
 end
@@ -46,6 +48,7 @@ function HudSystem:update(renderTime, logicTime)
    self.saveDown = saveDown
    self.loadDown = loadDown
 end
+]]
 
 global_if_already_displayed = false
 
@@ -61,7 +64,11 @@ function HudSystem:activate()
     self.menuOpen = false
     self.compoundsOpen = true
     Engine:resumeGame()
-    self:updateLoadButton();
+    self:updateLoadButton()
+
+    self:chloroplastNotificationdisable()
+    self:toxinNotificationdisable()
+    self:editornotificationdisable()
 end
 
 function HudSystem:init(gameState)
@@ -190,39 +197,32 @@ function HudSystem:update(renderTime)
 
     local playerSpecies = playerMicrobe:getSpeciesComponent()
 	--notification setting up
-	if b1 == true and t1 < 300 then
- t1 = t1 + 2
- print (t1)
- 
-   if t1 == 300 then
-   print ("chloroplast notification disabled")
-   global_activeMicrobeStageHudSystem:chloroplastNotificationdisable()
-  end
-   end
-   
-   if b2 == true and t2 < 300 then
- t2 = t2 + 2
- print (t2)
- 
-   if t2 == 300 then
-   print ("toxin notification disabled")
-   global_activeMicrobeStageHudSystem:toxinNotificationdisable()
-   end
-   end
-   
-   if b3 == true and t3 < 300 then
- t3 = t3 + 2
- print (t3)
- 
-   if t3 == 300 then
-   print ("Editor notification disabled")
-   
-   global_activeMicrobeStageHudSystem:editornotificationdisable()
-   end
-   end
+    if b1 == true and t1 < 300 then
+        t1 = t1 + 2
+
+        if t1 == 300 then
+            global_activeMicrobeStageHudSystem:chloroplastNotificationdisable()
+        end
+    end
+
+    if b2 == true and t2 < 300 then
+        t2 = t2 + 2
+
+        if t2 == 300 then
+            global_activeMicrobeStageHudSystem:toxinNotificationdisable()
+        end
+    end
+
+    if b3 == true and t3 < 300 then
+        t3 = t3 + 2
+
+        if t3 == 300 then
+            global_activeMicrobeStageHudSystem:editornotificationdisable()
+        end
+    end
+
     --TODO display population in home patch here
-    
-    
+
     if keyCombo(kmp.togglemenu) then
         self:menuButtonClicked()
     elseif keyCombo(kmp.gotoeditor) then
