@@ -38,11 +38,6 @@ public:
     static void luaBindings(sol::state &lua);
 
     static void
-    loadFromXML(
-        const std::string& filename
-    );
-
-    static void
     loadFromLua(
         sol::table processTable
     );

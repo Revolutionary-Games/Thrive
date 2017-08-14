@@ -22,6 +22,8 @@ agents = {
 -- must be global
 chloroplast_Organelle_Number = 0
 toxin_Organelle_Number = 0
+chloroplast_unlocked = false
+toxin_unlocked = false
 
 -- this count the toxin Organelle Number
 function  toxin_number()
@@ -29,6 +31,7 @@ toxin_Organelle_Number = toxin_Organelle_Number + 1
 print (toxin_Organelle_Number)
 if toxin_Organelle_Number >= 3 then -- 3 is an example
 toxinEffect()
+toxin_call_Notification()
 end   
     return true
 end
@@ -48,6 +51,7 @@ function chloroplast_number()
 	    print (chloroplast_Organelle_Number)
     if chloroplast_Organelle_Number >= 3 then  -- 3 is an example
 	chloroplastEffect()
+	chloroplast_call_Notification()
 	end
     return true
 end
@@ -60,6 +64,18 @@ if Engine:playerData():lockedMap():isLocked("chloroplast") then
         local guiSoundEntity = Entity("gui_sounds")
         getComponent(guiSoundEntity, SoundSourceComponent):playSound("microbe-pickup-organelle")
     end
+end
+function chloroplast_call_Notification()
+if chloroplast_unlocked == false then
+global_activeMicrobeStageHudSystem:chloroplastNotificationenable()
+chloroplast_unlocked = true
+end
+end
+function toxin_call_Notification()
+if toxin_unlocked == false then
+global_activeMicrobeStageHudSystem:toxinNotificationenable()
+toxin_unlocked = true
+end
 end
 
 --[[
