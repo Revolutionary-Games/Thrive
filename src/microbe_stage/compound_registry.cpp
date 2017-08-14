@@ -12,8 +12,6 @@
 #include "util/make_unique.h"
 #include "microbe_stage/compound.h"
 
-#include "tinyxml.h"
-
 #include <OgreEntity.h>
 #include <OgreSceneManager.h>
 #include <stdexcept>
@@ -26,7 +24,7 @@ void CompoundRegistry::luaBindings(
     lua.new_usertype<CompoundRegistry>("CompoundRegistry",
 
         "new", sol::no_constructor,
-        
+
         "registerCompoundType", &CompoundRegistry::registerCompoundType,
         "registerAgentType",
             static_cast<CompoundId (*)(
@@ -38,8 +36,7 @@ void CompoundRegistry::luaBindings(
                 float,
                 sol::object
             )>(&CompoundRegistry::registerAgentType),
-        
-        "loadFromXML", &CompoundRegistry::loadFromXML,
+
         "loadFromLua", &CompoundRegistry::loadFromLua,
         "loadAgentFromLua", &CompoundRegistry::loadAgentFromLua,
         "getCompoundDisplayName", &CompoundRegistry::getCompoundDisplayName,
@@ -53,7 +50,7 @@ void CompoundRegistry::luaBindings(
 
             THRIVE_BIND_ITERATOR_TO_TABLE(CompoundRegistry::getCompoundList());
         },
-        
+
         "getCompoundMeshScale", &CompoundRegistry::getCompoundMeshScale,
         "getAgentEffect", &CompoundRegistry::getAgentEffect
     );
@@ -90,7 +87,7 @@ CompoundRegistry::loadFromLua(
     sol::table compoundTable,
     sol::table agentTable
 ) {
-    
+
     for(const auto& pair : compoundTable){
 
         const auto key = pair.first.as<std::string>();
@@ -100,7 +97,7 @@ CompoundRegistry::loadFromLua(
         const auto weight = data.get<float>("weight");
         const auto meshname = data.get<std::string>("mesh");
         const auto size = data.get<float>("size");
-        bool isUseful = data.get<bool>("isUseful");        
+        bool isUseful = data.get<bool>("isUseful");
 
         registerCompoundType(
                 key,
@@ -121,9 +118,9 @@ CompoundRegistry::loadFromLua(
         const auto weight = data.get<float>("weight");
         const auto meshname = data.get<std::string>("mesh");
         const auto size = data.get<float>("size");
-        
+
         sol::object effect = data["effect"];
-        
+
         registerAgentType(
                 key,
                 name,
@@ -141,14 +138,14 @@ CompoundRegistry::loadAgentFromLua(
     sol::object internalName,
     sol::table data
 ) {
-    
+
     const auto internal_name = internalName.as<std::string>();
-    
+
     const auto name = data.get<std::string>("name");
     const auto weight = data.get<float>("weight");
     const auto meshname = data.get<std::string>("mesh");
     const auto size = data.get<float>("size");
-    
+
     // std::cerr << "before casting effect" << std::endl;
     sol::object effect = data["effect"];
     registerAgentType(
@@ -160,122 +157,6 @@ CompoundRegistry::loadAgentFromLua(
             weight,
             effect
         );
-}
-
-//Currently unused, need's updating to work properly.
-void
-CompoundRegistry::loadFromXML(
-    const std::string& filename
-) {
-    TiXmlDocument doc(filename.c_str());
-    bool loadOkay = doc.LoadFile();
-    if (loadOkay)
-	{
-	    // Handles used for null-safety when possible
-		TiXmlHandle hDoc(&doc),
-                    hCompounds(0),
-                    hDisplay(0),
-                    hModel(0),
-                    hAgents(0),
-                    hEffect(0);
-        // Elements used for iteration with explicit null-checks
-        TiXmlElement * pCompound,
-                     * pAgent;
-
-        hCompounds=hDoc.FirstChildElement("Compounds");
-
-		pCompound=hCompounds.FirstChildElement("Compound").Element();
-        while (pCompound)
-		{
-		    hDisplay = TiXmlHandle(pCompound->FirstChildElement("Display"));
-            hModel = TiXmlHandle(hDisplay.FirstChildElement("Model"));
-            int molecularWeight;
-            double modelSize;
-            if (pCompound->QueryIntAttribute("weight", &molecularWeight) != TIXML_SUCCESS){
-                throw std::logic_error("Could not access 'weight' attribute on compound element of " + filename);
-            }
-            if (hModel.Element()->QueryDoubleAttribute("size", &modelSize) != TIXML_SUCCESS){
-                throw std::logic_error("Could not access 'size' attribute on Model element of " + filename);
-            }
-            const char* name = pCompound->Attribute("name");
-            if (name == nullptr) {
-                throw std::logic_error("Could not access 'name' attribute on compound element of " + filename);
-            }
-            const char* displayName = hDisplay.Element()->Attribute("text");
-            if (displayName == nullptr) {
-                throw std::logic_error("Could not access 'text' attribute on Display element of " + filename);
-            }
-            const char* meshname = hModel.Element()->Attribute("file");
-            if (meshname == nullptr) {
-                throw std::logic_error("Could not access 'file' attribute on Model element of " + filename);
-            }
-            registerCompoundType(
-                name,
-                displayName,
-                meshname,
-                modelSize,
-                true,
-                molecularWeight
-            );
-            pCompound=pCompound->NextSiblingElement("Compound");
-		}
-		hAgents=hCompounds.FirstChildElement("AgentCompounds");
-		pAgent=hAgents.FirstChildElement("Agent").Element();
-        while (pAgent)
-		{
-		    hDisplay = TiXmlHandle(pAgent->FirstChildElement("Display"));
-            hModel = TiXmlHandle(hDisplay.FirstChildElement("Model"));
-            hEffect = TiXmlHandle(pAgent->FirstChildElement("Effect"));
-            int molecularWeight;
-            double modelSize;
-            if (pAgent->QueryIntAttribute("weight", &molecularWeight) != TIXML_SUCCESS){
-                throw std::logic_error("Could not access 'weight' attribute on Compound element of " + filename);
-            }
-            if (hModel.Element()->QueryDoubleAttribute("size", &modelSize) != TIXML_SUCCESS){
-
-                throw std::logic_error("Could not access 'size' attribute on Model element of " + filename);
-            }
-            const char* functionName = hEffect.Element()->Attribute("function");
-            if (functionName == nullptr) {
-                throw std::logic_error("Could not access 'function' attribute on Effect element of " + filename);
-            }
-            std::string luaFunctionName = std::string(functionName);
-            // Create a lambda to call the function defined in the XML document
-            auto effectLambda = new std::function<bool(EntityId, double)>(
-                [luaFunctionName](EntityId entityId, double potency) -> bool
-                {
-                    sol::state_view(Game::instance().engine().luaState())[luaFunctionName](
-                        entityId, potency);
-                    return true;
-                });
-            const char* name = pAgent->Attribute("name");
-            if (name == nullptr) {
-                throw std::logic_error("Could not access 'name' attribute on compound element of " + filename);
-            }
-            const char* displayName = hDisplay.Element()->Attribute("text");
-            if (displayName == nullptr) {
-                throw std::logic_error("Could not access 'text' attribute on Display element of " + filename);
-            }
-            const char* meshname = hModel.Element()->Attribute("file");
-            if (meshname == nullptr) {
-                throw std::logic_error("Could not access 'file' attribute on Model element of " + filename);
-            }
-            //Register the agent type
-            registerAgentType(
-                name,
-                displayName,
-                meshname,
-                modelSize,
-                true,
-                molecularWeight,
-                effectLambda
-            );
-            pAgent=pAgent->NextSiblingElement("Agent");
-		}
-	}
-	else {
-		throw std::invalid_argument(doc.ErrorDesc());
-	}
 }
 
 CompoundId
