@@ -1,7 +1,15 @@
 --
 -- TODO: merge the common things in microbe_stage_tutorial_hud
---
-
+-- notification setting up
+t1 = 0
+t2 = 0
+t3 = 0
+b1 = false
+b2 = false
+b3 = false
+--suicideButton setting up
+boolean = false
+boolean2 = false
 
 -- Updates the hud with relevant information
 
@@ -24,6 +32,8 @@ HudSystem = class(
    end
 )
 
+-- This methods would get overriden by their duplicates below.
+--[[
 function HudSystem:init(gameState)
    LuaSystem.init(self, "HudSystem", gameState)
 end
@@ -41,6 +51,7 @@ function HudSystem:update(renderTime, logicTime)
    self.saveDown = saveDown
    self.loadDown = loadDown
 end
+]]
 
 global_if_already_displayed = false
 
@@ -56,7 +67,11 @@ function HudSystem:activate()
     self.menuOpen = false
     self.compoundsOpen = true
     Engine:resumeGame()
-    self:updateLoadButton();
+    self:updateLoadButton()
+
+    self:chloroplastNotificationdisable()
+    self:toxinNotificationdisable()
+    self:editornotificationdisable()
 end
 
 function HudSystem:init(gameState)
@@ -71,6 +86,8 @@ function HudSystem:init(gameState)
     local loadButton = self.rootGUIWindow:getChild("PauseMenu"):getChild("LoadGameButton")
     local resumeButton = self.rootGUIWindow:getChild("PauseMenu"):getChild("ResumeButton")
     local closeHelpButton = self.rootGUIWindow:getChild("PauseMenu"):getChild("CloseHelpButton")
+	local chloroplast_unlock_notification = self.rootGUIWindow:getChild("chloroplastUnlockNotification")
+	local toxin_unlock_notification = self.rootGUIWindow:getChild("toxinUnlockNotification")
     --local collapseButton = self.rootGUIWindow:getChild() collapseButtonClicked
     local helpButton = self.rootGUIWindow:getChild("PauseMenu"):getChild("HelpButton")
     local helpPanel = self.rootGUIWindow:getChild("PauseMenu"):getChild("HelpPanel")
@@ -182,9 +199,44 @@ function HudSystem:update(renderTime)
     self.oxytoxyMaxLabel:setText("/ ".. math.floor(playerMicrobe.microbe.capacity/CompoundRegistry.getCompoundUnitVolume(CompoundRegistry.getCompoundId("oxytoxy"))))
 
     local playerSpecies = playerMicrobe:getSpeciesComponent()
+	--notification setting up
+    if b1 == true and t1 < 300 then
+        t1 = t1 + 2
+
+        if t1 == 300 then
+            global_activeMicrobeStageHudSystem:chloroplastNotificationdisable()
+        end
+    end
+
+    if b2 == true and t2 < 300 then
+        t2 = t2 + 2
+
+        if t2 == 300 then
+            global_activeMicrobeStageHudSystem:toxinNotificationdisable()
+        end
+    end
+
+    if b3 == true and t3 < 300 then
+        t3 = t3 + 2
+
+        if t3 == 300 then
+            global_activeMicrobeStageHudSystem:editornotificationdisable()
+        end
+    end
+	--suicideButton setting up 
+local atp = playerMicrobe:getCompoundAmount(CompoundRegistry.getCompoundId("atp"))
+if atp == 0 and boolean2 == false then 
+	self.rootGUIWindow:getChild("SuicideButton"):enable()
+	elseif atp > 0 or boolean2 == true then
+	global_activeMicrobeStageHudSystem:suicideButtondisable()
+end
+if boolean == true then
+playerMicrobe:kill()
+boolean = false
+boolean2 = true
+end
     --TODO display population in home patch here
-    
-    
+
     if keyCombo(kmp.togglemenu) then
         self:menuButtonClicked()
     elseif keyCombo(kmp.gotoeditor) then
@@ -254,6 +306,12 @@ end
 function HudSystem:showReproductionDialog()
    -- print("Reproduction Dialog called but currently disabled. Is it needed? Note that the editor button has been enabled")
     --global_activeMicrobeStageHudSystem.rootGUIWindow:getChild("ReproductionPanel"):show()
+	if b3 == false then
+	getComponent("gui_sounds", g_luaEngine.currentGameState, SoundSourceComponent
+    ):playSound("microbe-pickup-organelle")
+self.rootGUIWindow:getChild("editornotification"):show()
+b3 = true
+end
     self.editorButton:enable()
 end
 
@@ -323,6 +381,32 @@ function HudSystem:toggleCompoundPanel()
     end
 end
 
+function HudSystem:chloroplastNotificationenable()
+getComponent("gui_sounds", g_luaEngine.currentGameState, SoundSourceComponent
+    ):playSound("microbe-pickup-organelle")
+self.rootGUIWindow:getChild("chloroplastUnlockNotification"):show()
+b1 = true
+self.rootGUIWindow:getChild("toxinUnlockNotification"):hide()
+end
+
+function HudSystem:chloroplastNotificationdisable()
+self.rootGUIWindow:getChild("chloroplastUnlockNotification"):hide()
+end
+
+function HudSystem:toxinNotificationenable()
+getComponent("gui_sounds", g_luaEngine.currentGameState, SoundSourceComponent
+    ):playSound("microbe-pickup-organelle")
+self.rootGUIWindow:getChild("toxinUnlockNotification"):show()
+b2 = true
+self.rootGUIWindow:getChild("chloroplastUnlockNotification"):hide()
+end
+
+function HudSystem:toxinNotificationdisable()
+self.rootGUIWindow:getChild("toxinUnlockNotification"):hide()
+end
+function HudSystem:editornotificationdisable()
+self.rootGUIWindow:getChild("editornotification"):hide()
+end
 function HudSystem:helpButtonClicked()
     getComponent("gui_sounds", self.gameState, SoundSourceComponent):playSound("button-hover-click")
     self.rootGUIWindow:getChild("PauseMenu"):getChild("HelpPanel"):show()
@@ -339,6 +423,18 @@ function HudSystem:helpButtonClicked()
     self.helpOpen = not self.helpOpen
 end
 
+function HudSystem:suicideButtonClicked()
+    getComponent("gui_sounds", self.gameState, SoundSourceComponent):playSound("button-hover-click")
+	if boolean2 == false then
+boolean = true
+end
+		end
+		function HudSystem:suicideButtondisable()
+		self.rootGUIWindow:getChild("SuicideButton"):disable()
+		end
+		function HudSystem:suicideButtonreset()
+		boolean2 = false
+		end
 function HudSystem:closeHelpButtonClicked()
     getComponent("gui_sounds", self.gameState, SoundSourceComponent):playSound("button-hover-click")
     self.rootGUIWindow:getChild("PauseMenu"):getChild("HelpPanel"):hide()
@@ -369,6 +465,8 @@ function HudSystem:editorButtonClicked()
 
     getComponent("gui_sounds", self.gameState, SoundSourceComponent):playSound("button-hover-click")
     self.editorButton:disable()
+	b3 = false
+	t3 = 0
     g_luaEngine:setCurrentGameState(GameState.MICROBE_EDITOR)
 end
 
@@ -390,5 +488,3 @@ function quitButtonClicked()
     getComponent("gui_sounds", self.gameState, SoundSourceComponent):playSound("button-hover-click")
     Engine:quit()
 end
-
-
