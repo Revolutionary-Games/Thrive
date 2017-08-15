@@ -1182,6 +1182,7 @@ function Microbe:respawn()
     self:storeCompound(CompoundRegistry.getCompoundId("atp"), 50, false)
 
     setRandomBiome(g_luaEngine.currentGameState)
+	global_activeMicrobeStageHudSystem:suicideButtonreset()
 end
 
 -- Private function for initializing a microbe's components

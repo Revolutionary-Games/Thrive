@@ -7,6 +7,9 @@ t3 = 0
 b1 = false
 b2 = false
 b3 = false
+--suicideButton setting up
+boolean = false
+boolean2 = false
 
 -- Updates the hud with relevant information
 
@@ -220,7 +223,18 @@ function HudSystem:update(renderTime)
             global_activeMicrobeStageHudSystem:editornotificationdisable()
         end
     end
-
+	--suicideButton setting up 
+local atp = playerMicrobe:getCompoundAmount(CompoundRegistry.getCompoundId("atp"))
+if atp == 0 and boolean2 == false then 
+	self.rootGUIWindow:getChild("SuicideButton"):enable()
+	elseif atp > 0 or boolean2 == true then
+	global_activeMicrobeStageHudSystem:suicideButtondisable()
+end
+if boolean == true then
+playerMicrobe:kill()
+boolean = false
+boolean2 = true
+end
     --TODO display population in home patch here
 
     if keyCombo(kmp.togglemenu) then
@@ -409,6 +423,18 @@ function HudSystem:helpButtonClicked()
     self.helpOpen = not self.helpOpen
 end
 
+function HudSystem:suicideButtonClicked()
+    getComponent("gui_sounds", self.gameState, SoundSourceComponent):playSound("button-hover-click")
+	if boolean2 == false then
+boolean = true
+end
+		end
+		function HudSystem:suicideButtondisable()
+		self.rootGUIWindow:getChild("SuicideButton"):disable()
+		end
+		function HudSystem:suicideButtonreset()
+		boolean2 = false
+		end
 function HudSystem:closeHelpButtonClicked()
     getComponent("gui_sounds", self.gameState, SoundSourceComponent):playSound("button-hover-click")
     self.rootGUIWindow:getChild("PauseMenu"):getChild("HelpPanel"):hide()
