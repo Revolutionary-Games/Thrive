@@ -60,10 +60,10 @@ Species = class(
 
 --sets up the spawn of the species
 function Species:setupSpawn()
-    self.id = currentSpawnSystem:addSpawnType(
+    self.id = gSpawnSystem:addSpawnType(
         function(pos)
             return microbeSpawnFunctionGeneric(pos, self.name, true, nil,
-                                               g_luaEngine.currentGameState)
+                                              g_luaEngine.currentGameState)
         end, 
         DEFAULT_SPAWN_DENSITY, --spawnDensity should depend on population
         MICROBE_SPAWN_RADIUS
@@ -224,9 +224,7 @@ SpeciesSystem = class(
     function(self)
         
         LuaSystem.create(self)
-        
-        gSpawnSystem = self
-        
+
         self.entities = EntityFilter.new(
             {
                 SpeciesComponent,
