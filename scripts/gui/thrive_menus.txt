@@ -47,7 +47,7 @@ o GuiObject "Background/MainMenuInteractive/ExitGameButton"{
         [@Listener="OnClick"]
         bool QuitIt(GuiObject@ instance){
             // Close the game //
-            GetThriveGame().Quit();
+            Quit();
             return true;
         }
         @%};
