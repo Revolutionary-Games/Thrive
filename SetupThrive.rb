@@ -23,7 +23,7 @@ def checkRunFolder(suggested)
 
   versionFile = File.join(suggested, "thriveversion.ver")
 
-  onError("Not ran from Thrive base directory!") if not File.exist?(versionFile)
+  onError("Not ran from Thrive base directory!") if not File.exist?("src/thrive_version.h")
 
   thirdPartyFolder = File.join suggested, "ThirdParty"
 
