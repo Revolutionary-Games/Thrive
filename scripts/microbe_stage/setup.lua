@@ -128,8 +128,12 @@ function setupSpecies(gameState)
     end
 end
 
--- speciesName decides the template to use, while individualName is used for referencing the instance
 function microbeSpawnFunctionGeneric(pos, speciesName, aiControlled, individualName, gameState)
+    return spawnMicrobe(pos, speciesName, aiControlled, individualName, gameState).entity
+end
+
+-- speciesName decides the template to use, while individualName is used for referencing the instance
+function spawnMicrobe(pos, speciesName, aiControlled, individualName, gameState)
 
     assert(gameState ~= nil)
     assert(isNotEmpty(speciesName))
@@ -199,6 +203,9 @@ function createCompoundCloud(compoundName, x, y, amount)
                      g_luaEngine.currentGameState, CompoundCloudComponent
         ):addCloud(amount, x, y)
     end
+
+    -- The spawn system expects an entity.
+    return Entity.new(g_luaEngine.currentGameState.wrapper)
 end
 
 function createAgentCloud(compoundId, x, y, direction, amount)    
@@ -250,8 +257,8 @@ local function addEmitter2Entity(entity, compound)
     entity:addComponent(timedEmitter)
 end
 
-local function createSpawnSystem()
-    local spawnSystem = SpawnSystem.new()
+local function setupSpawnSystem(gameState)
+    gSpawnSystem = SpawnSystem.new()
 
     local toxinOrganelleSpawnFunction = function(pos)
         powerupEntity = Entity.new(g_luaEngine.currentGameState.wrapper)
@@ -264,7 +271,7 @@ local function createSpawnSystem()
         
         local powerupComponent = PowerupComponent.new()
         -- Function name must be in configs.lua
-        powerupComponent:setEffect("toxinEffect")
+        powerupComponent:setEffect("toxin_number")
         powerupEntity:addComponent(powerupComponent)
         return powerupEntity
     end
@@ -279,7 +286,7 @@ local function createSpawnSystem()
         
         local powerupComponent = PowerupComponent.new()
         -- Function name must be in configs.lua
-        powerupComponent:setEffect("chloroplastEffect")
+        powerupComponent:setEffect("chloroplast_number")
         powerupEntity:addComponent(powerupComponent)
         return powerupEntity
     end
@@ -287,38 +294,39 @@ local function createSpawnSystem()
     for compoundName, compoundInfo in pairs(compoundTable) do
         if compoundInfo.isCloud then
             local spawnCloud =  function(pos)
-                createCompoundCloud(compoundName, pos.x, pos.y)
+                return createCompoundCloud(compoundName, pos.x, pos.y)
             end
 
-            spawnSystem:addSpawnType(spawnCloud, CLOUD_SPAWN_DENSITY, CLOUD_SPAWN_RADIUS)
+            gSpawnSystem:addSpawnType(spawnCloud, CLOUD_SPAWN_DENSITY, CLOUD_SPAWN_RADIUS)
         end
     end
 
     for bacteriaName, _ in pairs(bacteriaTable) do
         local spawnBacteria =  function(pos)
-            Bacterium.createBacterium(bacteriaName, pos, g_luaEngine.currentGameState)
+            return Bacterium.createBacterium(bacteriaName, pos, g_luaEngine.currentGameState)
         end
 
         -- TODO: make the density change on biome change.
-        spawnSystem:addSpawnType(spawnBacteria, BACTERIA_SPAWN_DENSITY, BACTERIA_SPAWN_RADIUS)
+        gSpawnSystem:addSpawnType(spawnBacteria, BACTERIA_SPAWN_DENSITY, BACTERIA_SPAWN_RADIUS)
     end
 
-    spawnSystem:addSpawnType(toxinOrganelleSpawnFunction, 1/17000, 50)
-    spawnSystem:addSpawnType(ChloroplastOrganelleSpawnFunction, 1/12000, 50)
+    gSpawnSystem:addSpawnType(toxinOrganelleSpawnFunction, 1/17000, 50)
+    gSpawnSystem:addSpawnType(ChloroplastOrganelleSpawnFunction, 1/12000, 50)
 
     for name, species in pairs(starter_microbes) do
 
         assert(isNotEmpty(name))
         assert(species)
         
-        spawnSystem:addSpawnType(
+        gSpawnSystem:addSpawnType(
             function(pos) 
                 return microbeSpawnFunctionGeneric(pos, name, true, nil,
                                                    g_luaEngine.currentGameState)
             end, 
             species.spawnDensity, 60)
     end
-    return spawnSystem
+
+    return gSpawnSystem
 end
 
 local function setupPlayer(gameState)
@@ -326,7 +334,7 @@ local function setupPlayer(gameState)
     assert(GameState.MICROBE == gameState)
     assert(gameState ~= nil)
     
-    local microbe = microbeSpawnFunctionGeneric(nil, "Default", false, PLAYER_NAME, gameState)
+    local microbe = spawnMicrobe(nil, "Default", false, PLAYER_NAME, gameState)
     microbe.collisionHandler:addCollisionGroup("powerupable")
     Engine:playerData():lockedMap():addLock("Toxin")
     Engine:playerData():lockedMap():addLock("chloroplast")
@@ -404,7 +412,7 @@ local function createMicrobeStage(name)
             BulletToOgreSystem.new(),
             CollisionSystem.new(),
             -- Microbe Specific again (order sensitive)
-            createSpawnSystem(),
+            setupSpawnSystem(),
             -- Graphics
             OgreAddSceneNodeSystem.new(),
             OgreUpdateSceneNodeSystem.new(),

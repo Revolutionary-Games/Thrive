@@ -62,10 +62,10 @@ Species = class(
 
 --sets up the spawn of the species
 function Species:setupSpawn()
-    self.id = currentSpawnSystem:addSpawnType(
+    self.id = gSpawnSystem:addSpawnType(
         function(pos)
             return microbeSpawnFunctionGeneric(pos, self.name, true, nil,
-                                               g_luaEngine.currentGameState)
+                                              g_luaEngine.currentGameState)
         end, 
         DEFAULT_SPAWN_DENSITY, --spawnDensity should depend on population
         DEFAULT_SPAWN_RADIUS
@@ -226,9 +226,7 @@ SpeciesSystem = class(
     function(self)
         
         LuaSystem.create(self)
-        
-        gSpawnSystem = self
-        
+
         self.entities = EntityFilter.new(
             {
                 SpeciesComponent,
@@ -430,7 +428,7 @@ function SpeciesSystem.fromMicrobe(microbe, species)
     species.avgCompoundAmounts = {}
     for _, compoundID in pairs(CompoundRegistry.getCompoundList()) do
         local amount = microbe:getCompoundAmount(compoundID)
-        species.avgCompoundAmounts["" .. compoundID] = amount/2
+        species.avgCompoundAmounts["" .. compoundID] = amount
     end
     -- TODO: make this update the ProcessorComponent based on microbe thresholds
 end
