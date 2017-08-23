@@ -65,7 +65,6 @@ Bacterium.COMPONENTS = {
 }
 
 function Bacterium.createBacterium(speciesName, pos, gameState)
-	-- print("BS:"..speciesName)
 	local entity = Entity.new(gameState.wrapper)
 	local species_data = bacteriaTable[speciesName]
 	local bacteriaComponent = BacteriaComponent.new(speciesName,
@@ -119,8 +118,6 @@ end
 
 function Bacterium:purgeCompounds()
     local compoundAmountToDump = self.compoundBag:getStorageSpaceUsed() - self.compoundBag.storageSpace
-    
-    -- if compoundAmountToDump > 0 then print("BD:"..compoundAmountToDump) end
 
     -- Dumping all the useless compounds (with price = 0).
     for _, compoundId in pairs(CompoundRegistry.getCompoundList()) do
