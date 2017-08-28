@@ -44,7 +44,7 @@ void CompoundCloudComponent::luaBindings(
         "new", sol::factories([](){
                 return std::make_unique<CompoundCloudComponent>();
             }),
-        
+
         COMPONENT_BINDINGS(CompoundCloudComponent),
 
         "initialize", &CompoundCloudComponent::initialize,
@@ -150,7 +150,7 @@ REGISTER_COMPONENT(CompoundCloudComponent)
     lua.new_usertype<CompoundCloudSystem>("CompoundCloudSystem",
 
         sol::constructors<sol::types<>>(),
-        
+
         sol::base_classes, sol::bases<System>(),
 
         "init", &CompoundCloudSystem::init
@@ -172,8 +172,8 @@ CompoundCloudSystem::CompoundCloudSystem()
   : m_impl(new Implementation()),
     playerNode(NULL),
     noiseScale(5),
-    width(60),
-    height(60),
+    width(120),
+    height(120),
     offsetX(0),
     offsetY(0),
     gridSize(2),
@@ -201,12 +201,12 @@ CompoundCloudSystem::init(
     Ogre::Plane plane(Ogre::Vector3::UNIT_Z, -1.0);
     Ogre::MeshManager::getSingleton().createPlane("CompoundCloudsPlane", "General",
         plane, width*gridSize, height*gridSize, 1, 1, true, 1, 1, 1, Ogre::Vector3::UNIT_Y);
-    
+
     compoundCloudsPlane = m_impl->m_sceneManager->createEntity("CompoundCloudsPlane",
         "General");
     m_impl->m_sceneManager->getRootSceneNode()->createChildSceneNode()->attachObject(
         compoundCloudsPlane);
-    
+
     compoundCloudsPlane->setMaterialName("CompoundClouds");
 }
 
@@ -263,25 +263,25 @@ CompoundCloudSystem::update(int renderTime, int) {
         // Modifies the material to draw this compound cloud in addition to the others.
         Ogre::MaterialPtr materialPtr = Ogre::MaterialManager::getSingleton().getByName(
             "CompoundClouds", "General");
-        
+
         Ogre::Pass* pass = materialPtr->getTechnique(0)->createPass();
-        
+
         pass->setSceneBlending(Ogre::SBT_TRANSPARENT_ALPHA);
         pass->setVertexProgram("CompoundCloud_VS");
         pass->setFragmentProgram("CompoundCloud_PS");
-        
+
         Ogre::TexturePtr texturePtr = Ogre::TextureManager::getSingleton().createManual(
             CompoundRegistry::getCompoundInternalName(compoundCloud->m_compoundId),
             "General", Ogre::TEX_TYPE_2D, width, height,
             0, Ogre::PF_BYTE_BGRA, Ogre::TU_DYNAMIC_WRITE_ONLY_DISCARDABLE);
-        
+
         Ogre::HardwarePixelBufferSharedPtr cloud;
         cloud = texturePtr->getBuffer();
         cloud->lock(Ogre::HardwareBuffer::HBL_DISCARD);
         const Ogre::PixelBox& pixelBox = cloud->getCurrentLock();
-        
+
         uint8_t* pDest = static_cast<uint8_t*>(pixelBox.data);
-        
+
         // Fill in some pixel data. This will give a semi-transparent blue,
         // but this is of course dependent on the chosen pixel format.
         for (int i = 0; i < width; i++)
@@ -306,7 +306,7 @@ CompoundCloudSystem::update(int renderTime, int) {
         compoundCloudsPlane->getSubEntity(0)->setCustomParameter(1,
             Ogre::Vector4(0.0f, 0.0f, 0.0f, 0.0f));
     }
-    
+
     // Clear the list of newly added entities so that we don't reinitialize them next frame.
     m_impl->m_compounds.clearChanges();
 
@@ -386,11 +386,11 @@ CompoundCloudSystem::update(int renderTime, int) {
                 compoundCloudsPlane->getSubEntity(0)->setCustomParameter(1,
                     Ogre::Vector4(offset.x, offset.y+1.0f/3, 0.0f, 0.0f));
             }
-            
+
             compoundCloud->offsetX = offsetX;
             compoundCloud->offsetY = offsetY;
         }
-        
+
         // Compound clouds move from area of high concentration to area of low.
         diffuse(.01, compoundCloud->oldDens, compoundCloud->density, renderTime);
         // Move the compound clouds about the velocity field.
@@ -401,7 +401,7 @@ CompoundCloudSystem::update(int renderTime, int) {
         cloud = Ogre::TextureManager::getSingleton().getByName(
             CompoundRegistry::getCompoundInternalName(compoundCloud->m_compoundId),
             "General")->getBuffer();
-        
+
         cloud->lock(Ogre::HardwareBuffer::HBL_DISCARD);
         const Ogre::PixelBox& pixelBox = cloud->getCurrentLock();
         uint8_t* pDest = static_cast<uint8_t*>(pixelBox.data);
@@ -427,7 +427,7 @@ CompoundCloudSystem::update(int renderTime, int) {
             }
             pDest += pixelBox.getRowSkip() * Ogre::PixelUtil::getNumElemBytes(pixelBox.format);
         }
-        
+
         // Unlock the pixel buffer.
         cloud->unlock();
     }
