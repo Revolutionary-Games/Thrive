@@ -7,10 +7,9 @@
 OXYGEN_SEARCH_THRESHHOLD = 8
 GLUCOSE_SEARCH_THRESHHOLD = 5
 AI_MOVEMENT_SPEED = 0.5
-
+microbes_number = {}
 MicrobeAIControllerComponent = class(
     function(self)
-
         self.movementRadius = 20
         self.reevalutationInterval = 1000
         self.intervalRemaining = self.reevalutationInterval
@@ -18,7 +17,6 @@ MicrobeAIControllerComponent = class(
         self.targetEmitterPosition = nil
         self.searchedCompoundId = nil
         self.prey = nil
-        
     end
 )
 
@@ -89,13 +87,25 @@ MicrobeAISystem = class(
             }, 
             true
         )
-        self.microbes = {}
+        self.microbeEntities = EntityFilter.new(
+          {
+            MicrobeComponent
+          },
+true		  
+		  )
+self.microbes = {}
         self.preyCandidates = {}
         self.preyEntityToIndexMap = {} -- Used for removing from preyCandidates
         self.currentPreyIndex = 0
         self.oxygenEmitters = {}
         self.glucoseEmitters = {}
-        
+        self.preys = {} --table for preys
+		self.p = nil --the final prey the cell should hunt
+		self.preyMaxHitpoints = 100000 --i need it to be very big for now it will get changed
+		self.preycount = 0 --counting number of frames so the prey get updated the fittest prey
+		self.preyEscaped = false --checking if the prey escaped
+		self.predators = {} --table for predadtors the cell should run from
+		self.predatore = nil --the final predatore the cell shall run from
     end
 )
 
@@ -103,6 +113,7 @@ function MicrobeAISystem:init(gameState)
     LuaSystem.init(self, "MicrobeAISystem", gameState)
     self.entities:init(gameState.wrapper)
     self.emitters:init(gameState.wrapper)
+	self.microbeEntities:init(gameState.wrapper)
 end
 
 
@@ -110,6 +121,7 @@ function MicrobeAISystem:shutdown()
     LuaSystem.shutdown(self)
     self.entities:shutdown()
     self.emitters:shutdown()
+	self.microbeEntities:shutdown()
 end
 
 function MicrobeAISystem:update(renderTime, logicTime)
@@ -132,14 +144,25 @@ function MicrobeAISystem:update(renderTime, logicTime)
         self.currentPreyIndex = (self.currentPreyIndex)%6
         
     end
-    
+	--for removing cell from table when it is removed from the world
+	for _, entityId in pairs(self.microbeEntities:removedEntities()) do
+	microbes_number[entityId] = nil
+	end
+	--for counting all the cells in the world and get it's entity
+    for _, entityId in pairs(self.microbeEntities:addedEntities()) do
+	local microbe = Microbe(Entity.new(entityId, self.gameState.wrapper), nil,
+                                self.gameState.wrapper)
+	microbes_number[entityId] = microbe
+	end
+	
     for _, entityId in pairs(self.emitters:removedEntities()) do
         self.oxygenEmitters[entityId] = nil
         self.glucoseEmitters[entityId] = nil
     end
+	
     for _, entityId in pairs(self.emitters:addedEntities()) do
         local emitterComponent = getComponent(entityId, self.gameState, CompoundEmitterComponent)
-		if emitterComponent ~= nil then -- TODO: Unsure why this is necessary
+		if emitterComponent ~= nil then --for making sure the emmitterComponent get set before
 			if emitterComponent.compoundId == CompoundRegistry.getCompoundId("oxygen") then
 				self.oxygenEmitters[entityId] = true
 			elseif emitterComponent.compoundId == CompoundRegistry.getCompoundId("glucose") then
@@ -149,7 +172,9 @@ function MicrobeAISystem:update(renderTime, logicTime)
     end
     self.emitters:clearChanges()
     self.entities:clearChanges()
+	self.microbeEntities:clearChanges()
     for _, microbe in pairs(self.microbes) do
+	
         local aiComponent = getComponent(microbe.entity, MicrobeAIControllerComponent)
         aiComponent.intervalRemaining = aiComponent.intervalRemaining + logicTime
         while aiComponent.intervalRemaining > aiComponent.reevalutationInterval do
@@ -158,6 +183,45 @@ function MicrobeAISystem:update(renderTime, logicTime)
             local compoundId = CompoundRegistry.getCompoundId("oxytoxy")
             local targetPosition = nil
             local agentVacuole = microbe.microbe.specialStorageOrganelles[compoundId]
+	--for getting the prey
+	for _, m_microbe in pairs (microbes_number) do
+	if self.preys ~= nil then
+	local v = (m_microbe.sceneNode.transform.position - microbe.sceneNode.transform.position)
+	if v:length() < 25 and  v:length() ~= 0  then
+	if microbe.microbe.maxHitpoints > 1.5 * m_microbe.microbe.maxHitpoints then
+	self.preys[m_microbe] = m_microbe
+	end
+	if agentVacuole ~= nil and m_microbe.microbe.specialStorageOrganelles[compoundId] == nil and self.preys[m_microbe] == nil then
+	self.preys[m_microbe] = m_microbe
+	end
+	elseif v:length() > 25 or v:length() == 0 then
+	self.preys[m_microbe] = nil
+	end
+	if self.preys[m_microbe] ~= nil then
+   if self.preys[m_microbe].microbe.maxHitpoints <= self.preyMaxHitpoints then
+   self.preyMaxHitpoints = self.preys[m_microbe].microbe.maxHitpoints
+   self.p = self.preys[m_microbe]
+   end
+	   	self.preycount = self.preycount + 1
+		print (self.p.sceneNode.transform.position.x .. " " .. microbe.sceneNode.transform.position.x)
+	end
+	end
+	end
+	--for getting the predatore
+	for _, predatore in pairs (microbes_number) do
+	local vec = (predatore.sceneNode.transform.position - microbe.sceneNode.transform.position)
+	if predatore.microbe.maxHitpoints > microbe.microbe.maxHitpoints * 1.5 and vec:length() < 25 then
+	self.predators[predatore] = predatore
+	end
+	if predatore.microbe.specialStorageOrganelles[compoundId] ~= nil and agentVacuole == nil and vec:length() < 25 then
+		self.predators[predatore] = predatore
+	end
+	if vec:length() > 25 then
+	self.predators[predatore] = nil
+	end
+	self.predatore = self.predators[predatore]
+    end
+	
             if agentVacuole ~= nil or microbe.microbe.maxHitpoints > 100 then
                 self.preyCandidates[6] = Microbe.new(
                     Entity.new(PLAYER_NAME, self.gameState.wrapper), nil, self.gameState.wrapper)
@@ -165,17 +229,25 @@ function MicrobeAISystem:update(renderTime, logicTime)
                 local attempts = 0
                 while (aiComponent.prey  == nil or not aiComponent.prey:exists() or aiComponent.prey.microbe.dead or
                            (aiComponent.prey.microbe.speciesName ==  microbe.microbe.speciesName) or
-                       self.preyEntityToIndexMap[aiComponent.prey.entity.id] == nil) and attempts < 6 do
-                    aiComponent.prey = self.preyCandidates[rng:getInt(0, 6)]
-                    attempts = attempts + 1       
+                       self.preyEntityToIndexMap[aiComponent.prey.entity.id] == nil or self.preyEscaped == true)  and attempts < 6 and self.preycount > 10 do
+                    aiComponent.prey = self.p --setting the prey
+                    attempts = attempts + 1  
+                     self.preyEscaped = false					
                 end
-                if attempts < 6 then
-                    local vec = (aiComponent.prey.sceneNode.transform.position - microbe.sceneNode.transform.position)
-                    if vec:length() < 25 and microbe:getCompoundAmount(compoundId) > MINIMUM_AGENT_EMISSION_AMOUNT then
-                        microbe:emitAgent(CompoundRegistry.getCompoundId("oxytoxy"), 1)
-                    elseif vec:length() < 17 and microbe.microbe.maxHitpoints > ENGULF_HP_RATIO_REQ * aiComponent.prey.microbe.maxHitpoints and not microbe.microbe.engulfMode then
+				if self.predatore ~= nil then -- for running away from the predadtor
+				microbe.microbe.facingTargetPoint = Vector3(-self.predatore.sceneNode.transform.position.x,-self.predatore.sceneNode.transform.position.y, 0)
+				microbe.microbe.movementDirection = Vector3(0,AI_MOVEMENT_SPEED,0)
+				end
+                if attempts < 6 and aiComponent.prey ~= nil and self.predatore == nil then --making sure it is not a prey for someone before start hunting
+                    vec = (aiComponent.prey.sceneNode.transform.position - microbe.sceneNode.transform.position)
+                   if vec:length() > 25 then
+				   self.preyEscaped = true
+				   end
+				   if vec:length() < 25 and vec:length() > 10 and microbe:getCompoundAmount(compoundId) > MINIMUM_AGENT_EMISSION_AMOUNT and microbe.microbe.microbetargetdirection < 10 then
+						microbe:emitAgent(CompoundRegistry.getCompoundId("oxytoxy"), 1)
+                    elseif vec:length() < 10 and microbe.microbe.maxHitpoints > ENGULF_HP_RATIO_REQ * aiComponent.prey.microbe.maxHitpoints and not microbe.microbe.engulfMode then
                         microbe:toggleEngulfMode()
-                    elseif vec:length() > 20 and microbe.microbe.engulfMode then
+                    elseif vec:length() > 15  and microbe.microbe.engulfMode then
                         microbe:toggleEngulfMode()
                     end
                     
@@ -183,7 +255,8 @@ function MicrobeAISystem:update(renderTime, logicTime)
                     aiComponent.direction = vec
                     microbe.microbe.facingTargetPoint = Vector3(aiComponent.prey.sceneNode.transform.position.x,aiComponent.prey.sceneNode.transform.position.y, 0)  
                     microbe.microbe.movementDirection = Vector3(0,AI_MOVEMENT_SPEED,0)
-                end
+                
+				end
             else
                 if microbe:getCompoundAmount(CompoundRegistry.getCompoundId("oxygen")) <= OXYGEN_SEARCH_THRESHHOLD then
                     -- If we are NOT currenty heading towards an emitter
