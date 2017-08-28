@@ -17,6 +17,7 @@ MicrobeComponent = class(
         self.specialStorageOrganelles = {} -- Organelles with complete resonsiblity for a specific compound (such as agentvacuoles)
         self.movementDirection = Vector3(0, 0, 0)
         self.facingTargetPoint = Vector3(0, 0, 0)
+		self.microbetargetdirection = 0
         self.movementFactor = 1.0 -- Multiplied on the movement speed of the microbe.
         self.capacity = 0  -- The amount that can be stored in the microbe. NOTE: This does not include special storage organelles
         self.stored = 0 -- The amount stored in the microbe. NOTE: This does not include special storage organelles
