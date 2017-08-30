@@ -144,6 +144,7 @@ function MovementOrganelle:_turnMicrobe(microbe)
         -localTargetDirection.x,
         localTargetDirection.y
     )
+	microbe.microbe.microbetargetdirection = math.abs(math.deg(alpha))
     if math.abs(math.deg(alpha)) > 1 then
         microbe.rigidBody:applyTorque(
             Vector3(0, 0, self.torque * alpha * microbe.microbe.movementFactor)
