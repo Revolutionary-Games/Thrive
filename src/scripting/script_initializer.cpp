@@ -74,13 +74,13 @@
 
 #include <string>
 
-
 #include "microbe_stage/compound.h"
 #include "microbe_stage/compound_absorber_system.h"
 #include "microbe_stage/compound_emitter_system.h"
 #include "microbe_stage/compound_registry.h"
 #include "microbe_stage/bio_process_registry.h"
 #include "microbe_stage/membrane_system.h"
+#include "microbe_stage/microbe_camera_system.h"
 #include "microbe_stage/compound_cloud_system.h"
 #include "microbe_stage/process_system.h"
 #include "microbe_stage/spawn_system.h"
@@ -336,6 +336,7 @@ void bindClassesToLua(sol::state &lua){
         CompoundAbsorberSystem::luaBindings(lua);
         CompoundEmitterSystem::luaBindings(lua);
         MembraneSystem::luaBindings(lua);
+        MicrobeCameraSystem::luaBindings(lua);
         CompoundCloudSystem::luaBindings(lua);
         ProcessSystem::luaBindings(lua);
         AgentCloudSystem::luaBindings(lua);
