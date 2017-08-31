@@ -21,4 +21,6 @@ add_sources(
     "${CMAKE_CURRENT_SOURCE_DIR}/species_component.h"
     "${CMAKE_CURRENT_SOURCE_DIR}/spawn_system.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/spawn_system.h"
+    "${CMAKE_CURRENT_SOURCE_DIR}/microbe_camera_system.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/microbe_camera_system.h"
 )
