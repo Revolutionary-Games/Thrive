@@ -26,6 +26,21 @@ o GuiCollection "TopLevelMenu"{
     }
 }
 
+// ------------------------------------ //
+// This creates the intro video player
+o GuiObject "_IntroVideoStarter"{
+    s{
+        [@Listener="OnInit"]
+        bool WriteVersion(GuiObject@ instance){
+
+            Print("TODO: start video");
+            
+            return true;
+        }
+    @%};
+}
+
+
 
 // ------------------------------------ //
 // Version label
@@ -34,7 +49,8 @@ o GuiObject "Background/MainMenuInteractive/VersionLabel"{
         [@Listener="OnInit"]
         bool WriteVersion(GuiObject@ instance){
 
-            instance.GetTargetWindow().SetText("TODO: ver");
+            instance.GetTargetWindow().SetText("TODO: ver (" + GetLeviathanVersion() +
+                 ")");
 
             return true;
         }
@@ -47,7 +63,7 @@ o GuiObject "Background/MainMenuInteractive/ExitGameButton"{
         [@Listener="OnClick"]
         bool QuitIt(GuiObject@ instance){
             // Close the game //
-            Quit();
+            cast<LeviathanApplication>(GetThriveGame()).MarkAsClosing();
             return true;
         }
         @%};

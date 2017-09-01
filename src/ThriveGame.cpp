@@ -9,6 +9,8 @@
 
 #include "GUI/AlphaHitCache.h"
 
+#include "Script/Bindings/BindHelpers.h"
+
 #include "CEGUI/SchemeManager.h"
 
 using namespace thrive;
@@ -114,6 +116,9 @@ bool ThriveGame::InitLoadCustomScriptTypes(asIScriptEngine* engine){
     {
         ANGELSCRIPT_REGISTERFAIL;
     }
+
+    ANGLESCRIPT_BASE_CLASS_CASTS_NO_REF(LeviathanApplication, "LeviathanApplication",
+        ThriveGame, "ThriveGame");    
 
     // if(engine->RegisterObjectMethod("ThriveGame",
     //         "void Quit()",
