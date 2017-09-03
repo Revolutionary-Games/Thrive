@@ -118,7 +118,7 @@ bool ThriveGame::InitLoadCustomScriptTypes(asIScriptEngine* engine){
     }
 
     ANGLESCRIPT_BASE_CLASS_CASTS_NO_REF(LeviathanApplication, "LeviathanApplication",
-        ThriveGame, "ThriveGame");    
+        ThriveGame, "ThriveGame");
 
     // if(engine->RegisterObjectMethod("ThriveGame",
     //         "void Quit()",
