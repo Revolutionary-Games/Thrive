@@ -33,9 +33,35 @@ o GuiObject "_IntroVideoStarter"{
         [@Listener="OnInit"]
         bool WriteVersion(GuiObject@ instance){
 
-            Print("TODO: start video");
-            
+            LOG_INFO("Starting to play intro video");
+            CEGUI::Window@ videoPlayer = instance.GetOwningManager().GetRootWindow().
+                 CreateAndAddChild("Thrive/VideoPlayer");
+
+            videoPlayer.SetSize(1.0, 0, 1.0, 0);
+
+            auto@ castedPlayer = cast<CEGUIVideoPlayer>(videoPlayer);
+
+            // Grab the created window as our own
+            instance.ConnectElement(videoPlayer);
+
+            if(!instance.IsCEGUIEventHooked()){
+
+                LOG_ERROR("IntroVideoStarter failed to bind to the created video "
+                    "player widget");
+                return false;
+            }
+
+            // Start playback
+            castedPlayer.Play("Data/Videos/intro.mp4");
+
             return true;
+        }
+
+        [@Listener="OnClick"]
+        bool VideoPlayerClicked(GuiObject@ instance){
+
+             LOG_INFO("VideoPlayer clicked");
+             return true;
         }
     @%};
 }
