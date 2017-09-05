@@ -1096,11 +1096,9 @@ function Microbe:validPlacement(organelle, q, r)
     end
 end
 
-PURGE_SCALE = 0.4
-
 function Microbe:purgeCompounds()
     local compoundAmountToDump = self.microbe.stored - self.microbe.capacity
-    compoundBag = getComponent(self.entity, CompoundBagComponent)
+    local compoundBag = getComponent(self.entity, CompoundBagComponent)
 
     -- Uncomment to print compound economic information to the console.
     --[[
@@ -1127,20 +1125,19 @@ function Microbe:purgeCompounds()
         --Calculating each compound price to dump proportionally.
         local compoundPrices = {}
         local priceSum = 0
-        for _, compoundId in CompoundRegistry.getCompoundList() do
-            local amount = getComponent(self.entity, CompoundBagComponent)
-                :getCompoundAmount(compoundId)
+        for _, compoundId in pairs(CompoundRegistry.getCompoundList()) do
+            local amount = compoundBag:getCompoundAmount(compoundId)
 
             if amount > 0 then
                 local price = compoundBag:getPrice(compoundId)
                 compoundPrices[compoundId] = price
-                priceSum = priceSum + price
+                priceSum = priceSum + amount / price
             end
         end
 
         --Dumping each compound according to it's price.
-        for _, compoundId, price in pairs(compoundPrices) do
-            amountToEject = compoundAmountToDump * price / priceSum
+        for compoundId, price in pairs(compoundPrices) do
+            local amountToEject = compoundAmountToDump * (compoundBag:getCompoundAmount(compoundId) / price) / priceSum
             if amount > 0 then amountToEject = self:takeCompound(compoundId, amountToEject) end
             if amount > 0 then self:ejectCompound(compoundId, amountToEject) end
         end
