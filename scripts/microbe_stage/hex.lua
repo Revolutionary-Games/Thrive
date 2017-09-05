@@ -7,7 +7,7 @@
 
 -- Size of a single hex, that is the distance from the center to a corner
 HEX_SIZE = 0.75
-
+Hex.setHexSize(HEX_SIZE)
 
 -- Enumeration of the hex sides, clock-wise
 HEX_SIDE = {
@@ -67,6 +67,8 @@ HEX_NEIGHBOUR_OFFSET = {
 --  end
 --
 --  This would print the coordinates of each hex around the (0, 0) hexagon.
+
+-- Not used?
 function iterateNeighbours(q, r)
     local function nextNeighbour(dummy, i)
         i = i+1
@@ -90,9 +92,8 @@ end
 -- @returns x, y
 --  Cartesian coordinates of the hex's center
 function axialToCartesian(q, r)
-    local x = q * HEX_SIZE * 3 / 2
-    local y = HEX_SIZE * math.sqrt(3) * (r + q / 2)
-    return x, y
+    result = Hex.axialToCartesian(q, r)
+    return result.x, result.y
 end
 
 -- Converts cartesian coordinates to axial hex coordinates 
@@ -104,10 +105,9 @@ end
 --
 -- @returns q, r
 --  hex position
-function cartesianToAxial(x, y)    
-    local q = x / (HEX_SIZE * 3 / 2);
-    local r = (y / (HEX_SIZE * math.sqrt(3))) - q/2;
-    return q, r
+function cartesianToAxial(x, y)
+    result = Hex.cartesianToAxial(x, y)
+    return result.x, result.y
 end
 
 -- Converts axial hex coordinates to coordinates in the cube based hex model
@@ -120,7 +120,8 @@ end
 -- @returns x, y, z
 --  cube coordinates
 function axialToCube(q, r)
-    return q, r, (-q-r)
+    result = Hex.axialToCube(q, r)
+    return result.x, result.y, result.z
 end
 
 -- Converts cube based hex coordinates to axial hex coordinates
@@ -133,7 +134,8 @@ end
 -- @returns q, r
 --  hex coordinates
 function cubeToAxial(x, y, z)
-    return x, z
+    result = Hex.cubeToAxial(x, y, z)
+    return result.x, result.y
 end
 
 -- Correctly rounds fractional hex cube coordinates to the correct integer coordinates
@@ -144,30 +146,9 @@ end
 -- @returns rx, ry, rz
 --  correctly rounded hex cube coordinates
 function cubeHexRound(x, y, z)
-    local rx = math.floor(x+0.5)
-    local ry = math.floor(y+0.5)
-    local rz = math.floor(z+0.5)
-
-    local x_diff = math.abs(rx - x)
-    local y_diff = math.abs(ry - y)
-    local z_diff = math.abs(rz - z)
-
-    if x_diff > y_diff and x_diff > z_diff then
-        rx = -ry-rz
-    elseif y_diff > z_diff then
-        ry = -rx-rz
-    else
-        rz = -rx-ry
-    end
-    return rx, ry, rz
+    result = Hex.cubeHexRound(x, y, z)
+    return result.x, result.y, result.z
 end
-
--- Maximum hex coordinate value that can be encoded with encodeAxial()
-local OFFSET = 256
-
--- Multiplier for the q coordinate used in encodeAxial()
-local SHIFT = OFFSET * 10
-
 
 -- Encodes axial coordinates to a single number
 --
@@ -179,11 +160,7 @@ local SHIFT = OFFSET * 10
 -- @returns s
 --  A single number encoding q and r. Use decodeAxial() to retrieve q and r from it.
 function encodeAxial(q, r)
-    assert(
-        math.abs(q) <= OFFSET and math.abs(r) <= OFFSET, 
-        "Coordinates out of range, q and r need to be smaller than " .. OFFSET
-    )
-    return (q + OFFSET) * SHIFT + (r + OFFSET)
+    return Hex.encodeAxial(q, r)
 end
 
 
@@ -195,26 +172,20 @@ end
 -- @returns q, r
 --  The hex coordinates encoded in s
 function decodeAxial(s)
-    local r = (s % SHIFT) - OFFSET
-    local q = (s - r - OFFSET) / SHIFT - OFFSET
-    return q, r
+    result = Hex.decodeAxial(s)
+    return result.x, result.y
 end
 
 -- Rotates a hex by 60 degrees about the origin clock-wise.
 function rotateAxial(q, r)
-	local q2 = -1*r
-	local r2 = q + r
-	return q2, r2
+    result = Hex.rotateAxial(q, r)
+    return result.x, result.y
 end
 
 -- Rotates a hex by (60 * n) degrees about the origin clock-wise.
 function rotateAxialNTimes(q0, r0, n)
-    q = q0
-    r = r0
-    for i = 1, n do
-        q, r = rotateAxial(q, r)
-    end
-    return q, r
+    result = Hex.rotateAxialNTimes(q0, r0, n)
+    return result.x, result.y
 end
 
 -- Rotates a list of hexes by (60 * n) degrees about the origin clock-wise.
@@ -234,7 +205,6 @@ end
 
 -- Symmetrizes a hex horizontally about the 0,x axis.
 function flipHorizontally(q,r)
-    local q2 = -q
-    local r2 = q + r
-    return q2, r2
+    result = Hex.flipHorizontally(q, r)
+    return result.x, result.y
 end
