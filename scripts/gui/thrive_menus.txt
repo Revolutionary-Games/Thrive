@@ -30,12 +30,14 @@ o GuiCollection "TopLevelMenu"{
 // This creates the intro video player
 o GuiObject "_IntroVideoStarter"{
     s{
+        GuiObject@ OurObject;
+        
         [@Listener="OnInit"]
         bool WriteVersion(GuiObject@ instance){
 
             LOG_INFO("Starting to play intro video");
             CEGUI::Window@ videoPlayer = instance.GetOwningManager().GetRootWindow().
-                 CreateAndAddChild("Thrive/VideoPlayer");
+                 CreateAndAddChild("Thrive/VideoPlayer", "MainMenuVideoPlayer");
 
             videoPlayer.SetSize(1.0, 0, 1.0, 0);
 
@@ -51,6 +53,12 @@ o GuiObject "_IntroVideoStarter"{
                 return false;
             }
 
+            // Save object for callback //
+            @OurObject = instance;
+
+            // Register end callback //
+            castedPlayer.OnPlaybackEnded.Register(@OnVideoEnded);
+
             // Start playback
             castedPlayer.Play("Data/Videos/intro.mp4");
 
@@ -62,6 +70,19 @@ o GuiObject "_IntroVideoStarter"{
 
              LOG_INFO("VideoPlayer clicked");
              return true;
+        }
+
+        void DestroyVideoPlayerWindow(){
+             LOG_INFO("Destroying VideoPlayer window");
+             OurObject.GetOwningManager().GetRootWindow().
+                 DestroyChild("MainMenuVideoPlayer");
+        }
+
+        // Called by the videoplayer when the playback ends
+        void OnVideoEnded(NamedVars@ values){
+
+             LOG_INFO("Intro video ended");
+             GetEngine().Invoke(@DestroyVideoPlayerWindow);
         }
     @%};
 }
