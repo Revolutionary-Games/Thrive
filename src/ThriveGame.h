@@ -13,6 +13,8 @@
 
 namespace thrive{
 
+class CellStageWorld;
+
 class ThriveNetHandler;
 
 //! This is the main thrive class that is created in main.cpp and then handles running
@@ -49,6 +51,8 @@ protected:
 protected:
     
     std::unique_ptr<ThriveNetHandler> Network;
+
+    std::shared_ptr<CellStageWorld> CellStage;
 
     static ThriveGame* StaticGame;
 };

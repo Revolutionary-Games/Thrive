@@ -3,6 +3,9 @@
 
 #include "thrive_net_handler.h"
 #include "thrive_version.h"
+#include "thrive_world_factory.h"
+
+#include "generated/cell_stage_world.h"
 
 #include "Networking/NetworkHandler.h"
 #include "Rendering/GraphicalInputEntity.h"
@@ -90,6 +93,12 @@ void ThriveGame::CustomizeEnginePostLoad(){
         StartRelease();
         return;
     }
+
+    // Create worlds //
+    CellStage = std::static_pointer_cast<CellStageWorld>(ThriveWorldFactory::Get()->
+        CreateNewWorld());
+
+    LEVIATHAN_ASSERT(CellStage, "Cell stage world creation failed");
 
 }
 
