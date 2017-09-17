@@ -58,8 +58,10 @@ void ThriveGame::Tick(int mspassed){
 
 void ThriveGame::CustomizeEnginePostLoad(){
 
+    Engine* engine = Engine::Get();
+
     // Load GUI documents (but only if graphics are enabled) //
-    if(Engine::Get()->GetNoGui()){
+    if(engine->GetNoGui()){
         
         // Skip the graphical objects when not in graphical mode //
         return;
@@ -95,8 +97,8 @@ void ThriveGame::CustomizeEnginePostLoad(){
     }
 
     // Create worlds //
-    CellStage = std::static_pointer_cast<CellStageWorld>(ThriveWorldFactory::Get()->
-        CreateNewWorld());
+    CellStage = std::dynamic_pointer_cast<CellStageWorld>(engine->CreateWorld(
+            engine->GetWindowEntity(), true));
 
     LEVIATHAN_ASSERT(CellStage, "Cell stage world creation failed");
 
