@@ -170,6 +170,19 @@ set(GROUP_UTIL
   )
 
 
+add_custom_command(OUTPUT "${PROJECT_SOURCE_DIR}/src/generated/cell_stage_world.h"
+  "${PROJECT_SOURCE_DIR}/src/generated/cell_stage_world.cpp"
+  COMMAND "ruby" "${PROJECT_SOURCE_DIR}/src/microbe_stage/generate_cell_stage_world.rb"
+  "${PROJECT_SOURCE_DIR}/src/generated/cell_stage_world"
+  DEPENDS "${PROJECT_SOURCE_DIR}/src/microbe_stage/generate_cell_stage_world.rb"
+  "${PROJECT_SOURCE_DIR}/ThirdParty/leviathan/Helpers/FileGen.rb"
+  )
+
+set(GROUP_MICROBE
+  "generated/cell_stage_world.h" "generated/cell_stage_world.cpp"
+  )
+
+
 # Groups for better visual studio experience
 source_group("bullet" FILES ${GROUP_BULLET})
 source_group("engine" FILES ${GROUP_ENGINE})
@@ -181,10 +194,14 @@ source_group("scripting" FILES ${GROUP_SCRIPTING})
 source_group("sound" FILES ${GROUP_SOUND})
 source_group("util" FILES ${GROUP_UTIL})
 
+source_group("microbe" FILES ${GROUP_MICROBE})
+
+
+
 set(THRIVE_FILES ${GROUP_BULLET} ${GROUP_ENGINE}
   ${GROUP_GENERAL} ${GROUP_GUI} ${GROUP_MICROBE_STAGE}
   ${GROUP_OGRE} ${GROUP_SCRIPTING} ${GROUP_SOUND}
-  ${GROUP_UTIL}
+  ${GROUP_UTIL} ${GROUP_MICROBE}
   )
 
 # Leviathan program setup
@@ -199,6 +216,9 @@ configure_file("${LEVIATHAN_SRC}/File Templates/BaseLeviathanProjectIncludes.h.i
 # Set all the settings
 set(ProgramIncludesHeader "${BaseIncludeFileName}")
 set(ProgramAppHeader "ThriveGame.h")
+
+set(WorldFactoryClass "ThriveWorldFactory")
+set(WorldFactoryInclude "thrive_world_factory.h")
 
 
 # ------------------ ProgramConfiguration ------------------ #
@@ -222,6 +242,7 @@ set(AllProjectFiles
   ${BaseIncludeFileName}
   "main.cpp"
   "ThriveGame.h" "ThriveGame.cpp"
+  "thrive_world_factory.h" "thrive_world_factory.cpp"
   "thrive_net_handler.h" "thrive_net_handler.cpp"
   )
 
