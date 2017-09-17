@@ -41,6 +41,7 @@
 #include "general/timed_life_system.h"
 #include "general/locked_map.h"
 #include "general/powerup_system.h"
+#include "general/quick_save_system.h"
 #include "general/hex.h"
 
 #include "gui/CEGUIWindow.h"
@@ -280,6 +281,7 @@ void bindClassesToLua(sol::state &lua){
         // Systems
         TimedLifeSystem::luaBindings(lua);
         PowerupSystem::luaBindings(lua);
+        QuickSaveSystem::luaBindings(lua);
         // Other
         Hex::luaBindings(lua);
     }
