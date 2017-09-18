@@ -7,6 +7,8 @@
 
 #include "generated/cell_stage_world.h"
 
+#include "Handlers/ObjectLoader.h"
+
 #include "Networking/NetworkHandler.h"
 #include "Rendering/GraphicalInputEntity.h"
 
@@ -98,10 +100,15 @@ void ThriveGame::CustomizeEnginePostLoad(){
 
     // Create worlds //
     CellStage = std::dynamic_pointer_cast<CellStageWorld>(engine->CreateWorld(
-            engine->GetWindowEntity(), true));
+            engine->GetWindowEntity()));
 
     LEVIATHAN_ASSERT(CellStage, "Cell stage world creation failed");
 
+    // Main camera that will be attached to the player
+    const auto camera = Leviathan::ObjectLoader::LoadCamera(*CellStage, Float3(0, 10, 0),
+        Ogre::Quaternion(Ogre::Radian(0), Ogre::Vector3(0, -1, 0)));
+
+    CellStage->SetCamera(camera);
 }
 
 void ThriveGame::EnginePreShutdown(){
