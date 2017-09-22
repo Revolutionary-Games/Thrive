@@ -15,7 +15,15 @@ o GuiCollection "OnKeeper"{
 }
 
 
-// Top level window
+// Top level window for all menus
+o GuiCollection "Background"{
+    l params{
+        Enabled = true;
+        AutoTarget = "Background";
+    }
+}
+
+// main menu root window
 o GuiCollection "TopLevelMenu"{
     l params{
         Enabled = true;
@@ -26,14 +34,22 @@ o GuiCollection "TopLevelMenu"{
     }
 }
 
+// Root of the cell stage GUI
+o GuiCollection "MicrobeRoot"{
+    l params{
+        Enabled = false;
+        AutoTarget = "MicrobeStageRoot";
+    }
+}
+
 // ------------------------------------ //
 // This creates the intro video player
 o GuiObject "_IntroVideoStarter"{
     s{
         GuiObject@ OurObject;
         
-        [@Listener="OnInit"]
-        bool WriteVersion(GuiObject@ instance){
+        //[@Listener="OnInit"]
+        bool StartVideoPlayback(GuiObject@ instance){
 
             LOG_INFO("Starting to play intro video");
             CEGUI::Window@ videoPlayer = instance.GetOwningManager().GetRootWindow().
@@ -90,6 +106,7 @@ o GuiObject "_IntroVideoStarter"{
 
 
 // ------------------------------------ //
+// Main menu objects
 // Version label
 o GuiObject "Background/MainMenuInteractive/VersionLabel"{
     s{
@@ -115,5 +132,26 @@ o GuiObject "Background/MainMenuInteractive/ExitGameButton"{
         }
         @%};
 }
+
+
+// Start game //
+o GuiObject "Background/MainMenuInteractive/NewGameButton"{
+    s{
+        [@Listener="OnClick"]
+        bool StartGame(GuiObject@ instance){
+            // Disable all the menus
+            instance.GetOwningManager().SetCollectionState("Background", false);
+            // And show the microbe GUI
+            instance.GetOwningManager().SetCollectionState("MicrobeRoot", true);
+            
+
+            // And notify the application class to start a new game
+            GetThriveGame().startNewGame();
+            return true;
+        }
+        @%};
+}
+
+// ------------------------------------ //
 
 

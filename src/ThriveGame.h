@@ -25,6 +25,14 @@ public:
     ThriveGame();
     virtual ~ThriveGame();
 
+    // ------------------------------------ //
+    // Gameplay etc. directly thrive related methods
+    void startNewGame();
+    
+
+    // ------------------------------------ //
+    // Hooking into the engine, and overridden methods from base application etc.
+
     void Tick(int mspassed) override;
 
     void CustomizeEnginePostLoad() override;
@@ -38,7 +46,6 @@ public:
 
     static ThriveGame* Get();
 
-    
     bool InitLoadCustomScriptTypes(asIScriptEngine* engine) override;
     void RegisterCustomScriptTypes(asIScriptEngine* engine,
         std::map<int, std::string> &typeids) override;
@@ -52,7 +59,7 @@ protected:
     
     std::unique_ptr<ThriveNetHandler> Network;
 
-    std::shared_ptr<CellStageWorld> CellStage;
+    std::shared_ptr<CellStageWorld> m_cellStage;
 
     static ThriveGame* StaticGame;
 };

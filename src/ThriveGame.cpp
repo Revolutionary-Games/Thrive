@@ -54,6 +54,75 @@ void ThriveGame::_ShutdownApplicationPacketHandler(){
     Network.reset();
 }
 // ------------------------------------ //
+
+void ThriveGame::startNewGame(){
+
+    LOG_INFO("New game started");
+
+    // Clear world //
+    m_cellStage->ClearObjects();
+
+    // Main camera that will be attached to the player
+    const auto camera = Leviathan::ObjectLoader::LoadCamera(*m_cellStage, Float3(0, 0, 0),
+        Ogre::Quaternion(Ogre::Radian(0), Ogre::Vector3(0, -1, 0)));
+
+    m_cellStage->SetCamera(camera);
+
+    // Set background plane //
+    {
+        auto quat = Ogre::Quaternion();
+        quat.FromAngleAxis(Ogre::Radian(0), Ogre::Vector3::UNIT_Y);
+        /*const auto plane = */Leviathan::ObjectLoader::LoadPlane(*m_cellStage, Float3(0, 0, 1),
+            Float4(quat),
+            "Background", Ogre::Plane(1, 1, 1, 1),
+            Float2(1000, 1000));
+    }
+
+    {
+        auto quat = Ogre::Quaternion();
+        quat.FromAngleAxis(Ogre::Radian(1.f), Float3(0.55f, -0.3f, 0.75f));
+        /*const auto plane = */Leviathan::ObjectLoader::LoadPlane(*m_cellStage, Float3(0, 0, 1),
+            Float4(quat),
+            "Background", Ogre::Plane(1, 1, 1, 1),
+            Float2(1000, 1000));
+    }    
+
+    //m_cellStage->SetSkyPlane("Background");
+    
+    // Spawn player //
+    // RespawnPlayerCell();
+    {
+        const auto testModel = m_cellStage->CreateEntity();
+        m_cellStage->Create_Position(testModel, Float3(1, 0, 0), Float4::IdentityQuaternion());
+        auto& node = m_cellStage->Create_RenderNode(testModel);
+        m_cellStage->Create_Model(testModel, node.Node, "nucleus.mesh");
+    }
+    {
+        const auto testModel = m_cellStage->CreateEntity();
+        m_cellStage->Create_Position(testModel, Float3(0, 0, 1), Float4::IdentityQuaternion());
+        auto& node = m_cellStage->Create_RenderNode(testModel);
+        m_cellStage->Create_Model(testModel, node.Node, "nucleus.mesh");
+    }
+
+    {
+        const auto testModel = m_cellStage->CreateEntity();
+        m_cellStage->Create_Position(testModel, Float3(0, 1, 0), Float4::IdentityQuaternion());
+        auto& node = m_cellStage->Create_RenderNode(testModel);
+        m_cellStage->Create_Model(testModel, node.Node, "nucleus.mesh");
+    }
+
+    {
+        const auto testModel = m_cellStage->CreateEntity();
+        m_cellStage->Create_Position(testModel, Float3(0, -1, 0), Float4::IdentityQuaternion());
+        auto& node = m_cellStage->Create_RenderNode(testModel);
+        m_cellStage->Create_Model(testModel, node.Node, "nucleus.mesh");
+    }            
+}
+
+
+
+
+// ------------------------------------ //
 void ThriveGame::Tick(int mspassed){
 
 }
@@ -72,11 +141,7 @@ void ThriveGame::CustomizeEnginePostLoad(){
     // Load the thrive gui theme //
     Leviathan::GUI::GuiManager::LoadGUITheme("Thrive.scheme");
 
-    Leviathan::GraphicalInputEntity* window1 = Engine::GetEngine()->GetWindowEntity();    
-
-    // Background needs to be cleared for CEGUI to work correctly
-    // (TODO: check is this still needed)
-    window1->SetAutoClearing("");
+    Leviathan::GraphicalInputEntity* window1 = Engine::GetEngine()->GetWindowEntity();
 
     Leviathan::GUI::GuiManager* GuiManagerAccess = window1->GetGui();
 
@@ -99,16 +164,12 @@ void ThriveGame::CustomizeEnginePostLoad(){
     }
 
     // Create worlds //
-    CellStage = std::dynamic_pointer_cast<CellStageWorld>(engine->CreateWorld(
-            engine->GetWindowEntity()));
+    m_cellStage = std::dynamic_pointer_cast<CellStageWorld>(engine->CreateWorld(
+            window1));
 
-    LEVIATHAN_ASSERT(CellStage, "Cell stage world creation failed");
+    LEVIATHAN_ASSERT(m_cellStage, "Cell stage world creation failed");
 
-    // Main camera that will be attached to the player
-    const auto camera = Leviathan::ObjectLoader::LoadCamera(*CellStage, Float3(0, 10, 0),
-        Ogre::Quaternion(Ogre::Radian(0), Ogre::Vector3(0, -1, 0)));
-
-    CellStage->SetCamera(camera);
+    window1->LinkObjects(m_cellStage);
 }
 
 void ThriveGame::EnginePreShutdown(){
@@ -138,13 +199,15 @@ bool ThriveGame::InitLoadCustomScriptTypes(asIScriptEngine* engine){
     ANGLESCRIPT_BASE_CLASS_CASTS_NO_REF(LeviathanApplication, "LeviathanApplication",
         ThriveGame, "ThriveGame");
 
-    // if(engine->RegisterObjectMethod("ThriveGame",
-    //         "void Quit()",
-    //         asMETHOD(ThriveGame, ThriveGame::Quit),
-    //         asCALL_THISCALL) < 0)
-    // {
-    //     ANGELSCRIPT_REGISTERFAIL;
-    // }
+    
+
+    if(engine->RegisterObjectMethod("ThriveGame",
+            "void startNewGame()",
+            asMETHOD(ThriveGame, ThriveGame::startNewGame),
+            asCALL_THISCALL) < 0)
+    {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
     
     // if(engine->RegisterObjectMethod("Client",
     //         "bool Connect(const string &in address, string &out errormessage)",
