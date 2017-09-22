@@ -63,29 +63,18 @@ void ThriveGame::startNewGame(){
     m_cellStage->ClearObjects();
 
     // Main camera that will be attached to the player
-    const auto camera = Leviathan::ObjectLoader::LoadCamera(*m_cellStage, Float3(0, 0, 0),
-        Ogre::Quaternion(Ogre::Radian(0), Ogre::Vector3(0, -1, 0)));
+    m_cellCamera = Leviathan::ObjectLoader::LoadCamera(*m_cellStage, Float3(0, 0, 15),
+        Ogre::Quaternion::IDENTITY
+        //* Ogre::Quaternion(Ogre::Degree(-20), Ogre::Vector3::UNIT_Z)
+    );
 
-    m_cellStage->SetCamera(camera);
+    m_cellStage->SetCamera(m_cellCamera);
 
     // Set background plane //
-    {
-        auto quat = Ogre::Quaternion();
-        quat.FromAngleAxis(Ogre::Radian(0), Ogre::Vector3::UNIT_Y);
-        /*const auto plane = */Leviathan::ObjectLoader::LoadPlane(*m_cellStage, Float3(0, 0, 1),
-            Float4(quat),
-            "Background", Ogre::Plane(1, 1, 1, 1),
-            Float2(1000, 1000));
-    }
-
-    {
-        auto quat = Ogre::Quaternion();
-        quat.FromAngleAxis(Ogre::Radian(1.f), Float3(0.55f, -0.3f, 0.75f));
-        /*const auto plane = */Leviathan::ObjectLoader::LoadPlane(*m_cellStage, Float3(0, 0, 1),
-            Float4(quat),
-            "Background", Ogre::Plane(1, 1, 1, 1),
-            Float2(1000, 1000));
-    }    
+    m_backgroundPlane = Leviathan::ObjectLoader::LoadPlane(*m_cellStage, Float3(0, -10, 0),
+        Ogre::Quaternion(Ogre::Radian(Leviathan::PI / 2 ), Ogre::Vector3::UNIT_X),
+        "Background", Ogre::Plane(1, 1, 1, 1),
+        Float2(20, 20));
 
     //m_cellStage->SetSkyPlane("Background");
     
@@ -97,26 +86,26 @@ void ThriveGame::startNewGame(){
         auto& node = m_cellStage->Create_RenderNode(testModel);
         m_cellStage->Create_Model(testModel, node.Node, "nucleus.mesh");
     }
-    {
-        const auto testModel = m_cellStage->CreateEntity();
-        m_cellStage->Create_Position(testModel, Float3(0, 0, 1), Float4::IdentityQuaternion());
-        auto& node = m_cellStage->Create_RenderNode(testModel);
-        m_cellStage->Create_Model(testModel, node.Node, "nucleus.mesh");
-    }
+    // {
+    //     const auto testModel = m_cellStage->CreateEntity();
+    //     m_cellStage->Create_Position(testModel, Float3(0, 0, 1), Float4::IdentityQuaternion());
+    //     auto& node = m_cellStage->Create_RenderNode(testModel);
+    //     m_cellStage->Create_Model(testModel, node.Node, "nucleus.mesh");
+    // }
 
-    {
-        const auto testModel = m_cellStage->CreateEntity();
-        m_cellStage->Create_Position(testModel, Float3(0, 1, 0), Float4::IdentityQuaternion());
-        auto& node = m_cellStage->Create_RenderNode(testModel);
-        m_cellStage->Create_Model(testModel, node.Node, "nucleus.mesh");
-    }
+    // {
+    //     const auto testModel = m_cellStage->CreateEntity();
+    //     m_cellStage->Create_Position(testModel, Float3(0, 1, 0), Float4::IdentityQuaternion());
+    //     auto& node = m_cellStage->Create_RenderNode(testModel);
+    //     m_cellStage->Create_Model(testModel, node.Node, "nucleus.mesh");
+    // }
 
-    {
-        const auto testModel = m_cellStage->CreateEntity();
-        m_cellStage->Create_Position(testModel, Float3(0, -1, 0), Float4::IdentityQuaternion());
-        auto& node = m_cellStage->Create_RenderNode(testModel);
-        m_cellStage->Create_Model(testModel, node.Node, "nucleus.mesh");
-    }            
+    // {
+    //     const auto testModel = m_cellStage->CreateEntity();
+    //     m_cellStage->Create_Position(testModel, Float3(0, -1, 0), Float4::IdentityQuaternion());
+    //     auto& node = m_cellStage->Create_RenderNode(testModel);
+    //     m_cellStage->Create_Model(testModel, node.Node, "nucleus.mesh");
+    // } 
 }
 
 
@@ -125,6 +114,29 @@ void ThriveGame::startNewGame(){
 // ------------------------------------ //
 void ThriveGame::Tick(int mspassed){
 
+    dummyTestCounter += mspassed;
+
+    float radians = dummyTestCounter / 500.f;
+
+    if(m_backgroundPlane != 0){
+
+        Leviathan::Position& pos = m_cellStage->GetComponent_Position(m_backgroundPlane);
+
+        pos.Members._Orientation = Ogre::Quaternion::IDENTITY * Ogre::Quaternion(
+            Ogre::Radian(radians), Ogre::Vector3::UNIT_Y);
+
+        pos.Marked = true;        
+    }
+
+    if(m_cellCamera != 0 && false){
+    
+        Leviathan::Position& pos = m_cellStage->GetComponent_Position(m_cellCamera);
+
+        pos.Members._Orientation = Ogre::Quaternion::IDENTITY * Ogre::Quaternion(
+            Ogre::Radian(radians), Ogre::Vector3::UNIT_Y);
+
+        pos.Marked = true;
+    }
 }
 
 void ThriveGame::CustomizeEnginePostLoad(){

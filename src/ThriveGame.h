@@ -61,6 +61,12 @@ protected:
 
     std::shared_ptr<CellStageWorld> m_cellStage;
 
+    Leviathan::ObjectID m_cellCamera = 0;
+
+    Leviathan::ObjectID m_backgroundPlane = 0;
+
+    int dummyTestCounter = 0;
+
     static ThriveGame* StaticGame;
 };
 
