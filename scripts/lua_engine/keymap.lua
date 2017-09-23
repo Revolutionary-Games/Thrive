@@ -36,7 +36,6 @@ kmp.reproduce = {"P"}
 kmp.togglemenu = {"ESCAPE"}
 kmp.skipvideo = {"ESCAPE"}
 kmp.gotoeditor = {"F2"}
-kmp.altuniverse = {"F1"}
 kmp.screenshot = {"SYSRQ"} --printscreen button
 
 kmp.plus = {"EQUALS"}
