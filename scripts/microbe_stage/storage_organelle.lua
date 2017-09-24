@@ -17,7 +17,6 @@ StorageOrganelle = class(
         end
 
         self.capacity = arguments.capacity
-        self.parentIndex = 0
         return self
     end
 )
@@ -39,12 +38,12 @@ end
 -- Overridded from Organelle:onAddedToMicrobe
 function StorageOrganelle:onAddedToMicrobe(microbe, q, r, rotation, organelle)
     OrganelleComponent.onAddedToMicrobe(self, microbe, q, r, rotation, organelle)
-    self.parentIndex = microbe:addStorageOrganelle(self)
+    microbe.microbe.capacity = microbe.microbe.capacity + self.capacity
 end
 
 -- Overridded from Organelle:onRemovedFromMicrobe
 function StorageOrganelle:onRemovedFromMicrobe(microbe, q, r)
-    microbe:removeStorageOrganelle(self)
+    microbe.microbe.capacity = microbe.microbe.capacity - self.capacity
 end
 
 -- Empty override function to prevent mesh from being altered.

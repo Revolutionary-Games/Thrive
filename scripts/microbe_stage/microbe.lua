@@ -6,7 +6,6 @@
 --------------------------------------------------------------------------------
 MicrobeComponent = class(
     function(self, isPlayerMicrobe, speciesName)
-
         self.speciesName = speciesName
         self.hitpoints = 0
         self.maxHitpoints = 0
@@ -21,7 +20,6 @@ MicrobeComponent = class(
         self.movementFactor = 1.0 -- Multiplied on the movement speed of the microbe.
         self.capacity = 0  -- The amount that can be stored in the microbe. NOTE: This does not include special storage organelles
         self.stored = 0 -- The amount stored in the microbe. NOTE: This does not include special storage organelles
-        self.compounds = {}
         self.initialized = false
         self.isPlayerMicrobe = isPlayerMicrobe
         self.maxBandwidth = 10.0*BANDWIDTH_PER_ORGANELLE
@@ -31,7 +29,6 @@ MicrobeComponent = class(
         self.isBeingEngulfed = false
         self.wasBeingEngulfed = false
         self.hostileEngulfer = nil
-        
     end
 )
 
@@ -75,45 +72,6 @@ function MicrobeComponent:regenerateBandwidth(logicTime)
     self.remainingBandwidth = math.min(addedBandwidth, self.maxBandwidth)
 end
 
-function MicrobeComponent:storage(storage)
-    
-    -- Organelles
-    local organelles = StorageList.new()
-    for _, organelle in pairs(self.organelles) do
-        local organelleStorage = organelle:storage()
-        organelles:append(organelleStorage)
-    end
-    storage:set("organelles", organelles)
-    storage:set("hitpoints", self.hitpoints)
-    storage:set("speciesName", self.speciesName)
-    storage:set("maxHitpoints", self.maxHitpoints)
-    storage:set("remainingBandwidth", self.remainingBandwidth)
-    storage:set("maxBandwidth", self.maxBandwidth)
-    storage:set("isPlayerMicrobe", self.isPlayerMicrobe)
-    storage:set("speciesName", self.speciesName)
-    local storedCompounds = StorageList.new()
-    for _, compoundId in pairs(CompoundRegistry.getCompoundList()) do
-        --[[
-            if self:getCompoundAmount(compoundId) > 0 then
-            compound = StorageContainer()
-            compound:set("compoundId", compoundId)
-            compound:set("amount", amount)
-            storedCompounds:append(compound)
-            end
-        --]]
-    end
-    storage:set("storedCompounds", storedCompounds)
-    -- local compoundPriorities = StorageList()
-    -- for compoundId, priority in pairs(self.compoundPriorities) do
-    --     compound = StorageContainer()
-    --     compound:set("compoundId", compoundId)
-    --     compound:set("priority", priority)
-    --     compoundPriorities:append(compound)
-    -- end
-    -- storage:set("compoundPriorities", compoundPriorities)
-    
-end
-
 function MicrobeComponent:load(storage)
     
     local organelles = storage:get("organelles", {})
@@ -132,14 +90,7 @@ function MicrobeComponent:load(storage)
     self.remainingBandwidth = storage:get("remainingBandwidth", 0)
     self.isPlayerMicrobe = storage:get("isPlayerMicrobe", false)
     self.speciesName = storage:get("speciesName", "")
-    local storedCompound = storage:get("storedCompounds", {})
-    for i = 1,storedCompound:size() do
-        local compound = storedCompound:get(i)
-        
-        local amount = compound:get("amount", 0)
-        self.compounds[compound:get("compoundId", 0)] = amount
-        self.stored = self.stored + amount
-    end
+
     -- local compoundPriorities = storage:get("compoundPriorities", {})
     -- for i = 1,compoundPriorities:size() do
     --     local compound = compoundPriorities:get(i)
@@ -149,7 +100,6 @@ end
 
 
 function MicrobeComponent:storage(storage)
-
     -- Organelles
     local organelles = StorageList.new()
     for _, organelle in pairs(self.organelles) do
@@ -164,18 +114,7 @@ function MicrobeComponent:storage(storage)
     storage:set("maxBandwidth", self.maxBandwidth)
     storage:set("isPlayerMicrobe", self.isPlayerMicrobe)
     storage:set("speciesName", self.speciesName)
-    local storedCompounds = StorageList.new()
-    for _, compoundId in pairs(CompoundRegistry.getCompoundList()) do
-        --[[
-        if self:getCompoundAmount(compoundId) > 0 then
-            compound = StorageContainer()
-            compound:set("compoundId", compoundId)
-            compound:set("amount", amount)
-            storedCompounds:append(compound)
-        end
-        --]]
-    end
-    storage:set("storedCompounds", storedCompounds)
+
     -- local compoundPriorities = StorageList()
     -- for compoundId, priority in pairs(self.compoundPriorities) do
     --     compound = StorageContainer()
@@ -406,26 +345,6 @@ function Microbe:addOrganelle(q, r, rotation, organelle)
     return true
 end
 
--- Adds a storage organelle
--- This will be called automatically by storage organelles added with addOrganelle(...)
---
--- @param organelle
---   An object of type StorageOrganelle
-function Microbe:addStorageOrganelle(storageOrganelle)
-    assert(storageOrganelle.capacity ~= nil)
-    
-    self.microbe.capacity = self.microbe.capacity + storageOrganelle.capacity
-
-end
-
--- Removes a storage organelle
---
--- @param organelle
---   An object of type StorageOrganelle
-function Microbe:removeStorageOrganelle(storageOrganelle)
-    self.microbe.capacity = self.microbe.capacity - storageOrganelle.capacity
-end
-
 -- Removes a special storage organelle
 -- This will be called automatically by process organelles removed with with removeOrganelle(...)
 --
@@ -516,9 +435,10 @@ end
 -- @param amount
 --  amount of hitpoints to substract
 function Microbe:damage(amount, damageType)
+    assert(damageType ~= nil, "Damage type nil")
     assert(amount >= 0, "Can't deal negative damage. Use Microbe:heal instead")
     
-    if damageType ~= nil and damageType == "toxin" then
+    if damageType == "toxin" then
         self.soundSource:playSound("microbe-toxin-damage")
     end
     
@@ -628,8 +548,6 @@ end
 -- @returns amount
 -- The amount that was actually taken, between 0.0 and maxAmount.
 function Microbe:takeCompound(compoundId, maxAmount)
-    --if self.microbe.specialStorageOrganelles[compoundId] == nil then
-    
     local takenAmount = getComponent(self.entity, CompoundBagComponent
     ):takeCompound(compoundId, maxAmount)
     
@@ -645,7 +563,6 @@ end
 --
 -- @param amount
 -- The amount to eject
-local EJECTION_DISTANCE = 3.0
 function Microbe:ejectCompound(compoundId, amount)
     -- The back of the microbe
     local exitX, exitY = axialToCartesian(0, 1)
@@ -718,6 +635,7 @@ function Microbe:kill()
         self:ejectCompound(compoundId, amount)
     end
 
+    -- TODO: Check me plz
     for compoundId, specialStorageOrg in pairs(self.microbe.specialStorageOrganelles) do
         local _amount = self:getCompoundAmount(compoundId)
         while _amount > 0 do
@@ -726,7 +644,8 @@ function Microbe:kill()
             createAgentCloud(compoundId, self.sceneNode.transform.position.x, self.sceneNode.transform.position.y, direction, amountToEject)
             _amount = _amount - ejectedAmount
         end
-    end    
+    end
+
     local microbeSceneNode = getComponent(self.entity, OgreSceneNodeComponent)
     local deathAnimationEntity = Entity.new(g_luaEngine.currentGameState.wrapper)
     local lifeTimeComponent = TimedLifeComponent.new()
@@ -767,7 +686,6 @@ function Microbe:readyToReproduce()
 end
 
 function Microbe:divide(currentGameState)
-
     assert(currentGameState, "Microbe:divide needs currentGameState")
     
     print("dividing cell ")
@@ -1026,7 +944,6 @@ function Microbe:calculateHealthFromOrganelles()
         self.microbe.hitpoints = self.microbe.hitpoints + (organelle:getCompoundBin() < 1.0 and organelle:getCompoundBin() or 1.0) * MICROBE_HITPOINTS_PER_ORGANELLE
         self.microbe.maxHitpoints = self.microbe.maxHitpoints + MICROBE_HITPOINTS_PER_ORGANELLE
     end
-    --self.microbe.hitpoints = self.microbe.hitpoints + self.membraneHealth * MICROBE_HITPOINTS_PER_ORGANELLE
 end
 
 function Microbe:splitOrganelle(organelle)
@@ -1220,11 +1137,6 @@ function Microbe:_updateCompoundAbsorber()
     
 end
 
--- Must exists for current spawningSystem to function
-function Microbe:exists()
-    return self.entity:exists()
-end
-
 -- Must exists for current spawningSystem to function, also used by microbe:kill
 function Microbe:destroy()
     for _, organelle in pairs(self.microbe.organelles) do
@@ -1232,18 +1144,6 @@ function Microbe:destroy()
     end
     self.entity:destroy()
 end
-
--- The last two functions are only present since the spawn system expects an entity interface.
-
-function Microbe:addComponent(component)
-    self.entity:addComponent(component)
-end
-
-function Microbe:getComponent(typeClass)
-    assert(type(typeClass) ~= "number", "using old syntax of Microbe:getComponent")
-    return getComponent(self.entity, typeClass)
-end
-
 
 --------------------------------------------------------------------------------
 -- MicrobeSystem
@@ -1287,15 +1187,12 @@ function MicrobeSystem:init(gameState)
     self.agentCollisions:init(gameState.wrapper)
 end
 
-
 function MicrobeSystem:shutdown()
     LuaSystem.shutdown(self)
     self.entities:shutdown()
     self.microbeCollisions:shutdown()
-    
     self.agentCollisions:shutdown()
 end
-
 
 function MicrobeSystem:update(renderTime, logicTime)
     for _, entityId in pairs(self.entities:removedEntities()) do
@@ -1363,6 +1260,5 @@ function MicrobeSystem:checkEngulfment(microbe1Comp, microbe2Comp, body, entity1
        --isBeingEngulfed is set to false every frame
        -- we detect engulfment stopped by isBeingEngulfed being false while wasBeingEngulfed is true
        microbe2Comp.isBeingEngulfed = true
-
     end
 end

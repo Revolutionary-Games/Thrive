@@ -412,7 +412,7 @@ end
 function SpeciesSystem.fromMicrobe(microbe, species)
     local microbe_ = microbe.microbe -- shouldn't break, I think
     -- self.name = microbe_.speciesName
-    species.colour = microbe:getComponent(MembraneComponent):getColour()
+    species.colour = microbe.membraneComponent:getColour()
     -- Create species' organelle data
     for i, organelle in pairs(microbe_.organelles) do
         local data = {}
