@@ -227,7 +227,7 @@ function MicrobeAISystem:update(renderTime, logicTime)
                     Entity.new(PLAYER_NAME, self.gameState.wrapper), nil, self.gameState.wrapper)
                 self.preyEntityToIndexMap[Entity.new(PLAYER_NAME, self.gameState.wrapper).id] = 6
                 local attempts = 0
-                while (aiComponent.prey  == nil or not aiComponent.prey:exists() or aiComponent.prey.microbe.dead or
+                while (aiComponent.prey  == nil or not aiComponent.prey.entity:exists() or aiComponent.prey.microbe.dead or
                            (aiComponent.prey.microbe.speciesName ==  microbe.microbe.speciesName) or
                        self.preyEntityToIndexMap[aiComponent.prey.entity.id] == nil or self.preyEscaped == true)  and attempts < 6 and self.preycount > 10 do
                     aiComponent.prey = self.p --setting the prey

@@ -612,6 +612,17 @@ end
 
 -- Kills the microbe, releasing stored compounds into the enviroment
 function Microbe:kill()
+    -- Releasing all the agents.
+    for compoundId, specialStorageOrg in pairs(self.microbe.specialStorageOrganelles) do
+        local _amount = self:getCompoundAmount(compoundId)
+        while _amount > 0 do
+            ejectedAmount = self:takeCompound(compoundId, 3) -- Eject up to 3 units per particle
+            local direction = Vector3(math.random() * 2 - 1, math.random() * 2 - 1, 0)
+            createAgentCloud(compoundId, self.sceneNode.transform.position.x, self.sceneNode.transform.position.y, direction, amountToEject)
+            _amount = _amount - ejectedAmount
+        end
+    end
+
     local compoundsToRelease = {}
     -- Eject the compounds that was in the microbe
     for _, compoundId in pairs(CompoundRegistry.getCompoundList()) do
@@ -633,17 +644,6 @@ function Microbe:kill()
 
     for compoundId, amount in pairs(compoundsToRelease) do
         self:ejectCompound(compoundId, amount)
-    end
-
-    -- TODO: Check me plz
-    for compoundId, specialStorageOrg in pairs(self.microbe.specialStorageOrganelles) do
-        local _amount = self:getCompoundAmount(compoundId)
-        while _amount > 0 do
-            ejectedAmount = self:takeCompound(compoundId, 3) -- Eject up to 3 units per particle
-            local direction = Vector3(math.random(), math.random(), math.random())
-            createAgentCloud(compoundId, self.sceneNode.transform.position.x, self.sceneNode.transform.position.y, direction, amountToEject)
-            _amount = _amount - ejectedAmount
-        end
     end
 
     local microbeSceneNode = getComponent(self.entity, OgreSceneNodeComponent)
