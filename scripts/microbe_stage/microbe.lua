@@ -29,6 +29,7 @@ MicrobeComponent = class(
         self.isBeingEngulfed = false
         self.wasBeingEngulfed = false
         self.hostileEngulfer = nil
+        self.agentEmissionCooldown = 0
     end
 )
 
@@ -48,6 +49,7 @@ ENGULFING_MOVEMENT_DIVISION = 3
 ENGULFED_MOVEMENT_DIVISION = 4
 ENGULFING_ATP_COST_SECOND = 1.5
 ENGULF_HP_RATIO_REQ = 1.5 
+AGENT_EMISSION_COOLDOWN = 500 -- Cooldown between agent emissions, in milliseconds.
 
 -- Attempts to obtain an amount of bandwidth for immediate use
 -- This should be in conjunction with most operations ejecting  or absorbing compounds and agents for microbe
@@ -473,6 +475,10 @@ end
 -- @param maxAmount
 -- The maximum amount to try to emit
 function Microbe:emitAgent(compoundId, maxAmount)
+    -- Cooldown code
+    if(self.microbe.agentEmissionCooldown > 0) then return end
+    self.microbe.agentEmissionCooldown = AGENT_EMISSION_COOLDOWN
+
     local agentVacuole = self.microbe.specialStorageOrganelles[compoundId]
     if agentVacuole ~= nil and self:getCompoundAmount(compoundId) > MINIMUM_AGENT_EMISSION_AMOUNT then
         self.soundSource:playSound("microbe-release-toxin")
@@ -768,6 +774,9 @@ end
 -- Updates the microbe's state
 function Microbe:update(logicTime)
     if not self.microbe.dead then
+        -- Recalculating agent cooldown time.
+        self.microbe.agentEmissionCooldown = math.max(self.microbe.agentEmissionCooldown - logicTime, 0)
+
         --calculate storage.
         self:calculateStorageSpace()
 

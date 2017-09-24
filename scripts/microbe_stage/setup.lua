@@ -218,7 +218,7 @@ function createAgentCloud(compoundId, x, y, direction, amount)
     local reactionHandler = CollisionComponent.new()
     reactionHandler:addCollisionGroup("agent")
     agentEntity:addComponent(reactionHandler)
-        
+
     local rigidBody = RigidBodyComponent.new()
     rigidBody.properties.mass = 0.001
     rigidBody.properties.friction = 0.4
@@ -240,7 +240,6 @@ function createAgentCloud(compoundId, x, y, direction, amount)
     local timedLifeComponent = TimedLifeComponent.new()
     timedLifeComponent.timeToLive = 2000
     agentEntity:addComponent(timedLifeComponent)
-    
 end
 
 local function addEmitter2Entity(entity, compound)
