@@ -15,6 +15,7 @@
 #include "GUI/AlphaHitCache.h"
 
 #include "Script/Bindings/BindHelpers.h"
+#include "Script/Bindings/StandardWorldBindHelper.h"
 
 #include "CEGUI/SchemeManager.h"
 
@@ -72,9 +73,10 @@ void ThriveGame::startNewGame(){
 
     // Set background plane //
     m_backgroundPlane = Leviathan::ObjectLoader::LoadPlane(*m_cellStage, Float3(0, -10, 0),
-        Ogre::Quaternion(Ogre::Radian(Leviathan::PI / 2 ), Ogre::Vector3::UNIT_X),
+        Ogre::Quaternion::IDENTITY *
+        Ogre::Quaternion(Ogre::Radian(Leviathan::PI * 3), Ogre::Vector3::UNIT_Y),
         "Background", Ogre::Plane(1, 1, 1, 1),
-        Float2(20, 20));
+        Float2(30, 30));
 
     //m_cellStage->SetSkyPlane("Background");
     
@@ -108,7 +110,10 @@ void ThriveGame::startNewGame(){
     // } 
 }
 
+CellStageWorld* ThriveGame::getCellStage(){
 
+    return m_cellStage.get();
+}
 
 
 // ------------------------------------ //
@@ -125,7 +130,7 @@ void ThriveGame::Tick(int mspassed){
         pos.Members._Orientation = Ogre::Quaternion::IDENTITY * Ogre::Quaternion(
             Ogre::Radian(radians), Ogre::Vector3::UNIT_Y);
 
-        pos.Marked = true;        
+        pos.Marked = true;
     }
 
     if(m_cellCamera != 0 && false){
@@ -220,6 +225,12 @@ bool ThriveGame::InitLoadCustomScriptTypes(asIScriptEngine* engine){
     {
         ANGELSCRIPT_REGISTERFAIL;
     }
+
+    if(engine->RegisterObjectProperty("ThriveGame", "ObjectID m_backgroundPlane",
+            asOFFSET(ThriveGame, m_backgroundPlane)) < 0)
+    {
+        ANGELSCRIPT_REGISTERFAIL;
+    }    
     
     // if(engine->RegisterObjectMethod("Client",
     //         "bool Connect(const string &in address, string &out errormessage)",
@@ -229,6 +240,26 @@ bool ThriveGame::InitLoadCustomScriptTypes(asIScriptEngine* engine){
     //     ANGELSCRIPT_REGISTERFAIL;
     // }
 
+    if(engine->RegisterObjectType("CellStageWorld", 0, asOBJ_REF | asOBJ_NOCOUNT) < 0){
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(!Leviathan::BindStandardWorldMethods<CellStageWorld>(engine, "CellStageWorld"))
+        return false;
+
+    ANGLESCRIPT_BASE_CLASS_CASTS_NO_REF(Leviathan::StandardWorld, "StandardWorld",
+        CellStageWorld, "CellStageWorld");
+
+    ANGLESCRIPT_BASE_CLASS_CASTS_NO_REF(Leviathan::GameWorld, "GameWorld",
+        CellStageWorld, "CellStageWorld");
+
+    if(engine->RegisterObjectMethod("ThriveGame",
+            "CellStageWorld@ getCellStage()",
+            asMETHOD(ThriveGame, ThriveGame::getCellStage),
+            asCALL_THISCALL) < 0)
+    {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
     
     return true;
 }
@@ -237,6 +268,8 @@ void ThriveGame::RegisterCustomScriptTypes(asIScriptEngine* engine,
     std::map<int, std::string> &typeids)
 {
     typeids.insert(std::make_pair(engine->GetTypeIdByDecl("ThriveGame"), "ThriveGame"));
+    typeids.insert(std::make_pair(engine->GetTypeIdByDecl("CellStageWorld"),
+            "CellStageWorld"));
 }
 
 

@@ -28,7 +28,9 @@ public:
     // ------------------------------------ //
     // Gameplay etc. directly thrive related methods
     void startNewGame();
-    
+
+
+    CellStageWorld* getCellStage();
 
     // ------------------------------------ //
     // Hooking into the engine, and overridden methods from base application etc.

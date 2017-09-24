@@ -172,14 +172,17 @@ set(GROUP_UTIL
 
 add_custom_command(OUTPUT "${PROJECT_SOURCE_DIR}/src/generated/cell_stage_world.h"
   "${PROJECT_SOURCE_DIR}/src/generated/cell_stage_world.cpp"
+  "${PROJECT_SOURCE_DIR}/src/generated/cell_stage_bindings.h"
   COMMAND "ruby" "${PROJECT_SOURCE_DIR}/src/microbe_stage/generate_cell_stage_world.rb"
   "${PROJECT_SOURCE_DIR}/src/generated/cell_stage_world"
+  "${PROJECT_SOURCE_DIR}/src/generated/cell_stage_bindings.h"
   DEPENDS "${PROJECT_SOURCE_DIR}/src/microbe_stage/generate_cell_stage_world.rb"
   "${PROJECT_SOURCE_DIR}/ThirdParty/leviathan/Helpers/FileGen.rb"
   )
 
 set(GROUP_MICROBE
   "generated/cell_stage_world.h" "generated/cell_stage_world.cpp"
+  "generated/cell_stage_bindings.h"
   )
 
 

@@ -4,9 +4,9 @@
 require_relative '../../RubySetupSystem/RubyCommon.rb'
 require_relative '../../ThirdParty/leviathan/Helpers/FileGen.rb'
 
-abort "no target file provided" if ARGV.count < 1
+abort "no target files provided" if ARGV.count < 2
 
-generator = Generator.new ARGV[0], true
+generator = Generator.new ARGV[0], separateFiles: true
 
 generator.useNamespace "thrive"
 generator.addInclude "Entities/GameWorld.h"
@@ -32,3 +32,10 @@ generator.add world
 generator.run
 
 
+bindGenerator = Generator.new ARGV[1], bareOutput: true
+
+
+bindGenerator.add OutputText.new(world.genAngelScriptBindings)
+
+
+bindGenerator.run
