@@ -4,6 +4,8 @@ CLOUD_SPAWN_DENSITY = 1/5000
 POWERUP_SPAWN_RADIUS = 85
 MICROBE_SPAWN_RADIUS = 85
 
+AGENT_EMISSION_VELOCITY = 20
+
 local function setupBackground(gameState)
     setRandomBiome(gameState)
 end
@@ -209,7 +211,8 @@ function createCompoundCloud(compoundName, x, y, amount)
 end
 
 function createAgentCloud(compoundId, x, y, direction, amount)    
-    
+    local normalizedDirection = direction
+    normalizedDirection:normalise()
     local agentEntity = Entity.new(g_luaEngine.currentGameState.wrapper)
 
     local reactionHandler = CollisionComponent.new()
@@ -222,9 +225,9 @@ function createAgentCloud(compoundId, x, y, direction, amount)
     rigidBody.properties.linearDamping = 0.4
     rigidBody.properties.shape = SphereShape.new(HEX_SIZE)
     rigidBody:setDynamicProperties(
-        Vector3(x,y,0) + direction,
+        Vector3(x, y, 0) + direction * 1.5,
         Quaternion.new(Radian.new(Degree(math.random()*360)), Vector3(0, 0, 1)),
-        direction * 3,
+        normalizedDirection * AGENT_EMISSION_VELOCITY,
         Vector3(0, 0, 0)
     )
     rigidBody.properties:touch()
@@ -327,8 +330,8 @@ local function setupPlayer(gameState)
     
     local microbe = spawnMicrobe(nil, "Default", false, PLAYER_NAME, gameState)
     microbe.collisionHandler:addCollisionGroup("powerupable")
-    Engine:playerData():lockedMap():addLock("Toxin")
-    Engine:playerData():lockedMap():addLock("chloroplast")
+    --Engine:playerData():lockedMap():addLock("Toxin")
+    --Engine:playerData():lockedMap():addLock("chloroplast")
     Engine:playerData():setActiveCreature(microbe.entity.id, gameState.wrapper)
 
     -- Give some atp
