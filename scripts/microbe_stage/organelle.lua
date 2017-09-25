@@ -158,8 +158,8 @@ function Organelle:onAddedToMicrobe(microbe, q, r, rotation)
     microbe.entity:addChild(self.organelleEntity)
             
     -- Change the colour of this species to be tinted by the membrane.
-    if microbe:getSpeciesComponent() ~= nil then
-        local colorAsVec = microbe:getSpeciesComponent().colour
+    if MicrobeSystem.getSpeciesComponent(microbe.entity) ~= nil then
+        local colorAsVec = MicrobeSystem.getSpeciesComponent(microbe.entity).colour
         self.colour = ColourValue(colorAsVec.x, colorAsVec.y, colorAsVec.z, 1.0)
     else
         self.colour = ColourValue(1, 0, 1, 1)
@@ -277,9 +277,9 @@ end
 function Organelle:update(microbe, logicTime)
     if self.flashDuration ~= nil then
         self.flashDuration = self.flashDuration - logicTime
-        local speciesColour = ColourValue(microbe:getSpeciesComponent().colour.x, 
-                                          microbe:getSpeciesComponent().colour.y,
-                                          microbe:getSpeciesComponent().colour.z, 1)
+        local speciesColour = ColourValue(MicrobeSystem.getSpeciesComponent(microbe.entity).colour.x, 
+                                          MicrobeSystem.getSpeciesComponent(microbe.entity).colour.y,
+                                          MicrobeSystem.getSpeciesComponent(microbe.entity).colour.z, 1)
         
         -- How frequent it flashes, would be nice to update the flash function to have this variable
         if math.fmod(self.flashDuration,600) < 300 then

@@ -59,8 +59,8 @@ function NucleusOrganelle:onAddedToMicrobe(microbe, q, r, rotation, organelle)
     self.sceneNode = organelle.sceneNode
     
     -- If we are not in the editor, get the color of this species.
-    if microbe:getSpeciesComponent() ~= nil then
-        local speciesColour = microbe:getSpeciesComponent().colour
+    if MicrobeSystem.getSpeciesComponent(microbe.entity) ~= nil then
+        local speciesColour = MicrobeSystem.getSpeciesComponent(microbe.entity).colour
         self.colourSuffix = "" .. math.floor(speciesColour.x * 256) .. math.floor(speciesColour.y * 256) .. math.floor(speciesColour.z * 256)
     end
         

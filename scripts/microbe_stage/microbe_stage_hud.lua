@@ -202,7 +202,7 @@ function HudSystem:update(renderTime)
     self.oxytoxyCountLabel:setText("".. math.floor(MicrobeSystem.getCompoundAmount(player, CompoundRegistry.getCompoundId("oxytoxy"))))
     self.oxytoxyMaxLabel:setText("/ ".. math.floor(playerMicrobe.microbe.capacity/CompoundRegistry.getCompoundUnitVolume(CompoundRegistry.getCompoundId("oxytoxy"))))
 
-    local playerSpecies = playerMicrobe:getSpeciesComponent()
+    local playerSpecies = MicrobeSystem.getSpeciesComponent(player)
 	--notification setting up
     if b1 == true and t1 < 300 then
         t1 = t1 + 2
@@ -466,7 +466,7 @@ function HudSystem:editorButtonClicked()
     local player = Entity.new("player", self.gameState.wrapper)
     local playerMicrobe = Microbe.new(player, nil, self.gameState)
     -- Return the first cell to its normal, non duplicated cell arangement.
-    SpeciesSystem.restoreOrganelleLayout(playerMicrobe, playerMicrobe:getSpeciesComponent()) 
+    SpeciesSystem.restoreOrganelleLayout(playerMicrobe, MicrobeSystem.getSpeciesComponent(player)) 
 
     getComponent("gui_sounds", self.gameState, SoundSourceComponent):playSound("button-hover-click")
     self.editorButton:disable()

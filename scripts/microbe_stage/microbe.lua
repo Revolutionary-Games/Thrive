@@ -158,10 +158,9 @@ Microbe = class(
                 
 
                 assert(isNotEmpty(self.microbe.speciesName))
-                self.compoundBag:setProcessor(processor,
-                                              self.microbe.speciesName)
+                self.compoundBag:setProcessor(processor, self.microbe.speciesName)
                 
-                SpeciesSystem.template(self, self:getSpeciesComponent())
+                SpeciesSystem.template(self, MicrobeSystem.getSpeciesComponent(self.entity))
             end
         end
         self:_updateCompoundAbsorber()
@@ -194,7 +193,6 @@ Microbe.COMPONENTS = {
 -- An object of type Microbe
 
 function Microbe.createMicrobeEntity(name, aiControlled, speciesName, in_editor, gameState)
-
     assert(gameState ~= nil, "Microbe.createMicrobeEntity requires gameState")
     assert(type(gameState) == "table")
     assert(isNotEmpty(speciesName))
@@ -259,14 +257,6 @@ function Microbe.createMicrobeEntity(name, aiControlled, speciesName, in_editor,
     assert(newMicrobe.microbe.initialized == true)
 
     return newMicrobe
-end
-
--- Getter for microbe species
--- 
--- returns the species component or nil if it doesn't have a valid species
-function Microbe:getSpeciesComponent()
-    return getComponent(self.microbe.speciesName, g_luaEngine.currentGameState,
-                        SpeciesComponent)
 end
 
 -- Adds a new organelle
@@ -636,7 +626,7 @@ function Microbe:readyToReproduce()
         self.reproductionStage = 0
     else
         -- Return the first cell to its normal, non duplicated cell arangement.
-        SpeciesSystem.template(self, self:getSpeciesComponent())
+        SpeciesSystem.template(self, MicrobeSystem.getSpeciesComponent(self.entity))
         self:divide()
     end
 end
@@ -1245,4 +1235,12 @@ end
 -- The amount stored in the microbe's storage oraganelles
 function MicrobeSystem.getCompoundAmount(microbeEntity, compoundId)
     return getComponent(microbeEntity, CompoundBagComponent):getCompoundAmount(compoundId)
+end
+
+-- Getter for microbe species
+-- 
+-- returns the species component or nil if it doesn't have a valid species
+function MicrobeSystem.getSpeciesComponent(microbeEntity)
+    local microbeComponent = getComponent(microbeEntity, MicrobeComponent)
+    return getComponent(microbeComponent.speciesName, g_luaEngine.currentGameState, SpeciesComponent)
 end
