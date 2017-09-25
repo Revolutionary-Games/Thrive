@@ -304,7 +304,7 @@ function Microbe:addOrganelle(q, r, rotation, organelle)
     
     organelle:onAddedToMicrobe(self, q, r, rotation)
     
-    gMicrobeSystem:calculateHealthFromOrganelles(self.entity)
+    MicrobeSystem.calculateHealthFromOrganelles(self.entity)
     self.microbe.maxBandwidth = self.microbe.maxBandwidth + BANDWIDTH_PER_ORGANELLE -- Temporary solution for increasing max bandwidth
     self.microbe.remainingBandwidth = self.microbe.maxBandwidth
     
@@ -370,7 +370,7 @@ function Microbe:removeOrganelle(q, r)
     
     organelle:onRemovedFromMicrobe(self)
     
-    gMicrobeSystem:calculateHealthFromOrganelles(self.entity)
+    MicrobeSystem.calculateHealthFromOrganelles(self.entity)
     self.microbe.maxBandwidth = self.microbe.maxBandwidth - BANDWIDTH_PER_ORGANELLE -- Temporary solution for decreasing max bandwidth
     self.microbe.remainingBandwidth = self.microbe.maxBandwidth
     
@@ -403,7 +403,7 @@ function Microbe:damage(amount, damageType)
     end
     
     -- Find out the amount of health the microbe has.
-    gMicrobeSystem:calculateHealthFromOrganelles(self.entity)
+    MicrobeSystem.calculateHealthFromOrganelles(self.entity)
     
     if self.microbe.hitpoints <= 0 then
         self.microbe.hitpoints = 0
@@ -482,7 +482,7 @@ end
 function Microbe:storeCompound(compoundId, amount, bandwidthLimited)
     local storedAmount = amount + 0
     if bandwidthLimited then
-        storedAmount = gMicrobeSystem:getBandwidth(self.entity, amount, compoundId)
+        storedAmount = MicrobeSystem.getBandwidth(self.entity, amount, compoundId)
     end
     storedAmount = math.min(storedAmount , self.microbe.capacity - self.microbe.stored)
     getComponent(self.entity, CompoundBagComponent
@@ -736,7 +736,7 @@ function Microbe:update(logicTime)
         -- StorageOrganelles
         self:_updateCompoundAbsorber()
         -- Regenerate bandwidth
-        gMicrobeSystem:regenerateBandwidth(self.entity, logicTime)
+        MicrobeSystem.regenerateBandwidth(self.entity, logicTime)
         -- Attempt to absorb queued compounds
         for _, compound in pairs(self.compoundAbsorber:getAbsorbedCompounds()) do 
             local amount = self.compoundAbsorber:absorbedCompoundAmount(compound)
@@ -784,7 +784,7 @@ function Microbe:update(logicTime)
                     -- Give the organelle access to the compound bag to take some compound.
                     organelle:growOrganelle(getComponent(self.entity, CompoundBagComponent), logicTime)
                     -- An organelle was damaged and we tried to heal it, so out health might be different.
-                    gMicrobeSystem:calculateHealthFromOrganelles(self.entity)
+                    MicrobeSystem.calculateHealthFromOrganelles(self.entity)
                 end
             end
         else
@@ -1026,7 +1026,7 @@ function Microbe:respawn()
     for _, organelle in pairs(self.microbe.organelles) do
         organelle:reset()
     end
-    gMicrobeSystem:calculateHealthFromOrganelles(self.entity)
+    MicrobeSystem.calculateHealthFromOrganelles(self.entity)
 
     self.rigidBody:setDynamicProperties(
         Vector3(0,0,0), -- Position
@@ -1212,7 +1212,7 @@ end
 --
 -- @return
 --  amount in units avaliable for use.
-function MicrobeSystem:getBandwidth(microbeEntity, maxAmount, compoundId)
+function MicrobeSystem.getBandwidth(microbeEntity, maxAmount, compoundId)
     local microbeComponent = getComponent(microbeEntity, MicrobeComponent)
     local compoundVolume = CompoundRegistry.getCompoundUnitVolume(compoundId)
     local amount = math.min(maxAmount * compoundVolume, microbeComponent.remainingBandwidth)
@@ -1220,13 +1220,13 @@ function MicrobeSystem:getBandwidth(microbeEntity, maxAmount, compoundId)
     return amount / compoundVolume
 end
 
-function MicrobeSystem:regenerateBandwidth(microbeEntity, logicTime)
+function MicrobeSystem.regenerateBandwidth(microbeEntity, logicTime)
     local microbeComponent = getComponent(microbeEntity, MicrobeComponent)
     local addedBandwidth = microbeComponent.remainingBandwidth + logicTime * (microbeComponent.maxBandwidth / BANDWIDTH_REFILL_DURATION)
     microbeComponent.remainingBandwidth = math.min(addedBandwidth, microbeComponent.maxBandwidth)
 end
 
-function MicrobeSystem:calculateHealthFromOrganelles(microbeEntity)
+function MicrobeSystem.calculateHealthFromOrganelles(microbeEntity)
     local microbeComponent = getComponent(microbeEntity, MicrobeComponent)
     microbeComponent.hitpoints = 0
     microbeComponent.maxHitpoints = 0
