@@ -49,7 +49,7 @@ ENGULFING_MOVEMENT_DIVISION = 3
 ENGULFED_MOVEMENT_DIVISION = 4
 ENGULFING_ATP_COST_SECOND = 1.5
 ENGULF_HP_RATIO_REQ = 1.5 
-AGENT_EMISSION_COOLDOWN = 500 -- Cooldown between agent emissions, in milliseconds.
+AGENT_EMISSION_COOLDOWN = 1000 -- Cooldown between agent emissions, in milliseconds.
 
 -- Attempts to obtain an amount of bandwidth for immediate use
 -- This should be in conjunction with most operations ejecting  or absorbing compounds and agents for microbe
@@ -456,11 +456,16 @@ end
 -- The maximum amount to try to emit
 function Microbe:emitAgent(compoundId, maxAmount)
     -- Cooldown code
-    if(self.microbe.agentEmissionCooldown > 0) then return end
-    self.microbe.agentEmissionCooldown = AGENT_EMISSION_COOLDOWN
-
+    if self.microbe.agentEmissionCooldown > 0 then return end
     local numberOfAgentVacuoles = self.microbe.specialStorageOrganelles[compoundId]
-    if numberOfAgentVacuoles ~= nil and numberOfAgentVacuoles > 0 and self:getCompoundAmount(compoundId) > MINIMUM_AGENT_EMISSION_AMOUNT then
+    
+    -- Only shoot if you have agent vacuoles.
+    if numberOfAgentVacuoles == nil or numberOfAgentVacuoles == 0 then return end
+
+    -- The cooldown time is inversely proportional to the amount of agent vacuoles.
+    self.microbe.agentEmissionCooldown = AGENT_EMISSION_COOLDOWN / numberOfAgentVacuoles
+
+    if self:getCompoundAmount(compoundId) > MINIMUM_AGENT_EMISSION_AMOUNT then
         self.soundSource:playSound("microbe-release-toxin")
 
         -- Calculate the emission angle of the agent emitter
