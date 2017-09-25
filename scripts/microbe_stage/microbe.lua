@@ -22,7 +22,7 @@ MicrobeComponent = class(
         self.stored = 0 -- The amount stored in the microbe. NOTE: This does not include special storage organelles
         self.initialized = false
         self.isPlayerMicrobe = isPlayerMicrobe
-        self.maxBandwidth = 10.0*BANDWIDTH_PER_ORGANELLE
+        self.maxBandwidth = 10.0 * BANDWIDTH_PER_ORGANELLE
         self.remainingBandwidth = 0
         self.compoundCollectionTimer = EXCESS_COMPOUND_COLLECTION_INTERVAL
         self.isCurrentlyEngulfing = false
@@ -417,7 +417,7 @@ end
 -- @param amount
 --  amount of hitpoints to substract
 function Microbe:damage(amount, damageType)
-    assert(damageType ~= nil, "Damage type nil")
+    assert(damageType ~= nil, "Damage type is nil")
     assert(amount >= 0, "Can't deal negative damage. Use Microbe:heal instead")
     
     if damageType == "toxin" then
@@ -444,7 +444,6 @@ function Microbe:damage(amount, damageType)
         self.microbe.hitpoints = 0
         self:kill()
     end
-    --print ("end damage")
 end
 
 -- Drains an agent from the microbes special storage and emits it
@@ -636,6 +635,10 @@ function Microbe:kill()
 
     for compoundId, amount in pairs(compoundsToRelease) do
         self:ejectCompound(compoundId, amount)
+    end
+
+    for _, organelle in pairs(self.microbe.organelles) do
+        organelle:onRemovedFromMicrobe(self)
     end
 
     local microbeSceneNode = getComponent(self.entity, OgreSceneNodeComponent)
@@ -926,7 +929,7 @@ function Microbe:update(logicTime)
             if self.microbe.isPlayerMicrobe == true then
                 self:respawn()
             else
-                self:destroy()
+                self.entity:destroy()
             end
         end
     end
@@ -1133,14 +1136,6 @@ function Microbe:_updateCompoundAbsorber()
     
 end
 
--- Must exists for current spawningSystem to function, also used by microbe:kill
-function Microbe:destroy()
-    for _, organelle in pairs(self.microbe.organelles) do
-        organelle:onRemovedFromMicrobe(self)
-    end
-    self.entity:destroy()
-end
-
 --------------------------------------------------------------------------------
 -- MicrobeSystem
 --
@@ -1220,9 +1215,7 @@ function MicrobeSystem:update(renderTime, logicTime)
         end
     end
     self.microbeCollisions:clearCollisions()
-    
-    
-    
+
     -- TEMP, DELETE FOR 0.3.3!!!!!!!!
     for _, collision in pairs(self.agentCollisions:collisions()) do
         local entity = Entity.new(collision.entityId1, self.gameState.wrapper)
