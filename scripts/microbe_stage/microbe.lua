@@ -22,7 +22,7 @@ MicrobeComponent = class(
         self.stored = 0 -- The amount stored in the microbe. NOTE: This does not include special storage organelles
         self.initialized = false
         self.isPlayerMicrobe = isPlayerMicrobe
-        self.maxBandwidth = 10.0 * BANDWIDTH_PER_ORGANELLE
+        self.maxBandwidth = 10.0 * BANDWIDTH_PER_ORGANELLE -- wtf is a bandwidth anyway?
         self.remainingBandwidth = 0
         self.compoundCollectionTimer = EXCESS_COMPOUND_COLLECTION_INTERVAL
         self.isCurrentlyEngulfing = false
@@ -50,29 +50,6 @@ ENGULFED_MOVEMENT_DIVISION = 4
 ENGULFING_ATP_COST_SECOND = 1.5
 ENGULF_HP_RATIO_REQ = 1.5 
 AGENT_EMISSION_COOLDOWN = 1000 -- Cooldown between agent emissions, in milliseconds.
-
--- Attempts to obtain an amount of bandwidth for immediate use
--- This should be in conjunction with most operations ejecting  or absorbing compounds and agents for microbe
---
--- @param maxAmount
--- The max amount of units that is requested
---
--- @param compoundId
--- The compound being requested for volume considerations
---
--- @return
---  amount in units avaliable for use
-function MicrobeComponent:getBandwidth(maxAmount, compoundId)
-    local compoundVolume = CompoundRegistry.getCompoundUnitVolume(compoundId)
-    local amount = math.min(maxAmount * compoundVolume, self.remainingBandwidth)
-    self.remainingBandwidth = self.remainingBandwidth - amount
-    return amount / compoundVolume
-end
-
-function MicrobeComponent:regenerateBandwidth(logicTime)
-    local addedBandwidth = self.remainingBandwidth + logicTime * (self.maxBandwidth / BANDWIDTH_REFILL_DURATION)
-    self.remainingBandwidth = math.min(addedBandwidth, self.maxBandwidth)
-end
 
 function MicrobeComponent:load(storage)
     
@@ -517,7 +494,7 @@ end
 function Microbe:storeCompound(compoundId, amount, bandwidthLimited)
     local storedAmount = amount + 0
     if bandwidthLimited then
-        storedAmount = self.microbe:getBandwidth(amount, compoundId)
+        storedAmount = gMicrobeSystem:getBandwidth(self.entity, amount, compoundId)
     end
     storedAmount = math.min(storedAmount , self.microbe.capacity - self.microbe.stored)
     getComponent(self.entity, CompoundBagComponent
@@ -775,7 +752,7 @@ function Microbe:update(logicTime)
         -- StorageOrganelles
         self:_updateCompoundAbsorber()
         -- Regenerate bandwidth
-        self.microbe:regenerateBandwidth(logicTime)
+        gMicrobeSystem:regenerateBandwidth(self.entity, logicTime)
         -- Attempt to absorb queued compounds
         for _, compound in pairs(self.compoundAbsorber:getAbsorbedCompounds()) do 
             local amount = self.compoundAbsorber:absorbedCompoundAmount(compound)
@@ -1250,4 +1227,32 @@ function MicrobeSystem:checkEngulfment(microbe1Comp, microbe2Comp, body, entity1
        -- we detect engulfment stopped by isBeingEngulfed being false while wasBeingEngulfed is true
        microbe2Comp.isBeingEngulfed = true
     end
+end
+
+-- Attempts to obtain an amount of bandwidth for immediate use.
+-- This should be in conjunction with most operations ejecting  or absorbing compounds and agents for microbe.
+--
+-- @param maicrobeEntity
+-- The entity of the microbe to get the bandwidth from.
+--
+-- @param maxAmount
+-- The max amount of units that is requested.
+--
+-- @param compoundId
+-- The compound being requested for volume considerations.
+--
+-- @return
+--  amount in units avaliable for use.
+function MicrobeSystem:getBandwidth(microbeEntity, maxAmount, compoundId)
+    local microbeComponent = getComponent(microbeEntity, MicrobeComponent)
+    local compoundVolume = CompoundRegistry.getCompoundUnitVolume(compoundId)
+    local amount = math.min(maxAmount * compoundVolume, microbeComponent.remainingBandwidth)
+    microbeComponent.remainingBandwidth = microbeComponent.remainingBandwidth - amount
+    return amount / compoundVolume
+end
+
+function MicrobeSystem:regenerateBandwidth(microbeEntity, logicTime)
+    local microbeComponent = getComponent(microbeEntity, MicrobeComponent)
+    local addedBandwidth = microbeComponent.remainingBandwidth + logicTime * (microbeComponent.maxBandwidth / BANDWIDTH_REFILL_DURATION)
+    microbeComponent.remainingBandwidth = math.min(addedBandwidth, microbeComponent.maxBandwidth)
 end

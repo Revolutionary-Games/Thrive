@@ -149,7 +149,6 @@ function MovementOrganelle:_turnMicrobe(microbe)
         microbe.rigidBody:applyTorque(
             Vector3(0, 0, self.torque * alpha * microbe.microbe.movementFactor)
         )
-        microbe.soundSource:playSound("microbe-movement-turn")
     end
 end
 
