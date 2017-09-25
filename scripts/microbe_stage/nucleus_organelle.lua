@@ -100,42 +100,6 @@ function NucleusOrganelle:updateColour(organelle)
     end]]
 end
 
--- Makes nucleus larger
-function NucleusOrganelle:grow(compoundBagComponent)
-    -- Finds the total number of needed compounds.
-    local sum = 0
-
-    -- Finds which compounds the cell currently has.
-    if compoundBagComponent:aboveLowThreshold(CompoundRegistry.getCompoundId("aminoacids")) >= 1 then
-        sum = sum + self.numProteinLeft
-    end
-    if compoundBagComponent:aboveLowThreshold(CompoundRegistry.getCompoundId("aminoacids")) >= 1 then
-        sum = sum + self.numNucleicAcidsLeft
-    end
-    
-    -- If sum is 0, we either have no compounds, in which case we cannot grow the organelle, or the
-    -- DNA duplication is done (i.e. compoundBin = 2), in which case we wait for the microbe to
-    -- handle the split.
-    if sum == 0 then return end
-       
-    -- Randomly choose which of the three compounds: glucose, amino acids, and fatty acids
-    -- that are used in reproductions.
-    local id = math.random()*sum
-    
-    -- The random number is a protein, so attempt to take it.
-    if id <= self.numProteinLeft then
-        compoundBagComponent:takeCompound(CompoundRegistry.getCompoundId("aminoacids"), 1)
-        self.numProteinLeft = self.numProteinLeft - 1
-    -- The random number is a nucleic acid.
-    else
-        compoundBagComponent:takeCompound(CompoundRegistry.getCompoundId("aminoacids"), 1)
-        self.numNucleicAcidsLeft = self.numNucleicAcidsLeft - 1
-    end
-    
-    -- Calculate the new growth growth
-    self:recalculateBin()
-end
-
 function NucleusOrganelle:damage(amount)
     -- Calculate the total number of compounds we need to divide now, so that we can keep this ratio.
     local totalLeft = self.numProteinLeft + self.numNucleicAcidsLeft

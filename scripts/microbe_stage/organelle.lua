@@ -320,7 +320,6 @@ function Organelle:getCompoundBin()
     return self.compoundBin
 end
 
-
 -- Gives organelles more compounds
 function Organelle:growOrganelle(compoundBagComponent, logicTime)
     -- Finds the total number of needed compounds.

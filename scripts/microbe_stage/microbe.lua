@@ -453,27 +453,9 @@ function Microbe:emitAgent(compoundId, maxAmount)
         
         local direction = Vector3(xnew, ynew, 0)
         direction:normalise()
-        local amountToEject = self:takeCompound(compoundId, maxAmount/10.0)
+        local amountToEject = MicrobeSystem.takeCompound(self.entity, compoundId, maxAmount/10.0)
         createAgentCloud(compoundId, self.sceneNode.transform.position.x + xnew, self.sceneNode.transform.position.y + ynew, direction, amountToEject * 10)
     end
-end
-
--- Removes compounds from the microbe's storage organelles
---
--- @param compoundId
--- The compound to remove
---
--- @param maxAmount
--- The maximum amount to take
---
--- @returns amount
--- The amount that was actually taken, between 0.0 and maxAmount.
-function Microbe:takeCompound(compoundId, maxAmount)
-    local takenAmount = getComponent(self.entity, CompoundBagComponent
-    ):takeCompound(compoundId, maxAmount)
-    
-    self.microbe.stored = self.microbe.stored - takenAmount
-    return takenAmount
 end
 
 -- Ejects compounds from the microbes behind position, into the enviroment
@@ -521,15 +503,12 @@ function Microbe:ejectCompound(compoundId, amount)
     local xnew = -membraneCoords[1] * c + membraneCoords[2] * s;
     local ynew = membraneCoords[1] * s + membraneCoords[2] * c;
 
-    local amountToEject = self:takeCompound(compoundId, amount/10.0)
+    local amountToEject = MicrobeSystem.takeCompound(self.entity, compoundId, amount/10.0)
     createCompoundCloud(CompoundRegistry.getCompoundInternalName(compoundId),
                         self.sceneNode.transform.position.x + xnew * ejectionDistance,
                         self.sceneNode.transform.position.y + ynew * ejectionDistance,
                         amount * 5000)
 end
-
-
-
 
 -- Kills the microbe, releasing stored compounds into the enviroment
 function Microbe:kill()
@@ -537,7 +516,7 @@ function Microbe:kill()
     for compoundId, _ in pairs(self.microbe.specialStorageOrganelles) do
         local _amount = MicrobeSystem.getCompoundAmount(self.entity, compoundId)
         while _amount > 0 do
-            ejectedAmount = self:takeCompound(compoundId, 3) -- Eject up to 3 units per particle
+            ejectedAmount = MicrobeSystem.takeCompound(self.entity, compoundId, 3) -- Eject up to 3 units per particle
             local direction = Vector3(math.random() * 2 - 1, math.random() * 2 - 1, 0)
             createAgentCloud(compoundId, self.sceneNode.transform.position.x, self.sceneNode.transform.position.y, direction, amountToEject)
             _amount = _amount - ejectedAmount
@@ -548,7 +527,7 @@ function Microbe:kill()
     -- Eject the compounds that was in the microbe
     for _, compoundId in pairs(CompoundRegistry.getCompoundList()) do
         local total = MicrobeSystem.getCompoundAmount(self.entity, compoundId)
-        local ejectedAmount = self:takeCompound(compoundId, total)
+        local ejectedAmount = MicrobeSystem.takeCompound(self.entity, compoundId, total)
         compoundsToRelease[compoundId] = ejectedAmount
     end
 
@@ -622,7 +601,7 @@ function Microbe:divide(currentGameState)
         local amount = MicrobeSystem.getCompoundAmount(self.entity, compoundID)
     
         if amount ~= 0 then
-            self:takeCompound(compoundID, amount/2, false)
+            MicrobeSystem.takeCompound(self.entity, compoundID, amount/2, false)
             MicrobeSystem.storeCompound(copy.entity, compoundID, amount/2, false)
         end
     end
@@ -641,7 +620,7 @@ function Microbe.transferCompounds(from, to)
         local amount = MicrobeSystem.getCompoundAmount(from.entity, compoundID)
     
         if amount ~= 0 then
-            from:takeCompound(compoundID, amount, false)
+            MicrobeSystem.takeCompound(from.entity, compoundID, amount, false)
             MicrobeSystem.storeCompound(to.entity, compoundID, amount, false)
         end
     end
@@ -811,7 +790,7 @@ function Microbe:update(logicTime)
             -- Drain atp and if we run out then disable engulfmode
             local cost = ENGULFING_ATP_COST_SECOND/1000*logicTime
             
-            if self:takeCompound(CompoundRegistry.getCompoundId("atp"), cost) < cost - 0.001 then
+            if MicrobeSystem.takeCompound(self.entity, CompoundRegistry.getCompoundId("atp"), cost) < cost - 0.001 then
                 print ("too little atp, disabling - 749")
                 self:toggleEngulfMode()
             end
@@ -931,7 +910,7 @@ function Microbe:purgeCompounds()
         local price = compoundBag:getPrice(compoundId)
         if price <= 0 then
             local amountToEject = MicrobeSystem.getCompoundAmount(self.entity, compoundId)
-            if amount > 0 then amountToEject = self:takeCompound(compoundId, amountToEject) end
+            if amount > 0 then amountToEject = MicrobeSystem.takeCompound(self.entity, compoundId, amountToEject) end
             if amount > 0 then self:ejectCompound(compoundId, amountToEject) end
         end
     end
@@ -953,7 +932,7 @@ function Microbe:purgeCompounds()
         --Dumping each compound according to it's price.
         for compoundId, price in pairs(compoundPrices) do
             local amountToEject = compoundAmountToDump * (MicrobeSystem.getCompoundAmount(self.entity, compoundId) / price) / priceSum
-            if amount > 0 then amountToEject = self:takeCompound(compoundId, amountToEject) end
+            if amount > 0 then amountToEject = MicrobeSystem.takeCompound(self.entity, compoundId, amountToEject) end
             if amount > 0 then self:ejectCompound(compoundId, amountToEject) end
         end
     end
@@ -1248,4 +1227,23 @@ function MicrobeSystem.storeCompound(microbeEntity, compoundId, amount, bandwidt
     
     microbeComponent.stored = microbeComponent.stored + storedAmount
     return amount - storedAmount
+end
+
+-- Removes compounds from the microbe's storage organelles
+--
+-- @param compoundId
+-- The compound to remove
+--
+-- @param maxAmount
+-- The maximum amount to take
+--
+-- @returns amount
+-- The amount that was actually taken, between 0.0 and maxAmount.
+function MicrobeSystem.takeCompound(microbeEntity, compoundId, maxAmount)
+    local microbeComponent = getComponent(microbeEntity, MicrobeComponent)
+    local takenAmount = getComponent(microbeEntity, CompoundBagComponent
+    ):takeCompound(compoundId, maxAmount)
+    
+    microbeComponent.stored = microbeComponent.stored - takenAmount
+    return takenAmount
 end
