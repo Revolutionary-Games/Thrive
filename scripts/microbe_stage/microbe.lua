@@ -304,7 +304,7 @@ function Microbe:addOrganelle(q, r, rotation, organelle)
     
     organelle:onAddedToMicrobe(self, q, r, rotation)
     
-    self:calculateHealthFromOrganelles()
+    gMicrobeSystem:calculateHealthFromOrganelles(self.entity)
     self.microbe.maxBandwidth = self.microbe.maxBandwidth + BANDWIDTH_PER_ORGANELLE -- Temporary solution for increasing max bandwidth
     self.microbe.remainingBandwidth = self.microbe.maxBandwidth
     
@@ -370,7 +370,7 @@ function Microbe:removeOrganelle(q, r)
     
     organelle:onRemovedFromMicrobe(self)
     
-    self:calculateHealthFromOrganelles()
+    gMicrobeSystem:calculateHealthFromOrganelles(self.entity)
     self.microbe.maxBandwidth = self.microbe.maxBandwidth - BANDWIDTH_PER_ORGANELLE -- Temporary solution for decreasing max bandwidth
     self.microbe.remainingBandwidth = self.microbe.maxBandwidth
     
@@ -415,7 +415,7 @@ function Microbe:damage(amount, damageType)
     end
     
     -- Find out the amount of health the microbe has.
-    self:calculateHealthFromOrganelles()
+    gMicrobeSystem:calculateHealthFromOrganelles(self.entity)
     
     if self.microbe.hitpoints <= 0 then
         self.microbe.hitpoints = 0
@@ -800,7 +800,7 @@ function Microbe:update(logicTime)
                     -- Give the organelle access to the compound bag to take some compound.
                     organelle:growOrganelle(getComponent(self.entity, CompoundBagComponent), logicTime)
                     -- An organelle was damaged and we tried to heal it, so out health might be different.
-                    self:calculateHealthFromOrganelles()
+                    gMicrobeSystem:calculateHealthFromOrganelles(self.entity)
                 end
             end
         else
@@ -911,15 +911,6 @@ function Microbe:update(logicTime)
         end
     end
     -- print("finished update")
-end
-
-function Microbe:calculateHealthFromOrganelles()
-    self.microbe.hitpoints = 0
-    self.microbe.maxHitpoints = 0
-    for _, organelle in pairs(self.microbe.organelles) do
-        self.microbe.hitpoints = self.microbe.hitpoints + (organelle:getCompoundBin() < 1.0 and organelle:getCompoundBin() or 1.0) * MICROBE_HITPOINTS_PER_ORGANELLE
-        self.microbe.maxHitpoints = self.microbe.maxHitpoints + MICROBE_HITPOINTS_PER_ORGANELLE
-    end
 end
 
 function Microbe:splitOrganelle(organelle)
@@ -1057,7 +1048,7 @@ function Microbe:respawn()
     for _, organelle in pairs(self.microbe.organelles) do
         organelle:reset()
     end
-    self:calculateHealthFromOrganelles()
+    gMicrobeSystem:calculateHealthFromOrganelles(self.entity)
 
     self.rigidBody:setDynamicProperties(
         Vector3(0,0,0), -- Position
@@ -1255,4 +1246,14 @@ function MicrobeSystem:regenerateBandwidth(microbeEntity, logicTime)
     local microbeComponent = getComponent(microbeEntity, MicrobeComponent)
     local addedBandwidth = microbeComponent.remainingBandwidth + logicTime * (microbeComponent.maxBandwidth / BANDWIDTH_REFILL_DURATION)
     microbeComponent.remainingBandwidth = math.min(addedBandwidth, microbeComponent.maxBandwidth)
+end
+
+function MicrobeSystem:calculateHealthFromOrganelles(microbeEntity)
+    local microbeComponent = getComponent(microbeEntity, MicrobeComponent)
+    microbeComponent.hitpoints = 0
+    microbeComponent.maxHitpoints = 0
+    for _, organelle in pairs(microbeComponent.organelles) do
+        microbeComponent.hitpoints = microbeComponent.hitpoints + (organelle:getCompoundBin() < 1.0 and organelle:getCompoundBin() or 1.0) * MICROBE_HITPOINTS_PER_ORGANELLE
+        microbeComponent.maxHitpoints = microbeComponent.maxHitpoints + MICROBE_HITPOINTS_PER_ORGANELLE
+    end
 end
