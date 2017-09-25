@@ -425,7 +425,7 @@ function SpeciesSystem.fromMicrobe(microbe, species)
     -- This microbes compound amounts will be the new population average.
     species.avgCompoundAmounts = {}
     for _, compoundID in pairs(CompoundRegistry.getCompoundList()) do
-        local amount = microbe:getCompoundAmount(compoundID)
+        local amount = MicrobeSystem.getCompoundAmount(microbe.entity, compoundID)
         species.avgCompoundAmounts["" .. compoundID] = amount
     end
     -- TODO: make this update the ProcessorComponent based on microbe thresholds
