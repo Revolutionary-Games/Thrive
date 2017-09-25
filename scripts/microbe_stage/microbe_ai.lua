@@ -182,7 +182,7 @@ function MicrobeAISystem:update(renderTime, logicTime)
 
             local compoundId = CompoundRegistry.getCompoundId("oxytoxy")
             local targetPosition = nil
-            local agentVacuole = microbe.microbe.specialStorageOrganelles[compoundId]
+            local numberOfAgentVacuoless = microbe.microbe.specialStorageOrganelles[compoundId]
 	--for getting the prey
 	for _, m_microbe in pairs (microbes_number) do
 	if self.preys ~= nil then
@@ -191,7 +191,9 @@ function MicrobeAISystem:update(renderTime, logicTime)
 	if microbe.microbe.maxHitpoints > 1.5 * m_microbe.microbe.maxHitpoints then
 	self.preys[m_microbe] = m_microbe
 	end
-	if agentVacuole ~= nil and m_microbe.microbe.specialStorageOrganelles[compoundId] == nil and self.preys[m_microbe] == nil then
+	if numberOfAgentVacuoles ~= nil and numberOfAgentVacuoles ~= 0 and
+        (m_microbe.microbe.specialStorageOrganelles[compoundId] == nil or m_microbe.microbe.specialStorageOrganelles[compoundId] == 0)
+        and self.preys[m_microbe] == nil then
 	self.preys[m_microbe] = m_microbe
 	end
 	elseif v:length() > 25 or v:length() == 0 then
@@ -213,7 +215,8 @@ function MicrobeAISystem:update(renderTime, logicTime)
 	if predatore.microbe.maxHitpoints > microbe.microbe.maxHitpoints * 1.5 and vec:length() < 25 then
 	self.predators[predatore] = predatore
 	end
-	if predatore.microbe.specialStorageOrganelles[compoundId] ~= nil and agentVacuole == nil and vec:length() < 25 then
+	if (predatore.microbe.specialStorageOrganelles[compoundId] ~= nil and predatore.microbe.specialStorageOrganelles[compoundId] ~= 0)
+        and (numberOfAgentVacuoles == nil or numberOfAgentVacuoles == 0) and vec:length() < 25 then
 		self.predators[predatore] = predatore
 	end
 	if vec:length() > 25 then
@@ -222,7 +225,7 @@ function MicrobeAISystem:update(renderTime, logicTime)
 	self.predatore = self.predators[predatore]
     end
 	
-            if agentVacuole ~= nil or microbe.microbe.maxHitpoints > 100 then
+            if (numberOfAgentVacuoles ~= nil and numberOfAgentVacuoles ~= 0) or microbe.microbe.maxHitpoints > 100 then
                 self.preyCandidates[6] = Microbe.new(
                     Entity.new(PLAYER_NAME, self.gameState.wrapper), nil, self.gameState.wrapper)
                 self.preyEntityToIndexMap[Entity.new(PLAYER_NAME, self.gameState.wrapper).id] = 6

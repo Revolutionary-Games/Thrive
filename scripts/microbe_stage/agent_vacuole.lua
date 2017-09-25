@@ -34,12 +34,16 @@ AgentVacuole = class(
 -- Overridded from ProcessOrganelle:onAddedToMicrobe
 function AgentVacuole:onAddedToMicrobe(microbe, q, r, rotation, organelle)
     OrganelleComponent.onAddedToMicrobe(self, microbe, q, r, rotation, organelle)
-    microbe:addSpecialStorageOrganelle(self, self.compoundId)
+    if microbe.microbe.specialStorageOrganelles[self.compoundId] == nil then
+        microbe.microbe.specialStorageOrganelles[self.compoundId] = 1
+    else
+        microbe.microbe.specialStorageOrganelles[self.compoundId] = microbe.microbe.specialStorageOrganelles[self.compoundId] + 1
+    end
 end
 
 -- Overridded from ProcessOrganelle:onRemovedFromMicrobe
 function AgentVacuole:onRemovedFromMicrobe(microbe, q, r)
-    microbe:removeSpecialStorageOrganelle(self, self.compoundId)
+    microbe.microbe.specialStorageOrganelles[self.compoundId] = microbe.microbe.specialStorageOrganelles[self.compoundId] - 1
 end
 
 -- Called by Microbe:update

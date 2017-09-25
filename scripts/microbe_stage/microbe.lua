@@ -253,7 +253,7 @@ function Microbe.createMicrobeEntity(name, aiControlled, speciesName, in_editor,
     s1.properties.volume = 0.4
     s1.properties:touch()
     s1 = soundComponent:addSound("microbe-movement-turn", "soundeffects/microbe-movement-2.ogg")
-    s1.properties.volume = 0
+    s1.properties.volume = 0.1
     s1.properties:touch()
     s1 = soundComponent:addSound("microbe-movement-2", "soundeffects/microbe-movement-3.ogg")
     s1.properties.volume = 0.4
@@ -347,24 +347,6 @@ function Microbe:addOrganelle(q, r, rotation, organelle)
     return true
 end
 
--- Removes a special storage organelle
--- This will be called automatically by process organelles removed with with removeOrganelle(...)
---
--- @param organelle
---   An object of type ProcessOrganelle
-function Microbe:removeSpecialStorageOrganelle(organelle, compoundId)
-    self.microbe.specialStorageOrganelles[compoundId] = nil
-end
-
--- Adds a special storage organelle that holds complete responsibility for some compound
--- This will be called automatically by process organelles added with addOrganelle(...)
---
--- @param processOrganelle
---   An object of type ProcessOrganelle
-function Microbe:addSpecialStorageOrganelle(organelle, compoundId)
-    self.microbe.specialStorageOrganelles[compoundId] = organelle
-end
-
 -- Retrieves the organelle occupying a hex cell
 --
 -- @param q, r
@@ -382,8 +364,6 @@ function Microbe:getOrganelleAt(q, r)
     end
     return nil
 end
-
-
 
 -- Removes the organelle at a hex cell
 -- Note that this renders the organelle unusable as we destroy its underlying entity
@@ -479,11 +459,12 @@ function Microbe:emitAgent(compoundId, maxAmount)
     if(self.microbe.agentEmissionCooldown > 0) then return end
     self.microbe.agentEmissionCooldown = AGENT_EMISSION_COOLDOWN
 
-    local agentVacuole = self.microbe.specialStorageOrganelles[compoundId]
-    if agentVacuole ~= nil and self:getCompoundAmount(compoundId) > MINIMUM_AGENT_EMISSION_AMOUNT then
+    local numberOfAgentVacuoles = self.microbe.specialStorageOrganelles[compoundId]
+    if numberOfAgentVacuoles ~= nil and numberOfAgentVacuoles > 0 and self:getCompoundAmount(compoundId) > MINIMUM_AGENT_EMISSION_AMOUNT then
         self.soundSource:playSound("microbe-release-toxin")
+
         -- Calculate the emission angle of the agent emitter
-        local organelleX, organelleY = axialToCartesian(agentVacuole.position.q, agentVacuole.position.r)
+        local organelleX, organelleY = axialToCartesian(0, -1) -- The front of the microbe
         local membraneCoords = self.membraneComponent:getExternOrganellePos(organelleX, organelleY)
 
         local angle =  math.atan2(organelleY, organelleX)
@@ -619,7 +600,7 @@ end
 -- Kills the microbe, releasing stored compounds into the enviroment
 function Microbe:kill()
     -- Releasing all the agents.
-    for compoundId, specialStorageOrg in pairs(self.microbe.specialStorageOrganelles) do
+    for compoundId, _ in pairs(self.microbe.specialStorageOrganelles) do
         local _amount = self:getCompoundAmount(compoundId)
         while _amount > 0 do
             ejectedAmount = self:takeCompound(compoundId, 3) -- Eject up to 3 units per particle
