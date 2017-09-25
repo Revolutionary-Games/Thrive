@@ -163,14 +163,14 @@ Click to continue or press escape to skip the tutorial.]])
 
 Click anywhere to continue...]])
         if getComponent(PLAYER_NAME, self.gameState, MicrobeComponent) == nil then
+            local player = microbeSpawnFunctionGeneric(nil, "Default", false, PLAYER_NAME, self.gameState)
             print("trying to spawn player")
-            local microbe = Microbe(microbeSpawnFunctionGeneric(nil, "Default", false,
-                                                        PLAYER_NAME, self.gameState), nil, self.gameState)
+            local microbe = Microbe(player, nil, self.gameState)
             Engine:playerData():setActiveCreature(microbe.entity.id,
                                                   GameState.MICROBE_TUTORIAL.wrapper)
 
             -- Make sure player doesn't run out of ATP immediately
-            microbe:storeCompound(CompoundRegistry.getCompoundId("atp"), 50, false)
+            MicrobeSystem.storeCompound(player, CompoundRegistry.getCompoundId("atp"), 50, false)
         end
 		
 		

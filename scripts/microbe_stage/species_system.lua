@@ -25,9 +25,8 @@ end
 
 local DEFAULT_INITIAL_COMPOUNDS =
     {
-        atp = {priority=10,amount=40},
+        atp = {priority=10,amount=60},
         glucose = {amount = 10},
-        reproductase = {priority = 8},
         oxygen = {amount = 10},
         oxytoxy = {amount = 1}
     }
@@ -387,7 +386,7 @@ function SpeciesSystem.template(microbe, species)
     
     for compoundID, amount in pairs(species.avgCompoundAmounts) do
         if amount ~= 0 then
-            microbe:storeCompound(compoundID, amount, false)
+            MicrobeSystem.storeCompound(microbe.entity, compoundID, amount, false)
         end
     end
     

@@ -458,33 +458,6 @@ function Microbe:emitAgent(compoundId, maxAmount)
     end
 end
 
--- Stores an compound in the microbe's storage organelles
---
--- @param compoundId
--- The compound to store
---
--- @param amount
--- The amount to store
---
--- @param bandwidthLimited
--- Determines if the storage operation is to be limited by the bandwidth of the microbe
--- 
--- @returns leftover
--- The amount of compound not stored, due to bandwidth or being full
-function Microbe:storeCompound(compoundId, amount, bandwidthLimited)
-    local storedAmount = amount + 0
-    if bandwidthLimited then
-        storedAmount = MicrobeSystem.getBandwidth(self.entity, amount, compoundId)
-    end
-    storedAmount = math.min(storedAmount , self.microbe.capacity - self.microbe.stored)
-    getComponent(self.entity, CompoundBagComponent
-    ):giveCompound(tonumber(compoundId), storedAmount)
-    
-    self.microbe.stored = self.microbe.stored + storedAmount
-    return amount - storedAmount
-end
-
-
 -- Removes compounds from the microbe's storage organelles
 --
 -- @param compoundId
@@ -650,7 +623,7 @@ function Microbe:divide(currentGameState)
     
         if amount ~= 0 then
             self:takeCompound(compoundID, amount/2, false)
-            copy:storeCompound(compoundID, amount/2, false)
+            MicrobeSystem.storeCompound(copy.entity, compoundID, amount/2, false)
         end
     end
     
@@ -669,7 +642,7 @@ function Microbe.transferCompounds(from, to)
     
         if amount ~= 0 then
             from:takeCompound(compoundID, amount, false)
-            to:storeCompound(compoundID, amount, false)
+            MicrobeSystem.storeCompound(to.entity, compoundID, amount, false)
         end
     end
 end
@@ -721,7 +694,7 @@ function Microbe:update(logicTime)
         for _, compound in pairs(self.compoundAbsorber:getAbsorbedCompounds()) do 
             local amount = self.compoundAbsorber:absorbedCompoundAmount(compound)
             if amount > 0.0 then
-                self:storeCompound(compound, amount, true)
+                MicrobeSystem.storeCompound(self.entity, compound, amount, true)
             end
         end
         -- Flash membrane if something happens.
@@ -1019,7 +992,7 @@ function Microbe:respawn()
     sceneNode.transform.position = Vector3(0, 0, 0)
     sceneNode.transform:touch()
     
-    self:storeCompound(CompoundRegistry.getCompoundId("atp"), 50, false)
+    MicrobeSystem.storeCompound(self.entity, CompoundRegistry.getCompoundId("atp"), 50, false)
 
     setRandomBiome(g_luaEngine.currentGameState)
 	global_activeMicrobeStageHudSystem:suicideButtonreset()
@@ -1249,3 +1222,30 @@ function MicrobeSystem.flashMembraneColour(microbeEntity, duration, colour)
     end
 end
 
+-- Stores an compound in the microbe's storage organelles
+--
+-- @param compoundId
+-- The compound to store
+--
+-- @param amount
+-- The amount to store
+--
+-- @param bandwidthLimited
+-- Determines if the storage operation is to be limited by the bandwidth of the microbe
+-- 
+-- @returns leftover
+-- The amount of compound not stored, due to bandwidth or being full
+function MicrobeSystem.storeCompound(microbeEntity, compoundId, amount, bandwidthLimited)
+    local microbeComponent = getComponent(microbeEntity, MicrobeComponent)
+    local storedAmount = amount + 0 -- Why are we adding 0? Is this a type-casting thing?
+
+    if bandwidthLimited then
+        storedAmount = MicrobeSystem.getBandwidth(microbeEntity, amount, compoundId)
+    end
+
+    storedAmount = math.min(storedAmount , microbeComponent.capacity - microbeComponent.stored)
+    getComponent(microbeEntity, CompoundBagComponent):giveCompound(tonumber(compoundId), storedAmount)
+    
+    microbeComponent.stored = microbeComponent.stored + storedAmount
+    return amount - storedAmount
+end

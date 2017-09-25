@@ -323,7 +323,6 @@ local function setupSpawnSystem(gameState)
 end
 
 local function setupPlayer(gameState)
-
     assert(GameState.MICROBE == gameState)
     assert(gameState ~= nil)
     
@@ -332,9 +331,6 @@ local function setupPlayer(gameState)
     Engine:playerData():lockedMap():addLock("Toxin")
     Engine:playerData():lockedMap():addLock("chloroplast")
     Engine:playerData():setActiveCreature(microbe.entity.id, gameState.wrapper)
-
-    -- Give some atp
-    microbe:storeCompound(CompoundRegistry.getCompoundId("atp"), 50, false)
 end
 
 local function setupSound(gameState)
