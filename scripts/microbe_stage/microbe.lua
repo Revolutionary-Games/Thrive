@@ -485,14 +485,14 @@ function Microbe:emitAgent(compoundId, maxAmount)
         -- Calculate the emission angle of the agent emitter
         local organelleX, organelleY = axialToCartesian(agentVacuole.position.q, agentVacuole.position.r)
         local membraneCoords = self.membraneComponent:getExternOrganellePos(organelleX, organelleY)
-        
+
         local angle =  math.atan2(organelleY, organelleX)
         if (angle < 0) then
             angle = angle + 2*math.pi
         end
         angle = -(angle * 180/math.pi -90 ) % 360
         --angle = angle * 180/math.pi
-        
+
         -- Find the direction the microbe is facing
         local yAxis = self.sceneNode.transform.orientation:yAxis()
         local microbeAngle = math.atan2(yAxis.x, yAxis.y)
@@ -502,7 +502,7 @@ function Microbe:emitAgent(compoundId, maxAmount)
         microbeAngle = microbeAngle * 180/math.pi
         -- Take the microbe angle into account so we get world relative degrees
         local finalAngle = (angle + microbeAngle) % 360        
-        
+
         local s = math.sin(finalAngle/180*math.pi);
         local c = math.cos(finalAngle/180*math.pi);
 
@@ -512,7 +512,7 @@ function Microbe:emitAgent(compoundId, maxAmount)
         local direction = Vector3(xnew, ynew, 0)
         direction:normalise()
         local amountToEject = self:takeCompound(compoundId, maxAmount/10.0)
-        createAgentCloud(compoundId, self.sceneNode.transform.position.x + xnew, self.sceneNode.transform.position.y + ynew, direction * 5, amountToEject * 10)
+        createAgentCloud(compoundId, self.sceneNode.transform.position.x + xnew, self.sceneNode.transform.position.y + ynew, direction, amountToEject * 10)
     end
 end
 
@@ -696,8 +696,7 @@ function Microbe:divide(currentGameState)
     
     print("dividing cell ")
     -- Create the two daughter cells.
-    local copy = Microbe.createMicrobeEntity(nil, true, self.microbe.speciesName, self.entity,
-                                             currentGameState)
+    local copy = Microbe.createMicrobeEntity(nil, true, self.microbe.speciesName, false, currentGameState)
     
     --Separate the two cells.
     copy.rigidBody.dynamicProperties.position = Vector3(self.rigidBody.dynamicProperties.position.x - self.membraneComponent.dimensions/2, self.rigidBody.dynamicProperties.position.y, 0)
@@ -715,8 +714,10 @@ function Microbe:divide(currentGameState)
     
     self.reproductionStage = 0
     copy.reproductionStage = 0
-    
-    copy.entity:addComponent(SpawnedComponent.new())
+
+    local spawnedComponent = SpawnedComponent.new()
+    spawnedComponent:setSpawnRadius(MICROBE_SPAWN_RADIUS)
+    copy.entity:addComponent(spawnedComponent)
     self.soundSource:playSound("microbe-reproduction")
 end
 
