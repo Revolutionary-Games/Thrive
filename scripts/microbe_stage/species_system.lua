@@ -381,7 +381,7 @@ end
 function SpeciesSystem.template(microbe, species)
     -- TODO: Make this also set the microbe's ProcessorComponent
     microbe.microbe.speciesName = species.name
-    microbe:setMembraneColour(species.colour)
+    MicrobeSystem.setMembraneColour(microbe.entity, species.colour)
 
     SpeciesSystem.restoreOrganelleLayout(microbe, species)
     

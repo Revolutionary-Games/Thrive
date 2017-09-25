@@ -30,6 +30,8 @@ MicrobeComponent = class(
         self.wasBeingEngulfed = false
         self.hostileEngulfer = nil
         self.agentEmissionCooldown = 0
+        self.flashDuration = nil
+        self.flashColour = nil
     end
 )
 
@@ -693,18 +695,6 @@ function Microbe:removeEngulfedEffect()
     --self.microbe.hostileEngulfer.soundSource:stopSound("microbe-engulfment")
 end
 
--- Sets the color of the microbe's membrane.
-function Microbe:setMembraneColour(colour)
-    self.membraneComponent:setColour(colour.x, colour.y, colour.z, 1)
-end
-
-function Microbe:flashMembraneColour(duration, colour)
-	if self.flashDuration == nil then
-        self.flashColour = colour
-        self.flashDuration = duration
-    end
-end
-
 function Microbe:calculateStorageSpace()
     self.microbe.stored = 0
     for _, compoundId in pairs(CompoundRegistry.getCompoundList()) do
@@ -735,19 +725,19 @@ function Microbe:update(logicTime)
             end
         end
         -- Flash membrane if something happens.
-        if self.flashDuration ~= nil and self.flashColour ~= nil then
-            self.flashDuration = self.flashDuration - logicTime
+        if self.microbe.flashDuration ~= nil and self.microbe.flashColour ~= nil then
+            self.microbe.flashDuration = self.microbe.flashDuration - logicTime
             
             local entity = self.membraneComponent.entity
             -- How frequent it flashes, would be nice to update the flash function to have this variable
-            if math.fmod(self.flashDuration,600) < 300 then
-                entity:tintColour("Membrane", self.flashColour)
+            if math.fmod(self.microbe.flashDuration, 600) < 300 then
+                entity:tintColour("Membrane", self.microbe.flashColour)
             else
                 entity:setMaterial(self.sceneNode.meshName)
             end
             
-            if self.flashDuration <= 0 then
-                self.flashDuration = nil				
+            if self.microbe.flashDuration <= 0 then
+                self.microbe.flashDuration = nil				
                 entity:setMaterial(self.sceneNode.meshName)
             end
         end
@@ -853,7 +843,7 @@ function Microbe:update(logicTime)
                 self:toggleEngulfMode()
             end
             -- Flash the membrane blue.
-            self:flashMembraneColour(3000, ColourValue(0.2,0.5,1.0,0.5))
+            MicrobeSystem.flashMembraneColour(self.entity, 3000, ColourValue(0.2,0.5,1.0,0.5))
         end
         if self.microbe.isBeingEngulfed and self.microbe.wasBeingEngulfed then
             self:damage(logicTime * 0.000025  * self.microbe.maxHitpoints, "isBeingEngulfed - Microbe:update()s")
@@ -866,7 +856,7 @@ function Microbe:update(logicTime)
         self.compoundAbsorber:setAbsorbtionCapacity(math.min(self.microbe.capacity - self.microbe.stored + 10, self.microbe.remainingBandwidth))
     else
         self.microbe.deathTimer = self.microbe.deathTimer - logicTime
-        self.flashDuration = 0
+        self.microbe.flashDuration = 0
         if self.microbe.deathTimer <= 0 then
             if self.microbe.isPlayerMicrobe == true then
                 self:respawn()
@@ -1244,3 +1234,18 @@ function MicrobeSystem.getSpeciesComponent(microbeEntity)
     local microbeComponent = getComponent(microbeEntity, MicrobeComponent)
     return getComponent(microbeComponent.speciesName, g_luaEngine.currentGameState, SpeciesComponent)
 end
+
+-- Sets the color of the microbe's membrane.
+function MicrobeSystem.setMembraneColour(microbeEntity, colour)
+    local membraneComponent = getComponent(microbeEntity, MembraneComponent)
+    membraneComponent:setColour(colour.x, colour.y, colour.z, 1)
+end
+
+function MicrobeSystem.flashMembraneColour(microbeEntity, duration, colour)
+    local microbeComponent = getComponent(microbeEntity, MicrobeComponent)
+	if microbeComponent.flashDuration == nil then
+        microbeComponent.flashColour = colour
+        microbeComponent.flashDuration = duration
+    end
+end
+
