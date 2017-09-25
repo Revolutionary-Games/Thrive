@@ -96,11 +96,9 @@ starter_microbes = {
         compounds = {
             atp = {amount=20},
             glucose = {amount = 5},
-            oxygen = {amount = 10},
-            oxytoxy = {amount = 12}
+            oxygen = {amount = 10}
         },
         organelles = {
-            {name="oxytoxy",q=0,r=2, rotation=0},
             {name="nucleus",q=0,r=0, rotation=0},
             {name="mitochondrion",q=-1,r=-2, rotation=240},
             {name="vacuole",q=1,r=-3, rotation=0},

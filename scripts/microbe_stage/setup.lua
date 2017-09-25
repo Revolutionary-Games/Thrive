@@ -329,8 +329,8 @@ local function setupPlayer(gameState)
     
     local microbe = spawnMicrobe(nil, "Default", false, PLAYER_NAME, gameState)
     microbe.collisionHandler:addCollisionGroup("powerupable")
-    --Engine:playerData():lockedMap():addLock("Toxin")
-    --Engine:playerData():lockedMap():addLock("chloroplast")
+    Engine:playerData():lockedMap():addLock("Toxin")
+    Engine:playerData():lockedMap():addLock("chloroplast")
     Engine:playerData():setActiveCreature(microbe.entity.id, gameState.wrapper)
 
     -- Give some atp
