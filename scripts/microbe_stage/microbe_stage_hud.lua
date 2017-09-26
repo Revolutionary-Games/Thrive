@@ -35,6 +35,12 @@ ammoniaNeeded = 0
 oxygenNeeded = 0
 chloroplastNeeded = 0
 toxinNeeded = 0
+
+ -- Camera limits
+ CAMERA_MIN_HEIGHT = 20
+ CAMERA_MAX_HEIGHT = 120
+ CAMERA_VERTICAL_SPEED = 0.015
+
 -- Updates the hud with relevant information
 
 HudSystem = class(
@@ -479,11 +485,11 @@ end
     if (Engine.keyboard:wasKeyPressed(KEYCODE.KC_G)) then
         playerMicrobe:toggleEngulfMode()
     end
-    
+    -- Changing the camera height according to the player input.
     local offset = getComponent(CAMERA_NAME, self.gameState, OgreCameraComponent).properties.offset
     
-    if Engine.mouse:scrollChange()/10 ~= 0 then
-        self.scrollChange = self.scrollChange + Engine.mouse:scrollChange()/10
+    if Engine.mouse:scrollChange() ~= 0 then
+      self.scrollChange = self.scrollChange + Engine.mouse:scrollChange() * CAMERA_VERTICAL_SPEED
     elseif keyCombo(kmp.plus) or keyCombo(kmp.add) then
         self.scrollChange = self.scrollChange - 5
     elseif keyCombo(kmp.minus) or keyCombo(kmp.subtract) then
@@ -499,11 +505,11 @@ end
         self.scrollChange = self.scrollChange + 1
     end
     
-    if newZVal < 10 then
-        newZVal = 10
+    if newZVal < CAMERA_MIN_HEIGHT then
+       newZVal = CAMERA_MIN_HEIGHT 
         self.scrollChange = 0
-    elseif newZVal > 60 then
-        newZVal = 60
+    elseif newZVal > CAMERA_MAX_HEIGHT then
+	newZVal = CAMERA_MAX_HEIGHT
         self.scrollChange = 0
     end
     
