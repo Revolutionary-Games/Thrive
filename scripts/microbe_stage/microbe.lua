@@ -759,7 +759,7 @@ function Microbe:update(logicTime)
         self.microbe.flashDuration = 0
         if self.microbe.deathTimer <= 0 then
             if self.microbe.isPlayerMicrobe == true then
-                self:respawn()
+                MicrobeSystem.respawnPlayer()
             else
                 for _, organelle in pairs(self.microbe.organelles) do
                     organelle:onRemovedFromMicrobe(self)
@@ -895,34 +895,6 @@ function Microbe:atpDamage()
         end
         self:damage(EXCESS_COMPOUND_COLLECTION_INTERVAL * 0.000002  * self.microbe.maxHitpoints, "atpDamage") -- Microbe takes 2% of max hp per second in damage
     end
-end
-
-function Microbe:respawn()
-    self.microbe.dead = false
-    self.microbe.deathTimer = 0
-    self.residuePhysicsTime = 0
-    
-    -- Reset the growth bins of the organelles to full health.
-    for _, organelle in pairs(self.microbe.organelles) do
-        organelle:reset()
-    end
-    MicrobeSystem.calculateHealthFromOrganelles(self.entity)
-
-    self.rigidBody:setDynamicProperties(
-        Vector3(0,0,0), -- Position
-        Quaternion.new(Radian.new(Degree(0)), Vector3(1, 0, 0)), -- Orientation
-        Vector3(0, 0, 0), -- Linear velocity
-        Vector3(0, 0, 0)  -- Angular velocity
-    )
-    local sceneNode = getComponent(self.entity, OgreSceneNodeComponent)
-    sceneNode.visible = true
-    sceneNode.transform.position = Vector3(0, 0, 0)
-    sceneNode.transform:touch()
-    
-    MicrobeSystem.storeCompound(self.entity, CompoundRegistry.getCompoundId("atp"), 50, false)
-
-    setRandomBiome(g_luaEngine.currentGameState)
-	global_activeMicrobeStageHudSystem:suicideButtonreset()
 end
 
 -- Private function for initializing a microbe's components
@@ -1250,4 +1222,37 @@ function MicrobeSystem.ejectCompound(microbeEntity, compoundId, amount)
                         sceneNodeComponent.transform.position.x + xnew * ejectionDistance,
                         sceneNodeComponent.transform.position.y + ynew * ejectionDistance,
                         amount * 5000)
+end
+
+function MicrobeSystem.respawnPlayer()
+    local playerEntity = Entity.new("player", g_luaEngine.currentGameState.wrapper)
+    local microbeComponent = getComponent(playerEntity, MicrobeComponent)
+    local rigidBodyComponent = getComponent(playerEntity, RigidBodyComponent)
+    local sceneNodeComponent = getComponent(playerEntity, OgreSceneNodeComponent)
+
+    microbeComponent.dead = false
+    microbeComponent.deathTimer = 0
+    
+    -- Reset the growth bins of the organelles to full health.
+    for _, organelle in pairs(microbeComponent.organelles) do
+        organelle:reset()
+    end
+    MicrobeSystem.calculateHealthFromOrganelles(playerEntity)
+
+    rigidBodyComponent:setDynamicProperties(
+        Vector3(0,0,0), -- Position
+        Quaternion.new(Radian.new(Degree(0)), Vector3(1, 0, 0)), -- Orientation
+        Vector3(0, 0, 0), -- Linear velocity
+        Vector3(0, 0, 0)  -- Angular velocity
+    )
+
+    sceneNodeComponent.visible = true
+    sceneNodeComponent.transform.position = Vector3(0, 0, 0)
+    sceneNodeComponent.transform:touch()
+
+    -- TODO: give the microbe the values from some table instead.
+    MicrobeSystem.storeCompound(playerEntity, CompoundRegistry.getCompoundId("atp"), 50, false)
+
+    setRandomBiome(g_luaEngine.currentGameState)
+	global_activeMicrobeStageHudSystem:suicideButtonreset()
 end
