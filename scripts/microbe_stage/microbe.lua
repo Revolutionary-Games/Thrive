@@ -458,58 +458,6 @@ function Microbe:emitAgent(compoundId, maxAmount)
     end
 end
 
--- Ejects compounds from the microbes behind position, into the enviroment
--- Note that the compounds ejected are created in this function and not taken from the microbe
---
--- @param compoundId
--- The compound type to create and eject
---
--- @param amount
--- The amount to eject
-function Microbe:ejectCompound(compoundId, amount)
-    -- The back of the microbe
-    local exitX, exitY = axialToCartesian(0, 1)
-    local membraneCoords = self.membraneComponent:getExternOrganellePos(exitX, exitY)
-
-    --Get the distance to eject the compunds
-    local maxR = 0
-    for _, organelle in pairs(self.microbe.organelles) do
-        for _, hex in pairs(organelle._hexes) do
-            if hex.r + organelle.position.r > maxR then
-                maxR = hex.r + organelle.position.r
-            end
-        end
-    end
-
-    --The distance is two hexes away from the back of the microbe.
-    --This distance could be precalculated when adding/removing an organelle
-    --for more efficient pooping.
-    local ejectionDistance = (maxR + 3) * HEX_SIZE
-
-    local angle = 180
-    -- Find the direction the microbe is facing
-    local yAxis = self.sceneNode.transform.orientation:yAxis()
-    local microbeAngle = math.atan2(yAxis.x, yAxis.y)
-    if (microbeAngle < 0) then
-        microbeAngle = microbeAngle + 2 * math.pi
-    end
-    microbeAngle = microbeAngle * 180 / math.pi
-    -- Take the microbe angle into account so we get world relative degrees
-    local finalAngle = (angle + microbeAngle) % 360        
-    
-    local s = math.sin(finalAngle/180*math.pi);
-    local c = math.cos(finalAngle/180*math.pi);
-
-    local xnew = -membraneCoords[1] * c + membraneCoords[2] * s;
-    local ynew = membraneCoords[1] * s + membraneCoords[2] * c;
-
-    local amountToEject = MicrobeSystem.takeCompound(self.entity, compoundId, amount/10.0)
-    createCompoundCloud(CompoundRegistry.getCompoundInternalName(compoundId),
-                        self.sceneNode.transform.position.x + xnew * ejectionDistance,
-                        self.sceneNode.transform.position.y + ynew * ejectionDistance,
-                        amount * 5000)
-end
-
 -- Kills the microbe, releasing stored compounds into the enviroment
 function Microbe:kill()
     -- Releasing all the agents.
@@ -543,7 +491,7 @@ function Microbe:kill()
     end
 
     for compoundId, amount in pairs(compoundsToRelease) do
-        self:ejectCompound(compoundId, amount)
+        MicrobeSystem.ejectCompound(self.entity, compoundId, amount)
     end
 
     local microbeSceneNode = getComponent(self.entity, OgreSceneNodeComponent)
@@ -911,7 +859,7 @@ function Microbe:purgeCompounds()
         if price <= 0 then
             local amountToEject = MicrobeSystem.getCompoundAmount(self.entity, compoundId)
             if amount > 0 then amountToEject = MicrobeSystem.takeCompound(self.entity, compoundId, amountToEject) end
-            if amount > 0 then self:ejectCompound(compoundId, amountToEject) end
+            if amount > 0 then MicrobeSystem.ejectCompound(self.entity, compoundId, amountToEject) end
         end
     end
 
@@ -933,7 +881,7 @@ function Microbe:purgeCompounds()
         for compoundId, price in pairs(compoundPrices) do
             local amountToEject = compoundAmountToDump * (MicrobeSystem.getCompoundAmount(self.entity, compoundId) / price) / priceSum
             if amount > 0 then amountToEject = MicrobeSystem.takeCompound(self.entity, compoundId, amountToEject) end
-            if amount > 0 then self:ejectCompound(compoundId, amountToEject) end
+            if amount > 0 then MicrobeSystem.ejectCompound(self.entity, compoundId, amountToEject) end
         end
     end
 end
@@ -1246,4 +1194,60 @@ function MicrobeSystem.takeCompound(microbeEntity, compoundId, maxAmount)
     
     microbeComponent.stored = microbeComponent.stored - takenAmount
     return takenAmount
+end
+
+-- Ejects compounds from the microbes behind position, into the enviroment
+-- Note that the compounds ejected are created in this function and not taken from the microbe
+--
+-- @param compoundId
+-- The compound type to create and eject
+--
+-- @param amount
+-- The amount to eject
+function MicrobeSystem.ejectCompound(microbeEntity, compoundId, amount)
+    local microbeComponent = getComponent(microbeEntity, MicrobeComponent)
+    local membraneComponent = getComponent(microbeEntity, MembraneComponent)
+    local sceneNodeComponent = getComponent(microbeEntity, OgreSceneNodeComponent)
+
+    -- The back of the microbe
+    local exitX, exitY = axialToCartesian(0, 1)
+    local membraneCoords = membraneComponent:getExternOrganellePos(exitX, exitY)
+
+    --Get the distance to eject the compunds
+    local maxR = 0
+    for _, organelle in pairs(microbeComponent.organelles) do
+        for _, hex in pairs(organelle._hexes) do
+            if hex.r + organelle.position.r > maxR then
+                maxR = hex.r + organelle.position.r
+            end
+        end
+    end
+
+    --The distance is two hexes away from the back of the microbe.
+    --This distance could be precalculated when adding/removing an organelle
+    --for more efficient pooping.
+    local ejectionDistance = (maxR + 3) * HEX_SIZE
+
+    local angle = 180
+    -- Find the direction the microbe is facing
+    local yAxis = sceneNodeComponent.transform.orientation:yAxis()
+    local microbeAngle = math.atan2(yAxis.x, yAxis.y)
+    if (microbeAngle < 0) then
+        microbeAngle = microbeAngle + 2 * math.pi
+    end
+    microbeAngle = microbeAngle * 180 / math.pi
+    -- Take the microbe angle into account so we get world relative degrees
+    local finalAngle = (angle + microbeAngle) % 360        
+    
+    local s = math.sin(finalAngle/180*math.pi);
+    local c = math.cos(finalAngle/180*math.pi);
+
+    local xnew = -membraneCoords[1] * c + membraneCoords[2] * s;
+    local ynew = membraneCoords[1] * s + membraneCoords[2] * c;
+
+    local amountToEject = MicrobeSystem.takeCompound(microbeEntity, compoundId, amount/10.0)
+    createCompoundCloud(CompoundRegistry.getCompoundInternalName(compoundId),
+                        sceneNodeComponent.transform.position.x + xnew * ejectionDistance,
+                        sceneNodeComponent.transform.position.y + ynew * ejectionDistance,
+                        amount * 5000)
 end
