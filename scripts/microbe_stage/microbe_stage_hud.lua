@@ -377,32 +377,33 @@ if next(activeHints) ~= nil then
 currentHint = currentHint + 1
 end
 end
-print (toxin_Organelle_Number .. " " .. chloroplast_Organelle_Number)
+--print (toxin_Organelle_Number .. " " .. chloroplast_Organelle_Number)
 if healthHint == true then
-self.rootGUIWindow:getChild("HintsPanel"):getChild("HelpText"):setText("your cell is damaged collect ammonia and glucose to make amino acids needed to repair it")
+self.rootGUIWindow:getChild("HintsPanel"):getChild("HelpText"):setText("Your cell is damaged! Collect ammonia and glucose to make amino acids, which can heal it.")
 end
 
 if atpHint == true then
-self.rootGUIWindow:getChild("HintsPanel"):getChild("HelpText"):setText("your are running short in atp you need  " .. atpNeeded .." atp to run out of danger!")
+self.rootGUIWindow:getChild("HintsPanel"):getChild("HelpText"):setText("You're running short of ATP! ATP is used to move and engulf. Get " .. atpNeeded .. " to be safe!")
 end
 
 if glucoseHint == true then
-self.rootGUIWindow:getChild("HintsPanel"):getChild("HelpText"):setText("your are running short in glucose collect " .. glucoseNeeded .. " glucose to be safe!")
+self.rootGUIWindow:getChild("HintsPanel"):getChild("HelpText"):setText("You need more glucose! It's used to make ATP and amino acids. Collect " .. glucoseNeeded .. " to be safe.")
 end
 
 if ammoniaHint == true then
-self.rootGUIWindow:getChild("HintsPanel"):getChild("HelpText"):setText("your are running short in ammonia collect " .. ammoniaNeeded .. " ammonia to be safe!")
+self.rootGUIWindow:getChild("HintsPanel"):getChild("HelpText"):setText("You have little ammonia, used to make amino acids to heal and reproduce. Get " .. ammoniaNeeded .. " more.")
 end
 
 if oxygenHint == true then
-self.rootGUIWindow:getChild("HintsPanel"):getChild("HelpText"):setText("You need Oxygen to produce atp and OxyToxy collect " .. oxygenNeeded .. " oxygen to Do this!")
+self.rootGUIWindow:getChild("HintsPanel"):getChild("HelpText"):setText("You need oxygen to produce ATP and OxyToxy. Collect " .. oxygenNeeded .. " oxygen to do this!")
 end
+
 if chloroplastHint == true then
-self.rootGUIWindow:getChild("HintsPanel"):getChild("HelpText"):setText("You need to collect " .. chloroplastNeeded .. " of green blobs floating around to unlock Chloroplast!!")
+self.rootGUIWindow:getChild("HintsPanel"):getChild("HelpText"):setText("Pick " .. chloroplastNeeded .. " green blobs to unlock Chloroplasts, which transform CO2 into glucose and oxygen.")
 end
 
 if toxinHint == true then
-self.rootGUIWindow:getChild("HintsPanel"):getChild("HelpText"):setText("You need to collect " .. toxinNeeded .. " of blue blobs floating around to unlock Toxin Vacuole!!")
+self.rootGUIWindow:getChild("HintsPanel"):getChild("HelpText"):setText("Collect " .. toxinNeeded .. " blue blobs to unlock Toxin Vacuoles, used to shoot harmful agents at other cells.")
 end
 
 for hintnam,hintnum in pairs(activeHints) do
