@@ -1,3 +1,4 @@
+--
 -- TODO: merge the common things in microbe_stage_tutorial_hud
 -- notification setting up
 t1 = 0
@@ -9,12 +10,31 @@ b3 = false
 --suicideButton setting up
 boolean = false
 boolean2 = false
-
--- Camera limits
-CAMERA_MIN_HEIGHT = 20
-CAMERA_MAX_HEIGHT = 120
-CAMERA_VERTICAL_SPEED = 0.015
-
+--hints setting up
+hintsPanelOpned = false
+healthHint = false
+atpHint = false
+glucoseHint = false
+ammoniaHint = false
+oxygenHint = false
+toxinHint = false
+chloroplastHint = false
+activeHints = {}
+hintN = 0
+currentHint = 1
+HHO = false
+AHO = false
+GHO = false
+AMHO = false
+OHO = false
+THO = false
+CHO = false
+glucoseNeeded = 0
+atpNeeded = 0
+ammoniaNeeded = 0
+oxygenNeeded = 0
+chloroplastNeeded = 0
+toxinNeeded = 0
 -- Updates the hud with relevant information
 
 HudSystem = class(
@@ -92,7 +112,10 @@ function HudSystem:init(gameState)
     local closeHelpButton = self.rootGUIWindow:getChild("PauseMenu"):getChild("CloseHelpButton")
 	local chloroplast_unlock_notification = self.rootGUIWindow:getChild("chloroplastUnlockNotification")
 	local toxin_unlock_notification = self.rootGUIWindow:getChild("toxinUnlockNotification")
+	local nextHint = self.rootGUIWindow:getChild("HintsPanel"):getChild("NextHint")
+	local lastHint = self.rootGUIWindow:getChild("HintsPanel"):getChild("LastHint")
     --local collapseButton = self.rootGUIWindow:getChild() collapseButtonClicked
+	local hintsButton = self.rootGUIWindow:getChild("HintsButton")
     local helpButton = self.rootGUIWindow:getChild("PauseMenu"):getChild("HelpButton")
     local helpPanel = self.rootGUIWindow:getChild("PauseMenu"):getChild("HelpPanel")
     self.editorButton = self.rootGUIWindow:getChild("EditorButton")
@@ -101,6 +124,9 @@ function HudSystem:init(gameState)
     local compoundButton = self.rootGUIWindow:getChild("CompoundExpandButton")
     --local compoundPanel = self.rootGUIWindow:getChild("CompoundsOpen")
     local quitButton = self.rootGUIWindow:getChild("PauseMenu"):getChild("QuitButton")
+	nextHint:registerEventHandler("Clicked", function() self:nextHintButtonClicked() end)
+	lastHint:registerEventHandler("Clicked", function() self:lastHintButtonClicked() end)
+	hintsButton:registerEventHandler("Clicked", function() self:hintsButtonClicked() end)
     saveButton:registerEventHandler("Clicked", function() self:saveButtonClicked() end)
     loadButton:registerEventHandler("Clicked", function() self:loadButtonClicked() end)
     menuButton:registerEventHandler("Clicked", function() self:menuButtonClicked() end)
@@ -239,6 +265,190 @@ playerMicrobe:kill()
 boolean = false
 boolean2 = true
 end
+    --Hints setup
+	local glucose = playerMicrobe:getCompoundAmount(CompoundRegistry.getCompoundId("glucose"))
+	local ammonia = playerMicrobe:getCompoundAmount(CompoundRegistry.getCompoundId("ammonia"))
+	local oxygen = playerMicrobe:getCompoundAmount(CompoundRegistry.getCompoundId("oxygen"))
+	atpNeeded = math.floor (30 - atp)
+	glucoseNeeded = math.floor (16 - glucose)
+	ammoniaNeeded = math.floor (12 - ammonia)
+	oxygenNeeded = math.floor (15 - oxygen)
+	chloroplastNeeded = math.floor (3 - chloroplast_Organelle_Number)
+	toxinNeeded = math.floor (3 - toxin_Organelle_Number)
+if playerMicrobe.microbe.hitpoints < playerMicrobe.microbe.maxHitpoints and healthHint == false and HHO == false then
+activeHints["healthHint"] = hintN + 1
+hintN = activeHints["healthHint"]
+HHO = true
+elseif playerMicrobe.microbe.hitpoints == playerMicrobe.microbe.maxHitpoints and healthHint == true and HHO == true then
+activeHints["healthHint"] = nil
+hintN = hintN - 1
+healthHint = false
+HHO = false
+if next(activeHints) ~= nil then
+currentHint = currentHint + 1
+end
+end
+
+if atp < 15 and atpHint == false and AHO == false then 
+activeHints["atpHint"] = hintN + 1
+hintN = activeHints["atpHint"]
+AHO = true
+elseif atp > 30 and atpHint == true and AHO == true then
+activeHints["atpHint"] = nil
+hintN = hintN - 1
+atpHint = false
+AHO = false
+if next(activeHints) ~= nil then
+currentHint = currentHint + 1
+end
+end
+
+if glucose < 1 and glucoseHint == false and GHO == false then 
+activeHints["glucoseHint"] = hintN + 1
+hintN = activeHints["glucoseHint"]
+GHO = true
+elseif glucose >= 16 and glucoseHint == true and GHO == true then
+activeHints["glucoseHint"] = nil
+hintN = hintN - 1
+glucoseHint = false
+GHO = false
+if next(activeHints) ~= nil then
+currentHint = currentHint + 1
+end
+end
+if ammonia < 1 and ammoniaHint == false and AMHO == false then 
+activeHints["ammoniaHint"] = hintN + 1
+hintN = activeHints["ammoniaHint"]
+AMHO = true
+elseif ammonia >= 12 and ammoniaHint == true and AMHO == true then
+activeHints["ammoniaHint"] = nil
+hintN = hintN - 1
+ammoniaHint = false
+AMHO = false
+if next(activeHints) ~= nil then
+currentHint = currentHint + 1
+end
+end
+
+if oxygen < 1 and oxygenHint == false and OHO == false then 
+activeHints["oxygenHint"] = hintN + 1
+hintN = activeHints["oxygenHint"]
+OHO = true
+elseif oxygen >= 12 and oxygenHint == true and OHO == true then
+activeHints["oxygenHint"] = nil
+hintN = hintN - 1
+oxygenHint = false
+OHO = false
+if next(activeHints) ~= nil then
+currentHint = currentHint + 1
+end
+end
+
+if toxin_Organelle_Number < 3 and toxinHint == false and THO == false then 
+activeHints["toxinHint"] = hintN + 1
+hintN = activeHints["toxinHint"]
+THO = true
+elseif toxin_Organelle_Number >= 3 and toxinHint == true and THO == true then
+activeHints["toxinHint"] = nil
+hintN = hintN - 1
+toxinHint = false
+THO = false
+if next(activeHints) ~= nil then
+currentHint = currentHint + 1
+end
+end
+
+if chloroplast_Organelle_Number < 3 and chloroplastHint == false and CHO == false then 
+activeHints["chloroplastHint"] = hintN + 1
+hintN = activeHints["chloroplastHint"]
+CHO = true
+elseif chloroplast_Organelle_Number >= 3 and chloroplastHint == true and CHO == true then
+activeHints["chloroplastHint"] = nil
+hintN = hintN - 1
+chloroplastHint = false
+CHO = false
+if next(activeHints) ~= nil then
+currentHint = currentHint + 1
+end
+end
+print (toxin_Organelle_Number .. " " .. chloroplast_Organelle_Number)
+if healthHint == true then
+self.rootGUIWindow:getChild("HintsPanel"):getChild("HelpText"):setText("your cell is damaged collect ammonia and glucose to make amino acids needed to repair it")
+end
+
+if atpHint == true then
+self.rootGUIWindow:getChild("HintsPanel"):getChild("HelpText"):setText("your are running short in atp you need  " .. atpNeeded .." atp to run out of danger!")
+end
+
+if glucoseHint == true then
+self.rootGUIWindow:getChild("HintsPanel"):getChild("HelpText"):setText("your are running short in glucose collect " .. glucoseNeeded .. " glucose to be safe!")
+end
+
+if ammoniaHint == true then
+self.rootGUIWindow:getChild("HintsPanel"):getChild("HelpText"):setText("your are running short in ammonia collect " .. ammoniaNeeded .. " ammonia to be safe!")
+end
+
+if oxygenHint == true then
+self.rootGUIWindow:getChild("HintsPanel"):getChild("HelpText"):setText("You need Oxygen to produce atp and OxyToxy collect " .. oxygenNeeded .. " oxygen to Do this!")
+end
+if chloroplastHint == true then
+self.rootGUIWindow:getChild("HintsPanel"):getChild("HelpText"):setText("You need to collect " .. chloroplastNeeded .. " of green blobs floating around to unlock Chloroplast!!")
+end
+
+if toxinHint == true then
+self.rootGUIWindow:getChild("HintsPanel"):getChild("HelpText"):setText("You need to collect " .. toxinNeeded .. " of blue blobs floating around to unlock Toxin Vacuole!!")
+end
+
+for hintnam,hintnum in pairs(activeHints) do
+if hintnum == currentHint then
+if hintnam == "atpHint" then
+atpHint = true
+else
+atpHint = false
+end
+if hintnam == "healthHint" then
+healthHint = true
+else
+healthHint = false
+end
+if hintnam == "glucoseHint" then
+glucoseHint = true
+else
+glucoseHint = false
+end
+if hintnam == "ammoniaHint" then
+ammoniaHint = true
+else
+ammoniaHint = false
+end
+if hintnam == "oxygenHint" then
+oxygenHint = true
+else
+oxygenHint = false
+end
+if hintnam == "chloroplastHint" then
+chloroplastHint = true
+else
+chloroplastHint = false
+end
+if hintnam == "toxinHint" then
+toxinHint = true
+else
+toxinHint = false
+end
+end
+end
+if next(activeHints) == nil then
+self.rootGUIWindow:getChild("HintsPanel"):getChild("HelpText"):setText("there is no available hints for now!")
+end
+
+if currentHint > hintN then
+currentHint = 1
+end
+
+if currentHint < 1 then
+currentHint = hintN
+end
     --TODO display population in home patch here
 
     if keyCombo(kmp.togglemenu) then
@@ -269,12 +479,11 @@ end
     if (Engine.keyboard:wasKeyPressed(KEYCODE.KC_G)) then
         playerMicrobe:toggleEngulfMode()
     end
-
-    -- Changing the camera height according to the player input.
+    
     local offset = getComponent(CAMERA_NAME, self.gameState, OgreCameraComponent).properties.offset
     
-    if Engine.mouse:scrollChange() ~= 0 then
-        self.scrollChange = self.scrollChange + Engine.mouse:scrollChange() * CAMERA_VERTICAL_SPEED
+    if Engine.mouse:scrollChange()/10 ~= 0 then
+        self.scrollChange = self.scrollChange + Engine.mouse:scrollChange()/10
     elseif keyCombo(kmp.plus) or keyCombo(kmp.add) then
         self.scrollChange = self.scrollChange - 5
     elseif keyCombo(kmp.minus) or keyCombo(kmp.subtract) then
@@ -290,11 +499,11 @@ end
         self.scrollChange = self.scrollChange + 1
     end
     
-    if newZVal < CAMERA_MIN_HEIGHT then
-        newZVal = CAMERA_MIN_HEIGHT 
+    if newZVal < 10 then
+        newZVal = 10
         self.scrollChange = 0
-    elseif newZVal > CAMERA_MAX_HEIGHT then
-        newZVal = CAMERA_MAX_HEIGHT
+    elseif newZVal > 60 then
+        newZVal = 60
         self.scrollChange = 0
     end
     
@@ -336,6 +545,30 @@ function HudSystem:updateLoadButton()
 end
 
 --Event handlers
+
+function HudSystem:hintsButtonClicked()
+if hintsPanelOpned == false then
+self.rootGUIWindow:getChild("HintsPanel"):show()
+self.rootGUIWindow:getChild("HintsButton"):setText("")
+self.rootGUIWindow:getChild("HintsButton"):getChild("HintsIcon"):hide()
+self.rootGUIWindow:getChild("HintsButton"):getChild("HintsContractIcon"):show()
+self.rootGUIWindow:getChild("HintsButton"):setProperty("Hide the hints panel", "TooltipText")
+hintsPanelOpned = true
+ elseif hintsPanelOpned == true then
+self.rootGUIWindow:getChild("HintsPanel"):hide()
+self.rootGUIWindow:getChild("HintsButton"):setText("Hints")
+self.rootGUIWindow:getChild("HintsButton"):getChild("HintsIcon"):show()
+self.rootGUIWindow:getChild("HintsButton"):getChild("HintsContractIcon"):hide()
+self.rootGUIWindow:getChild("HintsButton"):setProperty("Open the hints panel", "TooltipText")
+hintsPanelOpned = false
+end
+end
+function HudSystem:nextHintButtonClicked()
+currentHint = currentHint + 1
+end
+function HudSystem:lastHintButtonClicked()
+currentHint = currentHint - 1
+end
 function HudSystem:saveButtonClicked()
     getComponent("gui_sounds", self.gameState, SoundSourceComponent):playSound("button-hover-click")
     Engine:save("quick.sav")
