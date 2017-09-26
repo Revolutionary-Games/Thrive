@@ -1,5 +1,4 @@
 CLOUD_SPAWN_RADIUS = 75
-CLOUD_SPAWN_DENSITY = 1/5000
 
 POWERUP_SPAWN_RADIUS = 85
 MICROBE_SPAWN_RADIUS = 85
@@ -293,13 +292,14 @@ local function setupSpawnSystem(gameState)
         return powerupEntity
     end
 
+    compoundSpawnTypes = {}
     for compoundName, compoundInfo in pairs(compoundTable) do
         if compoundInfo.isCloud then
             local spawnCloud =  function(pos)
                 return createCompoundCloud(compoundName, pos.x, pos.y)
             end
 
-            gSpawnSystem:addSpawnType(spawnCloud, CLOUD_SPAWN_DENSITY, CLOUD_SPAWN_RADIUS)
+            compoundSpawnTypes[compoundName] = gSpawnSystem:addSpawnType(spawnCloud, 1/10000, CLOUD_SPAWN_RADIUS) -- Placeholder, the real one is set in biome.lua
         end
     end
 
