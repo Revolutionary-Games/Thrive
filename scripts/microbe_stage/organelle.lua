@@ -168,7 +168,7 @@ function Organelle:onAddedToMicrobe(microbe, q, r, rotation)
 
     local offset = Vector3(0,0,0)
     local count = 0
-    for _, hex in pairs(self.microbe:getOrganelleAt(q, r)._hexes) do
+    for _, hex in pairs(MicrobeSystem.getOrganelleAt(self.microbe.entity, q, r)._hexes) do
         count = count + 1
 
         local x, y = axialToCartesian(hex.q, hex.r)

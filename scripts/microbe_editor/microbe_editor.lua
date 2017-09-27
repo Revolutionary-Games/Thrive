@@ -47,12 +47,12 @@ end
 
 -- checks whether the hex at q, r has an organelle in its surroundeing hexes.
 function MicrobeEditor:surroundsOrganelle(q, r)
-    return  self.currentMicrobe:getOrganelleAt(q + 0, r - 1) or
-            self.currentMicrobe:getOrganelleAt(q + 1, r - 1) or
-			self.currentMicrobe:getOrganelleAt(q + 1, r + 0) or
-			self.currentMicrobe:getOrganelleAt(q + 0, r + 1) or
-			self.currentMicrobe:getOrganelleAt(q - 1, r + 1) or
-			self.currentMicrobe:getOrganelleAt(q - 1, r + 0)
+    return  MicrobeSystem.getOrganelleAt(self.currentMicrobe.entity, q + 0, r - 1) or
+            MicrobeSystem.getOrganelleAt(self.currentMicrobe.entity, q + 1, r - 1) or
+			MicrobeSystem.getOrganelleAt(self.currentMicrobe.entity, q + 1, r + 0) or
+			MicrobeSystem.getOrganelleAt(self.currentMicrobe.entity, q + 0, r + 1) or
+			MicrobeSystem.getOrganelleAt(self.currentMicrobe.entity, q - 1, r + 1) or
+			MicrobeSystem.getOrganelleAt(self.currentMicrobe.entity, q - 1, r + 0)
 end
 
 function MicrobeEditor:init(gameState)
@@ -160,7 +160,7 @@ function MicrobeEditor:renderHighlightedOrganelle(start, q, r, rotation)
 			end
 		end
         for _, hex in ipairs(hexes) do
-            local organelle = self.currentMicrobe:getOrganelleAt(-hex.q + q, -hex.r + r)
+            local organelle = MicrobeSystem.getOrganelleAt(self.currentMicrobe.entity, -hex.q + q, -hex.r + r)
             if organelle then
                 if organelle.name ~= "cytoplasm" then
                     colour = ColourValue(2, 0, 0, 0.4)
@@ -277,7 +277,7 @@ function MicrobeEditor:isValidPlacement(organelleType, q, r, rotation)
     local empty = true
     local touching = false;
     for s, hex in pairs(OrganelleFactory.checkSize(data)) do
-        local organelle = self.currentMicrobe:getOrganelleAt(hex.q + q, hex.r + r)
+        local organelle = MicrobeSystem.getOrganelleAt(self.currentMicrobe.entity, hex.q + q, hex.r + r)
         if organelle then
             if organelle.name ~= "cytoplasm" then
                 empty = false 
@@ -374,7 +374,7 @@ function MicrobeEditor:_addOrganelle(organelle, q, r, rotation)
         redo = function()
             for _, hex in pairs(organelle._hexes) do
                 -- Check if there is cytoplasm under this organelle.
-                local cytoplasm = self.currentMicrobe:getOrganelleAt(hex.q + q, hex.r + r)
+                local cytoplasm = MicrobeSystem.getOrganelleAt(self.currentMicrobe.entity, hex.q + q, hex.r + r)
                 if cytoplasm then
                     if cytoplasm.name == "cytoplasm" then
                         self.currentMicrobe:removeOrganelle(hex.q + q, hex.r + r)
@@ -403,7 +403,7 @@ function MicrobeEditor:_addOrganelle(organelle, q, r, rotation)
 end
 
 function MicrobeEditor:removeOrganelleAt(q,r)
-    local organelle = self.currentMicrobe:getOrganelleAt(q,r)
+    local organelle = MicrobeSystem.getOrganelleAt(self.currentMicrobe.entity, q, r)
     if not (organelle == nil or organelle.name == "nucleus") then -- Don't remove nucleus
         if organelle then
             for _, hex in pairs(organelle._hexes) do

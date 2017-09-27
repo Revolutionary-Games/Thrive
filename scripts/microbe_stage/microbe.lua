@@ -316,24 +316,6 @@ function Microbe:addOrganelle(q, r, rotation, organelle)
     return true
 end
 
--- Retrieves the organelle occupying a hex cell
---
--- @param q, r
--- Axial coordinates, relative to the microbe's center
---
--- @returns organelle
--- The organelle at (q,r) or nil if the hex is unoccupied
-function Microbe:getOrganelleAt(q, r)
-    for _, organelle in pairs(self.microbe.organelles) do
-        local localQ = q - organelle.position.q
-        local localR = r - organelle.position.r
-        if organelle:getHex(localQ, localR) ~= nil then
-            return organelle
-        end
-    end
-    return nil
-end
-
 -- Removes the organelle at a hex cell
 -- Note that this renders the organelle unusable as we destroy its underlying entity
 --
@@ -344,7 +326,7 @@ end
 -- True if an organelle has been removed, false if there was no organelle
 -- at (q,r)
 function Microbe:removeOrganelle(q, r)
-    local organelle = self:getOrganelleAt(q,r)
+    local organelle = MicrobeSystem.getOrganelleAt(self.entity, q, r)
     if not organelle then
         return false
     end
@@ -814,19 +796,19 @@ function Microbe:validPlacement(organelle, q, r)
     local touching = false;
     for s, hex in pairs(organelle._hexes) do
         
-        local organelle = self:getOrganelleAt(hex.q + q, hex.r + r)
+        local organelle = MicrobeSystem.getOrganelleAt(self.entity, hex.q + q, hex.r + r)
         if organelle then
             if organelle.name ~= "cytoplasm" then
                 empty = false 
             end
         end
         
-		if  self:getOrganelleAt(hex.q + q + 0, hex.r + r - 1) or
-			self:getOrganelleAt(hex.q + q + 1, hex.r + r - 1) or
-			self:getOrganelleAt(hex.q + q + 1, hex.r + r + 0) or
-			self:getOrganelleAt(hex.q + q + 0, hex.r + r + 1) or
-			self:getOrganelleAt(hex.q + q - 1, hex.r + r + 1) or
-			self:getOrganelleAt(hex.q + q - 1, hex.r + r + 0) then
+		if  MicrobeSystem.getOrganelleAt(self.entity, hex.q + q + 0, hex.r + r - 1) or
+			MicrobeSystem.getOrganelleAt(self.entity, hex.q + q + 1, hex.r + r - 1) or
+			MicrobeSystem.getOrganelleAt(self.entity, hex.q + q + 1, hex.r + r + 0) or
+			MicrobeSystem.getOrganelleAt(self.entity, hex.q + q + 0, hex.r + r + 1) or
+			MicrobeSystem.getOrganelleAt(self.entity, hex.q + q - 1, hex.r + r + 1) or
+			MicrobeSystem.getOrganelleAt(self.entity, hex.q + q - 1, hex.r + r + 0) then
 			touching = true;
 		end
     end
@@ -1255,4 +1237,24 @@ function MicrobeSystem.respawnPlayer()
 
     setRandomBiome(g_luaEngine.currentGameState)
 	global_activeMicrobeStageHudSystem:suicideButtonreset()
+end
+
+-- Retrieves the organelle occupying a hex cell
+--
+-- @param q, r
+-- Axial coordinates, relative to the microbe's center
+--
+-- @returns organelle
+-- The organelle at (q,r) or nil if the hex is unoccupied
+function MicrobeSystem.getOrganelleAt(microbeEntity, q, r)
+    local microbeComponent = getComponent(microbeEntity, MicrobeComponent)
+
+    for _, organelle in pairs(microbeComponent.organelles) do
+        local localQ = q - organelle.position.q
+        local localR = r - organelle.position.r
+        if organelle:getHex(localQ, localR) ~= nil then
+            return organelle
+        end
+    end
+    return nil
 end
