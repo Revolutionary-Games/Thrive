@@ -316,41 +316,6 @@ function Microbe:addOrganelle(q, r, rotation, organelle)
     return true
 end
 
--- Removes the organelle at a hex cell
--- Note that this renders the organelle unusable as we destroy its underlying entity
---
--- @param q, r
--- Axial coordinates of the organelle's center
---
--- @returns success
--- True if an organelle has been removed, false if there was no organelle
--- at (q,r)
-function Microbe:removeOrganelle(q, r)
-    local organelle = MicrobeSystem.getOrganelleAt(self.entity, q, r)
-    if not organelle then
-        return false
-    end
-    
-    local s = encodeAxial(organelle.position.q, organelle.position.r)
-    self.microbe.organelles[s] = nil
-    
-    self.rigidBody.properties.mass = self.rigidBody.properties.mass - organelle.mass
-    self.rigidBody.properties:touch()
-    -- TODO: cache for performance
-    local compoundShape = CompoundShape.castFrom(self.rigidBody.properties.shape)
-    compoundShape:removeChildShape(
-        organelle.collisionShape
-    )
-    
-    organelle:onRemovedFromMicrobe(self)
-    
-    MicrobeSystem.calculateHealthFromOrganelles(self.entity)
-    self.microbe.maxBandwidth = self.microbe.maxBandwidth - BANDWIDTH_PER_ORGANELLE -- Temporary solution for decreasing max bandwidth
-    self.microbe.remainingBandwidth = self.microbe.maxBandwidth
-    
-    return true
-end
-
 -- Damages the microbe, killing it if its hitpoints drop low enough
 --
 -- @param amount
@@ -1257,4 +1222,42 @@ function MicrobeSystem.getOrganelleAt(microbeEntity, q, r)
         end
     end
     return nil
+end
+
+-- Removes the organelle at a hex cell
+-- Note that this renders the organelle unusable as we destroy its underlying entity
+--
+-- @param q, r
+-- Axial coordinates of the organelle's center
+--
+-- @returns success
+-- True if an organelle has been removed, false if there was no organelle
+-- at (q,r)
+function MicrobeSystem.removeOrganelle(microbeEntity, q, r)
+    local microbeComponent = getComponent(microbeEntity, MicrobeComponent)
+    local rigidBodyComponent = getComponent(microbeEntity, RigidBodyComponent)
+
+    local organelle = MicrobeSystem.getOrganelleAt(microbeEntity, q, r)
+    if not organelle then
+        return false
+    end
+    
+    local s = encodeAxial(organelle.position.q, organelle.position.r)
+    microbeComponent.organelles[s] = nil
+    
+    rigidBodyComponent.properties.mass = rigidBodyComponent.properties.mass - organelle.mass
+    rigidBodyComponent.properties:touch()
+    -- TODO: cache for performance
+    local compoundShape = CompoundShape.castFrom(rigidBodyComponent.properties.shape)
+    compoundShape:removeChildShape(
+        organelle.collisionShape
+    )
+    
+    organelle:onRemovedFromMicrobe(microbeEntity)
+    
+    MicrobeSystem.calculateHealthFromOrganelles(microbeEntity)
+    microbeComponent.maxBandwidth = microbeComponent.maxBandwidth - BANDWIDTH_PER_ORGANELLE -- Temporary solution for decreasing max bandwidth
+    microbeComponent.remainingBandwidth = microbeComponent.maxBandwidth
+    
+    return true
 end

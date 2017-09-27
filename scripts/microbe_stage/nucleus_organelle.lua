@@ -67,7 +67,7 @@ function NucleusOrganelle:onAddedToMicrobe(microbe, q, r, rotation, organelle)
     self._needsColourUpdate = true
 end
 
-function NucleusOrganelle:onRemovedFromMicrobe(microbe, q, r)
+function NucleusOrganelle:onRemovedFromMicrobe(microbeEntity, q, r)
     self.golgi:destroy()
     self.ER:destroy()
 end

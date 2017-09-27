@@ -201,10 +201,10 @@ end
 --
 -- @param microbe
 --  The organelle's previous owner
-function Organelle:onRemovedFromMicrobe(microbe)
+function Organelle:onRemovedFromMicrobe(microbeEntity)
     --iterating on each OrganelleComponent
     for _, component in pairs(self.components) do
-        component:onRemovedFromMicrobe(microbe)
+        component:onRemovedFromMicrobe(microbeEntity)
     end
     
     self.organelleEntity:destroy()
@@ -392,7 +392,7 @@ function Organelle:recalculateBin()
         if self.compoundBin <= 0.0 then
             -- If it was split from a primary organelle, destroy it.
             if self.isDuplicate == true then
-                self.microbe:removeOrganelle(self.position.q, self.position.r)
+                MicrobeSystem.removeOrganelle(self.microbe.entity, self.position.q, self.position.r)
                 
                 -- Notify the organelle the sister organelle it is no longer split.
                 self.sisterOrganelle.wasSplit = false
@@ -438,7 +438,7 @@ function Organelle:reset()
         
     -- If it was split from a primary organelle, destroy it.
     if self.isDuplicate == true then
-        self.microbe:removeOrganelle(self.position.q, self.position.r)
+        MicrobeSystem.removeOrganelle(self.microbe.entity, self.position.q, self.position.r)
     else
         self.wasSplit = false
     end

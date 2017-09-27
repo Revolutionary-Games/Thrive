@@ -42,8 +42,9 @@ function StorageOrganelle:onAddedToMicrobe(microbe, q, r, rotation, organelle)
 end
 
 -- Overridded from Organelle:onRemovedFromMicrobe
-function StorageOrganelle:onRemovedFromMicrobe(microbe, q, r)
-    microbe.microbe.capacity = microbe.microbe.capacity - self.capacity
+function StorageOrganelle:onRemovedFromMicrobe(microbeEntity, q, r)
+    local microbeComponent = getComponent(microbeEntity, MicrobeComponent)
+    microbeComponent.capacity = microbeComponent.capacity - self.capacity
 end
 
 -- Empty override function to prevent mesh from being altered.

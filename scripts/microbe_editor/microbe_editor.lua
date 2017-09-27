@@ -377,7 +377,7 @@ function MicrobeEditor:_addOrganelle(organelle, q, r, rotation)
                 local cytoplasm = MicrobeSystem.getOrganelleAt(self.currentMicrobe.entity, hex.q + q, hex.r + r)
                 if cytoplasm then
                     if cytoplasm.name == "cytoplasm" then
-                        self.currentMicrobe:removeOrganelle(hex.q + q, hex.r + r)
+                        MicrobeSystem.removeOrganelle(self.currentMicrobe.entity, hex.q + q, hex.r + r)
                         self.currentMicrobe.sceneNode.transform:touch()
                         self.organelleCount = self.organelleCount - 1
                         local s = encodeAxial(hex.q + q, hex.r + r)
@@ -390,7 +390,7 @@ function MicrobeEditor:_addOrganelle(organelle, q, r, rotation)
             self.organelleCount = self.organelleCount + 1
         end,
         undo = function()
-            self.currentMicrobe:removeOrganelle(q, r)
+            MicrobeSystem.removeOrganelle(self.currentMicrobe.entity, q, r)
             self.currentMicrobe.sceneNode.transform:touch()
             self.organelleCount = self.organelleCount - 1
             for _, hex in pairs(organelle._hexes) do
@@ -414,7 +414,7 @@ function MicrobeEditor:removeOrganelleAt(q,r)
             self:enqueueAction({
                 cost = 10,
                 redo = function()
-                    self.currentMicrobe:removeOrganelle(storage:get("q", 0), storage:get("r", 0))
+                    MicrobeSystem.removeOrganelle(self.currentMicrobe.entity, storage:get("q", 0), storage:get("r", 0))
                     self.currentMicrobe.sceneNode.transform:touch()
                     self.organelleCount = self.organelleCount - 1
 					for _, cytoplasm in pairs(organelle._hexes) do

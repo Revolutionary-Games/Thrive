@@ -399,7 +399,7 @@ function SpeciesSystem.restoreOrganelleLayout(microbe, species)
     for s, organelle in pairs(microbe.microbe.organelles) do
         local q = organelle.position.q
         local r = organelle.position.r
-        microbe:removeOrganelle(q, r)
+        MicrobeSystem.removeOrganelle(microbe.entity, q, r)
     end
     microbe.microbe.organelles = {}
     -- give it organelles

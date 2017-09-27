@@ -69,7 +69,7 @@ end
 -- @param r
 --  r component of the organelle relative position in the microbe,
 --  in axial coordinates (see hex.lua).
-function OrganelleComponent:onRemovedFromMicrobe(microbe, q, r)
+function OrganelleComponent:onRemovedFromMicrobe(microbeEntity, q, r)
 end
 
 --  Function executed at regular intervals

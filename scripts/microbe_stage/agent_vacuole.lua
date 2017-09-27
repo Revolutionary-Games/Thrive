@@ -42,8 +42,9 @@ function AgentVacuole:onAddedToMicrobe(microbe, q, r, rotation, organelle)
 end
 
 -- Overridded from ProcessOrganelle:onRemovedFromMicrobe
-function AgentVacuole:onRemovedFromMicrobe(microbe, q, r)
-    microbe.microbe.specialStorageOrganelles[self.compoundId] = microbe.microbe.specialStorageOrganelles[self.compoundId] - 1
+function AgentVacuole:onRemovedFromMicrobe(microbeEntity, q, r)
+    local microbeComponent = getComponent(microbeEntity, MicrobeComponent)
+    microbeComponent.specialStorageOrganelles[self.compoundId] = microbeComponent.specialStorageOrganelles[self.compoundId] - 1
 end
 
 -- Called by Microbe:update
