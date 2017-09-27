@@ -918,7 +918,6 @@ function MicrobeSystem:update(renderTime, logicTime)
 end
 
 function MicrobeSystem:checkEngulfment(microbe1Comp, microbe2Comp, body, entity1, entity2)
-    
     if microbe1Comp.engulfMode and 
        microbe1Comp.maxHitpoints > ENGULF_HP_RATIO_REQ*microbe2Comp.maxHitpoints and
        microbe1Comp.dead == false and microbe2Comp.dead == false then
@@ -929,9 +928,10 @@ function MicrobeSystem:checkEngulfment(microbe1Comp, microbe2Comp, body, entity1
             microbe1Comp.isCurrentlyEngulfing = true
             microbe2Comp.wasBeingEngulfed = true
             microbeObj = Microbe(entity1, nil, self.gameState)
-            microbe2Comp.hostileEngulfer = microbeObj
-            body:disableCollisionsWith(entity2.id)     
-            microbeObj.soundSource:playSound("microbe-engulfment")
+            microbe2Comp.hostileEngulfer = entity1
+            body:disableCollisionsWith(entity2.id)
+            local soundSourceComponent = getComponent(entity1, SoundSourceComponent)
+            soundSourceComponent:playSound("microbe-engulfment")
         end
 
        --isBeingEngulfed is set to false every frame
@@ -1260,8 +1260,10 @@ function MicrobeSystem.removeEngulfedEffect(microbeEntity)
 
     microbeComponent.movementFactor = microbeComponent.movementFactor * ENGULFED_MOVEMENT_DIVISION
     microbeComponent.wasBeingEngulfed = false
-    microbeComponent.hostileEngulfer.microbe.isCurrentlyEngulfing = false; -- TODO: make the hostile engulfer an entity
-    microbeComponent.hostileEngulfer.rigidBody:reenableAllCollisions()
+    local hostileMicrobeComponent = getComponent(microbeComponent.hostileEngulfer, MicrobeComponent)
+    hostileMicrobeComponent.isCurrentlyEngulfing = false;
+    local hostileRigidBodyComponent = getComponent(microbeComponent.hostileEngulfer, RigidBodyComponent)
+    hostileRigidBodyComponent:reenableAllCollisions()
     -- Causes crash because sound was already stopped.
     --microbeComponent.hostileEngulfer.soundSource:stopSound("microbe-engulfment")
 end
