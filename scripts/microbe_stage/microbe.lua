@@ -463,7 +463,7 @@ function Microbe:kill()
         end
     end
     if self.microbe.wasBeingEngulfed then
-        self:removeEngulfedEffect()
+        MicrobeSystem.removeEngulfedEffect(self.entity)
     end
     microbeSceneNode.visible = false
 end
@@ -531,15 +531,6 @@ function Microbe:toggleEngulfMode()
         self.microbe.movementFactor = self.microbe.movementFactor / ENGULFING_MOVEMENT_DIVISION
     end
     self.microbe.engulfMode = not self.microbe.engulfMode
-end
-
-function Microbe:removeEngulfedEffect()
-    self.microbe.movementFactor = self.microbe.movementFactor * ENGULFED_MOVEMENT_DIVISION
-    self.microbe.wasBeingEngulfed = false
-    self.microbe.hostileEngulfer.microbe.isCurrentlyEngulfing = false;
-    self.microbe.hostileEngulfer.rigidBody:reenableAllCollisions()
-    -- Causes crash because sound was already stopped.
-    --self.microbe.hostileEngulfer.soundSource:stopSound("microbe-engulfment")
 end
 
 function Microbe:calculateStorageSpace()
@@ -696,7 +687,7 @@ function Microbe:update(logicTime)
             self:damage(logicTime * 0.000025  * self.microbe.maxHitpoints, "isBeingEngulfed - Microbe:update()s")
         -- Else If we were but are no longer, being engulfed
         elseif self.microbe.wasBeingEngulfed then
-            self:removeEngulfedEffect()
+            MicrobeSystem.removeEngulfedEffect(self.entity)
         end
         -- Used to detect when engulfing stops
         self.microbe.isBeingEngulfed = false;
@@ -1262,4 +1253,15 @@ function MicrobeSystem.purgeCompounds(microbeEntity)
             if amount > 0 then MicrobeSystem.ejectCompound(microbeEntity, compoundId, amountToEject) end
         end
     end
+end
+
+function MicrobeSystem.removeEngulfedEffect(microbeEntity)
+    local microbeComponent = getComponent(microbeEntity, MicrobeComponent)
+
+    microbeComponent.movementFactor = microbeComponent.movementFactor * ENGULFED_MOVEMENT_DIVISION
+    microbeComponent.wasBeingEngulfed = false
+    microbeComponent.hostileEngulfer.microbe.isCurrentlyEngulfing = false; -- TODO: make the hostile engulfer an entity
+    microbeComponent.hostileEngulfer.rigidBody:reenableAllCollisions()
+    -- Causes crash because sound was already stopped.
+    --microbeComponent.hostileEngulfer.soundSource:stopSound("microbe-engulfment")
 end
