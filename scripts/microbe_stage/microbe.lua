@@ -595,7 +595,7 @@ function Microbe:update(logicTime)
 
             self.microbe.compoundCollectionTimer = self.microbe.compoundCollectionTimer - EXCESS_COMPOUND_COLLECTION_INTERVAL
 
-            self:purgeCompounds()
+            MicrobeSystem.purgeCompounds(self.entity)
 
             self:atpDamage()
         end
@@ -782,54 +782,6 @@ function Microbe:validPlacement(organelle, q, r)
         return true
     else
         return false
-    end
-end
-
-function Microbe:purgeCompounds()
-    local compoundAmountToDump = self.microbe.stored - self.microbe.capacity
-    local compoundBag = getComponent(self.entity, CompoundBagComponent)
-
-    -- Uncomment to print compound economic information to the console.
-    --[[
-    if self.microbe.isPlayerMicrobe then
-        for compound, _ in pairs(compoundTable) do
-            compoundId = CompoundRegistry.getCompoundId(compound)
-            print(compound, compoundBag:getPrice(compoundId), compoundBag:getDemand(compoundId))
-        end
-    end
-    print("")
-    ]]
-
-    -- Dumping all the useless compounds (with price = 0).
-    for _, compoundId in pairs(CompoundRegistry.getCompoundList()) do
-        local price = compoundBag:getPrice(compoundId)
-        if price <= 0 then
-            local amountToEject = MicrobeSystem.getCompoundAmount(self.entity, compoundId)
-            if amount > 0 then amountToEject = MicrobeSystem.takeCompound(self.entity, compoundId, amountToEject) end
-            if amount > 0 then MicrobeSystem.ejectCompound(self.entity, compoundId, amountToEject) end
-        end
-    end
-
-    if compoundAmountToDump > 0 then
-        --Calculating each compound price to dump proportionally.
-        local compoundPrices = {}
-        local priceSum = 0
-        for _, compoundId in pairs(CompoundRegistry.getCompoundList()) do
-            local amount = MicrobeSystem.getCompoundAmount(self.entity, compoundId)
-
-            if amount > 0 then
-                local price = compoundBag:getPrice(compoundId)
-                compoundPrices[compoundId] = price
-                priceSum = priceSum + amount / price
-            end
-        end
-
-        --Dumping each compound according to it's price.
-        for compoundId, price in pairs(compoundPrices) do
-            local amountToEject = compoundAmountToDump * (MicrobeSystem.getCompoundAmount(self.entity, compoundId) / price) / priceSum
-            if amount > 0 then amountToEject = MicrobeSystem.takeCompound(self.entity, compoundId, amountToEject) end
-            if amount > 0 then MicrobeSystem.ejectCompound(self.entity, compoundId, amountToEject) end
-        end
     end
 end
 
@@ -1260,4 +1212,54 @@ function MicrobeSystem.removeOrganelle(microbeEntity, q, r)
     microbeComponent.remainingBandwidth = microbeComponent.maxBandwidth
     
     return true
+end
+
+function MicrobeSystem.purgeCompounds(microbeEntity)
+    local microbeComponent = getComponent(microbeEntity, MicrobeComponent)
+    local compoundBag = getComponent(microbeEntity, CompoundBagComponent)
+
+    local compoundAmountToDump = microbeComponent.stored - microbeComponent.capacity
+
+    -- Uncomment to print compound economic information to the console.
+    --[[
+    if microbeComponent.isPlayerMicrobe then
+        for compound, _ in pairs(compoundTable) do
+            compoundId = CompoundRegistry.getCompoundId(compound)
+            print(compound, compoundBag:getPrice(compoundId), compoundBag:getDemand(compoundId))
+        end
+    end
+    print("")
+    ]]
+
+    -- Dumping all the useless compounds (with price = 0).
+    for _, compoundId in pairs(CompoundRegistry.getCompoundList()) do
+        local price = compoundBag:getPrice(compoundId)
+        if price <= 0 then
+            local amountToEject = MicrobeSystem.getCompoundAmount(microbeEntity, compoundId)
+            if amount > 0 then amountToEject = MicrobeSystem.takeCompound(microbeEntity, compoundId, amountToEject) end
+            if amount > 0 then MicrobeSystem.ejectCompound(microbeEntity, compoundId, amountToEject) end
+        end
+    end
+
+    if compoundAmountToDump > 0 then
+        --Calculating each compound price to dump proportionally.
+        local compoundPrices = {}
+        local priceSum = 0
+        for _, compoundId in pairs(CompoundRegistry.getCompoundList()) do
+            local amount = MicrobeSystem.getCompoundAmount(microbeEntity, compoundId)
+
+            if amount > 0 then
+                local price = compoundBag:getPrice(compoundId)
+                compoundPrices[compoundId] = price
+                priceSum = priceSum + amount / price
+            end
+        end
+
+        --Dumping each compound according to it's price.
+        for compoundId, price in pairs(compoundPrices) do
+            local amountToEject = compoundAmountToDump * (MicrobeSystem.getCompoundAmount(microbeEntity, compoundId) / price) / priceSum
+            if amount > 0 then amountToEject = MicrobeSystem.takeCompound(microbeEntity, compoundId, amountToEject) end
+            if amount > 0 then MicrobeSystem.ejectCompound(microbeEntity, compoundId, amountToEject) end
+        end
+    end
 end
