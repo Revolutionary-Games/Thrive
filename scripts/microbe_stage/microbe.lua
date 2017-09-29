@@ -294,7 +294,7 @@ function Microbe:addOrganelle(q, r, rotation, organelle)
     self.rigidBody.properties.mass = self.rigidBody.properties.mass + organelle.mass
     self.rigidBody.properties:touch()
     
-    organelle:onAddedToMicrobe(self, q, r, rotation)
+    organelle:onAddedToMicrobe(self.entity, q, r, rotation)
     
     MicrobeSystem.calculateHealthFromOrganelles(self.entity)
     self.microbe.maxBandwidth = self.microbe.maxBandwidth + BANDWIDTH_PER_ORGANELLE -- Temporary solution for increasing max bandwidth
@@ -595,7 +595,7 @@ function Microbe:update(logicTime)
         if self.microbe.hitpoints < self.microbe.maxHitpoints then
             for _, organelle in pairs(self.microbe.organelles) do
                 -- Update the organelle.
-                organelle:update(self, logicTime)
+                organelle:update(logicTime)
                 
                 -- If the organelle is hurt.
                 if organelle:getCompoundBin() < 1.0 then
@@ -613,7 +613,7 @@ function Microbe:update(logicTime)
             -- Grow all the large organelles.
             for _, organelle in pairs(self.microbe.organelles) do
                 -- Update the organelle.
-                organelle:update(self, logicTime)
+                organelle:update(logicTime)
                 
                 -- We are in G1 phase of the cell cycle, duplicate all organelles.
                 if organelle.name ~= "nucleus" and self.reproductionStage == 0 then
@@ -700,7 +700,7 @@ function Microbe:update(logicTime)
                 MicrobeSystem.respawnPlayer()
             else
                 for _, organelle in pairs(self.microbe.organelles) do
-                    organelle:onRemovedFromMicrobe(self)
+                    organelle:onRemovedFromMicrobe()
                 end
                 self.entity:destroy()
             end
@@ -797,7 +797,7 @@ function Microbe:_initialize()
     self.rigidBody.properties.mass = 0.0
     -- Organelles
     for s, organelle in pairs(self.microbe.organelles) do
-        organelle:onAddedToMicrobe(self, organelle.position.q, organelle.position.r, organelle.rotation)   
+        organelle:onAddedToMicrobe(self.entity, organelle.position.q, organelle.position.r, organelle.rotation)   
         organelle:reset()
         self.rigidBody.properties.mass = self.rigidBody.properties.mass + organelle.mass
     end
@@ -1196,7 +1196,7 @@ function MicrobeSystem.removeOrganelle(microbeEntity, q, r)
         organelle.collisionShape
     )
     
-    organelle:onRemovedFromMicrobe(microbeEntity)
+    organelle:onRemovedFromMicrobe()
     
     MicrobeSystem.calculateHealthFromOrganelles(microbeEntity)
     microbeComponent.maxBandwidth = microbeComponent.maxBandwidth - BANDWIDTH_PER_ORGANELLE -- Temporary solution for decreasing max bandwidth

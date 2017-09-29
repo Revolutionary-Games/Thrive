@@ -54,7 +54,7 @@ OrganelleComponent = class(
 --
 -- @param self
 --  The organelle object that is made up of these components.
-function OrganelleComponent:onAddedToMicrobe(microbe, q, r, rotation, organelle)
+function OrganelleComponent:onAddedToMicrobe(microbeEntity, q, r, rotation, organelle)
 end
 
 -- Event handler for an organelle removed from a microbe.
@@ -83,7 +83,7 @@ end
 -- @param logicTime
 --  The time transcurred (in milliseconds) between this call
 --  to OrganelleComponent:update() and the previous one.
-function OrganelleComponent:update(microbe, organelle, logicTime)
+function OrganelleComponent:update(microbeEntity, organelle, logicTime)
 end
 
 function OrganelleComponent:updateColour(organelle)

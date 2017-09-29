@@ -28,7 +28,7 @@ NucleusOrganelle = class(
 
 
 -- Overridded from Organelle:onAddedToMicrobe
-function NucleusOrganelle:onAddedToMicrobe(microbe, q, r, rotation, organelle)
+function NucleusOrganelle:onAddedToMicrobe(microbeEntity, q, r, rotation, organelle)
     local x, y = axialToCartesian(q-1, r-1)
     local sceneNode1 = OgreSceneNodeComponent.new()
     sceneNode1.meshName = "golgi.mesh"
@@ -37,8 +37,8 @@ function NucleusOrganelle:onAddedToMicrobe(microbe, q, r, rotation, organelle)
     sceneNode1.transform.orientation = Quaternion.new(Radian.new(Degree(rotation)),
                                                       Vector3(0, 0, 1))
     sceneNode1.transform:touch()
-    sceneNode1.parent = microbe.entity
-    microbe.entity:addChild(self.golgi)
+    sceneNode1.parent = microbeEntity
+    microbeEntity:addChild(self.golgi)
     self.golgi:addComponent(sceneNode1)
 	self.golgi_sceneNode = sceneNode1
 	self.golgi:setVolatile(true)
@@ -50,8 +50,8 @@ function NucleusOrganelle:onAddedToMicrobe(microbe, q, r, rotation, organelle)
     sceneNode2.transform.orientation = Quaternion.new(Radian.new(Degree(rotation+10)), 
                                                       Vector3(0, 0, 1))
     sceneNode2.transform:touch()
-	sceneNode2.parent = microbe.entity
-    microbe.entity:addChild(self.ER)
+	sceneNode2.parent = microbeEntity
+    microbeEntity:addChild(self.ER)
     self.ER:addComponent(sceneNode2) 
 	self.ER_sceneNode = sceneNode2
 	self.ER:setVolatile(true)
@@ -59,8 +59,8 @@ function NucleusOrganelle:onAddedToMicrobe(microbe, q, r, rotation, organelle)
     self.sceneNode = organelle.sceneNode
     
     -- If we are not in the editor, get the color of this species.
-    if MicrobeSystem.getSpeciesComponent(microbe.entity) ~= nil then
-        local speciesColour = MicrobeSystem.getSpeciesComponent(microbe.entity).colour
+    if MicrobeSystem.getSpeciesComponent(microbeEntity) ~= nil then
+        local speciesColour = MicrobeSystem.getSpeciesComponent(microbeEntity).colour
         self.colourSuffix = "" .. math.floor(speciesColour.x * 256) .. math.floor(speciesColour.y * 256) .. math.floor(speciesColour.z * 256)
     end
         
@@ -73,9 +73,7 @@ function NucleusOrganelle:onRemovedFromMicrobe(microbeEntity, q, r)
 end
 
 function NucleusOrganelle:storage()
-
     return StorageContainer.new()
-    
 end
 
 function NucleusOrganelle:load(storage)
@@ -112,6 +110,7 @@ function NucleusOrganelle:damage(amount)
     self:recalculateBin()
 end
 
+-- TODO: delet this
 function NucleusOrganelle:recalculateBin()
     -- Calculate the new growth growth
     self.compoundBin = 2.0 - (self.numProteinLeft + self.numNucleicAcidsLeft)/self.nucleusCost
