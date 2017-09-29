@@ -386,7 +386,7 @@ function MicrobeEditor:_addOrganelle(organelle, q, r, rotation)
                 end
                 self:createHexComponent(hex.q + q, hex.r + r)
             end
-            self.currentMicrobe:addOrganelle(q, r, rotation, organelle)
+            MicrobeSystem.addOrganelle(self.currentMicrobe.entity, q, r, rotation, organelle)
             self.organelleCount = self.organelleCount + 1
         end,
         undo = function()
@@ -424,7 +424,7 @@ function MicrobeEditor:removeOrganelleAt(q,r)
                 end,
                 undo = function()
                     local organelle = Organelle.loadOrganelle(storage)
-                    self.currentMicrobe:addOrganelle(storage:get("q", 0), storage:get("r", 0), storage:get("rotation", 0), organelle)
+                    MicrobeSystem.addOrganelle(self.currentMicrobe.entity, storage:get("q", 0), storage:get("r", 0), storage:get("rotation", 0), organelle)
                     for _, hex in pairs(organelle._hexes) do
                         self:createHexComponent(hex.q + storage:get("q", 0), hex.r + storage:get("r", 0))
                     end
@@ -442,7 +442,7 @@ end
 
 function MicrobeEditor:addNucleus()
     local nucleusOrganelle = OrganelleFactory.makeOrganelle({["name"]="nucleus", ["q"]=0, ["r"]=0, ["rotation"]=0})
-    self.currentMicrobe:addOrganelle(0, 0, 0, nucleusOrganelle)
+    MicrobeSystem.addOrganelle(self.currentMicrobe.entity, 0, 0, 0, nucleusOrganelle)
 end
 
 function MicrobeEditor:loadMicrobe(entityId)
@@ -513,7 +513,7 @@ function MicrobeEditor:createNewMicrobe()
             self.currentMicrobe.microbe.speciesName = speciesName
             for position,storage in pairs(organelleStorage) do
                 local q, r = decodeAxial(position)
-                self.currentMicrobe:addOrganelle(storage:get("q", 0), storage:get("r", 0), storage:get("rotation", 0), Organelle.loadOrganelle(storage))
+                MicrobeSystem.addOrganelle(self.currentMicrobe.entity, storage:get("q", 0), storage:get("r", 0), storage:get("rotation", 0), Organelle.loadOrganelle(storage))
             end
             for _, cytoplasm in pairs(self.occupiedHexes) do
                 cytoplasm:destroy()

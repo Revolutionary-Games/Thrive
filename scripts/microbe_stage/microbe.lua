@@ -261,61 +261,6 @@ function Microbe.createMicrobeEntity(name, aiControlled, speciesName, in_editor,
     return newMicrobe
 end
 
--- Adds a new organelle
---
--- The space at (q,r) must not be occupied by another organelle already.
---
--- @param q,r
--- Offset of the organelle's center relative to the microbe's center in
--- axial coordinates.
---
--- @param organelle
--- The organelle to add
---
--- @return
---  returns whether the organelle was added
-function Microbe:addOrganelle(q, r, rotation, organelle)
-    local s = encodeAxial(q, r)
-    if self.microbe.organelles[s] then
-        return false
-    end
-    self.microbe.organelles[s] = organelle
-    organelle.microbe = self
-    local x, y = axialToCartesian(q, r)
-    local translation = Vector3(x, y, 0)
-    -- Collision shape
-    -- TODO: cache for performance
-    local compoundShape = CompoundShape.castFrom(self.rigidBody.properties.shape)
-    compoundShape:addChildShape(
-        translation,
-        Quaternion.new(Radian(0), Vector3(1,0,0)),
-        organelle.collisionShape
-    )
-    self.rigidBody.properties.mass = self.rigidBody.properties.mass + organelle.mass
-    self.rigidBody.properties:touch()
-    
-    organelle:onAddedToMicrobe(self.entity, q, r, rotation)
-    
-    MicrobeSystem.calculateHealthFromOrganelles(self.entity)
-    self.microbe.maxBandwidth = self.microbe.maxBandwidth + BANDWIDTH_PER_ORGANELLE -- Temporary solution for increasing max bandwidth
-    self.microbe.remainingBandwidth = self.microbe.maxBandwidth
-    
-    -- Send the organelles to the membraneComponent so that the membrane can "grow"
-    local localQ = q - organelle.position.q
-    local localR = r - organelle.position.r
-    if organelle:getHex(localQ, localR) ~= nil then
-        for _, hex in pairs(organelle._hexes) do
-            local q = hex.q + organelle.position.q
-            local r = hex.r + organelle.position.r
-            local x, y = axialToCartesian(q, r)
-            self.membraneComponent:sendOrganelles(x, y)
-        end
-        return organelle
-    end
-       
-    return true
-end
-
 -- Damages the microbe, killing it if its hitpoints drop low enough
 --
 -- @param amount
@@ -736,7 +681,7 @@ function Microbe:splitOrganelle(organelle)
 
                     if self:validPlacement(newOrganelle, q, r) then
                         print("placed " .. organelle.name .. " at " .. q .. " " .. r)
-                        self:addOrganelle(q, r, i*60, newOrganelle)
+                        MicrobeSystem.addOrganelle(self.entity, q, r, i * 60, newOrganelle)
                         return newOrganelle
                     end
                 end
@@ -1266,4 +1211,62 @@ function MicrobeSystem.removeEngulfedEffect(microbeEntity)
     hostileRigidBodyComponent:reenableAllCollisions()
     -- Causes crash because sound was already stopped.
     --microbeComponent.hostileEngulfer.soundSource:stopSound("microbe-engulfment")
+end
+
+-- Adds a new organelle
+--
+-- The space at (q,r) must not be occupied by another organelle already.
+--
+-- @param q,r
+-- Offset of the organelle's center relative to the microbe's center in
+-- axial coordinates.
+--
+-- @param organelle
+-- The organelle to add
+--
+-- @return
+--  returns whether the organelle was added
+function MicrobeSystem.addOrganelle(microbeEntity, q, r, rotation, organelle)
+    local microbeComponent = getComponent(microbeEntity, MicrobeComponent)
+    local membraneComponent = getComponent(microbeEntity, MembraneComponent)
+    local rigidBodyComponent = getComponent(microbeEntity, RigidBodyComponent)
+
+    local s = encodeAxial(q, r)
+    if microbeComponent.organelles[s] then
+        return false
+    end
+    microbeComponent.organelles[s] = organelle
+    local x, y = axialToCartesian(q, r)
+    local translation = Vector3(x, y, 0)
+    -- Collision shape
+    -- TODO: cache for performance
+    local compoundShape = CompoundShape.castFrom(rigidBodyComponent.properties.shape)
+    compoundShape:addChildShape(
+        translation,
+        Quaternion.new(Radian(0), Vector3(1,0,0)),
+        organelle.collisionShape
+    )
+    rigidBodyComponent.properties.mass = rigidBodyComponent.properties.mass + organelle.mass
+    rigidBodyComponent.properties:touch()
+    
+    organelle:onAddedToMicrobe(microbeEntity, q, r, rotation)
+    
+    MicrobeSystem.calculateHealthFromOrganelles(microbeEntity)
+    microbeComponent.maxBandwidth = microbeComponent.maxBandwidth + BANDWIDTH_PER_ORGANELLE -- Temporary solution for increasing max bandwidth
+    microbeComponent.remainingBandwidth = microbeComponent.maxBandwidth
+    
+    -- Send the organelles to the membraneComponent so that the membrane can "grow"
+    local localQ = q - organelle.position.q
+    local localR = r - organelle.position.r
+    if organelle:getHex(localQ, localR) ~= nil then
+        for _, hex in pairs(organelle._hexes) do
+            local q = hex.q + organelle.position.q
+            local r = hex.r + organelle.position.r
+            local x, y = axialToCartesian(q, r)
+            membraneComponent:sendOrganelles(x, y)
+        end
+        return organelle
+    end
+       
+    return true
 end

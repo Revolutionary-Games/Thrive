@@ -405,7 +405,7 @@ function SpeciesSystem.restoreOrganelleLayout(microbe, species)
     -- give it organelles
     for _, orgdata in pairs(species.organelles) do
         organelle = OrganelleFactory.makeOrganelle(orgdata)
-        microbe:addOrganelle(orgdata.q, orgdata.r, orgdata.rotation, organelle)
+        MicrobeSystem.addOrganelle(microbe.entity, orgdata.q, orgdata.r, orgdata.rotation, organelle)
     end
 end
 
