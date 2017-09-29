@@ -5,21 +5,15 @@ NucleusOrganelle = class(
     OrganelleComponent,
     -- Constructor
     function(self, arguments, data)
-
         OrganelleComponent.create(self, arguments, data)
 
         --making sure this doesn't run when load() is called
         if arguments == nil and data == nil then
             return
         end
-        
-        self.numProteinLeft = 2
-        self.numNucleicAcidsLeft = 2
-        self.nucleusCost = self.numProteinLeft + self.numNucleicAcidsLeft
 
         self.golgi = Entity.new(g_luaEngine.currentGameState.wrapper)
         self.ER = Entity.new(g_luaEngine.currentGameState.wrapper)
-        
     end
 )
 
@@ -81,6 +75,7 @@ function NucleusOrganelle:load(storage)
 	self.ER = Entity.new(g_luaEngine.currentGameState.wrapper)
 end
 
+-- This function isn't called anywhere.
 function NucleusOrganelle:updateColour(organelle)
     -- Update the colours of the additional organelle models.
     --[[if self.sceneNode.entity ~= nil and self.golgi.sceneNode.entity ~= nil then
@@ -97,36 +92,3 @@ function NucleusOrganelle:updateColour(organelle)
         organelle._needsColourUpdate = false
     end]]
 end
-
-function NucleusOrganelle:damage(amount)
-    -- Calculate the total number of compounds we need to divide now, so that we can keep this ratio.
-    local totalLeft = self.numProteinLeft + self.numNucleicAcidsLeft
-    
-    -- Calculate how much compounds the organelle needs to have to result in a health equal to compoundBin - amount.
-    local damageFactor = (2.0 - self.compoundBin + amount) * self.nucleusCost / totalLeft
-    self.numProteinLeft = self.numProteinLeft * damageFactor
-    self.numNucleicAcidsLeft = self.numNucleicAcidsLeft * damageFactor
-    -- Calculate the new growth value.
-    self:recalculateBin()
-end
-
--- TODO: delet this
-function NucleusOrganelle:recalculateBin()
-    -- Calculate the new growth growth
-    self.compoundBin = 2.0 - (self.numProteinLeft + self.numNucleicAcidsLeft)/self.nucleusCost
-    
-    -- If the organelle is damaged...
-    if self.compoundBin < 1.0 then
-        -- Make the nucleus smaller.
-        self.sceneNode.transform.scale = Vector3((1.0 + self.compoundBin)/2, (1.0 + self.compoundBin)/2, (1.0 + self.compoundBin)/2)*HEX_SIZE
-        self.sceneNode.transform:touch()
-        
-        if self.sceneNode.entity ~= nil then        
-            self.sceneNode.entity:tintColour("nucleus" .. self.colourSuffix, ColourValue((1.0 + self.compoundBin)/2, self.compoundBin, self.compoundBin, 1.0))
-        end
-    else
-        -- Darken the nucleus as more DNA is made.
-        self.sceneNode.entity:tintColour("nucleus" .. self.colourSuffix, ColourValue(2-self.compoundBin, 2-self.compoundBin, 2-self.compoundBin, 1.0))
-    end
-end
-
