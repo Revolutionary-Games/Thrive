@@ -598,7 +598,7 @@ function Microbe:update(logicTime)
                 organelle:reset()
                 organelle.wasSplit = true
                 -- Create a second organelle.
-                local organelle2 = self:splitOrganelle(organelle)
+                local organelle2 = MicrobeSystem.splitOrganelle(self.entity, organelle)
                 organelle2.wasSplit = true
                 organelle2.isDuplicate = true
                 organelle2.sisterOrganelle = organelle
@@ -654,44 +654,6 @@ function Microbe:update(logicTime)
     -- print("finished update")
 end
 
-function Microbe:splitOrganelle(organelle)
-    local q = organelle.position.q
-    local r = organelle.position.r
-
-    --Spiral search for space for the organelle
-    local radius = 1
-    while true do
-        --Moves into the ring of radius "radius" and center the old organelle
-        q = q + HEX_NEIGHBOUR_OFFSET[HEX_SIDE.BOTTOM_LEFT][1]
-        r = r + HEX_NEIGHBOUR_OFFSET[HEX_SIDE.BOTTOM_LEFT][2]
-
-        --Iterates in the ring
-        for side = 1, 6 do --necesary due to lua not ordering the tables.
-            local offset = HEX_NEIGHBOUR_OFFSET[side]
-            --Moves "radius" times into each direction
-            for i = 1, radius do
-                q = q + offset[1]
-                r = r + offset[2]
-
-                --Checks every possible rotation value.
-                for j = 0, 5 do
-                    local rotation = 360 * j / 6
-                    local data = {["name"]=organelle.name, ["q"]=q, ["r"]=r, ["rotation"]=i*60}
-                    local newOrganelle = OrganelleFactory.makeOrganelle(data)
-
-                    if MicrobeSystem.validPlacement(self.entity, newOrganelle, q, r) then
-                        print("placed " .. organelle.name .. " at " .. q .. " " .. r)
-                        MicrobeSystem.addOrganelle(self.entity, q, r, i * 60, newOrganelle)
-                        return newOrganelle
-                    end
-                end
-            end
-        end
-
-        radius = radius + 1
-    end
-end
-
 function Microbe:atpDamage()
     -- Damage microbe if its too low on ATP
     if MicrobeSystem.getCompoundAmount(self.entity, CompoundRegistry.getCompoundId("atp")) < 1.0 then
@@ -745,6 +707,10 @@ end
 --
 -- Updates microbes
 --------------------------------------------------------------------------------
+-- TODO: This system is HUUUUUUGE! D:
+-- We should try to separate it into smaller systems.
+-- For example, the agents should be handled in another system
+-- (however we're going to redo agents so we should wait until then for that one)
 MicrobeSystem = class(
     LuaSystem,
     function(self)
@@ -1270,4 +1236,42 @@ function MicrobeSystem.validPlacement(microbeEntity, organelle, q, r)
     end
     
     return touching
+end
+
+function MicrobeSystem.splitOrganelle(microbeEntity, organelle)
+    local q = organelle.position.q
+    local r = organelle.position.r
+
+    --Spiral search for space for the organelle
+    local radius = 1
+    while true do
+        --Moves into the ring of radius "radius" and center the old organelle
+        q = q + HEX_NEIGHBOUR_OFFSET[HEX_SIDE.BOTTOM_LEFT][1]
+        r = r + HEX_NEIGHBOUR_OFFSET[HEX_SIDE.BOTTOM_LEFT][2]
+
+        --Iterates in the ring
+        for side = 1, 6 do --necesary due to lua not ordering the tables.
+            local offset = HEX_NEIGHBOUR_OFFSET[side]
+            --Moves "radius" times into each direction
+            for i = 1, radius do
+                q = q + offset[1]
+                r = r + offset[2]
+
+                --Checks every possible rotation value.
+                for j = 0, 5 do
+                    local rotation = 360 * j / 6
+                    local data = {["name"]=organelle.name, ["q"]=q, ["r"]=r, ["rotation"]=i*60}
+                    local newOrganelle = OrganelleFactory.makeOrganelle(data)
+
+                    if MicrobeSystem.validPlacement(microbeEntity, newOrganelle, q, r) then
+                        print("placed " .. organelle.name .. " at " .. q .. " " .. r)
+                        MicrobeSystem.addOrganelle(microbeEntity, q, r, i * 60, newOrganelle)
+                        return newOrganelle
+                    end
+                end
+            end
+        end
+
+        radius = radius + 1
+    end
 end
