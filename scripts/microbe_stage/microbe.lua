@@ -679,7 +679,7 @@ function Microbe:splitOrganelle(organelle)
                     local data = {["name"]=organelle.name, ["q"]=q, ["r"]=r, ["rotation"]=i*60}
                     local newOrganelle = OrganelleFactory.makeOrganelle(data)
 
-                    if self:validPlacement(newOrganelle, q, r) then
+                    if MicrobeSystem.validPlacement(self.entity, newOrganelle, q, r) then
                         print("placed " .. organelle.name .. " at " .. q .. " " .. r)
                         MicrobeSystem.addOrganelle(self.entity, q, r, i * 60, newOrganelle)
                         return newOrganelle
@@ -689,35 +689,6 @@ function Microbe:splitOrganelle(organelle)
         end
 
         radius = radius + 1
-    end
-end
-
-function Microbe:validPlacement(organelle, q, r)
-    local empty = true
-    local touching = false;
-    for s, hex in pairs(organelle._hexes) do
-        
-        local organelle = MicrobeSystem.getOrganelleAt(self.entity, hex.q + q, hex.r + r)
-        if organelle then
-            if organelle.name ~= "cytoplasm" then
-                empty = false 
-            end
-        end
-        
-		if  MicrobeSystem.getOrganelleAt(self.entity, hex.q + q + 0, hex.r + r - 1) or
-			MicrobeSystem.getOrganelleAt(self.entity, hex.q + q + 1, hex.r + r - 1) or
-			MicrobeSystem.getOrganelleAt(self.entity, hex.q + q + 1, hex.r + r + 0) or
-			MicrobeSystem.getOrganelleAt(self.entity, hex.q + q + 0, hex.r + r + 1) or
-			MicrobeSystem.getOrganelleAt(self.entity, hex.q + q - 1, hex.r + r + 1) or
-			MicrobeSystem.getOrganelleAt(self.entity, hex.q + q - 1, hex.r + r + 0) then
-			touching = true;
-		end
-    end
-    
-    if empty and touching then
-        return true
-    else
-        return false
     end
 end
 
@@ -1269,4 +1240,30 @@ function MicrobeSystem.addOrganelle(microbeEntity, q, r, rotation, organelle)
     end
        
     return true
+end
+
+-- TODO: we have a similar method in procedural_microbes.lua and another one in microbe_editor.lua.
+-- They probably should all use the same one.
+function MicrobeSystem.validPlacement(microbeEntity, organelle, q, r)
+    local touching = false;
+    for s, hex in pairs(organelle._hexes) do
+        
+        local organelle = MicrobeSystem.getOrganelleAt(microbeEntity, hex.q + q, hex.r + r)
+        if organelle then
+            if organelle.name ~= "cytoplasm" then
+                return false 
+            end
+        end
+        
+		if  MicrobeSystem.getOrganelleAt(microbeEntity, hex.q + q + 0, hex.r + r - 1) or
+			MicrobeSystem.getOrganelleAt(microbeEntity, hex.q + q + 1, hex.r + r - 1) or
+			MicrobeSystem.getOrganelleAt(microbeEntity, hex.q + q + 1, hex.r + r + 0) or
+			MicrobeSystem.getOrganelleAt(microbeEntity, hex.q + q + 0, hex.r + r + 1) or
+			MicrobeSystem.getOrganelleAt(microbeEntity, hex.q + q - 1, hex.r + r + 1) or
+			MicrobeSystem.getOrganelleAt(microbeEntity, hex.q + q - 1, hex.r + r + 0) then
+			touching = true;
+		end
+    end
+    
+    return touching
 end
