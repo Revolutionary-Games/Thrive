@@ -392,7 +392,7 @@ function Organelle:recalculateBin()
         if self.compoundBin <= 0.0 then
             -- If it was split from a primary organelle, destroy it.
             if self.isDuplicate == true then
-                MicrobeSystem.removeOrganelle(self.microbEntity, self.position.q, self.position.r)
+                MicrobeSystem.removeOrganelle(self.microbeEntity, self.position.q, self.position.r)
                 
                 -- Notify the organelle the sister organelle it is no longer split.
                 self.sisterOrganelle.wasSplit = false

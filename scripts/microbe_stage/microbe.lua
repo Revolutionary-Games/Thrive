@@ -807,15 +807,9 @@ function MicrobeSystem:update(renderTime, logicTime)
         local entity1 = Entity.new(collision.entityId1, self.gameState.wrapper)
         local entity2 = Entity.new(collision.entityId2, self.gameState.wrapper)
         if entity1:exists() and entity2:exists() then
-            local body1 = getComponent(entity1, RigidBodyComponent)
-            local body2 = getComponent(entity2, RigidBodyComponent)
-            local microbe1Comp = getComponent(entity1, MicrobeComponent)
-            local microbe2Comp = getComponent(entity2, MicrobeComponent)
-            if body1~=nil and body2~=nil then
-                -- Engulf initiation
-                self:checkEngulfment(microbe1Comp, microbe2Comp, body1, entity1, entity2)
-                self:checkEngulfment(microbe2Comp, microbe1Comp, body2, entity2, entity1)
-            end
+            -- Engulf initiation
+            MicrobeSystem.checkEngulfment(entity1, entity2)
+            MicrobeSystem.checkEngulfment(entity2, entity1)
         end
     end
     self.microbeCollisions:clearCollisions()
@@ -833,9 +827,21 @@ function MicrobeSystem:update(renderTime, logicTime)
     self.agentCollisions:clearCollisions()
 end
 
-function MicrobeSystem:checkEngulfment(microbe1Comp, microbe2Comp, body, entity1, entity2)
+function MicrobeSystem.checkEngulfment(engulferMicrobeEntity, engulfedMicrobeEntity)
+    local body = getComponent(engulferMicrobeEntity, RigidBodyComponent)
+    local microbe1Comp = getComponent(engulferMicrobeEntity, MicrobeComponent)
+    local microbe2Comp = getComponent(engulfedMicrobeEntity, MicrobeComponent)
+    local soundSourceComponent = getComponent(engulferMicrobeEntity, SoundSourceComponent)
+    local bodyEngulfed = getComponent(engulfedMicrobeEntity, RigidBodyComponent)
+
+    -- That actually happens sometimes, and i think it shouldn't. :/
+    -- Probably related to a collision detection bug.
+    -- assert(body ~= nil, "Microbe without a rigidBody tried to engulf.")
+    -- assert(bodyEngulfed ~= nil, "Microbe without a rigidBody tried to be engulfed.")
+    if body == nil or bodyEngulfed == nil then return end
+
     if microbe1Comp.engulfMode and 
-       microbe1Comp.maxHitpoints > ENGULF_HP_RATIO_REQ*microbe2Comp.maxHitpoints and
+       microbe1Comp.maxHitpoints > ENGULF_HP_RATIO_REQ * microbe2Comp.maxHitpoints and
        microbe1Comp.dead == false and microbe2Comp.dead == false then
 
         if not microbe1Comp.isCurrentlyEngulfing then
@@ -843,10 +849,8 @@ function MicrobeSystem:checkEngulfment(microbe1Comp, microbe2Comp, body, entity1
             microbe2Comp.movementFactor = microbe2Comp.movementFactor / ENGULFED_MOVEMENT_DIVISION
             microbe1Comp.isCurrentlyEngulfing = true
             microbe2Comp.wasBeingEngulfed = true
-            microbeObj = Microbe(entity1, nil, self.gameState)
-            microbe2Comp.hostileEngulfer = entity1
-            body:disableCollisionsWith(entity2.id)
-            local soundSourceComponent = getComponent(entity1, SoundSourceComponent)
+            microbe2Comp.hostileEngulfer = engulferMicrobeEntity
+            body:disableCollisionsWith(engulfedMicrobeEntity.id)
             soundSourceComponent:playSound("microbe-engulfment")
         end
 
