@@ -291,7 +291,7 @@ function Microbe:damage(amount, damageType)
     
     if self.microbe.hitpoints <= 0 then
         self.microbe.hitpoints = 0
-        self:kill()
+        MicrobeSystem.kill(self.entity)
     end
 end
 
@@ -348,69 +348,6 @@ function Microbe:emitAgent(compoundId, maxAmount)
         local amountToEject = MicrobeSystem.takeCompound(self.entity, compoundId, maxAmount/10.0)
         createAgentCloud(compoundId, self.sceneNode.transform.position.x + xnew, self.sceneNode.transform.position.y + ynew, direction, amountToEject * 10)
     end
-end
-
--- Kills the microbe, releasing stored compounds into the enviroment
-function Microbe:kill()
-    -- Releasing all the agents.
-    for compoundId, _ in pairs(self.microbe.specialStorageOrganelles) do
-        local _amount = MicrobeSystem.getCompoundAmount(self.entity, compoundId)
-        while _amount > 0 do
-            ejectedAmount = MicrobeSystem.takeCompound(self.entity, compoundId, 3) -- Eject up to 3 units per particle
-            local direction = Vector3(math.random() * 2 - 1, math.random() * 2 - 1, 0)
-            createAgentCloud(compoundId, self.sceneNode.transform.position.x, self.sceneNode.transform.position.y, direction, amountToEject)
-            _amount = _amount - ejectedAmount
-        end
-    end
-
-    local compoundsToRelease = {}
-    -- Eject the compounds that was in the microbe
-    for _, compoundId in pairs(CompoundRegistry.getCompoundList()) do
-        local total = MicrobeSystem.getCompoundAmount(self.entity, compoundId)
-        local ejectedAmount = MicrobeSystem.takeCompound(self.entity, compoundId, total)
-        compoundsToRelease[compoundId] = ejectedAmount
-    end
-
-    for _, organelle in pairs(self.microbe.organelles) do
-        for compoundName, amount in pairs(organelleTable[organelle.name].composition) do
-            local compoundId = CompoundRegistry.getCompoundId(compoundName)
-            if(compoundsToRelease[compoundId] == nil) then
-                compoundsToRelease[compoundId] = amount * COMPOUND_RELEASE_PERCENTAGE
-            else
-                compoundsToRelease[compoundId] = compoundsToRelease[compoundId] + amount * COMPOUND_RELEASE_PERCENTAGE
-            end
-        end
-    end
-
-    for compoundId, amount in pairs(compoundsToRelease) do
-        MicrobeSystem.ejectCompound(self.entity, compoundId, amount)
-    end
-
-    local microbeSceneNode = getComponent(self.entity, OgreSceneNodeComponent)
-    local deathAnimationEntity = Entity.new(g_luaEngine.currentGameState.wrapper)
-    local lifeTimeComponent = TimedLifeComponent.new()
-    lifeTimeComponent.timeToLive = 4000
-    deathAnimationEntity:addComponent(lifeTimeComponent)
-    local deathAnimSceneNode = OgreSceneNodeComponent.new()
-    deathAnimSceneNode.meshName = "MicrobeDeath.mesh"
-    deathAnimSceneNode:playAnimation("Death", false)
-    deathAnimSceneNode.transform.position = Vector3(microbeSceneNode.transform.position.x, microbeSceneNode.transform.position.y, 0)
-    deathAnimSceneNode.transform:touch()
-    deathAnimationEntity:addComponent(deathAnimSceneNode)
-    self.soundSource:playSound("microbe-death")
-    self.microbe.dead = true
-    self.microbe.deathTimer = 5000
-    self.microbe.movementDirection = Vector3(0,0,0)
-    self.rigidBody:clearForces()
-    if not self.microbe.isPlayerMicrobe then
-        for _, organelle in pairs(self.microbe.organelles) do
-           organelle:removePhysics()
-        end
-    end
-    if self.microbe.wasBeingEngulfed then
-        MicrobeSystem.removeEngulfedEffect(self.entity)
-    end
-    microbeSceneNode.visible = false
 end
 
 -- Copies this microbe. The new microbe will not have the stored compounds of this one.
@@ -1283,4 +1220,72 @@ function MicrobeSystem.toggleEngulfMode(microbeEntity)
     end
 
     microbeComponent.engulfMode = not microbeComponent.engulfMode
+end
+
+-- Kills the microbe, releasing stored compounds into the enviroment
+function MicrobeSystem.kill(microbeEntity)
+    local microbeComponent = getComponent(microbeEntity, MicrobeComponent)
+    local rigidBodyComponent = getComponent(microbeEntity, RigidBodyComponent)
+    local soundSourceComponent = getComponent(microbeEntity, SoundSourceComponent)
+    local microbeSceneNode = getComponent(microbeEntity, OgreSceneNodeComponent)
+
+    -- Releasing all the agents.
+    for compoundId, _ in pairs(microbeComponent.specialStorageOrganelles) do
+        local _amount = MicrobeSystem.getCompoundAmount(microbeEntity, compoundId)
+        while _amount > 0 do
+            ejectedAmount = MicrobeSystem.takeCompound(microbeEntity, compoundId, 3) -- Eject up to 3 units per particle
+            local direction = Vector3(math.random() * 2 - 1, math.random() * 2 - 1, 0)
+            createAgentCloud(compoundId, microbeSceneNode.transform.position.x, microbeSceneNode.transform.position.y, direction, amountToEject)
+            _amount = _amount - ejectedAmount
+        end
+    end
+
+    local compoundsToRelease = {}
+    -- Eject the compounds that was in the microbe
+    for _, compoundId in pairs(CompoundRegistry.getCompoundList()) do
+        local total = MicrobeSystem.getCompoundAmount(microbeEntity, compoundId)
+        local ejectedAmount = MicrobeSystem.takeCompound(microbeEntity, compoundId, total)
+        compoundsToRelease[compoundId] = ejectedAmount
+    end
+
+    for _, organelle in pairs(microbeComponent.organelles) do
+        for compoundName, amount in pairs(organelleTable[organelle.name].composition) do
+            local compoundId = CompoundRegistry.getCompoundId(compoundName)
+            if(compoundsToRelease[compoundId] == nil) then
+                compoundsToRelease[compoundId] = amount * COMPOUND_RELEASE_PERCENTAGE
+            else
+                compoundsToRelease[compoundId] = compoundsToRelease[compoundId] + amount * COMPOUND_RELEASE_PERCENTAGE
+            end
+        end
+    end
+
+    -- TODO: make the compounds be released inside of the microbe and not in the back.
+    for compoundId, amount in pairs(compoundsToRelease) do
+        MicrobeSystem.ejectCompound(microbeEntity, compoundId, amount)
+    end
+
+    local deathAnimationEntity = Entity.new(g_luaEngine.currentGameState.wrapper)
+    local lifeTimeComponent = TimedLifeComponent.new()
+    lifeTimeComponent.timeToLive = 4000
+    deathAnimationEntity:addComponent(lifeTimeComponent)
+    local deathAnimSceneNode = OgreSceneNodeComponent.new()
+    deathAnimSceneNode.meshName = "MicrobeDeath.mesh"
+    deathAnimSceneNode:playAnimation("Death", false)
+    deathAnimSceneNode.transform.position = Vector3(microbeSceneNode.transform.position.x, microbeSceneNode.transform.position.y, 0)
+    deathAnimSceneNode.transform:touch()
+    deathAnimationEntity:addComponent(deathAnimSceneNode)
+    soundSourceComponent:playSound("microbe-death")
+    microbeComponent.dead = true
+    microbeComponent.deathTimer = 5000
+    microbeComponent.movementDirection = Vector3(0,0,0)
+    rigidBodyComponent:clearForces()
+    if not microbeComponent.isPlayerMicrobe then
+        for _, organelle in pairs(microbeComponent.organelles) do
+           organelle:removePhysics()
+        end
+    end
+    if microbeComponent.wasBeingEngulfed then
+        MicrobeSystem.removeEngulfedEffect(microbeEntity)
+    end
+    microbeSceneNode.visible = false
 end

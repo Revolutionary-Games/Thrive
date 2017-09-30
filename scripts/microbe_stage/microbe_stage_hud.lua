@@ -228,17 +228,17 @@ function HudSystem:update(renderTime)
         end
     end
 	--suicideButton setting up 
-local atp = MicrobeSystem.getCompoundAmount(player, CompoundRegistry.getCompoundId("atp"))
-if atp == 0 and boolean2 == false then 
-	self.rootGUIWindow:getChild("SuicideButton"):enable()
-	elseif atp > 0 or boolean2 == true then
-	global_activeMicrobeStageHudSystem:suicideButtondisable()
-end
-if boolean == true then
-playerMicrobe:kill()
-boolean = false
-boolean2 = true
-end
+    local atp = MicrobeSystem.getCompoundAmount(player, CompoundRegistry.getCompoundId("atp"))
+    if atp == 0 and boolean2 == false then 
+        self.rootGUIWindow:getChild("SuicideButton"):enable()
+        elseif atp > 0 or boolean2 == true then
+        global_activeMicrobeStageHudSystem:suicideButtondisable()
+    end
+    if boolean == true then
+        MicrobeSystem.kill(player)
+        boolean = false
+        boolean2 = true
+    end
     --TODO display population in home patch here
 
     if keyCombo(kmp.togglemenu) then
