@@ -466,18 +466,6 @@ function Microbe.transferCompounds(from, to)
     end
 end
 
--- Disables or enabled engulfmode for a microbe, allowing or disallowed it to absorb other microbes
-function Microbe:toggleEngulfMode()
-    if self.microbe.engulfMode then
-        self.microbe.movementFactor = self.microbe.movementFactor * ENGULFING_MOVEMENT_DIVISION
-        self.soundSource:stopSound("microbe-engulfment") -- Possibly comment out. If version > 0.3.2 delete.
-        self.rigidBody:reenableAllCollisions()
-    else
-        self.microbe.movementFactor = self.microbe.movementFactor / ENGULFING_MOVEMENT_DIVISION
-    end
-    self.microbe.engulfMode = not self.microbe.engulfMode
-end
-
 function Microbe:calculateStorageSpace()
     self.microbe.stored = 0
     for _, compoundId in pairs(CompoundRegistry.getCompoundList()) do
@@ -623,7 +611,7 @@ function Microbe:update(logicTime)
             
             if MicrobeSystem.takeCompound(self.entity, CompoundRegistry.getCompoundId("atp"), cost) < cost - 0.001 then
                 print ("too little atp, disabling - 749")
-                self:toggleEngulfMode()
+                MicrobeSystem.toggleEngulfMode(self.entity)
             end
             -- Flash the membrane blue.
             MicrobeSystem.flashMembraneColour(self.entity, 3000, ColourValue(0.2,0.5,1.0,0.5))
@@ -1146,8 +1134,12 @@ function MicrobeSystem.removeEngulfedEffect(microbeEntity)
 
     microbeComponent.movementFactor = microbeComponent.movementFactor * ENGULFED_MOVEMENT_DIVISION
     microbeComponent.wasBeingEngulfed = false
+
     local hostileMicrobeComponent = getComponent(microbeComponent.hostileEngulfer, MicrobeComponent)
-    hostileMicrobeComponent.isCurrentlyEngulfing = false;
+    if hostileMicrobeComponent ~= nil then
+        hostileMicrobeComponent.isCurrentlyEngulfing = false
+    end
+
     local hostileRigidBodyComponent = getComponent(microbeComponent.hostileEngulfer, RigidBodyComponent)
     hostileRigidBodyComponent:reenableAllCollisions()
     -- Causes crash because sound was already stopped.
@@ -1274,4 +1266,21 @@ function MicrobeSystem.splitOrganelle(microbeEntity, organelle)
 
         radius = radius + 1
     end
+end
+
+-- Disables or enabled engulfmode for a microbe, allowing or disallowed it to absorb other microbes
+function MicrobeSystem.toggleEngulfMode(microbeEntity)
+    local microbeComponent = getComponent(microbeEntity, MicrobeComponent)
+    local rigidBodyComponent = getComponent(microbeEntity, RigidBodyComponent)
+    local soundSourceComponent = getComponent(microbeEntity, SoundSourceComponent)
+
+    if microbeComponent.engulfMode then
+        microbeComponent.movementFactor = microbeComponent.movementFactor * ENGULFING_MOVEMENT_DIVISION
+        soundSourceComponent:stopSound("microbe-engulfment") -- Possibly comment out. If version > 0.3.2 delete. --> We're way past 0.3.2, do we still need this?
+        rigidBodyComponent:reenableAllCollisions()
+    else
+        microbeComponent.movementFactor = microbeComponent.movementFactor / ENGULFING_MOVEMENT_DIVISION
+    end
+
+    microbeComponent.engulfMode = not microbeComponent.engulfMode
 end

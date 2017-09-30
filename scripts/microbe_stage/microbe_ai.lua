@@ -249,9 +249,9 @@ function MicrobeAISystem:update(renderTime, logicTime)
 				   if vec:length() < 25 and vec:length() > 10 and MicrobeSystem.getCompoundAmount(microbe.entity, compoundId) > MINIMUM_AGENT_EMISSION_AMOUNT and microbe.microbe.microbetargetdirection < 10 then
 						microbe:emitAgent(CompoundRegistry.getCompoundId("oxytoxy"), 1)
                     elseif vec:length() < 10 and microbe.microbe.maxHitpoints > ENGULF_HP_RATIO_REQ * aiComponent.prey.microbe.maxHitpoints and not microbe.microbe.engulfMode then
-                        microbe:toggleEngulfMode()
+                        MicrobeSystem.toggleEngulfMode(microbe.entity)
                     elseif vec:length() > 15  and microbe.microbe.engulfMode then
-                        microbe:toggleEngulfMode()
+                        MicrobeSystem.toggleEngulfMode(microbe.entity)
                     end
                     
                     vec:normalise()

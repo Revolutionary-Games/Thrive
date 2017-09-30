@@ -267,7 +267,7 @@ end
         playerMicrobe.soundSource:playSound("microbe-movement-1")
     end
     if (Engine.keyboard:wasKeyPressed(KEYCODE.KC_G)) then
-        playerMicrobe:toggleEngulfMode()
+        MicrobeSystem.toggleEngulfMode(player)
     end
 
     -- Changing the camera height according to the player input.
