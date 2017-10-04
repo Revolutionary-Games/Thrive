@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
-# Generates basic GameWorld with all standard components
+# Generates Thrive world for the cell stage
 
 require_relative '../../RubySetupSystem/RubyCommon.rb'
 require_relative '../../ThirdParty/leviathan/Helpers/FileGen.rb'
@@ -17,9 +17,14 @@ world = GameWorldClass.new(
   ],
   systems: [
   ],
-  tickrunmethod: <<-END
+  systemspreticksetup: (<<-END
+  const auto timeAndTickTuple = GetTickAndTime();
+  const auto calculatedTick = std::get<0>(timeAndTickTuple);
+  const auto progressInTick = std::get<1>(timeAndTickTuple);
+  const auto tick = GetTickNumber();
   // TODO: thrive systems
 END
+                       ),  
 )
 
 world.base "Leviathan::StandardWorld"
