@@ -260,61 +260,6 @@ function Microbe.createMicrobeEntity(name, aiControlled, speciesName, in_editor,
     return newMicrobe
 end
 
--- Drains an agent from the microbes special storage and emits it
---
--- @param compoundId
--- The compound id of the agent to emit
---
--- @param maxAmount
--- The maximum amount to try to emit
-function Microbe:emitAgent(compoundId, maxAmount)
-    -- Cooldown code
-    if self.microbe.agentEmissionCooldown > 0 then return end
-    local numberOfAgentVacuoles = self.microbe.specialStorageOrganelles[compoundId]
-    
-    -- Only shoot if you have agent vacuoles.
-    if numberOfAgentVacuoles == nil or numberOfAgentVacuoles == 0 then return end
-
-    -- The cooldown time is inversely proportional to the amount of agent vacuoles.
-    self.microbe.agentEmissionCooldown = AGENT_EMISSION_COOLDOWN / numberOfAgentVacuoles
-
-    if MicrobeSystem.getCompoundAmount(self.entity, compoundId) > MINIMUM_AGENT_EMISSION_AMOUNT then
-        self.soundSource:playSound("microbe-release-toxin")
-
-        -- Calculate the emission angle of the agent emitter
-        local organelleX, organelleY = axialToCartesian(0, -1) -- The front of the microbe
-        local membraneCoords = self.membraneComponent:getExternOrganellePos(organelleX, organelleY)
-
-        local angle =  math.atan2(organelleY, organelleX)
-        if (angle < 0) then
-            angle = angle + 2*math.pi
-        end
-        angle = -(angle * 180/math.pi -90 ) % 360
-        --angle = angle * 180/math.pi
-
-        -- Find the direction the microbe is facing
-        local yAxis = self.sceneNode.transform.orientation:yAxis()
-        local microbeAngle = math.atan2(yAxis.x, yAxis.y)
-        if (microbeAngle < 0) then
-            microbeAngle = microbeAngle + 2*math.pi
-        end
-        microbeAngle = microbeAngle * 180/math.pi
-        -- Take the microbe angle into account so we get world relative degrees
-        local finalAngle = (angle + microbeAngle) % 360        
-
-        local s = math.sin(finalAngle/180*math.pi);
-        local c = math.cos(finalAngle/180*math.pi);
-
-        local xnew = -membraneCoords[1] * c + membraneCoords[2] * s;
-        local ynew = membraneCoords[1] * s + membraneCoords[2] * c;
-        
-        local direction = Vector3(xnew, ynew, 0)
-        direction:normalise()
-        local amountToEject = MicrobeSystem.takeCompound(self.entity, compoundId, maxAmount/10.0)
-        createAgentCloud(compoundId, self.sceneNode.transform.position.x + xnew, self.sceneNode.transform.position.y + ynew, direction, amountToEject * 10)
-    end
-end
-
 -- Copies this microbe. The new microbe will not have the stored compounds of this one.
 function Microbe:readyToReproduce()
     if self.microbe.isPlayerMicrobe then
@@ -1294,5 +1239,65 @@ function MicrobeSystem.atpDamage(microbeEntity)
         end
         ]]
         MicrobeSystem.damage(microbeEntity, EXCESS_COMPOUND_COLLECTION_INTERVAL * 0.000002  * microbeComponent.maxHitpoints, "atpDamage") -- Microbe takes 2% of max hp per second in damage
+    end
+end
+
+-- Drains an agent from the microbes special storage and emits it
+--
+-- @param compoundId
+-- The compound id of the agent to emit
+--
+-- @param maxAmount
+-- The maximum amount to try to emit
+function MicrobeSystem.emitAgent(microbeEntity, compoundId, maxAmount)
+    local microbeComponent = getComponent(microbeEntity, MicrobeComponent)
+    local sceneNodeComponent = getComponent(microbeEntity, OgreSceneNodeComponent)
+    local soundSourceComponent = getComponent(microbeEntity, SoundSourceComponent)
+    local membraneComponent = getComponent(microbeEntity, MembraneComponent)
+
+    -- Cooldown code
+    if microbeComponent.agentEmissionCooldown > 0 then return end
+    local numberOfAgentVacuoles = microbeComponent.specialStorageOrganelles[compoundId]
+    
+    -- Only shoot if you have agent vacuoles.
+    if numberOfAgentVacuoles == nil or numberOfAgentVacuoles == 0 then return end
+
+    -- The cooldown time is inversely proportional to the amount of agent vacuoles.
+    microbeComponent.agentEmissionCooldown = AGENT_EMISSION_COOLDOWN / numberOfAgentVacuoles
+
+    if MicrobeSystem.getCompoundAmount(microbeEntity, compoundId) > MINIMUM_AGENT_EMISSION_AMOUNT then
+        soundSourceComponent:playSound("microbe-release-toxin")
+
+        -- Calculate the emission angle of the agent emitter
+        local organelleX, organelleY = axialToCartesian(0, -1) -- The front of the microbe
+        local membraneCoords = membraneComponent:getExternOrganellePos(organelleX, organelleY)
+
+        local angle =  math.atan2(organelleY, organelleX)
+        if (angle < 0) then
+            angle = angle + 2*math.pi
+        end
+        angle = -(angle * 180/math.pi -90 ) % 360
+        --angle = angle * 180/math.pi
+
+        -- Find the direction the microbe is facing
+        local yAxis = sceneNodeComponent.transform.orientation:yAxis()
+        local microbeAngle = math.atan2(yAxis.x, yAxis.y)
+        if (microbeAngle < 0) then
+            microbeAngle = microbeAngle + 2*math.pi
+        end
+        microbeAngle = microbeAngle * 180/math.pi
+        -- Take the microbe angle into account so we get world relative degrees
+        local finalAngle = (angle + microbeAngle) % 360        
+
+        local s = math.sin(finalAngle/180*math.pi);
+        local c = math.cos(finalAngle/180*math.pi);
+
+        local xnew = -membraneCoords[1] * c + membraneCoords[2] * s;
+        local ynew = membraneCoords[1] * s + membraneCoords[2] * c;
+        
+        local direction = Vector3(xnew, ynew, 0)
+        direction:normalise()
+        local amountToEject = MicrobeSystem.takeCompound(microbeEntity, compoundId, maxAmount/10.0)
+        createAgentCloud(compoundId, sceneNodeComponent.transform.position.x + xnew, sceneNodeComponent.transform.position.y + ynew, direction, amountToEject * 10)
     end
 end

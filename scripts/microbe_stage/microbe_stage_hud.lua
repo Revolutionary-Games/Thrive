@@ -246,7 +246,7 @@ function HudSystem:update(renderTime)
     elseif keyCombo(kmp.gotoeditor) then
         self:editorButtonClicked()
     elseif keyCombo(kmp.shootoxytoxy) then
-        playerMicrobe:emitAgent(CompoundRegistry.getCompoundId("oxytoxy"), 3)
+        MicrobeSystem.emitAgent(player, CompoundRegistry.getCompoundId("oxytoxy"), 3)
     elseif keyCombo(kmp.reproduce) then
         playerMicrobe:readyToReproduce()
     end
