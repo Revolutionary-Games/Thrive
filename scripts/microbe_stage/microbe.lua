@@ -166,7 +166,6 @@ Microbe = class(
             end
         end
         self:_updateCompoundAbsorber()
-        self.playerAlreadyShownAtpDamage = false
         self.membraneHealth = 1.0
         self.reproductionStage = 0 -- 1 for G1 complete, 2 for S complete, 3 for G2 complete, and 4 for reproduction finished.
     end
@@ -424,7 +423,7 @@ function Microbe:update(logicTime)
 
             MicrobeSystem.purgeCompounds(self.entity)
 
-            self:atpDamage()
+            MicrobeSystem.atpDamage(self.entity)
         end
         
         -- First organelle run: updates all the organelles and heals the broken ones.
@@ -543,17 +542,6 @@ function Microbe:update(logicTime)
         end
     end
     -- print("finished update")
-end
-
-function Microbe:atpDamage()
-    -- Damage microbe if its too low on ATP
-    if MicrobeSystem.getCompoundAmount(self.entity, CompoundRegistry.getCompoundId("atp")) < 1.0 then
-        if self.microbe.isPlayerMicrobe and not self.playerAlreadyShownAtpDamage then
-            self.playerAlreadyShownAtpDamage = true
-            showMessage("No ATP hurts you!")
-        end
-        MicrobeSystem.damage(self.entity, EXCESS_COMPOUND_COLLECTION_INTERVAL * 0.000002  * self.microbe.maxHitpoints, "atpDamage") -- Microbe takes 2% of max hp per second in damage
-    end
 end
 
 -- Private function for initializing a microbe's components
@@ -1290,5 +1278,21 @@ function MicrobeSystem.damage(microbeEntity, amount, damageType)
     if microbeComponent.hitpoints <= 0 then
         microbeComponent.hitpoints = 0
         MicrobeSystem.kill(microbeEntity)
+    end
+end
+
+-- Damage the microbe if its too low on ATP.
+function MicrobeSystem.atpDamage(microbeEntity)
+    local microbeComponent = getComponent(microbeEntity, MicrobeComponent)
+
+    if MicrobeSystem.getCompoundAmount(microbeEntity, CompoundRegistry.getCompoundId("atp")) < 1.0 then
+        -- TODO: put this on a GUI notification.
+        --[[
+        if microbeComponent.isPlayerMicrobe and not self.playerAlreadyShownAtpDamage then
+            self.playerAlreadyShownAtpDamage = true
+            showMessage("No ATP hurts you!")
+        end
+        ]]
+        MicrobeSystem.damage(microbeEntity, EXCESS_COMPOUND_COLLECTION_INTERVAL * 0.000002  * microbeComponent.maxHitpoints, "atpDamage") -- Microbe takes 2% of max hp per second in damage
     end
 end
