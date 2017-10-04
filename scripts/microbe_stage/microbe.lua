@@ -261,40 +261,6 @@ function Microbe.createMicrobeEntity(name, aiControlled, speciesName, in_editor,
     return newMicrobe
 end
 
--- Damages the microbe, killing it if its hitpoints drop low enough
---
--- @param amount
---  amount of hitpoints to substract
-function Microbe:damage(amount, damageType)
-    assert(damageType ~= nil, "Damage type is nil")
-    assert(amount >= 0, "Can't deal negative damage. Use Microbe:heal instead")
-    
-    if damageType == "toxin" then
-        self.soundSource:playSound("microbe-toxin-damage")
-    end
-    
-    -- Choose a random organelle or membrane to damage.
-    -- TODO: CHANGE TO USE AGENT CODES FOR DAMAGE.
-    local rand = math.random(1,self.microbe.maxHitpoints/MICROBE_HITPOINTS_PER_ORGANELLE)
-    local i = 1
-    for _, organelle in pairs(self.microbe.organelles) do
-        -- If this is the organelle we have chosen...
-        if i == rand then
-            -- Deplete its health/compoundBin.
-            organelle:damageOrganelle(amount)
-        end
-        i = i + 1
-    end
-    
-    -- Find out the amount of health the microbe has.
-    MicrobeSystem.calculateHealthFromOrganelles(self.entity)
-    
-    if self.microbe.hitpoints <= 0 then
-        self.microbe.hitpoints = 0
-        MicrobeSystem.kill(self.entity)
-    end
-end
-
 -- Drains an agent from the microbes special storage and emits it
 --
 -- @param compoundId
@@ -554,7 +520,7 @@ function Microbe:update(logicTime)
             MicrobeSystem.flashMembraneColour(self.entity, 3000, ColourValue(0.2,0.5,1.0,0.5))
         end
         if self.microbe.isBeingEngulfed and self.microbe.wasBeingEngulfed then
-            self:damage(logicTime * 0.000025  * self.microbe.maxHitpoints, "isBeingEngulfed - Microbe:update()s")
+            MicrobeSystem.damage(self.entity, logicTime * 0.000025  * self.microbe.maxHitpoints, "isBeingEngulfed - Microbe:update()s")
         -- Else If we were but are no longer, being engulfed
         elseif self.microbe.wasBeingEngulfed then
             MicrobeSystem.removeEngulfedEffect(self.entity)
@@ -586,7 +552,7 @@ function Microbe:atpDamage()
             self.playerAlreadyShownAtpDamage = true
             showMessage("No ATP hurts you!")
         end
-        self:damage(EXCESS_COMPOUND_COLLECTION_INTERVAL * 0.000002  * self.microbe.maxHitpoints, "atpDamage") -- Microbe takes 2% of max hp per second in damage
+        MicrobeSystem.damage(self.entity, EXCESS_COMPOUND_COLLECTION_INTERVAL * 0.000002  * self.microbe.maxHitpoints, "atpDamage") -- Microbe takes 2% of max hp per second in damage
     end
 end
 
@@ -711,7 +677,7 @@ function MicrobeSystem:update(renderTime, logicTime)
         local agent = Entity.new(collision.entityId2, self.gameState.wrapper)
         
         if entity:exists() and agent:exists() then
-            Microbe(entity, nil, self.gameState):damage(.5, "toxin")
+            MicrobeSystem.damage(entity, .5, "toxin")
             agent:destroy()
         end
     end
@@ -1288,4 +1254,41 @@ function MicrobeSystem.kill(microbeEntity)
         MicrobeSystem.removeEngulfedEffect(microbeEntity)
     end
     microbeSceneNode.visible = false
+end
+
+-- Damages the microbe, killing it if its hitpoints drop low enough
+--
+-- @param amount
+--  amount of hitpoints to substract
+function MicrobeSystem.damage(microbeEntity, amount, damageType)
+    assert(damageType ~= nil, "Damage type is nil")
+    assert(amount >= 0, "Can't deal negative damage. Use MicrobeSystem.heal instead")
+
+    local microbeComponent = getComponent(microbeEntity, MicrobeComponent)
+    local soundSourceComponent = getComponent(microbeEntity, SoundSourceComponent)
+    
+    if damageType == "toxin" then
+        soundSourceComponent:playSound("microbe-toxin-damage")
+    end
+    
+    -- Choose a random organelle or membrane to damage.
+    -- TODO: CHANGE TO USE AGENT CODES FOR DAMAGE.
+    local rand = math.random(1, microbeComponent.maxHitpoints/MICROBE_HITPOINTS_PER_ORGANELLE)
+    local i = 1
+    for _, organelle in pairs(microbeComponent.organelles) do
+        -- If this is the organelle we have chosen...
+        if i == rand then
+            -- Deplete its health/compoundBin.
+            organelle:damageOrganelle(amount)
+        end
+        i = i + 1
+    end
+    
+    -- Find out the amount of health the microbe has.
+    MicrobeSystem.calculateHealthFromOrganelles(microbeEntity)
+    
+    if microbeComponent.hitpoints <= 0 then
+        microbeComponent.hitpoints = 0
+        MicrobeSystem.kill(microbeEntity)
+    end
 end
