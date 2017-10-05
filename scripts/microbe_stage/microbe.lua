@@ -17,6 +17,7 @@ MicrobeComponent = class(
         self.specialStorageOrganelles = {} -- Organelles with complete resonsiblity for a specific compound (such as agentvacuoles)
         self.movementDirection = Vector3(0, 0, 0)
         self.facingTargetPoint = Vector3(0, 0, 0)
+		self.microbetargetdirection = 0
         self.movementFactor = 1.0 -- Multiplied on the movement speed of the microbe.
         self.capacity = 0  -- The amount that can be stored in the microbe. NOTE: This does not include special storage organelles
         self.stored = 0 -- The amount stored in the microbe. NOTE: This does not include special storage organelles
@@ -1095,11 +1096,9 @@ function Microbe:validPlacement(organelle, q, r)
     end
 end
 
-PURGE_SCALE = 0.4
-
 function Microbe:purgeCompounds()
     local compoundAmountToDump = self.microbe.stored - self.microbe.capacity
-    compoundBag = getComponent(self.entity, CompoundBagComponent)
+    local compoundBag = getComponent(self.entity, CompoundBagComponent)
 
     -- Uncomment to print compound economic information to the console.
     --[[
@@ -1126,20 +1125,19 @@ function Microbe:purgeCompounds()
         --Calculating each compound price to dump proportionally.
         local compoundPrices = {}
         local priceSum = 0
-        for _, compoundId in CompoundRegistry.getCompoundList() do
-            local amount = getComponent(self.entity, CompoundBagComponent)
-                :getCompoundAmount(compoundId)
+        for _, compoundId in pairs(CompoundRegistry.getCompoundList()) do
+            local amount = compoundBag:getCompoundAmount(compoundId)
 
             if amount > 0 then
                 local price = compoundBag:getPrice(compoundId)
                 compoundPrices[compoundId] = price
-                priceSum = priceSum + price
+                priceSum = priceSum + amount / price
             end
         end
 
         --Dumping each compound according to it's price.
-        for _, compoundId, price in pairs(compoundPrices) do
-            amountToEject = compoundAmountToDump * price / priceSum
+        for compoundId, price in pairs(compoundPrices) do
+            local amountToEject = compoundAmountToDump * (compoundBag:getCompoundAmount(compoundId) / price) / priceSum
             if amount > 0 then amountToEject = self:takeCompound(compoundId, amountToEject) end
             if amount > 0 then self:ejectCompound(compoundId, amountToEject) end
         end
@@ -1182,6 +1180,7 @@ function Microbe:respawn()
     self:storeCompound(CompoundRegistry.getCompoundId("atp"), 50, false)
 
     setRandomBiome(g_luaEngine.currentGameState)
+	global_activeMicrobeStageHudSystem:suicideButtonreset()
 end
 
 -- Private function for initializing a microbe's components

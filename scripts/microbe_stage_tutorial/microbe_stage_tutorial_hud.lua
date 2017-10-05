@@ -167,8 +167,8 @@ Click to continue or press escape to skip the tutorial.]])
 Click anywhere to continue...]])
         if getComponent(PLAYER_NAME, self.gameState, MicrobeComponent) == nil then
             print("trying to spawn player")
-            local microbe = microbeSpawnFunctionGeneric(nil, "Default", false,
-                                                        PLAYER_NAME, self.gameState)
+            local microbe = Microbe(microbeSpawnFunctionGeneric(nil, "Default", false,
+                                                        PLAYER_NAME, self.gameState), nil, self.gameState)
             Engine:playerData():setActiveCreature(microbe.entity.id,
                                                   GameState.MICROBE_TUTORIAL.wrapper)
 
