@@ -5,21 +5,15 @@ NucleusOrganelle = class(
     OrganelleComponent,
     -- Constructor
     function(self, arguments, data)
-
         OrganelleComponent.create(self, arguments, data)
 
         --making sure this doesn't run when load() is called
         if arguments == nil and data == nil then
             return
         end
-        
-        self.numProteinLeft = 2
-        self.numNucleicAcidsLeft = 2
-        self.nucleusCost = self.numProteinLeft + self.numNucleicAcidsLeft
 
         self.golgi = Entity.new(g_luaEngine.currentGameState.wrapper)
         self.ER = Entity.new(g_luaEngine.currentGameState.wrapper)
-        
     end
 )
 
@@ -28,7 +22,7 @@ NucleusOrganelle = class(
 
 
 -- Overridded from Organelle:onAddedToMicrobe
-function NucleusOrganelle:onAddedToMicrobe(microbe, q, r, rotation, organelle)
+function NucleusOrganelle:onAddedToMicrobe(microbeEntity, q, r, rotation, organelle)
     local x, y = axialToCartesian(q-1, r-1)
     local sceneNode1 = OgreSceneNodeComponent.new()
     sceneNode1.meshName = "golgi.mesh"
@@ -37,8 +31,8 @@ function NucleusOrganelle:onAddedToMicrobe(microbe, q, r, rotation, organelle)
     sceneNode1.transform.orientation = Quaternion.new(Radian.new(Degree(rotation)),
                                                       Vector3(0, 0, 1))
     sceneNode1.transform:touch()
-    sceneNode1.parent = microbe.entity
-    microbe.entity:addChild(self.golgi)
+    sceneNode1.parent = microbeEntity
+    microbeEntity:addChild(self.golgi)
     self.golgi:addComponent(sceneNode1)
 	self.golgi_sceneNode = sceneNode1
 	self.golgi:setVolatile(true)
@@ -50,8 +44,8 @@ function NucleusOrganelle:onAddedToMicrobe(microbe, q, r, rotation, organelle)
     sceneNode2.transform.orientation = Quaternion.new(Radian.new(Degree(rotation+10)), 
                                                       Vector3(0, 0, 1))
     sceneNode2.transform:touch()
-	sceneNode2.parent = microbe.entity
-    microbe.entity:addChild(self.ER)
+	sceneNode2.parent = microbeEntity
+    microbeEntity:addChild(self.ER)
     self.ER:addComponent(sceneNode2) 
 	self.ER_sceneNode = sceneNode2
 	self.ER:setVolatile(true)
@@ -59,23 +53,21 @@ function NucleusOrganelle:onAddedToMicrobe(microbe, q, r, rotation, organelle)
     self.sceneNode = organelle.sceneNode
     
     -- If we are not in the editor, get the color of this species.
-    if microbe:getSpeciesComponent() ~= nil then
-        local speciesColour = microbe:getSpeciesComponent().colour
+    if MicrobeSystem.getSpeciesComponent(microbeEntity) ~= nil then
+        local speciesColour = MicrobeSystem.getSpeciesComponent(microbeEntity).colour
         self.colourSuffix = "" .. math.floor(speciesColour.x * 256) .. math.floor(speciesColour.y * 256) .. math.floor(speciesColour.z * 256)
     end
         
     self._needsColourUpdate = true
 end
 
-function NucleusOrganelle:onRemovedFromMicrobe(microbe, q, r)
+function NucleusOrganelle:onRemovedFromMicrobe(microbeEntity, q, r)
     self.golgi:destroy()
     self.ER:destroy()
 end
 
 function NucleusOrganelle:storage()
-
     return StorageContainer.new()
-    
 end
 
 function NucleusOrganelle:load(storage)
@@ -83,6 +75,7 @@ function NucleusOrganelle:load(storage)
 	self.ER = Entity.new(g_luaEngine.currentGameState.wrapper)
 end
 
+-- This function isn't called anywhere.
 function NucleusOrganelle:updateColour(organelle)
     -- Update the colours of the additional organelle models.
     --[[if self.sceneNode.entity ~= nil and self.golgi.sceneNode.entity ~= nil then
@@ -99,71 +92,3 @@ function NucleusOrganelle:updateColour(organelle)
         organelle._needsColourUpdate = false
     end]]
 end
-
--- Makes nucleus larger
-function NucleusOrganelle:grow(compoundBagComponent)
-    -- Finds the total number of needed compounds.
-    local sum = 0
-
-    -- Finds which compounds the cell currently has.
-    if compoundBagComponent:aboveLowThreshold(CompoundRegistry.getCompoundId("aminoacids")) >= 1 then
-        sum = sum + self.numProteinLeft
-    end
-    if compoundBagComponent:aboveLowThreshold(CompoundRegistry.getCompoundId("aminoacids")) >= 1 then
-        sum = sum + self.numNucleicAcidsLeft
-    end
-    
-    -- If sum is 0, we either have no compounds, in which case we cannot grow the organelle, or the
-    -- DNA duplication is done (i.e. compoundBin = 2), in which case we wait for the microbe to
-    -- handle the split.
-    if sum == 0 then return end
-       
-    -- Randomly choose which of the three compounds: glucose, amino acids, and fatty acids
-    -- that are used in reproductions.
-    local id = math.random()*sum
-    
-    -- The random number is a protein, so attempt to take it.
-    if id <= self.numProteinLeft then
-        compoundBagComponent:takeCompound(CompoundRegistry.getCompoundId("aminoacids"), 1)
-        self.numProteinLeft = self.numProteinLeft - 1
-    -- The random number is a nucleic acid.
-    else
-        compoundBagComponent:takeCompound(CompoundRegistry.getCompoundId("aminoacids"), 1)
-        self.numNucleicAcidsLeft = self.numNucleicAcidsLeft - 1
-    end
-    
-    -- Calculate the new growth growth
-    self:recalculateBin()
-end
-
-function NucleusOrganelle:damage(amount)
-    -- Calculate the total number of compounds we need to divide now, so that we can keep this ratio.
-    local totalLeft = self.numProteinLeft + self.numNucleicAcidsLeft
-    
-    -- Calculate how much compounds the organelle needs to have to result in a health equal to compoundBin - amount.
-    local damageFactor = (2.0 - self.compoundBin + amount) * self.nucleusCost / totalLeft
-    self.numProteinLeft = self.numProteinLeft * damageFactor
-    self.numNucleicAcidsLeft = self.numNucleicAcidsLeft * damageFactor
-    -- Calculate the new growth value.
-    self:recalculateBin()
-end
-
-function NucleusOrganelle:recalculateBin()
-    -- Calculate the new growth growth
-    self.compoundBin = 2.0 - (self.numProteinLeft + self.numNucleicAcidsLeft)/self.nucleusCost
-    
-    -- If the organelle is damaged...
-    if self.compoundBin < 1.0 then
-        -- Make the nucleus smaller.
-        self.sceneNode.transform.scale = Vector3((1.0 + self.compoundBin)/2, (1.0 + self.compoundBin)/2, (1.0 + self.compoundBin)/2)*HEX_SIZE
-        self.sceneNode.transform:touch()
-        
-        if self.sceneNode.entity ~= nil then        
-            self.sceneNode.entity:tintColour("nucleus" .. self.colourSuffix, ColourValue((1.0 + self.compoundBin)/2, self.compoundBin, self.compoundBin, 1.0))
-        end
-    else
-        -- Darken the nucleus as more DNA is made.
-        self.sceneNode.entity:tintColour("nucleus" .. self.colourSuffix, ColourValue(2-self.compoundBin, 2-self.compoundBin, 2-self.compoundBin, 1.0))
-    end
-end
-

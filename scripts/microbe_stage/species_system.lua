@@ -25,7 +25,7 @@ end
 
 local DEFAULT_INITIAL_COMPOUNDS =
     {
-        atp = {priority=10,amount=40},
+        atp = {priority=10,amount=60},
         glucose = {amount = 10},
         reproductase = {priority = 8},
         oxygen = {amount = 10},
@@ -381,13 +381,13 @@ end
 function SpeciesSystem.template(microbe, species)
     -- TODO: Make this also set the microbe's ProcessorComponent
     microbe.microbe.speciesName = species.name
-    microbe:setMembraneColour(species.colour)
+    MicrobeSystem.setMembraneColour(microbe.entity, species.colour)
 
     SpeciesSystem.restoreOrganelleLayout(microbe, species)
     
     for compoundID, amount in pairs(species.avgCompoundAmounts) do
         if amount ~= 0 then
-            microbe:storeCompound(compoundID, amount, false)
+            MicrobeSystem.storeCompound(microbe.entity, compoundID, amount, false)
         end
     end
     
@@ -399,20 +399,20 @@ function SpeciesSystem.restoreOrganelleLayout(microbe, species)
     for s, organelle in pairs(microbe.microbe.organelles) do
         local q = organelle.position.q
         local r = organelle.position.r
-        microbe:removeOrganelle(q, r)
+        MicrobeSystem.removeOrganelle(microbe.entity, q, r)
     end
     microbe.microbe.organelles = {}
     -- give it organelles
     for _, orgdata in pairs(species.organelles) do
         organelle = OrganelleFactory.makeOrganelle(orgdata)
-        microbe:addOrganelle(orgdata.q, orgdata.r, orgdata.rotation, organelle)
+        MicrobeSystem.addOrganelle(microbe.entity, orgdata.q, orgdata.r, orgdata.rotation, organelle)
     end
 end
 
 function SpeciesSystem.fromMicrobe(microbe, species)
     local microbe_ = microbe.microbe -- shouldn't break, I think
     -- self.name = microbe_.speciesName
-    species.colour = microbe:getComponent(MembraneComponent):getColour()
+    species.colour = microbe.membraneComponent:getColour()
     -- Create species' organelle data
     for i, organelle in pairs(microbe_.organelles) do
         local data = {}
@@ -425,7 +425,7 @@ function SpeciesSystem.fromMicrobe(microbe, species)
     -- This microbes compound amounts will be the new population average.
     species.avgCompoundAmounts = {}
     for _, compoundID in pairs(CompoundRegistry.getCompoundList()) do
-        local amount = microbe:getCompoundAmount(compoundID)
+        local amount = MicrobeSystem.getCompoundAmount(microbe.entity, compoundID)
         species.avgCompoundAmounts["" .. compoundID] = amount
     end
     -- TODO: make this update the ProcessorComponent based on microbe thresholds

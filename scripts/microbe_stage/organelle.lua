@@ -77,7 +77,7 @@ end
 -- @returns success
 --  True if the hex could be added, false if there already is a hex at (q,r)
 function Organelle:addHex(q, r)
-    assert(not self.microbe, "Cannot change organelle shape while it is in a microbe")
+    assert(not self.microbeEntity, "Cannot change organelle shape while it is in a microbe")
     local s = encodeAxial(q, r)
     if self._hexes[s] then
         return false
@@ -145,8 +145,8 @@ end
 --
 -- @param q, r
 --  Axial coordinates of the organelle's center
-function Organelle:onAddedToMicrobe(microbe, q, r, rotation)
-    self.microbe = microbe
+function Organelle:onAddedToMicrobe(microbeEntity, q, r, rotation)
+    self.microbeEntity = microbeEntity
     self.position.q = q
     self.position.r = r
     local x, y = axialToCartesian(q, r)
@@ -155,11 +155,11 @@ function Organelle:onAddedToMicrobe(microbe, q, r, rotation)
 
     self.organelleEntity = Entity.new(g_luaEngine.currentGameState.wrapper)
     self.organelleEntity:setVolatile(true)
-    microbe.entity:addChild(self.organelleEntity)
+    microbeEntity:addChild(self.organelleEntity)
             
     -- Change the colour of this species to be tinted by the membrane.
-    if microbe:getSpeciesComponent() ~= nil then
-        local colorAsVec = microbe:getSpeciesComponent().colour
+    if MicrobeSystem.getSpeciesComponent(microbeEntity) ~= nil then
+        local colorAsVec = MicrobeSystem.getSpeciesComponent(microbeEntity).colour
         self.colour = ColourValue(colorAsVec.x, colorAsVec.y, colorAsVec.z, 1.0)
     else
         self.colour = ColourValue(1, 0, 1, 1)
@@ -168,7 +168,7 @@ function Organelle:onAddedToMicrobe(microbe, q, r, rotation)
 
     local offset = Vector3(0,0,0)
     local count = 0
-    for _, hex in pairs(self.microbe:getOrganelleAt(q, r)._hexes) do
+    for _, hex in pairs(MicrobeSystem.getOrganelleAt(self.microbeEntity, q, r)._hexes) do
         count = count + 1
 
         local x, y = axialToCartesian(hex.q, hex.r)
@@ -182,7 +182,7 @@ function Organelle:onAddedToMicrobe(microbe, q, r, rotation)
     self.sceneNode.transform.position = offset + self.position.cartesian
     self.sceneNode.transform.scale = Vector3(HEX_SIZE, HEX_SIZE, HEX_SIZE)
     self.sceneNode.transform:touch()
-    self.sceneNode.parent = microbe.entity
+    self.sceneNode.parent = microbeEntity
     self.organelleEntity:addComponent(self.sceneNode)
     
     --Adding a mesh to the organelle.
@@ -193,7 +193,7 @@ function Organelle:onAddedToMicrobe(microbe, q, r, rotation)
     
     -- Add each OrganelleComponent
     for _, component in pairs(self.components) do
-        component:onAddedToMicrobe(microbe, q, r, rotation, self)
+        component:onAddedToMicrobe(microbeEntity, q, r, rotation, self)
     end
 end
 
@@ -201,10 +201,10 @@ end
 --
 -- @param microbe
 --  The organelle's previous owner
-function Organelle:onRemovedFromMicrobe(microbe)
+function Organelle:onRemovedFromMicrobe()
     --iterating on each OrganelleComponent
     for _, component in pairs(self.components) do
-        component:onRemovedFromMicrobe(microbe)
+        component:onRemovedFromMicrobe(self.microbeEntity)
     end
     
     self.organelleEntity:destroy()
@@ -219,7 +219,7 @@ end
 -- @returns success
 --  True if the hex could be removed, false if there's no hex at (q,r)
 function Organelle:removeHex(q, r)
-    assert(not self.microbe, "Cannot change organelle shape while it is in a microbe")
+    assert(not self.microbeEntity, "Cannot change organelle shape while it is in a microbe")
     local s = encodeAxial(q, r)
     local hex = table.remove(self._hexes, s)
     if hex then
@@ -274,12 +274,12 @@ end
 --
 -- @param logicTime
 --  The time since the last call to update()
-function Organelle:update(microbe, logicTime)
+function Organelle:update(logicTime)
     if self.flashDuration ~= nil then
         self.flashDuration = self.flashDuration - logicTime
-        local speciesColour = ColourValue(microbe:getSpeciesComponent().colour.x, 
-                                          microbe:getSpeciesComponent().colour.y,
-                                          microbe:getSpeciesComponent().colour.z, 1)
+        local speciesColour = ColourValue(MicrobeSystem.getSpeciesComponent(self.microbeEntity).colour.x, 
+                                          MicrobeSystem.getSpeciesComponent(self.microbeEntity).colour.y,
+                                          MicrobeSystem.getSpeciesComponent(self.microbeEntity).colour.z, 1)
         
         -- How frequent it flashes, would be nice to update the flash function to have this variable
         if math.fmod(self.flashDuration,600) < 300 then
@@ -303,7 +303,7 @@ function Organelle:update(microbe, logicTime)
 
     -- Update each OrganelleComponent
     for _, component in pairs(self.components) do
-        component:update(microbe, self, logicTime)
+        component:update(self.microbeEntity, self, logicTime)
     end
 end
 
@@ -319,7 +319,6 @@ end
 function Organelle:getCompoundBin()
     return self.compoundBin
 end
-
 
 -- Gives organelles more compounds
 function Organelle:growOrganelle(compoundBagComponent, logicTime)
@@ -393,7 +392,7 @@ function Organelle:recalculateBin()
         if self.compoundBin <= 0.0 then
             -- If it was split from a primary organelle, destroy it.
             if self.isDuplicate == true then
-                self.microbe:removeOrganelle(self.position.q, self.position.r)
+                MicrobeSystem.removeOrganelle(self.microbeEntity, self.position.q, self.position.r)
                 
                 -- Notify the organelle the sister organelle it is no longer split.
                 self.sisterOrganelle.wasSplit = false
@@ -439,7 +438,7 @@ function Organelle:reset()
         
     -- If it was split from a primary organelle, destroy it.
     if self.isDuplicate == true then
-        self.microbe:removeOrganelle(self.position.q, self.position.r)
+        MicrobeSystem.removeOrganelle(self.microbeEntity, self.position.q, self.position.r)
     else
         self.wasSplit = false
     end

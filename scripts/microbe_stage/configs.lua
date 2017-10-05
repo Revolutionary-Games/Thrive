@@ -94,9 +94,9 @@ starter_microbes = {
     Default = {
         spawnDensity = 1/14000,
         compounds = {
-            atp = {amount=20},
+            atp = {amount=60},
             glucose = {amount = 5},
-            oxygen = {amount = 10},
+            oxygen = {amount = 10}
         },
         organelles = {
             {name="nucleus",q=0,r=0, rotation=0},

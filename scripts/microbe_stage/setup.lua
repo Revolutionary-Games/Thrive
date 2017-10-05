@@ -1,8 +1,9 @@
 CLOUD_SPAWN_RADIUS = 75
-CLOUD_SPAWN_DENSITY = 1/5000
 
 POWERUP_SPAWN_RADIUS = 85
 MICROBE_SPAWN_RADIUS = 85
+
+AGENT_EMISSION_VELOCITY = 20
 
 local function setupBackground(gameState)
     setRandomBiome(gameState)
@@ -155,8 +156,8 @@ function spawnMicrobe(pos, speciesName, aiControlled, individualName, gameState)
     end
     
     
-    local microbe = Microbe.createMicrobeEntity(individualName, aiControlled, speciesName,
-                                                false, gameState)
+    local microbeEntity = MicrobeSystem.createMicrobeEntity(individualName, aiControlled, speciesName, false)
+    local microbe = Microbe(microbeEntity, false, gameState)
     if pos ~= nil then
         microbe.rigidBody:setDynamicProperties(
             pos, -- Position
@@ -209,22 +210,23 @@ function createCompoundCloud(compoundName, x, y, amount)
 end
 
 function createAgentCloud(compoundId, x, y, direction, amount)    
-    
+    local normalizedDirection = direction
+    normalizedDirection:normalise()
     local agentEntity = Entity.new(g_luaEngine.currentGameState.wrapper)
 
     local reactionHandler = CollisionComponent.new()
     reactionHandler:addCollisionGroup("agent")
     agentEntity:addComponent(reactionHandler)
-        
+
     local rigidBody = RigidBodyComponent.new()
     rigidBody.properties.mass = 0.001
     rigidBody.properties.friction = 0.4
     rigidBody.properties.linearDamping = 0.4
     rigidBody.properties.shape = SphereShape.new(HEX_SIZE)
     rigidBody:setDynamicProperties(
-        Vector3(x,y,0) + direction,
+        Vector3(x, y, 0) + direction * 1.5,
         Quaternion.new(Radian.new(Degree(math.random()*360)), Vector3(0, 0, 1)),
-        direction * 3,
+        normalizedDirection * AGENT_EMISSION_VELOCITY,
         Vector3(0, 0, 0)
     )
     rigidBody.properties:touch()
@@ -237,7 +239,6 @@ function createAgentCloud(compoundId, x, y, direction, amount)
     local timedLifeComponent = TimedLifeComponent.new()
     timedLifeComponent.timeToLive = 2000
     agentEntity:addComponent(timedLifeComponent)
-    
 end
 
 local function addEmitter2Entity(entity, compound)
@@ -291,13 +292,14 @@ local function setupSpawnSystem(gameState)
         return powerupEntity
     end
 
+    compoundSpawnTypes = {}
     for compoundName, compoundInfo in pairs(compoundTable) do
         if compoundInfo.isCloud then
             local spawnCloud =  function(pos)
                 return createCompoundCloud(compoundName, pos.x, pos.y)
             end
 
-            gSpawnSystem:addSpawnType(spawnCloud, CLOUD_SPAWN_DENSITY, CLOUD_SPAWN_RADIUS)
+            compoundSpawnTypes[compoundName] = gSpawnSystem:addSpawnType(spawnCloud, 1/10000, CLOUD_SPAWN_RADIUS) -- Placeholder, the real one is set in biome.lua
         end
     end
 
@@ -321,7 +323,6 @@ local function setupSpawnSystem(gameState)
 end
 
 local function setupPlayer(gameState)
-
     assert(GameState.MICROBE == gameState)
     assert(gameState ~= nil)
     
@@ -330,9 +331,6 @@ local function setupPlayer(gameState)
     Engine:playerData():lockedMap():addLock("Toxin")
     Engine:playerData():lockedMap():addLock("chloroplast")
     Engine:playerData():setActiveCreature(microbe.entity.id, gameState.wrapper)
-
-    -- Give some atp
-    microbe:storeCompound(CompoundRegistry.getCompoundId("atp"), 50, false)
 end
 
 local function setupSound(gameState)

@@ -41,6 +41,11 @@ public:
     */
     static void luaBindings(sol::state &lua);
 
+    void
+    setSpawnRadius(
+        double newSpawnRadius
+    );
+
     /**
     * @brief Loads the component
     *

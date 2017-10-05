@@ -182,7 +182,7 @@ function MicrobeAISystem:update(renderTime, logicTime)
 
             local compoundId = CompoundRegistry.getCompoundId("oxytoxy")
             local targetPosition = nil
-            local agentVacuole = microbe.microbe.specialStorageOrganelles[compoundId]
+            local numberOfAgentVacuoless = microbe.microbe.specialStorageOrganelles[compoundId]
 	--for getting the prey
 	for _, m_microbe in pairs (microbes_number) do
 	if self.preys ~= nil then
@@ -191,7 +191,9 @@ function MicrobeAISystem:update(renderTime, logicTime)
 	if microbe.microbe.maxHitpoints > 1.5 * m_microbe.microbe.maxHitpoints then
 	self.preys[m_microbe] = m_microbe
 	end
-	if agentVacuole ~= nil and m_microbe.microbe.specialStorageOrganelles[compoundId] == nil and self.preys[m_microbe] == nil then
+	if numberOfAgentVacuoles ~= nil and numberOfAgentVacuoles ~= 0 and
+        (m_microbe.microbe.specialStorageOrganelles[compoundId] == nil or m_microbe.microbe.specialStorageOrganelles[compoundId] == 0)
+        and self.preys[m_microbe] == nil then
 	self.preys[m_microbe] = m_microbe
 	end
 	elseif v:length() > 25 or v:length() == 0 then
@@ -213,7 +215,8 @@ function MicrobeAISystem:update(renderTime, logicTime)
 	if predatore.microbe.maxHitpoints > microbe.microbe.maxHitpoints * 1.5 and vec:length() < 25 then
 	self.predators[predatore] = predatore
 	end
-	if predatore.microbe.specialStorageOrganelles[compoundId] ~= nil and agentVacuole == nil and vec:length() < 25 then
+	if (predatore.microbe.specialStorageOrganelles[compoundId] ~= nil and predatore.microbe.specialStorageOrganelles[compoundId] ~= 0)
+        and (numberOfAgentVacuoles == nil or numberOfAgentVacuoles == 0) and vec:length() < 25 then
 		self.predators[predatore] = predatore
 	end
 	if vec:length() > 25 then
@@ -222,12 +225,12 @@ function MicrobeAISystem:update(renderTime, logicTime)
 	self.predatore = self.predators[predatore]
     end
 	
-            if agentVacuole ~= nil or microbe.microbe.maxHitpoints > 100 then
+            if (numberOfAgentVacuoles ~= nil and numberOfAgentVacuoles ~= 0) or microbe.microbe.maxHitpoints > 100 then
                 self.preyCandidates[6] = Microbe.new(
                     Entity.new(PLAYER_NAME, self.gameState.wrapper), nil, self.gameState.wrapper)
                 self.preyEntityToIndexMap[Entity.new(PLAYER_NAME, self.gameState.wrapper).id] = 6
                 local attempts = 0
-                while (aiComponent.prey  == nil or not aiComponent.prey:exists() or aiComponent.prey.microbe.dead or
+                while (aiComponent.prey  == nil or not aiComponent.prey.entity:exists() or aiComponent.prey.microbe.dead or
                            (aiComponent.prey.microbe.speciesName ==  microbe.microbe.speciesName) or
                        self.preyEntityToIndexMap[aiComponent.prey.entity.id] == nil or self.preyEscaped == true)  and attempts < 6 and self.preycount > 10 do
                     aiComponent.prey = self.p --setting the prey
@@ -243,12 +246,12 @@ function MicrobeAISystem:update(renderTime, logicTime)
                    if vec:length() > 25 then
 				   self.preyEscaped = true
 				   end
-				   if vec:length() < 25 and vec:length() > 10 and microbe:getCompoundAmount(compoundId) > MINIMUM_AGENT_EMISSION_AMOUNT and microbe.microbe.microbetargetdirection < 10 then
-						microbe:emitAgent(CompoundRegistry.getCompoundId("oxytoxy"), 1)
+				   if vec:length() < 25 and vec:length() > 10 and MicrobeSystem.getCompoundAmount(microbe.entity, compoundId) > MINIMUM_AGENT_EMISSION_AMOUNT and microbe.microbe.microbetargetdirection < 10 then
+						MicrobeSystem.emitAgent(microbe.entity, CompoundRegistry.getCompoundId("oxytoxy"), 1)
                     elseif vec:length() < 10 and microbe.microbe.maxHitpoints > ENGULF_HP_RATIO_REQ * aiComponent.prey.microbe.maxHitpoints and not microbe.microbe.engulfMode then
-                        microbe:toggleEngulfMode()
+                        MicrobeSystem.toggleEngulfMode(microbe.entity)
                     elseif vec:length() > 15  and microbe.microbe.engulfMode then
-                        microbe:toggleEngulfMode()
+                        MicrobeSystem.toggleEngulfMode(microbe.entity)
                     end
                     
                     vec:normalise()
@@ -258,7 +261,7 @@ function MicrobeAISystem:update(renderTime, logicTime)
                 
 				end
             else
-                if microbe:getCompoundAmount(CompoundRegistry.getCompoundId("oxygen")) <= OXYGEN_SEARCH_THRESHHOLD then
+                if MicrobeSystem.getCompoundAmount(microbe.entity, CompoundRegistry.getCompoundId("oxygen")) <= OXYGEN_SEARCH_THRESHHOLD then
                     -- If we are NOT currenty heading towards an emitter
                     if aiComponent.targetEmitterPosition == nil or aiComponent.searchedCompoundId ~= CompoundRegistry.getCompoundId("oxygen") then
                         aiComponent.searchedCompoundId = CompoundRegistry.getCompoundId("oxygen")
@@ -280,7 +283,7 @@ function MicrobeAISystem:update(renderTime, logicTime)
                     if aiComponent.targetEmitterPosition ~= nil and aiComponent.targetEmitterPosition.z ~= 0 then
                         aiComponent.targetEmitterPosition = nil
                     end             
-                elseif microbe:getCompoundAmount(CompoundRegistry.getCompoundId("glucose")) <= GLUCOSE_SEARCH_THRESHHOLD then
+                elseif MicrobeSystem.getCompoundAmount(microbe.entity, CompoundRegistry.getCompoundId("glucose")) <= GLUCOSE_SEARCH_THRESHHOLD then
                     -- If we are NOT currenty heading towards an emitter
                     if aiComponent.targetEmitterPosition == nil or aiComponent.searchedCompoundId ~= CompoundRegistry.getCompoundId("glucose") then
                         aiComponent.searchedCompoundId = CompoundRegistry.getCompoundId("glucose")

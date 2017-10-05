@@ -47,12 +47,12 @@ end
 
 -- checks whether the hex at q, r has an organelle in its surroundeing hexes.
 function MicrobeEditor:surroundsOrganelle(q, r)
-    return  self.currentMicrobe:getOrganelleAt(q + 0, r - 1) or
-            self.currentMicrobe:getOrganelleAt(q + 1, r - 1) or
-			self.currentMicrobe:getOrganelleAt(q + 1, r + 0) or
-			self.currentMicrobe:getOrganelleAt(q + 0, r + 1) or
-			self.currentMicrobe:getOrganelleAt(q - 1, r + 1) or
-			self.currentMicrobe:getOrganelleAt(q - 1, r + 0)
+    return  MicrobeSystem.getOrganelleAt(self.currentMicrobe.entity, q + 0, r - 1) or
+            MicrobeSystem.getOrganelleAt(self.currentMicrobe.entity, q + 1, r - 1) or
+			MicrobeSystem.getOrganelleAt(self.currentMicrobe.entity, q + 1, r + 0) or
+			MicrobeSystem.getOrganelleAt(self.currentMicrobe.entity, q + 0, r + 1) or
+			MicrobeSystem.getOrganelleAt(self.currentMicrobe.entity, q - 1, r + 1) or
+			MicrobeSystem.getOrganelleAt(self.currentMicrobe.entity, q - 1, r + 0)
 end
 
 function MicrobeEditor:init(gameState)
@@ -83,9 +83,8 @@ function MicrobeEditor:activate()
             GameState.MICROBE_EDITOR.wrapper)
         
         -- Transfer the compounds
-        Microbe.transferCompounds(Microbe.new(microbeStageMicrobe, nil, GameState.MICROBE),
-                                  Microbe.new(self.nextMicrobeEntity, true,
-                                              GameState.MICROBE_EDITOR))
+        Microbe.new(self.nextMicrobeEntity, true, GameState.MICROBE_EDITOR)
+        MicrobeSystem.transferCompounds(microbeStageMicrobe, self.nextMicrobeEntity)
         
         self.nextMicrobeEntity:stealName("working_microbe")
         Engine:playerData():setBool("edited_microbe", true)
@@ -160,7 +159,7 @@ function MicrobeEditor:renderHighlightedOrganelle(start, q, r, rotation)
 			end
 		end
         for _, hex in ipairs(hexes) do
-            local organelle = self.currentMicrobe:getOrganelleAt(-hex.q + q, -hex.r + r)
+            local organelle = MicrobeSystem.getOrganelleAt(self.currentMicrobe.entity, -hex.q + q, -hex.r + r)
             if organelle then
                 if organelle.name ~= "cytoplasm" then
                     colour = ColourValue(2, 0, 0, 0.4)
@@ -277,7 +276,7 @@ function MicrobeEditor:isValidPlacement(organelleType, q, r, rotation)
     local empty = true
     local touching = false;
     for s, hex in pairs(OrganelleFactory.checkSize(data)) do
-        local organelle = self.currentMicrobe:getOrganelleAt(hex.q + q, hex.r + r)
+        local organelle = MicrobeSystem.getOrganelleAt(self.currentMicrobe.entity, hex.q + q, hex.r + r)
         if organelle then
             if organelle.name ~= "cytoplasm" then
                 empty = false 
@@ -374,10 +373,10 @@ function MicrobeEditor:_addOrganelle(organelle, q, r, rotation)
         redo = function()
             for _, hex in pairs(organelle._hexes) do
                 -- Check if there is cytoplasm under this organelle.
-                local cytoplasm = self.currentMicrobe:getOrganelleAt(hex.q + q, hex.r + r)
+                local cytoplasm = MicrobeSystem.getOrganelleAt(self.currentMicrobe.entity, hex.q + q, hex.r + r)
                 if cytoplasm then
                     if cytoplasm.name == "cytoplasm" then
-                        self.currentMicrobe:removeOrganelle(hex.q + q, hex.r + r)
+                        MicrobeSystem.removeOrganelle(self.currentMicrobe.entity, hex.q + q, hex.r + r)
                         self.currentMicrobe.sceneNode.transform:touch()
                         self.organelleCount = self.organelleCount - 1
                         local s = encodeAxial(hex.q + q, hex.r + r)
@@ -386,11 +385,11 @@ function MicrobeEditor:_addOrganelle(organelle, q, r, rotation)
                 end
                 self:createHexComponent(hex.q + q, hex.r + r)
             end
-            self.currentMicrobe:addOrganelle(q, r, rotation, organelle)
+            MicrobeSystem.addOrganelle(self.currentMicrobe.entity, q, r, rotation, organelle)
             self.organelleCount = self.organelleCount + 1
         end,
         undo = function()
-            self.currentMicrobe:removeOrganelle(q, r)
+            MicrobeSystem.removeOrganelle(self.currentMicrobe.entity, q, r)
             self.currentMicrobe.sceneNode.transform:touch()
             self.organelleCount = self.organelleCount - 1
             for _, hex in pairs(organelle._hexes) do
@@ -403,7 +402,7 @@ function MicrobeEditor:_addOrganelle(organelle, q, r, rotation)
 end
 
 function MicrobeEditor:removeOrganelleAt(q,r)
-    local organelle = self.currentMicrobe:getOrganelleAt(q,r)
+    local organelle = MicrobeSystem.getOrganelleAt(self.currentMicrobe.entity, q, r)
     if not (organelle == nil or organelle.name == "nucleus") then -- Don't remove nucleus
         if organelle then
             for _, hex in pairs(organelle._hexes) do
@@ -414,7 +413,7 @@ function MicrobeEditor:removeOrganelleAt(q,r)
             self:enqueueAction({
                 cost = 10,
                 redo = function()
-                    self.currentMicrobe:removeOrganelle(storage:get("q", 0), storage:get("r", 0))
+                    MicrobeSystem.removeOrganelle(self.currentMicrobe.entity, storage:get("q", 0), storage:get("r", 0))
                     self.currentMicrobe.sceneNode.transform:touch()
                     self.organelleCount = self.organelleCount - 1
 					for _, cytoplasm in pairs(organelle._hexes) do
@@ -424,7 +423,7 @@ function MicrobeEditor:removeOrganelleAt(q,r)
                 end,
                 undo = function()
                     local organelle = Organelle.loadOrganelle(storage)
-                    self.currentMicrobe:addOrganelle(storage:get("q", 0), storage:get("r", 0), storage:get("rotation", 0), organelle)
+                    MicrobeSystem.addOrganelle(self.currentMicrobe.entity, storage:get("q", 0), storage:get("r", 0), storage:get("rotation", 0), organelle)
                     for _, hex in pairs(organelle._hexes) do
                         self:createHexComponent(hex.q + storage:get("q", 0), hex.r + storage:get("r", 0))
                     end
@@ -442,7 +441,7 @@ end
 
 function MicrobeEditor:addNucleus()
     local nucleusOrganelle = OrganelleFactory.makeOrganelle({["name"]="nucleus", ["q"]=0, ["r"]=0, ["rotation"]=0})
-    self.currentMicrobe:addOrganelle(0, 0, 0, nucleusOrganelle)
+    MicrobeSystem.addOrganelle(self.currentMicrobe.entity, 0, 0, 0, nucleusOrganelle)
 end
 
 function MicrobeEditor:loadMicrobe(entityId)
@@ -467,7 +466,6 @@ end
 function MicrobeEditor:createNewMicrobe()
     local action = {
         redo = function()
-            print("miau")
             self.organelleCount = 0
             speciesName = self.currentMicrobe.microbe.speciesName
             if self.currentMicrobe ~= nil then
@@ -476,8 +474,9 @@ function MicrobeEditor:createNewMicrobe()
             for _, cytoplasm in pairs(self.occupiedHexes) do
                 cytoplasm:destroy()
             end
-            self.currentMicrobe = Microbe.createMicrobeEntity(
-                nil, false, 'Editor_Microbe', true, g_luaEngine.currentGameState)
+            
+            self.currentMicrobeEntity = MicrobeSystem.createMicrobeEntity(nil, false, 'Editor_Microbe', true)
+            self.currentMicrobe = Microbe(self.currentMicrobeEntity, true, g_luaEngine.currentGameState)
             self.currentMicrobe.entity:stealName("working_microbe")
             --self.currentMicrobe.sceneNode.transform.orientation = Quaternion.new(Radian.new(Degree(180)), Vector3(0, 0, 1))-- Orientation
             self.currentMicrobe.sceneNode.transform:touch()
@@ -505,15 +504,15 @@ function MicrobeEditor:createNewMicrobe()
         action.undo = function()
             speciesName = self.currentMicrobe.microbe.speciesName
             self.currentMicrobe.entity:destroy() -- remove the "new" entity that has replaced the previous one
-            self.currentMicrobe = Microbe.createMicrobeEntity(
-                nil, false, 'Editor_Microbe', true, g_luaEngine.currentGameState)
+            self.currentMicrobeEntity = MicrobeSystem.createMicrobeEntity(nil, false, 'Editor_Microbe', true)
+            self.currentMicrobe = Microbe(self.currentMicrobeEntity, true, g_luaEngine.currentGameState)
             self.currentMicrobe.entity:stealName("working_microbe")
             self.currentMicrobe.sceneNode.transform.orientation = Quaternion.new(Radian(0), Vector3(0, 0, 1))-- Orientation
             self.currentMicrobe.sceneNode.transform:touch()
             self.currentMicrobe.microbe.speciesName = speciesName
             for position,storage in pairs(organelleStorage) do
                 local q, r = decodeAxial(position)
-                self.currentMicrobe:addOrganelle(storage:get("q", 0), storage:get("r", 0), storage:get("rotation", 0), Organelle.loadOrganelle(storage))
+                MicrobeSystem.addOrganelle(self.currentMicrobe.entity, storage:get("q", 0), storage:get("r", 0), storage:get("rotation", 0), Organelle.loadOrganelle(storage))
             end
             for _, cytoplasm in pairs(self.occupiedHexes) do
                 cytoplasm:destroy()

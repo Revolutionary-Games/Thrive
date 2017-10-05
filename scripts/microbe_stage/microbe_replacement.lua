@@ -54,8 +54,9 @@ function MicrobeReplacementSystem:activate()
         SpeciesSystem.fromMicrobe(workingMicrobe, species)
         SpeciesSystem.initProcessorComponent(speciesEntity, species)
 
-        local newMicrobe = Microbe.createMicrobeEntity(nil, false, newSpeciesName,
-                                                       false, self.gameState)
+        local newMicrobeEntity = MicrobeSystem.createMicrobeEntity(nil, false, newSpeciesName, false)
+        local newMicrobe = Microbe(newMicrobeEntity, false, self.gameState)
+
         newMicrobe:divide(self.gameState)
         
         print(": "..newMicrobe.microbe.speciesName)
