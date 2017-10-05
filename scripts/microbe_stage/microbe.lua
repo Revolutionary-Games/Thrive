@@ -302,17 +302,6 @@ function Microbe:divide(currentGameState)
     self.soundSource:playSound("microbe-reproduction")
 end
 
-function Microbe.transferCompounds(from, to)
-    for _, compoundID in pairs(CompoundRegistry.getCompoundList()) do
-        local amount = MicrobeSystem.getCompoundAmount(from.entity, compoundID)
-    
-        if amount ~= 0 then
-            MicrobeSystem.takeCompound(from.entity, compoundID, amount, false)
-            MicrobeSystem.storeCompound(to.entity, compoundID, amount, false)
-        end
-    end
-end
-
 function Microbe:calculateStorageSpace()
     self.microbe.stored = 0
     for _, compoundId in pairs(CompoundRegistry.getCompoundList()) do
@@ -1301,3 +1290,15 @@ function MicrobeSystem.emitAgent(microbeEntity, compoundId, maxAmount)
         createAgentCloud(compoundId, sceneNodeComponent.transform.position.x + xnew, sceneNodeComponent.transform.position.y + ynew, direction, amountToEject * 10)
     end
 end
+
+function MicrobeSystem.transferCompounds(fromEntity, toEntity)
+    for _, compoundID in pairs(CompoundRegistry.getCompoundList()) do
+        local amount = MicrobeSystem.getCompoundAmount(fromEntity, compoundID)
+    
+        if amount ~= 0 then
+            MicrobeSystem.takeCompound(fromEntity, compoundID, amount, false)
+            MicrobeSystem.storeCompound(toEntity, compoundID, amount, false)
+        end
+    end
+end
+

@@ -83,9 +83,8 @@ function MicrobeEditor:activate()
             GameState.MICROBE_EDITOR.wrapper)
         
         -- Transfer the compounds
-        Microbe.transferCompounds(Microbe.new(microbeStageMicrobe, nil, GameState.MICROBE),
-                                  Microbe.new(self.nextMicrobeEntity, true,
-                                              GameState.MICROBE_EDITOR))
+        Microbe.new(self.nextMicrobeEntity, true, GameState.MICROBE_EDITOR)
+        MicrobeSystem.transferCompounds(microbeStageMicrobe, self.nextMicrobeEntity)
         
         self.nextMicrobeEntity:stealName("working_microbe")
         Engine:playerData():setBool("edited_microbe", true)
