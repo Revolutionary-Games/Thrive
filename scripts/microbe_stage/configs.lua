@@ -25,19 +25,18 @@ toxin_Organelle_Number = 0
 chloroplast_unlocked = false
 toxin_unlocked = false
 
--- this count the toxin Organelle Number
-function  toxin_number()
-toxin_Organelle_Number = toxin_Organelle_Number + 1
-print (toxin_Organelle_Number)
-if toxin_Organelle_Number >= 3 then -- 3 is an example
-toxinEffect()
-toxin_call_Notification()
-end   
+function toxinEffect()
+    toxin_Organelle_Number = toxin_Organelle_Number + 1
+    print (toxin_Organelle_Number)
+    if toxin_Organelle_Number >= 3 then -- 3 is an example
+        toxin_unlock()
+        toxin_call_Notification()
+    end
     return true
 end
---this where the Unlock Happen
-function toxinEffect(entityId)
- if Engine:playerData():lockedMap():isLocked("Toxin") then
+
+function toxin_unlock(entityId)
+    if Engine:playerData():lockedMap():isLocked("Toxin") then
         showMessage("Toxin Unlocked!")
         Engine:playerData():lockedMap():unlock("Toxin")
         local guiSoundEntity = Entity("gui_sounds")
@@ -45,37 +44,35 @@ function toxinEffect(entityId)
     end
 end
 
--- this count the chloroplast Organelle Number
-function chloroplast_number()
-      chloroplast_Organelle_Number = chloroplast_Organelle_Number + 1
-	    print (chloroplast_Organelle_Number)
+function chloroplastEffect()
+    chloroplast_Organelle_Number = chloroplast_Organelle_Number + 1
     if chloroplast_Organelle_Number >= 3 then  -- 3 is an example
-	chloroplastEffect()
-	chloroplast_call_Notification()
-	end
+        chloroplast_unlock()
+        chloroplast_call_Notification()
+    end
     return true
 end
 
---this where the Unlock Happen
-function chloroplastEffect(entityId)
-if Engine:playerData():lockedMap():isLocked("chloroplast") then
+function chloroplast_unlock(entityId)
+    if Engine:playerData():lockedMap():isLocked("chloroplast") then
         showMessage("Chloroplast Unlocked!")
         Engine:playerData():lockedMap():unlock("chloroplast")
         local guiSoundEntity = Entity("gui_sounds")
         getComponent(guiSoundEntity, SoundSourceComponent):playSound("microbe-pickup-organelle")
     end
 end
+
 function chloroplast_call_Notification()
-if chloroplast_unlocked == false then
-global_activeMicrobeStageHudSystem:chloroplastNotificationenable()
-chloroplast_unlocked = true
-end
+    if chloroplast_unlocked == false then
+        global_activeMicrobeStageHudSystem:chloroplastNotificationenable()
+        chloroplast_unlocked = true
+    end
 end
 function toxin_call_Notification()
-if toxin_unlocked == false then
-global_activeMicrobeStageHudSystem:toxinNotificationenable()
-toxin_unlocked = true
-end
+    if toxin_unlocked == false then
+        global_activeMicrobeStageHudSystem:toxinNotificationenable()
+        toxin_unlocked = true
+    end
 end
 
 --[[
@@ -106,4 +103,5 @@ starter_microbes = {
             {name="flagellum",q=1,r=-4, rotation=0},
         },
         colour = {r=1,g=1,b=1},
-    }}
+    },
+}

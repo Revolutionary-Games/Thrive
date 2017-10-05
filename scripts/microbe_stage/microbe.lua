@@ -207,13 +207,17 @@ Microbe = class(
         assert(gameState ~= nil, "Microbe.Create requires gameState")
         assert(entity ~= nil)
         self.entity = entity
-        
+        local all_components_available = true
+
         for key, ctype in pairs(Microbe.COMPONENTS) do
             local component = getComponent(entity, ctype)
-            assert(component ~= nil, "Can't create microbe from this entity, it's missing " .. key)
-            
+            if component == nil then
+                print("entity is missing component: " .. key)
+                all_components_available = false
+            end
             self[key] = component
         end
+        assert(all_components_available, "Can't create microbe from this entity")
 
         for _, compound in pairs(CompoundRegistry.getCompoundList()) do
             self.compoundAbsorber:setCanAbsorbCompound(compound, true)
@@ -1269,12 +1273,18 @@ MicrobeSystem = class(
         self.microbeCollisions = CollisionFilter.new(
             "microbe",
             "microbe"
-        );
+        )
         -- Temporary for 0.3.2, should be moved to separate system.
         self.agentCollisions = CollisionFilter.new(
             "microbe",
             "agent"
-        );
+        )
+
+        self.bacteriaCollisions = CollisionFilter.new(
+            "microbe",
+            "bacteria"
+        )
+
         self.microbes = {}
     end
 )
@@ -1283,8 +1293,8 @@ function MicrobeSystem:init(gameState)
     LuaSystem.init(self, "MicrobeSystem", gameState)
     self.entities:init(gameState.wrapper)
     self.microbeCollisions:init(gameState.wrapper)
-    
     self.agentCollisions:init(gameState.wrapper)
+    self.bacteriaCollisions:init(gameState.wrapper)
 end
 
 
@@ -1292,8 +1302,8 @@ function MicrobeSystem:shutdown()
     LuaSystem.shutdown(self)
     self.entities:shutdown()
     self.microbeCollisions:shutdown()
-    
     self.agentCollisions:shutdown()
+    self.bacteriaCollisions:shutdown()
 end
 
 
@@ -1328,8 +1338,6 @@ function MicrobeSystem:update(renderTime, logicTime)
     end
     self.microbeCollisions:clearCollisions()
     
-    
-    
     -- TEMP, DELETE FOR 0.3.3!!!!!!!!
     for _, collision in pairs(self.agentCollisions:collisions()) do
         local entity = Entity.new(collision.entityId1, self.gameState.wrapper)
@@ -1341,6 +1349,19 @@ function MicrobeSystem:update(renderTime, logicTime)
         end
     end
     self.agentCollisions:clearCollisions()
+
+    for _, collision in pairs(self.bacteriaCollisions:collisions()) do
+        local microbe_entity = Entity.new(collision.entityId1, self.gameState.wrapper)
+        local bacterium_entity = Entity.new(collision.entityId2, self.gameState.wrapper)
+
+        if microbe_entity:exists() and bacterium_entity:exists() then
+            if not (getComponent(bacterium_entity, Bacterium.COMPONENTS.bacterium) == nil) then
+                local bacterium = Bacterium(bacterium_entity)
+                bacterium:damage(4)
+            end
+        end
+    end
+    self.bacteriaCollisions:clearCollisions()
 end
 
 function MicrobeSystem:checkEngulfment(microbe1Comp, microbe2Comp, body, entity1, entity2)

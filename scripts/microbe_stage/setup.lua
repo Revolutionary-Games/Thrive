@@ -1,8 +1,12 @@
 CLOUD_SPAWN_RADIUS = 75
 CLOUD_SPAWN_DENSITY = 1/5000
 
+BACTERIA_SPAWN_RADIUS = 50
+BACTERIA_SPAWN_DENSITY = 1/4000
+
 POWERUP_SPAWN_RADIUS = 85
 MICROBE_SPAWN_RADIUS = 85
+
 
 local function setupBackground(gameState)
     setRandomBiome(gameState)
@@ -168,7 +172,7 @@ function spawnMicrobe(pos, speciesName, aiControlled, individualName, gameState)
     return microbe
 end
 
-local function setSpawnablePhysics(entity, pos, mesh, scale, collisionShape)
+function setSpawnablePhysics(entity, pos, mesh, scale, collisionShape)
     -- Rigid body
     local rigidBody = RigidBodyComponent.new()
     rigidBody.properties.friction = 0.2
@@ -271,7 +275,7 @@ local function setupSpawnSystem(gameState)
         
         local powerupComponent = PowerupComponent.new()
         -- Function name must be in configs.lua
-        powerupComponent:setEffect("toxin_number")
+        powerupComponent:setEffect("toxinEffect")
         powerupEntity:addComponent(powerupComponent)
         return powerupEntity
     end
@@ -286,7 +290,7 @@ local function setupSpawnSystem(gameState)
         
         local powerupComponent = PowerupComponent.new()
         -- Function name must be in configs.lua
-        powerupComponent:setEffect("chloroplast_number")
+        powerupComponent:setEffect("chloroplastEffect")
         powerupEntity:addComponent(powerupComponent)
         return powerupEntity
     end
@@ -299,6 +303,15 @@ local function setupSpawnSystem(gameState)
 
             gSpawnSystem:addSpawnType(spawnCloud, CLOUD_SPAWN_DENSITY, CLOUD_SPAWN_RADIUS)
         end
+    end
+
+    for bacteriaName, _ in pairs(bacteriaTable) do
+        local spawnBacteria =  function(pos)
+            return Bacterium.createBacterium(bacteriaName, pos, g_luaEngine.currentGameState)
+        end
+
+        -- TODO: make the density change on biome change.
+        gSpawnSystem:addSpawnType(spawnBacteria, BACTERIA_SPAWN_DENSITY, BACTERIA_SPAWN_RADIUS)
     end
 
     gSpawnSystem:addSpawnType(toxinOrganelleSpawnFunction, 1/17000, POWERUP_SPAWN_RADIUS)
@@ -395,6 +408,7 @@ local function createMicrobeStage(name)
             --PopulationSystem.new(),
             PatchSystem.new(),
             SpeciesSystem.new(),
+            BacteriaSystem.new(),
             -- Physics
             RigidBodyInputSystem.new(),
             UpdatePhysicsSystem.new(),
@@ -427,6 +441,7 @@ local function createMicrobeStage(name)
             setupCamera(gameState)
             setupCompoundClouds(gameState)
             setupSpecies(gameState)
+            initBacterialSpecies(gameState)
             setupPlayer(gameState)
             setupSound(gameState)
         end
