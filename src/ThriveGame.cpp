@@ -78,6 +78,10 @@ void ThriveGame::startNewGame(){
         "Background", Ogre::Plane(1, 1, 1, 1),
         Float2(30, 30));
 
+    auto& node = m_cellStage->GetComponent_RenderNode(m_backgroundPlane);
+    node.Hidden = true;
+    node.Marked = true;
+
     //m_cellStage->SetSkyPlane("Background");
     
     // Spawn player //
@@ -124,6 +128,10 @@ void ThriveGame::Tick(int mspassed){
     float radians = dummyTestCounter / 500.f;
 
     if(m_backgroundPlane != 0){
+
+        auto& node = m_cellStage->GetComponent_RenderNode(m_backgroundPlane);
+        node.Hidden = false;
+        node.Marked = true;
 
         Leviathan::Position& pos = m_cellStage->GetComponent_Position(m_backgroundPlane);
 
