@@ -32,6 +32,7 @@ MicrobeComponent = class(
         self.agentEmissionCooldown = 0
         self.flashDuration = nil
         self.flashColour = nil
+        self.reproductionStage = 0 -- 1 for G1 complete, 2 for S complete, 3 for G2 complete, and 4 for reproduction finished.
     end
 )
 
@@ -166,8 +167,6 @@ Microbe = class(
             end
         end
         self:_updateCompoundAbsorber()
-        self.membraneHealth = 1.0
-        self.reproductionStage = 0 -- 1 for G1 complete, 2 for S complete, 3 for G2 complete, and 4 for reproduction finished.
     end
 )
 
@@ -188,7 +187,7 @@ Microbe.COMPONENTS = {
 function Microbe:readyToReproduce()
     if self.microbe.isPlayerMicrobe then
         showReproductionDialog()
-        self.reproductionStage = 0
+        self.microbe.reproductionStage = 0
     else
         -- Return the first cell to its normal, non duplicated cell arangement.
         SpeciesSystem.template(self, MicrobeSystem.getSpeciesComponent(self.entity))
@@ -218,8 +217,8 @@ function Microbe:divide(currentGameState)
         end
     end
     
-    self.reproductionStage = 0
-    copy.reproductionStage = 0
+    self.microbe.reproductionStage = 0
+    copy.microbe.reproductionStage = 0
 
     local spawnedComponent = SpawnedComponent.new()
     spawnedComponent:setSpawnRadius(MICROBE_SPAWN_RADIUS)
@@ -310,7 +309,7 @@ function Microbe:update(logicTime)
                 organelle:update(logicTime)
                 
                 -- We are in G1 phase of the cell cycle, duplicate all organelles.
-                if organelle.name ~= "nucleus" and self.reproductionStage == 0 then
+                if organelle.name ~= "nucleus" and self.microbe.reproductionStage == 0 then
                     
                     -- If the organelle is not split, give it some compounds to make it larger.
                     if organelle:getCompoundBin() < 2.0 and not organelle.wasSplit then
@@ -329,7 +328,7 @@ function Microbe:update(logicTime)
                     end
                    
                 -- In the S phase, the nucleus grows as chromatin is duplicated.
-                elseif organelle.name == "nucleus" and self.reproductionStage == 1 then
+                elseif organelle.name == "nucleus" and self.microbe.reproductionStage == 1 then
                     -- If the nucleus hasn't finished replicating its DNA, give it some compounds.
                     if organelle:getCompoundBin() < 2.0 then
                         -- Give the organelle access to the compound back to take some compound.
@@ -356,12 +355,12 @@ function Microbe:update(logicTime)
                 self.membraneComponent:clear()
             end
 
-            if reproductionStageComplete and self.reproductionStage < 2 then
-                self.reproductionStage = self.reproductionStage + 1
+            if reproductionStageComplete and self.microbe.reproductionStage < 2 then
+                self.microbe.reproductionStage = self.microbe.reproductionStage + 1
             end
             
             -- To finish the G2 phase we just need more than a threshold of compounds.
-            if self.reproductionStage == 2 or self.reproductionStage == 3 then
+            if self.microbe.reproductionStage == 2 or self.microbe.reproductionStage == 3 then
                 self:readyToReproduce()
             end
         end
@@ -405,7 +404,6 @@ end
 
 -- Private function for initializing a microbe's components
 function Microbe:_initialize()
-
     -- TODO: cache for performance
     local compoundShape = CompoundShape.castFrom(self.rigidBody.properties.shape)
     assert(compoundShape ~= nil)
@@ -421,7 +419,6 @@ function Microbe:_initialize()
     self.sceneNode.meshName = "membrane_" .. self.microbe.speciesName
     self.rigidBody.properties:touch()
     self.microbe.initialized = true
-    self.reproductionStage = 0
 end
 
 
@@ -891,7 +888,11 @@ function MicrobeSystem.removeEngulfedEffect(microbeEntity)
     end
 
     local hostileRigidBodyComponent = getComponent(microbeComponent.hostileEngulfer, RigidBodyComponent)
-    hostileRigidBodyComponent:reenableAllCollisions()
+
+    -- The component is nil sometimes, probably due to despawning.
+    if hostileRigidBodyComponent ~= nil then
+        hostileRigidBodyComponent:reenableAllCollisions()
+    end
     -- Causes crash because sound was already stopped.
     --microbeComponent.hostileEngulfer.soundSource:stopSound("microbe-engulfment")
 end
