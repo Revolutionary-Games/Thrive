@@ -1,8 +1,12 @@
-CLOUD_SPAWN_RADIUS = 50
+CLOUD_SPAWN_RADIUS = 75
 CLOUD_SPAWN_DENSITY = 1/5000
 
 BACTERIA_SPAWN_RADIUS = 50
 BACTERIA_SPAWN_DENSITY = 1/4000
+
+POWERUP_SPAWN_RADIUS = 85
+MICROBE_SPAWN_RADIUS = 85
+
 
 local function setupBackground(gameState)
     setRandomBiome(gameState)
@@ -310,8 +314,8 @@ local function setupSpawnSystem(gameState)
         gSpawnSystem:addSpawnType(spawnBacteria, BACTERIA_SPAWN_DENSITY, BACTERIA_SPAWN_RADIUS)
     end
 
-    gSpawnSystem:addSpawnType(toxinOrganelleSpawnFunction, 1/17000, 50)
-    gSpawnSystem:addSpawnType(ChloroplastOrganelleSpawnFunction, 1/12000, 50)
+    gSpawnSystem:addSpawnType(toxinOrganelleSpawnFunction, 1/17000, POWERUP_SPAWN_RADIUS)
+    gSpawnSystem:addSpawnType(ChloroplastOrganelleSpawnFunction, 1/12000, POWERUP_SPAWN_RADIUS)
 
     for name, species in pairs(starter_microbes) do
 
@@ -323,7 +327,7 @@ local function setupSpawnSystem(gameState)
                 return microbeSpawnFunctionGeneric(pos, name, true, nil,
                                                    g_luaEngine.currentGameState)
             end, 
-            species.spawnDensity, 60)
+            species.spawnDensity, MICROBE_SPAWN_RADIUS)
     end
 
     return gSpawnSystem

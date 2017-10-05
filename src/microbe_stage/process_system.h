@@ -49,19 +49,19 @@ public:
     StorageContainer
     storage() const override;
 
-    std::unordered_map<BioProcessId, float> process_capacities;
+    std::unordered_map<BioProcessId, double> process_capacities;
     void
-    setCapacity(BioProcessId, float);
+    setCapacity(BioProcessId, double);
 };
 
 // Helper structure to store the economic information of the compounds.
 struct CompoundData {
-    float amount;
-    float uninflatedPrice;
-    float price;
-    float demand;
-    float priceReductionPerUnit;
-    float breakEvenPoint;
+    double amount;
+    double uninflatedPrice;
+    double price;
+    double demand;
+    double priceReductionPerUnit;
+    double breakEvenPoint;
 };
 
 class CompoundBagComponent : public Component {
@@ -80,8 +80,8 @@ public:
     StorageContainer
     storage() const override;
 
-    float storageSpace;
-    float storageSpaceOccupied;
+    double storageSpace;
+    double storageSpaceOccupied;
     ProcessorComponent* processor = nullptr;
     std::string speciesName;
     std::unordered_map<CompoundId, CompoundData> compounds;
@@ -89,23 +89,23 @@ public:
     void
     setProcessor(ProcessorComponent& processor, const std::string& speciesName);
 
-    float
+    double
     getCompoundAmount(CompoundId);
 
-    float
+    double
     getStorageSpaceUsed() const;
 
-    float
+    double
     getPrice(CompoundId);
 
-    float
+    double
     getDemand(CompoundId);
 
-    float
-    takeCompound(CompoundId, float); // remove up to a certain amount of compound, returning how much was removed
+    double
+    takeCompound(CompoundId, double); // remove up to a certain amount of compound, returning how much was removed
 
     void
-    giveCompound(CompoundId, float);
+    giveCompound(CompoundId, double);
 };
 
 class ProcessSystem : public System {
