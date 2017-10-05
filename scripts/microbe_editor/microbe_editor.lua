@@ -466,7 +466,6 @@ end
 function MicrobeEditor:createNewMicrobe()
     local action = {
         redo = function()
-            print("miau")
             self.organelleCount = 0
             speciesName = self.currentMicrobe.microbe.speciesName
             if self.currentMicrobe ~= nil then
@@ -475,8 +474,9 @@ function MicrobeEditor:createNewMicrobe()
             for _, cytoplasm in pairs(self.occupiedHexes) do
                 cytoplasm:destroy()
             end
-            self.currentMicrobe = Microbe.createMicrobeEntity(
-                nil, false, 'Editor_Microbe', true, g_luaEngine.currentGameState)
+            
+            self.currentMicrobeEntity = MicrobeSystem.createMicrobeEntity(nil, false, 'Editor_Microbe', true)
+            self.currentMicrobe = Microbe(self.currentMicrobeEntity, true, g_luaEngine.currentGameState)
             self.currentMicrobe.entity:stealName("working_microbe")
             --self.currentMicrobe.sceneNode.transform.orientation = Quaternion.new(Radian.new(Degree(180)), Vector3(0, 0, 1))-- Orientation
             self.currentMicrobe.sceneNode.transform:touch()
@@ -504,8 +504,8 @@ function MicrobeEditor:createNewMicrobe()
         action.undo = function()
             speciesName = self.currentMicrobe.microbe.speciesName
             self.currentMicrobe.entity:destroy() -- remove the "new" entity that has replaced the previous one
-            self.currentMicrobe = Microbe.createMicrobeEntity(
-                nil, false, 'Editor_Microbe', true, g_luaEngine.currentGameState)
+            self.currentMicrobeEntity = MicrobeSystem.createMicrobeEntity(nil, false, 'Editor_Microbe', true)
+            self.currentMicrobe = Microbe(self.currentMicrobeEntity, true, g_luaEngine.currentGameState)
             self.currentMicrobe.entity:stealName("working_microbe")
             self.currentMicrobe.sceneNode.transform.orientation = Quaternion.new(Radian(0), Vector3(0, 0, 1))-- Orientation
             self.currentMicrobe.sceneNode.transform:touch()

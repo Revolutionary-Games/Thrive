@@ -184,82 +184,6 @@ Microbe.COMPONENTS = {
     compoundBag = CompoundBagComponent
 }
 
-
--- Creates a new microbe with all required components
---
--- @param name
--- The entity's name. If nil, the entity will be unnamed.
---
--- @returns microbe
--- An object of type Microbe
-
-function Microbe.createMicrobeEntity(name, aiControlled, speciesName, in_editor, gameState)
-    assert(gameState ~= nil, "Microbe.createMicrobeEntity requires gameState")
-    assert(type(gameState) == "table")
-    assert(isNotEmpty(speciesName))
-    
-    local entity
-    if name then
-        entity = Entity.new(name, gameState.wrapper)
-    else
-        entity = Entity.new(gameState.wrapper)
-    end
-    local rigidBody = RigidBodyComponent.new()
-    rigidBody.properties.shape = CompoundShape.new()
-    rigidBody.properties.linearDamping = 0.5
-    rigidBody.properties.friction = 0.2
-    rigidBody.properties.mass = 0.0
-    rigidBody.properties.linearFactor = Vector3(1, 1, 0)
-    rigidBody.properties.angularFactor = Vector3(0, 0, 1)
-    rigidBody.properties:touch()
-    local reactionHandler = CollisionComponent.new()
-    reactionHandler:addCollisionGroup("microbe")
-    local membraneComponent = MembraneComponent.new()
-    
-    local soundComponent = SoundSourceComponent.new()
-    local s1 = nil
-    soundComponent:addSound("microbe-release-toxin", "soundeffects/microbe-release-toxin.ogg")
-    soundComponent:addSound("microbe-toxin-damage", "soundeffects/microbe-toxin-damage.ogg")
-    soundComponent:addSound("microbe-death", "soundeffects/microbe-death.ogg")
-    soundComponent:addSound("microbe-pickup-organelle", "soundeffects/microbe-pickup-organelle.ogg")
-    soundComponent:addSound("microbe-engulfment", "soundeffects/engulfment.ogg")
-    soundComponent:addSound("microbe-reproduction", "soundeffects/reproduction.ogg")
-    
-    s1 = soundComponent:addSound("microbe-movement-1", "soundeffects/microbe-movement-1.ogg")
-    s1.properties.volume = 0.4
-    s1.properties:touch()
-    s1 = soundComponent:addSound("microbe-movement-turn", "soundeffects/microbe-movement-2.ogg")
-    s1.properties.volume = 0.1
-    s1.properties:touch()
-    s1 = soundComponent:addSound("microbe-movement-2", "soundeffects/microbe-movement-3.ogg")
-    s1.properties.volume = 0.4
-    s1.properties:touch()
-
-    local components = {
-        CompoundAbsorberComponent.new(),
-        OgreSceneNodeComponent.new(),
-        CompoundBagComponent.new(),
-        MicrobeComponent.new(not aiControlled, speciesName),
-        reactionHandler,
-        rigidBody,
-        soundComponent,
-        membraneComponent
-    }
-    if aiControlled then
-        local aiController = MicrobeAIControllerComponent.new()
-        table.insert(components, aiController)
-    end
-    for _, component in ipairs(components) do
-        entity:addComponent(component)
-    end
-    
-    local newMicrobe = Microbe(entity, in_editor, gameState)
-    assert(newMicrobe)
-    assert(newMicrobe.microbe.initialized == true)
-
-    return newMicrobe
-end
-
 -- Copies this microbe. The new microbe will not have the stored compounds of this one.
 function Microbe:readyToReproduce()
     if self.microbe.isPlayerMicrobe then
@@ -277,7 +201,8 @@ function Microbe:divide(currentGameState)
     
     print("dividing cell ")
     -- Create the two daughter cells.
-    local copy = Microbe.createMicrobeEntity(nil, true, self.microbe.speciesName, false, currentGameState)
+    local copyEntity = MicrobeSystem.createMicrobeEntity(nil, true, self.microbe.speciesName, false)
+    local copy = Microbe(copyEntity, false, currentGameState)
     
     --Separate the two cells.
     copy.rigidBody.dynamicProperties.position = Vector3(self.rigidBody.dynamicProperties.position.x - self.membraneComponent.dimensions/2, self.rigidBody.dynamicProperties.position.y, 0)
@@ -289,7 +214,7 @@ function Microbe:divide(currentGameState)
     
         if amount ~= 0 then
             MicrobeSystem.takeCompound(self.entity, compoundID, amount/2, false)
-            MicrobeSystem.storeCompound(copy.entity, compoundID, amount/2, false)
+            MicrobeSystem.storeCompound(copyEntity, compoundID, amount/2, false)
         end
     end
     
@@ -298,7 +223,7 @@ function Microbe:divide(currentGameState)
 
     local spawnedComponent = SpawnedComponent.new()
     spawnedComponent:setSpawnRadius(MICROBE_SPAWN_RADIUS)
-    copy.entity:addComponent(spawnedComponent)
+    copyEntity:addComponent(spawnedComponent)
     self.soundSource:playSound("microbe-reproduction")
 end
 
@@ -1302,3 +1227,80 @@ function MicrobeSystem.transferCompounds(fromEntity, toEntity)
     end
 end
 
+-- Creates a new microbe with all required components
+--
+-- @param name
+-- The entity's name. If nil, the entity will be unnamed.
+--
+-- @returns microbe
+-- An object of type Microbe
+
+function MicrobeSystem.createMicrobeEntity(name, aiControlled, speciesName, in_editor)
+    assert(isNotEmpty(speciesName))
+
+    local entity
+    if name then
+        entity = Entity.new(name, g_luaEngine.currentGameState.wrapper)
+    else
+        entity = Entity.new(g_luaEngine.currentGameState.wrapper)
+    end
+
+    local rigidBody = RigidBodyComponent.new()
+    rigidBody.properties.shape = CompoundShape.new()
+    rigidBody.properties.linearDamping = 0.5
+    rigidBody.properties.friction = 0.2
+    rigidBody.properties.mass = 0.0
+    rigidBody.properties.linearFactor = Vector3(1, 1, 0)
+    rigidBody.properties.angularFactor = Vector3(0, 0, 1)
+    rigidBody.properties:touch()
+
+    local reactionHandler = CollisionComponent.new()
+    reactionHandler:addCollisionGroup("microbe")
+
+    local membraneComponent = MembraneComponent.new()
+    
+    local soundComponent = SoundSourceComponent.new()
+    local s1 = nil
+    soundComponent:addSound("microbe-release-toxin", "soundeffects/microbe-release-toxin.ogg")
+    soundComponent:addSound("microbe-toxin-damage", "soundeffects/microbe-toxin-damage.ogg")
+    soundComponent:addSound("microbe-death", "soundeffects/microbe-death.ogg")
+    soundComponent:addSound("microbe-pickup-organelle", "soundeffects/microbe-pickup-organelle.ogg")
+    soundComponent:addSound("microbe-engulfment", "soundeffects/engulfment.ogg")
+    soundComponent:addSound("microbe-reproduction", "soundeffects/reproduction.ogg")
+    
+    s1 = soundComponent:addSound("microbe-movement-1", "soundeffects/microbe-movement-1.ogg")
+    s1.properties.volume = 0.4
+    s1.properties:touch()
+    s1 = soundComponent:addSound("microbe-movement-turn", "soundeffects/microbe-movement-2.ogg")
+    s1.properties.volume = 0.1
+    s1.properties:touch()
+    s1 = soundComponent:addSound("microbe-movement-2", "soundeffects/microbe-movement-3.ogg")
+    s1.properties.volume = 0.4
+    s1.properties:touch()
+
+    local components = {
+        CompoundAbsorberComponent.new(),
+        OgreSceneNodeComponent.new(),
+        CompoundBagComponent.new(),
+        MicrobeComponent.new(not aiControlled, speciesName),
+        reactionHandler,
+        rigidBody,
+        soundComponent,
+        membraneComponent
+    }
+
+    if aiControlled then
+        local aiController = MicrobeAIControllerComponent.new()
+        table.insert(components, aiController)
+    end
+
+    for _, component in ipairs(components) do
+        entity:addComponent(component)
+    end
+    
+    local newMicrobe = Microbe(entity, in_editor, g_luaEngine.currentGameState)
+    assert(newMicrobe)
+    assert(newMicrobe.microbe.initialized == true)
+
+    return entity
+end

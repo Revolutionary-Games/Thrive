@@ -156,8 +156,8 @@ function spawnMicrobe(pos, speciesName, aiControlled, individualName, gameState)
     end
     
     
-    local microbe = Microbe.createMicrobeEntity(individualName, aiControlled, speciesName,
-                                                false, gameState)
+    local microbeEntity = MicrobeSystem.createMicrobeEntity(individualName, aiControlled, speciesName, false)
+    local microbe = Microbe(microbeEntity, false, gameState)
     if pos ~= nil then
         microbe.rigidBody:setDynamicProperties(
             pos, -- Position
