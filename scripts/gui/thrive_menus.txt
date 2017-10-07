@@ -47,7 +47,8 @@ o GuiCollection "MicrobeRoot"{
 o GuiObject "_IntroVideoStarter"{
     s{
         GuiObject@ OurObject;
-        
+
+        // Comment the next line to not play intro video
         //[@Listener="OnInit"]
         bool StartVideoPlayback(GuiObject@ instance){
 
@@ -149,6 +150,16 @@ o GuiObject "Background/MainMenuInteractive/NewGameButton"{
             GetThriveGame().startNewGame();
             return true;
         }
+
+        // Uncomment the next line to automatically start a new game
+        // also remember to disable the intro video to not hear it also play
+        [@Listener="OnInit"]
+        bool InstantStart(GuiObject@ instance){
+
+             StartGame(instance);
+             return true;
+        }
+        
         @%};
 }
 

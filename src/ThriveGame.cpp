@@ -58,6 +58,15 @@ void ThriveGame::_ShutdownApplicationPacketHandler(){
 
 void ThriveGame::startNewGame(){
 
+    // To work with instant start, we need to invoke this if we have no cell stage world
+    if(!m_cellStage){
+
+        Engine::Get()->Invoke([=](){
+                startNewGame();
+            });
+        return;
+    }
+
     LOG_INFO("New game started");
 
     // Clear world //
