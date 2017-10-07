@@ -73,54 +73,28 @@ void ThriveGame::startNewGame(){
     m_cellStage->ClearObjects();
 
     // Main camera that will be attached to the player
-    m_cellCamera = Leviathan::ObjectLoader::LoadCamera(*m_cellStage, Float3(0, 0, 15),
-        Ogre::Quaternion::IDENTITY
-        //* Ogre::Quaternion(Ogre::Degree(-20), Ogre::Vector3::UNIT_Z)
+    m_cellCamera = Leviathan::ObjectLoader::LoadCamera(*m_cellStage, Float3(0, 15, 0),
+        Ogre::Quaternion(Ogre::Degree(-90), Ogre::Vector3::UNIT_X)
     );
 
     m_cellStage->SetCamera(m_cellCamera);
 
     // Set background plane //
-    m_backgroundPlane = Leviathan::ObjectLoader::LoadPlane(*m_cellStage, Float3(0, -10, 0),
-        Ogre::Quaternion::IDENTITY *
-        Ogre::Quaternion(Ogre::Radian(Leviathan::PI * 3), Ogre::Vector3::UNIT_Y),
+    m_backgroundPlane = Leviathan::ObjectLoader::LoadPlane(*m_cellStage, Float3(0, -50, 0),
+        Ogre::Quaternion(Ogre::Degree(90), Ogre::Vector3::UNIT_Z) *
+        Ogre::Quaternion(Ogre::Degree(45), Ogre::Vector3::UNIT_Y),
         "Background", Ogre::Plane(1, 1, 1, 1),
-        Float2(30, 30));
+        Float2(200, 200));
 
-    auto& node = m_cellStage->GetComponent_RenderNode(m_backgroundPlane);
-    node.Hidden = true;
-    node.Marked = true;
-
-    //m_cellStage->SetSkyPlane("Background");
-    
     // Spawn player //
     // RespawnPlayerCell();
+    
     {
         const auto testModel = m_cellStage->CreateEntity();
-        m_cellStage->Create_Position(testModel, Float3(1, 0, 0), Float4::IdentityQuaternion());
+        m_cellStage->Create_Position(testModel, Float3(0, 0, 0), Float4::IdentityQuaternion());
         auto& node = m_cellStage->Create_RenderNode(testModel);
         m_cellStage->Create_Model(testModel, node.Node, "nucleus.mesh");
     }
-    // {
-    //     const auto testModel = m_cellStage->CreateEntity();
-    //     m_cellStage->Create_Position(testModel, Float3(0, 0, 1), Float4::IdentityQuaternion());
-    //     auto& node = m_cellStage->Create_RenderNode(testModel);
-    //     m_cellStage->Create_Model(testModel, node.Node, "nucleus.mesh");
-    // }
-
-    // {
-    //     const auto testModel = m_cellStage->CreateEntity();
-    //     m_cellStage->Create_Position(testModel, Float3(0, 1, 0), Float4::IdentityQuaternion());
-    //     auto& node = m_cellStage->Create_RenderNode(testModel);
-    //     m_cellStage->Create_Model(testModel, node.Node, "nucleus.mesh");
-    // }
-
-    // {
-    //     const auto testModel = m_cellStage->CreateEntity();
-    //     m_cellStage->Create_Position(testModel, Float3(0, -1, 0), Float4::IdentityQuaternion());
-    //     auto& node = m_cellStage->Create_RenderNode(testModel);
-    //     m_cellStage->Create_Model(testModel, node.Node, "nucleus.mesh");
-    // } 
 }
 
 CellStageWorld* ThriveGame::getCellStage(){
@@ -136,7 +110,7 @@ void ThriveGame::Tick(int mspassed){
 
     float radians = dummyTestCounter / 500.f;
 
-    if(m_backgroundPlane != 0){
+    if(m_backgroundPlane != 0 && false){
 
         auto& node = m_cellStage->GetComponent_RenderNode(m_backgroundPlane);
         node.Hidden = false;
@@ -154,8 +128,8 @@ void ThriveGame::Tick(int mspassed){
     
         Leviathan::Position& pos = m_cellStage->GetComponent_Position(m_cellCamera);
 
-        pos.Members._Orientation = Ogre::Quaternion::IDENTITY * Ogre::Quaternion(
-            Ogre::Radian(radians), Ogre::Vector3::UNIT_Y);
+        pos.Members._Orientation = Ogre::Quaternion(
+            Ogre::Radian(radians), Ogre::Vector3::UNIT_X);
 
         pos.Marked = true;
     }
