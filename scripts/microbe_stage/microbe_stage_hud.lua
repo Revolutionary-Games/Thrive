@@ -236,25 +236,33 @@ function HudSystem:update(renderTime)
 
     local playerSpecies = playerMicrobe:getSpeciesComponent()
 	--notification setting up
-    if b1 == true and t1 < 300 then
+        if b1 == true and t1 < 300 then
         t1 = t1 + 2
-
+if hintsPanelOpned == true then
+			self:hintsButtonClicked()
+			end        
         if t1 == 300 then
             global_activeMicrobeStageHudSystem:chloroplastNotificationdisable()
+			self:hintsButtonClicked()
         end
     end
 
     if b2 == true and t2 < 300 then
         t2 = t2 + 2
-
+if hintsPanelOpned == true then
+			self:hintsButtonClicked()
+			end        
         if t2 == 300 then
             global_activeMicrobeStageHudSystem:toxinNotificationdisable()
+			self:hintsButtonClicked()
         end
     end
 
     if b3 == true and t3 < 300 then
         t3 = t3 + 2
-
+if hintsPanelOpned == true then
+			self:hintsButtonClicked()
+			end        
         if t3 == 300 then
             global_activeMicrobeStageHudSystem:editornotificationdisable()
         end
