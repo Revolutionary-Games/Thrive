@@ -166,7 +166,7 @@ Microbe = class(
                 SpeciesSystem.template(self, MicrobeSystem.getSpeciesComponent(self.entity))
             end
         end
-        self:_updateCompoundAbsorber()
+        MicrobeSystem.updateCompoundAbsorber(self.entity)
     end
 )
 
@@ -226,13 +226,6 @@ function Microbe:divide(currentGameState)
     self.soundSource:playSound("microbe-reproduction")
 end
 
-function Microbe:calculateStorageSpace()
-    self.microbe.stored = 0
-    for _, compoundId in pairs(CompoundRegistry.getCompoundList()) do
-        self.microbe.stored = self.microbe.stored + MicrobeSystem.getCompoundAmount(self.entity, compoundId)
-    end
-end
-
 -- Updates the microbe's state
 function Microbe:update(logicTime)
     if not self.microbe.dead then
@@ -240,12 +233,12 @@ function Microbe:update(logicTime)
         self.microbe.agentEmissionCooldown = math.max(self.microbe.agentEmissionCooldown - logicTime, 0)
 
         --calculate storage.
-        self:calculateStorageSpace()
+        MicrobeSystem.calculateStorageSpace(self.entity)
 
         self.compoundBag.storageSpace = self.microbe.capacity
 
         -- StorageOrganelles
-        self:_updateCompoundAbsorber()
+        MicrobeSystem.updateCompoundAbsorber(self.entity)
         -- Regenerate bandwidth
         MicrobeSystem.regenerateBandwidth(self.entity, logicTime)
         -- Attempt to absorb queued compounds
@@ -419,22 +412,6 @@ function Microbe:_initialize()
     self.sceneNode.meshName = "membrane_" .. self.microbe.speciesName
     self.rigidBody.properties:touch()
     self.microbe.initialized = true
-end
-
-
--- Private function for updating the compound absorber
---
--- Toggles the absorber on and off depending on the remaining storage
--- capacity of the storage organelles.
-function Microbe:_updateCompoundAbsorber()
-    if --self.microbe.stored >= self.microbe.capacity or 
-               self.microbe.remainingBandwidth < 1 or 
-               self.microbe.dead then
-        self.compoundAbsorber:disable()
-    else
-        self.compoundAbsorber:enable()
-    end
-    
 end
 
 --------------------------------------------------------------------------------
@@ -1304,4 +1281,30 @@ function MicrobeSystem.createMicrobeEntity(name, aiControlled, speciesName, in_e
     assert(newMicrobe.microbe.initialized == true)
 
     return entity
+end
+
+function MicrobeSystem.calculateStorageSpace(microbeEntity)
+    local microbeComponent = getComponent(microbeEntity, MicrobeComponent)
+
+    microbeComponent.stored = 0
+    for _, compoundId in pairs(CompoundRegistry.getCompoundList()) do
+        microbeComponent.stored = microbeComponent.stored + MicrobeSystem.getCompoundAmount(microbeEntity, compoundId)
+    end
+end
+
+-- Private function for updating the compound absorber
+--
+-- Toggles the absorber on and off depending on the remaining storage
+-- capacity of the storage organelles.
+function MicrobeSystem.updateCompoundAbsorber(microbeEntity)
+    local microbeComponent = getComponent(microbeEntity, MicrobeComponent)
+    local compoundAbsorberComponent = getComponent(microbeEntity, CompoundAbsorberComponent)
+
+    if --microbeComponent.stored >= microbeComponent.capacity or 
+               microbeComponent.remainingBandwidth < 1 or 
+               microbeComponent.dead then
+        compoundAbsorberComponent:disable()
+    else
+        compoundAbsorberComponent:enable()
+    end
 end
