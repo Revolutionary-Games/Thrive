@@ -26,7 +26,6 @@ function MicrobeReplacementSystem:init(gameState)
 end
 
 function MicrobeReplacementSystem:activate()
-	
     if Engine:playerData():isBoolSet("edited_microbe") then
         Engine:playerData():setBool("edited_microbe", false)
 
@@ -57,7 +56,7 @@ function MicrobeReplacementSystem:activate()
         local newMicrobeEntity = MicrobeSystem.createMicrobeEntity(nil, false, newSpeciesName, false)
         local newMicrobe = Microbe(newMicrobeEntity, false, self.gameState)
 
-        newMicrobe:divide(self.gameState)
+        MicrobeSystem.divide(newMicrobeEntity)
         
         print(": "..newMicrobe.microbe.speciesName)
         
@@ -74,7 +73,6 @@ function MicrobeReplacementSystem:activate()
         --                                         GameState.MICROBE),
         --     GameState.MICROBE.wrapper)
 
-        local newMicrobeEntity = newMicrobe.entity
         newMicrobeEntity:stealName(PLAYER_NAME)
 
         assert(self.gameState.entityManager:getNamedId(PLAYER_NAME, false) ==

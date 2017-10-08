@@ -191,39 +191,8 @@ function Microbe:readyToReproduce()
     else
         -- Return the first cell to its normal, non duplicated cell arangement.
         SpeciesSystem.template(self, MicrobeSystem.getSpeciesComponent(self.entity))
-        self:divide()
+        MicrobeSystem.divide(self.entity)
     end
-end
-
-function Microbe:divide(currentGameState)
-    assert(currentGameState, "Microbe:divide needs currentGameState")
-    
-    print("dividing cell ")
-    -- Create the two daughter cells.
-    local copyEntity = MicrobeSystem.createMicrobeEntity(nil, true, self.microbe.speciesName, false)
-    local copy = Microbe(copyEntity, false, currentGameState)
-    
-    --Separate the two cells.
-    copy.rigidBody.dynamicProperties.position = Vector3(self.rigidBody.dynamicProperties.position.x - self.membraneComponent.dimensions/2, self.rigidBody.dynamicProperties.position.y, 0)
-    self.rigidBody.dynamicProperties.position = Vector3(self.rigidBody.dynamicProperties.position.x + self.membraneComponent.dimensions/2, self.rigidBody.dynamicProperties.position.y, 0)
-    
-    -- Split the compounds evenly between the two cells.
-    for _, compoundID in pairs(CompoundRegistry.getCompoundList()) do
-        local amount = MicrobeSystem.getCompoundAmount(self.entity, compoundID)
-    
-        if amount ~= 0 then
-            MicrobeSystem.takeCompound(self.entity, compoundID, amount/2, false)
-            MicrobeSystem.storeCompound(copyEntity, compoundID, amount/2, false)
-        end
-    end
-    
-    self.microbe.reproductionStage = 0
-    copy.microbe.reproductionStage = 0
-
-    local spawnedComponent = SpawnedComponent.new()
-    spawnedComponent:setSpawnRadius(MICROBE_SPAWN_RADIUS)
-    copyEntity:addComponent(spawnedComponent)
-    self.soundSource:playSound("microbe-reproduction")
 end
 
 -- Updates the microbe's state
@@ -1307,4 +1276,38 @@ function MicrobeSystem.updateCompoundAbsorber(microbeEntity)
     else
         compoundAbsorberComponent:enable()
     end
+end
+
+function MicrobeSystem.divide(microbeEntity)
+    local microbeComponent = getComponent(microbeEntity, MicrobeComponent)
+    local soundSourceComponent = getComponent(microbeEntity, SoundSourceComponent)
+    local membraneComponent = getComponent(microbeEntity, MembraneComponent)
+    local rigidBodyComponent = getComponent(microbeEntity, RigidBodyComponent)
+
+    -- Create the two daughter cells.
+    local copyEntity = MicrobeSystem.createMicrobeEntity(nil, true, microbeComponent.speciesName, false)
+    local microbeComponentCopy = getComponent(copyEntity, MicrobeComponent)
+    local rigidBodyComponentCopy = getComponent(copyEntity, RigidBodyComponent)
+
+    --Separate the two cells.
+    rigidBodyComponentCopy.dynamicProperties.position = Vector3(rigidBodyComponent.dynamicProperties.position.x - membraneComponent.dimensions/2, rigidBodyComponent.dynamicProperties.position.y, 0)
+    rigidBodyComponent.dynamicProperties.position = Vector3(rigidBodyComponent.dynamicProperties.position.x + membraneComponent.dimensions/2, rigidBodyComponent.dynamicProperties.position.y, 0)
+    
+    -- Split the compounds evenly between the two cells.
+    for _, compoundID in pairs(CompoundRegistry.getCompoundList()) do
+        local amount = MicrobeSystem.getCompoundAmount(microbeEntity, compoundID)
+    
+        if amount ~= 0 then
+            MicrobeSystem.takeCompound(microbeEntity, compoundID, amount / 2, false)
+            MicrobeSystem.storeCompound(copyEntity, compoundID, amount / 2, false)
+        end
+    end
+    
+    microbeComponent.reproductionStage = 0
+    microbeComponentCopy.reproductionStage = 0
+
+    local spawnedComponent = SpawnedComponent.new()
+    spawnedComponent:setSpawnRadius(MICROBE_SPAWN_RADIUS)
+    copyEntity:addComponent(spawnedComponent)
+    soundSourceComponent:playSound("microbe-reproduction")
 end
