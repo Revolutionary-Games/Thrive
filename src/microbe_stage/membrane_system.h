@@ -1,55 +1,33 @@
 #pragma once
 
-#include "engine/component.h"
-#include "engine/system.h"
-#include "engine/touchable.h"
-#include "engine/typedefs.h"
+#include "engine/component_types.h"
 
-#include "scripting/luajit.h"
+#include "Entities/Component.h"
 
-#include <OgreCommon.h>
 #include <OgreColourValue.h>
-#include <OgreMath.h>
-#include <OgreVector3.h>
-#include <vector>
-#include <algorithm>
-
+#include <OgreItem.h>
 
 namespace thrive {
 
-class MembraneSystem;
-class CompoundCloudSystem;
-
 /**
-* @brief Emitter for compound particles
+* @brief Adds a membrane to an entity
 */
-class MembraneComponent : public Component {
-    COMPONENT(MembraneComponent)
+class MembraneComponent : public Leviathan::Component {
+    struct MembraneVertex{
 
+        Ogre::Vector3 m_pos;
+        Ogre::Vector2 m_uv;
+        //Ogre::Vector3 m_normal;
+    };
 public:
 
-    /**
-    * @brief Lua bindings
-    *
-    * Exposes:
-    * - MembraneComponent()
-    * - MembraneComponent::m_emissionRadius
-    *
-    * @return
-    */
-    static void luaBindings(sol::state &lua);
+    MembraneComponent(Ogre::SceneManager* scene);
+    ~MembraneComponent();
 
-    MembraneComponent();
-
-    void
-    load(
-        const StorageContainer& storage
-    ) override;
-
-    StorageContainer
-    storage() const override;
+    void Release(Ogre::SceneManager* scene);
 
     // The colour of the membrane.
+    // still broken
     Ogre::ColourValue colour;
 
     // Gets organelle positions from the .lua file.
@@ -57,12 +35,6 @@ public:
 
     // Deletes the membrane mesh.
     void clear();
-
-    // Sets the colour of the membrane.
-    void setColour(float red, float green, float blue, float alpha);
-
-    // Returns the color of the membrane.
-    Ogre::Vector3 getColour();
 
     // Gets the amount of a certain compound the membrane absorbed.
     int getAbsorbedCompounds();
@@ -73,12 +45,7 @@ public:
     // Sees if the given point is inside the membrane.
 	bool contains(float x, float y);
 
-	void Initialize();
-
 	void Update();
-
-	// Creates a 3D prism from the 2D vertices.
-	void MakePrism();
 
 	// Returns the length of the bounding membrane "box".
 	int getCellDimensions() {return cellDimensions;}
@@ -90,109 +57,72 @@ public:
     // Finds the position of external organelles based on its "internal" location.
 	Ogre::Vector3 GetExternalOrganelle(double x, double y);
 
-	// Return the position of the closest organelle to the target point if it is less then a certain threshold away.
+	// Return the position of the closest organelle to the target
+	// point if it is less then a certain threshold away.
 	Ogre::Vector3 FindClosestOrganelles(Ogre::Vector3 target);
 
 	// Decides where the point needs to move based on the position of the closest organelle.
 	Ogre::Vector3 GetMovement(Ogre::Vector3 target, Ogre::Vector3 closestOrganelle);
 
+    //! Makes the model move with the scene node
+    void attach(Ogre::SceneNode* node);
 
-    // Gets the position of the closest membrane point
-    sol::object getExternOrganellePos(double x, double y);
+    static constexpr auto TYPE = componentTypeConvert(THRIVE_COMPONENT::MEMBRANE);
+    
+protected:
+    
+    //! Called on first Update
+    void Initialize();
 
-    bool isInitialized;
-    bool wantsMembrane;
-
-    	// Finds the UV coordinates be projecting onto a plane and stretching to fit a circle.
-	void CalcUVCircle();
-
-	// Finds the normals for the mesh.
-	void CalcNormals();
-
-    // Stores the Mesh in a vector such that every 3 points make up a triangle.
-    std::vector<Ogre::Vector3> MeshPoints;
-
-    // Stores the UV coordinates for the MeshPoints.
-    std::vector<Ogre::Vector3> UVs;
-
-    // Stores the normals for every point described in MeshPoints.
-    std::vector<Ogre::Vector3> Normals;
-
-
+    bool isInitialized = false;
+    
 private:
-    friend class MembraneSystem;
-    friend class CompoundCloudSystem;
 
     // Stores the positions of the organelles.
     std::vector<Ogre::Vector3> organellePositions;
 
     // The length in pixels of a side of the square that bounds the membrane.
-    int cellDimensions;
+    // Half the side length of the original square that is compressed to make the membrane.
+    int cellDimensions = 10;
+    // Amount of segments on one side of the above described square.
     // The amount of points on the side of the membrane.
-    int membraneResolution;
+    int membraneResolution = 10;
     // Stores the generated 2-Dimensional membrane.
-    std::vector<Ogre::Vector3>   vertices2D;
+    std::vector<Ogre::Vector3> vertices2D;
 
-    std::string m_meshName;
+    // Ogre renderable that holds the mesh
+    Ogre::MeshPtr m_mesh;
+    // The submesh that actually holds our vertex and index buffers
+    Ogre::SubMesh* m_subMesh;
 
-    // Entity that holds the membrane mesh.
-    Ogre::Entity* m_entity = nullptr;
+    //! Actual object that is attached to a scenenode
+    Ogre::Item* m_item;
+
+    Ogre::VertexBufferPacked* m_vertexBuffer = nullptr;
 
     // The amount of compounds stored in the membrane.
-    int compoundAmount;
+    int compoundAmount = 0;
 };
 
 
 
 /**
-* @brief Spawns compound particles for CompoundEmitterComponent
+* @brief Handles entities with MembraneComponent
 */
-class MembraneSystem : public System {
-
+class MembraneSystem{
 public:
 
-    /**
-    * @brief Lua bindings
-    *
-    * Exposes:
-    * - MembraneSystem()
-    *
-    * @return
-    */
-    static void luaBindings(sol::state &lua);
+    //! Updates the membrane calculations every frame
+    void Run(GameWorld &world,
+        std::unordered_map<Leviathan::ObjectID, MembraneComponent*> &index)
+    {
+        for(auto iter = index.begin(); iter != index.end(); ++iter){
 
-    /**
-    * @brief Constructor
-    */
-    MembraneSystem();
-
-    /**
-    * @brief Destructor
-    */
-    ~MembraneSystem();
-
-    /**
-    * @brief Initializes the system
-    *
-    * @param gameState
-    */
-    void init(GameStateData* gameState) override;
-
-    /**
-    * @brief Shuts the system down
-    */
-    void shutdown() override;
-
-    /**
-    * @brief Updates the system
-    */
-    void update(int, int) override;
-
-
-private:
-
-    struct Implementation;
-    std::unique_ptr<Implementation> m_impl;
+            auto& node = *iter->second;
+            
+            node.Update();
+        }
+    }
 };
 
 }

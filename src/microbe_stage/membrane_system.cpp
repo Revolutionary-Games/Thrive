@@ -1,96 +1,65 @@
 #include "membrane_system.h"
 
-#include "bullet/collision_system.h"
-#include "bullet/rigid_body_system.h"
-#include "engine/component_factory.h"
-#include "engine/engine.h"
-#include "engine/entity_filter.h"
-#include "engine/game_state.h"
-#include "engine/serialization.h"
-#include "game.h"
-#include "ogre/scene_node_system.h"
-#include "scripting/luajit.h"
-#include "util/make_unique.h"
 
-#include <OgreMeshManager.h>
+// #include "bullet/collision_system.h"
+// #include "bullet/rigid_body_system.h"
+// #include "engine/component_factory.h"
+// #include "engine/engine.h"
+// #include "engine/entity_filter.h"
+// #include "engine/game_state.h"
+// #include "engine/serialization.h"
+// #include "game.h"
+// #include "ogre/scene_node_system.h"
+// #include "scripting/luajit.h"
+// #include "util/make_unique.h"
+
+#include <OgreMeshManager2.h>
+#include <OgreMesh2.h>
 #include <OgreMaterialManager.h>
-#include <OgreMaterial.h>
-#include <OgreTechnique.h>
-#include <OgreEntity.h>
+// #include <OgreMaterial.h>
+// #include <OgreTechnique.h>
+// #include <OgreEntity.h>
 #include <OgreSceneManager.h>
 #include <OgreRoot.h>
-#include <OgreSubMesh.h>
-#include <stdexcept>
+#include <OgreSubMesh2.h>
+// #include <stdexcept>
+
+#include <atomic>
 
 using namespace thrive;
 
 ////////////////////////////////////////////////////////////////////////////////
 // Membrane Component
 ////////////////////////////////////////////////////////////////////////////////
+static std::atomic<int> MembraneMeshNumber = {0};
 
-void MembraneComponent::luaBindings(
-    sol::state &lua
-){
-    lua.new_usertype<MembraneComponent>("MembraneComponent",
-
-        "new", sol::factories([](){
-                return std::make_unique<MembraneComponent>();
-            }),
-        
-        COMPONENT_BINDINGS(MembraneComponent),
-
-        "sendOrganelles", &MembraneComponent::sendOrganelles,
-        "clear", &MembraneComponent::clear,
-        "getExternOrganellePos", &MembraneComponent::getExternOrganellePos,
-        "setColour", &MembraneComponent::setColour,
-        "getColour", &MembraneComponent::getColour,
-        "entity", sol::readonly(&MembraneComponent::m_entity),
-        "dimensions", sol::readonly(&MembraneComponent::cellDimensions)
-    );
-}
-
-MembraneComponent::MembraneComponent()
+MembraneComponent::MembraneComponent(Ogre::SceneManager* scene) :
+    Component(componentTypeConvert(THRIVE_COMPONENT::MEMBRANE))
 {
-    // Half the side length of the original square that is compressed to make the membrane.
-    cellDimensions = 10;
+    // Create the mesh for rendering us
+    m_mesh = Ogre::MeshManager::getSingleton().createManual(
+        "MembraneMesh_" + std::to_string(++MembraneMeshNumber),
+        Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
 
-    // Amount of segments on one side of the above described square.
-	membraneResolution = 10;
+    m_subMesh = m_mesh->createSubMesh();
 
-	// The total amount of compounds.
-	compoundAmount = 0;
-
-	isInitialized = false;
-	wantsMembrane = true;
+    m_item = scene->createItem(m_mesh, Ogre::SCENE_DYNAMIC);
 }
 
-void
-MembraneComponent::setColour(float red = 1.0f, float green = 1.0f, float blue = 1.0f, float alpha = 1.0f)
-{
-    colour = Ogre::ColourValue(red, green, blue, alpha);
+MembraneComponent::~MembraneComponent(){
+    
+    LEVIATHAN_ASSERT(!m_item, "MembraneComponent not released");
 }
 
-Ogre::Vector3
-MembraneComponent::getColour()
-{
-    return Ogre::Vector3(colour.r, colour.g, colour.b);
-}
+void MembraneComponent::Release(Ogre::SceneManager* scene){
 
-void
-MembraneComponent::load(
-    const StorageContainer& storage
-) {
-    Component::load(storage);
-    //m_emissionRadius = storage.get<Ogre::Real>("emissionRadius", 0.0);
+    scene->destroyItem(m_item);
+    Ogre::MeshManager::getSingleton().remove(m_mesh);
+    m_mesh.reset();
+    m_subMesh = nullptr;
+    m_item = nullptr;
 }
-
-StorageContainer
-MembraneComponent::storage() const {
-    StorageContainer storage = Component::storage();
-   // storage.set<Ogre::Real>("emissionRadius", m_emissionRadius);
-    return storage;
-}
-
+// ------------------------------------ //
 Ogre::Vector3 MembraneComponent::FindClosestOrganelles(Ogre::Vector3 target)
 {
     // The distance we want the membrane to be from the organelles squared.
@@ -115,38 +84,12 @@ Ogre::Vector3 MembraneComponent::FindClosestOrganelles(Ogre::Vector3 target)
 		return Ogre::Vector3(0,0,-1);
 }
 
-Ogre::Vector3 MembraneComponent::GetMovement(Ogre::Vector3 target, Ogre::Vector3 closestOrganelle)
+Ogre::Vector3 MembraneComponent::GetMovement(Ogre::Vector3 target,
+    Ogre::Vector3 closestOrganelle)
 {
 	double power = pow(2.7, (-target.distance(closestOrganelle))/10)/50;
 
 	return (Ogre::Vector3(closestOrganelle)-Ogre::Vector3(target))*power;
-}
-
-
-void MembraneComponent::MakePrism()
-{
-	double height = .1;
-
-	for(size_t i=0, end=vertices2D.size(); i<end; i++)
-	{
-		MeshPoints.emplace_back(vertices2D[i%end].x, vertices2D[i%end].y, vertices2D[i%end].z+height/2);
-		MeshPoints.emplace_back(vertices2D[(i+1)%end].x, vertices2D[(i+1)%end].y, vertices2D[(i+1)%end].z-height/2);
-		MeshPoints.emplace_back(vertices2D[i%end].x, vertices2D[i%end].y, vertices2D[i%end].z-height/2);
-		MeshPoints.emplace_back(vertices2D[i%end].x, vertices2D[i%end].y, vertices2D[i%end].z+height/2);
-		MeshPoints.emplace_back(vertices2D[(i+1)%end].x, vertices2D[(i+1)%end].y, vertices2D[(i+1)%end].z+height/2);
-		MeshPoints.emplace_back(vertices2D[(i+1)%end].x, vertices2D[(i+1)%end].y, vertices2D[(i+1)%end].z-height/2);
-	}
-
-	for(size_t i=0, end=vertices2D.size(); i<end; i++)
-	{
-		MeshPoints.emplace_back(vertices2D[i%end].x, vertices2D[i%end].y, vertices2D[i%end].z+height/2);
-		MeshPoints.emplace_back(0,0,height/2);
-		MeshPoints.emplace_back(vertices2D[(i+1)%end].x, vertices2D[(i+1)%end].y, vertices2D[(i+1)%end].z+height/2);
-
-		MeshPoints.emplace_back(vertices2D[i%end].x, vertices2D[i%end].y, vertices2D[i%end].z-height/2);
-		MeshPoints.emplace_back(vertices2D[(i+1)%end].x, vertices2D[(i+1)%end].y, vertices2D[(i+1)%end].z-height/2);
-		MeshPoints.emplace_back(0,0,-height/2);
-	}
 }
 
 Ogre::Vector3 MembraneComponent::GetExternalOrganelle(double x, double y)
@@ -158,9 +101,12 @@ Ogre::Vector3 MembraneComponent::GetExternalOrganelle(double x, double y)
     float angleToClosest = Ogre::Math::TWO_PI;
 
     for(size_t i=0, end=vertices2D.size(); i<end; i++) {
-        if(Ogre::Math::Abs(Ogre::Math::ATan2(vertices2D[i].y, vertices2D[i].x).valueRadians() - organelleAngle) < angleToClosest) {
+        if(Ogre::Math::Abs(Ogre::Math::ATan2(vertices2D[i].y, vertices2D[i].x).valueRadians() -
+                organelleAngle) < angleToClosest)
+        {
             closestSoFar = Ogre::Vector3(vertices2D[i].x, vertices2D[i].y, 0);
-            angleToClosest = Ogre::Math::Abs(Ogre::Math::ATan2(vertices2D[i].y, vertices2D[i].x).valueRadians() - organelleAngle);
+            angleToClosest = Ogre::Math::Abs(Ogre::Math::ATan2(vertices2D[i].y,
+                    vertices2D[i].x).valueRadians() - organelleAngle);
         }
     }
 
@@ -176,9 +122,11 @@ bool MembraneComponent::contains(float x, float y)
     int n = vertices2D.size();
     for (int i = 0; i < n-1; i++)
     {
-        if ((vertices2D[i].y <= y && y < vertices2D[i+1].y) || (vertices2D[i+1].y <= y && y < vertices2D[i].y))
+        if ((vertices2D[i].y <= y && y < vertices2D[i+1].y) || (vertices2D[i+1].y <= y &&
+                y < vertices2D[i].y))
         {
-            if (x < (vertices2D[i+1].x - vertices2D[i].x) * (y - vertices2D[i].y) / (vertices2D[i+1].y - vertices2D[i].y) + vertices2D[i].x)
+            if (x < (vertices2D[i+1].x - vertices2D[i].x) * (y - vertices2D[i].y) /
+                (vertices2D[i+1].y - vertices2D[i].y) + vertices2D[i].x)
             {
                 crosses = !crosses;
             }
@@ -187,36 +135,155 @@ bool MembraneComponent::contains(float x, float y)
 
     return crosses;
 }
-
-void MembraneComponent::CalcUVCircle()
-{
-    UVs.clear();
-
-    for(size_t i=0, end=MeshPoints.size(); i<end; i++)
-    {
-        double x, y, z, a, b, c;
-        x = MeshPoints[i].x;
-        y = MeshPoints[i].y;
-        z = MeshPoints[i].z;
-
-        double ray = x*x + y*y + z*z;
-
-        double t = Ogre::Math::Sqrt(ray)/(2.0*ray);
-        a = t*x;
-        b = t*y;
-        c = t*z;
-
-        UVs.emplace_back(a+0.5,b+0.5,c+0.5);
-    }
-}
-
+// ------------------------------------ //
 void MembraneComponent::Update()
 {
-    MeshPoints.clear();
-
+    if(!isInitialized)
+        Initialize();
+    
     DrawMembrane();
-	MakePrism();
-    CalcUVCircle();
+
+    const auto bufferSize = vertices2D.size() * 2;
+
+    if(!m_vertexBuffer){
+
+        Ogre::RenderSystem* renderSystem = Ogre::Root::getSingleton().getRenderSystem();
+        Ogre::VaoManager* vaoManager = renderSystem->getVaoManager();
+
+        Ogre::VertexElement2Vec vertexElements;
+        vertexElements.push_back(Ogre::VertexElement2(Ogre::VET_FLOAT3, Ogre::VES_POSITION));
+        vertexElements.push_back(Ogre::VertexElement2(Ogre::VET_FLOAT2,
+                Ogre::VES_TEXTURE_COORDINATES));
+        // vertexElements.push_back(Ogre::VertexElement2(Ogre::VET_FLOAT3, Ogre::VES_NORMAL));
+
+        m_vertexBuffer = vaoManager->createVertexBuffer(vertexElements, bufferSize,
+            Ogre::BT_DYNAMIC_PERSISTENT,
+            nullptr, false);
+
+        Ogre::VertexBufferPackedVec vertexBuffers;
+        vertexBuffers.push_back(m_vertexBuffer);
+        // Ogre::IndexBufferPacked *indexBuffer = ;
+        Ogre::VertexArrayObject* vao = vaoManager->createVertexArrayObject(
+            vertexBuffers, nullptr, Ogre::OT_TRIANGLE_LIST);
+
+        m_subMesh->mVao[Ogre::VpNormal].push_back(vao);
+        
+        // //Use the same geometry for shadow casting.
+        // m_subMesh->mVao[Ogre::VpShadow].push_back( vao );
+
+        //Set the bounds to get frustum culling and LOD to work correctly.
+        // TODO: make this more accurate
+        m_mesh->_setBounds(Ogre::Aabb(Ogre::Vector3::ZERO, Ogre::Vector3::UNIT_SCALE* 50)
+            /*, false*/);
+        m_mesh->_setBoundingSphereRadius(50);
+
+        // Set the membrane material //
+        //  Ogre::MaterialPtr baseMaterial = Ogre::MaterialManager::getSingleton().getByName(
+        //      "Membrane");
+        
+        // If this is uncommented material destruction should be added
+        // to the destructor (and this probably moved to the
+        // constructor)
+        
+        // Ogre::MaterialPtr materialPtr = baseMaterial->clone(m_mesh->getName());
+        // materialPtr->compile();
+        // // This doesn't work anymore
+        // Ogre::TextureUnitState* ptus = materialPtr->getTechnique(0)->
+        //     getPass(0)->getTextureUnitState(0);
+        // ptus->setColourOperationEx(Ogre::LBX_MODULATE, Ogre::LBS_MANUAL, Ogre::LBS_TEXTURE,
+        //     colour);
+        // m_mesh->setMaterial(materialPtr);
+        m_subMesh->setMaterialName("Membrane");
+    }
+
+    // Map the buffer for writing //
+    // DO NOT READ FROM THE MAPPED BUFFER
+    MembraneVertex* RESTRICT_ALIAS meshVertices = reinterpret_cast<
+        MembraneVertex* RESTRICT_ALIAS>(m_vertexBuffer->map(
+                0, m_vertexBuffer->getNumElements()));
+    
+    
+    // Update mesh data //
+    
+    // Creates a 3D prism from the 2D vertices.
+
+    // All of these floats were originally doubles. But to have more
+    // performance they are now floats
+	float height = .1;
+
+    size_t writeIndex = 0;
+
+	for(size_t i=0, end=vertices2D.size(); i<end; i++)
+	{
+        // Finds the UV coordinates be projecting onto a plane and stretching to fit a circle.
+        const float x = vertices2D[i].x;
+        const float y = vertices2D[i].y;
+        const float z = vertices2D[i].z;
+
+        const float ray = x*x + y*y + z*z;
+
+        const float t = Ogre::Math::Sqrt(ray)/(2.0*ray);
+        const float a = t*x;
+        const float b = t*y;
+        // const float c = t*z;
+
+        const Ogre::Vector2 uv(a+0.5,b+0.5);
+
+        // Bottom (or top?) half first triangle
+        meshVertices[writeIndex++] = {Ogre::Vector3(0, 0, 0), uv};
+        
+        meshVertices[writeIndex++] = {Ogre::Vector3(vertices2D[(i+1)%end].x,
+                vertices2D[(i+1)%end].y,
+                vertices2D[(i+1)%end].z-height/2), uv};
+        
+        meshVertices[writeIndex++] = {Ogre::Vector3(vertices2D[i%end].x,
+                vertices2D[i%end].y,
+                vertices2D[i%end].z-height/2), uv};
+
+        // Second triangle
+        meshVertices[writeIndex++] = {Ogre::Vector3(vertices2D[i%end].x,
+                vertices2D[i%end].y,
+                vertices2D[i%end].z+height/2), uv};
+        
+        meshVertices[writeIndex++] = {Ogre::Vector3(vertices2D[(i+1)%end].x,
+                vertices2D[(i+1)%end].y,
+                vertices2D[(i+1)%end].z+height/2), uv};
+        
+        meshVertices[writeIndex++] = {Ogre::Vector3(vertices2D[(i+1)%end].x,
+                vertices2D[(i+1)%end].y,
+                vertices2D[(i+1)%end].z-height/2), uv};
+
+        // This was originally a second loop
+        // Top half first triangle
+        meshVertices[writeIndex++] = {Ogre::Vector3(vertices2D[i%end].x,
+                vertices2D[i%end].y,
+                vertices2D[i%end].z+height/2), uv};
+        
+        meshVertices[writeIndex++] = {Ogre::Vector3(0,0,height/2), uv};
+        
+        meshVertices[writeIndex++] = {Ogre::Vector3(vertices2D[(i+1)%end].x,
+                vertices2D[(i+1)%end].y,
+                vertices2D[(i+1)%end].z+height/2), uv};
+
+        // Second triangle
+        meshVertices[writeIndex++] = {Ogre::Vector3(vertices2D[i%end].x,
+                vertices2D[i%end].y,
+                vertices2D[i%end].z-height/2), uv};
+        
+        meshVertices[writeIndex++] = {Ogre::Vector3(vertices2D[(i+1)%end].x,
+                vertices2D[(i+1)%end].y,
+                vertices2D[(i+1)%end].z-height/2), uv};
+        
+        meshVertices[writeIndex++] = {Ogre::Vector3(0,0,-height/2), uv};
+	}
+
+    LEVIATHAN_ASSERT(writeIndex - 1 == bufferSize, "Invalid array element math in "
+        "fill vertex buffer");
+
+    // Upload finished data to the gpu
+    m_vertexBuffer->unmap(Ogre::UO_KEEP_PERSISTENT);
+
+    // TODO: apply the current colour to the material instance
 }
 
 
@@ -253,13 +320,13 @@ void MembraneComponent::Initialize()
     {
         DrawMembrane();
     }
-	MakePrism();
+
 	//Subdivide();
-	CalcUVCircle();
+
 
 	isInitialized = true;
 }
-
+// ------------------------------------ //
 void MembraneComponent::DrawMembrane()
 {
     // Stores the temporary positions of the membrane.
@@ -314,217 +381,147 @@ void MembraneComponent::sendOrganelles(double x, double y)
 
 void MembraneComponent::clear()
 {
-    wantsMembrane = true;
     isInitialized = false;
-    MeshPoints.clear();
     vertices2D.clear();
-    Ogre::MeshManager::getSingleton().remove(m_meshName);
-    m_entity->detachFromParent();
 }
 
-sol::object MembraneComponent::getExternOrganellePos(double x, double y)
-{
-    sol::state_view lua(Game::instance().engine().luaState());
+void MembraneComponent::attach(Ogre::SceneNode* node){
 
-    auto externalOrganellePosition = lua.create_table();
-
-    Ogre::Vector3 organelleCoords = GetExternalOrganelle(x, y);
-    externalOrganellePosition[1] = organelleCoords.x;
-    externalOrganellePosition[2] = organelleCoords.y;
-
-    return externalOrganellePosition;
+    node->attachObject(m_item);
 }
-
-
-
-REGISTER_COMPONENT(MembraneComponent)
-
 
 ////////////////////////////////////////////////////////////////////////////////
 // MembraneSystem
 ////////////////////////////////////////////////////////////////////////////////
-void MembraneSystem::luaBindings(
-    sol::state &lua
-){
-    lua.new_usertype<MembraneSystem>("MembraneSystem",
+// void
+// MembraneSystem::update(int, int) {
+//     m_impl->m_entities.clearChanges();
+//     for (auto& value : m_impl->m_entities) {
+//         MembraneComponent* membraneComponent = std::get<0>(value.second);
+//         OgreSceneNodeComponent* sceneNodeComponent = std::get<1>(value.second);
 
-        sol::constructors<sol::types<>>(),
-        
-        sol::base_classes, sol::bases<System>(),
+//         if (membraneComponent->wantsMembrane && sceneNodeComponent->m_meshName.get().find("membrane") != std::string::npos)
+//         {
+//             membraneComponent->wantsMembrane = false;
+//             // Get the vertex positions of the membrane.
+//             if(!membraneComponent->isInitialized)
+//             {
+//                 membraneComponent->Initialize();
+//             }
+//             membraneComponent->Update();
 
-        "init", &MembraneSystem::init
-    );
-}
+//             membraneComponent->m_meshName = sceneNodeComponent->m_meshName.get();
 
-struct MembraneSystem::Implementation {
+//             //If the mesh already exists, destroy the old one
+//             Ogre::MeshManager::getSingleton().remove(sceneNodeComponent->m_meshName.get());
+//             // Create a mesh and a submesh.
+//             Ogre::MeshPtr msh = Ogre::MeshManager::getSingleton().createManual(sceneNodeComponent->m_meshName.get(), "General");
+//             Ogre::SubMesh* sub = msh->createSubMesh();
 
-    EntityFilter<
-        MembraneComponent,
-        OgreSceneNodeComponent
-    > m_entities;
+//             // Define the vertices.
+//             std::vector<double> vertexData;
+//             for(size_t i=0, end=membraneComponent->MeshPoints.size(); i<end; i++)
+//             {
+//                 // Vertex.
+//                 vertexData.push_back(membraneComponent->MeshPoints[i].x);
+//                 vertexData.push_back(membraneComponent->MeshPoints[i].y);
+//                 vertexData.push_back(membraneComponent->MeshPoints[i].z);
 
-    Ogre::SceneManager* m_sceneManager = nullptr;
+//                 // Normal.
+//                 //vertexData.push_back(component->MyMembrane.Normals[i].x);
+//                 //vertexData.push_back(component->MyMembrane.Normals[i].y);
+//                 //vertexData.push_back(component->MyMembrane.Normals[i].z);
+//                 vertexData.push_back(0.0);
+//                 vertexData.push_back(0.0);
+//                 vertexData.push_back(1.0);
 
+//                 // UV coordinates.
+//                 vertexData.push_back(membraneComponent->UVs[i].x);
+//                 vertexData.push_back(membraneComponent->UVs[i].y);
+//             }
 
-};
+//             // Populate the vertex buffer.
+//             const size_t vertexBufferSize = vertexData.size();
+//             float vertices[vertexBufferSize];
+//             for(size_t i=0; i<vertexBufferSize; i++)
+//             {
+//                 vertices[i] = vertexData[i];
+//             }
 
+//             // Populate the index buffer.
+//             const size_t indexBufferSize = vertexData.size()/8;
+//             unsigned short faces[indexBufferSize];
+//             for(size_t i=0, end=indexBufferSize; i<end; i++)
+//             {
+//                 faces[i]=i;
+//             }
 
-MembraneSystem::MembraneSystem()
-  : m_impl(new Implementation())
-{
-}
+//             // Create vertex data structure for 8 vertices shared between submeshes.
+//             msh->sharedVertexData = new Ogre::VertexData();
+//             msh->sharedVertexData->vertexCount = vertexData.size()/8;
 
+//             /// Create declaration (memory format) of vertex data
+//             Ogre::VertexDeclaration* decl = msh->sharedVertexData->vertexDeclaration;
+//             size_t offset = 0;
+//             // 1st buffer
+//             decl->addElement(0, offset, Ogre::VET_FLOAT3, Ogre::VES_POSITION);
+//             offset += Ogre::VertexElement::getTypeSize(Ogre::VET_FLOAT3);
+//             decl->addElement(0, offset, Ogre::VET_FLOAT3, Ogre::VES_NORMAL);
+//             offset += Ogre::VertexElement::getTypeSize(Ogre::VET_FLOAT3);
+//             decl->addElement(0, offset, Ogre::VET_FLOAT2, Ogre::VES_TEXTURE_COORDINATES);
+//             offset += Ogre::VertexElement::getTypeSize(Ogre::VET_FLOAT2);
 
-MembraneSystem::~MembraneSystem() {}
+//             /// Allocate vertex buffer of the requested number of vertices (vertexCount)
+//             /// and bytes per vertex (offset)
+//             Ogre::HardwareVertexBufferSharedPtr vbuf =
+//                 Ogre::HardwareBufferManager::getSingleton().createVertexBuffer(
+//                 offset, msh->sharedVertexData->vertexCount, Ogre::HardwareBuffer::HBU_STATIC_WRITE_ONLY);
+//             /// Upload the vertex data to the card
+//             vbuf->writeData(0, vbuf->getSizeInBytes(), vertices, true);
 
+//             /// Set vertex buffer binding so buffer 0 is bound to our vertex buffer
+//             Ogre::VertexBufferBinding* bind = msh->sharedVertexData->vertexBufferBinding;
+//             bind->setBinding(0, vbuf);
 
-void
-MembraneSystem::init(
-    GameStateData* gameState
-) {
-    System::initNamed("MembraneSystem", gameState);
-    m_impl->m_entities.setEntityManager(gameState->entityManager());
-    m_impl->m_sceneManager = gameState->sceneManager();
-}
+//             /// Allocate index buffer of the requested number of vertices (ibufCount)
+//             Ogre::HardwareIndexBufferSharedPtr ibuf = Ogre::HardwareBufferManager::getSingleton().
+//                 createIndexBuffer(
+//                 Ogre::HardwareIndexBuffer::IT_16BIT,
+//                 indexBufferSize,
+//                 Ogre::HardwareBuffer::HBU_STATIC_WRITE_ONLY);
 
+//             /// Upload the index data to the card
+//             ibuf->writeData(0, ibuf->getSizeInBytes(), faces, true);
 
-void
-MembraneSystem::shutdown() {
-    m_impl->m_entities.setEntityManager(nullptr);
-    m_impl->m_sceneManager = nullptr;
-    System::shutdown();
-}
+//             /// Set parameters of the submesh
+//             sub->useSharedVertices = true;
+//             sub->indexData->indexBuffer = ibuf;
+//             sub->indexData->indexCount = indexBufferSize;
+//             sub->indexData->indexStart = 0;
 
+//             /// Set bounding information (for culling)
+//             msh->_setBounds(Ogre::AxisAlignedBox(-50,-50,-50,50,50,50));
+//             msh->_setBoundingSphereRadius(50);
 
-void
-MembraneSystem::update(int, int) {
-    m_impl->m_entities.clearChanges();
-    for (auto& value : m_impl->m_entities) {
-        MembraneComponent* membraneComponent = std::get<0>(value.second);
-        OgreSceneNodeComponent* sceneNodeComponent = std::get<1>(value.second);
+//             /// Notify -Mesh object that it has been loaded
+//             msh->load();
 
-        if (membraneComponent->wantsMembrane && sceneNodeComponent->m_meshName.get().find("membrane") != std::string::npos)
-        {
-            membraneComponent->wantsMembrane = false;
-            // Get the vertex positions of the membrane.
-            if(!membraneComponent->isInitialized)
-            {
-                membraneComponent->Initialize();
-            }
-            membraneComponent->Update();
+//             membraneComponent->m_entity = m_impl->m_sceneManager->createEntity(sceneNodeComponent->m_meshName.get(),  "General");
 
-            membraneComponent->m_meshName = sceneNodeComponent->m_meshName.get();
+//             Ogre::MaterialPtr baseMaterial = Ogre::MaterialManager::getSingleton().getByName("Membrane");
+//             Ogre::MaterialPtr materialPtr = baseMaterial->clone(sceneNodeComponent->m_meshName.get());
+//             materialPtr->compile();
+//             Ogre::TextureUnitState* ptus = materialPtr->getTechnique(0)->getPass(0)->getTextureUnitState(0);
+//             ptus->setColourOperationEx(Ogre::LBX_MODULATE, Ogre::LBS_MANUAL, Ogre::LBS_TEXTURE, membraneComponent->colour);
+//             membraneComponent->m_entity->setMaterial(materialPtr);
 
-            //If the mesh already exists, destroy the old one
-            Ogre::MeshManager::getSingleton().remove(sceneNodeComponent->m_meshName.get());
-            // Create a mesh and a submesh.
-            Ogre::MeshPtr msh = Ogre::MeshManager::getSingleton().createManual(sceneNodeComponent->m_meshName.get(), "General");
-            Ogre::SubMesh* sub = msh->createSubMesh();
+//             sceneNodeComponent->m_sceneNode->setOrientation(sceneNodeComponent->m_transform.orientation);
+//             sceneNodeComponent->m_sceneNode->setScale(sceneNodeComponent->m_transform.scale);
+//             sceneNodeComponent->m_sceneNode->setPosition(sceneNodeComponent->m_transform.position);
+//             sceneNodeComponent->m_sceneNode->attachObject(membraneComponent->m_entity);
+//         }
 
-            // Define the vertices.
-            std::vector<double> vertexData;
-            for(size_t i=0, end=membraneComponent->MeshPoints.size(); i<end; i++)
-            {
-                // Vertex.
-                vertexData.push_back(membraneComponent->MeshPoints[i].x);
-                vertexData.push_back(membraneComponent->MeshPoints[i].y);
-                vertexData.push_back(membraneComponent->MeshPoints[i].z);
-
-                // Normal.
-                //vertexData.push_back(component->MyMembrane.Normals[i].x);
-                //vertexData.push_back(component->MyMembrane.Normals[i].y);
-                //vertexData.push_back(component->MyMembrane.Normals[i].z);
-                vertexData.push_back(0.0);
-                vertexData.push_back(0.0);
-                vertexData.push_back(1.0);
-
-                // UV coordinates.
-                vertexData.push_back(membraneComponent->UVs[i].x);
-                vertexData.push_back(membraneComponent->UVs[i].y);
-            }
-
-            // Populate the vertex buffer.
-            const size_t vertexBufferSize = vertexData.size();
-            float vertices[vertexBufferSize];
-            for(size_t i=0; i<vertexBufferSize; i++)
-            {
-                vertices[i] = vertexData[i];
-            }
-
-            // Populate the index buffer.
-            const size_t indexBufferSize = vertexData.size()/8;
-            unsigned short faces[indexBufferSize];
-            for(size_t i=0, end=indexBufferSize; i<end; i++)
-            {
-                faces[i]=i;
-            }
-
-            // Create vertex data structure for 8 vertices shared between submeshes.
-            msh->sharedVertexData = new Ogre::VertexData();
-            msh->sharedVertexData->vertexCount = vertexData.size()/8;
-
-            /// Create declaration (memory format) of vertex data
-            Ogre::VertexDeclaration* decl = msh->sharedVertexData->vertexDeclaration;
-            size_t offset = 0;
-            // 1st buffer
-            decl->addElement(0, offset, Ogre::VET_FLOAT3, Ogre::VES_POSITION);
-            offset += Ogre::VertexElement::getTypeSize(Ogre::VET_FLOAT3);
-            decl->addElement(0, offset, Ogre::VET_FLOAT3, Ogre::VES_NORMAL);
-            offset += Ogre::VertexElement::getTypeSize(Ogre::VET_FLOAT3);
-            decl->addElement(0, offset, Ogre::VET_FLOAT2, Ogre::VES_TEXTURE_COORDINATES);
-            offset += Ogre::VertexElement::getTypeSize(Ogre::VET_FLOAT2);
-
-            /// Allocate vertex buffer of the requested number of vertices (vertexCount)
-            /// and bytes per vertex (offset)
-            Ogre::HardwareVertexBufferSharedPtr vbuf =
-                Ogre::HardwareBufferManager::getSingleton().createVertexBuffer(
-                offset, msh->sharedVertexData->vertexCount, Ogre::HardwareBuffer::HBU_STATIC_WRITE_ONLY);
-            /// Upload the vertex data to the card
-            vbuf->writeData(0, vbuf->getSizeInBytes(), vertices, true);
-
-            /// Set vertex buffer binding so buffer 0 is bound to our vertex buffer
-            Ogre::VertexBufferBinding* bind = msh->sharedVertexData->vertexBufferBinding;
-            bind->setBinding(0, vbuf);
-
-            /// Allocate index buffer of the requested number of vertices (ibufCount)
-            Ogre::HardwareIndexBufferSharedPtr ibuf = Ogre::HardwareBufferManager::getSingleton().
-                createIndexBuffer(
-                Ogre::HardwareIndexBuffer::IT_16BIT,
-                indexBufferSize,
-                Ogre::HardwareBuffer::HBU_STATIC_WRITE_ONLY);
-
-            /// Upload the index data to the card
-            ibuf->writeData(0, ibuf->getSizeInBytes(), faces, true);
-
-            /// Set parameters of the submesh
-            sub->useSharedVertices = true;
-            sub->indexData->indexBuffer = ibuf;
-            sub->indexData->indexCount = indexBufferSize;
-            sub->indexData->indexStart = 0;
-
-            /// Set bounding information (for culling)
-            msh->_setBounds(Ogre::AxisAlignedBox(-50,-50,-50,50,50,50));
-            msh->_setBoundingSphereRadius(50);
-
-            /// Notify -Mesh object that it has been loaded
-            msh->load();
-
-            membraneComponent->m_entity = m_impl->m_sceneManager->createEntity(sceneNodeComponent->m_meshName.get(),  "General");
-
-            Ogre::MaterialPtr baseMaterial = Ogre::MaterialManager::getSingleton().getByName("Membrane");
-            Ogre::MaterialPtr materialPtr = baseMaterial->clone(sceneNodeComponent->m_meshName.get());
-            materialPtr->compile();
-            Ogre::TextureUnitState* ptus = materialPtr->getTechnique(0)->getPass(0)->getTextureUnitState(0);
-            ptus->setColourOperationEx(Ogre::LBX_MODULATE, Ogre::LBS_MANUAL, Ogre::LBS_TEXTURE, membraneComponent->colour);
-            membraneComponent->m_entity->setMaterial(materialPtr);
-
-            sceneNodeComponent->m_sceneNode->setOrientation(sceneNodeComponent->m_transform.orientation);
-            sceneNodeComponent->m_sceneNode->setScale(sceneNodeComponent->m_transform.scale);
-            sceneNodeComponent->m_sceneNode->setPosition(sceneNodeComponent->m_transform.position);
-            sceneNodeComponent->m_sceneNode->attachObject(membraneComponent->m_entity);
-        }
-
-    }
-}
+//     }
+// }
 
 

@@ -12,8 +12,15 @@ generator.useNamespace "thrive"
 generator.addInclude "Entities/GameWorld.h"
 generator.addInclude "Generated/StandardWorld.h"
 
+generator.addInclude "microbe_stage/membrane_system.h"
+
 world = GameWorldClass.new(
   "CellStageWorld", componentTypes: [
+    EntityComponent.new("MembraneComponent", [ConstructorInfo.new(
+                                         [
+                                           Variable.new("GetScene()", "",
+                                                        nonMethodParam: true),
+                                         ])], releaseparams: ["GetScene()"]),
   ],
   systems: [
   ],
