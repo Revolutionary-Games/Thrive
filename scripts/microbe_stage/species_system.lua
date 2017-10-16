@@ -378,34 +378,39 @@ end
 
 -- Given a newly-created microbe, this sets the organelles and all other species-specific microbe data
 --  like agent codes, for example.
-function SpeciesSystem.template(microbe, species)
-    -- TODO: Make this also set the microbe's ProcessorComponent
-    microbe.microbe.speciesName = species.name
-    MicrobeSystem.setMembraneColour(microbe.entity, species.colour)
+function SpeciesSystem.template(microbeEntity, species)
+    local microbeComponent = getComponent(microbeEntity, MicrobeComponent)
 
-    SpeciesSystem.restoreOrganelleLayout(microbe, species)
+    -- TODO: Make this also set the microbe's ProcessorComponent
+    microbeComponent.speciesName = species.name
+    MicrobeSystem.setMembraneColour(microbeEntity, species.colour)
+
+    SpeciesSystem.restoreOrganelleLayout(microbeEntity, species)
     
     for compoundID, amount in pairs(species.avgCompoundAmounts) do
         if amount ~= 0 then
-            MicrobeSystem.storeCompound(microbe.entity, compoundID, amount, false)
+            MicrobeSystem.storeCompound(microbeEntity, compoundID, amount, false)
         end
     end
     
-    return microbe
+    return microbeEntity
 end
 
-function SpeciesSystem.restoreOrganelleLayout(microbe, species)
+function SpeciesSystem.restoreOrganelleLayout(microbeEntity, species)
+    local microbeComponent = getComponent(microbeEntity, MicrobeComponent)
+
     -- delete the the previous organelles.
-    for s, organelle in pairs(microbe.microbe.organelles) do
+    for s, organelle in pairs(microbeComponent.organelles) do
         local q = organelle.position.q
         local r = organelle.position.r
-        MicrobeSystem.removeOrganelle(microbe.entity, q, r)
+        MicrobeSystem.removeOrganelle(microbeEntity, q, r)
     end
-    microbe.microbe.organelles = {}
+
     -- give it organelles
+    microbeComponent.organelles = {}
     for _, orgdata in pairs(species.organelles) do
         organelle = OrganelleFactory.makeOrganelle(orgdata)
-        MicrobeSystem.addOrganelle(microbe.entity, orgdata.q, orgdata.r, orgdata.rotation, organelle)
+        MicrobeSystem.addOrganelle(microbeEntity, orgdata.q, orgdata.r, orgdata.rotation, organelle)
     end
 end
 

@@ -163,7 +163,7 @@ Microbe = class(
                 assert(isNotEmpty(self.microbe.speciesName))
                 self.compoundBag:setProcessor(processor, self.microbe.speciesName)
                 
-                SpeciesSystem.template(self, MicrobeSystem.getSpeciesComponent(self.entity))
+                SpeciesSystem.template(self.entity, MicrobeSystem.getSpeciesComponent(self.entity))
             end
         end
         MicrobeSystem.updateCompoundAbsorber(self.entity)
@@ -190,7 +190,7 @@ function Microbe:readyToReproduce()
         self.microbe.reproductionStage = 0
     else
         -- Return the first cell to its normal, non duplicated cell arangement.
-        SpeciesSystem.template(self, MicrobeSystem.getSpeciesComponent(self.entity))
+        SpeciesSystem.template(self.entity, MicrobeSystem.getSpeciesComponent(self.entity))
         MicrobeSystem.divide(self.entity)
     end
 end

@@ -466,7 +466,7 @@ function HudSystem:editorButtonClicked()
     local player = Entity.new("player", self.gameState.wrapper)
     local playerMicrobe = Microbe.new(player, nil, self.gameState)
     -- Return the first cell to its normal, non duplicated cell arangement.
-    SpeciesSystem.restoreOrganelleLayout(playerMicrobe, MicrobeSystem.getSpeciesComponent(player)) 
+    SpeciesSystem.restoreOrganelleLayout(player, MicrobeSystem.getSpeciesComponent(player)) 
 
     getComponent("gui_sounds", self.gameState, SoundSourceComponent):playSound("button-hover-click")
     self.editorButton:disable()
