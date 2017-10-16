@@ -162,45 +162,46 @@ end
 
 function HudSystem:update(renderTime)
     local player = Entity.new("player", self.gameState.wrapper)
-    local playerMicrobe = Microbe.new(player, nil, self.gameState)
+    local microbeComponent = getComponent(player, MicrobeComponent)
+    local soundSourceComponent = getComponent(player, SoundSourceComponent)
 
-    self.hitpointsBar:progressbarSetProgress(playerMicrobe.microbe.hitpoints/playerMicrobe.microbe.maxHitpoints)
-    self.hitpointsCountLabel:setText("".. math.floor(playerMicrobe.microbe.hitpoints))
-    self.hitpointsMaxLabel:setText("/ ".. math.floor(playerMicrobe.microbe.maxHitpoints))
+    self.hitpointsBar:progressbarSetProgress(microbeComponent.hitpoints/microbeComponent.maxHitpoints)
+    self.hitpointsCountLabel:setText("".. math.floor(microbeComponent.hitpoints))
+    self.hitpointsMaxLabel:setText("/ ".. math.floor(microbeComponent.maxHitpoints))
 
-    self.atpBar:progressbarSetProgress(MicrobeSystem.getCompoundAmount(player, CompoundRegistry.getCompoundId("atp"))/(playerMicrobe.microbe.capacity/CompoundRegistry.getCompoundUnitVolume(CompoundRegistry.getCompoundId("atp"))))
+    self.atpBar:progressbarSetProgress(MicrobeSystem.getCompoundAmount(player, CompoundRegistry.getCompoundId("atp"))/(microbeComponent.capacity/CompoundRegistry.getCompoundUnitVolume(CompoundRegistry.getCompoundId("atp"))))
     self.atpCountLabel:setText("".. math.floor(MicrobeSystem.getCompoundAmount(player, CompoundRegistry.getCompoundId("atp"))))
-    self.atpMaxLabel:setText("/ ".. math.floor(playerMicrobe.microbe.capacity/CompoundRegistry.getCompoundUnitVolume(CompoundRegistry.getCompoundId("atp"))))
+    self.atpMaxLabel:setText("/ ".. math.floor(microbeComponent.capacity/CompoundRegistry.getCompoundUnitVolume(CompoundRegistry.getCompoundId("atp"))))
 	
 	self.atpCountLabel2:setText("".. math.floor(MicrobeSystem.getCompoundAmount(player, CompoundRegistry.getCompoundId("atp"))))
 	
-	self.oxygenBar:progressbarSetProgress(MicrobeSystem.getCompoundAmount(player, CompoundRegistry.getCompoundId("oxygen"))/(playerMicrobe.microbe.capacity/CompoundRegistry.getCompoundUnitVolume(CompoundRegistry.getCompoundId("oxygen"))))
+	self.oxygenBar:progressbarSetProgress(MicrobeSystem.getCompoundAmount(player, CompoundRegistry.getCompoundId("oxygen"))/(microbeComponent.capacity/CompoundRegistry.getCompoundUnitVolume(CompoundRegistry.getCompoundId("oxygen"))))
     self.oxygenCountLabel:setText("".. math.floor(MicrobeSystem.getCompoundAmount(player, CompoundRegistry.getCompoundId("oxygen"))))
-    self.oxygenMaxLabel:setText("/ ".. math.floor(playerMicrobe.microbe.capacity/CompoundRegistry.getCompoundUnitVolume(CompoundRegistry.getCompoundId("oxygen"))))
+    self.oxygenMaxLabel:setText("/ ".. math.floor(microbeComponent.capacity/CompoundRegistry.getCompoundUnitVolume(CompoundRegistry.getCompoundId("oxygen"))))
 	
-	self.aminoacidsBar:progressbarSetProgress(MicrobeSystem.getCompoundAmount(player, CompoundRegistry.getCompoundId("aminoacids"))/(playerMicrobe.microbe.capacity/CompoundRegistry.getCompoundUnitVolume(CompoundRegistry.getCompoundId("aminoacids"))))
+	self.aminoacidsBar:progressbarSetProgress(MicrobeSystem.getCompoundAmount(player, CompoundRegistry.getCompoundId("aminoacids"))/(microbeComponent.capacity/CompoundRegistry.getCompoundUnitVolume(CompoundRegistry.getCompoundId("aminoacids"))))
     self.aminoacidsCountLabel:setText("".. math.floor(MicrobeSystem.getCompoundAmount(player, CompoundRegistry.getCompoundId("aminoacids"))))
-    self.aminoacidsMaxLabel:setText("/ ".. math.floor(playerMicrobe.microbe.capacity/CompoundRegistry.getCompoundUnitVolume(CompoundRegistry.getCompoundId("aminoacids"))))
+    self.aminoacidsMaxLabel:setText("/ ".. math.floor(microbeComponent.capacity/CompoundRegistry.getCompoundUnitVolume(CompoundRegistry.getCompoundId("aminoacids"))))
 	
-	self.ammoniaBar:progressbarSetProgress(MicrobeSystem.getCompoundAmount(player, CompoundRegistry.getCompoundId("ammonia"))/(playerMicrobe.microbe.capacity/CompoundRegistry.getCompoundUnitVolume(CompoundRegistry.getCompoundId("ammonia"))))
+	self.ammoniaBar:progressbarSetProgress(MicrobeSystem.getCompoundAmount(player, CompoundRegistry.getCompoundId("ammonia"))/(microbeComponent.capacity/CompoundRegistry.getCompoundUnitVolume(CompoundRegistry.getCompoundId("ammonia"))))
     self.ammoniaCountLabel:setText("".. math.floor(MicrobeSystem.getCompoundAmount(player, CompoundRegistry.getCompoundId("ammonia"))))
-    self.ammoniaMaxLabel:setText("/ ".. math.floor(playerMicrobe.microbe.capacity/CompoundRegistry.getCompoundUnitVolume(CompoundRegistry.getCompoundId("ammonia"))))
+    self.ammoniaMaxLabel:setText("/ ".. math.floor(microbeComponent.capacity/CompoundRegistry.getCompoundUnitVolume(CompoundRegistry.getCompoundId("ammonia"))))
 	
-	self.glucoseBar:progressbarSetProgress(MicrobeSystem.getCompoundAmount(player, CompoundRegistry.getCompoundId("glucose"))/(playerMicrobe.microbe.capacity/CompoundRegistry.getCompoundUnitVolume(CompoundRegistry.getCompoundId("glucose"))))
+	self.glucoseBar:progressbarSetProgress(MicrobeSystem.getCompoundAmount(player, CompoundRegistry.getCompoundId("glucose"))/(microbeComponent.capacity/CompoundRegistry.getCompoundUnitVolume(CompoundRegistry.getCompoundId("glucose"))))
     self.glucoseCountLabel:setText("".. math.floor(MicrobeSystem.getCompoundAmount(player, CompoundRegistry.getCompoundId("glucose"))))
-    self.glucoseMaxLabel:setText("/ ".. math.floor(playerMicrobe.microbe.capacity/CompoundRegistry.getCompoundUnitVolume(CompoundRegistry.getCompoundId("glucose"))))
+    self.glucoseMaxLabel:setText("/ ".. math.floor(microbeComponent.capacity/CompoundRegistry.getCompoundUnitVolume(CompoundRegistry.getCompoundId("glucose"))))
 	
-	self.co2Bar:progressbarSetProgress(MicrobeSystem.getCompoundAmount(player, CompoundRegistry.getCompoundId("co2"))/(playerMicrobe.microbe.capacity/CompoundRegistry.getCompoundUnitVolume(CompoundRegistry.getCompoundId("co2"))))
+	self.co2Bar:progressbarSetProgress(MicrobeSystem.getCompoundAmount(player, CompoundRegistry.getCompoundId("co2"))/(microbeComponent.capacity/CompoundRegistry.getCompoundUnitVolume(CompoundRegistry.getCompoundId("co2"))))
     self.co2CountLabel:setText("".. math.floor(MicrobeSystem.getCompoundAmount(player, CompoundRegistry.getCompoundId("co2"))))
-    self.co2MaxLabel:setText("/ ".. math.floor(playerMicrobe.microbe.capacity/CompoundRegistry.getCompoundUnitVolume(CompoundRegistry.getCompoundId("co2"))))
+    self.co2MaxLabel:setText("/ ".. math.floor(microbeComponent.capacity/CompoundRegistry.getCompoundUnitVolume(CompoundRegistry.getCompoundId("co2"))))
 	
-	self.fattyacidsBar:progressbarSetProgress(MicrobeSystem.getCompoundAmount(player, CompoundRegistry.getCompoundId("fattyacids"))/(playerMicrobe.microbe.capacity/CompoundRegistry.getCompoundUnitVolume(CompoundRegistry.getCompoundId("fattyacids"))))
+	self.fattyacidsBar:progressbarSetProgress(MicrobeSystem.getCompoundAmount(player, CompoundRegistry.getCompoundId("fattyacids"))/(microbeComponent.capacity/CompoundRegistry.getCompoundUnitVolume(CompoundRegistry.getCompoundId("fattyacids"))))
     self.fattyacidsCountLabel:setText("".. math.floor(MicrobeSystem.getCompoundAmount(player, CompoundRegistry.getCompoundId("fattyacids"))))
-    self.fattyacidsMaxLabel:setText("/ ".. math.floor(playerMicrobe.microbe.capacity/CompoundRegistry.getCompoundUnitVolume(CompoundRegistry.getCompoundId("fattyacids"))))
+    self.fattyacidsMaxLabel:setText("/ ".. math.floor(microbeComponent.capacity/CompoundRegistry.getCompoundUnitVolume(CompoundRegistry.getCompoundId("fattyacids"))))
 	
-	self.oxytoxyBar:progressbarSetProgress(MicrobeSystem.getCompoundAmount(player, CompoundRegistry.getCompoundId("oxytoxy"))/(playerMicrobe.microbe.capacity/CompoundRegistry.getCompoundUnitVolume(CompoundRegistry.getCompoundId("oxytoxy"))))
+	self.oxytoxyBar:progressbarSetProgress(MicrobeSystem.getCompoundAmount(player, CompoundRegistry.getCompoundId("oxytoxy"))/(microbeComponent.capacity/CompoundRegistry.getCompoundUnitVolume(CompoundRegistry.getCompoundId("oxytoxy"))))
     self.oxytoxyCountLabel:setText("".. math.floor(MicrobeSystem.getCompoundAmount(player, CompoundRegistry.getCompoundId("oxytoxy"))))
-    self.oxytoxyMaxLabel:setText("/ ".. math.floor(playerMicrobe.microbe.capacity/CompoundRegistry.getCompoundUnitVolume(CompoundRegistry.getCompoundId("oxytoxy"))))
+    self.oxytoxyMaxLabel:setText("/ ".. math.floor(microbeComponent.capacity/CompoundRegistry.getCompoundUnitVolume(CompoundRegistry.getCompoundId("oxytoxy"))))
 
     local playerSpecies = MicrobeSystem.getSpeciesComponent(player)
 	--notification setting up
@@ -252,19 +253,19 @@ function HudSystem:update(renderTime)
     end
     local direction = Vector3(0, 0, 0)
     if keyCombo(kmp.forward) then
-        playerMicrobe.soundSource:playSound("microbe-movement-2")
+        soundSourceComponent:playSound("microbe-movement-2")
     end
     if keyCombo(kmp.backward) then
-        playerMicrobe.soundSource:playSound("microbe-movement-2")
+        soundSourceComponent:playSound("microbe-movement-2")
     end
     if keyCombo(kmp.leftward) then
-        playerMicrobe.soundSource:playSound("microbe-movement-1")
+        soundSourceComponent:playSound("microbe-movement-1")
     end
     if keyCombo(kmp.screenshot) then
         Engine:screenShot("screenshot.png")
     end
     if keyCombo(kmp.rightward) then
-        playerMicrobe.soundSource:playSound("microbe-movement-1")
+        soundSourceComponent:playSound("microbe-movement-1")
     end
     if (Engine.keyboard:wasKeyPressed(KEYCODE.KC_G)) then
         MicrobeSystem.toggleEngulfMode(player)
@@ -464,7 +465,6 @@ end
 
 function HudSystem:editorButtonClicked()
     local player = Entity.new("player", self.gameState.wrapper)
-    local playerMicrobe = Microbe.new(player, nil, self.gameState)
     -- Return the first cell to its normal, non duplicated cell arangement.
     SpeciesSystem.restoreOrganelleLayout(player, MicrobeSystem.getSpeciesComponent(player)) 
 
