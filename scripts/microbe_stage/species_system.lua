@@ -414,12 +414,15 @@ function SpeciesSystem.restoreOrganelleLayout(microbeEntity, species)
     end
 end
 
-function SpeciesSystem.fromMicrobe(microbe, species)
-    local microbe_ = microbe.microbe -- shouldn't break, I think
-    -- self.name = microbe_.speciesName
-    species.colour = microbe.membraneComponent:getColour()
+function SpeciesSystem.fromMicrobe(microbeEntity, species)
+    local microbeComponent = getComponent(microbeEntity, MicrobeComponent)
+    local membraneComponent = getComponent(microbeEntity, MembraneComponent)
+
+    -- self.name = microbeComponent.speciesName
+    species.colour = membraneComponent:getColour()
+
     -- Create species' organelle data
-    for i, organelle in pairs(microbe_.organelles) do
+    for i, organelle in pairs(microbeComponent.organelles) do
         local data = {}
         data.name = organelle.name
         data.q = organelle.position.q
@@ -430,7 +433,7 @@ function SpeciesSystem.fromMicrobe(microbe, species)
     -- This microbes compound amounts will be the new population average.
     species.avgCompoundAmounts = {}
     for _, compoundID in pairs(CompoundRegistry.getCompoundList()) do
-        local amount = MicrobeSystem.getCompoundAmount(microbe.entity, compoundID)
+        local amount = MicrobeSystem.getCompoundAmount(microbeEntity, compoundID)
         species.avgCompoundAmounts["" .. compoundID] = amount
     end
     -- TODO: make this update the ProcessorComponent based on microbe thresholds

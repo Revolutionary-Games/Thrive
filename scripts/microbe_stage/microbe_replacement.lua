@@ -37,9 +37,8 @@ function MicrobeReplacementSystem:activate()
         activeCreatureId = Engine:playerData():activeCreature()
 
         -- This is the microbe entity in the editor gamestate
-        local workingMicrobe = Microbe.new(
-            Entity.new(activeCreatureId, GameState.MICROBE_EDITOR.wrapper), true,
-            GameState.MICROBE_EDITOR)
+        local workingMicrobeEntity = Entity.new(activeCreatureId, GameState.MICROBE_EDITOR.wrapper)
+        local workingMicrobe = Microbe.new(workingMicrobeEntity, true, GameState.MICROBE_EDITOR)
         
         if not global_genusPicked  then
             global_genusPicked = true;
@@ -50,7 +49,7 @@ function MicrobeReplacementSystem:activate()
         local speciesEntity = Entity.new(newSpeciesName, self.gameState.wrapper)
         local species = SpeciesComponent.new(newSpeciesName)
         speciesEntity:addComponent(species)
-        SpeciesSystem.fromMicrobe(workingMicrobe, species)
+        SpeciesSystem.fromMicrobe(workingMicrobeEntity, species)
         SpeciesSystem.initProcessorComponent(speciesEntity, species)
 
         local newMicrobeEntity = MicrobeSystem.createMicrobeEntity(nil, false, newSpeciesName, false)
