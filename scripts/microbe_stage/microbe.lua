@@ -183,175 +183,6 @@ Microbe.COMPONENTS = {
     compoundBag = CompoundBagComponent
 }
 
--- Updates the microbe's state
-function Microbe:update(logicTime)
-    if not self.microbe.dead then
-        -- Recalculating agent cooldown time.
-        self.microbe.agentEmissionCooldown = math.max(self.microbe.agentEmissionCooldown - logicTime, 0)
-
-        --calculate storage.
-        MicrobeSystem.calculateStorageSpace(self.entity)
-
-        self.compoundBag.storageSpace = self.microbe.capacity
-
-        -- StorageOrganelles
-        MicrobeSystem.updateCompoundAbsorber(self.entity)
-        -- Regenerate bandwidth
-        MicrobeSystem.regenerateBandwidth(self.entity, logicTime)
-        -- Attempt to absorb queued compounds
-        for _, compound in pairs(self.compoundAbsorber:getAbsorbedCompounds()) do 
-            local amount = self.compoundAbsorber:absorbedCompoundAmount(compound)
-            if amount > 0.0 then
-                MicrobeSystem.storeCompound(self.entity, compound, amount, true)
-            end
-        end
-        -- Flash membrane if something happens.
-        if self.microbe.flashDuration ~= nil and self.microbe.flashColour ~= nil then
-            self.microbe.flashDuration = self.microbe.flashDuration - logicTime
-            
-            local entity = self.membraneComponent.entity
-            -- How frequent it flashes, would be nice to update the flash function to have this variable
-            if math.fmod(self.microbe.flashDuration, 600) < 300 then
-                entity:tintColour("Membrane", self.microbe.flashColour)
-            else
-                entity:setMaterial(self.sceneNode.meshName)
-            end
-            
-            if self.microbe.flashDuration <= 0 then
-                self.microbe.flashDuration = nil				
-                entity:setMaterial(self.sceneNode.meshName)
-            end
-        end
-        
-        self.microbe.compoundCollectionTimer = self.microbe.compoundCollectionTimer + logicTime
-        while self.microbe.compoundCollectionTimer > EXCESS_COMPOUND_COLLECTION_INTERVAL do
-            -- For every COMPOUND_DISTRIBUTION_INTERVAL passed
-
-            self.microbe.compoundCollectionTimer = self.microbe.compoundCollectionTimer - EXCESS_COMPOUND_COLLECTION_INTERVAL
-
-            MicrobeSystem.purgeCompounds(self.entity)
-
-            MicrobeSystem.atpDamage(self.entity)
-        end
-        
-        -- First organelle run: updates all the organelles and heals the broken ones.
-        if self.microbe.hitpoints < self.microbe.maxHitpoints then
-            for _, organelle in pairs(self.microbe.organelles) do
-                -- Update the organelle.
-                organelle:update(logicTime)
-                
-                -- If the organelle is hurt.
-                if organelle:getCompoundBin() < 1.0 then
-                    -- Give the organelle access to the compound bag to take some compound.
-                    organelle:growOrganelle(getComponent(self.entity, CompoundBagComponent), logicTime)
-                    -- An organelle was damaged and we tried to heal it, so out health might be different.
-                    MicrobeSystem.calculateHealthFromOrganelles(self.entity)
-                end
-            end
-        else
-
-            local reproductionStageComplete = true
-            local organellesToAdd = {}
-
-            -- Grow all the large organelles.
-            for _, organelle in pairs(self.microbe.organelles) do
-                -- Update the organelle.
-                organelle:update(logicTime)
-                
-                -- We are in G1 phase of the cell cycle, duplicate all organelles.
-                if organelle.name ~= "nucleus" and self.microbe.reproductionStage == 0 then
-                    
-                    -- If the organelle is not split, give it some compounds to make it larger.
-                    if organelle:getCompoundBin() < 2.0 and not organelle.wasSplit then
-                        -- Give the organelle access to the compound bag to take some compound.
-                        organelle:growOrganelle(getComponent(self.entity, CompoundBagComponent), logicTime)
-                        reproductionStageComplete = false
-                    -- If the organelle was split and has a bin less then 1, it must have been damaged.
-                    elseif organelle:getCompoundBin() < 1.0 and organelle.wasSplit then
-                        -- Give the organelle access to the compound bag to take some compound.
-                        organelle:growOrganelle(getComponent(self.entity, CompoundBagComponent), logicTime)
-                    -- If the organelle is twice its size...
-                    elseif organelle:getCompoundBin() >= 2.0 then
-                        --Queue this organelle for splitting after the loop.
-                        --(To avoid "cutting down the branch we're sitting on").
-                        table.insert(organellesToAdd, organelle)
-                    end
-                   
-                -- In the S phase, the nucleus grows as chromatin is duplicated.
-                elseif organelle.name == "nucleus" and self.microbe.reproductionStage == 1 then
-                    -- If the nucleus hasn't finished replicating its DNA, give it some compounds.
-                    if organelle:getCompoundBin() < 2.0 then
-                        -- Give the organelle access to the compound back to take some compound.
-                        organelle:growOrganelle(getComponent(self.entity, CompoundBagComponent), logicTime)
-                        reproductionStageComplete = false
-                    end
-                end
-
-            end
-
-            --Splitting the queued organelles.
-            for _, organelle in pairs(organellesToAdd) do
-                print("ready to split " .. organelle.name)
-                -- Mark this organelle as done and return to its normal size.
-                organelle:reset()
-                organelle.wasSplit = true
-                -- Create a second organelle.
-                local organelle2 = MicrobeSystem.splitOrganelle(self.entity, organelle)
-                organelle2.wasSplit = true
-                organelle2.isDuplicate = true
-                organelle2.sisterOrganelle = organelle
-
-                -- Redo the cell membrane.
-                self.membraneComponent:clear()
-            end
-
-            if reproductionStageComplete and self.microbe.reproductionStage < 2 then
-                self.microbe.reproductionStage = self.microbe.reproductionStage + 1
-            end
-            
-            -- To finish the G2 phase we just need more than a threshold of compounds.
-            if self.microbe.reproductionStage == 2 or self.microbe.reproductionStage == 3 then
-                MicrobeSystem.readyToReproduce(self.entity)
-            end
-        end
-
-        if self.microbe.engulfMode then
-            -- Drain atp and if we run out then disable engulfmode
-            local cost = ENGULFING_ATP_COST_SECOND/1000*logicTime
-            
-            if MicrobeSystem.takeCompound(self.entity, CompoundRegistry.getCompoundId("atp"), cost) < cost - 0.001 then
-                print ("too little atp, disabling - 749")
-                MicrobeSystem.toggleEngulfMode(self.entity)
-            end
-            -- Flash the membrane blue.
-            MicrobeSystem.flashMembraneColour(self.entity, 3000, ColourValue(0.2,0.5,1.0,0.5))
-        end
-        if self.microbe.isBeingEngulfed and self.microbe.wasBeingEngulfed then
-            MicrobeSystem.damage(self.entity, logicTime * 0.000025  * self.microbe.maxHitpoints, "isBeingEngulfed - Microbe:update()s")
-        -- Else If we were but are no longer, being engulfed
-        elseif self.microbe.wasBeingEngulfed then
-            MicrobeSystem.removeEngulfedEffect(self.entity)
-        end
-        -- Used to detect when engulfing stops
-        self.microbe.isBeingEngulfed = false;
-        self.compoundAbsorber:setAbsorbtionCapacity(math.min(self.microbe.capacity - self.microbe.stored + 10, self.microbe.remainingBandwidth))
-    else
-        self.microbe.deathTimer = self.microbe.deathTimer - logicTime
-        self.microbe.flashDuration = 0
-        if self.microbe.deathTimer <= 0 then
-            if self.microbe.isPlayerMicrobe == true then
-                MicrobeSystem.respawnPlayer()
-            else
-                for _, organelle in pairs(self.microbe.organelles) do
-                    organelle:onRemovedFromMicrobe()
-                end
-                self.entity:destroy()
-            end
-        end
-    end
-    -- print("finished update")
-end
-
 -- Private function for initializing a microbe's components
 function Microbe:_initialize()
     -- TODO: cache for performance
@@ -429,13 +260,12 @@ function MicrobeSystem:update(renderTime, logicTime)
         self.microbes[entityId] = nil
     end
     for _, entityId in pairs(self.entities:addedEntities()) do
-        local microbe = Microbe(Entity.new(entityId, self.gameState.wrapper), nil,
-                                self.gameState)
-        self.microbes[entityId] = microbe
+        local microbeEntity = Entity.new(entityId, self.gameState.wrapper)
+        self.microbes[entityId] = microbeEntity
     end
     self.entities:clearChanges()
-    for _, microbe in pairs(self.microbes) do
-        microbe:update(logicTime)
+    for _, microbeEntity in pairs(self.microbes) do
+        MicrobeSystem.updateMicrobe(microbeEntity, logicTime)
     end
     -- Note that this triggers every frame there is a collision
     for _, collision in pairs(self.microbeCollisions:collisions()) do
@@ -1311,5 +1141,179 @@ function MicrobeSystem.readyToReproduce(microbeEntity)
         -- Return the first cell to its normal, non duplicated cell arangement.
         SpeciesSystem.template(microbeEntity, MicrobeSystem.getSpeciesComponent(microbeEntity))
         MicrobeSystem.divide(microbeEntity)
+    end
+end
+
+-- Updates the microbe's state
+function MicrobeSystem.updateMicrobe(microbeEntity, logicTime)
+    local microbeComponent = getComponent(microbeEntity, MicrobeComponent)
+    local membraneComponent = getComponent(microbeEntity, MembraneComponent)
+    local sceneNodeComponent = getComponent(microbeEntity, OgreSceneNodeComponent)
+    local compoundAbsorberComponent = getComponent(microbeEntity, CompoundAbsorberComponent)
+    local compoundBag = getComponent(microbeEntity, CompoundBagComponent)
+
+    if not microbeComponent.dead then
+        -- Recalculating agent cooldown time.
+        microbeComponent.agentEmissionCooldown = math.max(microbeComponent.agentEmissionCooldown - logicTime, 0)
+
+        --calculate storage.
+        MicrobeSystem.calculateStorageSpace(microbeEntity)
+
+        compoundBag.storageSpace = microbeComponent.capacity
+
+        -- StorageOrganelles
+        MicrobeSystem.updateCompoundAbsorber(microbeEntity)
+        -- Regenerate bandwidth
+        MicrobeSystem.regenerateBandwidth(microbeEntity, logicTime)
+        -- Attempt to absorb queued compounds
+        for _, compound in pairs(compoundAbsorberComponent:getAbsorbedCompounds()) do 
+            local amount = compoundAbsorberComponent:absorbedCompoundAmount(compound)
+            if amount > 0.0 then
+                MicrobeSystem.storeCompound(microbeEntity, compound, amount, true)
+            end
+        end
+        -- Flash membrane if something happens.
+        if microbeComponent.flashDuration ~= nil and microbeComponent.flashColour ~= nil then
+            microbeComponent.flashDuration = microbeComponent.flashDuration - logicTime
+            
+            local entity = membraneComponent.entity
+            -- How frequent it flashes, would be nice to update the flash function to have this variable
+            if math.fmod(microbeComponent.flashDuration, 600) < 300 then
+                entity:tintColour("Membrane", microbeComponent.flashColour)
+            else
+                entity:setMaterial(sceneNodeComponent.meshName)
+            end
+            
+            if microbeComponent.flashDuration <= 0 then
+                microbeComponent.flashDuration = nil				
+                entity:setMaterial(sceneNodeComponent.meshName)
+            end
+        end
+        
+        microbeComponent.compoundCollectionTimer = microbeComponent.compoundCollectionTimer + logicTime
+        while microbeComponent.compoundCollectionTimer > EXCESS_COMPOUND_COLLECTION_INTERVAL do
+            -- For every COMPOUND_DISTRIBUTION_INTERVAL passed
+
+            microbeComponent.compoundCollectionTimer = microbeComponent.compoundCollectionTimer - EXCESS_COMPOUND_COLLECTION_INTERVAL
+
+            MicrobeSystem.purgeCompounds(microbeEntity)
+
+            MicrobeSystem.atpDamage(microbeEntity)
+        end
+        
+        -- First organelle run: updates all the organelles and heals the broken ones.
+        if microbeComponent.hitpoints < microbeComponent.maxHitpoints then
+            for _, organelle in pairs(microbeComponent.organelles) do
+                -- Update the organelle.
+                organelle:update(logicTime)
+                
+                -- If the organelle is hurt.
+                if organelle:getCompoundBin() < 1.0 then
+                    -- Give the organelle access to the compound bag to take some compound.
+                    organelle:growOrganelle(getComponent(microbeEntity, CompoundBagComponent), logicTime)
+                    -- An organelle was damaged and we tried to heal it, so out health might be different.
+                    MicrobeSystem.calculateHealthFromOrganelles(microbeEntity)
+                end
+            end
+        else
+
+            local reproductionStageComplete = true
+            local organellesToAdd = {}
+
+            -- Grow all the large organelles.
+            for _, organelle in pairs(microbeComponent.organelles) do
+                -- Update the organelle.
+                organelle:update(logicTime)
+                
+                -- We are in G1 phase of the cell cycle, duplicate all organelles.
+                if organelle.name ~= "nucleus" and microbeComponent.reproductionStage == 0 then
+                    
+                    -- If the organelle is not split, give it some compounds to make it larger.
+                    if organelle:getCompoundBin() < 2.0 and not organelle.wasSplit then
+                        -- Give the organelle access to the compound bag to take some compound.
+                        organelle:growOrganelle(getComponent(microbeEntity, CompoundBagComponent), logicTime)
+                        reproductionStageComplete = false
+                    -- If the organelle was split and has a bin less then 1, it must have been damaged.
+                    elseif organelle:getCompoundBin() < 1.0 and organelle.wasSplit then
+                        -- Give the organelle access to the compound bag to take some compound.
+                        organelle:growOrganelle(getComponent(microbeEntity, CompoundBagComponent), logicTime)
+                    -- If the organelle is twice its size...
+                    elseif organelle:getCompoundBin() >= 2.0 then
+                        --Queue this organelle for splitting after the loop.
+                        --(To avoid "cutting down the branch we're sitting on").
+                        table.insert(organellesToAdd, organelle)
+                    end
+                   
+                -- In the S phase, the nucleus grows as chromatin is duplicated.
+                elseif organelle.name == "nucleus" and microbeComponent.reproductionStage == 1 then
+                    -- If the nucleus hasn't finished replicating its DNA, give it some compounds.
+                    if organelle:getCompoundBin() < 2.0 then
+                        -- Give the organelle access to the compound back to take some compound.
+                        organelle:growOrganelle(getComponent(microbeEntity, CompoundBagComponent), logicTime)
+                        reproductionStageComplete = false
+                    end
+                end
+
+            end
+
+            --Splitting the queued organelles.
+            for _, organelle in pairs(organellesToAdd) do
+                print("ready to split " .. organelle.name)
+                -- Mark this organelle as done and return to its normal size.
+                organelle:reset()
+                organelle.wasSplit = true
+                -- Create a second organelle.
+                local organelle2 = MicrobeSystem.splitOrganelle(microbeEntity, organelle)
+                organelle2.wasSplit = true
+                organelle2.isDuplicate = true
+                organelle2.sisterOrganelle = organelle
+
+                -- Redo the cell membrane.
+                membraneComponent:clear()
+            end
+
+            if reproductionStageComplete and microbeComponent.reproductionStage < 2 then
+                microbeComponent.reproductionStage = microbeComponent.reproductionStage + 1
+            end
+            
+            -- To finish the G2 phase we just need more than a threshold of compounds.
+            if microbeComponent.reproductionStage == 2 or microbeComponent.reproductionStage == 3 then
+                MicrobeSystem.readyToReproduce(microbeEntity)
+            end
+        end
+
+        if microbeComponent.engulfMode then
+            -- Drain atp and if we run out then disable engulfmode
+            local cost = ENGULFING_ATP_COST_SECOND/1000*logicTime
+            
+            if MicrobeSystem.takeCompound(microbeEntity, CompoundRegistry.getCompoundId("atp"), cost) < cost - 0.001 then
+                print ("too little atp, disabling - 749")
+                MicrobeSystem.toggleEngulfMode(microbeEntity)
+            end
+            -- Flash the membrane blue.
+            MicrobeSystem.flashMembraneColour(microbeEntity, 3000, ColourValue(0.2,0.5,1.0,0.5))
+        end
+        if microbeComponent.isBeingEngulfed and microbeComponent.wasBeingEngulfed then
+            MicrobeSystem.damage(microbeEntity, logicTime * 0.000025  * microbeComponent.maxHitpoints, "isBeingEngulfed - Microbe:update()s")
+        -- Else If we were but are no longer, being engulfed
+        elseif microbeComponent.wasBeingEngulfed then
+            MicrobeSystem.removeEngulfedEffect(microbeEntity)
+        end
+        -- Used to detect when engulfing stops
+        microbeComponent.isBeingEngulfed = false;
+        compoundAbsorberComponent:setAbsorbtionCapacity(math.min(microbeComponent.capacity - microbeComponent.stored + 10, microbeComponent.remainingBandwidth))
+    else
+        microbeComponent.deathTimer = microbeComponent.deathTimer - logicTime
+        microbeComponent.flashDuration = 0
+        if microbeComponent.deathTimer <= 0 then
+            if microbeComponent.isPlayerMicrobe == true then
+                MicrobeSystem.respawnPlayer()
+            else
+                for _, organelle in pairs(microbeComponent.organelles) do
+                    organelle:onRemovedFromMicrobe()
+                end
+                microbeEntity:destroy()
+            end
+        end
     end
 end
