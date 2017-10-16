@@ -130,43 +130,29 @@ function setupSpecies(gameState)
 end
 
 function microbeSpawnFunctionGeneric(pos, speciesName, aiControlled, individualName, gameState)
-    return spawnMicrobe(pos, speciesName, aiControlled, individualName, gameState).entity
+    return spawnMicrobe(pos, speciesName, aiControlled, individualName)
 end
 
 -- speciesName decides the template to use, while individualName is used for referencing the instance
-function spawnMicrobe(pos, speciesName, aiControlled, individualName, gameState)
-
-    assert(gameState ~= nil)
+function spawnMicrobe(pos, speciesName, aiControlled, individualName)
     assert(isNotEmpty(speciesName))
 
-    -- Workaround. Find a fix for this
-    if gameState ~= g_luaEngine.currentGameState then
-        print("Warning used different gameState than currentGameState in microbe spawn. " ..
-                  "This would have been bad in earlier versions")
-    end
-    
-    local processor = getComponent(speciesName, gameState, ProcessorComponent)
-
-    if processor == nil then
-
-        print("Skipping microbe spawn because species '" .. speciesName ..
+    local processor = getComponent(speciesName, g_luaEngine.currentGameState, ProcessorComponent)
+    assert(processor ~= nil, "Crashing the game because species '" .. speciesName ..
                   "' doesn't have a processor component")
-        
-        return nil
-    end
-    
-    
+
     local microbeEntity = MicrobeSystem.createMicrobeEntity(individualName, aiControlled, speciesName, false)
-    local microbe = Microbe(microbeEntity, false, gameState)
+    local rigidBodyComponent = getComponent(microbeEntity, RigidBodyComponent)
+
     if pos ~= nil then
-        microbe.rigidBody:setDynamicProperties(
+        rigidBodyComponent:setDynamicProperties(
             pos, -- Position
             Quaternion.new(Radian.new(Degree(0)), Vector3(1, 0, 0)), -- Orientation
             Vector3(0, 0, 0), -- Linear velocity
             Vector3(0, 0, 0)  -- Angular velocity
         )
     end
-    return microbe
+    return microbeEntity
 end
 
 local function setSpawnablePhysics(entity, pos, mesh, scale, collisionShape)
@@ -322,15 +308,14 @@ local function setupSpawnSystem(gameState)
     return gSpawnSystem
 end
 
-local function setupPlayer(gameState)
-    assert(GameState.MICROBE == gameState)
-    assert(gameState ~= nil)
-    
-    local microbe = spawnMicrobe(nil, "Default", false, PLAYER_NAME, gameState)
-    microbe.collisionHandler:addCollisionGroup("powerupable")
+local function setupPlayer()
+    local microbeEntity = spawnMicrobe(nil, "Default", false, PLAYER_NAME)
+    local collisionHandlerComponent = getComponent(microbeEntity, CollisionComponent)
+
+    collisionHandlerComponent:addCollisionGroup("powerupable")
     Engine:playerData():lockedMap():addLock("Toxin")
     Engine:playerData():lockedMap():addLock("chloroplast")
-    Engine:playerData():setActiveCreature(microbe.entity.id, gameState.wrapper)
+    Engine:playerData():setActiveCreature(microbeEntity, g_luaEngine.currentGameState.wrapper)
 end
 
 local function setupSound(gameState)
@@ -425,7 +410,7 @@ local function createMicrobeStage(name)
             setupCamera(gameState)
             setupCompoundClouds(gameState)
             setupSpecies(gameState)
-            setupPlayer(gameState)
+            setupPlayer()
             setupSound(gameState)
         end
     )
