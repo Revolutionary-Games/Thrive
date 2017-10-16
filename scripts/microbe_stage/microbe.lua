@@ -183,18 +183,6 @@ Microbe.COMPONENTS = {
     compoundBag = CompoundBagComponent
 }
 
--- Copies this microbe. The new microbe will not have the stored compounds of this one.
-function Microbe:readyToReproduce()
-    if self.microbe.isPlayerMicrobe then
-        showReproductionDialog()
-        self.microbe.reproductionStage = 0
-    else
-        -- Return the first cell to its normal, non duplicated cell arangement.
-        SpeciesSystem.template(self.entity, MicrobeSystem.getSpeciesComponent(self.entity))
-        MicrobeSystem.divide(self.entity)
-    end
-end
-
 -- Updates the microbe's state
 function Microbe:update(logicTime)
     if not self.microbe.dead then
@@ -323,7 +311,7 @@ function Microbe:update(logicTime)
             
             -- To finish the G2 phase we just need more than a threshold of compounds.
             if self.microbe.reproductionStage == 2 or self.microbe.reproductionStage == 3 then
-                self:readyToReproduce()
+                MicrobeSystem.readyToReproduce(self.entity)
             end
         end
 
@@ -1310,4 +1298,18 @@ function MicrobeSystem.divide(microbeEntity)
     spawnedComponent:setSpawnRadius(MICROBE_SPAWN_RADIUS)
     copyEntity:addComponent(spawnedComponent)
     soundSourceComponent:playSound("microbe-reproduction")
+end
+
+-- Copies this microbe. The new microbe will not have the stored compounds of this one.
+function MicrobeSystem.readyToReproduce(microbeEntity)
+    local microbeComponent = getComponent(microbeEntity, MicrobeComponent)
+
+    if microbeComponent.isPlayerMicrobe then
+        showReproductionDialog()
+        microbeComponent.reproductionStage = 0
+    else
+        -- Return the first cell to its normal, non duplicated cell arangement.
+        SpeciesSystem.template(microbeEntity, MicrobeSystem.getSpeciesComponent(microbeEntity))
+        MicrobeSystem.divide(microbeEntity)
+    end
 end

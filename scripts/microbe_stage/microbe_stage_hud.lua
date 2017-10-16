@@ -248,7 +248,7 @@ function HudSystem:update(renderTime)
     elseif keyCombo(kmp.shootoxytoxy) then
         MicrobeSystem.emitAgent(player, CompoundRegistry.getCompoundId("oxytoxy"), 3)
     elseif keyCombo(kmp.reproduce) then
-        playerMicrobe:readyToReproduce()
+        MicrobeSystem.readyToReproduce(player)
     end
     local direction = Vector3(0, 0, 0)
     if keyCombo(kmp.forward) then
