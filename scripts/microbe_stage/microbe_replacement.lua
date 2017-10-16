@@ -38,11 +38,11 @@ function MicrobeReplacementSystem:activate()
 
         -- This is the microbe entity in the editor gamestate
         local workingMicrobeEntity = Entity.new(activeCreatureId, GameState.MICROBE_EDITOR.wrapper)
-        local workingMicrobe = Microbe.new(workingMicrobeEntity, true, GameState.MICROBE_EDITOR)
-        
+        local microbeComponent = getComponent(workingMicrobeEntity, MicrobeComponent)
+
         if not global_genusPicked  then
             global_genusPicked = true;
-            global_genusName = workingMicrobe.microbe.speciesName
+            global_genusName = microbeComponent.speciesName
         end
 			
         newSpeciesName = self:generateSpeciesName();
@@ -53,24 +53,14 @@ function MicrobeReplacementSystem:activate()
         SpeciesSystem.initProcessorComponent(speciesEntity, species)
 
         local newMicrobeEntity = MicrobeSystem.createMicrobeEntity(nil, false, newSpeciesName, false)
-        local newMicrobe = Microbe(newMicrobeEntity, false, self.gameState)
+        local newMicrobeComponent = getComponent(newMicrobeEntity, MicrobeComponent)
+        local collisionHandlerComponent = getComponent(newMicrobeEntity, CollisionComponent)
 
         MicrobeSystem.divide(newMicrobeEntity)
         
-        print(": "..newMicrobe.microbe.speciesName)
+        print(": " .. newMicrobeComponent.speciesName)
         
-        newMicrobe.collisionHandler:addCollisionGroup("powerupable")
-
-        assert(GameState.MICROBE_EDITOR.entityManager)
-        assert(GameState.MICROBE)
-
-        -- No clue why there was a transfer here before
-        -- newMicrobeEntity = Entity.new(
-        --     g_luaEngine:transferEntityGameState(newMicrobe.entity.id,
-        --                                         -- These game states are the same
-        --                                         self.gameState,
-        --                                         GameState.MICROBE),
-        --     GameState.MICROBE.wrapper)
+        collisionHandlerComponent:addCollisionGroup("powerupable")
 
         newMicrobeEntity:stealName(PLAYER_NAME)
 
@@ -81,7 +71,7 @@ function MicrobeReplacementSystem:activate()
         Engine:playerData():setActiveCreature(newMicrobeEntity.id, self.gameState.wrapper)
 
         -- Destroys the old entity inside the editor GameState
-        workingMicrobe.entity:destroy()
+        workingMicrobeEntity:destroy()
     end
 end
 
