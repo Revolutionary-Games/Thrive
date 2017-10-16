@@ -983,9 +983,7 @@ function MicrobeSystem.createMicrobeEntity(name, aiControlled, speciesName, in_e
         entity:addComponent(component)
     end
     
-    local newMicrobe = Microbe(entity, in_editor, g_luaEngine.currentGameState)
-    assert(newMicrobe)
-    assert(newMicrobe.microbe.initialized == true)
+    MicrobeSystem.initializeMicrobe(entity, in_editor, g_luaEngine.currentGameState)
 
     return entity
 end
@@ -1305,3 +1303,74 @@ Microbe = class(
         MicrobeSystem.updateCompoundAbsorber(self.entity)
     end
 )
+
+-- Microbe entity initializer
+--
+-- Requires all necessary components (see MICROBE_COMPONENTS) to be present in
+-- the entity.
+--
+-- @param entity
+-- The entity this microbe wraps
+function MicrobeSystem.initializeMicrobe(microbeEntity, in_editor)
+    -- Checking if the entity exists.
+    assert(microbeEntity ~= nil)
+
+    -- Checking if all the components are there.
+    for key, ctype in pairs(MICROBE_COMPONENTS) do
+        local component = getComponent(microbeEntity, ctype)
+        assert(component ~= nil, "Can't create microbe from this entity, it's missing " .. key)
+    end
+
+    local microbeComponent = getComponent(microbeEntity, MicrobeComponent)
+    local compoundAbsorberComponent = getComponent(microbeEntity, CompoundAbsorberComponent)
+    local compoundBag = getComponent(microbeEntity, CompoundBagComponent)
+    local rigidBodyComponent = getComponent(microbeEntity, RigidBodyComponent)
+    local sceneNodeComponent = getComponent(microbeEntity, OgreSceneNodeComponent)
+
+    -- Allowing the microbe to absorb all the compounds.
+    for _, compound in pairs(CompoundRegistry.getCompoundList()) do
+        compoundAbsorberComponent:setCanAbsorbCompound(compound, true)
+    end
+
+    if not microbeComponent.initialized then
+        -- TODO: cache for performance
+        local compoundShape = CompoundShape.castFrom(rigidBodyComponent.properties.shape)
+        assert(compoundShape ~= nil)
+        compoundShape:clear()
+        rigidBodyComponent.properties.mass = 0.0
+
+        -- Organelles
+        for s, organelle in pairs(microbeComponent.organelles) do
+            organelle:onAddedToMicrobe(microbeEntity, organelle.position.q, organelle.position.r, organelle.rotation)   
+            organelle:reset()
+            rigidBodyComponent.properties.mass = rigidBodyComponent.properties.mass + organelle.mass
+        end
+
+        -- Membrane
+        sceneNodeComponent.meshName = "membrane_" .. microbeComponent.speciesName
+        rigidBodyComponent.properties:touch()
+        microbeComponent.initialized = true
+        
+        if in_editor ~= true then
+            assert(microbeComponent.speciesName)
+            
+            local processor = getComponent(microbeComponent.speciesName,
+                                           g_luaEngine.currentGameState,
+                                           ProcessorComponent)
+            
+            if processor == nil then
+
+                print("Microbe species '" .. microbeComponent.speciesName .. "' doesn't exist")
+                
+                assert(processor)
+                
+            end
+
+            assert(isNotEmpty(microbeComponent.speciesName))
+            compoundBag:setProcessor(processor, microbeComponent.speciesName)
+            
+            SpeciesSystem.template(microbeEntity, MicrobeSystem.getSpeciesComponent(microbeEntity))
+        end
+    end
+    MicrobeSystem.updateCompoundAbsorber(microbeEntity)
+end
