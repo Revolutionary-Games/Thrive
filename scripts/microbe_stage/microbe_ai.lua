@@ -133,8 +133,8 @@ function MicrobeAISystem:update(renderTime, logicTime)
         end
     end
     for _, entityId in pairs(self.entities:addedEntities()) do
-        local microbe = Microbe(Entity.new(entityId, self.gameState.wrapper), nil,
-                                self.gameState.wrapper)
+        local microbeEntity = Entity.new(entityId, self.gameState.wrapper)
+        local microbe = Microbe(microbeEntity, nil, self.gameState.wrapper)
         self.microbes[entityId] = microbe
         
         -- This is a hack to remember up to 5 recent microbes as candidates for predators. 
