@@ -29,6 +29,9 @@ public:
     // Gameplay etc. directly thrive related methods
     void startNewGame();
 
+    //! \brief Creates a new cell of the current player species
+    void respawnPlayerCell();
+
 
     CellStageWorld* getCellStage();
 
@@ -63,10 +66,16 @@ protected:
 
     std::shared_ptr<CellStageWorld> m_cellStage;
 
-    Leviathan::ObjectID m_cellCamera = 0;
+    ObjectID m_cellCamera = 0;
 
-    Leviathan::ObjectID m_backgroundPlane = 0;
+    ObjectID m_backgroundPlane = 0;
 
+    //! Player's cell
+    ObjectID m_playerCell = 0;
+
+    
+
+    // TODO: remove this and the debug stuff in Tick
     int dummyTestCounter = 0;
 
     static ThriveGame* StaticGame;

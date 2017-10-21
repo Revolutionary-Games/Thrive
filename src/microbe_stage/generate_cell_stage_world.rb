@@ -18,11 +18,15 @@ world = GameWorldClass.new(
   "CellStageWorld", componentTypes: [
     EntityComponent.new("MembraneComponent", [ConstructorInfo.new(
                                          [
-                                           Variable.new("GetScene()", "",
-                                                        nonMethodParam: true),
+                                           #Variable.new("GetScene()", "",
+                                           #             nonMethodParam: true),
                                          ])], releaseparams: ["GetScene()"]),
   ],
   systems: [
+    EntitySystem.new("MembraneSystem", ["MembraneComponent", "RenderNode"],
+                     runrender: {group: 10, parameters: [
+                                   "GetScene()"
+                                 ]}),
   ],
   systemspreticksetup: (<<-END
   const auto timeAndTickTuple = GetTickAndTime();

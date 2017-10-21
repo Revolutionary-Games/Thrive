@@ -3,6 +3,9 @@
 #include "engine/component_types.h"
 
 #include "Entities/Component.h"
+#include "Entities/System.h"
+
+#include "Entities/Components.h"
 
 #include <OgreColourValue.h>
 #include <OgreItem.h>
@@ -21,7 +24,7 @@ class MembraneComponent : public Leviathan::Component {
     };
 public:
 
-    MembraneComponent(Ogre::SceneManager* scene);
+    MembraneComponent();
     ~MembraneComponent();
 
     void Release(Ogre::SceneManager* scene);
@@ -45,7 +48,8 @@ public:
     // Sees if the given point is inside the membrane.
 	bool contains(float x, float y);
 
-	void Update();
+    //! \param parentcomponentpos The mesh is attached to this node when the mesh is created
+	void Update(Ogre::SceneManager* scene, Ogre::SceneNode* parentcomponentpos);
 
 	// Returns the length of the bounding membrane "box".
 	int getCellDimensions() {return cellDimensions;}
@@ -63,9 +67,6 @@ public:
 
 	// Decides where the point needs to move based on the position of the closest organelle.
 	Ogre::Vector3 GetMovement(Ogre::Vector3 target, Ogre::Vector3 closestOrganelle);
-
-    //! Makes the model move with the scene node
-    void attach(Ogre::SceneNode* node);
 
     static constexpr auto TYPE = componentTypeConvert(THRIVE_COMPONENT::MEMBRANE);
     
@@ -93,10 +94,10 @@ private:
     // Ogre renderable that holds the mesh
     Ogre::MeshPtr m_mesh;
     // The submesh that actually holds our vertex and index buffers
-    Ogre::SubMesh* m_subMesh;
+    Ogre::SubMesh* m_subMesh = nullptr;
 
     //! Actual object that is attached to a scenenode
-    Ogre::Item* m_item;
+    Ogre::Item* m_item = nullptr;
 
     Ogre::VertexBufferPacked* m_vertexBuffer = nullptr;
 
@@ -109,19 +110,42 @@ private:
 /**
 * @brief Handles entities with MembraneComponent
 */
-class MembraneSystem{
+class MembraneSystem : public Leviathan::System<std::tuple<MembraneComponent&,
+                                                    Leviathan::RenderNode&>>
+{
 public:
 
     //! Updates the membrane calculations every frame
-    void Run(GameWorld &world,
-        std::unordered_map<Leviathan::ObjectID, MembraneComponent*> &index)
-    {
+    void Run(GameWorld &world, Ogre::SceneManager* scene){
+        
+        auto& index = Nodes.GetIndex();
         for(auto iter = index.begin(); iter != index.end(); ++iter){
 
-            auto& node = *iter->second;
-            
-            node.Update();
+            std::get<0>(*iter->second).Update(scene, std::get<1>(*iter->second).Node);
         }
+    }
+
+    //! \see RenderingPositionSystem
+    template<class FirstType, class SecondType>
+    void CreateNodes(
+        const std::vector<std::tuple<FirstType*, ObjectID>> &firstdata,
+        const std::vector<std::tuple<SecondType*, ObjectID>> &seconddata,
+        const Leviathan::ComponentHolder<FirstType> &firstholder,
+        const Leviathan::ComponentHolder<SecondType> &secondholder)
+    {
+        static_assert(std::is_same<FirstType, MembraneComponent>::value, 
+            "CreateNodes FirstType is incorrect");
+        TupleNodeHelper(Nodes, firstdata, seconddata, firstholder, secondholder);
+    }    
+
+    //! \see RenderingPositionSystem
+    template<class FirstType, class SecondType>
+    void DestroyNodes(
+        const std::vector<std::tuple<FirstType*, ObjectID>> &firstdata,
+        const std::vector<std::tuple<SecondType*, ObjectID>> &seconddata)
+    {
+        Nodes.RemoveBasedOnKeyTupleList(firstdata);
+        Nodes.RemoveBasedOnKeyTupleList(seconddata);
     }
 };
 

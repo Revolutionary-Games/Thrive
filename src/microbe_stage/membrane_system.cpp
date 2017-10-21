@@ -33,7 +33,7 @@ using namespace thrive;
 ////////////////////////////////////////////////////////////////////////////////
 static std::atomic<int> MembraneMeshNumber = {0};
 
-MembraneComponent::MembraneComponent(Ogre::SceneManager* scene) :
+MembraneComponent::MembraneComponent() :
     Component(componentTypeConvert(THRIVE_COMPONENT::MEMBRANE))
 {
     // Create the mesh for rendering us
@@ -42,22 +42,25 @@ MembraneComponent::MembraneComponent(Ogre::SceneManager* scene) :
         Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
 
     m_subMesh = m_mesh->createSubMesh();
-
-    m_item = scene->createItem(m_mesh, Ogre::SCENE_DYNAMIC);
 }
 
 MembraneComponent::~MembraneComponent(){
     
     LEVIATHAN_ASSERT(!m_item, "MembraneComponent not released");
+    
+    Ogre::MeshManager::getSingleton().remove(m_mesh);
+    m_mesh.reset();
+    m_subMesh = nullptr;
+
+    
 }
 
 void MembraneComponent::Release(Ogre::SceneManager* scene){
 
-    scene->destroyItem(m_item);
-    Ogre::MeshManager::getSingleton().remove(m_mesh);
-    m_mesh.reset();
-    m_subMesh = nullptr;
-    m_item = nullptr;
+    if(m_item){
+        scene->destroyItem(m_item);
+        m_item = nullptr;
+    }
 }
 // ------------------------------------ //
 Ogre::Vector3 MembraneComponent::FindClosestOrganelles(Ogre::Vector3 target)
@@ -136,14 +139,15 @@ bool MembraneComponent::contains(float x, float y)
     return crosses;
 }
 // ------------------------------------ //
-void MembraneComponent::Update()
+void MembraneComponent::Update(Ogre::SceneManager* scene, Ogre::SceneNode* parentcomponentpos)
 {
     if(!isInitialized)
         Initialize();
     
     DrawMembrane();
 
-    const auto bufferSize = vertices2D.size() * 2;
+    // 12 vertices added per index of vertices2D
+    const auto bufferSize = vertices2D.size() * 12;
 
     if(!m_vertexBuffer){
 
@@ -162,15 +166,43 @@ void MembraneComponent::Update()
 
         Ogre::VertexBufferPackedVec vertexBuffers;
         vertexBuffers.push_back(m_vertexBuffer);
-        // Ogre::IndexBufferPacked *indexBuffer = ;
+
+        // 1 to 1 index buffer mapping
+
+        Ogre::uint16* indices = reinterpret_cast<Ogre::uint16*>(OGRE_MALLOC_SIMD(
+                sizeof(Ogre::uint16) * bufferSize, Ogre::MEMCATEGORY_GEOMETRY));
+
+        for(size_t i = 0; i < bufferSize; ++i){
+
+            indices[i] = static_cast<Ogre::uint16>(i);
+        }
+        
+        Ogre::IndexBufferPacked* indexBuffer = nullptr;
+        
+        try{
+            indexBuffer = vaoManager->createIndexBuffer( Ogre::IndexBufferPacked::IT_16BIT,
+                bufferSize,
+                Ogre::BT_IMMUTABLE,
+                // Could this be false like the vertex buffer to not keep a shadow buffer
+                indices, true);
+        } catch(const Ogre::Exception &e){
+
+            // Avoid memory leak
+            OGRE_FREE_SIMD(indices, Ogre::MEMCATEGORY_GEOMETRY);
+            indexBuffer = nullptr;
+            throw e;
+        }
+        
         Ogre::VertexArrayObject* vao = vaoManager->createVertexArrayObject(
-            vertexBuffers, nullptr, Ogre::OT_TRIANGLE_LIST);
+            vertexBuffers, indexBuffer, Ogre::OT_TRIANGLE_LIST);
 
         m_subMesh->mVao[Ogre::VpNormal].push_back(vao);
-        
-        // //Use the same geometry for shadow casting.
-        // m_subMesh->mVao[Ogre::VpShadow].push_back( vao );
 
+        // This might be needed because we use a v2 mesh
+        //Use the same geometry for shadow casting.
+        m_subMesh->mVao[Ogre::VpShadow].push_back( vao );
+
+        
         //Set the bounds to get frustum culling and LOD to work correctly.
         // TODO: make this more accurate
         m_mesh->_setBounds(Ogre::Aabb(Ogre::Vector3::ZERO, Ogre::Vector3::UNIT_SCALE* 50)
@@ -193,7 +225,8 @@ void MembraneComponent::Update()
         // ptus->setColourOperationEx(Ogre::LBX_MODULATE, Ogre::LBS_MANUAL, Ogre::LBS_TEXTURE,
         //     colour);
         // m_mesh->setMaterial(materialPtr);
-        m_subMesh->setMaterialName("Membrane");
+        //m_subMesh->setMaterialName("Membrane");
+        m_subMesh->setMaterialName("Background");
     }
 
     // Map the buffer for writing //
@@ -276,14 +309,23 @@ void MembraneComponent::Update()
         
         meshVertices[writeIndex++] = {Ogre::Vector3(0,0,-height/2), uv};
 	}
-
-    LEVIATHAN_ASSERT(writeIndex - 1 == bufferSize, "Invalid array element math in "
+    
+    // LOG_INFO("Write index is: " + std::to_string(writeIndex) + ", buffer size: " +
+    //     std::to_string(bufferSize));
+    LEVIATHAN_ASSERT(writeIndex == bufferSize, "Invalid array element math in "
         "fill vertex buffer");
 
-    // Upload finished data to the gpu
-    m_vertexBuffer->unmap(Ogre::UO_KEEP_PERSISTENT);
+    // Upload finished data to the gpu (unmap all needs to be used to
+    // suppress warnings about destroying mapped buffers)
+    m_vertexBuffer->unmap(Ogre::UO_UNMAP_ALL);
 
     // TODO: apply the current colour to the material instance
+
+    if(!m_item){
+        // This needs the v2 mesh to contain data to work
+        m_item = scene->createItem(m_mesh, Ogre::SCENE_DYNAMIC);
+        parentcomponentpos->attachObject(m_item);
+    }
 }
 
 
@@ -316,6 +358,8 @@ void MembraneComponent::Initialize()
 		vertices2D.emplace_back(-cellDimensions, cellDimensions - 2*cellDimensions/membraneResolution*i, 0);
 	}
 
+    // Does this need to run 50*cellDimensions times. That seems to be
+    // really high and probably causes some of the lag
 	for(int i=0; i<50*cellDimensions; i++)
     {
         DrawMembrane();
@@ -330,7 +374,7 @@ void MembraneComponent::Initialize()
 void MembraneComponent::DrawMembrane()
 {
     // Stores the temporary positions of the membrane.
-	std::vector<Ogre::Vector3> newPositions = vertices2D;
+	auto newPositions = vertices2D;
 
     // Loops through all the points in the membrane and relocates them as necessary.
 	for(size_t i=0, end=newPositions.size(); i<end; i++)
@@ -383,11 +427,9 @@ void MembraneComponent::clear()
 {
     isInitialized = false;
     vertices2D.clear();
-}
 
-void MembraneComponent::attach(Ogre::SceneNode* node){
-
-    node->attachObject(m_item);
+    if(m_item)
+        m_item->detachFromParent();
 }
 
 ////////////////////////////////////////////////////////////////////////////////

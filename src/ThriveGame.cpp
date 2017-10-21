@@ -80,16 +80,16 @@ void ThriveGame::startNewGame(){
     m_cellStage->SetCamera(m_cellCamera);
 
     // Set background plane //
-    m_backgroundPlane = Leviathan::ObjectLoader::LoadPlane(*m_cellStage, Float3(0, -50, 0),
-        Ogre::Quaternion(Ogre::Degree(90), Ogre::Vector3::UNIT_Z) *
-        Ogre::Quaternion(Ogre::Degree(45), Ogre::Vector3::UNIT_Y),
-        "Background", Ogre::Plane(1, 1, 1, 1),
-        Float2(200, 200));
+    // m_backgroundPlane = Leviathan::ObjectLoader::LoadPlane(*m_cellStage, Float3(0, -50, 0),
+    //     Ogre::Quaternion(Ogre::Degree(90), Ogre::Vector3::UNIT_Z) *
+    //     Ogre::Quaternion(Ogre::Degree(45), Ogre::Vector3::UNIT_Y),
+    //     "Background", Ogre::Plane(1, 1, 1, 1),
+    //     Float2(200, 200));
 
     // Spawn player //
-    // RespawnPlayerCell();
+    respawnPlayerCell();
     
-    {
+    if(false){
         const auto testModel = m_cellStage->CreateEntity();
         m_cellStage->Create_Position(testModel, Float3(0, 0, 0), Float4::IdentityQuaternion());
         auto& node = m_cellStage->Create_RenderNode(testModel);
@@ -97,11 +97,30 @@ void ThriveGame::startNewGame(){
     }
 }
 
+void ThriveGame::respawnPlayerCell(){
+    
+    LEVIATHAN_ASSERT(m_playerCell == 0, "Player alive in respawnPlayercell");
+
+    m_playerCell = m_cellStage->CreateEntity();
+
+    m_cellStage->Create_RenderNode(m_playerCell);
+
+    m_cellStage->Create_Position(m_playerCell, Float3(0), Float4::IdentityQuaternion());
+
+    MembraneComponent& membrane = m_cellStage->Create_MembraneComponent(m_playerCell);
+
+    for(int x = -3; x <= 3; ++x){
+        for(int y = -3; y <= 3; ++y){
+            membrane.sendOrganelles(0, 0);
+        }
+    }
+}
+
+// ------------------------------------ //
 CellStageWorld* ThriveGame::getCellStage(){
 
     return m_cellStage.get();
 }
-
 
 // ------------------------------------ //
 void ThriveGame::Tick(int mspassed){
@@ -109,6 +128,16 @@ void ThriveGame::Tick(int mspassed){
     dummyTestCounter += mspassed;
 
     float radians = dummyTestCounter / 500.f;
+
+    if(m_playerCell && true){
+
+        Leviathan::Position& pos = m_cellStage->GetComponent_Position(m_playerCell);
+
+        pos.Members._Orientation = Ogre::Quaternion::IDENTITY * Ogre::Quaternion(
+            Ogre::Radian(radians), Ogre::Vector3::UNIT_Y);
+
+        pos.Marked = true;
+    }
 
     if(m_backgroundPlane != 0 && false){
 
