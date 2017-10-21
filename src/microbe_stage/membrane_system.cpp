@@ -262,52 +262,54 @@ void MembraneComponent::Update(Ogre::SceneManager* scene, Ogre::SceneNode* paren
 
         const Ogre::Vector2 uv(a+0.5,b+0.5);
 
+        // y and z coordinates are swapped to match the Ogre up direction
+
         // Bottom (or top?) half first triangle
         meshVertices[writeIndex++] = {Ogre::Vector3(0, 0, 0), uv};
         
         meshVertices[writeIndex++] = {Ogre::Vector3(vertices2D[(i+1)%end].x,
-                vertices2D[(i+1)%end].y,
-                vertices2D[(i+1)%end].z-height/2), uv};
+                vertices2D[(i+1)%end].z-height/2,
+                vertices2D[(i+1)%end].y), uv};
         
         meshVertices[writeIndex++] = {Ogre::Vector3(vertices2D[i%end].x,
-                vertices2D[i%end].y,
-                vertices2D[i%end].z-height/2), uv};
+                vertices2D[i%end].z-height/2,
+                vertices2D[i%end].y), uv};
 
         // Second triangle
         meshVertices[writeIndex++] = {Ogre::Vector3(vertices2D[i%end].x,
-                vertices2D[i%end].y,
-                vertices2D[i%end].z+height/2), uv};
+                vertices2D[i%end].z+height/2,
+                vertices2D[i%end].y), uv};
         
         meshVertices[writeIndex++] = {Ogre::Vector3(vertices2D[(i+1)%end].x,
-                vertices2D[(i+1)%end].y,
-                vertices2D[(i+1)%end].z+height/2), uv};
+                vertices2D[(i+1)%end].z+height/2,
+                vertices2D[(i+1)%end].y), uv};
         
         meshVertices[writeIndex++] = {Ogre::Vector3(vertices2D[(i+1)%end].x,
-                vertices2D[(i+1)%end].y,
-                vertices2D[(i+1)%end].z-height/2), uv};
+                vertices2D[(i+1)%end].z-height/2,
+                vertices2D[(i+1)%end].y), uv};
 
         // This was originally a second loop
         // Top half first triangle
         meshVertices[writeIndex++] = {Ogre::Vector3(vertices2D[i%end].x,
-                vertices2D[i%end].y,
-                vertices2D[i%end].z+height/2), uv};
+                vertices2D[i%end].z+height/2,
+                vertices2D[i%end].y), uv};
         
-        meshVertices[writeIndex++] = {Ogre::Vector3(0,0,height/2), uv};
+        meshVertices[writeIndex++] = {Ogre::Vector3(0,height/2, 0), uv};
         
         meshVertices[writeIndex++] = {Ogre::Vector3(vertices2D[(i+1)%end].x,
-                vertices2D[(i+1)%end].y,
-                vertices2D[(i+1)%end].z+height/2), uv};
+                vertices2D[(i+1)%end].z+height/2,
+                vertices2D[(i+1)%end].y), uv};
 
         // Second triangle
         meshVertices[writeIndex++] = {Ogre::Vector3(vertices2D[i%end].x,
-                vertices2D[i%end].y,
-                vertices2D[i%end].z-height/2), uv};
+                vertices2D[i%end].z-height/2,
+                vertices2D[i%end].y), uv};
         
         meshVertices[writeIndex++] = {Ogre::Vector3(vertices2D[(i+1)%end].x,
-                vertices2D[(i+1)%end].y,
-                vertices2D[(i+1)%end].z-height/2), uv};
+                vertices2D[(i+1)%end].z-height/2,
+                vertices2D[(i+1)%end].y), uv};
         
-        meshVertices[writeIndex++] = {Ogre::Vector3(0,0,-height/2), uv};
+        meshVertices[writeIndex++] = {Ogre::Vector3(0,-height/2,0), uv};
 	}
     
     // LOG_INFO("Write index is: " + std::to_string(writeIndex) + ", buffer size: " +

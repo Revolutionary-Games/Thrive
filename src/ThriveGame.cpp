@@ -129,12 +129,12 @@ void ThriveGame::Tick(int mspassed){
 
     float radians = dummyTestCounter / 500.f;
 
-    if(m_playerCell && true){
+    if(m_playerCell && false){
 
         Leviathan::Position& pos = m_cellStage->GetComponent_Position(m_playerCell);
 
         pos.Members._Orientation = Ogre::Quaternion::IDENTITY * Ogre::Quaternion(
-            Ogre::Radian(radians), Ogre::Vector3::UNIT_Y);
+            Ogre::Radian(radians), Ogre::Vector3::UNIT_X);
 
         pos.Marked = true;
     }
