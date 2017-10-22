@@ -66,9 +66,8 @@ function suicide()
         print("Must be in microbe stage to suicide")
         return
     end
-    playerCreature = Microbe.new(Entity.new(Engine:playerData():activeCreature(),
-                                            g_luaEngine.currentGameState.wrapper))
-    playerCreature:kill()
+    playerCreature = Entity.new(Engine:playerData():activeCreature(), g_luaEngine.currentGameState.wrapper)
+    MicrobeSystem.kill(playerCreature)
 end
 
 function unlockAll()
