@@ -5,7 +5,7 @@
 # RubySetupSystem Bootstrap
 if not File.exists? "RubySetupSystem/RubySetupSystem.rb"
   puts "Initializing RubySetupSystem"
-  system "git submodule init --recursive && git submodule update --recursive"
+  system "git submodule init && git submodule update --recursive"
 
   if $?.exitstatus != 0
     abort("Failed to initialize or update git submodules. " +
@@ -23,7 +23,7 @@ def checkRunFolder(suggested)
 
   versionFile = File.join(suggested, "thriveversion.ver")
 
-  onError("Not ran from Thrive base directory!") if not File.exist?("src/thrive_version.h")
+  onError("Not ran from Thrive base directory!") if not File.exist?("SetupThrive.rb")
 
   thirdPartyFolder = File.join suggested, "ThirdParty"
 
