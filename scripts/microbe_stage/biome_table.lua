@@ -20,6 +20,10 @@ biomeTable = {
             co2 = {amount = 65000, density = 1/5000},
             ammonia = {amount = 65000, density = 1/5000},
             glucose = {amount = 65000, density = 1/5000}
+        },
+
+        bacteria = {
+            Rickettsia = 20
         }
     },
 
@@ -32,6 +36,10 @@ biomeTable = {
             co2 = {amount = 100000, density = 1/5000},
             ammonia = {amount = 85000, density = 1/5000},
             glucose = {amount = 65000, density = 1/5000}
+        },
+
+        bacteria = {
+            Rickettsia = 20
         }
     },
 
@@ -44,6 +52,10 @@ biomeTable = {
             co2 = {amount = 70000, density = 1/5000},
             ammonia = {amount = 70000, density = 1/5000},
             glucose = {amount = 80000, density = 1/5000}
+        },
+
+        bacteria = {
+            Rickettsia = 20
         }
     },
 
@@ -56,6 +68,10 @@ biomeTable = {
             co2 = {amount = 70000, density = 1/5000},
             ammonia = {amount = 60000, density = 1/5000},
             glucose = {amount = 70000, density = 1/5000}
+        },
+
+        bacteria = {
+            Rickettsia = 20
         }
     }
 }

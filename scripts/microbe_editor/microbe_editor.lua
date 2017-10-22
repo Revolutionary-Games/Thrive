@@ -72,8 +72,7 @@ function MicrobeEditor:activate()
     if creatureState.name == GameState.MICROBE.name or
     creatureState.name == GameState.MICROBE_TUTORIAL.name then
         
-        microbeStageMicrobe = Entity.new(Engine:playerData():activeCreature(),
-                                         GameState.MICROBE.wrapper)
+        microbeStageMicrobe = Entity.new("player", GameState.MICROBE.wrapper)
 
         self.nextMicrobeEntity = Entity.new(
             g_luaEngine:transferEntityGameState(microbeStageMicrobe.id,

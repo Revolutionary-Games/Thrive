@@ -137,12 +137,18 @@ MicrobeSystem = class(
         self.microbeCollisions = CollisionFilter.new(
             "microbe",
             "microbe"
-        );
+        )
         -- Temporary for 0.3.2, should be moved to separate system.
         self.agentCollisions = CollisionFilter.new(
             "microbe",
             "agent"
-        );
+        )
+
+        self.bacteriaCollisions = CollisionFilter.new(
+            "microbe",
+            "bacteria"
+        )
+
         self.microbes = {}
     end
 )
@@ -210,6 +216,19 @@ function MicrobeSystem:update(renderTime, logicTime)
         end
     end
     self.agentCollisions:clearCollisions()
+
+    for _, collision in pairs(self.bacteriaCollisions:collisions()) do
+        local microbe_entity = Entity.new(collision.entityId1, self.gameState.wrapper)
+        local bacterium_entity = Entity.new(collision.entityId2, self.gameState.wrapper)
+
+        if microbe_entity:exists() and bacterium_entity:exists() then
+            if not (getComponent(bacterium_entity, Bacterium.COMPONENTS.bacterium) == nil) then
+                local bacterium = Bacterium(bacterium_entity)
+                bacterium:damage(4)
+            end
+        end
+    end
+    self.bacteriaCollisions:clearCollisions()
 end
 
 function MicrobeSystem.checkEngulfment(engulferMicrobeEntity, engulfedMicrobeEntity)
@@ -1294,11 +1313,8 @@ function MicrobeSystem.initializeMicrobe(microbeEntity, in_editor)
                                            ProcessorComponent)
             
             if processor == nil then
-
                 print("Microbe species '" .. microbeComponent.speciesName .. "' doesn't exist")
-                
                 assert(processor)
-                
             end
 
             assert(isNotEmpty(microbeComponent.speciesName))
