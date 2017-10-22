@@ -170,8 +170,8 @@ function MicrobeSystem:init(gameState)
     LuaSystem.init(self, "MicrobeSystem", gameState)
     self.entities:init(gameState.wrapper)
     self.microbeCollisions:init(gameState.wrapper)
-    
     self.agentCollisions:init(gameState.wrapper)
+    self.bacteriaCollisions:init(gameState.wrapper)
 end
 
 function MicrobeSystem:shutdown()
@@ -179,6 +179,7 @@ function MicrobeSystem:shutdown()
     self.entities:shutdown()
     self.microbeCollisions:shutdown()
     self.agentCollisions:shutdown()
+    self.bacteriaCollisions:shutdown()
 end
 
 function MicrobeSystem:update(renderTime, logicTime)
