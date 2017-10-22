@@ -27,14 +27,12 @@ MovementOrganelle = class(
     -- @param arguments.torque
     --  The torque this organelle can exert to turn a microbe.
     function(self, arguments, data)
-
         OrganelleComponent.create(self, arguments, data)
 
         --making sure this doesn't run when load() is called
         if arguments == nil and data == nil then
             return
         end
-        
 
         self.energyMultiplier = 0.025
         self.force = calculateForce(data.q, data.r, arguments.momentum)
@@ -44,13 +42,10 @@ MovementOrganelle = class(
         self.y = 0
         self.angle = 0
         self.movingTail = false        
-        
     end
 )
 
-
-
-function MovementOrganelle:onAddedToMicrobe(microbe, q, r, rotation, organelle)
+function MovementOrganelle:onAddedToMicrobe(microbeEntity, q, r, rotation, organelle)
     local organelleX, organelleY = axialToCartesian(q, r)
     local nucleusX, nucleusY = axialToCartesian(0, 0)
     local deltaX = nucleusX - organelleX
@@ -66,7 +61,7 @@ function MovementOrganelle:onAddedToMicrobe(microbe, q, r, rotation, organelle)
 	self.sceneNode.transform.position = organelle.position.cartesian
     self.sceneNode.transform.scale = Vector3(HEX_SIZE, HEX_SIZE, HEX_SIZE)
     self.sceneNode.transform:touch()
-    self.sceneNode.parent = microbe.entity
+    self.sceneNode.parent = microbeEntity
     -- self.sceneNode is a nullptr because it is already added to an entity
     --organelle.organelleEntity:addComponent(self.sceneNode)
     
@@ -95,8 +90,12 @@ function MovementOrganelle:storage()
     return storage
 end
 
-function MovementOrganelle:_moveMicrobe(microbe, milliseconds)
-    local direction = microbe.microbe.movementDirection
+function MovementOrganelle:_moveMicrobe(microbeEntity, milliseconds)
+    local microbeComponent = getComponent(microbeEntity, MicrobeComponent)
+    local rigidBodyComponent = getComponent(microbeEntity, RigidBodyComponent)
+    local sceneNodeComponent = getComponent(microbeEntity, OgreSceneNodeComponent)
+
+    local direction = microbeComponent.movementDirection
     
     local forceMagnitude = self.force:dotProduct(direction)
     if forceMagnitude > 0 then
@@ -109,18 +108,18 @@ function MovementOrganelle:_moveMicrobe(microbe, milliseconds)
         self.sceneNode:setAnimationSpeed(1.3)
         
         local energy = math.abs(self.energyMultiplier * forceMagnitude * milliseconds / 1000)
-        local availableEnergy = microbe:takeCompound(CompoundRegistry.getCompoundId("atp"), energy)
+        local availableEnergy = MicrobeSystem.takeCompound(microbeEntity, CompoundRegistry.getCompoundId("atp"), energy)
         if availableEnergy < energy then
             forceMagnitude = sign(forceMagnitude) * availableEnergy * 1000 / milliseconds / self.energyMultiplier
             self.movingTail = false
             self.sceneNode:setAnimationSpeed(0.25)
         end
-        local impulseMagnitude = microbe.microbe.movementFactor * milliseconds * forceMagnitude / 1000
+        local impulseMagnitude = microbeComponent.movementFactor * milliseconds * forceMagnitude / 1000
 
         local impulse = impulseMagnitude * direction
-        local a = microbe.sceneNode.transform.orientation * impulse
-        microbe.rigidBody:applyCentralImpulse(
-            microbe.sceneNode.transform.orientation * impulse
+        local a = sceneNodeComponent.transform.orientation * impulse
+        rigidBodyComponent:applyCentralImpulse(
+            sceneNodeComponent.transform.orientation * impulse
         )
     else 
         if self.movingTail then
@@ -130,13 +129,17 @@ function MovementOrganelle:_moveMicrobe(microbe, milliseconds)
     end
 end
 
+-- TODO: Add logictime considerations.
+function MovementOrganelle:_turnMicrobe(microbeEntity)
+    local microbeComponent = getComponent(microbeEntity, MicrobeComponent)
+    local rigidBodyComponent = getComponent(microbeEntity, RigidBodyComponent)
+    local sceneNodeComponent = getComponent(microbeEntity, OgreSceneNodeComponent)
 
-function MovementOrganelle:_turnMicrobe(microbe)
     if self.torque == 0 then
         return
     end
-    local transform = microbe.sceneNode.transform
-    local targetDirection = microbe.microbe.facingTargetPoint - transform.position
+    local transform = sceneNodeComponent.transform
+    local targetDirection = microbeComponent.facingTargetPoint - transform.position
     local localTargetDirection = transform.orientation:Inverse() * targetDirection
     localTargetDirection.z = 0 -- improper fix. facingTargetPoint somehow gets a non-zero z value.
     assert(localTargetDirection.z < 0.01, "Microbes should only move in the 2D plane with z = 0")
@@ -144,23 +147,22 @@ function MovementOrganelle:_turnMicrobe(microbe)
         -localTargetDirection.x,
         localTargetDirection.y
     )
-	microbe.microbe.microbetargetdirection = math.abs(math.deg(alpha))
+	microbeComponent.microbetargetdirection = math.abs(math.deg(alpha))
     if math.abs(math.deg(alpha)) > 1 then
-        microbe.rigidBody:applyTorque(
-            Vector3(0, 0, self.torque * alpha * microbe.microbe.movementFactor)
+        rigidBodyComponent:applyTorque(
+            Vector3(0, 0, self.torque * alpha * microbeComponent.movementFactor)
         )
-        microbe.soundSource:playSound("microbe-movement-turn")
     end
 end
 
-
-function MovementOrganelle:update(microbe, organelle, logicTime)    
+function MovementOrganelle:update(microbeEntity, organelle, logicTime)
+    local membraneComponent = getComponent(microbeEntity, MembraneComponent)
     local x, y = axialToCartesian(organelle.position.q, organelle.position.r)
-    local membraneCoords = microbe.membraneComponent:getExternOrganellePos(x, y)
+    local membraneCoords = membraneComponent:getExternOrganellePos(x, y)
     local translation = Vector3(membraneCoords[1], membraneCoords[2], 0)
     self.sceneNode.transform.position = translation
     self.sceneNode.transform:touch()
 
-    self:_turnMicrobe(microbe)
-    self:_moveMicrobe(microbe, logicTime)
+    self:_turnMicrobe(microbeEntity)
+    self:_moveMicrobe(microbeEntity, logicTime)
 end

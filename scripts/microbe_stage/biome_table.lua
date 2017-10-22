@@ -16,10 +16,10 @@ biomeTable = {
         sunlight = 75,
         background = "Background",
         compounds = {
-            oxygen = 65000,
-            co2 = 65000,
-            ammonia = 65000,
-            glucose = 65000
+            oxygen = {amount = 65000, density = 1/5000},
+            co2 = {amount = 65000, density = 1/5000},
+            ammonia = {amount = 65000, density = 1/5000},
+            glucose = {amount = 65000, density = 1/5000}
         },
 
         bacteria = {
@@ -32,10 +32,10 @@ biomeTable = {
         sunlight = 40,
         background = "Background_Vent",
         compounds = {
-            oxygen = 60000,
-            co2 = 100000,
-            ammonia = 85000,
-            glucose = 65000
+            oxygen = {amount = 60000, density = 1/5000},
+            co2 = {amount = 100000, density = 1/5000},
+            ammonia = {amount = 85000, density = 1/5000},
+            glucose = {amount = 65000, density = 1/5000}
         },
 
         bacteria = {
@@ -48,10 +48,10 @@ biomeTable = {
         sunlight = 5,
         background = "Background_Abyss",
         compounds = {
-            oxygen = 50000,
-            co2 = 70000,
-            ammonia = 70000,
-            glucose = 80000
+            oxygen = {amount = 50000, density = 1/5000},
+            co2 = {amount = 70000, density = 1/5000},
+            ammonia = {amount = 70000, density = 1/5000},
+            glucose = {amount = 80000, density = 1/5000}
         },
 
         bacteria = {
@@ -64,10 +64,10 @@ biomeTable = {
         sunlight = 90,
         background = "Background_Shallow",
         compounds = {
-            oxygen = 100000,
-            co2 = 70000,
-            ammonia = 60000,
-            glucose = 70000
+            oxygen = {amount = 100000, density = 1/5000},
+            co2 = {amount = 70000, density = 1/5000},
+            ammonia = {amount = 60000, density = 1/5000},
+            glucose = {amount = 70000, density = 1/5000}
         },
 
         bacteria = {
