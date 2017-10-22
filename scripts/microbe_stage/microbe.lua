@@ -727,6 +727,9 @@ function MicrobeSystem.kill(microbeEntity)
     local soundSourceComponent = getComponent(microbeEntity, SoundSourceComponent)
     local microbeSceneNode = getComponent(microbeEntity, OgreSceneNodeComponent)
 
+    -- Hacky but meh.
+    if microbeComponent.dead then return end
+
     -- Releasing all the agents.
     for compoundId, _ in pairs(microbeComponent.specialStorageOrganelles) do
         local _amount = MicrobeSystem.getCompoundAmount(microbeEntity, compoundId)
