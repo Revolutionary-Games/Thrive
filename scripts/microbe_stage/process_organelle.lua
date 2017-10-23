@@ -1,5 +1,6 @@
 --------------------------------------------------------------------------------
--- Class for Organelles capable of producing compounds
+-- Class for organelles capable of producing compounds.
+-- TODO: Make this handle adding and removing processes from the microbes.
 --------------------------------------------------------------------------------
 ProcessOrganelle = class(
     OrganelleComponent,
@@ -23,8 +24,6 @@ ProcessOrganelle = class(
 -- See organelle_component.lua for more information about the 
 -- organelle component methods and the arguments they receive.
 
-PROCESS_CAPACITY_UPDATE_INTERVAL = 1000
-
 -- Adds a process to the processing organelle
 -- The organelle will distribute its capacity between processes
 --
@@ -34,15 +33,8 @@ function ProcessOrganelle:addProcess(process)
     -- table.insert(self.processes, process)
 end
 
-
--- Overridded from Organelle:onAddedToMicrobe
-function ProcessOrganelle:onAddedToMicrobe(microbe, q, r, rotation, organelle)
-    OrganelleComponent.onAddedToMicrobe(self, microbe, q, r, rotation, organelle)
-end
-
 function ProcessOrganelle:storage()
-    local storage = StorageContainer.new()
-    return storage
+    return StorageContainer.new()
 end
 
 function ProcessOrganelle:load(storage)
