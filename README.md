@@ -10,15 +10,13 @@ Overview
 Repository structure:
 - assets: An SVN repository that doesn't follow with the git repository. This contains all the assets such as models and other binaries. Get it with SVN Checkout http://assets.revolutionarygamesstudio.com
 - cmake_modules: Scripts used by cmake when building the project binaries to find the dependencies. The dependencies will, for windows users, be installed with the mingw_setup directory.
-- contrib: Git submodules and other external code bases we use for the project.
-- cpack: Script used by 7zip.
 - doc: Documentation files. Contains style guide, engine overview and other useful documentation. .
 - mingw_setup: Dependency installation for windows and linux->windows cross-compiling (cross-compiling currently deprecated). You will need to run this to build the project files.
 - ogre_cfg: Ogre configuration files for resources and plugins. This is installed with distributions.
 - scripts: Lua scripts that contain part of the codebase. Lua scripts are used for easier development and code here can then later be transferred to the C++ base for performance. We use luabind for binding.
 - src: The C++ code base containing the engine and other sections.
 
-Remember to get the luabind and google test submodules with git submodule update --init --recursive.
+Remember to get the git submodules with `git submodule update --init --recursive`.
 
 Getting Involved
 ----------------
@@ -33,18 +31,8 @@ alternatively you can request a newer version from developers or compile the pro
 Be sure to have a look at the [styleguide][styleguide],
 both for guidelines on code formatting and git usage.
 
-### C++ Programmers
-To compile Thrive yourself, you will not only need to clone this git 
-repository, but also the Subversion [asset repository][asset_repository],
-username and password both "anonymous".  The best place to put the assets 
-is in your code repository's `assets` subdirectory. If, for whatever 
-reason, you want to check it out to another place, you will have to modify 
-the `ASSET_DIRECTORY` variable in the CMake setup. Offloading art assets 
-into Subversion was necessary due to size constraints for GitHub repositories.
-
-Windows developers should follow the procedure outlined in the [mingw setup guide][mingwsetupguide].
-
-Linux developers should follow the instructions in [linux setup guide][linuxsetupguide]
+### C++ Programmers To compile Thrive yourself, you will not only need
+to follow the [setup instructions][setupguide].
 
 Be sure to have a look at the [styleguide][styleguide],
 both for guidelines on code formatting and git usage.
@@ -81,5 +69,5 @@ blender that has a corresponding version of blender2ogre to do the conversion.
 [tortoiseSVN]: http://tortoisesvn.net/docs/release/TortoiseSVN_en/ "Tortoise SVN"
 [mingw]: http://www.github.com/Revolutionary-Games/Thrive/blob/master/mingw_setup/readme.txt "MinGW setup guide"
 [styleguide]: http://www.github.com/Revolutionary-Games/Thrive/blob/master/doc/style_guide.dox "Styleguide"
-[mingwsetupguide]: http://www.github.com/Revolutionary-Games/Thrive/blob/master/mingw_setup/readme.txt "mingw setup guide" 
+[setupguide]: doc/setup_instructions.md
 [linuxsetupguide]: https://github.com/Revolutionary-Games/Thrive/blob/master/linux_setup/readme.md "linux setup guide"
