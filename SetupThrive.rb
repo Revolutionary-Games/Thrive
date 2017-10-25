@@ -106,7 +106,8 @@ Dir.chdir(ProjectDir) do
   if not File.exist? "assets"
     
     info "Getting assets"
-    if runOpen3("svn", "checkout", WantedURL, "assets") != 0
+    system(["svn", "checkout", "--username", $svnUser, WantedURL, "assets"].join(' '))
+    if $?.exitstatus != 0
       onError "Failed to get thrive assets repository"
     end
     
@@ -127,25 +128,25 @@ Dir.chdir(ProjectDir) do
   
   success "Assets are good to go"
 
-  info "Building luajit"
+  # info "Building luajit"
 
-  Dir.chdir(File.join(ProjectDir, "contrib/lua/luajit/src")) do
+  # Dir.chdir(File.join(ProjectDir, "contrib/lua/luajit/src")) do
 
-    # Make sure XCFLAGS+= -DLUAJIT_ENABLE_LUA52COMPAT is uncommented
-    outdata = File.read("Makefile").gsub(/#XCFLAGS\+= -DLUAJIT_ENABLE_LUA52COMPAT/,
-                                       "XCFLAGS+= -DLUAJIT_ENABLE_LUA52COMPAT")
+  #   # Make sure XCFLAGS+= -DLUAJIT_ENABLE_LUA52COMPAT is uncommented
+  #   outdata = File.read("Makefile").gsub(/#XCFLAGS\+= -DLUAJIT_ENABLE_LUA52COMPAT/,
+  #                                      "XCFLAGS+= -DLUAJIT_ENABLE_LUA52COMPAT")
 
-    File.open("Makefile", 'w') do |out|
-      out << outdata
-    end  
+  #   File.open("Makefile", 'w') do |out|
+  #     out << outdata
+  #   end  
     
-    runCompiler CompileThreads
+  #   runCompiler $compileThreads
     
-    onError "Failed to compile luajit" if $?.exitstatus > 0
+  #   onError "Failed to compile luajit" if $?.exitstatus > 0
     
-  end
+  # end
 
-  success "luajit is ok"
+  # success "luajit is ok"
   
   FileUtils.mkdir_p "build"
 
@@ -161,21 +162,24 @@ info "Compiling thrive"
 
 Dir.chdir(File.join(ProjectDir, "build")) do
 
-  runCMakeConfigure ["-DCMAKE_EXPORT_COMPILE_COMMANDS=ON"]
-
-  if $?.exitstatus > 0
+  if !runCMakeConfigure(if OS.windows? then ["-DCMAKE_EXPORT_COMPILE_COMMANDS=ON"] else [] end)
     onError "Failed to configure Thrive. Are you using a broken version, " +
             "or did a dependency fail to install?"
   end
 
-  runCompiler CompileThreads
-  onError "Failed to compile Thrive " if $?.exitstatus > 0
+  if !runCompiler($compileThreads)
+    onError "Failed to compile Thrive "
+  end
   
 end
 
 success "Done compiling thrive"
 
-info "run the game with '#{CurrentDir}/thrive/build/Thrive'"
+if OS.windows?
+  info "Open build/Thrive.sln and start coding"
+else
+  info "run the game with '#{CurrentDir}/thrive/build/Thrive'"
+end
 
 success "Done"
 

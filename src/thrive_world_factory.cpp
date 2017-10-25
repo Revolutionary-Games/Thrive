@@ -14,7 +14,7 @@ ThriveWorldFactory::~ThriveWorldFactory(){
 
 }
 
-DLLEXPORT std::shared_ptr<Leviathan::GameWorld> ThriveWorldFactory::CreateNewWorld(){
+std::shared_ptr<Leviathan::GameWorld> ThriveWorldFactory::CreateNewWorld(){
 
     return std::make_shared<CellStageWorld>();
 }

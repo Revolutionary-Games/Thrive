@@ -13,7 +13,7 @@ public:
     ThriveWorldFactory();
     ~ThriveWorldFactory();
 
-    DLLEXPORT std::shared_ptr<Leviathan::GameWorld> CreateNewWorld() override;
+    std::shared_ptr<Leviathan::GameWorld> CreateNewWorld() override;
     
 };
 

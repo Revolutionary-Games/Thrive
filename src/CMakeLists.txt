@@ -205,6 +205,7 @@ set(THRIVE_FILES ${GROUP_BULLET} ${GROUP_ENGINE}
   ${GROUP_GENERAL} ${GROUP_GUI} ${GROUP_MICROBE_STAGE}
   ${GROUP_OGRE} ${GROUP_SCRIPTING} ${GROUP_SOUND}
   ${GROUP_UTIL} ${GROUP_MICROBE}
+  "thrive_include.h"
   )
 
 # Leviathan program setup
@@ -254,7 +255,9 @@ add_library(ThriveLib STATIC ${THRIVE_FILES})
 
 set_target_properties(ThriveLib PROPERTIES
   OUTPUT_NAME Thrive
-)
+  )
+
+target_compile_definitions(ThriveLib PRIVATE "THRIVELIB_BUILD=1")
 
 target_link_libraries(ThriveLib ${DEPENDENT_LIBS})
 

@@ -86,12 +86,16 @@ endif()
 
 # Copy engine lib
 if(WIN32)
-  file(COPY "${LEVIATHAN_SRC}/build/bin/libEngine.dll" DESTINATION "${CMAKE_BINARY_DIR}/bin")
+  file(COPY "${LEVIATHAN_SRC}/build/bin/Engine.dll" DESTINATION "${CMAKE_BINARY_DIR}/bin")
 else()
   file(COPY "${LEVIATHAN_SRC}/build/bin/libEngine.so" DESTINATION "${CMAKE_BINARY_DIR}/bin")
 endif()
 
+# Link own bin directory
 link_directories("${CMAKE_BINARY_DIR}/bin")
+
+# And engine
+link_directories("${LEVIATHAN_SRC}/build/bin")
 
 # Version
 set(PROGRAM_VERSION_STABLE 0)
@@ -118,7 +122,9 @@ set(DEPENDENT_LIBS ${LEVIATHAN_APPLICATION_LIBRARIES})
 
 
 # Thrive compile setup
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wno-unused-function -Wno-error=redundant-decls" )
+if(NOT WIN32)
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wno-unused-function -Wno-error=redundant-decls")
+endif()
 include_directories(
     "${CMAKE_CURRENT_SOURCE_DIR}/src"
 )

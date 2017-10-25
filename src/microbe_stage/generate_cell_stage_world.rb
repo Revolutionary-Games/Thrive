@@ -9,8 +9,11 @@ abort "no target files provided" if ARGV.count < 2
 generator = Generator.new ARGV[0], separateFiles: true
 
 generator.useNamespace "thrive"
+# generator.useExportMacro "THRIVE_EXPORT"
+generator.useExportMacro nil
 generator.addInclude "Entities/GameWorld.h"
 generator.addInclude "Generated/StandardWorld.h"
+generator.addInclude "thrive_include.h"
 
 generator.addInclude "microbe_stage/membrane_system.h"
 

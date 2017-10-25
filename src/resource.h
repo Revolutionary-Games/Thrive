@@ -1,1 +1,2 @@
-// This file is not used but Leviathan standard projects reference this
+// Define Thrive resource files
+#define IDI_ICON1                               115
