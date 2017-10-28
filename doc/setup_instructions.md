@@ -27,7 +27,7 @@ Clone
 
 Open a terminal on linux or a command prompt (or powershell) on windows to a folder where you want to place the Thrive folder.
 
-Note: a path with spaces in it may or may not work, so to avoid issues
+Note: a path with spaces in it WILL NOT WORK, so to avoid issues
 you should choose a folder like `~/projects` or `C:/projects`.
 
 Windows tip: shift right-click in a folder and select "Open command
