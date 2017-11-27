@@ -1,0 +1,144 @@
+{
+    "nucleus": {
+        "name": "Nucleus",
+        "mass": 0.7,
+        "gene": "N",
+        "mpCost": 0,
+        "mesh": "i dunno",
+
+        "composition": {
+            "aminoacids": 4
+        },
+
+        "components": {
+        }
+    },
+
+    "chloroplast": {
+        "name": "Chloroplast",
+        "mass": 0.4,
+        "gene": "H",
+        "mpCost": 20,
+        "mesh": "i dunno",
+
+        "composition": {
+            "aminoacids": 4,
+            "glucose": 2
+        },
+
+        "components": {
+        }
+    },
+
+    "oxytoxy": {
+        "name": "Agent vacuole",
+        "mass": 0.3,
+        "gene": "T",
+        "mpCost": 40,
+        "mesh": "i dunno",
+
+        "composition": {
+            "aminoacids": 4,
+            "glucose": 2
+        },
+
+        "components": {
+        }
+    },
+
+    "mitochondrion": {
+        "name": "Mitochondrion",
+        "mass": 0.3,
+        "gene": "M",
+        "mpCost": 20,
+        "mesh": "i dunno",
+
+        "composition": {
+            "aminoacids": 4,
+            "glucose": 2
+        },
+
+        "components": {
+        }
+    },
+
+    "vacuole": {
+        "name": "Vacuole",
+        "mass": 0.4,
+        "gene": "V",
+        "mpCost": 15,
+        "mesh": "i dunno",
+
+        "composition": {
+            "aminoacids": 4,
+            "glucose": 2
+        },
+
+        "components": {
+        }
+    },
+
+    "flagellum": {
+        "name": "Flagellum",
+        "mass": 0.3,
+        "gene": "F",
+        "mpCost": 25,
+        "mesh": "i dunno",
+
+        "composition": {
+            "aminoacids": 4,
+            "glucose": 2
+        },
+
+        "components": {
+        }
+    },
+
+    "pilus": {
+        "name": "Pilus",
+        "mass": 0.3,
+        "gene": "P",
+        "mpCost": 30,
+        "mesh": "i dunno",
+
+        "composition": {
+            "aminoacids": 4,
+            "glucose": 2
+        },
+
+        "components": {
+        }
+    },
+
+    "chemoplast": {
+        "name": "Chemoplast",
+        "mass": 0.3,
+        "gene": "C",
+        "mpCost": 15,
+        "mesh": "i dunno",
+
+        "composition": {
+            "aminoacids": 4,
+            "glucose": 2
+        },
+
+        "components": {
+        }
+    },
+
+    "bioluminescent": {
+        "name": "Bioluminescent vacuole",
+        "mass": 0.4,
+        "gene": "L",
+        "mpCost": 15,
+        "mesh": "i dunno",
+
+        "composition": {
+            "aminoacids": 4,
+            "glucose": 2
+        },
+
+        "components": {
+        }
+    }
+}
