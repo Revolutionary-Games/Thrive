@@ -17,6 +17,9 @@ class CellStageWorld;
 
 class ThriveNetHandler;
 
+//class BioProcess;
+//class Biome;
+
 //! This is the main thrive class that is created in main.cpp and then handles running
 //! the engine and the event loop
 class ThriveGame : public Leviathan::ClientApplication{

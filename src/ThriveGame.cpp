@@ -9,6 +9,7 @@
 #include "microbe_stage/compounds.h"
 #include "microbe_stage/bioprocesses.h"
 #include "microbe_stage/biomes.h"
+#include "microbe_stage/simulation_parameters.h"
 
 #include "generated/cell_stage_world.h"
 
@@ -25,6 +26,11 @@
 #include "CEGUI/SchemeManager.h"
 
 using namespace thrive;
+
+TJsonRegistry<Compound> SimulationParameters::compoundRegistry;
+TJsonRegistry<BioProcess> SimulationParameters::bioProcessRegistry;
+TJsonRegistry<Biome> SimulationParameters::biomeRegistry;
+
 // ------------------------------------ //
 ThriveGame::ThriveGame(){
     StaticGame = this;
@@ -103,9 +109,9 @@ void ThriveGame::startNewGame(){
 
 void ThriveGame::respawnPlayerCell(){
 	// This is here for testing purposes only.
-	TJsonRegistry<Compound> compoundRegistry("./Data/Scripts/SimulationParameters/MicrobeStage/Compounds.json");
-	TJsonRegistry<BioProcess> bioProcessRegistry("./Data/Scripts/SimulationParameters/MicrobeStage/BioProcesses.json");
-	TJsonRegistry<Biome> biomeRegistry("./Data/Scripts/SimulationParameters/MicrobeStage/Biomes.json");
+	SimulationParameters::compoundRegistry = TJsonRegistry<Compound>("./Data/Scripts/SimulationParameters/MicrobeStage/Compounds.json");
+	SimulationParameters::bioProcessRegistry = TJsonRegistry<BioProcess>("./Data/Scripts/SimulationParameters/MicrobeStage/BioProcesses.json");
+	SimulationParameters::biomeRegistry = TJsonRegistry<Biome>("./Data/Scripts/SimulationParameters/MicrobeStage/Biomes.json");
 	//TJsonRegistry<BioProcess> startingCompoundsRegistry("./Data/Scripts/SimulationParameters/MicrobeStage/StartingCompounds.json");
 
     LEVIATHAN_ASSERT(m_playerCell == 0, "Player alive in respawnPlayercell");

@@ -2,14 +2,17 @@
 
 #pragma once
 
+#include "Define.h"
+
 #include <fstream>
 #include <string>
 #include <map>
-
-#include <jsoncpp\json.h>
+#include <unordered_map>
+#include <jsoncpp/json.h>
 
 //! Base class of things to register.
-struct RegistryType {
+class RegistryType {
+public:
 	// Used to search by id.
 	unsigned int id = 0;
 
@@ -39,17 +42,12 @@ public:
 	// Same as above, but using the internal name. Sligthly less efficient.
 	T const& getTypeData(std::string internalName);
 
-	std::vector<std::string> debugtable;
-
 private:
 	// Registered types
 	std::map<unsigned int, T> registeredTypes;
 
 	// Additional map for indexing the internal name.
 	std::unordered_map<std::string, unsigned int> internalNameIndex;
-
-	// For returning references to invalid types.
-	T invalidRegisterType;
 
 	unsigned int nextId;
 };
@@ -61,13 +59,8 @@ template<class T> TJsonRegistry<T>::TJsonRegistry() {
 		"The template parameter to a JsonRegistry should inherit from RegistryType"
 	);
 
-	// Setting an invalid type.
-	invalidRegisterType.id = 0;
-	invalidRegisterType.internalName = "invalid";
-	invalidRegisterType.displayName = "Invalid! Please report! :)";
-
 	// Setting the first id to be used.
-	nextId = 2; // 1 means invalid, 0 means error.
+	nextId = 1; // 0 means error.
 }
 
 template<class T> TJsonRegistry<T>::TJsonRegistry(std::string defaultTypesFilePath):
@@ -78,6 +71,7 @@ template<class T> TJsonRegistry<T>::TJsonRegistry(std::string defaultTypesFilePa
 	LEVIATHAN_ASSERT(jsonFile.is_open(), "The file '" + defaultTypesFilePath + "' failed to load!");
 	Json::Value rootElement;
 	jsonFile >> rootElement;
+	// TODO: add some sort of validation of the receiving JSON file, otherwise it fails silently and makes the screen go black.
 	jsonFile.close();
 
 	// Loading the data into the registry.
@@ -95,36 +89,6 @@ template<class T> TJsonRegistry<T>::TJsonRegistry(std::string defaultTypesFilePa
 
 		nextId++;
 	}
-	/*
-	FString PathToFile = FPaths::GameContentDir() + Path;
-
-	if (!FPlatformFileManager::Get().GetPlatformFile().FileExists(*PathToFile)) {
-
-		LOG_FATAL("File missing"); //TODO: add the path to the error message.
-		return;
-	}
-
-
-	FString RawJsonFile = "No chance!";
-	FFileHelper::LoadFileToString(RawJsonFile, *PathToFile, 0);
-
-	// Deserializing it.
-	TSharedPtr<FJsonObject> Types;
-	TSharedRef< TJsonReader<> > Reader = TJsonReaderFactory<>::Create(RawJsonFile);
-	FJsonSerializer::Deserialize(Reader, Types);
-
-	//Getting the data.
-	for (auto Type : Types->Values) {
-		const FString& InternalName = Type.Key;
-		const TSharedPtr<FJsonObject>& TypeData = Type.Value->AsObject();
-
-		T NewType = GetTypeFromJsonObject(TypeData);
-		NewType.InternalName = FName(*InternalName);
-		NewType.DisplayName = TypeData->GetStringField("name");
-
-		RegisterType(NewType);
-	}
-	*/
 }
 
 template<class T> bool TJsonRegistry<T>::RegisterType(T &Properties) {
@@ -146,18 +110,12 @@ template<class T> bool TJsonRegistry<T>::RegisterType(T &Properties) {
 
 template<class T> T const&  TJsonRegistry<T>::getTypeData(unsigned int id) {
 	// The type exists.
-	if (registeredTypes.count(id))
-		return registeredTypes[id];
-
-	// The type doesn't exist.
-	return invalidRegisterType;
+	LEVIATHAN_ASSERT(registeredTypes.count(id), "Type not found!");
+	return registeredTypes[id];
 }
 
 template<class T> T const&  TJsonRegistry<T>::getTypeData(std::string internalName) {
 	// The type exists.
-	if (internalNameIndex.count(internalName))
-		return getTypeData(internalNameIndex[internalName]);
-
-	// The type doesn't exist.
-	return invalidRegisterType;
+	LEVIATHAN_ASSERT(internalNameIndex.count(internalName) == 1, "Type not found!");
+	return getTypeData(internalNameIndex[internalName]);
 }
