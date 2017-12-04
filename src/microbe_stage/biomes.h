@@ -1,12 +1,9 @@
 #pragma once
 
 #include "general/json_registry.h"
-#include "microbe_stage/compounds.h"
-#include "microbe_stage/simulation_parameters.h"
 
-#include <unordered_map>
+#include <map>
 #include <string>
-#include <vector>
 
 namespace thrive {
 
@@ -25,7 +22,7 @@ class SimulationParameters;
 
 class Biome : public RegistryType {
 public:
-	std::unordered_map<unsigned int, BiomeCompoundData> compounds;
+	std::map<unsigned int, BiomeCompoundData> compounds;
 	std::string background = "error";
 
 	Biome();

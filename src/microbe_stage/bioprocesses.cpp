@@ -1,11 +1,8 @@
 #pragma once
 
-#include "general/json_registry.h"
 #include "microbe_stage/compounds.h"
 #include "microbe_stage/simulation_parameters.h"
 #include "bioprocesses.h"
-
-#include <unordered_map>
 
 using namespace thrive;
 
