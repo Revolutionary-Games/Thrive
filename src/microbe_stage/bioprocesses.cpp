@@ -15,7 +15,7 @@ BioProcess::BioProcess(Json::Value value) {
 		unsigned int amount = value["inputs"][compoundInternalName].asUInt();
 
 		// Getting the compound id from the compound registry.
-		unsigned int id = SimulationParameters::compoundRegistry.getTypeData(compoundInternalName).id;
+		size_t id = SimulationParameters::compoundRegistry.getTypeData(compoundInternalName).id;
 
 		inputs.emplace(id, amount);
 	}
@@ -26,7 +26,7 @@ BioProcess::BioProcess(Json::Value value) {
 		unsigned int amount = value["outputs"][compoundInternalName].asUInt();
 
 		// Getting the compound id from the compound registry.
-		unsigned int id = SimulationParameters::compoundRegistry.getTypeData(compoundInternalName).id;
+		size_t id = SimulationParameters::compoundRegistry.getTypeData(compoundInternalName).id;
 
 		outputs.emplace(id, amount);
 	}

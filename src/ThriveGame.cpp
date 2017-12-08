@@ -6,6 +6,7 @@
 #include "thrive_world_factory.h"
 
 #include "microbe_stage/simulation_parameters.h"
+#include "microbe_stage/biome_controller.h"
 
 #include "generated/cell_stage_world.h"
 
@@ -81,38 +82,43 @@ void ThriveGame::startNewGame(){
 
     m_cellStage->SetCamera(m_cellCamera);
 
+	// This is here for testing purposes only.
+	SimulationParameters::init();
+	BiomeController bc;
+	size_t currentBiomeid = bc.getCurrentBiome();
+	std::string background = SimulationParameters::biomeRegistry.getTypeData(currentBiomeid).background;
+
     // Set background plane //
-    // m_backgroundPlane = Leviathan::ObjectLoader::LoadPlane(*m_cellStage, Float3(0, -50, 0),
-    //     Ogre::Quaternion(Ogre::Degree(90), Ogre::Vector3::UNIT_Z) *
-    //     Ogre::Quaternion(Ogre::Degree(45), Ogre::Vector3::UNIT_Y),
-    //     "Background", Ogre::Plane(1, 1, 1, 1),
-    //     Float2(200, 200));
+	if (true) {
+		m_backgroundPlane = Leviathan::ObjectLoader::LoadPlane(*m_cellStage, Float3(0, -50, 0),
+			Ogre::Quaternion(Ogre::Degree(90), Ogre::Vector3::UNIT_Z) *
+			Ogre::Quaternion(Ogre::Degree(45), Ogre::Vector3::UNIT_Y),
+			background, Ogre::Plane(1, 1, 1, 1),
+			Float2(200, 200));
+	}
 
     // Spawn player //
     respawnPlayerCell();
-    
-    if(false){
+   
+	// Test model //
+    if(true){
         const auto testModel = m_cellStage->CreateEntity();
-        m_cellStage->Create_Position(testModel, Float3(0, 0, 0), Float4::IdentityQuaternion());
+        m_cellStage->Create_Position(testModel, Float3(0, 0, 0), Ogre::Quaternion(Ogre::Degree(90), Ogre::Vector3::UNIT_X));
         auto& node = m_cellStage->Create_RenderNode(testModel);
         m_cellStage->Create_Model(testModel, node.Node, "nucleus.mesh");
     }
 }
 
 void ThriveGame::respawnPlayerCell(){
-	// This is here for testing purposes only.
-	SimulationParameters::init();
-
     LEVIATHAN_ASSERT(m_playerCell == 0, "Player alive in respawnPlayercell");
 
     m_playerCell = m_cellStage->CreateEntity();
 
     m_cellStage->Create_RenderNode(m_playerCell);
 
-    m_cellStage->Create_Position(m_playerCell, Float3(0), Float4::IdentityQuaternion());
+    m_cellStage->Create_Position(m_playerCell, Float3(5), Float4::IdentityQuaternion());
 
     MembraneComponent& membrane = m_cellStage->Create_MembraneComponent(m_playerCell);
-
     for(int x = -3; x <= 3; ++x){
         for(int y = -3; y <= 3; ++y){
             membrane.sendOrganelles(0, 0);
@@ -142,6 +148,15 @@ void ThriveGame::Tick(int mspassed){
 
         pos.Marked = true;
     }
+
+	if (m_playerCell && false) {
+
+		Leviathan::Position& pos = m_cellStage->GetComponent_Position(m_cellCamera);
+
+		pos.Members._Position += Leviathan::Float3(mspassed * 1.0 / 1000.0, 0, 0);
+
+		pos.Marked = true;
+	}
 
     if(m_backgroundPlane != 0 && false){
 

@@ -10,9 +10,9 @@ class SimulationParameters;
 
 class BioProcess : public RegistryType {
 public:
-	// The second number is the amount of compound.
-	std::map<unsigned int, unsigned int> inputs;
-	std::map<unsigned int, unsigned int> outputs;
+	// The amount of compounds required/obtained.
+	std::map<size_t, unsigned int> inputs;
+	std::map<size_t, unsigned int> outputs;
 
 	BioProcess();
 

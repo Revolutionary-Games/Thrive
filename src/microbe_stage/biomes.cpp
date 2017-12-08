@@ -23,7 +23,7 @@ Biome::Biome(Json::Value value) {
 
 
 		// Getting the compound id from the compound registry.
-		unsigned int id = SimulationParameters::compoundRegistry.getTypeData(compoundInternalName).id;
+		size_t id = SimulationParameters::compoundRegistry.getTypeData(compoundInternalName).id;
 
 		compounds.emplace(std::piecewise_construct,
 			std::forward_as_tuple(id),

@@ -9,12 +9,13 @@
 #include <map>
 #include <unordered_map>
 #include <jsoncpp/json.h>
+#include <limits.h>
 
-//! Base class of things to register.
+// Base class of things to register.
 class RegistryType {
 public:
 	// Used to search by id.
-	unsigned int id = 0;
+	size_t id = std::numeric_limits<size_t>::max(); // This would mean an error.
 
 	// Used by the GUI and stuff.
 	std::string displayName = "Error! Please report! :)";
@@ -23,6 +24,8 @@ public:
 	std::string internalName = "error";
 };
 
+// Template class that registers the stuff.
+// TODO: give it more stuff like iterators and square brackets and stuff.
 template<class T> class TJsonRegistry {
 public:
 	// Default constructor, just creates an empty registry.
@@ -37,19 +40,22 @@ public:
 
 	// Returns the properties of a type. Or InvalidType if not found
 	// Note: the returned value should NOT be changed
-	T const& getTypeData(unsigned int id);
+	T const& getTypeData(size_t id);
 
 	// Same as above, but using the internal name. Sligthly less efficient.
 	T const& getTypeData(std::string internalName);
 
+	// Get the amount of elements in the registry.
+	size_t getSize();
+
 private:
 	// Registered types
-	std::map<unsigned int, T> registeredTypes;
+	std::map<size_t, T> registeredTypes;
 
 	// Additional map for indexing the internal name.
-	std::unordered_map<std::string, unsigned int> internalNameIndex;
+	std::unordered_map<std::string, size_t> internalNameIndex;
 
-	unsigned int nextId;
+	size_t nextId;
 };
 
 template<class T> TJsonRegistry<T>::TJsonRegistry() {
@@ -60,7 +66,7 @@ template<class T> TJsonRegistry<T>::TJsonRegistry() {
 	);
 
 	// Setting the first id to be used.
-	nextId = 1; // 0 means error.
+	nextId = 0;
 }
 
 template<class T> TJsonRegistry<T>::TJsonRegistry(std::string defaultTypesFilePath):
@@ -92,6 +98,7 @@ template<class T> TJsonRegistry<T>::TJsonRegistry(std::string defaultTypesFilePa
 }
 
 template<class T> bool TJsonRegistry<T>::RegisterType(T &Properties) {
+	// TODO
 	/*
 	for (const auto& Type : RegisteredTypes) {
 
@@ -108,7 +115,7 @@ template<class T> bool TJsonRegistry<T>::RegisterType(T &Properties) {
 	*/
 }
 
-template<class T> T const&  TJsonRegistry<T>::getTypeData(unsigned int id) {
+template<class T> T const&  TJsonRegistry<T>::getTypeData(size_t id) {
 	// The type exists.
 	LEVIATHAN_ASSERT(registeredTypes.count(id), "Type not found!");
 	return registeredTypes[id];
@@ -118,4 +125,8 @@ template<class T> T const&  TJsonRegistry<T>::getTypeData(std::string internalNa
 	// The type exists.
 	LEVIATHAN_ASSERT(internalNameIndex.count(internalName) == 1, "Type not found!");
 	return getTypeData(internalNameIndex[internalName]);
+}
+
+template<class T> size_t TJsonRegistry<T>::getSize() {
+	return registeredTypes.size();
 }

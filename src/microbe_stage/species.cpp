@@ -24,7 +24,7 @@ Species::Species(Json::Value value) {
 		unsigned int amount = value["startingCompounds"][compoundInternalName].asUInt();
 
 		// Getting the compound id from the compound registry.
-		unsigned int id = SimulationParameters::compoundRegistry.getTypeData(compoundInternalName).id;
+		size_t id = SimulationParameters::compoundRegistry.getTypeData(compoundInternalName).id;
 
 		startingCompounds.emplace(id, amount);
 	}

@@ -22,7 +22,7 @@ class SimulationParameters;
 
 class Biome : public RegistryType {
 public:
-	std::map<unsigned int, BiomeCompoundData> compounds;
+	std::map<size_t, BiomeCompoundData> compounds;
 	std::string background = "error";
 
 	Biome();
