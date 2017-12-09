@@ -7,6 +7,8 @@
 #include "microbe_stage/organelle_types.h"
 #include "microbe_stage/species.h"
 
+#include <unordered_map>
+
 namespace thrive {
 
 class BioProcess;
@@ -19,6 +21,7 @@ public:
 	static TJsonRegistry<Biome> biomeRegistry;
 	static TJsonRegistry<OrganelleType> organelleRegistry;
 	static TJsonRegistry<Species> speciesRegistry;
+	static std::unordered_map<size_t, unsigned int> newSpeciesStartingCompounds;
 
 	static void init();
 };
