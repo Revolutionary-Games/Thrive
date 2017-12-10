@@ -2,8 +2,7 @@
 
 #pragma once
 
-#include "Define.h"
-
+#include <Define.h>
 #include <fstream>
 #include <string>
 #include <map>

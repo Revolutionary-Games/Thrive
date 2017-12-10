@@ -1,12 +1,13 @@
 #pragma once
 
 #include "general/json_registry.h"
-#include "microbe_stage/compounds.h"
-#include "microbe_stage/bioprocesses.h"
-#include "microbe_stage/biomes.h"
-#include "microbe_stage/organelle_types.h"
-#include "microbe_stage/species.h"
-#include "microbe_stage/bacteria_types.h"
+#include "compounds.h"
+#include "bioprocesses.h"
+#include "biomes.h"
+#include "organelle_types.h"
+#include "species.h"
+#include "bacteria_types.h"
+#include "species_name_controller.h"
 
 #include <unordered_map>
 
@@ -23,6 +24,9 @@ public:
 	static TJsonRegistry<OrganelleType> organelleRegistry;
 	static TJsonRegistry<Species> speciesRegistry;
 	static TJsonRegistry<BacteriaType> bacteriaRegistry;
+
+	static SpeciesNameController speciesNameController;
+
 	static std::unordered_map<size_t, unsigned int> newSpeciesStartingCompounds;
 
 	static void init();
