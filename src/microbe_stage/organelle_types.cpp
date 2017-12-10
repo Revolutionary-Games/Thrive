@@ -13,6 +13,7 @@ OrganelleType::OrganelleType(Json::Value value) {
 	gene = value["gene"].asString()[0];
 	mpCost = value["mpCost"].asUInt();
 	mesh = value["mesh"].asString();
+	isLocked = value["locked"].asBool();
 
 	// Getting the organelle composition.
 	std::vector<std::string> compoundInternalNames = value["composition"].getMemberNames();

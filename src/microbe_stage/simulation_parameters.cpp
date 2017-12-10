@@ -7,6 +7,7 @@ TJsonRegistry<BioProcess> SimulationParameters::bioProcessRegistry;
 TJsonRegistry<Biome> SimulationParameters::biomeRegistry;
 TJsonRegistry<OrganelleType> SimulationParameters::organelleRegistry;
 TJsonRegistry<Species> SimulationParameters::speciesRegistry;
+TJsonRegistry<BacteriaType> SimulationParameters::bacteriaRegistry;
 std::unordered_map<size_t, unsigned int> SimulationParameters::newSpeciesStartingCompounds;
 
 void SimulationParameters::init() {
@@ -16,6 +17,7 @@ void SimulationParameters::init() {
 	SimulationParameters::biomeRegistry = TJsonRegistry<Biome>("./Data/Scripts/SimulationParameters/MicrobeStage/Biomes.json");
 	SimulationParameters::organelleRegistry = TJsonRegistry<OrganelleType>("./Data/Scripts/SimulationParameters/MicrobeStage/Organelles.json");
 	SimulationParameters::speciesRegistry = TJsonRegistry<Species>("./Data/Scripts/SimulationParameters/MicrobeStage/Species.json");
+	SimulationParameters::bacteriaRegistry = TJsonRegistry<BacteriaType>("./Data/Scripts/SimulationParameters/MicrobeStage/Bacteria.json");
 
 	// Getting the JSON file where the data is stored.
 	std::ifstream jsonFile;
