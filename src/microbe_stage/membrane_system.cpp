@@ -176,7 +176,8 @@ void MembraneComponent::Update(Ogre::SceneManager* scene, Ogre::SceneNode* paren
 
             indices[i] = static_cast<Ogre::uint16>(i);
         }
-        
+
+        // TODO: check if this is needed (when a 1 to 1 vertex and index mapping is used)
         Ogre::IndexBufferPacked* indexBuffer = nullptr;
         
         try{
@@ -314,6 +315,9 @@ void MembraneComponent::Update(Ogre::SceneManager* scene, Ogre::SceneNode* paren
     
     // LOG_INFO("Write index is: " + std::to_string(writeIndex) + ", buffer size: " +
     //     std::to_string(bufferSize));
+    // This can be commented out when this works correctly, or maybe a
+    // different macro for debug builds to include this check could
+    // work, but it has to also work on linux
     LEVIATHAN_ASSERT(writeIndex == bufferSize, "Invalid array element math in "
         "fill vertex buffer");
 
