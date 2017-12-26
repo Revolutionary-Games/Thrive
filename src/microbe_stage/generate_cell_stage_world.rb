@@ -13,9 +13,9 @@ generator.useNamespace "thrive"
 generator.useExportMacro nil
 generator.addInclude "Entities/GameWorld.h"
 generator.addInclude "Generated/StandardWorld.h"
-generator.addInclude "thrive_include.h"
 
 generator.addInclude "microbe_stage/membrane_system.h"
+generator.addInclude "microbe_stage/compound_cloud_system.h"
 
 world = GameWorldClass.new(
   "CellStageWorld", componentTypes: [
@@ -30,13 +30,18 @@ world = GameWorldClass.new(
                      runrender: {group: 10, parameters: [
                                    "GetScene()"
                                  ]}),
+    EntitySystem.new("CompoundCloudSystem", ["MembraneComponent", "RenderNode"],
+                     init: [Variable.new("*this", "")],
+                     release: [Variable.new("*this", "")],
+                     runtick: {group: 5, parameters: [
+                                   "*this"
+                                 ]})
   ],
   systemspreticksetup: (<<-END
   const auto timeAndTickTuple = GetTickAndTime();
   const auto calculatedTick = std::get<0>(timeAndTickTuple);
   const auto progressInTick = std::get<1>(timeAndTickTuple);
   const auto tick = GetTickNumber();
-  // TODO: thrive systems
 END
                        ),  
 )

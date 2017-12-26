@@ -8,6 +8,7 @@ namespace thrive {
 enum class THRIVE_COMPONENT : uint16_t {
 
     MEMBRANE = static_cast<uint16_t>(Leviathan::COMPONENT_TYPE::Custom) + 1,
+    COMPOUND_CLOUD,
     
 };
 

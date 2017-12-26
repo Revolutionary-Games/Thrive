@@ -2,24 +2,23 @@
 
 #include <boost/range/adaptor/map.hpp>
 
-#include "engine/component.h"
-#include "engine/system.h"
-#include "engine/touchable.h"
-#include "scripting/luajit.h"
+#include "Entities/EntityCommon.h"
+
+//#include "engine/component.h"
+//#include "engine/system.h"
+//#include "engine/touchable.h"
+//#include "scripting/luajit.h"
 #include "engine/typedefs.h"
 
 #include <memory>
-#include <OgreCommon.h>
-#include <OgreMath.h>
-#include <OgreVector3.h>
+// #include <OgreCommon.h>
+// #include <OgreMath.h>
+// #include <OgreVector3.h>
 #include <unordered_set>
 
 namespace thrive {
 
-static const CompoundId NULL_COMPOUND = 0;
-
-using BoostCompoundMapIterator = boost::range_detail::select_second_mutable_range<std::unordered_map<std::string, CompoundId>>;
-using BoostAbsorbedMapIterator = boost::range_detail::select_first_range<std::unordered_map<CompoundId, float>>;
+constexpr CompoundId NULL_COMPOUND = 0;
 
 /**
 * @brief Static class keeping track of compounds, their Id's, internal and displayed names
@@ -27,38 +26,6 @@ using BoostAbsorbedMapIterator = boost::range_detail::select_first_range<std::un
 class CompoundRegistry final {
 
 public:
-
-    /**
-    * @brief Lua bindings
-    *
-    * Exposes:
-    * - CompoundRegistry::registerCompoundType
-    * - CompoundRegistry::registerAgentType
-    * - CompoundRegistry::getCompoundDisplayName
-    * - CompoundRegistry::getCompoundInternalName
-    * - CompoundRegistry::getCompoundUnitVolume
-    * - CompoundRegistry::getCompoundId
-    * - CompoundRegistry::getCompoundList
-    * - CompoundRegistry::getCompoundMeshName
-    * - CompoundRegistry::getCompoundMeshScale
-    * @return
-    */
-    static void luaBindings(sol::state &lua);
-
-    /**
-    * @brief loads compounds from a lua config table
-    */
-    static void
-    loadFromLua(
-        sol::table configTable,
-        sol::table agentTable
-    );
-
-    static void
-    loadAgentFromLua(
-        sol::object internalName,
-        sol::table agentData
-    );
 
     /**
     * @brief Registers a new compound type
@@ -146,7 +113,7 @@ public:
     *   Size of the compound when stored and transported
 	*
 	* @param effect
-	*   A lua function for the action to be performed on the absorbing entity.
+	*   A function for the action to be performed on the absorbing entity.
 	*   This function should take the id of the recieving entity as parameter and return true.
 	*
     * @return
@@ -160,7 +127,7 @@ public:
         double meshScale,
         bool isUseful,
         float unitVolume,
-        sol::object effect
+        std::function<bool(ObjectID)> effect
     );
 
     /**
@@ -217,16 +184,6 @@ public:
     static CompoundId
     getCompoundId(
         const std::string& internalName
-    );
-
-    /**
-    * @brief Obtains the IDs of all currently registered compounds
-    *
-    * @return
-    *   Array of all registered compound IDs
-    */
-    static const BoostCompoundMapIterator
-    getCompoundList(
     );
 
 	/**

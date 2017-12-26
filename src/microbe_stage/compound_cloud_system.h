@@ -1,30 +1,40 @@
 #pragma once
 
 #include <vector>
-#include <OgreEntity.h>
-#include <OgreSceneManager.h>
-#include "OgreHardwarePixelBuffer.h"
+//#include <OgreEntity.h>
+//#include <OgreSceneManager.h>
+//#include "OgreHardwarePixelBuffer.h"
 
-#include "engine/component.h"
-#include "engine/system.h"
-#include "engine/touchable.h"
-#include "engine/typedefs.h"
+#include <OgreMesh.h>
+
+// #include "engine/component.h"
+// #include "engine/system.h"
+// #include "engine/touchable.h"
+// #include "engine/typedefs.h"
+
+#include "engine/component_types.h"
+
+#include "Entities/Component.h"
+#include "Entities/System.h"
+
+#include "Entities/Components.h"
 
 #include "general/perlin_noise.h"
-#include "ogre/scene_node_system.h"
+// #include "ogre/scene_node_system.h"
 #include "microbe_stage/compound_registry.h"
 
 namespace thrive {
 
 class CompoundCloudSystem;
+class CellStageWorld;
 
 /**
 * @brief Compound clouds that flow in the environment
+* @todo Make the cloud support 4 compound types to improve efficiency
 */
-class CompoundCloudComponent : public Component {
-    COMPONENT(CompoundCloudComponent)
-
+class CompoundCloudComponent : public Leviathan::Component {
 public:
+    
     /// The size of the compound cloud grid.
 	int width, height;
 	int offsetX, offsetY;
@@ -53,27 +63,10 @@ public:
     CompoundId m_compoundId = NULL_COMPOUND;
 
 public:
+    //! \brief Creates a cloud with the specified compound(s) types and colour
+    CompoundCloudComponent(CompoundId Id, float red, float green, float blue);
 
-    void initialize(CompoundId Id, float red, float green, float blue);
-
-    /**
-    * @brief Lua bindings
-    *
-    * Exposes:
-    * - CompoundCloudComponent()
-    *
-    * @return
-    */
-    static void luaBindings(sol::state &lua);
-
-    void
-    load(
-        const StorageContainer& storage
-    ) override;
-
-    StorageContainer
-    storage() const override;
-
+    //! \brief Places specified amount of compound at position (in this cloud's coordinates)
     void
     addCloud(
         float density,
@@ -81,7 +74,7 @@ public:
         int y
     );
 
-    /// Rate should be less than one.
+    //! \param rate should be less than one.
     int
     takeCompound(
         int x,
@@ -89,7 +82,7 @@ public:
         float rate
     );
 
-    /// Rate should be less than one.
+    //! \param rate should be less than one.
     int
     amountAvailable(
         int x,
@@ -103,19 +96,8 @@ public:
 /**
 * @brief Moves the compound clouds.
 */
-class CompoundCloudSystem : public System {
-
+class CompoundCloudSystem {
 public:
-    /**
-    * @brief Lua bindings
-    *
-    * Exposes:
-    * - CompoundCloudSystem()
-    *
-    * @return
-    */
-    static void luaBindings(sol::state &lua);
-
     /**
     * @brief Constructor
     */
@@ -131,25 +113,33 @@ public:
     *
     * @param gameState
     */
-    void init(GameStateData* gameState) override;
+    void Init(CellStageWorld &world);
 
     /**
     * @brief Shuts the system down
     */
-    void shutdown() override;
+    void Release(CellStageWorld &world);
 
     /**
     * @brief Updates the system
+    * @todo Is it too rough if the compound clouds only update every 50 milliseconds.
+    * Does there need to be a third category of systems that can adapt to different length
+    * ticks and run like tick but at render time?
     */
-    void update(int renderTime, int logicTime) override;
+    void Run(CellStageWorld* world,
+        std::unordered_map<ObjectID, CompoundCloudComponent*> &index, int tick);
 
 private:
-    struct Implementation;
-    std::unique_ptr<Implementation> m_impl;
+
+    void ProcessCloud(CompoundCloudComponent &cloud);
+
+private:
     //! \todo Remove this. This is in the base class already
-    GameStateData* gameState;
-    Ogre::Entity* compoundCloudsPlane;
-    OgreSceneNodeComponent* playerNode;
+    //GameStateData* gameState;
+    Ogre::Item* compoundCloudsPlane;
+    Ogre::MeshPtr m_planeMesh;
+    //! \todo Check should this be a pointer to the component or is ObjectID fast enough
+    ObjectID playerEntity = 0;
 
     PerlinNoise fieldPotential;
 	float noiseScale;
@@ -169,7 +159,7 @@ private:
 
     // Clears the density field file to blank (black).
     void initializeFile(std::string compoundName);
-	// Draws the density field of the compound to a .bmp, which can then be read by the fragment shader.
+	// Draws the density field of the compound to a .bmp, which can be used for debugging
 	void writeToFile(std::vector<  std::vector<float>  >& density, std::string compoundName, Ogre::ColourValue color);
 };
 

@@ -1,102 +1,58 @@
 #include "microbe_stage/compound_cloud_system.h"
-#include "microbe_stage/membrane_system.h"
+//#include "microbe_stage/membrane_system.h"
 
-#include "bullet/collision_system.h"
-#include "bullet/rigid_body_system.h"
-#include "engine/component_factory.h"
-#include "engine/engine.h"
-#include "engine/entity_filter.h"
-#include "engine/entity.h"
-#include "engine/game_state.h"
-#include "engine/player_data.h"
-#include "engine/serialization.h"
-#include "game.h"
-#include "ogre/scene_node_system.h"
-#include "scripting/luajit.h"
-#include "util/make_unique.h"
+// #include "bullet/collision_system.h"
+// #include "bullet/rigid_body_system.h"
+// #include "engine/component_factory.h"
+// #include "engine/engine.h"
+// #include "engine/entity_filter.h"
+// #include "engine/entity.h"
+// #include "engine/game_state.h"
+// #include "engine/player_data.h"
+// #include "engine/serialization.h"
+// #include "game.h"
+// #include "ogre/scene_node_system.h"
+// #include "scripting/luajit.h"
+// #include "util/make_unique.h"
+
+#include "generated/cell_stage_world.h"
+
+#include <OgreMeshManager2.h>
+#include <OgreMeshManager.h>
+// #include <OgreMaterialManager.h>
+// #include <OgreMaterial.h>
+// #include <OgreTextureManager.h>
+// #include <OgreTechnique.h>
+// #include <OgreRoot.h>
+// #include <OgreSubMesh.h>
+#include <OgreSceneManager.h>
+#include <OgrePlane.h>
+#include <OgreMesh2.h>
 
 #include <iostream>
 #include <errno.h>
 #include <stdio.h>
-#include <OgreMeshManager.h>
-#include <OgreMaterialManager.h>
-#include <OgreMaterial.h>
-#include <OgreTextureManager.h>
-#include <OgreTechnique.h>
-#include <OgreRoot.h>
-#include <OgreSubMesh.h>
 
 #include <string.h>
 #include <cstdio>
 
 #include <chrono>
+#include <atomic>
 
 using namespace thrive;
 
 ////////////////////////////////////////////////////////////////////////////////
 // CompoundCloudComponent
 ////////////////////////////////////////////////////////////////////////////////
-void CompoundCloudComponent::luaBindings(
-    sol::state &lua
-){
-    lua.new_usertype<CompoundCloudComponent>("CompoundCloudComponent",
-
-        "new", sol::factories([](){
-                return std::make_unique<CompoundCloudComponent>();
-            }),
-
-        COMPONENT_BINDINGS(CompoundCloudComponent),
-
-        "initialize", &CompoundCloudComponent::initialize,
-        "addCloud", &CompoundCloudComponent::addCloud,
-        "width", sol::readonly(&CompoundCloudComponent::width),
-        "height", sol::readonly(&CompoundCloudComponent::height),
-        "gridSize", sol::readonly(&CompoundCloudComponent::gridSize)
-    );
-}
-
-void
-CompoundCloudComponent::initialize(
+CompoundCloudComponent::CompoundCloudComponent(
     CompoundId id,
     float red,
     float green,
     float blue
-) {
-    m_compoundId = id;
-    color = Ogre::ColourValue(red, green, blue);
-}
+) : Leviathan::Component(componentTypeConvert(THRIVE_COMPONENT::COMPOUND_CLOUD)),
+    color(Ogre::ColourValue(red, green, blue)), m_compoundId(id)
+{
 
-void
-CompoundCloudComponent::load(
-    const StorageContainer& storage
-) {
-    Component::load(storage);
-
-    m_compoundId = storage.get<CompoundId>("id", NULL_COMPOUND);
-    color = storage.get<Ogre::ColourValue>("color", Ogre::ColourValue(0,0,0));
-    width = storage.get<int>("width", 0);
-    height = storage.get<int>("height", 0);
-    offsetX = storage.get<int>("offsetX", 0);
-    offsetY = storage.get<int>("offsetY", 0);
-    gridSize = storage.get<float>("gridSize", 0.0);
-
-    density.resize(width, std::vector<float>(height, 0));
-    oldDens.resize(width, std::vector<float>(height, 0));
-}
-
-StorageContainer
-CompoundCloudComponent::storage() const {
-    StorageContainer storage = Component::storage();
-
-    storage.set<CompoundId>("id", m_compoundId);
-    storage.set<Ogre::ColourValue>("color", color);
-    storage.set<int>("width", width);
-    storage.set<int>("height", height);
-    storage.set<int>("offsetX", offsetX);
-    storage.set<int>("offsetY", offsetY);
-    storage.set<float>("gridSize", gridSize);
-
-    return storage;
 }
 
 void
@@ -138,39 +94,11 @@ CompoundCloudComponent::amountAvailable(int x, int y, float rate) {
 
 }
 
-REGISTER_COMPONENT(CompoundCloudComponent)
-
-
 ////////////////////////////////////////////////////////////////////////////////
 // CompoundCloudSystem
 ////////////////////////////////////////////////////////////////////////////////
-    void CompoundCloudSystem::luaBindings(
-    sol::state &lua
-){
-    lua.new_usertype<CompoundCloudSystem>("CompoundCloudSystem",
-
-        sol::constructors<sol::types<>>(),
-
-        sol::base_classes, sol::bases<System>(),
-
-        "init", &CompoundCloudSystem::init
-    );
-}
-
-struct CompoundCloudSystem::Implementation {
-    // All entities that have a compoundCloudsComponent.
-    // These should be the various compounds (glucose, ammonia) as well as toxins.
-    EntityFilter<
-        CompoundCloudComponent
-    > m_compounds = {true};
-
-    Ogre::SceneManager* m_sceneManager = nullptr;
-};
-
-
-CompoundCloudSystem::CompoundCloudSystem()
-  : m_impl(new Implementation()),
-    playerNode(NULL),
+CompoundCloudSystem::CompoundCloudSystem() :
+    playerEntity(0),
     noiseScale(5),
     width(120),
     height(120),
@@ -180,67 +108,91 @@ CompoundCloudSystem::CompoundCloudSystem()
     xVelocity(width, std::vector<float>(height, 0)),
     yVelocity(width, std::vector<float>(height, 0))
 {
-    // Use the curl of a Perlin noise field to create a turbulent velocity field.
-    CreateVelocityField();
+
 }
 
 CompoundCloudSystem::~CompoundCloudSystem() {
+
 }
 
+static std::atomic<int> CloudMeshNumberCounter = {0};
 
-void
-CompoundCloudSystem::init(
-    GameStateData* gameState
-) {
-    System::initNamed("CompoundCloudSystem", gameState);
-    m_impl->m_compounds.setEntityManager(gameState->entityManager());
-    m_impl->m_sceneManager = gameState->sceneManager();
-    this->gameState = gameState;
+void CompoundCloudSystem::Init(CellStageWorld &world){
+
+    // Use the curl of a Perlin noise field to create a turbulent velocity field.
+    CreateVelocityField();
 
     // Create a background plane on which the fluid clouds will be drawn.
-    Ogre::Plane plane(Ogre::Vector3::UNIT_Z, -1.0);
-    Ogre::MeshManager::getSingleton().createPlane("CompoundCloudsPlane", "General",
-        plane, width*gridSize, height*gridSize, 1, 1, true, 1, 1, 1, Ogre::Vector3::UNIT_Y);
+    //Ogre::Plane plane(Ogre::Vector3::UNIT_Z, -1.0);
+    Ogre::Plane plane(1, 1, 1, 1);
 
-    compoundCloudsPlane = m_impl->m_sceneManager->createEntity("CompoundCloudsPlane",
-        "General");
-    m_impl->m_sceneManager->getRootSceneNode()->createChildSceneNode()->attachObject(
+    const auto meshName = "CompoundCloudSystem_Plane_" + std::to_string(
+        ++CloudMeshNumberCounter);
+
+    const auto mesh = Ogre::v1::MeshManager::getSingleton().createPlane(
+        meshName + "_v1",
+        Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME, plane,
+        width*gridSize, height*gridSize,
+        1, 1,
+        // Normals
+        true,
+        1,
+        1.0f, 1.0f, Ogre::Vector3::UNIT_Y,
+        Ogre::v1::HardwareBuffer::HBU_STATIC_WRITE_ONLY, 
+        Ogre::v1::HardwareBuffer::HBU_STATIC_WRITE_ONLY,
+        false, false);
+
+    m_planeMesh = Ogre::MeshManager::getSingleton().createManual(
+        meshName, Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME );
+
+    // Fourth true is qtangent encoding which is not needed if we don't do normal mapping
+    m_planeMesh->importV1(mesh.get(), true, true, true );
+
+    Ogre::v1::MeshManager::getSingleton().remove(mesh);
+
+    compoundCloudsPlane = world.GetScene()->createItem(m_planeMesh);
+
+    world.GetScene()->getRootSceneNode()->createChildSceneNode()->attachObject(
         compoundCloudsPlane);
-
+    
     compoundCloudsPlane->setMaterialName("CompoundClouds");
 }
 
+void CompoundCloudSystem::Release(CellStageWorld &world){
 
-void
-CompoundCloudSystem::shutdown() {
-    m_impl->m_compounds.setEntityManager(nullptr);
-    m_impl->m_sceneManager = nullptr;
-    System::shutdown();
+    // Destroy the plane
+    DEBUG_BREAK;
+
+    world.GetScene()->destroyItem(compoundCloudsPlane);
+
+    Ogre::MeshManager::getSingleton().remove(m_planeMesh);
 }
 
 
-void
-CompoundCloudSystem::update(int renderTime, int) {
+void CompoundCloudSystem::Run(CellStageWorld* world,
+    std::unordered_map<ObjectID, CompoundCloudComponent*> &index, int tick)
+{
+    const int renderTime = Leviathan::TICKSPEED * tick;
 
+    // Game::instance().engine().playerData().playerName()
+    LEVIATHAN_ASSERT(playerEntity != 0, "CompoundCloudSystem playerEntity not set");
+    
     // Get the player's position.
-    playerNode = static_cast<OgreSceneNodeComponent*>(gameState->entityManager()->getComponent(
-            Entity(Game::instance().engine().playerData().playerName(), gameState).id(),
-        OgreSceneNodeComponent::TYPE_ID));
-
-
+    const Leviathan::Position& pos = world->GetComponent_Position(playerEntity);
+    
     // If the player moves out of the current grid, move the grid.
-    if (playerNode->m_transform.position.x > offsetX + width/3*gridSize/2  ||
-        playerNode->m_transform.position.y > offsetY + height/3*gridSize/2 ||
-        playerNode->m_transform.position.x < offsetX - width/3*gridSize/2  ||
-        playerNode->m_transform.position.y < offsetY - height/3*gridSize/2)
+    if (pos.Members._Position.X > offsetX + width/3*gridSize/2  ||
+        pos.Members._Position.Y > offsetY + height/3*gridSize/2 ||
+        pos.Members._Position.X < offsetX - width/3*gridSize/2  ||
+        pos.Members._Position.Y < offsetY - height/3*gridSize/2)
     {
-        if (playerNode->m_transform.position.x > offsetX + width/3*gridSize/2 )
+        if (pos.Members._Position.X > offsetX + width/3*gridSize/2 )
             offsetX += width/3*gridSize;
-        if (playerNode->m_transform.position.y > offsetY + height/3*gridSize/2)
+        if (pos.Members._Position.Y > offsetY + height/3*gridSize/2)
             offsetY += height/3*gridSize;
-        if (playerNode->m_transform.position.x < offsetX - width/3*gridSize/2 )
+        if (pos.Members._Position.X < offsetX - width/3*gridSize/2 )
             offsetX -= width/3*gridSize;
-        if (playerNode->m_transform.position.y < offsetY - height/3*gridSize/2)
+        if (pos.Members._Position.Y < offsetY - height/3*gridSize/2)
             offsetY -= height/3*gridSize;
 
         compoundCloudsPlane->getParentSceneNode()->setPosition(offsetX, offsetY, -1.0);
@@ -430,7 +382,17 @@ CompoundCloudSystem::update(int renderTime, int) {
 
         // Unlock the pixel buffer.
         cloud->unlock();
+    }    
+
+    for(auto iter = index.begin(); iter != index.end(); ++iter){
+
+        ProcessCloud(*iter->second);
     }
+    
+}
+
+void CompoundCloudSystem::ProcessCloud(CompoundCloudComponent &cloud){
+
 }
 
 void

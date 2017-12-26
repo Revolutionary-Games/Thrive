@@ -31,6 +31,7 @@ set(GROUP_ENGINE
   # "engine/engine.cpp"
   # "engine/engine.h"
   # "engine/entity.cpp"
+  "engine/typedefs.h"
   # "engine/entity.h"
   # "engine/entity_filter.h"
   # "engine/entity_manager.cpp"
@@ -96,8 +97,8 @@ set(GROUP_GENERAL
 set(GROUP_MICROBE_STAGE
   # "microbe_stage/compound.cpp"
   # "microbe_stage/compound.h"
-  # "microbe_stage/compound_registry.h"
-  # "microbe_stage/compound_registry.cpp"
+  "microbe_stage/compound_registry.h"
+  "microbe_stage/compound_registry.cpp"
   # "microbe_stage/compound_absorber_system.cpp"
   # "microbe_stage/compound_absorber_system.h"
   # "microbe_stage/compound_emitter_system.cpp"
@@ -106,8 +107,8 @@ set(GROUP_MICROBE_STAGE
   # "microbe_stage/bio_process_registry.h"
   "microbe_stage/membrane_system.cpp"
   "microbe_stage/membrane_system.h"
-  # "microbe_stage/compound_cloud_system.cpp"
-  # "microbe_stage/compound_cloud_system.h"
+  "microbe_stage/compound_cloud_system.cpp"
+  "microbe_stage/compound_cloud_system.h"
   # "microbe_stage/process_system.cpp"
   # "microbe_stage/process_system.h"
   # "microbe_stage/agent_cloud_system.cpp"
@@ -205,7 +206,6 @@ set(THRIVE_FILES ${GROUP_BULLET} ${GROUP_ENGINE}
   ${GROUP_GENERAL} ${GROUP_GUI} ${GROUP_MICROBE_STAGE}
   ${GROUP_OGRE} ${GROUP_SCRIPTING} ${GROUP_SOUND}
   ${GROUP_UTIL} ${GROUP_MICROBE}
-  "thrive_include.h"
   )
 
 # Leviathan program setup
