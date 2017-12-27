@@ -16,6 +16,8 @@
 #pragma GCC diagnostic ignored "-Wold-style-cast"
 #pragma GCC diagnostic ignored "-Wctor-dtor-privacy"
 #pragma GCC diagnostic ignored "-Wswitch-default"
+// This should probably not be ignored
+#pragma GCC diagnostic ignored "-Wnoexcept-type"
 #endif
 
 #include "sol.hpp"
