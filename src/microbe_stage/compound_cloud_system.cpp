@@ -169,7 +169,7 @@ void CompoundCloudSystem::Release(CellStageWorld &world){
 }
 
 
-void CompoundCloudSystem::Run(CellStageWorld* world,
+void CompoundCloudSystem::Run(CellStageWorld &world,
     std::unordered_map<ObjectID, CompoundCloudComponent*> &index, int tick)
 {
     const int renderTime = Leviathan::TICKSPEED * tick;
@@ -178,7 +178,7 @@ void CompoundCloudSystem::Run(CellStageWorld* world,
     LEVIATHAN_ASSERT(playerEntity != 0, "CompoundCloudSystem playerEntity not set");
     
     // Get the player's position.
-    const Leviathan::Position& pos = world->GetComponent_Position(playerEntity);
+    const Leviathan::Position& pos = world.GetComponent_Position(playerEntity);
     
     // If the player moves out of the current grid, move the grid.
     if (pos.Members._Position.X > offsetX + width/3*gridSize/2  ||

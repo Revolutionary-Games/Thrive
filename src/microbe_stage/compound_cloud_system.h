@@ -62,6 +62,8 @@ public:
     */
     CompoundId m_compoundId = NULL_COMPOUND;
 
+    static constexpr auto TYPE = THRIVE_COMPONENT::COMPOUND_CLOUD;
+
 public:
     //! \brief Creates a cloud with the specified compound(s) types and colour
     CompoundCloudComponent(CompoundId Id, float red, float green, float blue);
@@ -126,7 +128,7 @@ public:
     * Does there need to be a third category of systems that can adapt to different length
     * ticks and run like tick but at render time?
     */
-    void Run(CellStageWorld* world,
+    void Run(CellStageWorld &world,
         std::unordered_map<ObjectID, CompoundCloudComponent*> &index, int tick);
 
 private:

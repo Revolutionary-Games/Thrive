@@ -24,18 +24,31 @@ world = GameWorldClass.new(
                                            #Variable.new("GetScene()", "",
                                            #             nonMethodParam: true),
                                          ])], releaseparams: ["GetScene()"]),
+    EntityComponent.new("CompoundCloudComponent", [ConstructorInfo.new(
+                                                     [
+                                                       Variable.new("compoundId", "CompoundId",
+                                                                    noRef: true),
+                                                       Variable.new("red", "float",
+                                                                    noRef: true),
+                                                       Variable.new("green", "float",
+                                                                    noRef: true),
+                                                       Variable.new("blue", "float",
+                                                                    noRef: true),
+                                                     ])]),
   ],
   systems: [
     EntitySystem.new("MembraneSystem", ["MembraneComponent", "RenderNode"],
                      runrender: {group: 10, parameters: [
                                    "GetScene()"
                                  ]}),
-    EntitySystem.new("CompoundCloudSystem", ["MembraneComponent", "RenderNode"],
+    EntitySystem.new("CompoundCloudSystem", [],
+                     nostate: true,
                      init: [Variable.new("*this", "")],
                      release: [Variable.new("*this", "")],
                      runtick: {group: 5, parameters: [
-                                   "*this"
-                                 ]})
+                                 "ComponentCompoundCloudComponent.GetIndex()",
+                                 "GetTickNumber()"
+                               ]})
   ],
   systemspreticksetup: (<<-END
   const auto timeAndTickTuple = GetTickAndTime();
