@@ -3,6 +3,8 @@
 #include "engine/component.h"
 #include "util/make_unique.h"
 
+#include <functional>
+
 namespace sol {
 class state;
 }

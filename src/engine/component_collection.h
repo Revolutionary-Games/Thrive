@@ -4,6 +4,7 @@
 #include "engine/typedefs.h"
 
 #include <memory>
+#include <functional>
 
 namespace thrive {
 
