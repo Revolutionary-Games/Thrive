@@ -133,9 +133,12 @@ SkySystem::init(
 void
 SkySystem::shutdown() {
     m_impl->m_skyPlanes.setEntityManager(nullptr);
-    m_impl->m_sceneManager->setSkyBoxEnabled(false);
-    m_impl->m_sceneManager->setSkyDomeEnabled(false);
-    m_impl->m_sceneManager->setSkyPlaneEnabled(false);
+
+    if(m_impl->m_sceneManager){
+        m_impl->m_sceneManager->setSkyBoxEnabled(false);
+        m_impl->m_sceneManager->setSkyDomeEnabled(false);
+        m_impl->m_sceneManager->setSkyPlaneEnabled(false);
+    }
     m_impl->m_sceneManager = nullptr;
     System::shutdown();
 }

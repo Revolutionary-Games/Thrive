@@ -67,8 +67,10 @@ CollisionFilter::init(
 
 void
 CollisionFilter::shutdown() {
-    m_impl->m_collisionSystem->unregisterCollisionFilter(*this);
-    m_impl->m_collisionSystem = nullptr;
+    if(m_impl->m_collisionSystem){
+        m_impl->m_collisionSystem->unregisterCollisionFilter(*this);
+        m_impl->m_collisionSystem = nullptr;
+    }
 }
 
 const CollisionFilter::CollisionIterator
