@@ -3,7 +3,6 @@ currentBiome = {}
 
 --Setting the current biome to the one with the specified name.
 function setBiome(biomeName, gameState)
-
     assert(gameState ~= nil, "setBiome requires gameState")
     
     --Getting the base biome to change to.
@@ -17,8 +16,17 @@ function setBiome(biomeName, gameState)
     currentBiome.background = baseBiome.background
     currentBiome.compounds = {}
 
-    for compoundName, amount in pairs(baseBiome.compounds) do
-        currentBiome.compounds[compoundName] = amount
+    for compoundName, compoundData in pairs(baseBiome.compounds) do
+        currentBiome.compounds[compoundName] = compoundData.amount
+
+        if compoundTable[compoundName].isCloud then
+            local spawnCloud =  function(pos)
+                return createCompoundCloud(compoundName, pos.x, pos.y)
+            end
+
+            gSpawnSystem:removeSpawnType(compoundSpawnTypes[compoundName])
+            compoundSpawnTypes[compoundName] = gSpawnSystem:addSpawnType(spawnCloud, compoundData.density, CLOUD_SPAWN_RADIUS)
+        end
     end
 
     --Changing the background.

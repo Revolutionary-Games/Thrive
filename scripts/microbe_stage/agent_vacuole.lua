@@ -23,8 +23,6 @@ AgentVacuole = class(
         self.position.q = data.q
         self.position.r = data.r
         self.compoundId = CompoundRegistry.getCompoundId(arguments.compound)
-        self.capacityIntervalTimer = PROCESS_CAPACITY_UPDATE_INTERVAL
-        
     end
 )
 
@@ -32,47 +30,33 @@ AgentVacuole = class(
 -- organelle component methods and the arguments they receive.
 
 -- Overridded from ProcessOrganelle:onAddedToMicrobe
-function AgentVacuole:onAddedToMicrobe(microbe, q, r, rotation, organelle)
-    OrganelleComponent.onAddedToMicrobe(self, microbe, q, r, rotation, organelle)
-    microbe:addSpecialStorageOrganelle(self, self.compoundId)
+function AgentVacuole:onAddedToMicrobe(microbeEntity, q, r, rotation, organelle)
+    OrganelleComponent.onAddedToMicrobe(self, microbeEntity, q, r, rotation, organelle)
+    local microbeComponent = getComponent(microbeEntity, MicrobeComponent)
+    if microbeComponent.specialStorageOrganelles[self.compoundId] == nil then
+        microbeComponent.specialStorageOrganelles[self.compoundId] = 1
+    else
+        microbeComponent.specialStorageOrganelles[self.compoundId] = microbeComponent.specialStorageOrganelles[self.compoundId] + 1
+    end
 end
 
 -- Overridded from ProcessOrganelle:onRemovedFromMicrobe
-function AgentVacuole:onRemovedFromMicrobe(microbe, q, r)
-    microbe:removeSpecialStorageOrganelle(self, self.compoundId)
+function AgentVacuole:onRemovedFromMicrobe(microbeEntity, q, r)
+    local microbeComponent = getComponent(microbeEntity, MicrobeComponent)
+    microbeComponent.specialStorageOrganelles[self.compoundId] = microbeComponent.specialStorageOrganelles[self.compoundId] - 1
 end
-
--- Called by Microbe:update
---
--- Produces the agent for the process at intervals
---
--- @param microbe
--- The microbe containing the organelle
---
--- @param logicTime
--- The time since the last call to update()
-function AgentVacuole:update(microbe, organelle, logicTime)
-end
-
--- Empty override function to prevent mesh from being altered.
-function AgentVacuole:updateColour(organelle)
-end
-
 
 function AgentVacuole:storage()
     local storage = StorageContainer.new()
     storage:set("compoundId", self.compoundId)
     storage:set("q", self.position.q)
     storage:set("r", self.position.r)
-    storage:set("capacityIntervalTimer", self.capacityIntervalTimer)
     return storage
 end
-
 
 function AgentVacuole:load(storage)
     self.compoundId = storage:get("compoundId", 0)
     self.position = {}
     self.position.q = storage:get("q", 0)
     self.position.r = storage:get("r", 0)
-    self.capacityIntervalTimer = storage:get("capacityIntervalTimer", 0)
 end

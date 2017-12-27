@@ -42,8 +42,17 @@ void SpawnedComponent::luaBindings(
                 return std::make_unique<SpawnedComponent>();
             }),
 
+        "setSpawnRadius", &SpawnedComponent::setSpawnRadius,
+
         COMPONENT_BINDINGS(SpawnedComponent)
     );
+}
+
+void
+SpawnedComponent::setSpawnRadius(
+    double newSpawnRadius
+) {
+    spawnRadiusSqr = std::pow(newSpawnRadius, 2);
 }
 
 void
