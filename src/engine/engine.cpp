@@ -596,7 +596,14 @@ Engine::init() {
     m_impl->setupInputManager();
 
     // Install the Thrive error handler by default
-    sol::protected_function::set_default_handler(m_impl->m_luaState["thrivePanic"]);
+    // This isn't currently used, because maybe the default handler is
+    // good enough, and this has broken with newer sol versions
+    //sol::protected_function::set_default_handler(m_impl->m_luaState["thrivePanic"]);
+    // lua_CFunction f = sol::c_call<decltype(&detail::default_traceback_error_handler),
+    //     &detail::default_traceback_error_handler>;
+    
+    // sol::protected_function::set_default_handler(sol::object(m_impl->m_luaState.lua_state(),
+    //         sol::in_place, f));
 
     if(!m_impl->loadScripts("../scripts")){
 

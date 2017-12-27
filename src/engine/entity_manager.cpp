@@ -23,7 +23,10 @@ EntityManager::luaBindings(sol::state &lua){
         sol::constructors<sol::types<>>(),
 
         "processRemovals", &EntityManager::processRemovals,
-        "getNameMappingFor", &EntityManager::getNameMappingFor,
+        "getNameMappingFor", [](EntityManager &self, EntityId entityId) -> std::string{
+
+            return *self.getNameMappingFor(entityId);
+        },
 
         "getNamedId", sol::overload(
             [](EntityManager &self, const std::string* name, bool force){

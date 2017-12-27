@@ -18,8 +18,10 @@ void LockedMap::luaBindings(
         "addLock", &LockedMap::addLock,
         "isLocked", &LockedMap::isLocked,
         "unlock", &LockedMap::unlock,
-        "locksList", &LockedMap::locksList
-    );
+        "locksList", [](LockedMap &self, lua_State* s){
+
+            THRIVE_BIND_ITERATOR_TO_TABLE(self.locksList());
+        });
 }
 
 void

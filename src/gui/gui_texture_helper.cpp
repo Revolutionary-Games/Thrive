@@ -3,6 +3,8 @@
 #include <OgreRoot.h>
 #include <OgreImage.h>
 
+#include <iostream>
+
 using namespace thrive;
 
 std::shared_ptr<Ogre::Image> GUITextureHelper::getTexture(const std::string &name){
