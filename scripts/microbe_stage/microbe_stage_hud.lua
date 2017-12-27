@@ -1,3 +1,4 @@
+--
 -- TODO: merge the common things in microbe_stage_tutorial_hud
 -- notification setting up
 t1 = 0
@@ -9,11 +10,36 @@ b3 = false
 --suicideButton setting up
 boolean = false
 boolean2 = false
+--hints setting up
+hintsPanelOpned = false
+healthHint = false
+atpHint = false
+glucoseHint = false
+ammoniaHint = false
+oxygenHint = false
+toxinHint = false
+chloroplastHint = false
+activeHints = {}
+hintN = 0
+currentHint = 1
+HHO = false
+AHO = false
+GHO = false
+AMHO = false
+OHO = false
+THO = false
+CHO = false
+glucoseNeeded = 0
+atpNeeded = 0
+ammoniaNeeded = 0
+oxygenNeeded = 0
+chloroplastNeeded = 0
+toxinNeeded = 0
 
--- Camera limits
-CAMERA_MIN_HEIGHT = 20
-CAMERA_MAX_HEIGHT = 120
-CAMERA_VERTICAL_SPEED = 0.015
+ -- Camera limits
+ CAMERA_MIN_HEIGHT = 20
+ CAMERA_MAX_HEIGHT = 120
+ CAMERA_VERTICAL_SPEED = 0.015
 
 -- Updates the hud with relevant information
 
@@ -92,7 +118,10 @@ function HudSystem:init(gameState)
     local closeHelpButton = self.rootGUIWindow:getChild("PauseMenu"):getChild("CloseHelpButton")
 	local chloroplast_unlock_notification = self.rootGUIWindow:getChild("chloroplastUnlockNotification")
 	local toxin_unlock_notification = self.rootGUIWindow:getChild("toxinUnlockNotification")
+	local nextHint = self.rootGUIWindow:getChild("HintsPanel"):getChild("NextHint")
+	local lastHint = self.rootGUIWindow:getChild("HintsPanel"):getChild("LastHint")
     --local collapseButton = self.rootGUIWindow:getChild() collapseButtonClicked
+	local hintsButton = self.rootGUIWindow:getChild("HintsButton")
     local helpButton = self.rootGUIWindow:getChild("PauseMenu"):getChild("HelpButton")
     local helpPanel = self.rootGUIWindow:getChild("PauseMenu"):getChild("HelpPanel")
     self.editorButton = self.rootGUIWindow:getChild("EditorButton")
@@ -101,6 +130,9 @@ function HudSystem:init(gameState)
     local compoundButton = self.rootGUIWindow:getChild("CompoundExpandButton")
     --local compoundPanel = self.rootGUIWindow:getChild("CompoundsOpen")
     local quitButton = self.rootGUIWindow:getChild("PauseMenu"):getChild("QuitButton")
+	nextHint:registerEventHandler("Clicked", function() self:nextHintButtonClicked() end)
+	lastHint:registerEventHandler("Clicked", function() self:lastHintButtonClicked() end)
+	hintsButton:registerEventHandler("Clicked", function() self:hintsButtonClicked() end)
     saveButton:registerEventHandler("Clicked", function() self:saveButtonClicked() end)
     loadButton:registerEventHandler("Clicked", function() self:loadButtonClicked() end)
     menuButton:registerEventHandler("Clicked", function() self:menuButtonClicked() end)
@@ -162,83 +194,304 @@ end
 
 function HudSystem:update(renderTime)
     local player = Entity.new("player", self.gameState.wrapper)
-    local playerMicrobe = Microbe.new(player, nil, self.gameState)
+    local microbeComponent = getComponent(player, MicrobeComponent)
+    local soundSourceComponent = getComponent(player, SoundSourceComponent)
 
-    self.hitpointsBar:progressbarSetProgress(playerMicrobe.microbe.hitpoints/playerMicrobe.microbe.maxHitpoints)
-    self.hitpointsCountLabel:setText("".. math.floor(playerMicrobe.microbe.hitpoints))
-    self.hitpointsMaxLabel:setText("/ ".. math.floor(playerMicrobe.microbe.maxHitpoints))
+    self.hitpointsBar:progressbarSetProgress(microbeComponent.hitpoints/microbeComponent.maxHitpoints)
+    self.hitpointsCountLabel:setText("".. math.floor(microbeComponent.hitpoints))
+    self.hitpointsMaxLabel:setText("/ ".. math.floor(microbeComponent.maxHitpoints))
 
-    self.atpBar:progressbarSetProgress(playerMicrobe:getCompoundAmount(CompoundRegistry.getCompoundId("atp"))/(playerMicrobe.microbe.capacity/CompoundRegistry.getCompoundUnitVolume(CompoundRegistry.getCompoundId("atp"))))
-    self.atpCountLabel:setText("".. math.floor(playerMicrobe:getCompoundAmount(CompoundRegistry.getCompoundId("atp"))))
-    self.atpMaxLabel:setText("/ ".. math.floor(playerMicrobe.microbe.capacity/CompoundRegistry.getCompoundUnitVolume(CompoundRegistry.getCompoundId("atp"))))
+    self.atpBar:progressbarSetProgress(MicrobeSystem.getCompoundAmount(player, CompoundRegistry.getCompoundId("atp"))/(microbeComponent.capacity/CompoundRegistry.getCompoundUnitVolume(CompoundRegistry.getCompoundId("atp"))))
+    self.atpCountLabel:setText("".. math.floor(MicrobeSystem.getCompoundAmount(player, CompoundRegistry.getCompoundId("atp"))))
+    self.atpMaxLabel:setText("/ ".. math.floor(microbeComponent.capacity/CompoundRegistry.getCompoundUnitVolume(CompoundRegistry.getCompoundId("atp"))))
 	
-	self.atpCountLabel2:setText("".. math.floor(playerMicrobe:getCompoundAmount(CompoundRegistry.getCompoundId("atp"))))
+	self.atpCountLabel2:setText("".. math.floor(MicrobeSystem.getCompoundAmount(player, CompoundRegistry.getCompoundId("atp"))))
 	
-	self.oxygenBar:progressbarSetProgress(playerMicrobe:getCompoundAmount(CompoundRegistry.getCompoundId("oxygen"))/(playerMicrobe.microbe.capacity/CompoundRegistry.getCompoundUnitVolume(CompoundRegistry.getCompoundId("oxygen"))))
-    self.oxygenCountLabel:setText("".. math.floor(playerMicrobe:getCompoundAmount(CompoundRegistry.getCompoundId("oxygen"))))
-    self.oxygenMaxLabel:setText("/ ".. math.floor(playerMicrobe.microbe.capacity/CompoundRegistry.getCompoundUnitVolume(CompoundRegistry.getCompoundId("oxygen"))))
+	self.oxygenBar:progressbarSetProgress(MicrobeSystem.getCompoundAmount(player, CompoundRegistry.getCompoundId("oxygen"))/(microbeComponent.capacity/CompoundRegistry.getCompoundUnitVolume(CompoundRegistry.getCompoundId("oxygen"))))
+    self.oxygenCountLabel:setText("".. math.floor(MicrobeSystem.getCompoundAmount(player, CompoundRegistry.getCompoundId("oxygen"))))
+    self.oxygenMaxLabel:setText("/ ".. math.floor(microbeComponent.capacity/CompoundRegistry.getCompoundUnitVolume(CompoundRegistry.getCompoundId("oxygen"))))
 	
-	self.aminoacidsBar:progressbarSetProgress(playerMicrobe:getCompoundAmount(CompoundRegistry.getCompoundId("aminoacids"))/(playerMicrobe.microbe.capacity/CompoundRegistry.getCompoundUnitVolume(CompoundRegistry.getCompoundId("aminoacids"))))
-    self.aminoacidsCountLabel:setText("".. math.floor(playerMicrobe:getCompoundAmount(CompoundRegistry.getCompoundId("aminoacids"))))
-    self.aminoacidsMaxLabel:setText("/ ".. math.floor(playerMicrobe.microbe.capacity/CompoundRegistry.getCompoundUnitVolume(CompoundRegistry.getCompoundId("aminoacids"))))
+	self.aminoacidsBar:progressbarSetProgress(MicrobeSystem.getCompoundAmount(player, CompoundRegistry.getCompoundId("aminoacids"))/(microbeComponent.capacity/CompoundRegistry.getCompoundUnitVolume(CompoundRegistry.getCompoundId("aminoacids"))))
+    self.aminoacidsCountLabel:setText("".. math.floor(MicrobeSystem.getCompoundAmount(player, CompoundRegistry.getCompoundId("aminoacids"))))
+    self.aminoacidsMaxLabel:setText("/ ".. math.floor(microbeComponent.capacity/CompoundRegistry.getCompoundUnitVolume(CompoundRegistry.getCompoundId("aminoacids"))))
 	
-	self.ammoniaBar:progressbarSetProgress(playerMicrobe:getCompoundAmount(CompoundRegistry.getCompoundId("ammonia"))/(playerMicrobe.microbe.capacity/CompoundRegistry.getCompoundUnitVolume(CompoundRegistry.getCompoundId("ammonia"))))
-    self.ammoniaCountLabel:setText("".. math.floor(playerMicrobe:getCompoundAmount(CompoundRegistry.getCompoundId("ammonia"))))
-    self.ammoniaMaxLabel:setText("/ ".. math.floor(playerMicrobe.microbe.capacity/CompoundRegistry.getCompoundUnitVolume(CompoundRegistry.getCompoundId("ammonia"))))
+	self.ammoniaBar:progressbarSetProgress(MicrobeSystem.getCompoundAmount(player, CompoundRegistry.getCompoundId("ammonia"))/(microbeComponent.capacity/CompoundRegistry.getCompoundUnitVolume(CompoundRegistry.getCompoundId("ammonia"))))
+    self.ammoniaCountLabel:setText("".. math.floor(MicrobeSystem.getCompoundAmount(player, CompoundRegistry.getCompoundId("ammonia"))))
+    self.ammoniaMaxLabel:setText("/ ".. math.floor(microbeComponent.capacity/CompoundRegistry.getCompoundUnitVolume(CompoundRegistry.getCompoundId("ammonia"))))
 	
-	self.glucoseBar:progressbarSetProgress(playerMicrobe:getCompoundAmount(CompoundRegistry.getCompoundId("glucose"))/(playerMicrobe.microbe.capacity/CompoundRegistry.getCompoundUnitVolume(CompoundRegistry.getCompoundId("glucose"))))
-    self.glucoseCountLabel:setText("".. math.floor(playerMicrobe:getCompoundAmount(CompoundRegistry.getCompoundId("glucose"))))
-    self.glucoseMaxLabel:setText("/ ".. math.floor(playerMicrobe.microbe.capacity/CompoundRegistry.getCompoundUnitVolume(CompoundRegistry.getCompoundId("glucose"))))
+	self.glucoseBar:progressbarSetProgress(MicrobeSystem.getCompoundAmount(player, CompoundRegistry.getCompoundId("glucose"))/(microbeComponent.capacity/CompoundRegistry.getCompoundUnitVolume(CompoundRegistry.getCompoundId("glucose"))))
+    self.glucoseCountLabel:setText("".. math.floor(MicrobeSystem.getCompoundAmount(player, CompoundRegistry.getCompoundId("glucose"))))
+    self.glucoseMaxLabel:setText("/ ".. math.floor(microbeComponent.capacity/CompoundRegistry.getCompoundUnitVolume(CompoundRegistry.getCompoundId("glucose"))))
 	
-	self.co2Bar:progressbarSetProgress(playerMicrobe:getCompoundAmount(CompoundRegistry.getCompoundId("co2"))/(playerMicrobe.microbe.capacity/CompoundRegistry.getCompoundUnitVolume(CompoundRegistry.getCompoundId("co2"))))
-    self.co2CountLabel:setText("".. math.floor(playerMicrobe:getCompoundAmount(CompoundRegistry.getCompoundId("co2"))))
-    self.co2MaxLabel:setText("/ ".. math.floor(playerMicrobe.microbe.capacity/CompoundRegistry.getCompoundUnitVolume(CompoundRegistry.getCompoundId("co2"))))
+	self.co2Bar:progressbarSetProgress(MicrobeSystem.getCompoundAmount(player, CompoundRegistry.getCompoundId("co2"))/(microbeComponent.capacity/CompoundRegistry.getCompoundUnitVolume(CompoundRegistry.getCompoundId("co2"))))
+    self.co2CountLabel:setText("".. math.floor(MicrobeSystem.getCompoundAmount(player, CompoundRegistry.getCompoundId("co2"))))
+    self.co2MaxLabel:setText("/ ".. math.floor(microbeComponent.capacity/CompoundRegistry.getCompoundUnitVolume(CompoundRegistry.getCompoundId("co2"))))
 	
-	self.fattyacidsBar:progressbarSetProgress(playerMicrobe:getCompoundAmount(CompoundRegistry.getCompoundId("fattyacids"))/(playerMicrobe.microbe.capacity/CompoundRegistry.getCompoundUnitVolume(CompoundRegistry.getCompoundId("fattyacids"))))
-    self.fattyacidsCountLabel:setText("".. math.floor(playerMicrobe:getCompoundAmount(CompoundRegistry.getCompoundId("fattyacids"))))
-    self.fattyacidsMaxLabel:setText("/ ".. math.floor(playerMicrobe.microbe.capacity/CompoundRegistry.getCompoundUnitVolume(CompoundRegistry.getCompoundId("fattyacids"))))
+	self.fattyacidsBar:progressbarSetProgress(MicrobeSystem.getCompoundAmount(player, CompoundRegistry.getCompoundId("fattyacids"))/(microbeComponent.capacity/CompoundRegistry.getCompoundUnitVolume(CompoundRegistry.getCompoundId("fattyacids"))))
+    self.fattyacidsCountLabel:setText("".. math.floor(MicrobeSystem.getCompoundAmount(player, CompoundRegistry.getCompoundId("fattyacids"))))
+    self.fattyacidsMaxLabel:setText("/ ".. math.floor(microbeComponent.capacity/CompoundRegistry.getCompoundUnitVolume(CompoundRegistry.getCompoundId("fattyacids"))))
 	
-	self.oxytoxyBar:progressbarSetProgress(playerMicrobe:getCompoundAmount(CompoundRegistry.getCompoundId("oxytoxy"))/(playerMicrobe.microbe.capacity/CompoundRegistry.getCompoundUnitVolume(CompoundRegistry.getCompoundId("oxytoxy"))))
-    self.oxytoxyCountLabel:setText("".. math.floor(playerMicrobe:getCompoundAmount(CompoundRegistry.getCompoundId("oxytoxy"))))
-    self.oxytoxyMaxLabel:setText("/ ".. math.floor(playerMicrobe.microbe.capacity/CompoundRegistry.getCompoundUnitVolume(CompoundRegistry.getCompoundId("oxytoxy"))))
+	self.oxytoxyBar:progressbarSetProgress(MicrobeSystem.getCompoundAmount(player, CompoundRegistry.getCompoundId("oxytoxy"))/(microbeComponent.capacity/CompoundRegistry.getCompoundUnitVolume(CompoundRegistry.getCompoundId("oxytoxy"))))
+    self.oxytoxyCountLabel:setText("".. math.floor(MicrobeSystem.getCompoundAmount(player, CompoundRegistry.getCompoundId("oxytoxy"))))
+    self.oxytoxyMaxLabel:setText("/ ".. math.floor(microbeComponent.capacity/CompoundRegistry.getCompoundUnitVolume(CompoundRegistry.getCompoundId("oxytoxy"))))
 
-    local playerSpecies = playerMicrobe:getSpeciesComponent()
+    local playerSpecies = MicrobeSystem.getSpeciesComponent(player)
 	--notification setting up
-    if b1 == true and t1 < 300 then
+        if b1 == true and t1 < 300 then
         t1 = t1 + 2
-
+        if hintsPanelOpned == true then
+			self:hintsButtonClicked()
+			end        
         if t1 == 300 then
             global_activeMicrobeStageHudSystem:chloroplastNotificationdisable()
+			self:hintsButtonClicked()
         end
     end
 
     if b2 == true and t2 < 300 then
         t2 = t2 + 2
-
+        if hintsPanelOpned == true then
+			self:hintsButtonClicked()
+			end        
         if t2 == 300 then
             global_activeMicrobeStageHudSystem:toxinNotificationdisable()
+			self:hintsButtonClicked()
         end
     end
 
     if b3 == true and t3 < 300 then
         t3 = t3 + 2
-
+        if hintsPanelOpned == true then
+			self:hintsButtonClicked()
+			end        
         if t3 == 300 then
             global_activeMicrobeStageHudSystem:editornotificationdisable()
         end
     end
+
 	--suicideButton setting up 
-local atp = playerMicrobe:getCompoundAmount(CompoundRegistry.getCompoundId("atp"))
-if atp == 0 and boolean2 == false then 
-	self.rootGUIWindow:getChild("SuicideButton"):enable()
-	elseif atp > 0 or boolean2 == true then
-	global_activeMicrobeStageHudSystem:suicideButtondisable()
-end
-if boolean == true then
-playerMicrobe:kill()
-boolean = false
-boolean2 = true
-end
+    local atp = MicrobeSystem.getCompoundAmount(player, CompoundRegistry.getCompoundId("atp"))
+    if atp == 0 and boolean2 == false then 
+        self.rootGUIWindow:getChild("SuicideButton"):enable()
+        elseif atp > 0 or boolean2 == true then
+        global_activeMicrobeStageHudSystem:suicideButtondisable()
+    end
+    if boolean == true then
+        MicrobeSystem.kill(player)
+        boolean = false
+        boolean2 = true
+    end
+
+    --Hints setup
+	local glucose = MicrobeSystem.getCompoundAmount(player, CompoundRegistry.getCompoundId("glucose"))
+	local ammonia = MicrobeSystem.getCompoundAmount(player, CompoundRegistry.getCompoundId("ammonia"))
+	local oxygen = MicrobeSystem.getCompoundAmount(player, CompoundRegistry.getCompoundId("oxygen"))
+	atpNeeded = math.floor (30 - atp)
+	glucoseNeeded = math.floor (16 - glucose)
+	ammoniaNeeded = math.floor (12 - ammonia)
+	oxygenNeeded = math.floor (15 - oxygen)
+	chloroplastNeeded = math.floor (3 - chloroplast_Organelle_Number)
+	toxinNeeded = math.floor (3 - toxin_Organelle_Number)
+
+    if microbeComponent.hitpoints < microbeComponent.maxHitpoints and healthHint == false and HHO == false then
+        activeHints["healthHint"] = hintN + 1
+        hintN = activeHints["healthHint"]
+        HHO = true
+    elseif microbeComponent.hitpoints == microbeComponent.maxHitpoints and healthHint == true and HHO == true then
+        activeHints["healthHint"] = nil
+        hintN = hintN - 1
+        healthHint = false
+        HHO = false
+        if next(activeHints) ~= nil then
+            currentHint = currentHint + 1
+        end
+    end
+
+    if atp < 15 and atpHint == false and AHO == false then 
+        activeHints["atpHint"] = hintN + 1
+        hintN = activeHints["atpHint"]
+        AHO = true
+    elseif atp > 30 and atpHint == true and AHO == true then
+        activeHints["atpHint"] = nil
+        hintN = hintN - 1
+        atpHint = false
+        AHO = false
+        if next(activeHints) ~= nil then
+            currentHint = currentHint + 1
+        end
+    end
+
+    if glucose < 1 and glucoseHint == false and GHO == false then 
+        activeHints["glucoseHint"] = hintN + 1
+        hintN = activeHints["glucoseHint"]
+        GHO = true
+    elseif glucose >= 16 and glucoseHint == true and GHO == true then
+        activeHints["glucoseHint"] = nil
+        hintN = hintN - 1
+        glucoseHint = false
+        GHO = false
+        if next(activeHints) ~= nil then
+            currentHint = currentHint + 1
+        end
+    end
+
+    if ammonia < 1 and ammoniaHint == false and AMHO == false then 
+        activeHints["ammoniaHint"] = hintN + 1
+        hintN = activeHints["ammoniaHint"]
+        AMHO = true
+    elseif ammonia >= 12 and ammoniaHint == true and AMHO == true then
+        activeHints["ammoniaHint"] = nil
+        hintN = hintN - 1
+        ammoniaHint = false
+        AMHO = false
+        if next(activeHints) ~= nil then
+            currentHint = currentHint + 1
+        end
+    end
+
+    if oxygen < 1 and oxygenHint == false and OHO == false then 
+        activeHints["oxygenHint"] = hintN + 1
+        hintN = activeHints["oxygenHint"]
+        OHO = true
+    elseif oxygen >= 12 and oxygenHint == true and OHO == true then
+        activeHints["oxygenHint"] = nil
+        hintN = hintN - 1
+        oxygenHint = false
+        OHO = false
+        if next(activeHints) ~= nil then
+            currentHint = currentHint + 1
+        end
+    end
+
+    if toxin_Organelle_Number < 3 and toxinHint == false and THO == false then 
+        activeHints["toxinHint"] = hintN + 1
+        hintN = activeHints["toxinHint"]
+        THO = true
+    elseif toxin_Organelle_Number >= 3 and toxinHint == true and THO == true then
+        activeHints["toxinHint"] = nil
+        hintN = hintN - 1
+        toxinHint = false
+        THO = false
+        if next(activeHints) ~= nil then
+            currentHint = currentHint + 1
+        end
+    end
+
+    if chloroplast_Organelle_Number < 3 and chloroplastHint == false and CHO == false then 
+        activeHints["chloroplastHint"] = hintN + 1
+        hintN = activeHints["chloroplastHint"]
+        CHO = true
+    elseif chloroplast_Organelle_Number >= 3 and chloroplastHint == true and CHO == true then
+        activeHints["chloroplastHint"] = nil
+        hintN = hintN - 1
+        chloroplastHint = false
+        CHO = false
+        if next(activeHints) ~= nil then
+            currentHint = currentHint + 1
+        end
+    end
+
+    --print (toxin_Organelle_Number .. " " .. chloroplast_Organelle_Number)
+    if healthHint == true then
+        self.rootGUIWindow:getChild("HintsPanel"):getChild("HelpText"):setText(
+            "Your cell is damaged! Collect ammonia and glucose to make amino acids, which can heal it."
+        )
+    end
+
+    if atpHint == true then
+        self.rootGUIWindow:getChild("HintsPanel"):getChild("HelpText"):setText(
+            "You're running short of ATP! ATP is used to move and engulf. Get " .. atpNeeded .. " to be safe!"
+        )
+    end
+
+    if glucoseHint == true then
+        self.rootGUIWindow:getChild("HintsPanel"):getChild("HelpText"):setText(
+            "You need more glucose! It's used to make ATP and amino acids. Collect " .. glucoseNeeded .. " to be safe."
+        )
+    end
+
+    if ammoniaHint == true then
+        self.rootGUIWindow:getChild("HintsPanel"):getChild("HelpText"):setText(
+            "You have little ammonia, used to make amino acids to heal and reproduce. Get " .. ammoniaNeeded .. " more."
+        )
+    end
+
+    if oxygenHint == true then
+        self.rootGUIWindow:getChild("HintsPanel"):getChild("HelpText"):setText(
+            "You need oxygen to produce ATP and OxyToxy. Collect " .. oxygenNeeded .. " oxygen to do this!"
+        )
+    end
+
+    if chloroplastHint == true then
+        self.rootGUIWindow:getChild("HintsPanel"):getChild("HelpText"):setText(
+            "Pick " .. chloroplastNeeded .. " green blobs to unlock Chloroplasts, which transform CO2 into glucose and oxygen."
+        )
+    end
+
+    if toxinHint == true then
+        self.rootGUIWindow:getChild("HintsPanel"):getChild("HelpText"):setText(
+            "Collect " .. toxinNeeded .. " blue blobs to unlock Toxin Vacuoles, used to shoot harmful agents at other cells."
+        )
+    end
+
+    for hintnam,hintnum in pairs(activeHints) do
+        if hintnum == currentHint then
+            if hintnam == "atpHint" then
+                atpHint = true
+            else
+                atpHint = false
+            end
+
+            if hintnam == "healthHint" then
+                healthHint = true
+            else
+                healthHint = false
+            end
+
+            if hintnam == "glucoseHint" then
+                glucoseHint = true
+            else
+                glucoseHint = false
+            end
+
+            if hintnam == "ammoniaHint" then
+                ammoniaHint = true
+            else
+                ammoniaHint = false
+            end
+
+            if hintnam == "oxygenHint" then
+                oxygenHint = true
+            else
+                oxygenHint = false
+            end
+
+            if hintnam == "chloroplastHint" then
+                chloroplastHint = true
+            else
+                chloroplastHint = false
+            end
+
+            if hintnam == "toxinHint" then
+                toxinHint = true
+            else
+                toxinHint = false
+            end
+        end
+    end
+
+    if next(activeHints) == nil then
+        self.rootGUIWindow:getChild("HintsPanel"):getChild("HelpText"):setText("there is no available hints for now!")
+    end
+
+    if currentHint > hintN then
+        currentHint = 1
+    end
+
+    if currentHint < 1 then
+        currentHint = hintN
+    end
+
     --TODO display population in home patch here
 
     if keyCombo(kmp.togglemenu) then
@@ -246,35 +499,34 @@ end
     elseif keyCombo(kmp.gotoeditor) then
         self:editorButtonClicked()
     elseif keyCombo(kmp.shootoxytoxy) then
-        playerMicrobe:emitAgent(CompoundRegistry.getCompoundId("oxytoxy"), 3)
+        MicrobeSystem.emitAgent(player, CompoundRegistry.getCompoundId("oxytoxy"), 3)
     elseif keyCombo(kmp.reproduce) then
-        playerMicrobe:readyToReproduce()
+        MicrobeSystem.readyToReproduce(player)
     end
     local direction = Vector3(0, 0, 0)
     if keyCombo(kmp.forward) then
-        playerMicrobe.soundSource:playSound("microbe-movement-2")
+        soundSourceComponent:playSound("microbe-movement-2")
     end
     if keyCombo(kmp.backward) then
-        playerMicrobe.soundSource:playSound("microbe-movement-2")
+        soundSourceComponent:playSound("microbe-movement-2")
     end
     if keyCombo(kmp.leftward) then
-        playerMicrobe.soundSource:playSound("microbe-movement-1")
+        soundSourceComponent:playSound("microbe-movement-1")
     end
     if keyCombo(kmp.screenshot) then
         Engine:screenShot("screenshot.png")
     end
     if keyCombo(kmp.rightward) then
-        playerMicrobe.soundSource:playSound("microbe-movement-1")
+        soundSourceComponent:playSound("microbe-movement-1")
     end
     if (Engine.keyboard:wasKeyPressed(KEYCODE.KC_G)) then
-        playerMicrobe:toggleEngulfMode()
+        MicrobeSystem.toggleEngulfMode(player)
     end
-
     -- Changing the camera height according to the player input.
     local offset = getComponent(CAMERA_NAME, self.gameState, OgreCameraComponent).properties.offset
     
     if Engine.mouse:scrollChange() ~= 0 then
-        self.scrollChange = self.scrollChange + Engine.mouse:scrollChange() * CAMERA_VERTICAL_SPEED
+      self.scrollChange = self.scrollChange + Engine.mouse:scrollChange() * CAMERA_VERTICAL_SPEED
     elseif keyCombo(kmp.plus) or keyCombo(kmp.add) then
         self.scrollChange = self.scrollChange - 5
     elseif keyCombo(kmp.minus) or keyCombo(kmp.subtract) then
@@ -291,10 +543,10 @@ end
     end
     
     if newZVal < CAMERA_MIN_HEIGHT then
-        newZVal = CAMERA_MIN_HEIGHT 
+       newZVal = CAMERA_MIN_HEIGHT 
         self.scrollChange = 0
     elseif newZVal > CAMERA_MAX_HEIGHT then
-        newZVal = CAMERA_MAX_HEIGHT
+	newZVal = CAMERA_MAX_HEIGHT
         self.scrollChange = 0
     end
     
@@ -336,6 +588,30 @@ function HudSystem:updateLoadButton()
 end
 
 --Event handlers
+
+function HudSystem:hintsButtonClicked()
+if hintsPanelOpned == false then
+self.rootGUIWindow:getChild("HintsPanel"):show()
+self.rootGUIWindow:getChild("HintsButton"):setText("")
+self.rootGUIWindow:getChild("HintsButton"):getChild("HintsIcon"):hide()
+self.rootGUIWindow:getChild("HintsButton"):getChild("HintsContractIcon"):show()
+self.rootGUIWindow:getChild("HintsButton"):setProperty("Hide the hints panel", "TooltipText")
+hintsPanelOpned = true
+ elseif hintsPanelOpned == true then
+self.rootGUIWindow:getChild("HintsPanel"):hide()
+self.rootGUIWindow:getChild("HintsButton"):setText("Hints")
+self.rootGUIWindow:getChild("HintsButton"):getChild("HintsIcon"):show()
+self.rootGUIWindow:getChild("HintsButton"):getChild("HintsContractIcon"):hide()
+self.rootGUIWindow:getChild("HintsButton"):setProperty("Open the hints panel", "TooltipText")
+hintsPanelOpned = false
+end
+end
+function HudSystem:nextHintButtonClicked()
+currentHint = currentHint + 1
+end
+function HudSystem:lastHintButtonClicked()
+currentHint = currentHint - 1
+end
 function HudSystem:saveButtonClicked()
     getComponent("gui_sounds", self.gameState, SoundSourceComponent):playSound("button-hover-click")
     Engine:save("quick.sav")
@@ -464,9 +740,8 @@ end
 
 function HudSystem:editorButtonClicked()
     local player = Entity.new("player", self.gameState.wrapper)
-    local playerMicrobe = Microbe.new(player, nil, self.gameState)
     -- Return the first cell to its normal, non duplicated cell arangement.
-    SpeciesSystem.restoreOrganelleLayout(playerMicrobe, playerMicrobe:getSpeciesComponent()) 
+    SpeciesSystem.restoreOrganelleLayout(player, MicrobeSystem.getSpeciesComponent(player)) 
 
     getComponent("gui_sounds", self.gameState, SoundSourceComponent):playSound("button-hover-click")
     self.editorButton:disable()
