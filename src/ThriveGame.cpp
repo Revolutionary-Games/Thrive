@@ -101,7 +101,7 @@ void ThriveGame::startNewGame(){
     respawnPlayerCell();
    
 	// Test model //
-    if(true){
+    if(false){
         const auto testModel = m_cellStage->CreateEntity();
         m_cellStage->Create_Position(testModel, Float3(0, 0, 0), Ogre::Quaternion(Ogre::Degree(90), Ogre::Vector3::UNIT_X));
         auto& node = m_cellStage->Create_RenderNode(testModel);
@@ -116,12 +116,12 @@ void ThriveGame::respawnPlayerCell(){
 
     m_cellStage->Create_RenderNode(m_playerCell);
 
-    m_cellStage->Create_Position(m_playerCell, Float3(5), Float4::IdentityQuaternion());
+    m_cellStage->Create_Position(m_playerCell, Float3(0), Float4::IdentityQuaternion());
 
     MembraneComponent& membrane = m_cellStage->Create_MembraneComponent(m_playerCell);
     for(int x = -3; x <= 3; ++x){
         for(int y = -3; y <= 3; ++y){
-            membrane.sendOrganelles(0, 0);
+            membrane.sendOrganelles(x, y);
         }
     }
 }
