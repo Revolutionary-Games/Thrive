@@ -244,6 +244,7 @@ end
 
 -- Call for quick debugging. Prints the line of the function calling this
 function printLine()
-    print(debug.getinfo(2).currentline)
+    local info = debug.getinfo(2)
+    print(info.source .. ":" .. info.currentline)
 end
 
