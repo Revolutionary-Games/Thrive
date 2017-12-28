@@ -5,7 +5,7 @@
 #include <map>
 #include <string>
 #include <vector>
-#include <Ogre.h>
+#include <OgreColourValue.h>
 
 namespace thrive {
 

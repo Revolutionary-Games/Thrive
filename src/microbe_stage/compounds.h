@@ -2,7 +2,7 @@
 
 #include "general/json_registry.h"
 
-#include <Ogre.h>
+#include <OgreColourValue.h>
 
 namespace thrive {
 
