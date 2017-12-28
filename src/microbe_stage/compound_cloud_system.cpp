@@ -19,12 +19,13 @@
 
 #include <OgreMeshManager2.h>
 #include <OgreMeshManager.h>
-// #include <OgreMaterialManager.h>
+#include <OgreMaterialManager.h>
 // #include <OgreMaterial.h>
-// #include <OgreTextureManager.h>
-// #include <OgreTechnique.h>
-// #include <OgreRoot.h>
+#include <OgreTextureManager.h>
+#include <OgreTechnique.h>
+#include <OgreRoot.h>
 // #include <OgreSubMesh.h>
+#include <OgreHardwarePixelBuffer.h>
 #include <OgreSceneManager.h>
 #include <OgrePlane.h>
 #include <OgreMesh2.h>
@@ -156,6 +157,23 @@ void CompoundCloudSystem::Init(CellStageWorld &world){
         compoundCloudsPlane);
     
     compoundCloudsPlane->setMaterialName("CompoundClouds");
+
+    Ogre::HlmsManager* hlmsManager = Ogre::Root::getSingleton().getHlmsManager();
+
+    // This is the old setting
+    //pass->setSceneBlending(Ogre::SBT_TRANSPARENT_ALPHA);
+    // And according to Ogre source code (OgrePass.cpp Pass::_getBlendFlags) it matches this:
+    // source = SBF_SOURCE_ALPHA;
+    // dest = SBF_ONE_MINUS_SOURCE_ALPHA;
+
+    Ogre::HlmsBlendblock blendblock;
+    // blendblock.mAlphaToCoverageEnabled = false;
+    
+    blendblock.mSourceBlendFactor = Ogre::SBF_SOURCE_ALPHA;
+    blendblock.mDestBlendFactor = Ogre::SBF_ONE_MINUS_SOURCE_ALPHA;
+    m_blendblock = hlmsManager->getBlendblock(blendblock);
+
+    LEVIATHAN_ASSERT(m_blendblock != nullptr, "blendblock creation failed");
 }
 
 void CompoundCloudSystem::Release(CellStageWorld &world){
@@ -164,6 +182,14 @@ void CompoundCloudSystem::Release(CellStageWorld &world){
     DEBUG_BREAK;
 
     world.GetScene()->destroyItem(compoundCloudsPlane);
+
+    // m_blendblock
+
+    if(m_blendblock){
+        Ogre::HlmsManager* hlmsManager = Ogre::Root::getSingleton().getHlmsManager();
+        hlmsManager->destroyBlendblock(m_blendblock);
+    }
+    m_blendblock = nullptr;
 
     Ogre::MeshManager::getSingleton().remove(m_planeMesh);
 }
@@ -198,9 +224,16 @@ void CompoundCloudSystem::Run(CellStageWorld &world,
         compoundCloudsPlane->getParentSceneNode()->setPosition(offsetX, offsetY, -1.0);
     }
 
+    // TODO: could do something fancy with CellStageWorld::HandleAdded
     // For all newly created entities, initialize their parameters.
-    for (auto& value : m_impl->m_compounds.addedEntities()) {
-        CompoundCloudComponent* compoundCloud = std::get<0>(value.second);
+    for (auto& value : index) {
+
+        if(value.second->initialized)
+            continue;
+
+        value.second->initialized = true;
+        
+        CompoundCloudComponent* compoundCloud = value.second;
 
         // Set the size of each grid tile and its position.
         compoundCloud->width = width;
@@ -216,9 +249,13 @@ void CompoundCloudSystem::Run(CellStageWorld &world,
         Ogre::MaterialPtr materialPtr = Ogre::MaterialManager::getSingleton().getByName(
             "CompoundClouds", "General");
 
+        // TODO: destroy these layers when no longer used. This might
+        // cause crashes if playing for a long time and new ones are
+        // created
         Ogre::Pass* pass = materialPtr->getTechnique(0)->createPass();
 
-        pass->setSceneBlending(Ogre::SBT_TRANSPARENT_ALPHA);
+        // Set blendblock 
+        pass->setBlendblock(*m_blendblock);
         pass->setVertexProgram("CompoundCloud_VS");
         pass->setFragmentProgram("CompoundCloud_PS");
 
@@ -227,9 +264,9 @@ void CompoundCloudSystem::Run(CellStageWorld &world,
             "General", Ogre::TEX_TYPE_2D, width, height,
             0, Ogre::PF_BYTE_BGRA, Ogre::TU_DYNAMIC_WRITE_ONLY_DISCARDABLE);
 
-        Ogre::HardwarePixelBufferSharedPtr cloud;
-        cloud = texturePtr->getBuffer();
-        cloud->lock(Ogre::HardwareBuffer::HBL_DISCARD);
+        // TODO: switch to Ogre 2.1 way
+        Ogre::v1::HardwarePixelBufferSharedPtr cloud = texturePtr->getBuffer();
+        cloud->lock(Ogre::v1::HardwareBuffer::HBL_DISCARD);
         const Ogre::PixelBox& pixelBox = cloud->getCurrentLock();
 
         uint8_t* pDest = static_cast<uint8_t*>(pixelBox.data);
@@ -255,17 +292,14 @@ void CompoundCloudSystem::Run(CellStageWorld &world,
         texturePtr = Ogre::TextureManager::getSingleton().load("PerlinNoise.jpg", "General");
         pass->createTextureUnitState()->setTexture(texturePtr);
 
-        compoundCloudsPlane->getSubEntity(0)->setCustomParameter(1,
+        compoundCloudsPlane->getSubItem(0)->setCustomParameter(1,
             Ogre::Vector4(0.0f, 0.0f, 0.0f, 0.0f));
     }
 
-    // Clear the list of newly added entities so that we don't reinitialize them next frame.
-    m_impl->m_compounds.clearChanges();
-
     // For all types of compound clouds...
-    for (auto& value : m_impl->m_compounds)
+    for (auto& value : index)
     {
-        CompoundCloudComponent* compoundCloud = std::get<0>(value.second);
+        CompoundCloudComponent* compoundCloud = value.second;
         // If the offset of the compound cloud is different from the fluid systems offset,
         // then the player must have moved, so we need to adjust the texture.
         if (compoundCloud->offsetX != offsetX || compoundCloud->offsetY != offsetY)
@@ -283,8 +317,8 @@ void CompoundCloudSystem::Run(CellStageWorld &world,
                         compoundCloud->density[x][y+height*2/3] = 0.0;
                     }
                 }
-                Ogre::Vector4 offset = compoundCloudsPlane->getSubEntity(0)->getCustomParameter(1);
-                compoundCloudsPlane->getSubEntity(0)->setCustomParameter(1,
+                Ogre::Vector4 offset = compoundCloudsPlane->getSubItem(0)->getCustomParameter(1);
+                compoundCloudsPlane->getSubItem(0)->setCustomParameter(1,
                     Ogre::Vector4(offset.x, offset.y-1.0f/3, 0.0f, 0.0f));
             }
             // If we moved right.
@@ -300,8 +334,8 @@ void CompoundCloudSystem::Run(CellStageWorld &world,
                         compoundCloud->density[x+height*2/3][y] = 0.0;
                     }
                 }
-                Ogre::Vector4 offset = compoundCloudsPlane->getSubEntity(0)->getCustomParameter(1);
-                compoundCloudsPlane->getSubEntity(0)->setCustomParameter(1,
+                Ogre::Vector4 offset = compoundCloudsPlane->getSubItem(0)->getCustomParameter(1);
+                compoundCloudsPlane->getSubItem(0)->setCustomParameter(1,
                     Ogre::Vector4(offset.x-1.0f/3, offset.y, 0.0f, 0.0f));
             }
             // If we moved left.
@@ -317,8 +351,8 @@ void CompoundCloudSystem::Run(CellStageWorld &world,
                         compoundCloud->density[x][y] = 0.0;
                     }
                 }
-                Ogre::Vector4 offset = compoundCloudsPlane->getSubEntity(0)->getCustomParameter(1);
-                compoundCloudsPlane->getSubEntity(0)->setCustomParameter(1,
+                Ogre::Vector4 offset = compoundCloudsPlane->getSubItem(0)->getCustomParameter(1);
+                compoundCloudsPlane->getSubItem(0)->setCustomParameter(1,
                     Ogre::Vector4(offset.x+1.0f/3, offset.y, 0.0f, 0.0f));
             }
             // If we moved downwards.
@@ -334,8 +368,8 @@ void CompoundCloudSystem::Run(CellStageWorld &world,
                         compoundCloud->density[x][y] = 0.0;
                     }
                 }
-                Ogre::Vector4 offset = compoundCloudsPlane->getSubEntity(0)->getCustomParameter(1);
-                compoundCloudsPlane->getSubEntity(0)->setCustomParameter(1,
+                Ogre::Vector4 offset = compoundCloudsPlane->getSubItem(0)->getCustomParameter(1);
+                compoundCloudsPlane->getSubItem(0)->setCustomParameter(1,
                     Ogre::Vector4(offset.x, offset.y+1.0f/3, 0.0f, 0.0f));
             }
 
@@ -349,12 +383,12 @@ void CompoundCloudSystem::Run(CellStageWorld &world,
         advect(compoundCloud->oldDens, compoundCloud->density, renderTime);
 
         // Store the pixel data in a hardware buffer for quick access.
-        Ogre::HardwarePixelBufferSharedPtr cloud;
+        Ogre::v1::HardwarePixelBufferSharedPtr cloud;
         cloud = Ogre::TextureManager::getSingleton().getByName(
             CompoundRegistry::getCompoundInternalName(compoundCloud->m_compoundId),
             "General")->getBuffer();
 
-        cloud->lock(Ogre::HardwareBuffer::HBL_DISCARD);
+        cloud->lock(Ogre::v1::HardwareBuffer::HBL_DISCARD);
         const Ogre::PixelBox& pixelBox = cloud->getCurrentLock();
         uint8_t* pDest = static_cast<uint8_t*>(pixelBox.data);
         pDest+=3;

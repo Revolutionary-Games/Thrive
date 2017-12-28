@@ -34,6 +34,9 @@ class CellStageWorld;
 */
 class CompoundCloudComponent : public Leviathan::Component {
 public:
+
+    // True once initialized by CompoundCloudSystem
+    bool initialized = false;
     
     /// The size of the compound cloud grid.
 	int width, height;
@@ -140,6 +143,10 @@ private:
     //GameStateData* gameState;
     Ogre::Item* compoundCloudsPlane;
     Ogre::MeshPtr m_planeMesh;
+
+    // For enabling alpha blending
+    const Ogre::HlmsBlendblock* m_blendblock;
+    
     //! \todo Check should this be a pointer to the component or is ObjectID fast enough
     ObjectID playerEntity = 0;
 
