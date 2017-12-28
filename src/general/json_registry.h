@@ -8,7 +8,7 @@
 #include <map>
 #include <unordered_map>
 #include <jsoncpp/json.h>
-#include <limits.h>
+#include <limits>
 
 // Base class of things to register.
 class RegistryType {
@@ -112,6 +112,8 @@ template<class T> bool TJsonRegistry<T>::RegisterType(T &Properties) {
 	RegisteredTypes.Add(Properties);
 	return true;
 	*/
+    DEBUG_BREAK;
+    return false;
 }
 
 template<class T> T const&  TJsonRegistry<T>::getTypeData(size_t id) {

@@ -115,6 +115,8 @@ set(GROUP_MICROBE_STAGE
   # "microbe_stage/agent_cloud_system.h"
   # "microbe_stage/species_component.cpp"
   # "microbe_stage/species_component.h"
+  "microbe_stage/simulation_parameters.h"
+  "microbe_stage/simulation_parameters.cpp"
   )
 
 set(GROUP_OGRE
