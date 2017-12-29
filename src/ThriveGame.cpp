@@ -8,6 +8,8 @@
 #include "microbe_stage/simulation_parameters.h"
 #include "microbe_stage/biome_controller.h"
 
+#include "engine/player_data.h"
+
 #include "generated/cell_stage_world.h"
 
 #include "Handlers/ObjectLoader.h"
@@ -25,7 +27,23 @@
 using namespace thrive;
 
 // ------------------------------------ //
+class ThriveGame::Implementation{
+public:
+    Implementation(
+        ThriveGame& game
+    ) : m_game(game),
+        m_playerData("player")
+    {
+    }
+
+    ThriveGame& m_game;
+    
+    PlayerData m_playerData;
+};
+
+// ------------------------------------ //
 ThriveGame::ThriveGame(){
+    m_impl = std::make_unique<Implementation>(*this);
     StaticGame = this;
 }
 
@@ -130,6 +148,11 @@ void ThriveGame::respawnPlayerCell(){
 CellStageWorld* ThriveGame::getCellStage(){
 
     return m_cellStage.get();
+}
+
+PlayerData&
+ThriveGame::playerData(){
+    return m_impl->m_playerData;
 }
 
 // ------------------------------------ //

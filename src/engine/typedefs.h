@@ -1,6 +1,8 @@
 #pragma once
 
 #include <cstdint>
+
+// TODO: Is this include needed?
 #include <utility>
 
 namespace thrive {
@@ -24,6 +26,6 @@ namespace thrive {
     */
     static const EntityId NULL_ENTITY = 0;
 
-    static const ComponentTypeId NULL_COMPONENT_TYPE = 0;
-
+    // Use THRIVE_COMPONENT::INVALID instead (defined in component_types.h)
+    // static const ComponentTypeId NULL_COMPONENT_TYPE = 0;
 }

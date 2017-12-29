@@ -9,7 +9,9 @@ enum class THRIVE_COMPONENT : uint16_t {
 
     MEMBRANE = static_cast<uint16_t>(Leviathan::COMPONENT_TYPE::Custom) + 1,
     COMPOUND_CLOUD,
-    
+
+    // TODO: check is this needed for anything
+    //INVALID
 };
 
 //! \brief Use to convert THRIVE_COMPONENT to Leviathan::COMPONENT_TYPE

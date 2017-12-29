@@ -17,12 +17,15 @@ class CellStageWorld;
 
 class ThriveNetHandler;
 
+class PlayerData;
+
 //class BioProcess;
 //class Biome;
 
 //! This is the main thrive class that is created in main.cpp and then handles running
 //! the engine and the event loop
 class ThriveGame : public Leviathan::ClientApplication{
+    class Implementation;
 public:
 
     ThriveGame();
@@ -37,6 +40,9 @@ public:
 
 
     CellStageWorld* getCellStage();
+
+    PlayerData&
+    playerData();
 
     // ------------------------------------ //
     // Hooking into the engine, and overridden methods from base application etc.
@@ -63,7 +69,7 @@ protected:
     Leviathan::NetworkInterface* _GetApplicationPacketHandler() override;
     void _ShutdownApplicationPacketHandler() override;
     
-protected:
+private:
     
     std::unique_ptr<ThriveNetHandler> Network;
 
@@ -80,6 +86,10 @@ protected:
 
     // TODO: remove this and the debug stuff in Tick
     int dummyTestCounter = 0;
+
+    // Some variables that have complex types are hidden here to not
+    // have to include tons of headers here
+    std::unique_ptr<Implementation> m_impl;
 
     static ThriveGame* StaticGame;
 };

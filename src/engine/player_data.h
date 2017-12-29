@@ -34,21 +34,21 @@ public:
     */
     ~PlayerData();
 
-    /**
-    * @brief Lua bindings
-    *
-    * Exposes:
-    * - PlayerData::PlayerData
-    * - PlayerData::lockedMap
-    * - PlayerData::activeCreature
-    * - PlayerData::setActiveCreature
-    * - PlayerData::activeCreatureGamestate
-    * - PlayerData::isBoolSet
-    * - PlayerData::setBool
-    *
-    * @return
-    */
-    static void luaBindings(sol::state &lua);
+    // /**
+    // * @brief Lua bindings
+    // *
+    // * Exposes:
+    // * - PlayerData::PlayerData
+    // * - PlayerData::lockedMap
+    // * - PlayerData::activeCreature
+    // * - PlayerData::setActiveCreature
+    // * - PlayerData::activeCreatureGamestate
+    // * - PlayerData::isBoolSet
+    // * - PlayerData::setBool
+    // *
+    // * @return
+    // */
+    // static void luaBindings(sol::state &lua);
 
     /**
     * @brief Getter for the players name
