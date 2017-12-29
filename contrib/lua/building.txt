@@ -1,6 +1,0 @@
-LuaJIT has a really complex makefile so go into the luajit/src folder
-and run make
-
-Unfortunately there are some lua 5.2 features that need to be
-explicitly enabled. So before running make uncomment this line in
-`luajit/src/Makefile`: `#XCFLAGS+= -DLUAJIT_ENABLE_LUA52COMPAT`
