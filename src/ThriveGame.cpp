@@ -85,7 +85,7 @@ void ThriveGame::_ShutdownApplicationPacketHandler(){
 void ThriveGame::startNewGame(){
 
     // To work with instant start, we need to invoke this if we have no cell stage world
-    if(!m_cellStage){
+    if(!m_postLoadRan){
 
         Engine::Get()->Invoke([=](){
                 startNewGame();
@@ -93,10 +93,28 @@ void ThriveGame::startNewGame(){
         return;
     }
 
+    Leviathan::Engine* engine = Engine::GetEngine();
+
     LOG_INFO("New game started");
+
+    Leviathan::GraphicalInputEntity* window1 = engine->GetWindowEntity();
+
+    // Create world if not already created //
+    if(!m_cellStage){
+   
+        LOG_INFO("ThriveGame: startNewGame: Creating new cellstage world");
+        m_cellStage = std::dynamic_pointer_cast<CellStageWorld>(engine->CreateWorld(
+                window1));
+    }
+    
+    LEVIATHAN_ASSERT(m_cellStage, "Cell stage world creation failed");
+    
+    window1->LinkObjects(m_cellStage);    
 
     // Clear world //
     m_cellStage->ClearObjects();
+
+    // TODO: unfreeze, if was in the background
 
     // Main camera that will be attached to the player
     m_cellCamera = Leviathan::ObjectLoader::LoadCamera(*m_cellStage, Float3(0, 15, 0),
@@ -214,6 +232,7 @@ void ThriveGame::Tick(int mspassed){
 void ThriveGame::CustomizeEnginePostLoad(){
 
     Engine* engine = Engine::Get();
+    m_postLoadRan = true;
 
     // Load GUI documents (but only if graphics are enabled) //
     if(engine->GetNoGui()){
@@ -247,13 +266,8 @@ void ThriveGame::CustomizeEnginePostLoad(){
         return;
     }
 
-    // Create worlds //
-    m_cellStage = std::dynamic_pointer_cast<CellStageWorld>(engine->CreateWorld(
-            window1));
-
-    LEVIATHAN_ASSERT(m_cellStage, "Cell stage world creation failed");
-
-    window1->LinkObjects(m_cellStage);
+    // Create main menu world //
+    LOG_WRITE("TODO: main menu world");
 }
 
 void ThriveGame::EnginePreShutdown(){

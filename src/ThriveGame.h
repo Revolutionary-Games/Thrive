@@ -89,6 +89,11 @@ private:
     // TODO: remove this and the debug stuff in Tick
     int dummyTestCounter = 0;
 
+    //! True once CustomizeEnginePostLoad has ran. This is used to
+    //! delay methods that skip straight to the game in order to not
+    //! start too soon
+    bool m_postLoadRan = false;
+
     // Some variables that have complex types are hidden here to not
     // have to include tons of headers here
     std::unique_ptr<Implementation> m_impl;
