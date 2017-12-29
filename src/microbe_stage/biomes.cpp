@@ -1,5 +1,3 @@
-#pragma once
-
 #include "microbe_stage/compounds.h"
 #include "microbe_stage/simulation_parameters.h"
 #include "biomes.h"

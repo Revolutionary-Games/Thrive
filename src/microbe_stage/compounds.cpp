@@ -1,5 +1,3 @@
-#pragma once
-
 #include "general/json_registry.h"
 #include "compounds.h"
 
