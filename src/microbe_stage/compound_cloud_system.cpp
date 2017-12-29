@@ -15,6 +15,10 @@
 // #include "scripting/luajit.h"
 // #include "util/make_unique.h"
 
+#include "ThriveGame.h"
+
+#include "engine/player_data.h"
+
 #include "generated/cell_stage_world.h"
 
 #include <OgreMeshManager2.h>
@@ -155,8 +159,6 @@ void CompoundCloudSystem::Init(CellStageWorld &world){
 
     world.GetScene()->getRootSceneNode()->createChildSceneNode()->attachObject(
         compoundCloudsPlane);
-    
-    compoundCloudsPlane->setMaterialName("CompoundClouds");
 
     Ogre::HlmsManager* hlmsManager = Ogre::Root::getSingleton().getHlmsManager();
 
@@ -201,24 +203,40 @@ void CompoundCloudSystem::Run(CellStageWorld &world,
     const int renderTime = Leviathan::TICKSPEED * tick;
 
     // Game::instance().engine().playerData().playerName()
-    LEVIATHAN_ASSERT(playerEntity != 0, "CompoundCloudSystem playerEntity not set");
     
-    // Get the player's position.
-    const Leviathan::Position& pos = world.GetComponent_Position(playerEntity);
+    auto playerEntity = ThriveGame::instance()->playerData().activeCreature();
+
+    Float3 position = Float3(0, 0, 0);
+
+    if(playerEntity == NULL_OBJECT){
+
+        LOG_WARNING("CompoundCloudSystem: Run: playerData().activeCreature() is NULL_OBJECT. "
+            "Using default position");
+    } else {
+
+        try{
+            // Get the player's position.
+            const Leviathan::Position& posEntity = world.GetComponent_Position(playerEntity);
+            position = posEntity.Members._Position;
+            
+        } catch(const Leviathan::NotFound &){
+            LOG_WARNING("CompoundCloudSystem: Run: playerEntity has no position");
+        }
+    }
     
     // If the player moves out of the current grid, move the grid.
-    if (pos.Members._Position.X > offsetX + width/3*gridSize/2  ||
-        pos.Members._Position.Y > offsetY + height/3*gridSize/2 ||
-        pos.Members._Position.X < offsetX - width/3*gridSize/2  ||
-        pos.Members._Position.Y < offsetY - height/3*gridSize/2)
+    if (position.X > offsetX + width/3*gridSize/2  ||
+        position.Y > offsetY + height/3*gridSize/2 ||
+        position.X < offsetX - width/3*gridSize/2  ||
+        position.Y < offsetY - height/3*gridSize/2)
     {
-        if (pos.Members._Position.X > offsetX + width/3*gridSize/2 )
+        if (position.X > offsetX + width/3*gridSize/2 )
             offsetX += width/3*gridSize;
-        if (pos.Members._Position.Y > offsetY + height/3*gridSize/2)
+        if (position.Y > offsetY + height/3*gridSize/2)
             offsetY += height/3*gridSize;
-        if (pos.Members._Position.X < offsetX - width/3*gridSize/2 )
+        if (position.X < offsetX - width/3*gridSize/2 )
             offsetX -= width/3*gridSize;
-        if (pos.Members._Position.Y < offsetY - height/3*gridSize/2)
+        if (position.Y < offsetY - height/3*gridSize/2)
             offsetY -= height/3*gridSize;
 
         compoundCloudsPlane->getParentSceneNode()->setPosition(offsetX, offsetY, -1.0);
@@ -291,6 +309,10 @@ void CompoundCloudSystem::Run(CellStageWorld &world,
 
         texturePtr = Ogre::TextureManager::getSingleton().load("PerlinNoise.jpg", "General");
         pass->createTextureUnitState()->setTexture(texturePtr);
+
+        // This loads the material first time this is called. This needs
+        // to be called AFTER the first compound cloud has been created
+        compoundCloudsPlane->setMaterialName("CompoundClouds");
 
         compoundCloudsPlane->getSubItem(0)->setCustomParameter(1,
             Ogre::Vector4(0.0f, 0.0f, 0.0f, 0.0f));

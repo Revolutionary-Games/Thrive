@@ -59,6 +59,8 @@ public:
     static void CheckGameKeyConfigVariables(Lock &guard, KeyConfiguration* keyconfigobj);
 
     static ThriveGame* Get();
+    // Alternative for old engine style
+    static ThriveGame* instance();
 
     bool InitLoadCustomScriptTypes(asIScriptEngine* engine) override;
     void RegisterCustomScriptTypes(asIScriptEngine* engine,

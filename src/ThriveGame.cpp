@@ -62,6 +62,11 @@ ThriveGame* ThriveGame::Get(){
     return StaticGame;
 }
 
+ThriveGame* ThriveGame::instance(){
+
+    return StaticGame;
+}
+
 ThriveGame* ThriveGame::StaticGame = nullptr;
 
 Leviathan::NetworkInterface* ThriveGame::_GetApplicationPacketHandler(){

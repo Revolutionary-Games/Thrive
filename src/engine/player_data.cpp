@@ -20,7 +20,7 @@ struct PlayerData::Implementation {
     {
     }
 
-    EntityId m_activeCreature = NULL_ENTITY;
+    ObjectID m_activeCreature = NULL_OBJECT;
     GameStateData* m_activeCreatureGamestate = nullptr;
 
     std::string m_playerName;
