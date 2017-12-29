@@ -117,6 +117,22 @@ set(GROUP_MICROBE_STAGE
   # "microbe_stage/species_component.h"
   "microbe_stage/simulation_parameters.h"
   "microbe_stage/simulation_parameters.cpp"
+  "microbe_stage/biome_controller.h"
+  "microbe_stage/biome_controller.cpp"
+  "microbe_stage/biomes.h"
+  "microbe_stage/biomes.cpp"
+  "microbe_stage/compounds.h"
+  "microbe_stage/compounds.cpp"
+  "microbe_stage/bioprocesses.h"
+  "microbe_stage/bioprocesses.cpp"
+  "microbe_stage/organelle_types.h"
+  "microbe_stage/organelle_types.cpp"
+  "microbe_stage/species.h"
+  "microbe_stage/species.cpp"
+  "microbe_stage/bacteria_types.h"
+  "microbe_stage/bacteria_types.cpp"
+  "microbe_stage/species_name_controller.h"
+  "microbe_stage/species_name_controller.cpp"
   )
 
 set(GROUP_OGRE
