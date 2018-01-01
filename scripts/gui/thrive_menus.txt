@@ -47,6 +47,7 @@ o GuiCollection "MicrobeRoot"{
 o GuiObject "_IntroVideoStarter"{
     s{
         GuiObject@ OurObject;
+        bool PlayingVideo = false;
 
         // Comment the next line to not play intro video
         [@Listener="OnInit"]
@@ -78,7 +79,8 @@ o GuiObject "_IntroVideoStarter"{
 
             // Start playback
             castedPlayer.Play("Data/Videos/intro.mp4");
-
+            PlayingVideo = true;
+            
             return true;
         }
 
@@ -90,6 +92,11 @@ o GuiObject "_IntroVideoStarter"{
         }
 
         void DestroyVideoPlayerWindow(){
+             // Make sure this is called only once
+             if(!PlayingVideo)
+                return;
+
+             PlayingVideo = false;
              LOG_INFO("Destroying VideoPlayer window");
              OurObject.GetOwningManager().GetRootWindow().
                  DestroyChild("MainMenuVideoPlayer");
@@ -100,6 +107,17 @@ o GuiObject "_IntroVideoStarter"{
 
              LOG_INFO("Intro video ended");
              GetEngine().Invoke(@DestroyVideoPlayerWindow);
+        }
+        
+        // User skips the video
+        [@Listener="Generic", @Type="MainMenuIntroSkipEvent"]
+        int onSkipVideoEvent(GuiObject@ instance, GenericEvent@ event){
+            if(PlayingVideo){
+                OnVideoEnded(NamedVars());
+                return 1;
+            } else {
+                return 0;
+            }
         }
     @%};
 }

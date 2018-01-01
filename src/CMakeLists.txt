@@ -204,6 +204,12 @@ set(GROUP_MICROBE
   "generated/cell_stage_bindings.h"
   )
 
+# Menu things
+set(GROUP_MENU
+  "main_menu_keypresses.cpp"
+  "main_menu_keypresses.h"
+  )
+
 
 # Groups for better visual studio experience
 source_group("bullet" FILES ${GROUP_BULLET})
@@ -216,6 +222,8 @@ source_group("scripting" FILES ${GROUP_SCRIPTING})
 source_group("sound" FILES ${GROUP_SOUND})
 source_group("util" FILES ${GROUP_UTIL})
 
+source_group("menu_code" FILES ${GROUP_MENU})
+
 source_group("microbe" FILES ${GROUP_MICROBE})
 
 
@@ -224,6 +232,7 @@ set(THRIVE_FILES ${GROUP_BULLET} ${GROUP_ENGINE}
   ${GROUP_GENERAL} ${GROUP_GUI} ${GROUP_MICROBE_STAGE}
   ${GROUP_OGRE} ${GROUP_SCRIPTING} ${GROUP_SOUND}
   ${GROUP_UTIL} ${GROUP_MICROBE}
+  ${GROUP_MENU}
   )
 
 # Leviathan program setup

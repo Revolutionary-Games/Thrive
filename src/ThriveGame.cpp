@@ -5,6 +5,8 @@
 #include "thrive_version.h"
 #include "thrive_world_factory.h"
 
+#include "main_menu_keypresses.h"
+
 #include "microbe_stage/simulation_parameters.h"
 #include "microbe_stage/biome_controller.h"
 
@@ -32,13 +34,16 @@ public:
     Implementation(
         ThriveGame& game
     ) : m_game(game),
-        m_playerData("player")
+        m_playerData("player"),
+        m_menuKeyPresses(std::make_shared<MainMenuKeyPressListener>())
     {
     }
 
     ThriveGame& m_game;
     
     PlayerData m_playerData;
+
+    std::shared_ptr<MainMenuKeyPressListener> m_menuKeyPresses;
 };
 
 // ------------------------------------ //
@@ -177,6 +182,12 @@ PlayerData&
 ThriveGame::playerData(){
     return m_impl->m_playerData;
 }
+// ------------------------------------ //
+void ThriveGame::onIntroSkipPressed(){
+
+    // Fire an event that the GUI handles //
+    EventHandler::Get()->CallEvent(new Leviathan::GenericEvent("MainMenuIntroSkipEvent"));
+}
 
 // ------------------------------------ //
 void ThriveGame::Tick(int mspassed){
@@ -245,6 +256,9 @@ void ThriveGame::CustomizeEnginePostLoad(){
     Leviathan::GUI::GuiManager::LoadGUITheme("Thrive.scheme");
 
     Leviathan::GraphicalInputEntity* window1 = Engine::GetEngine()->GetWindowEntity();
+
+    // Register custom listener for detecting keypresses for skipping the intro video
+    window1->GetInputController()->LinkReceiver(m_impl->m_menuKeyPresses);
 
     Leviathan::GUI::GuiManager* GuiManagerAccess = window1->GetGui();
 

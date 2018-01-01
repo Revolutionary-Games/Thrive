@@ -45,6 +45,10 @@ public:
     playerData();
 
     // ------------------------------------ //
+    // Player input actions
+    void onIntroSkipPressed();
+
+    // ------------------------------------ //
     // Hooking into the engine, and overridden methods from base application etc.
 
     void Tick(int mspassed) override;
