@@ -181,19 +181,14 @@ void CompoundCloudSystem::Init(CellStageWorld &world){
 void CompoundCloudSystem::Release(CellStageWorld &world){
 
     // Destroy the plane
-    DEBUG_BREAK;
-
     world.GetScene()->destroyItem(compoundCloudsPlane);
 
-    // m_blendblock
+    Ogre::MeshManager::getSingleton().remove(m_planeMesh);
 
     if(m_blendblock){
-        Ogre::HlmsManager* hlmsManager = Ogre::Root::getSingleton().getHlmsManager();
-        hlmsManager->destroyBlendblock(m_blendblock);
+        Ogre::Root::getSingleton().getHlmsManager()->destroyBlendblock(m_blendblock);
     }
     m_blendblock = nullptr;
-
-    Ogre::MeshManager::getSingleton().remove(m_planeMesh);
 }
 
 
