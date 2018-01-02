@@ -109,7 +109,7 @@ o GuiObject "_IntroVideoStarter"{
              GetEngine().Invoke(@DestroyVideoPlayerWindow);
         }
         
-        // User skips the video
+        // User pressed skip intro video button
         [@Listener="Generic", @Type="MainMenuIntroSkipEvent"]
         int onSkipVideoEvent(GuiObject@ instance, GenericEvent@ event){
             if(PlayingVideo){
