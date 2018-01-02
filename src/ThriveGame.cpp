@@ -186,7 +186,8 @@ ThriveGame::playerData(){
 void ThriveGame::onIntroSkipPressed(){
 
     // Fire an event that the GUI handles //
-    EventHandler::Get()->CallEvent(new Leviathan::GenericEvent("MainMenuIntroSkipEvent"));
+    Engine::Get()->GetEventHandler()->CallEvent(
+        new Leviathan::GenericEvent("MainMenuIntroSkipEvent"));
 }
 
 // ------------------------------------ //

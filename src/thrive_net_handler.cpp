@@ -3,6 +3,7 @@
 
 #include "GUI/GuiManager.h"
 
+#include "Engine.h"
 #include "Events/EventHandler.h"
 
 using namespace thrive;
@@ -24,7 +25,8 @@ void ThriveNetHandler::_OnStartApplicationConnect(){
 // ------------------------------------ //
 void ThriveNetHandler::_OnNewConnectionStatusMessage(const std::string &message){
     
-	EventHandler::Get()->CallEvent(new Leviathan::GenericEvent("ConnectStatusMessage",
+    Engine::Get()->GetEventHandler()->CallEvent(
+        new Leviathan::GenericEvent("ConnectStatusMessage",
             Leviathan::NamedVars(std::shared_ptr<NamedVariableList>(
 		new NamedVariableList("Message", new VariableBlock(message))))));
 }
