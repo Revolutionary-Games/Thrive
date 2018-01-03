@@ -41,14 +41,14 @@ world = GameWorldClass.new(
                      runrender: {group: 10, parameters: [
                                    "GetScene()"
                                  ]}),
-    EntitySystem.new("CompoundCloudSystem", [],
-                     nostate: true,
-                     init: [Variable.new("*this", "")],
-                     release: [Variable.new("*this", "")],
-                     runtick: {group: 5, parameters: [
-                                 "ComponentCompoundCloudComponent.GetIndex()",
-                                 "GetTickNumber()"
-                               ]})
+    # EntitySystem.new("CompoundCloudSystem", [],
+    #                  nostate: true,
+    #                  init: [Variable.new("*this", "")],
+    #                  release: [Variable.new("*this", "")],
+    #                  runtick: {group: 5, parameters: [
+    #                              "ComponentCompoundCloudComponent.GetIndex()",
+    #                              "GetTickNumber()"
+    #                            ]})
   ],
   systemspreticksetup: (<<-END
   const auto timeAndTickTuple = GetTickAndTime();
