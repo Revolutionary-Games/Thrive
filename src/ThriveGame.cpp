@@ -286,7 +286,12 @@ void ThriveGame::CustomizeEnginePostLoad(){
 }
 
 void ThriveGame::EnginePreShutdown(){
-        
+    // All resources that need Ogre or the engine to be available when
+    // they are destroyed need to be released here
+    
+    m_cellStage.reset();
+
+    m_impl.reset();
 }
 // ------------------------------------ //
 void ThriveGame::CheckGameConfigurationVariables(Lock &guard, GameConfiguration* configobj){
