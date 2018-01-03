@@ -241,9 +241,6 @@ set(BaseProgramName "Thrive")
 set(BaseIncludeFileName "thrive_version.h")
 set(BaseSubFolder "src")
 
-configure_file("${LEVIATHAN_SRC}/File Templates/BaseLeviathanProjectIncludes.h.in" 
-  "${PROJECT_SOURCE_DIR}/src/thrive_version.h")
-
 # Set all the settings
 set(ProgramIncludesHeader "${BaseIncludeFileName}")
 set(ProgramAppHeader "ThriveGame.h")
@@ -262,9 +259,10 @@ set(PROGRAMCHECKKEYCONFIGFUNCNAME	"ThriveGame::CheckGameKeyConfigVariables")
 set(WINDOWTITLEGENFUNCTION			"ThriveGame::GenerateWindowTitle()")
 set(USERREADABLEIDENTIFICATION		"\"Thrive game version \" GAME_VERSIONS")
 
-# Configure the main file
-configure_file("${LEVIATHAN_SRC}/File Templates/BaseLeviathanProjectMain.cpp.in" 
-  "${PROJECT_SOURCE_DIR}/${BaseSubFolder}/main.cpp")
+# Configure main and thrive_version.h files
+StandardConfigureExecutableMainAndInclude("${BaseIncludeFileName}" "main.cpp"
+  "${BaseSubFolder}" "${PROJECT_SOURCE_DIR}/${BaseSubFolder}")
+
 
 include_directories(${CMAKE_CURRENT_LIST_DIR})
 
