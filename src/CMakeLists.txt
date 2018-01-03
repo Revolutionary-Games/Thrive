@@ -295,14 +295,3 @@ include(LeviathanUsingProject)
 target_link_libraries(Thrive ThriveLib)
 
 
-# # This is a library of parts that should probably be moved into
-# # leviathan to move the maintainance burden there and allow others to
-# # use the code
-# set(GROUP_TO_MOVE
-#   "gui/AlphaHitWindow.h" "gui/AlphaHitWindow.cpp"
-#   )
-
-# add_library(TempToMoveFiles STATIC ${GROUP_TO_MOVE})
-# target_link_libraries(Thrive TempToMoveFiles)
-
-
