@@ -194,7 +194,7 @@ struct StorageContainer::Implementation {
     ) const {
         auto iter = m_content.find(key);
         return (
-            iter != m_content.end() and
+            iter != m_content.end() &&
             iter->second.typeId == TypeInfo<T>::Id
         );
     }
@@ -249,7 +249,7 @@ struct StorageContainer::Implementation {
         const std::string& key, \
         const type& defaultValue \
     ) const { \
-        if (not this->contains<type>(key)) { \
+        if (!this->contains<type>(key)) { \
             return defaultValue; \
         } \
         auto storedValue = m_impl->rawGet<type>(key); \
@@ -265,6 +265,7 @@ struct StorageContainer::Implementation {
         auto storedValue = TypeInfo<type>::convertToStoredType(value); \
         m_impl->rawSet<type>(key, std::move(storedValue)); \
     }
+
 
 GET_SET_CONTAINS(bool)
 GET_SET_CONTAINS(char)
