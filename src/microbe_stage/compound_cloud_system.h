@@ -14,10 +14,8 @@
 
 #include "engine/component_types.h"
 
-#include "Entities/Component.h"
-#include "Entities/System.h"
-
-#include "Entities/Components.h"
+#include <Entities/Component.h>
+#include <Entities/System.h>
 
 #include "general/perlin_noise.h"
 // #include "ogre/scene_node_system.h"
