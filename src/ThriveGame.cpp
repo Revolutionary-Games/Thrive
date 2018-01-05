@@ -163,6 +163,7 @@ void ThriveGame::respawnPlayerCell(){
     m_cellStage->Create_RenderNode(m_playerCell);
 	auto& processor = m_cellStage->Create_ProcessorComponent(m_playerCell);
 	auto& compoundBag = m_cellStage->Create_CompoundBagComponent(m_playerCell);
+	m_cellStage->Create_SpeciesComponent(m_playerCell, "PIKACHU");
 
     m_cellStage->Create_Position(m_playerCell, Float3(0), Float4::IdentityQuaternion());
 

@@ -17,11 +17,16 @@ generator.addInclude "Generated/StandardWorld.h"
 generator.addInclude "microbe_stage/membrane_system.h"
 generator.addInclude "microbe_stage/compound_cloud_system.h"
 generator.addInclude "microbe_stage/process_system.h"
+generator.addInclude "microbe_stage/species_component.h"
 
 world = GameWorldClass.new(
   "CellStageWorld", componentTypes: [
     EntityComponent.new("ProcessorComponent", [ConstructorInfo.new([])]),
     EntityComponent.new("CompoundBagComponent", [ConstructorInfo.new([])]),
+    EntityComponent.new("SpeciesComponent", [ConstructorInfo.new([
+                                                Variable.new("name", "std::string",
+                                                            noRef: false)
+                                            ])]),
     EntityComponent.new("MembraneComponent", [ConstructorInfo.new(
                                          [
                                            #Variable.new("GetScene()", "",

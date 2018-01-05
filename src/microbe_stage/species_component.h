@@ -1,27 +1,31 @@
 #pragma once
 
-#include "engine/component.h"
-
-#include "scripting/luajit.h"
-
 #include <OgreVector3.h>
 #include <string>
 
+
+#include "engine/component_types.h"
+#include "Entities/Component.h"
+#include "Entities/Components.h"
+
 namespace thrive {
 
-class SpeciesComponent : public Component {
-	COMPONENT(SpeciesComponent)
-
+class SpeciesComponent : public Leviathan::Component {
 public:
-    static void luaBindings(sol::state &lua);
-
 	SpeciesComponent(const std::string& _name = "");
 
-	sol::table organelles;
-	sol::table avgCompoundAmounts;
+	// TODO.
+	//sol::table organelles;
+	//sol::table avgCompoundAmounts;
 	Ogre::Vector3 colour;
 	std::string name;
 
+	// TODO: get the id from the simulation parameters.
+	size_t id;
+
+	static constexpr auto TYPE = THRIVE_COMPONENT::SPECIES;
+
+	/*
     void
     load(
         const StorageContainer& storage
@@ -29,6 +33,8 @@ public:
 
     StorageContainer
     storage() const override;
+	*/
+
 private:
 	static unsigned int SPECIES_NUM;
 };
