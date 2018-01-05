@@ -16,9 +16,12 @@ generator.addInclude "Generated/StandardWorld.h"
 
 generator.addInclude "microbe_stage/membrane_system.h"
 generator.addInclude "microbe_stage/compound_cloud_system.h"
+generator.addInclude "microbe_stage/process_system.h"
 
 world = GameWorldClass.new(
   "CellStageWorld", componentTypes: [
+    EntityComponent.new("ProcessorComponent", [ConstructorInfo.new([])]),
+    EntityComponent.new("CompoundBagComponent", [ConstructorInfo.new([])]),
     EntityComponent.new("MembraneComponent", [ConstructorInfo.new(
                                          [
                                            #Variable.new("GetScene()", "",
@@ -41,6 +44,9 @@ world = GameWorldClass.new(
                      runrender: {group: 10, parameters: [
                                    "GetScene()"
                                  ]}),
+
+    #EntitySystem.new("ProcessSystem", ["CompoundBagComponent", "ProcessorComponent"],
+
     # EntitySystem.new("CompoundCloudSystem", [],
     #                  nostate: true,
     #                  init: [Variable.new("*this", "")],
