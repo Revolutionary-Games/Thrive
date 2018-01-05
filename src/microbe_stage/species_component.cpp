@@ -1,48 +1,30 @@
 #include "species_component.h"
 
 #include <OgreMath.h>
-#include "engine/engine.h"
 #include "engine/serialization.h"
-#include "engine/component_factory.h"
 #include "game.h"
 
 using namespace thrive;
 
 unsigned int SpeciesComponent::SPECIES_NUM = 0;
 
-void SpeciesComponent::luaBindings(
-    sol::state &lua
-){
-    lua.new_usertype<SpeciesComponent>("SpeciesComponent",
-
-        "new", sol::factories([](const std::string &name){
-                return std::make_unique<SpeciesComponent>(name);
-            }),
-        
-        COMPONENT_BINDINGS(SpeciesComponent),
-
-        "name", &SpeciesComponent::name,
-        "organelles", &SpeciesComponent::organelles,
-        "avgCompoundAmounts", &SpeciesComponent::avgCompoundAmounts,
-        "colour", &SpeciesComponent::colour,
-        "load", &SpeciesComponent::load,
-        "storage", &SpeciesComponent::storage
-    );
-}
-
 SpeciesComponent::SpeciesComponent(const std::string& _name)
-	: colour(1,0,1), name(_name) {
+	: Leviathan::Component(componentTypeConvert(THRIVE_COMPONENT::SPECIES)), colour(1,0,1), name(_name) {
 	if (name == "") {
 		name = "noname" + std::to_string(SPECIES_NUM);
 		++SPECIES_NUM;
 	}
 
+	// TODO.
+	/*
     sol::state_view lua(Game::instance().engine().luaState());
 
 	organelles = lua.create_table();
     avgCompoundAmounts = lua.create_table();
+	*/
 }
 
+/*
 void
 SpeciesComponent::load(const StorageContainer& storage) {
 	Component::load(storage);
@@ -114,5 +96,4 @@ SpeciesComponent::storage() const {
 	storage.set<StorageContainer>("avgCompoundAmounts", amts);
 	return storage;
 }
-
-REGISTER_COMPONENT(SpeciesComponent)
+*/

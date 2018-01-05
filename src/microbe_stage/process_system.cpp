@@ -3,42 +3,24 @@
 #include <algorithm>
 #include <map>
 
-#include "engine/component_factory.h"
-#include "engine/engine.h"
-#include "engine/entity.h"
-#include "engine/entity_filter.h"
-#include "engine/game_state.h"
-#include "engine/entity_filter.h"
 #include "engine/serialization.h"
 #include "game.h"
 
 #include "general/thrive_math.h"
+#include "simulation_parameters.h"
 
-#include "microbe_stage/compound.h"
-#include "microbe_stage/compound_registry.h"
-#include "microbe_stage/bio_process_registry.h"
+//#include "microbe_stage/compound.h"
+//#include "microbe_stage/compound_registry.h"
+//#include "microbe_stage/bio_process_registry.h"
 #include "microbe_stage/process_system.h"
 
 using namespace thrive;
 
-REGISTER_COMPONENT(ProcessorComponent)
+ProcessorComponent::ProcessorComponent()
+	: Leviathan::Component(componentTypeConvert(THRIVE_COMPONENT::PROCESSOR))
+{}
 
-void ProcessorComponent::luaBindings(
-    sol::state &lua
-){
-    lua.new_usertype<ProcessorComponent>("ProcessorComponent",
-
-        "new", sol::factories([](){
-                return std::make_unique<ProcessorComponent>();
-            }),
-
-        COMPONENT_BINDINGS(ProcessorComponent),
-
-        "setCapacity", &ProcessorComponent::setCapacity
-    );
-}
-
-
+/*
 void
 ProcessorComponent::load(const StorageContainer& storage)
 {
@@ -64,47 +46,29 @@ ProcessorComponent::storage() const
 
 	return storage;
 }
+*/
 
 void
-ProcessorComponent::setCapacity(BioProcessId id, double capacity)
+ProcessorComponent::setCapacity(size_t id, double capacity)
 {
     this->process_capacities[id] = capacity;
 }
 
-REGISTER_COMPONENT(CompoundBagComponent)
-
-void CompoundBagComponent::luaBindings(
-    sol::state &lua
-){
-    lua.new_usertype<CompoundBagComponent>("CompoundBagComponent",
-
-        "new", sol::factories([](){
-                return std::make_unique<CompoundBagComponent>();
-            }),
-
-        COMPONENT_BINDINGS(CompoundBagComponent),
-
-        "setProcessor", &CompoundBagComponent::setProcessor,
-        "giveCompound", &CompoundBagComponent::giveCompound,
-        "takeCompound", &CompoundBagComponent::takeCompound,
-        "getCompoundAmount", &CompoundBagComponent::getCompoundAmount,
-        "getPrice", &CompoundBagComponent::getPrice,
-        "getDemand", &CompoundBagComponent::getDemand,
-        "storageSpace", &CompoundBagComponent::storageSpace
-    );
-}
-
-CompoundBagComponent::CompoundBagComponent() {
+CompoundBagComponent::CompoundBagComponent()
+	: Leviathan::Component(componentTypeConvert(THRIVE_COMPONENT::COMPOUND_BAG)) {
     storageSpace = 0;
     storageSpaceOccupied = 0;
-    for (CompoundId id : CompoundRegistry::getCompoundList()) {
+
+	for (size_t id = 0; id < SimulationParameters::compoundRegistry.getSize(); id++) {
         compounds[id].amount = 0;
         compounds[id].price = INITIAL_COMPOUND_PRICE;
         compounds[id].uninflatedPrice = INITIAL_COMPOUND_PRICE;
         compounds[id].demand = INITIAL_COMPOUND_DEMAND;
     }
+
 }
 
+/*
 void
 CompoundBagComponent::load(const StorageContainer& storage)
 {
@@ -157,26 +121,21 @@ CompoundBagComponent::storage() const
 
     return storage;
 }
-
-void
-CompoundBagComponent::setProcessor(ProcessorComponent& processor, const std::string& speciesName) {
-    this->processor = &processor;
-    this->speciesName = speciesName;
-}
+*/
 
 // helper methods for integrating compound bags with current, un-refactored, lua microbes
 double
-CompoundBagComponent::getCompoundAmount(CompoundId id) {
+CompoundBagComponent::getCompoundAmount(size_t id) {
     return compounds[id].amount;
 }
 
 void
-CompoundBagComponent::giveCompound(CompoundId id, double amt) {
+CompoundBagComponent::giveCompound(size_t id, double amt) {
     compounds[id].amount += amt;
 }
 
 double
-CompoundBagComponent::takeCompound(CompoundId id, double to_take) {
+CompoundBagComponent::takeCompound(size_t id, double to_take) {
     double& ref = compounds[id].amount;
     double amt = ref > to_take ? to_take : ref;
     ref -= amt;
@@ -184,29 +143,15 @@ CompoundBagComponent::takeCompound(CompoundId id, double to_take) {
 }
 
 double
-CompoundBagComponent::getPrice(CompoundId compoundId) {
+CompoundBagComponent::getPrice(size_t compoundId) {
     return compounds[compoundId].price;
 }
 
 double
-CompoundBagComponent::getDemand(CompoundId compoundId) {
+CompoundBagComponent::getDemand(size_t compoundId) {
     return compounds[compoundId].demand;
 }
-
-void ProcessSystem::luaBindings(
-    sol::state &lua
-){
-    lua.new_usertype<ProcessSystem>("ProcessSystem",
-
-        sol::constructors<sol::types<>>(),
-
-        sol::base_classes, sol::bases<System>(),
-
-        "init", &ProcessSystem::init
-    );
-}
-
-
+/*
 struct ProcessSystem::Implementation {
 
     EntityFilter<
@@ -546,10 +491,11 @@ ProcessSystem::Implementation::update(int logicTime) {
 }
 
 void
-ProcessSystem::update(int, int logicTime)
+ProcessSystem::Run(CellStageWorld &world, int tick)
 {
-    m_impl->updateRemovedEntities(logicTime);
-    m_impl->updateAddedEntites(logicTime);
+    m_impl->updateRemovedEntities(tick);
+    m_impl->updateAddedEntites(tick);
     m_impl->m_entities.clearChanges();
-    m_impl->update(logicTime);
+    m_impl->update(tick);
 }
+*/

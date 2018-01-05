@@ -9,6 +9,9 @@ enum class THRIVE_COMPONENT : uint16_t {
 
     MEMBRANE = static_cast<uint16_t>(Leviathan::COMPONENT_TYPE::Custom) + 1,
     COMPOUND_CLOUD,
+	PROCESSOR,
+	COMPOUND_BAG,
+	SPECIES
 
     // TODO: check is this needed for anything
     //INVALID

@@ -1,9 +1,15 @@
 #pragma once
-
+/*/
 #include "engine/component.h"
 #include "engine/system.h"
 #include "engine/touchable.h"
 #include "engine/typedefs.h"
+*/
+
+#include "engine/component_types.h"
+#include "Entities/Component.h"
+#include "Entities/System.h"
+#include "Entities/Components.h"
 
 #include <boost/range/adaptor/map.hpp>
 #include <vector>
@@ -29,18 +35,15 @@
 #define INITIAL_COMPOUND_PRICE 10.0
 #define INITIAL_COMPOUND_DEMAND 1.0
 
-namespace sol {
-class state;
-}
-
 namespace thrive {
 
-class ProcessorComponent : public Component {
-    COMPONENT(Processor)
+class CellStageWorld;
+
+class ProcessorComponent : public Leviathan::Component {
 
 public:
-    static void luaBindings(sol::state &lua);
-
+	ProcessorComponent();
+	/*
     void
     load(
         const StorageContainer& storage
@@ -48,10 +51,13 @@ public:
 
     StorageContainer
     storage() const override;
+	*/
 
-    std::unordered_map<BioProcessId, double> process_capacities;
+    std::unordered_map<size_t, double> process_capacities;
     void
-    setCapacity(BioProcessId, double);
+    setCapacity(size_t, double);
+
+	static constexpr auto TYPE = THRIVE_COMPONENT::PROCESSOR;
 };
 
 // Helper structure to store the economic information of the compounds.
@@ -64,14 +70,11 @@ struct CompoundData {
     double breakEvenPoint;
 };
 
-class CompoundBagComponent : public Component {
-    COMPONENT(CompoundBag)
-
+class CompoundBagComponent : public Leviathan::Component {
 public:
-    static void luaBindings(sol::state &lua);
-
     CompoundBagComponent();
 
+	/*
     void
     load(
         const StorageContainer& storage
@@ -79,67 +82,62 @@ public:
 
     StorageContainer
     storage() const override;
+	*/
 
     double storageSpace;
     double storageSpaceOccupied;
-    ProcessorComponent* processor = nullptr;
-    std::string speciesName;
-    std::unordered_map<CompoundId, CompoundData> compounds;
+    std::unordered_map<size_t, CompoundData> compounds;
+
+    double
+    getCompoundAmount(size_t);
+
+    double
+    getPrice(size_t);
+
+    double
+    getDemand(size_t);
+
+    double
+    takeCompound(size_t, double); // remove up to a certain amount of compound, returning how much was removed
 
     void
-    setProcessor(ProcessorComponent& processor, const std::string& speciesName);
+    giveCompound(size_t, double);
 
-    double
-    getCompoundAmount(CompoundId);
-
-    double
-    getPrice(CompoundId);
-
-    double
-    getDemand(CompoundId);
-
-    double
-    takeCompound(CompoundId, double); // remove up to a certain amount of compound, returning how much was removed
-
-    void
-    giveCompound(CompoundId, double);
+	static constexpr auto TYPE = THRIVE_COMPONENT::COMPOUND_BAG;
 };
 
-class ProcessSystem : public System {
-
-public:
-    static void luaBindings(sol::state &lua);
-
-    /**
-    * @brief Constructor
-    */
-    ProcessSystem();
-
-    /**
-    * @brief Destructor
-    */
-    ~ProcessSystem();
-
-    /**
-    * @brief Initializes the system
-    *
-    */
-    void init(GameStateData* gameState) override;
-
-    /**
-    * @brief Shuts the system down
-    */
-    void shutdown() override;
-
-    /**
-    * @brief Updates the system
-    */
-    void update(int renderTime, int logicTime) override;
-
-private:
-
-    struct Implementation;
-    std::unique_ptr<Implementation> m_impl;
-};
+//class ProcessSystem {
+//public:
+//    /**
+//    * @brief Constructor
+//    */
+//    ProcessSystem();
+//
+//    /**
+//    * @brief Destructor
+//    */
+//    ~ProcessSystem();
+//
+//    /**
+//    * @brief Initializes the system
+//    *
+//    */
+//    void Init(CellStageWorld &world);
+//
+//    /**
+//    * @brief Shuts the system down
+//    */
+//    //void Release(CellStageWorld &world);
+//
+//    /**
+//    * @brief Updates the system
+//    */
+//    void Run(CellStageWorld &world, int tick);
+//
+//private:
+//
+//    struct Implementation;
+//    std::unique_ptr<Implementation> m_impl;
+//};
 
 }
