@@ -63,7 +63,7 @@ public:
     */
     CompoundId m_compoundId = NULL_COMPOUND;
 
-    static constexpr auto TYPE = THRIVE_COMPONENT::COMPOUND_CLOUD;
+    static constexpr auto TYPE = componentTypeConvert(THRIVE_COMPONENT::COMPOUND_CLOUD);
 
 public:
     //! \brief Creates a cloud with the specified compound(s) types and colour

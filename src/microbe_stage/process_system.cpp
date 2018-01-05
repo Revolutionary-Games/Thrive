@@ -17,7 +17,7 @@
 using namespace thrive;
 
 ProcessorComponent::ProcessorComponent()
-	: Leviathan::Component(componentTypeConvert(THRIVE_COMPONENT::PROCESSOR))
+	: Leviathan::Component(TYPE)
 {}
 
 /*
@@ -55,7 +55,7 @@ ProcessorComponent::setCapacity(size_t id, double capacity)
 }
 
 CompoundBagComponent::CompoundBagComponent()
-	: Leviathan::Component(componentTypeConvert(THRIVE_COMPONENT::COMPOUND_BAG)) {
+	: Leviathan::Component(TYPE) {
     storageSpace = 0;
     storageSpaceOccupied = 0;
 

@@ -54,7 +54,7 @@ CompoundCloudComponent::CompoundCloudComponent(
     float red,
     float green,
     float blue
-) : Leviathan::Component(componentTypeConvert(THRIVE_COMPONENT::COMPOUND_CLOUD)),
+) : Leviathan::Component(TYPE),
     color(Ogre::ColourValue(red, green, blue)), m_compoundId(id)
 {
 

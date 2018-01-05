@@ -57,7 +57,7 @@ public:
     void
     setCapacity(size_t, double);
 
-	static constexpr auto TYPE = THRIVE_COMPONENT::PROCESSOR;
+    static constexpr auto TYPE = componentTypeConvert(THRIVE_COMPONENT::PROCESSOR);
 };
 
 // Helper structure to store the economic information of the compounds.
@@ -103,7 +103,7 @@ public:
     void
     giveCompound(size_t, double);
 
-	static constexpr auto TYPE = THRIVE_COMPONENT::COMPOUND_BAG;
+    static constexpr auto TYPE = componentTypeConvert(THRIVE_COMPONENT::COMPOUND_BAG);
 };
 
 //class ProcessSystem {

@@ -23,7 +23,7 @@ public:
 	// TODO: get the id from the simulation parameters.
 	size_t id;
 
-	static constexpr auto TYPE = THRIVE_COMPONENT::SPECIES;
+	static constexpr auto TYPE = componentTypeConvert(THRIVE_COMPONENT::SPECIES);
 
 	/*
     void

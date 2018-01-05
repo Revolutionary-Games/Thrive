@@ -34,7 +34,7 @@ using namespace thrive;
 static std::atomic<int> MembraneMeshNumber = {0};
 
 MembraneComponent::MembraneComponent() :
-    Component(componentTypeConvert(THRIVE_COMPONENT::MEMBRANE))
+    Leviathan::Component(TYPE)
 {
     // Create the mesh for rendering us
     m_mesh = Ogre::MeshManager::getSingleton().createManual(
