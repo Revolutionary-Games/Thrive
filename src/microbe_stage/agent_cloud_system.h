@@ -9,6 +9,7 @@
 // #include "engine/system.h"
 // #include "engine/touchable.h"
 #include "engine/typedefs.h"
+#include "engine/component_types.h"
 
 #include "general/perlin_noise.h"
 #include "microbe_stage/compound_registry.h"
@@ -44,6 +45,8 @@ public:
     * @brief The compound id.
     */
     CompoundId m_compoundId = NULL_COMPOUND;
+
+    static constexpr auto TYPE = componentTypeConvert(THRIVE_COMPONENT::AGENT_CLOUD);
 
 public:
 
