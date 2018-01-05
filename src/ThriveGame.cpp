@@ -114,10 +114,10 @@ void ThriveGame::startNewGame(){
     
     LEVIATHAN_ASSERT(m_cellStage, "Cell stage world creation failed");
     
-    window1->LinkObjects(m_cellStage);    
+    window1->LinkObjects(m_cellStage);
 
     // Clear world //
-    m_cellStage->ClearObjects();
+    m_cellStage->ClearEntities();
 
     // TODO: unfreeze, if was in the background
 
