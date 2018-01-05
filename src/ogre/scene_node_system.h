@@ -1,8 +1,10 @@
+#error replaced by Leviathan::RenderNode
+
 #pragma once
 
-#include "engine/component.h"
-#include "engine/system.h"
-#include "engine/touchable.h"
+// #include "engine/component.h"
+// #include "engine/system.h"
+// #include "engine/touchable.h"
 
 #include <memory>
 #include <OgreVector3.h>
@@ -10,11 +12,8 @@
 #include <vector>
 #include <map>
 
-#include <iostream>
-
-namespace sol {
-class state;
-}
+#include <Entities/Component.h>
+#include <Entities/System.h>
 
 namespace Ogre {
 class SceneNode;
@@ -30,9 +29,7 @@ namespace thrive {
 * @brief A component for a Ogre scene nodes
 *
 */
-class OgreSceneNodeComponent : public Component {
-    COMPONENT(OgreSceneNode)
-
+class OgreSceneNodeComponent : public Leviathan::Component {
 public:
 
     /**
