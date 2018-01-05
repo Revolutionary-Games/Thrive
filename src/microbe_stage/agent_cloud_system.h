@@ -5,14 +5,16 @@
 #include <OgreSceneManager.h>
 #include "OgreHardwarePixelBuffer.h"
 
-#include "engine/component.h"
-#include "engine/system.h"
-#include "engine/touchable.h"
+// #include "engine/component.h"
+// #include "engine/system.h"
+// #include "engine/touchable.h"
 #include "engine/typedefs.h"
 
 #include "general/perlin_noise.h"
-#include "ogre/scene_node_system.h"
 #include "microbe_stage/compound_registry.h"
+
+#include <Entities/Component.h>
+#include <Entities/System.h>
 
 namespace thrive {
 
@@ -21,9 +23,7 @@ class AgentCloudSystem;
 /**
 * @brief Agents clouds that flow in the environment.
 */
-class AgentCloudComponent : public Component {
-    COMPONENT(AgentCloudComponent)
-
+class AgentCloudComponent : public Leviathan::Component {
 public:
     /// The size of the compound cloud grid.
 	int width, height;
@@ -49,23 +49,23 @@ public:
 
     void initialize(CompoundId Id, float red, float green, float blue);
 
-    /**
-    * @brief Lua bindings
-    *
-    * Exposes:
-    * - CompoundCloudComponent()
-    *
-    * @return
-    */
-    static void luaBindings(sol::state &lua);
+    // /**
+    // * @brief Lua bindings
+    // *
+    // * Exposes:
+    // * - CompoundCloudComponent()
+    // *
+    // * @return
+    // */
+    // static void luaBindings(sol::state &lua);
 
-    void
-    load(
-        const StorageContainer& storage
-    ) override;
+    // void
+    // load(
+    //     const StorageContainer& storage
+    // ) override;
 
-    StorageContainer
-    storage() const override;
+    // StorageContainer
+    // storage() const override;
 
     /// Rate should be less than one.
     float
@@ -77,53 +77,37 @@ public:
 /**
 * @brief Moves the compound clouds.
 */
-class AgentCloudSystem : public System {
-
+class AgentCloudSystem : public Leviathan::System<
+    std::tuple<Leviathan::Position&, AgentCloudComponent&>>
+{
 public:
-    /**
-    * @brief Lua bindings
-    *
-    * Exposes:
-    * - AgentCloudSystem()
-    *
-    * @return
-    */
-    static void luaBindings(sol::state &lua);
-
-    /**
-    * @brief Constructor
-    */
-    AgentCloudSystem();
-
-    /**
-    * @brief Destructor
-    */
-    ~AgentCloudSystem();
-
-    /**
-    * @brief Initializes the system
-    *
-    * @param gameState
-    */
-    void init(GameStateData* gameState) override;
-
-    /**
-    * @brief Shuts the system down
-    */
-    void shutdown() override;
-
     /**
     * @brief Updates the system
     */
-    void update(int renderTime, int logicTime) override;
+    void
+    Run(
+        GameWorld &world
+    );
 
-private:
-    struct Implementation;
-    std::unique_ptr<Implementation> m_impl;
-    //! \todo Remove this. This is in the base class already
-    GameStateData* gameState;
-
-	void diffuse(float diffRate, std::vector<  std::vector<float>  >& oldDens, const std::vector<  std::vector<float>  >& density, int dt);
+    void
+    CreateNodes(
+        const std::vector<std::tuple<Leviathan::Position*, ObjectID>> &firstdata,
+        const std::vector<std::tuple<AgentCloudComponent*, ObjectID>> &seconddata,
+        const ComponentHolder<Leviathan::Position> &firstholder,
+        const ComponentHolder<AgentCloudComponent> &secondholder
+    ) {
+        TupleCachedComponentCollectionHelper(CachedComponents, firstdata, seconddata,
+            firstholder, secondholder);
+    }
+    
+    void
+    DestroyNodes(
+        const std::vector<std::tuple<Leviathan::Position*, ObjectID>> &firstdata,
+        const std::vector<std::tuple<AgentCloudComponent*, ObjectID>> &seconddata
+    ) {
+        CachedComponents.RemoveBasedOnKeyTupleList(firstdata);
+        CachedComponents.RemoveBasedOnKeyTupleList(seconddata);
+    }
 };
 
 }
