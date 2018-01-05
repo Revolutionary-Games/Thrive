@@ -116,36 +116,36 @@ class MembraneSystem : public Leviathan::System<std::tuple<MembraneComponent&,
 public:
 
     //! Updates the membrane calculations every frame
-    void Run(GameWorld &world, Ogre::SceneManager* scene){
+    void
+    Run(
+        GameWorld &world, Ogre::SceneManager* scene
+    ) {
         
-        auto& index = Nodes.GetIndex();
+        auto& index = CachedComponents.GetIndex();
         for(auto iter = index.begin(); iter != index.end(); ++iter){
 
             std::get<0>(*iter->second).Update(scene, std::get<1>(*iter->second).Node);
         }
     }
 
-    //! \see RenderingPositionSystem
-    template<class FirstType, class SecondType>
-    void CreateNodes(
-        const std::vector<std::tuple<FirstType*, ObjectID>> &firstdata,
-        const std::vector<std::tuple<SecondType*, ObjectID>> &seconddata,
-        const Leviathan::ComponentHolder<FirstType> &firstholder,
-        const Leviathan::ComponentHolder<SecondType> &secondholder)
-    {
-        static_assert(std::is_same<FirstType, MembraneComponent>::value, 
-            "CreateNodes FirstType is incorrect");
-        TupleNodeHelper(Nodes, firstdata, seconddata, firstholder, secondholder);
-    }    
-
-    //! \see RenderingPositionSystem
-    template<class FirstType, class SecondType>
-    void DestroyNodes(
-        const std::vector<std::tuple<FirstType*, ObjectID>> &firstdata,
-        const std::vector<std::tuple<SecondType*, ObjectID>> &seconddata)
-    {
-        Nodes.RemoveBasedOnKeyTupleList(firstdata);
-        Nodes.RemoveBasedOnKeyTupleList(seconddata);
+    void
+    CreateNodes(
+        const std::vector<std::tuple<MembraneComponent*, ObjectID>> &firstdata,
+        const std::vector<std::tuple<Leviathan::RenderNode*, ObjectID>> &seconddata,
+        const ComponentHolder<MembraneComponent> &firstholder,
+        const ComponentHolder<Leviathan::RenderNode> &secondholder
+    ) {
+        TupleCachedComponentCollectionHelper(CachedComponents, firstdata, seconddata,
+            firstholder, secondholder);
+    }
+    
+    void
+    DestroyNodes(
+        const std::vector<std::tuple<MembraneComponent*, ObjectID>> &firstdata,
+        const std::vector<std::tuple<Leviathan::RenderNode*, ObjectID>> &seconddata
+    ) {
+        CachedComponents.RemoveBasedOnKeyTupleList(firstdata);
+        CachedComponents.RemoveBasedOnKeyTupleList(seconddata);
     }
 };
 
