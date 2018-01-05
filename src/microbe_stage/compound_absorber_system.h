@@ -1,46 +1,54 @@
 #pragma once
 
-#include <boost/range/adaptor/map.hpp>
+// #include <boost/range/adaptor/map.hpp>
 
-#include "engine/component.h"
-#include "engine/system.h"
-#include "engine/touchable.h"
-#include "engine/typedefs.h"
+// #include "engine/component.h"
+// #include "engine/system.h"
+// #include "engine/touchable.h"
+// #include "engine/typedefs.h"
 
-#include <memory>
-#include <OgreCommon.h>
-#include <OgreMath.h>
-#include <OgreVector3.h>
-#include <unordered_set>
+#include "engine/component_types.h"
+
+#include "microbe_stage/compound_registry.h"
+#include "microbe_stage/compound_cloud_system.h"
+#include "microbe_stage/agent_cloud_system.h"
+#include "microbe_stage/membrane_system.h"
+
+
+#include <Entities/Component.h>
+#include <Entities/System.h>
+
+// #include <memory>
+// #include <OgreCommon.h>
+// #include <OgreMath.h>
+// #include <OgreVector3.h>
+// #include <unordered_set>
 
 namespace thrive {
 
-using BoostCompoundMapIterator = boost::range_detail::select_second_mutable_range<std::unordered_map<std::string, CompoundId>>;
-using BoostAbsorbedMapIterator = boost::range_detail::select_first_range<std::unordered_map<CompoundId, float>>;
+class CellStageWorld;
 
 /**
-* @brief Absorbs compound particles
+* @brief Absorbs compound from clouds
 */
-class CompoundAbsorberComponent : public Component {
-    COMPONENT(CompoundAbsorber)
-
+class CompoundAbsorberComponent : public Leviathan::Component {
 public:
 
-    /**
-    * @brief Lua bindings
-    *
-    * Exposes:
-    * - CompoundAbsorberComponent::absorbedCompoundAmount
-    * - CompoundAbsorberComponent::getAbsorbedCompounds
-    * - CompoundAbsorberComponent::canAbsorbCompound
-    * - CompoundAbsorberComponent::setCanAbsorbCompound
-    * - CompoundAbsorberComponent::setAbsorbtionCapacity
-    * - CompoundAbsorberComponent::enable
-    * - CompoundAbsorberComponent::disable
-    *
-    * @return
-    */
-    static void luaBindings(sol::state &lua);
+    // /**
+    // * @brief Lua bindings
+    // *
+    // * Exposes:
+    // * - CompoundAbsorberComponent::absorbedCompoundAmount
+    // * - CompoundAbsorberComponent::getAbsorbedCompounds
+    // * - CompoundAbsorberComponent::canAbsorbCompound
+    // * - CompoundAbsorberComponent::setCanAbsorbCompound
+    // * - CompoundAbsorberComponent::setAbsorbtionCapacity
+    // * - CompoundAbsorberComponent::enable
+    // * - CompoundAbsorberComponent::disable
+    // *
+    // * @return
+    // */
+    // static void luaBindings(sol::state &lua);
 
     /**
     * @brief The compounds absorbed in the last time step
@@ -111,10 +119,13 @@ public:
     void
     disable();
 
-    void
-    load(
-        const StorageContainer& storage
-    ) override;
+    // void
+    // load(
+    //     const StorageContainer& storage
+    // ) override;
+
+    // StorageContainer
+    // storage() const override;    
 
     /**
     * @brief Sets the amount of absorbed compounds
@@ -133,9 +144,6 @@ public:
         float amount
     );
 
-    BoostAbsorbedMapIterator
-    getAbsorbedCompounds();
-
     /**
     * @brief Sets whether an compound can be absorbed
     *
@@ -150,60 +158,68 @@ public:
         bool canAbsorb
     );
 
-    StorageContainer
-    storage() const override;
-
 };
 
 
 /**
-* @brief Despawns compounds for CompoundAbsorberComponent
+* @brief Absorbs compounds from CompoundCloudComponent and
+* AgentCloudComponent into membranes
 */
-class CompoundAbsorberSystem : public System {
-
+class CompoundAbsorberSystem {
 public:
-
-    /**
-    * @brief Lua bindings
-    *
-    * Exposes:
-    * - CompoundAbsorberSystem()
-    *
-    * @return
-    */
-    static void luaBindings(sol::state &lua);
-
-    /**
-    * @brief Constructor
-    */
-    CompoundAbsorberSystem();
-
-    /**
-    * @brief Destructor
-    */
-    ~CompoundAbsorberSystem();
-
-    /**
-    * @brief Initializes the system
-    *
-    * @param gameState
-    */
-    void init(GameStateData* gameState) override;
-
-    /**
-    * @brief Shuts the system down
-    */
-    void shutdown() override;
-
     /**
     * @brief Updates the system
     */
-    void update(int, int) override;
+    void
+    Run(CellStageWorld &world,
+        std::unordered_map<ObjectID, CompoundCloudComponent*> &clouds
+    );
 
+    void
+    CreateNodes(
+        const std::vector<std::tuple<AgentCloudComponent*, ObjectID>> &agentData,
+        const std::vector<std::tuple<Leviathan::Position*, ObjectID>> &scenenodeData,
+        const std::vector<std::tuple<MembraneComponent*, ObjectID>> &membraneData,
+        const std::vector<std::tuple<CompoundAbsorberComponent*, ObjectID>> &absorberData,
+        const Leviathan::ComponentHolder<AgentCloudComponent> &agentHolder,
+        const Leviathan::ComponentHolder<Leviathan::Position> &scenenodeHolder,
+        const Leviathan::ComponentHolder<MembraneComponent> &membraneHolder,
+        const Leviathan::ComponentHolder<CompoundAbsorberComponent> &absorberHolder
+    ) {
+        decltype(m_agents)::TupleCachedComponentCollectionHelper(
+            m_agents.CachedComponents, agentData, scenenodeData, agentHolder, scenenodeHolder);
+
+        decltype(m_absorbers)::TupleCachedComponentCollectionHelper(
+            m_absorbers.CachedComponents, membraneData, absorberData, scenenodeData,
+            membraneHolder, absorberHolder, scenenodeHolder);
+    }
+
+    void
+    DestroyNodes(
+        const std::vector<std::tuple<AgentCloudComponent*, ObjectID>> &agentData,
+        const std::vector<std::tuple<Leviathan::Position*, ObjectID>> &scenenodeData,
+        const std::vector<std::tuple<MembraneComponent*, ObjectID>> &membraneData,
+        const std::vector<std::tuple<CompoundAbsorberComponent*, ObjectID>> &absorberData
+    ) {
+        m_agents.CachedComponents.RemoveBasedOnKeyTupleList(agentData);
+        m_agents.CachedComponents.RemoveBasedOnKeyTupleList(scenenodeData);
+        
+        m_absorbers.CachedComponents.RemoveBasedOnKeyTupleList(membraneData);
+        m_absorbers.CachedComponents.RemoveBasedOnKeyTupleList(absorberData);
+        m_absorbers.CachedComponents.RemoveBasedOnKeyTupleList(scenenodeData);
+    }
+    
 private:
 
-    struct Implementation;
-    std::unique_ptr<Implementation> m_impl;
+    // All entities that have a compoundCloudsComponent.
+    // These are all the toxins.
+    Leviathan::SystemCachedComponentCollectionStorage<
+         std::tuple<AgentCloudComponent&, Leviathan::Position&>> m_agents;
+    
+
+    Leviathan::SystemCachedComponentCollectionStorage<
+        std::tuple<MembraneComponent&, CompoundAbsorberComponent&,
+            Leviathan::Position&>> m_absorbers;
 };
 
 }
