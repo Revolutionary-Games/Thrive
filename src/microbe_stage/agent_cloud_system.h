@@ -113,6 +113,7 @@ public:
     ) {
         CachedComponents.RemoveBasedOnKeyTupleList(firstdata);
         CachedComponents.RemoveBasedOnKeyTupleList(seconddata);
+        CachedComponents.RemoveBasedOnKeyTupleList(thirddata);
     }
 };
 
