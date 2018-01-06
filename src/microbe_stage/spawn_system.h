@@ -1,24 +1,32 @@
 #pragma once
 
-#include "engine/component.h"
-#include "engine/system.h"
-#include "scripting/luajit.h"
+#include "engine/component_types.h"
+#include "engine/typedefs.h"
+
+#include <Entities/System.h>
 
 // Time between spawn cycles
 #define SPAWN_INTERVAL 100
 
-namespace sol {
-class state;
-}
-
 namespace thrive {
+
+class CellStageWorld;
+
+////////////////////////////////////////////////////////////////////////////////
+// SpawnType
+////////////////////////////////////////////////////////////////////////////////
+struct SpawnType {
+    double spawnRadius = 0.0;
+    double spawnRadiusSqr = 0.0;
+    double spawnFrequency = 0.0;
+    std::function<ObjectID(CellStageWorld&, Float3)> factoryFunction;
+    SpawnerTypeId id = 0;
+};
 
 /**
 * @brief A component for a Spawn reactive entity
 */
-class SpawnedComponent : public Component {
-    COMPONENT(SpawnComponent)
-
+class SpawnedComponent : public Leviathan::Component {
 public:
     /**
     * @brief Constructor
@@ -29,46 +37,35 @@ public:
     *  when a Spawn involving this object occours.
     *  More Spawn groups can be added with addSpawnGroup(group)
     */
-    SpawnedComponent();
+    SpawnedComponent(double newSpawnRadius);
 
-    /**
-    * @brief Lua bindings
-    *
-    * Exposes:
-    * - RigidBodyComponent()
-    *
-    * @return
-    */
-    static void luaBindings(sol::state &lua);
-
-    void
-    setSpawnRadius(
-        double newSpawnRadius
-    );
-
-    /**
-    * @brief Loads the component
-    *
-    * @param storage
-    */
-    void
-    load(
-        const StorageContainer& storage
-    ) override;
+    // /**
+    // * @brief Loads the component
+    // *
+    // * @param storage
+    // */
+    // void
+    // load(
+    //     const StorageContainer& storage
+    // ) override;
 
 
-    /**
-    * @brief Serializes the component
-    *
-    * @return
-    */
-    StorageContainer
-    storage() const override;
+    // /**
+    // * @brief Serializes the component
+    // *
+    // * @return
+    // */
+    // StorageContainer
+    // storage() const override;
 
     double spawnRadiusSqr;
+
+    static constexpr auto TYPE = componentTypeConvert(THRIVE_COMPONENT::SPAWNED);
 };
 
-class SpawnSystem : public System {
+class SpawnSystem : public Leviathan::System<std::tuple<SpawnedComponent&,
+                                                 Leviathan::Position&>>
+{
 public:
     /**
     * @brief Constructor
@@ -80,51 +77,60 @@ public:
     */
     ~SpawnSystem();
 
-    /**
-    * @brief Lua bindings
-    *
-    * Exposes:
-    * - SpawnSystem
-    * - init
-    * - AddSpawnType
-    * - RemoveSpawnType
-    *
-    * @return
-    */
-    static void luaBindings(sol::state &lua);
-
-    /**
-    * @brief Initializes the engine
-    *
-    * @param engine
-    */
-    void init(
-        GameStateData* gameState
-    ) override;
-
-    /**
-    * @brief Shuts the system down
-    */
-    void shutdown() override;
+    // /**
+    // * @brief Lua bindings
+    // *
+    // * Exposes:
+    // * - SpawnSystem
+    // * - init
+    // * - AddSpawnType
+    // * - RemoveSpawnType
+    // *
+    // * @return
+    // */
+    // static void luaBindings(sol::state &lua);
 
     /**
     * @brief Updates the system
     *
     * @param milliSeconds
     */
-    void update(
-        int renderTime,
-        int logicTime
-    ) override;
+    void
+    Run(
+        CellStageWorld &world
+    );
 
-    SpawnerTypeId addSpawnType(sol::protected_function factoryFunction, double spawnDensity, double spawnRadius);
+    SpawnerTypeId
+    addSpawnType(
+        std::function<ObjectID(CellStageWorld&, Float3)> factoryFunction,
+        double spawnDensity,
+        double spawnRadius
+    );
 
     void removeSpawnType(SpawnerTypeId spawnId);
+
+    void
+    CreateNodes(
+        const std::vector<std::tuple<SpawnedComponent*, ObjectID>> &firstdata,
+        const std::vector<std::tuple<Leviathan::Position*, ObjectID>> &seconddata,
+        const ComponentHolder<SpawnedComponent> &firstholder,
+        const ComponentHolder<Leviathan::Position> &secondholder
+    ) {
+        TupleCachedComponentCollectionHelper(CachedComponents, firstdata, seconddata,
+            firstholder, secondholder);
+    }
+    
+    void
+    DestroyNodes(
+        const std::vector<std::tuple<SpawnedComponent*, ObjectID>> &firstdata,
+        const std::vector<std::tuple<Leviathan::Position*, ObjectID>> &seconddata
+    ) {
+        CachedComponents.RemoveBasedOnKeyTupleList(firstdata);
+        CachedComponents.RemoveBasedOnKeyTupleList(seconddata);
+    }
 
 private:
     struct Implementation;
     std::unique_ptr<Implementation> m_impl;
-
-    void doSpawnCycle();
 };
 }

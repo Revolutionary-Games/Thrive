@@ -16,6 +16,7 @@ enum class THRIVE_COMPONENT : uint16_t {
 	COMPOUND_BAG,
 	SPECIES,
     AGENT_CLOUD,
+    SPAWNED,
 
     // TODO: check is this needed for anything
     //INVALID

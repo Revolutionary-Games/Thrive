@@ -18,6 +18,7 @@ generator.addInclude "microbe_stage/membrane_system.h"
 generator.addInclude "microbe_stage/compound_cloud_system.h"
 generator.addInclude "microbe_stage/process_system.h"
 generator.addInclude "microbe_stage/species_component.h"
+generator.addInclude "microbe_stage/spawn_system.h"
 
 world = GameWorldClass.new(
   "CellStageWorld", componentTypes: [
@@ -43,12 +44,20 @@ world = GameWorldClass.new(
                                                        Variable.new("blue", "float",
                                                                     noRef: true),
                                                      ])]),
+    EntityComponent.new("SpawnedComponent", [ConstructorInfo.new(
+                                               [
+                                                 Variable.new("newSpawnRadius", "double",
+                                                              noRef: true)
+                                               ])]),
   ],
   systems: [
     EntitySystem.new("MembraneSystem", ["MembraneComponent", "RenderNode"],
                      runrender: {group: 10, parameters: [
                                    "GetScene()"
                                  ]}),
+
+    EntitySystem.new("SpawnSystem", [],
+                     runtick: {group: 3, parameters: []}),
 
     #EntitySystem.new("ProcessSystem", ["CompoundBagComponent", "ProcessorComponent"],
 
