@@ -36,7 +36,9 @@ public:
     // Gets organelle positions from the .lua file.
     void sendOrganelles(double x, double y);
 
-    // Deletes the membrane mesh.
+    //! Deletes the membrane mesh.
+    //!
+    //! This needs to be called before modifications take effect
     void clear();
 
     // Gets the amount of a certain compound the membrane absorbed.
@@ -49,6 +51,9 @@ public:
 	bool contains(float x, float y);
 
     //! \param parentcomponentpos The mesh is attached to this node when the mesh is created
+    //! \todo As this is currently only executed once (when isInitialized is false)
+    //! this should be changed to directly upload the fully created data, instead of creating
+    //! the buffers first and then filling them with data
 	void Update(Ogre::SceneManager* scene, Ogre::SceneNode* parentcomponentpos);
 
 	// Returns the length of the bounding membrane "box".
@@ -75,6 +80,8 @@ protected:
     //! Called on first Update
     void Initialize();
 
+    //! So it seems that the membrane should be generated just once when the geometry is
+    //! changed so when this is true Update does nothing
     bool isInitialized = false;
     
 private:

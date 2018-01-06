@@ -141,6 +141,10 @@ bool MembraneComponent::contains(float x, float y)
 // ------------------------------------ //
 void MembraneComponent::Update(Ogre::SceneManager* scene, Ogre::SceneNode* parentcomponentpos)
 {
+    // Skip if the mesh is already created //
+    if(isInitialized)
+        return;
+    
     if(!isInitialized)
         Initialize();
     
@@ -226,8 +230,11 @@ void MembraneComponent::Update(Ogre::SceneManager* scene, Ogre::SceneNode* paren
         // ptus->setColourOperationEx(Ogre::LBX_MODULATE, Ogre::LBS_MANUAL, Ogre::LBS_TEXTURE,
         //     colour);
         // m_mesh->setMaterial(materialPtr);
-        //m_subMesh->setMaterialName("Membrane");
-        m_subMesh->setMaterialName("Background");
+        
+        m_subMesh->setMaterialName("Membrane");
+
+        // Use different material for testing to see the mesh better
+        //m_subMesh->setMaterialName("Background");
     }
 
     // Map the buffer for writing //
