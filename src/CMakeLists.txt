@@ -115,14 +115,19 @@ set(GROUP_MICROBE_STAGE
   "microbe_stage/compound_registry.h"
   "microbe_stage/compounds.cpp"
   "microbe_stage/compounds.h"
+  "microbe_stage/generate_cell_stage_world.rb"
   "microbe_stage/membrane_system.cpp"
   "microbe_stage/membrane_system.h"
+  "microbe_stage/microbe_camera_system.cpp"
+  "microbe_stage/microbe_camera_system.h"
   "microbe_stage/organelle_types.cpp"
   "microbe_stage/organelle_types.h"
   "microbe_stage/process_system.cpp"
   "microbe_stage/process_system.h"
   "microbe_stage/simulation_parameters.cpp"
   "microbe_stage/simulation_parameters.h"
+  "microbe_stage/spawn_system.cpp"
+  "microbe_stage/spawn_system.h"
   "microbe_stage/species.cpp"
   "microbe_stage/species.h"
   "microbe_stage/species_component.cpp"
@@ -130,6 +135,10 @@ set(GROUP_MICROBE_STAGE
   "microbe_stage/species_name_controller.cpp"
   "microbe_stage/species_name_controller.h"
   )
+
+set_source_files_properties("microbe_stage/generate_cell_stage_world.rb"
+  PROPERTIES HEADER_FILE_ONLY TRUE)
+
 
 set(GROUP_OGRE
   # "ogre/camera_system.cpp"
