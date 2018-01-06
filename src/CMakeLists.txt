@@ -99,8 +99,6 @@ set(GROUP_MICROBE_STAGE
   "microbe_stage/compound_registry.cpp"
   "microbe_stage/compound_absorber_system.cpp"
   "microbe_stage/compound_absorber_system.h"
-  # "microbe_stage/compound_emitter_system.cpp"
-  # "microbe_stage/compound_emitter_system.h"
   # "microbe_stage/bio_process_registry.cpp"
   # "microbe_stage/bio_process_registry.h"
   "microbe_stage/membrane_system.cpp"
