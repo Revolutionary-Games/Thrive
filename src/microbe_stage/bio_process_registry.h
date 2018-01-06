@@ -2,16 +2,10 @@
 
 #include "engine/typedefs.h"
 
-#include <boost/range/adaptor/map.hpp>
 #include <vector>
 #include <unordered_map>
 
-#include "scripting/luajit.h"
-
 namespace thrive {
-
-using BoostCompoundMapIterator = boost::range_detail::select_second_mutable_range<std::unordered_map<std::string, CompoundId>>;
-using BoostAbsorbedMapIterator = boost::range_detail::select_first_range<std::unordered_map<CompoundId, float>>;
 
 /**
 * @brief Static abstract class keeping track of a predefined biological processes, their Id's, internal and displayed names as well as various data
@@ -22,25 +16,25 @@ class BioProcessRegistry {
 
 public:
 
-    /**
-    * @brief Lua bindings
-    *
-    * Exposes:
-    * - BioProcessRegistry::registerBioProcess
-    * - BioProcessRegistry::getDisplayName
-    * - BioProcessRegistry::getInternalName
-    * - BioProcessRegistry::getId
-    * - BioProcessRegistry::getList
-    * - BioProcessRegistry::getInputCompounds
-    * - BioProcessRegistry::getOutputCompounds
-    * @return
-    */
-    static void luaBindings(sol::state &lua);
+    // /**
+    // * @brief Lua bindings
+    // *
+    // * Exposes:
+    // * - BioProcessRegistry::registerBioProcess
+    // * - BioProcessRegistry::getDisplayName
+    // * - BioProcessRegistry::getInternalName
+    // * - BioProcessRegistry::getId
+    // * - BioProcessRegistry::getList
+    // * - BioProcessRegistry::getInputCompounds
+    // * - BioProcessRegistry::getOutputCompounds
+    // * @return
+    // */
+    // static void luaBindings(sol::state &lua);
 
-    static void
-    loadFromLua(
-        sol::table processTable
-    );
+    // static void
+    // loadFromLua(
+    //     sol::table processTable
+    // );
 
     /**
     * @brief Registers a new process type
@@ -120,7 +114,7 @@ public:
     * @return
     *   Array of all registered process IDs
     */
-    static const BoostCompoundMapIterator
+    std::unordered_map<std::string, BioProcessId>&
     getList();
 
     static const std::vector<std::pair<CompoundId, int>>&
