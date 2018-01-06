@@ -30,7 +30,7 @@ public:
 	int width, height;
 	float gridSize;
 
-	Ogre::Vector3 direction;
+	Float3 direction;
 
 	float potency;
 
@@ -81,7 +81,7 @@ public:
 * @brief Moves the compound clouds.
 */
 class AgentCloudSystem : public Leviathan::System<
-    std::tuple<Leviathan::Position&, AgentCloudComponent&>>
+    std::tuple<Leviathan::Position&, AgentCloudComponent&, Leviathan::RenderNode&>>
 {
 public:
     /**
@@ -96,17 +96,20 @@ public:
     CreateNodes(
         const std::vector<std::tuple<Leviathan::Position*, ObjectID>> &firstdata,
         const std::vector<std::tuple<AgentCloudComponent*, ObjectID>> &seconddata,
+        const std::vector<std::tuple<Leviathan::RenderNode*, ObjectID>> &thirddata,
         const ComponentHolder<Leviathan::Position> &firstholder,
-        const ComponentHolder<AgentCloudComponent> &secondholder
+        const ComponentHolder<AgentCloudComponent> &secondholder,
+        const ComponentHolder<Leviathan::RenderNode> &thirdholder
     ) {
         TupleCachedComponentCollectionHelper(CachedComponents, firstdata, seconddata,
-            firstholder, secondholder);
+            thirddata, firstholder, secondholder, thirdholder);
     }
     
     void
     DestroyNodes(
         const std::vector<std::tuple<Leviathan::Position*, ObjectID>> &firstdata,
-        const std::vector<std::tuple<AgentCloudComponent*, ObjectID>> &seconddata
+        const std::vector<std::tuple<AgentCloudComponent*, ObjectID>> &seconddata,
+        const std::vector<std::tuple<Leviathan::RenderNode*, ObjectID>> &thirddata
     ) {
         CachedComponents.RemoveBasedOnKeyTupleList(firstdata);
         CachedComponents.RemoveBasedOnKeyTupleList(seconddata);

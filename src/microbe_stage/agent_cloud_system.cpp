@@ -119,11 +119,12 @@ AgentCloudSystem::Run(GameWorld &world) {
 
     const int dt = Leviathan::TICKSPEED;
 
-    auto& index = Nodes.GetIndex();
+    auto& index = CachedComponents.GetIndex();
     for(auto iter = index.begin(); iter != index.end(); ++iter){
 
-        AgentCloudComponent& agent = std::get<0>(*iter->second);
-        Leviathan::RenderNode& sceneNodeComponent = std::get<1>(*iter->second);
+        Leviathan::Position& position = std::get<0>(*iter->second);
+        AgentCloudComponent& agent = std::get<1>(*iter->second);
+        Leviathan::RenderNode& renderNode = std::get<2>(*iter->second);
 
 
         if (agent.potency > 0.5){
@@ -133,8 +134,10 @@ AgentCloudSystem::Run(GameWorld &world) {
             continue;
         }
 
-        sceneNodeComponent.m_transform.position += agent.direction*dt/1000;
-        sceneNodeComponent.m_transform.scale = agent.potency;
-        sceneNodeComponent.m_transform.touch();
+        position.Members._Position += agent.direction * (dt / 1000.f);
+        position.Marked = true;
+
+        renderNode.Scale = Float3(agent.potency);
+        renderNode.Marked = true;
     }
 }
