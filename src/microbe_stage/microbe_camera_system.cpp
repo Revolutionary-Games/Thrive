@@ -1,62 +1,58 @@
-#include "engine/engine.h"
-#include "engine/entity.h"
-#include "engine/game_state.h"
-#include "engine/player_data.h"
 #include "microbe_stage/microbe_camera_system.h"
-#include "ogre/camera_system.h"
-#include "ogre/scene_node_system.h"
-#include "scripting/luajit.h"
 
-#include <string>
+#include "ThriveGame.h"
+
+#include "engine/player_data.h"
+
+#include <Entities/GameWorld.h>
+#include <Entities/Components.h>
 
 using namespace thrive;
 
-void MicrobeCameraSystem::luaBindings(
-    sol::state &lua
-){
-    lua.new_usertype<MicrobeCameraSystem>( "MicrobeCameraSystem",
-
-        sol::constructors<sol::types<>>(),
-
-        sol::base_classes, sol::bases<System>(),
-
-        "activate", &MicrobeCameraSystem::activate,
-
-        "init", &MicrobeCameraSystem::init
-    );
-}
-
-struct MicrobeCameraSystem::Implementation {
-    OgreCameraComponent* camera = nullptr;
-    OgreSceneNodeComponent* cameraSceneNode = nullptr;
-};
-
-MicrobeCameraSystem::MicrobeCameraSystem()
-  : m_impl(new Implementation())
-{
-}
-
 void
-MicrobeCameraSystem::init(
-    GameStateData* gameState
+MicrobeCameraSystem::setCameraEntity(
+    ObjectID id
 ) {
-    System::initNamed("MicrobeCameraSystem", gameState);
+    m_cameraEntity = id; 
 }
 
 void
-MicrobeCameraSystem::activate() {
-    std::unique_ptr<Entity> cameraEntity(new Entity(MICROBE_CAMERA_NAME, gameState()));
-    m_impl->camera = dynamic_cast<OgreCameraComponent*>(cameraEntity->getComponent(OgreCameraComponent::TYPE_ID));
-    m_impl->cameraSceneNode = dynamic_cast<OgreSceneNodeComponent*>(cameraEntity->getComponent(OgreSceneNodeComponent::TYPE_ID));
-    m_impl->camera->m_properties.offset = Ogre::Vector3(0, 0, INITIAL_CAMERA_HEIGHT);
-    m_impl->camera->m_properties.touch();
+MicrobeCameraSystem::setCameraHeight(
+    float height
+) {
+    m_cameraHeight = height;
+}
+// ------------------------------------ //
+void
+MicrobeCameraSystem::Run(
+    Leviathan::GameWorld &world
+) {
+    if(m_cameraEntity == 0)
+        return;
+    
+    // Get the entity the camera should follow
+    auto controlledEntity = ThriveGame::Get()->playerData().activeCreature();
+
+    try{
+
+        const auto& playerPos = world.GetComponent<Leviathan::Position>(controlledEntity);
+
+        auto& cameraPos = world.GetComponent<Leviathan::Position>(m_cameraEntity);
+
+        auto targetPos = playerPos.Members._Position + Float3(0, 0, m_cameraHeight);
+
+        if(cameraPos.Members._Position != targetPos){
+
+            cameraPos.Members._Position = targetPos;
+            cameraPos.Marked = true;
+        }
+        
+    } catch(const Leviathan::NotFound &e){
+
+        LOG_WARNING("MicrobeCameraSystem: failed to Run (missing component?) "
+            "due to exception:");
+        e.PrintToLog();
+        return;
+    }
 }
 
-void
-MicrobeCameraSystem::update(int, int) {
-    std::string playerName = gameState()->engine()->playerData().playerName();
-    std::unique_ptr<Entity> playerEntity(new Entity(playerName, gameState()));
-    OgreSceneNodeComponent* playerSceneNode = dynamic_cast<OgreSceneNodeComponent*>(playerEntity->getComponent(OgreSceneNodeComponent::TYPE_ID));
-    m_impl->cameraSceneNode->m_transform.position = playerSceneNode->m_transform.position + m_impl->camera->m_properties.offset;
-    m_impl->cameraSceneNode->m_transform.touch();
-}
