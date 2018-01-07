@@ -19,6 +19,9 @@ generator.addInclude "microbe_stage/compound_cloud_system.h"
 generator.addInclude "microbe_stage/process_system.h"
 generator.addInclude "microbe_stage/species_component.h"
 generator.addInclude "microbe_stage/spawn_system.h"
+generator.addInclude "microbe_stage/agent_cloud_system.h"
+generator.addInclude "microbe_stage/compound_absorber_system.h"
+generator.addInclude "microbe_stage/microbe_camera_system.h"
 
 world = GameWorldClass.new(
   "CellStageWorld", componentTypes: [
@@ -44,20 +47,51 @@ world = GameWorldClass.new(
                                                        Variable.new("blue", "float",
                                                                     noRef: true),
                                                      ])]),
+    EntityComponent.new("AgentCloudComponent", [ConstructorInfo.new(
+                                                  [
+                                                    Variable.new("compoundId", "CompoundId",
+                                                                 noRef: true),
+                                                    Variable.new("red", "float",
+                                                                 noRef: true),
+                                                    Variable.new("green", "float",
+                                                                 noRef: true),
+                                                    Variable.new("blue", "float",
+                                                                 noRef: true),
+                                                  ])]),
     EntityComponent.new("SpawnedComponent", [ConstructorInfo.new(
                                                [
                                                  Variable.new("newSpawnRadius", "double",
                                                               noRef: true)
                                                ])]),
+    EntityComponent.new("CompoundAbsorberComponent", [ConstructorInfo.new([])]),
+    
   ],
   systems: [
     EntitySystem.new("MembraneSystem", ["MembraneComponent", "RenderNode"],
-                     runrender: {group: 10, parameters: [
+                     # This is ran only once and the animation is in
+                     # the vertex shader. That's why this isn't in
+                     # "runrender"
+                     runtick: {group: 100, parameters: [
                                    "GetScene()"
                                  ]}),
 
     EntitySystem.new("SpawnSystem", [],
-                     runtick: {group: 3, parameters: []}),
+                     runtick: {group: 50, parameters: []}),
+
+    EntitySystem.new("AgentCloudSystem", ["Position", "AgentCloudComponent", "RenderNode"],
+                     runtick: {group: 5, parameters: []}),
+
+    EntitySystem.new("CompoundAbsorberSystem", ["AgentCloudComponent", "Position",
+                                                "MembraneComponent",
+                                                "CompoundAbsorberComponent"],
+                     runtick: {group: 6, parameters: [
+                                 "ComponentCompoundCloudComponent.GetIndex()"]}),
+
+    EntitySystem.new("MicrobeCameraSystem", [],
+                     runtick: {group: 1000, parameters: []}),
+
+    EntitySystem.new("ProcessSystem", ["CompoundBagComponent", "ProcessorComponent"],
+                     runtick: {group: 10, parameters: []}),
 
     #EntitySystem.new("ProcessSystem", ["CompoundBagComponent", "ProcessorComponent"],
 

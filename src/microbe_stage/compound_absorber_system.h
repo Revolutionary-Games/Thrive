@@ -50,6 +50,8 @@ public:
     // */
     // static void luaBindings(sol::state &lua);
 
+    CompoundAbsorberComponent();
+
     /**
     * @brief The compounds absorbed in the last time step
     */
@@ -69,6 +71,8 @@ public:
     * @brief The amount of compound volume that can be absorbed
     */
     double m_absorbtionCapacity = 0;
+
+    static constexpr auto TYPE = componentTypeConvert(THRIVE_COMPONENT::ABSORBER);
 
     /**
     * @brief The absorbed amount in the last time step
@@ -207,6 +211,12 @@ public:
         m_absorbers.CachedComponents.RemoveBasedOnKeyTupleList(membraneData);
         m_absorbers.CachedComponents.RemoveBasedOnKeyTupleList(absorberData);
         m_absorbers.CachedComponents.RemoveBasedOnKeyTupleList(scenenodeData);
+    }
+
+    void
+    Clear(){
+        m_agents.Clear();
+        m_absorbers.Clear();
     }
     
 private:

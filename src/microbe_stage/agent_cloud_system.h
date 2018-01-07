@@ -1,9 +1,9 @@
 #pragma once
 
 #include <vector>
-#include <OgreEntity.h>
-#include <OgreSceneManager.h>
-#include "OgreHardwarePixelBuffer.h"
+// #include <OgreEntity.h>
+// #include <OgreSceneManager.h>
+// #include "OgreHardwarePixelBuffer.h"
 
 // #include "engine/component.h"
 // #include "engine/system.h"
@@ -18,8 +18,6 @@
 #include <Entities/System.h>
 
 namespace thrive {
-
-class AgentCloudSystem;
 
 /**
 * @brief Agents clouds that flow in the environment.
@@ -50,7 +48,7 @@ public:
 
 public:
 
-    void initialize(CompoundId Id, float red, float green, float blue);
+    AgentCloudComponent(CompoundId Id, float red, float green, float blue);
 
     // /**
     // * @brief Lua bindings

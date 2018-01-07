@@ -59,15 +59,16 @@ using namespace thrive;
 //     );
 // }
 
-void
-AgentCloudComponent::initialize(
+AgentCloudComponent::AgentCloudComponent(
     CompoundId id,
     float red,
     float green,
     float blue
-) {
-    m_compoundId = id;
-    color = Ogre::ColourValue(red, green, blue);
+) : Leviathan::Component(TYPE),
+    color(Ogre::ColourValue(red, green, blue)),
+    m_compoundId(id)
+{
+    
 }
 
 // void

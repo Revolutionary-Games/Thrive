@@ -60,6 +60,11 @@ using namespace thrive;
 //     );
 // }
 
+CompoundAbsorberComponent::CompoundAbsorberComponent() :
+    Leviathan::Component(TYPE)
+{
+
+}
 
 float
 CompoundAbsorberComponent::absorbedCompoundAmount(

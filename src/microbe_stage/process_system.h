@@ -3,17 +3,21 @@
 #include "engine/component.h"
 #include "engine/system.h"
 #include "engine/touchable.h"
-#include "engine/typedefs.h"
 */
 
 #include "engine/component_types.h"
-#include "Entities/Component.h"
-#include "Entities/System.h"
-#include "Entities/Components.h"
+#include "engine/typedefs.h"
 
-#include <boost/range/adaptor/map.hpp>
+#include <Entities/Component.h>
+#include <Entities/System.h>
+//#include <Entities/Components.h>
+
 #include <vector>
 #include <unordered_map>
+
+namespace Leviathan{
+class GameWorld;
+}
 
 // The minimum positive price a compound can have.
 #define MIN_POSITIVE_COMPOUND_PRICE 0.00001
@@ -106,38 +110,58 @@ public:
     static constexpr auto TYPE = componentTypeConvert(THRIVE_COMPONENT::COMPOUND_BAG);
 };
 
-//class ProcessSystem {
-//public:
-//    /**
-//    * @brief Constructor
-//    */
-//    ProcessSystem();
-//
-//    /**
-//    * @brief Destructor
-//    */
-//    ~ProcessSystem();
-//
-//    /**
-//    * @brief Initializes the system
-//    *
-//    */
-//    void Init(CellStageWorld &world);
-//
-//    /**
-//    * @brief Shuts the system down
-//    */
-//    //void Release(CellStageWorld &world);
-//
-//    /**
-//    * @brief Updates the system
-//    */
-//    void Run(CellStageWorld &world, int tick);
-//
-//private:
-//
-//    struct Implementation;
-//    std::unique_ptr<Implementation> m_impl;
-//};
+class ProcessSystem : public Leviathan::System<std::tuple<CompoundBagComponent&,
+                                                   ProcessorComponent&>>
+{
+public:
+   /**
+   * @brief Updates the system
+   */
+    void
+    Run(
+        GameWorld &world
+    );
+
+    void
+    CreateNodes(
+        const std::vector<std::tuple<CompoundBagComponent*, ObjectID>> &firstdata,
+        const std::vector<std::tuple<ProcessorComponent*, ObjectID>> &seconddata,
+        const ComponentHolder<CompoundBagComponent> &firstholder,
+        const ComponentHolder<ProcessorComponent> &secondholder
+    ) {
+        TupleCachedComponentCollectionHelper(CachedComponents, firstdata, seconddata,
+            firstholder, secondholder);
+    }
+    
+    void
+    DestroyNodes(
+        const std::vector<std::tuple<CompoundBagComponent*, ObjectID>> &firstdata,
+        const std::vector<std::tuple<ProcessorComponent*, ObjectID>> &seconddata
+    ) {
+        CachedComponents.RemoveBasedOnKeyTupleList(firstdata);
+        CachedComponents.RemoveBasedOnKeyTupleList(seconddata);
+    }    
+    
+protected:
+
+    // Methods from the old Implemementation class //
+    double _demandSofteningFunction(double processCapacity);
+    double _calculatePrice(double oldPrice, double supply, double demand);
+    double _spaceSofteningFunction(double availableSpace, double requiredSpace);
+
+    std::map<double, CompoundId>
+    _getBreakEvenPointMap(BioProcessId processId, CompoundBagComponent &bag);
+
+    double _getOptimalProcessRate(
+        BioProcessId processId,
+        CompoundBagComponent &bag,
+        bool considersSpaceLimitations,
+        double availableSpace
+    );
+    
+private:
+
+    static constexpr double TIME_SCALING_FACTOR = 1000;
+};
 
 }
