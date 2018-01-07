@@ -63,9 +63,9 @@ CompoundCloudComponent::CompoundCloudComponent(
 void
 CompoundCloudComponent::addCloud(float dens, int x, int y) {
     if ((x-offsetX)/gridSize+width/2 >= 0 && (x-offsetX)/gridSize+width/2 < width &&
-        (y-offsetY)/gridSize+height/2 >= 0 && (y-offsetY)/gridSize+height/2 < height)
+        (y-offsetZ)/gridSize+height/2 >= 0 && (y-offsetZ)/gridSize+height/2 < height)
     {
-        density[(x-offsetX)/gridSize+width/2][(y-offsetY)/gridSize+height/2] += dens;
+        density[(x-offsetX)/gridSize+width/2][(y-offsetZ)/gridSize+height/2] += dens;
     }
 }
 
@@ -108,7 +108,7 @@ CompoundCloudSystem::CompoundCloudSystem() :
     width(120),
     height(120),
     offsetX(0),
-    offsetY(0),
+    offsetZ(0),
     gridSize(2),
     xVelocity(width, std::vector<float>(height, 0)),
     yVelocity(width, std::vector<float>(height, 0))
@@ -221,20 +221,20 @@ void CompoundCloudSystem::Run(CellStageWorld &world,
     
     // If the player moves out of the current grid, move the grid.
     if (position.X > offsetX + width/3*gridSize/2  ||
-        position.Y > offsetY + height/3*gridSize/2 ||
+        position.Z > offsetZ + height/3*gridSize/2 ||
         position.X < offsetX - width/3*gridSize/2  ||
-        position.Y < offsetY - height/3*gridSize/2)
+        position.Z < offsetZ - height/3*gridSize/2)
     {
         if (position.X > offsetX + width/3*gridSize/2 )
             offsetX += width/3*gridSize;
-        if (position.Y > offsetY + height/3*gridSize/2)
-            offsetY += height/3*gridSize;
+        if (position.Z > offsetZ + height/3*gridSize/2)
+            offsetZ += height/3*gridSize;
         if (position.X < offsetX - width/3*gridSize/2 )
             offsetX -= width/3*gridSize;
-        if (position.Y < offsetY - height/3*gridSize/2)
-            offsetY -= height/3*gridSize;
+        if (position.Z < offsetZ - height/3*gridSize/2)
+            offsetZ -= height/3*gridSize;
 
-        compoundCloudsPlane->getParentSceneNode()->setPosition(offsetX, offsetY, -1.0);
+        compoundCloudsPlane->getParentSceneNode()->setPosition(offsetX, -1.0, offsetZ);
     }
 
     // TODO: could do something fancy with CellStageWorld::HandleAdded
@@ -252,7 +252,7 @@ void CompoundCloudSystem::Run(CellStageWorld &world,
         compoundCloud->width = width;
         compoundCloud->height = height;
         compoundCloud->offsetX = offsetX;
-        compoundCloud->offsetY = offsetY;
+        compoundCloud->offsetZ = offsetZ;
         compoundCloud->gridSize = gridSize;
 
         compoundCloud->density.resize(width, std::vector<float>(height, 0));
@@ -319,10 +319,10 @@ void CompoundCloudSystem::Run(CellStageWorld &world,
         CompoundCloudComponent* compoundCloud = value.second;
         // If the offset of the compound cloud is different from the fluid systems offset,
         // then the player must have moved, so we need to adjust the texture.
-        if (compoundCloud->offsetX != offsetX || compoundCloud->offsetY != offsetY)
+        if (compoundCloud->offsetX != offsetX || compoundCloud->offsetZ != offsetZ)
         {
             // If we moved up.
-            if (compoundCloud->offsetX == offsetX && compoundCloud->offsetY < offsetY)
+            if (compoundCloud->offsetX == offsetX && compoundCloud->offsetZ < offsetZ)
             {
                 for (int x = 0; x < width; x++)
                 {
@@ -339,7 +339,7 @@ void CompoundCloudSystem::Run(CellStageWorld &world,
                     Ogre::Vector4(offset.x, offset.y-1.0f/3, 0.0f, 0.0f));
             }
             // If we moved right.
-            else if (compoundCloud->offsetX < offsetX && compoundCloud->offsetY == offsetY)
+            else if (compoundCloud->offsetX < offsetX && compoundCloud->offsetZ == offsetZ)
             {
                 for (int x = 0; x < width/3; x++)
                 {
@@ -356,7 +356,7 @@ void CompoundCloudSystem::Run(CellStageWorld &world,
                     Ogre::Vector4(offset.x-1.0f/3, offset.y, 0.0f, 0.0f));
             }
             // If we moved left.
-            else if (compoundCloud->offsetX > offsetX && compoundCloud->offsetY == offsetY)
+            else if (compoundCloud->offsetX > offsetX && compoundCloud->offsetZ == offsetZ)
             {
                 for (int x = 0; x < width/3; x++)
                 {
@@ -373,7 +373,7 @@ void CompoundCloudSystem::Run(CellStageWorld &world,
                     Ogre::Vector4(offset.x+1.0f/3, offset.y, 0.0f, 0.0f));
             }
             // If we moved downwards.
-            else if (compoundCloud->offsetX == offsetX && compoundCloud->offsetY > offsetY)
+            else if (compoundCloud->offsetX == offsetX && compoundCloud->offsetZ > offsetZ)
             {
                 for (int x = 0; x < width; x++)
                 {
@@ -391,7 +391,7 @@ void CompoundCloudSystem::Run(CellStageWorld &world,
             }
 
             compoundCloud->offsetX = offsetX;
-            compoundCloud->offsetY = offsetY;
+            compoundCloud->offsetZ = offsetZ;
         }
 
         // Compound clouds move from area of high concentration to area of low.

@@ -38,7 +38,7 @@ public:
     
     /// The size of the compound cloud grid.
 	int width, height;
-	int offsetX, offsetY;
+	int offsetX, offsetZ;
 	float gridSize;
 
     /// The 2D array that contains the current compound clouds and those from last frame.
@@ -153,7 +153,7 @@ private:
 
 	/// The size of the compound cloud grid.
 	int width, height;
-	int offsetX, offsetY;
+	int offsetX, offsetZ;
 	float gridSize;
 
     /// The velocity of the fluid.

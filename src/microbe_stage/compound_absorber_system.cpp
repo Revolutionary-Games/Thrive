@@ -185,22 +185,30 @@ CompoundAbsorberSystem::Run(
         {
             CompoundCloudComponent* compoundCloud = entry.second;
             CompoundId id = compoundCloud->m_compoundId;
-            int x_start = (origin.X - sideLength/2 - compoundCloud->offsetX)/compoundCloud->gridSize + compoundCloud->width/2;
+            int x_start = (origin.X - sideLength/2 - compoundCloud->offsetX) /
+                compoundCloud->gridSize + compoundCloud->width/2;
             x_start = x_start > 0 ? x_start : 0;
-            int x_end = (origin.X + sideLength/2 - compoundCloud->offsetX)/compoundCloud->gridSize + compoundCloud->width/2;
+            int x_end = (origin.X + sideLength/2 - compoundCloud->offsetX) /
+                compoundCloud->gridSize + compoundCloud->width/2;
             x_end = x_end < compoundCloud->width ? x_end : compoundCloud->width;
 
-            int y_start = (origin.Y - sideLength/2 - compoundCloud->offsetY)/compoundCloud->gridSize + compoundCloud->height/2;
-            y_start = y_start > 0 ? y_start : 0;
-            int y_end = (origin.Y + sideLength/2 - compoundCloud->offsetY)/compoundCloud->gridSize + compoundCloud->height/2;
-            y_end = y_end < compoundCloud->height ? y_end : compoundCloud->height;
+            int z_start = (origin.Z - sideLength/2 - compoundCloud->offsetZ) /
+                compoundCloud->gridSize + compoundCloud->height/2;
+            z_start = z_start > 0 ? z_start : 0;
+            int z_end = (origin.Z + sideLength/2 - compoundCloud->offsetZ) /
+                compoundCloud->gridSize + compoundCloud->height/2;
+            z_end = z_end < compoundCloud->height ? z_end : compoundCloud->height;
 
             // Iterate though all of the points inside the bounding box.
             for (int x = x_start; x < x_end; x++)
             {
-                for (int y = y_start; y < y_end; y++)
+                for (int y = z_start; y < z_end; y++)
                 {
-                    if (membrane.contains((x-compoundCloud->width/2)*compoundCloud->gridSize-origin.X+compoundCloud->offsetX,(y-compoundCloud->height/2)*compoundCloud->gridSize-origin.Y+compoundCloud->offsetY)) {
+                    if (membrane.contains((x-compoundCloud->width/2) *
+                            compoundCloud->gridSize-origin.X + compoundCloud->offsetX,
+                            (y-compoundCloud->height/2) * compoundCloud->gridSize -
+                            origin.Z + compoundCloud->offsetZ))
+                    {
                         if (absorber.m_enabled == true && absorber.canAbsorbCompound(id)) {
                             float amount = compoundCloud->amountAvailable(x, y, .2) / 5000.0f;
                             //if (CompoundRegistry::isAgentType(id)){
@@ -208,8 +216,11 @@ CompoundAbsorberSystem::Run(
                             //    this->entityManager()->removeEntity(compoundEntity);
                             //}
                             //else
-                                if(absorber.m_absorbtionCapacity >= amount * CompoundRegistry::getCompoundUnitVolume(id)){
-                                absorber.m_absorbedCompounds[id] += compoundCloud->takeCompound(x, y, .2) / 5000.0f;
+                                if(absorber.m_absorbtionCapacity >= amount
+                                    * CompoundRegistry::getCompoundUnitVolume(id))
+                                {
+                                    absorber.m_absorbedCompounds[id] +=
+                                        compoundCloud->takeCompound(x, y, .2) / 5000.0f;
                                 //this->entityManager()->removeEntity(compoundEntity);
                             }
                         }
@@ -229,7 +240,7 @@ CompoundAbsorberSystem::Run(
 
             const Float3 agentPos = agentNode.Members._Position;
 
-            if (membrane.contains(agentPos.X - origin.X, agentPos.Y - origin.Y)) {
+            if (membrane.contains(agentPos.X - origin.X, agentPos.Z - origin.Z)) {
                 if (absorber.m_enabled == true && absorber.canAbsorbCompound(id)) {
                     float amount = agent.getPotency();
                     if (CompoundRegistry::isAgentType(id)){
