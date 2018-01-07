@@ -9,8 +9,6 @@
 #include "general/thrive_math.h"
 #include "simulation_parameters.h"
 
-#include "microbe_stage/compound_registry.h"
-#include "microbe_stage/bio_process_registry.h"
 #include "microbe_stage/process_system.h"
 
 using namespace thrive;
@@ -176,7 +174,7 @@ ProcessSystem::_getBreakEvenPointMap(
 ) {
     std::map<double, CompoundId> outputBreakEvenPoints;
 
-    for (const auto& output : BioProcessRegistry::getOutputCompounds(processId)) {
+    for (const auto& output : SimulationParameters::bioProcessRegistry.getTypeData(processId).outputs) {
         CompoundId outputId = output.first;
         int outputGenerated = output.second;
         CompoundData &compoundData = bag.compounds[outputId];
@@ -207,11 +205,11 @@ ProcessSystem::_getOptimalProcessRate(
     // (the total price is rate * priceIncrement + basePrice).
     double baseInputPrice = 0;
     double inputPriceIncrement = 0;
-    for (const auto& input : BioProcessRegistry::getInputCompounds(processId)) {
+    for (const auto& input : SimulationParameters::bioProcessRegistry.getTypeData(processId).inputs) {
         CompoundId inputId = input.first;
         int inputNeeded = input.second;
         CompoundData &compoundData = bag.compounds[inputId];
-        double inputVolume = CompoundRegistry::getCompoundUnitVolume(inputId);
+        double inputVolume = SimulationParameters::compoundRegistry.getTypeData(inputId).volume;
 
         if(considersSpaceLimitations) {
             double spacePriceDecrement = ProcessSystem::_spaceSofteningFunction(
@@ -240,11 +238,11 @@ ProcessSystem::_getOptimalProcessRate(
     double outputPriceDecrement = 0.0;
 
     // Getting the initial revenue values
-    for (const auto& output : BioProcessRegistry::getOutputCompounds(processId)) {
+    for (const auto& output : SimulationParameters::bioProcessRegistry.getTypeData(processId).outputs) {
         CompoundId outputId = output.first;
         int outputGenerated = output.second;
         CompoundData &compoundData = bag.compounds[outputId];
-        double outputVolume = CompoundRegistry::getCompoundUnitVolume(outputId);
+        double outputVolume = SimulationParameters::compoundRegistry.getTypeData(outputId).volume;
 
         if(considersSpaceLimitations) {
             double spacePriceDecrement = ProcessSystem::_spaceSofteningFunction(
@@ -269,11 +267,11 @@ ProcessSystem::_getOptimalProcessRate(
         // Calculating the revenue.
         double baseOutputPrice_l = 0.0;
         double outputPriceDecrement_l = 0.0;
-        for (const auto& output : BioProcessRegistry::getOutputCompounds(processId)) {
+        for (const auto& output : SimulationParameters::bioProcessRegistry.getTypeData(processId).outputs) {
             CompoundId outputId = output.first;
             int outputGenerated = output.second;
             CompoundData &compoundData = bag.compounds[outputId];
-            double outputVolume = CompoundRegistry::getCompoundUnitVolume(outputId);
+            double outputVolume = SimulationParameters::compoundRegistry.getTypeData(outputId).volume;
 
             // The prices are never below 0.
             if(compoundData.breakEvenPoint > breakEvenPoint) {
@@ -375,7 +373,7 @@ ProcessSystem::Run(
 
             //Inflating the price if the compound is useful outside of this system.
             compoundData.price = compoundData.uninflatedPrice;
-            if(CompoundRegistry::isUseful(compoundId))
+            if(SimulationParameters::compoundRegistry.getTypeData(compoundId).isUseful)
             {
                 compoundData.price += (IMPORTANT_COMPOUND_BIAS + bag.storageSpace) /
                     (compoundData.amount + 1);
@@ -402,7 +400,7 @@ ProcessSystem::Run(
 
             double processLimitCapacity = processCapacity * logicTime; // big enough number.
 
-            for (const auto& input : BioProcessRegistry::getInputCompounds(processId)) {
+            for (const auto& input : SimulationParameters::bioProcessRegistry.getTypeData(processId).inputs) {
                 CompoundId inputId = input.first;
                 int inputNeeded = input.second;
 
@@ -435,7 +433,7 @@ ProcessSystem::Run(
                 rate = std::min(rate, desiredRateWithSpace);
 
                 // Running the process at the specified rate, transforming the inputs...
-                for (const auto& input : BioProcessRegistry::getInputCompounds(processId)) {
+                for (const auto& input : SimulationParameters::bioProcessRegistry.getTypeData(processId).inputs) {
                     CompoundId inputId = input.first;
                     int inputNeeded = input.second;
                     bag.compounds[inputId].amount -= rate * inputNeeded;
@@ -446,7 +444,7 @@ ProcessSystem::Run(
                 }
 
                 // ...into the outputs.
-                for (const auto& output : BioProcessRegistry::getOutputCompounds(processId)) {
+                for (const auto& output : SimulationParameters::bioProcessRegistry.getTypeData(processId).outputs) {
                     CompoundId outputId = output.first;
                     int outputGenerated = output.second;
                     bag.compounds[outputId].amount += rate * outputGenerated;
