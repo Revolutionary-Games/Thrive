@@ -41,7 +41,6 @@ option(USE_BREAKPAD "For enabling breakpad crash handling, set off for local deb
 option(COPY_BOOST_TO_PACKAGE "If on copies all boost libraries to package" ON)
 option(STRIP_SYMBOLS_ON_INSTALL "For stripping debug symbols on install" ON)
 
-
 ###########################
 # Leviathan Project Setup #
 ###########################
@@ -129,6 +128,22 @@ include_directories(
     "${CMAKE_CURRENT_SOURCE_DIR}/src"
 )
 
+
+####################
+# Contrib projects #
+####################
+
+include_directories(contrib)
+add_library(jsoncpp STATIC
+  "contrib/jsoncpp.cpp"
+  "contrib/json/json.h"
+  "contrib/json/json-forwards.h"
+  )
+
+
+###########################
+# Main Thrive executables #
+###########################
 add_subdirectory(src)
 
 add_subdirectory(test)

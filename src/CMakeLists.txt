@@ -289,7 +289,7 @@ set_target_properties(ThriveLib PROPERTIES
 
 target_compile_definitions(ThriveLib PRIVATE "THRIVELIB_BUILD=1")
 
-target_link_libraries(ThriveLib ${DEPENDENT_LIBS})
+target_link_libraries(ThriveLib ${DEPENDENT_LIBS} jsoncpp)
 
 
 # Include the common file
