@@ -26,6 +26,8 @@
 
 #include "CEGUI/SchemeManager.h"
 
+#include <Addons/GameModule.h>
+
 using namespace thrive;
 
 // ------------------------------------ //
@@ -42,6 +44,9 @@ public:
     ThriveGame& m_game;
     
     PlayerData m_playerData;
+
+    // This contains all the microbe_stage AngelScript code
+    Leviathan::GameModule::pointer m_MicrobeScripts;
 
     std::shared_ptr<MainMenuKeyPressListener> m_menuKeyPresses;
 };
@@ -247,6 +252,34 @@ void ThriveGame::Tick(int mspassed){
 void ThriveGame::CustomizeEnginePostLoad(){
 
     Engine* engine = Engine::Get();
+
+    // Load scripts
+    LOG_INFO("ThriveGame: loading main scripts");
+
+    // TODO: should these load failures be fatal errors (process would exit immediately)
+
+    try{
+        m_impl->m_MicrobeScripts = Leviathan::GameModule::MakeShared(new
+            Leviathan::GameModule("microbe_stage", "ThriveGame"));
+    } catch(const Leviathan::Exception &e){
+
+        LOG_ERROR("ThriveGame: microbe_stage module failed to load, exception:");
+        e.PrintToLog();
+        MarkAsClosing();
+        return;        
+    }
+
+    if(!m_impl->m_MicrobeScripts->Init()){
+
+        LOG_ERROR("ThriveGame: microbe_stage module init failed");
+        MarkAsClosing();
+        return;
+    }
+
+    LOG_INFO("ThriveGame: script loading succeeded");
+    
+
+    // This is fine to set here to avoid putting this behind the next no gui check //
     m_postLoadRan = true;
 
     // Load GUI documents (but only if graphics are enabled) //
@@ -283,12 +316,14 @@ void ThriveGame::CustomizeEnginePostLoad(){
         StartRelease();
         return;
     }
-
-    // Create main menu world //
-    LOG_WRITE("TODO: main menu world");
 }
 
 void ThriveGame::EnginePreShutdown(){
+
+    // Shutdown scripting first to allow it to still do anything it wants //
+    m_impl->m_MicrobeScripts->ReleaseScript();
+    m_impl->m_MicrobeScripts.reset();
+    
     // All resources that need Ogre or the engine to be available when
     // they are destroyed need to be released here
     
