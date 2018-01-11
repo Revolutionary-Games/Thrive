@@ -75,8 +75,14 @@ template<class T> TJsonRegistry<T>::TJsonRegistry(std::string defaultTypesFilePa
 	jsonFile.open(defaultTypesFilePath);
 	LEVIATHAN_ASSERT(jsonFile.is_open(), "The file '" + defaultTypesFilePath + "' failed to load!");
 	Json::Value rootElement;
-	jsonFile >> rootElement;
-	// TODO: add some sort of validation of the receiving JSON file, otherwise it fails silently and makes the screen go black.
+
+	try {
+		jsonFile >> rootElement;
+	}
+	catch (...) {
+		LEVIATHAN_ASSERT(false, "The file '" + defaultTypesFilePath + "' is malformed!");
+	}
+
 	jsonFile.close();
 
 	// Loading the data into the registry.
