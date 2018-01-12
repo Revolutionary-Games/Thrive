@@ -131,6 +131,12 @@ void ThriveGame::startNewGame(){
         Ogre::Quaternion(Ogre::Degree(-90), Ogre::Vector3::UNIT_X)
     );
 
+    // TODO: attach a ligth to the camera
+    // -- Light
+    //     local light = OgreLightComponent.new()
+    //     light:setRange(200)
+    //     entity:addComponent(light)
+
     m_cellStage->SetCamera(m_cellCamera);
 
 	// This is here for testing purposes only.
@@ -138,6 +144,21 @@ void ThriveGame::startNewGame(){
 	BiomeController bc;
 	size_t currentBiomeid = bc.getCurrentBiome();
 	std::string background = SimulationParameters::biomeRegistry.getTypeData(currentBiomeid).background;
+
+    // Setup compound clouds //
+    const auto compoundCount = SimulationParameters::compoundRegistry.getSize();
+
+    for(size_t i = 0; i < compoundCount; ++i){
+
+        const auto& data = SimulationParameters::compoundRegistry.getTypeData(i);
+
+        if(!data.isCloud)
+            continue;
+
+        auto cloudId = m_cellStage->CreateEntity();
+        m_cellStage->Create_CompoundCloudComponent(cloudId, data.id,
+            data.colour.r, data.colour.g, data.colour.b);
+    }
 
     // Set background plane //
 	if (true) {
@@ -259,8 +280,8 @@ void ThriveGame::CustomizeEnginePostLoad(){
     // TODO: should these load failures be fatal errors (process would exit immediately)
 
     try{
-        m_impl->m_MicrobeScripts = Leviathan::GameModule::MakeShared(new
-            Leviathan::GameModule("microbe_stage", "ThriveGame"));
+        m_impl->m_MicrobeScripts = Leviathan::GameModule::MakeShared<Leviathan::GameModule>(
+            "microbe_stage", "ThriveGame");
     } catch(const Leviathan::Exception &e){
 
         LOG_ERROR("ThriveGame: microbe_stage module failed to load, exception:");
