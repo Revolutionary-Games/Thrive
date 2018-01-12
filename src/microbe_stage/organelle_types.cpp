@@ -23,4 +23,8 @@ OrganelleType::OrganelleType(Json::Value value) {
 
 		composition.emplace(id, amount);
 	}
+
+	// Getting the hexes
+	for (Json::Value::ArrayIndex i = 0; i < value["hexes"].size(); i++)
+		hexes.emplace(value["hexes"][i][0].asInt(), value["hexes"][i][1].asInt());
 }
