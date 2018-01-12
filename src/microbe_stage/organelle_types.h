@@ -19,7 +19,8 @@ public:
 	unsigned int mpCost = 0;
 	bool isLocked = true;
 	std::string mesh = "default_organelle.mesh"; // TODO: have a default mesh so we can test organelles.
-	std::set<Int2> hexes; // The sets occupied by this organnelle in the microbe.
+    // Doesn't compile without engine changes if this is a set
+	std::vector<Int2> hexes; // The sets occupied by this organnelle in the microbe.
 	std::map<size_t, unsigned int> composition;
 	std::vector<unsigned int> components; // This have the functionality of each organelle.
 
