@@ -194,18 +194,18 @@ class MicrobeTemplate{
         float spawnDensity,
         array<CompoundAmount@> compounds,
         array<PlacedOrganelle@> organelles,
-        Float4 color
+        Float4 colour
     ) {
         this.spawnDensity = spawnDensity;
         this.compounds = compounds;
         this.organelles = organelles;
-        this.color = color;
+        this.colour = colour;
     }
 
     float spawnDensity;
     array<CompoundAmount@> compounds;
     array<PlacedOrganelle@> organelles;
-    Float4 color;
+    Float4 colour;
 }
 
 // TODO: these need to be loaded from the file and filled here

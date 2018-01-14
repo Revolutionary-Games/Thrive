@@ -13,33 +13,55 @@ const auto MICROBE_SPAWN_RADIUS = 85;
 // Together with the mutate function, these would be the only ways species are created
 void setupSpecies(CellStageWorld@ world){
 
-//     for name, data in pairs(starter_microbes) do
-//                   speciesEntity = Entity.new(name, gameState.wrapper)
-//                       speciesComponent = SpeciesComponent.new(name)
-//                       speciesEntity:addComponent(speciesComponent)
-//                       for i, organelle in pairs(data.organelles) do
-//                                  local org = {}
-// org.name = organelle.name
-//     org.q = organelle.q
-//     org.r = organelle.r
-//     org.rotation = organelle.rotation
-//     speciesComponent.organelles[i] = org
-//     end
-//     processorComponent = ProcessorComponent.new()
-//     speciesEntity:addComponent(processorComponent)
-//     speciesComponent.colour = Vector3(data.colour.r, data.colour.g, data.colour.b)
+    // Fail if compound registry is empty //
+    // The registry needs to be registered
+    assert(SimulationParameters::compoundRegistry.getCompoundCount() > 0,
+        "Compound registry is empty");
 
-//     -- iterates over all compounds, and sets amounts and priorities
-//     for _, compoundID in pairs(CompoundRegistry.getCompoundList()) do
-//                compound = CompoundRegistry.getCompoundInternalName(compoundID)
-//                    compoundData = data.compounds[compound]
-//                    if compoundData ~= nil then
-//     amount = compoundData.amount
-//     -- priority = compoundData.priority
-//     speciesComponent.avgCompoundAmounts["" .. compoundID] = amount
-//     -- speciesComponent.compoundPriorities[compoundID] = priority
-//     end
-//     end
+    auto keys = STARTER_MICROBES.getKeys();
+
+    for(uint i = 0; i < keys.length(); ++i){
+
+        const string name = keys[i];
+
+        MicrobeTemplate@ data = cast<MicrobeTemplate@>(STARTER_MICROBES[name]);
+
+        ObjectID speciesEntity = world.CreateEntity();
+        
+        SpeciesComponent@ speciesComponent = world.Create_SpeciesComponent(speciesEntity,
+            name);
+
+        speciesComponent.organelles = array<any>();
+        speciesComponent.avgCompoundAmounts = dictionary();
+        
+        for(uint a = 0; i < data.organelles.length(); ++i){
+
+            speciesComponent.organelles.push(data.organelles[a]);
+        }
+
+        ProcessorComponent@ processorComponent = world.Create_ProcessorComponent(
+            speciesEntity);
+    
+        speciesComponent.colour = data.colour;
+
+        // iterates over all compounds, and sets amounts and priorities
+        auto compoundKeys = CompoundRegistry.getCompoundList();
+        for(uint a = 0; a < compoundKeys.length(); ++a()){
+                
+            compound = CompoundRegistry.getCompoundInternalName(compoundID);
+            compoundData = data.compounds[compound];
+            
+            if(compoundData !is null){
+                
+                amount = compoundData.amount;
+                // priority = compoundData.priority
+                speciesComponent.avgCompoundAmounts[compoundID] = amount;
+                // speciesComponent.compoundPriorities[compoundID] = priority
+            }
+        }
+    }
+
+
 
 //     local capacities = {}
 // for _, organelle in pairs(data.organelles) do
@@ -48,26 +70,26 @@ void setupSpecies(CellStageWorld@ world){
 //     for process, capacity in pairs(organelleTable[organelle.name]["processes"]) do
 //                      if capacities[process] == nil then
 //     capacities[process] = 0
-//     end
+//     }
 //     capacities[process] = capacities[process] + capacity
-//     end
-//     end
-//     end
-//     end
+//     }
+//     }
+//     }
+//     }
 //     for _, bioProcessId in pairs(BioProcessRegistry.getList()) do
 //                local name = BioProcessRegistry.getInternalName(bioProcessId)
 //                    if capacities[name] ~= nil then
 //     processorComponent:setCapacity(bioProcessId, capacities[name])
 //     -- else
 //     -- processorComponent:setCapacity(bioProcessId, 0)
-//             end
-//             end
-//             end
-//             end
+//             }
+//             }
+//             }
+//             }
 
 //             function microbeSpawnFunctionGeneric(pos, speciesName, aiControlled, individualName, gameState)
 //             return spawnMicrobe(pos, speciesName, aiControlled, individualName, gameState).entity
-//             end
+//             }
 
 //             -- speciesName decides the template to use, while individualName is used for referencing the instance
 //             function spawnMicrobe(pos, speciesName, aiControlled, individualName, gameState)
@@ -79,7 +101,7 @@ void setupSpecies(CellStageWorld@ world){
 //             if gameState ~= g_luaEngine.currentGameState then
 //             print("Warning used different gameState than currentGameState in microbe spawn. " ..
 //                 "This would have been bad in earlier versions")
-//             end
+//             }
     
 //             local processor = getComponent(speciesName, gameState, ProcessorComponent)
 
@@ -89,7 +111,7 @@ void setupSpecies(CellStageWorld@ world){
 //                 "' doesn't have a processor component")
         
 //                 return nil
-//                 end
+//                 }
     
     
 //                 local microbeEntity = MicrobeSystem.createMicrobeEntity(individualName, aiControlled, speciesName, false)
@@ -101,9 +123,9 @@ void setupSpecies(CellStageWorld@ world){
 //                 Vector3(0, 0, 0), -- Linear velocity
 //                 Vector3(0, 0, 0)  -- Angular velocity
 //             )
-//                               end
+//                               }
 //                               return microbe
-//                               end
+//                               }
 
 //                               local function setSpawnablePhysics(entity, pos, mesh, scale, collisionShape)
 //                               -- Rigid body
@@ -126,11 +148,11 @@ void setupSpecies(CellStageWorld@ world){
 //             sceneNode.transform.scale = Vector3(scale, scale, scale)
 //             entity:addComponent(sceneNode)
 //                     return entity
-//             end
+//             }
 
 //             function createCompoundCloud(compoundName, x, y, amount)
-//             if amount == nil then amount = currentBiome.compounds[compoundName] end
-//             if amount == nil then amount = 0 end
+//             if amount == nil then amount = currentBiome.compounds[compoundName] }
+//             if amount == nil then amount = 0 }
 
 //             if compoundTable[compoundName] and compoundTable[compoundName].isCloud then
 //             -- addCloud requires integer arguments
@@ -139,11 +161,11 @@ void setupSpecies(CellStageWorld@ world){
 //             getComponent("compound_cloud_" .. compoundName,
 //                 g_luaEngine.currentGameState, CompoundCloudComponent
 //             ):addCloud(amount, x, y)
-//             end
+//             }
 
 //             -- The spawn system expects an entity.
 //             return Entity.new(g_luaEngine.currentGameState.wrapper)
-//             end
+//             }
 
 //             function createAgentCloud(compoundId, x, y, direction, amount)    
 //             local normalizedDirection = direction
@@ -175,7 +197,7 @@ void setupSpecies(CellStageWorld@ world){
 //             local timedLifeComponent = TimedLifeComponent.new()
 //             timedLifeComponent.timeToLive = 2000
 //             agentEntity:addComponent(timedLifeComponent)
-//             end
+//             }
 
 //             local function addEmitter2Entity(entity, compound)
 //             local compoundEmitter = CompoundEmitterComponent.new()
@@ -192,7 +214,7 @@ void setupSpecies(CellStageWorld@ world){
 //             timedEmitter.potencyPerParticle = 2.0
 //             timedEmitter.emitInterval = 1000
 //             entity:addComponent(timedEmitter)
-//             end
+//             }
 
 //             local function setupSpawnSystem(gameState)
 //             gSpawnSystem = SpawnSystem.new()
@@ -211,7 +233,7 @@ void setupSpecies(CellStageWorld@ world){
 //             powerupComponent:setEffect("toxin_number")
 //             powerupEntity:addComponent(powerupComponent)
 //             return powerupEntity
-//             end
+//             }
 //             local ChloroplastOrganelleSpawnFunction = function(pos) 
 //             powerupEntity = Entity.new(g_luaEngine.currentGameState.wrapper)
 //             setSpawnablePhysics(powerupEntity, pos, "chloroplast.mesh", 0.9,
@@ -226,18 +248,18 @@ void setupSpecies(CellStageWorld@ world){
 //             powerupComponent:setEffect("chloroplast_number")
 //             powerupEntity:addComponent(powerupComponent)
 //             return powerupEntity
-//             end
+//             }
 
 //             compoundSpawnTypes = {}
 //         for compoundName, compoundInfo in pairs(compoundTable) do
 //                               if compoundInfo.isCloud then
 //             local spawnCloud =  function(pos)
 //             return createCompoundCloud(compoundName, pos.x, pos.y)
-//             end
+//             }
 
 //             compoundSpawnTypes[compoundName] = gSpawnSystem:addSpawnType(spawnCloud, 1/10000, CLOUD_SPAWN_RADIUS) -- Placeholder, the real one is set in biome.lua
-//             end
-//             end
+//             }
+//             }
 
 //             gSpawnSystem:addSpawnType(toxinOrganelleSpawnFunction, 1/17000, POWERUP_SPAWN_RADIUS)
 //             gSpawnSystem:addSpawnType(ChloroplastOrganelleSpawnFunction, 1/12000, POWERUP_SPAWN_RADIUS)
@@ -251,12 +273,12 @@ void setupSpecies(CellStageWorld@ world){
 //                                   function(pos) 
 //                                   return microbeSpawnFunctionGeneric(pos, name, true, nil,
 //                                       g_luaEngine.currentGameState)
-//                                   end, 
+//                                   }, 
 //                                   species.spawnDensity, MICROBE_SPAWN_RADIUS)
-//                               end
+//                               }
 
 //                               return gSpawnSystem
-//                               end
+//                               }
 
 //                               local function setupPlayer(gameState)
 //                               assert(GameState.MICROBE == gameState)
@@ -267,7 +289,7 @@ void setupSpecies(CellStageWorld@ world){
 //                               Engine:playerData():lockedMap():addLock("Toxin")
 //                               Engine:playerData():lockedMap():addLock("chloroplast")
 //                               Engine:playerData():setActiveCreature(microbe.entity.id, gameState.wrapper)
-//                               end
+//                               }
 
 //                               local function setupSound(gameState)
 //                               local ambientEntity = Entity.new("ambience", gameState.wrapper)
@@ -303,7 +325,7 @@ void setupSpecies(CellStageWorld@ world){
 //                               local listener = Entity.new("soundListener", gameState.wrapper)
 //                               local sceneNode = OgreSceneNodeComponent.new()
 //                               listener:addComponent(sceneNode)
-//                               end
+//                               }
 
 //                               setupCompounds()
 //                               setupProcesses()
@@ -363,9 +385,9 @@ void setupSpecies(CellStageWorld@ world){
 //                                   setupSpecies(gameState)
 //                                   setupPlayer(gameState)
 //                                   setupSound(gameState)
-//                                   end
+//                                   }
 //                               )
-//                               end
+//                               }
 
-}    
+}
     
