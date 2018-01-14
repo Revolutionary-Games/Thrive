@@ -344,8 +344,10 @@ void ThriveGame::CustomizeEnginePostLoad(){
 void ThriveGame::EnginePreShutdown(){
 
     // Shutdown scripting first to allow it to still do anything it wants //
-    m_impl->m_MicrobeScripts->ReleaseScript();
-    m_impl->m_MicrobeScripts.reset();
+    if(m_impl->m_MicrobeScripts){
+        m_impl->m_MicrobeScripts->ReleaseScript();
+        m_impl->m_MicrobeScripts.reset();
+    }
     
     // All resources that need Ogre or the engine to be available when
     // they are destroyed need to be released here
