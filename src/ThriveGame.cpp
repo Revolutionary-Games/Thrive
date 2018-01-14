@@ -485,9 +485,6 @@ bool ThriveGame::InitLoadCustomScriptTypes(asIScriptEngine* engine){
     ANGLESCRIPT_BASE_CLASS_CASTS_NO_REF(Leviathan::StandardWorld, "StandardWorld",
         CellStageWorld, "CellStageWorld");
 
-    ANGLESCRIPT_BASE_CLASS_CASTS_NO_REF(Leviathan::GameWorld, "GameWorld",
-        CellStageWorld, "CellStageWorld");
-
     if(engine->RegisterObjectMethod("ThriveGame",
             "CellStageWorld@ getCellStage()",
             asMETHOD(ThriveGame, getCellStage),
