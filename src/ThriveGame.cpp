@@ -10,6 +10,8 @@
 #include "microbe_stage/simulation_parameters.h"
 #include "microbe_stage/biome_controller.h"
 
+#include "general/locked_map.h"
+
 #include "engine/player_data.h"
 
 #include "generated/cell_stage_world.h"
@@ -361,7 +363,63 @@ void ThriveGame::CheckGameKeyConfigVariables(Lock &guard, KeyConfiguration* keyc
 
 }
 // ------------------------------------ //
+bool registerLockedMap(asIScriptEngine* engine){
+
+    if(engine->RegisterObjectType("LockedMap", 0, asOBJ_REF | asOBJ_NOCOUNT) < 0){
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectMethod("LockedMap",
+            "void addLock(string lockName)",
+            asMETHOD(LockedMap, addLock),
+            asCALL_THISCALL) < 0)
+    {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectMethod("LockedMap",
+            "bool isLocked(string conceptName)",
+            asMETHOD(LockedMap, isLocked),
+            asCALL_THISCALL) < 0)
+    {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectMethod("LockedMap",
+            "void unlock(string conceptName)",
+            asMETHOD(LockedMap, unlock),
+            asCALL_THISCALL) < 0)
+    {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    return true;
+}
+
+bool registerPlayerData(asIScriptEngine* engine){
+
+    if(engine->RegisterObjectType("PlayerData", 0, asOBJ_REF | asOBJ_NOCOUNT) < 0){
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectMethod("PlayerData",
+            "LockedMap& lockedMap()",
+            asMETHOD(PlayerData, lockedMap),
+            asCALL_THISCALL) < 0)
+    {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+    
+    return true;
+}
+
 bool ThriveGame::InitLoadCustomScriptTypes(asIScriptEngine* engine){
+
+    if(!registerLockedMap(engine))
+        return false;
+
+    if(!registerPlayerData(engine))
+        return false;
 
     if(engine->RegisterObjectType("ThriveGame", 0, asOBJ_REF | asOBJ_NOCOUNT) < 0){
         ANGELSCRIPT_REGISTERFAIL;
@@ -376,11 +434,26 @@ bool ThriveGame::InitLoadCustomScriptTypes(asIScriptEngine* engine){
     ANGLESCRIPT_BASE_CLASS_CASTS_NO_REF(LeviathanApplication, "LeviathanApplication",
         ThriveGame, "ThriveGame");
 
+    if(engine->RegisterObjectMethod("ThriveGame",
+            "PlayerData& playerData()",
+            asMETHOD(ThriveGame, playerData),
+            asCALL_THISCALL) < 0)
+    {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    // if(engine->RegisterObjectMethod("ThriveGame",
+    //         "SoundPlayer@ getGuiSoundPlayer()",
+    //         asMETHOD(ThriveGame, getGuiSoundPlayer),
+    //         asCALL_THISCALL) < 0)
+    // {
+    //     ANGELSCRIPT_REGISTERFAIL;
+    // }
     
 
     if(engine->RegisterObjectMethod("ThriveGame",
             "void startNewGame()",
-            asMETHOD(ThriveGame, ThriveGame::startNewGame),
+            asMETHOD(ThriveGame, startNewGame),
             asCALL_THISCALL) < 0)
     {
         ANGELSCRIPT_REGISTERFAIL;
@@ -415,7 +488,7 @@ bool ThriveGame::InitLoadCustomScriptTypes(asIScriptEngine* engine){
 
     if(engine->RegisterObjectMethod("ThriveGame",
             "CellStageWorld@ getCellStage()",
-            asMETHOD(ThriveGame, ThriveGame::getCellStage),
+            asMETHOD(ThriveGame, getCellStage),
             asCALL_THISCALL) < 0)
     {
         ANGELSCRIPT_REGISTERFAIL;
@@ -430,6 +503,10 @@ void ThriveGame::RegisterCustomScriptTypes(asIScriptEngine* engine,
     typeids.insert(std::make_pair(engine->GetTypeIdByDecl("ThriveGame"), "ThriveGame"));
     typeids.insert(std::make_pair(engine->GetTypeIdByDecl("CellStageWorld"),
             "CellStageWorld"));
+    typeids.insert(std::make_pair(engine->GetTypeIdByDecl("PlayerData"),
+            "PlayerData")); 
+    typeids.insert(std::make_pair(engine->GetTypeIdByDecl("LockedMap"),
+            "LockedMap")); 
 }
 
 

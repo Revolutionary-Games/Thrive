@@ -3,8 +3,6 @@ const auto CLOUD_SPAWN_RADIUS = 75;
 const auto POWERUP_SPAWN_RADIUS = 85;
 const auto MICROBE_SPAWN_RADIUS = 85;
 
-const auto AGENT_EMISSION_VELOCITY = 20;
-
 // void setupBackground(CellStageWorld@ world){
 //     setRandomBiome(world);
 // }
