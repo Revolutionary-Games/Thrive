@@ -24,6 +24,12 @@ SpeciesComponent::SpeciesComponent(const std::string& _name)
 	*/
 }
 
+SpeciesComponent::~SpeciesComponent(){
+
+    SAFE_RELEASE(organelles);
+    SAFE_RELEASE(avgCompoundAmounts);
+}
+
 /*
 void
 SpeciesComponent::load(const StorageContainer& storage) {

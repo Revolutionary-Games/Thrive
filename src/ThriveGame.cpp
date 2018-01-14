@@ -413,9 +413,87 @@ bool registerPlayerData(asIScriptEngine* engine){
     return true;
 }
 
+bool bindThriveComponentTypes(asIScriptEngine* engine){
+
+    if(engine->RegisterObjectType("ProcessorComponent", 0, asOBJ_REF | asOBJ_NOCOUNT) < 0){
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectType("SpawnedComponent", 0, asOBJ_REF | asOBJ_NOCOUNT) < 0){
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectType("AgentCloudComponent", 0, asOBJ_REF | asOBJ_NOCOUNT) < 0){
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectType("CompoundCloudComponent", 0, asOBJ_REF | asOBJ_NOCOUNT) < 0){
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectType("MembraneComponent", 0, asOBJ_REF | asOBJ_NOCOUNT) < 0){
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    // ------------------------------------ //
+
+    if(engine->RegisterObjectType("SpeciesComponent", 0, asOBJ_REF | asOBJ_NOCOUNT) < 0){
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectProperty("SpeciesComponent", "array<any>@ organelles",
+            asOFFSET(SpeciesComponent, organelles)) < 0)
+    {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectProperty("SpeciesComponent", "dictionary@ avgCompoundAmounts",
+            asOFFSET(SpeciesComponent, avgCompoundAmounts)) < 0)
+    {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+    
+    
+    // ------------------------------------ //
+
+    if(engine->RegisterObjectType("CompoundBagComponent", 0, asOBJ_REF | asOBJ_NOCOUNT) < 0){
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectType("CompoundAbsorberComponent", 0, asOBJ_REF | asOBJ_NOCOUNT)
+        < 0)
+    {
+        ANGELSCRIPT_REGISTERFAIL;
+    }   
+    
+    return true;
+}
+
+template<class WorldType>
+bool bindCellStageMethods(asIScriptEngine* engine, const char* classname){
+
+    if(!Leviathan::BindStandardWorldMethods<CellStageWorld>(engine, classname))
+        return false;
+
+    #include "generated/cell_stage_bindings.h"
+
+    ANGLESCRIPT_BASE_CLASS_CASTS_NO_REF(Leviathan::StandardWorld, "StandardWorld",
+        CellStageWorld, "CellStageWorld");
+    
+    return true;
+}
+
 bool ThriveGame::InitLoadCustomScriptTypes(asIScriptEngine* engine){
 
     if(!registerLockedMap(engine))
+        return false;
+
+    if(engine->RegisterTypedef("CompoundId", "uint16") < 0){
+
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(!bindThriveComponentTypes(engine))
         return false;
 
     if(!registerPlayerData(engine))
@@ -463,7 +541,7 @@ bool ThriveGame::InitLoadCustomScriptTypes(asIScriptEngine* engine){
             asOFFSET(ThriveGame, m_backgroundPlane)) < 0)
     {
         ANGELSCRIPT_REGISTERFAIL;
-    }    
+    }
     
     // if(engine->RegisterObjectMethod("Client",
     //         "bool Connect(const string &in address, string &out errormessage)",
@@ -477,14 +555,8 @@ bool ThriveGame::InitLoadCustomScriptTypes(asIScriptEngine* engine){
         ANGELSCRIPT_REGISTERFAIL;
     }
 
-    if(!Leviathan::BindStandardWorldMethods<CellStageWorld>(engine, "CellStageWorld"))
+    if(!bindCellStageMethods<CellStageWorld>(engine, "CellStageWorld"))
         return false;
-
-    ANGLESCRIPT_BASE_CLASS_CASTS_NO_REF(Leviathan::StandardWorld, "StandardWorld",
-        CellStageWorld, "CellStageWorld");
-
-    ANGLESCRIPT_BASE_CLASS_CASTS_NO_REF(Leviathan::GameWorld, "GameWorld",
-        CellStageWorld, "CellStageWorld");
 
     if(engine->RegisterObjectMethod("ThriveGame",
             "CellStageWorld@ getCellStage()",
@@ -503,10 +575,25 @@ void ThriveGame::RegisterCustomScriptTypes(asIScriptEngine* engine,
     typeids.insert(std::make_pair(engine->GetTypeIdByDecl("ThriveGame"), "ThriveGame"));
     typeids.insert(std::make_pair(engine->GetTypeIdByDecl("CellStageWorld"),
             "CellStageWorld"));
-    typeids.insert(std::make_pair(engine->GetTypeIdByDecl("PlayerData"),
-            "PlayerData")); 
-    typeids.insert(std::make_pair(engine->GetTypeIdByDecl("LockedMap"),
-            "LockedMap")); 
+    typeids.insert(std::make_pair(engine->GetTypeIdByDecl("PlayerData"), "PlayerData")); 
+    typeids.insert(std::make_pair(engine->GetTypeIdByDecl("LockedMap"), "LockedMap"));
+    
+    typeids.insert(std::make_pair(engine->GetTypeIdByDecl("ProcessorComponent"),
+            "ProcessorComponent"));
+    typeids.insert(std::make_pair(engine->GetTypeIdByDecl("CompoundBagComponent"),
+            "CompoundBagComponent"));
+    typeids.insert(std::make_pair(engine->GetTypeIdByDecl("SpeciesComponent"),
+            "SpeciesComponent"));
+    typeids.insert(std::make_pair(engine->GetTypeIdByDecl("MembraneComponent"),
+            "MembraneComponent"));
+    typeids.insert(std::make_pair(engine->GetTypeIdByDecl("CompoundCloudComponent"),
+            "CompoundCloudComponent"));
+    typeids.insert(std::make_pair(engine->GetTypeIdByDecl("AgentCloudComponent"),
+            "AgentCloudComponent"));
+    typeids.insert(std::make_pair(engine->GetTypeIdByDecl("SpawnedComponent"),
+            "SpawnedComponent"));
+    typeids.insert(std::make_pair(engine->GetTypeIdByDecl("CompoundAbsorberComponent"),
+            "CompoundAbsorberComponent"));     
 }
 
 
