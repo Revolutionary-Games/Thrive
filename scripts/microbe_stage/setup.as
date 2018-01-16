@@ -15,7 +15,7 @@ void setupSpecies(CellStageWorld@ world){
 
     // Fail if compound registry is empty //
     // The registry needs to be registered
-    assert(SimulationParameters::compoundRegistry.getCompoundCount() > 0,
+    assert(SimulationParameters::compoundRegistry().getSize() > 0,
         "Compound registry is empty");
 
     auto keys = STARTER_MICROBES.getKeys();
@@ -31,12 +31,14 @@ void setupSpecies(CellStageWorld@ world){
         SpeciesComponent@ speciesComponent = world.Create_SpeciesComponent(speciesEntity,
             name);
 
-        speciesComponent.organelles = array<any>();
         speciesComponent.avgCompoundAmounts = dictionary();
-        
-        for(uint a = 0; i < data.organelles.length(); ++i){
 
-            speciesComponent.organelles.push(data.organelles[a]);
+        speciesComponent.organelles = array<ref@>();
+        speciesComponent.organelles.resize(data.organelles.length());
+        for(uint a = 0; a < data.organelles.length(); ++a){
+
+            // Need to assign with handle assignment
+            @speciesComponent.organelles[a] = data.organelles[a];
         }
 
         ProcessorComponent@ processorComponent = world.Create_ProcessorComponent(
