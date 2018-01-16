@@ -33,6 +33,7 @@
 using namespace thrive;
 
 // ------------------------------------ //
+//! Contains properties that would need unnecessary large includes in the header
 class ThriveGame::Implementation{
 public:
     Implementation(
@@ -161,6 +162,22 @@ void ThriveGame::startNewGame(){
         m_cellStage->Create_CompoundCloudComponent(cloudId, data.id,
             data.colour.r, data.colour.g, data.colour.b);
     }
+
+    // Let the script do setup //
+    LEVIATHAN_ASSERT(m_impl->m_MicrobeScripts, "microbe scripts not loaded");
+
+    bool existed = false;
+    // Passing a reference to the world //
+    std::vector<std::shared_ptr<Leviathan::NamedVariableBlock>> scriptParameters = {
+        std::make_shared<Leviathan::NamedVariableBlock>(
+            new Leviathan::VoidPtrBlock(m_cellStage.get()),
+                "CellStageWorld")};
+
+    LOG_INFO("Calling script setupSpecies");
+    auto result = m_impl->m_MicrobeScripts->ExecuteOnModule("setupSpecies", scriptParameters,
+        existed, false);
+
+    LOG_INFO("Finished calling setupSpecies");
 
     // Set background plane //
 	if (true) {
@@ -413,6 +430,68 @@ bool registerPlayerData(asIScriptEngine* engine){
     return true;
 }
 
+//! Wrapper for TJsonRegistry::getSize
+template<class RegistryT>
+uint64_t getSizeWrapper(RegistryT* self){
+
+    return static_cast<uint64_t>(self->getSize());
+}
+
+//! Helper for registerSimulationDataAndJsons
+template<class RegistryT>
+bool registerJsonRegistry(asIScriptEngine* engine, const char* classname){
+
+    if(engine->RegisterObjectType(classname, 0, asOBJ_REF | asOBJ_NOCOUNT) < 0){
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectMethod(classname,
+            "uint64 getSize()",
+            asFUNCTION(getSizeWrapper<RegistryT>),
+            asCALL_CDECL_OBJFIRST) < 0)
+    {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    return true;
+}
+
+// Wrappers for registerSimulationDataAndJsons
+TJsonRegistry<Compound>* getCompoundRegistryWrapper(){
+
+    return &SimulationParameters::compoundRegistry;
+}
+
+bool registerSimulationDataAndJsons(asIScriptEngine* engine){
+
+    if(engine->RegisterObjectType("SimulationParameters", 0, asOBJ_REF | asOBJ_NOCOUNT) < 0){
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(!registerJsonRegistry<TJsonRegistry<Compound>>(engine, "TJsonRegistryCompound"))
+        return false;
+
+    if(engine->SetDefaultNamespace("SimulationParameters") < 0)
+    {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterGlobalFunction("TJsonRegistryCompound@ compoundRegistry()",
+            asFUNCTION(getCompoundRegistryWrapper), asCALL_CDECL) < 0)
+    {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->SetDefaultNamespace("") < 0)
+    {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+    
+    return true;
+}
+
+
+
 bool bindThriveComponentTypes(asIScriptEngine* engine){
 
     if(engine->RegisterObjectType("ProcessorComponent", 0, asOBJ_REF | asOBJ_NOCOUNT) < 0){
@@ -441,7 +520,7 @@ bool bindThriveComponentTypes(asIScriptEngine* engine){
         ANGELSCRIPT_REGISTERFAIL;
     }
 
-    if(engine->RegisterObjectProperty("SpeciesComponent", "array<any>@ organelles",
+    if(engine->RegisterObjectProperty("SpeciesComponent", "array<ref@>@ organelles",
             asOFFSET(SpeciesComponent, organelles)) < 0)
     {
         ANGELSCRIPT_REGISTERFAIL;
@@ -497,6 +576,9 @@ bool ThriveGame::InitLoadCustomScriptTypes(asIScriptEngine* engine){
         return false;
 
     if(!registerPlayerData(engine))
+        return false;
+
+    if(!registerSimulationDataAndJsons(engine))
         return false;
 
     if(engine->RegisterObjectType("ThriveGame", 0, asOBJ_REF | asOBJ_NOCOUNT) < 0){
