@@ -291,20 +291,6 @@ target_compile_definitions(ThriveLib PRIVATE "THRIVELIB_BUILD=1")
 
 target_link_libraries(ThriveLib ${DEPENDENT_LIBS})
 
-# We directly use angelscript stuff so we need to link it
-
-# Angelscript is named angelscript64 on windows if 64 bit (which we are using)
-if(WIN32)
-  # When using angelscript on windows /LTCG should be specified as a flag
-  list(APPEND ANGELSCRIPT_LIB optimized angelscript64)
-  list(APPEND ANGELSCRIPT_LIB debug angelscript64d)
-  
-else()
-  list(APPEND ANGELSCRIPT_LIB optimized angelscript)
-endif()
-
-target_link_libraries(ThriveLib ${ANGELSCRIPT_LIB})
-
 # Include the common file
 set(CREATE_CONSOLE_APP OFF)
 include(LeviathanUsingProject)
