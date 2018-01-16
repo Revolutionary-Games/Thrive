@@ -39,6 +39,7 @@ void setupSpecies(CellStageWorld@ world){
 
             // Need to assign with handle assignment
             @speciesComponent.organelles[a] = data.organelles[a];
+            //@speciesComponent.organelles.push(data.organelles[a]);
         }
 
         ProcessorComponent@ processorComponent = world.Create_ProcessorComponent(
@@ -47,17 +48,18 @@ void setupSpecies(CellStageWorld@ world){
         speciesComponent.colour = data.colour;
 
         // iterates over all compounds, and sets amounts and priorities
-        auto compoundKeys = CompoundRegistry.getCompoundList();
-        for(uint a = 0; a < compoundKeys.length(); ++a()){
-                
-            compound = CompoundRegistry.getCompoundInternalName(compoundID);
-            compoundData = data.compounds[compound];
+        uint64 compoundCount = SimulationParameters::compoundRegistry().getSize();
+        for(uint a = 0; a < compoundCount; ++a){
+
+            auto compound = SimulationParameters::compoundRegistry().getTypeData(a);
+
+            int compoundAmount;
+            bool valid = data.compounds.get(compound.internalName, compoundAmount);
             
-            if(compoundData !is null){
+            if(valid){
                 
-                amount = compoundData.amount;
                 // priority = compoundData.priority
-                speciesComponent.avgCompoundAmounts[compoundID] = amount;
+                speciesComponent.avgCompoundAmounts[formatUInt(compound.id)] = compoundAmount;
                 // speciesComponent.compoundPriorities[compoundID] = priority
             }
         }

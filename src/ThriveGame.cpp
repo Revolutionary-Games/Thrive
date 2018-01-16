@@ -439,10 +439,18 @@ uint64_t getSizeWrapper(RegistryT* self){
     return static_cast<uint64_t>(self->getSize());
 }
 
-//! Helper for registerSimulationDataAndJsons
-template<class RegistryT>
-bool registerJsonRegistry(asIScriptEngine* engine, const char* classname){
+//! Wrapper for TJsonRegistry::getTypeData
+template<class RegistryT, class ReturnedT>
+const ReturnedT* getTypeDataWrapper(RegistryT* self, uint64_t id){
 
+    return &self->getTypeData(id);
+}
+
+//! Helper for registerSimulationDataAndJsons
+template<class RegistryT, class ReturnedT>
+bool registerJsonRegistry(asIScriptEngine* engine, const char* classname,
+    const std::string &returnedTypeName)
+{
     if(engine->RegisterObjectType(classname, 0, asOBJ_REF | asOBJ_NOCOUNT) < 0){
         ANGELSCRIPT_REGISTERFAIL;
     }
@@ -455,6 +463,89 @@ bool registerJsonRegistry(asIScriptEngine* engine, const char* classname){
         ANGELSCRIPT_REGISTERFAIL;
     }
 
+    if(engine->RegisterObjectMethod(classname,
+            ("const " + returnedTypeName + "@ getTypeData(uint64 id)").c_str(),
+            asFUNCTION((getTypeDataWrapper<RegistryT, ReturnedT>)),
+            asCALL_CDECL_OBJFIRST) < 0)
+    {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    
+
+    return true;
+}
+
+//! Helper for registerJsonregistryHeldTypes
+template<class RegistryT>
+bool
+registerRegistryHeldHelperBases(
+    asIScriptEngine* engine,
+    const char* classname)
+{
+    if(engine->RegisterObjectType(classname, 0, asOBJ_REF | asOBJ_NOCOUNT) < 0){
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    ANGELSCRIPT_ASSUMED_SIZE_T;
+    if(engine->RegisterObjectProperty(classname,
+            "uint64 id",
+            asOFFSET(RegistryT, id)) < 0)
+    {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectProperty(classname,
+            "string displayName",
+            asOFFSET(RegistryT, displayName)) < 0)
+    {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectProperty(classname,
+            "const string internalName",
+            asOFFSET(RegistryT, internalName)) < 0)
+    {
+        ANGELSCRIPT_REGISTERFAIL;
+    }    
+
+    return true;
+}
+
+bool registerJsonRegistryHeldTypes(asIScriptEngine* engine){
+
+    if(!registerRegistryHeldHelperBases<Compound>(engine, "Compound"))
+        return false;
+    
+    // Compound specific properties //
+    if(engine->RegisterObjectProperty("Compound",
+            "double volume",
+            asOFFSET(Compound, volume)) < 0)
+    {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+    
+    if(engine->RegisterObjectProperty("Compound",
+            "bool isCloud",
+            asOFFSET(Compound, isCloud)) < 0)
+    {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectProperty("Compound",
+            "bool isUseful",
+            asOFFSET(Compound, isUseful)) < 0)
+    {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+    
+    if(engine->RegisterObjectProperty("Compound",
+            "Ogre::ColourValue colour",
+            asOFFSET(Compound, colour)) < 0)
+    {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+    
     return true;
 }
 
@@ -470,8 +561,14 @@ bool registerSimulationDataAndJsons(asIScriptEngine* engine){
         ANGELSCRIPT_REGISTERFAIL;
     }
 
-    if(!registerJsonRegistry<TJsonRegistry<Compound>>(engine, "TJsonRegistryCompound"))
+    if(!registerJsonRegistryHeldTypes(engine))
         return false;
+
+    if(!registerJsonRegistry<TJsonRegistry<Compound>, Compound>(engine,
+            "TJsonRegistryCompound", "Compound"))
+    {
+        return false;
+    }
 
     if(engine->SetDefaultNamespace("SimulationParameters") < 0)
     {
@@ -530,6 +627,12 @@ bool bindThriveComponentTypes(asIScriptEngine* engine){
 
     if(engine->RegisterObjectProperty("SpeciesComponent", "dictionary@ avgCompoundAmounts",
             asOFFSET(SpeciesComponent, avgCompoundAmounts)) < 0)
+    {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectProperty("SpeciesComponent", "Float4 colour",
+            asOFFSET(SpeciesComponent, colour)) < 0)
     {
         ANGELSCRIPT_REGISTERFAIL;
     }

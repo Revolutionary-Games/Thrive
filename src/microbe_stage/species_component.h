@@ -24,7 +24,7 @@ public:
     CScriptDictionary* avgCompoundAmounts = nullptr;
     
     
-	Ogre::Vector3 colour;
+	Float4 colour;
 	std::string name;
 
 	// TODO: get the id from the simulation parameters.

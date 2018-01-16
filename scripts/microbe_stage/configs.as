@@ -166,33 +166,11 @@ class PlacedOrganelle{
     int rotation;
 }
 
-class Compound{
-
-    Compound(string type){
-
-        this.type = type;
-    }
-
-    string type;
-}
-
-class CompoundAmount{
-
-    CompoundAmount(Compound@ type, float amount){
-
-        @this.type = @type;
-        this.amount = amount;
-    }
-
-    Compound@ type;
-    float amount;
-}
-
 class MicrobeTemplate{
 
     MicrobeTemplate(
         float spawnDensity,
-        array<CompoundAmount@> compounds,
+        dictionary compounds,
         array<PlacedOrganelle@> organelles,
         Float4 colour
     ) {
@@ -203,33 +181,26 @@ class MicrobeTemplate{
     }
 
     float spawnDensity;
-    array<CompoundAmount@> compounds;
+    dictionary compounds;
     array<PlacedOrganelle@> organelles;
     Float4 colour;
 }
 
-// TODO: these need to be loaded from the file and filled here
-const dictionary COMPOUNDS = {
-    {"atp", Compound("atp")},
-    {"glucose", Compound("glucose")},
-    {"oxygen", Compound("oxygen")}
-};
-
 const dictionary STARTER_MICROBES = {
     {
         "Default", MicrobeTemplate(1/14000,
-            array<CompoundAmount@> = {
-                CompoundAmount(cast<Compound@>(COMPOUNDS["atp"]), 60),
-                CompoundAmount(cast<Compound@>(COMPOUNDS["glucose"]), 5),
-                CompoundAmount(cast<Compound@>(COMPOUNDS["oxygen"]), 10)
-                },
-            array<PlacedOrganelle@> = {
+            {
+                {"atp", 60},
+                {"glucose", 5},
+                {"oxygen", 10}
+            },
+            {
                 PlacedOrganelle(Nucleus(), 0, 0, 0),
                 PlacedOrganelle(Mitochondrion(), -1, -2, 240),
                 PlacedOrganelle(Vacuole(), 1, -3, 0),
                 PlacedOrganelle(Flagellum(), -1, -3, 0),
                 PlacedOrganelle(Flagellum(), 1, -4, 0)
-                },
+            },
             Float4(1, 1, 1, 1))
     }
 };
