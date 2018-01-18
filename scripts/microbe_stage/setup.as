@@ -11,10 +11,11 @@ const auto MICROBE_SPAWN_RADIUS = 85;
 // For now, it can go through the XML and instantiate all the species, but later this 
 // would be all procedural.
 // Together with the mutate function, these would be the only ways species are created
+// Currently this goes through STARTER_MICROBES (defined in config.as) and makes entities with
+// SpeciesComponents with the properties of the species
 void setupSpecies(CellStageWorld@ world){
 
     // Fail if compound registry is empty //
-    // The registry needs to be registered
     assert(SimulationParameters::compoundRegistry().getSize() > 0,
         "Compound registry is empty");
 
@@ -30,10 +31,10 @@ void setupSpecies(CellStageWorld@ world){
         
         SpeciesComponent@ speciesComponent = world.Create_SpeciesComponent(speciesEntity,
             name);
+        
+        @speciesComponent.avgCompoundAmounts = dictionary();
 
-        speciesComponent.avgCompoundAmounts = dictionary();
-
-        speciesComponent.organelles = array<ref@>();
+        @speciesComponent.organelles = array<ref@>();
         speciesComponent.organelles.resize(data.organelles.length());
         for(uint a = 0; a < data.organelles.length(); ++a){
 
@@ -393,5 +394,7 @@ void setupSpecies(CellStageWorld@ world){
 //                               )
 //                               }
 
+
+    LOG_INFO("setupSpecies created " + keys.length() + " species");
 }
     
