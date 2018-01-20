@@ -259,6 +259,8 @@ class PlacedOrganelle{
     //
     // @param q, r
     //  Axial coordinates of the organelle's center
+    // @note This is quite an expensive method as this creates a new entity with
+    //  multiple components
     void onAddedToMicrobe(Microbe@ microbe, int q, int r, int rotation){
 
         if(@microbeEntity !is null){
@@ -277,11 +279,13 @@ class PlacedOrganelle{
         this.rotation = rotation;
 
         assert(organelleEntity == NULL_ENTITY, "PlacedOrganelle already had an entity");
+
+        auto@ world = microbe.GetWorld();
         
-        organelleEntity = microbe.GetWorld().CreateEntity();
+        organelleEntity = world.CreateEntity();
 
         // // Automatically destroyed if the parent is destroyed
-        // microbe.GetWorld().SetEntityParent(microbe.GetEntityID(), organelleEntity);
+        // world.SetEntityParent(microbe.getEntityID(), organelleEntity);
             
         // Change the colour of this species to be tinted by the membrane.
         auto species = microbeEntity.getSpeciesComponent();
@@ -293,25 +297,25 @@ class PlacedOrganelle{
         //for _, hex in pairs(MicrobeSystem.getOrganelleAt(this.microbeEntity, q, r)._hexes) ){
         Float3 offset = organelle.calculateCenterOffset();
 
-  
-        this.sceneNode = OgreSceneNodeComponent.new()
-        this.sceneNode.transform.orientation = Quaternion.new(Radian.new(Degree(this.rotation)),
-            Vector3(0, 0, 1))
-        this.sceneNode.transform.position = offset + this.position.cartesian
-        this.sceneNode.transform.scale = Vector3(HEX_SIZE, HEX_SIZE, HEX_SIZE)
-        this.sceneNode.transform.touch()
-        this.sceneNode.parent = microbeEntity
-        this.organelleEntity.addComponent(this.sceneNode)
-    
-    //Adding a mesh to the organelle.
-microbe.GetWorld().Create_Model(organelleEntity, organelle.mesh);
-    
-    // Add each OrganelleComponent
-    for(uint i = 0; i < components.length(); ++i){
+        auto renderNode = world.Create_RenderNode(organelleEntity);
+        renderNode.Marked = true;
+        renderNode.Scale = Float3(HEX_SIZE, HEX_SIZE, HEX_SIZE);
+        auto position = world.Create_Position(organelleEntity,
+            offset + this.position.cartesian, Ogre::Quaternion(Ogre::Degree(rotation)));
 
-        components[i].onAddedToMicrobe(microbeEntity, q, r, rotation, this);
+
+        auto parentRenderNode = world.Get_RenderNode(microbeEntity.getEntityID());
+        parentRenderNode.SceneNode.Attach(renderNode.SceneNode.Attach);
+            
+        //Adding a mesh for the organelle.
+        world.Create_Model(organelleEntity, organelle.mesh);
+    
+        // Add each OrganelleComponent
+        for(uint i = 0; i < components.length(); ++i){
+            
+            components[i].onAddedToMicrobe(microbeEntity, q, r, rotation, this);
+        }
     }
-}
 
     // Called by a microbe when this organelle has been removed from it
     //
@@ -324,7 +328,7 @@ microbe.GetWorld().Create_Model(organelleEntity, organelle.mesh);
             components[i].onRemovedFromMicrobe(microbeEntity);
         }
         
-        microbe.GetWorld().DestroyEntity(organelleEntity);
+        world.DestroyEntity(organelleEntity);
         organelleEntity = NULL_OBJECT;
     }
     
