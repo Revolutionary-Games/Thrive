@@ -64,33 +64,62 @@ void setupSpecies(CellStageWorld@ world){
                 // speciesComponent.compoundPriorities[compoundID] = priority
             }
         }
+
+        dictionary capacities;
+        for(uint a = 0; a < data.organelles.length(); ++a){
+
+            auto organelle = data.organelles[a];
+            
+            if(!ORGANELLE_TABLE.exists(organelle.name))
+                continue;
+
+            const Organelle@ organelleDefinition;
+            if(!ORGANELLE_TABLE.get(organelle.name, organelleDefinition)){
+
+                LOG_ERROR("Organelle table has no organelle named '" + organelle.name +
+                    "', that was used in starter microbe");
+                continue;
+            }
+                
+            for(uint processNumber = 0;
+                processNumber < organelleDefinition.processes.length(); ++processNumber)
+            {
+                // This name needs to match the one in bioProcessRegistry
+                auto process = organelleDefinition.processes[processNumber];
+                
+                if(!capacities.exists(process.name)){
+                    capacities[process.name] = 0;
+                }
+
+                capacities[process.name] = cast<int>(capacities[process]) + process.capacity;
+            }
+        }
+
+        uint64 processCount = SimulationParameters::bioProcessRegistry().getSize();
+        for(uint bioProcessId = 0; bioProcessId < processCount; ++bioProcessId){
+            
+            auto name = SimulationParameters::bioProcessRegistry().getInternalName(
+                bioProcessId);
+            
+            if(capacities.exists(name)){
+
+                int capacity;
+                if(!capacities.get(name, capacity)){
+                    LOG_ERROR("capacities has invalid value");
+                    continue;
+                }
+                
+                processorComponent.setCapacity(bioProcessId, capacity);
+                // This may be commented out for the reason that the default should be retained
+                // } else {
+                // processorComponent.setCapacity(bioProcessId, 0)
+            }
+        }
     }
 
+    LOG_INFO("setupSpecies created " + keys.length() + " species");
+}
 
-
-//     local capacities = {}
-// for _, organelle in pairs(data.organelles) do
-//            if organelleTable[organelle.name] ~= nil then
-//     if organelleTable[organelle.name]["processes"] ~= nil then
-//     for process, capacity in pairs(organelleTable[organelle.name]["processes"]) do
-//                      if capacities[process] == nil then
-//     capacities[process] = 0
-//     }
-//     capacities[process] = capacities[process] + capacity
-//     }
-//     }
-//     }
-//     }
-//     for _, bioProcessId in pairs(BioProcessRegistry.getList()) do
-//                local name = BioProcessRegistry.getInternalName(bioProcessId)
-//                    if capacities[name] ~= nil then
-//     processorComponent:setCapacity(bioProcessId, capacities[name])
-//     -- else
-//     -- processorComponent:setCapacity(bioProcessId, 0)
-//             }
-//             }
-//             }
-//             }
 
 //             function microbeSpawnFunctionGeneric(pos, speciesName, aiControlled, individualName, gameState)
 //             return spawnMicrobe(pos, speciesName, aiControlled, individualName, gameState).entity
@@ -394,7 +423,4 @@ void setupSpecies(CellStageWorld@ world){
 //                               )
 //                               }
 
-
-    LOG_INFO("setupSpecies created " + keys.length() + " species");
-}
     

@@ -1,5 +1,6 @@
 // Holds config file contents, translated into AngelScript objects
 #include "agents.as"
+#include "organelle.as"
 
 // TODO: move these into gamestate
 // must be global
@@ -97,74 +98,6 @@ the +r direction.
 in 60 degree intervals counter clockwise.
 The colour of the microbe should never be lower than (0.3, 0.3, 0.3)
 */
-
-abstract class Organelle{
-
-    Organelle(string name){
-
-        this._name = name;
-    }
-
-    // Prevent modification
-    string name {
-
-        get {
-            return _name;
-        }
-    }
-
-    private string _name;
-}
-
-class Nucleus : Organelle{
-
-    Nucleus(){
-
-        super("nucleus");
-    }
-}
-
-class Mitochondrion : Organelle{
-
-    Mitochondrion(){
-
-        super("mitochondrion");
-    }
-}
-
-class Vacuole : Organelle{
-
-    Vacuole(){
-
-        super("vacuole");
-    }
-}
-
-class Flagellum : Organelle{
-
-    Flagellum(){
-
-        super("flagellum");
-    }
-}
-
-
-class PlacedOrganelle{
-
-    PlacedOrganelle(Organelle@ organelle, int q, int r, int rotation){
-
-        @this.organelle = @organelle;
-        this.q = q;
-        this.r = r;
-        this.rotation = rotation;
-    }
-    
-    Organelle@ organelle;
-    // No clue what q and r are
-    int q;
-    int r;
-    int rotation;
-}
 
 class MicrobeTemplate{
 
