@@ -47,6 +47,15 @@ abstract class Organelle{
         beingConstructed = false;
     }
 
+    // Overwrite to make organelle do something at update time. Called from PlacedOrganelle
+    //! \note This may not change the state of this Organelle object (or subclass) as they are
+    //! global and only PlacedOrganelle has data regarding a specific organelle that is
+    //! in a microbe
+    void update(PlacedOrganelle@ instanceData) const{
+
+        
+    }
+
     protected setupPhysics(){
         assert(false, "Organelle::setupPhysics not overridden");
     }
@@ -207,11 +216,10 @@ abstract class Organelle{
 }
 
 enum ORGANELLE_HEALTH{
-
     DEAD = 0,
-    ALIVE,
+    ALIVE = 1,
     // Organelle is ready to divide
-    CAN_DIVIDE
+    CAN_DIVIDE = 2
 };
 
 class PlacedOrganelle{
@@ -238,19 +246,267 @@ class PlacedOrganelle{
         composition = initialComposition;
     }
 
-    void setParentMicrobe(Microbe@ microbe){
 
-        if(microbeEntity is microbe)
-            return;
-
-        // Detach
-        onRemovedFromMicrobe();
+    // Called by Microbe.update
+    //
+    // Override this to make your organelle class do something at regular intervals
+    //
+    // @param logicTime
+    //  The time since the last call to update()
+    void update(int logicTime){
+        if(flashDuration >= 0){
+            
+            flashDuration -= logicTime;
+            Float4 speciesColour = microbeEntity.getSpeciesComponent().colour;
+            
+            // How frequent it flashes, would be nice to update the
+            // flash function to have this variable
+            if(flashDuration % 600 < 300){
+                
+                colour = flashColour;
+                
+            } else {
+                colour = speciesColour;
+            }
         
-        // Attach to new
-        @microbeEntity = microbe;
-        onAddedToMicrobe();
+            if(flashDuration <= 0){
+                flashDuration = 0;
+                colour = speciesColour;
+            }
+        
+            _needsColourUpdate = true;
+        }
+
+        // If the organelle is supposed to be another color.
+        if(_needsColourUpdate){
+            // This method doesn't actually apply the colour so I have
+            // no clue how the flashing works
+            updateColour();
+        }
+
+        // Update main organelle derived class
+        // This is a const method so we store all the state
+        organelle.update(this);
+
+        // Update each OrganelleComponent
+        for(uint i = 0; i < components.size(); ++i){
+            component.update(microbeEntity, this, logicTime);
+        }
     }
 
+    protected void updateColour(){
+
+        if(organelleEntity == NULL_OBJECT || microbeEntity is null)
+            return;
+
+        auto model = microbeEntity.getWorld().Get_Model(organelleEntity);
+
+        // local entity = this.sceneNode.entity;
+        // //entity.tintColour(this.name, this.colour); //crashes game
+        
+        // model.Entity.SetColour(colour);
+        
+        _needsColourUpdate = false;
+    }
+
+    // Returns the meaning of compoundBin value
+    ORGANELLE_HEALTH getHealth(){
+        if(compoundBin <= ORGANELLE_HEALTH::DEAD)
+            return ORGANELLE_HEALTH::DEAD;
+        if(compoundBin < ORGANELLE_HEALTH::CAN_DIVIDE)
+            return ORGANELLE_HEALTH::ALIVE;
+        return ORGANELLE_HEALTH::CAN_DIVIDE;
+    }
+
+    // Gives organelles more compounds
+    void growOrganelle(CompoundBagComponent@ compoundBagComponent, int logicTime){
+        // Finds the total number of needed compounds.
+        float sum = 0.0;
+
+        auto compoundKeys = compoundsLeft.keys();
+        for(uint i = 0; i < compoundKeys.length(); ++i){
+
+            // Finds which compounds the cell currently has.
+            if(compoundBagComponent.getCompoundAmount(
+                    SimulationParameters::compoundRegistry().getTypeId(compoundKeys[i])) >= 1)
+            {
+                float amount;
+                if(!compoundsLeft.get(compoundKeys[i], amount)){
+
+                    LOG_ERROR("Invalid type in compoundsLeft");
+                    continue;
+                }
+                    
+                sum += amount;
+            }
+        }
+    
+        // If sum is 0, we either have no compounds, in which case we
+        // cannot grow the organelle, or the organelle is ready to
+        // split (i.e. compoundBin = 2), in which case we wait for the
+        // microbe to handle the split.
+        if(sum <= 0.0)
+            return;
+
+        // Randomly choose which of the compounds are used in reproduction.
+        // Uses a roulette selection.
+        float id = GetEngine().GetRandom().GetFloat(0, 1) * sum;
+
+        for(uint i = 0; i < compoundKeys.length(); ++i){
+
+            float amount;
+            if(!compoundsLeft.get(compoundKeys[i], amount)){
+
+                LOG_ERROR("Invalid type in compoundsLeft");
+                continue;
+            }            
+            
+            if(id - amount < 0){
+                // The random number is from this compound, so attempt to take it.
+                float amountToTake = min(logicTime * GROWTH_SPEED_MULTILPIER, amount);
+                amountToTake = compoundBagComponent.takeCompound(
+                    SimulationParameters::compoundRegistry().getTypeId(compoundName),
+                    amountToTake);
+                compoundsLeft[compoundName] = cast<float>(compoundsLeft[compoundName]) -
+                    amountToTake;
+                break;
+
+            } else {
+                id -= amount;
+            }
+        }
+        
+        // Calculate the new growth value.
+        recalculateBin();
+    }
+
+    void damageOrganelle(float damageAmount){
+        // Flash the organelle that was damaged.
+        flashOrganelle(3000, Float4(1, 0.2, 0.2, 1));
+
+        // Calculate the total number of compounds we need
+        // to divide now, so that we can keep this ratio.
+        const float totalLeft = calculateCompoundsLeft();
+
+        // Calculate how much compounds the organelle needs to have
+        // to result in a health equal to compoundBin - amount.
+        const float damageFactor = (2.0 - compoundBin + damageAmount) *
+            (organelleCost / totalLeft);
+
+        scaleCompoundsLeft(damageFactor);
+        
+        recalculateBin();
+    }
+
+    private void scaleCompoundsLeft(float scaleFactor){
+
+        auto compoundKeys = compoundsLeft.keys();
+        for(uint i = 0; i < compoundKeys.length(); ++i){
+            float amount;
+            if(!compoundsLeft.get(compoundKeys[i], amount)){
+                
+                LOG_ERROR("Invalid type in compoundsLeft");
+                continue;
+            }
+
+            compoundsLeft[compoundKeys[i]] = amount * scaleFactor;
+        }
+    }
+
+    // Calculates total number of compounds left until this organelle can divide
+    float calculateCompoundsLeft() const{
+
+        float totalLeft = 0;
+        
+        auto compoundKeys = compoundsLeft.keys();
+        for(uint i = 0; i < compoundKeys.length(); ++i){
+        
+            float amount;
+            if(!compoundsLeft.get(compoundKeys[i], amount)){
+
+                LOG_ERROR("Invalid type in compoundsLeft");
+                continue;
+            }
+
+            totalLeft += amount;
+        }
+
+        return totalLeft;
+    }
+
+    private void recalculateBin(){
+        // Calculate the new growth growth
+        float totalCompoundsLeft = calculateCompoundsLeft();
+    
+        compoundBin = 2.0 - totalCompoundsLeft / organelleCost;
+
+        // If the organelle is damaged...
+        if(compoundBin < 1.0){
+            // If it is dead
+            if(compoundBin <= 0.0){
+                // If it was split from a primary organelle, destroy it.
+                if(isDuplicate == true){
+                    microbeEntity.organelleDestroyedByDamage(q, r);
+                    
+                    // Notify the organelle the sister organelle it is no longer split.
+                    sisterOrganelle.wasSplit = false;
+                    return;
+                } else {
+                    // If it is a primary organelle, make sure that
+                    // it's compound bin is not less than 0.
+                    compoundBin = 0.0;
+
+                    scaleCompoundsLeft(2);
+                }
+            }
+        
+        // Scale the model at a slower rate (so that 0.0 is half size).
+        if organelleTable[this.name].components["NucleusOrganelle"] == nil {
+                this.sceneNode.transform.scale = Vector3((1.0 + this.compoundBin)/2, (1.0 + this.compoundBin)/2, (1.0 + this.compoundBin)/2)*HEX_SIZE
+                this.sceneNode.transform.touch()
+            }
+        
+        // Darken the color. Will be updated on next call of update()
+this.colourTint = Vector3((1.0 + this.compoundBin)/2, this.compoundBin, this.compoundBin)
+    this._needsColourUpdate = true
+        else
+            // Scale the organelle model to reflect the new size.
+            if organelleTable[this.name].components["NucleusOrganelle"] == nil {
+                    this.sceneNode.transform.scale = Vector3(this.compoundBin, this.compoundBin, this.compoundBin)*HEX_SIZE
+                    this.sceneNode.transform.touch()  
+                }
+    }
+}
+
+void reset(){
+    // Return the compound bin to its original state
+    this.compoundBin = 1.0
+    for compoundName, amount in pairs(this.composition) ){
+        this.compoundsLeft[compoundName] = amount
+            }
+    
+// Scale the organelle model to reflect the new size.
+this.sceneNode.transform.scale = Vector3(1, 1, 1) * HEX_SIZE
+                                                             this.sceneNode.transform.touch()
+        
+                                                             // If it was split from a primary organelle, destroy it.
+                                                             if this.isDuplicate == true {
+                                                                     MicrobeSystem.removeOrganelle(this.microbeEntity, this.position.q, this.position.r)
+                                                                     else
+                                                                         this.wasSplit = false
+                                                                             }
+}
+
+
+// Is this used? This will be quite difficult to do afterwards
+function Organelle.removePhysics()
+    this.collisionShape.clear()
+    }
+
+    
+
+
+    
 
     // Called by a microbe when this organelle has been added to it
     //
@@ -309,6 +565,8 @@ class PlacedOrganelle{
             
         //Adding a mesh for the organelle.
         world.Create_Model(organelleEntity, organelle.mesh);
+
+        // TODO: create physics body
     
         // Add each OrganelleComponent
         for(uint i = 0; i < components.length(); ++i){
@@ -330,7 +588,24 @@ class PlacedOrganelle{
         
         world.DestroyEntity(organelleEntity);
         organelleEntity = NULL_OBJECT;
+        @microbeEntity = null;
     }
+
+
+    function Organelle.flashOrganelle(float duration, Float4 colour){
+        if(flashDuration > 0)
+            return;
+        
+        flashColour = colour;
+        flashDuration = duration;
+    }
+
+// Sets the color of the organelle (used in editor for valid/nonvalid placement)
+function OrganelleFactory.setColour(sceneNode, colour)
+    sceneNode.entity.setColour(colour)
+    }
+
+    // ------------------------------------ //
     
     const Organelle@ organelle {
         get const{
@@ -351,8 +626,9 @@ class PlacedOrganelle{
     // If this organelle is a duplicate of another organelle caused by splitting.
     bool isDuplicate = false;
     
-    // The "Health Bar" of the organelle constrained to ORGANELLE_HEALTH
-    ORGANELLE_HEALTH compoundBin = ORGANELLE_HEALTH::ALIVE;
+    // The "Health Bar" of the organelle constrained to [0, 2],
+    // ORGANELLE_HEALTH tells what different ranges mean
+    float compoundBin = ORGANELLE_HEALTH::ALIVE;
 
     // The compounds left to divide this organelle.
     // Decreases every time a required compound is absorbed.
@@ -366,6 +642,12 @@ class PlacedOrganelle{
 
     Microbe@ microbeEntity;
     ObjectID organelleEntity = NULL_OBJECT;
+
+    float flashDuration = 0;
+    Float4 flashColour;
+
+    protected CompoundBin compoundBin;
+    PlacedOrganelle@ sisterOrganelle = null;
 }
 
 
@@ -437,322 +719,129 @@ class Flagellum : Organelle{
 // }
 
 
+// function Organelle.storage(){
+//     local storage = StorageContainer.new();
+//     local hexes = StorageList.new();
+//     for(_, hex in pairs(this._hexes)){
+//         hexStorage = StorageContainer.new();
+//         hexStorage.set("q", hex.q);
+//         hexStorage.set("r", hex.r);
+//         hexes.append(hexStorage);
+//     }
+//     storage.set("hexes", hexes);
+//     storage.set("name", this.name);
+//     storage.set("q", this.position.q);
+//     storage.set("r", this.position.r);
+//     storage.set("rotation", this.rotation);
+//     storage.set("mass", this.mass);
+//     //Serializing these causes some minor issues and ){esn't serve a purpose anyway
+//     //storage.set("externalEdgeColour", this._externalEdgeColour)
 
-    function Organelle.flashOrganelle(duration, colour)
-    if this.flashDuration == nil {
-        
-    this.flashColour = colour
-    this.flashDuration = duration
-    }
-    }
+//     //iterating on each OrganelleComponent
+//     for(componentName, component in pairs(this.components) ){
+//         local s = component.storage();
+//         assert(isNotEmpty, componentName);
+//         assert(s);
+//         storage.set(componentName, s);
+//     }
 
-    function Organelle.storage()
-    local storage = StorageContainer.new()
-    local hexes = StorageList.new()
-    for _, hex in pairs(this._hexes) ){
-    hexStorage = StorageContainer.new()
-    hexStorage.set("q", hex.q)
-    hexStorage.set("r", hex.r)
-    hexes.app}(hexStorage)
-    }
-    storage.set("hexes", hexes)
-    storage.set("name", this.name)
-    storage.set("q", this.position.q)
-    storage.set("r", this.position.r)
-    storage.set("rotation", this.rotation)
-    storage.set("mass", this.mass)
-    //Serializing these causes some minor issues and ){esn't serve a purpose anyway
-                //storage.set("externalEdgeColour", this._externalEdgeColour)
-
-                    //iterating on each OrganelleComponent
-                    for componentName, component in pairs(this.components) ){
-                                           local s = component.storage()
-                                assert(isNotEmpty, componentName)
-                                assert(s)
-                                storage.set(componentName, s)
-                                }
-
-                                return storage
-                                }
+//     return storage;
+// }
 
 
-                                // Called by Microbe.update
-                                               //
-                                               // Override this to make your organelle class ){ something at regular intervals
-                                                                                                    //
-                                                                                                    // @param logicTime
-                                                                                                    //  The time since the last call to update()
-                                                                                                    function Organelle.update(logicTime)
-                                                                                                    if this.flashDuration ~= nil {
-                                                                        this.flashDuration = this.flashDuration - logicTime
-                                                                        local speciesColour = ColourValue(MicrobeSystem.getSpeciesComponent(this.microbeEntity).colour.x, 
-                                                                            MicrobeSystem.getSpeciesComponent(this.microbeEntity).colour.y,
-                                                                            MicrobeSystem.getSpeciesComponent(this.microbeEntity).colour.z, 1)
-        
-                                                                        // How frequent it flashes, would be nice to update the flash function to have this variable
-                                                                        if math.fmod(this.flashDuration,600) < 300 {
-                                                                            this.colour = this.flashColour
-                                                                            else
-                                                                                this.colour = speciesColour
-                                                                            }
-        
-                                                                            if this.flashDuration <= 0 {
-                                                                                this.flashDuration = nil
-                                                                                this.colour = speciesColour
-                                                                                }
-        
-                                                                                this._needsColourUpdate = true
-                                                                                }
+// The basic organelle maker
+class OrganelleFactory{
 
-                                                                                // If the organelle is supposed to be another color.
-                                                                                if this._needsColourUpdate == true {
-                                                                                this.updateColour()
-                                                                                }
+ // Use the same named method in PlacedOrganelle
+ // function OrganelleFactory.setColour(sceneNode, colour)
 
-                                                                                // Update each OrganelleComponent
-                                                                                for _, component in pairs(this.components) ){
-                                                                                       component.update(this.microbeEntity, self, logicTime)
-                                                                                            }
-                                                                                            }
-
-                                                                                            function Organelle.updateColour()
-                                                                                           if this.sceneNode.entity ~= nil {
-                                                                                local entity = this.sceneNode.entity
-                                                                                //entity.tintColour(this.name, this.colour) //crashes game
-        
-                                                                                this._needsColourUpdate = false
-                                                                                }
-                                                                                }
-
-                                                                                function Organelle.getCompoundBin()
-                                                                                return this.compoundBin
-                                                                                }
-
-                                                                                // Gives organelles more compounds
-                                                                                    function Organelle.growOrganelle(compoundBagComponent, logicTime)
-                                                                                    // Finds the total number of needed compounds.
-                                                                                local sum = 0.0
-
-                                                                                // Finds which compounds the cell currently has.
-                                                                                        for compoundName, amount in pairs(this.compoundsLeft) ){
-                                                                                                              if compoundBagComponent.getCompoundAmount(CompoundRegistry.getCompoundId(compoundName)) >= 1 {
-                                                                            sum = sum + amount
-                                                                            }
-                                                                            }
-    
-                                                                            // If sum is 0, we either have no compounds, in which case we cannot grow the organelle, or the
-                                                                            // organelle is ready to split (i.e. compoundBin = 2), in which case we wait for the microbe to
-                                                                            // handle the split.
-                                                                            if sum <= 0.0 { return }
-
-                                                                                // Ran){mly choose which of the compounds are used in reproduction.
-                                                                                // Uses a roulette selection.
-                                                                                local id = math.ran){m() * sum
-
-                                                                                for compoundName, amount in pairs(this.compoundsLeft) ){
-                                                                                                      if id - amount < 0 {
-                                                                                                          // The ran){m number is from this compound, so attempt to take it.
-                                                                                                          local amountToTake = math.min(logicTime * GROWTH_SPEED_MULTILPIER, amount)
-                                                                                                          amountToTake = compoundBagComponent.takeCompound(CompoundRegistry.getCompoundId(compoundName), amountToTake)
-                                                                                                          this.compoundsLeft[compoundName] = this.compoundsLeft[compoundName] - amountToTake
-                                                                                                          break
-
-                                                                                                          else
-                                                                                                              id = id - amount
-                                                                                                          }
-                                                                                                          }
-
-                                                                                                          // Calculate the new growth value.
-                                                                                                          this.recalculateBin()
-                                                                                                          }
-
-                                                                                                          function Organelle.damageOrganelle(damageAmount)
-                                                                                                          // Flash the organelle that was damaged.
-                                                                                                          this.flashOrganelle(3000, ColourValue(1,0.2,0.2,1))
-
-                                                                                                          // Calculate the total number of compounds we need
-                                                                                                          // to divide now, so that we can keep this ratio.
-                                                                                                          local totalLeft = 0.0
-                                                                                                          for _, amount in pairs(this.compoundsLeft) ){
-                                                                                                                     totalLeft = totalLeft + amount
-                                                                                                          }
-
-                                                                                                          // Calculate how much compounds the organelle needs to have
-                                                                                                          // to result in a health equal to compoundBin - amount.
-                                                                                                          local damageFactor = (2.0 - this.compoundBin + damageAmount) * this.organelleCost / totalLeft
-                                                                                                          for compoundName, amount in pairs(this.compoundsLeft) ){
-                                                                                                                                this.compoundsLeft[compoundName] = amount * damageFactor
-                                                                                                          }
-
-                                                                                                          this.recalculateBin()
-                                                                                                          }
-
-                                                                                                          function Organelle.recalculateBin()
-                                                                                                          // Calculate the new growth growth
-                                                                                                          local totalCompoundsLeft = 0.0
-                                                                                                          for _, amount in pairs(this.compoundsLeft) ){
-                                                                                                                     totalCompoundsLeft = totalCompoundsLeft + amount
-                                                                                                          }
-                                                                                                          this.compoundBin = 2.0 - totalCompoundsLeft / this.organelleCost
-
-                                                                                                          // If the organelle is damaged...
-                                                                                                          if this.compoundBin < 1.0 {
-                                                                                                              if this.compoundBin <= 0.0 {
-                                                                                                                  // If it was split from a primary organelle, destroy it.
-                                                                                                                  if this.isDuplicate == true {
-                                                                                                                  MicrobeSystem.removeOrganelle(this.microbeEntity, this.position.q, this.position.r)
-                
-                                                                                                                  // Notify the organelle the sister organelle it is no longer split.
-                                                                                                                  this.sisterOrganelle.wasSplit = false
-                                                                                                                  return
-                
-                                                                                                                  // If it is a primary organelle, make sure that it's compound bin is not less than 0.
-    else
-    this.compoundBin = 0.0
-    for compoundName, amount in pairs(this.composition) ){
-    this.compoundsLeft[compoundName] = 2 * amount
-    }
-    }
-    }
-
-    // Scale the model at a slower rate (so that 0.0 is half size).
-    if organelleTable[this.name].components["NucleusOrganelle"] == nil {
-    this.sceneNode.transform.scale = Vector3((1.0 + this.compoundBin)/2, (1.0 + this.compoundBin)/2, (1.0 + this.compoundBin)/2)*HEX_SIZE
-    this.sceneNode.transform.touch()
-    }
-
-    // Darken the color. Will be updated on next call of update()
-    this.colourTint = Vector3((1.0 + this.compoundBin)/2, this.compoundBin, this.compoundBin)
-    this._needsColourUpdate = true
-    else
-    // Scale the organelle model to reflect the new size.
-    if organelleTable[this.name].components["NucleusOrganelle"] == nil {
-    this.sceneNode.transform.scale = Vector3(this.compoundBin, this.compoundBin, this.compoundBin)*HEX_SIZE
-    this.sceneNode.transform.touch()  
-    }
-    }
-    }
-
-    function Organelle.reset()
-    // Return the compound bin to its original state
-    this.compoundBin = 1.0
-    for compoundName, amount in pairs(this.composition) ){
-    this.compoundsLeft[compoundName] = amount
-    }
-    
-    // Scale the organelle model to reflect the new size.
-    this.sceneNode.transform.scale = Vector3(1, 1, 1) * HEX_SIZE
-    this.sceneNode.transform.touch()
-        
-    // If it was split from a primary organelle, destroy it.
-    if this.isDuplicate == true {
-    MicrobeSystem.removeOrganelle(this.microbeEntity, this.position.q, this.position.r)
-    else
-    this.wasSplit = false
-    }
-    }
-
-
-    function Organelle.removePhysics()
-    this.collisionShape.clear()
-    }
-
-    // The basic organelle maker
-    OrganelleFactory = class(
-    function(self)
-
-    }
-    )
-
-    // Sets the color of the organelle (used in editor for valid/nonvalid placement)
-    function OrganelleFactory.setColour(sceneNode, colour)
-    sceneNode.entity.setColour(colour)
-    }
-
-    function OrganelleFactory.makeOrganelle(data)
+function OrganelleFactory.makeOrganelle(data)
     if not (data.name == "" or data.name == nil) {
-    //retrieveing the organelle info from the table
-    local organelleInfo = organelleTable[data.name]
+        //retrieveing the organelle info from the table
+        local organelleInfo = organelleTable[data.name]
 
-    //creating an empty organelle
-    local organelle = Organelle(organelleInfo.mass, data.name)
+            //creating an empty organelle
+            local organelle = Organelle(organelleInfo.mass, data.name)
 
-    //adding all of the components.
-    for componentName, arguments in pairs(organelleInfo.components) ){
+            //adding all of the components.
+            for componentName, arguments in pairs(organelleInfo.components) ){
     local componentType = _G[componentName]
-    organelle.components[componentName] = componentType.new(arguments, data)
-    }
+        organelle.components[componentName] = componentType.new(arguments, data)
+        }
 
-    //getting the hex table of the organelle rotated by the angle
-    local hexes = OrganelleFactory.checkSize(data)
+//getting the hex table of the organelle rotated by the angle
+local hexes = OrganelleFactory.checkSize(data)
 
     //adding the hexes to the organelle
     for _, hex in pairs(hexes) ){
-    organelle.addHex(hex.q, hex.r)
-    }
+        organelle.addHex(hex.q, hex.r)
+            }
 
-    return organelle
-    }
-    }
+return organelle
+}
+}
 
-    // Draws the hexes and uploads the models in the editor
-    function OrganelleFactory.r}erOrganelles(data)
-    if data.name == "remove" {
-    return {}
-    else
-    //Getting the list hexes occupied by this organelle.
-    occupiedHexList = OrganelleFactory.checkSize(data)
+// Draws the hexes and uploads the models in the editor
+function OrganelleFactory.renderOrganelles(data)
+if data.name == "remove" {
+        return {}
+        else
+            //Getting the list hexes occupied by this organelle.
+            occupiedHexList = OrganelleFactory.checkSize(data)
 
-    //Used to get the average x and y values.
-    local xSum = 0
-    local ySum = 0
+                //Used to get the average x and y values.
+                local xSum = 0
+                local ySum = 0
 
-    //Rendering a cytoplasm in each of those hexes.
-    //Note: each scenenode after the first one is considered a cytoplasm by the engine automatically.
-    local i = 2
-    for _, hex in pairs(occupiedHexList) ){
+                //Rendering a cytoplasm in each of those hexes.
+                //Note: each scenenode after the first one is considered a cytoplasm by the engine automatically.
+                local i = 2
+                for _, hex in pairs(occupiedHexList) ){
     local organelleX, organelleY = axialToCartesian(data.q, data.r)
-    local hexX, hexY = axialToCartesian(hex.q, hex.r)
-    local x = organelleX + hexX
-    local y = organelleY + hexY
-    local translation = Vector3(-x, -y, 0)
-    data.sceneNode[i].transform.position = translation
-    data.sceneNode[i].transform.orientation = Quaternion.new(
-    Radian.new(Degree(data.rotation)), Vector3(0, 0, 1))
-    xSum = xSum + x
-    ySum = ySum + y
-    i = i + 1
-    }
+        local hexX, hexY = axialToCartesian(hex.q, hex.r)
+        local x = organelleX + hexX
+        local y = organelleY + hexY
+        local translation = Vector3(-x, -y, 0)
+        data.sceneNode[i].transform.position = translation
+        data.sceneNode[i].transform.orientation = Quaternion.new(
+            Radian.new(Degree(data.rotation)), Vector3(0, 0, 1))
+        xSum = xSum + x
+        ySum = ySum + y
+        i = i + 1
+        }
 
-    //Getting the average x and y values to render the organelle mesh in the middle.
-    local xAverage = xSum / (i - 2) // Number of occupied hexes = (i - 2).
-    local yAverage = ySum / (i - 2)
+//Getting the average x and y values to render the organelle mesh in the middle.
+local xAverage = xSum / (i - 2) // Number of occupied hexes = (i - 2).
+                            local yAverage = ySum / (i - 2)
 
-    //R}ering the organelle mesh (if it has one).
-    local mesh = organelleTable[data.name].mesh
-    if(mesh ~= nil) {
-    data.sceneNode[1].meshName = mesh
-    data.sceneNode[1].transform.position = Vector3(-xAverage, -yAverage, 0)
-    data.sceneNode[1].transform.orientation = Quaternion.new(
-    Radian.new(Degree(data.rotation)), Vector3(0, 0, 1))
-    }
-    }
-    }
+                            //R}ering the organelle mesh (if it has one).
+                            local mesh = organelleTable[data.name].mesh
+                            if(mesh ~= nil) {
+                                data.sceneNode[1].meshName = mesh
+                                data.sceneNode[1].transform.position = Vector3(-xAverage, -yAverage, 0)
+                                data.sceneNode[1].transform.orientation = Quaternion.new(
+                                    Radian.new(Degree(data.rotation)), Vector3(0, 0, 1))
+                            }
+}
+}
 
-    // Checks which hexes an organelle occupies
-    function OrganelleFactory.checkSize(data)
+// Checks which hexes an organelle occupies
+function OrganelleFactory.checkSize(data)
     if data.name == "remove" {
-    return {}
-    else
-    //getting the angle the organelle has
-    //(and setting one if it doesn't have one).
-    if data.rotation == nil {
-                                                                                                              data.rotation = 0
-                                                                                                              }
-                                                                                                              local angle = data.rotation / 60
+            return {}
+            else
+                //getting the angle the organelle has
+                //(and setting one if it doesn't have one).
+                if data.rotation == nil {
+                        data.rotation = 0
+                    }
+            local angle = data.rotation / 60
 
-                                                                                                              //getting the hex table of the organelle rotated by the angle
-                                                                                                              local hexes = rotateHexListNTimes(organelleTable[data.name].hexes, angle)
-                                                                                                              return hexes
-                                                                                                              }
-                                                                                                              }
+            //getting the hex table of the organelle rotated by the angle
+            local hexes = rotateHexListNTimes(organelleTable[data.name].hexes, angle)
+            return hexes
+        }
+}
+}
+
+
