@@ -35,6 +35,9 @@ abstract class Organelle{
         // Calculate organelleCost and compoundsLeft//
         organelleCost = calculateCost(organelleTable[name].composition);
 
+        // TODO: setup hexes from the data
+        
+        
         // Setup physics body (this is now done just once here) //
         beingConstructed = true;
 
@@ -60,7 +63,6 @@ abstract class Organelle{
         assert(false, "Organelle::setupPhysics not overridden");
     }
 
-    // Needs to be overwritten
     protected calculateCost(dictionary composition){
 
         organelleCost = 0;
@@ -131,6 +133,18 @@ abstract class Organelle{
         return null;
     }
 
+    array<Hex@>@ getHexes() const{
+        
+        array<Hex@>@ result;
+        
+        auto keys = hexes.keys();
+        for(uint i = 0; i < keys.length(); ++i){
+            result.push(hexes[keys[i]]);
+        }
+
+        return result;
+    }
+
     Float3 calculateCenterOffset() const{
         int count = 0;
 
@@ -166,7 +180,16 @@ abstract class Organelle{
     //             return false
     //                 }
     // }
-    
+
+    bool hasComponent(const string &in name) const{
+
+        for(uint i = 0; i < components.length(); ++i){
+            if(components[i].name == name)
+                return true;
+        }
+
+        return false;
+    }
 
     // ------------------------------------ //
 
@@ -446,67 +469,91 @@ class PlacedOrganelle{
             if(compoundBin <= 0.0){
                 // If it was split from a primary organelle, destroy it.
                 if(isDuplicate == true){
+
+                    // Calls different method for possible sound and effects
                     microbeEntity.organelleDestroyedByDamage(q, r);
                     
                     // Notify the organelle the sister organelle it is no longer split.
                     sisterOrganelle.wasSplit = false;
                     return;
+                    
                 } else {
                     // If it is a primary organelle, make sure that
                     // it's compound bin is not less than 0.
                     compoundBin = 0.0;
-
+                    
                     scaleCompoundsLeft(2);
                 }
             }
-        
-        // Scale the model at a slower rate (so that 0.0 is half size).
-        if organelleTable[this.name].components["NucleusOrganelle"] == nil {
-                this.sceneNode.transform.scale = Vector3((1.0 + this.compoundBin)/2, (1.0 + this.compoundBin)/2, (1.0 + this.compoundBin)/2)*HEX_SIZE
-                this.sceneNode.transform.touch()
+            
+            // Scale the model at a slower rate (so that 0.0 is half size).
+            // Nucleus isn't scaled
+            // TODO: This isn't the cheapest call so maybe this should be cached
+            if(!organelle.hasComponent("NucleusOrganelle")){
+
+                RenderNode@ sceneNode = microbeEntity.getWorld().Get_RenderNode(
+                    organelleEntity);
+
+                sceneNode.Scale = Float3((1.0 + compoundBin)/2,
+                    (1.0 + compoundBin)/2,
+                    (1.0 + compoundBin)/2) * HEX_SIZE;
+                sceneNode.Marked = true;
             }
-        
-        // Darken the color. Will be updated on next call of update()
-this.colourTint = Vector3((1.0 + this.compoundBin)/2, this.compoundBin, this.compoundBin)
-    this._needsColourUpdate = true
-        else
+
+            // See update and updateColour for as to why this doesn't work
+            // Darken the color. Will be updated on next call of update()
+            colourTint = Float4((1.0 + compoundBin)/2, compoundBin, compoundBin, 1);
+            _needsColourUpdate = true;
+            
+        } else{
             // Scale the organelle model to reflect the new size.
-            if organelleTable[this.name].components["NucleusOrganelle"] == nil {
-                    this.sceneNode.transform.scale = Vector3(this.compoundBin, this.compoundBin, this.compoundBin)*HEX_SIZE
-                    this.sceneNode.transform.touch()  
-                }
-    }
-}
+            // Only if it is different
+            const Float3 newScale = Float3(compoundBin, compoundBin, compoundBin) * HEX_SIZE;
 
-void reset(){
-    // Return the compound bin to its original state
-    this.compoundBin = 1.0
-    for compoundName, amount in pairs(this.composition) ){
-        this.compoundsLeft[compoundName] = amount
+            RenderNode@ sceneNode = microbeEntity.getWorld().Get_RenderNode(
+                organelleEntity);
+            
+            if(newScale != sceneNode.Scale){
+
+                sceneNode.Scale = newScale;
+                sceneNode.Marked = true;
             }
-    
-// Scale the organelle model to reflect the new size.
-this.sceneNode.transform.scale = Vector3(1, 1, 1) * HEX_SIZE
-                                                             this.sceneNode.transform.touch()
-        
-                                                             // If it was split from a primary organelle, destroy it.
-                                                             if this.isDuplicate == true {
-                                                                     MicrobeSystem.removeOrganelle(this.microbeEntity, this.position.q, this.position.r)
-                                                                     else
-                                                                         this.wasSplit = false
-                                                                             }
-}
-
-
-// Is this used? This will be quite difficult to do afterwards
-function Organelle.removePhysics()
-    this.collisionShape.clear()
+        }
     }
 
-    
+    // Resets the state. Used after dividing?
+    void reset(){
+        // Return the compound bin to its original state
+        this.compoundBin = 1.0;
+
+        // Assign (doesn't only copy a reference)
+        compoundsLeft = organelle.compoundsLeft;
+
+        // Scale the organelle model to reflect the new size.
+        // This might be able to be skipped as the recalculateBin method will always set
+        // the correct scale
+        RenderNode@ sceneNode = microbeEntity.getWorld().Get_RenderNode(
+            organelleEntity);
+        
+        sceneNode.Scale = Float3(1, 1, 1) * HEX_SIZE;
+        sceneNode.Marked = true;
+        
+        // If it was split from a primary organelle, destroy it.
+        if(isDuplicate){
+            microbeEntity.removeOrganelle(this.position.q, this.position.r);
+        } else {
+            wasSplit = false;
+        }
+    }
 
 
-    
+    // // Is this used? This will be quite difficult to do afterwards the Organelle
+    // // creates its collision (could be handled by a flag to onAddedToMicrobe to not
+    // // create physics
+    // function Organelle.removePhysics()
+    //     this.collisionShape.clear()
+    //     }
+
 
     // Called by a microbe when this organelle has been added to it
     //
@@ -592,17 +639,20 @@ function Organelle.removePhysics()
     }
 
 
-    function Organelle.flashOrganelle(float duration, Float4 colour){
+    void flashOrganelle(float duration, Float4 colour){
         if(flashDuration > 0)
             return;
-        
+
+        LOG_WARNING("flashOrganelle called on PlacedOrganelle but it doesn't work");
         flashColour = colour;
         flashDuration = duration;
     }
 
-// Sets the color of the organelle (used in editor for valid/nonvalid placement)
-function OrganelleFactory.setColour(sceneNode, colour)
-    sceneNode.entity.setColour(colour)
+    // Sets the color of the organelle (used in editor for valid/nonvalid placement)
+    // Doesn't work as neither does flashColour or tintColour
+    void setColour(Float4 colour){
+        LOG_WARNING("setColour called on PlacedOrganelle but it doesn't work");
+        //sceneNode.entity.setColour(colour)
     }
 
     // ------------------------------------ //
@@ -645,6 +695,8 @@ function OrganelleFactory.setColour(sceneNode, colour)
 
     float flashDuration = 0;
     Float4 flashColour;
+
+    Float4 colourTint;
 
     protected CompoundBin compoundBin;
     PlacedOrganelle@ sisterOrganelle = null;
@@ -749,99 +801,85 @@ class Flagellum : Organelle{
 // }
 
 
-// The basic organelle maker
-class OrganelleFactory{
+class EditorPlacedOrganelle{
 
- // Use the same named method in PlacedOrganelle
- // function OrganelleFactory.setColour(sceneNode, colour)
+    //! Which type of organelle is placed here
+    Organelle organelle;
+    
+    string name = "remove";
 
-function OrganelleFactory.makeOrganelle(data)
-    if not (data.name == "" or data.name == nil) {
-        //retrieveing the organelle info from the table
-        local organelleInfo = organelleTable[data.name]
+    int rotation = 0;
 
-            //creating an empty organelle
-            local organelle = Organelle(organelleInfo.mass, data.name)
-
-            //adding all of the components.
-            for componentName, arguments in pairs(organelleInfo.components) ){
-    local componentType = _G[componentName]
-        organelle.components[componentName] = componentType.new(arguments, data)
-        }
-
-//getting the hex table of the organelle rotated by the angle
-local hexes = OrganelleFactory.checkSize(data)
-
-    //adding the hexes to the organelle
-    for _, hex in pairs(hexes) ){
-        organelle.addHex(hex.q, hex.r)
-            }
-
-return organelle
-}
+    // Cached Hexes for performance
+    array<Hex@>@ hexes; 
 }
 
-// Draws the hexes and uploads the models in the editor
-function OrganelleFactory.renderOrganelles(data)
-if data.name == "remove" {
-        return {}
-        else
-            //Getting the list hexes occupied by this organelle.
-            occupiedHexList = OrganelleFactory.checkSize(data)
+// TODO: could we just use normal organelles that are inactive and add
+// a render background method to it
 
-                //Used to get the average x and y values.
-                local xSum = 0
-                local ySum = 0
+//! Class for handling drawing hexes in the editor for organelles
+class OrganelleHexDrawer{
 
-                //Rendering a cytoplasm in each of those hexes.
-                //Note: each scenenode after the first one is considered a cytoplasm by the engine automatically.
-                local i = 2
-                for _, hex in pairs(occupiedHexList) ){
-    local organelleX, organelleY = axialToCartesian(data.q, data.r)
-        local hexX, hexY = axialToCartesian(hex.q, hex.r)
-        local x = organelleX + hexX
-        local y = organelleY + hexY
-        local translation = Vector3(-x, -y, 0)
-        data.sceneNode[i].transform.position = translation
-        data.sceneNode[i].transform.orientation = Quaternion.new(
-            Radian.new(Degree(data.rotation)), Vector3(0, 0, 1))
-        xSum = xSum + x
-        ySum = ySum + y
-        i = i + 1
-        }
+    // Draws the hexes and uploads the models in the editor
+    void renderOrganelles(EditorPlacedOrganelle@ data){
+        if(data.name == "remove")
+            return;
+        
+        //Getting the list hexes occupied by this organelle.
+        if(data.hexes is null){
 
-//Getting the average x and y values to render the organelle mesh in the middle.
-local xAverage = xSum / (i - 2) // Number of occupied hexes = (i - 2).
-                            local yAverage = ySum / (i - 2)
-
-                            //R}ering the organelle mesh (if it has one).
-                            local mesh = organelleTable[data.name].mesh
-                            if(mesh ~= nil) {
-                                data.sceneNode[1].meshName = mesh
-                                data.sceneNode[1].transform.position = Vector3(-xAverage, -yAverage, 0)
-                                data.sceneNode[1].transform.orientation = Quaternion.new(
-                                    Radian.new(Degree(data.rotation)), Vector3(0, 0, 1))
-                            }
-}
-}
-
-// Checks which hexes an organelle occupies
-function OrganelleFactory.checkSize(data)
-    if data.name == "remove" {
-            return {}
-            else
-                //getting the angle the organelle has
-                //(and setting one if it doesn't have one).
-                if data.rotation == nil {
-                        data.rotation = 0
-                    }
-            local angle = data.rotation / 60
+            // The list needs to be rotated //            
+            int times = data.rotation / 60;
 
             //getting the hex table of the organelle rotated by the angle
-            local hexes = rotateHexListNTimes(organelleTable[data.name].hexes, angle)
-            return hexes
+            @data.hexes = rotateHexListNTimes(organelle.getHexes(), times);
         }
-}
+        
+        occupiedHexList = OrganelleFactory.checkSize(data);
+            
+        //Used to get the average x and y values.
+        local xSum = 0;
+        local ySum = 0;
+
+        //Rendering a cytoplasm in each of those hexes.
+        //Note: each scenenode after the first one is considered a cytoplasm by the
+        // engine automatically.
+        // TODO: verify the above claims
+
+        local organelleX, organelleY = axialToCartesian(data.q, data.r);
+        
+        local i = 2;
+        for(uint listIndex = 0; listIndex < data.hexes.length(); ++listIndex){
+
+            const Hex@ hex = data.hexes[listIndex];
+            
+            
+            
+            local hexX, hexY = axialToCartesian(hex.q, hex.r);
+            local x = organelleX + hexX;
+            local y = organelleY + hexY;
+            local translation = Vector3(-x, -y, 0);
+            data.sceneNode[i].transform.position = translation;
+            data.sceneNode[i].transform.orientation = Quaternion.new(
+                Radian.new(Degree(data.rotation)), Vector3(0, 0, 1));
+            xSum = xSum + x;
+            ySum = ySum + y;
+            i = i + 1;
+        }
+
+        //Getting the average x and y values to render the organelle mesh in the middle.
+        local xAverage = xSum / (i - 2); // Number of occupied hexes = (i - 2).
+        local yAverage = ySum / (i - 2);
+
+        //Rendering the organelle mesh (if it has one).
+        local mesh = organelleTable[data.name].mesh;
+        if(mesh ~= nil) {
+            data.sceneNode[1].meshName = mesh;
+            data.sceneNode[1].transform.position = Vector3(-xAverage, -yAverage, 0);
+            data.sceneNode[1].transform.orientation = Quaternion.new(
+                Radian.new(Degree(data.rotation)), Vector3(0, 0, 1));
+        }
+    }
 }
 
 

@@ -34,6 +34,10 @@ Organelle atributes:
                     percentage of them is released upon death of the microbe.
 */
 #include "organelle.as"
+#include "organelle_component.as"
+
+
+
 
 dictionary ORGANELLE_TABLE = {
     ["nucleus"] = {
