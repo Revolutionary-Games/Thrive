@@ -19,23 +19,26 @@ class Hex{
     NewtonCollision@ collision;
 }
 
-//! Base class for all organelle types
+//! Class that is given a definition of organelle and it represents its data
 //! \note Before there was an instance of this class for each microbe. Now this is global and
 //! each microbe has a PlacedOrganelle instance instead (which also has many properties
 //! that this class used to have)
-abstract class Organelle{
+class Organelle{
 
     // This is world specific (at least the physics body) so this can
     // be used by only the world that is passed to this constructor
-    Organelle(const string &in name, float mass, GameWorld@ world){
+    Organelle(const OrganelleParameters &in parameters, GameWorld@ world){
 
-        this._name = name;
-        this.mass = mass;
+        _name = parameters.name;
+        mass = parameters.mass;
+
+        composition = parameters.composition;
+        components = parameters.components;
 
         // Calculate organelleCost and compoundsLeft//
-        organelleCost = calculateCost(organelleTable[name].composition);
+        organelleCost = calculateCost(this.composition);
 
-        // TODO: setup hexes from the data
+        assert(false, "TODO: setup hexes from the data");
         
         
         // Setup physics body (this is now done just once here) //
@@ -59,8 +62,10 @@ abstract class Organelle{
         
     }
 
+    // Basically takes the hexes and adds them to the physics of this organelle
     protected setupPhysics(){
-        assert(false, "Organelle::setupPhysics not overridden");
+        assert(false, "setupPhysics not done yet from hexes");
+        // addHex
     }
 
     protected calculateCost(dictionary composition){
@@ -94,7 +99,7 @@ abstract class Organelle{
     // @returns success
     //  True if the hex could be added, false if there already is a hex at (q,r)
     // @note This needs to be done only once when this class is instantiated
-    protected bool addHex(q, r, GameWorld@ world){
+    protected bool addHex(int q, int r, GameWorld@ world){
 
         assert(beingConstructed, "addHex called after organelle constructor");
         
@@ -216,7 +221,7 @@ abstract class Organelle{
     // }
     // self.rotation = nil
 
-    array<OrganelleComponent@> components;
+    array<OrganelleComponentFactory@> components;
     private dictionary hexes;
 
     // The initial amount of compounds this organelle consists of
@@ -259,7 +264,7 @@ class PlacedOrganelle{
         // Create instances of components //
         for(uint i = 0; i < organelle.components.length(); ++i){
 
-            components.push(PlacedOrganelleComponent(organelle.components[i]));
+            components.push(organelle.components[i].factory());
         }
     }
 
@@ -587,8 +592,8 @@ class PlacedOrganelle{
         
         organelleEntity = world.CreateEntity();
 
-        // // Automatically destroyed if the parent is destroyed
-        // world.SetEntityParent(microbe.getEntityID(), organelleEntity);
+        // Automatically destroyed if the parent is destroyed
+        world.SetEntityParent(microbe.getEntityID(), organelleEntity);
             
         // Change the colour of this species to be tinted by the membrane.
         auto species = microbeEntity.getSpeciesComponent();
@@ -666,6 +671,7 @@ class PlacedOrganelle{
     private Organelle@ _organelle;
     
     // q and r are radial coordinates instead of cartesian
+    // Could use the class AxialCoordinates here
     int q;
     int r;
     int rotation;
@@ -703,37 +709,39 @@ class PlacedOrganelle{
 }
 
 
-class Nucleus : Organelle{
+// These aren't used in favor of similar approach to before where one class is customized
+// with different parameters
+// class Nucleus : Organelle{
 
-    Nucleus(){
+//     Nucleus(){
 
-        super("nucleus");
-    }
-}
+//         super("nucleus");
+//     }
+// }
 
-class Mitochondrion : Organelle{
+// class Mitochondrion : Organelle{
 
-    Mitochondrion(){
+//     Mitochondrion(){
 
-        super("mitochondrion");
-    }
-}
+//         super("mitochondrion");
+//     }
+// }
 
-class Vacuole : Organelle{
+// class Vacuole : Organelle{
 
-    Vacuole(){
+//     Vacuole(){
 
-        super("vacuole");
-    }
-}
+//         super("vacuole");
+//     }
+// }
 
-class Flagellum : Organelle{
+// class Flagellum : Organelle{
 
-    Flagellum(){
+//     Flagellum(){
 
-        super("flagellum");
-    }
-}
+//         super("flagellum");
+//     }
+// }
 
 
 

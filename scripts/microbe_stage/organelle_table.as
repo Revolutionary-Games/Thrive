@@ -1,3 +1,4 @@
+// TODO: update this
 /*
 Organelle atributes:
     mass:   How heavy an organelle is. Affects speed, mostly.
@@ -36,198 +37,293 @@ Organelle atributes:
 #include "organelle.as"
 #include "organelle_component.as"
 
+#include "process_table.as"
 
+// For AxialCoordinates
+#include "configs.as"
 
+// Need to include all the used organelle types for the factory functions
+#include "nucleus_organelle.as"
 
-dictionary ORGANELLE_TABLE = {
-    ["nucleus"] = {
-        mass = 0.7,
-        gene = "N",
-        chanceToCreate = 0, // Not randomly generated.
+//! Factory typedef for OrganelleComponent
+funcdef OrganelleComponent@ OrganelleComponentFactoryFunc();
 
-        components = {
-            ["NucleusOrganelle"] = {}
-        },
+class OrganelleComponentFactory{
 
-        processes = {
-            ["FattyAcidSynthesis"] = 0.2,
-            ["AminoAcidSynthesis"] = 0.2
-        },
+    OrganelleComponentFactory(OrganelleComponentFactoryFunc@ f, const string &in name){
 
-        mpCost = 0, //it's not supossed to be purchased.
-    mesh = "nucleus.mesh",
-    hexes = {
-    {["q"]=0,   ["r"]=0},
-    {["q"]=1,   ["r"]=0},
-    {["q"]=0,   ["r"]=1},
-    {["q"]=0,   ["r"]=-1},
-    {["q"]=1,   ["r"]=-1},
-    {["q"]=-1,  ["r"]=1},
-    {["q"]=-1,  ["r"]=0},
-    {["q"]=-1,  ["r"]=-1},
-    {["q"]=0,   ["r"]=-2},
-    {["q"]=1,   ["r"]=-2}
-    },
-
-    composition = {
-    aminoacids = 4
+        create = f;
+        this.name = name;
     }
-    },
 
-    ["cytoplasm"] = {
-    components = {
-    ["StorageOrganelle"] = {
-    capacity = 10.0
-    }
-    },
-
-    mass = 0.1,
-    gene = "Y",
-    chanceToCreate = 1,
-    mpCost = 5,
-    mesh = nil, //it's an empty hex
-        hexes = {
-            {["q"]=0,   ["r"]=0}
-        },
-
-        composition = {
-            aminoacids = 3,
-            glucose = 2,
-            // fattyacids = 0 :/
-        }
-    },
-
-    ["chloroplast"] = {
-        components = {
-            ["ProcessOrganelle"] = {
-                colourChangeFactor = 1.0,
-
-
-            }
-        },
-
-        processes = {
-            ["Photosynthesis"] = 0.2
-        },
-
-        mass = 0.4,
-        gene = "H",
-        chanceToCreate = 2,
-        mpCost = 20,
-        mesh = "chloroplast.mesh",
-        hexes = {
-            {["q"]=0,   ["r"]=0},
-            {["q"]=1,   ["r"]=0},
-            {["q"]=0,   ["r"]=1}
-        },
-
-        composition = {
-            aminoacids = 4,
-            glucose = 2,
-            // fattyacids = 0 :/
-        }
-    },
-
-    ["oxytoxy"] = {
-        components = {
-            ["AgentVacuole"] = {
-                compound = "oxytoxy",
-                process = "OxyToxySynthesis"
-            }
-        },
-
-        processes = {
-            ["OxyToxySynthesis"] = 0.05
-        },
-
-        mass = 0.3,
-        gene = "T",
-        chanceToCreate = 1,
-        mpCost = 40,
-        mesh = "oxytoxy.mesh",
-        hexes = {
-            {["q"]=0,   ["r"]=0}
-        },
-
-        composition = {
-            aminoacids = 4,
-            glucose = 2,
-            // fattyacids = 0 :/
-        }
-    },
-
-    ["mitochondrion"] = {
-        components = {
-            ["ProcessOrganelle"] = {
-                colourChangeFactor = 1.0,
-            }
-        },
-
-        processes = {
-            ["Respiration"] = 0.07
-        },
-
-        mass = 0.3,
-        gene = "M",
-        chanceToCreate = 3,
-        mpCost = 20,
-        mesh = "mitochondrion.mesh",
-        hexes = {
-            {["q"]=0, ["r"]=0},
-            {["q"]=0, ["r"]=1}
-        },
-
-        composition = {
-            aminoacids = 4,
-            glucose = 2,
-            // fattyacids = 0 :/
-        }
-    },
-
-    ["vacuole"] = {
-        components = {
-            ["StorageOrganelle"] = {
-                capacity = 100.0
-            }
-        },
-
-        mass = 0.4,
-        gene = "V",
-        chanceToCreate = 3,
-        mpCost = 15,
-        mesh = "vacuole.mesh",
-        hexes = {
-            {["q"]=0,   ["r"]=0},
-        },
-
-        composition = {
-            aminoacids = 4,
-            glucose = 2,
-            // fattyacids = 0 :/
-        }
-    },
-
-    ["flagellum"] = {
-        components = {
-            ["MovementOrganelle"] = {
-                momentum = 20,
-                torque = 300
-            }
-        },
-
-        mass = 0.3,
-        gene = "F",
-        chanceToCreate = 3,
-        mpCost = 25,
-        mesh = "flagellum.mesh",
-        hexes = {
-            {["q"]=0,   ["r"]=0},
-        },
-
-        composition = {
-            aminoacids = 4,
-            glucose = 2,
-            // fattyacids = 0 :/
-        }
-    }
+    OrganelleComponentFactoryFunc@ create;
+    string name;
 }
+
+//! This replaced the old tables that specified things for cells.
+//! This is clearer as to what are valid properties
+class OrganelleParameters{
+
+    OrganelleParameters(const string &in name){
+
+        this.name = name;
+    }
+    
+    string name;
+    string gene = "INVALID";
+    
+    //! Chance of randomly generating this (probably used by the initial random species)
+    float chanceToCreate = 0.0;
+
+    //! The factories for the components that define what this organelle does
+    array<OrganelleComponentFactory@> components;
+
+    //! The initial amount of compounds this organelle consists of
+    dictionary initialComposition;
+
+    //! Cost in mutation points
+    int mpCost = 0;
+}
+
+//! Cache the result if called multiple times for the same world
+dictionary@ getOrganelleTable(GameWorld@ world){
+
+    return cast<dictionary@>(_mainOrganelleTable[formatInt(world.GetID())]);
+}
+
+// ------------------------------------ //
+// Private part starts here don't directly call or read these things from any other file
+// Only thing you'll need to modify is the "Main organelle table" below
+
+// Don't touch this from anywhere except setupOrganellesForWorld
+dictionary _mainOrganelleTable;
+
+// Factory functions for all the organelle components
+
+NucleusOrganelle@ makeNucleusOrganelle(){
+    dictionary arguments;
+    dictionary data;
+    return NucleusOrganelle(arguments, data);
+}
+
+OrganelleComponentFactory@ nucleusComponentFactory = OrganelleComponentFactory(
+    @makeNucleusOrganelle, "NucleusOrganelle"
+);
+
+// Setups the organelle table for a specific world
+void setupOrganellesForWorld(CellStageWorld@ world){
+
+    assert(SimulationParameters::compoundRegistry().getSize() > 0,
+        "Compound registry is empty");
+    
+    dictionary@ newWorldTable = dictionary();
+
+    //
+    //
+    // ------------------------------------ //
+    // Main organelle table is now here
+    //
+
+    // ------------------------------------ //
+    // Nucleus
+    auto nucleusParameters = OrganelleParameters("nucleus");
+    
+    nucleusParameters.mass = 0.7;
+    nucleusParameters.gene = "N";
+    nucleusParameters.mesh = "nucleus.mesh";
+    nucleusParameters.chanceToCreate = 0; // Not randomly generated.
+    nucleusParameters.mpCost = 0; //it's not supossed to be purchased.
+    nucleusParameters.initialComposition = {
+        {"aminoacids", 4}
+    };
+    nucleusParameters.components = {
+        nucleusComponentFactory
+    };
+    nucleusParameters.processes = {
+        TweakedProcess("FattyAcidSynthesis", 0.2),
+        TweakedProcess("AminoAcidSynthesis", 0.2),
+    };
+    nucleusParameters.hexes = {
+        AxialCoordinates(0, 0),
+        AxialCoordinates(1, 0),
+        AxialCoordinates(0, 1),
+        AxialCoordinates(0, -1),
+        AxialCoordinates(1, -1),
+        AxialCoordinates(-1, 1),
+        AxialCoordinates(-1, 0),
+        AxialCoordinates(-1, -1),
+        AxialCoordinates(0, -2),
+        AxialCoordinates(1, -2)
+    };
+
+    newWorldTable["nucleus"] = Organelle(nucleusParameters, world);
+
+    // ------------------------------------ //
+    // Cytoplasm
+    
+    // ------------------------------------ //
+    // Vacuole
+    
+    
+    _mainOrganelleTable[formatInt(world.GetID())] = newWorldTable;
+}
+
+
+
+// ["cytoplasm"] = {
+//     components = {
+//     ["StorageOrganelle"] = {
+//     capacity = 10.0
+//     }
+//     },
+
+//     mass = 0.1,
+//     gene = "Y",
+//     chanceToCreate = 1,
+//     mpCost = 5,
+//     mesh = nil, //it's an empty hex
+//         hexes = {
+//             {["q"]=0,   ["r"]=0}
+//         },
+
+//         composition = {
+//             aminoacids = 3,
+//             glucose = 2,
+//             // fattyacids = 0 :/
+//         }
+//     },
+
+//     ["chloroplast"] = {
+//         components = {
+//             ["ProcessOrganelle"] = {
+//                 colourChangeFactor = 1.0,
+
+
+//             }
+//         },
+
+//         processes = {
+//             ["Photosynthesis"] = 0.2
+//         },
+
+//         mass = 0.4,
+//         gene = "H",
+//         chanceToCreate = 2,
+//         mpCost = 20,
+//         mesh = "chloroplast.mesh",
+//         hexes = {
+//             {["q"]=0,   ["r"]=0},
+//             {["q"]=1,   ["r"]=0},
+//             {["q"]=0,   ["r"]=1}
+//         },
+
+//         composition = {
+//             aminoacids = 4,
+//             glucose = 2,
+//             // fattyacids = 0 :/
+//         }
+//     },
+
+//     ["oxytoxy"] = {
+//         components = {
+//             ["AgentVacuole"] = {
+//                 compound = "oxytoxy",
+//                 process = "OxyToxySynthesis"
+//             }
+//         },
+
+//         processes = {
+//             ["OxyToxySynthesis"] = 0.05
+//         },
+
+//         mass = 0.3,
+//         gene = "T",
+//         chanceToCreate = 1,
+//         mpCost = 40,
+//         mesh = "oxytoxy.mesh",
+//         hexes = {
+//             {["q"]=0,   ["r"]=0}
+//         },
+
+//         composition = {
+//             aminoacids = 4,
+//             glucose = 2,
+//             // fattyacids = 0 :/
+//         }
+//     },
+
+//     ["mitochondrion"] = {
+//         components = {
+//             ["ProcessOrganelle"] = {
+//                 colourChangeFactor = 1.0,
+//             }
+//         },
+
+//         processes = {
+//             ["Respiration"] = 0.07
+//         },
+
+//         mass = 0.3,
+//         gene = "M",
+//         chanceToCreate = 3,
+//         mpCost = 20,
+//         mesh = "mitochondrion.mesh",
+//         hexes = {
+//             {["q"]=0, ["r"]=0},
+//             {["q"]=0, ["r"]=1}
+//         },
+
+//         composition = {
+//             aminoacids = 4,
+//             glucose = 2,
+//             // fattyacids = 0 :/
+//         }
+//     },
+
+//     ["vacuole"] = {
+//         components = {
+//             ["StorageOrganelle"] = {
+//                 capacity = 100.0
+//             }
+//         },
+
+//         mass = 0.4,
+//         gene = "V",
+//         chanceToCreate = 3,
+//         mpCost = 15,
+//         mesh = "vacuole.mesh",
+//         hexes = {
+//             {["q"]=0,   ["r"]=0},
+//         },
+
+//         composition = {
+//             aminoacids = 4,
+//             glucose = 2,
+//             // fattyacids = 0 :/
+//         }
+//     },
+
+//     ["flagellum"] = {
+//         components = {
+//             ["MovementOrganelle"] = {
+//                 momentum = 20,
+//                 torque = 300
+//             }
+//         },
+
+//         mass = 0.3,
+//         gene = "F",
+//         chanceToCreate = 3,
+//         mpCost = 25,
+//         mesh = "flagellum.mesh",
+//         hexes = {
+//             {["q"]=0,   ["r"]=0},
+//         },
+
+//         composition = {
+//             aminoacids = 4,
+//             glucose = 2,
+//             // fattyacids = 0 :/
+//         }
+//     }
+// }

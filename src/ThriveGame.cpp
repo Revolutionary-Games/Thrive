@@ -179,6 +179,17 @@ void ThriveGame::startNewGame(){
 
     LOG_INFO("Finished calling setupSpecies");
 
+    LOG_INFO("Calling script setupProcesses");
+    result = m_impl->m_MicrobeScripts->ExecuteOnModule("setupProcesses", scriptParameters,
+        existed, false);
+
+    LOG_INFO("Finished calling setupProcesses");    
+    
+    LOG_INFO("Calling script setupOrganellesForWorld cellStage");
+    result = m_impl->m_MicrobeScripts->ExecuteOnModule("setupOrganellesForWorld",
+        scriptParameters, existed, false);    
+    LOG_INFO("Finished calling setupOrganellesForWorld");
+
     // Set background plane //
 	if (true) {
 		m_backgroundPlane = Leviathan::ObjectLoader::LoadPlane(*m_cellStage, Float3(0, -50, 0),

@@ -84,6 +84,20 @@ void toxin_call_Notification(){
         toxin_unlocked = true;
     }
 }
+
+// TODO: move this to where axialToCartesian is defined
+class AxialCoordinates{
+
+    AxialCoordinates(int q, int r){
+
+        this.q = q;
+        this.r = r;
+    }
+
+    // q and r are radial coordinates instead of cartesian
+    int q;
+    int r;
+}
     
 
 // Note this is an old comment
