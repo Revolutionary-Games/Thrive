@@ -1,3 +1,5 @@
+#include "microbe.as"
+
 // How fast organelles grow.
 const auto GROWTH_SPEED_MULTILPIER = 0.5 / 1000;
 
@@ -63,12 +65,12 @@ class Organelle{
     }
 
     // Basically takes the hexes and adds them to the physics of this organelle
-    protected setupPhysics(){
+    protected void setupPhysics(){
         assert(false, "setupPhysics not done yet from hexes");
         // addHex
     }
 
-    protected calculateCost(dictionary composition){
+    protected void calculateCost(dictionary composition){
 
         organelleCost = 0;
         
