@@ -372,22 +372,26 @@ RigidBodyInputSystem::update(int, int logicTime) {
             body->setRollingFriction(properties.rollingFriction);
             if (properties.hasContactResponse) {
                 body->setCollisionFlags(
-                    body->getCollisionFlags() & not btCollisionObject::CF_NO_CONTACT_RESPONSE
+                    body->getCollisionFlags() & not static_cast<int>(
+                        btCollisionObject::CF_NO_CONTACT_RESPONSE)
                 );
             }
             else {
                 body->setCollisionFlags(
-                    body->getCollisionFlags() | btCollisionObject::CF_NO_CONTACT_RESPONSE
+                    body->getCollisionFlags() | static_cast<int>(
+                        btCollisionObject::CF_NO_CONTACT_RESPONSE)
                 );
             }
             if (properties.kinematic) {
                 body->setCollisionFlags(
-                    body->getCollisionFlags() | btCollisionObject::CF_KINEMATIC_OBJECT
+                    body->getCollisionFlags() | static_cast<int>(
+                        btCollisionObject::CF_KINEMATIC_OBJECT)
                 );
             }
             else {
                 body->setCollisionFlags(
-                    body->getCollisionFlags() & not btCollisionObject::CF_KINEMATIC_OBJECT
+                    body->getCollisionFlags() & not static_cast<int>(
+                        btCollisionObject::CF_KINEMATIC_OBJECT)
                 );
             }
             properties.untouch();

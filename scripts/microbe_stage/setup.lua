@@ -1,5 +1,8 @@
 CLOUD_SPAWN_RADIUS = 75
 
+BACTERIA_SPAWN_RADIUS = 87
+BACTERIA_SPAWN_DENSITY = 1/4000
+
 POWERUP_SPAWN_RADIUS = 85
 MICROBE_SPAWN_RADIUS = 85
 
@@ -130,46 +133,32 @@ function setupSpecies(gameState)
 end
 
 function microbeSpawnFunctionGeneric(pos, speciesName, aiControlled, individualName, gameState)
-    return spawnMicrobe(pos, speciesName, aiControlled, individualName, gameState).entity
+    return spawnMicrobe(pos, speciesName, aiControlled, individualName)
 end
 
 -- speciesName decides the template to use, while individualName is used for referencing the instance
-function spawnMicrobe(pos, speciesName, aiControlled, individualName, gameState)
-
-    assert(gameState ~= nil)
+function spawnMicrobe(pos, speciesName, aiControlled, individualName)
     assert(isNotEmpty(speciesName))
 
-    -- Workaround. Find a fix for this
-    if gameState ~= g_luaEngine.currentGameState then
-        print("Warning used different gameState than currentGameState in microbe spawn. " ..
-                  "This would have been bad in earlier versions")
-    end
-    
-    local processor = getComponent(speciesName, gameState, ProcessorComponent)
-
-    if processor == nil then
-
-        print("Skipping microbe spawn because species '" .. speciesName ..
+    local processor = getComponent(speciesName, g_luaEngine.currentGameState, ProcessorComponent)
+    assert(processor ~= nil, "Crashing the game because species '" .. speciesName ..
                   "' doesn't have a processor component")
-        
-        return nil
-    end
-    
-    
+
     local microbeEntity = MicrobeSystem.createMicrobeEntity(individualName, aiControlled, speciesName, false)
-    local microbe = Microbe(microbeEntity, false, gameState)
+    local rigidBodyComponent = getComponent(microbeEntity, RigidBodyComponent)
+
     if pos ~= nil then
-        microbe.rigidBody:setDynamicProperties(
+        rigidBodyComponent:setDynamicProperties(
             pos, -- Position
             Quaternion.new(Radian.new(Degree(0)), Vector3(1, 0, 0)), -- Orientation
             Vector3(0, 0, 0), -- Linear velocity
             Vector3(0, 0, 0)  -- Angular velocity
         )
     end
-    return microbe
+    return microbeEntity
 end
 
-local function setSpawnablePhysics(entity, pos, mesh, scale, collisionShape)
+function setSpawnablePhysics(entity, pos, mesh, scale, collisionShape)
     -- Rigid body
     local rigidBody = RigidBodyComponent.new()
     rigidBody.properties.friction = 0.2
@@ -272,7 +261,7 @@ local function setupSpawnSystem(gameState)
         
         local powerupComponent = PowerupComponent.new()
         -- Function name must be in configs.lua
-        powerupComponent:setEffect("toxin_number")
+        powerupComponent:setEffect("toxinEffect")
         powerupEntity:addComponent(powerupComponent)
         return powerupEntity
     end
@@ -287,7 +276,7 @@ local function setupSpawnSystem(gameState)
         
         local powerupComponent = PowerupComponent.new()
         -- Function name must be in configs.lua
-        powerupComponent:setEffect("chloroplast_number")
+        powerupComponent:setEffect("chloroplastEffect")
         powerupEntity:addComponent(powerupComponent)
         return powerupEntity
     end
@@ -301,6 +290,15 @@ local function setupSpawnSystem(gameState)
 
             compoundSpawnTypes[compoundName] = gSpawnSystem:addSpawnType(spawnCloud, 1/10000, CLOUD_SPAWN_RADIUS) -- Placeholder, the real one is set in biome.lua
         end
+    end
+
+    for bacteriaName, _ in pairs(bacteriaTable) do
+        local spawnBacteria =  function(pos)
+            return Bacterium.createBacterium(bacteriaName, pos, g_luaEngine.currentGameState)
+        end
+
+        -- TODO: make the density change on biome change.
+        gSpawnSystem:addSpawnType(spawnBacteria, BACTERIA_SPAWN_DENSITY, BACTERIA_SPAWN_RADIUS)
     end
 
     gSpawnSystem:addSpawnType(toxinOrganelleSpawnFunction, 1/17000, POWERUP_SPAWN_RADIUS)
@@ -322,15 +320,14 @@ local function setupSpawnSystem(gameState)
     return gSpawnSystem
 end
 
-local function setupPlayer(gameState)
-    assert(GameState.MICROBE == gameState)
-    assert(gameState ~= nil)
-    
-    local microbe = spawnMicrobe(nil, "Default", false, PLAYER_NAME, gameState)
-    microbe.collisionHandler:addCollisionGroup("powerupable")
+local function setupPlayer()
+    local microbeEntity = spawnMicrobe(nil, "Default", false, PLAYER_NAME)
+    local collisionHandlerComponent = getComponent(microbeEntity, CollisionComponent)
+
+    collisionHandlerComponent:addCollisionGroup("powerupable")
     Engine:playerData():lockedMap():addLock("Toxin")
     Engine:playerData():lockedMap():addLock("chloroplast")
-    Engine:playerData():setActiveCreature(microbe.entity.id, gameState.wrapper)
+    Engine:playerData():setActiveCreature(microbeEntity, g_luaEngine.currentGameState.wrapper)
 end
 
 local function setupSound(gameState)
@@ -393,6 +390,7 @@ local function createMicrobeStage(name)
             --PopulationSystem.new(),
             PatchSystem.new(),
             SpeciesSystem.new(),
+            BacteriaSystem.new(),
             -- Physics
             RigidBodyInputSystem.new(),
             UpdatePhysicsSystem.new(),
@@ -425,7 +423,8 @@ local function createMicrobeStage(name)
             setupCamera(gameState)
             setupCompoundClouds(gameState)
             setupSpecies(gameState)
-            setupPlayer(gameState)
+            setupPlayer()
+            initBacterialSpecies(gameState)
             setupSound(gameState)
         end
     )

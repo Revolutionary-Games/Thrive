@@ -5,6 +5,8 @@
 #include "engine/touchable.h"
 #include "engine/typedefs.h"
 
+#include <functional>
+
 namespace sol {
 class state;
 }
