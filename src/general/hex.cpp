@@ -133,10 +133,10 @@ Int2 Hex::rotateAxial(double q, double r) {
     return Int2(-r, q + r);
 }
 
-Int2 Hex::rotateAxialNTimes(double q0, double r0, unsigned n) {
+Int2 Hex::rotateAxialNTimes(double q0, double r0, uint32_t n) {
     Int2 result(q0, r0);
 
-    for(unsigned i = 0; i < n % 6; i++)
+    for(uint32_t i = 0; i < n % 6; i++)
         result = rotateAxial(result);
 
     return result;
@@ -176,7 +176,7 @@ Int2 Hex::rotateAxial(const Int2 &hex) {
     return Hex::rotateAxial(hex.X, hex.Y);
 }
 
-Int2 Hex::rotateAxialNTimes(const Int2 &hex, unsigned n) {
+Int2 Hex::rotateAxialNTimes(const Int2 &hex, uint32_t n) {
     return Hex::rotateAxialNTimes(hex.X, hex.Y, n);
 }
 

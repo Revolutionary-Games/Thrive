@@ -30,6 +30,10 @@
 
 #include <Addons/GameModule.h>
 
+
+// Includes for just bindings
+#include "general/hex.h"
+
 using namespace thrive;
 
 // ------------------------------------ //
@@ -678,6 +682,173 @@ bool bindCellStageMethods(asIScriptEngine* engine, const char* classname){
     return true;
 }
 
+bool registerHexFunctions(asIScriptEngine* engine){
+
+    // This doesn't need to be restored if we fail //
+    if(engine->SetDefaultNamespace("Hex") < 0)
+    {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterGlobalFunction("double getHexSize()",
+            asFUNCTION(Hex::getHexSize), asCALL_CDECL) < 0)
+    {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterGlobalFunction("Float3 axialToCartesian(double q, double r)",
+            asFUNCTIONPR(Hex::axialToCartesian, (double q, double r), Float3),
+            asCALL_CDECL) < 0)
+    {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterGlobalFunction("Float3 axialToCartesian(const Int2 &in hex)",
+            asFUNCTIONPR(Hex::axialToCartesian, (const Int2 &hex), Float3),
+            asCALL_CDECL) < 0)
+    {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+
+    if(engine->RegisterGlobalFunction("Int2 cartesianToAxial(double x, double z)",
+            asFUNCTIONPR(Hex::cartesianToAxial, (double x, double z), Int2),
+            asCALL_CDECL) < 0)
+    {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterGlobalFunction("Int2 cartesianToAxial(const Float3 &in coordinates)",
+            asFUNCTIONPR(Hex::cartesianToAxial, (const Float3 &coordinates), Int2),
+            asCALL_CDECL) < 0)
+    {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+
+    if(engine->RegisterGlobalFunction("Int3 axialToCube(double q, double r)",
+            asFUNCTIONPR(Hex::axialToCube, (double q, double r), Int3),
+            asCALL_CDECL) < 0)
+    {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterGlobalFunction("Int3 axialToCube(const Int2 &in hex)",
+            asFUNCTIONPR(Hex::axialToCube, (const Int2 &hex), Int3),
+            asCALL_CDECL) < 0)
+    {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    
+    if(engine->RegisterGlobalFunction("Int2 cubeToAxial(double x, double y, double z)",
+            asFUNCTIONPR(Hex::cubeToAxial, (double x, double y, double z), Int2),
+            asCALL_CDECL) < 0)
+    {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterGlobalFunction("Int2 cubeToAxial(const Int3 &in hex)",
+            asFUNCTIONPR(Hex::cubeToAxial, (const Int3 &hex), Int2),
+            asCALL_CDECL) < 0)
+    {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    
+    if(engine->RegisterGlobalFunction("Int3 cubeHexRound(double x, double y, double z)",
+            asFUNCTIONPR(Hex::cubeHexRound, (double x, double y, double z), Int3),
+            asCALL_CDECL) < 0)
+    {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    
+    if(engine->RegisterGlobalFunction("Int3 cubeHexRound(const Float3 &in hex)",
+            asFUNCTIONPR(Hex::cubeHexRound, (const Float3 &hex), Int3),
+            asCALL_CDECL) < 0)
+    {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    
+    if(engine->RegisterGlobalFunction("int64 encodeAxial(double q, double r)",
+            asFUNCTIONPR(Hex::encodeAxial, (double q, double r), int64_t),
+            asCALL_CDECL) < 0)
+    {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+    
+    if(engine->RegisterGlobalFunction("int64 encodeAxial(const Int2 &in hex)",
+            asFUNCTIONPR(Hex::encodeAxial, (const Int2 &hex), int64_t),
+            asCALL_CDECL) < 0)
+    {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+    
+    if(engine->RegisterGlobalFunction("Int2 decodeAxial(int64 s)",
+            asFUNCTIONPR(Hex::decodeAxial, (int64_t s), Int2),
+            asCALL_CDECL) < 0)
+    {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    
+    if(engine->RegisterGlobalFunction("Int2 rotateAxial(double q, double r)",
+            asFUNCTIONPR(Hex::rotateAxial, (double q, double r), Int2),
+            asCALL_CDECL) < 0)
+    {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+    
+    if(engine->RegisterGlobalFunction("Int2 rotateAxial(const Int2 &in hex)",
+            asFUNCTIONPR(Hex::rotateAxial, (const Int2 &hex), Int2),
+            asCALL_CDECL) < 0)
+    {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    
+    if(engine->RegisterGlobalFunction("Int2 rotateAxialNTimes(double q0, double r0, "
+            "uint32 n)",
+            asFUNCTIONPR(Hex::rotateAxialNTimes, (double q0, double r0, uint32_t n), Int2),
+            asCALL_CDECL) < 0)
+    {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+    
+    if(engine->RegisterGlobalFunction("Int2 rotateAxialNTimes(const Int2 &in hex, uint32 n)",
+            asFUNCTIONPR(Hex::rotateAxialNTimes, (const Int2 &hex, uint32_t n), Int2),
+            asCALL_CDECL) < 0)
+    {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    
+    if(engine->RegisterGlobalFunction("Int2 flipHorizontally(double q, double r)",
+            asFUNCTIONPR(Hex::flipHorizontally, (double q, double r), Int2),
+            asCALL_CDECL) < 0)
+    {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+    
+    if(engine->RegisterGlobalFunction("Int2 flipHorizontally(const Int2 &in hex)",
+            asFUNCTIONPR(Hex::flipHorizontally, (const Int2 &hex), Int2),
+            asCALL_CDECL) < 0)
+    {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    
+    
+    if(engine->SetDefaultNamespace("") < 0)
+    {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+    
+    return true;
+}
+
 bool ThriveGame::InitLoadCustomScriptTypes(asIScriptEngine* engine){
 
     if(!registerLockedMap(engine))
@@ -695,6 +866,9 @@ bool ThriveGame::InitLoadCustomScriptTypes(asIScriptEngine* engine){
         return false;
 
     if(!registerSimulationDataAndJsons(engine))
+        return false;
+
+    if(!registerHexFunctions(engine))
         return false;
 
     if(engine->RegisterObjectType("ThriveGame", 0, asOBJ_REF | asOBJ_NOCOUNT) < 0){

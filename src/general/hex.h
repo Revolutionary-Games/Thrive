@@ -146,8 +146,8 @@ public:
     /**
     * @brief Rotates a hex by (60 * n) degrees about the origin clock-wise.
     */
-    static Int2 rotateAxialNTimes(double q0, double r0, unsigned n);
-    static Int2 rotateAxialNTimes(const Int2 &hex, unsigned n);
+    static Int2 rotateAxialNTimes(double q0, double r0, uint32_t n);
+    static Int2 rotateAxialNTimes(const Int2 &hex, uint32_t n);
 
     /**
     * @brief Symmetrizes a hex horizontally about the (0,x) axis.
