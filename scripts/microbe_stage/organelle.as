@@ -63,16 +63,16 @@ class Organelle{
     }
 
     // Basically takes the hexes and adds them to the physics of this organelle
-    protected setupPhysics(){
+    protected void setupPhysics(){
         assert(false, "setupPhysics not done yet from hexes");
         // addHex
     }
 
-    protected calculateCost(dictionary composition){
+    protected void calculateCost(dictionary composition){
 
         organelleCost = 0;
         
-        auto keys = composition.keys();
+        auto keys = composition.getKeys();
 
         for(uint i = 0; i < keys.length(); ++i){
 
@@ -694,7 +694,7 @@ class PlacedOrganelle{
     // the organelle gets damaged.
     dictionary composition;
 
-    array<PlacedOrganelleComponent@> components;
+    array<OrganelleComponent@> components;
 
     Microbe@ microbeEntity;
     ObjectID organelleEntity = NULL_OBJECT;
@@ -704,7 +704,6 @@ class PlacedOrganelle{
 
     Float4 colourTint;
 
-    protected CompoundBin compoundBin;
     PlacedOrganelle@ sisterOrganelle = null;
 }
 

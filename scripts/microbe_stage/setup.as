@@ -1,3 +1,5 @@
+#include "configs.as"
+
 const auto CLOUD_SPAWN_RADIUS = 75;
 
 const auto POWERUP_SPAWN_RADIUS = 85;

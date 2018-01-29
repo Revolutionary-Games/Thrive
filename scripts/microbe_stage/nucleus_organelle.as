@@ -64,7 +64,7 @@ class NucleusOrganelle : OrganelleComponent{
         if(microbeEntity !is null){
             auto speciesColour = speciesComponent.colour;
             this.colourSuffix = "" + floor(speciesColour.X * 256) +
-                floor(speciesColour.Y * 256) ++ floor(speciesColour.Z * 256);
+                floor(speciesColour.Y * 256) + floor(speciesColour.Z * 256);
         }
         
         organelle._needsColourUpdate = true;
