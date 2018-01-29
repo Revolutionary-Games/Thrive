@@ -144,16 +144,16 @@ void setupOrganellesForWorld(CellStageWorld@ world){
         TweakedProcess("AminoAcidSynthesis", 0.2),
     };
     nucleusParameters.hexes = {
-        AxialCoordinates(0, 0),
-        AxialCoordinates(1, 0),
-        AxialCoordinates(0, 1),
-        AxialCoordinates(0, -1),
-        AxialCoordinates(1, -1),
-        AxialCoordinates(-1, 1),
-        AxialCoordinates(-1, 0),
-        AxialCoordinates(-1, -1),
-        AxialCoordinates(0, -2),
-        AxialCoordinates(1, -2)
+        Int2(0, 0),
+        Int2(1, 0),
+        Int2(0, 1),
+        Int2(0, -1),
+        Int2(1, -1),
+        Int2(-1, 1),
+        Int2(-1, 0),
+        Int2(-1, -1),
+        Int2(0, -2),
+        Int2(1, -2)
     };
 
     newWorldTable["nucleus"] = Organelle(nucleusParameters, world);

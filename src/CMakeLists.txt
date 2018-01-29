@@ -86,6 +86,8 @@ set(GROUP_GENERAL
   # "general/timed_life_system.h"
   "general/locked_map.cpp"
   "general/locked_map.h"
+  "general/hex.cpp"
+  "general/hex.h"
   # "general/powerup_system.cpp"
   # "general/powerup_system.h"
   "general/perlin_noise.cpp"

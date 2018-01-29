@@ -86,6 +86,8 @@ void toxin_call_Notification(){
 }
 
 // TODO: move this to where axialToCartesian is defined
+// We should use Int2 instead, or MAYBE a derived class defined in c++ if we wanna be really fancy...
+/*
 class AxialCoordinates{
 
     AxialCoordinates(int q, int r){
@@ -98,7 +100,7 @@ class AxialCoordinates{
     int q;
     int r;
 }
-    
+*/   
 
 // Note this is an old comment
 /*
