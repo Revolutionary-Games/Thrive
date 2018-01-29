@@ -68,7 +68,7 @@ class OrganelleParameters{
 
         this.name = name;
     }
-    
+    float mass = 0;
     string name;
     string gene = "INVALID";
     

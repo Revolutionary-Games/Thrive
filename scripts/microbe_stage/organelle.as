@@ -32,7 +32,7 @@ class Organelle{
         _name = parameters.name;
         mass = parameters.mass;
 
-        composition = parameters.composition;
+        initialComposition = parameters.initialComposition;
         components = parameters.components;
 
         // Calculate organelleCost and compoundsLeft//
@@ -271,7 +271,7 @@ class PlacedOrganelle{
     void resetHealth(){
 
         // Copy //
-        composition = initialComposition;
+        composition = _organelle.initialComposition;
     }
 
 
@@ -351,7 +351,7 @@ class PlacedOrganelle{
         // Finds the total number of needed compounds.
         float sum = 0.0;
 
-        auto compoundKeys = compoundsLeft.keys();
+        auto compoundKeys = compoundsLeft.getKeys();
         for(uint i = 0; i < compoundKeys.length(); ++i){
 
             // Finds which compounds the cell currently has.
@@ -428,7 +428,7 @@ class PlacedOrganelle{
 
     private void scaleCompoundsLeft(float scaleFactor){
 
-        auto compoundKeys = compoundsLeft.keys();
+        auto compoundKeys = compoundsLeft.getKeys();
         for(uint i = 0; i < compoundKeys.length(); ++i){
             float amount;
             if(!compoundsLeft.get(compoundKeys[i], amount)){
@@ -446,7 +446,7 @@ class PlacedOrganelle{
 
         float totalLeft = 0;
         
-        auto compoundKeys = compoundsLeft.keys();
+        auto compoundKeys = compoundsLeft.getKeys();
         for(uint i = 0; i < compoundKeys.length(); ++i){
         
             float amount;
@@ -583,7 +583,7 @@ class PlacedOrganelle{
         this.q = q;
         this.r = r;
         Float2 xz = axialToCartesian(q, r);
-        this.position.cartesian = Vector3(xz.X, 0, xz.Y);
+        this.position.cartesian = Vector3(xz.X, 0.0, xz.Y);
         this.rotation = rotation;
 
         assert(organelleEntity == NULL_ENTITY, "PlacedOrganelle already had an entity");
