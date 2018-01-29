@@ -116,14 +116,14 @@ Int3 Hex::cubeHexRound(double x, double y, double z) {
     return Int3(rx, ry, rz);
 }
 
-long Hex::encodeAxial(double q, double r) {
+int64_t Hex::encodeAxial(double q, double r) {
     if(std::abs(q) >= ENCODE_AXIAL_OFFSET || std::abs(r) >= ENCODE_AXIAL_OFFSET)
            LEVIATHAN_ASSERT(false, "Coordinates out of range, q and r need to be smaller than ENCODE_AXIAL_OFFSET");
 
     return (q + ENCODE_AXIAL_OFFSET) * ENCODE_AXIAL_SHIFT + r + ENCODE_AXIAL_OFFSET;
 }
 
-Int2 Hex::decodeAxial(long s) {
+Int2 Hex::decodeAxial(int64_t s) {
     int r = (s % ENCODE_AXIAL_SHIFT) - ENCODE_AXIAL_OFFSET;
     int q = (s - r - ENCODE_AXIAL_OFFSET) / ENCODE_AXIAL_SHIFT - ENCODE_AXIAL_OFFSET;
     return Int2(q, r);
@@ -168,7 +168,7 @@ Int3 Hex::cubeHexRound(const Float3 &hex) {
     return Hex::cubeHexRound(hex.X, hex.Y, hex.Z);
 }
 
-long Hex::encodeAxial(const Int2 &hex) {
+int64_t Hex::encodeAxial(const Int2 &hex) {
     return Hex::encodeAxial(hex.X, hex.Y);
 }
 

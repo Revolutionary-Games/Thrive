@@ -123,8 +123,8 @@ public:
     * @returns s
     *  A single number encoding q and r. Use decodeAxial() to retrieve q and r from it.
     */
-    static long encodeAxial(double q, double r);
-    static long encodeAxial(const Int2 &hex);
+    static int64_t encodeAxial(double q, double r);
+    static int64_t encodeAxial(const Int2 &hex);
 
     /**
     * @brief Reverses encodeAxial().
@@ -135,7 +135,7 @@ public:
     * @returns q, r
     *  The hex coordinates encoded in s
     */
-    static Int2 decodeAxial(long s);
+    static Int2 decodeAxial(int64_t s);
 
     /**
     * @brief Rotates a hex by 60 degrees about the origin clock-wise.
