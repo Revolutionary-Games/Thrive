@@ -1,3 +1,5 @@
+#include "microbe.as"
+
 // How fast organelles grow.
 const auto GROWTH_SPEED_MULTILPIER = 0.5 / 1000;
 
