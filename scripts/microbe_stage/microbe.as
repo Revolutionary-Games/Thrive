@@ -11,47 +11,52 @@ void setupAbsorberForAllCompounds(){
     
 }
 
-// Quantity of physics time between each loop distributing compounds to organelles. TODO: Modify to reflect microbe size.
-uint COMPOUND_PROCESS_DISTRIBUTION_INTERVAL = 100;
+// Quantity of physics time between each loop distributing compounds
+// to organelles. TODO: Modify to reflect microbe size.
+const uint COMPOUND_PROCESS_DISTRIBUTION_INTERVAL = 100;
 
-// Amount the microbes maxmimum bandwidth increases with per organelle added. This is a temporary replacement for microbe surface area
-float BANDWIDTH_PER_ORGANELLE = 1.0;
+// Amount the microbes maxmimum bandwidth increases with per organelle
+// added. This is a temporary replacement for microbe surface area
+const float BANDWIDTH_PER_ORGANELLE = 1.0;
 
-// The of time it takes for the microbe to regenerate an amount of bandwidth equal to maxBandwidth
-uint BANDWIDTH_REFILL_DURATION = 800;
+// The of time it takes for the microbe to regenerate an amount of
+// bandwidth equal to maxBandwidth
+const uint BANDWIDTH_REFILL_DURATION = 800;
 
-// No idea what this does (if anything), but it isn't used in the process system, or when ejecting compounds.
-float STORAGE_EJECTION_THRESHHOLD = 0.8;
+// No idea what this does (if anything), but it isn't used in the
+// process system, or when ejecting compounds.
+const float STORAGE_EJECTION_THRESHHOLD = 0.8;
 
-// The amount of time between each loop to maintaining a fill level below STORAGE_EJECTION_THRESHHOLD and eject useless compounds
-uint EXCESS_COMPOUND_COLLECTION_INTERVAL = 1000;
+// The amount of time between each loop to maintaining a fill level
+// below STORAGE_EJECTION_THRESHHOLD and eject useless compounds
+const uint EXCESS_COMPOUND_COLLECTION_INTERVAL = 1000;
 
 // The amount of hitpoints each organelle provides to a microbe.
-uint MICROBE_HITPOINTS_PER_ORGANELLE = 10;
+const uint MICROBE_HITPOINTS_PER_ORGANELLE = 10;
 
 // The minimum amount of oxytoxy (or any agent) needed to be able to shoot.
-float MINIMUM_AGENT_EMISSION_AMOUNT = 0.1;
+const float MINIMUM_AGENT_EMISSION_AMOUNT = 0.1;
 
 // A sound effect thing for bumping with other cell i assume? Probably unused.
-float RELATIVE_VELOCITY_TO_BUMP_SOUND = 6.0;
+const float RELATIVE_VELOCITY_TO_BUMP_SOUND = 6.0;
 
 // I think (emphasis on think) this is unused.
-float INITIAL_EMISSION_RADIUS = 0.5;
+const float INITIAL_EMISSION_RADIUS = 0.5;
 
 // The speed reduction when a cell is in rngulfing mode.
-uint ENGULFING_MOVEMENT_DIVISION = 3;
+const uint ENGULFING_MOVEMENT_DIVISION = 3;
 
 // The speed reduction when a cell is being engulfed.
-uint ENGULFED_MOVEMENT_DIVISION = 4;
+const uint ENGULFED_MOVEMENT_DIVISION = 4;
 
 // The amount of ATP per second spent on being on engulfing mode.
-float ENGULFING_ATP_COST_SECOND = 1.5;
+const float ENGULFING_ATP_COST_SECOND = 1.5;
 
 // The minimum HP ratio between a cell and a possible engulfing victim.
-float ENGULF_HP_RATIO_REQ = 1.5 ;
+const float ENGULF_HP_RATIO_REQ = 1.5 ;
 
 // Cooldown between agent emissions, in milliseconds.
-uint AGENT_EMISSION_COOLDOWN = 1000;
+const uint AGENT_EMISSION_COOLDOWN = 1000;
 
 ////////////////////////////////////////////////////////////////////////////////
 // MicrobeComponent
