@@ -11,6 +11,10 @@ o GameModule "microbe_stage"{
         organelle_table.as
         organelle.as
         organelle_component.as
+        register_microbe_components.as
+        microbe.as
+        // TODO: move to a new module
+        ../script_system.as
     }
     
     l properties{
