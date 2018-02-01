@@ -433,7 +433,7 @@ class MicrobeSystem{
     //
     // @returns amount
     // The amount that was actually taken, between 0.0 and maxAmount.
-    void takeCompound(ObjectID microbeEntity, CompoundId compoundId, double maxAmount){
+    double takeCompound(ObjectID microbeEntity, CompoundId compoundId, double maxAmount){
         auto microbeComponent = getComponent(microbeEntity, MicrobeComponent)
         auto takenAmount = getComponent(microbeEntity, CompoundBagComponent
         ):takeCompound(compoundId, maxAmount)
@@ -538,7 +538,7 @@ class MicrobeSystem{
     //
     // @returns organelle
     // The organelle at (q,r) or null if the hex is unoccupied
-    void getOrganelleAt(ObjectID microbeEntity, Int2 hex){
+    PlacedOrganelle getOrganelleAt(ObjectID microbeEntity, Int2 hex){
         auto microbeComponent = getComponent(microbeEntity, MicrobeComponent)
 
         for(_, organelle in pairs(microbeComponent.organelles)){
@@ -560,7 +560,7 @@ class MicrobeSystem{
     // @returns success
     // True if an organelle has been removed, false if there was no organelle
     // at (q,r)
-    void removeOrganelle(ObjectID microbeEntity, Int2 hex){
+    bool removeOrganelle(ObjectID microbeEntity, Int2 hex){
         auto microbeComponent = getComponent(microbeEntity, MicrobeComponent)
         auto rigidBodyComponent = getComponent(microbeEntity, RigidBodyComponent)
 
@@ -673,7 +673,7 @@ class MicrobeSystem{
     //
     // @return
     //  returns whether the organelle was added
-    void addOrganelle(ObjectID microbeEntity, Int2 hex, uint rotation, Organelle organelle){ // PlacedOrganelle?
+    bool addOrganelle(ObjectID microbeEntity, Int2 hex, uint rotation, Organelle organelle){ // PlacedOrganelle?
         auto microbeComponent = getComponent(microbeEntity, MicrobeComponent)
         auto membraneComponent = getComponent(microbeEntity, MembraneComponent)
         auto rigidBodyComponent = getComponent(microbeEntity, RigidBodyComponent)
@@ -745,7 +745,7 @@ class MicrobeSystem{
         return touching
     }
 
-    void splitOrganelle(ObjectID microbeEntity, PlacedOrganelle organelle){
+    PlacedOrganelle splitOrganelle(ObjectID microbeEntity, PlacedOrganelle organelle){
         auto q = organelle.position.q
         auto r = organelle.position.r
 
