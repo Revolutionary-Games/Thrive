@@ -276,77 +276,92 @@ class MicrobeSystem{
         //     }
         // }
         // this.bacteriaCollisions.clearCollisions();
-        
+
+        for(_, microbeEntity in pairs(this.microbes)){
+            MicrobeSystem.updateMicrobe(microbeEntity, logicTime);
+        }
     }
 
     void checkEngulfment(engulferMicrobeEntity, engulfedMicrobeEntity){
-    auto body = getComponent(engulferMicrobeEntity, RigidBodyComponent)
-        auto microbe1Comp = getComponent(engulferMicrobeEntity, MicrobeComponent)
-        auto microbe2Comp = getComponent(engulfedMicrobeEntity, MicrobeComponent)
-        auto soundSourceComponent = getComponent(engulferMicrobeEntity, SoundSourceComponent)
-        auto bodyEngulfed = getComponent(engulfedMicrobeEntity, RigidBodyComponent)
+        auto body = getComponent(engulferMicrobeEntity, RigidBodyComponent);
+        auto microbe1Comp = getComponent(engulferMicrobeEntity, MicrobeComponent);
+        auto microbe2Comp = getComponent(engulfedMicrobeEntity, MicrobeComponent);
+        auto soundSourceComponent = getComponent(engulferMicrobeEntity, SoundSourceComponent);
+        auto bodyEngulfed = getComponent(engulfedMicrobeEntity, RigidBodyComponent);
 
         // That actually happens sometimes, and i think it shouldn't. :/
         // Probably related to a collision detection bug.
         // assert(body !is null, "Microbe without a rigidBody tried to engulf.")
         // assert(bodyEngulfed !is null, "Microbe without a rigidBody tried to be engulfed.")
-        if(body == null or bodyEngulfed == null){ return }
+        if(body is null || bodyEngulfed is null)
+            return;
 
-    if microbe1Comp.engulfMode and 
-                        microbe1Comp.maxHitpoints > ENGULF_HP_RATIO_REQ * microbe2Comp.maxHitpoints and
-                        microbe1Comp.dead == false and microbe2Comp.dead == false then
+        if(microbe1Comp.engulfMode && microbe1Comp.maxHitpoints > (
+                ENGULF_HP_RATIO_REQ * microbe2Comp.maxHitpoints) && 
+            microbe1Comp.dead == false && microbe2Comp.dead == false)
+        {
+            if(!microbe1Comp.isCurrentlyEngulfing){
+                //We have just started engulfing
+                microbe2Comp.movementFactor = microbe2Comp.movementFactor /
+                    ENGULFED_MOVEMENT_DIVISION;
+                microbe1Comp.isCurrentlyEngulfing = true;
+                microbe2Comp.wasBeingEngulfed = true;
+                microbe2Comp.hostileEngulfer = engulferMicrobeEntity;
+                body.disableCollisionsWith(engulfedMicrobeEntity.id);
+                soundSourceComponent.playSound("microbe-engulfment");
+            }
 
-                        if(not microbe1Comp.isCurrentlyEngulfing){
-                            //We have just started engulfing
-                            microbe2Comp.movementFactor = microbe2Comp.movementFactor / ENGULFED_MOVEMENT_DIVISION
-                            microbe1Comp.isCurrentlyEngulfing = true
-                            microbe2Comp.wasBeingEngulfed = true
-                            microbe2Comp.hostileEngulfer = engulferMicrobeEntity
-                            body.disableCollisionsWith(engulfedMicrobeEntity.id)
-                            soundSourceComponent.playSound("microbe-engulfment")
-                        }
-
-    //isBeingEngulfed is set to false every frame
-    // we detect engulfment stopped by isBeingEngulfed being false while wasBeingEngulfed is true
-    microbe2Comp.isBeingEngulfed = true
+            //isBeingEngulfed is set to false every frame
+            // we detect engulfment stopped by isBeingEngulfed being
+            // false while wasBeingEngulfed is true
+            microbe2Comp.isBeingEngulfed = true;
         }
-}
+    }
 
-// Attempts to obtain an amount of bandwidth for immediate use.
-// This should be in conjunction with most operations ejecting  or absorbing compounds and agents for microbe.
-//
-// @param maicrobeEntity
-// The entity of the microbe to get the bandwidth from.
-//
-// @param maxAmount
-// The max amount of units that is requested.
-//
-// @param compoundId
-// The compound being requested for volume considerations.
-//
-// @return
-//  amount in units avaliable for use.
-void MicrobeSystem.getBandwidth(microbeEntity, maxAmount, compoundId){
-    auto microbeComponent = getComponent(microbeEntity, MicrobeComponent)
-        auto compoundVolume = CompoundRegistry.getCompoundUnitVolume(compoundId)
-        auto amount = math.min(maxAmount * compoundVolume, microbeComponent.remainingBandwidth)
-        microbeComponent.remainingBandwidth = microbeComponent.remainingBandwidth - amount
-        return amount / compoundVolume
-        }
+    // Attempts to obtain an amount of bandwidth for immediate use.
+    // This should be in conjunction with most operations ejecting  or absorbing compounds and agents for microbe.
+    //
+    // @param maicrobeEntity
+    // The entity of the microbe to get the bandwidth from.
+    //
+    // @param maxAmount
+    // The max amount of units that is requested.
+    //
+    // @param compoundId
+    // The compound being requested for volume considerations.
+    //
+    // @return
+    //  amount in units avaliable for use.
+    float getBandwidth(ObjectID microbeEntity, maxAmount, CompoundId compoundId){
+        auto microbeComponent = getComponent(microbeEntity, MicrobeComponent);
+        auto compoundVolume = CompoundRegistry.getCompoundUnitVolume(compoundId);
+        auto amount = min(maxAmount * compoundVolume, microbeComponent.remainingBandwidth);
+        microbeComponent.remainingBandwidth = microbeComponent.remainingBandwidth - amount;
+        return amount / compoundVolume;
+    }
 
-void MicrobeSystem.regenerateBandwidth(microbeEntity, logicTime){
-    auto microbeComponent = getComponent(microbeEntity, MicrobeComponent)
-        auto addedBandwidth = microbeComponent.remainingBandwidth + logicTime * (microbeComponent.maxBandwidth / BANDWIDTH_REFILL_DURATION)
-        microbeComponent.remainingBandwidth = math.min(addedBandwidth, microbeComponent.maxBandwidth)
-        }
+    void regenerateBandwidth(ObjectID microbeEntity, int logicTime){
+        auto microbeComponent = getComponent(microbeEntity, MicrobeComponent);
+        auto addedBandwidth = microbeComponent.remainingBandwidth + logicTime *
+            (microbeComponent.maxBandwidth / BANDWIDTH_REFILL_DURATION);
+        microbeComponent.remainingBandwidth = min(addedBandwidth,
+            microbeComponent.maxBandwidth);
+    }
 
-void MicrobeSystem.calculateHealthFromOrganelles(microbeEntity){
-    auto microbeComponent = getComponent(microbeEntity, MicrobeComponent)
-        microbeComponent.hitpoints = 0
-        microbeComponent.maxHitpoints = 0
+    void calculateHealthFromOrganelles(ObjectID microbeEntity){
+        auto microbeComponent = getComponent(microbeEntity, MicrobeComponent);
+        microbeComponent.hitpoints = 0;
+        microbeComponent.maxHitpoints = 0;
         for(_, organelle in pairs(microbeComponent.organelles)){
-            microbeComponent.hitpoints = microbeComponent.hitpoints + (organelle.getCompoundBin() < 1.0 and organelle.getCompoundBin() or 1.0) * MICROBE_HITPOINTS_PER_ORGANELLE
-            microbeComponent.maxHitpoints = microbeComponent.maxHitpoints + MICROBE_HITPOINTS_PER_ORGANELLE
+
+            if(organelle.getCompoundBin() < 1.0){
+                microbeComponent.hitpoints += organelle.getCompoundBin() *
+                    MICROBE_HITPOINTS_PER_ORGANELLE;
+            } else {
+                microbeComponent.hitpoints += MICROBE_HITPOINTS_PER_ORGANELLE;
+            }
+            
+            microbeComponent.maxHitpoints += MICROBE_HITPOINTS_PER_ORGANELLE;
         }
 }
 
