@@ -434,12 +434,11 @@ class MicrobeSystem{
     // @returns amount
     // The amount that was actually taken, between 0.0 and maxAmount.
     double takeCompound(ObjectID microbeEntity, CompoundId compoundId, double maxAmount){
-        auto microbeComponent = getComponent(microbeEntity, MicrobeComponent)
-        auto takenAmount = getComponent(microbeEntity, CompoundBagComponent
-        ):takeCompound(compoundId, maxAmount)
+        auto microbeComponent = getComponent(microbeEntity, MicrobeComponent);
+        auto takenAmount = getComponent(microbeEntity, CompoundBagComponent).takeCompound(compoundId, maxAmount);
     
-        microbeComponent.stored = microbeComponent.stored - takenAmount
-        return takenAmount
+        microbeComponent.stored = microbeComponent.stored - takenAmount;
+        return takenAmount;
     }
 
     // Ejects compounds from the microbes behind position, into the enviroment
@@ -596,7 +595,6 @@ class MicrobeSystem{
         auto compoundAmountToDump = microbeComponent.stored - microbeComponent.capacity
 
         // Uncomment to print compound economic information to the console.
-        //[[
         if(microbeComponent.isPlayerMicrobe){
             for(compound, _ in pairs(compoundTable)){
                 compoundId = CompoundRegistry.getCompoundId(compound)
@@ -604,7 +602,6 @@ class MicrobeSystem{
             }
         }
         print("")
-        ]]
 
         // Dumping all the useless compounds (with price = 0).
         for(_, compoundId in pairs(CompoundRegistry.getCompoundList())){
@@ -640,17 +637,17 @@ class MicrobeSystem{
     }
 
     void removeEngulfedEffect(ObjectID microbeEntity){
-        auto microbeComponent = getComponent(microbeEntity, MicrobeComponent)
+        auto microbeComponent = getComponent(microbeEntity, MicrobeComponent);
 
-        microbeComponent.movementFactor = microbeComponent.movementFactor * ENGULFED_MOVEMENT_DIVISION
-        microbeComponent.wasBeingEngulfed = false
+        microbeComponent.movementFactor = microbeComponent.movementFactor * ENGULFED_MOVEMENT_DIVISION;
+        microbeComponent.wasBeingEngulfed = false;
 
-        auto hostileMicrobeComponent = getComponent(microbeComponent.hostileEngulfer, MicrobeComponent)
+        auto hostileMicrobeComponent = getComponent(microbeComponent.hostileEngulfer, MicrobeComponent);
         if(hostileMicrobeComponent !is null){
-            hostileMicrobeComponent.isCurrentlyEngulfing = false
+            hostileMicrobeComponent.isCurrentlyEngulfing = false;
         }
 
-        auto hostileRigidBodyComponent = getComponent(microbeComponent.hostileEngulfer, RigidBodyComponent)
+        auto hostileRigidBodyComponent = getComponent(microbeComponent.hostileEngulfer, RigidBodyComponent);
 
         // The component is null sometimes, probably due to despawning.
         if(hostileRigidBodyComponent !is null){
@@ -845,19 +842,19 @@ class MicrobeSystem{
         }
 
         auto deathAnimationEntity = Entity(g_luaEngine.currentGameState.wrapper)
-        auto lifeTimeComponent = TimedLifeComponent()
-        lifeTimeComponent.timeToLive = 4000
+        auto lifeTimeComponent = TimedLifeComponent();
+        lifeTimeComponent.timeToLive = 4000;
         deathAnimationEntity.addComponent(lifeTimeComponent)
         auto deathAnimSceneNode = OgreSceneNodeComponent()
-        deathAnimSceneNode.meshName = "MicrobeDeath.mesh"
-        deathAnimSceneNode.playAnimation("Death", false)
+        deathAnimSceneNode.meshName = "MicrobeDeath.mesh";
+        deathAnimSceneNode.playAnimation("Death", false);
         deathAnimSceneNode.transform.position = Vector3(microbeSceneNode.transform.position.x, microbeSceneNode.transform.position.y, 0)
-        deathAnimSceneNode.transform.touch()
-        deathAnimationEntity.addComponent(deathAnimSceneNode)
-        soundSourceComponent.playSound("microbe-death")
-        microbeComponent.dead = true
-        microbeComponent.deathTimer = 5000
-        microbeComponent.movementDirection = Vector3(0,0,0)
+        deathAnimSceneNode.transform.touch();
+        deathAnimationEntity.addComponent(deathAnimSceneNode);
+        soundSourceComponent.playSound("microbe-death");
+        microbeComponent.dead = true;
+        microbeComponent.deathTimer = 5000;
+        microbeComponent.movementDirection = Float3(0,0,0);
         rigidBodyComponent.clearForces()
         if(not microbeComponent.isPlayerMicrobe){
             for(_, organelle in pairs(microbeComponent.organelles)){
@@ -865,9 +862,9 @@ class MicrobeSystem{
             }
         }
         if(microbeComponent.wasBeingEngulfed){
-            MicrobeSystem.removeEngulfedEffect(microbeEntity)
+            MicrobeSystem.removeEngulfedEffect(microbeEntity);
         }
-        microbeSceneNode.visible = false
+        microbeSceneNode.visible = false;
     }
 
     // Damages the microbe, killing it if its hitpoints drop low enough
@@ -1211,105 +1208,105 @@ class MicrobeSystem{
                         organelle.growOrganelle(getComponent(microbeEntity, CompoundBagComponent), logicTime);
                         // An organelle was damaged and we tried to heal it, so out health might be different.
                         MicrobeSystem.calculateHealthFromOrganelles(microbeEntity);
-                    else
-                        auto reproductionStageComplete = true;
-                        auto organellesToAdd = {};
+                    }
+                }
+            else
+                auto reproductionStageComplete = true;
+                auto organellesToAdd = {};
 
-                        // Grow all the large organelles.
-                        for(_, organelle in pairs(microbeComponent.organelles)){
-                            // Update the organelle.
-                            organelle.update(logicTime);
-                
-                            // We are in G1 phase of the cell cycle, duplicate all organelles.
-                            if(organelle.name ~= "nucleus" and microbeComponent.reproductionStage == 0){
-                    
-                                // If the organelle is not split, give it some compounds to make it larger.
-                                if(organelle.getCompoundBin() < 2.0 and not organelle.wasSplit){
-                                    // Give the organelle access to the compound bag to take some compound.
-                                    organelle.growOrganelle(getComponent(microbeEntity, CompoundBagComponent), logicTime);
-                                    reproductionStageComplete = false;
-                                    // if(the organelle was split and has a bin less){ 1, it must have been damaged.
-                                elseif(organelle.getCompoundBin() < 1.0 and organelle.wasSplit){
-                                    // Give the organelle access to the compound bag to take some compound.
-                                    organelle.growOrganelle(getComponent(microbeEntity, CompoundBagComponent), logicTime);
-                                    // If the organelle is twice its size...
-                                elseif(organelle.getCompoundBin() >= 2.0){
-                                    //Queue this organelle for splitting after the loop.
-                                    //(To avoid "cutting down the branch we're sitting on").
-                                    table.insert(organellesToAdd, organelle);
-                                }
-                   
-                            // In the S phase, the nucleus grows as chromatin is duplicated.
-                            elseif(organelle.name == "nucleus" and microbeComponent.reproductionStage == 1){
-                                // If the nucleus hasn't finished replicating its DNA, give it some compounds.
-                                if(organelle.getCompoundBin() < 2.0){
-                                    // Give the organelle access to the compound back to take some compound.
-                                    organelle.growOrganelle(getComponent(microbeEntity, CompoundBagComponent), logicTime);
-                                    reproductionStageComplete = false;
-                                }
-                            }
-                                            
+                // Grow all the large organelles.
+                for(_, organelle in pairs(microbeComponent.organelles)){
+                    // Update the organelle.
+                    organelle.update(logicTime);
+        
+                    // We are in G1 phase of the cell cycle, duplicate all organelles.
+                    if(organelle.name ~= "nucleus" and microbeComponent.reproductionStage == 0){
+            
+                        // If the organelle is not split, give it some compounds to make it larger.
+                        if(organelle.getCompoundBin() < 2.0 and not organelle.wasSplit){
+                            // Give the organelle access to the compound bag to take some compound.
+                            organelle.growOrganelle(getComponent(microbeEntity, CompoundBagComponent), logicTime);
+                            reproductionStageComplete = false;
+                            // if(the organelle was split and has a bin less){ 1, it must have been damaged.
+                        elseif(organelle.getCompoundBin() < 1.0 and organelle.wasSplit){
+                            // Give the organelle access to the compound bag to take some compound.
+                            organelle.growOrganelle(getComponent(microbeEntity, CompoundBagComponent), logicTime);
+                            // If the organelle is twice its size...
+                        elseif(organelle.getCompoundBin() >= 2.0){
+                            //Queue this organelle for splitting after the loop.
+                            //(To avoid "cutting down the branch we're sitting on").
+                            table.insert(organellesToAdd, organelle);
                         }
-                                        
-                        //Splitting the queued organelles.
-                        for(_, organelle in pairs(organellesToAdd)){
-                            print("ready to split " .. organelle.name);
-                            // Mark this organelle as done and return to its normal size.
-                            organelle.reset();
-                            organelle.wasSplit = true;
-                            // Create a second organelle.
-                            auto organelle2 = MicrobeSystem.splitOrganelle(microbeEntity, organelle);
-                            organelle2.wasSplit = true;
-                            organelle2.isDuplicate = true;
-                            organelle2.sisterOrganelle = organelle;
-
-                            // Redo the cell membrane.
-                            membraneComponent.clear();
-                        }
-
-                        if(reproductionStageComplete and microbeComponent.reproductionStage < 2){
-                            microbeComponent.reproductionStage = microbeComponent.reproductionStage + 1
-                        }
-                                        
-                        // To finish the G2 phase we just need more than a threshold of compounds.
-                        if(microbeComponent.reproductionStage == 2 or microbeComponent.reproductionStage == 3){
-                            MicrobeSystem.readyToReproduce(microbeEntity);
+           
+                    // In the S phase, the nucleus grows as chromatin is duplicated.
+                    elseif(organelle.name == "nucleus" and microbeComponent.reproductionStage == 1){
+                        // If the nucleus hasn't finished replicating its DNA, give it some compounds.
+                        if(organelle.getCompoundBin() < 2.0){
+                            // Give the organelle access to the compound back to take some compound.
+                            organelle.growOrganelle(getComponent(microbeEntity, CompoundBagComponent), logicTime);
+                            reproductionStageComplete = false;
                         }
                     }
                                     
-                    if(microbeComponent.engulfMode){
-                        // Drain atp and if(we run out){ disable engulfmode
-                        auto cost = ENGULFING_ATP_COST_SECOND/1000*logicTime;
+                }
+                                
+                //Splitting the queued organelles.
+                for(_, organelle in pairs(organellesToAdd)){
+                    print("ready to split " .. organelle.name);
+                    // Mark this organelle as done and return to its normal size.
+                    organelle.reset();
+                    organelle.wasSplit = true;
+                    // Create a second organelle.
+                    auto organelle2 = MicrobeSystem.splitOrganelle(microbeEntity, organelle);
+                    organelle2.wasSplit = true;
+                    organelle2.isDuplicate = true;
+                    organelle2.sisterOrganelle = organelle;
 
-                        if(MicrobeSystem.takeCompound(microbeEntity, CompoundRegistry.getCompoundId("atp"), cost) < cost - 0.001){
-                            print ("too little atp, disabling - 749");
-                            MicrobeSystem.toggleEngulfMode(microbeEntity);
-                        }
-                        // Flash the membrane blue.
-                        MicrobeSystem.flashMembraneColour(microbeEntity, 3000, ColourValue(0.2,0.5,1.0,0.5));
-                    }
-                    if(microbeComponent.isBeingEngulfed and microbeComponent.wasBeingEngulfed){
-                        MicrobeSystem.damage(microbeEntity, logicTime * 0.000025  * microbeComponent.maxHitpoints, "isBeingEngulfed - Microbe.update()s")
-                            // Else If we were but are no longer, being engulfed
-                    elseif(microbeComponent.wasBeingEngulfed){
-                        MicrobeSystem.removeEngulfedEffect(microbeEntity);
-                    }
-                        // Used to detect when engulfing stops
-                        microbeComponent.isBeingEngulfed = false;
-                        compoundAbsorberComponent.setAbsorbtionCapacity(math.min(microbeComponent.capacity - microbeComponent.stored + 10, microbeComponent.remainingBandwidth));
+                    // Redo the cell membrane.
+                    membraneComponent.clear();
+                }
+
+                if(reproductionStageComplete and microbeComponent.reproductionStage < 2){
+                    microbeComponent.reproductionStage = microbeComponent.reproductionStage + 1
+                }
+                                
+                // To finish the G2 phase we just need more than a threshold of compounds.
+                if(microbeComponent.reproductionStage == 2 or microbeComponent.reproductionStage == 3){
+                    MicrobeSystem.readyToReproduce(microbeEntity);
+                }
+            }
+                            
+            if(microbeComponent.engulfMode){
+                // Drain atp and if(we run out){ disable engulfmode
+                auto cost = ENGULFING_ATP_COST_SECOND/1000*logicTime;
+
+                if(MicrobeSystem.takeCompound(microbeEntity, CompoundRegistry.getCompoundId("atp"), cost) < cost - 0.001){
+                    print ("too little atp, disabling - 749");
+                    MicrobeSystem.toggleEngulfMode(microbeEntity);
+                }
+                // Flash the membrane blue.
+                MicrobeSystem.flashMembraneColour(microbeEntity, 3000, ColourValue(0.2,0.5,1.0,0.5));
+            }
+            if(microbeComponent.isBeingEngulfed and microbeComponent.wasBeingEngulfed){
+                MicrobeSystem.damage(microbeEntity, logicTime * 0.000025  * microbeComponent.maxHitpoints, "isBeingEngulfed - Microbe.update()s")
+                    // Else If we were but are no longer, being engulfed
+            elseif(microbeComponent.wasBeingEngulfed){
+                MicrobeSystem.removeEngulfedEffect(microbeEntity);
+            }
+            // Used to detect when engulfing stops
+            microbeComponent.isBeingEngulfed = false;
+            compoundAbsorberComponent.setAbsorbtionCapacity(math.min(microbeComponent.capacity - microbeComponent.stored + 10, microbeComponent.remainingBandwidth));
+        else
+            microbeComponent.deathTimer = microbeComponent.deathTimer - logicTime;
+            microbeComponent.flashDuration = 0;
+            if(microbeComponent.deathTimer <= 0){
+                if(microbeComponent.isPlayerMicrobe == true){
+                    MicrobeSystem.respawnPlayer();
                 else
-                    microbeComponent.deathTimer = microbeComponent.deathTimer - logicTime;
-                    microbeComponent.flashDuration = 0;
-                    if(microbeComponent.deathTimer <= 0){
-                        if(microbeComponent.isPlayerMicrobe == true){
-                            MicrobeSystem.respawnPlayer();
-                        else
-                            for(_, organelle in pairs(microbeComponent.organelles)){
-                                organelle.onRemovedFromMicrobe();
-                            }
-                            microbeEntity.destroy();
-                        }
+                    for(_, organelle in pairs(microbeComponent.organelles)){
+                        organelle.onRemovedFromMicrobe();
                     }
+                    microbeEntity.destroy();
                 }
             }
         }
