@@ -81,47 +81,7 @@ class MicrobeComponent{
     MicrobeComponent(bool isPlayerMicrobe, const string &in speciesName){
         
         this.speciesName = speciesName;
-        this.hitpoints = 0;
-        this.maxHitpoints = 0;
-        this.dead = false;
-        this.deathTimer = 0;
-        this.organelles = {};
-        this.processOrganelles = {}; // Organelles responsible for
-                                     // producing compounds from other
-                                     // compounds
-        this.specialStorageOrganelles = {}; // Organelles with
-                                            // complete resonsiblity
-                                            // for a specific compound
-                                            // (such as agentvacuoles)
-        this.movementDirection = Vector3(0, 0, 0);
-        this.facingTargetPoint = Vector3(0, 0, 0);
-        this.microbetargetdirection = 0;
-        this.movementFactor = 1.0; // Multiplied on the movement speed of the microbe.
-        this.capacity = 0;  // The amount that can be stored in the
-                            // microbe. NOTE: This does not include
-                            // special storage organelles
-        this.stored = 0; // The amount stored in the microbe. NOTE:
-                         // This does not include special storage
-                         // organelles
-        this.initialized = false;
         this.isPlayerMicrobe = isPlayerMicrobe;
-        this.maxBandwidth = 10.0 * BANDWIDTH_PER_ORGANELLE; // wtf is a bandwidth anyway?
-        this.remainingBandwidth = 0;
-        this.compoundCollectionTimer = EXCESS_COMPOUND_COLLECTION_INTERVAL;
-        this.isCurrentlyEngulfing = false;
-        this.isBeingEngulfed = false;
-        this.wasBeingEngulfed = false;
-        this.hostileEngulfer = null;
-        this.agentEmissionCooldown = 0;
-        // Is this the place where the actual flash duration works?
-        // The one in the organelle class doesn't work
-        this.flashDuration = null;
-        this.flashColour = null;
-        this.reproductionStage = 0; // 1 for G1 complete, 2 for S
-                                    // complete, 3 for G2 complete,
-                                    // and 4 for reproduction
-                                    // finished.
-
         this.microbe = Microbe();
     }
 
@@ -180,6 +140,43 @@ class MicrobeComponent{
     //     // storage.set("compoundPriorities", compoundPriorities)
     // }
     
+
+    string speciesName;
+    uint hitpoints;
+    uint maxHitpoints = 0;
+    bool dead = false;
+    uint deathTimer = 0;
+    dictionary organelles = {};
+    array<PlacedOrganelle@> specialStorageOrganelles = {};  // Organelles with
+                                                            // complete resonsiblity
+                                                            // for a specific compound
+                                                            // (such as agentvacuoles)
+    Float3 movementDirection = Float3(0, 0, 0);
+    Float3 facingTargetPoint = Float3(0, 0, 0);
+    float microbetargetdirection = 0;
+    float movementFactor = 1.0; // Multiplied on the movement speed of the microbe.
+    double capacity = 0;    // The amount that can be stored in the
+                            // microbe. NOTE: This does not include
+                            // special storage organelles.
+    double stored = 0;  // The amount stored in the microbe. NOTE:
+                        // This does not include special storage
+                        // organelles.
+    bool initialized = false;
+    bool isPlayerMicrobe = false;
+    float maxBandwidth = 10.0 * BANDWIDTH_PER_ORGANELLE; // wtf is a bandwidth anyway?
+    float remainingBandwidth = 0.0;
+    uint compoundCollectionTimer = EXCESS_COMPOUND_COLLECTION_INTERVAL;
+    bool isCurrentlyEngulfing = false;
+    bool isBeingEngulfed = false;
+    bool wasBeingEngulfed = false;
+    ObjectID hostileEngulfer = null;
+    uint agentEmissionCooldown = 0;
+    // Is this the place where the actual flash duration works?
+    // The one in the organelle class doesn't work
+    uint flashDuration = null;
+    Float4 flashColour = null;
+    uint reproductionStage = 0;
+
     Microbe@ microbe;
 }
 
