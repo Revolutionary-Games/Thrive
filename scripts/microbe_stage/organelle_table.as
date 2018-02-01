@@ -100,7 +100,7 @@ dictionary _mainOrganelleTable;
 
 // Factory functions for all the organelle components
 
-NucleusOrganelle@ makeNucleusOrganelle(){
+OrganelleComponent@ makeNucleusOrganelle(){
     dictionary arguments;
     dictionary data;
     return NucleusOrganelle(arguments, data);

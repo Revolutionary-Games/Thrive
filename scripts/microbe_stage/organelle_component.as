@@ -37,7 +37,7 @@ abstract class OrganelleComponent{
     //  The organelle object that is made up of these components.
     void
     onAddedToMicrobe(
-        Microbe@ microbeEntity,
+        ObjectID microbeEntity,
         int q, int r, int rotation,
         PlacedOrganelle@ organelle
     ) {
@@ -58,7 +58,7 @@ abstract class OrganelleComponent{
     //  in axial coordinates (see hex.lua).
     void
     onRemovedFromMicrobe(
-        Microbe@ microbeEntity,
+        ObjectID microbeEntity,
         int q, int r
     ) {
 
@@ -77,7 +77,7 @@ abstract class OrganelleComponent{
     //  to OrganelleComponent:update() and the previous one.
     void
     update(
-        Microbe@ microbeEntity,
+        ObjectID microbeEntity,
         PlacedOrganelle@ organelle,
         int logicTime
     ) {

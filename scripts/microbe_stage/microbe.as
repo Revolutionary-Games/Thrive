@@ -70,6 +70,10 @@ const uint AGENT_EMISSION_COOLDOWN = 1000;
 // }
 // Use "ObjectID microbeEntity" instead
 
+namespace MicrobeComponent{
+
+const string TYPE_NAME = "MicrobeComponent";
+}
 
 ////////////////////////////////////////////////////////////////////////////////
 // MicrobeComponent
@@ -85,8 +89,6 @@ class MicrobeComponent{
         this.isPlayerMicrobe = isPlayerMicrobe;
         this.microbe = Microbe();
     }
-
-    static TYPE_NAME = "MicrobeComponent";
 
     // void load(storage){
     
@@ -178,7 +180,8 @@ class MicrobeComponent{
     Float4 flashColour = null;
     uint reproductionStage = 0;
 
-    Microbe@ microbe;
+    // ObjectID microbe;
+    ObjectID microbeEntity = NULL_OBJECT;
 }
 
 //! Helper for MicrobeSystem
@@ -186,7 +189,7 @@ class MicrobeSystemCachedComponents{
 
     CompoundAbsorberComponent@ first;
     MicrobeComponent@ second;
-    OgreSceneNodeComponent@ third;
+    RenderNode@ third;
     Physics@ fourth;
     // RigidBodyComponent ;
     // CollisionComponent ;
@@ -280,7 +283,7 @@ class MicrobeSystem{
         }
     }
 
-    void checkEngulfment(engulferMicrobeEntity, engulfedMicrobeEntity){
+    void checkEngulfment(ObjectID engulferMicrobeEntity, ObjectID engulfedMicrobeEntity){
         auto body = getComponent(engulferMicrobeEntity, RigidBodyComponent);
         auto microbe1Comp = getComponent(engulferMicrobeEntity, MicrobeComponent);
         auto microbe2Comp = getComponent(engulfedMicrobeEntity, MicrobeComponent);
@@ -330,7 +333,7 @@ class MicrobeSystem{
     //
     // @return
     //  amount in units avaliable for use.
-    float getBandwidth(ObjectID microbeEntity, maxAmount, CompoundId compoundId){
+    float getBandwidth(ObjectID microbeEntity, float maxAmount, CompoundId compoundId){
         auto microbeComponent = getComponent(microbeEntity, MicrobeComponent);
         auto compoundVolume = CompoundRegistry.getCompoundUnitVolume(compoundId);
         auto amount = min(maxAmount * compoundVolume, microbeComponent.remainingBandwidth);

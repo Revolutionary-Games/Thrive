@@ -13,7 +13,7 @@ class Hex{
     Hex(int q, int r, NewtonCollision@ collision){
         this.q = q;
         this.r = r;
-        this.collision = collision;
+        @this.collision = collision;
     }
 
     int q;
@@ -571,16 +571,16 @@ class PlacedOrganelle{
     //  Axial coordinates of the organelle's center
     // @note This is quite an expensive method as this creates a new entity with
     //  multiple components
-    void onAddedToMicrobe(Microbe@ microbe, int q, int r, int rotation){
+    void onAddedToMicrobe(ObjectID microbe, int q, int r, int rotation){
 
-        if(@microbeEntity !is null){
+        if(microbeEntity != NULL_OBJECT){
 
             LOG_ERROR("onAddedToMicrobe called before this PlacedOrganelle was " +
                 "removed from previous microbe");
             onRemovedFromMicrobe();
         }
         
-        @microbeEntity = microbe;
+        microbeEntity = microbe;
         
         this.q = q;
         this.r = r;
@@ -633,7 +633,7 @@ class PlacedOrganelle{
     //
     // @param microbe
     //  The organelle's previous owner
-    void onRemovedFromMicrobe(Microbe@ microbe){
+    void onRemovedFromMicrobe(ObjectID microbe){
         //iterating on each OrganelleComponent
         for(uint i = 0; i < components.length(); ++i){
 
@@ -642,7 +642,7 @@ class PlacedOrganelle{
         
         world.DestroyEntity(organelleEntity);
         organelleEntity = NULL_OBJECT;
-        @microbeEntity = null;
+        microbeEntity = NULL_OBJECT;
     }
 
 
@@ -698,7 +698,7 @@ class PlacedOrganelle{
 
     array<OrganelleComponent@> components;
 
-    Microbe@ microbeEntity;
+    ObjectID microbeEntity = NULL_OBJECT;
     ObjectID organelleEntity = NULL_OBJECT;
 
     float flashDuration = 0;

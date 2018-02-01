@@ -21,7 +21,7 @@ class NucleusOrganelle : OrganelleComponent{
     // Overridded from Organelle.onAddedToMicrobe
     void
     onAddedToMicrobe(
-        Microbe@ microbeEntity,
+        ObjectID microbeEntity,
         int q, int r, int rotation,
         PlacedOrganelle@ organelle
     ) override {
@@ -72,7 +72,7 @@ class NucleusOrganelle : OrganelleComponent{
 
     void
     onRemovedFromMicrobe(
-        Microbe@ microbeEntity,
+        ObjectID microbeEntity,
         int q, int r
     ) override {
 

@@ -115,12 +115,28 @@ in 60 degree intervals counter clockwise.
 The colour of the microbe should never be lower than (0.3, 0.3, 0.3)
 */
 
+class OrganelleTemplatePlaced{
+
+    OrganelleTemplatePlaced(const string &in type, int q, int r, int rotation){
+
+        this.type = type;
+        this.q = q;
+        this.r = r;
+        this.rotation = rotation;
+    }
+
+    string type;
+    int q;
+    int r;
+    int rotation;
+}
+
 class MicrobeTemplate{
 
     MicrobeTemplate(
         float spawnDensity,
         dictionary compounds,
-        array<PlacedOrganelle@> organelles,
+        array<OrganelleTemplatePlaced@> organelles,
         Float4 colour
     ) {
         this.spawnDensity = spawnDensity;
@@ -131,7 +147,7 @@ class MicrobeTemplate{
 
     float spawnDensity;
     dictionary compounds;
-    array<PlacedOrganelle@> organelles;
+    array<OrganelleTemplatePlaced@> organelles;
     Float4 colour;
 }
 
@@ -144,11 +160,11 @@ const dictionary STARTER_MICROBES = {
                 {"oxygen", 10}
             },
             {
-                PlacedOrganelle(Nucleus(), 0, 0, 0),
-                PlacedOrganelle(Mitochondrion(), -1, -2, 240),
-                PlacedOrganelle(Vacuole(), 1, -3, 0),
-                PlacedOrganelle(Flagellum(), -1, -3, 0),
-                PlacedOrganelle(Flagellum(), 1, -4, 0)
+                OrganelleTemplatePlaced("nucleus", 0, 0, 0),
+                OrganelleTemplatePlaced("mitochondrion", -1, -2, 240),
+                OrganelleTemplatePlaced("vacuole", 1, -3, 0),
+                OrganelleTemplatePlaced("flagellum", -1, -3, 0),
+                OrganelleTemplatePlaced("flagellum", 1, -4, 0)
             },
             Float4(1, 1, 1, 1))
     }
