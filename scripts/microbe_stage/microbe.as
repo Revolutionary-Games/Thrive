@@ -1062,8 +1062,7 @@ class MicrobeSystem{
     //
     // @returns microbe
     // An object of type Microbe
-
-    ObjectID createMicrobeEntity(const string &in string name, bool aiControlled,
+    ObjectID createMicrobeEntity(const string &in name, bool aiControlled,
         const string &in speciesName, bool in_editor)
     {
         assert(speciesName != "", "Empty species name for create microbe");
