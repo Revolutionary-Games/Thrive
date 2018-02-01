@@ -736,10 +736,9 @@ class MicrobeSystem{
                               MicrobeSystem.getOrganelleAt(microbeEntity, hex.q + q - 1, hex.r + r + 1) or
                               MicrobeSystem.getOrganelleAt(microbeEntity, hex.q + q - 1, hex.r + r + 0) then
                               touching = true;
-            }
         }
     
-        return touching
+        return touching;
     }
 
     PlacedOrganelle splitOrganelle(ObjectID microbeEntity, PlacedOrganelle organelle){
@@ -1088,7 +1087,6 @@ class MicrobeSystem{
             compoundAbsorberComponent.disable()
         else
             compoundAbsorberComponent.enable()
-        }
     }
 
     void divide(ObjectID microbeEntity){
@@ -1237,6 +1235,7 @@ class MicrobeSystem{
                             //(To avoid "cutting down the branch we're sitting on").
                             table.insert(organellesToAdd, organelle);
                         }
+                    }
            
                     // In the S phase, the nucleus grows as chromatin is duplicated.
                     elseif(organelle.name == "nucleus" and microbeComponent.reproductionStage == 1){
@@ -1287,10 +1286,10 @@ class MicrobeSystem{
                 // Flash the membrane blue.
                 MicrobeSystem.flashMembraneColour(microbeEntity, 3000, ColourValue(0.2,0.5,1.0,0.5));
             }
-            if(microbeComponent.isBeingEngulfed and microbeComponent.wasBeingEngulfed){
+            if(microbeComponent.isBeingEngulfed and microbeComponent.wasBeingEngulfed)
                 MicrobeSystem.damage(microbeEntity, logicTime * 0.000025  * microbeComponent.maxHitpoints, "isBeingEngulfed - Microbe.update()s")
                     // Else If we were but are no longer, being engulfed
-            elseif(microbeComponent.wasBeingEngulfed){
+            else if(microbeComponent.wasBeingEngulfed){
                 MicrobeSystem.removeEngulfedEffect(microbeEntity);
             }
             // Used to detect when engulfing stops
