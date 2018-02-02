@@ -31,6 +31,8 @@ class Organelle{
     // be used by only the world that is passed to this constructor
     Organelle(const OrganelleParameters &in parameters, GameWorld@ world){
 
+        @createdForWorld = world;
+
         _name = parameters.name;
         mass = parameters.mass;
 
@@ -38,7 +40,8 @@ class Organelle{
         components = parameters.components;
 
         // Calculate organelleCost and compoundsLeft//
-        organelleCost = calculateCost(this.composition);
+        // This method sets organelleCost
+        calculateCost(initialComposition);
 
         assert(false, "TODO: setup hexes from the data");
         
@@ -46,16 +49,24 @@ class Organelle{
         // Setup physics body (this is now done just once here) //
         beingConstructed = true;
 
-        @collisionShape = world.GetPhysicalWorld().CreateCompoundCollision();
-        collisionShape.BeginAddRemove();
+        @collisionShape = createdForWorld.GetPhysicalWorld().CreateCompoundCollision();
+        collisionShape.CompoundCollisionBeginAddRemove();
         
         setupPhysics();
 
-        collisionShape.EndAddRemove();
+        collisionShape.CompoundCollisionBeginAddRemove();
         beingConstructed = false;
     }
 
-    // Overwrite to make organelle do something at update time. Called from PlacedOrganelle
+    ~Organelle(){
+
+        // Remember to release newton stuff (this could maybe be an automatic thing, but would
+        // require a wrapper handle)
+        createdForWorld.GetPhysicalWorld().DestroyCollision(collisionShape);
+        @collisionShape = null;
+    }
+
+    //! Overwrite to make organelle do something at update time. Called from PlacedOrganelle
     //! \note This may not change the state of this Organelle object (or subclass) as they are
     //! global and only PlacedOrganelle has data regarding a specific organelle that is
     //! in a microbe
@@ -87,7 +98,7 @@ class Organelle{
                 continue;
             }
             
-            compoundsLeft[compoundName] = amount;
+            // compoundsLeft[compoundName] = amount;
             initialComposition[compoundName] = amount;
             organelleCost += amount;
         }
@@ -105,22 +116,25 @@ class Organelle{
 
         assert(beingConstructed, "addHex called after organelle constructor");
         
-        string s = encodeAxial(q, r);
-        if(hexes.exists(s))
+        int64 s = encodeAxial(Int2 = {q, r});
+        if(hexes.exists(formatInt(s)))
             return false;
 
-        Float2 xz = axialToCartesian(q, r);
+        Float2 xz = axialToCartesian(Int2 = {q, r});
         Float3 translation = Float3(xz.X, 0, xz.Y);
 
-        Ogre::Matrix offset;
+        Ogre::Matrix4 offset;
         // Create the matrix with the offset
         assert(false, "TODO");
         
         Hex@ hex = Hex(q, r, world.GetPhysicalWorld().CreateSphere(2, offset));
+
+        if(hex.collision is null)
+            assert(false, "Hex constructor didn't set collision correctly");
         
         collisionShape.AddSubCollision(hex.collision);
 
-        hexes[s] = hex;
+        @hexes[formatInt(s)] = hex;
         return true;
     }
 
@@ -132,10 +146,10 @@ class Organelle{
     // @returns hex
     //  The hex at (q, r) or nil if there's no hex at that position
     Hex@ getHex(int q, int r){
-        string s = encodeAxial(q, r);
+        int64 s = encodeAxial({q, r});
         Hex@ hex;
 
-        if(hexes.get(s, hex))
+        if(hexes.get(formatInt(s), @hex))
             return hex;
         return null;
     }
@@ -144,9 +158,9 @@ class Organelle{
         
         array<Hex@>@ result;
         
-        auto keys = hexes.keys();
+        auto keys = hexes.getKeys();
         for(uint i = 0; i < keys.length(); ++i){
-            result.push(hexes[keys[i]]);
+            result.push(@hexes[keys[i]]);
         }
 
         return result;
@@ -155,7 +169,7 @@ class Organelle{
     Float3 calculateCenterOffset() const{
         int count = 0;
 
-        auto keys = hexes.keys();
+        auto keys = hexes.getKeys();
         for(uint i = 0; i < keys.length(); ++i){
             
             ++count;
@@ -243,6 +257,9 @@ class Organelle{
     // True only in the constructor. Makes sure physics body cannot be
     // added to just like that
     private bool beingConstructed = false;
+
+    // Required for releaseing properly
+    private GameWorld@ createdForWorld = null;
 }
 
 enum ORGANELLE_HEALTH{
@@ -268,6 +285,8 @@ class PlacedOrganelle{
 
             components.push(organelle.components[i].factory());
         }
+
+        compoundsLeft = organelle.initialComposition;
     }
 
     void resetHealth(){
