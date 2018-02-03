@@ -6,70 +6,9 @@ using namespace thrive;
 
 double Hex::hexSize = DEFAULT_HEX_SIZE;
 
-/*
-void Hex::luaBindings(
-    sol::state &lua
-) {
-    lua.new_usertype<Hex>("Hex",
-        // It's a static class.
-        "new", sol::no_constructor,
-
-        "setHexSize", &Hex::setHexSize,
-        "getHexSize", &Hex::getHexSize,
-        "decodeAxial", &Hex::decodeAxial,
-
-        // Overloaded methods.
-        "axialToCartesian", sol::overload(
-            static_cast<Ogre::Vector3(*)(double, double)>(&Hex::axialToCartesian),
-            static_cast<Ogre::Vector3(*)(Ogre::Vector3)>(&Hex::axialToCartesian)
-        ),
-
-        "cartesianToAxial", sol::overload(
-            static_cast<Ogre::Vector3(*)(double, double)>(&Hex::cartesianToAxial),
-            static_cast<Ogre::Vector3(*)(Ogre::Vector3)>(&Hex::cartesianToAxial)
-        ),
-
-        "axialToCube", sol::overload(
-            static_cast<Ogre::Vector3(*)(double, double)>(&Hex::axialToCube),
-            static_cast<Ogre::Vector3(*)(Ogre::Vector3)>(&Hex::axialToCube)
-        ),
-
-        "cubeToAxial", sol::overload(
-            static_cast<Ogre::Vector3(*)(double, double, double)>(&Hex::cubeToAxial),
-            static_cast<Ogre::Vector3(*)(Ogre::Vector3)>(&Hex::cubeToAxial)
-        ),
-
-        "cubeHexRound", sol::overload(
-            static_cast<Ogre::Vector3(*)(double, double, double)>(&Hex::cubeHexRound),
-            static_cast<Ogre::Vector3(*)(Ogre::Vector3)>(&Hex::cubeHexRound)
-        ),
-
-        "encodeAxial", sol::overload(
-            static_cast<long(*)(double, double)>(&Hex::encodeAxial),
-            static_cast<long(*)(Ogre::Vector3)>(&Hex::encodeAxial)
-        ),
-
-        "rotateAxial", sol::overload(
-            static_cast<Ogre::Vector3(*)(double, double)>(&Hex::rotateAxial),
-            static_cast<Ogre::Vector3(*)(Ogre::Vector3)>(&Hex::rotateAxial)
-        ),
-
-        "rotateAxialNTimes", sol::overload(
-            static_cast<Ogre::Vector3(*)(double, double, unsigned)>(&Hex::rotateAxialNTimes),
-            static_cast<Ogre::Vector3(*)(Ogre::Vector3, unsigned)>(&Hex::rotateAxialNTimes)
-        ),
-
-        "flipHorizontally", sol::overload(
-            static_cast<Ogre::Vector3(*)(double, double)>(&Hex::flipHorizontally),
-            static_cast<Ogre::Vector3(*)(Ogre::Vector3)>(&Hex::flipHorizontally)
-        )
-    );
-}
-*/
-
-void Hex::setHexSize(double newSize) {
-    Hex::hexSize = newSize;
-}
+// void Hex::setHexSize(double newSize) {
+//     Hex::hexSize = newSize;
+// }
 
 double Hex::getHexSize() {
     return Hex::hexSize;
@@ -77,8 +16,8 @@ double Hex::getHexSize() {
 
 Float3 Hex::axialToCartesian(double q, double r) {
     double x = q * Hex::hexSize * 3.0/2.0;
-    double y = Hex::hexSize * std::sqrt(3) * (r + q/2.0);
-    return Float3(x, y, 0);
+    double z = Hex::hexSize * std::sqrt(3) * (r + q/2.0);
+    return Float3(x, 0, z);
 }
 
 Int2 Hex::cartesianToAxial(double x, double z) {
@@ -88,11 +27,11 @@ Int2 Hex::cartesianToAxial(double x, double z) {
 }
 
 Int3 Hex::axialToCube(double q, double r) {
-    return Int3(q, -(q + r), r);
+    return Int3(q, r, -(q + r));
 }
 
 Int2 Hex::cubeToAxial(double x, double y, double z) {
-    return Int2(x, y);
+    return Int2(x, z);
 }
 
 Int3 Hex::cubeHexRound(double x, double y, double z) {

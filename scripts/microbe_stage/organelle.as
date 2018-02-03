@@ -115,13 +115,12 @@ class Organelle{
     protected bool addHex(int q, int r, GameWorld@ world){
 
         assert(beingConstructed, "addHex called after organelle constructor");
-        
-        int64 s = encodeAxial(Int2 = {q, r});
+
+        int64 s = Hex::encodeAxial(q, r);
         if(hexes.exists(formatInt(s)))
             return false;
 
-        Float2 xz = axialToCartesian(Int2 = {q, r});
-        Float3 translation = Float3(xz.X, 0, xz.Y);
+        Float3 translation = Hex::axialToCartesian(q, r);
 
         Ogre::Matrix4 offset;
         // Create the matrix with the offset
@@ -132,7 +131,7 @@ class Organelle{
         if(hex.collision is null)
             assert(false, "Hex constructor didn't set collision correctly");
         
-        collisionShape.AddSubCollision(hex.collision);
+        collisionShape.CompoundCollisionAddSubCollision(hex.collision);
 
         @hexes[formatInt(s)] = hex;
         return true;
@@ -146,7 +145,7 @@ class Organelle{
     // @returns hex
     //  The hex at (q, r) or nil if there's no hex at that position
     Hex@ getHex(int q, int r){
-        int64 s = encodeAxial({q, r});
+        int64 s = Hex::encodeAxial(q, r);
         Hex@ hex;
 
         if(hexes.get(formatInt(s), @hex))
@@ -156,11 +155,12 @@ class Organelle{
 
     array<Hex@>@ getHexes() const{
         
-        array<Hex@>@ result;
+        array<Hex@>@ result = array<Hex@>();
         
         auto keys = hexes.getKeys();
         for(uint i = 0; i < keys.length(); ++i){
-            result.push(@hexes[keys[i]]);
+
+            result.insertLast(cast<Hex@>(hexes[keys[i]]));
         }
 
         return result;
@@ -169,14 +169,15 @@ class Organelle{
     Float3 calculateCenterOffset() const{
         int count = 0;
 
+        Float3 offset = Float3(0, 0, 0);
+
         auto keys = hexes.getKeys();
         for(uint i = 0; i < keys.length(); ++i){
             
             ++count;
 
-            auto hex = hexes[i];
-            Float2 coord = axialToCartesian(hex.q, hex.r);
-            offset += Float3(coord.X, 0, coord.Y);
+            auto hex = cast<Hex@>(hexes[keys[i]]);
+            offset += Hex::axialToCartesian(hex.q, hex.r);
         }
         
         offset /= count;

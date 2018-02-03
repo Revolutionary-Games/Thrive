@@ -24,20 +24,12 @@ horizontally symmetric to the one shown in the page.
 namespace thrive {
 class Hex {
 public:
-    /**
-    * @brief Lua bindings
-    *
-    * Exposes:
-    * - MicrobeCameraSystem()
-    *
-    * @return
-    */
-    //static void luaBindings(sol::state &lua);
 
-    /**
-    * @brief Sets the hex size.
-    */
-    static void setHexSize(double newSize);
+    // This will cause a lot of issues if this is called
+    // /**
+    // * @brief Sets the hex size.
+    // */
+    // static void setHexSize(double newSize);
 
     /**
     * @brief Gets the hex size.
