@@ -195,6 +195,14 @@ class MicrobeSystemCachedComponents{
     // CollisionComponent ;
 }
 
+// TODO: temporary method for getting a MicrobeSystem before
+// registering systems to a GameWorld from scripts is done
+MicrobeSystem@ getMicrobeSystemForCellStageWorld(){
+
+    assert(false, "TODO: this whole registering things");
+    return null;
+}
+
 ////////////////////////////////////////////////////////////////////////////////
 // MicrobeSystem
 //
@@ -380,7 +388,7 @@ class MicrobeSystem{
     // Getter for microbe species
     // 
     // returns the species component or null if it doesn't have a valid species
-    void getSpeciesComponent(ObjectID microbeEntity){
+    SpeciesComponent@ getSpeciesComponent(ObjectID microbeEntity){
         auto microbeComponent = getComponent(microbeEntity, MicrobeComponent)
             return getComponent(microbeComponent.speciesName, g_luaEngine.currentGameState,
                 SpeciesComponent);

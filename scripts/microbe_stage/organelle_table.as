@@ -52,11 +52,11 @@ class OrganelleComponentFactory{
 
     OrganelleComponentFactory(OrganelleComponentFactoryFunc@ f, const string &in name){
 
-        create = f;
+        factory = f;
         this.name = name;
     }
 
-    OrganelleComponentFactoryFunc@ create;
+    OrganelleComponentFactoryFunc@ factory;
     string name;
 }
 

@@ -29,7 +29,7 @@ class Organelle{
 
     // This is world specific (at least the physics body) so this can
     // be used by only the world that is passed to this constructor
-    Organelle(const OrganelleParameters &in parameters, GameWorld@ world){
+    Organelle(const OrganelleParameters &in parameters, CellStageWorld@ world){
 
         @createdForWorld = world;
 
@@ -112,7 +112,7 @@ class Organelle{
     // @returns success
     //  True if the hex could be added, false if there already is a hex at (q,r)
     // @note This needs to be done only once when this class is instantiated
-    protected bool addHex(int q, int r, GameWorld@ world){
+    protected bool addHex(int q, int r){
 
         assert(beingConstructed, "addHex called after organelle constructor");
 
@@ -126,7 +126,7 @@ class Organelle{
         // Create the matrix with the offset
         assert(false, "TODO");
         
-        Hex@ hex = Hex(q, r, world.GetPhysicalWorld().CreateSphere(2, offset));
+        Hex@ hex = Hex(q, r, createdForWorld.GetPhysicalWorld().CreateSphere(2, offset));
 
         if(hex.collision is null)
             assert(false, "Hex constructor didn't set collision correctly");
@@ -223,6 +223,13 @@ class Organelle{
         }
     }
 
+    CellStageWorld@ world {
+
+        get const{
+            return createdForWorld;
+        }
+    }
+
     private string _name;
     float mass;
     
@@ -260,7 +267,7 @@ class Organelle{
     private bool beingConstructed = false;
 
     // Required for releaseing properly
-    private GameWorld@ createdForWorld = null;
+    private CellStageWorld@ createdForWorld = null;
 }
 
 enum ORGANELLE_HEALTH{
@@ -284,7 +291,7 @@ class PlacedOrganelle{
         // Create instances of components //
         for(uint i = 0; i < organelle.components.length(); ++i){
 
-            components.push(organelle.components[i].factory());
+            components.insertLast(organelle.components[i].factory());
         }
 
         compoundsLeft = organelle.initialComposition;
@@ -307,7 +314,11 @@ class PlacedOrganelle{
         if(flashDuration >= 0){
             
             flashDuration -= logicTime;
-            Float4 speciesColour = microbeEntity.getSpeciesComponent().colour;
+            // Use organelle.world to get the MicrobeSystem
+            Float4 speciesColour = getMicrobeSystemForCellStageWorld().
+                getSpeciesComponent(microbeEntity).colour;
+
+            Float4 colour;
             
             // How frequent it flashes, would be nice to update the
             // flash function to have this variable
@@ -339,19 +350,20 @@ class PlacedOrganelle{
         organelle.update(this);
 
         // Update each OrganelleComponent
-        for(uint i = 0; i < components.size(); ++i){
-            component.update(microbeEntity, this, logicTime);
+        for(uint i = 0; i < components.length(); ++i){
+            components[i].update(microbeEntity, this, logicTime);
         }
     }
 
     protected void updateColour(){
 
-        if(organelleEntity == NULL_OBJECT || microbeEntity is null)
+        if(organelleEntity == NULL_OBJECT || microbeEntity == NULL_OBJECT)
             return;
 
-        auto model = microbeEntity.getWorld().Get_Model(organelleEntity);
+        auto model = organelle.world.GetComponent_Model(organelleEntity);
 
         // local entity = this.sceneNode.entity;
+        LOG_INFO("TODO: PlacedOrganelle::updateColour: doesn't actually work");
         // //entity.tintColour(this.name, this.colour); //crashes game
         
         // model.Entity.SetColour(colour);
@@ -727,6 +739,8 @@ class PlacedOrganelle{
     Float4 colourTint;
 
     PlacedOrganelle@ sisterOrganelle = null;
+
+    private bool _needsColourUpdate = false;
 }
 
 
