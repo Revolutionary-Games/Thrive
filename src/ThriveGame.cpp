@@ -98,6 +98,25 @@ void ThriveGame::_ShutdownApplicationPacketHandler(){
     Network.reset();
 }
 // ------------------------------------ //
+bool ThriveGame::_runCellStageSetupFunc(const std::string &name){
+
+    LOG_INFO("Calling world setup script " + name);
+
+    ScriptRunningSetup setup;
+    setup.SetEntrypoint(name);
+
+    auto result = m_impl->m_MicrobeScripts->ExecuteOnModule<void>(setup, false,
+        m_cellStage.get());
+
+    if(result.Result != SCRIPT_RUN_RESULT::Success){
+
+        LOG_ERROR("Failed to run script setup function: " + setup.Entryfunction);
+        return false;
+    }
+
+    LOG_INFO("Finished calling setupSpecies");
+    return true;
+}
 
 void ThriveGame::startNewGame(){
 
@@ -170,30 +189,25 @@ void ThriveGame::startNewGame(){
     // Let the script do setup //
     LEVIATHAN_ASSERT(m_impl->m_MicrobeScripts, "microbe scripts not loaded");
 
-    bool existed = false;
-    // Passing a reference to the world //
-    std::vector<std::shared_ptr<Leviathan::NamedVariableBlock>> scriptParameters = {
-        std::make_shared<Leviathan::NamedVariableBlock>(
-            new Leviathan::VoidPtrBlock(m_cellStage.get()),
-                "CellStageWorld")};
+    if(!_runCellStageSetupFunc("setupSpecies")){
 
-    LOG_INFO("Calling script setupSpecies");
-    auto result = m_impl->m_MicrobeScripts->ExecuteOnModule("setupSpecies", scriptParameters,
-        existed, false);
+        MarkAsClosing();
+        return;
+    }
 
-    LOG_INFO("Finished calling setupSpecies");
+    if(!_runCellStageSetupFunc("setupProcesses")){
 
-    LOG_INFO("Calling script setupProcesses");
-    result = m_impl->m_MicrobeScripts->ExecuteOnModule("setupProcesses", scriptParameters,
-        existed, false);
+        MarkAsClosing();
+        return;
+    }
 
-    LOG_INFO("Finished calling setupProcesses");    
+    if(!_runCellStageSetupFunc("setupOrganellesForWorld")){
+
+        MarkAsClosing();
+        return;
+    }
+
     
-    LOG_INFO("Calling script setupOrganellesForWorld cellStage");
-    result = m_impl->m_MicrobeScripts->ExecuteOnModule("setupOrganellesForWorld",
-        scriptParameters, existed, false);    
-    LOG_INFO("Finished calling setupOrganellesForWorld");
-
     // Set background plane //
 	if (true) {
 		m_backgroundPlane = Leviathan::ObjectLoader::LoadPlane(*m_cellStage, Float3(0, -50, 0),
@@ -486,6 +500,15 @@ bool registerJsonRegistry(asIScriptEngine* engine, const char* classname,
         ANGELSCRIPT_REGISTERFAIL;
     }
 
+    ANGELSCRIPT_ASSUMED_SIZE_T;
+    if(engine->RegisterObjectMethod(classname,
+            "uint64 getTypeId(const string &in internalName)",
+            asMETHOD(RegistryT, getTypeId),
+            asCALL_THISCALL) < 0)
+    {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
     
 
     return true;
@@ -658,6 +681,16 @@ bool bindThriveComponentTypes(asIScriptEngine* engine){
     if(engine->RegisterObjectType("CompoundBagComponent", 0, asOBJ_REF | asOBJ_NOCOUNT) < 0){
         ANGELSCRIPT_REGISTERFAIL;
     }
+    
+    if(engine->RegisterObjectMethod("CompoundBagComponent",
+            "double getCompoundAmount(CompoundId compound)",
+            asMETHOD(CompoundBagComponent, getCompoundAmount),
+            asCALL_THISCALL) < 0)
+    {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    
 
     if(engine->RegisterObjectType("CompoundAbsorberComponent", 0, asOBJ_REF | asOBJ_NOCOUNT)
         < 0)
@@ -855,6 +888,11 @@ bool ThriveGame::InitLoadCustomScriptTypes(asIScriptEngine* engine){
         return false;
 
     if(engine->RegisterTypedef("CompoundId", "uint16") < 0){
+
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterTypedef("BioProcessId", "uint16") < 0){
 
         ANGELSCRIPT_REGISTERFAIL;
     }

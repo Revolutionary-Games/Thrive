@@ -1,5 +1,5 @@
 // Thrive Game
-// Copyright (C) 2013-2017  Revolutionary Games
+// Copyright (C) 2013-2018  Revolutionary Games
 #pragma once
 // ------------------------------------ //
 //! \file \note This file needs to be named like it is currently
@@ -69,7 +69,10 @@ public:
     bool InitLoadCustomScriptTypes(asIScriptEngine* engine) override;
     void RegisterCustomScriptTypes(asIScriptEngine* engine,
         std::map<int, std::string> &typeids) override;
-        
+private:
+
+    bool _runCellStageSetupFunc(const std::string &name);
+    
 protected:
 
     Leviathan::NetworkInterface* _GetApplicationPacketHandler() override;
