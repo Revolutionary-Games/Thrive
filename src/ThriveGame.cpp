@@ -979,32 +979,4 @@ bool ThriveGame::InitLoadCustomScriptTypes(asIScriptEngine* engine){
     return true;
 }
 
-void ThriveGame::RegisterCustomScriptTypes(asIScriptEngine* engine,
-    std::map<int, std::string> &typeids)
-{
-    typeids.insert(std::make_pair(engine->GetTypeIdByDecl("ThriveGame"), "ThriveGame"));
-    typeids.insert(std::make_pair(engine->GetTypeIdByDecl("CellStageWorld"),
-            "CellStageWorld"));
-    typeids.insert(std::make_pair(engine->GetTypeIdByDecl("PlayerData"), "PlayerData")); 
-    typeids.insert(std::make_pair(engine->GetTypeIdByDecl("LockedMap"), "LockedMap"));
-    
-    typeids.insert(std::make_pair(engine->GetTypeIdByDecl("ProcessorComponent"),
-            "ProcessorComponent"));
-    typeids.insert(std::make_pair(engine->GetTypeIdByDecl("CompoundBagComponent"),
-            "CompoundBagComponent"));
-    typeids.insert(std::make_pair(engine->GetTypeIdByDecl("SpeciesComponent"),
-            "SpeciesComponent"));
-    typeids.insert(std::make_pair(engine->GetTypeIdByDecl("MembraneComponent"),
-            "MembraneComponent"));
-    typeids.insert(std::make_pair(engine->GetTypeIdByDecl("CompoundCloudComponent"),
-            "CompoundCloudComponent"));
-    typeids.insert(std::make_pair(engine->GetTypeIdByDecl("AgentCloudComponent"),
-            "AgentCloudComponent"));
-    typeids.insert(std::make_pair(engine->GetTypeIdByDecl("SpawnedComponent"),
-            "SpawnedComponent"));
-    typeids.insert(std::make_pair(engine->GetTypeIdByDecl("CompoundAbsorberComponent"),
-            "CompoundAbsorberComponent"));     
-}
-
-
 

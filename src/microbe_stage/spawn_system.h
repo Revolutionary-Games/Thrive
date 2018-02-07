@@ -39,6 +39,8 @@ public:
     */
     SpawnedComponent(double newSpawnRadius);
 
+    REFERENCE_HANDLE_UNCOUNTED_TYPE(SpawnedComponent);
+
     // /**
     // * @brief Loads the component
     // *

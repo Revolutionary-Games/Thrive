@@ -67,8 +67,6 @@ public:
     static ThriveGame* instance();
 
     bool InitLoadCustomScriptTypes(asIScriptEngine* engine) override;
-    void RegisterCustomScriptTypes(asIScriptEngine* engine,
-        std::map<int, std::string> &typeids) override;
 private:
 
     bool _runCellStageSetupFunc(const std::string &name);

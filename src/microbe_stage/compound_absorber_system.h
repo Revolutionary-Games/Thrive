@@ -52,6 +52,8 @@ public:
 
     CompoundAbsorberComponent();
 
+    REFERENCE_HANDLE_UNCOUNTED_TYPE(CompoundAbsorberComponent);
+
     /**
     * @brief The compounds absorbed in the last time step
     */

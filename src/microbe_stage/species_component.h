@@ -22,7 +22,8 @@ public:
     // These are reference counted so don't forget to release
     CScriptArray* organelles = nullptr;
     CScriptDictionary* avgCompoundAmounts = nullptr;
-    
+
+    REFERENCE_HANDLE_UNCOUNTED_TYPE(SpeciesComponent);
     
 	Float4 colour;
 	std::string name;

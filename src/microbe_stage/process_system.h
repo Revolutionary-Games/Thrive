@@ -56,6 +56,8 @@ public:
     void
     setCapacity(BioProcessId, double);
 
+    REFERENCE_HANDLE_UNCOUNTED_TYPE(ProcessorComponent);
+
     static constexpr auto TYPE = componentTypeConvert(THRIVE_COMPONENT::PROCESSOR);
 };
 
@@ -109,6 +111,8 @@ public:
 
     void
     giveCompound(CompoundId, double);
+
+    REFERENCE_HANDLE_UNCOUNTED_TYPE(CompoundBagComponent);
 
     static constexpr auto TYPE = componentTypeConvert(THRIVE_COMPONENT::COMPOUND_BAG);
 };
