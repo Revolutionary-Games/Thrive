@@ -86,6 +86,8 @@ set(GROUP_GENERAL
   # "general/timed_life_system.h"
   "general/locked_map.cpp"
   "general/locked_map.h"
+  "general/hex.cpp"
+  "general/hex.h"
   # "general/powerup_system.cpp"
   # "general/powerup_system.h"
   "general/perlin_noise.cpp"
@@ -293,7 +295,6 @@ set_property(TARGET ThriveLib PROPERTY CXX_EXTENSIONS OFF)
 target_compile_definitions(ThriveLib PRIVATE "THRIVELIB_BUILD=1")
 
 target_link_libraries(ThriveLib ${DEPENDENT_LIBS})
-
 
 # Include the common file
 set(CREATE_CONSOLE_APP OFF)

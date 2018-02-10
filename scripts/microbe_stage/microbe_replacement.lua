@@ -26,7 +26,6 @@ function MicrobeReplacementSystem:init(gameState)
 end
 
 function MicrobeReplacementSystem:activate()
-	
     if Engine:playerData():isBoolSet("edited_microbe") then
         Engine:playerData():setBool("edited_microbe", false)
 
@@ -38,43 +37,31 @@ function MicrobeReplacementSystem:activate()
         activeCreatureId = Engine:playerData():activeCreature()
 
         -- This is the microbe entity in the editor gamestate
-        local workingMicrobe = Microbe.new(
-            Entity.new(activeCreatureId, GameState.MICROBE_EDITOR.wrapper), true,
-            GameState.MICROBE_EDITOR)
-        
+        local workingMicrobeEntity = Entity.new(activeCreatureId, GameState.MICROBE_EDITOR.wrapper)
+        local microbeComponent = getComponent(workingMicrobeEntity, MicrobeComponent)
+
         if not global_genusPicked  then
             global_genusPicked = true;
-            global_genusName = workingMicrobe.microbe.speciesName
+            global_genusName = microbeComponent.speciesName
         end
 			
         newSpeciesName = self:generateSpeciesName();
         local speciesEntity = Entity.new(newSpeciesName, self.gameState.wrapper)
         local species = SpeciesComponent.new(newSpeciesName)
         speciesEntity:addComponent(species)
-        SpeciesSystem.fromMicrobe(workingMicrobe, species)
+        SpeciesSystem.fromMicrobe(workingMicrobeEntity, species)
         SpeciesSystem.initProcessorComponent(speciesEntity, species)
 
         local newMicrobeEntity = MicrobeSystem.createMicrobeEntity(nil, false, newSpeciesName, false)
-        local newMicrobe = Microbe(newMicrobeEntity, false, self.gameState)
+        local newMicrobeComponent = getComponent(newMicrobeEntity, MicrobeComponent)
+        local collisionHandlerComponent = getComponent(newMicrobeEntity, CollisionComponent)
 
-        newMicrobe:divide(self.gameState)
+        MicrobeSystem.divide(newMicrobeEntity)
         
-        print(": "..newMicrobe.microbe.speciesName)
+        print(": " .. newMicrobeComponent.speciesName)
         
-        newMicrobe.collisionHandler:addCollisionGroup("powerupable")
+        collisionHandlerComponent:addCollisionGroup("powerupable")
 
-        assert(GameState.MICROBE_EDITOR.entityManager)
-        assert(GameState.MICROBE)
-
-        -- No clue why there was a transfer here before
-        -- newMicrobeEntity = Entity.new(
-        --     g_luaEngine:transferEntityGameState(newMicrobe.entity.id,
-        --                                         -- These game states are the same
-        --                                         self.gameState,
-        --                                         GameState.MICROBE),
-        --     GameState.MICROBE.wrapper)
-
-        local newMicrobeEntity = newMicrobe.entity
         newMicrobeEntity:stealName(PLAYER_NAME)
 
         assert(self.gameState.entityManager:getNamedId(PLAYER_NAME, false) ==
@@ -84,7 +71,7 @@ function MicrobeReplacementSystem:activate()
         Engine:playerData():setActiveCreature(newMicrobeEntity.id, self.gameState.wrapper)
 
         -- Destroys the old entity inside the editor GameState
-        workingMicrobe.entity:destroy()
+        workingMicrobeEntity:destroy()
     end
 end
 

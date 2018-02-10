@@ -30,9 +30,14 @@
 
 #include <Addons/GameModule.h>
 
+
+// Includes for just bindings
+#include "general/hex.h"
+
 using namespace thrive;
 
 // ------------------------------------ //
+//! Contains properties that would need unnecessary large includes in the header
 class ThriveGame::Implementation{
 public:
     Implementation(
@@ -93,6 +98,25 @@ void ThriveGame::_ShutdownApplicationPacketHandler(){
     Network.reset();
 }
 // ------------------------------------ //
+bool ThriveGame::_runCellStageSetupFunc(const std::string &name){
+
+    LOG_INFO("Calling world setup script " + name);
+
+    ScriptRunningSetup setup;
+    setup.SetEntrypoint(name);
+
+    auto result = m_impl->m_MicrobeScripts->ExecuteOnModule<void>(setup, false,
+        m_cellStage.get());
+
+    if(result.Result != SCRIPT_RUN_RESULT::Success){
+
+        LOG_ERROR("Failed to run script setup function: " + setup.Entryfunction);
+        return false;
+    }
+
+    LOG_INFO("Finished calling setupSpecies");
+    return true;
+}
 
 void ThriveGame::startNewGame(){
 
@@ -162,6 +186,28 @@ void ThriveGame::startNewGame(){
             data.colour.r, data.colour.g, data.colour.b);
     }
 
+    // Let the script do setup //
+    LEVIATHAN_ASSERT(m_impl->m_MicrobeScripts, "microbe scripts not loaded");
+
+    if(!_runCellStageSetupFunc("setupSpecies")){
+
+        MarkAsClosing();
+        return;
+    }
+
+    if(!_runCellStageSetupFunc("setupProcesses")){
+
+        MarkAsClosing();
+        return;
+    }
+
+    if(!_runCellStageSetupFunc("setupOrganellesForWorld")){
+
+        MarkAsClosing();
+        return;
+    }
+
+    
     // Set background plane //
 	if (true) {
 		m_backgroundPlane = Leviathan::ObjectLoader::LoadPlane(*m_cellStage, Float3(0, -50, 0),
@@ -415,12 +461,452 @@ bool registerPlayerData(asIScriptEngine* engine){
     return true;
 }
 
+//! Wrapper for TJsonRegistry::getSize
+template<class RegistryT>
+uint64_t getSizeWrapper(RegistryT* self){
+
+    return static_cast<uint64_t>(self->getSize());
+}
+
+//! Wrapper for TJsonRegistry::getTypeData
+template<class RegistryT, class ReturnedT>
+const ReturnedT* getTypeDataWrapper(RegistryT* self, uint64_t id){
+
+    return &self->getTypeData(id);
+}
+
+//! Helper for registerSimulationDataAndJsons
+template<class RegistryT, class ReturnedT>
+bool registerJsonRegistry(asIScriptEngine* engine, const char* classname,
+    const std::string &returnedTypeName)
+{
+    if(engine->RegisterObjectType(classname, 0, asOBJ_REF | asOBJ_NOCOUNT) < 0){
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectMethod(classname,
+            "uint64 getSize()",
+            asFUNCTION(getSizeWrapper<RegistryT>),
+            asCALL_CDECL_OBJFIRST) < 0)
+    {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectMethod(classname,
+            ("const " + returnedTypeName + "@ getTypeData(uint64 id)").c_str(),
+            asFUNCTION((getTypeDataWrapper<RegistryT, ReturnedT>)),
+            asCALL_CDECL_OBJFIRST) < 0)
+    {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    ANGELSCRIPT_ASSUMED_SIZE_T;
+    if(engine->RegisterObjectMethod(classname,
+            "uint64 getTypeId(const string &in internalName)",
+            asMETHOD(RegistryT, getTypeId),
+            asCALL_THISCALL) < 0)
+    {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    
+
+    return true;
+}
+
+//! Helper for registerJsonregistryHeldTypes
+template<class RegistryT>
+bool
+registerRegistryHeldHelperBases(
+    asIScriptEngine* engine,
+    const char* classname)
+{
+    if(engine->RegisterObjectType(classname, 0, asOBJ_REF | asOBJ_NOCOUNT) < 0){
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    ANGELSCRIPT_ASSUMED_SIZE_T;
+    if(engine->RegisterObjectProperty(classname,
+            "uint64 id",
+            asOFFSET(RegistryT, id)) < 0)
+    {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectProperty(classname,
+            "string displayName",
+            asOFFSET(RegistryT, displayName)) < 0)
+    {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectProperty(classname,
+            "const string internalName",
+            asOFFSET(RegistryT, internalName)) < 0)
+    {
+        ANGELSCRIPT_REGISTERFAIL;
+    }    
+
+    return true;
+}
+
+bool registerJsonRegistryHeldTypes(asIScriptEngine* engine){
+
+    if(!registerRegistryHeldHelperBases<Compound>(engine, "Compound"))
+        return false;
+    
+    // Compound specific properties //
+    if(engine->RegisterObjectProperty("Compound",
+            "double volume",
+            asOFFSET(Compound, volume)) < 0)
+    {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+    
+    if(engine->RegisterObjectProperty("Compound",
+            "bool isCloud",
+            asOFFSET(Compound, isCloud)) < 0)
+    {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectProperty("Compound",
+            "bool isUseful",
+            asOFFSET(Compound, isUseful)) < 0)
+    {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+    
+    if(engine->RegisterObjectProperty("Compound",
+            "Ogre::ColourValue colour",
+            asOFFSET(Compound, colour)) < 0)
+    {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+    
+    return true;
+}
+
+// Wrappers for registerSimulationDataAndJsons
+TJsonRegistry<Compound>* getCompoundRegistryWrapper(){
+
+    return &SimulationParameters::compoundRegistry;
+}
+
+bool registerSimulationDataAndJsons(asIScriptEngine* engine){
+
+    if(engine->RegisterObjectType("SimulationParameters", 0, asOBJ_REF | asOBJ_NOCOUNT) < 0){
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(!registerJsonRegistryHeldTypes(engine))
+        return false;
+
+    if(!registerJsonRegistry<TJsonRegistry<Compound>, Compound>(engine,
+            "TJsonRegistryCompound", "Compound"))
+    {
+        return false;
+    }
+
+    if(engine->SetDefaultNamespace("SimulationParameters") < 0)
+    {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterGlobalFunction("TJsonRegistryCompound@ compoundRegistry()",
+            asFUNCTION(getCompoundRegistryWrapper), asCALL_CDECL) < 0)
+    {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->SetDefaultNamespace("") < 0)
+    {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+    
+    return true;
+}
+
+
+
+bool bindThriveComponentTypes(asIScriptEngine* engine){
+
+    if(engine->RegisterObjectType("ProcessorComponent", 0, asOBJ_REF | asOBJ_NOCOUNT) < 0){
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectType("SpawnedComponent", 0, asOBJ_REF | asOBJ_NOCOUNT) < 0){
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectType("AgentCloudComponent", 0, asOBJ_REF | asOBJ_NOCOUNT) < 0){
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectType("CompoundCloudComponent", 0, asOBJ_REF | asOBJ_NOCOUNT) < 0){
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectType("MembraneComponent", 0, asOBJ_REF | asOBJ_NOCOUNT) < 0){
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    // ------------------------------------ //
+
+    if(engine->RegisterObjectType("SpeciesComponent", 0, asOBJ_REF | asOBJ_NOCOUNT) < 0){
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectProperty("SpeciesComponent", "array<ref@>@ organelles",
+            asOFFSET(SpeciesComponent, organelles)) < 0)
+    {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectProperty("SpeciesComponent", "dictionary@ avgCompoundAmounts",
+            asOFFSET(SpeciesComponent, avgCompoundAmounts)) < 0)
+    {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectProperty("SpeciesComponent", "Float4 colour",
+            asOFFSET(SpeciesComponent, colour)) < 0)
+    {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+    
+    
+    // ------------------------------------ //
+
+    if(engine->RegisterObjectType("CompoundBagComponent", 0, asOBJ_REF | asOBJ_NOCOUNT) < 0){
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+    
+    if(engine->RegisterObjectMethod("CompoundBagComponent",
+            "double getCompoundAmount(CompoundId compound)",
+            asMETHOD(CompoundBagComponent, getCompoundAmount),
+            asCALL_THISCALL) < 0)
+    {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    
+
+    if(engine->RegisterObjectType("CompoundAbsorberComponent", 0, asOBJ_REF | asOBJ_NOCOUNT)
+        < 0)
+    {
+        ANGELSCRIPT_REGISTERFAIL;
+    }   
+    
+    return true;
+}
+
+template<class WorldType>
+bool bindCellStageMethods(asIScriptEngine* engine, const char* classname){
+
+    if(!Leviathan::BindStandardWorldMethods<CellStageWorld>(engine, classname))
+        return false;
+
+    #include "generated/cell_stage_bindings.h"
+
+    ANGLESCRIPT_BASE_CLASS_CASTS_NO_REF(Leviathan::StandardWorld, "StandardWorld",
+        CellStageWorld, "CellStageWorld");
+    
+    return true;
+}
+
+bool registerHexFunctions(asIScriptEngine* engine){
+
+    // This doesn't need to be restored if we fail //
+    if(engine->SetDefaultNamespace("Hex") < 0)
+    {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterGlobalFunction("double getHexSize()",
+            asFUNCTION(Hex::getHexSize), asCALL_CDECL) < 0)
+    {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterGlobalFunction("Float3 axialToCartesian(double q, double r)",
+            asFUNCTIONPR(Hex::axialToCartesian, (double q, double r), Float3),
+            asCALL_CDECL) < 0)
+    {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterGlobalFunction("Float3 axialToCartesian(const Int2 &in hex)",
+            asFUNCTIONPR(Hex::axialToCartesian, (const Int2 &hex), Float3),
+            asCALL_CDECL) < 0)
+    {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+
+    if(engine->RegisterGlobalFunction("Int2 cartesianToAxial(double x, double z)",
+            asFUNCTIONPR(Hex::cartesianToAxial, (double x, double z), Int2),
+            asCALL_CDECL) < 0)
+    {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterGlobalFunction("Int2 cartesianToAxial(const Float3 &in coordinates)",
+            asFUNCTIONPR(Hex::cartesianToAxial, (const Float3 &coordinates), Int2),
+            asCALL_CDECL) < 0)
+    {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+
+    if(engine->RegisterGlobalFunction("Int3 axialToCube(double q, double r)",
+            asFUNCTIONPR(Hex::axialToCube, (double q, double r), Int3),
+            asCALL_CDECL) < 0)
+    {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterGlobalFunction("Int3 axialToCube(const Int2 &in hex)",
+            asFUNCTIONPR(Hex::axialToCube, (const Int2 &hex), Int3),
+            asCALL_CDECL) < 0)
+    {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    
+    if(engine->RegisterGlobalFunction("Int2 cubeToAxial(double x, double y, double z)",
+            asFUNCTIONPR(Hex::cubeToAxial, (double x, double y, double z), Int2),
+            asCALL_CDECL) < 0)
+    {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterGlobalFunction("Int2 cubeToAxial(const Int3 &in hex)",
+            asFUNCTIONPR(Hex::cubeToAxial, (const Int3 &hex), Int2),
+            asCALL_CDECL) < 0)
+    {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    
+    if(engine->RegisterGlobalFunction("Int3 cubeHexRound(double x, double y, double z)",
+            asFUNCTIONPR(Hex::cubeHexRound, (double x, double y, double z), Int3),
+            asCALL_CDECL) < 0)
+    {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    
+    if(engine->RegisterGlobalFunction("Int3 cubeHexRound(const Float3 &in hex)",
+            asFUNCTIONPR(Hex::cubeHexRound, (const Float3 &hex), Int3),
+            asCALL_CDECL) < 0)
+    {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    
+    if(engine->RegisterGlobalFunction("int64 encodeAxial(double q, double r)",
+            asFUNCTIONPR(Hex::encodeAxial, (double q, double r), int64_t),
+            asCALL_CDECL) < 0)
+    {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+    
+    if(engine->RegisterGlobalFunction("int64 encodeAxial(const Int2 &in hex)",
+            asFUNCTIONPR(Hex::encodeAxial, (const Int2 &hex), int64_t),
+            asCALL_CDECL) < 0)
+    {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+    
+    if(engine->RegisterGlobalFunction("Int2 decodeAxial(int64 s)",
+            asFUNCTIONPR(Hex::decodeAxial, (int64_t s), Int2),
+            asCALL_CDECL) < 0)
+    {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    
+    if(engine->RegisterGlobalFunction("Int2 rotateAxial(double q, double r)",
+            asFUNCTIONPR(Hex::rotateAxial, (double q, double r), Int2),
+            asCALL_CDECL) < 0)
+    {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+    
+    if(engine->RegisterGlobalFunction("Int2 rotateAxial(const Int2 &in hex)",
+            asFUNCTIONPR(Hex::rotateAxial, (const Int2 &hex), Int2),
+            asCALL_CDECL) < 0)
+    {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    
+    if(engine->RegisterGlobalFunction("Int2 rotateAxialNTimes(double q0, double r0, "
+            "uint32 n)",
+            asFUNCTIONPR(Hex::rotateAxialNTimes, (double q0, double r0, uint32_t n), Int2),
+            asCALL_CDECL) < 0)
+    {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+    
+    if(engine->RegisterGlobalFunction("Int2 rotateAxialNTimes(const Int2 &in hex, uint32 n)",
+            asFUNCTIONPR(Hex::rotateAxialNTimes, (const Int2 &hex, uint32_t n), Int2),
+            asCALL_CDECL) < 0)
+    {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    
+    if(engine->RegisterGlobalFunction("Int2 flipHorizontally(double q, double r)",
+            asFUNCTIONPR(Hex::flipHorizontally, (double q, double r), Int2),
+            asCALL_CDECL) < 0)
+    {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+    
+    if(engine->RegisterGlobalFunction("Int2 flipHorizontally(const Int2 &in hex)",
+            asFUNCTIONPR(Hex::flipHorizontally, (const Int2 &hex), Int2),
+            asCALL_CDECL) < 0)
+    {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    
+    
+    if(engine->SetDefaultNamespace("") < 0)
+    {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+    
+    return true;
+}
+
 bool ThriveGame::InitLoadCustomScriptTypes(asIScriptEngine* engine){
 
     if(!registerLockedMap(engine))
         return false;
 
+    if(engine->RegisterTypedef("CompoundId", "uint16") < 0){
+
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterTypedef("BioProcessId", "uint16") < 0){
+
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(!bindThriveComponentTypes(engine))
+        return false;
+
     if(!registerPlayerData(engine))
+        return false;
+
+    if(!registerSimulationDataAndJsons(engine))
+        return false;
+
+    if(!registerHexFunctions(engine))
         return false;
 
     if(engine->RegisterObjectType("ThriveGame", 0, asOBJ_REF | asOBJ_NOCOUNT) < 0){
@@ -465,7 +951,7 @@ bool ThriveGame::InitLoadCustomScriptTypes(asIScriptEngine* engine){
             asOFFSET(ThriveGame, m_backgroundPlane)) < 0)
     {
         ANGELSCRIPT_REGISTERFAIL;
-    }    
+    }
     
     // if(engine->RegisterObjectMethod("Client",
     //         "bool Connect(const string &in address, string &out errormessage)",
@@ -479,11 +965,8 @@ bool ThriveGame::InitLoadCustomScriptTypes(asIScriptEngine* engine){
         ANGELSCRIPT_REGISTERFAIL;
     }
 
-    if(!Leviathan::BindStandardWorldMethods<CellStageWorld>(engine, "CellStageWorld"))
+    if(!bindCellStageMethods<CellStageWorld>(engine, "CellStageWorld"))
         return false;
-
-    ANGLESCRIPT_BASE_CLASS_CASTS_NO_REF(Leviathan::StandardWorld, "StandardWorld",
-        CellStageWorld, "CellStageWorld");
 
     if(engine->RegisterObjectMethod("ThriveGame",
             "CellStageWorld@ getCellStage()",
@@ -495,18 +978,5 @@ bool ThriveGame::InitLoadCustomScriptTypes(asIScriptEngine* engine){
     
     return true;
 }
-
-void ThriveGame::RegisterCustomScriptTypes(asIScriptEngine* engine,
-    std::map<int, std::string> &typeids)
-{
-    typeids.insert(std::make_pair(engine->GetTypeIdByDecl("ThriveGame"), "ThriveGame"));
-    typeids.insert(std::make_pair(engine->GetTypeIdByDecl("CellStageWorld"),
-            "CellStageWorld"));
-    typeids.insert(std::make_pair(engine->GetTypeIdByDecl("PlayerData"),
-            "PlayerData")); 
-    typeids.insert(std::make_pair(engine->GetTypeIdByDecl("LockedMap"),
-            "LockedMap")); 
-}
-
 
 

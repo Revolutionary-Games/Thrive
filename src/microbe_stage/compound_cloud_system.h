@@ -92,6 +92,8 @@ public:
         int y,
         float rate
     );
+
+    REFERENCE_HANDLE_UNCOUNTED_TYPE(CompoundCloudComponent);
 };
 
 

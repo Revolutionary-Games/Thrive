@@ -1,6 +1,6 @@
 #pragma once
 
-#include <OgreVector3.h>
+#include <Common/Types.h>
 
 /*
 Defines some utility functions and tables related to hex grids.
@@ -21,27 +21,15 @@ horizontally symmetric to the one shown in the page.
 // Multiplier for the q coordinate used in encodeAxial()
 #define ENCODE_AXIAL_SHIFT (ENCODE_AXIAL_OFFSET * 10)
 
-namespace sol {
-class state;
-}
-
 namespace thrive {
 class Hex {
 public:
-    /**
-    * @brief Lua bindings
-    *
-    * Exposes:
-    * - MicrobeCameraSystem()
-    *
-    * @return
-    */
-    static void luaBindings(sol::state &lua);
 
-    /**
-    * @brief Sets the hex size.
-    */
-    static void setHexSize(double newSize);
+    // This will cause a lot of issues if this is called
+    // /**
+    // * @brief Sets the hex size.
+    // */
+    // static void setHexSize(double newSize);
 
     /**
     * @brief Gets the hex size.
@@ -56,25 +44,25 @@ public:
     * @param q, r
     *  Hex coordinates.
     *
-    * @return x, y
+    * @return x, z
     *  Cartesian coordinates of the hex's center.
     */
-    static Ogre::Vector3 axialToCartesian(double q, double r);
-    static Ogre::Vector3 axialToCartesian(Ogre::Vector3 hex);
+    static Float3 axialToCartesian(double q, double r);
+    static Float3 axialToCartesian(const Int2 &hex);
 
     /**
     * @brief Converts cartesian coordinates to axial hex coordinates.
     *
-    * The result is the hex coordinates of the position x, y.
+    * The result is the hex coordinates of the position x, z.
     *
-    * @param x, y
+    * @param x, z
     *  Cartesian coordinates of the hex's center.
     *
     * @returns q, r
     *  Hex position.
     */
-    static Ogre::Vector3 cartesianToAxial(double x, double y);
-    static Ogre::Vector3 cartesianToAxial(Ogre::Vector3 hex);
+    static Int2 cartesianToAxial(double x, double z);
+    static Int2 cartesianToAxial(const Float3 &coordinates);
 
     /**
     * @brief Converts axial hex coordinates to coordinates in the cube based hex model
@@ -87,8 +75,8 @@ public:
     * @returns x, y, z
     *  cube coordinates
     */
-    static Ogre::Vector3 axialToCube(double q, double r);
-    static Ogre::Vector3 axialToCube(Ogre::Vector3 hex);
+    static Int3 axialToCube(double q, double r);
+    static Int3 axialToCube(const Int2 &hex);
 
     /**
     * @brief Converts cube based hex coordinates to axial hex coordinates
@@ -101,8 +89,8 @@ public:
     * @returns q, r
     *  hex coordinates
     */
-    static Ogre::Vector3 cubeToAxial(double x, double y, double z);
-    static Ogre::Vector3 cubeToAxial(Ogre::Vector3 hex);
+    static Int2 cubeToAxial(double x, double y, double z);
+    static Int2 cubeToAxial(const Int3 &hex);
 
     /**
     * @brief Correctly rounds fractional hex cube coordinates to the correct integer coordinates
@@ -113,8 +101,8 @@ public:
     * @returns rx, ry, rz
     *  correctly rounded hex cube coordinates
     */
-    static Ogre::Vector3 cubeHexRound(double x, double y, double z);
-    static Ogre::Vector3 cubeHexRound(Ogre::Vector3 hex);
+    static Int3 cubeHexRound(double x, double y, double z);
+    static Int3 cubeHexRound(const Float3 &hex);
 
     /**
     * @brief Encodes axial coordinates to a single number.
@@ -127,8 +115,8 @@ public:
     * @returns s
     *  A single number encoding q and r. Use decodeAxial() to retrieve q and r from it.
     */
-    static long encodeAxial(double q, double r);
-    static long encodeAxial(Ogre::Vector3 hex);
+    static int64_t encodeAxial(double q, double r);
+    static int64_t encodeAxial(const Int2 &hex);
 
     /**
     * @brief Reverses encodeAxial().
@@ -139,25 +127,25 @@ public:
     * @returns q, r
     *  The hex coordinates encoded in s
     */
-    static Ogre::Vector3 decodeAxial(long s);
+    static Int2 decodeAxial(int64_t s);
 
     /**
     * @brief Rotates a hex by 60 degrees about the origin clock-wise.
     */
-    static Ogre::Vector3 rotateAxial(double q, double r);
-    static Ogre::Vector3 rotateAxial(Ogre::Vector3 hex);
+    static Int2 rotateAxial(double q, double r);
+    static Int2 rotateAxial(const Int2 &hex);
 
     /**
     * @brief Rotates a hex by (60 * n) degrees about the origin clock-wise.
     */
-    static Ogre::Vector3 rotateAxialNTimes(double q0, double r0, unsigned n);
-    static Ogre::Vector3 rotateAxialNTimes(Ogre::Vector3 hex, unsigned n);
+    static Int2 rotateAxialNTimes(double q0, double r0, uint32_t n);
+    static Int2 rotateAxialNTimes(const Int2 &hex, uint32_t n);
 
     /**
     * @brief Symmetrizes a hex horizontally about the (0,x) axis.
     */
-    static Ogre::Vector3 flipHorizontally(double q, double r);
-    static Ogre::Vector3 flipHorizontally(Ogre::Vector3 hex);
+    static Int2 flipHorizontally(double q, double r);
+    static Int2 flipHorizontally(const Int2 &hex);
 
 private:
     static double hexSize;

@@ -78,7 +78,7 @@ o GuiObject "_IntroVideoStarter"{
             castedPlayer.OnPlaybackEnded.Register(@OnVideoEnded);
 
             // Start playback
-            castedPlayer.Play("Data/Videos/intro.mp4");
+            castedPlayer.Play("Data/Videos/intro.mkv");
             PlayingVideo = true;
             
             return true;

@@ -9,7 +9,7 @@ using namespace thrive;
 unsigned int SpeciesComponent::SPECIES_NUM = 0;
 
 SpeciesComponent::SpeciesComponent(const std::string& _name)
-	: Leviathan::Component(TYPE), colour(1,0,1), name(_name) {
+	: Leviathan::Component(TYPE), colour(1,0,1,1), name(_name) {
 	if (name == "") {
 		name = "noname" + std::to_string(SPECIES_NUM);
 		++SPECIES_NUM;
@@ -22,6 +22,12 @@ SpeciesComponent::SpeciesComponent(const std::string& _name)
 	organelles = lua.create_table();
     avgCompoundAmounts = lua.create_table();
 	*/
+}
+
+SpeciesComponent::~SpeciesComponent(){
+
+    SAFE_RELEASE(organelles);
+    SAFE_RELEASE(avgCompoundAmounts);
 }
 
 /*

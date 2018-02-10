@@ -42,7 +42,10 @@ public:
 	T const& getTypeData(size_t id);
 
 	// Same as above, but using the internal name. Sligthly less efficient.
-	T const& getTypeData(std::string internalName);
+	T const& getTypeData(const std::string &internalName);
+
+    //! Returns the id matching a name
+    size_t getTypeId(const std::string &internalName);
 
 	// Get the amount of elements in the registry.
 	size_t getSize();
@@ -124,14 +127,31 @@ template<class T> bool TJsonRegistry<T>::RegisterType(T &Properties) {
 
 template<class T> T const&  TJsonRegistry<T>::getTypeData(size_t id) {
 	// The type exists.
-	LEVIATHAN_ASSERT(registeredTypes.count(id), "Type not found!");
-	return registeredTypes[id];
+    const auto iter = registeredTypes.find(id);
+	LEVIATHAN_ASSERT(iter != registeredTypes.end(), "Type not found!");
+	return iter->second;
 }
 
-template<class T> T const&  TJsonRegistry<T>::getTypeData(std::string internalName) {
+template<class T>
+T const&
+TJsonRegistry<T>::getTypeData(
+    const std::string &internalName
+) {
 	// The type exists.
-	LEVIATHAN_ASSERT(internalNameIndex.count(internalName) == 1, "Type not found!");
-	return getTypeData(internalNameIndex[internalName]);
+    const auto iter = internalNameIndex.find(internalName);
+	LEVIATHAN_ASSERT(iter != internalNameIndex.end(), "Type not found!");
+	return getTypeData(iter->second);
+}
+
+//! Returns the id matching a name
+template<class T>
+size_t
+TJsonRegistry<T>::getTypeId(
+    const std::string &internalName
+) {
+    const auto iter = internalNameIndex.find(internalName);
+	LEVIATHAN_ASSERT(iter != internalNameIndex.end(), "Type not found!");
+    return iter->second;
 }
 
 template<class T> size_t TJsonRegistry<T>::getSize() {

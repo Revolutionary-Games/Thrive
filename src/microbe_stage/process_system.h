@@ -1,9 +1,4 @@
 #pragma once
-/*/
-#include "engine/component.h"
-#include "engine/system.h"
-#include "engine/touchable.h"
-*/
 
 #include "engine/component_types.h"
 #include "engine/typedefs.h"
@@ -57,9 +52,11 @@ public:
     storage() const override;
 	*/
 
-    std::unordered_map<size_t, double> process_capacities;
+    std::unordered_map<BioProcessId, double> process_capacities;
     void
-    setCapacity(size_t, double);
+    setCapacity(BioProcessId, double);
+
+    REFERENCE_HANDLE_UNCOUNTED_TYPE(ProcessorComponent);
 
     static constexpr auto TYPE = componentTypeConvert(THRIVE_COMPONENT::PROCESSOR);
 };
@@ -90,22 +87,32 @@ public:
 
     double storageSpace;
     double storageSpaceOccupied;
-    std::unordered_map<size_t, CompoundData> compounds;
-
-    double
-    getCompoundAmount(size_t);
-
-    double
-    getPrice(size_t);
-
-    double
-    getDemand(size_t);
-
-    double
-    takeCompound(size_t, double); // remove up to a certain amount of compound, returning how much was removed
+    ProcessorComponent* processor = nullptr;
+    std::string speciesName;
+    std::unordered_map<CompoundId, CompoundData> compounds;
 
     void
-    giveCompound(size_t, double);
+    setProcessor(ProcessorComponent& processor, const std::string& speciesName);
+
+    double
+    getCompoundAmount(CompoundId);
+
+    double
+    getStorageSpaceUsed() const;
+
+    double
+    getPrice(CompoundId);
+
+    double
+    getDemand(CompoundId);
+
+    double
+    takeCompound(CompoundId, double); // remove up to a certain amount of compound, returning how much was removed
+
+    void
+    giveCompound(CompoundId, double);
+
+    REFERENCE_HANDLE_UNCOUNTED_TYPE(CompoundBagComponent);
 
     static constexpr auto TYPE = componentTypeConvert(THRIVE_COMPONENT::COMPOUND_BAG);
 };

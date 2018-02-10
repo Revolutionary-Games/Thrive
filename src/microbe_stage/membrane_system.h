@@ -73,6 +73,8 @@ public:
 	// Decides where the point needs to move based on the position of the closest organelle.
 	Ogre::Vector3 GetMovement(Ogre::Vector3 target, Ogre::Vector3 closestOrganelle);
 
+    REFERENCE_HANDLE_UNCOUNTED_TYPE(MembraneComponent);
+
     static constexpr auto TYPE = componentTypeConvert(THRIVE_COMPONENT::MEMBRANE);
     
 protected:

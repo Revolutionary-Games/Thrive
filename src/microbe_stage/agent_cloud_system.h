@@ -44,6 +44,8 @@ public:
     */
     CompoundId m_compoundId = NULL_COMPOUND;
 
+    REFERENCE_HANDLE_UNCOUNTED_TYPE(AgentCloudComponent);
+
     static constexpr auto TYPE = componentTypeConvert(THRIVE_COMPONENT::AGENT_CLOUD);
 
 public:

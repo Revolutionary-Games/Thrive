@@ -166,6 +166,7 @@ int thriveLuaPanic(lua_State* L){
 /**
 * @brief Thrive lua error handler
 */
+// This definition is required
 std::string thriveLuaOnError(sol::this_state lua, std::string err);
 
 std::string thriveLuaOnError(sol::this_state lua, std::string err){

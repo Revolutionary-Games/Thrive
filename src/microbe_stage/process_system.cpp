@@ -46,7 +46,7 @@ ProcessorComponent::storage() const
 */
 
 void
-ProcessorComponent::setCapacity(size_t id, double capacity)
+ProcessorComponent::setCapacity(BioProcessId id, double capacity)
 {
     this->process_capacities[id] = capacity;
 }
@@ -85,6 +85,8 @@ CompoundBagComponent::load(const StorageContainer& storage)
         this->compounds[compoundId].demand = demand.get<double>(id);
 	}
 
+    this->storageSpace = storage.get<float>("storageSpace");
+
 	this->speciesName = storage.get<std::string>("speciesName");
 	this->processor = static_cast<ProcessorComponent*>(Entity(this->speciesName,
             Game::instance().engine().getCurrentGameStateFromLua()).
@@ -115,24 +117,40 @@ CompoundBagComponent::storage() const
     storage.set("uninflatedPrices", std::move(uninflatedPrices));
     storage.set("demand", std::move(demand));
     storage.set("speciesName", this->speciesName);
+    storage.set("storageSpace", this->storageSpace);
 
     return storage;
 }
 */
+void
+CompoundBagComponent::setProcessor(ProcessorComponent& processor, const std::string& speciesName) {
+    this->processor = &processor;
+    this->speciesName = speciesName;
+}
 
 // helper methods for integrating compound bags with current, un-refactored, lua microbes
 double
-CompoundBagComponent::getCompoundAmount(size_t id) {
+CompoundBagComponent::getCompoundAmount(CompoundId id) {
     return compounds[id].amount;
 }
 
+double
+CompoundBagComponent::getStorageSpaceUsed() const {
+    double sso = 0;
+    for (const auto& compound : compounds) {
+        double compoundAmount = compound.second.amount;
+        sso += compoundAmount;
+    }
+    return sso;
+}
+
 void
-CompoundBagComponent::giveCompound(size_t id, double amt) {
+CompoundBagComponent::giveCompound(CompoundId id, double amt) {
     compounds[id].amount += amt;
 }
 
 double
-CompoundBagComponent::takeCompound(size_t id, double to_take) {
+CompoundBagComponent::takeCompound(CompoundId id, double to_take) {
     double& ref = compounds[id].amount;
     double amt = ref > to_take ? to_take : ref;
     ref -= amt;
@@ -140,12 +158,12 @@ CompoundBagComponent::takeCompound(size_t id, double to_take) {
 }
 
 double
-CompoundBagComponent::getPrice(size_t compoundId) {
+CompoundBagComponent::getPrice(CompoundId compoundId) {
     return compounds[compoundId].price;
 }
 
 double
-CompoundBagComponent::getDemand(size_t compoundId) {
+CompoundBagComponent::getDemand(CompoundId compoundId) {
     return compounds[compoundId].demand;
 }
 

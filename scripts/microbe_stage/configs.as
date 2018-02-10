@@ -1,5 +1,6 @@
 // Holds config file contents, translated into AngelScript objects
 #include "agents.as"
+#include "organelle.as"
 
 // TODO: move these into gamestate
 // must be global
@@ -83,7 +84,23 @@ void toxin_call_Notification(){
         toxin_unlocked = true;
     }
 }
-    
+
+// TODO: move this to where axialToCartesian is defined
+// We should use Int2 instead, or MAYBE a derived class defined in c++ if we wanna be really fancy...
+/*
+class AxialCoordinates{
+
+    AxialCoordinates(int q, int r){
+
+        this.q = q;
+        this.r = r;
+    }
+
+    // q and r are radial coordinates instead of cartesian
+    int q;
+    int r;
+}
+*/   
 
 // Note this is an old comment
 /*
@@ -98,138 +115,57 @@ in 60 degree intervals counter clockwise.
 The colour of the microbe should never be lower than (0.3, 0.3, 0.3)
 */
 
-abstract class Organelle{
+class OrganelleTemplatePlaced{
 
-    Organelle(string name){
+    OrganelleTemplatePlaced(const string &in type, int q, int r, int rotation){
 
-        this._name = name;
-    }
-
-    // Prevent modification
-    string name {
-
-        get {
-            return _name;
-        }
-    }
-
-    private string _name;
-}
-
-class Nucleus : Organelle{
-
-    Nucleus(){
-
-        super("nucleus");
-    }
-}
-
-class Mitochondrion : Organelle{
-
-    Mitochondrion(){
-
-        super("mitochondrion");
-    }
-}
-
-class Vacuole : Organelle{
-
-    Vacuole(){
-
-        super("vacuole");
-    }
-}
-
-class Flagellum : Organelle{
-
-    Flagellum(){
-
-        super("flagellum");
-    }
-}
-
-
-class PlacedOrganelle{
-
-    PlacedOrganelle(Organelle@ organelle, int q, int r, int rotation){
-
-        @this.organelle = @organelle;
+        this.type = type;
         this.q = q;
         this.r = r;
         this.rotation = rotation;
     }
-    
-    Organelle@ organelle;
-    // No clue what q and r are
+
+    string type;
     int q;
     int r;
     int rotation;
-}
-
-class Compound{
-
-    Compound(string type){
-
-        this.type = type;
-    }
-
-    string type;
-}
-
-class CompoundAmount{
-
-    CompoundAmount(Compound@ type, float amount){
-
-        @this.type = @type;
-        this.amount = amount;
-    }
-
-    Compound@ type;
-    float amount;
 }
 
 class MicrobeTemplate{
 
     MicrobeTemplate(
         float spawnDensity,
-        array<CompoundAmount@> compounds,
-        array<PlacedOrganelle@> organelles,
-        Float4 color
+        dictionary compounds,
+        array<OrganelleTemplatePlaced@> organelles,
+        Float4 colour
     ) {
         this.spawnDensity = spawnDensity;
         this.compounds = compounds;
         this.organelles = organelles;
-        this.color = color;
+        this.colour = colour;
     }
 
     float spawnDensity;
-    array<CompoundAmount@> compounds;
-    array<PlacedOrganelle@> organelles;
-    Float4 color;
+    dictionary compounds;
+    array<OrganelleTemplatePlaced@> organelles;
+    Float4 colour;
 }
-
-// TODO: these need to be loaded from the file and filled here
-const dictionary COMPOUNDS = {
-    {"atp", Compound("atp")},
-    {"glucose", Compound("glucose")},
-    {"oxygen", Compound("oxygen")}
-};
 
 const dictionary STARTER_MICROBES = {
     {
         "Default", MicrobeTemplate(1/14000,
-            array<CompoundAmount@> = {
-                CompoundAmount(cast<Compound@>(COMPOUNDS["atp"]), 60),
-                CompoundAmount(cast<Compound@>(COMPOUNDS["glucose"]), 5),
-                CompoundAmount(cast<Compound@>(COMPOUNDS["oxygen"]), 10)
-                },
-            array<PlacedOrganelle@> = {
-                PlacedOrganelle(Nucleus(), 0, 0, 0),
-                PlacedOrganelle(Mitochondrion(), -1, -2, 240),
-                PlacedOrganelle(Vacuole(), 1, -3, 0),
-                PlacedOrganelle(Flagellum(), -1, -3, 0),
-                PlacedOrganelle(Flagellum(), 1, -4, 0)
-                },
+            {
+                {"atp", 60},
+                {"glucose", 5},
+                {"oxygen", 10}
+            },
+            {
+                OrganelleTemplatePlaced("nucleus", 0, 0, 0),
+                OrganelleTemplatePlaced("mitochondrion", -1, -2, 240),
+                OrganelleTemplatePlaced("vacuole", 1, -3, 0),
+                OrganelleTemplatePlaced("flagellum", -1, -3, 0),
+                OrganelleTemplatePlaced("flagellum", 1, -4, 0)
+            },
             Float4(1, 1, 1, 1))
     }
 };
