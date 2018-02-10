@@ -30,7 +30,9 @@ Open a terminal on linux or a command prompt (or powershell) on windows to a fol
 Note: a path with spaces in it WILL NOT WORK, so to avoid issues you
 should choose a folder like `~/projects` or `C:/projects`. Also long
 paths don't work on Windows as the setup needs the path in which it is
-ran to be less than 90 characters.
+ran to be less than 90 characters, so choose run git clone in
+`C:\projects` so that you end up the thrive folder being
+`C:\projects\Thrive`.
 
 Windows tip: shift right-click in a folder and select "Open command
 prompt here" or "Open powershell here" to open a cmd window to the
@@ -45,27 +47,37 @@ cd Thrive
 
 To get the Thrive repository cloned.
 
-For devs: switch to the engine_refactor branch with `git checkout
-engine_refactor` or another branch you want to work on.
+For devs working on engine changes: switch to the engine_refactor
+branch with `git checkout engine_refactor`. Or to another branch you
+want to work on. This keeps the main branch clean as other branches
+can be merged through pull requests on github which is the recommended
+way to get your code into Thrive.
+
+If you aren't on the team (have push access on github) create a fork
+on github and use the url of that instead of the one above.
 
 
 Running Setup
 -------------
 
-Now you can run the setup script with:
+Now you can run the setup script with (make sure you have setup prerequisites):
 
 ```
 ruby SetupThrive.rb thrive
 ```
 
-If you have an svn assets username use it instead of "thrive" here.
+The last part of the command (thrive) is the svn username. If you have
+an svn assets username (ask on slack) use it instead of "thrive" here.
 
 When asked to login to svn type in your svn password. Or if you are
-using "thrive" as username type in "thrive" as the password.
+using "thrive" as username type in "thrive" as the password as well.
 
 Note: if you have a small amount of ram you may want to limit the
-setup script to only use a few CPU cores for building. To do this add
-`-j 2` to the end of the setup command.
+setup script to only use a few CPU cores for building or don't want to
+dedicate all of your CPU. To do this add `-j 2` to the end of the
+setup command with the number being the number of cores you want to
+use, the default is to use all. Note: this may not work for the
+dependencies (and that needs fixing)
 
 Done
 ----
@@ -81,6 +93,11 @@ If it didn't work you can try these:
 
 to get help
 
+Note about assets: whenever the assets are changed you need to run
+cmake in the `Thrive/build` folder to copy them to the build
+directory.
+
 Windows note: when building Thrive in visual studio select
 RelWithDebInfo configuration (instead of Debug). Otherwise the build
-may fail.
+may fail. And make sure "Thrive" is selected as the setup project and
+the configuration is "x64".
