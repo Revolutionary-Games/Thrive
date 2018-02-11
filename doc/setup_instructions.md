@@ -81,6 +81,13 @@ If it didn't work you can try these:
 
 to get help
 
-Windows note: when building Thrive in visual studio select
-RelWithDebInfo configuration (instead of Debug). Otherwise the build
-may fail.
+Here are some quick tips for working on thrive:
+
+- [Scripting
+  documentation](https://leviathanengine.com/doc/develop/Documentation/html/d0/db5/angelscript_main.html)
+- On Windows: when building Thrive in visual studio select
+  RelWithDebInfo configuration (instead of Debug). Otherwise the build
+  may fail.
+- Whenever you change the assets or scripts you need to run cmake. See
+  [this](https://leviathanengine.com/doc/develop/Documentation/html/df/d4e/tutorial1.html#tutorial1recompiling)
+  for more info
