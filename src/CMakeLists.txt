@@ -289,6 +289,9 @@ set_target_properties(ThriveLib PROPERTIES
   OUTPUT_NAME Thrive
   )
 
+set_property(TARGET ThriveLib PROPERTY CXX_STANDARD 17)
+set_property(TARGET ThriveLib PROPERTY CXX_EXTENSIONS OFF)
+
 target_compile_definitions(ThriveLib PRIVATE "THRIVELIB_BUILD=1")
 
 target_link_libraries(ThriveLib ${DEPENDENT_LIBS})

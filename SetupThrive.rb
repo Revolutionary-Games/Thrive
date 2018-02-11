@@ -167,8 +167,8 @@ Dir.chdir(File.join(ProjectDir, "build")) do
             "or did a dependency fail to install?"
   end
 
-  if !runCompiler($compileThreads)
-    onError "Failed to compile Thrive "
+  if !TC.runCompiler
+    onError "Failed to compile Thrive"
   end
   
 end
@@ -180,6 +180,10 @@ if OS.windows?
 else
   info "run the game with '#{CurrentDir}/thrive/build/Thrive'"
 end
+
+puts ""
+info "NOTE: when changing the scripts or assets you must rerun cmake to make it move the " + 
+     "changed files to the build folder"
 
 success "Done"
 
