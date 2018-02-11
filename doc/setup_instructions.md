@@ -99,7 +99,7 @@ Here are some quick tips for working on thrive:
   documentation](https://leviathanengine.com/doc/develop/Documentation/html/d0/db5/angelscript_main.html)
 - On Windows: when building Thrive in visual studio select
   `RelWithDebInfo` configuration (instead of Debug). Otherwise the build
-  may fail.
+  may fail. And make sure "Thrive" is the startup project to run it in the debugger.
 - Whenever you **change the assets** or scripts you need to run cmake. See
   [this](https://leviathanengine.com/doc/develop/Documentation/html/df/d4e/tutorial1.html#tutorial1recompiling)
   for more info
