@@ -1,11 +1,11 @@
 #include "microbe.as"
 
 // How fast organelles grow.
-const auto GROWTH_SPEED_MULTILPIER = 0.5 / 1000;
+const auto GROWTH_SPEED_MULTILPIER = 0.5f / 1000;
 
-    // Percentage of the compounds that compose the organelle released
-    // upon death (between 0.0 and 1.0).
-const auto COMPOUND_RELEASE_PERCENTAGE = 0.3;
+// Percentage of the compounds that compose the organelle released
+// upon death (between 0.0 and 1.0).
+const auto COMPOUND_RELEASE_PERCENTAGE = 0.3f;
 
 
 class Hex{
@@ -416,20 +416,23 @@ class PlacedOrganelle{
 
         for(uint i = 0; i < compoundKeys.length(); ++i){
 
+            const auto compoundName = compoundKeys[i];
+            
             float amount;
-            if(!compoundsLeft.get(compoundKeys[i], amount)){
+            if(!compoundsLeft.get(compoundName, amount)){
 
                 LOG_ERROR("Invalid type in compoundsLeft");
                 continue;
             }            
             
             if(id - amount < 0){
+
                 // The random number is from this compound, so attempt to take it.
                 float amountToTake = min(logicTime * GROWTH_SPEED_MULTILPIER, amount);
                 amountToTake = compoundBagComponent.takeCompound(
                     SimulationParameters::compoundRegistry().getTypeId(compoundName),
                     amountToTake);
-                compoundsLeft[compoundName] = cast<float>(compoundsLeft[compoundName]) -
+                compoundsLeft[compoundName] = float(compoundsLeft[compoundName]) -
                     amountToTake;
                 break;
 
@@ -453,7 +456,7 @@ class PlacedOrganelle{
         // Calculate how much compounds the organelle needs to have
         // to result in a health equal to compoundBin - amount.
         const float damageFactor = (2.0 - compoundBin + damageAmount) *
-            (organelleCost / totalLeft);
+            (organelle.organelleCost / totalLeft);
 
         scaleCompoundsLeft(damageFactor);
         
@@ -500,7 +503,7 @@ class PlacedOrganelle{
         // Calculate the new growth growth
         float totalCompoundsLeft = calculateCompoundsLeft();
     
-        compoundBin = 2.0 - totalCompoundsLeft / organelleCost;
+        compoundBin = 2.0 - totalCompoundsLeft / organelle.organelleCost;
 
         // If the organelle is damaged...
         if(compoundBin < 1.0){
