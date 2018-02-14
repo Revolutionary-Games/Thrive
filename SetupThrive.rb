@@ -12,6 +12,10 @@ if not File.exists? "RubySetupSystem/RubySetupSystem.rb"
           "Please make sure git is in path and " +
           "you have an ssh key setup for your github account")
   end
+else
+  # Make sure RubySetupSystem is up to date
+  # This may make debugging RubySetupSystem harder so feel free to comment out
+  system "git submodule update"
 end
 
 require 'fileutils'
@@ -162,7 +166,7 @@ info "Compiling thrive"
 
 Dir.chdir(File.join(ProjectDir, "build")) do
 
-  if !runCMakeConfigure(if OS.windows? then ["-DCMAKE_EXPORT_COMPILE_COMMANDS=ON"] else [] end)
+  if !runCMakeConfigure []
     onError "Failed to configure Thrive. Are you using a broken version, " +
             "or did a dependency fail to install?"
   end
