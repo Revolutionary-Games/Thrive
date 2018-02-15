@@ -1,4 +1,5 @@
 #include "microbe.as"
+#include "hex.as"
 
 // How fast organelles grow.
 const auto GROWTH_SPEED_MULTILPIER = 0.5f / 1000;
@@ -315,8 +316,8 @@ class PlacedOrganelle{
             
             flashDuration -= logicTime;
             // Use organelle.world to get the MicrobeSystem
-            Float4 speciesColour = getMicrobeSystemForCellStageWorld().
-                getSpeciesComponent(microbeEntity).colour;
+            Float4 speciesColour = MicrobeOperations::getSpeciesComponent(organelle.world,
+                microbeEntity).colour;
 
             Float4 colour;
             
@@ -513,7 +514,8 @@ class PlacedOrganelle{
                 if(isDuplicate == true){
 
                     // Calls different method for possible sound and effects
-                    microbeEntity.organelleDestroyedByDamage(q, r);
+                    MicrobeOperations::organelleDestroyedByDamage(organelle.world,
+                        microbeEntity, {q, r});
                     
                     // Notify the organelle the sister organelle it is no longer split.
                     sisterOrganelle.wasSplit = false;
@@ -533,7 +535,7 @@ class PlacedOrganelle{
             // TODO: This isn't the cheapest call so maybe this should be cached
             if(!organelle.hasComponent("NucleusOrganelle")){
 
-                RenderNode@ sceneNode = microbeEntity.getWorld().Get_RenderNode(
+                RenderNode@ sceneNode = organelle.world.GetComponent_RenderNode(
                     organelleEntity);
 
                 sceneNode.Scale = Float3((1.0 + compoundBin)/2,
@@ -714,7 +716,7 @@ class PlacedOrganelle{
     int rotation;
 
     // Whether or not this organelle has already divided.
-    bool split = false;
+    bool wasSplit = false;
     
     // If this organelle is a duplicate of another organelle caused by splitting.
     bool isDuplicate = false;
