@@ -13,6 +13,7 @@ horizontally symmetric to the one shown in the page.
 */
 
 // The default size of the hexagons, used in calculations.
+// The script will also retrieve this on startup
 #define DEFAULT_HEX_SIZE 0.75
 
 // Maximum hex coordinate value that can be encoded with encodeAxial()

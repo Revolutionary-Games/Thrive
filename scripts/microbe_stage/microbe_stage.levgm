@@ -6,6 +6,8 @@ Version = 1;
 
 o GameModule "microbe_stage"{
     t sourcefiles{
+        // It is possible for these files to also include more stuff, but maybe it is clearer
+        // if everything is also listed here
         setup.as
         configs.as
         organelle_table.as
@@ -13,6 +15,7 @@ o GameModule "microbe_stage"{
         organelle_component.as
         register_microbe_components.as
         microbe.as
+        hex.as
         // TODO: move to a new module
         ../script_system.as
     }
