@@ -207,6 +207,14 @@ void ThriveGame::startNewGame(){
         return;
     }
 
+    // This registers all the script defined systems to run and be
+    // available from the world
+    if(!_runCellStageSetupFunc("setupSystemsForWorld")){
+
+        MarkAsClosing();
+        return;
+    }
+
     
     // Set background plane //
 	if (true) {

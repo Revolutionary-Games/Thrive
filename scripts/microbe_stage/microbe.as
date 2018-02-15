@@ -1,5 +1,6 @@
 // Was called everytime this object was created
 // setupAbsorberForAllCompounds
+#include "microbe_operations.as"
 
 
 //! Why is this needed? Is it for(the future when we){n't want to
@@ -195,13 +196,7 @@ class MicrobeSystemCachedComponents{
     // CollisionComponent ;
 }
 
-// TODO: temporary method for getting a MicrobeSystem before
-// registering systems to a GameWorld from scripts is done
-MicrobeSystem@ getMicrobeSystemForCellStageWorld(){
 
-    assert(false, "TODO: this whole registering things");
-    return null;
-}
 
 ////////////////////////////////////////////////////////////////////////////////
 // MicrobeSystem
@@ -212,6 +207,10 @@ MicrobeSystem@ getMicrobeSystemForCellStageWorld(){
 // We should try to separate it into smaller systems.
 // For example, the agents should be handled in another system
 // (however we're going to redo agents so we should wait until then for that one)
+// This is now also split into MicrobeOperations which implements all the methods that don't
+// necessarily need instance data in this class (this is most things) so that they can be
+// called from different places. Functions that shouldn't be called from any other place are
+// kept here
 class MicrobeSystem{
 
     // TODO: make sure these work fine after converting
@@ -374,26 +373,6 @@ class MicrobeSystem{
         }
     }
 
-    // Queries the currently stored amount of an compound
-    //
-    // @param compoundId
-    // The id of the compound to query
-    //
-    // @returns amount
-    // The amount stored in the microbe's storage oraganelles
-    double getCompoundAmount(ObjectID microbeEntity, CompoundId compoundId){
-        return getComponent(microbeEntity, CompoundBagComponent).getCompoundAmount(compoundId);
-    }
-
-    // Getter for microbe species
-    // 
-    // returns the species component or null if it doesn't have a valid species
-    SpeciesComponent@ getSpeciesComponent(ObjectID microbeEntity){
-        auto microbeComponent = getComponent(microbeEntity, MicrobeComponent)
-            return getComponent(microbeComponent.speciesName, g_luaEngine.currentGameState,
-                SpeciesComponent);
-    }
-
     // Sets the color of the microbe's membrane.
     void setMembraneColour(ObjectID microbeEntity, Float4 colour){
         auto membraneComponent = getComponent(microbeEntity, MembraneComponent);
@@ -461,7 +440,7 @@ class MicrobeSystem{
     }
 
     // Ejects compounds from the microbes behind position, into the enviroment
-    // Note that the compounds ejected are created in this void and not taken from the microbe{
+    // Note that the compounds ejected are created in this world and not taken from the microbe
     //
     // @param compoundId
     // The compound type to create and eject
@@ -551,65 +530,7 @@ class MicrobeSystem{
         global_activeMicrobeStageHudSystem.suicideButtonreset();
     }
 
-    // Retrieves the organelle occupying a hex cell
-    //
-    // @param q, r
-    // Axial coordinates, relative to the microbe's center
-    //
-    // @returns organelle
-    // The organelle at (q,r) or null if the hex is unoccupied
-    PlacedOrganelle@ getOrganelleAt(ObjectID microbeEntity, Int2 hex){
-        auto microbeComponent = getComponent(microbeEntity, MicrobeComponent);
 
-        for(_, organelle in pairs(microbeComponent.organelles)){
-            auto localQ = q - organelle.position.q;
-            auto localR = r - organelle.position.r;
-            if(organelle.getHex(localQ, localR) !is null){
-                return organelle;
-            }
-        }
-        return null;
-    }
-
-    // Removes the organelle at a hex cell
-    // Note that this renders the organelle unusable as we destroy its underlying entity
-    //
-    // @param q, r
-    // Axial coordinates of the organelle's center
-    //
-    // @returns success
-    // True if an organelle has been removed, false if there was no organelle
-    // at (q,r)
-    bool removeOrganelle(ObjectID microbeEntity, Int2 hex){
-        auto microbeComponent = getComponent(microbeEntity, MicrobeComponent);
-        auto rigidBodyComponent = getComponent(microbeEntity, RigidBodyComponent);
-
-        auto organelle = MicrobeSystem.getOrganelleAt(microbeEntity, q, r);
-        if(not organelle){
-            return false
-        }
-    
-        auto s = encodeAxial(organelle.position.q, organelle.position.r);
-        microbeComponent.organelles[s] = null;
-    
-        rigidBodyComponent.properties.mass = rigidBodyComponent.properties.mass - organelle.mass;
-        rigidBodyComponent.properties.touch();
-        // TODO: cache for performance
-        auto compoundShape = CompoundShape.castFrom(rigidBodyComponent.properties.shape);
-        compoundShape.removeChildShape(
-            organelle.collisionShape
-        );
-    
-        organelle.onRemovedFromMicrobe();
-    
-        MicrobeSystem.calculateHealthFromOrganelles(microbeEntity);
-        microbeComponent.maxBandwidth = microbeComponent.maxBandwidth -
-            BANDWIDTH_PER_ORGANELLE ; // Temporary solution for decreasing max bandwidth
-        
-        microbeComponent.remainingBandwidth = microbeComponent.maxBandwidth;
-    
-        return true;
-    }
 
     void purgeCompounds(ObjectID microbeEntity){
         auto microbeComponent = getComponent(microbeEntity, MicrobeComponent);
@@ -1060,6 +981,8 @@ class MicrobeSystem{
             auto amount = MicrobeSystem.getCompoundAmount(fromEntity, compoundID);
     
             if(amount != 0){
+                // Is it possible that compounds are created or destroyed here as
+                // the actual amounts aren't checked (that these functions should return)
                 MicrobeSystem.takeCompound(fromEntity, compoundID, amount, false);
                 MicrobeSystem.storeCompound(toEntity, compoundID, amount, false);
             }
