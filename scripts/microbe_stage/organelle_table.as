@@ -71,6 +71,7 @@ class OrganelleParameters{
     float mass = 0;
     string name;
     string gene = "INVALID";
+    string mesh;
     
     //! Chance of randomly generating this (probably used by the initial random species)
     float chanceToCreate = 0.0;

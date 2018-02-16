@@ -36,6 +36,7 @@ class Organelle{
 
         _name = parameters.name;
         mass = parameters.mass;
+        mesh = parameters.mesh;
 
         initialComposition = parameters.initialComposition;
         components = parameters.components;
@@ -262,6 +263,9 @@ class Organelle{
         
     // The total number of compounds we need before we can split.
     int organelleCost;
+
+    // Name of the model used for this organelle. For example "nucleus.mesh"
+    string mesh;
 
     // True only in the constructor. Makes sure physics body cannot be
     // added to just like that
@@ -554,7 +558,7 @@ class PlacedOrganelle{
             // Only if it is different
             const Float3 newScale = Float3(compoundBin, compoundBin, compoundBin) * HEX_SIZE;
 
-            RenderNode@ sceneNode = microbeEntity.getWorld().Get_RenderNode(
+            RenderNode@ sceneNode = organelle.world.GetComponent_RenderNode(
                 organelleEntity);
             
             if(newScale != sceneNode.Scale){
@@ -571,12 +575,12 @@ class PlacedOrganelle{
         this.compoundBin = 1.0;
 
         // Assign (doesn't only copy a reference)
-        compoundsLeft = organelle.compoundsLeft;
+        compoundsLeft = organelle.initialComposition;
 
         // Scale the organelle model to reflect the new size.
         // This might be able to be skipped as the recalculateBin method will always set
         // the correct scale
-        RenderNode@ sceneNode = microbeEntity.getWorld().Get_RenderNode(
+        RenderNode@ sceneNode = organelle.world.GetComponent_RenderNode(
             organelleEntity);
         
         sceneNode.Scale = Float3(1, 1, 1) * HEX_SIZE;
@@ -584,7 +588,8 @@ class PlacedOrganelle{
         
         // If it was split from a primary organelle, destroy it.
         if(isDuplicate){
-            microbeEntity.removeOrganelle(this.position.q, this.position.r);
+            MicrobeOperations::removeOrganelle(organelle.world, microbeEntity,
+                {this.q, this.r});
         } else {
             wasSplit = false;
         }
@@ -606,58 +611,63 @@ class PlacedOrganelle{
     //
     // @param q, r
     //  Axial coordinates of the organelle's center
+    // @param world
+    //  the world the microbe entity is in. This is used to verify that Organelles aren't
+    //  tried to be moved between worlds
     // @note This is quite an expensive method as this creates a new entity with
     //  multiple components
-    void onAddedToMicrobe(ObjectID microbe, int q, int r, int rotation){
+    void onAddedToMicrobe(ObjectID microbe, GameWorld@ world, int q, int r, int rotation){
 
         if(microbeEntity != NULL_OBJECT){
 
             LOG_ERROR("onAddedToMicrobe called before this PlacedOrganelle was " +
                 "removed from previous microbe");
-            onRemovedFromMicrobe();
+            onRemovedFromMicrobe(microbeEntity, -1, -1);
         }
+
+        assert(organelle.world is world, "trying to add organelle to a microbe "
+            "entity from different world");
         
         microbeEntity = microbe;
         
         this.q = q;
         this.r = r;
-        Float2 xz = axialToCartesian(q, r);
-        this.position.cartesian = Vector3(xz.X, 0.0, xz.Y);
+        this.cartesianPosition = Hex::axialToCartesian(q, r);
         this.rotation = rotation;
 
-        assert(organelleEntity == NULL_ENTITY, "PlacedOrganelle already had an entity");
+        assert(organelleEntity == NULL_OBJECT, "PlacedOrganelle already had an entity");
 
-        auto@ world = microbe.GetWorld();
-        
-        organelleEntity = world.CreateEntity();
+        organelleEntity = organelle.world.CreateEntity();
 
         // Automatically destroyed if the parent is destroyed
-        world.SetEntityParent(microbe.getEntityID(), organelleEntity);
-            
-        // Change the colour of this species to be tinted by the membrane.
-        auto species = microbeEntity.getSpeciesComponent();
+        organelle.world.SetEntitysParent(organelleEntity, microbeEntity);
         
-        colour = species.colour;
+        // Change the colour of this species to be tinted by the membrane.
+        auto species = MicrobeOperations::getSpeciesComponent(organelle.world, microbeEntity);
+        
+        colourTint = species.colour;
         _needsColourUpdate = true;
 
         // Not sure which hexes these need to be
         //for _, hex in pairs(MicrobeSystem.getOrganelleAt(this.microbeEntity, q, r)._hexes) ){
         Float3 offset = organelle.calculateCenterOffset();
 
-        auto renderNode = world.Create_RenderNode(organelleEntity);
+        auto renderNode = organelle.world.Create_RenderNode(organelleEntity);
         renderNode.Marked = true;
         renderNode.Scale = Float3(HEX_SIZE, HEX_SIZE, HEX_SIZE);
-        auto position = world.Create_Position(organelleEntity,
-            offset + this.position.cartesian, Ogre::Quaternion(Ogre::Degree(rotation)));
+        auto position = organelle.world.Create_Position(organelleEntity,
+            offset + this.cartesianPosition, Ogre::Quaternion(Ogre::Degree(rotation),
+                Ogre::Vector3(0, 1, 0)));
 
 
-        auto parentRenderNode = world.Get_RenderNode(microbeEntity.getEntityID());
-        parentRenderNode.SceneNode.Attach(renderNode.SceneNode.Attach);
-            
+        auto parentRenderNode = organelle.world.GetComponent_RenderNode(
+            microbeEntity);
+        parentRenderNode.Node.addChild(renderNode.Node);
+        
         //Adding a mesh for the organelle.
-        world.Create_Model(organelleEntity, organelle.mesh);
+        organelle.world.Create_Model(organelleEntity, renderNode.Node, organelle.mesh);
 
-        // TODO: create physics body
+        assert(false, "TODO: create physics body");
     
         // Add each OrganelleComponent
         for(uint i = 0; i < components.length(); ++i){
@@ -670,14 +680,14 @@ class PlacedOrganelle{
     //
     // @param microbe
     //  The organelle's previous owner
-    void onRemovedFromMicrobe(ObjectID microbe){
+    void onRemovedFromMicrobe(ObjectID microbe, int q, int r){
         //iterating on each OrganelleComponent
         for(uint i = 0; i < components.length(); ++i){
 
-            components[i].onRemovedFromMicrobe(microbeEntity);
+            components[i].onRemovedFromMicrobe(microbeEntity, q, r);
         }
         
-        world.DestroyEntity(organelleEntity);
+        organelle.world.DestroyEntity(organelleEntity);
         organelleEntity = NULL_OBJECT;
         microbeEntity = NULL_OBJECT;
     }
@@ -714,6 +724,9 @@ class PlacedOrganelle{
     int q;
     int r;
     int rotation;
+
+    // Filled from the above parameters when added to a microbe
+    Float3 cartesianPosition = Float3(0, 0, 0);
 
     // Whether or not this organelle has already divided.
     bool wasSplit = false;
@@ -851,8 +864,8 @@ class PlacedOrganelle{
 
 class EditorPlacedOrganelle{
 
-    //! Which type of organelle is placed here
-    Organelle organelle;
+    //! The actual placed organelle for type checking and moving it around
+    PlacedOrganelle@ organelle;
     
     string name = "remove";
 
@@ -869,64 +882,67 @@ class EditorPlacedOrganelle{
 class OrganelleHexDrawer{
 
     // Draws the hexes and uploads the models in the editor
-    void renderOrganelles(EditorPlacedOrganelle@ data){
+    void renderOrganelles(CellStageWorld@ world, EditorPlacedOrganelle@ data){
         if(data.name == "remove")
             return;
+
+        // Wouldn't it be easier to just use normal PlacedOrganelle and just move it around
+        assert(false, "TODO: use actual PlacedOrganelles to position things");
         
-        //Getting the list hexes occupied by this organelle.
-        if(data.hexes is null){
+        // //Getting the list hexes occupied by this organelle.
+        // if(data.hexes is null){
 
-            // The list needs to be rotated //            
-            int times = data.rotation / 60;
+        //     // The list needs to be rotated //            
+        //     int times = data.rotation / 60;
 
-            //getting the hex table of the organelle rotated by the angle
-            @data.hexes = rotateHexListNTimes(organelle.getHexes(), times);
-        }
+        //     //getting the hex table of the organelle rotated by the angle
+        //     @data.hexes = rotateHexListNTimes(organelle.getHexes(), times);
+        // }
         
-        occupiedHexList = OrganelleFactory.checkSize(data);
+        // occupiedHexList = OrganelleFactory.checkSize(data);
             
-        //Used to get the average x and y values.
-        local xSum = 0;
-        local ySum = 0;
+        // //Used to get the average x and y values.
+        // float xSum = 0;
+        // float ySum = 0;
 
-        //Rendering a cytoplasm in each of those hexes.
-        //Note: each scenenode after the first one is considered a cytoplasm by the
-        // engine automatically.
-        // TODO: verify the above claims
+        // //Rendering a cytoplasm in each of those hexes.
+        // //Note: each scenenode after the first one is considered a cytoplasm by the
+        // // engine automatically.
+        // // TODO: verify the above claims
 
-        local organelleX, organelleY = axialToCartesian(data.q, data.r);
+        // Float2 organelleXY = Hex::axialToCartesian(data.q, data.r);
         
-        local i = 2;
-        for(uint listIndex = 0; listIndex < data.hexes.length(); ++listIndex){
+        // uint i = 2;
+        // for(uint listIndex = 0; listIndex < data.hexes.length(); ++listIndex){
 
-            const Hex@ hex = data.hexes[listIndex];
+        //     const Hex@ hex = data.hexes[listIndex];
             
             
+        //     Float2 hexXY = Hex::axialToCartesian(hex.q, hex.r);
             
-            local hexX, hexY = axialToCartesian(hex.q, hex.r);
-            local x = organelleX + hexX;
-            local y = organelleY + hexY;
-            local translation = Vector3(-x, -y, 0);
-            data.sceneNode[i].transform.position = translation;
-            data.sceneNode[i].transform.orientation = Quaternion.new(
-                Radian.new(Degree(data.rotation)), Vector3(0, 0, 1));
-            xSum = xSum + x;
-            ySum = ySum + y;
-            i = i + 1;
-        }
+        //     float x = organelleXY.X + hexX;
+        //     float y = organelleYY.Y + hexY;
+        //     xSum = xSum + x;
+        //     ySum = ySum + y;
+        //     i = i + 1;
+        // }
 
-        //Getting the average x and y values to render the organelle mesh in the middle.
-        local xAverage = xSum / (i - 2); // Number of occupied hexes = (i - 2).
-        local yAverage = ySum / (i - 2);
+        // //Getting the average x and y values to render the organelle mesh in the middle.
+        // local xAverage = xSum / (i - 2); // Number of occupied hexes = (i - 2).
+        // local yAverage = ySum / (i - 2);
 
-        //Rendering the organelle mesh (if it has one).
-        local mesh = organelleTable[data.name].mesh;
-        if(mesh ~= nil) {
-            data.sceneNode[1].meshName = mesh;
-            data.sceneNode[1].transform.position = Vector3(-xAverage, -yAverage, 0);
-            data.sceneNode[1].transform.orientation = Quaternion.new(
-                Radian.new(Degree(data.rotation)), Vector3(0, 0, 1));
-        }
+        // //Rendering the organelle mesh (if it has one).
+        // auto mesh = data.organelle.organelle.mesh;
+        // if(mesh ~= nil) {
+
+        //     // Create missing components to place the mesh in etc.
+        //     if(world.GetComponent_
+            
+        //     data.sceneNode[1].meshName = mesh;
+        //     data.sceneNode[1].transform.position = Vector3(-xAverage, -yAverage, 0);
+        //     data.sceneNode[1].transform.orientation = Quaternion.new(
+        //         Radian.new(Degree(data.rotation)), Vector3(0, 0, 1));
+        // }
     }
 }
 
