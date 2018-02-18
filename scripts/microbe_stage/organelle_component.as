@@ -48,7 +48,8 @@ abstract class OrganelleComponent{
     //
     // @param microbe
     //  The microbe this organelle is removed from.
-    //
+    // These aren't passed, at least not when the microbe is dying so they are now removed
+    // from here as well
     // @param q
     //  q component of the organelle relative position in the microbe,
     //  in axial coordinates (see hex.lua).
@@ -58,8 +59,7 @@ abstract class OrganelleComponent{
     //  in axial coordinates (see hex.lua).
     void
     onRemovedFromMicrobe(
-        ObjectID microbeEntity,
-        int q, int r
+        ObjectID microbeEntity
     ) {
 
     }

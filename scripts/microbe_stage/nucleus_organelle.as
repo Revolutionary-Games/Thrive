@@ -72,12 +72,11 @@ class NucleusOrganelle : OrganelleComponent{
 
     void
     onRemovedFromMicrobe(
-        ObjectID microbeEntity,
-        int q, int r
+        ObjectID microbeEntity
     ) override {
 
-        world.DestroyEntity(golgi);
-        world.DestroyEntity(ER);
+        world.QueueDestroyEntity(golgi);
+        world.QUeueDestroyEntity(ER);
         golgi = NULL_OBJECT;
         ER = NULL_OBJECT;
     }

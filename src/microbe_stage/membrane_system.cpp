@@ -139,6 +139,15 @@ bool MembraneComponent::contains(float x, float y)
     return crosses;
 }
 // ------------------------------------ //
+//! Should set the colour of the membrane once working
+void MembraneComponent::setColour(const Float4 &value){
+
+    colour = value;
+
+    // TODO: apply
+    DEBUG_BREAK;
+}
+// ------------------------------------ //
 void MembraneComponent::Update(Ogre::SceneManager* scene, Ogre::SceneNode* parentcomponentpos)
 {
     // Skip if the mesh is already created //

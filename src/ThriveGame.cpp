@@ -706,13 +706,51 @@ bool bindThriveComponentTypes(asIScriptEngine* engine){
         ANGELSCRIPT_REGISTERFAIL;
     }
 
-    
+    if(engine->RegisterObjectProperty("CompoundBagComponent", "double storageSpace",
+            asOFFSET(CompoundBagComponent, storageSpace)) < 0)
+    {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
 
+    if(engine->RegisterObjectProperty("CompoundBagComponent", "double storageSpaceOccupied",
+            asOFFSET(CompoundBagComponent, storageSpaceOccupied)) < 0)
+    {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectProperty("CompoundBagComponent", "string speciesName",
+            asOFFSET(CompoundBagComponent, speciesName)) < 0)
+    {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+    
+    // ------------------------------------ //
+    // CompoundAbsorberComponent
     if(engine->RegisterObjectType("CompoundAbsorberComponent", 0, asOBJ_REF | asOBJ_NOCOUNT)
         < 0)
     {
         ANGELSCRIPT_REGISTERFAIL;
-    }   
+    }
+
+
+    if(engine->RegisterObjectMethod("CompoundAbsorberComponent",
+            "array<CompoundId>@ getAbsorbedCompounds()",
+            asMETHOD(CompoundAbsorberComponent, getAbsorbedCompounds),
+            asCALL_THISCALL) < 0)
+    {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+
+    if(engine->RegisterObjectMethod("CompoundAbsorberComponent",
+            "float absorbedCompoundAmount(CompoundId compound)",
+            asMETHOD(CompoundAbsorberComponent, absorbedCompoundAmount),
+            asCALL_THISCALL) < 0)
+    {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+    
+    
     
     return true;
 }

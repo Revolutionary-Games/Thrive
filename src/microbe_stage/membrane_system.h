@@ -29,9 +29,8 @@ public:
 
     void Release(Ogre::SceneManager* scene);
 
-    // The colour of the membrane.
-    // still broken
-    Ogre::ColourValue colour;
+    //! Should set the colour of the membrane once working
+    void setColour(const Float4 &value);
 
     // Gets organelle positions from the .lua file.
     void sendOrganelles(double x, double y);
@@ -90,6 +89,10 @@ private:
 
     // Stores the positions of the organelles.
     std::vector<Ogre::Vector3> organellePositions;
+
+    // The colour of the membrane.
+    // still broken
+    Ogre::ColourValue colour;
 
     // The length in pixels of a side of the square that bounds the membrane.
     // Half the side length of the original square that is compressed to make the membrane.

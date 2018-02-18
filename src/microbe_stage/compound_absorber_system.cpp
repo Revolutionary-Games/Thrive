@@ -26,6 +26,11 @@
 
 #include "generated/cell_stage_world.h"
 
+#include <Script/ScriptConversionHelpers.h>
+#include <add_on/scriptarray/scriptarray.h>
+
+#include <boost/range/adaptor/map.hpp>
+
 // #include <iostream>
 
 using namespace thrive;
@@ -154,6 +159,16 @@ CompoundAbsorberComponent::setCanAbsorbCompound(
     else {
         m_canAbsorbCompound.erase(id);
     }
+}
+
+CScriptArray*
+CompoundAbsorberComponent::getAbsorbedCompounds()
+{
+    // Method taken from Leviathan::ConvertVectorToASArray
+    return Leviathan::ConvertIteratorToASArray(
+        std::begin(m_absorbedCompounds | boost::adaptors::map_keys),
+        std::end(m_absorbedCompounds | boost::adaptors::map_keys),
+        Leviathan::ScriptExecutor::Get()->GetASEngine());
 }
 
 ////////////////////////////////////////////////////////////////////////////////

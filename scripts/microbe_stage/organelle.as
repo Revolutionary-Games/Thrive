@@ -622,7 +622,7 @@ class PlacedOrganelle{
 
             LOG_ERROR("onAddedToMicrobe called before this PlacedOrganelle was " +
                 "removed from previous microbe");
-            onRemovedFromMicrobe(microbeEntity, -1, -1);
+            onRemovedFromMicrobe(microbeEntity);
         }
 
         assert(organelle.world is world, "trying to add organelle to a microbe "
@@ -680,14 +680,14 @@ class PlacedOrganelle{
     //
     // @param microbe
     //  The organelle's previous owner
-    void onRemovedFromMicrobe(ObjectID microbe, int q, int r){
+    void onRemovedFromMicrobe(ObjectID microbe){
         //iterating on each OrganelleComponent
         for(uint i = 0; i < components.length(); ++i){
 
-            components[i].onRemovedFromMicrobe(microbeEntity, q, r);
+            components[i].onRemovedFromMicrobe(microbeEntity /*, q, r*/);
         }
         
-        organelle.world.DestroyEntity(organelleEntity);
+        organelle.world.QueueDestroyEntity(organelleEntity);
         organelleEntity = NULL_OBJECT;
         microbeEntity = NULL_OBJECT;
     }

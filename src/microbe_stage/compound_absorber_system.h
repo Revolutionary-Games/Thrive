@@ -24,6 +24,8 @@
 // #include <OgreVector3.h>
 // #include <unordered_set>
 
+class CScriptArray;
+
 namespace thrive {
 
 class CellStageWorld;
@@ -164,6 +166,9 @@ public:
         bool canAbsorb
     );
 
+    //! \brief Wrapper for scripts to get all the absorbed compounds
+    //! \todo It would probably be better to give, size and then a get method
+    CScriptArray* getAbsorbedCompounds();
 };
 
 
