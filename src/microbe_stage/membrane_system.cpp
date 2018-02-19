@@ -279,6 +279,10 @@ void MembraneComponent::Update(Ogre::SceneManager* scene, Ogre::SceneNode* paren
 
         const Ogre::Vector2 uv(a+0.5,b+0.5);
 
+		const Ogre::Vector2 center(0.5, 0.5);
+		const double currentRadians = 2.0 * 3.1416 * i / end;
+		const double nextRadians = 2.0 * 3.1416 * (i + 1) / end;
+
         // y and z coordinates are swapped to match the Ogre up direction
 
         // Bottom (or top?) half first triangle
@@ -295,7 +299,7 @@ void MembraneComponent::Update(Ogre::SceneManager* scene, Ogre::SceneNode* paren
         // Second triangle
         meshVertices[writeIndex++] = {Ogre::Vector3(vertices2D[i%end].x,
                 vertices2D[i%end].z+height/2,
-                vertices2D[i%end].y), uv};
+                vertices2D[i%end].y), };
         
         meshVertices[writeIndex++] = {Ogre::Vector3(vertices2D[(i+1)%end].x,
                 vertices2D[(i+1)%end].z+height/2,
@@ -307,15 +311,16 @@ void MembraneComponent::Update(Ogre::SceneManager* scene, Ogre::SceneNode* paren
 
         // This was originally a second loop
         // Top half first triangle
+		// This seems to be the only one that is actually drawn to the screen, at least with the current test membrane.
         meshVertices[writeIndex++] = {Ogre::Vector3(vertices2D[i%end].x,
                 vertices2D[i%end].z+height/2,
-                vertices2D[i%end].y), uv};
+                vertices2D[i%end].y), center + Ogre::Vector2(cos(currentRadians), sin(currentRadians)) / 2 };
         
-        meshVertices[writeIndex++] = {Ogre::Vector3(0,height/2, 0), uv};
+        meshVertices[writeIndex++] = {Ogre::Vector3(0,height/2, 0), center };
         
         meshVertices[writeIndex++] = {Ogre::Vector3(vertices2D[(i+1)%end].x,
                 vertices2D[(i+1)%end].z+height/2,
-                vertices2D[(i+1)%end].y), uv};
+                vertices2D[(i+1)%end].y), center + Ogre::Vector2(cos(nextRadians), sin(nextRadians)) / 2};
 
         // Second triangle
         meshVertices[writeIndex++] = {Ogre::Vector3(vertices2D[i%end].x,
