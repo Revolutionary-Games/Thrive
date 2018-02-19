@@ -9,6 +9,7 @@
 
 #include "microbe_stage/simulation_parameters.h"
 #include "microbe_stage/biome_controller.h"
+#include "microbe_stage/player_microbe_control.h"
 
 #include "general/locked_map.h"
 
@@ -44,7 +45,8 @@ public:
         ThriveGame& game
     ) : m_game(game),
         m_playerData("player"),
-        m_menuKeyPresses(std::make_shared<MainMenuKeyPressListener>())
+        m_menuKeyPresses(std::make_shared<MainMenuKeyPressListener>()),
+        m_cellStageKeys(std::make_shared<PlayerMicrobeControl>())
     {
     }
 
@@ -56,6 +58,7 @@ public:
     Leviathan::GameModule::pointer m_MicrobeScripts;
 
     std::shared_ptr<MainMenuKeyPressListener> m_menuKeyPresses;
+    std::shared_ptr<PlayerMicrobeControl> m_cellStageKeys;
 };
 
 // ------------------------------------ //
@@ -146,6 +149,11 @@ void ThriveGame::startNewGame(){
     LEVIATHAN_ASSERT(m_cellStage, "Cell stage world creation failed");
     
     window1->LinkObjects(m_cellStage);
+
+    // Set the right input handlers active //
+    m_impl->m_menuKeyPresses->setEnabled(false);
+    m_impl->m_cellStageKeys->setEnabled(true);
+    
 
     // Clear world //
     m_cellStage->ClearEntities();
@@ -372,7 +380,11 @@ void ThriveGame::CustomizeEnginePostLoad(){
     Leviathan::GraphicalInputEntity* window1 = Engine::GetEngine()->GetWindowEntity();
 
     // Register custom listener for detecting keypresses for skipping the intro video
+    // TODO: these need to be disabled when not used
     window1->GetInputController()->LinkReceiver(m_impl->m_menuKeyPresses);
+
+    // Register the player input listener
+    window1->GetInputController()->LinkReceiver(m_impl->m_cellStageKeys);
 
     Leviathan::GUI::GuiManager* GuiManagerAccess = window1->GetGui();
 

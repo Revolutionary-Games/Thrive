@@ -136,6 +136,8 @@ set(GROUP_MICROBE_STAGE
   "microbe_stage/species_component.h"
   "microbe_stage/species_name_controller.cpp"
   "microbe_stage/species_name_controller.h"
+  "microbe_stage/player_microbe_control.h"
+  "microbe_stage/player_microbe_control.cpp"
   )
 
 set_source_files_properties("microbe_stage/generate_cell_stage_world.rb"
