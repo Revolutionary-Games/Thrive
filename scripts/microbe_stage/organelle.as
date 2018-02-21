@@ -220,7 +220,7 @@ class Organelle{
     // Prevent modification
     string name {
 
-        get {
+        get const{
             return _name;
         }
     }
@@ -383,6 +383,11 @@ class PlacedOrganelle{
         if(compoundBin < ORGANELLE_HEALTH::CAN_DIVIDE)
             return ORGANELLE_HEALTH::ALIVE;
         return ORGANELLE_HEALTH::CAN_DIVIDE;
+    }
+
+    //! \returns compoundBin
+    float getCompoundBin(){
+        return compoundBin;
     }
 
     // Gives organelles more compounds

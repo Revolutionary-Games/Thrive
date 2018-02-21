@@ -671,6 +671,22 @@ bool bindThriveComponentTypes(asIScriptEngine* engine){
         ANGELSCRIPT_REGISTERFAIL;
     }
 
+    if(engine->RegisterObjectMethod("MembraneComponent",
+            "void setColour(const Float4 &in colour)",
+            asMETHOD(MembraneComponent, setColour),
+            asCALL_THISCALL) < 0)
+    {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectMethod("MembraneComponent",
+            "void clear()",
+            asMETHOD(MembraneComponent, clear),
+            asCALL_THISCALL) < 0)
+    {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
     // ------------------------------------ //
 
     if(engine->RegisterObjectType("SpeciesComponent", 0, asOBJ_REF | asOBJ_NOCOUNT) < 0){
@@ -757,6 +773,14 @@ bool bindThriveComponentTypes(asIScriptEngine* engine){
     if(engine->RegisterObjectMethod("CompoundAbsorberComponent",
             "float absorbedCompoundAmount(CompoundId compound)",
             asMETHOD(CompoundAbsorberComponent, absorbedCompoundAmount),
+            asCALL_THISCALL) < 0)
+    {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectMethod("CompoundAbsorberComponent",
+            "void setAbsorbtionCapacity(double capacity)",
+            asMETHOD(CompoundAbsorberComponent, setAbsorbtionCapacity),
             asCALL_THISCALL) < 0)
     {
         ANGELSCRIPT_REGISTERFAIL;

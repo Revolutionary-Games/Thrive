@@ -152,6 +152,9 @@ class MicrobeComponent{
     
 
     string speciesName;
+    // TODO: initialize
+    Float4 speciesColour;
+    
     uint hitpoints;
     uint maxHitpoints = 0;
     bool dead = false;
@@ -186,6 +189,11 @@ class MicrobeComponent{
     uint flashDuration = 0;
     Float4 flashColour = Float4(0, 0, 0, 0);
     uint reproductionStage = 0;
+
+
+    // New state variables that MicrobeSystem also uses
+    bool engulfMode = false;
+    bool in_editor = false;
 
     // ObjectID microbe;
     ObjectID microbeEntity = NULL_OBJECT;
@@ -310,7 +318,14 @@ class MicrobeSystem{
         MembraneComponent@ membraneComponent = components.fifth;
         RenderNode@ sceneNodeComponent = components.third;
         CompoundAbsorberComponent@ compoundAbsorberComponent = components.first;
-        CompoundBagComponent@ compoundBag = components.sixth;;
+        CompoundBagComponent@ compoundBag = components.sixth;
+
+        if(!microbeComponent.initialized){
+
+            LOG_INFO("Initializing microbe: " + microbeEntity);
+            initializeMicrobe(microbeEntity, microbeComponent, compoundAbsorberComponent,
+                compoundBag, sceneNodeComponent);
+        }
 
         if(microbeComponent.dead){
             microbeComponent.deathTimer = microbeComponent.deathTimer - logicTime;
@@ -368,13 +383,13 @@ class MicrobeSystem{
                     membraneComponent.setColour(microbeComponent.flashColour);
                 } else {
                     // Restore colour
-                    membraneComponent.setColour(speciesComponent.colour);
+                    MicrobeOperations::applyMembraneColour(world, microbeEntity);
                 }
 
                 if(microbeComponent.flashDuration <= 0){
                     microbeComponent.flashDuration = 0;
                     // Restore colour
-                    membraneComponent.setColour(speciesComponent.colour);
+                    MicrobeOperations::applyMembraneColour(world, microbeEntity);
                 }
             }
         
@@ -390,9 +405,9 @@ class MicrobeSystem{
                     microbeComponent.compoundCollectionTimer -
                     EXCESS_COMPOUND_COLLECTION_INTERVAL;
 
-                MicrobeSystem.purgeCompounds(microbeEntity);
+                MicrobeOperations::purgeCompounds(world, microbeEntity);
 
-                MicrobeSystem.atpDamage(microbeEntity);
+                atpDamage(microbeEntity);
             }
         
             // First organelle run: updates all the organelles and heals the broken ones.
@@ -406,12 +421,12 @@ class MicrobeSystem{
                     // If the organelle is hurt.
                     if(organelle.getCompoundBin() < 1.0){
                         // Give the organelle access to the compound bag to take some compound.
-                        organelle.growOrganelle(world.GetComponent_CompoundBagComponent(microbeEntity,
-                                CompoundBagComponent), logicTime);
+                        organelle.growOrganelle(
+                            world.GetComponent_CompoundBagComponent(microbeEntity), logicTime);
                         
                         // An organelle was damaged and we tried to
-                        // heal it, so out health might be different.
-                        MicrobeSystem.calculateHealthFromOrganelles(microbeEntity);
+                        // heal it, so our health might be different.
+                        MicrobeOperations::calculateHealthFromOrganelles(world, microbeEntity);
                     }
                 }
             } else {
@@ -427,7 +442,7 @@ class MicrobeSystem{
                     organelle.update(logicTime);
         
                     // We are in G1 phase of the cell cycle, duplicate all organelles.
-                    if(organelle.name != "nucleus" &&
+                    if(organelle.organelle.name != "nucleus" &&
                         microbeComponent.reproductionStage == 0)
                     {
                         // If the organelle is not split, give it some
@@ -435,24 +450,30 @@ class MicrobeSystem{
                         if(organelle.getCompoundBin() < 2.0 && !organelle.wasSplit){
                             // Give the organelle access to the
                             // compound bag to take some compound.
-                            organelle.growOrganelle(world.GetComponent_CompoundBagComponent(microbeEntity,
-                                    CompoundBagComponent), logicTime);
+                            organelle.growOrganelle(
+                                world.GetComponent_CompoundBagComponent(microbeEntity),
+                                logicTime);
+                            
                             reproductionStageComplete = false;
+                            
                             // if the organelle was split and has a
                             // bin less 1, it must have been damaged.
                         } else if(organelle.getCompoundBin() < 1.0 && organelle.wasSplit){
                             // Give the organelle access to the
                             // compound bag to take some compound.
-                            organelle.growOrganelle(world.GetComponent_CompoundBagComponent(microbeEntity,
-                                    CompoundBagComponent), logicTime);
+                            organelle.growOrganelle(
+                                world.GetComponent_CompoundBagComponent(microbeEntity),
+                                logicTime);
+                            
                             // If the organelle is twice its size...
                         } else if(organelle.getCompoundBin() >= 2.0){
+                            
                             //Queue this organelle for splitting after the loop.
                             //(To avoid "cutting down the branch we're sitting on").
                             organellesToAdd.insertLast(organelle);
                         }
                         // In the S phase, the nucleus grows as chromatin is duplicated.
-                    } else if (organelle.name == "nucleus" &&
+                    } else if (organelle.organelle.name == "nucleus" &&
                         microbeComponent.reproductionStage == 1)
                     {
                         // If the nucleus hasn't finished replicating
@@ -460,8 +481,9 @@ class MicrobeSystem{
                         if(organelle.getCompoundBin() < 2.0){
                             // Give the organelle access to the compound
                             // back to take some compound.
-                            organelle.growOrganelle(world.GetComponent_CompoundBagComponent(microbeEntity,
-                                    CompoundBagComponent), logicTime);
+                            organelle.growOrganelle(
+                                world.GetComponent_CompoundBagComponent(microbeEntity),
+                                logicTime);
                             reproductionStageComplete = false;
                         }
                     }
@@ -469,16 +491,22 @@ class MicrobeSystem{
                                 
                 //Splitting the queued organelles.
                 for(uint i = 0; i < organellesToAdd.length(); ++i){
+                    
+                    PlacedOrganelle@ organelle = organellesToAdd[i];
+                    
                     LOG_INFO("ready to split " + organelle.organelle.name);
+
                     // Mark this organelle as done and return to its normal size.
                     organelle.reset();
                     organelle.wasSplit = true;
                     // Create a second organelle.
-                    auto organelle2 = MicrobeSystem.splitOrganelle(microbeEntity, organelle);
+                    auto organelle2 = splitOrganelle(microbeEntity, organelle);
                     organelle2.wasSplit = true;
                     organelle2.isDuplicate = true;
-                    organelle2.sisterOrganelle = organelle;
-                    
+                    @organelle2.sisterOrganelle = organelle;
+                }
+
+                if(organellesToAdd.length() > 0){
                     // Redo the cell membrane.
                     membraneComponent.clear();
                 }
@@ -491,7 +519,7 @@ class MicrobeSystem{
                 if(microbeComponent.reproductionStage == 2 ||
                     microbeComponent.reproductionStage == 3)
                 {
-                    MicrobeSystem.readyToReproduce(microbeEntity);
+                    readyToReproduce(microbeEntity);
                 }
             }
             
@@ -499,104 +527,93 @@ class MicrobeSystem{
                 // Drain atp and if(we run out){ disable engulfmode
                 auto cost = ENGULFING_ATP_COST_SECOND/1000*logicTime;
                 
-                if(MicrobeSystem.takeCompound(microbeEntity,
-                        CompoundRegistry.getCompoundId("atp"), cost) < cost - 0.001)
+                if(MicrobeOperations::takeCompound(world, microbeEntity,
+                        SimulationParameters::compoundRegistry().getTypeId("atp"), cost) <
+                    cost - 0.001)
                 {
-                    LOG_INFO("too little atp, disabling - 749");
-                    MicrobeSystem.toggleEngulfMode(microbeEntity);
+                    LOG_INFO("too little atp, disabling - engulfing");
+                    MicrobeOperations::toggleEngulfMode(microbeEntity);
                 }
                 // Flash the membrane blue.
-                MicrobeSystem.flashMembraneColour(microbeEntity, 3000,
-                    ColourValue(0.2,0.5,1.0,0.5));
+                MicrobeOperations::flashMembraneColour(world, microbeEntity, 3000,
+                    Float4(0.2,0.5,1.0,0.5));
             }
             
             if(microbeComponent.isBeingEngulfed && microbeComponent.wasBeingEngulfed){
-                MicrobeSystem.damage(microbeEntity, logicTime * 0.000025  *
-                    microbeComponent.maxHitpoints, "isBeingEngulfed - Microbe.update()s");
+                MicrobeOperations::damage(world, microbeEntity, int(logicTime * 0.000025  *
+                        microbeComponent.maxHitpoints), "isBeingEngulfed - Microbe.update()s");
                 // Else If we were but are no longer, being engulfed
             } else if(microbeComponent.wasBeingEngulfed){
-                MicrobeSystem.removeEngulfedEffect(microbeEntity);
+                removeEngulfedEffect(microbeEntity);
             }
             // Used to detect when engulfing stops
             microbeComponent.isBeingEngulfed = false;
-            compoundAbsorberComponent.setAbsorbtionCapacity(math.min(microbeComponent.capacity -
+            compoundAbsorberComponent.setAbsorbtionCapacity(min(microbeComponent.capacity -
                     microbeComponent.stored + 10, microbeComponent.remainingBandwidth));
         }
     }
     
-    // Microbe entity initializer
-    //
-    // Requires all necessary components (see MICROBE_COMPONENTS) to be present in
-    // the entity.
-    //
-    // @param entity
-    // The entity this microbe wraps
-    void initializeMicrobe(ObjectID microbeEntity, bool in_editor){
-        // Checking if the entity exists.
-        // Would need to ask the gameworld that microbeEntity is an entity
-        // assert(microbeEntity !is null)
-                                        
-        // Checking if all the components are there.
-        for(key, ctype in pairs(MICROBE_COMPONENTS)){
-            auto component = world.GetComponent_ctype(microbeEntity, ctype);
-            assert(component !is null, "Can't create microbe from this entity, "
-                "it's missing " + key);
-        }
-                                    
-        auto microbeComponent = world.GetComponent_MicrobeComponent(microbeEntity, MicrobeComponent);
-        auto compoundAbsorberComponent = world.GetComponent_CompoundAbsorberComponent(microbeEntity,
-            CompoundAbsorberComponent);
-        auto compoundBag = world.GetComponent_CompoundBagComponent(microbeEntity, CompoundBagComponent);
-        auto rigidBodyComponent = world.GetComponent_RigidBodyComponent(microbeEntity, RigidBodyComponent);
-        auto sceneNodeComponent = world.GetComponent_OgreSceneNodeComponent(microbeEntity, OgreSceneNodeComponent);
+    // Initializes microbes the first time this system processes them
+    private void initializeMicrobe(ObjectID microbeEntity,
+        MicrobeComponent@ microbeComponent,
+        CompoundAbsorberComponent@ compoundAbsorberComponent,
+        CompoundBagComponent@ compoundBag,
+        RenderNode@ sceneNodeComponent
+    ){
+        auto rigidBodyComponent = world.GetComponent_Physics(microbeEntity);
+
+        assert(microbeComponent.organelles.length() > 0, "Microbe has no "
+            "organelles in initializeMicrobe");
 
         // Allowing the microbe to absorb all the compounds.
-        for(_, compound in pairs(CompoundRegistry.getCompoundList())){
-            compoundAbsorberComponent.setCanAbsorbCompound(compound, true);
-        }
-                                    
-        if(!microbeComponent.initialized){
-            // TODO: cache for performance
-            auto compoundShape = CompoundShape.castFrom(rigidBodyComponent.properties.shape);
-            assert(compoundShape !is null);
-            compoundShape.clear();
-            rigidBodyComponent.properties.mass = 0.0;
+        setupAbsorberForAllCompounds(compoundAbsorberComponent);
+        
+        auto compoundShape = CompoundShape.castFrom(rigidBodyComponent.properties.shape);
 
-            // Organelles
-            for(s, organelle in pairs(microbeComponent.organelles)){
-                organelle.onAddedToMicrobe(microbeEntity, organelle.position.q,
-                    organelle.position.r, organelle.rotation);
-                organelle.reset();
-                rigidBodyComponent.properties.mass = rigidBodyComponent.properties.mass +
-                    organelle.mass;
-            }
-                                        
-            // Membrane
-            sceneNodeComponent.meshName = "membrane_" + microbeComponent.speciesName;
-            rigidBodyComponent.properties.touch();
-            microbeComponent.initialized = true;
-                                            
-            if(in_editor != true){
-                assert(microbeComponent.speciesName);
-                
-                auto processor = world.GetComponent_speciesName(microbeComponent.speciesName,
-                    g_luaEngine.currentGameState,
-                    ProcessorComponent);
-                
-                if(processor is null){
-                    LOG_INFO("Microbe species '" + microbeComponent.speciesName +
-                        "' doesn't exist");
-                    assert(processor);
-                }
-                                                
-                assert(microbeComponent.speciesName != "");
-                compoundBag.setProcessor(processor, microbeComponent.speciesName);
-                                                
-                SpeciesSystem.template(microbeEntity,
-                    MicrobeSystem.getSpeciesComponent(microbeEntity));
-            }
+        rigidBodyComponent.DestroyPhysicsState();
+        
+        
+        assert(compoundShape !is null);
+        compoundShape.clear();
+
+        float mass = 0.f;
+
+        // Organelles
+        for(s, organelle in pairs(microbeComponent.organelles)){
+            
+            organelle.onAddedToMicrobe(microbeEntity, organelle.position.q,
+                organelle.position.r, organelle.rotation);
+            organelle.reset();
+            
+            mass += organelle.organelle.mass;
         }
-        updateCompoundAbsorber(microbeEntity);
+
+        rigidBodyComponent.SetMass(mass);
+                                        
+        // Membrane
+        sceneNodeComponent.meshName = "membrane_" + microbeComponent.speciesName;
+        rigidBodyComponent.properties.touch();
+        microbeComponent.initialized = true;
+        
+        if(microbeComponent.in_editor != true){
+            assert(microbeComponent.speciesName);
+                
+            auto processor = world.GetComponent_speciesName(microbeComponent.speciesName,
+                g_luaEngine.currentGameState,
+                ProcessorComponent);
+                
+            if(processor is null){
+                LOG_INFO("Microbe species '" + microbeComponent.speciesName +
+                    "' doesn't exist");
+                assert(processor);
+            }
+                                                
+            assert(microbeComponent.speciesName != "");
+            compoundBag.setProcessor(processor, microbeComponent.speciesName);
+                                                
+            applyTemplate(microbeEntity, MicrobeOperations::getSpeciesComponent(
+                    world, microbeEntity));
+        }
     }
     // ------------------------------------ //
     // Microbe operations only done by this class
@@ -706,22 +723,6 @@ class MicrobeSystem{
     //     return amount / compoundVolume;
     // }
 
-    // void calculateHealthFromOrganelles(ObjectID microbeEntity){
-    //     auto microbeComponent = world.GetComponent_MicrobeComponent(microbeEntity, MicrobeComponent);
-    //     microbeComponent.hitpoints = 0;
-    //     microbeComponent.maxHitpoints = 0;
-    //     for(_, organelle in pairs(microbeComponent.organelles)){
-
-    //         if(organelle.getCompoundBin() < 1.0){
-    //             microbeComponent.hitpoints += organelle.getCompoundBin() *
-    //                 MICROBE_HITPOINTS_PER_ORGANELLE;
-    //         } else {
-    //             microbeComponent.hitpoints += MICROBE_HITPOINTS_PER_ORGANELLE;
-    //         }
-            
-    //         microbeComponent.maxHitpoints += MICROBE_HITPOINTS_PER_ORGANELLE;
-    //     }
-    // }
 
     // // Sets the color of the microbe's membrane.
     // void setMembraneColour(ObjectID microbeEntity, Float4 colour){
@@ -729,101 +730,34 @@ class MicrobeSystem{
     //     membraneComponent.setColour(colour);
     // }
 
-    // void flashMembraneColour(ObjectID microbeEntity, uint duration, Float4 colour){
-    //     auto microbeComponent = world.GetComponent_MicrobeComponent(microbeEntity, MicrobeComponent);
-    //     if(microbeComponent.flashDuration <= 0.0f){
-    //         microbeComponent.flashColour = colour;
-    //         microbeComponent.flashDuration = duration;
-    //     }
-    // }
 
 
 
-    // void purgeCompounds(ObjectID microbeEntity){
-    //     auto microbeComponent = world.GetComponent_MicrobeComponent(microbeEntity, MicrobeComponent);
-    //     auto compoundBag = world.GetComponent_CompoundBagComponent(microbeEntity, CompoundBagComponent);
 
-    //     auto compoundAmountToDump = microbeComponent.stored - microbeComponent.capacity;
 
-    //     // Uncomment to print compound economic information to the console.
-    //     if(microbeComponent.isPlayerMicrobe){
-    //         for(compound, _ in pairs(compoundTable)){
-    //             compoundId = CompoundRegistry.getCompoundId(compound);
-    //             print(compound, compoundBag.getPrice(compoundId),
-    //                 compoundBag.getDemand(compoundId));
-    //         }
-    //     }
-    //     print("");
+    void removeEngulfedEffect(ObjectID microbeEntity){
+        auto microbeComponent = world.GetComponent_MicrobeComponent(microbeEntity, MicrobeComponent);
 
-    //     // Dumping all the useless compounds (with price = 0).
-    //     for(_, compoundId in pairs(CompoundRegistry.getCompoundList())){
-    //         auto price = compoundBag.getPrice(compoundId);
-    //         if(price <= 0){
-    //             auto amountToEject = MicrobeSystem.getCompoundAmount(microbeEntity,
-    //                 compoundId);
-                
-    //             if(amount > 0){
-    //                 amountToEject = MicrobeSystem.takeCompound(microbeEntity, compoundId,
-    //                     amountToEject);
-    //             }
-    //             if(amount > 0){
-    //                 MicrobeSystem.ejectCompound(microbeEntity, compoundId, amountToEject);
-    //             }
-    //         }
-    //     }
+        microbeComponent.movementFactor = microbeComponent.movementFactor *
+            ENGULFED_MOVEMENT_DIVISION;
+        microbeComponent.wasBeingEngulfed = false;
 
-    //     if(compoundAmountToDump > 0){
-    //         //Calculating each compound price to dump proportionally.
-    //         auto compoundPrices = {};
-    //         auto priceSum = 0;
-    //         for(_, compoundId in pairs(CompoundRegistry.getCompoundList())){
-    //             auto amount = MicrobeSystem.getCompoundAmount(microbeEntity, compoundId);
+        auto hostileMicrobeComponent = world.GetComponent_hostileEngulfer(microbeComponent.hostileEngulfer,
+            MicrobeComponent);
+        if(hostileMicrobeComponent !is null){
+            hostileMicrobeComponent.isCurrentlyEngulfing = false;
+        }
 
-    //             if(amount > 0){
-    //                 auto price = compoundBag.getPrice(compoundId);
-    //                 compoundPrices[compoundId] = price;
-    //                 priceSum = priceSum + amount / price;
-    //             }
-    //         }
+        auto hostileRigidBodyComponent = world.GetComponent_hostileEngulfer(microbeComponent.hostileEngulfer,
+            RigidBodyComponent);
 
-    //         //Dumping each compound according to it's price.
-    //         for(compoundId, price in pairs(compoundPrices)){
-    //             auto amountToEject = compoundAmountToDump * (MicrobeSystem.getCompoundAmount(
-    //                     microbeEntity, compoundId) / price) / priceSum;
-    //             if(amount > 0){ 
-    //                 amountToEject = MicrobeSystem.takeCompound(microbeEntity,
-    //                     compoundId, amountToEject);
-    //             }
-    //             if(amount > 0){
-    //                 MicrobeSystem.ejectCompound(microbeEntity, compoundId, amountToEject);
-    //             }
-    //         }
-    //     }
-    // }
-
-    // void removeEngulfedEffect(ObjectID microbeEntity){
-    //     auto microbeComponent = world.GetComponent_MicrobeComponent(microbeEntity, MicrobeComponent);
-
-    //     microbeComponent.movementFactor = microbeComponent.movementFactor *
-    //         ENGULFED_MOVEMENT_DIVISION;
-    //     microbeComponent.wasBeingEngulfed = false;
-
-    //     auto hostileMicrobeComponent = world.GetComponent_hostileEngulfer(microbeComponent.hostileEngulfer,
-    //         MicrobeComponent);
-    //     if(hostileMicrobeComponent !is null){
-    //         hostileMicrobeComponent.isCurrentlyEngulfing = false;
-    //     }
-
-    //     auto hostileRigidBodyComponent = world.GetComponent_hostileEngulfer(microbeComponent.hostileEngulfer,
-    //         RigidBodyComponent);
-
-    //     // The component is null sometimes, probably due to despawning.
-    //     if(hostileRigidBodyComponent !is null){
-    //         hostileRigidBodyComponent.reenableAllCollisions();
-    //     }
-    //     // Causes crash because sound was already stopped.
-    //     //microbeComponent.hostileEngulfer.soundSource.stopSound("microbe-engulfment")
-    // }
+        // The component is null sometimes, probably due to despawning.
+        if(hostileRigidBodyComponent !is null){
+            hostileRigidBodyComponent.reenableAllCollisions();
+        }
+        // Causes crash because sound was already stopped.
+        //microbeComponent.hostileEngulfer.soundSource.stopSound("microbe-engulfment")
+    }
 
     // // Adds a new organelle
     // //
@@ -918,65 +852,45 @@ class MicrobeSystem{
     //     return touching;
     // }
 
-    // PlacedOrganelle@ splitOrganelle(ObjectID microbeEntity, PlacedOrganelle@ organelle){
-    //     auto q = organelle.position.q;
-    //     auto r = organelle.position.r;
+    PlacedOrganelle@ splitOrganelle(ObjectID microbeEntity, PlacedOrganelle@ organelle){
+        auto q = organelle.position.q;
+        auto r = organelle.position.r;
 
-    //     //Spiral search for space for the organelle
-    //     auto radius = 1;
-    //     while(true){
-    //         //Moves into the ring of radius "radius" and center the old organelle
-    //         q = q + HEX_NEIGHBOUR_OFFSET[HEX_SIDE.BOTTOM_LEFT][1];
-    //         r = r + HEX_NEIGHBOUR_OFFSET[HEX_SIDE.BOTTOM_LEFT][2];
+        //Spiral search for space for the organelle
+        auto radius = 1;
+        while(true){
+            //Moves into the ring of radius "radius" and center the old organelle
+            q = q + HEX_NEIGHBOUR_OFFSET[HEX_SIDE.BOTTOM_LEFT][1];
+            r = r + HEX_NEIGHBOUR_OFFSET[HEX_SIDE.BOTTOM_LEFT][2];
 
-    //         //Iterates in the ring
-    //         for(side = 1, 6){ //necesary due to lua not ordering the tables.
-    //             auto offset = HEX_NEIGHBOUR_OFFSET[side];
-    //             //Moves "radius" times into each direction
-    //             for(i = 1, radius){
-    //                 q = q + offset[1];
-    //                 r = r + offset[2];
+            //Iterates in the ring
+            for(side = 1, 6){ //necesary due to lua not ordering the tables.
+                auto offset = HEX_NEIGHBOUR_OFFSET[side];
+                //Moves "radius" times into each direction
+                for(i = 1, radius){
+                    q = q + offset[1];
+                    r = r + offset[2];
 
-    //                 //Checks every possible rotation value.
-    //                 for(j = 0, 5){
-    //                     auto rotation = 360 * j / 6;
-    //                     auto data = {["name"]=organelle.name, ["q"]=q, ["r"]=r,
-    //                                  ["rotation"]=i*60};
-    //                     auto newOrganelle = OrganelleFactory.makeOrganelle(data);
+                    //Checks every possible rotation value.
+                    for(j = 0, 5){
+                        auto rotation = 360 * j / 6;
+                        auto data = {["name"]=organelle.name, ["q"]=q, ["r"]=r,
+                                     ["rotation"]=i*60};
+                        auto newOrganelle = OrganelleFactory.makeOrganelle(data);
 
-    //                     if(MicrobeSystem.validPlacement(microbeEntity, newOrganelle, q, r)){
-    //                         print("placed " .. organelle.name .. " at " .. q .. " " .. r);
-    //                         MicrobeSystem.addOrganelle(microbeEntity, q, r, i * 60, newOrganelle);
-    //                         return newOrganelle;
-    //                     }
-    //                 }
-    //             }
-    //         }
+                        if(MicrobeSystem.validPlacement(microbeEntity, newOrganelle, q, r)){
+                            LOG_INFO("placed " + organelle.name + " at " + q + " " + r);
+                            MicrobeSystem.addOrganelle(microbeEntity, q, r, i * 60, newOrganelle);
+                            return newOrganelle;
+                        }
+                    }
+                }
+            }
 
-    //         radius = radius + 1;
-    //     }
-    // }
+            radius = radius + 1;
+        }
+    }
 
-    // // Disables or enabled engulfmode for a microbe, allowing or
-    // // disallowed it to absorb other microbes
-    // void toggleEngulfMode(ObjectID microbeEntity){
-    //     auto microbeComponent = world.GetComponent_MicrobeComponent(microbeEntity, MicrobeComponent);
-    //     auto rigidBodyComponent = world.GetComponent_RigidBodyComponent(microbeEntity, RigidBodyComponent);
-    //     auto soundSourceComponent = world.GetComponent_SoundSourceComponent(microbeEntity, SoundSourceComponent);
-
-    //     if(microbeComponent.engulfMode){
-    //         microbeComponent.movementFactor = microbeComponent.movementFactor *
-    //             ENGULFING_MOVEMENT_DIVISION;
-    //         soundSourceComponent.stopSound("microbe-engulfment"); // Possibly comment out.
-    //             // If version > 0.3.2 delete. //> We're way past 0.3.2, do we still need this?
-    //         rigidBodyComponent.reenableAllCollisions();
-    //     } else {
-    //         microbeComponent.movementFactor = microbeComponent.movementFactor /
-    //             ENGULFING_MOVEMENT_DIVISION;
-    //     }
-
-    //     microbeComponent.engulfMode = !microbeComponent.engulfMode;
-    // }
 
     // // Kills the microbe, releasing stored compounds into the enviroment
     // void kill(ObjectID microbeEntity){
@@ -1056,66 +970,25 @@ class MicrobeSystem{
     //     microbeSceneNode.visible = false;
     // }
 
-    // // Damages the microbe, killing it if its hitpoints drop low enough
-    // //
-    // // @param amount
-    // //  amount of hitpoints to substract
-    // void damage(ObjectID microbeEntity, uint amount, const string &in damageType){
-    //     if(damageType == ""){
-    //         assert(false, "Damage type is null");
-    //     }
 
-    //     if(amount < 0){
-    //         assert(false, "Can't deal negative damage. Use MicrobeSystem.heal instead");
-    //     }
 
-    //     auto microbeComponent = world.GetComponent_MicrobeComponent(microbeEntity, MicrobeComponent);
-    //     auto soundSourceComponent = world.GetComponent_SoundSourceComponent(microbeEntity, SoundSourceComponent);
-    
-    //     if(damageType == "toxin"){
-    //         soundSourceComponent.playSound("microbe-toxin-damage");
-    //     }
-    
-    //     // Choose a random organelle or membrane to damage.
-    //     // TODO: CHANGE TO USE AGENT CODES FOR DAMAGE.
-    //     auto rand = math.random(1, microbeComponent.maxHitpoints /
-    //         MICROBE_HITPOINTS_PER_ORGANELLE);
-    //     auto i = 1;
-    //     for(_, organelle in pairs(microbeComponent.organelles)){
-    //         // If this is the organelle we have chosen...
-    //         if(i == rand){
-    //             // Deplete its health/compoundBin.
-    //             organelle.damageOrganelle(amount);
-    //         }
-    //         i = i + 1;
-    //     }
-    
-    //     // Find out the amount of health the microbe has.
-    //     MicrobeSystem.calculateHealthFromOrganelles(microbeEntity);
-        
-    //     if(microbeComponent.hitpoints <= 0){
-    //         microbeComponent.hitpoints = 0;
-    //         MicrobeSystem.kill(microbeEntity);
-    //     }
-    // }
+    // Damage the microbe if its too low on ATP.
+    void atpDamage(ObjectID microbeEntity){
+        auto microbeComponent = world.GetComponent_MicrobeComponent(microbeEntity);
 
-    // // Damage the microbe if its too low on ATP.
-    // void atpDamage(ObjectID microbeEntity){
-    //     auto microbeComponent = world.GetComponent_MicrobeComponent(microbeEntity, MicrobeComponent);
-
-    //     if(MicrobeSystem.getCompoundAmount(microbeEntity,
-    //             CompoundRegistry.getCompoundId("atp")) < 1.0)
-    //     {
-    //         // TODO: put this on a GUI notification.
-    //         // if(microbeComponent.isPlayerMicrobe and not this.playerAlreadyShownAtpDamage){
-    //         //     this.playerAlreadyShownAtpDamage = true
-    //         //     showMessage("No ATP hurts you!")
-    //         // }
-    //         MicrobeSystem.damage(microbeEntity, EXCESS_COMPOUND_COLLECTION_INTERVAL *
-    //             0.000002  * microbeComponent.maxHitpoints, "atpDamage") // Microbe takes 2%
-    //             // of max hp per second in damage
-    //     }
-    // }
+        if(MicrobeSystem.getCompoundAmount(microbeEntity,
+                CompoundRegistry.getCompoundId("atp")) < 1.0)
+        {
+            // TODO: put this on a GUI notification.
+            // if(microbeComponent.isPlayerMicrobe and not this.playerAlreadyShownAtpDamage){
+            //     this.playerAlreadyShownAtpDamage = true
+            //     showMessage("No ATP hurts you!")
+            // }
+            MicrobeSystem.damage(microbeEntity, EXCESS_COMPOUND_COLLECTION_INTERVAL *
+                0.000002  * microbeComponent.maxHitpoints, "atpDamage") // Microbe takes 2%
+                // of max hp per second in damage
+        }
+    }
 
     // // Drains an agent from the microbes special storage and emits it
     // //
@@ -1318,19 +1191,26 @@ class MicrobeSystem{
     //     soundSourceComponent.playSound("microbe-reproduction");
     // }
 
-    // // Copies this microbe. The new microbe will not have the stored compounds of this one.
-    // void readyToReproduce(ObjectID microbeEntity){
-    //     auto microbeComponent = world.GetComponent_MicrobeComponent(microbeEntity, MicrobeComponent);
+    // Copies this microbe. The new microbe will not have the stored compounds of this one.
+    void readyToReproduce(ObjectID microbeEntity){
+        auto microbeComponent = world.GetComponent_MicrobeComponent(microbeEntity);
 
-    //     if(microbeComponent.isPlayerMicrobe){
-    //         showReproductionDialog();
-    //         microbeComponent.reproductionStage = 0;
-    //     else
-    //         // Return the first cell to its normal, non duplicated cell arangement.
-    //         SpeciesSystem.template(microbeEntity,
-    //             MicrobeSystem.getSpeciesComponent(microbeEntity));
-    //         MicrobeSystem.divide(microbeEntity);
-    //     }
-    // }
+        if(microbeComponent.isPlayerMicrobe){
+            showReproductionDialog();
+            microbeComponent.reproductionStage = 0;
+        else
+            // Return the first cell to its normal, non duplicated cell arangement.
+            applyTemplate(microbeEntity,
+                MicrobeOperations::getSpeciesComponent(world, microbeEntity));
+            
+            MicrobeSystem.divide(microbeEntity);
+        }
+    }
+
+    // This is defined in the lua scripts in some weird place
+    void applyTemplate(ObjectID microbe, SpeciesComponent@ species){
+
+        assert(false, "TODO: find where this is the lua scripts and put it here");
+    }
     
 }

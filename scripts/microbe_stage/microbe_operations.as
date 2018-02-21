@@ -240,5 +240,172 @@ void ejectCompound(CellStageWorld@ world, ObjectID microbeEntity, CompoundId com
         amount * 5000);
 }
 
+void purgeCompounds(CellStageWorld@ world, ObjectID microbeEntity){
+    auto microbeComponent = world.GetComponent_MicrobeComponent(microbeEntity);
+    auto compoundBag = world.GetComponent_CompoundBagComponent(microbeEntity);
+
+    auto compoundAmountToDump = microbeComponent.stored - microbeComponent.capacity;
+
+    // Uncomment to print compound economic information to the console.
+    if(microbeComponent.isPlayerMicrobe){
+        for(compound, _ in pairs(compoundTable)){
+            compoundId = CompoundRegistry.getCompoundId(compound);
+            print(compound, compoundBag.getPrice(compoundId),
+                compoundBag.getDemand(compoundId));
+        }
+    }
+    print("");
+
+    // Dumping all the useless compounds (with price = 0).
+    for(_, compoundId in pairs(CompoundRegistry.getCompoundList())){
+        auto price = compoundBag.getPrice(compoundId);
+        if(price <= 0){
+            auto amountToEject = MicrobeSystem.getCompoundAmount(microbeEntity,
+                compoundId);
+                
+            if(amount > 0){
+                amountToEject = MicrobeSystem.takeCompound(microbeEntity, compoundId,
+                    amountToEject);
+            }
+            if(amount > 0){
+                MicrobeSystem.ejectCompound(microbeEntity, compoundId, amountToEject);
+            }
+        }
+    }
+
+    if(compoundAmountToDump > 0){
+        //Calculating each compound price to dump proportionally.
+        auto compoundPrices = {};
+        auto priceSum = 0;
+        for(_, compoundId in pairs(CompoundRegistry.getCompoundList())){
+            auto amount = MicrobeSystem.getCompoundAmount(microbeEntity, compoundId);
+
+            if(amount > 0){
+                auto price = compoundBag.getPrice(compoundId);
+                compoundPrices[compoundId] = price;
+                priceSum = priceSum + amount / price;
+            }
+        }
+
+        //Dumping each compound according to it's price.
+        for(compoundId, price in pairs(compoundPrices)){
+            auto amountToEject = compoundAmountToDump * (MicrobeSystem.getCompoundAmount(
+                    microbeEntity, compoundId) / price) / priceSum;
+            if(amount > 0){ 
+                amountToEject = MicrobeSystem.takeCompound(microbeEntity,
+                    compoundId, amountToEject);
+            }
+            if(amount > 0){
+                MicrobeSystem.ejectCompound(microbeEntity, compoundId, amountToEject);
+            }
+        }
+    }
+}
+
+
+void calculateHealthFromOrganelles(CellStageWorld@ world, ObjectID microbeEntity){
+    auto microbeComponent = world.GetComponent_MicrobeComponent(microbeEntity);
+    microbeComponent.hitpoints = 0;
+    microbeComponent.maxHitpoints = 0;
+    for(_, organelle in pairs(microbeComponent.organelles)){
+
+        if(organelle.getCompoundBin() < 1.0){
+            microbeComponent.hitpoints += organelle.getCompoundBin() *
+                MICROBE_HITPOINTS_PER_ORGANELLE;
+        } else {
+            microbeComponent.hitpoints += MICROBE_HITPOINTS_PER_ORGANELLE;
+        }
+            
+        microbeComponent.maxHitpoints += MICROBE_HITPOINTS_PER_ORGANELLE;
+    }
+}
+
+void flashMembraneColour(CellStageWorld@ world, ObjectID microbeEntity, uint duration,
+    Float4 colour)
+{
+    auto microbeComponent = world.GetComponent_MicrobeComponent(microbeEntity);
+    if(microbeComponent.flashDuration <= 0.0f){
+        microbeComponent.flashColour = colour;
+        microbeComponent.flashDuration = duration;
+    }
+}
+
+// Applies the default membrane colour
+void applyMembraneColour(CellStageWorld@ world, ObjectID microbeEntity){
+
+    auto membraneComponent = world.GetComponent_MembraneComponent(microbeEntity);
+    auto microbeComponent = world.GetComponent_MicrobeComponent(microbeEntity);
+    membraneComponent.setColour(microbeComponent.speciesColour);
+}
+
+
+// Disables or enabled engulfmode for a microbe, allowing or
+// disallowed it to absorb other microbes
+void toggleEngulfMode(ObjectID microbeEntity){
+    auto microbeComponent = world.GetComponent_MicrobeComponent(microbeEntity);
+    auto rigidBodyComponent = world.GetComponent_RigidBodyComponent(microbeEntity);
+    auto soundSourceComponent = world.GetComponent_SoundSourceComponent(microbeEntity);
+
+    if(microbeComponent.engulfMode){
+        microbeComponent.movementFactor = microbeComponent.movementFactor *
+            ENGULFING_MOVEMENT_DIVISION;
+        soundSourceComponent.stopSound("microbe-engulfment"); // Possibly comment out.
+            // If version > 0.3.2 delete. //> We're way past 0.3.2, do we still need this?
+        rigidBodyComponent.reenableAllCollisions();
+    } else {
+        microbeComponent.movementFactor = microbeComponent.movementFactor /
+            ENGULFING_MOVEMENT_DIVISION;
+    }
+
+    microbeComponent.engulfMode = !microbeComponent.engulfMode;
+}
+
+
+// Damages the microbe, killing it if its hitpoints drop low enough
+//
+// @param amount
+//  amount of hitpoints to substract
+void damage(CellStageWorld@ world, ObjectID microbeEntity, uint amount, const string &in
+    damageType)
+{
+    if(damageType == ""){
+        assert(false, "Damage type is empty");
+    }
+
+    if(amount < 0){
+        assert(false, "Can't deal negative damage. Use MicrobeSystem.heal instead");
+    }
+
+    auto microbeComponent = world.GetComponent_MicrobeComponent(microbeEntity, MicrobeComponent);
+    auto soundSourceComponent = world.GetComponent_SoundSourceComponent(microbeEntity, SoundSourceComponent);
+    
+    if(damageType == "toxin"){
+        soundSourceComponent.playSound("microbe-toxin-damage");
+    }
+    
+    // Choose a random organelle or membrane to damage.
+    // TODO: CHANGE TO USE AGENT CODES FOR DAMAGE.
+    auto rand = math.random(1, microbeComponent.maxHitpoints /
+        MICROBE_HITPOINTS_PER_ORGANELLE);
+    auto i = 1;
+    for(_, organelle in pairs(microbeComponent.organelles)){
+        // If this is the organelle we have chosen...
+        if(i == rand){
+            // Deplete its health/compoundBin.
+            organelle.damageOrganelle(amount);
+        }
+        i = i + 1;
+    }
+    
+    // Find out the amount of health the microbe has.
+    MicrobeSystem.calculateHealthFromOrganelles(microbeEntity);
+        
+    if(microbeComponent.hitpoints <= 0){
+        microbeComponent.hitpoints = 0;
+        MicrobeSystem.kill(microbeEntity);
+    }
+}
+
+
 }
 
