@@ -71,6 +71,7 @@ struct CompoundData {
     double breakEvenPoint;
 };
 
+//! \todo This component depends on an instance of processor so that needs registering
 class CompoundBagComponent : public Leviathan::Component {
 public:
     CompoundBagComponent();
@@ -92,7 +93,7 @@ public:
     std::unordered_map<CompoundId, CompoundData> compounds;
 
     void
-    setProcessor(ProcessorComponent& processor, const std::string& speciesName);
+    setProcessor(ProcessorComponent* processor, const std::string& speciesName);
 
     double
     getCompoundAmount(CompoundId);

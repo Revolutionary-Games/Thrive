@@ -123,8 +123,8 @@ CompoundBagComponent::storage() const
 }
 */
 void
-CompoundBagComponent::setProcessor(ProcessorComponent& processor, const std::string& speciesName) {
-    this->processor = &processor;
+CompoundBagComponent::setProcessor(ProcessorComponent* processor, const std::string& speciesName) {
+    this->processor = processor;
     this->speciesName = speciesName;
 }
 

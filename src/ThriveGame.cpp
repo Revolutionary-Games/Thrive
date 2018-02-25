@@ -734,6 +734,14 @@ bool bindThriveComponentTypes(asIScriptEngine* engine){
         ANGELSCRIPT_REGISTERFAIL;
     }
 
+    if(engine->RegisterObjectMethod("CompoundBagComponent",
+            "double setProcessor(ProcessorComponent@ processor, const string &in speciesName)",
+            asMETHOD(CompoundBagComponent, setProcessor),
+            asCALL_THISCALL) < 0)
+    {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
     if(engine->RegisterObjectProperty("CompoundBagComponent", "double storageSpace",
             asOFFSET(CompoundBagComponent, storageSpace)) < 0)
     {
