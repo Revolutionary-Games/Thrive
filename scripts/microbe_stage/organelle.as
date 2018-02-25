@@ -9,17 +9,16 @@ const auto GROWTH_SPEED_MULTILPIER = 0.5f / 1000;
 const auto COMPOUND_RELEASE_PERCENTAGE = 0.3f;
 
 
+//! \todo Replace with Int2
 class Hex{
 
-    Hex(int q, int r, NewtonCollision@ collision){
+    Hex(int q, int r){
         this.q = q;
         this.r = r;
-        @this.collision = collision;
     }
 
     int q;
     int r;
-    NewtonCollision@ collision;
 }
 
 //! Class that is given a definition of organelle and it represents its data
@@ -28,11 +27,7 @@ class Hex{
 //! that this class used to have)
 class Organelle{
 
-    // This is world specific (at least the physics body) so this can
-    // be used by only the world that is passed to this constructor
-    Organelle(const OrganelleParameters &in parameters, CellStageWorld@ world){
-
-        @createdForWorld = world;
+    Organelle(const OrganelleParameters &in parameters){
 
         _name = parameters.name;
         mass = parameters.mass;
@@ -44,28 +39,10 @@ class Organelle{
         // Calculate organelleCost and compoundsLeft//
         // This method sets organelleCost
         calculateCost(initialComposition);
-
-        assert(false, "TODO: setup hexes from the data");
-        
-        
-        // Setup physics body (this is now done just once here) //
-        beingConstructed = true;
-
-        @collisionShape = createdForWorld.GetPhysicalWorld().CreateCompoundCollision();
-        collisionShape.CompoundCollisionBeginAddRemove();
-        
-        setupPhysics();
-
-        collisionShape.CompoundCollisionBeginAddRemove();
-        beingConstructed = false;
     }
 
     ~Organelle(){
 
-        // Remember to release newton stuff (this could maybe be an automatic thing, but would
-        // require a wrapper handle)
-        createdForWorld.GetPhysicalWorld().DestroyCollision(collisionShape);
-        @collisionShape = null;
     }
 
     //! Overwrite to make organelle do something at update time. Called from PlacedOrganelle
@@ -75,12 +52,6 @@ class Organelle{
     void update(PlacedOrganelle@ instanceData) const{
 
         
-    }
-
-    // Basically takes the hexes and adds them to the physics of this organelle
-    protected void setupPhysics(){
-        assert(false, "setupPhysics not done yet from hexes");
-        // addHex
     }
 
     protected void calculateCost(dictionary composition){
@@ -115,25 +86,11 @@ class Organelle{
     //  True if the hex could be added, false if there already is a hex at (q,r)
     // @note This needs to be done only once when this class is instantiated
     protected bool addHex(int q, int r){
-
-        assert(beingConstructed, "addHex called after organelle constructor");
-
         int64 s = Hex::encodeAxial(q, r);
         if(hexes.exists(formatInt(s)))
             return false;
-
-        Float3 translation = Hex::axialToCartesian(q, r);
-
-        Ogre::Matrix4 offset;
-        // Create the matrix with the offset
-        assert(false, "TODO");
         
-        Hex@ hex = Hex(q, r, createdForWorld.GetPhysicalWorld().CreateSphere(2, offset));
-
-        if(hex.collision is null)
-            assert(false, "Hex constructor didn't set collision correctly");
-        
-        collisionShape.CompoundCollisionAddSubCollision(hex.collision);
+        Hex@ hex = Hex(q, r);
 
         @hexes[formatInt(s)] = hex;
         return true;
@@ -225,28 +182,9 @@ class Organelle{
         }
     }
 
-    CellStageWorld@ world {
-
-        get const{
-            return createdForWorld;
-        }
-    }
-
     private string _name;
     float mass;
     
-    // The definition of the collision of this organelle, this is used
-    // to create the actual physics body
-    // This is only valid within a single GameWorld (as each have their own NewtonWorld)
-    NewtonCollision@ collisionShape;
-
-    // These are in PlacedOrganelle
-    // self.position = {
-    //     q = 0,
-    //     r = 0
-    // }
-    // self.rotation = nil
-
     array<OrganelleComponentFactory@> components;
     private dictionary hexes;
 
@@ -256,23 +194,13 @@ class Organelle{
     // The names in the processes need to match the ones in bioProcessRegistry
     // Or better yet, be loaded from the registry that reads the json files
     // so that the processes can be configured that way
-    array<int> processes;
+    array<string> processes;
 
-    // The deviation of the organelle color from the species color
-    bool _needsColourUpdate = true;
-        
     // The total number of compounds we need before we can split.
     int organelleCost;
 
     // Name of the model used for this organelle. For example "nucleus.mesh"
     string mesh;
-
-    // True only in the constructor. Makes sure physics body cannot be
-    // added to just like that
-    private bool beingConstructed = false;
-
-    // Required for releaseing properly
-    private CellStageWorld@ createdForWorld = null;
 }
 
 enum ORGANELLE_HEALTH{
@@ -320,7 +248,7 @@ class PlacedOrganelle{
             
             flashDuration -= logicTime;
             // Use organelle.world to get the MicrobeSystem
-            Float4 speciesColour = MicrobeOperations::getSpeciesComponent(organelle.world,
+            Float4 speciesColour = MicrobeOperations::getSpeciesComponent(world,
                 microbeEntity).colour;
 
             Float4 colour;
@@ -365,7 +293,7 @@ class PlacedOrganelle{
         if(organelleEntity == NULL_OBJECT || microbeEntity == NULL_OBJECT)
             return;
 
-        auto model = organelle.world.GetComponent_Model(organelleEntity);
+        auto model = world.GetComponent_Model(organelleEntity);
 
         // local entity = this.sceneNode.entity;
         LOG_INFO("TODO: PlacedOrganelle::updateColour: doesn't actually work");
@@ -523,7 +451,7 @@ class PlacedOrganelle{
                 if(isDuplicate == true){
 
                     // Calls different method for possible sound and effects
-                    MicrobeOperations::organelleDestroyedByDamage(organelle.world,
+                    MicrobeOperations::organelleDestroyedByDamage(world,
                         microbeEntity, {q, r});
                     
                     // Notify the organelle the sister organelle it is no longer split.
@@ -544,7 +472,7 @@ class PlacedOrganelle{
             // TODO: This isn't the cheapest call so maybe this should be cached
             if(!organelle.hasComponent("NucleusOrganelle")){
 
-                RenderNode@ sceneNode = organelle.world.GetComponent_RenderNode(
+                RenderNode@ sceneNode = world.GetComponent_RenderNode(
                     organelleEntity);
 
                 sceneNode.Scale = Float3((1.0 + compoundBin)/2,
@@ -563,7 +491,7 @@ class PlacedOrganelle{
             // Only if it is different
             const Float3 newScale = Float3(compoundBin, compoundBin, compoundBin) * HEX_SIZE;
 
-            RenderNode@ sceneNode = organelle.world.GetComponent_RenderNode(
+            RenderNode@ sceneNode = world.GetComponent_RenderNode(
                 organelleEntity);
             
             if(newScale != sceneNode.Scale){
@@ -585,7 +513,7 @@ class PlacedOrganelle{
         // Scale the organelle model to reflect the new size.
         // This might be able to be skipped as the recalculateBin method will always set
         // the correct scale
-        RenderNode@ sceneNode = organelle.world.GetComponent_RenderNode(
+        RenderNode@ sceneNode = world.GetComponent_RenderNode(
             organelleEntity);
         
         sceneNode.Scale = Float3(1, 1, 1) * HEX_SIZE;
@@ -593,7 +521,7 @@ class PlacedOrganelle{
         
         // If it was split from a primary organelle, destroy it.
         if(isDuplicate){
-            MicrobeOperations::removeOrganelle(organelle.world, microbeEntity,
+            MicrobeOperations::removeOrganelle(world, microbeEntity,
                 {this.q, this.r});
         } else {
             wasSplit = false;
@@ -617,12 +545,12 @@ class PlacedOrganelle{
     // @param q, r
     //  Axial coordinates of the organelle's center
     // @param world
-    //  the world the microbe entity is in. This is used to verify that Organelles aren't
-    //  tried to be moved between worlds
+    //  the world the microbe entity is in. This is used to retrieve various components
     // @note This is quite an expensive method as this creates a new entity with
     //  multiple components
-    void onAddedToMicrobe(ObjectID microbe, GameWorld@ world, int q, int r, int rotation){
-
+    void onAddedToMicrobe(ObjectID microbe, CellStageWorld@ world,
+        NewtonCollision@ collisionShape
+    ) {
         if(microbeEntity != NULL_OBJECT){
 
             LOG_ERROR("onAddedToMicrobe called before this PlacedOrganelle was " +
@@ -630,53 +558,72 @@ class PlacedOrganelle{
             onRemovedFromMicrobe(microbeEntity);
         }
 
-        assert(organelle.world is world, "trying to add organelle to a microbe "
-            "entity from different world");
+        @this.world = world;
+
+        assert(this.world !is null, "trying to create placed organelle without world");
         
         microbeEntity = microbe;
-        
-        this.q = q;
-        this.r = r;
+
+        // Our coordinates are already set when this is called
+        // so just cache this
         this.cartesianPosition = Hex::axialToCartesian(q, r);
-        this.rotation = rotation;
 
         assert(organelleEntity == NULL_OBJECT, "PlacedOrganelle already had an entity");
 
-        organelleEntity = organelle.world.CreateEntity();
+        organelleEntity = world.CreateEntity();
 
         // Automatically destroyed if the parent is destroyed
-        organelle.world.SetEntitysParent(organelleEntity, microbeEntity);
+        world.SetEntitysParent(organelleEntity, microbeEntity);
         
         // Change the colour of this species to be tinted by the membrane.
-        auto species = MicrobeOperations::getSpeciesComponent(organelle.world, microbeEntity);
+        auto species = MicrobeOperations::getSpeciesComponent(world, microbeEntity);
         
         colourTint = species.colour;
+        
         _needsColourUpdate = true;
 
-        // Not sure which hexes these need to be
-        //for _, hex in pairs(MicrobeSystem.getOrganelleAt(this.microbeEntity, q, r)._hexes) ){
         Float3 offset = organelle.calculateCenterOffset();
 
-        auto renderNode = organelle.world.Create_RenderNode(organelleEntity);
+        auto renderNode = world.Create_RenderNode(organelleEntity);
         renderNode.Marked = true;
         renderNode.Scale = Float3(HEX_SIZE, HEX_SIZE, HEX_SIZE);
-        auto position = organelle.world.Create_Position(organelleEntity,
+        // The position system sets the position of this TODO: for
+        // performance reasons we could it set here directly as it
+        // never changes
+        auto position = world.Create_Position(organelleEntity,
             offset + this.cartesianPosition, Ogre::Quaternion(Ogre::Degree(rotation),
                 Ogre::Vector3(0, 1, 0)));
 
+        // Add hex collision shapes
+        auto hexes = organelle.getHexes();
 
-        auto parentRenderNode = organelle.world.GetComponent_RenderNode(
+        for(uint i = 0; i < hexes.length(); ++i){
+
+            Hex@ hex = hexes[i];
+
+            // Also add our offset to the hex offset
+            Float3 translation = Hex::axialToCartesian(hex.q, hex.r) + this.cartesianPosition;
+
+            Ogre::Matrix4 hexFinalOffset;
+            // Create the matrix with the offset
+            assert(false, "TODO: hex collision offset");
+            collisionShape.CompoundCollisionAddSubCollision(
+                world.GetPhysicalWorld().CreateSphere(HEX_SIZE * 2, hexFinalOffset));
+        }
+        
+
+        auto parentRenderNode = world.GetComponent_RenderNode(
             microbeEntity);
         parentRenderNode.Node.addChild(renderNode.Node);
         
         //Adding a mesh for the organelle.
-        organelle.world.Create_Model(organelleEntity, renderNode.Node, organelle.mesh);
+        world.Create_Model(organelleEntity, renderNode.Node, organelle.mesh);
 
-        assert(false, "TODO: create physics body");
-    
         // Add each OrganelleComponent
         for(uint i = 0; i < components.length(); ++i){
-            
+
+            // This cannot affect the collision here. It needs to do
+            // Organelle::addHex during construction
             components[i].onAddedToMicrobe(microbeEntity, q, r, rotation, this);
         }
     }
@@ -692,11 +639,11 @@ class PlacedOrganelle{
             components[i].onRemovedFromMicrobe(microbeEntity /*, q, r*/);
         }
         
-        organelle.world.QueueDestroyEntity(organelleEntity);
+        world.QueueDestroyEntity(organelleEntity);
         organelleEntity = NULL_OBJECT;
         microbeEntity = NULL_OBJECT;
+        @world = null;
     }
-
 
     void flashOrganelle(float duration, Float4 colour){
         if(flashDuration > 0)
@@ -755,13 +702,22 @@ class PlacedOrganelle{
 
     ObjectID microbeEntity = NULL_OBJECT;
     ObjectID organelleEntity = NULL_OBJECT;
+    
+    // This is the world in which the entities for this organelle exists
+    CellStageWorld@ world;    
 
+    // TODO: fix this
     float flashDuration = 0;
     Float4 flashColour;
 
+    // TODO: make this work. This is used to show the species and the
+    // health of this organelle. And damange indication through
+    // flashColour
     Float4 colourTint;
 
     PlacedOrganelle@ sisterOrganelle = null;
+
+
 
     private bool _needsColourUpdate = false;
 }

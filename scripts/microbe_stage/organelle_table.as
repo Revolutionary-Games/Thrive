@@ -87,9 +87,9 @@ class OrganelleParameters{
 }
 
 //! Cache the result if called multiple times for the same world
-dictionary@ getOrganelleTable(GameWorld@ world){
+Organelle@ getOrganelleDefinition(const string &in name){
 
-    return cast<dictionary@>(_mainOrganelleTable[formatInt(world.GetID())]);
+    return cast<Organelle@>(_mainOrganelleTable[name]);
 }
 
 // ------------------------------------ //
@@ -97,6 +97,7 @@ dictionary@ getOrganelleTable(GameWorld@ world){
 // Only thing you'll need to modify is the "Main organelle table" below
 
 // Don't touch this from anywhere except setupOrganellesForWorld
+// use getOrganelleDefinition for accessing
 dictionary _mainOrganelleTable;
 
 // Factory functions for all the organelle components
@@ -111,13 +112,13 @@ OrganelleComponentFactory@ nucleusComponentFactory = OrganelleComponentFactory(
     @makeNucleusOrganelle, "NucleusOrganelle"
 );
 
-// Setups the organelle table for a specific world
-void setupOrganellesForWorld(CellStageWorld@ world){
+// Sets up the organelle table
+void setupOrganellesForWorld(){
 
     assert(SimulationParameters::compoundRegistry().getSize() > 0,
         "Compound registry is empty");
     
-    dictionary@ newWorldTable = dictionary();
+    _mainOrganelleTable = dictionary();
 
     //
     //
@@ -157,7 +158,8 @@ void setupOrganellesForWorld(CellStageWorld@ world){
         Int2(1, -2)
     };
 
-    newWorldTable["nucleus"] = Organelle(nucleusParameters, world);
+    _addOrganelleToTable(Organelle(nucleusParameters));
+
 
     // ------------------------------------ //
     // Cytoplasm
@@ -165,8 +167,11 @@ void setupOrganellesForWorld(CellStageWorld@ world){
     // ------------------------------------ //
     // Vacuole
     
-    
-    _mainOrganelleTable[formatInt(world.GetID())] = newWorldTable;
+}
+
+void _addOrganelleToTable(Organelle@ organelle){
+
+    _mainOrganelleTable[organelle.name] = @organelle;
 }
 
 

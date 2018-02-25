@@ -20,9 +20,18 @@ double getCompoundAmount(CellStageWorld@ world, ObjectID microbeEntity, Compound
 SpeciesComponent@ getSpeciesComponent(CellStageWorld@ world, ObjectID microbeEntity){
     
     auto microbeComponent = getComponent(microbeEntity, MicrobeComponent);
-    // This needs to loop all the components and get matching one
+    // This needs to loop all the components and get the matching one
     return getComponent(microbeComponent.speciesName, g_luaEngine.currentGameState,
         SpeciesComponent);
+}
+
+// Getter for species processor component
+// 
+// returns the processor component or null if such species doesn't have that component
+ProcessorComponent@ getProcessorComponent(CellStageWorld@ world, const string &in speciesName){
+    
+    // This needs to loop all the components and get the matching one
+    return getComponent(speciesName, ProcessorComponent);
 }
 
 // Retrieves the organelle occupying a hex cell

@@ -567,48 +567,56 @@ class MicrobeSystem{
 
         // Allowing the microbe to absorb all the compounds.
         setupAbsorberForAllCompounds(compoundAbsorberComponent);
-        
-        auto compoundShape = CompoundShape.castFrom(rigidBodyComponent.properties.shape);
 
-        rigidBodyComponent.DestroyPhysicsState();
+        // Destroy any old things we might have to not leak the collision data
+        rigidBodyComponent.Release();
+
+        // The collision is destroyed by the component
+        bool success = rigidBodyComponent.SetCollision(
+            world.GetPhysicalWorld().CreateCompoundCollision());
+
+        assert(success);
         
-        
-        assert(compoundShape !is null);
-        compoundShape.clear();
+        rigidBodyComponent.Collision.CompoundCollisionBeginAddRemove();
 
         float mass = 0.f;
 
         // Organelles
-        for(s, organelle in pairs(microbeComponent.organelles)){
+        for(uint i = 0; i < microbeComponent.organelles.length(); ++i){
+
+            auto organelle = microbeComponent.organelles[i];
             
-            organelle.onAddedToMicrobe(microbeEntity, organelle.position.q,
-                organelle.position.r, organelle.rotation);
+            organelle.onAddedToMicrobe(microbeEntity, world, rigidBodyComponent.Collision);
             organelle.reset();
             
             mass += organelle.organelle.mass;
         }
 
+        rigidBodyComponent.Collision.CompoundCollisionBeginAddRemove();
+
+        // Then create the physics body from the shape
+        @rigidBodyComponent.CreatePhysicsBody(world.GetPhysicalWorld());
+        assert(rigidBodyComponent.Body !is null);
+
+        // And apply mass and center of gravity
         rigidBodyComponent.SetMass(mass);
                                         
         // Membrane
-        sceneNodeComponent.meshName = "membrane_" + microbeComponent.speciesName;
-        rigidBodyComponent.properties.touch();
         microbeComponent.initialized = true;
         
         if(microbeComponent.in_editor != true){
-            assert(microbeComponent.speciesName);
-                
-            auto processor = world.GetComponent_speciesName(microbeComponent.speciesName,
-                g_luaEngine.currentGameState,
-                ProcessorComponent);
+            assert(microbeComponent.speciesName != "");
+            assert(microbeComponent.speciesColour != Float4(0, 0, 0, 0));
+
+            auto processor = MicrobeOperations::getProcessorComponent(world,
+                microbeComponent.speciesName);
                 
             if(processor is null){
-                LOG_INFO("Microbe species '" + microbeComponent.speciesName +
+                LOG_ERROR("Microbe species '" + microbeComponent.speciesName +
                     "' doesn't exist");
-                assert(processor);
+                assert(processor !is null);
             }
-                                                
-            assert(microbeComponent.speciesName != "");
+            
             compoundBag.setProcessor(processor, microbeComponent.speciesName);
                                                 
             applyTemplate(microbeEntity, MicrobeOperations::getSpeciesComponent(
