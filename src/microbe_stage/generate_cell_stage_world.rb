@@ -13,6 +13,8 @@ generator.useNamespace "thrive"
 generator.useExportMacro nil
 generator.addInclude "Entities/GameWorld.h"
 generator.addInclude "Generated/StandardWorld.h"
+# Needs script include for basic world functionality
+generator.addInclude "Script/ScriptTypeResolver.h"
 
 generator.addInclude "microbe_stage/membrane_system.h"
 generator.addInclude "microbe_stage/compound_cloud_system.h"
