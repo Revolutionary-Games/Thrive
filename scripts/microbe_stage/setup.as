@@ -125,16 +125,10 @@ void setupSpecies(CellStageWorld@ world){
 
 // This function instantiates all script system types for a world
 void setupSystemsForWorld(CellStageWorld@ world){
-    assert(false, "TODO: this");
-}
 
-// Use the below methods for accessing them
-
-
-MicrobeSystem@ getMicrobeSystem(GameWorld@ world){
-
-    assert(false, "TODO: this whole registering things");
-    return null;
+    
+    
+    assert(false, "TODO: add the rest");
 }
 
 

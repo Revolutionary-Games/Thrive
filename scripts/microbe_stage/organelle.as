@@ -219,6 +219,22 @@ class PlacedOrganelle{
         this.r = r;
         this.rotation = rotation;
 
+        _commonConstructor();
+    }
+
+    //! Takes type from another PlacedOrganelle
+    PlacedOrganelle(PlacedOrganelle@ typefromother, int q, int r, int rotation){
+
+        @this._organelle = typefromother._organelle;
+        this.q = q;
+        this.r = r;
+        this.rotation = rotation;
+
+        _commonConstructor();
+    }
+
+    private void _commonConstructor(){
+
         resetHealth();
 
         // Create instances of components //
@@ -227,7 +243,7 @@ class PlacedOrganelle{
             components.insertLast(organelle.components[i].factory());
         }
 
-        compoundsLeft = organelle.initialComposition;
+        compoundsLeft = organelle.initialComposition;        
     }
 
     void resetHealth(){

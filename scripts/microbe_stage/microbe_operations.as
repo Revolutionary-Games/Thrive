@@ -416,5 +416,110 @@ void damage(CellStageWorld@ world, ObjectID microbeEntity, uint amount, const st
 }
 
 
+// TODO: we have a similar method in procedural_microbes.lua and another one
+// in microbe_editor.lua.
+// They probably should all use the same one.
+// We'll probably need a rotation for this, although maybe it should be done in c++ where
+// sets are a thing?
+bool validPlacement(CellStageWorld@ world, ObjectID microbeEntity, const Organelle@ organelle,
+    Int2 hex
+) {  
+    auto touching = false;
+    assert(false, "TODO: should this hex list here be rotated, this doesn't seem to take "
+        "a rotation parameter in");
+    for(s, hex in pairs(organelle._hexes)){
+        
+        auto organelle = MicrobeSystem.getOrganelleAt(microbeEntity, hex.q + q, hex.r + r);
+        if(organelle){
+            if(organelle.name != "cytoplasm"){
+                return false ;
+            }
+        }
+        
+        if(MicrobeSystem.getOrganelleAt(microbeEntity, hex.q + q + 0, hex.r + r - 1) ||
+            MicrobeSystem.getOrganelleAt(microbeEntity, hex.q + q + 1, hex.r + r - 1) ||
+            MicrobeSystem.getOrganelleAt(microbeEntity, hex.q + q + 1, hex.r + r + 0) ||
+            MicrobeSystem.getOrganelleAt(microbeEntity, hex.q + q + 0, hex.r + r + 1) ||
+            MicrobeSystem.getOrganelleAt(microbeEntity, hex.q + q - 1, hex.r + r + 1) ||
+            MicrobeSystem.getOrganelleAt(microbeEntity, hex.q + q - 1, hex.r + r + 0))
+        {
+            touching = true;
+        }
+    }
+    
+    return touching;
+}
+
+
+// Adds a new organelle
+//
+// The space at (q,r) must not be occupied by another organelle already.
+//
+// @param q,r
+// Offset of the organelle's center relative to the microbe's center in
+// axial coordinates. These are now in the organelle object
+//
+// @param organelle
+// The organelle to add
+//
+// @return
+//  returns whether the organelle was added
+bool addOrganelle(CellStageWorld@ world, ObjectID microbeEntity, PlacedOrganelle@ organelle)
+{
+    // Faster to first check can we add and then get the components //
+    auto s = encodeAxial(organelle.q, organelle.r);
+    if(microbeComponent.organelles[s]){
+        return false;
+    }
+
+    MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
+        world.GetScriptComponentHolder("MicrobeComponent").Find(microbeEntity));
+    auto membraneComponent = world.GetComponent_MembraneComponent(microbeEntity);
+    auto rigidBodyComponent = world.GetComponent_Physics(microbeEntity);
+    
+    microbeComponent.organelles[s] = organelle;
+    local x, y = axialToCartesian(q, r);
+    auto translation = Vector3(x, y, 0);
+    // Collision shape
+    // TODO: cache for performance
+    auto compoundShape = CompoundShape.castFrom(rigidBodyComponent.properties.shape);
+    compoundShape.addChildShape(
+        translation,
+        Quaternion(Radian(0), Vector3(1,0,0)),
+        organelle.collisionShape
+    );
+    rigidBodyComponent.properties.mass = rigidBodyComponent.properties.mass +
+        organelle.mass;
+    rigidBodyComponent.properties.touch();
+
+    // Need to begin update for our physics body as this adds the
+    // hexes of the organelle as a sub collision
+    // This isn't optimal if multiple are added but simplifies calling this
+    NewtonCollision@ collision;
+    collision.CompoundShapeBeginAddRemove();
+    organelle.onAddedToMicrobe(microbeEntity, world, collision);
+    
+    MicrobeSystem.calculateHealthFromOrganelles(microbeEntity);
+    microbeComponent.maxBandwidth = microbeComponent.maxBandwidth +
+        BANDWIDTH_PER_ORGANELLE; // Temporary solution for increasing max bandwidth
+    microbeComponent.remainingBandwidth = microbeComponent.maxBandwidth;
+    
+    // Send the organelles to the membraneComponent so that the membrane can "grow"
+    auto localQ = q - organelle.position.q;
+    auto localR = r - organelle.position.r;
+    if(organelle.getHex(localQ, localR) !is null){
+        for(_, hex in pairs(organelle._hexes)){
+            auto q = hex.q + organelle.position.q;
+            auto r = hex.r + organelle.position.r;
+            local x, y = axialToCartesian(q, r);
+            membraneComponent.sendOrganelles(x, y);
+        }
+        // What is this return?
+        return organelle;
+    }
+       
+    return true;
+}
+
 }
 

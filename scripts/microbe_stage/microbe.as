@@ -1,6 +1,8 @@
 // Was called everytime this object was created
 // setupAbsorberForAllCompounds
 #include "microbe_operations.as"
+#include "hex.as"
+#include "microbe_stage_hud.as"
 
 
 //! Why is this needed? Is it for(the future when we don't want to
@@ -64,21 +66,12 @@ const float ENGULF_HP_RATIO_REQ = 1.5 ;
 const uint AGENT_EMISSION_COOLDOWN = 1000;
 
 
-// //! This has script only properties and operations for a Microbe entity
-// //!
-// //! This is held by MicrobeComponent to make sure that instances of this class don't have to
-// //! be created each frame like before with lua
-// //! \todo Check if it would be easier to have MicrobeComponent replace this class
 // class Microbe{
     
     
 // }
 // Use "ObjectID microbeEntity" instead
 
-namespace MicrobeComponent{
-
-const string TYPE_NAME = "MicrobeComponent";
-}
 
 ////////////////////////////////////////////////////////////////////////////////
 // MicrobeComponent
@@ -86,9 +79,10 @@ const string TYPE_NAME = "MicrobeComponent";
 // Holds data common to all microbes. You probably shouldn't use this directly,
 // use MicrobeOperations instead.
 ////////////////////////////////////////////////////////////////////////////////
-class MicrobeComponent{
-    
-    MicrobeComponent(ObjectID forEntity, bool isPlayerMicrobe, const string &in speciesName){
+class MicrobeComponent : ScriptComponent{
+
+    //! This has to be called after creating this
+    void init(ObjectID forEntity, bool isPlayerMicrobe, const string &in speciesName){
         
         this.speciesName = speciesName;
         this.isPlayerMicrobe = isPlayerMicrobe;
@@ -200,9 +194,22 @@ class MicrobeComponent{
 }
 
 //! Helper for MicrobeSystem
-class MicrobeSystemCachedComponents{
+class MicrobeSystemCached{
 
-    ObjectID entity;
+    MicrobeSystemCached(ObjectID entity, CompoundAbsorberComponent@ first,
+        MicrobeComponent@ second, RenderNode@ third, Physics@ fourth,
+        MembraneComponent@ fifth, CompoundBagComponent@ sixth
+    ) {
+        this.entity = entity;
+        @this.first = first;
+        @this.second = second;
+        @this.third = third;
+        @this.fourth = fourth;
+        @this.fifth = fifth;
+        @this.sixth = sixth;
+    }
+
+    ObjectID entity = -1;
 
     CompoundAbsorberComponent@ first;
     MicrobeComponent@ second;
@@ -229,41 +236,19 @@ class MicrobeSystemCachedComponents{
 // necessarily need instance data in this class (this is most things) so that they can be
 // called from different places. Functions that shouldn't be called from any other place are
 // kept here
-class MicrobeSystem{
+class MicrobeSystem : ScriptSystem{
 
-    // TODO: make sure these work fine after converting
-        // this.microbeCollisions = CollisionFilter(
-        //     "microbe",
-        //     "microbe"
-        // )
-        // // Temporary for 0.3.2, should be moved to separate system.
-        // this.agentCollisions = CollisionFilter(
-        //     "microbe",
-        //     "agent"
-        // )
+    void Init(GameWorld@ world){
 
-        // this.bacteriaCollisions = CollisionFilter(
-        //     "microbe",
-        //     "bacteria"
-        // )
+        @world = cast<CellStageWorld@>(world);
+        assert(world !is null, "MicrobeSystem expected CellStageWorld");
+    }
 
-        // this.microbes = {}
-        // }
-    
-    // // I don't feel like checking for each component separately, so let's make a
-    // // loop do it with an assert for good measure (see Microbe.create)
-    // MICROBE_COMPONENTS = {
-    //     compoundAbsorber = CompoundAbsorberComponent,
-    //     microbe = MicrobeComponent,
-    //     rigidBody = RigidBodyComponent,
-    //     sceneNode = OgreSceneNodeComponent,
-    //     collisionHandler = CollisionComponent,
-    //     soundSource = SoundSourceComponent,
-    //     membraneComponent = MembraneComponent,
-    //     compoundBag = CompoundBagComponent
-    // }
-    
-    void Run(GameWorld@ world){
+    void Release(){
+
+    }
+
+    void Run(){
         // // Note that this triggers every frame there is a collision
         // for(_, collision in pairs(this.microbeCollisions.collisions())){
         //     auto entity1 = Entity(collision.entityId1, this.gameState.wrapper);
@@ -308,10 +293,38 @@ class MicrobeSystem{
         }
     }
 
+    void Clear(){
 
+        CachedComponents.resize(0);
+    }
+
+    void CreateAndDestroyNodes(){
+
+        // Delegate to helper //
+        ScriptSystemNodeHelper(world, @CachedComponents, SystemComponents);
+    }
+
+    // TODO: make sure these work fine after converting
+        // this.microbeCollisions = CollisionFilter(
+        //     "microbe",
+        //     "microbe"
+        // )
+        // // Temporary for 0.3.2, should be moved to separate system.
+        // this.agentCollisions = CollisionFilter(
+        //     "microbe",
+        //     "agent"
+        // )
+
+        // this.bacteriaCollisions = CollisionFilter(
+        //     "microbe",
+        //     "bacteria"
+        // )
+
+        // this.microbes = {}
+        // }
 
     // Updates the microbe's state
-    void updateMicrobe(MicrobeSystemCachedComponents &in components, uint logicTime){
+    void updateMicrobe(MicrobeSystemCached@ components, uint logicTime){
         auto microbeEntity = components.entity;
         
         MicrobeComponent@ microbeComponent = components.second;
@@ -323,6 +336,14 @@ class MicrobeSystem{
         if(!microbeComponent.initialized){
 
             LOG_INFO("Initializing microbe: " + microbeEntity);
+
+            if(microbeEntity == -1){
+
+                LOG_ERROR("MicrobeSystem: updateMicrobe: invalid microbe entity hasn't "
+                    "set a ObjectID, did someone forget to call 'init'?");
+                return;
+            }
+            
             initializeMicrobe(microbeEntity, microbeComponent, compoundAbsorberComponent,
                 compoundBag, sceneNodeComponent);
         }
@@ -628,7 +649,8 @@ class MicrobeSystem{
     //! Updates the used storage space in a microbe and stores it in the microbe component
     void calculateStorageSpace(ObjectID microbeEntity){
         
-        auto microbeComponent = world.GetComponent_MicrobeComponent(microbeEntity);
+        MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
+            world.GetScriptComponentHolder("MicrobeComponent").Find(microbeEntity));
 
         microbeComponent.stored = 0;
         uint64 compoundCount = SimulationParameters::compoundRegistry().getSize();
@@ -646,9 +668,11 @@ class MicrobeSystem{
     // capacity of the storage organelles.
     void updateCompoundAbsorber(ObjectID microbeEntity){
         
-        auto microbeComponent = (microbeEntity, MicrobeComponent);
-        auto compoundAbsorberComponent = world.GetComponent_CompoundAbsorberComponent(microbeEntity,
-            CompoundAbsorberComponent);
+        MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
+            world.GetScriptComponentHolder("MicrobeComponent").Find(microbeEntity));
+        
+        auto compoundAbsorberComponent = world.GetComponent_CompoundAbsorberComponent(
+            microbeEntity);
 
         if(//microbeComponent.stored >= microbeComponent.capacity or 
             microbeComponent.remainingBandwidth < 1 ||
@@ -661,16 +685,15 @@ class MicrobeSystem{
     }
 
     void regenerateBandwidth(ObjectID microbeEntity, int logicTime){
-        auto microbeComponent = world.GetComponent_MicrobeComponent(microbeEntity);
+        MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
+            world.GetScriptComponentHolder("MicrobeComponent").Find(microbeEntity));
+        
         auto addedBandwidth = microbeComponent.remainingBandwidth + logicTime *
             (microbeComponent.maxBandwidth / BANDWIDTH_REFILL_DURATION);
+        
         microbeComponent.remainingBandwidth = min(addedBandwidth,
             microbeComponent.maxBandwidth);
     }
-        
-
-    private array<MicrobeSystemCachedComponents> CachedComponents;
-    private CellStageWorld@ world;
 
     // Stuff that should be maybe moved out of here:
     // void checkEngulfment(ObjectID engulferMicrobeEntity, ObjectID engulfedMicrobeEntity){
@@ -744,151 +767,75 @@ class MicrobeSystem{
 
 
     void removeEngulfedEffect(ObjectID microbeEntity){
-        auto microbeComponent = world.GetComponent_MicrobeComponent(microbeEntity, MicrobeComponent);
+        MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
+            world.GetScriptComponentHolder("MicrobeComponent").Find(microbeEntity));
 
         microbeComponent.movementFactor = microbeComponent.movementFactor *
             ENGULFED_MOVEMENT_DIVISION;
         microbeComponent.wasBeingEngulfed = false;
 
-        auto hostileMicrobeComponent = world.GetComponent_hostileEngulfer(microbeComponent.hostileEngulfer,
-            MicrobeComponent);
+        MicrobeComponent@ hostileMicrobeComponent = cast<MicrobeComponent>(
+            world.GetScriptComponentHolder("MicrobeComponent").Find(
+                microbeComponent.hostileEngulfer));
+
         if(hostileMicrobeComponent !is null){
             hostileMicrobeComponent.isCurrentlyEngulfing = false;
         }
 
-        auto hostileRigidBodyComponent = world.GetComponent_hostileEngulfer(microbeComponent.hostileEngulfer,
-            RigidBodyComponent);
+        auto hostileRigidBodyComponent = world.GetComponent_Physics(
+            microbeComponent.hostileEngulfer);
 
         // The component is null sometimes, probably due to despawning.
         if(hostileRigidBodyComponent !is null){
-            hostileRigidBodyComponent.reenableAllCollisions();
+            //hostileRigidBodyComponent.reenableAllCollisions();
+            LOG_WRITE("TODO: redo this thing: "
+                "hostileRigidBodyComponent.reenableAllCollisions();");
         }
         // Causes crash because sound was already stopped.
         //microbeComponent.hostileEngulfer.soundSource.stopSound("microbe-engulfment")
     }
 
-    // // Adds a new organelle
-    // //
-    // // The space at (q,r) must not be occupied by another organelle already.
-    // //
-    // // @param q,r
-    // // Offset of the organelle's center relative to the microbe's center in
-    // // axial coordinates.
-    // //
-    // // @param organelle
-    // // The organelle to add
-    // //
-    // // @return
-    // //  returns whether the organelle was added
-    // bool addOrganelle(ObjectID microbeEntity, Int2 hex, uint rotation,
-    //     PlacedOrganelle@ organelle)
-    // {
-    //     auto microbeComponent = world.GetComponent_MicrobeComponent(microbeEntity, MicrobeComponent);
-    //     auto membraneComponent = world.GetComponent_MembraneComponent(microbeEntity, MembraneComponent);
-    //     auto rigidBodyComponent = world.GetComponent_RigidBodyComponent(microbeEntity, RigidBodyComponent);
-
-    //     auto s = encodeAxial(q, r);
-    //     if(microbeComponent.organelles[s]){
-    //         return false;
-    //     }
-    //     microbeComponent.organelles[s] = organelle;
-    //     local x, y = axialToCartesian(q, r);
-    //     auto translation = Vector3(x, y, 0);
-    //     // Collision shape
-    //     // TODO: cache for performance
-    //     auto compoundShape = CompoundShape.castFrom(rigidBodyComponent.properties.shape);
-    //     compoundShape.addChildShape(
-    //         translation,
-    //         Quaternion(Radian(0), Vector3(1,0,0)),
-    //         organelle.collisionShape
-    //     );
-    //     rigidBodyComponent.properties.mass = rigidBodyComponent.properties.mass +
-    //         organelle.mass;
-    //     rigidBodyComponent.properties.touch();
-    
-    //     organelle.onAddedToMicrobe(microbeEntity, q, r, rotation);
-    
-    //     MicrobeSystem.calculateHealthFromOrganelles(microbeEntity);
-    //     microbeComponent.maxBandwidth = microbeComponent.maxBandwidth +
-    //         BANDWIDTH_PER_ORGANELLE; // Temporary solution for increasing max bandwidth
-    //     microbeComponent.remainingBandwidth = microbeComponent.maxBandwidth;
-    
-    //     // Send the organelles to the membraneComponent so that the membrane can "grow"
-    //     auto localQ = q - organelle.position.q;
-    //     auto localR = r - organelle.position.r;
-    //     if(organelle.getHex(localQ, localR) !is null){
-    //         for(_, hex in pairs(organelle._hexes)){
-    //             auto q = hex.q + organelle.position.q;
-    //             auto r = hex.r + organelle.position.r;
-    //             local x, y = axialToCartesian(q, r);
-    //             membraneComponent.sendOrganelles(x, y);
-    //         }
-    //         // What is this return?
-    //         return organelle;
-    //     }
-       
-    //     return true;
-    // }
-
-    // // TODO: we have a similar method in procedural_microbes.lua and another one
-    // // in microbe_editor.lua.
-    // // They probably should all use the same one.
-    // // We'll probably need a rotation for this, although maybe it should be done in c++ where
-    // // sets are a thing?
-    // bool validPlacement(ObjectID microbeEntity, Organelle organelle, Int2 hex){ 
-    //     auto touching = false;
-    //     for(s, hex in pairs(organelle._hexes)){
-        
-    //         auto organelle = MicrobeSystem.getOrganelleAt(microbeEntity, hex.q + q, hex.r + r);
-    //         if(organelle){
-    //             if(organelle.name != "cytoplasm"){
-    //                 return false ;
-    //             }
-    //         }
-        
-    //         if(MicrobeSystem.getOrganelleAt(microbeEntity, hex.q + q + 0, hex.r + r - 1) ||
-    //             MicrobeSystem.getOrganelleAt(microbeEntity, hex.q + q + 1, hex.r + r - 1) ||
-    //             MicrobeSystem.getOrganelleAt(microbeEntity, hex.q + q + 1, hex.r + r + 0) ||
-    //             MicrobeSystem.getOrganelleAt(microbeEntity, hex.q + q + 0, hex.r + r + 1) ||
-    //             MicrobeSystem.getOrganelleAt(microbeEntity, hex.q + q - 1, hex.r + r + 1) ||
-    //             MicrobeSystem.getOrganelleAt(microbeEntity, hex.q + q - 1, hex.r + r + 0))
-    //         {
-    //             touching = true;
-    //         }
-    //     }
-    
-    //     return touching;
-    // }
-
     PlacedOrganelle@ splitOrganelle(ObjectID microbeEntity, PlacedOrganelle@ organelle){
-        auto q = organelle.position.q;
-        auto r = organelle.position.r;
+        auto q = organelle.q;
+        auto r = organelle.r;
 
         //Spiral search for space for the organelle
-        auto radius = 1;
+        int radius = 1;
         while(true){
             //Moves into the ring of radius "radius" and center the old organelle
-            q = q + HEX_NEIGHBOUR_OFFSET[HEX_SIDE.BOTTOM_LEFT][1];
-            r = r + HEX_NEIGHBOUR_OFFSET[HEX_SIDE.BOTTOM_LEFT][2];
+            Int2 radiusOffset = Int2(HEX_NEIGHBOUR_OFFSET[
+                    formatInt(int(HEX_SIDE::BOTTOM_LEFT))]);
+            q = q + radiusOffset.X;
+            r = r + radiusOffset.Y;
 
             //Iterates in the ring
-            for(side = 1, 6){ //necesary due to lua not ordering the tables.
-                auto offset = HEX_NEIGHBOUR_OFFSET[side];
+            for(int side = 1; side <= 6; ++side){
+                Int2 offset = Int2(HEX_NEIGHBOUR_OFFSET[formatInt(side)]);
                 //Moves "radius" times into each direction
-                for(i = 1, radius){
-                    q = q + offset[1];
-                    r = r + offset[2];
+                for(int i = 1; i <= radius; ++i){
+                    q = q + offset.X;
+                    r = r + offset.Y;
 
                     //Checks every possible rotation value.
-                    for(j = 0, 5){
-                        auto rotation = 360 * j / 6;
-                        auto data = {["name"]=organelle.name, ["q"]=q, ["r"]=r,
-                                     ["rotation"]=i*60};
-                        auto newOrganelle = OrganelleFactory.makeOrganelle(data);
+                    for(int j = 0; j <= 5; ++j){
+                        
+                        // auto rotation = 360 * j / 6;
 
-                        if(MicrobeSystem.validPlacement(microbeEntity, newOrganelle, q, r)){
-                            LOG_INFO("placed " + organelle.name + " at " + q + " " + r);
-                            MicrobeSystem.addOrganelle(microbeEntity, q, r, i * 60, newOrganelle);
+                        // In the lua code the rotation is i * 60 here
+                        // and not in fact the rotation variable
+
+                        // Why doesn't this take a rotation parameter?
+                        // Does it incorrectly assume that the Organelle type has a rotated
+                        // hex list?
+                        if(MicrobeOperations::validPlacement(world, microbeEntity,
+                                organelle.organelle, {q, r}))
+                        {
+                            auto newOrganelle = PlacedOrganelle(organelle, q, r, i*60);
+                            
+                            LOG_INFO("placed " + organelle.organelle.name + " at " +
+                                q + ", " + r);
+                            MicrobeOperations::addOrganelle(world, microbeEntity,
+                                newOrganelle);
                             return newOrganelle;
                         }
                     }
@@ -897,6 +844,8 @@ class MicrobeSystem{
 
             radius = radius + 1;
         }
+
+        return null;
     }
 
 
@@ -982,9 +931,10 @@ class MicrobeSystem{
 
     // Damage the microbe if its too low on ATP.
     void atpDamage(ObjectID microbeEntity){
-        auto microbeComponent = world.GetComponent_MicrobeComponent(microbeEntity);
+        MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
+            world.GetScriptComponentHolder("MicrobeComponent").Find(microbeEntity));
 
-        if(MicrobeSystem.getCompoundAmount(microbeEntity,
+        if(MicrobeOperations::getCompoundAmount(microbeEntity,
                 CompoundRegistry.getCompoundId("atp")) < 1.0)
         {
             // TODO: put this on a GUI notification.
@@ -992,8 +942,8 @@ class MicrobeSystem{
             //     this.playerAlreadyShownAtpDamage = true
             //     showMessage("No ATP hurts you!")
             // }
-            MicrobeSystem.damage(microbeEntity, EXCESS_COMPOUND_COLLECTION_INTERVAL *
-                0.000002  * microbeComponent.maxHitpoints, "atpDamage") // Microbe takes 2%
+            MicrobeOperations::damage(microbeEntity, EXCESS_COMPOUND_COLLECTION_INTERVAL *
+                0.000002  * microbeComponent.maxHitpoints, "atpDamage"); // Microbe takes 2%
                 // of max hp per second in damage
         }
     }
@@ -1201,17 +1151,18 @@ class MicrobeSystem{
 
     // Copies this microbe. The new microbe will not have the stored compounds of this one.
     void readyToReproduce(ObjectID microbeEntity){
-        auto microbeComponent = world.GetComponent_MicrobeComponent(microbeEntity);
+        MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
+            world.GetScriptComponentHolder("MicrobeComponent").Find(microbeEntity));
 
         if(microbeComponent.isPlayerMicrobe){
             showReproductionDialog();
             microbeComponent.reproductionStage = 0;
-        else
+        } else {
             // Return the first cell to its normal, non duplicated cell arangement.
             applyTemplate(microbeEntity,
                 MicrobeOperations::getSpeciesComponent(world, microbeEntity));
             
-            MicrobeSystem.divide(microbeEntity);
+            divide(microbeEntity);
         }
     }
 
@@ -1220,5 +1171,16 @@ class MicrobeSystem{
 
         assert(false, "TODO: find where this is the lua scripts and put it here");
     }
-    
+
+    private array<MicrobeSystemCached@> CachedComponents;
+    private CellStageWorld@ world;
+        
+    private array<ScriptSystemUses> SystemComponents = {
+        ScriptSystemUses(CompoundAbsorberComponent::TYPE),
+        ScriptSystemUses("MicrobeComponent"),
+        ScriptSystemUses(RenderNode::TYPE),
+        ScriptSystemUses(Physics::TYPE),
+        ScriptSystemUses(MembraneComponent::TYPE),
+        ScriptSystemUses(CompoundBagComponent::TYPE),
+    };    
 }

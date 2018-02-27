@@ -17,6 +17,9 @@ o GameModule "microbe_stage"{
         microbe_operations.as
         microbe.as
         hex.as
+
+        microbe_stage_hud.as
+
         // TODO: move to a new module
         ../script_system.as
     }

@@ -768,6 +768,22 @@ bool bindThriveComponentTypes(asIScriptEngine* engine){
         ANGELSCRIPT_REGISTERFAIL;
     }
 
+    if(engine->RegisterObjectMethod("CompoundAbsorberComponent",
+            "void enable()",
+            asMETHOD(CompoundAbsorberComponent, enable),
+            asCALL_THISCALL) < 0)
+    {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectMethod("CompoundAbsorberComponent",
+            "void disable()",
+            asMETHOD(CompoundAbsorberComponent, disable),
+            asCALL_THISCALL) < 0)
+    {
+        ANGELSCRIPT_REGISTERFAIL;
+    }    
+
 
     if(engine->RegisterObjectMethod("CompoundAbsorberComponent",
             "array<CompoundId>@ getAbsorbedCompounds()",
