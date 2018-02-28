@@ -1,5 +1,9 @@
 #include "configs.as"
 
+// For system registering
+#include "microbe.as"
+#include "microbe_stage_hud.as"
+
 const auto CLOUD_SPAWN_RADIUS = 75;
 
 const auto POWERUP_SPAWN_RADIUS = 85;
@@ -70,43 +74,43 @@ void setupSpecies(CellStageWorld@ world){
         dictionary capacities;
         for(uint a = 0; a < data.organelles.length(); ++a){
 
-            auto organelle = data.organelles[a];
+            string type = data.organelles[a].type;
             
-            if(!ORGANELLE_TABLE.exists(organelle.name))
-                continue;
+            const Organelle@ organelleDefinition = getOrganelleDefinition(type);
+            if(organelleDefinition is null){
 
-            const Organelle@ organelleDefinition;
-            if(!ORGANELLE_TABLE.get(organelle.name, organelleDefinition)){
-
-                LOG_ERROR("Organelle table has no organelle named '" + organelle.name +
+                LOG_ERROR("Organelle table has no organelle named '" + type +
                     "', that was used in starter microbe");
                 continue;
             }
-                
+            
             for(uint processNumber = 0;
                 processNumber < organelleDefinition.processes.length(); ++processNumber)
             {
                 // This name needs to match the one in bioProcessRegistry
                 auto process = organelleDefinition.processes[processNumber];
                 
-                if(!capacities.exists(process.name)){
-                    capacities[process.name] = 0;
+                if(!capacities.exists(process.process.name)){
+                    capacities[process.process.name] = 0;
                 }
 
-                capacities[process.name] = cast<int>(capacities[process]) + process.capacity;
+                // Here the second capacities[process.name] was initially capacities[process]
+                // but the processes are just strings inside the Organelle class
+                capacities[process.process.name] = int(capacities[process.process.name]) +
+                    process.capacity;
             }
         }
 
         uint64 processCount = SimulationParameters::bioProcessRegistry().getSize();
         for(uint bioProcessId = 0; bioProcessId < processCount; ++bioProcessId){
             
-            auto name = SimulationParameters::bioProcessRegistry().getInternalName(
+            auto processName = SimulationParameters::bioProcessRegistry().getInternalName(
                 bioProcessId);
             
-            if(capacities.exists(name)){
+            if(capacities.exists(processName)){
 
                 int capacity;
-                if(!capacities.get(name, capacity)){
+                if(!capacities.get(processName, capacity)){
                     LOG_ERROR("capacities has invalid value");
                     continue;
                 }
@@ -122,11 +126,18 @@ void setupSpecies(CellStageWorld@ world){
     LOG_INFO("setupSpecies created " + keys.length() + " species");
 }
 
+ScriptComponent@ MicrobeComponentFactory(GameWorld@ world){
+
+    return MicrobeComponent();
+}
 
 // This function instantiates all script system types for a world
 void setupSystemsForWorld(CellStageWorld@ world){
 
-    
+    world.RegisterScriptComponentType("MicrobeComponent", @MicrobeComponentFactory);
+
+    world.RegisterScriptSystem("MicrobeSystem", MicrobeSystem());
+    world.RegisterScriptSystem("MicrobeStageHudSystem", MicrobeStageHudSystem());
     
     assert(false, "TODO: add the rest");
 }

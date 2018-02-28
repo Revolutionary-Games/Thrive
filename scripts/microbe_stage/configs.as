@@ -9,11 +9,6 @@ int toxin_Organelle_Number = 0;
 bool chloroplast_unlocked = false;
 bool toxin_unlocked = false;
 
-void showMessage(const string &in message){
-
-    LOG_WRITE("TODO: showMessage needs implementing, this is the message: " + message);
-}
-
 
 // this count the toxin Organelle Number
 bool toxin_number(){

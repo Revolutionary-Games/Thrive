@@ -12,30 +12,21 @@ class MicrobeStageHudSystem : ScriptSystem{
 
     void Init(GameWorld@ world){
 
-        @World = cast<StandardWorld@>(world);
-        this.compoundListBox = null;
-        this.hitpointsCountLabel = null;
-        this.hitpointsMaxLabel = null;
-        this.hitpointsBar = null;
-        this.compoundListItems = {};
-        this.rootGuiWindow = null;
-        this.populationNumberLabel = null;
-        this.rootGUIWindow = null;
-        this.scrollChange = 0;
+        @World = cast<CellStageWorld>(world);
 
-        global_activeMicrobeStageHudSystem = self; // Global reference for event handlers
-    
-        lockedMap = Engine.playerData().lockedMap();
-        if(lockedMap !is null and not lockedMap.isLocked("Toxin") and
+        // global_activeMicrobeStageHudSystem = self; // Global reference for event handlers
+
+        // No clue where this ss variable is defined
+        bool ss = false;
+        if(not GetThriveGame().playerData().lockedMap().isLocked("Toxin") and
             not ss and not global_if_already_displayed
         ){
             showMessage("'E' Releases Toxin");
             global_if_already_displayed = true;
         }
-        this.helpOpen = false;
-        this.menuOpen = false;
-        this.compoundsOpen = true;
-        Engine.resumeGame();
+
+        // Engine.resumeGame();
+        // This updates the microbe stage pause menu load button
         this.updateLoadButton();
     
         this.chloroplastNotificationdisable();
@@ -58,6 +49,59 @@ class MicrobeStageHudSystem : ScriptSystem{
 
     void CreateAndDestroyNodes(){
     }
+
+
+    void updateLoadButton(){
+        assert(false, "TODO: hud");
+        if(FileSystem::FileExists("quick.sav")){
+            //this.rootGUIWindow.getChild("PauseMenu").getChild("LoadGameButton").enable();
+        } else {
+            //this.rootGUIWindow.getChild("PauseMenu").getChild("LoadGameButton").disable();
+        }
+    }
+
+    void chloroplastNotificationenable(){
+        assert(false, "TODO: hud");
+        // getComponent("gui_sounds", g_luaEngine.currentGameState, SoundSourceComponent
+        // ).playSound("microbe-pickup-organelle");
+        // this.rootGUIWindow.getChild("chloroplastUnlockNotification").show();
+        b1 = true;
+        // this.rootGUIWindow.getChild("toxinUnlockNotification").hide();
+    }
+
+    void chloroplastNotificationdisable(){
+        assert(false, "TODO: hud");
+        //this.rootGUIWindow.getChild("chloroplastUnlockNotification").hide();
+    }
+
+    void toxinNotificationenable(){
+        assert(false, "TODO: hud");
+        // getComponent("gui_sounds", g_luaEngine.currentGameState, SoundSourceComponent
+        // ).playSound("microbe-pickup-organelle");
+        // this.rootGUIWindow.getChild("toxinUnlockNotification").show();
+        b2 = true;
+        //this.rootGUIWindow.getChild("chloroplastUnlockNotification").hide();
+    }
+
+    void toxinNotificationdisable(){
+        //this.rootGUIWindow.getChild("toxinUnlockNotification").hide();
+    }
+    void editornotificationdisable(){
+        //this.rootGUIWindow.getChild("editornotification").hide();
+    }
+
+    void showReproductionDialog(){
+        // print("Reproduction Dialog called but currently disabled. Is it needed? Note that the editor button has been enabled")
+        //global_activeMicrobeStageHudSystem.rootGUIWindow.getChild("ReproductionPanel").show()
+        if(b3 == false){
+            // getComponent("gui_sounds", g_luaEngine.currentGameState, SoundSourceComponent
+            // ).playSound("microbe-pickup-organelle");
+            // this.rootGUIWindow.getChild("editornotification").show();
+            b3 = true;
+        }
+        // this.editorButton.enable();
+    }
+        
 
     private CellStageWorld@ World;
 
@@ -96,7 +140,23 @@ class MicrobeStageHudSystem : ScriptSystem{
     int ammoniaNeeded = 0;
     int oxygenNeeded = 0;
     int chloroplastNeeded = 0;
-    int toxinNeeded = 0;    
+    int toxinNeeded = 0;
+
+    GuiObject@ compoundListBox = null;
+    GuiObject@ hitpointsCountLabel = null;
+    GuiObject@ hitpointsMaxLabel = null;
+    GuiObject@ hitpointsBar = null;
+    dictionary compoundListItems = {};
+    GuiObject@ rootGuiWindow = null;
+    GuiObject@ rootGUIWindow = null; // lol
+    GuiObject@ populationNumberLabel = null;
+
+    // TODO: rewrite using Leviathan GuiCollection objects
+    bool helpOpen = false;
+    bool menuOpen = false;
+    // Not this one as this isn't really a collection, just a
+    // toggleable panel with a single button
+    bool compoundsOpen = true;
 }
 
 
@@ -566,40 +626,24 @@ class MicrobeStageHudSystem : ScriptSystem{
     
 //     // offset.z = newZVal;
 // }
-    
-// void showReproductionDialog(){
-//     assert(global_activeMicrobeStageHudSystem !is null,
-//         "no global active global_activeMicrobeStageHudSystem");
-//     assert(global_activeMicrobeStageHudSystem.showReproductionDialog);
-//     global_activeMicrobeStageHudSystem.showReproductionDialog();
-// }
 
-// void HudSystem.showReproductionDialog(){
-//     // print("Reproduction Dialog called but currently disabled. Is it needed? Note that the editor button has been enabled")
-//     //global_activeMicrobeStageHudSystem.rootGUIWindow.getChild("ReproductionPanel").show()
-//     if(b3 == false){
-//         getComponent("gui_sounds", g_luaEngine.currentGameState, SoundSourceComponent
-//         ).playSound("microbe-pickup-organelle");
-//             this.rootGUIWindow.getChild("editornotification").show();
-//                 b3 = true;
-//     }
-//     this.editorButton.enable();
-// }
 
-// void showMessage(msg){
-//     print(msg.." (note, in-game messages currently disabled)");
-//     //auto messagePanel = Engine.currentGameState().rootGUIWindow().getChild("MessagePanel")
-//     //messagePanel.getChild("MessageLabel").setText(msg)
-//     //messagePanel.show()
-// }
 
-// void HudSystem.updateLoadButton(){
-//     if(Engine.fileExists("quick.sav")){
-//         this.rootGUIWindow.getChild("PauseMenu").getChild("LoadGameButton").enable();
-//     } else {
-//         this.rootGUIWindow.getChild("PauseMenu").getChild("LoadGameButton").disable();
-//     }
-// }
+// ------------------------------------ //
+// Wrappers for calling GUI update things from random places
+
+void showReproductionDialog(GameWorld@ world){
+
+    cast<MicrobeStageHudSystem@>(world.GetScriptSystem("MicrobeStageHudSystem")).
+        showReproductionDialog();
+}
+
+void showMessage(const string &in msg){
+    LOG_INFO(msg + " (note, in-game messages currently disabled)");
+    //auto messagePanel = Engine.currentGameState().rootGUIWindow().getChild("MessagePanel")
+    //messagePanel.getChild("MessageLabel").setText(msg)
+    //messagePanel.show()
+}
 
 // //Event handlers
 
@@ -677,32 +721,11 @@ class MicrobeStageHudSystem : ScriptSystem{
 //     }
 // }
 
-// void HudSystem.chloroplastNotificationenable(){
-//     getComponent("gui_sounds", g_luaEngine.currentGameState, SoundSourceComponent;
-//     ).playSound("microbe-pickup-organelle");
-//     this.rootGUIWindow.getChild("chloroplastUnlockNotification").show();
-//     b1 = true;
-//     this.rootGUIWindow.getChild("toxinUnlockNotification").hide();
-// }
 
-// void HudSystem.chloroplastNotificationdisable(){
-//     this.rootGUIWindow.getChild("chloroplastUnlockNotification").hide();
-// }
 
-// void HudSystem.toxinNotificationenable(){
-//     getComponent("gui_sounds", g_luaEngine.currentGameState, SoundSourceComponent;
-//     ).playSound("microbe-pickup-organelle");
-//     this.rootGUIWindow.getChild("toxinUnlockNotification").show();
-//     b2 = true;
-//     this.rootGUIWindow.getChild("chloroplastUnlockNotification").hide();
-// }
 
-// void HudSystem.toxinNotificationdisable(){
-//     this.rootGUIWindow.getChild("toxinUnlockNotification").hide();
-// }
-// void HudSystem.editornotificationdisable(){
-//     this.rootGUIWindow.getChild("editornotification").hide();
-// }
+
+
 // void HudSystem.helpButtonClicked(){
 //     getComponent("gui_sounds", this.gameState, SoundSourceComponent).playSound("button-hover-click");
 //     this.rootGUIWindow.getChild("PauseMenu").getChild("HelpPanel").show();

@@ -31,13 +31,13 @@ class TweakedProcess{
     TweakedProcess(const string &in processName, float tweakRate){
 
         Process@ retrievedProcess;
-        if(!PROCESS_TABLE.get(processName, retrievedProcess)){
+        if(!PROCESS_TABLE.get(processName, @retrievedProcess)){
 
             assert(false, "Tried to create TweakedProcess with invalid name: " + processName);
             return;
         }
 
-        _process = retrievedProcess;
+        @_process = retrievedProcess;
         this.tweakRate = tweakRate;
     }
 
@@ -50,6 +50,9 @@ class TweakedProcess{
     private Process@ _process;
 
     float tweakRate = 1.0;
+
+    // The setup needs the process capacity for some reason
+    float capacity = 1.0f;
 }
 
 dictionary PROCESS_TABLE;
@@ -59,7 +62,7 @@ void setupProcesses(CellStageWorld@ world){
 
     assert(false, "TODO: read the process registry and create Process objects");
 
-    PROCESS_TABLE[name] = Process(name, data);
+    // PROCESS_TABLE[name] = Process(name, data);
 }
 
 

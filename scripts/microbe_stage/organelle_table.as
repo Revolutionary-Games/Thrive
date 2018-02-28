@@ -52,7 +52,7 @@ class OrganelleComponentFactory{
 
     OrganelleComponentFactory(OrganelleComponentFactoryFunc@ f, const string &in name){
 
-        factory = f;
+        @factory = f;
         this.name = name;
     }
 
@@ -78,6 +78,10 @@ class OrganelleParameters{
 
     //! The factories for the components that define what this organelle does
     array<OrganelleComponentFactory@> components;
+
+    array<TweakedProcess@> processes;
+
+    array<Int2> hexes;
 
     //! The initial amount of compounds this organelle consists of
     dictionary initialComposition;

@@ -521,5 +521,89 @@ bool addOrganelle(CellStageWorld@ world, ObjectID microbeEntity, PlacedOrganelle
     return true;
 }
 
+
+// Creates a new microbe with all required components
+//
+// @param name
+// The entity's name. If null, the entity will be unnamed.
+//
+// @returns microbe
+// An object of type Microbe
+ObjectID createMicrobeEntity(CellStageWorld@ world, const string &in name, bool aiControlled,
+    const string &in speciesName, bool in_editor)
+{
+    assert(speciesName != "", "Empty species name for create microbe");
+
+    local entity;
+    if(name){
+        entity = Entity(name, g_luaEngine.currentGameState.wrapper);
+    } else {
+        entity = Entity(g_luaEngine.currentGameState.wrapper);
+    }
+
+    auto rigidBody = RigidBodyComponent();
+    rigidBody.properties.shape = CompoundShape();
+    rigidBody.properties.linearDamping = 0.5;
+    rigidBody.properties.friction = 0.2;
+    rigidBody.properties.mass = 0.0;
+    rigidBody.properties.linearFactor = Vector3(1, 1, 0);
+    rigidBody.properties.angularFactor = Vector3(0, 0, 1);
+    rigidBody.properties.touch();
+
+    auto reactionHandler = CollisionComponent();
+    reactionHandler.addCollisionGroup("microbe");
+
+    auto membraneComponent = MembraneComponent();
+
+    auto soundComponent = SoundSourceComponent();
+    auto s1 = null;
+    soundComponent.addSound("microbe-release-toxin",
+        "soundeffects/microbe-release-toxin.ogg");
+    soundComponent.addSound("microbe-toxin-damage",
+        "soundeffects/microbe-toxin-damage.ogg");
+    soundComponent.addSound("microbe-death", "soundeffects/microbe-death.ogg");
+    soundComponent.addSound("microbe-pickup-organelle",
+        "soundeffects/microbe-pickup-organelle.ogg");
+    soundComponent.addSound("microbe-engulfment", "soundeffects/engulfment.ogg");
+    soundComponent.addSound("microbe-reproduction", "soundeffects/reproduction.ogg");
+
+    s1 = soundComponent.addSound("microbe-movement-1",
+        "soundeffects/microbe-movement-1.ogg");
+    s1.properties.volume = 0.4;
+    s1.properties.touch();
+    s1 = soundComponent.addSound("microbe-movement-turn",
+        "soundeffects/microbe-movement-2.ogg");
+    s1.properties.volume = 0.1;
+    s1.properties.touch();
+    s1 = soundComponent.addSound("microbe-movement-2",
+        "soundeffects/microbe-movement-3.ogg");
+    s1.properties.volume = 0.4;
+    s1.properties.touch();
+
+    auto components = {
+        CompoundAbsorberComponent(),
+        OgreSceneNodeComponent(),
+        CompoundBagComponent(),
+        MicrobeComponent(not aiControlled, speciesName),
+        reactionHandler,
+        rigidBody,
+        soundComponent,
+        membraneComponent
+    }
+
+    if(aiControlled){
+        auto aiController = MicrobeAIControllerComponent();
+        table.insert(components, aiController);
+    }
+
+    for(_, component in ipairs(components)){
+        entity.addComponent(component);
+    }
+    
+    MicrobeSystem.initializeMicrobe(entity, in_editor, g_luaEngine.currentGameState);
+
+    return entity;
+}
+
 }
 

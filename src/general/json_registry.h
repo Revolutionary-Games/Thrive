@@ -50,6 +50,9 @@ public:
 	// Get the amount of elements in the registry.
 	size_t getSize();
 
+    //! \returns The internal name from id
+    const std::string& getInternalName(size_t id);
+
 private:
 	// Registered types
 	std::map<size_t, T> registeredTypes;
@@ -152,6 +155,19 @@ TJsonRegistry<T>::getTypeId(
     const auto iter = internalNameIndex.find(internalName);
 	LEVIATHAN_ASSERT(iter != internalNameIndex.end(), "Type not found!");
     return iter->second;
+}
+
+template<class T>
+const std::string&
+TJsonRegistry<T>::
+getInternalName(
+    size_t id
+) {
+    for(auto iter = internalNameIndex.begin(); iter != internalNameIndex.end(); ++iter){
+        if(iter->second == id)
+            return iter->first;
+    }
+    throw std::runtime_error("no name for id found in this registry");
 }
 
 template<class T> size_t TJsonRegistry<T>::getSize() {

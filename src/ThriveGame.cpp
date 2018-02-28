@@ -529,7 +529,14 @@ bool registerJsonRegistry(asIScriptEngine* engine, const char* classname,
         ANGELSCRIPT_REGISTERFAIL;
     }
 
-    
+    ANGELSCRIPT_ASSUMED_SIZE_T;
+    if(engine->RegisterObjectMethod(classname,
+            "const string& getInternalName(uint64 id)",
+            asMETHOD(RegistryT, getTypeId),
+            asCALL_THISCALL) < 0)
+    {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
 
     return true;
 }
@@ -574,6 +581,9 @@ bool registerJsonRegistryHeldTypes(asIScriptEngine* engine){
 
     if(!registerRegistryHeldHelperBases<Compound>(engine, "Compound"))
         return false;
+
+    if(!registerRegistryHeldHelperBases<Compound>(engine, "BioProcess"))
+        return false;
     
     // Compound specific properties //
     if(engine->RegisterObjectProperty("Compound",
@@ -613,6 +623,11 @@ TJsonRegistry<Compound>* getCompoundRegistryWrapper(){
     return &SimulationParameters::compoundRegistry;
 }
 
+TJsonRegistry<BioProcess>* getBioProcessRegistryWrapper(){
+
+    return &SimulationParameters::bioProcessRegistry;
+}
+
 bool registerSimulationDataAndJsons(asIScriptEngine* engine){
 
     if(engine->RegisterObjectType("SimulationParameters", 0, asOBJ_REF | asOBJ_NOCOUNT) < 0){
@@ -628,6 +643,12 @@ bool registerSimulationDataAndJsons(asIScriptEngine* engine){
         return false;
     }
 
+    if(!registerJsonRegistry<TJsonRegistry<BioProcess>, BioProcess>(engine,
+            "TJsonRegistryBioProcess", "BioProcess"))
+    {
+        return false;
+    }
+
     if(engine->SetDefaultNamespace("SimulationParameters") < 0)
     {
         ANGELSCRIPT_REGISTERFAIL;
@@ -635,6 +656,12 @@ bool registerSimulationDataAndJsons(asIScriptEngine* engine){
 
     if(engine->RegisterGlobalFunction("TJsonRegistryCompound@ compoundRegistry()",
             asFUNCTION(getCompoundRegistryWrapper), asCALL_CDECL) < 0)
+    {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterGlobalFunction("TJsonRegistryCompound@ bioProcessRegistry()",
+            asFUNCTION(getBioProcessRegistryWrapper), asCALL_CDECL) < 0)
     {
         ANGELSCRIPT_REGISTERFAIL;
     }
@@ -648,6 +675,38 @@ bool registerSimulationDataAndJsons(asIScriptEngine* engine){
 }
 
 
+static uint16_t ProcessorComponentTYPEProxy = static_cast<uint16_t>(ProcessorComponent::TYPE);
+static uint16_t SpawnedComponentTYPEProxy = static_cast<uint16_t>(SpawnedComponent::TYPE);
+static uint16_t AgentCloudComponentTYPEProxy =
+    static_cast<uint16_t>(AgentCloudComponent::TYPE);
+static uint16_t CompoundCloudComponentTYPEProxy =
+    static_cast<uint16_t>(CompoundCloudComponent::TYPE);
+static uint16_t MembraneComponentTYPEProxy = static_cast<uint16_t>(MembraneComponent::TYPE);
+static uint16_t SpeciesComponentTYPEProxy = static_cast<uint16_t>(SpeciesComponent::TYPE);
+static uint16_t CompoundBagComponentTYPEProxy =
+    static_cast<uint16_t>(CompoundBagComponent::TYPE);
+static uint16_t CompoundAbsorberComponentTYPEProxy =
+    static_cast<uint16_t>(CompoundAbsorberComponent::TYPE);
+
+
+//! Helper for bindThriveComponentTypes
+bool bindComponentTypeId(asIScriptEngine* engine, const char* name, uint16_t* value)
+{
+    if(engine->SetDefaultNamespace(name) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterGlobalProperty("const uint16 TYPE", value) < 0) {
+
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->SetDefaultNamespace("") < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    return true;
+}
 
 bool bindThriveComponentTypes(asIScriptEngine* engine){
 
@@ -655,21 +714,49 @@ bool bindThriveComponentTypes(asIScriptEngine* engine){
         ANGELSCRIPT_REGISTERFAIL;
     }
 
+    if(!bindComponentTypeId(engine, "ProcessorComponent", &ProcessorComponentTYPEProxy))
+        return false;
+
+    if(engine->RegisterObjectMethod("ProcessorComponent",
+            "void setCapacity(BioProcessId id, double capacity)",
+            asMETHOD(ProcessorComponent, setCapacity),
+            asCALL_THISCALL) < 0)
+    {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    // ------------------------------------ //
     if(engine->RegisterObjectType("SpawnedComponent", 0, asOBJ_REF | asOBJ_NOCOUNT) < 0){
         ANGELSCRIPT_REGISTERFAIL;
     }
 
+    if(!bindComponentTypeId(engine, "SpawnedComponent", &SpawnedComponentTYPEProxy))
+        return false;
+
+    // ------------------------------------ //
     if(engine->RegisterObjectType("AgentCloudComponent", 0, asOBJ_REF | asOBJ_NOCOUNT) < 0){
         ANGELSCRIPT_REGISTERFAIL;
     }
 
+    if(!bindComponentTypeId(engine, "AgentCloudComponent", &AgentCloudComponentTYPEProxy))
+        return false;
+    
+    // ------------------------------------ //
     if(engine->RegisterObjectType("CompoundCloudComponent", 0, asOBJ_REF | asOBJ_NOCOUNT) < 0){
         ANGELSCRIPT_REGISTERFAIL;
     }
 
+    if(!bindComponentTypeId(engine, "CompoundCloudComponent",
+            &CompoundCloudComponentTYPEProxy))
+        return false;
+    
+    // ------------------------------------ //
     if(engine->RegisterObjectType("MembraneComponent", 0, asOBJ_REF | asOBJ_NOCOUNT) < 0){
         ANGELSCRIPT_REGISTERFAIL;
     }
+
+    if(!bindComponentTypeId(engine, "MembraneComponent", &MembraneComponentTYPEProxy))
+        return false;
 
     if(engine->RegisterObjectMethod("MembraneComponent",
             "void setColour(const Float4 &in colour)",
@@ -687,11 +774,23 @@ bool bindThriveComponentTypes(asIScriptEngine* engine){
         ANGELSCRIPT_REGISTERFAIL;
     }
 
+    if(engine->RegisterObjectMethod("MembraneComponent",
+            "int getCellDimensions()",
+            asMETHOD(MembraneComponent, getCellDimensions),
+            asCALL_THISCALL) < 0)
+    {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+    
+
     // ------------------------------------ //
 
     if(engine->RegisterObjectType("SpeciesComponent", 0, asOBJ_REF | asOBJ_NOCOUNT) < 0){
         ANGELSCRIPT_REGISTERFAIL;
     }
+
+    if(!bindComponentTypeId(engine, "SpeciesComponent", &SpeciesComponentTYPEProxy))
+        return false;
 
     if(engine->RegisterObjectProperty("SpeciesComponent", "array<ref@>@ organelles",
             asOFFSET(SpeciesComponent, organelles)) < 0)
@@ -717,6 +816,9 @@ bool bindThriveComponentTypes(asIScriptEngine* engine){
     if(engine->RegisterObjectType("CompoundBagComponent", 0, asOBJ_REF | asOBJ_NOCOUNT) < 0){
         ANGELSCRIPT_REGISTERFAIL;
     }
+
+    if(!bindComponentTypeId(engine, "CompoundBagComponent", &CompoundBagComponentTYPEProxy))
+        return false;
     
     if(engine->RegisterObjectMethod("CompoundBagComponent",
             "double getCompoundAmount(CompoundId compound)",
@@ -768,6 +870,10 @@ bool bindThriveComponentTypes(asIScriptEngine* engine){
         ANGELSCRIPT_REGISTERFAIL;
     }
 
+    if(!bindComponentTypeId(engine, "CompoundAbsorberComponent",
+            &CompoundAbsorberComponentTYPEProxy))
+        return false;
+
     if(engine->RegisterObjectMethod("CompoundAbsorberComponent",
             "void enable()",
             asMETHOD(CompoundAbsorberComponent, enable),
@@ -805,6 +911,14 @@ bool bindThriveComponentTypes(asIScriptEngine* engine){
     if(engine->RegisterObjectMethod("CompoundAbsorberComponent",
             "void setAbsorbtionCapacity(double capacity)",
             asMETHOD(CompoundAbsorberComponent, setAbsorbtionCapacity),
+            asCALL_THISCALL) < 0)
+    {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectMethod("CompoundAbsorberComponent",
+            "void setCanAbsorbCompound(CompoundId id, bool canAbsorb)",
+            asMETHOD(CompoundAbsorberComponent, setCanAbsorbCompound),
             asCALL_THISCALL) < 0)
     {
         ANGELSCRIPT_REGISTERFAIL;

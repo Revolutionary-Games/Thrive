@@ -14,7 +14,7 @@ void setupAbsorberForAllCompounds(CompoundAbsorberComponent@ absorber){
 
         auto compound = SimulationParameters::compoundRegistry().getTypeData(a);
     
-        absorber.setCanAbsorbCompound(compound, true);
+        absorber.setCanAbsorbCompound(a, true);
     }
 }
 
@@ -748,7 +748,7 @@ class MicrobeSystem : ScriptSystem{
     // //  amount in units avaliable for use.
     // float getBandwidth(ObjectID microbeEntity, float maxAmount, CompoundId compoundId){
     //     auto microbeComponent = world.GetComponent_MicrobeComponent(microbeEntity, MicrobeComponent);
-    //     auto compoundVolume = CompoundRegistry.getCompoundUnitVolume(compoundId);
+    //     auto compoundVolume = SimulationParameters::compoundRegistry().getCompoundUnitVolume(compoundId);
     //     auto amount = min(maxAmount * compoundVolume, microbeComponent.remainingBandwidth);
     //     microbeComponent.remainingBandwidth = microbeComponent.remainingBandwidth - amount;
     //     return amount / compoundVolume;
@@ -876,7 +876,7 @@ class MicrobeSystem : ScriptSystem{
     //     }
     //     auto compoundsToRelease = {};
     //     // Eject the compounds that was in the microbe
-    //     for(_, compoundId in pairs(CompoundRegistry.getCompoundList())){
+    //     for(_, compoundId in pairs(SimulationParameters::compoundRegistry().getCompoundList())){
     //         auto total = MicrobeSystem.getCompoundAmount(microbeEntity, compoundId);
     //         auto ejectedAmount = MicrobeSystem.takeCompound(microbeEntity,
     //             compoundId, total);
@@ -885,7 +885,7 @@ class MicrobeSystem : ScriptSystem{
 
     //     for(_, organelle in pairs(microbeComponent.organelles)){
     //         for(compoundName, amount in pairs(organelleTable[organelle.name].composition)){
-    //             auto compoundId = CompoundRegistry.getCompoundId(compoundName);
+    //             auto compoundId = SimulationParameters::compoundRegistry().getTypeId(compoundName);
     //             if(compoundsToRelease[compoundId] is null){
     //                 compoundsToRelease[compoundId] = amount * COMPOUND_RELEASE_PERCENTAGE;
     //             } else {
@@ -934,17 +934,18 @@ class MicrobeSystem : ScriptSystem{
         MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
             world.GetScriptComponentHolder("MicrobeComponent").Find(microbeEntity));
 
-        if(MicrobeOperations::getCompoundAmount(microbeEntity,
-                CompoundRegistry.getCompoundId("atp")) < 1.0)
+        if(MicrobeOperations::getCompoundAmount(world, microbeEntity,
+                SimulationParameters::compoundRegistry().getTypeId("atp")) < 1.0)
         {
             // TODO: put this on a GUI notification.
             // if(microbeComponent.isPlayerMicrobe and not this.playerAlreadyShownAtpDamage){
             //     this.playerAlreadyShownAtpDamage = true
             //     showMessage("No ATP hurts you!")
             // }
-            MicrobeOperations::damage(microbeEntity, EXCESS_COMPOUND_COLLECTION_INTERVAL *
-                0.000002  * microbeComponent.maxHitpoints, "atpDamage"); // Microbe takes 2%
-                // of max hp per second in damage
+            MicrobeOperations::damage(world, microbeEntity,
+                int(EXCESS_COMPOUND_COLLECTION_INTERVAL *
+                    0.000002  * microbeComponent.maxHitpoints), "atpDamage");
+            // Microbe takes 2% of max hp per second in damage
         }
     }
 
@@ -1015,7 +1016,7 @@ class MicrobeSystem : ScriptSystem{
     // }
 
     // void transferCompounds(ObjectID fromEntity, ObjectID toEntity){
-    //     for(_, compoundID in pairs(CompoundRegistry.getCompoundList())){
+    //     for(_, compoundID in pairs(SimulationParameters::compoundRegistry().getCompoundList())){
     //         auto amount = MicrobeSystem.getCompoundAmount(fromEntity, compoundID);
     
     //         if(amount != 0){
@@ -1027,127 +1028,62 @@ class MicrobeSystem : ScriptSystem{
     //     }
     // }
 
-    // // Creates a new microbe with all required components
-    // //
-    // // @param name
-    // // The entity's name. If null, the entity will be unnamed.
-    // //
-    // // @returns microbe
-    // // An object of type Microbe
-    // ObjectID createMicrobeEntity(const string &in name, bool aiControlled,
-    //     const string &in speciesName, bool in_editor)
-    // {
-    //     assert(speciesName != "", "Empty species name for create microbe");
+    void divide(ObjectID microbeEntity){
+        MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
+            world.GetScriptComponentHolder("MicrobeComponent").Find(microbeEntity));
+        // auto soundSourceComponent = world.GetComponent_SoundSourceComponent(microbeEntity);
+        auto membraneComponent = world.GetComponent_MembraneComponent(microbeEntity);
+        auto position = world.GetComponent_Position(microbeEntity);
+        auto rigidBodyComponent = world.GetComponent_Physics(microbeEntity);
 
-    //     local entity;
-    //     if(name){
-    //         entity = Entity(name, g_luaEngine.currentGameState.wrapper);
-    //     } else {
-    //         entity = Entity(g_luaEngine.currentGameState.wrapper);
-    //     }
+        // Create the one daughter cell.
+        // The empty string here is the name of the new cell, which could be more descriptive
+        // to set to something based on the original cell
+        auto copyEntity = MicrobeOperations::createMicrobeEntity(world, "", true,
+            microbeComponent.speciesName, false);
+        MicrobeComponent@ microbeComponentCopy = cast<MicrobeComponent>(
+            world.GetScriptComponentHolder("MicrobeComponent").Find(copyEntity));
+        auto rigidBodyComponentCopy = world.GetComponent_Physics(copyEntity);
+        auto positionCopy = world.GetComponent_Position(copyEntity);
 
-    //     auto rigidBody = RigidBodyComponent();
-    //     rigidBody.properties.shape = CompoundShape();
-    //     rigidBody.properties.linearDamping = 0.5;
-    //     rigidBody.properties.friction = 0.2;
-    //     rigidBody.properties.mass = 0.0;
-    //     rigidBody.properties.linearFactor = Vector3(1, 1, 0);
-    //     rigidBody.properties.angularFactor = Vector3(0, 0, 1);
-    //     rigidBody.properties.touch();
+        //Separate the two cells.
+        positionCopy._Position = Float3(position._Position.X - 
+            membraneComponent.getCellDimensions() / 2,
+            0, position._Position.Z);
+        rigidBodyComponentCopy.JumpTo(positionCopy);
 
-    //     auto reactionHandler = CollisionComponent();
-    //     reactionHandler.addCollisionGroup("microbe");
+        position._Position = Float3(position._Position.X + 
+            membraneComponent.getCellDimensions() / 2,
+            0, position._Position.Z);
+        rigidBodyComponent.JumpTo(position);
 
-    //     auto membraneComponent = MembraneComponent();
+        
+        // Split the compounds evenly between the two cells.
+        for(uint64 compoundID = 0; compoundID <
+                SimulationParameters::compoundRegistry().getSize(); ++compoundID)
+        {
+            auto amount = MicrobeOperations::getCompoundAmount(world, microbeEntity,
+                compoundID);
 
-    //     auto soundComponent = SoundSourceComponent();
-    //     auto s1 = null;
-    //     soundComponent.addSound("microbe-release-toxin",
-    //         "soundeffects/microbe-release-toxin.ogg");
-    //     soundComponent.addSound("microbe-toxin-damage",
-    //         "soundeffects/microbe-toxin-damage.ogg");
-    //     soundComponent.addSound("microbe-death", "soundeffects/microbe-death.ogg");
-    //     soundComponent.addSound("microbe-pickup-organelle",
-    //         "soundeffects/microbe-pickup-organelle.ogg");
-    //     soundComponent.addSound("microbe-engulfment", "soundeffects/engulfment.ogg");
-    //     soundComponent.addSound("microbe-reproduction", "soundeffects/reproduction.ogg");
-
-    //     s1 = soundComponent.addSound("microbe-movement-1",
-    //         "soundeffects/microbe-movement-1.ogg");
-    //     s1.properties.volume = 0.4;
-    //     s1.properties.touch();
-    //     s1 = soundComponent.addSound("microbe-movement-turn",
-    //         "soundeffects/microbe-movement-2.ogg");
-    //     s1.properties.volume = 0.1;
-    //     s1.properties.touch();
-    //     s1 = soundComponent.addSound("microbe-movement-2",
-    //         "soundeffects/microbe-movement-3.ogg");
-    //     s1.properties.volume = 0.4;
-    //     s1.properties.touch();
-
-    //     auto components = {
-    //         CompoundAbsorberComponent(),
-    //         OgreSceneNodeComponent(),
-    //         CompoundBagComponent(),
-    //         MicrobeComponent(not aiControlled, speciesName),
-    //         reactionHandler,
-    //         rigidBody,
-    //         soundComponent,
-    //         membraneComponent
-    //     }
-
-    //     if(aiControlled){
-    //         auto aiController = MicrobeAIControllerComponent();
-    //         table.insert(components, aiController);
-    //     }
-
-    //     for(_, component in ipairs(components)){
-    //         entity.addComponent(component);
-    //     }
+            if(amount != 0){
+                MicrobeOperations::takeCompound(world, microbeEntity, compoundID,
+                    amount / 2/*, false*/ );
+                // Not sure what the false here means, it wasn't a
+                // parameter in the original lua function so it did
+                // nothing even then?
+                MicrobeOperations::storeCompound(world, copyEntity, compoundID,
+                    amount / 2, false);
+            }
+        }
     
-    //     MicrobeSystem.initializeMicrobe(entity, in_editor, g_luaEngine.currentGameState);
+        microbeComponent.reproductionStage = 0;
+        microbeComponentCopy.reproductionStage = 0;
 
-    //     return entity;
-    // }
-
-    // void divide(ObjectID microbeEntity){
-    //     auto microbeComponent = world.GetComponent_MicrobeComponent(microbeEntity, MicrobeComponent);
-    //     auto soundSourceComponent = world.GetComponent_SoundSourceComponent(microbeEntity, SoundSourceComponent);
-    //     auto membraneComponent = world.GetComponent_MembraneComponent(microbeEntity, MembraneComponent);
-    //     auto rigidBodyComponent = world.GetComponent_RigidBodyComponent(microbeEntity, RigidBodyComponent);
-
-    //     // Create the two daughter cells.
-    //     auto copyEntity = MicrobeSystem.createMicrobeEntity(null, true,
-    //         microbeComponent.speciesName, false);
-    //     auto microbeComponentCopy = world.GetComponent_MicrobeComponent(copyEntity, MicrobeComponent);
-    //     auto rigidBodyComponentCopy = world.GetComponent_RigidBodyComponent(copyEntity, RigidBodyComponent);
-
-    //     //Separate the two cells.
-    //     rigidBodyComponentCopy.dynamicProperties.position = Vector3(
-    //         rigidBodyComponent.dynamicProperties.position.x - membraneComponent.dimensions/2,
-    //         rigidBodyComponent.dynamicProperties.position.y, 0);
-    //     rigidBodyComponent.dynamicProperties.position = Vector3(
-    //         rigidBodyComponent.dynamicProperties.position.x + membraneComponent.dimensions/2,
-    //         rigidBodyComponent.dynamicProperties.position.y, 0);
-
-    //     // Split the compounds evenly between the two cells.
-    //     for(_, compoundID in pairs(CompoundRegistry.getCompoundList())){
-    //         auto amount = MicrobeSystem.getCompoundAmount(microbeEntity, compoundID);
-
-    //         if(amount != 0){
-    //             MicrobeSystem.takeCompound(microbeEntity, compoundID, amount / 2, false);
-    //             MicrobeSystem.storeCompound(copyEntity, compoundID, amount / 2, false);
-    //         }
-    //     }
-    
-    //     microbeComponent.reproductionStage = 0;
-    //     microbeComponentCopy.reproductionStage = 0;
-
-    //     auto spawnedComponent = SpawnedComponent();
-    //     spawnedComponent.setSpawnRadius(MICROBE_SPAWN_RADIUS);
-    //     copyEntity.addComponent(spawnedComponent);
-    //     soundSourceComponent.playSound("microbe-reproduction");
-    // }
+        world.Create_SpawnedComponent(copyEntity, MICROBE_SPAWN_RADIUS);
+            
+        LOG_WRITE("TODO: soundSourceComponent.playSound(\"microbe-reproduction\");"); 
+        // soundSourceComponent.playSound("microbe-reproduction");
+    }
 
     // Copies this microbe. The new microbe will not have the stored compounds of this one.
     void readyToReproduce(ObjectID microbeEntity){
@@ -1155,7 +1091,7 @@ class MicrobeSystem : ScriptSystem{
             world.GetScriptComponentHolder("MicrobeComponent").Find(microbeEntity));
 
         if(microbeComponent.isPlayerMicrobe){
-            showReproductionDialog();
+            showReproductionDialog(world);
             microbeComponent.reproductionStage = 0;
         } else {
             // Return the first cell to its normal, non duplicated cell arangement.

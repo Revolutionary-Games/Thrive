@@ -35,6 +35,13 @@ class Organelle{
 
         initialComposition = parameters.initialComposition;
         components = parameters.components;
+        processes = parameters.processes;
+
+        // Add hexes //
+        for(uint i = 0; i < parameters.hexes.length(); ++i){
+
+            addHex(parameters.hexes[i].X, parameters.hexes[i].Y);
+        }
 
         // Calculate organelleCost and compoundsLeft//
         // This method sets organelleCost
@@ -194,7 +201,7 @@ class Organelle{
     // The names in the processes need to match the ones in bioProcessRegistry
     // Or better yet, be loaded from the registry that reads the json files
     // so that the processes can be configured that way
-    array<string> processes;
+    array<TweakedProcess@> processes;
 
     // The total number of compounds we need before we can split.
     int organelleCost;

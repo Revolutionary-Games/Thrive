@@ -2,23 +2,21 @@
 // Class for the single core organelle of any microbe
 ////////////////////////////////////////////////////////////////////////////////
 #include "organelle_component.as"
+#include "microbe_operations.as"
 
 class NucleusOrganelle : OrganelleComponent{
     // Constructor
-    NucleusOrganelle(dictionary arguments, dictionary data){
+    NucleusOrganelle(const dictionary &in arguments, const dictionary &in data){
 
-        //making sure this doesn't run when load() is called
-        if(arguments == null && data == null){
-            return;
-        }
-
+        super(arguments, data);
+        
         // Moved to onAddedToMicrobe
     }
 
     // See organelle_component.as for more information about the 
     // organelle component methods and the arguments they receive.
 
-    // Overridded from Organelle.onAddedToMicrobe
+    // Overridded from OrganelleComponent.onAddedToMicrobe
     void
     onAddedToMicrobe(
         ObjectID microbeEntity,
@@ -26,48 +24,50 @@ class NucleusOrganelle : OrganelleComponent{
         PlacedOrganelle@ organelle
     ) override {
 
-        auto world = microbeEntity.getWorld();
-        auto microbeNode = microbeEntity.getRenderNodeComponent();
+        @inOrganelle = organelle;
+        auto world = inOrganelle.world;
+        auto microbeNode = world.GetComponent_RenderNode(microbeEntity);
 
         assert(microbeNode !is null, "microbe entity has no RenderNode");
 
         golgi = world.CreateEntity();
         ER = world.CreateEntity();
         
-        Float2 xy = axialToCartesian(q-1, r-1);
+        Float3 xyz = Hex::axialToCartesian(q-1, r-1);
         
         auto sceneNode1 = world.Create_RenderNode(golgi);
-        auto model1 = world.Create_Model(golgi, "golgi.mesh");
+        auto model1 = world.Create_Model(golgi, sceneNode1.Node, "golgi.mesh");
 
         sceneNode1.Scale = Float3(HEX_SIZE, HEX_SIZE, HEX_SIZE);
-        sceneNode1.Node.setPosition(Ogre::Vector3(xy.X, 0, xy.Y));
-        sceneNode1.Node.setOrientation = Ogre::Quaternion(Ogre::Degree(rotation),
-            Ogre::Vector3(0, 1, 0));
+        sceneNode1.Node.setPosition(xyz);
+        sceneNode1.Node.setOrientation(Ogre::Quaternion(Ogre::Degree(rotation),
+                Ogre::Vector3(0, 1, 0)));
         sceneNode1.Marked = true;
         
-        sceneNode1.Node.setParent(microbeNode.Node);
+        microbeNode.Node.addChild(sceneNode1.Node);
 
-        world.SetEntityParent(microbeEntity.getEntityID(), golgi);
+        world.SetEntitysParent(microbeEntity, golgi);
 
         auto sceneNode2 = world.Create_RenderNode(ER);
-        auto model2 = world.Create_Model(ER, "ER.mesh");
+        auto model2 = world.Create_Model(ER, sceneNode2.Node, "ER.mesh");
 
         sceneNode2.Scale = Float3(HEX_SIZE, HEX_SIZE, HEX_SIZE);
-        sceneNode2.Node.setOrientation = Ogre::Quaternion(Ogre::Degree(rotation + 10),
-            Ogre::Vector3(0, 1, 0));
+        sceneNode2.Node.setOrientation(Ogre::Quaternion(Ogre::Degree(rotation + 10),
+                Ogre::Vector3(0, 1, 0)));
         sceneNode2.Marked = true;
 
-        sceneNode2.Node.setParent(microbeNode.Node);
+        microbeNode.Node.addChild(sceneNode2.Node);
+
+        world.SetEntitysParent(microbeEntity, ER);
         
-        // If we are not in the editor, get the color of this species.
-        auto speciesComponent = microbeEntity.getSpeciesComponent();
-        if(microbeEntity !is null){
-            auto speciesColour = speciesComponent.colour;
-            this.colourSuffix = "" + floor(speciesColour.X * 256) +
-                floor(speciesColour.Y * 256) + floor(speciesColour.Z * 256);
-        }
+        auto speciesComponent = MicrobeOperations::getSpeciesComponent(world, microbeEntity);
+
+        // This does nothing...
+        // auto speciesColour = speciesComponent.colour;
+        // this.colourSuffix = "" + floor(speciesColour.X * 256) +
+        //     floor(speciesColour.Y * 256) + floor(speciesColour.Z * 256);
         
-        organelle._needsColourUpdate = true;
+        // organelle._needsColourUpdate = true;
     }
 
     void
@@ -75,10 +75,14 @@ class NucleusOrganelle : OrganelleComponent{
         ObjectID microbeEntity
     ) override {
 
+        auto world = inOrganelle.world;
+        
         world.QueueDestroyEntity(golgi);
-        world.QUeueDestroyEntity(ER);
+        world.QueueDestroyEntity(ER);
         golgi = NULL_OBJECT;
         ER = NULL_OBJECT;
+
+        @inOrganelle = null;
     }
     
     // void NucleusOrganelle.storage(){
@@ -89,7 +93,8 @@ class NucleusOrganelle : OrganelleComponent{
     // this.golgi = Entity(g_luaEngine.currentGameState.wrapper)
 	// this.ER = Entity(g_luaEngine.currentGameState.wrapper)
     // }
-    
+
+    private PlacedOrganelle@ inOrganelle;
     private ObjectID golgi = NULL_OBJECT;
     private ObjectID ER = NULL_OBJECT;
     //! Not sure if this is used for anything
