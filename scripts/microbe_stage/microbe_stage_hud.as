@@ -101,6 +101,19 @@ class MicrobeStageHudSystem : ScriptSystem{
         }
         // this.editorButton.enable();
     }
+
+    void suicideButtonClicked(){
+        // getComponent("gui_sounds", this.gameState, SoundSourceComponent).playSound("button-hover-click");
+        if(boolean2 == false){
+            boolean = true;
+        }
+    }
+    void suicideButtondisable(){
+        // this.rootGUIWindow.getChild("SuicideButton").disable();
+    }
+    void suicideButtonreset(){
+        boolean2 = false;
+    }
         
 
     private CellStageWorld@ World;
@@ -742,18 +755,7 @@ void showMessage(const string &in msg){
 //     this.helpOpen = not this.helpOpen;
 // }
 
-// void HudSystem.suicideButtonClicked(){
-//     getComponent("gui_sounds", this.gameState, SoundSourceComponent).playSound("button-hover-click");
-//     if(boolean2 == false){
-//         boolean = true;
-//     }
-// }
-// void HudSystem.suicideButtondisable(){
-//     this.rootGUIWindow.getChild("SuicideButton").disable();
-// }
-// void HudSystem.suicideButtonreset(){
-//     boolean2 = false;
-// }
+
 // void HudSystem.closeHelpButtonClicked(){
 //     getComponent("gui_sounds", this.gameState, SoundSourceComponent).playSound("button-hover-click");
 //     this.rootGUIWindow.getChild("PauseMenu").getChild("HelpPanel").hide();

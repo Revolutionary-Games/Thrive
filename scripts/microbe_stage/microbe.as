@@ -356,9 +356,16 @@ class MicrobeSystem : ScriptSystem{
                     MicrobeOperations::respawnPlayer(world);
                 } else {
 
+                    auto physics = world.GetComponent_Physics(microbeEntity);
+
                     for(uint i = 0; i < microbeComponent.organelles.length(); ++i){
-                        
-                        microbeComponent.organelles[i].onRemovedFromMicrobe(microbeEntity);
+
+                        // This Collision doesn't really need to be
+                        // updated here, but this keeps us from
+                        // changing onRemovedFromMicrobe to allow
+                        // skipping it
+                        microbeComponent.organelles[i].onRemovedFromMicrobe(microbeEntity,
+                            physics.Collision);
                     }
                     
                     // Safe destroy before next tick
@@ -731,29 +738,6 @@ class MicrobeSystem : ScriptSystem{
     //         microbe2Comp.isBeingEngulfed = true;
     //     }
     // }
-
-    // // Attempts to obtain an amount of bandwidth for immediate use.
-    // // This should be in conjunction with most operations ejecting  or absorbing compounds and agents for microbe.
-    // //
-    // // @param maicrobeEntity
-    // // The entity of the microbe to get the bandwidth from.
-    // //
-    // // @param maxAmount
-    // // The max amount of units that is requested.
-    // //
-    // // @param compoundId
-    // // The compound being requested for volume considerations.
-    // //
-    // // @return
-    // //  amount in units avaliable for use.
-    // float getBandwidth(ObjectID microbeEntity, float maxAmount, CompoundId compoundId){
-    //     auto microbeComponent = world.GetComponent_MicrobeComponent(microbeEntity, MicrobeComponent);
-    //     auto compoundVolume = SimulationParameters::compoundRegistry().getCompoundUnitVolume(compoundId);
-    //     auto amount = min(maxAmount * compoundVolume, microbeComponent.remainingBandwidth);
-    //     microbeComponent.remainingBandwidth = microbeComponent.remainingBandwidth - amount;
-    //     return amount / compoundVolume;
-    // }
-
 
     // // Sets the color of the microbe's membrane.
     // void setMembraneColour(ObjectID microbeEntity, Float4 colour){

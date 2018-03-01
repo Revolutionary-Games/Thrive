@@ -110,7 +110,7 @@ class Organelle{
     //
     // @returns hex
     //  The hex at (q, r) or nil if there's no hex at that position
-    Hex@ getHex(int q, int r){
+    Hex@ getHex(int q, int r) const{
         int64 s = Hex::encodeAxial(q, r);
         Hex@ hex;
 
@@ -576,9 +576,10 @@ class PlacedOrganelle{
     ) {
         if(microbeEntity != NULL_OBJECT){
 
-            LOG_ERROR("onAddedToMicrobe called before this PlacedOrganelle was " +
+            // It would be a huge mess to handle this here so we don't bother.
+            // call MicrobeOperations::removeOrganelle
+            assert(false, "onAddedToMicrobe called before this PlacedOrganelle was " +
                 "removed from previous microbe");
-            onRemovedFromMicrobe(microbeEntity);
         }
 
         @this.world = world;
@@ -630,8 +631,12 @@ class PlacedOrganelle{
             Ogre::Matrix4 hexFinalOffset;
             // Create the matrix with the offset
             assert(false, "TODO: hex collision offset");
-            collisionShape.CompoundCollisionAddSubCollision(
-                world.GetPhysicalWorld().CreateSphere(HEX_SIZE * 2, hexFinalOffset));
+            NewtonCollision@ hexCollision = world.GetPhysicalWorld().CreateSphere(
+                HEX_SIZE * 2, hexFinalOffset);
+
+            _addedCollisions.insertLast(@hexCollision);
+            
+            collisionShape.CompoundCollisionAddSubCollision(hexCollision);
         }
         
 
@@ -655,12 +660,23 @@ class PlacedOrganelle{
     //
     // @param microbe
     //  The organelle's previous owner
-    void onRemovedFromMicrobe(ObjectID microbe){
+    void onRemovedFromMicrobe(ObjectID microbe, NewtonCollision@ collisionShape){
         //iterating on each OrganelleComponent
         for(uint i = 0; i < components.length(); ++i){
 
             components[i].onRemovedFromMicrobe(microbeEntity /*, q, r*/);
         }
+
+        collisionShape.CompoundCollisionBeginAddRemove();
+
+        // Remove our sub collisions //
+        for(uint i = 0; i < _addedCollisions.length(); ++i){
+
+            collisionShape.CompoundCollisionRemoveSubCollision(_addedCollisions[i]);
+        }
+
+        collisionShape.CompoundCollisionEndAddRemove();
+        _addedCollisions.resize(0);
         
         world.QueueDestroyEntity(organelleEntity);
         organelleEntity = NULL_OBJECT;
@@ -740,7 +756,8 @@ class PlacedOrganelle{
 
     PlacedOrganelle@ sisterOrganelle = null;
 
-
+    // Used for removing the added sub collisions when we are removed from a microbe
+    private array<NewtonCollision@> _addedCollisions;
 
     private bool _needsColourUpdate = false;
 }

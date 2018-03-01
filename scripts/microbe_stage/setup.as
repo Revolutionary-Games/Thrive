@@ -9,6 +9,7 @@ const auto CLOUD_SPAWN_RADIUS = 75;
 const auto POWERUP_SPAWN_RADIUS = 85;
 const auto MICROBE_SPAWN_RADIUS = 85;
 
+// Call setRandomBiome instead from wherever this is needed
 // void setupBackground(CellStageWorld@ world){
 //     setRandomBiome(world);
 // }
@@ -207,22 +208,7 @@ void setupSystemsForWorld(CellStageWorld@ world){
 //                     return entity
 //             }
 
-//             function createCompoundCloud(compoundName, x, y, amount)
-//             if amount == nil then amount = currentBiome.compounds[compoundName] }
-//             if amount == nil then amount = 0 }
 
-//             if compoundTable[compoundName] and compoundTable[compoundName].isCloud then
-//             -- addCloud requires integer arguments
-//             x = math.floor(x)
-//             y = math.floor(y)
-//             getComponent("compound_cloud_" .. compoundName,
-//                 g_luaEngine.currentGameState, CompoundCloudComponent
-//             ):addCloud(amount, x, y)
-//             }
-
-//             -- The spawn system expects an entity.
-//             return Entity.new(g_luaEngine.currentGameState.wrapper)
-//             }
 
 //             function createAgentCloud(compoundId, x, y, direction, amount)    
 //             local normalizedDirection = direction

@@ -225,13 +225,12 @@ void ThriveGame::startNewGame(){
 
     
     // Set background plane //
-	if (true) {
-		m_backgroundPlane = Leviathan::ObjectLoader::LoadPlane(*m_cellStage, Float3(0, -50, 0),
-			Ogre::Quaternion(Ogre::Degree(90), Ogre::Vector3::UNIT_Z) *
-			Ogre::Quaternion(Ogre::Degree(45), Ogre::Vector3::UNIT_Y),
-			background, Ogre::Plane(1, 1, 1, 1),
-			Float2(200, 200));
-	}
+    // This is needed to be created here for biome.as to work correctly
+    m_backgroundPlane = Leviathan::ObjectLoader::LoadPlane(*m_cellStage, Float3(0, -50, 0),
+        Ogre::Quaternion(Ogre::Degree(90), Ogre::Vector3::UNIT_Z) *
+        Ogre::Quaternion(Ogre::Degree(45), Ogre::Vector3::UNIT_Y),
+        background, Ogre::Plane(1, 1, 1, 1),
+        Float2(200, 200));
 
     // Spawn player //
     respawnPlayerCell();
@@ -477,6 +476,23 @@ bool registerPlayerData(asIScriptEngine* engine){
     {
         ANGELSCRIPT_REGISTERFAIL;
     }
+
+    if(engine->RegisterObjectMethod("PlayerData",
+            "ObjectID activeCreature()",
+            asMETHOD(PlayerData, activeCreature),
+            asCALL_THISCALL) < 0)
+    {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectMethod("PlayerData",
+            "void setActiveCreature(ObjectID creatureId)",
+            asMETHOD(PlayerData, setActiveCreature),
+            asCALL_THISCALL) < 0)
+    {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+    
     
     return true;
 }
@@ -781,6 +797,14 @@ bool bindThriveComponentTypes(asIScriptEngine* engine){
     {
         ANGELSCRIPT_REGISTERFAIL;
     }
+
+    if(engine->RegisterObjectMethod("MembraneComponent",
+            "Ogre::Vector3 GetExternalOrganelle(double x, double y)",
+            asMETHOD(MembraneComponent, GetExternalOrganelle),
+            asCALL_THISCALL) < 0)
+    {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
     
 
     // ------------------------------------ //
@@ -837,7 +861,15 @@ bool bindThriveComponentTypes(asIScriptEngine* engine){
     }
 
     if(engine->RegisterObjectMethod("CompoundBagComponent",
-            "double setProcessor(ProcessorComponent@ processor, const string &in speciesName)",
+            "void giveCompound(CompoundId compound, double amount)",
+            asMETHOD(CompoundBagComponent, giveCompound),
+            asCALL_THISCALL) < 0)
+    {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectMethod("CompoundBagComponent",
+            "void setProcessor(ProcessorComponent@ processor, const string &in speciesName)",
             asMETHOD(CompoundBagComponent, setProcessor),
             asCALL_THISCALL) < 0)
     {
@@ -1110,6 +1142,50 @@ bool registerHexFunctions(asIScriptEngine* engine){
     return true;
 }
 
+
+//! \todo This might be good to also be available to other c++ files
+ObjectID findSpeciesEntityByName(CellStageWorld* world, const std::string& name){
+
+    if(!world || name.empty())
+        return NULL_OBJECT;
+
+    const auto& allSpecies = world->GetComponentIndex_SpeciesComponent();
+
+    for(const auto& tuple : allSpecies){
+
+        SpeciesComponent* species = std::get<1>(tuple);
+
+        if(species->name == name)
+            return std::get<0>(tuple);
+    }
+
+    LOG_ERROR("findSpeciesEntityByName: no species with name: " + name);
+    return NULL_OBJECT;
+}
+
+//! \todo This might be good to also be available to other c++ files
+ObjectID findCompoundCloudByCompound(CellStageWorld* world, CompoundId compound){
+
+    if(!world)
+        return NULL_OBJECT;
+
+    const auto& allCloud = world->GetComponentIndex_CompoundCloudComponent();
+
+    for(const auto& tuple : allCloud){
+
+        CompoundCloudComponent* cloud = std::get<1>(tuple);
+
+        if(cloud->m_compoundId == compound)
+            return std::get<0>(tuple);
+    }
+
+    LOG_ERROR("findCompoundCloudByCompound: no cloud for compound: " + std::
+        to_string(compound));
+    return NULL_OBJECT;
+}
+
+
+
 bool ThriveGame::InitLoadCustomScriptTypes(asIScriptEngine* engine){
 
     if(!registerLockedMap(engine))
@@ -1203,6 +1279,27 @@ bool ThriveGame::InitLoadCustomScriptTypes(asIScriptEngine* engine){
     {
         ANGELSCRIPT_REGISTERFAIL;
     }
+
+    if(engine->RegisterGlobalFunction(
+            "ObjectID findSpeciesEntityByName(CellStageWorld@ world, "
+            "const string &in name)",
+            asFUNCTION(findSpeciesEntityByName),
+            asCALL_CDECL) < 0)
+    {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    
+    if(engine->RegisterGlobalFunction(
+            "ObjectID findCompoundCloudByCompound(CellStageWorld@ world, "
+            "CompoundId compound)",
+            asFUNCTION(findCompoundCloudByCompound),
+            asCALL_CDECL) < 0)
+    {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    
     
     return true;
 }
