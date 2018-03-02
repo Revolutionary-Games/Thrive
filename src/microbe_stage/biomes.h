@@ -5,12 +5,16 @@
 #include <map>
 #include <string>
 
+class CScriptArray;
+
 namespace thrive {
 
 struct BiomeCompoundData {
 public:
 	unsigned int amount = 0;
 	double density = 1.0;
+
+    BiomeCompoundData(){}
 
 	BiomeCompoundData(unsigned int amount, double density):
 		amount(amount),
@@ -28,6 +32,9 @@ public:
 	Biome();
 
 	Biome(Json::Value value);
+
+    BiomeCompoundData* getCompound(size_t type);
+    CScriptArray* getCompoundKeys() const;
 };
 
 }

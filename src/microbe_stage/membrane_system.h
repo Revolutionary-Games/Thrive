@@ -33,6 +33,7 @@ public:
     void setColour(const Float4 &value);
 
     // Gets organelle positions from the .lua file.
+    // The y is actually the z component in the game 3d world
     void sendOrganelles(double x, double y);
 
     //! Deletes the membrane mesh.

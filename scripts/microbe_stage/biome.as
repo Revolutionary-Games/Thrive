@@ -1,36 +1,31 @@
-class Biome{
-
-    string name;
-    float temperature;
-    float sunlight;
-    string background;
-    // Contains amounts indexed by compound name
-    dictionary compounds;
-}
-
 //Global table which stores the current biome the player is in.
-Biome@ currentBiome = null;
+uint64 currentBiome = 0;
+
+const Biome@ getCurrentBiome(){
+
+    return SimulationParameters::biomeRegistry().getTypeData(currentBiome);
+}
 
 ObjectID createCompoundCloud(CellStageWorld@ world, CompoundId compound,
     float x, float z, float amount
 ) {
     if(amount == 0){
-        amount = float(currentBiome.compounds[compoundName]);
+        amount = getCurrentBiome().getCompound(compound).amount;
     }
 
     // This is just a sanity check
     //if(compoundTable[compoundName] and compoundTable[compoundName].isCloud){
     
     // addCloud requires integer arguments
-    int roundedX = floor(x);
-    int roundedY = floor(y);
+    int roundedX = round(x);
+    int roundedZ = round(z);
 
     // TODO: this isn't the best way to handle this for max performance
-    environmentCloud = world.GetComponent_CompoundCloudComponent(
+    auto environmentCloud = world.GetComponent_CompoundCloudComponent(
         findCompoundCloudByCompound(world, compound));
 
 
-    environmentCloud.addCloud(amount, roundedX, roundedY);
+    environmentCloud.addCloud(amount, roundedX, roundedZ);
     
     // We don't spawn new entities
     return NULL_OBJECT;
@@ -54,30 +49,33 @@ class CloudFactory{
 dictionary compoundSpawnTypes;
 
 //Setting the current biome to the one with the specified name.
-void setBiome(const string &in biomeName, CellStageWorld@ world){
+void setBiome(uint64 biomeId, CellStageWorld@ world){
     assert(world !is null, "setBiome requires world");
         
     //Getting the base biome to change to.
-    auto baseBiome = biomeTable[biomeName];
+    currentBiome = biomeId;
 
-    //Setting the new biome attributes
-    currentBiome = Biome();
-    currentBiome.name = biomeName;
-    currentBiome.temperature = baseBiome.temperature;
-    currentBiome.sunlight = baseBiome.sunlight;
-    currentBiome.background = baseBiome.background;
-    currentBiome.compounds = {};
+    auto biome = getCurrentBiome();
 
-    for(compoundName, compoundData in pairs(baseBiome.compounds)){
-        currentBiome.compounds[compoundName] = compoundData.amount;
+    auto biomeCompounds = biome.getCompoundKeys();
+    for(uint i = 0; i < biomeCompounds.length(); ++i){
 
-        if(compoundTable[compoundName].isCloud){
+        auto compoundId = biomeCompounds[i];
 
-            CloudFactory@ spawnCloud = CloudFactory(compoundName);
+        if(SimulationParameters::compoundRegistry().getTypeData(compoundId).isCloud){
+
+            CloudFactory@ spawnCloud = CloudFactory(compoundId);
+
+            // Remove existing (if there is one)
+            world.GetSpawnSystem().removeSpawnType(SpawnerTypeId(compoundSpawnTypes[
+                        formatInt(compoundId)]));
             
-            gSpawnSystem.removeSpawnType(compoundSpawnTypes[compoundName]);
-            compoundSpawnTypes[compoundName] = gSpawnSystem.addSpawnType(spawnCloud.spawn,
-                compoundData.density, CLOUD_SPAWN_RADIUS);            
+            SpawnFactoryFunc@ factory = SpawnFactoryFunc(spawnCloud.spawn);
+
+            // And register new
+            compoundSpawnTypes[formatInt(compoundId)] = world.GetSpawnSystem().addSpawnType(
+                factory, biome.getCompound(biomeCompounds[i]).density,
+                CLOUD_SPAWN_RADIUS);
         }
     }
 
@@ -86,18 +84,16 @@ void setBiome(const string &in biomeName, CellStageWorld@ world){
 
     auto plane = world.GetComponent_Plane(entity);
 
-    plane.GraphicalObject.setMaterial(currentBiome.background);
+    plane.GraphicalObject.setMaterial(biome.background);
 }
 
 //Setting the current biome to a random biome selected from the biome table.
 void setRandomBiome(CellStageWorld@ world){
     //Getting the size of the biome table.
-    auto keys = biomeTable.getKeys();
-
     //Selecting a random biome.
-    auto currentBiomeName = biomeNameTable[keys[
-            GetEngine().GetRandom().GetValue(0, keys.length() - 1)]];
+    auto biome = GetEngine().GetRandom().GetNumber(0,
+        int(SimulationParameters::biomeRegistry().getSize() - 1));
 
     //Switching to that biome.
-    setBiome(currentBiomeName, world);
+    setBiome(biome, world);
 }

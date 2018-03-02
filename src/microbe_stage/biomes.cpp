@@ -2,6 +2,11 @@
 #include "microbe_stage/simulation_parameters.h"
 #include "biomes.h"
 
+#include <Script/ScriptConversionHelpers.h>
+#include <Script/ScriptExecutor.h>
+
+#include <boost/range/adaptor/map.hpp>
+
 #include <vector>
 
 using namespace thrive;
@@ -27,4 +32,14 @@ Biome::Biome(Json::Value value) {
 			std::forward_as_tuple(id),
 			std::forward_as_tuple(amount, density));
 	}
+}
+// ------------------------------------ //
+BiomeCompoundData* Biome::getCompound(size_t type){
+    return &compounds[type];
+}
+
+CScriptArray* Biome::getCompoundKeys() const{
+    return Leviathan::ConvertIteratorToASArray((compounds | boost::adaptors::map_keys).begin(),
+        (compounds | boost::adaptors::map_keys).end(),
+        Leviathan::ScriptExecutor::Get()->GetASEngine(), "array<uint64>");
 }

@@ -588,7 +588,7 @@ registerRegistryHeldHelperBases(
             asOFFSET(RegistryT, internalName)) < 0)
     {
         ANGELSCRIPT_REGISTERFAIL;
-    }    
+    }
 
     return true;
 }
@@ -600,8 +600,13 @@ bool registerJsonRegistryHeldTypes(asIScriptEngine* engine){
 
     if(!registerRegistryHeldHelperBases<Compound>(engine, "BioProcess"))
         return false;
+
+    if(!registerRegistryHeldHelperBases<Compound>(engine, "Biome"))
+        return false;
     
     // Compound specific properties //
+    // ------------------------------------ //
+    // Compound
     if(engine->RegisterObjectProperty("Compound",
             "double volume",
             asOFFSET(Compound, volume)) < 0)
@@ -629,6 +634,49 @@ bool registerJsonRegistryHeldTypes(asIScriptEngine* engine){
     {
         ANGELSCRIPT_REGISTERFAIL;
     }
+
+    // ------------------------------------ //
+    // Biome
+    if(engine->RegisterObjectProperty("Biome",
+            "const string background",
+            asOFFSET(Biome, background)) < 0)
+    {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+    
+    if(engine->RegisterObjectType("BiomeCompoundData", 0, asOBJ_REF | asOBJ_NOCOUNT) < 0){
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    ANGELSCRIPT_ASSUMED_SIZE_T;
+    if(engine->RegisterObjectMethod("Biome",
+            "const BiomeCompoundData& getCompound(uint64 type) const",
+            asMETHOD(Biome, getCompound), asCALL_THISCALL) < 0)
+    {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    ANGELSCRIPT_ASSUMED_SIZE_T;
+    if(engine->RegisterObjectMethod("Biome",
+            "array<uint64>@ getCompoundKeys() const",
+            asMETHOD(Biome, getCompoundKeys), asCALL_THISCALL) < 0)
+    {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectProperty("BiomeCompoundData",
+            "uint amount",
+            asOFFSET(BiomeCompoundData, amount)) < 0)
+    {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectProperty("BiomeCompoundData",
+            "double density",
+            asOFFSET(BiomeCompoundData, density)) < 0)
+    {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
     
     return true;
 }
@@ -642,6 +690,11 @@ TJsonRegistry<Compound>* getCompoundRegistryWrapper(){
 TJsonRegistry<BioProcess>* getBioProcessRegistryWrapper(){
 
     return &SimulationParameters::bioProcessRegistry;
+}
+
+TJsonRegistry<Biome>* getBiomeRegistryWrapper(){
+
+    return &SimulationParameters::biomeRegistry;
 }
 
 bool registerSimulationDataAndJsons(asIScriptEngine* engine){
@@ -665,6 +718,12 @@ bool registerSimulationDataAndJsons(asIScriptEngine* engine){
         return false;
     }
 
+    if(!registerJsonRegistry<TJsonRegistry<Biome>, Biome>(engine,
+            "TJsonRegistryBiome", "Biome"))
+    {
+        return false;
+    }
+    
     if(engine->SetDefaultNamespace("SimulationParameters") < 0)
     {
         ANGELSCRIPT_REGISTERFAIL;
@@ -678,6 +737,12 @@ bool registerSimulationDataAndJsons(asIScriptEngine* engine){
 
     if(engine->RegisterGlobalFunction("TJsonRegistryCompound@ bioProcessRegistry()",
             asFUNCTION(getBioProcessRegistryWrapper), asCALL_CDECL) < 0)
+    {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterGlobalFunction("TJsonRegistryBiome@ biomeRegistry()",
+            asFUNCTION(getBiomeRegistryWrapper), asCALL_CDECL) < 0)
     {
         ANGELSCRIPT_REGISTERFAIL;
     }
@@ -765,6 +830,30 @@ bool bindThriveComponentTypes(asIScriptEngine* engine){
     if(!bindComponentTypeId(engine, "CompoundCloudComponent",
             &CompoundCloudComponentTYPEProxy))
         return false;
+
+    if(engine->RegisterObjectMethod("CompoundCloudComponent",
+            "void addCloud(float density, int x, int y)",
+            asMETHOD(CompoundCloudComponent, addCloud),
+            asCALL_THISCALL) < 0)
+    {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectMethod("CompoundCloudComponent",
+            "int takeCompound(int x, int y, float rate)",
+            asMETHOD(CompoundCloudComponent, takeCompound),
+            asCALL_THISCALL) < 0)
+    {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectMethod("CompoundCloudComponent",
+            "int amountAvailable(int x, int y, float rate)",
+            asMETHOD(CompoundCloudComponent, takeCompound),
+            asCALL_THISCALL) < 0)
+    {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
     
     // ------------------------------------ //
     if(engine->RegisterObjectType("MembraneComponent", 0, asOBJ_REF | asOBJ_NOCOUNT) < 0){
@@ -801,6 +890,14 @@ bool bindThriveComponentTypes(asIScriptEngine* engine){
     if(engine->RegisterObjectMethod("MembraneComponent",
             "Ogre::Vector3 GetExternalOrganelle(double x, double y)",
             asMETHOD(MembraneComponent, GetExternalOrganelle),
+            asCALL_THISCALL) < 0)
+    {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectMethod("MembraneComponent",
+            "void sendOrganelles(double x, double y)",
+            asMETHOD(MembraneComponent, sendOrganelles),
             asCALL_THISCALL) < 0)
     {
         ANGELSCRIPT_REGISTERFAIL;
@@ -1158,6 +1255,84 @@ bool registerHexFunctions(asIScriptEngine* engine){
     return true;
 }
 
+class ScriptSpawnerWrapper{
+public:
+    //! \note Caller must have incremented ref count already on func
+    ScriptSpawnerWrapper(asIScriptFunction* func) : m_func(func){
+
+        if(!m_func)
+            throw std::runtime_error("no func given for ScriptSpawnerWrapper");
+    }
+    
+    ~ScriptSpawnerWrapper(){
+
+        m_func->Release();
+    }
+
+    ObjectID run(CellStageWorld& world, Float3 pos){
+
+        ScriptRunningSetup setup;
+        auto result = Leviathan::ScriptExecutor::Get()->RunScript<SpawnerTypeId>(
+            m_func, nullptr, setup, &world, pos);
+
+        if(result.Result != SCRIPT_RUN_RESULT::Success){
+
+            LOG_ERROR("Failed to run Wrapped SpawnSystem function");
+            return -1;
+        }
+
+        return result.Value;
+    }
+
+    asIScriptFunction* m_func;
+};
+
+SpawnerTypeId addSpawnTypeProxy(SpawnSystem* self, asIScriptFunction* func,
+    double spawnDensity, double spawnRadius)
+{
+    auto wrapper = std::make_shared<ScriptSpawnerWrapper>(func);
+
+    return self->addSpawnType([=](CellStageWorld& world, Float3 pos) -> ObjectID{
+
+            return wrapper->run(world, pos);
+            
+        }, spawnDensity, spawnRadius);
+}
+
+bool bindScriptAccessibleSystems(asIScriptEngine* engine){
+
+    if(engine->RegisterFuncdef("ObjectID SpawnFactoryFunc(CellStageWorld@ world, Float3 pos)")
+        < 0)
+    {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectType("SpawnSystem", 0, asOBJ_REF | asOBJ_NOCOUNT)
+        < 0)
+    {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectMethod("SpawnSystem",
+            "void removeSpawnType(SpawnerTypeId spawnId)",
+            asMETHOD(SpawnSystem, removeSpawnType),
+            asCALL_THISCALL) < 0)
+    {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectMethod("SpawnSystem",
+            "SpawnerTypeId addSpawnType(SpawnFactoryFunc@ factory, double spawnDensity, "
+            "double spawnRadius)",
+            asFUNCTION(addSpawnTypeProxy),
+            asCALL_CDECL_OBJFIRST) < 0)
+    {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    return true;
+}
+
 
 //! \todo This might be good to also be available to other c++ files
 ObjectID findSpeciesEntityByName(CellStageWorld* world, const std::string& name){
@@ -1217,7 +1392,19 @@ bool ThriveGame::InitLoadCustomScriptTypes(asIScriptEngine* engine){
         ANGELSCRIPT_REGISTERFAIL;
     }
 
+    if(engine->RegisterTypedef("SpawnerTypeId", "uint32") < 0){
+
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectType("CellStageWorld", 0, asOBJ_REF | asOBJ_NOCOUNT) < 0){
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
     if(!bindThriveComponentTypes(engine))
+        return false;
+
+    if(!bindScriptAccessibleSystems(engine))
         return false;
 
     if(!registerPlayerData(engine))
@@ -1281,9 +1468,7 @@ bool ThriveGame::InitLoadCustomScriptTypes(asIScriptEngine* engine){
     //     ANGELSCRIPT_REGISTERFAIL;
     // }
 
-    if(engine->RegisterObjectType("CellStageWorld", 0, asOBJ_REF | asOBJ_NOCOUNT) < 0){
-        ANGELSCRIPT_REGISTERFAIL;
-    }
+
 
     if(!bindCellStageMethods<CellStageWorld>(engine, "CellStageWorld"))
         return false;

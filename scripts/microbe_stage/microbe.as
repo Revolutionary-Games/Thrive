@@ -154,10 +154,12 @@ class MicrobeComponent : ScriptComponent{
     bool dead = false;
     uint deathTimer = 0;
     array<PlacedOrganelle@> organelles;
-    array<PlacedOrganelle@> specialStorageOrganelles;  // Organelles with
-                                                       // complete resonsiblity
-                                                       // for a specific compound
-                                                       // (such as agentvacuoles)
+    // Keys are the agent type, and the value is PlacedOrganelle@
+    dictionary specialStorageOrganelles;  // Organelles with complete
+                                          // resonsiblity for a
+                                          // specific compound (such
+                                          // as agentvacuoles)
+    
     Float3 movementDirection = Float3(0, 0, 0);
     Float3 facingTargetPoint = Float3(0, 0, 0);
     float microbetargetdirection = 0;
@@ -568,7 +570,7 @@ class MicrobeSystem : ScriptSystem{
                     cost - 0.001)
                 {
                     LOG_INFO("too little atp, disabling - engulfing");
-                    MicrobeOperations::toggleEngulfMode(microbeEntity);
+                    MicrobeOperations::toggleEngulfMode(world, microbeEntity);
                 }
                 // Flash the membrane blue.
                 MicrobeOperations::flashMembraneColour(world, microbeEntity, 3000,
@@ -580,7 +582,7 @@ class MicrobeSystem : ScriptSystem{
                         microbeComponent.maxHitpoints), "isBeingEngulfed - Microbe.update()s");
                 // Else If we were but are no longer, being engulfed
             } else if(microbeComponent.wasBeingEngulfed){
-                removeEngulfedEffect(microbeEntity);
+                MicrobeOperations::removeEngulfedEffect(world, microbeEntity);
             }
             // Used to detect when engulfing stops
             microbeComponent.isBeingEngulfed = false;
@@ -628,7 +630,7 @@ class MicrobeSystem : ScriptSystem{
             mass += organelle.organelle.mass;
         }
 
-        rigidBodyComponent.Collision.CompoundCollisionBeginAddRemove();
+        rigidBodyComponent.Collision.CompoundCollisionEndAddRemove();
 
         // Then create the physics body from the shape
         @rigidBodyComponent.CreatePhysicsBody(world.GetPhysicalWorld());
@@ -753,39 +755,6 @@ class MicrobeSystem : ScriptSystem{
     //     membraneComponent.setColour(colour);
     // }
 
-
-
-
-
-
-    void removeEngulfedEffect(ObjectID microbeEntity){
-        MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
-            world.GetScriptComponentHolder("MicrobeComponent").Find(microbeEntity));
-
-        microbeComponent.movementFactor = microbeComponent.movementFactor *
-            ENGULFED_MOVEMENT_DIVISION;
-        microbeComponent.wasBeingEngulfed = false;
-
-        MicrobeComponent@ hostileMicrobeComponent = cast<MicrobeComponent>(
-            world.GetScriptComponentHolder("MicrobeComponent").Find(
-                microbeComponent.hostileEngulfer));
-
-        if(hostileMicrobeComponent !is null){
-            hostileMicrobeComponent.isCurrentlyEngulfing = false;
-        }
-
-        auto hostileRigidBodyComponent = world.GetComponent_Physics(
-            microbeComponent.hostileEngulfer);
-
-        // The component is null sometimes, probably due to despawning.
-        if(hostileRigidBodyComponent !is null){
-            //hostileRigidBodyComponent.reenableAllCollisions();
-            LOG_WRITE("TODO: redo this thing: "
-                "hostileRigidBodyComponent.reenableAllCollisions();");
-        }
-        // Causes crash because sound was already stopped.
-        //microbeComponent.hostileEngulfer.soundSource.stopSound("microbe-engulfment")
-    }
 
     PlacedOrganelle@ splitOrganelle(ObjectID microbeEntity, PlacedOrganelle@ organelle){
         auto q = organelle.q;
