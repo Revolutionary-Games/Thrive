@@ -18,6 +18,7 @@ enum class THRIVE_COMPONENT : uint16_t {
     AGENT_CLOUD,
     SPAWNED,
     ABSORBER,
+    TIMED_LIFE,
 
     // TODO: check is this needed for anything
     //INVALID

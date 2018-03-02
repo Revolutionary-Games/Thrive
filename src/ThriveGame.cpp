@@ -34,6 +34,7 @@
 
 // Includes for just bindings
 #include "general/hex.h"
+#include "general/timed_life_system.h"
 
 using namespace thrive;
 
@@ -768,7 +769,8 @@ static uint16_t CompoundBagComponentTYPEProxy =
     static_cast<uint16_t>(CompoundBagComponent::TYPE);
 static uint16_t CompoundAbsorberComponentTYPEProxy =
     static_cast<uint16_t>(CompoundAbsorberComponent::TYPE);
-
+static uint16_t TimedLifeComponentTYPEProxy =
+    static_cast<uint16_t>(TimedLifeComponent::TYPE);
 
 //! Helper for bindThriveComponentTypes
 bool bindComponentTypeId(asIScriptEngine* engine, const char* name, uint16_t* value)
@@ -1068,6 +1070,15 @@ bool bindThriveComponentTypes(asIScriptEngine* engine){
     {
         ANGELSCRIPT_REGISTERFAIL;
     }
+
+    // ------------------------------------ //
+    if(engine->RegisterObjectType("TimedLifeComponent", 0, asOBJ_REF | asOBJ_NOCOUNT) < 0){
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(!bindComponentTypeId(engine, "TimedLifeComponent", &TimedLifeComponentTYPEProxy))
+        return false;
+
     
     
     

@@ -82,8 +82,8 @@ set(GROUP_ENGINE
   )
 
 set(GROUP_GENERAL
-  # "general/timed_life_system.cpp"
-  # "general/timed_life_system.h"
+  "general/timed_life_system.cpp"
+  "general/timed_life_system.h"
   "general/locked_map.cpp"
   "general/locked_map.h"
   "general/hex.cpp"

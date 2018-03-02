@@ -25,6 +25,8 @@ generator.addInclude "microbe_stage/agent_cloud_system.h"
 generator.addInclude "microbe_stage/compound_absorber_system.h"
 generator.addInclude "microbe_stage/microbe_camera_system.h"
 
+generator.addInclude "general/timed_life_system.h"
+
 world = GameWorldClass.new(
   "CellStageWorld", componentTypes: [
     EntityComponent.new("ProcessorComponent", [ConstructorInfo.new([])]),
@@ -66,6 +68,11 @@ world = GameWorldClass.new(
                                                               noRef: true)
                                                ])]),
     EntityComponent.new("CompoundAbsorberComponent", [ConstructorInfo.new([])]),
+    EntityComponent.new("TimedLifeComponent", [ConstructorInfo.new(
+                                                 [
+                                                   Variable.new("timeToLive", "int",
+                                                                noRef: true),
+                                                 ])]),
     
   ],
   systems: [
@@ -95,6 +102,10 @@ world = GameWorldClass.new(
 
     EntitySystem.new("ProcessSystem", ["CompoundBagComponent", "ProcessorComponent"],
                      runtick: {group: 10, parameters: []}),
+    EntitySystem.new("TimedLifeSystem", [],
+                     runtick: {group: 45, parameters: [
+                                 "ComponentTimedLifeComponent.GetIndex()"
+                               ]}),
 
     #EntitySystem.new("ProcessSystem", ["CompoundBagComponent", "ProcessorComponent"],
 
