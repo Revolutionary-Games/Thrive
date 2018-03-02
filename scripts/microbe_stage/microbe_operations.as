@@ -753,7 +753,7 @@ void kill(CellStageWorld@ world, ObjectID microbeEntity){
 
             auto direction = Float3(GetEngine().GetRandom().GetNumber(0.0f, 1.0f) * 2 - 1,
                 0, GetEngine().GetRandom().GetNumber(0.0f, 1.0f) * 2 - 1);
-            createAgentCloud(position._Position, direction, ejectedAmount);
+            createAgentCloud(world, compoundId, position._Position, direction, ejectedAmount);
             _amount = _amount - ejectedAmount;
         }
     }

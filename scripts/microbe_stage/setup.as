@@ -144,37 +144,37 @@ void setupSystemsForWorld(CellStageWorld@ world){
 }
 
 // This should be moved somewhere else
-void createAgentCloud(compoundId, x, y, direction, amount)    {
-    auto normalizedDirection = direction
-    normalizedDirection.normalise()
-     auto agentEntity = Entity(g_luaEngine.currentGameState.wrapper)
+void createAgentCloud(CellStageWorld@ world, CompoundId compoundId, Float3 pos,
+    Float3 direction, float amount)
+{
+    auto normalizedDirection = direction.Normalize();
+    auto agentEntity = world.CreateEntity();
 
-    auto reactionHandler = CollisionComponent()
-    reactionHandler.addCollisionGroup("agent")
-     agentEntity.addComponent(reactionHandler)
+    // auto reactionHandler = CollisionComponent()
+    // reactionHandler.addCollisionGroup("agent")
+    auto position = world.Create_Position(agentEntity, pos + (direction * 1.5),
+        Ogre::Quaternion(Ogre::Degree(GetEngine().GetRandom().GetNumber(0, 360)),
+            Ogre::Vector3(0, 1, 0)));
 
-     auto rigidBody = RigidBodyComponent()
-    rigidBody.properties.mass = 0.001
-    rigidBody.properties.friction = 0.4
-    rigidBody.properties.linearDamping = 0.4
-    rigidBody.properties.shape = SphereShape(HEX_SIZE)
-        rigidBody.setDynamicProperties(
-            Vector3(x, y, 0) + direction * 1.5,
-            Quaternion(Radian(Degree(math.random()*360)), Vector3(0, 0, 1)),
-            normalizedDirection * AGENT_EMISSION_VELOCITY,
-            Vector3(0, 0, 0)
-        )
-     rigidBody.properties.touch()
-     agentEntity.addComponent(rigidBody)
+    auto rigidBody = world.Create_Physics(agentEntity, world, position, null);
+
+    rigidBody.SetCollision(world.GetPhysicalWorld().CreateSphere(HEX_SIZE));
+    rigidBody.CreatePhysicsBody(world.GetPhysicalWorld());
+
+    rigidBody.SetMass(0.001);
+
+    // TODO: physics property applying here as well
+    // rigidBody.properties.friction = 0.4;
+    // rigidBody.properties.linearDamping = 0.4;
+
+    // TODO: impulse or set velocity?
+    rigidBody.SetVelocity(normalizedDirection * AGENT_EMISSION_VELOCITY);
+        
+    auto sceneNode = world.Create_RenderNode(agentEntity);
+    auto model = world.Create_Model(agentEntity, sceneNode.Node, "oxytoxy.mesh");
     
-     auto sceneNode = OgreSceneNodeComponent()
-    sceneNode.meshName = "oxytoxy.mesh"
-    agentEntity.addComponent(sceneNode)
-    
-     auto timedLifeComponent = TimedLifeComponent()
-    timedLifeComponent.timeToLive = 2000
-    agentEntity.addComponent(timedLifeComponent)
-     }
+    auto timedLifeComponent = world.Create_TimedLifeComponent(agentEntity, 2000);
+}
 
 
 
