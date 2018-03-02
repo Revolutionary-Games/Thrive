@@ -402,7 +402,15 @@ class MicrobeSystem : ScriptSystem{
             if(microbeComponent.flashDuration != 0 &&
                 microbeComponent.flashColour != Float4(0, 0, 0, 0)
             ){
-                microbeComponent.flashDuration = microbeComponent.flashDuration - logicTime;
+                if(microbeComponent.flashDuration >= logicTime){
+                    
+                    microbeComponent.flashDuration = microbeComponent.flashDuration -
+                        logicTime;
+                    
+                } else {
+                    // Would wrap over to very large number
+                    microbeComponent.flashDuration = 0;
+                }
             
                 // How frequent it flashes, would be nice to update
                 // the flash void to have this variable{
@@ -831,86 +839,6 @@ class MicrobeSystem : ScriptSystem{
 
         return null;
     }
-
-
-    // // Kills the microbe, releasing stored compounds into the enviroment
-    // void kill(ObjectID microbeEntity){
-    //     auto microbeComponent = world.GetComponent_MicrobeComponent(microbeEntity, MicrobeComponent);
-    //     auto rigidBodyComponent = world.GetComponent_RigidBodyComponent(microbeEntity, RigidBodyComponent);
-    //     auto soundSourceComponent = world.GetComponent_SoundSourceComponent(microbeEntity, SoundSourceComponent);
-    //     auto microbeSceneNode = world.GetComponent_OgreSceneNodeComponent(microbeEntity, OgreSceneNodeComponent);
-
-    //     // Hacky but meh.
-    //     if(microbeComponent.dead){
-    //         LOG_INFO("Trying to kill a dead microbe");
-    //         return;
-    //     }
-
-    //     // Releasing all the agents.
-    //     for(compoundId, _ in pairs(microbeComponent.specialStorageOrganelles)){
-    //         local _amount = MicrobeSystem.getCompoundAmount(microbeEntity, compoundId);
-    //         while(_amount > 0){
-    //             // Eject up to 3 units per particle
-    //             ejectedAmount = MicrobeSystem.takeCompound(microbeEntity, compoundId, 3); 
-    //             auto direction = Vector3(math.random() * 2 - 1, math.random() * 2 - 1, 0);
-    //             createAgentCloud(compoundId, microbeSceneNode.transform.position.x,
-    //                 microbeSceneNode.transform.position.y, direction, amountToEject);
-    //             _amount = _amount - ejectedAmount;
-    //         }
-    //     }
-    //     auto compoundsToRelease = {};
-    //     // Eject the compounds that was in the microbe
-    //     for(_, compoundId in pairs(SimulationParameters::compoundRegistry().getCompoundList())){
-    //         auto total = MicrobeSystem.getCompoundAmount(microbeEntity, compoundId);
-    //         auto ejectedAmount = MicrobeSystem.takeCompound(microbeEntity,
-    //             compoundId, total);
-    //         compoundsToRelease[compoundId] = ejectedAmount;
-    //     }
-
-    //     for(_, organelle in pairs(microbeComponent.organelles)){
-    //         for(compoundName, amount in pairs(organelleTable[organelle.name].composition)){
-    //             auto compoundId = SimulationParameters::compoundRegistry().getTypeId(compoundName);
-    //             if(compoundsToRelease[compoundId] is null){
-    //                 compoundsToRelease[compoundId] = amount * COMPOUND_RELEASE_PERCENTAGE;
-    //             } else {
-    //                 compoundsToRelease[compoundId] = compoundsToRelease[compoundId] +
-    //                     amount * COMPOUND_RELEASE_PERCENTAGE;
-    //             }
-    //         }
-    //     }
-
-    //     // TODO: make the compounds be released inside of the microbe and not in the back.
-    //     for(compoundId, amount in pairs(compoundsToRelease)){
-    //         MicrobeSystem.ejectCompound(microbeEntity, compoundId, amount);
-    //     }
-
-    //     auto deathAnimationEntity = Entity(g_luaEngine.currentGameState.wrapper);
-    //     auto lifeTimeComponent = TimedLifeComponent();
-    //     lifeTimeComponent.timeToLive = 4000;
-    //     deathAnimationEntity.addComponent(lifeTimeComponent);
-    //     auto deathAnimSceneNode = OgreSceneNodeComponent();
-    //     deathAnimSceneNode.meshName = "MicrobeDeath.mesh";
-    //     deathAnimSceneNode.playAnimation("Death", false);
-    //     deathAnimSceneNode.transform.position = Vector3(microbeSceneNode.transform.position.x,
-    //         microbeSceneNode.transform.position.y, 0);
-    //     deathAnimSceneNode.transform.touch();
-    //     deathAnimationEntity.addComponent(deathAnimSceneNode);
-    //     soundSourceComponent.playSound("microbe-death");
-    //     microbeComponent.dead = true;
-    //     microbeComponent.deathTimer = 5000;
-    //     microbeComponent.movementDirection = Float3(0,0,0);
-    //     rigidBodyComponent.clearForces();
-    //     if(!microbeComponent.isPlayerMicrobe){
-    //         for(_, organelle in pairs(microbeComponent.organelles)){
-    //             organelle.removePhysics();
-    //         }
-    //     }
-    //     if(microbeComponent.wasBeingEngulfed){
-    //         MicrobeSystem.removeEngulfedEffect(microbeEntity);
-    //     }
-    //     microbeSceneNode.visible = false;
-    // }
-
 
 
     // Damage the microbe if its too low on ATP.

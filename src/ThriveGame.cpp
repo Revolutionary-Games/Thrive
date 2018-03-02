@@ -869,6 +869,22 @@ bool bindThriveComponentTypes(asIScriptEngine* engine){
     }
 
     if(engine->RegisterObjectMethod("CompoundBagComponent",
+            "double getPrice(CompoundId compound)",
+            asMETHOD(CompoundBagComponent, getPrice),
+            asCALL_THISCALL) < 0)
+    {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectMethod("CompoundBagComponent",
+            "double getDemand(CompoundId compound)",
+            asMETHOD(CompoundBagComponent, getDemand),
+            asCALL_THISCALL) < 0)
+    {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectMethod("CompoundBagComponent",
             "void setProcessor(ProcessorComponent@ processor, const string &in speciesName)",
             asMETHOD(CompoundBagComponent, setProcessor),
             asCALL_THISCALL) < 0)
