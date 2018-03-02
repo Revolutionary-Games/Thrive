@@ -808,7 +808,8 @@ void kill(CellStageWorld@ world, ObjectID microbeEntity){
     auto deathAnimModel = world.Create_Model(deathAnimationEntity, deathAnimSceneNode.Node,
         "MicrobeDeath.mesh");
 
-    deathAnimModel.GraphicalObject.playAnimation("Death", false);
+    LOG_WRITE("TODO: play animation deathAnimModel");
+    // deathAnimModel.GraphicalObject.playAnimation("Death", false);
     
     deathAnimSceneNode.Node.setPosition(position._Position);
 
@@ -817,7 +818,7 @@ void kill(CellStageWorld@ world, ObjectID microbeEntity){
     microbeComponent.deathTimer = 5000;
     microbeComponent.movementDirection = Float3(0,0,0);
 
-    rigidBodyComponent.ClearForces();
+    rigidBodyComponent.ClearVelocity();
     
     if(!microbeComponent.isPlayerMicrobe){
 
