@@ -143,178 +143,178 @@ void setupSystemsForWorld(CellStageWorld@ world){
     assert(false, "TODO: add the rest");
 }
 
+// This should be moved somewhere else
+void createAgentCloud(compoundId, x, y, direction, amount)    {
+    auto normalizedDirection = direction
+    normalizedDirection.normalise()
+     auto agentEntity = Entity(g_luaEngine.currentGameState.wrapper)
+
+    auto reactionHandler = CollisionComponent()
+    reactionHandler.addCollisionGroup("agent")
+     agentEntity.addComponent(reactionHandler)
+
+     auto rigidBody = RigidBodyComponent()
+    rigidBody.properties.mass = 0.001
+    rigidBody.properties.friction = 0.4
+    rigidBody.properties.linearDamping = 0.4
+    rigidBody.properties.shape = SphereShape(HEX_SIZE)
+        rigidBody.setDynamicProperties(
+            Vector3(x, y, 0) + direction * 1.5,
+            Quaternion(Radian(Degree(math.random()*360)), Vector3(0, 0, 1)),
+            normalizedDirection * AGENT_EMISSION_VELOCITY,
+            Vector3(0, 0, 0)
+        )
+     rigidBody.properties.touch()
+     agentEntity.addComponent(rigidBody)
+    
+     auto sceneNode = OgreSceneNodeComponent()
+    sceneNode.meshName = "oxytoxy.mesh"
+    agentEntity.addComponent(sceneNode)
+    
+     auto timedLifeComponent = TimedLifeComponent()
+    timedLifeComponent.timeToLive = 2000
+    agentEntity.addComponent(timedLifeComponent)
+     }
 
 
-//             function microbeSpawnFunctionGeneric(pos, speciesName, aiControlled, individualName, gameState)
+
+//             void microbeSpawnFunctionGeneric(pos, speciesName, aiControlled, individualName, gameState){
 //             return spawnMicrobe(pos, speciesName, aiControlled, individualName, gameState).entity
 //             }
 
-//             -- speciesName decides the template to use, while individualName is used for referencing the instance
-//             function spawnMicrobe(pos, speciesName, aiControlled, individualName, gameState)
+//             // speciesName decides the template to use, while individualName is used for referencing the instance
+//             void spawnMicrobe(pos, speciesName, aiControlled, individualName, gameState){
 
-//                 assert(gameState ~= nil)
+//                 assert(gameState !is null)
 //                 assert(isNotEmpty(speciesName))
 
-//                 -- Workaround. Find a fix for this
-//             if gameState ~= g_luaEngine.currentGameState then
+//                 // Workaround. Find a fix for this
+//             if(gameState ~= g_luaEngine.currentGameState){
 //             print("Warning used different gameState than currentGameState in microbe spawn. " ..
 //                 "This would have been bad in earlier versions")
 //             }
     
-//             local processor = getComponent(speciesName, gameState, ProcessorComponent)
+//             auto processor = getComponent(speciesName, gameState, ProcessorComponent)
 
-//             if processor == nil then
+//             if(processor == null){
 
 //             print("Skipping microbe spawn because species '" .. speciesName ..
 //                 "' doesn't have a processor component")
         
-//                 return nil
+//                 return null
 //                 }
     
     
-//                 local microbeEntity = MicrobeSystem.createMicrobeEntity(individualName, aiControlled, speciesName, false)
-//                 local microbe = Microbe(microbeEntity, false, gameState)
-//                 if pos ~= nil then
-//             microbe.rigidBody:setDynamicProperties(
-//                 pos, -- Position
-//                 Quaternion.new(Radian.new(Degree(0)), Vector3(1, 0, 0)), -- Orientation
-//                 Vector3(0, 0, 0), -- Linear velocity
-//                 Vector3(0, 0, 0)  -- Angular velocity
+//                 auto microbeEntity = MicrobeSystem.createMicrobeEntity(individualName, aiControlled, speciesName, false)
+//                 auto microbe = Microbe(microbeEntity, false, gameState)
+//                 if(pos !is null){
+//             microbe.rigidBody.setDynamicProperties(
+//                 pos, // Position
+//                 Quaternion(Radian(Degree(0)), Vector3(1, 0, 0)), // Orientation
+//                 Vector3(0, 0, 0), // Linear velocity
+//                 Vector3(0, 0, 0)  // Angular velocity
 //             )
 //                               }
 //                               return microbe
 //                               }
 
-//                               local function setSpawnablePhysics(entity, pos, mesh, scale, collisionShape)
-//                               -- Rigid body
-//                               local rigidBody = RigidBodyComponent.new()
+//                               local void setSpawnablePhysics(entity, pos, mesh, scale, collisionShape){
+//                               // Rigid body
+//                               auto rigidBody = RigidBodyComponent()
 //                               rigidBody.properties.friction = 0.2
 //                               rigidBody.properties.linearDamping = 0.8
 
 //                               rigidBody.properties.shape = collisionShape
-//                               rigidBody:setDynamicProperties(
+//                               rigidBody.setDynamicProperties(
 //                                   pos,
-//                                   Quaternion.new(Radian.new(Degree(math.random()*360)), Vector3(0, 0, 1)),
+//                                   Quaternion(Radian(Degree(math.random()*360)), Vector3(0, 0, 1)),
 //                                   Vector3(0, 0, 0),
 //                                   Vector3(0, 0, 0)
 //                               )
-//                     rigidBody.properties:touch()
-//                     entity:addComponent(rigidBody)
-//                     -- Scene node
-//             local sceneNode = OgreSceneNodeComponent.new()
+//                     rigidBody.properties.touch()
+//                     entity.addComponent(rigidBody)
+//                     // Scene node
+//             auto sceneNode = OgreSceneNodeComponent()
 //             sceneNode.meshName = mesh
 //             sceneNode.transform.scale = Vector3(scale, scale, scale)
-//             entity:addComponent(sceneNode)
+//             entity.addComponent(sceneNode)
 //                     return entity
 //             }
 
 
-
-//             function createAgentCloud(compoundId, x, y, direction, amount)    
-//             local normalizedDirection = direction
-//             normalizedDirection:normalise()
-//             local agentEntity = Entity.new(g_luaEngine.currentGameState.wrapper)
-
-//             local reactionHandler = CollisionComponent.new()
-//             reactionHandler:addCollisionGroup("agent")
-//             agentEntity:addComponent(reactionHandler)
-
-//             local rigidBody = RigidBodyComponent.new()
-//                 rigidBody.properties.mass = 0.001
-//             rigidBody.properties.friction = 0.4
-//             rigidBody.properties.linearDamping = 0.4
-//             rigidBody.properties.shape = SphereShape.new(HEX_SIZE)
-//             rigidBody:setDynamicProperties(
-//                 Vector3(x, y, 0) + direction * 1.5,
-//                 Quaternion.new(Radian.new(Degree(math.random()*360)), Vector3(0, 0, 1)),
-//                 normalizedDirection * AGENT_EMISSION_VELOCITY,
-//                 Vector3(0, 0, 0)
-//             )
-//             rigidBody.properties:touch()
-//             agentEntity:addComponent(rigidBody)
-    
-//             local sceneNode = OgreSceneNodeComponent.new()
-//             sceneNode.meshName = "oxytoxy.mesh"
-//             agentEntity:addComponent(sceneNode)
-    
-//             local timedLifeComponent = TimedLifeComponent.new()
-//             timedLifeComponent.timeToLive = 2000
-//             agentEntity:addComponent(timedLifeComponent)
-//             }
-
-//             local function addEmitter2Entity(entity, compound)
-//             local compoundEmitter = CompoundEmitterComponent.new()
-//             entity:addComponent(compoundEmitter)
+//             local void addEmitter2Entity(entity, compound){
+//             auto compoundEmitter = CompoundEmitterComponent()
+//             entity.addComponent(compoundEmitter)
 //             compoundEmitter.emissionRadius = 1
 //             compoundEmitter.maxInitialSpeed = 10
 //             compoundEmitter.minInitialSpeed = 2
 //             compoundEmitter.minEmissionAngle = Degree(0)
 //             compoundEmitter.maxEmissionAngle = Degree(360)
 //             compoundEmitter.particleLifeTime = 5000
-//                 local timedEmitter = TimedCompoundEmitterComponent.new()
+//                 auto timedEmitter = TimedCompoundEmitterComponent()
 //             timedEmitter.compoundId = CompoundRegistry.getCompoundId(compound)
 //             timedEmitter.particlesPerEmission = 1
 //             timedEmitter.potencyPerParticle = 2.0
 //             timedEmitter.emitInterval = 1000
-//             entity:addComponent(timedEmitter)
+//             entity.addComponent(timedEmitter)
 //             }
 
-//             local function setupSpawnSystem(gameState)
-//             gSpawnSystem = SpawnSystem.new()
+//             local void setupSpawnSystem(gameState){
+//             gSpawnSystem = SpawnSystem()
 
-//             local toxinOrganelleSpawnFunction = function(pos)
-//             powerupEntity = Entity.new(g_luaEngine.currentGameState.wrapper)
+//             auto toxinOrganelleSpawnvoid = function(pos){
+//             powerupEntity = Entity(g_luaEngine.currentGameState.wrapper)
 //             setSpawnablePhysics(powerupEntity, pos, "AgentVacuole.mesh", 0.9,
-//                 SphereShape.new(HEX_SIZE))
+//                 SphereShape(HEX_SIZE))
 
-//             local reactionHandler = CollisionComponent.new()
-//             reactionHandler:addCollisionGroup("powerup")
-//             powerupEntity:addComponent(reactionHandler)
+//             auto reactionHandler = CollisionComponent()
+//             reactionHandler.addCollisionGroup("powerup")
+//             powerupEntity.addComponent(reactionHandler)
         
-//                 local powerupComponent = PowerupComponent.new()
-//             -- Function name must be in configs.lua
-//             powerupComponent:setEffect("toxin_number")
-//             powerupEntity:addComponent(powerupComponent)
+//                 auto powerupComponent = PowerupComponent()
+//             // void name must be in configs.lua{
+//             powerupComponent.setEffect("toxin_number")
+//             powerupEntity.addComponent(powerupComponent)
 //             return powerupEntity
 //             }
-//             local ChloroplastOrganelleSpawnFunction = function(pos) 
-//             powerupEntity = Entity.new(g_luaEngine.currentGameState.wrapper)
+//             auto ChloroplastOrganelleSpawnvoid = function(pos) {
+//             powerupEntity = Entity(g_luaEngine.currentGameState.wrapper)
 //             setSpawnablePhysics(powerupEntity, pos, "chloroplast.mesh", 0.9,
-//                 SphereShape.new(HEX_SIZE))
+//                 SphereShape(HEX_SIZE))
 
-//             local reactionHandler = CollisionComponent.new()
-//                 reactionHandler:addCollisionGroup("powerup")
-//             powerupEntity:addComponent(reactionHandler)
+//             auto reactionHandler = CollisionComponent()
+//                 reactionHandler.addCollisionGroup("powerup")
+//             powerupEntity.addComponent(reactionHandler)
         
-//             local powerupComponent = PowerupComponent.new()
-//             -- Function name must be in configs.lua
-//             powerupComponent:setEffect("chloroplast_number")
-//             powerupEntity:addComponent(powerupComponent)
+//             auto powerupComponent = PowerupComponent()
+//             // void name must be in configs.lua{
+//             powerupComponent.setEffect("chloroplast_number")
+//             powerupEntity.addComponent(powerupComponent)
 //             return powerupEntity
 //             }
 
 //             compoundSpawnTypes = {}
-//         for compoundName, compoundInfo in pairs(compoundTable) do
-//                               if compoundInfo.isCloud then
-//             local spawnCloud =  function(pos)
+//         for(compoundName, compoundInfo in pairs(compoundTable)){
+//                               if(compoundInfo.isCloud){
+//             auto spawnCloud =  function(pos)
 //             return createCompoundCloud(compoundName, pos.x, pos.y)
 //             }
 
-//             compoundSpawnTypes[compoundName] = gSpawnSystem:addSpawnType(spawnCloud, 1/10000, CLOUD_SPAWN_RADIUS) -- Placeholder, the real one is set in biome.lua
+//             compoundSpawnTypes[compoundName] = gSpawnSystem.addSpawnType(spawnCloud, 1/10000, CLOUD_SPAWN_RADIUS) // Placeholder, the real one is set in biome.lua
 //             }
 //             }
 
-//             gSpawnSystem:addSpawnType(toxinOrganelleSpawnFunction, 1/17000, POWERUP_SPAWN_RADIUS)
-//             gSpawnSystem:addSpawnType(ChloroplastOrganelleSpawnFunction, 1/12000, POWERUP_SPAWN_RADIUS)
+//             gSpawnSystem.addSpawnType(toxinOrganelleSpawnFunction, 1/17000, POWERUP_SPAWN_RADIUS)
+//             gSpawnSystem.addSpawnType(ChloroplastOrganelleSpawnFunction, 1/12000, POWERUP_SPAWN_RADIUS)
 
-//             for name, species in pairs(starter_microbes) do
+//             for(name, species in pairs(starter_microbes)){
 
 //                           assert(isNotEmpty(name))
 //                               assert(species)
         
-//                               gSpawnSystem:addSpawnType(
+//                               gSpawnSystem.addSpawnType(
 //                                   function(pos) 
-//                                   return microbeSpawnFunctionGeneric(pos, name, true, nil,
+//                                   return microbeSpawnFunctionGeneric(pos, name, true, null,
 //                                       g_luaEngine.currentGameState)
 //                                   }, 
 //                                   species.spawnDensity, MICROBE_SPAWN_RADIUS)
@@ -323,101 +323,101 @@ void setupSystemsForWorld(CellStageWorld@ world){
 //                               return gSpawnSystem
 //                               }
 
-//                               local function setupPlayer(gameState)
+//                               local void setupPlayer(gameState){
 //                               assert(GameState.MICROBE == gameState)
-//                               assert(gameState ~= nil)
+//                               assert(gameState !is null)
     
-//                               local microbe = spawnMicrobe(nil, "Default", false, PLAYER_NAME, gameState)
-//                               microbe.collisionHandler:addCollisionGroup("powerupable")
-//                               Engine:playerData():lockedMap():addLock("Toxin")
-//                               Engine:playerData():lockedMap():addLock("chloroplast")
-//                               Engine:playerData():setActiveCreature(microbe.entity.id, gameState.wrapper)
+//                               auto microbe = spawnMicrobe(null, "Default", false, PLAYER_NAME, gameState)
+//                               microbe.collisionHandler.addCollisionGroup("powerupable")
+//                               Engine.playerData():lockedMap():addLock("Toxin")
+//                               Engine.playerData():lockedMap():addLock("chloroplast")
+//                               Engine.playerData():setActiveCreature(microbe.entity.id, gameState.wrapper)
 //                               }
 
-//                               local function setupSound(gameState)
-//                               local ambientEntity = Entity.new("ambience", gameState.wrapper)
-//                               local soundSource = SoundSourceComponent.new()
+//                               local void setupSound(gameState){
+//                               auto ambientEntity = Entity("ambience", gameState.wrapper)
+//                               auto soundSource = SoundSourceComponent()
 //                               soundSource.ambientSoundSource = true
 //                               soundSource.autoLoop = true
 //                               soundSource.volumeMultiplier = 0.3
-//                               ambientEntity:addComponent(soundSource)
-//                               -- Sound
-//                               soundSource:addSound("microbe-theme-1", "microbe-theme-1.ogg")
-//                               soundSource:addSound("microbe-theme-3", "microbe-theme-3.ogg")
-//                               soundSource:addSound("microbe-theme-4", "microbe-theme-4.ogg")
-//                               soundSource:addSound("microbe-theme-5", "microbe-theme-5.ogg")
-//                               soundSource:addSound("microbe-theme-6", "microbe-theme-6.ogg")   
-//                               soundSource:addSound("microbe-theme-7", "microbe-theme-7.ogg")   
-//                               local ambientEntity2 = Entity.new("ambience2", gameState.wrapper)
-//                               local soundSource = SoundSourceComponent.new()
+//                               ambientEntity.addComponent(soundSource)
+//                               // Sound
+//                               soundSource.addSound("microbe-theme-1", "microbe-theme-1.ogg")
+//                               soundSource.addSound("microbe-theme-3", "microbe-theme-3.ogg")
+//                               soundSource.addSound("microbe-theme-4", "microbe-theme-4.ogg")
+//                               soundSource.addSound("microbe-theme-5", "microbe-theme-5.ogg")
+//                               soundSource.addSound("microbe-theme-6", "microbe-theme-6.ogg")   
+//                               soundSource.addSound("microbe-theme-7", "microbe-theme-7.ogg")   
+//                               auto ambientEntity2 = Entity("ambience2", gameState.wrapper)
+//                               auto soundSource = SoundSourceComponent()
 //                               soundSource.volumeMultiplier = 0.1
 //                               soundSource.ambientSoundSource = true
-//                               ambientSound = soundSource:addSound("microbe-ambient", "soundeffects/microbe-ambience.ogg")
+//                               ambientSound = soundSource.addSound("microbe-ambient", "soundeffects/microbe-ambience.ogg")
 //                               soundSource.autoLoop = true
-//                               ambientEntity2:addComponent(soundSource)
-//                               -- Gui effects
-//                               local guiSoundEntity = Entity.new("gui_sounds", gameState.wrapper)
-//                               soundSource = SoundSourceComponent.new()
+//                               ambientEntity2.addComponent(soundSource)
+//                               // Gui effects
+//                               auto guiSoundEntity = Entity("gui_sounds", gameState.wrapper)
+//                               soundSource = SoundSourceComponent()
 //                               soundSource.ambientSoundSource = true
 //                               soundSource.autoLoop = false
 //                               soundSource.volumeMultiplier = 1.0
-//                               guiSoundEntity:addComponent(soundSource)
-//                               -- Sound
-//                               soundSource:addSound("button-hover-click", "soundeffects/gui/button-hover-click.ogg")
-//                               soundSource:addSound("microbe-pickup-organelle", "soundeffects/microbe-pickup-organelle.ogg")
-//                               local listener = Entity.new("soundListener", gameState.wrapper)
-//                               local sceneNode = OgreSceneNodeComponent.new()
-//                               listener:addComponent(sceneNode)
+//                               guiSoundEntity.addComponent(soundSource)
+//                               // Sound
+//                               soundSource.addSound("button-hover-click", "soundeffects/gui/button-hover-click.ogg")
+//                               soundSource.addSound("microbe-pickup-organelle", "soundeffects/microbe-pickup-organelle.ogg")
+//                               auto listener = Entity("soundListener", gameState.wrapper)
+//                               auto sceneNode = OgreSceneNodeComponent()
+//                               listener.addComponent(sceneNode)
 //                               }
 
 //                               setupCompounds()
 //                               setupProcesses()
 
-//                               local function createMicrobeStage(name)
+//                               local void createMicrobeStage(name){
 //                               return 
-//                               g_luaEngine:createGameState(
+//                               g_luaEngine.createGameState(
 //                                   name,
 //                                   {
-//                                       MicrobeReplacementSystem.new(),
-//                                           -- SwitchGameStateSystem.new(),
-//                                           QuickSaveSystem.new(),
-//                                           -- Microbe specific
-//                                           MicrobeSystem.new(),
-//                                           MicrobeCameraSystem.new(),
-//                                           MicrobeAISystem.new(),
-//                                           MicrobeControlSystem.new(),
-//                                           HudSystem.new(),
-//                                           TimedLifeSystem.new(),
-//                                           CompoundMovementSystem.new(),
-//                                           CompoundAbsorberSystem.new(),
-//                                           ProcessSystem.new(),
-//                                           --PopulationSystem.new(),
-//                                           PatchSystem.new(),
-//                                           SpeciesSystem.new(),
-//                                           -- Physics
-//                                           RigidBodyInputSystem.new(),
-//                                           UpdatePhysicsSystem.new(),
-//                                           RigidBodyOutputSystem.new(),
-//                                           BulletToOgreSystem.new(),
-//                                           CollisionSystem.new(),
-//                                           -- Microbe Specific again (order sensitive)
+//                                       MicrobeReplacementSystem(),
+//                                           // SwitchGameStateSystem(),
+//                                           QuickSaveSystem(),
+//                                           // Microbe specific
+//                                           MicrobeSystem(),
+//                                           MicrobeCameraSystem(),
+//                                           MicrobeAISystem(),
+//                                           MicrobeControlSystem(),
+//                                           HudSystem(),
+//                                           TimedLifeSystem(),
+//                                           CompoundMovementSystem(),
+//                                           CompoundAbsorberSystem(),
+//                                           ProcessSystem(),
+//                                           //PopulationSystem(),
+//                                           PatchSystem(),
+//                                           SpeciesSystem(),
+//                                           // Physics
+//                                           RigidBodyInputSystem(),
+//                                           UpdatePhysicsSystem(),
+//                                           RigidBodyOutputSystem(),
+//                                           BulletToOgreSystem(),
+//                                           CollisionSystem(),
+//                                           // Microbe Specific again (order sensitive)
 //                                           setupSpawnSystem(),
-//                                           -- Graphics
-//                                           OgreAddSceneNodeSystem.new(),
-//                                           OgreUpdateSceneNodeSystem.new(),
-//                                           OgreCameraSystem.new(),
-//                                           OgreLightSystem.new(),
-//                                           SkySystem.new(),
-//                                           OgreWorkspaceSystem.new(),
-//                                           OgreRemoveSceneNodeSystem.new(),
-//                                           RenderSystem.new(),
-//                                           MembraneSystem.new(),
-//                                           CompoundCloudSystem.new(),
-//                                           --AgentCloudSystem.new(),
-//                                           -- Other
-//                                           SoundSourceSystem.new(),
-//                                           PowerupSystem.new(),
-//                                           CompoundEmitterSystem.new(), -- Keep this after any logic that might eject compounds such that any entites that are queued for destruction will be destroyed after emitting.
+//                                           // Graphics
+//                                           OgreAddSceneNodeSystem(),
+//                                           OgreUpdateSceneNodeSystem(),
+//                                           OgreCameraSystem(),
+//                                           OgreLightSystem(),
+//                                           SkySystem(),
+//                                           OgreWorkspaceSystem(),
+//                                           OgreRemoveSceneNodeSystem(),
+//                                           RenderSystem(),
+//                                           MembraneSystem(),
+//                                           CompoundCloudSystem(),
+//                                           //AgentCloudSystem(),
+//                                           // Other
+//                                           SoundSourceSystem(),
+//                                           PowerupSystem(),
+//                                           CompoundEmitterSystem(), // Keep this after any logic that might eject compounds such that any entites that are queued for destruction will be destroyed after emitting.
 //                                                                                                                                                                                          },
 //                                   true,
 //                                   "MicrobeStage",
