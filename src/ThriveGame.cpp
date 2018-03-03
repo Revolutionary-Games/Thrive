@@ -549,7 +549,7 @@ bool registerJsonRegistry(asIScriptEngine* engine, const char* classname,
     ANGELSCRIPT_ASSUMED_SIZE_T;
     if(engine->RegisterObjectMethod(classname,
             "const string& getInternalName(uint64 id)",
-            asMETHOD(RegistryT, getTypeId),
+            asMETHOD(RegistryT, getInternalName),
             asCALL_THISCALL) < 0)
     {
         ANGELSCRIPT_REGISTERFAIL;
@@ -736,7 +736,7 @@ bool registerSimulationDataAndJsons(asIScriptEngine* engine){
         ANGELSCRIPT_REGISTERFAIL;
     }
 
-    if(engine->RegisterGlobalFunction("TJsonRegistryCompound@ bioProcessRegistry()",
+    if(engine->RegisterGlobalFunction("TJsonRegistryBioProcess@ bioProcessRegistry()",
             asFUNCTION(getBioProcessRegistryWrapper), asCALL_CDECL) < 0)
     {
         ANGELSCRIPT_REGISTERFAIL;
