@@ -240,15 +240,13 @@ class MicrobeSystemCached{
 // kept here
 class MicrobeSystem : ScriptSystem{
 
-    void Init(GameWorld@ world){
+    void Init(GameWorld@ w){
 
-        @world = cast<CellStageWorld@>(world);
-        assert(world !is null, "MicrobeSystem expected CellStageWorld");
+        @this.world = cast<CellStageWorld>(w);
+        assert(this.world !is null, "MicrobeSystem expected CellStageWorld");
     }
 
-    void Release(){
-
-    }
+    void Release(){}
 
     void Run(){
         // // Note that this triggers every frame there is a collision
@@ -302,6 +300,7 @@ class MicrobeSystem : ScriptSystem{
 
     void CreateAndDestroyNodes(){
 
+        
         // Delegate to helper //
         ScriptSystemNodeHelper(world, @CachedComponents, SystemComponents);
     }
@@ -998,6 +997,6 @@ class MicrobeSystem : ScriptSystem{
         ScriptSystemUses(RenderNode::TYPE),
         ScriptSystemUses(Physics::TYPE),
         ScriptSystemUses(MembraneComponent::TYPE),
-        ScriptSystemUses(CompoundBagComponent::TYPE),
+        ScriptSystemUses(CompoundBagComponent::TYPE)
     };    
 }

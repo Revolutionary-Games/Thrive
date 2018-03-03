@@ -12,7 +12,9 @@ class MicrobeStageHudSystem : ScriptSystem{
 
     void Init(GameWorld@ world){
 
-        @World = cast<CellStageWorld>(world);
+        @this.World = cast<CellStageWorld>(world);
+
+        assert(this.World !is null, "MicrobeStageHudSystem didn't get proper world");
 
         // global_activeMicrobeStageHudSystem = self; // Global reference for event handlers
 
@@ -27,6 +29,7 @@ class MicrobeStageHudSystem : ScriptSystem{
 
         // Engine.resumeGame();
         // This updates the microbe stage pause menu load button
+        assert(false, "TODO: hud system");
         this.updateLoadButton();
     
         this.chloroplastNotificationdisable();
@@ -40,7 +43,7 @@ class MicrobeStageHudSystem : ScriptSystem{
 
     void Run(){
 
-        LOG_WRITE("TODO: Microbe hud read player cell");
+        // TODO: Microbe hud read player cell
     }
 
     // Nodes not used
@@ -52,7 +55,7 @@ class MicrobeStageHudSystem : ScriptSystem{
 
 
     void updateLoadButton(){
-        assert(false, "TODO: hud");
+
         if(FileSystem::FileExists("quick.sav")){
             //this.rootGUIWindow.getChild("PauseMenu").getChild("LoadGameButton").enable();
         } else {

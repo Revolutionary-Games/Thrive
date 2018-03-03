@@ -198,12 +198,14 @@ void ThriveGame::startNewGame(){
     // Let the script do setup //
     LEVIATHAN_ASSERT(m_impl->m_MicrobeScripts, "microbe scripts not loaded");
 
+    // TODO: this needs to be ran only once, not per world
     if(!_runCellStageSetupFunc("setupProcesses")){
 
         MarkAsClosing();
         return;
     }
 
+    // TODO: this needs to be ran only once, not per world
     if(!_runCellStageSetupFunc("setupOrganelles")){
 
         MarkAsClosing();

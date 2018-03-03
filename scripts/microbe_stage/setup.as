@@ -140,11 +140,11 @@ void setupSystemsForWorld(CellStageWorld@ world){
 
     world.RegisterScriptSystem("MicrobeSystem", MicrobeSystem());
     world.RegisterScriptSystem("MicrobeStageHudSystem", MicrobeStageHudSystem());
-    
-    assert(false, "TODO: add the rest");
+
+    // TODO: add the rest of the systems and component types that are defined in scripts here
 }
 
-// This should be moved somewhere else
+// TODO: This should be moved somewhere else...
 void createAgentCloud(CellStageWorld@ world, CompoundId compoundId, Float3 pos,
     Float3 direction, float amount)
 {
