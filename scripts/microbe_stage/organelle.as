@@ -37,6 +37,15 @@ class Organelle{
         components = parameters.components;
         processes = parameters.processes;
 
+        // Sanity check processes //
+        for(uint i = 0; i < processes.length(); ++i){
+
+            if(processes[i] is null){
+
+                assert(false, "Organelle created with null process at index: " + i);
+            }
+        }
+
         // Add hexes //
         for(uint i = 0; i < parameters.hexes.length(); ++i){
 

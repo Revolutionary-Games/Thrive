@@ -89,7 +89,7 @@ void setupSpecies(CellStageWorld@ world){
                 processNumber < organelleDefinition.processes.length(); ++processNumber)
             {
                 // This name needs to match the one in bioProcessRegistry
-                auto process = organelleDefinition.processes[processNumber];
+                TweakedProcess@ process = organelleDefinition.processes[processNumber];
                 
                 if(!capacities.exists(process.process.internalName)){
                     capacities[process.process.internalName] = 0;

@@ -146,8 +146,8 @@ void setupOrganelles(){
         nucleusComponentFactory
     };
     nucleusParameters.processes = {
-        TweakedProcess("FattyAcidSynthesis", 0.2),
-        TweakedProcess("AminoAcidSynthesis", 0.2),
+        TweakedProcess("fattyAcidSynthesis", 0.2),
+        TweakedProcess("aminoAcidSynthesis", 0.2)
     };
     nucleusParameters.hexes = {
         Int2(0, 0),
