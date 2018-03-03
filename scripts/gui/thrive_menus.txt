@@ -51,7 +51,7 @@ o GuiObject "_IntroVideoStarter"{
 
         // Comment the next line to not play intro video
         [@Listener="OnInit"]
-        bool StartVideoPlayback(GuiObject@ instance){
+        void StartVideoPlayback(GuiObject@ instance){
 
             LOG_INFO("Starting to play intro video");
             CEGUI::Window@ videoPlayer = instance.GetOwningManager().GetRootWindow().
@@ -68,7 +68,7 @@ o GuiObject "_IntroVideoStarter"{
 
                 LOG_ERROR("IntroVideoStarter failed to bind to the created video "
                     "player widget");
-                return false;
+                return;
             }
 
             // Save object for callback //
@@ -81,14 +81,14 @@ o GuiObject "_IntroVideoStarter"{
             castedPlayer.Play("Data/Videos/intro.mkv");
             PlayingVideo = true;
             
-            return true;
+            return;
         }
 
         [@Listener="OnClick"]
-        bool VideoPlayerClicked(GuiObject@ instance){
+        void VideoPlayerClicked(GuiObject@ instance){
 
              LOG_INFO("VideoPlayer clicked");
-             return true;
+             return;
         }
 
         void DestroyVideoPlayerWindow(){
@@ -130,12 +130,12 @@ o GuiObject "_IntroVideoStarter"{
 o GuiObject "Background/MainMenuInteractive/VersionLabel"{
     s{
         [@Listener="OnInit"]
-        bool WriteVersion(GuiObject@ instance){
+        void WriteVersion(GuiObject@ instance){
 
             instance.GetTargetWindow().SetText("TODO: ver (" + GetLeviathanVersion() +
                  ")");
 
-            return true;
+            return;
         }
     @%};
 }
@@ -144,10 +144,10 @@ o GuiObject "Background/MainMenuInteractive/VersionLabel"{
 o GuiObject "Background/MainMenuInteractive/ExitGameButton"{
     s{
         [@Listener="OnClick"]
-        bool QuitIt(GuiObject@ instance){
+        void QuitIt(GuiObject@ instance){
             // Close the game //
             cast<LeviathanApplication>(GetThriveGame()).MarkAsClosing();
-            return true;
+            return;
         }
         @%};
 }
@@ -157,7 +157,7 @@ o GuiObject "Background/MainMenuInteractive/ExitGameButton"{
 o GuiObject "Background/MainMenuInteractive/NewGameButton"{
     s{
         [@Listener="OnClick"]
-        bool StartGame(GuiObject@ instance){
+        void StartGame(GuiObject@ instance){
             // Disable all the menus
             instance.GetOwningManager().SetCollectionState("Background", false);
             // And show the microbe GUI
@@ -166,16 +166,16 @@ o GuiObject "Background/MainMenuInteractive/NewGameButton"{
 
             // And notify the application class to start a new game
             GetThriveGame().startNewGame();
-            return true;
+            return;
         }
 
         // Uncomment the next line to automatically start a new game
         // also remember to disable the intro video to not hear it also play
         // [@Listener="OnInit"]
-        bool InstantStart(GuiObject@ instance){
+        void InstantStart(GuiObject@ instance){
 
              StartGame(instance);
-             return true;
+             return;
         }
         
         @%};
