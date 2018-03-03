@@ -100,7 +100,7 @@ Organelle@ getOrganelleDefinition(const string &in name){
 // Private part starts here don't directly call or read these things from any other file
 // Only thing you'll need to modify is the "Main organelle table" below
 
-// Don't touch this from anywhere except setupOrganellesForWorld
+// Don't touch this from anywhere except setupOrganelles
 // use getOrganelleDefinition for accessing
 dictionary _mainOrganelleTable;
 
@@ -117,7 +117,7 @@ OrganelleComponentFactory@ nucleusComponentFactory = OrganelleComponentFactory(
 );
 
 // Sets up the organelle table
-void setupOrganellesForWorld(){
+void setupOrganelles(){
 
     assert(SimulationParameters::compoundRegistry().getSize() > 0,
         "Compound registry is empty");

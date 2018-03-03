@@ -91,13 +91,14 @@ void setupSpecies(CellStageWorld@ world){
                 // This name needs to match the one in bioProcessRegistry
                 auto process = organelleDefinition.processes[processNumber];
                 
-                if(!capacities.exists(process.process.name)){
-                    capacities[process.process.name] = 0;
+                if(!capacities.exists(process.process.internalName)){
+                    capacities[process.process.internalName] = 0;
                 }
 
                 // Here the second capacities[process.name] was initially capacities[process]
                 // but the processes are just strings inside the Organelle class
-                capacities[process.process.name] = int(capacities[process.process.name]) +
+                capacities[process.process.internalName] = int(capacities[
+                        process.process.internalName]) +
                     process.capacity;
             }
         }

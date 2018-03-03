@@ -118,7 +118,7 @@ bool ThriveGame::_runCellStageSetupFunc(const std::string &name){
         return false;
     }
 
-    LOG_INFO("Finished calling setupSpecies");
+    LOG_INFO("Finished calling " + name);
     return true;
 }
 
@@ -198,19 +198,19 @@ void ThriveGame::startNewGame(){
     // Let the script do setup //
     LEVIATHAN_ASSERT(m_impl->m_MicrobeScripts, "microbe scripts not loaded");
 
-    if(!_runCellStageSetupFunc("setupSpecies")){
-
-        MarkAsClosing();
-        return;
-    }
-
     if(!_runCellStageSetupFunc("setupProcesses")){
 
         MarkAsClosing();
         return;
     }
 
-    if(!_runCellStageSetupFunc("setupOrganellesForWorld")){
+    if(!_runCellStageSetupFunc("setupOrganelles")){
+
+        MarkAsClosing();
+        return;
+    }
+
+    if(!_runCellStageSetupFunc("setupSpecies")){
 
         MarkAsClosing();
         return;
