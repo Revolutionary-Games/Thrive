@@ -35,9 +35,6 @@ public:
     // Gameplay etc. directly thrive related methods
     void startNewGame();
 
-    //! \brief Creates a new cell of the current player species
-    void respawnPlayerCell();
-
 
     CellStageWorld* getCellStage();
 
@@ -68,6 +65,9 @@ public:
 
     bool InitLoadCustomScriptTypes(asIScriptEngine* engine) override;
 private:
+
+    //! \brief Calls initialization methods for scripts
+    bool scriptSetup();
 
     bool _runCellStageSetupFunc(const std::string &name);
     

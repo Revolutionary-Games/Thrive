@@ -52,7 +52,7 @@ class TweakedProcess{
 dictionary PROCESS_TABLE;
 
 //! Sets up Processes for use
-void setupProcesses(CellStageWorld@ world){
+void setupProcesses(){
 
     uint64 count = SimulationParameters::bioProcessRegistry().getSize();
     for(uint64 processId = 0; processId < count; ++processId){

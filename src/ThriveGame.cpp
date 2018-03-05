@@ -175,7 +175,6 @@ void ThriveGame::startNewGame(){
     m_cellStage->SetCamera(m_cellCamera);
 
 	// This is here for testing purposes only.
-	SimulationParameters::init();
 	BiomeController bc;
 	size_t currentBiomeid = bc.getCurrentBiome();
 	std::string background = SimulationParameters::biomeRegistry.getTypeData(currentBiomeid).background;
@@ -197,21 +196,7 @@ void ThriveGame::startNewGame(){
 
     // Let the script do setup //
     LEVIATHAN_ASSERT(m_impl->m_MicrobeScripts, "microbe scripts not loaded");
-
-    // TODO: this needs to be ran only once, not per world
-    if(!_runCellStageSetupFunc("setupProcesses")){
-
-        MarkAsClosing();
-        return;
-    }
-
-    // TODO: this needs to be ran only once, not per world
-    if(!_runCellStageSetupFunc("setupOrganelles")){
-
-        MarkAsClosing();
-        return;
-    }
-
+    
     if(!_runCellStageSetupFunc("setupSpecies")){
 
         MarkAsClosing();
@@ -236,7 +221,7 @@ void ThriveGame::startNewGame(){
         Float2(200, 200));
 
     // Spawn player //
-    respawnPlayerCell();
+
    
 	// Test model //
     if(false){
@@ -247,26 +232,60 @@ void ThriveGame::startNewGame(){
     }
 }
 
-void ThriveGame::respawnPlayerCell(){
-    LEVIATHAN_ASSERT(m_playerCell == 0, "Player alive in respawnPlayercell");
+// void ThriveGame::respawnPlayerCell(){
+//     LEVIATHAN_ASSERT(m_playerCell == 0, "Player alive in respawnPlayercell");
 
-    m_playerCell = m_cellStage->CreateEntity();
+//     m_playerCell = m_cellStage->CreateEntity();
 
-    m_cellStage->Create_RenderNode(m_playerCell);
-	auto& processor = m_cellStage->Create_ProcessorComponent(m_playerCell);
-	auto& compoundBag = m_cellStage->Create_CompoundBagComponent(m_playerCell);
-	m_cellStage->Create_SpeciesComponent(m_playerCell, "PIKACHU");
+//     m_cellStage->Create_RenderNode(m_playerCell);
+// 	auto& processor = m_cellStage->Create_ProcessorComponent(m_playerCell);
+// 	auto& compoundBag = m_cellStage->Create_CompoundBagComponent(m_playerCell);
+// 	m_cellStage->Create_SpeciesComponent(m_playerCell, "PIKACHU");
 
-    m_cellStage->Create_Position(m_playerCell, Float3(0), Float4::IdentityQuaternion());
+//     m_cellStage->Create_Position(m_playerCell, Float3(0), Float4::IdentityQuaternion());
 
-    MembraneComponent& membrane = m_cellStage->Create_MembraneComponent(m_playerCell);
-    for(int x = -3; x <= 3; ++x){
-        for(int y = -3; y <= 3; ++y){
-            membrane.sendOrganelles(x, y);
-        }
+//     MembraneComponent& membrane = m_cellStage->Create_MembraneComponent(m_playerCell);
+//     for(int x = -3; x <= 3; ++x){
+//         for(int y = -3; y <= 3; ++y){
+//             membrane.sendOrganelles(x, y);
+//         }
+//     }
+// }
+// ------------------------------------ //
+bool ThriveGame::scriptSetup(){
+
+    LOG_INFO("Calling global setup script setupProcesses");
+
+    ScriptRunningSetup setup("setupProcesses");
+
+    auto result = m_impl->m_MicrobeScripts->ExecuteOnModule<void>(setup, false);
+
+    if(result.Result != SCRIPT_RUN_RESULT::Success){
+
+        LOG_ERROR("Failed to run script setup function: " + setup.Entryfunction);
+        return false;
     }
-}
 
+    LOG_INFO("Finished calling the above setup script");
+    
+    LOG_INFO("Calling global setup script setupOrganelles");
+
+    setup = ScriptRunningSetup("setupOrganelles");
+
+    result = m_impl->m_MicrobeScripts->ExecuteOnModule<void>(setup, false);
+
+    if(result.Result != SCRIPT_RUN_RESULT::Success){
+
+        LOG_ERROR("Failed to run script setup function: " + setup.Entryfunction);
+        return false;
+    }
+
+    LOG_INFO("Finished calling the above setup script");
+            
+    
+    LOG_INFO("Finished calling script setup");
+    return true;
+}
 // ------------------------------------ //
 CellStageWorld* ThriveGame::getCellStage(){
 
@@ -340,6 +359,9 @@ void ThriveGame::CustomizeEnginePostLoad(){
 
     Engine* engine = Engine::Get();
 
+    // Load json data //
+    SimulationParameters::init();
+
     // Load scripts
     LOG_INFO("ThriveGame: loading main scripts");
 
@@ -364,7 +386,13 @@ void ThriveGame::CustomizeEnginePostLoad(){
     }
 
     LOG_INFO("ThriveGame: script loading succeeded");
-    
+
+    if(!scriptSetup()){
+
+        LOG_ERROR("ThriveGame: failed to run setup script functions");
+        MarkAsClosing();
+        return;
+    }
 
     // This is fine to set here to avoid putting this behind the next no gui check //
     m_postLoadRan = true;
