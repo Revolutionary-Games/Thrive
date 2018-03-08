@@ -6,13 +6,7 @@
 abstract class OrganelleComponent{
 
     // Constructor.
-    //
-    // @param arguments
-    //  The parameters of the constructor, defined in organelle_table.lua.
-    //
-    // @param data
-    //  The organelle data taken from the make function in organelle.lua.
-    OrganelleComponent(const dictionary &in arguments, const dictionary &in data){
+    OrganelleComponent(){
 
     }
     
@@ -33,7 +27,7 @@ abstract class OrganelleComponent{
     //  The rotation this organelle has on the microbe.
     //  it can be either 0, 60, 120, 180, 240 or 280.
     //
-    // @param self
+    // @param organelle
     //  The organelle object that is made up of these components.
     void
     onAddedToMicrobe(
@@ -50,16 +44,12 @@ abstract class OrganelleComponent{
     //  The microbe this organelle is removed from.
     // These aren't passed, at least not when the microbe is dying so they are now removed
     // from here as well
-    // @param q
-    //  q component of the organelle relative position in the microbe,
-    //  in axial coordinates (see hex.lua).
-    //
-    // @param r
-    //  r component of the organelle relative position in the microbe,
-    //  in axial coordinates (see hex.lua).
+    // @param organelle
+    //  MUST BE THE SAME ORGANELLE this was added to 
     void
     onRemovedFromMicrobe(
-        ObjectID microbeEntity
+        ObjectID microbeEntity,
+        PlacedOrganelle@ organelle
     ) {
 
     }

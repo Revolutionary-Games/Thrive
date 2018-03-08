@@ -1,15 +1,13 @@
-////////////////////////////////////////////////////////////////////////////////
-// Class for the single core organelle of any microbe
-////////////////////////////////////////////////////////////////////////////////
 #include "organelle_component.as"
 #include "microbe_operations.as"
 
+////////////////////////////////////////////////////////////////////////////////
+// Class for the single core organelle of any microbe
+////////////////////////////////////////////////////////////////////////////////
 class NucleusOrganelle : OrganelleComponent{
     // Constructor
-    NucleusOrganelle(const dictionary &in arguments, const dictionary &in data){
+    NucleusOrganelle(){
 
-        super(arguments, data);
-        
         // Moved to onAddedToMicrobe
     }
 
@@ -24,8 +22,7 @@ class NucleusOrganelle : OrganelleComponent{
         PlacedOrganelle@ organelle
     ) override {
 
-        @inOrganelle = organelle;
-        auto world = inOrganelle.world;
+        auto world = organelle.world;
         auto microbeNode = world.GetComponent_RenderNode(microbeEntity);
 
         assert(microbeNode !is null, "microbe entity has no RenderNode");
@@ -72,17 +69,16 @@ class NucleusOrganelle : OrganelleComponent{
 
     void
     onRemovedFromMicrobe(
-        ObjectID microbeEntity
+        ObjectID microbeEntity,
+        PlacedOrganelle@ organelle
     ) override {
 
-        auto world = inOrganelle.world;
+        auto world = organelle.world;
         
         world.QueueDestroyEntity(golgi);
         world.QueueDestroyEntity(ER);
         golgi = NULL_OBJECT;
         ER = NULL_OBJECT;
-
-        @inOrganelle = null;
     }
     
     // void NucleusOrganelle.storage(){
@@ -94,7 +90,6 @@ class NucleusOrganelle : OrganelleComponent{
 	// this.ER = Entity(g_luaEngine.currentGameState.wrapper)
     // }
 
-    private PlacedOrganelle@ inOrganelle;
     private ObjectID golgi = NULL_OBJECT;
     private ObjectID ER = NULL_OBJECT;
     //! Not sure if this is used for anything

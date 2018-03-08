@@ -288,7 +288,15 @@ class PlacedOrganelle{
         this.rotation = other.rotation;
 
         _commonConstructor();
-    }        
+    }
+
+    ~PlacedOrganelle(){
+
+        if(microbeEntity != NULL_OBJECT){
+
+            LOG_ERROR("PlacedOrganelle not removed from microbe before it was destroyed");
+        }
+    }
 
     private void _commonConstructor(){
 
@@ -718,7 +726,7 @@ class PlacedOrganelle{
         //iterating on each OrganelleComponent
         for(uint i = 0; i < components.length(); ++i){
 
-            components[i].onRemovedFromMicrobe(microbeEntity /*, q, r*/);
+            components[i].onRemovedFromMicrobe(microbeEntity, this /*, q, r*/);
         }
 
         collisionShape.CompoundCollisionBeginAddRemove();

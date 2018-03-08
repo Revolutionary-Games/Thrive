@@ -44,6 +44,7 @@ Organelle atributes:
 
 // Need to include all the used organelle types for the factory functions
 #include "nucleus_organelle.as"
+#include "storage_organelle.as"
 
 //! Factory typedef for OrganelleComponent
 funcdef OrganelleComponent@ OrganelleComponentFactoryFunc();
@@ -114,14 +115,49 @@ dictionary _mainOrganelleTable;
 // Factory functions for all the organelle components
 
 OrganelleComponent@ makeNucleusOrganelle(){
-    dictionary arguments;
-    dictionary data;
-    return NucleusOrganelle(arguments, data);
+    return NucleusOrganelle();
 }
 
 OrganelleComponentFactory@ nucleusComponentFactory = OrganelleComponentFactory(
     @makeNucleusOrganelle, "NucleusOrganelle"
 );
+
+class StorageOrganelleFactory{
+
+    StorageOrganelleFactory(float capacity){
+
+        this.capacity = capacity;
+    }
+
+    OrganelleComponent@ makeStorageOrganelle(){
+        return StorageOrganelle(capacity);
+    }
+
+    float capacity;
+}
+
+OrganelleComponentFactory@ storageOrganelleFactory(float capacity){
+
+    auto factory = StorageOrganelleFactory(capacity);
+    return OrganelleComponentFactory(
+        OrganelleComponentFactoryFunc(factory.makeStorageOrganelle), "StorageOrganelle");
+}
+
+class StorageOrganelleComponentFactory{
+    StorageOrganelleComponentFactory(float capacity){
+
+        this.capacity = capacity;
+    }
+
+    OrganelleComponent@ factory(){
+        return StorageOrganelle(capacity);
+    }
+
+    float capacity;
+}
+
+
+
 
 // Sets up the organelle table
 void setupOrganelles(){
@@ -174,6 +210,24 @@ void setupOrganelles(){
 
     // ------------------------------------ //
     // Cytoplasm
+    auto cytoplasmParameters = OrganelleParameters("cytoplasm");
+    
+    cytoplasmParameters.mass = 0.1;
+    cytoplasmParameters.gene = "Y";
+    cytoplasmParameters.mesh = ""; //it's an empty hex
+    cytoplasmParameters.chanceToCreate = 1; 
+    cytoplasmParameters.mpCost = 5;
+    cytoplasmParameters.initialComposition = {
+        {"aminoacids", 3},
+        {"glucose", 2}
+        // fattyacids = 0 :/
+    };
+    cytoplasmParameters.components = {
+        storageOrganelleFactory(10.0f)
+    };
+    cytoplasmParameters.hexes = {
+        Int2(0, 0),
+    };    
     
     // ------------------------------------ //
     // Vacuole
@@ -188,30 +242,6 @@ void _addOrganelleToTable(Organelle@ organelle){
     _mainOrganelleTable[organelle.name] = @organelle;
 }
 
-
-
-// ["cytoplasm"] = {
-//     components = {
-//     ["StorageOrganelle"] = {
-//     capacity = 10.0
-//     }
-//     },
-
-//     mass = 0.1,
-//     gene = "Y",
-//     chanceToCreate = 1,
-//     mpCost = 5,
-//     mesh = nil, //it's an empty hex
-//         hexes = {
-//             {["q"]=0,   ["r"]=0}
-//         },
-
-//         composition = {
-//             aminoacids = 3,
-//             glucose = 2,
-//             // fattyacids = 0 :/
-//         }
-//     },
 
 //     ["chloroplast"] = {
 //         components = {
