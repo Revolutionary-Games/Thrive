@@ -6,7 +6,6 @@ This is the code repository for Thrive. For more information, visit
 
 Overview
 ----------------
-
 Repository structure:
 - assets: An SVN repository that doesn't follow with the git repository. This contains all the assets such as models and other binaries. Get it with SVN Checkout http://assets.revolutionarygamesstudio.com
 - cmake_modules: Scripts used by cmake when building the project binaries to find the dependencies. The dependencies will, for windows users, be installed with the mingw_setup directory.
