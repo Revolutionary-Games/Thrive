@@ -55,6 +55,7 @@ void setupSystemsForWorld(CellStageWorld@ world){
 
     world.RegisterScriptSystem("MicrobeSystem", MicrobeSystem());
     world.RegisterScriptSystem("MicrobeStageHudSystem", MicrobeStageHudSystem());
+    world.RegisterScriptSystem("SpeciesSystem", SpeciesSystem());
 
     // TODO: add the rest of the systems and component types that are defined in scripts here
 }

@@ -11,9 +11,6 @@ class NucleusOrganelle : OrganelleComponent{
         // Moved to onAddedToMicrobe
     }
 
-    // See organelle_component.as for more information about the 
-    // organelle component methods and the arguments they receive.
-
     // Overridded from OrganelleComponent.onAddedToMicrobe
     void
     onAddedToMicrobe(
@@ -67,6 +64,7 @@ class NucleusOrganelle : OrganelleComponent{
         // organelle._needsColourUpdate = true;
     }
 
+    // Overridded from OrganelleComponent.onRemovedFromMicrobe
     void
     onRemovedFromMicrobe(
         ObjectID microbeEntity,

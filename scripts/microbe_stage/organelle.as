@@ -676,8 +676,8 @@ class PlacedOrganelle{
         // The position system sets the position of this TODO: for
         // performance reasons we could it set here directly as it
         // never changes
-        auto position = world.Create_Position(organelleEntity,
-            offset + this.cartesianPosition, Ogre::Quaternion(Ogre::Degree(rotation),
+        renderNode.Node.setPosition(offset + this.cartesianPosition);
+        renderNode.Node.setOrientation(Ogre::Quaternion(Ogre::Degree(rotation),
                 Ogre::Vector3(0, 1, 0)));
 
         // Add hex collision shapes

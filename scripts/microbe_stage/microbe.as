@@ -155,11 +155,11 @@ class MicrobeComponent : ScriptComponent{
     bool dead = false;
     uint deathTimer = 0;
     array<PlacedOrganelle@> organelles;
-    // Keys are the agent type, and the value is PlacedOrganelle@
-    dictionary specialStorageOrganelles;  // Organelles with complete
-                                          // resonsiblity for a
-                                          // specific compound (such
-                                          // as agentvacuoles)
+    // Organelles with complete resonsiblity for a specific compound
+    // (such as agentvacuoles)
+    // Keys are the CompoundId of the agent and the value is int
+    // specifying how many there are
+    dictionary specialStorageOrganelles;  
     
     Float3 movementDirection = Float3(0, 0, 0);
     Float3 facingTargetPoint = Float3(0, 0, 0);
