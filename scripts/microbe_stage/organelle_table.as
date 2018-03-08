@@ -93,7 +93,14 @@ class OrganelleParameters{
 //! Cache the result if called multiple times for the same world
 Organelle@ getOrganelleDefinition(const string &in name){
 
-    return cast<Organelle@>(_mainOrganelleTable[name]);
+    Organelle@ organelle = cast<Organelle@>(_mainOrganelleTable[name]);
+
+    if(organelle is null){
+
+        LOG_ERROR("getOrganelleDefinition: no organelle named '" + name + "'");
+    }
+    
+    return organelle;
 }
 
 // ------------------------------------ //
