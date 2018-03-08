@@ -73,7 +73,7 @@ class OrganelleParameters{
     string gene = "INVALID";
     string mesh;
     
-    //! Chance of randomly generating this (probably used by the initial random species)
+    //! Chance of randomly generating this (used by procedural_microbes.as)
     float chanceToCreate = 0.0;
 
     //! The factories for the components that define what this organelle does
@@ -170,7 +170,10 @@ void setupOrganelles(){
     
     // ------------------------------------ //
     // Vacuole
-    
+
+
+    // Setup the organelle letters
+    setupOrganelleLetters();
 }
 
 void _addOrganelleToTable(Organelle@ organelle){

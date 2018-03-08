@@ -147,6 +147,11 @@ void MembraneComponent::setColour(const Float4 &value){
     // TODO: apply
     DEBUG_BREAK;
 }
+
+Float4 MembraneComponent::getColour() const{
+
+    return colour;
+}
 // ------------------------------------ //
 void MembraneComponent::Update(Ogre::SceneManager* scene, Ogre::SceneNode* parentcomponentpos)
 {

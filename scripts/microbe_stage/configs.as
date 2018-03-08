@@ -146,13 +146,31 @@ class MicrobeTemplate{
     Float4 colour;
 }
 
+class InitialCompound{
+    InitialCompound(){
+
+        this.amount = 0;
+        this.priority = 1;
+    }
+    
+    InitialCompound(float amount, int priority = 1){
+
+        this.amount = amount;
+        this.priority = priority;
+    }
+
+    float amount;
+    int priority;
+}
+
+
 const dictionary STARTER_MICROBES = {
     {
         "Default", MicrobeTemplate(1/14000,
             {
-                {"atp", 60},
-                {"glucose", 5},
-                {"oxygen", 10}
+                {"atp", InitialCompound(60)},
+                {"glucose", InitialCompound(5)},
+                {"oxygen", InitialCompound(10)}
             },
             {
                 OrganelleTemplatePlaced("nucleus", 0, 0, 0),
