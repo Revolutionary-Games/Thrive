@@ -54,5 +54,18 @@
             "glucose": 1,
             "oxygen": 6
         }
+    },
+
+    "oxytoxySynthesis": {
+        "name": "Oxytoxy Synthesis",
+
+        "inputs": {
+            "atp": 1,
+            "oxygen": 3
+        },
+
+        "outputs": {
+            "oxytoxy": 1
+        }
     }
 }
