@@ -31,6 +31,9 @@ public:
 
     //! Should set the colour of the membrane once working
     void setColour(const Float4 &value);
+    
+    //! Returns the last set colour
+    Float4 getColour() const;
 
     // Gets organelle positions from the .lua file.
     // The y is actually the z component in the game 3d world

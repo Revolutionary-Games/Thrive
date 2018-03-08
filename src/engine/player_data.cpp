@@ -57,6 +57,7 @@ void
 PlayerData::setActiveCreature(
     ObjectID creatureId
 ){
+    LOG_INFO("Active player creature is now: " + std::to_string(creatureId));
     m_impl->m_activeCreature = creatureId;
 }
 

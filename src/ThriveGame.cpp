@@ -221,7 +221,16 @@ void ThriveGame::startNewGame(){
         Float2(200, 200));
 
     // Spawn player //
+    ScriptRunningSetup setup("setupPlayer");
 
+    auto result = m_impl->m_MicrobeScripts->ExecuteOnModule<void>(setup, false,
+        m_cellStage.get());
+
+    if(result.Result != SCRIPT_RUN_RESULT::Success){
+
+        LOG_ERROR("Failed to spawn player!");
+        return;
+    }
    
 	// Test model //
     if(false){
@@ -904,6 +913,14 @@ bool bindThriveComponentTypes(asIScriptEngine* engine){
     }
 
     if(engine->RegisterObjectMethod("MembraneComponent",
+            "Float4 getColour() const",
+            asMETHOD(MembraneComponent, getColour),
+            asCALL_THISCALL) < 0)
+    {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectMethod("MembraneComponent",
             "void clear()",
             asMETHOD(MembraneComponent, clear),
             asCALL_THISCALL) < 0)
@@ -959,6 +976,12 @@ bool bindThriveComponentTypes(asIScriptEngine* engine){
 
     if(engine->RegisterObjectProperty("SpeciesComponent", "Float4 colour",
             asOFFSET(SpeciesComponent, colour)) < 0)
+    {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectProperty("SpeciesComponent", "string name",
+            asOFFSET(SpeciesComponent, name)) < 0)
     {
         ANGELSCRIPT_REGISTERFAIL;
     }

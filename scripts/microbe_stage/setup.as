@@ -3,6 +3,7 @@
 // For system registering
 #include "microbe.as"
 #include "microbe_stage_hud.as"
+#include "microbe_operations.as"
 
 const auto CLOUD_SPAWN_RADIUS = 75;
 
@@ -33,96 +34,10 @@ void setupSpecies(CellStageWorld@ world){
         const string name = keys[i];
 
         MicrobeTemplate@ data = cast<MicrobeTemplate@>(STARTER_MICROBES[name]);
-
-        ObjectID speciesEntity = world.CreateEntity();
         
-        SpeciesComponent@ speciesComponent = world.Create_SpeciesComponent(speciesEntity,
-            name);
-        
-        @speciesComponent.avgCompoundAmounts = dictionary();
+        ObjectID entity = Species::createSpecies(world, name, data);
 
-        @speciesComponent.organelles = array<ref@>();
-        speciesComponent.organelles.resize(data.organelles.length());
-        for(uint a = 0; a < data.organelles.length(); ++a){
-
-            // Need to assign with handle assignment
-            @speciesComponent.organelles[a] = data.organelles[a];
-            //@speciesComponent.organelles.push(data.organelles[a]);
-        }
-
-        ProcessorComponent@ processorComponent = world.Create_ProcessorComponent(
-            speciesEntity);
-    
-        speciesComponent.colour = data.colour;
-
-        // iterates over all compounds, and sets amounts and priorities
-        uint64 compoundCount = SimulationParameters::compoundRegistry().getSize();
-        for(uint a = 0; a < compoundCount; ++a){
-
-            auto compound = SimulationParameters::compoundRegistry().getTypeData(a);
-
-            int compoundAmount;
-            bool valid = data.compounds.get(compound.internalName, compoundAmount);
-            
-            if(valid){
-                
-                // priority = compoundData.priority
-                speciesComponent.avgCompoundAmounts[formatUInt(compound.id)] = compoundAmount;
-                // speciesComponent.compoundPriorities[compoundID] = priority
-            }
-        }
-
-        dictionary capacities;
-        for(uint a = 0; a < data.organelles.length(); ++a){
-
-            string type = data.organelles[a].type;
-            
-            const Organelle@ organelleDefinition = getOrganelleDefinition(type);
-            if(organelleDefinition is null){
-
-                LOG_ERROR("Organelle table has no organelle named '" + type +
-                    "', that was used in starter microbe");
-                continue;
-            }
-            
-            for(uint processNumber = 0;
-                processNumber < organelleDefinition.processes.length(); ++processNumber)
-            {
-                // This name needs to match the one in bioProcessRegistry
-                TweakedProcess@ process = organelleDefinition.processes[processNumber];
-                
-                if(!capacities.exists(process.process.internalName)){
-                    capacities[process.process.internalName] = 0;
-                }
-
-                // Here the second capacities[process.name] was initially capacities[process]
-                // but the processes are just strings inside the Organelle class
-                capacities[process.process.internalName] = int(capacities[
-                        process.process.internalName]) +
-                    process.capacity;
-            }
-        }
-
-        uint64 processCount = SimulationParameters::bioProcessRegistry().getSize();
-        for(uint bioProcessId = 0; bioProcessId < processCount; ++bioProcessId){
-            
-            auto processName = SimulationParameters::bioProcessRegistry().getInternalName(
-                bioProcessId);
-            
-            if(capacities.exists(processName)){
-
-                int capacity;
-                if(!capacities.get(processName, capacity)){
-                    LOG_ERROR("capacities has invalid value");
-                    continue;
-                }
-                
-                processorComponent.setCapacity(bioProcessId, capacity);
-                // This may be commented out for the reason that the default should be retained
-                // } else {
-                // processorComponent.setCapacity(bioProcessId, 0)
-            }
-        }
+        LOG_INFO("created starter microbe \"" + name + "\", species entity = " + entity);
     }
 
     LOG_INFO("setupSpecies created " + keys.length() + " species");
@@ -143,6 +58,27 @@ void setupSystemsForWorld(CellStageWorld@ world){
 
     // TODO: add the rest of the systems and component types that are defined in scripts here
 }
+
+const auto PLAYER_NAME = "Player";
+
+//! This spawns the player
+void setupPlayer(CellStageWorld@ world){
+    assert(world !is null);
+
+    GetThriveGame().playerData().lockedMap().addLock("Toxin");
+    GetThriveGame().playerData().lockedMap().addLock("chloroplast");
+    
+    ObjectID microbe = MicrobeOperations::spawnMicrobe(world, Float3(0, 0, 0), "Default",
+        false, PLAYER_NAME);
+
+    assert(microbe != NULL_OBJECT, "Failed to spawn player cell");
+    // TODO: powerupable
+    //microbe.collisionHandler.addCollisionGroup("powerupable");
+
+    GetThriveGame().playerData().setActiveCreature(microbe);
+}
+
+
 
 // TODO: This should be moved somewhere else...
 void createAgentCloud(CellStageWorld@ world, CompoundId compoundId, Float3 pos,
@@ -179,45 +115,6 @@ void createAgentCloud(CellStageWorld@ world, CompoundId compoundId, Float3 pos,
 
 
 
-//             void microbeSpawnFunctionGeneric(pos, speciesName, aiControlled, individualName, gameState){
-//             return spawnMicrobe(pos, speciesName, aiControlled, individualName, gameState).entity
-//             }
-
-//             // speciesName decides the template to use, while individualName is used for referencing the instance
-//             void spawnMicrobe(pos, speciesName, aiControlled, individualName, gameState){
-
-//                 assert(gameState !is null)
-//                 assert(isNotEmpty(speciesName))
-
-//                 // Workaround. Find a fix for this
-//             if(gameState ~= g_luaEngine.currentGameState){
-//             print("Warning used different gameState than currentGameState in microbe spawn. " ..
-//                 "This would have been bad in earlier versions")
-//             }
-    
-//             auto processor = getComponent(speciesName, gameState, ProcessorComponent)
-
-//             if(processor == null){
-
-//             print("Skipping microbe spawn because species '" .. speciesName ..
-//                 "' doesn't have a processor component")
-        
-//                 return null
-//                 }
-    
-    
-//                 auto microbeEntity = MicrobeSystem.createMicrobeEntity(individualName, aiControlled, speciesName, false)
-//                 auto microbe = Microbe(microbeEntity, false, gameState)
-//                 if(pos !is null){
-//             microbe.rigidBody.setDynamicProperties(
-//                 pos, // Position
-//                 Quaternion(Radian(Degree(0)), Vector3(1, 0, 0)), // Orientation
-//                 Vector3(0, 0, 0), // Linear velocity
-//                 Vector3(0, 0, 0)  // Angular velocity
-//             )
-//                               }
-//                               return microbe
-//                               }
 
 //                               local void setSpawnablePhysics(entity, pos, mesh, scale, collisionShape){
 //                               // Rigid body
@@ -324,16 +221,8 @@ void createAgentCloud(CellStageWorld@ world, CompoundId compoundId, Float3 pos,
 //                               return gSpawnSystem
 //                               }
 
-//                               local void setupPlayer(gameState){
-//                               assert(GameState.MICROBE == gameState)
-//                               assert(gameState !is null)
-    
-//                               auto microbe = spawnMicrobe(null, "Default", false, PLAYER_NAME, gameState)
-//                               microbe.collisionHandler.addCollisionGroup("powerupable")
-//                               Engine.playerData():lockedMap():addLock("Toxin")
-//                               Engine.playerData():lockedMap():addLock("chloroplast")
-//                               Engine.playerData():setActiveCreature(microbe.entity.id, gameState.wrapper)
-//                               }
+
+
 
 //                               local void setupSound(gameState){
 //                               auto ambientEntity = Entity("ambience", gameState.wrapper)

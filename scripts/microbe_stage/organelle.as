@@ -32,6 +32,8 @@ class Organelle{
         _name = parameters.name;
         mass = parameters.mass;
         mesh = parameters.mesh;
+        gene = parameters.gene;
+        chanceToCreate = parameters.chanceToCreate;
 
         initialComposition = parameters.initialComposition;
         components = parameters.components;
@@ -141,6 +143,26 @@ class Organelle{
         return result;
     }
 
+    //! \returns The hexes but rotated (rotation degrees)
+    //! \todo Should this and the normal getHexes return handles to arrays
+    array<Hex@>@ getRotatedHexes(int rotation) const{
+
+        array<Hex@>@ result = array<Hex@>();
+
+        int times = rotation / 60;
+        
+        auto keys = hexes.getKeys();
+        for(uint i = 0; i < keys.length(); ++i){
+
+            Hex@ hex = cast<Hex@>(hexes[keys[i]]);
+
+            auto rotated = Hex::rotateAxialNTimes({hex.q, hex.r}, times);
+            result.insertLast(Hex(rotated.X, rotated.Y));
+        }
+
+        return result;
+    }
+
     Float3 calculateCenterOffset() const{
         int count = 0;
 
@@ -200,6 +222,7 @@ class Organelle{
 
     private string _name;
     float mass;
+    string gene;
     
     array<OrganelleComponentFactory@> components;
     private dictionary hexes;
@@ -217,6 +240,9 @@ class Organelle{
 
     // Name of the model used for this organelle. For example "nucleus.mesh"
     string mesh;
+
+    //! Chance of randomly generating this (used by procedural_microbes.as)
+    float chanceToCreate = 0.0;
 }
 
 enum ORGANELLE_HEALTH{
@@ -226,6 +252,10 @@ enum ORGANELLE_HEALTH{
     CAN_DIVIDE = 2
 };
 
+//! These are placed either on an actual microbe where they are
+//! onAddedToMicrobe() OR on templates where these just have positions
+//! set and should be duplicated for the purpose of adding to a
+//! microbe
 class PlacedOrganelle{
 
     PlacedOrganelle(Organelle@ organelle, int q, int r, int rotation){
@@ -249,7 +279,22 @@ class PlacedOrganelle{
         _commonConstructor();
     }
 
+    //! Takes everything that's sensible to copy from another PlacedOrganelle
+    PlacedOrganelle(PlacedOrganelle@ other){
+
+        @this._organelle = other._organelle;
+        this.q = other.q;
+        this.r = other.r;
+        this.rotation = other.rotation;
+
+        _commonConstructor();
+    }        
+
     private void _commonConstructor(){
+
+        // Sanity check
+        if(_organelle is null)
+            assert(false, "PlacedOrganelle created with null Organelle");
 
         resetHealth();
 

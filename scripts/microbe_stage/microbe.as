@@ -3,6 +3,7 @@
 #include "microbe_operations.as"
 #include "hex.as"
 #include "microbe_stage_hud.as"
+#include "species_system.as"
 
 
 //! Why is this needed? Is it for(the future when we don't want to
@@ -219,9 +220,9 @@ class MicrobeSystemCached{
     Physics@ fourth;
     MembraneComponent@ fifth;
     CompoundBagComponent@ sixth;
-    // RigidBodyComponent ;
-    // CollisionComponent ;
-}
+    // TODO: determine if this is accessed frequently enough that it should be here
+    // Physics ;
+ }
 
 
 
@@ -656,8 +657,8 @@ class MicrobeSystem : ScriptSystem{
             
             compoundBag.setProcessor(processor, microbeComponent.speciesName);
                                                 
-            applyTemplate(microbeEntity, MicrobeOperations::getSpeciesComponent(
-                    world, microbeEntity));
+            Species::applyTemplate(world, microbeEntity,
+                MicrobeOperations::getSpeciesComponent(world, microbeEntity));
         }
     }
     // ------------------------------------ //
@@ -746,12 +747,6 @@ class MicrobeSystem : ScriptSystem{
     //         // false while wasBeingEngulfed is true
     //         microbe2Comp.isBeingEngulfed = true;
     //     }
-    // }
-
-    // // Sets the color of the microbe's membrane.
-    // void setMembraneColour(ObjectID microbeEntity, Float4 colour){
-    //     auto membraneComponent = world.GetComponent_MembraneComponent(microbeEntity, MembraneComponent);
-    //     membraneComponent.setColour(colour);
     // }
 
 
@@ -975,17 +970,11 @@ class MicrobeSystem : ScriptSystem{
             microbeComponent.reproductionStage = 0;
         } else {
             // Return the first cell to its normal, non duplicated cell arangement.
-            applyTemplate(microbeEntity,
+            Species::applyTemplate(world, microbeEntity,
                 MicrobeOperations::getSpeciesComponent(world, microbeEntity));
             
             divide(microbeEntity);
         }
-    }
-
-    // This is defined in the lua scripts in some weird place
-    void applyTemplate(ObjectID microbe, SpeciesComponent@ species){
-
-        assert(false, "TODO: find where this is the lua scripts and put it here");
     }
 
     private array<MicrobeSystemCached@> CachedComponents;
@@ -998,5 +987,5 @@ class MicrobeSystem : ScriptSystem{
         ScriptSystemUses(Physics::TYPE),
         ScriptSystemUses(MembraneComponent::TYPE),
         ScriptSystemUses(CompoundBagComponent::TYPE)
-    };    
+    };
 }

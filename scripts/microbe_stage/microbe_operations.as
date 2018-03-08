@@ -1,5 +1,6 @@
 // Operations on microbe entities
 #include "biome.as"
+#include "species_system.as"
 
 namespace MicrobeOperations{
 
@@ -25,6 +26,17 @@ SpeciesComponent@ getSpeciesComponent(CellStageWorld@ world, ObjectID microbeEnt
 
     // This needs to loop all the components and get the matching one
     auto entity = findSpeciesEntityByName(world, microbeComponent.speciesName);
+    
+    return world.GetComponent_SpeciesComponent(entity);
+}
+
+// Getter for microbe species
+// 
+// returns the species component or null if species with that name doesn't exist
+SpeciesComponent@ getSpeciesComponent(CellStageWorld@ world, const string &in speciesName){
+
+    // This needs to loop all the components and get the matching one
+    auto entity = findSpeciesEntityByName(world, speciesName);
     
     return world.GetComponent_SpeciesComponent(entity);
 }
@@ -643,7 +655,44 @@ bool addOrganelle(CellStageWorld@ world, ObjectID microbeEntity, PlacedOrganelle
 }
 
 
-// Creates a new microbe with all required components
+// speciesName decides the template to use, while individualName is
+// used for referencing the instance
+ObjectID spawnMicrobe(CellStageWorld@ world, Float3 pos, const string &in speciesName,
+    bool aiControlled, const string &in individualName
+) {
+    assert(world !is null);
+    assert(speciesName != "");
+
+    auto processor = getProcessorComponent(world, speciesName);
+
+    if(processor is null){
+
+        LOG_ERROR("Skipping microbe spawn because species '" + speciesName +
+            "' doesn't have a processor component");
+        
+        return NULL_OBJECT;
+    }
+    
+    auto microbeEntity = createMicrobeEntity(world, individualName, aiControlled, speciesName,
+        // in_editor
+        false);
+    
+    // Teleport the cell to the right position
+    auto microbePos = world.GetComponent_Position(microbeEntity);
+    microbePos._Position = pos;
+    microbePos.Marked = true;
+    
+    if(pos.Y != 0)
+        LOG_WARNING("spawnMicrobe: spawning at y-coordinate: " + pos.Y);
+    
+    auto physics = world.GetComponent_Physics(microbeEntity);
+    physics.JumpTo(microbePos);
+    
+    return microbeEntity;
+}
+
+// Creates a new microbe with all required components. Use spawnMicrobe from other
+// code instead of this function
 //
 // @param name
 // The entity's name. If null, the entity will be unnamed.
@@ -654,6 +703,8 @@ ObjectID createMicrobeEntity(CellStageWorld@ world, const string &in name, bool 
     const string &in speciesName, bool in_editor)
 {
     assert(speciesName != "", "Empty species name for create microbe");
+
+    auto species = getSpeciesComponent(world, speciesName);
 
     ObjectID entity = world.CreateEntity();
 
@@ -717,13 +768,16 @@ ObjectID createMicrobeEntity(CellStageWorld@ world, const string &in name, bool 
         world.GetScriptComponentHolder("MicrobeAIControllerComponent").Create(entity);
     }
 
+    // Apply the template //
+    Species::applyTemplate(world, entity, species);
+
     // Initialized on next tick TODO: make sure that nothing that isn't initialized is used
     // by something
     // MicrobeSystem.initializeMicrobe(entity, in_editor, g_luaEngine.currentGameState);
-
+    // Or move the initialization logic here instead of the proper system
+    
     return entity;
 }
-
 
 // Kills the microbe, releasing stored compounds into the enviroment
 void kill(CellStageWorld@ world, ObjectID microbeEntity){
@@ -863,6 +917,11 @@ void removeEngulfedEffect(CellStageWorld@ world, ObjectID microbeEntity){
     //microbeComponent.hostileEngulfer.soundSource.stopSound("microbe-engulfment")
 }
 
+// Sets the color of the microbe's membrane.
+void setMembraneColour(CellStageWorld@ world, ObjectID microbeEntity, Float4 colour){
+    auto membraneComponent = world.GetComponent_MembraneComponent(microbeEntity);
+    membraneComponent.setColour(colour);
+}
 
 }
 
