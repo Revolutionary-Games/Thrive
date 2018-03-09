@@ -141,16 +141,22 @@ bool MembraneComponent::contains(float x, float y)
 // ------------------------------------ //
 //! Should set the colour of the membrane once working
 void MembraneComponent::setColour(const Float4 &value){
-
-    colour = value;
+	colour.a = value.X;
+	colour.b = value.Y;
+	colour.g = value.Z;
+	colour.r = value.W;
 
     // TODO: apply
     DEBUG_BREAK;
 }
 
 Float4 MembraneComponent::getColour() const{
-
-    return colour;
+	Float4 colour2;
+	colour2.X = colour.a;
+	colour2.Y = colour.b;
+	colour2.Z = colour.g;
+	colour2.W = colour.r;
+    return colour2;
 }
 // ------------------------------------ //
 void MembraneComponent::Update(Ogre::SceneManager* scene, Ogre::SceneNode* parentcomponentpos)
