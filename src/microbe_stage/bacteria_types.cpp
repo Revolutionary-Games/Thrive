@@ -24,7 +24,7 @@ BacteriaType::BacteriaType(Json::Value value) {
 		startingCompounds.emplace(id, amount);
 	}
 
-	// Getting the compounds that compone this bacterium.
+	// Getting the compounds that compose this bacterium.
 	compoundInternalNames = value["composition"].getMemberNames();
 	for (std::string compoundInternalName : compoundInternalNames) {
 		unsigned int amount = value["composition"][compoundInternalName].asUInt();
@@ -35,7 +35,7 @@ BacteriaType::BacteriaType(Json::Value value) {
 		composition.emplace(id, amount);
 	}
 
-	// Getting the compounds that compone this bacterium.
+	// Getting the compounds that compose this bacterium.
 	std::vector<std::string> processInternalNames = value["processes"].getMemberNames();
 	for (std::string processInternalName : processInternalNames) {
 		double amount = value["processes"][processInternalName].asDouble();
