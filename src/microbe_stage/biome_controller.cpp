@@ -16,6 +16,7 @@ void BiomeController::setBiome(size_t id) {
 
 void BiomeController::setBiome(std::string internalBiomeName) {
 	// Kinda inefficient but eh, you shouldn't use strings for efficiency in the first place!
+	// we could rewrite this to use a short rather then a string intead perhaps --Michael
 	size_t id = SimulationParameters::biomeRegistry.getTypeData(internalBiomeName).id;
 	setBiome(id);
 }
