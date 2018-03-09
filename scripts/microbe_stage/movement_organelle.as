@@ -8,15 +8,10 @@
 
 // Calculate the momentum of the movement organelle based on angle towards nucleus
 Float3 calculateForce(int q, int r, float momentum){
-    Float2 organelle = Hex::axialToCartesian(q, r);
-    Float2 nucleus = Hex::axialToCartesian(0, 0);
-    auto deltaX = nucleusX - organelleX;
-    auto deltaY = nucleusY - organelleY;
-    auto dist = sqrt(pow(deltaX, 2) + deltaY^2); // For normalizing vector
-    auto momentumX = deltaX / dist * momentum;
-    auto momentumY = deltaY / dist * momentum;
-    auto force = Vector3(momentumX, momentumY, 0.0);
-    return force;
+    Float3 organelle = Hex::axialToCartesian(q, r);
+    Float3 nucleus = Hex::axialToCartesian(0, 0);
+    auto delta = nucleus - organelle;
+    return delta.Normalize() * momentum;
 }
 
 class MovementOrganelle : OrganelleComponent{
@@ -96,9 +91,9 @@ class MovementOrganelle : OrganelleComponent{
             organelle.world.GetScriptComponentHolder("MicrobeComponent").Find(microbeEntity));
 
         auto rigidBodyComponent = organelle.world.GetComponent_Physics(microbeEntity);
-        auto sceneNodeComponent = organelle.world.GetComponent_RenderNode(microbeEntity);
+        auto pos = organelle.world.GetComponent_Position(microbeEntity);
 
-        auto direction = microbeComponent.movementDirection;
+        Float3 direction = microbeComponent.movementDirection;
     
         auto forceMagnitude = this.force.Dot(direction);
         if(forceMagnitude > 0){
@@ -122,14 +117,14 @@ class MovementOrganelle : OrganelleComponent{
                 this.movingTail = false;
                 // this.sceneNode.setAnimationSpeed(0.25);
             }
-            auto impulseMagnitude = microbeComponent.movementFactor * milliseconds *
+            float impulseMagnitude = microbeComponent.movementFactor * milliseconds *
                 forceMagnitude / 1000;
 
-            auto impulse = impulseMagnitude * direction;
-            auto a = sceneNodeComponent.transform.orientation * impulse;
-            rigidBodyComponent.applyCentralImpulse(
-                sceneNodeComponent.transform.orientation * impulse
-            );
+            Float3 impulse = direction * impulseMagnitude;
+            // TODO: this was just multiplication here before so check
+            // if it meant Dot, Cross or element wise multiplication
+            Float3 a = pos._Orientation.ToAxis().Dot(impulse);
+            rigidBodyComponent.GiveImpulse(a);
         } else {
             if(this.movingTail){
                 this.movingTail = false;
@@ -149,22 +144,22 @@ class MovementOrganelle : OrganelleComponent{
         MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
             organelle.world.GetScriptComponentHolder("MicrobeComponent").Find(microbeEntity));
         auto rigidBodyComponent = organelle.world.GetComponent_Physics(microbeEntity);
-        auto sceneNodeComponent = organelle.world.GetComponent_RenderNode(microbeEntity);
+        auto pos = organelle.world.GetComponent_Position(microbeEntity);
         
-        auto transform = sceneNodeComponent.transform;
-        auto targetDirection = microbeComponent.facingTargetPoint - transform.position;
-        auto localTargetDirection = transform.orientation.Inverse() * targetDirection;
-        localTargetDirection.z = 0; // improper fix. facingTargetPoint somehow gets a non-zero z value.
-        assert(localTargetDirection.z < 0.01, "Microbes should only move in the 2D plane with z = 0");
-        auto alpha = atan2(
-            -localTargetDirection.x,
-            localTargetDirection.y
-        );
-        microbeComponent.microbetargetdirection = abs(math.deg(alpha));
-        if(math.abs(math.deg(alpha)) > 1){
-            rigidBodyComponent.applyTorque(;
-                Vector3(0, 0, this.torque * alpha * microbeComponent.movementFactor);
-            );
+        auto targetDirection = microbeComponent.facingTargetPoint - pos._Position;
+        // TODO: direct multiplication was also used here
+        Float3 localTargetDirection = pos._Orientation.Inverse().RotateVector(targetDirection);
+        // localTargetDirection.Y = 0; // improper fix. facingTargetPoint somehow gets a non-zero y value.
+        assert(localTargetDirection.Y < 0.01,
+            "Microbes should only move in the 2D plane with y = 0");
+        
+        auto alpha = abs(atan2(-localTargetDirection.X, localTargetDirection.Z) *
+            RADIANS_TO_DEGREES);
+        microbeComponent.microbetargetdirection = alpha;
+        if(alpha > 1){
+            
+            rigidBodyComponent.SetTorque(Float3(0,
+                    this.torque * alpha * microbeComponent.movementFactor, 0));
         }
     }
 
@@ -186,8 +181,8 @@ class MovementOrganelle : OrganelleComponent{
 
         // TODO: these both access the same components and thus should
         // be stored to save looking them up twice
-        _turnMicrobe(microbeEntity);
-        _moveMicrobe(microbeEntity, logicTime);
+        _turnMicrobe(microbeEntity, organelle);
+        _moveMicrobe(microbeEntity, organelle, logicTime);
     }
 
     private Model@ model;
