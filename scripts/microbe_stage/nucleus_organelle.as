@@ -37,7 +37,8 @@ class NucleusOrganelle : OrganelleComponent{
         sceneNode1.Node.setOrientation(Ogre::Quaternion(Ogre::Degree(rotation),
                 Ogre::Vector3(0, 1, 0)));
         sceneNode1.Marked = true;
-        
+
+        sceneNode1.Node.removeFromParent();
         microbeNode.Node.addChild(sceneNode1.Node);
 
         world.SetEntitysParent(microbeEntity, golgi);
@@ -50,6 +51,7 @@ class NucleusOrganelle : OrganelleComponent{
                 Ogre::Vector3(0, 1, 0)));
         sceneNode2.Marked = true;
 
+        sceneNode2.Node.removeFromParent();
         microbeNode.Node.addChild(sceneNode2.Node);
 
         world.SetEntitysParent(microbeEntity, ER);
