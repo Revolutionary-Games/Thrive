@@ -201,5 +201,26 @@
             [1, 0],
             [0, 1]
         ]
+    },
+
+    "cytoplasm": {
+        "name": "Cytoplasm",
+        "mass": 0.4,
+        "gene": "Y",
+        "mpCost": 5,
+        "mesh": "",
+        "locked": false,
+
+        "composition": {
+            "aminoacids": 3,
+            "glucose": 2
+        },
+
+        "components": {
+        },
+
+        "hexes": [
+            [0, 0]
+        ]
     }
 }
