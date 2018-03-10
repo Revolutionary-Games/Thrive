@@ -690,9 +690,10 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
             // Also add our offset to the hex offset
             Float3 translation = Hex::axialToCartesian(hex.q, hex.r) + this.cartesianPosition;
 
-            Ogre::Matrix4 hexFinalOffset;
             // Create the matrix with the offset
-            assert(false, "TODO: hex collision offset");
+            Ogre::Matrix4 hexFinalOffset;
+            hexFinalOffset.setTrans(translation);
+
             NewtonCollision@ hexCollision = world.GetPhysicalWorld().CreateSphere(
                 HEX_SIZE * 2, hexFinalOffset);
 
@@ -704,6 +705,7 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
 
         auto parentRenderNode = world.GetComponent_RenderNode(
             microbeEntity);
+        renderNode.Node.removeFromParent();
         parentRenderNode.Node.addChild(renderNode.Node);
         
         //Adding a mesh for the organelle.
