@@ -333,10 +333,10 @@ void setupOrganelles(){
         // fattyacids = 0 :/
     };
     oxytoxyParameters.components = {
-        agentVacuoleFactory("oxytoxy", "oxyToxySynthesis")
+        agentVacuoleFactory("oxytoxy", "oxytoxySynthesis")
     };
     oxytoxyParameters.processes = {
-        TweakedProcess("OxyToxySynthesis", 0.05)
+        TweakedProcess("oxytoxySynthesis", 0.05)
     };
     oxytoxyParameters.hexes = {
         Int2(0, 0)
