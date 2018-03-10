@@ -290,6 +290,8 @@ void setupOrganelles(){
         Int2(0, 0),
     };
 
+    _addOrganelleToTable(Organelle(cytoplasmParameters));
+
     // ------------------------------------ //
     // Chloroplast
     auto chloroplastParameters = OrganelleParameters("chloroplast");
