@@ -239,6 +239,20 @@ void ThriveGame::startNewGame(){
         auto& node = m_cellStage->Create_RenderNode(testModel);
         m_cellStage->Create_Model(testModel, node.Node, "nucleus.mesh");
     }
+
+
+    // TODO: verify that the membrane works
+    // ObjectID testMembrane = m_cellStage->CreateEntity();
+
+    // m_cellStage->Create_RenderNode(testMembrane);
+    // m_cellStage->Create_Position(testMembrane, Float3(0), Float4::IdentityQuaternion());
+
+    // MembraneComponent& membrane = m_cellStage->Create_MembraneComponent(testMembrane);
+    // for(int x = -3; x <= 3; ++x){
+    //     for(int y = -3; y <= 3; ++y){
+    //         membrane.sendOrganelles(x, y);
+    //     }
+    // }
 }
 
 // void ThriveGame::respawnPlayerCell(){
