@@ -196,10 +196,11 @@ class SpeciesSystem : ScriptSystem{
         assert(this.world !is null, "SpeciesSystem expected CellStageWorld");
 
         // This was commented out in the Lua version... TODO: check that this works
-        for(int i = 0; i < INITIAL_SPECIES; ++i){
+		//can confirtm, it crashes here - Untrustedlife
+        //for(int i = 0; i < INITIAL_SPECIES; ++i){
 
-            species.insertLast(Species(world));
-        }
+            //species.insertLast(Species(world));
+        //}
     }
 
     void Release(){
