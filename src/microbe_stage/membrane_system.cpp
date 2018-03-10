@@ -143,9 +143,7 @@ bool MembraneComponent::contains(float x, float y)
 void MembraneComponent::setColour(const Float4 &value){
 
     colour = value;
-
-    // TODO: apply
-    DEBUG_BREAK;
+    LOG_WRITE("TODO: apply Membrane colour");
 }
 
 Float4 MembraneComponent::getColour() const{
