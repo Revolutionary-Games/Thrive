@@ -197,10 +197,11 @@ class SpeciesSystem : ScriptSystem{
 
         // This was commented out in the Lua version... TODO: check that this works
 		//can confirtm, it crashes here - Untrustedlife
-        //for(int i = 0; i < INITIAL_SPECIES; ++i){
+        // This is needed to actually have AI species in the world
+        for(int i = 0; i < INITIAL_SPECIES; ++i){
 
-            //species.insertLast(Species(world));
-        //}
+            species.insertLast(Species(world));
+        }
     }
 
     void Release(){

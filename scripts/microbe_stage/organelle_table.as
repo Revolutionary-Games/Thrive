@@ -102,6 +102,7 @@ Organelle@ getOrganelleDefinition(const string &in name){
     if(organelle is null){
 
         LOG_ERROR("getOrganelleDefinition: no organelle named '" + name + "'");
+        PrintCallStack();
     }
     
     return organelle;

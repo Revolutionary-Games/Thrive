@@ -9,6 +9,7 @@ float MAX_CHANCE_SCORE = 0;
 
 dictionary organelleLetters = {};
 array<string> VALID_ORGANELLES = {};
+array<string> VALID_ORGANELLE_LETTERS = {};
 array<float> VALID_ORGANELLE_CHANCES = {};
 
 //! Called from setupOrganelles
@@ -28,6 +29,7 @@ void setupOrganelleLetters(){
             
             VALID_ORGANELLES.insertLast(organelleName);
             VALID_ORGANELLE_CHANCES.insertLast(organelleInfo.chanceToCreate);
+            VALID_ORGANELLE_LETTERS.insertLast(organelleInfo.gene);
             
             // Getting the max chance score for the roulette selection.
             MAX_CHANCE_SCORE += organelleInfo.chanceToCreate;
@@ -36,15 +38,16 @@ void setupOrganelleLetters(){
 }
 
 // Returns a random organelle letter
+// TODO: verify that this has a good chance of returning also the last organelle
 string getRandomLetter(){
     float i = GetEngine().GetRandom().GetNumber(0.f, MAX_CHANCE_SCORE);
 
     for(uint index = 0; index < VALID_ORGANELLES.length(); ++index){
 
         i -= VALID_ORGANELLE_CHANCES[index];
-
+        
         if(i <= 0){
-            return VALID_ORGANELLES[index];
+            return VALID_ORGANELLE_LETTERS[index];
         }
     }
     
@@ -145,6 +148,8 @@ OrganelleTemplatePlaced@ getPosition(const string &in organelleName,
 
 // Creates a list of organelles from the stringCode.
 array<PlacedOrganelle@>@ positionOrganelles(const string &in stringCode){
+    // TODO: remove once this works
+    LOG_INFO("DEBUG: positionOrganelles stringCode: " + stringCode);
 
     array<PlacedOrganelle@>@ result = array<PlacedOrganelle@>();
     array<OrganelleTemplatePlaced@> organelleList;
@@ -152,7 +157,9 @@ array<PlacedOrganelle@>@ positionOrganelles(const string &in stringCode){
     for(uint i = 0; i < stringCode.length(); ++i){
 
         OrganelleTemplatePlaced@ pos;
-        string name = string(organelleLetters["" + stringCode[i]]);
+        const auto letter = CharacterToString(stringCode[i]);
+        // LOG_WRITE(formatUInt(i) + ": " + letter);
+        string name = string(organelleLetters[letter]);
 
         if(i == 0){
 
@@ -161,6 +168,12 @@ array<PlacedOrganelle@>@ positionOrganelles(const string &in stringCode){
         } else {
 
             @pos = getPosition(name, organelleList);
+        }
+
+        if(pos.type == ""){
+
+            assert(false, "positionOrganelles: organelleLetters didn't have the "
+                "current letter: " + letter);
         }
 
         organelleList.insertLast(pos);
