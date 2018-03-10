@@ -976,7 +976,14 @@ bool bindThriveComponentTypes(asIScriptEngine* engine){
     if(!bindComponentTypeId(engine, "SpeciesComponent", &SpeciesComponentTYPEProxy))
         return false;
 
-    if(engine->RegisterObjectProperty("SpeciesComponent", "array<ref@>@ organelles",
+    // A bit hacky
+    if(engine->RegisterInterface("SpeciesStoredOrganelleType") < 0){
+
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectProperty("SpeciesComponent",
+            "array<SpeciesStoredOrganelleType@>@ organelles",
             asOFFSET(SpeciesComponent, organelles)) < 0)
     {
         ANGELSCRIPT_REGISTERFAIL;

@@ -256,7 +256,7 @@ enum ORGANELLE_HEALTH{
 //! onAddedToMicrobe() OR on templates where these just have positions
 //! set and should be duplicated for the purpose of adding to a
 //! microbe
-class PlacedOrganelle{
+class PlacedOrganelle : SpeciesStoredOrganelleType{
 
     PlacedOrganelle(Organelle@ organelle, int q, int r, int rotation){
 

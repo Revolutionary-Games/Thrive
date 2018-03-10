@@ -415,7 +415,8 @@ void restoreOrganelleLayout(CellStageWorld@ world, ObjectID microbeEntity,
     // give it organelles
     for(uint i = 0; i < species.organelles.length(); ++i){
 
-        PlacedOrganelle@ organelle = PlacedOrganelle(microbeComponent.organelles[i]);
+        PlacedOrganelle@ organelle = PlacedOrganelle(
+            cast<PlacedOrganelle>(species.organelles[i]));
         
         MicrobeOperations::addOrganelle(world, microbeEntity, organelle);
     }
@@ -452,13 +453,24 @@ ObjectID createSpecies(CellStageWorld@ world, const string &in name,
         
     @speciesComponent.avgCompoundAmounts = dictionary();
 
-    @speciesComponent.organelles = array<ref@>();
+    @speciesComponent.organelles = array<SpeciesStoredOrganelleType@>();
     for(uint i = 0; i < organelles.length(); ++i){
 
-        // Need to assign with handle assignment
         // This conversion does a little bit of extra calculations (that are in the
         // end not used)
         speciesComponent.organelles.insertLast(PlacedOrganelle(organelles[i]));
+    }
+
+    // Verify it //
+    for(uint i = 0; i < speciesComponent.organelles.length(); ++i){
+
+        PlacedOrganelle@ organelle = cast<PlacedOrganelle>(speciesComponent.organelles[i]);
+        
+        if(organelle is null){
+
+            assert(false, "createSpecies: species.organelles has invalid object at index: " +
+                i);
+        }
     }
 
     ProcessorComponent@ processorComponent = world.Create_ProcessorComponent(
