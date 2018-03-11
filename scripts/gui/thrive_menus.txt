@@ -156,9 +156,12 @@ o GuiObject "Background/MainMenuInteractive/LoadGameButton"{
         [@Listener="OnClick"]
         bool LoadIt(GuiObject@ instance){
             // Load the game //
-            LOG_INFO("TODO: load game code");
 			if (FileSystem::FileExists("quick.sav")) {
-			//Engine:load("quick.sav")
+			// Disable all the menus
+            instance.GetOwningManager().SetCollectionState("Background", false);
+            // And show the microbe GUI
+            instance.GetOwningManager().SetCollectionState("MicrobeRoot", true);
+            GetThriveGame().loadSaveGame("quick.sav");
 			}
             return true;
         }
