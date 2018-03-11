@@ -157,6 +157,13 @@ o GuiObject "Background/MainMenuInteractive/LoadGameButton"{
         bool LoadIt(GuiObject@ instance){
             // Load the game //
             LOG_INFO("TODO: load game code");
+			if (!FileSystem::FileExists("quick.sav")) {
+				//load the save
+			}
+			else{
+			//Engine:load("quick.sav")
+            LOG_INFO("TODO: load game code");
+			}
             return true;
         }
         @%};
@@ -213,6 +220,41 @@ o GuiObject "_musicPlayer"{
         }
     @%};
 }
+
+//function MainMenuHudSystem:update(renderTime, logicTime)
+//   if keyCombo(kmp.screenshot) then
+//       Engine:screenShot("screenshot.png")
+//   elseif keyCombo(kmp.skipvideo) then
+//      if self.videoPlayer then
+//         self.videoPlayer:close()
+//         self.videoPlayer:hide()
+//         
+//         getComponent("gui_sounds", self.gameState, SoundSourceComponent
+//         ):interruptPlaying()
+//
+//        getComponent("main_menu_ambience", self.gameState, SoundSourceComponent
+//         ).autoLoop = true
+//         self.skippedVideo = true
+//      end
+//   elseif keyCombo(kmp.forward) then
+//   end
+//   if self.videoPlayer then
+//      self.videoPlayer:update()
+//      if self.videoPlayer:getCurrentTime() >= self.videoPlayer:getDuration() - 3.0 then
+//         if not self.vidFadeoutStarted then
+//            self.videoPlayer:playAnimation("fadeout")
+//            self.vidFadeoutStarted = true
+//         end
+//         if not self.skippedVideo and self.videoPlayer:getCurrentTime() >= self.videoPlayer:getDuration() then
+//            self.videoPlayer:hide()
+//
+//            getComponent("main_menu_ambience", self.gameState, SoundSourceComponent
+//            ).autoLoop = true
+//            
+//         end
+//      end
+//   end
+//end
 
 // ------------------------------------ //
 
