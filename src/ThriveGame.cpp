@@ -123,7 +123,6 @@ bool ThriveGame::_runCellStageSetupFunc(const std::string &name){
 }
 
 void ThriveGame::startNewGame(){
-
     // To work with instant start, we need to invoke this if we have no cell stage world
     if(!m_postLoadRan){
 
@@ -274,6 +273,15 @@ void ThriveGame::startNewGame(){
 //         }
 //     }
 // }
+
+void ThriveGame::loadSaveGame(std::string saveFile) {
+	// i hate the very idea of writing the same code twice, so i want to call startNewGame first
+	LOG_INFO("saved game being loaded");
+	ThriveGame::startNewGame();
+	//start a new game, then run a loading script 
+	//(the script will disable the tutorial etc)
+
+}
 // ------------------------------------ //
 bool ThriveGame::scriptSetup(){
 
@@ -1538,6 +1546,14 @@ bool ThriveGame::InitLoadCustomScriptTypes(asIScriptEngine* engine){
     {
         ANGELSCRIPT_REGISTERFAIL;
     }
+
+	if (engine->RegisterObjectMethod("ThriveGame",
+		"void loadSaveGame(const string &in saveFile)",
+		asMETHOD(ThriveGame, loadSaveGame),
+		asCALL_THISCALL) < 0)
+	{
+		ANGELSCRIPT_REGISTERFAIL;
+	}
 
     if(engine->RegisterObjectProperty("ThriveGame", "ObjectID m_backgroundPlane",
             asOFFSET(ThriveGame, m_backgroundPlane)) < 0)
