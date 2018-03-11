@@ -233,6 +233,8 @@ void MembraneComponent::Update(Ogre::SceneManager* scene, Ogre::SceneNode* paren
         // to the destructor (and this probably moved to the
         // constructor)
 
+		Ogre::MaterialPtr materialPtr = baseMaterial->clone("Meow"); // Use the species's name instead.
+		materialPtr->getTechnique(0)->getPass(0)->getFragmentProgramParameters()->setNamedConstant("membraneColour", colour);
 		materialPtr->compile();
 		m_subMesh->setMaterialName("Meow");
     }
