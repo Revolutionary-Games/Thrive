@@ -2,7 +2,7 @@
 GUIBaseFile = "MainMenu.layout";
 GUIAnimations = ["thrive.anims"];
 RequireCEGUIHooked = true;
-
+ExtraAccess = "FullFileSystem";
 
 
 
@@ -49,7 +49,7 @@ o GuiObject "_IntroVideoStarter"{
         bool PlayingVideo = false;
 
         // Comment the next line to not play intro video
-        [@Listener="OnInit"]
+        //[@Listener="OnInit"]
         void StartVideoPlayback(GuiObject@ instance){
 
             LOG_INFO("Starting to play intro video");
@@ -146,10 +146,11 @@ o GuiObject "Background/MainMenuInteractive/LoadGameButton"{
 		void checkforSave(GuiObject@ instance){
             // disable if no saved game //
 			//for some reaosn I cannot call FileSystem::FileExists even though it works fine in the other angel scripts - Michael
-			string saveName = "quick.sav";
-		   //if (!GetEngine().GetFileSystem().FileExists("quick.sav")) {
+            // This now works with new ExtraAccess setting (also it was a static function so it
+            // is called like this) - hhyyrylainen
+		    if (!FileSystem::FileExists("quick.sav")) {
 				instance.GetTargetWindow().SetDisabledState(true);
-			//}
+			}
             return;
         }
         [@Listener="OnClick"]
@@ -192,7 +193,7 @@ o GuiObject "Background/MainMenuInteractive/NewGameButton"{
 
         // Uncomment the next line to automatically start a new game
         // also remember to disable the intro video to not hear it also play
-        // [@Listener="OnInit"]
+        [@Listener="OnInit"]
         void InstantStart(GuiObject@ instance){
 
              StartGame(instance);
