@@ -123,6 +123,7 @@ o GuiObject "_IntroVideoStarter"{
 
 
 
+
 // ------------------------------------ //
 // Main menu objects
 // Version label
@@ -145,8 +146,8 @@ o GuiObject "Background/MainMenuInteractive/LoadGameButton"{
 		void checkforSave(GuiObject@ instance){
             // disable if no saved game //
 			//for some reaosn I cannot call FileSystem::FileExists even though it works fine in the other angel scripts - Michael
-			//if (file.FileExists("quick.sav")){
-			    LOG_INFO("No save found");
+			string saveName = "quick.sav";
+		   //if (!GetEngine().GetFileSystem().FileExists("quick.sav")) {
 				instance.GetTargetWindow().SetDisabledState(true);
 			//}
             return;
@@ -201,6 +202,16 @@ o GuiObject "Background/MainMenuInteractive/NewGameButton"{
         @%};
 }
 
+o GuiObject "_musicPlayer"{
+    s{
+        [@Listener="OnTick"]
+        void update(GuiObject@ instance){
+			//SoundDevice device = GetSoundDevice();
+			//GetEngine().PlaySoundEffect("main-menu-theme-1.ogg");
+            return;
+        }
+    @%};
+}
 
 // ------------------------------------ //
 
