@@ -14,7 +14,6 @@ o GuiCollection "OnKeeper"{
     }
 }
 
-
 // Top level window for all menus
 o GuiCollection "Background"{
     l params{
@@ -131,13 +130,34 @@ o GuiObject "Background/MainMenuInteractive/VersionLabel"{
     s{
         [@Listener="OnInit"]
         void WriteVersion(GuiObject@ instance){
-
             instance.GetTargetWindow().SetText("TODO: ver (" + GetLeviathanVersion() +
                  ")");
 
             return;
         }
     @%};
+}
+//Load the game//
+o GuiObject "Background/MainMenuInteractive/LoadGameButton"{
+    s{
+	
+		[@Listener="OnInit"]
+		void checkforSave(GuiObject@ instance){
+            // disable if no saved game //
+			//for some reaosn I cannot call FileSystem::FileExists even though it works fine in the other angel scripts - Michael
+			//if (file.FileExists("quick.sav")){
+			    LOG_INFO("No save found");
+				instance.GetTargetWindow().SetDisabledState(true);
+			//}
+            return;
+        }
+        [@Listener="OnClick"]
+        bool LoadIt(GuiObject@ instance){
+            // Load the game //
+            LOG_INFO("TODO: load game code");
+            return true;
+        }
+        @%};
 }
 
 // Quit the game //
@@ -180,6 +200,7 @@ o GuiObject "Background/MainMenuInteractive/NewGameButton"{
         
         @%};
 }
+
 
 // ------------------------------------ //
 
