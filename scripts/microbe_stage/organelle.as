@@ -63,15 +63,6 @@ class Organelle{
 
     }
 
-    //! Overwrite to make organelle do something at update time. Called from PlacedOrganelle
-    //! \note This may not change the state of this Organelle object (or subclass) as they are
-    //! global and only PlacedOrganelle has data regarding a specific organelle that is
-    //! in a microbe
-    void update(PlacedOrganelle@ instanceData) const{
-
-        
-    }
-
     protected void calculateCost(dictionary composition){
 
         organelleCost = 0;
@@ -352,8 +343,9 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
                 flashDuration = 0;
                 colour = speciesColour;
             }
-        
-            _needsColourUpdate = true;
+
+            // This gets called a lot so uncomment once colour changing works
+            // _needsColourUpdate = true;
         }
 
         // If the organelle is supposed to be another color.
@@ -362,10 +354,6 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
             // no clue how the flashing works
             updateColour();
         }
-
-        // Update main organelle derived class
-        // This is a const method so we store all the state
-        organelle.update(this);
 
         // Update each OrganelleComponent
         for(uint i = 0; i < components.length(); ++i){
@@ -377,6 +365,8 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
 
         if(organelleEntity == NULL_OBJECT || microbeEntity == NULL_OBJECT)
             return;
+
+        PrintCallStack();
 
         auto model = world.GetComponent_Model(organelleEntity);
 
@@ -641,7 +631,7 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
             // It would be a huge mess to handle this here so we don't bother.
             // call MicrobeOperations::removeOrganelle
             assert(false, "onAddedToMicrobe called before this PlacedOrganelle was " +
-                "removed from previous microbe");
+                "removed from previous microbe. Previous entity: " + microbeEntity);
         }
 
         @this.world = world;

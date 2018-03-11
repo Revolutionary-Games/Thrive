@@ -611,13 +611,16 @@ bool addOrganelle(CellStageWorld@ world, ObjectID microbeEntity, PlacedOrganelle
 
     collision.CompoundCollisionEndAddRemove();
 
-    // TODO: is this actually needed, or is the mass update enough?
-    // Need to recreate the body
-    rigidBodyComponent.CreatePhysicsBody(world.GetPhysicalWorld());
-    rigidBodyComponent.SetMass(rigidBodyComponent.Mass + organelle.organelle.mass);
+    // The body is recreated if it existed already
+    if(rigidBodyComponent.Body !is null){
+    
+        // Need to recreate the body
+        rigidBodyComponent.CreatePhysicsBody(world.GetPhysicalWorld());
+        rigidBodyComponent.SetMass(rigidBodyComponent.Mass + organelle.organelle.mass);
 
-    // And jump it to the current position
-    rigidBodyComponent.JumpTo(position);
+        // And jump it to the current position
+        rigidBodyComponent.JumpTo(position);
+    }
 
     calculateHealthFromOrganelles(world, microbeEntity);
     microbeComponent.maxBandwidth = microbeComponent.maxBandwidth +
@@ -675,7 +678,7 @@ ObjectID spawnMicrobe(CellStageWorld@ world, Float3 pos, const string &in specie
         return NULL_OBJECT;
     }
     
-    auto microbeEntity = createMicrobeEntity(world, individualName, aiControlled, speciesName,
+    auto microbeEntity = _createMicrobeEntity(world, individualName, aiControlled, speciesName,
         // in_editor
         false);
     
@@ -689,7 +692,7 @@ ObjectID spawnMicrobe(CellStageWorld@ world, Float3 pos, const string &in specie
     
     auto physics = world.GetComponent_Physics(microbeEntity);
     physics.JumpTo(microbePos);
-    
+
     return microbeEntity;
 }
 
@@ -701,12 +704,16 @@ ObjectID spawnMicrobe(CellStageWorld@ world, Float3 pos, const string &in specie
 //
 // @returns microbe
 // An object of type Microbe
-ObjectID createMicrobeEntity(CellStageWorld@ world, const string &in name, bool aiControlled,
+ObjectID _createMicrobeEntity(CellStageWorld@ world, const string &in name, bool aiControlled,
     const string &in speciesName, bool in_editor)
 {
     assert(speciesName != "", "Empty species name for create microbe");
 
-    auto species = getSpeciesComponent(world, speciesName);
+    auto speciesEntity = findSpeciesEntityByName(world, speciesName);
+    auto species = world.GetComponent_SpeciesComponent(speciesEntity);
+    
+    if(speciesEntity == NULL_OBJECT)
+        assert(false, "Trying to create a microbe with invalid species");
 
     ObjectID entity = world.CreateEntity();
 
@@ -757,9 +764,9 @@ ObjectID createMicrobeEntity(CellStageWorld@ world, const string &in name, bool 
     // s1.properties.volume = 0.4;
     // s1.properties.touch();
 
-    world.Create_CompoundAbsorberComponent(entity);
+    auto compoundAbsorberComponent = world.Create_CompoundAbsorberComponent(entity);
     world.Create_RenderNode(entity);
-    world.Create_CompoundBagComponent(entity);
+    auto compoundBag = world.Create_CompoundBagComponent(entity);
 
     MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
         world.GetScriptComponentHolder("MicrobeComponent").Create(entity));
@@ -770,14 +777,71 @@ ObjectID createMicrobeEntity(CellStageWorld@ world, const string &in name, bool 
         world.GetScriptComponentHolder("MicrobeAIControllerComponent").Create(entity);
     }
 
-    // Apply the template //
+    // Rest of the stuff doesn't really work in_editor
+    if(in_editor){
+
+        return entity;
+    }
+
+    auto processor = world.GetComponent_ProcessorComponent(speciesEntity);
+        
+    if(processor is null){
+        LOG_ERROR("Microbe species '" + microbeComponent.speciesName +
+            "' doesn't have a processor component");
+        // assert(processor !is null);
+    } else {
+    
+        compoundBag.setProcessor(processor, microbeComponent.speciesName);
+    }
+    
+    // Apply the template //                                                
     Species::applyTemplate(world, entity, species);
 
-    // Initialized on next tick TODO: make sure that nothing that isn't initialized is used
-    // by something
-    // MicrobeSystem.initializeMicrobe(entity, in_editor, g_luaEngine.currentGameState);
-    // Or move the initialization logic here instead of the proper system
-    
+    // ------------------------------------ //
+    // Initialization logic taken from MicrobeSystem and put here now
+    assert(microbeComponent.organelles.length() > 0, "Microbe has no "
+        "organelles in initializeMicrobe");
+
+    // Allowing the microbe to absorb all the compounds.
+    setupAbsorberForAllCompounds(compoundAbsorberComponent);
+
+    // Destroy any old things we might have to not leak the collision data
+    rigidBody.Release();
+
+    // The collision is destroyed by the component
+    bool success = rigidBody.SetCollision(
+        world.GetPhysicalWorld().CreateCompoundCollision());
+
+    assert(success);
+
+    // We don't add the sub collisions here. Instead they are
+    // individually added in addOrganelle, which is not very efficient
+    // rigidBody.Collision.CompoundCollisionBeginAddRemove();
+
+    float mass = 0.f;
+
+    // Organelles
+    for(uint i = 0; i < microbeComponent.organelles.length(); ++i){
+        
+        auto organelle = microbeComponent.organelles[i];
+
+        // organelles are already initialized when they are added
+        // Not sure if this reset is needed here
+        organelle.reset();
+        
+        mass += organelle.organelle.mass;
+    }
+
+    // rigidBody.Collision.CompoundCollisionEndAddRemove();
+
+    // Then create the physics body from the shape
+    @rigidBody.CreatePhysicsBody(world.GetPhysicalWorld());
+    assert(rigidBody.Body !is null);
+
+    // And apply mass and center of gravity
+    rigidBody.SetMass(mass);
+
+    microbeComponent.initialized = true;
     return entity;
 }
 
