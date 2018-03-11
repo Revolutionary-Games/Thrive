@@ -55,10 +55,16 @@ class MovementOrganelle : OrganelleComponent{
         
         angle = ((angle * 180)/PI + 180) % 360;
 
-        auto sceneNode = organelle.world.GetComponent_RenderNode(organelle.organelleEntity);
+        //auto sceneNode = organelle.world.GetComponent_RenderNode(organelle.organelleEntity);
         //Adding a mesh to the organelle.
-        @this.model = organelle.world.Create_Model(organelle.organelleEntity,
-            sceneNode.Node, organelle.organelle.mesh);
+        // @this.model = organelle.world.Create_Model(organelle.organelleEntity,
+        //     sceneNode.Node, organelle.organelle.mesh);
+
+        // This is already added by the PlacedOrganlle.onAddedToMicrobe
+        @this.model = organelle.world.GetComponent_Model(organelle.organelleEntity);
+
+        if(this.model is null)
+            assert(false, "MovementOrganelle added to Organelle that has no Model component");
 
         // The organelles' scenenode is positioned by itself unlike
         // the lua version where that was also attempted here

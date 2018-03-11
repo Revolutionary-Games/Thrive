@@ -328,6 +328,13 @@ class MicrobeSystem : ScriptSystem{
     // Updates the microbe's state
     void updateMicrobe(MicrobeSystemCached@ components, uint logicTime){
         auto microbeEntity = components.entity;
+
+        if(microbeEntity == -1){
+
+            LOG_ERROR("MicrobeSystem: updateMicrobe: invalid microbe entity hasn't "
+                "set a ObjectID, did someone forget to call 'init'?");
+            return;
+        }
         
         MicrobeComponent@ microbeComponent = components.second;
         MembraneComponent@ membraneComponent = components.fifth;
@@ -337,17 +344,8 @@ class MicrobeSystem : ScriptSystem{
 
         if(!microbeComponent.initialized){
 
-            LOG_INFO("Initializing microbe: " + microbeEntity);
-
-            if(microbeEntity == -1){
-
-                LOG_ERROR("MicrobeSystem: updateMicrobe: invalid microbe entity hasn't "
-                    "set a ObjectID, did someone forget to call 'init'?");
-                return;
-            }
-            
-            initializeMicrobe(microbeEntity, microbeComponent, compoundAbsorberComponent,
-                compoundBag, sceneNodeComponent);
+            LOG_ERROR("Microbe is not initialized: " + microbeEntity);
+            return;
         }
 
         if(microbeComponent.dead){
@@ -591,76 +589,6 @@ class MicrobeSystem : ScriptSystem{
         }
     }
     
-    // Initializes microbes the first time this system processes them
-    private void initializeMicrobe(ObjectID microbeEntity,
-        MicrobeComponent@ microbeComponent,
-        CompoundAbsorberComponent@ compoundAbsorberComponent,
-        CompoundBagComponent@ compoundBag,
-        RenderNode@ sceneNodeComponent
-    ){
-        auto rigidBodyComponent = world.GetComponent_Physics(microbeEntity);
-
-        assert(microbeComponent.organelles.length() > 0, "Microbe has no "
-            "organelles in initializeMicrobe");
-
-        // Allowing the microbe to absorb all the compounds.
-        setupAbsorberForAllCompounds(compoundAbsorberComponent);
-
-        // Destroy any old things we might have to not leak the collision data
-        rigidBodyComponent.Release();
-
-        // The collision is destroyed by the component
-        bool success = rigidBodyComponent.SetCollision(
-            world.GetPhysicalWorld().CreateCompoundCollision());
-
-        assert(success);
-        
-        rigidBodyComponent.Collision.CompoundCollisionBeginAddRemove();
-
-        float mass = 0.f;
-
-        // Organelles
-        for(uint i = 0; i < microbeComponent.organelles.length(); ++i){
-
-            auto organelle = microbeComponent.organelles[i];
-            
-            organelle.onAddedToMicrobe(microbeEntity, world, rigidBodyComponent.Collision);
-            organelle.reset();
-            
-            mass += organelle.organelle.mass;
-        }
-
-        rigidBodyComponent.Collision.CompoundCollisionEndAddRemove();
-
-        // Then create the physics body from the shape
-        @rigidBodyComponent.CreatePhysicsBody(world.GetPhysicalWorld());
-        assert(rigidBodyComponent.Body !is null);
-
-        // And apply mass and center of gravity
-        rigidBodyComponent.SetMass(mass);
-                                        
-        // Membrane
-        microbeComponent.initialized = true;
-        
-        if(microbeComponent.in_editor != true){
-            assert(microbeComponent.speciesName != "");
-            assert(microbeComponent.speciesColour != Float4(0, 0, 0, 0));
-
-            auto processor = MicrobeOperations::getProcessorComponent(world,
-                microbeComponent.speciesName);
-                
-            if(processor is null){
-                LOG_ERROR("Microbe species '" + microbeComponent.speciesName +
-                    "' doesn't exist");
-                assert(processor !is null);
-            }
-            
-            compoundBag.setProcessor(processor, microbeComponent.speciesName);
-                                                
-            Species::applyTemplate(world, microbeEntity,
-                MicrobeOperations::getSpeciesComponent(world, microbeEntity));
-        }
-    }
     // ------------------------------------ //
     // Microbe operations only done by this class
     //! Updates the used storage space in a microbe and stores it in the microbe component
@@ -914,7 +842,7 @@ class MicrobeSystem : ScriptSystem{
         // Create the one daughter cell.
         // The empty string here is the name of the new cell, which could be more descriptive
         // to set to something based on the original cell
-        auto copyEntity = MicrobeOperations::createMicrobeEntity(world, "", true,
+        auto copyEntity = MicrobeOperations::_createMicrobeEntity(world, "", true,
             microbeComponent.speciesName, false);
         MicrobeComponent@ microbeComponentCopy = cast<MicrobeComponent>(
             world.GetScriptComponentHolder("MicrobeComponent").Find(copyEntity));

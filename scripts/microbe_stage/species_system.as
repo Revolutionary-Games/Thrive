@@ -414,7 +414,7 @@ void restoreOrganelleLayout(CellStageWorld@ world, ObjectID microbeEntity,
 
     // give it organelles
     for(uint i = 0; i < species.organelles.length(); ++i){
-
+        
         PlacedOrganelle@ organelle = PlacedOrganelle(
             cast<PlacedOrganelle>(species.organelles[i]));
         
