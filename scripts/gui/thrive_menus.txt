@@ -157,12 +157,8 @@ o GuiObject "Background/MainMenuInteractive/LoadGameButton"{
         bool LoadIt(GuiObject@ instance){
             // Load the game //
             LOG_INFO("TODO: load game code");
-			if (!FileSystem::FileExists("quick.sav")) {
-				//load the save
-			}
-			else{
+			if (FileSystem::FileExists("quick.sav")) {
 			//Engine:load("quick.sav")
-            LOG_INFO("TODO: load game code");
 			}
             return true;
         }
@@ -256,6 +252,26 @@ o GuiObject "_musicPlayer"{
 //   end
 //end
 
+//local function setupSound(gameState)
+//    -- Background music
+//    local ambientEntity = Entity.new("main_menu_ambience", gameState.wrapper)
+//    local soundSource = SoundSourceComponent.new()
+//    soundSource.ambientSoundSource = true
+//    soundSource.autoLoop = false
+//    soundSource.volumeMultiplier = 0.15
+//    ambientEntity:addComponent(soundSource)
+//    soundSource:addSound("main-menu-theme-1", "main-menu-theme-1.ogg")
+//    soundSource:addSound("main-menu-theme-2", "main-menu-theme-2.ogg")
+//    -- Gui effects
+//    local guiSoundEntity = Entity.new("gui_sounds", gameState.wrapper)
+//    soundSource = SoundSourceComponent.new()
+//    soundSource.ambientSoundSource = true
+//    soundSource.autoLoop = false
+//    soundSource.volumeMultiplier = 1.0
+//    guiSoundEntity:addComponent(soundSource)
+//    -- Sound
+//    soundSource:addSound("button-hover-click", "soundeffects/gui/button-hover-click.ogg")
+//end
 // ------------------------------------ //
 
 
