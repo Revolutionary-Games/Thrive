@@ -16,8 +16,8 @@
 #include <OgreMeshManager2.h>
 #include <OgreMesh2.h>
 #include <OgreMaterialManager.h>
-// #include <OgreMaterial.h>
-// #include <OgreTechnique.h>
+#include <OgreMaterial.h>
+#include <OgreTechnique.h>
 // #include <OgreEntity.h>
 #include <OgreSceneManager.h>
 #include <OgreRoot.h>
@@ -227,26 +227,14 @@ void MembraneComponent::Update(Ogre::SceneManager* scene, Ogre::SceneNode* paren
         m_mesh->_setBoundingSphereRadius(50);
 
         // Set the membrane material //
-        //  Ogre::MaterialPtr baseMaterial = Ogre::MaterialManager::getSingleton().getByName(
-        //      "Membrane");
+        Ogre::MaterialPtr baseMaterial = Ogre::MaterialManager::getSingleton().getByName("Membrane");
         
         // If this is uncommented material destruction should be added
         // to the destructor (and this probably moved to the
         // constructor)
-        
-        // Ogre::MaterialPtr materialPtr = baseMaterial->clone(m_mesh->getName());
-        // materialPtr->compile();
-        // // This doesn't work anymore
-        // Ogre::TextureUnitState* ptus = materialPtr->getTechnique(0)->
-        //     getPass(0)->getTextureUnitState(0);
-        // ptus->setColourOperationEx(Ogre::LBX_MODULATE, Ogre::LBS_MANUAL, Ogre::LBS_TEXTURE,
-        //     colour);
-        // m_mesh->setMaterial(materialPtr);
-        
-        m_subMesh->setMaterialName("Membrane");
 
-        // Use different material for testing to see the mesh better
-        //m_subMesh->setMaterialName("Background");
+		materialPtr->compile();
+		m_subMesh->setMaterialName("Meow");
     }
 
     // Map the buffer for writing //
@@ -350,6 +338,7 @@ void MembraneComponent::Update(Ogre::SceneManager* scene, Ogre::SceneNode* paren
     m_vertexBuffer->unmap(Ogre::UO_UNMAP_ALL);
 
     // TODO: apply the current colour to the material instance
+
 
     if(!m_item){
         // This needs the v2 mesh to contain data to work
