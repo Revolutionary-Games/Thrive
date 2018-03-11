@@ -366,8 +366,6 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
         if(organelleEntity == NULL_OBJECT || microbeEntity == NULL_OBJECT)
             return;
 
-        PrintCallStack();
-
         auto model = world.GetComponent_Model(organelleEntity);
 
         // local entity = this.sceneNode.entity;
