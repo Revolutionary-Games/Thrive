@@ -48,7 +48,7 @@ class MovementOrganelle : OrganelleComponent{
         Float3 organellePos = Hex::axialToCartesian(q, r);
         Float3 nucleus = Hex::axialToCartesian(0, 0);
         auto delta = nucleus - organellePos;
-        float angle = atan2(delta.Z, delta.X);
+        float angle = atan2(-delta.Z, delta.X);
         if(angle < 0){
             angle = angle + (2 * PI);
         }
@@ -73,6 +73,11 @@ class MovementOrganelle : OrganelleComponent{
         // this.sceneNode.playAnimation("Move", true);
         // 0.25 is the "idle" animation speed when the flagellum isn't used
         // this.sceneNode.setAnimationSpeed(0.25);
+        
+        auto@ renderNode = organelle.world.GetComponent_RenderNode(organelle.organelleEntity);
+        renderNode.Node.setPosition(organellePos);
+        renderNode.Node.setOrientation(Ogre::Quaternion(Ogre::Degree(angle),
+                Ogre::Vector3(0, 1, 0)));
     }
 
     // void MovementOrganelle.load(storage){
@@ -178,6 +183,7 @@ class MovementOrganelle : OrganelleComponent{
 
         // TODO: what does this code attempt to do. Don't we already set the organelle's
         // scenenode to the right position already (in PlacedOrganelle.onAddedToMicrobe)?
+        // The point of this is to make it auto-update when the membrane changes shape probably.
         // auto membraneComponent = getComponent(microbeEntity, MembraneComponent);
         // local x, y = axialToCartesian(organelle.position.q, organelle.position.r);
         // auto membraneCoords = membraneComponent.getExternOrganellePos(x, y);
