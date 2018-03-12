@@ -77,6 +77,10 @@ void setupPlayer(CellStageWorld@ world){
     //microbe.collisionHandler.addCollisionGroup("powerupable");
 
     GetThriveGame().playerData().setActiveCreature(microbe);
+
+    // // Testing spawning extra cell
+    // MicrobeOperations::spawnMicrobe(world, Float3(0, 0, 0), "Default",
+    //     false, "extra player");
 }
 
 
@@ -98,6 +102,7 @@ void createAgentCloud(CellStageWorld@ world, CompoundId compoundId, Float3 pos,
 
     rigidBody.SetCollision(world.GetPhysicalWorld().CreateSphere(HEX_SIZE));
     rigidBody.CreatePhysicsBody(world.GetPhysicalWorld());
+    rigidBody.CreatePlaneConstraint(world.GetPhysicalWorld(), Float3(0, 1, 0));
 
     rigidBody.SetMass(0.001);
 

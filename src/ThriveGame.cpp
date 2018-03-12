@@ -165,6 +165,10 @@ void ThriveGame::startNewGame(){
         Ogre::Quaternion(Ogre::Degree(-90), Ogre::Vector3::UNIT_X)
     );
 
+    // Link the camera to the camera control system
+    LOG_WRITE("TODO: fix the camera positioning");
+    // m_cellStage->GetMicrobeCameraSystem().setCameraEntity(m_cellCamera);
+
     // TODO: attach a ligth to the camera
     // -- Light
     //     local light = OgreLightComponent.new()

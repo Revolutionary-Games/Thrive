@@ -114,7 +114,9 @@ bool removeOrganelle(CellStageWorld@ world, ObjectID microbeEntity, Int2 hex){
     organelle.onRemovedFromMicrobe(microbeEntity, rigidBodyComponent.Collision);
 
     // Need to recreate the body
-    rigidBodyComponent.CreatePhysicsBody(world.GetPhysicalWorld());
+    // TODO: if this is actually needed all the physics body properties need to be applied
+    // again. Hopefully changing the NewtonCollision is enough
+    // rigidBodyComponent.CreatePhysicsBody(world.GetPhysicalWorld());
     rigidBodyComponent.SetMass(rigidBodyComponent.Mass - organelle.organelle.mass);
 
     // And jump it to the current position
@@ -615,7 +617,9 @@ bool addOrganelle(CellStageWorld@ world, ObjectID microbeEntity, PlacedOrganelle
     if(rigidBodyComponent.Body !is null){
     
         // Need to recreate the body
-        rigidBodyComponent.CreatePhysicsBody(world.GetPhysicalWorld());
+        // TODO: if this is actually needed all the physics body properties need to be applied
+        // again. Hopefully changing the NewtonCollision is enough
+        // rigidBodyComponent.CreatePhysicsBody(world.GetPhysicalWorld());
         rigidBodyComponent.SetMass(rigidBodyComponent.Mass + organelle.organelle.mass);
 
         // And jump it to the current position
@@ -765,6 +769,7 @@ ObjectID _createMicrobeEntity(CellStageWorld@ world, const string &in name, bool
     // s1.properties.touch();
 
     auto compoundAbsorberComponent = world.Create_CompoundAbsorberComponent(entity);
+    
     world.Create_RenderNode(entity);
     auto compoundBag = world.Create_CompoundBagComponent(entity);
 
@@ -778,6 +783,7 @@ ObjectID _createMicrobeEntity(CellStageWorld@ world, const string &in name, bool
     }
 
     // Rest of the stuff doesn't really work in_editor
+    // TODO: verify that this is actually the case
     if(in_editor){
 
         return entity;
@@ -802,21 +808,15 @@ ObjectID _createMicrobeEntity(CellStageWorld@ world, const string &in name, bool
     assert(microbeComponent.organelles.length() > 0, "Microbe has no "
         "organelles in initializeMicrobe");
 
+    assert(rigidBody.Body !is null);
+
     // Allowing the microbe to absorb all the compounds.
     setupAbsorberForAllCompounds(compoundAbsorberComponent);
-
-    // Destroy any old things we might have to not leak the collision data
-    rigidBody.Release();
-
-    // The collision is destroyed by the component
-    bool success = rigidBody.SetCollision(
-        world.GetPhysicalWorld().CreateCompoundCollision());
-
-    assert(success);
 
     // We don't add the sub collisions here. Instead they are
     // individually added in addOrganelle, which is not very efficient
     // rigidBody.Collision.CompoundCollisionBeginAddRemove();
+    // rigidBody.Collision.CompoundCollisionEndAddRemove();
 
     float mass = 0.f;
 
@@ -832,14 +832,13 @@ ObjectID _createMicrobeEntity(CellStageWorld@ world, const string &in name, bool
         mass += organelle.organelle.mass;
     }
 
-    // rigidBody.Collision.CompoundCollisionEndAddRemove();
-
-    // Then create the physics body from the shape
-    @rigidBody.CreatePhysicsBody(world.GetPhysicalWorld());
-    assert(rigidBody.Body !is null);
-
     // And apply mass and center of gravity
     rigidBody.SetMass(mass);
+
+    // Constraint to 2d movement
+    if(!rigidBody.CreatePlaneConstraint(world.GetPhysicalWorld(), Float3(0, 1, 0))){
+        LOG_ERROR("Failed to constraint cell to 2d plane");
+    }
 
     microbeComponent.initialized = true;
     return entity;
