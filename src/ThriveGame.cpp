@@ -274,7 +274,7 @@ void ThriveGame::startNewGame(){
 //     }
 // }
 
-void ThriveGame::loadSaveGame(std::string saveFile) {
+void ThriveGame::loadSaveGame(const std::string& saveFile) {
 	// i hate the very idea of writing the same code twice, so i want to call startNewGame first
 	LOG_INFO("saved game being loaded");
 	ThriveGame::startNewGame();
