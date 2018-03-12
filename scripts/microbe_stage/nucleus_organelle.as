@@ -27,13 +27,11 @@ class NucleusOrganelle : OrganelleComponent{
         golgi = world.CreateEntity();
         ER = world.CreateEntity();
         
-        Float3 xyz = Hex::axialToCartesian(q-1, r-1);
-        
         auto sceneNode1 = world.Create_RenderNode(golgi);
         auto model1 = world.Create_Model(golgi, sceneNode1.Node, "golgi.mesh");
 
         sceneNode1.Scale = Float3(HEX_SIZE, HEX_SIZE, HEX_SIZE);
-        sceneNode1.Node.setPosition(xyz);
+        sceneNode1.Node.setPosition(Hex::axialToCartesian(q + 1, r + 1));
         sceneNode1.Node.setOrientation(Ogre::Quaternion(Ogre::Degree(rotation),
                 Ogre::Vector3(0, 1, 0)));
         sceneNode1.Marked = true;
@@ -47,6 +45,7 @@ class NucleusOrganelle : OrganelleComponent{
         auto model2 = world.Create_Model(ER, sceneNode2.Node, "ER.mesh");
 
         sceneNode2.Scale = Float3(HEX_SIZE, HEX_SIZE, HEX_SIZE);
+        sceneNode2.Node.setPosition(Hex::axialToCartesian(q - 1, r + 2));
         sceneNode2.Node.setOrientation(Ogre::Quaternion(Ogre::Degree(rotation + 10),
                 Ogre::Vector3(0, 1, 0)));
         sceneNode2.Marked = true;

@@ -262,9 +262,9 @@ void setupOrganelles(){
         Int2(1, -1),
         Int2(-1, 1),
         Int2(-1, 0),
-        Int2(-1, -1),
-        Int2(0, -2),
-        Int2(1, -2)
+        Int2(1, 1),
+        Int2(0, 2),
+        Int2(-1, 2)
     };
 
     _addOrganelleToTable(Organelle(nucleusParameters));
@@ -315,8 +315,8 @@ void setupOrganelles(){
     };
     chloroplastParameters.hexes = {
         Int2(0, 0),
-        Int2(1, 0),
-        Int2(0, 1)
+        Int2(0, -1),
+        Int2(1, -1)
     };
 
     _addOrganelleToTable(Organelle(chloroplastParameters));
@@ -370,7 +370,7 @@ void setupOrganelles(){
     };
     mitochondrionParameters.hexes = {
         Int2(0, 0),
-        Int2(0, 1)
+        Int2(0, -1)
     };
 
     _addOrganelleToTable(Organelle(mitochondrionParameters));

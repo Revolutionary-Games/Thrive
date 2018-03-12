@@ -174,12 +174,12 @@ const dictionary STARTER_MICROBES = {
             },
             {
                 OrganelleTemplatePlaced("nucleus", 0, 0, 0),
-                OrganelleTemplatePlaced("mitochondrion", -1, -2, 240),
-                OrganelleTemplatePlaced("vacuole", 1, -3, 0),
-                OrganelleTemplatePlaced("flagellum", -1, -3, 0),
-                OrganelleTemplatePlaced("flagellum", 1, -4, 0)
+                OrganelleTemplatePlaced("mitochondrion", -1, 3, 240),
+                OrganelleTemplatePlaced("vacuole", 1, 2, 0),
+                OrganelleTemplatePlaced("flagellum", 1, 3, 0),
+                OrganelleTemplatePlaced("flagellum", -1, 4, 0)
             },
-            Float4(1, 1, 1, 1))
+            Float4(1, 0, 1, 1))
     }
 };
 

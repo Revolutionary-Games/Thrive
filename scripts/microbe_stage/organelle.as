@@ -659,8 +659,8 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
         Float3 offset = organelle.calculateCenterOffset();
 
         auto renderNode = world.Create_RenderNode(organelleEntity);
-        renderNode.Marked = true;
         renderNode.Scale = Float3(HEX_SIZE, HEX_SIZE, HEX_SIZE);
+        renderNode.Marked = true;
         // The position system sets the position of this TODO: for
         // performance reasons we could it set here directly as it
         // never changes
