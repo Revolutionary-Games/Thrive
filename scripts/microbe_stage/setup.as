@@ -79,7 +79,7 @@ void setupPlayer(CellStageWorld@ world){
     GetThriveGame().playerData().setActiveCreature(microbe);
 
     // // Testing spawning extra cell
-    // MicrobeOperations::spawnMicrobe(world, Float3(0, 0, 0), "Default",
+    // MicrobeOperations::spawnMicrobe(world, Float3(1, 0, 0), "Default",
     //     false, "extra player");
 }
 
