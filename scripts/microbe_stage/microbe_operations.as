@@ -730,17 +730,6 @@ ObjectID _createMicrobeEntity(CellStageWorld@ world, const string &in name, bool
 
     rigidBody.CreatePhysicsBody(world.GetPhysicalWorld());
 
-    // TODO: apply all these properties
-    // rigidBody.properties.linearDamping = 0.5;
-    // rigidBody.properties.friction = 0.2;
-    // rigidBody.properties.mass = 0.0;
-    // rigidBody.properties.linearFactor = Vector3(1, 1, 0);
-    // rigidBody.properties.angularFactor = Vector3(0, 0, 1);
-    // rigidBody.properties.touch();
-
-    // auto reactionHandler = CollisionComponent();
-    // reactionHandler.addCollisionGroup("microbe");
-
     auto membraneComponent = world.Create_MembraneComponent(entity);
 
     // auto soundComponent = SoundSourceComponent();
@@ -834,6 +823,21 @@ ObjectID _createMicrobeEntity(CellStageWorld@ world, const string &in name, bool
 
     // And apply mass and center of gravity
     rigidBody.SetMass(mass);
+
+    // TODO: apply all these properties
+    rigidBody.SetLinearDamping(0.5);
+    // This is new
+    rigidBody.SetAngularDamping(0.2);
+
+    // rigidBody.properties.friction = 0.2;
+    // rigidBody.properties.mass = 0.0;
+    // rigidBody.properties.linearFactor = Vector3(1, 1, 0);
+    // rigidBody.properties.angularFactor = Vector3(0, 0, 1);
+    // rigidBody.properties.touch();
+
+    // auto reactionHandler = CollisionComponent();
+    // reactionHandler.addCollisionGroup("microbe");
+
 
     // Constraint to 2d movement
     if(!rigidBody.CreatePlaneConstraint(world.GetPhysicalWorld(), Float3(0, 1, 0))){
