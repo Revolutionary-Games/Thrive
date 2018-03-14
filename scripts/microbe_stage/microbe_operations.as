@@ -110,17 +110,20 @@ bool removeOrganelle(CellStageWorld@ world, ObjectID microbeEntity, Int2 hex){
             break;
         }
     }
+
+    auto position = world.GetComponent_Position(microbeEntity);
     
     organelle.onRemovedFromMicrobe(microbeEntity, rigidBodyComponent.Collision);
 
     // Need to recreate the body
     // TODO: if this is actually needed all the physics body properties need to be applied
     // again. Hopefully changing the NewtonCollision is enough
-    // rigidBodyComponent.CreatePhysicsBody(world.GetPhysicalWorld());
+    LOG_INFO("Recreating physics body in removeOrganelle");
+    rigidBodyComponent.CreatePhysicsBody(world.GetPhysicalWorld());
     rigidBodyComponent.SetMass(rigidBodyComponent.Mass - organelle.organelle.mass);
+    _applyMicrobePhysicsBodySettings(world, rigidBodyComponent);
 
     // And jump it to the current position
-    auto position = world.GetComponent_Position(microbeEntity);
     rigidBodyComponent.JumpTo(position);
 
     // This refreshing these things could probably be somewhere else...
@@ -615,12 +618,18 @@ bool addOrganelle(CellStageWorld@ world, ObjectID microbeEntity, PlacedOrganelle
 
     // The body is recreated if it existed already
     if(rigidBodyComponent.Body !is null){
+
+
     
         // Need to recreate the body
         // TODO: if this is actually needed all the physics body properties need to be applied
         // again. Hopefully changing the NewtonCollision is enough
-        // rigidBodyComponent.CreatePhysicsBody(world.GetPhysicalWorld());
+        LOG_INFO("Recreating physics body in addOrganelle");
+        rigidBodyComponent.CreatePhysicsBody(world.GetPhysicalWorld());
+
         rigidBodyComponent.SetMass(rigidBodyComponent.Mass + organelle.organelle.mass);
+
+        _applyMicrobePhysicsBodySettings(world, rigidBodyComponent);
 
         // And jump it to the current position
         rigidBodyComponent.JumpTo(position);
@@ -821,8 +830,17 @@ ObjectID _createMicrobeEntity(CellStageWorld@ world, const string &in name, bool
         mass += organelle.organelle.mass;
     }
 
+    // Add organelle has already applied the mass
     // And apply mass and center of gravity
-    rigidBody.SetMass(mass);
+    // rigidBody.SetMass(mass);
+    // and this has also been applied
+    // _applyMicrobePhysicsBodySettings(world, rigidBody);
+
+    microbeComponent.initialized = true;
+    return entity;
+}
+
+void _applyMicrobePhysicsBodySettings(CellStageWorld@ world, Physics@ rigidBody){
 
     // TODO: apply all these properties
     rigidBody.SetLinearDamping(0.5);
@@ -843,9 +861,6 @@ ObjectID _createMicrobeEntity(CellStageWorld@ world, const string &in name, bool
     if(!rigidBody.CreatePlaneConstraint(world.GetPhysicalWorld(), Float3(0, 1, 0))){
         LOG_ERROR("Failed to constraint cell to 2d plane");
     }
-
-    microbeComponent.initialized = true;
-    return entity;
 }
 
 // Kills the microbe, releasing stored compounds into the enviroment

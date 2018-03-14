@@ -142,10 +142,24 @@ class MovementOrganelle : OrganelleComponent{
             return;
         }
 
+        const auto target = Float4::QuaternionLookAt(pos._Position,
+            microbeComponent.facingTargetPoint);
+        const auto current = pos._Orientation;
+        // Slerp 50% of the way each call
+        const auto interpolated = current.Slerp(target, 0.5f);
+        
+        // Not sure if updating the Position component here does anything
+        // pos._Orientation = interpolated;
+        // pos.Marked = true;
+        
+        rigidBodyComponent.SetOnlyOrientation(interpolated);
+        return;
+
         auto targetDirection = microbeComponent.facingTargetPoint - pos._Position;
         // TODO: direct multiplication was also used here
         // Float3 localTargetDirection = pos._Orientation.Inverse().RotateVector(targetDirection);
         Float3 localTargetDirection = pos._Orientation.Inverse().RotateVector(targetDirection);
+        
         // Float3 localTargetDirection = pos._Orientation.ToAxis() - targetDirection;
         // localTargetDirection.Y = 0; // improper fix. facingTargetPoint somehow gets a non-zero y value.
         LOG_WRITE("local direction = " + localTargetDirection.X + ", " +
