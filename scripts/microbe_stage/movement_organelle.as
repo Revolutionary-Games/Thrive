@@ -26,15 +26,9 @@ class MovementOrganelle : OrganelleComponent{
     MovementOrganelle(float momentum, float torque){
 
         // Store this here temporarily
-        force = Float3(momentum);
-        torque = torque;
+        this.force = Float3(momentum);
+        this.torque = torque;
     }
-
-    Float3 force;
-    float torque;
-    float energyMultiplier = 0.025;
-    // float backwards_multiplier = 0;
-    private bool movingTail = false;
     
     void
     onAddedToMicrobe(
@@ -96,14 +90,9 @@ class MovementOrganelle : OrganelleComponent{
     // }
 
     private void _moveMicrobe(ObjectID microbeEntity, PlacedOrganelle@ organelle,
-        int milliseconds
+        int milliseconds, MicrobeComponent@ microbeComponent, Physics@ rigidBodyComponent,
+        Position@ pos
     ) {
-        MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
-            organelle.world.GetScriptComponentHolder("MicrobeComponent").Find(microbeEntity));
-
-        auto rigidBodyComponent = organelle.world.GetComponent_Physics(microbeEntity);
-        auto pos = organelle.world.GetComponent_Position(microbeEntity);
-
         Float3 direction = microbeComponent.movementDirection;
     
         auto forceMagnitude = this.force.Dot(direction);
@@ -146,18 +135,14 @@ class MovementOrganelle : OrganelleComponent{
         }
     }
 
-    // TODO: Add logictime considerations. This is now restricted to
-    // TICKSPEED so it should be fine
-    void _turnMicrobe(ObjectID microbeEntity, PlacedOrganelle@ organelle){
-
+    void _turnMicrobe(ObjectID microbeEntity, PlacedOrganelle@ organelle, int logicTime,
+        MicrobeComponent@ microbeComponent, Physics@ rigidBodyComponent, Position@ pos){
+        
         if(this.torque == 0){
             return;
         }
-        
-        MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
-            organelle.world.GetScriptComponentHolder("MicrobeComponent").Find(microbeEntity));
-        auto rigidBodyComponent = organelle.world.GetComponent_Physics(microbeEntity);
-        auto pos = organelle.world.GetComponent_Position(microbeEntity);
+
+        // Torque needs to be added to the torque callback. Otherwise it won't work
         
         auto targetDirection = microbeComponent.facingTargetPoint - pos._Position;
         // TODO: direct multiplication was also used here
@@ -170,9 +155,13 @@ class MovementOrganelle : OrganelleComponent{
             RADIANS_TO_DEGREES);
         microbeComponent.microbetargetdirection = alpha;
         if(alpha > 1){
+            Float3 torqueForces = Float3(0,
+                this.torque * alpha * logicTime * microbeComponent.movementFactor / 10000.f,
+                0);
             
-            //rigidBodyComponent.SetTorque(Float3(0,
-            //        this.torque * alpha * microbeComponent.movementFactor, 0));
+            torqueForces = Float3(0, 1, 0);
+            
+            rigidBodyComponent.SetOmega(torqueForces);
         }
     }
 
@@ -193,11 +182,27 @@ class MovementOrganelle : OrganelleComponent{
         // this.sceneNode.transform.position = translation;
         // this.sceneNode.transform.touch();
 
-        // TODO: these both access the same components and thus should
-        // be stored to save looking them up twice
-        _turnMicrobe(microbeEntity, organelle);
-        _moveMicrobe(microbeEntity, organelle, logicTime);
+        MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
+            organelle.world.GetScriptComponentHolder("MicrobeComponent").Find(microbeEntity));
+        auto rigidBodyComponent = organelle.world.GetComponent_Physics(microbeEntity);
+        auto pos = organelle.world.GetComponent_Position(microbeEntity);
+
+        if(rigidBodyComponent.Body is null){
+
+            LOG_WARNING("Skipping movement organelle update for microbe without physics body");
+            return;
+        }
+        
+        _turnMicrobe(microbeEntity, organelle, logicTime, microbeComponent,
+            rigidBodyComponent, pos);
+        _moveMicrobe(microbeEntity, organelle, logicTime, microbeComponent,
+            rigidBodyComponent, pos);
     }
 
     private Model@ model;
+    private Float3 force;
+    private float torque;
+    float energyMultiplier = 0.025;
+    // float backwards_multiplier = 0;
+    private bool movingTail = false;    
 }
