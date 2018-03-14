@@ -331,6 +331,18 @@ PlayerData&
 ThriveGame::playerData(){
     return m_impl->m_playerData;
 }
+
+PlayerMicrobeControl*
+ThriveGame::getPlayerInput(){
+
+    return m_impl->m_cellStageKeys.get();
+}
+
+Leviathan::GameModule*
+ThriveGame::getMicrobeScripts(){
+
+    return m_impl->m_MicrobeScripts.get();
+}
 // ------------------------------------ //
 void ThriveGame::onIntroSkipPressed(){
 

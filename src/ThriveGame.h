@@ -19,6 +19,8 @@ class ThriveNetHandler;
 
 class PlayerData;
 
+class PlayerMicrobeControl;
+
 //class BioProcess;
 //class Biome;
 
@@ -40,6 +42,12 @@ public:
 
     PlayerData&
     playerData();
+
+    PlayerMicrobeControl*
+    getPlayerInput();
+    
+    Leviathan::GameModule*
+    getMicrobeScripts();
 
     // ------------------------------------ //
     // Player input actions

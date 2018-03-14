@@ -84,6 +84,21 @@ void setupPlayer(CellStageWorld@ world){
 }
 
 
+// TODO: move this somewhere
+// This is called from c++ system PlayerMicrobeControlSystem
+void applyCellMovementControl(GameWorld@ world, ObjectID entity, const Float3 &in movement,
+    const Float3 &in lookPosition)
+{
+    MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
+        world.GetScriptComponentHolder("MicrobeComponent").Find(entity));
+    
+    if(!microbeComponent.dead){
+
+        microbeComponent.facingTargetPoint = lookPosition;
+        microbeComponent.movementDirection = movement;
+    }
+}
+
 
 // TODO: This should be moved somewhere else...
 void createAgentCloud(CellStageWorld@ world, CompoundId compoundId, Float3 pos,

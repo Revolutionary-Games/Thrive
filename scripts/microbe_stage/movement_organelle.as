@@ -117,24 +117,26 @@ class MovementOrganelle : OrganelleComponent{
             this.movingTail = true;
             // this.sceneNode.setAnimationSpeed(1.3);
         
-            auto energy = abs(this.energyMultiplier * forceMagnitude * milliseconds / 1000);
+            auto energy = abs(this.energyMultiplier * forceMagnitude * milliseconds / 1000.f);
             auto availableEnergy = MicrobeOperations::takeCompound(organelle.world,
                 microbeEntity,  SimulationParameters::compoundRegistry().getTypeId("atp"),
                 energy);
             
             if(availableEnergy < energy){
-                forceMagnitude = sign(forceMagnitude) * availableEnergy * 1000 / milliseconds /
-                    this.energyMultiplier;
+                forceMagnitude = sign(forceMagnitude) * availableEnergy * 1000.f /
+                    milliseconds / this.energyMultiplier;
                 this.movingTail = false;
                 // this.sceneNode.setAnimationSpeed(0.25);
             }
             float impulseMagnitude = microbeComponent.movementFactor * milliseconds *
-                forceMagnitude / 1000;
+                forceMagnitude / 1000.f;
 
             Float3 impulse = direction * impulseMagnitude;
             // TODO: this was just multiplication here before so check
             // if it meant Dot, Cross or element wise multiplication
-            Float3 a = pos._Orientation.ToAxis().Dot(impulse);
+            // Float3 a = pos._Orientation.ToAxis() * (impulse);
+            // This works for unknown reasons but the above line doesn't
+            Float3 a = impulse;
             rigidBodyComponent.GiveImpulse(a);
         } else {
             if(this.movingTail){
@@ -169,8 +171,8 @@ class MovementOrganelle : OrganelleComponent{
         microbeComponent.microbetargetdirection = alpha;
         if(alpha > 1){
             
-            rigidBodyComponent.SetTorque(Float3(0,
-                    this.torque * alpha * microbeComponent.movementFactor, 0));
+            //rigidBodyComponent.SetTorque(Float3(0,
+            //        this.torque * alpha * microbeComponent.movementFactor, 0));
         }
     }
 
