@@ -391,10 +391,10 @@ void applyTemplate(CellStageWorld@ world, ObjectID microbe, SpeciesComponent@ sp
     auto ids = species.avgCompoundAmounts.getKeys();
     for(uint i = 0; i < ids.length(); ++i){
         CompoundId compoundId = parseUInt(ids[i]);
-        float amount = float(species.avgCompoundAmounts[ids[i]]);
+        InitialCompound amount = InitialCompound(species.avgCompoundAmounts[ids[i]]);
         
-        if(amount != 0){
-            MicrobeOperations::storeCompound(world, microbe, compoundId, amount, false);
+        if(amount.amount != 0){
+            MicrobeOperations::storeCompound(world, microbe, compoundId, amount.amount, false);
         }
     }
 }
