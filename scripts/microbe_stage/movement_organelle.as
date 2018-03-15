@@ -133,7 +133,7 @@ class MovementOrganelle : OrganelleComponent{
             // This works for unknown reasons but the above line doesn't
             Float3 a = impulse;
             LOG_WRITE("a = " + a.X + ", " + a.Y + ", " + a.Z);
-            rigidBodyComponent.GiveImpulse(a);
+            rigidBodyComponent.GiveImpulse(a, pos._Position);
         } else {
             if(this.movingTail){
                 this.movingTail = false;
