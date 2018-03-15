@@ -221,7 +221,11 @@ void ThriveGame::startNewGame(){
         Ogre::Quaternion(Ogre::Degree(90), Ogre::Vector3::UNIT_Z) *
         Ogre::Quaternion(Ogre::Degree(45), Ogre::Vector3::UNIT_Y),
         background, Ogre::Plane(1, 1, 1, 1),
-        Float2(200, 200));
+        // TODO: Make size big enough (or move it). Seems like
+        // increasing the size makes the background texture
+        // stretch. So this should probably be moved (maybe by
+        // microbe_camera_system)
+        Float2(400, 400));
 
     // Spawn player //
     ScriptRunningSetup setup("setupPlayer");
