@@ -180,15 +180,6 @@ o GuiObject "Background/MainMenuInteractive/ExitGameButton"{
         @%};
 }
 
-
-		//Microbe intro stuff
-
-		//micobe intro video
-		
-
-
-
-
 // Start game //
 o GuiObject "Background/MainMenuInteractive/NewGameButton"{
     s{
@@ -262,8 +253,10 @@ o GuiObject "Background/MainMenuInteractive/NewGameButton"{
         // [@Listener="OnInit"]
         void InstantStart(GuiObject@ instance){
 
-             StartGame(instance);
-             return;
+            // Store this for the ended callback
+            @OurInstance = instance;
+            OnMicrobeVideoEnded(NamedVars());
+            return;
         }
         
         @%};
