@@ -181,22 +181,76 @@ o GuiObject "Background/MainMenuInteractive/ExitGameButton"{
 }
 
 
+		//Microbe intro stuff
+
+		//micobe intro video
+		
+
+
+
+
 // Start game //
 o GuiObject "Background/MainMenuInteractive/NewGameButton"{
     s{
+		bool PlayingVideo = false;
+	    GuiObject@ OurObject;
         [@Listener="OnClick"]
         void StartGame(GuiObject@ instance){
-            // Disable all the menus
-            instance.GetOwningManager().SetCollectionState("Background", false);
-            // And show the microbe GUI
-            instance.GetOwningManager().SetCollectionState("MicrobeRoot", true);
-            
+		//initialize the video player
+			LOG_INFO("initialized video player");
+            CEGUI::Window@ microbeIntroVideoPlayer = instance.GetOwningManager().GetRootWindow().
+                 CreateAndAddChild("Thrive/VideoPlayer", "IntroPlayer");
+			LOG_INFO("initialized video player");
+            microbeIntroVideoPlayer.SetSize(1.0, 0, 1.0, 0);
+			LOG_INFO("set size of video player");
+            auto@ castedPlayer = cast<CEGUIVideoPlayer>(microbeIntroVideoPlayer);
+			LOG_INFO("casted player created");
+            // Grab the created window as our own
+			LOG_INFO("connected video player");
+            if(!instance.IsCEGUIEventHooked()){
 
-            // And notify the application class to start a new game
-            GetThriveGame().startNewGame();
+                LOG_ERROR("IntroVideoStarter failed to bind to the created video "
+                    "player widget");
+                return;
+            }
+			
+			@OurObject = instance;
+            // Register end callback //
+            castedPlayer.OnPlaybackEnded.Register(@OnMicrobeVideoEnded);
+
+            // Start playback
+            castedPlayer.Play("Data/Videos/MicrobeIntro.mov");
+			PlayingVideo = true;
             return;
         }
-
+		//microbe video stuff
+		   void DestroyMicrobeVideo(){
+             // Make sure this is called only once
+             if(!PlayingVideo)
+                return;
+			
+             PlayingVideo = false;
+			 OurObject.GetOwningManager().GetRootWindow().DestroyChild("IntroPlayer");
+             LOG_INFO("Destroying VideoPlayer window");
+				 
+        }
+		
+		 void OnMicrobeVideoEnded(NamedVars@ values){
+             LOG_INFO("Stage video ended");
+             GetEngine().Invoke(@DestroyMicrobeVideo);
+			 GetThriveGame().startNewGame();
+        }
+		
+		        // User pressed skip intro video button
+        [@Listener="Generic", @Type="MainMenuIntroSkipEvent"]
+        int onSkipVideoMicrobeEvent(GuiObject@ instance, GenericEvent@ event){
+            if(PlayingVideo){
+                OnMicrobeVideoEnded(NamedVars());
+                return 1;
+            } else {
+                return 0;
+            }
+        }
         // Uncomment the next line to automatically start a new game
         // also remember to disable the intro video to not hear it also play
         // [@Listener="OnInit"]

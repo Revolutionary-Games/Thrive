@@ -286,6 +286,14 @@ void ThriveGame::loadSaveGame(const std::string& saveFile) {
 	//(the script will disable the tutorial etc)
 
 }
+
+void ThriveGame::saveGame(const std::string& saveFile) {
+	// i hate the very idea of writing the same code twice, so i want to call startNewGame first
+	LOG_INFO("game being saved");
+	//start a new game, then run a loading script 
+	//(the script will disable the tutorial etc)
+
+}
 // ------------------------------------ //
 bool ThriveGame::scriptSetup(){
 
@@ -1566,6 +1574,14 @@ bool ThriveGame::InitLoadCustomScriptTypes(asIScriptEngine* engine){
 	if (engine->RegisterObjectMethod("ThriveGame",
 		"void loadSaveGame(const string &in saveFile)",
 		asMETHOD(ThriveGame, loadSaveGame),
+		asCALL_THISCALL) < 0)
+	{
+		ANGELSCRIPT_REGISTERFAIL;
+	}
+
+	if (engine->RegisterObjectMethod("ThriveGame",
+		"void saveGame(const string &in saveFile)",
+		asMETHOD(ThriveGame, saveGame),
 		asCALL_THISCALL) < 0)
 	{
 		ANGELSCRIPT_REGISTERFAIL;

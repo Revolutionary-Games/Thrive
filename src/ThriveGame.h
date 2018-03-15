@@ -37,6 +37,7 @@ public:
     // Gameplay etc. directly thrive related methods
     void startNewGame();
 	void loadSaveGame(const std::string& saveFile);
+	void saveGame(const std::string& saveFile);
 
     CellStageWorld* getCellStage();
 
