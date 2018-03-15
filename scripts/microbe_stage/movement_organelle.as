@@ -93,6 +93,7 @@ class MovementOrganelle : OrganelleComponent{
         int milliseconds, MicrobeComponent@ microbeComponent, Physics@ rigidBodyComponent,
         Position@ pos
     ) {
+        // The movementDirection is the player or AI input
         Float3 direction = microbeComponent.movementDirection;
     
         auto forceMagnitude = this.force.Dot(direction);
@@ -120,12 +121,18 @@ class MovementOrganelle : OrganelleComponent{
             float impulseMagnitude = microbeComponent.movementFactor * milliseconds *
                 forceMagnitude / 1000.f;
 
+            direction = pos._Orientation.RotateVector(direction);
+            direction.Y = 0;
+            direction = direction.Normalize();
             Float3 impulse = direction * impulseMagnitude;
             // TODO: this was just multiplication here before so check
             // if it meant Dot, Cross or element wise multiplication
             // Float3 a = pos._Orientation.ToAxis() * (impulse);
+            // Float3 a = (impulse);
+
             // This works for unknown reasons but the above line doesn't
             Float3 a = impulse;
+            LOG_WRITE("a = " + a.X + ", " + a.Y + ", " + a.Z);
             rigidBodyComponent.GiveImpulse(a);
         } else {
             if(this.movingTail){
@@ -149,8 +156,8 @@ class MovementOrganelle : OrganelleComponent{
         const auto interpolated = current.Slerp(target, 0.5f);
         
         // Not sure if updating the Position component here does anything
-        // pos._Orientation = interpolated;
-        // pos.Marked = true;
+        pos._Orientation = interpolated;
+        pos.Marked = true;
         
         rigidBodyComponent.SetOnlyOrientation(interpolated);
         return;
