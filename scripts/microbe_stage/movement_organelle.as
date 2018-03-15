@@ -121,30 +121,14 @@ class MovementOrganelle : OrganelleComponent{
             float impulseMagnitude = microbeComponent.movementFactor * milliseconds *
                 forceMagnitude / 1000.f;
 
-            LOG_WRITE("orientation = " + pos._Orientation.X + ", " + pos._Orientation.Y + ", "
-                + pos._Orientation.Z + ", " + pos._Orientation.W);
-            LOG_WRITE("direction = " + direction.X + ", " + direction.Y + ", " + direction.Z);
+            // Rotate the 'thrust' based on our orientation
             direction = pos._Orientation.RotateVector(direction);
-            LOG_WRITE("rotated = " + direction.X + ", " + direction.Y + ", " + direction.Z);
-            
+
+            // This isn't needed
             //direction.Y = 0;
             //direction = direction.Normalize();
-            // direction = Float3(0, 0, 1);
             Float3 impulse = direction * impulseMagnitude;
-            // TODO: this was just multiplication here before so check
-            // if it meant Dot, Cross or element wise multiplication
-            // Float3 a = pos._Orientation.ToAxis() * (impulse);
-            Float3 a = impulse;
-
-            //Float3 targetPos = pos._Position + impulse;
-            //Float3 a = targetPos - pos._Position;
-
-
-            // Float3 a = impulse;
-            LOG_WRITE("a = " + a.X + ", " + a.Y + ", " + a.Z);
-            rigidBodyComponent.GiveImpulse(a, pos._Position);
-            //rigidBodyComponent.SetVelocity(a);
-            //rigidBodyComponent.SetPosition(a * 4, pos._Orientation);
+            rigidBodyComponent.GiveImpulse(impulse, pos._Position);
         } else {
             if(this.movingTail){
                 this.movingTail = false;
