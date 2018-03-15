@@ -157,8 +157,6 @@ bool PlayerMicrobeControl::handleMovementKeys(
     }
     
     if(matched){
-        // Use NormalizeSafe for 0 vectors
-        m_playerMovementVector = m_playerMovementVector.NormalizeSafe(Float3(0));
         return true;
     }
     
@@ -209,7 +207,7 @@ void PlayerMicrobeControlSystem::Run(
 
     ScriptRunningSetup setup("applyCellMovementControl");
     auto result = module->ExecuteOnModule<void>(setup, false, &world, controlledEntity,
-        movementDirection, lookPoint);
+        movementDirection.Normalize(), lookPoint);
 
     if(result.Result != SCRIPT_RUN_RESULT::Success){
         LOG_WARNING("PlayerMicrobeControlSystem: failed to Run script "
