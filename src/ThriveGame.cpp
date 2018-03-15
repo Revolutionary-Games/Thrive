@@ -167,7 +167,7 @@ void ThriveGame::startNewGame(){
 
     // Link the camera to the camera control system
     LOG_WRITE("TODO: fix the camera positioning");
-    // m_cellStage->GetMicrobeCameraSystem().setCameraEntity(m_cellCamera);
+    m_cellStage->GetMicrobeCameraSystem().setCameraEntity(m_cellCamera);
 
     // TODO: attach a ligth to the camera
     // -- Light
