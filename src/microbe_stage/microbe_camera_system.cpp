@@ -39,7 +39,7 @@ MicrobeCameraSystem::Run(
 
         auto& cameraPos = world.GetComponent<Leviathan::Position>(m_cameraEntity);
 
-        auto targetPos = playerPos.Members._Position + Float3(0, 0, m_cameraHeight);
+        auto targetPos = playerPos.Members._Position + Float3(0, m_cameraHeight, 0);
 
         if(cameraPos.Members._Position != targetPos){
 

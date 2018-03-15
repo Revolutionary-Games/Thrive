@@ -6,7 +6,7 @@
 
 #define MICROBE_CAMERA_NAME "camera"
 
-#define INITIAL_CAMERA_HEIGHT 70
+#define INITIAL_CAMERA_HEIGHT 40
 
 namespace Leviathan {
 class GameWorld;
