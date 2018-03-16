@@ -679,8 +679,7 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
             Float3 translation = Hex::axialToCartesian(hex.q, hex.r) + this.cartesianPosition;
 
             // Create the matrix with the offset
-            Ogre::Matrix4 hexFinalOffset;
-            hexFinalOffset.setTrans(translation);
+            Ogre::Matrix4 hexFinalOffset(translation);
 
             NewtonCollision@ hexCollision = world.GetPhysicalWorld().CreateSphere(
                 HEX_SIZE * 2, hexFinalOffset);
