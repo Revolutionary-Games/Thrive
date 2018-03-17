@@ -116,15 +116,16 @@ bool removeOrganelle(CellStageWorld@ world, ObjectID microbeEntity, Int2 hex){
     organelle.onRemovedFromMicrobe(microbeEntity, rigidBodyComponent.Collision);
 
     // Need to recreate the body
-    // TODO: if this is actually needed all the physics body properties need to be applied
-    // again. Hopefully changing the NewtonCollision is enough
-    LOG_INFO("Recreating physics body in removeOrganelle");
-    rigidBodyComponent.CreatePhysicsBody(world.GetPhysicalWorld());
-    rigidBodyComponent.SetMass(rigidBodyComponent.Mass - organelle.organelle.mass);
-    _applyMicrobePhysicsBodySettings(world, rigidBodyComponent);
+    if(rigidBodyComponent.Body !is null){
+        
+        LOG_INFO("Recreating physics body in removeOrganelle");
+        rigidBodyComponent.CreatePhysicsBody(world.GetPhysicalWorld());
+        rigidBodyComponent.SetMass(rigidBodyComponent.Mass - organelle.organelle.mass);
+        _applyMicrobePhysicsBodySettings(world, rigidBodyComponent);
 
-    // And jump it to the current position
-    rigidBodyComponent.JumpTo(position);
+        // And jump it to the current position
+        rigidBodyComponent.JumpTo(position);
+    }
 
     // This refreshing these things could probably be somewhere else...
     calculateHealthFromOrganelles(world, microbeEntity);
@@ -618,12 +619,8 @@ bool addOrganelle(CellStageWorld@ world, ObjectID microbeEntity, PlacedOrganelle
 
     // The body is recreated if it existed already
     if(rigidBodyComponent.Body !is null){
-
-
     
         // Need to recreate the body
-        // TODO: if this is actually needed all the physics body properties need to be applied
-        // again. Hopefully changing the NewtonCollision is enough
         LOG_INFO("Recreating physics body in addOrganelle");
         rigidBodyComponent.CreatePhysicsBody(world.GetPhysicalWorld());
 
@@ -737,8 +734,6 @@ ObjectID _createMicrobeEntity(CellStageWorld@ world, const string &in name, bool
 
     rigidBody.SetCollision(collision);
 
-    rigidBody.CreatePhysicsBody(world.GetPhysicalWorld());
-
     auto membraneComponent = world.Create_MembraneComponent(entity);
 
     // auto soundComponent = SoundSourceComponent();
@@ -806,6 +801,12 @@ ObjectID _createMicrobeEntity(CellStageWorld@ world, const string &in name, bool
     assert(microbeComponent.organelles.length() > 0, "Microbe has no "
         "organelles in initializeMicrobe");
 
+    // We create physics body after adding the organelles as that
+    // requires the physics body to be recreated when any organelle is
+    // added (if the body already exists at that point) so we do it
+    // here after that
+    rigidBody.CreatePhysicsBody(world.GetPhysicalWorld());
+
     assert(rigidBody.Body !is null);
 
     // Allowing the microbe to absorb all the compounds.
@@ -830,11 +831,8 @@ ObjectID _createMicrobeEntity(CellStageWorld@ world, const string &in name, bool
         mass += organelle.organelle.mass;
     }
 
-    // Add organelle has already applied the mass
-    // And apply mass and center of gravity
-    // rigidBody.SetMass(mass);
-    // and this has also been applied
-    // _applyMicrobePhysicsBodySettings(world, rigidBody);
+    rigidBody.SetMass(mass);
+    _applyMicrobePhysicsBodySettings(world, rigidBody);
 
     microbeComponent.initialized = true;
     return entity;
