@@ -18,23 +18,27 @@ class MicrobeStageHudSystem : ScriptSystem{
 
         // global_activeMicrobeStageHudSystem = self; // Global reference for event handlers
 
-        // No clue where this ss variable is defined
-        bool ss = false;
-        if(not GetThriveGame().playerData().lockedMap().isLocked("Toxin") and
-            not ss and not global_if_already_displayed
-        ){
-            showMessage("'E' Releases Toxin");
-            global_if_already_displayed = true;
-        }
+        // TODO: this is probably supposed to be in the Run method so that once the player
+        // unlocks the toxin and exits the editor they get this message
+        // // No clue where this ss variable is defined
+        // bool ss = false;
+        // if(not GetThriveGame().playerData().lockedMap().isLocked("Toxin") and
+        //     not ss and not global_if_already_displayed
+        // ){
+        //     showMessage("'E' Releases Toxin");
+        //     global_if_already_displayed = true;
+        // }
 
         // Engine.resumeGame();
         // This updates the microbe stage pause menu load button
-        assert(false, "TODO: hud system");
         this.updateLoadButton();
     
         this.chloroplastNotificationdisable();
         this.toxinNotificationdisable();
         this.editornotificationdisable();
+
+        // Store compound ids for lookups in Run
+        this.atpId = SimulationParameters::compoundRegistry().getTypeId("atp");
     }
 
     void Release(){
@@ -44,6 +48,22 @@ class MicrobeStageHudSystem : ScriptSystem{
     void Run(){
 
         // TODO: Microbe hud read player cell
+        ObjectID player = GetThriveGame().playerData().activeCreature();
+
+        if(player != NULL_OBJECT){
+
+            auto bag = World.GetComponent_CompoundBagComponent(player);
+
+            if(bag is null){
+
+                LOG_ERROR("Player activeCreature has no compound bag");
+
+            } else {
+
+                const auto atpAmount = bag.getCompoundAmount(atpId);
+                // LOG_WRITE("ATP: " + atpAmount);
+            }
+        }
     }
 
     // Nodes not used
@@ -64,7 +84,7 @@ class MicrobeStageHudSystem : ScriptSystem{
     }
 
     void chloroplastNotificationenable(){
-        assert(false, "TODO: hud");
+        LOG_INFO("TODO: hud");
         // getComponent("gui_sounds", g_luaEngine.currentGameState, SoundSourceComponent
         // ).playSound("microbe-pickup-organelle");
         // this.rootGUIWindow.getChild("chloroplastUnlockNotification").show();
@@ -73,12 +93,12 @@ class MicrobeStageHudSystem : ScriptSystem{
     }
 
     void chloroplastNotificationdisable(){
-        assert(false, "TODO: hud");
+        LOG_INFO("TODO: hud");
         //this.rootGUIWindow.getChild("chloroplastUnlockNotification").hide();
     }
 
     void toxinNotificationenable(){
-        assert(false, "TODO: hud");
+        LOG_INFO("TODO: hud");
         // getComponent("gui_sounds", g_luaEngine.currentGameState, SoundSourceComponent
         // ).playSound("microbe-pickup-organelle");
         // this.rootGUIWindow.getChild("toxinUnlockNotification").show();
@@ -173,6 +193,8 @@ class MicrobeStageHudSystem : ScriptSystem{
     // Not this one as this isn't really a collection, just a
     // toggleable panel with a single button
     bool compoundsOpen = true;
+
+    CompoundId atpId;
 }
 
 

@@ -51,6 +51,10 @@ ScriptComponent@ MicrobeComponentFactory(GameWorld@ world){
 // This function instantiates all script system types for a world
 void setupSystemsForWorld(CellStageWorld@ world){
 
+    // Fail if compound registry is empty (hud system caches the compound ids on startup) //
+    assert(SimulationParameters::compoundRegistry().getSize() > 0,
+        "Compound registry is empty");
+
     world.RegisterScriptComponentType("MicrobeComponent", @MicrobeComponentFactory);
 
     world.RegisterScriptSystem("MicrobeSystem", MicrobeSystem());
