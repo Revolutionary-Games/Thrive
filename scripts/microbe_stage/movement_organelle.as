@@ -161,59 +161,59 @@ class MovementOrganelle : OrganelleComponent{
         rigidBodyComponent.SetOnlyOrientation(interpolated);
         return;
 
-        auto targetDirection = microbeComponent.facingTargetPoint - pos._Position;
-        // TODO: direct multiplication was also used here
+        // auto targetDirection = microbeComponent.facingTargetPoint - pos._Position;
+        // // TODO: direct multiplication was also used here
+        // // Float3 localTargetDirection = pos._Orientation.Inverse().RotateVector(targetDirection);
         // Float3 localTargetDirection = pos._Orientation.Inverse().RotateVector(targetDirection);
-        Float3 localTargetDirection = pos._Orientation.Inverse().RotateVector(targetDirection);
         
-        // Float3 localTargetDirection = pos._Orientation.ToAxis() - targetDirection;
-        // localTargetDirection.Y = 0; // improper fix. facingTargetPoint somehow gets a non-zero y value.
-        LOG_WRITE("local direction = " + localTargetDirection.X + ", " +
-            localTargetDirection.Y + ", " + localTargetDirection.Z);
+        // // Float3 localTargetDirection = pos._Orientation.ToAxis() - targetDirection;
+        // // localTargetDirection.Y = 0; // improper fix. facingTargetPoint somehow gets a non-zero y value.
+        // LOG_WRITE("local direction = " + localTargetDirection.X + ", " +
+        //     localTargetDirection.Y + ", " + localTargetDirection.Z);
         
-        assert(localTargetDirection.Y < 0.01,
-            "Microbes should only move in the 2D plane with y = 0");
+        // assert(localTargetDirection.Y < 0.01,
+        //     "Microbes should only move in the 2D plane with y = 0");
 
-        // This doesn't help with the major jitter
-        // // Round to zero if either is too small
-        // if(abs(localTargetDirection.X) < 0.01)
-        //     localTargetDirection.X = 0;
-        // if(abs(localTargetDirection.Z) < 0.01)
-        //     localTargetDirection.Z = 0;
+        // // This doesn't help with the major jitter
+        // // // Round to zero if either is too small
+        // // if(abs(localTargetDirection.X) < 0.01)
+        // //     localTargetDirection.X = 0;
+        // // if(abs(localTargetDirection.Z) < 0.01)
+        // //     localTargetDirection.Z = 0;
         
-        float alpha = atan2(-localTargetDirection.X, -localTargetDirection.Z);
-        float absAlpha = abs(alpha) * RADIANS_TO_DEGREES;
-        microbeComponent.microbetargetdirection = absAlpha;
-        if(absAlpha > 1){
+        // float alpha = atan2(-localTargetDirection.X, -localTargetDirection.Z);
+        // float absAlpha = abs(alpha) * RADIANS_TO_DEGREES;
+        // microbeComponent.microbetargetdirection = absAlpha;
+        // if(absAlpha > 1){
 
-            LOG_WRITE("Alpha is: " + alpha);
-            Float3 torqueForces = Float3(0, this.torque * alpha * logicTime *
-                microbeComponent.movementFactor * 0.00001f, 0);
-            rigidBodyComponent.AddOmega(torqueForces);
+        //     LOG_WRITE("Alpha is: " + alpha);
+        //     Float3 torqueForces = Float3(0, this.torque * alpha * logicTime *
+        //         microbeComponent.movementFactor * 0.00001f, 0);
+        //     rigidBodyComponent.AddOmega(torqueForces);
 
-            // Rotation is the same for each flagella so doing this
-            // makes things less likely to break and still work. Only
-            // tweak should be that there should be
-            // microbeComponent.movementFactor alternative for
-            // rotation that depends on flagella and cilia. The
-            // problem with this is that there are weird spots where
-            // this gets stuck at (hopefully works better with the
-            // rounding of X and Z)
-            // Float3 torqueForces = Float3(0, this.torque * alpha * logicTime *
-            //     microbeComponent.movementFactor * 0.0001f, 0);
-            // rigidBodyComponent.SetOmega(torqueForces);
+        //     // Rotation is the same for each flagella so doing this
+        //     // makes things less likely to break and still work. Only
+        //     // tweak should be that there should be
+        //     // microbeComponent.movementFactor alternative for
+        //     // rotation that depends on flagella and cilia. The
+        //     // problem with this is that there are weird spots where
+        //     // this gets stuck at (hopefully works better with the
+        //     // rounding of X and Z)
+        //     // Float3 torqueForces = Float3(0, this.torque * alpha * logicTime *
+        //     //     microbeComponent.movementFactor * 0.0001f, 0);
+        //     // rigidBodyComponent.SetOmega(torqueForces);
             
-        } else {
-            // Doesn't work
-            // // Slow down rotation if there is some
-            // auto omega = rigidBodyComponent.GetOmega();
-            // rigidBodyComponent.SetOmega(Float3(0, 0, 0));
+        // } else {
+        //     // Doesn't work
+        //     // // Slow down rotation if there is some
+        //     // auto omega = rigidBodyComponent.GetOmega();
+        //     // rigidBodyComponent.SetOmega(Float3(0, 0, 0));
 
-            // if(abs(omega.X) > 1 || abs(omega.Z) > 1){
+        //     // if(abs(omega.X) > 1 || abs(omega.Z) > 1){
 
-            //     rigidBodyComponent.AddOmega(Float3(-omega.X * 0.01f, 0, -omega.Z * 0.01f));
-            // }
-        }
+        //     //     rigidBodyComponent.AddOmega(Float3(-omega.X * 0.01f, 0, -omega.Z * 0.01f));
+        //     // }
+        // }
     }
 
     void
