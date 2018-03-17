@@ -331,3 +331,14 @@ o GuiObject "_musicPlayer"{
 // ------------------------------------ //
 
 
+// ------------------------------------ //
+// MicrobeStage HUD things
+o GuiObject "_mainMicrobeHUDEventHandler"{
+    s{
+        // This is a good example of how to put complex scripts to a new
+        #include "microbe_gui_events.as"
+    @%};
+}
+
+
+

@@ -61,7 +61,16 @@ class MicrobeStageHudSystem : ScriptSystem{
             } else {
 
                 const auto atpAmount = bag.getCompoundAmount(atpId);
-                // LOG_WRITE("ATP: " + atpAmount);
+
+                GenericEvent@ event = GenericEvent("PlayerCompoundAmounts");
+                NamedVars@ vars = event.GetNamedVars();
+                
+                // Write data
+                vars.AddValue(ScriptSafeVariableBlock("compoundATP", atpAmount));
+                // TODO: other compounds
+
+                // Fire it off so that the GUI scripts will get it and update the GUI state
+                GetEngine().GetEventHandler().CallEvent(event);
             }
         }
     }
