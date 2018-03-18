@@ -19,6 +19,14 @@ Prerequisites
 Follow the Leviathan Engine Prequisites installation instructions
 [here](https://leviathanengine.com/doc/develop/Documentation/html/dc/d9e/prerequisites.html).
 
+Important: you should read the whole document before starting as many
+common pitfalls and issues have fixes given after the them. Also DO
+NOT SKIP ANY STEPS otherwise you will initially fail and have to clear
+the caches which is the easiest to do by just deleting the entire
+folder and starting again. When you are done with the prerequisites
+page return here instead of continuing to the building Leviathan page
+which is irrelevant for Thrive.
+
 Building Thrive
 ===============
 
@@ -103,3 +111,31 @@ Here are some quick tips for working on thrive:
 - Whenever you **change the assets** or scripts you need to run cmake. See
   [this](https://leviathanengine.com/doc/develop/Documentation/html/df/d4e/tutorial1.html#tutorial1recompiling)
   for more info
+
+Forking
+-------
+
+If you are just starting out and you don't have write access to the
+Thrive repository yet you will need to create a fork. Use the fork
+button on Github on the main repository page. This will give you a
+fork (for example my fork is https://github.com/hhyyrylainen/Thrive).
+
+Then you can add that to your git config in the thrive folder with this command:
+
+```
+git remote add fork https://github.com/YOURUSERNAMEHERE/Thrive.git
+```
+
+Then after committing your changes (git-cola is recommended or another
+graphical tool for reviewing the exact lines you have changed, but you
+can also commit on the command line) you can publish them to your fork
+with (assuming you used the master branch, when working with the main
+thrive repository you MUST create a different branch but when working
+with a fork that isn't required):
+
+```
+git push fork master
+```
+
+Now you can open a pull request by visiting the Github page for your
+fork.

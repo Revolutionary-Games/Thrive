@@ -163,7 +163,7 @@ AngelScript
 - A class's public data members are *not* prefixed by `m_`, unlike C++. 
 
 (This is because in AngelScript, all member variables are accessed with their qualified
-  names (like `self.memberVariable`), so there is no need to mark them.)
+  names (like `this.memberVariable`), so there is no need to mark them.)
 
 - A class's private data members and functions are declared `private`
   (everything is public by default) and optionally prefixed with an
