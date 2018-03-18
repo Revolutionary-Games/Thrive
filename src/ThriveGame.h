@@ -50,6 +50,9 @@ public:
     Leviathan::GameModule*
     getMicrobeScripts();
 
+    void
+    setBackgroundMaterial(const std::string &material);
+
     // ------------------------------------ //
     // Player input actions
     void onIntroSkipPressed();
@@ -89,19 +92,7 @@ private:
     
     std::unique_ptr<ThriveNetHandler> Network;
 
-    std::shared_ptr<CellStageWorld> m_cellStage;
-
     ObjectID m_cellCamera = 0;
-
-    ObjectID m_backgroundPlane = 0;
-
-    //! Player's cell
-    ObjectID m_playerCell = 0;
-
-    
-
-    // TODO: remove this and the debug stuff in Tick
-    int dummyTestCounter = 0;
 
     //! True once CustomizeEnginePostLoad has ran. This is used to
     //! delay methods that skip straight to the game in order to not

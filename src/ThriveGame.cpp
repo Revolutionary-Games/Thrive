@@ -31,6 +31,12 @@
 
 #include <Addons/GameModule.h>
 
+#include <OgreManualObject.h>
+#include <OgreSceneManager.h>
+#include <OgreMeshManager2.h>
+#include <OgreMesh2.h>
+#include <OgreSubMesh2.h>
+#include <OgreRoot.h>
 
 // Includes for just bindings
 #include "general/hex.h"
@@ -51,12 +57,34 @@ public:
     {
     }
 
+    //! Releases Ogre things. Needs to be called before shutdown
+    void releaseOgreResources(){
+
+        if(m_microbeBackgroundItem){
+
+            m_cellStage->GetScene()->destroyItem(m_microbeBackgroundItem);
+            m_microbeBackgroundItem = nullptr;
+        }
+
+        if(m_microbeBackgroundMesh){
+
+            Ogre::MeshManager::getSingleton().remove(m_microbeBackgroundMesh);
+            m_microbeBackgroundMesh.reset();
+        }
+    }
+
     ThriveGame& m_game;
     
     PlayerData m_playerData;
 
+    std::shared_ptr<CellStageWorld> m_cellStage;
+
     // This contains all the microbe_stage AngelScript code
     Leviathan::GameModule::pointer m_MicrobeScripts;
+
+    //! This is the background object of the cell stage
+    Ogre::MeshPtr m_microbeBackgroundMesh;
+    Ogre::Item* m_microbeBackgroundItem = nullptr;
 
     std::shared_ptr<MainMenuKeyPressListener> m_menuKeyPresses;
     std::shared_ptr<PlayerMicrobeControl> m_cellStageKeys;
@@ -110,7 +138,7 @@ bool ThriveGame::_runCellStageSetupFunc(const std::string &name){
     setup.SetEntrypoint(name);
 
     auto result = m_impl->m_MicrobeScripts->ExecuteOnModule<void>(setup, false,
-        m_cellStage.get());
+        m_impl->m_cellStage.get());
 
     if(result.Result != SCRIPT_RUN_RESULT::Success){
 
@@ -139,16 +167,16 @@ void ThriveGame::startNewGame(){
     Leviathan::GraphicalInputEntity* window1 = engine->GetWindowEntity();
 
     // Create world if not already created //
-    if(!m_cellStage){
+    if(!m_impl->m_cellStage){
    
         LOG_INFO("ThriveGame: startNewGame: Creating new cellstage world");
-        m_cellStage = std::dynamic_pointer_cast<CellStageWorld>(engine->CreateWorld(
+        m_impl->m_cellStage = std::dynamic_pointer_cast<CellStageWorld>(engine->CreateWorld(
                 window1));
     }
     
-    LEVIATHAN_ASSERT(m_cellStage, "Cell stage world creation failed");
+    LEVIATHAN_ASSERT(m_impl->m_cellStage, "Cell stage world creation failed");
     
-    window1->LinkObjects(m_cellStage);
+    window1->LinkObjects(m_impl->m_cellStage);
 
     // Set the right input handlers active //
     m_impl->m_menuKeyPresses->setEnabled(false);
@@ -156,18 +184,18 @@ void ThriveGame::startNewGame(){
     
 
     // Clear world //
-    m_cellStage->ClearEntities();
+    m_impl->m_cellStage->ClearEntities();
 
     // TODO: unfreeze, if was in the background
 
     // Main camera that will be attached to the player
-    m_cellCamera = Leviathan::ObjectLoader::LoadCamera(*m_cellStage, Float3(0, 15, 0),
+    m_cellCamera = Leviathan::ObjectLoader::LoadCamera(*m_impl->m_cellStage, Float3(0, 15, 0),
         Ogre::Quaternion(Ogre::Degree(-90), Ogre::Vector3::UNIT_X)
     );
 
     // Link the camera to the camera control system
     LOG_WRITE("TODO: fix the camera positioning");
-    m_cellStage->GetMicrobeCameraSystem().setCameraEntity(m_cellCamera);
+    m_impl->m_cellStage->GetMicrobeCameraSystem().setCameraEntity(m_cellCamera);
 
     // TODO: attach a ligth to the camera
     // -- Light
@@ -175,12 +203,13 @@ void ThriveGame::startNewGame(){
     //     light:setRange(200)
     //     entity:addComponent(light)
 
-    m_cellStage->SetCamera(m_cellCamera);
+    m_impl->m_cellStage->SetCamera(m_cellCamera);
 
 	// This is here for testing purposes only.
 	BiomeController bc;
 	size_t currentBiomeid = bc.getCurrentBiome();
-	std::string background = SimulationParameters::biomeRegistry.getTypeData(currentBiomeid).background;
+	std::string background =
+        SimulationParameters::biomeRegistry.getTypeData(currentBiomeid).background;
 
     // Setup compound clouds //
     const auto compoundCount = SimulationParameters::compoundRegistry.getSize();
@@ -192,8 +221,8 @@ void ThriveGame::startNewGame(){
         if(!data.isCloud)
             continue;
 
-        auto cloudId = m_cellStage->CreateEntity();
-        m_cellStage->Create_CompoundCloudComponent(cloudId, data.id,
+        auto cloudId = m_impl->m_cellStage->CreateEntity();
+        m_impl->m_cellStage->Create_CompoundCloudComponent(cloudId, data.id,
             data.colour.r, data.colour.g, data.colour.b);
     }
 
@@ -214,24 +243,91 @@ void ThriveGame::startNewGame(){
         return;
     }
 
-    
+    // TODO: move to a new function to reduce clutter here
     // Set background plane //
     // This is needed to be created here for biome.as to work correctly
-    m_backgroundPlane = Leviathan::ObjectLoader::LoadPlane(*m_cellStage, Float3(0, -50, 0),
-        Ogre::Quaternion(Ogre::Degree(90), Ogre::Vector3::UNIT_Z) *
-        Ogre::Quaternion(Ogre::Degree(45), Ogre::Vector3::UNIT_Y),
-        background, Ogre::Plane(1, 1, 1, 1),
-        // TODO: Make size big enough (or move it). Seems like
-        // increasing the size makes the background texture
-        // stretch. So this should probably be moved (maybe by
-        // microbe_camera_system)
-        Float2(400, 400));
+    // Also this is a manual object and with infinite extent as this isn't perspective
+    // projected in the shader
+    Ogre::SceneNode* backgroundRenderNode =
+        m_impl->m_cellStage->GetScene()->createSceneNode(Ogre::SCENE_STATIC);
+        
+    // This needs to be manually destroyed later
+    m_impl->m_microbeBackgroundMesh = Ogre::MeshManager::getSingleton().createManual(
+        "CellStage_background", Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
+
+    Ogre::SubMesh* subMesh = m_impl->m_microbeBackgroundMesh->createSubMesh();    
+
+    Ogre::RenderSystem* renderSystem = Ogre::Root::getSingleton().getRenderSystem();
+    Ogre::VaoManager* vaoManager = renderSystem->getVaoManager();
+
+    Ogre::VertexElement2Vec vertexElements;
+    vertexElements.push_back(Ogre::VertexElement2(Ogre::VET_FLOAT3, Ogre::VES_POSITION));
+    vertexElements.push_back(Ogre::VertexElement2(Ogre::VET_FLOAT2,
+            Ogre::VES_TEXTURE_COORDINATES));
+
+    float vertexData[] = {
+        // First vertex
+        -1, -1, 0,
+        0, 0,
+        // Second
+        1, -1, 0,
+        1, 0,
+        // Third
+        1, 1, 0,
+        1, 1,
+        // Fourth
+        -1, 1, 0,
+        0, 1
+    };
+    
+    Ogre::VertexBufferPacked* vertexBuffer = vaoManager->createVertexBuffer(vertexElements,
+        4, Ogre::BT_IMMUTABLE, &vertexData, false);
+
+    Ogre::VertexBufferPackedVec vertexBuffers;
+    vertexBuffers.push_back(vertexBuffer);
+
+    // 1 to 1 index buffer mapping
+    Ogre::uint16 indices[] = {3, 0, 1, 1, 2, 3};
+
+    // TODO: check if this is needed (when a 1 to 1 vertex and index mapping is used)
+    Ogre::IndexBufferPacked* indexBuffer = vaoManager->createIndexBuffer(
+        Ogre::IndexBufferPacked::IT_16BIT,
+        6, Ogre::BT_IMMUTABLE,
+            &indices, false);
+        
+    Ogre::VertexArrayObject* vao = vaoManager->createVertexArrayObject(
+        vertexBuffers, indexBuffer, Ogre::OT_TRIANGLE_LIST);
+
+    subMesh->mVao[Ogre::VpNormal].push_back(vao);
+
+    // This might be needed because we use a v2 mesh
+    //Use the same geometry for shadow casting.
+    // subMesh->mVao[Ogre::VpShadow].push_back( vao );
+        
+    // Set the bounds to get frustum culling and LOD to work correctly.
+    // TO infinite to always render
+    m_impl->m_microbeBackgroundMesh->_setBounds(Ogre::Aabb::BOX_INFINITE /*, false*/);
+
+    subMesh->setMaterialName(background);
+
+    m_impl->m_microbeBackgroundItem = m_impl->m_cellStage->GetScene()->createItem(
+        m_impl->m_microbeBackgroundMesh, Ogre::SCENE_STATIC);
+    m_impl->m_microbeBackgroundItem->setCastShadows(false);
+
+    // Need to edit the render queue and add it to an early one
+    m_impl->m_cellStage->GetScene()->getRenderQueue()->setRenderQueueMode(1,
+        Ogre::RenderQueue::FAST);
+    m_impl->m_microbeBackgroundItem->setRenderQueueGroup(1);
+
+    // Add it 
+    backgroundRenderNode->attachObject(m_impl->m_microbeBackgroundItem);
+
 
     // Spawn player //
     ScriptRunningSetup setup("setupPlayer");
 
     auto result = m_impl->m_MicrobeScripts->ExecuteOnModule<void>(setup, false,
-        m_cellStage.get());
+        m_impl->m_cellStage.get());
 
     if(result.Result != SCRIPT_RUN_RESULT::Success){
 
@@ -241,20 +337,20 @@ void ThriveGame::startNewGame(){
    
 	// Test model //
     if(false){
-        const auto testModel = m_cellStage->CreateEntity();
-        m_cellStage->Create_Position(testModel, Float3(0, 0, 0), Ogre::Quaternion(Ogre::Degree(90), Ogre::Vector3::UNIT_X));
-        auto& node = m_cellStage->Create_RenderNode(testModel);
-        m_cellStage->Create_Model(testModel, node.Node, "nucleus.mesh");
+        const auto testModel = m_impl->m_cellStage->CreateEntity();
+        m_impl->m_cellStage->Create_Position(testModel, Float3(0, 0, 0), Ogre::Quaternion(Ogre::Degree(90), Ogre::Vector3::UNIT_X));
+        auto& node = m_impl->m_cellStage->Create_RenderNode(testModel);
+        m_impl->m_cellStage->Create_Model(testModel, node.Node, "nucleus.mesh");
     }
 
 
     // TODO: verify that the membrane works
-    // ObjectID testMembrane = m_cellStage->CreateEntity();
+    // ObjectID testMembrane = m_impl->m_cellStage->CreateEntity();
 
-    // m_cellStage->Create_RenderNode(testMembrane);
-    // m_cellStage->Create_Position(testMembrane, Float3(0), Float4::IdentityQuaternion());
+    // m_impl->m_cellStage->Create_RenderNode(testMembrane);
+    // m_impl->m_cellStage->Create_Position(testMembrane, Float3(0), Float4::IdentityQuaternion());
 
-    // MembraneComponent& membrane = m_cellStage->Create_MembraneComponent(testMembrane);
+    // MembraneComponent& membrane = m_impl->m_cellStage->Create_MembraneComponent(testMembrane);
     // for(int x = -3; x <= 3; ++x){
     //     for(int y = -3; y <= 3; ++y){
     //         membrane.sendOrganelles(x, y);
@@ -265,16 +361,16 @@ void ThriveGame::startNewGame(){
 // void ThriveGame::respawnPlayerCell(){
 //     LEVIATHAN_ASSERT(m_playerCell == 0, "Player alive in respawnPlayercell");
 
-//     m_playerCell = m_cellStage->CreateEntity();
+//     m_playerCell = m_impl->m_cellStage->CreateEntity();
 
-//     m_cellStage->Create_RenderNode(m_playerCell);
-// 	auto& processor = m_cellStage->Create_ProcessorComponent(m_playerCell);
-// 	auto& compoundBag = m_cellStage->Create_CompoundBagComponent(m_playerCell);
-// 	m_cellStage->Create_SpeciesComponent(m_playerCell, "PIKACHU");
+//     m_impl->m_cellStage->Create_RenderNode(m_playerCell);
+// 	auto& processor = m_impl->m_cellStage->Create_ProcessorComponent(m_playerCell);
+// 	auto& compoundBag = m_impl->m_cellStage->Create_CompoundBagComponent(m_playerCell);
+// 	m_impl->m_cellStage->Create_SpeciesComponent(m_playerCell, "PIKACHU");
 
-//     m_cellStage->Create_Position(m_playerCell, Float3(0), Float4::IdentityQuaternion());
+//     m_impl->m_cellStage->Create_Position(m_playerCell, Float3(0), Float4::IdentityQuaternion());
 
-//     MembraneComponent& membrane = m_cellStage->Create_MembraneComponent(m_playerCell);
+//     MembraneComponent& membrane = m_impl->m_cellStage->Create_MembraneComponent(m_playerCell);
 //     for(int x = -3; x <= 3; ++x){
 //         for(int y = -3; y <= 3; ++y){
 //             membrane.sendOrganelles(x, y);
@@ -336,7 +432,7 @@ bool ThriveGame::scriptSetup(){
 // ------------------------------------ //
 CellStageWorld* ThriveGame::getCellStage(){
 
-    return m_cellStage.get();
+    return m_impl->m_cellStage.get();
 }
 
 PlayerData&
@@ -362,56 +458,17 @@ void ThriveGame::onIntroSkipPressed(){
     Engine::Get()->GetEventHandler()->CallEvent(
         new Leviathan::GenericEvent("MainMenuIntroSkipEvent"));
 }
+// ------------------------------------ //
+void
+ThriveGame::setBackgroundMaterial(const std::string &material){
+
+    LOG_INFO("Setting microbe background to: " + material);
+    m_impl->m_microbeBackgroundMesh->getSubMesh(0)->setMaterialName(material);
+}
 
 // ------------------------------------ //
 void ThriveGame::Tick(int mspassed){
 
-    dummyTestCounter += mspassed;
-
-    float radians = dummyTestCounter / 500.f;
-
-    if(m_playerCell && false){
-
-        Leviathan::Position& pos = m_cellStage->GetComponent_Position(m_playerCell);
-
-        pos.Members._Orientation = Ogre::Quaternion::IDENTITY * Ogre::Quaternion(
-            Ogre::Radian(radians), Ogre::Vector3::UNIT_X);
-
-        pos.Marked = true;
-    }
-
-	if (m_playerCell && false) {
-
-		Leviathan::Position& pos = m_cellStage->GetComponent_Position(m_cellCamera);
-
-		pos.Members._Position += Leviathan::Float3(mspassed * 1.0 / 1000.0, 0, 0);
-
-		pos.Marked = true;
-	}
-
-    if(m_backgroundPlane != 0 && false){
-
-        auto& node = m_cellStage->GetComponent_RenderNode(m_backgroundPlane);
-        node.Hidden = false;
-        node.Marked = true;
-
-        Leviathan::Position& pos = m_cellStage->GetComponent_Position(m_backgroundPlane);
-
-        pos.Members._Orientation = Ogre::Quaternion::IDENTITY * Ogre::Quaternion(
-            Ogre::Radian(radians), Ogre::Vector3::UNIT_Y);
-
-        pos.Marked = true;
-    }
-
-    if(m_cellCamera != 0 && false){
-    
-        Leviathan::Position& pos = m_cellStage->GetComponent_Position(m_cellCamera);
-
-        pos.Members._Orientation = Ogre::Quaternion(
-            Ogre::Radian(radians), Ogre::Vector3::UNIT_X);
-
-        pos.Marked = true;
-    }
 }
 
 void ThriveGame::CustomizeEnginePostLoad(){
@@ -506,8 +563,10 @@ void ThriveGame::EnginePreShutdown(){
     
     // All resources that need Ogre or the engine to be available when
     // they are destroyed need to be released here
+
+    m_impl->releaseOgreResources();
     
-    m_cellStage.reset();
+    m_impl->m_cellStage.reset();
 
     m_impl.reset();
 }
@@ -1591,11 +1650,14 @@ bool ThriveGame::InitLoadCustomScriptTypes(asIScriptEngine* engine){
 		ANGELSCRIPT_REGISTERFAIL;
 	}
 
-    if(engine->RegisterObjectProperty("ThriveGame", "ObjectID m_backgroundPlane",
-            asOFFSET(ThriveGame, m_backgroundPlane)) < 0)
-    {
-        ANGELSCRIPT_REGISTERFAIL;
-    }
+    if (engine->RegisterObjectMethod("ThriveGame",
+            "void setBackgroundMaterial(const string &in material)",
+            asMETHOD(ThriveGame, setBackgroundMaterial),
+            asCALL_THISCALL) < 0)
+	{
+		ANGELSCRIPT_REGISTERFAIL;
+	}
+    
     
     // if(engine->RegisterObjectMethod("Client",
     //         "bool Connect(const string &in address, string &out errormessage)",
