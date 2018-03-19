@@ -352,7 +352,8 @@
 		  <Property name="Position" value="{{0,0},{0,40}}" />
 		  <Property name="Size" value="{{1.0,0},{1.0,-40}}" />
           <!-- <Property name="ForceVertScrollbar" value="True" /> -->
-          <Property name="AutoRenderingSurface" value="True" />
+          <!-- Why was this used? This makes everything blurry -->
+          <!--<Property name="AutoRenderingSurface" value="True" /> -->
 		  
           <Window name="ATPBar" type="DefaultWindow" >
             <Property name="Position" value="{{0,0},{0,0}}" />
