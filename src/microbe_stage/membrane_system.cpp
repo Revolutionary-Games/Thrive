@@ -217,6 +217,7 @@ void MembraneComponent::Update(Ogre::SceneManager* scene, Ogre::SceneNode* paren
 
         // This might be needed because we use a v2 mesh
         //Use the same geometry for shadow casting.
+        // If m_item->setCastShadows(false); is set then this isn't needed
         m_subMesh->mVao[Ogre::VpShadow].push_back( vao );
 
         
@@ -345,6 +346,7 @@ void MembraneComponent::Update(Ogre::SceneManager* scene, Ogre::SceneNode* paren
     if(!m_item){
         // This needs the v2 mesh to contain data to work
         m_item = scene->createItem(m_mesh, Ogre::SCENE_DYNAMIC);
+        m_item->setRenderQueueGroup(Leviathan::DEFAULT_RENDER_QUEUE);
         parentcomponentpos->attachObject(m_item);
     }
 }

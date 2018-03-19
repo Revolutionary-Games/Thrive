@@ -80,11 +80,7 @@ void setBiome(uint64 biomeId, CellStageWorld@ world){
     }
 
     //Changing the background.
-    auto entity = GetThriveGame().m_backgroundPlane;
-
-    auto plane = world.GetComponent_Plane(entity);
-
-    plane.GraphicalObject.setMaterial(biome.background);
+    GetThriveGame().setBackgroundMaterial(biome.background);
 }
 
 //Setting the current biome to a random biome selected from the biome table.
