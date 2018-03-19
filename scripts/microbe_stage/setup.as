@@ -182,108 +182,109 @@ void createAgentCloud(CellStageWorld@ world, CompoundId compoundId, Float3 pos,
 //             entity.addComponent(timedEmitter)
 //             }
 
-//             local void setupSpawnSystem(gameState){
-//             gSpawnSystem = SpawnSystem()
+local void setupSpawnSystem(CellStageWorld@ world){
+	//spawn code is here, if it isnt obvious by the name
+	//             gSpawnSystem = SpawnSystem()
 
-//             auto toxinOrganelleSpawnvoid = function(pos){
-//             powerupEntity = Entity(g_luaEngine.currentGameState.wrapper)
-//             setSpawnablePhysics(powerupEntity, pos, "AgentVacuole.mesh", 0.9,
-//                 SphereShape(HEX_SIZE))
+	//             auto toxinOrganelleSpawnvoid = function(pos){
+	//             powerupEntity = Entity(g_luaEngine.currentGameState.wrapper)
+	//             setSpawnablePhysics(powerupEntity, pos, "AgentVacuole.mesh", 0.9,
+	//                 SphereShape(HEX_SIZE))
 
-//             auto reactionHandler = CollisionComponent()
-//             reactionHandler.addCollisionGroup("powerup")
-//             powerupEntity.addComponent(reactionHandler)
-        
-//                 auto powerupComponent = PowerupComponent()
-//             // void name must be in configs.lua{
-//             powerupComponent.setEffect("toxin_number")
-//             powerupEntity.addComponent(powerupComponent)
-//             return powerupEntity
-//             }
-//             auto ChloroplastOrganelleSpawnvoid = function(pos) {
-//             powerupEntity = Entity(g_luaEngine.currentGameState.wrapper)
-//             setSpawnablePhysics(powerupEntity, pos, "chloroplast.mesh", 0.9,
-//                 SphereShape(HEX_SIZE))
+	//             auto reactionHandler = CollisionComponent()
+	//             reactionHandler.addCollisionGroup("powerup")
+	//             powerupEntity.addComponent(reactionHandler)
+			
+	//                 auto powerupComponent = PowerupComponent()
+	//             // void name must be in configs.lua{
+	//             powerupComponent.setEffect("toxin_number")
+	//             powerupEntity.addComponent(powerupComponent)
+	//             return powerupEntity
+	//             }
+	//             auto ChloroplastOrganelleSpawnvoid = function(pos) {
+	//             powerupEntity = Entity(g_luaEngine.currentGameState.wrapper)
+	//             setSpawnablePhysics(powerupEntity, pos, "chloroplast.mesh", 0.9,
+	//                 SphereShape(HEX_SIZE))
 
-//             auto reactionHandler = CollisionComponent()
-//                 reactionHandler.addCollisionGroup("powerup")
-//             powerupEntity.addComponent(reactionHandler)
-        
-//             auto powerupComponent = PowerupComponent()
-//             // void name must be in configs.lua{
-//             powerupComponent.setEffect("chloroplast_number")
-//             powerupEntity.addComponent(powerupComponent)
-//             return powerupEntity
-//             }
+	//             auto reactionHandler = CollisionComponent()
+	//                 reactionHandler.addCollisionGroup("powerup")
+	//             powerupEntity.addComponent(reactionHandler)
+			
+	//             auto powerupComponent = PowerupComponent()
+	//             // void name must be in configs.lua{
+	//             powerupComponent.setEffect("chloroplast_number")
+	//             powerupEntity.addComponent(powerupComponent)
+	//             return powerupEntity
+	//             }
 
-//             compoundSpawnTypes = {}
-//         for(compoundName, compoundInfo in pairs(compoundTable)){
-//                               if(compoundInfo.isCloud){
-//             auto spawnCloud =  function(pos)
-//             return createCompoundCloud(compoundName, pos.x, pos.y)
-//             }
+	//             compoundSpawnTypes = {}
+	//         for(compoundName, compoundInfo in pairs(compoundTable)){
+	//                               if(compoundInfo.isCloud){
+	//             auto spawnCloud =  function(pos)
+	//             return createCompoundCloud(compoundName, pos.x, pos.y)
+	//             }
 
-//             compoundSpawnTypes[compoundName] = gSpawnSystem.addSpawnType(spawnCloud, 1/10000, CLOUD_SPAWN_RADIUS) // Placeholder, the real one is set in biome.lua
-//             }
-//             }
+	//             compoundSpawnTypes[compoundName] = gSpawnSystem.addSpawnType(spawnCloud, 1/10000, CLOUD_SPAWN_RADIUS) // Placeholder, the real one is set in biome.lua
+	//             }
+	//             }
 
-//             gSpawnSystem.addSpawnType(toxinOrganelleSpawnFunction, 1/17000, POWERUP_SPAWN_RADIUS)
-//             gSpawnSystem.addSpawnType(ChloroplastOrganelleSpawnFunction, 1/12000, POWERUP_SPAWN_RADIUS)
+	//             gSpawnSystem.addSpawnType(toxinOrganelleSpawnFunction, 1/17000, POWERUP_SPAWN_RADIUS)
+	//             gSpawnSystem.addSpawnType(ChloroplastOrganelleSpawnFunction, 1/12000, POWERUP_SPAWN_RADIUS)
 
-//             for(name, species in pairs(starter_microbes)){
+	//             for(name, species in pairs(starter_microbes)){
 
-//                           assert(isNotEmpty(name))
-//                               assert(species)
-        
-//                               gSpawnSystem.addSpawnType(
-//                                   function(pos) 
-//                                   return microbeSpawnFunctionGeneric(pos, name, true, null,
-//                                       g_luaEngine.currentGameState)
-//                                   }, 
-//                                   species.spawnDensity, MICROBE_SPAWN_RADIUS)
-//                               }
+	//                           assert(isNotEmpty(name))
+	//                               assert(species)
+			
+	//                               gSpawnSystem.addSpawnType(
+	//                                   function(pos) 
+	//                                   return microbeSpawnFunctionGeneric(pos, name, true, null,
+	//                                       g_luaEngine.currentGameState)
+	//                                   }, 
+	//                                   species.spawnDensity, MICROBE_SPAWN_RADIUS)
+	//                               }
 
-//                               return gSpawnSystem
-//                               }
-
-
+	//                               return gSpawnSystem
+}
 
 
-//                               local void setupSound(gameState){
-//                               auto ambientEntity = Entity("ambience", gameState.wrapper)
-//                               auto soundSource = SoundSourceComponent()
-//                               soundSource.ambientSoundSource = true
-//                               soundSource.autoLoop = true
-//                               soundSource.volumeMultiplier = 0.3
-//                               ambientEntity.addComponent(soundSource)
-//                               // Sound
-//                               soundSource.addSound("microbe-theme-1", "microbe-theme-1.ogg")
-//                               soundSource.addSound("microbe-theme-3", "microbe-theme-3.ogg")
-//                               soundSource.addSound("microbe-theme-4", "microbe-theme-4.ogg")
-//                               soundSource.addSound("microbe-theme-5", "microbe-theme-5.ogg")
-//                               soundSource.addSound("microbe-theme-6", "microbe-theme-6.ogg")   
-//                               soundSource.addSound("microbe-theme-7", "microbe-theme-7.ogg")   
-//                               auto ambientEntity2 = Entity("ambience2", gameState.wrapper)
-//                               auto soundSource = SoundSourceComponent()
-//                               soundSource.volumeMultiplier = 0.1
-//                               soundSource.ambientSoundSource = true
-//                               ambientSound = soundSource.addSound("microbe-ambient", "soundeffects/microbe-ambience.ogg")
-//                               soundSource.autoLoop = true
-//                               ambientEntity2.addComponent(soundSource)
-//                               // Gui effects
-//                               auto guiSoundEntity = Entity("gui_sounds", gameState.wrapper)
-//                               soundSource = SoundSourceComponent()
-//                               soundSource.ambientSoundSource = true
-//                               soundSource.autoLoop = false
-//                               soundSource.volumeMultiplier = 1.0
-//                               guiSoundEntity.addComponent(soundSource)
-//                               // Sound
-//                               soundSource.addSound("button-hover-click", "soundeffects/gui/button-hover-click.ogg")
-//                               soundSource.addSound("microbe-pickup-organelle", "soundeffects/microbe-pickup-organelle.ogg")
-//                               auto listener = Entity("soundListener", gameState.wrapper)
-//                               auto sceneNode = OgreSceneNodeComponent()
-//                               listener.addComponent(sceneNode)
-//                               }
+
+
+local void setupSound(CellStageWorld@ world){
+	//                               auto ambientEntity = Entity("ambience", gameState.wrapper)
+	//                               auto soundSource = SoundSourceComponent()
+	//                               soundSource.ambientSoundSource = true
+	//                               soundSource.autoLoop = true
+	//                               soundSource.volumeMultiplier = 0.3
+	//                               ambientEntity.addComponent(soundSource)
+	//                               // Sound
+	//                               soundSource.addSound("microbe-theme-1", "microbe-theme-1.ogg")
+	//                               soundSource.addSound("microbe-theme-3", "microbe-theme-3.ogg")
+	//                               soundSource.addSound("microbe-theme-4", "microbe-theme-4.ogg")
+	//                               soundSource.addSound("microbe-theme-5", "microbe-theme-5.ogg")
+	//                               soundSource.addSound("microbe-theme-6", "microbe-theme-6.ogg")   
+	//                               soundSource.addSound("microbe-theme-7", "microbe-theme-7.ogg")   
+	//                               auto ambientEntity2 = Entity("ambience2", gameState.wrapper)
+	//                               auto soundSource = SoundSourceComponent()
+	//                               soundSource.volumeMultiplier = 0.1
+	//                               soundSource.ambientSoundSource = true
+	//                               ambientSound = soundSource.addSound("microbe-ambient", "soundeffects/microbe-ambience.ogg")
+	//                               soundSource.autoLoop = true
+	//                               ambientEntity2.addComponent(soundSource)
+	//                               // Gui effects
+	//                               auto guiSoundEntity = Entity("gui_sounds", gameState.wrapper)
+	//                               soundSource = SoundSourceComponent()
+	//                               soundSource.ambientSoundSource = true
+	//                               soundSource.autoLoop = false
+	//                               soundSource.volumeMultiplier = 1.0
+	//                               guiSoundEntity.addComponent(soundSource)
+	//                               // Sound
+	//                               soundSource.addSound("button-hover-click", "soundeffects/gui/button-hover-click.ogg")
+	//                               soundSource.addSound("microbe-pickup-organelle", "soundeffects/microbe-pickup-organelle.ogg")
+	//                               auto listener = Entity("soundListener", gameState.wrapper)
+	//                               auto sceneNode = OgreSceneNodeComponent()
+	//                               listener.addComponent(sceneNode)
+}
 
 //                               setupCompounds()
 //                               setupProcesses()
