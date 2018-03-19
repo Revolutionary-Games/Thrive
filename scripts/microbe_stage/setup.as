@@ -10,10 +10,15 @@ const auto CLOUD_SPAWN_RADIUS = 75;
 const auto POWERUP_SPAWN_RADIUS = 85;
 const auto MICROBE_SPAWN_RADIUS = 85;
 
-// Call setRandomBiome instead from wherever this is needed
-// void setupBackground(CellStageWorld@ world){
-//     setRandomBiome(world);
-// }
+// This is a helper for calling all the setup functions at the same time
+// This is the one called from C++
+void setupScriptsForWorld(CellStageWorld@ world){
+
+    setupSpecies(world);
+    setupSystemsForWorld(world);
+    setupSpawnSystem(world);
+    setupSound(world);
+}
 
 // This function should be the entry point for all initial-species generation
 // For now, it can go through the XML and instantiate all the species, but later this 
@@ -63,6 +68,8 @@ void setupSystemsForWorld(CellStageWorld@ world){
 
     // TODO: add the rest of the systems and component types that are defined in scripts here
 }
+
+
 
 const auto PLAYER_NAME = "Player";
 
@@ -182,7 +189,7 @@ void createAgentCloud(CellStageWorld@ world, CompoundId compoundId, Float3 pos,
 //             entity.addComponent(timedEmitter)
 //             }
 
-local void setupSpawnSystem(CellStageWorld@ world){
+void setupSpawnSystem(CellStageWorld@ world){
 	//spawn code is here, if it isnt obvious by the name
 	//             gSpawnSystem = SpawnSystem()
 
@@ -250,7 +257,7 @@ local void setupSpawnSystem(CellStageWorld@ world){
 
 
 
-local void setupSound(CellStageWorld@ world){
+void setupSound(CellStageWorld@ world){
 	//                               auto ambientEntity = Entity("ambience", gameState.wrapper)
 	//                               auto soundSource = SoundSourceComponent()
 	//                               soundSource.ambientSoundSource = true

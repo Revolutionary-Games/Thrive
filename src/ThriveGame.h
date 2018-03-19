@@ -80,8 +80,6 @@ private:
 
     //! \brief Calls initialization methods for scripts
     bool scriptSetup();
-
-    bool _runCellStageSetupFunc(const std::string &name);
     
 protected:
 

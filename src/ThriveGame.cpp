@@ -130,26 +130,6 @@ void ThriveGame::_ShutdownApplicationPacketHandler(){
     Network.reset();
 }
 // ------------------------------------ //
-bool ThriveGame::_runCellStageSetupFunc(const std::string &name){
-
-    LOG_INFO("Calling world setup script " + name);
-
-    ScriptRunningSetup setup;
-    setup.SetEntrypoint(name);
-
-    auto result = m_impl->m_MicrobeScripts->ExecuteOnModule<void>(setup, false,
-        m_impl->m_cellStage.get());
-
-    if(result.Result != SCRIPT_RUN_RESULT::Success){
-
-        LOG_ERROR("Failed to run script setup function: " + setup.Entryfunction);
-        return false;
-    }
-
-    LOG_INFO("Finished calling " + name);
-    return true;
-}
-
 void ThriveGame::startNewGame(){
     // To work with instant start, we need to invoke this if we have no cell stage world
     if(!m_postLoadRan){
@@ -227,21 +207,26 @@ void ThriveGame::startNewGame(){
     }
 
     // Let the script do setup //
-    LEVIATHAN_ASSERT(m_impl->m_MicrobeScripts, "microbe scripts not loaded");
-    
-    if(!_runCellStageSetupFunc("setupSpecies")){
-
-        MarkAsClosing();
-        return;
-    }
-
     // This registers all the script defined systems to run and be
     // available from the world
-    if(!_runCellStageSetupFunc("setupSystemsForWorld")){
+    LEVIATHAN_ASSERT(m_impl->m_MicrobeScripts, "microbe scripts not loaded");
 
+    LOG_INFO("Calling world setup script setupScriptsForWorld");
+
+    ScriptRunningSetup setup;
+    setup.SetEntrypoint("setupScriptsForWorld");
+
+    auto result = m_impl->m_MicrobeScripts->ExecuteOnModule<void>(setup, false,
+        m_impl->m_cellStage.get());
+
+    if(result.Result != SCRIPT_RUN_RESULT::Success){
+
+        LOG_ERROR("Failed to run script setup function: " + setup.Entryfunction);
         MarkAsClosing();
         return;
     }
+
+    LOG_INFO("Finished calling setupScriptsForWordl");
 
     // TODO: move to a new function to reduce clutter here
     // Set background plane //
@@ -324,9 +309,9 @@ void ThriveGame::startNewGame(){
 
 
     // Spawn player //
-    ScriptRunningSetup setup("setupPlayer");
+    setup = ScriptRunningSetup("setupPlayer");
 
-    auto result = m_impl->m_MicrobeScripts->ExecuteOnModule<void>(setup, false,
+    result = m_impl->m_MicrobeScripts->ExecuteOnModule<void>(setup, false,
         m_impl->m_cellStage.get());
 
     if(result.Result != SCRIPT_RUN_RESULT::Success){
