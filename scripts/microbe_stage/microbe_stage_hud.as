@@ -39,6 +39,8 @@ class MicrobeStageHudSystem : ScriptSystem{
 
         // Store compound ids for lookups in Run
         this.atpId = SimulationParameters::compoundRegistry().getTypeId("atp");
+        this.atpVolume = SimulationParameters::compoundRegistry().getTypeData(
+            this.atpId).volume;
     }
 
     void Release(){
@@ -53,6 +55,8 @@ class MicrobeStageHudSystem : ScriptSystem{
         if(player != NULL_OBJECT){
 
             auto bag = World.GetComponent_CompoundBagComponent(player);
+            MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
+                World.GetScriptComponentHolder("MicrobeComponent").Find(player));
 
             if(bag is null){
 
@@ -61,12 +65,14 @@ class MicrobeStageHudSystem : ScriptSystem{
             } else {
 
                 const auto atpAmount = bag.getCompoundAmount(atpId);
+                const auto maxATP = microbeComponent.capacity / atpVolume;
 
                 GenericEvent@ event = GenericEvent("PlayerCompoundAmounts");
                 NamedVars@ vars = event.GetNamedVars();
                 
                 // Write data
                 vars.AddValue(ScriptSafeVariableBlock("compoundATP", atpAmount));
+                vars.AddValue(ScriptSafeVariableBlock("ATPMax", maxATP));
                 // TODO: other compounds
 
                 // Fire it off so that the GUI scripts will get it and update the GUI state
@@ -204,6 +210,7 @@ class MicrobeStageHudSystem : ScriptSystem{
     bool compoundsOpen = true;
 
     CompoundId atpId;
+    float atpVolume;
 }
 
 
