@@ -696,7 +696,9 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
         parentRenderNode.Node.addChild(renderNode.Node);
         
         //Adding a mesh for the organelle.
-        world.Create_Model(organelleEntity, renderNode.Node, organelle.mesh);
+        if(organelle.mesh != ""){
+            world.Create_Model(organelleEntity, renderNode.Node, organelle.mesh);
+        }
 
         // Add each OrganelleComponent
         for(uint i = 0; i < components.length(); ++i){
