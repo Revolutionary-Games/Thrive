@@ -32,7 +32,7 @@ void setupSpecies(CellStageWorld@ world){
         "Compound registry is empty");
 
     auto keys = STARTER_MICROBES.getKeys();
-
+	
     for(uint i = 0; i < keys.length(); ++i){
 
         const string name = keys[i];
@@ -43,6 +43,13 @@ void setupSpecies(CellStageWorld@ world){
 
         LOG_INFO("created starter microbe \"" + name + "\", species entity = " + entity);
     }
+	//should I be generating new species here because that might work?
+	//Species::createSpecies(world, name, data);
+	//Species::createSpecies(world, name, data);
+	//Species::createSpecies(world, name, data);
+	//Species::createSpecies(world, name, data);
+	//Species::createSpecies(world, name, data);
+	
 
     LOG_INFO("setupSpecies created " + keys.length() + " species");
 }
@@ -211,7 +218,6 @@ void setupSpawnSystem(CellStageWorld@ world){
 
 	//need to spawn microbes from the starter_microbes list, so need to loop through and define spawning for all of them
 	
-
 	
 	LOG_INFO("setting  up spawn information");
 	 auto keys = STARTER_MICROBES.getKeys();
