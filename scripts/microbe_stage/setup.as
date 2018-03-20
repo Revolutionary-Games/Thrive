@@ -220,7 +220,7 @@ void setupSpawnSystem(CellStageWorld@ world){
 	setupFloatingOrganelles(world);
 	LOG_INFO("setting up species");
 	 auto keys = STARTER_MICROBES.getKeys();
-	  for(int n = 0; n < keys.length(); n++)
+	  for(uint n = 0; n < keys.length(); n++)
 		{
 		const string name = keys[n];
 		bool species;

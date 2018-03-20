@@ -226,7 +226,7 @@ void ThriveGame::startNewGame(){
         return;
     }
 
-    LOG_INFO("Finished calling setupScriptsForWordl");
+    LOG_INFO("Finished calling setupScriptsForWorld");
 
     // TODO: move to a new function to reduce clutter here
     // Set background plane //
