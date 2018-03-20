@@ -174,7 +174,6 @@ void ThriveGame::startNewGame(){
     );
 
     // Link the camera to the camera control system
-    LOG_WRITE("TODO: fix the camera positioning");
     m_impl->m_cellStage->GetMicrobeCameraSystem().setCameraEntity(m_cellCamera);
 
     // TODO: attach a ligth to the camera
@@ -1443,7 +1442,8 @@ public:
         if(result.Result != SCRIPT_RUN_RESULT::Success){
 
             LOG_ERROR("Failed to run Wrapped SpawnSystem function");
-            return -1;
+            // This makes the spawn system just ignore the return value
+            return NULL_OBJECT;
         }
 
         return result.Value;

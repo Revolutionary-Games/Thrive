@@ -14,6 +14,8 @@ namespace thrive {
 
 /**
 * @brief Adds a membrane to an entity
+* @todo To improve performance this has to actually calculate the bounds for frustrum
+*  culling to work well
 */
 class MembraneComponent : public Leviathan::Component {
     struct MembraneVertex{
@@ -116,6 +118,13 @@ private:
     Ogre::Item* m_item = nullptr;
 
     Ogre::VertexBufferPacked* m_vertexBuffer = nullptr;
+
+    //! A material created from the base material that can be colored
+    //! \todo It would be better to share this between all cells of a species
+    Ogre::MaterialPtr coloredMaterial;
+    // Ogre::MaterialPtr speciesMaterial;
+
+    static std::atomic<int> membraneNumber;
 
     // The amount of compounds stored in the membrane.
     int compoundAmount = 0;
