@@ -3,5 +3,5 @@
 # update everything!)
 require_relative 'RubySetupSystem/RubyCommon.rb'
 
-system("ruby SetupThrive.rb --no-updates --no-packagemanager --no-subproject-deps")
+system("ruby SetupThrive.rb --no-packagemanager --no-subproject-deps")
 exit $?.exitstatus == 0

@@ -174,7 +174,6 @@ void ThriveGame::startNewGame(){
     );
 
     // Link the camera to the camera control system
-    LOG_WRITE("TODO: fix the camera positioning");
     m_impl->m_cellStage->GetMicrobeCameraSystem().setCameraEntity(m_cellCamera);
 
     // TODO: attach a ligth to the camera
@@ -226,7 +225,7 @@ void ThriveGame::startNewGame(){
         return;
     }
 
-    LOG_INFO("Finished calling setupScriptsForWordl");
+    LOG_INFO("Finished calling setupScriptsForWorld");
 
     // TODO: move to a new function to reduce clutter here
     // Set background plane //
@@ -1437,13 +1436,14 @@ public:
     ObjectID run(CellStageWorld& world, Float3 pos){
 
         ScriptRunningSetup setup;
-        auto result = Leviathan::ScriptExecutor::Get()->RunScript<SpawnerTypeId>(
+        auto result = Leviathan::ScriptExecutor::Get()->RunScript<ObjectID>(
             m_func, nullptr, setup, &world, pos);
 
         if(result.Result != SCRIPT_RUN_RESULT::Success){
 
             LOG_ERROR("Failed to run Wrapped SpawnSystem function");
-            return -1;
+            // This makes the spawn system just ignore the return value
+            return NULL_OBJECT;
         }
 
         return result.Value;

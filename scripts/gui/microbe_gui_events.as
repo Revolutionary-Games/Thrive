@@ -1,4 +1,6 @@
 CEGUI::Window@ atpBar;
+// Workaround to not being able to call the base class methods from derived
+CEGUI::ProgressBar@ atpBarAsBar;
 CEGUI::Window@ atpCountLabel;
 CEGUI::Window@ atpMaxLabel;
 CEGUI::Window@ atpCountLabel2;
@@ -18,8 +20,9 @@ void setupHUDBars(GuiObject@ instance){
     
 
     @atpBar = compoundsScroll.GetChild("ATPBar/ATPBar");
+    @atpBarAsBar = cast<CEGUI::ProgressBar>(atpBar);
 
-    assert(atpBar !is null, "GUI didn't find atpBar");
+    assert(atpBar !is null || atpBarAsBar is null, "GUI didn't find atpBar");
 
     @atpCountLabel = atpBar.GetChild("NumberLabel");
     @atpMaxLabel = compoundsScroll.GetChild("ATPBar/ATPTotal");
@@ -38,16 +41,16 @@ void handleCompoundBarsUpdate(GuiObject@ instance, GenericEvent@ event){
 
     NamedVars@ vars = event.GetNamedVars();
     auto atp = vars.GetSingleValueByName("compoundATP");
+    auto atpMax = vars.GetSingleValueByName("ATPMax");
 
-    if(atp !is null){
+    if(atp !is null || atpMax !is null){
 
         auto atpAmount = double(atp);
+        auto max = double(atpMax);
 
-        // atpBar.progressbarSetProgress(MicrobeSystem.getCompoundAmount(player,
-        //         CompoundRegistry.getCompoundId("atp"))/(microbeComponent.capacity/CompoundRegistry.getCompoundUnitVolume(CompoundRegistry.getCompoundId("atp"))));
+        atpBarAsBar.SetProgress(atpAmount / max);
         atpCountLabel.SetText(formatFloat(floor(atpAmount)));
-        atpMaxLabel.SetText("/ ");
-            // math.floor(microbeComponent.capacity/CompoundRegistry.getCompoundUnitVolume(CompoundRegistry.getCompoundId("atp"))));
+        atpMaxLabel.SetText("/" + formatFloat(floor(atpMax)));
 
         atpCountLabel2.SetText(formatFloat(floor(atpAmount)));
         

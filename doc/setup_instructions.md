@@ -20,7 +20,7 @@ Follow the Leviathan Engine Prequisites installation instructions
 [here](https://leviathanengine.com/doc/develop/Documentation/html/dc/d9e/prerequisites.html).
 
 Important: you should read the whole document before starting as many
-common pitfalls and issues have fixes given after the them. Also DO
+common pitfalls and issues have fixes given after later in the document. Also DO
 NOT SKIP ANY STEPS otherwise you will initially fail and have to clear
 the caches which is the easiest to do by just deleting the entire
 folder and starting again. When you are done with the prerequisites

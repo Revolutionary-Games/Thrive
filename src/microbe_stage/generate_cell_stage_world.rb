@@ -87,7 +87,8 @@ world = GameWorldClass.new(
 
     EntitySystem.new("SpawnSystem", [],
                      runtick: {group: 50, parameters: []},
-                     visibletoscripts: true),
+                     visibletoscripts: true,
+                     release: []),
 
     EntitySystem.new("AgentCloudSystem", ["Position", "AgentCloudComponent", "RenderNode"],
                      runtick: {group: 5, parameters: []}),

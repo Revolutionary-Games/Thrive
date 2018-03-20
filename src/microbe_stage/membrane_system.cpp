@@ -32,6 +32,7 @@ using namespace thrive;
 // Membrane Component
 ////////////////////////////////////////////////////////////////////////////////
 static std::atomic<int> MembraneMeshNumber = {0};
+std::atomic<int> MembraneComponent::membraneNumber = {0};
 
 MembraneComponent::MembraneComponent() :
     Leviathan::Component(TYPE)
@@ -52,7 +53,11 @@ MembraneComponent::~MembraneComponent(){
     m_mesh.reset();
     m_subMesh = nullptr;
 
-    
+    if(coloredMaterial){
+
+        Ogre::MaterialManager::getSingleton().remove(coloredMaterial);
+        coloredMaterial.reset();
+    }
 }
 
 void MembraneComponent::Release(Ogre::SceneManager* scene){
@@ -143,7 +148,13 @@ bool MembraneComponent::contains(float x, float y)
 void MembraneComponent::setColour(const Float4 &value){
 
     colour = value;
-    LOG_WRITE("TODO: apply Membrane colour");
+
+    // If we already have created a material we need to apply it
+    if(coloredMaterial){
+        coloredMaterial->getTechnique(0)->getPass(0)->getFragmentProgramParameters()->
+            setNamedConstant("membraneColour", colour);
+        coloredMaterial->compile();
+    }
 }
 
 Float4 MembraneComponent::getColour() const{
@@ -222,22 +233,32 @@ void MembraneComponent::Update(Ogre::SceneManager* scene, Ogre::SceneNode* paren
 
         
         //Set the bounds to get frustum culling and LOD to work correctly.
-        // TODO: make this more accurate
+        // TODO: make this more accurate by calculating the actual extents
         m_mesh->_setBounds(Ogre::Aabb(Ogre::Vector3::ZERO, Ogre::Vector3::UNIT_SCALE* 50)
             /*, false*/);
         m_mesh->_setBoundingSphereRadius(50);
 
         // Set the membrane material //
-        Ogre::MaterialPtr baseMaterial = Ogre::MaterialManager::getSingleton().getByName("Membrane");
+        // We need to create a new instance until the managing is moved to the species
+        // (allowing the same species to share)
+        if(!coloredMaterial){
+            Ogre::MaterialPtr baseMaterial = Ogre::MaterialManager::getSingleton().getByName(
+                "Membrane");
         
-        // If this is uncommented material destruction should be added
-        // to the destructor (and this probably moved to the
-        // constructor)
+            // TODO: find a way for the species to manage this to
+            // avoid having tons of materials Maybe Use the species's
+            // name instead. and let something like the
+            // SpeciesComponent create and destroy this
+            coloredMaterial = baseMaterial->clone("Membrane_instance_" +
+                std::to_string(++membraneNumber));
+        
+            coloredMaterial->getTechnique(0)->getPass(0)->getFragmentProgramParameters()->
+                setNamedConstant("membraneColour", colour);
+            coloredMaterial->compile();
+            
+        }
 
-		Ogre::MaterialPtr materialPtr = baseMaterial->clone("Meow"); // Use the species's name instead.
-		materialPtr->getTechnique(0)->getPass(0)->getFragmentProgramParameters()->setNamedConstant("membraneColour", colour);
-		materialPtr->compile();
-		m_subMesh->setMaterialName("Meow");
+        m_subMesh->setMaterialName(coloredMaterial->getName());
     }
 
     // Map the buffer for writing //

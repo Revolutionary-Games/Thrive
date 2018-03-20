@@ -2,15 +2,6 @@
 #include "microbe_operations.as"
 #include "procedural_microbes.as"
 
-const auto DEFAULT_SPAWN_DENSITY = 1/25000.f;
-
-const auto MIN_COLOR = 0.3f;
-const auto MAX_COLOR = 1.0f;
-
-const auto MUTATION_CREATION_RATE = 0.1f;
-const auto MUTATION_DELETION_RATE = 0.1f;
-
-
 float randomColourChannel(){
     return GetEngine().GetRandom().GetNumber(MIN_COLOR, MAX_COLOR);
 }
@@ -31,7 +22,7 @@ const dictionary DEFAULT_INITIAL_COMPOUNDS =
     };
 
 string randomSpeciesName(){
-    return "Species_" + formatFloat(GetEngine().GetRandom().GetNumber(0.f, 1.f));
+    return "Species_" + formatInt(GetEngine().GetRandom().GetNumber(0, 10000));
     //gotta use the latin names (But they aren't used?)
 }
 
@@ -63,6 +54,8 @@ class Species{
         commonConstructor(world);
 
         colour = randomColour();
+
+        this.setupSpawn(world);
     }
 
     ~Species(){
@@ -84,8 +77,7 @@ class Species{
 
         commonConstructor(world);
 
-        assert(false, "TODO: this setupSpawn needs to be in whatever code calls this");
-        // this.setupSpawn();
+        this.setupSpawn(world);
     }
 
     private void commonConstructor(CellStageWorld@ world){
@@ -101,6 +93,7 @@ class Species{
     //delete a species
     void extinguish(){
         if(forWorld !is null){
+            LOG_INFO("Species " + name + " has been extinguished");
             forWorld.GetSpawnSystem().removeSpawnType(this.id);
             //this.template.destroy() //game crashes if i do that.
             // Let's hope this doesn't crash then
@@ -115,6 +108,7 @@ class Species{
 
     ObjectID factorySpawn(CellStageWorld@ world, Float3 pos){
 
+        LOG_INFO("New member of species spawned: " + this.name);
         return MicrobeOperations::spawnMicrobe(world, pos, this.name,
             // ai controlled
             true,
@@ -133,6 +127,7 @@ class Species{
         SpawnFactoryFunc@ factory = SpawnFactoryFunc(this.factorySpawn);
 
         // And register new
+        LOG_INFO("Registering species to spawn: " + name);
         this.id = forWorld.GetSpawnSystem().addSpawnType(
             factory, DEFAULT_SPAWN_DENSITY, //spawnDensity should depend on population
             MICROBE_SPAWN_RADIUS);
@@ -200,7 +195,7 @@ class SpeciesSystem : ScriptSystem{
         // This is needed to actually have AI species in the world
         for(int i = 0; i < INITIAL_SPECIES; ++i){
 
-            species.insertLast(Species(world));
+            createSpecies();
         }
     }
 
@@ -229,7 +224,6 @@ class SpeciesSystem : ScriptSystem{
                 if(population > MAX_POP_SIZE){
 
                     auto newSpecies = Species(currentSpecies, world);
-                    newSpecies.setupSpawn(world);
                     species.insertLast(newSpecies);
 
                     LOG_INFO("Species " + currentSpecies.name + " split off a child species:" +
@@ -248,9 +242,7 @@ class SpeciesSystem : ScriptSystem{
             //new species
             while(species.length() < MIN_SPECIES){
                 LOG_INFO("Creating new species as there's too few");
-                auto newSpecies = Species(world);
-                newSpecies.setupSpawn(world);
-                species.insertLast(newSpecies);
+                createSpecies();
             }
 
             //mass extinction
@@ -282,6 +274,12 @@ class SpeciesSystem : ScriptSystem{
 
             species[i].population /= 2;
         }
+    }
+
+    //! Adds a new AI species
+    private void createSpecies(){
+        auto newSpecies = Species(world);
+        species.insertLast(newSpecies);
     }
 
     private int timeSinceLastCycle = 0;

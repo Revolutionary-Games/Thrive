@@ -14,6 +14,7 @@ Float3 calculateForce(int q, int r, float momentum){
     return delta.Normalize() * momentum;
 }
 
+//! \todo flagellum animation
 class MovementOrganelle : OrganelleComponent{
 
     // Constructor
@@ -63,7 +64,7 @@ class MovementOrganelle : OrganelleComponent{
         // The organelles' scenenode is positioned by itself unlike
         // the lua version where that was also attempted here
 
-        LOG_INFO("TODO: flagellum animation");
+        
         // this.sceneNode.playAnimation("Move", true);
         // 0.25 is the "idle" animation speed when the flagellum isn't used
         // this.sceneNode.setAnimationSpeed(0.25);
