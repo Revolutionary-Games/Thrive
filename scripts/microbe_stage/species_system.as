@@ -84,8 +84,8 @@ class Species{
 
         commonConstructor(world);
 
-        assert(false, "TODO: this setupSpawn needs to be in whatever code calls this");
-        // this.setupSpawn();
+        //assert(false, "TODO: this setupSpawn needs to be in whatever code calls this");
+        this.setupSpawn(world);
     }
 
     private void commonConstructor(CellStageWorld@ world){
