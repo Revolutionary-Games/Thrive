@@ -43,12 +43,6 @@ void setupSpecies(CellStageWorld@ world){
 
         LOG_INFO("created starter microbe \"" + name + "\", species entity = " + entity);
     }
-	//should I be generating new species here because that might work?
-	//Species::createSpecies(world, name, data);
-	//Species::createSpecies(world, name, data);
-	//Species::createSpecies(world, name, data);
-	//Species::createSpecies(world, name, data);
-	//Species::createSpecies(world, name, data);
 	
 
     LOG_INFO("setupSpecies created " + keys.length() + " species");
@@ -154,7 +148,7 @@ void createAgentCloud(CellStageWorld@ world, CompoundId compoundId, Float3 pos,
 
 
 
-//                               local void setSpawnablePhysics(entity, pos, mesh, scale, collisionShape){
+//local void setSpawnablePhysics(ObjectID entity, Float3 pos, mesh, scale, collisionShape){
 //                               // Rigid body
 //                               auto rigidBody = RigidBodyComponent()
 //                               rigidBody.properties.friction = 0.2
@@ -220,6 +214,9 @@ void setupSpawnSystem(CellStageWorld@ world){
 	
 	
 	LOG_INFO("setting  up spawn information");
+	LOG_INFO("setting up free floating organelles");
+	setupFloatingOrganelles(world);
+	LOG_INFO("setting up species");
 	 auto keys = STARTER_MICROBES.getKeys();
 	  for(int n = 0; n < keys.length(); n++)
 		{
@@ -242,8 +239,9 @@ void setupSpawnSystem(CellStageWorld@ world){
 
 
 //moved this over here fo rnow, its probabbly good to put "free spawning organelles" in their own function
-
-//             auto toxinOrganelleSpawnvoid = function(pos){
+void setupFloatingOrganelles(CellStageWorld@ world){
+	//spawn toxin and chloroplasts
+	//             auto toxinOrganelleSpawnvoid = function(pos){
 	//             powerupEntity = Entity(g_luaEngine.currentGameState.wrapper)
 	//             setSpawnablePhysics(powerupEntity, pos, "AgentVacuole.mesh", 0.9,
 	//                 SphereShape(HEX_SIZE))
@@ -273,7 +271,7 @@ void setupSpawnSystem(CellStageWorld@ world){
 	//             powerupEntity.addComponent(powerupComponent)
 	//             return powerupEntity
 	//             }
-	
+	}
 
 void setupSound(CellStageWorld@ world){
 	//                               auto ambientEntity = Entity("ambience", gameState.wrapper)
