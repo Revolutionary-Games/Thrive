@@ -737,11 +737,12 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
         @world = null;
     }
 
+    //! \todo flashOrganelle called on PlacedOrganelle but it doesn't work
     void flashOrganelle(float duration, Float4 colour){
         if(flashDuration > 0)
             return;
 
-        LOG_WARNING("flashOrganelle called on PlacedOrganelle but it doesn't work");
+        // LOG_WARNING("flashOrganelle called on PlacedOrganelle but it doesn't work");
         flashColour = colour;
         flashDuration = duration;
     }
