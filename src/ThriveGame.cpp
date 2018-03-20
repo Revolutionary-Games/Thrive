@@ -1436,7 +1436,7 @@ public:
     ObjectID run(CellStageWorld& world, Float3 pos){
 
         ScriptRunningSetup setup;
-        auto result = Leviathan::ScriptExecutor::Get()->RunScript<SpawnerTypeId>(
+        auto result = Leviathan::ScriptExecutor::Get()->RunScript<ObjectID>(
             m_func, nullptr, setup, &world, pos);
 
         if(result.Result != SCRIPT_RUN_RESULT::Success){
