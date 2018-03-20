@@ -53,7 +53,9 @@ ScriptComponent@ MicrobeComponentFactory(GameWorld@ world){
     return MicrobeComponent();
 }
 
-// This function instantiates all script system types for a world
+//! This function instantiates all script system types for a world
+//! and registers all the microbe components that are defined in scripts to work
+//! in a world
 void setupSystemsForWorld(CellStageWorld@ world){
 
     // Fail if compound registry is empty (hud system caches the compound ids on startup) //
