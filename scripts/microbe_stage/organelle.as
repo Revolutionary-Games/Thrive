@@ -361,6 +361,7 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
         }
     }
 
+    //! \todo PlacedOrganelle::updateColour: doesn't actually work
     protected void updateColour(){
 
         if(organelleEntity == NULL_OBJECT || microbeEntity == NULL_OBJECT)
@@ -369,7 +370,6 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
         auto model = world.GetComponent_Model(organelleEntity);
 
         // local entity = this.sceneNode.entity;
-        LOG_INFO("TODO: PlacedOrganelle::updateColour: doesn't actually work");
         // //entity.tintColour(this.name, this.colour); //crashes game
         
         // model.Entity.SetColour(colour);
