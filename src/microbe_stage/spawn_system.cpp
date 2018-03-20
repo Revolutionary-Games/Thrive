@@ -59,7 +59,7 @@ SpawnedComponent::SpawnedComponent(
 struct SpawnSystem::Implementation {
     SpawnerTypeId nextId = 0;
     std::unordered_map<SpawnerTypeId, SpawnType> spawnTypes;
-    Float3 previousPlayerPosition;
+    Float3 previousPlayerPosition = Float3(0, 0, 0);
     unsigned int timeSinceLastUpdate = 0;
 };
 
@@ -100,6 +100,13 @@ SpawnSystem::addSpawnType(
 void SpawnSystem::removeSpawnType(SpawnerTypeId spawnId) {
     m_impl->spawnTypes.erase(spawnId);
 }
+
+void SpawnSystem::Release(){
+    m_impl->spawnTypes.clear();
+    m_impl->previousPlayerPosition = Float3(0, 0, 0);
+    m_impl->timeSinceLastUpdate = 0;
+}
+// ------------------------------------ //
 
 SpawnSystem::SpawnSystem()
   : m_impl(new Implementation())

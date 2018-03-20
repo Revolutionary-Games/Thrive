@@ -111,6 +111,10 @@ public:
 
     void removeSpawnType(SpawnerTypeId spawnId);
 
+    //! Called before shutdown to clear everything
+    //! (called automatically when the world is released)
+    void Release();
+
     void
     CreateNodes(
         const std::vector<std::tuple<SpawnedComponent*, ObjectID>> &firstdata,
