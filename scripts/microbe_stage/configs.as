@@ -2,6 +2,24 @@
 #include "agents.as"
 #include "organelle.as"
 
+// Global defines
+const auto CLOUD_SPAWN_RADIUS = 75;
+
+const auto POWERUP_SPAWN_RADIUS = 85;
+
+const auto DEFAULT_SPAWN_DENSITY = 1/25000.f;
+
+const auto MIN_COLOR = 0.3f;
+const auto MAX_COLOR = 1.0f;
+
+const auto MUTATION_CREATION_RATE = 0.1f;
+const auto MUTATION_DELETION_RATE = 0.1f;
+
+const auto MICROBE_SPAWN_RADIUS = 85;
+
+const auto PLAYER_NAME = "Player";
+
+
 // TODO: move these into gamestate
 // must be global
 int chloroplast_Organelle_Number = 0;

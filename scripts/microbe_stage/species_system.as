@@ -2,15 +2,6 @@
 #include "microbe_operations.as"
 #include "procedural_microbes.as"
 
-const auto DEFAULT_SPAWN_DENSITY = 1/25000.f;
-
-const auto MIN_COLOR = 0.3f;
-const auto MAX_COLOR = 1.0f;
-
-const auto MUTATION_CREATION_RATE = 0.1f;
-const auto MUTATION_DELETION_RATE = 0.1f;
-
-
 float randomColourChannel(){
     return GetEngine().GetRandom().GetNumber(MIN_COLOR, MAX_COLOR);
 }
@@ -117,6 +108,7 @@ class Species{
 
     ObjectID factorySpawn(CellStageWorld@ world, Float3 pos){
 
+        LOG_INFO("New member of species spawned: " + this.name);
         return MicrobeOperations::spawnMicrobe(world, pos, this.name,
             // ai controlled
             true,

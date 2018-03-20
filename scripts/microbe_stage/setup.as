@@ -4,11 +4,8 @@
 #include "microbe.as"
 #include "microbe_stage_hud.as"
 #include "microbe_operations.as"
+#include "microbe_ai.as"
 
-const auto CLOUD_SPAWN_RADIUS = 75;
-
-const auto POWERUP_SPAWN_RADIUS = 85;
-const auto MICROBE_SPAWN_RADIUS = 85;
 
 // This is a helper for calling all the setup functions at the same time
 // This is the one called from C++
@@ -19,12 +16,12 @@ void setupScriptsForWorld(CellStageWorld@ world){
     setupSound(world);
 }
 
-// This function should be the entry point for all initial-species generation
+// This function should be the entry point for all player initial-species generation
 // For now, it can go through the XML and instantiate all the species, but later this 
 // would be all procedural.
-// Together with the mutate function, these would be the only ways species are created
 // Currently this goes through STARTER_MICROBES (defined in config.as) and makes entities with
 // SpeciesComponents with the properties of the species
+// The SpeciesSystem handles creating AI species
 void setupSpecies(CellStageWorld@ world){
 
     // Fail if compound registry is empty //
@@ -53,6 +50,11 @@ ScriptComponent@ MicrobeComponentFactory(GameWorld@ world){
     return MicrobeComponent();
 }
 
+ScriptComponent@ MicrobeAIControllerComponentFactory(GameWorld@ world){
+
+    return MicrobeAIControllerComponent();
+}
+
 //! This function instantiates all script system types for a world
 //! and registers all the microbe components that are defined in scripts to work
 //! in a world
@@ -63,17 +65,17 @@ void setupSystemsForWorld(CellStageWorld@ world){
         "Compound registry is empty");
 
     world.RegisterScriptComponentType("MicrobeComponent", @MicrobeComponentFactory);
+    world.RegisterScriptComponentType("MicrobeAIControllerComponent",
+        @MicrobeAIControllerComponentFactory);
 
     world.RegisterScriptSystem("MicrobeSystem", MicrobeSystem());
     world.RegisterScriptSystem("MicrobeStageHudSystem", MicrobeStageHudSystem());
     world.RegisterScriptSystem("SpeciesSystem", SpeciesSystem());
+    world.RegisterScriptSystem("MicrobeAISystem", MicrobeAISystem());
 
     // TODO: add the rest of the systems and component types that are defined in scripts here
 }
 
-
-
-const auto PLAYER_NAME = "Player";
 
 //! This spawns the player
 void setupPlayer(CellStageWorld@ world){
@@ -191,57 +193,60 @@ void createAgentCloud(CellStageWorld@ world, CompoundId compoundId, Float3 pos,
 //             entity.addComponent(timedEmitter)
 //             }
 
-	
-ObjectID factorySpawn(CellStageWorld@ world, Float3 pos){
-        return MicrobeOperations::spawnMicrobe(world, pos, "Default", true,"");
+//! AI species are spawned by Species in species_system
+class PlayerSpeciesSpawner{
+    PlayerSpeciesSpawner(const string &in speciesName){
+
+        this.species = speciesName;
+    }
+
+    private string species;
+
+    ObjectID factorySpawn(CellStageWorld@ world, Float3 pos){
+
+        LOG_INFO("Spawning a cell from player species: " + species);
+        return MicrobeOperations::spawnMicrobe(world, pos, species,
+        // ai controlled
+        true,
+        // No individual name (could be good for debugging)
+        "");
+    }
 }
-	
+
+// TODO: the player species handling would be more logically placed if
+// it was in SpeciesSystem, so move it there
 void setupSpawnSystem(CellStageWorld@ world){
 	//spawn code is here, if it isnt obvious by the name
-	SpawnSystem@ gSpawnSystem = world.GetSpawnSystem();
-	//             compoundSpawnTypes = {}
-	//         for(compoundName, compoundInfo in pairs(compoundTable)){
-	//                               if(compoundInfo.isCloud){
-	//             auto spawnCloud =  function(pos)
-	//             return createCompoundCloud(compoundName, pos.x, pos.y)
-	//             }
+	SpawnSystem@ spawnSystem = world.GetSpawnSystem();
 
-	//             compoundSpawnTypes[compoundName] = gSpawnSystem.addSpawnType(spawnCloud, 1/10000, CLOUD_SPAWN_RADIUS) // Placeholder, the real one is set in biome.lua
-	//             }
-
-	//             gSpawnSystem.addSpawnType(toxinOrganelleSpawnFunction, 1/17000, POWERUP_SPAWN_RADIUS)
-	//             gSpawnSystem.addSpawnType(ChloroplastOrganelleSpawnFunction, 1/12000, POWERUP_SPAWN_RADIUS)
-
-	//need to spawn microbes from the starter_microbes list, so need to loop through and define spawning for all of them
+    // Clouds are handled by biome.as
 	
-	
-	LOG_INFO("setting  up spawn information");
-	LOG_INFO("setting up free floating organelles");
+	LOG_INFO("setting up spawn information");
+    
 	setupFloatingOrganelles(world);
-	LOG_INFO("setting up species");
-	 auto keys = STARTER_MICROBES.getKeys();
-	  for(uint n = 0; n < keys.length(); n++)
-		{
+    
+	LOG_INFO("setting up player species to spawn");
+    auto keys = STARTER_MICROBES.getKeys();
+    for(uint n = 0; n < keys.length(); n++)
+    {
 		const string name = keys[n];
-		bool species;
-		STARTER_MICROBES.get(name,species);
-		LOG_INFO("adding spawn for: "+name);
-		//gSpawnSystem.addSpawnType(SpawnFactoryFunc(factorySpawn),DEFAULT_SPAWN_DENSITY, MICROBE_SPAWN_RADIUS);
-		}
-		
-	//for(name, species in pairs(starter_microbes)){
-    //
-	//                               gSpawnSystem.addSpawnType(
-	//                                   function(pos) {
-	//                                   return microbeSpawnFunctionGeneric(pos, name, true, null,
-	//                                       g_luaEngine.currentGameState) 
-	//									   }, species.spawnDensity, MICROBE_SPAWN_RADIUS);
-	//                              }
+
+        PlayerSpeciesSpawner@ spawner = PlayerSpeciesSpawner(name);
+
+        SpawnFactoryFunc@ factory = SpawnFactoryFunc(spawner.factorySpawn);
+        
+		LOG_INFO("adding spawn player species: " + name);
+
+        const auto spawnerId = spawnSystem.addSpawnType(
+            factory, DEFAULT_SPAWN_DENSITY, //spawnDensity should depend on population
+            MICROBE_SPAWN_RADIUS);
+    }
 }
 
 
 //moved this over here fo rnow, its probabbly good to put "free spawning organelles" in their own function
 void setupFloatingOrganelles(CellStageWorld@ world){
+    LOG_INFO("setting up free floating organelles");
 	//spawn toxin and chloroplasts
 	//             auto toxinOrganelleSpawnvoid = function(pos){
 	//             powerupEntity = Entity(g_luaEngine.currentGameState.wrapper)

@@ -222,7 +222,7 @@ class MicrobeSystemCached{
     CompoundBagComponent@ sixth;
     // TODO: determine if this is accessed frequently enough that it should be here
     // Physics ;
- }
+}
 
 
 

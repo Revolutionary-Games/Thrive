@@ -209,8 +209,15 @@ SpawnSystem::Run(
                         // Giving the new entity a spawn component.
                         if(spawnedEntity != NULL_OBJECT) {
 
-                            world.Create_SpawnedComponent(spawnedEntity,
-                                spawnType.spawnRadiusSqr);
+                            try{
+                                world.Create_SpawnedComponent(spawnedEntity,
+                                    spawnType.spawnRadiusSqr);
+                            } catch(const Leviathan::Exception &e){
+
+                                LOG_ERROR("SpawnSystem failed to add SpawnedComponent, "
+                                    "exception:");
+                                e.PrintToLog();
+                            }
                         }
                     }
                 }
