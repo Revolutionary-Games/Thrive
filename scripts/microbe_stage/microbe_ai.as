@@ -312,8 +312,9 @@ class MicrobeAISystem : ScriptSystem{
             //     // If we are NOT currenty heading towards an emitter
                     
             //   }
+            
 
-            // I guess this part just makes the AI move randomly
+                // I guess this part just makes the AI move randomly
                 // if(aiComponent.targetEmitterPosition == null){
                 auto randAngle = GetEngine().GetRandom().GetFloat(0, 2*PI);
                 auto randDist = GetEngine().GetRandom().GetFloat(10,
@@ -322,18 +323,18 @@ class MicrobeAISystem : ScriptSystem{
                 targetPosition = Float3(cos(randAngle) * randDist, 
                     0, sin(randAngle)* randDist);
                 // }
-            auto vec = (targetPosition - position._Position);
-            aiComponent.direction = vec.Normalize();
-            microbeComponent.facingTargetPoint = targetPosition; 
-            microbeComponent.movementDirection = Float3(0, 0, AI_MOVEMENT_SPEED);
+                auto vec = (targetPosition - position._Position);
+                aiComponent.direction = vec.Normalize();
+                microbeComponent.facingTargetPoint = targetPosition; 
+                microbeComponent.movementDirection = Float3(0, 0, -AI_MOVEMENT_SPEED);
+            }
         }
     }
-}
+    
+    void Clear(){
 
-void Clear(){
-
-    CachedComponents.resize(0);
-}
+        CachedComponents.resize(0);
+    }
 
     void CreateAndDestroyNodes(){
 
@@ -348,27 +349,32 @@ void Clear(){
         ScriptSystemUses("MicrobeAIControllerComponent"),
         ScriptSystemUses("MicrobeComponent"),
         ScriptSystemUses(Position::TYPE)
-    };    
+    };
+
+    // This isn't currently possible to store
+    // dictionary microbes = {};
+
+    // It's really silly to have these here instead of in the AI
+    // component, like what system tries to store most of its state in
+    // itself instead of its components?
+    // dictionary preyCandidates = {};
+    // // Used for removing from preyCandidates
+    // dictionary preyEntityToIndexMap = {}; 
+    // int currentPreyIndex = 0;
+    // //table for preys
+    // dictionary preys = {};
+    // //the final prey the cell should hunt
+    // ObjectID p = NULL_OBJECT;
+    // //counting number of frames so the prey get updated the fittest prey
+    // int preycount = 0;
+    // //checking if the prey escaped
+    // bool preyEscaped = false; 
+    // //table for predadtors the cell should run from
+    // dictionary predators = {};
+    // //the final predator the cell shall run from
+    // ObjectID predator = NULL_OBJECT; 
     
-dictionary microbes = {};
-dictionary preyCandidates = {};
-// Used for removing from preyCandidates
-dictionary preyEntityToIndexMap = {}; 
-int currentPreyIndex = 0;
-dictionary oxygenEmitters = {};
-dictionary glucoseEmitters = {};
-//table for preys
-dictionary preys = {};
-//the final prey the cell should hunt
-ObjectID p = NULL_OBJECT;
-//i need it to be very big for now it will get changed
-int preyMaxHitpoints = 100000;
-//counting number of frames so the prey get updated the fittest prey
-int preycount = 0;
-//checking if the prey escaped
-bool preyEscaped = false; 
-//table for predadtors the cell should run from
-dictionary predators = {};
-//the final predator the cell shall run from
-ObjectID predator = NULL_OBJECT; 
+    //i need it to be very big for now it will get changed
+    int preyMaxHitpoints = 100000;
+
 }
