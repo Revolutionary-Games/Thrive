@@ -10,6 +10,8 @@
 #include <OgreColourValue.h>
 #include <OgreItem.h>
 
+#include <atomic>
+
 namespace thrive {
 
 /**
