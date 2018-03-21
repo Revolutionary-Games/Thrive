@@ -678,6 +678,9 @@ ObjectID spawnMicrobe(CellStageWorld@ world, Float3 pos, const string &in specie
     assert(world !is null);
     assert(speciesName != "");
 
+    if(pos.Y != 0)
+        LOG_WARNING("spawnMicrobe: spawning at y-coordinate: " + pos.Y);
+
     auto processor = getProcessorComponent(world, speciesName);
 
     if(processor is null){
@@ -697,11 +700,13 @@ ObjectID spawnMicrobe(CellStageWorld@ world, Float3 pos, const string &in specie
     microbePos._Position = pos;
     microbePos.Marked = true;
     
-    if(pos.Y != 0)
-        LOG_WARNING("spawnMicrobe: spawning at y-coordinate: " + pos.Y);
-    
     auto physics = world.GetComponent_Physics(microbeEntity);
     physics.JumpTo(microbePos);
+
+    // Try setting the position immediately as well (as otherwise it
+    // takes until the next tick for this to take effect)
+    auto node = world.GetComponent_RenderNode(microbeEntity);
+    node.Node.setPosition(pos);
 
     return microbeEntity;
 }
