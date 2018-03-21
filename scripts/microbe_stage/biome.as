@@ -14,7 +14,7 @@ ObjectID createCompoundCloud(CellStageWorld@ world, CompoundId compound,
     }
 
     // This is just a sanity check
-    //if(compoundTable[compoundName] and compoundTable[compoundName].isCloud){
+    //if(compoundTable[compoundName] and compoundTable[compoundName].isCloud)
     
     // addCloud requires integer arguments
     int roundedX = round(x);
@@ -51,29 +51,37 @@ dictionary compoundSpawnTypes;
 //Setting the current biome to the one with the specified name.
 void setBiome(uint64 biomeId, CellStageWorld@ world){
     assert(world !is null, "setBiome requires world");
-        
+    
+    LOG_INFO("setting biome to: " + biomeId);
     //Getting the base biome to change to.
     currentBiome = biomeId;
 
     auto biome = getCurrentBiome();
-
+    
     auto biomeCompounds = biome.getCompoundKeys();
+    LOG_INFO("biomeCompounds.length = " + biomeCompounds.length());
     for(uint i = 0; i < biomeCompounds.length(); ++i){
-
         auto compoundId = biomeCompounds[i];
 
         if(SimulationParameters::compoundRegistry().getTypeData(compoundId).isCloud){
 
             CloudFactory@ spawnCloud = CloudFactory(compoundId);
 
+            const string typeStr = formatUInt(compoundId);
+
             // Remove existing (if there is one)
-            world.GetSpawnSystem().removeSpawnType(SpawnerTypeId(compoundSpawnTypes[
-                        formatInt(compoundId)]));
+            if(compoundSpawnTypes.exists(typeStr)){
+                world.GetSpawnSystem().removeSpawnType(SpawnerTypeId(
+                        compoundSpawnTypes[typeStr]));
+            }
+
+            // And register new
+
+            LOG_INFO("registering cloud: " + compoundId);
             
             SpawnFactoryFunc@ factory = SpawnFactoryFunc(spawnCloud.spawn);
 
-            // And register new
-            compoundSpawnTypes[formatInt(compoundId)] = world.GetSpawnSystem().addSpawnType(
+            compoundSpawnTypes[typeStr] = world.GetSpawnSystem().addSpawnType(
                 factory, biome.getCompound(biomeCompounds[i]).density,
                 CLOUD_SPAWN_RADIUS);
         }
@@ -85,6 +93,7 @@ void setBiome(uint64 biomeId, CellStageWorld@ world){
 
 //Setting the current biome to a random biome selected from the biome table.
 void setRandomBiome(CellStageWorld@ world){
+     LOG_INFO("setting random biome");
     //Getting the size of the biome table.
     //Selecting a random biome.
     auto biome = GetEngine().GetRandom().GetNumber(0,
