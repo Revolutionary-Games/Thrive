@@ -145,7 +145,7 @@ class Species{
     string name;
     string stringCode;
     int population = INITIAL_POPULATION;
-    Float4 colour = Float4(1, 1, 1, 1);
+    Float4 colour = randomColour();
 
     //! The species entity that has this species' SpeciesComponent
     ObjectID templateEntity = NULL_OBJECT;
