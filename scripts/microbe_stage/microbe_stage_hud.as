@@ -41,6 +41,34 @@ class MicrobeStageHudSystem : ScriptSystem{
         this.atpId = SimulationParameters::compoundRegistry().getTypeId("atp");
         this.atpVolume = SimulationParameters::compoundRegistry().getTypeData(
             this.atpId).volume;
+		
+		this.oxygenId = SimulationParameters::compoundRegistry().getTypeId("oxygen");
+        this.oxygenVolume = SimulationParameters::compoundRegistry().getTypeData(
+            this.oxygenId).volume; 
+		
+		this.aminoacidsId = SimulationParameters::compoundRegistry().getTypeId("aminoacids");
+        this.aminoacidsVolume = SimulationParameters::compoundRegistry().getTypeData(
+            this.aminoacidsId).volume; 
+		
+		this.ammoniaId = SimulationParameters::compoundRegistry().getTypeId("ammonia");
+        this.ammoniaVolume = SimulationParameters::compoundRegistry().getTypeData(
+            this.ammoniaId).volume; 
+		
+		this.glucoseId = SimulationParameters::compoundRegistry().getTypeId("glucose");
+        this.glucoseVolume = SimulationParameters::compoundRegistry().getTypeData(
+            this.glucoseId).volume; 
+		
+		this.co2Id = SimulationParameters::compoundRegistry().getTypeId("co2");
+        this.co2Volume = SimulationParameters::compoundRegistry().getTypeData(
+            this.co2Id).volume; 
+			
+		this.fattyacidsId = SimulationParameters::compoundRegistry().getTypeId("fattyacids");
+        this.fattyacidsVolume = SimulationParameters::compoundRegistry().getTypeData(
+            this.fattyacidsId).volume; 
+			
+		this.oxytoxyId = SimulationParameters::compoundRegistry().getTypeId("oxytoxy");
+        this.oxytoxyVolume = SimulationParameters::compoundRegistry().getTypeData(
+            this.oxytoxyId).volume; 
     }
 
     void Release(){
@@ -66,6 +94,27 @@ class MicrobeStageHudSystem : ScriptSystem{
 
                 const auto atpAmount = bag.getCompoundAmount(atpId);
                 const auto maxATP = microbeComponent.capacity / atpVolume;
+				
+				const auto oxygenAmount = bag.getCompoundAmount(oxygenId);
+                const auto maxOxygen = microbeComponent.capacity / oxygenVolume;
+				
+				const auto aminoacidsAmount = bag.getCompoundAmount(aminoacidsId);
+                const auto maxAminoacids = microbeComponent.capacity / aminoacidsVolume;
+				
+				const auto ammoniaAmount = bag.getCompoundAmount(ammoniaId);
+                const auto maxAmmonia = microbeComponent.capacity / ammoniaVolume;
+				
+				const auto glucoseAmount = bag.getCompoundAmount(glucoseId);
+                const auto maxGlucose = microbeComponent.capacity / glucoseVolume;
+				
+				const auto co2Amount = bag.getCompoundAmount(co2Id);
+                const auto maxCo2 = microbeComponent.capacity / co2Volume;
+				
+				const auto fattyacidsAmount = bag.getCompoundAmount(fattyacidsId);
+                const auto maxFattyacids = microbeComponent.capacity / fattyacidsVolume;
+				
+				const auto oxytoxyAmount = bag.getCompoundAmount(oxytoxyId);
+                const auto maxOxytoxy = microbeComponent.capacity / oxytoxyVolume;
 
                 GenericEvent@ event = GenericEvent("PlayerCompoundAmounts");
                 NamedVars@ vars = event.GetNamedVars();
@@ -73,7 +122,27 @@ class MicrobeStageHudSystem : ScriptSystem{
                 // Write data
                 vars.AddValue(ScriptSafeVariableBlock("compoundATP", atpAmount));
                 vars.AddValue(ScriptSafeVariableBlock("ATPMax", maxATP));
-                // TODO: other compounds
+                
+				vars.AddValue(ScriptSafeVariableBlock("compoundOxygen", oxygenAmount));
+                vars.AddValue(ScriptSafeVariableBlock("OxygenMax", maxOxygen)); 
+				
+				vars.AddValue(ScriptSafeVariableBlock("compoundAminoacids", aminoacidsAmount));
+                vars.AddValue(ScriptSafeVariableBlock("AminoacidsMax", maxAminoacids)); 
+				
+				vars.AddValue(ScriptSafeVariableBlock("compoundAmmonia", ammoniaAmount));
+                vars.AddValue(ScriptSafeVariableBlock("AmmoniaMax", maxAmmonia)); 
+				
+				vars.AddValue(ScriptSafeVariableBlock("compoundGlucose", glucoseAmount));
+                vars.AddValue(ScriptSafeVariableBlock("GlucoseMax", maxGlucose)); 
+
+				vars.AddValue(ScriptSafeVariableBlock("compoundCo2", co2Amount));
+                vars.AddValue(ScriptSafeVariableBlock("Co2Max", maxCo2)); 
+
+				vars.AddValue(ScriptSafeVariableBlock("compoundFattyacids", fattyacidsAmount));
+                vars.AddValue(ScriptSafeVariableBlock("FattyacidsMax", maxFattyacids)); 
+				
+				vars.AddValue(ScriptSafeVariableBlock("compoundOxytoxy", oxytoxyAmount));
+                vars.AddValue(ScriptSafeVariableBlock("OxytoxyMax", maxOxytoxy)); 
 
                 // Fire it off so that the GUI scripts will get it and update the GUI state
                 GetEngine().GetEventHandler().CallEvent(event);
@@ -211,6 +280,27 @@ class MicrobeStageHudSystem : ScriptSystem{
 
     CompoundId atpId;
     float atpVolume;
+	
+	CompoundId oxygenId;
+    float oxygenVolume;
+	
+	CompoundId aminoacidsId;
+    float aminoacidsVolume;
+	
+	CompoundId ammoniaId;
+    float ammoniaVolume;
+	
+	CompoundId glucoseId;
+    float glucoseVolume;
+	
+	CompoundId co2Id;
+    float co2Volume;
+	
+	CompoundId fattyacidsId;
+    float fattyacidsVolume;
+	
+	CompoundId oxytoxyId;
+    float oxytoxyVolume;
 }
 
 
