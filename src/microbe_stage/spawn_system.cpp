@@ -144,6 +144,9 @@ SpawnSystem::Run(
             e.PrintToLog();
             return;
         }
+
+        // Remove the y-position from player position
+        playerPosition.Y = 0;
         
         // Despawn entities.
         for(const auto& entry : CachedComponents.GetIndex()) {
