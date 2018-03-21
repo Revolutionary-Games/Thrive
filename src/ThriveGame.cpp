@@ -60,17 +60,35 @@ public:
     //! Releases Ogre things. Needs to be called before shutdown
     void releaseOgreResources(){
 
-        if(m_microbeBackgroundItem){
-
-            m_cellStage->GetScene()->destroyItem(m_microbeBackgroundItem);
-            m_microbeBackgroundItem = nullptr;
-        }
+        destroyBackgroundItem();
 
         if(m_microbeBackgroundMesh){
 
             Ogre::MeshManager::getSingleton().remove(m_microbeBackgroundMesh);
             m_microbeBackgroundMesh.reset();
+            m_microbeBackgroundSubMesh = nullptr;
         }
+    }
+
+    void destroyBackgroundItem(){
+
+        if(m_microbeBackgroundItem){
+
+            m_cellStage->GetScene()->destroyItem(m_microbeBackgroundItem);
+            m_microbeBackgroundItem = nullptr;
+        }
+    }
+
+    void createBackgroundItem(){
+
+        destroyBackgroundItem();
+
+        m_microbeBackgroundItem = m_cellStage->GetScene()->createItem(
+            m_microbeBackgroundMesh, Ogre::SCENE_STATIC);
+        m_microbeBackgroundItem->setCastShadows(false);
+
+        // Need to edit the render queue and add it to an early one
+        m_microbeBackgroundItem->setRenderQueueGroup(1);
     }
 
     ThriveGame& m_game;
@@ -84,7 +102,9 @@ public:
 
     //! This is the background object of the cell stage
     Ogre::MeshPtr m_microbeBackgroundMesh;
+    Ogre::SubMesh* m_microbeBackgroundSubMesh;
     Ogre::Item* m_microbeBackgroundItem = nullptr;
+    Ogre::SceneNode* m_backgroundRenderNode = nullptr;
 
     std::shared_ptr<MainMenuKeyPressListener> m_menuKeyPresses;
     std::shared_ptr<PlayerMicrobeControl> m_cellStageKeys;
@@ -184,15 +204,12 @@ void ThriveGame::startNewGame(){
 
     m_impl->m_cellStage->SetCamera(m_cellCamera);
 
-	// This is here for testing purposes only.
-	BiomeController bc;
-	size_t currentBiomeid = bc.getCurrentBiome();
-	std::string background =
-        SimulationParameters::biomeRegistry.getTypeData(currentBiomeid).background;
-
     // Setup compound clouds //
+    // This is needed for the compound clouds to work in generale
     const auto compoundCount = SimulationParameters::compoundRegistry.getSize();
 
+    LEVIATHAN_ASSERT(SimulationParameters::compoundRegistry.getSize() > 0,
+        "compound registry is empty when creating cloud entities for them");
     for(size_t i = 0; i < compoundCount; ++i){
 
         const auto& data = SimulationParameters::compoundRegistry.getTypeData(i);
@@ -232,14 +249,14 @@ void ThriveGame::startNewGame(){
     // This is needed to be created here for biome.as to work correctly
     // Also this is a manual object and with infinite extent as this isn't perspective
     // projected in the shader
-    Ogre::SceneNode* backgroundRenderNode =
+    m_impl->m_backgroundRenderNode =
         m_impl->m_cellStage->GetScene()->createSceneNode(Ogre::SCENE_STATIC);
         
     // This needs to be manually destroyed later
     m_impl->m_microbeBackgroundMesh = Ogre::MeshManager::getSingleton().createManual(
         "CellStage_background", Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
 
-    Ogre::SubMesh* subMesh = m_impl->m_microbeBackgroundMesh->createSubMesh();    
+    m_impl->m_microbeBackgroundSubMesh = m_impl->m_microbeBackgroundMesh->createSubMesh();    
 
     Ogre::RenderSystem* renderSystem = Ogre::Root::getSingleton().getRenderSystem();
     Ogre::VaoManager* vaoManager = renderSystem->getVaoManager();
@@ -249,6 +266,7 @@ void ThriveGame::startNewGame(){
     vertexElements.push_back(Ogre::VertexElement2(Ogre::VET_FLOAT2,
             Ogre::VES_TEXTURE_COORDINATES));
 
+    // This is a fullscreen quad in screenspace (so no transform matrix is used)
     float vertexData[] = {
         // First vertex
         -1, -1, 0,
@@ -282,29 +300,26 @@ void ThriveGame::startNewGame(){
     Ogre::VertexArrayObject* vao = vaoManager->createVertexArrayObject(
         vertexBuffers, indexBuffer, Ogre::OT_TRIANGLE_LIST);
 
-    subMesh->mVao[Ogre::VpNormal].push_back(vao);
+    m_impl->m_microbeBackgroundSubMesh->mVao[Ogre::VpNormal].push_back(vao);
 
     // This might be needed because we use a v2 mesh
     //Use the same geometry for shadow casting.
-    // subMesh->mVao[Ogre::VpShadow].push_back( vao );
+    // m_impl->m_microbeBackgroundSubMesh->mVao[Ogre::VpShadow].push_back( vao );
         
     // Set the bounds to get frustum culling and LOD to work correctly.
-    // TO infinite to always render
+    // To infinite to always render
     m_impl->m_microbeBackgroundMesh->_setBounds(Ogre::Aabb::BOX_INFINITE /*, false*/);
 
-    subMesh->setMaterialName(background);
+    m_impl->m_microbeBackgroundSubMesh->setMaterialName("Background");
 
-    m_impl->m_microbeBackgroundItem = m_impl->m_cellStage->GetScene()->createItem(
-        m_impl->m_microbeBackgroundMesh, Ogre::SCENE_STATIC);
-    m_impl->m_microbeBackgroundItem->setCastShadows(false);
-
-    // Need to edit the render queue and add it to an early one
+    // Setup render queue for it
     m_impl->m_cellStage->GetScene()->getRenderQueue()->setRenderQueueMode(1,
         Ogre::RenderQueue::FAST);
-    m_impl->m_microbeBackgroundItem->setRenderQueueGroup(1);
 
+    m_impl->createBackgroundItem();
+    
     // Add it 
-    backgroundRenderNode->attachObject(m_impl->m_microbeBackgroundItem);
+    m_impl->m_backgroundRenderNode->attachObject(m_impl->m_microbeBackgroundItem);
 
 
     // Spawn player //
@@ -318,49 +333,7 @@ void ThriveGame::startNewGame(){
         LOG_ERROR("Failed to spawn player!");
         return;
     }
-   
-	// Test model //
-    if(false){
-        const auto testModel = m_impl->m_cellStage->CreateEntity();
-        m_impl->m_cellStage->Create_Position(testModel, Float3(0, 0, 0), Ogre::Quaternion(Ogre::Degree(90), Ogre::Vector3::UNIT_X));
-        auto& node = m_impl->m_cellStage->Create_RenderNode(testModel);
-        m_impl->m_cellStage->Create_Model(testModel, node.Node, "nucleus.mesh");
-    }
-
-
-    // TODO: verify that the membrane works
-    // ObjectID testMembrane = m_impl->m_cellStage->CreateEntity();
-
-    // m_impl->m_cellStage->Create_RenderNode(testMembrane);
-    // m_impl->m_cellStage->Create_Position(testMembrane, Float3(0), Float4::IdentityQuaternion());
-
-    // MembraneComponent& membrane = m_impl->m_cellStage->Create_MembraneComponent(testMembrane);
-    // for(int x = -3; x <= 3; ++x){
-    //     for(int y = -3; y <= 3; ++y){
-    //         membrane.sendOrganelles(x, y);
-    //     }
-    // }
 }
-
-// void ThriveGame::respawnPlayerCell(){
-//     LEVIATHAN_ASSERT(m_playerCell == 0, "Player alive in respawnPlayercell");
-
-//     m_playerCell = m_impl->m_cellStage->CreateEntity();
-
-//     m_impl->m_cellStage->Create_RenderNode(m_playerCell);
-// 	auto& processor = m_impl->m_cellStage->Create_ProcessorComponent(m_playerCell);
-// 	auto& compoundBag = m_impl->m_cellStage->Create_CompoundBagComponent(m_playerCell);
-// 	m_impl->m_cellStage->Create_SpeciesComponent(m_playerCell, "PIKACHU");
-
-//     m_impl->m_cellStage->Create_Position(m_playerCell, Float3(0), Float4::IdentityQuaternion());
-
-//     MembraneComponent& membrane = m_impl->m_cellStage->Create_MembraneComponent(m_playerCell);
-//     for(int x = -3; x <= 3; ++x){
-//         for(int y = -3; y <= 3; ++y){
-//             membrane.sendOrganelles(x, y);
-//         }
-//     }
-// }
 
 void ThriveGame::loadSaveGame(const std::string& saveFile) {
 	// i hate the very idea of writing the same code twice, so i want to call startNewGame first
@@ -447,7 +420,12 @@ void
 ThriveGame::setBackgroundMaterial(const std::string &material){
 
     LOG_INFO("Setting microbe background to: " + material);
-    m_impl->m_microbeBackgroundMesh->getSubMesh(0)->setMaterialName(material);
+    m_impl->m_microbeBackgroundSubMesh->setMaterialName(material);
+
+    m_impl->createBackgroundItem();
+
+    // Add it
+    m_impl->m_backgroundRenderNode->attachObject(m_impl->m_microbeBackgroundItem);
 }
 
 // ------------------------------------ //
