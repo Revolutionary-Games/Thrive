@@ -216,8 +216,8 @@ void handleCompoundBarsUpdate(GuiObject@ instance, GenericEvent@ event){
 	
 		if(glucose !is null || glucoseMax !is null){
         auto glucoseAmount = double(glucose);
-        auto max = double(glucose);
-		
+        auto max = double(glucoseMax);
+
         glucoseBarAsBar.SetProgress(glucoseAmount / max);
         glucoseCountLabel.SetText(formatFloat(floor(glucoseAmount)));
         glucoseMaxLabel.SetText("/" + formatFloat(floor(glucoseMax)));
