@@ -147,10 +147,10 @@ class MovementOrganelle : OrganelleComponent{
 
         const auto target = Float4::QuaternionLookAt(pos._Position,
             microbeComponent.facingTargetPoint);
-        // const auto current = pos._Orientation;
+        const auto current = pos._Orientation;
         // Slerp 50% of the way each call
-        //const auto interpolated = current.Slerp(target, 0.5f);
-        const auto interpolated = target;
+        const auto interpolated = current.Slerp(target, 0.5f);
+        // const auto interpolated = target;
         
         // Not sure if updating the Position component here does anything
         pos._Orientation = interpolated;
