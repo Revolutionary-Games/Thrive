@@ -5,6 +5,7 @@
 #include "microbe_stage_hud.as"
 #include "microbe_operations.as"
 #include "microbe_ai.as"
+#include "biome.as"
 
 
 // This is a helper for calling all the setup functions at the same time
@@ -80,7 +81,7 @@ void setupSystemsForWorld(CellStageWorld@ world){
 //! This spawns the player
 void setupPlayer(CellStageWorld@ world){
     assert(world !is null);
-
+	setRandomBiome(world);
     GetThriveGame().playerData().lockedMap().addLock("Toxin");
     GetThriveGame().playerData().lockedMap().addLock("chloroplast");
     
