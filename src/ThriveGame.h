@@ -9,7 +9,9 @@
 #include "Application/KeyConfiguration.h"
 #include "Application/ClientApplication.h"
 #include "Events/EventHandler.h"
+#include "microbe_stage/compound_cloud_system.h"
 #include "Script/ScriptExecutor.h"
+#include <unordered_map>
 
 namespace thrive{
 
@@ -87,7 +89,9 @@ protected:
     void _ShutdownApplicationPacketHandler() override;
     
 private:
-    
+	CompoundCloudSystem* cloudSystem;
+	std::unordered_map<Leviathan::ObjectID , CompoundCloudComponent*> u;
+
     std::unique_ptr<ThriveNetHandler> Network;
 
     ObjectID m_cellCamera = 0;

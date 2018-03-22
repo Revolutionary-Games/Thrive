@@ -1,6 +1,7 @@
 // ------------------------------------ //
 #include "ThriveGame.h"
 
+#include <iostream>
 #include "thrive_net_handler.h"
 #include "thrive_version.h"
 #include "thrive_world_factory.h"
@@ -114,6 +115,8 @@ public:
 ThriveGame::ThriveGame(){
     m_impl = std::make_unique<Implementation>(*this);
     StaticGame = this;
+	cloudSystem = new CompoundCloudSystem();
+	u = {};
 }
 
 ThriveGame::~ThriveGame(){
@@ -205,21 +208,24 @@ void ThriveGame::startNewGame(){
     m_impl->m_cellStage->SetCamera(m_cellCamera);
 
     // Setup compound clouds //
+	cloudSystem->Init(*m_impl->m_cellStage.get());
+
     // This is needed for the compound clouds to work in generale
     const auto compoundCount = SimulationParameters::compoundRegistry.getSize();
 
     LEVIATHAN_ASSERT(SimulationParameters::compoundRegistry.getSize() > 0,
         "compound registry is empty when creating cloud entities for them");
+	std::unordered_map<Leviathan::ObjectID, thrive::CompoundCloudComponent> u = {};
+
     for(size_t i = 0; i < compoundCount; ++i){
 
         const auto& data = SimulationParameters::compoundRegistry.getTypeData(i);
 
         if(!data.isCloud)
             continue;
-
         auto cloudId = m_impl->m_cellStage->CreateEntity();
-        m_impl->m_cellStage->Create_CompoundCloudComponent(cloudId, data.id,
-            data.colour.r, data.colour.g, data.colour.b);
+		 m_impl->m_cellStage->Create_CompoundCloudComponent(cloudId, data.id,
+			data.colour.r, data.colour.g, data.colour.b);
     }
 
     // Let the script do setup //
@@ -430,7 +436,7 @@ ThriveGame::setBackgroundMaterial(const std::string &material){
 
 // ------------------------------------ //
 void ThriveGame::Tick(int mspassed){
-
+	cloudSystem->Run(*m_impl->m_cellStage.get(), u, mspassed);
 }
 
 void ThriveGame::CustomizeEnginePostLoad(){
