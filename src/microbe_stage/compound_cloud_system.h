@@ -116,7 +116,7 @@ public:
     /**
     * @brief Initializes the system
     *
-    * @param gameState
+    * @param world
     */
     void Init(CellStageWorld &world);
 

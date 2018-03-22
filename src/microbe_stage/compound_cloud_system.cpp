@@ -169,7 +169,7 @@ void CompoundCloudSystem::Init(CellStageWorld &world){
     // dest = SBF_ONE_MINUS_SOURCE_ALPHA;
 
     Ogre::HlmsBlendblock blendblock;
-    // blendblock.mAlphaToCoverageEnabled = false;
+    //blendblock.mAlphaToCoverageEnabled = false;
     
     blendblock.mSourceBlendFactor = Ogre::SBF_SOURCE_ALPHA;
     blendblock.mDestBlendFactor = Ogre::SBF_ONE_MINUS_SOURCE_ALPHA;
@@ -195,13 +195,14 @@ void CompoundCloudSystem::Release(CellStageWorld &world){
 void CompoundCloudSystem::Run(CellStageWorld &world,
     std::unordered_map<ObjectID, CompoundCloudComponent*> &index, int tick)
 {
+	LOG_INFO("compound cloud system running");
     const int renderTime = Leviathan::TICKSPEED * tick;
 
     // Game::instance().engine().playerData().playerName()
     
     auto playerEntity = ThriveGame::instance()->playerData().activeCreature();
 
-    Float3 position = Float3(0, 0, 0);
+	Float3 position;
 
     if(playerEntity == NULL_OBJECT){
 
