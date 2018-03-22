@@ -115,8 +115,6 @@ public:
 ThriveGame::ThriveGame(){
     m_impl = std::make_unique<Implementation>(*this);
     StaticGame = this;
-	cloudSystem = new CompoundCloudSystem();
-	u = {};
 }
 
 ThriveGame::~ThriveGame(){
@@ -208,7 +206,6 @@ void ThriveGame::startNewGame(){
     m_impl->m_cellStage->SetCamera(m_cellCamera);
 
     // Setup compound clouds //
-	cloudSystem->Init(*m_impl->m_cellStage.get());
 
     // This is needed for the compound clouds to work in generale
     const auto compoundCount = SimulationParameters::compoundRegistry.getSize();
@@ -436,7 +433,6 @@ ThriveGame::setBackgroundMaterial(const std::string &material){
 
 // ------------------------------------ //
 void ThriveGame::Tick(int mspassed){
-	cloudSystem->Run(*m_impl->m_cellStage.get(), u, mspassed);
 }
 
 void ThriveGame::CustomizeEnginePostLoad(){

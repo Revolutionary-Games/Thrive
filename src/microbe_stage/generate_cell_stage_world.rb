@@ -89,7 +89,11 @@ world = GameWorldClass.new(
                      runtick: {group: 50, parameters: []},
                      visibletoscripts: true,
                      release: []),
-
+    #EntitySystem.new("CompoundCloudSystem", [],
+    #                 runtick: {group: 45, parameters: [
+    #                             "ComponentTimedLifeComponent.GetIndex()"
+    #                          ]}),
+							   
     EntitySystem.new("AgentCloudSystem", ["Position", "AgentCloudComponent", "RenderNode"],
                      runtick: {group: 5, parameters: []}),
 

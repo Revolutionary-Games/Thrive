@@ -6,7 +6,12 @@ float randomColourChannel(){
     return GetEngine().GetRandom().GetNumber(MIN_COLOR, MAX_COLOR);
 }
 
-Float4 randomColour(float opaqueness = 1.0f){
+float randomOpacity(){
+    return GetEngine().GetRandom().GetNumber(MIN_OPACITY, MAX_OPACITY);
+}
+
+
+Float4 randomColour(float opaqueness = randomOpacity()){
     return Float4(randomColourChannel(), randomColourChannel(), randomColourChannel(),
         opaqueness);
 }
@@ -70,7 +75,17 @@ class Species{
     // Creates a mutated version of the species and reduces the species population by half
     Species(Species@ parent, CellStageWorld@ world){
         name = randomSpeciesName();
-        this.colour = randomColour();
+		//chance of new color needs to be low
+		if (GetEngine().GetRandom().GetNumber(0,100)==1)
+			{
+			LOG_INFO("New Clade");
+			//we can do more fun stuff here later
+			this.colour = randomColour();
+			}
+			else
+			{
+			this.colour = parent.colour;
+			}
         this.population = int(floor(parent.population / 2.f));
         parent.population = int(ceil(parent.population / 2.f));
         this.stringCode = Species::mutate(parent.stringCode);

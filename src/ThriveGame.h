@@ -89,9 +89,6 @@ protected:
     void _ShutdownApplicationPacketHandler() override;
     
 private:
-	CompoundCloudSystem* cloudSystem;
-	std::unordered_map<Leviathan::ObjectID , CompoundCloudComponent*> u;
-
     std::unique_ptr<ThriveNetHandler> Network;
 
     ObjectID m_cellCamera = 0;
