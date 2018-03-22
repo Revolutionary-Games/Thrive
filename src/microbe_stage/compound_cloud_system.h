@@ -132,7 +132,7 @@ public:
     * ticks and run like tick but at render time?
     */
     void Run(CellStageWorld &world,
-        std::unordered_map<ObjectID, CompoundCloudComponent*> &index, int tick);
+        std::unordered_map<ObjectID, CompoundCloudComponent*> &index);
 
 private:
 

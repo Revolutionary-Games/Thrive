@@ -193,10 +193,10 @@ void CompoundCloudSystem::Release(CellStageWorld &world){
 
 
 void CompoundCloudSystem::Run(CellStageWorld &world,
-    std::unordered_map<ObjectID, CompoundCloudComponent*> &index, int tick)
+    std::unordered_map<ObjectID, CompoundCloudComponent*> &index)
 {
 	LOG_INFO("compound cloud system running");
-    const int renderTime = Leviathan::TICKSPEED * tick;
+    const int renderTime = Leviathan::TICKSPEED;
 
     // Game::instance().engine().playerData().playerName()
     
