@@ -4,6 +4,10 @@
 
 #include "engine/player_data.h"
 
+#include "generated/cell_stage_world.h"
+
+#include "Generated\StandardWorld.h"
+
 #include <Entities/GameWorld.h>
 #include <Entities/ScriptComponentHolder.h>
 #include <Addons/GameModule.h>
@@ -14,11 +18,13 @@
 using namespace thrive;
 // ------------------------------------ //
 PlayerMicrobeControl::PlayerMicrobeControl() :
-    m_reproduceCheat(Leviathan::GKey::GenerateKeyFromString("P")),
-    m_forward(Leviathan::GKey::GenerateKeyFromString("W")),
-    m_backwards(Leviathan::GKey::GenerateKeyFromString("S")),
-    m_left(Leviathan::GKey::GenerateKeyFromString("A")),
-    m_right(Leviathan::GKey::GenerateKeyFromString("D"))
+	m_reproduceCheat(Leviathan::GKey::GenerateKeyFromString("P")),
+	m_forward(Leviathan::GKey::GenerateKeyFromString("W")),
+	m_backwards(Leviathan::GKey::GenerateKeyFromString("S")),
+	m_left(Leviathan::GKey::GenerateKeyFromString("Q")),
+	m_right(Leviathan::GKey::GenerateKeyFromString("E")),
+	m_rotateLeft(Leviathan::GKey::GenerateKeyFromString("A")),
+	m_rotateRight(Leviathan::GKey::GenerateKeyFromString("D"))
 {
     
 }
@@ -154,7 +160,51 @@ bool PlayerMicrobeControl::handleMovementKeys(
         }
 
         matched = true;
-    }
+
+	} else if (m_rotateLeft.Match(key, modifiers)){
+		if(down){
+
+			//if(!m_rotateLeftActive){
+
+				//m_rotateLeftActive = true;
+				m_targetAngle -= 0.0625;
+			//}
+
+		} /*else {
+
+			if(m_rotateLeftActive){
+				
+				m_rotateLeftActive = false;
+
+			}
+
+		}*/
+
+		matched = true;
+
+	} else if (m_rotateRight.Match(key, modifiers)){
+		if(down){
+
+			//if(!m_rotateRightActive){
+
+				//m_rotateRightActive = true;
+				m_targetAngle += 0.0625;
+
+			//}
+
+		} /*else {
+
+			if(m_rotateRightActive){
+				
+				m_rotateRightActive = false;
+
+			}
+
+		}*/
+
+		matched = true;
+
+	}
     
     if(matched){
         return true;
@@ -182,9 +232,10 @@ void PlayerMicrobeControlSystem::Run(
     ThriveGame* thrive = ThriveGame::Get();
 
     Float3 lookPoint;
+	float targetAngle = thrive->getPlayerInput()->getTargetAngle();
     
     try{
-        lookPoint = getTargetPoint(world);
+        lookPoint = getTargetPoint(world, targetAngle, controlledEntity);
     } catch(const Leviathan::InvalidState& e){
 
         LOG_ERROR("PlayerMicrobeControlSystem: cannot run because world has no "
@@ -215,12 +266,19 @@ void PlayerMicrobeControlSystem::Run(
     }
 }
 // ------------------------------------ //
-Float3 PlayerMicrobeControlSystem::getTargetPoint(Leviathan::GameWorld &worldWithCamera){
+Float3 PlayerMicrobeControlSystem::getTargetPoint(Leviathan::GameWorld &worldWithCamera, float targetAngle, ObjectID controlledEntity){
 
-    float x, y;
-    Engine::Get()->GetWindowEntity()->GetWindow()->GetNormalizedRelativeMouse(x, y);
+    float x, y, x1, y1;
+    Engine::Get()->GetWindowEntity()->GetWindow()->GetNormalizedRelativeMouse(x1, y1);
 
-    const auto ray = worldWithCamera.CastRayFromCamera(x, y);    
+	Leviathan::Position& camera = worldWithCamera.GetComponent<Leviathan::Position>(controlledEntity);
+	Float3 camera_position = camera.Members._Position;
+	x = camera_position.GetX();
+	y = camera_position.GetY();
+	x += 1000000 * std::cos(targetAngle);
+	y += 1000000 * std::sin(targetAngle);
+
+    auto ray = worldWithCamera.CastRayFromCamera(x, y); 
     
     const auto plane = Ogre::Plane(Ogre::Vector3(0, 1, 0), 0);
 

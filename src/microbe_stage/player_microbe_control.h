@@ -30,6 +30,10 @@ public:
         return m_playerMovementVector;
     }
 
+	inline float getTargetAngle() const{
+		return m_targetAngle;
+	}
+
 private:
 
     //! \brief Handles the movement keys as they need to properly get hte blocked events
@@ -44,12 +48,18 @@ private:
     Leviathan::GKey m_backwards;
     Leviathan::GKey m_left;
     Leviathan::GKey m_right;
+	Leviathan::GKey m_rotateLeft;
+	Leviathan::GKey m_rotateRight;
 
     bool m_forwardActive = false;
     bool m_backwardsActive = false;
     bool m_leftActive = false;
     bool m_rightActive = false;
-    
+	bool m_rotateLeftActive = false;
+	bool m_rotateRightActive = false;
+
+	//the absolute angle the microbe will try to turn towards
+	float m_targetAngle = 0;
 
     //! Set to false when not in the microbe stage (or maybe editor as
     //! well could use this) to not send control events
@@ -71,7 +81,7 @@ public:
 
     // Helpers moved from the lua code to here
     //! Computes the point the mouse cursor is at
-    static Float3 getTargetPoint(Leviathan::GameWorld &worldWithCamera);
+    static Float3 getTargetPoint(Leviathan::GameWorld &worldWithCamera, float targetAngle, ObjectID controlledEntity);
     
 private:
     
