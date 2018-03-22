@@ -28,7 +28,7 @@ generator.addInclude "microbe_stage/player_microbe_control.h"
 
 generator.addInclude "general/timed_life_system.h"
 
-world = GameWorldClass.new(
+cellWorld = GameWorldClass.new(
   "CellStageWorld", componentTypes: [
     EntityComponent.new("ProcessorComponent", [ConstructorInfo.new([])]),
     EntityComponent.new("CompoundBagComponent", [ConstructorInfo.new([])]),
@@ -92,8 +92,16 @@ world = GameWorldClass.new(
     EntitySystem.new("CompoundCloudSystem", [],
                     runtick: {group: 51, parameters: [
                                 "ComponentCompoundCloudComponent.GetIndex()"
-                             ]}),
-							   
+                              ]},
+                    init: [
+                      Variable.new("*this", "",
+                                   nonMethodParam: true)
+                    ],
+                    release: [
+                      Variable.new("*this", "",
+                                   nonMethodParam: true)
+                    ]),
+	
     EntitySystem.new("AgentCloudSystem", ["Position", "AgentCloudComponent", "RenderNode"],
                      runtick: {group: 5, parameters: []}),
 
@@ -135,9 +143,9 @@ END
                        ),  
 )
 
-world.base "Leviathan::StandardWorld"
+cellWorld.base "Leviathan::StandardWorld"
 
-generator.add world
+generator.add cellWorld
 
 
 
@@ -148,7 +156,7 @@ generator.run
 bindGenerator = Generator.new ARGV[1], bareOutput: true
 
 
-bindGenerator.add OutputText.new(world.genAngelScriptBindings)
+bindGenerator.add OutputText.new(cellWorld.genAngelScriptBindings)
 
 
 bindGenerator.run

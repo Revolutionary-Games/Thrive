@@ -1,25 +1,27 @@
 #pragma once
 
-#include <vector>
+#include "general/perlin_noise.h"
+// #include "ogre/scene_node_system.h"
+#include "microbe_stage/compounds.h"
+
+// #include "engine/component.h"
+// #include "engine/system.h"
+// #include "engine/touchable.h"
+#include "engine/typedefs.h"
+#include "engine/component_types.h"
+
+#include <Entities/Component.h>
+#include <Entities/System.h>
+
+
 //#include <OgreEntity.h>
 //#include <OgreSceneManager.h>
 //#include "OgreHardwarePixelBuffer.h"
 
 #include <OgreMesh.h>
 
-// #include "engine/component.h"
-// #include "engine/system.h"
-// #include "engine/touchable.h"
-#include "engine/typedefs.h"
+#include <vector>
 
-#include "engine/component_types.h"
-
-#include <Entities/Component.h>
-#include <Entities/System.h>
-
-#include "general/perlin_noise.h"
-// #include "ogre/scene_node_system.h"
-#include "microbe_stage/compounds.h"
 
 namespace thrive {
 
@@ -143,9 +145,6 @@ private:
     //GameStateData* gameState;
     Ogre::Item* compoundCloudsPlane;
     Ogre::MeshPtr m_planeMesh;
-
-    // For enabling alpha blending
-    const Ogre::HlmsBlendblock* m_blendblock;
     
     //! \todo Check should this be a pointer to the component or is ObjectID fast enough
     ObjectID playerEntity = 0;

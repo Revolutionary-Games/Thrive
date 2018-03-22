@@ -40,7 +40,6 @@
 #include <stdio.h>
 
 #include <string.h>
-#include <cstdio>
 
 #include <chrono>
 #include <atomic>
@@ -160,23 +159,6 @@ void CompoundCloudSystem::Init(CellStageWorld &world){
 
     world.GetScene()->getRootSceneNode()->createChildSceneNode()->attachObject(
         compoundCloudsPlane);
-
-    Ogre::HlmsManager* hlmsManager = Ogre::Root::getSingleton().getHlmsManager();
-
-    // This is the old setting
-    //pass->setSceneBlending(Ogre::SBT_TRANSPARENT_ALPHA);
-    // And according to Ogre source code (OgrePass.cpp Pass::_getBlendFlags) it matches this:
-    // source = SBF_SOURCE_ALPHA;
-    // dest = SBF_ONE_MINUS_SOURCE_ALPHA;
-
-    Ogre::HlmsBlendblock blendblock;
-    //blendblock.mAlphaToCoverageEnabled = false;
-    
-    blendblock.mSourceBlendFactor = Ogre::SBF_SOURCE_ALPHA;
-    blendblock.mDestBlendFactor = Ogre::SBF_ONE_MINUS_SOURCE_ALPHA;
-    m_blendblock = hlmsManager->getBlendblock(blendblock);
-
-    LEVIATHAN_ASSERT(m_blendblock != nullptr, "blendblock creation failed");
 }
 
 void CompoundCloudSystem::Release(CellStageWorld &world){
@@ -185,18 +167,12 @@ void CompoundCloudSystem::Release(CellStageWorld &world){
     world.GetScene()->destroyItem(compoundCloudsPlane);
 
     Ogre::MeshManager::getSingleton().remove(m_planeMesh);
-
-    if(m_blendblock){
-        Ogre::Root::getSingleton().getHlmsManager()->destroyBlendblock(m_blendblock);
-    }
-    m_blendblock = nullptr;
 }
 
 
 void CompoundCloudSystem::Run(CellStageWorld &world,
     std::unordered_map<ObjectID, CompoundCloudComponent*> &index)
 {
-	LOG_INFO("compound cloud system running");
     const int renderTime = Leviathan::TICKSPEED;
 
     // Game::instance().engine().playerData().playerName()
@@ -269,8 +245,20 @@ void CompoundCloudSystem::Run(CellStageWorld &world,
         // created
         Ogre::Pass* pass = materialPtr->getTechnique(0)->createPass();
 
-        // Set blendblock 
-        pass->setBlendblock(*m_blendblock);
+        // Set blendblock
+        Ogre::HlmsBlendblock blendblock;
+        //blendblock.mAlphaToCoverageEnabled = false;
+
+        // This is the old setting
+        //pass->setSceneBlending(Ogre::SBT_TRANSPARENT_ALPHA);
+        // And according to Ogre source code (OgrePass.cpp Pass::_getBlendFlags) it matches this:
+        // source = SBF_SOURCE_ALPHA;
+        // dest = SBF_ONE_MINUS_SOURCE_ALPHA;
+        
+        blendblock.mSourceBlendFactor = Ogre::SBF_SOURCE_ALPHA;
+        blendblock.mDestBlendFactor = Ogre::SBF_ONE_MINUS_SOURCE_ALPHA;
+        
+        pass->setBlendblock(blendblock);
         pass->setVertexProgram("CompoundCloud_VS");
         pass->setFragmentProgram("CompoundCloud_PS");
 
