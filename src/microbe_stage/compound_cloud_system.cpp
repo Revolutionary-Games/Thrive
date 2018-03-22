@@ -59,7 +59,8 @@ CompoundCloudComponent::CompoundCloudComponent(
 ) : Leviathan::Component(TYPE),
     color(red, green, blue), m_compoundId(id)
 {
-
+    m_textureName = "cloud_" + SimulationParameters::compoundRegistry.
+        getInternalName(m_compoundId);
 }
 
 void
@@ -289,8 +290,7 @@ void CompoundCloudSystem::Run(CellStageWorld &world,
             compoundCloud->color);
 
         Ogre::TexturePtr texturePtr = Ogre::TextureManager::getSingleton().createManual(
-            "cloud_" + SimulationParameters::compoundRegistry.
-            getInternalName(compoundCloud->m_compoundId) ,
+            compoundCloud->m_textureName,
             "General", Ogre::TEX_TYPE_2D, width, height,
             0, Ogre::PF_BYTE_A, Ogre::TU_DYNAMIC_WRITE_ONLY_DISCARDABLE);
 
@@ -316,6 +316,10 @@ void CompoundCloudSystem::Run(CellStageWorld &world,
         noiseState->setSamplerblock(wrappedBlock);
 
         changedMaterial = true;
+
+        // TODO: multipass materials don't work in Ogre 2.1 so only
+        // one cloud can work with this old approach. This needs to be split to multiple 
+        break;
     }
 
     if(changedMaterial){
@@ -353,6 +357,10 @@ void CompoundCloudSystem::Run(CellStageWorld &world,
     for (auto& value : index)
     {
         ProcessCloud(*value.second, renderTime);
+
+        // TODO: multipass materials don't work in Ogre 2.1 so only
+        // one cloud can work with this old approach. This needs to be split to multiple 
+        break;
     }    
 }
 
@@ -445,13 +453,13 @@ CompoundCloudSystem::ProcessCloud(
     // Store the pixel data in a hardware buffer for quick access.
     Ogre::v1::HardwarePixelBufferSharedPtr cloud;
     cloud = Ogre::TextureManager::getSingleton().getByName(
-        "cloud_" + SimulationParameters::compoundRegistry.
-        getInternalName(compoundCloud.m_compoundId),
-        "General")->getBuffer();
+        compoundCloud.m_textureName, "General")->getBuffer();
 
     cloud->lock(Ogre::v1::HardwareBuffer::HBL_DISCARD);
     const Ogre::PixelBox& pixelBox = cloud->getCurrentLock();
     uint8_t* pDest = static_cast<uint8_t*>(pixelBox.data);
+
+    size_t rowPitch = pixelBox.rowPitch;
 
     // Copy the density vector into the buffer.
     for (int j = 0; j < height; j++)
@@ -468,10 +476,11 @@ CompoundCloudSystem::ProcessCloud(
             {
                 intensity = 255;
             }
-            intensity = 250;
-            *pDest = intensity; // Alpha value of texture.
+            // This can be used to debug the clouds
+            // intensity = 190;
+            // Alpha value of texture.
+            pDest[rowPitch * j + i] = intensity;
         }
-        // pDest += pixelBox.getRowSkip() * Ogre::PixelUtil::getNumElemBytes(pixelBox.format);
     }
 
     // Unlock the pixel buffer.

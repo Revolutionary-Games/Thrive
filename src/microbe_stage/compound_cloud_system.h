@@ -65,6 +65,9 @@ public:
     */
     CompoundId m_compoundId = NULL_COMPOUND;
 
+    //! The name of the texture that is made for this cloud
+    std::string m_textureName;
+
     static constexpr auto TYPE = componentTypeConvert(THRIVE_COMPONENT::COMPOUND_CLOUD);
 
 public:
