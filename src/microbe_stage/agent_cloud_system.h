@@ -12,7 +12,7 @@
 #include "engine/component_types.h"
 
 #include "general/perlin_noise.h"
-#include "microbe_stage/compound_registry.h"
+#include "microbe_stage/compounds.h"
 
 #include <Entities/Component.h>
 #include <Entities/System.h>

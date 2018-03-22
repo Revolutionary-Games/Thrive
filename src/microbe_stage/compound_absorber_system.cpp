@@ -2,6 +2,7 @@
 #include "microbe_stage/compound_cloud_system.h"
 #include "microbe_stage/agent_cloud_system.h"
 #include "microbe_stage/membrane_system.h"
+#include "microbe_stage/simulation_parameters.h"
 
 // #include "bullet/collision_filter.h"
 // #include "bullet/collision_system.h"
@@ -237,7 +238,8 @@ CompoundAbsorberSystem::Run(
                             //}
                             //else
                                 if(absorber.m_absorbtionCapacity >= amount
-                                    * CompoundRegistry::getCompoundUnitVolume(id))
+                                    * SimulationParameters::compoundRegistry.
+                                    getTypeData(id).volume)
                                 {
                                     absorber.m_absorbedCompounds[id] +=
                                         compoundCloud->takeCompound(x, y, .2) / 5000.0f;
@@ -263,10 +265,12 @@ CompoundAbsorberSystem::Run(
             if (membrane.contains(agentPos.X - origin.X, agentPos.Z - origin.Z)) {
                 if (absorber.m_enabled == true && absorber.canAbsorbCompound(id)) {
                     float amount = agent.getPotency();
-                    if (CompoundRegistry::isAgentType(id)){
-                        (*CompoundRegistry::getAgentEffect(id))(value.first, amount);
-                        world.DestroyEntity(entry.first);
-                    }
+                    // if (SimulationParameters::compoundRegistry.
+                    //     getTypeData(id).isAgent){
+                    //     (*SimulationParameters::compoundRegistry.
+                    //         getTypeData(id).agentEffect)(value.first, amount);
+                    //     world.DestroyEntity(entry.first);
+                    // }
                 }
                 // Absorb .2 (third parameter) of the available compounds.
                 //membrane->absorbCompounds();

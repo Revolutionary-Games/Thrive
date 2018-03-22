@@ -1,5 +1,6 @@
 #include "microbe_stage/compound_cloud_system.h"
 //#include "microbe_stage/membrane_system.h"
+#include "microbe_stage/simulation_parameters.h"
 
 // #include "bullet/collision_system.h"
 // #include "bullet/rigid_body_system.h"
@@ -274,7 +275,8 @@ void CompoundCloudSystem::Run(CellStageWorld &world,
         pass->setFragmentProgram("CompoundCloud_PS");
 
         Ogre::TexturePtr texturePtr = Ogre::TextureManager::getSingleton().createManual(
-            CompoundRegistry::getCompoundInternalName(compoundCloud->m_compoundId),
+            "cloud_" + SimulationParameters::compoundRegistry.
+            getInternalName(compoundCloud->m_compoundId) ,
             "General", Ogre::TEX_TYPE_2D, width, height,
             0, Ogre::PF_BYTE_BGRA, Ogre::TU_DYNAMIC_WRITE_ONLY_DISCARDABLE);
 
@@ -403,7 +405,8 @@ void CompoundCloudSystem::Run(CellStageWorld &world,
         // Store the pixel data in a hardware buffer for quick access.
         Ogre::v1::HardwarePixelBufferSharedPtr cloud;
         cloud = Ogre::TextureManager::getSingleton().getByName(
-            CompoundRegistry::getCompoundInternalName(compoundCloud->m_compoundId),
+            "cloud_" + SimulationParameters::compoundRegistry.
+            getInternalName(compoundCloud->m_compoundId),
             "General")->getBuffer();
 
         cloud->lock(Ogre::v1::HardwareBuffer::HBL_DISCARD);

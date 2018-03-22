@@ -19,6 +19,8 @@ namespace thrive {
 
     using Milliseconds = int;
 
+    constexpr CompoundId NULL_COMPOUND = -1;
+
     // Use (Leviathan::)NULL_OBJECT instead
     /**
     * @brief Special entity id for "no entity"

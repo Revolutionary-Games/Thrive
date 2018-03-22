@@ -9,7 +9,7 @@
 
 #include "engine/component_types.h"
 
-#include "microbe_stage/compound_registry.h"
+#include "microbe_stage/compounds.h"
 #include "microbe_stage/compound_cloud_system.h"
 #include "microbe_stage/agent_cloud_system.h"
 #include "microbe_stage/membrane_system.h"
@@ -22,7 +22,7 @@
 // #include <OgreCommon.h>
 // #include <OgreMath.h>
 // #include <OgreVector3.h>
-// #include <unordered_set>
+#include <unordered_set>
 
 class CScriptArray;
 
@@ -180,6 +180,7 @@ class CompoundAbsorberSystem {
 public:
     /**
     * @brief Updates the system
+    * @todo Once agents are a cloud this needs to absorb them
     */
     void
     Run(CellStageWorld &world,

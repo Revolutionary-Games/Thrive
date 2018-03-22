@@ -10,7 +10,7 @@
 // #include "engine/component.h"
 // #include "engine/system.h"
 // #include "engine/touchable.h"
-// #include "engine/typedefs.h"
+#include "engine/typedefs.h"
 
 #include "engine/component_types.h"
 
@@ -19,7 +19,7 @@
 
 #include "general/perlin_noise.h"
 // #include "ogre/scene_node_system.h"
-#include "microbe_stage/compound_registry.h"
+#include "microbe_stage/compounds.h"
 
 namespace thrive {
 
