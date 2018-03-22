@@ -9,9 +9,7 @@
 #include "Application/KeyConfiguration.h"
 #include "Application/ClientApplication.h"
 #include "Events/EventHandler.h"
-#include "microbe_stage/compound_cloud_system.h"
 #include "Script/ScriptExecutor.h"
-#include <unordered_map>
 
 namespace thrive{
 
