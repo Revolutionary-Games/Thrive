@@ -58,7 +58,7 @@ public:
     //std::vector<  std::vector<float>  > density_33;
 
     /// The color of the compound cloud.
-    Ogre::ColourValue color;
+    Ogre::Vector3 color;
 
     /**
     * @brief The compound id.
@@ -138,12 +138,13 @@ public:
 
 private:
 
-    void ProcessCloud(CompoundCloudComponent &cloud);
+    void ProcessCloud(CompoundCloudComponent &cloud, int renderTime);
 
 private:
     //! \todo Remove this. This is in the base class already
     //GameStateData* gameState;
-    Ogre::Item* compoundCloudsPlane;
+    Ogre::Item* compoundCloudsPlane = nullptr;
+    Ogre::SceneNode* m_sceneNode = nullptr;
     Ogre::MeshPtr m_planeMesh;
     
     //! \todo Check should this be a pointer to the component or is ObjectID fast enough
