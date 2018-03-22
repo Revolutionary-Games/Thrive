@@ -96,7 +96,7 @@ void setupHUDBars(GuiObject@ instance){
 	@oxygenCountLabel = oxygenBar.GetChild("NumberLabel");
     @oxygenMaxLabel = compoundsScroll.GetChild("OxygenBar/OxygenTotal");
 	
-	@aminoacidsCountLabel = oxygenBar.GetChild("NumberLabel");
+	@aminoacidsCountLabel = aminoacidsBar.GetChild("NumberLabel");
     @aminoacidsMaxLabel = compoundsScroll.GetChild("AminoAcidsBar/AminoAcidsTotal");
 	
 	@ammoniaCountLabel = ammoniaBar.GetChild("NumberLabel");
@@ -184,6 +184,7 @@ void handleCompoundBarsUpdate(GuiObject@ instance, GenericEvent@ event){
 		
         oxygenBarAsBar.SetProgress(oxygenAmount / max);
         oxygenCountLabel.SetText(formatFloat(floor(oxygenAmount)));
+
         oxygenMaxLabel.SetText("/" + formatFloat(floor(oxygenMax)));
 		        
     } else {
