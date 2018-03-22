@@ -56,18 +56,25 @@ class MovementOrganelle : OrganelleComponent{
         //     sceneNode.Node, organelle.organelle.mesh);
 
         // This is already added by the PlacedOrganlle.onAddedToMicrobe
-        @this.model = organelle.world.GetComponent_Model(organelle.organelleEntity);
+        Model@ model = organelle.world.GetComponent_Model(organelle.organelleEntity);
 
-        if(this.model is null)
+        if(model is null)
             assert(false, "MovementOrganelle added to Organelle that has no Model component");
 
         // The organelles' scenenode is positioned by itself unlike
         // the lua version where that was also attempted here
 
-        
-        // this.sceneNode.playAnimation("Move", true);
+        // Create animation component
+        Animated@ animated = organelle.world.Create_Animated(organelle.organelleEntity,
+            model.GraphicalObject);
+        SimpleAnimation moveAnimation("Move");
+        moveAnimation.Loop = true;
         // 0.25 is the "idle" animation speed when the flagellum isn't used
-        // this.sceneNode.setAnimationSpeed(0.25);
+        moveAnimation.SpeedFactor = 0.25f;
+        animated.AddAnimation(moveAnimation);
+        // Don't forget to mark to apply the new animation
+        animated.Marked = true;
+
         
         auto@ renderNode = organelle.world.GetComponent_RenderNode(organelle.organelleEntity);
         renderNode.Node.setPosition(organellePos);
@@ -96,17 +103,20 @@ class MovementOrganelle : OrganelleComponent{
     ) {
         // The movementDirection is the player or AI input
         Float3 direction = microbeComponent.movementDirection;
+
+        // For changing animation speed
+        Animated@ animated = organelle.world.GetComponent_Animated(organelle.organelleEntity);
     
         auto forceMagnitude = this.force.Dot(direction);
         if(forceMagnitude > 0){
             if(direction.LengthSquared() < EPSILON || this.force.LengthSquared() < EPSILON){
                 this.movingTail = false;
-                // this.sceneNode.setAnimationSpeed(0.25);
+                animated.GetAnimation(0).SpeedFactor = 0.25f;
                 return;
             }
             
             this.movingTail = true;
-            // this.sceneNode.setAnimationSpeed(1.3);
+            animated.GetAnimation(0).SpeedFactor = 1.3;
         
             auto energy = abs(this.energyMultiplier * forceMagnitude * milliseconds / 1000.f);
             auto availableEnergy = MicrobeOperations::takeCompound(organelle.world,
@@ -117,7 +127,7 @@ class MovementOrganelle : OrganelleComponent{
                 forceMagnitude = sign(forceMagnitude) * availableEnergy * 1000.f /
                     milliseconds / this.energyMultiplier;
                 this.movingTail = false;
-                // this.sceneNode.setAnimationSpeed(0.25);
+                animated.GetAnimation(0).SpeedFactor = 0.25f;
             }
             float impulseMagnitude = microbeComponent.movementFactor * milliseconds *
                 forceMagnitude / 1000.f;
@@ -133,7 +143,7 @@ class MovementOrganelle : OrganelleComponent{
         } else {
             if(this.movingTail){
                 this.movingTail = false;
-                // this.sceneNode.setAnimationSpeed(0.25);
+                animated.GetAnimation(0).SpeedFactor = 0.25f;
             }
         }
     }
@@ -251,7 +261,6 @@ class MovementOrganelle : OrganelleComponent{
             rigidBodyComponent, pos);
     }
 
-    private Model@ model;
     private Float3 force;
     private float torque;
     float energyMultiplier = 0.025;
