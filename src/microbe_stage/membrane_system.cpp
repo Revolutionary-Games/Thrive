@@ -153,7 +153,7 @@ void MembraneComponent::setColour(const Float4 &value){
 	Ogre::Real brightness;
 	Ogre::Real hue;
 	colour.getHSB(&hue, &saturation, &brightness);
-	colour.setHSB(hue, .66, brightness);
+	colour.setHSB(hue, saturation*.75, brightness);
 
     // If we already have created a material we need to apply it
     if(coloredMaterial){
