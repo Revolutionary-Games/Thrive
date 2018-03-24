@@ -148,6 +148,12 @@ bool MembraneComponent::contains(float x, float y)
 void MembraneComponent::setColour(const Float4 &value){
 
     colour = value;
+	// Desaturate it here so it looks nicer (could implement as method thatcould be called i suppose)
+	Ogre::Real saturation;
+	Ogre::Real brightness;
+	Ogre::Real hue;
+	colour.getHSB(&hue, &saturation, &brightness);
+	colour.setHSB(hue, saturation*.75, brightness);
 
     // If we already have created a material we need to apply it
     if(coloredMaterial){
