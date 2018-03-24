@@ -6,8 +6,6 @@
 
 #include "generated/cell_stage_world.h"
 
-#include "Generated\StandardWorld.h"
-
 #include <Entities/GameWorld.h>
 #include <Entities/ScriptComponentHolder.h>
 #include <Addons/GameModule.h>
@@ -162,45 +160,14 @@ bool PlayerMicrobeControl::handleMovementKeys(
         matched = true;
 
 	} else if (m_rotateLeft.Match(key, modifiers)){
-		if(down){
-
-			//if(!m_rotateLeftActive){
-
-				//m_rotateLeftActive = true;
-				m_targetAngle -= 0.0625;
-			//}
-
-		} /*else {
-
-			if(m_rotateLeftActive){
-				
-				m_rotateLeftActive = false;
-
-			}
-
-		}*/
+		if(down)
+			m_targetAngle -= 0.0625;
 
 		matched = true;
 
 	} else if (m_rotateRight.Match(key, modifiers)){
-		if(down){
-
-			//if(!m_rotateRightActive){
-
-				//m_rotateRightActive = true;
-				m_targetAngle += 0.0625;
-
-			//}
-
-		} /*else {
-
-			if(m_rotateRightActive){
-				
-				m_rotateRightActive = false;
-
-			}
-
-		}*/
+		if(down)
+			m_targetAngle += 0.0625;
 
 		matched = true;
 
@@ -232,7 +199,7 @@ void PlayerMicrobeControlSystem::Run(
     ThriveGame* thrive = ThriveGame::Get();
 
     Float3 lookPoint;
-	float targetAngle = thrive->getPlayerInput()->getTargetAngle();
+	double targetAngle = thrive->getPlayerInput()->getTargetAngle();
     
     try{
         lookPoint = getTargetPoint(world, targetAngle, controlledEntity);
@@ -266,17 +233,17 @@ void PlayerMicrobeControlSystem::Run(
     }
 }
 // ------------------------------------ //
-Float3 PlayerMicrobeControlSystem::getTargetPoint(Leviathan::GameWorld &worldWithCamera, float targetAngle, ObjectID controlledEntity){
+Float3 PlayerMicrobeControlSystem::getTargetPoint(Leviathan::GameWorld &worldWithCamera, double targetAngle, ObjectID controlledEntity){
 
-    float x, y, x1, y1;
-    Engine::Get()->GetWindowEntity()->GetWindow()->GetNormalizedRelativeMouse(x1, y1);
+	double x, y;
 
 	Leviathan::Position& camera = worldWithCamera.GetComponent<Leviathan::Position>(controlledEntity);
 	Float3 camera_position = camera.Members._Position;
 	x = camera_position.GetX();
 	y = camera_position.GetY();
-	x += 1000000 * std::cos(targetAngle);
-	y += 1000000 * std::sin(targetAngle);
+	//So right now in order to avoid rounding errors I'm having to multiply by large numbers, presumably every order of magnitude of distance requires another 0, not ideal
+	x += 10000000 * std::cos(targetAngle);
+	y += 10000000 * std::sin(targetAngle);
 
     auto ray = worldWithCamera.CastRayFromCamera(x, y); 
     

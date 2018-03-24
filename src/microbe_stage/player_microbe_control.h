@@ -30,7 +30,7 @@ public:
         return m_playerMovementVector;
     }
 
-	inline float getTargetAngle() const{
+	inline double getTargetAngle() const{
 		return m_targetAngle;
 	}
 
@@ -55,11 +55,9 @@ private:
     bool m_backwardsActive = false;
     bool m_leftActive = false;
     bool m_rightActive = false;
-	bool m_rotateLeftActive = false;
-	bool m_rotateRightActive = false;
 
 	//the absolute angle the microbe will try to turn towards
-	float m_targetAngle = 0;
+	double m_targetAngle = 0;
 
     //! Set to false when not in the microbe stage (or maybe editor as
     //! well could use this) to not send control events
@@ -81,7 +79,7 @@ public:
 
     // Helpers moved from the lua code to here
     //! Computes the point the mouse cursor is at
-    static Float3 getTargetPoint(Leviathan::GameWorld &worldWithCamera, float targetAngle, ObjectID controlledEntity);
+    static Float3 getTargetPoint(Leviathan::GameWorld &worldWithCamera, double targetAngle, ObjectID controlledEntity);
     
 private:
     
