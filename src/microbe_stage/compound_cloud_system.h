@@ -1,22 +1,13 @@
 #pragma once
 
 #include "general/perlin_noise.h"
-// #include "ogre/scene_node_system.h"
 #include "microbe_stage/compounds.h"
 
-// #include "engine/component.h"
-// #include "engine/system.h"
-// #include "engine/touchable.h"
-#include "engine/typedefs.h"
 #include "engine/component_types.h"
+#include "engine/typedefs.h"
 
 #include <Entities/Component.h>
 #include <Entities/System.h>
-
-
-//#include <OgreEntity.h>
-//#include <OgreSceneManager.h>
-//#include "OgreHardwarePixelBuffer.h"
 
 #include <OgreMesh.h>
 
@@ -28,151 +19,255 @@ namespace thrive {
 class CompoundCloudSystem;
 class CellStageWorld;
 
+constexpr auto CLOUDS_IN_ONE = 4;
+
 /**
-* @brief Compound clouds that flow in the environment
-* @todo Make the cloud support 4 compound types to improve efficiency
-*/
+ * @brief Compound clouds that flow in the environment
+ *
+ * Now this has 4 compound types back into it
+ */
 class CompoundCloudComponent : public Leviathan::Component {
+    friend CompoundCloudSystem;
+    friend class CompoundAbsorberSystem;
+
 public:
+    enum class SLOT {
+
+        FIRST,
+        SECOND,
+        THIRD,
+        FOURTH
+    };
+
+public:
+    //! \brief Creates a cloud with the specified compound types and colour
+    //!
+    //! Set not used ones to null. At least first must be not null
+    CompoundCloudComponent(Compound* first,
+        Compound* second,
+        Compound* third,
+        Compound* fourth);
+
+    ~CompoundCloudComponent();
+
+    void
+        Release(Ogre::SceneManager* scene);
+
+    //! \returns Index for CompoundId or throws if not found
+    SLOT
+        getSlotForCompound(CompoundId compound);
+
+    //! \brief Adjusts coordinates with grid size
+    inline void
+        adjustWithGridSize(int& x, int& y)
+    {
+        x /= gridSize;
+        y /= gridSize;
+    }
+
+    //! \brief Places specified amount of compound at position (in this cloud's
+    //! coordinates)
+    void
+        addCloud(CompoundId compound, float density, int x, int y);
+
+    //! \param rate should be less than one.
+    int
+        takeCompound(CompoundId compound, int x, int y, float rate);
+
+    //! \param rate should be less than one.
+    int
+        amountAvailable(CompoundId compound, int x, int y, float rate);
+
+    REFERENCE_HANDLE_UNCOUNTED_TYPE(CompoundCloudComponent);
+
+    //! The name of the texture that is made for this cloud
+    const std::string m_textureName;
+
+    static constexpr auto TYPE =
+        componentTypeConvert(THRIVE_COMPONENT::COMPOUND_CLOUD);
+
+protected:
+    // Now each cloud has it's own plane that it renders onto
+    Ogre::Item* m_compoundCloudsPlane = nullptr;
+    Ogre::SceneNode* m_sceneNode = nullptr;
 
     // True once initialized by CompoundCloudSystem
     bool initialized = false;
-    
+
+    //! This is customized with the parameters of this cloud
+    //! \todo Check if one material could be used by setting custom parameters
+    //! on it
+    Ogre::MaterialPtr m_planeMaterial;
+    Ogre::TexturePtr m_texture;
+
     /// The size of the compound cloud grid.
-	int width, height;
-	int offsetX, offsetZ;
-	float gridSize;
+    // These are now initialized here to catch trying to spawn compounds before
+    // the cloud is initialized
+    int width = 0;
+    int height = 0;
+    //! Should be something like 2, or 0.5 to nicely hit the
+    float gridSize = 1;
 
-    /// The 2D array that contains the current compound clouds and those from last frame.
-    std::vector<  std::vector<float>  > density;
-    std::vector<  std::vector<float>  > oldDens;
+    //! The world position this cloud is at. Used to despawn and spawn new ones
+    //! Y is ignored and replaced with YOffset
+    Float3 m_position;
 
-    /// The 3x3 grid of density tiles around the player for seamless movement.
-    //std::vector<  std::vector<float>  > density_11;
-    //std::vector<  std::vector<float>  > density_12;
-    //std::vector<  std::vector<float>  > density_13;
-    //std::vector<  std::vector<float>  > density_21;
-    //std::vector<  std::vector<float>  > density_23;
-    //std::vector<  std::vector<float>  > density_31;
-    //std::vector<  std::vector<float>  > density_32;
-    //std::vector<  std::vector<float>  > density_33;
+    /// The 2D array that contains the current compound clouds and those from
+    /// last frame.
+    //! \todo switch to a single dimensional vector as this vector of vectors is
+    //! not the most efficient
+    std::vector<std::vector<float>> m_density1;
+    std::vector<std::vector<float>> m_density2;
+    std::vector<std::vector<float>> m_density3;
+    std::vector<std::vector<float>> m_density4;
+
+    std::vector<std::vector<float>> m_oldDens1;
+    std::vector<std::vector<float>> m_oldDens2;
+    std::vector<std::vector<float>> m_oldDens3;
+    std::vector<std::vector<float>> m_oldDens4;
+
+    // The 3x3 grid of density tiles around the player for seamless movement.
+    CompoundCloudComponent* leftCloud = nullptr;
+    CompoundCloudComponent* rightCloud = nullptr;
+    CompoundCloudComponent* lowerCloud = nullptr;
+    CompoundCloudComponent* upperCloud = nullptr;
 
     /// The color of the compound cloud.
-    Ogre::Vector3 color;
+    Ogre::Vector3 m_color1;
+    Ogre::Vector3 m_color2;
+    Ogre::Vector3 m_color3;
+    Ogre::Vector3 m_color4;
 
     /**
-    * @brief The compound id.
-    */
-    CompoundId m_compoundId = NULL_COMPOUND;
-
-    //! The name of the texture that is made for this cloud
-    std::string m_textureName;
-
-    static constexpr auto TYPE = componentTypeConvert(THRIVE_COMPONENT::COMPOUND_CLOUD);
-
-public:
-    //! \brief Creates a cloud with the specified compound(s) types and colour
-    CompoundCloudComponent(CompoundId Id, float red, float green, float blue);
-
-    //! \brief Places specified amount of compound at position (in this cloud's coordinates)
-    void
-    addCloud(
-        float density,
-        int x,
-        int y
-    );
-
-    //! \param rate should be less than one.
-    int
-    takeCompound(
-        int x,
-        int y,
-        float rate
-    );
-
-    //! \param rate should be less than one.
-    int
-    amountAvailable(
-        int x,
-        int y,
-        float rate
-    );
-
-    REFERENCE_HANDLE_UNCOUNTED_TYPE(CompoundCloudComponent);
+     * @brief The compound id.
+     * @note NULL_COMPOUND means that this cloud doesn't have that slot filled
+     */
+    CompoundId m_compoundId1 = NULL_COMPOUND;
+    CompoundId m_compoundId2 = NULL_COMPOUND;
+    CompoundId m_compoundId3 = NULL_COMPOUND;
+    CompoundId m_compoundId4 = NULL_COMPOUND;
 };
 
 
 
 /**
-* @brief Moves the compound clouds.
-*/
+ * @brief Moves the compound clouds.
+ */
 class CompoundCloudSystem {
 public:
     /**
-    * @brief Constructor
-    */
+     * @brief Constructor
+     */
     CompoundCloudSystem();
 
     /**
-    * @brief Destructor
-    */
+     * @brief Destructor
+     */
     ~CompoundCloudSystem();
 
     /**
-    * @brief Initializes the system
-    *
-    * @param world
-    */
-    void Init(CellStageWorld &world);
+     * @brief Initializes the system
+     *
+     * @param world
+     */
+    void
+        Init(CellStageWorld& world);
+
+    //! \brief Sets the clouds that this system manages
+    void
+        registerCloudTypes(CellStageWorld& world,
+            const std::vector<Compound>& clouds);
+
+    //! \brief Places specified amount of compound at position
+    void
+        addCloud(CompoundId compound, float density, float x, float z);
+
+    //! \param rate should be less than one.
+    float
+        takeCompound(CompoundId compound, float x, float z, float rate);
+
+    //! \param rate should be less than one.
+    float
+        amountAvailable(CompoundId compound, float x, float z, float rate);
 
     /**
-    * @brief Shuts the system down
-    */
-    void Release(CellStageWorld &world);
+     * @brief Shuts the system down releasing all current compound cloud
+     * entities
+     */
+    void
+        Release(CellStageWorld& world);
 
     /**
-    * @brief Updates the system
-    * @todo Is it too rough if the compound clouds only update every 50 milliseconds.
-    * Does there need to be a third category of systems that can adapt to different length
-    * ticks and run like tick but at render time?
-    */
-    void Run(CellStageWorld &world,
-        std::unordered_map<ObjectID, CompoundCloudComponent*> &index);
+     * @brief Updates the system
+     * @todo Is it too rough if the compound clouds only update every 50
+     * milliseconds. this needs the support of variable timestep
+     */
+    void
+        Run(CellStageWorld& world);
 
 private:
+    //! \brief Spawns and despawns the cloud entities around the player
+    void
+        doSpawnCycle(CellStageWorld& world, const Float3& playerPos);
 
-    void ProcessCloud(CompoundCloudComponent &cloud, int renderTime);
+    void
+        _spawnCloud(CellStageWorld& world,
+            const Float3& pos,
+            size_t startIndex);
+
+    void
+        ProcessCloud(CompoundCloudComponent& cloud, int renderTime);
+
+    void
+        initializeCloud(CompoundCloudComponent& cloud,
+            Ogre::SceneManager* scene);
+
+    void
+        fillCloudChannel(const std::vector<std::vector<float>>& density,
+            int index,
+            size_t rowPitch,
+            uint8_t* pDest);
 
 private:
-    //! \todo Remove this. This is in the base class already
-    //GameStateData* gameState;
-    Ogre::Item* compoundCloudsPlane = nullptr;
-    Ogre::SceneNode* m_sceneNode = nullptr;
+    //! This system now spawns these entities when it needs them
+    std::unordered_map<ObjectID, CompoundCloudComponent*> m_managedClouds;
+
+    //! List of the types that need to be created. These are split every 4 into
+    //! one cloud
+    std::vector<Compound> m_cloudTypes;
+
     Ogre::MeshPtr m_planeMesh;
-    
-    //! \todo Check should this be a pointer to the component or is ObjectID fast enough
-    ObjectID playerEntity = 0;
 
     PerlinNoise fieldPotential;
-	float noiseScale;
+    float noiseScale = 5;
 
-	/// The size of the compound cloud grid.
-	int width, height;
-	int offsetX, offsetZ;
-	float gridSize;
+    /// The size of the compound cloud grid.
+    int width = 120;
+    int height = 120;
+    float gridSize = 2;
+
+
+    //! Used to spawn and despawn compound cloud entities when the player
+    //! moves
+    Float3 m_lastPosition = Float3(0, 0, 0);
 
     /// The velocity of the fluid.
-	std::vector<  std::vector<float>  > xVelocity;
-	std::vector<  std::vector<float>  > yVelocity;
+    // This is not updated after the initial generation, which isn't probably
+    // the best way to simulate fluid velocity
+    std::vector<std::vector<float>> xVelocity;
+    std::vector<std::vector<float>> yVelocity;
 
-	void CreateVelocityField();
-	void diffuse(float diffRate, std::vector<  std::vector<float>  >& oldDens, const std::vector<  std::vector<float>  >& density, int dt);
-	void advect(std::vector<  std::vector<float>  >& oldDens, std::vector<  std::vector<float>  >& density, int dt);
-
-    // Clears the density field file to blank (black).
-    void initializeFile(std::string compoundName);
-	// Draws the density field of the compound to a .bmp, which can be used for debugging
-	void writeToFile(std::vector<  std::vector<float>  >& density, std::string compoundName, Ogre::ColourValue color);
+    void
+        CreateVelocityField();
+    void
+        diffuse(float diffRate,
+            std::vector<std::vector<float>>& oldDens,
+            const std::vector<std::vector<float>>& density,
+            int dt);
+    void
+        advect(const std::vector<std::vector<float>>& oldDens,
+            std::vector<std::vector<float>>& density,
+            int dt);
 };
 
-}
+} // namespace thrive

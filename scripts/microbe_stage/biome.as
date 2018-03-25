@@ -21,11 +21,7 @@ ObjectID createCompoundCloud(CellStageWorld@ world, CompoundId compound,
     int roundedZ = round(z);
 
     // TODO: this isn't the best way to handle this for max performance
-    auto environmentCloud = world.GetComponent_CompoundCloudComponent(
-        findCompoundCloudByCompound(world, compound));
-
-
-    environmentCloud.addCloud(amount, roundedX, roundedZ);
+    world.GetCompoundCloudSystem().addCloud(compound, amount, roundedX, roundedZ);
     
     // We don't spawn new entities
     return NULL_OBJECT;
