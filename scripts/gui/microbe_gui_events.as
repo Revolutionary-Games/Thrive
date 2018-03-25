@@ -41,8 +41,13 @@ CEGUI::Window@ oxytoxyCountLabel;
 CEGUI::Window@ oxytoxyMaxLabel;
 
 
-[@Listener="OnInit"]
+CEGUI::Window@ hitpointsBar;
+CEGUI::ProgressBar@ hitpointsBarAsBar;
+CEGUI::Window@ hitpointsCountLabel;
+CEGUI::Window@ hitpointsMaxLabel;
 
+
+[@Listener="OnInit"]
 void setupHUDBars(GuiObject@ instance){
 
     auto microbeRootWindow =
@@ -80,14 +85,21 @@ void setupHUDBars(GuiObject@ instance){
 	@oxytoxyBar = compoundsScroll.GetChild("OxyToxyNTBar/OxyToxyNTBar");
     @oxytoxyBarAsBar = cast<CEGUI::ProgressBar>(oxytoxyBar);
 
-    assert(atpBar !is null || atpBarAsBar is null, "GUI didn't find atpBar");
-	assert(oxygenBar !is null || oxygenBarAsBar is null, "GUI didn't find oxygenBar");
-	assert(aminoacidsBar !is null || aminoacidsBarAsBar is null, "GUI didn't find aminoacidsBar");
-	assert(ammoniaBar !is null || ammoniaBarAsBar is null, "GUI didn't find ammoniaBar");
-	assert(glucoseBar !is null || glucoseBarAsBar is null, "GUI didn't find glucoseBar");
-	assert(co2Bar !is null || co2BarAsBar is null, "GUI didn't find co2Bar");
-	assert(fattyacidsBar !is null || fattyacidsBarAsBar is null, "GUI didn't find fattyacidsBar");
-	assert(oxytoxyBar !is null || oxytoxyBarAsBar is null, "GUI didn't find oxytoxyBar");
+    @hitpointsBar = microbeRootWindow.GetChild("HealthPanel/LifeBar");
+    @hitpointsBarAsBar = cast<CEGUI::ProgressBar>(hitpointsBar);
+
+    assert(atpBar !is null && atpBarAsBar !is null, "GUI didn't find atpBar");
+	assert(oxygenBar !is null && oxygenBarAsBar !is null, "GUI didn't find oxygenBar");
+	assert(aminoacidsBar !is null && aminoacidsBarAsBar !is null,
+        "GUI didn't find aminoacidsBar");
+	assert(ammoniaBar !is null && ammoniaBarAsBar !is null, "GUI didn't find ammoniaBar");
+	assert(glucoseBar !is null && glucoseBarAsBar !is null, "GUI didn't find glucoseBar");
+	assert(co2Bar !is null && co2BarAsBar !is null, "GUI didn't find co2Bar");
+	assert(fattyacidsBar !is null && fattyacidsBarAsBar !is null,
+        "GUI didn't find fattyacidsBar");
+	assert(oxytoxyBar !is null && oxytoxyBarAsBar !is null, "GUI didn't find oxytoxyBar");
+    assert(hitpointsBar !is null && hitpointsBarAsBar !is null,
+        "GUI didn't find hitpointsBar");
 	
     @atpCountLabel = atpBar.GetChild("NumberLabel");
     @atpMaxLabel = compoundsScroll.GetChild("ATPBar/ATPTotal");
@@ -113,6 +125,10 @@ void setupHUDBars(GuiObject@ instance){
 	
 	@oxytoxyCountLabel = oxytoxyBar.GetChild("NumberLabel");
     @oxytoxyMaxLabel = compoundsScroll.GetChild("OxyToxyNTBar/OxyToxyNTTotal");
+
+    @hitpointsCountLabel = hitpointsBar.GetChild("NumberLabel");
+    @hitpointsMaxLabel = microbeRootWindow.GetChild("HealthPanel/HealthTotal");
+
 	
     assert(atpCountLabel !is null, "GUI didn't find atpCountLabel");
     assert(atpMaxLabel !is null, "GUI didn't find atpMaxLabel");
@@ -131,6 +147,8 @@ void setupHUDBars(GuiObject@ instance){
     assert(fattyacidsMaxLabel !is null, "GUI didn't find fattyacidsMaxLabel");
 	assert(oxytoxyCountLabel !is null, "GUI didn't find oxytoxyCountLabel");
     assert(oxytoxyMaxLabel !is null, "GUI didn't find oxytoxyMaxLabel");
+    assert(hitpointsCountLabel !is null, "GUI didn't find hitpointsCountLabel");
+    assert(hitpointsMaxLabel !is null, "GUI didn't find hitpointsMaxLabel");
 	
     // TODO: shouldn't these background images be set in the .layout file?
     atpBar.SetProperty("FillImage", "ThriveGeneric/ATPBar");
@@ -141,6 +159,7 @@ void setupHUDBars(GuiObject@ instance){
 	co2Bar.SetProperty("FillImage", "ThriveGeneric/CO2Bar");
 	fattyacidsBar.SetProperty("FillImage", "ThriveGeneric/FattyAcidsBar");
 	oxytoxyBar.SetProperty("FillImage", "ThriveGeneric/OxyToxyBar");
+    hitpointsBar.SetProperty("FillImage", "ThriveGeneric/HitpointsBar");
 }
 
 [@Listener="Generic", @Type="PlayerCompoundAmounts"]
@@ -162,8 +181,13 @@ void handleCompoundBarsUpdate(GuiObject@ instance, GenericEvent@ event){
     auto fattyacidsMax = vars.GetSingleValueByName("FattyacidsMax");
 	auto oxytoxy = vars.GetSingleValueByName("compoundOxytoxy");
     auto oxytoxyMax = vars.GetSingleValueByName("OxytoxyMax");
+    auto hitpoints = vars.GetSingleValueByName("hitpoints");
+    auto hitpointsMax = vars.GetSingleValueByName("hitpointsMax");
 
-    if(atp !is null || atpMax !is null){
+    // Debug print for all the variables
+    // LOG_WRITE("Event data: \n" + vars.Serialize(" "));
+
+    if(atp !is null && atpMax !is null){
 		
         auto atpAmount = double(atp);
         auto max = double(atpMax);
@@ -178,7 +202,7 @@ void handleCompoundBarsUpdate(GuiObject@ instance, GenericEvent@ event){
         LOG_WARNING("Microbe HUD compound amount update is missing atp value");
     } 
 	
-	if(oxygen !is null || oxygenMax !is null){
+	if(oxygen !is null && oxygenMax !is null){
         auto oxygenAmount = double(oxygen);
         auto max = double(oxygenMax);
 		
@@ -191,7 +215,7 @@ void handleCompoundBarsUpdate(GuiObject@ instance, GenericEvent@ event){
         LOG_WARNING("Microbe HUD compound amount update is missing oxygen value");
     } 
 	
-	if(aminoacids !is null || aminoacidsMax !is null){
+	if(aminoacids !is null && aminoacidsMax !is null){
         auto aminoacidsAmount = double(aminoacids);
         auto max = double(aminoacidsMax);
 		
@@ -203,7 +227,7 @@ void handleCompoundBarsUpdate(GuiObject@ instance, GenericEvent@ event){
         LOG_WARNING("Microbe HUD compound amount update is missing aminoacids value");
     } 
 	
-	if(ammonia !is null || ammoniaMax !is null){
+	if(ammonia !is null && ammoniaMax !is null){
         auto ammoniaAmount = double(aminoacids);
         auto max = double(ammoniaMax);
 		
@@ -215,7 +239,7 @@ void handleCompoundBarsUpdate(GuiObject@ instance, GenericEvent@ event){
         LOG_WARNING("Microbe HUD compound amount update is missing ammonia value");
     } 
 	
-		if(glucose !is null || glucoseMax !is null){
+		if(glucose !is null && glucoseMax !is null){
         auto glucoseAmount = double(glucose);
         auto max = double(glucoseMax);
 
@@ -227,7 +251,7 @@ void handleCompoundBarsUpdate(GuiObject@ instance, GenericEvent@ event){
         LOG_WARNING("Microbe HUD compound amount update is missing glucose value");
     } 
 	
-	if(co2 !is null || co2Max !is null){
+	if(co2 !is null && co2Max !is null){
         auto co2Amount = double(co2);
         auto max = double(co2Max);
 		
@@ -239,7 +263,7 @@ void handleCompoundBarsUpdate(GuiObject@ instance, GenericEvent@ event){
         LOG_WARNING("Microbe HUD compound amount update is missing co2 value");
     } 
 	
-	if(fattyacids !is null || fattyacidsMax !is null){
+	if(fattyacids !is null && fattyacidsMax !is null){
         auto fattyacidsAmount = double(fattyacids);
         auto max = double(fattyacidsMax);
 		
@@ -251,7 +275,7 @@ void handleCompoundBarsUpdate(GuiObject@ instance, GenericEvent@ event){
         LOG_WARNING("Microbe HUD compound amount update is missing fattyacids value");
     } 
 	
-	if(oxytoxy !is null || oxytoxyMax !is null){
+	if(oxytoxy !is null && oxytoxyMax !is null){
         auto oxytoxyAmount = double(oxytoxy);
         auto max = double(oxytoxyMax);
 		
@@ -261,5 +285,17 @@ void handleCompoundBarsUpdate(GuiObject@ instance, GenericEvent@ event){
 		        
     } else {
         LOG_WARNING("Microbe HUD compound amount update is missing oxytoxy value");
-    } 
+    }
+
+    if(hitpoints !is null && hitpointsMax !is null){
+        auto hitpointsAmount = int(hitpoints);
+        auto max = int(hitpointsMax);
+		
+        hitpointsBarAsBar.SetProgress(hitpointsAmount / max);
+        hitpointsCountLabel.SetText(formatInt(hitpointsAmount));
+        hitpointsMaxLabel.SetText("/" + formatInt(hitpointsMax));
+		        
+    } else {
+        LOG_WARNING("Microbe HUD compound amount update is missing hitpoints value");
+    }
 }

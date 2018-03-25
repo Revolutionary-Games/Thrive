@@ -41,17 +41,20 @@ cellWorld = GameWorldClass.new(
                                            #Variable.new("GetScene()", "",
                                            #             nonMethodParam: true),
                                          ])], releaseparams: ["GetScene()"]),
-    EntityComponent.new("CompoundCloudComponent", [ConstructorInfo.new(
-                                                     [
-                                                       Variable.new("compoundId", "CompoundId",
-                                                                    noRef: true),
-                                                       Variable.new("red", "float",
-                                                                    noRef: true),
-                                                       Variable.new("green", "float",
-                                                                    noRef: true),
-                                                       Variable.new("blue", "float",
-                                                                    noRef: true),
-                                                     ])]),
+    EntityComponent.new("CompoundCloudComponent", [
+                          # Don't actually call this from other places than CompoundCloudSystem
+                          ConstructorInfo.new(
+                            [
+                              Variable.new("first", "Compound*",
+                                           noRef: true),
+                              Variable.new("second", "Compound*",
+                                           noRef: true),
+                              Variable.new("third", "Compound*",
+                                           noRef: true),
+                              Variable.new("fourth", "Compound*",
+                                           noRef: true),
+                            ])],
+                        releaseparams: ["GetScene()"]),
     EntityComponent.new("AgentCloudComponent", [ConstructorInfo.new(
                                                   [
                                                     Variable.new("compoundId", "CompoundId",
@@ -91,8 +94,9 @@ cellWorld = GameWorldClass.new(
                      release: []),
     EntitySystem.new("CompoundCloudSystem", [],
                     runtick: {group: 51, parameters: [
-                                "ComponentCompoundCloudComponent.GetIndex()"
+                                
                               ]},
+                    visibletoscripts: true,
                     init: [
                       Variable.new("*this", "",
                                    nonMethodParam: true)

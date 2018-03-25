@@ -285,7 +285,8 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
 
         if(microbeEntity != NULL_OBJECT){
 
-            LOG_ERROR("PlacedOrganelle not removed from microbe before it was destroyed");
+            LOG_ERROR("PlacedOrganelle (" + organelle.name + ") not removed from microbe "
+                "before it was destroyed, microbe: " + microbeEntity);
         }
     }
 
@@ -714,22 +715,28 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
     // @param microbe
     //  The organelle's previous owner
     void onRemovedFromMicrobe(ObjectID microbe, NewtonCollision@ collisionShape){
+
+        LOG_INFO("PlacedOrganelle (" + organelle.name + ") removed from: " + microbeEntity);
+        
         //iterating on each OrganelleComponent
         for(uint i = 0; i < components.length(); ++i){
 
             components[i].onRemovedFromMicrobe(microbeEntity, this /*, q, r*/);
         }
 
-        collisionShape.CompoundCollisionBeginAddRemove();
+        // We can do a quick remove from the destructor
+        if(collisionShape !is null){
+            collisionShape.CompoundCollisionBeginAddRemove();
 
-        // Remove our sub collisions //
-        for(uint i = 0; i < _addedCollisions.length(); ++i){
+            // Remove our sub collisions //
+            for(uint i = 0; i < _addedCollisions.length(); ++i){
 
-            collisionShape.CompoundCollisionRemoveSubCollision(_addedCollisions[i]);
+                collisionShape.CompoundCollisionRemoveSubCollision(_addedCollisions[i]);
+            }
+
+            collisionShape.CompoundCollisionEndAddRemove();
+            _addedCollisions.resize(0);
         }
-
-        collisionShape.CompoundCollisionEndAddRemove();
-        _addedCollisions.resize(0);
         
         world.QueueDestroyEntity(organelleEntity);
         organelleEntity = NULL_OBJECT;

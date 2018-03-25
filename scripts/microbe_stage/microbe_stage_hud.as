@@ -80,12 +80,22 @@ class MicrobeStageHudSystem : ScriptSystem{
         // TODO: Microbe hud read player cell
         ObjectID player = GetThriveGame().playerData().activeCreature();
 
+        // Update player stats if there is acell currently
         if(player != NULL_OBJECT){
 
             auto bag = World.GetComponent_CompoundBagComponent(player);
             MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
                 World.GetScriptComponentHolder("MicrobeComponent").Find(player));
 
+            GenericEvent@ event = GenericEvent("PlayerCompoundAmounts");
+            NamedVars@ vars = event.GetNamedVars();
+
+            // Write data
+            vars.AddValue(ScriptSafeVariableBlock("hitpoints",
+                    int(microbeComponent.hitpoints)));
+            vars.AddValue(ScriptSafeVariableBlock("hitpointsMax",
+                    int(microbeComponent.maxHitpoints)));
+            
             if(bag is null){
 
                 LOG_ERROR("Player activeCreature has no compound bag");
@@ -115,9 +125,6 @@ class MicrobeStageHudSystem : ScriptSystem{
 				
 				const auto oxytoxyAmount = bag.getCompoundAmount(oxytoxyId);
                 const auto maxOxytoxy = microbeComponent.capacity / oxytoxyVolume;
-
-                GenericEvent@ event = GenericEvent("PlayerCompoundAmounts");
-                NamedVars@ vars = event.GetNamedVars();
                 
                 // Write data
                 vars.AddValue(ScriptSafeVariableBlock("compoundATP", atpAmount));
@@ -143,10 +150,10 @@ class MicrobeStageHudSystem : ScriptSystem{
 				
 				vars.AddValue(ScriptSafeVariableBlock("compoundOxytoxy", oxytoxyAmount));
                 vars.AddValue(ScriptSafeVariableBlock("OxytoxyMax", maxOxytoxy)); 
-
-                // Fire it off so that the GUI scripts will get it and update the GUI state
-                GetEngine().GetEventHandler().CallEvent(event);
             }
+            
+            // Fire it off so that the GUI scripts will get it and update the GUI state
+            GetEngine().GetEventHandler().CallEvent(event);
         }
     }
 
@@ -321,10 +328,7 @@ class MicrobeStageHudSystem : ScriptSystem{
      
 // void HudSystem.init(gameState){
 //     this.rootGUIWindow =  gameState.rootGUIWindow();
-//     this.hitpointsBar = this.rootGUIWindow.getChild("HealthPanel").getChild("LifeBar");
-//     this.hitpointsCountLabel = this.hitpointsBar.getChild("NumberLabel");
-//     this.hitpointsMaxLabel = this.rootGUIWindow.getChild("HealthPanel").getChild("HealthTotal");
-//     this.hitpointsBar.setProperty("ThriveGeneric/HitpointsBar", "FillImage") ;
+
 //     auto menuButton = this.rootGUIWindow.getChild("MenuButton");
 //     auto saveButton = this.rootGUIWindow.getChild("PauseMenu").getChild("QuicksaveButton") ;
 //     auto loadButton = this.rootGUIWindow.getChild("PauseMenu").getChild("LoadGameButton");
@@ -361,48 +365,6 @@ class MicrobeStageHudSystem : ScriptSystem{
 //     quitButton.registerEventHandler("Clicked", quitButtonClicked);
 //     this.rootGUIWindow.getChild("PauseMenu").getChild("MainMenuButton").registerEventHandler("Clicked", function() this.menuMainMenuClicked());
 //     this.updateLoadButton();
-    
-//     this.atpBar = this.rootGUIWindow.getChild("CompoundPanel").getChild("CompoundScroll").getChild("ATPBar").getChild("ATPBar");
-//     this.atpCountLabel = this.atpBar.getChild("NumberLabel");
-//     this.atpMaxLabel = this.rootGUIWindow.getChild("CompoundPanel").getChild("CompoundScroll").getChild("ATPBar").getChild("ATPTotal");
-//     this.atpBar.setProperty("ThriveGeneric/ATPBar", "FillImage");
-	
-//     this.atpCountLabel2 = this.rootGUIWindow.getChild("HealthPanel").getChild("ATPValue");
-	
-//     this.oxygenBar = this.rootGUIWindow.getChild("CompoundPanel").getChild("CompoundScroll").getChild("OxygenBar").getChild("OxygenBar");
-//     this.oxygenCountLabel = this.oxygenBar.getChild("NumberLabel");
-//     this.oxygenMaxLabel = this.rootGUIWindow.getChild("CompoundPanel").getChild("CompoundScroll").getChild("OxygenBar").getChild("OxygenTotal");
-//     this.oxygenBar.setProperty("ThriveGeneric/OxygenBar", "FillImage");
-	
-//     this.aminoacidsBar = this.rootGUIWindow.getChild("CompoundPanel").getChild("CompoundScroll").getChild("AminoAcidsBar").getChild("AminoAcidsBar");
-//     this.aminoacidsCountLabel = this.aminoacidsBar.getChild("NumberLabel");
-//     this.aminoacidsMaxLabel = this.rootGUIWindow.getChild("CompoundPanel").getChild("CompoundScroll").getChild("AminoAcidsBar").getChild("AminoAcidsTotal");
-//     this.aminoacidsBar.setProperty("ThriveGeneric/AminoAcidsBar", "FillImage");
-    
-//     this.ammoniaBar = this.rootGUIWindow.getChild("CompoundPanel").getChild("CompoundScroll").getChild("AmmoniaBar").getChild("AmmoniaBar");
-//     this.ammoniaCountLabel = this.ammoniaBar.getChild("NumberLabel");
-//     this.ammoniaMaxLabel = this.rootGUIWindow.getChild("CompoundPanel").getChild("CompoundScroll").getChild("AmmoniaBar").getChild("AmmoniaTotal");
-//     this.ammoniaBar.setProperty("ThriveGeneric/AmmoniaBar", "FillImage");
- 
-//     this.glucoseBar = this.rootGUIWindow.getChild("CompoundPanel").getChild("CompoundScroll").getChild("GlucoseBar").getChild("GlucoseBar");
-//     this.glucoseCountLabel = this.glucoseBar.getChild("NumberLabel");
-//     this.glucoseMaxLabel = this.rootGUIWindow.getChild("CompoundPanel").getChild("CompoundScroll").getChild("GlucoseBar").getChild("GlucoseTotal");
-//     this.glucoseBar.setProperty("ThriveGeneric/GlucoseBar", "FillImage");
- 
-//     this.co2Bar = this.rootGUIWindow.getChild("CompoundPanel").getChild("CompoundScroll").getChild("CO2Bar").getChild("CO2Bar");
-//     this.co2CountLabel = this.co2Bar.getChild("NumberLabel");
-//     this.co2MaxLabel = this.rootGUIWindow.getChild("CompoundPanel").getChild("CompoundScroll").getChild("CO2Bar").getChild("CO2Total");
-//     this.co2Bar.setProperty("ThriveGeneric/CO2Bar", "FillImage");
-	
-//     this.fattyacidsBar = this.rootGUIWindow.getChild("CompoundPanel").getChild("CompoundScroll").getChild("FattyAcidsBar").getChild("FattyAcidsBar");
-//     this.fattyacidsCountLabel = this.fattyacidsBar.getChild("NumberLabel");
-//     this.fattyacidsMaxLabel = this.rootGUIWindow.getChild("CompoundPanel").getChild("CompoundScroll").getChild("FattyAcidsBar").getChild("FattyAcidsTotal");
-//     this.fattyacidsBar.setProperty("ThriveGeneric/FattyAcidsBar", "FillImage");
-	
-//     this.oxytoxyBar = this.rootGUIWindow.getChild("CompoundPanel").getChild("CompoundScroll").getChild("OxyToxyNTBar").getChild("OxyToxyNTBar");
-//     this.oxytoxyCountLabel = this.oxytoxyBar.getChild("NumberLabel");
-//     this.oxytoxyMaxLabel = this.rootGUIWindow.getChild("CompoundPanel").getChild("CompoundScroll").getChild("OxyToxyNTBar").getChild("OxyToxyNTTotal");
-//     this.oxytoxyBar.setProperty("ThriveGeneric/OxyToxyBar", "FillImage");
 // }
 
 
@@ -411,44 +373,7 @@ class MicrobeStageHudSystem : ScriptSystem{
 //     auto microbeComponent = getComponent(player, MicrobeComponent);
 //     auto soundSourceComponent = getComponent(player, SoundSourceComponent);
 
-//     this.hitpointsBar.progressbarSetProgress(microbeComponent.hitpoints/microbeComponent.maxHitpoints);
-//     this.hitpointsCountLabel.setText("".. math.floor(microbeComponent.hitpoints));
-//     this.hitpointsMaxLabel.setText("/ ".. math.floor(microbeComponent.maxHitpoints));
-
-//     this.atpBar.progressbarSetProgress(MicrobeSystem.getCompoundAmount(player, CompoundRegistry.getCompoundId("atp"))/(microbeComponent.capacity/CompoundRegistry.getCompoundUnitVolume(CompoundRegistry.getCompoundId("atp"))));
-//     this.atpCountLabel.setText("".. math.floor(MicrobeSystem.getCompoundAmount(player, CompoundRegistry.getCompoundId("atp"))));
-//     this.atpMaxLabel.setText("/ ".. math.floor(microbeComponent.capacity/CompoundRegistry.getCompoundUnitVolume(CompoundRegistry.getCompoundId("atp"))));
-	
-//     this.atpCountLabel2.setText("".. math.floor(MicrobeSystem.getCompoundAmount(player, CompoundRegistry.getCompoundId("atp"))));
-	
-//     this.oxygenBar.progressbarSetProgress(MicrobeSystem.getCompoundAmount(player, CompoundRegistry.getCompoundId("oxygen"))/(microbeComponent.capacity/CompoundRegistry.getCompoundUnitVolume(CompoundRegistry.getCompoundId("oxygen"))));
-//     this.oxygenCountLabel.setText("".. math.floor(MicrobeSystem.getCompoundAmount(player, CompoundRegistry.getCompoundId("oxygen"))));
-//     this.oxygenMaxLabel.setText("/ ".. math.floor(microbeComponent.capacity/CompoundRegistry.getCompoundUnitVolume(CompoundRegistry.getCompoundId("oxygen"))));
-	
-//     this.aminoacidsBar.progressbarSetProgress(MicrobeSystem.getCompoundAmount(player, CompoundRegistry.getCompoundId("aminoacids"))/(microbeComponent.capacity/CompoundRegistry.getCompoundUnitVolume(CompoundRegistry.getCompoundId("aminoacids"))));
-//     this.aminoacidsCountLabel.setText("".. math.floor(MicrobeSystem.getCompoundAmount(player, CompoundRegistry.getCompoundId("aminoacids"))));
-//     this.aminoacidsMaxLabel.setText("/ ".. math.floor(microbeComponent.capacity/CompoundRegistry.getCompoundUnitVolume(CompoundRegistry.getCompoundId("aminoacids"))));
-	
-//     this.ammoniaBar.progressbarSetProgress(MicrobeSystem.getCompoundAmount(player, CompoundRegistry.getCompoundId("ammonia"))/(microbeComponent.capacity/CompoundRegistry.getCompoundUnitVolume(CompoundRegistry.getCompoundId("ammonia"))));
-//     this.ammoniaCountLabel.setText("".. math.floor(MicrobeSystem.getCompoundAmount(player, CompoundRegistry.getCompoundId("ammonia"))));
-//     this.ammoniaMaxLabel.setText("/ ".. math.floor(microbeComponent.capacity/CompoundRegistry.getCompoundUnitVolume(CompoundRegistry.getCompoundId("ammonia"))));
-	
-//     this.glucoseBar.progressbarSetProgress(MicrobeSystem.getCompoundAmount(player, CompoundRegistry.getCompoundId("glucose"))/(microbeComponent.capacity/CompoundRegistry.getCompoundUnitVolume(CompoundRegistry.getCompoundId("glucose"))));
-//     this.glucoseCountLabel.setText("".. math.floor(MicrobeSystem.getCompoundAmount(player, CompoundRegistry.getCompoundId("glucose"))));
-//     this.glucoseMaxLabel.setText("/ ".. math.floor(microbeComponent.capacity/CompoundRegistry.getCompoundUnitVolume(CompoundRegistry.getCompoundId("glucose"))));
-	
-//     this.co2Bar.progressbarSetProgress(MicrobeSystem.getCompoundAmount(player, CompoundRegistry.getCompoundId("co2"))/(microbeComponent.capacity/CompoundRegistry.getCompoundUnitVolume(CompoundRegistry.getCompoundId("co2"))));
-//     this.co2CountLabel.setText("".. math.floor(MicrobeSystem.getCompoundAmount(player, CompoundRegistry.getCompoundId("co2"))));
-//     this.co2MaxLabel.setText("/ ".. math.floor(microbeComponent.capacity/CompoundRegistry.getCompoundUnitVolume(CompoundRegistry.getCompoundId("co2"))));
-	
-//     this.fattyacidsBar.progressbarSetProgress(MicrobeSystem.getCompoundAmount(player, CompoundRegistry.getCompoundId("fattyacids"))/(microbeComponent.capacity/CompoundRegistry.getCompoundUnitVolume(CompoundRegistry.getCompoundId("fattyacids"))));
-//     this.fattyacidsCountLabel.setText("".. math.floor(MicrobeSystem.getCompoundAmount(player, CompoundRegistry.getCompoundId("fattyacids"))));
-//     this.fattyacidsMaxLabel.setText("/ ".. math.floor(microbeComponent.capacity/CompoundRegistry.getCompoundUnitVolume(CompoundRegistry.getCompoundId("fattyacids"))));
-	
-//     this.oxytoxyBar.progressbarSetProgress(MicrobeSystem.getCompoundAmount(player, CompoundRegistry.getCompoundId("oxytoxy"))/(microbeComponent.capacity/CompoundRegistry.getCompoundUnitVolume(CompoundRegistry.getCompoundId("oxytoxy"))));
-//     this.oxytoxyCountLabel.setText("".. math.floor(MicrobeSystem.getCompoundAmount(player, CompoundRegistry.getCompoundId("oxytoxy"))));
-//     this.oxytoxyMaxLabel.setText("/ ".. math.floor(microbeComponent.capacity/CompoundRegistry.getCompoundUnitVolume(CompoundRegistry.getCompoundId("oxytoxy"))));
-
+//     
 //     auto playerSpecies = MicrobeSystem.getSpeciesComponent(player);
 //     //notification setting up
 //     if(b1 == true and t1 < 300){

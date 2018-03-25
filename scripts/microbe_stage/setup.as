@@ -214,6 +214,68 @@ class PlayerSpeciesSpawner{
     }
 }
 
+
+ObjectID createToxin(CellStageWorld@ world, Float3 pos)
+{
+	
+    //toxins
+    ObjectID toxinEntity = world.CreateEntity();
+    //LOG_INFO("toxin spawned at pos x"+ pos.X +"y"+ pos.Y +"z"+ pos.Z);
+		
+    auto position = world.Create_Position(toxinEntity, pos,Ogre::Quaternion(Ogre::Degree(GetEngine().GetRandom().GetNumber(0, 360)),Ogre::Vector3(0,1,0)));
+
+		
+    auto renderNode = world.Create_RenderNode(toxinEntity);
+    renderNode.Scale = Float3(1, 1, 1);
+    renderNode.Marked = true;
+    renderNode.Node.setOrientation(Ogre::Quaternion(Ogre::Degree(GetEngine().GetRandom().GetNumber(0, 360)),Ogre::Vector3(0,1,1)));
+    renderNode.Node.setPosition(pos);
+		
+
+    // Ogre::Quaternion(Ogre::Degree(GetEngine().GetRandom().GetNumber(0, 360)),
+    //     Ogre::Vector3(0, 1, 0)));
+	   
+    auto model = world.Create_Model(toxinEntity, renderNode.Node, "oxytoxy.mesh");
+		
+    auto rigidBody = world.Create_Physics(toxinEntity, world, position, null);
+    rigidBody.SetCollision(world.GetPhysicalWorld().CreateSphere(1));
+    rigidBody.CreatePhysicsBody(world.GetPhysicalWorld());
+    rigidBody.CreatePlaneConstraint(world.GetPhysicalWorld(), Float3(0,1,0));
+	rigidBody.SetMass(1.0f);	
+	
+			
+    rigidBody.JumpTo(position);
+	
+    return toxinEntity;
+}
+	
+ObjectID createChloroplast(CellStageWorld@ world, Float3 pos)
+{
+    //cholroplasts
+    ObjectID chloroplastEntity = world.CreateEntity();
+    //LOG_INFO("chloroplast spawned at pos x"+ pos.X +"y"+ pos.Y +"z"+ pos.Z);
+    auto position = world.Create_Position(chloroplastEntity, pos,Ogre::Quaternion(Ogre::Degree(GetEngine().GetRandom().GetNumber(0, 360)),Ogre::Vector3(0,1,1)));
+
+    auto renderNode = world.Create_RenderNode(chloroplastEntity);
+    renderNode.Scale = Float3(1, 1, 1);
+    renderNode.Marked = true;
+    renderNode.Node.setOrientation(Ogre::Quaternion(Ogre::Degree(GetEngine().GetRandom().GetNumber(0, 360)),Ogre::Vector3(0,1,1)));
+    renderNode.Node.setPosition(pos);
+		
+
+		
+    auto model = world.Create_Model(chloroplastEntity, renderNode.Node,"chloroplast.mesh");	
+		
+    auto rigidBody = world.Create_Physics(chloroplastEntity, world, position, null);
+    rigidBody.SetCollision(world.GetPhysicalWorld().CreateSphere(1));
+    rigidBody.CreatePhysicsBody(world.GetPhysicalWorld());
+    rigidBody.CreatePlaneConstraint(world.GetPhysicalWorld(), Float3(0,1,0));
+	rigidBody.SetMass(1.0f);	
+    rigidBody.JumpTo(position);
+		
+    return chloroplastEntity;
+}
+    
 // TODO: the player species handling would be more logically placed if
 // it was in SpeciesSystem, so move it there
 void setupSpawnSystem(CellStageWorld@ world){
@@ -244,31 +306,35 @@ void setupSpawnSystem(CellStageWorld@ world){
     }
 }
 
-
+    
+	
 //moved this over here fo rnow, its probabbly good to put "free spawning organelles" in their own function
 void setupFloatingOrganelles(CellStageWorld@ world){
     LOG_INFO("setting up free floating organelles");
-	//spawn toxin and chloroplasts
-	//             auto toxinOrganelleSpawnvoid = function(pos){
-	//             powerupEntity = Entity(g_luaEngine.currentGameState.wrapper)
-	//             setSpawnablePhysics(powerupEntity, pos, "AgentVacuole.mesh", 0.9,
-	//                 SphereShape(HEX_SIZE))
+    SpawnSystem@ spawnSystem = world.GetSpawnSystem();
 
+	//spawn toxin and chloroplasts
+	const auto chloroId = spawnSystem.addSpawnType(
+        @createChloroplast, DEFAULT_SPAWN_DENSITY,
+    MICROBE_SPAWN_RADIUS);
+	
+	//toxins	
+	const auto toxinId = spawnSystem.addSpawnType(
+        @createToxin, DEFAULT_SPAWN_DENSITY,
+    MICROBE_SPAWN_RADIUS);
+	
+	
+	
+	
+	//             auto toxinOrganelleSpawnvoid = function(pos){
 	//             auto reactionHandler = CollisionComponent()
 	//             reactionHandler.addCollisionGroup("powerup")
 	//             powerupEntity.addComponent(reactionHandler)
-			
-	//                 auto powerupComponent = PowerupComponent()
+	//               auto powerupComponent = PowerupComponent()
 	//             // void name must be in configs.lua{
 	//             powerupComponent.setEffect("toxin_number")
 	//             powerupEntity.addComponent(powerupComponent)
 	//             return powerupEntity
-	//             }
-	//             auto ChloroplastOrganelleSpawnvoid = function(pos) {
-	//             powerupEntity = Entity(g_luaEngine.currentGameState.wrapper)
-	//             setSpawnablePhysics(powerupEntity, pos, "chloroplast.mesh", 0.9,
-	//                 SphereShape(HEX_SIZE))
-
 	//             auto reactionHandler = CollisionComponent()
 	//                 reactionHandler.addCollisionGroup("powerup")
 	//             powerupEntity.addComponent(reactionHandler)
@@ -278,7 +344,6 @@ void setupFloatingOrganelles(CellStageWorld@ world){
 	//             powerupComponent.setEffect("chloroplast_number")
 	//             powerupEntity.addComponent(powerupComponent)
 	//             return powerupEntity
-	//             }
 	}
 
 void setupSound(CellStageWorld@ world){
