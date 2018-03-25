@@ -241,7 +241,8 @@ ObjectID createToxin(CellStageWorld@ world, Float3 pos)
     rigidBody.SetCollision(world.GetPhysicalWorld().CreateSphere(1));
     rigidBody.CreatePhysicsBody(world.GetPhysicalWorld());
     rigidBody.CreatePlaneConstraint(world.GetPhysicalWorld(), Float3(0,1,0));
-
+	rigidBody.SetMass(1.0f);	
+	
 			
     rigidBody.JumpTo(position);
 	
@@ -269,7 +270,7 @@ ObjectID createChloroplast(CellStageWorld@ world, Float3 pos)
     rigidBody.SetCollision(world.GetPhysicalWorld().CreateSphere(1));
     rigidBody.CreatePhysicsBody(world.GetPhysicalWorld());
     rigidBody.CreatePlaneConstraint(world.GetPhysicalWorld(), Float3(0,1,0));
-		
+	rigidBody.SetMass(1.0f);	
     rigidBody.JumpTo(position);
 		
     return chloroplastEntity;
