@@ -82,6 +82,21 @@ const uint AGENT_EMISSION_COOLDOWN = 1000;
 ////////////////////////////////////////////////////////////////////////////////
 class MicrobeComponent : ScriptComponent{
 
+    //! This detaches all still attached organelles
+    //! \todo There might be a more graceful way to do this
+    ~MicrobeComponent(){
+
+        LOG_INFO("MicrobeComponent destroyed: " + microbeEntity);
+
+        for(uint i = 0; i < organelles.length(); ++i){
+
+            LOG_INFO("Releasing component #: " + i);
+            organelles[i].onRemovedFromMicrobe(microbeEntity, null);
+        }
+
+        organelles.resize(0);
+    }
+
     //! This has to be called after creating this
     void init(ObjectID forEntity, bool isPlayerMicrobe, const string &in speciesName){
         

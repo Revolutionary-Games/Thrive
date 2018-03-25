@@ -561,6 +561,8 @@ void
     m_impl->m_cellStage.reset();
 
     m_impl.reset();
+
+    LOG_INFO("Thrive EnginePreShutdown ran");
 }
 // ------------------------------------ //
 void
