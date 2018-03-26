@@ -710,6 +710,24 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
         }
     }
 
+    //! Alternative to onRemovedFromMicrobe called when the microbe
+    //! and this is being destroyed at the same time. For example when
+    //! closing the game
+    void onDestroyedWithMicrobe(ObjectID microbe){
+
+        // TODO: do these need handling?
+        // //iterating on each OrganelleComponent
+        // for(uint i = 0; i < components.length(); ++i){
+
+        //     components[i].onDestroyedWithMicrobe(microbeEntity, this);
+        // }
+
+        world.QueueDestroyEntity(organelleEntity);
+        organelleEntity = NULL_OBJECT;
+        microbeEntity = NULL_OBJECT;
+        @world = null;
+    }
+
     // Called by a microbe when this organelle has been removed from it
     //
     // @param microbe
@@ -725,18 +743,16 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
         }
 
         // We can do a quick remove from the destructor
-        if(collisionShape !is null){
-            collisionShape.CompoundCollisionBeginAddRemove();
+        collisionShape.CompoundCollisionBeginAddRemove();
 
-            // Remove our sub collisions //
-            for(uint i = 0; i < _addedCollisions.length(); ++i){
+        // Remove our sub collisions //
+        for(uint i = 0; i < _addedCollisions.length(); ++i){
 
-                collisionShape.CompoundCollisionRemoveSubCollision(_addedCollisions[i]);
-            }
-
-            collisionShape.CompoundCollisionEndAddRemove();
-            _addedCollisions.resize(0);
+            collisionShape.CompoundCollisionRemoveSubCollision(_addedCollisions[i]);
         }
+
+        collisionShape.CompoundCollisionEndAddRemove();
+        _addedCollisions.resize(0);
         
         world.QueueDestroyEntity(organelleEntity);
         organelleEntity = NULL_OBJECT;

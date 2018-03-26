@@ -90,8 +90,7 @@ class MicrobeComponent : ScriptComponent{
 
         for(uint i = 0; i < organelles.length(); ++i){
 
-            LOG_INFO("Releasing component #: " + i);
-            organelles[i].onRemovedFromMicrobe(microbeEntity, null);
+            organelles[i].onDestroyedWithMicrobe(microbeEntity);
         }
 
         organelles.resize(0);

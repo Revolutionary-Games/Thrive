@@ -57,9 +57,14 @@ public:
     SLOT
         getSlotForCompound(CompoundId compound);
 
+    //! \returns True if CompoundId is in this cloud
+    bool
+        handlesCompound(CompoundId compound);
+
     //! \brief Adjusts coordinates with grid size
+    template<typename T>
     inline void
-        adjustWithGridSize(int& x, int& y)
+        adjustWithGridSize(T& x, T& y)
     {
         x /= gridSize;
         y /= gridSize;
@@ -68,15 +73,15 @@ public:
     //! \brief Places specified amount of compound at position (in this cloud's
     //! coordinates)
     void
-        addCloud(CompoundId compound, float density, int x, int y);
+        addCloud(CompoundId compound, float density, size_t x, size_t y);
 
     //! \param rate should be less than one.
     int
-        takeCompound(CompoundId compound, int x, int y, float rate);
+        takeCompound(CompoundId compound, size_t x, size_t y, float rate);
 
     //! \param rate should be less than one.
     int
-        amountAvailable(CompoundId compound, int x, int y, float rate);
+        amountAvailable(CompoundId compound, size_t x, size_t y, float rate);
 
     REFERENCE_HANDLE_UNCOUNTED_TYPE(CompoundCloudComponent);
 
@@ -103,8 +108,8 @@ protected:
     /// The size of the compound cloud grid.
     // These are now initialized here to catch trying to spawn compounds before
     // the cloud is initialized
-    int width = 0;
-    int height = 0;
+    size_t width = 0;
+    size_t height = 0;
     //! Should be something like 2, or 0.5 to nicely hit the
     float gridSize = 1;
 
@@ -132,11 +137,12 @@ protected:
     CompoundCloudComponent* lowerCloud = nullptr;
     CompoundCloudComponent* upperCloud = nullptr;
 
-    /// The color of the compound cloud.
-    Ogre::Vector3 m_color1;
-    Ogre::Vector3 m_color2;
-    Ogre::Vector3 m_color3;
-    Ogre::Vector3 m_color4;
+    //! The color of the compound cloud.
+    //! Every used channel must have alpha of 1
+    Ogre::Vector4 m_color1;
+    Ogre::Vector4 m_color2;
+    Ogre::Vector4 m_color3;
+    Ogre::Vector4 m_color4;
 
     /**
      * @brief The compound id.
@@ -179,7 +185,9 @@ public:
             const std::vector<Compound>& clouds);
 
     //! \brief Places specified amount of compound at position
-    void
+    //! \returns True if a cloud at that position was loaded and the cloud has
+    //! been placed
+    bool
         addCloud(CompoundId compound, float density, float x, float z);
 
     //! \param rate should be less than one.
@@ -224,8 +232,8 @@ private:
 
     void
         fillCloudChannel(const std::vector<std::vector<float>>& density,
-            int index,
-            size_t rowPitch,
+            size_t index,
+            size_t rowBytes,
             uint8_t* pDest);
 
 private:
