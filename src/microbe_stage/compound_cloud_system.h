@@ -132,11 +132,12 @@ protected:
     CompoundCloudComponent* lowerCloud = nullptr;
     CompoundCloudComponent* upperCloud = nullptr;
 
-    /// The color of the compound cloud.
-    Ogre::Vector3 m_color1;
-    Ogre::Vector3 m_color2;
-    Ogre::Vector3 m_color3;
-    Ogre::Vector3 m_color4;
+    //! The color of the compound cloud.
+    //! Every used channel must have alpha of 1
+    Ogre::Vector4 m_color1;
+    Ogre::Vector4 m_color2;
+    Ogre::Vector4 m_color3;
+    Ogre::Vector4 m_color4;
 
     /**
      * @brief The compound id.
@@ -224,8 +225,8 @@ private:
 
     void
         fillCloudChannel(const std::vector<std::vector<float>>& density,
-            int index,
-            size_t rowPitch,
+            size_t index,
+            size_t rowBytes,
             uint8_t* pDest);
 
 private:

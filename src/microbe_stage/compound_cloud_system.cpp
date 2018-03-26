@@ -47,28 +47,28 @@ CompoundCloudComponent::CompoundCloudComponent(Compound* first,
 
         m_compoundId1 = first->id;
         m_color1 =
-            Ogre::Vector3(first->colour.r, first->colour.g, first->colour.b);
+            Ogre::Vector4(first->colour.r, first->colour.g, first->colour.b, 1);
     }
 
     if(second) {
 
-        m_compoundId1 = second->id;
-        m_color1 =
-            Ogre::Vector3(second->colour.r, second->colour.g, second->colour.b);
+        m_compoundId2 = second->id;
+        m_color2 = Ogre::Vector4(
+            second->colour.r, second->colour.g, second->colour.b, 1);
     }
 
     if(third) {
 
-        m_compoundId1 = third->id;
-        m_color1 =
-            Ogre::Vector3(third->colour.r, third->colour.g, third->colour.b);
+        m_compoundId3 = third->id;
+        m_color3 =
+            Ogre::Vector4(third->colour.r, third->colour.g, third->colour.b, 1);
     }
 
     if(fourth) {
 
-        m_compoundId1 = fourth->id;
-        m_color1 =
-            Ogre::Vector3(fourth->colour.r, fourth->colour.g, fourth->colour.b);
+        m_compoundId4 = fourth->id;
+        m_color4 = Ogre::Vector4(
+            fourth->colour.r, fourth->colour.g, fourth->colour.b, 1);
     }
 }
 
@@ -620,7 +620,8 @@ void
     const Ogre::PixelBox& pixelBox = pixelBuffer->getCurrentLock();
     uint8_t* pDest = static_cast<uint8_t*>(pixelBox.data);
 
-    const size_t rowPitch = pixelBox.rowPitch;
+    const size_t rowBytes =
+        pixelBox.rowPitch * OGRE_CLOUD_TEXTURE_BYTES_PER_ELEMENT;
 
     // Copy the density vector into the buffer.
 
@@ -630,14 +631,13 @@ void
 
     // First channel
     if(cloud.m_compoundId1 != NULL_COMPOUND)
-        fillCloudChannel(cloud.m_density1, 0, rowPitch, pDest);
+        fillCloudChannel(cloud.m_density1, 0, rowBytes, pDest);
     if(cloud.m_compoundId2 != NULL_COMPOUND)
-        fillCloudChannel(cloud.m_density1, 1, rowPitch, pDest);
+        fillCloudChannel(cloud.m_density1, 1, rowBytes, pDest);
     if(cloud.m_compoundId3 != NULL_COMPOUND)
-        fillCloudChannel(cloud.m_density1, 2, rowPitch, pDest);
+        fillCloudChannel(cloud.m_density1, 2, rowBytes, pDest);
     if(cloud.m_compoundId4 != NULL_COMPOUND)
-        fillCloudChannel(cloud.m_density1, 3, rowPitch, pDest);
-
+        fillCloudChannel(cloud.m_density1, 3, rowBytes, pDest);
 
     // Unlock the pixel buffer.
     pixelBuffer->unlock();
@@ -646,22 +646,24 @@ void
 void
     CompoundCloudSystem::fillCloudChannel(
         const std::vector<std::vector<float>>& density,
-        int index,
-        size_t rowPitch,
+        size_t index,
+        size_t rowBytes,
         uint8_t* pDest)
 {
     for(int j = 0; j < height; j++) {
         for(int i = 0; i < width; i++) {
             // Flipping in y-direction
-            int intensity = static_cast<int>(density[i][height - j - 1]);
+            // TODO: check is this uint8_t conversion better than clamping
+            uint8_t intensity =
+                static_cast<uint8_t>(density[i][height - j - 1]);
 
             // TODO: can this be removed as this probably causes some
             // performance concerns by being here
-            std::clamp(intensity, 0, 255);
+            // std::clamp(intensity, 0, 255);
 
             // This can be used to debug the clouds
-            // intensity = 190;
-            pDest[rowPitch * j + (i * OGRE_CLOUD_TEXTURE_BYTES_PER_ELEMENT) +
+            intensity = 70;
+            pDest[rowBytes * j + (i * OGRE_CLOUD_TEXTURE_BYTES_PER_ELEMENT) +
                   index] = intensity;
         }
     }
