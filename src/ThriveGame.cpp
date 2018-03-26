@@ -1461,7 +1461,7 @@ bool
     }
 
     if(engine->RegisterObjectMethod("CompoundCloudSystem",
-           "void addCloud(CompoundId compound, float density, int x, int y)",
+           "bool addCloud(CompoundId compound, float density, int x, int y)",
            asMETHOD(CompoundCloudSystem, addCloud), asCALL_THISCALL) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
     }
