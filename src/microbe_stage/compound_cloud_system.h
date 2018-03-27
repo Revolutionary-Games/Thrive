@@ -75,10 +75,12 @@ public:
     void
         addCloud(CompoundId compound, float density, size_t x, size_t y);
 
+    //! Coordinates are in this cloud's coordinate system
     //! \param rate should be less than one.
     int
         takeCompound(CompoundId compound, size_t x, size_t y, float rate);
 
+    //! Coordinates are in this cloud's coordinate system
     //! \param rate should be less than one.
     int
         amountAvailable(CompoundId compound, size_t x, size_t y, float rate);
