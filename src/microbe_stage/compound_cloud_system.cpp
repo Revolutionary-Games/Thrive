@@ -154,9 +154,7 @@ void
         throw std::runtime_error(
             "CompoundCloudComponent coordinates out of range");
 
-    for(size_t i = 0; i < width; ++i) {
-        m_density1[i][y] += dens;
-    }
+	m_density1[x][y] += dens;
 
     switch(getSlotForCompound(compound)) {
     case SLOT::FIRST: m_density1[x][y] += dens; return;
@@ -459,7 +457,6 @@ void
 {
     auto entity = world.CreateEntity();
 
-
     Compound* first =
         startIndex < m_cloudTypes.size() ? &m_cloudTypes[startIndex] : nullptr;
     Compound* second = startIndex + 1 < m_cloudTypes.size() ?
@@ -492,7 +489,7 @@ void
 
     // Set initial position and the rotation that is preserved
     cloud.m_sceneNode->setPosition(
-        cloud.m_position.X-width/2, cloud.m_position.Y, cloud.m_position.Z);
+        cloud.m_position.X-width/2, YOffset, cloud.m_position.Z);
 
     // Stolen from the old background rotation
     cloud.m_sceneNode->setOrientation(
@@ -627,22 +624,22 @@ void
 {	//diffusing appears to work fine
     // Compound clouds move from area of high concentration to area of low.
      if(cloud.m_compoundId1 != NULL_COMPOUND) {
-        diffuse(.01, cloud.m_oldDens1, cloud.m_density1, renderTime);
+        diffuse(.4, cloud.m_oldDens1, cloud.m_density1, renderTime);
         // Move the compound clouds about the velocity field.
         advect(cloud.m_oldDens1, cloud.m_density1, renderTime);
      }
      if(cloud.m_compoundId2 != NULL_COMPOUND) {
-        diffuse(.01, cloud.m_oldDens2, cloud.m_density2, renderTime);
+        diffuse(.4, cloud.m_oldDens2, cloud.m_density2, renderTime);
         //Move the compound clouds about the velocity field.
         advect(cloud.m_oldDens2, cloud.m_density2, renderTime);
      }
      if(cloud.m_compoundId3 != NULL_COMPOUND) {
-         diffuse(.01, cloud.m_oldDens3, cloud.m_density3, renderTime);
+         diffuse(.4, cloud.m_oldDens3, cloud.m_density3, renderTime);
          //Move the compound clouds about the velocity field.
          advect(cloud.m_oldDens3, cloud.m_density3, renderTime);
      }
      if(cloud.m_compoundId4 != NULL_COMPOUND) {
-        diffuse(.01, cloud.m_oldDens4, cloud.m_density4, renderTime);
+        diffuse(.4, cloud.m_oldDens4, cloud.m_density4, renderTime);
         //Move the compound clouds about the velocity field.
         advect(cloud.m_oldDens4, cloud.m_density4, renderTime);
      }
