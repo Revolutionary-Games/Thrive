@@ -307,9 +307,9 @@ void
         amount *
             SimulationParameters::compoundRegistry.getTypeData(id).volume) {
 
-        LOG_WRITE("Absorbing stuff: " + std::to_string(id) +
-                  " at (cloud local): " + std::to_string(x) + ", " +
-                  std::to_string(y) + " amount: " + std::to_string(amount));
+        // LOG_WRITE("Absorbing stuff: " + std::to_string(id) +
+        //           " at (cloud local): " + std::to_string(x) + ", " +
+        //           std::to_string(y) + " amount: " + std::to_string(amount));
         absorber.m_absorbedCompounds[id] +=
             compoundCloud->takeCompound(id, x, y, .2) / 5000.0f;
     }
