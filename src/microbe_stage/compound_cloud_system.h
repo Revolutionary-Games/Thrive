@@ -76,6 +76,50 @@ public:
     int
         amountAvailable(CompoundId compound, size_t x, size_t y, float rate);
 
+    CompoundId
+        getCompoundId1() const
+    {
+        return m_compoundId1;
+    }
+    CompoundId
+        getCompoundId2() const
+    {
+        return m_compoundId2;
+    }
+    CompoundId
+        getCompoundId3() const
+    {
+        return m_compoundId3;
+    }
+    CompoundId
+        getCompoundId4() const
+    {
+        return m_compoundId4;
+    }
+
+    float
+        getGridSize() const
+    {
+        return gridSize;
+    }
+
+    auto
+        getPosition() const
+    {
+        return m_position;
+    }
+
+    auto
+        getHeight() const
+    {
+        return height;
+    }
+    auto
+        getWidth() const
+    {
+        return width;
+    }
+
     REFERENCE_HANDLE_UNCOUNTED_TYPE(CompoundCloudComponent);
 
     //! The name of the texture that is made for this cloud
@@ -103,6 +147,7 @@ protected:
     // the cloud is initialized
     size_t width = 0;
     size_t height = 0;
+    float gridSize = 2;
 
     //! The world position this cloud is at. Used to despawn and spawn new ones
     //! Y is ignored and replaced with YOffset

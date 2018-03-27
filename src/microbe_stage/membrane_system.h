@@ -67,6 +67,14 @@ public:
     bool
         contains(float x, float y);
 
+    //! \brief Cheaper version of contains for absorbing stuff
+    //!
+    //! Calculates a circle radius that contains all the points (when it is
+    //! placed at 0,0 local coordinate)
+    //! \todo Cache this after initialization to increase performance
+    float
+        calculateEncompassingCircleRadius() const;
+
     //! \param parentcomponentpos The mesh is attached to this node when the
     //! mesh is created \todo As this is currently only executed once (when
     //! isInitialized is false) this should be changed to directly upload the

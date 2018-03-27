@@ -114,9 +114,6 @@ Ogre::Vector3
 bool
     MembraneComponent::contains(float x, float y)
 {
-    // if (x < -cellDimensions/2 || x > cellDimensions/2 || y <
-    // -cellDimensions/2 || y > cellDimensions/2) return false;
-
     bool crosses = false;
 
     int n = vertices2D.size();
@@ -134,6 +131,22 @@ bool
 
     return crosses;
 }
+
+float
+    MembraneComponent::calculateEncompassingCircleRadius() const
+{
+    float distanceSquared = 0;
+
+    for(const auto& vertex : vertices2D) {
+
+        const auto currentDistance = vertex.squaredLength();
+        if(currentDistance >= distanceSquared)
+            distanceSquared = currentDistance;
+    }
+
+    return std::sqrt(distanceSquared);
+}
+
 // ------------------------------------ //
 //! Should set the colour of the membrane once working
 void

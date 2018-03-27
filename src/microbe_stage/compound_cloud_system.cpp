@@ -325,7 +325,7 @@ bool
     CompoundCloudSystem::addCloud(CompoundId compound,
         float density,
         float x,
-        float y)
+        float z)
 {
     // TODO: store these
     const auto halfWidth = width * gridSize / 2;
@@ -337,10 +337,10 @@ bool
         const auto& pos = cloud.second->m_position;
 
         const float relativeX = (x - (pos.X - halfWidth)) / gridSize;
-        const float relativeY = (y - (pos.Y - halfHeight)) / gridSize;
+        const float relativeZ = (z - (pos.Z - halfHeight)) / gridSize;
 
-        if(relativeX >= 0 && relativeX <= width && relativeY >= 0 &&
-            relativeY <= height) {
+        if(relativeX >= 0 && relativeX <= width && relativeZ >= 0 &&
+            relativeZ <= height) {
             // Within cloud
 
             // Skip wrong types
@@ -350,11 +350,11 @@ bool
             LOG_INFO("Adding compound: " + std::to_string(compound) +
                      " (amount: " + std::to_string(density) + ") to cloud (" +
                      std::to_string(cloud.first) + ") at pos: " +
-                     std::to_string(x) + ", " + std::to_string(y) +
+                     std::to_string(x) + ", " + std::to_string(z) +
                      ", relative pos: " + std::to_string(relativeX) + ", " +
-                     std::to_string(relativeY));
+                     std::to_string(relativeZ));
 
-            cloud.second->addCloud(compound, density, relativeX, relativeY);
+            cloud.second->addCloud(compound, density, relativeX, relativeZ);
         }
     }
 
@@ -501,6 +501,7 @@ void
     // Set the size of each grid tile and its position.
     cloud.width = width;
     cloud.height = height;
+    cloud.gridSize = gridSize;
 
     // All the densities
     if(cloud.m_compoundId1 != NULL_COMPOUND) {
