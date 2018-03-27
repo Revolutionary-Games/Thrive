@@ -62,7 +62,7 @@ class NucleusOrganelle : OrganelleComponent{
         // this.colourSuffix = "" + floor(speciesColour.X * 256) +
         //     floor(speciesColour.Y * 256) + floor(speciesColour.Z * 256);
         
-        // organelle._needsColourUpdate = true;
+        organelle._needsColourUpdate = true;
     }
 
     // Overridded from OrganelleComponent.onRemovedFromMicrobe

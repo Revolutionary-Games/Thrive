@@ -364,11 +364,12 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
 
     //! \todo PlacedOrganelle::updateColour: doesn't actually work
     protected void updateColour(){
-
+		
         if(organelleEntity == NULL_OBJECT || microbeEntity == NULL_OBJECT)
             return;
 
-        auto model = world.GetComponent_Model(organelleEntity);
+        LOG_INFO("Update colour called");
+		auto model = world.GetComponent_Model(organelleEntity);
 
         // local entity = this.sceneNode.entity;
         // //entity.tintColour(this.name, this.colour); //crashes game
@@ -836,7 +837,7 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
     // Used for removing the added sub collisions when we are removed from a microbe
     private array<NewtonCollision@> _addedCollisions;
 
-    private bool _needsColourUpdate = false;
+    bool _needsColourUpdate = false;
 }
 
 
