@@ -148,10 +148,11 @@ void
         // Find the position of the cell.
         const Float3 origin = sceneNode.Members._Position;
 
-        const auto grabRadius = membrane.calculateEncompassingCircleRadius();
+        const auto unadjustedgrabRadius =
+            membrane.calculateEncompassingCircleRadius();
 
         // Skip if not initialized //
-        if(grabRadius < 1)
+        if(unadjustedgrabRadius < 1)
             continue;
 
         // Each membrane absorbs a certain amount of each compound.
@@ -168,6 +169,8 @@ void
 
             const auto& cloudPos = compoundCloud->getPosition();
 
+            const auto grabRadius = unadjustedgrabRadius * gridSize;
+
             const Float3 relative = origin - cloudPos;
 
             if(relative.X < -halfWidth - grabRadius ||
@@ -176,7 +179,7 @@ void
                 relative.Z > halfHeight + grabRadius)
                 continue;
 
-            int x_start = (relative.X - halfWidth - grabRadius) / gridSize;
+            int x_start = (relative.X + halfWidth - grabRadius) / gridSize;
 
             if(x_start < 0)
                 x_start = 0;
@@ -187,12 +190,12 @@ void
             if(x_end > width)
                 x_end = width;
 
-            int z_start = (relative.Z - halfHeight - grabRadius) / gridSize;
+            int z_start = (relative.Z + halfHeight - grabRadius) / gridSize;
 
             if(z_start < 0)
                 z_start = 0;
 
-            int z_end = (relative.X + halfWidth + grabRadius) / gridSize;
+            int z_end = (relative.Z + halfHeight + grabRadius) / gridSize;
 
             const auto height = static_cast<int>(compoundCloud->getHeight());
             if(z_end > height)
@@ -200,15 +203,27 @@ void
 
             const auto diameter = std::pow(grabRadius, 2);
 
+            const int cloudSpaceHalfWidth =
+                static_cast<int>(compoundCloud->getWidth() / 2);
+            const int cloudSpaceHalfHeight =
+                static_cast<int>(compoundCloud->getHeight() / 2);
+
             // Iterate though all of the points inside the bounding box.
             for(int x = x_start; x < x_end; x++) {
                 for(int y = z_start; y < z_end; y++) {
 
+                    // LOG_WRITE(
+                    //     "Pos: " + std::to_string(x) + ", " +
+                    //     std::to_string(y));
+
                     // And skip everything outside the circle
-                    if(std::pow(x - relative.X, 2) +
-                            std::pow(y - relative.Y, 2) >
+                    if(std::pow(x - cloudSpaceHalfWidth - relative.X, 2) +
+                            std::pow(y - cloudSpaceHalfHeight - relative.Y, 2) >
                         diameter)
                         continue;
+
+                    // LOG_WRITE("Checking absorb pos: " + std::to_string(x) +
+                    //           ", " + std::to_string(y));
 
                     // Each cloud has 4 things
                     static_assert(CLOUDS_IN_ONE == 4,
@@ -294,7 +309,7 @@ void
 
         LOG_WRITE("Absorbing stuff: " + std::to_string(id) +
                   " at (cloud local): " + std::to_string(x) + ", " +
-                  std::to_string(y));
+                  std::to_string(y) + " amount: " + std::to_string(amount));
         absorber.m_absorbedCompounds[id] +=
             compoundCloud->takeCompound(id, x, y, .2) / 5000.0f;
     }
