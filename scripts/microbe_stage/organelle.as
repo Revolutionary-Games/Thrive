@@ -368,7 +368,8 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
         if(organelleEntity == NULL_OBJECT || microbeEntity == NULL_OBJECT)
             return;
 
-        LOG_INFO("Update colour called");
+        // No huge amount of spam 
+        // LOG_INFO("Update colour called");
 		auto model = world.GetComponent_Model(organelleEntity);
 
         // local entity = this.sceneNode.entity;
