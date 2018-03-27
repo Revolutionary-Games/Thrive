@@ -459,6 +459,7 @@ void
 {
     auto entity = world.CreateEntity();
 
+
     Compound* first =
         startIndex < m_cloudTypes.size() ? &m_cloudTypes[startIndex] : nullptr;
     Compound* second = startIndex + 1 < m_cloudTypes.size() ?
@@ -491,7 +492,7 @@ void
 
     // Set initial position and the rotation that is preserved
     cloud.m_sceneNode->setPosition(
-        cloud.m_position.X, YOffset, cloud.m_position.Z);
+        cloud.m_position.X-width/2, cloud.m_position.Y, cloud.m_position.Z);
 
     // Stolen from the old background rotation
     cloud.m_sceneNode->setOrientation(
@@ -695,7 +696,7 @@ void
             // std::clamp(intensity, 0, 255);
 
             // This can be used to debug the clouds
-            // intensity = 70;
+           // intensity = 70;
             pDest[rowBytes * j + (i * OGRE_CLOUD_TEXTURE_BYTES_PER_ELEMENT) +
                   index] = intensity;
         }
