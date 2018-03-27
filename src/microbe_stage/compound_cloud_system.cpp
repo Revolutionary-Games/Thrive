@@ -489,8 +489,13 @@ void
     cloud.m_sceneNode = scene->getRootSceneNode()->createChildSceneNode();
 
     // Set initial position and the rotation that is preserved
+
+	//shift cloud to the left by half a width so its positioned correctly
+	cloud.m_position.X = cloud.m_position.X - width / 2;
+
+	//set the position properly
     cloud.m_sceneNode->setPosition(
-        cloud.m_position.X-width/2, YOffset, cloud.m_position.Z);
+        cloud.m_position.X, YOffset, cloud.m_position.Z);
 
     // Stolen from the old background rotation
     cloud.m_sceneNode->setOrientation(
