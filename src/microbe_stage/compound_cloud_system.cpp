@@ -154,6 +154,7 @@ void
         throw std::runtime_error(
             "CompoundCloudComponent coordinates out of range");
 
+	//so is this where we would randomize where it is on the screen?
 	m_density1[x][y] += dens;
 
     switch(getSlotForCompound(compound)) {
