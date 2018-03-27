@@ -148,20 +148,19 @@ void
         size_t x,
         size_t y)
 {
-    adjustWithGridSize(x, y);
-
     if(x >= width || y >= height)
         throw std::runtime_error(
             "CompoundCloudComponent coordinates out of range");
 
-	//so is this where we would randomize where it is on the screen?
-	m_density1[x][y] += dens;
+    LOG_WRITE("Pos things: " + std::to_string(x) + ", " + std::to_string(y) +
+              " width: " + std::to_string(width) +
+              " height: " + std::to_string(height));
 
     switch(getSlotForCompound(compound)) {
-    case SLOT::FIRST: m_density1[x][y] += dens; return;
-    case SLOT::SECOND: m_density2[x][y] += dens; return;
-    case SLOT::THIRD: m_density3[x][y] += dens; return;
-    case SLOT::FOURTH: m_density4[x][y] += dens; return;
+    case SLOT::FIRST: m_density1[x][y] += dens; break;
+    case SLOT::SECOND: m_density2[x][y] += dens; break;
+    case SLOT::THIRD: m_density3[x][y] += dens; break;
+    case SLOT::FOURTH: m_density4[x][y] += dens; break;
     }
 }
 
@@ -171,8 +170,6 @@ int
         size_t y,
         float rate)
 {
-    adjustWithGridSize(x, y);
-
     if(x >= width || y >= height)
         throw std::runtime_error(
             "CompoundCloudComponent coordinates out of range");
@@ -222,8 +219,6 @@ int
         size_t y,
         float rate)
 {
-    adjustWithGridSize(x, y);
-
     if(x >= width || y >= height)
         throw std::runtime_error(
             "CompoundCloudComponent coordinates out of range");
@@ -333,32 +328,33 @@ bool
         float y)
 {
     // TODO: store these
-    const auto halfWidth = width / 2;
-    const auto halfHeight = height / 2;
+    const auto halfWidth = width * gridSize / 2;
+    const auto halfHeight = height * gridSize / 2;
 
     // Find the target cloud //
     for(auto& cloud : m_managedClouds) {
 
         const auto& pos = cloud.second->m_position;
 
-        if(x >= pos.X - halfWidth && x <= pos.X + halfWidth &&
-            y >= pos.Y - halfHeight && y <= pos.Y + halfHeight) {
+        const float relativeX = (x - (pos.X - halfWidth)) / gridSize;
+        const float relativeY = (y - (pos.Y - halfHeight)) / gridSize;
+
+        if(relativeX >= 0 && relativeX <= width && relativeY >= 0 &&
+            relativeY <= height) {
             // Within cloud
 
             // Skip wrong types
             if(!cloud.second->handlesCompound(compound))
                 continue;
 
-            LOG_INFO(
-                "Adding compound: " + std::to_string(compound) +
-                " (amount: " + std::to_string(density) + ") to cloud (" +
-                std::to_string(cloud.first) + ") at pos: " + std::to_string(x) +
-                ", " + std::to_string(y) +
-                ", relative pos: " + std::to_string(halfWidth - (x + pos.X)) +
-                ", " + std::to_string(halfHeight + (y - pos.Y)));
+            LOG_INFO("Adding compound: " + std::to_string(compound) +
+                     " (amount: " + std::to_string(density) + ") to cloud (" +
+                     std::to_string(cloud.first) + ") at pos: " +
+                     std::to_string(x) + ", " + std::to_string(y) +
+                     ", relative pos: " + std::to_string(relativeX) + ", " +
+                     std::to_string(relativeY));
 
-            cloud.second->addCloud(compound, density, halfWidth - (x + pos.X),
-                halfHeight + (y - pos.Y));
+            cloud.second->addCloud(compound, density, relativeX, relativeY);
         }
     }
 
@@ -490,10 +486,10 @@ void
 
     // Set initial position and the rotation that is preserved
 
-	//shift cloud to the left by half a width so its positioned correctly
-	cloud.m_position.X = cloud.m_position.X - width / 2;
+    // shift cloud to the left by half a width so its positioned correctly
+    // cloud.m_position.X = cloud.m_position.X - width / 2;
 
-	//set the position properly
+    // set the position properly
     cloud.m_sceneNode->setPosition(
         cloud.m_position.X, YOffset, cloud.m_position.Z);
 
@@ -505,7 +501,6 @@ void
     // Set the size of each grid tile and its position.
     cloud.width = width;
     cloud.height = height;
-    cloud.gridSize = gridSize;
 
     // All the densities
     if(cloud.m_compoundId1 != NULL_COMPOUND) {
@@ -524,6 +519,12 @@ void
         cloud.m_density4.resize(width, std::vector<float>(height, 0));
         cloud.m_oldDens4.resize(width, std::vector<float>(height, 0));
     }
+
+    // Testing putting compound at different points
+    // cloud.m_density1[width / 2][height / 2] = 190;
+    // cloud.m_density1[width / 2 - 1][height / 2 - 1] = 190;
+    // cloud.m_density1[width / 2 + 1][height / 2 + 1] = 190;
+
 
     // Modifies the material to draw this compound cloud in addition to the
     // others.
@@ -569,6 +570,10 @@ void
         pass->getFragmentProgramParameters()->setNamedConstant(
             "cloudColour4", cloud.m_color4);
 
+    // Position for consistent UVs
+    pass->getFragmentProgramParameters()->setNamedConstant(
+        "cloudPos", cloud.m_position);
+
     cloud.m_planeMaterial->compile();
 
     cloud.m_texture = Ogre::TextureManager::getSingleton().createManual(
@@ -606,6 +611,7 @@ void
 
     // Needs to create a plane instance on which the material is used on
     cloud.m_compoundCloudsPlane = scene->createItem(m_planeMesh);
+    cloud.m_compoundCloudsPlane->setCastShadows(false);
 
     // This needs to be add to an early render queue
     // But after the background
@@ -627,28 +633,29 @@ void
 void
     CompoundCloudSystem::ProcessCloud(CompoundCloudComponent& cloud,
         int renderTime)
-{	//diffusing appears to work fine
+{
+    // diffusing appears to work fine
     // Compound clouds move from area of high concentration to area of low.
-     if(cloud.m_compoundId1 != NULL_COMPOUND) {
-        diffuse(.4, cloud.m_oldDens1, cloud.m_density1, renderTime);
+    if(cloud.m_compoundId1 != NULL_COMPOUND) {
+        diffuse(.01, cloud.m_oldDens1, cloud.m_density1, renderTime);
         // Move the compound clouds about the velocity field.
         advect(cloud.m_oldDens1, cloud.m_density1, renderTime);
-     }
-     if(cloud.m_compoundId2 != NULL_COMPOUND) {
-        diffuse(.4, cloud.m_oldDens2, cloud.m_density2, renderTime);
-        //Move the compound clouds about the velocity field.
+    }
+    if(cloud.m_compoundId2 != NULL_COMPOUND) {
+        diffuse(.01, cloud.m_oldDens2, cloud.m_density2, renderTime);
+        // Move the compound clouds about the velocity field.
         advect(cloud.m_oldDens2, cloud.m_density2, renderTime);
-     }
-     if(cloud.m_compoundId3 != NULL_COMPOUND) {
-         diffuse(.4, cloud.m_oldDens3, cloud.m_density3, renderTime);
-         //Move the compound clouds about the velocity field.
-         advect(cloud.m_oldDens3, cloud.m_density3, renderTime);
-     }
-     if(cloud.m_compoundId4 != NULL_COMPOUND) {
-        diffuse(.4, cloud.m_oldDens4, cloud.m_density4, renderTime);
-        //Move the compound clouds about the velocity field.
+    }
+    if(cloud.m_compoundId3 != NULL_COMPOUND) {
+        diffuse(.01, cloud.m_oldDens3, cloud.m_density3, renderTime);
+        // Move the compound clouds about the velocity field.
+        advect(cloud.m_oldDens3, cloud.m_density3, renderTime);
+    }
+    if(cloud.m_compoundId4 != NULL_COMPOUND) {
+        diffuse(.01, cloud.m_oldDens4, cloud.m_density4, renderTime);
+        // Move the compound clouds about the velocity field.
         advect(cloud.m_oldDens4, cloud.m_density4, renderTime);
-     }
+    }
 
     // Store the pixel data in a hardware buffer for quick access.
     auto pixelBuffer = cloud.m_texture->getBuffer();
@@ -670,11 +677,11 @@ void
     if(cloud.m_compoundId1 != NULL_COMPOUND)
         fillCloudChannel(cloud.m_density1, 0, rowBytes, pDest);
     if(cloud.m_compoundId2 != NULL_COMPOUND)
-        fillCloudChannel(cloud.m_density1, 1, rowBytes, pDest);
+        fillCloudChannel(cloud.m_density2, 1, rowBytes, pDest);
     if(cloud.m_compoundId3 != NULL_COMPOUND)
-        fillCloudChannel(cloud.m_density1, 2, rowBytes, pDest);
+        fillCloudChannel(cloud.m_density3, 2, rowBytes, pDest);
     if(cloud.m_compoundId4 != NULL_COMPOUND)
-        fillCloudChannel(cloud.m_density1, 3, rowBytes, pDest);
+        fillCloudChannel(cloud.m_density4, 3, rowBytes, pDest);
 
     // Unlock the pixel buffer.
     pixelBuffer->unlock();
@@ -691,15 +698,17 @@ void
         for(int i = 0; i < width; i++) {
             // Flipping in y-direction
             // TODO: check is this uint8_t conversion better than clamping
-            uint8_t intensity =
-                static_cast<uint8_t>(density[i][height - j - 1]);
+            int intensity = static_cast<int>(density[i][height - j - 1]);
 
             // TODO: can this be removed as this probably causes some
             // performance concerns by being here
-            // std::clamp(intensity, 0, 255);
+            std::clamp(intensity, 0, 255);
 
             // This can be used to debug the clouds
-           // intensity = 70;
+            // if(index == 1)
+            //     intensity += 70;
+            // if(intensity > 0)
+            //    intensity = 140;
             pDest[rowBytes * j + (i * OGRE_CLOUD_TEXTURE_BYTES_PER_ELEMENT) +
                   index] = intensity;
         }

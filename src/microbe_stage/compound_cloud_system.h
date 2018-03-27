@@ -61,15 +61,6 @@ public:
     bool
         handlesCompound(CompoundId compound);
 
-    //! \brief Adjusts coordinates with grid size
-    template<typename T>
-    inline void
-        adjustWithGridSize(T& x, T& y)
-    {
-        x /= gridSize;
-        y /= gridSize;
-    }
-
     //! \brief Places specified amount of compound at position (in this cloud's
     //! coordinates)
     void
@@ -112,8 +103,6 @@ protected:
     // the cloud is initialized
     size_t width = 0;
     size_t height = 0;
-    //! Should be something like 2, or 0.5 to nicely hit the
-    float gridSize = 1;
 
     //! The world position this cloud is at. Used to despawn and spawn new ones
     //! Y is ignored and replaced with YOffset
@@ -254,6 +243,7 @@ private:
     /// The size of the compound cloud grid.
     int width = 120;
     int height = 120;
+    //! Should be something like 2, or 0.5 to nicely hit the
     float gridSize = 2;
 
 
