@@ -331,7 +331,7 @@ bool
     CompoundCloudSystem::addCloud(CompoundId compound,
         float density,
         float x,
-        float z)
+        float y)
 {
     // TODO: store these
     const auto halfWidth = width / 2;
@@ -343,8 +343,7 @@ bool
         const auto& pos = cloud.second->m_position;
 
         if(x >= pos.X - halfWidth && x <= pos.X + halfWidth &&
-            z >= pos.Z - halfHeight && z <= pos.Z + halfHeight) {
-
+            y >= pos.Y - halfHeight && y <= pos.Y + halfHeight) {
             // Within cloud
 
             // Skip wrong types
@@ -355,12 +354,12 @@ bool
                 "Adding compound: " + std::to_string(compound) +
                 " (amount: " + std::to_string(density) + ") to cloud (" +
                 std::to_string(cloud.first) + ") at pos: " + std::to_string(x) +
-                ", " + std::to_string(z) +
-                ", relative pos: " + std::to_string(halfWidth + (x - pos.X)) +
-                ", " + std::to_string(halfHeight + (z - pos.Z)));
+                ", " + std::to_string(y) +
+                ", relative pos: " + std::to_string(halfWidth - (x + pos.X)) +
+                ", " + std::to_string(halfHeight + (y - pos.Y)));
 
-            cloud.second->addCloud(compound, density, halfWidth + (x - pos.X),
-                halfHeight + (z - pos.Z));
+            cloud.second->addCloud(compound, density, halfWidth - (x + pos.X),
+                halfHeight + (y - pos.Y));
         }
     }
 
@@ -624,28 +623,28 @@ void
 void
     CompoundCloudSystem::ProcessCloud(CompoundCloudComponent& cloud,
         int renderTime)
-{
-    // // Compound clouds move from area of high concentration to area of low.
-    // if(cloud.m_compoundId1 != NULL_COMPOUND) {
-    //     diffuse(.01, cloud.m_oldDens1, cloud.m_density1, renderTime);
-    //     // Move the compound clouds about the velocity field.
-    //     advect(cloud.m_oldDens1, cloud.m_density1, renderTime);
-    // }
-    // if(cloud.m_compoundId2 != NULL_COMPOUND) {
-    //     diffuse(.01, cloud.m_oldDens2, cloud.m_density2, renderTime);
-    //     // Move the compound clouds about the velocity field.
-    //     advect(cloud.m_oldDens2, cloud.m_density2, renderTime);
-    // }
-    // if(cloud.m_compoundId3 != NULL_COMPOUND) {
-    //     diffuse(.01, cloud.m_oldDens3, cloud.m_density3, renderTime);
-    //     // Move the compound clouds about the velocity field.
-    //     advect(cloud.m_oldDens3, cloud.m_density3, renderTime);
-    // }
-    // if(cloud.m_compoundId4 != NULL_COMPOUND) {
-    //     diffuse(.01, cloud.m_oldDens4, cloud.m_density4, renderTime);
-    //     // Move the compound clouds about the velocity field.
-    //     advect(cloud.m_oldDens4, cloud.m_density4, renderTime);
-    // }
+{	//diffusing appears to work fine
+    // Compound clouds move from area of high concentration to area of low.
+     if(cloud.m_compoundId1 != NULL_COMPOUND) {
+        diffuse(.01, cloud.m_oldDens1, cloud.m_density1, renderTime);
+        // Move the compound clouds about the velocity field.
+        advect(cloud.m_oldDens1, cloud.m_density1, renderTime);
+     }
+     if(cloud.m_compoundId2 != NULL_COMPOUND) {
+        diffuse(.01, cloud.m_oldDens2, cloud.m_density2, renderTime);
+        //Move the compound clouds about the velocity field.
+        advect(cloud.m_oldDens2, cloud.m_density2, renderTime);
+     }
+     if(cloud.m_compoundId3 != NULL_COMPOUND) {
+         diffuse(.01, cloud.m_oldDens3, cloud.m_density3, renderTime);
+         //Move the compound clouds about the velocity field.
+         advect(cloud.m_oldDens3, cloud.m_density3, renderTime);
+     }
+     if(cloud.m_compoundId4 != NULL_COMPOUND) {
+        diffuse(.01, cloud.m_oldDens4, cloud.m_density4, renderTime);
+        //Move the compound clouds about the velocity field.
+        advect(cloud.m_oldDens4, cloud.m_density4, renderTime);
+     }
 
     // Store the pixel data in a hardware buffer for quick access.
     auto pixelBuffer = cloud.m_texture->getBuffer();
