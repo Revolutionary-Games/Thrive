@@ -372,10 +372,10 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
 
         if(model !is null){
 
-            // model.GraphicalObject.setCustomParameter(1,
-            //     // Ogre::Vector4(this.colourTint * this.flashColour)
-            //     // Ogre::Vector4(1, 1, 1, 1)
-            // );
+            model.GraphicalObject.setCustomParameter(1,
+                Ogre::Vector4(this.colourTint * this.flashColour)
+                // Ogre::Vector4(1, 1, 1, 1)
+            );
         }
         
         _needsColourUpdate = false;

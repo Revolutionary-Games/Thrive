@@ -50,11 +50,6 @@ class MovementOrganelle : OrganelleComponent{
         
         angle = ((angle * 180)/PI + 180) % 360;
 
-        //auto sceneNode = organelle.world.GetComponent_RenderNode(organelle.organelleEntity);
-        //Adding a mesh to the organelle.
-        // @this.model = organelle.world.Create_Model(organelle.organelleEntity,
-        //     sceneNode.Node, organelle.organelle.mesh);
-
         // This is already added by the PlacedOrganlle.onAddedToMicrobe
         Model@ model = organelle.world.GetComponent_Model(organelle.organelleEntity);
 

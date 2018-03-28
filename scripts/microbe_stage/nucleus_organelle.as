@@ -48,7 +48,7 @@ class NucleusOrganelle : OrganelleComponent{
         auto model2 = world.Create_Model(ER, sceneNode2.Node, "ER.mesh");
 
         // Tint must be set
-        model1.GraphicalObject.setCustomParameter(1, Ogre::Vector4(1, 1, 1, 1));
+        model2.GraphicalObject.setCustomParameter(1, Ogre::Vector4(1, 1, 1, 1));
 
         sceneNode2.Scale = Float3(HEX_SIZE, HEX_SIZE, HEX_SIZE);
         sceneNode2.Node.setPosition(Hex::axialToCartesian(q - 1, r + 2));
