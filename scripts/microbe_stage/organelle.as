@@ -345,8 +345,9 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
                 colour = speciesColour;
             }
 
-            // This gets called a lot so uncomment once colour changing works
-            // _needsColourUpdate = true;
+            // TODO: this needs a separate colour property
+            flashColour = colour;
+            _needsColourUpdate = true;
         }
 
         // If the organelle is supposed to be another color.
@@ -362,20 +363,20 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
         }
     }
 
-    //! \todo PlacedOrganelle::updateColour: doesn't actually work
     protected void updateColour(){
 		
         if(organelleEntity == NULL_OBJECT || microbeEntity == NULL_OBJECT)
             return;
 
-        // No huge amount of spam 
-        // LOG_INFO("Update colour called");
 		auto model = world.GetComponent_Model(organelleEntity);
 
-        // local entity = this.sceneNode.entity;
-        // //entity.tintColour(this.name, this.colour); //crashes game
-        
-        // model.Entity.SetColour(colour);
+        if(model !is null){
+
+            // model.GraphicalObject.setCustomParameter(1,
+            //     // Ogre::Vector4(this.colourTint * this.flashColour)
+            //     // Ogre::Vector4(1, 1, 1, 1)
+            // );
+        }
         
         _needsColourUpdate = false;
     }
@@ -655,7 +656,7 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
         // Change the colour of this species to be tinted by the membrane.
         auto species = MicrobeOperations::getSpeciesComponent(world, microbeEntity);
         
-        colourTint = species.colour;
+        flashColour = species.colour;
         
         _needsColourUpdate = true;
 
@@ -700,7 +701,11 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
         
         //Adding a mesh for the organelle.
         if(organelle.mesh != ""){
-            world.Create_Model(organelleEntity, renderNode.Node, organelle.mesh);
+            auto model = world.Create_Model(organelleEntity, renderNode.Node, organelle.mesh);
+            model.GraphicalObject.setCustomParameter(1,
+                // Start non-tinted
+                Ogre::Vector4(1, 1, 1, 1)
+            );
         }
 
         // Add each OrganelleComponent
@@ -773,7 +778,7 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
     }
 
     // Sets the color of the organelle (used in editor for valid/nonvalid placement)
-    // Doesn't work as neither does flashColour or tintColour
+    // Doesn't work
     void setColour(Float4 colour){
         LOG_WARNING("setColour called on PlacedOrganelle but it doesn't work");
         //sceneNode.entity.setColour(colour)
@@ -826,12 +831,14 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
 
     // TODO: fix this
     float flashDuration = 0;
-    Float4 flashColour;
+
+    //! When flashing this is red othertimes this is the species colour
+    Float4 flashColour = Float4(1, 1, 1, 1);
 
     // TODO: make this work. This is used to show the species and the
     // health of this organelle. And damange indication through
     // flashColour
-    Float4 colourTint;
+    Float4 colourTint = Float4(1, 1, 1, 1);
 
     PlacedOrganelle@ sisterOrganelle = null;
 
