@@ -148,11 +148,14 @@ void
     Network.reset();
 }
 
-//register vector4 TODO move to engine
-void Vector4Proxy(void* memory, Ogre::Real w, Ogre::Real x, Ogre::Real y, Ogre::Real z)
+//colour tinting
+void ThriveGame::ChangeModelTint(Float4 colourVector, Ogre::Item &model)
 {
+	//int items = model.getId();
+	//LOG_INFO("" + items);
+	model.getSubItem(0)->setCustomParameter(0, colourVector);
 
-	new(memory) Ogre::Vector4(w, x, y, z);
+	
 }
 
 // ------------------------------------ //
@@ -1607,53 +1610,12 @@ bool
         ANGELSCRIPT_REGISTERFAIL;
     }
 
-	//TODO move vector 4 to engine
-
-	if constexpr(std::is_same_v<Ogre::Real, float>) {
-		if (engine->RegisterTypedef("Real", "float") < 0) {
-
-			ANGELSCRIPT_REGISTERFAIL;
-		}
-	}
-	else if constexpr(std::is_same_v<Ogre::Real, double>) {
-		if (engine->RegisterTypedef("Real", "double") < 0) {
-
-			ANGELSCRIPT_REGISTERFAIL;
-		}
-	}
-	else {
-		// Would really love this to be a static assert but apparently that doesn't work
-		LOG_FATAL("Unknown Ogre::Real used while trying to bind as stuff");
-	}
-
-	if (engine->RegisterObjectType("Vector4", sizeof(Ogre::Vector4),
-		asOBJ_VALUE | asGetTypeTraits<Ogre::Vector4>() | asOBJ_POD |
-		asOBJ_APP_CLASS_ALLFLOATS) < 0) {
+	//change tint method
+	if (engine->RegisterObjectMethod("ThriveGame","void ChangeModelTint(Float4 colourVector, Ogre::Item &model)",
+		asMETHOD(ThriveGame, ChangeModelTint), asCALL_THISCALL) < 0) {
 		ANGELSCRIPT_REGISTERFAIL;
 	}
 
-
-	if (engine->RegisterObjectBehaviour("Vector4", asBEHAVE_CONSTRUCT,
-		"void f(Real w, Real x, Real y, Real z)", asFUNCTION(Vector4Proxy),
-		asCALL_CDECL_OBJFIRST) < 0) {
-		ANGELSCRIPT_REGISTERFAIL;
-	}
-
-	if (engine->RegisterObjectProperty("Vector4", "Real w", asOFFSET(Ogre::Vector4, x)) < 0) {
-		ANGELSCRIPT_REGISTERFAIL;
-	}
-
-	if (engine->RegisterObjectProperty("Vector4","Real x", asOFFSET(Ogre::Vector4, x)) < 0) {
-		ANGELSCRIPT_REGISTERFAIL;
-	}
-
-	if (engine->RegisterObjectProperty("Vector4", "Real y", asOFFSET(Ogre::Vector4, y)) < 0) {
-		ANGELSCRIPT_REGISTERFAIL;
-	}
-
-	if (engine->RegisterObjectProperty("Vector4", "Real z", asOFFSET(Ogre::Vector4, z)) < 0) {
-		ANGELSCRIPT_REGISTERFAIL;
-	}
 
     // if(engine->RegisterObjectMethod("Client",
     //         "bool Connect(const string &in address, string &out

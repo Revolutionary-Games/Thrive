@@ -364,7 +364,8 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
     }
 
     protected void updateColour(){
-		
+		Float4 speciesColour = MicrobeOperations::getSpeciesComponent(world,
+                microbeEntity).colour;
         if(organelleEntity == NULL_OBJECT || microbeEntity == NULL_OBJECT)
             return;
 
@@ -372,10 +373,7 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
 
         if(model !is null){
 
-            model.GraphicalObject.setCustomParameter(1,
-                Ogre::Vector4(this.colourTint * this.flashColour)
-                // Ogre::Vector4(1, 1, 1, 1)
-            );
+            GetThriveGame().ChangeModelTint(speciesColour, model.GraphicalObject);
         }
         
         _needsColourUpdate = false;
@@ -702,10 +700,7 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
         //Adding a mesh for the organelle.
         if(organelle.mesh != ""){
             auto model = world.Create_Model(organelleEntity, renderNode.Node, organelle.mesh);
-            model.GraphicalObject.setCustomParameter(1,
-                // Start non-tinted
-                Ogre::Vector4(1, 1, 1, 1)
-            );
+			GetThriveGame().ChangeModelTint(species.colour,model.GraphicalObject);
         }
 
         // Add each OrganelleComponent
