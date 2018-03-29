@@ -43,10 +43,12 @@ o GuiCollection "MicrobeRoot"{
 
 // ------------------------------------ //
 // This creates the intro video player
+// And also plays the menu sound because why not
 o GuiObject "_IntroVideoStarter"{
     s{
         GuiObject@ OurObject;
         bool PlayingVideo = false;
+        AudioSource@ jams;
 
         // Comment the next line to not play intro video
         [@Listener="OnInit"]
@@ -106,6 +108,10 @@ o GuiObject "_IntroVideoStarter"{
 
              LOG_INFO("Intro video ended");
              GetEngine().Invoke(@DestroyVideoPlayerWindow);
+
+             LOG_INFO("Playing menu music");
+             @jams = GetEngine().GetSoundDevice().Play2DSound("Data/Sound/main-menu-theme-2.ogg",
+                  true, false);
         }
         
         // User pressed skip intro video button
