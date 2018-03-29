@@ -153,6 +153,16 @@ void ThriveGame::ChangeModelTint(Float4 colourVector, Ogre::Item &model)
 {
 	//int items = model.getId();
 	//LOG_INFO("" + items);
+	Ogre::ColourValue colour = colourVector;
+	// Saturate it here so it looks nicer (could implement as method thatcould
+	// be called seperately i suppose)
+	Ogre::Real saturation;
+	Ogre::Real brightness;
+	Ogre::Real hue;
+	colour.getHSB(&hue, &saturation, &brightness);
+	colour.setHSB(hue, saturation * 2, .75);
+	colourVector = colour;
+
 	model.getSubItem(0)->setCustomParameter(1, colourVector);
 
 	
