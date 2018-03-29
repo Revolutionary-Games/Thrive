@@ -39,7 +39,7 @@ public:
     void startNewGame();
 	void loadSaveGame(const std::string& saveFile);
 	void saveGame(const std::string& saveFile);
-	void ChangeModelTint(Float4 colourVector, Ogre::Item &model);
+
     CellStageWorld* getCellStage();
 
     PlayerData&

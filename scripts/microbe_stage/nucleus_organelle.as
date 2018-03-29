@@ -31,8 +31,7 @@ class NucleusOrganelle : OrganelleComponent{
         auto model1 = world.Create_Model(golgi, sceneNode1.Node, "golgi.mesh");
 
         // Tint must be set
-		GetThriveGame().ChangeModelTint(Float4(1,1,1,1), model1.GraphicalObject);
-
+        model1.GraphicalObject.setCustomParameter(1, Ogre::Vector4(1, 1, 1, 1));
 
         sceneNode1.Scale = Float3(HEX_SIZE, HEX_SIZE, HEX_SIZE);
         sceneNode1.Node.setPosition(Hex::axialToCartesian(q + 1, r + 1));
@@ -49,7 +48,7 @@ class NucleusOrganelle : OrganelleComponent{
         auto model2 = world.Create_Model(ER, sceneNode2.Node, "ER.mesh");
 
         // Tint must be set
-		GetThriveGame().ChangeModelTint(Float4(1,1,1,1), model2.GraphicalObject);
+        model2.GraphicalObject.setCustomParameter(1, Ogre::Vector4(1, 1, 1, 1));
 
         sceneNode2.Scale = Float3(HEX_SIZE, HEX_SIZE, HEX_SIZE);
         sceneNode2.Node.setPosition(Hex::axialToCartesian(q - 1, r + 2));
