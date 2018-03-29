@@ -153,7 +153,7 @@ void ThriveGame::ChangeModelTint(Float4 colourVector, Ogre::Item &model)
 {
 	//int items = model.getId();
 	//LOG_INFO("" + items);
-	model.getSubItem(0)->setCustomParameter(0, colourVector);
+	model.getSubItem(0)->setCustomParameter(1, colourVector);
 
 	
 }
