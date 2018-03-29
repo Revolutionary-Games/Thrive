@@ -26,12 +26,28 @@ public:
         m_enabled = enabled;
     }
 
+	inline void rotateLeft(){
+		m_targetAngle -= m_rotateRate;
+	}
+
+	inline void rotateRight(){
+		m_targetAngle += m_rotateRate;
+	}
+
     inline Float3 getMovement() const{
         return m_playerMovementVector;
     }
 
 	inline double getTargetAngle() const{
 		return m_targetAngle;
+	}
+
+	inline bool getRotateLeftActive() const{
+		return m_rotateLeftActive;
+	}
+
+	inline bool getRotateRightActive() const{
+		return m_rotateRightActive;
 	}
 
 private:
@@ -55,9 +71,14 @@ private:
     bool m_backwardsActive = false;
     bool m_leftActive = false;
     bool m_rightActive = false;
+	bool m_rotateLeftActive = false;
+	bool m_rotateRightActive = false;
 
-	//the absolute angle the microbe will try to turn towards
+	//! \the absolute angle the microbe will try to turn towards
 	double m_targetAngle = 0;
+
+	//! \rate at which the microbe turns; 
+	const double m_rotateRate = 0.0625;
 
     //! Set to false when not in the microbe stage (or maybe editor as
     //! well could use this) to not send control events

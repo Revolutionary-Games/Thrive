@@ -160,14 +160,28 @@ bool PlayerMicrobeControl::handleMovementKeys(
         matched = true;
 
 	} else if (m_rotateLeft.Match(key, modifiers)){
-		if(down)
-			m_targetAngle -= 0.0625;
+		
+		if (down){
+			if (!m_rotateLeftActive)
+				m_rotateLeftActive = true;
+		}
+		else {
+			if (m_rotateLeftActive)
+				m_rotateLeftActive = false;
+		}
 
 		matched = true;
 
 	} else if (m_rotateRight.Match(key, modifiers)){
-		if(down)
-			m_targetAngle += 0.0625;
+		
+		if (down){
+			if (!m_rotateRightActive)
+				m_rotateRightActive = true;
+		}
+		else {
+			if (m_rotateRightActive)
+				m_rotateRightActive = false;
+		}
 
 		matched = true;
 
@@ -199,6 +213,12 @@ void PlayerMicrobeControlSystem::Run(
     ThriveGame* thrive = ThriveGame::Get();
 
     Float3 lookPoint;
+	bool rotateLeft = thrive->getPlayerInput()->getRotateLeftActive();
+	bool rotateRight = thrive->getPlayerInput()->getRotateRightActive();
+	if (rotateLeft)
+		thrive->getPlayerInput()->rotateLeft();
+	if (rotateRight)
+		thrive->getPlayerInput()->rotateRight();
 	double targetAngle = thrive->getPlayerInput()->getTargetAngle();
     
     try{
