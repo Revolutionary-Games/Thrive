@@ -55,7 +55,7 @@ void chloroplast_number(){
 
 void playOrganellePickupSound(){
 
-    GetEngine().GetSoundDevice().PlaySoundEffect("microbe-pickup-organelle.ogg");
+    GetEngine().GetSoundDevice().Play2DSoundEffect("Data/Sound/microbe-pickup-organelle.ogg");
 }
 
 // TODO: remove this code duplication
