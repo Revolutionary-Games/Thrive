@@ -147,17 +147,6 @@ void
 {
     Network.reset();
 }
-
-//colour tinting
-void ThriveGame::ChangeModelTint(Float4 colourVector, Ogre::Item &model)
-{
-	//int items = model.getId();
-	//LOG_INFO("" + items);
-	model.getSubItem(0)->setCustomParameter(1, colourVector);
-
-	
-}
-
 // ------------------------------------ //
 void
     ThriveGame::startNewGame()
@@ -355,8 +344,6 @@ void
         return;
     }
 }
-
-
 
 void
     ThriveGame::loadSaveGame(const std::string& saveFile)
@@ -1609,12 +1596,6 @@ bool
            asMETHOD(ThriveGame, setBackgroundMaterial), asCALL_THISCALL) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
     }
-
-	//change tint method
-	if (engine->RegisterObjectMethod("ThriveGame","void ChangeModelTint(Float4 colourVector, Ogre::Item &model)",
-		asMETHOD(ThriveGame, ChangeModelTint), asCALL_THISCALL) < 0) {
-		ANGELSCRIPT_REGISTERFAIL;
-	}
 
 
     // if(engine->RegisterObjectMethod("Client",
