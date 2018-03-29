@@ -61,27 +61,64 @@ public:
     bool
         handlesCompound(CompoundId compound);
 
-    //! \brief Adjusts coordinates with grid size
-    template<typename T>
-    inline void
-        adjustWithGridSize(T& x, T& y)
-    {
-        x /= gridSize;
-        y /= gridSize;
-    }
-
     //! \brief Places specified amount of compound at position (in this cloud's
     //! coordinates)
     void
         addCloud(CompoundId compound, float density, size_t x, size_t y);
 
+    //! Coordinates are in this cloud's coordinate system
     //! \param rate should be less than one.
     int
         takeCompound(CompoundId compound, size_t x, size_t y, float rate);
 
+    //! Coordinates are in this cloud's coordinate system
     //! \param rate should be less than one.
     int
         amountAvailable(CompoundId compound, size_t x, size_t y, float rate);
+
+    CompoundId
+        getCompoundId1() const
+    {
+        return m_compoundId1;
+    }
+    CompoundId
+        getCompoundId2() const
+    {
+        return m_compoundId2;
+    }
+    CompoundId
+        getCompoundId3() const
+    {
+        return m_compoundId3;
+    }
+    CompoundId
+        getCompoundId4() const
+    {
+        return m_compoundId4;
+    }
+
+    float
+        getGridSize() const
+    {
+        return gridSize;
+    }
+
+    auto
+        getPosition() const
+    {
+        return m_position;
+    }
+
+    auto
+        getHeight() const
+    {
+        return height;
+    }
+    auto
+        getWidth() const
+    {
+        return width;
+    }
 
     REFERENCE_HANDLE_UNCOUNTED_TYPE(CompoundCloudComponent);
 
@@ -110,8 +147,7 @@ protected:
     // the cloud is initialized
     size_t width = 0;
     size_t height = 0;
-    //! Should be something like 2, or 0.5 to nicely hit the
-    float gridSize = 1;
+    float gridSize = 2;
 
     //! The world position this cloud is at. Used to despawn and spawn new ones
     //! Y is ignored and replaced with YOffset
@@ -252,6 +288,7 @@ private:
     /// The size of the compound cloud grid.
     int width = 120;
     int height = 120;
+    //! Should be something like 2, or 0.5 to nicely hit the
     float gridSize = 2;
 
 

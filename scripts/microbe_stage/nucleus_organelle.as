@@ -30,6 +30,9 @@ class NucleusOrganelle : OrganelleComponent{
         auto sceneNode1 = world.Create_RenderNode(golgi);
         auto model1 = world.Create_Model(golgi, sceneNode1.Node, "golgi.mesh");
 
+        // Tint must be set
+        model1.GraphicalObject.setCustomParameter(1, Ogre::Vector4(1, 1, 1, 1));
+
         sceneNode1.Scale = Float3(HEX_SIZE, HEX_SIZE, HEX_SIZE);
         sceneNode1.Node.setPosition(Hex::axialToCartesian(q + 1, r + 1));
         sceneNode1.Node.setOrientation(Ogre::Quaternion(Ogre::Degree(rotation),
@@ -43,6 +46,9 @@ class NucleusOrganelle : OrganelleComponent{
 
         auto sceneNode2 = world.Create_RenderNode(ER);
         auto model2 = world.Create_Model(ER, sceneNode2.Node, "ER.mesh");
+
+        // Tint must be set
+        model2.GraphicalObject.setCustomParameter(1, Ogre::Vector4(1, 1, 1, 1));
 
         sceneNode2.Scale = Float3(HEX_SIZE, HEX_SIZE, HEX_SIZE);
         sceneNode2.Node.setPosition(Hex::axialToCartesian(q - 1, r + 2));
@@ -62,7 +68,7 @@ class NucleusOrganelle : OrganelleComponent{
         // this.colourSuffix = "" + floor(speciesColour.X * 256) +
         //     floor(speciesColour.Y * 256) + floor(speciesColour.Z * 256);
         
-        // organelle._needsColourUpdate = true;
+        organelle._needsColourUpdate = true;
     }
 
     // Overridded from OrganelleComponent.onRemovedFromMicrobe
