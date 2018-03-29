@@ -148,11 +148,14 @@ void
     Network.reset();
 }
 
-//register vector4 TODO move to engine
-void Vector4Proxy(void* memory, Ogre::Real w, Ogre::Real x, Ogre::Real y, Ogre::Real z)
+//colour tinting
+void ThriveGame::ChangeModelTint(Float4 colourVector, Ogre::Item &model)
 {
+	//int items = model.getId();
+	//LOG_INFO("" + items);
+	model.getSubItem(0)->setCustomParameter(1, colourVector);
 
-	new(memory) Ogre::Vector4(w, x, y, z);
+	
 }
 
 // ------------------------------------ //
