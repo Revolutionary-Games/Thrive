@@ -363,6 +363,21 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
         }
     }
 
+	protected Ogre::ColourValue calculateHSLForOrganelle(Float4 oldColour)
+		{
+		//get hue satraution and brightness for the colour
+		Ogre::Real saturation;
+		Ogre::Real brightness;
+		Ogre::Real hue;
+		
+		Ogre::ColourValue newColour = Ogre::ColourValue(oldColour.W , oldColour.X , oldColour.Y, oldColour.Z);
+
+		newColour.getHSB(hue, saturation, brightness);
+		newColour.setHSB(hue, saturation * 2, brightness);
+
+		return newColour;
+		}
+		
     protected void updateColour(){
 		
         if(organelleEntity == NULL_OBJECT || microbeEntity == NULL_OBJECT)
