@@ -372,9 +372,11 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
 		
 		//convert from float to colour
 		Ogre::ColourValue newColour = Ogre::ColourValue(oldColour);
-		newColour.getHSB(hue, saturation, brightness);
-		newColour.setHSB(hue, saturation * 2, brightness);
 		
+
+		newColour.getHSB(hue, saturation, brightness);
+	    newColour.setHSB(hue, saturation, brightness);
+				
 		//return the new colour as a float4
 		return Float4(newColour);
 		}
@@ -388,6 +390,7 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
 
         if(model !is null){
 			this.colourTint = calculateHSLForOrganelle(this.colourTint);
+	      	this.flashColour = calculateHSLForOrganelle(this.flashColour);
             model.GraphicalObject.setCustomParameter(1,
                 Ogre::Vector4( this.colourTint * this.flashColour)
             );
