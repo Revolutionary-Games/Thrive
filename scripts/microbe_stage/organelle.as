@@ -375,7 +375,7 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
 		
 
 		newColour.getHSB(hue, saturation, brightness);
-	    newColour.setHSB(hue, saturation, brightness);
+	    newColour.setHSB(hue, saturation*2, brightness);
 				
 		//return the new colour as a float4
 		return Float4(newColour);
