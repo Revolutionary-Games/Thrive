@@ -363,19 +363,20 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
         }
     }
 
-	protected Ogre::ColourValue calculateHSLForOrganelle(Float4 oldColour)
+	protected Float4 calculateHSLForOrganelle(Float4 oldColour)
 		{
 		//get hue satraution and brightness for the colour
 		Ogre::Real saturation;
 		Ogre::Real brightness;
 		Ogre::Real hue;
 		
-		Ogre::ColourValue newColour = Ogre::ColourValue(oldColour.W , oldColour.X , oldColour.Y, oldColour.Z);
-
+		//convert from float to colour
+		Ogre::ColourValue newColour = Ogre::ColourValue(oldColour.X, oldColour.Y, oldColour.Z, oldColour.W);
 		newColour.getHSB(hue, saturation, brightness);
 		newColour.setHSB(hue, saturation * 2, brightness);
-
-		return newColour;
+		
+		//return the new colour as a float4
+		return Float4(newColour.r, newColour.g, newColour.b, newColour.a);
 		}
 		
     protected void updateColour(){
