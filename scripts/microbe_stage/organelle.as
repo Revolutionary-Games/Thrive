@@ -366,17 +366,17 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
 	protected Float4 calculateHSLForOrganelle(Float4 oldColour)
 		{
 		//get hue satraution and brightness for the colour
-		Ogre::Real saturation;
-		Ogre::Real brightness;
-		Ogre::Real hue;
+		Ogre::Real saturation = 0;
+		Ogre::Real brightness = 0;
+		Ogre::Real hue = 0;
 		
 		//convert from float to colour
-		Ogre::ColourValue newColour = Ogre::ColourValue(oldColour.X, oldColour.Y, oldColour.Z, oldColour.W);
+		Ogre::ColourValue newColour = Ogre::ColourValue(oldColour);
 		newColour.getHSB(hue, saturation, brightness);
 		newColour.setHSB(hue, saturation * 2, brightness);
 		
 		//return the new colour as a float4
-		return Float4(newColour.r, newColour.g, newColour.b, newColour.a);
+		return Float4(newColour);
 		}
 		
     protected void updateColour(){
@@ -387,10 +387,9 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
 		auto model = world.GetComponent_Model(organelleEntity);
 
         if(model !is null){
-
+			this.colourTint = calculateHSLForOrganelle(this.colourTint);
             model.GraphicalObject.setCustomParameter(1,
-                Ogre::Vector4(this.colourTint * this.flashColour)
-                // Ogre::Vector4(1, 1, 1, 1)
+                Ogre::Vector4( this.colourTint * this.flashColour)
             );
         }
         
