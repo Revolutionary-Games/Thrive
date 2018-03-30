@@ -181,7 +181,7 @@ o GuiObject "Background/MainMenuInteractive/ExitGameButton"{
         [@Listener="OnClick"]
         void QuitIt(GuiObject@ instance){
             // Close the game //
-		    GetEngine().GetSoundDevice().Play2DSoundEffect("Data/Sound/soundeffects/gui\button-hover-click.ogg");
+		    GetEngine().GetSoundDevice().Play2DSoundEffect("Data/Sound/soundeffects/gui/button-hover-click.ogg");
             cast<LeviathanApplication>(GetThriveGame()).MarkAsClosing();
             return;
         }
