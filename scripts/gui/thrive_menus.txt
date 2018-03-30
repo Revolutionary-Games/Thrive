@@ -161,6 +161,7 @@ o GuiObject "Background/MainMenuInteractive/LoadGameButton"{
         }
         [@Listener="OnClick"]
         bool LoadIt(GuiObject@ instance){
+		    GetEngine().GetSoundDevice().Play2DSoundEffect("Data/Sound/soundeffects/gui/button-hover-click.ogg");
             // Load the game //
 			if (FileSystem::FileExists("quick.sav")) {
 			// Disable all the menus
@@ -180,6 +181,7 @@ o GuiObject "Background/MainMenuInteractive/ExitGameButton"{
         [@Listener="OnClick"]
         void QuitIt(GuiObject@ instance){
             // Close the game //
+		    GetEngine().GetSoundDevice().Play2DSoundEffect("Data/Sound/soundeffects/gui\button-hover-click.ogg");
             cast<LeviathanApplication>(GetThriveGame()).MarkAsClosing();
             return;
         }
@@ -195,6 +197,8 @@ o GuiObject "Background/MainMenuInteractive/NewGameButton"{
         
         [@Listener="OnClick"]
         bool StartGame(GuiObject@ instance){
+			//play click sound
+		    GetEngine().GetSoundDevice().Play2DSoundEffect("Data/Sound/soundeffects/gui/button-hover-click.ogg");
             // Store this for the ended callback
             @OurInstance = instance;
              
@@ -272,6 +276,7 @@ o GuiObject "_musicPlayer"{
     s{
         [@Listener="OnTick"]
         void update(GuiObject@ instance){
+		//should this be removed?
 			//SoundDevice device = GetSoundDevice();
 			//GetEngine().PlaySoundEffect("main-menu-theme-1.ogg");
             return;
