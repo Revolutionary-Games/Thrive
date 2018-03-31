@@ -83,12 +83,14 @@ void setBiome(uint64 biomeId, CellStageWorld@ world){
         }
     }
 	//change the lighting
-	setSunlightForBiome();
+	setSunlightForBiome(world);
     //Changing the background.
     GetThriveGame().setBackgroundMaterial(biome.background);
 }
 
-void setSunlightForBiome(){
+void setSunlightForBiome(CellStageWorld@ world){
+	Ogre::Quaternion quat(Ogre::Radian(1.f), Float3(0.55f, -0.3f, 0.75f));
+	world.SetLightProperties(getCurrentBiome().diffuseColors, getCurrentBiome().specularColors, quat);
 }
 
 //Setting the current biome to a random biome selected from the biome table.
