@@ -359,20 +359,6 @@ void setupSound(CellStageWorld@ world){
 	//                               soundSource.autoLoop = true
 	//                               soundSource.volumeMultiplier = 0.3
 	//                               ambientEntity.addComponent(soundSource)
-	//                               // Sound
-	//                               soundSource.addSound("microbe-theme-1", "microbe-theme-1.ogg")
-	//                               soundSource.addSound("microbe-theme-3", "microbe-theme-3.ogg")
-	//                               soundSource.addSound("microbe-theme-4", "microbe-theme-4.ogg")
-	//                               soundSource.addSound("microbe-theme-5", "microbe-theme-5.ogg")
-	//                               soundSource.addSound("microbe-theme-6", "microbe-theme-6.ogg")   
-	//                               soundSource.addSound("microbe-theme-7", "microbe-theme-7.ogg")   
-	//                               auto ambientEntity2 = Entity("ambience2", gameState.wrapper)
-	//                               auto soundSource = SoundSourceComponent()
-	//                               soundSource.volumeMultiplier = 0.1
-	//                               soundSource.ambientSoundSource = true
-	//                               ambientSound = soundSource.addSound("microbe-ambient", "soundeffects/microbe-ambience.ogg")
-	//                               soundSource.autoLoop = true
-	//                               ambientEntity2.addComponent(soundSource)
 	//                               // Gui effects
 	//                               auto guiSoundEntity = Entity("gui_sounds", gameState.wrapper)
 	//                               soundSource = SoundSourceComponent()
