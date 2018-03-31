@@ -762,20 +762,22 @@ bool
 
     // ------------------------------------ //
     // Biome
-	//define colors for sunglight here aswell
-	if (engine->RegisterObjectProperty("Biome", "Ogre::ColourValue specularColors",
-		asOFFSET(Biome, specularColors)) < 0) {
-		ANGELSCRIPT_REGISTERFAIL;
-	}
-	if (engine->RegisterObjectProperty("Biome", "Ogre::ColourValue diffuseColors",
-		asOFFSET(Biome, diffuseColors)) < 0) {
-		ANGELSCRIPT_REGISTERFAIL;
-	}
+    // define colors for sunglight here aswell
+    if(engine->RegisterObjectProperty("Biome",
+           "Ogre::ColourValue specularColors",
+           asOFFSET(Biome, specularColors)) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+    if(engine->RegisterObjectProperty("Biome",
+           "Ogre::ColourValue diffuseColors",
+           asOFFSET(Biome, diffuseColors)) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
 
-	if (engine->RegisterObjectProperty("Biome", "const string background",
-		asOFFSET(Biome, background)) < 0) {
-		ANGELSCRIPT_REGISTERFAIL;
-	}
+    if(engine->RegisterObjectProperty("Biome", "const string background",
+           asOFFSET(Biome, background)) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
 
     if(engine->RegisterObjectType(
            "BiomeCompoundData", 0, asOBJ_REF | asOBJ_NOCOUNT) < 0) {
