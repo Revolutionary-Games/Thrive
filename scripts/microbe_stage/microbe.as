@@ -898,8 +898,8 @@ class MicrobeSystem : ScriptSystem{
 
         world.Create_SpawnedComponent(copyEntity, MICROBE_SPAWN_RADIUS);
             
-        LOG_WRITE("TODO: soundSourceComponent.playSound(\"microbe-reproduction\");"); 
-        // soundSourceComponent.playSound("microbe-reproduction");
+		//play the split sound
+		GetEngine().GetSoundDevice().Play2DSoundEffect("Data\Sound\soundeffects\reproduction.ogg");
     }
 
     // Copies this microbe. The new microbe will not have the stored compounds of this one.
