@@ -82,9 +82,13 @@ void setBiome(uint64 biomeId, CellStageWorld@ world){
                 CLOUD_SPAWN_RADIUS);
         }
     }
-
+	//change the lighting
+	setSunlightForBiome();
     //Changing the background.
     GetThriveGame().setBackgroundMaterial(biome.background);
+}
+
+void setSunlightForBiome(){
 }
 
 //Setting the current biome to a random biome selected from the biome table.

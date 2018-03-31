@@ -29,6 +29,9 @@ public:
 	std::map<size_t, BiomeCompoundData> compounds;
 	std::string background = "error";
 
+	std::string specularColors;
+	std::string diffuseColors;
+
 	Biome();
 
 	Biome(Json::Value value);

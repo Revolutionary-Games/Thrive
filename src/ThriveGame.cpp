@@ -762,6 +762,7 @@ bool
 
     // ------------------------------------ //
     // Biome
+	//define colors for sunglight here aswell
     if(engine->RegisterObjectProperty("Biome", "const string background",
            asOFFSET(Biome, background)) < 0) {
         ANGELSCRIPT_REGISTERFAIL;

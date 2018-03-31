@@ -16,6 +16,12 @@ Biome::Biome() {}
 Biome::Biome(Json::Value value) {
 	background = value["background"].asString();
 
+
+	//getting colour information
+	Json::Value colorData = value["colors"];
+	diffuseColors = colorData["diffuseColors"].asString();
+	specularColors = colorData["specularColors"].asString();
+
 	// Getting the compound information.
 	Json::Value compoundData = value["compounds"];
 	std::vector<std::string> compoundInternalNames = compoundData.getMemberNames();
