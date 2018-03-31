@@ -496,7 +496,8 @@ void damage(CellStageWorld@ world, ObjectID microbeEntity, uint amount, const st
     // auto soundSourceComponent = world.GetComponent_SoundSourceComponent(microbeEntity);
     
     if(damageType == "toxin"){
-        // soundSourceComponent.playSound("microbe-toxin-damage");
+		//play the toxin sound
+		GetEngine().GetSoundDevice().Play2DSoundEffect("Data\Sound\soundeffects\microbe-toxin-damage.ogg");
     }
     
     // Choose a random organelle or membrane to damage.
@@ -941,7 +942,8 @@ void kill(CellStageWorld@ world, ObjectID microbeEntity){
             float(compoundsToRelease[keys[i]]));
     }
 
-    // soundSourceComponent.playSound("microbe-death");
+	//play the death sound
+	GetEngine().GetSoundDevice().Play2DSoundEffect("Data\Sound\soundeffects\microbe-death.ogg");
 
     auto deathAnimationEntity = world.CreateEntity();
     auto lifeTimeComponent = world.Create_TimedLifeComponent(deathAnimationEntity, 4000);
