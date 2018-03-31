@@ -222,7 +222,7 @@ o GuiObject "Background/MainMenuInteractive/NewGameButton"{
         GuiObject@ OurInstance;
         
         [@Listener="OnClick"]
-        int StartGame(GuiObject@ instance){
+        bool StartGame(GuiObject@ instance){
 			//play click sound
 		    GetEngine().GetSoundDevice().Play2DSoundEffect("Data/Sound/soundeffects/gui/button-hover-click.ogg");
             // Store this for the ended callback
@@ -247,7 +247,7 @@ o GuiObject "Background/MainMenuInteractive/NewGameButton"{
             // Start playback
             castedPlayer.Play("Data/Videos/MicrobeIntro.mkv");
 			PlayingVideo = true;
-            return 1;
+            return true;
         }
 		//microbe video stuff
         void DestroyMicrobeVideo(){
