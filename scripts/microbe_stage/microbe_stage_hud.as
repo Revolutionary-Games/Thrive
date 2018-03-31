@@ -6,6 +6,8 @@
 // CAMERA_VERTICAL_SPEED = 0.015;
 
 bool global_if_already_displayed = false;
+//instantiate our ambient music source
+AudioSource@ ambienceSounds;
 
 //! Updates the hud with relevant information from the player cell
 class MicrobeStageHudSystem : ScriptSystem{
@@ -71,6 +73,30 @@ class MicrobeStageHudSystem : ScriptSystem{
             this.oxytoxyId).volume; 
     }
 
+	void handleAmbientSound()
+		{
+		
+		//randomize ambient sounds out of all available sounds
+		array<string> ambientTracks = {"microbe-theme-1","microbe-theme-2","microbe-theme-3","microbe-theme-4","microbe-theme-5","microbe-theme-6","microbe-theme-7"};
+
+		if (@ambienceSounds is null)
+			{
+			LOG_INFO("Is null");
+			@ambienceSounds = GetEngine().GetSoundDevice().Play2DSound("Data/Sound/"+ambientTracks[GetEngine().GetRandom().GetNumber(0, ambientTracks.length()-1)]+".ogg",false,true);
+			if (@ambienceSounds is null)
+				{
+				LOG_INFO("Is still null");
+				}
+				ambienceSounds.Get().play();
+			}
+			
+		if (@ambienceSounds !is null && !ambienceSounds.Get().isPlaying())
+			{
+			@ambienceSounds = GetEngine().GetSoundDevice().Play2DSound("Data/Sound/"+ambientTracks[GetEngine().GetRandom().GetNumber(0, ambientTracks.length()-1)]+".ogg",false,true);
+			ambienceSounds.Get().play();
+			}
+		}
+		
     void Release(){
 
     }
@@ -80,7 +106,7 @@ class MicrobeStageHudSystem : ScriptSystem{
         // TODO: Microbe hud read player cell
         ObjectID player = GetThriveGame().playerData().activeCreature();
 
-        // Update player stats if there is acell currently
+        // Update player stats if there is ac ell currently
         if(player != NULL_OBJECT){
 
             auto bag = World.GetComponent_CompoundBagComponent(player);
@@ -155,6 +181,9 @@ class MicrobeStageHudSystem : ScriptSystem{
             // Fire it off so that the GUI scripts will get it and update the GUI state
             GetEngine().GetEventHandler().CallEvent(event);
         }
+		
+		//since this is ran every step this is a good place to do music code
+		handleAmbientSound();
     }
 
     // Nodes not used

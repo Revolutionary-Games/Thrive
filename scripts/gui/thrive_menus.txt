@@ -100,8 +100,8 @@ o GuiObject "_IntroVideoStarter"{
                  DestroyChild("MainMenuVideoPlayer");
 				 
 			//play music too
-			@jams = GetEngine().GetSoundDevice().Play2DSound("Data/Sound/main-menu-theme-2.ogg",
-                  true, false);
+			//@jams = GetEngine().GetSoundDevice().Play2DSound("Data/Sound/main-menu-theme-2.ogg",
+            //      true, false);
 
         }
 
