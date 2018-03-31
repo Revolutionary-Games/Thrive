@@ -6,8 +6,6 @@
 // CAMERA_VERTICAL_SPEED = 0.015;
 
 bool global_if_already_displayed = false;
-//instantiate our ambient music source
-AudioSource@ ambienceSounds;
 
 //! Updates the hud with relevant information from the player cell
 class MicrobeStageHudSystem : ScriptSystem{
@@ -313,6 +311,9 @@ class MicrobeStageHudSystem : ScriptSystem{
     // Not this one as this isn't really a collection, just a
     // toggleable panel with a single button
     bool compoundsOpen = true;
+
+    //instantiate our ambient music source
+    AudioSource@ ambienceSounds;
 
     CompoundId atpId;
     float atpVolume;
