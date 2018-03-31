@@ -48,7 +48,7 @@ CEGUI::Window@ hitpointsMaxLabel;
 
 
 [@Listener="OnInit"]
-void setupHUDBars(GuiObject@ instance){
+int setupHUDBars(GuiObject@ instance){
 
     auto microbeRootWindow =
         instance.GetOwningManager().GetRootWindow().GetChild("MicrobeStageRoot");
@@ -160,10 +160,12 @@ void setupHUDBars(GuiObject@ instance){
 	fattyacidsBar.SetProperty("FillImage", "ThriveGeneric/FattyAcidsBar");
 	oxytoxyBar.SetProperty("FillImage", "ThriveGeneric/OxyToxyBar");
     hitpointsBar.SetProperty("FillImage", "ThriveGeneric/HitpointsBar");
+
+    return 1;
 }
 
 [@Listener="Generic", @Type="PlayerCompoundAmounts"]
-void handleCompoundBarsUpdate(GuiObject@ instance, GenericEvent@ event){
+int handleCompoundBarsUpdate(GuiObject@ instance, GenericEvent@ event){
     NamedVars@ vars = event.GetNamedVars();
     auto atp = vars.GetSingleValueByName("compoundATP");
     auto atpMax = vars.GetSingleValueByName("ATPMax");
@@ -298,4 +300,6 @@ void handleCompoundBarsUpdate(GuiObject@ instance, GenericEvent@ event){
     } else {
         LOG_WARNING("Microbe HUD compound amount update is missing hitpoints value");
     }
+
+    return 1;
 }
