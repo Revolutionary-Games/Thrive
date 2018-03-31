@@ -4,8 +4,6 @@ GUIAnimations = ["thrive.anims"];
 RequireCEGUIHooked = true;
 ExtraAccess = "FullFileSystem";
 
-
-
 // This keeps the GUI always on (no mouse capture is used on the main menu)
 o GuiCollection "OnKeeper"{
     l params{
@@ -47,9 +45,8 @@ o GuiCollection "MicrobeRoot"{
 o GuiObject "_IntroVideoStarter"{
     s{
         GuiObject@ OurObject;
-        bool PlayingVideo = false;
-        AudioSource@ jams;
-
+		bool PlayingIntroVideo = false;
+		AudioSource @jams;
         // Comment the next line to not play intro video
         [@Listener="OnInit"]
         void StartVideoPlayback(GuiObject@ instance){
@@ -80,7 +77,7 @@ o GuiObject "_IntroVideoStarter"{
 
             // Start playback
             castedPlayer.Play("Data/Videos/intro.mkv");
-            PlayingVideo = true;
+            PlayingIntroVideo = true;
             
             return;
         }
@@ -94,13 +91,18 @@ o GuiObject "_IntroVideoStarter"{
 
         void DestroyVideoPlayerWindow(){
              // Make sure this is called only once
-             if(!PlayingVideo)
+             if(!PlayingIntroVideo)
                 return;
 
-             PlayingVideo = false;
+             PlayingIntroVideo = false;
              LOG_INFO("Destroying VideoPlayer window");
              OurObject.GetOwningManager().GetRootWindow().
                  DestroyChild("MainMenuVideoPlayer");
+				 
+			//play music too
+			@jams = GetEngine().GetSoundDevice().Play2DSound("Data/Sound/main-menu-theme-2.ogg",
+                  true, false);
+
         }
 
         // Called by the videoplayer when the playback ends
@@ -108,16 +110,12 @@ o GuiObject "_IntroVideoStarter"{
 
              LOG_INFO("Intro video ended");
              GetEngine().Invoke(@DestroyVideoPlayerWindow);
-
-             LOG_INFO("Playing menu music");
-             @jams = GetEngine().GetSoundDevice().Play2DSound("Data/Sound/main-menu-theme-2.ogg",
-                  true, false);
         }
         
         // User pressed skip intro video button
         [@Listener="Generic", @Type="MainMenuIntroSkipEvent"]
         int onSkipVideoEvent(GuiObject@ instance, GenericEvent@ event){
-            if(PlayingVideo){
+            if(PlayingIntroVideo){
                 OnVideoEnded(NamedVars());
                 return 1;
             } else {
@@ -270,18 +268,6 @@ o GuiObject "Background/MainMenuInteractive/NewGameButton"{
         }
         
         @%};
-}
-
-o GuiObject "_musicPlayer"{
-    s{
-        [@Listener="OnTick"]
-        void update(GuiObject@ instance){
-		//should this be removed?
-			//SoundDevice device = GetSoundDevice();
-			//GetEngine().PlaySoundEffect("main-menu-theme-1.ogg");
-            return;
-        }
-    @%};
 }
 
 //function MainMenuHudSystem:update(renderTime, logicTime)
