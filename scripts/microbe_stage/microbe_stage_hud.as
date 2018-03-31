@@ -104,7 +104,7 @@ class MicrobeStageHudSystem : ScriptSystem{
         // TODO: Microbe hud read player cell
         ObjectID player = GetThriveGame().playerData().activeCreature();
 
-        // Update player stats if there is ac ell currently
+        // Update player stats if there is a cell currently
         if(player != NULL_OBJECT){
 
             auto bag = World.GetComponent_CompoundBagComponent(player);
