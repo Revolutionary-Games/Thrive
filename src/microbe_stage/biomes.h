@@ -4,6 +4,7 @@
 
 #include <map>
 #include <string>
+#include <OgreColourValue.h>
 
 class CScriptArray;
 
@@ -29,8 +30,8 @@ public:
 	std::map<size_t, BiomeCompoundData> compounds;
 	std::string background = "error";
 
-	std::string specularColors;
-	std::string diffuseColors;
+	Ogre::ColourValue specularColors;
+	Ogre::ColourValue diffuseColors;
 
 	Biome();
 

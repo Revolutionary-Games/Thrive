@@ -3,8 +3,16 @@
         "name": "Ocean",
         "background": "Background",
 		"colors":{
-			"specularColors": "0.98,1.0,0.95",
-			"diffuseColors":  "1.0,1.0,1.0"
+		    "specularColors": {
+            "r": 0.98,
+            "g": 1.0,
+            "b": 0.95
+			},
+		    "diffuseColors": {
+            "r": 1.0,
+            "g": 1.0,
+            "b": 1.0
+			}
 		},
 		
         "compounds": {
@@ -34,8 +42,16 @@
         "name": "Volcanic vent",
         "background": "Background_Vent",
 		"colors":{
-			"specularColors": "0.98,1.0,0.95",
-			"diffuseColors":  "1.0,1.0,1.0"
+		    "specularColors": {
+            "r": 0.98,
+            "g": 0.7,
+            "b": 0.75
+			},
+		    "diffuseColors": {
+            "r": 1.0,
+            "g": 0.9,
+            "b": 0.9
+			}
 		},
 		
         "compounds": {
@@ -65,10 +81,17 @@
         "name": "Abyss",
         "background": "Background_Abyss",
 		"colors":{
-			"specularColors": "0.48,0.5,0.45",
-			"diffuseColors":  "0.50,0.50,0.50"
+		    "specularColors": {
+            "r": 0.48,
+            "g": 0.5,
+            "b": 0.95
+			},
+		    "diffuseColors": {
+            "r": 0.5,
+            "g": 0.5,
+            "b": 0.5
+			}
 		},
-		
         "compounds": {
             "oxygen": {
                 "amount": 25000,
@@ -96,8 +119,16 @@
         "name": "Shallow",
         "background": "Background_Shallow",
 		"colors":{
-			"specularColors": "0.98,1.0,0.95",
-			"diffuseColors":  "1.0,1.0,1.0"
+		    "specularColors": {
+            "r": 0.98,
+            "g": 1.0,
+            "b": 0.95
+			},
+		    "diffuseColors": {
+            "r": 1.0,
+            "g": 1.0,
+            "b": 1.0
+			}
 		},
 		
         "compounds": {
