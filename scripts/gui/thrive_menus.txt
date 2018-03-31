@@ -18,6 +18,36 @@ o GuiCollection "Background"{
         Enabled = true;
         AutoTarget = "Background";
     }
+
+    s{
+		AudioSource @jams;
+
+        // Called from the intro video player after it ends
+        [@Listener="Generic", @Type="IntroVideoFinished"]
+        int startMenuMusic(){
+
+            LOG_INFO("Starting menu music");
+			@jams = GetEngine().GetSoundDevice().Play2DSound("Data/Sound/main-menu-theme-2.ogg",
+                true, false);
+            return 1;
+        }
+
+        // These pause and resume the main menu music
+        [@Listener="OnHide"]
+        int pauseMenuMusic(){
+
+             jams.Get().pause();
+             return 1;
+        }
+
+        [@Listener="OnShow"]
+        int resumeMenuMusic(){
+
+             jams.Get().play();
+             return 1;
+        }
+
+    @%};
 }
 
 // main menu root window
@@ -46,10 +76,10 @@ o GuiObject "_IntroVideoStarter"{
     s{
         GuiObject@ OurObject;
 		bool PlayingIntroVideo = false;
-		AudioSource @jams;
+
         // Comment the next line to not play intro video
         [@Listener="OnInit"]
-        void StartVideoPlayback(GuiObject@ instance){
+        int StartVideoPlayback(GuiObject@ instance){
 
             LOG_INFO("Starting to play intro video");
             CEGUI::Window@ videoPlayer = instance.GetOwningManager().GetRootWindow().
@@ -66,7 +96,7 @@ o GuiObject "_IntroVideoStarter"{
 
                 LOG_ERROR("IntroVideoStarter failed to bind to the created video "
                     "player widget");
-                return;
+                return 0;
             }
 
             // Save object for callback //
@@ -79,14 +109,14 @@ o GuiObject "_IntroVideoStarter"{
             castedPlayer.Play("Data/Videos/intro.mkv");
             PlayingIntroVideo = true;
             
-            return;
+            return 1;
         }
 
         [@Listener="OnClick"]
-        void VideoPlayerClicked(GuiObject@ instance){
+        int VideoPlayerClicked(GuiObject@ instance){
 
              LOG_INFO("VideoPlayer clicked");
-             return;
+             return 1;
         }
 
         void DestroyVideoPlayerWindow(){
@@ -100,9 +130,7 @@ o GuiObject "_IntroVideoStarter"{
                  DestroyChild("MainMenuVideoPlayer");
 				 
 			//play music too
-			//@jams = GetEngine().GetSoundDevice().Play2DSound("Data/Sound/main-menu-theme-2.ogg",
-            //      true, false);
-
+            GetEngine().GetEventHandler().CallEvent(GenericEvent("IntroVideoFinished"));
         }
 
         // Called by the videoplayer when the playback ends
@@ -134,11 +162,11 @@ o GuiObject "_IntroVideoStarter"{
 o GuiObject "Background/MainMenuInteractive/VersionLabel"{
     s{
         [@Listener="OnInit"]
-        void WriteVersion(GuiObject@ instance){
+        int WriteVersion(GuiObject@ instance){
             instance.GetTargetWindow().SetText("TODO: ver (" + GetLeviathanVersion() +
                  ")");
 
-            return;
+            return 1;
         }
     @%};
 }
@@ -147,7 +175,7 @@ o GuiObject "Background/MainMenuInteractive/LoadGameButton"{
     s{
 	
 		[@Listener="OnInit"]
-		void checkforSave(GuiObject@ instance){
+		int checkforSave(GuiObject@ instance){
             // disable if no saved game //
 			//for some reaosn I cannot call FileSystem::FileExists even though it works fine in the other angel scripts - Michael
             // This now works with new ExtraAccess setting (also it was a static function so it
@@ -155,10 +183,10 @@ o GuiObject "Background/MainMenuInteractive/LoadGameButton"{
 		    if (!FileSystem::FileExists("quick.sav")) {
 				instance.GetTargetWindow().SetDisabledState(true);
 			}
-            return;
+            return 1;
         }
         [@Listener="OnClick"]
-        bool LoadIt(GuiObject@ instance){
+        int LoadIt(GuiObject@ instance){
 		    GetEngine().GetSoundDevice().Play2DSoundEffect("Data/Sound/soundeffects/gui/button-hover-click.ogg");
             // Load the game //
 			if (FileSystem::FileExists("quick.sav")) {
@@ -168,7 +196,7 @@ o GuiObject "Background/MainMenuInteractive/LoadGameButton"{
             instance.GetOwningManager().SetCollectionState("MicrobeRoot", true);
             GetThriveGame().loadSaveGame("quick.sav");
 			}
-            return true;
+            return 1;
         }
         @%};
 }
@@ -177,13 +205,13 @@ o GuiObject "Background/MainMenuInteractive/LoadGameButton"{
 o GuiObject "Background/MainMenuInteractive/ExitGameButton"{
     s{
         [@Listener="OnClick"]
-        void QuitIt(GuiObject@ instance){
+        int QuitIt(GuiObject@ instance){
             // Close the game //
 		    GetEngine().GetSoundDevice().Play2DSoundEffect("Data/Sound/soundeffects/gui/button-hover-click.ogg");
             cast<LeviathanApplication>(GetThriveGame()).MarkAsClosing();
-            return;
+            return 1;
         }
-        @%};
+    @%};
 }
 
 // Start game //
@@ -194,7 +222,7 @@ o GuiObject "Background/MainMenuInteractive/NewGameButton"{
         GuiObject@ OurInstance;
         
         [@Listener="OnClick"]
-        bool StartGame(GuiObject@ instance){
+        int StartGame(GuiObject@ instance){
 			//play click sound
 		    GetEngine().GetSoundDevice().Play2DSoundEffect("Data/Sound/soundeffects/gui/button-hover-click.ogg");
             // Store this for the ended callback
@@ -219,7 +247,7 @@ o GuiObject "Background/MainMenuInteractive/NewGameButton"{
             // Start playback
             castedPlayer.Play("Data/Videos/MicrobeIntro.mkv");
 			PlayingVideo = true;
-            return true;
+            return 1;
         }
 		//microbe video stuff
         void DestroyMicrobeVideo(){
@@ -259,15 +287,15 @@ o GuiObject "Background/MainMenuInteractive/NewGameButton"{
         // Uncomment the next line to automatically start a new game
         // also remember to disable the intro video to not hear it also play
         // [@Listener="OnInit"]
-        void InstantStart(GuiObject@ instance){
+        int InstantStart(GuiObject@ instance){
 
             // Store this for the ended callback
             @OurInstance = instance;
             OnMicrobeVideoEnded(NamedVars());
-            return;
+            return 1;
         }
         
-        @%};
+    @%};
 }
 
 //function MainMenuHudSystem:update(renderTime, logicTime)
