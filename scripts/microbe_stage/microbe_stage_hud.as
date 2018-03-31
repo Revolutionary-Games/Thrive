@@ -7,6 +7,11 @@
 
 bool global_if_already_displayed = false;
 
+const array<string> AMBIENT_TRACKS = {
+    "microbe-theme-1", "microbe-theme-2", "microbe-theme-3", "microbe-theme-4",
+    "microbe-theme-5", "microbe-theme-6", "microbe-theme-7"
+};
+
 //! Updates the hud with relevant information from the player cell
 class MicrobeStageHudSystem : ScriptSystem{
 
@@ -75,22 +80,22 @@ class MicrobeStageHudSystem : ScriptSystem{
 		{
 		
 		//randomize ambient sounds out of all available sounds
-		array<string> ambientTracks = {"microbe-theme-1","microbe-theme-2","microbe-theme-3","microbe-theme-4","microbe-theme-5","microbe-theme-6","microbe-theme-7"};
 
 		if (@ambienceSounds is null)
 			{
-			LOG_INFO("Is null");
-			@ambienceSounds = GetEngine().GetSoundDevice().Play2DSound("Data/Sound/"+ambientTracks[GetEngine().GetRandom().GetNumber(0, ambientTracks.length()-1)]+".ogg",false,true);
+			@ambienceSounds = GetEngine().GetSoundDevice().Play2DSound("Data/Sound/"+AMBIENT_TRACKS[GetEngine().GetRandom().GetNumber(0, AMBIENT_TRACKS.length()-1)]+".ogg",false,true);
 			if (@ambienceSounds is null)
 				{
-				LOG_INFO("Is still null");
+				LOG_ERROR("Failed to create ambience sound source");
 				}
-				ambienceSounds.Get().play();
+            ambienceSounds.Get().play();
 			}
-			
+
+        // This plays a new track if the previous has stopped?
+        // TODO: merge this duplicate code to the above sound creation
 		if (@ambienceSounds !is null && !ambienceSounds.Get().isPlaying())
 			{
-			@ambienceSounds = GetEngine().GetSoundDevice().Play2DSound("Data/Sound/"+ambientTracks[GetEngine().GetRandom().GetNumber(0, ambientTracks.length()-1)]+".ogg",false,true);
+			@ambienceSounds = GetEngine().GetSoundDevice().Play2DSound("Data/Sound/"+AMBIENT_TRACKS[GetEngine().GetRandom().GetNumber(0, AMBIENT_TRACKS.length()-1)]+".ogg",false,true);
 			ambienceSounds.Get().play();
 			}
 		}
