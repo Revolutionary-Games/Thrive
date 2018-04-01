@@ -115,6 +115,32 @@ void applyCellMovementControl(GameWorld@ world, ObjectID entity, const Float3 &i
     }
 }
 
+// TODO: also put these physics callback somewhere
+void cellHitFloatingOrganelle(GameWorld@ world, ObjectID firstEntity, ObjectID secondEntity){
+
+    LOG_INFO("Cell hit a floating organelle: object ids: " + firstEntity + " and " +
+        secondEntity);
+
+    // Determine which is the organelle
+    CellStageWorld@ asCellWorld = cast<CellStageWorld>(world);
+
+    auto model = asCellWorld.GetComponent_Model(firstEntity);
+    auto floatingEntity = firstEntity;
+
+    // Cell doesn't have a model
+    if(model is null){
+
+        @model = asCellWorld.GetComponent_Model(secondEntity);
+        floatingEntity = secondEntity;
+    }
+
+    // TODO: use this to detect stuff
+    LOG_INFO("Model: " + model.GraphicalObject.getMesh().getName());
+
+    world.QueueDestroyEntity(floatingEntity);
+}
+
+
 
 // TODO: This should be moved somewhere else...
 void createAgentCloud(CellStageWorld@ world, CompoundId compoundId, Float3 pos,
@@ -133,6 +159,8 @@ void createAgentCloud(CellStageWorld@ world, CompoundId compoundId, Float3 pos,
 
     rigidBody.SetCollision(world.GetPhysicalWorld().CreateSphere(HEX_SIZE));
     rigidBody.CreatePhysicsBody(world.GetPhysicalWorld());
+    // Agent
+    
     rigidBody.CreatePlaneConstraint(world.GetPhysicalWorld(), Float3(0, 1, 0));
 
     rigidBody.SetMass(0.001);
@@ -243,7 +271,8 @@ ObjectID createToxin(CellStageWorld@ world, Float3 pos)
 		
     auto rigidBody = world.Create_Physics(toxinEntity, world, position, null);
     rigidBody.SetCollision(world.GetPhysicalWorld().CreateSphere(1));
-    rigidBody.CreatePhysicsBody(world.GetPhysicalWorld());
+    rigidBody.CreatePhysicsBody(world.GetPhysicalWorld(),
+        world.GetPhysicalMaterial("floatingOrganelle"));
     rigidBody.CreatePlaneConstraint(world.GetPhysicalWorld(), Float3(0,1,0));
 	rigidBody.SetMass(1.0f);	
 	
@@ -274,7 +303,8 @@ ObjectID createChloroplast(CellStageWorld@ world, Float3 pos)
 		
     auto rigidBody = world.Create_Physics(chloroplastEntity, world, position, null);
     rigidBody.SetCollision(world.GetPhysicalWorld().CreateSphere(1));
-    rigidBody.CreatePhysicsBody(world.GetPhysicalWorld());
+    rigidBody.CreatePhysicsBody(world.GetPhysicalWorld(),
+        world.GetPhysicalMaterial("floatingOrganelle"));
     rigidBody.CreatePlaneConstraint(world.GetPhysicalWorld(), Float3(0,1,0));
 	rigidBody.SetMass(1.0f);	
     rigidBody.JumpTo(position);

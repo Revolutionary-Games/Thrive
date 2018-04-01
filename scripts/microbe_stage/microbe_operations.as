@@ -119,7 +119,8 @@ bool removeOrganelle(CellStageWorld@ world, ObjectID microbeEntity, Int2 hex){
     if(rigidBodyComponent.Body !is null){
         
         LOG_INFO("Recreating physics body in removeOrganelle");
-        rigidBodyComponent.CreatePhysicsBody(world.GetPhysicalWorld());
+        rigidBodyComponent.CreatePhysicsBody(world.GetPhysicalWorld(),
+            world.GetPhysicalMaterial("cell"));
         rigidBodyComponent.SetMass(rigidBodyComponent.Mass - organelle.organelle.mass);
         _applyMicrobePhysicsBodySettings(world, rigidBodyComponent);
 
@@ -623,7 +624,8 @@ bool addOrganelle(CellStageWorld@ world, ObjectID microbeEntity, PlacedOrganelle
     
         // Need to recreate the body
         LOG_INFO("Recreating physics body in addOrganelle");
-        rigidBodyComponent.CreatePhysicsBody(world.GetPhysicalWorld());
+        rigidBodyComponent.CreatePhysicsBody(world.GetPhysicalWorld(),
+            world.GetPhysicalMaterial("cell"));
 
         rigidBodyComponent.SetMass(rigidBodyComponent.Mass + organelle.organelle.mass);
 
@@ -811,7 +813,7 @@ ObjectID _createMicrobeEntity(CellStageWorld@ world, const string &in name, bool
     // requires the physics body to be recreated when any organelle is
     // added (if the body already exists at that point) so we do it
     // here after that
-    rigidBody.CreatePhysicsBody(world.GetPhysicalWorld());
+    rigidBody.CreatePhysicsBody(world.GetPhysicalWorld(), world.GetPhysicalMaterial("cell"));
 
     assert(rigidBody.Body !is null);
 

@@ -16,6 +16,7 @@
 #include <GUI/AlphaHitCache.h>
 #include <Handlers/ObjectLoader.h>
 #include <Networking/NetworkHandler.h>
+#include <Newton/PhysicsMaterialManager.h>
 #include <Rendering/GraphicalInputEntity.h>
 #include <Script/Bindings/BindHelpers.h>
 #include <Script/Bindings/StandardWorldBindHelper.h>
@@ -544,6 +545,58 @@ void
     }
 }
 
+//! \note This is called from a background thread
+void
+    cellHitFloatingOrganelle(const NewtonJoint* contact,
+        dFloat timestep,
+        int threadIndex)
+{
+    NewtonBody* first = NewtonJointGetBody0(contact);
+    NewtonBody* second = NewtonJointGetBody1(contact);
+
+    if(!first || !second)
+        return;
+
+    Leviathan::Physics* firstPhysics =
+        static_cast<Leviathan::Physics*>(NewtonBodyGetUserData(first));
+    Leviathan::Physics* secondPhysics =
+        static_cast<Leviathan::Physics*>(NewtonBodyGetUserData(second));
+
+    NewtonWorld* world = NewtonBodyGetWorld(first);
+    Leviathan::PhysicalWorld* physicalWorld =
+        static_cast<Leviathan::PhysicalWorld*>(NewtonWorldGetUserData(world));
+
+    GameWorld* gameWorld = physicalWorld->GetGameWorld();
+
+    ScriptRunningSetup setup("cellHitFloatingOrganelle");
+
+    auto result = ThriveGame::Get()->getMicrobeScripts()->ExecuteOnModule<void>(
+        setup, false, gameWorld, firstPhysics->ThisEntity,
+        secondPhysics->ThisEntity);
+
+    if(result.Result != SCRIPT_RUN_RESULT::Success)
+        LOG_ERROR("Failed to run script side cellHitFloatingOrganelle");
+}
+
+//! \brief This registers the physical materials (with callbacks for
+//! collision detection)
+void
+    ThriveGame::RegisterApplicationPhysicalMaterials(
+        Leviathan::PhysicsMaterialManager* manager)
+{
+    // Setup materials
+    auto cellMaterial = std::make_shared<Leviathan::PhysicalMaterial>("cell");
+    auto floatingOrganelleMaterial =
+        std::make_shared<Leviathan::PhysicalMaterial>("floatingOrganelle");
+
+    // Set callbacks //
+    cellMaterial->FormPairWith(*floatingOrganelleMaterial)
+        .SetCallbacks(nullptr, cellHitFloatingOrganelle);
+
+    manager->LoadedMaterialAdd(cellMaterial);
+    manager->LoadedMaterialAdd(floatingOrganelleMaterial);
+}
+
 void
     ThriveGame::EnginePreShutdown()
 {
@@ -557,6 +610,13 @@ void
     // they are destroyed need to be released here
 
     m_impl->releaseOgreResources();
+
+    m_impl->m_cellStage->Release();
+
+    // And garbage collect //
+    // This is needed here as otherwise script destructors might use the deleted
+    // world
+    Leviathan::ScriptExecutor::Get()->CollectGarbage();
 
     m_impl->m_cellStage.reset();
 

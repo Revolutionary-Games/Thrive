@@ -4,14 +4,14 @@
 // ------------------------------------ //
 //! \file \note This file needs to be named like it is currently
 
-#include "GUI/GuiManager.h"
+#include "Application/ClientApplication.h"
 #include "Application/GameConfiguration.h"
 #include "Application/KeyConfiguration.h"
-#include "Application/ClientApplication.h"
 #include "Events/EventHandler.h"
+#include "GUI/GuiManager.h"
 #include "Script/ScriptExecutor.h"
 
-namespace thrive{
+namespace thrive {
 
 class CellStageWorld;
 
@@ -21,71 +21,97 @@ class PlayerData;
 
 class PlayerMicrobeControl;
 
-//class BioProcess;
-//class Biome;
+// class BioProcess;
+// class Biome;
 
-//! This is the main thrive class that is created in main.cpp and then handles running
-//! the engine and the event loop
-class ThriveGame : public Leviathan::ClientApplication{
+//! This is the main thrive class that is created in main.cpp and then handles
+//! running the engine and the event loop
+class ThriveGame : public Leviathan::ClientApplication {
     class Implementation;
-public:
 
+public:
     ThriveGame();
     virtual ~ThriveGame();
 
     // ------------------------------------ //
     // Gameplay etc. directly thrive related methods
-    void startNewGame();
-	void loadSaveGame(const std::string& saveFile);
-	void saveGame(const std::string& saveFile);
+    void
+        startNewGame();
+    void
+        loadSaveGame(const std::string& saveFile);
+    void
+        saveGame(const std::string& saveFile);
 
-    CellStageWorld* getCellStage();
+    CellStageWorld*
+        getCellStage();
 
     PlayerData&
-    playerData();
+        playerData();
 
     PlayerMicrobeControl*
-    getPlayerInput();
-    
+        getPlayerInput();
+
     Leviathan::GameModule*
-    getMicrobeScripts();
+        getMicrobeScripts();
 
     void
-    setBackgroundMaterial(const std::string &material);
+        setBackgroundMaterial(const std::string& material);
 
     // ------------------------------------ //
     // Player input actions
-    void onIntroSkipPressed();
+    void
+        onIntroSkipPressed();
 
     // ------------------------------------ //
-    // Hooking into the engine, and overridden methods from base application etc.
+    // Hooking into the engine, and overridden methods from base application
+    // etc.
 
-    void Tick(int mspassed) override;
+    void
+        Tick(int mspassed) override;
 
-    void CustomizeEnginePostLoad() override;
-    void EnginePreShutdown() override;
+    void
+        CustomizeEnginePostLoad() override;
 
-    static std::string GenerateWindowTitle();
+    //! \brief This registers the physical materials (with callbacks for
+    //! collision detection)
+    void
+        RegisterApplicationPhysicalMaterials(
+            Leviathan::PhysicsMaterialManager* manager) override;
+
+    void
+        EnginePreShutdown() override;
+
+    static std::string
+        GenerateWindowTitle();
 
     // Game configuration checkers //
-    static void CheckGameConfigurationVariables(Lock &guard, GameConfiguration* configobj);
-    static void CheckGameKeyConfigVariables(Lock &guard, KeyConfiguration* keyconfigobj);
+    static void
+        CheckGameConfigurationVariables(Lock& guard,
+            GameConfiguration* configobj);
+    static void
+        CheckGameKeyConfigVariables(Lock& guard,
+            KeyConfiguration* keyconfigobj);
 
-    static ThriveGame* Get();
+    static ThriveGame*
+        Get();
     // Alternative for old engine style
-    static ThriveGame* instance();
+    static ThriveGame*
+        instance();
 
-    bool InitLoadCustomScriptTypes(asIScriptEngine* engine) override;
+    bool
+        InitLoadCustomScriptTypes(asIScriptEngine* engine) override;
+
 private:
-
     //! \brief Calls initialization methods for scripts
-    bool scriptSetup();
-    
-protected:
+    bool
+        scriptSetup();
 
-    Leviathan::NetworkInterface* _GetApplicationPacketHandler() override;
-    void _ShutdownApplicationPacketHandler() override;
-    
+protected:
+    Leviathan::NetworkInterface*
+        _GetApplicationPacketHandler() override;
+    void
+        _ShutdownApplicationPacketHandler() override;
+
 private:
     std::unique_ptr<ThriveNetHandler> Network;
 
@@ -103,7 +129,5 @@ private:
     static ThriveGame* StaticGame;
 };
 
-}
+} // namespace thrive
 // ------------------------------------ //
-
-
