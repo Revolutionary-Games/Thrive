@@ -43,7 +43,8 @@ public:
     Implementation(ThriveGame& game) :
         m_game(game), m_playerData("player"),
         m_menuKeyPresses(std::make_shared<MainMenuKeyPressListener>()),
-        m_cellStageKeys(std::make_shared<PlayerMicrobeControl>())
+        m_cellStageKeys(std::make_shared<PlayerMicrobeControl>(
+            *game.ApplicationConfiguration->GetKeyConfiguration()))
     {
     }
 
@@ -106,7 +107,6 @@ public:
 // ------------------------------------ //
 ThriveGame::ThriveGame()
 {
-    m_impl = std::make_unique<Implementation>(*this);
     StaticGame = this;
 }
 
@@ -461,6 +461,16 @@ void
 {
     Engine* engine = Engine::Get();
 
+    try {
+        m_impl = std::make_unique<Implementation>(*this);
+    } catch(const Leviathan::InvalidArgument& e) {
+
+        LOG_ERROR("ThriveGame: loading configuration data failed: ");
+        e.PrintToLog();
+        MarkAsClosing();
+        return;
+    }
+
     // Load json data //
     SimulationParameters::init();
 
@@ -578,6 +588,27 @@ void
         LOG_ERROR("Failed to run script side cellHitFloatingOrganelle");
 }
 
+//! \note This is called from a background thread
+//! \todo This should return 0 when either cell is engulfing and apply the
+//! damaging effect
+int
+    cellOnCellAABBHitCallback(const NewtonMaterial* material,
+        const NewtonBody* body0,
+        const NewtonBody* body1,
+        int threadIndex)
+{
+    LOG_INFO("Cell on cell AABB overlap");
+    return 1;
+}
+
+void
+    cellOnCellActualContact(const NewtonJoint* contact,
+        dFloat timestep,
+        int threadIndex)
+{
+    LOG_INFO("Cell on cell contact");
+}
+
 //! \brief This registers the physical materials (with callbacks for
 //! collision detection)
 void
@@ -592,6 +623,8 @@ void
     // Set callbacks //
     cellMaterial->FormPairWith(*floatingOrganelleMaterial)
         .SetCallbacks(nullptr, cellHitFloatingOrganelle);
+    cellMaterial->FormPairWith(*cellMaterial)
+        .SetCallbacks(cellOnCellAABBHitCallback, cellOnCellActualContact);
 
     manager->LoadedMaterialAdd(cellMaterial);
     manager->LoadedMaterialAdd(floatingOrganelleMaterial);
@@ -611,8 +644,8 @@ void
 
     m_impl->releaseOgreResources();
 
-	if(m_impl->m_cellStage != nullptr)
-		m_impl->m_cellStage->Release();
+    if(m_impl->m_cellStage != nullptr)
+        m_impl->m_cellStage->Release();
 
     // And garbage collect //
     // This is needed here as otherwise script destructors might use the deleted
@@ -636,6 +669,11 @@ void
     ThriveGame::CheckGameKeyConfigVariables(Lock& guard,
         KeyConfiguration* keyconfigobj)
 {
+    keyconfigobj->AddKeyIfMissing(guard, "MoveForward", {"W"});
+    keyconfigobj->AddKeyIfMissing(guard, "MoveBackwards", {"S"});
+    keyconfigobj->AddKeyIfMissing(guard, "MoveLeft", {"A"});
+    keyconfigobj->AddKeyIfMissing(guard, "MoveRight", {"D"});
+    keyconfigobj->AddKeyIfMissing(guard, "ReproduceCheat", {"P"});
 }
 // ------------------------------------ //
 bool
