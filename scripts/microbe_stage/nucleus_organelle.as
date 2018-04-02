@@ -35,8 +35,10 @@ class NucleusOrganelle : OrganelleComponent{
 
         sceneNode1.Scale = Float3(HEX_SIZE, HEX_SIZE, HEX_SIZE);
         sceneNode1.Node.setPosition(Hex::axialToCartesian(q + 1, r + 1));
+		        //sceneNode1.Node.setOrientation(Ogre::Quaternion(Ogre::Radian(rotation),
+               // Ogre::Vector3(0, .5, 1)));
         sceneNode1.Node.setOrientation(Ogre::Quaternion(Ogre::Degree(rotation),
-                Ogre::Vector3(0, -1, 1)));
+                Ogre::Vector3(0, 1, 1)));
         sceneNode1.Marked = true;
 
         sceneNode1.Node.removeFromParent();
@@ -51,9 +53,10 @@ class NucleusOrganelle : OrganelleComponent{
         model2.GraphicalObject.setCustomParameter(1, Ogre::Vector4(1, 1, 1, 1));
 
         sceneNode2.Scale = Float3(HEX_SIZE, HEX_SIZE, HEX_SIZE);
-        sceneNode2.Node.setPosition(Hex::axialToCartesian(q - 1, r + 2));
-        sceneNode2.Node.setOrientation(Ogre::Quaternion(Ogre::Degree(rotation + 10),
-                Ogre::Vector3(0, -1, 1)));
+        sceneNode2.Node.setPosition(Hex::axialToCartesian(q, r+.4));
+		
+        sceneNode2.Node.setOrientation(Ogre::Quaternion(Ogre::Degree(rotation+10),
+                Ogre::Vector3(0, 1, -1)));
         sceneNode2.Marked = true;
 
         sceneNode2.Node.removeFromParent();

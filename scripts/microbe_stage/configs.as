@@ -192,7 +192,7 @@ const dictionary STARTER_MICROBES = {
                 {"oxygen", InitialCompound(10)}
             },
             {
-                OrganelleTemplatePlaced("nucleus", 0, 0, 0),
+                OrganelleTemplatePlaced("nucleus", 0, 0, 180),
                 OrganelleTemplatePlaced("mitochondrion", -1, 3, 240),
                 OrganelleTemplatePlaced("vacuole", 1, 2, 0),
                 OrganelleTemplatePlaced("flagellum", 1, 3, 0),
