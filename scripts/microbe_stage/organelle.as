@@ -687,6 +687,7 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
         // performance reasons we could it set here directly as it
         // never changes
         renderNode.Node.setPosition(offset + this.cartesianPosition);
+		//maybe instead of changing this here we should do so in the generation routine.
         renderNode.Node.setOrientation(Ogre::Quaternion(Ogre::Degree(rotation),
                 Ogre::Vector3(0, 1, 1)));
 
