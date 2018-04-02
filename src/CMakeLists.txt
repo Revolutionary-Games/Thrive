@@ -201,7 +201,7 @@ add_custom_command(OUTPUT "${PROJECT_SOURCE_DIR}/src/generated/cell_stage_world.
   "${PROJECT_SOURCE_DIR}/src/generated/cell_stage_world"
   "${PROJECT_SOURCE_DIR}/src/generated/cell_stage_bindings.h"
   DEPENDS "${PROJECT_SOURCE_DIR}/src/microbe_stage/generate_cell_stage_world.rb"
-  "${PROJECT_SOURCE_DIR}/ThirdParty/leviathan/Helpers/FileGen.rb"
+  "${LEVIATHAN_SRC}/Helpers/FileGen.rb"
   )
 
 set(GROUP_MICROBE

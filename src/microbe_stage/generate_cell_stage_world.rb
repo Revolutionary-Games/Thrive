@@ -2,7 +2,7 @@
 # Generates Thrive world for the cell stage
 
 require_relative '../../RubySetupSystem/RubyCommon.rb'
-require_relative '../../ThirdParty/leviathan/Helpers/FileGen.rb'
+require_relative '../../ThirdParty/Leviathan/Helpers/FileGen.rb'
 
 abort "no target files provided" if ARGV.count < 2
 

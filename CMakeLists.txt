@@ -20,7 +20,7 @@ set(ASSET_DIRECTORY "${CMAKE_SOURCE_DIR}/assets"
   )
 
 # This isn't really meant to be modified
-set(LEVIATHAN_SRC "${PROJECT_SOURCE_DIR}/ThirdParty/leviathan" CACHE FILEPATH
+set(LEVIATHAN_SRC "${PROJECT_SOURCE_DIR}/ThirdParty/Leviathan" CACHE FILEPATH
   "Path to leviathan source folder")
 
 if(NOT IS_DIRECTORY "${ASSET_DIRECTORY}/models")
