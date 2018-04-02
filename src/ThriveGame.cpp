@@ -611,7 +611,8 @@ void
 
     m_impl->releaseOgreResources();
 
-    m_impl->m_cellStage->Release();
+	if(m_impl->m_cellStage != nullptr)
+		m_impl->m_cellStage->Release();
 
     // And garbage collect //
     // This is needed here as otherwise script destructors might use the deleted
