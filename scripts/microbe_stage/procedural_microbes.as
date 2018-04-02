@@ -102,7 +102,7 @@ OrganelleTemplatePlaced@ getPosition(const string &in organelleName,
     for(int j = 0; j <= 5; ++j){
         int rotation = 360 * j / 6;
         if(isValidPlacement(organelleName, q, r, rotation, organelleList)){
-            return OrganelleTemplatePlaced(organelleName, q, r, rotation);
+            return OrganelleTemplatePlaced(organelleName, q, r, rotation+180);
         }
     }
 
@@ -133,9 +133,9 @@ OrganelleTemplatePlaced@ getPosition(const string &in organelleName,
                 //Checks every possible rotation value.
                 for(int j = 0; j <= 5; ++j){
                     
-                    int rotation = 360 * j / 6;
+                    int rotation = (360 * j / 6);
                     if(isValidPlacement(organelleName, q, r, rotation, organelleList)){
-                        return OrganelleTemplatePlaced(organelleName, q, r, rotation);
+                        return OrganelleTemplatePlaced(organelleName, q, r, rotation+180);
                     }
                 }
             }
@@ -160,10 +160,10 @@ array<PlacedOrganelle@>@ positionOrganelles(const string &in stringCode){
         const auto letter = CharacterToString(stringCode[i]);
         // LOG_WRITE(formatUInt(i) + ": " + letter);
         string name = string(organelleLetters[letter]);
-
+		//this places the nucleous
         if(i == 0){
 
-            @pos = OrganelleTemplatePlaced(name, 0, 0, 0);
+            @pos = OrganelleTemplatePlaced(name, 0, 0, 180);
 
         } else {
 
