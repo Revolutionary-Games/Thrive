@@ -688,7 +688,7 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
         // never changes
         renderNode.Node.setPosition(offset + this.cartesianPosition);
         renderNode.Node.setOrientation(Ogre::Quaternion(Ogre::Degree(rotation),
-                Ogre::Vector3(0, 1, 0)));
+                Ogre::Vector3(0, 1, 1)));
 
         // Add hex collision shapes
         auto hexes = organelle.getHexes();
