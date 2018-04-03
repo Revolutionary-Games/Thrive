@@ -22,7 +22,8 @@ class MicrobeStageHudSystem : ScriptSystem{
         @this.World = cast<CellStageWorld>(world);
 
         assert(this.World !is null, "MicrobeStageHudSystem didn't get proper world");
-
+		
+					
         // global_activeMicrobeStageHudSystem = self; // Global reference for event handlers
 
         // TODO: this is probably supposed to be in the Run method so that once the player
@@ -76,6 +77,7 @@ class MicrobeStageHudSystem : ScriptSystem{
 		this.oxytoxyId = SimulationParameters::compoundRegistry().getTypeId("oxytoxy");
         this.oxytoxyVolume = SimulationParameters::compoundRegistry().getTypeData(
             this.oxytoxyId).volume; 
+			
     }
 
 	void handleAmbientSound()
@@ -87,6 +89,13 @@ class MicrobeStageHudSystem : ScriptSystem{
 			@ambienceSounds = _playRandomMicrobeAmbience();
             ambienceSounds.Get().play();
         }
+		
+		//play ambient track alongside music and loop it (its meant to be played alongside)
+		if (@ambientTrack is null || !ambientTrack.Get().isPlaying())
+        {
+			@ambientTrack =  GetEngine().GetSoundDevice().Play2DSound("Data/Sound/soundeffects/microbe-ambience.ogg", false, true);
+            ambientTrack.Get().play();
+        }
     }
 		
     void Release(){
@@ -95,7 +104,6 @@ class MicrobeStageHudSystem : ScriptSystem{
 
     void Run(){
 
-        // TODO: Microbe hud read player cell
         ObjectID player = GetThriveGame().playerData().activeCreature();
 
         // Update player stats if there is a cell currently
@@ -321,7 +329,9 @@ class MicrobeStageHudSystem : ScriptSystem{
 
     //instantiate our ambient music source
     AudioSource@ ambienceSounds;
-
+	//plays alongside music
+    AudioSource@ ambientTrack;
+	
     CompoundId atpId;
     float atpVolume;
 	

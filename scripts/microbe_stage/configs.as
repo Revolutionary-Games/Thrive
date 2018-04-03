@@ -198,7 +198,7 @@ const dictionary STARTER_MICROBES = {
                 OrganelleTemplatePlaced("flagellum", 1, 3, 0),
                 OrganelleTemplatePlaced("flagellum", -1, 4, 0)
             },
-            Float4(1, 0, 1, 1))
+            Float4(1, 1, 1, 1))
     }
 };
 
