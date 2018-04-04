@@ -26,6 +26,7 @@ public:
     REFERENCE_HANDLE_UNCOUNTED_TYPE(SpeciesComponent);
     
 	Float4 colour;
+	bool isBacteria;
 	std::string name;
 
 	// TODO: get the id from the simulation parameters.

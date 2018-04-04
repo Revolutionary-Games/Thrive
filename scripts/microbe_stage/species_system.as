@@ -120,7 +120,7 @@ class Species{
         
         auto organelles = positionOrganelles(stringCode);
         
-        templateEntity = Species::createSpecies(forWorld, this.name, organelles, this.colour,
+        templateEntity = Species::createSpecies(forWorld, this.name, organelles, this.colour, this.isBacteria, 
             DEFAULT_INITIAL_COMPOUNDS);
     }
     
@@ -168,7 +168,7 @@ class Species{
     }
 
 	void generateBacteria(CellStageWorld@ world){
-	name = randomBacteriaName();
+	     name = randomBacteriaName();
 		//bacteria are tiny
         auto stringSize = GetEngine().GetRandom().GetNumber(0,1);
         //it should always have a nucleus and a cytoplasm.
@@ -543,14 +543,14 @@ ObjectID createSpecies(CellStageWorld@ world, const string &in name,
                 organelle.rotation));
     }
     
-    return createSpecies(world, name, convertedOrganelles, fromTemplate.colour,
+    return createSpecies(world, name, convertedOrganelles, fromTemplate.colour, false, 
         fromTemplate.compounds);
 }
 
 //! Creates an entity that has all the species stuff on it
 //! AI controlled ones need to be in addition in SpeciesSystem
 ObjectID createSpecies(CellStageWorld@ world, const string &in name,
-    array<PlacedOrganelle@> organelles, Float4 colour, const dictionary &in compounds
+    array<PlacedOrganelle@> organelles, Float4 colour, bool isBacteria, const dictionary &in compounds
 ) {
     ObjectID speciesEntity = world.CreateEntity();
         
@@ -583,7 +583,8 @@ ObjectID createSpecies(CellStageWorld@ world, const string &in name,
         speciesEntity);
     
     speciesComponent.colour = colour;
-
+	//we need to know this is baceria
+	speciesComponent.isBacteria = isBacteria;
     // iterates over all compounds, and sets amounts and priorities
     uint64 compoundCount = SimulationParameters::compoundRegistry().getSize();
     for(uint i = 0; i < compoundCount; ++i){
