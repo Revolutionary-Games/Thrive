@@ -88,7 +88,7 @@ cellWorld = GameWorldClass.new(
                                    "GetScene()"
                                  ]}),
 
-    EntitySystem.new("SpawnSystem", [],
+    EntitySystem.new("SpawnSystem", ["SpawnedComponent", "Position"],
                      runtick: {group: 50, parameters: []},
                      visibletoscripts: true,
                      release: []),

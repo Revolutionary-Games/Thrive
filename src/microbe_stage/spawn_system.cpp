@@ -156,8 +156,9 @@ SpawnSystem::Run(
 
             // If the entity is too far away from the player, despawn it.
             if(squaredDistance > spawnedComponent.spawnRadiusSqr) {
+				LOG_INFO("asdasdasd");
 
-                world.DestroyEntity(entry.first);
+                world.QueueDestroyEntity(entry.first);
             }
         }
 
