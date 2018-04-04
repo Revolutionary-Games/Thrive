@@ -173,7 +173,7 @@ class Species{
         auto stringSize = GetEngine().GetRandom().GetNumber(0,1);
         //it should always have a nucleus and a cytoplasm.
 		//bacteria will randomly have 1 of 3 organelles right now, chlorolast, mitochondria, or toxin, adding pure cytoplasm bacteria aswell for variety
-		switch( GetEngine().GetRandom().GetNumber(1,4))
+		switch( GetEngine().GetRandom().GetNumber(1,5))
 		{
 		case 1:
 		stringCode = getOrganelleDefinition("cytoplasm").gene;
@@ -187,7 +187,11 @@ class Species{
 		case 4:
 		stringCode = getOrganelleDefinition("oxytoxy").gene;
 		break;
+		default:
+		stringCode = getOrganelleDefinition("cytoplasm").gene;
+		break;
 		}
+		
         for(int i = 0; i < stringSize; ++i){
             this.stringCode += "Y";
 		}
