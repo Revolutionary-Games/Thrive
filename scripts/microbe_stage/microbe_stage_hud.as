@@ -94,7 +94,6 @@ class MicrobeStageHudSystem : ScriptSystem{
 		if (@ambientTrack is null || !ambientTrack.Get().isPlaying())
         {
 			@ambientTrack =  GetEngine().GetSoundDevice().Play2DSound("Data/Sound/soundeffects/microbe-ambience.ogg", false, true);
-			ambientTrack.Get().setVolume(0.5);
             ambientTrack.Get().play();
         }
     }
