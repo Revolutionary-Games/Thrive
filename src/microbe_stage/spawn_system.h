@@ -37,7 +37,7 @@ public:
     *  when a Spawn involving this object occours.
     *  More Spawn groups can be added with addSpawnGroup(group)
     */
-    SpawnedComponent(double newSpawnRadius);
+    SpawnedComponent(double newSpawnRadiusSqr);
 
     REFERENCE_HANDLE_UNCOUNTED_TYPE(SpawnedComponent);
 

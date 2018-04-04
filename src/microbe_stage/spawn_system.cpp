@@ -30,12 +30,9 @@ using namespace thrive;
 ////////////////////////////////////////////////////////////////////////////////
 
 SpawnedComponent::SpawnedComponent(
-    double newSpawnRadius
+    double newSpawnRadiusSqr
 ) : Leviathan::Component(TYPE),
-    spawnRadiusSqr(std::pow(newSpawnRadius, 2))
-{
-
-}
+    spawnRadiusSqr(newSpawnRadiusSqr) {}
 
 // void
 // SpawnedComponent::load(
@@ -156,7 +153,6 @@ SpawnSystem::Run(
 
             // If the entity is too far away from the player, despawn it.
             if(squaredDistance > spawnedComponent.spawnRadiusSqr) {
-				LOG_INFO("asdasdasd");
 
                 world.QueueDestroyEntity(entry.first);
             }
