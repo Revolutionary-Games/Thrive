@@ -792,9 +792,6 @@ ObjectID _createMicrobeEntity(CellStageWorld@ world, const string &in name, bool
     if(aiControlled && species.isBacteria==false){
         world.GetScriptComponentHolder("MicrobeAIControllerComponent").Create(entity);
     }
-	else{
-	LOG_INFO("NO AI ON THIS");
-	}
 
     // Rest of the stuff doesn't really work in_editor
     // TODO: verify that this is actually the case
