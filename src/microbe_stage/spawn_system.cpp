@@ -144,18 +144,25 @@ SpawnSystem::Run(
 
         // Remove the y-position from player position
         playerPosition.Y = 0;
-        
+		int entitiesDeleted = 0;
         // Despawn entities.
         for(const auto& entry : CachedComponents.GetIndex()) {
-            SpawnedComponent& spawnedComponent = std::get<0>(*entry.second);
-            const Float3 spawnedEntityPosition = std::get<1>(*entry.second).Members._Position;
-            float squaredDistance = (playerPosition - spawnedEntityPosition).LengthSquared();
-
-            // If the entity is too far away from the player, despawn it.
-            if(squaredDistance > spawnedComponent.spawnRadiusSqr) {
-
-                world.QueueDestroyEntity(entry.first);
-            }
+			//delete a max of two entities per step to reduce lag from deleting tons of entities at once
+			if (entitiesDeleted < 2)
+			{
+				SpawnedComponent& spawnedComponent = std::get<0>(*entry.second);
+				const Float3 spawnedEntityPosition = std::get<1>(*entry.second).Members._Position;
+				float squaredDistance = (playerPosition - spawnedEntityPosition).LengthSquared();
+				// If the entity is too far away from the player, despawn it.
+				if (squaredDistance > spawnedComponent.spawnRadiusSqr) {
+					entitiesDeleted++;
+					world.QueueDestroyEntity(entry.first);
+				}
+			}
+			else {
+				//get out of loop if you hit max
+				break;
+			}
         }
 
         Leviathan::Random* random = Leviathan::Random::Get();
