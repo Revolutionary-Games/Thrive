@@ -420,7 +420,88 @@ void setupOrganelles(){
     };
 
     _addOrganelleToTable(Organelle(flagellumParameters));
+	
+	//prokaryotic Organelles (all meshes are placeholders)//
+	
+	// ------------------------------------ //
+    // Respiratory Protien
+    auto respiratoryProtien = OrganelleParameters("respiartoryProteins");
     
+    respiratoryProtien.mass = 0.1;
+    respiratoryProtien.gene = "m";
+    respiratoryProtien.mesh = "mitochondrion.mesh";
+    respiratoryProtien.chanceToCreate = 3;
+    respiratoryProtien.mpCost = 20;
+    respiratoryProtien.initialComposition = {
+        {"aminoacids", 2},
+        {"glucose", 1}
+        // fattyacids = 0 :/
+    };
+    respiratoryProtien.components = {
+        processorOrganelleFactory(1.0f),
+		storageOrganelleFactory(25.0f)
+    };
+    respiratoryProtien.processes = {
+        TweakedProcess("respiration", 0.02)
+    };
+    respiratoryProtien.hexes = {
+        Int2(0, 0),
+    };
+
+    _addOrganelleToTable(Organelle(respiratoryProtien));
+	
+    // Photosynthetic Protien
+    auto photosyntheticProtein = OrganelleParameters("photosyntheticProteins");
+    
+    photosyntheticProtein.mass = 0.1;
+    photosyntheticProtein.gene = "h";
+    photosyntheticProtein.mesh = "chloroplast.mesh";
+    photosyntheticProtein.chanceToCreate = 3;
+    photosyntheticProtein.mpCost = 20;
+    photosyntheticProtein.initialComposition = {
+        {"aminoacids", 2},
+        {"glucose", 1}
+        // fattyacids = 0 :/
+    };
+    photosyntheticProtein.components = {
+        processorOrganelleFactory(1.0f),
+		storageOrganelleFactory(25.0f)
+    };
+    photosyntheticProtein.processes = {
+          TweakedProcess("photosynthesis", 0.05)
+    };
+    photosyntheticProtein.hexes = {
+        Int2(0, 0),
+    };
+
+    _addOrganelleToTable(Organelle(photosyntheticProtein));
+	
+    // Photosynthetic Protien
+    auto oxytoxyProtein = OrganelleParameters("oxytoxyProteins");
+    
+    oxytoxyProtein.mass = 0.1;
+    oxytoxyProtein.gene = "t";
+    oxytoxyProtein.mesh = "oxytoxy.mesh";
+    oxytoxyProtein.chanceToCreate = 3;
+    oxytoxyProtein.mpCost = 20;
+    oxytoxyProtein.initialComposition = {
+        {"aminoacids", 2},
+        {"glucose", 1}
+        // fattyacids = 0 :/
+    };
+    oxytoxyProtein.components = {
+        agentVacuoleFactory("oxytoxy", "oxytoxySynthesis"),
+		storageOrganelleFactory(25.0f)
+    };
+    oxytoxyProtein.processes = {
+         TweakedProcess("oxytoxySynthesis", 0.05)
+    };
+    oxytoxyProtein.hexes = {
+        Int2(0, 0),
+    };
+
+    _addOrganelleToTable(Organelle(oxytoxyProtein));
+	
     // ------------------------------------ //
     // Setup the organelle letters
     setupOrganelleLetters();

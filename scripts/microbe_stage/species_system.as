@@ -170,7 +170,7 @@ class Species{
 	void generateBacteria(CellStageWorld@ world){
 	     name = randomBacteriaName();
 		//bacteria are tiny
-        auto stringSize = GetEngine().GetRandom().GetNumber(0,1);
+        auto stringSize = GetEngine().GetRandom().GetNumber(0,2);
         //it should always have a nucleus and a cytoplasm.
 		//bacteria will randomly have 1 of 3 organelles right now, chlorolast, mitochondria, or toxin, adding pure cytoplasm bacteria aswell for variety
 		switch( GetEngine().GetRandom().GetNumber(1,5))
@@ -179,22 +179,24 @@ class Species{
 		stringCode = getOrganelleDefinition("cytoplasm").gene;
 		break;
 		case 2:
-		stringCode = getOrganelleDefinition("mitochondrion").gene;
+		stringCode = getOrganelleDefinition("respiartoryProteins").gene;
 		break;
 		case 3:
-		stringCode = getOrganelleDefinition("chloroplast").gene;
+		stringCode = getOrganelleDefinition("photosyntheticProteins").gene;
 		break;
 		case 4:
-		stringCode = getOrganelleDefinition("oxytoxy").gene;
+		stringCode = getOrganelleDefinition("oxytoxyProteins").gene;
 		break;
 		default:
 		stringCode = getOrganelleDefinition("cytoplasm").gene;
 		break;
 		}
 		
-        for(int i = 0; i < stringSize; ++i){
-            this.stringCode += "Y";
+		string chosenType= stringCode;
+		for(int i = 0; i < stringSize; ++i){
+            this.stringCode += chosenType;
 		}
+		
         commonConstructor(world);
         colour = randomColour();
         this.setupSpawn(world);
