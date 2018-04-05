@@ -114,7 +114,9 @@ set(ENGINECONFIGURATION				"./EngineConf.conf")
 set(GAMENAMEIDENTIFICATION			Thrive)
 set(GAMEVERSIONIDENTIFICATION		GAME_VERSIONS)
 set(ProgramNamespace thrive)
-set(PROGRAMMASTERSERVERINFO			"MasterServerInformation(\"ThriveMasters.txt\", \"Thrive_\" GAME_VERSIONS, \"http://revolutionarygamesstudio.com/\", \"/Thrive/MastersList.png\", \"ThriveAccountCrecentials.txt\", false)")
+# Currently there is no master server
+# set(PROGRAMMASTERSERVERINFO			"MasterServerInformation(\"ThriveMasters.txt\", \"Thrive_\" GAME_VERSIONS, \"http://revolutionarygamesstudio.com/\", \"/Thrive/MastersList.png\", \"ThriveAccountCrecentials.txt\", false)")
+set(PROGRAMMASTERSERVERINFO			"MasterServerInformation()")
 
 # Include dirs
 include_directories("${LEVIATHAN_SRC}/Engine")
