@@ -149,7 +149,34 @@ class Species{
             // No individual name (could be good for debugging)
             "");
     }
+	
+	ObjectID bacteriaColonySpawn(CellStageWorld@ world, Float3 pos){
+        LOG_INFO("New colony of species spawned: " + this.name);
+		for(int i = 0; i < GetEngine().GetRandom().GetNumber(1,2); ++i){
+		//dont spawn them on top of each other  because it causes them to bounce around and lag
+		//TODO:theres gotta be better way of doing this?
+		MicrobeOperations::spawnMicrobe(world, pos+Float3(GetEngine().GetRandom().GetNumber(1,7),GetEngine().GetRandom().GetNumber(1,7),GetEngine().GetRandom().GetNumber(1,7)), this.name,true,"");
+		}
+        return MicrobeOperations::spawnMicrobe(world, pos, this.name,true,"");
+		
+    }
     
+	
+	 void setupBacteriaSpawn(CellStageWorld@ world){
+
+        assert(world is forWorld, "Wrong world passed to setupSpawn");
+        
+        spawningEnabled = true;
+        
+        SpawnFactoryFunc@ factory = SpawnFactoryFunc(this.bacteriaColonySpawn);
+
+        // And register new
+        LOG_INFO("Registering bacteria to spawn: " + name);
+        this.id = forWorld.GetSpawnSystem().addSpawnType(
+            factory, DEFAULT_SPAWN_DENSITY, //spawnDensity should depend on population
+            MICROBE_SPAWN_RADIUS);
+    }
+	
     //sets up the spawn of the species
     // This may only be called once. Otherwise old spawn types are left active
     void setupSpawn(CellStageWorld@ world){
@@ -170,7 +197,7 @@ class Species{
 	void generateBacteria(CellStageWorld@ world){
 	     name = randomBacteriaName();
 		//bacteria are tiny
-        auto stringSize = GetEngine().GetRandom().GetNumber(0,2);
+        auto stringSize = GetEngine().GetRandom().GetNumber(0,3);
         //it should always have a nucleus and a cytoplasm.
 		//bacteria will randomly have 1 of 3 organelles right now, chlorolast, mitochondria, or toxin, adding pure cytoplasm bacteria aswell for variety
 		switch( GetEngine().GetRandom().GetNumber(1,5))
@@ -199,7 +226,7 @@ class Species{
 		
         commonConstructor(world);
         colour = randomColour();
-        this.setupSpawn(world);
+        this.setupBacteriaSpawn(world);
 	}
 	
     void mutateBacteria(Species@ parent, CellStageWorld@ world){
@@ -221,7 +248,7 @@ class Species{
 
         commonConstructor(world);
 
-        this.setupSpawn(world);
+        this.setupBacteriaSpawn(world);
 	}
     //updates the population count of the species
     void updatePopulation(){
