@@ -430,7 +430,7 @@ void setupOrganelles(){
     respiratoryProtien.mass = 0.1;
     respiratoryProtien.gene = "m";
     respiratoryProtien.mesh = "mitochondrion.mesh";
-    respiratoryProtien.chanceToCreate = 3;
+    respiratoryProtien.chanceToCreate = 0;
     respiratoryProtien.mpCost = 20;
     respiratoryProtien.initialComposition = {
         {"aminoacids", 2},
@@ -456,7 +456,7 @@ void setupOrganelles(){
     photosyntheticProtein.mass = 0.1;
     photosyntheticProtein.gene = "h";
     photosyntheticProtein.mesh = "chloroplast.mesh";
-    photosyntheticProtein.chanceToCreate = 3;
+    photosyntheticProtein.chanceToCreate = 0;
     photosyntheticProtein.mpCost = 20;
     photosyntheticProtein.initialComposition = {
         {"aminoacids", 2},
@@ -482,7 +482,7 @@ void setupOrganelles(){
     oxytoxyProtein.mass = 0.1;
     oxytoxyProtein.gene = "t";
     oxytoxyProtein.mesh = "oxytoxy.mesh";
-    oxytoxyProtein.chanceToCreate = 3;
+    oxytoxyProtein.chanceToCreate = 0;
     oxytoxyProtein.mpCost = 20;
     oxytoxyProtein.initialComposition = {
         {"aminoacids", 2},
