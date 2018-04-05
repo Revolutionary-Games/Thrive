@@ -152,10 +152,26 @@ class Species{
 	
 	ObjectID bacteriaColonySpawn(CellStageWorld@ world, Float3 pos){
         LOG_INFO("New colony of species spawned: " + this.name);
-		for(int i = 0; i < GetEngine().GetRandom().GetNumber(1,2); ++i){
-		//dont spawn them on top of each other  because it causes them to bounce around and lag
-		//TODO:theres gotta be faster way of doing this?
-		MicrobeOperations::spawnMicrobe(world, pos+Float3(GetEngine().GetRandom().GetNumber(1,7),0,GetEngine().GetRandom().GetNumber(1,7)), this.name,true,"");
+		Float3 curSpawn = Float3(GetEngine().GetRandom().GetNumber(1,10),0,GetEngine().GetRandom().GetNumber(1,10));
+		//two kinds of colonies are supported, line colonies and clump colonies
+		
+		if (GetEngine().GetRandom().GetNumber(0,4) < 2)
+		{
+		//clump
+		for(int i = 0; i < GetEngine().GetRandom().GetNumber(1,5); ++i){
+			//dont spawn them on top of each other  because it causes them to bounce around and lag
+			MicrobeOperations::spawnMicrobe(world, pos+curSpawn, this.name,true,"");
+			curSpawn = curSpawn + Float3(GetEngine().GetRandom().GetNumber(-10,10),0,GetEngine().GetRandom().GetNumber(-10,10));
+			}
+		}
+		else
+		{
+		//line
+		for(int i = 0; i < GetEngine().GetRandom().GetNumber(1,5); ++i){
+			//dont spawn them on top of each other  because it causes them to bounce around and lag
+			MicrobeOperations::spawnMicrobe(world, pos+curSpawn, this.name,true,"");
+			curSpawn = curSpawn + Float3(GetEngine().GetRandom().GetNumber(1,10),0,GetEngine().GetRandom().GetNumber(1,10));
+			}
 		}
         return MicrobeOperations::spawnMicrobe(world, pos, this.name,true,"");
 		
