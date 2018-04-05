@@ -597,7 +597,7 @@ int
         const NewtonBody* body1,
         int threadIndex)
 {
-    LOG_INFO("Cell on cell AABB overlap");
+    //LOG_INFO("Cell on cell AABB overlap");
     return 1;
 }
 
