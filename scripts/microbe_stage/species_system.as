@@ -152,9 +152,9 @@ class Species{
 	
 	ObjectID bacteriaColonySpawn(CellStageWorld@ world, Float3 pos){
         LOG_INFO("New colony of species spawned: " + this.name);
-		for(int i = 0; i < GetEngine().GetRandom().GetNumber(1,3); ++i){
+		for(int i = 0; i < GetEngine().GetRandom().GetNumber(1,2); ++i){
 		//dont spawn them on top of each other  because it causes them to bounce around and lag
-		//TODO:theres gotta be better way of doing this?
+		//TODO:theres gotta be faster way of doing this?
 		MicrobeOperations::spawnMicrobe(world, pos+Float3(GetEngine().GetRandom().GetNumber(1,7),0,GetEngine().GetRandom().GetNumber(1,7)), this.name,true,"");
 		}
         return MicrobeOperations::spawnMicrobe(world, pos, this.name,true,"");
