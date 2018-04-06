@@ -97,6 +97,15 @@ void setupPlayer(CellStageWorld@ world){
     // Testing spawning extra cell
     MicrobeOperations::spawnMicrobe(world, Float3(10, 0, 0), "Default",
         false, "extra player");
+
+    // // Test model spawn
+    // auto testModel = world.CreateEntity();
+
+    // auto position = world.Create_Position(testModel, Float3(5, 35, 5),
+    //     Ogre::Quaternion(Ogre::Degree(GetEngine().GetRandom().GetNumber(0, 360)),
+    //         Ogre::Vector3(0, 1, 0)));        
+    // auto sceneNode = world.Create_RenderNode(testModel);
+    // auto model = world.Create_Model(testModel, sceneNode.Node, "UnitCube.mesh");
 }
 
 

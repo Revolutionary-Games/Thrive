@@ -90,11 +90,13 @@ void setBiome(uint64 biomeId, CellStageWorld@ world){
 
 void setSunlightForBiome(CellStageWorld@ world){
 	//light properties isnt working for some reason
-
-	world.SetLightProperties(getCurrentBiome().diffuseColors, getCurrentBiome().specularColors, Ogre::Quaternion(Ogre::Radian(1.f), Ogre::Vector3(0.55f, -0.3f, 0.75f)));
+	world.SetLightProperties(getCurrentBiome().diffuseColors, getCurrentBiome().specularColors,
+        Ogre::Vector3(0.55f, -0.3f, 0.75f), 7);
 	//these work fine
-	LOG_INFO("Diffuse Colours For Biome r:"+getCurrentBiome().diffuseColors.r + "g:"+getCurrentBiome().diffuseColors.g + "b:"+getCurrentBiome().diffuseColors.b);
-	LOG_INFO("specular COlours For Biome r:"+getCurrentBiome().diffuseColors.r + "g:"+getCurrentBiome().diffuseColors.g + "b:"+getCurrentBiome().diffuseColors.b);
+	LOG_INFO("Diffuse Colours For Biome r:" + getCurrentBiome().diffuseColors.r +
+        "g:" + getCurrentBiome().diffuseColors.g + "b:" + getCurrentBiome().diffuseColors.b);
+	LOG_INFO("specular COlours For Biome r:" + getCurrentBiome().diffuseColors.r +
+        "g:" + getCurrentBiome().diffuseColors.g + "b:" + getCurrentBiome().diffuseColors.b);
 }
 
 //Setting the current biome to a random biome selected from the biome table.

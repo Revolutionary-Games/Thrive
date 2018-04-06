@@ -389,11 +389,17 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
 		auto model = world.GetComponent_Model(organelleEntity);
 
         if(model !is null){
-			this.colourTint = calculateHSLForOrganelle(this.colourTint);
-	      	this.flashColour = calculateHSLForOrganelle(this.flashColour);
-            model.GraphicalObject.setCustomParameter(1,
-                Ogre::Vector4( this.colourTint * this.flashColour)
-            );
+
+            // TODO: clean up this check
+            if(organelle.mesh != "flagellum.mesh"){
+            
+                this.colourTint = calculateHSLForOrganelle(this.colourTint);
+                this.flashColour = calculateHSLForOrganelle(this.flashColour);
+
+                model.GraphicalObject.setCustomParameter(1,
+                    Ogre::Vector4( this.colourTint * this.flashColour)
+                );
+            }
         }
         
         _needsColourUpdate = false;
@@ -721,10 +727,14 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
         //Adding a mesh for the organelle.
         if(organelle.mesh != ""){
             auto model = world.Create_Model(organelleEntity, renderNode.Node, organelle.mesh);
-            model.GraphicalObject.setCustomParameter(1,
-                // Start non-tinted
-                Ogre::Vector4(1, 1, 1, 1)
-            );
+
+            // TODO: clean up this check
+            if(organelle.mesh != "flagellum.mesh"){
+                model.GraphicalObject.setCustomParameter(1,
+                    // Start non-tinted
+                    Ogre::Vector4(1, 1, 1, 1)
+                );
+            }
         }
 
         // Add each OrganelleComponent
