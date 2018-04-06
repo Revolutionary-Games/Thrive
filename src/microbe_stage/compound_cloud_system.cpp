@@ -579,7 +579,10 @@ void
 
     cloud.m_texture = Ogre::TextureManager::getSingleton().createManual(
         cloud.m_textureName, "Generated", Ogre::TEX_TYPE_2D, width, height, 0,
-        Ogre::PF_BYTE_RGBA, Ogre::TU_DYNAMIC_WRITE_ONLY_DISCARDABLE);
+        Ogre::PF_BYTE_RGBA, Ogre::TU_DYNAMIC_WRITE_ONLY_DISCARDABLE, nullptr
+        // Gamma correction
+        // , true
+    );
 
     LEVIATHAN_ASSERT(Ogre::PixelUtil::getNumElemBytes(Ogre::PF_BYTE_RGBA) ==
                          OGRE_CLOUD_TEXTURE_BYTES_PER_ELEMENT,
