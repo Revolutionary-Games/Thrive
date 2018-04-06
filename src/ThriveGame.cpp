@@ -436,6 +436,12 @@ void
     Engine::Get()->GetEventHandler()->CallEvent(
         new Leviathan::GenericEvent("MainMenuIntroSkipEvent"));
 }
+
+void
+    ThriveGame::editorButtonClicked()
+{
+    LOG_INFO("Editor button pressed");
+}
 // ------------------------------------ //
 void
     ThriveGame::setBackgroundMaterial(const std::string& material)
@@ -1708,6 +1714,10 @@ bool
         ANGELSCRIPT_REGISTERFAIL;
     }
 
+    if(engine->RegisterObjectMethod("ThriveGame", "void editorButtonClicked()",
+           asMETHOD(ThriveGame, editorButtonClicked), asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
 
     // if(engine->RegisterObjectMethod("Client",
     //         "bool Connect(const string &in address, string &out

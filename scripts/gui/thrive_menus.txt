@@ -112,11 +112,12 @@ o GuiObject "_IntroVideoStarter"{
             return 1;
         }
 
+        // This is probably not called as it isn't a button
         [@Listener="OnClick"]
-        int VideoPlayerClicked(GuiObject@ instance){
+        bool VideoPlayerClicked(GuiObject@ instance){
 
              LOG_INFO("VideoPlayer clicked");
-             return 1;
+             return true;
         }
 
         void DestroyVideoPlayerWindow(){
@@ -186,7 +187,7 @@ o GuiObject "Background/MainMenuInteractive/LoadGameButton"{
             return 1;
         }
         [@Listener="OnClick"]
-        int LoadIt(GuiObject@ instance){
+        bool LoadIt(GuiObject@ instance){
 		    GetEngine().GetSoundDevice().Play2DSoundEffect("Data/Sound/soundeffects/gui/button-hover-click.ogg");
             // Load the game //
 			if (FileSystem::FileExists("quick.sav")) {
@@ -196,7 +197,7 @@ o GuiObject "Background/MainMenuInteractive/LoadGameButton"{
             instance.GetOwningManager().SetCollectionState("MicrobeRoot", true);
             GetThriveGame().loadSaveGame("quick.sav");
 			}
-            return 1;
+            return true;
         }
         @%};
 }
@@ -205,11 +206,11 @@ o GuiObject "Background/MainMenuInteractive/LoadGameButton"{
 o GuiObject "Background/MainMenuInteractive/ExitGameButton"{
     s{
         [@Listener="OnClick"]
-        int QuitIt(GuiObject@ instance){
+        bool QuitIt(GuiObject@ instance){
             // Close the game //
 		    GetEngine().GetSoundDevice().Play2DSoundEffect("Data/Sound/soundeffects/gui/button-hover-click.ogg");
             cast<LeviathanApplication>(GetThriveGame()).MarkAsClosing();
-            return 1;
+            return true;
         }
     @%};
 }
@@ -364,6 +365,24 @@ o GuiObject "_mainMicrobeHUDEventHandler"{
         #include "microbe_gui_events.as"
     @%};
 }
+
+o GuiObject "MicrobeStageRoot/EditorButton"{
+    s{
+        [@Listener="Generic", @Type="PlayerReadyToEnterEditor"]
+        int enable(GuiObject@ instance, GenericEvent@ event){
+            instance.GetTargetWindow().SetDisabledState(false);
+            return 1;
+        }
+
+        [@Listener="OnClick"]
+        bool clicked(GuiObject@ instance){
+            GetThriveGame().editorButtonClicked();
+            instance.GetTargetWindow().SetDisabledState(true);
+            return true;
+        }
+    @%};
+}
+
 
 
 
