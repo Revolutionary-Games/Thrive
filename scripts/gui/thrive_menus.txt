@@ -98,7 +98,7 @@ o GuiObject "_IntroVideoStarter"{
 		bool PlayingIntroVideo = false;
 
         // Comment the next line to not play intro video
-        //[@Listener="OnInit"]
+        [@Listener="OnInit"]
         int StartVideoPlayback(GuiObject@ instance){
 
             LOG_INFO("Starting to play intro video");
@@ -307,7 +307,7 @@ o GuiObject "Background/MainMenuInteractive/NewGameButton"{
         }
         // Uncomment the next line to automatically start a new game
         // also remember to disable the intro video to not hear it also play
-        [@Listener="OnInit"]
+        // [@Listener="OnInit"]
         int InstantStart(GuiObject@ instance){
 
             // Store this for the ended callback
