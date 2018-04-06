@@ -470,6 +470,8 @@ void
     LEVIATHAN_ASSERT(
         m_impl->m_microbeEditor, "Microbe editor world creation failed");
 
+    // Link the new world to the window (this will automatically make
+    // the old one go to the background)
     window1->LinkObjects(m_impl->m_microbeEditor);
 
     // Set the right input handlers active //
@@ -582,7 +584,7 @@ void
     }
 
     try {
-        m_impl->m_MicrobeScripts =
+        m_impl->m_MicrobeEditorScripts =
             Leviathan::GameModule::MakeShared<Leviathan::GameModule>(
                 "microbe_editor", "ThriveGame");
     } catch(const Leviathan::Exception& e) {
@@ -594,7 +596,7 @@ void
         return;
     }
 
-    if(!m_impl->m_MicrobeScripts->Init()) {
+    if(!m_impl->m_MicrobeEditorScripts->Init()) {
 
         LOG_ERROR("ThriveGame: microbe_editor module init failed");
         MarkAsClosing();
@@ -738,6 +740,11 @@ void
     if(m_impl->m_MicrobeScripts) {
         m_impl->m_MicrobeScripts->ReleaseScript();
         m_impl->m_MicrobeScripts.reset();
+    }
+
+    if(m_impl->m_MicrobeEditorScripts) {
+        m_impl->m_MicrobeEditorScripts->ReleaseScript();
+        m_impl->m_MicrobeEditorScripts.reset();
     }
 
     // All resources that need Ogre or the engine to be available when
