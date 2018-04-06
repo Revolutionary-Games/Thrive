@@ -91,7 +91,7 @@ void setBiome(uint64 biomeId, CellStageWorld@ world){
 void setSunlightForBiome(CellStageWorld@ world){
 	//light properties isnt working for some reason
 	world.SetLightProperties(getCurrentBiome().diffuseColors, getCurrentBiome().specularColors,
-        Ogre::Vector3(0.55f, -0.3f, 0.75f), 7);
+        Ogre::Vector3(0.55f, -0.3f, 0.75f), 30);
 	//these work fine
 	LOG_INFO("Diffuse Colours For Biome r:" + getCurrentBiome().diffuseColors.r +
         "g:" + getCurrentBiome().diffuseColors.g + "b:" + getCurrentBiome().diffuseColors.b);
