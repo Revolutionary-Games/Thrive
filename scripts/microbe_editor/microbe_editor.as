@@ -1,10 +1,10 @@
 /*
---------------------------------------------------------------------------------
--- MicrobeEditor
---
--- Contains the functionality associated with creating and augmenting microbes
--- See http://www.redblobgames.com/grids/hexagons/ for mathematical basis of hex related code.
---------------------------------------------------------------------------------
+////////////////////////////////////////////////////////////////////////////////
+// MicrobeEditor
+//
+// Contains the functionality associated with creating and augmenting microbes
+// See http://www.redblobgames.com/grids/hexagons/ for mathematical basis of hex related code.
+////////////////////////////////////////////////////////////////////////////////
 */
 
 class MicrobeEditor{
@@ -14,7 +14,7 @@ class MicrobeEditor{
         gridVisible = true;
         //Perhaps this should be turned into a constant?
         mutationPoints = 100;
-        //TODO:Check to make certain this works
+        //TODO.Check to make certain this works
         placementFunctions = {["nucleus"] = MicrobeEditor::createNewMicrobe(),
             ["flagellum"] = MicrobeEditor::addOrganelle(),
             ["cytoplasm"] = MicrobeEditor::addOrganelle(),
@@ -33,50 +33,50 @@ class MicrobeEditor{
             cost = organelleTable[organelle.name].mpCost,
             redo = function();
                 sceneNodeComponent = getComponent(currentMicrobeEntity, OgreSceneNodeComponent);
-                /*for _, hex in pairs(organelle._hexes) do
-                    -- Check if there is cytoplasm under this organelle.
-                    local cytoplasm = MicrobeSystem.getOrganelleAt(self.currentMicrobeEntity, hex.q + q, hex.r + r)
-                    if cytoplasm then
-                        if cytoplasm.name == "cytoplasm" then
-                            MicrobeSystem.removeOrganelle(self.currentMicrobeEntity, hex.q + q, hex.r + r)
-                            sceneNodeComponent.transform:touch()
-                            self.organelleCount = self.organelleCount - 1
-                            local s = encodeAxial(hex.q + q, hex.r + r)
-                            self.occupiedHexes[s]:destroy()
-                        end
-                    end
+                /*for(_, hex in pairs(organelle._hexes)){
+                    // Check if there is cytoplasm under this organelle.
+                    auto cytoplasm = MicrobeSystem.getOrganelleAt(this.currentMicrobeEntity, hex.q + q, hex.r + r)
+                    if(cytoplasm){
+                        if(cytoplasm.name == "cytoplasm"){
+                            MicrobeSystem.removeOrganelle(this.currentMicrobeEntity, hex.q + q, hex.r + r)
+                            sceneNodeComponent.transform.touch()
+                            this.organelleCount = this.organelleCount - 1
+                            auto s = encodeAxial(hex.q + q, hex.r + r)
+                            this.occupiedHexes[s]:destroy()
+                        }
+                    }
                     createHexComponent(hex.q + q, hex.r + r)
-                end*/
+                }*/
                 MicrobeSystem.addOrganelle(currentMicrobeEntity, q, r, rotation, organelle);
                 organelleCount = organelleCount + 1;
             undo = function();
                 sceneNodeComponent = getComponent(currentMicrobeEntity, OgreSceneNodeComponent);
                 MicrobeSystem.removeOrganelle(currentMicrobeEntity, q, r);
-                sceneNodeComponent.transform:touch();
+                sceneNodeComponent.transform.touch();
                 organelleCount = organelleCount - 1;
-                /*for _, hex in pairs(organelle._hexes) do
+                /*for(_, hex in pairs(organelle._hexes)){
                     local x, y = axialToCartesian(hex.q + q, hex.r + r)
-                    local s = encodeAxial(hex.q + q, hex.r + r)
-                    self.occupiedHexes[s]:destroy()
-                end*/
+                    auto s = encodeAxial(hex.q + q, hex.r + r)
+                    this.occupiedHexes[s]:destroy()
+                }*/
         })
     }
 
     //TODO: make certain all this works
     void activate(){
         //TODO: find new equivalent of this.
-        auto creatureState = g_luaEngine:getLuaStateFromWrapper(
-            Engine:playerData():activeCreatureGamestate());
+        auto creatureState = g_luaEngine.getLuaStateFromWrapper(
+            Engine.playerData():activeCreatureGamestate());
         
         if (creatureState.name == CellStageWorld@.MICROBE.name ||
         creatureState.name == CellStageWorld@.MICROBE_TUTORIAL.name){
             
             //TODO: check to make certain this class is still valid
-            auto microbeStageMicrobe = Entity.new("player", CellStageWorld@.MICROBE.wrapper);
+            auto microbeStageMicrobe = Entity("player", CellStageWorld@.MICROBE.wrapper);
             
             //TODO: find new equivalent of this
-            nextMicrobeEntity = Entity.new(
-                g_luaEngine:transferEntityGameState(microbeStageMicrobe.id,
+            nextMicrobeEntity = Entity(
+                g_luaEngine.transferEntityGameState(microbeStageMicrobe.id,
                 creatureState.entityManager,
                 CellStageWorld@.MICROBE_EDITOR),
                 CellStageWorld@.MICROBE_EDITOR.wrapper);
@@ -95,26 +95,26 @@ class MicrobeEditor{
         mutationPoints = 100;
         dictionary actionHistory = {}; // where all user actions will  be registered
         actionIndex = 0; // marks the last action that has been done (not undone, but possibly redone), is 0 if there is none
-        //TODO:fix this for loop
-        /*for _, cytoplasm in pairs(occupiedHexes) do
-            cytoplasm:destroy()
-        end*/
+        //TODO.fix this for loop
+        /*for(_, cytoplasm in pairs(occupiedHexes)){
+            cytoplasm.destroy()
+        }*/
 
         currentMicrobeEntity = nextMicrobeEntity;
         MicrobeSystem.initializeMicrobe(nextMicrobeEntity, true);
         auto microbeComponent = getComponent(currentMicrobeEntity, MicrobeComponent);
         auto sceneNodeComponent = getComponent(currentMicrobeEntity, OgreSceneNodeComponent);
-        sceneNodeComponent.transform.orientation = Quaternion.new(
-            Radian.new(Degree(0)), Vector3(0, 0, 1)); //Orientation
+        sceneNodeComponent.transform.orientation = Quaternion(
+            Radian(Degree(0)), Vector3(0, 0, 1)); //Orientation
         sceneNodeComponent.transform.position = Vector3(0, 0, 0);
         sceneNodeComponent.transform::touch();
         
         /* TODO: fix this for loop as well
-        for _, organelle in pairs(microbeComponent.organelles) do
-            for s, hex in pairs(organelle._hexes) do
-                self:createHexComponent(hex.q + organelle.position.q, hex.r + organelle.position.r)
-            end
-        end*/
+        for(_, organelle in pairs(microbeComponent.organelles)){
+            for(s, hex in pairs(organelle._hexes)){
+                this.createHexComponent(hex.q + organelle.position.q, hex.r + organelle.position.r)
+            }
+        }*/
     }
 
     void addNucleus(){
@@ -203,49 +203,49 @@ class MicrobeEditor{
         }   
     }
     
-    //TODO:find new equivalents of all these classes
+    //TODO.find new equivalents of all these classes
     void createHexComponent(double q, double r){
         Float3 axialToCartesian(q, r);
         int64_t s = encodeAxial(q, r);
-        //occupiedHexes[s] = Entity.new(g_luaEngine.currentGameState.wrapper)
-        //auto sceneNode = OgreSceneNodeComponent.new()
+        //occupiedHexes[s] = Entity(g_luaEngine.currentGameState.wrapper)
+        //auto sceneNode = OgreSceneNodeComponent()
         //sceneNode.transform.position = Vector3(x, y, 0)
-        //sceneNode.transform:touch()
+        //sceneNode.transform.touch()
         //sceneNode.meshName = "hex.mesh"
         //sceneNode.transform.scale = Vector3(HEX_SIZE, HEX_SIZE, HEX_SIZE)
-        //self.occupiedHexes[s]:addComponent(sceneNode)
-        //self.occupiedHexes[s]:setVolatile(true)
+        //this.occupiedHexes[s]:addComponent(sceneNode)
+        //this.occupiedHexes[s]:setVolatile(true)
     }
 
     void createNewMicrobe(){
         dictionary action = {
             redo = function()
                 organelleCount = 0
-                atuo microbeComponent = getComponent(self.currentMicrobeEntity, MicrobeComponent)
+                atuo microbeComponent = getComponent(this.currentMicrobeEntity, MicrobeComponent)
                 speciesName = microbeComponent.speciesName
                 if (currentMicrobeEntity != null){
-                    currentMicrobeEntity:destroy();
+                    currentMicrobeEntity.destroy();
                 }
-                /*for _, cytoplasm in pairs(self.occupiedHexes) do
-                    cytoplasm:destroy()
-                end*/
+                /*for(_, cytoplasm in pairs(this.occupiedHexes)){
+                    cytoplasm.destroy()
+                }*/
                 
                 currentMicrobeEntity = MicrobeSystem.createMicrobeEntity(null, false, 'Editor_Microbe', true);
                 microbeComponent = getComponent(currentMicrobeEntity, MicrobeComponent);
                 auto sceneNodeComponent = getComponent(currentMicrobeEntity, OgreSceneNodeComponent);
-                currentMicrobeEntity:stealName("working_microbe");
-                sceneNodeComponent.transform:touch();
+                currentMicrobeEntity.stealName("working_microbe");
+                sceneNodeComponent.transform.touch();
                 microbeComponent.speciesName = speciesName;
                 addNucleus();
-                /*for _, organelle in pairs(microbeComponent.organelles) do
-                    for s, hex in pairs(organelle._hexes) do
-                        self:createHexComponent(hex.q + organelle.position.q, hex.r + organelle.position.r)
-                    end
-                end*/
+                /*for(_, organelle in pairs(microbeComponent.organelles)){
+                    for(s, hex in pairs(organelle._hexes)){
+                        this.createHexComponent(hex.q + organelle.position.q, hex.r + organelle.position.r)
+                    }
+                }*/
                 mutationPoints = 100;
                 activeActionName = "cytoplasm";
-                Engine:playerData():setActiveCreature(self.currentMicrobeEntity.id, GameState.MICROBE_EDITOR.wrapper)
-            end
+                Engine.playerData():setActiveCreature(this.currentMicrobeEntity.id, GameState.MICROBE_EDITOR.wrapper)
+            }
         }
         
         if (currentMicrobeEntity != null){
@@ -254,41 +254,41 @@ class MicrobeEditor{
             auto previousOrganelleCount = organelleCount;
             auto previousMP = mutationPoints;
             auto currentMicrobeComponent = getComponent(currentMicrobeEntity, MicrobeComponent);
-            /*for position,organelle in pairs(currentMicrobeComponent.organelles) do
-                organelleStorage[position] = organelle:storage()
-            end*/
+            /*for(position,organelle in pairs(currentMicrobeComponent.organelles)){
+                organelleStorage[position] = organelle.storage()
+            }*/
 
             action.undo = function();
                 auto microbeComponent = getComponent(currentMicrobeEntity, MicrobeComponent);
 
                 string speciesName = microbeComponent.speciesName
-                currentMicrobeEntity:destroy() //remove the "new" entity that has replaced the previous one
+                currentMicrobeEntity.destroy() //remove the "new" entity that has replaced the previous one
                 currentMicrobeEntity = MicrobeSystem.createMicrobeEntity(null, false, 'Editor_Microbe', true);
                 
                 microbeComponent = getComponent(currentMicrobeEntity, MicrobeComponent);
                 auto sceneNodeComponent = getComponent(currentMicrobeEntity, OgreSceneNodeComponent);
 
-                currentMicrobeEntity:stealName("working_microbe");
-                sceneNodeComponent.transform.orientation = Quaternion.new(Radian(0), Vector3(0, 0, 1)); //Orientation
-                sceneNodeComponent.transform:touch();
+                currentMicrobeEntity.stealName("working_microbe");
+                sceneNodeComponent.transform.orientation = Quaternion(Radian(0), Vector3(0, 0, 1)); //Orientation
+                sceneNodeComponent.transform.touch();
                 microbeComponent.speciesName = speciesName;
-                /*for position,storage in pairs(organelleStorage) do
+                /*for(position,storage in pairs(organelleStorage)){
                     local q, r = decodeAxial(position)
-                    MicrobeSystem.addOrganelle(self.currentMicrobeEntity, storage:get("q", 0), storage:get("r", 0), storage:get("rotation", 0), Organelle.loadOrganelle(storage))
-                end
-                for _, cytoplasm in pairs(self.occupiedHexes) do
-                    cytoplasm:destroy()
-                end
-                for _, organelle in pairs(microbeComponent.organelles) do
-                    for s, hex in pairs(organelle._hexes) do
-                        self:createHexComponent(hex.q + organelle.position.q, hex.r + organelle.position.r)
-                    end
-                end*/
+                    MicrobeSystem.addOrganelle(this.currentMicrobeEntity, storage.get("q", 0), storage.get("r", 0), storage.get("rotation", 0), Organelle.loadOrganelle(storage))
+                }
+                for(_, cytoplasm in pairs(this.occupiedHexes)){
+                    cytoplasm.destroy()
+                }
+                for(_, organelle in pairs(microbeComponent.organelles)){
+                    for(s, hex in pairs(organelle._hexes)){
+                        this.createHexComponent(hex.q + organelle.position.q, hex.r + organelle.position.r)
+                    }
+                }*/
                 //no need to add the nucleus manually - it's alreary included in the organelleStorage
                 mutationPoints = previousMP;
                 organelleCount = previousOrganelleCount;
-                Engine:playerData():setActiveCreature(self.currentMicrobeEntity.id, GameState.MICROBE_EDITOR.wrapper)
-            end
+                Engine.playerData():setActiveCreature(this.currentMicrobeEntity.id, GameState.MICROBE_EDITOR.wrapper)
+            }
             enqueueAction(action);
         }
         else{
@@ -298,13 +298,13 @@ class MicrobeEditor{
     }
 
 
-    // Instead of executing a command, put it in a table with a redo() and undo() function to make it use the Undo-/Redo-Feature.
+    // Instead of executing a command, put it in a table with a redo() and undo() void to make it use the Undo-/Redo-Feature.{
     // Enqueuing it will execute it automatically, so you don't have to write things twice.
     // The cost of the action can also be incorporated into this by making it a member of the parameter table. It will be used automatically.
     void enqueueAction(action){
         if (!(action.cost || takeMutationPoints(action.cost)){
             while (actionHistory > actionIndex){
-                table.remove(self.actionHistory);
+                table.remove(this.actionHistory);
             }
             hudSystem.undoButton::enable();
             hudSystem.redoButton::disable();
@@ -317,7 +317,7 @@ class MicrobeEditor{
     void getMouseHex(auto out qr, auto out rr){
         auto mousePosition = Engine.mouse::normalizedPosition();
         //Get the position of the cursor in the plane that the microbes is floating in
-        local rayPoint = getComponent(CAMERA_NAME .. "3", g_luaEngine.currentGameState,
+        auto rayPoint = getComponent(CAMERA_NAME .. "3", g_luaEngine.currentGameState,
         OgreCameraComponent
         ):getCameraToViewportRay(mousePosition.x, mousePosition.y):getPoint(0);
         
@@ -330,14 +330,14 @@ class MicrobeEditor{
         //return qr, rr
     }
 
-    //TODO:find new equivalents of all these classes
+    //TODO.find new equivalents of all these classes
     void init(auto gameState){
-        /*auto ent = Entity.new(gameState.wrapper)
-        auto sceneNode = OgreSceneNodeComponent.new()
+        /*auto ent = Entity(gameState.wrapper)
+        auto sceneNode = OgreSceneNodeComponent()
         sceneNode.planeTexture = "EditorGridMaterial"
-        ent:addComponent(sceneNode)
+        ent.addComponent(sceneNode)
         sceneNode.transform.scale = Vector3(HEX_SIZE, HEX_SIZE, 1)
-        sceneNode.transform:touch()
+        sceneNode.transform.touch()
         
         gridSceneNode = sceneNode*/
     }
@@ -364,23 +364,23 @@ class MicrobeEditor{
             return newOrganelle;
         }
         else {
-            return nil;
+            return null;
         }
     }
 
     void loadMicrobe(auto entityId){
         organelleCount = 0;
         if (currentMicrobeEntity != null){
-            currentMicrobeEntity:destroy();
+            currentMicrobeEntity.destroy();
         }
-        currentMicrobeEntity = Entity.new(entityId, g_luaEngine.currentGameState.wrapper);
+        currentMicrobeEntity = Entity(entityId, g_luaEngine.currentGameState.wrapper);
         MicrobeSystem.initializeMicrobe(currentMicrobeEntity, true);
-        currentMicrobeEntity:stealName("working_microbe");
+        currentMicrobeEntity.stealName("working_microbe");
         auto sceneNodeComponent = getComponent(currentMicrobeEntity, OgreSceneNodeComponent);
-        sceneNodeComponent.transform.orientation = Quaternion.new(Radian.new(Degree(0)),
+        sceneNodeComponent.transform.orientation = Quaternion(Radian(Degree(0)),
         Vector3(0, 0, 1)); //Orientation
-        sceneNodeComponent.transform:touch();
-        Engine:playerData():setActiveCreature(entityId, GameState.MICROBE_EDITOR);
+        sceneNodeComponent.transform.touch();
+        Engine.playerData():setActiveCreature(entityId, GameState.MICROBE_EDITOR);
         mutationPoints = 0;
         //resetting the action history - it should not become entangled with the local file system
         actionHistory = {};
@@ -401,7 +401,7 @@ class MicrobeEditor{
             hudSystem.redoButton::disable();
         }
         //upon redoing, undoing is possible
-        hudSystem.undoButton:enable();
+        hudSystem.undoButton.enable();
     }
 
     void removeOrganelle(){
@@ -414,31 +414,31 @@ class MicrobeEditor{
         auto organelle = MicrobeSystem.getOrganelleAt(currentMicrobeEntity, q, r);
         if (!(organelle == null || organelle.name == "nucleus"){ //Don't remove nucleus
             if (organelle){
-                /*for _, hex in pairs(organelle._hexes) do
-                    local s = encodeAxial(hex.q + organelle.position.q, hex.r + organelle.position.r)
+                /*for(_, hex in pairs(organelle._hexes)){
+                    auto s = encodeAxial(hex.q + organelle.position.q, hex.r + organelle.position.r)
                     occupiedHexes[s]:destroy()
-                end*/
-                auto storage = organelle:storage();
+                }*/
+                auto storage = organelle.storage();
                 enqueueAction({
                     cost = 10,
                     redo = function()
-                        MicrobeSystem.removeOrganelle(self.currentMicrobeEntity, storage:get("q", 0), storage:get("r", 0))
-                        local sceneNodeComponent = getComponent(self.currentMicrobeEntity, OgreSceneNodeComponent)
-                        sceneNodeComponent.transform:touch()
+                        MicrobeSystem.removeOrganelle(this.currentMicrobeEntity, storage.get("q", 0), storage.get("r", 0))
+                        auto sceneNodeComponent = getComponent(this.currentMicrobeEntity, OgreSceneNodeComponent)
+                        sceneNodeComponent.transform.touch()
                         organelleCount = organelleCount - 1;
-                        /*for _, cytoplasm in pairs(organelle._hexes) do
-                            local s = encodeAxial(cytoplasm.q + storage:get("q", 0), cytoplasm.r + storage:get("r", 0))
+                        /*for(_, cytoplasm in pairs(organelle._hexes)){
+                            auto s = encodeAxial(cytoplasm.q + storage.get("q", 0), cytoplasm.r + storage.get("r", 0))
                             occupiedHexes[s]:destroy()
-                        end*/
-                    end,
+                        }*/
+                    },
                     undo = function()
-                        local organelle = Organelle.loadOrganelle(storage)
-                        MicrobeSystem.addOrganelle(currentMicrobeEntity, storage:get("q", 0), storage:get("r", 0), storage:get("rotation", 0), organelle);
-                        /*for _, hex in pairs(organelle._hexes) do
-                            createHexComponent(hex.q + storage:get("q", 0), hex.r + storage:get("r", 0))
-                        end*/
+                        auto organelle = Organelle.loadOrganelle(storage)
+                        MicrobeSystem.addOrganelle(currentMicrobeEntity, storage.get("q", 0), storage.get("r", 0), storage.get("rotation", 0), organelle);
+                        /*for(_, hex in pairs(organelle._hexes)){
+                            createHexComponent(hex.q + storage.get("q", 0), hex.r + storage.get("r", 0))
+                        }*/
                         organelleCount = organelleCount + 1;
-                    end
+                    }
                 })
             }
         }
@@ -456,26 +456,26 @@ class MicrobeEditor{
         }
         
         if (activeActionName){
-            dictionary oldData = {["name"]=self.activeActionName, 
+            dictionary oldData = {["name"]=this.activeActionName, 
             ["q"]=-q, 
             ["r"]=-r,
             ["rotation"]=(180+rotation) % 360};
             auto hexes = OrganelleFactory.checkSize(oldData);
             auto colour = ColourValue(2, 0, 0, 0.4);
             bool touching = false;
-            for _, hex in ipairs(hexes) do
-                if self:surroundsOrganelle(-hex.q + q, -hex.r + r) then
+            for(_, hex in ipairs(hexes)){
+                if(this.surroundsOrganelle(-hex.q + q, -hex.r + r)){
                     colour = ColourValue(0, 2, 0, 0.4)
-                end
-            end
-            for _, hex in ipairs(hexes) do
-                local organelle = MicrobeSystem.getOrganelleAt(self.currentMicrobeEntity, -hex.q + q, -hex.r + r)
-                if organelle then
-                    if organelle.name ~= "cytoplasm" then
+                }
+            }
+            for(_, hex in ipairs(hexes)){
+                auto organelle = MicrobeSystem.getOrganelleAt(this.currentMicrobeEntity, -hex.q + q, -hex.r + r)
+                if(organelle){
+                    if(organelle.name ~= "cytoplasm"){
                         colour = ColourValue(2, 0, 0, 0.4)
-                    end
-                end
-            end
+                    }
+                }
+            }
             if (CEGUIWindow.getWindowUnderMouse()::getName() == 'root'){
 
                 dictionary newData = {
@@ -490,7 +490,7 @@ class MicrobeEditor{
                 OrganelleFactory.renderOrganelles(newData)
                 for (int i = 1; i < 8; i++){
                     sceneNode[i].transform.scale = Vector3(HEX_SIZE, HEX_SIZE, HEX_SIZE); //Vector3(1,1,1)
-                    sceneNode[i].transform:touch();
+                    sceneNode[i].transform.touch();
                 }
             }
         }
@@ -546,7 +546,7 @@ class MicrobeEditor{
 
     void update(renderTime, logicTime){
         //TODO: rewrite getMouseHex()
-        //local q, r = self:getMouseHex()
+        //local q, r = this.getMouseHex()
         
         if (symmetry == 0){    
             renderHighlightedOrganelle(1, q, r, organelleRot);

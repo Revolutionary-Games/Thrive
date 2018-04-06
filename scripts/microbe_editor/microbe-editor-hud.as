@@ -3,522 +3,522 @@ class MicrobeEditorHudSystem : ScriptSystem{
     
 }
 
-MicrobeEditorHudSystem = class(
+class MicrobeEditorHudSystem{
     LuaSystem,
     function(self)
 
         LuaSystem.create(self)
-        self.organelleButtons = {}
-        self.initialized = false
-        self.editor = MicrobeEditor.new(self)
+        this.organelleButtons = {}
+        this.initialized = false
+        this.editor = MicrobeEditor(self)
         
-        -- Scene nodes for the organelle cursors for symmetry.
-        self.hoverHex = {}
-        self.hoverOrganelle = {}
+        // Scene nodes for the organelle cursors for symmetry.
+        this.hoverHex = {}
+        this.hoverOrganelle = {}
         
-        self.saveLoadPanel = nil    
-        self.creationsListbox = nil
-        self.creationFileMap = {} -- Map from player creation name to filepath
-        self.activeButton = nil -- stores button, not name
-        self.helpPanelOpen = false
-        self.menuOpen = false
+        this.saveLoadPanel = null    
+        this.creationsListbox = null
+        this.creationFileMap = {} // Map from player creation name to filepath
+        this.activeButton = null // stores button, not name
+        this.helpPanelOpen = false
+        this.menuOpen = false
 
-    end
+    }
 )
 
-function MicrobeEditorHudSystem:init(gameState)
+void MicrobeEditorHudSystem.init(gameState){
     LuaSystem.init(self, "MicrobeEditorHudSystem", gameState)
-    self.editor:init(gameState)
+    this.editor.init(gameState)
 
-    -- This seems really cluttered, there must be a better way.
-    for i=1, 42 do
-        self.hoverHex[i] = Entity.new("hover-hex" .. i, gameState.wrapper)
-        local sceneNode = OgreSceneNodeComponent.new()
+    // This seems really cluttered, there must be a better way.
+    for(i=1, 42){
+        this.hoverHex[i] = Entity("hover-hex" .. i, gameState.wrapper)
+        auto sceneNode = OgreSceneNodeComponent()
         sceneNode.transform.position = Vector3(0,0,0)
-        sceneNode.transform:touch()
+        sceneNode.transform.touch()
         sceneNode.meshName = "hex.mesh"
         sceneNode.transform.scale = Vector3(HEX_SIZE, HEX_SIZE, HEX_SIZE)
-        self.hoverHex[i]:addComponent(sceneNode)
-    end
-    for i=1, 6 do
-        self.hoverOrganelle[i] = Entity.new("hover-organelle" .. i, gameState.wrapper) 
-        local sceneNode = OgreSceneNodeComponent.new()
+        this.hoverHex[i]:addComponent(sceneNode)
+    }
+    for(i=1, 6){
+        this.hoverOrganelle[i] = Entity("hover-organelle" .. i, gameState.wrapper) 
+        auto sceneNode = OgreSceneNodeComponent()
         sceneNode.transform.position = Vector3(0,0,0)
-        sceneNode.transform:touch()
+        sceneNode.transform.touch()
         sceneNode.transform.scale = Vector3(HEX_SIZE, HEX_SIZE, HEX_SIZE)
-        self.hoverOrganelle[i]:addComponent(sceneNode)
-    end
+        this.hoverOrganelle[i]:addComponent(sceneNode)
+    }
     
 
-    local root = self.gameState.guiWindow
-    self.mpLabel = root:getChild("MpPanel"):getChild("MpBar"):getChild("NumberLabel")
-    self.mpProgressBar = root:getChild("MpPanel"):getChild("MpBar")
-    self.mpProgressBar:setProperty("ThriveGeneric/MpBar", "FillImage") 
+    auto root = this.gameState.guiWindow
+    this.mpLabel = root.getChild("MpPanel"):getChild("MpBar"):getChild("NumberLabel")
+    this.mpProgressBar = root.getChild("MpPanel"):getChild("MpBar")
+    this.mpProgressBar.setProperty("ThriveGeneric/MpBar", "FillImage") 
     
-    local nucleusButton = root:getChild("NewButton")
-    local flagellumButton = root:getChild("EditPanel"):getChild("StructurePanel"):getChild("StructureScroll"):getChild("AddFlagellum")
-    local cytoplasmButton = root:getChild("EditPanel"):getChild("StructurePanel"):getChild("StructureScroll"):getChild("AddCytoplasm")
-    local mitochondriaButton = root:getChild("EditPanel"):getChild("StructurePanel"):getChild("StructureScroll"):getChild("AddMitochondrion")
-    local vacuoleButton = root:getChild("EditPanel"):getChild("StructurePanel"):getChild("StructureScroll"):getChild("AddVacuole")
-    local toxinButton = root:getChild("EditPanel"):getChild("StructurePanel"):getChild("StructureScroll"):getChild("AddToxinVacuole")
-    local chloroplastButton = root:getChild("EditPanel"):getChild("StructurePanel"):getChild("StructureScroll"):getChild("AddChloroplast")
+    auto nucleusButton = root.getChild("NewButton")
+    auto flagellumButton = root.getChild("EditPanel"):getChild("StructurePanel"):getChild("StructureScroll"):getChild("AddFlagellum")
+    auto cytoplasmButton = root.getChild("EditPanel"):getChild("StructurePanel"):getChild("StructureScroll"):getChild("AddCytoplasm")
+    auto mitochondriaButton = root.getChild("EditPanel"):getChild("StructurePanel"):getChild("StructureScroll"):getChild("AddMitochondrion")
+    auto vacuoleButton = root.getChild("EditPanel"):getChild("StructurePanel"):getChild("StructureScroll"):getChild("AddVacuole")
+    auto toxinButton = root.getChild("EditPanel"):getChild("StructurePanel"):getChild("StructureScroll"):getChild("AddToxinVacuole")
+    auto chloroplastButton = root.getChild("EditPanel"):getChild("StructurePanel"):getChild("StructureScroll"):getChild("AddChloroplast")
     
-    self.organelleButtons["nucleus"] = nucleusButton
-    self.organelleButtons["flagellum"] = flagellumButton
-    self.organelleButtons["cytoplasm"] = cytoplasmButton
-    self.organelleButtons["mitochondrion"] = mitochondriaButton
-    self.organelleButtons["chloroplast"] = chloroplastButton
-    self.organelleButtons["vacuole"] = vacuoleButton
-    self.organelleButtons["Toxin"] = toxinButton
-    self.activeButton = nil
+    this.organelleButtons["nucleus"] = nucleusButton
+    this.organelleButtons["flagellum"] = flagellumButton
+    this.organelleButtons["cytoplasm"] = cytoplasmButton
+    this.organelleButtons["mitochondrion"] = mitochondriaButton
+    this.organelleButtons["chloroplast"] = chloroplastButton
+    this.organelleButtons["vacuole"] = vacuoleButton
+    this.organelleButtons["Toxin"] = toxinButton
+    this.activeButton = null
     
-    nucleusButton:registerEventHandler("Clicked", function() self:nucleusClicked() end)
-    flagellumButton:registerEventHandler("Clicked", function() self:flagellumClicked() end)
-    cytoplasmButton:registerEventHandler("Clicked", function() self:cytoplasmClicked() end)
-    mitochondriaButton:registerEventHandler("Clicked", function() self:mitochondriaClicked() end)
-    chloroplastButton:registerEventHandler("Clicked", function() self:chloroplastClicked() end)
-    vacuoleButton:registerEventHandler("Clicked", function() self:vacuoleClicked() end)
-    toxinButton:registerEventHandler("Clicked", function() self:toxinClicked() end)
+    nucleusButton.registerEventHandler("Clicked", function() this.nucleusClicked() })
+    flagellumButton.registerEventHandler("Clicked", function() this.flagellumClicked() })
+    cytoplasmButton.registerEventHandler("Clicked", function() this.cytoplasmClicked() })
+    mitochondriaButton.registerEventHandler("Clicked", function() this.mitochondriaClicked() })
+    chloroplastButton.registerEventHandler("Clicked", function() this.chloroplastClicked() })
+    vacuoleButton.registerEventHandler("Clicked", function() this.vacuoleClicked() })
+    toxinButton.registerEventHandler("Clicked", function() this.toxinClicked() })
     
-    -- self.saveLoadPanel = root:getChild("SaveLoadPanel")
-    -- self.creationsListbox = self.saveLoadPanel:getChild("SavedCreations")
-    self.undoButton = root:getChild("UndoButton")
-    self.undoButton:registerEventHandler("Clicked", function() self.editor:undo() end)
-    self.redoButton = root:getChild("RedoButton")
-    self.redoButton:registerEventHandler("Clicked", function() self.editor:redo() end)
-    self.symmetryButton = root:getChild("SymmetryButton")
-    self.symmetryButton:registerEventHandler("Clicked", function() self:changeSymmetry() end)
+    // this.saveLoadPanel = root.getChild("SaveLoadPanel")
+    // this.creationsListbox = this.saveLoadPanel.getChild("SavedCreations")
+    this.undoButton = root.getChild("UndoButton")
+    this.undoButton.registerEventHandler("Clicked", function() this.editor.undo() })
+    this.redoButton = root.getChild("RedoButton")
+    this.redoButton.registerEventHandler("Clicked", function() this.editor.redo() })
+    this.symmetryButton = root.getChild("SymmetryButton")
+    this.symmetryButton.registerEventHandler("Clicked", function() this.changeSymmetry() })
 
-    root:getChild("FinishButton"):registerEventHandler("Clicked", playClicked)
-    --root:getChild("BottomSection"):getChild("MenuButton"):registerEventHandler("Clicked", self:menuButtonClicked)
-    root:getChild("MenuButton"):registerEventHandler("Clicked", function() self:menuButtonClicked() end)
-    root:getChild("PauseMenu"):getChild("MainMenuButton"):registerEventHandler("Clicked", function() self:menuMainMenuClicked() end)
-    root:getChild("PauseMenu"):getChild("ResumeButton"):registerEventHandler("Clicked", function() self:resumeButtonClicked() end)
-    root:getChild("PauseMenu"):getChild("CloseHelpButton"):registerEventHandler("Clicked", function() self:closeHelpButtonClicked() end)
-    root:getChild("PauseMenu"):getChild("QuitButton"):registerEventHandler("Clicked", function() self:quitButtonClicked() end)
-    --root:getChild("SaveMicrobeButton"):registerEventHandler("Clicked", function() self:saveCreationClicked() end)
-    --root:getChild("LoadMicrobeButton"):registerEventHandler("Clicked", function() self:loadCreationClicked() end)
+    root.getChild("FinishButton"):registerEventHandler("Clicked", playClicked)
+    //root.getChild("BottomSection"):getChild("MenuButton"):registerEventHandler("Clicked", this.menuButtonClicked)
+    root.getChild("MenuButton"):registerEventHandler("Clicked", function() this.menuButtonClicked() })
+    root.getChild("PauseMenu"):getChild("MainMenuButton"):registerEventHandler("Clicked", function() this.menuMainMenuClicked() })
+    root.getChild("PauseMenu"):getChild("ResumeButton"):registerEventHandler("Clicked", function() this.resumeButtonClicked() })
+    root.getChild("PauseMenu"):getChild("CloseHelpButton"):registerEventHandler("Clicked", function() this.closeHelpButtonClicked() })
+    root.getChild("PauseMenu"):getChild("QuitButton"):registerEventHandler("Clicked", function() this.quitButtonClicked() })
+    //root.getChild("SaveMicrobeButton"):registerEventHandler("Clicked", function() this.saveCreationClicked() })
+    //root.getChild("LoadMicrobeButton"):registerEventHandler("Clicked", function() this.loadCreationClicked() })
 
-    self.helpPanel = root:getChild("PauseMenu"):getChild("HelpPanel")
-    root:getChild("PauseMenu"):getChild("HelpButton"):registerEventHandler("Clicked", function() self:helpButtonClicked() end)
+    this.helpPanel = root.getChild("PauseMenu"):getChild("HelpPanel")
+    root.getChild("PauseMenu"):getChild("HelpButton"):registerEventHandler("Clicked", function() this.helpButtonClicked() })
     
-    -- Set species name and cut it off if it is too long.
-    --[[ local name = self.nameLabel:getText()
-    if string.len(name) > 18 then
+    // Set species name and cut it off if it is too long.
+    //[[ auto name = this.nameLabel.getText()
+    if(string.len(name) > 18){
         name = string.sub(name, 1, 15)
         name = name .. "..."
-    end
-    self.nameLabel:setText(name) --]]
-end
+    }
+    this.nameLabel.setText(name) //]]
+}
 
-function MicrobeEditorHudSystem:loadmicrobeSelectionChanged()
+void MicrobeEditorHudSystem.loadmicrobeSelectionChanged(){
     getComponent("gui_sounds", g_luaEngine.currentGameState, SoundSourceComponent
     ):playSound("button-hover-click")
-end
+}
 
-function MicrobeEditorHudSystem:activate()
-    global_activeMicrobeEditorHudSystem = self -- Global reference for event handlers
-    self.editor:activate()
-    for typeName,button in pairs(global_activeMicrobeEditorHudSystem.organelleButtons) do
+void MicrobeEditorHudSystem.activate(){
+    global_activeMicrobeEditorHudSystem = self // Global reference for event handlers
+    this.editor.activate()
+    for(typeName,button in pairs(global_activeMicrobeEditorHudSystem.organelleButtons)){
         print(typeName)
-        if Engine:playerData():lockedMap():isLocked(typeName) then
-            button:disable()
+        if(Engine.playerData():lockedMap():isLocked(typeName)){
+            button.disable()
         else
-            button:enable()
-        end
-    end    
+            button.enable()
+        }
+    }    
+}
+
+void MicrobeEditorHudSystem.setActiveAction(actionName){
+    this.editor.setActiveAction(actionName)
+    if(actionName == "nucleus"){
+        // For now we simply create a new microbe with the nucleus button
+        this.editor.performLocationAction()
+    }
 end
 
-function MicrobeEditorHudSystem:setActiveAction(actionName)
-    self.editor:setActiveAction(actionName)
-    if actionName == "nucleus" then
-        -- For now we simply create a new microbe with the nucleus button
-        self.editor:performLocationAction()
-    end
-end
 
-
-function MicrobeEditorHudSystem:update(renderTime, logicTime)
-    for i=1, 42 do
-        local sceneNode = getComponent(self.hoverHex[i], OgreSceneNodeComponent)
+void MicrobeEditorHudSystem.update(renderTime, logicTime){
+    for(i=1, 42){
+        auto sceneNode = getComponent(this.hoverHex[i], OgreSceneNodeComponent)
         sceneNode.transform.position = Vector3(0,0,0)
         sceneNode.transform.scale = Vector3(0,0,0)
-        sceneNode.transform:touch()
-    end
-    for i=1, 6 do
-        local sceneNode = getComponent(self.hoverOrganelle[i], OgreSceneNodeComponent)
+        sceneNode.transform.touch()
+    }
+    for(i=1, 6){
+        auto sceneNode = getComponent(this.hoverOrganelle[i], OgreSceneNodeComponent)
         sceneNode.transform.position = Vector3(0,0,0)
         sceneNode.transform.scale = Vector3(0,0,0)
-        sceneNode.transform:touch()
-    end
-    self.editor:update(renderTime, logicTime)
+        sceneNode.transform.touch()
+    }
+    this.editor.update(renderTime, logicTime)
 	
-    -- Handle input
-    if Engine.mouse:wasButtonPressed(Mouse.MB_Left) then
-        self.editor:performLocationAction()
-    end
-    if Engine.mouse:wasButtonPressed(Mouse.MB_Right) then
-        self:removeClicked()
-        self.editor:performLocationAction()
-    end	            
-    if keyCombo(kmp.togglemenu) then
-        self:menuButtonClicked()
-    elseif keyCombo(kmp.newmicrobe) then
-        -- These global event handlers are defined in microbe_editor_hud.lua
-        self:nucleusClicked()
-    elseif keyCombo(kmp.redo) then
-        self.editor:redo()
-    elseif keyCombo(kmp.remove) then
-        self:removeClicked()
-        self.editor:performLocationAction()
-    elseif keyCombo(kmp.undo) then
-        self.editor:undo()
-    elseif keyCombo(kmp.vacuole) then
-        self:vacuoleClicked()
-        self.editor:performLocationAction()
-    elseif keyCombo(kmp.oxytoxyvacuole) then
-        if not Engine:playerData():lockedMap():isLocked("Toxin") then
-            self:toxinClicked()
-            self.editor:performLocationAction()
-        end
-    elseif keyCombo(kmp.flagellum) then
-        self:flagellumClicked()
-        self.editor:performLocationAction()
-    elseif keyCombo(kmp.mitochondrion) then
-        self:mitochondriaClicked()  
-        self.editor:performLocationAction()
-    --elseif Engine.keyboard:wasKeyPressed(Keyboard.KC_A) and self.editor.currentMicrobe ~= nil then
-    --    self:aminoSynthesizerClicked()
-    --    self.editor:performLocationAction()
-    elseif keyCombo(kmp.chloroplast) then
-        if not Engine:playerData():lockedMap():isLocked("Chloroplast") then
-            self:chloroplastClicked()
-            self.editor:performLocationAction()
-        end
-    elseif keyCombo(kmp.togglegrid) then
-        if self.editor.gridVisible then
-            self.editor.gridSceneNode.visible = false;
-            self.editor.gridVisible = false
+    // Handle input
+    if(Engine.mouse.wasButtonPressed(Mouse.MB_Left)){
+        this.editor.performLocationAction()
+    }
+    if(Engine.mouse.wasButtonPressed(Mouse.MB_Right)){
+        this.removeClicked()
+        this.editor.performLocationAction()
+    }	            
+    if(keyCombo(kmp.togglemenu)){
+        this.menuButtonClicked()
+    else if(keyCombo(kmp.newmicrobe)){
+        // These global event handlers are defined in microbe_editor_hud.lua
+        this.nucleusClicked()
+    else if(keyCombo(kmp.redo)){
+        this.editor.redo()
+    else if(keyCombo(kmp.remove)){
+        this.removeClicked()
+        this.editor.performLocationAction()
+    else if(keyCombo(kmp.undo)){
+        this.editor.undo()
+    else if(keyCombo(kmp.vacuole)){
+        this.vacuoleClicked()
+        this.editor.performLocationAction()
+    else if(keyCombo(kmp.oxytoxyvacuole)){
+        if(not Engine.playerData():lockedMap():isLocked("Toxin")){
+            this.toxinClicked()
+            this.editor.performLocationAction()
+        }
+    else if(keyCombo(kmp.flagellum)){
+        this.flagellumClicked()
+        this.editor.performLocationAction()
+    else if(keyCombo(kmp.mitochondrion)){
+        this.mitochondriaClicked()  
+        this.editor.performLocationAction()
+    //else if(Engine.keyboard.wasKeyPressed(Keyboard.KC_A) and this.editor.currentMicrobe !is null){
+    //    this.aminoSynthesizerClicked()
+    //    this.editor.performLocationAction()
+    else if(keyCombo(kmp.chloroplast)){
+        if(not Engine.playerData():lockedMap():isLocked("Chloroplast")){
+            this.chloroplastClicked()
+            this.editor.performLocationAction()
+        }
+    else if(keyCombo(kmp.togglegrid)){
+        if(this.editor.gridVisible){
+            this.editor.gridSceneNode.visible = false;
+            this.editor.gridVisible = false
         else
-            self.editor.gridSceneNode.visible = true;
-            self.editor.gridVisible = true
-        end
-    elseif keyCombo(kmp.gotostage) then
+            this.editor.gridSceneNode.visible = true;
+            this.editor.gridVisible = true
+        }
+    else if(keyCombo(kmp.gotostage)){
         playClicked()
-    elseif keyCombo(kmp.rename) then
-        self:updateMicrobeName()
-    end
+    else if(keyCombo(kmp.rename)){
+        this.updateMicrobeName()
+    }
     
-    if Engine.keyboard:wasKeyPressed(KEYCODE.KC_LEFT) or
-    Engine.keyboard:wasKeyPressed(KEYCODE.KC_A) then
+    if Engine.keyboard.wasKeyPressed(KEYCODE.KC_LEFT) or
+    Engine.keyboard.wasKeyPressed(KEYCODE.KC_A) then
         
-		self.editor.organelleRot = (self.editor.organelleRot + 60)%360
-	end
-	if Engine.keyboard:wasKeyPressed(KEYCODE.KC_RIGHT) or
-    Engine.keyboard:wasKeyPressed(KEYCODE.KC_D) then
+		this.editor.organelleRot = (this.editor.organelleRot + 60)%360
+	}
+	if Engine.keyboard.wasKeyPressed(KEYCODE.KC_RIGHT) or
+    Engine.keyboard.wasKeyPressed(KEYCODE.KC_D) then
         
-		self.editor.organelleRot = (self.editor.organelleRot - 60)%360
-	end
+		this.editor.organelleRot = (this.editor.organelleRot - 60)%360
+	}
 	
-    if keyCombo(kmp.screenshot) then
-        Engine:screenShot("screenshot.png")
-    end
+    if(keyCombo(kmp.screenshot)){
+        Engine.screenShot("screenshot.png")
+    }
 
-    if Engine.keyboard:isKeyDown(KEYCODE.KC_LSHIFT) then 
-        properties = getComponent(CAMERA_NAME .. 3, self.gameState, OgreCameraComponent).properties
-        newFovY = properties.fovY + Degree(Engine.mouse:scrollChange()/10)
-        if newFovY < Degree(10) then
+    if(Engine.keyboard.isKeyDown(KEYCODE.KC_LSHIFT)){ 
+        properties = getComponent(CAMERA_NAME .. 3, this.gameState, OgreCameraComponent).properties
+        newFovY = properties.fovY + Degree(Engine.mouse.scrollChange()/10)
+        if(newFovY < Degree(10)){
             newFovY = Degree(10)
-        elseif newFovY > Degree(120) then
+        else if(newFovY > Degree(120)){
             newFovY = Degree(120)
-        end
+        }
         properties.fovY = newFovY
-        properties:touch()
+        properties.touch()
     else
         
-    end
+    }
 end
 
-function MicrobeEditorHudSystem:updateMutationPoints() 
-    self.mpProgressBar:progressbarSetProgress(self.editor.mutationPoints/50)
-    self.mpLabel:setText("" .. self.editor.mutationPoints)
-end
+void MicrobeEditorHudSystem.updateMutationPoints() {
+    this.mpProgressBar.progressbarSetProgress(this.editor.mutationPoints/50)
+    this.mpLabel.setText("" .. this.editor.mutationPoints)
+}
 
------------------------------------------------------------------
--- Event handlers -----------------------------------------------
+////////////////////////////////////////////////////////////////-
+// Event handlers //////////////////////////////////////////////-
 
 
-function playClicked()
+void playClicked(){
     getComponent("gui_sounds", g_luaEngine.currentGameState, SoundSourceComponent
     ):playSound("button-hover-click")
-    g_luaEngine:setCurrentGameState(GameState.MICROBE)
-end
+    g_luaEngine.setCurrentGameState(GameState.MICROBE)
+}
 
-function menuPlayClicked()
+void menuPlayClicked(){
     getComponent("gui_sounds", g_luaEngine.currentGameState, SoundSourceComponent
     ):playSound("button-hover-click")
-    g_luaEngine.currentGameState.guiWindow:getChild("MenuPanel"):hide()
+    g_luaEngine.currentGameState.guiWindow.getChild("MenuPanel"):hide()
     playClicked()
-end
+}
 
-function MicrobeEditorHudSystem:menuMainMenuClicked()
+void MicrobeEditorHudSystem.menuMainMenuClicked(){
     getComponent("gui_sounds", g_luaEngine.currentGameState, SoundSourceComponent
     ):playSound("button-hover-click")
-    g_luaEngine:setCurrentGameState(GameState.MAIN_MENU)
-end
+    g_luaEngine.setCurrentGameState(GameState.MAIN_MENU)
+}
 
-function MicrobeEditorHudSystem:quitButtonClicked()
+void MicrobeEditorHudSystem.quitButtonClicked(){
     getComponent("gui_sounds", g_luaEngine.currentGameState, SoundSourceComponent
     ):playSound("button-hover-click")
-    Engine:quit()
-end
+    Engine.quit()
+}
 
--- the rest of the event handlers are MicrobeEditorHudSystem methods
+// the rest of the event handlers are MicrobeEditorHudSystem methods
 
-function MicrobeEditorHudSystem:helpButtonClicked()
+void MicrobeEditorHudSystem.helpButtonClicked(){
     getComponent("gui_sounds", g_luaEngine.currentGameState, SoundSourceComponent
     ):playSound("button-hover-click")
-    self.gameState.guiWindow:getChild("PauseMenu"):getChild("HelpPanel"):show()
-    self.gameState.guiWindow:getChild("PauseMenu"):getChild("CloseHelpButton"):show()
-    self.gameState.guiWindow:getChild("PauseMenu"):getChild("ResumeButton"):hide()
-    self.gameState.guiWindow:getChild("PauseMenu"):getChild("QuicksaveButton"):hide()
-    self.gameState.guiWindow:getChild("PauseMenu"):getChild("SaveGameButton"):hide()
-    self.gameState.guiWindow:getChild("PauseMenu"):getChild("LoadGameButton"):hide()
-    self.gameState.guiWindow:getChild("PauseMenu"):getChild("StatsButton"):hide()
-    self.gameState.guiWindow:getChild("PauseMenu"):getChild("HelpButton"):hide()
-    self.gameState.guiWindow:getChild("PauseMenu"):getChild("OptionsButton"):hide()
-    self.gameState.guiWindow:getChild("PauseMenu"):getChild("MainMenuButton"):hide()
-    self.gameState.guiWindow:getChild("PauseMenu"):getChild("QuitButton"):hide()
-    self.helpOpen = not self.helpOpen
-end
+    this.gameState.guiWindow.getChild("PauseMenu"):getChild("HelpPanel"):show()
+    this.gameState.guiWindow.getChild("PauseMenu"):getChild("CloseHelpButton"):show()
+    this.gameState.guiWindow.getChild("PauseMenu"):getChild("ResumeButton"):hide()
+    this.gameState.guiWindow.getChild("PauseMenu"):getChild("QuicksaveButton"):hide()
+    this.gameState.guiWindow.getChild("PauseMenu"):getChild("SaveGameButton"):hide()
+    this.gameState.guiWindow.getChild("PauseMenu"):getChild("LoadGameButton"):hide()
+    this.gameState.guiWindow.getChild("PauseMenu"):getChild("StatsButton"):hide()
+    this.gameState.guiWindow.getChild("PauseMenu"):getChild("HelpButton"):hide()
+    this.gameState.guiWindow.getChild("PauseMenu"):getChild("OptionsButton"):hide()
+    this.gameState.guiWindow.getChild("PauseMenu"):getChild("MainMenuButton"):hide()
+    this.gameState.guiWindow.getChild("PauseMenu"):getChild("QuitButton"):hide()
+    this.helpOpen = not this.helpOpen
+}
 
-function MicrobeEditorHudSystem:closeHelpButtonClicked()
+void MicrobeEditorHudSystem.closeHelpButtonClicked(){
     getComponent("gui_sounds", g_luaEngine.currentGameState, SoundSourceComponent
     ):playSound("button-hover-click")
-    self.gameState.guiWindow:getChild("PauseMenu"):getChild("HelpPanel"):hide()
-    self.gameState.guiWindow:getChild("PauseMenu"):getChild("CloseHelpButton"):hide()
-    self.gameState.guiWindow:getChild("PauseMenu"):getChild("ResumeButton"):show()
-    self.gameState.guiWindow:getChild("PauseMenu"):getChild("QuicksaveButton"):show()
-    self.gameState.guiWindow:getChild("PauseMenu"):getChild("SaveGameButton"):show()
-    self.gameState.guiWindow:getChild("PauseMenu"):getChild("LoadGameButton"):show()
-    self.gameState.guiWindow:getChild("PauseMenu"):getChild("StatsButton"):show()
-    self.gameState.guiWindow:getChild("PauseMenu"):getChild("HelpButton"):show()
-    self.gameState.guiWindow:getChild("PauseMenu"):getChild("OptionsButton"):show()
-    self.gameState.guiWindow:getChild("PauseMenu"):getChild("MainMenuButton"):show()
-    self.gameState.guiWindow:getChild("PauseMenu"):getChild("QuitButton"):show()
-    self.helpOpen = not self.helpOpen
-end
+    this.gameState.guiWindow.getChild("PauseMenu"):getChild("HelpPanel"):hide()
+    this.gameState.guiWindow.getChild("PauseMenu"):getChild("CloseHelpButton"):hide()
+    this.gameState.guiWindow.getChild("PauseMenu"):getChild("ResumeButton"):show()
+    this.gameState.guiWindow.getChild("PauseMenu"):getChild("QuicksaveButton"):show()
+    this.gameState.guiWindow.getChild("PauseMenu"):getChild("SaveGameButton"):show()
+    this.gameState.guiWindow.getChild("PauseMenu"):getChild("LoadGameButton"):show()
+    this.gameState.guiWindow.getChild("PauseMenu"):getChild("StatsButton"):show()
+    this.gameState.guiWindow.getChild("PauseMenu"):getChild("HelpButton"):show()
+    this.gameState.guiWindow.getChild("PauseMenu"):getChild("OptionsButton"):show()
+    this.gameState.guiWindow.getChild("PauseMenu"):getChild("MainMenuButton"):show()
+    this.gameState.guiWindow.getChild("PauseMenu"):getChild("QuitButton"):show()
+    this.helpOpen = not this.helpOpen
+}
 
-function MicrobeEditorHudSystem:nucleusClicked()
-    if self.activeButton ~= nil then
-        self.activeButton:enable()
-    end
-    self:setActiveAction("nucleus")
-end
+void MicrobeEditorHudSystem.nucleusClicked(){
+    if(this.activeButton !is null){
+        this.activeButton.enable()
+    }
+    this.setActiveAction("nucleus")
+}
 
-function MicrobeEditorHudSystem:flagellumClicked()
-    if self.activeButton ~= nil then
-        self.activeButton:enable()
-    end
-    self.activeButton = self.organelleButtons["flagellum"]
-    self.activeButton:disable()
-    self:setActiveAction("flagellum")
-end
+void MicrobeEditorHudSystem.flagellumClicked(){
+    if(this.activeButton !is null){
+        this.activeButton.enable()
+    }
+    this.activeButton = this.organelleButtons["flagellum"]
+    this.activeButton.disable()
+    this.setActiveAction("flagellum")
+}
 
-function MicrobeEditorHudSystem:cytoplasmClicked()
-    if self.activeButton ~= nil then
-        self.activeButton:enable()
-    end
-    self.activeButton = self.organelleButtons["cytoplasm"]
-    self.activeButton:disable()
-    self:setActiveAction("cytoplasm")
-end
+void MicrobeEditorHudSystem.cytoplasmClicked(){
+    if(this.activeButton !is null){
+        this.activeButton.enable()
+    }
+    this.activeButton = this.organelleButtons["cytoplasm"]
+    this.activeButton.disable()
+    this.setActiveAction("cytoplasm")
+}
 
-function MicrobeEditorHudSystem:mitochondriaClicked()
-    if self.activeButton ~= nil then
-        self.activeButton:enable()
-    end
-    self.activeButton = self.organelleButtons["mitochondrion"]
-    self.activeButton:disable()
-    self:setActiveAction("mitochondrion")
-end
+void MicrobeEditorHudSystem.mitochondriaClicked(){
+    if(this.activeButton !is null){
+        this.activeButton.enable()
+    }
+    this.activeButton = this.organelleButtons["mitochondrion"]
+    this.activeButton.disable()
+    this.setActiveAction("mitochondrion")
+}
 
-function MicrobeEditorHudSystem:chloroplastClicked()
-    if self.activeButton ~= nil then
-        self.activeButton:enable()
-    end
-    self.activeButton = self.organelleButtons["chloroplast"]
-    self.activeButton:disable()
-    self:setActiveAction("chloroplast")
-end
+void MicrobeEditorHudSystem.chloroplastClicked(){
+    if(this.activeButton !is null){
+        this.activeButton.enable()
+    }
+    this.activeButton = this.organelleButtons["chloroplast"]
+    this.activeButton.disable()
+    this.setActiveAction("chloroplast")
+}
 
-function MicrobeEditorHudSystem:aminoSynthesizerClicked()
-    if self.activeButton ~= nil then
-        self.activeButton:enable()
-    end
-    self.activeButton = self.organelleButtons["aminosynthesizer"]
-    self.activeButton:disable()
-    self:setActiveAction("aminosynthesizer")
-end
+void MicrobeEditorHudSystem.aminoSynthesizerClicked(){
+    if(this.activeButton !is null){
+        this.activeButton.enable()
+    }
+    this.activeButton = this.organelleButtons["aminosynthesizer"]
+    this.activeButton.disable()
+    this.setActiveAction("aminosynthesizer")
+}
 
-function MicrobeEditorHudSystem:vacuoleClicked()
-    if self.activeButton ~= nil then
-        self.activeButton:enable()
-    end
-    self.activeButton = self.organelleButtons["vacuole"]
-    self.activeButton:disable()
-    self:setActiveAction("vacuole")
-end
+void MicrobeEditorHudSystem.vacuoleClicked(){
+    if(this.activeButton !is null){
+        this.activeButton.enable()
+    }
+    this.activeButton = this.organelleButtons["vacuole"]
+    this.activeButton.disable()
+    this.setActiveAction("vacuole")
+}
 
-function MicrobeEditorHudSystem:toxinClicked()
-    if self.activeButton ~= nil then
-        self.activeButton:enable()
-    end
-    self.activeButton = self.organelleButtons["Toxin"]
-    self.activeButton:disable()
-    self:setActiveAction("oxytoxy")
-end
+void MicrobeEditorHudSystem.toxinClicked(){
+    if(this.activeButton !is null){
+        this.activeButton.enable()
+    }
+    this.activeButton = this.organelleButtons["Toxin"]
+    this.activeButton.disable()
+    this.setActiveAction("oxytoxy")
+}
 
 
-function MicrobeEditorHudSystem:removeClicked()
-    if self.activeButton ~= nil then
-        self.activeButton:enable()
-    end
-    self.activeButton = nil
-    self:setActiveAction("remove")
-end
+void MicrobeEditorHudSystem.removeClicked(){
+    if(this.activeButton !is null){
+        this.activeButton.enable()
+    }
+    this.activeButton = null
+    this.setActiveAction("remove")
+}
 
-function MicrobeEditorHudSystem:rootSaveCreationClicked()
+void MicrobeEditorHudSystem.rootSaveCreationClicked(){
     getComponent("gui_sounds", g_luaEngine.currentGameState, SoundSourceComponent
     ):playSound("button-hover-click")
     print ("Save button clicked")
-    --[[
-    panel = self.saveLoadPanel
-    panel:getChild("SaveButton"):show()
-    panel:getChild("NameTextbox"):show()
-    panel:getChild("CreationNameDialogLabel"):show()
-    panel:getChild("LoadButton"):hide()
-    panel:getChild("SavedCreations"):hide()
-    panel:show()--]]
-end
---[[
-function MicrobeEditorHudSystem:rootLoadCreationClicked()
+    //[[
+    panel = this.saveLoadPanel
+    panel.getChild("SaveButton"):show()
+    panel.getChild("NameTextbox"):show()
+    panel.getChild("CreationNameDialogLabel"):show()
+    panel.getChild("LoadButton"):hide()
+    panel.getChild("SavedCreations"):hide()
+    panel.show()//]]
+}
+//[[
+void MicrobeEditorHudSystem.rootLoadCreationClicked(){
     getComponent("gui_sounds", g_luaEngine.currentGameState, SoundSourceComponent
     ):playSound("button-hover-click")
-    panel = self.saveLoadPanel
-    -- panel:getChild("SaveButton"):hide()
-    -- root:getChild("CreationNameDialogLabel"):hide()
-    panel:getChild("LoadButton"):show()
-    panel:getChild("SavedCreations"):show()
-    panel:show()
-    self.creationsListbox:listWidgetResetList()
-    self.creationFileMap = {}
+    panel = this.saveLoadPanel
+    // panel.getChild("SaveButton"):hide()
+    // root.getChild("CreationNameDialogLabel"):hide()
+    panel.getChild("LoadButton"):show()
+    panel.getChild("SavedCreations"):show()
+    panel.show()
+    this.creationsListbox.listWidgetResetList()
+    this.creationFileMap = {}
     i = 0
-    pathsString = Engine:getCreationFileList("microbe")
-    -- using pattern matching for splitting on spaces
-    for path in string.gmatch(pathsString, "%S+")  do
-        -- this is unsafe when one of the paths is, for example, C:\\Application Data\Thrive\saves
-        pathSep = package.config:sub(1,1) -- / for unix, \ for windows
-        text = string.sub(path, string.len(path) - string.find(path:reverse(), pathSep) + 2)
-        self.creationsListbox:listWidgetAddItem(text)
-        self.creationFileMap[text] = path
+    pathsString = Engine.getCreationFileList("microbe")
+    // using pattern matching for splitting on spaces
+    for(path in string.gmatch(pathsString, "%S+") ){
+        // this is unsafe when one of the paths is, for example, C:\\Application Data\Thrive\saves
+        pathSep = package.config.sub(1,1) // / for unix, \ for windows
+        text = string.sub(path, string.len(path) - string.find(path.reverse(), pathSep) + 2)
+        this.creationsListbox.listWidgetAddItem(text)
+        this.creationFileMap[text] = path
         i = i + 1
-    end
-    -- self.creationsListbox:itemListboxHandleUpdatedItemData()
-end
+    }
+    // this.creationsListbox.itemListboxHandleUpdatedItemData()
+}
 
-function MicrobeEditorHudSystem:saveCreationClicked()
+void MicrobeEditorHudSystem.saveCreationClicked(){
     getComponent("gui_sounds", g_luaEngine.currentGameState, SoundSourceComponent
     ):playSound("button-hover-click")
-    name = self.editor.currentMicrobe.microbe.speciesName
+    name = this.editor.currentMicrobe.microbe.speciesName
     print("saving "..name)
-    -- Todo: Additional input sanitation
-    name, _ = string.gsub(name, "%s+", "_") -- replace whitespace with underscore
-    if string.match(name, "^[%w_]+$") == nil then
-        print("unsanitary name: "..name) -- should we do the test before whitespace sanitization?
-    elseif string.len(name) > 0 then
-        Engine:saveCreation(self.editor.currentMicrobe.entity.id, name, "microbe")
-    end
+    // Todo: Additional input sanitation
+    name, _ = string.gsub(name, "%s+", "_") // replace whitespace with underscore
+    if(string.match(name, "^[%w_]+$") == null){
+        print("unsanitary name: "..name) // should we do the test before whitespace sanitization?
+    else if(string.len(name) > 0){
+        Engine.saveCreation(this.editor.currentMicrobe.entity.id, name, "microbe")
+    }
 end
 
-function MicrobeEditorHudSystem:loadCreationClicked()
+void MicrobeEditorHudSystem.loadCreationClicked(){
     getComponent("gui_sounds", g_luaEngine.currentGameState, SoundSourceComponent
     ):playSound("button-hover-click")
-	item = self.creationsListbox:listWidgetGetFirstSelectedItemText()
-    if self.creationFileMap[item] ~= nil then 
-        entity = Engine:loadCreation(self.creationFileMap[item])
-		self:updateMicrobeName(Microbe(Entity(entity), true).microbe.speciesName)
-        self.editor:loadMicrobe(entity)
-        panel:hide()
-    end
+	item = this.creationsListbox.listWidgetGetFirstSelectedItemText()
+    if(this.creationFileMap[item] !is null){ 
+        entity = Engine.loadCreation(this.creationFileMap[item])
+		this.updateMicrobeName(Microbe(Entity(entity), true).microbe.speciesName)
+        this.editor.loadMicrobe(entity)
+        panel.hide()
+    }
 end
---]]
+//]]
 
--- useful debug functions
+// useful debug functions
 
-function MicrobeEditorHudSystem:loadByName(name)
-    if string.find(name, ".microbe") then 
+void MicrobeEditorHudSystem.loadByName(name){
+    if(string.find(name, ".microbe")){ 
         print("note, you don't need to add the .microbe extension") 
     else 
         name = name..".microbe"
-    end
+    }
     name, _ = string.gsub(name, "%s+", "_")
     creationFileMap = {}
     i = 0
-    pathsString = Engine:getCreationFileList("microbe")
-    -- using pattern matching for splitting on spaces
-    for path in string.gmatch(pathsString, "%S+")  do
-        -- this is unsafe when one of the paths is, for example, C:\\Application Data\Thrive\saves
-        pathSep = package.config:sub(1,1) -- / for unix, \ for windows
-        text = string.sub(path, string.len(path) - string.find(path:reverse(), pathSep) + 2)
+    pathsString = Engine.getCreationFileList("microbe")
+    // using pattern matching for splitting on spaces
+    for(path in string.gmatch(pathsString, "%S+") ){
+        // this is unsafe when one of the paths is, for example, C:\\Application Data\Thrive\saves
+        pathSep = package.config.sub(1,1) // / for unix, \ for windows
+        text = string.sub(path, string.len(path) - string.find(path.reverse(), pathSep) + 2)
         creationFileMap[text] = path
         i = i + 1
-    end
-    entity = Engine:loadCreation(creationFileMap[name])
-    self.editor:loadMicrobe(entity)
-    --self.nameLabel:setText(self.editor.currentMicrobe.microbe.speciesName)
-end
+    }
+    entity = Engine.loadCreation(creationFileMap[name])
+    this.editor.loadMicrobe(entity)
+    //this.nameLabel.setText(this.editor.currentMicrobe.microbe.speciesName)
+}
 
-function MicrobeEditorHudSystem:changeSymmetry()
-    self.editor.symmetry = (self.editor.symmetry+1)%4
+void MicrobeEditorHudSystem.changeSymmetry(){
+    this.editor.symmetry = (this.editor.symmetry+1)%4
     
-    if self.editor.symmetry == 0 then
-        self.symmetryButton:getChild("2xSymmetry"):hide()
-        self.symmetryButton:getChild("4xSymmetry"):hide()
-        self.symmetryButton:getChild("6xSymmetry"):hide()
-    elseif self.editor.symmetry == 1 then
-        self.symmetryButton:getChild("2xSymmetry"):show()
-        self.symmetryButton:getChild("4xSymmetry"):hide()
-        self.symmetryButton:getChild("6xSymmetry"):hide()
-    elseif self.editor.symmetry == 2 then
-        self.symmetryButton:getChild("2xSymmetry"):hide()
-        self.symmetryButton:getChild("4xSymmetry"):show()
-        self.symmetryButton:getChild("6xSymmetry"):hide()
-    elseif self.editor.symmetry == 3 then
-        self.symmetryButton:getChild("2xSymmetry"):hide()
-        self.symmetryButton:getChild("4xSymmetry"):hide()
-        self.symmetryButton:getChild("6xSymmetry"):show()
-    end
+    if(this.editor.symmetry == 0){
+        this.symmetryButton.getChild("2xSymmetry"):hide()
+        this.symmetryButton.getChild("4xSymmetry"):hide()
+        this.symmetryButton.getChild("6xSymmetry"):hide()
+    else if(this.editor.symmetry == 1){
+        this.symmetryButton.getChild("2xSymmetry"):show()
+        this.symmetryButton.getChild("4xSymmetry"):hide()
+        this.symmetryButton.getChild("6xSymmetry"):hide()
+    else if(this.editor.symmetry == 2){
+        this.symmetryButton.getChild("2xSymmetry"):hide()
+        this.symmetryButton.getChild("4xSymmetry"):show()
+        this.symmetryButton.getChild("6xSymmetry"):hide()
+    else if(this.editor.symmetry == 3){
+        this.symmetryButton.getChild("2xSymmetry"):hide()
+        this.symmetryButton.getChild("4xSymmetry"):hide()
+        this.symmetryButton.getChild("6xSymmetry"):show()
+    }
 end
 
-function saveMicrobe() global_activeMicrobeEditorHudSystem:saveCreationClicked() end
-function loadMicrobe(name) global_activeMicrobeEditorHudSystem:loadByName(name) end
+void saveMicrobe() global_activeMicrobeEditorHudSystem.saveCreationClicked() }{
+void loadMicrobe(name) global_activeMicrobeEditorHudSystem.loadByName(name) }{
 
-function MicrobeEditorHudSystem:menuButtonClicked()
+void MicrobeEditorHudSystem.menuButtonClicked(){
     getComponent("gui_sounds", g_luaEngine.currentGameState, SoundSourceComponent
     ):playSound("button-hover-click")
     print("played sound")
-    self.gameState.guiWindow:getChild("PauseMenu"):show()
-    self.gameState.guiWindow:getChild("PauseMenu"):moveToFront()
-    Engine:pauseGame()
-    self.menuOpen = true
-end
+    this.gameState.guiWindow.getChild("PauseMenu"):show()
+    this.gameState.guiWindow.getChild("PauseMenu"):moveToFront()
+    Engine.pauseGame()
+    this.menuOpen = true
+}
 
-function MicrobeEditorHudSystem:resumeButtonClicked()
+void MicrobeEditorHudSystem.resumeButtonClicked(){
     getComponent("gui_sounds", g_luaEngine.currentGameState, SoundSourceComponent
     ):playSound("button-hover-click")
     print("played sound")
-    self.gameState.guiWindow:getChild("PauseMenu"):hide()
-    Engine:resumeGame()
-    self.menuOpen = false
-end
+    this.gameState.guiWindow.getChild("PauseMenu"):hide()
+    Engine.resumeGame()
+    this.menuOpen = false
+}

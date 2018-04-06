@@ -90,9 +90,13 @@ public:
     PlayerData m_playerData;
 
     std::shared_ptr<CellStageWorld> m_cellStage;
+    std::shared_ptr<CellStageWorld> m_microbeEditor;
 
     // This contains all the microbe_stage AngelScript code
     Leviathan::GameModule::pointer m_MicrobeScripts;
+
+    // This contains all the microbe_editor AngelScript code
+    Leviathan::GameModule::pointer m_MicrobeEditorScripts;
 
     //! This is the background object of the cell stage
     Ogre::MeshPtr m_microbeBackgroundMesh;
@@ -441,6 +445,77 @@ void
     ThriveGame::editorButtonClicked()
 {
     LOG_INFO("Editor button pressed");
+
+    // Fire an event to switch over the GUI
+    Engine::Get()->GetEventHandler()->CallEvent(
+        new Leviathan::GenericEvent("MicrobeEditorEntered"));
+
+    Leviathan::Engine* engine = Engine::GetEngine();
+    Leviathan::GraphicalInputEntity* window1 = engine->GetWindowEntity();
+
+    // Make the cell world be in the background
+
+    // Create an editor world
+    LOG_INFO("Entering MicrobeEditor");
+
+    // Create world if not already created //
+    if(!m_impl->m_microbeEditor) {
+
+        LOG_INFO("ThriveGame: editorButtonClicked: Creating new microbe editor "
+                 "world");
+        m_impl->m_microbeEditor = std::dynamic_pointer_cast<CellStageWorld>(
+            engine->CreateWorld(window1));
+    }
+
+    LEVIATHAN_ASSERT(
+        m_impl->m_microbeEditor, "Microbe editor world creation failed");
+
+    window1->LinkObjects(m_impl->m_microbeEditor);
+
+    // Set the right input handlers active //
+    m_impl->m_menuKeyPresses->setEnabled(false);
+    m_impl->m_cellStageKeys->setEnabled(false);
+
+    // TODO: editor hotkeys
+
+    // Clear world //
+    m_impl->m_microbeEditor->ClearEntities();
+
+    // TODO: unfreeze, if was in the background
+
+    // Main camera that will be attached to the player
+    auto camera = Leviathan::ObjectLoader::LoadCamera(*m_impl->m_microbeEditor,
+        Float3(0, 15, 0),
+        Ogre::Quaternion(Ogre::Degree(-90), Ogre::Vector3::UNIT_X));
+
+    // TODO: attach a ligth to the camera
+    // -- Light
+    //     local light = OgreLightComponent.new()
+    //     light:setRange(200)
+    //     entity:addComponent(light)
+
+    m_impl->m_microbeEditor->SetCamera(camera);
+
+    // Let the script do setup //
+    // This registers all the script defined systems to run and be
+    // available from the world
+    LEVIATHAN_ASSERT(
+        m_impl->m_MicrobeEditorScripts, "microbe editor scripts not loaded");
+
+    LOG_INFO("Calling editor setup script onEditorEntry");
+
+    ScriptRunningSetup setup("onEditorEntry");
+
+    auto result = m_impl->m_MicrobeEditorScripts->ExecuteOnModule<void>(
+        setup, false, m_impl->m_microbeEditor.get());
+
+    if(result.Result != SCRIPT_RUN_RESULT::Success) {
+
+        LOG_ERROR(
+            "Failed to run editor setup function: " + setup.Entryfunction);
+        MarkAsClosing();
+        return;
+    }
 }
 // ------------------------------------ //
 void
@@ -502,6 +577,26 @@ void
     if(!m_impl->m_MicrobeScripts->Init()) {
 
         LOG_ERROR("ThriveGame: microbe_stage module init failed");
+        MarkAsClosing();
+        return;
+    }
+
+    try {
+        m_impl->m_MicrobeScripts =
+            Leviathan::GameModule::MakeShared<Leviathan::GameModule>(
+                "microbe_editor", "ThriveGame");
+    } catch(const Leviathan::Exception& e) {
+
+        LOG_ERROR(
+            "ThriveGame: microbe_editor module failed to load, exception:");
+        e.PrintToLog();
+        MarkAsClosing();
+        return;
+    }
+
+    if(!m_impl->m_MicrobeScripts->Init()) {
+
+        LOG_ERROR("ThriveGame: microbe_editor module init failed");
         MarkAsClosing();
         return;
     }
