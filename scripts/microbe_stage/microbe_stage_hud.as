@@ -312,15 +312,6 @@ class MicrobeStageHudSystem : ScriptSystem{
     int chloroplastNeeded = 0;
     int toxinNeeded = 0;
 
-    GuiObject@ compoundListBox = null;
-    GuiObject@ hitpointsCountLabel = null;
-    GuiObject@ hitpointsMaxLabel = null;
-    GuiObject@ hitpointsBar = null;
-    dictionary compoundListItems = {};
-    GuiObject@ rootGuiWindow = null;
-    GuiObject@ rootGUIWindow = null; // lol
-    GuiObject@ populationNumberLabel = null;
-
     // TODO: rewrite using Leviathan GuiCollection objects
     bool helpOpen = false;
     bool menuOpen = false;

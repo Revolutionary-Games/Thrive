@@ -44,6 +44,7 @@ set(GROUP_MICROBE_STAGE
   "microbe_stage/compounds.cpp"
   "microbe_stage/compounds.h"
   "microbe_stage/generate_cell_stage_world.rb"
+  "microbe_stage/generate_microbe_editor_world.rb"  
   "microbe_stage/membrane_system.cpp"
   "microbe_stage/membrane_system.h"
   "microbe_stage/microbe_camera_system.cpp"
@@ -69,56 +70,14 @@ set(GROUP_MICROBE_STAGE
 set_source_files_properties("microbe_stage/generate_cell_stage_world.rb"
   PROPERTIES HEADER_FILE_ONLY TRUE)
 
-
-set(GROUP_OGRE
-  # "ogre/camera_system.cpp"
-  # "ogre/camera_system.h"
-  # "ogre/colour_material.cpp"
-  # "ogre/colour_material.h"
-  # "ogre/keyboard.cpp"
-  # "ogre/keyboard.h"
-  # "ogre/light_system.cpp"
-  # "ogre/light_system.h"
-  # "ogre/mouse.cpp"
-  # "ogre/mouse.h"
-  # "ogre/render_system.cpp"
-  # "ogre/render_system.h"
-  # "ogre/scene_node_system.cpp"
-  # "ogre/scene_node_system.h"
-  # "ogre/sky_system.cpp"
-  # "ogre/sky_system.h"
-  # "ogre/workspace_system.h"
-  # "ogre/workspace_system.cpp"
-  )
+set_source_files_properties("microbe_stage/generate_microbe_editor_world.rb"
+  PROPERTIES HEADER_FILE_ONLY TRUE)
 
 set(GROUP_SCRIPTING
-  # "scripting/luajit.h"
-  # "scripting/script_entity_filter.cpp"
-  # "scripting/script_entity_filter.h"
   # "scripting/script_initializer.cpp"
   # "scripting/script_initializer.h"
-  # "scripting/script_wrapper.h"
-  # "scripting/wrapper_classes.cpp"
-  # "scripting/wrapper_classes.h"
-  # "scripting/script_helpers.h"
   )
 
-set(GROUP_SOUND
-  # "sound/sound_source_system.cpp"
-  # "sound/sound_source_system.h"
-  # "sound/caudio_include.h"
-  # "sound/node_attachable.h"
-  # "sound/node_attachable.cpp"
-  # "sound/sound_emitter.h"
-  # "sound/sound_emitter.cpp"
-  # "sound/sound_listener.cpp"
-  # "sound/sound_listener.h"
-  # "sound/sound_manager.cpp"
-  # "sound/sound_manager.h"
-  # "sound/sound_memory_stream.cpp"
-  # "sound/sound_memory_stream.h"
-  )
-  
 set(GROUP_UTIL
   "util/pair_hash.h"
   )
@@ -134,9 +93,21 @@ add_custom_command(OUTPUT "${PROJECT_SOURCE_DIR}/src/generated/cell_stage_world.
   "${LEVIATHAN_SRC}/Helpers/FileGen.rb"
   )
 
+add_custom_command(OUTPUT "${PROJECT_SOURCE_DIR}/src/generated/microbe_editor_world.h"
+  "${PROJECT_SOURCE_DIR}/src/generated/microbe_editor_world.cpp"
+  "${PROJECT_SOURCE_DIR}/src/generated/microbe_editor_bindings.h"
+  COMMAND "ruby" "${PROJECT_SOURCE_DIR}/src/microbe_stage/generate_microbe_editor_world.rb"
+  "${PROJECT_SOURCE_DIR}/src/generated/microbe_editor_world"
+  "${PROJECT_SOURCE_DIR}/src/generated/microbe_editor_bindings.h"
+  DEPENDS "${PROJECT_SOURCE_DIR}/src/microbe_stage/generate_microbe_editor_world.rb"
+  "${LEVIATHAN_SRC}/Helpers/FileGen.rb"
+  )
+
 set(GROUP_MICROBE
   "generated/cell_stage_world.h" "generated/cell_stage_world.cpp"
   "generated/cell_stage_bindings.h"
+  "generated/microbe_editor_world.h" "generated/microbe_editor_world.cpp"
+  "generated/microbe_editor_bindings.h"
   )
 
 # Menu things

@@ -4,6 +4,7 @@
 #include "engine/player_data.h"
 #include "general/locked_map.h"
 #include "generated/cell_stage_world.h"
+#include "generated/microbe_editor_world.h"
 #include "main_menu_keypresses.h"
 #include "microbe_stage/biome_controller.h"
 #include "microbe_stage/player_microbe_control.h"
@@ -90,7 +91,7 @@ public:
     PlayerData m_playerData;
 
     std::shared_ptr<CellStageWorld> m_cellStage;
-    std::shared_ptr<CellStageWorld> m_microbeEditor;
+    std::shared_ptr<MicrobeEditorWorld> m_microbeEditor;
 
     // This contains all the microbe_stage AngelScript code
     Leviathan::GameModule::pointer m_MicrobeScripts;
@@ -463,7 +464,7 @@ void
 
         LOG_INFO("ThriveGame: editorButtonClicked: Creating new microbe editor "
                  "world");
-        m_impl->m_microbeEditor = std::dynamic_pointer_cast<CellStageWorld>(
+        m_impl->m_microbeEditor = std::dynamic_pointer_cast<MicrobeEditorWorld>(
             engine->CreateWorld(window1));
     }
 
@@ -1425,6 +1426,23 @@ bool
     return true;
 }
 
+template<class WorldType>
+bool
+    bindMicrobeEditorMethods(asIScriptEngine* engine, const char* classname)
+{
+
+    if(!Leviathan::BindStandardWorldMethods<MicrobeEditorWorld>(
+           engine, classname))
+        return false;
+
+#include "generated/microbe_editor_bindings.h"
+
+    ANGLESCRIPT_BASE_CLASS_CASTS_NO_REF(Leviathan::StandardWorld,
+        "StandardWorld", CellStageWorld, "MicrobeEditorWorld");
+
+    return true;
+}
+
 bool
     registerHexFunctions(asIScriptEngine* engine)
 {
@@ -1751,6 +1769,11 @@ bool
         ANGELSCRIPT_REGISTERFAIL;
     }
 
+    if(engine->RegisterObjectType(
+           "MicrobeEditorWorld", 0, asOBJ_REF | asOBJ_NOCOUNT) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
     if(!bindThriveComponentTypes(engine))
         return false;
 
@@ -1832,6 +1855,10 @@ bool
 
 
     if(!bindCellStageMethods<CellStageWorld>(engine, "CellStageWorld"))
+        return false;
+
+    if(!bindMicrobeEditorMethods<MicrobeEditorWorld>(
+           engine, "MicrobeEditorWorld"))
         return false;
 
     if(engine->RegisterObjectMethod("ThriveGame",
