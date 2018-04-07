@@ -62,6 +62,12 @@ public:
     void
         onIntroSkipPressed();
 
+    void
+        editorButtonClicked();
+
+    void
+        finishEditingClicked();
+
     // ------------------------------------ //
     // Hooking into the engine, and overridden methods from base application
     // etc.

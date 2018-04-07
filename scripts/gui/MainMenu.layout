@@ -1093,6 +1093,842 @@ Make sure your glucose (white clouds) store is always above 16 and your ammonia 
         </Window>
       </Window>
     </Window>
+
+    <Window type="DefaultWindow" name="MicrobeEditorRoot" >
+
+      <Property name="CursorPassThroughEnabled" value="True" />
+
+      <Property name="Visible" value="False" />      
+
+        <Window name="MenuButton" type="Thrive/PolyButton" >
+            <Property name="Position" value="{{0,0},{1.0,-40}" />
+            <Property name="Size" value="{{0,120},{0,40}}" />
+            <Property name="Image" value="ThriveGeneric/MediumTwoNormal" />
+            <Property name="PushedImage" value="ThriveGeneric/MediumTwoNormal" />
+            <Property name="HoverImage" value="ThriveGeneric/MediumTwoHover" />
+            <Property name="DisabledImage" value="ThriveGeneric/MediumTwoDisabled" />
+            <Property name="Disabled" value="False" />
+            <Property name="TooltipText" value="Open the menu" />
+            <Property name="NormalTextColour" value="FFFFFFFF" />
+            <Property name="HoverTextColour" value="FFFFFFFF" />
+            <Property name="PushedTextColour" value="FFFFFFFF" />
+            <Property name="DisabledTextColour" value="FFACACAC" />
+            <Property name="Font" value="Jura-18" />
+            <Property name="textOffsetX" value="-40" />
+            <Property name="textOffsetY" value="0" />
+            <Property name="Text" value="MENU"/>
+        </Window>
+
+        <Window name="InfoBar" type="DefaultWindow" >
+            <Property name="Position" value="{{0,80},{1.0,-40}}" />
+            <Property name="Size" value="{{1.0,-80},{0,40}}" />
+            <Window name="InfoBarLeft" type="Thrive/Image" >
+                <Property name="Position" value="{{0,0},{0,0}}" />
+                <Property name="Size" value="{{0,40},{0,40}}" />
+                <Property name="Image" value="ThriveGeneric/LowerBarLeft" />
+                <Property name="CursorPassThroughEnabled" value="True" />
+            </Window>
+            <Window name="InfoBarCentre" type="Thrive/Image" >
+                <Property name="Position" value="{{0,40},{0,0}}" />
+                <Property name="Size" value="{{1.0,-80},{0,40}}" />
+                <Property name="Image" value="ThriveGeneric/LowerBarCentre" />
+                <Property name="CursorPassThroughEnabled" value="True" />
+            </Window>
+            <Window name="InfoBarRight" type="Thrive/Image" >
+                <Property name="Position" value="{{1.0,-40},{0,0}}" />
+                <Property name="Size" value="{{0,40},{0,40}}" />
+                <Property name="Image" value="ThriveGeneric/LowerBarSquare" />
+                <Property name="CursorPassThroughEnabled" value="True" />
+            </Window>
+            <Window name="SpeciesNameLabel" type="Thrive/Label" >
+                <Property name="Position" value="{{0,50},{0,12}}" />
+                <Property name="Font" value="Jura-15" />
+                <Property name="Text" value="SPECIES:"/>
+                <Property name="NormalTextColour" value="FFFFFFFF" />
+                <Property name="HorzFormatting" value="LeftAligned" />
+                <Property name="VertFormatting" value="TopAligned" />
+            </Window>
+            <Window name="SpeciesNameBox" type="Thrive/Textbox" >
+                <Property name="Position" value="{{0,130},{0,10}}" />
+                <Property name="Size" value="{{0,260},{0,20}}" />
+                <Property name="CursorPassThroughEnabled" value="True" />
+                <Window name="SpeciesNameLabel" type="Thrive/Label" >
+                    <Property name="Position" value="{{0,5},{0,0}}" />
+                    <Property name="Size" value="{{0,255},{0,20}}" />
+                    <Property name="Font" value="Jura-15" />
+                    <Property name="Text" value="Thrivum Specium"/>
+                    <Property name="NormalTextColour" value="FFFFFFFF" />
+                    <Property name="HorzFormatting" value="LeftAligned" />
+                    <Property name="VertFormatting" value="TopAligned" />
+                </Window>
+            </Window>
+            <Window name="GenerationLabel" type="Thrive/Label" >
+                <Property name="Position" value="{{0,420},{0,12}}" />
+                <Property name="Font" value="Jura-15" />
+                <Property name="Text" value="GENERATION:"/>
+                <Property name="NormalTextColour" value="FFFFFFFF" />
+                <Property name="HorzFormatting" value="LeftAligned" />
+                <Property name="VertFormatting" value="TopAligned" />
+            </Window>
+            <Window name="GenerationValue" type="Thrive/Label" >
+                <Property name="Position" value="{{0,530},{0,12}}" />
+                <Property name="Font" value="Jura-15" />
+                <Property name="Text" value="N/A"/>
+                <Property name="NormalTextColour" value="FFFFFFFF" />
+                <Property name="HorzFormatting" value="LeftAligned" />
+                <Property name="VertFormatting" value="TopAligned" />
+            </Window>
+            <Window name="SizeLabel" type="Thrive/Label" >
+                <Property name="Position" value="{{0,600},{0,12}}" />
+                <Property name="Font" value="Jura-15" />
+                <Property name="Text" value="SIZE:"/>
+                <Property name="NormalTextColour" value="FFFFFFFF" />
+                <Property name="HorzFormatting" value="LeftAligned" />
+                <Property name="VertFormatting" value="TopAligned" />
+            </Window>
+            <Window name="SizeValue" type="Thrive/Label" >
+                <Property name="Position" value="{{0,650},{0,12}}" />
+                <Property name="Font" value="Jura-15" />
+                <Property name="Text" value="N/A"/>
+                <Property name="NormalTextColour" value="FFFFFFFF" />
+                <Property name="HorzFormatting" value="LeftAligned" />
+                <Property name="VertFormatting" value="TopAligned" />
+            </Window>
+            <Window name="SpeedLabel" type="Thrive/Label" >
+                <Property name="Position" value="{{0,720},{0,12}}" />
+                <Property name="Font" value="Jura-15" />
+                <Property name="Text" value="SPEED:"/>
+                <Property name="NormalTextColour" value="FFFFFFFF" />
+                <Property name="HorzFormatting" value="LeftAligned" />
+                <Property name="VertFormatting" value="TopAligned" />
+            </Window>
+            <Window name="SpeedValue" type="Thrive/Label" >
+                <Property name="Position" value="{{0,790},{0,12}}" />
+                <Property name="Font" value="Jura-15" />
+                <Property name="Text" value="N/A"/>
+                <Property name="NormalTextColour" value="FFFFFFFF" />
+                <Property name="HorzFormatting" value="LeftAligned" />
+                <Property name="VertFormatting" value="TopAligned" />
+            </Window>
+        </Window>
+
+        <Window name="MpPanel" type="Thrive/Image" >
+            <Property name="Position" value="{{0,0},{0,-0}}" />
+            <Property name="Size" value="{{0,320},{0,40}}" />
+            <Property name="Image" value="ThriveGeneric/HealthPanel" />
+            <Window name="MpBar" type="Thrive/ProgressBar" >
+                <Property name="StepSize" value="0.01" />
+                <Property name="CurrentProgress" value="0.5" />
+                <Property name="RiseOnClickEnabled" value="False" />
+                <Window name="NumberLabel" type="Thrive/Label">
+                    <Property name="Position" value="{{1.0,-80},{0,3}}" />
+                    <Property name="Size" value="{{0,40},{0,80}}" />
+                    <Property name="Font" value="Jura-10" />
+                    <Property name="Text" value="0" />
+                    <Property name="NormalTextColour" value="FFFFFFFF" />
+                    <Property name="HorzFormatting" value="RightAligned" />
+                    <Property name="VertFormatting" value="TopAligned" />
+                </Window>
+                <Window name="MpBackground" type="Thrive/Image" >
+                    <Property name="Position" value="{{0,0},{0,0}" />
+                    <Property name="Size" value="{{1.0,0},{1.0,0}}" />
+                    <Property name="Image" value="ThriveGeneric/BackgroundBar" />
+                    <Property name="TooltipText" value="Current Mutation Points" />
+                </Window>
+           </Window>
+             <Window name="MpTotal" type="Thrive/Label" >
+                <Property name="Position" value="{{1.0,-60},{0,13}}" />
+                <Property name="Size" value="{{0,40},{0,80}}" />
+                <Property name="Font" value="Jura-10" />
+                <Property name="Text" value="/ 50" />
+                <Property name="NormalTextColour" value="FFFFFFFF" />
+                <Property name="HorzFormatting" value="RightAligned" />
+                <Property name="VertFormatting" value="TopAligned" />
+            </Window>
+            <Window name="MpLabel" type="Thrive/Label" >
+                <Property name="Position" value="{{0,40},{0,13}}" />
+                <Property name="Size" value="{{0,160},{0,80}}" />
+                <Property name="Font" value="Jura-10" />
+                <Property name="Text" value="Mutation Points" />
+                <Property name="NormalTextColour" value="FFFFFFFF" />
+                <Property name="HorzFormatting" value="LeftAligned" />
+                <Property name="VertFormatting" value="TopAligned" />
+                </Window>
+                <Window name="MpIcon" type="Thrive/Image" >
+                    <Property name="Position" value="{{0,10},{0,10}" />
+                    <Property name="Size" value="{{0,20},{0,20}}" />
+                    <Property name="Image" value="ThriveGeneric/MP" />
+                </Window>
+        </Window>
+
+        <Window name="NewButton" type="Thrive/PolyButton" >
+            <Property name="Position" value="{{0,320},{0,0}}" />
+            <Property name="Size" value="{{0,120},{0,40}}" />
+            <Property name="Image" value="ThriveGeneric/MediumTwoNormal" />
+            <Property name="PushedImage" value="ThriveGeneric/MediumTwoNormal" />
+            <Property name="HoverImage" value="ThriveGeneric/MediumTwoHover" />
+            <Property name="DisabledImage" value="ThriveGeneric/MediumTwoDisabled" />
+            <Property name="TooltipText" value="Create a new microbe" />
+            <Property name="NormalTextColour" value="FFFFFFFF" />
+            <Property name="HoverTextColour" value="FFFFFFFF" />
+            <Property name="PushedTextColour" value="FFFFFFFF" />
+            <Property name="DisabledTextColour" value="FFACACAC" />
+            <Property name="Font" value="Jura-8" />
+            <Property name="textOffsetX" value="0" />
+            <Property name="textOffsetY" value="0" />
+            <Property name="Text" value="NEW"/>
+            <Window name="NewIcon" type="Thrive/Image" >
+                <Property name="Position" value="{{0,0},{0,0}" />
+                <Property name="Size" value="{{0,40},{0,40}}" />
+                <Property name="Image" value="ThriveGeneric/NewIcon" />
+                <Property name="CursorPassThroughEnabled" value="True" />
+            </Window>
+        </Window>
+
+       <Window name="EditPanel" type="DefaultWindow" >
+            <Property name="Position" value="{{0,0},{0,40}}" />
+            <Property name="Size" value="{{0,400},{1.0,-80}}" />
+            <Window name="StructurePanel" type="DefaultWindow" >
+                <Window name="StructurePanelTop" type="Thrive/Image" >
+                    <Property name="Position" value="{{0,0},{0,0}}" />
+                    <Property name="Size" value="{{0,360},{0,60}}" />
+                    <Property name="Image" value="ThriveGeneric/StructurePanelTop" />
+                    <Property name="CursorPassThroughEnabled" value="True" />
+                </Window>
+                <Window name="StructurePanelMid" type="Thrive/Image" >
+                    <Property name="Position" value="{{0,0},{0,60}}" />
+                    <Property name="Size" value="{{0,360},{1.0,-80}}" />
+                    <Property name="Image" value="ThriveGeneric/EditPanelMid" />
+                    <Property name="CursorPassThroughEnabled" value="True" />
+                </Window>
+                <Window name="StructurePanelBottom" type="Thrive/Image" >
+                    <Property name="Position" value="{{0,0},{1.0,-20}}" />
+                    <Property name="Size" value="{{0,360},{0,20}}" />
+                    <Property name="Image" value="ThriveGeneric/EditPanelBottom" />
+                    <Property name="CursorPassThroughEnabled" value="True" />
+                </Window>
+                <Window name="StructureLabel" type="Thrive/PolyButton" >
+                    <Property name="Position" value="{{0,0},{0,0}}" />
+                    <Property name="Size" value="{{0,120},{0,40}}" />
+                    <Property name="Image" value="ThriveGeneric/Empty" />
+                    <Property name="PushedImage" value="ThriveGeneric/Empty" />
+                    <Property name="HoverImage" value="ThriveGeneric/Empty" />
+                    <Property name="DisabledImage" value="ThriveGeneric/Empty" />
+                    <Property name="TooltipText" value="Open the structure tab" />
+                    <Property name="NormalTextColour" value="FFFFFFFF" />
+                    <Property name="HoverTextColour" value="FFFFFFFF" />
+                    <Property name="PushedTextColour" value="FFFFFFFF" />
+                    <Property name="DisabledTextColour" value="FFACACAC" />
+                    <Property name="Font" value="Jura-13" />
+                    <Property name="Text" value="STRUCTURE" />
+                </Window>
+				<Window name="StructureScroll" type="DefaultWindow" >
+			    <Property name="Position" value="{{0,0},{0,0}}" />
+				<Property name="Size" value="{{1.0,0},{1.0,0}}" />
+                <!-- <Property name="ForceVertScrollbar" value="True" /> -->
+                <Property name="HorizontalAlignment" value="Centre" />
+                <Property name="AutoRenderingSurface" value="True" />
+                <Window name="StructuralOrganellesTitle" type="Thrive/Label" >
+                    <Property name="Position" value="{{0,10},{0,60}}" />
+                    <Property name="Font" value="Jura-18" />
+                    <Property name="Text" value="STRUCTURAL ORGANELLES"/>
+                    <Property name="NormalTextColour" value="FFFFFFFF" />
+                    <Property name="HorzFormatting" value="LeftAligned" />
+                    <Property name="VertFormatting" value="TopAligned" />
+                    <Property name="Size" value="{{1.0,0},{0,30}}" />
+                </Window>
+                <Window name="AddCytoplasm" type="Thrive/PolyButton" >
+                    <Property name="Position" value="{{0,0},{0,80}}" />
+                    <Property name="Size" value="{{0,120},{0,120}}" />
+                    <Property name="Image" value="ThriveGeneric/OrganelleNormal" />
+                    <Property name="PushedImage" value="ThriveGeneric/OrganelleNormal" />
+                    <Property name="HoverImage" value="ThriveGeneric/OrganelleHover" />
+                    <Property name="DisabledImage" value="ThriveGeneric/OrganelleDisabled" />
+                    <Property name="TooltipText" value="Place a hex of cytoplasm" />
+                    <Property name="NormalTextColour" value="FFFFFFFF" />
+                    <Property name="HoverTextColour" value="FFFFFFFF" />
+                    <Property name="PushedTextColour" value="FFFFFFFF" />
+                    <Property name="DisabledTextColour" value="FFACACAC" />
+                    <Property name="Font" value="Jura-8" />
+                    <Property name="Text" value="Cytoplasm
+5 MP" />
+                    <Property name="textOffsetY" value="60" />
+                    </Window>
+                <Window name="InternalOrganellesTitle" type="Thrive/Label" >
+                    <Property name="Position" value="{{0,10},{0,220}}" />
+                    <Property name="Font" value="Jura-18" />
+                    <Property name="Text" value="INTERNAL ORGANELLES"/>
+                    <Property name="NormalTextColour" value="FFFFFFFF" />
+                    <Property name="HorzFormatting" value="LeftAligned" />
+                    <Property name="VertFormatting" value="TopAligned" />
+                    <Property name="Size" value="{{1.0,0},{0,30}}" />
+                </Window>
+                <Window name="AddMitochondrion" type="Thrive/PolyButton" >
+                    <Property name="Position" value="{{0,0},{0,240}}" />
+                    <Property name="Size" value="{{0,120},{0,120}}" />
+                    <Property name="Image" value="ThriveGeneric/OrganelleNormal" />
+                    <Property name="PushedImage" value="ThriveGeneric/OrganelleNormal" />
+                    <Property name="HoverImage" value="ThriveGeneric/OrganelleHover" />
+                    <Property name="DisabledImage" value="ThriveGeneric/OrganelleDisabled" />
+                    <Property name="TooltipText" value="Place a mitochondrion" />
+                    <Property name="NormalTextColour" value="FFFFFFFF" />
+                    <Property name="HoverTextColour" value="FFFFFFFF" />
+                    <Property name="PushedTextColour" value="FFFFFFFF" />
+                    <Property name="DisabledTextColour" value="FFACACAC" />
+                    <Property name="Font" value="Jura-8" />
+                    <Property name="Text" value="Mitochondrion&#0010;20 MP" />
+                    <Property name="textOffsetY" value="60" />
+                    <Window name="MitochondrionIcon" type="Thrive/Image" >
+                       <Property name="Position" value="{{0.5,-30},{0.5,-40}" />
+                       <Property name="Size" value="{{0,60},{0,60}}" />
+                       <Property name="Image" value="ThriveGeneric/MitochondrionIcon" />
+                       <Property name="CursorPassThroughEnabled" value="True" />
+                    </Window>
+                    </Window>
+                <Window name="AddChloroplast" type="Thrive/PolyButton" >
+                    <Property name="Position" value="{{0,120},{0,240}}" />
+                    <Property name="Size" value="{{0,120},{0,120}}" />
+                    <Property name="Image" value="ThriveGeneric/OrganelleNormal" />
+                    <Property name="PushedImage" value="ThriveGeneric/OrganelleNormal" />
+                    <Property name="HoverImage" value="ThriveGeneric/OrganelleHover" />
+                    <Property name="DisabledImage" value="ThriveGeneric/OrganelleDisabled" />
+                    <Property name="TooltipText" value="Place a chloroplast" />
+                    <Property name="NormalTextColour" value="FFFFFFFF" />
+                    <Property name="HoverTextColour" value="FFFFFFFF" />
+                    <Property name="PushedTextColour" value="FFFFFFFF" />
+                    <Property name="DisabledTextColour" value="FFACACAC" />
+                    <Property name="Font" value="Jura-8" />
+                    <Property name="Text" value="Chloroplast&#0010;20 MP" />
+                    <Property name="textOffsetY" value="60" />
+                    <Window name="ChloroplastIcon" type="Thrive/Image" >
+                       <Property name="Position" value="{{0.5,-30},{0.5,-40}" />
+                       <Property name="Size" value="{{0,60},{0,60}}" />
+                       <Property name="Image" value="ThriveGeneric/ChloroplastIcon" />
+                       <Property name="CursorPassThroughEnabled" value="True" />
+                    </Window>
+                    </Window>
+                <Window name="AddThermoplast" type="Thrive/PolyButton" >
+                    <Property name="Position" value="{{0,240},{0,240}}" />
+                    <Property name="Size" value="{{0,120},{0,120}}" />
+                    <Property name="Image" value="ThriveGeneric/OrganelleNormal" />
+                    <Property name="PushedImage" value="ThriveGeneric/OrganelleNormal" />
+                    <Property name="HoverImage" value="ThriveGeneric/OrganelleHover" />
+                    <Property name="DisabledImage" value="ThriveGeneric/OrganelleDisabled" />
+                    <Property name="TooltipText" value="Place a thermoplast" />
+                    <Property name="NormalTextColour" value="FFFFFFFF" />
+                    <Property name="HoverTextColour" value="FFFFFFFF" />
+                    <Property name="PushedTextColour" value="FFFFFFFF" />
+                    <Property name="DisabledTextColour" value="FFACACAC" />
+                    <Property name="Font" value="Jura-8" />
+                    <Property name="Text" value="Thermoplast&#0010;20 MP" />
+                    <Property name="textOffsetY" value="60" />
+                    <Property name="Disabled" value="True" />
+                    <Window name="ThermoplastIcon" type="Thrive/Image" >
+                       <Property name="Position" value="{{0.5,-30},{0.5,-40}" />
+                       <Property name="Size" value="{{0,60},{0,60}}" />
+                       <Property name="Image" value="ThriveGeneric/ThermoplastIcon" />
+                       <Property name="CursorPassThroughEnabled" value="True" />
+                    </Window>
+                    </Window>
+                <Window name="AddVacuole" type="Thrive/PolyButton" >
+                    <Property name="Position" value="{{0,0},{0,360}}" />
+                    <Property name="Size" value="{{0,120},{0,120}}" />
+                    <Property name="Image" value="ThriveGeneric/OrganelleNormal" />
+                    <Property name="PushedImage" value="ThriveGeneric/OrganelleNormal" />
+                    <Property name="HoverImage" value="ThriveGeneric/OrganelleHover" />
+                    <Property name="DisabledImage" value="ThriveGeneric/OrganelleDisabled" />
+                    <Property name="TooltipText" value="Place a vacuole" />
+                    <Property name="NormalTextColour" value="FFFFFFFF" />
+                    <Property name="HoverTextColour" value="FFFFFFFF" />
+                    <Property name="PushedTextColour" value="FFFFFFFF" />
+                    <Property name="DisabledTextColour" value="FFACACAC" />
+                    <Property name="Font" value="Jura-8" />
+                    <Property name="Text" value="Vacuole&#0010;15 MP" />
+                    <Property name="textOffsetY" value="60" />
+                    <Window name="VacuoleIcon" type="Thrive/Image" >
+                       <Property name="Position" value="{{0.5,-30},{0.5,-40}" />
+                       <Property name="Size" value="{{0,60},{0,60}}" />
+                       <Property name="Image" value="ThriveGeneric/VacuoleIcon" />
+                       <Property name="CursorPassThroughEnabled" value="True" />
+                    </Window>
+                    </Window>
+                <Window name="AddToxinVacuole" type="Thrive/PolyButton" >
+                    <Property name="Position" value="{{0,120},{0,360}}" />
+                    <Property name="Size" value="{{0,120},{0,120}}" />
+                    <Property name="Image" value="ThriveGeneric/OrganelleNormal" />
+                    <Property name="PushedImage" value="ThriveGeneric/OrganelleNormal" />
+                    <Property name="HoverImage" value="ThriveGeneric/OrganelleHover" />
+                    <Property name="DisabledImage" value="ThriveGeneric/OrganelleDisabled" />
+                    <Property name="TooltipText" value="Place a toxin vacuole" />
+                    <Property name="NormalTextColour" value="FFFFFFFF" />
+                    <Property name="HoverTextColour" value="FFFFFFFF" />
+                    <Property name="PushedTextColour" value="FFFFFFFF" />
+                    <Property name="DisabledTextColour" value="FFACACAC" />
+                    <Property name="Font" value="Jura-8" />
+                    <Property name="Text" value="Toxin Vacuole&#0010;40 MP" />
+                    <Property name="textOffsetY" value="60" />
+                    <Window name="ToxinVacuoleIcon" type="Thrive/Image" >
+                       <Property name="Position" value="{{0.5,-30},{0.5,-40}" />
+                       <Property name="Size" value="{{0,60},{0,60}}" />
+                       <Property name="Image" value="ThriveGeneric/ToxinVacuoleIcon" />
+                       <Property name="CursorPassThroughEnabled" value="True" />
+                    </Window>
+                    </Window>
+                <Window name="AddBioluminescent" type="Thrive/PolyButton" >
+                    <Property name="Position" value="{{0,240},{0,360}}" />
+                    <Property name="Size" value="{{0,120},{0,120}}" />
+                    <Property name="Image" value="ThriveGeneric/OrganelleNormal" />
+                    <Property name="PushedImage" value="ThriveGeneric/OrganelleNormal" />
+                    <Property name="HoverImage" value="ThriveGeneric/OrganelleHover" />
+                    <Property name="DisabledImage" value="ThriveGeneric/OrganelleDisabled" />
+                    <Property name="TooltipText" value="Place a bioluminescent vacuole" />
+                    <Property name="NormalTextColour" value="FFFFFFFF" />
+                    <Property name="HoverTextColour" value="FFFFFFFF" />
+                    <Property name="PushedTextColour" value="FFFFFFFF" />
+                    <Property name="DisabledTextColour" value="FFACACAC" />
+                    <Property name="Font" value="Jura-8" />
+                    <Property name="Text" value="Bioluminescent Vacuole&#0010;N/A MP" />
+                    <Property name="textOffsetY" value="60" />
+                    <Property name="Disabled" value="True" />
+                    <Window name="BioluminescentIcon" type="Thrive/Image" >
+                       <Property name="Position" value="{{0.5,-30},{0.5,-40}" />
+                       <Property name="Size" value="{{0,60},{0,60}}" />
+                       <Property name="Image" value="ThriveGeneric/BioluminescentIcon" />
+                       <Property name="CursorPassThroughEnabled" value="True" />
+                    </Window>
+                    </Window>
+                <Window name="ExternalOrganellesTitle" type="Thrive/Label" >
+                    <Property name="Position" value="{{0,10},{0,500}}" />
+                    <Property name="Font" value="Jura-18" />
+                    <Property name="Text" value="EXTERNAL ORGANELLES"/>
+                    <Property name="NormalTextColour" value="FFFFFFFF" />
+                    <Property name="HorzFormatting" value="LeftAligned" />
+                    <Property name="VertFormatting" value="TopAligned" />
+                    <Property name="Size" value="{{1.0,0},{0,30}}" />
+                </Window>
+                <Window name="AddFlagellum" type="Thrive/PolyButton" >
+                    <Property name="Position" value="{{0,0},{0,520}}" />
+                    <Property name="Size" value="{{0,120},{0,120}}" />
+                    <Property name="Image" value="ThriveGeneric/OrganelleNormal" />
+                    <Property name="PushedImage" value="ThriveGeneric/OrganelleNormal" />
+                    <Property name="HoverImage" value="ThriveGeneric/OrganelleHover" />
+                    <Property name="DisabledImage" value="ThriveGeneric/OrganelleDisabled" />
+                    <Property name="TooltipText" value="Place a flagellum" />
+                    <Property name="NormalTextColour" value="FFFFFFFF" />
+                    <Property name="HoverTextColour" value="FFFFFFFF" />
+                    <Property name="PushedTextColour" value="FFFFFFFF" />
+                    <Property name="DisabledTextColour" value="FFACACAC" />
+                    <Property name="Font" value="Jura-8" />
+                    <Property name="Text" value="Flagellum&#0010;25 MP" />
+                    <Property name="textOffsetY" value="60" />
+                    <Window name="FlagellumIcon" type="Thrive/Image" >
+                       <Property name="Position" value="{{0.5,-30},{0.5,-40}" />
+                       <Property name="Size" value="{{0,60},{0,60}}" />
+                       <Property name="Image" value="ThriveGeneric/FlagellumIcon" />
+                       <Property name="CursorPassThroughEnabled" value="True" />
+                    </Window>
+                    </Window>
+                <Window name="AddPilus" type="Thrive/PolyButton" >
+                    <Property name="Position" value="{{0,120},{0,520}}" />
+                    <Property name="Size" value="{{0,120},{0,120}}" />
+                    <Property name="Image" value="ThriveGeneric/OrganelleNormal" />
+                    <Property name="PushedImage" value="ThriveGeneric/OrganelleNormal" />
+                    <Property name="HoverImage" value="ThriveGeneric/OrganelleHover" />
+                    <Property name="DisabledImage" value="ThriveGeneric/OrganelleDisabled" />
+                    <Property name="TooltipText" value="Place a predatory pilus" />
+                    <Property name="NormalTextColour" value="FFFFFFFF" />
+                    <Property name="HoverTextColour" value="FFFFFFFF" />
+                    <Property name="PushedTextColour" value="FFFFFFFF" />
+                    <Property name="DisabledTextColour" value="FFACACAC" />
+                    <Property name="Font" value="Jura-8" />
+                    <Property name="Text" value="Predatory Pilus&#0010;N/A MP" />
+                    <Property name="textOffsetY" value="60" />
+                    <Property name="Disabled" value="True" />
+                    <Window name="PilusIcon" type="Thrive/Image" >
+                       <Property name="Position" value="{{0.5,-30},{0.5,-40}" />
+                       <Property name="Size" value="{{0,60},{0,60}}" />
+                       <Property name="Image" value="ThriveGeneric/PilusIcon" />
+                       <Property name="CursorPassThroughEnabled" value="True" />
+                    </Window>
+                    </Window>
+                <Window name="AddCilia" type="Thrive/PolyButton" >
+                    <Property name="Position" value="{{0,240},{0,520}}" />
+                    <Property name="Size" value="{{0,120},{0,120}}" />
+                    <Property name="Image" value="ThriveGeneric/OrganelleNormal" />
+                    <Property name="PushedImage" value="ThriveGeneric/OrganelleNormal" />
+                    <Property name="HoverImage" value="ThriveGeneric/OrganelleHover" />
+                    <Property name="DisabledImage" value="ThriveGeneric/OrganelleDisabled" />
+                    <Property name="TooltipText" value="Place cilia" />
+                    <Property name="NormalTextColour" value="FFFFFFFF" />
+                    <Property name="HoverTextColour" value="FFFFFFFF" />
+                    <Property name="PushedTextColour" value="FFFFFFFF" />
+                    <Property name="DisabledTextColour" value="FFACACAC" />
+                    <Property name="Font" value="Jura-8" />
+                    <Property name="Text" value="Cilia&#0010;20 MP" />
+                    <Property name="textOffsetY" value="60" />
+                    <Property name="Disabled" value="True" />
+                    <Window name="PilusIcon" type="Thrive/Image" >
+                       <Property name="Position" value="{{0.5,-30},{0.5,-40}" />
+                       <Property name="Size" value="{{0,60},{0,60}}" />
+                       <Property name="Image" value="ThriveGeneric/PilusIcon" />
+                       <Property name="CursorPassThroughEnabled" value="True" />
+                    </Window>
+                    </Window>
+					</Window>
+            </Window>
+            <Window name="AppearanceButton" type="Thrive/PolyButton" >
+                <Property name="Position" value="{{0,120},{0,0}}" />
+                <Property name="Size" value="{{0,120},{0,40}}" />
+                <Property name="Image" value="ThriveGeneric/EditPanelHeaderNormal" />
+                <Property name="PushedImage" value="ThriveGeneric/EditPanelHeaderNormal" />
+                <Property name="HoverImage" value="ThriveGeneric/EditPanelHeaderHover" />
+                <Property name="DisabledImage" value="ThriveGeneric/EditPanelHeaderDisabled" />
+                <Property name="Disabled" value="True" />
+                <Property name="TooltipText" value="Open the appearance tab" />
+                <Property name="NormalTextColour" value="FFFFFFFF" />
+                <Property name="HoverTextColour" value="FFFFFFFF" />
+                <Property name="PushedTextColour" value="FFFFFFFF" />
+                <Property name="DisabledTextColour" value="FFACACAC" />
+                <Property name="Font" value="Jura-13" />
+                <Property name="Text" value="APPEARANCE" />
+            </Window>
+            <Window name="BehaviorButton" type="Thrive/PolyButton" >
+                <Property name="Position" value="{{0,240},{0,0}}" />
+                <Property name="Size" value="{{0,120},{0,40}}" />
+                <Property name="Image" value="ThriveGeneric/EditPanelHeaderNormal" />
+                <Property name="PushedImage" value="ThriveGeneric/EditPanelHeaderNormal" />
+                <Property name="HoverImage" value="ThriveGeneric/EditPanelHeaderHover" />
+                <Property name="DisabledImage" value="ThriveGeneric/EditPanelHeaderDisabled" />
+                <Property name="Disabled" value="True" />
+                <Property name="TooltipText" value="Open the behavior tab" />
+                <Property name="NormalTextColour" value="FFFFFFFF" />
+                <Property name="HoverTextColour" value="FFFFFFFF" />
+                <Property name="PushedTextColour" value="FFFFFFFF" />
+                <Property name="DisabledTextColour" value="FFACACAC" />
+                <Property name="Font" value="Jura-13" />
+                <Property name="Text" value="BEHAVIOR" />
+            </Window>
+       </Window>
+
+       <Window name="SymmetryButton" type="Thrive/PolyButton" >
+            <Property name="Position" value="{{0.5,-40},{1.0,-120}}" />
+            <Property name="Size" value="{{0,80},{0,80}}" />
+            <Property name="Image" value="ThriveGeneric/SymmetryNormal" />
+            <Property name="PushedImage" value="ThriveGeneric/SymmetryNormal" />
+            <Property name="HoverImage" value="ThriveGeneric/SymmetryHover" />
+            <Property name="DisabledImage" value="ThriveGeneric/SymmetryDisabled" />
+            <Property name="TooltipText" value="Change the symmetry" />
+            <Property name="NormalTextColour" value="FFFFFFFF" />
+            <Property name="HoverTextColour" value="FFFFFFFF" />
+            <Property name="PushedTextColour" value="FFFFFFFF" />
+            <Property name="DisabledTextColour" value="FFACACAC" />
+            <Property name="Font" value="Jura-8" />
+            <Property name="Text" value="SYMMETRY" />
+            <Property name="textOffsetY" value="60" />
+            <Property name="textOffsetX" value="0" />
+            <Window name="2xSymmetry" type="Thrive/Image" >
+                <Property name="Position" value="{{0,0},{0,0}" />
+                <Property name="Size" value="{{0,80},{0,80}}" />
+                <Property name="Image" value="ThriveGeneric/2xSymmetry" />
+                <Property name="CursorPassThroughEnabled" value="True" />
+                <Property name="Visible" value="False" />
+            </Window>
+            <Window name="4xSymmetry" type="Thrive/Image" >
+                <Property name="Position" value="{{0,0},{0,0}" />
+                <Property name="Size" value="{{0,80},{0,80}}" />
+                <Property name="Image" value="ThriveGeneric/4xSymmetry" />
+                <Property name="CursorPassThroughEnabled" value="True" />
+                <Property name="Visible" value="False" />
+            </Window>
+            <Window name="6xSymmetry" type="Thrive/Image" >
+                <Property name="Position" value="{{0,0},{0,0}" />
+                <Property name="Size" value="{{0,80},{0,80}}" />
+                <Property name="Image" value="ThriveGeneric/6xSymmetry" />
+                <Property name="CursorPassThroughEnabled" value="True" />
+                <Property name="Visible" value="False" />
+            </Window>
+       </Window>
+
+        <Window name="FinishButton" type="Thrive/PolyButton" >
+            <Property name="Position" value="{{1.0,-120},{0,0}" />
+            <Property name="Size" value="{{0,120},{0,120}}" />
+            <Property name="Image" value="ThriveGeneric/LargeTwoNormal" />
+            <Property name="PushedImage" value="ThriveGeneric/LargeTwoNormal" />
+            <Property name="HoverImage" value="ThriveGeneric/LargeTwoHover" />
+            <Property name="DisabledImage" value="ThriveGeneric/LargeTwoDisabled" />
+            <Property name="TooltipText" value="Finish and return to environment" />
+            <Property name="NormalTextColour" value="FFFFFFFF" />
+            <Property name="HoverTextColour" value="FFFFFFFF" />
+            <Property name="PushedTextColour" value="FFFFFFFF" />
+            <Property name="DisabledTextColour" value="FFACACAC" />
+            <Property name="Font" value="Jura-8" />
+            <Property name="textOffsetX" value="0" />
+            <Property name="textOffsetY" value="70" />
+            <Property name="Text" value="FINISH"/>
+            <Window name="EditorIcon" type="Thrive/Image" >
+                <Property name="Position" value="{{0,0},{0,0}" />
+                <Property name="Size" value="{{0,120},{0,80}}" />
+                <Property name="Image" value="ThriveGeneric/EditorIcon" />
+                <Property name="CursorPassThroughEnabled" value="True" />
+            </Window>
+        </Window>
+
+        <Window name="TestButton" type="Thrive/PolyButton" >
+            <Property name="Position" value="{{1.0,-200},{0,0}}" />
+            <Property name="Size" value="{{0,80},{0,80}}" />
+            <Property name="Image" value="ThriveGeneric/DefaultOneNormal" />
+            <Property name="PushedImage" value="ThriveGeneric/DefaultOneNormal" />
+            <Property name="HoverImage" value="ThriveGeneric/DefaultOneHover" />
+            <Property name="DisabledImage" value="ThriveGeneric/DefaultOneDisabled" />
+            <Property name="TooltipText" value="Take your microbe on a test drive" />
+            <Property name="NormalTextColour" value="FFFFFFFF" />
+            <Property name="HoverTextColour" value="FFFFFFFF" />
+            <Property name="PushedTextColour" value="FFFFFFFF" />
+            <Property name="DisabledTextColour" value="FFACACAC" />
+            <Property name="Font" value="Jura-8" />
+            <Property name="textOffsetX" value="0" />
+            <Property name="textOffsetY" value="30" />
+            <Property name="Text" value="TEST" />
+            <Property name="Disabled" value="True" />
+			<Property name="Visible" value="False" />
+            <Window name="TestIcon" type="Thrive/Image" >
+                <Property name="Position" value="{{0,0},{0,0}" />
+                <Property name="Size" value="{{0,80},{0,80}}" />
+                <Property name="Image" value="ThriveGeneric/TestIcon" />
+                <Property name="CursorPassThroughEnabled" value="True" />
+            </Window>
+        </Window>
+
+        <Window name="UndoButton" type="Thrive/PolyButton" >
+            <Property name="Position" value="{{0.5,-120},{1.0,-80}}" />
+            <Property name="Size" value="{{0,80},{0,40}}" />
+            <Property name="Image" value="ThriveGeneric/SmallThreeNormal" />
+            <Property name="PushedImage" value="ThriveGeneric/SmallThreeNormal" />
+            <Property name="HoverImage" value="ThriveGeneric/SmallThreeHover" />
+            <Property name="DisabledImage" value="ThriveGeneric/SmallThreeDisabled" />
+            <Property name="TooltipText" value="Undo" />
+            <Window name="UndoIcon" type="Thrive/Image" >
+                <Property name="Position" value="{{0,40},{0,0}" />
+                <Property name="Size" value="{{0,40},{0,40}}" />
+                <Property name="Image" value="ThriveGeneric/UndoIcon" />
+                <Property name="CursorPassThroughEnabled" value="True" />
+            </Window>
+        </Window>
+
+        <Window name="RedoButton" type="Thrive/PolyButton" >
+            <Property name="Position" value="{{0.5,40},{1.0,-80}}" />
+            <Property name="Size" value="{{0,80},{0,40}}" />
+            <Property name="Image" value="ThriveGeneric/SmallFourNormal" />
+            <Property name="PushedImage" value="ThriveGeneric/SmallFourNormal" />
+            <Property name="HoverImage" value="ThriveGeneric/SmallFourHover" />
+            <Property name="DisabledImage" value="ThriveGeneric/SmallFourDisabled" />
+            <Property name="TooltipText" value="Undo" />
+            <Property name="Disabled" value="True" />
+            <Window name="RedoIcon" type="Thrive/Image" >
+                <Property name="Position" value="{{0,0},{0,0}" />
+                <Property name="Size" value="{{0,40},{0,40}}" />
+                <Property name="Image" value="ThriveGeneric/RedoIcon" />
+                <Property name="CursorPassThroughEnabled" value="True" />
+            </Window>
+        </Window>
+
+        <Window name="PauseMenu" type="Thrive/Image" >
+            <Property name="Size" value="{{1.0,0},{1.0,0}}" />
+            <Property name="Image" value="ThriveGeneric/Overlay" />
+            <Property name="Visible" value="False" />
+            <Window name="ResumeButton" type="Thrive/PolyButton" >
+                <Property name="Position" value="{{0.5,-140},{0.5,-250}}" />
+                <Property name="Image" value="ThriveGeneric/MenuNormal" />
+                <Property name="PushedImage" value="ThriveGeneric/MenuHover" />
+                <Property name="HoverImage" value="ThriveGeneric/MenuHover" />
+                <Property name="DisabledImage" value="ThriveGeneric/MenuDisabled" />
+                <Property name="Size" value="{{0,280},{0,40}}" />
+                <Property name="Text" value="Resume" />
+                <Property name="Font" value="Thrive-15" />
+                <Property name="NormalTextColour" value="FFFFFFFF" />
+                <Property name="HoverTextColour" value="FFFFFFFF" />
+                <Property name="PushedTextColour" value="FFFFFFFF" />
+                <Property name="DisabledTextColour" value="FFACACAC" />
+                <Property name="textOffsetY" value="-5" />
+                <Property name="TooltipText" value="Return to the game" />
+            </Window>
+            <Window name="QuicksaveButton" type="Thrive/PolyButton" >
+                <Property name="Position" value="{{0.5,-140},{0.5,-200}}" />
+                <Property name="Image" value="ThriveGeneric/MenuNormal" />
+                <Property name="PushedImage" value="ThriveGeneric/MenuHover" />
+                <Property name="HoverImage" value="ThriveGeneric/MenuHover" />
+                <Property name="DisabledImage" value="ThriveGeneric/MenuDisabled" />
+                <Property name="Size" value="{{0,280},{0,40}}" />
+                <Property name="Text" value="Quicksave" />
+                <Property name="Font" value="Thrive-15" />
+                <Property name="NormalTextColour" value="FFFFFFFF" />
+                <Property name="HoverTextColour" value="FFFFFFFF" />
+                <Property name="PushedTextColour" value="FFFFFFFF" />
+                <Property name="DisabledTextColour" value="FFACACAC" />
+                <Property name="textOffsetY" value="-5" />
+                <Property name="TooltipText" value="Save this game in the quicksave save spot" />
+            </Window>
+            <Window name="SaveGameButton" type="Thrive/PolyButton" >
+                <Property name="Position" value="{{0.5,-140},{0.5,-150}}" />
+                <Property name="Image" value="ThriveGeneric/MenuNormal" />
+                <Property name="PushedImage" value="ThriveGeneric/MenuHover" />
+                <Property name="HoverImage" value="ThriveGeneric/MenuHover" />
+                <Property name="DisabledImage" value="ThriveGeneric/MenuDisabled" />
+                <Property name="Size" value="{{0,280},{0,40}}" />
+                <Property name="Text" value="Save Game" />
+                <Property name="Font" value="Thrive-15" />
+                <Property name="NormalTextColour" value="FFFFFFFF" />
+                <Property name="HoverTextColour" value="FFFFFFFF" />
+                <Property name="PushedTextColour" value="FFFFFFFF" />
+                <Property name="DisabledTextColour" value="FFACACAC" />
+                <Property name="textOffsetY" value="-5" />
+                <Property name="TooltipText" value="Open the save dialog to save the game" />
+                <Property name="Disabled" value="True" />
+            </Window>
+            <Window name="LoadGameButton" type="Thrive/PolyButton" >
+                <Property name="Position" value="{{0.5,-140},{0.5,-100}}" />
+                <Property name="Image" value="ThriveGeneric/MenuNormal" />
+                <Property name="PushedImage" value="ThriveGeneric/MenuHover" />
+                <Property name="HoverImage" value="ThriveGeneric/MenuHover" />
+                <Property name="DisabledImage" value="ThriveGeneric/MenuDisabled" />
+                <Property name="Size" value="{{0,280},{0,40}}" />
+                <Property name="Text" value="Load Game" />
+                <Property name="Font" value="Thrive-15" />
+                <Property name="NormalTextColour" value="FFFFFFFF" />
+                <Property name="HoverTextColour" value="FFFFFFFF" />
+                <Property name="PushedTextColour" value="FFFFFFFF" />
+                <Property name="DisabledTextColour" value="FFACACAC" />
+                <Property name="textOffsetY" value="-5" />
+                <Property name="TooltipText" value="Load the latest quicksave" />
+            </Window>
+            <Window name="StatsButton" type="Thrive/PolyButton" >
+                <Property name="Position" value="{{0.5,-140},{0.5,-50}}" />
+                <Property name="Image" value="ThriveGeneric/MenuNormal" />
+                <Property name="PushedImage" value="ThriveGeneric/MenuHover" />
+                <Property name="HoverImage" value="ThriveGeneric/MenuHover" />
+                <Property name="DisabledImage" value="ThriveGeneric/MenuDisabled" />
+                <Property name="Size" value="{{0,280},{0,40}}" />
+                <Property name="Text" value="Statistics" />
+                <Property name="Font" value="Thrive-15" />
+                <Property name="NormalTextColour" value="FFFFFFFF" />
+                <Property name="HoverTextColour" value="FFFFFFFF" />
+                <Property name="PushedTextColour" value="FFFFFFFF" />
+                <Property name="DisabledTextColour" value="FFACACAC" />
+                <Property name="textOffsetY" value="-5" />
+                <Property name="TooltipText" value="Insightful stats about the current game" />
+                <Property name="Disabled" value="True" />
+            </Window>
+            <Window name="HelpButton" type="Thrive/PolyButton" >
+                <Property name="Position" value="{{0.5,-140},{0.5,0}}" />
+                <Property name="Image" value="ThriveGeneric/MenuNormal" />
+                <Property name="PushedImage" value="ThriveGeneric/MenuHover" />
+                <Property name="HoverImage" value="ThriveGeneric/MenuHover" />
+                <Property name="DisabledImage" value="ThriveGeneric/MenuDisabled" />
+                <Property name="Size" value="{{0,280},{0,40}}" />
+                <Property name="Text" value="Help" />
+                <Property name="Font" value="Thrive-15" />
+                <Property name="NormalTextColour" value="FFFFFFFF" />
+                <Property name="HoverTextColour" value="FFFFFFFF" />
+                <Property name="PushedTextColour" value="FFFFFFFF" />
+                <Property name="DisabledTextColour" value="FFACACAC" />
+                <Property name="textOffsetY" value="-5" />
+                <Property name="TooltipText" value="How to play the game" />
+            </Window>
+            <Window name="OptionsButton" type="Thrive/PolyButton" >
+                <Property name="Position" value="{{0.5,-140},{0.5,50}}" />
+                <Property name="Image" value="ThriveGeneric/MenuNormal" />
+                <Property name="PushedImage" value="ThriveGeneric/MenuHover" />
+                <Property name="HoverImage" value="ThriveGeneric/MenuHover" />
+                <Property name="DisabledImage" value="ThriveGeneric/MenuDisabled" />
+                <Property name="Size" value="{{0,280},{0,40}}" />
+                <Property name="Text" value="Options" />
+                <Property name="Font" value="Thrive-15" />
+                <Property name="NormalTextColour" value="FFFFFFFF" />
+                <Property name="HoverTextColour" value="FFFFFFFF" />
+                <Property name="PushedTextColour" value="FFFFFFFF" />
+                <Property name="DisabledTextColour" value="FFACACAC" />
+                <Property name="textOffsetY" value="-5" />
+                <Property name="TooltipText" value="Change audio and visual settings" />
+                <Property name="Disabled" value="True" />
+            </Window>
+            <Window name="MainMenuButton" type="Thrive/PolyButton" >
+                <Property name="Position" value="{{0.5,-140},{0.5,150}}" />
+                <Property name="Image" value="ThriveGeneric/MenuNormal" />
+                <Property name="PushedImage" value="ThriveGeneric/MenuHover" />
+                <Property name="HoverImage" value="ThriveGeneric/MenuHover" />
+                <Property name="DisabledImage" value="ThriveGeneric/MenuDisabled" />
+                <Property name="Size" value="{{0,280},{0,40}}" />
+                <Property name="Text" value="Exit to Main Menu" />
+                <Property name="Font" value="Thrive-15" />
+                <Property name="NormalTextColour" value="FFFFFFFF" />
+                <Property name="HoverTextColour" value="FFFFFFFF" />
+                <Property name="PushedTextColour" value="FFFFFFFF" />
+                <Property name="DisabledTextColour" value="FFACACAC" />
+                <Property name="textOffsetY" value="-5" />
+                <Property name="TooltipText" value="Exit to the main menu without saving" />
+            </Window>
+            <Window name="QuitButton" type="Thrive/PolyButton" >
+                <Property name="Position" value="{{0.5,-140},{0.5,200}}" />
+                <Property name="Image" value="ThriveGeneric/MenuNormal" />
+                <Property name="PushedImage" value="ThriveGeneric/MenuHover" />
+                <Property name="HoverImage" value="ThriveGeneric/MenuHover" />
+                <Property name="DisabledImage" value="ThriveGeneric/MenuDisabled" />
+                <Property name="Size" value="{{0,280},{0,40}}" />
+                <Property name="Text" value="Exit to Desktop" />
+                <Property name="Font" value="Thrive-15" />
+                <Property name="NormalTextColour" value="FFFFFFFF" />
+                <Property name="HoverTextColour" value="FFFFFFFF" />
+                <Property name="PushedTextColour" value="FFFFFFFF" />
+                <Property name="DisabledTextColour" value="FFACACAC" />
+                <Property name="textOffsetY" value="-5" />
+                <Property name="TooltipText" value="Exit to desktop without saving" />
+            </Window>
+            <Window name="HelpPanel" type="DefaultWindow" >
+                <Property name="Position" value="{{0.5,-300},{0.5,-450}}" />
+                <Property name="Size" value="{{0,600},{0,700}}" />
+                <Property name="Visible" value="False" />
+                <Property name="CursorPassThroughEnabled" value="True" />
+                <Window name="HelpText" type="Thrive/Label" >
+                    <Property name="Font" value="Jura-13" />
+                    <Property name="NormalTextColour" value="FFFFFFFF" />
+                    <Property name="Position" value="{{0.5,-280},{0.5,-350}}" />
+                    <Property name="Size" value="{{0,560},{0,700}}" />
+                    <Property name="HorzFormatting" value="WordWrapLeftAligned" />
+                    <Property name="Text" value="Every time you reproduce, you will enter the Microbe Editor, where you can make changes to your species (by adding, moving, or removing organelles) to increase your species' success.
+
+Each generation, you have 50 mutation points to spend, and each change (or mutation) will cost a certain amount of that MP.
+
+Mitochondrion: Produces ATP out of glucose and 02.
+
+Chloroplast: Makes glucose out of sunlight and CO2.
+
+Vacuole: Stores collected compounds.
+
+Toxin Vacuoles: Produces toxins (called OxyToxyNT).
+
+Flagella: Moves your cell by consuming ATP.
+
+Cytoplasm: Increases the rate of compound absorbtion." />
+                </Window>
+            </Window>
+            <Window name="CloseHelpButton" type="Thrive/PolyButton" >
+                <Property name="Position" value="{{0.5,-140},{0.5,220}}" />
+                <Property name="Image" value="ThriveGeneric/MenuNormal" />
+                <Property name="PushedImage" value="ThriveGeneric/MenuHover" />
+                <Property name="HoverImage" value="ThriveGeneric/MenuHover" />
+                <Property name="DisabledImage" value="ThriveGeneric/MenuDisabled" />
+                <Property name="Size" value="{{0,280},{0,40}}" />
+                <Property name="Text" value="Close" />
+                <Property name="Font" value="Thrive-15" />
+                <Property name="NormalTextColour" value="FFFFFFFF" />
+                <Property name="HoverTextColour" value="FFFFFFFF" />
+                <Property name="PushedTextColour" value="FFFFFFFF" />
+                <Property name="DisabledTextColour" value="FFACACAC" />
+                <Property name="textOffsetY" value="-5" />
+                <Property name="Visible" value="False" />
+            </Window>
+        </Window>
+    </Window>
     
   </Window>
 </GUILayout>

@@ -39,6 +39,8 @@ bool
     if(m_reproduceCheat.Match(key, modifiers)) {
 
         LOG_INFO("Reproduce cheat pressed");
+        Engine::Get()->GetEventHandler()->CallEvent(
+            new Leviathan::GenericEvent("PlayerReadyToEnterEditor"));
         return true;
     }
 

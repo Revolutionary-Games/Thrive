@@ -69,6 +69,65 @@ o GuiCollection "MicrobeRoot"{
     }
 }
 
+// Root of the microbe editor GUI
+o GuiCollection "MicrobeEditorRoot"{
+    l params{
+        Enabled = false;
+        AutoTarget = "MicrobeEditorRoot";
+    }
+    s{
+        GuiCollection@ ourInstance;
+
+        [@Listener="OnInit"]
+        int storeInstance(GuiCollection@ instance){
+            @ourInstance = instance;
+            return 1;
+        }
+
+        void restoreFinishButtonActual(){
+            LOG_INFO("Enabling finish button after half a second");
+            ourInstance.GetOwningManager().GetRootWindow().GetChild(
+                "MicrobeEditorRoot/FinishButton").SetDisabledState(false);
+        }
+
+        void restoreFinishButtonBackgroundCall(){
+             // Called in a background thread so we need to invoke
+             GetEngine().Invoke(@restoreFinishButtonActual);
+        }
+
+        // Called from ThriveGame when the editor is entered
+        [@Listener="Generic", @Type="MicrobeEditorEntered"]
+        int enterEditor(/* Don't need the instance as it is already stored */){
+
+            ourInstance.UpdateState(true);
+
+            // Disable the normal microbe GUI
+            ourInstance.GetOwningManager().SetCollectionState("MicrobeRoot", false);
+
+            // Disable the finish button
+            ourInstance.GetOwningManager().GetRootWindow().GetChild(
+                "MicrobeEditorRoot/FinishButton").SetDisabledState(true);
+
+            // And enable it in half a second
+            GetEngine().GetThreadingManager().QueueTaskDelayed(
+                @restoreFinishButtonBackgroundCall, 500);
+
+            return 1;
+        }
+
+        // Called from ThriveGame when the editor is exited
+        [@Listener="Generic", @Type="MicrobeEditorExited"]
+        int enterExitEditor(/* Don't need the instance as it is already stored */){
+
+            ourInstance.UpdateState(false);
+
+            // Enable the normal microbe GUI
+            ourInstance.GetOwningManager().SetCollectionState("MicrobeRoot", true);
+            return 1;
+        }
+    @%};
+}
+
 // ------------------------------------ //
 // This creates the intro video player
 // And also plays the menu sound because why not
@@ -112,11 +171,12 @@ o GuiObject "_IntroVideoStarter"{
             return 1;
         }
 
+        // This is probably not called as it isn't a button
         [@Listener="OnClick"]
-        int VideoPlayerClicked(GuiObject@ instance){
+        bool VideoPlayerClicked(GuiObject@ instance){
 
              LOG_INFO("VideoPlayer clicked");
-             return 1;
+             return true;
         }
 
         void DestroyVideoPlayerWindow(){
@@ -186,7 +246,7 @@ o GuiObject "Background/MainMenuInteractive/LoadGameButton"{
             return 1;
         }
         [@Listener="OnClick"]
-        int LoadIt(GuiObject@ instance){
+        bool LoadIt(GuiObject@ instance){
 		    GetEngine().GetSoundDevice().Play2DSoundEffect("Data/Sound/soundeffects/gui/button-hover-click.ogg");
             // Load the game //
 			if (FileSystem::FileExists("quick.sav")) {
@@ -196,7 +256,7 @@ o GuiObject "Background/MainMenuInteractive/LoadGameButton"{
             instance.GetOwningManager().SetCollectionState("MicrobeRoot", true);
             GetThriveGame().loadSaveGame("quick.sav");
 			}
-            return 1;
+            return true;
         }
         @%};
 }
@@ -205,11 +265,11 @@ o GuiObject "Background/MainMenuInteractive/LoadGameButton"{
 o GuiObject "Background/MainMenuInteractive/ExitGameButton"{
     s{
         [@Listener="OnClick"]
-        int QuitIt(GuiObject@ instance){
+        bool QuitIt(GuiObject@ instance){
             // Close the game //
 		    GetEngine().GetSoundDevice().Play2DSoundEffect("Data/Sound/soundeffects/gui/button-hover-click.ogg");
             cast<LeviathanApplication>(GetThriveGame()).MarkAsClosing();
-            return 1;
+            return true;
         }
     @%};
 }
@@ -364,6 +424,39 @@ o GuiObject "_mainMicrobeHUDEventHandler"{
         #include "microbe_gui_events.as"
     @%};
 }
+
+o GuiObject "MicrobeStageRoot/EditorButton"{
+    s{
+        [@Listener="Generic", @Type="PlayerReadyToEnterEditor"]
+        int enable(GuiObject@ instance, GenericEvent@ event){
+            instance.GetTargetWindow().SetDisabledState(false);
+            return 1;
+        }
+
+        [@Listener="OnClick"]
+        bool clicked(GuiObject@ instance){
+            GetThriveGame().editorButtonClicked();
+            instance.GetTargetWindow().SetDisabledState(true);
+            return true;
+        }
+    @%};
+}
+
+// ------------------------------------ //
+// MicrobeEditor HUD things
+o GuiObject "MicrobeEditorRoot/FinishButton"{
+    s{
+        [@Listener="OnClick"]
+        bool clicked(GuiObject@ instance){
+            GetThriveGame().finishEditingClicked();
+            instance.GetTargetWindow().SetDisabledState(true);
+            return true;
+        }
+    @%};
+}
+
+
+
 
 
 

@@ -4,6 +4,7 @@
 #include "engine/player_data.h"
 #include "general/locked_map.h"
 #include "generated/cell_stage_world.h"
+#include "generated/microbe_editor_world.h"
 #include "main_menu_keypresses.h"
 #include "microbe_stage/biome_controller.h"
 #include "microbe_stage/player_microbe_control.h"
@@ -90,9 +91,13 @@ public:
     PlayerData m_playerData;
 
     std::shared_ptr<CellStageWorld> m_cellStage;
+    std::shared_ptr<MicrobeEditorWorld> m_microbeEditor;
 
     // This contains all the microbe_stage AngelScript code
     Leviathan::GameModule::pointer m_MicrobeScripts;
+
+    // This contains all the microbe_editor AngelScript code
+    Leviathan::GameModule::pointer m_MicrobeEditorScripts;
 
     //! This is the background object of the cell stage
     Ogre::MeshPtr m_microbeBackgroundMesh;
@@ -170,8 +175,9 @@ void
     if(!m_impl->m_cellStage) {
 
         LOG_INFO("ThriveGame: startNewGame: Creating new cellstage world");
-        m_impl->m_cellStage = std::dynamic_pointer_cast<CellStageWorld>(
-            engine->CreateWorld(window1));
+        m_impl->m_cellStage =
+            std::dynamic_pointer_cast<CellStageWorld>(engine->CreateWorld(
+                window1, static_cast<int>(THRIVE_WORLD_TYPE::CELL_STAGE)));
     }
 
     LEVIATHAN_ASSERT(m_impl->m_cellStage, "Cell stage world creation failed");
@@ -436,6 +442,133 @@ void
     Engine::Get()->GetEventHandler()->CallEvent(
         new Leviathan::GenericEvent("MainMenuIntroSkipEvent"));
 }
+
+void
+    ThriveGame::editorButtonClicked()
+{
+    LOG_INFO("Editor button pressed");
+
+    // Fire an event to switch over the GUI
+    Engine::Get()->GetEventHandler()->CallEvent(
+        new Leviathan::GenericEvent("MicrobeEditorEntered"));
+
+    Leviathan::Engine* engine = Engine::GetEngine();
+    Leviathan::GraphicalInputEntity* window1 = engine->GetWindowEntity();
+
+    // Make the cell world be in the background
+
+    // Create an editor world
+    LOG_INFO("Entering MicrobeEditor");
+
+    // Create world if not already created //
+    if(!m_impl->m_microbeEditor) {
+
+        LOG_INFO("ThriveGame: editorButtonClicked: Creating new microbe editor "
+                 "world");
+        m_impl->m_microbeEditor =
+            std::dynamic_pointer_cast<MicrobeEditorWorld>(engine->CreateWorld(
+                window1, static_cast<int>(THRIVE_WORLD_TYPE::MICROBE_EDITOR)));
+    }
+
+    LEVIATHAN_ASSERT(
+        m_impl->m_microbeEditor, "Microbe editor world creation failed");
+
+    // Link the new world to the window (this will automatically make
+    // the old one go to the background)
+    window1->LinkObjects(m_impl->m_microbeEditor);
+
+    // Set the right input handlers active //
+    m_impl->m_menuKeyPresses->setEnabled(false);
+    m_impl->m_cellStageKeys->setEnabled(false);
+
+    // TODO: editor hotkeys
+
+    // Clear world //
+    m_impl->m_microbeEditor->ClearEntities();
+
+    // TODO: unfreeze, if was in the background
+
+    // Main camera that will be attached to the player
+    auto camera = Leviathan::ObjectLoader::LoadCamera(*m_impl->m_microbeEditor,
+        Float3(0, 15, 0),
+        Ogre::Quaternion(Ogre::Degree(-90), Ogre::Vector3::UNIT_X));
+
+    // TODO: attach a ligth to the camera
+    // -- Light
+    //     local light = OgreLightComponent.new()
+    //     light:setRange(200)
+    //     entity:addComponent(light)
+
+    m_impl->m_microbeEditor->SetCamera(camera);
+
+    // Let the script do setup //
+    // This registers all the script defined systems to run and be
+    // available from the world
+    LEVIATHAN_ASSERT(
+        m_impl->m_MicrobeEditorScripts, "microbe editor scripts not loaded");
+
+    LOG_INFO("Calling editor setup script onEditorEntry");
+
+    ScriptRunningSetup setup("onEditorEntry");
+
+    auto result = m_impl->m_MicrobeEditorScripts->ExecuteOnModule<void>(
+        setup, false, m_impl->m_microbeEditor.get());
+
+    if(result.Result != SCRIPT_RUN_RESULT::Success) {
+
+        LOG_ERROR(
+            "Failed to run editor setup function: " + setup.Entryfunction);
+        return;
+    }
+}
+
+void
+    ThriveGame::finishEditingClicked()
+{
+    LOG_INFO("Finish editing pressed");
+
+    // Fire an event to switch over the GUI
+    Engine::Get()->GetEventHandler()->CallEvent(
+        new Leviathan::GenericEvent("MicrobeEditorExited"));
+
+    Leviathan::Engine* engine = Engine::GetEngine();
+    Leviathan::GraphicalInputEntity* window1 = engine->GetWindowEntity();
+
+    // Make the cell world to be back in the foreground
+    LEVIATHAN_ASSERT(m_impl->m_cellStage,
+        "Cell stage world not created before exiting the editor");
+
+    // This will automatically background the editor world
+    window1->LinkObjects(m_impl->m_cellStage);
+
+    // Set the right input handlers active //
+    m_impl->m_menuKeyPresses->setEnabled(false);
+    m_impl->m_cellStageKeys->setEnabled(true);
+
+    // TODO: editor hotkeys
+
+    // Run the post editing script
+
+    // Let the script do setup //
+    // This registers all the script defined systems to run and be
+    // available from the world
+    LEVIATHAN_ASSERT(
+        m_impl->m_MicrobeScripts, "microbe stage scripts not loaded");
+
+    LOG_INFO("Calling return from editor script, onReturnFromEditor");
+
+    ScriptRunningSetup setup("onReturnFromEditor");
+
+    auto result = m_impl->m_MicrobeScripts->ExecuteOnModule<void>(
+        setup, false, m_impl->m_cellStage.get());
+
+    if(result.Result != SCRIPT_RUN_RESULT::Success) {
+
+        LOG_ERROR("Failed to run return from editor function: " +
+                  setup.Entryfunction);
+        return;
+    }
+}
 // ------------------------------------ //
 void
     ThriveGame::setBackgroundMaterial(const std::string& material)
@@ -496,6 +629,26 @@ void
     if(!m_impl->m_MicrobeScripts->Init()) {
 
         LOG_ERROR("ThriveGame: microbe_stage module init failed");
+        MarkAsClosing();
+        return;
+    }
+
+    try {
+        m_impl->m_MicrobeEditorScripts =
+            Leviathan::GameModule::MakeShared<Leviathan::GameModule>(
+                "microbe_editor", "ThriveGame");
+    } catch(const Leviathan::Exception& e) {
+
+        LOG_ERROR(
+            "ThriveGame: microbe_editor module failed to load, exception:");
+        e.PrintToLog();
+        MarkAsClosing();
+        return;
+    }
+
+    if(!m_impl->m_MicrobeEditorScripts->Init()) {
+
+        LOG_ERROR("ThriveGame: microbe_editor module init failed");
         MarkAsClosing();
         return;
     }
@@ -597,7 +750,7 @@ int
         const NewtonBody* body1,
         int threadIndex)
 {
-    //LOG_INFO("Cell on cell AABB overlap");
+    // LOG_INFO("Cell on cell AABB overlap");
     return 1;
 }
 
@@ -606,7 +759,7 @@ void
         dFloat timestep,
         int threadIndex)
 {
-    LOG_INFO("Cell on cell contact");
+    // LOG_INFO("Cell on cell contact");
 }
 
 //! \brief This registers the physical materials (with callbacks for
@@ -637,6 +790,11 @@ void
     if(m_impl->m_MicrobeScripts) {
         m_impl->m_MicrobeScripts->ReleaseScript();
         m_impl->m_MicrobeScripts.reset();
+    }
+
+    if(m_impl->m_MicrobeEditorScripts) {
+        m_impl->m_MicrobeEditorScripts->ReleaseScript();
+        m_impl->m_MicrobeEditorScripts.reset();
     }
 
     // All resources that need Ogre or the engine to be available when
@@ -1322,6 +1480,23 @@ bool
     return true;
 }
 
+template<class WorldType>
+bool
+    bindMicrobeEditorMethods(asIScriptEngine* engine, const char* classname)
+{
+
+    if(!Leviathan::BindStandardWorldMethods<MicrobeEditorWorld>(
+           engine, classname))
+        return false;
+
+#include "generated/microbe_editor_bindings.h"
+
+    ANGLESCRIPT_BASE_CLASS_CASTS_NO_REF(Leviathan::StandardWorld,
+        "StandardWorld", CellStageWorld, "MicrobeEditorWorld");
+
+    return true;
+}
+
 bool
     registerHexFunctions(asIScriptEngine* engine)
 {
@@ -1648,6 +1823,11 @@ bool
         ANGELSCRIPT_REGISTERFAIL;
     }
 
+    if(engine->RegisterObjectType(
+           "MicrobeEditorWorld", 0, asOBJ_REF | asOBJ_NOCOUNT) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
     if(!bindThriveComponentTypes(engine))
         return false;
 
@@ -1713,6 +1893,15 @@ bool
         ANGELSCRIPT_REGISTERFAIL;
     }
 
+    if(engine->RegisterObjectMethod("ThriveGame", "void editorButtonClicked()",
+           asMETHOD(ThriveGame, editorButtonClicked), asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectMethod("ThriveGame", "void finishEditingClicked()",
+           asMETHOD(ThriveGame, finishEditingClicked), asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
 
     // if(engine->RegisterObjectMethod("Client",
     //         "bool Connect(const string &in address, string &out
@@ -1725,6 +1914,10 @@ bool
 
 
     if(!bindCellStageMethods<CellStageWorld>(engine, "CellStageWorld"))
+        return false;
+
+    if(!bindMicrobeEditorMethods<MicrobeEditorWorld>(
+           engine, "MicrobeEditorWorld"))
         return false;
 
     if(engine->RegisterObjectMethod("ThriveGame",
