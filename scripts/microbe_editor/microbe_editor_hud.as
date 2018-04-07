@@ -4,7 +4,7 @@ class MicrobeEditorHudSystem : ScriptSystem{
 
     void Init(GameWorld@ w){
 
-        @this.world = cast<CellStageWorld>(w);
+        @this.world = cast<MicrobeEditorWorld>(w);
 
         assert(this.world !is null, "MicrobeEditorHudSystem didn't get proper world");
 
@@ -214,8 +214,8 @@ class MicrobeEditorHudSystem : ScriptSystem{
     void CreateAndDestroyNodes(){
     }
 
-    MicrobeEditor@ editor = null;
-    private CellStageWorld@ world;
+    private MicrobeEditor@ editor = null;
+    private MicrobeEditorWorld@ world;
     
     // // Scene nodes for the organelle cursors for symmetry.
     // this.hoverHex = {};

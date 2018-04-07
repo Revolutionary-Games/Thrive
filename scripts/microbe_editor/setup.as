@@ -1,7 +1,7 @@
 #include "microbe_editor_hud.as"
 
 // Called from ThriveGame when the editor has been entered and it should be setup
-void onEditorEntry(CellStageWorld@ world){
+void onEditorEntry(MicrobeEditorWorld@ world){
 
     LOG_INFO("Running microbe editor script setup");
 
@@ -14,11 +14,11 @@ void onEditorEntry(CellStageWorld@ world){
 }
 
 
-void setupBackground(CellStageWorld@ world){
+void setupBackground(MicrobeEditorWorld@ world){
 
     LOG_ERROR("TODO: editor setupBackground");
     
-    // auto entity = Entity("background", CellStageWorld@)
+    // auto entity = Entity("background", MicrobeEditorWorld@)
     // auto skyplane = SkyPlaneComponent();
     // skyplane.properties.plane.normal = Vector3(0, 0, 2000);
     // skyplane.properties.materialName = "background/blue_01";
@@ -26,7 +26,7 @@ void setupBackground(CellStageWorld@ world){
     // skyplane.properties.touch();
     // entity.addComponent(skyplane);
     // //Create floating arrow entity
-    // entity = Entity("directionarrow", CellStageWorld@);
+    // entity = Entity("directionarrow", MicrobeEditorWorld@);
     // auto sceneNode = OgreSceneNodeComponent();
     // sceneNode.meshName = "arrow.mesh";
     // sceneNode.transform.position = Vector3(0,7,-4);
@@ -37,11 +37,11 @@ void setupBackground(CellStageWorld@ world){
     // entity.addComponent(sceneNode);
 }
 
-void setupCamera(CellStageWorld@ world){
+void setupCamera(MicrobeEditorWorld@ world){
 
     LOG_ERROR("TODO: editor setupCamera");
     
-    // auto entity = Entity(CAMERA_NAME .. "3", CellStageWorld@);
+    // auto entity = Entity(CAMERA_NAME .. "3", MicrobeEditorWorld@);
     // //Camera
     // auto camera = OgreCameraComponent("camera3");
     // camera.properties.nearClipDistance = 5;
@@ -68,11 +68,11 @@ void setupCamera(CellStageWorld@ world){
     // workspaceEntity.addComponent(workspaceComponent);
 }
 
-void setupSound(CellStageWorld@ world){
+void setupSound(MicrobeEditorWorld@ world){
 
     LOG_ERROR("TODO: editor setupSound");
     
-    // auto ambientEntity = Entity("editor_ambience", CellStageWorld@);
+    // auto ambientEntity = Entity("editor_ambience", MicrobeEditorWorld@);
     // auto soundSource = SoundSourceComponent();
     // soundSource.autoLoop = true;
     // soundSource.ambientSoundSource = true;
@@ -86,7 +86,7 @@ void setupSound(CellStageWorld@ world){
     // soundSource.addSound("microbe-editor-theme-4", "microbe-editor-theme-4.ogg");
     // soundSource.addSound("microbe-editor-theme-5", "microbe-editor-theme-5.ogg"); 
     // //Gui effects
-    // auto guiSoundEntity = Entity("gui_sounds", CellStageWorld@);
+    // auto guiSoundEntity = Entity("gui_sounds", MicrobeEditorWorld@);
     // soundSource = SoundSourceComponent();
     // soundSource.ambientSoundSource = true;
     // soundSource.autoLoop = false;
@@ -95,7 +95,7 @@ void setupSound(CellStageWorld@ world){
     // //Sound
     // soundSource.addSound("button-hover-click", "soundeffects/gui/button-hover-click.ogg");
    
-    // auto ambientEntity2 = Entity("editor_ambience2", CellStageWorld@);
+    // auto ambientEntity2 = Entity("editor_ambience2", MicrobeEditorWorld@);
     // auto soundSource2 = SoundSourceComponent();
     // soundSource2.volumeMultiplier = 0.1;
     // soundSource2.ambientSoundSource = true;

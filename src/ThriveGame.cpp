@@ -175,8 +175,9 @@ void
     if(!m_impl->m_cellStage) {
 
         LOG_INFO("ThriveGame: startNewGame: Creating new cellstage world");
-        m_impl->m_cellStage = std::dynamic_pointer_cast<CellStageWorld>(
-            engine->CreateWorld(window1));
+        m_impl->m_cellStage =
+            std::dynamic_pointer_cast<CellStageWorld>(engine->CreateWorld(
+                window1, static_cast<int>(THRIVE_WORLD_TYPE::CELL_STAGE)));
     }
 
     LEVIATHAN_ASSERT(m_impl->m_cellStage, "Cell stage world creation failed");
@@ -464,8 +465,9 @@ void
 
         LOG_INFO("ThriveGame: editorButtonClicked: Creating new microbe editor "
                  "world");
-        m_impl->m_microbeEditor = std::dynamic_pointer_cast<MicrobeEditorWorld>(
-            engine->CreateWorld(window1));
+        m_impl->m_microbeEditor =
+            std::dynamic_pointer_cast<MicrobeEditorWorld>(engine->CreateWorld(
+                window1, static_cast<int>(THRIVE_WORLD_TYPE::MICROBE_EDITOR)));
     }
 
     LEVIATHAN_ASSERT(
@@ -516,7 +518,54 @@ void
 
         LOG_ERROR(
             "Failed to run editor setup function: " + setup.Entryfunction);
-        MarkAsClosing();
+        return;
+    }
+}
+
+void
+    ThriveGame::finishEditingClicked()
+{
+    LOG_INFO("Finish editing pressed");
+
+    // Fire an event to switch over the GUI
+    Engine::Get()->GetEventHandler()->CallEvent(
+        new Leviathan::GenericEvent("MicrobeEditorExited"));
+
+    Leviathan::Engine* engine = Engine::GetEngine();
+    Leviathan::GraphicalInputEntity* window1 = engine->GetWindowEntity();
+
+    // Make the cell world to be back in the foreground
+    LEVIATHAN_ASSERT(m_impl->m_cellStage,
+        "Cell stage world not created before exiting the editor");
+
+    // This will automatically background the editor world
+    window1->LinkObjects(m_impl->m_cellStage);
+
+    // Set the right input handlers active //
+    m_impl->m_menuKeyPresses->setEnabled(false);
+    m_impl->m_cellStageKeys->setEnabled(true);
+
+    // TODO: editor hotkeys
+
+    // Run the post editing script
+
+    // Let the script do setup //
+    // This registers all the script defined systems to run and be
+    // available from the world
+    LEVIATHAN_ASSERT(
+        m_impl->m_MicrobeScripts, "microbe stage scripts not loaded");
+
+    LOG_INFO("Calling return from editor script, onReturnFromEditor");
+
+    ScriptRunningSetup setup("onReturnFromEditor");
+
+    auto result = m_impl->m_MicrobeScripts->ExecuteOnModule<void>(
+        setup, false, m_impl->m_cellStage.get());
+
+    if(result.Result != SCRIPT_RUN_RESULT::Success) {
+
+        LOG_ERROR("Failed to run return from editor function: " +
+                  setup.Entryfunction);
         return;
     }
 }
@@ -1841,6 +1890,11 @@ bool
 
     if(engine->RegisterObjectMethod("ThriveGame", "void editorButtonClicked()",
            asMETHOD(ThriveGame, editorButtonClicked), asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectMethod("ThriveGame", "void finishEditingClicked()",
+           asMETHOD(ThriveGame, finishEditingClicked), asCALL_THISCALL) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
     }
 

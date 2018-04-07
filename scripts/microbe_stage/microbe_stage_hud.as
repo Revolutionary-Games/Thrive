@@ -194,6 +194,31 @@ class MicrobeStageHudSystem : ScriptSystem{
     void CreateAndDestroyNodes(){
     }
 
+    //! This stops sound while the cell stage world isn't active
+    void Suspend(){
+        
+        LOG_INFO("Suspeding microbe stage background sounds");
+        
+        // Pause to allow resuming
+        if(ambientTrack !is null)
+            ambientTrack.Get().pause();
+        
+        if(ambienceSounds !is null)        
+            ambienceSounds.Get().pause();        
+    }
+
+    //! This resumes sound when the cell stage world is active again
+    void Resume(){
+
+        LOG_INFO("Resuming microbe stage background sounds");
+        
+        if(ambientTrack !is null)
+            ambientTrack.Get().play();
+        
+        if(ambienceSounds !is null)        
+            ambienceSounds.Get().play();
+    }
+
 
     void updateLoadButton(){
 

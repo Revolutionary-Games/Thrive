@@ -124,6 +124,13 @@ void applyCellMovementControl(GameWorld@ world, ObjectID entity, const Float3 &i
     }
 }
 
+void onReturnFromEditor(CellStageWorld@ world){
+
+    LOG_INFO("TODO: apply the changes and spawn a copy of the player species from "
+        "before the change");
+    
+}
+
 // TODO: also put these physics callback somewhere
 void cellHitFloatingOrganelle(GameWorld@ world, ObjectID firstEntity, ObjectID secondEntity){
 
