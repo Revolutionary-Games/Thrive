@@ -14,15 +14,12 @@
 #include "thrive_world_factory.h"
 
 #include <Addons/GameModule.h>
-#include <GUI/AlphaHitCache.h>
 #include <Handlers/ObjectLoader.h>
 #include <Networking/NetworkHandler.h>
 #include <Newton/PhysicsMaterialManager.h>
-#include <Rendering/GraphicalInputEntity.h>
+#include <Window.h>
 #include <Script/Bindings/BindHelpers.h>
 #include <Script/Bindings/StandardWorldBindHelper.h>
-
-#include <CEGUI/SchemeManager.h>
 
 #include <OgreManualObject.h>
 #include <OgreMesh2.h>
@@ -169,7 +166,7 @@ void
 
     LOG_INFO("New game started");
 
-    Leviathan::GraphicalInputEntity* window1 = engine->GetWindowEntity();
+    Leviathan::Window* window1 = engine->GetWindowEntity();
 
     // Create world if not already created //
     if(!m_impl->m_cellStage) {
@@ -453,7 +450,7 @@ void
         new Leviathan::GenericEvent("MicrobeEditorEntered"));
 
     Leviathan::Engine* engine = Engine::GetEngine();
-    Leviathan::GraphicalInputEntity* window1 = engine->GetWindowEntity();
+    Leviathan::Window* window1 = engine->GetWindowEntity();
 
     // Make the cell world be in the background
 
@@ -532,7 +529,7 @@ void
         new Leviathan::GenericEvent("MicrobeEditorExited"));
 
     Leviathan::Engine* engine = Engine::GetEngine();
-    Leviathan::GraphicalInputEntity* window1 = engine->GetWindowEntity();
+    Leviathan::Window* window1 = engine->GetWindowEntity();
 
     // Make the cell world to be back in the foreground
     LEVIATHAN_ASSERT(m_impl->m_cellStage,
@@ -673,10 +670,7 @@ void
         return;
     }
 
-    // Load the thrive gui theme //
-    Leviathan::GUI::GuiManager::LoadGUITheme("Thrive.scheme");
-
-    Leviathan::GraphicalInputEntity* window1 =
+    Leviathan::Window* window1 =
         Engine::GetEngine()->GetWindowEntity();
 
     // Register custom listener for detecting keypresses for skipping the intro
@@ -689,23 +683,18 @@ void
 
     Leviathan::GUI::GuiManager* GuiManagerAccess = window1->GetGui();
 
-    // Enable thrive mouse and tooltip style //
-    GuiManagerAccess->SetMouseTheme("ThriveGeneric/MouseArrow");
-    GuiManagerAccess->SetTooltipType("Thrive/Tooltip");
-
-    Leviathan::GUI::AlphaHitCache* cache = Leviathan::GUI::AlphaHitCache::Get();
-
-    // One image from each used alphahit texture should be
-    // loaded. Loading all from each set is probably only a tiny bit
-    // faster during gameplay so that it is not worth the effort here
-    cache->PreLoadImage("ThriveGeneric/MenuNormal");
-
-    if(!GuiManagerAccess->LoadGUIFile("./Data/Scripts/gui/thrive_menus.txt")) {
+    /*if(!GuiManagerAccess->LoadGUIFile("http://revolutionarygamesstudio.com/")) {
 
         LOG_ERROR("Thrive: failed to load the main menu gui, quitting");
         StartRelease();
         return;
-    }
+    }*/
+
+	// Start game immediately 
+	engine->Invoke([=]() {
+		LOG_INFO("Immediate start");
+		startNewGame();
+	});
 }
 
 //! \note This is called from a background thread
