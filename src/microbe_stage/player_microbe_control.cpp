@@ -8,7 +8,7 @@
 #include <Application/KeyConfiguration.h>
 #include <Entities/GameWorld.h>
 #include <Entities/ScriptComponentHolder.h>
-#include <Rendering/GraphicalInputEntity.h>
+#include <Window.h>
 
 #include <OgreRay.h>
 
@@ -27,7 +27,7 @@ bool
     PlayerMicrobeControl::ReceiveInput(int32_t key, int modifiers, bool down)
 {
     bool active = down && m_enabled;
-
+	
     if(handleMovementKeys(key, modifiers, active))
         return active;
 
@@ -226,7 +226,7 @@ Float3
 {
 
     float x, y;
-    Engine::Get()->GetWindowEntity()->GetWindow()->GetNormalizedRelativeMouse(
+    Engine::Get()->GetWindowEntity()->GetNormalizedRelativeMouse(
         x, y);
 
     const auto ray = worldWithCamera.CastRayFromCamera(x, y);

@@ -165,6 +165,8 @@ set(PROGRAMCHECKKEYCONFIGFUNCNAME	"ThriveGame::CheckGameKeyConfigVariables")
 set(WINDOWTITLEGENFUNCTION			"ThriveGame::GenerateWindowTitle()")
 set(USERREADABLEIDENTIFICATION		"\"Thrive game version \" GAME_VERSIONS")
 
+set(PROGRAMUSE_CUSTOMJS 0)
+
 # Configure main and thrive_version.h files
 StandardConfigureExecutableMainAndInclude("${BaseIncludeFileName}" "main.cpp"
   "${BaseSubFolder}" "${PROJECT_SOURCE_DIR}/${BaseSubFolder}")
