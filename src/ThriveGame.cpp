@@ -20,6 +20,7 @@
 #include <Window.h>
 #include <Script/Bindings/BindHelpers.h>
 #include <Script/Bindings/StandardWorldBindHelper.h>
+#include <GUI/GuiView.h>
 
 #include <OgreManualObject.h>
 #include <OgreMesh2.h>
@@ -184,6 +185,12 @@ void
     // Set the right input handlers active //
     m_impl->m_menuKeyPresses->setEnabled(false);
     m_impl->m_cellStageKeys->setEnabled(true);
+
+	// And switch the GUI mode to allow key presses through
+	Leviathan::GUI::View* view = window1->GetGui()->GetViewByIndex(0);
+	// Allow running without GUI
+	if(view)
+		view->SetInputMode(Leviathan::GUI::INPUT_MODE::Gameplay);
 
 
     // Clear world //
