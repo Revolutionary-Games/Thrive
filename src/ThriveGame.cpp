@@ -690,12 +690,12 @@ void
 
     Leviathan::GUI::GuiManager* GuiManagerAccess = window1->GetGui();
 
-    /*if(!GuiManagerAccess->LoadGUIFile("http://revolutionarygamesstudio.com/")) {
+    if(!GuiManagerAccess->LoadGUIFile("Data/Scripts/gui/thrive_gui.html")) {
 
         LOG_ERROR("Thrive: failed to load the main menu gui, quitting");
         StartRelease();
         return;
-    }*/
+    }
 
 	// Start game immediately 
 	engine->Invoke([=]() {
