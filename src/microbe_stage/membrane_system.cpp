@@ -382,7 +382,7 @@ void
 
     // Does this need to run 50*cellDimensions times. That seems to be
     // really high and probably causes some of the lag
-    for(int i = 0; i < 50 * cellDimensions; i++) {
+    for(int i = 0; i < 40 * cellDimensions; i++) {
         DrawMembrane();
     }
 
