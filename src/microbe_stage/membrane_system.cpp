@@ -193,7 +193,7 @@ void
     DrawMembrane();
 
     // 12 vertices added per index of vertices2D
-    const auto bufferSize = vertices2D.size() * 12;
+    const auto bufferSize = vertices2D.size() + 2;
 
     if(!m_vertexBuffer) {
 
@@ -246,7 +246,7 @@ void
         }
 
         Ogre::VertexArrayObject* vao = vaoManager->createVertexArrayObject(
-            vertexBuffers, indexBuffer, Ogre::OT_TRIANGLE_LIST);
+            vertexBuffers, indexBuffer, Ogre::OT_TRIANGLE_FAN);
 
         m_subMesh->mVao[Ogre::VpNormal].push_back(vao);
 
@@ -303,92 +303,22 @@ void
     float height = .1;
 
     size_t writeIndex = 0;
+	const Ogre::Vector2 center(0.5, 0.5);
+	meshVertices[writeIndex++] = { Ogre::Vector3(0, height / 2, 0), center };
 
-    for(size_t i = 0, end = vertices2D.size(); i < end; i++) {
+    for(size_t i = 0, end = vertices2D.size(); i < end + 1; i++) {
         // Finds the UV coordinates be projecting onto a plane and stretching to
         // fit a circle.
-        const float x = vertices2D[i].x;
-        const float y = vertices2D[i].y;
-        const float z = vertices2D[i].z;
 
-        const float ray = x * x + y * y + z * z;
-
-        const float t = Ogre::Math::Sqrt(ray) / (2.0 * ray);
-        const float a = t * x;
-        const float b = t * y;
-        // const float c = t*z;
-
-        const Ogre::Vector2 uv(a + 0.5, b + 0.5);
-
-        const Ogre::Vector2 center(0.5, 0.5);
         const double currentRadians = 2.0 * 3.1416 * i / end;
-        const double nextRadians = 2.0 * 3.1416 * (i + 1) / end;
-
-        // y and z coordinates are swapped to match the Ogre up direction
-
-        // Bottom (or top?) half first triangle
-        meshVertices[writeIndex++] = {Ogre::Vector3(0, 0, 0), uv};
 
         meshVertices[writeIndex++] = {
-            Ogre::Vector3(vertices2D[(i + 1) % end].x,
-                vertices2D[(i + 1) % end].z - height / 2,
-                vertices2D[(i + 1) % end].y),
-            uv};
-
-        meshVertices[writeIndex++] = {
-            Ogre::Vector3(vertices2D[i % end].x,
-                vertices2D[i % end].z - height / 2, vertices2D[i % end].y),
-            uv};
-
-        // Second triangle
-        meshVertices[writeIndex++] = {
-            Ogre::Vector3(vertices2D[i % end].x,
-                vertices2D[i % end].z + height / 2, vertices2D[i % end].y),
-        };
-
-        meshVertices[writeIndex++] = {
-            Ogre::Vector3(vertices2D[(i + 1) % end].x,
-                vertices2D[(i + 1) % end].z + height / 2,
-                vertices2D[(i + 1) % end].y),
-            uv};
-
-        meshVertices[writeIndex++] = {
-            Ogre::Vector3(vertices2D[(i + 1) % end].x,
-                vertices2D[(i + 1) % end].z - height / 2,
-                vertices2D[(i + 1) % end].y),
-            uv};
-
-        // This was originally a second loop
-        // Top half first triangle
-        // This seems to be the only one that is actually drawn to the screen,
-        // at least with the current test membrane.
-        meshVertices[writeIndex++] = {
-            Ogre::Vector3(vertices2D[i % end].x,
-                vertices2D[i % end].z + height / 2, vertices2D[i % end].y),
+            Ogre::Vector3(
+				vertices2D[i % end].x,
+                vertices2D[i % end].z + height / 2,
+				vertices2D[i % end].y),
             center +
                 Ogre::Vector2(cos(currentRadians), sin(currentRadians)) / 2};
-
-        meshVertices[writeIndex++] = {Ogre::Vector3(0, height / 2, 0), center};
-
-        meshVertices[writeIndex++] = {
-            Ogre::Vector3(vertices2D[(i + 1) % end].x,
-                vertices2D[(i + 1) % end].z + height / 2,
-                vertices2D[(i + 1) % end].y),
-            center + Ogre::Vector2(cos(nextRadians), sin(nextRadians)) / 2};
-
-        // Second triangle
-        meshVertices[writeIndex++] = {
-            Ogre::Vector3(vertices2D[i % end].x,
-                vertices2D[i % end].z - height / 2, vertices2D[i % end].y),
-            uv};
-
-        meshVertices[writeIndex++] = {
-            Ogre::Vector3(vertices2D[(i + 1) % end].x,
-                vertices2D[(i + 1) % end].z - height / 2,
-                vertices2D[(i + 1) % end].y),
-            uv};
-
-        meshVertices[writeIndex++] = {Ogre::Vector3(0, -height / 2, 0), uv};
     }
 
     // LOG_INFO("Write index is: " + std::to_string(writeIndex) + ", buffer
@@ -429,23 +359,25 @@ void
         }
     }
 
-    for(int i = 0; i < membraneResolution; i++) {
+	for (int i = membraneResolution; i > 0; i--) {
+		vertices2D.emplace_back(
+			-cellDimensions,
+			cellDimensions - 2 * cellDimensions / membraneResolution * i, 0);
+	}
+	for (int i = membraneResolution; i > 0; i--) {
+		vertices2D.emplace_back(
+			cellDimensions - 2 * cellDimensions / membraneResolution * i,
+			cellDimensions, 0);
+	}
+	for (int i = membraneResolution; i > 0; i--) {
+		vertices2D.emplace_back(
+			cellDimensions,
+			-cellDimensions + 2 * cellDimensions / membraneResolution * i, 0);
+	}
+    for(int i = membraneResolution; i > 0; i--) {
         vertices2D.emplace_back(
             -cellDimensions + 2 * cellDimensions / membraneResolution * i,
             -cellDimensions, 0);
-    }
-    for(int i = 0; i < membraneResolution; i++) {
-        vertices2D.emplace_back(cellDimensions,
-            -cellDimensions + 2 * cellDimensions / membraneResolution * i, 0);
-    }
-    for(int i = 0; i < membraneResolution; i++) {
-        vertices2D.emplace_back(
-            cellDimensions - 2 * cellDimensions / membraneResolution * i,
-            cellDimensions, 0);
-    }
-    for(int i = 0; i < membraneResolution; i++) {
-        vertices2D.emplace_back(-cellDimensions,
-            cellDimensions - 2 * cellDimensions / membraneResolution * i, 0);
     }
 
     // Does this need to run 50*cellDimensions times. That seems to be
