@@ -1,12 +1,38 @@
 <!DOCTYPE html>
 <html>
-  <meta charset="UTF-8">
-  <title>Thrive GUI</title>
-  <meta name="description" content="The HTML file with all the thrive GUI stuff in it">
-
-  <link rel="stylesheet" href="thrive_style.css">
-</head>
-<body>
-  <h1>This is a really cool GUI</h1>
-</body>
+  <head>
+    <meta charset="UTF-8">
+    <title>Thrive GUI</title>
+    <meta name="description" content="The HTML file with all the thrive GUI stuff in it">
+    
+    <link rel="stylesheet" href="thrive_style.css">
+    <script src="gui_common.js"></script>
+    <script src="main_menu.js"></script>
+  </head>
+  <body>
+    
+    <script>
+      // Document.onload doesn't work here
+      window.onload = function(){
+          // Run setups from the individual scripts
+          runMenuSetup();
+          if(!isInEngine()){
+              console.log("GUI is not inside Thrive process");
+          }
+      }
+    </script>
+    
+    <!-- Main menu GUI -->
+    <div id="Menus" class="MenuContainer">
+      <div id="mainMenu" class="MainMenu">
+        <div class="MenuButton">New Game</div>
+        <div class="MenuButton">Load Game</div>
+        <div class="MenuButton">Options</div>
+        <div class="MenuButton DisabledButton">Tools</div>
+        <div class="MenuButton DisabledButton">Extras</div>
+        <div class="MenuButton DisabledButton">Credits</div>
+        <div class="MenuButton" id="quitButton">Exit</div>
+      </div>
+    </div>
+  </body>
 </html>

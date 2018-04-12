@@ -156,6 +156,29 @@ Dir.chdir(ProjectDir) do
 
 end
 
+# Symlink the textures and fonts from assets to make local previewing of the GUI easier
+if OS.windows?
+  # These need to run in cmd as admin, for some reason
+  info "Creating junctions for assets to be referenced from gui " +
+       "html without running cmake every time"
+  runSystemSafe "cmd", "/c", "mklink", "/J",
+                convertPathToWindows(File.join(ProjectDir, "Textures")),
+                convertPathToWindows(File.join(ProjectDir, "assets", "textures"))
+  runSystemSafe "cmd", "/c", "mklink", "/J",
+                convertPathToWindows(File.join(ProjectDir, "Fonts")),
+                convertPathToWindows(File.join(ProjectDir, "assets", "fonts"))
+else
+  if !File.exists? File.join(ProjectDir, "Textures")
+    FileUtils.ln_sf File.join(ProjectDir, "assets", "textures"),
+                    File.join(ProjectDir, "Textures")
+  end
+
+  if !File.exists? File.join(ProjectDir, "Fonts")
+    FileUtils.ln_sf File.join(ProjectDir, "assets", "fonts"),
+                    File.join(ProjectDir, "Fonts")
+  end
+end
+
 success "Thrive folder and assets are good to go"
 
 

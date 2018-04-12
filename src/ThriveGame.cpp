@@ -14,13 +14,14 @@
 #include "thrive_world_factory.h"
 
 #include <Addons/GameModule.h>
+#include <GUI/GuiView.h>
 #include <Handlers/ObjectLoader.h>
 #include <Networking/NetworkHandler.h>
 #include <Newton/PhysicsMaterialManager.h>
-#include <Window.h>
+#include <Rendering/GeometryHelpers.h>
 #include <Script/Bindings/BindHelpers.h>
 #include <Script/Bindings/StandardWorldBindHelper.h>
-#include <GUI/GuiView.h>
+#include <Window.h>
 
 #include <OgreManualObject.h>
 #include <OgreMesh2.h>
@@ -186,11 +187,11 @@ void
     m_impl->m_menuKeyPresses->setEnabled(false);
     m_impl->m_cellStageKeys->setEnabled(true);
 
-	// And switch the GUI mode to allow key presses through
-	Leviathan::GUI::View* view = window1->GetGui()->GetViewByIndex(0);
-	// Allow running without GUI
-	if(view)
-		view->SetInputMode(Leviathan::GUI::INPUT_MODE::Gameplay);
+    // And switch the GUI mode to allow key presses through
+    Leviathan::GUI::View* view = window1->GetGui()->GetViewByIndex(0);
+    // Allow running without GUI
+    if(view)
+        view->SetInputMode(Leviathan::GUI::INPUT_MODE::Gameplay);
 
 
     // Clear world //
@@ -273,62 +274,11 @@ void
 
     // This needs to be manually destroyed later
     m_impl->m_microbeBackgroundMesh =
-        Ogre::MeshManager::getSingleton().createManual("CellStage_background",
-            Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
+        Leviathan::GeometryHelpers::CreateScreenSpaceQuad(
+            "CellStage_background", -1, -1, 2, 2);
 
     m_impl->m_microbeBackgroundSubMesh =
-        m_impl->m_microbeBackgroundMesh->createSubMesh();
-
-    Ogre::RenderSystem* renderSystem =
-        Ogre::Root::getSingleton().getRenderSystem();
-    Ogre::VaoManager* vaoManager = renderSystem->getVaoManager();
-
-    Ogre::VertexElement2Vec vertexElements;
-    vertexElements.push_back(
-        Ogre::VertexElement2(Ogre::VET_FLOAT3, Ogre::VES_POSITION));
-    vertexElements.push_back(
-        Ogre::VertexElement2(Ogre::VET_FLOAT2, Ogre::VES_TEXTURE_COORDINATES));
-
-    // This is a fullscreen quad in screenspace (so no transform matrix is used)
-    float vertexData[] = {// First vertex
-        -1, -1, 0, 0, 0,
-        // Second
-        1, -1, 0, 1, 0,
-        // Third
-        1, 1, 0, 1, 1,
-        // Fourth
-        -1, 1, 0, 0, 1};
-
-    Ogre::VertexBufferPacked* vertexBuffer = vaoManager->createVertexBuffer(
-        vertexElements, 4, Ogre::BT_IMMUTABLE, &vertexData, false);
-
-    Ogre::VertexBufferPackedVec vertexBuffers;
-    vertexBuffers.push_back(vertexBuffer);
-
-    // 1 to 1 index buffer mapping
-    Ogre::uint16 indices[] = {3, 0, 1, 1, 2, 3};
-
-    // TODO: check if this is needed (when a 1 to 1 vertex and index mapping is
-    // used)
-    Ogre::IndexBufferPacked* indexBuffer =
-        vaoManager->createIndexBuffer(Ogre::IndexBufferPacked::IT_16BIT, 6,
-            Ogre::BT_IMMUTABLE, &indices, false);
-
-    Ogre::VertexArrayObject* vao = vaoManager->createVertexArrayObject(
-        vertexBuffers, indexBuffer, Ogre::OT_TRIANGLE_LIST);
-
-    m_impl->m_microbeBackgroundSubMesh->mVao[Ogre::VpNormal].push_back(vao);
-
-    // This might be needed because we use a v2 mesh
-    // Use the same geometry for shadow casting.
-    // Because the material disables shadows this isn't needed
-    // m_impl->m_microbeBackgroundSubMesh->mVao[Ogre::VpShadow].push_back( vao
-    // );
-
-    // Set the bounds to get frustum culling and LOD to work correctly.
-    // To infinite to always render
-    m_impl->m_microbeBackgroundMesh->_setBounds(
-        Ogre::Aabb::BOX_INFINITE /*, false*/);
+        m_impl->m_microbeBackgroundMesh->getSubMesh(0);
 
     m_impl->m_microbeBackgroundSubMesh->setMaterialName("Background");
 
@@ -677,8 +627,7 @@ void
         return;
     }
 
-    Leviathan::Window* window1 =
-        Engine::GetEngine()->GetWindowEntity();
+    Leviathan::Window* window1 = Engine::GetEngine()->GetWindowEntity();
 
     // Register custom listener for detecting keypresses for skipping the intro
     // video
@@ -697,11 +646,11 @@ void
         return;
     }
 
-	// Start game immediately 
-	engine->Invoke([=]() {
-		LOG_INFO("Immediate start");
-		startNewGame();
-	});
+    // Start game immediately
+    engine->Invoke([=]() {
+        LOG_INFO("Immediate start");
+        startNewGame();
+    });
 }
 
 //! \note This is called from a background thread
