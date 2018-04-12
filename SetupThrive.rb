@@ -168,10 +168,15 @@ if OS.windows?
                 convertPathToWindows(File.join(ProjectDir, "Fonts")),
                 convertPathToWindows(File.join(ProjectDir, "assets", "fonts"))
 else
-  FileUtils.ln_sf File.join(ProjectDir, "assets", "textures"),
-                  File.join(ProjectDir, "Textures")
-  FileUtils.ln_sf File.join(ProjectDir, "assets", "fonts"),
-                  File.join(ProjectDir, "Fonts")
+  if !File.exists? File.join(ProjectDir, "Textures")
+    FileUtils.ln_sf File.join(ProjectDir, "assets", "textures"),
+                    File.join(ProjectDir, "Textures")
+  end
+
+  if !File.exists? File.join(ProjectDir, "Fonts")
+    FileUtils.ln_sf File.join(ProjectDir, "assets", "fonts"),
+                    File.join(ProjectDir, "Fonts")
+  end
 end
 
 success "Thrive folder and assets are good to go"
