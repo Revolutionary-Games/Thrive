@@ -724,7 +724,7 @@ ObjectID spawnMicrobe(CellStageWorld@ world, Float3 pos, const string &in specie
 }
 
 ObjectID spawnBacteria(CellStageWorld@ world, Float3 pos, const string &in speciesName,
-    bool aiControlled, const string &in individualName
+    bool aiControlled, const string &in individualName, bool partOfColony
 ) {
     assert(world !is null);
     assert(speciesName != "");
@@ -765,9 +765,11 @@ ObjectID spawnBacteria(CellStageWorld@ world, Float3 pos, const string &in speci
 	//bacteria get scaled to half size
     node.Scale = Float3(0.5, 0.5, 0.5);
     node.Marked = true;
-    //need to set bacteria spawn and it needs to be squared like it is in the spawn system. code
-	world.Create_SpawnedComponent(microbeEntity,BACTERIA_SPAWN_RADIUS*BACTERIA_SPAWN_RADIUS);
-	
+    //need to set bacteria spawn and it needs to be squared like it is in the spawn system. code, if part of colony but not directly spawned give a spawned component
+	if (partOfColony)
+		{
+		world.Create_SpawnedComponent(microbeEntity,BACTERIA_SPAWN_RADIUS*BACTERIA_SPAWN_RADIUS);
+		}
 	//stuff
 	LOG_WARNING("spawning bacterium radius "+ BACTERIA_SPAWN_RADIUS);
     return microbeEntity;

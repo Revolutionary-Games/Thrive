@@ -160,7 +160,7 @@ class Species{
 		//clump
 		for(int i = 0; i < GetEngine().GetRandom().GetNumber(1,5); ++i){
 			//dont spawn them on top of each other  because it causes them to bounce around and lag
-			MicrobeOperations::spawnBacteria(world, pos+curSpawn, this.name,true,"");
+			MicrobeOperations::spawnBacteria(world, pos+curSpawn, this.name,true,"",true);
 			curSpawn = curSpawn + Float3(GetEngine().GetRandom().GetNumber(-10,10),0,GetEngine().GetRandom().GetNumber(-10,10));
 			}
 		}
@@ -169,11 +169,11 @@ class Species{
 		//line
 		for(int i = 0; i < GetEngine().GetRandom().GetNumber(1,5); ++i){
 			//dont spawn them on top of each other  because it causes them to bounce around and lag
-			MicrobeOperations::spawnBacteria(world, pos+curSpawn, this.name,true,"");
+			MicrobeOperations::spawnBacteria(world, pos+curSpawn, this.name,true,"",true);
 			curSpawn = curSpawn + Float3(GetEngine().GetRandom().GetNumber(1,10),0,GetEngine().GetRandom().GetNumber(1,10));
 			}
 		}
-        return MicrobeOperations::spawnMicrobe(world, pos, this.name,true,"");
+        return MicrobeOperations::spawnBacteria(world, pos, this.name,true,"",false);
 		
     }
     
