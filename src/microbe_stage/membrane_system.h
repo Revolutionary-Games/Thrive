@@ -59,7 +59,7 @@ public:
 
     // Creates the 2D points in the membrane by looking at the positions of the
     // organelles.
-    void
+    virtual void
         DrawMembrane();
 
     // Sees if the given point is inside the membrane.
@@ -117,53 +117,58 @@ public:
 
 protected:
     //! Called on first Update
-    void
-        Initialize();
+    void Initialize();
 
     //! So it seems that the membrane should be generated just once when the
     //! geometry is changed so when this is true Update does nothing
     bool isInitialized = false;
+	// Stores the positions of the organelles.
+	std::vector<Ogre::Vector3> organellePositions;
 
+	// The colour of the membrane.
+	// still broken
+	Ogre::ColourValue colour;
+
+	// The length in pixels of a side of the square that bounds the membrane.
+	// Half the side length of the original square that is compressed to make
+	// the membrane.
+	int cellDimensions = 10;
+	// Amount of segments on one side of the above described square.
+	// The amount of points on the side of the membrane.
+	int membraneResolution = 10;
+	// Stores the generated 2-Dimensional membrane.
+	std::vector<Ogre::Vector3> vertices2D;
+
+	// Ogre renderable that holds the mesh
+	Ogre::MeshPtr m_mesh;
+	// The submesh that actually holds our vertex and index buffers
+	Ogre::SubMesh* m_subMesh = nullptr;
+
+	//! Actual object that is attached to a scenenode
+	Ogre::Item* m_item = nullptr;
+
+	Ogre::VertexBufferPacked* m_vertexBuffer = nullptr;
+
+	//! A material created from the base material that can be colored
+	//! \todo It would be better to share this between all cells of a species
+	Ogre::MaterialPtr coloredMaterial;
+	// Ogre::MaterialPtr speciesMaterial;
+
+	static std::atomic<int> membraneNumber;
+
+	// The amount of compounds stored in the membrane.
+	int compoundAmount = 0;
 private:
-    // Stores the positions of the organelles.
-    std::vector<Ogre::Vector3> organellePositions;
-
-    // The colour of the membrane.
-    // still broken
-    Ogre::ColourValue colour;
-
-    // The length in pixels of a side of the square that bounds the membrane.
-    // Half the side length of the original square that is compressed to make
-    // the membrane.
-    int cellDimensions = 10;
-    // Amount of segments on one side of the above described square.
-    // The amount of points on the side of the membrane.
-    int membraneResolution = 10;
-    // Stores the generated 2-Dimensional membrane.
-    std::vector<Ogre::Vector3> vertices2D;
-
-    // Ogre renderable that holds the mesh
-    Ogre::MeshPtr m_mesh;
-    // The submesh that actually holds our vertex and index buffers
-    Ogre::SubMesh* m_subMesh = nullptr;
-
-    //! Actual object that is attached to a scenenode
-    Ogre::Item* m_item = nullptr;
-
-    Ogre::VertexBufferPacked* m_vertexBuffer = nullptr;
-
-    //! A material created from the base material that can be colored
-    //! \todo It would be better to share this between all cells of a species
-    Ogre::MaterialPtr coloredMaterial;
-    // Ogre::MaterialPtr speciesMaterial;
-
-    static std::atomic<int> membraneNumber;
-
-    // The amount of compounds stored in the membrane.
-    int compoundAmount = 0;
 };
 
-
+class CellWallComponent : public MembraneComponent {
+	public:
+    CellWallComponent();
+	~CellWallComponent();
+	void DrawMembrane();
+	protected:
+    private:
+};
 
 /**
  * @brief Handles entities with MembraneComponent
