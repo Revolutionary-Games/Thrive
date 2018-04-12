@@ -18,6 +18,8 @@ const auto MUTATION_CREATION_RATE = 0.1f;
 const auto MUTATION_DELETION_RATE = 0.1f;
 
 const auto MICROBE_SPAWN_RADIUS = 85;
+//bacteria get massively extra radius so they can spawn in proper colonies and act as landmarks
+const auto BACTERIA_SPAWN_RADIUS = 185;
 
 const auto PLAYER_NAME = "Player";
 

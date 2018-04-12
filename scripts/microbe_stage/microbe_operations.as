@@ -723,6 +723,55 @@ ObjectID spawnMicrobe(CellStageWorld@ world, Float3 pos, const string &in specie
     return microbeEntity;
 }
 
+ObjectID spawnBacteria(CellStageWorld@ world, Float3 pos, const string &in speciesName,
+    bool aiControlled, const string &in individualName
+) {
+    assert(world !is null);
+    assert(speciesName != "");
+
+    if(pos.Y != 0)
+        LOG_WARNING("spawnBacteria: spawning at y-coordinate: " + pos.Y);
+
+    auto processor = getProcessorComponent(world, speciesName);
+
+    if(processor is null){
+
+        LOG_ERROR("Skipping microbe spawn because species '" + speciesName +
+            "' doesn't have a processor component");
+        
+        return NULL_OBJECT;
+    }
+    
+    auto microbeEntity = _createMicrobeEntity(world, individualName, aiControlled, speciesName,
+        // in_editor
+        false);
+    
+    // Teleport the cell to the right position
+    auto microbePos = world.GetComponent_Position(microbeEntity);
+    microbePos._Position = pos;
+    microbePos.Marked = true;
+    
+    auto physics = world.GetComponent_Physics(microbeEntity);
+    physics.JumpTo(microbePos);
+
+    // Try setting the position immediately as well (as otherwise it
+    // takes until the next tick for this to take effect)
+    auto node = world.GetComponent_RenderNode(microbeEntity);
+    node.Node.setPosition(pos);
+
+	auto speciesEntity = findSpeciesEntityByName(world, speciesName);
+    auto species = world.GetComponent_SpeciesComponent(speciesEntity);
+	
+	//bacteria get scaled to half size
+    node.Scale = Float3(0.5, 0.5, 0.5);
+    node.Marked = true;
+    //need to set bacteria spawn and it needs to be squared like it is in the spawn system. code
+	world.Create_SpawnedComponent(microbeEntity,BACTERIA_SPAWN_RADIUS*BACTERIA_SPAWN_RADIUS);
+	
+	//stuff
+	LOG_WARNING("spawning bacterium radius "+ BACTERIA_SPAWN_RADIUS);
+    return microbeEntity;
+}
 // Creates a new microbe with all required components. Use spawnMicrobe from other
 // code instead of this function
 //
