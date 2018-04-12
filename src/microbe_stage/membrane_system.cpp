@@ -633,7 +633,7 @@ CellWallComponent::DrawMembrane()
 		Ogre::Vector3 closestOrganelle = FindClosestOrganelles(vertices2D[i]);
 		if (closestOrganelle == Ogre::Vector3(0, 0, -1)) {
 			newPositions[i] =
-				(vertices2D[(end + i - 1) % end] + vertices2D[(i + 1) % end]) / 2;
+				(vertices2D[(end + i - 1) % end] + vertices2D[(i + 1) % end]) /2;
 		}
 		else {
 			Ogre::Vector3 movementDirection =

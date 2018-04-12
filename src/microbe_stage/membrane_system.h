@@ -29,7 +29,7 @@ class MembraneComponent : public Leviathan::Component {
 
 public:
     MembraneComponent();
-    ~MembraneComponent();
+	virtual ~MembraneComponent();
 
     void
         Release(Ogre::SceneManager* scene);
