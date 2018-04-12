@@ -12,6 +12,7 @@
   <body>
     
     <script>
+      // Document.onload doesn't work here
       window.onload = function(){
           // Run setups from the individual scripts
           runMenuSetup();
@@ -30,7 +31,7 @@
         <div class="MenuButton DisabledButton">Tools</div>
         <div class="MenuButton DisabledButton">Extras</div>
         <div class="MenuButton DisabledButton">Credits</div>
-        <div class="MenuButton">Exit</div>
+        <div class="MenuButton" id="quitButton">Exit</div>
       </div>
     </div>
   </body>

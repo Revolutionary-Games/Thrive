@@ -5,3 +5,11 @@
 function isInEngine(){
     return typeof Leviathan === 'object' && Leviathan !== null;
 }
+
+//! Shows an alert if isInEngine is false
+function requireEngine(msg){
+    if(!isInEngine()){
+
+        alert("This method only works inside Thrive, msg: " + msg);
+    }
+}
