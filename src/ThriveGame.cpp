@@ -14,14 +14,14 @@
 #include "thrive_world_factory.h"
 
 #include <Addons/GameModule.h>
-#include <GUI/AlphaHitCache.h>
+#include <GUI/GuiView.h>
 #include <Handlers/ObjectLoader.h>
 #include <Networking/NetworkHandler.h>
 #include <Newton/PhysicsMaterialManager.h>
-#include <Window.h>
+#include <Rendering/GeometryHelpers.h>
 #include <Script/Bindings/BindHelpers.h>
 #include <Script/Bindings/StandardWorldBindHelper.h>
-#include <GUI/GuiView.h>
+#include <Window.h>
 
 #include <OgreManualObject.h>
 #include <OgreMesh2.h>
@@ -187,11 +187,11 @@ void
     m_impl->m_menuKeyPresses->setEnabled(false);
     m_impl->m_cellStageKeys->setEnabled(true);
 
-	// And switch the GUI mode to allow key presses through
-	Leviathan::GUI::View* view = window1->GetGui()->GetViewByIndex(0);
-	// Allow running without GUI
-	if(view)
-		view->SetInputMode(Leviathan::GUI::INPUT_MODE::Gameplay);
+    // And switch the GUI mode to allow key presses through
+    Leviathan::GUI::View* view = window1->GetGui()->GetViewByIndex(0);
+    // Allow running without GUI
+    if(view)
+        view->SetInputMode(Leviathan::GUI::INPUT_MODE::Gameplay);
 
 
     // Clear world //
@@ -627,8 +627,7 @@ void
         return;
     }
 
-    Leviathan::Window* window1 =
-        Engine::GetEngine()->GetWindowEntity();
+    Leviathan::Window* window1 = Engine::GetEngine()->GetWindowEntity();
 
     // Register custom listener for detecting keypresses for skipping the intro
     // video
@@ -647,11 +646,11 @@ void
         return;
     }
 
-	//// Start game immediately 
-	//engine->Invoke([=]() {
-	//	LOG_INFO("Immediate start");
-	//	startNewGame();
-	//});
+    // Start game immediately
+    engine->Invoke([=]() {
+        LOG_INFO("Immediate start");
+        startNewGame();
+    });
 }
 
 //! \note This is called from a background thread
