@@ -62,7 +62,7 @@ button{
     width: auto;
 }
 
-.menuButton {
+.MenuButton {
     /*position: relative;*/
     /*left:50%;*/
     /*top:50vh;*/
@@ -77,9 +77,19 @@ button{
     line-height: 40px;
 }
 
-.menuButton:hover {
+.DisabledButton {
+
+    background-color: rgb(0, 80, 80, 0.32);
+}
+
+.MenuButton:hover {
 	background-color: rgb(0, 125, 125, 0.8);
 }
+
+.DisabledButton:hover {
+    background-color: rgb(0, 80, 80, 0.32);
+}
+
 
 /* tjwhale's sample
 
