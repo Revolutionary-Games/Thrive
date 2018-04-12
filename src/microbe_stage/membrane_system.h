@@ -107,7 +107,7 @@ public:
 
     // Decides where the point needs to move based on the position of the
     // closest organelle.
-    Ogre::Vector3
+    virtual Ogre::Vector3
         GetMovement(Ogre::Vector3 target, Ogre::Vector3 closestOrganelle);
 
     REFERENCE_HANDLE_UNCOUNTED_TYPE(MembraneComponent);
@@ -166,6 +166,8 @@ class CellWallComponent : public MembraneComponent {
     CellWallComponent();
 	~CellWallComponent();
 	void DrawMembrane();
+	virtual Ogre::Vector3
+		GetMovement(Ogre::Vector3 target, Ogre::Vector3 closestOrganelle);
 	protected:
     private:
 };

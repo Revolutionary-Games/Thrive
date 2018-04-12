@@ -621,6 +621,17 @@ CellWallComponent::CellWallComponent() : MembraneComponent()
 CellWallComponent::~CellWallComponent()
 {}
 
+
+//this is where the magic happens i think
+Ogre::Vector3
+CellWallComponent::GetMovement(Ogre::Vector3 target,
+	Ogre::Vector3 closestOrganelle)
+{
+	double power = pow(2.7, (-target.distance(closestOrganelle)) / 10) / 50;
+
+	return (Ogre::Vector3(closestOrganelle) - Ogre::Vector3(target)) * power;
+}
+
 void
 CellWallComponent::DrawMembrane()
 {
