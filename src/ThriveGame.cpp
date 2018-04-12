@@ -697,11 +697,11 @@ void
         return;
     }
 
-	// Start game immediately 
-	engine->Invoke([=]() {
-		LOG_INFO("Immediate start");
-		startNewGame();
-	});
+	//// Start game immediately 
+	//engine->Invoke([=]() {
+	//	LOG_INFO("Immediate start");
+	//	startNewGame();
+	//});
 }
 
 //! \note This is called from a background thread
