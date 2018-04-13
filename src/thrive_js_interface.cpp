@@ -1,0 +1,82 @@
+// ------------------------------------ //
+#include "thrive_js_interface.h"
+
+#include "thrive_version.h"
+
+using namespace thrive;
+// ------------------------------------ //
+ThriveJSInterface::ThriveJSInterface() {}
+
+ThriveJSInterface::~ThriveJSInterface() {}
+// ------------------------------------ //
+#define JS_ACCESSCHECKPTR(x, y)           \
+    if(y->_VerifyJSAccess(x, callback)) { \
+        return true;                      \
+    }
+// ------------------------------------ //
+bool
+    ThriveJSInterface::ProcessQuery(
+        Leviathan::GUI::LeviathanJavaScriptAsync* caller,
+        const CefString& request,
+        int64 queryid,
+        bool persists,
+        CefRefPtr<Callback>& callback)
+{
+    // Do whatever to handle this //
+    if(request == "thriveVersion") {
+        // Check rights //
+        JS_ACCESSCHECKPTR(
+            Leviathan::GUI::VIEW_SECURITYLEVEL_ACCESS_ALL, caller);
+
+        // Return the result //
+        callback->Success(Thrive_VERSIONS);
+        return true;
+    }
+
+    // Not handled //
+    return false;
+}
+
+void
+    ThriveJSInterface::CancelQuery(
+        Leviathan::GUI::LeviathanJavaScriptAsync* caller,
+        int64 queryid)
+{
+    // Remove the query matching caller and queryid //
+}
+// ------------------------------------ //
+void
+    ThriveJSInterface::CancelAllMine(
+        Leviathan::GUI::LeviathanJavaScriptAsync* me)
+{
+    // Remove all stored queries matching me and any id //
+}
+// ------------------------------------ //
+
+
+// ------------------------------------ //
+// ThriveJSHandler
+ThriveJSHandler::ThriveJSHandler(Leviathan::GUI::CefApplication* owner) :
+    Owner(owner)
+{
+}
+
+ThriveJSHandler::~ThriveJSHandler() {}
+// ------------------------------------ //
+bool
+    ThriveJSHandler::Execute(const CefString& name,
+        CefRefPtr<CefV8Value> object,
+        const CefV8ValueList& arguments,
+        CefRefPtr<CefV8Value>& retval,
+        CefString& exception)
+{
+    exception = "Invalid arguments passed, expected: stuff";
+    return true;
+}
+// ------------------------------------ //
+// Factory
+CefRefPtr<CefV8Handler>
+    thrive::makeThriveJSHandler(Leviathan::GUI::CefApplication* application)
+{
+    return new ThriveJSHandler(application);
+}

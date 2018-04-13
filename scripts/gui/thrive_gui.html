@@ -21,9 +21,15 @@
           }
       }
     </script>
-    
-    <!-- Main menu GUI -->
+
+    <!-- All the menus for easy disabling -->
     <div id="Menus" class="MenuContainer">
+      <div class="BackgroundPlanet"
+           style="position: absolute; top: 0px; z-index: -2; width: 300px; height: 300px;"></div>
+      <div class="Logo"
+           style="position: absolute; top: 65px; z-index: -1;"></div>
+      
+      <!-- Main menu GUI -->
       <div id="mainMenu" class="MainMenu">
         <div class="MenuButton">New Game</div>
         <div class="MenuButton">Load Game</div>
@@ -33,6 +39,10 @@
         <div class="MenuButton DisabledButton">Credits</div>
         <div class="MenuButton" id="quitButton">Exit</div>
       </div>
+
+      <span id="versionNumber" style="position: absolute; right: 0px; bottom: 0px;">
+        Not set
+      </span>
     </div>
   </body>
 </html>
