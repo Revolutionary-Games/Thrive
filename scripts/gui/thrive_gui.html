@@ -23,7 +23,8 @@
     </script>
 
     <!-- All the menus for easy disabling -->
-    <div id="Menus" class="MenuContainer">
+    <div id="topLevelMenuContainer" class="MenuContainer">
+      <div class="BackgroundStars"></div>
       <div class="BackgroundPlanet"
            style="position: absolute; top: 0px; z-index: -2; width: 300px; height: 300px;"></div>
       <div class="Logo"
@@ -31,9 +32,9 @@
       
       <!-- Main menu GUI -->
       <div id="mainMenu" class="MainMenu">
-        <div class="MenuButton">New Game</div>
-        <div class="MenuButton">Load Game</div>
-        <div class="MenuButton">Options</div>
+        <div class="MenuButton" id="newGameButton">New Game</div>
+        <div class="MenuButton DisabledButton">Load Game</div>
+        <div class="MenuButton DisabledButton">Options</div>
         <div class="MenuButton DisabledButton">Tools</div>
         <div class="MenuButton DisabledButton">Extras</div>
         <div class="MenuButton DisabledButton">Credits</div>
