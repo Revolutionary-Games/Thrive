@@ -6,7 +6,6 @@
 #include "generated/cell_stage_world.h"
 #include "generated/microbe_editor_world.h"
 #include "main_menu_keypresses.h"
-#include "microbe_stage/biome_controller.h"
 #include "microbe_stage/player_microbe_control.h"
 #include "microbe_stage/simulation_parameters.h"
 #include "thrive_net_handler.h"
@@ -1268,10 +1267,10 @@ bool
         ANGELSCRIPT_REGISTERFAIL;
     }
 
-	if (engine->RegisterObjectProperty("SpeciesComponent", "bool isBacteria",
-		asOFFSET(SpeciesComponent, isBacteria)) < 0) {
-		ANGELSCRIPT_REGISTERFAIL;
-	}
+    if(engine->RegisterObjectProperty("SpeciesComponent", "bool isBacteria",
+           asOFFSET(SpeciesComponent, isBacteria)) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
 
 
     // ------------------------------------ //

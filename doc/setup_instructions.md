@@ -55,11 +55,10 @@ cd Thrive
 
 To get the Thrive repository cloned.
 
-For devs working on engine changes: switch to the engine_refactor
-branch with `git checkout engine_refactor`. Or to another branch you
-want to work on. This keeps the main branch clean as other branches
-can be merged through pull requests on github which is the recommended
-way to get your code into Thrive.
+For devs working on new features: switch to a feature branch or create
+one. For example `git checkout fix_everything`. This keeps the main
+branch clean as other branches can be merged through pull requests on
+github which is the recommended way to get your code into Thrive.
 
 If you aren't on the team (have push access on github) create a fork
 on github and use the url of that instead of the one above.
