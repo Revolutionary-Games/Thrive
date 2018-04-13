@@ -106,6 +106,14 @@ set(GROUP_MICROBE
   "generated/microbe_editor_bindings.h"
   )
 
+add_custom_command(OUTPUT "${PROJECT_SOURCE_DIR}/src/generated/thrive_v8_extension.h"
+  COMMAND "${LEVIATHAN_SRC}/build/bin/FileGenerator" "V8EXT"
+  "\"${PROJECT_SOURCE_DIR}/src/thrive_v8_extension.js\"" 
+  "\"${PROJECT_SOURCE_DIR}/src/generated/thrive_v8_extension.h\""
+  "thrive"
+  DEPENDS "${PROJECT_SOURCE_DIR}/src/thrive_v8_extension.js"
+  )
+
 # Menu things
 set(GROUP_MENU
   "main_menu_keypresses.cpp"
@@ -161,7 +169,13 @@ set(PROGRAMCHECKKEYCONFIGFUNCNAME	"ThriveGame::CheckGameKeyConfigVariables")
 set(WINDOWTITLEGENFUNCTION			"ThriveGame::GenerateWindowTitle()")
 set(USERREADABLEIDENTIFICATION		"\"Thrive game version \" GAME_VERSIONS")
 
-set(PROGRAMUSE_CUSTOMJS 0)
+# Thrive specific JS native functions are registered by these options
+set(PROGRAMUSE_CUSTOMJS 1)
+set(PROGRAMCUSTOMJS_INCLUDE "generated/thrive_v8_extension.h")
+set(PROGRAMCUSTOMJS_HANDLER_INCLUDE "thrive_js_interface.h")
+set(PROGRAMCUSTOMJS_CLASS "ThriveJSInterface")
+set(PROGRAMCUSTOMJS_EXTFILE "thrive_v8_extensionStr")
+set(PROGRAMCUSTOMJS_HANDLER "&makeThriveJSHandler")
 
 # Configure main and thrive_version.h files
 StandardConfigureExecutableMainAndInclude("${BaseIncludeFileName}" "main.cpp"
@@ -177,6 +191,8 @@ set(AllProjectFiles
   "ThriveGame.h" "ThriveGame.cpp"
   "thrive_world_factory.h" "thrive_world_factory.cpp"
   "thrive_net_handler.h" "thrive_net_handler.cpp"
+  "generated/thrive_v8_extension.h"
+  "thrive_js_interface.h" "thrive_js_interface.cpp"
   )
 
 # Compile a common library
