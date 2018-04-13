@@ -8,3 +8,9 @@ Thrive.getVersion = function(onSuccess, onFailure){
         onFailure: onFailure
         });
 }
+
+Thrive.start = function(){
+
+    native function startNewGame();
+    startNewGame();
+}

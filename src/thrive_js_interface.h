@@ -2,6 +2,7 @@
 // Copyright (C) 2013-2018  Revolutionary Games
 #pragma once
 // ------------------------------------ //
+#include <GUI/GuiCEFApplication.h>
 #include <GUI/LeviathanJavaScriptAsync.h>
 
 namespace thrive {
@@ -32,6 +33,8 @@ protected:
     //! Store queries that need to be handled async
 };
 
+//! \brief Handles native javascript calls in the render process. Must use
+//! ThriveJSMessageHandler if needs to communicate with the main process
 class ThriveJSHandler : public CefV8Handler, public Leviathan::ThreadSafe {
 public:
     ThriveJSHandler(Leviathan::GUI::CefApplication* owner);
@@ -58,5 +61,15 @@ protected:
 
 CefRefPtr<CefV8Handler>
     makeThriveJSHandler(Leviathan::GUI::CefApplication* application);
+
+//! \brief Receives custom messages into the main process from the render
+//! process
+class ThriveJSMessageHandler : public Leviathan::GUI::MainProcessSideHandler {
+public:
+    bool
+        OnProcessMessageReceived(CefRefPtr<CefBrowser> browser,
+            CefProcessId source_process,
+            CefRefPtr<CefProcessMessage> message) override;
+};
 
 } // namespace thrive

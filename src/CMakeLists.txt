@@ -176,6 +176,8 @@ set(PROGRAMCUSTOMJS_HANDLER_INCLUDE "thrive_js_interface.h")
 set(PROGRAMCUSTOMJS_CLASS "ThriveJSInterface")
 set(PROGRAMCUSTOMJS_EXTFILE "thrive_v8_extensionStr")
 set(PROGRAMCUSTOMJS_HANDLER "&makeThriveJSHandler")
+set(PROGRAMCUSTOMJS_MESSAGE_HANDLER "std::make_shared<ThriveJSMessageHandler>()")
+
 
 # Configure main and thrive_version.h files
 StandardConfigureExecutableMainAndInclude("${BaseIncludeFileName}" "main.cpp"

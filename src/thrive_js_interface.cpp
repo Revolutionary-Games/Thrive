@@ -1,6 +1,8 @@
 // ------------------------------------ //
 #include "thrive_js_interface.h"
 
+#include "ThriveGame.h"
+
 #include "thrive_version.h"
 
 using namespace thrive;
@@ -70,7 +72,18 @@ bool
         CefRefPtr<CefV8Value>& retval,
         CefString& exception)
 {
-    exception = "Invalid arguments passed, expected: stuff";
+    if(name == "startNewGame") {
+
+        auto message = CefProcessMessage::Create("Custom");
+        auto args = message->GetArgumentList();
+        args->SetString(0, "startNewGame");
+
+        Owner->SendCustomExtensionMessage(message);
+        return true;
+    }
+
+    // This might be a bit expensive...
+    exception = L"Unknown ThriveJSHandler function: " + name.ToWString();
     return true;
 }
 // ------------------------------------ //
@@ -79,4 +92,26 @@ CefRefPtr<CefV8Handler>
     thrive::makeThriveJSHandler(Leviathan::GUI::CefApplication* application)
 {
     return new ThriveJSHandler(application);
+}
+
+// ------------------------------------ //
+// ThriveJSMessageHandler
+bool
+    ThriveJSMessageHandler::OnProcessMessageReceived(
+        CefRefPtr<CefBrowser> browser,
+        CefProcessId source_process,
+        CefRefPtr<CefProcessMessage> message)
+{
+    const auto args = message->GetArgumentList();
+    const auto& customType = args->GetString(0);
+
+    if(customType == "startNewGame") {
+
+        LOG_INFO("Got start game message from GUI process");
+        ThriveGame::Get()->startNewGame();
+        return true;
+    }
+
+    // Not ours
+    return false;
 }
