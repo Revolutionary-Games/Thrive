@@ -8,6 +8,7 @@
 #include <OgreSceneManager.h>
 #include <OgreSubMesh2.h>
 #include <OgreTechnique.h>
+#include <OgreTextureUnitState.h>
 
 #include <atomic>
 
@@ -168,6 +169,8 @@ void
             ->getPass(0)
             ->getFragmentProgramParameters()
             ->setNamedConstant("membraneColour", colour);
+		coloredMaterial->getTechnique(0)->getPass(0)->getTextureUnitState(0)->setHardwareGammaEnabled(true);
+		coloredMaterial->getTechnique(0)->getPass(0)->getTextureUnitState(1)->setHardwareGammaEnabled(true);
         coloredMaterial->compile();
     }
 }
