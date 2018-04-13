@@ -1,174 +1,127 @@
 #!/usr/bin/env ruby
 # coding: utf-8
-# Setup script for Thrive. Windows mode is experimental and isn't tested
+# Setup script for Thrive.
+
+# RubySetupSystem Bootstrap
+if not File.exists? "RubySetupSystem/RubySetupSystem.rb"
+  puts "Initializing RubySetupSystem"
+  system "git submodule init && git submodule update --recursive"
+
+  if $?.exitstatus != 0
+    abort("Failed to initialize or update git submodules. " +
+          "Please make sure git is in path and " +
+          "you have an ssh key setup for your github account")
+  end
+else
+  # Make sure RubySetupSystem is up to date
+  # This may make debugging RubySetupSystem harder so feel free to comment out
+  system "git submodule update"
+end
 
 require 'fileutils'
 
-require_relative 'linux_setup/RubyCommon.rb'
 
-def checkRunFolder(suggestedfolder)
+require_relative 'RubySetupSystem/RubyCommon.rb'
 
-  if File.exist? "thriveversion.ver" or File.basename(Dir.getwd) == "thrive"
+def checkRunFolder(suggested)
 
-    # Inside thrive folder
-    info "Running from inside thrive folder"
+  versionFile = File.join(suggested, "thriveversion.ver")
 
-    return File.expand_path("..", Dir.pwd)
-    
-  else
+  onError("Not ran from Thrive base directory!") if not File.exist?("SetupThrive.rb")
 
-    # Outside, install thrive here
-    info "Running outside thrive folder. Thrive folder will be created here"
+  thirdPartyFolder = File.join suggested, "ThirdParty"
 
-    return Dir.pwd
-    
-  end
+  FileUtils.mkdir_p thirdPartyFolder
+  FileUtils.mkdir_p File.join suggested, "build", "ThirdParty"
+  
+  thirdPartyFolder
+  
 end
 
 def projectFolder(baseDir)
 
-  return File.join baseDir, "thrive"
+  File.expand_path File.join(baseDir, "../")
   
 end
 
-ThriveBranch = "master"
-#ThriveBranch = "ruby_setup"
-SkipPackageManager = false
+def parseExtraArgs
 
-require_relative 'linux_setup/RubySetupSystem.rb'
+  if ARGV.length > 1
 
-# Install packages
-if BuildPlatform == "linux" and not SkipPackageManager
-
-  LinuxOS = getLinuxOS
-
-  info "Installing packages"
-
-  CommonPackages = "cmake make git mercurial svn"
-
-  if LinuxOS.casecmp("Fedora") == 0
-
-    PackageManager = "dnf install -y "
-    
-    PackagesToInstall = "bullet-devel boost gcc-c++ libXaw-devel freetype-devel " +
-                        "freeimage-devel zziplib-devel boost-devel ois-devel tinyxml-devel " +
-                        "glm-devel ffmpeg-devel ffmpeg-libs openal-soft-devel libatomic"
-
-  elsif LinuxOS.casecmp("Ubuntu") == 0
-
-    PackageManager = "apt-get install -y "
-    
-	PackagesToInstall = "bullet-dev boost-dev build-essential automake libtool " +
-                        "libfreetype6-dev libfreeimage-dev libzzip-dev libxrandr-dev " +
-                        "libxaw7-dev freeglut3-dev libgl1-mesa-dev libglu1-mesa-dev " +
-                        "libois-dev libboost-thread-dev tinyxml-dev glm-dev ffmpeg-dev " +
-                        "libavutil-dev libopenal-dev"
-
-  elsif LinuxOS.casecmp("Arch") == 0
-
-    PackageManager = "pacman -S --noconfirm --color auto --needed"
-    
-	PackagesToInstall = "bullet boost automake libtool freetype2 freeimage zziplib " +
-                        "libxrandr libxaw freeglut libgl ois tinyxml glm ffmpeg openal"
-    
-	if `pacman -Qs gcc-multilib`
-      
-	  PackagesToInstall += " gcc-multilib autoconf automake binutils bison fakeroot file " +
-                           "findutils flex gawk gettext grep groff gzip libtool m4 make " +
-                           "pacman patch pkg-config sed sudo texinfo util-linux which"
-	else
-      
-	  PackagesToInstall += " base-devel"
-      
-    end
-    
-  else
-
-    onError "Unknown operating system: #{LinuxOS}"
+    onError("Unrecognized command line options.\n" +
+            "Expected only username in addition to other arguments. Got: #{ARGV.join(' ')}")
     
   end
-
-  info "Installing prerequisite libraries, be prepared to type password for sudo"
-
-  system "sudo #{PackageManager} #{CommonPackages} #{PackagesToInstall}"
-  onError "Failed to install package manager dependencies" if $?.exitstatus > 0
-    
-  success "Packages installed"
+  
+  $svnUser = ARGV[0]
+  ARGV.shift
   
 end
 
-installer = Installer.new(
-  Array[CAudio.new, Ogre.new,
-        # CEGUI uses commit 869014de5669
-        CEGUI.new
-       ])
+require_relative 'RubySetupSystem/RubySetupSystem.rb'
+require_relative 'RubySetupSystem/Libraries/SetupLeviathan.rb'
+
+if !$svnUser
+  $svnUser = "thrive"
+end
+
+WantedURL = "https://#{$svnUser}@boostslair.com/svn/thrive_assets"
+
+leviathan = Leviathan.new(
+  version: "develop",
+  # Doesn't actually work, but leviathan doesn't install with sudo by
+  # default, or install at all for that matter
+  noInstallSudo: true
+)
+
+puts ""
+puts ""
+
+info "Running the engine compilation"
+
+installer = Installer.new([leviathan])
 
 installer.run
 
 info "Thrive folder setup"
 
+if not File.exist? ProjectDir
 
+  onError "'thrive' folder is missing"
 
-if not File.exist? File.join(CurrentDir, "thrive")
-
-  info "Thrive folder doesn't exist, cloning from git"
-
-  Dir.chdir(CurrentDir) do
-    
-    system "git clone https://github.com/Revolutionary-Games/Thrive.git thrive"
-    onError "Failed to clone repository" if $?.exitstatus > 0
-    
-    Dir.chdir("thrive") do
-
-      systemChecked "git submodule update --init --recursive"
-      
-    end
-  end
 end
 
 success "Thrive folder exists"
 
-Dir.chdir(File.join(CurrentDir, "thrive")) do
+Dir.chdir(ProjectDir) do
   
-  system "git checkout #{ThriveBranch}"
+  system "git pull"
 
   if $?.exitstatus > 0
 
-    warning "Failed to checkout target thrive branch"
-
-  else
-    
-    systemChecked "git pull --recurse-submodules origin #{ThriveBranch}"
+    warning "Failed to pull thrive repo"
     
   end
 
-  systemChecked "git submodule update --recursive"
-
-  # submodule init check
-  if not File.exists? File.join(CurrentDir, "thrive", "contrib/lua/luajit/src", "lua.hpp")
-
-    warning "Submodules haven't been initialized, initializing now"
-    
-    systemChecked "git submodule update --init --recursive"
-
-    success "Submodules are now initialized"
-
-  end
+  runOpen3Checked("git", "submodule", "update", "--recursive")
 
   info "Checking assets"
 
   if not File.exist? "assets"
     
     info "Getting assets"
-    
-    system "svn checkout http://assets.revolutionarygamesstudio.com/ assets"
-    onError "Failed to get thrive assets repository" if $?.exitstatus > 0
+    system(["svn", "checkout", "--username", $svnUser, WantedURL, "assets"].join(' '))
+    if $?.exitstatus != 0
+      onError "Failed to get thrive assets repository"
+    end
     
   else
 
     info "Updating assets"
 
     Dir.chdir("assets") do
+
+      verifySVNUrl(WantedURL)
 
       system "svn up"
       onError "Failed to update thrive assets" if $?.exitstatus > 0
@@ -179,53 +132,51 @@ Dir.chdir(File.join(CurrentDir, "thrive")) do
   
   success "Assets are good to go"
 
-  info "Building luajit"
+  # info "Building luajit"
 
-  Dir.chdir(File.join(CurrentDir, "thrive", "contrib/lua/luajit/src")) do
+  # Dir.chdir(File.join(ProjectDir, "contrib/lua/luajit/src")) do
 
-    # Make sure XCFLAGS+= -DLUAJIT_ENABLE_LUA52COMPAT is uncommented
-    outdata = File.read("Makefile").gsub(/#XCFLAGS\+= -DLUAJIT_ENABLE_LUA52COMPAT/,
-                                       "XCFLAGS+= -DLUAJIT_ENABLE_LUA52COMPAT")
+  #   # Make sure XCFLAGS+= -DLUAJIT_ENABLE_LUA52COMPAT is uncommented
+  #   outdata = File.read("Makefile").gsub(/#XCFLAGS\+= -DLUAJIT_ENABLE_LUA52COMPAT/,
+  #                                      "XCFLAGS+= -DLUAJIT_ENABLE_LUA52COMPAT")
 
-    File.open("Makefile", 'w') do |out|
-      out << outdata
-    end  
+  #   File.open("Makefile", 'w') do |out|
+  #     out << outdata
+  #   end  
     
-    runCompiler CompileThreads
+  #   runCompiler $compileThreads
     
-    onError "Failed to compile luajit" if $?.exitstatus > 0
+  #   onError "Failed to compile luajit" if $?.exitstatus > 0
     
-  end
+  # end
 
-  success "luajit is ok"
+  # success "luajit is ok"
   
   FileUtils.mkdir_p "build"
-  FileUtils.mkdir_p "build/dist"
-  FileUtils.mkdir_p "build/dist/bin"
 
-  info "Making links"
+end
 
-  # It seems that if the link is created when it already exists a link is created into
-  # the target folder for some reason
-  createLinkIfDoesntExist "assets/cegui_examples", "cegui_examples"
-  createLinkIfDoesntExist "assets/fonts", "fonts"
-  createLinkIfDoesntExist "assets/gui", "gui"
-  createLinkIfDoesntExist "assets/materials", "materials"
-  createLinkIfDoesntExist "assets/models", "models"
-  createLinkIfDoesntExist "assets/sounds", "sounds"
-  createLinkIfDoesntExist "assets/videos", "videos"
-
-  Dir.chdir("build") do
-    FileUtils.ln_sf "dist/bin/Thrive", "Thrive"
+# Symlink the textures and fonts from assets to make local previewing of the GUI easier
+if OS.windows?
+  # These need to run in cmd as admin, for some reason
+  info "Creating junctions for assets to be referenced from gui " +
+       "html without running cmake every time"
+  runSystemSafe "cmd", "/c", "mklink", "/J",
+                convertPathToWindows(File.join(ProjectDir, "Textures")),
+                convertPathToWindows(File.join(ProjectDir, "assets", "textures"))
+  runSystemSafe "cmd", "/c", "mklink", "/J",
+                convertPathToWindows(File.join(ProjectDir, "Fonts")),
+                convertPathToWindows(File.join(ProjectDir, "assets", "fonts"))
+else
+  if !File.exists? File.join(ProjectDir, "Textures")
+    FileUtils.ln_sf File.join(ProjectDir, "assets", "textures"),
+                    File.join(ProjectDir, "Textures")
   end
 
-  info "Copying Ogre resources file"
-  FileUtils.cp "ogre_cfg/resources.cfg", "./build/resources.cfg"
-
-  info "Copying completety pointless Ogre files"
-
-  FileUtils.cp "/usr/local/share/OGRE/plugins.cfg", "./build/plugins.cfg"
-  
+  if !File.exists? File.join(ProjectDir, "Fonts")
+    FileUtils.ln_sf File.join(ProjectDir, "assets", "fonts"),
+                    File.join(ProjectDir, "Fonts")
+  end
 end
 
 success "Thrive folder and assets are good to go"
@@ -236,23 +187,30 @@ info "Compiling thrive"
 
 # Build directory is made earlier
 
-Dir.chdir(File.join(CurrentDir, "thrive", "build")) do
+Dir.chdir(File.join(ProjectDir, "build")) do
 
-  runCMakeConfigure "-DCMAKE_EXPORT_COMPILE_COMMANDS=ON"
-
-  if $?.exitstatus > 0
+  if !runCMakeConfigure []
     onError "Failed to configure Thrive. Are you using a broken version, " +
             "or did a dependency fail to install?"
   end
 
-  runCompiler CompileThreads
-  onError "Failed to compile Thrive " if $?.exitstatus > 0
+  if !TC.runCompiler
+    onError "Failed to compile Thrive"
+  end
   
 end
 
 success "Done compiling thrive"
 
-info "run the game with '#{CurrentDir}/thrive/build/Thrive'"
+if OS.windows?
+  info "Open build/Thrive.sln and start coding"
+else
+  info "run the game with '#{CurrentDir}/thrive/build/Thrive'"
+end
+
+puts ""
+info "NOTE: when changing the scripts or assets you must rerun cmake to make it move the " + 
+     "changed files to the build folder"
 
 success "Done"
 

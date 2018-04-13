@@ -1,13 +1,18 @@
 #pragma once
 
-#include "engine/component.h"
-#include "engine/system.h"
-#include "engine/touchable.h"
+#include "engine/component_types.h"
 #include "engine/typedefs.h"
 
-#include <boost/range/adaptor/map.hpp>
+#include <Entities/Component.h>
+#include <Entities/System.h>
+//#include <Entities/Components.h>
+
 #include <vector>
 #include <unordered_map>
+
+namespace Leviathan{
+class GameWorld;
+}
 
 // The minimum positive price a compound can have.
 #define MIN_POSITIVE_COMPOUND_PRICE 0.00001
@@ -29,18 +34,15 @@
 #define INITIAL_COMPOUND_PRICE 10.0
 #define INITIAL_COMPOUND_DEMAND 1.0
 
-namespace sol {
-class state;
-}
-
 namespace thrive {
 
-class ProcessorComponent : public Component {
-    COMPONENT(Processor)
+class CellStageWorld;
+
+class ProcessorComponent : public Leviathan::Component {
 
 public:
-    static void luaBindings(sol::state &lua);
-
+	ProcessorComponent();
+	/*
     void
     load(
         const StorageContainer& storage
@@ -48,10 +50,15 @@ public:
 
     StorageContainer
     storage() const override;
+	*/
 
     std::unordered_map<BioProcessId, double> process_capacities;
     void
-    setCapacity(BioProcessId, double);
+    setCapacity(BioProcessId id, double capacity);
+
+    REFERENCE_HANDLE_UNCOUNTED_TYPE(ProcessorComponent);
+
+    static constexpr auto TYPE = componentTypeConvert(THRIVE_COMPONENT::PROCESSOR);
 };
 
 // Helper structure to store the economic information of the compounds.
@@ -64,14 +71,12 @@ struct CompoundData {
     double breakEvenPoint;
 };
 
-class CompoundBagComponent : public Component {
-    COMPONENT(CompoundBag)
-
+//! \todo This component depends on an instance of processor so that needs registering
+class CompoundBagComponent : public Leviathan::Component {
 public:
-    static void luaBindings(sol::state &lua);
-
     CompoundBagComponent();
 
+	/*
     void
     load(
         const StorageContainer& storage
@@ -79,6 +84,7 @@ public:
 
     StorageContainer
     storage() const override;
+	*/
 
     double storageSpace;
     double storageSpaceOccupied;
@@ -87,7 +93,7 @@ public:
     std::unordered_map<CompoundId, CompoundData> compounds;
 
     void
-    setProcessor(ProcessorComponent& processor, const std::string& speciesName);
+    setProcessor(ProcessorComponent* processor, const std::string& speciesName);
 
     double
     getCompoundAmount(CompoundId);
@@ -106,43 +112,64 @@ public:
 
     void
     giveCompound(CompoundId, double);
+
+    REFERENCE_HANDLE_UNCOUNTED_TYPE(CompoundBagComponent);
+
+    static constexpr auto TYPE = componentTypeConvert(THRIVE_COMPONENT::COMPOUND_BAG);
 };
 
-class ProcessSystem : public System {
-
+class ProcessSystem : public Leviathan::System<std::tuple<CompoundBagComponent&,
+                                                   ProcessorComponent&>>
+{
 public:
-    static void luaBindings(sol::state &lua);
+   /**
+   * @brief Updates the system
+   */
+    void
+    Run(
+        GameWorld &world
+    );
 
-    /**
-    * @brief Constructor
-    */
-    ProcessSystem();
+    void
+    CreateNodes(
+        const std::vector<std::tuple<CompoundBagComponent*, ObjectID>> &firstdata,
+        const std::vector<std::tuple<ProcessorComponent*, ObjectID>> &seconddata,
+        const ComponentHolder<CompoundBagComponent> &firstholder,
+        const ComponentHolder<ProcessorComponent> &secondholder
+    ) {
+        TupleCachedComponentCollectionHelper(CachedComponents, firstdata, seconddata,
+            firstholder, secondholder);
+    }
+    
+    void
+    DestroyNodes(
+        const std::vector<std::tuple<CompoundBagComponent*, ObjectID>> &firstdata,
+        const std::vector<std::tuple<ProcessorComponent*, ObjectID>> &seconddata
+    ) {
+        CachedComponents.RemoveBasedOnKeyTupleList(firstdata);
+        CachedComponents.RemoveBasedOnKeyTupleList(seconddata);
+    }    
+    
+protected:
 
-    /**
-    * @brief Destructor
-    */
-    ~ProcessSystem();
+    // Methods from the old Implemementation class //
+    double _demandSofteningFunction(double processCapacity);
+    double _calculatePrice(double oldPrice, double supply, double demand);
+    double _spaceSofteningFunction(double availableSpace, double requiredSpace);
 
-    /**
-    * @brief Initializes the system
-    *
-    */
-    void init(GameStateData* gameState) override;
+    std::map<double, CompoundId>
+    _getBreakEvenPointMap(BioProcessId processId, CompoundBagComponent &bag);
 
-    /**
-    * @brief Shuts the system down
-    */
-    void shutdown() override;
-
-    /**
-    * @brief Updates the system
-    */
-    void update(int renderTime, int logicTime) override;
-
+    double _getOptimalProcessRate(
+        BioProcessId processId,
+        CompoundBagComponent &bag,
+        bool considersSpaceLimitations,
+        double availableSpace
+    );
+    
 private:
 
-    struct Implementation;
-    std::unique_ptr<Implementation> m_impl;
+    static constexpr double TIME_SCALING_FACTOR = 1000;
 };
 
 }

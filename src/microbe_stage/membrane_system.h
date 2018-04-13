@@ -1,198 +1,219 @@
 #pragma once
 
-#include "engine/component.h"
-#include "engine/system.h"
-#include "engine/touchable.h"
-#include "engine/typedefs.h"
+#include "engine/component_types.h"
 
-#include "scripting/luajit.h"
+#include "Entities/Component.h"
+#include "Entities/System.h"
 
-#include <OgreCommon.h>
+#include "Entities/Components.h"
+
 #include <OgreColourValue.h>
-#include <OgreMath.h>
-#include <OgreVector3.h>
-#include <vector>
-#include <algorithm>
+#include <OgreItem.h>
 
+#include <atomic>
 
 namespace thrive {
 
-class MembraneSystem;
-class CompoundCloudSystem;
-
 /**
-* @brief Emitter for compound particles
-*/
-class MembraneComponent : public Component {
-    COMPONENT(MembraneComponent)
+ * @brief Adds a membrane to an entity
+ * @todo To improve performance this has to actually calculate the bounds for
+ * frustrum culling to work well
+ */
+class MembraneComponent : public Leviathan::Component {
+    struct MembraneVertex {
+
+        Ogre::Vector3 m_pos;
+        Ogre::Vector2 m_uv;
+        // Ogre::Vector3 m_normal;
+    };
 
 public:
-
-    /**
-    * @brief Lua bindings
-    *
-    * Exposes:
-    * - MembraneComponent()
-    * - MembraneComponent::m_emissionRadius
-    *
-    * @return
-    */
-    static void luaBindings(sol::state &lua);
-
     MembraneComponent();
+	virtual ~MembraneComponent();
 
     void
-    load(
-        const StorageContainer& storage
-    ) override;
+        Release(Ogre::SceneManager* scene);
 
-    StorageContainer
-    storage() const override;
+    //! Should set the colour of the membrane once working
+    void
+        setColour(const Float4& value);
 
-    // The colour of the membrane.
-    Ogre::ColourValue colour;
+    //! Returns the last set colour
+    Float4
+        getColour() const;
 
     // Gets organelle positions from the .lua file.
-    void sendOrganelles(double x, double y);
+    // The y is actually the z component in the game 3d world
+    void
+        sendOrganelles(double x, double y);
 
-    // Deletes the membrane mesh.
-    void clear();
-
-    // Sets the colour of the membrane.
-    void setColour(float red, float green, float blue, float alpha);
-
-    // Returns the color of the membrane.
-    Ogre::Vector3 getColour();
+    //! Deletes the membrane mesh.
+    //!
+    //! This needs to be called before modifications take effect
+    void
+        clear();
 
     // Gets the amount of a certain compound the membrane absorbed.
-    int getAbsorbedCompounds();
+    int
+        getAbsorbedCompounds();
 
-    // Creates the 2D points in the membrane by looking at the positions of the organelles.
-	void DrawMembrane();
+    // Creates the 2D points in the membrane by looking at the positions of the
+    // organelles.
+    virtual void
+        DrawMembrane();
 
     // Sees if the given point is inside the membrane.
-	bool contains(float x, float y);
+    //! note This is quite an expensive method as this loops all the vertices
+    bool
+        contains(float x, float y);
 
-	void Initialize();
+    //! \brief Cheaper version of contains for absorbing stuff
+    //!
+    //! Calculates a circle radius that contains all the points (when it is
+    //! placed at 0,0 local coordinate)
+    //! \todo Cache this after initialization to increase performance
+    float
+        calculateEncompassingCircleRadius() const;
 
-	void Update();
+    //! \param parentcomponentpos The mesh is attached to this node when the
+    //! mesh is created \todo As this is currently only executed once (when
+    //! isInitialized is false) this should be changed to directly upload the
+    //! fully created data, instead of creating the buffers first and then
+    //! filling them with data
+    void
+        Update(Ogre::SceneManager* scene, Ogre::SceneNode* parentcomponentpos);
 
-	// Creates a 3D prism from the 2D vertices.
-	void MakePrism();
+    // Returns the length of the bounding membrane "box".
+    int
+        getCellDimensions()
+    {
+        return cellDimensions;
+    }
 
-	// Returns the length of the bounding membrane "box".
-	int getCellDimensions() {return cellDimensions;}
+    // Adds absorbed compound to the membrane.
+    // These are later queried and added to the vacuoles.
+    void
+        absorbCompounds(int amount);
 
-	// Adds absorbed compound to the membrane.
-	// These are later queried and added to the vacuoles.
-	void absorbCompounds(int amount);
+    // Finds the position of external organelles based on its "internal"
+    // location.
+    Ogre::Vector3
+        GetExternalOrganelle(double x, double y);
 
-    // Finds the position of external organelles based on its "internal" location.
-	Ogre::Vector3 GetExternalOrganelle(double x, double y);
+    // Return the position of the closest organelle to the target
+    // point if it is less then a certain threshold away.
+    Ogre::Vector3
+        FindClosestOrganelles(Ogre::Vector3 target);
 
-	// Return the position of the closest organelle to the target point if it is less then a certain threshold away.
-	Ogre::Vector3 FindClosestOrganelles(Ogre::Vector3 target);
+    // Decides where the point needs to move based on the position of the
+    // closest organelle.
+    virtual Ogre::Vector3
+        GetMovement(Ogre::Vector3 target, Ogre::Vector3 closestOrganelle);
 
-	// Decides where the point needs to move based on the position of the closest organelle.
-	Ogre::Vector3 GetMovement(Ogre::Vector3 target, Ogre::Vector3 closestOrganelle);
+    REFERENCE_HANDLE_UNCOUNTED_TYPE(MembraneComponent);
 
+    static constexpr auto TYPE =
+        componentTypeConvert(THRIVE_COMPONENT::MEMBRANE);
 
-    // Gets the position of the closest membrane point
-    sol::object getExternOrganellePos(double x, double y);
+protected:
+    //! Called on first Update
+    void Initialize();
 
-    bool isInitialized;
-    bool wantsMembrane;
+    //! So it seems that the membrane should be generated just once when the
+    //! geometry is changed so when this is true Update does nothing
+    bool isInitialized = false;
+	// Stores the positions of the organelles.
+	std::vector<Ogre::Vector3> organellePositions;
 
-    	// Finds the UV coordinates be projecting onto a plane and stretching to fit a circle.
-	void CalcUVCircle();
+	// The colour of the membrane.
+	// still broken
+	Ogre::ColourValue colour;
 
-	// Finds the normals for the mesh.
-	void CalcNormals();
+	// The length in pixels of a side of the square that bounds the membrane.
+	// Half the side length of the original square that is compressed to make
+	// the membrane.
+	int cellDimensions = 10;
+	// Amount of segments on one side of the above described square.
+	// The amount of points on the side of the membrane.
+	int membraneResolution = 10;
+	// Stores the generated 2-Dimensional membrane.
+	std::vector<Ogre::Vector3> vertices2D;
 
-    // Stores the Mesh in a vector such that every 3 points make up a triangle.
-    std::vector<Ogre::Vector3> MeshPoints;
+	// Ogre renderable that holds the mesh
+	Ogre::MeshPtr m_mesh;
+	// The submesh that actually holds our vertex and index buffers
+	Ogre::SubMesh* m_subMesh = nullptr;
 
-    // Stores the UV coordinates for the MeshPoints.
-    std::vector<Ogre::Vector3> UVs;
+	//! Actual object that is attached to a scenenode
+	Ogre::Item* m_item = nullptr;
 
-    // Stores the normals for every point described in MeshPoints.
-    std::vector<Ogre::Vector3> Normals;
+	Ogre::VertexBufferPacked* m_vertexBuffer = nullptr;
 
+	//! A material created from the base material that can be colored
+	//! \todo It would be better to share this between all cells of a species
+	Ogre::MaterialPtr coloredMaterial;
+	// Ogre::MaterialPtr speciesMaterial;
 
+	static std::atomic<int> membraneNumber;
+
+	// The amount of compounds stored in the membrane.
+	int compoundAmount = 0;
 private:
-    friend class MembraneSystem;
-    friend class CompoundCloudSystem;
-
-    // Stores the positions of the organelles.
-    std::vector<Ogre::Vector3> organellePositions;
-
-    // The length in pixels of a side of the square that bounds the membrane.
-    int cellDimensions;
-    // The amount of points on the side of the membrane.
-    int membraneResolution;
-    // Stores the generated 2-Dimensional membrane.
-    std::vector<Ogre::Vector3>   vertices2D;
-
-    std::string m_meshName;
-
-    // Entity that holds the membrane mesh.
-    Ogre::Entity* m_entity = nullptr;
-
-    // The amount of compounds stored in the membrane.
-    int compoundAmount;
 };
 
-
+class CellWallComponent : public MembraneComponent {
+	public:
+    CellWallComponent();
+	~CellWallComponent();
+	void DrawMembrane();
+	virtual Ogre::Vector3
+		GetMovement(Ogre::Vector3 target, Ogre::Vector3 closestOrganelle);
+	protected:
+    private:
+};
 
 /**
-* @brief Spawns compound particles for CompoundEmitterComponent
-*/
-class MembraneSystem : public System {
-
+ * @brief Handles entities with MembraneComponent
+ */
+class MembraneSystem
+    : public Leviathan::System<
+          std::tuple<MembraneComponent&, Leviathan::RenderNode&>> {
 public:
+    //! Updates the membrane calculations every frame
+    void
+        Run(GameWorld& world, Ogre::SceneManager* scene)
+    {
 
-    /**
-    * @brief Lua bindings
-    *
-    * Exposes:
-    * - MembraneSystem()
-    *
-    * @return
-    */
-    static void luaBindings(sol::state &lua);
+        auto& index = CachedComponents.GetIndex();
+        for(auto iter = index.begin(); iter != index.end(); ++iter) {
 
-    /**
-    * @brief Constructor
-    */
-    MembraneSystem();
+            std::get<0>(*iter->second)
+                .Update(scene, std::get<1>(*iter->second).Node);
+        }
+    }
 
-    /**
-    * @brief Destructor
-    */
-    ~MembraneSystem();
+    void
+        CreateNodes(const std::vector<std::tuple<MembraneComponent*, ObjectID>>&
+                        firstdata,
+            const std::vector<std::tuple<Leviathan::RenderNode*, ObjectID>>&
+                seconddata,
+            const ComponentHolder<MembraneComponent>& firstholder,
+            const ComponentHolder<Leviathan::RenderNode>& secondholder)
+    {
+        TupleCachedComponentCollectionHelper(
+            CachedComponents, firstdata, seconddata, firstholder, secondholder);
+    }
 
-    /**
-    * @brief Initializes the system
-    *
-    * @param gameState
-    */
-    void init(GameStateData* gameState) override;
-
-    /**
-    * @brief Shuts the system down
-    */
-    void shutdown() override;
-
-    /**
-    * @brief Updates the system
-    */
-    void update(int, int) override;
-
-
-private:
-
-    struct Implementation;
-    std::unique_ptr<Implementation> m_impl;
+    void
+        DestroyNodes(
+            const std::vector<std::tuple<MembraneComponent*, ObjectID>>&
+                firstdata,
+            const std::vector<std::tuple<Leviathan::RenderNode*, ObjectID>>&
+                seconddata)
+    {
+        CachedComponents.RemoveBasedOnKeyTupleList(firstdata);
+        CachedComponents.RemoveBasedOnKeyTupleList(seconddata);
+    }
 };
 
-}
+} // namespace thrive

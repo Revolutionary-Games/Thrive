@@ -1,0 +1,226 @@
+{
+    "nucleus": {
+        "name": "Nucleus",
+        "mass": 0.7,
+        "gene": "N",
+        "mpCost": 0,
+        "mesh": "i dunno",
+        "locked": false,
+
+        "composition": {
+            "aminoacids": 4
+        },
+
+        "components": {
+        },
+
+        "hexes": [
+            [0, 0],
+            [1, 0],
+            [0, 1],
+            [0, -1],
+            [1, -1],
+            [-1, 1],
+            [-1, 0],
+            [-1, -1],
+            [0, -2],
+            [1, -2]
+        ]
+    },
+
+    "chloroplast": {
+        "name": "Chloroplast",
+        "mass": 0.4,
+        "gene": "H",
+        "mpCost": 20,
+        "mesh": "i dunno",
+        "locked": true,
+
+        "composition": {
+            "aminoacids": 4,
+            "glucose": 2
+        },
+
+        "components": {
+        },
+
+        "hexes": [
+            [0, 0],
+            [1, 0],
+            [0, 1]
+        ]
+    },
+
+    "oxytoxy": {
+        "name": "Agent vacuole",
+        "mass": 0.3,
+        "gene": "T",
+        "mpCost": 40,
+        "mesh": "i dunno",
+        "locked": true,
+
+        "composition": {
+            "aminoacids": 4,
+            "glucose": 2
+        },
+
+        "components": {
+        },
+
+        "hexes": [
+            [0, 0]
+        ]
+    },
+
+    "mitochondrion": {
+        "name": "Mitochondrion",
+        "mass": 0.3,
+        "gene": "M",
+        "mpCost": 20,
+        "mesh": "i dunno",
+        "locked": false,
+
+        "composition": {
+            "aminoacids": 4,
+            "glucose": 2
+        },
+
+        "components": {
+        },
+
+        "hexes": [
+            [0, 0],
+            [0, 1]
+        ]
+    },
+
+    "vacuole": {
+        "name": "Vacuole",
+        "mass": 0.4,
+        "gene": "V",
+        "mpCost": 15,
+        "mesh": "i dunno",
+        "locked": false,
+
+        "composition": {
+            "aminoacids": 4,
+            "glucose": 2
+        },
+
+        "components": {
+        },
+
+        "hexes": [
+            [0, 0]
+        ]
+    },
+
+    "flagellum": {
+        "name": "Flagellum",
+        "mass": 0.3,
+        "gene": "F",
+        "mpCost": 25,
+        "mesh": "i dunno",
+        "locked": false,
+
+        "composition": {
+            "aminoacids": 4,
+            "glucose": 2
+        },
+
+        "components": {
+        },
+
+        "hexes": [
+            [0, 0]
+        ]
+    },
+
+    "pilus": {
+        "name": "Pilus",
+        "mass": 0.3,
+        "gene": "P",
+        "mpCost": 30,
+        "mesh": "i dunno",
+        "locked": false,
+
+        "composition": {
+            "aminoacids": 4,
+            "glucose": 2
+        },
+
+        "components": {
+        },
+
+        "hexes": [
+            [0, 0]
+        ]
+    },
+
+    "chemoplast": {
+        "name": "Chemoplast",
+        "mass": 0.3,
+        "gene": "C",
+        "mpCost": 15,
+        "mesh": "i dunno",
+        "locked": true,
+
+        "composition": {
+            "aminoacids": 4,
+            "glucose": 2
+        },
+
+        "components": {
+        },
+
+        "hexes": [
+            [0, 0],
+            [1, 0],
+            [0, 1]
+        ]
+    },
+
+    "bioluminescent": {
+        "name": "Bioluminescent vacuole",
+        "mass": 0.4,
+        "gene": "L",
+        "mpCost": 15,
+        "mesh": "i dunno",
+        "locked": false,
+
+        "composition": {
+            "aminoacids": 4,
+            "glucose": 2
+        },
+
+        "components": {
+        },
+
+        "hexes": [
+            [0, 0],
+            [1, 0],
+            [0, 1]
+        ]
+    },
+
+    "cytoplasm": {
+        "name": "Cytoplasm",
+        "mass": 0.4,
+        "gene": "Y",
+        "mpCost": 5,
+        "mesh": "",
+        "locked": false,
+
+        "composition": {
+            "aminoacids": 3,
+            "glucose": 2
+        },
+
+        "components": {
+        },
+
+        "hexes": [
+            [0, 0]
+        ]
+    }
+}

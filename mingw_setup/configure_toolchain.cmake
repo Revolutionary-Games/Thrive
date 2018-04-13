@@ -1,1 +1,0 @@
-configure_file(${TOOLCHAIN_TEMPLATE} ${MINGW_ENV}/cmake/toolchain.cmake @ONLY)
