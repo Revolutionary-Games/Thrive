@@ -8,6 +8,7 @@
 #include <OgreSceneManager.h>
 #include <OgreSubMesh2.h>
 #include <OgreTechnique.h>
+#include <OgreTextureUnitState.h>
 
 #include <atomic>
 
@@ -168,6 +169,8 @@ void
             ->getPass(0)
             ->getFragmentProgramParameters()
             ->setNamedConstant("membraneColour", colour);
+		coloredMaterial->getTechnique(0)->getPass(0)->getTextureUnitState(0)->setHardwareGammaEnabled(true);
+		coloredMaterial->getTechnique(0)->getPass(0)->getTextureUnitState(1)->setHardwareGammaEnabled(true);
         coloredMaterial->compile();
     }
 }
@@ -380,9 +383,9 @@ void
             -cellDimensions, 0);
     }
 
-    // Does this need to run 50*cellDimensions times. That seems to be
-    // really high and probably causes some of the lag
-    for(int i = 0; i < 50 * cellDimensions; i++) {
+    // Does this need to run 40*cellDimensions times. That seems to be
+    // (reduced from 50 to 40 times, can probabbly be reduced more)
+    for(int i = 0; i < 40 * cellDimensions; i++) {
         DrawMembrane();
     }
 
@@ -614,3 +617,75 @@ void
 
 //     }
 // }
+
+CellWallComponent::CellWallComponent() : MembraneComponent()
+{}
+
+CellWallComponent::~CellWallComponent()
+{}
+
+
+//this is where the magic happens i think
+Ogre::Vector3
+CellWallComponent::GetMovement(Ogre::Vector3 target,
+	Ogre::Vector3 closestOrganelle)
+{
+	double power = pow(2.7, (-target.distance(closestOrganelle)) / 10) / 50;
+
+	return (Ogre::Vector3(closestOrganelle) - Ogre::Vector3(target)) * power;
+}
+
+void
+CellWallComponent::DrawMembrane()
+{
+	// Stores the temporary positions of the membrane.
+	auto newPositions = vertices2D;
+
+	// Loops through all the points in the membrane and relocates them as
+	// necessary.
+	for (size_t i = 0, end = newPositions.size(); i < end; i++) {
+		Ogre::Vector3 closestOrganelle = FindClosestOrganelles(vertices2D[i]);
+		if (closestOrganelle == Ogre::Vector3(0, 0, -1)) {
+			newPositions[i] =
+				(vertices2D[(end + i - 1) % end] + vertices2D[(i + 1) % end]) /2;
+		}
+		else {
+			Ogre::Vector3 movementDirection =
+				GetMovement(vertices2D[i], closestOrganelle);
+			newPositions[i].x -= movementDirection.x;
+			newPositions[i].y -= movementDirection.y;
+		}
+	}
+
+	// Allows for the addition and deletion of points in the membrane.
+	for (size_t i = 0; i < newPositions.size() - 1; i++) {
+		// Check to see if the gap between two points in the membrane is too
+		// big.
+		if (newPositions[i].distance(
+			newPositions[(i + 1) % newPositions.size()]) >
+			cellDimensions / membraneResolution) {
+			// Add an element after the ith term that is the average of the i
+			// and i+1 term.
+			auto it = newPositions.begin();
+			Ogre::Vector3 tempPoint =
+				(newPositions[(i + 1) % newPositions.size()] +
+					newPositions[i]) / 2;
+			newPositions.insert(it + i + 1, tempPoint);
+
+			i++;
+		}
+
+		// Check to see if the gap between two points in the membrane is too
+		// small.
+		if (newPositions[(i + 1) % newPositions.size()].distance(
+			newPositions[(i - 1) % newPositions.size()]) <
+			cellDimensions / membraneResolution) {
+			// Delete the ith term.
+			auto it = newPositions.begin();
+			newPositions.erase(it + i);
+		}
+	}
+
+	vertices2D = newPositions;
+}
+

@@ -28,7 +28,12 @@ const dictionary DEFAULT_INITIAL_COMPOUNDS =
 
 string randomSpeciesName(){
     return "Species_" + formatInt(GetEngine().GetRandom().GetNumber(0, 10000));
-    //gotta use the latin names (But they aren't used?)
+    // Gotta use the latin names (But they aren't used?)
+}
+
+// Bacteria also need names
+string randomBacteriaName(){
+    return "Bacteria_" + formatInt(GetEngine().GetRandom().GetNumber(0, 10000));
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -38,13 +43,14 @@ string randomSpeciesName(){
 // SpeciesSystem instance)
 ////////////////////////////////////////////////////////////////////////////////
 //! \todo This should be moved into the SpeciesComponent class to simplify things
+//now what is the best way to seperate bacteria from this...
 class Species{
-
     //! Constructor for automatically creating a random species
-    Species(CellStageWorld@ world){
-
+    Species(CellStageWorld@ world, bool isBacteria){
+	    this.isBacteria=isBacteria;
+		if (!isBacteria)
+		{
         name = randomSpeciesName();
-        
         auto stringSize = GetEngine().GetRandom().GetNumber(MIN_INITIAL_LENGTH,
             MAX_INITIAL_LENGTH);
 
@@ -61,6 +67,11 @@ class Species{
         colour = randomColour();
 
         this.setupSpawn(world);
+		}
+		else{
+		// We are creating a bacteria right now
+		generateBacteria(world);
+		}
     }
 
     ~Species(){
@@ -73,7 +84,10 @@ class Species{
     }
 
     // Creates a mutated version of the species and reduces the species population by half
-    Species(Species@ parent, CellStageWorld@ world){
+    Species(Species@ parent, CellStageWorld@ world, bool isBacteria){
+	    this.isBacteria=isBacteria;
+		if (!isBacteria)
+		{
         name = randomSpeciesName();
 		//chance of new color needs to be low
 		if (GetEngine().GetRandom().GetNumber(0,100)==1)
@@ -93,6 +107,11 @@ class Species{
         commonConstructor(world);
 
         this.setupSpawn(world);
+		}
+		else
+		{
+		mutateBacteria(parent,world);
+		}
     }
 
     private void commonConstructor(CellStageWorld@ world){
@@ -101,7 +120,7 @@ class Species{
         
         auto organelles = positionOrganelles(stringCode);
         
-        templateEntity = Species::createSpecies(forWorld, this.name, organelles, this.colour,
+        templateEntity = Species::createSpecies(forWorld, this.name, organelles, this.colour, this.isBacteria, 
             DEFAULT_INITIAL_COMPOUNDS);
     }
     
@@ -130,7 +149,50 @@ class Species{
             // No individual name (could be good for debugging)
             "");
     }
+	
+	ObjectID bacteriaColonySpawn(CellStageWorld@ world, Float3 pos){
+        LOG_INFO("New colony of species spawned: " + this.name);
+		Float3 curSpawn = Float3(GetEngine().GetRandom().GetNumber(1,10),0,GetEngine().GetRandom().GetNumber(1,10));
+		//two kinds of colonies are supported, line colonies and clump colonies
+		
+		if (GetEngine().GetRandom().GetNumber(0,4) < 2)
+		{
+		//clump
+		for(int i = 0; i < GetEngine().GetRandom().GetNumber(1,5); ++i){
+			//dont spawn them on top of each other  because it causes them to bounce around and lag
+			MicrobeOperations::spawnBacteria(world, pos+curSpawn, this.name,true,"",true);
+			curSpawn = curSpawn + Float3(GetEngine().GetRandom().GetNumber(-10,10),0,GetEngine().GetRandom().GetNumber(-10,10));
+			}
+		}
+		else
+		{
+		//line
+		for(int i = 0; i < GetEngine().GetRandom().GetNumber(1,5); ++i){
+			//dont spawn them on top of each other  because it causes them to bounce around and lag
+			MicrobeOperations::spawnBacteria(world, pos+curSpawn, this.name,true,"",true);
+			curSpawn = curSpawn + Float3(GetEngine().GetRandom().GetNumber(1,10),0,GetEngine().GetRandom().GetNumber(1,10));
+			}
+		}
+        return MicrobeOperations::spawnBacteria(world, pos, this.name,true,"",false);
+		
+    }
     
+	
+	 void setupBacteriaSpawn(CellStageWorld@ world){
+
+        assert(world is forWorld, "Wrong world passed to setupSpawn");
+        
+        spawningEnabled = true;
+        
+        SpawnFactoryFunc@ factory = SpawnFactoryFunc(this.bacteriaColonySpawn);
+
+        // And register new
+        LOG_INFO("Registering bacteria to spawn: " + name);
+        this.id = forWorld.GetSpawnSystem().addSpawnType(
+            factory, DEFAULT_SPAWN_DENSITY, //spawnDensity should depend on population
+            MICROBE_SPAWN_RADIUS);
+    }
+	
     //sets up the spawn of the species
     // This may only be called once. Otherwise old spawn types are left active
     void setupSpawn(CellStageWorld@ world){
@@ -148,7 +210,62 @@ class Species{
             MICROBE_SPAWN_RADIUS);
     }
 
+	void generateBacteria(CellStageWorld@ world){
+	     name = randomBacteriaName();
+		//bacteria are tiny
+        auto stringSize = GetEngine().GetRandom().GetNumber(0,3);
+        //it should always have a nucleus and a cytoplasm.
+		//bacteria will randomly have 1 of 3 organelles right now, chlorolast, mitochondria, or toxin, adding pure cytoplasm bacteria aswell for variety
+		switch( GetEngine().GetRandom().GetNumber(1,5))
+		{
+		case 1:
+		stringCode = getOrganelleDefinition("cytoplasm").gene;
+		break;
+		case 2:
+		stringCode = getOrganelleDefinition("respiartoryProteins").gene;
+		break;
+		case 3:
+		stringCode = getOrganelleDefinition("photosyntheticProteins").gene;
+		break;
+		case 4:
+		stringCode = getOrganelleDefinition("oxytoxyProteins").gene;
+		break;
+		default:
+		stringCode = getOrganelleDefinition("cytoplasm").gene;
+		break;
+		}
+		
+		string chosenType= stringCode;
+		for(int i = 0; i < stringSize; ++i){
+            this.stringCode += chosenType;
+		}
+		
+        commonConstructor(world);
+        colour = randomColour();
+        this.setupBacteriaSpawn(world);
+	}
+	
+    void mutateBacteria(Species@ parent, CellStageWorld@ world){
+	    name = randomBacteriaName();
+		if (GetEngine().GetRandom().GetNumber(0,100)==1)
+			{
+			LOG_INFO("New Clade of bacteria");
+			//we can do more fun stuff here later
+			this.colour = randomColour();
+			}
+			else
+			{
+			this.colour = parent.colour;
+			}
+        this.population = int(floor(parent.population / 2.f));
+        parent.population = int(ceil(parent.population / 2.f));
+		//right now all they will do is get new colors sometimes
+        //this.stringCode = Species::mutate(parent.stringCode);
 
+        commonConstructor(world);
+
+        this.setupBacteriaSpawn(world);
+	}
     //updates the population count of the species
     void updatePopulation(){
         //TODO:
@@ -158,6 +275,7 @@ class Species{
     }
 
     string name;
+	bool isBacteria;
     string stringCode;
     int population = INITIAL_POPULATION;
     Float4 colour = randomColour();
@@ -191,11 +309,20 @@ const auto MAX_POP_SIZE = 5000;
 //the amount of species at the start of the microbe stage (not counting Default/Player)
 const auto INITIAL_SPECIES = 7;
 
+//the amount of bacteria
+const auto INITIAL_BACTERIA = 4;
+
 //if there are more species than this then all species get their population reduced by half
 const auto MAX_SPECIES = 15;
 
-//if there are less species than this create new ones.
+//if there are more bacteria than this then all species get their population reduced by half
+const auto MAX_BACTERIA = 6;
+
+//if there are less species than this creates new ones.
 const auto MIN_SPECIES = 3;
+
+//if there are less species than this creates new ones.
+const auto MIN_BACTERIA = 2;
 
 //! Updates the species's population and creates new ones. And keeps track of Species objects
 class SpeciesSystem : ScriptSystem{
@@ -209,8 +336,12 @@ class SpeciesSystem : ScriptSystem{
 		//can confirtm, it crashes here - Untrustedlife
         // This is needed to actually have AI species in the world
         for(int i = 0; i < INITIAL_SPECIES; ++i){
-
             createSpecies();
+        }
+		
+		//generate bacteria aswell
+		for(int i = 0; i < INITIAL_BACTERIA; ++i){
+            createBacterium();
         }
     }
 
@@ -237,17 +368,14 @@ class SpeciesSystem : ScriptSystem{
 
                 //reproduction/mutation
                 if(population > MAX_POP_SIZE){
-
-                    auto newSpecies = Species(currentSpecies, world);
+                    auto newSpecies = Species(currentSpecies, world, currentSpecies.isBacteria);
                     species.insertLast(newSpecies);
-
                     LOG_INFO("Species " + currentSpecies.name + " split off a child species:" +
                         newSpecies.name);
                 }
 
                 //extinction
                 if(population < MIN_POP_SIZE){
-
                     LOG_INFO("Species " + currentSpecies.name + " went extinct");
                     currentSpecies.extinguish();
                     species.removeAt(index);
@@ -260,8 +388,14 @@ class SpeciesSystem : ScriptSystem{
                 createSpecies();
             }
 
+			//TODO: new bacteria they require their own list or they may be out competed by microbes
+            //while(species.length() < MIN_SPECIES){
+            //    LOG_INFO("Creating new bacteria as there's too few");
+            //    createBacteria();
+            //}
+			
             //mass extinction
-            if(species.length() > MAX_SPECIES){
+            if(species.length() > MAX_SPECIES+INITIAL_BACTERIA){
 
                 LOG_INFO("Mass extinction time");
                 doMassExtinction();
@@ -286,17 +420,22 @@ class SpeciesSystem : ScriptSystem{
 
     void doMassExtinction(){
         for(uint i = 0; i < species.length(); ++i){
-
             species[i].population /= 2;
         }
     }
 
     //! Adds a new AI species
     private void createSpecies(){
-        auto newSpecies = Species(world);
+        auto newSpecies = Species(world, false);
         species.insertLast(newSpecies);
     }
 
+	//! Adds a new AI bacterium
+    private void createBacterium(){
+        auto newSpecies = Species(world, true);
+        species.insertLast(newSpecies);
+    }
+	
     private int timeSinceLastCycle = 0;
     private array<Species@> species;
     private CellStageWorld@ world;
@@ -380,7 +519,6 @@ void initProcessorComponent(CellStageWorld@ world, ObjectID entity,
 
 
 namespace Species{
-
 // Given a newly-created microbe, this sets the organelles and all other
 // species-specific microbe data like agent codes, for example.
 //! Brief applies template to a microbe entity making sure it has all
@@ -450,14 +588,14 @@ ObjectID createSpecies(CellStageWorld@ world, const string &in name,
                 organelle.rotation));
     }
     
-    return createSpecies(world, name, convertedOrganelles, fromTemplate.colour,
+    return createSpecies(world, name, convertedOrganelles, fromTemplate.colour, false, 
         fromTemplate.compounds);
 }
 
 //! Creates an entity that has all the species stuff on it
 //! AI controlled ones need to be in addition in SpeciesSystem
 ObjectID createSpecies(CellStageWorld@ world, const string &in name,
-    array<PlacedOrganelle@> organelles, Float4 colour, const dictionary &in compounds
+    array<PlacedOrganelle@> organelles, Float4 colour, bool isBacteria, const dictionary &in compounds
 ) {
     ObjectID speciesEntity = world.CreateEntity();
         
@@ -490,7 +628,8 @@ ObjectID createSpecies(CellStageWorld@ world, const string &in name,
         speciesEntity);
     
     speciesComponent.colour = colour;
-
+	//we need to know this is baceria
+	speciesComponent.isBacteria = isBacteria;
     // iterates over all compounds, and sets amounts and priorities
     uint64 compoundCount = SimulationParameters::compoundRegistry().getSize();
     for(uint i = 0; i < compoundCount; ++i){
@@ -597,7 +736,6 @@ string mutate(const string &in stringCode){
 
 //! Calls resetAutoEvo on world's SpeciesSystem
 void resetAutoEvo(CellStageWorld@ world){
-
     cast<SpeciesSystem>(world.GetScriptSystem("SpeciesSystem")).resetAutoEvo();
 }
 

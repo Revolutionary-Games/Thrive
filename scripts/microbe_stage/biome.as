@@ -101,7 +101,7 @@ void setSunlightForBiome(CellStageWorld@ world){
 	LOG_INFO("Diffuse Colours For Biome r:" + getCurrentBiome().diffuseColors.r +
         "g:" + getCurrentBiome().diffuseColors.g + "b:" + getCurrentBiome().diffuseColors.b);
 	LOG_INFO("specular COlours For Biome r:" + getCurrentBiome().diffuseColors.r +
-        "g:" + getCurrentBiome().diffuseColors.g + "b:" + getCurrentBiome().diffuseColors.b);
+        "g:" + getCurrentBiome().specularColors.g + "b:" + getCurrentBiome().specularColors.b);
 }
 
 //Setting the current biome to a random biome selected from the biome table.

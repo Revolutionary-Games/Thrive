@@ -1268,6 +1268,11 @@ bool
         ANGELSCRIPT_REGISTERFAIL;
     }
 
+	if (engine->RegisterObjectProperty("SpeciesComponent", "bool isBacteria",
+		asOFFSET(SpeciesComponent, isBacteria)) < 0) {
+		ANGELSCRIPT_REGISTERFAIL;
+	}
+
 
     // ------------------------------------ //
 
