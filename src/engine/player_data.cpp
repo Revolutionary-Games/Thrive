@@ -1,10 +1,12 @@
 #include "engine/player_data.h"
 
-#include "engine/game_state.h"
+//#include "engine/game_state.h"
 #include "engine/serialization.h"
 #include "general/locked_map.h"
-#include "scripting/luajit.h"
-#include "engine/entity.h"
+//#include "scripting/luajit.h"
+//#include "engine/entity.h"
+
+#include <Define.h>
 
 #include <unordered_set>
 
@@ -18,8 +20,7 @@ struct PlayerData::Implementation {
     {
     }
 
-    EntityId m_activeCreature = NULL_ENTITY;
-    GameStateData* m_activeCreatureGamestate = nullptr;
+    ObjectID m_activeCreature = NULL_OBJECT;
 
     std::string m_playerName;
 
@@ -28,23 +29,6 @@ struct PlayerData::Implementation {
     std::unordered_set<std::string> m_boolSet;
 
 };
-
-void PlayerData::luaBindings(
-    sol::state &lua
-){
-    lua.new_usertype<PlayerData>("PlayerData",
-
-        sol::constructors<sol::types<std::string>>(),
-        
-        "playerName", &PlayerData::playerName,
-        "lockedMap", &PlayerData::lockedMap,
-        "activeCreature", &PlayerData::activeCreature,
-        "setActiveCreature", &PlayerData::setActiveCreature,
-        "activeCreatureGamestate", &PlayerData::activeCreatureGamestate,
-        "isBoolSet", &PlayerData::isBoolSet,
-        "setBool", &PlayerData::setBool
-    );
-}
 
 PlayerData::PlayerData(
     std::string name
@@ -64,23 +48,17 @@ PlayerData::lockedMap(){
     return m_impl->m_lockedMap;
 }
 
-EntityId
+ObjectID
 PlayerData::activeCreature(){
     return m_impl->m_activeCreature;
 }
 
 void
 PlayerData::setActiveCreature(
-    EntityId creatureId,
-    GameStateData* gamestate
+    ObjectID creatureId
 ){
+    LOG_INFO("Active player creature is now: " + std::to_string(creatureId));
     m_impl->m_activeCreature = creatureId;
-    m_impl->m_activeCreatureGamestate = gamestate;
-}
-
-GameStateData*
-PlayerData::activeCreatureGamestate(){
-    return m_impl->m_activeCreatureGamestate;
 }
 
 bool
@@ -103,40 +81,41 @@ PlayerData::setBool(
     }
 }
 
-void
-PlayerData::load(
-    const StorageContainer& storage
-) {
+// void
+// PlayerData::load(
+//     const StorageContainer& storage
+// ) {
 
-    if(!m_impl->m_activeCreatureGamestate)
-        throw std::runtime_error("PlayerData.activeCreatureGamestate is null in 'load'");
+//     if(!m_impl->m_activeCreatureGamestate)
+//         throw std::runtime_error("PlayerData.activeCreatureGamestate is null in 'load'");
     
     
-    m_impl->m_playerName = storage.get<std::string>("playerName");
-    StorageContainer lockedMapStorage = storage.get<StorageContainer>("lockedMap");
-    //This isn't the prettiest way to do it, but we need to reobtain a reference to the players creature
-    m_impl->m_activeCreature = Entity(m_impl->m_playerName,
-        m_impl->m_activeCreatureGamestate).id();
-    StorageList boolValues = storage.get<StorageList>("boolValues");
-    for (const StorageContainer& container : boolValues) {
-        std::string boolKey = container.get<std::string>("boolKey");
-        m_impl->m_boolSet.emplace(boolKey);
-    }
-    m_impl->m_lockedMap.load(lockedMapStorage);
-}
+//     m_impl->m_playerName = storage.get<std::string>("playerName");
+//     StorageContainer lockedMapStorage = storage.get<StorageContainer>("lockedMap");
+//     //This isn't the prettiest way to do it, but we need to reobtain a reference to the players creature
+//     DEBUG_BREAK;
+//     // m_impl->m_activeCreature = Entity(m_impl->m_playerName,
+//     //     m_impl->m_activeCreatureGamestate).id();
+//     StorageList boolValues = storage.get<StorageList>("boolValues");
+//     for (const StorageContainer& container : boolValues) {
+//         std::string boolKey = container.get<std::string>("boolKey");
+//         m_impl->m_boolSet.emplace(boolKey);
+//     }
+//     m_impl->m_lockedMap.load(lockedMapStorage);
+// }
 
-StorageContainer
-PlayerData::storage() const {
-    StorageContainer storage;
-    storage.set("playerName", m_impl->m_playerName);
-    StorageList boolValues;
-    boolValues.reserve(m_impl->m_boolSet.size());
-    for(auto key : m_impl->m_boolSet) {
-        StorageContainer container;
-        container.set<std::string>("boolKey", key);
-        boolValues.append(container);
-    }
-    storage.set<StorageList>("boolValues", boolValues);
-    storage.set("lockedMap", m_impl->m_lockedMap.storage());
-    return storage;
-}
+// StorageContainer
+// PlayerData::storage() const {
+//     StorageContainer storage;
+//     storage.set("playerName", m_impl->m_playerName);
+//     StorageList boolValues;
+//     boolValues.reserve(m_impl->m_boolSet.size());
+//     for(auto key : m_impl->m_boolSet) {
+//         StorageContainer container;
+//         container.set<std::string>("boolKey", key);
+//         boolValues.append(container);
+//     }
+//     storage.set<StorageList>("boolValues", boolValues);
+//     storage.set("lockedMap", m_impl->m_lockedMap.storage());
+//     return storage;
+// }

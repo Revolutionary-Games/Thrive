@@ -1,8 +1,0 @@
-In order to user sol with non-installed Lua version these changes are
-required to the sol.hpp file:
-
-Around line 800 #include <lua.hpp> needs to be replaced with:
-#ifndef lua_h
-#include <lua.hpp>
-#endif
-

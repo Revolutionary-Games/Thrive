@@ -1,69 +1,52 @@
 #pragma once
 
-#include "engine/system.h"
+#include <Entities/EntityCommon.h>
+
+#include <unordered_map>
 
 #define MICROBE_CAMERA_NAME "camera"
 
-#define INITIAL_CAMERA_HEIGHT 70
+#define INITIAL_CAMERA_HEIGHT 40
 
-namespace sol {
-class state;
+namespace Leviathan {
+class GameWorld;
 }
 
 namespace thrive {
 
 /**
-* @brief The camera for the microbe stage.
+* @brief Moves the camera entity to match position of the player microbe
 *
+* This is a frame render time system
 */
-class MicrobeCameraSystem : public System {
+class MicrobeCameraSystem {
 public:
-    /**
-    * @brief Lua bindings
-    *
-    * Exposes:
-    * - MicrobeCameraSystem()
-    *
-    * @return
-    */
-    static void luaBindings(sol::state &lua);
 
-    /**
-    * @brief Constructor
-    */
-    MicrobeCameraSystem();
-
-    /**
-    * @brief Activates the system
-    *
-    */
+    //! \brief Sets the entity that is the camera (must have a Camera component and a Position)
+    //!
+    //! Set to 0 to disable this system and stop moving the camera
     void
-    activate() override;
+    setCameraEntity(
+        ObjectID id
+    );
 
-    /**
-    * @brief Initializes the system
-    *
-    */
+    //! \brief Sets the zoom level of the camera
     void
-    init(
-        GameStateData* gameState
-    ) override;
+    setCameraHeight(
+        float height
+    );
 
-    /**
-    * @brief Updates the system
-    *
-    * @param renderTime
-    *
-    * @param logicTime
-    */
-    void
-    update(
-        int renderTime,
-        int logicTime
-    ) override;
+    //! \brief Automatically finds the player entity from the game
+    //! state and moves m_cameraEntity there
+    //! \todo Should this directly use the CellStageWorld or be templated to have more
+    //! performant component lookups
+    void Run(
+        Leviathan::GameWorld &world
+    );
 
 private:
-    struct Implementation;
-    std::unique_ptr<Implementation> m_impl;
+
+    ObjectID m_cameraEntity = 0;
+    float m_cameraHeight = INITIAL_CAMERA_HEIGHT;
 };
 }

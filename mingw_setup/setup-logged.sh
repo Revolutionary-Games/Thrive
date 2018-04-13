@@ -1,1 +1,0 @@
-sh setup.sh | tee setup-output.txt

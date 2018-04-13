@@ -1,7 +1,5 @@
 #pragma once
 
-#include "scripting/luajit.h"
-
 #include <cstdint>
 #include <OgreColourValue.h>
 #include <OgreMath.h>
@@ -11,6 +9,8 @@
 #include <string>
 #include <map>
 #include <vector>
+
+#include <limits.h>
 
 static_assert(
     CHAR_BIT == 8,
@@ -37,15 +37,15 @@ class StorageContainer {
 
 public:
 
-    /**
-    * @brief Lua bindings
-    *
-    * - StorageContainer::contains
-    * - StorageContainer::get
-    * - StorageContainer::set
-    *
-    */
-    static void luaBindings(sol::state &lua);
+    // /**
+    // * @brief Lua bindings
+    // *
+    // * - StorageContainer::contains
+    // * - StorageContainer::get
+    // * - StorageContainer::set
+    // *
+    // */
+    // static void luaBindings(sol::state &lua);
 
     /**
     * @brief Constructor
@@ -176,19 +176,19 @@ public:
     std::list<std::string>
     keys() const;
 
-    /**
-    * @brief Lua version of StorageContainer::get
-    *
-    * @param key
-    * @param defaultValue
-    *
-    * @return
-    */
-    sol::object luaGet(
-        const std::string& key,
-        sol::object defaultValue,
-        sol::this_state s
-    ) const;
+    // /**
+    // * @brief Lua version of StorageContainer::get
+    // *
+    // * @param key
+    // * @param defaultValue
+    // *
+    // * @return
+    // */
+    // sol::object luaGet(
+    //     const std::string& key,
+    //     sol::object defaultValue,
+    //     sol::this_state s
+    // ) const;
 
     /**
     * @brief Sets a value in this container
@@ -263,16 +263,16 @@ class StorageList : public std::vector<StorageContainer> {
 
 public:
 
-    /**
-    * @brief Lua bindings
-    *
-    * - StorageList::append
-    * - StorageList::get
-    * - StorageList::size
-    *
-    * @return
-    */
-    static void luaBindings(sol::state &lua);
+    // /**
+    // * @brief Lua bindings
+    // *
+    // * - StorageList::append
+    // * - StorageList::get
+    // * - StorageList::size
+    // *
+    // * @return
+    // */
+    // static void luaBindings(sol::state &lua);
 
     /**
     * @brief Constructor

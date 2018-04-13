@@ -1,26 +1,26 @@
 #include "general/locked_map.h"
 
-#include "bullet/collision_filter.h"
-#include "engine/engine.h"
-#include "engine/entity_filter.h"
-#include "engine/game_state.h"
+//#include "bullet/collision_filter.h"
+//#include "engine/engine.h"
+//#include "engine/entity_filter.h"
+//#include "engine/game_state.h"
 #include "engine/serialization.h"
 
 using namespace thrive;
 
-void LockedMap::luaBindings(
-    sol::state &lua
-){
-    lua.new_usertype<LockedMap>("LockedMap",
+// void LockedMap::luaBindings(
+//     sol::state &lua
+// ){
+//     lua.new_usertype<LockedMap>("LockedMap",
 
-        sol::constructors<sol::types<>>(),
+//         sol::constructors<sol::types<>>(),
         
-        "addLock", &LockedMap::addLock,
-        "isLocked", &LockedMap::isLocked,
-        "unlock", &LockedMap::unlock,
-        "locksList", &LockedMap::locksList
-    );
-}
+//         "addLock", &LockedMap::addLock,
+//         "isLocked", &LockedMap::isLocked,
+//         "unlock", &LockedMap::unlock,
+//         "locksList", &LockedMap::locksList
+//     );
+// }
 
 void
 LockedMap::addLock(

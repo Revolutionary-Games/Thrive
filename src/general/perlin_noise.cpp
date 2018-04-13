@@ -2,6 +2,7 @@
 #include <cmath>
 #include <random>
 #include <algorithm>
+#include <numeric>
 
 #include "perlin_noise.h"
 

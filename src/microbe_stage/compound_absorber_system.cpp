@@ -1,30 +1,15 @@
 #include "compound_absorber_system.h"
-#include "microbe_stage/compound_cloud_system.h"
 #include "microbe_stage/agent_cloud_system.h"
+#include "microbe_stage/compound_cloud_system.h"
 #include "microbe_stage/membrane_system.h"
+#include "microbe_stage/simulation_parameters.h"
 
-#include "bullet/collision_filter.h"
-#include "bullet/collision_system.h"
-#include "bullet/rigid_body_system.h"
-#include "engine/component_factory.h"
-#include "engine/engine.h"
-#include "engine/entity_filter.h"
-#include "engine/game_state.h"
-#include "engine/serialization.h"
-#include "game.h"
-#include "ogre/scene_node_system.h"
-#include "scripting/luajit.h"
-#include "util/make_unique.h"
-#include "microbe_stage/compound.h"
-#include "microbe_stage/compound_registry.h"
+#include "generated/cell_stage_world.h"
 
-#include "tinyxml.h"
+#include <Script/ScriptConversionHelpers.h>
+#include <add_on/scriptarray/scriptarray.h>
 
-#include <OgreEntity.h>
-#include <OgreSceneManager.h>
-#include <stdexcept>
-
-#include <iostream>
+#include <boost/range/adaptor/map.hpp>
 
 using namespace thrive;
 
@@ -32,336 +17,303 @@ using namespace thrive;
 // CompoundAbsorberComponent
 ////////////////////////////////////////////////////////////////////////////////
 
-void CompoundAbsorberComponent::luaBindings(
-    sol::state &lua
-){
-    lua.new_usertype<CompoundAbsorberComponent>("CompoundAbsorberComponent",
-
-        "new", sol::factories([](){
-                return std::make_unique<CompoundAbsorberComponent>();
-            }),
-
-        COMPONENT_BINDINGS(CompoundAbsorberComponent),
-
-        "absorbedCompoundAmount", &CompoundAbsorberComponent::absorbedCompoundAmount,
-        
-        "getAbsorbedCompounds", [](CompoundAbsorberComponent& us, sol::this_state s){
-            
-            THRIVE_BIND_ITERATOR_TO_TABLE(us.getAbsorbedCompounds());
-        },
-        
-        "setAbsorbedCompoundAmount", &CompoundAbsorberComponent::setAbsorbedCompoundAmount,
-        "setCanAbsorbCompound", &CompoundAbsorberComponent::setCanAbsorbCompound,
-        "setAbsorbtionCapacity", &CompoundAbsorberComponent::setAbsorbtionCapacity,
-        "enable", &CompoundAbsorberComponent::enable,
-        "disable", &CompoundAbsorberComponent::disable
-    );
+CompoundAbsorberComponent::CompoundAbsorberComponent() :
+    Leviathan::Component(TYPE)
+{
 }
 
-
 float
-CompoundAbsorberComponent::absorbedCompoundAmount(
-    CompoundId id
-) const {
+    CompoundAbsorberComponent::absorbedCompoundAmount(CompoundId id) const
+{
     const auto& iter = m_absorbedCompounds.find(id);
-    if (iter != m_absorbedCompounds.cend()) {
+    if(iter != m_absorbedCompounds.cend()) {
         return iter->second;
-    }
-    else {
+    } else {
         return 0.0f;
     }
 }
 
-BoostAbsorbedMapIterator
-CompoundAbsorberComponent::getAbsorbedCompounds() {
-    return m_absorbedCompounds | boost::adaptors::map_keys;
-}
-
-
 bool
-CompoundAbsorberComponent::canAbsorbCompound(
-    CompoundId id
-) const {
+    CompoundAbsorberComponent::canAbsorbCompound(CompoundId id) const
+{
     return m_canAbsorbCompound.find(id) != m_canAbsorbCompound.end();
 }
 
 void
-CompoundAbsorberComponent::setAbsorbtionCapacity(
-    double capacity
-) {
+    CompoundAbsorberComponent::setAbsorbtionCapacity(double capacity)
+{
     m_absorbtionCapacity = capacity;
 }
 
 void
-CompoundAbsorberComponent::enable(){
+    CompoundAbsorberComponent::enable()
+{
     m_enabled = true;
 }
 
 void
-CompoundAbsorberComponent::disable(){
+    CompoundAbsorberComponent::disable()
+{
     m_enabled = false;
 }
 
-void
-CompoundAbsorberComponent::load(
-    const StorageContainer& storage
-) {
-    Component::load(storage);
-    StorageList compounds = storage.get<StorageList>("compounds");
-    for (const StorageContainer& container : compounds) {
-        CompoundId compoundId = container.get<CompoundId>("compoundId");
-        float amount = container.get<float>("amount");
-        m_absorbedCompounds[compoundId] = amount;
-        m_canAbsorbCompound.insert(compoundId);
-    }
-    m_enabled = storage.get<bool>("enabled");
-}
+// void
+// CompoundAbsorberComponent::load(
+//     const StorageContainer& storage
+// ) {
+//     Component::load(storage);
+//     StorageList compounds = storage.get<StorageList>("compounds");
+//     for (const StorageContainer& container : compounds) {
+//         CompoundId compoundId = container.get<CompoundId>("compoundId");
+//         float amount = container.get<float>("amount");
+//         m_absorbedCompounds[compoundId] = amount;
+//         m_canAbsorbCompound.insert(compoundId);
+//     }
+//     m_enabled = storage.get<bool>("enabled");
+// }
 
+// StorageContainer
+// CompoundAbsorberComponent::storage() const {
+//     StorageContainer storage = Component::storage();
+//     StorageList compounds;
+//     compounds.reserve(m_canAbsorbCompound.size());
+//     for (CompoundId compoundId : m_canAbsorbCompound) {
+//         StorageContainer container;
+//         container.set<CompoundId>("compoundId", compoundId);
+//         container.set<float>("amount",
+//         this->absorbedCompoundAmount(compoundId));
+//         compounds.append(container);
+//     }
+//     storage.set<StorageList>("compounds", compounds);
+//     storage.set<bool>("enabled", m_enabled);
+//     return storage;
+// }
 
 void
-CompoundAbsorberComponent::setAbsorbedCompoundAmount(
-    CompoundId id,
-    float amount
-) {
+    CompoundAbsorberComponent::setAbsorbedCompoundAmount(CompoundId id,
+        float amount)
+{
     m_absorbedCompounds[id] = amount;
 }
 
 
 void
-CompoundAbsorberComponent::setCanAbsorbCompound(
-    CompoundId id,
-    bool canAbsorb
-) {
-    if (canAbsorb) {
+    CompoundAbsorberComponent::setCanAbsorbCompound(CompoundId id,
+        bool canAbsorb)
+{
+    if(canAbsorb) {
         m_canAbsorbCompound.insert(id);
-    }
-    else {
+    } else {
         m_canAbsorbCompound.erase(id);
     }
 }
 
-
-StorageContainer
-CompoundAbsorberComponent::storage() const {
-    StorageContainer storage = Component::storage();
-    StorageList compounds;
-    compounds.reserve(m_canAbsorbCompound.size());
-    for (CompoundId compoundId : m_canAbsorbCompound) {
-        StorageContainer container;
-        container.set<CompoundId>("compoundId", compoundId);
-        container.set<float>("amount", this->absorbedCompoundAmount(compoundId));
-        compounds.append(container);
-    }
-    storage.set<StorageList>("compounds", compounds);
-    storage.set<bool>("enabled", m_enabled);
-    return storage;
+CScriptArray*
+    CompoundAbsorberComponent::getAbsorbedCompounds()
+{
+    // Method taken from Leviathan::ConvertVectorToASArray
+    return Leviathan::ConvertIteratorToASArray(
+        std::begin(m_absorbedCompounds | boost::adaptors::map_keys),
+        std::end(m_absorbedCompounds | boost::adaptors::map_keys),
+        Leviathan::ScriptExecutor::Get()->GetASEngine());
 }
-
-REGISTER_COMPONENT(CompoundAbsorberComponent)
-
 
 ////////////////////////////////////////////////////////////////////////////////
 // CompoundAbsorberSystem
 ////////////////////////////////////////////////////////////////////////////////
-void CompoundAbsorberSystem::luaBindings(
-    sol::state &lua
-){
-    lua.new_usertype<CompoundAbsorberSystem>("CompoundAbsorberSystem",
-
-        sol::constructors<sol::types<>>(),
-
-        sol::base_classes, sol::bases<System>(),
-
-        "init", &CompoundAbsorberSystem::init
-    );
-}
-
-struct CompoundAbsorberSystem::Implementation {
-
-    // All entities that have a compoundCloudsComponent.
-    // These should be the various compounds (glucose, ammonia).
-    EntityFilter<
-        CompoundCloudComponent
-    > m_compounds;
-
-    // All entities that have a compoundCloudsComponent.
-    // These are all the toxins.
-    EntityFilter<
-        AgentCloudComponent,
-        OgreSceneNodeComponent
-    > m_agents;
-
-    // All object with a membrane. These are able to absorb the compound from above.
-    EntityFilter<
-        MembraneComponent,
-        CompoundAbsorberComponent,
-        OgreSceneNodeComponent
-    > m_absorbers;
-
-    Ogre::SceneManager* m_sceneManager = nullptr;
-};
-
-
-CompoundAbsorberSystem::CompoundAbsorberSystem()
-  : m_impl(new Implementation())
+void
+    CompoundAbsorberSystem::Run(CellStageWorld& world,
+        std::unordered_map<ObjectID, CompoundCloudComponent*>& clouds)
 {
-}
 
-
-CompoundAbsorberSystem::~CompoundAbsorberSystem() {}
-
-
-void
-CompoundAbsorberSystem::init(
-    GameStateData* gameState
-) {
-    System::initNamed("CompoundAbsorberSystem", gameState);
-    m_impl->m_compounds.setEntityManager(gameState->entityManager());
-    m_impl->m_agents.setEntityManager(gameState->entityManager());
-    m_impl->m_absorbers.setEntityManager(gameState->entityManager());
-    m_impl->m_sceneManager = gameState->sceneManager();
-}
-
-
-void
-CompoundAbsorberSystem::shutdown() {
-    m_impl->m_compounds.setEntityManager(nullptr);
-    m_impl->m_agents.setEntityManager(nullptr);
-    m_impl->m_absorbers.setEntityManager(nullptr);
-    m_impl->m_sceneManager = nullptr;
-    System::shutdown();
-}
-
-
-void
-CompoundAbsorberSystem::update(int, int) {
-    for (const auto& value : m_impl->m_absorbers) {
-        CompoundAbsorberComponent* absorber = std::get<1>(value.second);
-        absorber->m_absorbedCompounds.clear();
-    }
+    auto& absorbersIndex = m_absorbers.CachedComponents.GetIndex();
+    auto& agentsIndex = m_agents.CachedComponents.GetIndex();
 
     // For all entities that have a membrane and are able to absorb stuff do...
-    for (auto& value : m_impl->m_absorbers)
-    {
-        //EntityId entity = value.first;
-        MembraneComponent* membrane = std::get<0>(value.second);
-        CompoundAbsorberComponent* absorber = std::get<1>(value.second);
-        OgreSceneNodeComponent* sceneNode = std::get<2>(value.second);
+    for(const auto& value : absorbersIndex) {
 
-        // Find the bounding box of the membrane.
-        int sideLength = membrane->getCellDimensions();
-        // Find the position of the membrane.
-        Ogre::Vector3 origin = sceneNode->m_transform.position;
+        CompoundAbsorberComponent& absorber = std::get<1>(*value.second);
 
+        // Skip if disabled
+        if(!absorber.m_enabled)
+            continue;
+
+        // EntityId entity = value.first;
+        MembraneComponent& membrane = std::get<0>(*value.second);
+        Leviathan::Position& sceneNode = std::get<2>(*value.second);
+
+        // Clear absorbed compounds
+        absorber.m_absorbedCompounds.clear();
+
+        // Find the position of the cell.
+        const Float3 origin = sceneNode.Members._Position;
+
+        const auto unadjustedgrabRadius =
+            membrane.calculateEncompassingCircleRadius();
+
+        // Skip if not initialized //
+        if(unadjustedgrabRadius < 1)
+            continue;
 
         // Each membrane absorbs a certain amount of each compound.
-        for (auto& entry : m_impl->m_compounds)
-        {
-            CompoundCloudComponent* compoundCloud = std::get<0>(entry.second);
-            CompoundId id = compoundCloud->m_compoundId;
-            int x_start = (origin.x - sideLength/2 - compoundCloud->offsetX)/compoundCloud->gridSize + compoundCloud->width/2;
-            x_start = x_start > 0 ? x_start : 0;
-            int x_end = (origin.x + sideLength/2 - compoundCloud->offsetX)/compoundCloud->gridSize + compoundCloud->width/2;
-            x_end = x_end < compoundCloud->width ? x_end : compoundCloud->width;
+        for(auto& entry : clouds) {
 
-            int y_start = (origin.y - sideLength/2 - compoundCloud->offsetY)/compoundCloud->gridSize + compoundCloud->height/2;
-            y_start = y_start > 0 ? y_start : 0;
-            int y_end = (origin.y + sideLength/2 - compoundCloud->offsetY)/compoundCloud->gridSize + compoundCloud->height/2;
-            y_end = y_end < compoundCloud->height ? y_end : compoundCloud->height;
+            CompoundCloudComponent* compoundCloud = entry.second;
+
+            // Skip clouds that are out of range
+            const auto gridSize = compoundCloud->getGridSize();
+            const int halfWidth =
+                static_cast<int>(compoundCloud->getWidth() * gridSize / 2);
+            const int halfHeight =
+                static_cast<int>(compoundCloud->getHeight() * gridSize / 2);
+
+            const auto& cloudPos = compoundCloud->getPosition();
+
+            const auto grabRadius = unadjustedgrabRadius * gridSize;
+
+            const Float3 relative = origin - cloudPos;
+
+            if(relative.X < -halfWidth - grabRadius ||
+                relative.X > halfWidth + grabRadius ||
+                relative.Z < -halfHeight - grabRadius ||
+                relative.Z > halfHeight + grabRadius)
+                continue;
+
+            int x_start = (relative.X + halfWidth - grabRadius) / gridSize;
+
+            if(x_start < 0)
+                x_start = 0;
+
+            int x_end = (relative.X + halfWidth + grabRadius) / gridSize;
+
+            const auto width = static_cast<int>(compoundCloud->getWidth());
+            if(x_end > width)
+                x_end = width;
+
+            int z_start = (relative.Z + halfHeight - grabRadius) / gridSize;
+
+            if(z_start < 0)
+                z_start = 0;
+
+            int z_end = (relative.Z + halfHeight + grabRadius) / gridSize;
+
+            const auto height = static_cast<int>(compoundCloud->getHeight());
+            if(z_end > height)
+                z_end = height;
+
+            const auto diameter = std::pow(grabRadius, 2);
+
+            const int cloudSpaceHalfWidth =
+                static_cast<int>(compoundCloud->getWidth() / 2);
+            const int cloudSpaceHalfHeight =
+                static_cast<int>(compoundCloud->getHeight() / 2);
 
             // Iterate though all of the points inside the bounding box.
-            for (int x = x_start; x < x_end; x++)
-            {
-                for (int y = y_start; y < y_end; y++)
-                {
-                    if (membrane->contains((x-compoundCloud->width/2)*compoundCloud->gridSize-origin.x+compoundCloud->offsetX,(y-compoundCloud->height/2)*compoundCloud->gridSize-origin.y+compoundCloud->offsetY)) {
-                        if (absorber->m_enabled == true && absorber->canAbsorbCompound(id)) {
-                            float amount = compoundCloud->amountAvailable(x, y, .2) / 5000.0f;
-                            //if (CompoundRegistry::isAgentType(id)){
-                            //    (*CompoundRegistry::getAgentEffect(id))(entity, amount);
-                            //    this->entityManager()->removeEntity(compoundEntity);
-                            //}
-                            //else
-                                if(absorber->m_absorbtionCapacity >= amount * CompoundRegistry::getCompoundUnitVolume(id)){
-                                absorber->m_absorbedCompounds[id] += compoundCloud->takeCompound(x, y, .2) / 5000.0f;
-                                //this->entityManager()->removeEntity(compoundEntity);
-                            }
-                        }
-                        // Absorb .2 (third parameter) of the available compounds.
-                        //membrane->absorbCompounds();
-                    }
+            for(int x = x_start; x < x_end; x++) {
+                for(int y = z_start; y < z_end; y++) {
+
+                    // LOG_WRITE(
+                    //     "Pos: " + std::to_string(x) + ", " +
+                    //     std::to_string(y));
+
+                    // And skip everything outside the circle
+                    if(std::pow(x - cloudSpaceHalfWidth - relative.X, 2) +
+                            std::pow(y - cloudSpaceHalfHeight - relative.Y, 2) >
+                        diameter)
+                        continue;
+
+                    // LOG_WRITE("Checking absorb pos: " + std::to_string(x) +
+                    //           ", " + std::to_string(y));
+
+                    // Each cloud has 4 things
+                    static_assert(CLOUDS_IN_ONE == 4,
+                        "Clouds packed into one has changed");
+
+                    // Absorb all the 4 compounds
+
+                    const auto id1 = compoundCloud->getCompoundId1();
+                    const auto id2 = compoundCloud->getCompoundId2();
+                    const auto id3 = compoundCloud->getCompoundId3();
+                    const auto id4 = compoundCloud->getCompoundId4();
+
+                    if(id1 != NULL_COMPOUND && absorber.canAbsorbCompound(id1))
+                        absorbFromCloud(compoundCloud, id1, absorber, x, y);
+                    if(id2 != NULL_COMPOUND && absorber.canAbsorbCompound(id2))
+                        absorbFromCloud(compoundCloud, id2, absorber, x, y);
+                    if(id3 != NULL_COMPOUND && absorber.canAbsorbCompound(id3))
+                        absorbFromCloud(compoundCloud, id3, absorber, x, y);
+                    if(id4 != NULL_COMPOUND && absorber.canAbsorbCompound(id4))
+                        absorbFromCloud(compoundCloud, id4, absorber, x, y);
                 }
             }
         }
 
         // Each membrane absorbs a certain amount of each agent.
-        for (auto& entry : m_impl->m_agents)
-        {
-            AgentCloudComponent* agent = std::get<0>(entry.second);
-            OgreSceneNodeComponent* agentNode = std::get<1>(entry.second);
-            CompoundId id = agent->m_compoundId;
+        // TODO: agent absorption from a cloud (this would probably work very
+        // similarly as the normal compounds instead of like this (currently the
+        // toxins are physics "bullets" that hit cells)
+        // for(auto& entry : agentsIndex) {
+        //     AgentCloudComponent& agent = std::get<0>(*entry.second);
+        //     Leviathan::Position& agentNode = std::get<1>(*entry.second);
+        //     CompoundId id = agent.m_compoundId;
 
-            if (membrane->contains(agentNode->m_transform.position.x - sceneNode->m_transform.position.x, agentNode->m_transform.position.y - sceneNode->m_transform.position.y)) {
-                if (absorber->m_enabled == true && absorber->canAbsorbCompound(id)) {
-                    float amount = agent->getPotency();
-                    if (CompoundRegistry::isAgentType(id)){
-                        (*CompoundRegistry::getAgentEffect(id))(value.first, amount);
-                        this->entityManager()->removeEntity(entry.first);
-                    }
-                }
-                // Absorb .2 (third parameter) of the available compounds.
-                //membrane->absorbCompounds();
-            }
-        }
+        //     const Float3 agentPos = agentNode.Members._Position;
+
+        //     if(membrane.contains(agentPos.X - origin.X, agentPos.Z -
+        //     origin.Z)) {
+        //         if(absorber.m_enabled == true &&
+        //         absorber.canAbsorbCompound(id))
+        //         {
+        //             float amount = agent.getPotency();
+        //             // if (SimulationParameters::compoundRegistry.
+        //             //     getTypeData(id).isAgent){
+        //             //     (*SimulationParameters::compoundRegistry.
+        //             //         getTypeData(id).agentEffect)(value.first,
+        //             //         amount);
+        //             //     world.DestroyEntity(entry.first);
+        //             // }
+        //         }
+        //         // Absorb .2 (third parameter) of the available compounds.
+        //         // membrane->absorbCompounds();
+        //     }
+        // }
     }
-//
-//    for (Collision collision : m_impl->m_compoundCollisions)
-//    {
-//        EntityId entityA = collision.entityId1;
-//        EntityId entityB = collision.entityId2;
-//        EntityId compoundEntity = NULL_ENTITY;
-//        EntityId absorberEntity = NULL_ENTITY;
-//
-//        CompoundAbsorberComponent* absorber = nullptr;
-//        CompoundComponent* compound = nullptr;
-//        if (
-//            m_impl->m_compounds.containsEntity(entityA) and
-//            m_impl->m_absorbers.containsEntity(entityB)
-//        ) {
-//            compoundEntity = entityA;
-//            absorberEntity = entityB;
-//            compound = std::get<0>(
-//                m_impl->m_compounds.entities().at(entityA)
-//            );
-//            absorber = std::get<0>(
-//                m_impl->m_absorbers.entities().at(entityB)
-//            );
-//        }
-//        else if (
-//            m_impl->m_absorbers.containsEntity(entityA) and
-//            m_impl->m_compounds.containsEntity(entityB)
-//        ) {
-//            compoundEntity = entityB;
-//            absorberEntity = entityA;
-//            absorber = std::get<0>(
-//                m_impl->m_absorbers.entities().at(entityA)
-//            );
-//            compound = std::get<0>(
-//                m_impl->m_compounds.entities().at(entityB)
-//            );
-//        }
-//
-//        if (compound and absorber and absorber->m_enabled == true and absorber->canAbsorbCompound(compound->m_compoundId)) {
-//            if (CompoundRegistry::isAgentType(compound->m_compoundId)){
-//                (*CompoundRegistry::getAgentEffect(compound->m_compoundId))(absorberEntity, compound->m_potency);
-//                this->entityManager()->removeEntity(compoundEntity);
-//            }
-//            else if(absorber->m_absorbtionCapacity >= compound->m_potency * CompoundRegistry::getCompoundUnitVolume(compound->m_compoundId)){
-//                absorber->m_absorbedCompounds[compound->m_compoundId] += compound->m_potency;
-//                this->entityManager()->removeEntity(compoundEntity);
-//            }
-//        }
-//    }
+}
 
-//    m_impl->m_compoundCollisions.clearCollisions();
+
+void
+    CompoundAbsorberSystem::absorbFromCloud(
+        CompoundCloudComponent* compoundCloud,
+        CompoundId id,
+        CompoundAbsorberComponent& absorber,
+        int x,
+        int y)
+{
+    float amount = compoundCloud->amountAvailable(id, x, y, .2) / 5000.0f;
+
+    if(amount < Leviathan::EPSILON)
+        return;
+
+    // TODO: this would apply to absorbing agents from a cloud
+    // if (CompoundRegistry::isAgentType(id)){
+    //
+    // (*CompoundRegistry::getAgentEffect(id))(entity,
+    //     //    amount);
+    //     //
+    //     this->entityManager()->removeEntity(compoundEntity);
+    //     //}
+    //     // else
+    if(absorber.m_absorbtionCapacity >=
+        amount *
+            SimulationParameters::compoundRegistry.getTypeData(id).volume) {
+
+        // LOG_WRITE("Absorbing stuff: " + std::to_string(id) +
+        //           " at (cloud local): " + std::to_string(x) + ", " +
+        //           std::to_string(y) + " amount: " + std::to_string(amount));
+        absorber.m_absorbedCompounds[id] +=
+            compoundCloud->takeCompound(id, x, y, .2) / 5000.0f;
+    }
+    // Absorb .2 (third parameter) of the available
+    // compounds.
+    // membrane->absorbCompounds();
 }

@@ -1,0 +1,462 @@
+// Main menu script of Thrive
+GUIBaseFile = "MainMenu.layout";
+GUIAnimations = ["thrive.anims"];
+RequireCEGUIHooked = true;
+ExtraAccess = "FullFileSystem";
+
+// This keeps the GUI always on (no mouse capture is used on the main menu)
+o GuiCollection "OnKeeper"{
+    l params{
+        Enabled = true;
+        KeepsGUIOn = true;
+    }
+}
+
+// Top level window for all menus
+o GuiCollection "Background"{
+    l params{
+        Enabled = true;
+        AutoTarget = "Background";
+    }
+
+    s{
+		AudioSource @jams;
+
+        // Called from the intro video player after it ends
+        [@Listener="Generic", @Type="IntroVideoFinished"]
+        int startMenuMusic(){
+
+            LOG_INFO("Starting menu music");
+			@jams = GetEngine().GetSoundDevice().Play2DSound("Data/Sound/main-menu-theme-2.ogg",
+                true, false);
+            return 1;
+        }
+
+        // These pause and resume the main menu music
+        [@Listener="OnHide"]
+        int pauseMenuMusic(){
+
+             jams.Get().pause();
+             return 1;
+        }
+
+        [@Listener="OnShow"]
+        int resumeMenuMusic(){
+
+             jams.Get().play();
+             return 1;
+        }
+
+    @%};
+}
+
+// main menu root window
+o GuiCollection "TopLevelMenu"{
+    l params{
+        Enabled = true;
+        AutoTarget = "Background/MainMenuInteractive";
+        //AutoAnimateChildren = true;
+        //AutoAnimationIn = [[AutoTarget], [PopIn]];
+        //AutoAnimationOut = [[AutoTarget], [SinkAway]];
+    }
+}
+
+// Root of the cell stage GUI
+o GuiCollection "MicrobeRoot"{
+    l params{
+        Enabled = false;
+        AutoTarget = "MicrobeStageRoot";
+    }
+}
+
+// Root of the microbe editor GUI
+o GuiCollection "MicrobeEditorRoot"{
+    l params{
+        Enabled = false;
+        AutoTarget = "MicrobeEditorRoot";
+    }
+    s{
+        GuiCollection@ ourInstance;
+
+        [@Listener="OnInit"]
+        int storeInstance(GuiCollection@ instance){
+            @ourInstance = instance;
+            return 1;
+        }
+
+        void restoreFinishButtonActual(){
+            LOG_INFO("Enabling finish button after half a second");
+            ourInstance.GetOwningManager().GetRootWindow().GetChild(
+                "MicrobeEditorRoot/FinishButton").SetDisabledState(false);
+        }
+
+        void restoreFinishButtonBackgroundCall(){
+             // Called in a background thread so we need to invoke
+             GetEngine().Invoke(@restoreFinishButtonActual);
+        }
+
+        // Called from ThriveGame when the editor is entered
+        [@Listener="Generic", @Type="MicrobeEditorEntered"]
+        int enterEditor(/* Don't need the instance as it is already stored */){
+
+            ourInstance.UpdateState(true);
+
+            // Disable the normal microbe GUI
+            ourInstance.GetOwningManager().SetCollectionState("MicrobeRoot", false);
+
+            // Disable the finish button
+            ourInstance.GetOwningManager().GetRootWindow().GetChild(
+                "MicrobeEditorRoot/FinishButton").SetDisabledState(true);
+
+            // And enable it in half a second
+            GetEngine().GetThreadingManager().QueueTaskDelayed(
+                @restoreFinishButtonBackgroundCall, 500);
+
+            return 1;
+        }
+
+        // Called from ThriveGame when the editor is exited
+        [@Listener="Generic", @Type="MicrobeEditorExited"]
+        int enterExitEditor(/* Don't need the instance as it is already stored */){
+
+            ourInstance.UpdateState(false);
+
+            // Enable the normal microbe GUI
+            ourInstance.GetOwningManager().SetCollectionState("MicrobeRoot", true);
+            return 1;
+        }
+    @%};
+}
+
+// ------------------------------------ //
+// This creates the intro video player
+// And also plays the menu sound because why not
+o GuiObject "_IntroVideoStarter"{
+    s{
+        GuiObject@ OurObject;
+		bool PlayingIntroVideo = false;
+
+        // Comment the next line to not play intro video
+        [@Listener="OnInit"]
+        int StartVideoPlayback(GuiObject@ instance){
+
+            LOG_INFO("Starting to play intro video");
+            CEGUI::Window@ videoPlayer = instance.GetOwningManager().GetRootWindow().
+                 CreateAndAddChild("Thrive/VideoPlayer", "MainMenuVideoPlayer");
+
+            videoPlayer.SetSize(1.0, 0, 1.0, 0);
+
+            auto@ castedPlayer = cast<CEGUIVideoPlayer>(videoPlayer);
+
+            // Grab the created window as our own
+            instance.ConnectElement(videoPlayer);
+
+            if(!instance.IsCEGUIEventHooked()){
+
+                LOG_ERROR("IntroVideoStarter failed to bind to the created video "
+                    "player widget");
+                return 0;
+            }
+
+            // Save object for callback //
+            @OurObject = instance;
+
+            // Register end callback //
+            castedPlayer.OnPlaybackEnded.Register(@OnVideoEnded);
+
+            // Start playback
+            castedPlayer.Play("Data/Videos/intro.mkv");
+            PlayingIntroVideo = true;
+            
+            return 1;
+        }
+
+        // This is probably not called as it isn't a button
+        [@Listener="OnClick"]
+        bool VideoPlayerClicked(GuiObject@ instance){
+
+             LOG_INFO("VideoPlayer clicked");
+             return true;
+        }
+
+        void DestroyVideoPlayerWindow(){
+             // Make sure this is called only once
+             if(!PlayingIntroVideo)
+                return;
+
+             PlayingIntroVideo = false;
+             LOG_INFO("Destroying VideoPlayer window");
+             OurObject.GetOwningManager().GetRootWindow().
+                 DestroyChild("MainMenuVideoPlayer");
+				 
+			//play music too
+            GetEngine().GetEventHandler().CallEvent(GenericEvent("IntroVideoFinished"));
+        }
+
+        // Called by the videoplayer when the playback ends
+        void OnVideoEnded(NamedVars@ values){
+
+             LOG_INFO("Intro video ended");
+             GetEngine().Invoke(@DestroyVideoPlayerWindow);
+        }
+        
+        // User pressed skip intro video button
+        [@Listener="Generic", @Type="MainMenuIntroSkipEvent"]
+        int onSkipVideoEvent(GuiObject@ instance, GenericEvent@ event){
+            if(PlayingIntroVideo){
+                OnVideoEnded(NamedVars());
+                return 1;
+            } else {
+                return 0;
+            }
+        }
+    @%};
+}
+
+
+
+
+// ------------------------------------ //
+// Main menu objects
+// Version label
+o GuiObject "Background/MainMenuInteractive/VersionLabel"{
+    s{
+        [@Listener="OnInit"]
+        int WriteVersion(GuiObject@ instance){
+            instance.GetTargetWindow().SetText("TODO: ver (" + GetLeviathanVersion() +
+                 ")");
+
+            return 1;
+        }
+    @%};
+}
+//Load the game//
+o GuiObject "Background/MainMenuInteractive/LoadGameButton"{
+    s{
+	
+		[@Listener="OnInit"]
+		int checkforSave(GuiObject@ instance){
+            // disable if no saved game //
+			//for some reaosn I cannot call FileSystem::FileExists even though it works fine in the other angel scripts - Michael
+            // This now works with new ExtraAccess setting (also it was a static function so it
+            // is called like this) - hhyyrylainen
+		    if (!FileSystem::FileExists("quick.sav")) {
+				instance.GetTargetWindow().SetDisabledState(true);
+			}
+            return 1;
+        }
+        [@Listener="OnClick"]
+        bool LoadIt(GuiObject@ instance){
+		    GetEngine().GetSoundDevice().Play2DSoundEffect("Data/Sound/soundeffects/gui/button-hover-click.ogg");
+            // Load the game //
+			if (FileSystem::FileExists("quick.sav")) {
+			// Disable all the menus
+            instance.GetOwningManager().SetCollectionState("Background", false);
+            // And show the microbe GUI
+            instance.GetOwningManager().SetCollectionState("MicrobeRoot", true);
+            GetThriveGame().loadSaveGame("quick.sav");
+			}
+            return true;
+        }
+        @%};
+}
+
+// Quit the game //
+o GuiObject "Background/MainMenuInteractive/ExitGameButton"{
+    s{
+        [@Listener="OnClick"]
+        bool QuitIt(GuiObject@ instance){
+            // Close the game //
+		    GetEngine().GetSoundDevice().Play2DSoundEffect("Data/Sound/soundeffects/gui/button-hover-click.ogg");
+            cast<LeviathanApplication>(GetThriveGame()).MarkAsClosing();
+            return true;
+        }
+    @%};
+}
+
+// Start game //
+o GuiObject "Background/MainMenuInteractive/NewGameButton"{
+    s{
+		bool PlayingVideo = false;
+	    GuiObject@ VideoPlayerWindow;
+        GuiObject@ OurInstance;
+        
+        [@Listener="OnClick"]
+        bool StartGame(GuiObject@ instance){
+			//play click sound
+		    GetEngine().GetSoundDevice().Play2DSoundEffect("Data/Sound/soundeffects/gui/button-hover-click.ogg");
+            // Store this for the ended callback
+            @OurInstance = instance;
+             
+		    //initialize the video player
+			LOG_INFO("initialized video player");
+            CEGUI::Window@ microbeIntroVideoPlayer = instance.GetOwningManager().GetRootWindow().
+                 CreateAndAddChild("Thrive/VideoPlayer", "IntroPlayer");
+			LOG_INFO("initialized video player");
+            microbeIntroVideoPlayer.SetSize(1.0, 0, 1.0, 0);
+			LOG_INFO("set size of video player");
+            auto@ castedPlayer = cast<CEGUIVideoPlayer>(microbeIntroVideoPlayer);
+			LOG_INFO("casted player created");
+            // We are already attached to a CEGUI window so we don't grab the videoplayer
+            // like in MainMenuVideoPlayer
+			
+			@VideoPlayerWindow = instance;
+            // Register end callback //
+            castedPlayer.OnPlaybackEnded.Register(@OnMicrobeVideoEnded);
+
+            // Start playback
+            castedPlayer.Play("Data/Videos/MicrobeIntro.mkv");
+			PlayingVideo = true;
+            return true;
+        }
+		//microbe video stuff
+        void DestroyMicrobeVideo(){
+            // Make sure this is called only once
+            if(!PlayingVideo)
+                return;
+			
+            PlayingVideo = false;
+			VideoPlayerWindow.GetOwningManager().GetRootWindow().DestroyChild("IntroPlayer");
+            LOG_INFO("Destroying VideoPlayer window");
+				 
+        }
+		
+		void OnMicrobeVideoEnded(NamedVars@ values){
+            LOG_INFO("Stage video ended");
+            GetEngine().Invoke(@DestroyMicrobeVideo);
+
+            // And now swap the GUI //
+            // Disable all the menus
+            OurInstance.GetOwningManager().SetCollectionState("Background", false);
+            // And show the microbe GUI
+            OurInstance.GetOwningManager().SetCollectionState("MicrobeRoot", true);
+            
+			GetThriveGame().startNewGame();
+        }
+		
+		// User pressed skip intro video button
+        [@Listener="Generic", @Type="MainMenuIntroSkipEvent"]
+        int onSkipVideoMicrobeEvent(GuiObject@ instance, GenericEvent@ event){
+            if(PlayingVideo){
+                OnMicrobeVideoEnded(NamedVars());
+                return 1;
+            } else {
+                return 0;
+            }
+        }
+        // Uncomment the next line to automatically start a new game
+        // also remember to disable the intro video to not hear it also play
+        // [@Listener="OnInit"]
+        int InstantStart(GuiObject@ instance){
+
+            // Store this for the ended callback
+            @OurInstance = instance;
+            OnMicrobeVideoEnded(NamedVars());
+            return 1;
+        }
+        
+    @%};
+}
+
+//function MainMenuHudSystem:update(renderTime, logicTime)
+//   if keyCombo(kmp.screenshot) then
+//       Engine:screenShot("screenshot.png")
+//   elseif keyCombo(kmp.skipvideo) then
+//      if self.videoPlayer then
+//         self.videoPlayer:close()
+//         self.videoPlayer:hide()
+//         
+//         getComponent("gui_sounds", self.gameState, SoundSourceComponent
+//         ):interruptPlaying()
+//
+//        getComponent("main_menu_ambience", self.gameState, SoundSourceComponent
+//         ).autoLoop = true
+//         self.skippedVideo = true
+//      end
+//   elseif keyCombo(kmp.forward) then
+//   end
+//   if self.videoPlayer then
+//      self.videoPlayer:update()
+//      if self.videoPlayer:getCurrentTime() >= self.videoPlayer:getDuration() - 3.0 then
+//         if not self.vidFadeoutStarted then
+//            self.videoPlayer:playAnimation("fadeout")
+//            self.vidFadeoutStarted = true
+//         end
+//         if not self.skippedVideo and self.videoPlayer:getCurrentTime() >= self.videoPlayer:getDuration() then
+//            self.videoPlayer:hide()
+//
+//            getComponent("main_menu_ambience", self.gameState, SoundSourceComponent
+//            ).autoLoop = true
+//            
+//         end
+//      end
+//   end
+//end
+
+//local function setupSound(gameState)
+//    -- Background music
+//    local ambientEntity = Entity.new("main_menu_ambience", gameState.wrapper)
+//    local soundSource = SoundSourceComponent.new()
+//    soundSource.ambientSoundSource = true
+//    soundSource.autoLoop = false
+//    soundSource.volumeMultiplier = 0.15
+//    ambientEntity:addComponent(soundSource)
+//    soundSource:addSound("main-menu-theme-1", "main-menu-theme-1.ogg")
+//    soundSource:addSound("main-menu-theme-2", "main-menu-theme-2.ogg")
+//    -- Gui effects
+//    local guiSoundEntity = Entity.new("gui_sounds", gameState.wrapper)
+//    soundSource = SoundSourceComponent.new()
+//    soundSource.ambientSoundSource = true
+//    soundSource.autoLoop = false
+//    soundSource.volumeMultiplier = 1.0
+//    guiSoundEntity:addComponent(soundSource)
+//    -- Sound
+//    soundSource:addSound("button-hover-click", "soundeffects/gui/button-hover-click.ogg")
+//end
+// ------------------------------------ //
+
+
+// ------------------------------------ //
+// MicrobeStage HUD things
+o GuiObject "_mainMicrobeHUDEventHandler"{
+    s{
+        // This is a good example of how to put complex scripts to a new
+        #include "microbe_gui_events.as"
+    @%};
+}
+
+o GuiObject "MicrobeStageRoot/EditorButton"{
+    s{
+        [@Listener="Generic", @Type="PlayerReadyToEnterEditor"]
+        int enable(GuiObject@ instance, GenericEvent@ event){
+            instance.GetTargetWindow().SetDisabledState(false);
+            return 1;
+        }
+
+        [@Listener="OnClick"]
+        bool clicked(GuiObject@ instance){
+            GetThriveGame().editorButtonClicked();
+            instance.GetTargetWindow().SetDisabledState(true);
+            return true;
+        }
+    @%};
+}
+
+// ------------------------------------ //
+// MicrobeEditor HUD things
+o GuiObject "MicrobeEditorRoot/FinishButton"{
+    s{
+        [@Listener="OnClick"]
+        bool clicked(GuiObject@ instance){
+            GetThriveGame().finishEditingClicked();
+            instance.GetTargetWindow().SetDisabledState(true);
+            return true;
+        }
+    @%};
+}
+
+
+
+
+
+
