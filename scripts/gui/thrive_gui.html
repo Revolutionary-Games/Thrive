@@ -42,13 +42,33 @@
       </div>
 
       <span id="versionNumber" style="position: absolute; right: 0px; bottom: 0px;">
-        Not set
+        JavaScript not loaded...
       </span>
     </div>
 
     <!-- Microbe stage GUI -->
     <div id="topLevelMicrobeStage" style="display: none;">
-      <h1>Microbe stage</h1>
+      <!-- Top left box -->
+      <div id="microbeHealthBox" class="Panel"
+           style="position: absolute; top: 0px: left: 0px; width: 30%; height: 60px;"></div>
+
+      <!-- Bottom bar -->
+      <div id="microbeBottomBar" class="Panel"
+           style="position: absolute; bottom: 0px; left: 0px; width: 100%; height: 60px;">
+        <span class="Centered">Menu</span>
+      </div>
+
+      <!-- Compounds panel -->
+      <div id="compoundsPanel" class="Panel"
+           style="position: absolute; right: 0px; width: 30%; height: 30%; bottom: 60px;">
+        <h1>Compounds</h1>
+      </div>
+
+      <!-- editor button -->
+      <div id="microbeToEditorButton" class="Panel"
+           style="position: absolute; top: 0px; right: 0px; width: 120px; height: 90px;">
+        <span class="Centered">Editor</span>
+      </div>
     </div>
   </body>
 </html>

@@ -26,7 +26,14 @@ function runMenuSetup(){
 
         // Background to be black to fix the white text and cursor not showing up well
         document.getElementsByTagName("body")[0].style.background = "black";
+
+
     }
+    
+    //
+    // Use these to immediately test some specific menu
+    //
+    // newGame();
 }
 
 function quitGame(){
