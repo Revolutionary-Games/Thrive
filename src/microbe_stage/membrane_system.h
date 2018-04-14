@@ -14,6 +14,9 @@
 
 namespace thrive {
 
+//enumerable for membrane type
+enum class type { membrane, wall, chitin };
+
 /**
  * @brief Adds a membrane to an entity
  * @todo To improve performance this has to actually calculate the bounds for
@@ -30,6 +33,11 @@ class MembraneComponent : public Leviathan::Component {
 public:
     MembraneComponent();
 	virtual ~MembraneComponent();
+
+
+
+	//holder for membrane type
+	type membraneType;
 
     void
         Release(Ogre::SceneManager* scene);
@@ -115,6 +123,22 @@ public:
     static constexpr auto TYPE =
         componentTypeConvert(THRIVE_COMPONENT::MEMBRANE);
 
+	/*
+	code for generic things
+	*/
+
+
+	void DrawCorrectMembrane();
+
+	//Cell Wall COde
+	// Creates the 2D points in the membrane by looking at the positions of the
+	// organelles.
+	virtual void
+		DrawCellWall();
+
+	virtual Ogre::Vector3
+		GetMovementForCellWall(Ogre::Vector3 target, Ogre::Vector3 closestOrganelle);
+
 protected:
     //! Called on first Update
     void Initialize();
@@ -161,16 +185,6 @@ protected:
 private:
 };
 
-class CellWallComponent : public MembraneComponent {
-	public:
-    CellWallComponent();
-	~CellWallComponent();
-	void DrawMembrane();
-	virtual Ogre::Vector3
-		GetMovement(Ogre::Vector3 target, Ogre::Vector3 closestOrganelle);
-	protected:
-    private:
-};
 
 /**
  * @brief Handles entities with MembraneComponent

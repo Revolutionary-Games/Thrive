@@ -22,6 +22,8 @@ std::atomic<int> MembraneComponent::membraneNumber = {0};
 
 MembraneComponent::MembraneComponent() : Leviathan::Component(TYPE)
 {
+	//membrane type
+	membraneType = type::wall;
     // Create the mesh for rendering us
     m_mesh = Ogre::MeshManager::getSingleton().createManual(
         "MembraneMesh_" + std::to_string(++MembraneMeshNumber),
@@ -193,7 +195,8 @@ void
     if(!isInitialized)
         Initialize();
 
-    DrawMembrane();
+	//will have to do this everywhere
+	DrawCorrectMembrane();
 
     // 12 vertices added per index of vertices2D
     const auto bufferSize = vertices2D.size() + 2;
@@ -348,6 +351,21 @@ void
     }
 }
 
+void MembraneComponent::DrawCorrectMembrane() {
+	switch (membraneType)
+	{
+	case type::membrane:
+		DrawMembrane();
+		break;
+	case type::wall:
+		DrawCellWall();
+		break;
+	case type::chitin:
+		DrawCellWall();
+		break;
+	}
+
+}
 
 void
     MembraneComponent::Initialize()
@@ -386,7 +404,7 @@ void
     // Does this need to run 40*cellDimensions times. That seems to be
     // (reduced from 50 to 40 times, can probabbly be reduced more)
     for(int i = 0; i < 40 * cellDimensions; i++) {
-        DrawMembrane();
+		DrawCorrectMembrane();
     }
 
     // Subdivide();
@@ -394,6 +412,8 @@ void
 
     isInitialized = true;
 }
+
+
 // ------------------------------------ //
 void
     MembraneComponent::DrawMembrane()
@@ -618,25 +638,22 @@ void
 //     }
 // }
 
-CellWallComponent::CellWallComponent() : MembraneComponent()
-{}
-
-CellWallComponent::~CellWallComponent()
-{}
-
+/*
+Cell Wall Code Here
+*/
 
 //this is where the magic happens i think
 Ogre::Vector3
-CellWallComponent::GetMovement(Ogre::Vector3 target,
+MembraneComponent::GetMovementForCellWall(Ogre::Vector3 target,
 	Ogre::Vector3 closestOrganelle)
-{
-	double power = pow(2.7, (-target.distance(closestOrganelle)) / 10) / 50;
+{ 
+    double power = pow(2.7, (-target.distance(closestOrganelle)) / 10) / 50;
 
-	return (Ogre::Vector3(closestOrganelle) - Ogre::Vector3(target)) * power;
+    return (Ogre::Vector3(closestOrganelle) - Ogre::Vector3(target)) * power;
 }
 
 void
-CellWallComponent::DrawMembrane()
+MembraneComponent::DrawCellWall()
 {
 	// Stores the temporary positions of the membrane.
 	auto newPositions = vertices2D;
@@ -650,8 +667,7 @@ CellWallComponent::DrawMembrane()
 				(vertices2D[(end + i - 1) % end] + vertices2D[(i + 1) % end]) /2;
 		}
 		else {
-			Ogre::Vector3 movementDirection =
-				GetMovement(vertices2D[i], closestOrganelle);
+			Ogre::Vector3 movementDirection = GetMovementForCellWall(vertices2D[i], closestOrganelle);
 			newPositions[i].x -= movementDirection.x;
 			newPositions[i].y -= movementDirection.y;
 		}
@@ -679,7 +695,7 @@ CellWallComponent::DrawMembrane()
 		// small.
 		if (newPositions[(i + 1) % newPositions.size()].distance(
 			newPositions[(i - 1) % newPositions.size()]) <
-			cellDimensions / membraneResolution) {
+			cellDimensions / membraneResolution*1.5) {
 			// Delete the ith term.
 			auto it = newPositions.begin();
 			newPositions.erase(it + i);
