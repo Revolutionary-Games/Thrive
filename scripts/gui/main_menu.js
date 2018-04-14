@@ -23,6 +23,9 @@ function runMenuSetup(){
         
     } else {
         document.getElementById("versionNumber").textContent = "Thrive GUI in browser";
+
+        // Background to be black to fix the white text and cursor not showing up well
+        document.getElementsByTagName("body")[0].style.background = "black";
     }
 }
 
@@ -48,5 +51,6 @@ function newGame(){
     document.getElementById("topLevelMenuContainer").style.display = "none";
 
     // And show microbe gui
+    document.getElementById("topLevelMicrobeStage").style.display = "block";
 }
     
