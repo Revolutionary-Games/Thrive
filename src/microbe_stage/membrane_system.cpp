@@ -668,8 +668,8 @@ MembraneComponent::DrawCellWall()
 		}
 		else {
 			Ogre::Vector3 movementDirection = GetMovementForCellWall(vertices2D[i], closestOrganelle);
-			newPositions[i].x -= movementDirection.x;
-			newPositions[i].y -= movementDirection.y;
+			newPositions[i].x -= movementDirection.x*2;
+			newPositions[i].y -= movementDirection.y*2;
 		}
 	}
 
@@ -695,7 +695,7 @@ MembraneComponent::DrawCellWall()
 		// small.
 		if (newPositions[(i + 1) % newPositions.size()].distance(
 			newPositions[(i - 1) % newPositions.size()]) <
-			cellDimensions / membraneResolution*1.5) {
+			cellDimensions / membraneResolution) {
 			// Delete the ith term.
 			auto it = newPositions.begin();
 			newPositions.erase(it + i);
