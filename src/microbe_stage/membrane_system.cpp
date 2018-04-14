@@ -293,40 +293,15 @@ void
         m_subMesh->setMaterialName(coloredMaterial->getName());
     }
 
-    // Map the buffer for writing //
-    // DO NOT READ FROM THE MAPPED BUFFER
-    MembraneVertex* RESTRICT_ALIAS meshVertices =
-        reinterpret_cast<MembraneVertex * RESTRICT_ALIAS>(
-            m_vertexBuffer->map(0, m_vertexBuffer->getNumElements()));
-
-
     // Update mesh data //
 
     // Creates a 3D prism from the 2D vertices.
 
     // All of these floats were originally doubles. But to have more
     // performance they are now floats
-    float height = .1;
-
-    size_t writeIndex = 0;
-	const Ogre::Vector2 center(0.5, 0.5);
-	meshVertices[writeIndex++] = { Ogre::Vector3(0, height / 2, 0), center };
-
-    for(size_t i = 0, end = vertices2D.size(); i < end + 1; i++) {
-        // Finds the UV coordinates be projecting onto a plane and stretching to
-        // fit a circle.
-
-        const double currentRadians = 2.0 * 3.1416 * i / end;
-
-        meshVertices[writeIndex++] = {
-            Ogre::Vector3(
-				vertices2D[i % end].x,
-                vertices2D[i % end].z + height / 2,
-				vertices2D[i % end].y),
-            center +
-                Ogre::Vector2(cos(currentRadians), sin(currentRadians)) / 2};
-    }
-
+	//initialize membrane
+	size_t writeIndex = 0;
+	writeIndex = InitializeCorrectMembrane(writeIndex);
     // LOG_INFO("Write index is: " + std::to_string(writeIndex) + ", buffer
     // size: " +
     //     std::to_string(bufferSize));
@@ -364,6 +339,61 @@ void MembraneComponent::DrawCorrectMembrane() {
 		DrawCellWall();
 		break;
 	}
+}
+
+size_t MembraneComponent::InitializeCorrectMembrane(size_t writeIndex) {
+	// Map the buffer for writing //
+	// DO NOT READ FROM THE MAPPED BUFFER
+	MembraneVertex* RESTRICT_ALIAS meshVertices =
+		reinterpret_cast<MembraneVertex * RESTRICT_ALIAS>(
+			m_vertexBuffer->map(0, m_vertexBuffer->getNumElements()));
+	//common variables
+	float height = .1;
+	const Ogre::Vector2 center(0.5, 0.5);
+
+	switch (membraneType)
+	{
+	case type::membrane:
+		meshVertices[writeIndex++] = { Ogre::Vector3(0, height / 2, 0), center };
+
+		for (size_t i = 0, end = vertices2D.size(); i < end + 1; i++) {
+			// Finds the UV coordinates be projecting onto a plane and stretching to
+			// fit a circle.
+
+			const double currentRadians = 2.0 * 3.1416 * i / end;
+
+			meshVertices[writeIndex++] = {
+				Ogre::Vector3(
+					vertices2D[i % end].x,
+					vertices2D[i % end].z + height / 2,
+					vertices2D[i % end].y),
+				center +
+				Ogre::Vector2(cos(currentRadians), sin(currentRadians)) / 2 };
+		}
+		break;
+	case type::wall:
+	case type::chitin:
+		//cell walls need obvious inner/outer memrbranes (we can worry about chitin later)
+		height = .05;
+		meshVertices[writeIndex++] = { Ogre::Vector3(0, height / 2, 0), center };
+
+		for (size_t i = 0, end = vertices2D.size(); i < end + 1; i++) {
+			// Finds the UV coordinates be projecting onto a plane and stretching to
+			// fit a circle.
+			const double currentRadians = 3.1416/2 * i / end;
+			meshVertices[writeIndex++] = {
+				Ogre::Vector3(
+					vertices2D[i % end].x,
+					vertices2D[i % end].z + height / 2,
+					vertices2D[i % end].y),
+				center +
+				Ogre::Vector2(cos(currentRadians), sin(currentRadians)) / 2 };
+		}
+		break;
+	}
+
+
+	return writeIndex;
 }
 
 Ogre::MaterialPtr MembraneComponent::chooseMaterialByType() {
@@ -679,8 +709,7 @@ MembraneComponent::DrawCellWall()
 	for (size_t i = 0, end = newPositions.size(); i < end; i++) {
 		Ogre::Vector3 closestOrganelle = FindClosestOrganelles(vertices2D[i]);
 		if (closestOrganelle == Ogre::Vector3(0, 0, -1)) {
-			newPositions[i] =
-				(vertices2D[(end + i - 1) % end] + vertices2D[(i + 1) % end]) /2;
+			newPositions[i] = (vertices2D[(end + i - 1) % end] + vertices2D[(i + 1) % end]) /2;
 		}
 		else {
 			Ogre::Vector3 movementDirection = GetMovementForCellWall(vertices2D[i], closestOrganelle);
@@ -699,18 +728,14 @@ MembraneComponent::DrawCellWall()
 			// Add an element after the ith term that is the average of the i
 			// and i+1 term.
 			auto it = newPositions.begin();
-			Ogre::Vector3 tempPoint =
-				(newPositions[(i + 1) % newPositions.size()] +
-					newPositions[i]) / 2;
+			Ogre::Vector3 tempPoint = (newPositions[(i + 1) % newPositions.size()] + newPositions[i])/2;
 			newPositions.insert(it + i + 1, tempPoint);
-
 			i++;
 		}
 
 		// Check to see if the gap between two points in the membrane is too
 		// small.
-		if (newPositions[(i + 1) % newPositions.size()].distance(
-			newPositions[(i - 1) % newPositions.size()]) <
+		if (newPositions[(i + 1) % newPositions.size()].distance( newPositions[(i - 1) % newPositions.size()]) <
 			cellDimensions / membraneResolution) {
 			// Delete the ith term.
 			auto it = newPositions.begin();

@@ -70,6 +70,7 @@ public:
     virtual void
         DrawMembrane();
 
+	size_t InitializeCorrectMembrane(size_t writeIndex);
     // Sees if the given point is inside the membrane.
     //! note This is quite an expensive method as this loops all the vertices
     bool
