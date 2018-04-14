@@ -273,8 +273,8 @@ void
         // We need to create a new instance until the managing is moved to the
         // species (allowing the same species to share)
         if(!coloredMaterial) {
-            Ogre::MaterialPtr baseMaterial =
-                Ogre::MaterialManager::getSingleton().getByName("Membrane");
+			Ogre::MaterialPtr baseMaterial = chooseMaterialByType();
+                
 
             // TODO: find a way for the species to manage this to
             // avoid having tons of materials Maybe Use the species's
@@ -364,7 +364,23 @@ void MembraneComponent::DrawCorrectMembrane() {
 		DrawCellWall();
 		break;
 	}
+}
 
+Ogre::MaterialPtr MembraneComponent::chooseMaterialByType() {
+	switch (membraneType)
+	{
+	case type::membrane:
+		return Ogre::MaterialManager::getSingleton().getByName("Membrane");
+		break;
+	case type::wall:
+		return Ogre::MaterialManager::getSingleton().getByName("cellwall");
+		break;
+	case type::chitin:
+		return Ogre::MaterialManager::getSingleton().getByName("cellwall");
+		break;
+	}
+	//default
+	return Ogre::MaterialManager::getSingleton().getByName("cellwall");
 }
 
 void
@@ -619,7 +635,7 @@ void
 //             "General");
 
 //             Ogre::MaterialPtr baseMaterial =
-//             Ogre::MaterialManager::getSingleton().getByName("Membrane");
+//             Ogre::MaterialManager::getSingleton().getByName();
 //             Ogre::MaterialPtr materialPtr =
 //             baseMaterial->clone(sceneNodeComponent->m_meshName.get());
 //             materialPtr->compile();
@@ -647,7 +663,7 @@ Ogre::Vector3
 MembraneComponent::GetMovementForCellWall(Ogre::Vector3 target,
 	Ogre::Vector3 closestOrganelle)
 { 
-    double power = pow(2.7, (-target.distance(closestOrganelle)) / 10) / 50;
+    double power = pow(2.7, (-target.distance(closestOrganelle)*2) / 10) / 40;
 
     return (Ogre::Vector3(closestOrganelle) - Ogre::Vector3(target)) * power;
 }
@@ -668,8 +684,8 @@ MembraneComponent::DrawCellWall()
 		}
 		else {
 			Ogre::Vector3 movementDirection = GetMovementForCellWall(vertices2D[i], closestOrganelle);
-			newPositions[i].x -= movementDirection.x*2;
-			newPositions[i].y -= movementDirection.y*2;
+			newPositions[i].x -= movementDirection.x;
+			newPositions[i].y -= movementDirection.y;
 		}
 	}
 
@@ -678,8 +694,8 @@ MembraneComponent::DrawCellWall()
 		// Check to see if the gap between two points in the membrane is too
 		// big.
 		if (newPositions[i].distance(
-			newPositions[(i + 1) % newPositions.size()]) >
-			cellDimensions / membraneResolution) {
+			newPositions[(i + 1) % newPositions.size()])*2 >
+			(cellDimensions / membraneResolution)) {
 			// Add an element after the ith term that is the average of the i
 			// and i+1 term.
 			auto it = newPositions.begin();

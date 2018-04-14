@@ -127,6 +127,7 @@ public:
 	code for generic things
 	*/
 
+	Ogre::MaterialPtr chooseMaterialByType();
 
 	void DrawCorrectMembrane();
 
