@@ -14,7 +14,8 @@ Species::Species(Json::Value value)
     float r = value["colour"]["r"].asFloat();
     float g = value["colour"]["g"].asFloat();
     float b = value["colour"]["b"].asFloat();
-    colour = Ogre::ColourValue(r, g, b, 1.0);
+	float a = value["colour"]["a"].asFloat();
+    colour = Ogre::ColourValue(r, g, b, a);
 
     // Getting the starting compounds.
     std::vector<std::string> compoundInternalNames =

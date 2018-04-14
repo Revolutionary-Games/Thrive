@@ -10,12 +10,20 @@ float randomOpacity(){
     return GetEngine().GetRandom().GetNumber(MIN_OPACITY, MAX_OPACITY);
 }
 
+float randomOpacityBacteria(){
+    return GetEngine().GetRandom().GetNumber(MIN_OPACITY+100, MAX_OPACITY+100);
+}
+
 
 Float4 randomColour(float opaqueness = randomOpacity()){
     return Float4(randomColourChannel(), randomColourChannel(), randomColourChannel(),
         opaqueness);
 }
 
+Float4 randomProkayroteColour(float opaqueness = randomOpacityBacteria()){
+    return Float4(randomColourChannel(), randomColourChannel(), randomColourChannel(),
+        opaqueness);
+}
 
 const dictionary DEFAULT_INITIAL_COMPOUNDS =
     {
@@ -46,6 +54,19 @@ string randomBacteriaName(){
 //now what is the best way to seperate bacteria from this...
 class Species{
     //! Constructor for automatically creating a random species
+	Float4 colour = getRightColourForSpecies();
+	
+	Float4 getRightColourForSpecies(){
+	if (isBacteria)
+		{
+		return randomProkayroteColour();
+		}
+		else
+		{
+		return randomColour();
+		}
+	}
+	
     Species(CellStageWorld@ world, bool isBacteria){
 	    this.isBacteria=isBacteria;
 		if (!isBacteria)
@@ -63,9 +84,7 @@ class Species{
         }
         
         commonConstructor(world);
-
-        colour = randomColour();
-
+		this.colour = getRightColourForSpecies();
         this.setupSpawn(world);
 		}
 		else{
@@ -105,7 +124,9 @@ class Species{
         this.stringCode = Species::mutate(parent.stringCode);
 
         commonConstructor(world);
-
+		
+		this.colour = getRightColourForSpecies();
+		
         this.setupSpawn(world);
 		}
 		else
@@ -241,7 +262,7 @@ class Species{
 		}
 		
         commonConstructor(world);
-        colour = randomColour();
+		this.colour = getRightColourForSpecies();
         this.setupBacteriaSpawn(world);
 	}
 	
@@ -251,7 +272,7 @@ class Species{
 			{
 			LOG_INFO("New Clade of bacteria");
 			//we can do more fun stuff here later
-			this.colour = randomColour();
+			this.colour = randomProkayroteColour();
 			}
 			else
 			{
@@ -263,7 +284,7 @@ class Species{
         //this.stringCode = Species::mutate(parent.stringCode);
 
         commonConstructor(world);
-
+		this.colour = getRightColourForSpecies();
         this.setupBacteriaSpawn(world);
 	}
     //updates the population count of the species
@@ -278,7 +299,6 @@ class Species{
 	bool isBacteria;
     string stringCode;
     int population = INITIAL_POPULATION;
-    Float4 colour = randomColour();
 
     //! The species entity that has this species' SpeciesComponent
     ObjectID templateEntity = NULL_OBJECT;
