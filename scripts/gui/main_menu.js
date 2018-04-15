@@ -14,10 +14,19 @@ function runMenuSetup(){
         newGame();
     }, true);
 
-    
+    document.addEventListener("keydown", (event) => {
+        if(event.key === "Escape"){
 
-    // Version number
+            event.stopPropagation();
+            onEscapePressed();
+            return;
+        }
+    }, true);
+    
+    // Some setup cannot be ran when previewing in a browser
     if(isInEngine()){
+        
+        // Version number
         Thrive.getVersion((result) => {
 
             document.getElementById("versionNumber").textContent = result;
@@ -34,13 +43,21 @@ function runMenuSetup(){
         // Background to be black to fix the white text and cursor not showing up well
         document.getElementsByTagName("body")[0].style.background = "black";
 
-
+        // playVideo("../../assets/videos/intro.mkv", onIntroEnded);
     }
     
     //
     // Use these to immediately test some specific menu
     //
     // onMicrobeIntroEnded();
+}
+
+//! Handles pressing Escape in the GUI (this will skip videos and
+//! unpause, pausing is initiated from c++ key listener)
+function onEscapePressed(){
+
+    if(!document.getElementById("videoPlayersVideo").ended)
+        stopVideo();
 }
 
 function onIntroEnded(){

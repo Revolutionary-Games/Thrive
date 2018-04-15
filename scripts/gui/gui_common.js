@@ -34,6 +34,9 @@ function playVideo(file, ondone){
     // Start playing as autoplay is on
     videoElement.src = file;
 
+    // TODO: volume control
+    videoElement.volume = 1.0;
+
     // Set end event
     $(videoElement).one("ended", function(event){
         event.stopPropagation();
@@ -43,4 +46,14 @@ function playVideo(file, ondone){
         
         ondone();
     });
+}
+
+//! Stops a video (and triggers the end event)
+function stopVideo(){
+
+    let videoElement = document.getElementById("videoPlayersVideo");
+    
+    let event = new Event("ended");
+    videoElement.dispatchEvent(event);
+    videoElement.src = "";
 }
