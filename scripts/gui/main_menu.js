@@ -5,8 +5,14 @@
 //! Setup callbacks for buttons
 function runMenuSetup(){
 
-    document.getElementById("quitButton").addEventListener("click", quitGame, true);
-    document.getElementById("newGameButton").addEventListener("click", newGame, true);
+    document.getElementById("quitButton").addEventListener("click", (event) => {
+        event.stopPropagation();
+        quitGame();
+    }, true);
+    document.getElementById("newGameButton").addEventListener("click", (event) => {
+        event.stopPropagation();
+        newGame();
+    }, true);
 
     
 
@@ -18,8 +24,9 @@ function runMenuSetup(){
             
         }, () => {});
 
-        // TODO: play intro video (this could theoretically work in a
-        // browser but would be a bit annoying to work on)
+        // (this would theoretically work in a browser but would be a bit annoying to work on)
+        // Start intro video
+        playVideo("../../Videos/intro.mkv", onIntroEnded);
         
     } else {
         document.getElementById("versionNumber").textContent = "Thrive GUI in browser";
@@ -33,7 +40,15 @@ function runMenuSetup(){
     //
     // Use these to immediately test some specific menu
     //
-    // newGame();
+    // onMicrobeIntroEnded();
+}
+
+function onIntroEnded(){
+
+    if(isInEngine()){
+
+        // Start the menu music
+    }
 }
 
 function quitGame(){
@@ -43,9 +58,18 @@ function quitGame(){
 
 function newGame(){
 
+    // TODO: show intro
+
+    onMicrobeIntroEnded();
+}
+
+function onMicrobeIntroEnded(){
+
     if(isInEngine()){
+
+        // TODO: make sure no video is playing
+        
     
-        // TODO: show intro
         Thrive.start();
         
     } else {

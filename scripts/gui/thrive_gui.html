@@ -6,6 +6,7 @@
     <meta name="description" content="The HTML file with all the thrive GUI stuff in it">
     
     <link rel="stylesheet" href="thrive_style.css">
+    <script src="../../jsvendor/jquery-3.3.1.min.js"></script>
     <script src="gui_common.js"></script>
     <script src="main_menu.js"></script>
   </head>
@@ -13,14 +14,29 @@
     
     <script>
       // Document.onload doesn't work here
-      window.onload = function(){
+      $(document).ready(function(){
           // Run setups from the individual scripts
           runMenuSetup();
+
+          // Hide the loading logo
+          hideLoadingLogo();
+      
           if(!isInEngine()){
               console.log("GUI is not inside Thrive process");
           }
-      }
+      });
     </script>
+
+    <!-- This blocks out everything until javascript has loaded (shows the tasteful thrive logo) -->
+    <div id="loadingLogo" class="FullScreen"
+         style="z-index: 20; background: black;">
+      <div class="Logo"></div>
+    </div>
+
+    <!-- Videoplayer -->
+    <div id="videoPlayer" class="FullScreen" style="display: none; z-index: 10; background: black;">
+      <video id="videoPlayersVideo" autoplay="true"></video>
+    </div>
 
     <!-- All the menus for easy disabling -->
     <div id="topLevelMenuContainer" class="MenuContainer">
