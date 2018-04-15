@@ -11,7 +11,7 @@ float randomOpacity(){
 }
 
 float randomOpacityBacteria(){
-    return GetEngine().GetRandom().GetNumber(MIN_OPACITY+100, MAX_OPACITY+100);
+    return GetEngine().GetRandom().GetNumber(MIN_OPACITY+1, MAX_OPACITY+1);
 }
 
 
