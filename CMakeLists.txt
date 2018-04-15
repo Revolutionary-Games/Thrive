@@ -144,6 +144,10 @@ set_property(DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}" PROPERTY
 file(GLOB THRIVE_SCRIPTS "scripts/*")
 file(COPY ${THRIVE_SCRIPTS} DESTINATION "${PROJECT_BINARY_DIR}/bin/Data/Scripts")
 
+# Copy javascript libraries
+file(GLOB THRIVE_VENDOR_SCRIPTS "assets/jsvendor/*")
+file(COPY ${THRIVE_VENDOR_SCRIPTS} DESTINATION "${PROJECT_BINARY_DIR}/bin/Data/jsvendor")
+
 # Copy other data assets
 file(GLOB THRIVE_LOOKNFEEL "assets/gui/looknfeel/*")
 file(COPY ${THRIVE_LOOKNFEEL} DESTINATION

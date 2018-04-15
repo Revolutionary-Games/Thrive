@@ -56,10 +56,28 @@ button{
     background-color: blue;
 }
 
+/* Videos are centered inside their elements and made to fit */
+video {
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+
 /* Common quick classes */
 .Centered{
     text-align: center;
     vertical-align: middle;
+}
+
+/* Centered fullscreen container */
+.FullScreen{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 /* Menu things */
