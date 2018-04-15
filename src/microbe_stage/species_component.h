@@ -7,6 +7,7 @@
 #include "engine/component_types.h"
 #include <Entities/Component.h>
 #include <Entities/Components.h>
+#include "membrane_system.h"
 
 #include <add_on/scriptdictionary/scriptdictionary.h>
 #include <add_on/scriptarray/scriptarray.h>
@@ -27,6 +28,7 @@ public:
     
 	Float4 colour;
 	bool isBacteria;
+	MEMBRANE_TYPE speciesMembraneType;
 	std::string name;
 
 	// TODO: get the id from the simulation parameters.

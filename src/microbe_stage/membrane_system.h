@@ -15,7 +15,7 @@
 namespace thrive {
 
 //enumerable for membrane type
-enum class type { membrane, wall, chitin };
+enum class MEMBRANE_TYPE { membrane, wall, chitin };
 
 /**
  * @brief Adds a membrane to an entity
@@ -37,7 +37,7 @@ public:
 
 
 	//holder for membrane type
-	type membraneType;
+	MEMBRANE_TYPE membraneType;
 
     void
         Release(Ogre::SceneManager* scene);

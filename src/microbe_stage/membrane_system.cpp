@@ -23,7 +23,7 @@ std::atomic<int> MembraneComponent::membraneNumber = {0};
 MembraneComponent::MembraneComponent() : Leviathan::Component(TYPE)
 {
 	//membrane type
-	membraneType = type::wall;
+	membraneType = MEMBRANE_TYPE::wall;
     // Create the mesh for rendering us
     m_mesh = Ogre::MeshManager::getSingleton().createManual(
         "MembraneMesh_" + std::to_string(++MembraneMeshNumber),
@@ -329,13 +329,13 @@ void
 void MembraneComponent::DrawCorrectMembrane() {
 	switch (membraneType)
 	{
-	case type::membrane:
+	case MEMBRANE_TYPE::membrane:
 		DrawMembrane();
 		break;
-	case type::wall:
+	case MEMBRANE_TYPE::wall:
 		DrawCellWall();
 		break;
-	case type::chitin:
+	case MEMBRANE_TYPE::chitin:
 		DrawCellWall();
 		break;
 	}
@@ -353,7 +353,7 @@ size_t MembraneComponent::InitializeCorrectMembrane(size_t writeIndex) {
 
 	switch (membraneType)
 	{
-	case type::membrane:
+	case MEMBRANE_TYPE::membrane:
 		meshVertices[writeIndex++] = { Ogre::Vector3(0, height / 2, 0), center };
 
 		for (size_t i = 0, end = vertices2D.size(); i < end + 1; i++) {
@@ -371,8 +371,8 @@ size_t MembraneComponent::InitializeCorrectMembrane(size_t writeIndex) {
 				Ogre::Vector2(cos(currentRadians), sin(currentRadians)) / 2 };
 		}
 		break;
-	case type::wall:
-	case type::chitin:
+	case MEMBRANE_TYPE::wall:
+	case MEMBRANE_TYPE::chitin:
 		//cell walls need obvious inner/outer memrbranes (we can worry about chitin later)
 		height = .05;
 		meshVertices[writeIndex++] = { Ogre::Vector3(0, height / 2, 0), center };
@@ -399,13 +399,13 @@ size_t MembraneComponent::InitializeCorrectMembrane(size_t writeIndex) {
 Ogre::MaterialPtr MembraneComponent::chooseMaterialByType() {
 	switch (membraneType)
 	{
-	case type::membrane:
+	case MEMBRANE_TYPE::membrane:
 		return Ogre::MaterialManager::getSingleton().getByName("Membrane");
 		break;
-	case type::wall:
+	case MEMBRANE_TYPE::wall:
 		return Ogre::MaterialManager::getSingleton().getByName("cellwall");
 		break;
-	case type::chitin:
+	case MEMBRANE_TYPE::chitin:
 		return Ogre::MaterialManager::getSingleton().getByName("cellwall");
 		break;
 	}

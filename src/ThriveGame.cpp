@@ -1233,6 +1233,15 @@ bool
     }
 
 
+	if (engine->RegisterEnum("MEMBRANE_TYPE") < 0) {
+		ANGELSCRIPT_REGISTERFAIL;
+	}
+
+	ANGELSCRIPT_REGISTER_ENUM_VALUE(MEMBRANE_TYPE, membrane);
+	ANGELSCRIPT_REGISTER_ENUM_VALUE(MEMBRANE_TYPE, wall);
+	ANGELSCRIPT_REGISTER_ENUM_VALUE(MEMBRANE_TYPE, chitin);
+
+
     // ------------------------------------ //
 
     if(engine->RegisterObjectType(
@@ -1261,6 +1270,11 @@ bool
            asOFFSET(SpeciesComponent, avgCompoundAmounts)) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
     }
+
+	if (engine->RegisterObjectProperty("SpeciesComponent", "MEMBRANE_TYPE speciesMembraneType",
+		asOFFSET(SpeciesComponent, speciesMembraneType)) < 0) {
+		ANGELSCRIPT_REGISTERFAIL; 
+	}
 
     if(engine->RegisterObjectProperty("SpeciesComponent", "Float4 colour",
            asOFFSET(SpeciesComponent, colour)) < 0) {
