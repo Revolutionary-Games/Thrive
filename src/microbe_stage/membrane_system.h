@@ -31,13 +31,17 @@ class MembraneComponent : public Leviathan::Component {
     };
 
 public:
-    MembraneComponent();
+    MembraneComponent(MEMBRANE_TYPE type);
 	virtual ~MembraneComponent();
 
 
 
 	//holder for membrane type
 	MEMBRANE_TYPE membraneType;
+
+	void setMembraneType(MEMBRANE_TYPE type);
+
+	int getMembraneType();
 
     void
         Release(Ogre::SceneManager* scene);

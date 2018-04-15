@@ -20,10 +20,10 @@ using namespace thrive;
 static std::atomic<int> MembraneMeshNumber = {0};
 std::atomic<int> MembraneComponent::membraneNumber = {0};
 
-MembraneComponent::MembraneComponent() : Leviathan::Component(TYPE)
+MembraneComponent::MembraneComponent(MEMBRANE_TYPE type) : Leviathan::Component(TYPE)
 {
 	//membrane type
-	membraneType = MEMBRANE_TYPE::wall;
+	membraneType = type;
     // Create the mesh for rendering us
     m_mesh = Ogre::MeshManager::getSingleton().createManual(
         "MembraneMesh_" + std::to_string(++MembraneMeshNumber),
@@ -46,6 +46,18 @@ MembraneComponent::~MembraneComponent()
         Ogre::MaterialManager::getSingleton().remove(coloredMaterial);
         coloredMaterial.reset();
     }
+}
+
+void
+MembraneComponent::setMembraneType(MEMBRANE_TYPE type)
+{
+	membraneType = static_cast<MEMBRANE_TYPE>(type);
+}
+
+int
+MembraneComponent::getMembraneType()
+{
+	return static_cast<int>(membraneType);
 }
 
 void

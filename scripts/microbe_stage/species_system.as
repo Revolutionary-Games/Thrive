@@ -82,10 +82,11 @@ class Species{
         for(int i = 0; i < stringSize; ++i){
             this.stringCode += getRandomLetter();
         }
-        
+        this.speciesMembraneType = MEMBRANE_TYPE::membrane;
+	    this.colour = getRightColourForSpecies();
         commonConstructor(world);
-		this.colour = getRightColourForSpecies();
         this.setupSpawn(world);
+
 		}
 		else{
 		// We are creating a bacteria right now
@@ -123,9 +124,11 @@ class Species{
         parent.population = int(ceil(parent.population / 2.f));
         this.stringCode = Species::mutate(parent.stringCode);
 
+		this.speciesMembraneType = MEMBRANE_TYPE::membrane;
+		this.colour = getRightColourForSpecies();
+		
         commonConstructor(world);
 		
-		this.colour = getRightColourForSpecies();
 		
         this.setupSpawn(world);
 		}
@@ -141,7 +144,7 @@ class Species{
         
         auto organelles = positionOrganelles(stringCode);
         
-        templateEntity = Species::createSpecies(forWorld, this.name, organelles, this.colour, this.isBacteria, 
+        templateEntity = Species::createSpecies(forWorld, this.name, organelles, this.colour, this.isBacteria, this.speciesMembraneType, 
             DEFAULT_INITIAL_COMPOUNDS);
     }
     
@@ -260,9 +263,9 @@ class Species{
 		for(int i = 0; i < stringSize; ++i){
             this.stringCode += chosenType;
 		}
-		
-        commonConstructor(world);
+	    this.speciesMembraneType = MEMBRANE_TYPE::wall;
 		this.colour = getRightColourForSpecies();
+        commonConstructor(world);
         this.setupBacteriaSpawn(world);
 	}
 	
@@ -282,9 +285,9 @@ class Species{
         parent.population = int(ceil(parent.population / 2.f));
 		//right now all they will do is get new colors sometimes
         //this.stringCode = Species::mutate(parent.stringCode);
-
-        commonConstructor(world);
+	    this.speciesMembraneType = MEMBRANE_TYPE::wall;
 		this.colour = getRightColourForSpecies();
+        commonConstructor(world);
         this.setupBacteriaSpawn(world);
 	}
     //updates the population count of the species
@@ -297,6 +300,7 @@ class Species{
 
     string name;
 	bool isBacteria;
+	MEMBRANE_TYPE speciesMembraneType;
     string stringCode;
     int population = INITIAL_POPULATION;
 
@@ -462,16 +466,17 @@ class SpeciesSystem : ScriptSystem{
 }
 
 //! \param updateSpecies will be modified to match the organelles of the microbe
+// This isnt used anywhere by the way
 void updateSpeciesFromMicrobe(CellStageWorld@ world, ObjectID microbeEntity,
     SpeciesComponent@ updateSpecies
 ) {
     MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
         world.GetScriptComponentHolder("MicrobeComponent").Find(microbeEntity));
     auto membraneComponent = world.GetComponent_MembraneComponent(microbeEntity);
-
     // this.name = microbeComponent.speciesName
     updateSpecies.colour = membraneComponent.getColour();
-
+	
+	
     updateSpecies.organelles.resize(0);
 
     // Create species' organelle data
@@ -554,8 +559,8 @@ void applyTemplate(CellStageWorld@ world, ObjectID microbe, SpeciesComponent@ sp
 
     // TODO: Make this also set the microbe's ProcessorComponent
     microbeComponent.speciesName = species.name;
-    MicrobeOperations::setMembraneColour(world, microbe, species.colour);
-
+    MicrobeOperations::setMembraneType(world, microbe, species.speciesMembraneType);
+	MicrobeOperations::setMembraneColour(world, microbe, species.colour);
     restoreOrganelleLayout(world, microbe, microbeComponent, species);
     
     // TODO: should the compound amounts be reset before this?
@@ -608,14 +613,14 @@ ObjectID createSpecies(CellStageWorld@ world, const string &in name,
                 organelle.rotation));
     }
     
-    return createSpecies(world, name, convertedOrganelles, fromTemplate.colour, false, 
+    return createSpecies(world, name, convertedOrganelles, fromTemplate.colour, fromTemplate.isBacteria, fromTemplate.speciesMembraneType, 
         fromTemplate.compounds);
 }
 
 //! Creates an entity that has all the species stuff on it
 //! AI controlled ones need to be in addition in SpeciesSystem
 ObjectID createSpecies(CellStageWorld@ world, const string &in name,
-    array<PlacedOrganelle@> organelles, Float4 colour, bool isBacteria, const dictionary &in compounds
+    array<PlacedOrganelle@> organelles, Float4 colour, bool isBacteria, MEMBRANE_TYPE speciesMembraneType,  const dictionary &in compounds
 ) {
     ObjectID speciesEntity = world.CreateEntity();
         
@@ -648,6 +653,9 @@ ObjectID createSpecies(CellStageWorld@ world, const string &in name,
         speciesEntity);
     
     speciesComponent.colour = colour;
+	
+	speciesComponent.speciesMembraneType = speciesMembraneType;
+	
 	//we need to know this is baceria
 	speciesComponent.isBacteria = isBacteria;
     // iterates over all compounds, and sets amounts and priorities

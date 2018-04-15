@@ -1201,6 +1201,27 @@ bool
         ANGELSCRIPT_REGISTERFAIL;
     }
 
+
+	if (engine->RegisterEnum("MEMBRANE_TYPE") < 0) {
+		ANGELSCRIPT_REGISTERFAIL;
+	}
+
+	ANGELSCRIPT_REGISTER_ENUM_VALUE(MEMBRANE_TYPE, membrane);
+	ANGELSCRIPT_REGISTER_ENUM_VALUE(MEMBRANE_TYPE, wall);
+	ANGELSCRIPT_REGISTER_ENUM_VALUE(MEMBRANE_TYPE, chitin);
+
+	if (engine->RegisterObjectMethod("MembraneComponent",
+		"int getMembraneType() const", asMETHOD(MembraneComponent, getMembraneType),
+		asCALL_THISCALL) < 0) {
+		ANGELSCRIPT_REGISTERFAIL;
+	}
+
+	if (engine->RegisterObjectMethod("MembraneComponent",
+		"void setMembraneType(MEMBRANE_TYPE type)",
+		asMETHOD(MembraneComponent, setMembraneType), asCALL_THISCALL) < 0) {
+		ANGELSCRIPT_REGISTERFAIL;
+	}
+
     if(engine->RegisterObjectMethod("MembraneComponent",
            "Float4 getColour() const", asMETHOD(MembraneComponent, getColour),
            asCALL_THISCALL) < 0) {
@@ -1233,13 +1254,6 @@ bool
     }
 
 
-	if (engine->RegisterEnum("MEMBRANE_TYPE") < 0) {
-		ANGELSCRIPT_REGISTERFAIL;
-	}
-
-	ANGELSCRIPT_REGISTER_ENUM_VALUE(MEMBRANE_TYPE, membrane);
-	ANGELSCRIPT_REGISTER_ENUM_VALUE(MEMBRANE_TYPE, wall);
-	ANGELSCRIPT_REGISTER_ENUM_VALUE(MEMBRANE_TYPE, chitin);
 
 
     // ------------------------------------ //
@@ -1273,7 +1287,7 @@ bool
 
 	if (engine->RegisterObjectProperty("SpeciesComponent", "MEMBRANE_TYPE speciesMembraneType",
 		asOFFSET(SpeciesComponent, speciesMembraneType)) < 0) {
-		ANGELSCRIPT_REGISTERFAIL; 
+		ANGELSCRIPT_REGISTERFAIL;
 	}
 
     if(engine->RegisterObjectProperty("SpeciesComponent", "Float4 colour",
