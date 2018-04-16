@@ -14,6 +14,14 @@ function requireEngine(msg){
     }
 }
 
+//! Plays the button press sound effect
+function playButtonPressSound(){
+
+    if(isInEngine()){
+        Leviathan.Play2DSoundEffect("Data/Sound/soundeffects/gui/button-hover-click.ogg");
+    }
+}
+
 //! Hides the loading logo
 function hideLoadingLogo(){
     document.getElementById("loadingLogo").style.display = "none";
