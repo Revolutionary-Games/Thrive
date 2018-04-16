@@ -75,16 +75,20 @@ function quitGame(){
 
 function newGame(){
 
-    // TODO: show intro
-
-    onMicrobeIntroEnded();
+    if(isInEngine()){
+        playVideo("../../Videos/MicrobeIntro.mkv", onMicrobeIntroEnded);
+    } else {
+        onMicrobeIntroEnded();
+    }
 }
 
 function onMicrobeIntroEnded(){
 
     if(isInEngine()){
 
-        // TODO: make sure no video is playing
+        // Make sure no video is playing in case we did an immediate start
+        if(!document.getElementById("videoPlayersVideo").ended)
+            stopVideo();
         
     
         Thrive.start();
