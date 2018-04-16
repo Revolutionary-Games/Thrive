@@ -7,10 +7,12 @@ function runMenuSetup(){
 
     document.getElementById("quitButton").addEventListener("click", (event) => {
         event.stopPropagation();
+        playButtonPressSound();
         quitGame();
     }, true);
     document.getElementById("newGameButton").addEventListener("click", (event) => {
         event.stopPropagation();
+        playButtonPressSound();        
         newGame();
     }, true);
 
@@ -65,6 +67,7 @@ function onIntroEnded(){
     if(isInEngine()){
 
         // Start the menu music
+        
     }
 }
 
