@@ -1,6 +1,7 @@
 // Main menu scripts are here
 "use strict";
 
+let jams = null;
 
 //! Setup callbacks for buttons
 function runMenuSetup(){
@@ -67,7 +68,9 @@ function onIntroEnded(){
     if(isInEngine()){
 
         // Start the menu music
-        
+        Leviathan.Play2DSound("Data/Sound/main-menu-theme-2.ogg", true, false, (source) => {
+            jams = source;
+        });
     }
 }
 
@@ -86,6 +89,11 @@ function newGame(){
 }
 
 function onMicrobeIntroEnded(){
+
+    if(jams){
+
+        jams.Pause();
+    }
 
     if(isInEngine()){
 
