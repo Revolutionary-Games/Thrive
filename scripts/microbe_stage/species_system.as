@@ -176,7 +176,7 @@ class Species{
 	
 	ObjectID bacteriaColonySpawn(CellStageWorld@ world, Float3 pos){
         LOG_INFO("New colony of species spawned: " + this.name);
-		Float3 curSpawn = Float3(GetEngine().GetRandom().GetNumber(1,10),0,GetEngine().GetRandom().GetNumber(1,10));
+		Float3 curSpawn = Float3(GetEngine().GetRandom().GetNumber(1,5),0,GetEngine().GetRandom().GetNumber(1,5));
 		//two kinds of colonies are supported, line colonies and clump colonies
 		
 		if (GetEngine().GetRandom().GetNumber(0,4) < 2)
@@ -185,7 +185,7 @@ class Species{
 		for(int i = 0; i < GetEngine().GetRandom().GetNumber(1,5); ++i){
 			//dont spawn them on top of each other  because it causes them to bounce around and lag
 			MicrobeOperations::spawnBacteria(world, pos+curSpawn, this.name,true,"",true);
-			curSpawn = curSpawn + Float3(GetEngine().GetRandom().GetNumber(-10,10),0,GetEngine().GetRandom().GetNumber(-10,10));
+			curSpawn = curSpawn + Float3(GetEngine().GetRandom().GetNumber(-5,5),0,GetEngine().GetRandom().GetNumber(-5,5));
 			}
 		}
 		else
@@ -194,7 +194,7 @@ class Species{
 		for(int i = 0; i < GetEngine().GetRandom().GetNumber(1,5); ++i){
 			//dont spawn them on top of each other  because it causes them to bounce around and lag
 			MicrobeOperations::spawnBacteria(world, pos+curSpawn, this.name,true,"",true);
-			curSpawn = curSpawn + Float3(GetEngine().GetRandom().GetNumber(1,10),0,GetEngine().GetRandom().GetNumber(1,10));
+			curSpawn = curSpawn + Float3(GetEngine().GetRandom().GetNumber(1,5),0,GetEngine().GetRandom().GetNumber(1,5));
 			}
 		}
         return MicrobeOperations::spawnBacteria(world, pos, this.name,true,"",false);

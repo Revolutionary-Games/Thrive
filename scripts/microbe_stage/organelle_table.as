@@ -24,6 +24,9 @@ Organelle atributes:
 
     chanceToCreate: The (relative) chance this organelle will appear in a randomly
                     generated or mutated microbe (to do roulette selection).
+					
+    prokaryoteChance: The (relative) chance this organelle will appear in a randomly
+                    generated or mutated prokaryotes (to do roulette selection).
 
     processes:  A table with all the processes this organelle does,
                 and the capacity of the process (the amount of
@@ -67,7 +70,6 @@ class OrganelleComponentFactory{
 //! This replaced the old tables that specified things for cells.
 //! This is clearer as to what are valid properties
 class OrganelleParameters{
-
     OrganelleParameters(const string &in name){
 
         this.name = name;
@@ -79,7 +81,10 @@ class OrganelleParameters{
     
     //! Chance of randomly generating this (used by procedural_microbes.as)
     float chanceToCreate = 0.0;
-
+	
+    //! Chance of randomly generating this (used by procedural_microbes.as)
+    float prokaryoteChance = 0.0;
+	
     //! The factories for the components that define what this organelle does
     array<OrganelleComponentFactory@> components;
 
