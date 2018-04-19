@@ -391,11 +391,10 @@ class SpeciesSystem : ScriptSystem{
                 //"chopping down the branch i'm sitting in"
                 auto index = numberOfSpecies - i;   
 				//LOG_INFO(""+index);
-				
                 auto currentSpecies = species[index];
                 currentSpecies.updatePopulation();
                 auto population = currentSpecies.population;
-				
+				LOG_INFO(currentSpecies.name+" "+currentSpecies.population);
                 //reproduction/mutation
 				//bacteria should mutate more often then eukaryote sbut this is fine for now
                 if(population > MAX_POP_SIZE){
