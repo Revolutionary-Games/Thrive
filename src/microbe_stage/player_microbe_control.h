@@ -51,6 +51,9 @@ private:
     Leviathan::GKey m_left;
     Leviathan::GKey m_right;
 
+    Leviathan::GKey m_zoomIn;
+    Leviathan::GKey m_zoomOut;
+
     bool m_forwardActive = false;
     bool m_backwardsActive = false;
     bool m_leftActive = false;

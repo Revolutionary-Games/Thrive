@@ -524,6 +524,15 @@ void
 }
 // ------------------------------------ //
 void
+    ThriveGame::onZoomChange(float amount)
+{
+    if(m_impl->m_cellStage)
+        m_impl->m_cellStage->GetMicrobeCameraSystem().changeCameraOffset(
+            amount);
+}
+
+// ------------------------------------ //
+void
     ThriveGame::setBackgroundMaterial(const std::string& material)
 {
     LOG_INFO("Setting microbe background to: " + material);
@@ -770,6 +779,8 @@ void
     keyconfigobj->AddKeyIfMissing(guard, "MoveLeft", {"A"});
     keyconfigobj->AddKeyIfMissing(guard, "MoveRight", {"D"});
     keyconfigobj->AddKeyIfMissing(guard, "ReproduceCheat", {"P"});
+    keyconfigobj->AddKeyIfMissing(guard, "ZoomIn", {"+"});
+    keyconfigobj->AddKeyIfMissing(guard, "ZoomOut", {"-"});
 }
 // ------------------------------------ //
 bool
