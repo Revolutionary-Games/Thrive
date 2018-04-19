@@ -6,6 +6,7 @@
 const auto MIN_INITIAL_LENGTH = 5;
 const auto MAX_INITIAL_LENGTH = 15;
 float MAX_CHANCE_SCORE = 0;
+float MAX_PROKARYOTE_SCORE = 0;
 
 dictionary organelleLetters = {};
 array<string> VALID_ORGANELLES = {};
@@ -43,7 +44,6 @@ string getRandomLetter(bool isBacteria){
     float i = GetEngine().GetRandom().GetNumber(0.f, MAX_CHANCE_SCORE);
 
     for(uint index = 0; index < VALID_ORGANELLES.length(); ++index){
-
         i -= VALID_ORGANELLE_CHANCES[index];
         
         if(i <= 0){
