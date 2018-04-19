@@ -39,7 +39,7 @@ void setupOrganelleLetters(){
 
 // Returns a random organelle letter
 // TODO: verify that this has a good chance of returning also the last organelle
-string getRandomLetter(){
+string getRandomLetter(bool isBacteria){
     float i = GetEngine().GetRandom().GetNumber(0.f, MAX_CHANCE_SCORE);
 
     for(uint index = 0; index < VALID_ORGANELLES.length(); ++index){

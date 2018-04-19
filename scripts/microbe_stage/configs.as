@@ -14,6 +14,7 @@ const auto MAX_COLOR = 0.8f;
 const auto MIN_OPACITY = 0.3f;
 const auto MAX_OPACITY = 4.0f;
 
+const auto MUTATION_BACTERIA_TO_EUKARYOTE = 1;
 const auto MUTATION_CREATION_RATE = 0.1f;
 const auto MUTATION_DELETION_RATE = 0.1f;
 

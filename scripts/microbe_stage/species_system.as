@@ -80,7 +80,7 @@ class Species{
             getOrganelleDefinition("cytoplasm").gene;
         
         for(int i = 0; i < stringSize; ++i){
-            this.stringCode += getRandomLetter();
+            this.stringCode += getRandomLetter(false);
         }
         this.speciesMembraneType = MEMBRANE_TYPE::membrane;
 	    this.colour = getRightColourForSpecies();
@@ -283,8 +283,8 @@ class Species{
 			}
         this.population = int(floor(parent.population / 2.f));
         parent.population = int(ceil(parent.population / 2.f));
-		//right now all they will do is get new colors sometimes
-        //this.stringCode = Species::mutate(parent.stringCode);
+
+        this.stringCode = Species::mutateProkaryote(parent.stringCode);
 	    this.speciesMembraneType = MEMBRANE_TYPE::wall;
 		this.colour = getRightColourForSpecies();
         commonConstructor(world);
@@ -437,10 +437,16 @@ class SpeciesSystem : ScriptSystem{
 			   currentBacteriaAmount++;
             }
 			
-            //mass extinction
-            if(species.length() > MAX_SPECIES+INITIAL_BACTERIA){
+            //mass extinction events
 			
+            if(species.length() > MAX_SPECIES+INITIAL_BACTERIA){
                 LOG_INFO("Mass extinction time");
+				//F to pay respects: TODO: add a notification for when this happens
+                doMassExtinction();
+            }
+			//add soem variability, this is a less deterministic mass extinction eg, a meteor, etc.
+			if(GetEngine().GetRandom().GetNumber(0,1000) == 1){
+                LOG_INFO("Black swan event");
 				//F to pay respects: TODO: add a notification for when this happens
                 doMassExtinction();
             }
@@ -760,7 +766,7 @@ string mutate(const string &in stringCode){
 
     //try to insert a letter at the end of the table.
     if(GetEngine().GetRandom().GetNumber(0.f, 1.f) < MUTATION_CREATION_RATE){
-        chromosomes += getRandomLetter();
+        chromosomes += getRandomLetter(false);
     }
 
     //modifies the rest of the table.
@@ -772,7 +778,7 @@ string mutate(const string &in stringCode){
         }
         
         if(GetEngine().GetRandom().GetNumber(0.f, 1.f) < MUTATION_CREATION_RATE){
-            chromosomes.insert(index, getRandomLetter());
+            chromosomes.insert(index, getRandomLetter(false));
         }
     }
 
@@ -782,6 +788,32 @@ string mutate(const string &in stringCode){
     return newString;
 }
 
+//mutate bacteria
+string mutateProkaryote(const string &in stringCode ){
+    //moving the stringCode to a table to facilitate changes
+    string chromosomes = stringCode;
+
+    //try to insert a letter at the end of the table.
+    if(GetEngine().GetRandom().GetNumber(0.f, 1.f) < MUTATION_CREATION_RATE){
+        chromosomes += getRandomLetter(true);
+    }
+
+    //modifies the rest of the table.
+    for(uint i = 0; i < stringCode.length(); ++i){
+        uint index = stringCode.length() - i;
+
+        if(GetEngine().GetRandom().GetNumber(0.f, 1.f) < MUTATION_DELETION_RATE){
+            chromosomes.erase(index, 1);
+        }
+        
+        if(GetEngine().GetRandom().GetNumber(0.f, 1.f) < MUTATION_CREATION_RATE){
+            chromosomes.insert(index, getRandomLetter(true));
+        }
+    }
+	
+    auto newString = "" + chromosomes;
+    return newString;
+}
 
 //! Calls resetAutoEvo on world's SpeciesSystem
 void resetAutoEvo(CellStageWorld@ world){
