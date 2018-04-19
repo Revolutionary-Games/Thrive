@@ -19,7 +19,9 @@ PlayerMicrobeControl::PlayerMicrobeControl(KeyConfiguration& keys) :
     m_forward(keys.ResolveControlNameToFirstKey("MoveForward")),
     m_backwards(keys.ResolveControlNameToFirstKey("MoveBackwards")),
     m_left(keys.ResolveControlNameToFirstKey("MoveLeft")),
-    m_right(keys.ResolveControlNameToFirstKey("MoveRight"))
+    m_right(keys.ResolveControlNameToFirstKey("MoveRight")),
+    m_zoomIn(keys.ResolveControlNameToFirstKey("ZoomIn")),
+    m_zoomOut(keys.ResolveControlNameToFirstKey("ZoomOut"))
 {
 }
 // ------------------------------------ //
@@ -27,14 +29,14 @@ bool
     PlayerMicrobeControl::ReceiveInput(int32_t key, int modifiers, bool down)
 {
     bool active = down && m_enabled;
-	
+
     if(handleMovementKeys(key, modifiers, active))
         return active;
 
     if(!active)
         return false;
 
-    LOG_INFO("PMC Key pressed: " + std::to_string(key));
+    // LOG_INFO("PMC Key pressed: " + std::to_string(key));
 
     if(m_reproduceCheat.Match(key, modifiers)) {
 
@@ -42,6 +44,13 @@ bool
         Engine::Get()->GetEventHandler()->CallEvent(
             new Leviathan::GenericEvent("PlayerReadyToEnterEditor"));
         return true;
+    } else if(m_zoomIn.Match(key, modifiers)) {
+
+        ThriveGame::Get()->onZoomChange(-1);
+
+    } else if(m_zoomOut.Match(key, modifiers)) {
+
+        ThriveGame::Get()->onZoomChange(1);
     }
 
     // Not used
@@ -226,8 +235,7 @@ Float3
 {
 
     float x, y;
-    Engine::Get()->GetWindowEntity()->GetNormalizedRelativeMouse(
-        x, y);
+    Engine::Get()->GetWindowEntity()->GetNormalizedRelativeMouse(x, y);
 
     const auto ray = worldWithCamera.CastRayFromCamera(x, y);
 
