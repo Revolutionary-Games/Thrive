@@ -3,6 +3,9 @@
 
 let jams = null;
 
+// Pauses the menu music instantly (used for instant start)
+let menuAlreadySkipped = false;
+
 //! Setup callbacks for buttons
 function runMenuSetup(){
 
@@ -67,10 +70,13 @@ function onIntroEnded(){
 
     if(isInEngine()){
 
+        let startPaused = Boolean(menuAlreadySkipped);
+
         // Start the menu music
-        Leviathan.Play2DSound("Data/Sound/main-menu-theme-2.ogg", true, false, (source) => {
-            jams = source;
-        });
+        Leviathan.Play2DSound("Data/Sound/main-menu-theme-2.ogg", true, startPaused,
+                              (source) => {
+                                  jams = source;
+                              });
     }
 }
 
@@ -89,6 +95,8 @@ function newGame(){
 }
 
 function onMicrobeIntroEnded(){
+
+    menuAlreadySkipped = true;
 
     if(jams){
 
