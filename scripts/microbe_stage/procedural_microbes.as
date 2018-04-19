@@ -12,6 +12,7 @@ dictionary organelleLetters = {};
 array<string> VALID_ORGANELLES = {};
 array<string> VALID_ORGANELLE_LETTERS = {};
 array<float> VALID_ORGANELLE_CHANCES = {};
+array<float> VALID_PROKARYOTE_ORGANELLE_CHANCES = {};
 
 //! Called from setupOrganelles
 void setupOrganelleLetters(){
@@ -30,10 +31,12 @@ void setupOrganelleLetters(){
             
             VALID_ORGANELLES.insertLast(organelleName);
             VALID_ORGANELLE_CHANCES.insertLast(organelleInfo.chanceToCreate);
+			VALID_PROKARYOTE_ORGANELLE_CHANCES.insertLast(organelleInfo.prokaryoteChance);
             VALID_ORGANELLE_LETTERS.insertLast(organelleInfo.gene);
             
             // Getting the max chance score for the roulette selection.
             MAX_CHANCE_SCORE += organelleInfo.chanceToCreate;
+		    MAX_PROKARYOTE_SCORE += organelleInfo.prokaryoteChance;
         }
     }
 }
@@ -41,8 +44,9 @@ void setupOrganelleLetters(){
 // Returns a random organelle letter
 // TODO: verify that this has a good chance of returning also the last organelle
 string getRandomLetter(bool isBacteria){
+	if (!isBacteria)
+	{
     float i = GetEngine().GetRandom().GetNumber(0.f, MAX_CHANCE_SCORE);
-
     for(uint index = 0; index < VALID_ORGANELLES.length(); ++index){
         i -= VALID_ORGANELLE_CHANCES[index];
         
@@ -50,6 +54,18 @@ string getRandomLetter(bool isBacteria){
             return VALID_ORGANELLE_LETTERS[index];
         }
     }
+	}
+	else
+	{
+    float i = GetEngine().GetRandom().GetNumber(0.f, MAX_PROKARYOTE_SCORE);
+    for(uint index = 0; index < VALID_ORGANELLES.length(); ++index){
+        i -= VALID_PROKARYOTE_ORGANELLE_CHANCES[index];
+        
+        if(i <= 0){
+            return VALID_ORGANELLE_LETTERS[index];
+        }
+    }
+	}
     
     // Just in case
     LOG_WARNING("getRandomLetter: just in case case hit");

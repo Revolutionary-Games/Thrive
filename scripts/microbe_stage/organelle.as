@@ -34,7 +34,8 @@ class Organelle{
         mesh = parameters.mesh;
         gene = parameters.gene;
         chanceToCreate = parameters.chanceToCreate;
-
+        prokaryoteChance = parameters.prokaryoteChance;
+		
         initialComposition = parameters.initialComposition;
         components = parameters.components;
         processes = parameters.processes;
@@ -234,6 +235,7 @@ class Organelle{
 
     //! Chance of randomly generating this (used by procedural_microbes.as)
     float chanceToCreate = 0.0;
+	float prokaryoteChance = 0.0;
 }
 
 enum ORGANELLE_HEALTH{
