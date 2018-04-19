@@ -156,7 +156,7 @@ class Species{
             //this.template.destroy() //game crashes if i do that.
             // Let's hope this doesn't crash then
             if(templateEntity != NULL_OBJECT){
-                forWorld.DestroyEntity(templateEntity);
+                forWorld.QueueDestroyEntity(templateEntity);
                 templateEntity = NULL_OBJECT;
             }
 
@@ -292,10 +292,8 @@ class Species{
 	}
     //updates the population count of the species
     void updatePopulation(){
-        //TODO:
-        //fill me
-        //with code
-        this.population += GetEngine().GetRandom().GetNumber(-200, 200);
+		//numbers incresed so thing shappen more often
+        this.population += GetEngine().GetRandom().GetNumber(-300, 300);
     }
 
     string name;
@@ -321,13 +319,13 @@ class Species{
 const auto INITIAL_POPULATION = 2000;
 
 //how much time does it take for the simulation to update.
-const auto SPECIES_SIM_INTERVAL = 20000;
+const auto SPECIES_SIM_INTERVAL = 10000;
 
 //if a specie's population goes below this it goes extinct.
-const auto MIN_POP_SIZE = 100;
+const auto MIN_POP_SIZE = 2;
 
 //if a specie's population goes above this it gets split in half and a
-//new mutated species apears.
+//new mutated species apears. this should be randomized
 const auto MAX_POP_SIZE = 5000;
 
 //the amount of species at the start of the microbe stage (not counting Default/Player)
@@ -348,6 +346,10 @@ const auto MIN_SPECIES = 3;
 //if there are less species than this creates new ones.
 const auto MIN_BACTERIA = 2;
 
+auto currentBacteriaAmount = 0;
+
+auto currentEukaryoteAmount = 0;
+
 //! Updates the species's population and creates new ones. And keeps track of Species objects
 class SpeciesSystem : ScriptSystem{
 
@@ -361,11 +363,13 @@ class SpeciesSystem : ScriptSystem{
         // This is needed to actually have AI species in the world
         for(int i = 0; i < INITIAL_SPECIES; ++i){
             createSpecies();
+			currentEukaryoteAmount++;
         }
 		
 		//generate bacteria aswell
 		for(int i = 0; i < INITIAL_BACTERIA; ++i){
             createBacterium();
+			currentBacteriaAmount++;
         }
     }
 
@@ -375,22 +379,25 @@ class SpeciesSystem : ScriptSystem{
     }
     
     void Run(){
+	    //LOG_INFO("autoevo running");
+		timeSinceLastCycle++;
         while(this.timeSinceLastCycle > SPECIES_SIM_INTERVAL){
-
+			LOG_INFO("Processing Auto-evo Step");
             this.timeSinceLastCycle -= SPECIES_SIM_INTERVAL;
-            
             //update population numbers and split/extinct species as needed
-            auto numberOfSpecies = species.length();
+            auto numberOfSpecies = species.length()-1;
             for(uint i = 0; i < numberOfSpecies; ++i){
                 //traversing the population backwards to avoid
                 //"chopping down the branch i'm sitting in"
                 auto index = numberOfSpecies - i;   
-
+				//LOG_INFO(""+index);
+				
                 auto currentSpecies = species[index];
                 currentSpecies.updatePopulation();
                 auto population = currentSpecies.population;
-
+				
                 //reproduction/mutation
+				//bacteria should mutate more often then eukaryote sbut this is fine for now
                 if(population > MAX_POP_SIZE){
                     auto newSpecies = Species(currentSpecies, world, currentSpecies.isBacteria);
                     species.insertLast(newSpecies);
@@ -403,25 +410,38 @@ class SpeciesSystem : ScriptSystem{
                     LOG_INFO("Species " + currentSpecies.name + " went extinct");
                     currentSpecies.extinguish();
                     species.removeAt(index);
+					//tweak numbers here
+					if (currentSpecies.isBacteria)
+						{
+						currentBacteriaAmount-=1;
+						}
+					else
+						{
+						currentEukaryoteAmount-=1;
+						}
                 }
             }
 
+			//These are kind of arbitray, we should pronbabbly make it less arbitrary
             //new species
-            while(species.length() < MIN_SPECIES){
+            while(currentEukaryoteAmount < MIN_SPECIES){
                 LOG_INFO("Creating new species as there's too few");
                 createSpecies();
+				currentEukaryoteAmount++;
             }
 
-			//TODO: new bacteria they require their own list or they may be out competed by microbes
-            //while(species.length() < MIN_SPECIES){
-            //    LOG_INFO("Creating new bacteria as there's too few");
-            //    createBacteria();
-            //}
+			//new bacteria
+            while(currentBacteriaAmount < MIN_BACTERIA){
+               LOG_INFO("Creating new prokaryote as there's too few");
+               createBacterium();
+			   currentBacteriaAmount++;
+            }
 			
             //mass extinction
             if(species.length() > MAX_SPECIES+INITIAL_BACTERIA){
-
+			
                 LOG_INFO("Mass extinction time");
+				//F to pay respects: TODO: add a notification for when this happens
                 doMassExtinction();
             }
         }
@@ -443,6 +463,7 @@ class SpeciesSystem : ScriptSystem{
     }
 
     void doMassExtinction(){
+		//this doesnt seem like a powerful event
         for(uint i = 0; i < species.length(); ++i){
             species[i].population /= 2;
         }

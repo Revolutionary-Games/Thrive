@@ -770,7 +770,7 @@ ObjectID spawnBacteria(CellStageWorld@ world, Float3 pos, const string &in speci
 		world.Create_SpawnedComponent(microbeEntity,BACTERIA_SPAWN_RADIUS*BACTERIA_SPAWN_RADIUS);
 		}
 	//stuff
-	LOG_WARNING("spawning bacterium radius "+ BACTERIA_SPAWN_RADIUS);
+	//LOG_WARNING("spawning bacterium radius "+ BACTERIA_SPAWN_RADIUS);
     return microbeEntity;
 }
 // Creates a new microbe with all required components. Use spawnMicrobe from other
