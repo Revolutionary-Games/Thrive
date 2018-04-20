@@ -409,7 +409,7 @@ class SpeciesSystem : ScriptSystem{
 				LOG_INFO(currentSpecies.name+" "+currentSpecies.population);
 				
 				//this is just to shake things up occassionally
-				if (GetEngine().GetRandom().GetNumber(0,10) <= 2)
+				if ( currentSpecies.population > 0 && GetEngine().GetRandom().GetNumber(0,10) <= 2)
 				{
 				//F to pay respects: TODO: add a notification for when this happens
 				LOG_INFO(currentSpecies.name + " has been devestated by disease.");
@@ -419,7 +419,7 @@ class SpeciesSystem : ScriptSystem{
 
 				//this is also just to shake things up occassionally
 				//cambrian explosion
-				if (GetEngine().GetRandom().GetNumber(0,10) <= 2)
+				if ( currentSpecies.population > 0 && GetEngine().GetRandom().GetNumber(0,10) <= 2)
 				{
 				//P to pat back: TODO: add a notification for when this happens
 				LOG_INFO(currentSpecies.name + " is diversifying!");

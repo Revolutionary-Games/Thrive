@@ -613,7 +613,7 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
         }
     }
 
-    // Resets the state of the organelle
+    // Resets the state. Used after dividing?
     void reset(){
         // Return the compound bin to its original state
         this.compoundBin = 1.0;
