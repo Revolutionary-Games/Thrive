@@ -5,14 +5,18 @@
 // Limits the size of the initial stringCodes
 const auto MIN_INITIAL_LENGTH = 5;
 const auto MAX_INITIAL_LENGTH = 15;
-float MAX_CHANCE_SCORE = 0;
-float MAX_PROKARYOTE_SCORE = 0;
 
+
+//where should we put these?
 dictionary organelleLetters = {};
 array<string> VALID_ORGANELLES = {};
 array<string> VALID_ORGANELLE_LETTERS = {};
 array<float> VALID_ORGANELLE_CHANCES = {};
 array<float> VALID_PROKARYOTE_ORGANELLE_CHANCES = {};
+
+//these have to be global to work or we need a place to put them that isnt global note the eukaryote one is old, so this is how this was already programmed
+float maxEukaryoteScore = 0;
+float maxProkaryoteScore = 0;
 
 //! Called from setupOrganelles
 void setupOrganelleLetters(){
@@ -31,12 +35,12 @@ void setupOrganelleLetters(){
 
             VALID_ORGANELLES.insertLast(organelleName);
             VALID_ORGANELLE_CHANCES.insertLast(organelleInfo.chanceToCreate);
-    VALID_PROKARYOTE_ORGANELLE_CHANCES.insertLast(organelleInfo.prokaryoteChance);
+            VALID_PROKARYOTE_ORGANELLE_CHANCES.insertLast(organelleInfo.prokaryoteChance);
             VALID_ORGANELLE_LETTERS.insertLast(organelleInfo.gene);
 
-            // Getting the max chance score for the roulette selection.
-            MAX_CHANCE_SCORE += organelleInfo.chanceToCreate;
-        MAX_PROKARYOTE_SCORE += organelleInfo.prokaryoteChance;
+        // Getting the max chance score for the roulette selection.
+        maxEukaryoteScore += organelleInfo.chanceToCreate;
+        maxProkaryoteScore += organelleInfo.prokaryoteChance;
         }
     }
 }
@@ -46,7 +50,7 @@ void setupOrganelleLetters(){
 string getRandomLetter(bool isBacteria){
     if (!isBacteria)
     {
-    float i = GetEngine().GetRandom().GetNumber(0.f, MAX_CHANCE_SCORE);
+    float i = GetEngine().GetRandom().GetNumber(0.f, maxEukaryoteScore);
     for(uint index = 0; index < VALID_ORGANELLES.length(); ++index){
         i -= VALID_ORGANELLE_CHANCES[index];
 
@@ -57,7 +61,7 @@ string getRandomLetter(bool isBacteria){
     }
     else
     {
-    float i = GetEngine().GetRandom().GetNumber(0.f, MAX_PROKARYOTE_SCORE);
+    float i = GetEngine().GetRandom().GetNumber(0.f, maxProkaryoteScore);
     for(uint index = 0; index < VALID_ORGANELLES.length(); ++index){
         i -= VALID_PROKARYOTE_ORGANELLE_CHANCES[index];
 
@@ -176,7 +180,7 @@ array<PlacedOrganelle@>@ positionOrganelles(const string &in stringCode){
         const auto letter = CharacterToString(stringCode[i]);
         // LOG_WRITE(formatUInt(i) + ": " + letter);
         string name = string(organelleLetters[letter]);
-    //this places the nucleous
+        //this places the nucleous
         if(i == 0){
 
             @pos = OrganelleTemplatePlaced(name, 0, 0, 180);
