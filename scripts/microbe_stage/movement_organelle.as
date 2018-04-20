@@ -3,7 +3,7 @@
 
 // Enables a microbe to move and turn
 
-// See organelle_component.as for more information about the 
+// See organelle_component.as for more information about the
 // organelle component methods and the arguments they receive.
 
 // Calculate the momentum of the movement organelle based on angle towards nucleus
@@ -30,7 +30,7 @@ class MovementOrganelle : OrganelleComponent{
         this.force = Float3(momentum);
         this.torque = torque;
     }
-    
+
     void
     onAddedToMicrobe(
         ObjectID microbeEntity,
@@ -39,7 +39,7 @@ class MovementOrganelle : OrganelleComponent{
     ) override {
 
         this.force = calculateForce(q, r, this.force.X);
-        
+
         Float3 organellePos = Hex::axialToCartesian(q, r);
         Float3 nucleus = Hex::axialToCartesian(0, 0);
         auto delta = nucleus - organellePos;
@@ -47,7 +47,7 @@ class MovementOrganelle : OrganelleComponent{
         if(angle < 0){
             angle = angle + (2 * PI);
         }
-        
+
         angle = ((angle * 180)/PI + 180) % 360;
 
         // This is already added by the PlacedOrganlle.onAddedToMicrobe
@@ -70,7 +70,7 @@ class MovementOrganelle : OrganelleComponent{
         // Don't forget to mark to apply the new animation
         animated.Marked = true;
 
-        
+
         auto@ renderNode = organelle.world.GetComponent_RenderNode(organelle.organelleEntity);
         renderNode.Node.setPosition(organellePos);
         renderNode.Node.setOrientation(Ogre::Quaternion(Ogre::Degree(angle),
@@ -101,7 +101,7 @@ class MovementOrganelle : OrganelleComponent{
 
         // For changing animation speed
         Animated@ animated = organelle.world.GetComponent_Animated(organelle.organelleEntity);
-    
+
         auto forceMagnitude = this.force.Dot(direction);
         if(forceMagnitude > 0){
             if(direction.LengthSquared() < EPSILON || this.force.LengthSquared() < EPSILON){
@@ -109,15 +109,15 @@ class MovementOrganelle : OrganelleComponent{
                 animated.GetAnimation(0).SpeedFactor = 0.25f;
                 return;
             }
-            
+
             this.movingTail = true;
             animated.GetAnimation(0).SpeedFactor = 1.3;
-        
+
             auto energy = abs(this.energyMultiplier * forceMagnitude * milliseconds / 1000.f);
             auto availableEnergy = MicrobeOperations::takeCompound(organelle.world,
                 microbeEntity,  SimulationParameters::compoundRegistry().getTypeId("atp"),
                 energy);
-            
+
             if(availableEnergy < energy){
                 forceMagnitude = sign(forceMagnitude) * availableEnergy * 1000.f /
                     milliseconds / this.energyMultiplier;
@@ -145,7 +145,7 @@ class MovementOrganelle : OrganelleComponent{
 
     void _turnMicrobe(ObjectID microbeEntity, PlacedOrganelle@ organelle, int logicTime,
         MicrobeComponent@ microbeComponent, Physics@ rigidBodyComponent, Position@ pos){
-        
+
         if(this.torque == 0){
             return;
         }
@@ -156,14 +156,14 @@ class MovementOrganelle : OrganelleComponent{
         // Slerp 50% of the way each call
         const auto interpolated = current.Slerp(target, 0.5f);
         // const auto interpolated = target;
-        
+
         // Not sure if updating the Position component here does anything
         pos._Orientation = interpolated;
         pos.Marked = true;
 
         // LOG_WRITE("turn = " + pos._Orientation.X + ", " + pos._Orientation.Y + ", "
         //     + pos._Orientation.Z + ", " + pos._Orientation.W);
-        
+
         rigidBodyComponent.SetOnlyOrientation(interpolated);
         return;
 
@@ -171,12 +171,12 @@ class MovementOrganelle : OrganelleComponent{
         // // TODO: direct multiplication was also used here
         // // Float3 localTargetDirection = pos._Orientation.Inverse().RotateVector(targetDirection);
         // Float3 localTargetDirection = pos._Orientation.Inverse().RotateVector(targetDirection);
-        
+
         // // Float3 localTargetDirection = pos._Orientation.ToAxis() - targetDirection;
         // // localTargetDirection.Y = 0; // improper fix. facingTargetPoint somehow gets a non-zero y value.
         // LOG_WRITE("local direction = " + localTargetDirection.X + ", " +
         //     localTargetDirection.Y + ", " + localTargetDirection.Z);
-        
+
         // assert(localTargetDirection.Y < 0.01,
         //     "Microbes should only move in the 2D plane with y = 0");
 
@@ -186,7 +186,7 @@ class MovementOrganelle : OrganelleComponent{
         // //     localTargetDirection.X = 0;
         // // if(abs(localTargetDirection.Z) < 0.01)
         // //     localTargetDirection.Z = 0;
-        
+
         // float alpha = atan2(-localTargetDirection.X, -localTargetDirection.Z);
         // float absAlpha = abs(alpha) * RADIANS_TO_DEGREES;
         // microbeComponent.microbetargetdirection = absAlpha;
@@ -208,7 +208,7 @@ class MovementOrganelle : OrganelleComponent{
         //     // Float3 torqueForces = Float3(0, this.torque * alpha * logicTime *
         //     //     microbeComponent.movementFactor * 0.0001f, 0);
         //     // rigidBodyComponent.SetOmega(torqueForces);
-            
+
         // } else {
         //     // Doesn't work
         //     // // Slow down rotation if there is some
@@ -249,7 +249,7 @@ class MovementOrganelle : OrganelleComponent{
             LOG_WARNING("Skipping movement organelle update for microbe without physics body");
             return;
         }
-        
+
         _turnMicrobe(microbeEntity, organelle, logicTime, microbeComponent,
             rigidBodyComponent, pos);
         _moveMicrobe(microbeEntity, organelle, logicTime, microbeComponent,
@@ -260,5 +260,5 @@ class MovementOrganelle : OrganelleComponent{
     private float torque;
     float energyMultiplier = 0.025;
     // float backwards_multiplier = 0;
-    private bool movingTail = false;    
+    private bool movingTail = false;
 }

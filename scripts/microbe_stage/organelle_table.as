@@ -76,7 +76,7 @@ class OrganelleParameters{
     string name;
     string gene = "INVALID";
     string mesh;
-    
+
     //! Chance of randomly generating this (used by procedural_microbes.as)
     float chanceToCreate = 0.0;
 
@@ -104,7 +104,7 @@ Organelle@ getOrganelleDefinition(const string &in name){
         LOG_ERROR("getOrganelleDefinition: no organelle named '" + name + "'");
         PrintCallStack();
     }
-    
+
     return organelle;
 }
 
@@ -226,7 +226,7 @@ void setupOrganelles(){
 
     assert(SimulationParameters::compoundRegistry().getSize() > 0,
         "Compound registry is empty");
-    
+
     _mainOrganelleTable = dictionary();
 
     //
@@ -238,7 +238,7 @@ void setupOrganelles(){
     // ------------------------------------ //
     // Nucleus
     auto nucleusParameters = OrganelleParameters("nucleus");
-    
+
     nucleusParameters.mass = 0.7;
     nucleusParameters.gene = "N";
     nucleusParameters.mesh = "nucleus.mesh";
@@ -273,11 +273,11 @@ void setupOrganelles(){
     // ------------------------------------ //
     // Cytoplasm
     auto cytoplasmParameters = OrganelleParameters("cytoplasm");
-    
+
     cytoplasmParameters.mass = 0.1;
     cytoplasmParameters.gene = "Y";
     cytoplasmParameters.mesh = ""; //it's an empty hex
-    cytoplasmParameters.chanceToCreate = 1; 
+    cytoplasmParameters.chanceToCreate = 1;
     cytoplasmParameters.mpCost = 5;
     cytoplasmParameters.initialComposition = {
         {"aminoacids", 3},
@@ -296,7 +296,7 @@ void setupOrganelles(){
     // ------------------------------------ //
     // Chloroplast
     auto chloroplastParameters = OrganelleParameters("chloroplast");
-    
+
     chloroplastParameters.mass = 0.4;
     chloroplastParameters.gene = "H";
     chloroplastParameters.mesh = "chloroplast.mesh";
@@ -324,7 +324,7 @@ void setupOrganelles(){
     // ------------------------------------ //
     // Oxytoxy
     auto oxytoxyParameters = OrganelleParameters("oxytoxy");
-    
+
     oxytoxyParameters.mass = 0.3;
     oxytoxyParameters.gene = "T";
     oxytoxyParameters.mesh = "oxytoxy.mesh";
@@ -351,7 +351,7 @@ void setupOrganelles(){
     // ------------------------------------ //
     // Mitochondrion
     auto mitochondrionParameters = OrganelleParameters("mitochondrion");
-    
+
     mitochondrionParameters.mass = 0.3;
     mitochondrionParameters.gene = "M";
     mitochondrionParameters.mesh = "mitochondrion.mesh";
@@ -374,11 +374,11 @@ void setupOrganelles(){
     };
 
     _addOrganelleToTable(Organelle(mitochondrionParameters));
-    
+
     // ------------------------------------ //
     // Vacuole
     auto vacuoleParameters = OrganelleParameters("vacuole");
-    
+
     vacuoleParameters.mass = 0.4;
     vacuoleParameters.gene = "V";
     vacuoleParameters.mesh = "vacuole.mesh";
@@ -401,7 +401,7 @@ void setupOrganelles(){
     // ------------------------------------ //
     // Flagellum
     auto flagellumParameters = OrganelleParameters("flagellum");
-    
+
     flagellumParameters.mass = 0.3;
     flagellumParameters.gene = "F";
     flagellumParameters.mesh = "flagellum.mesh";
@@ -420,13 +420,13 @@ void setupOrganelles(){
     };
 
     _addOrganelleToTable(Organelle(flagellumParameters));
-	
-	//prokaryotic Organelles (all meshes are placeholders)//
-	
-	// ------------------------------------ //
+
+    //prokaryotic Organelles (all meshes are placeholders)//
+
+    // ------------------------------------ //
     // Respiratory Protien
     auto respiratoryProtien = OrganelleParameters("respiartoryProteins");
-    
+
     respiratoryProtien.mass = 0.1;
     respiratoryProtien.gene = "m";
     respiratoryProtien.mesh = "mitochondrion.mesh";
@@ -439,7 +439,7 @@ void setupOrganelles(){
     };
     respiratoryProtien.components = {
         processorOrganelleFactory(1.0f),
-		storageOrganelleFactory(25.0f)
+    storageOrganelleFactory(25.0f)
     };
     respiratoryProtien.processes = {
         TweakedProcess("respiration", 0.02)
@@ -449,10 +449,10 @@ void setupOrganelles(){
     };
 
     _addOrganelleToTable(Organelle(respiratoryProtien));
-	
+
     // Photosynthetic Protien
     auto photosyntheticProtein = OrganelleParameters("photosyntheticProteins");
-    
+
     photosyntheticProtein.mass = 0.1;
     photosyntheticProtein.gene = "h";
     photosyntheticProtein.mesh = "chloroplast.mesh";
@@ -465,7 +465,7 @@ void setupOrganelles(){
     };
     photosyntheticProtein.components = {
         processorOrganelleFactory(1.0f),
-		storageOrganelleFactory(25.0f)
+    storageOrganelleFactory(25.0f)
     };
     photosyntheticProtein.processes = {
           TweakedProcess("photosynthesis", 0.05)
@@ -475,10 +475,10 @@ void setupOrganelles(){
     };
 
     _addOrganelleToTable(Organelle(photosyntheticProtein));
-	
+
     // Photosynthetic Protien
     auto oxytoxyProtein = OrganelleParameters("oxytoxyProteins");
-    
+
     oxytoxyProtein.mass = 0.1;
     oxytoxyProtein.gene = "t";
     oxytoxyProtein.mesh = "oxytoxy.mesh";
@@ -491,7 +491,7 @@ void setupOrganelles(){
     };
     oxytoxyProtein.components = {
         agentVacuoleFactory("oxytoxy", "oxytoxySynthesis"),
-		storageOrganelleFactory(25.0f)
+    storageOrganelleFactory(25.0f)
     };
     oxytoxyProtein.processes = {
          TweakedProcess("oxytoxySynthesis", 0.05)
@@ -501,7 +501,7 @@ void setupOrganelles(){
     };
 
     _addOrganelleToTable(Organelle(oxytoxyProtein));
-	
+
     // ------------------------------------ //
     // Setup the organelle letters
     setupOrganelleLetters();

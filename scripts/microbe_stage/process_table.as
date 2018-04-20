@@ -27,7 +27,7 @@ class TweakedProcess{
 
             assert(false, "It's broken");
         }
-        
+
         this.tweakRate = tweakRate;
     }
 

@@ -21,16 +21,16 @@ void setupOrganelleLetters(){
 
         auto organelleName = keys[i];
         auto organelleInfo = getOrganelleDefinition(organelleName);
-        
+
         // Getting the organelle letters from the organelle table.
         organelleLetters[organelleInfo.gene] = organelleName;
-        
+
         if(!organelleInfo.hasComponent(nucleusComponentFactory.name)){
-            
+
             VALID_ORGANELLES.insertLast(organelleName);
             VALID_ORGANELLE_CHANCES.insertLast(organelleInfo.chanceToCreate);
             VALID_ORGANELLE_LETTERS.insertLast(organelleInfo.gene);
-            
+
             // Getting the max chance score for the roulette selection.
             MAX_CHANCE_SCORE += organelleInfo.chanceToCreate;
         }
@@ -45,12 +45,12 @@ string getRandomLetter(){
     for(uint index = 0; index < VALID_ORGANELLES.length(); ++index){
 
         i -= VALID_ORGANELLE_CHANCES[index];
-        
+
         if(i <= 0){
             return VALID_ORGANELLE_LETTERS[index];
         }
     }
-    
+
     // Just in case
     LOG_WARNING("getRandomLetter: just in case case hit");
     return getOrganelleDefinition("cytoplasm").gene;
@@ -86,7 +86,7 @@ bool isValidPlacement(const string &in organelleName, int q, int r, int rotation
             }
         }
     }
-    
+
     return true;
 }
 
@@ -132,7 +132,7 @@ OrganelleTemplatePlaced@ getPosition(const string &in organelleName,
 
                 //Checks every possible rotation value.
                 for(int j = 0; j <= 5; ++j){
-                    
+
                     int rotation = (360 * j / 6);
                     if(isValidPlacement(organelleName, q, r, rotation, organelleList)){
                         return OrganelleTemplatePlaced(organelleName, q, r, rotation+180);
@@ -142,7 +142,7 @@ OrganelleTemplatePlaced@ getPosition(const string &in organelleName,
         }
         ++radius;
     }
-    
+
     return null;
 }
 
@@ -160,7 +160,7 @@ array<PlacedOrganelle@>@ positionOrganelles(const string &in stringCode){
         const auto letter = CharacterToString(stringCode[i]);
         // LOG_WRITE(formatUInt(i) + ": " + letter);
         string name = string(organelleLetters[letter]);
-		//this places the nucleous
+    //this places the nucleous
         if(i == 0){
 
             @pos = OrganelleTemplatePlaced(name, 0, 0, 180);

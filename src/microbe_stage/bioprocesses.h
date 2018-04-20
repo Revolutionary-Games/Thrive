@@ -10,13 +10,13 @@ class SimulationParameters;
 
 class BioProcess : public RegistryType {
 public:
-	// The amount of compounds required/obtained.
-	std::map<size_t, unsigned int> inputs;
-	std::map<size_t, unsigned int> outputs;
+    // The amount of compounds required/obtained.
+    std::map<size_t, unsigned int> inputs;
+    std::map<size_t, unsigned int> outputs;
 
-	BioProcess();
+    BioProcess();
 
-	BioProcess(Json::Value value);
+    BioProcess(Json::Value value);
 };
 
-}
+} // namespace thrive

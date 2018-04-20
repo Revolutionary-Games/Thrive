@@ -10,11 +10,10 @@ namespace thrive {
 
 
 /**
-* @brief Component for entities with timed life
-*/
+ * @brief Component for entities with timed life
+ */
 class TimedLifeComponent : public Leviathan::Component {
 public:
-
     TimedLifeComponent(int timeToLive);
 
     // void
@@ -27,30 +26,28 @@ public:
 
     REFERENCE_HANDLE_UNCOUNTED_TYPE(TimedLifeComponent);
 
-    static constexpr auto TYPE = componentTypeConvert(THRIVE_COMPONENT::TIMED_LIFE);
+    static constexpr auto TYPE =
+        componentTypeConvert(THRIVE_COMPONENT::TIMED_LIFE);
 
     /**
-    * @brief The time until the owning entity despawns
-    */
+     * @brief The time until the owning entity despawns
+     */
     int m_timeToLive = 0;
 };
 
 
 /**
-* @brief Despawns entities after they've reached their lifetime
-*/
+ * @brief Despawns entities after they've reached their lifetime
+ */
 class TimedLifeSystem {
 
 public:
-
     /**
-    * @brief Updates the system
-    */
+     * @brief Updates the system
+     */
     void
-    Run(GameWorld &world,
-        std::unordered_map<ObjectID, TimedLifeComponent*> &components
-    );
+        Run(GameWorld& world,
+            std::unordered_map<ObjectID, TimedLifeComponent*>& components);
 };
 
-}
-
+} // namespace thrive

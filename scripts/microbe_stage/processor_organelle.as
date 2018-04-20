@@ -15,10 +15,10 @@ class ProcessorOrganelle : OrganelleComponent{
     ProcessorOrganelle(float colourChangeFactor = 1.0f){
 
     }
-            
-    // // See organelle_component.lua for more information about the 
+
+    // // See organelle_component.lua for more information about the
     // // organelle component methods and the arguments they receive.
-    
+
     // // Adds a processor to the processoring organelle
     // // The organelle will distribute its capacity between processores
     // //
@@ -34,6 +34,6 @@ class ProcessorOrganelle : OrganelleComponent{
         int q, int r, int rotation,
         PlacedOrganelle@ organelle
     ) override {
-        
+
     }
 }

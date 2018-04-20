@@ -37,7 +37,7 @@ class MicrobeEditor{
         ent.addComponent(sceneNode)
         sceneNode.transform.scale = Vector3(HEX_SIZE, HEX_SIZE, 1)
         sceneNode.transform.touch()
-        
+
         gridSceneNode = sceneNode*/
     }
 
@@ -46,30 +46,30 @@ class MicrobeEditor{
         // //TODO: find new equivalent of this.
         // auto creatureState = g_luaEngine.getLuaStateFromWrapper(
         //     Engine.playerData().activeCreatureGamestate());
-        
+
         // if (creatureState.name == CellStageWorld@.MICROBE.name ||
         //     creatureState.name == CellStageWorld@.MICROBE_TUTORIAL.name){
-            
+
         //     //TODO: check to make certain this class is still valid
         //     auto microbeStageMicrobe = Entity("player", CellStageWorld@.MICROBE.wrapper);
-            
+
         //     //TODO: find new equivalent of this
         //     nextMicrobeEntity = Entity(
         //         g_luaEngine.transferEntityGameState(microbeStageMicrobe.id,
         //             creatureState.entityManager,
         //             CellStageWorld@.MICROBE_EDITOR),
         //         CellStageWorld@.MICROBE_EDITOR.wrapper);
-            
+
         //     //Transfer the compounds
         //     MicrobeSystem.initializeMicrobe(nextMicrobeEntity, true);
         //     MicrobeSystem.transferCompounds(microbeStageMicrobe, nextMicrobeEntity);
-            
+
         //     nextMicrobeEntity.stealName("working_microbe");
         //     Engine.playerData().setBool("edited_microbe", true);
         //     Engine.playerData().setActiveCreature(nextMicrobeEntity.id,
         //         CellStageWorld@.MICROBE_EDITOR.wrapper);
         // }
-        
+
 
         // mutationPoints = 100;
         // dictionary actionHistory = {}; // where all user actions will  be registered
@@ -87,7 +87,7 @@ class MicrobeEditor{
         //     Radian(Degree(0)), Vector3(0, 0, 1)); //Orientation
         // sceneNodeComponent.transform.position = Vector3(0, 0, 0);
         // sceneNodeComponent.transform.touch();
-        
+
         // /* TODO: fix this for loop as well
         // for(_, organelle in pairs(microbeComponent.organelles)){
         // for(s, hex in pairs(organelle._hexes)){
@@ -99,8 +99,8 @@ class MicrobeEditor{
     void update(int logicTime){
         // //TODO: rewrite getMouseHex()
         // //local q, r = this.getMouseHex()
-        
-        // if (symmetry == 0){    
+
+        // if (symmetry == 0){
         //     renderHighlightedOrganelle(1, q, r, organelleRot);
         // }
         // else if (symmetry == 1){
@@ -121,7 +121,7 @@ class MicrobeEditor{
         //     renderHighlightedOrganelle(5, r, -1*(r+q), (organelleRot+240) % 360);
         //     renderHighlightedOrganelle(6, r+q, -1*q, (organelleRot+300) % 360);
         // }
-            
+
         // hudSystem.updateMutationPoints();
     }
 
@@ -169,10 +169,10 @@ class MicrobeEditor{
     //     auto q;
     //     auto r;
     //     getMouseHex(q, r);
-        
+
     //     if (symmetry == 0){
     //         auto organelle = isValidPlacement(organelleType, q, r, organelleRot);
-            
+
     //         if (organelle){
     //             if (organelleTable[organelle.name].mpCost > mutationPoints){
     //                 return;
@@ -185,16 +185,16 @@ class MicrobeEditor{
     //         auto organelle = isValidPlacement(organelleType, q, r, organelleRot);
     //         if (q != -1 * q || r != r + q){ //If two organelles aren't overlapping
     //             auto organelle2 = isValidPlacement(organelleType, -1 * q, r + q, 360 + (-1 * organelleRot));
-                
+
     //             //If the organelles were successfully created and have enough MP...
-    //             if (organelle && organelle2 && organelleTable[organelle.name].mpCost*2 <= mutationPoints){            
+    //             if (organelle && organelle2 && organelleTable[organelle.name].mpCost*2 <= mutationPoints){
     //                 //Add the organelles to the microbe.
     //                 _addOrganelle(organelle, q, r, organelleRot);
     //                 _addOrganelle(organelle2, -1*q, r+q, 360+(-1*organelleRot));
     //             }
     //         }
     //         else{
-    //             if (organelle && organelleTable[organelle.name].mpCost <= mutationPoints){            
+    //             if (organelle && organelleTable[organelle.name].mpCost <= mutationPoints){
     //                 //Add a organelle to the microbe.
     //                 _addOrganelle(organelle, q, r, organelleRot);
     //             }
@@ -206,7 +206,7 @@ class MicrobeEditor{
     //             auto organelle2 = isValidPlacement(organelleType, -1*q, r+q, 360+(-1*organelleRot));
     //             auto organelle3 = isValidPlacement(organelleType, -1*q, -1*r, (organelleRot+180) % 360);
     //             auto organelle4 = isValidPlacement(organelleType, q, -1*(r+q), (540+(-1*organelleRot)) % 360);
-                
+
     //             if (organelle && organelle2 && organelle3 && organelle4 && organelleTable[organelle.name].mpCost*4 <= mutationPoints){
     //                 _addOrganelle(organelle, q, r, organelleRot);
     //                 _addOrganelle(organelle2, -1*q, r+q, 360+(-1*organelleRot));
@@ -227,7 +227,7 @@ class MicrobeEditor{
     //             auto organelle4 = isValidPlacement(organelleType, -1*q, -1*r, (organelleRot+180) % 360);
     //             auto organelle5 = isValidPlacement(organelleType, r, -1*(r+q), (organelleRot+240) % 360);
     //             auto organelle6 = isValidPlacement(organelleType, r+q, -1*q, (organelleRot+300) % 360);
-                
+
     //             if (organelle && organelle2 && organelle3 && organelle4 && organelle5 && organelle6 && organelleTable[organelle.name].mpCost*6 <= mutationPoints){
     //                 _addOrganelle(organelle, q, r, organelleRot);
     //                 _addOrganelle(organelle2, -1*r, r+q, (organelleRot+60) % 360);
@@ -237,13 +237,13 @@ class MicrobeEditor{
     //                 _addOrganelle(organelle6, r+q, -1*q, (organelleRot+300) % 360);
     //             }
     //         } else{
-    //             if (organelle && organelleTable[organelle.name].mpCost <= mutationPoints){ 
+    //             if (organelle && organelleTable[organelle.name].mpCost <= mutationPoints){
     //                 _addOrganelle(organelle, q, r, organelleRot);
     //             }
     //         }
-    //     }   
+    //     }
     // }
-    
+
     // //TODO.find new equivalents of all these classes
     // void createHexComponent(double q, double r){
     //     Float3 axialToCartesian(q, r);
@@ -270,7 +270,7 @@ class MicrobeEditor{
     //     //         /*for(_, cytoplasm in pairs(this.occupiedHexes)){
     //     //             cytoplasm.destroy()
     //     //         }*/
-                
+
     //     //         currentMicrobeEntity = MicrobeSystem.createMicrobeEntity(null, false, 'Editor_Microbe', true);
     //     //         microbeComponent = getComponent(currentMicrobeEntity, MicrobeComponent);
     //     //         auto sceneNodeComponent = getComponent(currentMicrobeEntity, OgreSceneNodeComponent);
@@ -288,7 +288,7 @@ class MicrobeEditor{
     //     //         Engine.playerData().setActiveCreature(this.currentMicrobeEntity.id, GameState.MICROBE_EDITOR.wrapper)
     //     //     }
     //     // }
-        
+
     //     if (currentMicrobeEntity != null){
     //         //that there has already been a microbe in the editor suggests that it was a player action, so it's prepared and filed in for un/redo
     //         dictionary organelleStorage = {}
@@ -305,7 +305,7 @@ class MicrobeEditor{
     //         //     string speciesName = microbeComponent.speciesName
     //         //     currentMicrobeEntity.destroy() //remove the "new" entity that has replaced the previous one
     //         //     currentMicrobeEntity = MicrobeSystem.createMicrobeEntity(null, false, 'Editor_Microbe', true);
-                
+
     //         //     microbeComponent = getComponent(currentMicrobeEntity, MicrobeComponent);
     //         //     auto sceneNodeComponent = getComponent(currentMicrobeEntity, OgreSceneNodeComponent);
 
@@ -360,10 +360,10 @@ class MicrobeEditor{
     // //     auto rayPoint = getComponent(CAMERA_NAME .. "3", g_luaEngine.currentGameState,
     // //     OgreCameraComponent
     // //     ).getCameraToViewportRay(mousePosition.x, mousePosition.y).getPoint(0);
-        
+
     // //     //Convert to the hex the cursor is currently located over.
     // //     auto q;
-    // //     auto r; 
+    // //     auto r;
     // //     //local q, r = cartesianToAxial(rayPoint.x, -1*rayPoint.y) //Negating X to compensate for the fact that we are looking at the opposite side of the normal coordinate system
     // //     //local qr, rr = cubeToAxial(cubeHexRound(axialToCube(q, r))) //This requires a conversion to hex cube coordinates and back for proper rounding.
     // //     //print(qr, rr)
@@ -387,7 +387,7 @@ class MicrobeEditor{
     //             touching = true;
     //         }
     //     }*/
-        
+
     //     if (empty && touching){
     //         newOrganelle.rotation = data.rotation;
     //         return newOrganelle;
@@ -483,10 +483,10 @@ class MicrobeEditor{
     //         sceneNode[i] = getComponent(hudSystem.hoverHex[i-1+(start-1)*7],
     //         OgreSceneNodeComponent);
     //     }
-        
+
     //     if (activeActionName){
-    //         dictionary oldData = {["name"]=this.activeActionName, 
-    //         ["q"]=-q, 
+    //         dictionary oldData = {["name"]=this.activeActionName,
+    //         ["q"]=-q,
     //         ["r"]=-r,
     //         ["rotation"]=(180+rotation) % 360};
     //         auto hexes = OrganelleFactory.checkSize(oldData);
@@ -529,10 +529,10 @@ class MicrobeEditor{
     // auto surroundsOrganelle(double q, double r){
     //     return  (MicrobeSystem.getOrganelleAt(currentMicrobeEntity, q + 0, r - 1) ||
     //     MicrobeSystem.getOrganelleAt(currentMicrobeEntity, q + 1, r - 1) ||
-	// 	MicrobeSystem.getOrganelleAt(currentMicrobeEntity, q + 1, r + 0) ||
-	// 	MicrobeSystem.getOrganelleAt(currentMicrobeEntity, q + 0, r + 1) ||
-	// 	MicrobeSystem.getOrganelleAt(currentMicrobeEntity, q - 1, r + 1) ||
-	// 	MicrobeSystem.getOrganelleAt(currentMicrobeEntity, q - 1, r + 0));
+    // 	MicrobeSystem.getOrganelleAt(currentMicrobeEntity, q + 1, r + 0) ||
+    // 	MicrobeSystem.getOrganelleAt(currentMicrobeEntity, q + 0, r + 1) ||
+    // 	MicrobeSystem.getOrganelleAt(currentMicrobeEntity, q - 1, r + 1) ||
+    // 	MicrobeSystem.getOrganelleAt(currentMicrobeEntity, q - 1, r + 0));
     // }
 
     // void setActiveAction(actionName){

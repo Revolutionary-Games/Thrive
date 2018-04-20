@@ -16,120 +16,114 @@ namespace thrive {
 
 
 /**
-* @brief Component for entities that work as powerups
-*/
+ * @brief Component for entities that work as powerups
+ */
 class PowerupComponent : public Component {
     COMPONENT(PowerupComponent)
 
 public:
+    /**
+     * @brief Lua bindings
+     *
+     * Exposes:
+     * - PowerupComponent()
+     * - PowerupComponent::setEffect
+     *
+     * @return
+     */
+    static void
+        luaBindings(sol::state& lua);
 
     /**
-    * @brief Lua bindings
-    *
-    * Exposes:
-    * - PowerupComponent()
-    * - PowerupComponent::setEffect
-    *
-    * @return
-    */
-    static void luaBindings(sol::state &lua);
-
-    /**
-    * @brief Sets the effect to use upon activation of the powerup
-    *
-    * @param effect
-    *  Function taking the entityId of the activating entity.
-    */
+     * @brief Sets the effect to use upon activation of the powerup
+     *
+     * @param effect
+     *  Function taking the entityId of the activating entity.
+     */
     void
-    setEffect(
-        const std::string&
-    );
+        setEffect(const std::string&);
 
 
     /**
-    * @brief Sets the effect to use upon activation of the powerup
-    *
-    * @param effect
-    *  Function taking the entityId of the activating entity.
-    */
+     * @brief Sets the effect to use upon activation of the powerup
+     *
+     * @param effect
+     *  Function taking the entityId of the activating entity.
+     */
     void
-    setEffect(
-        std::function<bool(EntityId)>* effect
-    );
+        setEffect(std::function<bool(EntityId)>* effect);
 
     void
-    load(
-        const StorageContainer& storage
-    ) override;
+        load(const StorageContainer& storage) override;
 
     StorageContainer
-    storage() const override;
+        storage() const override;
 
 private:
-
     friend class PowerupSystem;
 
     /**
-    * @brief The function to be called when the powerup is activated for an entity
-    */
+     * @brief The function to be called when the powerup is activated for an
+     * entity
+     */
     std::function<bool(EntityId)>* m_effect;
 
     /**
-    * @brief The name of the effect function that is defined in configs.lua
-    */
+     * @brief The name of the effect function that is defined in configs.lua
+     */
     std::string effectName;
-
 };
 
 
 /**
-* @brief System for handling powerups
-*/
+ * @brief System for handling powerups
+ */
 class PowerupSystem : public System {
 
 public:
+    /**
+     * @brief Lua bindings
+     *
+     * Exposes:
+     * - PowerupSystem()
+     *
+     * @return
+     */
+    static void
+        luaBindings(sol::state& lua);
 
     /**
-    * @brief Lua bindings
-    *
-    * Exposes:
-    * - PowerupSystem()
-    *
-    * @return
-    */
-    static void luaBindings(sol::state &lua);
-
-    /**
-    * @brief Constructor
-    */
+     * @brief Constructor
+     */
     PowerupSystem();
 
     /**
-    * @brief Destructor
-    */
+     * @brief Destructor
+     */
     ~PowerupSystem();
 
     /**
-    * @brief Initializes the system
-    *
-    */
-    void init(GameStateData* gameState) override;
+     * @brief Initializes the system
+     *
+     */
+    void
+        init(GameStateData* gameState) override;
 
     /**
-    * @brief Shuts the system down
-    */
-    void shutdown() override;
+     * @brief Shuts the system down
+     */
+    void
+        shutdown() override;
 
     /**
-    * @brief Updates the system
-    */
-    void update(int, int) override;
+     * @brief Updates the system
+     */
+    void
+        update(int, int) override;
 
 private:
-
     struct Implementation;
     std::unique_ptr<Implementation> m_impl;
 };
 
-}
-
+} // namespace thrive
