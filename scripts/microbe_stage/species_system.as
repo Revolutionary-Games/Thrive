@@ -293,9 +293,19 @@ class Species{
     //updates the population count of the species
     void updatePopulation(){
 		//numbers incresed so thing shappen more often
-        this.population += GetEngine().GetRandom().GetNumber(-300, 300);
+        this.population += GetEngine().GetRandom().GetNumber(-700, 700);
     }
 
+	void devestate(){
+		//occassionally you just need to take a deadly virus and use it to make things interesting
+        this.population += GetEngine().GetRandom().GetNumber(-1500, -700);
+    }
+
+	void boom(){
+		//occassionally you just need to give a species a nice pat on the back
+        this.population += GetEngine().GetRandom().GetNumber(700, 1500);
+    }
+	
     string name;
 	bool isBacteria;
 	MEMBRANE_TYPE speciesMembraneType;
@@ -322,7 +332,7 @@ const auto INITIAL_POPULATION = 2000;
 const auto SPECIES_SIM_INTERVAL = 10000;
 
 //if a specie's population goes below this it goes extinct.
-const auto MIN_POP_SIZE = 2;
+const auto MIN_POP_SIZE = 500;
 
 //if a specie's population goes above this it gets split in half and a
 //new mutated species apears. this should be randomized
@@ -346,15 +356,17 @@ const auto MIN_SPECIES = 3;
 //if there are less species than this creates new ones.
 const auto MIN_BACTERIA = 2;
 
-auto currentBacteriaAmount = 0;
-
-auto currentEukaryoteAmount = 0;
-
 //! Updates the species's population and creates new ones. And keeps track of Species objects
 class SpeciesSystem : ScriptSystem{
 
+	int currentBacteriaAmount;
+	int currentEukaryoteAmount;
+
     void Init(GameWorld@ w){
 
+		currentBacteriaAmount=0;
+		currentEukaryoteAmount=0;
+		
         @this.world = cast<CellStageWorld>(w);
         assert(this.world !is null, "SpeciesSystem expected CellStageWorld");
 
@@ -395,6 +407,26 @@ class SpeciesSystem : ScriptSystem{
                 currentSpecies.updatePopulation();
                 auto population = currentSpecies.population;
 				LOG_INFO(currentSpecies.name+" "+currentSpecies.population);
+				
+				//this is just to shake things up occassionally
+				if (GetEngine().GetRandom().GetNumber(0,10) <= 2)
+				{
+				//F to pay respects: TODO: add a notification for when this happens
+				LOG_INFO(currentSpecies.name + " has been devestated by disease.");
+				currentSpecies.devestate();
+				LOG_INFO(currentSpecies.name+" population is now "+currentSpecies.population);
+				}
+
+				//this is also just to shake things up occassionally
+				//cambrian explosion
+				if (GetEngine().GetRandom().GetNumber(0,10) <= 2)
+				{
+				//P to pat back: TODO: add a notification for when this happens
+				LOG_INFO(currentSpecies.name + " is diversifying!");
+				currentSpecies.boom();
+				LOG_INFO(currentSpecies.name+" population is now "+currentSpecies.population);
+				}
+				
                 //reproduction/mutation
 				//bacteria should mutate more often then eukaryote sbut this is fine for now
                 if(population > MAX_POP_SIZE){
@@ -449,6 +481,7 @@ class SpeciesSystem : ScriptSystem{
 				//F to pay respects: TODO: add a notification for when this happens
                 doMassExtinction();
             }
+			
         }
     }
 
@@ -791,12 +824,10 @@ string mutate(const string &in stringCode){
 string mutateProkaryote(const string &in stringCode ){
     //moving the stringCode to a table to facilitate changes
     string chromosomes = stringCode;
-
     //try to insert a letter at the end of the table.
     if(GetEngine().GetRandom().GetNumber(0.f, 1.f) < MUTATION_CREATION_RATE){
         chromosomes += getRandomLetter(true);
     }
-
     //modifies the rest of the table.
     for(uint i = 0; i < stringCode.length(); ++i){
         uint index = stringCode.length() - i;

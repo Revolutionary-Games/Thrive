@@ -323,12 +323,13 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
     // @param logicTime
     //  The time since the last call to update()
     void update(int logicTime){
-        if(flashDuration >= 0){
+			auto species = MicrobeOperations::getSpeciesComponent(world,
+                microbeEntity);
+        if(flashDuration >= 0 && species != null){
             
             flashDuration -= logicTime;
             // Use organelle.world to get the MicrobeSystem
-            Float4 speciesColour = MicrobeOperations::getSpeciesComponent(world,
-                microbeEntity).colour;
+            Float4 speciesColour = species.colour;
 
             Float4 colour;
             
@@ -353,16 +354,23 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
         }
 
         // If the organelle is supposed to be another color.
-        if(_needsColourUpdate){
+        if(_needsColourUpdate && species != null){
             // This method doesn't actually apply the colour so I have
             // no clue how the flashing works
             updateColour();
         }
 
         // Update each OrganelleComponent
+		if (species != null){
         for(uint i = 0; i < components.length(); ++i){
             components[i].update(microbeEntity, this, logicTime);
         }
+		}
+		
+		if (species == null)
+		{
+		LOG_INFO("Tried to update entity of extinct species...");
+		}
     }
 
 	protected Float4 calculateHSLForOrganelle(Float4 oldColour)
