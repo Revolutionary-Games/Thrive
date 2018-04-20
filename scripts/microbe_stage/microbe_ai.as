@@ -30,7 +30,7 @@ class MicrobeAIControllerComponent : ScriptComponent{
 }
 
 // void MicrobeAIControllerComponent.storage(storage){
-    
+
 //     storage.set("movementRadius", this.movementRadius);
 //     storage.set("reevalutationInterval", this.reevalutationInterval);
 //     storage.set("intervalRemaining", this.intervalRemaining);
@@ -45,11 +45,11 @@ class MicrobeAIControllerComponent : ScriptComponent{
 //         else;
 //         storage.set("searchedCompoundId", this.searchedCompoundId);
 //     }
-    
+
 // }
 
 // void MicrobeAIControllerComponent.load(storage){
-    
+
 //     this.movementRadius = storage.get("movementRadius", 20);
 //     this.reevalutationInterval = storage.get("reevalutationInterval", 1000);
 //     this.intervalRemaining = storage.get("intervalRemaining", this.reevalutationInterval);
@@ -72,7 +72,7 @@ class MicrobeAISystemCached{
     MicrobeAISystemCached(ObjectID entity, MicrobeAIControllerComponent@ first,
         MicrobeComponent@ second, Position@ third
     ) {
-        
+
         this.entity = entity;
         @this.first = first;
         @this.second = second;
@@ -112,13 +112,13 @@ class MicrobeAISystem : ScriptSystem{
         // for(_, entityId in pairs(this.entities.addedEntities())){
         //     auto microbeEntity = Entity(entityId, this.gameState.wrapper);
         //     this.microbes[entityId] = microbeEntity;
-        
-        //     // This is a hack to remember up to 5 recent microbes as candidates for predators. 
+
+        //     // This is a hack to remember up to 5 recent microbes as candidates for predators.
         //     // Gives something semi random
         //     this.preyCandidates[this.currentPreyIndex] = microbeEntity;
         //     this.preyEntityToIndexMap[entityId] = this.currentPreyIndex;
         //     this.currentPreyIndex = (this.currentPreyIndex)%6;
-        
+
         // }
 
         // //for removing cell from table when it is removed from the world
@@ -131,7 +131,7 @@ class MicrobeAISystem : ScriptSystem{
         //     auto microbeEntity = Entity(entityId, this.gameState.wrapper);
         //     microbes_number[entityId] = microbeEntity;
         // }
-	
+
         // this.entities.clearChanges();
         // this.microbeEntities.clearChanges();
 
@@ -144,20 +144,20 @@ class MicrobeAISystem : ScriptSystem{
         // there's currently no good way to cache this
         array<ObjectID>@ allMicrobes = world.GetScriptComponentHolder(
             "MicrobeComponent").GetIndex();
-        
+
         for(uint i = 0; i < CachedComponents.length(); ++i){
 
             MicrobeAISystemCached@ components = CachedComponents[i];
 
             ObjectID microbeEntity = components.entity;
-        
+
             MicrobeAIControllerComponent@ aiComponent = components.first;
             MicrobeComponent@ microbeComponent = components.second;
             Position@ position = components.third;
 
             aiComponent.intervalRemaining += logicTime;
             while(aiComponent.intervalRemaining > aiComponent.reevalutationInterval) {
-                
+
                 aiComponent.intervalRemaining -= aiComponent.reevalutationInterval;
 
                 Float3 targetPosition = Float3(0, 0, 0);
@@ -172,25 +172,25 @@ class MicrobeAISystem : ScriptSystem{
 
                 //         MicrobeComponent@ m_microbeComponent = cast<MicrobeComponent>(
                 //             world.GetScriptComponentHolder("MicrobeComponent").Find(m_microbeEntity));
-                    
+
                 //         auto m_position = world.GetComponent_RenderNode(m_microbeEntity);
 
                 //         if(this.preys !is null){
                 //             auto v = (m_position.transform.position -
                 //                 position.transform.position);
-                        
+
                 //             if(v.length() < 25 and  v.length() ~= 0 ){
                 //                 if(microbeComponent.maxHitpoints > 1.5 *
                 //                     m_microbeComponent.maxHitpoints)
                 //                 {
                 //                     this.preys[m_microbeEntityId] = m_microbeEntity;
                 //                 }
-                            
+
                 //                 if(numberOfAgentVacuoles !is null and numberOfAgentVacuoles ~= 0
                 //                     and (m_microbeComponent.specialStorageOrganelles[oxytoxyId] == null
                 //                     or m_microbeComponent.specialStorageOrganelles[oxytoxyId] == 0)
                 //                     and this.preys[m_microbeEntityId] == null){
-                            
+
                 //                     this.preys[m_microbeEntityId] = m_microbeEntity;
                 //                 }
                 //             } else if(v.length() > 25 or v.length() == 0){
@@ -206,12 +206,12 @@ class MicrobeAISystem : ScriptSystem{
                 //             }
                 //         }
                 //     }
-            
+
                 //     //for getting the predator
                 //     for(predatorEntityId, predatorEntity in pairs (microbes_number)){
                 //         auto predatorMicrobeComponent = getComponent(predatorEntity, MicrobeComponent);
                 //         auto predatorSceneNodeComponent = getComponent(predatorEntity, OgreSceneNodeComponent);
-                
+
                 //         auto vec = (predatorSceneNodeComponent.transform.position -
                 //             position.transform.position);
                 //         if(predatorMicrobeComponent.maxHitpoints > microbeComponent.maxHitpoints
@@ -231,7 +231,7 @@ class MicrobeAISystem : ScriptSystem{
                 //         }
                 //         this.predator = this.predators[predatorEntityId];
                 //     }
-        
+
                 //     if(numberOfAgentVacuoles > 0 || microbeComponent.maxHitpoints > 100){
                 //         this.preyCandidates[6] = Entity(PLAYER_NAME, this.gameState.wrapper);
                 //         this.preyEntityToIndexMap[Entity(PLAYER_NAME, this.gameState.wrapper).id] = 6;
@@ -245,10 +245,10 @@ class MicrobeAISystem : ScriptSystem{
                 //             this.preyEscaped == true and attempts < 6 and this.preycount > 10)
                 //         {
                 //             aiComponent.prey = this.p; //setting the prey
-                //             attempts = attempts + 1;  
-                //             this.preyEscaped = false;					
+                //             attempts = attempts + 1;
+                //             this.preyEscaped = false;
                 //         }
-                    
+
                 //         if(this.predator !is null){ // for running away from the predadtor
                 //             auto predatorSceneNodeComponent = getComponent(this.predator,
                 //                 OgreSceneNodeComponent);
@@ -257,7 +257,7 @@ class MicrobeAISystem : ScriptSystem{
             //                     -predatorSceneNodeComponent.transform.position.y, 0);
             //             microbeComponent.movementDirection = Vector3(0, AI_MOVEMENT_SPEED, 0);
             //         }
-                    
+
             //         if(attempts < 6 and aiComponent.prey !is null and this.predator == null){
             //             //making sure it is not a prey for someone before start hunting
             //             auto preyMicrobeComponent = getComponent(aiComponent.prey,
@@ -273,7 +273,7 @@ class MicrobeAISystem : ScriptSystem{
             //             if(vec.length() < 25 and vec.length() > 10
             // and MicrobeSystem.getCompoundAmount(microbeEntity, oxytoxyId) > MINIMUM_AGENT_EMISSION_AMOUNT
             //                 and microbeComponent.microbetargetdirection < 10){
-                            
+
 
             //                 MicrobeSystem.emitAgent(microbeEntity,
             //                     CompoundRegistry.getCompoundId("oxytoxy"), 1);
@@ -284,12 +284,12 @@ class MicrobeAISystem : ScriptSystem{
             //             } else if(vec.length() > 15  and microbeComponent.engulfMode){
             //                 MicrobeSystem.toggleEngulfMode(microbeEntity);
             //             }
-                    
+
             //             vec.normalise();
             //             aiComponent.direction = vec;
             //             microbeComponent.facingTargetPoint =
             //                 Vector3(preySceneNodeComponent.transform.position.x,
-            //                     preySceneNodeComponent.transform.position.y, 0);  
+            //                     preySceneNodeComponent.transform.position.y, 0);
             //             microbeComponent.movementDirection = Vector3(0, AI_MOVEMENT_SPEED, 0);
             //         }
             //     } else {
@@ -298,10 +298,10 @@ class MicrobeAISystem : ScriptSystem{
             //         {
             //             // If we are NOT currenty heading towards an emitter
             //             // emitters were removed a long time ago...
-            //         }  
+            //         }
             //     }
-                
-            //     targetPosition = aiComponent.targetEmitterPosition;           
+
+            //     targetPosition = aiComponent.targetEmitterPosition;
             //     if(aiComponent.targetEmitterPosition !is null and
             //         aiComponent.targetEmitterPosition.z ~= 0){
             //         aiComponent.targetEmitterPosition = null;
@@ -310,27 +310,27 @@ class MicrobeAISystem : ScriptSystem{
             //         CompoundRegistry.getCompoundId("glucose")) <= GLUCOSE_SEARCH_THRESHHOLD)
             //   {
             //     // If we are NOT currenty heading towards an emitter
-                    
+
             //   }
-            
+
 
                 // I guess this part just makes the AI move randomly
                 // if(aiComponent.targetEmitterPosition == null){
                 auto randAngle = GetEngine().GetRandom().GetFloat(0, 2*PI);
                 auto randDist = GetEngine().GetRandom().GetFloat(10,
                     aiComponent.movementRadius);
-                
-                targetPosition = Float3(cos(randAngle) * randDist, 
+
+                targetPosition = Float3(cos(randAngle) * randDist,
                     0, sin(randAngle)* randDist);
                 // }
                 auto vec = (targetPosition - position._Position);
                 aiComponent.direction = vec.Normalize();
-                microbeComponent.facingTargetPoint = targetPosition; 
+                microbeComponent.facingTargetPoint = targetPosition;
                 microbeComponent.movementDirection = Float3(0, 0, -AI_MOVEMENT_SPEED);
             }
         }
     }
-    
+
     void Clear(){
 
         CachedComponents.resize(0);
@@ -359,7 +359,7 @@ class MicrobeAISystem : ScriptSystem{
     // itself instead of its components?
     // dictionary preyCandidates = {};
     // // Used for removing from preyCandidates
-    // dictionary preyEntityToIndexMap = {}; 
+    // dictionary preyEntityToIndexMap = {};
     // int currentPreyIndex = 0;
     // //table for preys
     // dictionary preys = {};
@@ -368,12 +368,12 @@ class MicrobeAISystem : ScriptSystem{
     // //counting number of frames so the prey get updated the fittest prey
     // int preycount = 0;
     // //checking if the prey escaped
-    // bool preyEscaped = false; 
+    // bool preyEscaped = false;
     // //table for predadtors the cell should run from
     // dictionary predators = {};
     // //the final predator the cell shall run from
-    // ObjectID predator = NULL_OBJECT; 
-    
+    // ObjectID predator = NULL_OBJECT;
+
     //i need it to be very big for now it will get changed
     int preyMaxHitpoints = 100000;
 

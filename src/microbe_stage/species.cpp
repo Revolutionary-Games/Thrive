@@ -10,14 +10,15 @@ Species::Species(Json::Value value)
 {
     spawnDensity = value["spawnDensity"].asDouble();
 
-	//cast an int as a member of the enum (eg (0,1,2)(membrane,wall,chitin))
-	speciesMembraneType = static_cast<MEMBRANE_TYPE>(value["membranetype"].asInt());
+    // cast an int as a member of the enum (eg (0,1,2)(membrane,wall,chitin))
+    speciesMembraneType =
+        static_cast<MEMBRANE_TYPE>(value["membranetype"].asInt());
 
     // Setting the cloud colour.
     float r = value["colour"]["r"].asFloat();
     float g = value["colour"]["g"].asFloat();
     float b = value["colour"]["b"].asFloat();
-	float a = value["colour"]["a"].asFloat();
+    float a = value["colour"]["a"].asFloat();
     colour = Ogre::ColourValue(r, g, b, a);
 
     // Getting the starting compounds.

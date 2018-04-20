@@ -41,7 +41,7 @@ const dictionary OPPOSITE_HEX_SIDE = {
 };
 
 
-// Each hex has six neighbours, one for each side. This table maps the hex 
+// Each hex has six neighbours, one for each side. This table maps the hex
 // side to the coordinate offset of the neighbour adjacent to that side.
 const dictionary HEX_NEIGHBOUR_OFFSET = {
     {HEX_SIDE::TOP, Int2 = { 0,  1}},
