@@ -3,28 +3,31 @@
 #include <Input/InputController.h>
 #include <Input/Key.h>
 
-namespace thrive{
+namespace thrive {
 
 //! This detects key presses in the main menu
-class MainMenuKeyPressListener : public Leviathan::InputReceiver{
+class MainMenuKeyPressListener : public Leviathan::InputReceiver {
 public:
-
     //! Initializes the key definitions
     MainMenuKeyPressListener();
 
     //! Detects the important keypresses and notifies ThriveGame
-    virtual bool ReceiveInput(int32_t key, int modifiers, bool down) override;
-    
-    virtual void ReceiveBlockedInput(int32_t key, int modifiers, bool down) override;
+    virtual bool
+        ReceiveInput(int32_t key, int modifiers, bool down) override;
 
-    virtual bool OnMouseMove(int xmove, int ymove) override;
+    virtual void
+        ReceiveBlockedInput(int32_t key, int modifiers, bool down) override;
 
-    void setEnabled(bool enabled){
+    virtual bool
+        OnMouseMove(int xmove, int ymove) override;
+
+    void
+        setEnabled(bool enabled)
+    {
         m_enabled = enabled;
     }
-    
-private:
 
+private:
     //! The possible skip keys
     std::vector<Leviathan::GKey> m_skipKeys;
 
@@ -32,4 +35,4 @@ private:
     bool m_enabled = true;
 };
 
-}
+} // namespace thrive

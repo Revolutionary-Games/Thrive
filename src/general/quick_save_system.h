@@ -9,50 +9,46 @@ class state;
 namespace thrive {
 
 /**
-* @brief The quick save mechanism for the game.
-*
-*/
+ * @brief The quick save mechanism for the game.
+ *
+ */
 class QuickSaveSystem : public System {
 public:
     /**
-    * @brief Lua bindings
-    *
-    * Exposes:
-    * - QuickSaveSystem()
-    *
-    * @return
-    */
-    static void luaBindings(sol::state &lua);
+     * @brief Lua bindings
+     *
+     * Exposes:
+     * - QuickSaveSystem()
+     *
+     * @return
+     */
+    static void
+        luaBindings(sol::state& lua);
 
     /**
-    * @brief Constructor
-    */
+     * @brief Constructor
+     */
     QuickSaveSystem();
 
     /**
-    * @brief Initializes the system
-    *
-    */
+     * @brief Initializes the system
+     *
+     */
     void
-    init(
-        GameStateData* gameState
-    ) override;
+        init(GameStateData* gameState) override;
 
     /**
-    * @brief Updates the system
-    *
-    * @param renderTime
-    *
-    * @param logicTime
-    */
+     * @brief Updates the system
+     *
+     * @param renderTime
+     *
+     * @param logicTime
+     */
     void
-    update(
-        int renderTime,
-        int logicTime
-    ) override;
+        update(int renderTime, int logicTime) override;
 
 private:
     struct Implementation;
     std::unique_ptr<Implementation> m_impl;
 };
-}
+} // namespace thrive

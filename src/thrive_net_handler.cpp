@@ -8,36 +8,32 @@
 
 using namespace thrive;
 // ------------------------------------ //
-ThriveNetHandler::ThriveNetHandler() : NetworkClientInterface()
+ThriveNetHandler::ThriveNetHandler() : NetworkClientInterface() {}
+
+ThriveNetHandler::~ThriveNetHandler() {}
+// ------------------------------------ //
+void
+    ThriveNetHandler::_OnStartApplicationConnect()
 {
 
-}
-
-ThriveNetHandler::~ThriveNetHandler(){
-
+    // Send our custom join request packet //
 }
 // ------------------------------------ //
-void ThriveNetHandler::_OnStartApplicationConnect(){
-    
-	// Send our custom join request packet //
-
-}
-// ------------------------------------ //
-void ThriveNetHandler::_OnNewConnectionStatusMessage(const std::string &message){
-    
-    Engine::Get()->GetEventHandler()->CallEvent(
-        new Leviathan::GenericEvent("ConnectStatusMessage",
-            Leviathan::NamedVars(std::shared_ptr<NamedVariableList>(
-		new NamedVariableList("Message", new VariableBlock(message))))));
-}
-// ------------------------------------ //
-void ThriveNetHandler::_OnDisconnectFromServer(const std::string &reasonstring,
-    bool donebyus)
+void
+    ThriveNetHandler::_OnNewConnectionStatusMessage(const std::string& message)
 {
-	// Enable the connection screen to display this message //
-	//Engine::Get()->GetWindowEntity()->GetGUI()->SetCollectionState("ConnectionScreen", true);
+
+    Engine::Get()->GetEventHandler()->CallEvent(new Leviathan::GenericEvent(
+        "ConnectStatusMessage",
+        Leviathan::NamedVars(std::shared_ptr<NamedVariableList>(
+            new NamedVariableList("Message", new VariableBlock(message))))));
 }
-
-
-
-
+// ------------------------------------ //
+void
+    ThriveNetHandler::_OnDisconnectFromServer(const std::string& reasonstring,
+        bool donebyus)
+{
+    // Enable the connection screen to display this message //
+    // Engine::Get()->GetWindowEntity()->GetGUI()->SetCollectionState("ConnectionScreen",
+    // true);
+}

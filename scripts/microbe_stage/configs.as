@@ -40,7 +40,7 @@ bool toxin_number(){
         unlockToxinIfStillLocked();
         toxin_call_Notification();
     }
-    
+
     return true;
 }
 
@@ -48,7 +48,7 @@ bool toxin_number(){
 void chloroplast_number(){
     chloroplast_Organelle_Number = chloroplast_Organelle_Number + 1;
     LOG_WRITE("chloroplast_Organelle_Number: " + chloroplast_Organelle_Number);
-    
+
     if(chloroplast_Organelle_Number >= 3){  // 3 is an example
         unlockChloroplastIfStillLocked();
         chloroplast_call_Notification();
@@ -65,7 +65,7 @@ void playOrganellePickupSound(){
 void unlockToxinIfStillLocked(){
     if(!GetThriveGame().playerData().lockedMap().isLocked("Toxin"))
         return;
-    
+
     showMessage("Toxin Unlocked!");
     GetThriveGame().playerData().lockedMap().unlock("Toxin");
 
@@ -77,7 +77,7 @@ void unlockChloroplastIfStillLocked(){
 
     if(!GetThriveGame().playerData().lockedMap().isLocked("chloroplast"))
         return;
-    
+
     showMessage("Chloroplast Unlocked!");
     GetThriveGame().playerData().lockedMap().unlock("chloroplast");
 
@@ -116,12 +116,12 @@ class AxialCoordinates{
     int q;
     int r;
 }
-*/   
+*/
 
 // Note this is an old comment
 /*
 Placing organelles can get downright annoying if you don't
-map them out. To make it easier, download a few sheets of hexgrid 
+map them out. To make it easier, download a few sheets of hexgrid
 off the internet. Before you print them though, set up the axes
 properly. See http://i.imgur.com/kTxHFMC.png for how. When you're
 drawing out your microbe, keep in mind that it faces forward along
@@ -173,7 +173,7 @@ class InitialCompound{
         this.amount = 0;
         this.priority = 1;
     }
-    
+
     InitialCompound(float amount, int priority = 1){
 
         this.amount = amount;

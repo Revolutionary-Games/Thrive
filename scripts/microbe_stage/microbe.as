@@ -14,7 +14,7 @@ void setupAbsorberForAllCompounds(CompoundAbsorberComponent@ absorber){
     for(uint a = 0; a < compoundCount; ++a){
 
         auto compound = SimulationParameters::compoundRegistry().getTypeData(a);
-    
+
         absorber.setCanAbsorbCompound(a, true);
     }
 }
@@ -68,8 +68,8 @@ const uint AGENT_EMISSION_COOLDOWN = 1000;
 
 
 // class Microbe{
-    
-    
+
+
 // }
 // Use "ObjectID microbeEntity" instead
 
@@ -98,7 +98,7 @@ class MicrobeComponent : ScriptComponent{
 
     //! This has to be called after creating this
     void init(ObjectID forEntity, bool isPlayerMicrobe, const string &in speciesName){
-        
+
         this.speciesName = speciesName;
         this.isPlayerMicrobe = isPlayerMicrobe;
         this.microbeEntity = forEntity;
@@ -107,7 +107,7 @@ class MicrobeComponent : ScriptComponent{
     }
 
     // void load(storage){
-    
+
     //     auto organelles = storage.get("organelles", {});
     //     for(i = 1,organelles.size()){
     //         auto organelleStorage = organelles.get(i);
@@ -124,15 +124,15 @@ class MicrobeComponent : ScriptComponent{
     //     this.remainingBandwidth = storage.get("remainingBandwidth", 0);
     //     this.isPlayerMicrobe = storage.get("isPlayerMicrobe", false);
     //     this.speciesName = storage.get("speciesName", "");
-        
+
     //     // auto compoundPriorities = storage.get("compoundPriorities", {})
     //     // for(i = 1,compoundPriorities.size()){
     //     //     auto compound = compoundPriorities.get(i)
     //     //     this.compoundPriorities[compound.get("compoundId", 0)] = compound.get("priority", 0)
     //     // }
     // }
-    
-    
+
+
     // void storage(storage){
     //     // Organelles
     //     auto organelles = StorageList()
@@ -158,12 +158,12 @@ class MicrobeComponent : ScriptComponent{
     //     // }
     //     // storage.set("compoundPriorities", compoundPriorities)
     // }
-    
+
 
     string speciesName;
     // TODO: initialize
     Float4 speciesColour;
-    
+
     uint hitpoints;
     uint maxHitpoints = 0;
     bool dead = false;
@@ -173,8 +173,8 @@ class MicrobeComponent : ScriptComponent{
     // (such as agentvacuoles)
     // Keys are the CompoundId of the agent and the value is int
     // specifying how many there are
-    dictionary specialStorageOrganelles;  
-    
+    dictionary specialStorageOrganelles;
+
     Float3 movementDirection = Float3(0, 0, 0);
     Float3 facingTargetPoint = Float3(0, 0, 0);
     float microbetargetdirection = 0;
@@ -274,22 +274,22 @@ class MicrobeSystem : ScriptSystem{
         //         MicrobeSystem.checkEngulfment(entity2, entity1);
         //     }
         // }
-        
+
         // this.microbeCollisions.clearCollisions()
-        
+
         // // TEMP, DELETE FOR 0.3.3!!!!!!!!
         // for(_, collision in pairs(this.agentCollisions.collisions())){
         //     auto entity = Entity(collision.entityId1, this.gameState.wrapper);
         //     auto agent = Entity(collision.entityId2, this.gameState.wrapper);
-            
+
         //     if(entity.exists() and agent.exists()){
         //         MicrobeSystem.damage(entity, .5, "toxin");
         //         agent.destroy();
         //     }
         // }
-        
+
         // this.agentCollisions.clearCollisions()
-        
+
         // for(_, collision in pairs(this.bacteriaCollisions.collisions())){
         //     local microbe_entity = Entity(collision.entityId1, this.gameState.wrapper);
         //     local bacterium_entity = Entity(collision.entityId2, this.gameState.wrapper);
@@ -315,7 +315,7 @@ class MicrobeSystem : ScriptSystem{
 
     void CreateAndDestroyNodes(){
 
-        
+
         // Delegate to helper //
         ScriptSystemNodeHelper(world, @CachedComponents, SystemComponents);
     }
@@ -349,7 +349,7 @@ class MicrobeSystem : ScriptSystem{
                 "set a ObjectID, did someone forget to call 'init'?");
             return;
         }
-        
+
         MicrobeComponent@ microbeComponent = components.second;
         MembraneComponent@ membraneComponent = components.fifth;
         RenderNode@ sceneNodeComponent = components.third;
@@ -381,7 +381,7 @@ class MicrobeSystem : ScriptSystem{
                         microbeComponent.organelles[i].onRemovedFromMicrobe(microbeEntity,
                             physics.Collision);
                     }
-                    
+
                     // Safe destroy before next tick
                     world.QueueDestroyEntity(microbeEntity);
                 }
@@ -398,10 +398,10 @@ class MicrobeSystem : ScriptSystem{
 
             // StorageOrganelles
             updateCompoundAbsorber(microbeEntity);
-            
+
             // Regenerate bandwidth
             regenerateBandwidth(microbeEntity, logicTime);
-            
+
             // Attempt to absorb queued compounds
             auto absorbed = compoundAbsorberComponent.getAbsorbedCompounds();
             for(uint i = 0; i < absorbed.length(); ++i){
@@ -417,18 +417,18 @@ class MicrobeSystem : ScriptSystem{
                 microbeComponent.flashColour != Float4(0, 0, 0, 0)
             ){
                 if(microbeComponent.flashDuration >= logicTime){
-                    
+
                     microbeComponent.flashDuration = microbeComponent.flashDuration -
                         logicTime;
-                    
+
                 } else {
                     // Would wrap over to very large number
                     microbeComponent.flashDuration = 0;
                 }
-            
+
                 // How frequent it flashes, would be nice to update
                 // the flash void to have this variable{
-                
+
                 if((microbeComponent.flashDuration % 600.0f) < 300){
                     membraneComponent.setColour(microbeComponent.flashColour);
                 } else {
@@ -442,10 +442,10 @@ class MicrobeSystem : ScriptSystem{
                     MicrobeOperations::applyMembraneColour(world, microbeEntity);
                 }
             }
-        
+
             microbeComponent.compoundCollectionTimer =
                 microbeComponent.compoundCollectionTimer + logicTime;
-            
+
             while(microbeComponent.compoundCollectionTimer >
                 EXCESS_COMPOUND_COLLECTION_INTERVAL)
             {
@@ -459,21 +459,21 @@ class MicrobeSystem : ScriptSystem{
 
                 atpDamage(microbeEntity);
             }
-        
+
             // First organelle run: updates all the organelles and heals the broken ones.
             if(microbeComponent.hitpoints < microbeComponent.maxHitpoints){
                 for(uint i = 0; i < microbeComponent.organelles.length(); ++i){
-                    
+
                     auto organelle = microbeComponent.organelles[i];
                     // Update the organelle.
                     organelle.update(logicTime);
-                
+
                     // If the organelle is hurt.
                     if(organelle.getCompoundBin() < 1.0){
                         // Give the organelle access to the compound bag to take some compound.
                         organelle.growOrganelle(
                             world.GetComponent_CompoundBagComponent(microbeEntity), logicTime);
-                        
+
                         // An organelle was damaged and we tried to
                         // heal it, so our health might be different.
                         MicrobeOperations::calculateHealthFromOrganelles(world, microbeEntity);
@@ -485,12 +485,12 @@ class MicrobeSystem : ScriptSystem{
 
                 // Grow all the large organelles.
                 for(uint i = 0; i < microbeComponent.organelles.length(); ++i){
-                    
+
                     auto organelle = microbeComponent.organelles[i];
-                    
+
                     // Update the organelle.
                     organelle.update(logicTime);
-        
+
                     // We are in G1 phase of the cell cycle, duplicate all organelles.
                     if(organelle.organelle.name != "nucleus" &&
                         microbeComponent.reproductionStage == 0)
@@ -503,9 +503,9 @@ class MicrobeSystem : ScriptSystem{
                             organelle.growOrganelle(
                                 world.GetComponent_CompoundBagComponent(microbeEntity),
                                 logicTime);
-                            
+
                             reproductionStageComplete = false;
-                            
+
                             // if the organelle was split and has a
                             // bin less 1, it must have been damaged.
                         } else if(organelle.getCompoundBin() < 1.0 && organelle.wasSplit){
@@ -514,10 +514,10 @@ class MicrobeSystem : ScriptSystem{
                             organelle.growOrganelle(
                                 world.GetComponent_CompoundBagComponent(microbeEntity),
                                 logicTime);
-                            
+
                             // If the organelle is twice its size...
                         } else if(organelle.getCompoundBin() >= 2.0){
-                            
+
                             //Queue this organelle for splitting after the loop.
                             //(To avoid "cutting down the branch we're sitting on").
                             organellesToAdd.insertLast(organelle);
@@ -538,12 +538,12 @@ class MicrobeSystem : ScriptSystem{
                         }
                     }
                 }
-                                
+
                 //Splitting the queued organelles.
                 for(uint i = 0; i < organellesToAdd.length(); ++i){
-                    
+
                     PlacedOrganelle@ organelle = organellesToAdd[i];
-                    
+
                     LOG_INFO("ready to split " + organelle.organelle.name);
 
                     // Mark this organelle as done and return to its normal size.
@@ -560,11 +560,11 @@ class MicrobeSystem : ScriptSystem{
                     // Redo the cell membrane.
                     membraneComponent.clear();
                 }
-            
+
                 if(reproductionStageComplete && microbeComponent.reproductionStage < 2){
                     microbeComponent.reproductionStage += 1;
                 }
-                
+
                 // To finish the G2 phase we just need more than a threshold of compounds.
                 if(microbeComponent.reproductionStage == 2 ||
                     microbeComponent.reproductionStage == 3)
@@ -572,11 +572,11 @@ class MicrobeSystem : ScriptSystem{
                     readyToReproduce(microbeEntity);
                 }
             }
-            
+
             if(microbeComponent.engulfMode){
                 // Drain atp and if(we run out){ disable engulfmode
                 auto cost = ENGULFING_ATP_COST_SECOND/1000*logicTime;
-                
+
                 if(MicrobeOperations::takeCompound(world, microbeEntity,
                         SimulationParameters::compoundRegistry().getTypeId("atp"), cost) <
                     cost - 0.001)
@@ -588,7 +588,7 @@ class MicrobeSystem : ScriptSystem{
                 MicrobeOperations::flashMembraneColour(world, microbeEntity, 3000,
                     Float4(0.2,0.5,1.0,0.5));
             }
-            
+
             if(microbeComponent.isBeingEngulfed && microbeComponent.wasBeingEngulfed){
                 MicrobeOperations::damage(world, microbeEntity, int(logicTime * 0.000025  *
                         microbeComponent.maxHitpoints), "isBeingEngulfed - Microbe.update()s");
@@ -602,12 +602,12 @@ class MicrobeSystem : ScriptSystem{
                     microbeComponent.stored + 10, microbeComponent.remainingBandwidth));
         }
     }
-    
+
     // ------------------------------------ //
     // Microbe operations only done by this class
     //! Updates the used storage space in a microbe and stores it in the microbe component
     void calculateStorageSpace(ObjectID microbeEntity){
-        
+
         MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
             world.GetScriptComponentHolder("MicrobeComponent").Find(microbeEntity));
 
@@ -620,20 +620,20 @@ class MicrobeSystem : ScriptSystem{
         }
     }
 
-        
+
     // For updating the compound absorber
     //
     // Toggles the absorber on and off depending on the remaining storage
     // capacity of the storage organelles.
     void updateCompoundAbsorber(ObjectID microbeEntity){
-        
+
         MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
             world.GetScriptComponentHolder("MicrobeComponent").Find(microbeEntity));
-        
+
         auto compoundAbsorberComponent = world.GetComponent_CompoundAbsorberComponent(
             microbeEntity);
 
-        if(//microbeComponent.stored >= microbeComponent.capacity or 
+        if(//microbeComponent.stored >= microbeComponent.capacity or
             microbeComponent.remainingBandwidth < 1 ||
             microbeComponent.dead)
         {
@@ -646,10 +646,10 @@ class MicrobeSystem : ScriptSystem{
     void regenerateBandwidth(ObjectID microbeEntity, int logicTime){
         MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
             world.GetScriptComponentHolder("MicrobeComponent").Find(microbeEntity));
-        
+
         auto addedBandwidth = microbeComponent.remainingBandwidth + logicTime *
             (microbeComponent.maxBandwidth / BANDWIDTH_REFILL_DURATION);
-        
+
         microbeComponent.remainingBandwidth = min(addedBandwidth,
             microbeComponent.maxBandwidth);
     }
@@ -670,7 +670,7 @@ class MicrobeSystem : ScriptSystem{
     //         return;
 
     //     if(microbe1Comp.engulfMode && microbe1Comp.maxHitpoints > (
-    //             ENGULF_HP_RATIO_REQ * microbe2Comp.maxHitpoints) && 
+    //             ENGULF_HP_RATIO_REQ * microbe2Comp.maxHitpoints) &&
     //         microbe1Comp.dead == false && microbe2Comp.dead == false)
     //     {
     //         if(!microbe1Comp.isCurrentlyEngulfing){
@@ -715,7 +715,7 @@ class MicrobeSystem : ScriptSystem{
 
                     //Checks every possible rotation value.
                     for(int j = 0; j <= 5; ++j){
-                        
+
                         // auto rotation = 360 * j / 6;
 
                         // In the lua code the rotation is i * 60 here
@@ -728,7 +728,7 @@ class MicrobeSystem : ScriptSystem{
                                 organelle.organelle, {q, r}))
                         {
                             auto newOrganelle = PlacedOrganelle(organelle, q, r, i*60);
-                            
+
                             LOG_INFO("placed " + organelle.organelle.name + " at " +
                                 q + ", " + r);
                             MicrobeOperations::addOrganelle(world, microbeEntity,
@@ -782,7 +782,7 @@ class MicrobeSystem : ScriptSystem{
     //     // Cooldown code
     //     if(microbeComponent.agentEmissionCooldown > 0){ return; }
     //     auto numberOfAgentVacuoles = microbeComponent.specialStorageOrganelles[compoundId];
-    
+
     //     // Only shoot if you have agent vacuoles.
     //     if(numberOfAgentVacuoles == 0 or numberOfAgentVacuoles == 0){ return; }
 
@@ -821,7 +821,7 @@ class MicrobeSystem : ScriptSystem{
 
     //         auto xnew = -membraneCoords[1] * c + membraneCoords[2] * s;
     //         auto ynew = membraneCoords[1] * s + membraneCoords[2] * c;
-        
+
     //         auto direction = Vector3(xnew, ynew, 0);
     //         direction.normalise();
     //         auto amountToEject = MicrobeSystem.takeCompound(microbeEntity,
@@ -835,7 +835,7 @@ class MicrobeSystem : ScriptSystem{
     // void transferCompounds(ObjectID fromEntity, ObjectID toEntity){
     //     for(_, compoundID in pairs(SimulationParameters::compoundRegistry().getCompoundList())){
     //         auto amount = MicrobeSystem.getCompoundAmount(fromEntity, compoundID);
-    
+
     //         if(amount != 0){
     //             // Is it possible that compounds are created or destroyed here as
     //             // the actual amounts aren't checked (that these functions should return)
@@ -864,17 +864,17 @@ class MicrobeSystem : ScriptSystem{
         auto positionCopy = world.GetComponent_Position(copyEntity);
 
         //Separate the two cells.
-        positionCopy._Position = Float3(position._Position.X - 
+        positionCopy._Position = Float3(position._Position.X -
             membraneComponent.getCellDimensions() / 2,
             0, position._Position.Z);
         rigidBodyComponentCopy.JumpTo(positionCopy);
 
-        position._Position = Float3(position._Position.X + 
+        position._Position = Float3(position._Position.X +
             membraneComponent.getCellDimensions() / 2,
             0, position._Position.Z);
         rigidBodyComponent.JumpTo(position);
 
-        
+
         // Split the compounds evenly between the two cells.
         for(uint64 compoundID = 0; compoundID <
                 SimulationParameters::compoundRegistry().getSize(); ++compoundID)
@@ -892,14 +892,14 @@ class MicrobeSystem : ScriptSystem{
                     amount / 2, false);
             }
         }
-    
+
         microbeComponent.reproductionStage = 0;
         microbeComponentCopy.reproductionStage = 0;
 
         world.Create_SpawnedComponent(copyEntity, MICROBE_SPAWN_RADIUS);
-            
-		//play the split sound
-		GetEngine().GetSoundDevice().Play2DSoundEffect("Data/Sound/soundeffects/reproduction.ogg");
+
+    //play the split sound
+    GetEngine().GetSoundDevice().Play2DSoundEffect("Data/Sound/soundeffects/reproduction.ogg");
     }
 
     // Copies this microbe. The new microbe will not have the stored compounds of this one.
@@ -914,14 +914,14 @@ class MicrobeSystem : ScriptSystem{
             // Return the first cell to its normal, non duplicated cell arangement.
             Species::applyTemplate(world, microbeEntity,
                 MicrobeOperations::getSpeciesComponent(world, microbeEntity));
-            
+
             divide(microbeEntity);
         }
     }
 
     private array<MicrobeSystemCached@> CachedComponents;
     private CellStageWorld@ world;
-        
+
     private array<ScriptSystemUses> SystemComponents = {
         ScriptSystemUses(CompoundAbsorberComponent::TYPE),
         ScriptSystemUses("MicrobeComponent"),

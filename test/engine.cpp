@@ -13,14 +13,7 @@ namespace {
 
 class TestEngine : public Engine {
 public:
-
-    TestEngine(
-        EntityManager& entityManager
-    ) : Engine(entityManager)
-    {
-    }
+    TestEngine(EntityManager& entityManager) : Engine(entityManager) {}
 };
 
-}
-
-
+} // namespace

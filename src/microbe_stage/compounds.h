@@ -8,14 +8,14 @@ namespace thrive {
 
 class Compound : public RegistryType {
 public:
-	double volume = 1.0;
-	bool isCloud = false;
-	bool isUseful = false;
-	Ogre::ColourValue colour;
+    double volume = 1.0;
+    bool isCloud = false;
+    bool isUseful = false;
+    Ogre::ColourValue colour;
 
-	Compound();
+    Compound();
 
-	Compound(Json::Value value);
+    Compound(Json::Value value);
 };
 
-}
+} // namespace thrive

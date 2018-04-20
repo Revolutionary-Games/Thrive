@@ -169,8 +169,14 @@ void
             ->getPass(0)
             ->getFragmentProgramParameters()
             ->setNamedConstant("membraneColour", colour);
-		coloredMaterial->getTechnique(0)->getPass(0)->getTextureUnitState(0)->setHardwareGammaEnabled(true);
-		coloredMaterial->getTechnique(0)->getPass(0)->getTextureUnitState(1)->setHardwareGammaEnabled(true);
+        coloredMaterial->getTechnique(0)
+            ->getPass(0)
+            ->getTextureUnitState(0)
+            ->setHardwareGammaEnabled(true);
+        coloredMaterial->getTechnique(0)
+            ->getPass(0)
+            ->getTextureUnitState(1)
+            ->setHardwareGammaEnabled(true);
         coloredMaterial->compile();
     }
 }
@@ -306,8 +312,8 @@ void
     float height = .1;
 
     size_t writeIndex = 0;
-	const Ogre::Vector2 center(0.5, 0.5);
-	meshVertices[writeIndex++] = { Ogre::Vector3(0, height / 2, 0), center };
+    const Ogre::Vector2 center(0.5, 0.5);
+    meshVertices[writeIndex++] = {Ogre::Vector3(0, height / 2, 0), center};
 
     for(size_t i = 0, end = vertices2D.size(); i < end + 1; i++) {
         // Finds the UV coordinates be projecting onto a plane and stretching to
@@ -316,10 +322,8 @@ void
         const double currentRadians = 2.0 * 3.1416 * i / end;
 
         meshVertices[writeIndex++] = {
-            Ogre::Vector3(
-				vertices2D[i % end].x,
-                vertices2D[i % end].z + height / 2,
-				vertices2D[i % end].y),
+            Ogre::Vector3(vertices2D[i % end].x,
+                vertices2D[i % end].z + height / 2, vertices2D[i % end].y),
             center +
                 Ogre::Vector2(cos(currentRadians), sin(currentRadians)) / 2};
     }
@@ -362,21 +366,19 @@ void
         }
     }
 
-	for (int i = membraneResolution; i > 0; i--) {
-		vertices2D.emplace_back(
-			-cellDimensions,
-			cellDimensions - 2 * cellDimensions / membraneResolution * i, 0);
-	}
-	for (int i = membraneResolution; i > 0; i--) {
-		vertices2D.emplace_back(
-			cellDimensions - 2 * cellDimensions / membraneResolution * i,
-			cellDimensions, 0);
-	}
-	for (int i = membraneResolution; i > 0; i--) {
-		vertices2D.emplace_back(
-			cellDimensions,
-			-cellDimensions + 2 * cellDimensions / membraneResolution * i, 0);
-	}
+    for(int i = membraneResolution; i > 0; i--) {
+        vertices2D.emplace_back(-cellDimensions,
+            cellDimensions - 2 * cellDimensions / membraneResolution * i, 0);
+    }
+    for(int i = membraneResolution; i > 0; i--) {
+        vertices2D.emplace_back(
+            cellDimensions - 2 * cellDimensions / membraneResolution * i,
+            cellDimensions, 0);
+    }
+    for(int i = membraneResolution; i > 0; i--) {
+        vertices2D.emplace_back(cellDimensions,
+            -cellDimensions + 2 * cellDimensions / membraneResolution * i, 0);
+    }
     for(int i = membraneResolution; i > 0; i--) {
         vertices2D.emplace_back(
             -cellDimensions + 2 * cellDimensions / membraneResolution * i,
@@ -618,74 +620,72 @@ void
 //     }
 // }
 
-CellWallComponent::CellWallComponent() : MembraneComponent()
-{}
+CellWallComponent::CellWallComponent() : MembraneComponent() {}
 
-CellWallComponent::~CellWallComponent()
-{}
+CellWallComponent::~CellWallComponent() {}
 
 
-//this is where the magic happens i think
+// this is where the magic happens i think
 Ogre::Vector3
-CellWallComponent::GetMovement(Ogre::Vector3 target,
-	Ogre::Vector3 closestOrganelle)
+    CellWallComponent::GetMovement(Ogre::Vector3 target,
+        Ogre::Vector3 closestOrganelle)
 {
-	double power = pow(2.7, (-target.distance(closestOrganelle)) / 10) / 50;
+    double power = pow(2.7, (-target.distance(closestOrganelle)) / 10) / 50;
 
-	return (Ogre::Vector3(closestOrganelle) - Ogre::Vector3(target)) * power;
+    return (Ogre::Vector3(closestOrganelle) - Ogre::Vector3(target)) * power;
 }
 
 void
-CellWallComponent::DrawMembrane()
+    CellWallComponent::DrawMembrane()
 {
-	// Stores the temporary positions of the membrane.
-	auto newPositions = vertices2D;
+    // Stores the temporary positions of the membrane.
+    auto newPositions = vertices2D;
 
-	// Loops through all the points in the membrane and relocates them as
-	// necessary.
-	for (size_t i = 0, end = newPositions.size(); i < end; i++) {
-		Ogre::Vector3 closestOrganelle = FindClosestOrganelles(vertices2D[i]);
-		if (closestOrganelle == Ogre::Vector3(0, 0, -1)) {
-			newPositions[i] =
-				(vertices2D[(end + i - 1) % end] + vertices2D[(i + 1) % end]) /2;
-		}
-		else {
-			Ogre::Vector3 movementDirection =
-				GetMovement(vertices2D[i], closestOrganelle);
-			newPositions[i].x -= movementDirection.x;
-			newPositions[i].y -= movementDirection.y;
-		}
-	}
+    // Loops through all the points in the membrane and relocates them as
+    // necessary.
+    for(size_t i = 0, end = newPositions.size(); i < end; i++) {
+        Ogre::Vector3 closestOrganelle = FindClosestOrganelles(vertices2D[i]);
+        if(closestOrganelle == Ogre::Vector3(0, 0, -1)) {
+            newPositions[i] =
+                (vertices2D[(end + i - 1) % end] + vertices2D[(i + 1) % end]) /
+                2;
+        } else {
+            Ogre::Vector3 movementDirection =
+                GetMovement(vertices2D[i], closestOrganelle);
+            newPositions[i].x -= movementDirection.x;
+            newPositions[i].y -= movementDirection.y;
+        }
+    }
 
-	// Allows for the addition and deletion of points in the membrane.
-	for (size_t i = 0; i < newPositions.size() - 1; i++) {
-		// Check to see if the gap between two points in the membrane is too
-		// big.
-		if (newPositions[i].distance(
-			newPositions[(i + 1) % newPositions.size()]) >
-			cellDimensions / membraneResolution) {
-			// Add an element after the ith term that is the average of the i
-			// and i+1 term.
-			auto it = newPositions.begin();
-			Ogre::Vector3 tempPoint =
-				(newPositions[(i + 1) % newPositions.size()] +
-					newPositions[i]) / 2;
-			newPositions.insert(it + i + 1, tempPoint);
+    // Allows for the addition and deletion of points in the membrane.
+    for(size_t i = 0; i < newPositions.size() - 1; i++) {
+        // Check to see if the gap between two points in the membrane is too
+        // big.
+        if(newPositions[i].distance(
+               newPositions[(i + 1) % newPositions.size()]) >
+            cellDimensions / membraneResolution) {
+            // Add an element after the ith term that is the average of the i
+            // and i+1 term.
+            auto it = newPositions.begin();
+            Ogre::Vector3 tempPoint =
+                (newPositions[(i + 1) % newPositions.size()] +
+                    newPositions[i]) /
+                2;
+            newPositions.insert(it + i + 1, tempPoint);
 
-			i++;
-		}
+            i++;
+        }
 
-		// Check to see if the gap between two points in the membrane is too
-		// small.
-		if (newPositions[(i + 1) % newPositions.size()].distance(
-			newPositions[(i - 1) % newPositions.size()]) <
-			cellDimensions / membraneResolution) {
-			// Delete the ith term.
-			auto it = newPositions.begin();
-			newPositions.erase(it + i);
-		}
-	}
+        // Check to see if the gap between two points in the membrane is too
+        // small.
+        if(newPositions[(i + 1) % newPositions.size()].distance(
+               newPositions[(i - 1) % newPositions.size()]) <
+            cellDimensions / membraneResolution) {
+            // Delete the ith term.
+            auto it = newPositions.begin();
+            newPositions.erase(it + i);
+        }
+    }
 
-	vertices2D = newPositions;
+    vertices2D = newPositions;
 }
-
