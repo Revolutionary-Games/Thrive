@@ -326,7 +326,7 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
         auto species = MicrobeOperations::getSpeciesComponent(world,
             microbeEntity);
         if(flashDuration >= 0 && species !is null){
-            
+
             flashDuration -= logicTime;
             // Use organelle.world to get the MicrobeSystem
             Float4 speciesColour = species.colour;
@@ -721,6 +721,9 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
             NewtonCollision@ hexCollision = world.GetPhysicalWorld().CreateSphere(
                 HEX_SIZE * 2, hexFinalOffset);
 
+            if(hexCollision is null)
+                assert(false, "Failed to create Sphere for hex");
+
             _addedCollisions.insertLast(@hexCollision);
 
             collisionShape.CompoundCollisionAddSubCollision(hexCollision);
@@ -776,9 +779,13 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
     //
     // @param microbe
     //  The organelle's previous owner
+    // @todo This actually crashes the game in
+    //  collisionShape.CompoundCollisionRemoveSubCollision so someone should figure out how
+    //  to fix that if this is needed (currently species are just destroyed so this isn't used)
     void onRemovedFromMicrobe(ObjectID microbe, NewtonCollision@ collisionShape){
 
         LOG_INFO("PlacedOrganelle (" + organelle.name + ") removed from: " + microbeEntity);
+        PrintCallStack();
 
         //iterating on each OrganelleComponent
         for(uint i = 0; i < components.length(); ++i){

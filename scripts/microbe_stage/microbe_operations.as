@@ -862,6 +862,9 @@ ObjectID _createMicrobeEntity(CellStageWorld@ world, const string &in name, bool
         compoundBag.setProcessor(processor, microbeComponent.speciesName);
     }
 
+    if(microbeComponent.organelles.length() > 0)
+        assert(false, "Freshly created microbe has organelles in it");
+
     // Apply the template //
     Species::applyTemplate(world, entity, species);
 
