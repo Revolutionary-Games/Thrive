@@ -20,8 +20,8 @@ PlayerMicrobeControl::PlayerMicrobeControl(KeyConfiguration& keys) :
     m_backwards(keys.ResolveControlNameToFirstKey("MoveBackwards")),
     m_left(keys.ResolveControlNameToFirstKey("MoveLeft")),
     m_right(keys.ResolveControlNameToFirstKey("MoveRight")),
-    m_zoomIn(keys.ResolveControlNameToFirstKey("ZoomIn")),
-    m_zoomOut(keys.ResolveControlNameToFirstKey("ZoomOut"))
+    m_zoomIn(keys.ResolveControlNameToKeyVector("ZoomIn")),
+    m_zoomOut(keys.ResolveControlNameToKeyVector("ZoomOut"))
 {
 }
 // ------------------------------------ //
@@ -44,11 +44,11 @@ bool
         Engine::Get()->GetEventHandler()->CallEvent(
             new Leviathan::GenericEvent("PlayerReadyToEnterEditor"));
         return true;
-    } else if(m_zoomIn.Match(key, modifiers)) {
+    } else if(Leviathan::MatchesAnyKeyInSet(m_zoomIn, key, modifiers)) {
 
         ThriveGame::Get()->onZoomChange(-1);
 
-    } else if(m_zoomOut.Match(key, modifiers)) {
+    } else if(Leviathan::MatchesAnyKeyInSet(m_zoomOut, key, modifiers)) {
 
         ThriveGame::Get()->onZoomChange(1);
     }
