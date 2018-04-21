@@ -54,6 +54,7 @@ string getRandomLetter(bool isBacteria){
     {
     float i = GetEngine().GetRandom().GetNumber(0.f, maxEukaryoteScore);
     for(uint index = 0; index < VALID_ORGANELLES.length(); ++index){
+
         i -= VALID_ORGANELLE_CHANCES[index];
 
         if(i <= 0){

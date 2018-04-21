@@ -449,6 +449,7 @@ void flashMembraneColour(CellStageWorld@ world, ObjectID microbeEntity, uint dur
 // Applies the default membrane colour
 // TODO: this is probably broken (the c++ membrane system doesn't apply this)
 void applyMembraneColour(CellStageWorld@ world, ObjectID microbeEntity){
+
     auto membraneComponent = world.GetComponent_MembraneComponent(microbeEntity);
     MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
         world.GetScriptComponentHolder("MicrobeComponent").Find(microbeEntity));
@@ -1072,12 +1073,6 @@ void removeEngulfedEffect(CellStageWorld@ world, ObjectID microbeEntity){
 void setMembraneColour(CellStageWorld@ world, ObjectID microbeEntity, Float4 colour){
     auto membraneComponent = world.GetComponent_MembraneComponent(microbeEntity);
     membraneComponent.setColour(colour);
-}
-
-// sets the membrane type
-void setMembraneType(CellStageWorld@ world, ObjectID microbeEntity, MEMBRANE_TYPE type){
-    auto membraneComponent = world.GetComponent_MembraneComponent(microbeEntity);
-    membraneComponent.setMembraneType(type);
 }
 
 }

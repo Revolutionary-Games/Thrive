@@ -3,6 +3,7 @@
 #include "general/json_registry.h"
 
 #include "membrane_system.h"
+
 #include <OgreColourValue.h>
 #include <map>
 #include <string>

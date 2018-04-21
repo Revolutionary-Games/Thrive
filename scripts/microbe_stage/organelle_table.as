@@ -70,6 +70,7 @@ class OrganelleComponentFactory{
 //! This replaced the old tables that specified things for cells.
 //! This is clearer as to what are valid properties
 class OrganelleParameters{
+
     OrganelleParameters(const string &in name){
 
         this.name = name;
