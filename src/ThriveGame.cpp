@@ -1208,7 +1208,7 @@ bool
     ANGELSCRIPT_REGISTER_ENUM_VALUE(MEMBRANE_TYPE, CHITIN);
 
     if(engine->RegisterObjectMethod("MembraneComponent",
-           "int getMembraneType() const",
+           "MEMBRANE_TYPE getMembraneType() const",
            asMETHOD(MembraneComponent, getMembraneType), asCALL_THISCALL) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
     }

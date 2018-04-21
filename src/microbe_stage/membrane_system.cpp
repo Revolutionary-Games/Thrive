@@ -55,10 +55,10 @@ void
     membraneType = static_cast<MEMBRANE_TYPE>(type);
 }
 
-int
-    MembraneComponent::getMembraneType()
+MEMBRANE_TYPE
+MembraneComponent::getMembraneType()
 {
-    return static_cast<int>(membraneType);
+    return membraneType;
 }
 
 void

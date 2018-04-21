@@ -36,14 +36,16 @@ public:
 
 
 
-    // holder for membrane type
+    // Holder for membrane type
     MEMBRANE_TYPE membraneType;
 
+    // This does not take affect without resetting this membrane as only that
+    // causes the mesh to actually be re-generated.
     void
         setMembraneType(MEMBRANE_TYPE type);
 
-    int
-        getMembraneType();
+    MEMBRANE_TYPE
+    getMembraneType();
 
     void
         Release(Ogre::SceneManager* scene);
