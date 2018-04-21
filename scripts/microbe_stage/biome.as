@@ -100,7 +100,7 @@ void setSunlightForBiome(CellStageWorld@ world){
     //these work fine
     LOG_INFO("Diffuse Colours For Biome r:" + getCurrentBiome().diffuseColors.r +
         "g:" + getCurrentBiome().diffuseColors.g + "b:" + getCurrentBiome().diffuseColors.b);
-    LOG_INFO("specular COlours For Biome r:" + getCurrentBiome().diffuseColors.r +
+    LOG_INFO("specular Colours For Biome r:" + getCurrentBiome().diffuseColors.r +
         "g:" + getCurrentBiome().specularColors.g + "b:" + getCurrentBiome().specularColors.b);
 }
 
