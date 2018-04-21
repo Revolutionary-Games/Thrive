@@ -780,10 +780,8 @@ void
     keyconfigobj->AddKeyIfMissing(guard, "MoveRight", {"D"});
     keyconfigobj->AddKeyIfMissing(guard, "ReproduceCheat", {"P"});
     keyconfigobj->AddKeyIfMissing(guard, "EngulfMode", {"G"});
-    // set it to equal because i dont want to have to hold shift to activate the
-    // plus sign thanks
-    keyconfigobj->AddKeyIfMissing(guard, "ZoomIn", {"="});
-    keyconfigobj->AddKeyIfMissing(guard, "ZoomOut", {"-"});
+    keyconfigobj->AddKeyIfMissing(guard, "ZoomIn", {"+", "Keypad +"});
+    keyconfigobj->AddKeyIfMissing(guard, "ZoomOut", {"-", "Keypad -"});
 }
 // ------------------------------------ //
 bool
