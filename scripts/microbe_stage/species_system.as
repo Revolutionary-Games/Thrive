@@ -82,7 +82,7 @@ class Species{
         for(int i = 0; i < stringSize; ++i){
             this.stringCode += getRandomLetter(false);
         }
-        this.speciesMembraneType = MEMBRANE_TYPE::membrane;
+        this.speciesMembraneType = MEMBRANE_TYPE::MEMBRANE;
         this.colour = getRightColourForSpecies();
         commonConstructor(world);
         this.setupSpawn(world);
@@ -124,7 +124,7 @@ class Species{
         parent.population = int(ceil(parent.population / 2.f));
         this.stringCode = Species::mutate(parent.stringCode);
 
-    this.speciesMembraneType = MEMBRANE_TYPE::membrane;
+    this.speciesMembraneType = MEMBRANE_TYPE::MEMBRANE;
     this.colour = getRightColourForSpecies();
 
         commonConstructor(world);
@@ -263,7 +263,7 @@ class Species{
     for(int i = 0; i < stringSize; ++i){
             this.stringCode += chosenType;
     }
-        this.speciesMembraneType = MEMBRANE_TYPE::wall;
+        this.speciesMembraneType = MEMBRANE_TYPE::WALL;
     this.colour = getRightColourForSpecies();
         commonConstructor(world);
         this.setupBacteriaSpawn(world);
@@ -285,7 +285,7 @@ class Species{
         parent.population = int(ceil(parent.population / 2.f));
 
         this.stringCode = Species::mutateProkaryote(parent.stringCode);
-        this.speciesMembraneType = MEMBRANE_TYPE::wall;
+        this.speciesMembraneType = MEMBRANE_TYPE::WALL;
     this.colour = getRightColourForSpecies();
         commonConstructor(world);
         this.setupBacteriaSpawn(world);

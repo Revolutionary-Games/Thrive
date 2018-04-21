@@ -15,7 +15,7 @@
 namespace thrive {
 
 // enumerable for membrane type
-enum class MEMBRANE_TYPE { membrane, wall, chitin };
+enum class MEMBRANE_TYPE { MEMBRANE, WALL, CHITIN };
 
 /**
  * @brief Adds a membrane to an entity

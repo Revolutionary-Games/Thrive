@@ -210,7 +210,7 @@ const dictionary STARTER_MICROBES = {
             },
             Float4(1, 1, 1, 1),
     false,
-    MEMBRANE_TYPE::membrane)
+    MEMBRANE_TYPE::MEMBRANE)
     }
 };
 

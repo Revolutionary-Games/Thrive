@@ -349,9 +349,9 @@ void
     MembraneComponent::DrawCorrectMembrane()
 {
     switch(membraneType) {
-    case MEMBRANE_TYPE::membrane: DrawMembrane(); break;
-    case MEMBRANE_TYPE::wall: DrawCellWall(); break;
-    case MEMBRANE_TYPE::chitin: DrawCellWall(); break;
+    case MEMBRANE_TYPE::MEMBRANE: DrawMembrane(); break;
+    case MEMBRANE_TYPE::WALL: DrawCellWall(); break;
+    case MEMBRANE_TYPE::CHITIN: DrawCellWall(); break;
     }
 }
 
@@ -368,7 +368,7 @@ size_t
     const Ogre::Vector2 center(0.5, 0.5);
 
     switch(membraneType) {
-    case MEMBRANE_TYPE::membrane:
+    case MEMBRANE_TYPE::MEMBRANE:
         meshVertices[writeIndex++] = {Ogre::Vector3(0, height / 2, 0), center};
 
         for(size_t i = 0, end = vertices2D.size(); i < end + 1; i++) {
@@ -385,8 +385,8 @@ size_t
                         2};
         }
         break;
-    case MEMBRANE_TYPE::wall:
-    case MEMBRANE_TYPE::chitin:
+    case MEMBRANE_TYPE::WALL:
+    case MEMBRANE_TYPE::CHITIN:
         // cell walls need obvious inner/outer memrbranes (we can worry about
         // chitin later)
         height = .05;
@@ -414,13 +414,13 @@ Ogre::MaterialPtr
     MembraneComponent::chooseMaterialByType()
 {
     switch(membraneType) {
-    case MEMBRANE_TYPE::membrane:
+    case MEMBRANE_TYPE::MEMBRANE:
         return Ogre::MaterialManager::getSingleton().getByName("Membrane");
         break;
-    case MEMBRANE_TYPE::wall:
+    case MEMBRANE_TYPE::WALL:
         return Ogre::MaterialManager::getSingleton().getByName("cellwall");
         break;
-    case MEMBRANE_TYPE::chitin:
+    case MEMBRANE_TYPE::CHITIN:
         return Ogre::MaterialManager::getSingleton().getByName("cellwall");
         break;
     }
