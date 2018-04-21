@@ -1069,10 +1069,16 @@ void removeEngulfedEffect(CellStageWorld@ world, ObjectID microbeEntity){
     //microbeComponent.hostileEngulfer.soundSource.stopSound("microbe-engulfment")
 }
 
-// Sets the color of the microbe's membrane.
+// Sets the colour of the microbe's membrane.
 void setMembraneColour(CellStageWorld@ world, ObjectID microbeEntity, Float4 colour){
     auto membraneComponent = world.GetComponent_MembraneComponent(microbeEntity);
     membraneComponent.setColour(colour);
+}
+
+// Sets the type of the microbe's membrane.
+void setMembraneType(CellStageWorld@ world, ObjectID microbeEntity, MEMBRANE_TYPE type){
+    auto membraneComponent = world.GetComponent_MembraneComponent(microbeEntity);
+    membraneComponent.setMembraneType(type);
 }
 
 }

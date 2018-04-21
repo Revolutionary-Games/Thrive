@@ -53,20 +53,8 @@ string randomBacteriaName(){
 //! \todo This should be moved into the SpeciesComponent class to simplify things
 //now what is the best way to seperate bacteria from this...
 class Species{
+
     //! Constructor for automatically creating a random species
-    Float4 colour = getRightColourForSpecies();
-
-    Float4 getRightColourForSpecies(){
-    if (isBacteria)
-    {
-    return randomProkayroteColour();
-    }
-    else
-    {
-    return randomColour();
-    }
-    }
-
     Species(CellStageWorld@ world, bool isBacteria){
         this.isBacteria=isBacteria;
     if (!isBacteria)
@@ -306,12 +294,20 @@ class Species{
         this.population += GetEngine().GetRandom().GetNumber(700, 1500);
     }
 
+    Float4 getRightColourForSpecies(){
+        if (isBacteria){
+            return randomProkayroteColour();
+        } else {
+            return randomColour();
+        }
+    }
+
     string name;
     bool isBacteria;
     MEMBRANE_TYPE speciesMembraneType;
     string stringCode;
     int population = INITIAL_POPULATION;
-    Float4 colour = randomColour();
+    Float4 colour = getRightColourForSpecies();
 
     //! The species entity that has this species' SpeciesComponent
     ObjectID templateEntity = NULL_OBJECT;

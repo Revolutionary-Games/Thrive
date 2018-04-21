@@ -323,10 +323,10 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
     // @param logicTime
     //  The time since the last call to update()
     void update(int logicTime){
-    auto species = MicrobeOperations::getSpeciesComponent(world,
-                microbeEntity);
-        if(flashDuration >= 0 && species != null){
-
+        auto species = MicrobeOperations::getSpeciesComponent(world,
+            microbeEntity);
+        if(flashDuration >= 0 && species !is null){
+            
             flashDuration -= logicTime;
             // Use organelle.world to get the MicrobeSystem
             Float4 speciesColour = species.colour;
@@ -354,41 +354,39 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
         }
 
         // If the organelle is supposed to be another color.
-        if(_needsColourUpdate && species != null){
+        if(_needsColourUpdate && species !is null){
             // This method doesn't actually apply the colour so I have
             // no clue how the flashing works
             updateColour();
         }
 
         // Update each OrganelleComponent
-    if (species != null){
-        for(uint i = 0; i < components.length(); ++i){
-            components[i].update(microbeEntity, this, logicTime);
-        }
-    }
+        if (species !is null){
+            for(uint i = 0; i < components.length(); ++i){
+                components[i].update(microbeEntity, this, logicTime);
+            }
+        } else {
 
-    if (species == null)
-    {
-    LOG_INFO("Tried to update entity of extinct species...");
-    }
+            LOG_INFO("Tried to update entity of extinct species...");
+        }
     }
 
     protected Float4 calculateHSLForOrganelle(Float4 oldColour)
     {
-    //get hue satraution and brightness for the colour
-    Ogre::Real saturation = 0;
-    Ogre::Real brightness = 0;
-    Ogre::Real hue = 0;
+        //get hue satraution and brightness for the colour
+        Ogre::Real saturation = 0;
+        Ogre::Real brightness = 0;
+        Ogre::Real hue = 0;
 
-    //convert from float to colour
-    Ogre::ColourValue newColour = Ogre::ColourValue(oldColour);
+        //convert from float to colour
+        Ogre::ColourValue newColour = Ogre::ColourValue(oldColour);
 
 
-    newColour.getHSB(hue, saturation, brightness);
+        newColour.getHSB(hue, saturation, brightness);
         newColour.setHSB(hue, saturation*2, brightness);
 
-    //return the new colour as a float4
-    return Float4(newColour);
+        //return the new colour as a float4
+        return Float4(newColour);
     }
 
     protected void updateColour(){
@@ -396,7 +394,7 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
         if(organelleEntity == NULL_OBJECT || microbeEntity == NULL_OBJECT)
             return;
 
-    auto model = world.GetComponent_Model(organelleEntity);
+        auto model = world.GetComponent_Model(organelleEntity);
 
         if(model !is null){
 
