@@ -44,7 +44,8 @@ public:
         m_menuKeyPresses(std::make_shared<MainMenuKeyPressListener>()),
         m_cellStageKeys(std::make_shared<PlayerMicrobeControl>(
             *game.ApplicationConfiguration->GetKeyConfiguration()))
-    {}
+    {
+    }
 
     //! Releases Ogre things. Needs to be called before shutdown
     void
@@ -547,7 +548,8 @@ void
 // ------------------------------------ //
 void
     ThriveGame::Tick(int mspassed)
-{}
+{
+}
 
 void
     ThriveGame::CustomizeEnginePostLoad()
@@ -765,7 +767,8 @@ void
 void
     ThriveGame::CheckGameConfigurationVariables(Lock& guard,
         GameConfiguration* configobj)
-{}
+{
+}
 
 void
     ThriveGame::CheckGameKeyConfigVariables(Lock& guard,
@@ -777,7 +780,8 @@ void
     keyconfigobj->AddKeyIfMissing(guard, "MoveRight", {"D"});
     keyconfigobj->AddKeyIfMissing(guard, "ReproduceCheat", {"P"});
     keyconfigobj->AddKeyIfMissing(guard, "EngulfMode", {"G"});
-    //set it to equal because i dont want to have to hold shift to activate the plus sign thanks
+    // set it to equal because i dont want to have to hold shift to activate the
+    // plus sign thanks
     keyconfigobj->AddKeyIfMissing(guard, "ZoomIn", {"="});
     keyconfigobj->AddKeyIfMissing(guard, "ZoomOut", {"-"});
 }

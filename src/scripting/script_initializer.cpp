@@ -578,9 +578,7 @@ static void
 
         sol::call_constructor,
         [](float r, float g, float b, float a) {
-
             return Ogre::ColourValue(r, g, b, a);
-
         },
 
         "saturate", &ColourValue::saturate, "setHSB", &ColourValue::setHSB,
@@ -620,12 +618,7 @@ static void
         sol::meta_function::division, &Ogre::Degree::operator/,
 
         // Support for table call syntax
-        sol::call_constructor,
-        [](Ogre::Real val) {
-
-            return Ogre::Degree(val);
-
-        },
+        sol::call_constructor, [](Ogre::Real val) { return Ogre::Degree(val); },
 
         "valueDegrees", &Ogre::Degree::valueDegrees);
 }
@@ -945,12 +938,7 @@ static void
 
 
         // Support for table call syntax
-        sol::call_constructor,
-        [](Ogre::Real val) {
-
-            return Ogre::Radian(val);
-
-        },
+        sol::call_constructor, [](Ogre::Real val) { return Ogre::Radian(val); },
 
         "valueDegrees", &Radian::valueDegrees, "valueRadians",
         &Radian::valueRadians, "valueAngleUnits", &Radian::valueAngleUnits);
@@ -1053,7 +1041,6 @@ static void
             static_cast<Ogre::Vector3 (Ogre::Vector3::*)(const Ogre::Real)
                     const>(&Ogre::Vector3::operator*),
             [](const Ogre::Real f, const Ogre::Vector3& vec) -> Ogre::Vector3 {
-
                 return f * vec;
             }),
 
@@ -1068,9 +1055,7 @@ static void
         // Support for table call syntax
         sol::call_constructor,
         [](const Ogre::Real x, const Ogre::Real y, const Ogre::Real z) {
-
             return Ogre::Vector3(x, y, z);
-
         },
 
         //.def(tostring(self))
