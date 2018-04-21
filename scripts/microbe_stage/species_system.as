@@ -621,8 +621,6 @@ void applyTemplate(CellStageWorld@ world, ObjectID microbe, SpeciesComponent@ sp
 
     restoreOrganelleLayout(world, microbe, microbeComponent, species);
 
-    restoreOrganelleLayout(world, microbe, microbeComponent, species);
-
     // TODO: should the compound amounts be reset before this?
     auto ids = species.avgCompoundAmounts.getKeys();
     for(uint i = 0; i < ids.length(); ++i){
