@@ -515,8 +515,8 @@ class SpeciesSystem : ScriptSystem{
     private array<Species@> species;
     private CellStageWorld@ world;
     //used for keeping track of amount of eukaryotes and prokaryotes
-    int currentBacteriaAmount=0;
-    int currentEukaryoteAmount=0;
+    private int currentBacteriaAmount = 0;
+    private int currentEukaryoteAmount = 0;
 }
 
 //! \param updateSpecies will be modified to match the organelles of the microbe

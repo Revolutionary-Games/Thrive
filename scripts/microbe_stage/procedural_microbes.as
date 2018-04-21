@@ -14,7 +14,9 @@ array<string> VALID_ORGANELLE_LETTERS = {};
 array<float> VALID_ORGANELLE_CHANCES = {};
 array<float> VALID_PROKARYOTE_ORGANELLE_CHANCES = {};
 
-//these have to be global to work or we need a place to put them that isnt global note the eukaryote one is old, so this is how this was already programmed
+//these have to be global to work or we need a place to put them that
+//isnt global note the eukaryote one is old, so this is how this was
+//already programmed
 float maxEukaryoteScore = 0;
 float maxProkaryoteScore = 0;
 
