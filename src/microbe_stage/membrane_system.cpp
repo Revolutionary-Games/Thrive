@@ -763,16 +763,16 @@ void
         }
     }
 
-		// Check to see if the gap between two points in the membrane is too
-		// small.
-		if (newPositions[(i + 1) % newPositions.size()].distance(
-			newPositions[(i - 1) % newPositions.size()]) <
-			cellDimensions / membraneResolution) {
-			// Delete the ith term.
-			auto it = newPositions.begin();
-			newPositions.erase(it + i);
-		}
-	}
+    // Check to see if the gap between two points in the membrane is too
+    // small.
+    if(newPositions[(i + 1) % newPositions.size()].distance(
+           newPositions[(i - 1) % newPositions.size()]) <
+        cellDimensions / membraneResolution) {
+        // Delete the ith term.
+        auto it = newPositions.begin();
+        newPositions.erase(it + i);
+    }
+}
 
-    vertices2D = newPositions;
+vertices2D = newPositions;
 }

@@ -392,7 +392,7 @@ class SpeciesSystem : ScriptSystem{
         while(this.timeSinceLastCycle > SPECIES_SIM_INTERVAL){
             LOG_INFO("Processing Auto-evo Step");
             this.timeSinceLastCycle -= SPECIES_SIM_INTERVAL;
-            
+
             //update population numbers and split/extinct species as needed
             auto numberOfSpecies = species.length();
             for(uint i = 0; i < numberOfSpecies; ++i){
@@ -626,7 +626,7 @@ void applyTemplate(CellStageWorld@ world, ObjectID microbe, SpeciesComponent@ sp
     restoreOrganelleLayout(world, microbe, microbeComponent, species);
 
     restoreOrganelleLayout(world, microbe, microbeComponent, species);
-    
+
     // TODO: should the compound amounts be reset before this?
     auto ids = species.avgCompoundAmounts.getKeys();
     for(uint i = 0; i < ids.length(); ++i){
