@@ -29,8 +29,6 @@ set(GROUP_GENERAL
 set(GROUP_MICROBE_STAGE
   "microbe_stage/agent_cloud_system.cpp"
   "microbe_stage/agent_cloud_system.h"
-  "microbe_stage/bacteria_types.cpp"
-  "microbe_stage/bacteria_types.h"
   "microbe_stage/biomes.cpp"
   "microbe_stage/biomes.h"
   "microbe_stage/bioprocesses.cpp"

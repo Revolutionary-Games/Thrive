@@ -10,12 +10,20 @@ float randomOpacity(){
     return GetEngine().GetRandom().GetNumber(MIN_OPACITY, MAX_OPACITY);
 }
 
+float randomOpacityBacteria(){
+    return GetEngine().GetRandom().GetNumber(MIN_OPACITY+1, MAX_OPACITY+1);
+}
+
 
 Float4 randomColour(float opaqueness = randomOpacity()){
     return Float4(randomColourChannel(), randomColourChannel(), randomColourChannel(),
         opaqueness);
 }
 
+Float4 randomProkayroteColour(float opaqueness = randomOpacityBacteria()){
+    return Float4(randomColourChannel(), randomColourChannel(), randomColourChannel(),
+        opaqueness);
+}
 
 const dictionary DEFAULT_INITIAL_COMPOUNDS =
     {
@@ -46,31 +54,44 @@ string randomBacteriaName(){
 //now what is the best way to seperate bacteria from this...
 class Species{
     //! Constructor for automatically creating a random species
+    Float4 colour = getRightColourForSpecies();
+
+    Float4 getRightColourForSpecies(){
+    if (isBacteria)
+    {
+    return randomProkayroteColour();
+    }
+    else
+    {
+    return randomColour();
+    }
+    }
+
     Species(CellStageWorld@ world, bool isBacteria){
         this.isBacteria=isBacteria;
-        if (!isBacteria)
-        {
-            name = randomSpeciesName();
-            auto stringSize = GetEngine().GetRandom().GetNumber(MIN_INITIAL_LENGTH,
-                MAX_INITIAL_LENGTH);
+    if (!isBacteria)
+    {
+        name = randomSpeciesName();
+        auto stringSize = GetEngine().GetRandom().GetNumber(MIN_INITIAL_LENGTH,
+            MAX_INITIAL_LENGTH);
 
-            //it should always have a nucleus and a cytoplasm.
-            stringCode = getOrganelleDefinition("nucleus").gene +
-                getOrganelleDefinition("cytoplasm").gene;
+        //it should always have a nucleus and a cytoplasm.
+        stringCode = getOrganelleDefinition("nucleus").gene +
+            getOrganelleDefinition("cytoplasm").gene;
 
-            for(int i = 0; i < stringSize; ++i){
-                this.stringCode += getRandomLetter();
-            }
-
-            commonConstructor(world);
-
-            colour = randomColour();
-
-            this.setupSpawn(world);
-        } else{
-            // We are creating a bacteria right now
-            generateBacteria(world);
+        for(int i = 0; i < stringSize; ++i){
+            this.stringCode += getRandomLetter(false);
         }
+        this.speciesMembraneType = MEMBRANE_TYPE::MEMBRANE;
+        this.colour = getRightColourForSpecies();
+        commonConstructor(world);
+        this.setupSpawn(world);
+
+    }
+    else{
+    // We are creating a bacteria right now
+    generateBacteria(world);
+    }
     }
 
     ~Species(){
@@ -85,32 +106,36 @@ class Species{
     // Creates a mutated version of the species and reduces the species population by half
     Species(Species@ parent, CellStageWorld@ world, bool isBacteria){
         this.isBacteria=isBacteria;
-        if (!isBacteria)
-        {
-            name = randomSpeciesName();
-            //chance of new color needs to be low
-            if (GetEngine().GetRandom().GetNumber(0,100)==1)
-            {
-                LOG_INFO("New Clade");
-                //we can do more fun stuff here later
-                this.colour = randomColour();
-            }
-            else
-            {
-                this.colour = parent.colour;
-            }
-            this.population = int(floor(parent.population / 2.f));
-            parent.population = int(ceil(parent.population / 2.f));
-            this.stringCode = Species::mutate(parent.stringCode);
+    if (!isBacteria)
+    {
+        name = randomSpeciesName();
+    //chance of new color needs to be low
+    if (GetEngine().GetRandom().GetNumber(0,100)==1)
+    {
+    LOG_INFO("New Clade");
+    //we can do more fun stuff here later
+    this.colour = randomColour();
+    }
+    else
+    {
+    this.colour = parent.colour;
+    }
+        this.population = int(floor(parent.population / 2.f));
+        parent.population = int(ceil(parent.population / 2.f));
+        this.stringCode = Species::mutate(parent.stringCode);
 
-            commonConstructor(world);
+    this.speciesMembraneType = MEMBRANE_TYPE::MEMBRANE;
+    this.colour = getRightColourForSpecies();
 
-            this.setupSpawn(world);
-        }
-        else
-        {
-            mutateBacteria(parent,world);
-        }
+        commonConstructor(world);
+
+
+        this.setupSpawn(world);
+    }
+    else
+    {
+    mutateBacteria(parent,world);
+    }
     }
 
     private void commonConstructor(CellStageWorld@ world){
@@ -119,7 +144,7 @@ class Species{
 
         auto organelles = positionOrganelles(stringCode);
 
-        templateEntity = Species::createSpecies(forWorld, this.name, organelles, this.colour, this.isBacteria,
+        templateEntity = Species::createSpecies(forWorld, this.name, organelles, this.colour, this.isBacteria, this.speciesMembraneType,
             DEFAULT_INITIAL_COMPOUNDS);
     }
 
@@ -131,7 +156,7 @@ class Species{
             //this.template.destroy() //game crashes if i do that.
             // Let's hope this doesn't crash then
             if(templateEntity != NULL_OBJECT){
-                forWorld.DestroyEntity(templateEntity);
+                forWorld.QueueDestroyEntity(templateEntity);
                 templateEntity = NULL_OBJECT;
             }
 
@@ -151,7 +176,7 @@ class Species{
 
     ObjectID bacteriaColonySpawn(CellStageWorld@ world, Float3 pos){
         LOG_INFO("New colony of species spawned: " + this.name);
-        Float3 curSpawn = Float3(GetEngine().GetRandom().GetNumber(1,10),0,GetEngine().GetRandom().GetNumber(1,10));
+        Float3 curSpawn = Float3(GetEngine().GetRandom().GetNumber(1,7),0,GetEngine().GetRandom().GetNumber(1,7));
         //two kinds of colonies are supported, line colonies and clump colonies
 
         if (GetEngine().GetRandom().GetNumber(0,4) < 2)
@@ -160,7 +185,7 @@ class Species{
             for(int i = 0; i < GetEngine().GetRandom().GetNumber(1,5); ++i){
                 //dont spawn them on top of each other  because it causes them to bounce around and lag
                 MicrobeOperations::spawnBacteria(world, pos+curSpawn, this.name,true,"",true);
-                curSpawn = curSpawn + Float3(GetEngine().GetRandom().GetNumber(-10,10),0,GetEngine().GetRandom().GetNumber(-10,10));
+                curSpawn = curSpawn + Float3(GetEngine().GetRandom().GetNumber(-7,7),0,GetEngine().GetRandom().GetNumber(-7,7));
             }
         }
         else
@@ -169,7 +194,7 @@ class Species{
             for(int i = 0; i < GetEngine().GetRandom().GetNumber(1,5); ++i){
                 //dont spawn them on top of each other  because it causes them to bounce around and lag
                 MicrobeOperations::spawnBacteria(world, pos+curSpawn, this.name,true,"",true);
-                curSpawn = curSpawn + Float3(GetEngine().GetRandom().GetNumber(1,10),0,GetEngine().GetRandom().GetNumber(1,10));
+                curSpawn = curSpawn + Float3(GetEngine().GetRandom().GetNumber(1,7),0,GetEngine().GetRandom().GetNumber(1,7));
             }
         }
         return MicrobeOperations::spawnBacteria(world, pos, this.name,true,"",false);
@@ -238,9 +263,9 @@ class Species{
         for(int i = 0; i < stringSize; ++i){
             this.stringCode += chosenType;
         }
-
+        this.speciesMembraneType = MEMBRANE_TYPE::WALL;
+        this.colour = getRightColourForSpecies();
         commonConstructor(world);
-        colour = randomColour();
         this.setupBacteriaSpawn(world);
     }
 
@@ -250,7 +275,7 @@ class Species{
         {
             LOG_INFO("New Clade of bacteria");
             //we can do more fun stuff here later
-            this.colour = randomColour();
+            this.colour = randomProkayroteColour();
         }
         else
         {
@@ -258,23 +283,32 @@ class Species{
         }
         this.population = int(floor(parent.population / 2.f));
         parent.population = int(ceil(parent.population / 2.f));
-        //right now all they will do is get new colors sometimes
-        //this.stringCode = Species::mutate(parent.stringCode);
 
+        this.stringCode = Species::mutateProkaryote(parent.stringCode);
+        this.speciesMembraneType = MEMBRANE_TYPE::WALL;
+        this.colour = getRightColourForSpecies();
         commonConstructor(world);
-
         this.setupBacteriaSpawn(world);
     }
     //updates the population count of the species
     void updatePopulation(){
-        //TODO:
-        //fill me
-        //with code
-        this.population += GetEngine().GetRandom().GetNumber(-200, 200);
+    //numbers incresed so thing shappen more often
+        this.population += GetEngine().GetRandom().GetNumber(-700, 700);
+    }
+
+    void devestate(){
+    //occassionally you just need to take a deadly virus and use it to make things interesting
+        this.population += GetEngine().GetRandom().GetNumber(-1500, -700);
+    }
+
+    void boom(){
+    //occassionally you just need to give a species a nice pat on the back
+        this.population += GetEngine().GetRandom().GetNumber(700, 1500);
     }
 
     string name;
     bool isBacteria;
+    MEMBRANE_TYPE speciesMembraneType;
     string stringCode;
     int population = INITIAL_POPULATION;
     Float4 colour = randomColour();
@@ -297,13 +331,13 @@ class Species{
 const auto INITIAL_POPULATION = 2000;
 
 //how much time does it take for the simulation to update.
-const auto SPECIES_SIM_INTERVAL = 20000;
+const auto SPECIES_SIM_INTERVAL = 10000;
 
 //if a specie's population goes below this it goes extinct.
-const auto MIN_POP_SIZE = 100;
+const auto MIN_POP_SIZE = 500;
 
 //if a specie's population goes above this it gets split in half and a
-//new mutated species apears.
+//new mutated species apears. this should be randomized
 const auto MAX_POP_SIZE = 5000;
 
 //the amount of species at the start of the microbe stage (not counting Default/Player)
@@ -337,11 +371,13 @@ class SpeciesSystem : ScriptSystem{
         // This is needed to actually have AI species in the world
         for(int i = 0; i < INITIAL_SPECIES; ++i){
             createSpecies();
+            currentEukaryoteAmount++;
         }
 
         //generate bacteria aswell
         for(int i = 0; i < INITIAL_BACTERIA; ++i){
             createBacterium();
+            currentBacteriaAmount++;
         }
     }
 
@@ -351,8 +387,10 @@ class SpeciesSystem : ScriptSystem{
     }
 
     void Run(){
+        //LOG_INFO("autoevo running");
+        timeSinceLastCycle++;
         while(this.timeSinceLastCycle > SPECIES_SIM_INTERVAL){
-
+            LOG_INFO("Processing Auto-evo Step");
             this.timeSinceLastCycle -= SPECIES_SIM_INTERVAL;
 
             //update population numbers and split/extinct species as needed
@@ -365,8 +403,29 @@ class SpeciesSystem : ScriptSystem{
                 auto currentSpecies = species[index];
                 currentSpecies.updatePopulation();
                 auto population = currentSpecies.population;
+    LOG_INFO(currentSpecies.name+" "+currentSpecies.population);
+
+    //this is just to shake things up occassionally
+    if ( currentSpecies.population > 0 && GetEngine().GetRandom().GetNumber(0,10) <= 2)
+    {
+    //F to pay respects: TODO: add a notification for when this happens
+    LOG_INFO(currentSpecies.name + " has been devestated by disease.");
+    currentSpecies.devestate();
+    LOG_INFO(currentSpecies.name+" population is now "+currentSpecies.population);
+    }
+
+    //this is also just to shake things up occassionally
+    //cambrian explosion
+    if ( currentSpecies.population > 0 && GetEngine().GetRandom().GetNumber(0,10) <= 2)
+    {
+    //P to pat back: TODO: add a notification for when this happens
+    LOG_INFO(currentSpecies.name + " is diversifying!");
+    currentSpecies.boom();
+    LOG_INFO(currentSpecies.name+" population is now "+currentSpecies.population);
+    }
 
                 //reproduction/mutation
+    //bacteria should mutate more often then eukaryote sbut this is fine for now
                 if(population > MAX_POP_SIZE){
                     auto newSpecies = Species(currentSpecies, world, currentSpecies.isBacteria);
                     species.insertLast(newSpecies);
@@ -379,27 +438,47 @@ class SpeciesSystem : ScriptSystem{
                     LOG_INFO("Species " + currentSpecies.name + " went extinct");
                     currentSpecies.extinguish();
                     species.removeAt(index);
+    //tweak numbers here
+    if (currentSpecies.isBacteria)
+    {
+    currentBacteriaAmount-=1;
+    }
+    else
+    {
+    currentEukaryoteAmount-=1;
+    }
                 }
             }
 
+    //These are kind of arbitray, we should pronbabbly make it less arbitrary
             //new species
-            while(species.length() < MIN_SPECIES){
+            while(currentEukaryoteAmount < MIN_SPECIES){
                 LOG_INFO("Creating new species as there's too few");
                 createSpecies();
+    currentEukaryoteAmount++;
             }
 
-            //TODO: new bacteria they require their own list or they may be out competed by microbes
-            //while(species.length() < MIN_SPECIES){
-            //    LOG_INFO("Creating new bacteria as there's too few");
-            //    createBacteria();
-            //}
+    //new bacteria
+            while(currentBacteriaAmount < MIN_BACTERIA){
+               LOG_INFO("Creating new prokaryote as there's too few");
+               createBacterium();
+       currentBacteriaAmount++;
+            }
 
-            //mass extinction
+            //mass extinction events
+
             if(species.length() > MAX_SPECIES+INITIAL_BACTERIA){
-
                 LOG_INFO("Mass extinction time");
+    //F to pay respects: TODO: add a notification for when this happens
                 doMassExtinction();
             }
+    //add soem variability, this is a less deterministic mass extinction eg, a meteor, etc.
+    if(GetEngine().GetRandom().GetNumber(0,1000) == 1){
+                LOG_INFO("Black swan event");
+    //F to pay respects: TODO: add a notification for when this happens
+                doMassExtinction();
+            }
+
         }
     }
 
@@ -419,6 +498,7 @@ class SpeciesSystem : ScriptSystem{
     }
 
     void doMassExtinction(){
+    //this doesnt seem like a powerful event
         for(uint i = 0; i < species.length(); ++i){
             species[i].population /= 2;
         }
@@ -439,9 +519,13 @@ class SpeciesSystem : ScriptSystem{
     private int timeSinceLastCycle = 0;
     private array<Species@> species;
     private CellStageWorld@ world;
+    //used for keeping track of amount of eukaryotes and prokaryotes
+    private int currentBacteriaAmount = 0;
+    private int currentEukaryoteAmount = 0;
 }
 
 //! \param updateSpecies will be modified to match the organelles of the microbe
+// This isnt used anywhere by the way
 void updateSpeciesFromMicrobe(CellStageWorld@ world, ObjectID microbeEntity,
     SpeciesComponent@ updateSpecies
 ) {
@@ -451,6 +535,7 @@ void updateSpeciesFromMicrobe(CellStageWorld@ world, ObjectID microbeEntity,
 
     // this.name = microbeComponent.speciesName
     updateSpecies.colour = membraneComponent.getColour();
+
 
     updateSpecies.organelles.resize(0);
 
@@ -535,7 +620,10 @@ void applyTemplate(CellStageWorld@ world, ObjectID microbe, SpeciesComponent@ sp
 
     // TODO: Make this also set the microbe's ProcessorComponent
     microbeComponent.speciesName = species.name;
+    MicrobeOperations::setMembraneType(world, microbe, species.speciesMembraneType);
     MicrobeOperations::setMembraneColour(world, microbe, species.colour);
+
+    restoreOrganelleLayout(world, microbe, microbeComponent, species);
 
     restoreOrganelleLayout(world, microbe, microbeComponent, species);
 
@@ -589,14 +677,14 @@ ObjectID createSpecies(CellStageWorld@ world, const string &in name,
                 organelle.rotation));
     }
 
-    return createSpecies(world, name, convertedOrganelles, fromTemplate.colour, false,
+    return createSpecies(world, name, convertedOrganelles, fromTemplate.colour, fromTemplate.isBacteria, fromTemplate.speciesMembraneType,
         fromTemplate.compounds);
 }
 
 //! Creates an entity that has all the species stuff on it
 //! AI controlled ones need to be in addition in SpeciesSystem
 ObjectID createSpecies(CellStageWorld@ world, const string &in name,
-    array<PlacedOrganelle@> organelles, Float4 colour, bool isBacteria, const dictionary &in compounds
+    array<PlacedOrganelle@> organelles, Float4 colour, bool isBacteria, MEMBRANE_TYPE speciesMembraneType,  const dictionary &in compounds
 ) {
     ObjectID speciesEntity = world.CreateEntity();
 
@@ -629,6 +717,9 @@ ObjectID createSpecies(CellStageWorld@ world, const string &in name,
         speciesEntity);
 
     speciesComponent.colour = colour;
+
+    speciesComponent.speciesMembraneType = speciesMembraneType;
+
     //we need to know this is baceria
     speciesComponent.isBacteria = isBacteria;
     // iterates over all compounds, and sets amounts and priorities
@@ -712,7 +803,7 @@ string mutate(const string &in stringCode){
 
     //try to insert a letter at the end of the table.
     if(GetEngine().GetRandom().GetNumber(0.f, 1.f) < MUTATION_CREATION_RATE){
-        chromosomes += getRandomLetter();
+        chromosomes += getRandomLetter(false);
     }
 
     //modifies the rest of the table.
@@ -724,7 +815,7 @@ string mutate(const string &in stringCode){
         }
 
         if(GetEngine().GetRandom().GetNumber(0.f, 1.f) < MUTATION_CREATION_RATE){
-            chromosomes.insert(index, getRandomLetter());
+            chromosomes.insert(index, getRandomLetter(false));
         }
     }
 
@@ -734,6 +825,30 @@ string mutate(const string &in stringCode){
     return newString;
 }
 
+//mutate bacteria
+string mutateProkaryote(const string &in stringCode ){
+    //moving the stringCode to a table to facilitate changes
+    string chromosomes = stringCode;
+    //try to insert a letter at the end of the table.
+    if(GetEngine().GetRandom().GetNumber(0.f, 1.f) < MUTATION_CREATION_RATE){
+        chromosomes += getRandomLetter(true);
+    }
+    //modifies the rest of the table.
+    for(uint i = 0; i < stringCode.length(); ++i){
+        uint index = stringCode.length() - i;
+
+        if(GetEngine().GetRandom().GetNumber(0.f, 1.f) < MUTATION_DELETION_RATE){
+            chromosomes.erase(index, 1);
+        }
+
+        if(GetEngine().GetRandom().GetNumber(0.f, 1.f) < MUTATION_CREATION_RATE){
+            chromosomes.insert(index, getRandomLetter(true));
+        }
+    }
+
+    auto newString = "" + chromosomes;
+    return newString;
+}
 
 //! Calls resetAutoEvo on world's SpeciesSystem
 void resetAutoEvo(CellStageWorld@ world){

@@ -25,6 +25,9 @@ Organelle atributes:
     chanceToCreate: The (relative) chance this organelle will appear in a randomly
                     generated or mutated microbe (to do roulette selection).
 
+    prokaryoteChance: The (relative) chance this organelle will appear in a randomly
+                    generated or mutated prokaryotes (to do roulette selection).
+
     processes:  A table with all the processes this organelle does,
                 and the capacity of the process (the amount of
                 process that can be made in one second).
@@ -79,6 +82,9 @@ class OrganelleParameters{
 
     //! Chance of randomly generating this (used by procedural_microbes.as)
     float chanceToCreate = 0.0;
+
+    //! Chance of randomly generating this (used by procedural_microbes.as)
+    float prokaryoteChance = 0.0;
 
     //! The factories for the components that define what this organelle does
     array<OrganelleComponentFactory@> components;
@@ -243,6 +249,7 @@ void setupOrganelles(){
     nucleusParameters.gene = "N";
     nucleusParameters.mesh = "nucleus.mesh";
     nucleusParameters.chanceToCreate = 0; // Not randomly generated.
+    nucleusParameters.prokaryoteChance = 0; // Not randomly generated.
     nucleusParameters.mpCost = 0; //it's not supossed to be purchased.
     nucleusParameters.initialComposition = {
         {"aminoacids", 4}
@@ -278,6 +285,7 @@ void setupOrganelles(){
     cytoplasmParameters.gene = "Y";
     cytoplasmParameters.mesh = ""; //it's an empty hex
     cytoplasmParameters.chanceToCreate = 1;
+    cytoplasmParameters.prokaryoteChance = 1;
     cytoplasmParameters.mpCost = 5;
     cytoplasmParameters.initialComposition = {
         {"aminoacids", 3},
@@ -301,6 +309,7 @@ void setupOrganelles(){
     chloroplastParameters.gene = "H";
     chloroplastParameters.mesh = "chloroplast.mesh";
     chloroplastParameters.chanceToCreate = 2;
+    chloroplastParameters.prokaryoteChance = 0;
     chloroplastParameters.mpCost = 20;
     chloroplastParameters.initialComposition = {
         {"aminoacids", 4},
@@ -329,6 +338,7 @@ void setupOrganelles(){
     oxytoxyParameters.gene = "T";
     oxytoxyParameters.mesh = "oxytoxy.mesh";
     oxytoxyParameters.chanceToCreate = 1;
+    oxytoxyParameters.prokaryoteChance = 0;
     oxytoxyParameters.mpCost = 40;
     oxytoxyParameters.initialComposition = {
         {"aminoacids", 4},
@@ -356,6 +366,7 @@ void setupOrganelles(){
     mitochondrionParameters.gene = "M";
     mitochondrionParameters.mesh = "mitochondrion.mesh";
     mitochondrionParameters.chanceToCreate = 3;
+    mitochondrionParameters.prokaryoteChance = 0;
     mitochondrionParameters.mpCost = 20;
     mitochondrionParameters.initialComposition = {
         {"aminoacids", 4},
@@ -383,6 +394,7 @@ void setupOrganelles(){
     vacuoleParameters.gene = "V";
     vacuoleParameters.mesh = "vacuole.mesh";
     vacuoleParameters.chanceToCreate = 3;
+    vacuoleParameters.prokaryoteChance = 0;
     vacuoleParameters.mpCost = 15;
     vacuoleParameters.initialComposition = {
         {"aminoacids", 4},
@@ -406,6 +418,7 @@ void setupOrganelles(){
     flagellumParameters.gene = "F";
     flagellumParameters.mesh = "flagellum.mesh";
     flagellumParameters.chanceToCreate = 3;
+    flagellumParameters.prokaryoteChance = 2;
     flagellumParameters.mpCost = 25;
     flagellumParameters.initialComposition = {
         {"aminoacids", 4},
@@ -431,6 +444,7 @@ void setupOrganelles(){
     respiratoryProtien.gene = "m";
     respiratoryProtien.mesh = "mitochondrion.mesh";
     respiratoryProtien.chanceToCreate = 0;
+    respiratoryProtien.prokaryoteChance = 1;
     respiratoryProtien.mpCost = 20;
     respiratoryProtien.initialComposition = {
         {"aminoacids", 2},
@@ -457,6 +471,7 @@ void setupOrganelles(){
     photosyntheticProtein.gene = "h";
     photosyntheticProtein.mesh = "chloroplast.mesh";
     photosyntheticProtein.chanceToCreate = 0;
+    photosyntheticProtein.prokaryoteChance = 1;
     photosyntheticProtein.mpCost = 20;
     photosyntheticProtein.initialComposition = {
         {"aminoacids", 2},
@@ -483,6 +498,7 @@ void setupOrganelles(){
     oxytoxyProtein.gene = "t";
     oxytoxyProtein.mesh = "oxytoxy.mesh";
     oxytoxyProtein.chanceToCreate = 0;
+    oxytoxyProtein.prokaryoteChance = 1;
     oxytoxyProtein.mpCost = 20;
     oxytoxyProtein.initialComposition = {
         {"aminoacids", 2},

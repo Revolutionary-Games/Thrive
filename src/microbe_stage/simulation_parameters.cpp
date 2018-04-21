@@ -7,7 +7,6 @@ TJsonRegistry<BioProcess> SimulationParameters::bioProcessRegistry;
 TJsonRegistry<Biome> SimulationParameters::biomeRegistry;
 // TJsonRegistry<OrganelleType> SimulationParameters::organelleRegistry;
 TJsonRegistry<Species> SimulationParameters::speciesRegistry;
-TJsonRegistry<BacteriaType> SimulationParameters::bacteriaRegistry;
 SpeciesNameController SimulationParameters::speciesNameController;
 std::unordered_map<size_t, unsigned int>
     SimulationParameters::newSpeciesStartingCompounds;
@@ -26,8 +25,6 @@ void
     // TJsonRegistry<OrganelleType>("./Data/Scripts/SimulationParameters/MicrobeStage/Organelles.json");
     SimulationParameters::speciesRegistry = TJsonRegistry<Species>(
         "./Data/Scripts/SimulationParameters/MicrobeStage/Species.json");
-    SimulationParameters::bacteriaRegistry = TJsonRegistry<BacteriaType>(
-        "./Data/Scripts/SimulationParameters/MicrobeStage/Bacteria.json");
 
     SimulationParameters::speciesNameController = SpeciesNameController(
         "./Data/Scripts/SimulationParameters/MicrobeStage/SpeciesNames.json");

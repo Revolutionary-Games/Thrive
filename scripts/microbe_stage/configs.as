@@ -14,6 +14,7 @@ const auto MAX_COLOR = 0.8f;
 const auto MIN_OPACITY = 0.3f;
 const auto MAX_OPACITY = 4.0f;
 
+const auto MUTATION_BACTERIA_TO_EUKARYOTE = 1;
 const auto MUTATION_CREATION_RATE = 0.1f;
 const auto MUTATION_DELETION_RATE = 0.1f;
 
@@ -153,18 +154,24 @@ class MicrobeTemplate{
         float spawnDensity,
         dictionary compounds,
         array<OrganelleTemplatePlaced@> organelles,
-        Float4 colour
+        Float4 colour,
+    bool isBacteria,
+    MEMBRANE_TYPE speciesMembraneType
     ) {
         this.spawnDensity = spawnDensity;
         this.compounds = compounds;
         this.organelles = organelles;
         this.colour = colour;
+    this.isBacteria = isBacteria;
+        this.speciesMembraneType = speciesMembraneType;
     }
 
     float spawnDensity;
     dictionary compounds;
     array<OrganelleTemplatePlaced@> organelles;
     Float4 colour;
+    bool isBacteria;
+    MEMBRANE_TYPE speciesMembraneType;
 }
 
 class InitialCompound{
@@ -187,7 +194,8 @@ class InitialCompound{
 
 const dictionary STARTER_MICROBES = {
     {
-        "Default", MicrobeTemplate(1/14000,
+        "Default",
+    MicrobeTemplate(1/14000,
             {
                 {"atp", InitialCompound(60)},
                 {"glucose", InitialCompound(5)},
@@ -200,7 +208,9 @@ const dictionary STARTER_MICROBES = {
                 OrganelleTemplatePlaced("flagellum", 1, 3, 0),
                 OrganelleTemplatePlaced("flagellum", -1, 4, 0)
             },
-            Float4(1, 1, 1, 1))
+            Float4(1, 1, 1, 1),
+    false,
+    MEMBRANE_TYPE::MEMBRANE)
     }
 };
 
