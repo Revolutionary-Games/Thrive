@@ -391,11 +391,10 @@ class SpeciesSystem : ScriptSystem{
 
             //update population numbers and split/extinct species as needed
             auto numberOfSpecies = species.length();
-            for(uint i = 0; i < numberOfSpecies; ++i){
+            for(uint i = 0; i < numberOfSpecies; i++){
                 //traversing the population backwards to avoid
                 //"chopping down the branch i'm sitting in"
-                auto index = numberOfSpecies - i;
-
+                auto index = i;
                 auto currentSpecies = species[index];
                 currentSpecies.updatePopulation();
                 auto population = currentSpecies.population;
@@ -451,29 +450,37 @@ class SpeciesSystem : ScriptSystem{
             while(currentEukaryoteAmount < MIN_SPECIES){
                 LOG_INFO("Creating new species as there's too few");
                 createSpecies();
-    currentEukaryoteAmount++;
+                currentEukaryoteAmount++;
             }
 
-    //new bacteria
+            //new bacteria
             while(currentBacteriaAmount < MIN_BACTERIA){
                LOG_INFO("Creating new prokaryote as there's too few");
                createBacterium();
-       currentBacteriaAmount++;
+                currentBacteriaAmount++;
             }
 
             //mass extinction events
 
             if(species.length() > MAX_SPECIES+INITIAL_BACTERIA){
                 LOG_INFO("Mass extinction time");
-    //F to pay respects: TODO: add a notification for when this happens
+                //F to pay respects: TODO: add a notification for when this happens
                 doMassExtinction();
             }
-    //add soem variability, this is a less deterministic mass extinction eg, a meteor, etc.
+     //add soem variability, this is a less deterministic mass extinction eg, a meteor, etc.
     if(GetEngine().GetRandom().GetNumber(0,1000) == 1){
                 LOG_INFO("Black swan event");
-    //F to pay respects: TODO: add a notification for when this happens
+                //F to pay respects: TODO: add a notification for when this happens
                 doMassExtinction();
             }
+
+    //exvery 8 steps or so do a cambrian explosion style event, this should increase variablility significantly
+    if(GetEngine().GetRandom().GetNumber(0,200) <= 25){
+                LOG_INFO("Cambrian Explosion");
+                //F to pay respects: TODO: add a notification for when this happens
+                doCambrianExplosion();
+            }
+
 
         }
     }
@@ -497,6 +504,12 @@ class SpeciesSystem : ScriptSystem{
     //this doesnt seem like a powerful event
         for(uint i = 0; i < species.length(); ++i){
             species[i].population /= 2;
+        }
+    }
+
+    void doCambrianExplosion(){
+        for(uint i = 0; i < species.length(); ++i){
+            species[i].population *= 2;
         }
     }
 
