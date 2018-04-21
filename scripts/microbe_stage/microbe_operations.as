@@ -771,7 +771,7 @@ ObjectID spawnBacteria(CellStageWorld@ world, Float3 pos, const string &in speci
     world.Create_SpawnedComponent(microbeEntity,BACTERIA_SPAWN_RADIUS*BACTERIA_SPAWN_RADIUS);
     }
     //stuff
-    LOG_WARNING("spawning bacterium radius "+ BACTERIA_SPAWN_RADIUS);
+    //LOG_WARNING("spawning bacterium radius "+ BACTERIA_SPAWN_RADIUS);
     return microbeEntity;
 }
 // Creates a new microbe with all required components. Use spawnMicrobe from other
@@ -802,7 +802,7 @@ ObjectID _createMicrobeEntity(CellStageWorld@ world, const string &in name, bool
 
     rigidBody.SetCollision(collision);
 
-    auto membraneComponent = world.Create_MembraneComponent(entity);
+    auto membraneComponent = world.Create_MembraneComponent(entity, species.speciesMembraneType);
 
     // auto soundComponent = SoundSourceComponent();
     // auto s1 = null;

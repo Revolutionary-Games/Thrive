@@ -14,6 +14,9 @@
 
 namespace thrive {
 
+// enumerable for membrane type
+enum class MEMBRANE_TYPE { MEMBRANE, WALL, CHITIN };
+
 /**
  * @brief Adds a membrane to an entity
  * @todo To improve performance this has to actually calculate the bounds for
@@ -28,8 +31,21 @@ class MembraneComponent : public Leviathan::Component {
     };
 
 public:
-    MembraneComponent();
+    MembraneComponent(MEMBRANE_TYPE type);
     virtual ~MembraneComponent();
+
+
+
+    // Holder for membrane type
+    MEMBRANE_TYPE membraneType;
+
+    // This does not take affect without resetting this membrane as only that
+    // causes the mesh to actually be re-generated.
+    void
+        setMembraneType(MEMBRANE_TYPE type);
+
+    MEMBRANE_TYPE
+    getMembraneType();
 
     void
         Release(Ogre::SceneManager* scene);
@@ -62,6 +78,8 @@ public:
     virtual void
         DrawMembrane();
 
+    size_t
+        InitializeCorrectMembrane(size_t writeIndex);
     // Sees if the given point is inside the membrane.
     //! note This is quite an expensive method as this loops all the vertices
     bool
@@ -115,6 +133,26 @@ public:
     static constexpr auto TYPE =
         componentTypeConvert(THRIVE_COMPONENT::MEMBRANE);
 
+    /*
+    code for generic things
+    */
+
+    Ogre::MaterialPtr
+        chooseMaterialByType();
+
+    void
+        DrawCorrectMembrane();
+
+    // Cell Wall COde
+    // Creates the 2D points in the membrane by looking at the positions of the
+    // organelles.
+    virtual void
+        DrawCellWall();
+
+    virtual Ogre::Vector3
+        GetMovementForCellWall(Ogre::Vector3 target,
+            Ogre::Vector3 closestOrganelle);
+
 protected:
     //! Called on first Update
     void
@@ -163,18 +201,6 @@ protected:
 private:
 };
 
-class CellWallComponent : public MembraneComponent {
-public:
-    CellWallComponent();
-    ~CellWallComponent();
-    void
-        DrawMembrane();
-    virtual Ogre::Vector3
-        GetMovement(Ogre::Vector3 target, Ogre::Vector3 closestOrganelle);
-
-protected:
-private:
-};
 
 /**
  * @brief Handles entities with MembraneComponent

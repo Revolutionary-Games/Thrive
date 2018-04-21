@@ -1201,6 +1201,27 @@ bool
         ANGELSCRIPT_REGISTERFAIL;
     }
 
+
+    if(engine->RegisterEnum("MEMBRANE_TYPE") < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    ANGELSCRIPT_REGISTER_ENUM_VALUE(MEMBRANE_TYPE, MEMBRANE);
+    ANGELSCRIPT_REGISTER_ENUM_VALUE(MEMBRANE_TYPE, WALL);
+    ANGELSCRIPT_REGISTER_ENUM_VALUE(MEMBRANE_TYPE, CHITIN);
+
+    if(engine->RegisterObjectMethod("MembraneComponent",
+           "MEMBRANE_TYPE getMembraneType() const",
+           asMETHOD(MembraneComponent, getMembraneType), asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectMethod("MembraneComponent",
+           "void setMembraneType(MEMBRANE_TYPE type)",
+           asMETHOD(MembraneComponent, setMembraneType), asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
     if(engine->RegisterObjectMethod("MembraneComponent",
            "Float4 getColour() const", asMETHOD(MembraneComponent, getColour),
            asCALL_THISCALL) < 0) {
@@ -1233,6 +1254,7 @@ bool
     }
 
 
+
     // ------------------------------------ //
 
     if(engine->RegisterObjectType(
@@ -1259,6 +1281,12 @@ bool
     if(engine->RegisterObjectProperty("SpeciesComponent",
            "dictionary@ avgCompoundAmounts",
            asOFFSET(SpeciesComponent, avgCompoundAmounts)) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectProperty("SpeciesComponent",
+           "MEMBRANE_TYPE speciesMembraneType",
+           asOFFSET(SpeciesComponent, speciesMembraneType)) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
     }
 
@@ -1654,9 +1682,7 @@ SpawnerTypeId
 
     return self->addSpawnType(
         [=](CellStageWorld& world, Float3 pos) -> ObjectID {
-
             return wrapper->run(world, pos);
-
         },
         spawnDensity, spawnRadius);
 }

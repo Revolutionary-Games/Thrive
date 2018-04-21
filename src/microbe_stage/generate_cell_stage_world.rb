@@ -38,9 +38,12 @@ cellWorld = GameWorldClass.new(
                                             ])]),
     EntityComponent.new("MembraneComponent", [ConstructorInfo.new(
                                          [
+											Variable.new("type", "MEMBRANE_TYPE",
+                                           noRef: true),
                                            #Variable.new("GetScene()", "",
                                            #             nonMethodParam: true),
-                                         ])], releaseparams: ["GetScene()"]),
+                                         ])], 
+										 releaseparams: ["GetScene()"]),
     EntityComponent.new("CompoundCloudComponent", [
                           # Don't actually call this from other places than CompoundCloudSystem
                           ConstructorInfo.new(
