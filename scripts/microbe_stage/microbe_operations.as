@@ -752,6 +752,7 @@ ObjectID spawnBacteria(CellStageWorld@ world, Float3 pos, const string &in speci
     microbePos.Marked = true;
 
     auto physics = world.GetComponent_Physics(microbeEntity);
+    physics.SetMass(physics.Mass*10);
     physics.JumpTo(microbePos);
 
     // Try setting the position immediately as well (as otherwise it
@@ -841,6 +842,7 @@ ObjectID _createMicrobeEntity(CellStageWorld@ world, const string &in name, bool
 
     //dont give them ai if they are a bacteria
     if(aiControlled && species.isBacteria==false){
+        //TODO: bacteria iwll use ai when they have flagella
         world.GetScriptComponentHolder("MicrobeAIControllerComponent").Create(entity);
     }
 
