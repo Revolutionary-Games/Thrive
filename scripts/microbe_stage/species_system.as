@@ -176,13 +176,52 @@ class Species{
                 curSpawn = curSpawn + Float3(GetEngine().GetRandom().GetNumber(-7,7),0,GetEngine().GetRandom().GetNumber(-7,7));
             }
         }
-        else
+        else if (GetEngine().GetRandom().GetNumber(0,30) > 2)
         {
             //line
-            for(int i = 0; i < GetEngine().GetRandom().GetNumber(1,5); ++i){
+            //allow for many types of line
+            float lineX = GetEngine().GetRandom().GetNumber(-5,5)+GetEngine().GetRandom().GetNumber(-5,5);
+            float linez = GetEngine().GetRandom().GetNumber(-5,5)+GetEngine().GetRandom().GetNumber(-5,5);
+
+            for(int i = 0; i < GetEngine().GetRandom().GetNumber(1,7); ++i){
                 //dont spawn them on top of each other  because it causes them to bounce around and lag
                 MicrobeOperations::spawnBacteria(world, pos+curSpawn, this.name,true,"",true);
-                curSpawn = curSpawn + Float3(GetEngine().GetRandom().GetNumber(1,7),0,GetEngine().GetRandom().GetNumber(1,7));
+                curSpawn = curSpawn + Float3(lineX+GetEngine().GetRandom().GetNumber(-1,1),0,linez+GetEngine().GetRandom().GetNumber(-1,1));
+            }
+        }
+        else{
+            //network is extremely rare
+            float x = curSpawn.X;
+            float z = curSpawn.Z;
+            for(int i = 0; i < GetEngine().GetRandom().GetNumber(3,10); ++i)
+            {
+                if (GetEngine().GetRandom().GetNumber(0,4) < 2)
+                    {
+                    for(int c = 0; c < GetEngine().GetRandom().GetNumber(3,5); ++c){
+                        //dont spawn them on top of each other  because it causes them to bounce around and lag
+                        curSpawn.X += GetEngine().GetRandom().GetNumber(5,7);
+                        //add a litlle organicness to the look
+                        curSpawn.Z += GetEngine().GetRandom().GetNumber(-1,1);
+                        MicrobeOperations::spawnBacteria(world, pos+curSpawn, this.name,true,"",true);
+                    }
+                }
+            else if (GetEngine().GetRandom().GetNumber(0,4) < 2) {
+                for(int c = 0; c < GetEngine().GetRandom().GetNumber(3,5); ++c){
+                    //dont spawn them on top of each other  because it causes them to bounce around and lag
+                    curSpawn.Z += GetEngine().GetRandom().GetNumber(5,7);
+                    //add a litlle organicness to the look
+                    curSpawn.X += GetEngine().GetRandom().GetNumber(-1,1);
+                    MicrobeOperations::spawnBacteria(world, pos+curSpawn, this.name,true,"",true);
+                }
+            }
+            else {
+                for(int c = 0; c < GetEngine().GetRandom().GetNumber(3,5); ++c){
+                    //dont spawn them on top of each other  because it causes them to bounce around and lag
+                    curSpawn.Z += GetEngine().GetRandom().GetNumber(5,7);
+                    curSpawn.X += GetEngine().GetRandom().GetNumber(5,7);
+                    MicrobeOperations::spawnBacteria(world, pos+curSpawn, this.name,true,"",true);
+                }
+            }
             }
         }
         return MicrobeOperations::spawnBacteria(world, pos, this.name,true,"",false);
