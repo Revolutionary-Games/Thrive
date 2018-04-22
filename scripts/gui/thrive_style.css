@@ -157,6 +157,36 @@ video {
     background-color: rgb(0, 125, 125, 0.4);
 }
 
+.bar_background{
+    width:250px;
+    height:20px;
+    padding:0;
+    position: absolute;
+    background: linear-gradient(rgb(255, 255, 255, 0.4), rgb(125, 125, 125, 0.4));
+}
+
+.bar_foreground{
+    width:50%;
+    height:100%;
+    padding:0;
+    position: absolute;
+    top:0px;
+    left:0px;
+}
+
+.bar_title{
+    position:absolute; 
+    z-index: 5; 
+    left:5%; 
+    top:2px;
+}
+
+.bar_value{
+    position:absolute; 
+    z-index: 5; 
+    right:10px; 
+    top:2px;
+}
 
 /* tjwhale's sample
 
