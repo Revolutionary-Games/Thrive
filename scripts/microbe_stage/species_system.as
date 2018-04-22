@@ -423,6 +423,14 @@ class SpeciesSystem : ScriptSystem{
     //bacteria should mutate more often then eukaryote sbut this is fine for now
                 if(population > MAX_POP_SIZE){
                     auto newSpecies = Species(currentSpecies, world, currentSpecies.isBacteria);
+                    if (newSpecies.isBacteria)
+                        {
+                        currentBacteriaAmount+=1;
+                        }
+                    else
+                        {
+                        currentEukaryoteAmount+=1;
+                        }
                     species.insertLast(newSpecies);
                     LOG_INFO("Species " + currentSpecies.name + " split off a child species:" +
                         newSpecies.name);
@@ -433,15 +441,15 @@ class SpeciesSystem : ScriptSystem{
                     LOG_INFO("Species " + currentSpecies.name + " went extinct");
                     currentSpecies.extinguish();
                     species.removeAt(index);
-    //tweak numbers here
-    if (currentSpecies.isBacteria)
-    {
-    currentBacteriaAmount-=1;
-    }
-    else
-    {
-    currentEukaryoteAmount-=1;
-    }
+                    //tweak numbers here
+                    if (currentSpecies.isBacteria)
+                        {
+                        currentBacteriaAmount-=1;
+                        }
+                    else
+                        {
+                        currentEukaryoteAmount-=1;
+                        }
                 }
             }
 
@@ -462,7 +470,7 @@ class SpeciesSystem : ScriptSystem{
 
             //mass extinction events
 
-            if(species.length() > MAX_SPECIES+INITIAL_BACTERIA){
+            if(species.length() > MAX_SPECIES+MAX_BACTERIA){
                 LOG_INFO("Mass extinction time");
                 //F to pay respects: TODO: add a notification for when this happens
                 doMassExtinction();
