@@ -391,10 +391,10 @@ class SpeciesSystem : ScriptSystem{
 
             //update population numbers and split/extinct species as needed
             auto numberOfSpecies = species.length();
-            for(uint i = 0; i < numberOfSpecies; i++){
+            for(uint i = 0; i < numberOfSpecies; ++i){
                 //traversing the population backwards to avoid
                 //"chopping down the branch i'm sitting in"
-                auto index = i;
+                auto index = numberOfSpecies - 1 - i;
                 auto currentSpecies = species[index];
                 currentSpecies.updatePopulation();
                 auto population = currentSpecies.population;
@@ -423,6 +423,14 @@ class SpeciesSystem : ScriptSystem{
     //bacteria should mutate more often then eukaryote sbut this is fine for now
                 if(population > MAX_POP_SIZE){
                     auto newSpecies = Species(currentSpecies, world, currentSpecies.isBacteria);
+                    if (newSpecies.isBacteria)
+                        {
+                        currentBacteriaAmount+=1;
+                        }
+                    else
+                        {
+                        currentEukaryoteAmount+=1;
+                        }
                     species.insertLast(newSpecies);
                     LOG_INFO("Species " + currentSpecies.name + " split off a child species:" +
                         newSpecies.name);
@@ -433,15 +441,15 @@ class SpeciesSystem : ScriptSystem{
                     LOG_INFO("Species " + currentSpecies.name + " went extinct");
                     currentSpecies.extinguish();
                     species.removeAt(index);
-    //tweak numbers here
-    if (currentSpecies.isBacteria)
-    {
-    currentBacteriaAmount-=1;
-    }
-    else
-    {
-    currentEukaryoteAmount-=1;
-    }
+                    //tweak numbers here
+                    if (currentSpecies.isBacteria)
+                        {
+                        currentBacteriaAmount-=1;
+                        }
+                    else
+                        {
+                        currentEukaryoteAmount-=1;
+                        }
                 }
             }
 
@@ -462,7 +470,7 @@ class SpeciesSystem : ScriptSystem{
 
             //mass extinction events
 
-            if(species.length() > MAX_SPECIES+INITIAL_BACTERIA){
+            if(species.length() > MAX_SPECIES+MAX_BACTERIA){
                 LOG_INFO("Mass extinction time");
                 //F to pay respects: TODO: add a notification for when this happens
                 doMassExtinction();
@@ -815,14 +823,26 @@ string mutate(const string &in stringCode){
 
     //modifies the rest of the table.
     for(uint i = 0; i < stringCode.length(); ++i){
-        uint index = stringCode.length() - i;
+        //index we are adding or erasing chromosomes at
+        uint index = stringCode.length() - i - 1;
 
         if(GetEngine().GetRandom().GetNumber(0.f, 1.f) < MUTATION_DELETION_RATE){
+        //removing the last organelle is pointless, that would kill the creature (also caused errors).
+            if (index != stringCode.length()-1)
+            {
             chromosomes.erase(index, 1);
+            }
         }
 
         if(GetEngine().GetRandom().GetNumber(0.f, 1.f) < MUTATION_CREATION_RATE){
+            //there is an error here when we try to insert at the end of the list so use insertlast instead in that case
+            if (index != stringCode.length()-1)
+            {
             chromosomes.insert(index, getRandomLetter(false));
+            }
+            else{
+            chromosomes+=getRandomLetter(false);
+            }
         }
     }
 
@@ -842,14 +862,25 @@ string mutateProkaryote(const string &in stringCode ){
     }
     //modifies the rest of the table.
     for(uint i = 0; i < stringCode.length(); ++i){
-        uint index = stringCode.length() - i;
-
+        //index we are adding or erasing chromosomes at
+        uint index = stringCode.length() - i -1;
+        //bacteria can be size 1 so removing their only organelle is a bad idea
         if(GetEngine().GetRandom().GetNumber(0.f, 1.f) < MUTATION_DELETION_RATE){
+            if (index != stringCode.length()-1)
+            {
             chromosomes.erase(index, 1);
+            }
         }
 
         if(GetEngine().GetRandom().GetNumber(0.f, 1.f) < MUTATION_CREATION_RATE){
+            //there is an error here when we try to insert at the end of the list so use insertlast instead in that case
+            if (index != stringCode.length()-1)
+            {
             chromosomes.insert(index, getRandomLetter(true));
+            }
+            else{
+            chromosomes+=getRandomLetter(true);
+            }
         }
     }
 
