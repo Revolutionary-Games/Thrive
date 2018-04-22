@@ -9,6 +9,7 @@
     <script src="../../jsvendor/jquery-3.3.1.min.js"></script>
     <script src="gui_common.js"></script>
     <script src="main_menu.js"></script>
+    <script src="microbe_hud.js"></script>
   </head>
   <body>
     
@@ -66,7 +67,16 @@
     <div id="topLevelMicrobeStage" style="display: none;">
       <!-- Top left box -->
       <div id="microbeHealthBox" class="Panel"
-           style="position: absolute; top: 0px: left: 0px; width: 30%; height: 60px;"></div>
+           style="position: absolute; top: 0px: left: 0px; width: 30%; height: 60px;">
+        <span>
+          Health: <span id="microbeHUDPlayerHitpoints">0</span> /
+          <span id="microbeHUDPlayerMaxHitpoints">0</span>
+        </span>
+        <span style="margin-left: 50px">
+          ATP: <span id="microbeHUDPlayerATP">0</span>
+        </span>
+        
+      </div>
 
       <!-- Bottom bar -->
       <div id="microbeBottomBar" class="Panel"

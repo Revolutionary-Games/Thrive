@@ -121,7 +121,7 @@ class MicrobeStageHudSystem : ScriptSystem{
             // Write data
             vars.AddValue(ScriptSafeVariableBlock("hitpoints",
                     int(microbeComponent.hitpoints)));
-            vars.AddValue(ScriptSafeVariableBlock("hitpointsMax",
+            vars.AddValue(ScriptSafeVariableBlock("maxHitpoints",
                     int(microbeComponent.maxHitpoints)));
 
             if(bag is null){

@@ -108,7 +108,6 @@ function onMicrobeIntroEnded(){
         // Make sure no video is playing in case we did an immediate start
         if(!document.getElementById("videoPlayersVideo").ended)
             stopVideo();
-        
     
         Thrive.start();
         
@@ -123,5 +122,6 @@ function onMicrobeIntroEnded(){
 
     // And show microbe gui
     document.getElementById("topLevelMicrobeStage").style.display = "block";
+    runMicrobeHUDSetup();
 }
     
