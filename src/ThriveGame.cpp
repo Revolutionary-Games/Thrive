@@ -44,8 +44,7 @@ public:
         m_menuKeyPresses(std::make_shared<MainMenuKeyPressListener>()),
         m_cellStageKeys(std::make_shared<PlayerMicrobeControl>(
             *game.ApplicationConfiguration->GetKeyConfiguration()))
-    {
-    }
+    {}
 
     //! Releases Ogre things. Needs to be called before shutdown
     void
@@ -548,8 +547,7 @@ void
 // ------------------------------------ //
 void
     ThriveGame::Tick(int mspassed)
-{
-}
+{}
 
 void
     ThriveGame::CustomizeEnginePostLoad()
@@ -706,7 +704,32 @@ void
         dFloat timestep,
         int threadIndex)
 {
-    // LOG_INFO("Cell on cell contact");
+    NewtonBody* first = NewtonJointGetBody0(contact);
+    NewtonBody* second = NewtonJointGetBody1(contact);
+
+    if(!first || !second)
+        return;
+
+    Leviathan::Physics* firstPhysics =
+        static_cast<Leviathan::Physics*>(NewtonBodyGetUserData(first));
+    Leviathan::Physics* secondPhysics =
+        static_cast<Leviathan::Physics*>(NewtonBodyGetUserData(second));
+
+    NewtonWorld* world = NewtonBodyGetWorld(first);
+    Leviathan::PhysicalWorld* physicalWorld =
+        static_cast<Leviathan::PhysicalWorld*>(NewtonWorldGetUserData(world));
+
+    GameWorld* gameWorld = physicalWorld->GetGameWorld();
+
+    ScriptRunningSetup setup("cellOnCellActualContact");
+
+    auto result = ThriveGame::Get()->getMicrobeScripts()->ExecuteOnModule<void>(
+        setup, false, gameWorld, firstPhysics->ThisEntity,
+        secondPhysics->ThisEntity);
+
+    if(result.Result != SCRIPT_RUN_RESULT::Success)
+        LOG_ERROR("Failed to run script side cellOnCellActualContact");
+    // placeholder code taht runs when a cell is hit
 }
 
 //! \brief This registers the physical materials (with callbacks for
@@ -767,8 +790,7 @@ void
 void
     ThriveGame::CheckGameConfigurationVariables(Lock& guard,
         GameConfiguration* configobj)
-{
-}
+{}
 
 void
     ThriveGame::CheckGameKeyConfigVariables(Lock& guard,

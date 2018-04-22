@@ -156,6 +156,11 @@ void cellHitFloatingOrganelle(GameWorld@ world, ObjectID firstEntity, ObjectID s
     world.QueueDestroyEntity(floatingEntity);
 }
 
+void cellOnCellActualContact(GameWorld@ world, ObjectID firstEntity, ObjectID secondEntity){
+    LOG_INFO("Cell hit another cell, thats cool i guess");
+
+}
+
 
 
 // TODO: This should be moved somewhere else...
