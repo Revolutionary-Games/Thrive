@@ -21,21 +21,20 @@ function runMicrobeHUDSetup(){
 
         // Update random values to make it prettier to look at
         let hp = randomBetween(10, 50);
+        let ammonia = randomBetween(0, 50);
+        let glucose = randomBetween(10, 50);
+        let oxytoxy = randomBetween(0, 10);
         updateMicrobeHUDBars({
             hitpoints: randomBetween(1, hp),
             maxHitpoints: hp,
             compoundATP: randomBetween(10, 100),
             ATPMax: 100,
-            compoundAminoacids: randomBetween(0, 50),
-            AminoacidsMax: randomBetween(0, 50),
-            compoundAmmonia: randomBetween(0, 50),
-            AmmoniaMax: randomBetween(0, 50),
-            compoundGlucose: randomBetween(0, 50),
-            GlucoseMax: randomBetween(0, 50),
-            compoundFattyacids: randomBetween(0, 50),
-            FattyacidsMax: randomBetween(0, 50),
-            compoundOxytoxy: randomBetween(0, 50),
-            OxytoxyMax: randomBetween(0, 50),
+            compoundAmmonia: randomBetween(0, ammonia),
+            AmmoniaMax: ammonia,
+            compoundGlucose: randomBetween(0, glucose),
+            GlucoseMax: glucose,
+            compoundOxytoxy: randomBetween(0, oxytoxy),
+            OxytoxyMax: oxytoxy,
         });
     }
     
@@ -63,30 +62,25 @@ function updateMicrobeHUDBars(values){
         values.ATPMax;
     document.getElementById("microbeHUDPlayerATPBar").style.width =
         barHelper(values.compoundATP, values.ATPMax);
-    return;
-
-    document.getElementById("microbeHUDPlayerAminoacids").textContent =
-        values.compoundAminoacids;
-    document.getElementById("microbeHUDPlayerAminoacidsMax").textContent =
-        values.AminoacidsMax;
 
     document.getElementById("microbeHUDPlayerAmmonia").textContent =
         values.compoundAmmonia;
     document.getElementById("microbeHUDPlayerAmmoniaMax").textContent =
         values.AmmoniaMax;
+    document.getElementById("microbeHUDPlayerAmmoniaBar").style.width =
+        barHelper(values.compoundAmmonia, values.AmmoniaMax);
 
     document.getElementById("microbeHUDPlayerGlucose").textContent =
         values.compoundGlucose;
     document.getElementById("microbeHUDPlayerGlucoseMax").textContent =
         values.GlucoseMax;
-
-    document.getElementById("microbeHUDPlayerFattyacids").textContent =
-        values.compoundFattyacids;
-    document.getElementById("microbeHUDPlayerFattyacidsMax").textContent =
-        values.FattyacidsMax;
+    document.getElementById("microbeHUDPlayerGlucoseBar").style.width =
+        barHelper(values.compoundGlucose, values.GlucoseMax);
 
     document.getElementById("microbeHUDPlayerOxytoxy").textContent =
         values.compoundOxytoxy;
     document.getElementById("microbeHUDPlayerOxytoxyMax").textContent =
         values.OxytoxyMax;
+    document.getElementById("microbeHUDPlayerOxytoxyBar").style.width =
+        barHelper(values.compoundOxytoxy, values.OxytoxyMax);
 }

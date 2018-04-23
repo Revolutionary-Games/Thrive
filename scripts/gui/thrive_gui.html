@@ -88,7 +88,8 @@
              style="width: calc(50% - 15px); height: 50%; margin-left: 5px; margin-top: 5%;">
           <div class="BarBackground"
                id="microbeHUDPlayerATPBar"
-               style="background: linear-gradient(rgb(255, 255, 255, 0.8), rgb(0, 0, 150, 0.8), rgb(0, 0, 150, 0.8));"> </div>
+               style="background: linear-gradient(rgb(255, 255, 255, 0.8), rgb(0, 0, 150, 0.8), rgb(0, 0, 150, 0.8));">
+          </div>
           <span class="BarTitle">ATP
             <span class="BarValue">
               <span id="microbeHUDPlayerATP">0</span> /
@@ -107,41 +108,57 @@
       <!-- Compounds panel -->
       <div id="compoundsPanel" class="Panel"
            style="position: absolute; right: 0px; width: 30%; height: 30%; bottom: 60px; overflow-y: auto">
-        <h1 style="margin-top: 2px">Compounds</h1>
-        <!-- This bar is redundant with the one in the top left box -->
-        <div style="display: none">
-          ATP: <span id="microbeHUDPlayerATPCompound">0</span> /
-          <span id="microbeHUDPlayerATPMax">0</span>
-        </div>
-        <!-- <div class="bar_background" style="top:100px; left:20px;">  -->
-        <!--   <div class="bar_foreground" style="background: linear-gradient(rgb(255, 255, 255, 0.8), rgb(125, 125, 125, 0.8), rgb(125, 125, 125, 0.8));"> </div> -->
-        <!--   <div class="bar_title">Glucose</div> -->
-        <!--   <div class="bar_value"> -->
-        <!--     <span id="microbeHUDPlayerGlucose">0</span> / -->
-        <!--     <span id="microbeHUDPlayerGlucoseMax">0</span> -->
-        <!--   </div> -->
-        <!-- </div> -->
-        <!-- <div class="bar_background" style="top:150px; left:20px;">  -->
-        <!--   <div class="bar_foreground" style="background: linear-gradient(rgb(255, 255, 255, 0.8), rgb(155, 155, 0, 0.8), rgb(155, 155, 0, 0.8));"> </div> -->
-        <!--   <div class="bar_title">Ammonia</div> -->
-        <!--   <div class="bar_value"> -->
-        <!--     <span id="microbeHUDPlayerAmmonia">0</span> / -->
-        <!--     <span id="microbeHUDPlayerAmmoniaMax">0</span> -->
-        <!--   </div> -->
+        <h1 style="margin: auto; margin-top: 2px; text-align: center;">Compounds</h1>
+        <!-- <\!-- This bar is redundant with the one in the top left box -\-> -->
+        <!-- <div style="display: none"> -->
+        <!--   ATP: <span id="microbeHUDPlayerATPCompound">0</span> / -->
+        <!--   <span id="microbeHUDPlayerATPMax">0</span> -->
         <!-- </div> -->
 
-        <div>
-          Aminoacids: <span id="microbeHUDPlayerAminoacids">0</span> /
-          <span id="microbeHUDPlayerAminoacidsMax">0</span>
+        <!-- Glucose -->
+        <div class="Bar"
+             style="width: 90%; height: 45px; margin-left: 5px; margin-top: 5px;">
+          <div class="BarBackground"
+               id="microbeHUDPlayerGlucoseBar"
+               style="background: background: linear-gradient(rgb(255, 255, 255, 0.8), rgb(125, 125, 125, 0.8), rgb(125, 125, 125, 0.8));">
+          </div>
+          <span class="BarTitle">Glucose
+            <span class="BarValue">
+              <span id="microbeHUDPlayerGlucose">0</span> /
+              <span id="microbeHUDPlayerGlucoseMax">0</span>
+            </span>
+          </span>
         </div>
-        <div>
-          Fattyacids: <span id="microbeHUDPlayerFattyacids">0</span> /
-          <span id="microbeHUDPlayerFattyacidsMax">0</span>
+        
+        <!-- Ammonia -->
+        <div class="Bar"
+             style="width: 90%; height: 45px; margin-left: 5px; margin-top: 5px;">
+          <div class="BarBackground"
+               id="microbeHUDPlayerAmmoniaBar"
+               style="background: background: linear-gradient(rgb(255, 255, 255, 0.8), rgb(155, 155, 0, 0.8), rgb(155, 155, 0, 0.8));">
+          </div>
+          <span class="BarTitle">Ammonia
+            <span class="BarValue">
+              <span id="microbeHUDPlayerAmmonia">0</span> /
+              <span id="microbeHUDPlayerAmmoniaMax">0</span>
+            </span>
+          </span>
         </div>
-        <div>
-          Oxytoxy: <span id="microbeHUDPlayerOxytoxy">0</span> /
-        <span id="microbeHUDPlayerOxytoxyMax">0</span>
-        </div>        
+
+        <!-- Oxytoxy -->
+        <div class="Bar"
+             style="width: 90%; height: 45px; margin-left: 5px; margin-top: 5px;">
+          <div class="BarBackground"
+               id="microbeHUDPlayerOxytoxyBar"
+               style="background: background: linear-gradient(rgb(255, 255, 255, 0.8), rgb(155, 155, 0, 0.8), rgb(155, 155, 0, 0.8));">
+          </div>
+          <span class="BarTitle">Oxytoxy
+            <span class="BarValue">
+              <span id="microbeHUDPlayerOxytoxy">0</span> /
+              <span id="microbeHUDPlayerOxytoxyMax">0</span>
+            </span>
+          </span>
+        </div>
       </div>
     
       <!-- editor button -->
