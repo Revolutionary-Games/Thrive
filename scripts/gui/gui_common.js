@@ -1,6 +1,11 @@
 // Common helpers for the GUI to work with
 "use strict";
 
+//! Returns a value between min and max, range: [min, max]
+function randomBetween(min, max){
+    return Math.floor(Math.random() * (max - min + 1) + min);
+}
+
 //! Returns true if ran in Thrive (Leviathan is available) false if inside a desktop browser
 function isInEngine(){
     return typeof Leviathan === 'object' && Leviathan !== null;
@@ -64,4 +69,9 @@ function stopVideo(){
     let event = new Event("ended");
     videoElement.dispatchEvent(event);
     videoElement.src = "";
+}
+
+//! Helper for filling bar backgrounds
+function barHelper(value, max){
+    return (value / max) * 100 + "%";
 }
