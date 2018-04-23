@@ -69,24 +69,33 @@
       <div id="microbeHealthBox" class="Panel"
            style="position: absolute; top: 0px: left: 0px; width: 30%; height: 60px;">
         <!-- Health bar -->
-        <div class="bar_background" style="top:10px; left:20px;"> 
-          <div class="bar_foreground" style="background: linear-gradient(rgb(255, 255, 255, 0.8), rgb(0, 155, 0, 0.8), rgb(0, 155, 0, 0.8));"> </div>
-          <div class="bar_title">Health</div>
-          <div class="bar_value">
-            <span id="microbeHUDPlayerHitpoints">0</span> /
-            <span id="microbeHUDPlayerMaxHitpoints">0</span>
+        <div class="Bar"
+             style="width: calc(50% - 15px); height: 50%; margin-left: 5px; margin-top: 5%;"> 
+          <div class="BarBackground"
+               id="microbeHUDPlayerHitpointsBar"
+               style="background: linear-gradient(rgb(255, 255, 255, 0.8), rgb(0, 155, 0, 0.8), rgb(0, 155, 0, 0.8));">
           </div>
+          <span class="BarTitle">Health
+            <span class="BarValue">
+              <span id="microbeHUDPlayerHitpoints">0</span> /
+              <span id="microbeHUDPlayerMaxHitpoints">0</span>
+            </span>
+          </span>
         </div> 
 
         <!-- ATP bar -->
-        <div class="bar_background" style="top:10px; left:290px;"> 
-          <div class="bar_foreground" style="background: linear-gradient(rgb(255, 255, 255, 0.8), rgb(0, 0, 150, 0.8), rgb(0, 0, 150, 0.8));"> </div>
-          <div class="bar_title">ATP</div>
-          <div class="bar_value">
-            <span id="microbeHUDPlayerATP">0</span>
-          </div>
+        <div class="Bar"
+             style="width: calc(50% - 15px); height: 50%; margin-left: 5px; margin-top: 5%;">
+          <div class="BarBackground"
+               id="microbeHUDPlayerATPBar"
+               style="background: linear-gradient(rgb(255, 255, 255, 0.8), rgb(0, 0, 150, 0.8), rgb(0, 0, 150, 0.8));"> </div>
+          <span class="BarTitle">ATP
+            <span class="BarValue">
+              <span id="microbeHUDPlayerATP">0</span> /
+              <span id="microbeHUDPlayerATPMax">0</span>
+            </span>
+          </span>
         </div>
-        
       </div>
 
       <!-- Bottom bar -->
@@ -104,22 +113,22 @@
           ATP: <span id="microbeHUDPlayerATPCompound">0</span> /
           <span id="microbeHUDPlayerATPMax">0</span>
         </div>
-        <div class="bar_background" style="top:100px; left:20px;"> 
-          <div class="bar_foreground" style="background: linear-gradient(rgb(255, 255, 255, 0.8), rgb(125, 125, 125, 0.8), rgb(125, 125, 125, 0.8));"> </div>
-          <div class="bar_title">Glucose</div>
-          <div class="bar_value">
-            <span id="microbeHUDPlayerGlucose">0</span> /
-            <span id="microbeHUDPlayerGlucoseMax">0</span>
-          </div>
-        </div>
-        <div class="bar_background" style="top:150px; left:20px;"> 
-          <div class="bar_foreground" style="background: linear-gradient(rgb(255, 255, 255, 0.8), rgb(155, 155, 0, 0.8), rgb(155, 155, 0, 0.8));"> </div>
-          <div class="bar_title">Ammonia</div>
-          <div class="bar_value">
-            <span id="microbeHUDPlayerAmmonia">0</span> /
-            <span id="microbeHUDPlayerAmmoniaMax">0</span>
-          </div>
-        </div>
+        <!-- <div class="bar_background" style="top:100px; left:20px;">  -->
+        <!--   <div class="bar_foreground" style="background: linear-gradient(rgb(255, 255, 255, 0.8), rgb(125, 125, 125, 0.8), rgb(125, 125, 125, 0.8));"> </div> -->
+        <!--   <div class="bar_title">Glucose</div> -->
+        <!--   <div class="bar_value"> -->
+        <!--     <span id="microbeHUDPlayerGlucose">0</span> / -->
+        <!--     <span id="microbeHUDPlayerGlucoseMax">0</span> -->
+        <!--   </div> -->
+        <!-- </div> -->
+        <!-- <div class="bar_background" style="top:150px; left:20px;">  -->
+        <!--   <div class="bar_foreground" style="background: linear-gradient(rgb(255, 255, 255, 0.8), rgb(155, 155, 0, 0.8), rgb(155, 155, 0, 0.8));"> </div> -->
+        <!--   <div class="bar_title">Ammonia</div> -->
+        <!--   <div class="bar_value"> -->
+        <!--     <span id="microbeHUDPlayerAmmonia">0</span> / -->
+        <!--     <span id="microbeHUDPlayerAmmoniaMax">0</span> -->
+        <!--   </div> -->
+        <!-- </div> -->
 
         <div>
           Aminoacids: <span id="microbeHUDPlayerAminoacids">0</span> /
