@@ -198,7 +198,7 @@ const dictionary STARTER_MICROBES = {
     MicrobeTemplate(1/14000,
             {
             //for testing
-                {"atp", InitialCompound(100)},
+                {"atp", InitialCompound(80)},
                 {"glucose", InitialCompound(5)},
                 {"oxygen", InitialCompound(10)}
             },
