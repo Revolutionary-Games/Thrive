@@ -22,6 +22,9 @@ public:
         ReceiveBlockedInput(int32_t key, int modifiers, bool down) override;
 
     virtual bool
+        OnScroll(int x, int y, int modifiers) override;
+
+    virtual bool
         OnMouseMove(int xmove, int ymove) override;
 
     void
