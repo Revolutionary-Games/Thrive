@@ -62,7 +62,7 @@ class MicrobeStageHudSystem : ScriptSystem{
         this.oxytoxyId = SimulationParameters::compoundRegistry().getTypeId("oxytoxy");
         this.oxytoxyVolume = SimulationParameters::compoundRegistry().getTypeData(
             this.oxytoxyId).volume;
-            
+
         this.phosphateId = SimulationParameters::compoundRegistry().getTypeId("phosphates");
         this.phosphateVolume = SimulationParameters::compoundRegistry().getTypeData(
             this.phosphateId).volume;
@@ -122,13 +122,13 @@ class MicrobeStageHudSystem : ScriptSystem{
                 LOG_ERROR("Player activeCreature has no compound bag");
 
             } else {
-            
+
                 const auto phosphateAmount = bag.getCompoundAmount(phosphateId);
                 const auto maxPhosphate = microbeComponent.capacity / phosphateVolume;
-                
+
                 const auto hydrogenSulfideAmount = bag.getCompoundAmount(hydrogenSulfideId);
                 const auto maxHydrogenSulfide = microbeComponent.capacity / hydrogenSulfideVolume;
-                
+
                 const auto atpAmount = bag.getCompoundAmount(atpId);
                 const auto maxATP = microbeComponent.capacity / atpVolume;
 
@@ -147,7 +147,7 @@ class MicrobeStageHudSystem : ScriptSystem{
 
                 vars.AddValue(ScriptSafeVariableBlock("compoundHydrogenSulfide", hydrogenSulfideAmount));
                 vars.AddValue(ScriptSafeVariableBlock("HydrogenSulfideMax", maxHydrogenSulfide));
-                
+
                 vars.AddValue(ScriptSafeVariableBlock("compoundATP", atpAmount));
                 vars.AddValue(ScriptSafeVariableBlock("ATPMax", maxATP));
 
@@ -330,13 +330,13 @@ class MicrobeStageHudSystem : ScriptSystem{
     AudioSource@ ambienceSounds;
     //plays alongside music
     AudioSource@ ambientTrack;
-    
+
     CompoundId phosphateId;
     float phosphateVolume;
 
     CompoundId hydrogenSulfideId;
     float hydrogenSulfideVolume;
-    
+
     CompoundId atpId;
     float atpVolume;
 
@@ -348,7 +348,7 @@ class MicrobeStageHudSystem : ScriptSystem{
 
     CompoundId oxytoxyId;
     float oxytoxyVolume;
-    
+
 }
 
 

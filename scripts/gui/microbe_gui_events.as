@@ -74,7 +74,7 @@ int setupHUDBars(GuiObject@ instance){
 
     @glucoseCountLabel = glucoseBar.GetChild("NumberLabel");
     @glucoseMaxLabel = compoundsScroll.GetChild("GlucoseBar/GlucoseTotal");
-    
+
     @oxytoxyCountLabel = oxytoxyBar.GetChild("NumberLabel");
     @oxytoxyMaxLabel = compoundsScroll.GetChild("OxyToxyNTBar/OxyToxyNTTotal");
 
