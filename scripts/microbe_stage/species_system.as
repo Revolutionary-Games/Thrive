@@ -30,7 +30,6 @@ const dictionary DEFAULT_INITIAL_COMPOUNDS =
         {"atp", InitialCompound(60, 10)},
         {"glucose", InitialCompound(10)},
         {"reproductase", InitialCompound(0, 8)},
-        {"oxygen", InitialCompound(10)},
         {"oxytoxy", InitialCompound(1)}
     };
 

@@ -252,14 +252,13 @@ void setupOrganelles(){
     nucleusParameters.prokaryoteChance = 0; // Not randomly generated.
     nucleusParameters.mpCost = 0; //it's not supossed to be purchased.
     nucleusParameters.initialComposition = {
-        {"aminoacids", 4}
+        {"phosphates", 1},
+        {"ammonia", 1}
     };
     nucleusParameters.components = {
         nucleusComponentFactory
     };
     nucleusParameters.processes = {
-        TweakedProcess("fattyAcidSynthesis", 0.2),
-        TweakedProcess("aminoAcidSynthesis", 0.2)
     };
     nucleusParameters.hexes = {
         Int2(0, 0),
@@ -288,9 +287,8 @@ void setupOrganelles(){
     cytoplasmParameters.prokaryoteChance = 1;
     cytoplasmParameters.mpCost = 5;
     cytoplasmParameters.initialComposition = {
-        {"aminoacids", 3},
-        {"glucose", 2}
-        // fattyacids = 0 :/
+        {"phosphates", 1},
+        {"ammonia", 1}
     };
     cytoplasmParameters.components = {
         storageOrganelleFactory(10.0f)
@@ -312,9 +310,8 @@ void setupOrganelles(){
     chloroplastParameters.prokaryoteChance = 0;
     chloroplastParameters.mpCost = 20;
     chloroplastParameters.initialComposition = {
-        {"aminoacids", 4},
-        {"glucose", 2}
-        // fattyacids = 0 :/
+        {"phosphates", 1},
+        {"ammonia", 1}
     };
     chloroplastParameters.components = {
         processorOrganelleFactory(1.0)
@@ -341,9 +338,8 @@ void setupOrganelles(){
     oxytoxyParameters.prokaryoteChance = 0;
     oxytoxyParameters.mpCost = 40;
     oxytoxyParameters.initialComposition = {
-        {"aminoacids", 4},
-        {"glucose", 2}
-        // fattyacids = 0 :/
+        {"phosphates", 1},
+        {"ammonia", 1}
     };
     oxytoxyParameters.components = {
         agentVacuoleFactory("oxytoxy", "oxytoxySynthesis")
@@ -369,9 +365,8 @@ void setupOrganelles(){
     mitochondrionParameters.prokaryoteChance = 0;
     mitochondrionParameters.mpCost = 20;
     mitochondrionParameters.initialComposition = {
-        {"aminoacids", 4},
-        {"glucose", 2}
-        // fattyacids = 0 :/
+        {"phosphates", 1},
+        {"ammonia", 1}
     };
     mitochondrionParameters.components = {
         processorOrganelleFactory(1.0f)
@@ -397,9 +392,8 @@ void setupOrganelles(){
     vacuoleParameters.prokaryoteChance = 0;
     vacuoleParameters.mpCost = 15;
     vacuoleParameters.initialComposition = {
-        {"aminoacids", 4},
-        {"glucose", 2}
-        // fattyacids = 0 :/
+        {"phosphates", 1},
+        {"ammonia", 1}
     };
     vacuoleParameters.components = {
         storageOrganelleFactory(100.0f)
@@ -421,9 +415,8 @@ void setupOrganelles(){
     flagellumParameters.prokaryoteChance = 2;
     flagellumParameters.mpCost = 25;
     flagellumParameters.initialComposition = {
-        {"aminoacids", 4},
-        {"glucose", 2}
-        // fattyacids = 0 :/
+        {"phosphates", 1},
+        {"ammonia", 1}
     };
     flagellumParameters.components = {
         movementOrganelleFactory(20, 300)
@@ -447,9 +440,8 @@ void setupOrganelles(){
     respiratoryProtien.prokaryoteChance = 1;
     respiratoryProtien.mpCost = 20;
     respiratoryProtien.initialComposition = {
-        {"aminoacids", 2},
-        {"glucose", 1}
-        // fattyacids = 0 :/
+        {"phosphates", 0.05},
+        {"ammonia", 0.05}
     };
     respiratoryProtien.components = {
         processorOrganelleFactory(1.0f),
@@ -474,9 +466,8 @@ void setupOrganelles(){
     photosyntheticProtein.prokaryoteChance = 1;
     photosyntheticProtein.mpCost = 20;
     photosyntheticProtein.initialComposition = {
-        {"aminoacids", 2},
-        {"glucose", 1}
-        // fattyacids = 0 :/
+        {"phosphates", 0.05},
+        {"ammonia", 0.05}
     };
     photosyntheticProtein.components = {
         processorOrganelleFactory(1.0f),
@@ -501,9 +492,8 @@ void setupOrganelles(){
     oxytoxyProtein.prokaryoteChance = 1;
     oxytoxyProtein.mpCost = 20;
     oxytoxyProtein.initialComposition = {
-        {"aminoacids", 2},
-        {"glucose", 1}
-        // fattyacids = 0 :/
+        {"phosphates", 0.05},
+        {"ammonia", 0.05}
     };
     oxytoxyProtein.components = {
         agentVacuoleFactory("oxytoxy", "oxytoxySynthesis"),
