@@ -215,8 +215,8 @@ Git
   done (take note people accepting pull requests) from the Github
   accept pull request button, hit the arrow to the right side and
   select "merge and squash". Bigger feature branches that are dozens
-  of commits from multiple people will be merged normally to give
-  credit to all of the authors on Github feeds.
+  of commits from multiple people will be merged normally to attribute
+  all of the authors on Github feeds.
 
 - For maintainers: When manually squashing GitHub (which is something
   you should avoid) requires a merge commit to recognize the merging
