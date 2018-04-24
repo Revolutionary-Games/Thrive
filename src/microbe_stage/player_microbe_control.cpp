@@ -66,6 +66,16 @@ void
 }
 
 bool
+    PlayerMicrobeControl::OnScroll(int x, int y, int modifiers)
+{
+    if(!m_enabled)
+        return false;
+
+    ThriveGame::Get()->onZoomChange(y * 4);
+    return true;
+}
+
+bool
     PlayerMicrobeControl::OnMouseMove(int xmove, int ymove)
 {
     return false;
