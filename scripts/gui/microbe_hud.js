@@ -70,6 +70,13 @@ function updateMicrobeHUDBars(values){
     document.getElementById("microbeHUDPlayerAmmoniaBar").style.width =
         barHelper(values.compoundAmmonia, values.AmmoniaMax);
 
+    document.getElementById("microbeHUDPlayerPhosphates").textContent =
+        values.compoundPhosphate;
+    document.getElementById("microbeHUDPlayerPhosphatesMax").textContent =
+        values.PhosphateMax;
+    document.getElementById("microbeHUDPlayerPhosphatesBar").style.width =
+        barHelper(values.compoundPhosphate, values.PhosphateMax);
+        
     document.getElementById("microbeHUDPlayerGlucose").textContent =
         values.compoundGlucose;
     document.getElementById("microbeHUDPlayerGlucoseMax").textContent =
