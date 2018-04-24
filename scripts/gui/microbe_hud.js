@@ -1,6 +1,9 @@
 // JavaScript code to handle updating all the microbe stage stuff
+"use strict";
 
 let microbeHudSetupRan = false;
+
+let readyToEdit = false;
 
 //! Registers all the stuff for this to work. For performance reasons
 //! this should only be called
@@ -8,6 +11,9 @@ function runMicrobeHUDSetup(){
 
     if(microbeHudSetupRan)
         return;
+
+    document.getElementById("microbeToEditorButton").addEventListener(
+        "click", onEditorButtonClicked, true);
 
     if(isInEngine()){
 
@@ -24,6 +30,7 @@ function runMicrobeHUDSetup(){
         let ammonia = randomBetween(0, 50);
         let glucose = randomBetween(10, 50);
         let oxytoxy = randomBetween(0, 10);
+        let phosphate = randomBetween(0, 50);
         updateMicrobeHUDBars({
             hitpoints: randomBetween(1, hp),
             maxHitpoints: hp,
@@ -35,10 +42,46 @@ function runMicrobeHUDSetup(){
             GlucoseMax: glucose,
             compoundOxytoxy: randomBetween(0, oxytoxy),
             OxytoxyMax: oxytoxy,
+            compoundPhosphate: randomBetween(0, phosphate),
+            PhosphateMax: phosphate,
         });
+
+        onReadyToEnterEditor();
     }
     
     microbeHudSetupRan = true;
+}
+
+//! Enables the editor button
+function onReadyToEnterEditor(){
+    
+    readyToEdit = true;
+    document.getElementById("microbeToEditorButton").classList.remove("DisabledButton");
+}
+
+function onEditorButtonClicked(event){
+    
+    if(!readyToEdit)
+        return false;
+    
+    event.stopPropagation();
+    playButtonPressSound();
+    
+    // Fire event
+    if(isInEngine()){
+
+        // Fire an event to tell the game to swap to the editor. It
+        // will notify us when it is done
+        
+    } else {
+
+        // Swap GUI for previewing
+        doEnterMicrobeEditor();
+    }
+    
+    // Disable
+    document.getElementById("microbeToEditorButton").classList.add("DisabledButton");
+    readyToEdit = false;
 }
 
 //! Updates the GUI bars
