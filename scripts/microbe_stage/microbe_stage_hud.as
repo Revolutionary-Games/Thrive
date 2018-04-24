@@ -58,9 +58,18 @@ class MicrobeStageHudSystem : ScriptSystem{
         this.glucoseVolume = SimulationParameters::compoundRegistry().getTypeData(
             this.glucoseId).volume;
 
+
         this.oxytoxyId = SimulationParameters::compoundRegistry().getTypeId("oxytoxy");
         this.oxytoxyVolume = SimulationParameters::compoundRegistry().getTypeData(
             this.oxytoxyId).volume;
+            
+        this.phosphateId = SimulationParameters::compoundRegistry().getTypeId("phosphates");
+        this.phosphateVolume = SimulationParameters::compoundRegistry().getTypeData(
+            this.phosphateId).volume;
+
+        this.hydrogenSulfideId = SimulationParameters::compoundRegistry().getTypeId("hydrogensulfide");
+        this.hydrogenSulfideVolume = SimulationParameters::compoundRegistry().getTypeData(
+            this.hydrogenSulfideId).volume;
 
     }
 
@@ -113,7 +122,13 @@ class MicrobeStageHudSystem : ScriptSystem{
                 LOG_ERROR("Player activeCreature has no compound bag");
 
             } else {
-
+            
+                const auto phosphateAmount = bag.getCompoundAmount(phosphateId);
+                const auto maxPhosphate = microbeComponent.capacity / phosphateVolume;
+                
+                const auto hydrogenSulfideAmount = bag.getCompoundAmount(hydrogenSulfideId);
+                const auto maxHydrogenSulfide = microbeComponent.capacity / hydrogenSulfideVolume;
+                
                 const auto atpAmount = bag.getCompoundAmount(atpId);
                 const auto maxATP = microbeComponent.capacity / atpVolume;
 
@@ -127,6 +142,12 @@ class MicrobeStageHudSystem : ScriptSystem{
                 const auto maxOxytoxy = microbeComponent.capacity / oxytoxyVolume;
 
                 // Write data
+                vars.AddValue(ScriptSafeVariableBlock("compoundPhosphate", phosphateAmount));
+                vars.AddValue(ScriptSafeVariableBlock("PhosphateMax", maxPhosphate));
+
+                vars.AddValue(ScriptSafeVariableBlock("compoundHydrogenSulfide", hydrogenSulfideAmount));
+                vars.AddValue(ScriptSafeVariableBlock("HydrogenSulfideMax", maxHydrogenSulfide));
+                
                 vars.AddValue(ScriptSafeVariableBlock("compoundATP", atpAmount));
                 vars.AddValue(ScriptSafeVariableBlock("ATPMax", maxATP));
 
@@ -278,7 +299,8 @@ class MicrobeStageHudSystem : ScriptSystem{
     bool atpHint = false;
     bool glucoseHint = false;
     bool ammoniaHint = false;
-    bool oxygenHint = false;
+    bool phosphateHint = false;
+    bool hydrogenSulfideHint = false;
     bool toxinHint = false;
     bool chloroplastHint = false;
     dictionary activeHints = {};
@@ -294,7 +316,6 @@ class MicrobeStageHudSystem : ScriptSystem{
     int glucoseNeeded = 0;
     int atpNeeded = 0;
     int ammoniaNeeded = 0;
-    int oxygenNeeded = 0;
     int chloroplastNeeded = 0;
     int toxinNeeded = 0;
 
@@ -309,7 +330,13 @@ class MicrobeStageHudSystem : ScriptSystem{
     AudioSource@ ambienceSounds;
     //plays alongside music
     AudioSource@ ambientTrack;
+    
+    CompoundId phosphateId;
+    float phosphateVolume;
 
+    CompoundId hydrogenSulfideId;
+    float hydrogenSulfideVolume;
+    
     CompoundId atpId;
     float atpVolume;
 
@@ -321,6 +348,7 @@ class MicrobeStageHudSystem : ScriptSystem{
 
     CompoundId oxytoxyId;
     float oxytoxyVolume;
+    
 }
 
 
