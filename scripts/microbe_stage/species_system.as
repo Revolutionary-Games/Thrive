@@ -370,7 +370,7 @@ class Species{
         commonConstructor(world);
         this.setupBacteriaSpawn(world);
     }
-    
+
     //! updates the population count of the species
     void updatePopulation(){
         //numbers incresed so thing shappen more often
@@ -523,7 +523,7 @@ class SpeciesSystem : ScriptSystem{
                 if(population > MAX_POP_SIZE){
                     auto newSpecies = Species(currentSpecies, world,
                         currentSpecies.isBacteria);
-                    
+
                     if (newSpecies.isBacteria)
                     {
                         currentBacteriaAmount+=1;
