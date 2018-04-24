@@ -71,7 +71,7 @@ bool
     if(!m_enabled)
         return false;
 
-    ThriveGame::Get()->onZoomChange(y * 4);
+    ThriveGame::Get()->onZoomChange(y * -2);
     return true;
 }
 
