@@ -56,29 +56,29 @@ class Species{
     //! Constructor for automatically creating a random species
     Species(CellStageWorld@ world, bool isBacteria){
         this.isBacteria=isBacteria;
-    if (!isBacteria)
-    {
-        name = randomSpeciesName();
-        auto stringSize = GetEngine().GetRandom().GetNumber(MIN_INITIAL_LENGTH,
-            MAX_INITIAL_LENGTH);
+        if (!isBacteria)
+        {
+            name = randomSpeciesName();
+            auto stringSize = GetEngine().GetRandom().GetNumber(MIN_INITIAL_LENGTH,
+                MAX_INITIAL_LENGTH);
 
-        //it should always have a nucleus and a cytoplasm.
-        stringCode = getOrganelleDefinition("nucleus").gene +
-            getOrganelleDefinition("cytoplasm").gene;
+            //it should always have a nucleus and a cytoplasm.
+            stringCode = getOrganelleDefinition("nucleus").gene +
+                getOrganelleDefinition("cytoplasm").gene;
 
-        for(int i = 0; i < stringSize; ++i){
-            this.stringCode += getRandomLetter(false);
+            for(int i = 0; i < stringSize; ++i){
+                this.stringCode += getRandomLetter(false);
+            }
+            this.speciesMembraneType = MEMBRANE_TYPE::MEMBRANE;
+            this.colour = getRightColourForSpecies();
+            commonConstructor(world);
+            this.setupSpawn(world);
+
         }
-        this.speciesMembraneType = MEMBRANE_TYPE::MEMBRANE;
-        this.colour = getRightColourForSpecies();
-        commonConstructor(world);
-        this.setupSpawn(world);
-
-    }
-    else{
-    // We are creating a bacteria right now
-    generateBacteria(world);
-    }
+        else{
+            // We are creating a bacteria right now
+            generateBacteria(world);
+        }
     }
 
     ~Species(){
@@ -93,36 +93,36 @@ class Species{
     // Creates a mutated version of the species and reduces the species population by half
     Species(Species@ parent, CellStageWorld@ world, bool isBacteria){
         this.isBacteria=isBacteria;
-    if (!isBacteria)
-    {
-        name = randomSpeciesName();
-    //chance of new color needs to be low
-    if (GetEngine().GetRandom().GetNumber(0,100)==1)
-    {
-    LOG_INFO("New Clade");
-    //we can do more fun stuff here later
-    this.colour = randomColour();
-    }
-    else
-    {
-    this.colour = parent.colour;
-    }
-        this.population = int(floor(parent.population / 2.f));
-        parent.population = int(ceil(parent.population / 2.f));
-        this.stringCode = Species::mutate(parent.stringCode);
+        if (!isBacteria)
+        {
+            name = randomSpeciesName();
+            //chance of new color needs to be low
+            if (GetEngine().GetRandom().GetNumber(0,100)==1)
+            {
+                LOG_INFO("New Clade");
+                //we can do more fun stuff here later
+                this.colour = randomColour();
+            }
+            else
+            {
+                this.colour = parent.colour;
+            }
+            this.population = int(floor(parent.population / 2.f));
+            parent.population = int(ceil(parent.population / 2.f));
+            this.stringCode = Species::mutate(parent.stringCode);
 
-    this.speciesMembraneType = MEMBRANE_TYPE::MEMBRANE;
-    this.colour = getRightColourForSpecies();
+            this.speciesMembraneType = MEMBRANE_TYPE::MEMBRANE;
+            this.colour = getRightColourForSpecies();
 
-        commonConstructor(world);
+            commonConstructor(world);
 
 
-        this.setupSpawn(world);
-    }
-    else
-    {
-    mutateBacteria(parent,world);
-    }
+            this.setupSpawn(world);
+        }
+        else
+        {
+            mutateBacteria(parent,world);
+        }
     }
 
     private void commonConstructor(CellStageWorld@ world){
@@ -131,7 +131,8 @@ class Species{
 
         auto organelles = positionOrganelles(stringCode);
 
-        templateEntity = Species::createSpecies(forWorld, this.name, organelles, this.colour, this.isBacteria, this.speciesMembraneType,
+        templateEntity = Species::createSpecies(forWorld, this.name, organelles, this.colour,
+            this.isBacteria, this.speciesMembraneType,
             DEFAULT_INITIAL_COMPOUNDS);
     }
 
@@ -163,29 +164,36 @@ class Species{
 
     ObjectID bacteriaColonySpawn(CellStageWorld@ world, Float3 pos){
         LOG_INFO("New colony of species spawned: " + this.name);
-        Float3 curSpawn = Float3(GetEngine().GetRandom().GetNumber(1,7),0,GetEngine().GetRandom().GetNumber(1,7));
+        Float3 curSpawn = Float3(GetEngine().GetRandom().GetNumber(1,7),0,GetEngine().
+            GetRandom().GetNumber(1,7));
         //two kinds of colonies are supported, line colonies and clump colonies
 
         if (GetEngine().GetRandom().GetNumber(0,4) < 2)
         {
             //clump
             for(int i = 0; i < GetEngine().GetRandom().GetNumber(1,5); ++i){
-                //dont spawn them on top of each other  because it causes them to bounce around and lag
+                //dont spawn them on top of each other because it
+                //causes them to bounce around and lag
                 MicrobeOperations::spawnBacteria(world, pos+curSpawn, this.name,true,"",true);
-                curSpawn = curSpawn + Float3(GetEngine().GetRandom().GetNumber(-7,7),0,GetEngine().GetRandom().GetNumber(-7,7));
+                curSpawn = curSpawn + Float3(GetEngine().GetRandom().GetNumber(-7,7),0,
+                    GetEngine().GetRandom().GetNumber(-7,7));
             }
         }
         else if (GetEngine().GetRandom().GetNumber(0,30) > 2)
         {
             //line
             //allow for many types of line
-            float lineX = GetEngine().GetRandom().GetNumber(-5,5)+GetEngine().GetRandom().GetNumber(-5,5);
-            float linez = GetEngine().GetRandom().GetNumber(-5,5)+GetEngine().GetRandom().GetNumber(-5,5);
+            float lineX = GetEngine().GetRandom().GetNumber(-5,5)+GetEngine().GetRandom().
+                GetNumber(-5,5);
+            float linez = GetEngine().GetRandom().GetNumber(-5,5)+GetEngine().GetRandom().
+                GetNumber(-5,5);
 
             for(int i = 0; i < GetEngine().GetRandom().GetNumber(1,7); ++i){
-                //dont spawn them on top of each other  because it causes them to bounce around and lag
+                //dont spawn them on top of each other because it
+                //causes them to bounce around and lag
                 MicrobeOperations::spawnBacteria(world, pos+curSpawn, this.name,true,"",true);
-                curSpawn = curSpawn + Float3(lineX+GetEngine().GetRandom().GetNumber(-1,1),0,linez+GetEngine().GetRandom().GetNumber(-1,1));
+                curSpawn = curSpawn + Float3(lineX+GetEngine().GetRandom().GetNumber(-1,1),
+                    0,linez+GetEngine().GetRandom().GetNumber(-1,1));
             }
         }
         else{
@@ -203,22 +211,26 @@ class Species{
                     horizontal=true;
                     vertical=false;
                     for(int c = 0; c < GetEngine().GetRandom().GetNumber(3,5); ++c){
-                        //dont spawn them on top of each other  because it causes them to bounce around and lag
+                        //dont spawn them on top of each other because
+                        //it causes them to bounce around and lag
                         curSpawn.X += GetEngine().GetRandom().GetNumber(5,7);
                         //add a litlle organicness to the look
                         curSpawn.Z += GetEngine().GetRandom().GetNumber(-1,1);
-                        MicrobeOperations::spawnBacteria(world, pos+curSpawn, this.name,true,"",true);
+                        MicrobeOperations::spawnBacteria(world, pos+curSpawn, this.name, true,
+                            "",true);
                     }
                 }
             else if (GetEngine().GetRandom().GetNumber(0,4) < 2 && !vertical) {
                 horizontal=false;
                 vertical=true;
                 for(int c = 0; c < GetEngine().GetRandom().GetNumber(3,5); ++c){
-                    //dont spawn them on top of each other  because it causes them to bounce around and lag
+                    //dont spawn them on top of each other because it
+                    //causes them to bounce around and lag
                     curSpawn.Z += GetEngine().GetRandom().GetNumber(5,7);
                     //add a litlle organicness to the look
                     curSpawn.X += GetEngine().GetRandom().GetNumber(-1,1);
-                    MicrobeOperations::spawnBacteria(world, pos+curSpawn, this.name,true,"",true);
+                    MicrobeOperations::spawnBacteria(world, pos+curSpawn, this.name,true,"",
+                        true);
                 }
             }
             else if (GetEngine().GetRandom().GetNumber(0,4) < 2 && !horizontal)
@@ -226,22 +238,26 @@ class Species{
                     horizontal=true;
                     vertical=false;
                     for(int c = 0; c < GetEngine().GetRandom().GetNumber(3,5); ++c){
-                        //dont spawn them on top of each other  because it causes them to bounce around and lag
+                        //dont spawn them on top of each other because
+                        //it causes them to bounce around and lag
                         curSpawn.X -= GetEngine().GetRandom().GetNumber(5,7);
                         //add a litlle organicness to the look
                         curSpawn.Z -= GetEngine().GetRandom().GetNumber(-1,1);
-                        MicrobeOperations::spawnBacteria(world, pos+curSpawn, this.name,true,"",true);
+                        MicrobeOperations::spawnBacteria(world, pos+curSpawn, this.name, true,
+                            "",true);
                     }
                 }
             else if (GetEngine().GetRandom().GetNumber(0,4) < 2 && !vertical) {
                 horizontal=false;
                 vertical=true;
                 for(int c = 0; c < GetEngine().GetRandom().GetNumber(3,5); ++c){
-                    //dont spawn them on top of each other  because it causes them to bounce around and lag
+                    //dont spawn them on top of each other because it
+                    //causes them to bounce around and lag
                     curSpawn.Z -= GetEngine().GetRandom().GetNumber(5,7);
                     //add a litlle organicness to the look
                     curSpawn.X -= GetEngine().GetRandom().GetNumber(-1,1);
-                    MicrobeOperations::spawnBacteria(world, pos+curSpawn, this.name,true,"",true);
+                    MicrobeOperations::spawnBacteria(world, pos+curSpawn, this.name,true,"",
+                        true);
                 }
             }
             else {
@@ -249,10 +265,12 @@ class Species{
                 horizontal=false;
                 vertical=false;
                 for(int c = 0; c < GetEngine().GetRandom().GetNumber(3,5); ++c){
-                    //dont spawn them on top of each other  because it causes them to bounce around and lag
+                    //dont spawn them on top of each other because it
+                    //causes them to bounce around and lag
                     curSpawn.Z += GetEngine().GetRandom().GetNumber(5,7);
                     curSpawn.X += GetEngine().GetRandom().GetNumber(5,7);
-                    MicrobeOperations::spawnBacteria(world, pos+curSpawn, this.name,true,"",true);
+                    MicrobeOperations::spawnBacteria(world, pos+curSpawn, this.name,true,"",
+                        true);
                 }
             }
             }
@@ -298,8 +316,10 @@ class Species{
         name = randomBacteriaName();
         //bacteria are tiny
         auto stringSize = GetEngine().GetRandom().GetNumber(0,3);
-        //it should always have a nucleus and a cytoplasm.
-        //bacteria will randomly have 1 of 3 organelles right now, chlorolast, mitochondria, or toxin, adding pure cytoplasm bacteria aswell for variety
+        //it should always have a nucleus and a cytoplasm.  bacteria
+        //will randomly have 1 of 3 organelles right now, chlorolast,
+        //mitochondria, or toxin, adding pure cytoplasm bacteria
+        //aswell for variety
         switch( GetEngine().GetRandom().GetNumber(1,5))
         {
         case 1:
@@ -350,19 +370,22 @@ class Species{
         commonConstructor(world);
         this.setupBacteriaSpawn(world);
     }
-    //updates the population count of the species
+    
+    //! updates the population count of the species
     void updatePopulation(){
-    //numbers incresed so thing shappen more often
+        //numbers incresed so thing shappen more often
         this.population += GetEngine().GetRandom().GetNumber(-700, 700);
     }
 
     void devestate(){
-    //occassionally you just need to take a deadly virus and use it to make things interesting
+        //occassionally you just need to take a deadly virus and use
+        //it to make things interesting
         this.population += GetEngine().GetRandom().GetNumber(-1500, -700);
     }
 
     void boom(){
-    //occassionally you just need to give a species a nice pat on the back
+        //occassionally you just need to give a species a nice pat on
+        //the back
         this.population += GetEngine().GetRandom().GetNumber(700, 1500);
     }
 
@@ -470,39 +493,45 @@ class SpeciesSystem : ScriptSystem{
                 auto currentSpecies = species[index];
                 currentSpecies.updatePopulation();
                 auto population = currentSpecies.population;
-    LOG_INFO(currentSpecies.name+" "+currentSpecies.population);
+                LOG_INFO(currentSpecies.name+" "+currentSpecies.population);
 
-    //this is just to shake things up occassionally
-    if ( currentSpecies.population > 0 && GetEngine().GetRandom().GetNumber(0,10) <= 2)
-    {
-    //F to pay respects: TODO: add a notification for when this happens
-    LOG_INFO(currentSpecies.name + " has been devestated by disease.");
-    currentSpecies.devestate();
-    LOG_INFO(currentSpecies.name+" population is now "+currentSpecies.population);
-    }
+                //this is just to shake things up occassionally
+                if ( currentSpecies.population > 0 &&
+                    GetEngine().GetRandom().GetNumber(0,10) <= 2)
+                {
+                    //F to pay respects: TODO: add a notification for when this happens
+                    LOG_INFO(currentSpecies.name + " has been devestated by disease.");
+                    currentSpecies.devestate();
+                    LOG_INFO(currentSpecies.name+" population is now "+
+                        currentSpecies.population);
+                }
 
-    //this is also just to shake things up occassionally
-    //cambrian explosion
-    if ( currentSpecies.population > 0 && GetEngine().GetRandom().GetNumber(0,10) <= 2)
-    {
-    //P to pat back: TODO: add a notification for when this happens
-    LOG_INFO(currentSpecies.name + " is diversifying!");
-    currentSpecies.boom();
-    LOG_INFO(currentSpecies.name+" population is now "+currentSpecies.population);
-    }
+                //this is also just to shake things up occassionally
+                //cambrian explosion
+                if ( currentSpecies.population > 0 &&
+                    GetEngine().GetRandom().GetNumber(0,10) <= 2)
+                {
+                    //P to pat back: TODO: add a notification for when this happens
+                    LOG_INFO(currentSpecies.name + " is diversifying!");
+                    currentSpecies.boom();
+                    LOG_INFO(currentSpecies.name+" population is now "+
+                        currentSpecies.population);
+                }
 
                 //reproduction/mutation
-    //bacteria should mutate more often then eukaryote sbut this is fine for now
+                //bacteria should mutate more often then eukaryote sbut this is fine for now
                 if(population > MAX_POP_SIZE){
-                    auto newSpecies = Species(currentSpecies, world, currentSpecies.isBacteria);
+                    auto newSpecies = Species(currentSpecies, world,
+                        currentSpecies.isBacteria);
+                    
                     if (newSpecies.isBacteria)
-                        {
+                    {
                         currentBacteriaAmount+=1;
-                        }
+                    }
                     else
-                        {
+                    {
                         currentEukaryoteAmount+=1;
-                        }
+                    }
                     species.insertLast(newSpecies);
                     LOG_INFO("Species " + currentSpecies.name + " split off a child species:" +
                         newSpecies.name);
@@ -515,17 +544,17 @@ class SpeciesSystem : ScriptSystem{
                     species.removeAt(index);
                     //tweak numbers here
                     if (currentSpecies.isBacteria)
-                        {
+                    {
                         currentBacteriaAmount-=1;
-                        }
+                    }
                     else
-                        {
+                    {
                         currentEukaryoteAmount-=1;
-                        }
+                    }
                 }
             }
 
-    //These are kind of arbitray, we should pronbabbly make it less arbitrary
+            //These are kind of arbitray, we should pronbabbly make it less arbitrary
             //new species
             while(currentEukaryoteAmount < MIN_SPECIES){
                 LOG_INFO("Creating new species as there's too few");
@@ -535,8 +564,8 @@ class SpeciesSystem : ScriptSystem{
 
             //new bacteria
             while(currentBacteriaAmount < MIN_BACTERIA){
-               LOG_INFO("Creating new prokaryote as there's too few");
-               createBacterium();
+                LOG_INFO("Creating new prokaryote as there's too few");
+                createBacterium();
                 currentBacteriaAmount++;
             }
 
@@ -547,15 +576,17 @@ class SpeciesSystem : ScriptSystem{
                 //F to pay respects: TODO: add a notification for when this happens
                 doMassExtinction();
             }
-     //add soem variability, this is a less deterministic mass extinction eg, a meteor, etc.
-    if(GetEngine().GetRandom().GetNumber(0,1000) == 1){
+            //add soem variability, this is a less deterministic mass
+            //extinction eg, a meteor, etc.
+            if(GetEngine().GetRandom().GetNumber(0,1000) == 1){
                 LOG_INFO("Black swan event");
                 //F to pay respects: TODO: add a notification for when this happens
                 doMassExtinction();
             }
 
-    //exvery 8 steps or so do a cambrian explosion style event, this should increase variablility significantly
-    if(GetEngine().GetRandom().GetNumber(0,200) <= 25){
+            //exvery 8 steps or so do a cambrian explosion style
+            //event, this should increase variablility significantly
+            if(GetEngine().GetRandom().GetNumber(0,200) <= 25){
                 LOG_INFO("Cambrian Explosion");
                 //F to pay respects: TODO: add a notification for when this happens
                 doCambrianExplosion();
@@ -581,7 +612,7 @@ class SpeciesSystem : ScriptSystem{
     }
 
     void doMassExtinction(){
-    //this doesnt seem like a powerful event
+        //this doesnt seem like a powerful event
         for(uint i = 0; i < species.length(); ++i){
             species[i].population /= 2;
         }
