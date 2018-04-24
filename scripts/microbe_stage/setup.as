@@ -142,16 +142,19 @@ void cellHitFloatingOrganelle(GameWorld@ world, ObjectID firstEntity, ObjectID s
 
     auto model = asCellWorld.GetComponent_Model(firstEntity);
     auto floatingEntity = firstEntity;
+    auto cellEntity = secondEntity;
 
     // Cell doesn't have a model
     if(model is null){
 
         @model = asCellWorld.GetComponent_Model(secondEntity);
         floatingEntity = secondEntity;
+        cellEntity = firstEntity;
     }
 
     // TODO: use this to detect stuff
     LOG_INFO("Model: " + model.GraphicalObject.getMesh().getName());
+    LOG_INFO("TODO: organelle unlock progress if cell: " + cellEntity + " is the player");
 
     world.QueueDestroyEntity(floatingEntity);
 }
