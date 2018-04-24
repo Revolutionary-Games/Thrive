@@ -10,6 +10,7 @@
     <script src="gui_common.js"></script>
     <script src="main_menu.js"></script>
     <script src="microbe_hud.js"></script>
+    <script src="microbe_editor.js"></script>
   </head>
   <body>
     
@@ -176,10 +177,32 @@
       </div>
     
       <!-- editor button -->
-      <div id="microbeToEditorButton" class="Panel"
+      <div id="microbeToEditorButton" class="MenuButton DisabledButton"
            style="position: absolute; top: 0px; right: 0px; width: 120px; height: 90px;">
         <span class="Centered">Editor</span>
       </div>
     </div>
+
+    
+    <!-- Microbe editor GUI -->
+    <div id="topLevelMicrobeEditor" style="display: none;">
+      <!-- Top left box -->
+      <div id="microbeEditorLeftPanel" class="Panel"
+           style="position: absolute; top: 0px: left: 0px; width: 30%; height: calc(100% - 60px);">
+      </div>
+
+      <!-- Bottom bar -->
+      <div id="microbeEditorBottomBar" class="Panel"
+           style="position: absolute; bottom: 0px; left: 0px; width: 100%; height: 60px;">
+        <span class="Centered">Menu</span>
+      </div>
+
+      <!-- editor button -->
+      <div id="microbeEditorFinishButton" class="MenuButton DisabledButton"
+           style="position: absolute; top: 0px; right: 0px; width: 120px; height: 90px;">
+        <span class="Centered">Finish</span>
+      </div>
+    </div>    
+    
   </body>
 </html>

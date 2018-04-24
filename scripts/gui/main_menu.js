@@ -56,6 +56,7 @@ function runMenuSetup(){
     // Use these to immediately test some specific menu
     //
     // onMicrobeIntroEnded();
+    // doEnterMicrobeEditor();
 }
 
 //! Handles pressing Escape in the GUI (this will skip videos and
