@@ -78,7 +78,45 @@
             }
         }
     },
+ "tidepool": {
+        "name": "Tidepool",
+        "background": "Background_Tidepool",
+		"colors":{
+		    "specularColors": {
+            "r": 0.98,
+            "g": 0.7,
+            "b": 0.75
+			},
+		    "diffuseColors": {
+            "r": 1.0,
+            "g": 0.9,
+            "b": 0.9
+			}
+		},
+		
+        "compounds": {
 
+            "ammonia": {
+                "amount": 42500,
+                "density": 0.0002
+            },
+
+            "glucose": {
+                "amount": 32500,
+                "density": 0.0002
+            },
+            
+            "phosphates": {
+                "amount": 32500,
+                "density": 0.0002
+            },
+
+            "hydrogensulfide": {
+                "amount": 32500,
+                "density": 0.0002
+            }
+        }
+    },
     "abyss": {
         "name": "Abyss",
         "background": "Background_Abyss",
