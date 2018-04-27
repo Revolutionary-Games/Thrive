@@ -229,6 +229,7 @@ float getBandwidth(CellStageWorld@ world, ObjectID microbeEntity, float maxAmoun
 //
 // @returns leftover
 // The amount of compound not stored, due to bandwidth or being full
+//we need to remove this and have individual storage space
 float storeCompound(CellStageWorld@ world, ObjectID microbeEntity, CompoundId compoundId,
     double amount, bool bandwidthLimited)
 {
