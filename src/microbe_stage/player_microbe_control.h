@@ -48,6 +48,7 @@ private:
 
 private:
     Leviathan::GKey m_reproduceCheat;
+    Leviathan::GKey m_engulfMode;
 
     Leviathan::GKey m_forward;
     Leviathan::GKey m_backwards;
