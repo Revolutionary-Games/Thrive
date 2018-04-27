@@ -190,10 +190,7 @@ class MicrobeComponent : ScriptComponent{
     float maxBandwidth = 10.0 * BANDWIDTH_PER_ORGANELLE; // wtf is a bandwidth anyway?
     float remainingBandwidth = 0.0;
     uint compoundCollectionTimer = EXCESS_COMPOUND_COLLECTION_INTERVAL;
-    bool isCurrentlyEngulfing = false;
-    bool isBeingEngulfed = false;
-    bool wasBeingEngulfed = false;
-    ObjectID hostileEngulfer = NULL_OBJECT;
+
     uint agentEmissionCooldown = 0;
     // Is this the place where the actual flash duration works?
     // The one in the organelle class doesn't work
@@ -202,8 +199,14 @@ class MicrobeComponent : ScriptComponent{
     uint reproductionStage = 0;
 
 
-    // New state variables that MicrobeSystem also uses
+    //variables for engulfing
     bool engulfMode = false;
+    bool isCurrentlyEngulfing = false;
+    bool isBeingEngulfed = false;
+    bool wasBeingEngulfed = false;
+    ObjectID hostileEngulfer = NULL_OBJECT;
+
+    // New state variables that MicrobeSystem also uses
     bool in_editor = false;
 
     // ObjectID microbe;

@@ -23,7 +23,8 @@ PlayerMicrobeControl::PlayerMicrobeControl(KeyConfiguration& keys) :
     m_zoomIn(keys.ResolveControlNameToKeyVector("ZoomIn")),
     m_zoomOut(keys.ResolveControlNameToKeyVector("ZoomOut")),
     m_engulfMode(keys.ResolveControlNameToFirstKey("EngulfMode"))
-{}
+{
+}
 // ------------------------------------ //
 bool
     PlayerMicrobeControl::ReceiveInput(int32_t key, int modifiers, bool down)
