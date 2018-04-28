@@ -458,8 +458,8 @@ void applyMembraneColour(CellStageWorld@ world, ObjectID microbeEntity){
 }
 
 
-// Disables or enabled engulfmode for a microbe, allowing or
-// disallowed it to absorb other microbes
+// Disables or enables engulfmode for a microbe, allowing or
+// disallowing it to absorb other microbes
 void toggleEngulfMode(CellStageWorld@ world, ObjectID microbeEntity){
     MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
         world.GetScriptComponentHolder("MicrobeComponent").Find(microbeEntity));
