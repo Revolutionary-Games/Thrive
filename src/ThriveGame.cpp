@@ -1005,6 +1005,14 @@ bool
            asOFFSET(Biome, diffuseColors)) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
     }
+    if(engine->RegisterObjectProperty("Biome", "float oxygenPercentage",
+           asOFFSET(Biome, oxygenPercentage)) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+    if(engine->RegisterObjectProperty("Biome", "float carbonDioxidePercentage",
+           asOFFSET(Biome, carbonDioxidePercentage)) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
 
     if(engine->RegisterObjectProperty("Biome", "const string background",
            asOFFSET(Biome, background)) < 0) {
