@@ -126,9 +126,8 @@ void applyCellMovementControl(GameWorld@ world, ObjectID entity, const Float3 &i
 // Activate Engulf Mode
 void applyEngulfMode(GameWorld@ world, ObjectID entity)
 {
-    MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
-        world.GetScriptComponentHolder("MicrobeComponent").Find(entity));
-   microbeComponent.engulfMode = !microbeComponent.engulfMode;
+    CellStageWorld@ cellWorld = cast<CellStageWorld>(world);
+    MicrobeOperations::toggleEngulfMode(cellWorld, entity);
 }
 
 
