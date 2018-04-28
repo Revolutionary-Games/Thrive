@@ -178,21 +178,19 @@ void
     colour.getHSB(&hue, &saturation, &brightness);
     colour.setHSB(hue, saturation * .75, brightness);
 
-    // If we already have created a material we need to apply it
+    // If we already have created a material we need to re-apply it
     if(coloredMaterial) {
+        Ogre::MaterialManager::getSingleton().remove(coloredMaterial);
+        coloredMaterial.reset();
+        Ogre::MaterialPtr baseMaterial = chooseMaterialByType();
+
+        coloredMaterial = baseMaterial->clone(
+            "Membrane_instance_" + std::to_string(++membraneNumber));
+
         coloredMaterial->getTechnique(0)
             ->getPass(0)
             ->getFragmentProgramParameters()
             ->setNamedConstant("membraneColour", colour);
-        coloredMaterial->getTechnique(0)
-            ->getPass(0)
-            ->getTextureUnitState(0)
-            ->setHardwareGammaEnabled(true);
-        coloredMaterial->getTechnique(0)
-            ->getPass(0)
-            ->getTextureUnitState(1)
-            ->setHardwareGammaEnabled(true);
-        coloredMaterial->compile();
     }
 }
 

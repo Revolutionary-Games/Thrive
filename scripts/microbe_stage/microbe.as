@@ -433,9 +433,10 @@ class MicrobeSystem : ScriptSystem{
                 // the flash void to have this variable{
 
                 if((microbeComponent.flashDuration % 600.0f) < 300){
-                    membraneComponent.setColour(microbeComponent.flashColour);
+                    LOG_INFO("Flashed");
+                    MicrobeOperations::setMembraneColour(world, microbeEntity,microbeComponent.flashColour);
                 } else {
-                    // Restore colour
+                     //Restore colour
                     MicrobeOperations::applyMembraneColour(world, microbeEntity);
                 }
 
@@ -587,9 +588,8 @@ class MicrobeSystem : ScriptSystem{
                     LOG_INFO("too little atp, disabling - engulfing");
                     MicrobeOperations::toggleEngulfMode(world, microbeEntity);
                 }
-                // Flash the membrane blue. (currently crashes! TODO: FIXTHIS)
-                //MicrobeOperations::flashMembraneColour(world, microbeEntity, 3000,
-                //    Float4(0.2,0.5,1.0,0.5));
+                // Flash the membrane blue. (doesnt actually color anything! TODO: FIXTHIS)
+                MicrobeOperations::flashMembraneColour(world, microbeEntity, 3000, Float4(0.2,0.5,1.0,0.5));
             }
 
             if(microbeComponent.isBeingEngulfed && microbeComponent.wasBeingEngulfed){
