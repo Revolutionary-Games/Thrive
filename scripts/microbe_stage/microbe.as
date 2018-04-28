@@ -587,9 +587,9 @@ class MicrobeSystem : ScriptSystem{
                     LOG_INFO("too little atp, disabling - engulfing");
                     MicrobeOperations::toggleEngulfMode(world, microbeEntity);
                 }
-                // Flash the membrane blue.
-                MicrobeOperations::flashMembraneColour(world, microbeEntity, 3000,
-                    Float4(0.2,0.5,1.0,0.5));
+                // Flash the membrane blue. (currently crashes! TODO: FIXTHIS)
+                //MicrobeOperations::flashMembraneColour(world, microbeEntity, 3000,
+                //    Float4(0.2,0.5,1.0,0.5));
             }
 
             if(microbeComponent.isBeingEngulfed && microbeComponent.wasBeingEngulfed){

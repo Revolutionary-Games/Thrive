@@ -1,7 +1,6 @@
 #include "player_microbe_control.h"
 
 #include "ThriveGame.h"
-
 #include "engine/player_data.h"
 
 #include <Addons/GameModule.h>
@@ -40,19 +39,19 @@ bool
     // LOG_INFO("PMC Key pressed: " + std::to_string(key));
 
     if(m_reproduceCheat.Match(key, modifiers)) {
-
         LOG_INFO("Reproduce cheat pressed");
         Engine::Get()->GetEventHandler()->CallEvent(
             new Leviathan::GenericEvent("PlayerReadyToEnterEditor"));
         return true;
     } else if(Leviathan::MatchesAnyKeyInSet(m_zoomIn, key, modifiers)) {
-
         ThriveGame::Get()->onZoomChange(-1);
-
     } else if(Leviathan::MatchesAnyKeyInSet(m_zoomOut, key, modifiers)) {
-
         ThriveGame::Get()->onZoomChange(1);
+    } else if(m_engulfMode.Match(key, modifiers)) {
+        pressedEngulf = true;
+        return true;
     }
+
 
     // Not used
     return false;
@@ -229,7 +228,6 @@ void
     // std::stringstream msg;
     // msg << "Input: " << movementDirection << " and look: " << lookPoint;
     // LOG_WRITE(msg.str());
-
     ScriptRunningSetup setup("applyCellMovementControl");
     auto result = module->ExecuteOnModule<void>(setup, false, &world,
         controlledEntity, movementDirection.Normalize(), lookPoint);
@@ -237,6 +235,19 @@ void
     if(result.Result != SCRIPT_RUN_RESULT::Success) {
         LOG_WARNING("PlayerMicrobeControlSystem: failed to Run script "
                     "applyCellMovementControl");
+    }
+
+    // Activate engulf mode
+    if(thrive->getPlayerInput()->getPressedEngulf()) {
+        LOG_INFO("Engulf mode pressed");
+        thrive->getPlayerInput()->setPressedEngulf(false);
+        ScriptRunningSetup setup("applyEngulfMode");
+        auto result = module->ExecuteOnModule<void>(
+            setup, false, &world, controlledEntity);
+        if(result.Result != SCRIPT_RUN_RESULT::Success) {
+            LOG_WARNING("PlayerMicrobeControlSystem: failed to Run script "
+                        "applyEngulfMode");
+        }
     }
 }
 // ------------------------------------ //
