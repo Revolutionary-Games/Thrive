@@ -292,7 +292,7 @@ class Species{
         LOG_INFO("Registering bacteria to spawn: " + name);
         this.id = forWorld.GetSpawnSystem().addSpawnType(
             factory, DEFAULT_SPAWN_DENSITY, //spawnDensity should depend on population
-            MICROBE_SPAWN_RADIUS);
+            BACTERIA_SPAWN_RADIUS);
     }
 
     //sets up the spawn of the species

@@ -102,6 +102,11 @@ void setSunlightForBiome(CellStageWorld@ world){
         "g:" + getCurrentBiome().diffuseColors.g + "b:" + getCurrentBiome().diffuseColors.b);
     LOG_INFO("specular Colours For Biome r:" + getCurrentBiome().diffuseColors.r +
         "g:" + getCurrentBiome().specularColors.g + "b:" + getCurrentBiome().specularColors.b);
+
+    //diffused gasses percenatge
+   LOG_INFO("Diffused Oxygen For Biome " + getCurrentBiome().oxygenPercentage);
+   LOG_INFO("Diffused C02 For Biome " + getCurrentBiome().carbonDioxidePercentage);
+
 }
 
 //Setting the current biome to a random biome selected from the biome table.

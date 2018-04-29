@@ -32,7 +32,8 @@ public:
 
     Ogre::ColourValue specularColors;
     Ogre::ColourValue diffuseColors;
-
+    float oxygenPercentage;
+    float carbonDioxidePercentage;
     Biome();
 
     Biome(Json::Value value);

@@ -39,6 +39,18 @@ public:
         return m_playerMovementVector;
     }
 
+    bool
+        getPressedEngulf() const
+    {
+        return pressedEngulf;
+    }
+
+    void
+        setPressedEngulf(bool value)
+    {
+        pressedEngulf = value;
+    }
+
 private:
     //! \brief Handles the movement keys as they need to properly get hte
     //! blocked events \returns True if key matched a movement key (even if down
@@ -63,7 +75,7 @@ private:
     bool m_leftActive = false;
     bool m_rightActive = false;
 
-
+    bool pressedEngulf = false;
     //! Set to false when not in the microbe stage (or maybe editor as
     //! well could use this) to not send control events
     bool m_enabled = false;

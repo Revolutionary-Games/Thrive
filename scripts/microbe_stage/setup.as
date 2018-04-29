@@ -118,14 +118,20 @@ void applyCellMovementControl(GameWorld@ world, ObjectID entity, const Float3 &i
         world.GetScriptComponentHolder("MicrobeComponent").Find(entity));
 
     if(!microbeComponent.dead){
-
         microbeComponent.facingTargetPoint = lookPosition;
         microbeComponent.movementDirection = movement;
     }
 }
 
-void onReturnFromEditor(CellStageWorld@ world){
+// Activate Engulf Mode
+void applyEngulfMode(GameWorld@ world, ObjectID entity)
+{
+    CellStageWorld@ cellWorld = cast<CellStageWorld>(world);
+    MicrobeOperations::toggleEngulfMode(cellWorld, entity);
+}
 
+
+void onReturnFromEditor(CellStageWorld@ world){
     LOG_INFO("TODO: apply the changes and spawn a copy of the player species from "
         "before the change");
 

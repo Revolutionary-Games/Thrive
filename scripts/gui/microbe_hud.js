@@ -107,28 +107,28 @@ function updateMicrobeHUDBars(values){
         barHelper(values.compoundATP, values.ATPMax);
 
     document.getElementById("microbeHUDPlayerAmmonia").textContent =
-        values.compoundAmmonia;
+        values.compoundAmmonia.toFixed(1);
     document.getElementById("microbeHUDPlayerAmmoniaMax").textContent =
         values.AmmoniaMax;
     document.getElementById("microbeHUDPlayerAmmoniaBar").style.width =
         barHelper(values.compoundAmmonia, values.AmmoniaMax);
 
     document.getElementById("microbeHUDPlayerPhosphates").textContent =
-        values.compoundPhosphate;
+        values.compoundPhosphate.toFixed(1);
     document.getElementById("microbeHUDPlayerPhosphatesMax").textContent =
         values.PhosphateMax;
     document.getElementById("microbeHUDPlayerPhosphatesBar").style.width =
         barHelper(values.compoundPhosphate, values.PhosphateMax);
         
     document.getElementById("microbeHUDPlayerGlucose").textContent =
-        values.compoundGlucose;
+        values.compoundGlucose.toFixed(1);
     document.getElementById("microbeHUDPlayerGlucoseMax").textContent =
         values.GlucoseMax;
     document.getElementById("microbeHUDPlayerGlucoseBar").style.width =
         barHelper(values.compoundGlucose, values.GlucoseMax);
 
     document.getElementById("microbeHUDPlayerOxytoxy").textContent =
-        values.compoundOxytoxy;
+        values.compoundOxytoxy.toFixed(1);
     document.getElementById("microbeHUDPlayerOxytoxyMax").textContent =
         values.OxytoxyMax;
     document.getElementById("microbeHUDPlayerOxytoxyBar").style.width =
