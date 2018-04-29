@@ -13,6 +13,11 @@ const auto MIN_COLOR = 0.0f;
 const auto MAX_COLOR = 0.8f;
 const auto MIN_OPACITY = 0.3f;
 const auto MAX_OPACITY = 4.0f;
+//not const because we want to change these
+//current atmospheric oxygen percentage in modern times
+auto OXYGEN_PERCENTAGE = 0.21f;
+//co2 percentage (over expressed as .09% is the percenatge of all non-nitrogen-non-oxygen gasses in our atmosphere)
+auto CARBON_DIOXIDE_PERCENTAGE = 0.009f;
 
 const auto MUTATION_BACTERIA_TO_EUKARYOTE = 1;
 const auto MUTATION_CREATION_RATE = 0.1f;

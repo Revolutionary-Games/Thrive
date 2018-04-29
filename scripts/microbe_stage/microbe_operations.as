@@ -449,8 +449,8 @@ void flashMembraneColour(CellStageWorld@ world, ObjectID microbeEntity, uint dur
 
 // Applies the default membrane colour
 // TODO: this is probably broken (the c++ membrane system doesn't apply this)
+//yes its broken -_- -Untrustedlife
 void applyMembraneColour(CellStageWorld@ world, ObjectID microbeEntity){
-
     auto membraneComponent = world.GetComponent_MembraneComponent(microbeEntity);
     MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
         world.GetScriptComponentHolder("MicrobeComponent").Find(microbeEntity));
@@ -458,8 +458,8 @@ void applyMembraneColour(CellStageWorld@ world, ObjectID microbeEntity){
 }
 
 
-// Disables or enabled engulfmode for a microbe, allowing or
-// disallowed it to absorb other microbes
+// Disables or enables engulfmode for a microbe, allowing or
+// disallowing it to absorb other microbes
 void toggleEngulfMode(CellStageWorld@ world, ObjectID microbeEntity){
     MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
         world.GetScriptComponentHolder("MicrobeComponent").Find(microbeEntity));

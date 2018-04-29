@@ -325,20 +325,18 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
     void update(int logicTime){
         auto species = MicrobeOperations::getSpeciesComponent(world,
             microbeEntity);
-        if(flashDuration >= 0 && species !is null){
-
+        if(flashDuration > 0 && species !is null){
             flashDuration -= logicTime;
             // Use organelle.world to get the MicrobeSystem
             Float4 speciesColour = species.colour;
-
             Float4 colour;
 
             // How frequent it flashes, would be nice to update the
             // flash function to have this variable
             if(flashDuration % 600 < 300){
-
                 colour = flashColour;
-
+                LOG_INFO("Flashed Organelle");
+                LOG_INFO(""+flashDuration);
             } else {
                 colour = speciesColour;
             }
@@ -391,13 +389,12 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
 
     protected void updateColour(){
 
-        if(organelleEntity == NULL_OBJECT || microbeEntity == NULL_OBJECT)
+        if(organelleEntity == NULL_OBJECT)
             return;
 
         auto model = world.GetComponent_Model(organelleEntity);
 
         if(model !is null){
-
             // TODO: clean up this check
             if(organelle.mesh != "flagellum.mesh"){
 
@@ -815,8 +812,7 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
     void flashOrganelle(float duration, Float4 colour){
         if(flashDuration > 0)
             return;
-
-        // LOG_WARNING("flashOrganelle called on PlacedOrganelle but it doesn't work");
+        LOG_WARNING("flashOrganelle called on PlacedOrganelle but it doesn't work");
         flashColour = colour;
         flashDuration = duration;
     }
