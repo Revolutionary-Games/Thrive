@@ -6,6 +6,9 @@ This is the setup instructions for compiling Thrive.
 Important Note: If you run into any trouble with the setup scripts, please 
 bring them up on the development slack or open a github issue.
 
+This tutorial is also in video form for: [Windows](https://www.youtube.com/watch?v=eiQsxKCpOhY) 
+    and [Linux (Fedora and Ubuntu)](https://www.youtube.com/watch?v=_ZWBTlIo9W4)
+
 If you are a team member you can ask help on the forums:
     [Private Developer Forums](http://forum.revolutionarygamesstudio.com/)
 
