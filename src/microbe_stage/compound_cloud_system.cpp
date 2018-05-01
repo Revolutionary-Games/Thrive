@@ -21,7 +21,7 @@
 
 using namespace thrive;
 
-constexpr auto YOffset = -1;
+constexpr auto YOffset = 0;
 constexpr auto OGRE_CLOUD_TEXTURE_BYTES_PER_ELEMENT = 4;
 
 static std::atomic<int> CloudTextureNumber = {0};
@@ -490,8 +490,8 @@ void
     // cloud.m_position.X = cloud.m_position.X - width / 2;
 
     // set the position properly
-    /* cloud.m_sceneNode->setPosition(
-         cloud.m_position.X, YOffset, cloud.m_position.Z);*/
+    cloud.m_sceneNode->setPosition(
+        cloud.m_position.X, YOffset, cloud.m_position.Z);
 
     // Stolen from the old background rotation
     cloud.m_sceneNode->setOrientation(
