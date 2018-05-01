@@ -162,8 +162,6 @@ class MicrobeComponent : ScriptComponent{
 
     string speciesName;
     // TODO: initialize
-    Float4 speciesColour;
-
     uint hitpoints;
     uint maxHitpoints = 0;
     bool dead = false;
