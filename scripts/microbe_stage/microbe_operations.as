@@ -451,10 +451,11 @@ void flashMembraneColour(CellStageWorld@ world, ObjectID microbeEntity, uint dur
 // TODO: this is probably broken (the c++ membrane system doesn't apply this)
 //yes its broken -_- -Untrustedlife
 void applyMembraneColour(CellStageWorld@ world, ObjectID microbeEntity){
-    auto membraneComponent = world.GetComponent_MembraneComponent(microbeEntity);
     MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
         world.GetScriptComponentHolder("MicrobeComponent").Find(microbeEntity));
-    membraneComponent.setColour(microbeComponent.speciesColour);
+    auto speciesColour =  world.GetComponent_SpeciesComponent(findSpeciesEntityByName(world, microbeComponent.speciesName)).colour;
+    auto membraneComponent = world.GetComponent_MembraneComponent(microbeEntity);
+    membraneComponent.setColour(speciesColour);
 }
 
 
