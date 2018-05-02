@@ -497,10 +497,12 @@ void
     // Ogre::Quaternion(0, sqrt(0.5), 1, sqrt(0.5)) * 4
 
     cloud.m_sceneNode->setOrientation(
-        (Ogre::Quaternion(Ogre::Degree(45), Ogre::Vector3::UNIT_X) *
+        (Ogre::Quaternion(Ogre::Degree(-315), Ogre::Vector3::UNIT_X) *
             Ogre::Quaternion(Ogre::Degree(90), Ogre::Vector3::UNIT_Z) *
             Ogre::Quaternion(Ogre::Degree(90), Ogre::Vector3::UNIT_Y)) *
-        2);
+        Ogre::Quaternion(sqrt(.25) * 9, 0, 0, 0));
+    // why the heck does multiplying this by exactly: 202.5  (squrt of .5 is 45
+    // degrees) degrees result in working clouds?
 
 
     // Set the size of each grid tile and its position.
