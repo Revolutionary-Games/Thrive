@@ -500,7 +500,7 @@ void
         (Ogre::Quaternion(Ogre::Degree(45), Ogre::Vector3::UNIT_X) *
             Ogre::Quaternion(Ogre::Degree(90), Ogre::Vector3::UNIT_Z) *
             Ogre::Quaternion(Ogre::Degree(90), Ogre::Vector3::UNIT_Y)) *
-        -1);
+        2);
 
 
     // Set the size of each grid tile and its position.
