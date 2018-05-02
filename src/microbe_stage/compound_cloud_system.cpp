@@ -489,20 +489,18 @@ void
     // shift cloud to the left by half a width so its positioned correctly
     // cloud.m_position.X = cloud.m_position.X - width / 2;
 
+    const auto halfWidth = width * gridSize / 2;
+    const auto halfHeight = height * gridSize / 2;
     // set the position properly
     cloud.m_sceneNode->setPosition(
         cloud.m_position.X, YOffset, cloud.m_position.Z);
 
     // Stolen from the old background rotation
     // Ogre::Quaternion(0, sqrt(0.5), 1, sqrt(0.5)) * 4
-
+    // 0,45,90,45
     cloud.m_sceneNode->setOrientation(
-        (Ogre::Quaternion(Ogre::Degree(-315), Ogre::Vector3::UNIT_X) *
-            Ogre::Quaternion(Ogre::Degree(90), Ogre::Vector3::UNIT_Z) *
-            Ogre::Quaternion(Ogre::Degree(90), Ogre::Vector3::UNIT_Y)) *
-        Ogre::Quaternion(sqrt(.25) * 9, 0, 0, 0));
-    // why the heck does multiplying this by exactly: 202.5  (squrt of .5 is 45
-    // degrees) degrees result in working clouds?
+        Ogre::Quaternion(0, sqrt(.5), 1, sqrt(.5)));
+
 
 
     // Set the size of each grid tile and its position.
