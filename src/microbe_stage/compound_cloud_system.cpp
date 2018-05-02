@@ -21,7 +21,7 @@
 
 using namespace thrive;
 
-constexpr auto YOffset = 0;
+constexpr auto YOffset = -1;
 constexpr auto OGRE_CLOUD_TEXTURE_BYTES_PER_ELEMENT = 4;
 
 static std::atomic<int> CloudTextureNumber = {0};
@@ -494,9 +494,14 @@ void
         cloud.m_position.X, YOffset, cloud.m_position.Z);
 
     // Stolen from the old background rotation
+    // Ogre::Quaternion(0, sqrt(0.5), 1, sqrt(0.5)) * 4
+
     cloud.m_sceneNode->setOrientation(
-        Ogre::Quaternion(Ogre::Degree(90), Ogre::Vector3::UNIT_Z) *
-        Ogre::Quaternion(Ogre::Degree(45), Ogre::Vector3::UNIT_Y));
+        (Ogre::Quaternion(Ogre::Degree(45), Ogre::Vector3::UNIT_X) *
+            Ogre::Quaternion(Ogre::Degree(90), Ogre::Vector3::UNIT_Z) *
+            Ogre::Quaternion(Ogre::Degree(90), Ogre::Vector3::UNIT_Y)) *
+        -1);
+
 
     // Set the size of each grid tile and its position.
     cloud.width = width;
