@@ -31,6 +31,7 @@ function runMicrobeHUDSetup(){
         let glucose = randomBetween(10, 50);
         let oxytoxy = randomBetween(0, 10);
         let phosphate = randomBetween(0, 50);
+        let hydrogenSulfide = randomBetween(0, 50);
         updateMicrobeHUDBars({
             hitpoints: randomBetween(1, hp),
             maxHitpoints: hp,
@@ -44,6 +45,8 @@ function runMicrobeHUDSetup(){
             OxytoxyMax: oxytoxy,
             compoundPhosphate: randomBetween(0, phosphate),
             PhosphateMax: phosphate,
+            compoundHydrogenSulfide: randomBetween(0, hydrogenSulfide),
+            HydrogenSulfideMax: hydrogenSulfide,
         });
 
         onReadyToEnterEditor();
@@ -133,4 +136,12 @@ function updateMicrobeHUDBars(values){
         values.OxytoxyMax;
     document.getElementById("microbeHUDPlayerOxytoxyBar").style.width =
         barHelper(values.compoundOxytoxy, values.OxytoxyMax);
+        
+    document.getElementById("microbeHUDPlayerHydrogenSulfide").textContent =
+        values.compoundHydrogenSulfide.toFixed(1);
+    document.getElementById("microbeHUDPlayerHydrogenSulfideMax").textContent =
+        values.HydrogenSulfideMax;
+    document.getElementById("microbeHUDPlayerHydrogenSulfideBar").style.width =
+        barHelper(values.compoundHydrogenSulfide, values.HydrogenSulfideMax);
+        
 }
