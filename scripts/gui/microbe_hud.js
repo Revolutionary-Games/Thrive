@@ -23,6 +23,13 @@ function runMicrobeHUDSetup(){
             // Apply the new values
             updateMicrobeHUDBars(vars);
         });
+
+        // Event for entering the editor
+        Leviathan.OnGeneric("MicrobeEditorEntered", (event, vars) => {
+
+            doEnterMicrobeEditor();
+        });
+        
     } else {
 
         // Update random values to make it prettier to look at
