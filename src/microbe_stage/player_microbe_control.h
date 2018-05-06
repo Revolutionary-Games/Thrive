@@ -9,6 +9,8 @@ class ScriptComponentHolder;
 
 namespace thrive {
 
+class CellStageWorld;
+
 //! Detects player input in the cell stage
 class PlayerMicrobeControl : public Leviathan::InputReceiver {
 public:
@@ -39,6 +41,12 @@ public:
         return m_playerMovementVector;
     }
 
+    inline bool
+        getSpamClouds() const
+    {
+        return cheatCloudsDown;
+    }
+
     bool
         getPressedEngulf() const
     {
@@ -67,6 +75,8 @@ private:
     Leviathan::GKey m_left;
     Leviathan::GKey m_right;
 
+    Leviathan::GKey m_spawnGlucoseCheat;
+
     std::vector<Leviathan::GKey> m_zoomIn;
     std::vector<Leviathan::GKey> m_zoomOut;
 
@@ -76,6 +86,10 @@ private:
     bool m_rightActive = false;
 
     bool pressedEngulf = false;
+
+    //! True when cheat clouds should be spawned all the time
+    bool cheatCloudsDown = false;
+
     //! Set to false when not in the microbe stage (or maybe editor as
     //! well could use this) to not send control events
     bool m_enabled = false;
@@ -89,8 +103,9 @@ class PlayerMicrobeControlSystem {
 public:
     ~PlayerMicrobeControlSystem();
 
+    //! \version This now takes CellStageWorld as this does cheat cloud spawning
     void
-        Run(Leviathan::GameWorld& world);
+        Run(CellStageWorld& world);
 
     // Helpers moved from the lua code to here
     //! Computes the point the mouse cursor is at

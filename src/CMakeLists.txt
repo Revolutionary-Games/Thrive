@@ -59,6 +59,8 @@ set(GROUP_MICROBE_STAGE
   "microbe_stage/species_name_controller.h"
   "microbe_stage/player_microbe_control.h"
   "microbe_stage/player_microbe_control.cpp"
+  "microbe_stage/player_hover_info.h"
+  "microbe_stage/player_hover_info.cpp"
   )
 
 set_source_files_properties("microbe_stage/generate_cell_stage_world.rb"
