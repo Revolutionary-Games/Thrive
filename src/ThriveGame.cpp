@@ -804,6 +804,7 @@ void
     keyconfigobj->AddKeyIfMissing(guard, "MoveLeft", {"A"});
     keyconfigobj->AddKeyIfMissing(guard, "MoveRight", {"D"});
     keyconfigobj->AddKeyIfMissing(guard, "ReproduceCheat", {"P"});
+    keyconfigobj->AddKeyIfMissing(guard, "SpawnGlucoseCheat", {"O"});
     keyconfigobj->AddKeyIfMissing(guard, "EngulfMode", {"G"});
     keyconfigobj->AddKeyIfMissing(guard, "ZoomIn", {"+", "Keypad +"});
     keyconfigobj->AddKeyIfMissing(guard, "ZoomOut", {"-", "Keypad -"});
