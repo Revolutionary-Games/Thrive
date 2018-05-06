@@ -245,6 +245,39 @@ int
     LEVIATHAN_ASSERT(false, "Shouldn't get here");
     return -1;
 }
+void
+    CompoundCloudComponent::getCompoundsAt(size_t x,
+        size_t y,
+        std::vector<std::tuple<CompoundId, float>>& result)
+{
+    if(x >= width || y >= height)
+        throw std::runtime_error(
+            "CompoundCloudComponent coordinates out of range");
+
+    if(m_compoundId1 != NULL_COMPOUND) {
+        const auto amount = m_density1[x][y];
+        if(amount > 0)
+            result.push_back(std::make_tuple(m_compoundId1, amount));
+    }
+
+    if(m_compoundId2 != NULL_COMPOUND) {
+        const auto amount = m_density2[x][y];
+        if(amount > 0)
+            result.push_back(std::make_tuple(m_compoundId2, amount));
+    }
+
+    if(m_compoundId3 != NULL_COMPOUND) {
+        const auto amount = m_density3[x][y];
+        if(amount > 0)
+            result.push_back(std::make_tuple(m_compoundId3, amount));
+    }
+
+    if(m_compoundId4 != NULL_COMPOUND) {
+        const auto amount = m_density4[x][y];
+        if(amount > 0)
+            result.push_back(std::make_tuple(m_compoundId4, amount));
+    }
+}
 
 ////////////////////////////////////////////////////////////////////////////////
 // CompoundCloudSystem
@@ -379,6 +412,44 @@ float
         float rate)
 {
     return 0;
+}
+
+std::vector<std::tuple<CompoundId, float>>
+    CompoundCloudSystem::getAllAvailableAt(float x, float z)
+{
+    std::vector<std::tuple<CompoundId, float>> result;
+
+    // TODO: store these
+    const auto halfWidth = width * gridSize / 2;
+    const auto halfHeight = height * gridSize / 2;
+
+    // Find the target cloud //
+    for(auto& cloud : m_managedClouds) {
+
+        const auto& pos = cloud.second->m_position;
+
+        const float relativeX = (x - (pos.X - halfWidth)) / gridSize;
+        const float relativeZ = (z - (pos.Z - halfHeight)) / gridSize;
+
+        if(relativeX >= 0 && relativeX <= width && relativeZ >= 0 &&
+            relativeZ <= height) {
+            // Within cloud
+
+            // LOG_INFO("Adding compound: " + std::to_string(compound) +
+            //          " (amount: " + std::to_string(density) + ") to cloud ("
+            //          + std::to_string(cloud.first) + ") at pos: " +
+            //          std::to_string(x) + ", " + std::to_string(z) +
+            //          ", relative pos: " + std::to_string(relativeX) + ", " +
+            //          std::to_string(relativeZ));
+
+            // We don't need to check for collisions as the clouds
+            // don't overlap and a single compound type is only in one
+            // cloud
+            cloud.second->getCompoundsAt(relativeX, relativeZ, result);
+        }
+    }
+
+    return result;
 }
 
 // ------------------------------------ //

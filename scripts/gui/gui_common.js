@@ -75,3 +75,24 @@ function stopVideo(){
 function barHelper(value, max){
     return (value / max) * 100 + "%";
 }
+
+//! Helper for clearing html node children
+function clearChildren(node){
+
+    while(node.hasChildNodes()) {
+        node.removeChild(node.lastChild);
+    }
+}
+
+//! Helper for using native and leviathan js types keys
+function getKeys(obj){
+
+    if(obj.keys){
+
+        return obj.keys();
+
+    } else {
+
+        return Object.keys(obj);
+    }
+}
