@@ -111,7 +111,7 @@ void setupPlayer(CellStageWorld@ world){
 
 // TODO: move this somewhere
 // This is called from c++ system PlayerMicrobeControlSystem
-void applyCellMovementControl(GameWorld@ world, ObjectID entity, const Float3 &in movement,
+void applyCellMovementControl(CellStageWorld@ world, ObjectID entity, const Float3 &in movement,
     const Float3 &in lookPosition)
 {
     MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
