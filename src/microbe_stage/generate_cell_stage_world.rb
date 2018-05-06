@@ -25,6 +25,7 @@ generator.addInclude "microbe_stage/agent_cloud_system.h"
 generator.addInclude "microbe_stage/compound_absorber_system.h"
 generator.addInclude "microbe_stage/microbe_camera_system.h"
 generator.addInclude "microbe_stage/player_microbe_control.h"
+generator.addInclude "microbe_stage/player_hover_info.h"
 
 generator.addInclude "general/timed_life_system.h"
 
@@ -121,7 +122,9 @@ cellWorld = GameWorldClass.new(
     EntitySystem.new("MicrobeCameraSystem", [],
                      runtick: {group: 1000, parameters: []}),
     EntitySystem.new("PlayerMicrobeControlSystem", [],
-                     runtick: {group: 5, parameters: []}),    
+                     runtick: {group: 5, parameters: []}),
+    EntitySystem.new("PlayerHoverInfoSystem", [],
+                     runtick: {group: 900, parameters: []}),
 
     EntitySystem.new("ProcessSystem", ["CompoundBagComponent", "ProcessorComponent"],
                      runtick: {group: 10, parameters: []}),

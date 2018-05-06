@@ -76,6 +76,12 @@ public:
     int
         amountAvailable(CompoundId compound, size_t x, size_t y, float rate);
 
+    //! Used by CompoundCloudSystem::getAllAvailableAt
+    void
+        getCompoundsAt(size_t x,
+            size_t y,
+            std::vector<std::tuple<CompoundId, float>>& result);
+
     CompoundId
         getCompoundId1() const
     {
@@ -233,6 +239,10 @@ public:
     //! \param rate should be less than one.
     float
         amountAvailable(CompoundId compound, float x, float z, float rate);
+
+    //! \brief Returns the total amount of all compounds at position
+    std::vector<std::tuple<CompoundId, float>>
+        getAllAvailableAt(float x, float z);
 
     /**
      * @brief Shuts the system down releasing all current compound cloud
