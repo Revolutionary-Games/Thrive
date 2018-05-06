@@ -15,13 +15,13 @@ using namespace thrive;
 // ------------------------------------ //
 PlayerMicrobeControl::PlayerMicrobeControl(KeyConfiguration& keys) :
     m_reproduceCheat(keys.ResolveControlNameToFirstKey("ReproduceCheat")),
+    m_engulfMode(keys.ResolveControlNameToFirstKey("EngulfMode")),
     m_forward(keys.ResolveControlNameToFirstKey("MoveForward")),
     m_backwards(keys.ResolveControlNameToFirstKey("MoveBackwards")),
     m_left(keys.ResolveControlNameToFirstKey("MoveLeft")),
     m_right(keys.ResolveControlNameToFirstKey("MoveRight")),
     m_zoomIn(keys.ResolveControlNameToKeyVector("ZoomIn")),
-    m_zoomOut(keys.ResolveControlNameToKeyVector("ZoomOut")),
-    m_engulfMode(keys.ResolveControlNameToFirstKey("EngulfMode"))
+    m_zoomOut(keys.ResolveControlNameToKeyVector("ZoomOut"))
 {
 }
 // ------------------------------------ //
