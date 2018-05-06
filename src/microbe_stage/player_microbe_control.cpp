@@ -2,6 +2,8 @@
 
 #include "ThriveGame.h"
 #include "engine/player_data.h"
+#include "generated/cell_stage_world.h"
+#include "microbe_stage/simulation_parameters.h"
 
 #include <Addons/GameModule.h>
 #include <Application/KeyConfiguration.h>
@@ -15,13 +17,14 @@ using namespace thrive;
 // ------------------------------------ //
 PlayerMicrobeControl::PlayerMicrobeControl(KeyConfiguration& keys) :
     m_reproduceCheat(keys.ResolveControlNameToFirstKey("ReproduceCheat")),
+    m_engulfMode(keys.ResolveControlNameToFirstKey("EngulfMode")),
     m_forward(keys.ResolveControlNameToFirstKey("MoveForward")),
     m_backwards(keys.ResolveControlNameToFirstKey("MoveBackwards")),
     m_left(keys.ResolveControlNameToFirstKey("MoveLeft")),
     m_right(keys.ResolveControlNameToFirstKey("MoveRight")),
+    m_spawnGlucoseCheat(keys.ResolveControlNameToFirstKey("SpawnGlucoseCheat")),
     m_zoomIn(keys.ResolveControlNameToKeyVector("ZoomIn")),
-    m_zoomOut(keys.ResolveControlNameToKeyVector("ZoomOut")),
-    m_engulfMode(keys.ResolveControlNameToFirstKey("EngulfMode"))
+    m_zoomOut(keys.ResolveControlNameToKeyVector("ZoomOut"))
 {
 }
 // ------------------------------------ //
@@ -32,6 +35,13 @@ bool
 
     if(handleMovementKeys(key, modifiers, active))
         return active;
+
+    if(!active && cheatCloudsDown &&
+        m_spawnGlucoseCheat.Match(key, modifiers)) {
+
+        cheatCloudsDown = false;
+        return true;
+    }
 
     if(!active)
         return false;
@@ -45,10 +55,16 @@ bool
         return true;
     } else if(Leviathan::MatchesAnyKeyInSet(m_zoomIn, key, modifiers)) {
         ThriveGame::Get()->onZoomChange(-1);
+        return true;
     } else if(Leviathan::MatchesAnyKeyInSet(m_zoomOut, key, modifiers)) {
         ThriveGame::Get()->onZoomChange(1);
+        return true;
     } else if(m_engulfMode.Match(key, modifiers)) {
         pressedEngulf = true;
+        return true;
+    } else if(m_spawnGlucoseCheat.Match(key, modifiers)) {
+
+        cheatCloudsDown = true;
         return true;
     }
 
@@ -63,6 +79,11 @@ void
         bool down)
 {
     handleMovementKeys(key, modifiers, false);
+
+    if(!down && cheatCloudsDown && m_spawnGlucoseCheat.Match(key, modifiers)) {
+
+        cheatCloudsDown = false;
+    }
 }
 
 bool
@@ -193,7 +214,7 @@ PlayerMicrobeControlSystem::~PlayerMicrobeControlSystem()
 }
 
 void
-    PlayerMicrobeControlSystem::Run(Leviathan::GameWorld& world)
+    PlayerMicrobeControlSystem::Run(CellStageWorld& world)
 {
     ObjectID controlledEntity =
         ThriveGame::Get()->playerData().activeCreature();
@@ -239,15 +260,27 @@ void
 
     // Activate engulf mode
     if(thrive->getPlayerInput()->getPressedEngulf()) {
+
         LOG_INFO("Engulf mode pressed");
+
         thrive->getPlayerInput()->setPressedEngulf(false);
+
         ScriptRunningSetup setup("applyEngulfMode");
         auto result = module->ExecuteOnModule<void>(
             setup, false, &world, controlledEntity);
+
         if(result.Result != SCRIPT_RUN_RESULT::Success) {
             LOG_WARNING("PlayerMicrobeControlSystem: failed to Run script "
                         "applyEngulfMode");
         }
+    }
+
+    if(thrive->getPlayerInput()->getSpamClouds()) {
+
+        LOG_INFO("Spawning cheat cloud");
+        world.GetCompoundCloudSystem().addCloud(
+            SimulationParameters::compoundRegistry.getTypeId("glucose"), 10,
+            lookPoint.X, lookPoint.Z);
     }
 }
 // ------------------------------------ //

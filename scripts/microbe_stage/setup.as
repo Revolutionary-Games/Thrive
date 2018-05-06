@@ -94,9 +94,9 @@ void setupPlayer(CellStageWorld@ world){
 
     GetThriveGame().playerData().setActiveCreature(microbe);
 
-    // Testing spawning extra cell
-    MicrobeOperations::spawnMicrobe(world, Float3(10, 0, 0), "Default",
-        false, "extra player");
+    // // Testing spawning extra cell
+    // MicrobeOperations::spawnMicrobe(world, Float3(10, 0, 0), "Default",
+    //     false, "extra player");
 
     // // Test model spawn
     // auto testModel = world.CreateEntity();
@@ -111,7 +111,7 @@ void setupPlayer(CellStageWorld@ world){
 
 // TODO: move this somewhere
 // This is called from c++ system PlayerMicrobeControlSystem
-void applyCellMovementControl(GameWorld@ world, ObjectID entity, const Float3 &in movement,
+void applyCellMovementControl(CellStageWorld@ world, ObjectID entity, const Float3 &in movement,
     const Float3 &in lookPosition)
 {
     MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(

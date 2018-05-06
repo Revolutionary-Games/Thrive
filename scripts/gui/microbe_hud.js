@@ -23,6 +23,20 @@ function runMicrobeHUDSetup(){
             // Apply the new values
             updateMicrobeHUDBars(vars);
         });
+
+        // Event for receiving data about stuff we are hovering over
+        Leviathan.OnGeneric("PlayerMouseHover", (event, vars) => {
+
+            // Apply the new values
+            updateHoverInfo(vars);
+        });
+
+        // Event for entering the editor
+        Leviathan.OnGeneric("MicrobeEditorEntered", (event, vars) => {
+
+            doEnterMicrobeEditor();
+        });
+        
     } else {
 
         // Update random values to make it prettier to look at
@@ -47,6 +61,12 @@ function runMicrobeHUDSetup(){
             PhosphateMax: phosphate,
             compoundHydrogenSulfide: randomBetween(0, hydrogenSulfide),
             HydrogenSulfideMax: hydrogenSulfide,
+        });
+
+        // Put some hover stuff
+        updateHoverInfo({
+            mousePos: "[0, 0, 0]",
+            ammonia0: "Ammonia: 12.2",
         });
 
         onReadyToEnterEditor();
@@ -85,6 +105,39 @@ function onEditorButtonClicked(event){
     // Disable
     document.getElementById("microbeToEditorButton").classList.add("DisabledButton");
     readyToEdit = false;
+}
+
+//! Updates the mouse hover box with stuff
+function updateHoverInfo(vars){
+
+    let panel = document.getElementById("mouseHoverPanel");
+    clearChildren(panel);
+
+    panel.appendChild(document.createTextNode("Stuff at " + vars.mousePos + ":"));
+    
+    if(vars.noCompounds){
+
+        panel.appendChild(document.createElement("br"));
+        panel.appendChild(document.createTextNode("Nothing to eat here"));
+        
+    } else {
+
+        getKeys(vars).forEach(function(key){
+
+            // Skip things that are handled elsewhere
+            if(key == "mousePos")
+                return;
+
+            // Line breaks between elements
+            panel.appendChild(document.createElement("br"));
+
+            // Debug print version
+            // panel.appendChild(document.createTextNode(key + ": " + vars[key]));
+            panel.appendChild(document.createTextNode(vars[key]));
+        });
+    }
+
+    // Last line break needs to be skipped to avoid an excess empty line
 }
 
 //! Updates the GUI bars
