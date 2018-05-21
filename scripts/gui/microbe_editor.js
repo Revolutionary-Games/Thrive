@@ -19,8 +19,13 @@ function doEnterMicrobeEditor(){
     if(!microbeEditorSetup){
 
         document.getElementById("microbeEditorFinishButton").addEventListener(
-        "click", onFinishButtonClicked, true);
-        
+            "click", onFinishButtonClicked, true);
+
+        if(isInEngine()){
+
+            // Event for restoring the microbe GUI
+            Leviathan.OnGeneric("MicrobeEditorExited", doExitMicrobeEditor);
+        }
 
         microbeEditorSetup = true;
     }
@@ -51,6 +56,7 @@ function onFinishButtonClicked(event){
 
         // Fire an event to tell the game to back to the stage. It
         // will notify us when it is done
+        Thrive.finishEditingClicked();
         
     } else {
 

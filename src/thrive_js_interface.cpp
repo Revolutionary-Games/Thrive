@@ -80,6 +80,24 @@ bool
 
         Owner->SendCustomExtensionMessage(message);
         return true;
+
+    } else if(name == "editorButtonClicked") {
+
+        auto message = CefProcessMessage::Create("Custom");
+        auto args = message->GetArgumentList();
+        args->SetString(0, "editorButtonClicked");
+
+        Owner->SendCustomExtensionMessage(message);
+        return true;
+
+    } else if(name == "finishEditingClicked") {
+
+        auto message = CefProcessMessage::Create("Custom");
+        auto args = message->GetArgumentList();
+        args->SetString(0, "finishEditingClicked");
+
+        Owner->SendCustomExtensionMessage(message);
+        return true;
     }
 
     // This might be a bit expensive...
@@ -109,6 +127,16 @@ bool
 
         LOG_INFO("Got start game message from GUI process");
         ThriveGame::Get()->startNewGame();
+        return true;
+
+    } else if(customType == "editorButtonClicked") {
+
+        ThriveGame::Get()->editorButtonClicked();
+        return true;
+
+    } else if(customType == "finishEditingClicked") {
+
+        ThriveGame::Get()->finishEditingClicked();
         return true;
     }
 

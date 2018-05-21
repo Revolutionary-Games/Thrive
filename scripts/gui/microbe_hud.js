@@ -32,10 +32,10 @@ function runMicrobeHUDSetup(){
         });
 
         // Event for entering the editor
-        Leviathan.OnGeneric("MicrobeEditorEntered", (event, vars) => {
+        Leviathan.OnGeneric("MicrobeEditorEntered", doEnterMicrobeEditor);
 
-            doEnterMicrobeEditor();
-        });
+        // Event that enables the editor button
+        Leviathan.OnGeneric("PlayerReadyToEnterEditor", onReadyToEnterEditor);
         
     } else {
 
@@ -95,6 +95,7 @@ function onEditorButtonClicked(event){
 
         // Fire an event to tell the game to swap to the editor. It
         // will notify us when it is done
+        Thrive.editorButtonClicked();
         
     } else {
 
