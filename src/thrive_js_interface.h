@@ -1,5 +1,8 @@
 // Thrive Game
 // Copyright (C) 2013-2018  Revolutionary Games
+//! \file This has all 3 different kinds of JS related binding objects: the
+//! async callbacks, the native implemented function interface and the custom
+//! process message handler
 #pragma once
 // ------------------------------------ //
 #include <GUI/GuiCEFApplication.h>
@@ -41,6 +44,9 @@ public:
     ~ThriveJSHandler();
 
     //! \brief Handles calls from javascript
+    //! \todo Many of these functions just send a message to the main process so
+    //! maybe they should be implemented as a ThriveJSInterface::ProcessQuery
+    //! instead (like the version retrieve)
     bool
         Execute(const CefString& name,
             CefRefPtr<CefV8Value> object,
