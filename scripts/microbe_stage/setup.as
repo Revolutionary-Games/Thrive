@@ -124,10 +124,8 @@ void applyCellMovementControl(CellStageWorld@ world, ObjectID entity, const Floa
 }
 
 // Activate Engulf Mode
-void applyEngulfMode(GameWorld@ world, ObjectID entity)
-{
-    CellStageWorld@ cellWorld = cast<CellStageWorld>(world);
-    MicrobeOperations::toggleEngulfMode(cellWorld, entity);
+void applyEngulfMode(CellStageWorld@ world, ObjectID entity){
+    MicrobeOperations::toggleEngulfMode(world, entity);
 }
 
 
