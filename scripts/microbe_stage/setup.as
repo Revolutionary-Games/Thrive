@@ -177,6 +177,7 @@ void cellOnCellActualContact(GameWorld@ world, ObjectID firstEntity, ObjectID se
         if (firstMicrobeComponent.engulfMode)
         {
         firstMicrobeComponent.isCurrentlyEngulfing=true;
+		//where do we set this to false?
         secondMicrobeComponent.isBeingEngulfed=true;
         secondMicrobeComponent.hostileEngulfer = secondEntity;
         }
