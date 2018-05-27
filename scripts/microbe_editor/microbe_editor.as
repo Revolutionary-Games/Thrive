@@ -10,8 +10,25 @@
 
 class MicrobeEditor{
     MicrobeEditor(MicrobeEditorHudSystem@ hud){
-        organelleCount = 0;
+
         @hudSystem = hud;
+    }
+
+    // This is called each time the editor is entered so this needs to properly reset state
+    //TODO.find new equivalents of all these classes
+    void init(){
+        /*auto ent = Entity(gameState.wrapper)
+        auto sceneNode = OgreSceneNodeComponent()
+        sceneNode.planeTexture = "EditorGridMaterial"
+        ent.addComponent(sceneNode)
+        sceneNode.transform.scale = Vector3(HEX_SIZE, HEX_SIZE, 1)
+        sceneNode.transform.touch()
+
+        gridSceneNode = sceneNode*/
+
+        LOG_INFO("TODO: setup background in editor.init");
+
+        organelleCount = 0;
         gridVisible = true;
         //Perhaps this should be turned into a constant?
         mutationPoints = 100;
@@ -26,19 +43,7 @@ class MicrobeEditor{
         //                       ["remove"] = MicrobeEditor::removeOrganelle()};
         actionIndex = 0;
         organelleRot = 0;
-        symmetry = 0;
-    }
-
-    //TODO.find new equivalents of all these classes
-    void init(){
-        /*auto ent = Entity(gameState.wrapper)
-        auto sceneNode = OgreSceneNodeComponent()
-        sceneNode.planeTexture = "EditorGridMaterial"
-        ent.addComponent(sceneNode)
-        sceneNode.transform.scale = Vector3(HEX_SIZE, HEX_SIZE, 1)
-        sceneNode.transform.touch()
-
-        gridSceneNode = sceneNode*/
+        symmetry = 0;        
     }
 
     //TODO: make certain all this works
