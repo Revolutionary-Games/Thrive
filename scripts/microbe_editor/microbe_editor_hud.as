@@ -9,7 +9,6 @@ class MicrobeEditorHudSystem : ScriptSystem{
         assert(this.world !is null, "MicrobeEditorHudSystem didn't get proper world");
 
         @editor = MicrobeEditor(this);
-        editor.init();
 
     //     // This seems really cluttered, there must be a better way.
     //     for(i=1, 42){
@@ -100,6 +99,13 @@ class MicrobeEditorHudSystem : ScriptSystem{
         //         button.enable();
         //     }
         // }
+    }
+
+    // Called when the editor is entered. Performs initialization again to make sure the
+    // editor works the same on each time it is entered
+    void setupHUDAfterEditorEntry(){
+
+        editor.init();
     }
 
     void Release(){
