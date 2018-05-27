@@ -471,10 +471,12 @@ void toggleEngulfMode(CellStageWorld@ world, ObjectID microbeEntity){
             ENGULFING_MOVEMENT_DIVISION;
         // soundSourceComponent.stopSound("microbe-engulfment"); // Possibly comment out.
 		auto rigidBodyComponent = world.GetComponent_Physics(microbeEntity);
+		//TODO: Make rigid body collidable
     } else {
         microbeComponent.movementFactor = microbeComponent.movementFactor /
             ENGULFING_MOVEMENT_DIVISION;
 		auto rigidBodyComponent = world.GetComponent_Physics(microbeEntity);
+		//TODO: Make rigid body NOT collidable
     }
 
     microbeComponent.engulfMode = !microbeComponent.engulfMode;
