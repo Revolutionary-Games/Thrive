@@ -470,9 +470,11 @@ void toggleEngulfMode(CellStageWorld@ world, ObjectID microbeEntity){
         microbeComponent.movementFactor = microbeComponent.movementFactor *
             ENGULFING_MOVEMENT_DIVISION;
         // soundSourceComponent.stopSound("microbe-engulfment"); // Possibly comment out.
+		auto rigidBodyComponent = world.GetComponent_Physics(microbeEntity);
     } else {
         microbeComponent.movementFactor = microbeComponent.movementFactor /
             ENGULFING_MOVEMENT_DIVISION;
+		auto rigidBodyComponent = world.GetComponent_Physics(microbeEntity);
     }
 
     microbeComponent.engulfMode = !microbeComponent.engulfMode;
@@ -1072,8 +1074,6 @@ void removeEngulfedEffect(CellStageWorld@ world, ObjectID microbeEntity){
         LOG_WRITE("TODO: redo this thing: "
             "hostileRigidBodyComponent.reenableAllCollisions();");
     }
-    // Causes crash because sound was already stopped.
-    //microbeComponent.hostileEngulfer.soundSource.stopSound("microbe-engulfment")
 }
 
 // Sets the colour of the microbe's membrane.
