@@ -50,7 +50,7 @@ string randomBacteriaName(){
 // SpeciesSystem instance)
 ////////////////////////////////////////////////////////////////////////////////
 //! \todo This should be moved into the SpeciesComponent class to simplify things
-//now what is the best way to seperate bacteria from this...
+
 class Species{
 
     //! Constructor for automatically creating a random species
@@ -136,7 +136,7 @@ class Species{
             DEFAULT_INITIAL_COMPOUNDS);
     }
 
-    //delete a species
+    // Delete a species
     void extinguish(){
         if(forWorld !is null){
             LOG_INFO("Species " + name + " has been extinguished");
@@ -156,7 +156,7 @@ class Species{
 
         LOG_INFO("New member of species spawned: " + this.name);
         return MicrobeOperations::spawnMicrobe(world, pos, this.name,
-            // ai controlled
+            // Ai controlled
             true,
             // No individual name (could be good for debugging)
             "");
@@ -166,11 +166,11 @@ class Species{
         LOG_INFO("New colony of species spawned: " + this.name);
         Float3 curSpawn = Float3(GetEngine().GetRandom().GetNumber(1,7),0,GetEngine().
             GetRandom().GetNumber(1,7));
-        //two kinds of colonies are supported, line colonies and clump colonies
+        // Three kinds of colonies are supported, line colonies and clump coloniesand Networks
 
         if (GetEngine().GetRandom().GetNumber(0,4) < 2)
         {
-            //clump
+            // Clump
             for(int i = 0; i < GetEngine().GetRandom().GetNumber(1,5); ++i){
                 //dont spawn them on top of each other because it
                 //causes them to bounce around and lag
@@ -181,26 +181,28 @@ class Species{
         }
         else if (GetEngine().GetRandom().GetNumber(0,30) > 2)
         {
-            //line
-            //allow for many types of line
+            // Line
+            // Allow for many types of line
             float lineX = GetEngine().GetRandom().GetNumber(-5,5)+GetEngine().GetRandom().
                 GetNumber(-5,5);
             float linez = GetEngine().GetRandom().GetNumber(-5,5)+GetEngine().GetRandom().
                 GetNumber(-5,5);
 
             for(int i = 0; i < GetEngine().GetRandom().GetNumber(1,7); ++i){
-                //dont spawn them on top of each other because it
-                //causes them to bounce around and lag
+                // Dont spawn them on top of each other because it
+                // Causes them to bounce around and lag
                 MicrobeOperations::spawnBacteria(world, pos+curSpawn, this.name,true,"",true);
                 curSpawn = curSpawn + Float3(lineX+GetEngine().GetRandom().GetNumber(-1,1),
                     0,linez+GetEngine().GetRandom().GetNumber(-1,1));
             }
         }
         else{
-            //network is extremely rare
+		    // Network
+			// Allows for "jungles of cyanobacteria"
+            // Ntwork is extremely rare
             float x = curSpawn.X;
             float z = curSpawn.Z;
-            //to prevent bacteria being spawned on top of each other
+            // To prevent bacteria being spawned on top of each other
             bool horizontal = false;
             bool vertical = false;
 
@@ -211,10 +213,10 @@ class Species{
                     horizontal=true;
                     vertical=false;
                     for(int c = 0; c < GetEngine().GetRandom().GetNumber(3,5); ++c){
-                        //dont spawn them on top of each other because
-                        //it causes them to bounce around and lag
+                        // Dont spawn them on top of each other because
+                        // It causes them to bounce around and lag
                         curSpawn.X += GetEngine().GetRandom().GetNumber(5,7);
-                        //add a litlle organicness to the look
+                        // Add a litlle organicness to the look
                         curSpawn.Z += GetEngine().GetRandom().GetNumber(-1,1);
                         MicrobeOperations::spawnBacteria(world, pos+curSpawn, this.name, true,
                             "",true);
@@ -224,10 +226,10 @@ class Species{
                 horizontal=false;
                 vertical=true;
                 for(int c = 0; c < GetEngine().GetRandom().GetNumber(3,5); ++c){
-                    //dont spawn them on top of each other because it
-                    //causes them to bounce around and lag
+                    // Dont spawn them on top of each other because it
+                    // Causes them to bounce around and lag
                     curSpawn.Z += GetEngine().GetRandom().GetNumber(5,7);
-                    //add a litlle organicness to the look
+                    // Add a litlle organicness to the look
                     curSpawn.X += GetEngine().GetRandom().GetNumber(-1,1);
                     MicrobeOperations::spawnBacteria(world, pos+curSpawn, this.name,true,"",
                         true);
@@ -238,10 +240,10 @@ class Species{
                     horizontal=true;
                     vertical=false;
                     for(int c = 0; c < GetEngine().GetRandom().GetNumber(3,5); ++c){
-                        //dont spawn them on top of each other because
-                        //it causes them to bounce around and lag
+                        // Dont spawn them on top of each other because
+                        // It causes them to bounce around and lag
                         curSpawn.X -= GetEngine().GetRandom().GetNumber(5,7);
-                        //add a litlle organicness to the look
+                        // Add a litlle organicness to the look
                         curSpawn.Z -= GetEngine().GetRandom().GetNumber(-1,1);
                         MicrobeOperations::spawnBacteria(world, pos+curSpawn, this.name, true,
                             "",true);
@@ -251,7 +253,7 @@ class Species{
                 horizontal=false;
                 vertical=true;
                 for(int c = 0; c < GetEngine().GetRandom().GetNumber(3,5); ++c){
-                    //dont spawn them on top of each other because it
+                    // Dont spawn them on top of each other because it
                     //causes them to bounce around and lag
                     curSpawn.Z -= GetEngine().GetRandom().GetNumber(5,7);
                     //add a litlle organicness to the look
@@ -261,12 +263,12 @@ class Species{
                 }
             }
             else {
-                //diagnol
+                // Diaganol
                 horizontal=false;
                 vertical=false;
                 for(int c = 0; c < GetEngine().GetRandom().GetNumber(3,5); ++c){
-                    //dont spawn them on top of each other because it
-                    //causes them to bounce around and lag
+                    // Dont spawn them on top of each other because it
+                    // Causes them to bounce around and lag
                     curSpawn.Z += GetEngine().GetRandom().GetNumber(5,7);
                     curSpawn.X += GetEngine().GetRandom().GetNumber(5,7);
                     MicrobeOperations::spawnBacteria(world, pos+curSpawn, this.name,true,"",
@@ -295,7 +297,7 @@ class Species{
             BACTERIA_SPAWN_RADIUS);
     }
 
-    //sets up the spawn of the species
+    // Sets up the spawn of the species
     // This may only be called once. Otherwise old spawn types are left active
     void setupSpawn(CellStageWorld@ world){
 
@@ -314,12 +316,13 @@ class Species{
 
     void generateBacteria(CellStageWorld@ world){
         name = randomBacteriaName();
-        //bacteria are tiny
+        // Bacteria are tiny, start off with a max of 3 hexes (maybe we should start them all off with just one? )
         auto stringSize = GetEngine().GetRandom().GetNumber(0,3);
-        //it should always have a nucleus and a cytoplasm.  bacteria
-        //will randomly have 1 of 3 organelles right now, chlorolast,
-        //mitochondria, or toxin, adding pure cytoplasm bacteria
-        //aswell for variety
+        // Bacteria
+        // will randomly have 1 of 3 organelles right now, photosynthesizing protiens,
+        // respiratory Protiens, or Oxy Toxy Producing Protiens, also pure cytoplasm
+        // aswell for variety.
+		//TODO when chemosynthesis is added add a protien for that aswell
         switch( GetEngine().GetRandom().GetNumber(1,5))
         {
         case 1:
@@ -354,7 +357,7 @@ class Species{
         if (GetEngine().GetRandom().GetNumber(0,100)==1)
         {
             LOG_INFO("New Clade of bacteria");
-            //we can do more fun stuff here later
+            // We can do more fun stuff here later, such as genus names
             this.colour = randomProkayroteColour();
         }
         else
@@ -373,19 +376,19 @@ class Species{
 
     //! updates the population count of the species
     void updatePopulation(){
-        //numbers incresed so thing shappen more often
+        // Numbers incresed so things happen more often
         this.population += GetEngine().GetRandom().GetNumber(-700, 700);
     }
 
     void devestate(){
-        //occassionally you just need to take a deadly virus and use
-        //it to make things interesting
+        // Occassionally you just need to take a deadly virus and use
+        // it to make things interesting
         this.population += GetEngine().GetRandom().GetNumber(-1500, -700);
     }
 
     void boom(){
-        //occassionally you just need to give a species a nice pat on
-        //the back
+        // Occassionally you just need to give a species a nice pat on
+        // the back
         this.population += GetEngine().GetRandom().GetNumber(700, 1500);
     }
 

@@ -576,7 +576,7 @@ class MicrobeSystem : ScriptSystem{
             }
 
             if(microbeComponent.engulfMode){
-                // Drain atp and if(we run out){ disable engulfmode
+                // Drain atp
                 auto cost = ENGULFING_ATP_COST_SECOND/1000*logicTime;
 
                 if(MicrobeOperations::takeCompound(world, microbeEntity,
@@ -586,7 +586,7 @@ class MicrobeSystem : ScriptSystem{
                     LOG_INFO("too little atp, disabling - engulfing");
                     MicrobeOperations::toggleEngulfMode(world, microbeEntity);
                 }
-                // Flash the membrane blue. (doesnt actually color anything! TODO: FIXTHIS)
+                // Flash the membrane blue.
                 MicrobeOperations::flashMembraneColour(world, microbeEntity, 3000, Float4(0.2,0.5,1.0,0.5));
             }
 
