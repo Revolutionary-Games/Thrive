@@ -124,10 +124,8 @@ void applyCellMovementControl(CellStageWorld@ world, ObjectID entity, const Floa
 }
 
 // Activate Engulf Mode
-void applyEngulfMode(GameWorld@ world, ObjectID entity)
-{
-    CellStageWorld@ cellWorld = cast<CellStageWorld>(world);
-    MicrobeOperations::toggleEngulfMode(cellWorld, entity);
+void applyEngulfMode(CellStageWorld@ world, ObjectID entity){
+    MicrobeOperations::toggleEngulfMode(world, entity);
 }
 
 
@@ -177,6 +175,7 @@ void cellOnCellActualContact(GameWorld@ world, ObjectID firstEntity, ObjectID se
         if (firstMicrobeComponent.engulfMode)
         {
         firstMicrobeComponent.isCurrentlyEngulfing=true;
+		//where do we set this to false?
         secondMicrobeComponent.isBeingEngulfed=true;
         secondMicrobeComponent.hostileEngulfer = secondEntity;
         }
