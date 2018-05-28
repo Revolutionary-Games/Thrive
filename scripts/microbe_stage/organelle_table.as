@@ -509,7 +509,7 @@ void setupOrganelles(){
     _addOrganelleToTable(Organelle(oxytoxyProtein));
 
 
-    // Chemosynthetic Protien
+    // chemoSynthisizingProtien
     auto chemoSynthisizingProtien = OrganelleParameters("chemoSynthisizingProtiens");
 
     chemoSynthisizingProtien.mass = 0.1;

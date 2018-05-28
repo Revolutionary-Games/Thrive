@@ -298,7 +298,7 @@ class MicrobeAISystem : ScriptSystem{
                 //             }
                 //         }
                 //}
-    return -1;
+    return NULL_OBJECT;
     }
 
     // For getting the nearest predator
@@ -333,7 +333,7 @@ class MicrobeAISystem : ScriptSystem{
                 //         }
                 //         this.predator = this.predators[predatorEntityId];
                 //     }
-    return -1;
+    return NULL_OBJECT;
     }
 
     // For doing run and tumble
