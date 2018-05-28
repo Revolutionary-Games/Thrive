@@ -179,7 +179,7 @@ void respawnPlayer(CellStageWorld@ world){
     // The player should actually be also given the value from the STARTED_MICROBES so
     // verify that and remove this
     storeCompound(world, playerEntity,
-        SimulationParameters::compoundRegistry().getTypeId("atp"), 50, false);
+        SimulationParameters::compoundRegistry().getTypeId("atp"), 25, false);
 
     setRandomBiome(world);
     cast<MicrobeStageHudSystem>(world.GetScriptSystem("MicrobeStageHudSystem")).
