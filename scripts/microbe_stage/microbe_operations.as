@@ -230,6 +230,10 @@ float getBandwidth(CellStageWorld@ world, ObjectID microbeEntity, float maxAmoun
 // @returns leftover
 // The amount of compound not stored, due to bandwidth or being full
 //we need to remove this and have individual storage space
+// The best way to do this is maybe have a variable for
+// each possible compound, or  alist of floats for each
+// possible compound, with maxes being based on Microbe.capacity
+
 float storeCompound(CellStageWorld@ world, ObjectID microbeEntity, CompoundId compoundId,
     double amount, bool bandwidthLimited)
 {
@@ -379,6 +383,11 @@ void purgeCompounds(CellStageWorld@ world, ObjectID microbeEntity){
     // Perhaps we need to also dump usefull stuff
     // TODO: make sure that ejecting updates this otherwise we might dump usefull compounds
     // even if we shouldn't
+
+    //we should maybe generlaize this to be per compound instead
+    //of the hack im using right now (which is just multiplying max storage by
+    //the amount of possible compounds// and setting max of each compound to capcity
+
     auto compoundAmountToDump = microbeComponent.stored - microbeComponent.capacity;
 
     if(compoundAmountToDump > 0){
