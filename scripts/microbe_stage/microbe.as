@@ -394,9 +394,9 @@ class MicrobeSystem : ScriptSystem{
 
             //calculate storage.
             calculateStorageSpace(microbeEntity);
-			//get amount of compounds
-		    uint64 compoundCount = SimulationParameters::compoundRegistry().getSize();
-			//multiply it by the amount of compounds a cell can store
+    //get amount of compounds
+        uint64 compoundCount = SimulationParameters::compoundRegistry().getSize();
+    //multiply it by the amount of compounds a cell can store
             compoundBag.storageSpace = microbeComponent.capacity*compoundCount;
 
             // StorageOrganelles
