@@ -127,7 +127,7 @@ class MicrobeStageHudSystem : ScriptSystem{
                 const auto maxPhosphate = microbeComponent.capacity;
 
                 const auto hydrogenSulfideAmount = bag.getCompoundAmount(hydrogenSulfideId);
-                const auto maxHydrogenSulfide = mmicrobeComponent.capacity;
+                const auto maxHydrogenSulfide = microbeComponent.capacity;
 
                 const auto atpAmount = bag.getCompoundAmount(atpId);
                 const auto maxATP = microbeComponent.capacity;
@@ -139,7 +139,7 @@ class MicrobeStageHudSystem : ScriptSystem{
                 const auto maxGlucose = microbeComponent.capacity;
 
                 const auto oxytoxyAmount = bag.getCompoundAmount(oxytoxyId);
-                const auto maxOxytoxy =microbeComponent.capacity;
+                const auto maxOxytoxy = microbeComponent.capacity;
 
                 // Write data
                 vars.AddValue(ScriptSafeVariableBlock("compoundPhosphate", phosphateAmount));
