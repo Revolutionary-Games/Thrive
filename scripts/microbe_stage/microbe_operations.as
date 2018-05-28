@@ -229,9 +229,9 @@ float getBandwidth(CellStageWorld@ world, ObjectID microbeEntity, float maxAmoun
 //
 // @returns leftover
 // The amount of compound not stored, due to bandwidth or being full
-//we need to remove this and have individual storage space
+// we need to remove this and have individual storage space
 // The best way to do this is maybe have a variable for
-// each possible compound, or  alist of floats for each
+// each possible compound, or  a list of floats for each
 // possible compound, with maxes being based on Microbe.capacity
 
 float storeCompound(CellStageWorld@ world, ObjectID microbeEntity, CompoundId compoundId,
@@ -244,10 +244,9 @@ float storeCompound(CellStageWorld@ world, ObjectID microbeEntity, CompoundId co
     if(bandwidthLimited){
         storedAmount = getBandwidth(world, microbeEntity, amount, compoundId);
     }
-
-    storedAmount = min(storedAmount,
-        microbeComponent.capacity - microbeComponent.stored);
-
+    //min it by capcity, so you cant go over capcity, maybe we dont need a bunch of variables
+    storedAmount = min(storedAmount, microbeComponent.capacity);
+    // This adds compounds, (it does not set but instead adds)
     world.GetComponent_CompoundBagComponent(microbeEntity).giveCompound(compoundId,
         storedAmount);
 
@@ -387,8 +386,8 @@ void purgeCompounds(CellStageWorld@ world, ObjectID microbeEntity){
     //we should maybe generlaize this to be per compound instead
     //of the hack im using right now (which is just multiplying max storage by
     //the amount of possible compounds// and setting max of each compound to capcity
-
-    auto compoundAmountToDump = microbeComponent.stored - microbeComponent.capacity;
+    //this needs to look at the specific compound and dump the specified amount of taht compound, fo rnow i set it to 0
+    auto compoundAmountToDump =  0;
 
     if(compoundAmountToDump > 0){
         //Calculating each compound price to dump proportionally.
@@ -424,7 +423,7 @@ void purgeCompounds(CellStageWorld@ world, ObjectID microbeEntity){
     }
 }
 
-
+// TODO: Test to make sure this works
 void calculateHealthFromOrganelles(CellStageWorld@ world, ObjectID microbeEntity){
     MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
         world.GetScriptComponentHolder("MicrobeComponent").Find(microbeEntity));
