@@ -291,7 +291,7 @@ void setupOrganelles(){
         {"ammonia", 1}
     };
     cytoplasmParameters.components = {
-        storageOrganelleFactory(10.0f)
+        storageOrganelleFactory(5.0f)
     };
     cytoplasmParameters.hexes = {
         Int2(0, 0),
@@ -396,7 +396,7 @@ void setupOrganelles(){
         {"ammonia", 1}
     };
     vacuoleParameters.components = {
-        storageOrganelleFactory(100.0f)
+        storageOrganelleFactory(25.0f)
     };
     vacuoleParameters.hexes = {
         Int2(0, 0)

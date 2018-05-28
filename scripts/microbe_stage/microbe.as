@@ -394,8 +394,10 @@ class MicrobeSystem : ScriptSystem{
 
             //calculate storage.
             calculateStorageSpace(microbeEntity);
-
-            compoundBag.storageSpace = microbeComponent.capacity;
+			//get amount of compounds
+		    uint64 compoundCount = SimulationParameters::compoundRegistry().getSize();
+			//multiply it by the amount of compounds a cell can store
+            compoundBag.storageSpace = microbeComponent.capacity*compoundCount;
 
             // StorageOrganelles
             updateCompoundAbsorber(microbeEntity);
@@ -691,7 +693,6 @@ class MicrobeSystem : ScriptSystem{
     //         microbe2Comp.isBeingEngulfed = true;
     //     }
     // }
-
 
     PlacedOrganelle@ splitOrganelle(ObjectID microbeEntity, PlacedOrganelle@ organelle){
         auto q = organelle.q;
