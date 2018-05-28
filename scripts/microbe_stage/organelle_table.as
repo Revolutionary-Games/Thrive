@@ -508,6 +508,32 @@ void setupOrganelles(){
 
     _addOrganelleToTable(Organelle(oxytoxyProtein));
 
+
+    // Chemosynthetic Protien
+    auto chemoSynthisizingProtien = OrganelleParameters("chemoSynthisizingProtiens");
+
+    chemoSynthisizingProtien.mass = 0.1;
+    chemoSynthisizingProtien.gene = "c";
+    chemoSynthisizingProtien.mesh = "AgentVacuole.mesh";
+    chemoSynthisizingProtien.chanceToCreate = 0;
+    chemoSynthisizingProtien.prokaryoteChance = 1;
+    chemoSynthisizingProtien.mpCost = 20;
+    chemoSynthisizingProtien.initialComposition = {
+        {"phosphates", 0.05},
+        {"ammonia", 0.05}
+    };
+    chemoSynthisizingProtien.components = {
+        processorOrganelleFactory(1.0f),
+    storageOrganelleFactory(25.0f)
+    };
+    chemoSynthisizingProtien.processes = {
+          TweakedProcess("chemoSynthesis", 0.05)
+    };
+    chemoSynthisizingProtien.hexes = {
+        Int2(0, 0),
+    };
+
+    _addOrganelleToTable(Organelle(chemoSynthisizingProtien));
     // ------------------------------------ //
     // Setup the organelle letters
     setupOrganelleLetters();
