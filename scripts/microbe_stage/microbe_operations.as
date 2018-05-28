@@ -846,8 +846,8 @@ ObjectID _createMicrobeEntity(CellStageWorld@ world, const string &in name, bool
 
     microbeComponent.init(entity, not aiControlled, speciesName);
 
-    //dont give them ai if they are a bacteria
-    if(aiControlled && species.isBacteria==false){
+    //no reason for bacteria to not have AI
+    if(aiControlled){
         //TODO: bacteria iwll use ai when they have flagella
         world.GetScriptComponentHolder("MicrobeAIControllerComponent").Create(entity);
     }
