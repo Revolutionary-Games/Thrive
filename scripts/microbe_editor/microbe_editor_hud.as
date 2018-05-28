@@ -17,7 +17,6 @@ class MicrobeEditorHudSystem : ScriptSystem{
         assert(this.world !is null, "MicrobeEditorHudSystem didn't get proper world");
 
         @editor = MicrobeEditor(this);
-        editor.init();
 
     //     // This seems really cluttered, there must be a better way.
     //     for(i=1, 42){
