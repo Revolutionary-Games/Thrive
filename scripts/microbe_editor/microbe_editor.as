@@ -10,7 +10,7 @@
 
 //
 const int BASE_MUTATION_POINTS = 100;
-		
+
 class MicrobeEditor{
     MicrobeEditor(MicrobeEditorHudSystem@ hud){
 
@@ -30,7 +30,7 @@ class MicrobeEditor{
         gridSceneNode = sceneNode*/
 
         LOG_INFO("TODO: setup background in editor.init");
-		mutationPoints = BASE_MUTATION_POINTS;
+    mutationPoints = BASE_MUTATION_POINTS;
         organelleCount = 0;
         gridVisible = true;
         //Perhaps this should be turned into a constant?
@@ -45,7 +45,7 @@ class MicrobeEditor{
         //                       ["remove"] = MicrobeEditor::removeOrganelle()};
         actionIndex = 0;
         organelleRot = 0;
-        symmetry = 0;        
+        symmetry = 0;
     }
 
     //TODO: make certain all this works
@@ -106,32 +106,32 @@ class MicrobeEditor{
     void update(int logicTime){
         // //TODO: rewrite getMouseHex()
         // //local q, r = this.getMouseHex()
-		switch (symmetry)
-		{
-		case 0:
-		//renderHighlightedOrganelle(1, q, r, organelleRot);
-		break;
-		case 1:
+    switch (symmetry)
+    {
+    case 0:
+    //renderHighlightedOrganelle(1, q, r, organelleRot);
+    break;
+    case 1:
         //     renderHighlightedOrganelle(1, q, r, organelleRot);
         //     renderHighlightedOrganelle(2, -1*q, r+q, 360+(-1*organelleRot));
-		break;
-		case 2:
+    break;
+    case 2:
         //     renderHighlightedOrganelle(1, q, r, organelleRot);
         //     renderHighlightedOrganelle(2, -1*q, r+q, 360+(-1*organelleRot));
         //     renderHighlightedOrganelle(3, -1*q, -1*r, (organelleRot+180) % 360);
         //     renderHighlightedOrganelle(4, q, -1*(r+q), 540+(-1*organelleRot) % 360);
-		break;
-		case 3:
+    break;
+    case 3:
         //     renderHighlightedOrganelle(1, q, r, organelleRot);
         //     renderHighlightedOrganelle(2, -1*r, r+q, (organelleRot+60) % 360);
         //     renderHighlightedOrganelle(3, -1*(r+q), q, (organelleRot+120) % 360);
         //     renderHighlightedOrganelle(4, -1*q, -1*r, (organelleRot+180) % 360);
         //     renderHighlightedOrganelle(5, r, -1*(r+q), (organelleRot+240) % 360);
         //     renderHighlightedOrganelle(6, r+q, -1*q, (organelleRot+300) % 360);
-		break;
-		}
-		// hudSystem.updateMutationPoints();
-	}
+    break;
+    }
+    // hudSystem.updateMutationPoints();
+    }
 
 
 
@@ -269,8 +269,8 @@ class MicrobeEditor{
     // }
 
   void createNewMicrobe(){
-	mutationPoints = BASE_MUTATION_POINTS;
-	organelleCount = 0;
+    mutationPoints = BASE_MUTATION_POINTS;
+    organelleCount = 0;
     //     // dictionary action = {
     //     //     redo = function()
     //     //         atuo microbeComponent = getComponent(this.currentMicrobeEntity, MicrobeComponent)
@@ -408,7 +408,7 @@ class MicrobeEditor{
     // }
 
     void loadMicrobe(int entityId){
-	mutationPoints=0;
+    mutationPoints=0;
     organelleCount = 0;
     //     if (currentMicrobeEntity != null){
     //         currentMicrobeEntity.destroy();

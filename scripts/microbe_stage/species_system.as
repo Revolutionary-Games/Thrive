@@ -197,8 +197,8 @@ class Species{
             }
         }
         else{
-		    // Network
-			// Allows for "jungles of cyanobacteria"
+        // Network
+    // Allows for "jungles of cyanobacteria"
             // Ntwork is extremely rare
             float x = curSpawn.X;
             float z = curSpawn.Z;
@@ -322,7 +322,7 @@ class Species{
         // will randomly have 1 of 3 organelles right now, photosynthesizing protiens,
         // respiratory Protiens, or Oxy Toxy Producing Protiens, also pure cytoplasm
         // aswell for variety.
-		//TODO when chemosynthesis is added add a protien for that aswell
+    //TODO when chemosynthesis is added add a protien for that aswell
         switch( GetEngine().GetRandom().GetNumber(1,5))
         {
         case 1:
