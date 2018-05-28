@@ -157,16 +157,15 @@ class MicrobeAISystem : ScriptSystem{
 
             aiComponent.intervalRemaining += logicTime;
             while(aiComponent.intervalRemaining > aiComponent.reevalutationInterval) {
-
                 aiComponent.intervalRemaining -= aiComponent.reevalutationInterval;
-
                 Float3 targetPosition = Float3(0, 0, 0);
                 int numberOfAgentVacuoless = int(
                     microbeComponent.specialStorageOrganelles[formatUInt(oxytoxyId)]);
 
-                //     //for getting the prey
-                //     for(m_microbeEntityId,  in pairs (microbes_number)){
-
+				prey = getNearestPreyItem();
+				predator = getNearestPredatorItem();
+                //for getting the prey
+                //for (m_microbeEntityId,  in pairs (microbes_number)){
                 //         // The m_ prefix is used here for some bizarre reason
                 //         // m_microbeEntity
 
@@ -205,7 +204,7 @@ class MicrobeAISystem : ScriptSystem{
                 //                 this.preycount = this.preycount + 1;
                 //             }
                 //         }
-                //     }
+                //}
 
                 //     //for getting the predator
                 //     for(predatorEntityId, predatorEntity in pairs (microbes_number)){
@@ -327,10 +326,26 @@ class MicrobeAISystem : ScriptSystem{
                 aiComponent.direction = vec.Normalize();
                 microbeComponent.facingTargetPoint = targetPosition;
                 microbeComponent.movementDirection = Float3(0, 0, -AI_MOVEMENT_SPEED);
+				//do run and tumble
+				doRunAndTumble();
             }
         }
     }
 
+	// For getting the nearest prey item
+	ObjectID getNearestPreyItem(){
+	return -1;
+	}
+	
+	// For getting the nearest predator
+	ObjectID getNearestPredatorItem(){
+	return -1;
+	}
+	
+	// For doing run and tumble
+	void doRunAndTumble(){
+	}
+	
     void Clear(){
 
         CachedComponents.resize(0);
@@ -361,19 +376,18 @@ class MicrobeAISystem : ScriptSystem{
     // // Used for removing from preyCandidates
     // dictionary preyEntityToIndexMap = {};
     // int currentPreyIndex = 0;
-    // //table for preys
-    // dictionary preys = {};
-    // //the final prey the cell should hunt
-    // ObjectID p = NULL_OBJECT;
+
     // //counting number of frames so the prey get updated the fittest prey
     // int preycount = 0;
     // //checking if the prey escaped
     // bool preyEscaped = false;
-    // //table for predadtors the cell should run from
-    // dictionary predators = {};
-    // //the final predator the cell shall run from
-    // ObjectID predator = NULL_OBJECT;
 
+    // the final predator the cell shall run from
+	ObjectID predator = -1;
+
+	// the final prey the cell should hunt
+    ObjectID prey = -1;
+	
     //i need it to be very big for now it will get changed
     int preyMaxHitpoints = 100000;
 
