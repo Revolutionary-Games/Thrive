@@ -110,22 +110,22 @@ class MicrobeEditorHudSystem : ScriptSystem{
         // }
     }
 
-	
-	private AudioSource@ _playRandomEditorAmbience()
-	{
 
-		AudioSource@ audio = GetEngine().GetSoundDevice().Play2DSound("Data/Sound/" +
-			AMBIENT_TRACKS[GetEngine().GetRandom().GetNumber(0, AMBIENT_TRACKS.length() - 1)] + ".ogg", false, true);
-			if (audio is null)
-			{
+    private AudioSource@ _playRandomEditorAmbience()
+    {
+
+    AudioSource@ audio = GetEngine().GetSoundDevice().Play2DSound("Data/Sound/" +
+    AMBIENT_TRACKS[GetEngine().GetRandom().GetNumber(0, AMBIENT_TRACKS.length() - 1)] + ".ogg", false, true);
+    if (audio is null)
+    {
             LOG_ERROR("Failed to create ambience sound source");
-			}
-			return audio;
-	}
-	
-	
-	void handleAmbientSound()
-	{
+    }
+    return audio;
+    }
+
+
+    void handleAmbientSound()
+    {
         //randomize ambient sounds out of all available sounds
         // The isPlaying check will start a new track when the previous ends
        if (@ambienceSounds is null || !ambienceSounds.Get().isPlaying())
@@ -133,16 +133,16 @@ class MicrobeEditorHudSystem : ScriptSystem{
         @ambienceSounds = _playRandomEditorAmbience();
         ambienceSounds.Get().play();
        }
-	}
-	
-	//for stoppiong the music when you leave the editor
+    }
+
+    //for stoppiong the music when you leave the editor
     void Suspend(){
         LOG_INFO("Suspeding microbe editor background sounds");
         if(ambienceSounds !is null)
             ambienceSounds.Get().pause();
     }
 
-	
+
     void Release(){
 
     }
@@ -255,14 +255,14 @@ class MicrobeEditorHudSystem : ScriptSystem{
 
     void CreateAndDestroyNodes(){
     }
-	
-	 
+
+
     // Called when the editor is entered. Performs initialization again to make sure the
     // editor works the same on each time it is entered
     void setupHUDAfterEditorEntry(){
         editor.init();
-	}
-	
+    }
+
     AudioSource@ ambienceSounds;
     private MicrobeEditor@ editor = null;
     private MicrobeEditorWorld@ world;
