@@ -1,5 +1,13 @@
 #include "microbe_editor.as"
 
+
+const array<string> AMBIENT_TRACKS = {
+    "microbe-editor-theme-1","microbe-editor-theme-2", "microbe-editor-theme-3",
+    "microbe-editor-theme-4", "microbe-editor-theme-5"
+};
+
+
+
 class MicrobeEditorHudSystem : ScriptSystem{
 
     void Init(GameWorld@ w){
@@ -101,12 +109,38 @@ class MicrobeEditorHudSystem : ScriptSystem{
         // }
     }
 
-    // Called when the editor is entered. Performs initialization again to make sure the
-    // editor works the same on each time it is entered
-    void setupHUDAfterEditorEntry(){
 
-        editor.init();
+    private AudioSource@ _playRandomEditorAmbience()
+    {
+
+    AudioSource@ audio = GetEngine().GetSoundDevice().Play2DSound("Data/Sound/" +
+    AMBIENT_TRACKS[GetEngine().GetRandom().GetNumber(0, AMBIENT_TRACKS.length() - 1)] + ".ogg", false, true);
+    if (audio is null)
+    {
+            LOG_ERROR("Failed to create ambience sound source");
     }
+    return audio;
+    }
+
+
+    void handleAmbientSound()
+    {
+        //randomize ambient sounds out of all available sounds
+        // The isPlaying check will start a new track when the previous ends
+       if (@ambienceSounds is null || !ambienceSounds.Get().isPlaying())
+       {
+        @ambienceSounds = _playRandomEditorAmbience();
+        ambienceSounds.Get().play();
+       }
+    }
+
+    //for stoppiong the music when you leave the editor
+    void Suspend(){
+        LOG_INFO("Suspeding microbe editor background sounds");
+        if(ambienceSounds !is null)
+            ambienceSounds.Get().pause();
+    }
+
 
     void Release(){
 
@@ -116,7 +150,8 @@ class MicrobeEditorHudSystem : ScriptSystem{
 
         int logicTime = TICKSPEED;
         this.editor.update(logicTime);
-
+        //since this is ran every step this is a good place to do music code
+        handleAmbientSound();
         // for(i=1, 42){
         //     auto sceneNode = getComponent(this.hoverHex[i], OgreSceneNodeComponent);
         //     sceneNode.transform.position = Vector3(0,0,0);
@@ -220,6 +255,14 @@ class MicrobeEditorHudSystem : ScriptSystem{
     void CreateAndDestroyNodes(){
     }
 
+
+    // Called when the editor is entered. Performs initialization again to make sure the
+    // editor works the same on each time it is entered
+    void setupHUDAfterEditorEntry(){
+        editor.init();
+    }
+
+    AudioSource@ ambienceSounds;
     private MicrobeEditor@ editor = null;
     private MicrobeEditorWorld@ world;
 
