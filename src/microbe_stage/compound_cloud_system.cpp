@@ -569,9 +569,16 @@ void
     // Stolen from the old background rotation
     // Ogre::Quaternion(0, sqrt(0.5), 1, sqrt(0.5)) * 4
     // 0,45,90,45
-    cloud.m_sceneNode->setOrientation(
-        Ogre::Quaternion(0, sqrt(.5), 1, sqrt(.5)));
+    // Ogre::Quaternion rot;
+    // rot.FromAngleAxis(Ogre::Degree(90),
+    //     Ogre::Vector3(sqrt(0.5), sqrt(0.5), 1).normalisedCopy());
 
+    // This isn't fully right so the UVs and the shader compliments this
+    // rotation
+    cloud.m_sceneNode->setOrientation(
+        // Ogre::Quaternion(0, sqrt(.5), 1, sqrt(.5))
+        Ogre::Quaternion(Ogre::Degree(90), Ogre::Vector3::UNIT_Z) *
+        Ogre::Quaternion(Ogre::Degree(45), Ogre::Vector3::UNIT_Y));
 
 
     // Set the size of each grid tile and its position.
