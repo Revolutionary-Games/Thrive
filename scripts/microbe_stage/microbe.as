@@ -392,10 +392,16 @@ class MicrobeSystem : ScriptSystem{
             microbeComponent.agentEmissionCooldown = max(
                 microbeComponent.agentEmissionCooldown - logicTime, 0);
 
-            //calculate storage.
+            // Calculate storage.
             calculateStorageSpace(microbeEntity);
+    // Get amount of compounds
+    uint64 compoundCount = SimulationParameters::compoundRegistry().getSize();
+    // Multiply it by the amount of compounds a cell can store
 
-            compoundBag.storageSpace = microbeComponent.capacity;
+    // Right now multiplying capcity by the amount of compounds and
+    // capping eahc compound at capcity will work for individual storage
+
+            compoundBag.storageSpace = microbeComponent.capacity*compoundCount;
 
             // StorageOrganelles
             updateCompoundAbsorber(microbeEntity);
@@ -615,7 +621,6 @@ class MicrobeSystem : ScriptSystem{
         microbeComponent.stored = 0;
         uint64 compoundCount = SimulationParameters::compoundRegistry().getSize();
         for(uint a = 0; a < compoundCount; ++a){
-
             microbeComponent.stored += MicrobeOperations::getCompoundAmount(world,
                 microbeEntity, a);
         }
@@ -691,7 +696,6 @@ class MicrobeSystem : ScriptSystem{
     //         microbe2Comp.isBeingEngulfed = true;
     //     }
     // }
-
 
     PlacedOrganelle@ splitOrganelle(ObjectID microbeEntity, PlacedOrganelle@ organelle){
         auto q = organelle.q;
@@ -877,6 +881,7 @@ class MicrobeSystem : ScriptSystem{
 
 
         // Split the compounds evenly between the two cells.
+    // Will also need to be changed for individual storage
         for(uint64 compoundID = 0; compoundID <
                 SimulationParameters::compoundRegistry().getSize(); ++compoundID)
         {

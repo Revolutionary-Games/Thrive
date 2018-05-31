@@ -124,22 +124,22 @@ class MicrobeStageHudSystem : ScriptSystem{
             } else {
 
                 const auto phosphateAmount = bag.getCompoundAmount(phosphateId);
-                const auto maxPhosphate = microbeComponent.capacity / phosphateVolume;
+                const auto maxPhosphate = microbeComponent.capacity;
 
                 const auto hydrogenSulfideAmount = bag.getCompoundAmount(hydrogenSulfideId);
-                const auto maxHydrogenSulfide = microbeComponent.capacity / hydrogenSulfideVolume;
+                const auto maxHydrogenSulfide = microbeComponent.capacity;
 
                 const auto atpAmount = bag.getCompoundAmount(atpId);
-                const auto maxATP = microbeComponent.capacity / atpVolume;
+                const auto maxATP = microbeComponent.capacity;
 
                 const auto ammoniaAmount = bag.getCompoundAmount(ammoniaId);
-                const auto maxAmmonia = microbeComponent.capacity / ammoniaVolume;
+                const auto maxAmmonia = microbeComponent.capacity;
 
                 const auto glucoseAmount = bag.getCompoundAmount(glucoseId);
-                const auto maxGlucose = microbeComponent.capacity / glucoseVolume;
+                const auto maxGlucose = microbeComponent.capacity;
 
                 const auto oxytoxyAmount = bag.getCompoundAmount(oxytoxyId);
-                const auto maxOxytoxy = microbeComponent.capacity / oxytoxyVolume;
+                const auto maxOxytoxy = microbeComponent.capacity;
 
                 // Write data
                 vars.AddValue(ScriptSafeVariableBlock("compoundPhosphate", phosphateAmount));

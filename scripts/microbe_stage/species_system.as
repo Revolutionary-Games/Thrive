@@ -197,8 +197,8 @@ class Species{
             }
         }
         else{
-		    // Network
-			// Allows for "jungles of cyanobacteria"
+        // Network
+    // Allows for "jungles of cyanobacteria"
             // Ntwork is extremely rare
             float x = curSpawn.X;
             float z = curSpawn.Z;
@@ -322,8 +322,8 @@ class Species{
         // will randomly have 1 of 3 organelles right now, photosynthesizing protiens,
         // respiratory Protiens, or Oxy Toxy Producing Protiens, also pure cytoplasm
         // aswell for variety.
-		//TODO when chemosynthesis is added add a protien for that aswell
-        switch( GetEngine().GetRandom().GetNumber(1,5))
+    //TODO when chemosynthesis is added add a protien for that aswell
+        switch(GetEngine().GetRandom().GetNumber(1,6))
         {
         case 1:
             stringCode = getOrganelleDefinition("cytoplasm").gene;
@@ -336,6 +336,9 @@ class Species{
             break;
         case 4:
             stringCode = getOrganelleDefinition("oxytoxyProteins").gene;
+            break;
+        case 5:
+            stringCode = getOrganelleDefinition("chemoSynthisizingProtiens").gene;
             break;
         default:
             stringCode = getOrganelleDefinition("cytoplasm").gene;
@@ -749,6 +752,7 @@ void applyTemplate(CellStageWorld@ world, ObjectID microbe, SpeciesComponent@ sp
     restoreOrganelleLayout(world, microbe, microbeComponent, species);
 
     // TODO: should the compound amounts be reset before this?
+    // Another place where compound amounts are something we need to worry about
     auto ids = species.avgCompoundAmounts.getKeys();
     for(uint i = 0; i < ids.length(); ++i){
         CompoundId compoundId = parseUInt(ids[i]);

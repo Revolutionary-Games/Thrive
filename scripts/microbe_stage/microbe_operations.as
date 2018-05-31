@@ -179,7 +179,7 @@ void respawnPlayer(CellStageWorld@ world){
     // The player should actually be also given the value from the STARTED_MICROBES so
     // verify that and remove this
     storeCompound(world, playerEntity,
-        SimulationParameters::compoundRegistry().getTypeId("atp"), 50, false);
+        SimulationParameters::compoundRegistry().getTypeId("atp"), 25, false);
 
     setRandomBiome(world);
     cast<MicrobeStageHudSystem>(world.GetScriptSystem("MicrobeStageHudSystem")).
@@ -229,7 +229,11 @@ float getBandwidth(CellStageWorld@ world, ObjectID microbeEntity, float maxAmoun
 //
 // @returns leftover
 // The amount of compound not stored, due to bandwidth or being full
-//we need to remove this and have individual storage space
+// we need to remove this and have individual storage space
+// The best way to do this is maybe have a variable for
+// each possible compound, or  a list of floats for each
+// possible compound, with maxes being based on Microbe.capacity
+
 float storeCompound(CellStageWorld@ world, ObjectID microbeEntity, CompoundId compoundId,
     double amount, bool bandwidthLimited)
 {
@@ -240,10 +244,9 @@ float storeCompound(CellStageWorld@ world, ObjectID microbeEntity, CompoundId co
     if(bandwidthLimited){
         storedAmount = getBandwidth(world, microbeEntity, amount, compoundId);
     }
-
-    storedAmount = min(storedAmount,
-        microbeComponent.capacity - microbeComponent.stored);
-
+    //min it by capcity, so you cant go over capcity, maybe we dont need a bunch of variables
+    storedAmount = min(storedAmount, microbeComponent.capacity);
+    // This adds compounds, (it does not set but instead adds)
     world.GetComponent_CompoundBagComponent(microbeEntity).giveCompound(compoundId,
         storedAmount);
 
@@ -379,7 +382,12 @@ void purgeCompounds(CellStageWorld@ world, ObjectID microbeEntity){
     // Perhaps we need to also dump usefull stuff
     // TODO: make sure that ejecting updates this otherwise we might dump usefull compounds
     // even if we shouldn't
-    auto compoundAmountToDump = microbeComponent.stored - microbeComponent.capacity;
+
+    //we should maybe generlaize this to be per compound instead
+    //of the hack im using right now (which is just multiplying max storage by
+    //the amount of possible compounds// and setting max of each compound to capcity
+    //this needs to look at the specific compound and dump the specified amount of taht compound, fo rnow i set it to 0
+    auto compoundAmountToDump =  0;
 
     if(compoundAmountToDump > 0){
         //Calculating each compound price to dump proportionally.
@@ -415,7 +423,7 @@ void purgeCompounds(CellStageWorld@ world, ObjectID microbeEntity){
     }
 }
 
-
+// TODO: Test to make sure this works
 void calculateHealthFromOrganelles(CellStageWorld@ world, ObjectID microbeEntity){
     MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
         world.GetScriptComponentHolder("MicrobeComponent").Find(microbeEntity));
@@ -470,9 +478,13 @@ void toggleEngulfMode(CellStageWorld@ world, ObjectID microbeEntity){
         microbeComponent.movementFactor = microbeComponent.movementFactor *
             ENGULFING_MOVEMENT_DIVISION;
         // soundSourceComponent.stopSound("microbe-engulfment"); // Possibly comment out.
+    auto rigidBodyComponent = world.GetComponent_Physics(microbeEntity);
+    //TODO: Make rigid body collidable
     } else {
         microbeComponent.movementFactor = microbeComponent.movementFactor /
             ENGULFING_MOVEMENT_DIVISION;
+    auto rigidBodyComponent = world.GetComponent_Physics(microbeEntity);
+    //TODO: Make rigid body NOT collidable
     }
 
     microbeComponent.engulfMode = !microbeComponent.engulfMode;
@@ -842,8 +854,8 @@ ObjectID _createMicrobeEntity(CellStageWorld@ world, const string &in name, bool
 
     microbeComponent.init(entity, not aiControlled, speciesName);
 
-    //dont give them ai if they are a bacteria
-    if(aiControlled && species.isBacteria==false){
+    //no reason for bacteria to not have AI
+    if(aiControlled){
         //TODO: bacteria iwll use ai when they have flagella
         world.GetScriptComponentHolder("MicrobeAIControllerComponent").Create(entity);
     }
@@ -1072,8 +1084,6 @@ void removeEngulfedEffect(CellStageWorld@ world, ObjectID microbeEntity){
         LOG_WRITE("TODO: redo this thing: "
             "hostileRigidBodyComponent.reenableAllCollisions();");
     }
-    // Causes crash because sound was already stopped.
-    //microbeComponent.hostileEngulfer.soundSource.stopSound("microbe-engulfment")
 }
 
 // Sets the colour of the microbe's membrane.

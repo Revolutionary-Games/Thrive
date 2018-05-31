@@ -8,6 +8,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 */
 
+//
+const int BASE_MUTATION_POINTS = 100;
+
 class MicrobeEditor{
     MicrobeEditor(MicrobeEditorHudSystem@ hud){
 
@@ -27,11 +30,10 @@ class MicrobeEditor{
         gridSceneNode = sceneNode*/
 
         LOG_INFO("TODO: setup background in editor.init");
-
+    mutationPoints = BASE_MUTATION_POINTS;
         organelleCount = 0;
         gridVisible = true;
         //Perhaps this should be turned into a constant?
-        mutationPoints = 100;
         //TODO.Check to make certain this works
         // placementFunctions = {["nucleus"] = MicrobeEditor::createNewMicrobe(),
         //                       ["flagellum"] = MicrobeEditor::addOrganelle(),
@@ -43,7 +45,7 @@ class MicrobeEditor{
         //                       ["remove"] = MicrobeEditor::removeOrganelle()};
         actionIndex = 0;
         organelleRot = 0;
-        symmetry = 0;        
+        symmetry = 0;
     }
 
     //TODO: make certain all this works
@@ -76,7 +78,7 @@ class MicrobeEditor{
         // }
 
 
-        // mutationPoints = 100;
+        mutationPoints = BASE_MUTATION_POINTS;
         // dictionary actionHistory = {}; // where all user actions will  be registered
         // actionIndex = 0; // marks the last action that has been done (not undone, but possibly redone), is 0 if there is none
         // //TODO.fix this for loop
@@ -104,31 +106,34 @@ class MicrobeEditor{
     void update(int logicTime){
         // //TODO: rewrite getMouseHex()
         // //local q, r = this.getMouseHex()
-
-        // if (symmetry == 0){
-        //     renderHighlightedOrganelle(1, q, r, organelleRot);
-        // }
-        // else if (symmetry == 1){
+    switch (symmetry)
+    {
+    case 0:
+    //renderHighlightedOrganelle(1, q, r, organelleRot);
+    break;
+    case 1:
         //     renderHighlightedOrganelle(1, q, r, organelleRot);
         //     renderHighlightedOrganelle(2, -1*q, r+q, 360+(-1*organelleRot));
-        // }
-        // else if (symmetry == 2){
+    break;
+    case 2:
         //     renderHighlightedOrganelle(1, q, r, organelleRot);
         //     renderHighlightedOrganelle(2, -1*q, r+q, 360+(-1*organelleRot));
         //     renderHighlightedOrganelle(3, -1*q, -1*r, (organelleRot+180) % 360);
         //     renderHighlightedOrganelle(4, q, -1*(r+q), 540+(-1*organelleRot) % 360);
-        // }
-        // else if (symmetry == 3){
+    break;
+    case 3:
         //     renderHighlightedOrganelle(1, q, r, organelleRot);
         //     renderHighlightedOrganelle(2, -1*r, r+q, (organelleRot+60) % 360);
         //     renderHighlightedOrganelle(3, -1*(r+q), q, (organelleRot+120) % 360);
         //     renderHighlightedOrganelle(4, -1*q, -1*r, (organelleRot+180) % 360);
         //     renderHighlightedOrganelle(5, r, -1*(r+q), (organelleRot+240) % 360);
         //     renderHighlightedOrganelle(6, r+q, -1*q, (organelleRot+300) % 360);
-        // }
-
-        // hudSystem.updateMutationPoints();
+    break;
     }
+    // hudSystem.updateMutationPoints();
+    }
+
+
 
     // void _addOrganelle(Organelle organelle, double q, double r, int rotation){
     //     enqueueAction({
@@ -263,10 +268,11 @@ class MicrobeEditor{
     //     //this.occupiedHexes[s].setVolatile(true)
     // }
 
-    // void createNewMicrobe(){
+  void createNewMicrobe(){
+    mutationPoints = BASE_MUTATION_POINTS;
+    organelleCount = 0;
     //     // dictionary action = {
     //     //     redo = function()
-    //     //         organelleCount = 0
     //     //         atuo microbeComponent = getComponent(this.currentMicrobeEntity, MicrobeComponent)
     //     //         speciesName = microbeComponent.speciesName
     //     //         if (currentMicrobeEntity != null){
@@ -288,11 +294,10 @@ class MicrobeEditor{
     //     //                 this.createHexComponent(hex.q + organelle.position.q, hex.r + organelle.position.r)
     //     //             }
     //     //         }*/
-    //     //         mutationPoints = 100;
     //     //         activeActionName = "cytoplasm";
     //     //         Engine.playerData().setActiveCreature(this.currentMicrobeEntity.id, GameState.MICROBE_EDITOR.wrapper)
     //     //     }
-    //     // }
+}
 
     //     if (currentMicrobeEntity != null){
     //         //that there has already been a microbe in the editor suggests that it was a player action, so it's prepared and filed in for un/redo
@@ -402,8 +407,9 @@ class MicrobeEditor{
     //     }
     // }
 
-    // void loadMicrobe(auto entityId){
-    //     organelleCount = 0;
+    void loadMicrobe(int entityId){
+    mutationPoints=0;
+    organelleCount = 0;
     //     if (currentMicrobeEntity != null){
     //         currentMicrobeEntity.destroy();
     //     }
@@ -415,11 +421,10 @@ class MicrobeEditor{
     //     Vector3(0, 0, 1)); //Orientation
     //     sceneNodeComponent.transform.touch();
     //     Engine.playerData().setActiveCreature(entityId, GameState.MICROBE_EDITOR);
-    //     mutationPoints = 0;
     //     //resetting the action history - it should not become entangled with the local file system
     //     actionHistory = {};
     //     actionIndex = 0;
-    // }
+    }
 
     // void redo(){
     //     if (actionIndex < actionHistory){

@@ -150,87 +150,18 @@ class MicrobeAISystem : ScriptSystem{
             MicrobeAISystemCached@ components = CachedComponents[i];
 
             ObjectID microbeEntity = components.entity;
-
             MicrobeAIControllerComponent@ aiComponent = components.first;
             MicrobeComponent@ microbeComponent = components.second;
             Position@ position = components.third;
-
+    // ai interval
             aiComponent.intervalRemaining += logicTime;
             while(aiComponent.intervalRemaining > aiComponent.reevalutationInterval) {
-
                 aiComponent.intervalRemaining -= aiComponent.reevalutationInterval;
-
-                Float3 targetPosition = Float3(0, 0, 0);
                 int numberOfAgentVacuoless = int(
                     microbeComponent.specialStorageOrganelles[formatUInt(oxytoxyId)]);
 
-                //     //for getting the prey
-                //     for(m_microbeEntityId,  in pairs (microbes_number)){
-
-                //         // The m_ prefix is used here for some bizarre reason
-                //         // m_microbeEntity
-
-                //         MicrobeComponent@ m_microbeComponent = cast<MicrobeComponent>(
-                //             world.GetScriptComponentHolder("MicrobeComponent").Find(m_microbeEntity));
-
-                //         auto m_position = world.GetComponent_RenderNode(m_microbeEntity);
-
-                //         if(this.preys !is null){
-                //             auto v = (m_position.transform.position -
-                //                 position.transform.position);
-
-                //             if(v.length() < 25 and  v.length() ~= 0 ){
-                //                 if(microbeComponent.maxHitpoints > 1.5 *
-                //                     m_microbeComponent.maxHitpoints)
-                //                 {
-                //                     this.preys[m_microbeEntityId] = m_microbeEntity;
-                //                 }
-
-                //                 if(numberOfAgentVacuoles !is null and numberOfAgentVacuoles ~= 0
-                //                     and (m_microbeComponent.specialStorageOrganelles[oxytoxyId] == null
-                //                     or m_microbeComponent.specialStorageOrganelles[oxytoxyId] == 0)
-                //                     and this.preys[m_microbeEntityId] == null){
-
-                //                     this.preys[m_microbeEntityId] = m_microbeEntity;
-                //                 }
-                //             } else if(v.length() > 25 or v.length() == 0){
-                //                 this.preys[m_microbeEntityId] = null;
-                //             }
-                //             if(this.preys[m_microbeEntityId] !is null){
-                //                 preyMicrobeComponent = getComponent(this.preys[m_microbeEntityId], MicrobeComponent);
-                //                 if(preyMicrobeComponent.maxHitpoints <= this.preyMaxHitpoints){
-                //                     this.preyMaxHitpoints = preyMicrobeComponent.maxHitpoints;
-                //                     this.p = this.preys[m_microbeEntityId];
-                //                 }
-                //                 this.preycount = this.preycount + 1;
-                //             }
-                //         }
-                //     }
-
-                //     //for getting the predator
-                //     for(predatorEntityId, predatorEntity in pairs (microbes_number)){
-                //         auto predatorMicrobeComponent = getComponent(predatorEntity, MicrobeComponent);
-                //         auto predatorSceneNodeComponent = getComponent(predatorEntity, OgreSceneNodeComponent);
-
-                //         auto vec = (predatorSceneNodeComponent.transform.position -
-                //             position.transform.position);
-                //         if(predatorMicrobeComponent.maxHitpoints > microbeComponent.maxHitpoints
-                //             * 1.5 and vec.length() < 25)
-                //         {
-                //             this.predators[predatorEntityId] = predatorEntity;
-                //         }
-                //         if (predatorMicrobeComponent.specialStorageOrganelles[oxytoxyId] !is null
-                //             and predatorMicrobeComponent.specialStorageOrganelles[oxytoxyId] ~= 0
-                //             and (numberOfAgentVacuoles == null or numberOfAgentVacuoles == 0) and
-                //             vec.length() < 25)
-                //         {
-                //             this.predators[predatorEntityId] = predatorEntity;
-                //         }
-                //         if(vec.length() > 25){
-                //             this.predators[predatorEntityId] = null;
-                //         }
-                //         this.predator = this.predators[predatorEntityId];
-                //     }
+    prey = getNearestPreyItem(components);
+    predator = getNearestPredatorItem(components);
 
                 //     if(numberOfAgentVacuoles > 0 || microbeComponent.maxHitpoints > 100){
                 //         this.preyCandidates[6] = Entity(PLAYER_NAME, this.gameState.wrapper);
@@ -312,23 +243,117 @@ class MicrobeAISystem : ScriptSystem{
             //     // If we are NOT currenty heading towards an emitter
 
             //   }
-
-
-                // I guess this part just makes the AI move randomly
-                // if(aiComponent.targetEmitterPosition == null){
-                auto randAngle = GetEngine().GetRandom().GetFloat(0, 2*PI);
-                auto randDist = GetEngine().GetRandom().GetFloat(10,
-                    aiComponent.movementRadius);
-
-                targetPosition = Float3(cos(randAngle) * randDist,
-                    0, sin(randAngle)* randDist);
-                // }
-                auto vec = (targetPosition - position._Position);
-                aiComponent.direction = vec.Normalize();
-                microbeComponent.facingTargetPoint = targetPosition;
-                microbeComponent.movementDirection = Float3(0, 0, -AI_MOVEMENT_SPEED);
+    //do run and tumble
+    doRunAndTumble(components);
             }
         }
+    }
+
+    // For getting the nearest prey item
+    ObjectID getNearestPreyItem(MicrobeAISystemCached@ components){
+    // Set Components
+        ObjectID microbeEntity = components.entity;
+        MicrobeAIControllerComponent@ aiComponent = components.first;
+        MicrobeComponent@ microbeComponent = components.second;
+        Position@ position = components.third;
+
+       // For getting the prey
+                //for (m_microbeEntityId,  in pairs (microbes_number)){
+                //         // The m_ prefix is used here for some bizarre reason
+                //         // m_microbeEntity
+
+                //         MicrobeComponent@ m_microbeComponent = cast<MicrobeComponent>(
+                //             world.GetScriptComponentHolder("MicrobeComponent").Find(m_microbeEntity));
+
+                //         auto m_position = world.GetComponent_RenderNode(m_microbeEntity);
+
+                //         if(this.preys !is null){
+                //             auto v = (m_position.transform.position -
+                //                 position.transform.position);
+
+                //             if(v.length() < 25 and  v.length() ~= 0 ){
+                //                 if(microbeComponent.maxHitpoints > 1.5 *
+                //                     m_microbeComponent.maxHitpoints)
+                //                 {
+                //                     this.preys[m_microbeEntityId] = m_microbeEntity;
+                //                 }
+
+                //                 if(numberOfAgentVacuoles !is null and numberOfAgentVacuoles ~= 0
+                //                     and (m_microbeComponent.specialStorageOrganelles[oxytoxyId] == null
+                //                     or m_microbeComponent.specialStorageOrganelles[oxytoxyId] == 0)
+                //                     and this.preys[m_microbeEntityId] == null){
+
+                //                     this.preys[m_microbeEntityId] = m_microbeEntity;
+                //                 }
+                //             } else if(v.length() > 25 or v.length() == 0){
+                //                 this.preys[m_microbeEntityId] = null;
+                //             }
+                //             if(this.preys[m_microbeEntityId] !is null){
+                //                 preyMicrobeComponent = getComponent(this.preys[m_microbeEntityId], MicrobeComponent);
+                //                 if(preyMicrobeComponent.maxHitpoints <= this.preyMaxHitpoints){
+                //                     this.preyMaxHitpoints = preyMicrobeComponent.maxHitpoints;
+                //                     this.p = this.preys[m_microbeEntityId];
+                //                 }
+                //                 this.preycount = this.preycount + 1;
+                //             }
+                //         }
+                //}
+    return NULL_OBJECT;
+    }
+
+    // For getting the nearest predator
+    ObjectID getNearestPredatorItem(MicrobeAISystemCached@ components){
+    // Set Components
+        ObjectID microbeEntity = components.entity;
+        MicrobeAIControllerComponent@ aiComponent = components.first;
+        MicrobeComponent@ microbeComponent = components.second;
+        Position@ position = components.third;
+
+                // For getting the predator
+                //     for(predatorEntityId, predatorEntity in pairs (microbes_number)){
+                //         auto predatorMicrobeComponent = getComponent(predatorEntity, MicrobeComponent);
+                //         auto predatorSceneNodeComponent = getComponent(predatorEntity, OgreSceneNodeComponent);
+
+                //         auto vec = (predatorSceneNodeComponent.transform.position -
+                //             position.transform.position);
+                //         if(predatorMicrobeComponent.maxHitpoints > microbeComponent.maxHitpoints
+                //             * 1.5 and vec.length() < 25)
+                //         {
+                //             this.predators[predatorEntityId] = predatorEntity;
+                //         }
+                //         if (predatorMicrobeComponent.specialStorageOrganelles[oxytoxyId] !is null
+                //             and predatorMicrobeComponent.specialStorageOrganelles[oxytoxyId] ~= 0
+                //             and (numberOfAgentVacuoles == null or numberOfAgentVacuoles == 0) and
+                //             vec.length() < 25)
+                //         {
+                //             this.predators[predatorEntityId] = predatorEntity;
+                //         }
+                //         if(vec.length() > 25){
+                //             this.predators[predatorEntityId] = null;
+                //         }
+                //         this.predator = this.predators[predatorEntityId];
+                //     }
+    return NULL_OBJECT;
+    }
+
+    // For doing run and tumble
+    void doRunAndTumble(MicrobeAISystemCached@ components){
+    // Set Components
+        ObjectID microbeEntity = components.entity;
+        MicrobeAIControllerComponent@ aiComponent = components.first;
+        MicrobeComponent@ microbeComponent = components.second;
+        Position@ position = components.third;
+
+    // Target position
+    Float3 targetPosition = Float3(0, 0, 0);
+    //make AI move randomly for now
+        auto randAngle = GetEngine().GetRandom().GetFloat(0, 2*PI);
+        auto randDist = GetEngine().GetRandom().GetFloat(10,aiComponent.movementRadius);
+        targetPosition = Float3(cos(randAngle) * randDist,0, sin(randAngle)* randDist);
+        auto vec = (targetPosition - position._Position);
+        aiComponent.direction = vec.Normalize();
+        microbeComponent.facingTargetPoint = targetPosition;
+        microbeComponent.movementDirection = Float3(0, 0, -AI_MOVEMENT_SPEED);
     }
 
     void Clear(){
@@ -361,18 +386,17 @@ class MicrobeAISystem : ScriptSystem{
     // // Used for removing from preyCandidates
     // dictionary preyEntityToIndexMap = {};
     // int currentPreyIndex = 0;
-    // //table for preys
-    // dictionary preys = {};
-    // //the final prey the cell should hunt
-    // ObjectID p = NULL_OBJECT;
+
     // //counting number of frames so the prey get updated the fittest prey
     // int preycount = 0;
     // //checking if the prey escaped
     // bool preyEscaped = false;
-    // //table for predadtors the cell should run from
-    // dictionary predators = {};
-    // //the final predator the cell shall run from
-    // ObjectID predator = NULL_OBJECT;
+
+    // the final predator the cell shall run from
+    ObjectID predator = -1;
+
+    // the final prey the cell should hunt
+    ObjectID prey = -1;
 
     //i need it to be very big for now it will get changed
     int preyMaxHitpoints = 100000;
