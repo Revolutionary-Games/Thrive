@@ -164,7 +164,8 @@ void cellHitFloatingOrganelle(GameWorld@ world, ObjectID firstEntity, ObjectID s
 }
 
 void cellOnCellActualContact(GameWorld@ world, ObjectID firstEntity, ObjectID secondEntity){
-    LOG_INFO("Cell hit another cell, thats cool i guess");
+    
+    // LOG_INFO("Cell hit another cell, thats cool i guess");
 
     MicrobeComponent@ firstMicrobeComponent = cast<MicrobeComponent>(
         world.GetScriptComponentHolder("MicrobeComponent").Find(firstEntity));
@@ -172,15 +173,13 @@ void cellOnCellActualContact(GameWorld@ world, ObjectID firstEntity, ObjectID se
     MicrobeComponent@ secondMicrobeComponent = cast<MicrobeComponent>(
         world.GetScriptComponentHolder("MicrobeComponent").Find(secondEntity));
 
-        if (firstMicrobeComponent.engulfMode)
-        {
+    if (firstMicrobeComponent.engulfMode)
+    {
         firstMicrobeComponent.isCurrentlyEngulfing=true;
-    //where do we set this to false?
+        //where do we set this to false?
         secondMicrobeComponent.isBeingEngulfed=true;
         secondMicrobeComponent.hostileEngulfer = secondEntity;
-        }
-
-
+    }
 }
 
 
