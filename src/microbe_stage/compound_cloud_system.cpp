@@ -658,8 +658,6 @@ void
     pass->getFragmentProgramParameters()->setNamedConstant(
         "cloudPos", cloud.m_position);
 
-    cloud.m_planeMaterial->compile();
-
     cloud.m_texture = Ogre::TextureManager::getSingleton().createManual(
         cloud.m_textureName, "Generated", Ogre::TEX_TYPE_2D, width, height, 0,
         Ogre::PF_BYTE_RGBA, Ogre::TU_DYNAMIC_WRITE_ONLY_DISCARDABLE, nullptr
@@ -682,19 +680,26 @@ void
 
     // Unlock the pixel buffer
     pixelBuffer->unlock();
-    pass->createTextureUnitState()->setTexture(cloud.m_texture);
+    // Make sure it wraps to make the borders also look good
+    // TODO: check is this needed
+    Ogre::HlmsSamplerblock wrappedBlock;
+    wrappedBlock.setAddressingMode(Ogre::TextureAddressingMode::TAM_WRAP);
+
+    auto* densityState = pass->createTextureUnitState();
+    densityState->setTexture(cloud.m_texture);
+    // densityState->setTextureName("TestImageThing.png");
+    densityState->setSamplerblock(wrappedBlock);
 
     Ogre::TexturePtr texturePtr =
         Ogre::TextureManager::getSingleton().load("PerlinNoise.jpg",
             Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
     auto* noiseState = pass->createTextureUnitState();
     noiseState->setTexture(texturePtr);
-    Ogre::HlmsSamplerblock wrappedBlock;
 
-    // Make sure it wraps to make the borders also look good
-    // TODO: check is this needed
-    wrappedBlock.setAddressingMode(Ogre::TextureAddressingMode::TAM_WRAP);
     noiseState->setSamplerblock(wrappedBlock);
+
+    // Maybe compiling this here is the best place
+    cloud.m_planeMaterial->compile();
 
     // Needs to create a plane instance on which the material is used on
     cloud.m_compoundCloudsPlane = scene->createItem(m_planeMesh);
