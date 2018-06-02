@@ -72,13 +72,18 @@ void setBiome(uint64 biomeId, CellStageWorld@ world){
             }
 
             // And register new
+            const auto density = biome.getCompound(biomeCompounds[i]).density;
 
-            LOG_INFO("registering cloud: " + compoundId);
+            if(density <= 0){
+                LOG_WARNING("Compound density is 0. It won't spawn");
+            }
+
+            LOG_INFO("registering cloud: " + compoundId + ", density: " + density);
 
             SpawnFactoryFunc@ factory = SpawnFactoryFunc(spawnCloud.spawn);
 
             compoundSpawnTypes[typeStr] = world.GetSpawnSystem().addSpawnType(
-                factory, biome.getCompound(biomeCompounds[i]).density,
+                factory, density,
                 CLOUD_SPAWN_RADIUS);
         }
     }
