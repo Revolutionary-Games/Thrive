@@ -85,7 +85,6 @@ class MicrobeComponent : ScriptComponent{
     //! This detaches all still attached organelles
     //! \todo There might be a more graceful way to do this
     ~MicrobeComponent(){
-
         LOG_INFO("MicrobeComponent destroyed: " + microbeEntity);
 
         for(uint i = 0; i < organelles.length(); ++i){
@@ -177,12 +176,16 @@ class MicrobeComponent : ScriptComponent{
     Float3 facingTargetPoint = Float3(0, 0, 0);
     float microbetargetdirection = 0;
     float movementFactor = 1.0; // Multiplied on the movement speed of the microbe.
-    double capacity = 0;    // The amount that can be stored in the
-                            // microbe. NOTE: This does not include
-                            // special storage organelles.
-    double stored = 0;  // The amount stored in the microbe. NOTE:
-                        // This does not include special storage
-                        // organelles.
+    // The amount that can be stored in the
+    // microbe. NOTE: This does not include
+    // special storage organelles.
+    // This is also the amount of each
+    // individual compound you can hold
+    double capacity = 0;
+    // The amount stored in the microbe. NOTE:
+    // This does not include special storage
+    // organelles.
+    double stored = 0;
     bool initialized = false;
     bool isPlayerMicrobe = false;
     float maxBandwidth = 10.0 * BANDWIDTH_PER_ORGANELLE; // wtf is a bandwidth anyway?
@@ -394,14 +397,12 @@ class MicrobeSystem : ScriptSystem{
 
             // Calculate storage.
             calculateStorageSpace(microbeEntity);
+
     // Get amount of compounds
     uint64 compoundCount = SimulationParameters::compoundRegistry().getSize();
     // Multiply it by the amount of compounds a cell can store
-
-    // Right now multiplying capcity by the amount of compounds and
-    // capping eahc compound at capcity will work for individual storage
-
-            compoundBag.storageSpace = microbeComponent.capacity*compoundCount;
+    //Can cap it at a huge number since the game will automaticlaly not store if you have more of a certain compound then allowed now
+            compoundBag.storageSpace = 99999;
 
             // StorageOrganelles
             updateCompoundAbsorber(microbeEntity);
@@ -411,12 +412,15 @@ class MicrobeSystem : ScriptSystem{
 
             // Attempt to absorb queued compounds
             auto absorbed = compoundAbsorberComponent.getAbsorbedCompounds();
+
+    // Loop through compounds and add if you can
             for(uint i = 0; i < absorbed.length(); ++i){
                 CompoundId compound = absorbed[i];
                 auto amount = compoundAbsorberComponent.absorbedCompoundAmount(compound);
-                if(amount > 0.0){
+                if(amount > 0.0 && amount+getAmountOfCompound(microbeEntity,i) < microbeComponent.capacity){
+    // only fill up the microbe if they can hold more of a specific compound
                     MicrobeOperations::storeCompound(world, microbeEntity, compound,
-                        amount, true);
+                        min(microbeComponent.capacity,amount+getAmountOfCompound(microbeEntity,i)), true);
                 }
             }
             // Flash membrane if something happens.
@@ -605,8 +609,7 @@ class MicrobeSystem : ScriptSystem{
             }
             // Used to detect when engulfing stops
             microbeComponent.isBeingEngulfed = false;
-            compoundAbsorberComponent.setAbsorbtionCapacity(min(microbeComponent.capacity -
-                    microbeComponent.stored + 10, microbeComponent.remainingBandwidth));
+            compoundAbsorberComponent.setAbsorbtionCapacity(microbeComponent.capacity);
         }
     }
 
@@ -621,11 +624,30 @@ class MicrobeSystem : ScriptSystem{
         microbeComponent.stored = 0;
         uint64 compoundCount = SimulationParameters::compoundRegistry().getSize();
         for(uint a = 0; a < compoundCount; ++a){
-            microbeComponent.stored += MicrobeOperations::getCompoundAmount(world,
-                microbeEntity, a);
+    // Again this variable is only really nessessary for run and tumble
+            microbeComponent.stored += MicrobeOperations::getCompoundAmount(world,microbeEntity, a);
         }
     }
 
+    // Can probabbly do this without a loop  (will change)
+    // Just gets the amount of a specific compound a microbe has
+    float getAmountOfCompound(ObjectID microbeEntity, uint id){
+
+        MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
+            world.GetScriptComponentHolder("MicrobeComponent").Find(microbeEntity));
+
+        microbeComponent.stored = 0;
+        uint64 compoundCount = SimulationParameters::compoundRegistry().getSize();
+        for(uint a = 0; a < compoundCount; ++a){
+       if (id==a)
+       {
+       return MicrobeOperations::getCompoundAmount(world,microbeEntity, a);
+       }
+        }
+
+    //if nothing return 0
+    return 0;
+    }
 
     // For updating the compound absorber
     //
@@ -639,8 +661,7 @@ class MicrobeSystem : ScriptSystem{
         auto compoundAbsorberComponent = world.GetComponent_CompoundAbsorberComponent(
             microbeEntity);
 
-        if(//microbeComponent.stored >= microbeComponent.capacity or
-            microbeComponent.remainingBandwidth < 1 ||
+        if(microbeComponent.remainingBandwidth < 1 ||
             microbeComponent.dead)
         {
             compoundAbsorberComponent.disable();

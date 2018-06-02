@@ -164,7 +164,7 @@ void cellHitFloatingOrganelle(GameWorld@ world, ObjectID firstEntity, ObjectID s
 }
 
 void cellOnCellActualContact(GameWorld@ world, ObjectID firstEntity, ObjectID secondEntity){
-    
+
     // LOG_INFO("Cell hit another cell, thats cool i guess");
 
     MicrobeComponent@ firstMicrobeComponent = cast<MicrobeComponent>(
