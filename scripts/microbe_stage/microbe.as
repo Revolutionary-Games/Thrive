@@ -417,10 +417,10 @@ class MicrobeSystem : ScriptSystem{
             for(uint i = 0; i < absorbed.length(); ++i){
                 CompoundId compound = absorbed[i];
                 auto amount = compoundAbsorberComponent.absorbedCompoundAmount(compound);
-                if(amount > 0.0 && amount+getAmountOfCompound(microbeEntity,i) < microbeComponent.capacity){
-    // only fill up the microbe if they can hold more of a specific compound
+                if(amount > 0.0 && (amount+MicrobeOperations::getCompoundAmount(world,microbeEntity,compound) <= microbeComponent.capacity)){
+    // Only fill up the microbe if they can hold more of a specific compound
                     MicrobeOperations::storeCompound(world, microbeEntity, compound,
-                        min(microbeComponent.capacity,amount+getAmountOfCompound(microbeEntity,i)), true);
+                        min(microbeComponent.capacity,amount), true);
                 }
             }
             // Flash membrane if something happens.
@@ -428,7 +428,6 @@ class MicrobeSystem : ScriptSystem{
                 microbeComponent.flashColour != Float4(0, 0, 0, 0)
             ){
                 if(microbeComponent.flashDuration >= logicTime){
-
                     microbeComponent.flashDuration = microbeComponent.flashDuration -
                         logicTime;
 
@@ -439,7 +438,6 @@ class MicrobeSystem : ScriptSystem{
 
                 // How frequent it flashes, would be nice to update
                 // the flash void to have this variable{
-
                 if((microbeComponent.flashDuration % 600.0f) < 300){
                     LOG_INFO("Flashed");
                     MicrobeOperations::setMembraneColour(world, microbeEntity,microbeComponent.flashColour);
@@ -462,13 +460,10 @@ class MicrobeSystem : ScriptSystem{
                 EXCESS_COMPOUND_COLLECTION_INTERVAL)
             {
                 // For every COMPOUND_DISTRIBUTION_INTERVAL passed
-
                 microbeComponent.compoundCollectionTimer =
                     microbeComponent.compoundCollectionTimer -
                     EXCESS_COMPOUND_COLLECTION_INTERVAL;
-
                 MicrobeOperations::purgeCompounds(world, microbeEntity);
-
                 atpDamage(microbeEntity);
             }
 
@@ -630,7 +625,7 @@ class MicrobeSystem : ScriptSystem{
     }
 
     // Can probabbly do this without a loop  (will change)
-    // Just gets the amount of a specific compound a microbe has
+    //! Just gets the amount of a specific compound a microbe has
     float getAmountOfCompound(ObjectID microbeEntity, uint id){
 
         MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
@@ -778,7 +773,7 @@ class MicrobeSystem : ScriptSystem{
             world.GetScriptComponentHolder("MicrobeComponent").Find(microbeEntity));
 
         if(MicrobeOperations::getCompoundAmount(world, microbeEntity,
-                SimulationParameters::compoundRegistry().getTypeId("atp")) < 1.0)
+                SimulationParameters::compoundRegistry().getTypeId("atp")) <= 0)
         {
             // TODO: put this on a GUI notification.
             // if(microbeComponent.isPlayerMicrobe and not this.playerAlreadyShownAtpDamage){
