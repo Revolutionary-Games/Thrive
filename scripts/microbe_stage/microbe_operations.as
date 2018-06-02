@@ -240,17 +240,20 @@ float storeCompound(CellStageWorld@ world, ObjectID microbeEntity, CompoundId co
     MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
         world.GetScriptComponentHolder("MicrobeComponent").Find(microbeEntity));
     auto storedAmount = amount;
+
     if(bandwidthLimited){
         storedAmount = getBandwidth(world, microbeEntity, amount, compoundId);
     }
-    // Min it by capcity, so you cant go over capcity, maybe we dont need a bunch of variables
+    //min it by capcity, so you cant go over capcity, maybe we dont need a bunch of variables
     storedAmount = min(storedAmount, microbeComponent.capacity);
     // This adds compounds, (it does not set but instead adds)
-    world.GetComponent_CompoundBagComponent(microbeEntity).giveCompound(compoundId,
-        storedAmount);
-	// Update storage for run and tumble
+    if (getCompoundAmount(world,microbeEntity,compoundId)+amount <= microbeComponent.capacity)
+    {
+    world.GetComponent_CompoundBagComponent(microbeEntity).giveCompound(compoundId,storedAmount);
+    //For run and tumble
     microbeComponent.stored = microbeComponent.stored + storedAmount;
-	
+    }
+
     return amount - storedAmount;
 }
 
@@ -267,15 +270,12 @@ float storeCompound(CellStageWorld@ world, ObjectID microbeEntity, CompoundId co
 double takeCompound(CellStageWorld@ world, ObjectID microbeEntity, CompoundId compoundId,
     double maxAmount)
 {
-
     MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
         world.GetScriptComponentHolder("MicrobeComponent").Find(microbeEntity));
-		
     auto takenAmount = world.GetComponent_CompoundBagComponent(microbeEntity).
         takeCompound(compoundId, maxAmount);
-	// Update stored for run and tumble
+
     microbeComponent.stored = microbeComponent.stored - takenAmount;
-	
     return takenAmount;
 }
 

@@ -3,8 +3,8 @@
 #pragma once
 
 #include <Define.h>
-#include <fstream>
 #include <Include.h>
+#include <fstream>
 #include <json/json.h>
 #include <limits>
 #include <map>
