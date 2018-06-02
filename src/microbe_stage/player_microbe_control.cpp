@@ -279,7 +279,7 @@ void
 
         LOG_INFO("Spawning cheat cloud");
         world.GetCompoundCloudSystem().addCloud(
-            SimulationParameters::compoundRegistry.getTypeId("glucose"), 10,
+            SimulationParameters::compoundRegistry.getTypeId("glucose"), 1000,
             lookPoint.X, lookPoint.Z);
     }
 }
