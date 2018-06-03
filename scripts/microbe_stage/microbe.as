@@ -398,10 +398,12 @@ class MicrobeSystem : ScriptSystem{
             // Calculate storage.
             calculateStorageSpace(microbeEntity);
 
-    // Get amount of compounds
-    uint64 compoundCount = SimulationParameters::compoundRegistry().getSize();
-    // Multiply it by the amount of compounds a cell can store
-    //Can cap it at a huge number since the game will automaticlaly not store if you have more of a certain compound then allowed now
+            // Get amount of compounds
+            uint64 compoundCount = SimulationParameters::compoundRegistry().getSize();
+            // Multiply it by the amount of compounds a cell can store
+            //Can cap it at a huge number since the game will
+            //automaticlaly not store if you have more of a certain
+            //compound then allowed now
             compoundBag.storageSpace = 99999;
 
             // StorageOrganelles
@@ -413,16 +415,20 @@ class MicrobeSystem : ScriptSystem{
             // Attempt to absorb queued compounds
             auto absorbed = compoundAbsorberComponent.getAbsorbedCompounds();
 
-    // Loop through compounds and add if you can
+            // Loop through compounds and add if you can
             for(uint i = 0; i < absorbed.length(); ++i){
+                
                 CompoundId compound = absorbed[i];
                 auto amount = compoundAbsorberComponent.absorbedCompoundAmount(compound);
-                if(amount > 0.0 && (amount+MicrobeOperations::getCompoundAmount(world,microbeEntity,compound) <= microbeComponent.capacity)){
-    // Only fill up the microbe if they can hold more of a specific compound
+                
+                if(amount > 0.0 && (amount + MicrobeOperations::getCompoundAmount(world,
+                            microbeEntity, compound) <= microbeComponent.capacity)){
+                    // Only fill up the microbe if they can hold more of a specific compound
                     MicrobeOperations::storeCompound(world, microbeEntity, compound,
                         min(microbeComponent.capacity,amount), true);
                 }
             }
+            
             // Flash membrane if something happens.
             if(microbeComponent.flashDuration != 0 &&
                 microbeComponent.flashColour != Float4(0, 0, 0, 0)
@@ -430,17 +436,18 @@ class MicrobeSystem : ScriptSystem{
                 if(microbeComponent.flashDuration >= logicTime){
                     microbeComponent.flashDuration = microbeComponent.flashDuration -
                         logicTime;
-
+                    
                 } else {
                     // Would wrap over to very large number
                     microbeComponent.flashDuration = 0;
                 }
-
+                
                 // How frequent it flashes, would be nice to update
                 // the flash void to have this variable{
                 if((microbeComponent.flashDuration % 600.0f) < 300){
                     LOG_INFO("Flashed");
-                    MicrobeOperations::setMembraneColour(world, microbeEntity,microbeComponent.flashColour);
+                    MicrobeOperations::setMembraneColour(world, microbeEntity,
+                        microbeComponent.flashColour);
                 } else {
                      //Restore colour
                     MicrobeOperations::applyMembraneColour(world, microbeEntity);
@@ -592,7 +599,8 @@ class MicrobeSystem : ScriptSystem{
                     MicrobeOperations::toggleEngulfMode(world, microbeEntity);
                 }
                 // Flash the membrane blue.
-                MicrobeOperations::flashMembraneColour(world, microbeEntity, 3000, Float4(0.2,0.5,1.0,0.5));
+                MicrobeOperations::flashMembraneColour(world, microbeEntity, 3000,
+                    Float4(0.2,0.5,1.0,0.5));
             }
 
             if(microbeComponent.isBeingEngulfed && microbeComponent.wasBeingEngulfed){
@@ -619,30 +627,12 @@ class MicrobeSystem : ScriptSystem{
         microbeComponent.stored = 0;
         uint64 compoundCount = SimulationParameters::compoundRegistry().getSize();
         for(uint a = 0; a < compoundCount; ++a){
-    // Again this variable is only really nessessary for run and tumble
-            microbeComponent.stored += MicrobeOperations::getCompoundAmount(world,microbeEntity, a);
+            // Again this variable is only really nessessary for run and tumble
+            microbeComponent.stored += MicrobeOperations::getCompoundAmount(world,
+                microbeEntity, a);
         }
     }
 
-    // Can probabbly do this without a loop  (will change)
-    //! Just gets the amount of a specific compound a microbe has
-    float getAmountOfCompound(ObjectID microbeEntity, uint id){
-
-        MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
-            world.GetScriptComponentHolder("MicrobeComponent").Find(microbeEntity));
-
-        microbeComponent.stored = 0;
-        uint64 compoundCount = SimulationParameters::compoundRegistry().getSize();
-        for(uint a = 0; a < compoundCount; ++a){
-       if (id==a)
-       {
-       return MicrobeOperations::getCompoundAmount(world,microbeEntity, a);
-       }
-        }
-
-    //if nothing return 0
-    return 0;
-    }
 
     // For updating the compound absorber
     //
