@@ -306,7 +306,7 @@ void setupOrganelles(){
     chloroplastParameters.mass = 0.4;
     chloroplastParameters.gene = "H";
     chloroplastParameters.mesh = "chloroplast.mesh";
-    chloroplastParameters.chanceToCreate = 2;
+    chloroplastParameters.chanceToCreate = 1;
     chloroplastParameters.prokaryoteChance = 0;
     chloroplastParameters.mpCost = 20;
     chloroplastParameters.initialComposition = {
@@ -427,7 +427,35 @@ void setupOrganelles(){
 
     _addOrganelleToTable(Organelle(flagellumParameters));
 
-    //prokaryotic Organelles (all meshes are placeholders)//
+
+    // Chemoplast
+    auto chemoplast = OrganelleParameters("chemoplast");
+
+    chemoplast.mass = 0.1;
+    chemoplast.gene = "C";
+    //TODO: They need their model
+    chemoplast.mesh = "AgentVacuole.mesh";
+    chemoplast.chanceToCreate = 1;
+    chemoplast.prokaryoteChance = 0;
+    chemoplast.mpCost = 20;
+    chemoplast.initialComposition = {
+        {"phosphates", 1},
+        {"ammonia", 1}
+    };
+    chemoplast.components = {
+        processorOrganelleFactory(1.0f)
+    };
+    chemoplast.processes = {
+          TweakedProcess("chemoSynthesis", 0.2)
+    };
+    chemoplast.hexes = {
+        Int2(0, 0),
+    Int2(0, -1)
+    };
+
+    _addOrganelleToTable(Organelle(chemoplast));
+
+    // Prokaryotic Organelles (all meshes are placeholders)//
 
     // ------------------------------------ //
     // Respiratory Protien
@@ -448,7 +476,7 @@ void setupOrganelles(){
     storageOrganelleFactory(25.0f)
     };
     respiratoryProtien.processes = {
-        TweakedProcess("respiration", 0.02)
+        TweakedProcess("respiration", 0.04)
     };
     respiratoryProtien.hexes = {
         Int2(0, 0),
@@ -474,7 +502,8 @@ void setupOrganelles(){
     storageOrganelleFactory(25.0f)
     };
     photosyntheticProtein.processes = {
-          TweakedProcess("photosynthesis", 0.05)
+          TweakedProcess("photosynthesis", 0.05),
+      TweakedProcess("respiration", 0.02)
     };
     photosyntheticProtein.hexes = {
         Int2(0, 0),
@@ -497,10 +526,12 @@ void setupOrganelles(){
     };
     oxytoxyProtein.components = {
         agentVacuoleFactory("oxytoxy", "oxytoxySynthesis"),
-    storageOrganelleFactory(25.0f)
+    storageOrganelleFactory(25.0f),
+    processorOrganelleFactory(1.0f)
     };
     oxytoxyProtein.processes = {
-         TweakedProcess("oxytoxySynthesis", 0.05)
+         TweakedProcess("oxytoxySynthesis", 0.05),
+     TweakedProcess("respiration", 0.02)
     };
     oxytoxyProtein.hexes = {
         Int2(0, 0),
@@ -527,13 +558,15 @@ void setupOrganelles(){
     storageOrganelleFactory(25.0f)
     };
     chemoSynthisizingProtien.processes = {
-          TweakedProcess("chemoSynthesis", 0.05)
+          TweakedProcess("chemoSynthesis", 0.05),
+      TweakedProcess("respiration", 0.02)
     };
     chemoSynthisizingProtien.hexes = {
         Int2(0, 0),
     };
 
     _addOrganelleToTable(Organelle(chemoSynthisizingProtien));
+
     // ------------------------------------ //
     // Setup the organelle letters
     setupOrganelleLetters();
