@@ -417,10 +417,10 @@ class MicrobeSystem : ScriptSystem{
 
             // Loop through compounds and add if you can
             for(uint i = 0; i < absorbed.length(); ++i){
-                
+
                 CompoundId compound = absorbed[i];
                 auto amount = compoundAbsorberComponent.absorbedCompoundAmount(compound);
-                
+
                 if(amount > 0.0 && (amount + MicrobeOperations::getCompoundAmount(world,
                             microbeEntity, compound) <= microbeComponent.capacity)){
                     // Only fill up the microbe if they can hold more of a specific compound
@@ -428,7 +428,7 @@ class MicrobeSystem : ScriptSystem{
                         min(microbeComponent.capacity,amount), true);
                 }
             }
-            
+
             // Flash membrane if something happens.
             if(microbeComponent.flashDuration != 0 &&
                 microbeComponent.flashColour != Float4(0, 0, 0, 0)
@@ -436,12 +436,12 @@ class MicrobeSystem : ScriptSystem{
                 if(microbeComponent.flashDuration >= logicTime){
                     microbeComponent.flashDuration = microbeComponent.flashDuration -
                         logicTime;
-                    
+
                 } else {
                     // Would wrap over to very large number
                     microbeComponent.flashDuration = 0;
                 }
-                
+
                 // How frequent it flashes, would be nice to update
                 // the flash void to have this variable{
                 if((microbeComponent.flashDuration % 600.0f) < 300){

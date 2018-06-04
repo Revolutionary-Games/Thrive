@@ -99,7 +99,7 @@ class Species{
             //chance of new color needs to be low
             if (GetEngine().GetRandom().GetNumber(0,100)==1)
             {
-                LOG_INFO("New Clade");
+                LOG_INFO("New Genus");
                 //we can do more fun stuff here later
                 this.colour = randomColour();
             }
@@ -315,6 +315,9 @@ class Species{
     }
 
     void generateBacteria(CellStageWorld@ world){
+        // Chance they spawn with flagella
+        int bacterialFlagellumChance = 10;
+
         name = randomBacteriaName();
         // Bacteria are tiny, start off with a max of 3 hexes (maybe we should start them all off with just one? )
         auto stringSize = GetEngine().GetRandom().GetNumber(0,3);
@@ -349,6 +352,12 @@ class Species{
         for(int i = 0; i < stringSize; ++i){
             this.stringCode += chosenType;
         }
+    // Allow bacteria to sometimes start with a flagella instead of having to evolve it
+    if (GetEngine().GetRandom().GetNumber(1,100) <= bacterialFlagellumChance)
+    {
+    this.stringCode+=getOrganelleDefinition("flagellum").gene;;
+    }
+
         this.speciesMembraneType = MEMBRANE_TYPE::WALL;
         this.colour = getRightColourForSpecies();
         commonConstructor(world);
@@ -359,7 +368,7 @@ class Species{
         name = randomBacteriaName();
         if (GetEngine().GetRandom().GetNumber(0,100)==1)
         {
-            LOG_INFO("New Clade of bacteria");
+            LOG_INFO("New Genus of bacteria");
             // We can do more fun stuff here later, such as genus names
             this.colour = randomProkayroteColour();
         }
