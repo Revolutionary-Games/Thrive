@@ -698,7 +698,25 @@ int
         int threadIndex)
 {
     // LOG_INFO("Cell on cell AABB overlap");
-    return 1;
+    if(!body0 || !body1)
+        return 1;
+
+    Leviathan::Physics* firstPhysics =
+        static_cast<Leviathan::Physics*>(NewtonBodyGetUserData(body0));
+    Leviathan::Physics* secondPhysics =
+        static_cast<Leviathan::Physics*>(NewtonBodyGetUserData(body1));
+
+    NewtonWorld* world = NewtonBodyGetWorld(body0);
+    Leviathan::PhysicalWorld* physicalWorld =
+        static_cast<Leviathan::PhysicalWorld*>(NewtonWorldGetUserData(world));
+    GameWorld* gameWorld = physicalWorld->GetGameWorld();
+
+    // Grab microbe component
+
+
+    // How do i grab the microbe info here and return information from an
+    // angelscript method? Return 0 for now to test it
+    return 0;
 }
 
 void
