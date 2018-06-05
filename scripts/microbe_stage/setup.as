@@ -18,7 +18,7 @@ void setupScriptsForWorld(CellStageWorld@ world){
 }
 
 // This function should be the entry point for all player initial-species generation
-// For now, it can go through the XML and instantiate all the species, but later this 
+// For now, it can go through the XML and instantiate all the species, but later this
 // would be all procedural.
 // Currently this goes through STARTER_MICROBES (defined in config.as) and makes entities with
 // SpeciesComponents with the properties of the species
@@ -30,18 +30,18 @@ void setupSpecies(CellStageWorld@ world){
         "Compound registry is empty");
 
     auto keys = STARTER_MICROBES.getKeys();
-	
+
     for(uint i = 0; i < keys.length(); ++i){
 
         const string name = keys[i];
 
         MicrobeTemplate@ data = cast<MicrobeTemplate@>(STARTER_MICROBES[name]);
-        
+
         ObjectID entity = Species::createSpecies(world, name, data);
 
         LOG_INFO("created starter microbe \"" + name + "\", species entity = " + entity);
     }
-	
+
 
     LOG_INFO("setupSpecies created " + keys.length() + " species");
 }
@@ -81,10 +81,10 @@ void setupSystemsForWorld(CellStageWorld@ world){
 //! This spawns the player
 void setupPlayer(CellStageWorld@ world){
     assert(world !is null);
-	setRandomBiome(world);
+    setRandomBiome(world);
     GetThriveGame().playerData().lockedMap().addLock("Toxin");
     GetThriveGame().playerData().lockedMap().addLock("chloroplast");
-    
+
     ObjectID microbe = MicrobeOperations::spawnMicrobe(world, Float3(0, 0, 0), "Default",
         false, PLAYER_NAME);
 
@@ -94,16 +94,16 @@ void setupPlayer(CellStageWorld@ world){
 
     GetThriveGame().playerData().setActiveCreature(microbe);
 
-    // Testing spawning extra cell
-    MicrobeOperations::spawnMicrobe(world, Float3(10, 0, 0), "Default",
-        false, "extra player");
+    // // Testing spawning extra cell
+    // MicrobeOperations::spawnMicrobe(world, Float3(10, 0, 0), "Default",
+    //     false, "extra player");
 
     // // Test model spawn
     // auto testModel = world.CreateEntity();
 
     // auto position = world.Create_Position(testModel, Float3(5, 35, 5),
     //     Ogre::Quaternion(Ogre::Degree(GetEngine().GetRandom().GetNumber(0, 360)),
-    //         Ogre::Vector3(0, 1, 0)));        
+    //         Ogre::Vector3(0, 1, 0)));
     // auto sceneNode = world.Create_RenderNode(testModel);
     // auto model = world.Create_Model(testModel, sceneNode.Node, "UnitCube.mesh");
 }
@@ -111,24 +111,28 @@ void setupPlayer(CellStageWorld@ world){
 
 // TODO: move this somewhere
 // This is called from c++ system PlayerMicrobeControlSystem
-void applyCellMovementControl(GameWorld@ world, ObjectID entity, const Float3 &in movement,
+void applyCellMovementControl(CellStageWorld@ world, ObjectID entity, const Float3 &in movement,
     const Float3 &in lookPosition)
 {
     MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
         world.GetScriptComponentHolder("MicrobeComponent").Find(entity));
-    
-    if(!microbeComponent.dead){
 
+    if(!microbeComponent.dead){
         microbeComponent.facingTargetPoint = lookPosition;
         microbeComponent.movementDirection = movement;
     }
 }
 
-void onReturnFromEditor(CellStageWorld@ world){
+// Activate Engulf Mode
+void applyEngulfMode(CellStageWorld@ world, ObjectID entity){
+    MicrobeOperations::toggleEngulfMode(world, entity);
+}
 
+
+void onReturnFromEditor(CellStageWorld@ world){
     LOG_INFO("TODO: apply the changes and spawn a copy of the player species from "
         "before the change");
-    
+
 }
 
 // TODO: also put these physics callback somewhere
@@ -142,18 +146,40 @@ void cellHitFloatingOrganelle(GameWorld@ world, ObjectID firstEntity, ObjectID s
 
     auto model = asCellWorld.GetComponent_Model(firstEntity);
     auto floatingEntity = firstEntity;
+    auto cellEntity = secondEntity;
 
     // Cell doesn't have a model
     if(model is null){
 
         @model = asCellWorld.GetComponent_Model(secondEntity);
         floatingEntity = secondEntity;
+        cellEntity = firstEntity;
     }
 
     // TODO: use this to detect stuff
     LOG_INFO("Model: " + model.GraphicalObject.getMesh().getName());
+    LOG_INFO("TODO: organelle unlock progress if cell: " + cellEntity + " is the player");
 
     world.QueueDestroyEntity(floatingEntity);
+}
+
+void cellOnCellActualContact(GameWorld@ world, ObjectID firstEntity, ObjectID secondEntity){
+
+    // LOG_INFO("Cell hit another cell, thats cool i guess");
+
+    MicrobeComponent@ firstMicrobeComponent = cast<MicrobeComponent>(
+        world.GetScriptComponentHolder("MicrobeComponent").Find(firstEntity));
+
+    MicrobeComponent@ secondMicrobeComponent = cast<MicrobeComponent>(
+        world.GetScriptComponentHolder("MicrobeComponent").Find(secondEntity));
+
+    if (firstMicrobeComponent.engulfMode)
+    {
+        firstMicrobeComponent.isCurrentlyEngulfing=true;
+        //where do we set this to false?
+        secondMicrobeComponent.isBeingEngulfed=true;
+        secondMicrobeComponent.hostileEngulfer = secondEntity;
+    }
 }
 
 
@@ -176,7 +202,7 @@ void createAgentCloud(CellStageWorld@ world, CompoundId compoundId, Float3 pos,
     rigidBody.SetCollision(world.GetPhysicalWorld().CreateSphere(HEX_SIZE));
     rigidBody.CreatePhysicsBody(world.GetPhysicalWorld());
     // Agent
-    
+
     rigidBody.CreatePlaneConstraint(world.GetPhysicalWorld(), Float3(0, 1, 0));
 
     rigidBody.SetMass(0.001);
@@ -187,12 +213,12 @@ void createAgentCloud(CellStageWorld@ world, CompoundId compoundId, Float3 pos,
 
     // TODO: impulse or set velocity?
     rigidBody.SetVelocity(normalizedDirection * AGENT_EMISSION_VELOCITY);
-        
+
     auto sceneNode = world.Create_RenderNode(agentEntity);
     auto model = world.Create_Model(agentEntity, sceneNode.Node, "oxytoxy.mesh");
     // Need to set the tint
     model.GraphicalObject.setCustomParameter(1, Ogre::Vector4(1, 1, 1, 1));
-    
+
     auto timedLifeComponent = world.Create_TimedLifeComponent(agentEntity, 2000);
 }
 
@@ -263,41 +289,41 @@ class PlayerSpeciesSpawner{
 
 ObjectID createToxin(CellStageWorld@ world, Float3 pos)
 {
-	
+
     //toxins
     ObjectID toxinEntity = world.CreateEntity();
     //LOG_INFO("toxin spawned at pos x"+ pos.X +"y"+ pos.Y +"z"+ pos.Z);
-		
+
     auto position = world.Create_Position(toxinEntity, pos,Ogre::Quaternion(Ogre::Degree(GetEngine().GetRandom().GetNumber(0, 360)),Ogre::Vector3(0,1,0)));
 
-		
+
     auto renderNode = world.Create_RenderNode(toxinEntity);
     renderNode.Scale = Float3(1, 1, 1);
     renderNode.Marked = true;
     renderNode.Node.setOrientation(Ogre::Quaternion(Ogre::Degree(GetEngine().GetRandom().GetNumber(0, 360)),Ogre::Vector3(0,1,1)));
     renderNode.Node.setPosition(pos);
-		
+
 
     // Ogre::Quaternion(Ogre::Degree(GetEngine().GetRandom().GetNumber(0, 360)),
     //     Ogre::Vector3(0, 1, 0)));
-	   
+
     auto model = world.Create_Model(toxinEntity, renderNode.Node, "oxytoxy.mesh");
     // Need to set the tint
     model.GraphicalObject.setCustomParameter(1, Ogre::Vector4(1, 1, 1, 1));
-		
+
     auto rigidBody = world.Create_Physics(toxinEntity, world, position, null);
     rigidBody.SetCollision(world.GetPhysicalWorld().CreateSphere(1));
     rigidBody.CreatePhysicsBody(world.GetPhysicalWorld(),
         world.GetPhysicalMaterial("floatingOrganelle"));
     rigidBody.CreatePlaneConstraint(world.GetPhysicalWorld(), Float3(0,1,0));
-	rigidBody.SetMass(1.0f);	
-	
-			
+    rigidBody.SetMass(1.0f);
+
+
     rigidBody.JumpTo(position);
-	
+
     return toxinEntity;
 }
-	
+
 ObjectID createChloroplast(CellStageWorld@ world, Float3 pos)
 {
     //cholroplasts
@@ -310,47 +336,47 @@ ObjectID createChloroplast(CellStageWorld@ world, Float3 pos)
     renderNode.Marked = true;
     renderNode.Node.setOrientation(Ogre::Quaternion(Ogre::Degree(GetEngine().GetRandom().GetNumber(0, 360)),Ogre::Vector3(0,1,1)));
     renderNode.Node.setPosition(pos);
-		
 
-		
+
+
     auto model = world.Create_Model(chloroplastEntity, renderNode.Node, "chloroplast.mesh");
     // Need to set the tint
     model.GraphicalObject.setCustomParameter(1, Ogre::Vector4(1, 1, 1, 1));
-		
+
     auto rigidBody = world.Create_Physics(chloroplastEntity, world, position, null);
     rigidBody.SetCollision(world.GetPhysicalWorld().CreateSphere(1));
     rigidBody.CreatePhysicsBody(world.GetPhysicalWorld(),
         world.GetPhysicalMaterial("floatingOrganelle"));
     rigidBody.CreatePlaneConstraint(world.GetPhysicalWorld(), Float3(0,1,0));
-	rigidBody.SetMass(1.0f);	
+    rigidBody.SetMass(1.0f);
     rigidBody.JumpTo(position);
-		
+
     return chloroplastEntity;
 }
-    
+
 // TODO: the player species handling would be more logically placed if
 // it was in SpeciesSystem, so move it there
 void setupSpawnSystem(CellStageWorld@ world){
-	//spawn code is here, if it isnt obvious by the name
-	SpawnSystem@ spawnSystem = world.GetSpawnSystem();
+    //spawn code is here, if it isnt obvious by the name
+    SpawnSystem@ spawnSystem = world.GetSpawnSystem();
 
     // Clouds are handled by biome.as
-	
-	LOG_INFO("setting up spawn information");
-    
-	setupFloatingOrganelles(world);
-    
-	LOG_INFO("setting up player species to spawn");
+
+    LOG_INFO("setting up spawn information");
+
+    setupFloatingOrganelles(world);
+
+    LOG_INFO("setting up player species to spawn");
     auto keys = STARTER_MICROBES.getKeys();
     for(uint n = 0; n < keys.length(); n++)
     {
-		const string name = keys[n];
+    const string name = keys[n];
 
         PlayerSpeciesSpawner@ spawner = PlayerSpeciesSpawner(name);
 
         SpawnFactoryFunc@ factory = SpawnFactoryFunc(spawner.factorySpawn);
-        
-		LOG_INFO("adding spawn player species: " + name);
+
+    LOG_INFO("adding spawn player species: " + name);
 
         const auto spawnerId = spawnSystem.addSpawnType(
             factory, DEFAULT_SPAWN_DENSITY, //spawnDensity should depend on population
@@ -358,73 +384,73 @@ void setupSpawnSystem(CellStageWorld@ world){
     }
 }
 
-    
-	
+
+
 //moved this over here fo rnow, its probabbly good to put "free spawning organelles" in their own function
 void setupFloatingOrganelles(CellStageWorld@ world){
     LOG_INFO("setting up free floating organelles");
     SpawnSystem@ spawnSystem = world.GetSpawnSystem();
 
-	//spawn toxin and chloroplasts
-	const auto chloroId = spawnSystem.addSpawnType(
+    //spawn toxin and chloroplasts
+    const auto chloroId = spawnSystem.addSpawnType(
         @createChloroplast, DEFAULT_SPAWN_DENSITY,
     MICROBE_SPAWN_RADIUS);
-	
-	//toxins	
-	const auto toxinId = spawnSystem.addSpawnType(
+
+    //toxins
+    const auto toxinId = spawnSystem.addSpawnType(
         @createToxin, DEFAULT_SPAWN_DENSITY,
     MICROBE_SPAWN_RADIUS);
-	
-	
-	
-	
-	//             auto toxinOrganelleSpawnvoid = function(pos){
-	//             auto reactionHandler = CollisionComponent()
-	//             reactionHandler.addCollisionGroup("powerup")
-	//             powerupEntity.addComponent(reactionHandler)
-	//               auto powerupComponent = PowerupComponent()
-	//             // void name must be in configs.lua{
-	//             powerupComponent.setEffect("toxin_number")
-	//             powerupEntity.addComponent(powerupComponent)
-	//             return powerupEntity
-	//             auto reactionHandler = CollisionComponent()
-	//                 reactionHandler.addCollisionGroup("powerup")
-	//             powerupEntity.addComponent(reactionHandler)
-			
-	//             auto powerupComponent = PowerupComponent()
-	//             // void name must be in configs.lua{
-	//             powerupComponent.setEffect("chloroplast_number")
-	//             powerupEntity.addComponent(powerupComponent)
-	//             return powerupEntity
-	}
+
+
+
+
+    //             auto toxinOrganelleSpawnvoid = function(pos){
+    //             auto reactionHandler = CollisionComponent()
+    //             reactionHandler.addCollisionGroup("powerup")
+    //             powerupEntity.addComponent(reactionHandler)
+    //               auto powerupComponent = PowerupComponent()
+    //             // void name must be in configs.lua{
+    //             powerupComponent.setEffect("toxin_number")
+    //             powerupEntity.addComponent(powerupComponent)
+    //             return powerupEntity
+    //             auto reactionHandler = CollisionComponent()
+    //                 reactionHandler.addCollisionGroup("powerup")
+    //             powerupEntity.addComponent(reactionHandler)
+
+    //             auto powerupComponent = PowerupComponent()
+    //             // void name must be in configs.lua{
+    //             powerupComponent.setEffect("chloroplast_number")
+    //             powerupEntity.addComponent(powerupComponent)
+    //             return powerupEntity
+    }
 
 void setupSound(CellStageWorld@ world){
-	//                               auto ambientEntity = Entity("ambience", gameState.wrapper)
-	//                               auto soundSource = SoundSourceComponent()
-	//                               soundSource.ambientSoundSource = true
-	//                               soundSource.autoLoop = true
-	//                               soundSource.volumeMultiplier = 0.3
-	//                               ambientEntity.addComponent(soundSource)
-	//                               // Gui effects
-	//                               auto guiSoundEntity = Entity("gui_sounds", gameState.wrapper)
-	//                               soundSource = SoundSourceComponent()
-	//                               soundSource.ambientSoundSource = true
-	//                               soundSource.autoLoop = false
-	//                               soundSource.volumeMultiplier = 1.0
-	//                               guiSoundEntity.addComponent(soundSource)
-	//                               // Sound
-	//                               soundSource.addSound("button-hover-click", "soundeffects/gui/button-hover-click.ogg")
-	//                               soundSource.addSound("microbe-pickup-organelle", "soundeffects/microbe-pickup-organelle.ogg")
-	//                               auto listener = Entity("soundListener", gameState.wrapper)
-	//                               auto sceneNode = OgreSceneNodeComponent()
-	//                               listener.addComponent(sceneNode)
+    //                               auto ambientEntity = Entity("ambience", gameState.wrapper)
+    //                               auto soundSource = SoundSourceComponent()
+    //                               soundSource.ambientSoundSource = true
+    //                               soundSource.autoLoop = true
+    //                               soundSource.volumeMultiplier = 0.3
+    //                               ambientEntity.addComponent(soundSource)
+    //                               // Gui effects
+    //                               auto guiSoundEntity = Entity("gui_sounds", gameState.wrapper)
+    //                               soundSource = SoundSourceComponent()
+    //                               soundSource.ambientSoundSource = true
+    //                               soundSource.autoLoop = false
+    //                               soundSource.volumeMultiplier = 1.0
+    //                               guiSoundEntity.addComponent(soundSource)
+    //                               // Sound
+    //                               soundSource.addSound("button-hover-click", "soundeffects/gui/button-hover-click.ogg")
+    //                               soundSource.addSound("microbe-pickup-organelle", "soundeffects/microbe-pickup-organelle.ogg")
+    //                               auto listener = Entity("soundListener", gameState.wrapper)
+    //                               auto sceneNode = OgreSceneNodeComponent()
+    //                               listener.addComponent(sceneNode)
 }
 
 //                               setupCompounds()
 //                               setupProcesses()
 
 //                               local void createMicrobeStage(name){
-//                               return 
+//                               return
 //                               g_luaEngine.createGameState(
 //                                   name,
 //                                   {
@@ -482,4 +508,4 @@ void setupSound(CellStageWorld@ world){
 //                               )
 //                               }
 
-    
+

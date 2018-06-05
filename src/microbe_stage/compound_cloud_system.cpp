@@ -245,6 +245,39 @@ int
     LEVIATHAN_ASSERT(false, "Shouldn't get here");
     return -1;
 }
+void
+    CompoundCloudComponent::getCompoundsAt(size_t x,
+        size_t y,
+        std::vector<std::tuple<CompoundId, float>>& result)
+{
+    if(x >= width || y >= height)
+        throw std::runtime_error(
+            "CompoundCloudComponent coordinates out of range");
+
+    if(m_compoundId1 != NULL_COMPOUND) {
+        const auto amount = m_density1[x][y];
+        if(amount > 0)
+            result.push_back(std::make_tuple(m_compoundId1, amount));
+    }
+
+    if(m_compoundId2 != NULL_COMPOUND) {
+        const auto amount = m_density2[x][y];
+        if(amount > 0)
+            result.push_back(std::make_tuple(m_compoundId2, amount));
+    }
+
+    if(m_compoundId3 != NULL_COMPOUND) {
+        const auto amount = m_density3[x][y];
+        if(amount > 0)
+            result.push_back(std::make_tuple(m_compoundId3, amount));
+    }
+
+    if(m_compoundId4 != NULL_COMPOUND) {
+        const auto amount = m_density4[x][y];
+        if(amount > 0)
+            result.push_back(std::make_tuple(m_compoundId4, amount));
+    }
+}
 
 ////////////////////////////////////////////////////////////////////////////////
 // CompoundCloudSystem
@@ -381,6 +414,44 @@ float
     return 0;
 }
 
+std::vector<std::tuple<CompoundId, float>>
+    CompoundCloudSystem::getAllAvailableAt(float x, float z)
+{
+    std::vector<std::tuple<CompoundId, float>> result;
+
+    // TODO: store these
+    const auto halfWidth = width * gridSize / 2;
+    const auto halfHeight = height * gridSize / 2;
+
+    // Find the target cloud //
+    for(auto& cloud : m_managedClouds) {
+
+        const auto& pos = cloud.second->m_position;
+
+        const float relativeX = (x - (pos.X - halfWidth)) / gridSize;
+        const float relativeZ = (z - (pos.Z - halfHeight)) / gridSize;
+
+        if(relativeX >= 0 && relativeX <= width && relativeZ >= 0 &&
+            relativeZ <= height) {
+            // Within cloud
+
+            // LOG_INFO("Adding compound: " + std::to_string(compound) +
+            //          " (amount: " + std::to_string(density) + ") to cloud ("
+            //          + std::to_string(cloud.first) + ") at pos: " +
+            //          std::to_string(x) + ", " + std::to_string(z) +
+            //          ", relative pos: " + std::to_string(relativeX) + ", " +
+            //          std::to_string(relativeZ));
+
+            // We don't need to check for collisions as the clouds
+            // don't overlap and a single compound type is only in one
+            // cloud
+            cloud.second->getCompoundsAt(relativeX, relativeZ, result);
+        }
+    }
+
+    return result;
+}
+
 // ------------------------------------ //
 void
     CompoundCloudSystem::Run(CellStageWorld& world)
@@ -489,14 +560,26 @@ void
     // shift cloud to the left by half a width so its positioned correctly
     // cloud.m_position.X = cloud.m_position.X - width / 2;
 
+    const auto halfWidth = width * gridSize / 2;
+    const auto halfHeight = height * gridSize / 2;
     // set the position properly
     cloud.m_sceneNode->setPosition(
         cloud.m_position.X, YOffset, cloud.m_position.Z);
 
     // Stolen from the old background rotation
+    // Ogre::Quaternion(0, sqrt(0.5), 1, sqrt(0.5)) * 4
+    // 0,45,90,45
+    // Ogre::Quaternion rot;
+    // rot.FromAngleAxis(Ogre::Degree(90),
+    //     Ogre::Vector3(sqrt(0.5), sqrt(0.5), 1).normalisedCopy());
+
+    // This isn't fully right so the UVs and the shader compliments this
+    // rotation
     cloud.m_sceneNode->setOrientation(
+        // Ogre::Quaternion(0, sqrt(.5), 1, sqrt(.5))
         Ogre::Quaternion(Ogre::Degree(90), Ogre::Vector3::UNIT_Z) *
         Ogre::Quaternion(Ogre::Degree(45), Ogre::Vector3::UNIT_Y));
+
 
     // Set the size of each grid tile and its position.
     cloud.width = width;
@@ -575,8 +658,6 @@ void
     pass->getFragmentProgramParameters()->setNamedConstant(
         "cloudPos", cloud.m_position);
 
-    cloud.m_planeMaterial->compile();
-
     cloud.m_texture = Ogre::TextureManager::getSingleton().createManual(
         cloud.m_textureName, "Generated", Ogre::TEX_TYPE_2D, width, height, 0,
         Ogre::PF_BYTE_RGBA, Ogre::TU_DYNAMIC_WRITE_ONLY_DISCARDABLE, nullptr
@@ -599,19 +680,26 @@ void
 
     // Unlock the pixel buffer
     pixelBuffer->unlock();
-    pass->createTextureUnitState()->setTexture(cloud.m_texture);
+    // Make sure it wraps to make the borders also look good
+    // TODO: check is this needed
+    Ogre::HlmsSamplerblock wrappedBlock;
+    wrappedBlock.setAddressingMode(Ogre::TextureAddressingMode::TAM_WRAP);
+
+    auto* densityState = pass->createTextureUnitState();
+    densityState->setTexture(cloud.m_texture);
+    // densityState->setTextureName("TestImageThing.png");
+    densityState->setSamplerblock(wrappedBlock);
 
     Ogre::TexturePtr texturePtr =
         Ogre::TextureManager::getSingleton().load("PerlinNoise.jpg",
             Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
     auto* noiseState = pass->createTextureUnitState();
     noiseState->setTexture(texturePtr);
-    Ogre::HlmsSamplerblock wrappedBlock;
 
-    // Make sure it wraps to make the borders also look good
-    // TODO: check is this needed
-    wrappedBlock.setAddressingMode(Ogre::TextureAddressingMode::TAM_WRAP);
     noiseState->setSamplerblock(wrappedBlock);
+
+    // Maybe compiling this here is the best place
+    cloud.m_planeMaterial->compile();
 
     // Needs to create a plane instance on which the material is used on
     cloud.m_compoundCloudsPlane = scene->createItem(m_planeMesh);

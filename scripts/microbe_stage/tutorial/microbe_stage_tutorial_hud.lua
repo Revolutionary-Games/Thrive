@@ -101,10 +101,10 @@ function MicrobeStageTutorialHudSystem:update(renderTime)
         self.atpCountLabel:setText(atpString)
         self.glucoseCountLabel:setText(glucoseString)
 
-        -- The default cell has a vacuole, which means it has 100 storage points.
+        -- The default cell has a vacuole, which means it has 25 storage points.
         -- I'm too lazy to check for the microbe's storage space. :/
-        self.atpMaxLabel:setText("/ 100")
-        self.glucoseMaxLabel:setText("/ 100")
+        self.atpMaxLabel:setText("/ 25")
+        self.glucoseMaxLabel:setText("/ 25")
 
         self.atpBar:progressbarSetProgress(atpString / 100)
         self.glucoseBar:progressbarSetProgress(glucoseString / 100)

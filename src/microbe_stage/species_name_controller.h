@@ -7,13 +7,13 @@ namespace thrive {
 
 class SpeciesNameController {
 public:
-	std::vector<std::string> prefixes;
-	std::vector<std::string> cofixes;
-	std::vector<std::string> suffixes;
+    std::vector<std::string> prefixes;
+    std::vector<std::string> cofixes;
+    std::vector<std::string> suffixes;
 
-	SpeciesNameController();
+    SpeciesNameController();
 
-	SpeciesNameController(std::string jsonFilePath);
+    SpeciesNameController(std::string jsonFilePath);
 };
 
-}
+} // namespace thrive

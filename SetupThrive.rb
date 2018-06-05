@@ -68,7 +68,9 @@ end
 WantedURL = "https://#{$svnUser}@boostslair.com/svn/thrive_assets"
 
 leviathan = Leviathan.new(
-  version: "develop",
+  # Use this if you always want the latest commit
+  # version: "develop",
+  version: "e772d81d7a191e0b1b615019fb5757bf6c9ecb2d",
   # Doesn't actually work, but leviathan doesn't install with sudo by
   # default, or install at all for that matter
   noInstallSudo: true
@@ -167,6 +169,9 @@ if OS.windows?
   runSystemSafe "cmd", "/c", "mklink", "/J",
                 convertPathToWindows(File.join(ProjectDir, "Fonts")),
                 convertPathToWindows(File.join(ProjectDir, "assets", "fonts"))
+  runSystemSafe "cmd", "/c", "mklink", "/J",
+                convertPathToWindows(File.join(ProjectDir, "jsvendor")),
+                convertPathToWindows(File.join(ProjectDir, "assets", "jsvendor"))  
 else
   if !File.exists? File.join(ProjectDir, "Textures")
     FileUtils.ln_sf File.join(ProjectDir, "assets", "textures"),
@@ -176,6 +181,11 @@ else
   if !File.exists? File.join(ProjectDir, "Fonts")
     FileUtils.ln_sf File.join(ProjectDir, "assets", "fonts"),
                     File.join(ProjectDir, "Fonts")
+  end
+
+  if !File.exists? File.join(ProjectDir, "jsvendor")
+    FileUtils.ln_sf File.join(ProjectDir, "assets", "jsvendor"),
+                    File.join(ProjectDir, "jsvendor")
   end
 end
 

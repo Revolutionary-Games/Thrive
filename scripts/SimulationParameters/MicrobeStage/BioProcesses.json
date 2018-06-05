@@ -3,43 +3,11 @@
         "name": "Respiration",
 
         "inputs": {
-            "glucose": 1,
-            "oxygen": 6
+            "glucose": 1
         },
 
         "outputs": {
-            "atp": 36,
-            "co2": 6
-        }
-    },
-
-    "aminoAcidSynthesis": {
-        "name": "Amino acid synthesis",
-
-        "inputs": {
-            "glucose": 1,
-            "ammonia": 1
-        },
-
-        "outputs": {
-            "atp": 1,
-            "co2": 1,
-            "aminoacids": 1
-        }
-    },
-
-    "fattyAcidSynthesis": {
-        "name": "Fatty acid synthesis",
-
-        "inputs": {
-            "glucose": 1,
-            "ammonia": 1
-        },
-
-        "outputs": {
-            "atp": 1,
-            "co2": 1,
-            "fattyacids": 1
+            "atp": 36
         }
     },
 
@@ -47,12 +15,11 @@
         "name": "Photosynthesis",
 
         "inputs": {
-            "co2": 6
+            "glucose": 0
         },
 
         "outputs": {
-            "glucose": 1,
-            "oxygen": 6
+            "glucose": 1
         }
     },
 
@@ -60,12 +27,23 @@
         "name": "Oxytoxy Synthesis",
 
         "inputs": {
-            "atp": 1,
-            "oxygen": 3
+            "atp": 2
         },
 
         "outputs": {
             "oxytoxy": 1
+        }
+    },
+	
+	"chemoSynthesis": {
+        "name": "Chemo Synthesis",
+
+        "inputs": {
+            "hydrogensulfide": 2
+        },
+
+        "outputs": {
+            "glucose": 1
         }
     }
 }

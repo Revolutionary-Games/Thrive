@@ -2,4 +2,5 @@
 #pragma once
 
 // Logistic function, has an "S" shape curve.
-double sigmoid(double x);
+double
+    sigmoid(double x);

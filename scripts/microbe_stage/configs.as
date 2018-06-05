@@ -13,13 +13,19 @@ const auto MIN_COLOR = 0.0f;
 const auto MAX_COLOR = 0.8f;
 const auto MIN_OPACITY = 0.3f;
 const auto MAX_OPACITY = 4.0f;
+//not const because we want to change these
+//current atmospheric oxygen percentage in modern times
+auto OXYGEN_PERCENTAGE = 0.21f;
+//co2 percentage (over expressed as .09% is the percenatge of all non-nitrogen-non-oxygen gasses in our atmosphere)
+auto CARBON_DIOXIDE_PERCENTAGE = 0.009f;
 
+const auto MUTATION_BACTERIA_TO_EUKARYOTE = 1;
 const auto MUTATION_CREATION_RATE = 0.1f;
 const auto MUTATION_DELETION_RATE = 0.1f;
 
 const auto MICROBE_SPAWN_RADIUS = 85;
 //bacteria get massively extra radius so they can spawn in proper colonies and act as landmarks
-const auto BACTERIA_SPAWN_RADIUS = 185;
+const auto BACTERIA_SPAWN_RADIUS = 160;
 
 const auto PLAYER_NAME = "Player";
 
@@ -40,7 +46,7 @@ bool toxin_number(){
         unlockToxinIfStillLocked();
         toxin_call_Notification();
     }
-    
+
     return true;
 }
 
@@ -48,7 +54,7 @@ bool toxin_number(){
 void chloroplast_number(){
     chloroplast_Organelle_Number = chloroplast_Organelle_Number + 1;
     LOG_WRITE("chloroplast_Organelle_Number: " + chloroplast_Organelle_Number);
-    
+
     if(chloroplast_Organelle_Number >= 3){  // 3 is an example
         unlockChloroplastIfStillLocked();
         chloroplast_call_Notification();
@@ -65,7 +71,7 @@ void playOrganellePickupSound(){
 void unlockToxinIfStillLocked(){
     if(!GetThriveGame().playerData().lockedMap().isLocked("Toxin"))
         return;
-    
+
     showMessage("Toxin Unlocked!");
     GetThriveGame().playerData().lockedMap().unlock("Toxin");
 
@@ -77,7 +83,7 @@ void unlockChloroplastIfStillLocked(){
 
     if(!GetThriveGame().playerData().lockedMap().isLocked("chloroplast"))
         return;
-    
+
     showMessage("Chloroplast Unlocked!");
     GetThriveGame().playerData().lockedMap().unlock("chloroplast");
 
@@ -116,12 +122,12 @@ class AxialCoordinates{
     int q;
     int r;
 }
-*/   
+*/
 
 // Note this is an old comment
 /*
 Placing organelles can get downright annoying if you don't
-map them out. To make it easier, download a few sheets of hexgrid 
+map them out. To make it easier, download a few sheets of hexgrid
 off the internet. Before you print them though, set up the axes
 properly. See http://i.imgur.com/kTxHFMC.png for how. When you're
 drawing out your microbe, keep in mind that it faces forward along
@@ -153,18 +159,24 @@ class MicrobeTemplate{
         float spawnDensity,
         dictionary compounds,
         array<OrganelleTemplatePlaced@> organelles,
-        Float4 colour
+        Float4 colour,
+    bool isBacteria,
+    MEMBRANE_TYPE speciesMembraneType
     ) {
         this.spawnDensity = spawnDensity;
         this.compounds = compounds;
         this.organelles = organelles;
         this.colour = colour;
+    this.isBacteria = isBacteria;
+        this.speciesMembraneType = speciesMembraneType;
     }
 
     float spawnDensity;
     dictionary compounds;
     array<OrganelleTemplatePlaced@> organelles;
     Float4 colour;
+    bool isBacteria;
+    MEMBRANE_TYPE speciesMembraneType;
 }
 
 class InitialCompound{
@@ -173,7 +185,7 @@ class InitialCompound{
         this.amount = 0;
         this.priority = 1;
     }
-    
+
     InitialCompound(float amount, int priority = 1){
 
         this.amount = amount;
@@ -187,11 +199,12 @@ class InitialCompound{
 
 const dictionary STARTER_MICROBES = {
     {
-        "Default", MicrobeTemplate(1/14000,
+        "Default",
+    MicrobeTemplate(1/14000,
             {
-                {"atp", InitialCompound(60)},
-                {"glucose", InitialCompound(5)},
-                {"oxygen", InitialCompound(10)}
+            //for testing
+                {"atp", InitialCompound(25)},
+                {"glucose", InitialCompound(25)}
             },
             {
                 OrganelleTemplatePlaced("nucleus", 0, 0, 180),
@@ -200,7 +213,9 @@ const dictionary STARTER_MICROBES = {
                 OrganelleTemplatePlaced("flagellum", 1, 3, 0),
                 OrganelleTemplatePlaced("flagellum", -1, 4, 0)
             },
-            Float4(1, 1, 1, 1))
+            Float4(1, 1, 1, 1),
+    false,
+    MEMBRANE_TYPE::MEMBRANE)
     }
 };
 

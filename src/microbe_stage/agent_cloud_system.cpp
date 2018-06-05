@@ -47,7 +47,7 @@ using namespace thrive;
 //         "new", sol::factories([](){
 //                 return std::make_unique<AgentCloudComponent>();
 //             }),
-        
+
 //         COMPONENT_BINDINGS(AgentCloudComponent),
 
 //         "initialize", &AgentCloudComponent::initialize,
@@ -59,16 +59,13 @@ using namespace thrive;
 //     );
 // }
 
-AgentCloudComponent::AgentCloudComponent(
-    CompoundId id,
+AgentCloudComponent::AgentCloudComponent(CompoundId id,
     float red,
     float green,
-    float blue
-) : Leviathan::Component(TYPE),
-    color(Ogre::ColourValue(red, green, blue)),
-    m_compoundId(id)
+    float blue) :
+    Leviathan::Component(TYPE),
+    color(Ogre::ColourValue(red, green, blue)), m_compoundId(id)
 {
-    
 }
 
 // void
@@ -78,10 +75,10 @@ AgentCloudComponent::AgentCloudComponent(
 //     Component::load(storage);
 
 //     m_compoundId = storage.get<CompoundId>("id", NULL_COMPOUND);
-//     color = storage.get<Ogre::ColourValue>("color", Ogre::ColourValue(0,0,0));
-//     width = storage.get<int>("width", 0);
-//     height = storage.get<int>("height", 0);
-//     gridSize = storage.get<float>("gridSize", 0.0);
+//     color = storage.get<Ogre::ColourValue>("color",
+//     Ogre::ColourValue(0,0,0)); width = storage.get<int>("width", 0); height =
+//     storage.get<int>("height", 0); gridSize = storage.get<float>("gridSize",
+//     0.0);
 
 
 // }
@@ -100,15 +97,15 @@ AgentCloudComponent::AgentCloudComponent(
 // }
 
 float
-AgentCloudComponent::getPotency() {
+    AgentCloudComponent::getPotency()
+{
 
-    //if (x >= 0 && x < width && y >= 0 && y < height)
+    // if (x >= 0 && x < width && y >= 0 && y < height)
     //{
     //    return static_cast<int>(density[x][y]);
     //}
 
     return potency;
-
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -116,19 +113,20 @@ AgentCloudComponent::getPotency() {
 ////////////////////////////////////////////////////////////////////////////////
 
 void
-AgentCloudSystem::Run(GameWorld &world) {
+    AgentCloudSystem::Run(GameWorld& world)
+{
 
     const int dt = Leviathan::TICKSPEED;
 
     auto& index = CachedComponents.GetIndex();
-    for(auto iter = index.begin(); iter != index.end(); ++iter){
+    for(auto iter = index.begin(); iter != index.end(); ++iter) {
 
         Leviathan::Position& position = std::get<0>(*iter->second);
         AgentCloudComponent& agent = std::get<1>(*iter->second);
         Leviathan::RenderNode& renderNode = std::get<2>(*iter->second);
 
 
-        if (agent.potency > 0.5){
+        if(agent.potency > 0.5) {
             agent.potency *= .99;
         } else {
             world.DestroyEntity(iter->first);

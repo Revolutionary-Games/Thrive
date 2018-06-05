@@ -7,9 +7,8 @@ using namespace thrive;
 
 template<typename T>
 static T
-copy(
-    const T& value
-) {
+    copy(const T& value)
+{
     // Prepare
     StorageContainer container;
     container.set("value", value);
@@ -20,9 +19,7 @@ copy(
     auto data = outputStream.str();
     StorageContainer copy;
     std::istringstream inputStream(
-        outputStream.str(),
-        std::ios_base::in | std::ios_base::binary
-    );
+        outputStream.str(), std::ios_base::in | std::ios_base::binary);
     inputStream >> copy;
     EXPECT_TRUE(copy.contains("value"));
     return copy.get<T>("value");
@@ -30,60 +27,54 @@ copy(
 
 template<typename T>
 static void
-testSerialization(
-    const T& value
-) {
+    testSerialization(const T& value)
+{
     EXPECT_TRUE(value == copy(value));
 }
 
-TEST(Serialization, bool) {
+TEST(Serialization, bool)
+{
     testSerialization(true);
     testSerialization(false);
 }
 
 
-TEST(Serialization, float) {
-    std::vector<float> floats = {
-        0.0f,
-        3.1415f,
-        -18.0f
-    };
-    for (float f : floats) {
+TEST(Serialization, float)
+{
+    std::vector<float> floats = {0.0f, 3.1415f, -18.0f};
+    for(float f : floats) {
         EXPECT_FLOAT_EQ(f, copy(f));
     }
 }
 
 
-TEST(Serialization, double) {
-    std::vector<double> doubles = {
-        0.0,
-        3.1415,
-        -18.0
-    };
-    for (double d : doubles) {
+TEST(Serialization, double)
+{
+    std::vector<double> doubles = {0.0, 3.1415, -18.0};
+    for(double d : doubles) {
         EXPECT_DOUBLE_EQ(d, copy(d));
     }
 }
 
 
-TEST(Serialization, integer) {
+TEST(Serialization, integer)
+{
     testSerialization(2001);
     testSerialization(-18000);
 }
 
 
-TEST(Serialization, string) {
-    std::vector<std::string> strings {
-        "thrive",
-        ""
-    };
-    for (const std::string& string : strings) {
+TEST(Serialization, string)
+{
+    std::vector<std::string> strings{"thrive", ""};
+    for(const std::string& string : strings) {
         testSerialization(string);
     }
 }
 
 
-TEST(Serialization, StorageContainer) {
+TEST(Serialization, StorageContainer)
+{
     StorageContainer inner;
     inner.set<std::string>("value", "thrive");
     StorageContainer outer;
@@ -95,17 +86,16 @@ TEST(Serialization, StorageContainer) {
 }
 
 
-TEST(Serialization, ColourValue) {
+TEST(Serialization, ColourValue)
+{
     Ogre::ColourValue colour = Ogre::ColourValue::White;
     testSerialization(colour);
 }
 
 
 
-TEST(Serialization, Vector3) {
-    Ogre::Vector3 vector(1,2,3);
+TEST(Serialization, Vector3)
+{
+    Ogre::Vector3 vector(1, 2, 3);
     testSerialization(vector);
 }
-
-
-

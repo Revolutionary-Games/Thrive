@@ -29,8 +29,6 @@ set(GROUP_GENERAL
 set(GROUP_MICROBE_STAGE
   "microbe_stage/agent_cloud_system.cpp"
   "microbe_stage/agent_cloud_system.h"
-  "microbe_stage/bacteria_types.cpp"
-  "microbe_stage/bacteria_types.h"
   "microbe_stage/biomes.cpp"
   "microbe_stage/biomes.h"
   "microbe_stage/bioprocesses.cpp"
@@ -61,6 +59,8 @@ set(GROUP_MICROBE_STAGE
   "microbe_stage/species_name_controller.h"
   "microbe_stage/player_microbe_control.h"
   "microbe_stage/player_microbe_control.cpp"
+  "microbe_stage/player_hover_info.h"
+  "microbe_stage/player_hover_info.cpp"
   )
 
 set_source_files_properties("microbe_stage/generate_cell_stage_world.rb"
@@ -104,6 +104,14 @@ set(GROUP_MICROBE
   "generated/cell_stage_bindings.h"
   "generated/microbe_editor_world.h" "generated/microbe_editor_world.cpp"
   "generated/microbe_editor_bindings.h"
+  )
+
+add_custom_command(OUTPUT "${PROJECT_SOURCE_DIR}/src/generated/thrive_v8_extension.h"
+  COMMAND "${LEVIATHAN_SRC}/build/bin/FileGenerator" "V8EXT"
+  "\"${PROJECT_SOURCE_DIR}/src/thrive_v8_extension.js\"" 
+  "\"${PROJECT_SOURCE_DIR}/src/generated/thrive_v8_extension.h\""
+  "thrive"
+  DEPENDS "${PROJECT_SOURCE_DIR}/src/thrive_v8_extension.js"
   )
 
 # Menu things
@@ -161,7 +169,15 @@ set(PROGRAMCHECKKEYCONFIGFUNCNAME	"ThriveGame::CheckGameKeyConfigVariables")
 set(WINDOWTITLEGENFUNCTION			"ThriveGame::GenerateWindowTitle()")
 set(USERREADABLEIDENTIFICATION		"\"Thrive game version \" GAME_VERSIONS")
 
-set(PROGRAMUSE_CUSTOMJS 0)
+# Thrive specific JS native functions are registered by these options
+set(PROGRAMUSE_CUSTOMJS 1)
+set(PROGRAMCUSTOMJS_INCLUDE "generated/thrive_v8_extension.h")
+set(PROGRAMCUSTOMJS_HANDLER_INCLUDE "thrive_js_interface.h")
+set(PROGRAMCUSTOMJS_CLASS "ThriveJSInterface")
+set(PROGRAMCUSTOMJS_EXTFILE "thrive_v8_extensionStr")
+set(PROGRAMCUSTOMJS_HANDLER "&makeThriveJSHandler")
+set(PROGRAMCUSTOMJS_MESSAGE_HANDLER "std::make_shared<ThriveJSMessageHandler>()")
+
 
 # Configure main and thrive_version.h files
 StandardConfigureExecutableMainAndInclude("${BaseIncludeFileName}" "main.cpp"
@@ -177,6 +193,8 @@ set(AllProjectFiles
   "ThriveGame.h" "ThriveGame.cpp"
   "thrive_world_factory.h" "thrive_world_factory.cpp"
   "thrive_net_handler.h" "thrive_net_handler.cpp"
+  "generated/thrive_v8_extension.h"
+  "thrive_js_interface.h" "thrive_js_interface.cpp"
   )
 
 # Compile a common library

@@ -6,33 +6,223 @@
     <meta name="description" content="The HTML file with all the thrive GUI stuff in it">
     
     <link rel="stylesheet" href="thrive_style.css">
+    <script src="../../jsvendor/jquery-3.3.1.min.js"></script>
     <script src="gui_common.js"></script>
     <script src="main_menu.js"></script>
+    <script src="microbe_hud.js"></script>
+    <script src="microbe_editor.js"></script>
   </head>
   <body>
     
     <script>
       // Document.onload doesn't work here
-      window.onload = function(){
+      $(document).ready(function(){
           // Run setups from the individual scripts
           runMenuSetup();
+
+          // Hide the loading logo
+          hideLoadingLogo();
+      
           if(!isInEngine()){
               console.log("GUI is not inside Thrive process");
           }
-      }
+      });
     </script>
-    
-    <!-- Main menu GUI -->
-    <div id="Menus" class="MenuContainer">
+
+    <!-- This blocks out everything until javascript has loaded (shows the tasteful thrive logo) -->
+    <div id="loadingLogo" class="FullScreen"
+         style="z-index: 20; background: black;">
+      <div class="Logo"></div>
+    </div>
+
+    <!-- Videoplayer -->
+    <div id="videoPlayer" class="FullScreen" style="display: none; z-index: 10; background: black;">
+      <video id="videoPlayersVideo" autoplay="true"></video>
+    </div>
+
+    <!-- All the menus for easy disabling -->
+    <div id="topLevelMenuContainer" class="MenuContainer">
+      <div class="BackgroundStars"></div>
+      <div class="BackgroundPlanet"
+           style="position: absolute; top: 0px; z-index: -2; width: 300px; height: 300px;"></div>
+      <div class="Logo"
+           style="position: absolute; top: 65px; z-index: -1;"></div>
+      
+      <!-- Main menu GUI -->
       <div id="mainMenu" class="MainMenu">
-        <div class="MenuButton">New Game</div>
-        <div class="MenuButton">Load Game</div>
-        <div class="MenuButton">Options</div>
+        <div class="MenuButton" id="newGameButton">New Game</div>
+        <div class="MenuButton DisabledButton">Load Game</div>
+        <div class="MenuButton DisabledButton">Options</div>
         <div class="MenuButton DisabledButton">Tools</div>
         <div class="MenuButton DisabledButton">Extras</div>
         <div class="MenuButton DisabledButton">Credits</div>
         <div class="MenuButton" id="quitButton">Exit</div>
       </div>
+
+      <span id="versionNumber" style="position: absolute; right: 0px; bottom: 0px;">
+        JavaScript not loaded...
+      </span>
     </div>
+
+    <!-- Microbe stage GUI -->
+    <div id="topLevelMicrobeStage" style="display: none;">
+      <!-- Top left box -->
+      <div id="microbeHealthBox" class="Panel"
+           style="position: absolute; top: 0px: left: 0px; width: 30%; height: 60px;">
+        <!-- Health bar -->
+        <div class="Bar"
+             style="width: calc(50% - 15px); height: 50%; margin-left: 5px; margin-top: 5%;"> 
+          <div class="BarBackground"
+               id="microbeHUDPlayerHitpointsBar"
+               style="background: linear-gradient(rgb(255, 255, 255, 0.8), rgb(0, 155, 0, 0.8), rgb(0, 155, 0, 0.8));">
+          </div>
+          <span class="BarTitle">Health
+            <span class="BarValue">
+              <span id="microbeHUDPlayerHitpoints">0</span> /
+              <span id="microbeHUDPlayerMaxHitpoints">0</span>
+            </span>
+          </span>
+        </div> 
+
+        <!-- ATP bar -->
+        <div class="Bar"
+             style="width: calc(50% - 15px); height: 50%; margin-left: 5px; margin-top: 5%;">
+          <div class="BarBackground"
+               id="microbeHUDPlayerATPBar"
+               style="background: linear-gradient(rgb(255, 255, 255, 0.8), rgb(0, 0, 150, 0.8), rgb(0, 0, 150, 0.8));">
+          </div>
+          <span class="BarTitle">ATP
+            <span class="BarValue">
+              <span id="microbeHUDPlayerATP">0</span> /
+              <span id="microbeHUDPlayerATPMax">0</span>
+            </span>
+          </span>
+        </div>
+      </div>
+
+      <!-- Bottom bar -->
+      <div id="microbeBottomBar" class="Panel"
+           style="position: absolute; bottom: 0px; left: 0px; width: 100%; height: 60px;">
+        <span class="Centered">Menu</span>
+      </div>
+
+      <!-- Mouse hover panel -->
+      <div id="mouseHoverPanel" class="Panel"
+           style="position: absolute; left: 0px; width: 20%; height: 10%; top: 60px; padding-left: 5px;">
+        
+      </div>
+
+      <!-- Compounds panel -->
+      <div id="compoundsPanel" class="Panel"
+           style="position: absolute; right: 0px; width: 30%; height: 30%; bottom: 60px; overflow-y: auto">
+        <h1 style="margin: auto; margin-top: 2px; text-align: center;">Compounds</h1>
+        <!-- <\!-- This bar is redundant with the one in the top left box -\-> -->
+        <!-- <div style="display: none"> -->
+        <!--   ATP: <span id="microbeHUDPlayerATPCompound">0</span> / -->
+        <!--   <span id="microbeHUDPlayerATPMax">0</span> -->
+        <!-- </div> -->
+
+        <!-- Glucose -->
+        <div class="Bar"
+             style="width: 90%; height: 45px; margin-left: 5px; margin-top: 5px;">
+          <div class="BarBackground"
+               id="microbeHUDPlayerGlucoseBar"
+               style="background: background: linear-gradient(rgb(255, 255, 255, 0.8), rgb(125, 125, 125, 0.8), rgb(125, 125, 125, 0.8));">
+          </div>
+          <span class="BarTitle">Glucose
+            <span class="BarValue">
+              <span id="microbeHUDPlayerGlucose">0</span> /
+              <span id="microbeHUDPlayerGlucoseMax">0</span>
+            </span>
+          </span>
+        </div>
+        
+        <!-- Ammonia -->
+        <div class="Bar"
+             style="width: 90%; height: 45px; margin-left: 5px; margin-top: 5px;">
+          <div class="BarBackground"
+               id="microbeHUDPlayerAmmoniaBar"
+               style="background: background: linear-gradient(rgb(255, 255, 255, 0.8), rgb(155, 155, 0, 0.8), rgb(155, 155, 0, 0.8));">
+          </div>
+          <span class="BarTitle">Ammonia
+            <span class="BarValue">
+              <span id="microbeHUDPlayerAmmonia">0</span> /
+              <span id="microbeHUDPlayerAmmoniaMax">0</span>
+            </span>
+          </span>
+        </div>
+
+        <div class="Bar"
+             style="width: 90%; height: 45px; margin-left: 5px; margin-top: 5px;">
+          <div class="BarBackground"
+               id="microbeHUDPlayerHydrogenSulfideBar"
+               style="background: background: linear-gradient(rgb(255, 255, 255, 0.8), rgb(155, 155, 0, 0.8), rgb(155, 155, 0, 0.8));">
+          </div>
+          <span class="BarTitle">Hydrogen Sulfide
+            <span class="BarValue">
+              <span id="microbeHUDPlayerHydrogenSulfide">0</span> /
+              <span id="microbeHUDPlayerHydrogenSulfideMax">0</span>
+            </span>
+          </span>
+        </div>
+        
+         <div class="Bar"
+             style="width: 90%; height: 45px; margin-left: 5px; margin-top: 5px;">
+          <div class="BarBackground"
+               id="microbeHUDPlayerPhosphatesBar"
+               style="background: background: linear-gradient(rgb(255, 255, 255, 0.8), rgb(155, 155, 0, 0.8), rgb(155, 155, 0, 0.8));">
+          </div>
+          <span class="BarTitle">Phosphates
+            <span class="BarValue">
+              <span id="microbeHUDPlayerPhosphates">0</span> /
+              <span id="microbeHUDPlayerPhosphatesMax">0</span>
+            </span>
+          </span>
+        </div>
+        
+        <!-- Oxytoxy -->
+        <div class="Bar"
+             style="width: 90%; height: 45px; margin-left: 5px; margin-top: 5px;">
+          <div class="BarBackground"
+               id="microbeHUDPlayerOxytoxyBar"
+               style="background: background: linear-gradient(rgb(255, 255, 255, 0.8), rgb(155, 155, 0, 0.8), rgb(155, 155, 0, 0.8));">
+          </div>
+          <span class="BarTitle">Oxytoxy
+            <span class="BarValue">
+              <span id="microbeHUDPlayerOxytoxy">0</span> /
+              <span id="microbeHUDPlayerOxytoxyMax">0</span>
+            </span>
+          </span>
+        </div>
+      </div>
+    
+      <!-- editor button -->
+      <div id="microbeToEditorButton" class="MenuButton DisabledButton"
+           style="position: absolute; top: 0px; right: 0px; width: 120px; height: 90px;">
+        <span class="Centered">Editor</span>
+      </div>
+    </div>
+
+    
+    <!-- Microbe editor GUI -->
+    <div id="topLevelMicrobeEditor" style="display: none;">
+      <!-- Top left box -->
+      <div id="microbeEditorLeftPanel" class="Panel"
+           style="position: absolute; top: 0px: left: 0px; width: 30%; height: calc(100% - 60px);">
+      </div>
+
+      <!-- Bottom bar -->
+      <div id="microbeEditorBottomBar" class="Panel"
+           style="position: absolute; bottom: 0px; left: 0px; width: 100%; height: 60px;">
+        <span class="Centered">Menu</span>
+      </div>
+
+      <!-- editor button -->
+      <div id="microbeEditorFinishButton" class="MenuButton DisabledButton"
+           style="position: absolute; top: 0px; right: 0px; width: 120px; height: 90px;">
+        <span class="Centered">Finish</span>
+      </div>
+    </div>    
+    
   </body>
 </html>

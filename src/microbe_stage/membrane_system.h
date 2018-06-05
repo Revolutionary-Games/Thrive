@@ -14,6 +14,9 @@
 
 namespace thrive {
 
+// enumerable for membrane type
+enum class MEMBRANE_TYPE { MEMBRANE, WALL, CHITIN };
+
 /**
  * @brief Adds a membrane to an entity
  * @todo To improve performance this has to actually calculate the bounds for
@@ -28,8 +31,21 @@ class MembraneComponent : public Leviathan::Component {
     };
 
 public:
-    MembraneComponent();
-	virtual ~MembraneComponent();
+    MembraneComponent(MEMBRANE_TYPE type);
+    virtual ~MembraneComponent();
+
+
+
+    // Holder for membrane type
+    MEMBRANE_TYPE membraneType;
+
+    // This does not take affect without resetting this membrane as only that
+    // causes the mesh to actually be re-generated.
+    void
+        setMembraneType(MEMBRANE_TYPE type);
+
+    MEMBRANE_TYPE
+    getMembraneType();
 
     void
         Release(Ogre::SceneManager* scene);
@@ -62,6 +78,8 @@ public:
     virtual void
         DrawMembrane();
 
+    size_t
+        InitializeCorrectMembrane(size_t writeIndex);
     // Sees if the given point is inside the membrane.
     //! note This is quite an expensive method as this loops all the vertices
     bool
@@ -115,62 +133,74 @@ public:
     static constexpr auto TYPE =
         componentTypeConvert(THRIVE_COMPONENT::MEMBRANE);
 
+    /*
+    code for generic things
+    */
+
+    Ogre::MaterialPtr
+        chooseMaterialByType();
+
+    void
+        DrawCorrectMembrane();
+
+    // Cell Wall COde
+    // Creates the 2D points in the membrane by looking at the positions of the
+    // organelles.
+    virtual void
+        DrawCellWall();
+
+    virtual Ogre::Vector3
+        GetMovementForCellWall(Ogre::Vector3 target,
+            Ogre::Vector3 closestOrganelle);
+
 protected:
     //! Called on first Update
-    void Initialize();
+    void
+        Initialize();
 
     //! So it seems that the membrane should be generated just once when the
     //! geometry is changed so when this is true Update does nothing
     bool isInitialized = false;
-	// Stores the positions of the organelles.
-	std::vector<Ogre::Vector3> organellePositions;
+    // Stores the positions of the organelles.
+    std::vector<Ogre::Vector3> organellePositions;
 
-	// The colour of the membrane.
-	// still broken
-	Ogre::ColourValue colour;
+    // The colour of the membrane.
+    // still broken
+    Ogre::ColourValue colour;
 
-	// The length in pixels of a side of the square that bounds the membrane.
-	// Half the side length of the original square that is compressed to make
-	// the membrane.
-	int cellDimensions = 10;
-	// Amount of segments on one side of the above described square.
-	// The amount of points on the side of the membrane.
-	int membraneResolution = 10;
-	// Stores the generated 2-Dimensional membrane.
-	std::vector<Ogre::Vector3> vertices2D;
+    // The length in pixels of a side of the square that bounds the membrane.
+    // Half the side length of the original square that is compressed to make
+    // the membrane.
+    int cellDimensions = 10;
+    // Amount of segments on one side of the above described square.
+    // The amount of points on the side of the membrane.
+    int membraneResolution = 10;
+    // Stores the generated 2-Dimensional membrane.
+    std::vector<Ogre::Vector3> vertices2D;
 
-	// Ogre renderable that holds the mesh
-	Ogre::MeshPtr m_mesh;
-	// The submesh that actually holds our vertex and index buffers
-	Ogre::SubMesh* m_subMesh = nullptr;
+    // Ogre renderable that holds the mesh
+    Ogre::MeshPtr m_mesh;
+    // The submesh that actually holds our vertex and index buffers
+    Ogre::SubMesh* m_subMesh = nullptr;
 
-	//! Actual object that is attached to a scenenode
-	Ogre::Item* m_item = nullptr;
+    //! Actual object that is attached to a scenenode
+    Ogre::Item* m_item = nullptr;
 
-	Ogre::VertexBufferPacked* m_vertexBuffer = nullptr;
+    Ogre::VertexBufferPacked* m_vertexBuffer = nullptr;
 
-	//! A material created from the base material that can be colored
-	//! \todo It would be better to share this between all cells of a species
-	Ogre::MaterialPtr coloredMaterial;
-	// Ogre::MaterialPtr speciesMaterial;
+    //! A material created from the base material that can be colored
+    //! \todo It would be better to share this between all cells of a species
+    Ogre::MaterialPtr coloredMaterial;
+    // Ogre::MaterialPtr speciesMaterial;
 
-	static std::atomic<int> membraneNumber;
+    static std::atomic<int> membraneNumber;
 
-	// The amount of compounds stored in the membrane.
-	int compoundAmount = 0;
+    // The amount of compounds stored in the membrane.
+    int compoundAmount = 0;
+
 private:
 };
 
-class CellWallComponent : public MembraneComponent {
-	public:
-    CellWallComponent();
-	~CellWallComponent();
-	void DrawMembrane();
-	virtual Ogre::Vector3
-		GetMovement(Ogre::Vector3 target, Ogre::Vector3 closestOrganelle);
-	protected:
-    private:
-};
 
 /**
  * @brief Handles entities with MembraneComponent

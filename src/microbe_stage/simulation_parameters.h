@@ -1,6 +1,6 @@
 #pragma once
 
-#include "bacteria_types.h"
+
 #include "biomes.h"
 #include "bioprocesses.h"
 #include "compounds.h"
@@ -23,7 +23,6 @@ public:
     // These are fully in AngelScript
     // static TJsonRegistry<OrganelleType> organelleRegistry;
     static TJsonRegistry<Species> speciesRegistry;
-    static TJsonRegistry<BacteriaType> bacteriaRegistry;
 
     static SpeciesNameController speciesNameController;
 

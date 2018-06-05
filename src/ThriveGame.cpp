@@ -524,6 +524,15 @@ void
 }
 // ------------------------------------ //
 void
+    ThriveGame::onZoomChange(float amount)
+{
+    if(m_impl->m_cellStage)
+        m_impl->m_cellStage->GetMicrobeCameraSystem().changeCameraOffset(
+            amount);
+}
+
+// ------------------------------------ //
+void
     ThriveGame::setBackgroundMaterial(const std::string& material)
 {
     LOG_INFO("Setting microbe background to: " + material);
@@ -644,12 +653,6 @@ void
         StartRelease();
         return;
     }
-
-    // Start game immediately
-    engine->Invoke([=]() {
-        LOG_INFO("Immediate start");
-        startNewGame();
-    });
 }
 
 //! \note This is called from a background thread
@@ -695,7 +698,25 @@ int
         int threadIndex)
 {
     // LOG_INFO("Cell on cell AABB overlap");
-    return 1;
+    if(!body0 || !body1)
+        return 1;
+
+    Leviathan::Physics* firstPhysics =
+        static_cast<Leviathan::Physics*>(NewtonBodyGetUserData(body0));
+    Leviathan::Physics* secondPhysics =
+        static_cast<Leviathan::Physics*>(NewtonBodyGetUserData(body1));
+
+    NewtonWorld* world = NewtonBodyGetWorld(body0);
+    Leviathan::PhysicalWorld* physicalWorld =
+        static_cast<Leviathan::PhysicalWorld*>(NewtonWorldGetUserData(world));
+    GameWorld* gameWorld = physicalWorld->GetGameWorld();
+
+    // Grab microbe component
+
+
+    // How do i grab the microbe info here and return information from an
+    // angelscript method? Return 0 for now to test it
+    return 0;
 }
 
 void
@@ -703,7 +724,32 @@ void
         dFloat timestep,
         int threadIndex)
 {
-    // LOG_INFO("Cell on cell contact");
+    NewtonBody* first = NewtonJointGetBody0(contact);
+    NewtonBody* second = NewtonJointGetBody1(contact);
+
+    if(!first || !second)
+        return;
+
+    Leviathan::Physics* firstPhysics =
+        static_cast<Leviathan::Physics*>(NewtonBodyGetUserData(first));
+    Leviathan::Physics* secondPhysics =
+        static_cast<Leviathan::Physics*>(NewtonBodyGetUserData(second));
+
+    NewtonWorld* world = NewtonBodyGetWorld(first);
+    Leviathan::PhysicalWorld* physicalWorld =
+        static_cast<Leviathan::PhysicalWorld*>(NewtonWorldGetUserData(world));
+
+    GameWorld* gameWorld = physicalWorld->GetGameWorld();
+
+    ScriptRunningSetup setup("cellOnCellActualContact");
+
+    auto result = ThriveGame::Get()->getMicrobeScripts()->ExecuteOnModule<void>(
+        setup, false, gameWorld, firstPhysics->ThisEntity,
+        secondPhysics->ThisEntity);
+
+    if(result.Result != SCRIPT_RUN_RESULT::Success)
+        LOG_ERROR("Failed to run script side cellOnCellActualContact");
+    // placeholder code taht runs when a cell is hit
 }
 
 //! \brief This registers the physical materials (with callbacks for
@@ -776,6 +822,10 @@ void
     keyconfigobj->AddKeyIfMissing(guard, "MoveLeft", {"A"});
     keyconfigobj->AddKeyIfMissing(guard, "MoveRight", {"D"});
     keyconfigobj->AddKeyIfMissing(guard, "ReproduceCheat", {"P"});
+    keyconfigobj->AddKeyIfMissing(guard, "SpawnGlucoseCheat", {"O"});
+    keyconfigobj->AddKeyIfMissing(guard, "EngulfMode", {"G"});
+    keyconfigobj->AddKeyIfMissing(guard, "ZoomIn", {"+", "Keypad +"});
+    keyconfigobj->AddKeyIfMissing(guard, "ZoomOut", {"-", "Keypad -"});
 }
 // ------------------------------------ //
 bool
@@ -972,6 +1022,14 @@ bool
     if(engine->RegisterObjectProperty("Biome",
            "Ogre::ColourValue diffuseColors",
            asOFFSET(Biome, diffuseColors)) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+    if(engine->RegisterObjectProperty("Biome", "float oxygenPercentage",
+           asOFFSET(Biome, oxygenPercentage)) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+    if(engine->RegisterObjectProperty("Biome", "float carbonDioxidePercentage",
+           asOFFSET(Biome, carbonDioxidePercentage)) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
     }
 
@@ -1196,6 +1254,27 @@ bool
         ANGELSCRIPT_REGISTERFAIL;
     }
 
+
+    if(engine->RegisterEnum("MEMBRANE_TYPE") < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    ANGELSCRIPT_REGISTER_ENUM_VALUE(MEMBRANE_TYPE, MEMBRANE);
+    ANGELSCRIPT_REGISTER_ENUM_VALUE(MEMBRANE_TYPE, WALL);
+    ANGELSCRIPT_REGISTER_ENUM_VALUE(MEMBRANE_TYPE, CHITIN);
+
+    if(engine->RegisterObjectMethod("MembraneComponent",
+           "MEMBRANE_TYPE getMembraneType() const",
+           asMETHOD(MembraneComponent, getMembraneType), asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectMethod("MembraneComponent",
+           "void setMembraneType(MEMBRANE_TYPE type)",
+           asMETHOD(MembraneComponent, setMembraneType), asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
     if(engine->RegisterObjectMethod("MembraneComponent",
            "Float4 getColour() const", asMETHOD(MembraneComponent, getColour),
            asCALL_THISCALL) < 0) {
@@ -1228,6 +1307,7 @@ bool
     }
 
 
+
     // ------------------------------------ //
 
     if(engine->RegisterObjectType(
@@ -1254,6 +1334,12 @@ bool
     if(engine->RegisterObjectProperty("SpeciesComponent",
            "dictionary@ avgCompoundAmounts",
            asOFFSET(SpeciesComponent, avgCompoundAmounts)) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectProperty("SpeciesComponent",
+           "MEMBRANE_TYPE speciesMembraneType",
+           asOFFSET(SpeciesComponent, speciesMembraneType)) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
     }
 
@@ -1649,9 +1735,7 @@ SpawnerTypeId
 
     return self->addSpawnType(
         [=](CellStageWorld& world, Float3 pos) -> ObjectID {
-
             return wrapper->run(world, pos);
-
         },
         spawnDensity, spawnRadius);
 }

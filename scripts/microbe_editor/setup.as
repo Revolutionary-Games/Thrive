@@ -5,24 +5,31 @@ void onEditorEntry(MicrobeEditorWorld@ world){
 
     LOG_INFO("Running microbe editor script setup");
 
+    // This doesn't overwrite the object when called again so
+    // setupHUDAfterEditorEntry must succeed when called again on
+    // future edit sessions
     world.RegisterScriptSystem("MicrobeEditorHudSystem", MicrobeEditorHudSystem());
-    
 
+    // The world is cleared by the C++ code so we setup all of our entities again each time
     setupBackground(world);
-    setupCamera(world);
     setupSound(world);
-}
 
+    // The world already has a created camera in C++ so if it needs to
+    // be moved change the position there
+
+    cast<MicrobeEditorHudSystem>(world.GetScriptSystem("MicrobeEditorHudSystem")).
+        setupHUDAfterEditorEntry();
+}
 
 void setupBackground(MicrobeEditorWorld@ world){
 
     LOG_ERROR("TODO: editor setupBackground");
-    
+
     // auto entity = Entity("background", MicrobeEditorWorld@)
     // auto skyplane = SkyPlaneComponent();
     // skyplane.properties.plane.normal = Vector3(0, 0, 2000);
     // skyplane.properties.materialName = "background/blue_01";
-	// skyplane.properties.scale = 4;
+    // skyplane.properties.scale = 4;
     // skyplane.properties.touch();
     // entity.addComponent(skyplane);
     // //Create floating arrow entity
@@ -37,54 +44,23 @@ void setupBackground(MicrobeEditorWorld@ world){
     // entity.addComponent(sceneNode);
 }
 
-void setupCamera(MicrobeEditorWorld@ world){
-
-    LOG_ERROR("TODO: editor setupCamera");
-    
-    // auto entity = Entity(CAMERA_NAME .. "3", MicrobeEditorWorld@);
-    // //Camera
-    // auto camera = OgreCameraComponent("camera3");
-    // camera.properties.nearClipDistance = 5;
-    // camera.properties.orthographicalMode = true;
-    // camera.properties.fovY = Degree(30.0);
-    // camera.properties.touch();
-    // entity.addComponent(camera);
-    // //Scene node
-    // auto sceneNode = OgreSceneNodeComponent();
-    // sceneNode.transform.position.z = 30;
-    // sceneNode.transform.position.y = -3;
-    // sceneNode.transform.touch();
-    // entity.addComponent(sceneNode);
-    // //Light
-    // auto light = OgreLightComponent();
-    // light.setRange(200);
-    // entity.addComponent(light);
-    // //Workspace
-    // auto workspaceEntity = Entity(gameState.wrapper);
-    // auto workspaceComponent = OgreWorkspaceComponent("thrive_default");
-    // workspaceComponent.properties.cameraEntity = entity;
-    // workspaceComponent.properties.position = 0;
-    // workspaceComponent.properties.touch();
-    // workspaceEntity.addComponent(workspaceComponent);
-}
-
 void setupSound(MicrobeEditorWorld@ world){
 
     LOG_ERROR("TODO: editor setupSound");
-    
+
     // auto ambientEntity = Entity("editor_ambience", MicrobeEditorWorld@);
     // auto soundSource = SoundSourceComponent();
     // soundSource.autoLoop = true;
     // soundSource.ambientSoundSource = true;
     // soundSource.volumeMultiplier = 0.6;
     // ambientEntity.addComponent(soundSource);
-   
+
     // //Sound
     // soundSource.addSound("microbe-editor-theme-1", "microbe-editor-theme-1.ogg");
     // soundSource.addSound("microbe-editor-theme-2", "microbe-editor-theme-2.ogg");
     // soundSource.addSound("microbe-editor-theme-3", "microbe-editor-theme-3.ogg");
     // soundSource.addSound("microbe-editor-theme-4", "microbe-editor-theme-4.ogg");
-    // soundSource.addSound("microbe-editor-theme-5", "microbe-editor-theme-5.ogg"); 
+    // soundSource.addSound("microbe-editor-theme-5", "microbe-editor-theme-5.ogg");
     // //Gui effects
     // auto guiSoundEntity = Entity("gui_sounds", MicrobeEditorWorld@);
     // soundSource = SoundSourceComponent();
@@ -94,7 +70,7 @@ void setupSound(MicrobeEditorWorld@ world){
     // guiSoundEntity.addComponent(soundSource);
     // //Sound
     // soundSource.addSound("button-hover-click", "soundeffects/gui/button-hover-click.ogg");
-   
+
     // auto ambientEntity2 = Entity("editor_ambience2", MicrobeEditorWorld@);
     // auto soundSource2 = SoundSourceComponent();
     // soundSource2.volumeMultiplier = 0.1;

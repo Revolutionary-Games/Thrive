@@ -38,16 +38,77 @@
 
 /* Element styling */
 html{
-    background-image: url("../../Textures/gui/ThriveBackground.png");
     width: 100%;
     height: 100%;
     font-family: "Jura";
+    /* By default all text is white */
+    color: white;
+    /* Custom cursor everywhere */
+    cursor: url("../../Textures/gui/cursors/default.png"), auto;
+}
+
+body{
+    /* Remove borders around the content */
+    margin: 0px;
 }
 
 button{
     background-color: blue;
 }
 
+/* Videos are centered inside their elements and made to fit */
+video {
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+
+/* Common quick classes */
+.Centered{
+    text-align: center;
+    vertical-align: middle;
+}
+
+/* Centered fullscreen container */
+.FullScreen{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Bars */
+.Bar{
+    border: 1px solid white;
+    background: linear-gradient(rgb(255, 255, 255, 0.4), rgb(125, 125, 125, 0.4));
+    position: relative;
+    display: inline-block;
+}
+
+.BarBackground{
+    /* Starts out filled */
+    width: 100%;
+    height: 100%;
+    background: rgb(0, 125, 125, 0.8);
+    display: inline-block;
+    position: absolute;
+    left: 0px;
+}
+
+.BarTitle{
+    position: absolute;
+    /* Try to take the font height into account */
+    top: calc(50% - 8px);
+    /* Try to take the text size into account */
+    left: calc(50% - 40px);
+}
+
+.BarValue{
+    
+}
 
 /* Menu things */
 .MenuContainer{
@@ -58,7 +119,7 @@ button{
 
 .MainMenu{
 
-    margin-top: 120px;
+    margin-top: 300px;
     width: auto;
 }
 
@@ -70,7 +131,6 @@ button{
     height: 40px;
     /* margin-left:-110px;*/
     margin-bottom:5px;
-    color: white;
     background-color: rgb(0, 125, 125, 0.4);
     text-align: center;
     vertical-align: middle;
@@ -90,55 +150,40 @@ button{
     background-color: rgb(0, 80, 80, 0.32);
 }
 
-
-/* tjwhale's sample
-
-.menuButton {
-    position: relative;
-    left:50%;
-    top:50vh;
-    width:150px;
-    height:40px;
-    margin-left:-110px;
-    margin-bottom:5px;
-    color:white;
-    background-color:rgb(0,125,125,0.4);
-    text-align:center;
-    vertical-align:middle;
-    line-height:40px;
-}
-
-.menuButton:before {
-    content:"";
+/* Background planet and logo */
+.BackgroundStars{
+    background-image: url("../../Textures/gui/just_background.png");
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    z-index: -50;
     position: absolute;
-    right: 100%;
-    top:0px;
-    width:0px;
-    height:0px;
-    border-top:20px solid transparent;
-    border-right:35px solid rgb(0,125,125,0.4);
-    border-bottom:20px solid transparent;
+    top: 0px;
 }
 
-.menuButton:after {
-    content:"";
-    position: absolute;
-    left: 100%;
-    top:0px;
-    width:0px;
-    height:0px;
-    border-top:20px solid transparent;
-    border-left:35px solid rgb(0,125,125,0.4);
-    border-bottom:20px solid transparent;
+.BackgroundPlanet{
+    background: url("../../Textures/gui/planet.png");
+    /* Keep this original image file size here */
+    width: 593px;
+    height: 486px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center; 
 }
-.menuButton:hover {
-	background-color:rgb(0,125,125,0.8);
+
+.Logo{
+    background: url("../../Textures/gui/logo.png");
+    /* Keep this original image file size here */
+    width: 167px;
+    height: 168px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center; 
 }
-.menuButton:hover:before {
-	border-right:35px solid rgb(0,125,125,0.8);	
+
+/* Cell stage things */
+/* Any type of panel like the bottom bar and health window */
+.Panel{
+    background-color: rgb(0, 125, 125, 0.4);
 }
-.menuButton:hover:after {
-	border-left:35px solid rgb(0,125,125,0.8);
-}
-*/
 
