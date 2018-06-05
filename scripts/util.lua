@@ -18,19 +18,67 @@ function REGISTER_COMPONENT(name, cls)
 end
 
 
--- Gets a component from an entity, creating the component if it's not present
---
--- @param componentCls
---  The class object of the component type
-function Entity:getOrCreate(componentCls)
-    component = self:getComponent(componentCls.TYPE_ID)
-    if component == nil then
-        component = componentCls()
-        self:addComponent(component)
+--! @brief Returns a component from an entity
+--!
+--! Two alternative signatures:
+--! getComponent(string entityname, GameState gameState, Component componentClass)
+--! getComponent(Entity entity, Component componentClass)
+function getComponent(entityNameOrEntity, gameStateOrClass, componentClass)
+
+    local componentObj
+
+    -- Detect which signature
+    local param1Type = type(entityNameOrEntity)
+    if(param1Type == "string" or param1Type == "number") then
+
+        -- First signature
+        componentObj = Entity.new(entityNameOrEntity,
+                                  gameStateOrClass.wrapper):getComponent(
+            componentClass.TYPE_ID)
+        
+    else
+
+        -- Second signature
+        componentClass = gameStateOrClass
+        
+        componentObj = entityNameOrEntity:getComponent(componentClass.TYPE_ID)
     end
-    return component
+
+    if componentObj == nil then
+        -- No such component
+        return nil
+    end
+
+    if componentClass.castFrom then
+        
+        return componentClass.castFrom(componentObj)
+        
+    else
+        -- Unwrap ComponentWrapper
+
+        -- We do an unsafe cast for performance reasons
+        return ComponentWrapper.castFromUnsafe(componentObj).luaObj
+    end
 end
 
+
+--! Unwraps a ComponentWrapper from component and returns the lua
+--! object
+--! @return Unwrapped lua object. Or nil if wrapped wasn't a
+--! valid wrapper
+--! @note This is a safe but slow way to unwrap. See
+--! getComponent for a faster way, but one that isn't safe it isn't
+--! certain that wrapped is actually a ComponentWrapper
+function unwrapWrappedComponent(wrapped)
+
+    -- Cast to ComponentWrapper
+    if wrapped.luaObj == nil then
+
+        wrapped = ComponentWrapper.castFrom(wrapped)
+    end
+
+    return wrapped.luaObj
+end
 
 -- Computes a number's sign
 --
@@ -150,3 +198,53 @@ function memoize(fn)
     end
     return foo
 end
+
+function print_r (t, indent) -- alt version, abuse to http://richard.warburton.it
+  local indent=indent or ''
+  for key,value in pairs(t) do
+    io.write(indent,'[',tostring(key),']')
+    if type(value)=="table" then io.write(':\n') print_r(value,indent..'\t')
+    else io.write(' = ',tostring(value),'\n') end
+  end
+end
+
+--! Prints a value along with it's type
+function print_t(val, name)
+
+    if name == nil or type(name) ~= "string" then
+
+        name = debug.getinfo(2).short_src .. ":" .. debug.getinfo(2).currentline
+        
+    end
+
+    print("debug print " .. name .. ":")
+
+    local printVal = "<userdata>"
+    if type(val) ~= "userdata" then
+
+        printVal = tostring(val)
+
+    end
+    
+    print("type: " .. type(val) .. " value: " .. printVal)
+
+    if type(val) == "table" then
+        print_r(val)
+    end
+
+    print("end print")
+    
+end
+
+--! @brief Returns true if s is not an empty string
+function isNotEmpty(s)
+    return not (s == nil or s == '')
+end
+
+
+-- Call for quick debugging. Prints the line of the function calling this
+function printLine()
+    local info = debug.getinfo(2)
+    print(info.source .. ":" .. info.currentline)
+end
+

@@ -1,27 +1,26 @@
 #include "general/locked_map.h"
 
-#include "bullet/collision_filter.h"
-#include "engine/engine.h"
-#include "engine/entity_filter.h"
-#include "engine/game_state.h"
+//#include "bullet/collision_filter.h"
+//#include "engine/engine.h"
+//#include "engine/entity_filter.h"
+//#include "engine/game_state.h"
 #include "engine/serialization.h"
-
-#include <luabind/iterator_policy.hpp>
-
 
 using namespace thrive;
 
-luabind::scope
-LockedMap::luaBindings() {
-    using namespace luabind;
-    return class_<LockedMap>("LockedMap")
-        .def(constructor<>())
-        .def("addLock", &LockedMap::addLock)
-        .def("isLocked", &LockedMap::isLocked)
-        .def("unlock", &LockedMap::unlock)
-        .def("locksList", &LockedMap::locksList, return_stl_iterator)
-    ;
-}
+// void LockedMap::luaBindings(
+//     sol::state &lua
+// ){
+//     lua.new_usertype<LockedMap>("LockedMap",
+
+//         sol::constructors<sol::types<>>(),
+        
+//         "addLock", &LockedMap::addLock,
+//         "isLocked", &LockedMap::isLocked,
+//         "unlock", &LockedMap::unlock,
+//         "locksList", &LockedMap::locksList
+//     );
+// }
 
 void
 LockedMap::addLock(

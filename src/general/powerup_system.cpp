@@ -4,29 +4,65 @@
 #include "bullet/collision_filter.h"
 #include "engine/component_factory.h"
 #include "engine/engine.h"
+#include "engine/game_state.h"
+#include "game.h"
+#include "engine/entity.h"
 #include "engine/entity_filter.h"
 #include "engine/game_state.h"
 #include "engine/serialization.h"
-#include "scripting/luabind.h"
+#include "scripting/luajit.h"
 
+#include <iostream>
 
 using namespace thrive;
 
-luabind::scope
-PowerupComponent::luaBindings() {
-    using namespace luabind;
-    return class_<PowerupComponent, Component>("PowerupComponent")
-        .enum_("ID") [
-            value("TYPE_ID", PowerupComponent::TYPE_ID)
-        ]
-        .scope [
-            def("TYPE_NAME", &PowerupComponent::TYPE_NAME)
-        ]
-        .def(constructor<>())
-        .def("setEffect",
-             static_cast<void (PowerupComponent::*)(const luabind::object&)>(&PowerupComponent::setEffect)
-         )
-    ;
+void PowerupComponent::luaBindings(
+    sol::state &lua
+){
+    lua.new_usertype<PowerupComponent>("PowerupComponent",
+
+        "new", sol::factories([](){
+                return std::make_unique<PowerupComponent>();
+            }),
+        
+        COMPONENT_BINDINGS(PowerupComponent),
+
+        "setEffect", static_cast<void (PowerupComponent::*)(
+            const std::string&)>(&PowerupComponent::setEffect)
+    );
+}
+
+void
+PowerupComponent::setEffect(
+    const std::string& funcName
+){
+    this->effectName = funcName;
+    this->setEffect(new std::function<bool(EntityId)>(
+        [funcName](EntityId entityId) -> bool
+        {
+            lua_State* L = Game::instance().engine().luaState();
+            luaL_openlibs(L);
+            luaL_loadfile(L, "config.lua");
+
+            lua_getglobal(L, funcName.c_str());
+            lua_pushnumber(L, entityId);
+            if (lua_pcall(L, 1, 1, 0) != 0)
+            {
+                std::cerr << "error: cannot call the function" << std::endl;
+                return false;
+            }
+
+            if (!lua_isboolean(L, -1))
+            {
+                std::cerr << "function '" + funcName + "' must return a boolean" << std::endl;
+                return false;
+            }
+            bool result = lua_toboolean(L, -1);
+            lua_pop(L, 1);
+
+            return result;
+        }
+    ));
 }
 
 void
@@ -36,31 +72,31 @@ PowerupComponent::setEffect(
     m_effect = effect;
 }
 
-void
-PowerupComponent::setEffect(
-    const luabind::object& effect
-){
-    this->setEffect(new std::function<bool(EntityId)>(
-        [effect](EntityId entityId) -> bool
-        {
-            return luabind::call_function<bool>(effect, entityId);
-        }
-    ));
-}
+
 
 void
 PowerupComponent::load(
     const StorageContainer& storage
 ) {
     Component::load(storage);
+
+    this->effectName = storage.get<std::string>("effect");
+    setEffect(this->effectName);
 }
 
 
 StorageContainer
 PowerupComponent::storage() const {
     StorageContainer storage = Component::storage();
+
+    storage.set("effect", effectName);
+
     return storage;
 }
+
+
+
+
 
 REGISTER_COMPONENT(PowerupComponent)
 
@@ -68,14 +104,18 @@ REGISTER_COMPONENT(PowerupComponent)
 // PowerupSystem
 ////////////////////////////////////////////////////////////////////////////////
 
-luabind::scope
-PowerupSystem::luaBindings() {
-    using namespace luabind;
-    return class_<PowerupSystem, System>("PowerupSystem")
-        .def(constructor<>())
-    ;
-}
+void PowerupSystem::luaBindings(
+    sol::state &lua
+){
+    lua.new_usertype<PowerupSystem>("PowerupSystem",
 
+        sol::constructors<sol::types<>>(),
+        
+        sol::base_classes, sol::bases<System>(),
+
+        "init", &PowerupSystem::init
+    );
+}
 
 struct PowerupSystem::Implementation {
 
@@ -105,12 +145,12 @@ PowerupSystem::~PowerupSystem() {}
 
 void
 PowerupSystem::init(
-    GameState* gameState
+    GameStateData* gameState
 ) {
     System::initNamed("PowerupSystem", gameState);
-    m_impl->m_entities.setEntityManager(&gameState->entityManager());
+    m_impl->m_entities.setEntityManager(gameState->entityManager());
     m_impl->m_powerupCollisions.init(gameState);
-    m_impl->m_entityManager = &gameState->entityManager();
+    m_impl->m_entityManager = gameState->entityManager();
 }
 
 

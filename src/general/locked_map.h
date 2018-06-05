@@ -1,17 +1,10 @@
 #pragma once
 
-#include "engine/system.h"
-#include "engine/touchable.h"
+//#include "engine/system.h"
+//#include "engine/touchable.h"
 #include "engine/typedefs.h"
-#include "scripting/luabind.h"
-#include <luabind/object.hpp>
 #include <string>
 #include <unordered_set>
-
-namespace luabind {
-class scope;
-}
-
 
 namespace thrive {
 
@@ -24,19 +17,18 @@ class LockedMap {
 
 public:
 
-    /**
-    * @brief Lua bindings
-    *
-    * Exposes:
-    * - LockedMap()
-    * - LockedMap::addLock
-    * - LockedMap::isLocked
-    * - LockedMap::unlock
-    *
-    * @return
-    */
-    static luabind::scope
-    luaBindings();
+    // /**
+    // * @brief Lua bindings
+    // *
+    // * Exposes:
+    // * - LockedMap()
+    // * - LockedMap::addLock
+    // * - LockedMap::isLocked
+    // * - LockedMap::unlock
+    // *
+    // * @return
+    // */
+    // static void luaBindings(sol::state &lua);
 
 
     /**

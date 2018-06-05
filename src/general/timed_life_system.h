@@ -1,14 +1,9 @@
 #pragma once
 
-#include "engine/component.h"
-#include "engine/system.h"
-#include "engine/touchable.h"
-#include "scripting/luabind.h"
+#include "engine/component_types.h"
 
-
-namespace luabind {
-class scope;
-}
+#include "Entities/Component.h"
+#include "Entities/System.h"
 
 
 namespace thrive {
@@ -17,87 +12,44 @@ namespace thrive {
 /**
 * @brief Component for entities with timed life
 */
-class TimedLifeComponent : public Component {
-    COMPONENT(TimedLifeComponent)
-
+class TimedLifeComponent : public Leviathan::Component {
 public:
 
-    /**
-    * @brief Lua bindings
-    *
-    * Exposes:
-    * - TimedLifeComponent()
-    * - TimedLifeComponent::m_timeToLive
-    *
-    * @return
-    */
-    static luabind::scope
-    luaBindings();
+    TimedLifeComponent(int timeToLive);
+
+    // void
+    // load(
+    //     const StorageContainer& storage
+    // ) override;
+
+    // StorageContainer
+    // storage() const override;
+
+    REFERENCE_HANDLE_UNCOUNTED_TYPE(TimedLifeComponent);
+
+    static constexpr auto TYPE = componentTypeConvert(THRIVE_COMPONENT::TIMED_LIFE);
 
     /**
     * @brief The time until the owning entity despawns
     */
-    Milliseconds m_timeToLive = 0;
-
-    void
-    load(
-        const StorageContainer& storage
-    ) override;
-
-    StorageContainer
-    storage() const override;
-
+    int m_timeToLive = 0;
 };
 
 
 /**
 * @brief Despawns entities after they've reached their lifetime
 */
-class TimedLifeSystem : public System {
+class TimedLifeSystem {
 
 public:
 
     /**
-    * @brief Lua bindings
-    *
-    * Exposes:
-    * - TimedLifeSystem()
-    *
-    * @return
-    */
-    static luabind::scope
-    luaBindings();
-
-    /**
-    * @brief Constructor
-    */
-    TimedLifeSystem();
-
-    /**
-    * @brief Destructor
-    */
-    ~TimedLifeSystem();
-
-    /**
-    * @brief Initializes the system
-    *
-    */
-    void init(GameState* gameState) override;
-
-    /**
-    * @brief Shuts the system down
-    */
-    void shutdown() override;
-
-    /**
     * @brief Updates the system
     */
-    void update(int, int) override;
-
-private:
-
-    struct Implementation;
-    std::unique_ptr<Implementation> m_impl;
+    void
+    Run(GameWorld &world,
+        std::unordered_map<ObjectID, TimedLifeComponent*> &components
+    );
 };
 
 }

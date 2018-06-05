@@ -1,7 +1,5 @@
 #pragma once
 
-#include "scripting/luabind.h"
-
 #include <cstdint>
 #include <OgreColourValue.h>
 #include <OgreMath.h>
@@ -12,8 +10,10 @@
 #include <map>
 #include <vector>
 
+#include <limits.h>
+
 static_assert(
-    CHAR_BIT == 8, 
+    CHAR_BIT == 8,
     "char must be 8 bit long for properly portable serialization."
 );
 
@@ -37,16 +37,15 @@ class StorageContainer {
 
 public:
 
-    /**
-    * @brief Lua bindings
-    *
-    * - StorageContainer::contains
-    * - StorageContainer::get
-    * - StorageContainer::set
-    *
-    */
-    static luabind::scope
-    luaBindings();
+    // /**
+    // * @brief Lua bindings
+    // *
+    // * - StorageContainer::contains
+    // * - StorageContainer::get
+    // * - StorageContainer::set
+    // *
+    // */
+    // static void luaBindings(sol::state &lua);
 
     /**
     * @brief Constructor
@@ -99,6 +98,25 @@ public:
     );
 
     /**
+    * @brief Required for lua bindings
+    */
+    bool operator ==(
+        const StorageContainer &other
+    ) const {
+        return this == &other;
+    }
+
+    /**
+    * @brief Required for lua bindings
+    */
+    bool operator <(
+        const StorageContainer &other
+    ) const {
+        (void)other;
+        return false;
+    }
+
+    /**
     * @brief Checks for a key
     *
     * @param key
@@ -140,8 +158,8 @@ public:
     *   The value to return when the key is not present (or the value has the
     *   wrong type)
     *
-    * @return 
-    *   The value associated with \a key or \a defaultValue if the key could 
+    * @return
+    *   The value associated with \a key or \a defaultValue if the key could
     *   not be found or has a value associated with it that is not \a T.
     */
     template<typename T>
@@ -158,19 +176,19 @@ public:
     std::list<std::string>
     keys() const;
 
-    /**
-    * @brief Lua version of StorageContainer::get
-    *
-    * @param key
-    * @param defaultValue
-    *
-    * @return 
-    */
-    luabind::object
-    luaGet(
-        const std::string& key,
-        luabind::object defaultValue
-    ) const;
+    // /**
+    // * @brief Lua version of StorageContainer::get
+    // *
+    // * @param key
+    // * @param defaultValue
+    // *
+    // * @return
+    // */
+    // sol::object luaGet(
+    //     const std::string& key,
+    //     sol::object defaultValue,
+    //     sol::this_state s
+    // ) const;
 
     /**
     * @brief Sets a value in this container
@@ -191,13 +209,13 @@ public:
         T value
     );
 
-    friend std::ostream& 
+    friend std::ostream&
     operator << (
         std::ostream& stream,
         const StorageContainer& storage
     );
 
-    friend std::istream& 
+    friend std::istream&
     operator >> (
         std::istream& stream,
         StorageContainer& storage
@@ -215,7 +233,7 @@ private:
 * @param stream
 * @param storage
 *
-* @return 
+* @return
 */
 std::ostream&
 operator << (
@@ -229,7 +247,7 @@ operator << (
 * @param stream
 * @param storage
 *
-* @return 
+* @return
 */
 std::istream&
 operator >> (
@@ -245,17 +263,16 @@ class StorageList : public std::vector<StorageContainer> {
 
 public:
 
-    /**
-    * @brief Lua bindings
-    *
-    * - StorageList::append
-    * - StorageList::get
-    * - StorageList::size
-    *
-    * @return 
-    */
-    static luabind::scope
-    luaBindings();
+    // /**
+    // * @brief Lua bindings
+    // *
+    // * - StorageList::append
+    // * - StorageList::get
+    // * - StorageList::size
+    // *
+    // * @return
+    // */
+    // static void luaBindings(sol::state &lua);
 
     /**
     * @brief Constructor

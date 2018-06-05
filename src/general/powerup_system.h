@@ -4,12 +4,11 @@
 #include "engine/system.h"
 #include "engine/touchable.h"
 #include "engine/typedefs.h"
-#include "scripting/luabind.h"
 
-#include <luabind/object.hpp>
+#include <functional>
 
-namespace luabind {
-class scope;
+namespace sol {
+class state;
 }
 
 
@@ -33,8 +32,18 @@ public:
     *
     * @return
     */
-    static luabind::scope
-    luaBindings();
+    static void luaBindings(sol::state &lua);
+
+    /**
+    * @brief Sets the effect to use upon activation of the powerup
+    *
+    * @param effect
+    *  Function taking the entityId of the activating entity.
+    */
+    void
+    setEffect(
+        const std::string&
+    );
 
 
     /**
@@ -46,18 +55,6 @@ public:
     void
     setEffect(
         std::function<bool(EntityId)>* effect
-    );
-
-    /**
-    * @brief Sets the effect to use upon activation of the powerup
-    *  The effect does not get saved when the game is saved.
-    *
-    * @param effect
-    *  Lua function taking the entityId of the activating entity.
-    */
-    void
-    setEffect(
-        const luabind::object& effect
     );
 
     void
@@ -77,6 +74,11 @@ private:
     */
     std::function<bool(EntityId)>* m_effect;
 
+    /**
+    * @brief The name of the effect function that is defined in configs.lua
+    */
+    std::string effectName;
+
 };
 
 
@@ -95,8 +97,7 @@ public:
     *
     * @return
     */
-    static luabind::scope
-    luaBindings();
+    static void luaBindings(sol::state &lua);
 
     /**
     * @brief Constructor
@@ -112,7 +113,7 @@ public:
     * @brief Initializes the system
     *
     */
-    void init(GameState* gameState) override;
+    void init(GameStateData* gameState) override;
 
     /**
     * @brief Shuts the system down

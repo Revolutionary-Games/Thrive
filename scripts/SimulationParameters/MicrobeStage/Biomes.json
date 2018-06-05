@@ -1,0 +1,156 @@
+{
+    "default": {
+        "name": "Ocean",
+        "background": "Background",
+		"colors":{
+		    "specularColors": {
+            "r": 0.98,
+            "g": 1,
+            "b": 0.95
+			},
+		    "diffuseColors": {
+            "r": 1,
+            "g": 1,
+            "b": 1
+			}
+		},
+		
+        "compounds": {
+            "oxygen": {
+                "amount": 32500,
+                "density": 0.0002
+            },
+
+            "co2": {
+                "amount": 32500,
+                "density": 0.0002
+            },
+
+            "ammonia": {
+                "amount": 32500,
+                "density": 0.0002
+            },
+
+            "glucose": {
+                "amount": 32500,
+                "density": 0.0002
+            }
+        }
+    },
+
+    "volcanic_vent": {
+        "name": "Volcanic vent",
+        "background": "Background_Vent",
+		"colors":{
+		    "specularColors": {
+            "r": 0.98,
+            "g": 0.7,
+            "b": 0.75
+			},
+		    "diffuseColors": {
+            "r": 1.0,
+            "g": 0.9,
+            "b": 0.9
+			}
+		},
+		
+        "compounds": {
+            "oxygen": {
+                "amount": 30000,
+                "density": 0.0002
+            },
+
+            "co2": {
+                "amount": 75000,
+                "density": 0.0002
+            },
+
+            "ammonia": {
+                "amount": 42500,
+                "density": 0.0002
+            },
+
+            "glucose": {
+                "amount": 32500,
+                "density": 0.0002
+            }
+        }
+    },
+
+    "abyss": {
+        "name": "Abyss",
+        "background": "Background_Abyss",
+		"colors":{
+		    "specularColors": {
+            "r": 0.48,
+            "g": 0.5,
+            "b": 0.95
+			},
+		    "diffuseColors": {
+            "r": 0.5,
+            "g": 0.5,
+            "b": 0.5
+			}
+		},
+        "compounds": {
+            "oxygen": {
+                "amount": 25000,
+                "density": 0.0002
+            },
+
+            "co2": {
+                "amount": 35000,
+                "density": 0.0002
+            },
+
+            "ammonia": {
+                "amount": 35000,
+                "density": 0.0002
+            },
+
+            "glucose": {
+                "amount": 40000,
+                "density": 0.0002
+            }
+        }
+    },
+
+    "shallow": {
+        "name": "Shallow",
+        "background": "Background_Shallow",
+		"colors":{
+		    "specularColors": {
+            "r": 0.68,
+            "g": 1.0,
+            "b": 0.65
+			},
+		    "diffuseColors": {
+            "r": 0.60,
+            "g": 1.0,
+            "b": 0.60
+			}
+		},
+		
+        "compounds": {
+            "oxygen": {
+                "amount": 50000,
+                "density": 0.0002
+            },
+
+            "co2": {
+                "amount": 35000,
+                "density": 0.0002
+            },
+
+            "ammonia": {
+                "amount": 30000,
+                "density": 0.0002
+            },
+
+            "glucose": {
+                "amount": 35000,
+                "density": 0.0002
+            }
+        }
+    }
+}
