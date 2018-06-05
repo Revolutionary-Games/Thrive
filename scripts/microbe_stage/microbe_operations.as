@@ -427,6 +427,7 @@ void purgeCompounds(CellStageWorld@ world, ObjectID microbeEntity){
 }
 
 // TODO: Test to make sure this works
+// Will maybe not remove ths, but will un-link it from reproduction
 void calculateHealthFromOrganelles(CellStageWorld@ world, ObjectID microbeEntity){
     MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
         world.GetScriptComponentHolder("MicrobeComponent").Find(microbeEntity));
@@ -652,7 +653,9 @@ bool addOrganelle(CellStageWorld@ world, ObjectID microbeEntity, PlacedOrganelle
         rigidBodyComponent.JumpTo(position);
     }
 
+    // We will have to get rid of this, as we dont wnat health/reproduction linked anymore
     calculateHealthFromOrganelles(world, microbeEntity);
+
     microbeComponent.maxBandwidth = microbeComponent.maxBandwidth +
         BANDWIDTH_PER_ORGANELLE; // Temporary solution for increasing max bandwidth
     microbeComponent.remainingBandwidth = microbeComponent.maxBandwidth;
