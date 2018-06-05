@@ -182,6 +182,12 @@ void cellOnCellActualContact(GameWorld@ world, ObjectID firstEntity, ObjectID se
     }
 }
 
+// Returns 0 if being engulfed, probabbly also damages the cell being engulfed, we should probabbly check cell size and such here aswell.
+int beingEngulfed(GameWorld@ world, ObjectID firstEntity, ObjectID secondEntity){
+
+return 0;
+}
+
 
 
 // TODO: This should be moved somewhere else...
