@@ -185,7 +185,20 @@ void cellOnCellActualContact(GameWorld@ world, ObjectID firstEntity, ObjectID se
 // Returns 0 if being engulfed, probabbly also damages the cell being engulfed, we should probabbly check cell size and such here aswell.
 int beingEngulfed(GameWorld@ world, ObjectID firstEntity, ObjectID secondEntity){
 
-return 0;
+    int engulfing = 1;
+    // Grab the microbe components
+    MicrobeComponent@ firstMicrobeComponent = cast<MicrobeComponent>(
+        world.GetScriptComponentHolder("MicrobeComponent").Find(firstEntity));
+
+    MicrobeComponent@ secondMicrobeComponent = cast<MicrobeComponent>(
+        world.GetScriptComponentHolder("MicrobeComponent").Find(secondEntity));
+
+    if (firstMicrobeComponent.engulfMode || secondMicrobeComponent.engulfMode)
+    {
+    engulfing = 0;
+    }
+
+return engulfing;
 }
 
 
