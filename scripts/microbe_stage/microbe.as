@@ -269,7 +269,7 @@ class MicrobeSystem : ScriptSystem{
 
     void Run(){
         // Note that this triggers every frame there is a collision
-		// Guess i should call those in the c++ now
+    // Guess i should call those in the c++ now
         // for(_, collision in pairs(this.microbeCollisions.collisions())){
         //     auto entity1 = Entity(collision.entityId1, this.gameState.wrapper);
         //     auto entity2 = Entity(collision.entityId2, this.gameState.wrapper);
@@ -653,7 +653,7 @@ class MicrobeSystem : ScriptSystem{
         microbeComponent.remainingBandwidth = min(addedBandwidth,
             microbeComponent.maxBandwidth);
     }
-	// I think i need to reenable the below method and call it somewhere
+    // I think i need to reenable the below method and call it somewhere
     // Stuff that should be maybe moved out of here:
     // void checkEngulfment(ObjectID engulferMicrobeEntity, ObjectID engulfedMicrobeEntity){
     //     auto body = world.GetComponent_RigidBodyComponent(engulferMicrobeEntity, RigidBodyComponent);
