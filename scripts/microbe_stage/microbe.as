@@ -268,19 +268,6 @@ class MicrobeSystem : ScriptSystem{
     void Release(){}
 
     void Run(){
-        // Note that this triggers every frame there is a collision
-    // Guess i should call those in the c++ now
-        // for(_, collision in pairs(this.microbeCollisions.collisions())){
-        //     auto entity1 = Entity(collision.entityId1, this.gameState.wrapper);
-        //     auto entity2 = Entity(collision.entityId2, this.gameState.wrapper);
-        //     if(entity1.exists() and entity2.exists()){
-        //         // Engulf initiation
-        //         MicrobeSystem.checkEngulfment(entity1, entity2);
-        //         MicrobeSystem.checkEngulfment(entity2, entity1);
-        //     }
-        // }
-
-        // this.microbeCollisions.clearCollisions()
 
         // // TEMP, DELETE FOR 0.3.3!!!!!!!!
         // for(_, collision in pairs(this.agentCollisions.collisions())){
@@ -652,28 +639,6 @@ class MicrobeSystem : ScriptSystem{
 
         microbeComponent.remainingBandwidth = min(addedBandwidth,
             microbeComponent.maxBandwidth);
-    }
-    // Actually we can probabbly get rid of this
-    // Stuff that should be maybe moved out of here:
-    void checkEngulfment(ObjectID engulferMicrobeEntity, ObjectID engulfedMicrobeEntity){
-    //     auto body = world.GetComponent_RigidBodyComponent(engulferMicrobeEntity, RigidBodyComponent);
-    //     auto microbe1Comp = world.GetComponent_MicrobeComponent(engulferMicrobeEntity, MicrobeComponent);
-    //     auto microbe2Comp = world.GetComponent_MicrobeComponent(engulfedMicrobeEntity, MicrobeComponent);
-    //     auto soundSourceComponent = world.GetComponent_SoundSourceComponent(engulferMicrobeEntity, SoundSourceComponent);
-    //     auto bodyEngulfed = world.GetComponent_RigidBodyComponent(engulfedMicrobeEntity, RigidBodyComponent);
-
-    //     // That actually happens sometimes, and i think it shouldn't. :/
-    //     // Probably related to a collision detection bug.
-    //     // assert(body !is null, "Microbe without a rigidBody tried to engulf.")
-    //     // assert(bodyEngulfed !is null, "Microbe without a rigidBody tried to be engulfed.")
-    //     if(body is null || bodyEngulfed is null)
-    //         return;
-
-    //         //isBeingEngulfed is set to false every frame
-    //         // we detect engulfment stopped by isBeingEngulfed being
-    //         // false while wasBeingEngulfed is true
-    //         microbe2Comp.isBeingEngulfed = true;
-    //     }
     }
 
     PlacedOrganelle@ splitOrganelle(ObjectID microbeEntity, PlacedOrganelle@ organelle){

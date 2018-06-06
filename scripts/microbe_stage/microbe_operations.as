@@ -705,7 +705,6 @@ ObjectID spawnMicrobe(CellStageWorld@ world, Float3 pos, const string &in specie
     auto processor = getProcessorComponent(world, speciesName);
 
     if(processor is null){
-
         LOG_ERROR("Skipping microbe spawn because species '" + speciesName +
             "' doesn't have a processor component");
 
@@ -1041,7 +1040,6 @@ void kill(CellStageWorld@ world, ObjectID microbeEntity){
     // deathAnimModel.GraphicalObject.playAnimation("Death", false);
 
     deathAnimSceneNode.Node.setPosition(position._Position);
-
 
     microbeComponent.dead = true;
     microbeComponent.deathTimer = 5000;
