@@ -714,9 +714,20 @@ int
     // Grab microbe component
 
 
-    // How do i grab the microbe info here and return information from an
+    // How do i grab the microbe info here and return information from
     // angelscript method? Return 0 for now to test it
-    return 0;
+    ScriptRunningSetup setup("beingEngulfed");
+
+    // Causes errors as this has to release
+    auto returned =
+        ThriveGame::Get()->getMicrobeScripts()->ExecuteOnModule<int>(setup,
+            false, gameWorld, firstPhysics->ThisEntity,
+            secondPhysics->ThisEntity);
+
+    if(returned.Result != SCRIPT_RUN_RESULT::Success)
+        LOG_ERROR("Failed to run script side beingEngulfed");
+
+    return returned.Value;
 }
 
 void
