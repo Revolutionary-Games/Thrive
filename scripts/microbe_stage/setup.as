@@ -173,13 +173,6 @@ void cellOnCellActualContact(GameWorld@ world, ObjectID firstEntity, ObjectID se
     MicrobeComponent@ secondMicrobeComponent = cast<MicrobeComponent>(
         world.GetScriptComponentHolder("MicrobeComponent").Find(secondEntity));
 
-    if (firstMicrobeComponent.engulfMode)
-    {
-        firstMicrobeComponent.isCurrentlyEngulfing=true;
-        //where do we set this to false?
-        secondMicrobeComponent.isBeingEngulfed=true;
-        secondMicrobeComponent.hostileEngulfer = secondEntity;
-    }
 }
 
 // Returns 0 if being engulfed, probabbly also damages the cell being engulfed, we should probabbly check cell size and such here aswell.
@@ -195,7 +188,22 @@ int beingEngulfed(GameWorld@ world, ObjectID firstEntity, ObjectID secondEntity)
 
     if (firstMicrobeComponent.engulfMode || secondMicrobeComponent.engulfMode)
     {
+    if(firstMicrobeComponent.engulfMode && firstMicrobeComponent.maxHitpoints >
+    (ENGULF_HP_RATIO_REQ * secondMicrobeComponent.maxHitpoints) &&
+            firstMicrobeComponent.dead == false && secondMicrobeComponent.dead == false)
+    {
+    firstMicrobeComponent.isCurrentlyEngulfing=true;
+    // Where do we set this to false?
+    secondMicrobeComponent.isBeingEngulfed=true;
+    secondMicrobeComponent.hostileEngulfer = secondEntity;
+    if(!firstMicrobeComponent.isCurrentlyEngulfing){
+                 //We have just started engulfing
+                 secondMicrobeComponent.movementFactor = secondMicrobeComponent.movementFactor /
+                     ENGULFED_MOVEMENT_DIVISION;
+                 secondMicrobeComponent.wasBeingEngulfed = true;
+             }
     engulfing = 0;
+    }
     }
 
 return engulfing;
