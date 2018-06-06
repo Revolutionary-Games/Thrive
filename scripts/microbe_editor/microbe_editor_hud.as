@@ -18,25 +18,6 @@ class MicrobeEditorHudSystem : ScriptSystem{
 
         @editor = MicrobeEditor(this);
 
-    //     // This seems really cluttered, there must be a better way.
-    //     for(i=1, 42){
-    //         this.hoverHex[i] = Entity("hover-hex" .. i, gameState.wrapper);
-    //         auto sceneNode = OgreSceneNodeComponent();
-    //         sceneNode.transform.position = Vector3(0,0,0);
-    //         sceneNode.transform.touch();
-    //         sceneNode.meshName = "hex.mesh";
-    //         sceneNode.transform.scale = Vector3(HEX_SIZE, HEX_SIZE, HEX_SIZE);
-    //         this.hoverHex[i]:addComponent(sceneNode);
-    //     }
-    //     for(i=1, 6){
-    //         this.hoverOrganelle[i] = Entity("hover-organelle" .. i, gameState.wrapper);
-    //         auto sceneNode = OgreSceneNodeComponent();
-    //         sceneNode.transform.position = Vector3(0,0,0);
-    //         sceneNode.transform.touch();
-    //         sceneNode.transform.scale = Vector3(HEX_SIZE, HEX_SIZE, HEX_SIZE);
-    //         this.hoverOrganelle[i]:addComponent(sceneNode);
-    //     }
-
 
     //     auto root = this.gameState.guiWindow;
     //     this.mpLabel = root.getChild("MpPanel"):getChild("MpBar"):getChild("NumberLabel");
@@ -259,23 +240,67 @@ class MicrobeEditorHudSystem : ScriptSystem{
     // Called when the editor is entered. Performs initialization again to make sure the
     // editor works the same on each time it is entered
     void setupHUDAfterEditorEntry(){
+
+        // Let go of old resources
+
+
+        // Prepare for a new edit
         editor.init();
+
+        // This seems really cluttered, there must be a better way.
+        for(int i = 0; i < 42; ++i){
+
+            ObjectID hex = world.CreateEntity();
+            auto node = world.Create_RenderNode(hex);
+            world.Create_Model(hex, node.Node, "hex.mesh");
+            node.Scale = Float3(HEX_SIZE, HEX_SIZE, HEX_SIZE);
+            node.Marked = true;
+            hoverHex.insertLast(hex);
+        }
+
+        for(int i = 0; i < 6; ++i){
+            ObjectID hex = world.CreateEntity();
+            auto node = world.Create_RenderNode(hex);
+            node.Scale = Float3(HEX_SIZE, HEX_SIZE, HEX_SIZE);
+            node.Marked = true;
+            hoverOrganelle.insertLast(hex);
+        }
+
+
     }
 
-    AudioSource@ ambienceSounds;
+    // void MicrobeEditorHudSystem.setActiveAction(actionName){
+    //     this.editor.setActiveAction(actionName)
+    //     if(actionName == "nucleus"){
+    //         // For now we simply create a new microbe with the nucleus button
+    //         this.editor.performLocationAction()
+    //     }
+    // end
+
+    void updateMutationPoints() {
+
+        GenericEvent@ event = GenericEvent("MutationPointsUpdated");
+        NamedVars@ vars = event.GetNamedVars();
+
+        vars.AddValue(ScriptSafeVariableBlock("mp", editor.getMutationPoints()));
+
+        GetEngine().GetEventHandler().CallEvent(event);
+    }
+
+    private AudioSource@ ambienceSounds;
     private MicrobeEditor@ editor = null;
     private MicrobeEditorWorld@ world;
 
-    // // Scene nodes for the organelle cursors for symmetry.
-    // this.hoverHex = {};
-    // this.hoverOrganelle = {};
+    private array<ObjectID> hoverHex;
+    // Scene nodes for the organelle cursors for symmetry.
+    private array<ObjectID> hoverOrganelle;
 
     // this.saveLoadPanel = null;
     // this.creationsListbox = null;
     // this.creationFileMap = {} // Map from player creation name to filepath
     // this.activeButton = null; // stores button, not name
-    // this.helpPanelOpen = false;
-    // this.menuOpen = false;
+    bool helpPanelOpen = false;
+    bool menuOpen = false;
 }
 
 // void MicrobeEditorHudSystem.loadmicrobeSelectionChanged(){
@@ -283,21 +308,6 @@ class MicrobeEditorHudSystem : ScriptSystem{
 //     ):playSound("button-hover-click")
 // }
 
-// void MicrobeEditorHudSystem.setActiveAction(actionName){
-//     this.editor.setActiveAction(actionName)
-//     if(actionName == "nucleus"){
-//         // For now we simply create a new microbe with the nucleus button
-//         this.editor.performLocationAction()
-//     }
-// end
-
-
-// void MicrobeEditorHudSystem.update(renderTime, logicTime){
-
-// void MicrobeEditorHudSystem.updateMutationPoints() {
-//     this.mpProgressBar.progressbarSetProgress(this.editor.mutationPoints/50)
-//     this.mpLabel.setText("" .. this.editor.mutationPoints)
-// }
 
 // ////////////////////////////////////////////////////////////////-
 // // Event handlers //////////////////////////////////////////////-

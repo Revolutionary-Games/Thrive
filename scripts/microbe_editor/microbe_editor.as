@@ -583,6 +583,11 @@ class MicrobeEditor{
     //     hudSystem.redoButton.enable();
     // }
 
+    int getMutationPoints() const
+    {
+        return mutationPoints;
+    }
+
     // private auto actionHistory;
     private int actionIndex;
     // private auto activeActionName;
