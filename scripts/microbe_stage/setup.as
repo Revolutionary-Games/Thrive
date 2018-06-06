@@ -163,16 +163,9 @@ void cellHitFloatingOrganelle(GameWorld@ world, ObjectID firstEntity, ObjectID s
     world.QueueDestroyEntity(floatingEntity);
 }
 
+// SO what should we use this method for?
 void cellOnCellActualContact(GameWorld@ world, ObjectID firstEntity, ObjectID secondEntity){
-
     // LOG_INFO("Cell hit another cell, thats cool i guess");
-
-    MicrobeComponent@ firstMicrobeComponent = cast<MicrobeComponent>(
-        world.GetScriptComponentHolder("MicrobeComponent").Find(firstEntity));
-
-    MicrobeComponent@ secondMicrobeComponent = cast<MicrobeComponent>(
-        world.GetScriptComponentHolder("MicrobeComponent").Find(secondEntity));
-
 }
 
 // Returns 0 if being engulfed, probabbly also damages the cell being engulfed, we should probabbly check cell size and such here aswell.
@@ -186,14 +179,15 @@ int beingEngulfed(GameWorld@ world, ObjectID firstEntity, ObjectID secondEntity)
     MicrobeComponent@ secondMicrobeComponent = cast<MicrobeComponent>(
         world.GetScriptComponentHolder("MicrobeComponent").Find(secondEntity));
 
-    if (firstMicrobeComponent.engulfMode || secondMicrobeComponent.engulfMode)
+    // If either cell is engulfing we need to do things
+    if (firstMicrobeComponent.engulfMode)
     {
     if(firstMicrobeComponent.engulfMode && firstMicrobeComponent.maxHitpoints >
     (ENGULF_HP_RATIO_REQ * secondMicrobeComponent.maxHitpoints) &&
             firstMicrobeComponent.dead == false && secondMicrobeComponent.dead == false)
     {
+
     firstMicrobeComponent.isCurrentlyEngulfing=true;
-    // Where do we set this to false?
     secondMicrobeComponent.isBeingEngulfed=true;
     secondMicrobeComponent.hostileEngulfer = secondEntity;
     if(!firstMicrobeComponent.isCurrentlyEngulfing){
@@ -202,6 +196,29 @@ int beingEngulfed(GameWorld@ world, ObjectID firstEntity, ObjectID secondEntity)
                      ENGULFED_MOVEMENT_DIVISION;
                  secondMicrobeComponent.wasBeingEngulfed = true;
              }
+     LOG_INFO("Engulfing");
+    engulfing = 0;
+    }
+    }
+
+    // Looks like it doenst work sometimes if i dont check the second one aswell, so i have to, theres gotta be a way to improve this
+    if (secondMicrobeComponent.engulfMode)
+    {
+    if(secondMicrobeComponent.engulfMode && secondMicrobeComponent.maxHitpoints >
+    (ENGULF_HP_RATIO_REQ * firstMicrobeComponent.maxHitpoints) &&
+            secondMicrobeComponent.dead == false && firstMicrobeComponent.dead == false)
+    {
+
+    secondMicrobeComponent.isCurrentlyEngulfing=true;
+    firstMicrobeComponent.isBeingEngulfed=true;
+    firstMicrobeComponent.hostileEngulfer = secondEntity;
+    if(!secondMicrobeComponent.isCurrentlyEngulfing){
+                 //We have just started engulfing
+                 firstMicrobeComponent.movementFactor = firstMicrobeComponent.movementFactor /
+                     ENGULFED_MOVEMENT_DIVISION;
+                 firstMicrobeComponent.wasBeingEngulfed = true;
+             }
+     LOG_INFO("Engulfing");
     engulfing = 0;
     }
     }
