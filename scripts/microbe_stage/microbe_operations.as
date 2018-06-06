@@ -483,12 +483,10 @@ void toggleEngulfMode(CellStageWorld@ world, ObjectID microbeEntity){
             ENGULFING_MOVEMENT_DIVISION;
         // soundSourceComponent.stopSound("microbe-engulfment"); // Possibly comment out.
     auto rigidBodyComponent = world.GetComponent_Physics(microbeEntity);
-    //TODO: Make rigid body collidable
     } else {
         microbeComponent.movementFactor = microbeComponent.movementFactor /
             ENGULFING_MOVEMENT_DIVISION;
     auto rigidBodyComponent = world.GetComponent_Physics(microbeEntity);
-    //TODO: Make rigid body NOT collidable
     }
 
     microbeComponent.engulfMode = !microbeComponent.engulfMode;
@@ -1065,6 +1063,7 @@ void kill(CellStageWorld@ world, ObjectID microbeEntity){
     microbeSceneNode.Marked = true;
 }
 
+// TODO: Confirm this method works
 void removeEngulfedEffect(CellStageWorld@ world, ObjectID microbeEntity){
     MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
         world.GetScriptComponentHolder("MicrobeComponent").Find(microbeEntity));
@@ -1083,13 +1082,6 @@ void removeEngulfedEffect(CellStageWorld@ world, ObjectID microbeEntity){
 
     auto hostileRigidBodyComponent = world.GetComponent_Physics(
         microbeComponent.hostileEngulfer);
-
-    // The component is null sometimes, probably due to despawning.
-    if(hostileRigidBodyComponent !is null){
-        //hostileRigidBodyComponent.reenableAllCollisions();
-        LOG_WRITE("TODO: redo this thing: "
-            "hostileRigidBodyComponent.reenableAllCollisions();");
-    }
 }
 
 // Sets the colour of the microbe's membrane.

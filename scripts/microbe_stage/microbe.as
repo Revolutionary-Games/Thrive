@@ -653,9 +653,9 @@ class MicrobeSystem : ScriptSystem{
         microbeComponent.remainingBandwidth = min(addedBandwidth,
             microbeComponent.maxBandwidth);
     }
-    // I think i need to reenable the below method and call it somewhere
+    // Actually we can probabbly get rid of this
     // Stuff that should be maybe moved out of here:
-    // void checkEngulfment(ObjectID engulferMicrobeEntity, ObjectID engulfedMicrobeEntity){
+    void checkEngulfment(ObjectID engulferMicrobeEntity, ObjectID engulfedMicrobeEntity){
     //     auto body = world.GetComponent_RigidBodyComponent(engulferMicrobeEntity, RigidBodyComponent);
     //     auto microbe1Comp = world.GetComponent_MicrobeComponent(engulferMicrobeEntity, MicrobeComponent);
     //     auto microbe2Comp = world.GetComponent_MicrobeComponent(engulfedMicrobeEntity, MicrobeComponent);
@@ -669,27 +669,12 @@ class MicrobeSystem : ScriptSystem{
     //     if(body is null || bodyEngulfed is null)
     //         return;
 
-    //     if(microbe1Comp.engulfMode && microbe1Comp.maxHitpoints > (
-    //             ENGULF_HP_RATIO_REQ * microbe2Comp.maxHitpoints) &&
-    //         microbe1Comp.dead == false && microbe2Comp.dead == false)
-    //     {
-    //         if(!microbe1Comp.isCurrentlyEngulfing){
-    //             //We have just started engulfing
-    //             microbe2Comp.movementFactor = microbe2Comp.movementFactor /
-    //                 ENGULFED_MOVEMENT_DIVISION;
-    //             microbe1Comp.isCurrentlyEngulfing = true;
-    //             microbe2Comp.wasBeingEngulfed = true;
-    //             microbe2Comp.hostileEngulfer = engulferMicrobeEntity;
-    //             body.disableCollisionsWith(engulfedMicrobeEntity.id);
-    //             soundSourceComponent.playSound("microbe-engulfment");
-    //         }
-
     //         //isBeingEngulfed is set to false every frame
     //         // we detect engulfment stopped by isBeingEngulfed being
     //         // false while wasBeingEngulfed is true
     //         microbe2Comp.isBeingEngulfed = true;
     //     }
-    // }
+    }
 
     PlacedOrganelle@ splitOrganelle(ObjectID microbeEntity, PlacedOrganelle@ organelle){
         auto q = organelle.q;
