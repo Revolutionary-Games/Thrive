@@ -15,6 +15,7 @@ o GameModule "microbe_editor"{
         microbe_editor_hud.as
         
         // TODO: move these microbe_stage included files to another module
+        ../microbe_stage/hex.as
     }
     
     l properties{
