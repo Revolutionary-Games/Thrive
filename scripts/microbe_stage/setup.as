@@ -196,7 +196,7 @@ int beingEngulfed(GameWorld@ world, ObjectID firstEntity, ObjectID secondEntity)
                  secondMicrobeComponent.wasBeingEngulfed = true;
              }
     firstMicrobeComponent.isCurrentlyEngulfing=true;
-     LOG_INFO("Engulfing");
+    // LOG_INFO("Engulfing");
     engulfing = 0;
     }
     }
@@ -218,7 +218,7 @@ int beingEngulfed(GameWorld@ world, ObjectID firstEntity, ObjectID secondEntity)
                  firstMicrobeComponent.wasBeingEngulfed = true;
              }
     secondMicrobeComponent.isCurrentlyEngulfing=true;
-     LOG_INFO("Engulfing");
+     //LOG_INFO("Engulfing");
     engulfing = 0;
     }
     }
