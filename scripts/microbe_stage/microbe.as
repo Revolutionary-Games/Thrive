@@ -579,14 +579,16 @@ class MicrobeSystem : ScriptSystem{
             }
 
             if(microbeComponent.isBeingEngulfed && microbeComponent.wasBeingEngulfed){
+    LOG_INFO("doing engulf damage");
                 MicrobeOperations::damage(world, microbeEntity, int(logicTime * 0.000025  *
                         microbeComponent.maxHitpoints), "isBeingEngulfed - Microbe.update()s");
                 // Else If we were but are no longer, being engulfed
             } else if(microbeComponent.wasBeingEngulfed){
+    LOG_INFO("removing engulf effect");
                 MicrobeOperations::removeEngulfedEffect(world, microbeEntity);
             }
-            // Used to detect when engulfing stops
-            microbeComponent.isBeingEngulfed = false;
+
+    microbeComponent.isBeingEngulfed = false;
             compoundAbsorberComponent.setAbsorbtionCapacity(microbeComponent.capacity);
         }
     }

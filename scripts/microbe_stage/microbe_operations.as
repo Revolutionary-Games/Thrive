@@ -519,7 +519,7 @@ void damage(CellStageWorld@ world, ObjectID microbeEntity, uint amount, const st
 
     // Choose a random organelle or membrane to damage.
     // TODO: CHANGE TO USE AGENT CODES FOR DAMAGE.
-    int rand = GetEngine().GetRandom().GetNumber(0, int(microbeComponent.maxHitpoints /
+   /* int rand = GetEngine().GetRandom().GetNumber(0, int(microbeComponent.maxHitpoints /
             MICROBE_HITPOINTS_PER_ORGANELLE) - 1);
     for(uint i = 0; i < microbeComponent.organelles.length(); ++i){
         // If this is the organelle we have chosen...
@@ -529,11 +529,17 @@ void damage(CellStageWorld@ world, ObjectID microbeEntity, uint amount, const st
             break;
         }
     }
+    */
 
+    microbeComponent.hitpoints -= amount;
+    //Flash the microbe red
+    LOG_INFO("DAMAGE FLASH");
+    flashMembraneColour(world, microbeEntity, 3000,
+                    Float4(1,0.2,0.2,0.5));
     // Find out the amount of health the microbe has.
     // TODO: this could also be more efficient if we calculate above the amount of
     // total health lost and update the health directly
-    calculateHealthFromOrganelles(world, microbeEntity);
+    //calculateHealthFromOrganelles(world, microbeEntity);
 
     if(microbeComponent.hitpoints <= 0){
         microbeComponent.hitpoints = 0;
