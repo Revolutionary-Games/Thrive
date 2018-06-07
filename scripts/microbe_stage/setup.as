@@ -187,7 +187,6 @@ int beingEngulfed(GameWorld@ world, ObjectID firstEntity, ObjectID secondEntity)
             firstMicrobeComponent.dead == false && secondMicrobeComponent.dead == false)
     {
 
-    firstMicrobeComponent.isCurrentlyEngulfing=true;
     secondMicrobeComponent.isBeingEngulfed=true;
     secondMicrobeComponent.hostileEngulfer = secondEntity;
     if(!firstMicrobeComponent.isCurrentlyEngulfing){
@@ -196,6 +195,7 @@ int beingEngulfed(GameWorld@ world, ObjectID firstEntity, ObjectID secondEntity)
                      ENGULFED_MOVEMENT_DIVISION;
                  secondMicrobeComponent.wasBeingEngulfed = true;
              }
+    firstMicrobeComponent.isCurrentlyEngulfing=true;
      LOG_INFO("Engulfing");
     engulfing = 0;
     }
@@ -209,7 +209,6 @@ int beingEngulfed(GameWorld@ world, ObjectID firstEntity, ObjectID secondEntity)
             secondMicrobeComponent.dead == false && firstMicrobeComponent.dead == false)
     {
 
-    secondMicrobeComponent.isCurrentlyEngulfing=true;
     firstMicrobeComponent.isBeingEngulfed=true;
     firstMicrobeComponent.hostileEngulfer = secondEntity;
     if(!secondMicrobeComponent.isCurrentlyEngulfing){
@@ -218,6 +217,7 @@ int beingEngulfed(GameWorld@ world, ObjectID firstEntity, ObjectID secondEntity)
                      ENGULFED_MOVEMENT_DIVISION;
                  firstMicrobeComponent.wasBeingEngulfed = true;
              }
+    secondMicrobeComponent.isCurrentlyEngulfing=true;
      LOG_INFO("Engulfing");
     engulfing = 0;
     }
