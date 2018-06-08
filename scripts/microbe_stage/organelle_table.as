@@ -314,7 +314,9 @@ void setupOrganelles(){
         {"ammonia", 1}
     };
     chloroplastParameters.components = {
-        processorOrganelleFactory(1.0)
+        processorOrganelleFactory(1.0),
+    //chloroplast takes 3 hexes, so allowed storage of 3 cytooplasm
+    storageOrganelleFactory(15.0f)
     };
     chloroplastParameters.processes = {
         TweakedProcess("photosynthesis", 0.2)
@@ -342,6 +344,7 @@ void setupOrganelles(){
         {"ammonia", 1}
     };
     oxytoxyParameters.components = {
+    //this can't hold since it is a vacuole
         agentVacuoleFactory("oxytoxy", "oxytoxySynthesis")
     };
     oxytoxyParameters.processes = {
@@ -369,7 +372,9 @@ void setupOrganelles(){
         {"ammonia", 1}
     };
     mitochondrionParameters.components = {
-        processorOrganelleFactory(1.0f)
+        processorOrganelleFactory(1.0f),
+        // Mitochondria takes 2 hexes, so allowed storage of 2 cytooplasm
+    storageOrganelleFactory(10.0f)
     };
     mitochondrionParameters.processes = {
         TweakedProcess("respiration", 0.07)
@@ -419,7 +424,9 @@ void setupOrganelles(){
         {"ammonia", 1}
     };
     flagellumParameters.components = {
-        movementOrganelleFactory(20, 300)
+        movementOrganelleFactory(20, 300),
+    // Flagella takes 1 hex, so allowed storage of 1 cytooplasm
+    storageOrganelleFactory(5.0f)
     };
     flagellumParameters.hexes = {
         Int2(0, 0)
@@ -443,7 +450,9 @@ void setupOrganelles(){
         {"ammonia", 1}
     };
     chemoplast.components = {
-        processorOrganelleFactory(1.0f)
+        processorOrganelleFactory(1.0f),
+    // Chemoplast takes 2 hexes, so allowed storage of 2 cytooplasm
+    storageOrganelleFactory(10.0f)
     };
     chemoplast.processes = {
           TweakedProcess("chemoSynthesis", 0.2)
