@@ -682,7 +682,6 @@ class MicrobeSystem : ScriptSystem{
 
 
     // Damage the microbe if its too low on ATP.
-    //TODO: Fix this
     void atpDamage(ObjectID microbeEntity){
         MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
             world.GetScriptComponentHolder("MicrobeComponent").Find(microbeEntity));
@@ -695,10 +694,11 @@ class MicrobeSystem : ScriptSystem{
             //     this.playerAlreadyShownAtpDamage = true
             //     showMessage("No ATP hurts you!")
             // }
-            //MicrobeOperations::damage(world, microbeEntity,
-            //    int(EXCESS_COMPOUND_COLLECTION_INTERVAL *
-            //        0.000002  * microbeComponent.maxHitpoints), "atpDamage");
-            // Microbe takes 2% of max hp per second in damage
+
+    // Microbe takes 4% of max hp per second in damage
+            MicrobeOperations::damage(world, microbeEntity,
+                int(EXCESS_COMPOUND_COLLECTION_INTERVAL *
+                    0.00004  * microbeComponent.maxHitpoints), "atpDamage");
         }
     }
 
