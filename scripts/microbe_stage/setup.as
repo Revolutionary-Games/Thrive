@@ -172,18 +172,23 @@ void cellOnCellActualContact(GameWorld@ world, ObjectID firstEntity, ObjectID se
 int beingEngulfed(GameWorld@ world, ObjectID firstEntity, ObjectID secondEntity){
 
     int engulfing = 1;
+
+
     // Grab the microbe components
     MicrobeComponent@ firstMicrobeComponent = cast<MicrobeComponent>(
         world.GetScriptComponentHolder("MicrobeComponent").Find(firstEntity));
 
     MicrobeComponent@ secondMicrobeComponent = cast<MicrobeComponent>(
         world.GetScriptComponentHolder("MicrobeComponent").Find(secondEntity));
+    // Get microbe sizes here
+    int firstMicrobeComponentOrganelles = firstMicrobeComponent.organelles.length();
+    int secondMicrobeComponentOrganelles = secondMicrobeComponent.organelles.length();
 
     // If either cell is engulfing we need to do things
     if (firstMicrobeComponent.engulfMode)
     {
-    if(firstMicrobeComponent.engulfMode && firstMicrobeComponent.maxHitpoints >
-    (ENGULF_HP_RATIO_REQ * secondMicrobeComponent.maxHitpoints) &&
+    if(firstMicrobeComponent.engulfMode && firstMicrobeComponentOrganelles >
+    (ENGULF_HP_RATIO_REQ * secondMicrobeComponentOrganelles) &&
             firstMicrobeComponent.dead == false && secondMicrobeComponent.dead == false)
     {
 
@@ -204,8 +209,8 @@ int beingEngulfed(GameWorld@ world, ObjectID firstEntity, ObjectID secondEntity)
     // Looks like it doenst work sometimes if i dont check the second one aswell, so i have to, theres gotta be a way to improve this
     if (secondMicrobeComponent.engulfMode)
     {
-    if(secondMicrobeComponent.engulfMode && secondMicrobeComponent.maxHitpoints >
-    (ENGULF_HP_RATIO_REQ * firstMicrobeComponent.maxHitpoints) &&
+    if(secondMicrobeComponent.engulfMode && secondMicrobeComponentOrganelles >
+    (ENGULF_HP_RATIO_REQ * firstMicrobeComponentOrganelles) &&
             secondMicrobeComponent.dead == false && firstMicrobeComponent.dead == false)
     {
 
