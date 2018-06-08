@@ -158,10 +158,10 @@ function updateMicrobeHUDBars(values){
     // The bars
     // document.getElementById("microbeHUDPlayerATPCompound").textContent =
     //     values.compoundATP;
-    document.getElementById("microbeHUDPlayerATPMax").textContent =
-        values.ATPMax;
-    document.getElementById("microbeHUDPlayerATPBar").style.width =
-        barHelper(values.compoundATP, values.ATPMax);
+    // document.getElementById("microbeHUDPlayerATPMax").textContent =
+    //     values.ATPMax;
+    // document.getElementById("microbeHUDPlayerATPBar").style.width =
+    //     barHelper(values.compoundATP, values.ATPMax);
 
     document.getElementById("microbeHUDPlayerAmmonia").textContent =
         values.compoundAmmonia.toFixed(1);
