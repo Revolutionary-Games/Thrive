@@ -540,9 +540,15 @@ video {
 }
 
 #mouseHoverPanel {
-	position:relative;
-	top:80px;
-	left:20px;
+	position: absolute;
+	top: 40px;
+	left: 0px;
+    width: 300px;
+    height: 210px;
+    padding-left: 3px;
+    padding-top: 2px;
+    background-color: rgb(0, 125, 125, 0.4);
+    border: 3px solid rgb(112, 159, 159, 0.6);
 }
 
 #topLevelMicrobeStage {
