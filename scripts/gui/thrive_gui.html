@@ -12,7 +12,7 @@
     <script src="microbe_hud.js"></script>
     <script src="microbe_editor.js"></script>
   </head>
-  <body>
+  <body style="overflow:hidden;">
     
     <script>
       // Document.onload doesn't work here
@@ -65,57 +65,45 @@
     </div>
 
     <!-- Microbe stage GUI -->
-    <div id="topLevelMicrobeStage" style="display: none;">
+    <div id="topLevelMicrobeStage">
+	
       <!-- Top left box -->
-      <div id="microbeHealthBox" class="Panel"
-           style="position: absolute; top: 0px: left: 0px; width: 30%; height: 60px;">
+      <div id="microbeHealthBox" class="Panel">
+	  
         <!-- Health bar -->
-        <div class="Bar"
-             style="width: calc(50% - 15px); height: 50%; margin-left: 5px; margin-top: 5%;"> 
-          <div class="BarBackground"
-               id="microbeHUDPlayerHitpointsBar"
-               style="background: linear-gradient(rgb(255, 255, 255, 0.8), rgb(0, 155, 0, 0.8), rgb(0, 155, 0, 0.8));">
+        <div class="Bar"> 
+          <div class="BarBackground" id="microbeHUDPlayerHitpointsBar">
+		  <div class="BarForeground">
+          <div class="compoundIcon" id="HealthIcon"></div>
+          <div class="BarTitle">Health</div>
+            <div class="BarValue">
+              <span id="microbeHUDPlayerHitpoints">0</span> / <span id="microbeHUDPlayerMaxHitpoints">0</span>
+            </div>
+		  </div>
           </div>
-          <span class="BarTitle">Health
-            <span class="BarValue">
-              <span id="microbeHUDPlayerHitpoints">0</span> /
-              <span id="microbeHUDPlayerMaxHitpoints">0</span>
-            </span>
-          </span>
-        </div> 
-
-        <!-- ATP bar -->
-        <div class="Bar"
-             style="width: calc(50% - 15px); height: 50%; margin-left: 5px; margin-top: 5%;">
-          <div class="BarBackground"
-               id="microbeHUDPlayerATPBar"
-               style="background: linear-gradient(rgb(255, 255, 255, 0.8), rgb(0, 0, 150, 0.8), rgb(0, 0, 150, 0.8));">
-          </div>
-          <span class="BarTitle">ATP
-            <span class="BarValue">
-              <span id="microbeHUDPlayerATP">0</span> /
-              <span id="microbeHUDPlayerATPMax">0</span>
-            </span>
-          </span>
-        </div>
-      </div>
+	    </div>
+	  <div id="ATPCount"><div class="compoundIcon" id="ATPIcon"></div><div class="BarTitle">ATP</div><div class="BarValue"><span id="microbeHUDPlayerATP">0</span></div></div>
+	  </div>
+	  	  <div id="pauseButton"><div id="pauseIcon"></div></div>
+	  <div id="suicideButton">SUICIDE
+	  <div id="suicideIcon"></div>	  </div>
 
       <!-- Bottom bar -->
-      <div id="microbeBottomBar" class="Panel"
-           style="position: absolute; bottom: 0px; left: 0px; width: 100%; height: 60px;">
-        <span class="Centered">Menu</span>
+      <div id="microbeBottomBar" class="Panel">
+        <div id="mainMenuButton">MENU</div>
+        <div id="infoBar" class="Panel">
+	    <div id="infoBarLeft" class="Panel"></div><div id="infoBarCentre" class="Panel"></div><div id="infoBarRight" class="Panel"></div>
+        </div>
+	    <div id="compoundExpand"><div id="compoundExpandIcon"></div></div>
       </div>
 
       <!-- Mouse hover panel -->
-      <div id="mouseHoverPanel" class="Panel"
-           style="position: absolute; left: 0px; width: 20%; height: 10%; top: 60px; padding-left: 5px;">
+      <div id="mouseHoverPanel" class="Panel">
         
       </div>
 
       <!-- Compounds panel -->
-      <div id="compoundsPanel" class="Panel"
-           style="position: absolute; right: 0px; width: 30%; height: 30%; bottom: 60px; overflow-y: auto">
-        <h1 style="margin: auto; margin-top: 2px; text-align: center;">Compounds</h1>
+      <div id="compoundsPanel" class="Panel">COMPOUNDS
         <!-- <\!-- This bar is redundant with the one in the top left box -\-> -->
         <!-- <div style="display: none"> -->
         <!--   ATP: <span id="microbeHUDPlayerATPCompound">0</span> / -->
@@ -123,105 +111,222 @@
         <!-- </div> -->
 
         <!-- Glucose -->
-        <div class="Bar"
-             style="width: 90%; height: 45px; margin-left: 5px; margin-top: 5px;">
-          <div class="BarBackground"
-               id="microbeHUDPlayerGlucoseBar"
-               style="background: background: linear-gradient(rgb(255, 255, 255, 0.8), rgb(125, 125, 125, 0.8), rgb(125, 125, 125, 0.8));">
+		<div class="Bar"> 
+          <div class="BarBackground" id="microbeHUDPlayerGlucoseBar">
+		  <div class="BarForeground">
+          <div class="compoundIcon" id="GlucoseIcon"></div>
+          <div class="BarTitle">Glucose</div>
+            <div class="BarValue">
+              <span id="microbeHUDPlayerGlucose">0</span> / <span id="microbeHUDPlayerGlucoseMax">0</span>
+            </div>
+		  </div>
           </div>
-          <span class="BarTitle">Glucose
-            <span class="BarValue">
-              <span id="microbeHUDPlayerGlucose">0</span> /
-              <span id="microbeHUDPlayerGlucoseMax">0</span>
-            </span>
-          </span>
-        </div>
+	    </div>
         
         <!-- Ammonia -->
-        <div class="Bar"
-             style="width: 90%; height: 45px; margin-left: 5px; margin-top: 5px;">
-          <div class="BarBackground"
-               id="microbeHUDPlayerAmmoniaBar"
-               style="background: background: linear-gradient(rgb(255, 255, 255, 0.8), rgb(155, 155, 0, 0.8), rgb(155, 155, 0, 0.8));">
+        <div class="Bar"> 
+          <div class="BarBackground" id="microbeHUDPlayerAmmoniaBar">
+		  <div class="BarForeground">
+          <div class="compoundIcon" id="AmmoniaIcon"></div>
+          <div class="BarTitle">Ammonia</div>
+            <div class="BarValue">
+              <span id="microbeHUDPlayerAmmonia">0</span> / <span id="microbeHUDPlayerAmmoniaMax">0</span>
+            </div>
+		  </div>
           </div>
-          <span class="BarTitle">Ammonia
-            <span class="BarValue">
-              <span id="microbeHUDPlayerAmmonia">0</span> /
-              <span id="microbeHUDPlayerAmmoniaMax">0</span>
-            </span>
-          </span>
-        </div>
+	    </div>
 
-        <div class="Bar"
-             style="width: 90%; height: 45px; margin-left: 5px; margin-top: 5px;">
-          <div class="BarBackground"
-               id="microbeHUDPlayerHydrogenSulfideBar"
-               style="background: background: linear-gradient(rgb(255, 255, 255, 0.8), rgb(155, 155, 0, 0.8), rgb(155, 155, 0, 0.8));">
+        <!-- Hydrogen Sulfide -->
+        <div class="Bar"> 
+          <div class="BarBackground" id="microbeHUDPlayerHydrogenSulfideBar">
+		  <div class="BarForeground">
+          <div class="compoundIcon" id="HydrogenSulfideIcon"></div>
+          <div class="BarTitle">Hydrogen Sulfide</div>
+            <div class="BarValue">
+              <span id="microbeHUDPlayerHydrogenSulfide">0</span> / <span id="microbeHUDPlayerHydrogenSulfideMax">0</span>
+            </div>
+		  </div>
           </div>
-          <span class="BarTitle">Hydrogen Sulfide
-            <span class="BarValue">
-              <span id="microbeHUDPlayerHydrogenSulfide">0</span> /
-              <span id="microbeHUDPlayerHydrogenSulfideMax">0</span>
-            </span>
-          </span>
-        </div>
+	    </div>
         
-         <div class="Bar"
-             style="width: 90%; height: 45px; margin-left: 5px; margin-top: 5px;">
-          <div class="BarBackground"
-               id="microbeHUDPlayerPhosphatesBar"
-               style="background: background: linear-gradient(rgb(255, 255, 255, 0.8), rgb(155, 155, 0, 0.8), rgb(155, 155, 0, 0.8));">
+		<!-- Phosphates -->
+        <div class="Bar"> 
+          <div class="BarBackground" id="microbeHUDPlayerPhosphatesBar">
+		  <div class="BarForeground">
+          <div class="compoundIcon" id="PhosphatesIcon"></div>
+          <div class="BarTitle">Phosphates</div>
+            <div class="BarValue">
+              <span id="microbeHUDPlayerPhosphates">0</span> / <span id="microbeHUDPlayerPhosphatesMax">0</span>
+            </div>
+		  </div>
           </div>
-          <span class="BarTitle">Phosphates
-            <span class="BarValue">
-              <span id="microbeHUDPlayerPhosphates">0</span> /
-              <span id="microbeHUDPlayerPhosphatesMax">0</span>
-            </span>
-          </span>
-        </div>
-        
-        <!-- Oxytoxy -->
-        <div class="Bar"
-             style="width: 90%; height: 45px; margin-left: 5px; margin-top: 5px;">
-          <div class="BarBackground"
-               id="microbeHUDPlayerOxytoxyBar"
-               style="background: background: linear-gradient(rgb(255, 255, 255, 0.8), rgb(155, 155, 0, 0.8), rgb(155, 155, 0, 0.8));">
+	    </div>
+		
+		<!-- Oxytoxy -->
+        <div class="Bar"> 
+          <div class="BarBackground" id="microbeHUDPlayerOxytoxyBar">
+		  <div class="BarForeground">
+          <div class="compoundIcon" id="OxyToxyIcon"></div>
+          <div class="BarTitle">OxyToxy NT</div>
+            <div class="BarValue">
+              <span id="microbeHUDPlayerOxytoxy">0</span> / <span id="microbeHUDPlayerOxytoxyMax">0</span>
+            </div>
+		  </div>
           </div>
-          <span class="BarTitle">Oxytoxy
-            <span class="BarValue">
-              <span id="microbeHUDPlayerOxytoxy">0</span> /
-              <span id="microbeHUDPlayerOxytoxyMax">0</span>
-            </span>
-          </span>
-        </div>
-      </div>
+	    </div>
+		
+	</div>
     
-      <!-- editor button -->
-      <div id="microbeToEditorButton" class="MenuButton DisabledButton"
-           style="position: absolute; top: 0px; right: 0px; width: 120px; height: 90px;">
-        <span class="Centered">Editor</span>
+      <!-- Editor button -->
+      <div class="microbeToEditorButton DisabledButton" id="microbeToEditorButton">
+	  <div id="microbeEditorIcon"></div>
+	  EDITOR
       </div>
-    </div>
+	  
+	  <!-- Pause menu -->
+	  <div id="pauseOverlay" class="Overlay">
+      <div id="pauseMenu" class="MainMenu">
+	    <div class="MenuButton" id="resumeButton">Resume</div>
+        <div class="MenuButton DisabledButton">Quicksave</div>
+        <div class="MenuButton DisabledButton">Save Game</div>
+        <div class="MenuButton DisabledButton">Load Game</div>
+        <div class="MenuButton DisabledButton">Statistics</div>
+        <div class="MenuButton DisabledButton">Help</div>
+		<div class="MenuButton DisabledButton">Options</div>
+		<div class="MenuButton DisabledButton">Main Menu</div>
+        <div class="MenuButton" id="quitButton">Exit</div>
+		</div>
+		<div id="HelpText"><p>Collect compounds throughout the environment to process in your cell's organelles and generate ATP. Be careful not to let your ATP stores run out, or you will lose health and eventually die.
+		<br><br>
+The various compound clouds are:<br>
+White – Glucose <br>
+Yellow – Ammonia <br>
+Light Blue – Oxygen <br>
+Dark Blue – Carbon Dioxide <br><br>
+
+Oxygen and Glucose make ATP, and Ammonia is crucial for reproduction. <br><br>
+
+Discover and unlock the Toxin Vacuole and the Chloroplast floating in the environment. <br><br>
+
+Press E to release a dangerous agent, Oxytoxy NT, to kill other cells and then collect the spilled compounds. <br><br>
+
+You can also engulf cells that are smaller than you by pressing G. This will cost additional ATP and will slow you down. Don't forget to press G a second time to stop engulfing. <br><br>
+
+To reproduce you need to divide each of your organelles into two and then duplicate the DNA in your nucleus. Each organelle needs 2 glucose and 1 amino acids (made from 1 glucose and 1 ammonia) to split in half. 
+Make sure your glucose (white clouds) store is always above 16 and your ammonia (yellow clouds) store is above 12 and you'll be fine.</p>
+<div class="MenuButton" id="closeHelp">Close</div></div>
+	  </div>
+	  
+	</div>
 
     
     <!-- Microbe editor GUI -->
     <div id="topLevelMicrobeEditor" style="display: none;">
+	
       <!-- Top left box -->
-      <div id="microbeEditorLeftPanel" class="Panel"
-           style="position: absolute; top: 0px: left: 0px; width: 30%; height: calc(100% - 60px);">
+	  <div id="MPBox" class="Panel">
+	  <div class="Bar" id="MP"> 
+          <div class="BarBackground" id="microbeHUDPlayerMutationPointsBar">
+		  <div class="BarForeground">
+          <div class="compoundIcon" id="MutationPointsIcon"></div>
+          <div class="BarTitle">Mutation Points</div>
+            <div class="BarValue">
+              <span id="microbeHUDPlayerMutationPoints">0</span> / <span id="microbeHUDPlayerMaxMutationPoints">0</span>
+            </div>
+		  </div>
+          </div>
+	    </div>
+	  </div>
+	  <div id="newButton">NEW
+	  <div id="NewIcon"></div>	  </div>
+      <div id="microbeEditorLeftPanel" class="Panel">
+	  <div id="StructurePanelTop"><div id="StructureTitle">STRUCTURE</div></div>
+	  <div id="AppearanceButton" class="DisabledButton"><div id="AppearanceTitle">APPEARANCE</div></div>
+	  <div id="BehaviorButton" class="DisabledButton"><div id="BehaviorTitle">BEHAVIOR</div></div>
+	  <div id="StructurePanelMid">
+	  <div class="OrganelleListTitle">STRUCTURAL ORGANELLES</div>
+	  <table class="OrganelleTable"><tr>
+	  <td id="AddCytoplasm" class="OrganelleListItem"><div id="CytoplasmIcon"></div>Cytoplasm<br>5 MP</td>
+      </tr></table>
+	  <div class="OrganelleListTitle">INTERNAL ORGANELLES</div>
+	  <table class="OrganelleTable"><tr>
+	  <td id="AddMitochondrion" class="OrganelleListItem"><div id="MitochondrionIcon"></div>Mitochondrion<br>20 MP</td>
+	  <td id="AddChloroplast" class="OrganelleListItem"><div id="ChloroplastIcon"></div>Chloroplast<br>20 MP</td>
+	  <td id="AddThermoplast" class="OrganelleListItem DisabledButton"><div id="ThermoplastIcon"></div>Thermoplast<br>20 MP</td>
+	  </tr><tr>
+	  <td id="AddVacuole" class="OrganelleListItem"><div id="VacuoleIcon"></div>Vacuole<br>15 MP</td>
+	  <td id="AddToxinVacuole" class="OrganelleListItem DisabledButton"><div id="ToxinVacuoleIcon"></div>Toxin Vacuole<br>40 MP</td>
+	  <td id="AddBioluminescent" class="OrganelleListItem DisabledButton"><div id="BioluminescentIcon"></div>Bioluminescent Vacuole<br>N/A MP</td>
+	  </tr><tr>
+	  <td id="AddChemoplast" class="OrganelleListItem DisabledButton"><div id="ChemoplastIcon"></div>Chemoplast<br>20 MP</td>
+	  </tr></table>
+	  <div class="OrganelleListTitle">EXTERNAL ORGANELLES</div>
+	  <table><tr>
+	  <td id="AddFlagellum" class="OrganelleListItem"><div id="FlagellumIcon"></div>Flagellum<br>25 MP</td>
+	  <td id="AddPilus" class="OrganelleListItem DisabledButton"><div id="PilusIcon"></div>Predatory Pilus<br>N/A MP</td>
+	  <td id="AddCilia" class="OrganelleListItem DisabledButton"><div id="CiliaIcon"></div>Cilia<br>20 MP</td>
+	  </tr></table>
+	  </div>
       </div>
 
       <!-- Bottom bar -->
-      <div id="microbeEditorBottomBar" class="Panel"
-           style="position: absolute; bottom: 0px; left: 0px; width: 100%; height: 60px;">
-        <span class="Centered">Menu</span>
+      <div id="microbeEditorBottomBar" class="Panel">
+        <div id="mainMenuButton">MENU</div>
+        <div id="infoBar" class="Panel">
+	    <div id="infoBarLeft" class="Panel"></div>
+		<div id="infoBarCentreEditor" class="Panel">
+		<div id="species">SPECIES <div id="speciesNameBox" class="TextBox"><span id="speciesName">Thrivum Specium</span></div></div>
+		<div id="generation">GENERATION <span id="generationLabel">N/A</span></div>
+		<div id="size">SIZE <span id="sizeLabel">N/A</span></div>
+		<div id="speed">SPEED <span id="speedLabel">N/A</span></div>
+		</div>
+        </div>
       </div>
 
-      <!-- editor button -->
-      <div id="microbeEditorFinishButton" class="MenuButton DisabledButton"
-           style="position: absolute; top: 0px; right: 0px; width: 120px; height: 90px;">
-        <span class="Centered">Finish</span>
+      <!-- Finish button -->
+	  <div id="microbeEditorFinishButton">
+	  <div id="microbeEditorIcon"></div>
+	  FINISH
       </div>
+	  
+	  <!-- Edit tools -->
+	  <div id="Undo" class="DisabledButton"><div id="UndoIcon"></div></div>
+	  <div id="SymmetryButton">
+	  <div id="SymmetryIcon"></div>
+	  SYMMETRY
+	  </div>
+	  <div id="Redo" class="DisabledButton"><div id="RedoIcon"></div></div>
+	  
+	  <!-- Pause menu -->
+	  <div id="pauseOverlayEditor" class="Overlay">
+      <div id="pauseMenuEditor" class="MainMenu">
+	    <div class="MenuButton" id="resumeButton">Resume</div>
+        <div class="MenuButton DisabledButton">Quicksave</div>
+        <div class="MenuButton DisabledButton">Save Game</div>
+        <div class="MenuButton DisabledButton">Load Game</div>
+        <div class="MenuButton DisabledButton">Statistics</div>
+        <div class="MenuButton DisabledButton">Help</div>
+		<div class="MenuButton DisabledButton">Options</div>
+		<div class="MenuButton DisabledButton">Main Menu</div>
+        <div class="MenuButton" id="quitButton">Exit</div>
+		</div>
+		<div id="HelpTextEditor"><p>Every time you reproduce, you will enter the Microbe Editor, where you can make changes to your species (by adding, moving, or removing organelles) to increase your species' success. <br><br>
+
+Each generation, you have 50 mutation points to spend, and each change (or mutation) will cost a certain amount of that MP. <br><br>
+
+Mitochondrion: Produces ATP out of glucose and 02. <br>
+
+Chloroplast: Makes glucose out of sunlight and CO2. <br>
+
+Vacuole: Stores collected compounds. <br>
+
+Toxin Vacuoles: Produces toxins (called OxyToxyNT). <br>
+
+Flagella: Moves your cell by consuming ATP. <br><br>
+
+Cytoplasm: Increases the rate of compound absorbtion.</p>
+<div class="MenuButton" id="closeHelp">Close</div></div>
+	  </div>
     </div>    
     
   </body>
