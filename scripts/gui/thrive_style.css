@@ -52,9 +52,9 @@ body{
     margin: 0px;
 }
 
-button{
+/* button{
     background-color: blue;
-}
+} */
 
 /* Videos are centered inside their elements and made to fit */
 video {
@@ -82,32 +82,55 @@ video {
 
 /* Bars */
 .Bar{
-    border: 1px solid white;
-    background: linear-gradient(rgb(255, 255, 255, 0.4), rgb(125, 125, 125, 0.4));
-    position: relative;
-    display: inline-block;
+    position:relative;
+	width:310px;
+	height:20px;
+	left:30px;
+	margin-bottom:20px;
+	margin-top:10px;
+}
+
+#MP.Bar {
+	width:430px;
 }
 
 .BarBackground{
     /* Starts out filled */
+	position:relative;
     width: 100%;
     height: 100%;
     background: rgb(0, 125, 125, 0.8);
-    display: inline-block;
-    position: absolute;
-    left: 0px;
+}
+
+.BarForeground{
+	width:100%;
+	height:100%;
+	background:linear-gradient(rgb(255, 255, 255, 0.8), rgb(125, 125, 125, 0), rgb(125, 125, 125, 0));
+}
+
+.compoundIcon {
+	position:relative;
+	width:20px;
+	height:20px;
+	left:-10px;
+	background-size: 20px 20px;
 }
 
 .BarTitle{
-    position: absolute;
-    /* Try to take the font height into account */
-    top: calc(50% - 8px);
-    /* Try to take the text size into account */
-    left: calc(50% - 40px);
+    position:relative;
+	left:-20px;
+	top:-10px;
+	line-height:0px;
+	font-size:10pt;
 }
 
 .BarValue{
-    
+    position:relative;
+	right:10px;
+	top:-10px;
+	text-align:right;
+	line-height:0px;
+	font-size:10pt;
 }
 
 /* Menu things */
@@ -119,35 +142,38 @@ video {
 
 .MainMenu{
 
-    margin-top: 300px;
+    position: relative;
     width: auto;
+	top:50vh;
+	margin-top:-140px;
 }
 
 .MenuButton {
-    /*position: relative;*/
-    /*left:50%;*/
-    /*top:50vh;*/
-    width: 150px;
+    width: 280px;
     height: 40px;
-    /* margin-left:-110px;*/
-    margin-bottom:5px;
-    background-color: rgb(0, 125, 125, 0.4);
+    margin-bottom:10px;
+    background-image: url("../../Textures/gui/bevel/MenuNormal.png");
     text-align: center;
     vertical-align: middle;
     line-height: 40px;
+	font-size:15pt;
 }
 
 .DisabledButton {
 
-    background-color: rgb(0, 80, 80, 0.32);
+    /* background-color: rgb(0, 80, 80, 0.32); */
+}
+
+.MenuButton.DisabledButton {
+	background-image: url("../../Textures/gui/bevel/MenuDisabled.png");
 }
 
 .MenuButton:hover {
-	background-color: rgb(0, 125, 125, 0.8);
+	background-image: url("../../Textures/gui/bevel/MenuHover.png");
 }
 
-.DisabledButton:hover {
-    background-color: rgb(0, 80, 80, 0.32);
+.MenuButton.DisabledButton:hover {
+    background-image: url("../../Textures/gui/bevel/MenuDisabled.png");
 }
 
 /* Background planet and logo */
@@ -183,7 +209,678 @@ video {
 
 /* Cell stage things */
 /* Any type of panel like the bottom bar and health window */
-.Panel{
+/* .Panel{
     background-color: rgb(0, 125, 125, 0.4);
+} */
+
+#infoBar {
+	position: absolute;
+	height: 40px;
+	bottom: 0px;
+	left: 80px;
+	right:40px;
 }
 
+#infoBarLeft {
+	position: relative;
+	width: 40px;
+	height: 40px;
+	background-image: url("../../Textures/gui/bevel/LowerBarLeft.png");
+	display:inline-block;
+}
+
+#infoBarCentre {
+	position: relative;
+	width: calc(100% - 80px);
+	height: 40px;
+	background-image: url("../../Textures/gui/bevel/LowerBarCentre.png");
+	display:inline-block;
+}
+
+#infoBarCentreEditor {
+	position: absolute;
+	width: 100%;
+	height: 40px;
+	background-image: url("../../Textures/gui/bevel/LowerBarCentre.png");
+	display:inline-block;
+}
+
+#infoBarRight {
+	position: relative;
+	width: 40px;
+	height: 40px;
+	background-image: url("../../Textures/gui/bevel/LowerBarRight.png");
+	display:inline-block;
+}
+
+#mainMenuButton {
+	position: absolute;
+	width:120px;
+	height:40px;
+	left:0px;
+	bottom:0px;
+	background-image: url("../../Textures/gui/bevel/MediumTwoNormal.png");
+	text-align: center;
+    line-height: 40px;
+	font-size:18pt;
+	text-indent:-40px;
+}
+
+#mainMenuButton:hover {
+	background-image: url("../../Textures/gui/bevel/MediumTwoHover.png");
+}
+
+#compoundExpand {
+	position: absolute;
+	width:80px;
+	height:40px;
+	right:0px;
+	bottom:0px;
+	background-image: url("../../Textures/gui/bevel/SmallTwoNormal.png");
+}
+
+#compoundExpandIcon {
+	/* Needs some Javascript to replace image with Textures/gui/bevel/ExpandUpIcon.png when hidden */
+	background-image: url("../../Textures/gui/bevel/ExpandDownIcon.png");
+	width:40px;
+	height:40px;
+	position:relative;
+	left:40px;
+}
+
+#compoundExpand:hover {
+	background-image: url("../../Textures/gui/bevel/SmallTwoHover.png");
+}
+
+#compoundsPanel {
+	position:absolute;
+	right:0px;
+	bottom:40px;
+	width:360px;
+	height:360px;
+	background-image: url("../../Textures/gui/bevel/CompoundPanel.png");
+	text-indent:40px;
+	line-height:40px;
+	font-size:18pt;
+	white-space:nowrap;
+	overflow-y:scroll;
+	overflow-x:hidden;
+}
+
+#ATPIcon {
+	background-image: url("../../Textures/gui/bevel/ATP.png");
+}
+
+#ATPBar {
+	background-color: #6edd6b;
+}
+
+#OxygenIcon {
+	background-image: url("../../Textures/gui/bevel/Oxygen.png");
+}
+
+#OxygenBar {
+	background-color: #2dcbf0;
+}
+
+#AminoAcidsIcon {
+	background-image: url("../../Textures/gui/bevel/AminoAcids.png");
+}
+
+#AminoAcidsBar {
+	background-color: #f94b97;
+}
+
+#AmmoniaIcon {
+	background-image: url("../../Textures/gui/bevel/Ammonia.png");
+}
+
+#microbeHUDPlayerAmmoniaBar {
+	background-color: #d9c55d;
+}
+
+#GlucoseIcon {
+	background-image: url("../../Textures/gui/bevel/Glucose.png");
+}
+
+#microbeHUDPlayerGlucoseBar {
+	background-color: #c4c4c4;
+}
+
+#CO2Icon {
+	background-image: url("../../Textures/gui/bevel/CO2.png");
+}
+
+#CO2Bar {
+	background-color: #153665;
+}
+
+#FattyAcidsIcon {
+	background-image: url("../../Textures/gui/bevel/FattyAcids.png");
+}
+
+#FattyAcidsBar {
+	background-color: #d3c1aa;
+}
+
+#OxyToxyIcon {
+	background-image: url("../../Textures/gui/bevel/OxyToxy.png");
+}
+
+#microbeHUDPlayerOxytoxyBar {
+	background-color: #a02355;
+}
+
+#HealthIcon {
+	background-image: url("../../Textures/gui/bevel/Hitpoints.png");
+}
+
+#microbeHUDPlayerHitpointsBar {
+	background-image: url("../../Textures/gui/bevel/HitpointsBar.png");
+	background-color: #004001;
+}
+
+#MutationPointsIcon {
+	background-image: url("../../Textures/gui/bevel/MP.png");
+}
+
+#microbeHUDPlayerMutationPointsBar {
+	background-image: url("../../Textures/gui/bevel/MpBar.png");
+	background-color: #7b417e;
+}
+
+#PhosphatesIcon {
+	background-image: url("../../Textures/gui/bevel/Phosphates.png");
+}
+
+#microbeHUDPlayerPhosphatesBar {
+	background-color: #3b167b;
+}
+
+#HydrogenSulfideIcon {
+	background-image: url("../../Textures/gui/bevel/HydrogenSulfide.png");
+}
+
+#microbeHUDPlayerHydrogenSulfideBar {
+	background-color: #464925;
+}
+
+#microbeToEditorButton, #microbeEditorFinishButton {
+	position:absolute;
+	right:0px;
+	top:0px;
+	width:120px;
+	height:120px;
+	background-image: url("../../Textures/gui/bevel/LargeTwoNormal.png");
+	font-size:8pt;
+	text-align:center;
+	line-height:30px;
+}
+
+#microbeToEditorButton:hover, #microbeEditorFinishButton:hover {
+	background-image: url("../../Textures/gui/bevel/LargeTwoHover.png");
+}
+
+.microbeToEditorButton.DisabledButton {
+	background-image: url("../../Textures/gui/bevel/LargeTwoDisabled.png");
+}
+.microbeToEditorButton.DisabledButton:hover {
+	background-image: url("../../Textures/gui/bevel/LargeTwoDisabled.png");
+}
+
+#microbeEditorIcon {
+	background-image: url("../../Textures/gui/bevel/EditorIcon.png");
+	width:120px;
+	height:80px;
+}
+
+#microbeHealthBox {
+	position:absolute;
+	width:480px;
+	height:40px;
+	top:0px;
+	left:0px;
+	background-image: url("../../Textures/gui/bevel/HealthPanel.png");
+	text-indent:40px;
+	line-height:40px;
+}
+
+#ATPCount {
+	position:relative;
+    z-index: 1;
+    top: -40px;
+    width: 90px;
+    left: 380px;
+}
+
+.Overlay {
+	position:absolute;
+	width:100%;
+	height:100%;
+	top:0px;
+	left:0px;
+	background-color:rgb(0, 0, 0, 0.7);
+	z-index:1;
+	display: flex;
+    justify-content: center;
+}
+
+#pauseOverlay, #pauseOverlayEditor {
+    display:none;
+	justify-content:center;
+}
+
+#pauseMenu, #pauseMenuEditor {
+	position: relative;
+    width: auto;
+    top: 50vh;
+    margin-top: -200px;
+}
+
+#HelpText, #HelpTextEditor {
+	/* display:relative; This is the display setting when visible */
+	display:none;
+	width:560px;
+	height:700px;
+    margin-top:60px;
+}
+
+#closeHelp {
+	vertical-align:middle;
+	margin-top:40px;
+}
+
+#pauseButton {
+	display:none;
+	position: absolute;
+	height: 40px;
+	width:80px;
+	top: 40px;
+	left: 0px;
+	background-image: url("../../Textures/gui/bevel/SmallOneNormal.png");
+}
+
+#pauseButton:hover {
+	background-image: url("../../Textures/gui/bevel/SmallOneHover.png");
+}
+
+#pauseIcon {
+	/* Needs some Javascript to replace image with Textures/gui/bevel/PlayIcon.png when hidden */
+	background-image: url("../../Textures/gui/bevel/PauseIcon.png");
+	width:40px;
+	height:40px;
+	position:relative;
+	left:0px;
+}
+
+#suicideButton {
+	position: absolute;
+	height: 40px;
+	width: 120px;
+	top: 0px;
+	left: 480px;
+	background-image: url("../../Textures/gui/bevel/MediumTwoNormal.png");
+	font-size:8pt;
+	line-height: 40px;
+	text-indent: 40px;
+}
+
+#suicideButton:hover {
+	background-image: url("../../Textures/gui/bevel/MediumTwoHover.png");
+}
+
+#suicideIcon {
+	background-image: url("../../Textures/gui/bevel/SuicideIcon.png");
+	width:40px;
+	height:40px;
+	top:0px;
+	left:0px;
+	position:absolute;
+	left:0px;
+}
+
+#mouseHoverPanel {
+	position:relative;
+	top:80px;
+	left:20px;
+}
+
+#topLevelMicrobeStage {
+	display:none;
+	overflow:hidden;
+}
+
+#species {
+	position:absolute;
+	font-size:12pt;
+	line-height:26px;
+	left:50px;
+	display:inline-block;
+}
+
+#speciesNameBox {
+	width:260px;
+    margin-left:10px;
+}
+
+.TextBox {
+	display:inline-block;
+	height:26px;
+	margin-top:7px;
+	background-color:rgba(255, 255, 255, 0.2);
+	text-indent:10px;
+	line-height:26px;
+}
+
+#generation, #size, #speed {
+	position:absolute;
+	height:26px;
+	margin-top:7px;
+	font-size:12pt;
+	line-height:26px;
+	display:inline-block;
+}
+
+#generationLabel, #sizeLabel, #speedLabel {
+	margin-left:10px;
+}
+
+#generation {
+	left:420px;
+}
+
+#size {
+	left:600px;
+}
+
+#speed {
+	left:720px;
+}
+
+#SymmetryButton {
+	position:absolute;
+	width:80px;
+	height:80px;
+	background-image: url("../../Textures/gui/bevel/SymmetryNormal.png");
+	bottom:40px;
+	left:calc(50% - 40px);
+	font-size:8pt;
+	text-align:center;
+}
+
+#SymmetryButton:hover {
+	background-image: url("../../Textures/gui/bevel/SymmetryHover.png");
+}
+
+#SymmetryIcon {
+	/* Needs Javascript to switch between empty background, 2xSymmetry, 4xSymmetry and 6xSymmetry */
+	background-image: url("../../Textures/gui/bevel/6xSymmetry.png");
+	width:80px;
+	height:62px;
+}
+
+#Undo {
+	position:absolute;
+	width:80px;
+	height:40px;
+	background-image: url("../../Textures/gui/bevel/SmallThreeNormal.png");
+	bottom:40px;
+	left:calc(50% - 120px);
+}
+
+#Undo:hover {
+	background-image: url("../../Textures/gui/bevel/SmallThreeHover.png");
+}
+
+#UndoIcon {
+	background-image: url("../../Textures/gui/bevel/UndoIcon.png");
+	width:40px;
+	height:40px;
+	position:relative;
+	left:40px;
+}
+
+#Redo {
+	position:absolute;
+	width:80px;
+	height:40px;
+	background-image: url("../../Textures/gui/bevel/SmallFourNormal.png");
+	bottom:40px;
+	right:calc(50% - 120px);
+}
+
+#Redo:hover {
+	background-image: url("../../Textures/gui/bevel/SmallFourHover.png");
+}
+
+#RedoIcon {
+	background-image: url("../../Textures/gui/bevel/RedoIcon.png");
+	width:40px;
+	height:40px;
+	position:relative;
+	left:0px;
+}
+
+#Undo.DisabledButton {
+	background-image: url("../../Textures/gui/bevel/SmallThreeDisabled.png");
+}
+
+#Redo.DisabledButton {
+	background-image: url("../../Textures/gui/bevel/SmallFourDisabled.png");
+}
+
+#MPBox {
+	position:absolute;
+	width:480px;
+	height:40px;
+	top:0px;
+	left:0px;
+	background-image: url("../../Textures/gui/bevel/HealthPanel.png");
+	text-indent:40px;
+	line-height:40px;
+}
+
+#newButton {
+	position: absolute;
+	height: 40px;
+	width: 120px;
+	top: 0px;
+	left: 480px;
+	background-image: url("../../Textures/gui/bevel/MediumTwoNormal.png");
+	font-size:8pt;
+	line-height: 40px;
+	text-indent: 40px;
+}
+
+#newButton:hover {
+	background-image: url("../../Textures/gui/bevel/MediumTwoHover.png");
+}
+
+#NewIcon {
+	background-image: url("../../Textures/gui/bevel/NewIcon.png");
+	width:40px;
+	height:40px;
+	top:0px;
+	left:0px;
+	position:absolute;
+	left:0px;
+}
+
+#microbeEditorLeftPanel {
+	position:absolute;
+	left:0px;
+	top:40px;
+	width:400px;
+	height:calc(100% - 80px);
+}
+
+#StructurePanelTop {
+	display:inline-block;
+	position:relative;
+	width:120px;
+	height:40px;
+	background-image: url("../../Textures/gui/bevel/EditPanelTop.png");
+	z-index:1;
+	padding:0px;
+}
+
+#StructureTitle, #AppearanceTitle, #BehaviorTitle {
+	font-size:12pt;
+	width:120px;
+	height:40px;
+	text-align:center;
+	line-height:40px;
+	padding:0px;
+}
+
+#AppearanceButton {
+	display:inline-block;
+	background-image: url("../../Textures/gui/bevel/EditPanelHeaderDisabled.png");
+	position:relative;
+	width:120px;
+	height:40px;
+	left:-5px;
+	top:0px;
+	z-index:-1;
+	padding:0px;
+	margin:0px;
+}
+
+#BehaviorButton {
+	display:inline-block;
+	background-image: url("../../Textures/gui/bevel/EditPanelHeaderDisabled.png");
+	position:relative;
+	width:120px;
+	height:40px;
+	left:-10px;
+	top:0px;
+	z-index:-1;
+	padding:0px;
+	margin:0px;
+}
+
+#StructurePanelMid {
+	position:relative;
+	top:0px;
+	left:0px;
+	width:360px;
+	height:calc(100% - 40px);
+	background-image: url("../../Textures/gui/bevel/EditPanelMid.png");
+	overflow-y:scroll;
+}
+
+.OrganelleListTitle {
+	font-size:18pt;
+	text-indent:20px;
+	margin-top:10px;
+	margin-bottom:10px;
+}
+
+.OrganelleTable {
+	padding:0px;
+	margin:0px;
+}
+
+.OrganelleListItem {
+	position:relative;
+	width:120px;
+	height:120px;
+	font-size:8pt;
+	text-align:center;
+	background-image: url("../../Textures/gui/bevel/OrganelleNormal.png");
+}
+
+.OrganelleListItem:hover {
+	background-image: url("../../Textures/gui/bevel/OrganelleHover.png");
+}
+
+.OrganelleListItem.DisabledButton {
+	background-image: url("../../Textures/gui/bevel/OrganelleDisabled.png");
+}
+
+#CytoplasmIcon {
+	position:relative;
+	left:calc(50% - 30px);
+	width:60px;
+	height:60px;
+}
+
+#MitochondrionIcon {
+	position:relative;
+	left:calc(50% - 30px);
+	width:60px;
+	height:60px;
+	background-image: url("../../Textures/gui/bevel/MitochondrionIcon.png");
+}
+
+#ChloroplastIcon {
+	position:relative;
+	left:calc(50% - 30px);
+	width:60px;
+	height:60px;
+	background-image: url("../../Textures/gui/bevel/ChloroplastIcon.png");
+}
+
+#ThermoplastIcon {
+	position:relative;
+	left:calc(50% - 30px);
+	width:60px;
+	height:60px;
+	background-image: url("../../Textures/gui/bevel/ThermoplastIcon.png");
+}
+
+#VacuoleIcon {
+	position:relative;
+	left:calc(50% - 30px);
+	width:60px;
+	height:60px;
+	background-image: url("../../Textures/gui/bevel/VacuoleIcon.png");
+}
+
+#ToxinVacuoleIcon {
+	position:relative;
+	left:calc(50% - 30px);
+	width:60px;
+	height:60px;
+	background-image: url("../../Textures/gui/bevel/ToxinVacuoleIcon.png");
+}
+
+#BioluminescentIcon {
+	position:relative;
+	left:calc(50% - 30px);
+	width:60px;
+	height:60px;
+	background-image: url("../../Textures/gui/bevel/BioluminescentIcon.png");
+}
+
+#ChemoplastIcon {
+	position:relative;
+	left:calc(50% - 30px);
+	width:60px;
+	height:60px;
+	/* background-image: url("../../Textures/gui/bevel/ChemoplastIcon.png"); */
+}
+
+#FlagellumIcon {
+	position:relative;
+	left:calc(50% - 30px);
+	width:60px;
+	height:60px;
+	background-image: url("../../Textures/gui/bevel/FlagellumIcon.png");
+}
+
+#PilusIcon {
+	position:relative;
+	left:calc(50% - 30px);
+	width:60px;
+	height:60px;
+	background-image: url("../../Textures/gui/bevel/PilusIcon.png");
+}
+
+#CiliaIcon {
+	position:relative;
+	left:calc(50% - 30px);
+	width:60px;
+	height:60px;
+	/* background-image: url("../../Textures/gui/bevel/CiliaIcon.png"); */
+}
