@@ -465,7 +465,7 @@ class MicrobeSystem : ScriptSystem{
 
                         // An organelle was damaged and we tried to
                         // heal it, so our health might be different.
-                        MicrobeOperations::calculateHealthFromOrganelles(world, microbeEntity);
+                        //MicrobeOperations::calculateHealthFromOrganelles(world, microbeEntity);
                     }
                 }
             } else {
@@ -580,8 +580,7 @@ class MicrobeSystem : ScriptSystem{
 
             if(microbeComponent.isBeingEngulfed && microbeComponent.wasBeingEngulfed){
     LOG_INFO("doing engulf damage");
-                MicrobeOperations::damage(world, microbeEntity, int(logicTime * 0.000025  *
-                        microbeComponent.maxHitpoints), "isBeingEngulfed - Microbe.update()s");
+                MicrobeOperations::damage(world, microbeEntity, 50, "isBeingEngulfed - Microbe.update()s");
                 // Else If we were but are no longer, being engulfed
             } else if(microbeComponent.wasBeingEngulfed){
     LOG_INFO("removing engulf effect");

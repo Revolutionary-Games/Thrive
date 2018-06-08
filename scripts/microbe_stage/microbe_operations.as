@@ -129,7 +129,7 @@ bool removeOrganelle(CellStageWorld@ world, ObjectID microbeEntity, Int2 hex){
     }
 
     // This refreshing these things could probably be somewhere else...
-    calculateHealthFromOrganelles(world, microbeEntity);
+    //calculateHealthFromOrganelles(world, microbeEntity);
     microbeComponent.maxBandwidth = microbeComponent.maxBandwidth -
         BANDWIDTH_PER_ORGANELLE ; // Temporary solution for decreasing max bandwidth
 
@@ -161,7 +161,7 @@ void respawnPlayer(CellStageWorld@ world){
     for(uint i = 0; i < microbeComponent.organelles.length(); ++i){
         microbeComponent.organelles[i].reset();
     }
-    calculateHealthFromOrganelles(world, playerEntity);
+    //calculateHealthFromOrganelles(world, playerEntity);
 
     // Reset position //
     rigidBodyComponent.SetPosition(Float3(0, 0, 0), Float4::IdentityQuaternion);
@@ -426,9 +426,9 @@ void purgeCompounds(CellStageWorld@ world, ObjectID microbeEntity){
     }
 }
 
-// TODO: Test to make sure this works
-// Will maybe not remove ths, but will un-link it from reproduction
-void calculateHealthFromOrganelles(CellStageWorld@ world, ObjectID microbeEntity){
+
+// Commented out all calls to this But keeping it in case we want to go back to the old system
+/*void calculateHealthFromOrganelles(CellStageWorld@ world, ObjectID microbeEntity){
     MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
         world.GetScriptComponentHolder("MicrobeComponent").Find(microbeEntity));
     microbeComponent.hitpoints = 0;
@@ -445,7 +445,7 @@ void calculateHealthFromOrganelles(CellStageWorld@ world, ObjectID microbeEntity
 
         microbeComponent.maxHitpoints += MICROBE_HITPOINTS_PER_ORGANELLE;
     }
-}
+}*/
 
 void flashMembraneColour(CellStageWorld@ world, ObjectID microbeEntity, uint duration,
     Float4 colour)
@@ -658,7 +658,7 @@ bool addOrganelle(CellStageWorld@ world, ObjectID microbeEntity, PlacedOrganelle
     }
 
     // We will have to get rid of this, as we dont wnat health/reproduction linked anymore
-    calculateHealthFromOrganelles(world, microbeEntity);
+    //calculateHealthFromOrganelles(world, microbeEntity);
 
     microbeComponent.maxBandwidth = microbeComponent.maxBandwidth +
         BANDWIDTH_PER_ORGANELLE; // Temporary solution for increasing max bandwidth
