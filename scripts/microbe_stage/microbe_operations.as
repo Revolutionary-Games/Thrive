@@ -129,7 +129,6 @@ bool removeOrganelle(CellStageWorld@ world, ObjectID microbeEntity, Int2 hex){
     }
 
     // This refreshing these things could probably be somewhere else...
-    //calculateHealthFromOrganelles(world, microbeEntity);
     microbeComponent.maxBandwidth = microbeComponent.maxBandwidth -
         BANDWIDTH_PER_ORGANELLE ; // Temporary solution for decreasing max bandwidth
 
@@ -161,8 +160,7 @@ void respawnPlayer(CellStageWorld@ world){
     for(uint i = 0; i < microbeComponent.organelles.length(); ++i){
         microbeComponent.organelles[i].reset();
     }
-    //calculateHealthFromOrganelles(world, playerEntity);
-
+    setupMicrobeHitpoints(world, playerEntity,DEFAULT_HEALTH);
     // Reset position //
     rigidBodyComponent.SetPosition(Float3(0, 0, 0), Float4::IdentityQuaternion);
 
@@ -186,6 +184,14 @@ void respawnPlayer(CellStageWorld@ world){
         suicideButtonreset();
 }
 
+
+void setupMicrobeHitpoints(CellStageWorld@ world, ObjectID microbeEntity, int health){
+    MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
+        world.GetScriptComponentHolder("MicrobeComponent").Find(microbeEntity));
+
+    microbeComponent.maxHitpoints = health;
+    microbeComponent.hitpoints = microbeComponent.maxHitpoints;
+}
 
 // Attempts to obtain an amount of bandwidth for immediate use.
 // This should be in conjunction with most operations ejecting  or absorbing compounds
@@ -536,11 +542,8 @@ void damage(CellStageWorld@ world, ObjectID microbeEntity, uint amount, const st
     LOG_INFO("DAMAGE FLASH");
     flashMembraneColour(world, microbeEntity, 3000,
                     Float4(1,0.2,0.2,0.5));
-    // Find out the amount of health the microbe has.
-    // TODO: this could also be more efficient if we calculate above the amount of
-    // total health lost and update the health directly
-    //calculateHealthFromOrganelles(world, microbeEntity);
 
+    // Find out the amount of health the microbe has.
     if(microbeComponent.hitpoints <= 0){
         microbeComponent.hitpoints = 0;
         kill(world, microbeEntity);
@@ -656,9 +659,6 @@ bool addOrganelle(CellStageWorld@ world, ObjectID microbeEntity, PlacedOrganelle
         // And jump it to the current position
         rigidBodyComponent.JumpTo(position);
     }
-
-    // We will have to get rid of this, as we dont wnat health/reproduction linked anymore
-    //calculateHealthFromOrganelles(world, microbeEntity);
 
     microbeComponent.maxBandwidth = microbeComponent.maxBandwidth +
         BANDWIDTH_PER_ORGANELLE; // Temporary solution for increasing max bandwidth
@@ -1036,16 +1036,16 @@ void kill(CellStageWorld@ world, ObjectID microbeEntity){
     //play the death sound
     GetEngine().GetSoundDevice().Play2DSoundEffect("Data/Sound/soundeffects/microbe-death.ogg");
 
-    auto deathAnimationEntity = world.CreateEntity();
-    auto lifeTimeComponent = world.Create_TimedLifeComponent(deathAnimationEntity, 4000);
-    auto deathAnimSceneNode = world.Create_RenderNode(deathAnimationEntity);
-    auto deathAnimModel = world.Create_Model(deathAnimationEntity, deathAnimSceneNode.Node,
-        "MicrobeDeath.mesh");
+    //auto deathAnimationEntity = world.CreateEntity();
+    //auto lifeTimeComponent = world.Create_TimedLifeComponent(deathAnimationEntity, 4000);
+    //auto deathAnimSceneNode = world.Create_RenderNode(deathAnimationEntity);
+    //auto deathAnimModel = world.Create_Model(deathAnimationEntity, deathAnimSceneNode.Node,
+   //     "MicrobeDeath.mesh");
 
     LOG_WRITE("TODO: play animation deathAnimModel");
     // deathAnimModel.GraphicalObject.playAnimation("Death", false);
 
-    deathAnimSceneNode.Node.setPosition(position._Position);
+    //deathAnimSceneNode.Node.setPosition(position._Position);
 
     microbeComponent.dead = true;
     microbeComponent.deathTimer = 5000;

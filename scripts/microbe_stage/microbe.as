@@ -161,8 +161,8 @@ class MicrobeComponent : ScriptComponent{
 
     string speciesName;
     // TODO: initialize
-    uint hitpoints;
-    uint maxHitpoints = 0;
+    float hitpoints = DEFAULT_HEALTH;
+    float maxHitpoints = DEFAULT_HEALTH;
     bool dead = false;
     uint deathTimer = 0;
     array<PlacedOrganelle@> organelles;
@@ -449,37 +449,23 @@ class MicrobeSystem : ScriptSystem{
                 atpDamage(microbeEntity);
             }
 
-            // First organelle run: updates all the organelles and heals the broken ones.
-            if(microbeComponent.hitpoints < microbeComponent.maxHitpoints){
-                for(uint i = 0; i < microbeComponent.organelles.length(); ++i){
 
+            if((microbeComponent.hitpoints < microbeComponent.maxHitpoints)){
+    microbeComponent.hitpoints += (REGENERATION_RATE/1000.0*logicTime);
+    if (microbeComponent.hitpoints > microbeComponent.maxHitpoints)
+    {
+    microbeComponent.hitpoints =  microbeComponent.maxHitpoints;
+    }
+            }
+
+             auto reproductionStageComplete = true;
+             array<PlacedOrganelle@> organellesToAdd;
+
+             // Grow all the large organelles.
+             for(uint i = 0; i < microbeComponent.organelles.length(); ++i){
                     auto organelle = microbeComponent.organelles[i];
                     // Update the organelle.
                     organelle.update(logicTime);
-
-                    // If the organelle is hurt.
-                    if(organelle.getCompoundBin() < 1.0){
-                        // Give the organelle access to the compound bag to take some compound.
-                        organelle.growOrganelle(
-                            world.GetComponent_CompoundBagComponent(microbeEntity), logicTime);
-
-                        // An organelle was damaged and we tried to
-                        // heal it, so our health might be different.
-                        //MicrobeOperations::calculateHealthFromOrganelles(world, microbeEntity);
-                    }
-                }
-            } else {
-                auto reproductionStageComplete = true;
-                array<PlacedOrganelle@> organellesToAdd;
-
-                // Grow all the large organelles.
-                for(uint i = 0; i < microbeComponent.organelles.length(); ++i){
-
-                    auto organelle = microbeComponent.organelles[i];
-
-                    // Update the organelle.
-                    organelle.update(logicTime);
-
                     // We are in G1 phase of the cell cycle, duplicate all organelles.
                     if(organelle.organelle.name != "nucleus" &&
                         microbeComponent.reproductionStage == 0)
@@ -560,7 +546,6 @@ class MicrobeSystem : ScriptSystem{
                 {
                     readyToReproduce(microbeEntity);
                 }
-            }
 
             if(microbeComponent.engulfMode){
                 // Drain atp

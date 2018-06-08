@@ -29,6 +29,9 @@ const auto BACTERIA_SPAWN_RADIUS = 160;
 
 const auto PLAYER_NAME = "Player";
 
+const auto DEFAULT_HEALTH = 100;
+// Amount of health pers econd regened in percent
+const auto REGENERATION_RATE = 1;
 
 // TODO: move these into gamestate
 // must be global
