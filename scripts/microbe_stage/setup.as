@@ -168,9 +168,10 @@ void cellOnCellActualContact(GameWorld@ world, ObjectID firstEntity, ObjectID se
     // LOG_INFO("Cell hit another cell, thats cool i guess");
 }
 
-// Returns 0 if being engulfed, probabbly also damages the cell being engulfed, we should probabbly check cell size and such here aswell.
-int beingEngulfed(GameWorld@ world, ObjectID firstEntity, ObjectID secondEntity){
-
+// Returns 0 if being engulfed, probabbly also damages the cell being
+// engulfed, we should probabbly check cell size and such here aswell.
+int beingEngulfed(GameWorld@ world, ObjectID firstEntity, ObjectID secondEntity)
+{
     int engulfing = 1;
 
 
@@ -187,48 +188,51 @@ int beingEngulfed(GameWorld@ world, ObjectID firstEntity, ObjectID secondEntity)
     // If either cell is engulfing we need to do things
     if (firstMicrobeComponent.engulfMode)
     {
-    if(firstMicrobeComponent.engulfMode && firstMicrobeComponentOrganelles >
-    (ENGULF_HP_RATIO_REQ * secondMicrobeComponentOrganelles) &&
+        if(firstMicrobeComponent.engulfMode && firstMicrobeComponentOrganelles >
+            (ENGULF_HP_RATIO_REQ * secondMicrobeComponentOrganelles) &&
             firstMicrobeComponent.dead == false && secondMicrobeComponent.dead == false)
-    {
+        {
 
-    secondMicrobeComponent.isBeingEngulfed=true;
-    secondMicrobeComponent.hostileEngulfer = firstEntity;
-    if(!firstMicrobeComponent.isCurrentlyEngulfing){
-                 //We have just started engulfing
-                 secondMicrobeComponent.movementFactor = secondMicrobeComponent.movementFactor /
-                     ENGULFED_MOVEMENT_DIVISION;
-                 secondMicrobeComponent.wasBeingEngulfed = true;
-             }
-    firstMicrobeComponent.isCurrentlyEngulfing=true;
-    // LOG_INFO("Engulfing");
-    engulfing = 0;
-    }
+            secondMicrobeComponent.isBeingEngulfed = true;
+            secondMicrobeComponent.hostileEngulfer = firstEntity;
+
+            if(!firstMicrobeComponent.isCurrentlyEngulfing){
+                // We have just started engulfing
+                secondMicrobeComponent.movementFactor = secondMicrobeComponent.movementFactor /
+                    ENGULFED_MOVEMENT_DIVISION;
+                secondMicrobeComponent.wasBeingEngulfed = true;
+            }
+
+            firstMicrobeComponent.isCurrentlyEngulfing = true;
+            engulfing = 0;
+        }
     }
 
-    // Looks like it doenst work sometimes if i dont check the second one aswell, so i have to, theres gotta be a way to improve this
+    // Looks like it doenst work sometimes if i dont check the second
+    // one aswell, so i have to, theres gotta be a way to improve this
     if (secondMicrobeComponent.engulfMode)
     {
-    if(secondMicrobeComponent.engulfMode && secondMicrobeComponentOrganelles >
-    (ENGULF_HP_RATIO_REQ * firstMicrobeComponentOrganelles) &&
+        if(secondMicrobeComponent.engulfMode && secondMicrobeComponentOrganelles >
+            (ENGULF_HP_RATIO_REQ * firstMicrobeComponentOrganelles) &&
             secondMicrobeComponent.dead == false && firstMicrobeComponent.dead == false)
-    {
+        {
 
-    firstMicrobeComponent.isBeingEngulfed=true;
-    firstMicrobeComponent.hostileEngulfer = secondEntity;
-    if(!secondMicrobeComponent.isCurrentlyEngulfing){
-                 //We have just started engulfing
-                 firstMicrobeComponent.movementFactor = firstMicrobeComponent.movementFactor /
-                     ENGULFED_MOVEMENT_DIVISION;
-                 firstMicrobeComponent.wasBeingEngulfed = true;
-             }
-    secondMicrobeComponent.isCurrentlyEngulfing=true;
-     //LOG_INFO("Engulfing");
-    engulfing = 0;
-    }
+            firstMicrobeComponent.isBeingEngulfed = true;
+            firstMicrobeComponent.hostileEngulfer = secondEntity;
+
+            if(!secondMicrobeComponent.isCurrentlyEngulfing){
+                //We have just started engulfing
+                firstMicrobeComponent.movementFactor = firstMicrobeComponent.movementFactor /
+                    ENGULFED_MOVEMENT_DIVISION;
+                firstMicrobeComponent.wasBeingEngulfed = true;
+            }
+
+            secondMicrobeComponent.isCurrentlyEngulfing = true;
+            engulfing = 0;
+        }
     }
 
-return engulfing;
+    return engulfing;
 }
 
 
