@@ -27,9 +27,8 @@ Float4 randomProkayroteColour(float opaqueness = randomOpacityBacteria()){
 
 const dictionary DEFAULT_INITIAL_COMPOUNDS =
     {
-        {"atp", InitialCompound(60, 10)},
+        {"atp", InitialCompound(25)},
         {"glucose", InitialCompound(10)},
-        {"reproductase", InitialCompound(0, 8)},
         {"oxytoxy", InitialCompound(1)}
     };
 

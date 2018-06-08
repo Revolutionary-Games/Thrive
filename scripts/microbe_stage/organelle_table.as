@@ -256,7 +256,9 @@ void setupOrganelles(){
         {"ammonia", 1}
     };
     nucleusParameters.components = {
-        nucleusComponentFactory
+        nucleusComponentFactory,
+    // Cell takes up 10 spaces, so 50 cytoplasm
+    storageOrganelleFactory(50.0f)
     };
     nucleusParameters.processes = {
     };
