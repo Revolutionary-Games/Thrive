@@ -343,7 +343,7 @@ class PlayerSpeciesSpawner{
 ObjectID createToxin(CellStageWorld@ world, Float3 pos)
 {
 
-    //toxins
+    // Toxins
     ObjectID toxinEntity = world.CreateEntity();
     //LOG_INFO("toxin spawned at pos x"+ pos.X +"y"+ pos.Y +"z"+ pos.Z);
 
@@ -379,7 +379,7 @@ ObjectID createToxin(CellStageWorld@ world, Float3 pos)
 
 ObjectID createChloroplast(CellStageWorld@ world, Float3 pos)
 {
-    //cholroplasts
+    // Chloroplasts
     ObjectID chloroplastEntity = world.CreateEntity();
     //LOG_INFO("chloroplast spawned at pos x"+ pos.X +"y"+ pos.Y +"z"+ pos.Z);
     auto position = world.Create_Position(chloroplastEntity, pos,Ogre::Quaternion(Ogre::Degree(GetEngine().GetRandom().GetNumber(0, 360)),Ogre::Vector3(0,1,1)));

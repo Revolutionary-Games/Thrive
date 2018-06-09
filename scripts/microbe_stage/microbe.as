@@ -299,25 +299,6 @@ class MicrobeSystem : ScriptSystem{
         ScriptSystemNodeHelper(world, @CachedComponents, SystemComponents);
     }
 
-    // TODO: make sure these work fine after converting
-        // this.microbeCollisions = CollisionFilter(
-        //     "microbe",
-        //     "microbe"
-        // )
-        // // Temporary for 0.3.2, should be moved to separate system.
-        // this.agentCollisions = CollisionFilter(
-        //     "microbe",
-        //     "agent"
-        // )
-
-        // this.bacteriaCollisions = CollisionFilter(
-        //     "microbe",
-        //     "bacteria"
-        // )
-
-        // this.microbes = {}
-        // }
-
     // Updates the microbe's state
     void updateMicrobe(MicrobeSystemCached@ components, uint logicTime){
         auto microbeEntity = components.entity;
