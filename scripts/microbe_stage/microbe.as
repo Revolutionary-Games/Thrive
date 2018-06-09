@@ -450,10 +450,11 @@ class MicrobeSystem : ScriptSystem{
             }
 
 
+
+    if((microbeComponent.hitpoints < microbeComponent.maxHitpoints))
+    {
     if(MicrobeOperations::getCompoundAmount(world, microbeEntity,
                 SimulationParameters::compoundRegistry().getTypeId("atp")) > 0)
-    {
-    if((microbeComponent.hitpoints < microbeComponent.maxHitpoints))
     {
     microbeComponent.hitpoints += (REGENERATION_RATE/1000.0*logicTime);
     if (microbeComponent.hitpoints > microbeComponent.maxHitpoints)
@@ -461,7 +462,7 @@ class MicrobeSystem : ScriptSystem{
     microbeComponent.hitpoints =  microbeComponent.maxHitpoints;
     }
     }
-     }
+    }
 
              auto reproductionStageComplete = true;
              array<PlacedOrganelle@> organellesToAdd;
