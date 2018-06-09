@@ -856,6 +856,8 @@ ObjectID _createMicrobeEntity(CellStageWorld@ world, const string &in name, bool
     world.Create_RenderNode(entity);
     auto compoundBag = world.Create_CompoundBagComponent(entity);
 
+    auto processorComponent = world.Create_ProcessorComponent(entity);
+
     MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
         world.GetScriptComponentHolder("MicrobeComponent").Create(entity));
 
@@ -879,7 +881,7 @@ ObjectID _createMicrobeEntity(CellStageWorld@ world, const string &in name, bool
             "' doesn't have a processor component");
         // assert(processor !is null);
     } else {
-
+    LOG_INFO("Added processor");
         compoundBag.setProcessor(processor, microbeComponent.speciesName);
     }
 

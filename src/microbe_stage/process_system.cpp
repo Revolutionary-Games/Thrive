@@ -372,7 +372,6 @@ void
     ProcessSystem::Run(GameWorld& world)
 {
     const auto logicTime = Leviathan::TICKSPEED;
-
     // Iterating on each entity with a CompoundBagComponent and a
     // ProcessorComponent
     for(auto& value : CachedComponents.GetIndex()) {
