@@ -188,7 +188,13 @@ void
     // ProcessorComponent
     for(auto& value : CachedComponents.GetIndex()) {
         CompoundBagComponent& bag = std::get<0>(*value.second);
-        auto processor = bag.processor;
+        ProcessorComponent* processor;
+        if(bag.processor != NULL_OBJECT) {
+            processor = bag.processor;
+        } else {
+            LOG_ERROR("Compound Bag Lacks Processor component");
+            return;
+        }
         // LOG_INFO("Capacities:
         // "+std::to_string(processor->process_capacities.size()));
         for(const auto& process : processor->process_capacities) {
@@ -204,7 +210,7 @@ void
                 SimulationParameters::bioProcessRegistry.getTypeData(processId)
                     .inputs) {
                 CompoundId inputId = input.first;
-                int inputRemoved = input.second;
+                double inputRemoved = input.second / processLimitCapacity;
                 if(bag.compounds[inputId].amount >= inputRemoved) {
                     processed = true;
                     bag.compounds[inputId].amount -= inputRemoved;
@@ -220,7 +226,8 @@ void
                         .getTypeData(processId)
                         .outputs) {
                     CompoundId outputId = output.first;
-                    int outputGenerated = output.second;
+                    double outputGenerated =
+                        output.second / processLimitCapacity;
                     bag.compounds[outputId].amount += outputGenerated;
                 }
             }
