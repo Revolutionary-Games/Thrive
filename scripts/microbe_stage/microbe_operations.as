@@ -541,7 +541,7 @@ void damage(CellStageWorld@ world, ObjectID microbeEntity, uint amount, const st
     //Flash the microbe red
     LOG_INFO("DAMAGE FLASH");
     flashMembraneColour(world, microbeEntity, 3000,
-                    Float4(1,0.2,0.2,0.5));
+                    Float4(1,0,0,0.5));
 
     // Find out the amount of health the microbe has.
     if(microbeComponent.hitpoints <= 0){
