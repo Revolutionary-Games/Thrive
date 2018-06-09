@@ -172,7 +172,7 @@ void cellOnCellActualContact(GameWorld@ world, ObjectID firstEntity, ObjectID se
 // engulfed, we should probabbly check cell size and such here aswell.
 int beingEngulfed(GameWorld@ world, ObjectID firstEntity, ObjectID secondEntity)
 {
-    int engulfing = 1;
+    int shouldCollide = 1;
 
 
     // Grab the microbe components
@@ -204,7 +204,7 @@ int beingEngulfed(GameWorld@ world, ObjectID firstEntity, ObjectID secondEntity)
             }
 
             firstMicrobeComponent.isCurrentlyEngulfing = true;
-            engulfing = 0;
+            shouldCollide = 0;
         }
     }
 
@@ -228,11 +228,11 @@ int beingEngulfed(GameWorld@ world, ObjectID firstEntity, ObjectID secondEntity)
             }
 
             secondMicrobeComponent.isCurrentlyEngulfing = true;
-            engulfing = 0;
+            shouldCollide = 0;
         }
     }
 
-    return engulfing;
+    return shouldCollide;
 }
 
 
