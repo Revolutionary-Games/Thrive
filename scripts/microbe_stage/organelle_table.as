@@ -293,7 +293,11 @@ void setupOrganelles(){
         {"ammonia", 1}
     };
     cytoplasmParameters.components = {
+        processorOrganelleFactory(1.0),
         storageOrganelleFactory(5.0f)
+    };
+    cytoplasmParameters.processes = {
+        TweakedProcess("glycolosis", 0.2)
     };
     cytoplasmParameters.hexes = {
         Int2(0, 0),
