@@ -196,8 +196,8 @@ class Species{
             }
         }
         else{
-        // Network
-    // Allows for "jungles of cyanobacteria"
+            // Network
+            // Allows for "jungles of cyanobacteria"
             // Ntwork is extremely rare
             float x = curSpawn.X;
             float z = curSpawn.Z;
@@ -208,7 +208,7 @@ class Species{
             for(int i = 0; i < GetEngine().GetRandom().GetNumber(3,10); ++i)
             {
                 if (GetEngine().GetRandom().GetNumber(0,4) < 2 && !horizontal)
-                    {
+                {
                     horizontal=true;
                     vertical=false;
                     for(int c = 0; c < GetEngine().GetRandom().GetNumber(3,5); ++c){
@@ -221,21 +221,21 @@ class Species{
                             "",true);
                     }
                 }
-            else if (GetEngine().GetRandom().GetNumber(0,4) < 2 && !vertical) {
-                horizontal=false;
-                vertical=true;
-                for(int c = 0; c < GetEngine().GetRandom().GetNumber(3,5); ++c){
-                    // Dont spawn them on top of each other because it
-                    // Causes them to bounce around and lag
-                    curSpawn.Z += GetEngine().GetRandom().GetNumber(5,7);
-                    // Add a litlle organicness to the look
-                    curSpawn.X += GetEngine().GetRandom().GetNumber(-1,1);
-                    MicrobeOperations::spawnBacteria(world, pos+curSpawn, this.name,true,"",
-                        true);
+                else if (GetEngine().GetRandom().GetNumber(0,4) < 2 && !vertical) {
+                    horizontal=false;
+                    vertical=true;
+                    for(int c = 0; c < GetEngine().GetRandom().GetNumber(3,5); ++c){
+                        // Dont spawn them on top of each other because it
+                        // Causes them to bounce around and lag
+                        curSpawn.Z += GetEngine().GetRandom().GetNumber(5,7);
+                        // Add a litlle organicness to the look
+                        curSpawn.X += GetEngine().GetRandom().GetNumber(-1,1);
+                        MicrobeOperations::spawnBacteria(world, pos+curSpawn, this.name,true,"",
+                            true);
+                    }
                 }
-            }
-            else if (GetEngine().GetRandom().GetNumber(0,4) < 2 && !horizontal)
-                    {
+                else if (GetEngine().GetRandom().GetNumber(0,4) < 2 && !horizontal)
+                {
                     horizontal=true;
                     vertical=false;
                     for(int c = 0; c < GetEngine().GetRandom().GetNumber(3,5); ++c){
@@ -248,36 +248,36 @@ class Species{
                             "",true);
                     }
                 }
-            else if (GetEngine().GetRandom().GetNumber(0,4) < 2 && !vertical) {
-                horizontal=false;
-                vertical=true;
-                for(int c = 0; c < GetEngine().GetRandom().GetNumber(3,5); ++c){
-                    // Dont spawn them on top of each other because it
-                    //causes them to bounce around and lag
-                    curSpawn.Z -= GetEngine().GetRandom().GetNumber(5,7);
-                    //add a litlle organicness to the look
-                    curSpawn.X -= GetEngine().GetRandom().GetNumber(-1,1);
-                    MicrobeOperations::spawnBacteria(world, pos+curSpawn, this.name,true,"",
-                        true);
+                else if (GetEngine().GetRandom().GetNumber(0,4) < 2 && !vertical) {
+                    horizontal=false;
+                    vertical=true;
+                    for(int c = 0; c < GetEngine().GetRandom().GetNumber(3,5); ++c){
+                        // Dont spawn them on top of each other because it
+                        //causes them to bounce around and lag
+                        curSpawn.Z -= GetEngine().GetRandom().GetNumber(5,7);
+                        //add a litlle organicness to the look
+                        curSpawn.X -= GetEngine().GetRandom().GetNumber(-1,1);
+                        MicrobeOperations::spawnBacteria(world, pos+curSpawn, this.name,true,
+                            "", true);
+                    }
                 }
-            }
-            else {
-                // Diaganol
-                horizontal=false;
-                vertical=false;
-                for(int c = 0; c < GetEngine().GetRandom().GetNumber(3,5); ++c){
-                    // Dont spawn them on top of each other because it
-                    // Causes them to bounce around and lag
-                    curSpawn.Z += GetEngine().GetRandom().GetNumber(5,7);
-                    curSpawn.X += GetEngine().GetRandom().GetNumber(5,7);
-                    MicrobeOperations::spawnBacteria(world, pos+curSpawn, this.name,true,"",
-                        true);
+                else {
+                    // Diaganol
+                    horizontal=false;
+                    vertical=false;
+                    for(int c = 0; c < GetEngine().GetRandom().GetNumber(3,5); ++c){
+                        // Dont spawn them on top of each other because it
+                        // Causes them to bounce around and lag
+                        curSpawn.Z += GetEngine().GetRandom().GetNumber(5,7);
+                        curSpawn.X += GetEngine().GetRandom().GetNumber(5,7);
+                        MicrobeOperations::spawnBacteria(world, pos+curSpawn, this.name,true,
+                            "", true);
+                    }
                 }
-            }
             }
         }
-        return MicrobeOperations::spawnBacteria(world, pos, this.name,true,"",false);
 
+        return MicrobeOperations::spawnBacteria(world, pos, this.name,true,"",false);
     }
 
 
@@ -318,13 +318,14 @@ class Species{
         int bacterialFlagellumChance = 10;
 
         name = randomBacteriaName();
-        // Bacteria are tiny, start off with a max of 3 hexes (maybe we should start them all off with just one? )
+        // Bacteria are tiny, start off with a max of 3 hexes (maybe
+        // we should start them all off with just one? )
         auto stringSize = GetEngine().GetRandom().GetNumber(0,3);
         // Bacteria
         // will randomly have 1 of 3 organelles right now, photosynthesizing protiens,
         // respiratory Protiens, or Oxy Toxy Producing Protiens, also pure cytoplasm
         // aswell for variety.
-    //TODO when chemosynthesis is added add a protien for that aswell
+        //TODO when chemosynthesis is added add a protien for that aswell
         switch(GetEngine().GetRandom().GetNumber(1,6))
         {
         case 1:
@@ -351,11 +352,11 @@ class Species{
         for(int i = 0; i < stringSize; ++i){
             this.stringCode += chosenType;
         }
-    // Allow bacteria to sometimes start with a flagella instead of having to evolve it
-    if (GetEngine().GetRandom().GetNumber(1,100) <= bacterialFlagellumChance)
-    {
-    this.stringCode+=getOrganelleDefinition("flagellum").gene;;
-    }
+        // Allow bacteria to sometimes start with a flagella instead of having to evolve it
+        if (GetEngine().GetRandom().GetNumber(1,100) <= bacterialFlagellumChance)
+        {
+            this.stringCode+=getOrganelleDefinition("flagellum").gene;;
+        }
 
         this.speciesMembraneType = MEMBRANE_TYPE::WALL;
         this.colour = getRightColourForSpecies();
