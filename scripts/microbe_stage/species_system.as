@@ -906,19 +906,18 @@ ObjectID createSpecies(CellStageWorld@ world, const string &in name,
     }
 
     uint64 processCount = SimulationParameters::bioProcessRegistry().getSize();
+    LOG_INFO(processCount+" is the amount of processes");
     for(uint bioProcessId = 0; bioProcessId < processCount; ++bioProcessId){
-
         auto processName = SimulationParameters::bioProcessRegistry().getInternalName(
             bioProcessId);
 
         if(capacities.exists(processName)){
-
             float capacity;
             if(!capacities.get(processName, capacity)){
                 LOG_ERROR("capacities has invalid value");
                 continue;
             }
-
+    LOG_INFO(bioProcessId+" has been set");
             processorComponent.setCapacity(bioProcessId, capacity);
             // This may be commented out for the reason that the default should be retained
             // } else {
