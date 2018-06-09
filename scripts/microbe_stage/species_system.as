@@ -27,8 +27,9 @@ Float4 randomProkayroteColour(float opaqueness = randomOpacityBacteria()){
 
 const dictionary DEFAULT_INITIAL_COMPOUNDS =
     {
-        {"atp", InitialCompound(25)},
-        {"glucose", InitialCompound(10)},
+        {"atp", InitialCompound(10,25)},
+        {"glucose", InitialCompound(10,20)},
+        {"ammonia", InitialCompound(10,20)},
         {"oxytoxy", InitialCompound(1)}
     };
 
@@ -40,6 +41,7 @@ string randomSpeciesName(){
 // Bacteria also need names
 string randomBacteriaName(){
     return "Bacteria_" + formatInt(GetEngine().GetRandom().GetNumber(0, 10000));
+    // TODO: Should also use latin names here
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -95,11 +97,11 @@ class Species{
         if (!isBacteria)
         {
             name = randomSpeciesName();
-            //chance of new color needs to be low
+            // Chance of new color needs to be low
             if (GetEngine().GetRandom().GetNumber(0,100)==1)
             {
                 LOG_INFO("New Genus");
-                //we can do more fun stuff here later
+                // We can do more fun stuff here later
                 this.colour = randomColour();
             }
             else
@@ -278,6 +280,7 @@ class Species{
         }
 
         return MicrobeOperations::spawnBacteria(world, pos, this.name,true,"",false);
+
     }
 
 
@@ -433,35 +436,35 @@ class Species{
 // System for estimating and simulating population count for various species
 ////////////////////////////////////////////////////////////////////////////////
 
-//How big is a newly created species's population.
+// How big is a newly created species's population.
 const auto INITIAL_POPULATION = 2000;
 
-//how much time does it take for the simulation to update.
+// How much time does it take for the simulation to update.
 const auto SPECIES_SIM_INTERVAL = 10000;
 
-//if a specie's population goes below this it goes extinct.
+// If a specie's population goes below this it goes extinct.
 const auto MIN_POP_SIZE = 500;
 
-//if a specie's population goes above this it gets split in half and a
-//new mutated species apears. this should be randomized
+// If a specie's population goes above this it gets split in half and a
+// new mutated species apears. this should be randomized
 const auto MAX_POP_SIZE = 5000;
 
-//the amount of species at the start of the microbe stage (not counting Default/Player)
+// The amount of species at the start of the microbe stage (not counting Default/Player)
 const auto INITIAL_SPECIES = 7;
 
-//the amount of bacteria
+// The amount of bacterial species to start with
 const auto INITIAL_BACTERIA = 4;
 
-//if there are more species than this then all species get their population reduced by half
+// If there are more species than this then all species get their population reduced by half
 const auto MAX_SPECIES = 15;
 
-//if there are more bacteria than this then all species get their population reduced by half
+// If there are more bacteria than this then all species get their population reduced by half
 const auto MAX_BACTERIA = 6;
 
-//if there are less species than this creates new ones.
+// If there are less species than this creates new ones.
 const auto MIN_SPECIES = 3;
 
-//if there are less species than this creates new ones.
+// If there are less species than this creates new ones.
 const auto MIN_BACTERIA = 2;
 
 //! Updates the species's population and creates new ones. And keeps track of Species objects
@@ -499,42 +502,42 @@ class SpeciesSystem : ScriptSystem{
             LOG_INFO("Processing Auto-evo Step");
             this.timeSinceLastCycle -= SPECIES_SIM_INTERVAL;
 
-            //update population numbers and split/extinct species as needed
+            // Update population numbers and split/extinct species as needed
             auto numberOfSpecies = species.length();
             for(uint i = 0; i < numberOfSpecies; ++i){
-                //traversing the population backwards to avoid
-                //"chopping down the branch i'm sitting in"
+                // Traversing the population backwards to avoid
+                // "chopping down the branch i'm sitting in"
                 auto index = numberOfSpecies - 1 - i;
                 auto currentSpecies = species[index];
                 currentSpecies.updatePopulation();
                 auto population = currentSpecies.population;
                 LOG_INFO(currentSpecies.name+" "+currentSpecies.population);
 
-                //this is just to shake things up occassionally
+                // This is just to shake things up occassionally
                 if ( currentSpecies.population > 0 &&
                     GetEngine().GetRandom().GetNumber(0,10) <= 2)
                 {
-                    //F to pay respects: TODO: add a notification for when this happens
+                    // F to pay respects: TODO: add a notification for when this happens
                     LOG_INFO(currentSpecies.name + " has been devestated by disease.");
                     currentSpecies.devestate();
                     LOG_INFO(currentSpecies.name+" population is now "+
                         currentSpecies.population);
                 }
 
-                //this is also just to shake things up occassionally
-                //cambrian explosion
+                // This is also just to shake things up occassionally
+                // Cambrian Explosion
                 if ( currentSpecies.population > 0 &&
                     GetEngine().GetRandom().GetNumber(0,10) <= 2)
                 {
-                    //P to pat back: TODO: add a notification for when this happens
+                    // P to pat back: TODO: add a notification for when this happens
                     LOG_INFO(currentSpecies.name + " is diversifying!");
                     currentSpecies.boom();
                     LOG_INFO(currentSpecies.name+" population is now "+
                         currentSpecies.population);
                 }
 
-                //reproduction/mutation
-                //bacteria should mutate more often then eukaryote sbut this is fine for now
+                // Reproduction and mutation
+                // TODO:Bacteria should mutate more often then eukaryotes but this is fine for now
                 if(population > MAX_POP_SIZE){
                     auto newSpecies = Species(currentSpecies, world,
                         currentSpecies.isBacteria);
@@ -557,7 +560,7 @@ class SpeciesSystem : ScriptSystem{
                     LOG_INFO("Species " + currentSpecies.name + " went extinct");
                     currentSpecies.extinguish();
                     species.removeAt(index);
-                    //tweak numbers here
+                    // Tweak numbers here
                     if (currentSpecies.isBacteria)
                     {
                         currentBacteriaAmount-=1;
@@ -569,41 +572,41 @@ class SpeciesSystem : ScriptSystem{
                 }
             }
 
-            //These are kind of arbitray, we should pronbabbly make it less arbitrary
-            //new species
+            // These are kind of arbitray, we should pronbabbly make it less arbitrary
+            // New species
             while(currentEukaryoteAmount < MIN_SPECIES){
                 LOG_INFO("Creating new species as there's too few");
                 createSpecies();
                 currentEukaryoteAmount++;
             }
 
-            //new bacteria
+            // New bacteria
             while(currentBacteriaAmount < MIN_BACTERIA){
                 LOG_INFO("Creating new prokaryote as there's too few");
                 createBacterium();
                 currentBacteriaAmount++;
             }
 
-            //mass extinction events
+            // Various mass extinction events
 
             if(species.length() > MAX_SPECIES+MAX_BACTERIA){
                 LOG_INFO("Mass extinction time");
-                //F to pay respects: TODO: add a notification for when this happens
+                // F to pay respects: TODO: add a notification for when this happens
                 doMassExtinction();
             }
-            //add soem variability, this is a less deterministic mass
-            //extinction eg, a meteor, etc.
+            // Add some variability, this is a less deterministic mass
+            // Extinction eg, a meteor, etc.
             if(GetEngine().GetRandom().GetNumber(0,1000) == 1){
                 LOG_INFO("Black swan event");
-                //F to pay respects: TODO: add a notification for when this happens
+                // F to pay respects: TODO: add a notification for when this happens
                 doMassExtinction();
             }
 
-            //exvery 8 steps or so do a cambrian explosion style
-            //event, this should increase variablility significantly
+            // Every 8 steps or so do a cambrian explosion style
+            // Event, this should increase variablility significantly
             if(GetEngine().GetRandom().GetNumber(0,200) <= 25){
                 LOG_INFO("Cambrian Explosion");
-                //F to pay respects: TODO: add a notification for when this happens
+                // TODO: add a notification for when this happens
                 doCambrianExplosion();
             }
 
@@ -627,7 +630,7 @@ class SpeciesSystem : ScriptSystem{
     }
 
     void doMassExtinction(){
-        //this doesnt seem like a powerful event
+        // This doesnt seem like a powerful event
         for(uint i = 0; i < species.length(); ++i){
             species[i].population /= 2;
         }
@@ -932,21 +935,20 @@ ObjectID createSpecies(CellStageWorld@ world, const string &in name,
 
 //! Mutates a species' dna code randomly
 string mutate(const string &in stringCode){
-    //moving the stringCode to a table to facilitate changes
+    // Moving the stringCode to a table to facilitate changes
     string chromosomes = stringCode.substr(2);
-
-    //try to insert a letter at the end of the table.
+    // Try to insert a letter at the end of the table.
     if(GetEngine().GetRandom().GetNumber(0.f, 1.f) < MUTATION_CREATION_RATE){
         chromosomes += getRandomLetter(false);
     }
 
-    //modifies the rest of the table.
+    // Modifies the rest of the table.
     for(uint i = 0; i < stringCode.length(); ++i){
-        //index we are adding or erasing chromosomes at
+        // Index we are adding or erasing chromosomes at
         uint index = stringCode.length() - i - 1;
 
         if(GetEngine().GetRandom().GetNumber(0.f, 1.f) < MUTATION_DELETION_RATE){
-        //removing the last organelle is pointless, that would kill the creature (also caused errors).
+        // Removing the last organelle is pointless, that would kill the creature (also caused errors).
             if (index != stringCode.length()-1)
             {
             chromosomes.erase(index, 1);
@@ -954,7 +956,7 @@ string mutate(const string &in stringCode){
         }
 
         if(GetEngine().GetRandom().GetNumber(0.f, 1.f) < MUTATION_CREATION_RATE){
-            //there is an error here when we try to insert at the end of the list so use insertlast instead in that case
+            // There is an error here when we try to insert at the end of the list so use insertlast instead in that case
             if (index != stringCode.length()-1)
             {
             chromosomes.insert(index, getRandomLetter(false));
@@ -965,25 +967,25 @@ string mutate(const string &in stringCode){
         }
     }
 
-    //transforming the table back into a string
+    // Transforming the table back into a string
     // TODO: remove Hardcoded microbe genes
     auto newString = "NY" + chromosomes;
     return newString;
 }
 
-//mutate bacteria
+// Mutate a Bacterium
 string mutateProkaryote(const string &in stringCode ){
-    //moving the stringCode to a table to facilitate changes
+    // Moving the stringCode to a table to facilitate changes
     string chromosomes = stringCode;
-    //try to insert a letter at the end of the table.
+    // Try to insert a letter at the end of the table.
     if(GetEngine().GetRandom().GetNumber(0.f, 1.f) < MUTATION_CREATION_RATE){
         chromosomes += getRandomLetter(true);
     }
-    //modifies the rest of the table.
+    // Modifies the rest of the table.
     for(uint i = 0; i < stringCode.length(); ++i){
-        //index we are adding or erasing chromosomes at
+        // Index we are adding or erasing chromosomes at
         uint index = stringCode.length() - i -1;
-        //bacteria can be size 1 so removing their only organelle is a bad idea
+        // Bacteria can be size 1 so removing their only organelle is a bad idea
         if(GetEngine().GetRandom().GetNumber(0.f, 1.f) < MUTATION_DELETION_RATE){
             if (index != stringCode.length()-1)
             {
@@ -992,7 +994,7 @@ string mutateProkaryote(const string &in stringCode ){
         }
 
         if(GetEngine().GetRandom().GetNumber(0.f, 1.f) < MUTATION_CREATION_RATE){
-            //there is an error here when we try to insert at the end of the list so use insertlast instead in that case
+            // There is an error here when we try to insert at the end of the list so use insertlast instead in that case
             if (index != stringCode.length()-1)
             {
             chromosomes.insert(index, getRandomLetter(true));

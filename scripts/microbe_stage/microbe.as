@@ -299,25 +299,6 @@ class MicrobeSystem : ScriptSystem{
         ScriptSystemNodeHelper(world, @CachedComponents, SystemComponents);
     }
 
-    // TODO: make sure these work fine after converting
-        // this.microbeCollisions = CollisionFilter(
-        //     "microbe",
-        //     "microbe"
-        // )
-        // // Temporary for 0.3.2, should be moved to separate system.
-        // this.agentCollisions = CollisionFilter(
-        //     "microbe",
-        //     "agent"
-        // )
-
-        // this.bacteriaCollisions = CollisionFilter(
-        //     "microbe",
-        //     "bacteria"
-        // )
-
-        // this.microbes = {}
-        // }
-
     // Updates the microbe's state
     void updateMicrobe(MicrobeSystemCached@ components, uint logicTime){
         auto microbeEntity = components.entity;
@@ -450,10 +431,11 @@ class MicrobeSystem : ScriptSystem{
             }
 
 
+
+    if((microbeComponent.hitpoints < microbeComponent.maxHitpoints))
+    {
     if(MicrobeOperations::getCompoundAmount(world, microbeEntity,
                 SimulationParameters::compoundRegistry().getTypeId("atp")) > 0)
-    {
-    if((microbeComponent.hitpoints < microbeComponent.maxHitpoints))
     {
     microbeComponent.hitpoints += (REGENERATION_RATE/1000.0*logicTime);
     if (microbeComponent.hitpoints > microbeComponent.maxHitpoints)
@@ -461,7 +443,7 @@ class MicrobeSystem : ScriptSystem{
     microbeComponent.hitpoints =  microbeComponent.maxHitpoints;
     }
     }
-     }
+    }
 
              auto reproductionStageComplete = true;
              array<PlacedOrganelle@> organellesToAdd;
