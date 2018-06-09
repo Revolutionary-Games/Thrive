@@ -1,4 +1,4 @@
-//Global table which stores the current biome the player is in.
+// Global table which stores the current biome the player is in.
 uint64 currentBiome = 0;
 
 const Biome@ getCurrentBiome(){
@@ -44,12 +44,12 @@ class CloudFactory{
 
 dictionary compoundSpawnTypes;
 
-//Setting the current biome to the one with the specified name.
+// Setting the current biome to the one with the specified name.
 void setBiome(uint64 biomeId, CellStageWorld@ world){
     assert(world !is null, "setBiome requires world");
 
     LOG_INFO("setting biome to: " + biomeId);
-    //Getting the base biome to change to.
+    // Getting the base biome to change to.
     currentBiome = biomeId;
 
     auto biome = getCurrentBiome();
@@ -87,14 +87,14 @@ void setBiome(uint64 biomeId, CellStageWorld@ world){
                 CLOUD_SPAWN_RADIUS);
         }
     }
-    //change the lighting
+    // Change the lighting
     setSunlightForBiome(world);
-    //Changing the background.
+    // Changing the background.
     GetThriveGame().setBackgroundMaterial(biome.background);
 }
 
 void setSunlightForBiome(CellStageWorld@ world){
-    //light properties isnt working for some reason
+    // Light properties isnt working for some reason
     world.SetLightProperties(getCurrentBiome().diffuseColors, getCurrentBiome().specularColors,
         Ogre::Vector3(Float3(0.55f, -0.3f, 0.75f).Normalize()), 30,
         // https://ogrecave.github.io/ogre/api/2.1/class_ogre_1_1_scene_manager.html#a56cd9aa2c4dee4eec9eb07ce1372fb52
@@ -102,26 +102,26 @@ void setSunlightForBiome(CellStageWorld@ world){
         Ogre::ColourValue(0.2f, 0.2f, 0.2f),
         -Float3(0.55f, -0.3f, 0.75f).Normalize() + Float3::UnitVUp * 0.2f
     );
-    //these work fine
+    // These work fine
     LOG_INFO("Diffuse Colours For Biome r:" + getCurrentBiome().diffuseColors.r +
         "g:" + getCurrentBiome().diffuseColors.g + "b:" + getCurrentBiome().diffuseColors.b);
     LOG_INFO("specular Colours For Biome r:" + getCurrentBiome().diffuseColors.r +
         "g:" + getCurrentBiome().specularColors.g + "b:" + getCurrentBiome().specularColors.b);
 
-    //diffused gasses percenatge
+    // Diffused gasses percenatge
    LOG_INFO("Diffused Oxygen For Biome " + getCurrentBiome().oxygenPercentage);
    LOG_INFO("Diffused C02 For Biome " + getCurrentBiome().carbonDioxidePercentage);
 
 }
 
-//Setting the current biome to a random biome selected from the biome table.
+// Setting the current biome to a random biome selected from the biome table.
 void setRandomBiome(CellStageWorld@ world){
      LOG_INFO("setting random biome");
-    //Getting the size of the biome table.
-    //Selecting a random biome.
+    // Getting the size of the biome table.
+    // Selecting a random biome.
     auto biome = GetEngine().GetRandom().GetNumber(0,
         int(SimulationParameters::biomeRegistry().getSize()));
 
-    //Switching to that biome.
+    // Switching to that biome.
     setBiome(biome, world);
 }
