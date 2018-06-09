@@ -100,7 +100,7 @@ class OrganelleParameters{
     int mpCost = 0;
 }
 
-//! Cache the result if called multiple times for the same world
+//! Cache the result if called multiple times in quick succession
 Organelle@ getOrganelleDefinition(const string &in name){
 
     Organelle@ organelle = cast<Organelle@>(_mainOrganelleTable[name]);
