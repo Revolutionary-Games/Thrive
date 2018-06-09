@@ -16,6 +16,8 @@ o GameModule "microbe_editor"{
         
         // TODO: move these microbe_stage included files to another module
         ../microbe_stage/hex.as
+        // This should REALLY be made into a common module
+        ../microbe_stage/microbe.as
     }
     
     l properties{
