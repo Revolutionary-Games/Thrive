@@ -519,7 +519,7 @@ void damage(CellStageWorld@ world, ObjectID microbeEntity, uint amount, const st
     // auto soundSourceComponent = world.GetComponent_SoundSourceComponent(microbeEntity);
 
     if(damageType == "toxin"){
-    //play the toxin sound
+    // Play the toxin sound
     GetEngine().GetSoundDevice().Play2DSoundEffect("Data/Sound/soundeffects/microbe-toxin-damage.ogg");
     }
 
@@ -538,10 +538,10 @@ void damage(CellStageWorld@ world, ObjectID microbeEntity, uint amount, const st
     */
 
     microbeComponent.hitpoints -= amount;
-    //Flash the microbe red
+    // Flash the microbe red
     LOG_INFO("DAMAGE FLASH");
     flashMembraneColour(world, microbeEntity, 3000,
-                    Float4(1,0.2,0.2,0.5));
+                    Float4(1,0,0,0.5));
 
     // Find out the amount of health the microbe has.
     if(microbeComponent.hitpoints <= 0){
@@ -737,7 +737,7 @@ ObjectID spawnMicrobe(CellStageWorld@ world, Float3 pos, const string &in specie
     auto speciesEntity = findSpeciesEntityByName(world, speciesName);
     auto species = world.GetComponent_SpeciesComponent(speciesEntity);
 
-    //bacteria get scaled to half size
+    // Bacteria get scaled to half size
     if(species.isBacteria){
         node.Scale = Float3(0.5, 0.5, 0.5);
     node.Marked = true;
@@ -786,15 +786,13 @@ ObjectID spawnBacteria(CellStageWorld@ world, Float3 pos, const string &in speci
     auto speciesEntity = findSpeciesEntityByName(world, speciesName);
     auto species = world.GetComponent_SpeciesComponent(speciesEntity);
 
-    //bacteria get scaled to half size
+    // Bacteria get scaled to half size
     node.Scale = Float3(0.5, 0.5, 0.5);
     node.Marked = true;
-    //need to set bacteria spawn and it needs to be squared like it is in the spawn system. code, if part of colony but not directly spawned give a spawned component
-    if (partOfColony)
-    {
+    // Need to set bacteria spawn and it needs to be squared like it is in the spawn system. code, if part of colony but not directly spawned give a spawned component
+    if (partOfColony){
     world.Create_SpawnedComponent(microbeEntity,BACTERIA_SPAWN_RADIUS*BACTERIA_SPAWN_RADIUS);
     }
-    //stuff
     //LOG_WARNING("spawning bacterium radius "+ BACTERIA_SPAWN_RADIUS);
     return microbeEntity;
 }
@@ -858,14 +856,14 @@ ObjectID _createMicrobeEntity(CellStageWorld@ world, const string &in name, bool
     world.Create_RenderNode(entity);
     auto compoundBag = world.Create_CompoundBagComponent(entity);
 
+    auto processorComponent = world.Create_ProcessorComponent(entity);
+
     MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
         world.GetScriptComponentHolder("MicrobeComponent").Create(entity));
 
     microbeComponent.init(entity, not aiControlled, speciesName);
 
-    //no reason for bacteria to not have AI
     if(aiControlled){
-        //TODO: bacteria iwll use ai when they have flagella
         world.GetScriptComponentHolder("MicrobeAIControllerComponent").Create(entity);
     }
 
@@ -883,7 +881,7 @@ ObjectID _createMicrobeEntity(CellStageWorld@ world, const string &in name, bool
             "' doesn't have a processor component");
         // assert(processor !is null);
     } else {
-
+    LOG_INFO("Added processor");
         compoundBag.setProcessor(processor, microbeComponent.speciesName);
     }
 

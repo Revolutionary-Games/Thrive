@@ -16,7 +16,8 @@ const auto MAX_OPACITY = 4.0f;
 //not const because we want to change these
 //current atmospheric oxygen percentage in modern times
 auto OXYGEN_PERCENTAGE = 0.21f;
-//co2 percentage (over expressed as .09% is the percenatge of all non-nitrogen-non-oxygen gasses in our atmosphere)
+//co2 percentage (over expressed as .09% is the percenatge of all
+//non-nitrogen-non-oxygen gasses in our atmosphere)
 auto CARBON_DIOXIDE_PERCENTAGE = 0.009f;
 
 const auto MUTATION_BACTERIA_TO_EUKARYOTE = 1;
@@ -203,7 +204,7 @@ class InitialCompound{
 const dictionary STARTER_MICROBES = {
     {
         "Default",
-    MicrobeTemplate(1/14000,
+        MicrobeTemplate(1/14000,
             {
             //for testing
                 {"atp", InitialCompound(25)},
@@ -217,8 +218,8 @@ const dictionary STARTER_MICROBES = {
                 OrganelleTemplatePlaced("flagellum", -1, 4, 0)
             },
             Float4(1, 1, 1, 1),
-    false,
-    MEMBRANE_TYPE::MEMBRANE)
+            false,
+            MEMBRANE_TYPE::MEMBRANE)
     }
 };
 

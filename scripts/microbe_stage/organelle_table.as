@@ -100,7 +100,7 @@ class OrganelleParameters{
     int mpCost = 0;
 }
 
-//! Cache the result if called multiple times for the same world
+//! Cache the result if called multiple times in quick succession
 Organelle@ getOrganelleDefinition(const string &in name){
 
     Organelle@ organelle = cast<Organelle@>(_mainOrganelleTable[name]);
@@ -293,7 +293,11 @@ void setupOrganelles(){
         {"ammonia", 1}
     };
     cytoplasmParameters.components = {
+        processorOrganelleFactory(1.0),
         storageOrganelleFactory(5.0f)
+    };
+    cytoplasmParameters.processes = {
+        TweakedProcess("glycolosis", 0.07)
     };
     cytoplasmParameters.hexes = {
         Int2(0, 0),
@@ -487,7 +491,7 @@ void setupOrganelles(){
     storageOrganelleFactory(25.0f)
     };
     respiratoryProtien.processes = {
-        TweakedProcess("respiration", 0.04)
+        TweakedProcess("respiration", 0.05)
     };
     respiratoryProtien.hexes = {
         Int2(0, 0),

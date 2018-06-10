@@ -17,6 +17,7 @@
         
 		"oxygenPercentage": 0.21,
 		"carbonDioxidePercentage": 0.09,
+		"averageTemperature": 8,
         
         "compounds": {
 
@@ -60,6 +61,7 @@
         
 		"oxygenPercentage": 0.21,
 		"carbonDioxidePercentage": 0.09,
+		"averageTemperature": 98,
         
         "compounds": {
 
@@ -102,6 +104,7 @@
         
 		"oxygenPercentage": 0.21,
 		"carbonDioxidePercentage": 0.09,
+		"averageTemperature": 23,
         
         "compounds": {
 
@@ -143,6 +146,7 @@
 		},
 		"oxygenPercentage": 0.21,
 		"carbonDioxidePercentage": 0.09,
+		"averageTemperature": 2,
         "compounds": {
 
             "ammonia": {
@@ -184,6 +188,7 @@
 		},
 		"oxygenPercentage": 0.21,
 		"carbonDioxidePercentage": 0.09,
+		"averageTemperature": 17,
         "compounds": {
 
             "ammonia": {
@@ -193,6 +198,92 @@
 
             "glucose": {
                 "amount": 35000,
+                "density": 0.0002
+            },
+            
+            "phosphates": {
+                "amount": 32500,
+                "density": 0.0002
+            },
+
+            "hydrogensulfide": {
+                "amount": 32500,
+                "density": 0.0002
+            }
+        }
+    },
+	
+	"underwater_cave": {
+        "name": "UnderwaterCave",
+        "background": "Background_Abyss",
+		"colors":{
+		    "specularColors": {
+            "r": 0.48,
+            "g": 0.5,
+            "b": 0.95
+			},
+		    "diffuseColors": {
+            "r": 0.5,
+            "g": 0.5,
+            "b": 0.5
+			}
+		},
+		"oxygenPercentage": 0.21,
+		"carbonDioxidePercentage": 0.09,
+		"averageTemperature": 23,
+        "compounds": {
+
+            "ammonia": {
+                "amount": 35000,
+                "density": 0.0002
+            },
+
+            "glucose": {
+                "amount": 40000,
+                "density": 0.0002
+            },
+            
+            "phosphates": {
+                "amount": 32500,
+                "density": 0.0002
+            },
+
+            "hydrogensulfide": {
+                "amount": 32500,
+                "density": 0.0002
+            }
+        }
+    },
+	
+	    "ice_shelf": {
+        "name": "IceShelf",
+        "background": "Background",
+		"colors":{
+		    "specularColors": {
+            "r": 0.98,
+            "g": 1,
+            "b": 0.95
+			},
+		    "diffuseColors": {
+            "r": 1,
+            "g": 1,
+            "b": 1
+			}
+		},
+        
+		"oxygenPercentage": 0.21,
+		"carbonDioxidePercentage": 0.09,
+		"averageTemperature": -1,
+        
+        "compounds": {
+
+            "ammonia": {
+                "amount": 32500,
+                "density": 0.0002
+            },
+
+            "glucose": {
+                "amount": 32500,
                 "density": 0.0002
             },
             
