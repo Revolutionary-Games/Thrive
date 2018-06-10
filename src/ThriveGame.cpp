@@ -2,6 +2,7 @@
 #include "ThriveGame.h"
 
 #include "engine/player_data.h"
+#include "general/global_keypresses.h"
 #include "general/locked_map.h"
 #include "generated/cell_stage_world.h"
 #include "generated/microbe_editor_world.h"
@@ -42,6 +43,8 @@ public:
     Implementation(ThriveGame& game) :
         m_game(game), m_playerData("player"),
         m_menuKeyPresses(std::make_shared<MainMenuKeyPressListener>()),
+        m_globalKeyPresses(std::make_shared<GlobalUtilityKeyHandler>(
+            *game.ApplicationConfiguration->GetKeyConfiguration())),
         m_cellStageKeys(std::make_shared<PlayerMicrobeControl>(
             *game.ApplicationConfiguration->GetKeyConfiguration()))
     {
@@ -104,6 +107,7 @@ public:
     Ogre::SceneNode* m_backgroundRenderNode = nullptr;
 
     std::shared_ptr<MainMenuKeyPressListener> m_menuKeyPresses;
+    std::shared_ptr<GlobalUtilityKeyHandler> m_globalKeyPresses;
     std::shared_ptr<PlayerMicrobeControl> m_cellStageKeys;
 };
 
@@ -185,7 +189,7 @@ void
     // Set the right input handlers active //
     m_impl->m_menuKeyPresses->setEnabled(false);
     m_impl->m_cellStageKeys->setEnabled(true);
-
+    m_impl->m_globalKeyPresses->setEnabled(true);
     // And switch the GUI mode to allow key presses through
     Leviathan::GUI::View* view = window1->GetGui()->GetViewByIndex(0);
     // Allow running without GUI
@@ -433,7 +437,7 @@ void
     // Set the right input handlers active //
     m_impl->m_menuKeyPresses->setEnabled(false);
     m_impl->m_cellStageKeys->setEnabled(false);
-
+    m_impl->m_globalKeyPresses->setEnabled(true);
     // TODO: editor hotkeys
 
     // Clear world //
@@ -497,7 +501,7 @@ void
     // Set the right input handlers active //
     m_impl->m_menuKeyPresses->setEnabled(false);
     m_impl->m_cellStageKeys->setEnabled(true);
-
+    m_impl->m_globalKeyPresses->setEnabled(true);
     // TODO: editor hotkeys
 
     // Run the post editing script
@@ -640,6 +644,8 @@ void
     // Register custom listener for detecting keypresses for skipping the intro
     // video
     // TODO: these need to be disabled when not used
+    window1->GetInputController()->LinkReceiver(m_impl->m_globalKeyPresses);
+
     window1->GetInputController()->LinkReceiver(m_impl->m_menuKeyPresses);
 
     // Register the player input listener
@@ -835,6 +841,7 @@ void
     keyconfigobj->AddKeyIfMissing(guard, "ReproduceCheat", {"P"});
     keyconfigobj->AddKeyIfMissing(guard, "SpawnGlucoseCheat", {"O"});
     keyconfigobj->AddKeyIfMissing(guard, "EngulfMode", {"G"});
+    keyconfigobj->AddKeyIfMissing(guard, "Screenshot", {"PrintScreen"});
     keyconfigobj->AddKeyIfMissing(guard, "ZoomIn", {"+", "Keypad +"});
     keyconfigobj->AddKeyIfMissing(guard, "ZoomOut", {"-", "Keypad -"});
 }
