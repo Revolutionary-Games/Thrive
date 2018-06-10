@@ -55,13 +55,13 @@ void
 }
 
 bool
-    PlayerData::isBoolSet(std::string key) const
+    PlayerData::isBoolSet(const std::string& key) const
 {
     return (m_impl->m_boolSet.find(key) != m_impl->m_boolSet.end());
 }
 
 void
-    PlayerData::setBool(std::string key, bool value)
+    PlayerData::setBool(const std::string& key, bool value)
 {
     if(value) {
         m_impl->m_boolSet.emplace(key);

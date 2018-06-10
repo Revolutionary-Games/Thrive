@@ -893,6 +893,17 @@ bool
         ANGELSCRIPT_REGISTERFAIL;
     }
 
+    if(engine->RegisterObjectMethod("PlayerData",
+           "bool isBoolSet(const string &in key) const",
+           asMETHOD(PlayerData, isBoolSet), asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectMethod("PlayerData",
+           "void setBool(const string &in key, bool value)",
+           asMETHOD(PlayerData, setBool), asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
 
     return true;
 }
