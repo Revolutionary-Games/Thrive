@@ -205,34 +205,78 @@ void
             double processLimitCapacity =
                 processCapacity * logicTime; // big enough number.
 
-            // Inputs.
+            // This should not do anything if the cell has no room to hold the
+            // new compounds and it shouldn't just keep draining compounds if
+            // you lack the stuff you need to Do your processes
             bool processed = false;
+            // Can your cell do the process without waste?
+            bool canDoProcess = true;
+
+            // Loop through to make sure you can follow through with your whole
+            // process so nothing gets wasted as that would be frusterating, its
+            // two more for loops, yes but it should only really be looping at
+            // max two or three times anyway. also make sure you wont run out of
+            // space when you do add the compounds.
+
+            // Input
             for(const auto& input :
                 SimulationParameters::bioProcessRegistry.getTypeData(processId)
                     .inputs) {
                 CompoundId inputId = input.first;
                 double inputRemoved = input.second / processLimitCapacity;
-                if(bag.compounds[inputId].amount >= inputRemoved) {
-                    processed = true;
-                    bag.compounds[inputId].amount -= inputRemoved;
-                } else {
-                    processed = false;
+                if(bag.compounds[inputId].amount < inputRemoved) {
+                    canDoProcess = false;
                 }
             }
-
-            // Outputs.
-            if(processed) {
+            // Output
+            // Dont loop if you dont need to so check if candoprocess has
+            // already been set to false
+            if(canDoProcess) {
                 for(const auto& output :
                     SimulationParameters::bioProcessRegistry
                         .getTypeData(processId)
                         .outputs) {
                     CompoundId outputId = output.first;
-                    double outputGenerated =
-                        output.second / processLimitCapacity;
-                    bag.compounds[outputId].amount += outputGenerated;
+                    double outputAdded = output.second / processLimitCapacity;
+                    if(bag.getCompoundAmount(outputId) + outputAdded >
+                        bag.storageSpace) {
+                        canDoProcess = false;
+                    }
                 }
             }
-            // TODO: Make sure you dont go over storage capcities
+            // Only carry out this process if you have all the required
+            // ingrediants, and if something weird happens and you suddenly lose
+            // your capability, just remove what you can and get out and next
+            // time you will be unable
+
+            if(canDoProcess) {
+                // Inputs.
+                for(const auto& input : SimulationParameters::bioProcessRegistry
+                                            .getTypeData(processId)
+                                            .inputs) {
+                    CompoundId inputId = input.first;
+                    double inputRemoved = input.second / processLimitCapacity;
+                    if(bag.compounds[inputId].amount >= inputRemoved) {
+                        processed = true;
+                        bag.compounds[inputId].amount -= inputRemoved;
+                    } else {
+                        processed = false;
+                    }
+                }
+
+                // Outputs.
+                if(processed) {
+                    for(const auto& output :
+                        SimulationParameters::bioProcessRegistry
+                            .getTypeData(processId)
+                            .outputs) {
+                        CompoundId outputId = output.first;
+                        double outputGenerated =
+                            output.second / processLimitCapacity;
+                        bag.compounds[outputId].amount += outputGenerated;
+                    }
+                }
+            }
         }
         // Making sure the compound amount is not negative.
         for(auto& compound : bag.compounds) {

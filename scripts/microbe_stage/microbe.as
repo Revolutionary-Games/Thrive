@@ -356,11 +356,8 @@ class MicrobeSystem : ScriptSystem{
 
             // Get amount of compounds
             uint64 compoundCount = SimulationParameters::compoundRegistry().getSize();
-            // Multiply it by the amount of compounds a cell can store
-            //Can cap it at a huge number since the game will
-            //automaticlaly not store if you have more of a certain
-            //compound then allowed now
-            compoundBag.storageSpace = 99999;
+    // This is only used in the process sytem to make sure you dont add anymore when out of space for a specific compound
+            compoundBag.storageSpace = microbeComponent.capacity;
 
             // StorageOrganelles
             updateCompoundAbsorber(microbeEntity);
