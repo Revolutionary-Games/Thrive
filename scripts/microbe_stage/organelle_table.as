@@ -297,7 +297,7 @@ void setupOrganelles(){
         storageOrganelleFactory(5.0f)
     };
     cytoplasmParameters.processes = {
-        TweakedProcess("glycolosis", 0.2)
+        TweakedProcess("glycolosis", 0.07)
     };
     cytoplasmParameters.hexes = {
         Int2(0, 0),
@@ -491,7 +491,7 @@ void setupOrganelles(){
     storageOrganelleFactory(25.0f)
     };
     respiratoryProtien.processes = {
-        TweakedProcess("respiration", 0.04)
+        TweakedProcess("respiration", 0.05)
     };
     respiratoryProtien.hexes = {
         Int2(0, 0),
