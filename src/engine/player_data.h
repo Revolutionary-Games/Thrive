@@ -90,7 +90,7 @@ public:
      * @return
      */
     bool
-        isBoolSet(std::string key) const;
+        isBoolSet(const std::string& key) const;
 
     /**
      * @brief Binds a string to a bool
@@ -102,7 +102,7 @@ public:
      *  What value to bind the key to
      */
     void
-        setBool(std::string key, bool value);
+        setBool(const std::string& key, bool value);
 
     //  /**
     // * @brief Called by the engine during loading of a savegame
