@@ -187,14 +187,15 @@ void
     // Iterating on each entity with a CompoundBagComponent and a
     // ProcessorComponent
     for(auto& value : CachedComponents.GetIndex()) {
+
         CompoundBagComponent& bag = std::get<0>(*value.second);
-        ProcessorComponent* processor;
-        if(bag.processor != NULL_OBJECT) {
-            processor = bag.processor;
-        } else {
+        ProcessorComponent* processor = bag.processor;
+
+        if(!processor) {
             LOG_ERROR("Compound Bag Lacks Processor component");
-            return;
+            continue;
         }
+
         // LOG_INFO("Capacities:
         // "+std::to_string(processor->process_capacities.size()));
         for(const auto& process : processor->process_capacities) {
@@ -234,9 +235,8 @@ void
             // TODO: Make sure you dont go over storage capcities
         }
         // Making sure the compound amount is not negative.
-        for(const auto& compound : bag.compounds) {
-            CompoundId compoundId = compound.first;
-            CompoundData& compoundData = bag.compounds[compoundId];
+        for(auto& compound : bag.compounds) {
+            CompoundData& compoundData = compound.second;
             compoundData.amount = std::max(compoundData.amount, 0.0);
         }
     }
