@@ -25,8 +25,8 @@ class ProcessorOrganelle : OrganelleComponent{
     // // @param processor
     // // The processor to add
     // void ProcessorOrganelle.addProcessor(processor){
-    //     // table.insert(this.processes, processor)
-    // }
+    //     table.insert(this.processes, processor);
+    //}
 
     void
     onAddedToMicrobe(

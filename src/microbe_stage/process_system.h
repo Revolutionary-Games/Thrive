@@ -156,24 +156,6 @@ public:
     }
 
 protected:
-    // Methods from the old Implemementation class //
-    double
-        _demandSofteningFunction(double processCapacity);
-    double
-        _calculatePrice(double oldPrice, double supply, double demand);
-    double
-        _spaceSofteningFunction(double availableSpace, double requiredSpace);
-
-    std::map<double, CompoundId>
-        _getBreakEvenPointMap(BioProcessId processId,
-            CompoundBagComponent& bag);
-
-    double
-        _getOptimalProcessRate(BioProcessId processId,
-            CompoundBagComponent& bag,
-            bool considersSpaceLimitations,
-            double availableSpace);
-
 private:
     static constexpr double TIME_SCALING_FACTOR = 1000;
 };

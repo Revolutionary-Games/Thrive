@@ -3,11 +3,23 @@
         "name": "Respiration",
 
         "inputs": {
+            "glucose": 6
+        },
+
+        "outputs": {
+            "atp": 6
+        }
+    },
+	
+	"glycolosis": {
+        "name": "Glycolosis",
+
+        "inputs": {
             "glucose": 1
         },
 
         "outputs": {
-            "atp": 36
+            "atp": 1
         }
     },
 
@@ -19,7 +31,7 @@
         },
 
         "outputs": {
-            "glucose": 1
+            "glucose": 2
         }
     },
 
@@ -39,11 +51,11 @@
         "name": "Chemo Synthesis",
 
         "inputs": {
-            "hydrogensulfide": 2
+            "hydrogensulfide": 4
         },
 
         "outputs": {
-            "glucose": 1
+            "glucose": 4
         }
     }
 }
