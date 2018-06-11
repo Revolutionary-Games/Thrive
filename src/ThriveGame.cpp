@@ -189,7 +189,7 @@ void
     // Set the right input handlers active //
     m_impl->m_menuKeyPresses->setEnabled(false);
     m_impl->m_cellStageKeys->setEnabled(true);
-    m_impl->m_globalKeyPresses->setEnabled(true);
+
     // And switch the GUI mode to allow key presses through
     Leviathan::GUI::View* view = window1->GetGui()->GetViewByIndex(0);
     // Allow running without GUI
@@ -437,7 +437,6 @@ void
     // Set the right input handlers active //
     m_impl->m_menuKeyPresses->setEnabled(false);
     m_impl->m_cellStageKeys->setEnabled(false);
-    m_impl->m_globalKeyPresses->setEnabled(true);
     // TODO: editor hotkeys
 
     // Clear world //
@@ -501,7 +500,6 @@ void
     // Set the right input handlers active //
     m_impl->m_menuKeyPresses->setEnabled(false);
     m_impl->m_cellStageKeys->setEnabled(true);
-    m_impl->m_globalKeyPresses->setEnabled(true);
     // TODO: editor hotkeys
 
     // Run the post editing script

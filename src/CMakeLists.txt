@@ -24,6 +24,8 @@ set(GROUP_GENERAL
   "general/perlin_noise.h"
   "general/thrive_math.cpp"
   "general/thrive_math.h"
+  "general/global_keypresses.h"
+  "general/global_keypresses.cpp"
   )
 
 set(GROUP_MICROBE_STAGE
