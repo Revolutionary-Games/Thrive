@@ -11,7 +11,7 @@ public:
     //! Initializes the key definitions
     GlobalUtilityKeyHandler(KeyConfiguration& keys);
 
-    //! Detects the important keypresses and notifies ThriveGame
+    //! Detects the important keypresses and does things like taking screenshots
     virtual bool
         ReceiveInput(int32_t key, int modifiers, bool down) override;
 
@@ -21,18 +21,8 @@ public:
     virtual bool
         OnMouseMove(int xmove, int ymove) override;
 
-    void
-        setEnabled(bool enabled)
-    {
-        m_enabled = enabled;
-    }
-
 private:
     Leviathan::GKey m_screenshot;
-
-    // Set to false when not in the main menu
-    bool m_enabled = true;
 };
 
 } // namespace thrive
-#pragma once
