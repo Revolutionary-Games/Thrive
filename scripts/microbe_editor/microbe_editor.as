@@ -491,7 +491,7 @@ class MicrobeEditor{
         auto newOrganelle = PlacedOrganelle(getOrganelleDefinition(organelleType), q, r,
             rotation);
 
-        bool empty = true
+        bool empty = true;
         bool touching = false;
         /*for (s, hex in pairs(OrganelleFactory.checkSize(data))){
             auto organelle = MicrobeSystem.getOrganelleAt(currentMicrobeEntity, hex.q + q, hex.r + r);
@@ -534,20 +534,20 @@ class MicrobeEditor{
 
     void redo()
     {
-        if (actionIndex < actionHistory){
+        if (actionIndex < int(actionHistory.length())){
             
             actionIndex += 1;
             
             auto action = actionHistory[actionIndex];
-            action.redo();
+            action.redo(action, this);
             
-            if (action.cost){
+            if (action.cost > 0){
                 mutationPoints -= action.cost;
             }
         }
         
         //nothing left to redo? disable redo
-        if (actionIndex >= actionHistory){
+        if (actionIndex >= int(actionHistory.length())){
 
             setRedoButtonStatus(false);
         }
@@ -560,8 +560,10 @@ class MicrobeEditor{
     {
         if (actionIndex >= 0){
             auto action = actionHistory[actionIndex];
-            action.undo();
-            if (action.cost){
+            
+            action.undo(action, this);
+            
+            if (action.cost > 0){
                 mutationPoints += action.cost;
             }
             actionIndex -= 1;
@@ -597,7 +599,7 @@ class MicrobeEditor{
         auto storage = organelle.storage();
         enqueueAction(EditorAction(10,
                 // redo
-                function(function(EditorAction@ action, MicrobeEditor@ editor)){
+                function(EditorAction@ action, MicrobeEditor@ editor){
                     MicrobeSystem.removeOrganelle(this.currentMicrobeEntity, storage.get("q", 0), storage.get("r", 0));
                     auto sceneNodeComponent = getComponent(this.currentMicrobeEntity, OgreSceneNodeComponent);
                     sceneNodeComponent.transform.touch();
@@ -608,7 +610,7 @@ class MicrobeEditor{
                     }*/;
                 },
                 // undo
-                function(function(EditorAction@ action, MicrobeEditor@ editor)){
+                function(EditorAction@ action, MicrobeEditor@ editor){
                     auto organelle = Organelle.loadOrganelle(storage);
                     MicrobeSystem.addOrganelle(currentMicrobeEntity, storage.get("q", 0), storage.get("r", 0), storage.get("rotation", 0), organelle);
                     /*for(_, hex in pairs(organelle._hexes)){
@@ -625,51 +627,51 @@ class MicrobeEditor{
         //Render the hex under the cursor
         dictionary sceneNode = {};
         //TODO: find new equivalents
-        sceneNode[1] = getComponent(hudSystem.hoverOrganelle[start], OgreSceneNodeComponent);
-        for (int i = 2; i < 8; i++){
-            sceneNode[i] = getComponent(hudSystem.hoverHex[i-1+(start-1)*7],
-            OgreSceneNodeComponent);
-        }
+        // sceneNode[1] = getComponent(hudSystem.hoverOrganelle[start], OgreSceneNodeComponent);
+        // for (int i = 2; i < 8; i++){
+        //     sceneNode[i] = getComponent(hudSystem.hoverHex[i-1+(start-1)*7],
+        //     OgreSceneNodeComponent);
+        // }
 
-        if (activeActionName){
-            dictionary oldData = {["name"]=this.activeActionName,
-            ["q"]=-q,
-            ["r"]=-r,
-            ["rotation"]=(180+rotation) % 360};
-            auto hexes = OrganelleFactory.checkSize(oldData);
-            auto colour = ColourValue(2, 0, 0, 0.4);
-            bool touching = false;
-            for(_, hex in ipairs(hexes)){
-                if(this.surroundsOrganelle(-hex.q + q, -hex.r + r)){
-                    colour = ColourValue(0, 2, 0, 0.4)
-                }
-            }
-            for(_, hex in ipairs(hexes)){
-                auto organelle = MicrobeSystem.getOrganelleAt(this.currentMicrobeEntity, -hex.q + q, -hex.r + r)
-                if(organelle){
-                    if(organelle.name ~= "cytoplasm"){
-                        colour = ColourValue(2, 0, 0, 0.4)
-                    }
-                }
-            }
-            if (CEGUIWindow.getWindowUnderMouse().getName() == 'root'){
+        // if (activeActionName){
+        //     dictionary oldData = {["name"]=this.activeActionName,
+        //     ["q"]=-q,
+        //     ["r"]=-r,
+        //     ["rotation"]=(180+rotation) % 360};
+        //     auto hexes = OrganelleFactory.checkSize(oldData);
+        //     auto colour = ColourValue(2, 0, 0, 0.4);
+        //     bool touching = false;
+        //     for(_, hex in ipairs(hexes)){
+        //         if(this.surroundsOrganelle(-hex.q + q, -hex.r + r)){
+        //             colour = ColourValue(0, 2, 0, 0.4)
+        //         }
+        //     }
+        //     for(_, hex in ipairs(hexes)){
+        //         auto organelle = MicrobeSystem.getOrganelleAt(this.currentMicrobeEntity, -hex.q + q, -hex.r + r)
+        //         if(organelle){
+        //             if(organelle.name ~= "cytoplasm"){
+        //                 colour = ColourValue(2, 0, 0, 0.4)
+        //             }
+        //         }
+        //     }
+        //     if (CEGUIWindow.getWindowUnderMouse().getName() == 'root'){
 
-                dictionary newData = {
-                    ["name"]=activeActionName,
-                    ["q"]=-q,
-                    ["r"]=-r,
-                    ["sceneNode"]=sceneNode,
-                    ["rotation"]=(180+rotation) % 360,
-                    ["colour"]=colour
-                };
+        //         dictionary newData = {
+        //             ["name"]=activeActionName,
+        //             ["q"]=-q,
+        //             ["r"]=-r,
+        //             ["sceneNode"]=sceneNode,
+        //             ["rotation"]=(180+rotation) % 360,
+        //             ["colour"]=colour
+        //         };
 
-                OrganelleFactory.renderOrganelles(newData)
-                for (int i = 1; i < 8; i++){
-                    sceneNode[i].transform.scale = Vector3(HEX_SIZE, HEX_SIZE, HEX_SIZE); //Vector3(1,1,1)
-                    sceneNode[i].transform.touch();
-                }
-            }
-        }
+        //         OrganelleFactory.renderOrganelles(newData)
+        //         for (int i = 1; i < 8; i++){
+        //             sceneNode[i].transform.scale = Vector3(HEX_SIZE, HEX_SIZE, HEX_SIZE); //Vector3(1,1,1)
+        //             sceneNode[i].transform.touch();
+        //         }
+        //     }
+        // }
     }
 
     //checks whether the hex at q, r has an organelle in its surroundeing hexes.
@@ -716,6 +718,7 @@ class MicrobeEditor{
     private string activeActionName;
                                        
     private array<SpeciesStoredOrganelleType@> currentOrganelles;
+    private int organelleCount = 0;
                                              
     private ObjectID gridSceneNode;
     private bool gridVisible;
@@ -723,7 +726,6 @@ class MicrobeEditor{
     private int mutationPoints;
     // private auto nextMicrobeEntity;
     private dictionary occupiedHexes;
-    private int organelleCount;
     private int organelleRot;
     private dictionary placementFunctions;
     //0 is no symmetry, 1 is x-axis symmetry, 2 is 4-way symmetry, and 3 is 6-way symmetry.
