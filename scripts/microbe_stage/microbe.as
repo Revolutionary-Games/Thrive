@@ -4,6 +4,7 @@
 #include "hex.as"
 #include "microbe_stage_hud.as"
 #include "species_system.as"
+#include "organelle_container.as"
 
 
 //! Why is this needed? Is it for(the future when we don't want to
@@ -80,7 +81,7 @@ const uint AGENT_EMISSION_COOLDOWN = 1000;
 // Holds data common to all microbes. You probably shouldn't use this directly,
 // use MicrobeOperations instead.
 ////////////////////////////////////////////////////////////////////////////////
-class MicrobeComponent : ScriptComponent{
+class MicrobeComponent : ScriptComponent, OrganelleContainer{
 
     //! This detaches all still attached organelles
     //! \todo There might be a more graceful way to do this
@@ -165,7 +166,6 @@ class MicrobeComponent : ScriptComponent{
     float maxHitpoints = DEFAULT_HEALTH;
     bool dead = false;
     uint deathTimer = 0;
-    array<PlacedOrganelle@> organelles;
     // Organelles with complete resonsiblity for a specific compound
     // (such as agentvacuoles)
     // Keys are the CompoundId of the agent and the value is int

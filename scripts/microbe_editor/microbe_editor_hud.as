@@ -197,7 +197,7 @@ class MicrobeEditorHudSystem : ScriptSystem{
             hoverOrganelle.insertLast(hex);
         }
 
-
+        editor.activate();
     }
 
     void setActiveAction(const string &in actionName)

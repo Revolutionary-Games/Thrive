@@ -48,7 +48,6 @@ class MicrobeEditor{
     }
 
     // This is called each time the editor is entered so this needs to properly reset state
-    //TODO.find new equivalents of all these classes
     void init(){
 
         gridSceneNode = hudSystem.world.CreateEntity();
@@ -60,7 +59,7 @@ class MicrobeEditor{
             "EditorGridMaterial", Ogre::Plane(Ogre::Vector3(0, 1, 0), 0), Float2(100, 100));
 
         mutationPoints = BASE_MUTATION_POINTS;
-        organelleCount = 0;
+        // organelleCount = 0;
         gridVisible = true;
 
         actionIndex = 0;
@@ -68,9 +67,7 @@ class MicrobeEditor{
         symmetry = 0;
     }
 
-    //TODO: make certain all this works
     void activate(){
-        // //TODO: find new equivalent of this.
         // auto creatureState = g_luaEngine.getLuaStateFromWrapper(
         //     Engine.playerData().activeCreatureGamestate());
 
@@ -122,7 +119,18 @@ class MicrobeEditor{
         // cytoplasm.destroy()
         // }*/
 
-        currentOrganelles = cast<array<SpeciesStoredOrganelleType@>>(playerSpecies.organelles);
+        auto@ templateOrganelles = cast<array<SpeciesStoredOrganelleType@>>(
+            playerSpecies.organelles);
+
+        editedMicrobe.organelles.resize(0);
+
+        for(uint i = 0; i < templateOrganelles.length(); ++i){
+            
+            editedMicrobe.organelles.insertLast(cast<PlacedOrganelle>(templateOrganelles[i]));
+        }
+
+        LOG_INFO("Starting microbe editor with: " + editedMicrobe.organelles.length() + 
+            " organelles in the microbe");
 
         // /* TODO: fix this for loop as well
         // for(_, organelle in pairs(microbeComponent.organelles)){
@@ -324,7 +332,7 @@ class MicrobeEditor{
     
   void createNewMicrobe(const string &in){
     mutationPoints = BASE_MUTATION_POINTS;
-    organelleCount = 0;
+    // organelleCount = 0;
     EditorAction@ action = EditorAction(0, 
         // redo
         function(EditorAction@ action, MicrobeEditor@ editor){
@@ -515,7 +523,7 @@ class MicrobeEditor{
 
     void loadMicrobe(int entityId){
         mutationPoints = 0;
-        organelleCount = 0;
+        // organelleCount = 0;
         //     if (currentMicrobeEntity != null){
         //         currentMicrobeEntity.destroy();
         //     }
@@ -621,7 +629,7 @@ class MicrobeEditor{
             ));
     }
 
-
+    
     //The first parameter states which sceneNodes to use, starting with "start" and going up 6.
     void renderHighlightedOrganelle(int start, double q, double r, int rotation){
         //Render the hex under the cursor
@@ -716,18 +724,26 @@ class MicrobeEditor{
     private int actionIndex;
                                
     private string activeActionName;
+
+    // This is the container that has the edited organelles in it.
+    // This is populated when entering and used to update the player's species template on exit
+    private OrganelleContainer editedMicrobe;
                                        
-    private array<SpeciesStoredOrganelleType@> currentOrganelles;
-    private int organelleCount = 0;
+    // private array<SpeciesStoredOrganelleType@> currentOrganelles;
+    // private int organelleCount = 0;
                                              
     private ObjectID gridSceneNode;
     private bool gridVisible;
     private MicrobeEditorHudSystem@ hudSystem;
+                                                 
     private int mutationPoints;
     // private auto nextMicrobeEntity;
-    private dictionary occupiedHexes;
+    // private dictionary occupiedHexes;
+                                        
     private int organelleRot;
+                                
     private dictionary placementFunctions;
+    
     //0 is no symmetry, 1 is x-axis symmetry, 2 is 4-way symmetry, and 3 is 6-way symmetry.
     // TODO: change to enum
     private int symmetry;
