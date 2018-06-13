@@ -7,11 +7,14 @@
 
 bool global_if_already_displayed = false;
 
-const array<string> AMBIENT_TRACKS = {
+const array<string> MUSIC_TRACKS = {
     "microbe-theme-1",
     // This doesn't exist //
     /*"microbe-theme-2",*/ "microbe-theme-3", "microbe-theme-4",
     "microbe-theme-5", "microbe-theme-6", "microbe-theme-7"
+};
+const array<string> AMBIENT_TRACKS = {
+    "microbe-ambience","microbe-ambience2"
 };
 
 //! Updates the hud with relevant information from the player cell
@@ -79,15 +82,14 @@ class MicrobeStageHudSystem : ScriptSystem{
         // The isPlaying check will start a new track when the previous ends
         if (@ambienceSounds is null || !ambienceSounds.Get().isPlaying())
         {
-            @ambienceSounds = _playRandomMicrobeAmbience();
+            @ambienceSounds = _playRandomMicrobeMusic();
             ambienceSounds.Get().play();
         }
 
         //play ambient track alongside music and loop it (its meant to be played alongside)
         if (@ambientTrack is null || !ambientTrack.Get().isPlaying())
         {
-            @ambientTrack =  GetEngine().GetSoundDevice().Play2DSound(
-                "Data/Sound/soundeffects/microbe-ambience.ogg", false, true);
+            @ambientTrack = _playRandomMicrobeAmbience();
             ambientTrack.Get().setVolume(0.5);
             ambientTrack.Get().play();
         }
@@ -266,9 +268,23 @@ class MicrobeStageHudSystem : ScriptSystem{
         boolean2 = false;
     }
 
-    private AudioSource@ _playRandomMicrobeAmbience(){
+    private AudioSource@ _playRandomMicrobeMusic(){
 
         AudioSource@ audio = GetEngine().GetSoundDevice().Play2DSound("Data/Sound/" +
+            MUSIC_TRACKS[GetEngine().GetRandom().GetNumber(0,
+                    MUSIC_TRACKS.length() - 1)] + ".ogg", false, true);
+
+        if (audio is null)
+        {
+            LOG_ERROR("Failed to create ambience music source");
+        }
+
+        return audio;
+    }
+
+        private AudioSource@ _playRandomMicrobeAmbience(){
+
+        AudioSource@ audio = GetEngine().GetSoundDevice().Play2DSound("Data/Sound/soundeffects/" +
             AMBIENT_TRACKS[GetEngine().GetRandom().GetNumber(0,
                     AMBIENT_TRACKS.length() - 1)] + ".ogg", false, true);
 
@@ -279,7 +295,6 @@ class MicrobeStageHudSystem : ScriptSystem{
 
         return audio;
     }
-
     private CellStageWorld@ World;
 
 
