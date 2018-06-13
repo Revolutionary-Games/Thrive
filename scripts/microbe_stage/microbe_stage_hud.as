@@ -289,9 +289,6 @@ class MicrobeStageHudSystem : ScriptSystem{
     {
     audio.Get().setVolume(0.25);
     }
-    else{
-    audio.Get().setVolume(0.5);
-    }
         if (audio is null)
         {
             LOG_ERROR("Failed to create ambience sound source");
