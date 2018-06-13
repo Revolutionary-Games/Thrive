@@ -193,8 +193,8 @@ class Species{
                 // Dont spawn them on top of each other because it
                 // Causes them to bounce around and lag
                 MicrobeOperations::spawnBacteria(world, pos+curSpawn, this.name,true,"",true);
-                curSpawn = curSpawn + Float3(lineX+GetEngine().GetRandom().GetNumber(-1,1),
-                    0,linez+GetEngine().GetRandom().GetNumber(-1,1));
+                curSpawn = curSpawn + Float3(lineX+GetEngine().GetRandom().GetNumber(-2,2),
+                    0,linez+GetEngine().GetRandom().GetNumber(-2,2));
             }
         }
         else{
@@ -218,7 +218,7 @@ class Species{
                         // It causes them to bounce around and lag
                         curSpawn.X += GetEngine().GetRandom().GetNumber(5,7);
                         // Add a litlle organicness to the look
-                        curSpawn.Z += GetEngine().GetRandom().GetNumber(-1,1);
+                        curSpawn.Z += GetEngine().GetRandom().GetNumber(-2,2);
                         MicrobeOperations::spawnBacteria(world, pos+curSpawn, this.name, true,
                             "",true);
                     }
@@ -231,7 +231,7 @@ class Species{
                         // Causes them to bounce around and lag
                         curSpawn.Z += GetEngine().GetRandom().GetNumber(5,7);
                         // Add a litlle organicness to the look
-                        curSpawn.X += GetEngine().GetRandom().GetNumber(-1,1);
+                        curSpawn.X += GetEngine().GetRandom().GetNumber(-2,2);
                         MicrobeOperations::spawnBacteria(world, pos+curSpawn, this.name,true,"",
                             true);
                     }
@@ -245,7 +245,7 @@ class Species{
                         // It causes them to bounce around and lag
                         curSpawn.X -= GetEngine().GetRandom().GetNumber(5,7);
                         // Add a litlle organicness to the look
-                        curSpawn.Z -= GetEngine().GetRandom().GetNumber(-1,1);
+                        curSpawn.Z -= GetEngine().GetRandom().GetNumber(-2,2);
                         MicrobeOperations::spawnBacteria(world, pos+curSpawn, this.name, true,
                             "",true);
                     }
@@ -258,7 +258,7 @@ class Species{
                         //causes them to bounce around and lag
                         curSpawn.Z -= GetEngine().GetRandom().GetNumber(5,7);
                         //add a litlle organicness to the look
-                        curSpawn.X -= GetEngine().GetRandom().GetNumber(-1,1);
+                        curSpawn.X -= GetEngine().GetRandom().GetNumber(-2,2);
                         MicrobeOperations::spawnBacteria(world, pos+curSpawn, this.name,true,
                             "", true);
                     }
@@ -332,7 +332,7 @@ class Species{
         switch(GetEngine().GetRandom().GetNumber(1,6))
         {
         case 1:
-            stringCode = getOrganelleDefinition("cytoplasm").gene;
+            stringCode = getOrganelleDefinition("protoplasm").gene;
             break;
         case 2:
             stringCode = getOrganelleDefinition("respiartoryProteins").gene;
@@ -347,7 +347,7 @@ class Species{
             stringCode = getOrganelleDefinition("chemoSynthisizingProtiens").gene;
             break;
         default:
-            stringCode = getOrganelleDefinition("cytoplasm").gene;
+            stringCode = getOrganelleDefinition("protoplasm").gene;
             break;
         }
 
