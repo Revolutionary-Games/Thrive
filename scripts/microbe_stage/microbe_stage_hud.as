@@ -14,7 +14,7 @@ const array<string> MUSIC_TRACKS = {
     "microbe-theme-5", "microbe-theme-6", "microbe-theme-7"
 };
 const array<string> AMBIENT_TRACKS = {
-    "microbe-ambience","microbe-ambience2"
+    "microbe-ambience","microbe-ambience2","microbe-ambience","microbe-ambience2"
 };
 
 //! Updates the hud with relevant information from the player cell
@@ -90,7 +90,6 @@ class MicrobeStageHudSystem : ScriptSystem{
         if (@ambientTrack is null || !ambientTrack.Get().isPlaying())
         {
             @ambientTrack = _playRandomMicrobeAmbience();
-            ambientTrack.Get().setVolume(0.5);
             ambientTrack.Get().play();
         }
     }
@@ -283,11 +282,16 @@ class MicrobeStageHudSystem : ScriptSystem{
     }
 
         private AudioSource@ _playRandomMicrobeAmbience(){
-
-        AudioSource@ audio = GetEngine().GetSoundDevice().Play2DSound("Data/Sound/soundeffects/" +
-            AMBIENT_TRACKS[GetEngine().GetRandom().GetNumber(0,
-                    AMBIENT_TRACKS.length() - 1)] + ".ogg", false, true);
-
+    string track = AMBIENT_TRACKS[GetEngine().GetRandom().GetNumber(0,
+                    AMBIENT_TRACKS.length() - 1)] + ".ogg";
+        AudioSource@ audio = GetEngine().GetSoundDevice().Play2DSound("Data/Sound/soundeffects/" +track, false, true);
+    if (track == "microbe-ambience2.ogg")
+    {
+    audio.Get().setVolume(0.25);
+    }
+    else{
+    audio.Get().setVolume(0.5);
+    }
         if (audio is null)
         {
             LOG_ERROR("Failed to create ambience sound source");
