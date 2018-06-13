@@ -98,10 +98,8 @@ class MovementOrganelle : OrganelleComponent{
     ) {
         // The movementDirection is the player or AI input
         Float3 direction = microbeComponent.movementDirection;
-
         // For changing animation speed
         Animated@ animated = organelle.world.GetComponent_Animated(organelle.organelleEntity);
-
         auto forceMagnitude = this.force.Dot(direction);
         if(forceMagnitude > 0){
             if(direction.LengthSquared() < EPSILON || this.force.LengthSquared() < EPSILON){
@@ -112,15 +110,16 @@ class MovementOrganelle : OrganelleComponent{
 
             this.movingTail = true;
             animated.GetAnimation(0).SpeedFactor = 1.3;
+    // 5 per second per flagella (according to microbe descisions)
+            double energy = abs(5.0f/milliseconds);
 
-            auto energy = abs(this.energyMultiplier * forceMagnitude * milliseconds / 1000.f);
             auto availableEnergy = MicrobeOperations::takeCompound(organelle.world,
                 microbeEntity,  SimulationParameters::compoundRegistry().getTypeId("atp"),
                 energy);
 
             if(availableEnergy < energy){
                 forceMagnitude = sign(forceMagnitude) * availableEnergy * 1000.f /
-                    milliseconds / this.energyMultiplier;
+                    milliseconds;
                 this.movingTail = false;
                 animated.GetAnimation(0).SpeedFactor = 0.25f;
             }
@@ -258,7 +257,6 @@ class MovementOrganelle : OrganelleComponent{
 
     private Float3 force;
     private float torque;
-    float energyMultiplier = 0.025;
     // float backwards_multiplier = 0;
     private bool movingTail = false;
 }
