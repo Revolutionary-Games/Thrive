@@ -582,6 +582,30 @@ void setupOrganelles(){
 
     _addOrganelleToTable(Organelle(chemoSynthisizingProtien));
 
+    // Bacterial cytoplasm equivilent (so they dont die immediately) (just a stopgap measure for now, though it is real)
+    auto protoplasmParameters = OrganelleParameters("protoplasm");
+
+    protoplasmParameters.mass = 0.1;
+    protoplasmParameters.gene = "y";
+    protoplasmParameters.mesh = ""; //it's an empty hex
+    protoplasmParameters.chanceToCreate = 0;
+    protoplasmParameters.prokaryoteChance = 1;
+    protoplasmParameters.mpCost = 5;
+    protoplasmParameters.initialComposition = {
+        {"phosphates", 1},
+        {"ammonia", 1}
+    };
+    protoplasmParameters.components = {
+        processorOrganelleFactory(1.0),
+        storageOrganelleFactory(25.0f)
+    };
+    protoplasmParameters.processes = {
+        TweakedProcess("glycolosis", 1)
+    };
+    protoplasmParameters.hexes = {
+        Int2(0, 0),
+    };
+    _addOrganelleToTable(Organelle(protoplasmParameters));
     // ------------------------------------ //
     // Setup the organelle letters
     setupOrganelleLetters();
