@@ -297,7 +297,7 @@ void setupOrganelles(){
         storageOrganelleFactory(5.0f)
     };
     cytoplasmParameters.processes = {
-        TweakedProcess("glycolosis", 0.07)
+        TweakedProcess("glycolosis", 1)
     };
     cytoplasmParameters.hexes = {
         Int2(0, 0),
@@ -325,7 +325,7 @@ void setupOrganelles(){
     storageOrganelleFactory(15.0f)
     };
     chloroplastParameters.processes = {
-        TweakedProcess("photosynthesis", 0.2)
+        TweakedProcess("photosynthesis", 1)
     };
     chloroplastParameters.hexes = {
         Int2(0, 0),
@@ -354,7 +354,7 @@ void setupOrganelles(){
         agentVacuoleFactory("oxytoxy", "oxytoxySynthesis")
     };
     oxytoxyParameters.processes = {
-        TweakedProcess("oxytoxySynthesis", 0.05)
+        TweakedProcess("oxytoxySynthesis", 1)
     };
     oxytoxyParameters.hexes = {
         Int2(0, 0)
@@ -383,7 +383,7 @@ void setupOrganelles(){
     storageOrganelleFactory(10.0f)
     };
     mitochondrionParameters.processes = {
-        TweakedProcess("respiration", 0.07)
+        TweakedProcess("respiration", 1)
     };
     mitochondrionParameters.hexes = {
         Int2(0, 0),
@@ -461,7 +461,7 @@ void setupOrganelles(){
     storageOrganelleFactory(10.0f)
     };
     chemoplast.processes = {
-          TweakedProcess("chemoSynthesis", 0.2)
+          TweakedProcess("chemoSynthesis", 1)
     };
     chemoplast.hexes = {
         Int2(0, 0),
@@ -491,7 +491,7 @@ void setupOrganelles(){
     storageOrganelleFactory(25.0f)
     };
     respiratoryProtien.processes = {
-        TweakedProcess("respiration", 0.05)
+        TweakedProcess("respiration", 1)
     };
     respiratoryProtien.hexes = {
         Int2(0, 0),
@@ -517,8 +517,8 @@ void setupOrganelles(){
     storageOrganelleFactory(25.0f)
     };
     photosyntheticProtein.processes = {
-          TweakedProcess("photosynthesis", 0.05),
-      TweakedProcess("respiration", 0.02)
+          TweakedProcess("photosynthesis", 1),
+      TweakedProcess("respiration", 1)
     };
     photosyntheticProtein.hexes = {
         Int2(0, 0),
@@ -545,8 +545,8 @@ void setupOrganelles(){
     processorOrganelleFactory(1.0f)
     };
     oxytoxyProtein.processes = {
-         TweakedProcess("oxytoxySynthesis", 0.05),
-     TweakedProcess("respiration", 0.02)
+         TweakedProcess("oxytoxySynthesis", 1),
+     TweakedProcess("respiration", 1)
     };
     oxytoxyProtein.hexes = {
         Int2(0, 0),
@@ -573,8 +573,8 @@ void setupOrganelles(){
     storageOrganelleFactory(25.0f)
     };
     chemoSynthisizingProtien.processes = {
-          TweakedProcess("chemoSynthesis", 0.05),
-      TweakedProcess("respiration", 0.02)
+          TweakedProcess("chemoSynthesis", 1),
+      TweakedProcess("respiration", 1)
     };
     chemoSynthisizingProtien.hexes = {
         Int2(0, 0),
