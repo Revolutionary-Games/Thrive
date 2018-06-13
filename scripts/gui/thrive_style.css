@@ -125,10 +125,19 @@ video {
 }
 
 .BarValue{
+    position:absolute;
+	left:110px;
+	top:10px;
+	text-align:center;
+	line-height:0px;
+	font-size:10pt;
+}
+
+.ATPValue{
     position:relative;
-	right:10px;
+	left:-5px;
 	top:-10px;
-	text-align:right;
+	text-align:center;
 	line-height:0px;
 	font-size:10pt;
 }
