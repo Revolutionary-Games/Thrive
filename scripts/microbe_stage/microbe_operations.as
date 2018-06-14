@@ -365,6 +365,7 @@ void purgeCompounds(CellStageWorld@ world, ObjectID microbeEntity){
     for(uint compoundId = 0; compoundId < compoundCount; ++compoundId){
     // Price is 1 if used, 0 if not
     auto price = compoundBag.getPrice(compoundId);
+    //LOG_INFO("ID:"+compoundId+" price:"+price);
     if (price == 0)
     {
     // dont remove everything immedately, give it som etime so people can see it happening

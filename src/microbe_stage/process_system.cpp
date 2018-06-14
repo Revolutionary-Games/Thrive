@@ -254,6 +254,22 @@ void
                         canDoProcess = false;
                     }
                 }
+
+            }
+            // Even if you cannot do the process, you still need to know the
+            // price I want to keep this code as simplistic as possible so we
+            // can compreghend it, so i might just add a new method specifically
+            // for calculating prices and call it as this seems messy
+            else {
+                for(const auto& output :
+                    SimulationParameters::bioProcessRegistry
+                        .getTypeData(processId)
+                        .outputs) {
+                    CompoundId outputId = output.first;
+                    // For now lets assume compounds we produce are also useful
+                    bag.compounds[outputId].price = 1;
+                    // How do we stop this from purging ammonia and phosphate?
+                }
             }
             // Only carry out this process if you have all the required
             // ingrediants, and if something weird happens and you suddenly lose
