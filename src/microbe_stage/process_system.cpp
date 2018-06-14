@@ -195,6 +195,13 @@ void
             LOG_ERROR("Compound Bag Lacks Processor component");
             continue;
         }
+        // Set all compounds to price 0 initially, set used ones to 1, this way
+        // we can purge unused compounds, I think we may be able to merge this
+        // and the bottom for loop, but im not sure how to go about that yet.
+        for(auto& compound : bag.compounds) {
+            CompoundData& compoundData = compound.second;
+            compoundData.price = 0;
+        }
 
         // LOG_INFO("Capacities:
         // "+std::to_string(processor->process_capacities.size()));
@@ -223,6 +230,7 @@ void
                 SimulationParameters::bioProcessRegistry.getTypeData(processId)
                     .inputs) {
                 CompoundId inputId = input.first;
+                bag.compounds[inputId].price = 1;
                 double inputRemoved = input.second / processLimitCapacity;
                 if(bag.compounds[inputId].amount < inputRemoved) {
                     canDoProcess = false;
@@ -237,6 +245,9 @@ void
                         .getTypeData(processId)
                         .outputs) {
                     CompoundId outputId = output.first;
+                    // For now lets assume compounds we produce are also useful
+                    bag.compounds[outputId].price = 1;
+                    // How do we stop this from purging ammonia and phosphate?
                     double outputAdded = output.second / processLimitCapacity;
                     if(bag.getCompoundAmount(outputId) + outputAdded >
                         bag.storageSpace) {
