@@ -209,8 +209,7 @@ void
             BioProcessId processId = process.first;
             double processCapacity = process.second;
 
-            double processLimitCapacity =
-                processCapacity * logicTime; // big enough number.
+            double processLimitCapacity = processCapacity * logicTime;
 
             // This should not do anything if the cell has no room to hold the
             // new compounds and it shouldn't just keep draining compounds if
@@ -230,6 +229,7 @@ void
                 SimulationParameters::bioProcessRegistry.getTypeData(processId)
                     .inputs) {
                 CompoundId inputId = input.first;
+                // Set price of used compounds to 1, we dont want to purge those
                 bag.compounds[inputId].price = 1;
                 double inputRemoved = input.second / processLimitCapacity;
                 if(bag.compounds[inputId].amount < inputRemoved) {
@@ -237,7 +237,7 @@ void
                 }
             }
             // Output
-            // Dont loop if you dont need to so check if candoprocess has
+            // Dont loop if you dont need to so check if canDoProcess has
             // already been set to false
             if(canDoProcess) {
                 for(const auto& output :
@@ -258,8 +258,8 @@ void
             }
             // Even if you cannot do the process, you still need to know the
             // price I want to keep this code as simplistic as possible so we
-            // can compreghend it, so i might just add a new method specifically
-            // for calculating prices and call it as this seems messy
+            // can comprehend it, so i might just add a new method specifically
+            // for calculating prices and call it as this seems messy.
             else {
                 for(const auto& output :
                     SimulationParameters::bioProcessRegistry
