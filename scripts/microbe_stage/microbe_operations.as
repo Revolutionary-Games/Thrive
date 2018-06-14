@@ -350,85 +350,40 @@ void ejectCompound(CellStageWorld@ world, ObjectID microbeEntity, CompoundId com
         amount * 5000);
 }
 
+// Since we have individual storage now we dont need this
+// (its functionally useless from a gameplay perspective since
+// you no longer need to dump thigs because thngs can no longer
+// "take up each others space"  However, it would be weird to store
+// up compounds you dont use, so lets purge those.
 void purgeCompounds(CellStageWorld@ world, ObjectID microbeEntity){
+    LOG_INFO("Enacting a purge of blue cells (also known as compounds)");
     MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
         world.GetScriptComponentHolder("MicrobeComponent").Find(microbeEntity));
     auto compoundBag = world.GetComponent_CompoundBagComponent(microbeEntity);
 
-    // // Uncomment to print compound economic information to the console.
-    // if(microbeComponent.isPlayerMicrobe){
-    //     for(compound, _ in pairs(compoundTable)){
-    //         compoundId = CompoundRegistry.getCompoundId(compound);
-    //         print(compound, compoundBag.getPrice(compoundId),
-    //             compoundBag.getDemand(compoundId));
-    //     }
-    // }
-    // print("");
-
-    // TODO: all the calls here to compound amounts and dumping
-    // re-retrieve the microbe component This is pretty slow! This is
-    // why all of these methods need to be able to use already
-    // retrieved components
-
-    // Dumping all the useless compounds (with price = 0).
     uint64 compoundCount = SimulationParameters::compoundRegistry().getSize();
     for(uint compoundId = 0; compoundId < compoundCount; ++compoundId){
-
-        auto price = compoundBag.getPrice(compoundId);
-        if(price <= 0){
-            auto amountToEject = getCompoundAmount(world, microbeEntity, compoundId);
-            // TODO: make sure that this does the right thing. As the
-            // lua version used 'amount' here which is not declared
-            // and can't be over 0 so this wasn't ever executed.
-            if(amountToEject > 0){
-                amountToEject = takeCompound(world, microbeEntity, compoundId, amountToEject);
-
-                ejectCompound(world, microbeEntity, compoundId, amountToEject);
-            }
-        }
-    }
-
-    // Perhaps we need to also dump usefull stuff
-    // TODO: make sure that ejecting updates this otherwise we might dump usefull compounds
-    // even if we shouldn't
-
-    //we should maybe generlaize this to be per compound instead
-    //of the hack im using right now (which is just multiplying max storage by
-    //the amount of possible compounds// and setting max of each compound to capcity
-    //this needs to look at the specific compound and dump the specified amount of taht compound, fo rnow i set it to 0
-    auto compoundAmountToDump =  0;
-
-    if(compoundAmountToDump > 0){
-        //Calculating each compound price to dump proportionally.
-        dictionary compoundPrices = {};
-        float priceSum = 0;
-        for(uint compoundId = 0; compoundId < compoundCount; ++compoundId){
-            auto amount = getCompoundAmount(world, microbeEntity, compoundId);
-
-            if(amount > 0){
-                auto price = compoundBag.getPrice(compoundId);
-                compoundPrices[formatInt(compoundId)] = price;
-                priceSum += amount / price;
-            }
-        }
-
-        //Dumping each compound according to it's price.
-        for(uint compoundId = 0; compoundId < compoundCount; ++compoundId){
-
-            auto price = float(compoundPrices[formatInt(compoundId)]);
-
-            // And again this get amount retrieves components that we already have!
-            auto amountToEject = compoundAmountToDump * (getCompoundAmount(world,
-                    microbeEntity, compoundId) / price) / priceSum;
-
+    // Price is 1 if used, 0 if not
+    auto price = compoundBag.getPrice(compoundId);
+    if (price == 0)
+    {
+    // dont remove everything immedately, give it som etime so people can see it happening
+        double amountToEject = 2;
+    double availableCompound = getCompoundAmount(world,microbeEntity, compoundId);
             // This was also 'amount' so maybe this didn't work either?
-            if(amountToEject > 0){
+            if(amountToEject > 0 && availableCompound-amountToEject >= 0){
                 amountToEject = takeCompound(world, microbeEntity,
                     compoundId, amountToEject);
-
                 ejectCompound(world, microbeEntity, compoundId, amountToEject);
             }
-        }
+    // If we flagged the second one but we still have some left just get rid of it all
+    else if (availableCompound > 0)
+    {
+        amountToEject = takeCompound(world, microbeEntity,
+                    compoundId, availableCompound);
+                ejectCompound(world, microbeEntity, compoundId, amountToEject);
+    }
+    }
     }
 }
 
