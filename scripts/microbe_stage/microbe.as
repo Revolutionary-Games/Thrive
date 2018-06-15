@@ -426,9 +426,7 @@ class MicrobeSystem : ScriptSystem{
                 MicrobeOperations::purgeCompounds(world, microbeEntity);
                 atpDamage(microbeEntity);
             }
-
-
-
+    //	Handle hitpoints
     if((microbeComponent.hitpoints < microbeComponent.maxHitpoints))
     {
     if(MicrobeOperations::getCompoundAmount(world, microbeEntity,
@@ -441,6 +439,9 @@ class MicrobeSystem : ScriptSystem{
     }
     }
     }
+
+    //! Reproduction
+    //! Am considering moving this to its own method
 
              auto reproductionStageComplete = true;
              array<PlacedOrganelle@> organellesToAdd;
@@ -500,7 +501,6 @@ class MicrobeSystem : ScriptSystem{
 
                 //Splitting the queued organelles.
                 for(uint i = 0; i < organellesToAdd.length(); ++i){
-
                     PlacedOrganelle@ organelle = organellesToAdd[i];
 
                     LOG_INFO("ready to split " + organelle.organelle.name);
@@ -530,6 +530,9 @@ class MicrobeSystem : ScriptSystem{
                 {
                     readyToReproduce(microbeEntity);
                 }
+
+    //! End of reproduction
+
 
             if(microbeComponent.engulfMode){
                 // Drain atp
