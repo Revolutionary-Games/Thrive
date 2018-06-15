@@ -423,6 +423,7 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
         return ORGANELLE_HEALTH::CAN_DIVIDE;
     }
 
+    // This doesnt seem ideal
     //! \returns compoundBin
     float getCompoundBin(){
         return compoundBin;
@@ -493,7 +494,7 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
         recalculateBin();
     }
 
-    void damageOrganelle(float damageAmount){
+    /*void damageOrganelle(float damageAmount){
         // Flash the organelle that was damaged.
         flashOrganelle(3000, Float4(1, 0.2, 0.2, 1));
 
@@ -509,7 +510,7 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
         scaleCompoundsLeft(damageFactor);
 
         recalculateBin();
-    }
+    }*/
 
     private void scaleCompoundsLeft(float scaleFactor){
 

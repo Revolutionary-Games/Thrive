@@ -92,7 +92,6 @@ PlacedOrganelle@ getOrganelleAt(CellStageWorld@ world, ObjectID microbeEntity, I
 //
 // This is responsible for updating the mass of the cell's physics body
 bool removeOrganelle(CellStageWorld@ world, ObjectID microbeEntity, Int2 hex){
-
     auto organelle = getOrganelleAt(world, microbeEntity, hex);
     if(organelle is null){
         return false;
