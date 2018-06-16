@@ -494,7 +494,6 @@ class MicrobeSystem : ScriptSystem{
     void doReproductionStep(MicrobeSystemCached@ components, uint logicTime){
         auto microbeEntity = components.entity;
         //! Reproduction
-        //! Am considering moving this to its own method
             MicrobeComponent@ microbeComponent = components.second;
             MembraneComponent@ membraneComponent = components.fifth;
              auto reproductionStageComplete = true;
@@ -586,7 +585,6 @@ class MicrobeSystem : ScriptSystem{
                 }
 
     //! End of reproduction
-
     }
 
     // For updating the compound absorber
