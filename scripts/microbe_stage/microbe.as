@@ -356,7 +356,7 @@ class MicrobeSystem : ScriptSystem{
 
             // Get amount of compounds
             uint64 compoundCount = SimulationParameters::compoundRegistry().getSize();
-    // This is only used in the process sytem to make sure you dont add anymore when out of space for a specific compound
+            // This is only used in the process sytem to make sure you dont add anymore when out of space for a specific compound
             compoundBag.storageSpace = microbeComponent.capacity;
 
             // StorageOrganelles
