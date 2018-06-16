@@ -160,6 +160,8 @@ void respawnPlayer(CellStageWorld@ world){
         microbeComponent.organelles[i].reset();
     }
     setupMicrobeHitpoints(world, playerEntity,DEFAULT_HEALTH);
+    //setup compounds
+    setupMicrobeCompounds(world,playerEntity);
     // Reset position //
     rigidBodyComponent.SetPosition(Float3(0, 0, 0), Float4::IdentityQuaternion);
 
@@ -181,11 +183,26 @@ void respawnPlayer(CellStageWorld@ world){
 void setupMicrobeHitpoints(CellStageWorld@ world, ObjectID microbeEntity, int health){
     MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
         world.GetScriptComponentHolder("MicrobeComponent").Find(microbeEntity));
-
     microbeComponent.maxHitpoints = health;
     microbeComponent.hitpoints = microbeComponent.maxHitpoints;
 }
 
+//grabs compounds from template (starter_mcirobes) and stores them)
+void setupMicrobeCompounds(CellStageWorld@ world, ObjectID microbeEntity){
+    MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
+        world.GetScriptComponentHolder("MicrobeComponent").Find(microbeEntity));
+                MicrobeTemplate@ data = cast<MicrobeTemplate@>(STARTER_MICROBES["Default"]);
+
+    auto ids = getSpeciesComponent(world, microbeEntity).avgCompoundAmounts.getKeys();
+    for(uint i = 0; i < ids.length(); ++i){
+        CompoundId compoundId = parseUInt(ids[i]);
+        InitialCompound amount = InitialCompound(getSpeciesComponent(world, microbeEntity).avgCompoundAmounts[ids[i]]);
+
+        if(amount.amount != 0){
+            MicrobeOperations::storeCompound(world, microbeEntity, compoundId, amount.amount, false);
+        }
+    }
+}
 // Attempts to obtain an amount of bandwidth for immediate use.
 // This should be in conjunction with most operations ejecting  or absorbing compounds
 // and agents for microbe.
@@ -349,7 +366,7 @@ void ejectCompound(CellStageWorld@ world, ObjectID microbeEntity, CompoundId com
 // "take up each others space"  However, it would be weird to store
 // up compounds you dont use, so lets purge those.
 void purgeCompounds(CellStageWorld@ world, ObjectID microbeEntity){
-    LOG_INFO("Enacting a purge of blue cells (also known as compounds)");
+    //LOG_INFO("Enacting a purge of blue cells (also known as compounds)");
     MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
         world.GetScriptComponentHolder("MicrobeComponent").Find(microbeEntity));
     auto compoundBag = world.GetComponent_CompoundBagComponent(microbeEntity);
