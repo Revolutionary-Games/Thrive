@@ -128,7 +128,16 @@ video {
     position:absolute;
 	left:210px;
 	top:10px;
-	text-align:center;
+	text-align:right;
+	line-height:0px;
+	font-size:10pt;
+}
+
+.HealthValue{
+    position:absolute;
+	left:230px;
+	top:20px;
+	text-align:right;
 	line-height:0px;
 	font-size:10pt;
 }
