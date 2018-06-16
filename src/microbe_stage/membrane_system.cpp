@@ -538,8 +538,11 @@ void
     isInitialized = false;
     vertices2D.clear();
 
-	if(m_item) 
-		m_item->detachFromParent();
+    if(m_vertexBuffer)
+        m_vertexBuffer = nullptr;
+
+    if(m_item)
+        m_item->detachFromParent();
 }
 
 ////////////////////////////////////////////////////////////////////////////////
