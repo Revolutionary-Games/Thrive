@@ -172,12 +172,6 @@ void respawnPlayer(CellStageWorld@ world){
     sceneNodeComponent.Hidden = false;
     sceneNodeComponent.Marked = true;
 
-    // TODO: give the microbe the values from some table instead.
-    // The player should actually be also given the value from the STARTED_MICROBES so
-    // verify that and remove this
-    storeCompound(world, playerEntity,
-        SimulationParameters::compoundRegistry().getTypeId("atp"), 25, false);
-
     setRandomBiome(world);
     cast<MicrobeStageHudSystem>(world.GetScriptSystem("MicrobeStageHudSystem")).
         suicideButtonreset();
