@@ -98,12 +98,12 @@ class MicrobeEditorHudSystem : ScriptSystem{
         AudioSource@ audio = GetEngine().GetSoundDevice().Play2DSound("Data/Sound/" +
             MICROBE_EDITOR_AMBIENT_TRACKS[GetEngine().GetRandom().GetNumber(0, MICROBE_EDITOR_AMBIENT_TRACKS.length() - 1)] +
             ".ogg", false, true);
-        
+
         if (audio is null)
         {
             LOG_ERROR("Failed to create ambience sound source");
         }
-        
+
         return audio;
     }
 
@@ -203,7 +203,7 @@ class MicrobeEditorHudSystem : ScriptSystem{
     void setActiveAction(const string &in actionName)
     {
         this.editor.setActiveAction(actionName);
-        
+
         if(actionName == "nucleus"){
             // For now we simply create a new microbe with the nucleus button
             this.editor.performLocationAction();
@@ -242,7 +242,7 @@ class MicrobeEditorHudSystem : ScriptSystem{
 
     // Map from player creation name to filepath
     dictionary creationFileMap;
-    
+
     // this.activeButton = null; // stores button, not name
     bool helpPanelOpen = false;
     bool menuOpen = false;
