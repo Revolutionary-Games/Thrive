@@ -426,23 +426,77 @@ class MicrobeSystem : ScriptSystem{
                 MicrobeOperations::purgeCompounds(world, microbeEntity);
                 atpDamage(microbeEntity);
             }
-    //	Handle hitpoints
-    if((microbeComponent.hitpoints < microbeComponent.maxHitpoints))
-    {
-    if(MicrobeOperations::getCompoundAmount(world, microbeEntity,
+        //	Handle hitpoints
+        if((microbeComponent.hitpoints < microbeComponent.maxHitpoints))
+            {
+            if(MicrobeOperations::getCompoundAmount(world, microbeEntity,
                 SimulationParameters::compoundRegistry().getTypeId("atp")) > 0)
-    {
-    microbeComponent.hitpoints += (REGENERATION_RATE/1000.0*logicTime);
-    if (microbeComponent.hitpoints > microbeComponent.maxHitpoints)
-    {
-    microbeComponent.hitpoints =  microbeComponent.maxHitpoints;
-    }
-    }
+                {
+                microbeComponent.hitpoints += (REGENERATION_RATE/1000.0*logicTime);
+                if (microbeComponent.hitpoints > microbeComponent.maxHitpoints)
+                    {
+                    microbeComponent.hitpoints =  microbeComponent.maxHitpoints;
+                    }
+                }
+            }
+
+    doReproductionStep(components,logicTime);
+
+            if(microbeComponent.engulfMode){
+                // Drain atp
+                auto cost = ENGULFING_ATP_COST_SECOND/1000*logicTime;
+
+                if(MicrobeOperations::takeCompound(world, microbeEntity,
+                        SimulationParameters::compoundRegistry().getTypeId("atp"), cost) <
+                    cost - 0.001)
+                {
+                    LOG_INFO("too little atp, disabling - engulfing");
+                    MicrobeOperations::toggleEngulfMode(world, microbeEntity);
+                }
+                // Flash the membrane blue.
+                MicrobeOperations::flashMembraneColour(world, microbeEntity, 3000,
+                    Float4(0.2,0.5,1.0,0.5));
+            }
+
+            if(microbeComponent.isBeingEngulfed && microbeComponent.wasBeingEngulfed){
+    LOG_INFO("doing engulf damage");
+                MicrobeOperations::damage(world, microbeEntity, 50, "isBeingEngulfed - Microbe.update()s");
+                // Else If we were but are no longer, being engulfed
+            } else if(microbeComponent.wasBeingEngulfed){
+    LOG_INFO("removing engulf effect");
+                MicrobeOperations::removeEngulfedEffect(world, microbeEntity);
+            }
+
+    microbeComponent.isBeingEngulfed = false;
+            compoundAbsorberComponent.setAbsorbtionCapacity(microbeComponent.capacity);
+        }
     }
 
-    //! Reproduction
-    //! Am considering moving this to its own method
+    // ------------------------------------ //
+    // Microbe operations only done by this class
+    //! Updates the used storage space in a microbe and stores it in the microbe component
+    void calculateStorageSpace(ObjectID microbeEntity){
 
+        MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
+            world.GetScriptComponentHolder("MicrobeComponent").Find(microbeEntity));
+
+        microbeComponent.stored = 0;
+        uint64 compoundCount = SimulationParameters::compoundRegistry().getSize();
+        for(uint a = 0; a < compoundCount; ++a){
+            // Again this variable is only really nessessary for run and tumble
+            microbeComponent.stored += MicrobeOperations::getCompoundAmount(world,
+                microbeEntity, a);
+        }
+    }
+
+    //! This method handles reproduction for the cell
+    //! It makes calls to many other places to achieve this
+    void doReproductionStep(MicrobeSystemCached@ components, uint logicTime){
+        auto microbeEntity = components.entity;
+        //! Reproduction
+        //! Am considering moving this to its own method
+            MicrobeComponent@ microbeComponent = components.second;
+            MembraneComponent@ membraneComponent = components.fifth;
              auto reproductionStageComplete = true;
              array<PlacedOrganelle@> organellesToAdd;
 
@@ -533,54 +587,7 @@ class MicrobeSystem : ScriptSystem{
 
     //! End of reproduction
 
-
-            if(microbeComponent.engulfMode){
-                // Drain atp
-                auto cost = ENGULFING_ATP_COST_SECOND/1000*logicTime;
-
-                if(MicrobeOperations::takeCompound(world, microbeEntity,
-                        SimulationParameters::compoundRegistry().getTypeId("atp"), cost) <
-                    cost - 0.001)
-                {
-                    LOG_INFO("too little atp, disabling - engulfing");
-                    MicrobeOperations::toggleEngulfMode(world, microbeEntity);
-                }
-                // Flash the membrane blue.
-                MicrobeOperations::flashMembraneColour(world, microbeEntity, 3000,
-                    Float4(0.2,0.5,1.0,0.5));
-            }
-
-            if(microbeComponent.isBeingEngulfed && microbeComponent.wasBeingEngulfed){
-    LOG_INFO("doing engulf damage");
-                MicrobeOperations::damage(world, microbeEntity, 50, "isBeingEngulfed - Microbe.update()s");
-                // Else If we were but are no longer, being engulfed
-            } else if(microbeComponent.wasBeingEngulfed){
-    LOG_INFO("removing engulf effect");
-                MicrobeOperations::removeEngulfedEffect(world, microbeEntity);
-            }
-
-    microbeComponent.isBeingEngulfed = false;
-            compoundAbsorberComponent.setAbsorbtionCapacity(microbeComponent.capacity);
-        }
     }
-
-    // ------------------------------------ //
-    // Microbe operations only done by this class
-    //! Updates the used storage space in a microbe and stores it in the microbe component
-    void calculateStorageSpace(ObjectID microbeEntity){
-
-        MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
-            world.GetScriptComponentHolder("MicrobeComponent").Find(microbeEntity));
-
-        microbeComponent.stored = 0;
-        uint64 compoundCount = SimulationParameters::compoundRegistry().getSize();
-        for(uint a = 0; a < compoundCount; ++a){
-            // Again this variable is only really nessessary for run and tumble
-            microbeComponent.stored += MicrobeOperations::getCompoundAmount(world,
-                microbeEntity, a);
-        }
-    }
-
 
     // For updating the compound absorber
     //
