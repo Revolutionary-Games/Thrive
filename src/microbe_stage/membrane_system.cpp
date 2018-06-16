@@ -337,6 +337,8 @@ void
         m_item = scene->createItem(m_mesh, Ogre::SCENE_DYNAMIC);
         m_item->setRenderQueueGroup(Leviathan::DEFAULT_RENDER_QUEUE);
         parentcomponentpos->attachObject(m_item);
+    } else {
+        parentcomponentpos->attachObject(m_item);
     }
 }
 
@@ -535,6 +537,9 @@ void
 {
     isInitialized = false;
     vertices2D.clear();
+
+	if(m_item) 
+		m_item->detachFromParent();
 }
 
 ////////////////////////////////////////////////////////////////////////////////
