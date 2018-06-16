@@ -527,8 +527,8 @@ bool validPlacement(CellStageWorld@ world, ObjectID microbeEntity, const Organel
     Int2 posToCheck
 ) {
     auto touching = false;
-    assert(false, "TODO: should this hex list here be rotated, this doesn't seem to take "
-        "a rotation parameter in");
+    //assert(false, "TODO: should this hex list here be rotated, this doesn't seem to take "
+      //  "a rotation parameter in");
     auto hexes = organelle.getHexes();
     for(uint i = 0; i < hexes.length(); ++i){
 
