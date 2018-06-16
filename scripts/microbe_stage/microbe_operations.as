@@ -1,6 +1,7 @@
 // Operations on microbe entities
 #include "biome.as"
 #include "species_system.as"
+#include "setup.as"
 
 namespace MicrobeOperations{
 
