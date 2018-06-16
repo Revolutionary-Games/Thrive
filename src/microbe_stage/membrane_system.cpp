@@ -195,7 +195,6 @@ void
 Float4
     MembraneComponent::getColour() const
 {
-
     return colour;
 }
 // ------------------------------------ //
@@ -536,9 +535,6 @@ void
 {
     isInitialized = false;
     vertices2D.clear();
-
-    if(m_item)
-        m_item->detachFromParent();
 }
 
 ////////////////////////////////////////////////////////////////////////////////
