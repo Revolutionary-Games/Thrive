@@ -375,8 +375,9 @@ void purgeCompounds(CellStageWorld@ world, ObjectID microbeEntity){
     for(uint compoundId = 0; compoundId < compoundCount; ++compoundId){
     // Price is 1 if used, 0 if not
     auto price = compoundBag.getPrice(compoundId);
+    auto useful = SimulationParameters::compoundRegistry().getTypeData(compoundId).isUseful;
     //LOG_INFO("ID:"+compoundId+" price:"+price);
-    if (price == 0)
+    if (price == 0 && !useful)
     {
     // dont remove everything immedately, give it som etime so people can see it happening
         double amountToEject = 2;
