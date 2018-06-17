@@ -66,6 +66,7 @@ public:
     //! Deletes the membrane mesh.
     //!
     //! This needs to be called before modifications take effect
+    //! \version 0.4.0 Now this only marks this for clearing
     void
         clear();
 
@@ -79,7 +80,8 @@ public:
         DrawMembrane();
 
     size_t
-        InitializeCorrectMembrane(size_t writeIndex);
+        InitializeCorrectMembrane(size_t writeIndex,
+            MembraneVertex* meshVertices);
 
     // Sees if the given point is inside the membrane.
     //! note This is quite an expensive method as this loops all the vertices
@@ -159,6 +161,13 @@ protected:
     void
         Initialize();
 
+    void
+        releaseOgreResourcesForClear(Ogre::SceneManager* scene);
+
+    //! When this should be recreated this is true. So that clearing will be
+    //! done
+    bool clearNeeded = false;
+
     //! So it seems that the membrane should be generated just once when the
     //! geometry is changed so when this is true Update does nothing
     bool isInitialized = false;
@@ -188,8 +197,6 @@ protected:
 
     //! Actual object that is attached to a scenenode
     Ogre::Item* m_item = nullptr;
-
-    Ogre::VertexBufferPacked* m_vertexBuffer = nullptr;
 
     //! A material created from the base material that can be colored
     //! \todo It would be better to share this between all cells of a species

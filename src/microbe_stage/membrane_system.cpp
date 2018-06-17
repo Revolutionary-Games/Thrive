@@ -63,10 +63,7 @@ MembraneComponent::getMembraneType()
 void
     MembraneComponent::Release(Ogre::SceneManager* scene)
 {
-    if(m_item) {
-        scene->destroyItem(m_item);
-        m_item = nullptr;
-    }
+    releaseOgreResourcesForClear(scene);
 }
 // ------------------------------------ //
 Ogre::Vector3
@@ -199,6 +196,12 @@ void
     MembraneComponent::Update(Ogre::SceneManager* scene,
         Ogre::SceneNode* parentcomponentpos)
 {
+    if(clearNeeded) {
+
+        releaseOgreResourcesForClear(scene);
+        clearNeeded = false;
+    }
+
     // Skip if the mesh is already created //
     if(isInitialized)
         return;
@@ -206,105 +209,112 @@ void
     if(!isInitialized)
         Initialize();
 
-    // 12 vertices added per index of vertices2D
+    LEVIATHAN_ASSERT(!m_item,
+        "Membrane code should always recreate item but it is already created.");
+
+    // This is a triangle strip so we only need 2 + n vertices
     const auto bufferSize = vertices2D.size() + 2;
 
-    if(!m_vertexBuffer) {
-        Ogre::RenderSystem* renderSystem =
-            Ogre::Root::getSingleton().getRenderSystem();
-        Ogre::VaoManager* vaoManager = renderSystem->getVaoManager();
+    Ogre::RenderSystem* renderSystem =
+        Ogre::Root::getSingleton().getRenderSystem();
+    Ogre::VaoManager* vaoManager = renderSystem->getVaoManager();
 
-        Ogre::VertexElement2Vec vertexElements;
-        vertexElements.push_back(
-            Ogre::VertexElement2(Ogre::VET_FLOAT3, Ogre::VES_POSITION));
-        vertexElements.push_back(Ogre::VertexElement2(
-            Ogre::VET_FLOAT2, Ogre::VES_TEXTURE_COORDINATES));
-        // vertexElements.push_back(Ogre::VertexElement2(Ogre::VET_FLOAT3,
-        // Ogre::VES_NORMAL));
+    Ogre::VertexElement2Vec vertexElements;
+    vertexElements.push_back(
+        Ogre::VertexElement2(Ogre::VET_FLOAT3, Ogre::VES_POSITION));
+    vertexElements.push_back(
+        Ogre::VertexElement2(Ogre::VET_FLOAT2, Ogre::VES_TEXTURE_COORDINATES));
+    // vertexElements.push_back(Ogre::VertexElement2(Ogre::VET_FLOAT3,
+    // Ogre::VES_NORMAL));
 
-        m_vertexBuffer = vaoManager->createVertexBuffer(vertexElements,
-            bufferSize, Ogre::BT_DYNAMIC_DEFAULT, nullptr, false);
+    // TODO: make this static (will probably need a buffer alternative for
+    // generating the vertex data that will be then referenced here instead of
+    // nullptr)
+    Ogre::VertexBufferPacked* vertexBuffer = vaoManager->createVertexBuffer(
+        vertexElements, bufferSize, Ogre::BT_DYNAMIC_DEFAULT, nullptr, false);
 
-        Ogre::VertexBufferPackedVec vertexBuffers;
-        vertexBuffers.push_back(m_vertexBuffer);
+    Ogre::VertexBufferPackedVec vertexBuffers;
+    vertexBuffers.push_back(vertexBuffer);
 
-        // 1 to 1 index buffer mapping
+    // 1 to 1 index buffer mapping
 
-        Ogre::uint16* indices =
-            reinterpret_cast<Ogre::uint16*>(OGRE_MALLOC_SIMD(
-                sizeof(Ogre::uint16) * bufferSize, Ogre::MEMCATEGORY_GEOMETRY));
+    Ogre::uint16* indices = reinterpret_cast<Ogre::uint16*>(OGRE_MALLOC_SIMD(
+        sizeof(Ogre::uint16) * bufferSize, Ogre::MEMCATEGORY_GEOMETRY));
 
-        for(size_t i = 0; i < bufferSize; ++i) {
+    for(size_t i = 0; i < bufferSize; ++i) {
 
-            indices[i] = static_cast<Ogre::uint16>(i);
-        }
-
-        // TODO: check if this is needed (when a 1 to 1 vertex and index mapping
-        // is used)
-        Ogre::IndexBufferPacked* indexBuffer = nullptr;
-
-        try {
-            indexBuffer =
-                vaoManager->createIndexBuffer(Ogre::IndexBufferPacked::IT_16BIT,
-                    bufferSize, Ogre::BT_IMMUTABLE,
-                    // Could this be false like the vertex buffer to not keep a
-                    // shadow buffer
-                    indices, true);
-        } catch(const Ogre::Exception& e) {
-
-            // Avoid memory leak
-            OGRE_FREE_SIMD(indices, Ogre::MEMCATEGORY_GEOMETRY);
-            indexBuffer = nullptr;
-            throw e;
-        }
-
-        Ogre::VertexArrayObject* vao = vaoManager->createVertexArrayObject(
-            vertexBuffers, indexBuffer, Ogre::OT_TRIANGLE_FAN);
-
-        m_subMesh->mVao[Ogre::VpNormal].push_back(vao);
-
-        // This might be needed because we use a v2 mesh
-        // Use the same geometry for shadow casting.
-        // If m_item->setCastShadows(false); is set then this isn't needed
-        m_subMesh->mVao[Ogre::VpShadow].push_back(vao);
-
-
-        // Set the bounds to get frustum culling and LOD to work correctly.
-        // TODO: make this more accurate by calculating the actual extents
-        m_mesh->_setBounds(
-            Ogre::Aabb(Ogre::Vector3::ZERO, Ogre::Vector3::UNIT_SCALE * 50)
-            /*, false*/);
-        m_mesh->_setBoundingSphereRadius(50);
-
-        // Set the membrane material //
-        // We need to create a new instance until the managing is moved to the
-        // species (allowing the same species to share)
-        if(!coloredMaterial) {
-            Ogre::MaterialPtr baseMaterial = chooseMaterialByType();
-            // TODO: find a way for the species to manage this to
-            // avoid having tons of materials Maybe Use the species's
-            // name instead. and let something like the
-            // SpeciesComponent create and destroy this
-            coloredMaterial = baseMaterial->clone(
-                "Membrane_instance_" + std::to_string(++membraneNumber));
-
-            coloredMaterial->getTechnique(0)
-                ->getPass(0)
-                ->getFragmentProgramParameters()
-                ->setNamedConstant("membraneColour", colour);
-            coloredMaterial->compile();
-        }
-
-        m_subMesh->setMaterialName(coloredMaterial->getName());
+        indices[i] = static_cast<Ogre::uint16>(i);
     }
 
+    // TODO: check if this is needed (when a 1 to 1 vertex and index mapping
+    // is used)
+    Ogre::IndexBufferPacked* indexBuffer = nullptr;
+
+    try {
+        indexBuffer = vaoManager->createIndexBuffer(
+            Ogre::IndexBufferPacked::IT_16BIT, bufferSize, Ogre::BT_IMMUTABLE,
+            // Could this be false like the vertex buffer to not keep a
+            // shadow buffer
+            indices, true);
+    } catch(const Ogre::Exception& e) {
+
+        // Avoid memory leak
+        OGRE_FREE_SIMD(indices, Ogre::MEMCATEGORY_GEOMETRY);
+        indexBuffer = nullptr;
+        throw e;
+    }
+
+    Ogre::VertexArrayObject* vao = vaoManager->createVertexArrayObject(
+        vertexBuffers, indexBuffer, Ogre::OT_TRIANGLE_FAN);
+
+    m_subMesh->mVao[Ogre::VpNormal].push_back(vao);
+
+    // This might be needed because we use a v2 mesh
+    // Use the same geometry for shadow casting.
+    // If m_item->setCastShadows(false); is set then this isn't needed
+    m_subMesh->mVao[Ogre::VpShadow].push_back(vao);
+
+
+    // Set the bounds to get frustum culling and LOD to work correctly.
+    // TODO: make this more accurate by calculating the actual extents
+    m_mesh->_setBounds(
+        Ogre::Aabb(Ogre::Vector3::ZERO, Ogre::Vector3::UNIT_SCALE * 50)
+        /*, false*/);
+    m_mesh->_setBoundingSphereRadius(50);
+
+    // Set the membrane material //
+    // We need to create a new instance until the managing is moved to the
+    // species (allowing the same species to share)
+    if(!coloredMaterial) {
+        Ogre::MaterialPtr baseMaterial = chooseMaterialByType();
+        // TODO: find a way for the species to manage this to
+        // avoid having tons of materials Maybe Use the species's
+        // name instead. and let something like the
+        // SpeciesComponent create and destroy this
+        coloredMaterial = baseMaterial->clone(
+            "Membrane_instance_" + std::to_string(++membraneNumber));
+
+        coloredMaterial->getTechnique(0)
+            ->getPass(0)
+            ->getFragmentProgramParameters()
+            ->setNamedConstant("membraneColour", colour);
+        coloredMaterial->compile();
+    }
+
+    m_subMesh->setMaterialName(coloredMaterial->getName());
+
     // Update mesh data //
+    // Map the buffer for writing //
+    // DO NOT READ FROM THE MAPPED BUFFER
+    MembraneVertex* RESTRICT_ALIAS meshVertices =
+        reinterpret_cast<MembraneVertex * RESTRICT_ALIAS>(
+            vertexBuffer->map(0, vertexBuffer->getNumElements()));
 
     // Creates a 3D prism from the 2D vertices.
 
     // initialize membrane
     size_t writeIndex = 0;
-    writeIndex = InitializeCorrectMembrane(writeIndex);
+    writeIndex = InitializeCorrectMembrane(writeIndex, meshVertices);
 
     // This can be commented out when this works correctly, or maybe a
     // different macro for debug builds to include this check could
@@ -314,17 +324,12 @@ void
 
     // Upload finished data to the gpu (unmap all needs to be used to
     // suppress warnings about destroying mapped buffers)
-    m_vertexBuffer->unmap(Ogre::UO_UNMAP_ALL);
+    vertexBuffer->unmap(Ogre::UO_UNMAP_ALL);
 
-    if(!m_item) {
-        // This needs the v2 mesh to contain data to work
-        m_item = scene->createItem(m_mesh, Ogre::SCENE_DYNAMIC);
-        m_item->setRenderQueueGroup(Leviathan::DEFAULT_RENDER_QUEUE);
-        parentcomponentpos->attachObject(m_item);
-    } else {
-        // TODO: still creates tears, ugh
-        parentcomponentpos->attachObject(m_item);
-    }
+    // This needs the v2 mesh to contain data to work
+    m_item = scene->createItem(m_mesh, Ogre::SCENE_DYNAMIC);
+    m_item->setRenderQueueGroup(Leviathan::DEFAULT_RENDER_QUEUE);
+    parentcomponentpos->attachObject(m_item);
 }
 
 void
@@ -338,14 +343,9 @@ void
 }
 
 size_t
-    MembraneComponent::InitializeCorrectMembrane(size_t writeIndex)
+    MembraneComponent::InitializeCorrectMembrane(size_t writeIndex,
+        MembraneVertex* meshVertices)
 {
-    // Map the buffer for writing //
-    // DO NOT READ FROM THE MAPPED BUFFER
-    MembraneVertex* RESTRICT_ALIAS meshVertices =
-        reinterpret_cast<MembraneVertex * RESTRICT_ALIAS>(
-            m_vertexBuffer->map(0, m_vertexBuffer->getNumElements()));
-
     // All of these floats were originally doubles. But to have more
     // performance they are now floats
 
@@ -523,11 +523,45 @@ void
 void
     MembraneComponent::clear()
 {
+    clearNeeded = true;
+}
+
+void
+    MembraneComponent::releaseOgreResourcesForClear(Ogre::SceneManager* scene)
+{
     isInitialized = false;
     vertices2D.clear();
 
-    if(m_item)
-        m_item->detachFromParent();
+    if(m_item) {
+        scene->destroyItem(m_item);
+        m_item = nullptr;
+    }
+
+    if(m_mesh) {
+
+        // If there is nothing in the mesh there isn't anything to destroy
+        if(!m_subMesh->mVao[Ogre::VpNormal].empty()) {
+
+            Ogre::RenderSystem* renderSystem =
+                Ogre::Root::getSingleton().getRenderSystem();
+            Ogre::VaoManager* vaoManager = renderSystem->getVaoManager();
+
+            // Delete the index and vertex buffers
+            Ogre::VertexArrayObject* vao =
+                m_subMesh->mVao[Ogre::VpNormal].front();
+            Ogre::IndexBufferPacked* indexBuffer = vao->getIndexBuffer();
+            Ogre::VertexBufferPacked* vertexBuffer =
+                vao->getVertexBuffers().front();
+
+            vaoManager->destroyVertexArrayObject(vao);
+            vaoManager->destroyIndexBuffer(indexBuffer);
+            vaoManager->destroyVertexBuffer(vertexBuffer);
+
+            // And make sure they aren't used
+            m_subMesh->mVao[Ogre::VpNormal].clear();
+            m_subMesh->mVao[Ogre::VpShadow].clear();
+        }
+    }
 }
 
 /*
