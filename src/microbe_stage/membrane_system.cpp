@@ -209,14 +209,10 @@ void
     if(!isInitialized)
         Initialize();
 
-    // will have to do this everywhere
-    DrawCorrectMembrane();
-
     // 12 vertices added per index of vertices2D
     const auto bufferSize = vertices2D.size() + 2;
 
     if(!m_vertexBuffer) {
-
         Ogre::RenderSystem* renderSystem =
             Ogre::Root::getSingleton().getRenderSystem();
         Ogre::VaoManager* vaoManager = renderSystem->getVaoManager();
@@ -288,8 +284,6 @@ void
         // species (allowing the same species to share)
         if(!coloredMaterial) {
             Ogre::MaterialPtr baseMaterial = chooseMaterialByType();
-
-
             // TODO: find a way for the species to manage this to
             // avoid having tons of materials Maybe Use the species's
             // name instead. and let something like the
@@ -338,6 +332,7 @@ void
         m_item->setRenderQueueGroup(Leviathan::DEFAULT_RENDER_QUEUE);
         parentcomponentpos->attachObject(m_item);
     } else {
+        // TODO: still creates tears, ugh
         parentcomponentpos->attachObject(m_item);
     }
 }
@@ -360,6 +355,7 @@ size_t
     MembraneVertex* RESTRICT_ALIAS meshVertices =
         reinterpret_cast<MembraneVertex * RESTRICT_ALIAS>(
             m_vertexBuffer->map(0, m_vertexBuffer->getNumElements()));
+
     // common variables
     float height = .1;
     const Ogre::Vector2 center(0.5, 0.5);
@@ -537,9 +533,6 @@ void
 {
     isInitialized = false;
     vertices2D.clear();
-
-    if(m_vertexBuffer)
-        m_vertexBuffer = nullptr;
 
     if(m_item)
         m_item->detachFromParent();
