@@ -35,7 +35,6 @@ MembraneComponent::MembraneComponent(MEMBRANE_TYPE type) :
 
 MembraneComponent::~MembraneComponent()
 {
-
     LEVIATHAN_ASSERT(!m_item, "MembraneComponent not released");
 
     Ogre::MeshManager::getSingleton().remove(m_mesh);
@@ -64,7 +63,6 @@ MembraneComponent::getMembraneType()
 void
     MembraneComponent::Release(Ogre::SceneManager* scene)
 {
-
     if(m_item) {
         scene->destroyItem(m_item);
         m_item = nullptr;
@@ -168,7 +166,6 @@ float
 void
     MembraneComponent::setColour(const Float4& value)
 {
-
     colour = value;
     // Desaturate it here so it looks nicer (could implement as method thatcould
     // be called i suppose)
@@ -226,7 +223,7 @@ void
         // Ogre::VES_NORMAL));
 
         m_vertexBuffer = vaoManager->createVertexBuffer(vertexElements,
-            bufferSize, Ogre::BT_DYNAMIC_PERSISTENT, nullptr, false);
+            bufferSize, Ogre::BT_DYNAMIC_DEFAULT, nullptr, false);
 
         Ogre::VertexBufferPackedVec vertexBuffers;
         vertexBuffers.push_back(m_vertexBuffer);
@@ -305,14 +302,10 @@ void
 
     // Creates a 3D prism from the 2D vertices.
 
-    // All of these floats were originally doubles. But to have more
-    // performance they are now floats
     // initialize membrane
     size_t writeIndex = 0;
     writeIndex = InitializeCorrectMembrane(writeIndex);
-    // LOG_INFO("Write index is: " + std::to_string(writeIndex) + ", buffer
-    // size: " +
-    //     std::to_string(bufferSize));
+
     // This can be commented out when this works correctly, or maybe a
     // different macro for debug builds to include this check could
     // work, but it has to also work on linux
@@ -322,9 +315,6 @@ void
     // Upload finished data to the gpu (unmap all needs to be used to
     // suppress warnings about destroying mapped buffers)
     m_vertexBuffer->unmap(Ogre::UO_UNMAP_ALL);
-
-    // TODO: apply the current colour to the material instance
-
 
     if(!m_item) {
         // This needs the v2 mesh to contain data to work
@@ -355,6 +345,9 @@ size_t
     MembraneVertex* RESTRICT_ALIAS meshVertices =
         reinterpret_cast<MembraneVertex * RESTRICT_ALIAS>(
             m_vertexBuffer->map(0, m_vertexBuffer->getNumElements()));
+
+    // All of these floats were originally doubles. But to have more
+    // performance they are now floats
 
     // common variables
     float height = .1;
@@ -424,7 +417,6 @@ Ogre::MaterialPtr
 void
     MembraneComponent::Initialize()
 {
-
     for(Ogre::Vector3 pos : organellePositions) {
         if(abs(pos.x) + 1 > cellDimensions) {
             cellDimensions = abs(pos.x) + 1;
@@ -537,158 +529,6 @@ void
     if(m_item)
         m_item->detachFromParent();
 }
-
-////////////////////////////////////////////////////////////////////////////////
-// MembraneSystem
-////////////////////////////////////////////////////////////////////////////////
-// void
-// MembraneSystem::update(int, int) {
-//     m_impl->m_entities.clearChanges();
-//     for (auto& value : m_impl->m_entities) {
-//         MembraneComponent* membraneComponent = std::get<0>(value.second);
-//         OgreSceneNodeComponent* sceneNodeComponent =
-//         std::get<1>(value.second);
-
-//         if (membraneComponent->wantsMembrane &&
-//         sceneNodeComponent->m_meshName.get().find("membrane") !=
-//         std::string::npos)
-//         {
-//             membraneComponent->wantsMembrane = false;
-//             // Get the vertex positions of the membrane.
-//             if(!membraneComponent->isInitialized)
-//             {
-//                 membraneComponent->Initialize();
-//             }
-//             membraneComponent->Update();
-
-//             membraneComponent->m_meshName =
-//             sceneNodeComponent->m_meshName.get();
-
-//             //If the mesh already exists, destroy the old one
-//             Ogre::MeshManager::getSingleton().remove(sceneNodeComponent->m_meshName.get());
-//             // Create a mesh and a submesh.
-//             Ogre::MeshPtr msh =
-//             Ogre::MeshManager::getSingleton().createManual(sceneNodeComponent->m_meshName.get(),
-//             "General"); Ogre::SubMesh* sub = msh->createSubMesh();
-
-//             // Define the vertices.
-//             std::vector<double> vertexData;
-//             for(size_t i=0, end=membraneComponent->MeshPoints.size(); i<end;
-//             i++)
-//             {
-//                 // Vertex.
-//                 vertexData.push_back(membraneComponent->MeshPoints[i].x);
-//                 vertexData.push_back(membraneComponent->MeshPoints[i].y);
-//                 vertexData.push_back(membraneComponent->MeshPoints[i].z);
-
-//                 // Normal.
-//                 //vertexData.push_back(component->MyMembrane.Normals[i].x);
-//                 //vertexData.push_back(component->MyMembrane.Normals[i].y);
-//                 //vertexData.push_back(component->MyMembrane.Normals[i].z);
-//                 vertexData.push_back(0.0);
-//                 vertexData.push_back(0.0);
-//                 vertexData.push_back(1.0);
-
-//                 // UV coordinates.
-//                 vertexData.push_back(membraneComponent->UVs[i].x);
-//                 vertexData.push_back(membraneComponent->UVs[i].y);
-//             }
-
-//             // Populate the vertex buffer.
-//             const size_t vertexBufferSize = vertexData.size();
-//             float vertices[vertexBufferSize];
-//             for(size_t i=0; i<vertexBufferSize; i++)
-//             {
-//                 vertices[i] = vertexData[i];
-//             }
-
-//             // Populate the index buffer.
-//             const size_t indexBufferSize = vertexData.size()/8;
-//             unsigned short faces[indexBufferSize];
-//             for(size_t i=0, end=indexBufferSize; i<end; i++)
-//             {
-//                 faces[i]=i;
-//             }
-
-//             // Create vertex data structure for 8 vertices shared between
-//             submeshes. msh->sharedVertexData = new Ogre::VertexData();
-//             msh->sharedVertexData->vertexCount = vertexData.size()/8;
-
-//             /// Create declaration (memory format) of vertex data
-//             Ogre::VertexDeclaration* decl =
-//             msh->sharedVertexData->vertexDeclaration; size_t offset = 0;
-//             // 1st buffer
-//             decl->addElement(0, offset, Ogre::VET_FLOAT3,
-//             Ogre::VES_POSITION); offset +=
-//             Ogre::VertexElement::getTypeSize(Ogre::VET_FLOAT3);
-//             decl->addElement(0, offset, Ogre::VET_FLOAT3, Ogre::VES_NORMAL);
-//             offset += Ogre::VertexElement::getTypeSize(Ogre::VET_FLOAT3);
-//             decl->addElement(0, offset, Ogre::VET_FLOAT2,
-//             Ogre::VES_TEXTURE_COORDINATES); offset +=
-//             Ogre::VertexElement::getTypeSize(Ogre::VET_FLOAT2);
-
-//             /// Allocate vertex buffer of the requested number of vertices
-//             (vertexCount)
-//             /// and bytes per vertex (offset)
-//             Ogre::HardwareVertexBufferSharedPtr vbuf =
-//                 Ogre::HardwareBufferManager::getSingleton().createVertexBuffer(
-//                 offset, msh->sharedVertexData->vertexCount,
-//                 Ogre::HardwareBuffer::HBU_STATIC_WRITE_ONLY);
-//             /// Upload the vertex data to the card
-//             vbuf->writeData(0, vbuf->getSizeInBytes(), vertices, true);
-
-//             /// Set vertex buffer binding so buffer 0 is bound to our vertex
-//             buffer Ogre::VertexBufferBinding* bind =
-//             msh->sharedVertexData->vertexBufferBinding; bind->setBinding(0,
-//             vbuf);
-
-//             /// Allocate index buffer of the requested number of vertices
-//             (ibufCount) Ogre::HardwareIndexBufferSharedPtr ibuf =
-//             Ogre::HardwareBufferManager::getSingleton().
-//                 createIndexBuffer(
-//                 Ogre::HardwareIndexBuffer::IT_16BIT,
-//                 indexBufferSize,
-//                 Ogre::HardwareBuffer::HBU_STATIC_WRITE_ONLY);
-
-//             /// Upload the index data to the card
-//             ibuf->writeData(0, ibuf->getSizeInBytes(), faces, true);
-
-//             /// Set parameters of the submesh
-//             sub->useSharedVertices = true;
-//             sub->indexData->indexBuffer = ibuf;
-//             sub->indexData->indexCount = indexBufferSize;
-//             sub->indexData->indexStart = 0;
-
-//             /// Set bounding information (for culling)
-//             msh->_setBounds(Ogre::AxisAlignedBox(-50,-50,-50,50,50,50));
-//             msh->_setBoundingSphereRadius(50);
-
-//             /// Notify -Mesh object that it has been loaded
-//             msh->load();
-
-//             membraneComponent->m_entity =
-//             m_impl->m_sceneManager->createEntity(sceneNodeComponent->m_meshName.get(),
-//             "General");
-
-//             Ogre::MaterialPtr baseMaterial =
-//             Ogre::MaterialManager::getSingleton().getByName();
-//             Ogre::MaterialPtr materialPtr =
-//             baseMaterial->clone(sceneNodeComponent->m_meshName.get());
-//             materialPtr->compile();
-//             Ogre::TextureUnitState* ptus =
-//             materialPtr->getTechnique(0)->getPass(0)->getTextureUnitState(0);
-//             ptus->setColourOperationEx(Ogre::LBX_MODULATE, Ogre::LBS_MANUAL,
-//             Ogre::LBS_TEXTURE, membraneComponent->colour);
-//             membraneComponent->m_entity->setMaterial(materialPtr);
-
-//             sceneNodeComponent->m_sceneNode->setOrientation(sceneNodeComponent->m_transform.orientation);
-//             sceneNodeComponent->m_sceneNode->setScale(sceneNodeComponent->m_transform.scale);
-//             sceneNodeComponent->m_sceneNode->setPosition(sceneNodeComponent->m_transform.position);
-//             sceneNodeComponent->m_sceneNode->attachObject(membraneComponent->m_entity);
-//         }
-
-//     }
-// }
 
 /*
 Cell Wall Code Here
