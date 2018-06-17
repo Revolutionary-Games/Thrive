@@ -759,7 +759,7 @@ class MicrobeStageHudSystem : ScriptSystem{
 // Wrappers for calling GUI update things from random places
 
 void showReproductionDialog(GameWorld@ world){
-
+    LOG_INFO("Ready to reproduce!");
     cast<MicrobeStageHudSystem@>(world.GetScriptSystem("MicrobeStageHudSystem")).
         showReproductionDialog();
 }
