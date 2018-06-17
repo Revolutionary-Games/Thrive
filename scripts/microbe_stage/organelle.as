@@ -605,7 +605,7 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
             RenderNode@ sceneNode = world.GetComponent_RenderNode(
                 organelleEntity);
 
-            if(newScale != sceneNode.Scale){
+            if(newScale != sceneNode.Scale && !organelle.hasComponent("NucleusOrganelle")){
 
                 sceneNode.Scale = newScale;
                 sceneNode.Marked = true;
