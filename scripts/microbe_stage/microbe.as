@@ -772,8 +772,8 @@ class MicrobeSystem : ScriptSystem{
     //         }
     //     }
     // }
-
     void divide(ObjectID microbeEntity){
+        LOG_INFO("Divide called");
         MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
             world.GetScriptComponentHolder("MicrobeComponent").Find(microbeEntity));
         // auto soundSourceComponent = world.GetComponent_SoundSourceComponent(microbeEntity);
@@ -832,13 +832,16 @@ class MicrobeSystem : ScriptSystem{
     }
 
     // Copies this microbe. The new microbe will not have the stored compounds of this one.
+    //TODO: This currnetly does not work
     void readyToReproduce(ObjectID microbeEntity){
         MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
             world.GetScriptComponentHolder("MicrobeComponent").Find(microbeEntity));
 
+
         if(microbeComponent.isPlayerMicrobe){
             showReproductionDialog(world);
             microbeComponent.reproductionStage = 0;
+            divide(microbeEntity);
         } else {
             // Return the first cell to its normal, non duplicated cell arangement.
             Species::applyTemplate(world, microbeEntity,
