@@ -80,6 +80,7 @@ public:
 
     size_t
         InitializeCorrectMembrane(size_t writeIndex);
+
     // Sees if the given point is inside the membrane.
     //! note This is quite an expensive method as this loops all the vertices
     bool
@@ -164,23 +165,25 @@ protected:
     // Stores the positions of the organelles.
     std::vector<Ogre::Vector3> organellePositions;
 
-    // The colour of the membrane.
-    // still broken
+    //! The colour of the membrane.
     Ogre::ColourValue colour;
 
-    // The length in pixels of a side of the square that bounds the membrane.
-    // Half the side length of the original square that is compressed to make
-    // the membrane.
+    //! The length in pixels of a side of the square that bounds the membrane.
+    //! Half the side length of the original square that is compressed to make
+    //! the membrane.
     int cellDimensions = 10;
-    // Amount of segments on one side of the above described square.
-    // The amount of points on the side of the membrane.
+
+    //! Amount of segments on one side of the above described square.
+    //! The amount of points on the side of the membrane.
     int membraneResolution = 10;
-    // Stores the generated 2-Dimensional membrane.
+
+    //! Stores the generated 2-Dimensional membrane.
     std::vector<Ogre::Vector3> vertices2D;
 
-    // Ogre renderable that holds the mesh
+    //! Ogre renderable that holds the mesh
     Ogre::MeshPtr m_mesh;
-    // The submesh that actually holds our vertex and index buffers
+
+    //! The submesh that actually holds our vertex and index buffers
     Ogre::SubMesh* m_subMesh = nullptr;
 
     //! Actual object that is attached to a scenenode
@@ -193,9 +196,10 @@ protected:
     Ogre::MaterialPtr coloredMaterial;
     // Ogre::MaterialPtr speciesMaterial;
 
+    //! For unique name generation
     static std::atomic<int> membraneNumber;
 
-    // The amount of compounds stored in the membrane.
+    //! The amount of compounds stored in the membrane.
     int compoundAmount = 0;
 
 private:
