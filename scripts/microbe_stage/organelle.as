@@ -606,7 +606,6 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
                 organelleEntity);
 
             if(newScale != sceneNode.Scale && !organelle.hasComponent("NucleusOrganelle")){
-
                 sceneNode.Scale = newScale;
                 sceneNode.Marked = true;
             }
