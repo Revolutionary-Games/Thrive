@@ -331,7 +331,6 @@ class MicrobeSystem : ScriptSystem{
                 } else {
 
                     auto physics = world.GetComponent_Physics(microbeEntity);
-
                     for(uint i = 0; i < microbeComponent.organelles.length(); ++i){
 
                         // This Collision doesn't really need to be
@@ -341,7 +340,6 @@ class MicrobeSystem : ScriptSystem{
                         microbeComponent.organelles[i].onRemovedFromMicrobe(microbeEntity,
                             physics.Collision);
                     }
-
                     // Safe destroy before next tick
                     world.QueueDestroyEntity(microbeEntity);
                 }
@@ -370,7 +368,6 @@ class MicrobeSystem : ScriptSystem{
 
             // Loop through compounds and add if you can
             for(uint i = 0; i < absorbed.length(); ++i){
-
                 CompoundId compound = absorbed[i];
                 auto amount = compoundAbsorberComponent.absorbedCompoundAmount(compound);
 
