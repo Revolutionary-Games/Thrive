@@ -456,11 +456,11 @@ class MicrobeSystem : ScriptSystem{
             }
 
             if(microbeComponent.isBeingEngulfed && microbeComponent.wasBeingEngulfed){
-    LOG_INFO("doing engulf damage");
+                LOG_INFO("doing engulf damage");
                 MicrobeOperations::damage(world, microbeEntity, 50, "isBeingEngulfed - Microbe.update()s");
                 // Else If we were but are no longer, being engulfed
             } else if(microbeComponent.wasBeingEngulfed){
-    LOG_INFO("removing engulf effect");
+                LOG_INFO("removing engulf effect");
                 MicrobeOperations::removeEngulfedEffect(world, microbeEntity);
             }
 

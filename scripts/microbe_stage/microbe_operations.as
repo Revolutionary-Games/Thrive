@@ -138,8 +138,6 @@ bool removeOrganelle(CellStageWorld@ world, ObjectID microbeEntity, Int2 hex){
 }
 
 bool organelleDestroyedByDamage(CellStageWorld@ world, ObjectID microbeEntity, Int2 hex){
-
-    // TODO: effects for destruction?
     return removeOrganelle(world, microbeEntity, hex);
 }
 
@@ -304,6 +302,7 @@ double takeCompound(CellStageWorld@ world, ObjectID microbeEntity, CompoundId co
 //
 // @param amount
 // The amount to eject
+// TODO: This probabbly doesnt work
 void ejectCompound(CellStageWorld@ world, ObjectID microbeEntity, CompoundId compoundId,
     double amount)
 {
@@ -356,14 +355,12 @@ void ejectCompound(CellStageWorld@ world, ObjectID microbeEntity, CompoundId com
     createCompoundCloud(world, compoundId,
         position._Position.X + xnew * ejectionDistance,
         position._Position.Y + ynew * ejectionDistance,
-        // TODO: Why is this multiplied by 5000?
-        // And why amountToEject is ignored
-        amount * 5000);
+       amountToEject);
 }
 
 // Since we have individual storage now we dont need this
 // (its functionally useless from a gameplay perspective since
-// you no longer need to dump thigs because thngs can no longer
+// you no longer need to dump things because thngs can no longer
 // "take up each others space"  However, it would be weird to store
 // up compounds you dont use, so lets purge those.
 void purgeCompounds(CellStageWorld@ world, ObjectID microbeEntity){
@@ -380,7 +377,7 @@ void purgeCompounds(CellStageWorld@ world, ObjectID microbeEntity){
     //LOG_INFO("ID:"+compoundId+" price:"+price);
     if (price == 0 && !useful)
     {
-    // dont remove everything immedately, give it som etime so people can see it happening
+    // Dont remove everything immedately, give it some time so people can see it happening
         double amountToEject = 2;
     double availableCompound = getCompoundAmount(world,microbeEntity, compoundId);
             // This was also 'amount' so maybe this didn't work either?
@@ -434,8 +431,6 @@ void flashMembraneColour(CellStageWorld@ world, ObjectID microbeEntity, uint dur
 }
 
 // Applies the default membrane colour
-// TODO: this is probably broken (the c++ membrane system doesn't apply this)
-//yes its broken -_- -Untrustedlife
 void applyMembraneColour(CellStageWorld@ world, ObjectID microbeEntity){
     MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
         world.GetScriptComponentHolder("MicrobeComponent").Find(microbeEntity));
@@ -451,7 +446,6 @@ void toggleEngulfMode(CellStageWorld@ world, ObjectID microbeEntity){
     MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
         world.GetScriptComponentHolder("MicrobeComponent").Find(microbeEntity));
     // auto soundSourceComponent = world.GetComponent_SoundSourceComponent(microbeEntity);
-
     if(microbeComponent.engulfMode){
         microbeComponent.movementFactor = microbeComponent.movementFactor *
             ENGULFING_MOVEMENT_DIVISION;
@@ -708,7 +702,7 @@ ObjectID spawnMicrobe(CellStageWorld@ world, Float3 pos, const string &in specie
     // Bacteria get scaled to half size
     if(species.isBacteria){
         node.Scale = Float3(0.5, 0.5, 0.5);
-    node.Marked = true;
+        node.Marked = true;
     }
 
     return microbeEntity;
@@ -1002,6 +996,8 @@ void kill(CellStageWorld@ world, ObjectID microbeEntity){
     //play the death sound
     GetEngine().GetSoundDevice().Play2DSoundEffect("Data/Sound/soundeffects/microbe-death.ogg");
 
+
+    //TODO: Get this working
     //auto deathAnimationEntity = world.CreateEntity();
     //auto lifeTimeComponent = world.Create_TimedLifeComponent(deathAnimationEntity, 4000);
     //auto deathAnimSceneNode = world.Create_RenderNode(deathAnimationEntity);
@@ -1020,7 +1016,6 @@ void kill(CellStageWorld@ world, ObjectID microbeEntity){
     rigidBodyComponent.ClearVelocity();
 
     if(!microbeComponent.isPlayerMicrobe){
-
         // Destroy the physics state //
         rigidBodyComponent.Release();
     }
