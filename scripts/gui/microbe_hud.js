@@ -15,6 +15,8 @@ function runMicrobeHUDSetup(){
     document.getElementById("microbeToEditorButton").addEventListener(
         "click", onEditorButtonClicked, true);
 
+    //Add editor button to disabled list
+    document.getElementById("microbeToEditorButton").classList.add("DisabledButton");
     if(isInEngine()){
 
         // Register for the microbe stage events
@@ -36,6 +38,10 @@ function runMicrobeHUDSetup(){
 
         // Event that enables the editor button
         Leviathan.OnGeneric("PlayerReadyToEnterEditor", onReadyToEnterEditor);
+        
+        //Add listner for sucide button
+        document.getElementById("suicideButton").addEventListener(
+        "click", onEditorButtonClicked, true);
         
     } else {
 
@@ -80,6 +86,10 @@ function onReadyToEnterEditor(){
     
     readyToEdit = true;
     document.getElementById("microbeToEditorButton").classList.remove("DisabledButton");
+}
+
+function killPlayerCell(){
+    //How do I add a death to this
 }
 
 function onEditorButtonClicked(event){
