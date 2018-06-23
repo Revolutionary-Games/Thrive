@@ -12,7 +12,7 @@ BioProcess::BioProcess(Json::Value value)
     std::vector<std::string> compoundInternalNames =
         value["inputs"].getMemberNames();
     for(std::string compoundInternalName : compoundInternalNames) {
-        unsigned int amount = value["inputs"][compoundInternalName].asUInt();
+        double amount = value["inputs"][compoundInternalName].asDouble();
 
         // Getting the compound id from the compound registry.
         size_t id = SimulationParameters::compoundRegistry
@@ -25,7 +25,7 @@ BioProcess::BioProcess(Json::Value value)
     // Getting the output compounds.
     compoundInternalNames = value["outputs"].getMemberNames();
     for(std::string compoundInternalName : compoundInternalNames) {
-        unsigned int amount = value["outputs"][compoundInternalName].asUInt();
+        double amount = value["outputs"][compoundInternalName].asDouble();
 
         // Getting the compound id from the compound registry.
         size_t id = SimulationParameters::compoundRegistry
