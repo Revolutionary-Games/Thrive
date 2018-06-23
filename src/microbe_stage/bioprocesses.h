@@ -11,8 +11,8 @@ class SimulationParameters;
 class BioProcess : public RegistryType {
 public:
     // The amount of compounds required/obtained.
-    std::map<size_t,  double> inputs;
-    std::map<size_t,  double> outputs;
+    std::map<size_t, double> inputs;
+    std::map<size_t, double> outputs;
 
     BioProcess();
 
