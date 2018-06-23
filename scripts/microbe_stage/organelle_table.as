@@ -470,6 +470,34 @@ void setupOrganelles(){
 
     _addOrganelleToTable(Organelle(chemoplast));
 
+    // Nitrogen Fixing Plastid
+    auto nitrogenPlastid = OrganelleParameters("nitrogenfixingplastid");
+
+    nitrogenPlastid.mass = 0.1;
+    nitrogenPlastid.gene = "I";
+    //TODO: They need their model
+    nitrogenPlastid.mesh = "vacuole.mesh";
+    nitrogenPlastid.chanceToCreate = 1;
+    nitrogenPlastid.prokaryoteChance = 0;
+    nitrogenPlastid.mpCost = 20;
+    nitrogenPlastid.initialComposition = {
+        {"phosphates", 1},
+        {"ammonia", 1}
+    };
+    nitrogenPlastid.components = {
+        processorOrganelleFactory(1.0f),
+        // nitrogenPlastid takes 2 hexes, so allowed storage of 2 cytooplasm
+        storageOrganelleFactory(10.0f)
+    };
+    nitrogenPlastid.processes = {
+          TweakedProcess("nitrogenFixing", 1)
+    };
+    nitrogenPlastid.hexes = {
+        Int2(0, 0),
+        Int2(0, -1)
+    };
+
+    _addOrganelleToTable(Organelle(nitrogenPlastid));
     // Prokaryotic Organelles (all meshes are placeholders)//
 
     // ------------------------------------ //
@@ -606,7 +634,34 @@ void setupOrganelles(){
         Int2(0, 0),
     };
     _addOrganelleToTable(Organelle(protoplasmParameters));
-    // ------------------------------------ //
+
+    // nitrogenFixationProtien
+    // Uses same mode as chemoplast for now
+    auto nitrogenFixationProtien = OrganelleParameters("nitrogenFixationProtiens");
+
+    nitrogenFixationProtien.mass = 0.1;
+    nitrogenFixationProtien.gene = "i";
+    nitrogenFixationProtien.mesh = "vacuole.mesh";
+    nitrogenFixationProtien.chanceToCreate = 0;
+    nitrogenFixationProtien.prokaryoteChance = 1;
+    nitrogenFixationProtien.mpCost = 20;
+    nitrogenFixationProtien.initialComposition = {
+        {"phosphates", 0.05},
+        {"ammonia", 0.05}
+    };
+    nitrogenFixationProtien.components = {
+        processorOrganelleFactory(1.0f),
+    storageOrganelleFactory(25.0f)
+    };
+    nitrogenFixationProtien.processes = {
+      TweakedProcess("nitrogenFixing", 1),
+      TweakedProcess("respiration", 1)
+    };
+    nitrogenFixationProtien.hexes = {
+        Int2(0, 0),
+    };
+
+    _addOrganelleToTable(Organelle(nitrogenFixationProtien));    // ------------------------------------ //
     // Setup the organelle letters
     setupOrganelleLetters();
 }
