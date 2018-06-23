@@ -168,6 +168,14 @@ void cellOnCellActualContact(GameWorld@ world, ObjectID firstEntity, ObjectID se
     // LOG_INFO("Cell hit another cell, thats cool i guess");
 }
 
+// Targets player cell and kills it (For suicide button)
+int killPlayerCellClicked(CellStageWorld@ world){
+    auto playerEntity = GetThriveGame().playerData().activeCreature();
+    //kill it hard
+     MicrobeOperations::damage(world,playerEntity, 9999, "suicide");
+     return 0;
+}
+
 // Returns 0 if being engulfed, probabbly also damages the cell being
 // engulfed, we should probabbly check cell size and such here aswell.
 int beingEngulfed(GameWorld@ world, ObjectID firstEntity, ObjectID secondEntity)
