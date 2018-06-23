@@ -3,11 +3,11 @@
         "name": "Respiration",
 
         "inputs": {
-            "glucose": 6
+            "glucose": 6.0
         },
 
         "outputs": {
-            "atp": 6
+            "atp": 6.0
         }
     },
 	
@@ -15,11 +15,11 @@
         "name": "Glycolosis",
 
         "inputs": {
-            "glucose": 1
+            "glucose": 1.0
         },
 
         "outputs": {
-            "atp": 1
+            "atp": 1.0
         }
     },
 
@@ -27,11 +27,11 @@
         "name": "Photosynthesis",
 
         "inputs": {
-            "glucose": 0
+            "glucose": 0.0
         },
 
         "outputs": {
-            "glucose": 2
+            "glucose": 2.0
         }
     },
 
@@ -39,11 +39,11 @@
         "name": "Oxytoxy Synthesis",
 
         "inputs": {
-            "atp": 2
+            "atp": 2.0
         },
 
         "outputs": {
-            "oxytoxy": 1
+            "oxytoxy": 1.0
         }
     },
 	
@@ -51,11 +51,23 @@
         "name": "Chemo Synthesis",
 
         "inputs": {
-            "hydrogensulfide": 4
+            "hydrogensulfide": 4.0
         },
 
         "outputs": {
-            "glucose": 4
+            "glucose": 4.0
+        }
+    },
+    
+    	"nitrogenFixing": {
+        "name": "Nitrogen Fixing",
+
+        "inputs": {
+            "atp": 0.5
+        },
+
+        "outputs": {
+            "ammonia": 0.1
         }
     }
 }
