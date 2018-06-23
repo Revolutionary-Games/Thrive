@@ -403,9 +403,7 @@ void
 void
     ThriveGame::killPlayerCellClicked()
 {
-
-    LOG_INFO("Calling global setup script killPlayerCell");
-
+    LOG_INFO("Calling killPlayerCellClicked");
 
     ScriptRunningSetup setup = ScriptRunningSetup("killPlayerCellClicked");
 
@@ -415,10 +413,8 @@ void
     if(result.Result != SCRIPT_RUN_RESULT::Success) {
 
         LOG_ERROR(
-            "Failed to run script setup function: " + setup.Entryfunction);
+            "Failed to run killPlayerCellClicked: " + setup.Entryfunction);
     }
-
-    LOG_INFO("Finished calling the above setup script");
 }
 
 void

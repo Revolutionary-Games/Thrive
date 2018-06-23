@@ -104,6 +104,7 @@ bool
         args->SetString(0, "killPlayerCellClicked");
 
         Owner->SendCustomExtensionMessage(message);
+        return true;
     }
 
     // This might be a bit expensive...
