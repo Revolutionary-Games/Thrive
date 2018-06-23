@@ -178,10 +178,12 @@ video {
 }
 
 .DisabledButton {
-
-    /* background-color: rgb(0, 80, 80, 0.32); */
+    filter: grayscale(100%);
 }
 
+DisabledButton:hover { 
+    filter: grayscale(100%);
+}
 .MenuButton.DisabledButton {
 	background-image: url("../../Textures/gui/bevel/MenuDisabled.png");
 }
@@ -439,10 +441,10 @@ video {
 	background-image: url("../../Textures/gui/bevel/LargeTwoHover.png");
 }
 
-.microbeToEditorButton.DisabledButton {
+#microbeToEditorButton.DisabledButton {
 	background-image: url("../../Textures/gui/bevel/LargeTwoDisabled.png");
 }
-.microbeToEditorButton.DisabledButton:hover {
+#microbeToEditorButton.DisabledButton:hover {
 	background-image: url("../../Textures/gui/bevel/LargeTwoDisabled.png");
 }
 
