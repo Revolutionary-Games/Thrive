@@ -169,11 +169,10 @@ void cellOnCellActualContact(GameWorld@ world, ObjectID firstEntity, ObjectID se
 }
 
 // Targets player cell and kills it (For suicide button)
-int killPlayerCellClicked(CellStageWorld@ world){
+void killPlayerCellClicked(CellStageWorld@ world){
     auto playerEntity = GetThriveGame().playerData().activeCreature();
     //kill it hard
      MicrobeOperations::damage(world,playerEntity, 9999, "suicide");
-     return 0;
 }
 
 // Returns 0 if being engulfed, probabbly also damages the cell being
