@@ -98,6 +98,12 @@ bool
 
         Owner->SendCustomExtensionMessage(message);
         return true;
+    } else if(name == "killPlayerCellClicked") {
+        auto message = CefProcessMessage::Create("Custom");
+        auto args = message->GetArgumentList();
+        args->SetString(0, "killPlayerCellClicked");
+
+        Owner->SendCustomExtensionMessage(message);
     }
 
     // This might be a bit expensive...
@@ -138,8 +144,11 @@ bool
 
         ThriveGame::Get()->finishEditingClicked();
         return true;
-    }
+    } else if(customType == "killPlayerCellClicked") {
 
+        ThriveGame::Get()->killPlayerCellClicked();
+        return true;
+    }
     // Not ours
     return false;
 }

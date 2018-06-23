@@ -401,6 +401,27 @@ void
 }
 
 void
+    ThriveGame::killPlayerCellClicked()
+{
+
+    LOG_INFO("Calling global setup script killPlayerCell");
+
+
+    ScriptRunningSetup setup = ScriptRunningSetup("killPlayerCellClicked");
+
+    auto result = m_impl->m_MicrobeScripts->ExecuteOnModule<void>(
+        setup, false, m_impl->m_cellStage.get());
+
+    if(result.Result != SCRIPT_RUN_RESULT::Success) {
+
+        LOG_ERROR(
+            "Failed to run script setup function: " + setup.Entryfunction);
+    }
+
+    LOG_INFO("Finished calling the above setup script");
+}
+
+void
     ThriveGame::editorButtonClicked()
 {
     LOG_INFO("Editor button pressed");
@@ -1950,6 +1971,12 @@ bool
 
     if(engine->RegisterObjectMethod("ThriveGame", "void editorButtonClicked()",
            asMETHOD(ThriveGame, editorButtonClicked), asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectMethod("ThriveGame",
+           "void killPlayerCellClicked()",
+           asMETHOD(ThriveGame, killPlayerCellClicked), asCALL_THISCALL) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
     }
 

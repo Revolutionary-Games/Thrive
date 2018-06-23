@@ -41,7 +41,7 @@ function runMicrobeHUDSetup(){
         
         //Add listner for sucide button
         document.getElementById("suicideButton").addEventListener(
-        "click", onEditorButtonClicked, true);
+        "click", killPlayerCell, true);
         
     } else {
 
@@ -88,8 +88,10 @@ function onReadyToEnterEditor(){
     document.getElementById("microbeToEditorButton").classList.remove("DisabledButton");
 }
 
-function killPlayerCell(){
+function killPlayerCell(event){
     //How do I add a death to this
+    playButtonPressSound();
+    Thrive.killPlayerCellClicked();
 }
 
 function onEditorButtonClicked(event){
