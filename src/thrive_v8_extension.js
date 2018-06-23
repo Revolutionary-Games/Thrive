@@ -19,5 +19,8 @@ var Thrive = {};
 
     native function finishEditingClicked();
     Thrive.finishEditingClicked = finishEditingClicked;
+    
+    native function killPlayerCellClicked();
+    Thrive.killPlayerCellClicked = killPlayerCellClicked;
 
 }());
