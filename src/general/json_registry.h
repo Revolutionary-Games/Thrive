@@ -3,9 +3,12 @@
 #pragma once
 
 #include <Define.h>
+#include <Exceptions.h>
 #include <Include.h>
-#include <fstream>
+
 #include <json/json.h>
+
+#include <fstream>
 #include <limits>
 #include <map>
 #include <string>
@@ -24,8 +27,8 @@ public:
     std::string internalName = "error";
 };
 
-// Template class that registers the stuff.
-// TODO: give it more stuff like iterators and square brackets and stuff.
+//! Template class that registers the stuff.
+//! \todo give it more stuff like iterators and square brackets and stuff.
 template<class T> class TJsonRegistry {
 public:
     // Default constructor, just creates an empty registry.
@@ -33,12 +36,12 @@ public:
 
     // Constructor that loads information from a JSON file from the specified
     // path.
-    TJsonRegistry(std::string defaultTypesFilePath);
+    TJsonRegistry(const std::string& defaultTypesFilePath);
 
     // Registers a new type with the specified properties.
     // Returns True if succeeded. False if the name is already in use.
     bool
-        RegisterType(T& Properties);
+        RegisterType(const T& Properties);
 
     // Returns the properties of a type. Or InvalidType if not found
     // Note: the returned value should NOT be changed
@@ -83,21 +86,22 @@ template<class T> TJsonRegistry<T>::TJsonRegistry()
 }
 
 template<class T>
-TJsonRegistry<T>::TJsonRegistry(std::string defaultTypesFilePath) :
+TJsonRegistry<T>::TJsonRegistry(const std::string& defaultTypesFilePath) :
     TJsonRegistry()
 {
     // Getting the JSON file where the data is stored.
     std::ifstream jsonFile;
     jsonFile.open(defaultTypesFilePath);
-    LEVIATHAN_ASSERT(jsonFile.is_open(),
-        "The file '" + defaultTypesFilePath + "' failed to load!");
+    if(!jsonFile.is_open())
+        throw Leviathan::Exception(
+            "The file '" + defaultTypesFilePath + "' failed to load!");
     Json::Value rootElement;
 
     try {
         jsonFile >> rootElement;
     } catch(...) {
-        LEVIATHAN_ASSERT(
-            false, "The file '" + defaultTypesFilePath + "' is malformed!");
+        throw Leviathan::Exception(
+            "The file '" + defaultTypesFilePath + "' is malformed!");
     }
 
     jsonFile.close();
@@ -122,7 +126,7 @@ TJsonRegistry<T>::TJsonRegistry(std::string defaultTypesFilePath) :
 
 template<class T>
 bool
-    TJsonRegistry<T>::RegisterType(T& Properties)
+    TJsonRegistry<T>::RegisterType(const T& Properties)
 {
     // TODO
     /*
@@ -148,7 +152,8 @@ T const&
 {
     // The type exists.
     const auto iter = registeredTypes.find(id);
-    LEVIATHAN_ASSERT(iter != registeredTypes.end(), "Type not found!");
+    if(iter == registeredTypes.end())
+        throw Leviathan::InvalidArgument("Type not found!");
     return iter->second;
 }
 
@@ -158,7 +163,8 @@ T const&
 {
     // The type exists.
     const auto iter = internalNameIndex.find(internalName);
-    LEVIATHAN_ASSERT(iter != internalNameIndex.end(), "Type not found!");
+    if(iter == internalNameIndex.end())
+        throw Leviathan::InvalidArgument("Type not found!");
     return getTypeData(iter->second);
 }
 
@@ -168,7 +174,8 @@ size_t
     TJsonRegistry<T>::getTypeId(const std::string& internalName)
 {
     const auto iter = internalNameIndex.find(internalName);
-    LEVIATHAN_ASSERT(iter != internalNameIndex.end(), "Type not found!");
+    if(iter == internalNameIndex.end())
+        throw Leviathan::InvalidArgument("Type not found!");
     return iter->second;
 }
 
@@ -181,7 +188,7 @@ const std::string&
         if(iter->second == id)
             return iter->first;
     }
-    throw std::runtime_error("no name for id found in this registry");
+    throw Leviathan::InvalidArgument("no name for id found in this registry");
 }
 
 template<class T>
