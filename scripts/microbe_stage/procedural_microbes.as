@@ -135,7 +135,7 @@ OrganelleTemplatePlaced@ getPosition(const string &in organelleName,
     r = r + initialOffset.Y;
 
     // Spiral search for space for the organelle
-    int radius = 1;
+    int radius = 2;
     while(true){
         //Moves into the ring of radius "radius" and center the old organelle
         Int2 radiusOffset = Int2(HEX_NEIGHBOUR_OFFSET[
@@ -155,13 +155,16 @@ OrganelleTemplatePlaced@ getPosition(const string &in organelleName,
                 for(int j = 0; j <= 5; ++j){
 
                     int rotation = (360 * j / 6);
-                    if(isValidPlacement(organelleName, q, r, rotation, organelleList)){
-                        return OrganelleTemplatePlaced(organelleName, q, r, rotation+180);
+                    if (GetEngine().GetRandom().GetNumber(0, 10) < 25)
+                    {
+                        if(isValidPlacement(organelleName, q, r, rotation, organelleList)){
+                            return OrganelleTemplatePlaced(organelleName, q, r, rotation+180);
+                        }
                     }
                 }
             }
         }
-        ++radius;
+        radius = radius+2;
     }
 
     return null;
