@@ -63,13 +63,36 @@ class Species{
             auto stringSize = GetEngine().GetRandom().GetNumber(MIN_INITIAL_LENGTH,
                 MAX_INITIAL_LENGTH);
 
-            //it should always have a nucleus and a cytoplasm.
+            const auto cytoplasmGene = getOrganelleDefinition("cytoplasm").gene;
+
+            // it should always have a nucleus and a cytoplasm.
             stringCode = getOrganelleDefinition("nucleus").gene +
-                getOrganelleDefinition("cytoplasm").gene;
+                cytoplasmGene;
+
+            // And then random cytoplasm padding
+            const auto cytoplasmPadding = GetEngine().GetRandom().GetNumber(0, 10);
+
+            for(int i = 0; i < cytoplasmPadding; ++i){
+                this.stringCode += cytoplasmGene;
+            }
 
             for(int i = 0; i < stringSize; ++i){
                 this.stringCode += getRandomLetter(false);
+
+                // Random cytoplasm padding
+                if(GetEngine().GetRandom().GetNumber(0, 10) > 8){
+
+                    if(GetEngine().GetRandom().GetNumber(0, 1) == 1)
+                        this.stringCode += cytoplasmGene;
+                    if(GetEngine().GetRandom().GetNumber(0, 1) == 1)
+                        this.stringCode += cytoplasmGene;
+                    if(GetEngine().GetRandom().GetNumber(0, 1) == 1)
+                        this.stringCode += cytoplasmGene;
+
+                    this.stringCode += cytoplasmGene;
+                }
             }
+
             this.speciesMembraneType = MEMBRANE_TYPE::MEMBRANE;
             this.colour = getRightColourForSpecies();
             commonConstructor(world);

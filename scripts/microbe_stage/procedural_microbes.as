@@ -50,26 +50,26 @@ void setupOrganelleLetters(){
 string getRandomLetter(bool isBacteria){
     if (!isBacteria)
     {
-    float i = GetEngine().GetRandom().GetNumber(0.f, maxEukaryoteScore);
-    for(uint index = 0; index < VALID_ORGANELLES.length(); ++index){
+        float i = GetEngine().GetRandom().GetNumber(0.f, maxEukaryoteScore);
+        for(uint index = 0; index < VALID_ORGANELLES.length(); ++index){
 
-        i -= VALID_ORGANELLE_CHANCES[index];
+            i -= VALID_ORGANELLE_CHANCES[index];
 
-        if(i <= 0){
-            return VALID_ORGANELLE_LETTERS[index];
+            if(i <= 0){
+                return VALID_ORGANELLE_LETTERS[index];
+            }
         }
-    }
     }
     else
     {
-    float i = GetEngine().GetRandom().GetNumber(0.f, maxProkaryoteScore);
-    for(uint index = 0; index < VALID_ORGANELLES.length(); ++index){
-        i -= VALID_PROKARYOTE_ORGANELLE_CHANCES[index];
+        float i = GetEngine().GetRandom().GetNumber(0.f, maxProkaryoteScore);
+        for(uint index = 0; index < VALID_ORGANELLES.length(); ++index){
+            i -= VALID_PROKARYOTE_ORGANELLE_CHANCES[index];
 
-        if(i <= 0){
-            return VALID_ORGANELLE_LETTERS[index];
+            if(i <= 0){
+                return VALID_ORGANELLE_LETTERS[index];
+            }
         }
-    }
     }
 
     // Just in case
@@ -135,15 +135,7 @@ OrganelleTemplatePlaced@ getPosition(const string &in organelleName,
     r = r + initialOffset.Y;
 
     // Spiral search for space for the organelle
-    int radius;
-    if ((GetEngine().GetRandom().GetNumber(0, 10)) <= 5)
-        {
-        radius = 1;
-        }
-    else
-        {
-        radius = 2;
-        }
+    int radius = 1;
 
     while(true){
         //Moves into the ring of radius "radius" and center the old organelle
@@ -164,24 +156,15 @@ OrganelleTemplatePlaced@ getPosition(const string &in organelleName,
                 for(int j = 0; j <= 5; ++j){
 
                     int rotation = (360 * j / 6);
-                    if (GetEngine().GetRandom().GetNumber(0, 10) < 25)
-                    {
-                        if(isValidPlacement(organelleName, q, r, rotation, organelleList)){
-                            return OrganelleTemplatePlaced(organelleName, q, r, rotation+180);
-                        }
+
+                    if(isValidPlacement(organelleName, q, r, rotation, organelleList)){
+                        return OrganelleTemplatePlaced(organelleName, q, r, rotation+180);
                     }
                 }
             }
         }
-    if ((GetEngine().GetRandom().GetNumber(0, 10)) <= 5)
-        {
+
         ++radius;
-        }
-    else
-        {
-        //  Sometimes add 2 (result in the lumpier cells) (COurtesy on Nein99)
-        radius+=2;
-        }
     }
 
     return null;
