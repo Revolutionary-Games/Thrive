@@ -135,7 +135,16 @@ OrganelleTemplatePlaced@ getPosition(const string &in organelleName,
     r = r + initialOffset.Y;
 
     // Spiral search for space for the organelle
-    int radius = 2;
+    int radius;
+    if ((GetEngine().GetRandom().GetNumber(0, 10)) <= 5)
+        {
+        radius = 1;
+        }
+    else
+        {
+        radius = 2;
+        }
+
     while(true){
         //Moves into the ring of radius "radius" and center the old organelle
         Int2 radiusOffset = Int2(HEX_NEIGHBOUR_OFFSET[
@@ -164,7 +173,15 @@ OrganelleTemplatePlaced@ getPosition(const string &in organelleName,
                 }
             }
         }
-        radius = radius+2;
+    if ((GetEngine().GetRandom().GetNumber(0, 10)) <= 5)
+        {
+        ++radius;
+        }
+    else
+        {
+        //  Sometimes add 2 (result in the lumpier cells) (COurtesy on Nein99)
+        radius+=2;
+        }
     }
 
     return null;
