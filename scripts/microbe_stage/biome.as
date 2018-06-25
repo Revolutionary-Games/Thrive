@@ -120,7 +120,7 @@ void setRandomBiome(CellStageWorld@ world){
     // Getting the size of the biome table.
     // Selecting a random biome.
     auto biome = GetEngine().GetRandom().GetNumber(0,
-        int(SimulationParameters::biomeRegistry().getSize()));
+        int(SimulationParameters::biomeRegistry().getSize()-1));
 
     // Switching to that biome.
     setBiome(biome, world);
