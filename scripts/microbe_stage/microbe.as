@@ -1,11 +1,9 @@
-// Was called everytime this object was created
-// setupAbsorberForAllCompounds
-#include "microbe_operations.as"
+#include "configs.as"
 #include "hex.as"
+#include "microbe_operations.as"
 #include "microbe_stage_hud.as"
-#include "species_system.as"
 #include "organelle_container.as"
-
+#include "species_system.as"
 
 //! Why is this needed? Is it for(the future when we don't want to
 //! absorb everything (or does this skip toxins, which aren't in compound registry)
@@ -19,60 +17,6 @@ void setupAbsorberForAllCompounds(CompoundAbsorberComponent@ absorber){
         absorber.setCanAbsorbCompound(a, true);
     }
 }
-
-// Quantity of physics time between each loop distributing compounds
-// to organelles. TODO: Modify to reflect microbe size.
-const uint COMPOUND_PROCESS_DISTRIBUTION_INTERVAL = 100;
-
-// Amount the microbes maxmimum bandwidth increases with per organelle
-// added. This is a temporary replacement for microbe surface area
-const float BANDWIDTH_PER_ORGANELLE = 1.0;
-
-// The of time it takes for the microbe to regenerate an amount of
-// bandwidth equal to maxBandwidth
-const uint BANDWIDTH_REFILL_DURATION = 800;
-
-// No idea what this does (if anything), but it isn't used in the
-// process system, or when ejecting compounds.
-const float STORAGE_EJECTION_THRESHHOLD = 0.8;
-
-// The amount of time between each loop to maintaining a fill level
-// below STORAGE_EJECTION_THRESHHOLD and eject useless compounds
-const uint EXCESS_COMPOUND_COLLECTION_INTERVAL = 1000;
-
-// The amount of hitpoints each organelle provides to a microbe.
-const uint MICROBE_HITPOINTS_PER_ORGANELLE = 10;
-
-// The minimum amount of oxytoxy (or any agent) needed to be able to shoot.
-const float MINIMUM_AGENT_EMISSION_AMOUNT = 0.1;
-
-// A sound effect thing for bumping with other cell i assume? Probably unused.
-const float RELATIVE_VELOCITY_TO_BUMP_SOUND = 6.0;
-
-// I think (emphasis on think) this is unused.
-const float INITIAL_EMISSION_RADIUS = 0.5;
-
-// The speed reduction when a cell is in rngulfing mode.
-const uint ENGULFING_MOVEMENT_DIVISION = 3;
-
-// The speed reduction when a cell is being engulfed.
-const uint ENGULFED_MOVEMENT_DIVISION = 4;
-
-// The amount of ATP per second spent on being on engulfing mode.
-const float ENGULFING_ATP_COST_SECOND = 1.5;
-
-// The minimum HP ratio between a cell and a possible engulfing victim.
-const float ENGULF_HP_RATIO_REQ = 1.5 ;
-
-// Cooldown between agent emissions, in milliseconds.
-const uint AGENT_EMISSION_COOLDOWN = 1000;
-
-
-// class Microbe{
-
-
-// }
-// Use "ObjectID microbeEntity" instead
 
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -159,6 +103,12 @@ class MicrobeComponent : ScriptComponent, OrganelleContainer{
     //     // storage.set("compoundPriorities", compoundPriorities)
     // }
 
+    //! Called from movement organelles to add movement force
+    void addMovementForce(const Float3 &in force)
+    {
+        queuedMovementForce += force;
+    }
+
 
     string speciesName;
     // TODO: initialize
@@ -212,6 +162,8 @@ class MicrobeComponent : ScriptComponent, OrganelleContainer{
 
     // ObjectID microbe;
     ObjectID microbeEntity = NULL_OBJECT;
+
+    Float3 queuedMovementForce = Float3(0, 0, 0);
 }
 
 //! Helper for MicrobeSystem
@@ -354,7 +306,9 @@ class MicrobeSystem : ScriptSystem{
 
             // Get amount of compounds
             uint64 compoundCount = SimulationParameters::compoundRegistry().getSize();
-            // This is only used in the process sytem to make sure you dont add anymore when out of space for a specific compound
+            // This is only used in the process sytem to make sure you
+            // dont add anymore when out of space for a specific
+            // compound
             compoundBag.storageSpace = microbeComponent.capacity;
 
             // StorageOrganelles
@@ -423,21 +377,21 @@ class MicrobeSystem : ScriptSystem{
                 MicrobeOperations::purgeCompounds(world, microbeEntity);
                 atpDamage(microbeEntity);
             }
-        //	Handle hitpoints
-        if((microbeComponent.hitpoints < microbeComponent.maxHitpoints))
+            //	Handle hitpoints
+            if((microbeComponent.hitpoints < microbeComponent.maxHitpoints))
             {
-            if(MicrobeOperations::getCompoundAmount(world, microbeEntity,
-                SimulationParameters::compoundRegistry().getTypeId("atp")) > 0)
+                if(MicrobeOperations::getCompoundAmount(world, microbeEntity,
+                        SimulationParameters::compoundRegistry().getTypeId("atp")) > 0)
                 {
-                microbeComponent.hitpoints += (REGENERATION_RATE/1000.0*logicTime);
-                if (microbeComponent.hitpoints > microbeComponent.maxHitpoints)
+                    microbeComponent.hitpoints += (REGENERATION_RATE/1000.0*logicTime);
+                    if (microbeComponent.hitpoints > microbeComponent.maxHitpoints)
                     {
-                    microbeComponent.hitpoints =  microbeComponent.maxHitpoints;
+                        microbeComponent.hitpoints =  microbeComponent.maxHitpoints;
                     }
                 }
             }
 
-    doReproductionStep(components,logicTime);
+            doReproductionStep(components,logicTime);
 
             if(microbeComponent.engulfMode){
                 // Drain atp
@@ -457,14 +411,125 @@ class MicrobeSystem : ScriptSystem{
 
             if(microbeComponent.isBeingEngulfed && microbeComponent.wasBeingEngulfed){
                 LOG_INFO("doing engulf damage");
-                MicrobeOperations::damage(world, microbeEntity, 50, "isBeingEngulfed - Microbe.update()s");
+                MicrobeOperations::damage(world, microbeEntity, 50,
+                    "isBeingEngulfed - Microbe.update()s");
                 // Else If we were but are no longer, being engulfed
             } else if(microbeComponent.wasBeingEngulfed){
                 LOG_INFO("removing engulf effect");
                 MicrobeOperations::removeEngulfedEffect(world, microbeEntity);
             }
 
-    microbeComponent.isBeingEngulfed = false;
+            // Reset movement
+            microbeComponent.queuedMovementForce = Float3(0, 0, 0);
+
+            // TODO: cache these as well like MicrobeComponent
+            auto pos = world.GetComponent_Position(microbeEntity);
+            auto rigidBodyComponent = world.GetComponent_Physics(microbeEntity);
+
+            // Add base movement
+            // The movementDirection is the player or AI input
+            // Rotate the 'thrust' based on our orientation
+            microbeComponent.queuedMovementForce += pos._Orientation.RotateVector(
+                microbeComponent.movementDirection * CELL_BASE_THRUST);
+
+            // Update organelles and then apply the movement force that was generated
+            for(uint i = 0; i < microbeComponent.organelles.length(); ++i){
+                microbeComponent.organelles[i].update(logicTime);
+            }
+
+            // Apply movement
+            if(microbeComponent.queuedMovementForce != Float3(0, 0, 0)){
+
+                if(rigidBodyComponent.Body is null){
+
+                    LOG_WARNING(
+                        "Skipping microbe movement apply for microbe without physics body");
+                } else {
+
+                    rigidBodyComponent.GiveImpulse(microbeComponent.queuedMovementForce,
+                        pos._Position);
+                }
+            }
+
+            // Rotation (this is unaffected by everything currently)
+            {
+                const auto target = Float4::QuaternionLookAt(pos._Position,
+                    microbeComponent.facingTargetPoint);
+                const auto current = pos._Orientation;
+                // Slerp 50% of the way each call
+                const auto interpolated = current.Slerp(target, 0.5f);
+                // const auto interpolated = target;
+
+                // Not sure if updating the Position component here does anything
+                pos._Orientation = interpolated;
+                pos.Marked = true;
+
+                // LOG_WRITE("turn = " + pos._Orientation.X + ", " + pos._Orientation.Y + ", "
+                //     + pos._Orientation.Z + ", " + pos._Orientation.W);
+
+                rigidBodyComponent.SetOnlyOrientation(interpolated);
+
+                // auto targetDirection = microbeComponent.facingTargetPoint - pos._Position;
+                // // TODO: direct multiplication was also used here
+                // // Float3 localTargetDirection = pos._Orientation.Inverse().RotateVector(
+                //      targetDirection);
+                // Float3 localTargetDirection = pos._Orientation.Inverse().RotateVector(
+                //      targetDirection);
+
+                // // Float3 localTargetDirection = pos._Orientation.ToAxis() - targetDirection;
+                // // localTargetDirection.Y = 0;
+                // // improper fix. facingTargetPoint somehow gets a non-zero y value.
+                // LOG_WRITE("local direction = " + localTargetDirection.X + ", " +
+                //     localTargetDirection.Y + ", " + localTargetDirection.Z);
+
+                // assert(localTargetDirection.Y < 0.01,
+                //     "Microbes should only move in the 2D plane with y = 0");
+
+                // // This doesn't help with the major jitter
+                // // // Round to zero if either is too small
+                // // if(abs(localTargetDirection.X) < 0.01)
+                // //     localTargetDirection.X = 0;
+                // // if(abs(localTargetDirection.Z) < 0.01)
+                // //     localTargetDirection.Z = 0;
+
+                // float alpha = atan2(-localTargetDirection.X, -localTargetDirection.Z);
+                // float absAlpha = abs(alpha) * RADIANS_TO_DEGREES;
+                // microbeComponent.microbetargetdirection = absAlpha;
+                // if(absAlpha > 1){
+
+                //     LOG_WRITE("Alpha is: " + alpha);
+                //     Float3 torqueForces = Float3(0, this.torque * alpha * logicTime *
+                //         microbeComponent.movementFactor * 0.00001f, 0);
+                //     rigidBodyComponent.AddOmega(torqueForces);
+
+                //     // Rotation is the same for each flagella so doing this
+                //     // makes things less likely to break and still work. Only
+                //     // tweak should be that there should be
+                //     // microbeComponent.movementFactor alternative for
+                //     // rotation that depends on flagella and cilia. The
+                //     // problem with this is that there are weird spots where
+                //     // this gets stuck at (hopefully works better with the
+                //     // rounding of X and Z)
+                //     // Float3 torqueForces = Float3(0, this.torque * alpha * logicTime *
+                //     //     microbeComponent.movementFactor * 0.0001f, 0);
+                //     // rigidBodyComponent.SetOmega(torqueForces);
+
+                // } else {
+                //     // Doesn't work
+                //     // // Slow down rotation if there is some
+                //     // auto omega = rigidBodyComponent.GetOmega();
+                //     // rigidBodyComponent.SetOmega(Float3(0, 0, 0));
+
+                //     // if(abs(omega.X) > 1 || abs(omega.Z) > 1){
+
+                //     //     rigidBodyComponent.AddOmega(Float3(-omega.X * 0.01f, 0,
+                //     //         -omega.Z * 0.01f));
+                //     // }
+                // }
+            }
+
+
+            microbeComponent.isBeingEngulfed = false;
             compoundAbsorberComponent.setAbsorbtionCapacity(microbeComponent.capacity);
         }
     }
@@ -491,97 +556,97 @@ class MicrobeSystem : ScriptSystem{
     void doReproductionStep(MicrobeSystemCached@ components, uint logicTime){
         auto microbeEntity = components.entity;
         //! Reproduction
-            MicrobeComponent@ microbeComponent = components.second;
-            MembraneComponent@ membraneComponent = components.fifth;
-             auto reproductionStageComplete = true;
-             array<PlacedOrganelle@> organellesToAdd;
+        MicrobeComponent@ microbeComponent = components.second;
+        MembraneComponent@ membraneComponent = components.fifth;
+        auto reproductionStageComplete = true;
+        array<PlacedOrganelle@> organellesToAdd;
 
-             // Grow all the large organelles.
-             for(uint i = 0; i < microbeComponent.organelles.length(); ++i){
-                    auto organelle = microbeComponent.organelles[i];
-                    // Update the organelle.
-                    organelle.update(logicTime);
-                    // We are in G1 phase of the cell cycle, duplicate all organelles.
-                    if(organelle.organelle.name != "nucleus" &&
-                        microbeComponent.reproductionStage == 0)
-                    {
-                        // If the organelle is not split, give it some
-                        // compounds to make it larger.
-                        if(organelle.getCompoundBin() < 2.0 && !organelle.wasSplit){
-                            // Give the organelle access to the
-                            // compound bag to take some compound.
-                            organelle.growOrganelle(
-                                world.GetComponent_CompoundBagComponent(microbeEntity),
-                                logicTime);
+        // Grow all the large organelles.
+        for(uint i = 0; i < microbeComponent.organelles.length(); ++i){
 
-                            reproductionStageComplete = false;
+            auto organelle = microbeComponent.organelles[i];
 
-                            // if the organelle was split and has a
-                            // bin less 1, it must have been damaged.
-                        } else if(organelle.getCompoundBin() < 1.0 && organelle.wasSplit){
-                            // Give the organelle access to the
-                            // compound bag to take some compound.
-                            organelle.growOrganelle(
-                                world.GetComponent_CompoundBagComponent(microbeEntity),
-                                logicTime);
+            // We are in G1 phase of the cell cycle, duplicate all organelles.
+            if(organelle.organelle.name != "nucleus" &&
+                microbeComponent.reproductionStage == 0)
+            {
+                // If the organelle is not split, give it some
+                // compounds to make it larger.
+                if(organelle.getCompoundBin() < 2.0 && !organelle.wasSplit){
+                    // Give the organelle access to the
+                    // compound bag to take some compound.
+                    organelle.growOrganelle(
+                        world.GetComponent_CompoundBagComponent(microbeEntity),
+                        logicTime);
 
-                            // If the organelle is twice its size...
-                        } else if(organelle.getCompoundBin() >= 2.0){
+                    reproductionStageComplete = false;
 
-                            //Queue this organelle for splitting after the loop.
-                            //(To avoid "cutting down the branch we're sitting on").
-                            organellesToAdd.insertLast(organelle);
-                        }
-                        // In the S phase, the nucleus grows as chromatin is duplicated.
-                    } else if (organelle.organelle.name == "nucleus" &&
-                        microbeComponent.reproductionStage == 1)
-                    {
-                        // If the nucleus hasn't finished replicating
-                        // its DNA, give it some compounds.
-                        if(organelle.getCompoundBin() < 2.0){
-                            // Give the organelle access to the compound
-                            // back to take some compound.
-                            organelle.growOrganelle(
-                                world.GetComponent_CompoundBagComponent(microbeEntity),
-                                logicTime);
-                            reproductionStageComplete = false;
-                        }
-                    }
+                    // if the organelle was split and has a
+                    // bin less 1, it must have been damaged.
+                } else if(organelle.getCompoundBin() < 1.0 && organelle.wasSplit){
+                    // Give the organelle access to the
+                    // compound bag to take some compound.
+                    organelle.growOrganelle(
+                        world.GetComponent_CompoundBagComponent(microbeEntity),
+                        logicTime);
+
+                    // If the organelle is twice its size...
+                } else if(organelle.getCompoundBin() >= 2.0){
+
+                    //Queue this organelle for splitting after the loop.
+                    //(To avoid "cutting down the branch we're sitting on").
+                    organellesToAdd.insertLast(organelle);
                 }
-
-                //Splitting the queued organelles.
-                for(uint i = 0; i < organellesToAdd.length(); ++i){
-                    PlacedOrganelle@ organelle = organellesToAdd[i];
-
-                    LOG_INFO("ready to split " + organelle.organelle.name);
-
-                    // Mark this organelle as done and return to its normal size.
-                    organelle.reset();
-                    organelle.wasSplit = true;
-                    // Create a second organelle.
-                    auto organelle2 = splitOrganelle(microbeEntity, organelle);
-                    organelle2.wasSplit = true;
-                    organelle2.isDuplicate = true;
-                    @organelle2.sisterOrganelle = organelle;
+                // In the S phase, the nucleus grows as chromatin is duplicated.
+            } else if (organelle.organelle.name == "nucleus" &&
+                microbeComponent.reproductionStage == 1)
+            {
+                // If the nucleus hasn't finished replicating
+                // its DNA, give it some compounds.
+                if(organelle.getCompoundBin() < 2.0){
+                    // Give the organelle access to the compound
+                    // back to take some compound.
+                    organelle.growOrganelle(
+                        world.GetComponent_CompoundBagComponent(microbeEntity),
+                        logicTime);
+                    reproductionStageComplete = false;
                 }
+            }
+        }
 
-                if(organellesToAdd.length() > 0){
-                    // Redo the cell membrane.
-                    membraneComponent.clear();
-                }
+        //Splitting the queued organelles.
+        for(uint i = 0; i < organellesToAdd.length(); ++i){
+            PlacedOrganelle@ organelle = organellesToAdd[i];
 
-                if(reproductionStageComplete && microbeComponent.reproductionStage < 2){
-                    microbeComponent.reproductionStage += 1;
-                }
+            LOG_INFO("ready to split " + organelle.organelle.name);
 
-                // To finish the G2 phase we just need more than a threshold of compounds.
-                if(microbeComponent.reproductionStage == 2 ||
-                    microbeComponent.reproductionStage == 3)
-                {
-                    readyToReproduce(microbeEntity);
-                }
+            // Mark this organelle as done and return to its normal size.
+            organelle.reset();
+            organelle.wasSplit = true;
+            // Create a second organelle.
+            auto organelle2 = splitOrganelle(microbeEntity, organelle);
+            organelle2.wasSplit = true;
+            organelle2.isDuplicate = true;
+            @organelle2.sisterOrganelle = organelle;
+        }
 
-    //! End of reproduction
+        if(organellesToAdd.length() > 0){
+            // Redo the cell membrane.
+            membraneComponent.clear();
+        }
+
+        if(reproductionStageComplete && microbeComponent.reproductionStage < 2){
+            microbeComponent.reproductionStage += 1;
+        }
+
+        // To finish the G2 phase we just need more than a threshold of compounds.
+        if(microbeComponent.reproductionStage == 2 ||
+            microbeComponent.reproductionStage == 3)
+        {
+            readyToReproduce(microbeEntity);
+        }
+
+        //! End of reproduction
     }
 
     // For updating the compound absorber

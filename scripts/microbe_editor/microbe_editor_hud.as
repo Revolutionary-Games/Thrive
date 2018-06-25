@@ -127,7 +127,6 @@ class MicrobeEditorHudSystem : ScriptSystem{
             ambienceSounds.Get().pause();
     }
 
-
     void Release()
     {
 

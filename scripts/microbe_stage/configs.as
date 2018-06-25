@@ -34,7 +34,60 @@ const auto DEFAULT_HEALTH = 100;
 // Amount of health pers econd regened in percent
 const auto REGENERATION_RATE = 1;
 
-// TODO: move these into gamestate
+const auto FLAGELLA_BASE_FORCE = 1.f;
+const auto CELL_BASE_THRUST = 0.5f;
+// Turning is currently set to be instant to avoid gyrating around the correct heading
+
+
+// Quantity of physics time between each loop distributing compounds
+// to organelles. TODO: Modify to reflect microbe size.
+const uint COMPOUND_PROCESS_DISTRIBUTION_INTERVAL = 100;
+
+// Amount the microbes maxmimum bandwidth increases with per organelle
+// added. This is a temporary replacement for microbe surface area
+const float BANDWIDTH_PER_ORGANELLE = 1.0;
+
+// The of time it takes for the microbe to regenerate an amount of
+// bandwidth equal to maxBandwidth
+const uint BANDWIDTH_REFILL_DURATION = 800;
+
+// No idea what this does (if anything), but it isn't used in the
+// process system, or when ejecting compounds.
+const float STORAGE_EJECTION_THRESHHOLD = 0.8;
+
+// The amount of time between each loop to maintaining a fill level
+// below STORAGE_EJECTION_THRESHHOLD and eject useless compounds
+const uint EXCESS_COMPOUND_COLLECTION_INTERVAL = 1000;
+
+// The amount of hitpoints each organelle provides to a microbe.
+const uint MICROBE_HITPOINTS_PER_ORGANELLE = 10;
+
+// The minimum amount of oxytoxy (or any agent) needed to be able to shoot.
+const float MINIMUM_AGENT_EMISSION_AMOUNT = 0.1;
+
+// A sound effect thing for bumping with other cell i assume? Probably unused.
+const float RELATIVE_VELOCITY_TO_BUMP_SOUND = 6.0;
+
+// I think (emphasis on think) this is unused.
+const float INITIAL_EMISSION_RADIUS = 0.5;
+
+// The speed reduction when a cell is in rngulfing mode.
+const uint ENGULFING_MOVEMENT_DIVISION = 3;
+
+// The speed reduction when a cell is being engulfed.
+const uint ENGULFED_MOVEMENT_DIVISION = 4;
+
+// The amount of ATP per second spent on being on engulfing mode.
+const float ENGULFING_ATP_COST_SECOND = 1.5;
+
+// The minimum HP ratio between a cell and a possible engulfing victim.
+const float ENGULF_HP_RATIO_REQ = 1.5 ;
+
+// Cooldown between agent emissions, in milliseconds.
+const uint AGENT_EMISSION_COOLDOWN = 1000;
+
+
+// TODO: move these into gamestate (this is very dirty)
 // must be global
 int chloroplast_Organelle_Number = 0;
 int toxin_Organelle_Number = 0;
