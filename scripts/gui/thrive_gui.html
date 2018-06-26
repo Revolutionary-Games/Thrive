@@ -28,6 +28,9 @@
           }
       });
     </script>
+    
+    
+    
 
     <!-- This blocks out everything until javascript has loaded (shows the tasteful thrive logo) -->
     <div id="loadingLogo" class="FullScreen"
@@ -205,6 +208,7 @@
 		
 	</div>
     
+    
       <!-- Editor button -->
       <div class="microbeToEditorButton DisabledButton" id="microbeToEditorButton">
 	  <div id="microbeEditorIcon"></div>
@@ -253,6 +257,13 @@ fine.</p>
 <div class="MenuButton" id="closeHelp">Close</div></div>
 	  </div>
 	  
+    <!-- Slide Function -->
+    <script>
+        $('#compoundExpand').click(function(ev){
+                $('#compoundsPanel').slideToggle(1000);
+                ev.stopPropagation();
+        });
+    </script>
 	</div>
 
     
