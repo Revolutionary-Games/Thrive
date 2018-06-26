@@ -442,6 +442,8 @@ class Species{
     }
 
     string name;
+    string genus;
+    string epithet;
     bool isBacteria;
     MEMBRANE_TYPE speciesMembraneType;
     string stringCode;

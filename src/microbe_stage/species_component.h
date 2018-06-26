@@ -31,6 +31,8 @@ public:
     bool isBacteria;
     MEMBRANE_TYPE speciesMembraneType;
     std::string name;
+    std::string genus;
+    std::string epithet;
 
     // TODO: get the id from the simulation parameters.
     size_t id;

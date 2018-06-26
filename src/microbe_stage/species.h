@@ -18,6 +18,8 @@ public:
     double spawnDensity = 0.0;
     Ogre::ColourValue colour;
     bool isBacteria;
+    std::string genus;
+    std::string epithet;
     MEMBRANE_TYPE speciesMembraneType;
     std::map<size_t, unsigned int> startingCompounds;
     std::map<int, size_t> organelles; // TODO: get a position as the key.
