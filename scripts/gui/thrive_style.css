@@ -313,19 +313,18 @@ DisabledButton:hover {
 }
 
 #compoundsPanel {
-	position:absolute;
-	right:0px;
-	bottom:40px;
-	width:360px;
-	height:360px;
+	position: absolute;
+	right: 0px;
+	bottom: 40px;
+	width: 360px;
+	height: 360px;
 	background-image: url("../../Textures/gui/bevel/CompoundPanel.png");
-	text-indent:40px;
-	line-height:40px;
-	font-size:18pt;
-	white-space:nowrap;
-	overflow-y:scroll;
-	overflow-x:hidden;
-    display: none;
+	text-indent: 40px;
+	line-height: 40px;
+	font-size: 18pt;
+	white-space: nowrap;
+	overflow-y: auto;
+	overflow-x: hidden;
 }
 
 #ATPIcon {

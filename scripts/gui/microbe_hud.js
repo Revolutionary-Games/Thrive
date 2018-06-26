@@ -122,9 +122,20 @@ function onReadyToEnterEditor(){
 }
 
 
-function onCompoundPanelClicked(event){
-
+function onCompoundPanelClicked(event)
+{
     playButtonPressSound();
+    
+    $("#compoundsPanel").slideToggle(400, "swing", function(){
+        
+        let visible = $(this).is(":visible");
+
+        // TODO: could just animate this image to rotate
+        document.getElementById("compoundExpandIcon").style.backgroundImage = visible ?
+            "url(../../Textures/gui/bevel/ExpandDownIcon.png)" :
+            "url(../../Textures/gui/bevel/ExpandUpIcon.png)";
+    });
+
 
 }
 
