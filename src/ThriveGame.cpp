@@ -1397,6 +1397,16 @@ bool
         ANGELSCRIPT_REGISTERFAIL;
     }
 
+    if(engine->RegisterObjectProperty("SpeciesComponent", "string genus",
+           asOFFSET(SpeciesComponent, genus)) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectProperty("SpeciesComponent", "string epithet",
+           asOFFSET(SpeciesComponent, epithet)) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
     if(engine->RegisterObjectProperty("SpeciesComponent", "bool isBacteria",
            asOFFSET(SpeciesComponent, isBacteria)) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
