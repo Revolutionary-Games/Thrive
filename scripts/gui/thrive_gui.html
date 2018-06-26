@@ -223,12 +223,13 @@
         <div class="MenuButton DisabledButton">Save Game</div>
         <div class="MenuButton DisabledButton">Load Game</div>
         <div class="MenuButton DisabledButton">Statistics</div>
-        <div class="MenuButton DisabledButton">Help</div>
+        <div class="MenuButton" id="helpButton">Help</div>
 		<div class="MenuButton DisabledButton">Options</div>
 		<div class="MenuButton DisabledButton">Main Menu</div>
         <div class="MenuButton" id="quitButton">Exit</div>
 		</div>
-		<div id="HelpText"><p>Collect compounds throughout the
+        
+		<div class="HelpText" id="helpText">Collect compounds throughout the
 		environment to process in your cell's organelles and generate
 		ATP. Be careful not to let your ATP stores run out, or you
 		will lose health and eventually die.
@@ -238,23 +239,27 @@ Glucose <br> Yellow – Ammonia <br> Orange - Hydrogen Sulfide <br> Purple - Pho
 Glucose makes ATP, and Ammonia and Phosphates are crucial for
 reproduction. <br><br>
 
-Discover and unlock the Toxin Vacuole and the Chloroplast floating in
-the environment. <br><br>
-
 Press E to release a dangerous agent, Oxytoxy NT, to kill other cells
-and then collect the spilled compounds. <br><br>
+and then collect the spilled compounds if you have a toxin vacuole. <br><br>
 
-You can also engulf cells that are smaller than you by pressing
+You can also engulf cells and bacteria that are smaller than you by pressing
 G. This will cost additional ATP and will slow you down. Don't forget
 to press G a second time to stop engulfing. <br><br>
 
 To reproduce you need to divide each of your organelles into two and
-then duplicate the DNA in your nucleus. Each organelle needs 2 glucose
-and 1 amino acids (made from 1 glucose and 1 ammonia) to split in
-half.  Make sure your glucose (white clouds) store is always above 16
-and your ammonia (yellow clouds) store is above 12 and you'll be
-fine.</p>
-<div class="MenuButton" id="closeHelp">Close</div></div>
+then duplicate the DNA in your nucleus. Each organelle needs 1 ammonia
+and 1 phosphate to split in
+half. 
+<br><br>
+
+There are many Organelles in the editor for you to evolve.
+
+<br><br>
+Be wary because your competitors are evolving alongside you.
+<br><br>
+
+<div class="MenuButton" id="closeHelp">Close</div>
+</div>
 	  </div>
 	  
     <!-- Slide Function -->
@@ -264,6 +269,7 @@ fine.</p>
                 ev.stopPropagation();
         });
     </script>
+    
 	</div>
 
     
