@@ -18,7 +18,27 @@ function runMicrobeHUDSetup(){
     // Compound Panel
     document.getElementById("compoundExpand").addEventListener(
         "click", onCompoundPanelClicked, true);
+        
+    // Pause Menu Clicked
+    document.getElementById("mainMenuButton").addEventListener(
+        "click", onMenuClicked, true);
 
+    // Pause Menu closed
+    document.getElementById("resumeButton").addEventListener(
+        "click", onResumeClicked, true);
+        
+    // Quit Button Clicked
+    document.getElementById("quitButton").addEventListener(
+        "click", quitGame, true);
+        
+    // Help Button Clicked
+    document.getElementById("helpButton").addEventListener(
+        "click", openHelp, true);
+        
+    // Close Help Button Clicked
+    document.getElementById("closeHelp").addEventListener(
+        "click", closeHelp, true);
+        
     // Editor button is initially disabled
     document.getElementById("microbeToEditorButton").classList.add("DisabledButton");
 
@@ -86,6 +106,14 @@ function runMicrobeHUDSetup(){
     microbeHudSetupRan = true;
 }
 
+// Quit Button
+function quitGame(){
+    
+    playButtonPressSound();
+    requireEngine();
+    Leviathan.Quit();
+}
+
 //! Enables the editor button
 function onReadyToEnterEditor(){
     
@@ -97,8 +125,48 @@ function onReadyToEnterEditor(){
 function onCompoundPanelClicked(event){
 
     playButtonPressSound();
+
 }
 
+function openHelp(event){
+
+    playButtonPressSound();
+
+    let pause = document.getElementById("pauseMenu");
+    pause.style.display = "none";
+    
+    let help = document.getElementById("helpText");
+    help.style.display = "block";
+    
+}
+
+function closeHelp(event){
+
+    playButtonPressSound();
+    
+    let pause = document.getElementById("pauseMenu");
+    pause.style.display = "block";
+    
+    let help = document.getElementById("helpText");
+    help.style.display = "none";
+    
+}
+
+function onMenuClicked(event){
+
+    playButtonPressSound();
+    let pause = document.getElementById("pauseOverlay");
+    pause.style.display = "block";
+     let help = document.getElementById("helpText");
+    help.style.display = "none";
+}
+
+function onResumeClicked(event){
+
+    playButtonPressSound();
+    let pause = document.getElementById("pauseOverlay");
+    pause.style.display = "none";
+}
 
 function killPlayerCell(event){
 
