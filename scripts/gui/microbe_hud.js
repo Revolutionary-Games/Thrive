@@ -14,6 +14,10 @@ function runMicrobeHUDSetup(){
 
     document.getElementById("microbeToEditorButton").addEventListener(
         "click", onEditorButtonClicked, true);
+    
+    // Compound Panel
+    document.getElementById("compoundExpand").addEventListener(
+        "click", onCompoundPanelClicked, true);
 
     // Editor button is initially disabled
     document.getElementById("microbeToEditorButton").classList.add("DisabledButton");
@@ -88,6 +92,13 @@ function onReadyToEnterEditor(){
     readyToEdit = true;
     document.getElementById("microbeToEditorButton").classList.remove("DisabledButton");
 }
+
+
+function onCompoundPanelClicked(event){
+
+    playButtonPressSound();
+}
+
 
 function killPlayerCell(event){
 
