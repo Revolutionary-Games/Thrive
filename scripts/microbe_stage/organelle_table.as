@@ -258,7 +258,7 @@ void setupOrganelles(){
     nucleusParameters.components = {
         nucleusComponentFactory,
     // Cell takes up 10 spaces, so 50 cytoplasm
-    storageOrganelleFactory(50.0f)
+    storageOrganelleFactory(55.0f)
     };
     nucleusParameters.processes = {
     };
