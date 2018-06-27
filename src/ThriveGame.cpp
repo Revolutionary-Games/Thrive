@@ -9,6 +9,7 @@
 #include "main_menu_keypresses.h"
 #include "microbe_stage/player_microbe_control.h"
 #include "microbe_stage/simulation_parameters.h"
+#include "microbe_stage/species_name_controller.h"
 #include "thrive_net_handler.h"
 #include "thrive_version.h"
 #include "thrive_world_factory.h"
@@ -1115,6 +1116,14 @@ bool
 }
 
 // Wrappers for registerSimulationDataAndJsons
+
+SpeciesNameController*
+    getNameWrapper()
+{
+
+    return &SimulationParameters::speciesNameController;
+}
+
 TJsonRegistry<Compound>*
     getCompoundRegistryWrapper()
 {
@@ -1148,6 +1157,29 @@ bool
     if(!registerJsonRegistryHeldTypes(engine))
         return false;
 
+    if(engine->RegisterObjectType(
+           "SpeciesNameController", 0, asOBJ_REF | asOBJ_NOCOUNT) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectMethod("SpeciesNameController",
+           "array<string>@ getPrefixes()",
+           asMETHOD(SpeciesNameController, getPrefixes), asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectMethod("SpeciesNameController",
+           "array<string>@ getCofixes()",
+           asMETHOD(SpeciesNameController, getCofixes), asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectMethod("SpeciesNameController",
+           "array<string>@ getSuffixes()",
+           asMETHOD(SpeciesNameController, getSuffixes), asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
     if(!registerJsonRegistry<TJsonRegistry<Compound>, Compound>(
            engine, "TJsonRegistryCompound", "Compound")) {
         return false;
@@ -1163,7 +1195,14 @@ bool
         return false;
     }
 
+
     if(engine->SetDefaultNamespace("SimulationParameters") < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterGlobalFunction(
+           "SpeciesNameController@ speciesNameController()",
+           asFUNCTION(getNameWrapper), asCALL_CDECL) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
     }
 

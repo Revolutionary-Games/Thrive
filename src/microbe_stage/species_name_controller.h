@@ -1,5 +1,7 @@
 #pragma once
 
+#include <Script/ScriptConversionHelpers.h>
+#include <add_on/scriptarray/scriptarray.h>
 #include <string>
 #include <vector>
 
@@ -10,6 +12,15 @@ public:
     std::vector<std::string> prefixes;
     std::vector<std::string> cofixes;
     std::vector<std::string> suffixes;
+
+    CScriptArray*
+        getPrefixes();
+
+    CScriptArray*
+        getCofixes();
+
+    CScriptArray*
+        getSuffixes();
 
     SpeciesNameController();
 
