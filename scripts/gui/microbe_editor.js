@@ -9,7 +9,26 @@ function doEnterMicrobeEditor(){
 
     document.getElementById("topLevelMicrobeStage").style.display = "none";
     document.getElementById("topLevelMicrobeEditor").style.display = "block";
+    // Pause Menu Clicked
+    document.getElementById("mainMenuButtonEditor").addEventListener(
+        "click", onMenuClickedEditor, true);
 
+    // Pause Menu closed
+    document.getElementById("resumeButtonEditor").addEventListener(
+        "click", onResumeClickedEditor, true);
+        
+    // Quit Button Clicked
+    document.getElementById("quitButtonEditor").addEventListener(
+        "click", quitGameEditor, true);
+        
+    // Help Button Clicked
+    document.getElementById("helpButtonEditor").addEventListener(
+        "click", openHelpEditor, true);
+        
+    // Close Help Button Clicked
+    document.getElementById("closeHelpEditor").addEventListener(
+        "click", closeHelpEditor, true);
+        
     window.setTimeout(() => {
         // Enable finish button
         onFinishButtonEnable();
@@ -31,6 +50,46 @@ function doEnterMicrobeEditor(){
     }
 }
 
+function onResumeClickedEditor(event){
+
+    playButtonPressSound();
+    let pause = document.getElementById("pauseOverlayEditor");
+    pause.style.display = "none";
+}
+
+function openHelpEditor(event){
+
+    playButtonPressSound();
+
+    let pause = document.getElementById("pauseMenuEditor");
+    pause.style.display = "none";
+    
+    let help = document.getElementById("helpTextEditor");
+    help.style.display = "block";
+    
+}
+
+function closeHelpEditor(event){
+
+    playButtonPressSound();
+    
+    let pause = document.getElementById("pauseMenuEditor");
+    pause.style.display = "block";
+    
+    let help = document.getElementById("helpTextEditor");
+    help.style.display = "none";
+    
+}
+
+function onMenuClickedEditor(event){
+
+    playButtonPressSound();
+    let pause = document.getElementById("pauseOverlayEditor");
+    pause.style.display = "block";
+     let help = document.getElementById("helpTextEditor");
+    help.style.display = "none";
+}
+
 //! Called to exit the editor
 function doExitMicrobeEditor(){
     document.getElementById("topLevelMicrobeStage").style.display = "block";
@@ -41,6 +100,13 @@ function onFinishButtonEnable(){
 
     readyToFinishEdit = true;
     document.getElementById("microbeEditorFinishButton").classList.remove("DisabledButton");
+}
+
+function quitGameEditor(){
+    
+    playButtonPressSound();
+    requireEngine();
+    Leviathan.Quit();
 }
 
 function onFinishButtonClicked(event){

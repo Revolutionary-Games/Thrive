@@ -226,7 +226,7 @@
         <div class="MenuButton" id="helpButton">Help</div>
 		<div class="MenuButton DisabledButton">Options</div>
 		<div class="MenuButton DisabledButton">Main Menu</div>
-        <div class="MenuButton" id="quitButton">Exit</div>
+        <div class="MenuButton" id="quitButtonHud">Exit</div>
 		</div>
         
 		<div class="HelpText" id="helpText">Collect compounds throughout the
@@ -306,20 +306,22 @@ Be wary because your competitors are evolving alongside you.
             <div id="ThermoplastIcon"></div>Thermoplast<br>20 MP</td>
 	  </tr><tr>
 	  <td id="AddVacuole" class="OrganelleListItem"><div id="VacuoleIcon"></div>Vacuole<br>15 MP</td>
-	  <td id="AddToxinVacuole" class="OrganelleListItem DisabledButton">
+	  <td id="AddToxinVacuole" class="OrganelleListItem">
         <div id="ToxinVacuoleIcon"></div>Toxin Vacuole<br>40 MP</td>
 	  <td id="AddBioluminescent" class="OrganelleListItem DisabledButton">
         <div id="BioluminescentIcon"></div>Bioluminescent Vacuole<br>N/A MP</td>
 	  </tr><tr>
-	      <td id="AddChemoplast" class="OrganelleListItem DisabledButton">
+	      <td id="AddChemoplast" class="OrganelleListItem">
             <div id="ChemoplastIcon"></div>Chemoplast<br>20 MP</td>
+          <td id="AddNitrogenFixingPlastid" class="OrganelleListItem">
+            <div id="PlastidIcon"></div>Nitrogen Fixing Plastid<br>20 MP</td>
 	  </tr></table>
 	  <div class="OrganelleListTitle">EXTERNAL ORGANELLES</div>
 	  <table><tr>
 	      <td id="AddFlagellum" class="OrganelleListItem">
             <div id="FlagellumIcon"></div>Flagellum<br>25 MP</td>
-	      <td id="AddPilus" class="OrganelleListItem DisabledButton">
-            <div id="PilusIcon"></div>Predatory Pilus<br>N/A MP</td>
+	      <td id="AddPilus" class="OrganelleListItem">
+            <div id="PilusIcon"></div>Predatory Pilus<br>25 MP</td>
 	      <td id="AddCilia" class="OrganelleListItem DisabledButton">
             <div id="CiliaIcon"></div>Cilia<br>20 MP</td>
 	  </tr></table>
@@ -328,7 +330,7 @@ Be wary because your competitors are evolving alongside you.
 
       <!-- Bottom bar -->
       <div id="microbeEditorBottomBar" class="Panel">
-        <div id="mainMenuButton">MENU</div>
+        <div id="mainMenuButtonEditor">MENU</div>
         <div id="infoBar" class="Panel">
 	    <div id="infoBarLeft" class="Panel"></div>
 		<div id="infoBarCentreEditor" class="Panel">
@@ -358,17 +360,17 @@ Be wary because your competitors are evolving alongside you.
 	  <!-- Pause menu -->
 	  <div id="pauseOverlayEditor" class="Overlay">
       <div id="pauseMenuEditor" class="MainMenu">
-	    <div class="MenuButton" id="resumeButton">Resume</div>
+	    <div class="MenuButton" id="resumeButtonEditor">Resume</div>
         <div class="MenuButton DisabledButton">Quicksave</div>
         <div class="MenuButton DisabledButton">Save Game</div>
         <div class="MenuButton DisabledButton">Load Game</div>
         <div class="MenuButton DisabledButton">Statistics</div>
-        <div class="MenuButton DisabledButton">Help</div>
+        <div class="MenuButton" id="helpButtonEditor">Help</div>
 		<div class="MenuButton DisabledButton">Options</div>
 		<div class="MenuButton DisabledButton">Main Menu</div>
-        <div class="MenuButton" id="quitButton">Exit</div>
+        <div class="MenuButton" id="quitButtonEditor">Exit</div>
 		</div>
-		<div id="HelpTextEditor"><p>Every time you reproduce, you will
+		<div class="HelpText" id="helpTextEditor"><p>Every time you reproduce, you will
 		enter the Microbe Editor, where you can make changes to your
 		species (by adding, moving, or removing organelles) to
 		increase your species' success. <br><br>
@@ -387,7 +389,7 @@ Toxin Vacuoles: Produces toxins (called OxyToxyNT). <br>
 Flagella: Moves your cell by consuming ATP. <br><br>
 
 Cytoplasm: Increases the rate of compound absorbtion.</p>
-          <div class="MenuButton" id="closeHelp">Close</div></div>
+          <div class="MenuButton" id="closeHelpEditor">Close</div></div>
 	  </div>
     </div>    
     
