@@ -2,6 +2,8 @@
 
 #include <Define.h>
 #include <Include.h>
+#include <Script/ScriptConversionHelpers.h>
+#include <add_on/scriptarray/scriptarray.h>
 #include <fstream>
 #include <json/json.h>
 
@@ -21,9 +23,6 @@ SpeciesNameController::SpeciesNameController(std::string jsonFilePath)
                                          "failed to load!");
     Json::Value rootElement;
     jsonFile >> rootElement;
-    // TODO: add some sort of validation of the receiving JSON file, otherwise
-    // it fails silently and makes the screen go black.
-    jsonFile.close();
 
     for(Json::Value::ArrayIndex i = 0; i < rootElement["prefixes"].size(); i++)
         prefixes.push_back(rootElement["prefixes"][i].asString());
@@ -33,4 +32,31 @@ SpeciesNameController::SpeciesNameController(std::string jsonFilePath)
 
     for(Json::Value::ArrayIndex i = 0; i < rootElement["suffixes"].size(); i++)
         suffixes.push_back(rootElement["suffixes"][i].asString());
+
+    // TODO: add some sort of validation of the receiving JSON file, otherwise
+    // it fails silently and makes the screen go black.
+    jsonFile.close();
+}
+CScriptArray*
+    SpeciesNameController::getPrefixes()
+{
+    // Method taken from Leviathan::ConvertVectorToASArray
+    return Leviathan::ConvertIteratorToASArray(std::begin(prefixes),
+        std::end(prefixes), Leviathan::ScriptExecutor::Get()->GetASEngine());
+}
+
+CScriptArray*
+    SpeciesNameController::getCofixes()
+{
+    // Method taken from Leviathan::ConvertVectorToASArray
+    return Leviathan::ConvertIteratorToASArray(std::begin(cofixes),
+        std::end(cofixes), Leviathan::ScriptExecutor::Get()->GetASEngine());
+}
+
+CScriptArray*
+    SpeciesNameController::getSuffixes()
+{
+    // Method taken from Leviathan::ConvertVectorToASArray
+    return Leviathan::ConvertIteratorToASArray(std::begin(suffixes),
+        std::end(suffixes), Leviathan::ScriptExecutor::Get()->GetASEngine());
 }
