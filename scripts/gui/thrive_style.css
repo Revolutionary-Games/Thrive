@@ -299,6 +299,24 @@ DisabledButton:hover {
 	background-image: url("../../Textures/gui/bevel/MediumTwoHover.png");
 }
 
+#mainMenuButtonEditor {
+	position: absolute;
+	width:120px;
+	height:40px;
+	left:0px;
+	bottom:0px;
+	background-image: url("../../Textures/gui/bevel/MediumTwoNormal.png");
+	text-align: center;
+    line-height: 40px;
+	font-size:18pt;
+	text-indent:-40px;
+}
+
+#mainMenuButtonEditor:hover {
+	background-image: url("../../Textures/gui/bevel/MediumTwoHover.png");
+}
+
+
 #compoundExpand {
 	position: absolute;
 	width:80px;

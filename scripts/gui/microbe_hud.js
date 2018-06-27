@@ -28,8 +28,8 @@ function runMicrobeHUDSetup(){
         "click", onResumeClicked, true);
         
     // Quit Button Clicked
-    document.getElementById("quitButton").addEventListener(
-        "click", quitGame, true);
+    document.getElementById("quitButtonHud").addEventListener(
+        "click", quitGameHud, true);
         
     // Help Button Clicked
     document.getElementById("helpButton").addEventListener(
@@ -107,7 +107,7 @@ function runMicrobeHUDSetup(){
 }
 
 // Quit Button
-function quitGame(){
+function quitGameHud(){
     
     playButtonPressSound();
     requireEngine();
