@@ -858,6 +858,17 @@ DisabledButton:hover {
 	left:calc(50% - 30px);
 	width:60px;
 	height:60px;
+    background-size:contain; 
+    background-image: url("../../Textures/gui/bevel/CytoplasmIcon.png");
+}
+
+#PlastidIcon {
+	position:relative;
+	left:calc(50% - 30px);
+	width:60px;
+	height:60px;
+    background-size:contain; 
+    background-image: url("../../Textures/gui/bevel/NitroplastidIcon.png");
 }
 
 #MitochondrionIcon {
@@ -865,6 +876,7 @@ DisabledButton:hover {
 	left:calc(50% - 30px);
 	width:60px;
 	height:60px;
+    background-size:contain; 
 	background-image: url("../../Textures/gui/bevel/MitochondrionIcon.png");
 }
 
@@ -873,6 +885,7 @@ DisabledButton:hover {
 	left:calc(50% - 30px);
 	width:60px;
 	height:60px;
+    background-size:contain; 
 	background-image: url("../../Textures/gui/bevel/ChloroplastIcon.png");
 }
 
@@ -881,6 +894,7 @@ DisabledButton:hover {
 	left:calc(50% - 30px);
 	width:60px;
 	height:60px;
+    background-size:contain; 
 	background-image: url("../../Textures/gui/bevel/ThermoplastIcon.png");
 }
 
@@ -889,6 +903,7 @@ DisabledButton:hover {
 	left:calc(50% - 30px);
 	width:60px;
 	height:60px;
+    background-size:contain; 
 	background-image: url("../../Textures/gui/bevel/VacuoleIcon.png");
 }
 
@@ -897,6 +912,7 @@ DisabledButton:hover {
 	left:calc(50% - 30px);
 	width:60px;
 	height:60px;
+    background-size:contain; 
 	background-image: url("../../Textures/gui/bevel/ToxinVacuoleIcon.png");
 }
 
@@ -905,6 +921,7 @@ DisabledButton:hover {
 	left:calc(50% - 30px);
 	width:60px;
 	height:60px;
+    background-size:contain; 
 	background-image: url("../../Textures/gui/bevel/BioluminescentIcon.png");
 }
 
@@ -913,7 +930,8 @@ DisabledButton:hover {
 	left:calc(50% - 30px);
 	width:60px;
 	height:60px;
-	/* background-image: url("../../Textures/gui/bevel/ChemoplastIcon.png"); */
+    background-size:contain; 
+	 background-image: url("../../Textures/gui/bevel/ChemoplastIcon.png"); 
 }
 
 #FlagellumIcon {
@@ -921,6 +939,7 @@ DisabledButton:hover {
 	left:calc(50% - 30px);
 	width:60px;
 	height:60px;
+    background-size:contain; 
 	background-image: url("../../Textures/gui/bevel/FlagellumIcon.png");
 }
 
@@ -929,6 +948,7 @@ DisabledButton:hover {
 	left:calc(50% - 30px);
 	width:60px;
 	height:60px;
+    background-size:contain; 
 	background-image: url("../../Textures/gui/bevel/PilusIcon.png");
 }
 
@@ -937,5 +957,6 @@ DisabledButton:hover {
 	left:calc(50% - 30px);
 	width:60px;
 	height:60px;
-	/* background-image: url("../../Textures/gui/bevel/CiliaIcon.png"); */
+    background-size:contain; 
+	 background-image: url("../../Textures/gui/bevel/CiliaIcon.png"); 
 }
