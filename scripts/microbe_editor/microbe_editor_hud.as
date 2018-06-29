@@ -245,6 +245,102 @@ class MicrobeEditorHudSystem : ScriptSystem{
     // this.activeButton = null; // stores button, not name
     bool helpPanelOpen = false;
     bool menuOpen = false;
+    void nucleusClicked(){
+//     if(this.activeButton !is null){
+//         this.activeButton.enable()
+//     }
+    setActiveAction("nucleus");
+ }
+
+void flagellumClicked(){
+//     if(this.activeButton !is null){
+//         this.activeButton.enable()
+//     }
+//     this.activeButton = this.organelleButtons["flagellum"]
+//     this.activeButton.disable()
+    setActiveAction("flagellum");
+ }
+
+void cytoplasmClicked(){
+//     if(this.activeButton !is null){
+//         this.activeButton.enable()
+//     }
+//     this.activeButton = this.organelleButtons["cytoplasm"]
+//     this.activeButton.disable()
+    setActiveAction("cytoplasm");
+}
+
+void mitochondriaClicked(){
+//     if(this.activeButton !is null){
+//         this.activeButton.enable()
+//     }
+//     this.activeButton = this.organelleButtons["mitochondrion"]
+//     this.activeButton.disable()
+   setActiveAction("mitochondrion");
+}
+
+void chloroplastClicked(){
+//     if(this.activeButton !is null){
+//         this.activeButton.enable()
+//     }
+//     this.activeButton = this.organelleButtons["chloroplast"]
+//     this.activeButton.disable()
+    setActiveAction("chloroplast");
+}
+
+void vacuoleClicked(){
+//     if(this.activeButton !is null){
+//         this.activeButton.enable()
+//     }
+//     this.activeButton = this.organelleButtons["vacuole"]
+//     this.activeButton.disable()
+    setActiveAction("vacuole");
+}
+
+void plastidClicked(){
+//     if(this.activeButton !is null){
+//         this.activeButton.enable()
+//     }
+//     this.activeButton = this.organelleButtons["Toxin"]
+//     this.activeButton.disable()
+    setActiveAction("nitrogenfixingplastid");
+}
+
+void chemoplastClicked(){
+//     if(this.activeButton !is null){
+//         this.activeButton.enable()
+//     }
+//     this.activeButton = this.organelleButtons["Toxin"]
+//     this.activeButton.disable()
+    setActiveAction("chemoplast");
+}
+
+void pilusClicked(){
+//     if(this.activeButton !is null){
+//         this.activeButton.enable()
+//     }
+//     this.activeButton = this.organelleButtons["Toxin"]
+//     this.activeButton.disable()
+//this.setActiveAction("pilus")
+}
+
+void toxinClicked(){
+//     if(this.activeButton !is null){
+//         this.activeButton.enable()
+//     }
+//     this.activeButton = this.organelleButtons["Toxin"]
+//     this.activeButton.disable()
+    setActiveAction("oxytoxy");
+}
+
+
+void removeClicked(){
+//     if(this.activeButton !is null){
+//         this.activeButton.enable()
+//     }
+//     this.activeButton = null
+    setActiveAction("remove");
+}
 }
 
 // Callbacks from the key handlers
@@ -401,84 +497,7 @@ class MicrobeEditorHudSystem : ScriptSystem{
 //     this.helpOpen = not this.helpOpen
 // }
 
-// void MicrobeEditorHudSystem.nucleusClicked(){
-//     if(this.activeButton !is null){
-//         this.activeButton.enable()
-//     }
-//     this.setActiveAction("nucleus")
-// }
 
-// void MicrobeEditorHudSystem.flagellumClicked(){
-//     if(this.activeButton !is null){
-//         this.activeButton.enable()
-//     }
-//     this.activeButton = this.organelleButtons["flagellum"]
-//     this.activeButton.disable()
-//     this.setActiveAction("flagellum")
-// }
-
-// void MicrobeEditorHudSystem.cytoplasmClicked(){
-//     if(this.activeButton !is null){
-//         this.activeButton.enable()
-//     }
-//     this.activeButton = this.organelleButtons["cytoplasm"]
-//     this.activeButton.disable()
-//     this.setActiveAction("cytoplasm")
-// }
-
-// void MicrobeEditorHudSystem.mitochondriaClicked(){
-//     if(this.activeButton !is null){
-//         this.activeButton.enable()
-//     }
-//     this.activeButton = this.organelleButtons["mitochondrion"]
-//     this.activeButton.disable()
-//     this.setActiveAction("mitochondrion")
-// }
-
-// void MicrobeEditorHudSystem.chloroplastClicked(){
-//     if(this.activeButton !is null){
-//         this.activeButton.enable()
-//     }
-//     this.activeButton = this.organelleButtons["chloroplast"]
-//     this.activeButton.disable()
-//     this.setActiveAction("chloroplast")
-// }
-
-// void MicrobeEditorHudSystem.aminoSynthesizerClicked(){
-//     if(this.activeButton !is null){
-//         this.activeButton.enable()
-//     }
-//     this.activeButton = this.organelleButtons["aminosynthesizer"]
-//     this.activeButton.disable()
-//     this.setActiveAction("aminosynthesizer")
-// }
-
-// void MicrobeEditorHudSystem.vacuoleClicked(){
-//     if(this.activeButton !is null){
-//         this.activeButton.enable()
-//     }
-//     this.activeButton = this.organelleButtons["vacuole"]
-//     this.activeButton.disable()
-//     this.setActiveAction("vacuole")
-// }
-
-// void MicrobeEditorHudSystem.toxinClicked(){
-//     if(this.activeButton !is null){
-//         this.activeButton.enable()
-//     }
-//     this.activeButton = this.organelleButtons["Toxin"]
-//     this.activeButton.disable()
-//     this.setActiveAction("oxytoxy")
-// }
-
-
-// void MicrobeEditorHudSystem.removeClicked(){
-//     if(this.activeButton !is null){
-//         this.activeButton.enable()
-//     }
-//     this.activeButton = null
-//     this.setActiveAction("remove")
-// }
 
 // void MicrobeEditorHudSystem.rootSaveCreationClicked(){
 //     getComponent("gui_sounds", g_luaEngine.currentGameState, SoundSourceComponent
