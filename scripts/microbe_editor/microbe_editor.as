@@ -1,4 +1,5 @@
 #include "microbe_editor_hud.as"
+#include "microbe_operations.as"
 /*
 ////////////////////////////////////////////////////////////////////////////////
 // MicrobeEditor
@@ -94,15 +95,21 @@ class MicrobeEditor{
         GetThriveGame().playerData().setBool("edited_microbe", true);
 
         const ObjectID microbe = GetThriveGame().playerData().activeCreature();
+        CellStageWorld@ world = GetThriveGame().getCellStage();
+
+        assert(world !is null, "world is null");
+        LOG_INFO("Microbe ID is "+microbe);
 
         // We now just fetch the organelles in the player's creature
         MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
             GetThriveGame().getCellStage().GetScriptComponentHolder(
                 "MicrobeComponent").Find(microbe));
 
+        // This is failing here
         SpeciesComponent@ playerSpecies = MicrobeOperations::getSpeciesComponent(
-            GetThriveGame().getCellStage(), microbe);
+            world, microbe);
 
+        LOG_INFO(playerSpecies.name);
         assert(microbeComponent !is null, "player creature state is invalid");
         assert(playerSpecies !is null, "player creature state is invalid");
 
