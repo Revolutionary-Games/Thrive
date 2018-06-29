@@ -344,16 +344,21 @@ class MicrobeAISystem : ScriptSystem{
         MicrobeComponent@ microbeComponent = components.second;
         Position@ position = components.third;
 
-    // Target position
-    Float3 targetPosition = Float3(0, 0, 0);
-    //make AI move randomly for now
-        auto randAngle = GetEngine().GetRandom().GetFloat(0, 2*PI);
-        auto randDist = GetEngine().GetRandom().GetFloat(10,aiComponent.movementRadius);
-        targetPosition = Float3(cos(randAngle) * randDist,0, sin(randAngle)* randDist);
-        auto vec = (targetPosition - position._Position);
-        aiComponent.direction = vec.Normalize();
-        microbeComponent.facingTargetPoint = targetPosition;
-        microbeComponent.movementDirection = Float3(0, 0, -AI_MOVEMENT_SPEED);
+        // This is just temporary so i can look at how bacteria look stationary for testing the new texture.
+        if (!MicrobeOperations::getSpeciesComponent(world, microbeEntity).isBacteria)
+            {
+            // Target position
+            Float3 targetPosition = Float3(0, 0, 0);
+            //make AI move randomly for now
+            auto randAngle = GetEngine().GetRandom().GetFloat(0, 2*PI);
+            auto randDist = GetEngine().GetRandom().GetFloat(10,aiComponent.movementRadius);
+            targetPosition = Float3(cos(randAngle) * randDist,0, sin(randAngle)* randDist);
+            auto vec = (targetPosition - position._Position);
+            aiComponent.direction = vec.Normalize();
+            microbeComponent.facingTargetPoint = targetPosition;
+            microbeComponent.movementDirection = Float3(0, 0, -AI_MOVEMENT_SPEED);
+        }
+
     }
 
     void Clear(){
