@@ -32,6 +32,7 @@ funcdef void PlacementFunctionType(const string &in actionName);
 
 
 class MicrobeEditor{
+
     MicrobeEditor(MicrobeEditorHudSystem@ hud){
 
         @hudSystem = hud;
@@ -44,6 +45,8 @@ class MicrobeEditor{
             {"chloroplast", PlacementFunctionType(this.addOrganelle)},
             {"oxytoxy", PlacementFunctionType(this.addOrganelle)},
             {"vacuole", PlacementFunctionType(this.addOrganelle)},
+            {"nitrogenfixingplastid", PlacementFunctionType(this.addOrganelle)},
+            {"chemoplast", PlacementFunctionType(this.addOrganelle)},
             {"remove", PlacementFunctionType(this.removeOrganelle)}
         };
     }
@@ -366,7 +369,7 @@ class MicrobeEditor{
             // this.createHexComponent(hex.q + organelle.position.q, hex.r + organelle.position.r)
             // }
             // }*/
-            // activeActionName = "cytoplasm";
+             //activeActionName = "cytoplasm";
             // Engine.playerData().setActiveCreature(this.currentMicrobeEntity.id, GameState.MICROBE_EDITOR.wrapper);
         },
         null);
@@ -650,28 +653,28 @@ class MicrobeEditor{
         //     OgreSceneNodeComponent);
         // }
 
-        // if (activeActionName){
-        //     dictionary oldData = {["name"]=this.activeActionName,
-        //     ["q"]=-q,
-        //     ["r"]=-r,
-        //     ["rotation"]=(180+rotation) % 360};
-        //     auto hexes = OrganelleFactory.checkSize(oldData);
-        //     auto colour = ColourValue(2, 0, 0, 0.4);
-        //     bool touching = false;
-        //     for(_, hex in ipairs(hexes)){
-        //         if(this.surroundsOrganelle(-hex.q + q, -hex.r + r)){
-        //             colour = ColourValue(0, 2, 0, 0.4)
-        //         }
-        //     }
-        //     for(_, hex in ipairs(hexes)){
-        //         auto organelle = MicrobeSystem.getOrganelleAt(this.currentMicrobeEntity, -hex.q + q, -hex.r + r)
-        //         if(organelle){
-        //             if(organelle.name ~= "cytoplasm"){
-        //                 colour = ColourValue(2, 0, 0, 0.4)
-        //             }
-        //         }
-        //     }
-        //     if (CEGUIWindow.getWindowUnderMouse().getName() == 'root'){
+        if (activeActionName != ""){
+           /* dictionary oldData = {["name"]=this.activeActionName,
+             ["q"]=-q,
+             ["r"]=-r,
+             ["rotation"]=(180+rotation) % 360};
+             auto hexes = OrganelleFactory.checkSize(oldData);
+             auto colour = ColourValue(2, 0, 0, 0.4);
+             bool touching = false;
+             for(_, hex in ipairs(hexes)){
+                 if(this.surroundsOrganelle(-hex.q + q, -hex.r + r)){
+                     colour = ColourValue(0, 2, 0, 0.4)
+                 }
+             }
+             for(_, hex in ipairs(hexes)){
+                 auto organelle = MicrobeSystem.getOrganelleAt(this.currentMicrobeEntity, -hex.q + q, -hex.r + r)
+                 if(organelle){
+                     if(organelle.name ~= "cytoplasm"){
+                        colour = ColourValue(2, 0, 0, 0.4)
+                     }
+                 }
+             }*/
+        //if (CEGUIWindow.getWindowUnderMouse().getName() == 'root'){
 
         //         dictionary newData = {
         //             ["name"]=activeActionName,
@@ -688,7 +691,8 @@ class MicrobeEditor{
         //             sceneNode[i].transform.touch();
         //         }
         //     }
-        // }
+        //}
+        }
     }
 
     //checks whether the hex at q, r has an organelle in its surroundeing hexes.
@@ -732,9 +736,7 @@ class MicrobeEditor{
     // marks the last action that has been done (not undone, but
     // possibly redone), is 0 if there is none
     private int actionIndex;
-
     private string activeActionName;
-
     // This is the container that has the edited organelles in it.
     // This is populated when entering and used to update the player's species template on exit
     private OrganelleContainer editedMicrobe;
