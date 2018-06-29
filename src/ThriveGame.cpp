@@ -1180,6 +1180,13 @@ bool
         ANGELSCRIPT_REGISTERFAIL;
     }
 
+    if(engine->RegisterObjectMethod("SpeciesNameController",
+           "array<string>@ getPrefixCofix()",
+           asMETHOD(SpeciesNameController, getPrefixCofix),
+           asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
     if(!registerJsonRegistry<TJsonRegistry<Compound>, Compound>(
            engine, "TJsonRegistryCompound", "Compound")) {
         return false;
