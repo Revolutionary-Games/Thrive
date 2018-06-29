@@ -24,6 +24,9 @@ SpeciesNameController::SpeciesNameController(std::string jsonFilePath)
     Json::Value rootElement;
     jsonFile >> rootElement;
 
+	for(Json::Value::ArrayIndex i = 0; i < rootElement["prefixcofix"].size(); i++)
+        prefixcofixes.push_back(rootElement["prefixcofix"][i].asString());
+
     for(Json::Value::ArrayIndex i = 0; i < rootElement["prefixes"].size(); i++)
         prefixes.push_back(rootElement["prefixes"][i].asString());
 
@@ -59,4 +62,13 @@ CScriptArray*
     // Method taken from Leviathan::ConvertVectorToASArray
     return Leviathan::ConvertIteratorToASArray(std::begin(suffixes),
         std::end(suffixes), Leviathan::ScriptExecutor::Get()->GetASEngine());
+}
+
+CScriptArray*
+    SpeciesNameController::getPrefixCofix()
+{
+    // Method taken from Leviathan::ConvertVectorToASArray
+    return Leviathan::ConvertIteratorToASArray(std::begin(prefixcofixes),
+        std::end(prefixcofixes),
+        Leviathan::ScriptExecutor::Get()->GetASEngine());
 }

@@ -9,6 +9,7 @@ namespace thrive {
 
 class SpeciesNameController {
 public:
+    std::vector<std::string> prefixcofixes;
     std::vector<std::string> prefixes;
     std::vector<std::string> cofixes;
     std::vector<std::string> suffixes;
@@ -21,6 +22,9 @@ public:
 
     CScriptArray*
         getSuffixes();
+
+    CScriptArray*
+        getPrefixCofix();
 
     SpeciesNameController();
 
