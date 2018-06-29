@@ -381,7 +381,7 @@ size_t
         for(size_t i = 0, end = vertices2D.size(); i < end + 1; i++) {
             // Finds the UV coordinates be projecting onto a plane and
             // stretching to fit a circle.
-            const double currentRadians = 3.1416 / 2 * i / end;
+            const double currentRadians =  3.1416 * i / end;
             meshVertices[writeIndex++] = {
                 Ogre::Vector3(vertices2D[i % end].x,
                     vertices2D[i % end].z + height / 2, vertices2D[i % end].y),
