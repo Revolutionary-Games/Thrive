@@ -61,13 +61,11 @@ const dictionary DEFAULT_INITIAL_COMPOUNDS =
 
 string randomSpeciesName(){
     return "Species_" + formatInt(GetEngine().GetRandom().GetNumber(0, 10000));
-    // Gotta use the latin names (But they aren't used?)
 }
 
 // Bacteria also need names
 string randomBacteriaName(){
     return "Bacteria_" + formatInt(GetEngine().GetRandom().GetNumber(0, 10000));
-    // TODO: Should also use latin names here
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -431,7 +429,7 @@ class Species{
         if (GetEngine().GetRandom().GetNumber(0,100)==1)
         {
             LOG_INFO("New Genus of bacteria");
-            // We can do more fun stuff here later, such as genus names
+            // We can do more fun stuff here later
             genus = generateNameSection();
             this.colour = randomProkayroteColour();
         }
