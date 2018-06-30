@@ -86,6 +86,12 @@ class Species{
             name = randomSpeciesName();
             genus = generateNameSection();
             epithet = generateNameSection();
+            // Variables used in AI to determine general behavior
+            aggression = GetEngine().GetRandom().GetNumber(0.0f,
+                200.0f);
+            fear = GetEngine().GetRandom().GetNumber(0.0f,
+                200.0f);
+
             auto stringSize = GetEngine().GetRandom().GetNumber(MIN_INITIAL_LENGTH,
                 MAX_INITIAL_LENGTH);
 
@@ -147,6 +153,13 @@ class Species{
         {
             name = randomSpeciesName();
             epithet = generateNameSection();
+
+            // Variables used in AI to determine general behavior
+            aggression = GetEngine().GetRandom().GetNumber(0.0f,
+                200.0f);
+            fear = GetEngine().GetRandom().GetNumber(0.0f,
+                200.0f);
+
             // Chance of new color needs to be low
             if (GetEngine().GetRandom().GetNumber(0,100)==1)
             {
@@ -374,6 +387,13 @@ class Species{
         name = randomBacteriaName();
         genus = generateNameSection();
         epithet = generateNameSection();
+
+        // Variables used in AI to determine general behavior
+        aggression = GetEngine().GetRandom().GetNumber(0.0f,
+                200.0f);
+        fear = GetEngine().GetRandom().GetNumber(0.0f,
+                200.0f);
+
         // Bacteria are tiny, start off with a max of 3 hexes (maybe
         // we should start them all off with just one? )
         auto stringSize = GetEngine().GetRandom().GetNumber(0,2);
@@ -426,6 +446,13 @@ class Species{
     void mutateBacteria(Species@ parent, CellStageWorld@ world){
         name = randomBacteriaName();
         epithet = generateNameSection();
+
+        // Variables used in AI to determine general behavior
+        aggression = GetEngine().GetRandom().GetNumber(0.0f,
+                200.0f);
+        fear = GetEngine().GetRandom().GetNumber(0.0f,
+                200.0f);
+
         if (GetEngine().GetRandom().GetNumber(0,100)==1)
         {
             LOG_INFO("New Genus of bacteria");
@@ -477,6 +504,8 @@ class Species{
     string genus;
     string epithet;
     bool isBacteria;
+    double aggression = 100.0f;
+    double fear = 100.0f;
     MEMBRANE_TYPE speciesMembraneType;
     string stringCode;
     int population = INITIAL_POPULATION;
