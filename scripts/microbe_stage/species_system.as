@@ -25,6 +25,27 @@ Float4 randomProkayroteColour(float opaqueness = randomOpacityBacteria()){
         opaqueness);
 }
 
+string generateNameSection(){
+
+    auto prefixCofixList = SimulationParameters::speciesNameController().getPrefixCofix();
+    auto prefix = SimulationParameters::speciesNameController().getPrefixes();
+    auto cofix = SimulationParameters::speciesNameController().getCofixes();
+    auto suffix = SimulationParameters::speciesNameController().getSuffixes();
+    string newName = "";
+    if (GetEngine().GetRandom().GetNumber(0,100) >= 10){
+        string ourPrefix = prefix[GetEngine().GetRandom().GetNumber(0,prefix.length()-1)];
+        string ourCofix = cofix[GetEngine().GetRandom().GetNumber(0,cofix.length()-1)];
+        string ourSuffix = suffix[GetEngine().GetRandom().GetNumber(0,suffix.length()-1)];
+        LOG_INFO(ourPrefix+ourCofix+ourSuffix);
+    }
+    else{
+        string ourPrefixCofix = prefixCofixList[GetEngine().GetRandom().GetNumber(0,prefixCofixList.length()-1)];
+        string ourSuffix = suffix[GetEngine().GetRandom().GetNumber(0,suffix.length()-1)];
+        LOG_INFO(ourPrefixCofix+ourSuffix);
+    }
+    return "";
+}
+
 const dictionary DEFAULT_INITIAL_COMPOUNDS =
     {
         {"atp", InitialCompound(10,25)},
@@ -34,12 +55,16 @@ const dictionary DEFAULT_INITIAL_COMPOUNDS =
     };
 
 string randomSpeciesName(){
+    generateNameSection();
+    generateNameSection();
     return "Species_" + formatInt(GetEngine().GetRandom().GetNumber(0, 10000));
     // Gotta use the latin names (But they aren't used?)
 }
 
 // Bacteria also need names
 string randomBacteriaName(){
+    generateNameSection();
+    generateNameSection();
     return "Bacteria_" + formatInt(GetEngine().GetRandom().GetNumber(0, 10000));
     // TODO: Should also use latin names here
 }
