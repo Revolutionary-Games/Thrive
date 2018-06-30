@@ -37,13 +37,18 @@ string generateNameSection(){
         string ourCofix = cofix[GetEngine().GetRandom().GetNumber(0,cofix.length()-1)];
         string ourSuffix = suffix[GetEngine().GetRandom().GetNumber(0,suffix.length()-1)];
         LOG_INFO(ourPrefix+ourCofix+ourSuffix);
+        newName = ourPrefix+ourCofix+ourSuffix;
     }
     else{
         string ourPrefixCofix = prefixCofixList[GetEngine().GetRandom().GetNumber(0,prefixCofixList.length()-1)];
         string ourSuffix = suffix[GetEngine().GetRandom().GetNumber(0,suffix.length()-1)];
         LOG_INFO(ourPrefixCofix+ourSuffix);
+        newName=ourPrefixCofix+ourSuffix;
     }
-    return "";
+    // TODO: DO more stuff here to improve names
+    // (remove double letters when the prefix ends with and the cofix starts with the same letter
+    // Remove weird things that come up like rc
+    return newName;
 }
 
 const dictionary DEFAULT_INITIAL_COMPOUNDS =
@@ -55,16 +60,12 @@ const dictionary DEFAULT_INITIAL_COMPOUNDS =
     };
 
 string randomSpeciesName(){
-    generateNameSection();
-    generateNameSection();
     return "Species_" + formatInt(GetEngine().GetRandom().GetNumber(0, 10000));
     // Gotta use the latin names (But they aren't used?)
 }
 
 // Bacteria also need names
 string randomBacteriaName(){
-    generateNameSection();
-    generateNameSection();
     return "Bacteria_" + formatInt(GetEngine().GetRandom().GetNumber(0, 10000));
     // TODO: Should also use latin names here
 }
@@ -85,6 +86,8 @@ class Species{
         if (!isBacteria)
         {
             name = randomSpeciesName();
+            genus = generateNameSection();
+            epithet = generateNameSection();
             auto stringSize = GetEngine().GetRandom().GetNumber(MIN_INITIAL_LENGTH,
                 MAX_INITIAL_LENGTH);
 
@@ -145,11 +148,13 @@ class Species{
         if (!isBacteria)
         {
             name = randomSpeciesName();
+            epithet = generateNameSection();
             // Chance of new color needs to be low
             if (GetEngine().GetRandom().GetNumber(0,100)==1)
             {
                 LOG_INFO("New Genus");
                 // We can do more fun stuff here later
+                genus = generateNameSection();
                 this.colour = randomColour();
             }
             else
@@ -369,6 +374,8 @@ class Species{
         int bacterialFlagellumChance = 10;
 
         name = randomBacteriaName();
+        genus = generateNameSection();
+        epithet = generateNameSection();
         // Bacteria are tiny, start off with a max of 3 hexes (maybe
         // we should start them all off with just one? )
         auto stringSize = GetEngine().GetRandom().GetNumber(0,2);
@@ -420,10 +427,12 @@ class Species{
 
     void mutateBacteria(Species@ parent, CellStageWorld@ world){
         name = randomBacteriaName();
+        epithet = generateNameSection();
         if (GetEngine().GetRandom().GetNumber(0,100)==1)
         {
             LOG_INFO("New Genus of bacteria");
             // We can do more fun stuff here later, such as genus names
+            genus = generateNameSection();
             this.colour = randomProkayroteColour();
         }
         else
