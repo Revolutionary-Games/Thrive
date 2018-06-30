@@ -21,7 +21,10 @@ class MicrobeAIControllerComponent : ScriptComponent{
     int movementRadius = 20;
     int reevalutationInterval = 1000;
     int intervalRemaining;
+    double previousStoredCompounds = 0.0f;
     Float3 direction = Float3(0, 0, 0);
+    double speciesAggression = -1.0f;
+    double speciesFear = -1.0f;
     bool hasTargetEmitterPosition = false;
     Float3 targetEmitterPosition = Float3(0, 0, 0);
     bool hasSearchedCompoundId = false;
@@ -153,15 +156,25 @@ class MicrobeAISystem : ScriptSystem{
             MicrobeAIControllerComponent@ aiComponent = components.first;
             MicrobeComponent@ microbeComponent = components.second;
             Position@ position = components.third;
-    // ai interval
+            // ai interval
             aiComponent.intervalRemaining += logicTime;
+            // Cache fear and aggression as we dont wnat to be calling "getSpecies" every frame for every microbe (maybe its not a big deal)
+            if (aiComponent.speciesAggression == -1.0f)
+                {
+                aiComponent.speciesAggression = MicrobeOperations::getSpeciesComponent(world, microbeEntity).aggression;
+                }
+            if (aiComponent.speciesFear == -1.0f)
+                {
+                aiComponent.speciesFear = MicrobeOperations::getSpeciesComponent(world, microbeEntity).fear;
+                }
+
             while(aiComponent.intervalRemaining > aiComponent.reevalutationInterval) {
                 aiComponent.intervalRemaining -= aiComponent.reevalutationInterval;
                 int numberOfAgentVacuoless = int(
                     microbeComponent.specialStorageOrganelles[formatUInt(oxytoxyId)]);
 
-    prey = getNearestPreyItem(components);
-    predator = getNearestPredatorItem(components);
+                prey = getNearestPreyItem(components);
+                predator = getNearestPredatorItem(components);
 
                 //     if(numberOfAgentVacuoles > 0 || microbeComponent.maxHitpoints > 100){
                 //         this.preyCandidates[6] = Entity(PLAYER_NAME, this.gameState.wrapper);
@@ -246,6 +259,8 @@ class MicrobeAISystem : ScriptSystem{
     //do run and tumble
     doRunAndTumble(components);
             }
+            //cache stored compounds for use in the next frame (For Runa nd tumble)
+            aiComponent.previousStoredCompounds = microbeComponent.stored;
         }
     }
 
