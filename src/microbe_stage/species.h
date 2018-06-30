@@ -20,6 +20,8 @@ public:
     bool isBacteria;
     std::string genus;
     std::string epithet;
+    double fear;
+    double aggression;
     MEMBRANE_TYPE speciesMembraneType;
     std::map<size_t, unsigned int> startingCompounds;
     std::map<int, size_t> organelles; // TODO: get a position as the key.

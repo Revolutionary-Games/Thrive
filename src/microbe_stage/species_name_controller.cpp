@@ -24,7 +24,8 @@ SpeciesNameController::SpeciesNameController(std::string jsonFilePath)
     Json::Value rootElement;
     jsonFile >> rootElement;
 
-	for(Json::Value::ArrayIndex i = 0; i < rootElement["prefixcofix"].size(); i++)
+    for(Json::Value::ArrayIndex i = 0; i < rootElement["prefixcofix"].size();
+        i++)
         prefixcofixes.push_back(rootElement["prefixcofix"][i].asString());
 
     for(Json::Value::ArrayIndex i = 0; i < rootElement["prefixes"].size(); i++)

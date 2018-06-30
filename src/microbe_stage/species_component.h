@@ -33,6 +33,8 @@ public:
     std::string name;
     std::string genus;
     std::string epithet;
+    double aggression;
+    double fear;
 
     // TODO: get the id from the simulation parameters.
     size_t id;

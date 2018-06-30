@@ -1458,6 +1458,15 @@ bool
         ANGELSCRIPT_REGISTERFAIL;
     }
 
+    if(engine->RegisterObjectProperty("SpeciesComponent", "double aggression",
+           asOFFSET(SpeciesComponent, aggression)) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectProperty("SpeciesComponent", "double fear",
+           asOFFSET(SpeciesComponent, fear)) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
 
     // ------------------------------------ //
 
