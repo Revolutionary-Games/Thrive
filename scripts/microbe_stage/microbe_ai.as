@@ -30,6 +30,10 @@ class MicrobeAIControllerComponent : ScriptComponent{
     bool hasSearchedCompoundId = false;
     CompoundId searchedCompoundId;
     ObjectID prey = NULL_OBJECT;
+    //Prey and predator lists
+    array<ObjectID>@ predatoryMicrobes;
+    array<ObjectID>@ preyMicrobes;
+
 }
 
 // void MicrobeAIControllerComponent.storage(storage){
@@ -173,8 +177,8 @@ class MicrobeAISystem : ScriptSystem{
                 int numberOfAgentVacuoless = int(
                     microbeComponent.specialStorageOrganelles[formatUInt(oxytoxyId)]);
 
-                prey = getNearestPreyItem(components);
-                predator = getNearestPredatorItem(components);
+                prey = getNearestPreyItem(components,allMicrobes);
+                predator = getNearestPredatorItem(components,allMicrobes);
 
                 //     if(numberOfAgentVacuoles > 0 || microbeComponent.maxHitpoints > 100){
                 //         this.preyCandidates[6] = Entity(PLAYER_NAME, this.gameState.wrapper);
@@ -264,14 +268,17 @@ class MicrobeAISystem : ScriptSystem{
         }
     }
 
-    // For getting the nearest prey item
-    ObjectID getNearestPreyItem(MicrobeAISystemCached@ components){
+    // Building the prey list and retruning teh best option
+    ObjectID getNearestPreyItem(MicrobeAISystemCached@ components, array<ObjectID>@ allMicrobes){
     // Set Components
         ObjectID microbeEntity = components.entity;
         MicrobeAIControllerComponent@ aiComponent = components.first;
         MicrobeComponent@ microbeComponent = components.second;
         Position@ position = components.third;
-
+        // Retrive nearest potential prey
+        for (uint i = 0; i < allMicrobes.length(); i++)
+            {
+            }
        // For getting the prey
                 //for (m_microbeEntityId,  in pairs (microbes_number)){
                 //         // The m_ prefix is used here for some bizarre reason
@@ -316,14 +323,20 @@ class MicrobeAISystem : ScriptSystem{
     return NULL_OBJECT;
     }
 
-    // For getting the nearest predator
-    ObjectID getNearestPredatorItem(MicrobeAISystemCached@ components){
+    // Building the predator list and retruning the scariest one
+    ObjectID getNearestPredatorItem(MicrobeAISystemCached@ components, array<ObjectID>@ allMicrobes){
     // Set Components
         ObjectID microbeEntity = components.entity;
         MicrobeAIControllerComponent@ aiComponent = components.first;
         MicrobeComponent@ microbeComponent = components.second;
         Position@ position = components.third;
 
+        // Retrive the nearest predator
+        // For our desires lets just say all microbes bigger are potential predators
+        // and later extend this to include those with toxins and pilus
+        for (uint i = 0; i < allMicrobes.length(); i++)
+            {
+            }
                 // For getting the predator
                 //     for(predatorEntityId, predatorEntity in pairs (microbes_number)){
                 //         auto predatorMicrobeComponent = getComponent(predatorEntity, MicrobeComponent);

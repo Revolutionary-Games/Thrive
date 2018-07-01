@@ -106,7 +106,7 @@ class MovementOrganelle : OrganelleComponent{
         // For changing animation speed
         Animated@ animated = organelle.world.GetComponent_Animated(organelle.organelleEntity);
 #endif //ANIMATE_FLAGELLA
-        
+
         auto forceMagnitude = this.force.Dot(direction);
         if(forceMagnitude > 0){
             if(direction.LengthSquared() < EPSILON || this.force.LengthSquared() < EPSILON){
