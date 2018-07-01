@@ -55,6 +55,13 @@ def parseExtraArgs
   
   $svnUser = ARGV[0]
   ARGV.shift
+
+  # Handle provided password
+  if $svnUser.count ':'
+    split = $svnUser.split ':'
+    $svnUser = split[0]
+    $svnPassword = split[1]
+  end
   
 end
 
@@ -63,6 +70,7 @@ require_relative 'RubySetupSystem/Libraries/SetupLeviathan.rb'
 
 if !$svnUser
   $svnUser = "thrive"
+  $svnPassword = "thrive"
 end
 
 WantedURL = "https://#{$svnUser}@boostslair.com/svn/thrive_assets"
@@ -112,7 +120,14 @@ Dir.chdir(ProjectDir) do
   if not File.exist? "assets"
     
     info "Getting assets"
-    system(["svn", "checkout", "--username", $svnUser, WantedURL, "assets"].join(' '))
+
+    if $svnPassword
+      system("svn", "checkout", "--username", $svnUser, "--password", $svnPassword,
+             WantedURL, "assets")
+    else
+      system("svn", "checkout", "--username", $svnUser, WantedURL, "assets")
+    end
+
     if $?.exitstatus != 0
       onError "Failed to get thrive assets repository"
     end
@@ -125,7 +140,11 @@ Dir.chdir(ProjectDir) do
 
       verifySVNUrl(WantedURL)
 
-      system "svn up"
+      if $svnPassword
+        system("svn", "up", "--username", $svnUser, "--password", $svnPassword)
+      else
+        system "svn up"
+      end
       onError "Failed to update thrive assets" if $?.exitstatus > 0
       
     end
