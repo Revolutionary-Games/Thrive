@@ -11,6 +11,16 @@ const float AI_MOVEMENT_SPEED = 0.5;
 //
 // Component for identifying and determining AI controlled microbes.
 ////////////////////////////////////////////////////////////////////////////////
+
+// Enum for state machine
+    enum lifeState
+        {
+        NEUTRAL_STATE,
+        GATHERING_STATE,
+        FLEEING_STATE,
+        PREDATING_STATE
+        }
+
 class MicrobeAIControllerComponent : ScriptComponent{
 
     MicrobeAIControllerComponent(){
@@ -30,9 +40,12 @@ class MicrobeAIControllerComponent : ScriptComponent{
     bool hasSearchedCompoundId = false;
     CompoundId searchedCompoundId;
     ObjectID prey = NULL_OBJECT;
-    //Prey and predator lists
+    // Prey and predator lists
     array<ObjectID>@ predatoryMicrobes;
     array<ObjectID>@ preyMicrobes;
+
+
+    lifeState lifeState = NEUTRAL_STATE;
 
 }
 
@@ -180,6 +193,32 @@ class MicrobeAISystem : ScriptSystem{
                 prey = getNearestPreyItem(components,allMicrobes);
                 predator = getNearestPredatorItem(components,allMicrobes);
 
+                switch (aiComponent.lifeState)
+                    {
+                    case NEUTRAL_STATE:
+                        {
+                        //In this state you just sit there and analyze your environment
+                        break;
+                        }
+                    case GATHERING_STATE:
+                        {
+                        //In this state you gather compounds
+                        doRunAndTumble(components);
+                        break;
+                        }
+                    case FLEEING_STATE:
+                        {
+                        //In this state you run from preadtory microbes
+                        dealWithPredators();
+                        break;
+                        }
+                    case PREDATING_STATE:
+                        {
+                        dealWithPrey();
+                        break;
+                        }
+                    }
+
                 //     if(numberOfAgentVacuoles > 0 || microbeComponent.maxHitpoints > 100){
                 //         this.preyCandidates[6] = Entity(PLAYER_NAME, this.gameState.wrapper);
                 //         this.preyEntityToIndexMap[Entity(PLAYER_NAME, this.gameState.wrapper).id] = 6;
@@ -260,8 +299,6 @@ class MicrobeAISystem : ScriptSystem{
             //     // If we are NOT currenty heading towards an emitter
 
             //   }
-    //do run and tumble
-    doRunAndTumble(components);
             }
             //cache stored compounds for use in the next frame (For Runa nd tumble)
             aiComponent.previousStoredCompounds = microbeComponent.stored;
@@ -363,6 +400,16 @@ class MicrobeAISystem : ScriptSystem{
                 //     }
     return NULL_OBJECT;
     }
+
+    // For chasing down and killing prey in various ways
+    void dealWithPrey()
+        {
+        }
+
+    //For self defense (not nessessarily fleeing)
+    void dealWithPredators()
+        {
+        }
 
     // For doing run and tumble
     void doRunAndTumble(MicrobeAISystemCached@ components){
