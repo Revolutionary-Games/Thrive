@@ -315,6 +315,16 @@ class MicrobeAISystem : ScriptSystem{
         // Retrive nearest potential prey
         for (uint i = 0; i < allMicrobes.length(); i++)
             {
+            // Get the microbe component
+            MicrobeComponent@ secondMicrobeComponent = cast<MicrobeComponent>(
+                world.GetScriptComponentHolder("MicrobeComponent").Find(allMicrobes[i]));
+
+            if ((microbeComponent.organelles.length()*(aiComponent.speciesAggression/100)) >
+                 (secondMicrobeComponent.organelles.length()* (aiComponent.speciesFear/100)))
+                {
+                //You are non-threatening to me
+                aiComponent.preyMicrobes.insertLast(allMicrobes[i]);
+                }
             }
        // For getting the prey
                 //for (m_microbeEntityId,  in pairs (microbes_number)){
@@ -373,6 +383,17 @@ class MicrobeAISystem : ScriptSystem{
         // and later extend this to include those with toxins and pilus
         for (uint i = 0; i < allMicrobes.length(); i++)
             {
+
+            // Get the microbe component
+            MicrobeComponent@ secondMicrobeComponent = cast<MicrobeComponent>(
+                world.GetScriptComponentHolder("MicrobeComponent").Find(allMicrobes[i]));
+
+            if ((secondMicrobeComponent.organelles.length()*(aiComponent.speciesFear/100)) >
+            (microbeComponent.organelles.length()* (aiComponent.speciesAggression/100)))
+                {
+                //You are bigger then me and i am afraid of that
+                aiComponent.predatoryMicrobes.insertLast(allMicrobes[i]);
+                }
             }
                 // For getting the predator
                 //     for(predatorEntityId, predatorEntity in pairs (microbes_number)){
