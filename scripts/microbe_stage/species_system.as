@@ -86,11 +86,11 @@ class Species{
             name = randomSpeciesName();
             genus = generateNameSection();
             epithet = generateNameSection();
-            // Variables used in AI to determine general behavior
-            aggression = GetEngine().GetRandom().GetNumber(0.0f,
-                200.0f);
-            fear = GetEngine().GetRandom().GetNumber(0.0f,
-                200.0f);
+        // Variables used in AI to determine general behavior
+        aggression = GetEngine().GetRandom().GetNumber(0.0f,
+                MAX_SPECIES_AGRESSION);
+        fear = GetEngine().GetRandom().GetNumber(0.0f,
+                MAX_SPECIES_FEAR);
 
             auto stringSize = GetEngine().GetRandom().GetNumber(MIN_INITIAL_LENGTH,
                 MAX_INITIAL_LENGTH);
@@ -154,11 +154,11 @@ class Species{
             name = randomSpeciesName();
             epithet = generateNameSection();
 
-            // Variables used in AI to determine general behavior
-            aggression = GetEngine().GetRandom().GetNumber(0.0f,
-                200.0f);
-            fear = GetEngine().GetRandom().GetNumber(0.0f,
-                200.0f);
+        // Variables used in AI to determine general behavior
+        aggression = GetEngine().GetRandom().GetNumber(0.0f,
+                MAX_SPECIES_AGRESSION);
+        fear = GetEngine().GetRandom().GetNumber(0.0f,
+                MAX_SPECIES_FEAR);
 
             // Chance of new color needs to be low
             if (GetEngine().GetRandom().GetNumber(0,100)==1)
@@ -390,9 +390,9 @@ class Species{
 
         // Variables used in AI to determine general behavior
         aggression = GetEngine().GetRandom().GetNumber(0.0f,
-                200.0f);
+                MAX_SPECIES_AGRESSION);
         fear = GetEngine().GetRandom().GetNumber(0.0f,
-                200.0f);
+                MAX_SPECIES_FEAR);
 
         // Bacteria are tiny, start off with a max of 3 hexes (maybe
         // we should start them all off with just one? )
@@ -449,9 +449,9 @@ class Species{
 
         // Variables used in AI to determine general behavior
         aggression = GetEngine().GetRandom().GetNumber(0.0f,
-                200.0f);
+                MAX_SPECIES_AGRESSION);
         fear = GetEngine().GetRandom().GetNumber(0.0f,
-                200.0f);
+                MAX_SPECIES_FEAR);
 
         if (GetEngine().GetRandom().GetNumber(0,100)==1)
         {
