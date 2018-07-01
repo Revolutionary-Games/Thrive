@@ -898,7 +898,7 @@ ObjectID _createMicrobeEntity(CellStageWorld@ world, const string &in name, bool
 void _applyMicrobePhysicsBodySettings(CellStageWorld@ world, Physics@ rigidBody){
 
     // TODO: apply all these properties
-    rigidBody.SetLinearDamping(0.5);
+    rigidBody.SetLinearDamping(0.2);
     // This is new
     rigidBody.SetAngularDamping(0.2);
 

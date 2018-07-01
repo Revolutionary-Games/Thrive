@@ -267,6 +267,7 @@ class MicrobeSystem : ScriptSystem{
         RenderNode@ sceneNodeComponent = components.third;
         CompoundAbsorberComponent@ compoundAbsorberComponent = components.first;
         CompoundBagComponent@ compoundBag = components.sixth;
+        Physics@ physics = components.fourth;
 
         if(!microbeComponent.initialized){
 
@@ -282,7 +283,6 @@ class MicrobeSystem : ScriptSystem{
                     MicrobeOperations::respawnPlayer(world);
                 } else {
 
-                    auto physics = world.GetComponent_Physics(microbeEntity);
                     for(uint i = 0; i < microbeComponent.organelles.length(); ++i){
 
                         // This Collision doesn't really need to be
@@ -422,9 +422,22 @@ class MicrobeSystem : ScriptSystem{
             // Reset movement
             microbeComponent.queuedMovementForce = Float3(0, 0, 0);
 
+            // First add drag based on the velocity
+            const Float3 velocity = physics.GetVelocity();
+
+            // There should be no Y velocity so it should be zero
+            const Float3 drag(velocity.X * CELL_DRAG_MULTIPLIER,
+                velocity.Y * CELL_DRAG_MULTIPLIER,
+                velocity.Z * CELL_DRAG_MULTIPLIER);
+
+            // Only add drag if it is over CELL_REQUIRED_DRAG_BEFORE_APPLY
+            if(drag.HAddAbs() >= CELL_REQUIRED_DRAG_BEFORE_APPLY){
+
+                microbeComponent.queuedMovementForce += drag;
+            }
+
             // TODO: cache these as well like MicrobeComponent
             auto pos = world.GetComponent_Position(microbeEntity);
-            auto rigidBodyComponent = world.GetComponent_Physics(microbeEntity);
 
             // Add base movement
             // The movementDirection is the player or AI input
@@ -440,13 +453,16 @@ class MicrobeSystem : ScriptSystem{
             // Apply movement
             if(microbeComponent.queuedMovementForce != Float3(0, 0, 0)){
 
-                if(rigidBodyComponent.Body is null){
+                if(physics.Body is null){
 
                     LOG_WARNING(
                         "Skipping microbe movement apply for microbe without physics body");
                 } else {
 
-                    rigidBodyComponent.GiveImpulse(microbeComponent.queuedMovementForce,
+                    // LOG_WRITE("cell thrust: " + microbeComponent.queuedMovementForce.X + ", " +
+                    //     microbeComponent.queuedMovementForce.Y + ", " +
+                    //     microbeComponent.queuedMovementForce.Z);
+                    physics.GiveImpulse(microbeComponent.queuedMovementForce,
                         pos._Position);
                 }
             }
@@ -467,7 +483,7 @@ class MicrobeSystem : ScriptSystem{
                 // LOG_WRITE("turn = " + pos._Orientation.X + ", " + pos._Orientation.Y + ", "
                 //     + pos._Orientation.Z + ", " + pos._Orientation.W);
 
-                rigidBodyComponent.SetOnlyOrientation(interpolated);
+                physics.SetOnlyOrientation(interpolated);
 
                 // auto targetDirection = microbeComponent.facingTargetPoint - pos._Position;
                 // // TODO: direct multiplication was also used here
