@@ -13,7 +13,7 @@ const float AI_MOVEMENT_SPEED = 0.5;
 ////////////////////////////////////////////////////////////////////////////////
 
 // Enum for state machine
-    enum lifeState
+    enum LIFESTATE
         {
         NEUTRAL_STATE,
         GATHERING_STATE,
@@ -45,7 +45,7 @@ class MicrobeAIControllerComponent : ScriptComponent{
     array<ObjectID>@ preyMicrobes;
 
 
-    lifeState lifeState = NEUTRAL_STATE;
+    LIFESTATE lifeState = NEUTRAL_STATE;
 
 }
 
