@@ -190,6 +190,11 @@ class MicrobeAISystem : ScriptSystem{
                 int numberOfAgentVacuoless = int(
                     microbeComponent.specialStorageOrganelles[formatUInt(oxytoxyId)]);
 
+                // Clear the lists
+                aiComponent.predatoryMicrobes.removeRange(0,aiComponent.predatoryMicrobes.length());
+                aiComponent.preyMicrobes.removeRange(0,aiComponent.preyMicrobes.length());
+
+                // Update most feared microbe and most tasty microbe
                 prey = getNearestPreyItem(components,allMicrobes);
                 predator = getNearestPredatorItem(components,allMicrobes);
 
@@ -307,7 +312,7 @@ class MicrobeAISystem : ScriptSystem{
 
     // Building the prey list and retruning teh best option
     ObjectID getNearestPreyItem(MicrobeAISystemCached@ components, array<ObjectID>@ allMicrobes){
-    // Set Components
+        // Set Components
         ObjectID microbeEntity = components.entity;
         MicrobeAIControllerComponent@ aiComponent = components.first;
         MicrobeComponent@ microbeComponent = components.second;
@@ -319,8 +324,10 @@ class MicrobeAISystem : ScriptSystem{
             MicrobeComponent@ secondMicrobeComponent = cast<MicrobeComponent>(
                 world.GetScriptComponentHolder("MicrobeComponent").Find(allMicrobes[i]));
 
-            if ((microbeComponent.organelles.length()*(aiComponent.speciesAggression/100)) >
-                 (secondMicrobeComponent.organelles.length()* (aiComponent.speciesFear/100)))
+            // At max aggression add them all
+            if ((aiComponent.speciesAggression==MAX_SPECIES_AGRESSION) or
+            ((microbeComponent.organelles.length()*(aiComponent.speciesAggression/100)) >
+                 (secondMicrobeComponent.organelles.length()* (aiComponent.speciesFear/100))))
                 {
                 //You are non-threatening to me
                 aiComponent.preyMicrobes.insertLast(allMicrobes[i]);
@@ -372,7 +379,7 @@ class MicrobeAISystem : ScriptSystem{
 
     // Building the predator list and retruning the scariest one
     ObjectID getNearestPredatorItem(MicrobeAISystemCached@ components, array<ObjectID>@ allMicrobes){
-    // Set Components
+        // Set Components
         ObjectID microbeEntity = components.entity;
         MicrobeAIControllerComponent@ aiComponent = components.first;
         MicrobeComponent@ microbeComponent = components.second;
@@ -388,8 +395,9 @@ class MicrobeAISystem : ScriptSystem{
             MicrobeComponent@ secondMicrobeComponent = cast<MicrobeComponent>(
                 world.GetScriptComponentHolder("MicrobeComponent").Find(allMicrobes[i]));
 
-            if ((secondMicrobeComponent.organelles.length()*(aiComponent.speciesFear/100)) >
-            (microbeComponent.organelles.length()* (aiComponent.speciesAggression/100)))
+            // At max fear add them all
+            if ((aiComponent.speciesFear==MAX_SPECIES_FEAR) or ((secondMicrobeComponent.organelles.length()*(aiComponent.speciesFear/100)) >
+            (microbeComponent.organelles.length()* (aiComponent.speciesAggression/100))))
                 {
                 //You are bigger then me and i am afraid of that
                 aiComponent.predatoryMicrobes.insertLast(allMicrobes[i]);
