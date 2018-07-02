@@ -41,8 +41,8 @@ class MicrobeAIControllerComponent : ScriptComponent{
     CompoundId searchedCompoundId;
     ObjectID prey = NULL_OBJECT;
     // Prey and predator lists
-    array<ObjectID>@ predatoryMicrobes;
-    array<ObjectID>@ preyMicrobes;
+    array<ObjectID> predatoryMicrobes;
+    array<ObjectID> preyMicrobes;
 
 
     LIFESTATE lifeState = NEUTRAL_STATE;
