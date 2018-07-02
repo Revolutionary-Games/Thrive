@@ -270,8 +270,8 @@ const dictionary STARTER_MICROBES = {
         MicrobeTemplate(1/14000,
             {
             //for testing
-                {"atp", InitialCompound(25)},
-                {"glucose", InitialCompound(25)}
+                {"atp", InitialCompound(95)},
+                {"glucose", InitialCompound(95)}
             },
             {
                 OrganelleTemplatePlaced("nucleus", 0, 0, 180),
