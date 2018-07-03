@@ -25,12 +25,15 @@ const auto MUTATION_CREATION_RATE = 0.1f;
 const auto MUTATION_DELETION_RATE = 0.1f;
 
 const auto MICROBE_SPAWN_RADIUS = 85;
-//bacteria get massively extra radius so they can spawn in proper colonies and act as landmarks
+// Bacteria get massively extra radius so they can spawn in proper colonies and act as landmarks
 const auto BACTERIA_SPAWN_RADIUS = 160;
 
-//Max fear and agression
+// Max fear and agression
 const auto MAX_SPECIES_AGRESSION = 200.0f;
 const auto MAX_SPECIES_FEAR = 200.0f;
+// What is divided during fear and aggression calculations in the AI
+const auto AGRESSION_DIVISOR = 100.0f;
+const auto FEAR_DIVISOR = 100.0f;
 
 const auto PLAYER_NAME = "Player";
 
