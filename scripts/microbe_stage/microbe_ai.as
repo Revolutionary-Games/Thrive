@@ -326,8 +326,8 @@ class MicrobeAISystem : ScriptSystem{
 
             // At max aggression add them all
             if ((aiComponent.speciesAggression==MAX_SPECIES_AGRESSION) or
-            ((microbeComponent.organelles.length()*(aiComponent.speciesAggression/100)) >
-                 (secondMicrobeComponent.organelles.length()* (aiComponent.speciesFear/100))))
+            ((microbeComponent.organelles.length()*(aiComponent.speciesAggression/AGRESSION_DIVISOR)) >
+                 (secondMicrobeComponent.organelles.length()* (aiComponent.speciesFear/FEAR_DIVISOR))))
                 {
                 //You are non-threatening to me
                 aiComponent.preyMicrobes.insertLast(allMicrobes[i]);
@@ -396,8 +396,8 @@ class MicrobeAISystem : ScriptSystem{
                 world.GetScriptComponentHolder("MicrobeComponent").Find(allMicrobes[i]));
 
             // At max fear add them all
-            if ((aiComponent.speciesFear==MAX_SPECIES_FEAR) or ((secondMicrobeComponent.organelles.length()*(aiComponent.speciesFear/100)) >
-            (microbeComponent.organelles.length()* (aiComponent.speciesAggression/100))))
+            if ((aiComponent.speciesFear==MAX_SPECIES_FEAR) or ((secondMicrobeComponent.organelles.length()*(aiComponent.speciesFear/FEAR_DIVISOR)) >
+            (microbeComponent.organelles.length()* (aiComponent.speciesAggression/AGRESSION_DIVISOR))))
                 {
                 //You are bigger then me and i am afraid of that
                 aiComponent.predatoryMicrobes.insertLast(allMicrobes[i]);
@@ -502,8 +502,5 @@ class MicrobeAISystem : ScriptSystem{
 
     // the final prey the cell should hunt
     ObjectID prey = -1;
-
-    //i need it to be very big for now it will get changed
-    int preyMaxHitpoints = 100000;
 
 }
