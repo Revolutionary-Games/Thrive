@@ -448,7 +448,7 @@ class MicrobeAISystem : ScriptSystem{
     // For self defense (not nessessarily fleeing)
     void dealWithPredators(MicrobeAISystemCached@ components, ObjectID predator)
         {
-        
+
         }
 
     // For for firguring out which state to enter
