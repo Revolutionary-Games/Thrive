@@ -37,8 +37,8 @@ class MicrobeAIControllerComponent : ScriptComponent{
     Float3 direction = Float3(0, 0, 0);
     double speciesAggression = -1.0f;
     double speciesFear = -1.0f;
-    bool hasTargetEmitterPosition = false;
-    Float3 targetEmitterPosition = Float3(0, 0, 0);
+    bool hasTargetPosition = false;
+    Float3 targetPosition = Float3(0, 0, 0);
     bool hasSearchedCompoundId = false;
     CompoundId searchedCompoundId;
     ObjectID prey = NULL_OBJECT;
@@ -131,7 +131,7 @@ class MicrobeAISystem : ScriptSystem{
                 prey = getNearestPreyItem(components,allMicrobes);
                 predator = getNearestPredatorItem(components,allMicrobes);
                 //30 seconds about
-                if (aiComponent.boredom == 100){
+                if (aiComponent.boredom == GetEngine().GetRandom().GetNumber(100,1000)){
                     // Occassionally you need to reevaluate things
                     aiComponent.boredom = 0;
                     aiComponent.lifeState = NEUTRAL_STATE;
@@ -415,7 +415,7 @@ class MicrobeAISystem : ScriptSystem{
             else if (aiComponent.speciesAggression == aiComponent.speciesFear)
                 {
                 // Very rare
-                if (GetEngine().GetRandom().GetFloat(0,9) <= 5)
+                if (GetEngine().GetRandom().GetNumber(0,9) <= 5)
                     {
                     // Prefer predating by 10% (makes game more fun)
                     aiComponent.lifeState  = PREDATING_STATE;
@@ -434,7 +434,7 @@ class MicrobeAISystem : ScriptSystem{
             aiComponent.lifeState  = FLEEING_STATE;
             }
         // Every 10 intervals or so
-        else if (GetEngine().GetRandom().GetFloat(0,10) == 1)
+        else if (GetEngine().GetRandom().GetNumber(0,10) == 1)
             {
             aiComponent.lifeState = GATHERING_STATE;
             }
@@ -448,16 +448,23 @@ class MicrobeAISystem : ScriptSystem{
         MicrobeComponent@ microbeComponent = components.second;
         Position@ position = components.third;
 
-        // Target position
-        Float3 targetPosition = Float3(0, 0, 0);
+        if (GetEngine().GetRandom().GetNumber(0,100) <= 10)
+            {
+            aiComponent.hasTargetPosition = false;
+            }
+
         //make AI move randomly for now
-        auto randAngle = GetEngine().GetRandom().GetFloat(0, 2*PI);
-        auto randDist = GetEngine().GetRandom().GetFloat(10,aiComponent.movementRadius);
-        targetPosition = Float3(cos(randAngle) * randDist,0, sin(randAngle)* randDist);
-        auto vec = (targetPosition - position._Position);
-        aiComponent.direction = vec.Normalize();
-        microbeComponent.facingTargetPoint = targetPosition;
-        microbeComponent.movementDirection = Float3(0, 0, -AI_MOVEMENT_SPEED);
+        if (aiComponent.hasTargetPosition == false)
+            {
+            auto randAngle = GetEngine().GetRandom().GetFloat(0, 2*PI);
+            auto randDist = GetEngine().GetRandom().GetFloat(10,aiComponent.movementRadius);
+            aiComponent.targetPosition = Float3(cos(randAngle) * randDist,0, sin(randAngle)* randDist);
+            auto vec = (aiComponent.targetPosition - position._Position);
+            aiComponent.direction = vec.Normalize();
+            microbeComponent.facingTargetPoint = aiComponent.targetPosition;
+            microbeComponent.movementDirection = Float3(0, 0, -AI_MOVEMENT_SPEED);
+            aiComponent.hasTargetPosition = true;
+        }
 
     }
 
