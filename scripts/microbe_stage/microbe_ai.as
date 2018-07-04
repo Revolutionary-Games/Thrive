@@ -128,6 +128,8 @@ class MicrobeAISystem : ScriptSystem{
                 aiComponent.preyMicrobes.removeRange(0,aiComponent.preyMicrobes.length());
 
                 // Update most feared microbe and most tasty microbe
+                prey=NULL_OBJECT;
+                predator=NULL_OBJECT;
                 prey = getNearestPreyItem(components,allMicrobes);
                 predator = getNearestPredatorItem(components,allMicrobes);
 
@@ -200,7 +202,7 @@ class MicrobeAISystem : ScriptSystem{
                 //             this.preyEscaped = false;
                 //         }
 
-                //         if(this.predator !is null){ // for running away from the predadtor
+                //         if(this.predator !is null){ // for running away from the predator
                 //             auto predatorSceneNodeComponent = getComponent(this.predator,
                 //                 OgreSceneNodeComponent);
                 //             microbeComponent.facingTargetPoint =
@@ -302,17 +304,17 @@ class MicrobeAISystem : ScriptSystem{
             Float3 testPosition = world.GetComponent_Position(aiComponent.preyMicrobes[0])._Position;
             predator = aiComponent.preyMicrobes[0];
 
-            for (uint i = 0; i < aiComponent.preyMicrobes.length(); i++)
+            for (uint c = 0; c < aiComponent.preyMicrobes.length(); c++)
                 {
                 // Get the microbe component
                 MicrobeComponent@ secondMicrobeComponent = cast<MicrobeComponent>(
-                    world.GetScriptComponentHolder("MicrobeComponent").Find(aiComponent.preyMicrobes[i]));
-                    Position@ thisPosition = world.GetComponent_Position(aiComponent.preyMicrobes[i]);
+                    world.GetScriptComponentHolder("MicrobeComponent").Find(aiComponent.preyMicrobes[c]));
+                    Position@ thisPosition = world.GetComponent_Position(aiComponent.preyMicrobes[c]);
 
                     if ((testPosition - position._Position).LengthSquared() > (thisPosition._Position -  position._Position).LengthSquared())
                         {
                         testPosition = thisPosition._Position;
-                        chosenPrey = aiComponent.preyMicrobes[i];
+                        chosenPrey = aiComponent.preyMicrobes[c];
                         }
                 }
             }
@@ -381,7 +383,7 @@ class MicrobeAISystem : ScriptSystem{
 
             // At max fear add them all
             if ((aiComponent.speciesFear==MAX_SPECIES_FEAR) or ((secondMicrobeComponent.organelles.length()*(aiComponent.speciesFear/FEAR_DIVISOR)) >
-            (microbeComponent.organelles.length()* (aiComponent.speciesAggression/AGRESSION_DIVISOR))))
+            (microbeComponent.organelles.length()*(aiComponent.speciesAggression/AGRESSION_DIVISOR))))
                 {
                 //You are bigger then me and i am afraid of that
                 aiComponent.predatoryMicrobes.insertLast(allMicrobes[i]);
@@ -393,17 +395,17 @@ class MicrobeAISystem : ScriptSystem{
             {
             Float3 testPosition = world.GetComponent_Position(aiComponent.predatoryMicrobes[0])._Position;
             predator = aiComponent.predatoryMicrobes[0];
-            for (uint i = 0; i < aiComponent.predatoryMicrobes.length(); i++)
+            for (uint c = 0; c < aiComponent.predatoryMicrobes.length(); c++)
                 {
                 // Get the microbe component
                 MicrobeComponent@ secondMicrobeComponent = cast<MicrobeComponent>(
-                    world.GetScriptComponentHolder("MicrobeComponent").Find(aiComponent.predatoryMicrobes[i]));
-                    Position@ thisPosition = world.GetComponent_Position(aiComponent.predatoryMicrobes[i]);
+                    world.GetScriptComponentHolder("MicrobeComponent").Find(aiComponent.predatoryMicrobes[c]));
+                    Position@ thisPosition = world.GetComponent_Position(aiComponent.predatoryMicrobes[c]);
 
                     if ((testPosition - position._Position).LengthSquared() > (thisPosition._Position -  position._Position).LengthSquared())
                         {
                         testPosition = thisPosition._Position;
-                        predator = aiComponent.predatoryMicrobes[i];
+                        predator = aiComponent.predatoryMicrobes[c];
                         }
                 }
             }
@@ -503,7 +505,7 @@ class MicrobeAISystem : ScriptSystem{
                 }
             else if (aiComponent.speciesAggression < aiComponent.speciesFear)
                 {
-                aiComponent.lifeState  = FLEEING_STATE;
+                aiComponent.lifeState = FLEEING_STATE;
                 }
             else if (aiComponent.speciesAggression == aiComponent.speciesFear)
                 {
@@ -514,19 +516,19 @@ class MicrobeAISystem : ScriptSystem{
                     aiComponent.lifeState  = PREDATING_STATE;
                     }
                     else {
-                    aiComponent.lifeState  = FLEEING_STATE;
+                    aiComponent.lifeState = FLEEING_STATE;
                     }
                 }
             }
-        else if (prey != NULL_OBJECT && predator == NULL_OBJECT)
+        else if (prey != NULL_OBJECT)
             {
             LOG_INFO("prey only");
-            aiComponent.lifeState  = PREDATING_STATE;
+            aiComponent.lifeState = PREDATING_STATE;
             }
-        else if (predator != NULL_OBJECT && prey == NULL_OBJECT)
+        else if (predator != NULL_OBJECT)
             {
             LOG_INFO("predator only");
-            aiComponent.lifeState  = FLEEING_STATE;
+            aiComponent.lifeState = FLEEING_STATE;
             }
         // Every 10 intervals or so
         else if (GetEngine().GetRandom().GetNumber(0,10) == 1)
