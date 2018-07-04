@@ -160,7 +160,7 @@ class MicrobeAISystem : ScriptSystem{
                         //In this state you run from preadtory microbes
                         if (predator != NULL_OBJECT)
                             {
-                            dealWithPredators();
+                            dealWithPredators(components,predator);
                             }
                         else{
                             aiComponent.lifeState = NEUTRAL_STATE;
@@ -171,7 +171,7 @@ class MicrobeAISystem : ScriptSystem{
                         {
                         if (prey != NULL_OBJECT)
                             {
-                            dealWithPrey();
+                            dealWithPrey(components,prey);
                             }
                         else{
                             aiComponent.lifeState = NEUTRAL_STATE;
@@ -428,13 +428,27 @@ class MicrobeAISystem : ScriptSystem{
     }
 
     // For chasing down and killing prey in various ways
-    void dealWithPrey()
+    void dealWithPrey(MicrobeAISystemCached@ components, ObjectID prey)
         {
+        // Set Components
+        ObjectID microbeEntity = components.entity;
+        MicrobeAIControllerComponent@ aiComponent = components.first;
+        MicrobeComponent@ microbeComponent = components.second;
+        Position@ position = components.third;
+        // Chase your prey
+        // This isnt working, maybe im grabbing it wrong, it just make steh cells spin around like crazy
+        aiComponent.targetPosition =  world.GetComponent_Position(prey)._Position;
+        auto vec = (aiComponent.targetPosition - position._Position);
+        aiComponent.direction = vec.Normalize();
+        microbeComponent.facingTargetPoint = aiComponent.targetPosition;
+        microbeComponent.movementDirection = Float3(0, 0, -AI_MOVEMENT_SPEED);
+        aiComponent.hasTargetPosition = true;
         }
 
     // For self defense (not nessessarily fleeing)
-    void dealWithPredators()
+    void dealWithPredators(MicrobeAISystemCached@ components, ObjectID predator)
         {
+        
         }
 
     // For for firguring out which state to enter
