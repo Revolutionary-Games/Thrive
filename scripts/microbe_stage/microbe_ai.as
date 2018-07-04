@@ -274,6 +274,7 @@ class MicrobeAISystem : ScriptSystem{
         MicrobeComponent@ microbeComponent = components.second;
         Position@ position = components.third;
         ObjectID chosenPrey = NULL_OBJECT;
+
         // Retrive nearest potential prey
         for (uint i = 0; i < allMicrobes.length(); i++)
             {
@@ -288,6 +289,25 @@ class MicrobeAISystem : ScriptSystem{
                 {
                 //You are non-threatening to me
                 aiComponent.preyMicrobes.insertLast(allMicrobes[i]);
+                }
+            }
+
+            // Get the nearest one if it exists
+            if (aiComponent.preyMicrobes.length > 0 )
+            {
+            Float3 testPosition = world.GetComponent_Position(aiComponent.preyMicrobes[0])._Position;
+            for (uint i = 0; i < aiComponent.preyMicrobes.length(); i++)
+                {
+                // Get the microbe component
+                MicrobeComponent@ secondMicrobeComponent = cast<MicrobeComponent>(
+                    world.GetScriptComponentHolder("MicrobeComponent").Find(aiComponent.preyMicrobes[i]));
+                    Position@ thisPosition = world.GetComponent_Position(aiComponent.preyMicrobes[i]);
+
+                    if ((testPosition - position._Position).LengthSquared() > (thisPosition._Position -  position._Position).LengthSquared())
+                        {
+                        testPosition = thisPosition._Position;
+                        chosenPrey = aiComponent.preyMicrobes[i];
+                        }
                 }
             }
        // For getting the prey
@@ -359,6 +379,25 @@ class MicrobeAISystem : ScriptSystem{
                 {
                 //You are bigger then me and i am afraid of that
                 aiComponent.predatoryMicrobes.insertLast(allMicrobes[i]);
+                }
+            }
+
+            // Get the nearest one if it exists
+            if (aiComponent.predatoryMicrobes.length > 0 )
+            {
+            Float3 testPosition = world.GetComponent_Position(aiComponent.predatoryMicrobes[0])._Position;
+            for (uint i = 0; i < aiComponent.predatoryMicrobes.length(); i++)
+                {
+                // Get the microbe component
+                MicrobeComponent@ secondMicrobeComponent = cast<MicrobeComponent>(
+                    world.GetScriptComponentHolder("MicrobeComponent").Find(aiComponent.predatoryMicrobes[i]));
+                    Position@ thisPosition = world.GetComponent_Position(aiComponent.predatoryMicrobes[i]);
+
+                    if ((testPosition - position._Position).LengthSquared() > (thisPosition._Position -  position._Position).LengthSquared())
+                        {
+                        testPosition = thisPosition._Position;
+                        predator = aiComponent.predatoryMicrobes[i];
+                        }
                 }
             }
                 // For getting the predator
