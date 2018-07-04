@@ -28,9 +28,11 @@ class MicrobeAIControllerComponent : ScriptComponent{
         intervalRemaining = reevalutationInterval;
     }
 
-    int movementRadius = 20;
+    int movementRadius = 200;
+    // That means they evaluate every 10 seconds or so, correct?
     int reevalutationInterval = 1000;
     int intervalRemaining;
+    int boredom = 0;
     double previousStoredCompounds = 0.0f;
     Float3 direction = Float3(0, 0, 0);
     double speciesAggression = -1.0f;
@@ -49,42 +51,6 @@ class MicrobeAIControllerComponent : ScriptComponent{
 
 }
 
-// void MicrobeAIControllerComponent.storage(storage){
-
-//     storage.set("movementRadius", this.movementRadius);
-//     storage.set("reevalutationInterval", this.reevalutationInterval);
-//     storage.set("intervalRemaining", this.intervalRemaining);
-//     storage.set("direction", this.direction);
-//     if(this.targetEmitterPosition == null){
-//         storage.set("targetEmitterPosition", "null");
-//         else;
-//         storage.set("targetEmitterPosition", this.targetEmitterPosition);
-//     }
-//     if(this.searchedCompoundId == null){
-//         storage.set("searchedCompoundId", "null");
-//         else;
-//         storage.set("searchedCompoundId", this.searchedCompoundId);
-//     }
-
-// }
-
-// void MicrobeAIControllerComponent.load(storage){
-
-//     this.movementRadius = storage.get("movementRadius", 20);
-//     this.reevalutationInterval = storage.get("reevalutationInterval", 1000);
-//     this.intervalRemaining = storage.get("intervalRemaining", this.reevalutationInterval);
-//     this.direction = storage.get("direction", Vector3(0, 0, 0));
-//     auto emitterPosition = storage.get("targetEmitterPosition", null);
-//     if(emitterPosition == "null"){
-//         this.targetEmitterPosition = null;
-//         else;
-//         this.targetEmitterPosition = emitterPosition;
-//     }
-//     this.searchedCompoundId = storage.get("searchedCompoundId", null);
-//     if(this.searchedCompoundId == "null"){
-//         this.searchedCompoundId = null;
-//     }
-// }
 
 //! \todo Check if there is a better way than caching a single component for this system
 class MicrobeAISystemCached{
@@ -122,39 +88,6 @@ class MicrobeAISystem : ScriptSystem{
     void Release(){}
 
     void Run(){
-        // for(_, entityId in pairs(this.entities.removedEntities())){
-        //     this.microbes[entityId] = null;
-        //     if(this.preyEntityToIndexMap[entityId]){
-        //         this.preyCandidates[this.preyEntityToIndexMap[entityId]] = null;
-        //         this.preyEntityToIndexMap[entityId] = null;
-        //     }
-        // }
-        // for(_, entityId in pairs(this.entities.addedEntities())){
-        //     auto microbeEntity = Entity(entityId, this.gameState.wrapper);
-        //     this.microbes[entityId] = microbeEntity;
-
-        //     // This is a hack to remember up to 5 recent microbes as candidates for predators.
-        //     // Gives something semi random
-        //     this.preyCandidates[this.currentPreyIndex] = microbeEntity;
-        //     this.preyEntityToIndexMap[entityId] = this.currentPreyIndex;
-        //     this.currentPreyIndex = (this.currentPreyIndex)%6;
-
-        // }
-
-        // //for removing cell from table when it is removed from the world
-        // for(_, entityId in pairs(this.microbeEntities.removedEntities())){
-        //     microbes_number[entityId] = null;
-        // }
-
-        // //for counting all the cells in the world and get it's entity
-        // for(_, entityId in pairs(this.microbeEntities.addedEntities())){
-        //     auto microbeEntity = Entity(entityId, this.gameState.wrapper);
-        //     microbes_number[entityId] = microbeEntity;
-        // }
-
-        // this.entities.clearChanges();
-        // this.microbeEntities.clearChanges();
-
         const int logicTime = TICKSPEED;
 
         // TODO: this could be cached better
@@ -197,12 +130,23 @@ class MicrobeAISystem : ScriptSystem{
                 // Update most feared microbe and most tasty microbe
                 prey = getNearestPreyItem(components,allMicrobes);
                 predator = getNearestPredatorItem(components,allMicrobes);
+                //30 seconds about
+                if (aiComponent.boredom == 100){
+                    // Occassionally you need to reevaluate things
+                    aiComponent.boredom = 0;
+                    aiComponent.lifeState = NEUTRAL_STATE;
+                }
+                else{
+                    aiComponent.boredom++;
+                }
 
                 switch (aiComponent.lifeState)
                     {
                     case NEUTRAL_STATE:
                         {
                         //In this state you just sit there and analyze your environment
+                        aiComponent.boredom=0;
+                        evaluateEnvironment(components,prey,predator);
                         break;
                         }
                     case GATHERING_STATE:
@@ -214,12 +158,24 @@ class MicrobeAISystem : ScriptSystem{
                     case FLEEING_STATE:
                         {
                         //In this state you run from preadtory microbes
-                        dealWithPredators();
+                        if (predator != NULL_OBJECT)
+                            {
+                            dealWithPredators();
+                            }
+                        else{
+                            aiComponent.lifeState = NEUTRAL_STATE;
+                            }
                         break;
                         }
                     case PREDATING_STATE:
                         {
-                        dealWithPrey();
+                        if (prey != NULL_OBJECT)
+                            {
+                            dealWithPrey();
+                            }
+                        else{
+                            aiComponent.lifeState = NEUTRAL_STATE;
+                            }
                         break;
                         }
                     }
@@ -317,6 +273,7 @@ class MicrobeAISystem : ScriptSystem{
         MicrobeAIControllerComponent@ aiComponent = components.first;
         MicrobeComponent@ microbeComponent = components.second;
         Position@ position = components.third;
+        ObjectID chosenPrey = NULL_OBJECT;
         // Retrive nearest potential prey
         for (uint i = 0; i < allMicrobes.length(); i++)
             {
@@ -374,7 +331,7 @@ class MicrobeAISystem : ScriptSystem{
                 //             }
                 //         }
                 //}
-    return NULL_OBJECT;
+    return chosenPrey;
     }
 
     // Building the predator list and retruning the scariest one
@@ -384,6 +341,7 @@ class MicrobeAISystem : ScriptSystem{
         MicrobeAIControllerComponent@ aiComponent = components.first;
         MicrobeComponent@ microbeComponent = components.second;
         Position@ position = components.third;
+        ObjectID predator = NULL_OBJECT;
 
         // Retrive the nearest predator
         // For our desires lets just say all microbes bigger are potential predators
@@ -427,7 +385,7 @@ class MicrobeAISystem : ScriptSystem{
                 //         }
                 //         this.predator = this.predators[predatorEntityId];
                 //     }
-    return NULL_OBJECT;
+    return predator;
     }
 
     // For chasing down and killing prey in various ways
@@ -435,9 +393,51 @@ class MicrobeAISystem : ScriptSystem{
         {
         }
 
-    //For self defense (not nessessarily fleeing)
+    // For self defense (not nessessarily fleeing)
     void dealWithPredators()
         {
+        }
+
+    // For for firguring out which state to enter
+    void evaluateEnvironment(MicrobeAISystemCached@ components, ObjectID prey, ObjectID predator)
+        {
+        MicrobeAIControllerComponent@ aiComponent = components.first;
+        if (prey != NULL_OBJECT && predator != NULL_OBJECT)
+            {
+            if (aiComponent.speciesAggression > aiComponent.speciesFear)
+                {
+                aiComponent.lifeState  = PREDATING_STATE;
+                }
+            else if (aiComponent.speciesAggression < aiComponent.speciesFear)
+                {
+                aiComponent.lifeState  = FLEEING_STATE;
+                }
+            else if (aiComponent.speciesAggression == aiComponent.speciesFear)
+                {
+                // Very rare
+                if (GetEngine().GetRandom().GetFloat(0,9) <= 5)
+                    {
+                    // Prefer predating by 10% (makes game more fun)
+                    aiComponent.lifeState  = PREDATING_STATE;
+                    }
+                    else {
+                    aiComponent.lifeState  = FLEEING_STATE;
+                    }
+                }
+            }
+        else if (prey != NULL_OBJECT && predator == NULL_OBJECT)
+            {
+            aiComponent.lifeState  = PREDATING_STATE;
+            }
+        else if (predator != NULL_OBJECT && prey == NULL_OBJECT)
+            {
+            aiComponent.lifeState  = FLEEING_STATE;
+            }
+        // Every 10 intervals or so
+        else if (GetEngine().GetRandom().GetFloat(0,10) == 1)
+            {
+            aiComponent.lifeState = GATHERING_STATE;
+            }
         }
 
     // For doing run and tumble
@@ -484,23 +484,15 @@ class MicrobeAISystem : ScriptSystem{
     // This isn't currently possible to store
     // dictionary microbes = {};
 
-    // It's really silly to have these here instead of in the AI
-    // component, like what system tries to store most of its state in
-    // itself instead of its components?
-    // dictionary preyCandidates = {};
-    // // Used for removing from preyCandidates
-    // dictionary preyEntityToIndexMap = {};
-    // int currentPreyIndex = 0;
-
     // //counting number of frames so the prey get updated the fittest prey
     // int preycount = 0;
     // //checking if the prey escaped
     // bool preyEscaped = false;
 
     // the final predator the cell shall run from
-    ObjectID predator = -1;
+    ObjectID predator = NULL_OBJECT;
 
     // the final prey the cell should hunt
-    ObjectID prey = -1;
+    ObjectID prey = NULL_OBJECT;
 
 }
