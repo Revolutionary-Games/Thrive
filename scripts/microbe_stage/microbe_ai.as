@@ -130,6 +130,7 @@ class MicrobeAISystem : ScriptSystem{
                 // Update most feared microbe and most tasty microbe
                 prey = getNearestPreyItem(components,allMicrobes);
                 predator = getNearestPredatorItem(components,allMicrobes);
+
                 //30 seconds about
                 if (aiComponent.boredom == GetEngine().GetRandom().GetNumber(100,1000)){
                     // Occassionally you need to reevaluate things
@@ -164,6 +165,7 @@ class MicrobeAISystem : ScriptSystem{
                             }
                         else{
                             aiComponent.lifeState = NEUTRAL_STATE;
+                            LOG_INFO("null predator");
                             }
                         break;
                         }
@@ -175,6 +177,7 @@ class MicrobeAISystem : ScriptSystem{
                             }
                         else{
                             aiComponent.lifeState = NEUTRAL_STATE;
+                            LOG_INFO("null prey");
                             }
                         break;
                         }
@@ -293,9 +296,12 @@ class MicrobeAISystem : ScriptSystem{
             }
 
             // Get the nearest one if it exists
-            if (aiComponent.preyMicrobes.length > 0 )
+            if (aiComponent.preyMicrobes.length() > 0 )
             {
+
             Float3 testPosition = world.GetComponent_Position(aiComponent.preyMicrobes[0])._Position;
+            predator = aiComponent.preyMicrobes[0];
+
             for (uint i = 0; i < aiComponent.preyMicrobes.length(); i++)
                 {
                 // Get the microbe component
@@ -383,9 +389,10 @@ class MicrobeAISystem : ScriptSystem{
             }
 
             // Get the nearest one if it exists
-            if (aiComponent.predatoryMicrobes.length > 0 )
+            if (aiComponent.predatoryMicrobes.length() > 0 )
             {
             Float3 testPosition = world.GetComponent_Position(aiComponent.predatoryMicrobes[0])._Position;
+            predator = aiComponent.predatoryMicrobes[0];
             for (uint i = 0; i < aiComponent.predatoryMicrobes.length(); i++)
                 {
                 // Get the microbe component
@@ -430,6 +437,7 @@ class MicrobeAISystem : ScriptSystem{
     // For chasing down and killing prey in various ways
     void dealWithPrey(MicrobeAISystemCached@ components, ObjectID prey)
         {
+        LOG_INFO("chasing"+prey);
         // Set Components
         ObjectID microbeEntity = components.entity;
         MicrobeAIControllerComponent@ aiComponent = components.first;
@@ -437,29 +445,61 @@ class MicrobeAISystem : ScriptSystem{
         Position@ position = components.third;
         // Chase your prey
         // This isnt working, maybe im grabbing it wrong, it just make steh cells spin around like crazy
-        aiComponent.targetPosition =  world.GetComponent_Position(prey)._Position;
-        auto vec = (aiComponent.targetPosition - position._Position);
-        aiComponent.direction = vec.Normalize();
-        microbeComponent.facingTargetPoint = aiComponent.targetPosition;
-        microbeComponent.movementDirection = Float3(0, 0, -AI_MOVEMENT_SPEED);
-        aiComponent.hasTargetPosition = true;
+
+        if (GetEngine().GetRandom().GetNumber(0,100) <= 10)
+            {
+            aiComponent.hasTargetPosition = false;
+            }
+
+        if (aiComponent.hasTargetPosition == false)
+            {
+            aiComponent.targetPosition =  world.GetComponent_Position(prey)._Position;
+            auto vec = (aiComponent.targetPosition - position._Position);
+            aiComponent.direction = vec.Normalize();
+            microbeComponent.facingTargetPoint = aiComponent.targetPosition;
+            microbeComponent.movementDirection = Float3(0, 0, -AI_MOVEMENT_SPEED);
+            aiComponent.hasTargetPosition = true;
+            }
         }
 
     // For self defense (not nessessarily fleeing)
     void dealWithPredators(MicrobeAISystemCached@ components, ObjectID predator)
         {
+        LOG_INFO("running from"+predator);
+        // Set Components
+        ObjectID microbeEntity = components.entity;
+        MicrobeAIControllerComponent@ aiComponent = components.first;
+        MicrobeComponent@ microbeComponent = components.second;
+        Position@ position = components.third;
+        // run from predator (but chase them instead for now)
+        // This isnt working, maybe im grabbing it wrong, it just make steh cells spin around like crazy
+        if (GetEngine().GetRandom().GetNumber(0,100) <= 10)
+            {
+            aiComponent.hasTargetPosition = false;
+            }
 
+        if (aiComponent.hasTargetPosition == false)
+            {
+            aiComponent.targetPosition =  world.GetComponent_Position(predator)._Position;
+            auto vec = (aiComponent.targetPosition - position._Position);
+            aiComponent.direction = vec.Normalize();
+            microbeComponent.facingTargetPoint = aiComponent.targetPosition;
+            microbeComponent.movementDirection = Float3(0, 0, -AI_MOVEMENT_SPEED);
+            aiComponent.hasTargetPosition = true;
+            }
         }
 
     // For for firguring out which state to enter
     void evaluateEnvironment(MicrobeAISystemCached@ components, ObjectID prey, ObjectID predator)
         {
+        LOG_INFO("evaluating");
         MicrobeAIControllerComponent@ aiComponent = components.first;
         if (prey != NULL_OBJECT && predator != NULL_OBJECT)
             {
+            LOG_INFO("Both");
             if (aiComponent.speciesAggression > aiComponent.speciesFear)
                 {
-                aiComponent.lifeState  = PREDATING_STATE;
+                aiComponent.lifeState = PREDATING_STATE;
                 }
             else if (aiComponent.speciesAggression < aiComponent.speciesFear)
                 {
@@ -480,15 +520,18 @@ class MicrobeAISystem : ScriptSystem{
             }
         else if (prey != NULL_OBJECT && predator == NULL_OBJECT)
             {
+            LOG_INFO("prey only");
             aiComponent.lifeState  = PREDATING_STATE;
             }
         else if (predator != NULL_OBJECT && prey == NULL_OBJECT)
             {
+            LOG_INFO("predator only");
             aiComponent.lifeState  = FLEEING_STATE;
             }
         // Every 10 intervals or so
         else if (GetEngine().GetRandom().GetNumber(0,10) == 1)
             {
+            LOG_INFO("gather only");
             aiComponent.lifeState = GATHERING_STATE;
             }
         }
