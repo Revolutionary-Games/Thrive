@@ -117,6 +117,9 @@ class MicrobeAISystem : ScriptSystem{
                 {
                 aiComponent.speciesFear = MicrobeOperations::getSpeciesComponent(world, microbeEntity).fear;
                 }
+                // Were for debugging
+                //LOG_INFO("AI aggression"+aiComponent.speciesAggression);
+                //LOG_INFO("AI fear"+aiComponent.speciesFear);
 
             while(aiComponent.intervalRemaining > aiComponent.reevalutationInterval) {
                 aiComponent.intervalRemaining -= aiComponent.reevalutationInterval;

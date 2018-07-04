@@ -87,10 +87,13 @@ class Species{
             genus = generateNameSection();
             epithet = generateNameSection();
         // Variables used in AI to determine general behavior
-        aggression = GetEngine().GetRandom().GetFloat(0.0f,
+        this.aggression = GetEngine().GetRandom().GetFloat(0.0f,
                 MAX_SPECIES_AGRESSION);
-        fear = GetEngine().GetRandom().GetFloat(0.0f,
+        this.fear = GetEngine().GetRandom().GetFloat(0.0f,
                 MAX_SPECIES_FEAR);
+
+         LOG_INFO("aggression is:"+aggression);
+         LOG_INFO("fear is:"+fear);
 
             auto stringSize = GetEngine().GetRandom().GetNumber(MIN_INITIAL_LENGTH,
                 MAX_INITIAL_LENGTH);
@@ -155,9 +158,9 @@ class Species{
             epithet = generateNameSection();
 
         // Variables used in AI to determine general behavior
-        aggression = GetEngine().GetRandom().GetFloat(0.0f,
+        this.aggression = GetEngine().GetRandom().GetFloat(0.0f,
                 MAX_SPECIES_AGRESSION);
-        fear = GetEngine().GetRandom().GetFloat(0.0f,
+        this.fear = GetEngine().GetRandom().GetFloat(0.0f,
                 MAX_SPECIES_FEAR);
 
             // Chance of new color needs to be low
@@ -198,7 +201,7 @@ class Species{
 
         templateEntity = Species::createSpecies(forWorld, this.name, organelles, this.colour,
             this.isBacteria, this.speciesMembraneType,
-            DEFAULT_INITIAL_COMPOUNDS);
+            DEFAULT_INITIAL_COMPOUNDS, this.aggression, this.fear);
     }
 
     // Delete a species
@@ -389,10 +392,14 @@ class Species{
         epithet = generateNameSection();
 
         // Variables used in AI to determine general behavior
-        aggression = GetEngine().GetRandom().GetFloat(0.0f,
+        this.aggression = GetEngine().GetRandom().GetFloat(0.0f,
                 MAX_SPECIES_AGRESSION);
-        fear = GetEngine().GetRandom().GetFloat(0.0f,
+        this.fear = GetEngine().GetRandom().GetFloat(0.0f,
                 MAX_SPECIES_FEAR);
+
+         LOG_INFO("aggression is:"+aggression);
+         LOG_INFO("fear is:"+fear);
+
 
         // Bacteria are tiny, start off with a max of 3 hexes (maybe
         // we should start them all off with just one? )
@@ -448,9 +455,9 @@ class Species{
         epithet = generateNameSection();
 
         // Variables used in AI to determine general behavior
-        aggression = GetEngine().GetRandom().GetFloat(0.0f,
+        this.aggression = GetEngine().GetRandom().GetFloat(0.0f,
                 MAX_SPECIES_AGRESSION);
-        fear = GetEngine().GetRandom().GetFloat(0.0f,
+        this.fear = GetEngine().GetRandom().GetFloat(0.0f,
                 MAX_SPECIES_FEAR);
 
         if (GetEngine().GetRandom().GetNumber(0,100)==1)
@@ -904,13 +911,13 @@ ObjectID createSpecies(CellStageWorld@ world, const string &in name,
     }
 
     return createSpecies(world, name, convertedOrganelles, fromTemplate.colour, fromTemplate.isBacteria, fromTemplate.speciesMembraneType,
-        fromTemplate.compounds);
+        fromTemplate.compounds, 100.0f, 100.0f);
 }
 
 //! Creates an entity that has all the species stuff on it
 //! AI controlled ones need to be in addition in SpeciesSystem
 ObjectID createSpecies(CellStageWorld@ world, const string &in name,
-    array<PlacedOrganelle@> organelles, Float4 colour, bool isBacteria, MEMBRANE_TYPE speciesMembraneType,  const dictionary &in compounds
+    array<PlacedOrganelle@> organelles, Float4 colour, bool isBacteria, MEMBRANE_TYPE speciesMembraneType,  const dictionary &in compounds, double aggression, double fear
 ) {
     ObjectID speciesEntity = world.CreateEntity();
 
@@ -948,6 +955,10 @@ ObjectID createSpecies(CellStageWorld@ world, const string &in name,
 
     //we need to know this is baceria
     speciesComponent.isBacteria = isBacteria;
+    // we need to know our aggression and fear variables
+    speciesComponent.aggression = aggression;
+    speciesComponent.fear = fear;
+
     // iterates over all compounds, and sets amounts and priorities
     uint64 compoundCount = SimulationParameters::compoundRegistry().getSize();
     for(uint i = 0; i < compoundCount; ++i){
