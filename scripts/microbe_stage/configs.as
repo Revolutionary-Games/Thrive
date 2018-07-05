@@ -29,8 +29,8 @@ const auto MICROBE_SPAWN_RADIUS = 85;
 const auto BACTERIA_SPAWN_RADIUS = 130;
 
 // Max fear and agression
-const auto MAX_SPECIES_AGRESSION = 200.0f;
-const auto MAX_SPECIES_FEAR = 200.0f;
+const auto MAX_SPECIES_AGRESSION = 400.0f;
+const auto MAX_SPECIES_FEAR = 400.0f;
 // What is divided during fear and aggression calculations in the AI
 const auto AGRESSION_DIVISOR = 100.0f;
 const auto FEAR_DIVISOR = 100.0f;
@@ -41,8 +41,8 @@ const auto DEFAULT_HEALTH = 100;
 // Amount of health pers econd regened in percent
 const auto REGENERATION_RATE = 1;
 
-const auto FLAGELLA_BASE_FORCE = 3.f;
-const auto CELL_BASE_THRUST = 0.5f;
+const auto FLAGELLA_BASE_FORCE = 4.0f;
+const auto CELL_BASE_THRUST = 1.0f;
 //! The drag force is calculated by taking the current velocity and multiplying it by this.
 //! This must be negative!
 const auto CELL_DRAG_MULTIPLIER = -0.4f;
