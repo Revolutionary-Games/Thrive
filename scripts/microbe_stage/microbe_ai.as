@@ -123,7 +123,7 @@ class MicrobeAISystem : ScriptSystem{
 
             while(aiComponent.intervalRemaining > aiComponent.reevalutationInterval) {
                 aiComponent.intervalRemaining -= aiComponent.reevalutationInterval;
-                int numberOfAgentVacuoless = int(
+                int numberOfAgentVacuoles = int(
                     microbeComponent.specialStorageOrganelles[formatUInt(oxytoxyId)]);
 
                 // Clear the lists
@@ -283,7 +283,7 @@ class MicrobeAISystem : ScriptSystem{
                 world.GetScriptComponentHolder("MicrobeComponent").Find(allMicrobes[i]));
 
             // At max aggression add them all
-            if (allMicrobes[i] != microbeEntity)
+            if (allMicrobes[i] != microbeEntity && (MicrobeOperations::getSpeciesComponent(world, allMicrobes[i]).name != MicrobeOperations::getSpeciesComponent(world, microbeEntity).name))
             {
                 if ((aiComponent.speciesAggression==MAX_SPECIES_AGRESSION) or
                     ((microbeComponent.organelles.length()*(aiComponent.speciesAggression/AGRESSION_DIVISOR)) >
@@ -380,7 +380,7 @@ class MicrobeAISystem : ScriptSystem{
                 world.GetScriptComponentHolder("MicrobeComponent").Find(allMicrobes[i]));
 
             // At max fear add them all
-            if (allMicrobes[i] != microbeEntity)
+            if (allMicrobes[i] != microbeEntity && (MicrobeOperations::getSpeciesComponent(world, allMicrobes[i]).name != MicrobeOperations::getSpeciesComponent(world, microbeEntity).name))
             {
             if ((aiComponent.speciesFear==MAX_SPECIES_FEAR) or ((secondMicrobeComponent.organelles.length()*(aiComponent.speciesFear/FEAR_DIVISOR)) >
             (microbeComponent.organelles.length())))
@@ -465,7 +465,7 @@ class MicrobeAISystem : ScriptSystem{
         MicrobeComponent@ microbeComponent = components.second;
         Position@ position = components.third;
         // run from predator (but chase them instead for now)
-            aiComponent.targetPosition =  Float3(-world.GetComponent_Position(predator)._Position.X,-world.GetComponent_Position(predator)._Position.Y,0);
+            aiComponent.targetPosition =  Float3(world.GetComponent_Position(predator)._Position.X*-1.0f,world.GetComponent_Position(predator)._Position.Y*-1.0f,0);
             auto vec = (aiComponent.targetPosition - position._Position);
             aiComponent.direction = vec.Normalize();
             microbeComponent.facingTargetPoint = aiComponent.targetPosition;
