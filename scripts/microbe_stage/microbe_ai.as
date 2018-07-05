@@ -205,14 +205,6 @@ class MicrobeAISystem : ScriptSystem{
                 //             this.preyEscaped = false;
                 //         }
 
-                //         if(this.predator !is null){ // for running away from the predator
-                //             auto predatorSceneNodeComponent = getComponent(this.predator,
-                //                 OgreSceneNodeComponent);
-                //             microbeComponent.facingTargetPoint =
-            //                 Vector3(-predatorSceneNodeComponent.transform.position.x,
-            //                     -predatorSceneNodeComponent.transform.position.y, 0);
-            //             microbeComponent.movementDirection = Vector3(0, AI_MOVEMENT_SPEED, 0);
-            //         }
 
             //         if(attempts < 6 and aiComponent.prey !is null and this.predator == null){
             //             //making sure it is not a prey for someone before start hunting
@@ -485,13 +477,24 @@ class MicrobeAISystem : ScriptSystem{
 
         if (aiComponent.hasTargetPosition == false)
             {
-            aiComponent.targetPosition =  world.GetComponent_Position(predator)._Position;
+            aiComponent.targetPosition =  Float3(-world.GetComponent_Position(predator)._Position.X,-world.GetComponent_Position(predator)._Position.Y,0);
             auto vec = (aiComponent.targetPosition - position._Position);
             aiComponent.direction = vec.Normalize();
             microbeComponent.facingTargetPoint = aiComponent.targetPosition;
             microbeComponent.movementDirection = Float3(0, 0, -AI_MOVEMENT_SPEED);
             aiComponent.hasTargetPosition = true;
             }
+
+
+            // OLD CODE
+            //         if(this.predator !is null){ // for running away from the predator
+            //             auto predatorSceneNodeComponent = getComponent(this.predator,
+            //                 OgreSceneNodeComponent);
+            //             microbeComponent.facingTargetPoint =
+            //                 Vector3(-predatorSceneNodeComponent.transform.position.x,
+            //                     -predatorSceneNodeComponent.transform.position.y, 0);
+            //             microbeComponent.movementDirection = Vector3(0, AI_MOVEMENT_SPEED, 0);
+            //         }
         }
 
     // For for firguring out which state to enter
