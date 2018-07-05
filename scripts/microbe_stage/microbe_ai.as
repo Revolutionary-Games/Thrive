@@ -447,22 +447,12 @@ class MicrobeAISystem : ScriptSystem{
         MicrobeComponent@ microbeComponent = components.second;
         Position@ position = components.third;
         // Chase your prey
-        // This isnt working, maybe im grabbing it wrong, it just make steh cells spin around like crazy
-
-        if (GetEngine().GetRandom().GetNumber(0,100) <= 10)
-            {
-            aiComponent.hasTargetPosition = false;
-            }
-
-        if (aiComponent.hasTargetPosition == false)
-            {
             aiComponent.targetPosition =  world.GetComponent_Position(prey)._Position;
             auto vec = (aiComponent.targetPosition - position._Position);
             aiComponent.direction = vec.Normalize();
             microbeComponent.facingTargetPoint = aiComponent.targetPosition;
             microbeComponent.movementDirection = Float3(0, 0, -AI_MOVEMENT_SPEED);
             aiComponent.hasTargetPosition = true;
-            }
         }
 
     // For self defense (not nessessarily fleeing)
@@ -475,21 +465,12 @@ class MicrobeAISystem : ScriptSystem{
         MicrobeComponent@ microbeComponent = components.second;
         Position@ position = components.third;
         // run from predator (but chase them instead for now)
-        // This isnt working, maybe im grabbing it wrong, it just make steh cells spin around like crazy
-        if (GetEngine().GetRandom().GetNumber(0,100) <= 10)
-            {
-            aiComponent.hasTargetPosition = false;
-            }
-
-        if (aiComponent.hasTargetPosition == false)
-            {
             aiComponent.targetPosition =  Float3(-world.GetComponent_Position(predator)._Position.X,-world.GetComponent_Position(predator)._Position.Y,0);
             auto vec = (aiComponent.targetPosition - position._Position);
             aiComponent.direction = vec.Normalize();
             microbeComponent.facingTargetPoint = aiComponent.targetPosition;
             microbeComponent.movementDirection = Float3(0, 0, -AI_MOVEMENT_SPEED);
             aiComponent.hasTargetPosition = true;
-            }
 
 
             // OLD CODE
