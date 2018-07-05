@@ -31,8 +31,7 @@ using namespace thrive;
 
 SpawnedComponent::SpawnedComponent(double newSpawnRadiusSqr) :
     Leviathan::Component(TYPE), spawnRadiusSqr(newSpawnRadiusSqr)
-{
-}
+{}
 
 // void
 // SpawnedComponent::load(

@@ -6,8 +6,7 @@ using namespace thrive;
 
 TimedLifeComponent::TimedLifeComponent(int timeToLive) :
     Leviathan::Component(TYPE), m_timeToLive(timeToLive)
-{
-}
+{}
 
 // void
 // TimedLifeComponent::load(
