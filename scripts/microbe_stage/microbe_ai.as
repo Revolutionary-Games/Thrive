@@ -170,7 +170,7 @@ class MicrobeAISystem : ScriptSystem{
                             }
                         else{
                             aiComponent.lifeState = NEUTRAL_STATE;
-                            LOG_INFO("null predator");
+                            //LOG_INFO("null predator");
                             }
                         break;
                         }
@@ -182,7 +182,7 @@ class MicrobeAISystem : ScriptSystem{
                             }
                         else{
                             aiComponent.lifeState = NEUTRAL_STATE;
-                            LOG_INFO("null prey");
+                            //LOG_INFO("null prey");
                             }
                         break;
                         }
@@ -275,7 +275,7 @@ class MicrobeAISystem : ScriptSystem{
         Position@ position = components.third;
         ObjectID chosenPrey = NULL_OBJECT;
 
-        // Retrive nearest potential prey
+        // Retrieve nearest potential prey
         for (uint i = 0; i < allMicrobes.length(); i++)
             {
             // Get the microbe component
@@ -434,7 +434,7 @@ class MicrobeAISystem : ScriptSystem{
     // For chasing down and killing prey in various ways
     void dealWithPrey(MicrobeAISystemCached@ components, ObjectID prey)
         {
-        LOG_INFO("chasing"+prey);
+        //LOG_INFO("chasing"+prey);
         // Set Components
         ObjectID microbeEntity = components.entity;
         MicrobeAIControllerComponent@ aiComponent = components.first;
@@ -462,7 +462,7 @@ class MicrobeAISystem : ScriptSystem{
     // For self defense (not nessessarily fleeing)
     void dealWithPredators(MicrobeAISystemCached@ components, ObjectID predator)
         {
-        LOG_INFO("running from"+predator);
+        //LOG_INFO("running from"+predator);
         // Set Components
         ObjectID microbeEntity = components.entity;
         MicrobeAIControllerComponent@ aiComponent = components.first;
@@ -500,11 +500,11 @@ class MicrobeAISystem : ScriptSystem{
     // For for firguring out which state to enter
     void evaluateEnvironment(MicrobeAISystemCached@ components, ObjectID prey, ObjectID predator)
         {
-        LOG_INFO("evaluating");
+        //LOG_INFO("evaluating");
         MicrobeAIControllerComponent@ aiComponent = components.first;
         if (prey != NULL_OBJECT && predator != NULL_OBJECT)
             {
-            LOG_INFO("Both");
+            //LOG_INFO("Both");
             if (aiComponent.speciesAggression > aiComponent.speciesFear)
                 {
                 aiComponent.lifeState = PREDATING_STATE;
@@ -529,18 +529,18 @@ class MicrobeAISystem : ScriptSystem{
             }
         else if (prey != NULL_OBJECT)
             {
-            LOG_INFO("prey only");
+            //LOG_INFO("prey only");
             aiComponent.lifeState = PREDATING_STATE;
             }
         else if (predator != NULL_OBJECT)
             {
-            LOG_INFO("predator only");
+            //LOG_INFO("predator only");
             aiComponent.lifeState = FLEEING_STATE;
             }
         // Every 10 intervals or so
         else if (GetEngine().GetRandom().GetNumber(0,10) == 1)
             {
-            LOG_INFO("gather only");
+            //LOG_INFO("gather only");
             aiComponent.lifeState = GATHERING_STATE;
             }
         }

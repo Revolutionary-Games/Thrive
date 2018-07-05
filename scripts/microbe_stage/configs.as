@@ -26,7 +26,7 @@ const auto MUTATION_DELETION_RATE = 0.1f;
 
 const auto MICROBE_SPAWN_RADIUS = 85;
 // Bacteria get massively extra radius so they can spawn in proper colonies and act as landmarks
-const auto BACTERIA_SPAWN_RADIUS = 160;
+const auto BACTERIA_SPAWN_RADIUS = 130;
 
 // Max fear and agression
 const auto MAX_SPECIES_AGRESSION = 200.0f;
@@ -237,7 +237,7 @@ class MicrobeTemplate{
         this.compounds = compounds;
         this.organelles = organelles;
         this.colour = colour;
-    this.isBacteria = isBacteria;
+        this.isBacteria = isBacteria;
         this.speciesMembraneType = speciesMembraneType;
     }
 
