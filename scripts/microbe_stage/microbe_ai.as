@@ -111,11 +111,11 @@ class MicrobeAISystem : ScriptSystem{
             // Cache fear and aggression as we dont wnat to be calling "getSpecies" every frame for every microbe (maybe its not a big deal)
             if (aiComponent.speciesAggression == -1.0f)
                 {
-                aiComponent.speciesAggression = MicrobeOperations::getSpeciesComponent(world, microbeEntity).aggression;
+                aiComponent.speciesAggression = 100.0f;//MicrobeOperations::getSpeciesComponent(world, microbeEntity).aggression;
                 }
             if (aiComponent.speciesFear == -1.0f)
                 {
-                aiComponent.speciesFear = MicrobeOperations::getSpeciesComponent(world, microbeEntity).fear;
+                aiComponent.speciesFear = 100.0f;//MicrobeOperations::getSpeciesComponent(world, microbeEntity).fear;
                 }
                 // Were for debugging
                 //LOG_INFO("AI aggression"+aiComponent.speciesAggression);
@@ -508,6 +508,7 @@ class MicrobeAISystem : ScriptSystem{
                 }
             else if (aiComponent.speciesAggression < aiComponent.speciesFear)
                 {
+                //aiComponent.lifeState = PREDATING_STATE;
                 aiComponent.lifeState = FLEEING_STATE;
                 }
             else if (aiComponent.speciesAggression == aiComponent.speciesFear)
