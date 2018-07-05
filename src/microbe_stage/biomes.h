@@ -19,8 +19,7 @@ public:
 
     BiomeCompoundData(unsigned int amount, double density) :
         amount(amount), density(density)
-    {
-    }
+    {}
 };
 
 class SimulationParameters;
