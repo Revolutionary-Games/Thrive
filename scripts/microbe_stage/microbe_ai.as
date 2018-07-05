@@ -111,11 +111,11 @@ class MicrobeAISystem : ScriptSystem{
             // Cache fear and aggression as we dont wnat to be calling "getSpecies" every frame for every microbe (maybe its not a big deal)
             if (aiComponent.speciesAggression == -1.0f)
                 {
-                aiComponent.speciesAggression = 100.0f;//MicrobeOperations::getSpeciesComponent(world, microbeEntity).aggression;
+                aiComponent.speciesAggression = MicrobeOperations::getSpeciesComponent(world, microbeEntity).aggression;
                 }
             if (aiComponent.speciesFear == -1.0f)
                 {
-                aiComponent.speciesFear = 100.0f;//MicrobeOperations::getSpeciesComponent(world, microbeEntity).fear;
+                aiComponent.speciesFear = MicrobeOperations::getSpeciesComponent(world, microbeEntity).fear;
                 }
                 // Were for debugging
                 //LOG_INFO("AI aggression"+aiComponent.speciesAggression);
@@ -283,13 +283,16 @@ class MicrobeAISystem : ScriptSystem{
                 world.GetScriptComponentHolder("MicrobeComponent").Find(allMicrobes[i]));
 
             // At max aggression add them all
-            if ((aiComponent.speciesAggression==MAX_SPECIES_AGRESSION) or
-            ((microbeComponent.organelles.length()*(aiComponent.speciesAggression/AGRESSION_DIVISOR)) >
-                 (secondMicrobeComponent.organelles.length()* (aiComponent.speciesFear/FEAR_DIVISOR))))
-                {
-                //You are non-threatening to me
-                aiComponent.preyMicrobes.insertLast(allMicrobes[i]);
-                }
+            if (allMicrobes[i] != microbeEntity)
+            {
+                if ((aiComponent.speciesAggression==MAX_SPECIES_AGRESSION) or
+                    ((microbeComponent.organelles.length()*(aiComponent.speciesAggression/AGRESSION_DIVISOR)) >
+                    (secondMicrobeComponent.organelles.length())))
+                    {
+                    //You are non-threatening to me
+                    aiComponent.preyMicrobes.insertLast(allMicrobes[i]);
+                    }
+            }
             }
 
             // Get the nearest one if it exists
@@ -377,12 +380,15 @@ class MicrobeAISystem : ScriptSystem{
                 world.GetScriptComponentHolder("MicrobeComponent").Find(allMicrobes[i]));
 
             // At max fear add them all
+            if (allMicrobes[i] != microbeEntity)
+            {
             if ((aiComponent.speciesFear==MAX_SPECIES_FEAR) or ((secondMicrobeComponent.organelles.length()*(aiComponent.speciesFear/FEAR_DIVISOR)) >
-            (microbeComponent.organelles.length()*(aiComponent.speciesAggression/AGRESSION_DIVISOR))))
+            (microbeComponent.organelles.length())))
                 {
                 //You are bigger then me and i am afraid of that
                 aiComponent.predatoryMicrobes.insertLast(allMicrobes[i]);
                 }
+            }
             }
 
             // Get the nearest one if it exists
