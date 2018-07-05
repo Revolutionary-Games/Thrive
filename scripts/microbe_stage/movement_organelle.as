@@ -1,7 +1,6 @@
 #include "organelle_component.as"
 #include "microbe_operations.as"
 
-// #define ANIMATE_FLAGELLA
 
 // Enables a microbe to move and turn
 
@@ -61,7 +60,6 @@ class MovementOrganelle : OrganelleComponent{
         // The organelles' scenenode is positioned by itself unlike
         // the lua version where that was also attempted here
 
-#if ANIMATE_FLAGELLA
         // Create animation component
         Animated@ animated = organelle.world.Create_Animated(organelle.organelleEntity,
             model.GraphicalObject);
@@ -72,13 +70,12 @@ class MovementOrganelle : OrganelleComponent{
         animated.AddAnimation(moveAnimation);
         // Don't forget to mark to apply the new animation
         animated.Marked = true;
-#endif //ANIMATE_FLAGELLA
 
-        // This is already applied
-        // auto@ renderNode = organelle.world.GetComponent_RenderNode(organelle.organelleEntity);
-        // renderNode.Node.setPosition(organellePos);
-        // renderNode.Node.setOrientation(Ogre::Quaternion(Ogre::Degree(angle),
-        //         Ogre::Vector3(0, 1, 0)));
+        // BUG: This is already applied for the player but not generated species
+        auto@ renderNode = organelle.world.GetComponent_RenderNode(organelle.organelleEntity);
+        renderNode.Node.setPosition(organellePos);
+        renderNode.Node.setOrientation(Ogre::Quaternion(Ogre::Degree(angle),
+                Ogre::Vector3(0, 0, 1)));
     }
 
     // void MovementOrganelle.load(storage){
@@ -102,25 +99,19 @@ class MovementOrganelle : OrganelleComponent{
         // The movementDirection is the player or AI input
         Float3 direction = microbeComponent.movementDirection;
 
-#if ANIMATE_FLAGELLA
         // For changing animation speed
         Animated@ animated = organelle.world.GetComponent_Animated(organelle.organelleEntity);
-#endif //ANIMATE_FLAGELLA
 
         auto forceMagnitude = this.force.Dot(direction);
         if(forceMagnitude > 0){
             if(direction.LengthSquared() < EPSILON || this.force.LengthSquared() < EPSILON){
                 this.movingTail = false;
-#if ANIMATE_FLAGELLA
                 animated.GetAnimation(0).SpeedFactor = 0.25f;
-#endif //ANIMATE_FLAGELLA
                 return Float3(0, 0, 0);
             }
 
             this.movingTail = true;
-#if ANIMATE_FLAGELLA
             animated.GetAnimation(0).SpeedFactor = 1.3;
-#endif //ANIMATE_FLAGELLA
             // 5 per second per flagella (according to microbe descisions)
             double energy = abs(5.0f/milliseconds);
 
@@ -132,9 +123,7 @@ class MovementOrganelle : OrganelleComponent{
                 forceMagnitude = sign(forceMagnitude) * availableEnergy * 1000.f /
                     milliseconds;
                 this.movingTail = false;
-#if ANIMATE_FLAGELLA
                 animated.GetAnimation(0).SpeedFactor = 0.25f;
-#endif //ANIMATE_FLAGELLA
             }
 
             float impulseMagnitude = (FLAGELLA_BASE_FORCE * microbeComponent.movementFactor *
@@ -151,9 +140,7 @@ class MovementOrganelle : OrganelleComponent{
         } else {
             if(this.movingTail){
                 this.movingTail = false;
-#if ANIMATE_FLAGELLA
                 animated.GetAnimation(0).SpeedFactor = 0.25f;
-#endif //ANIMATE_FLAGELLA
             }
         }
 
