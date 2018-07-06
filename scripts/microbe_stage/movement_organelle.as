@@ -73,6 +73,12 @@ class MovementOrganelle : OrganelleComponent{
 
         // BUG: This is already applied for the player but not generated species
         auto@ renderNode = organelle.world.GetComponent_RenderNode(organelle.organelleEntity);
+
+        // This doesnt work properly
+        Float3 exit = nucleus - delta;
+        //auto membraneComponent = organelle.world.GetComponent_MembraneComponent(microbeEntity);
+        //auto membraneCoords = membraneComponent.GetExternalOrganelle(exit.X, exit.Z);
+        //^ that is supposed to position theh organelle properly
         renderNode.Node.setPosition(organellePos);
         renderNode.Node.setOrientation(Ogre::Quaternion(Ogre::Degree(angle),
                 Ogre::Vector3(0, 0, 1)));
@@ -154,13 +160,13 @@ class MovementOrganelle : OrganelleComponent{
         int logicTime
     ) override {
 
+        //Grab components
         MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
             organelle.world.GetScriptComponentHolder("MicrobeComponent").Find(microbeEntity));
         auto pos = organelle.world.GetComponent_Position(microbeEntity);
-
         const auto force = calculateMovementForce(microbeEntity, organelle, logicTime,
             microbeComponent, pos);
-
+        
         if(force != Float3(0, 0, 0))
             microbeComponent.addMovementForce(force);
     }
