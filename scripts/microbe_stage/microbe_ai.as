@@ -286,8 +286,8 @@ class MicrobeAISystem : ScriptSystem{
             if (allMicrobes[i] != microbeEntity && (MicrobeOperations::getSpeciesComponent(world, allMicrobes[i]).name != MicrobeOperations::getSpeciesComponent(world, microbeEntity).name))
             {
                 if ((aiComponent.speciesAggression==MAX_SPECIES_AGRESSION) or
-                    ((microbeComponent.organelles.length()*(aiComponent.speciesAggression/AGRESSION_DIVISOR)) >
-                    (secondMicrobeComponent.organelles.length())))
+                    (((microbeComponent.organelles.length()*1.0f)*(aiComponent.speciesAggression/AGRESSION_DIVISOR)) >
+                    (secondMicrobeComponent.organelles.length()*1.0f)))
                     {
                     //You are non-threatening to me
                     aiComponent.preyMicrobes.insertLast(allMicrobes[i]);
@@ -382,8 +382,8 @@ class MicrobeAISystem : ScriptSystem{
             // At max fear add them all
             if (allMicrobes[i] != microbeEntity && (MicrobeOperations::getSpeciesComponent(world, allMicrobes[i]).name != MicrobeOperations::getSpeciesComponent(world, microbeEntity).name))
             {
-            if ((aiComponent.speciesFear==MAX_SPECIES_FEAR) or ((secondMicrobeComponent.organelles.length()*(aiComponent.speciesFear/FEAR_DIVISOR)) >
-            (microbeComponent.organelles.length())))
+            if ((aiComponent.speciesFear==MAX_SPECIES_FEAR) or (((secondMicrobeComponent.organelles.length()*1.0f)*(aiComponent.speciesFear/FEAR_DIVISOR)) >
+            (microbeComponent.organelles.length()*1.0f)))
                 {
                 //You are bigger then me and i am afraid of that
                 aiComponent.predatoryMicrobes.insertLast(allMicrobes[i]);
