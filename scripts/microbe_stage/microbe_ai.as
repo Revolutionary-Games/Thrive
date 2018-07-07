@@ -95,8 +95,8 @@ class MicrobeAISystem : ScriptSystem{
 
         // This list is quite expensive to build each frame but
         // there's currently no good way to cache this
-        array<ObjectID>@ allMicrobes = world.GetScriptComponentHolder(
-            "MicrobeComponent").GetIndex();
+        array<ObjectID>@ allMicrobes = world.GetScriptComponentHolder("MicrobeComponent").GetIndex();
+
 
         for(uint i = 0; i < CachedComponents.length(); ++i){
 
@@ -300,7 +300,7 @@ class MicrobeAISystem : ScriptSystem{
             {
 
             Float3 testPosition = world.GetComponent_Position(aiComponent.preyMicrobes[0])._Position;
-            predator = aiComponent.preyMicrobes[0];
+            chosenPrey = aiComponent.preyMicrobes[0];
 
             for (uint c = 0; c < aiComponent.preyMicrobes.length(); c++)
                 {
@@ -374,7 +374,6 @@ class MicrobeAISystem : ScriptSystem{
         // and later extend this to include those with toxins and pilus
         for (uint i = 0; i < allMicrobes.length(); i++)
             {
-
             // Get the microbe component
             MicrobeComponent@ secondMicrobeComponent = cast<MicrobeComponent>(
                 world.GetScriptComponentHolder("MicrobeComponent").Find(allMicrobes[i]));
@@ -387,6 +386,7 @@ class MicrobeAISystem : ScriptSystem{
                 {
                 //You are bigger then me and i am afraid of that
                 aiComponent.predatoryMicrobes.insertLast(allMicrobes[i]);
+                //LOG_INFO("Added predator " + allMicrobes[i] );
                 }
             }
             }
@@ -394,8 +394,10 @@ class MicrobeAISystem : ScriptSystem{
             // Get the nearest one if it exists
             if (aiComponent.predatoryMicrobes.length() > 0 )
             {
+
             Float3 testPosition = world.GetComponent_Position(aiComponent.predatoryMicrobes[0])._Position;
             predator = aiComponent.predatoryMicrobes[0];
+
             for (uint c = 0; c < aiComponent.predatoryMicrobes.length(); c++)
                 {
                 // Get the microbe component
@@ -458,30 +460,44 @@ class MicrobeAISystem : ScriptSystem{
     // For self defense (not nessessarily fleeing)
     void dealWithPredators(MicrobeAISystemCached@ components, ObjectID predator)
         {
-        //LOG_INFO("running from"+predator);
-        // Set Components
         ObjectID microbeEntity = components.entity;
         MicrobeAIControllerComponent@ aiComponent = components.first;
         MicrobeComponent@ microbeComponent = components.second;
         Position@ position = components.third;
-        // run from predator (but chase them instead for now)
-            aiComponent.targetPosition =  Float3(world.GetComponent_Position(predator)._Position.X*-1.0f,world.GetComponent_Position(predator)._Position.Y*-1.0f,0);
-            auto vec = (aiComponent.targetPosition - position._Position);
-            aiComponent.direction = vec.Normalize();
-            microbeComponent.facingTargetPoint = aiComponent.targetPosition;
-            microbeComponent.movementDirection = Float3(0, 0, -AI_MOVEMENT_SPEED);
-            aiComponent.hasTargetPosition = true;
+        if (GetEngine().GetRandom().GetNumber(0,100) <= 10)
+            {
+            aiComponent.hasTargetPosition = false;
+            }
+        // Run From Predator
+        if (aiComponent.hasTargetPosition == false)
+        {
+            if (GetEngine().GetRandom().GetNumber(0,100) <= 50)
+                {
+                // Scatter
+                auto randAngle = GetEngine().GetRandom().GetFloat(-2*PI, 2*PI);
+                auto randDist = GetEngine().GetRandom().GetFloat(200,aiComponent.movementRadius*10);
+                aiComponent.targetPosition = Float3(cos(randAngle) * randDist,0, sin(randAngle)* randDist);
+                auto vec = (aiComponent.targetPosition - position._Position);
+                aiComponent.direction = vec.Normalize();
+                microbeComponent.facingTargetPoint = aiComponent.targetPosition;
+                microbeComponent.movementDirection = Float3(0, 0, -AI_MOVEMENT_SPEED);
+                aiComponent.hasTargetPosition = true;
+                }
+            else
+                {
+                aiComponent.targetPosition =
+                    Float3(GetEngine().GetRandom().GetFloat(-1.0,-100.0),
+                    GetEngine().GetRandom().GetFloat(-1.0,-100.0),
+                    GetEngine().GetRandom().GetFloat(-1.0,-100.0))*
+                    world.GetComponent_Position(predator)._Position;
 
-
-            // OLD CODE
-            //         if(this.predator !is null){ // for running away from the predator
-            //             auto predatorSceneNodeComponent = getComponent(this.predator,
-            //                 OgreSceneNodeComponent);
-            //             microbeComponent.facingTargetPoint =
-            //                 Vector3(-predatorSceneNodeComponent.transform.position.x,
-            //                     -predatorSceneNodeComponent.transform.position.y, 0);
-            //             microbeComponent.movementDirection = Vector3(0, AI_MOVEMENT_SPEED, 0);
-            //         }
+                auto vec = (aiComponent.targetPosition - position._Position);
+                aiComponent.direction = vec.Normalize();
+                microbeComponent.facingTargetPoint = aiComponent.targetPosition;
+                microbeComponent.movementDirection = Float3(0, 0, -AI_MOVEMENT_SPEED);
+                aiComponent.hasTargetPosition = true;
+            }
+        }
         }
 
     // For for firguring out which state to enter

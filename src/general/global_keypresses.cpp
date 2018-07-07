@@ -8,7 +8,8 @@ using namespace thrive;
 
 GlobalUtilityKeyHandler::GlobalUtilityKeyHandler(KeyConfiguration& keys) :
     m_screenshot(keys.ResolveControlNameToFirstKey("Screenshot"))
-{}
+{
+}
 // ------------------------------------ //
 bool
     GlobalUtilityKeyHandler::ReceiveInput(int32_t key, int modifiers, bool down)
@@ -32,7 +33,8 @@ void
     GlobalUtilityKeyHandler::ReceiveBlockedInput(int32_t key,
         int modifiers,
         bool down)
-{}
+{
+}
 
 bool
     GlobalUtilityKeyHandler::OnMouseMove(int xmove, int ymove)

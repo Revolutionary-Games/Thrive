@@ -89,7 +89,8 @@ struct Engine::Implementation : public Ogre::WindowEventListener {
 
     Implementation(Engine& engine) :
         m_engine(engine), m_rng(), m_playerData("player")
-    {}
+    {
+    }
 
     ~Implementation()
     {
