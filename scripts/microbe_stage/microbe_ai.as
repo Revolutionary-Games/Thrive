@@ -471,7 +471,7 @@ class MicrobeAISystem : ScriptSystem{
         // Run From Predator
         if (aiComponent.hasTargetPosition == false)
         {
-            if (GetEngine().GetRandom().GetNumber(0,100) <= 50)
+            if (GetEngine().GetRandom().GetNumber(0,100) <= 40)
                 {
                 // Scatter
                 auto randAngle = GetEngine().GetRandom().GetFloat(-2*PI, 2*PI);
@@ -485,11 +485,42 @@ class MicrobeAISystem : ScriptSystem{
                 }
             else
                 {
-                aiComponent.targetPosition =
-                    Float3(GetEngine().GetRandom().GetFloat(-1.0,-100.0),
-                    GetEngine().GetRandom().GetFloat(-1.0,-100.0),
-                    GetEngine().GetRandom().GetFloat(-1.0,-100.0))*
-                    world.GetComponent_Position(predator)._Position;
+                // Run specifically away
+                if (GetEngine().GetRandom().GetNumber(0,100) <= 50)
+                {
+                    if (world.GetComponent_Position(predator)._Position.X >= position._Position.X)
+                        {
+                        aiComponent.targetPosition =
+                            Float3(GetEngine().GetRandom().GetFloat(-10.0f,-100.0f),1.0,1.0)*
+                            world.GetComponent_Position(predator)._Position;
+                        }
+                    else {
+                        aiComponent.targetPosition =
+                            Float3(GetEngine().GetRandom().GetFloat(20.0f,100.0f),1.0,1.0)*
+                            world.GetComponent_Position(predator)._Position;
+                        }
+                }
+                else if (GetEngine().GetRandom().GetNumber(0,100) <= 50)
+                {
+                    if (world.GetComponent_Position(predator)._Position.Z >= position._Position.Z)
+                        {
+                        aiComponent.targetPosition =
+                        Float3(1.0,1.0,GetEngine().GetRandom().GetFloat(-10.0f,-100.0f))*
+                        world.GetComponent_Position(predator)._Position;
+                        }
+                    else {
+                        aiComponent.targetPosition =
+                        Float3(1.0,1.0,GetEngine().GetRandom().GetFloat(20.0f,100.0f))*
+                        world.GetComponent_Position(predator)._Position;
+                        }
+
+                }
+                else {
+                    aiComponent.targetPosition =
+                        Float3(GetEngine().GetRandom().GetFloat(-100.0f,100.0f),1.0,
+                        GetEngine().GetRandom().GetFloat(-100.0f,100.0f))*
+                        world.GetComponent_Position(predator)._Position;
+                }
 
                 auto vec = (aiComponent.targetPosition - position._Position);
                 aiComponent.direction = vec.Normalize();
