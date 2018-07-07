@@ -25,7 +25,8 @@ PlayerMicrobeControl::PlayerMicrobeControl(KeyConfiguration& keys) :
     m_spawnGlucoseCheat(keys.ResolveControlNameToFirstKey("SpawnGlucoseCheat")),
     m_zoomIn(keys.ResolveControlNameToKeyVector("ZoomIn")),
     m_zoomOut(keys.ResolveControlNameToKeyVector("ZoomOut"))
-{}
+{
+}
 // ------------------------------------ //
 bool
     PlayerMicrobeControl::ReceiveInput(int32_t key, int modifiers, bool down)

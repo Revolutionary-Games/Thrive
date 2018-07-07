@@ -285,7 +285,8 @@ void
 CompoundCloudSystem::CompoundCloudSystem() :
     xVelocity(width, std::vector<float>(height, 0)),
     yVelocity(width, std::vector<float>(height, 0))
-{}
+{
+}
 
 CompoundCloudSystem::~CompoundCloudSystem() {}
 

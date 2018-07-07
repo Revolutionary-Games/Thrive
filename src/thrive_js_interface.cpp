@@ -60,7 +60,8 @@ void
 // ThriveJSHandler
 ThriveJSHandler::ThriveJSHandler(Leviathan::GUI::CefApplication* owner) :
     Owner(owner)
-{}
+{
+}
 
 ThriveJSHandler::~ThriveJSHandler() {}
 // ------------------------------------ //
