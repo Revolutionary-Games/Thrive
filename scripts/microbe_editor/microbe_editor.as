@@ -64,6 +64,21 @@ class MicrobeEditor{
             // This is the UV coordinates direction
             Ogre::Vector3(0, 0, 1));
 
+        // TODO: move to an early render queue or do something to make sure that it is far away
+
+        // hudSystem.world.GetScene().getRenderQueue().setRenderQueueMode(
+        //     2, Ogre::RenderQueue::FAST);
+
+        // // Alpha blend
+        // Ogre::HlmsBlendblock blendblock;
+        // blendblock.mSourceBlendFactor = Ogre::SBF_SOURCE_ALPHA;
+        // blendblock.mDestBlendFactor = Ogre::SBF_ONE_MINUS_SOURCE_ALPHA;
+
+        // GetOgre().getHlmsManager().
+
+        // plane.
+
+
         mutationPoints = BASE_MUTATION_POINTS;
         // organelleCount = 0;
         gridVisible = true;
@@ -105,16 +120,16 @@ class MicrobeEditor{
 
         // We now just fetch the organelles in the player's creature
         MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
-            GetThriveGame().getCellStage().GetScriptComponentHolder(
-                "MicrobeComponent").Find(microbe));
+            world.GetScriptComponentHolder("MicrobeComponent").Find(microbe));
+
+        assert(microbeComponent !is null, "player creature state is invalid");
 
         // This is failing here
         SpeciesComponent@ playerSpecies = MicrobeOperations::getSpeciesComponent(
-            world, microbe);
+            world, microbeComponent.speciesName);
 
+        assert(playerSpecies !is null, "player creature species is invalid");
         LOG_INFO(playerSpecies.name);
-        assert(microbeComponent !is null, "player creature state is invalid");
-        assert(playerSpecies !is null, "player creature state is invalid");
 
 
         //     Engine.playerData().setActiveCreature(nextMicrobeEntity.id,
