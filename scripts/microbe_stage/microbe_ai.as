@@ -449,12 +449,35 @@ class MicrobeAISystem : ScriptSystem{
         MicrobeComponent@ microbeComponent = components.second;
         Position@ position = components.third;
         // Chase your prey
-            aiComponent.targetPosition =  world.GetComponent_Position(prey)._Position;
-            auto vec = (aiComponent.targetPosition - position._Position);
-            aiComponent.direction = vec.Normalize();
-            microbeComponent.facingTargetPoint = aiComponent.targetPosition;
-            microbeComponent.movementDirection = Float3(0, 0, -AI_MOVEMENT_SPEED);
-            aiComponent.hasTargetPosition = true;
+        aiComponent.targetPosition =  world.GetComponent_Position(prey)._Position;
+        auto vec = (aiComponent.targetPosition - position._Position);
+        aiComponent.direction = vec.Normalize();
+        microbeComponent.facingTargetPoint = aiComponent.targetPosition;
+        microbeComponent.movementDirection = Float3(0, 0, -AI_MOVEMENT_SPEED);
+        aiComponent.hasTargetPosition = true;
+            
+        MicrobeComponent@ secondMicrobeComponent = cast<MicrobeComponent>(
+            world.GetScriptComponentHolder("MicrobeComponent").Find(prey));
+            
+            
+            // Turn of engulf if prey is Dead
+            if (secondMicrobeComponent.dead && microbeComponent.engulfMode){
+                MicrobeOperations::toggleEngulfMode(world, microbeEntity);
+                aiComponent.boredom=1000;
+            }
+            
+            //  Turn on engulfmode if close
+            if ((position._Position -  aiComponent.targetPosition).LengthSquared() < 20*microbeComponent.organelles.length() && !microbeComponent.engulfMode && 
+                (microbeComponent.organelles.length() > ENGULF_HP_RATIO_REQ*secondMicrobeComponent.organelles.length()))
+            {
+             MicrobeOperations::toggleEngulfMode(world, microbeEntity);
+            }
+            
+            //  Turn off engulfmode when done
+            if ((position._Position -  aiComponent.targetPosition).LengthSquared() > 20*microbeComponent.organelles.length() && microbeComponent.engulfMode)
+            {
+             MicrobeOperations::toggleEngulfMode(world, microbeEntity);
+            }
         }
 
     // For self defense (not nessessarily fleeing)

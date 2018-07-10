@@ -445,6 +445,11 @@ void applyMembraneColour(CellStageWorld@ world, ObjectID microbeEntity){
 void toggleEngulfMode(CellStageWorld@ world, ObjectID microbeEntity){
     MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
         world.GetScriptComponentHolder("MicrobeComponent").Find(microbeEntity));
+        
+    if (microbeComponent.isCurrentlyEngulfing)
+        {
+        microbeComponent.isCurrentlyEngulfing = false;
+        }
     // auto soundSourceComponent = world.GetComponent_SoundSourceComponent(microbeEntity);
     if(microbeComponent.engulfMode){
         microbeComponent.movementFactor = microbeComponent.movementFactor *
@@ -456,7 +461,7 @@ void toggleEngulfMode(CellStageWorld@ world, ObjectID microbeEntity){
             ENGULFING_MOVEMENT_DIVISION;
     auto rigidBodyComponent = world.GetComponent_Physics(microbeEntity);
     }
-
+    
     microbeComponent.engulfMode = !microbeComponent.engulfMode;
 }
 
@@ -1045,8 +1050,6 @@ void removeEngulfedEffect(CellStageWorld@ world, ObjectID microbeEntity){
         hostileMicrobeComponent.isCurrentlyEngulfing = false;
     }
 
-    auto hostileRigidBodyComponent = world.GetComponent_Physics(
-        microbeComponent.hostileEngulfer);
 }
 
 // Sets the colour of the microbe's membrane.

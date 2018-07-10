@@ -193,7 +193,8 @@ int beingEngulfed(GameWorld@ world, ObjectID firstEntity, ObjectID secondEntity)
     int secondMicrobeComponentOrganelles = secondMicrobeComponent.organelles.length();
 
     // If either cell is engulfing we need to do things
-    if (firstMicrobeComponent.engulfMode)
+    if ((firstMicrobeComponent.engulfMode && !firstMicrobeComponent.isCurrentlyEngulfing)
+        || (!firstMicrobeComponent.isCurrentlyEngulfing && secondMicrobeComponent.hostileEngulfer == firstEntity))
     {
         if(firstMicrobeComponent.engulfMode && firstMicrobeComponentOrganelles >
             (ENGULF_HP_RATIO_REQ * secondMicrobeComponentOrganelles) &&
@@ -217,7 +218,8 @@ int beingEngulfed(GameWorld@ world, ObjectID firstEntity, ObjectID secondEntity)
 
     // Looks like it doenst work sometimes if i dont check the second
     // one aswell, so i have to, theres gotta be a way to improve this
-    if (secondMicrobeComponent.engulfMode)
+    if ((secondMicrobeComponent.engulfMode && !secondMicrobeComponent.isCurrentlyEngulfing)
+        || (!secondMicrobeComponent.isCurrentlyEngulfing && firstMicrobeComponent.hostileEngulfer == secondEntity))
     {
         if(secondMicrobeComponent.engulfMode && secondMicrobeComponentOrganelles >
             (ENGULF_HP_RATIO_REQ * firstMicrobeComponentOrganelles) &&
