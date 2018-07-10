@@ -411,7 +411,7 @@ class MicrobeSystem : ScriptSystem{
 
             if(microbeComponent.isBeingEngulfed && microbeComponent.wasBeingEngulfed){
                 LOG_INFO("doing engulf damage");
-                MicrobeOperations::damage(world, microbeEntity,microbeComponent.maxHitpoints/10.0f,
+                MicrobeOperations::damage(world,microbeEntity,microbeComponent.maxHitpoints/5.0f/1000.0f*logicTime,
                     "isBeingEngulfed - Microbe.update()s");
                 // Else If we were but are no longer, being engulfed
             } else if(microbeComponent.wasBeingEngulfed){
@@ -767,8 +767,8 @@ class MicrobeSystem : ScriptSystem{
 
     // Microbe takes 4% of max hp per second in damage
             MicrobeOperations::damage(world, microbeEntity,
-                int(EXCESS_COMPOUND_COLLECTION_INTERVAL *
-                    0.00004  * microbeComponent.maxHitpoints), "atpDamage");
+                EXCESS_COMPOUND_COLLECTION_INTERVAL *
+                    0.00004  * microbeComponent.maxHitpoints, "atpDamage");
         }
     }
 
