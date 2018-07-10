@@ -172,7 +172,7 @@ void cellOnCellActualContact(GameWorld@ world, ObjectID firstEntity, ObjectID se
 void killPlayerCellClicked(CellStageWorld@ world){
     auto playerEntity = GetThriveGame().playerData().activeCreature();
     //kill it hard
-     MicrobeOperations::damage(world,playerEntity, 9999, "suicide");
+     MicrobeOperations::damage(world,playerEntity, 9999.0f, "suicide");
 }
 
 // Returns 0 if being engulfed, probabbly also damages the cell being
