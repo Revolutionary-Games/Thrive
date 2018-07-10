@@ -172,7 +172,7 @@ void cellOnCellActualContact(GameWorld@ world, ObjectID firstEntity, ObjectID se
 void killPlayerCellClicked(CellStageWorld@ world){
     auto playerEntity = GetThriveGame().playerData().activeCreature();
     //kill it hard
-     MicrobeOperations::damage(world,playerEntity, 9999, "suicide");
+     MicrobeOperations::damage(world,playerEntity, 9999.0f, "suicide");
 }
 
 // Returns 0 if being engulfed, probabbly also damages the cell being
@@ -202,12 +202,12 @@ int beingEngulfed(GameWorld@ world, ObjectID firstEntity, ObjectID secondEntity)
 
             secondMicrobeComponent.isBeingEngulfed = true;
             secondMicrobeComponent.hostileEngulfer = firstEntity;
-
+            secondMicrobeComponent.wasBeingEngulfed = true;
+            
             if(!firstMicrobeComponent.isCurrentlyEngulfing){
                 // We have just started engulfing
                 secondMicrobeComponent.movementFactor = secondMicrobeComponent.movementFactor /
                     ENGULFED_MOVEMENT_DIVISION;
-                secondMicrobeComponent.wasBeingEngulfed = true;
             }
 
             firstMicrobeComponent.isCurrentlyEngulfing = true;
@@ -226,12 +226,12 @@ int beingEngulfed(GameWorld@ world, ObjectID firstEntity, ObjectID secondEntity)
 
             firstMicrobeComponent.isBeingEngulfed = true;
             firstMicrobeComponent.hostileEngulfer = secondEntity;
-
+            firstMicrobeComponent.wasBeingEngulfed = true;
+            
             if(!secondMicrobeComponent.isCurrentlyEngulfing){
                 //We have just started engulfing
                 firstMicrobeComponent.movementFactor = firstMicrobeComponent.movementFactor /
                     ENGULFED_MOVEMENT_DIVISION;
-                firstMicrobeComponent.wasBeingEngulfed = true;
             }
 
             secondMicrobeComponent.isCurrentlyEngulfing = true;

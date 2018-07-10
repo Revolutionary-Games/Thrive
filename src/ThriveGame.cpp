@@ -48,7 +48,8 @@ public:
             *game.ApplicationConfiguration->GetKeyConfiguration())),
         m_cellStageKeys(std::make_shared<PlayerMicrobeControl>(
             *game.ApplicationConfiguration->GetKeyConfiguration()))
-    {}
+    {
+    }
 
     //! Releases Ogre things. Needs to be called before shutdown
     void
@@ -602,7 +603,8 @@ void
 // ------------------------------------ //
 void
     ThriveGame::Tick(int mspassed)
-{}
+{
+}
 
 void
     ThriveGame::CustomizeEnginePostLoad()
@@ -876,7 +878,8 @@ void
 void
     ThriveGame::CheckGameConfigurationVariables(Lock& guard,
         GameConfiguration* configobj)
-{}
+{
+}
 
 void
     ThriveGame::CheckGameKeyConfigVariables(Lock& guard,
