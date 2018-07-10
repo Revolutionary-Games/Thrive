@@ -445,18 +445,17 @@ void applyMembraneColour(CellStageWorld@ world, ObjectID microbeEntity){
 void toggleEngulfMode(CellStageWorld@ world, ObjectID microbeEntity){
     MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
         world.GetScriptComponentHolder("MicrobeComponent").Find(microbeEntity));
+        
     // auto soundSourceComponent = world.GetComponent_SoundSourceComponent(microbeEntity);
     if(microbeComponent.engulfMode){
         microbeComponent.movementFactor = microbeComponent.movementFactor *
             ENGULFING_MOVEMENT_DIVISION;
         // soundSourceComponent.stopSound("microbe-engulfment"); // Possibly comment out.
-    auto rigidBodyComponent = world.GetComponent_Physics(microbeEntity);
     } else {
         microbeComponent.movementFactor = microbeComponent.movementFactor /
             ENGULFING_MOVEMENT_DIVISION;
-    auto rigidBodyComponent = world.GetComponent_Physics(microbeEntity);
     }
-
+    
     microbeComponent.engulfMode = !microbeComponent.engulfMode;
 }
 
@@ -465,14 +464,14 @@ void toggleEngulfMode(CellStageWorld@ world, ObjectID microbeEntity){
 //
 // @param amount
 //  amount of hitpoints to substract
-void damage(CellStageWorld@ world, ObjectID microbeEntity, uint amount, const string &in
+void damage(CellStageWorld@ world, ObjectID microbeEntity, double amount, const string &in
     damageType)
 {
     if(damageType == ""){
         assert(false, "Damage type is empty");
     }
 
-    if(amount < 0){
+    if(amount < 0.0f){
         assert(false, "Can't deal negative damage. Use MicrobeOperations::heal instead");
     }
 
@@ -506,8 +505,8 @@ void damage(CellStageWorld@ world, ObjectID microbeEntity, uint amount, const st
                     Float4(1,0,0,0.5));
 
     // Find out the amount of health the microbe has.
-    if(microbeComponent.hitpoints <= 0){
-        microbeComponent.hitpoints = 0;
+    if(microbeComponent.hitpoints <= 0.0f){
+        microbeComponent.hitpoints = 0.0f;
         kill(world, microbeEntity);
     }
 }
@@ -1045,8 +1044,6 @@ void removeEngulfedEffect(CellStageWorld@ world, ObjectID microbeEntity){
         hostileMicrobeComponent.isCurrentlyEngulfing = false;
     }
 
-    auto hostileRigidBodyComponent = world.GetComponent_Physics(
-        microbeComponent.hostileEngulfer);
 }
 
 // Sets the colour of the microbe's membrane.

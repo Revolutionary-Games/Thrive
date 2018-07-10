@@ -314,7 +314,8 @@ StorageContainer::StorageContainer(const StorageContainer& other) :
 
 StorageContainer::StorageContainer(StorageContainer&& other) :
     m_impl(std::move(other.m_impl))
-{}
+{
+}
 
 
 StorageContainer::~StorageContainer() {}
@@ -553,12 +554,14 @@ StorageList::StorageList() {}
 
 StorageList::StorageList(const StorageList& other) :
     std::vector<StorageContainer>(other)
-{}
+{
+}
 
 
 StorageList::StorageList(StorageList&& other) :
     std::vector<StorageContainer>(other)
-{}
+{
+}
 
 
 StorageList&
@@ -630,9 +633,10 @@ template<typename T> struct IntegralTypeHandler {
     }
 };
 
-#define INTEGRAL_TYPE_HANDLER(typeName) \
-    template<>                          \
-    struct TypeHandler<typeName> : public IntegralTypeHandler<typeName> {};
+#define INTEGRAL_TYPE_HANDLER(typeName)                                   \
+    template<>                                                            \
+    struct TypeHandler<typeName> : public IntegralTypeHandler<typeName> { \
+    };
 
 INTEGRAL_TYPE_HANDLER(int8_t)
 INTEGRAL_TYPE_HANDLER(int16_t)

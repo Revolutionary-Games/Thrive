@@ -8,7 +8,8 @@ MainMenuKeyPressListener::MainMenuKeyPressListener() :
     m_skipKeys({Leviathan::GKey::GenerateKeyFromString("ESCAPE"),
         Leviathan::GKey::GenerateKeyFromString("RETURN"),
         Leviathan::GKey::GenerateKeyFromString("SPACE")})
-{}
+{
+}
 // ------------------------------------ //
 bool
     MainMenuKeyPressListener::ReceiveInput(int32_t key,
@@ -38,7 +39,8 @@ void
     MainMenuKeyPressListener::ReceiveBlockedInput(int32_t key,
         int modifiers,
         bool down)
-{}
+{
+}
 
 bool
     MainMenuKeyPressListener::OnMouseMove(int xmove, int ymove)
