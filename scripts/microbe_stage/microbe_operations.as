@@ -446,10 +446,6 @@ void toggleEngulfMode(CellStageWorld@ world, ObjectID microbeEntity){
     MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
         world.GetScriptComponentHolder("MicrobeComponent").Find(microbeEntity));
         
-    if (microbeComponent.isCurrentlyEngulfing)
-        {
-        microbeComponent.isCurrentlyEngulfing = false;
-        }
     // auto soundSourceComponent = world.GetComponent_SoundSourceComponent(microbeEntity);
     if(microbeComponent.engulfMode){
         microbeComponent.movementFactor = microbeComponent.movementFactor *
