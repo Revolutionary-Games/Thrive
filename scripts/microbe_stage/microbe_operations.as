@@ -455,11 +455,9 @@ void toggleEngulfMode(CellStageWorld@ world, ObjectID microbeEntity){
         microbeComponent.movementFactor = microbeComponent.movementFactor *
             ENGULFING_MOVEMENT_DIVISION;
         // soundSourceComponent.stopSound("microbe-engulfment"); // Possibly comment out.
-    auto rigidBodyComponent = world.GetComponent_Physics(microbeEntity);
     } else {
         microbeComponent.movementFactor = microbeComponent.movementFactor /
             ENGULFING_MOVEMENT_DIVISION;
-    auto rigidBodyComponent = world.GetComponent_Physics(microbeEntity);
     }
     
     microbeComponent.engulfMode = !microbeComponent.engulfMode;

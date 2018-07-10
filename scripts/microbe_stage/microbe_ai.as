@@ -461,6 +461,7 @@ class MicrobeAISystem : ScriptSystem{
             
             
             // Turn of engulf if prey is Dead
+            // This is probabbly not working
             if (secondMicrobeComponent.dead && microbeComponent.engulfMode){
                 MicrobeOperations::toggleEngulfMode(world, microbeEntity);
                 aiComponent.boredom=1000;
