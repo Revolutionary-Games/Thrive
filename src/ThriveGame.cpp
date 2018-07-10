@@ -72,6 +72,12 @@ public:
             m_cellStage->GetScene()->destroyItem(m_microbeBackgroundItem);
             m_microbeBackgroundItem = nullptr;
         }
+
+        if(m_microbeEditorBackgroundItem) {
+            m_microbeEditor->GetScene()->destroyItem(
+                m_microbeEditorBackgroundItem);
+            m_microbeEditorBackgroundItem = nullptr;
+        }
     }
 
     void
@@ -85,6 +91,26 @@ public:
 
         // Need to edit the render queue and add it to an early one
         m_microbeBackgroundItem->setRenderQueueGroup(1);
+
+        // Editor version
+        if(m_microbeEditor) {
+            m_microbeEditorBackgroundItem =
+                m_microbeEditor->GetScene()->createItem(
+                    m_microbeBackgroundMesh, Ogre::SCENE_STATIC);
+            m_microbeEditorBackgroundItem->setCastShadows(false);
+
+            // Need to edit the render queue and add it to an early one
+            m_microbeEditorBackgroundItem->setRenderQueueGroup(1);
+        }
+
+        // Re-attach if the nodes exist
+        // Add it
+        if(m_backgroundRenderNode)
+            m_backgroundRenderNode->attachObject(m_microbeBackgroundItem);
+
+        if(m_editorBackgroundRenderNode)
+            m_editorBackgroundRenderNode->attachObject(
+                m_microbeEditorBackgroundItem);
     }
 
     ThriveGame& m_game;
@@ -105,6 +131,9 @@ public:
     Ogre::SubMesh* m_microbeBackgroundSubMesh;
     Ogre::Item* m_microbeBackgroundItem = nullptr;
     Ogre::SceneNode* m_backgroundRenderNode = nullptr;
+
+    Ogre::Item* m_microbeEditorBackgroundItem = nullptr;
+    Ogre::SceneNode* m_editorBackgroundRenderNode = nullptr;
 
     std::shared_ptr<MainMenuKeyPressListener> m_menuKeyPresses;
     std::shared_ptr<GlobalUtilityKeyHandler> m_globalKeyPresses;
@@ -289,12 +318,10 @@ void
     m_impl->m_cellStage->GetScene()->getRenderQueue()->setRenderQueueMode(
         1, Ogre::RenderQueue::FAST);
 
+    // This now attaches the item as well (as long as the scene node is created)
+    // This makes it easier to manage the multiple backgrounds and reattaching
+    // them
     m_impl->createBackgroundItem();
-
-    // Add it
-    m_impl->m_backgroundRenderNode->attachObject(
-        m_impl->m_microbeBackgroundItem);
-
 
     // Spawn player //
     setup = ScriptRunningSetup("setupPlayer");
@@ -474,6 +501,18 @@ void
 
     m_impl->m_microbeEditor->SetCamera(camera);
 
+    // Background
+    m_impl->m_editorBackgroundRenderNode =
+        m_impl->m_microbeEditor->GetScene()->createSceneNode(
+            Ogre::SCENE_STATIC);
+
+    // Setup render queue for it
+    m_impl->m_microbeEditor->GetScene()->getRenderQueue()->setRenderQueueMode(
+        1, Ogre::RenderQueue::FAST);
+
+    // This also attaches it
+    m_impl->createBackgroundItem();
+
     // Let the script do setup //
     // This registers all the script defined systems to run and be
     // available from the world
@@ -558,10 +597,6 @@ void
     m_impl->m_microbeBackgroundSubMesh->setMaterialName(material);
 
     m_impl->createBackgroundItem();
-
-    // Add it
-    m_impl->m_backgroundRenderNode->attachObject(
-        m_impl->m_microbeBackgroundItem);
 }
 
 // ------------------------------------ //
