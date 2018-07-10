@@ -411,7 +411,7 @@ class MicrobeSystem : ScriptSystem{
 
             if(microbeComponent.isBeingEngulfed && microbeComponent.wasBeingEngulfed){
                 LOG_INFO("doing engulf damage");
-                MicrobeOperations::damage(world, microbeEntity,microbeComponent.maxHitpoints/5,
+                MicrobeOperations::damage(world, microbeEntity,microbeComponent.maxHitpoints/10.0f,
                     "isBeingEngulfed - Microbe.update()s");
                 // Else If we were but are no longer, being engulfed
             } else if(microbeComponent.wasBeingEngulfed){
