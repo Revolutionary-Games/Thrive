@@ -122,7 +122,7 @@ class MicrobeEditorHudSystem : ScriptSystem{
     //for stoppiong the music when you leave the editor
     void Suspend()
     {
-        LOG_INFO("Suspeding microbe editor background sounds");
+        LOG_INFO("Suspending microbe editor background sounds");
         if(ambienceSounds !is null)
             ambienceSounds.Get().pause();
     }

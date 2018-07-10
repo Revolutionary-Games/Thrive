@@ -180,7 +180,7 @@ class MicrobeStageHudSystem : ScriptSystem{
     //! This stops sound while the cell stage world isn't active
     void Suspend(){
 
-        LOG_INFO("Suspeding microbe stage background sounds");
+        LOG_INFO("Suspending microbe stage background sounds");
 
         // Pause to allow resuming
         if(ambientTrack !is null)
