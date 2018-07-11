@@ -93,11 +93,3 @@ abstract class OrganelleComponent{
     // }
 }
 
-
-
-
-
-
-
-
-

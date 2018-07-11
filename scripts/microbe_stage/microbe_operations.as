@@ -445,7 +445,7 @@ void applyMembraneColour(CellStageWorld@ world, ObjectID microbeEntity){
 void toggleEngulfMode(CellStageWorld@ world, ObjectID microbeEntity){
     MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
         world.GetScriptComponentHolder("MicrobeComponent").Find(microbeEntity));
-        
+
     // auto soundSourceComponent = world.GetComponent_SoundSourceComponent(microbeEntity);
     if(microbeComponent.engulfMode){
         microbeComponent.movementFactor = microbeComponent.movementFactor *
@@ -455,7 +455,7 @@ void toggleEngulfMode(CellStageWorld@ world, ObjectID microbeEntity){
         microbeComponent.movementFactor = microbeComponent.movementFactor /
             ENGULFING_MOVEMENT_DIVISION;
     }
-    
+
     microbeComponent.engulfMode = !microbeComponent.engulfMode;
 }
 
