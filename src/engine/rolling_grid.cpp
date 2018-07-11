@@ -179,8 +179,7 @@ void
 
 RollingGrid::RollingGrid(int width, int height, int resolution) :
     m_impl(new Implementation(width, height, resolution))
-{
-}
+{}
 
 // TODO make stuff actually happen
 RollingGrid::~RollingGrid() {}

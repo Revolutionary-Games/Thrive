@@ -203,7 +203,7 @@ int beingEngulfed(GameWorld@ world, ObjectID firstEntity, ObjectID secondEntity)
             secondMicrobeComponent.isBeingEngulfed = true;
             secondMicrobeComponent.hostileEngulfer = firstEntity;
             secondMicrobeComponent.wasBeingEngulfed = true;
-            
+
             if(!firstMicrobeComponent.isCurrentlyEngulfing){
                 // We have just started engulfing
                 secondMicrobeComponent.movementFactor = secondMicrobeComponent.movementFactor /
@@ -227,7 +227,7 @@ int beingEngulfed(GameWorld@ world, ObjectID firstEntity, ObjectID secondEntity)
             firstMicrobeComponent.isBeingEngulfed = true;
             firstMicrobeComponent.hostileEngulfer = secondEntity;
             firstMicrobeComponent.wasBeingEngulfed = true;
-            
+
             if(!secondMicrobeComponent.isCurrentlyEngulfing){
                 //We have just started engulfing
                 firstMicrobeComponent.movementFactor = firstMicrobeComponent.movementFactor /

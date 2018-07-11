@@ -65,8 +65,7 @@ AgentCloudComponent::AgentCloudComponent(CompoundId id,
     float blue) :
     Leviathan::Component(TYPE),
     color(Ogre::ColourValue(red, green, blue)), m_compoundId(id)
-{
-}
+{}
 
 // void
 // AgentCloudComponent::load(
