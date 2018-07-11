@@ -64,20 +64,11 @@ class MicrobeEditor{
             // This is the UV coordinates direction
             Ogre::Vector3(0, 0, 1));
 
-        // TODO: move to an early render queue or do something to make sure that it is far away
+        // Move to an early render queue
+        hudSystem.world.GetScene().getRenderQueue().setRenderQueueMode(
+            2, Ogre::RenderQueue::FAST);
 
-        // hudSystem.world.GetScene().getRenderQueue().setRenderQueueMode(
-        //     2, Ogre::RenderQueue::FAST);
-
-        // // Alpha blend
-        // Ogre::HlmsBlendblock blendblock;
-        // blendblock.mSourceBlendFactor = Ogre::SBF_SOURCE_ALPHA;
-        // blendblock.mDestBlendFactor = Ogre::SBF_ONE_MINUS_SOURCE_ALPHA;
-
-        // GetOgre().getHlmsManager().
-
-        // plane.
-
+        plane.GraphicalObject.setRenderQueueGroup(2);
 
         mutationPoints = BASE_MUTATION_POINTS;
         // organelleCount = 0;
