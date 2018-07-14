@@ -405,7 +405,7 @@ class MicrobeSystem : ScriptSystem{
                     MicrobeOperations::toggleEngulfMode(world, microbeEntity);
                 }
                 // Flash the membrane blue.
-                MicrobeOperations::flashMembraneColour(world, microbeEntity, 3000,
+                MicrobeOperations::flashMembraneColour(world, microbeEntity, 1000,
                     Float4(0.2,0.5,1.0,0.5));
             }
 
