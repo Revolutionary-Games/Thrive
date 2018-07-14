@@ -349,7 +349,7 @@ class MicrobeSystem : ScriptSystem{
                 // How frequent it flashes, would be nice to update
                 // the flash void to have this variable{
                 if((microbeComponent.flashDuration % 600.0f) < 300){
-                    LOG_INFO("Flashed");
+                    //LOG_INFO("Flashed");
                     MicrobeOperations::setMembraneColour(world, microbeEntity,
                         microbeComponent.flashColour);
                 } else {
