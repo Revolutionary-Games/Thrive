@@ -283,7 +283,7 @@ class MicrobeAISystem : ScriptSystem{
                 world.GetScriptComponentHolder("MicrobeComponent").Find(allMicrobes[i]));
 
             // At max aggression add them all
-            if (allMicrobes[i] != microbeEntity && (secondMicrobeComponent.speciesName != microbeComponent.speciesName))
+            if (allMicrobes[i] != microbeEntity && (secondMicrobeComponent.speciesName != microbeComponent.speciesName) && !secondMicrobeComponent.dead)
             {
                 if ((aiComponent.speciesAggression==MAX_SPECIES_AGRESSION) or
                     (((microbeComponent.organelles.length()*1.0f)*(aiComponent.speciesAggression/AGRESSION_DIVISOR)) >
@@ -379,7 +379,7 @@ class MicrobeAISystem : ScriptSystem{
                 world.GetScriptComponentHolder("MicrobeComponent").Find(allMicrobes[i]));
 
             // At max fear add them all
-            if (allMicrobes[i] != microbeEntity && (secondMicrobeComponent.speciesName != microbeComponent.speciesName))
+            if (allMicrobes[i] != microbeEntity && (secondMicrobeComponent.speciesName != microbeComponent.speciesName) && !secondMicrobeComponent.dead)
             {
             if ((aiComponent.speciesFear==MAX_SPECIES_FEAR) or (((secondMicrobeComponent.organelles.length()*1.0f)*(aiComponent.speciesFear/FEAR_DIVISOR)) >
             (microbeComponent.organelles.length()*1.0f)))
