@@ -462,20 +462,26 @@ class MicrobeAISystem : ScriptSystem{
 
             // Turn of engulf if prey is Dead
             // This is probabbly not working
-            if (secondMicrobeComponent.dead && microbeComponent.engulfMode){
+            if (secondMicrobeComponent.dead ){
+            aiComponent.hasTargetPosition = false;
+            aiComponent.lifeState = GATHERING_STATE;
+            if (microbeComponent.engulfMode)
+                {
                 MicrobeOperations::toggleEngulfMode(world, microbeEntity);
-                aiComponent.boredom=1000;
+                }
             }
+            else {
 
             //  Turn on engulfmode if close
             if ((position._Position -  aiComponent.targetPosition).LengthSquared() <= 20*microbeComponent.organelles.length()+secondMicrobeComponent.organelles.length() && !microbeComponent.engulfMode &&
-                (microbeComponent.organelles.length() > ENGULF_HP_RATIO_REQ*secondMicrobeComponent.organelles.length()))
-            {
-             MicrobeOperations::toggleEngulfMode(world, microbeEntity);
-            }
+                    (microbeComponent.organelles.length() > ENGULF_HP_RATIO_REQ*secondMicrobeComponent.organelles.length()))
+                {
+                    MicrobeOperations::toggleEngulfMode(world, microbeEntity);
+                }   
             else if ((position._Position -  aiComponent.targetPosition).LengthSquared() > 20*microbeComponent.organelles.length()+secondMicrobeComponent.organelles.length() && microbeComponent.engulfMode)
-            {
-             MicrobeOperations::toggleEngulfMode(world, microbeEntity);
+                {
+                MicrobeOperations::toggleEngulfMode(world, microbeEntity);
+                }
             }
         }
 
