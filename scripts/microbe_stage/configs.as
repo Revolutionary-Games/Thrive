@@ -11,7 +11,7 @@ const auto DEFAULT_SPAWN_DENSITY = 1/25000.f;
 
 const auto MIN_COLOR = 0.0f;
 const auto MAX_COLOR = 0.8f;
-const auto MIN_OPACITY = 0.3f;
+const auto MIN_OPACITY = 0.6f;
 const auto MAX_OPACITY = 4.0f;
 //not const because we want to change these
 //current atmospheric oxygen percentage in modern times
