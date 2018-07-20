@@ -1196,7 +1196,7 @@ bool
 
     if(engine->RegisterObjectMethod("SpeciesNameController",
            "array<string>@ getVowelPrefixes()",
-           asMETHOD(SpeciesNameController, getPrefixes), asCALL_THISCALL) < 0) {
+           asMETHOD(SpeciesNameController, getVowelPrefixes), asCALL_THISCALL) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
     }
     if(engine->RegisterObjectMethod("SpeciesNameController",
