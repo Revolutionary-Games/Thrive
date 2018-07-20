@@ -29,16 +29,16 @@ SpeciesNameController::SpeciesNameController(std::string jsonFilePath)
         prefixcofixes.push_back(rootElement["prefixcofix"][i].asString());
 
     for(Json::Value::ArrayIndex i = 0; i < rootElement["prefixes_v"].size(); i++)
-        prefixes.push_back(rootElement["prefixes_v"][i].asString());
+        prefixes_v.push_back(rootElement["prefixes_v"][i].asString());
     
     for(Json::Value::ArrayIndex i = 0; i < rootElement["prefixes_c"].size(); i++)
-        prefixes.push_back(rootElement["prefixes_c"][i].asString());
+        prefixes_c.push_back(rootElement["prefixes_c"][i].asString());
 
     for(Json::Value::ArrayIndex i = 0; i < rootElement["cofixes_v"].size(); i++)
-        cofixes.push_back(rootElement["cofixes_v"][i].asString());
+        cofixes_v.push_back(rootElement["cofixes_v"][i].asString());
     
     for(Json::Value::ArrayIndex i = 0; i < rootElement["cofixes_c"].size(); i++)
-        cofixes.push_back(rootElement["cofixes_c"][i].asString());
+        cofixes_c.push_back(rootElement["cofixes_c"][i].asString());
 
     for(Json::Value::ArrayIndex i = 0; i < rootElement["suffixes"].size(); i++)
         suffixes.push_back(rootElement["suffixes"][i].asString());
@@ -53,7 +53,7 @@ CScriptArray*
 {
     // Method taken from Leviathan::ConvertVectorToASArray
     return Leviathan::ConvertIteratorToASArray(std::begin(prefixes_v),
-        std::end(prefixes), Leviathan::ScriptExecutor::Get()->GetASEngine());
+        std::end(prefixes_v), Leviathan::ScriptExecutor::Get()->GetASEngine());
 }
 
 CScriptArray*
@@ -61,7 +61,7 @@ CScriptArray*
 {
     // Method taken from Leviathan::ConvertVectorToASArray
     return Leviathan::ConvertIteratorToASArray(std::begin(prefixes_c),
-        std::end(prefixes), Leviathan::ScriptExecutor::Get()->GetASEngine());
+        std::end(prefixes_c), Leviathan::ScriptExecutor::Get()->GetASEngine());
 }
 
 CScriptArray*
