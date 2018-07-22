@@ -77,6 +77,13 @@ class MicrobeEditor{
         actionIndex = 0;
         organelleRot = 0;
         symmetry = 0;
+
+        // Reset to cytoplasm if nothing is selected
+        if(activeActionName == ""){
+
+            LOG_INFO("Selecting cytoplasm");
+
+        }
     }
 
     void activate(){
@@ -107,13 +114,17 @@ class MicrobeEditor{
         CellStageWorld@ world = GetThriveGame().getCellStage();
 
         assert(world !is null, "world is null");
-        LOG_INFO("Microbe ID is "+microbe);
+        LOG_INFO("Microbe ID is " + microbe);
 
         // We now just fetch the organelles in the player's creature
-        MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
-            world.GetScriptComponentHolder("MicrobeComponent").Find(microbe));
+        ScriptComponent@ component = world.GetScriptComponentHolder(
+            "MicrobeComponent").Find(microbe);
 
-        assert(microbeComponent !is null, "player creature state is invalid");
+        assert(component !is null, "component retrieve failed");
+
+        MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(component);
+
+        assert(microbeComponent !is null, "player MicrobeComponent cast failed");
 
         // This is failing here
         SpeciesComponent@ playerSpecies = MicrobeOperations::getSpeciesComponent(
@@ -768,3 +779,73 @@ class MicrobeEditor{
 
     private bool microbeHasBeenInEditor = false;
 };
+
+
+// //! Class for handling drawing hexes in the editor for organelles
+// class OrganelleHexDrawer{
+
+//     // Draws the hexes and uploads the models in the editor
+//     void renderOrganelles(CellStageWorld@ world, EditorPlacedOrganelle@ data){
+//         if(data.name == "remove")
+//             return;
+
+//         // Wouldn't it be easier to just use normal PlacedOrganelle and just move it around
+//         assert(false, "TODO: use actual PlacedOrganelles to position things");
+
+//         // //Getting the list hexes occupied by this organelle.
+//         // if(data.hexes is null){
+
+//         //     // The list needs to be rotated //
+//         //     int times = data.rotation / 60;
+
+//         //     //getting the hex table of the organelle rotated by the angle
+//         //     @data.hexes = rotateHexListNTimes(organelle.getHexes(), times);
+//         // }
+
+//         // occupiedHexList = OrganelleFactory.checkSize(data);
+
+//         // //Used to get the average x and y values.
+//         // float xSum = 0;
+//         // float ySum = 0;
+
+//         // //Rendering a cytoplasm in each of those hexes.
+//         // //Note: each scenenode after the first one is considered a cytoplasm by the
+//         // // engine automatically.
+//         // // TODO: verify the above claims
+
+//         // Float2 organelleXY = Hex::axialToCartesian(data.q, data.r);
+
+//         // uint i = 2;
+//         // for(uint listIndex = 0; listIndex < data.hexes.length(); ++listIndex){
+
+//         //     const Hex@ hex = data.hexes[listIndex];
+
+
+//         //     Float2 hexXY = Hex::axialToCartesian(hex.q, hex.r);
+
+//         //     float x = organelleXY.X + hexX;
+//         //     float y = organelleYY.Y + hexY;
+//         //     xSum = xSum + x;
+//         //     ySum = ySum + y;
+//         //     i = i + 1;
+//         // }
+
+//         // //Getting the average x and y values to render the organelle mesh in the middle.
+//         // local xAverage = xSum / (i - 2); // Number of occupied hexes = (i - 2).
+//         // local yAverage = ySum / (i - 2);
+
+//         // //Rendering the organelle mesh (if it has one).
+//         // auto mesh = data.organelle.organelle.mesh;
+//         // if(mesh ~= nil) {
+
+//         //     // Create missing components to place the mesh in etc.
+//         //     if(world.GetComponent_
+
+//         //     data.sceneNode[1].meshName = mesh;
+//         //     data.sceneNode[1].transform.position = Vector3(-xAverage, -yAverage, 0);
+//         //     data.sceneNode[1].transform.orientation = Quaternion.new(
+//         //         Radian.new(Degree(data.rotation)), Vector3(0, 0, 1));
+//         // }
+//     }
+// }
+
