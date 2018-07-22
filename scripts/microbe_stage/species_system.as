@@ -107,11 +107,11 @@ class Species{
             // And then random cytoplasm padding
             const auto cytoplasmPadding = GetEngine().GetRandom().GetNumber(0, 10);
 
-            for(int i = 0; i < cytoplasmPadding; ++i){
+            for(int i = 0; i < cytoplasmPadding; i++){
                 this.stringCode += cytoplasmGene;
             }
 
-            for(int i = 0; i < stringSize; ++i){
+            for(int i = 0; i < stringSize; i++){
                 this.stringCode += getRandomLetter(false);
 
                 // Random cytoplasm padding
@@ -239,7 +239,7 @@ class Species{
         if (GetEngine().GetRandom().GetNumber(0,4) < 2)
         {
             // Clump
-            for(int i = 0; i < GetEngine().GetRandom().GetNumber(1,5); ++i){
+            for(int i = 0; i < GetEngine().GetRandom().GetNumber(1,5); i++){
                 //dont spawn them on top of each other because it
                 //causes them to bounce around and lag
                 MicrobeOperations::spawnBacteria(world, pos+curSpawn, this.name,true,"",true);
@@ -256,7 +256,7 @@ class Species{
             float linez = GetEngine().GetRandom().GetNumber(-5,5)+GetEngine().GetRandom().
                 GetNumber(-5,5);
 
-            for(int i = 0; i < GetEngine().GetRandom().GetNumber(1,7); ++i){
+            for(int i = 0; i < GetEngine().GetRandom().GetNumber(1,7); i++){
                 // Dont spawn them on top of each other because it
                 // Causes them to bounce around and lag
                 MicrobeOperations::spawnBacteria(world, pos+curSpawn, this.name,true,"",true);
@@ -274,7 +274,7 @@ class Species{
             bool horizontal = false;
             bool vertical = false;
 
-            for(int i = 0; i < GetEngine().GetRandom().GetNumber(3,10); ++i)
+            for(int i = 0; i < GetEngine().GetRandom().GetNumber(3,10); i++)
             {
                 if (GetEngine().GetRandom().GetNumber(0,4) < 2 && !horizontal)
                 {
@@ -435,7 +435,7 @@ class Species{
         }
 
         string chosenType= stringCode;
-        for(int i = 0; i < stringSize; ++i){
+        for(int i = 0; i < stringSize; i++){
             this.stringCode += chosenType;
         }
         // Allow bacteria to sometimes start with a flagella instead of having to evolve it
@@ -574,13 +574,13 @@ class SpeciesSystem : ScriptSystem{
         // This was commented out in the Lua version... TODO: check that this works
         //can confirtm, it crashes here - Untrustedlife
         // This is needed to actually have AI species in the world
-        for(int i = 0; i < INITIAL_SPECIES; ++i){
+        for(int i = 0; i < INITIAL_SPECIES; i++){
             createSpecies();
             currentEukaryoteAmount++;
         }
 
         //generate bacteria aswell
-        for(int i = 0; i < INITIAL_BACTERIA; ++i){
+        for(int i = 0; i < INITIAL_BACTERIA; i++){
             createBacterium();
             currentBacteriaAmount++;
         }
@@ -600,7 +600,7 @@ class SpeciesSystem : ScriptSystem{
 
             // Update population numbers and split/extinct species as needed
             auto numberOfSpecies = species.length();
-            for(uint i = 0; i < numberOfSpecies; ++i){
+            for(uint i = 0; i < numberOfSpecies; i++){
                 // Traversing the population backwards to avoid
                 // "chopping down the branch i'm sitting in"
                 auto index = numberOfSpecies - 1 - i;
@@ -717,7 +717,7 @@ class SpeciesSystem : ScriptSystem{
 
     void resetAutoEvo(){
 
-        for(uint i = 0; i < species.length(); ++i){
+        for(uint i = 0; i < species.length(); i++){
 
             species[i].extinguish();
         }
@@ -727,13 +727,13 @@ class SpeciesSystem : ScriptSystem{
 
     void doMassExtinction(){
         // This doesnt seem like a powerful event
-        for(uint i = 0; i < species.length(); ++i){
+        for(uint i = 0; i < species.length(); i++){
             species[i].population /= 2;
         }
     }
 
     void doCambrianExplosion(){
-        for(uint i = 0; i < species.length(); ++i){
+        for(uint i = 0; i < species.length(); i++){
             species[i].population *= 2;
         }
     }
@@ -774,7 +774,7 @@ void updateSpeciesFromMicrobe(CellStageWorld@ world, ObjectID microbeEntity,
     updateSpecies.organelles.resize(0);
 
     // Create species' organelle data
-    for(uint i = 0; i < microbeComponent.organelles.length(); ++i){
+    for(uint i = 0; i < microbeComponent.organelles.length(); i++){
 
         updateSpecies.organelles.insertLast(PlacedOrganelle(microbeComponent.organelles[i]));
     }
@@ -809,7 +809,7 @@ void initProcessorComponent(CellStageWorld@ world, ObjectID entity,
     }
 
     dictionary capacities = {};
-    for(uint i = 0; i < speciesComponent.organelles.length(); ++i){
+    for(uint i = 0; i < speciesComponent.organelles.length(); i++){
         auto@ processes = cast<PlacedOrganelle>(speciesComponent.organelles[i]).
             organelle.processes;
 
@@ -862,7 +862,7 @@ void applyTemplate(CellStageWorld@ world, ObjectID microbe, SpeciesComponent@ sp
     // TODO: should the compound amounts be reset before this?
     // Another place where compound amounts are something we need to worry about
     auto ids = species.avgCompoundAmounts.getKeys();
-    for(uint i = 0; i < ids.length(); ++i){
+    for(uint i = 0; i < ids.length(); i++){
         CompoundId compoundId = parseUInt(ids[i]);
         InitialCompound amount = InitialCompound(species.avgCompoundAmounts[ids[i]]);
 
@@ -886,7 +886,7 @@ void restoreOrganelleLayout(CellStageWorld@ world, ObjectID microbeEntity,
     }
 
     // give it organelles
-    for(uint i = 0; i < species.organelles.length(); ++i){
+    for(uint i = 0; i < species.organelles.length(); i++){
 
         PlacedOrganelle@ organelle = PlacedOrganelle(
             cast<PlacedOrganelle>(species.organelles[i]));
@@ -901,7 +901,7 @@ ObjectID createSpecies(CellStageWorld@ world, const string &in name,
     MicrobeTemplate@ fromTemplate
 ) {
     array<PlacedOrganelle@> convertedOrganelles;
-    for(uint i = 0; i < fromTemplate.organelles.length(); ++i){
+    for(uint i = 0; i < fromTemplate.organelles.length(); i++){
 
         OrganelleTemplatePlaced@ organelle = fromTemplate.organelles[i];
 
@@ -927,7 +927,7 @@ ObjectID createSpecies(CellStageWorld@ world, const string &in name,
     @speciesComponent.avgCompoundAmounts = dictionary();
 
     @speciesComponent.organelles = array<SpeciesStoredOrganelleType@>();
-    for(uint i = 0; i < organelles.length(); ++i){
+    for(uint i = 0; i < organelles.length(); i++){
 
         // This conversion does a little bit of extra calculations (that are in the
         // end not used)
@@ -935,7 +935,7 @@ ObjectID createSpecies(CellStageWorld@ world, const string &in name,
     }
 
     // Verify it //
-    for(uint i = 0; i < speciesComponent.organelles.length(); ++i){
+    for(uint i = 0; i < speciesComponent.organelles.length(); i++){
 
         PlacedOrganelle@ organelle = cast<PlacedOrganelle>(speciesComponent.organelles[i]);
 
@@ -961,7 +961,7 @@ ObjectID createSpecies(CellStageWorld@ world, const string &in name,
 
     // iterates over all compounds, and sets amounts and priorities
     uint64 compoundCount = SimulationParameters::compoundRegistry().getSize();
-    for(uint i = 0; i < compoundCount; ++i){
+    for(uint i = 0; i < compoundCount; i++){
 
         auto compound = SimulationParameters::compoundRegistry().getTypeData(i);
 
@@ -980,7 +980,7 @@ ObjectID createSpecies(CellStageWorld@ world, const string &in name,
     }
 
     dictionary capacities;
-    for(uint i = 0; i < organelles.length(); ++i){
+    for(uint i = 0; i < organelles.length(); i++){
 
         const Organelle@ organelleDefinition = organelles[i].organelle;
         if(organelleDefinition is null){
@@ -1042,7 +1042,7 @@ string mutate(const string &in stringCode){
     }
 
     // Modifies the rest of the table.
-    for(uint i = 0; i < stringCode.length(); ++i){
+    for(uint i = 0; i < stringCode.length(); i++){
         // Index we are adding or erasing chromosomes at
         uint index = stringCode.length() - i - 1;
 
@@ -1081,7 +1081,7 @@ string mutateProkaryote(const string &in stringCode ){
         chromosomes += getRandomLetter(true);
     }
     // Modifies the rest of the table.
-    for(uint i = 0; i < stringCode.length(); ++i){
+    for(uint i = 0; i < stringCode.length(); i++){
         // Index we are adding or erasing chromosomes at
         uint index = stringCode.length() - i -1;
         // Bacteria can be size 1 so removing their only organelle is a bad idea
