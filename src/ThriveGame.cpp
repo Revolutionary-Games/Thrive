@@ -14,7 +14,7 @@
 #include "thrive_version.h"
 #include "thrive_world_factory.h"
 
-#include <Addons/GameModule.h>
+#include <Addons/GameModuleLoader.h>
 #include <GUI/GuiView.h>
 #include <Handlers/ObjectLoader.h>
 #include <Networking/NetworkHandler.h>
@@ -121,10 +121,12 @@ public:
     std::shared_ptr<MicrobeEditorWorld> m_microbeEditor;
 
     // This contains all the microbe_stage AngelScript code
-    Leviathan::GameModule::pointer m_MicrobeScripts;
+    Leviathan::GameModule::pointer m_microbeScripts;
 
-    // This contains all the microbe_editor AngelScript code
-    Leviathan::GameModule::pointer m_MicrobeEditorScripts;
+    // This is "temporarily" merged with the microbe scripts as this needs to
+    // share some types
+    // // This contains all the microbe_editor AngelScript code
+    // Leviathan::GameModule::pointer m_MicrobeEditorScripts;
 
     //! This is the background object of the cell stage
     Ogre::MeshPtr m_microbeBackgroundMesh;
@@ -276,14 +278,14 @@ void
     // Let the script do setup //
     // This registers all the script defined systems to run and be
     // available from the world
-    LEVIATHAN_ASSERT(m_impl->m_MicrobeScripts, "microbe scripts not loaded");
+    LEVIATHAN_ASSERT(m_impl->m_microbeScripts, "microbe scripts not loaded");
 
     LOG_INFO("Calling world setup script setupScriptsForWorld");
 
     ScriptRunningSetup setup;
     setup.SetEntrypoint("setupScriptsForWorld");
 
-    auto result = m_impl->m_MicrobeScripts->ExecuteOnModule<void>(
+    auto result = m_impl->m_microbeScripts->ExecuteOnModule<void>(
         setup, false, m_impl->m_cellStage.get());
 
     if(result.Result != SCRIPT_RUN_RESULT::Success) {
@@ -326,7 +328,7 @@ void
     // Spawn player //
     setup = ScriptRunningSetup("setupPlayer");
 
-    result = m_impl->m_MicrobeScripts->ExecuteOnModule<void>(
+    result = m_impl->m_microbeScripts->ExecuteOnModule<void>(
         setup, false, m_impl->m_cellStage.get());
 
     if(result.Result != SCRIPT_RUN_RESULT::Success) {
@@ -364,7 +366,7 @@ bool
 
     ScriptRunningSetup setup("setupProcesses");
 
-    auto result = m_impl->m_MicrobeScripts->ExecuteOnModule<void>(setup, false);
+    auto result = m_impl->m_microbeScripts->ExecuteOnModule<void>(setup, false);
 
     if(result.Result != SCRIPT_RUN_RESULT::Success) {
 
@@ -379,7 +381,7 @@ bool
 
     setup = ScriptRunningSetup("setupOrganelles");
 
-    result = m_impl->m_MicrobeScripts->ExecuteOnModule<void>(setup, false);
+    result = m_impl->m_microbeScripts->ExecuteOnModule<void>(setup, false);
 
     if(result.Result != SCRIPT_RUN_RESULT::Success) {
 
@@ -416,7 +418,7 @@ PlayerMicrobeControl*
 Leviathan::GameModule*
     ThriveGame::getMicrobeScripts()
 {
-    return m_impl->m_MicrobeScripts.get();
+    return m_impl->m_microbeScripts.get();
 }
 // ------------------------------------ //
 void
@@ -434,7 +436,7 @@ void
 
     ScriptRunningSetup setup = ScriptRunningSetup("killPlayerCellClicked");
 
-    auto result = m_impl->m_MicrobeScripts->ExecuteOnModule<void>(
+    auto result = m_impl->m_microbeScripts->ExecuteOnModule<void>(
         setup, false, m_impl->m_cellStage.get());
 
     if(result.Result != SCRIPT_RUN_RESULT::Success) {
@@ -516,14 +518,14 @@ void
     // Let the script do setup //
     // This registers all the script defined systems to run and be
     // available from the world
-    LEVIATHAN_ASSERT(
-        m_impl->m_MicrobeEditorScripts, "microbe editor scripts not loaded");
+    // LEVIATHAN_ASSERT(
+    //     m_impl->m_MicrobeEditorScripts, "microbe editor scripts not loaded");
 
     LOG_INFO("Calling editor setup script onEditorEntry");
 
     ScriptRunningSetup setup("onEditorEntry");
 
-    auto result = m_impl->m_MicrobeEditorScripts->ExecuteOnModule<void>(
+    auto result = m_impl->m_microbeScripts->ExecuteOnModule<void>(
         setup, false, m_impl->m_microbeEditor.get());
 
     if(result.Result != SCRIPT_RUN_RESULT::Success) {
@@ -564,13 +566,13 @@ void
     // This registers all the script defined systems to run and be
     // available from the world
     LEVIATHAN_ASSERT(
-        m_impl->m_MicrobeScripts, "microbe stage scripts not loaded");
+        m_impl->m_microbeScripts, "microbe stage scripts not loaded");
 
     LOG_INFO("Calling return from editor script, onReturnFromEditor");
 
     ScriptRunningSetup setup("onReturnFromEditor");
 
-    auto result = m_impl->m_MicrobeScripts->ExecuteOnModule<void>(
+    auto result = m_impl->m_microbeScripts->ExecuteOnModule<void>(
         setup, false, m_impl->m_cellStage.get());
 
     if(result.Result != SCRIPT_RUN_RESULT::Success) {
@@ -629,9 +631,8 @@ void
     // immediately)
 
     try {
-        m_impl->m_MicrobeScripts =
-            Leviathan::GameModule::MakeShared<Leviathan::GameModule>(
-                "microbe_stage", "ThriveGame");
+        m_impl->m_microbeScripts =
+            engine->GetGameModuleLoader()->Load("microbe_stage", "ThriveGame");
     } catch(const Leviathan::Exception& e) {
 
         LOG_ERROR(
@@ -641,32 +642,18 @@ void
         return;
     }
 
-    if(!m_impl->m_MicrobeScripts->Init()) {
+    // try {
+    //     m_impl->m_MicrobeEditorScripts =
+    //         engine->GetGameModuleLoader()->Load("microbe_editor",
+    //         "ThriveGame");
+    // } catch(const Leviathan::Exception& e) {
 
-        LOG_ERROR("ThriveGame: microbe_stage module init failed");
-        MarkAsClosing();
-        return;
-    }
-
-    try {
-        m_impl->m_MicrobeEditorScripts =
-            Leviathan::GameModule::MakeShared<Leviathan::GameModule>(
-                "microbe_editor", "ThriveGame");
-    } catch(const Leviathan::Exception& e) {
-
-        LOG_ERROR(
-            "ThriveGame: microbe_editor module failed to load, exception:");
-        e.PrintToLog();
-        MarkAsClosing();
-        return;
-    }
-
-    if(!m_impl->m_MicrobeEditorScripts->Init()) {
-
-        LOG_ERROR("ThriveGame: microbe_editor module init failed");
-        MarkAsClosing();
-        return;
-    }
+    //     LOG_ERROR(
+    //         "ThriveGame: microbe_editor module failed to load, exception:");
+    //     e.PrintToLog();
+    //     MarkAsClosing();
+    //     return;
+    // }
 
     LOG_INFO("ThriveGame: script loading succeeded");
 
@@ -843,15 +830,15 @@ void
     ThriveGame::EnginePreShutdown()
 {
     // Shutdown scripting first to allow it to still do anything it wants //
-    if(m_impl->m_MicrobeScripts) {
-        m_impl->m_MicrobeScripts->ReleaseScript();
-        m_impl->m_MicrobeScripts.reset();
+    if(m_impl->m_microbeScripts) {
+        m_impl->m_microbeScripts->ReleaseScript();
+        m_impl->m_microbeScripts.reset();
     }
 
-    if(m_impl->m_MicrobeEditorScripts) {
-        m_impl->m_MicrobeEditorScripts->ReleaseScript();
-        m_impl->m_MicrobeEditorScripts.reset();
-    }
+    // if(m_impl->m_MicrobeEditorScripts) {
+    //     m_impl->m_MicrobeEditorScripts->ReleaseScript();
+    //     m_impl->m_MicrobeEditorScripts.reset();
+    // }
 
     // All resources that need Ogre or the engine to be available when
     // they are destroyed need to be released here
