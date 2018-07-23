@@ -8,7 +8,7 @@ namespace BaseMicrobeOperations{
 shared SpeciesComponent@ getSpeciesComponent(const string &in speciesName)
 {
     auto world = GetThriveGame().getCellStage();
-    
+
     // This needs to loop all the components and get the matching one
     auto entity = findSpeciesEntityByName(world, speciesName);
 
@@ -23,7 +23,7 @@ shared SpeciesComponent@ getSpeciesComponent(const string &in speciesName)
 shared ProcessorComponent@ getProcessorComponent(const string &in speciesName)
 {
     auto world = GetThriveGame().getCellStage();
-    
+
     // This needs to loop all the components and get the matching one
     auto entity = findSpeciesEntityByName(world, speciesName);
 
