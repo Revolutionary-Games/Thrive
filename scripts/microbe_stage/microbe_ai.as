@@ -33,6 +33,7 @@ class MicrobeAIControllerComponent : ScriptComponent{
     int reevalutationInterval = 1000;
     int intervalRemaining;
     int boredom = 0;
+    int ticksSinceLastToggle = 0;
     double previousStoredCompounds = 0.0f;
     Float3 direction = Float3(0, 0, 0);
     double speciesAggression = -1.0f;
@@ -448,6 +449,8 @@ class MicrobeAISystem : ScriptSystem{
         MicrobeAIControllerComponent@ aiComponent = components.first;
         MicrobeComponent@ microbeComponent = components.second;
         Position@ position = components.third;
+        // Tick the engulf tick
+        aiComponent.ticksSinceLastToggle+=1;
         // Chase your prey
         aiComponent.targetPosition =  world.GetComponent_Position(prey)._Position;
         auto vec = (aiComponent.targetPosition - position._Position);
@@ -477,10 +480,12 @@ class MicrobeAISystem : ScriptSystem{
                     (microbeComponent.organelles.length() > ENGULF_HP_RATIO_REQ*secondMicrobeComponent.organelles.length()))
                 {
                     MicrobeOperations::toggleEngulfMode(world, microbeEntity);
+                    aiComponent.ticksSinceLastToggle=0;
                 }
-            else if ((position._Position -  aiComponent.targetPosition).LengthSquared() > 20*microbeComponent.organelles.length()+secondMicrobeComponent.organelles.length() && microbeComponent.engulfMode)
+            else if ((position._Position -  aiComponent.targetPosition).LengthSquared() >= 30*microbeComponent.organelles.length()+secondMicrobeComponent.organelles.length() && microbeComponent.engulfMode)
                 {
-                MicrobeOperations::toggleEngulfMode(world, microbeEntity);
+                    MicrobeOperations::toggleEngulfMode(world, microbeEntity);
+                    aiComponent.ticksSinceLastToggle=0;
                 }
             }
         }
