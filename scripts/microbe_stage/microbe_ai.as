@@ -466,28 +466,30 @@ class MicrobeAISystem : ScriptSystem{
             // Turn of engulf if prey is Dead
             // This is probabbly not working
             if (secondMicrobeComponent.dead ){
-            aiComponent.hasTargetPosition = false;
-            aiComponent.lifeState = GATHERING_STATE;
-            if (microbeComponent.engulfMode)
-                {
-                MicrobeOperations::toggleEngulfMode(world, microbeEntity);
-                }
+                aiComponent.hasTargetPosition = false;
+                aiComponent.lifeState = GATHERING_STATE;
+                if (microbeComponent.engulfMode)
+                    {
+                    MicrobeOperations::toggleEngulfMode(world, microbeEntity);
+                    }
             }
-            else {
-
-            //  Turn on engulfmode if close
-            if ((position._Position -  aiComponent.targetPosition).LengthSquared() <= 200 && !microbeComponent.engulfMode &&
+            else 
+            {
+                //  Turn on engulfmode if close
+                if ((position._Position -  aiComponent.targetPosition).LengthSquared() <= 200 && !microbeComponent.engulfMode &&
                     (microbeComponent.organelles.length() > ENGULF_HP_RATIO_REQ*secondMicrobeComponent.organelles.length()))
-                {
+                    {
                     MicrobeOperations::toggleEngulfMode(world, microbeEntity);
                     aiComponent.ticksSinceLastToggle=0;
-                }
-            else if ((position._Position -  aiComponent.targetPosition).LengthSquared() >= 310 && microbeComponent.engulfMode)
-                {
+                    }
+                else if ((position._Position -  aiComponent.targetPosition).LengthSquared() >= 310 && microbeComponent.engulfMode)
+                    {
                     MicrobeOperations::toggleEngulfMode(world, microbeEntity);
                     aiComponent.ticksSinceLastToggle=0;
-                }
+                    }
             }
+            
+            // TODO Need to make the AI shoot poison, perhaps have a variable for "attack preference", so that we see more variety
         }
 
     // For self defense (not nessessarily fleeing)
@@ -584,7 +586,7 @@ class MicrobeAISystem : ScriptSystem{
             else if (aiComponent.speciesAggression == aiComponent.speciesFear)
                 {
                 // Very rare
-                if (GetEngine().GetRandom().GetNumber(0,9) <= 5)
+                if (GetEngine().GetRandom().GetNumber(0,10) <= 5)
                     {
                     // Prefer predating by 10% (makes game more fun)
                     aiComponent.lifeState  = PREDATING_STATE;
