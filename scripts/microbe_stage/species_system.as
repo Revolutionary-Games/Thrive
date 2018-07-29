@@ -37,7 +37,7 @@ string generateNameSection(){
 	
      if (GetEngine().GetRandom().GetNumber(0,100) >= 10){
         if (GetEngine().GetRandom().GetNumber(0,100) >= 45){
-	    if (GetEngine().GetRandom().GetNumber(0,100) >= 40){
+            if (GetEngine().GetRandom().GetNumber(0,100) >= 40){
                 string ourPrefix = prefix_v[GetEngine().GetRandom().GetNumber(0,prefix_v.length()-1)];
                 string ourCofix = cofix_v[GetEngine().GetRandom().GetNumber(0,cofix_v.length()-1)];
                 string ourSuffix = suffix[GetEngine().GetRandom().GetNumber(0,suffix.length()-1)];
@@ -50,7 +50,7 @@ string generateNameSection(){
                 string ourSuffix = suffix[GetEngine().GetRandom().GetNumber(0,suffix.length()-1)];
                 LOG_INFO(ourPrefix+ourCofix+ourSuffix);
                 newName = ourPrefix+ourCofix+ourSuffix;
-	    }
+            }
                 }
         else{
             string ourPrefix = prefix_c[GetEngine().GetRandom().GetNumber(0,prefix_c.length()-1)];
