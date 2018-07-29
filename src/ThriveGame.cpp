@@ -1196,31 +1196,36 @@ bool
 
     if(engine->RegisterObjectMethod("SpeciesNameController",
            "array<string>@ getVowelPrefixes()",
-           asMETHOD(SpeciesNameController, getVowelPrefixes), asCALL_THISCALL) < 0) {
+           asMETHOD(SpeciesNameController, getVowelPrefixes),
+           asCALL_THISCALL) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
     }
-    
+
     if(engine->RegisterObjectMethod("SpeciesNameController",
            "array<string>@ getConsonantPrefixes()",
-           asMETHOD(SpeciesNameController, getConsonantPrefixes), asCALL_THISCALL) < 0) {
+           asMETHOD(SpeciesNameController, getConsonantPrefixes),
+           asCALL_THISCALL) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
     }
-    
+
     if(engine->RegisterObjectMethod("SpeciesNameController",
            "array<string>@ getVowelCofixes()",
-           asMETHOD(SpeciesNameController, getVowelCofixes), asCALL_THISCALL) < 0) {
+           asMETHOD(SpeciesNameController, getVowelCofixes),
+           asCALL_THISCALL) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
     }
-    
+
     if(engine->RegisterObjectMethod("SpeciesNameController",
            "array<string>@ getConsonantCofixes()",
-           asMETHOD(SpeciesNameController, getConsonantCofixes), asCALL_THISCALL) < 0) {
+           asMETHOD(SpeciesNameController, getConsonantCofixes),
+           asCALL_THISCALL) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
     }
-    
+
     if(engine->RegisterObjectMethod("SpeciesNameController",
            "array<string>@ getSuffixes()",
-           asMETHOD(SpeciesNameController, getSuffixes), asCALL_THISCALL) < 0) {
+           asMETHOD(SpeciesNameController, getSuffixes),
+           asCALL_THISCALL) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
     }
 
