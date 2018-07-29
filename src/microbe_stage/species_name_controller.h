@@ -21,10 +21,10 @@ public:
 
     CScriptArray*
         getConsonantPrefixes();
-    
+
     CScriptArray*
         getVowelCofixes();
-    
+
     CScriptArray*
         getConsonantCofixes();
 
