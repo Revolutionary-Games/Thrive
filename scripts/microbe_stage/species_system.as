@@ -34,7 +34,7 @@ string generateNameSection(){
     auto cofix_c = SimulationParameters::speciesNameController().getConsonantCofixes();
     auto suffix = SimulationParameters::speciesNameController().getSuffixes();
     string newName = "";
-	
+
      if (GetEngine().GetRandom().GetNumber(0,100) >= 10){
         if (GetEngine().GetRandom().GetNumber(0,100) >= 45){
             if (GetEngine().GetRandom().GetNumber(0,100) >= 40){
