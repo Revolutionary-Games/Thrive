@@ -1182,14 +1182,30 @@ bool
     }
 
     if(engine->RegisterObjectMethod("SpeciesNameController",
-           "array<string>@ getPrefixes()",
-           asMETHOD(SpeciesNameController, getPrefixes), asCALL_THISCALL) < 0) {
+           "array<string>@ getVowelPrefixes()",
+           asMETHOD(SpeciesNameController, getVowelPrefixes),
+           asCALL_THISCALL) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
     }
 
     if(engine->RegisterObjectMethod("SpeciesNameController",
-           "array<string>@ getCofixes()",
-           asMETHOD(SpeciesNameController, getCofixes), asCALL_THISCALL) < 0) {
+           "array<string>@ getConsonantPrefixes()",
+           asMETHOD(SpeciesNameController, getConsonantPrefixes),
+           asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectMethod("SpeciesNameController",
+           "array<string>@ getVowelCofixes()",
+           asMETHOD(SpeciesNameController, getVowelCofixes),
+           asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectMethod("SpeciesNameController",
+           "array<string>@ getConsonantCofixes()",
+           asMETHOD(SpeciesNameController, getConsonantCofixes),
+           asCALL_THISCALL) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
     }
 
