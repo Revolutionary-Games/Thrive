@@ -37,6 +37,10 @@ class MicrobeEditor{
 
         @hudSystem = hud;
 
+        // Register for organelle changing events
+        // @eventListener = EventListener(null, OnGenericEventCallback(this.onGeneric));
+        // eventListener.RegisterForEvent("MicrobeEditorOrganelleSelected");
+
         placementFunctions = {
             {"nucleus", PlacementFunctionType(this.createNewMicrobe)},
             {"flagellum", PlacementFunctionType(this.addOrganelle)},
@@ -83,6 +87,12 @@ class MicrobeEditor{
 
             LOG_INFO("Selecting cytoplasm");
 
+            GenericEvent@ event = GenericEvent("MicrobeEditorOrganelleSelected");
+            NamedVars@ vars = event.GetNamedVars();
+
+            vars.AddValue(ScriptSafeVariableBlock("organelle", "cytoplasm"));
+
+            GetEngine().GetEventHandler().CallEvent(event);
         }
     }
 
@@ -137,7 +147,6 @@ class MicrobeEditor{
         //     Engine.playerData().setActiveCreature(nextMicrobeEntity.id,
         //         CellStageWorld@.MICROBE_EDITOR.wrapper);
         // }
-
 
         mutationPoints = BASE_MUTATION_POINTS;
         actionHistory.resize(0);
@@ -748,6 +757,23 @@ class MicrobeEditor{
         return mutationPoints;
     }
 
+    int onGeneric(GenericEvent@ event){
+
+        auto type = event.GetType();
+
+        if(type == "MicrobeEditorOrganelleSelected")
+        {
+            NamedVars@ vars = event.GetNamedVars();
+
+            activeActionName = string(vars.GetSingleValueByName("organelle"));
+            LOG_INFO("Editor action is now: " + activeActionName);
+            return 1;
+        }
+
+        LOG_ERROR("Microbe editor got unknown event: " + type);
+        return -1;
+    }
+
     // where all user actions will  be registered
     private array<EditorAction@> actionHistory;
     // marks the last action that has been done (not undone, but
@@ -778,6 +804,8 @@ class MicrobeEditor{
     private int symmetry;
 
     private bool microbeHasBeenInEditor = false;
+
+    private EventListener@ eventListener;
 };
 
 
