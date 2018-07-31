@@ -473,7 +473,7 @@ class MicrobeAISystem : ScriptSystem{
                     MicrobeOperations::toggleEngulfMode(world, microbeEntity);
                     }
             }
-            else 
+            else
             {
                 //  Turn on engulfmode if close
                 if ((position._Position -  aiComponent.targetPosition).LengthSquared() <= 200 && !microbeComponent.engulfMode &&
@@ -488,7 +488,7 @@ class MicrobeAISystem : ScriptSystem{
                     aiComponent.ticksSinceLastToggle=0;
                     }
             }
-            
+
             // TODO Need to make the AI shoot poison, perhaps have a variable for "attack preference", so that we see more variety
         }
 

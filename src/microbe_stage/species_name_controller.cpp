@@ -28,11 +28,19 @@ SpeciesNameController::SpeciesNameController(std::string jsonFilePath)
         i++)
         prefixcofixes.push_back(rootElement["prefixcofix"][i].asString());
 
-    for(Json::Value::ArrayIndex i = 0; i < rootElement["prefixes"].size(); i++)
-        prefixes.push_back(rootElement["prefixes"][i].asString());
+    for(Json::Value::ArrayIndex i = 0; i < rootElement["prefixes_v"].size();
+        i++)
+        prefixes_v.push_back(rootElement["prefixes_v"][i].asString());
 
-    for(Json::Value::ArrayIndex i = 0; i < rootElement["cofixes"].size(); i++)
-        cofixes.push_back(rootElement["cofixes"][i].asString());
+    for(Json::Value::ArrayIndex i = 0; i < rootElement["prefixes_c"].size();
+        i++)
+        prefixes_c.push_back(rootElement["prefixes_c"][i].asString());
+
+    for(Json::Value::ArrayIndex i = 0; i < rootElement["cofixes_v"].size(); i++)
+        cofixes_v.push_back(rootElement["cofixes_v"][i].asString());
+
+    for(Json::Value::ArrayIndex i = 0; i < rootElement["cofixes_c"].size(); i++)
+        cofixes_c.push_back(rootElement["cofixes_c"][i].asString());
 
     for(Json::Value::ArrayIndex i = 0; i < rootElement["suffixes"].size(); i++)
         suffixes.push_back(rootElement["suffixes"][i].asString());
@@ -41,20 +49,37 @@ SpeciesNameController::SpeciesNameController(std::string jsonFilePath)
     // it fails silently and makes the screen go black.
     jsonFile.close();
 }
+
 CScriptArray*
-    SpeciesNameController::getPrefixes()
+    SpeciesNameController::getVowelPrefixes()
 {
     // Method taken from Leviathan::ConvertVectorToASArray
-    return Leviathan::ConvertIteratorToASArray(std::begin(prefixes),
-        std::end(prefixes), Leviathan::ScriptExecutor::Get()->GetASEngine());
+    return Leviathan::ConvertIteratorToASArray(std::begin(prefixes_v),
+        std::end(prefixes_v), Leviathan::ScriptExecutor::Get()->GetASEngine());
 }
 
 CScriptArray*
-    SpeciesNameController::getCofixes()
+    SpeciesNameController::getConsonantPrefixes()
 {
     // Method taken from Leviathan::ConvertVectorToASArray
-    return Leviathan::ConvertIteratorToASArray(std::begin(cofixes),
-        std::end(cofixes), Leviathan::ScriptExecutor::Get()->GetASEngine());
+    return Leviathan::ConvertIteratorToASArray(std::begin(prefixes_c),
+        std::end(prefixes_c), Leviathan::ScriptExecutor::Get()->GetASEngine());
+}
+
+CScriptArray*
+    SpeciesNameController::getVowelCofixes()
+{
+    // Method taken from Leviathan::ConvertVectorToASArray
+    return Leviathan::ConvertIteratorToASArray(std::begin(cofixes_v),
+        std::end(cofixes_v), Leviathan::ScriptExecutor::Get()->GetASEngine());
+}
+
+CScriptArray*
+    SpeciesNameController::getConsonantCofixes()
+{
+    // Method taken from Leviathan::ConvertVectorToASArray
+    return Leviathan::ConvertIteratorToASArray(std::begin(cofixes_c),
+        std::end(cofixes_c), Leviathan::ScriptExecutor::Get()->GetASEngine());
 }
 
 CScriptArray*
