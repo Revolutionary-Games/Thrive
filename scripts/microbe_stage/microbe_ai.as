@@ -477,7 +477,7 @@ class MicrobeAISystem : ScriptSystem{
                     (microbeComponent.organelles.length() > ENGULF_HP_RATIO_REQ*secondMicrobeComponent.organelles.length()))
                 {
                     MicrobeOperations::toggleEngulfMode(world, microbeEntity);
-                }   
+                }
             else if ((position._Position -  aiComponent.targetPosition).LengthSquared() > 20*microbeComponent.organelles.length()+secondMicrobeComponent.organelles.length() && microbeComponent.engulfMode)
                 {
                 MicrobeOperations::toggleEngulfMode(world, microbeEntity);

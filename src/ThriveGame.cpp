@@ -1224,8 +1224,7 @@ bool
 
     if(engine->RegisterObjectMethod("SpeciesNameController",
            "array<string>@ getSuffixes()",
-           asMETHOD(SpeciesNameController, getSuffixes),
-           asCALL_THISCALL) < 0) {
+           asMETHOD(SpeciesNameController, getSuffixes), asCALL_THISCALL) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
     }
 

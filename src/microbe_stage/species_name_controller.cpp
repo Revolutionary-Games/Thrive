@@ -36,16 +36,13 @@ SpeciesNameController::SpeciesNameController(std::string jsonFilePath)
         i++)
         prefixes_c.push_back(rootElement["prefixes_c"][i].asString());
 
-    for(Json::Value::ArrayIndex i = 0; i < rootElement["cofixes_v"].size();
-        i++)
+    for(Json::Value::ArrayIndex i = 0; i < rootElement["cofixes_v"].size(); i++)
         cofixes_v.push_back(rootElement["cofixes_v"][i].asString());
 
-    for(Json::Value::ArrayIndex i = 0; i < rootElement["cofixes_c"].size();
-        i++)
+    for(Json::Value::ArrayIndex i = 0; i < rootElement["cofixes_c"].size(); i++)
         cofixes_c.push_back(rootElement["cofixes_c"][i].asString());
 
-    for(Json::Value::ArrayIndex i = 0; i < rootElement["suffixes"].size();
-        i++)
+    for(Json::Value::ArrayIndex i = 0; i < rootElement["suffixes"].size(); i++)
         suffixes.push_back(rootElement["suffixes"][i].asString());
 
     // TODO: add some sort of validation of the receiving JSON file, otherwise
