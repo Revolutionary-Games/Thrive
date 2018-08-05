@@ -38,7 +38,7 @@ class MicrobeEditor{
         @hudSystem = hud;
 
         // Register for organelle changing events
-        // @eventListener = EventListener(null, OnGenericEventCallback(this.onGeneric));
+        @eventListener = EventListener(null, OnGenericEventCallback(this.onGeneric));
         // eventListener.RegisterForEvent("MicrobeEditorOrganelleSelected");
 
         placementFunctions = {
