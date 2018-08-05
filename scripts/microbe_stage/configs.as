@@ -94,7 +94,7 @@ const uint ENGULFED_MOVEMENT_DIVISION = 4;
 const float ENGULFING_ATP_COST_SECOND = 1.5;
 
 // The minimum HP ratio between a cell and a possible engulfing victim.
-const float ENGULF_HP_RATIO_REQ = 1.5 ;
+const float ENGULF_HP_RATIO_REQ = 1.5f;
 
 // Cooldown between agent emissions, in milliseconds.
 const uint AGENT_EMISSION_COOLDOWN = 1000;

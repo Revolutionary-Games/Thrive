@@ -99,9 +99,11 @@ TJsonRegistry<T>::TJsonRegistry(const std::string& defaultTypesFilePath) :
 
     try {
         jsonFile >> rootElement;
-    } catch(...) {
-        throw Leviathan::Exception(
-            "The file '" + defaultTypesFilePath + "' is malformed!");
+    } catch(const Json::RuntimeError& e) {
+        LOG_ERROR(std::string("Syntax error in json file: '" +
+                              defaultTypesFilePath + "'") +
+                  ", description: " + std::string(e.what()));
+        throw e;
     }
 
     jsonFile.close();

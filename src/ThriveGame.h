@@ -9,7 +9,6 @@
 #include "Application/KeyConfiguration.h"
 #include "Events/EventHandler.h"
 #include "GUI/GuiManager.h"
-#include "Script/ScriptExecutor.h"
 
 namespace thrive {
 

@@ -72,8 +72,8 @@ set_source_files_properties("microbe_stage/generate_microbe_editor_world.rb"
   PROPERTIES HEADER_FILE_ONLY TRUE)
 
 set(GROUP_SCRIPTING
-  # "scripting/script_initializer.cpp"
-  # "scripting/script_initializer.h"
+  "scripting/script_initializer.cpp"
+  "scripting/script_initializer.h"
   )
 
 set(GROUP_UTIL
@@ -122,6 +122,13 @@ set(GROUP_MENU
   "main_menu_keypresses.h"
   )
 
+# For testing purposes even these quite heavily to the final
+# executable connected files are included in the lib
+set(GROUP_CORE_FILES
+  "ThriveGame.h" "ThriveGame.cpp"
+  "thrive_net_handler.h" "thrive_net_handler.cpp"
+  )
+
 
 # Groups for better visual studio experience
 source_group("bullet" FILES ${GROUP_BULLET})
@@ -137,10 +144,10 @@ source_group("util" FILES ${GROUP_UTIL})
 source_group("menu_code" FILES ${GROUP_MENU})
 
 source_group("microbe" FILES ${GROUP_MICROBE})
+source_group("main" FILES ${GROUP_CORE_FILES})
 
 
-
-set(THRIVE_FILES ${GROUP_BULLET} ${GROUP_ENGINE}
+set(THRIVE_FILES ${GROUP_CORE_FILES} ${GROUP_BULLET} ${GROUP_ENGINE}
   ${GROUP_GENERAL} ${GROUP_GUI} ${GROUP_MICROBE_STAGE}
   ${GROUP_OGRE} ${GROUP_SCRIPTING} ${GROUP_SOUND}
   ${GROUP_UTIL} ${GROUP_MICROBE}
@@ -192,9 +199,7 @@ set(CurrentProjectName Thrive)
 set(AllProjectFiles
   ${BaseIncludeFileName}
   "main.cpp"
-  "ThriveGame.h" "ThriveGame.cpp"
   "thrive_world_factory.h" "thrive_world_factory.cpp"
-  "thrive_net_handler.h" "thrive_net_handler.cpp"
   "generated/thrive_v8_extension.h"
   "thrive_js_interface.h" "thrive_js_interface.cpp"
   )
