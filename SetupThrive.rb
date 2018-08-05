@@ -117,16 +117,25 @@ Dir.chdir(ProjectDir) do
 
   info "Checking assets"
 
+  isInteractive = $stdout.isatty
+
   if not File.exist? "assets"
     
     info "Getting assets"
 
-    if $svnPassword
-      system("svn", "checkout", "--username", $svnUser, "--password", $svnPassword,
-             WantedURL, "assets")
-    else
-      system("svn", "checkout", "--username", $svnUser, WantedURL, "assets")
+    params = ["svn", "checkout", "--username", $svnUser]
+
+    if !isInteractive
+      params.push "--non-interactive"
     end
+
+    if $svnPassword
+      params.push("--password", $svnPassword)
+    end
+    
+    params.push(WantedURL, "assets")
+
+    system(*params)
 
     if $?.exitstatus != 0
       onError "Failed to get thrive assets repository"
