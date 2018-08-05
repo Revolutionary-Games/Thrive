@@ -17,7 +17,7 @@ jobs:
        - restore_cache:
            keys:
              - v1-build-{{ arch }}-{{ .Branch }}
-       - run: ./Setup.rb --no-packagemanager --no-updates -j 2 --fully-parallel-project-compile --project-parallel 5
+       - run: ./SetupThrive.rb --no-packagemanager --no-updates -j 2 --fully-parallel-project-compile --project-parallel 5
        - save_cache:
            key: v1-assets-{{ .Branch }}
            paths:
