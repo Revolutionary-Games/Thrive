@@ -1,0 +1,49 @@
+version: 2
+jobs:
+   build:
+     working_directory: ~/thrive
+     docker:
+       - image: hhyyrylainen/leviathan-deps:latest
+     steps:
+       - checkout
+       - restore_cache:
+           keys:
+             - v1-deps-{{ arch }}-{{ checksum "SetupThrive.rb" }}
+             - v1-deps-{{ arch }}
+       - restore_cache:
+           keys:
+             - v1-assets-{{ .Branch }}
+             - v1-assets
+       - restore_cache:
+           keys:
+             - v1-build-{{ arch }}-{{ .Branch }}
+       - run: ./Setup.rb --no-packagemanager --no-updates -j 2 --fully-parallel-project-compile --project-parallel 5
+       - save_cache:
+           key: v1-assets-{{ .Branch }}
+           paths:
+             - assets
+       - save_cache:
+           key: v1-assets
+           paths:
+             - assets
+       - save_cache:
+           key: v1-deps-{{ arch }}-{{ checksum "SetupThrive.rb" }}
+           paths:
+             - ThirdParty
+       - save_cache:
+           key: v1-deps-{{ arch }}
+           paths:
+             - ThirdParty
+       - save_cache:
+           key: v1-build-{{ arch }}-{{ .Branch }}
+           paths:
+             - build/src
+       - run: mkdir -p /reports/reports
+       - run:
+           command: ./ThriveTest "~[xrequired]"
+           working_directory: ~/thrive/build/bin
+       # - run:
+       #     command: ./LeviathanTest --reporter junit --out /reports/reports/test_run.xml "~[xrequired]"
+       #     working_directory: ~/leviathan/build/bin
+       # - store_test_results:
+       #     path: /reports/reports

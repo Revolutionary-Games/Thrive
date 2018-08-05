@@ -38,7 +38,15 @@ void
                                          "MicrobeStage/StartingCompounds.json' "
                                          "failed to load!");
     Json::Value rootElement;
-    jsonFile >> rootElement;
+    try {
+        jsonFile >> rootElement;
+    } catch(const Json::RuntimeError& e) {
+        LOG_ERROR(
+            std::string("Syntax error in json file: StartingCompounds.json") +
+            ", description: " + std::string(e.what()));
+        throw e;
+    }
+
     // TODO: add some sort of validation of the receiving JSON file, otherwise
     // it fails silently and makes the screen go black.
     jsonFile.close();

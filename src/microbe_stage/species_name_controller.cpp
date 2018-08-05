@@ -22,7 +22,13 @@ SpeciesNameController::SpeciesNameController(std::string jsonFilePath)
                                          "MicrobeStage/StartingCompounds.json' "
                                          "failed to load!");
     Json::Value rootElement;
-    jsonFile >> rootElement;
+    try {
+        jsonFile >> rootElement;
+    } catch(const Json::RuntimeError& e) {
+        LOG_ERROR(std::string("Syntax error in json file: SpeciesNames.json") +
+                  ", description: " + std::string(e.what()));
+        throw e;
+    }
 
     for(Json::Value::ArrayIndex i = 0; i < rootElement["prefixcofix"].size();
         i++)

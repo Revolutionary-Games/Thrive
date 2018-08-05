@@ -1,17 +1,13 @@
 #pragma once
 
-namespace sol {
-class state;
-}
+struct asIScriptEngine;
 
 namespace thrive {
 
-/**
- * @brief Initializes a Lua state for use with the script engine
- *
- * This will register the known classes in the Lua state
- */
-void
-    initializeLua(sol::state& lua);
+
+//! \brief Registers Thrive script types
+bool
+    registerThriveScriptTypes(asIScriptEngine* engine);
+
 
 } // namespace thrive

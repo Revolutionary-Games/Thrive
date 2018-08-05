@@ -1,11 +1,22 @@
 message(STATUS "todo: remake the tests")
 
 include_directories("catch")
+include_directories("../src")
+
+include_directories("${LEVIATHAN_SRC}")
 
 set(CurrentProjectName ThriveTest)
 set(AllProjectFiles
   "test_main.cpp"
-  "script_compile.cpp"
+  "test_script_compile.cpp"
+  "test_simulation_parameters.cpp"
+
+  # LeviathanTest support files
+  "${LEVIATHAN_SRC}/LeviathanTest/PartialEngine.h"
+  "${LEVIATHAN_SRC}/LeviathanTest/PartialEngine.cpp"
+  
+  "${LEVIATHAN_SRC}/LeviathanTest/DummyLog.cpp"
+  "${LEVIATHAN_SRC}/LeviathanTest/DummyLog.cpp"
   )
 
 set(CREATE_CONSOLE_APP ON)
