@@ -158,12 +158,28 @@ video {
     width: auto;
 }
 
-.MainMenu{
-
+.MainMenu
+{
     position: relative;
     width: auto;
-	top:50vh;
-	margin-top:-140px;
+    top: 50vh;
+    margin-top: -140px;
+}
+
+@media (max-height: 899px) 
+{
+    .MainMenu
+    {
+        margin-top: -70px;
+    }
+}
+
+@media (max-height: 720px) 
+{
+    .MainMenu
+    {
+        margin-top: -50px;
+    }
 }
 
 .PauseMenu{
