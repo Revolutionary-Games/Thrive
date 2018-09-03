@@ -186,7 +186,12 @@ struct StorageContainer::Implementation {
     typename TypeInfo<T>::StoredType
         rawGet(const std::string& key,
             const typename TypeInfo<T>::StoredType& defaultValue =
-                typename TypeInfo<T>::StoredType()) const
+#ifdef _MSC_VER // Microsoft, why?
+                TypeInfo<T>::StoredType()
+#else
+                typename TypeInfo<T>::StoredType()
+#endif
+                ) const
     {
         auto iter = m_content.find(key);
         if(iter == m_content.end()) {
