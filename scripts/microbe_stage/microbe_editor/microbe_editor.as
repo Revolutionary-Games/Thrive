@@ -39,7 +39,7 @@ class MicrobeEditor{
 
         // Register for organelle changing events
         @eventListener = EventListener(null, OnGenericEventCallback(this.onGeneric));
-        // eventListener.RegisterForEvent("MicrobeEditorOrganelleSelected");
+        eventListener.RegisterForEvent("MicrobeEditorOrganelleSelected");
 
         placementFunctions = {
             {"nucleus", PlacementFunctionType(this.createNewMicrobe)},
