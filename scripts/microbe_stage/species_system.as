@@ -288,7 +288,7 @@ class Species{
         else{
             // Network
             // Allows for "jungles of cyanobacteria"
-            // Ntwork is extremely rare
+            // Network is extremely rare
             float x = curSpawn.X;
             float z = curSpawn.Z;
             // To prevent bacteria being spawned on top of each other
