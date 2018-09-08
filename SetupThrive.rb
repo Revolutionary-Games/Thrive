@@ -78,7 +78,7 @@ WantedURL = "https://#{$svnUser}@boostslair.com/svn/thrive_assets"
 leviathan = Leviathan.new(
   # Use this if you always want the latest commit
   # version: "develop",
-  version: "216d4d2bca1847bce276889e08370d2e0da74270",
+  version: "9adede7f8bb82b2d7398bc799cc301e743970d07",
   # Doesn't actually work, but leviathan doesn't install with sudo by
   # default, or install at all for that matter
   noInstallSudo: true
@@ -118,6 +118,8 @@ Dir.chdir(ProjectDir) do
   info "Checking assets"
 
   isInteractive = $stdout.isatty
+
+  puts "Interactive mode is: " + isInteractive.to_s
 
   if not File.exist? "assets"
     
@@ -188,7 +190,6 @@ end
 
 # Symlink the textures and fonts from assets to make local previewing of the GUI easier
 if OS.windows?
-  # These need to run in cmd as admin, for some reason
   info "Creating junctions for assets to be referenced from gui " +
        "html without running cmake every time"
   runSystemSafe "cmd", "/c", "mklink", "/J",
@@ -198,8 +199,9 @@ if OS.windows?
                 convertPathToWindows(File.join(ProjectDir, "Fonts")),
                 convertPathToWindows(File.join(ProjectDir, "assets", "fonts"))
   runSystemSafe "cmd", "/c", "mklink", "/J",
-                convertPathToWindows(File.join(ProjectDir, "jsvendor")),
-                convertPathToWindows(File.join(ProjectDir, "assets", "jsvendor"))  
+                convertPathToWindows(File.join(ProjectDir, "JSVendor")),
+                convertPathToWindows(File.join(ProjectDir, "ThirdParty/Leviathan/bin/Data",
+                                               "JSVendor"))  
 else
   if !File.exists? File.join(ProjectDir, "Textures")
     FileUtils.ln_sf File.join(ProjectDir, "assets", "textures"),
@@ -211,9 +213,9 @@ else
                     File.join(ProjectDir, "Fonts")
   end
 
-  if !File.exists? File.join(ProjectDir, "jsvendor")
-    FileUtils.ln_sf File.join(ProjectDir, "assets", "jsvendor"),
-                    File.join(ProjectDir, "jsvendor")
+  if !File.exists? File.join(ProjectDir, "JSVendor")
+    FileUtils.ln_sf File.join(ProjectDir, "ThirdParty/Leviathan/bin/Data", "JSVendor"),
+                    File.join(ProjectDir, "JSVendor")
   end
 end
 

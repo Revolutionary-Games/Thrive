@@ -132,25 +132,49 @@ class MicrobeEditorHudSystem : ScriptSystem{
 
     }
 
+    int counter = 0;
+
     void Run()
     {
         int logicTime = TICKSPEED;
+        ++counter;
+
+        // Ogre::Quaternion rot(Float4(GetEngine().GetRandom().GetNumber(0.f, 1.f),
+        //         GetEngine().GetRandom().GetNumber(0.f, 1.f),
+        //         GetEngine().GetRandom().GetNumber(0.f, 1.f),
+        //         GetEngine().GetRandom().GetNumber(0.f, 1.f)).Normalize());
 
         // We move all the hexes and the hover hexes to 0,0,0 so that
         // the editor is free to replace them wherever
         // TODO: it would be way better if we didn't have to do this
-        for(int i = 0; i < 42; ++i){
+        for(uint i = 0; i < hoverHex.length(); ++i){
 
             auto node = world.GetComponent_RenderNode(hoverHex[i]);
             node.Node.setPosition(Float3(0, 0, 0));
-            node.Scale = Float3(0, 0, 0);
+
+
+
+            // LOG_WRITE("This stuff: " + rot.w + ", " + rot.x + ", " + rot.y + ", " + rot.z);
+            // Ogre::Quaternion rot(Ogre::Degree(counter), Ogre::Vector3(0, 1, 0));
+            // Ogre::Quaternion rot = Ogre::Quaternion(Ogre::Degree(-90), Ogre::Vector3::UNIT_Z) *
+            //     Ogre::Quaternion(Ogre::Degree(-45), Ogre::Vector3::UNIT_Y);
+            // Ogre::Quaternion rot = Ogre::Quaternion(
+            //     Ogre::Degree(counter), Ogre::Vector3::UNIT_X) *
+            //     Ogre::Quaternion(Ogre::Degree(counter), Ogre::Vector3::UNIT_Z) *
+            //     Ogre::Quaternion(Ogre::Degree(counter), Ogre::Vector3::UNIT_Y);
+
+
+            Ogre::Quaternion rot(0.40118, 0.791809, 0.431951, 0.0381477);
+
+            node.Node.setOrientation(rot);
+            node.Hidden = true;
             node.Marked = true;
         }
 
-        for(int i = 0; i < 6; ++i){
+        for(uint i = 0; i < hoverOrganelle.length(); ++i){
             auto node = world.GetComponent_RenderNode(hoverOrganelle[i]);
             node.Node.setPosition(Float3(0, 0, 0));
-            node.Scale = Float3(0, 0, 0);
+            node.Hidden = true;
             node.Marked = true;
         }
 
@@ -182,9 +206,13 @@ class MicrobeEditorHudSystem : ScriptSystem{
 
             ObjectID hex = world.CreateEntity();
             auto node = world.Create_RenderNode(hex);
+            // auto pos = world.Create_Position(hex, Float3(0, 0, 0), Float4::IdentityQuaternion);
             world.Create_Model(hex, node.Node, "hex.mesh");
+            // world.Create_Model(hex, node.Node, "nucleus.mesh");
             node.Scale = Float3(HEX_SIZE, HEX_SIZE, HEX_SIZE);
             node.Marked = true;
+            node.Node.setPosition(Ogre::Vector3(0, 0, 0));
+            // node.Node.setOrientation(Ogre::Quaternion(Ogre::Degree(-90), Ogre::Vector3(0, 1, 0)));
             hoverHex.insertLast(hex);
         }
 
@@ -193,6 +221,7 @@ class MicrobeEditorHudSystem : ScriptSystem{
             auto node = world.Create_RenderNode(hex);
             node.Scale = Float3(HEX_SIZE, HEX_SIZE, HEX_SIZE);
             node.Marked = true;
+            node.Node.setPosition(Ogre::Vector3(0, 0, 0));
             hoverOrganelle.insertLast(hex);
         }
 
