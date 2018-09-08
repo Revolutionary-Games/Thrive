@@ -178,8 +178,8 @@ void respawnPlayer(CellStageWorld@ world){
         suicideButtonreset();
 		
 	//Decrease the population by 10
-	auto localPlayer = MicrobeOperations::getSpeciesComponent(world, "Default");
-	localPlayer.population -= 10;
+	auto playerSpecies = MicrobeOperations::getSpeciesComponent(world, "Default");
+	playerSpecies.population -= 10;
 }
 
 

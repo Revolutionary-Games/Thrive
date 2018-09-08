@@ -50,12 +50,12 @@ function runMicrobeHUDSetup(){
             // Apply the new values
             updateMicrobeHUDBars(vars);
         });
-		
-		// Event for population changes
+
+        // Event for population changes
         Leviathan.OnGeneric("PopulationChange", (event, vars) => {
 
             // Apply the new values
-            updatePopulation(vars);
+            updatePopulation(vars.populationAmount);
         });
 		
 		// Event for checking win conditions
@@ -105,10 +105,10 @@ function runMicrobeHUDSetup(){
             compoundHydrogenSulfide: randomBetween(0, hydrogenSulfide),
             HydrogenSulfideMax: hydrogenSulfide,
         });
-		
-		// Pseudo population code
-		document.getElementById("populationCount").textContent = 27;
-		
+
+        // Pseudo population code
+        updatePopulation(Math.floor(Math.random() * 50) + 0);
+
         // Put some hover stuff
         updateHoverInfo({
             mousePos: "[0, 0, 0]",
@@ -263,19 +263,18 @@ function updateHoverInfo(vars){
 function updatePopulation(population)
 {
 	document.getElementById("populationCount").textContent =
-        population.populationAmount;
+        population;
 }
 
-//! Checks and updates wintext visibility
 function checkGeneration (generation)
 {
-	//This is set to == because I don't want the wintext to show up after the 15th generation
-	//This can be changed by just about anyone if needed very easily
-	if (generation == 15)
-	{
-		document.getElementById("winText").style.display = 'unset';
-		setTimeout (hideWinText, 5000);
-	}
+    //This is set to == because I don't want the wintext to show up after the 15th generation
+    //This can be changed by just about anyone if needed very easily
+    if (generation == 15)
+    {
+        document.getElementById("winText").style.display = 'unset';
+        setTimeout(hideWinText, 5000);
+    }
 }
 
 //! Supplementry function for checkGeneration that hides the wintext

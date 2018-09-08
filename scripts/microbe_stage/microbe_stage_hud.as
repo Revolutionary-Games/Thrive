@@ -106,7 +106,7 @@ class MicrobeStageHudSystem : ScriptSystem{
         if(player != NULL_OBJECT){
 
             auto bag = World.GetComponent_CompoundBagComponent(player);
-			auto localPlayer = MicrobeOperations::getSpeciesComponent(World, "Default");
+            auto playerSpecies = MicrobeOperations::getSpeciesComponent(World, "Default");
             MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
                 World.GetScriptComponentHolder("MicrobeComponent").Find(player));
 
@@ -120,7 +120,7 @@ class MicrobeStageHudSystem : ScriptSystem{
                     int(microbeComponent.hitpoints)));
             vars.AddValue(ScriptSafeVariableBlock("maxHitpoints",
                     int(microbeComponent.maxHitpoints)));
-			populationVars.AddValue(ScriptSafeVariableBlock("populationAmount", localPlayer.population));
+			populationVars.AddValue(ScriptSafeVariableBlock("populationAmount", playerSpecies.population));
 
             if(bag is null){
 

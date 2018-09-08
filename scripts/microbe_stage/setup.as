@@ -132,16 +132,16 @@ void applyEngulfMode(CellStageWorld@ world, ObjectID entity){
 void onReturnFromEditor(CellStageWorld@ world){
     LOG_INFO("TODO: apply the changes and spawn a copy of the player species from "
         "before the change");
-	//Increase the population by 30 and increase the generation
-	auto localPlayer = MicrobeOperations::getSpeciesComponent(world, "Default");
-	localPlayer.population += 30;
-	localPlayer.generation ++;
-	
-	//Call event that checks win conditions
-	GenericEvent@ event = GenericEvent("CheckWin");
-	NamedVars@ vars = event.GetNamedVars();
-	vars.AddValue(ScriptSafeVariableBlock("generation", localPlayer.generation));
-	GetEngine().GetEventHandler().CallEvent(event);
+    //Increase the population by 30 and increase the generation
+    auto playerSpecies = MicrobeOperations::getSpeciesComponent(world, "Default");
+    playerSpecies.population += 30;
+    ++playerSpecies.generation;
+
+    //Call event that checks win conditions
+    GenericEvent@ event = GenericEvent("CheckWin");
+    NamedVars@ vars = event.GetNamedVars();
+    vars.AddValue(ScriptSafeVariableBlock("generation", playerSpecies.generation));
+    GetEngine().GetEventHandler().CallEvent(event);
 }
 
 // TODO: also put these physics callback somewhere
