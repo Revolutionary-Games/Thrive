@@ -35,6 +35,8 @@ public:
     std::string epithet;
     double aggression;
     double fear;
+	int32_t population;
+	int32_t generation;
 
     // TODO: get the id from the simulation parameters.
     size_t id;

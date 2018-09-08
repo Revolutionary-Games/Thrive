@@ -176,6 +176,10 @@ void respawnPlayer(CellStageWorld@ world){
     setRandomBiome(world);
     cast<MicrobeStageHudSystem>(world.GetScriptSystem("MicrobeStageHudSystem")).
         suicideButtonreset();
+		
+	//Decrease the population by 10
+	auto localPlayer = MicrobeOperations::getSpeciesComponent(world, "Default");
+	localPlayer.population -= 10;
 }
 
 

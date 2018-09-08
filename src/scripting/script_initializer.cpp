@@ -642,6 +642,16 @@ bool
            asOFFSET(SpeciesComponent, fear)) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
     }
+	
+	if(engine->RegisterObjectProperty("SpeciesComponent", "int32 population",
+           asOFFSET(SpeciesComponent, population)) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+	
+	if(engine->RegisterObjectProperty("SpeciesComponent", "int32 generation",
+           asOFFSET(SpeciesComponent, generation)) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
 
     // ------------------------------------ //
 

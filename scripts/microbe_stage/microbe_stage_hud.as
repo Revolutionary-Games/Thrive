@@ -106,17 +106,21 @@ class MicrobeStageHudSystem : ScriptSystem{
         if(player != NULL_OBJECT){
 
             auto bag = World.GetComponent_CompoundBagComponent(player);
+			auto localPlayer = MicrobeOperations::getSpeciesComponent(World, "Default");
             MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
                 World.GetScriptComponentHolder("MicrobeComponent").Find(player));
 
             GenericEvent@ event = GenericEvent("PlayerCompoundAmounts");
+			GenericEvent@ changePopulation = GenericEvent("PopulationChange");
             NamedVars@ vars = event.GetNamedVars();
+			NamedVars@ populationVars = changePopulation.GetNamedVars();
 
             // Write data
             vars.AddValue(ScriptSafeVariableBlock("hitpoints",
                     int(microbeComponent.hitpoints)));
             vars.AddValue(ScriptSafeVariableBlock("maxHitpoints",
                     int(microbeComponent.maxHitpoints)));
+			populationVars.AddValue(ScriptSafeVariableBlock("populationAmount", localPlayer.population));
 
             if(bag is null){
 
@@ -164,6 +168,7 @@ class MicrobeStageHudSystem : ScriptSystem{
 
             // Fire it off so that the GUI scripts will get it and update the GUI state
             GetEngine().GetEventHandler().CallEvent(event);
+			GetEngine().GetEventHandler().CallEvent(changePopulation);
         }
 
         //since this is ran every step this is a good place to do music code
