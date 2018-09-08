@@ -578,6 +578,40 @@ DisabledButton:hover {
 	left:0px;
 }
 
+#populationText {
+	position: absolute;
+	height: 40px;
+	width: 120px;
+	top: 0px;
+	left: 600px;
+	font-size:10pt;
+	line-height: 40px;
+	text-indent: 10px;
+}
+
+#populationCount {
+	position: absolute;
+	height: 40px;
+	width: 120px;
+	top: 0px;
+	left: 680px;
+	font-size:10pt;
+	line-height: 40px;
+	text-indent: 10px;
+}
+
+#winText {
+	position: absolute;
+	height: 100px;
+	width: 600px;
+	top: 50%;
+	left: 50%;
+	font-size: 100pt;
+	line-height: 40px;
+	text-indent: -300px;
+	display: none;
+}
+
 #suicideButton {
 	position: absolute;
 	height: 40px;
