@@ -51,6 +51,18 @@ function runMicrobeHUDSetup(){
             updateMicrobeHUDBars(vars);
         });
 
+        // Event for population changes
+        Leviathan.OnGeneric("PopulationChange", (event, vars) => {
+
+            // Apply the new values
+            updatePopulation(vars.populationAmount);
+        });
+		
+		// Event for checking win conditions
+		Leviathan.OnGeneric("CheckWin", (event, vars) => {
+            checkGeneration(vars.generation);
+        });
+
         // Event for receiving data about stuff we are hovering over
         Leviathan.OnGeneric("PlayerMouseHover", (event, vars) => {
 
@@ -93,6 +105,9 @@ function runMicrobeHUDSetup(){
             compoundHydrogenSulfide: randomBetween(0, hydrogenSulfide),
             HydrogenSulfideMax: hydrogenSulfide,
         });
+
+        // Pseudo population code
+        updatePopulation(randomBetween(0, 50));
 
         // Put some hover stuff
         updateHoverInfo({
@@ -242,6 +257,30 @@ function updateHoverInfo(vars){
     }
 
     // Last line break needs to be skipped to avoid an excess empty line
+}
+
+//! Updates population bar in GUI
+function updatePopulation(population)
+{
+	document.getElementById("populationCount").textContent =
+        population;
+}
+
+function checkGeneration (generation)
+{
+    //This is set to == because I don't want the wintext to show up after the 15th generation
+    //This can be changed by just about anyone if needed very easily
+    if (generation == 15)
+    {
+        document.getElementById("winText").style.display = 'unset';
+        setTimeout(hideWinText, 5000);
+    }
+}
+
+//! Supplementry function for checkGeneration that hides the wintext
+function hideWinText ()
+{
+	document.getElementById("winText").style.display = 'none';
 }
 
 //! Updates the GUI bars
