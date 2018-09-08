@@ -139,10 +139,10 @@ class MicrobeEditorHudSystem : ScriptSystem{
         int logicTime = TICKSPEED;
         ++counter;
 
-        Ogre::Quaternion rot(Float4(GetEngine().GetRandom().GetNumber(0.f, 1.f),
-                GetEngine().GetRandom().GetNumber(0.f, 1.f),
-                GetEngine().GetRandom().GetNumber(0.f, 1.f),
-                GetEngine().GetRandom().GetNumber(0.f, 1.f)).Normalize());
+        // Ogre::Quaternion rot(Float4(GetEngine().GetRandom().GetNumber(0.f, 1.f),
+        //         GetEngine().GetRandom().GetNumber(0.f, 1.f),
+        //         GetEngine().GetRandom().GetNumber(0.f, 1.f),
+        //         GetEngine().GetRandom().GetNumber(0.f, 1.f)).Normalize());
 
         // We move all the hexes and the hover hexes to 0,0,0 so that
         // the editor is free to replace them wherever
