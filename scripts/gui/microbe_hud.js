@@ -107,7 +107,7 @@ function runMicrobeHUDSetup(){
         });
 
         // Pseudo population code
-        updatePopulation(Math.floor(Math.random() * 50) + 0);
+        updatePopulation(randomBetween(0, 50));
 
         // Put some hover stuff
         updateHoverInfo({
