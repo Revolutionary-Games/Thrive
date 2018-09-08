@@ -179,9 +179,15 @@ class MicrobeEditor{
     }
 
     void update(int logicTime){
-        // //TODO: rewrite getMouseHex()
+
+        // TODO: this is really dirty to call this all the time
+        hudSystem.updateMutationPoints();
+
+        usedHoverHex = 0;
+
         int q, r;
         this.getMouseHex(q, r);
+
         switch (symmetry)
         {
         case 0:
@@ -206,8 +212,6 @@ class MicrobeEditor{
             renderHighlightedOrganelle(6, r+q, -1*q, (organelleRot+300) % 360);
             break;
         }
-        // TODO: this is really dirty to call this all the time
-        hudSystem.updateMutationPoints();
     }
 
 
@@ -503,6 +507,7 @@ class MicrobeEditor{
         actionIndex++;
     }
 
+    //! \todo Clean this up
     void getMouseHex(int &out qr, int &out rr){
 
         float x, y;
@@ -527,7 +532,8 @@ class MicrobeEditor{
                 Float3(Hex::axialToCube(tmp1.X, tmp1.Y))));
         qr = qrrr.X;
         rr = qrrr.Y;
-        LOG_WRITE("Mouse hex: " + qr + ", " + rr);
+
+        // LOG_WRITE("Mouse hex: " + qr + ", " + rr);
     }
 
 
@@ -672,6 +678,7 @@ class MicrobeEditor{
     void renderHighlightedOrganelle(int start, double q, double r, int rotation){
         //Render the hex under the cursor
         dictionary sceneNode = {};
+
         //TODO: find new equivalents
         // sceneNode[1] = getComponent(hudSystem.hoverOrganelle[start], OgreSceneNodeComponent);
         // for (int i = 2; i < 8; i++){
@@ -691,15 +698,39 @@ class MicrobeEditor{
                  if(this.surroundsOrganelle(-hex.q + q, -hex.r + r)){
                      colour = ColourValue(0, 2, 0, 0.4)
                  }
-             }
-             for(_, hex in ipairs(hexes)){
-                 auto organelle = MicrobeSystem.getOrganelleAt(this.currentMicrobeEntity, -hex.q + q, -hex.r + r)
-                 if(organelle){
-                     if(organelle.name ~= "cytoplasm"){
-                        colour = ColourValue(2, 0, 0, 0.4)
-                     }
-                 }
-             }*/
+           } */
+
+            // If not hovering over an organelle render the to-be-placed organelle
+            Organelle@ toBePlacedOrganelle = getOrganelleDefinition(activeActionName);
+
+            assert(toBePlacedOrganelle !is null, "invalid action name in microbe editor");
+
+            auto hexes = toBePlacedOrganelle.getRotatedHexes(rotation);
+
+            for(uint i = 0; i < hexes.length(); ++i){
+
+                double posQ = hexes[i].q + q;
+                double posR = hexes[i].r + r;
+
+                const Float3 pos = Hex::axialToCartesian(posQ, posR);
+
+                ObjectID hex = hudSystem.hoverHex[usedHoverHex++];
+                auto node = hudSystem.world.GetComponent_RenderNode(hex);
+                node.Node.setPosition(pos);
+                node.Hidden = false;
+                node.Marked = true;
+            }
+
+
+
+             // for(_, hex in ipairs(hexes)){
+             //     auto organelle = MicrobeSystem.getOrganelleAt(this.currentMicrobeEntity, -hex.q + q, -hex.r + r)
+             //     if(organelle){
+             //         if(organelle.name ~= "cytoplasm"){
+             //            colour = ColourValue(2, 0, 0, 0.4)
+             //         }
+             //     }
+             // }
         //if (CEGUIWindow.getWindowUnderMouse().getName() == 'root'){
 
         //         dictionary newData = {
@@ -773,6 +804,9 @@ class MicrobeEditor{
         LOG_ERROR("Microbe editor got unknown event: " + type);
         return -1;
     }
+
+    //! This is used to keep track of used hover organelles
+    private uint usedHoverHex = 0;
 
     // where all user actions will  be registered
     private array<EditorAction@> actionHistory;
