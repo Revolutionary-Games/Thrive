@@ -8,34 +8,34 @@ jobs:
        - checkout
        - restore_cache:
            keys:
-             - v1-deps-{{ arch }}-{{ checksum "SetupThrive.rb" }}
-             - v1-deps-{{ arch }}
+             - v2-deps-{{ arch }}-{{ checksum "SetupThrive.rb" }}
+             - v2-deps-{{ arch }}
        - restore_cache:
            keys:
-             - v1-assets-{{ .Branch }}
-             - v1-assets
+             - v2-assets-{{ .Branch }}
+             - v2-assets
        - restore_cache:
            keys:
-             - v1-build-{{ arch }}-{{ .Branch }}
+             - v2-build-{{ arch }}-{{ .Branch }}
        - run: ./SetupThrive.rb --no-packagemanager --no-updates -j 2 --fully-parallel-project-compile --project-parallel 5
        - save_cache:
-           key: v1-assets-{{ .Branch }}
+           key: v2-assets-{{ .Branch }}
            paths:
              - assets
        - save_cache:
-           key: v1-assets
+           key: v2-assets
            paths:
              - assets
        - save_cache:
-           key: v1-deps-{{ arch }}-{{ checksum "SetupThrive.rb" }}
+           key: v2-deps-{{ arch }}-{{ checksum "SetupThrive.rb" }}
            paths:
              - ThirdParty
        - save_cache:
-           key: v1-deps-{{ arch }}
+           key: v2-deps-{{ arch }}
            paths:
              - ThirdParty
        - save_cache:
-           key: v1-build-{{ arch }}-{{ .Branch }}
+           key: v2-build-{{ arch }}-{{ .Branch }}
            paths:
              - build/src
        - run: mkdir -p /reports/reports
