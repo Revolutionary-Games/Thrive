@@ -67,6 +67,6 @@ Find.find('.') do |path|
   end
 
   system "clang-format", "-i", path
-  abort("Failed to format file: " + path) if $?.exitstatus != 0
+  abort("\n\nFAILED to format file: " + path) if $?.exitstatus != 0
 end
 
