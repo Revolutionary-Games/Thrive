@@ -260,27 +260,23 @@ function updateHoverInfo(vars){
 }
 
 //! Updates population bar in GUI
-function updatePopulation(population)
-{
-	document.getElementById("populationCount").textContent =
-        population;
+function updatePopulation(population){
+    document.getElementById("populationCount").textContent =
+    population;
 }
 
-function checkGeneration (generation)
-{
+function checkGeneration (generation){
     //This is set to == because I don't want the wintext to show up after the 15th generation
     //This can be changed by just about anyone if needed very easily
-    if (generation == 15)
-    {
+    if(generation == 15){
         document.getElementById("winText").style.display = 'unset';
         setTimeout(hideWinText, 5000);
     }
 }
 
 //! Supplementry function for checkGeneration that hides the wintext
-function hideWinText ()
-{
-	document.getElementById("winText").style.display = 'none';
+function hideWinText (){
+    document.getElementById("winText").style.display = 'none';
 }
 
 //! Updates the GUI bars
