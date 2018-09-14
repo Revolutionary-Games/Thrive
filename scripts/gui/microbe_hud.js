@@ -30,7 +30,11 @@ function runMicrobeHUDSetup(){
     // Quit Button Clicked
     document.getElementById("quitButtonHud").addEventListener(
         "click", quitGameHud, true);
-        
+
+    // Main-Menu Button (Inside pause menu) Clicked
+    document.getElementById("exitToMenuButton").addEventListener(
+        "click", onExitToMenuClicked, true);
+
     // Help Button Clicked
     document.getElementById("helpButton").addEventListener(
         "click", openHelp, true);
@@ -183,7 +187,7 @@ function onMenuClicked(event){
     playButtonPressSound();
     let pause = document.getElementById("pauseOverlay");
     pause.style.display = "block";
-     let help = document.getElementById("helpText");
+    let help = document.getElementById("helpText");
     help.style.display = "none";
 }
 
@@ -224,6 +228,14 @@ function onEditorButtonClicked(event){
     // Disable
     document.getElementById("microbeToEditorButton").classList.add("DisabledButton");
     readyToEdit = false;
+}
+
+function onExitToMenuClicked (event)
+{
+    //Exit to main menu
+    document.getElementById("topLevelMenuContainer").style.display = '';
+    document.getElementById("topLevelMicrobeStage").style.display = 'none';
+    document.getElementById("pauseOverlay").style.display = 'none';
 }
 
 //! Updates the mouse hover box with stuff
