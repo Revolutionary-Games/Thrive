@@ -465,7 +465,6 @@ void toggleEngulfMode(CellStageWorld@ world, ObjectID microbeEntity){
 
 
 // Damages the microbe, killing it if its hitpoints drop low enough
-//
 // @param amount
 //  amount of hitpoints to substract
 void damage(CellStageWorld@ world, ObjectID microbeEntity, double amount, const string &in
@@ -1038,7 +1037,9 @@ void removeEngulfedEffect(CellStageWorld@ world, ObjectID microbeEntity){
 
     microbeComponent.movementFactor = microbeComponent.movementFactor *
         ENGULFED_MOVEMENT_DIVISION;
+
     microbeComponent.wasBeingEngulfed = false;
+    microbeComponent.isBeingEngulfed = false;
 
     MicrobeComponent@ hostileMicrobeComponent = cast<MicrobeComponent>(
         world.GetScriptComponentHolder("MicrobeComponent").Find(
@@ -1047,6 +1048,7 @@ void removeEngulfedEffect(CellStageWorld@ world, ObjectID microbeEntity){
     if(hostileMicrobeComponent !is null){
         hostileMicrobeComponent.isCurrentlyEngulfing = false;
     }
+    microbeComponent.hostileEngulfer=NULL_OBJECT;
 
 }
 
