@@ -422,7 +422,7 @@ void setupOrganelles(){
     flagellumParameters.mass = 0.3;
     flagellumParameters.gene = "F";
     flagellumParameters.mesh = "flagellum.mesh";
-    flagellumParameters.chanceToCreate = 3;
+    flagellumParameters.chanceToCreate = 6;
     flagellumParameters.prokaryoteChance = 2;
     flagellumParameters.mpCost = 25;
     flagellumParameters.initialComposition = {
