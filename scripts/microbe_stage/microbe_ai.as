@@ -18,7 +18,8 @@ const float AI_MOVEMENT_SPEED = 0.5;
         NEUTRAL_STATE,
         GATHERING_STATE,
         FLEEING_STATE,
-        PREDATING_STATE
+        PREDATING_STATE,
+        PLANTLIKE_STATE
         }
 
 class MicrobeAIControllerComponent : ScriptComponent{
@@ -149,6 +150,11 @@ class MicrobeAISystem : ScriptSystem{
 
                 switch (aiComponent.lifeState)
                     {
+                    case PLANTLIKE_STATE:
+                        {
+                        // This ai would idealy just sit there, until it sees a nice opportunity pop-up unlike neutral, which wanders randomly (has a gather chance) until something interesting pops up
+                        break;
+                        }
                     case NEUTRAL_STATE:
                         {
                         //In this state you just sit there and analyze your environment
@@ -443,7 +449,12 @@ class MicrobeAISystem : ScriptSystem{
             }
         // Run From Predator
         if (aiComponent.hasTargetPosition == false)
-        {
+            {
+            preyFlee(microbeEntity, aiComponent, microbeComponent,position);
+            }
+        }
+
+    void preyFlee(ObjectID microbeEntity, MicrobeAIControllerComponent@ aiComponent, MicrobeComponent@ microbeComponent, Position@ position){
             if (GetEngine().GetRandom().GetNumber(0,100) <= 40)
                 {
                 // Scatter
@@ -501,7 +512,6 @@ class MicrobeAISystem : ScriptSystem{
                 microbeComponent.movementDirection = Float3(0, 0, -AI_MOVEMENT_SPEED);
                 aiComponent.hasTargetPosition = true;
             }
-        }
         }
 
     // For for firguring out which state to enter
