@@ -421,12 +421,12 @@ class MicrobeAISystem : ScriptSystem{
                 if ((position._Position -  aiComponent.targetPosition).LengthSquared() <= 200
                     && !microbeComponent.engulfMode &&
                     (float(microbeComponent.organelles.length()) > (
-                        ENGULF_HP_RATIO_REQ*secondMicrobeComponent.organelles.length())) && aiComponent.ticksSinceLastToggle > 300)
+                        ENGULF_HP_RATIO_REQ*secondMicrobeComponent.organelles.length())) && aiComponent.ticksSinceLastToggle >= AI_ENGULF_INTERVAL)
                     {
                     MicrobeOperations::toggleEngulfMode(world, microbeEntity);
                     aiComponent.ticksSinceLastToggle=0;
                     }
-                else if ((position._Position -  aiComponent.targetPosition).LengthSquared() >= 310 && microbeComponent.engulfMode && aiComponent.ticksSinceLastToggle > 300)
+                else if ((position._Position -  aiComponent.targetPosition).LengthSquared() >= 310 && microbeComponent.engulfMode && aiComponent.ticksSinceLastToggle >= AI_ENGULF_INTERVAL)
                     {
                     MicrobeOperations::toggleEngulfMode(world, microbeEntity);
                     aiComponent.ticksSinceLastToggle=0;
@@ -593,12 +593,10 @@ class MicrobeAISystem : ScriptSystem{
     }
 
     void Clear(){
-
         CachedComponents.resize(0);
     }
 
     void CreateAndDestroyNodes(){
-
         // Delegate to helper //
         ScriptSystemNodeHelper(world, @CachedComponents, SystemComponents);
     }

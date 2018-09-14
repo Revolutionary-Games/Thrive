@@ -34,7 +34,10 @@ const auto MAX_SPECIES_FEAR = 400.0f;
 // What is divided during fear and aggression calculations in the AI
 const auto AGRESSION_DIVISOR = 100.0f;
 const auto FEAR_DIVISOR = 100.0f;
+// Cooldown for AI for toggling engulfing
+const uint AI_ENGULF_INTERVAL=300;
 
+// The player's name
 const auto PLAYER_NAME = "Player";
 
 const auto DEFAULT_HEALTH = 100;
@@ -98,7 +101,6 @@ const float ENGULF_HP_RATIO_REQ = 1.5f;
 
 // Cooldown between agent emissions, in milliseconds.
 const uint AGENT_EMISSION_COOLDOWN = 1000;
-
 
 // TODO: move these into gamestate (this is very dirty)
 // must be global
