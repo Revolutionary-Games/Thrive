@@ -470,9 +470,11 @@ class MicrobeAISystem : ScriptSystem{
             else
                 {
                 // Run specifically away
-                if (GetEngine().GetRandom().GetNumber(0,100) <= 50)
+                int choice = GetEngine().GetRandom().GetNumber(0,3);
+                switch (choice)
                 {
-                    if (world.GetComponent_Position(predator)._Position.X >= position._Position.X)
+                case 0:
+                if (world.GetComponent_Position(predator)._Position.X >= position._Position.X)
                         {
                         aiComponent.targetPosition =
                             Float3(GetEngine().GetRandom().GetFloat(-10.0f,-100.0f),1.0,1.0)*
@@ -483,10 +485,9 @@ class MicrobeAISystem : ScriptSystem{
                             Float3(GetEngine().GetRandom().GetFloat(20.0f,100.0f),1.0,1.0)*
                             world.GetComponent_Position(predator)._Position;
                         }
-                }
-                else if (GetEngine().GetRandom().GetNumber(0,100) <= 50)
-                {
-                    if (world.GetComponent_Position(predator)._Position.Z >= position._Position.Z)
+                break;
+                case 1:
+                if (world.GetComponent_Position(predator)._Position.Z >= position._Position.Z)
                         {
                         aiComponent.targetPosition =
                         Float3(1.0,1.0,GetEngine().GetRandom().GetFloat(-10.0f,-100.0f))*
@@ -497,13 +498,14 @@ class MicrobeAISystem : ScriptSystem{
                         Float3(1.0,1.0,GetEngine().GetRandom().GetFloat(20.0f,100.0f))*
                         world.GetComponent_Position(predator)._Position;
                         }
-
-                }
-                else {
-                    aiComponent.targetPosition =
+                break;
+                case 2:
+                case 3:
+                aiComponent.targetPosition =
                         Float3(GetEngine().GetRandom().GetFloat(-100.0f,100.0f),1.0,
                         GetEngine().GetRandom().GetFloat(-100.0f,100.0f))*
                         world.GetComponent_Position(predator)._Position;
+                break;
                 }
 
                 auto vec = (aiComponent.targetPosition - position._Position);
