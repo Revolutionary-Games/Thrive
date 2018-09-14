@@ -88,7 +88,7 @@ const float INITIAL_EMISSION_RADIUS = 0.5;
 const uint ENGULFING_MOVEMENT_DIVISION = 3;
 
 // The speed reduction when a cell is being engulfed.
-const uint ENGULFED_MOVEMENT_DIVISION = 4;
+const uint ENGULFED_MOVEMENT_DIVISION = 6;
 
 // The amount of ATP per second spent on being on engulfing mode.
 const float ENGULFING_ATP_COST_SECOND = 1.5;

@@ -33,7 +33,7 @@ class MicrobeAIControllerComponent : ScriptComponent{
     int reevalutationInterval = 1000;
     int intervalRemaining;
     int boredom = 0;
-    int ticksSinceLastToggle = 0;
+    int ticksSinceLastToggle = 600;
     double previousStoredCompounds = 0.0f;
     Float3 direction = Float3(0, 0, 0);
     double speciesAggression = -1.0f;
@@ -463,7 +463,7 @@ class MicrobeAISystem : ScriptSystem{
             world.GetScriptComponentHolder("MicrobeComponent").Find(prey));
 
 
-            // Turn of engulf if prey is Dead
+            // Turn off engulf if prey is Dead
             // This is probabbly not working
             if (secondMicrobeComponent.dead ){
                 aiComponent.hasTargetPosition = false;
@@ -479,12 +479,12 @@ class MicrobeAISystem : ScriptSystem{
                 if ((position._Position -  aiComponent.targetPosition).LengthSquared() <= 200
                     && !microbeComponent.engulfMode &&
                     (float(microbeComponent.organelles.length()) > (
-                        ENGULF_HP_RATIO_REQ*secondMicrobeComponent.organelles.length())))
+                        ENGULF_HP_RATIO_REQ*secondMicrobeComponent.organelles.length())) && aiComponent.ticksSinceLastToggle > 300)
                     {
                     MicrobeOperations::toggleEngulfMode(world, microbeEntity);
                     aiComponent.ticksSinceLastToggle=0;
                     }
-                else if ((position._Position -  aiComponent.targetPosition).LengthSquared() >= 310 && microbeComponent.engulfMode)
+                else if ((position._Position -  aiComponent.targetPosition).LengthSquared() >= 310 && microbeComponent.engulfMode && aiComponent.ticksSinceLastToggle > 300)
                     {
                     MicrobeOperations::toggleEngulfMode(world, microbeEntity);
                     aiComponent.ticksSinceLastToggle=0;
