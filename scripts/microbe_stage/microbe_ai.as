@@ -267,7 +267,7 @@ class MicrobeAISystem : ScriptSystem{
         }
     }
 
-    // Building the prey list and retruning teh best option
+    // Building the prey list and returning the best option
     ObjectID getNearestPreyItem(MicrobeAISystemCached@ components, array<ObjectID>@ allMicrobes){
         // Set Components
         ObjectID microbeEntity = components.entity;
@@ -299,10 +299,8 @@ class MicrobeAISystem : ScriptSystem{
             // Get the nearest one if it exists
             if (aiComponent.preyMicrobes.length() > 0 )
             {
-
             Float3 testPosition = world.GetComponent_Position(aiComponent.preyMicrobes[0])._Position;
             chosenPrey = aiComponent.preyMicrobes[0];
-
             for (uint c = 0; c < aiComponent.preyMicrobes.length(); c++)
                 {
                 // Get the microbe component
@@ -317,47 +315,9 @@ class MicrobeAISystem : ScriptSystem{
                         }
                 }
             }
-       // For getting the prey
-                //for (m_microbeEntityId,  in pairs (microbes_number)){
-                //         // The m_ prefix is used here for some bizarre reason
-                //         // m_microbeEntity
+            // It might be interesting to prioritize weakened prey (Maybe add a variable for opportunisticness to each species?)
 
-                //         MicrobeComponent@ m_microbeComponent = cast<MicrobeComponent>(
-                //             world.GetScriptComponentHolder("MicrobeComponent").Find(m_microbeEntity));
 
-                //         auto m_position = world.GetComponent_RenderNode(m_microbeEntity);
-
-                //         if(this.preys !is null){
-                //             auto v = (m_position.transform.position -
-                //                 position.transform.position);
-
-                //             if(v.length() < 25 and  v.length() ~= 0 ){
-                //                 if(microbeComponent.maxHitpoints > 1.5 *
-                //                     m_microbeComponent.maxHitpoints)
-                //                 {
-                //                     this.preys[m_microbeEntityId] = m_microbeEntity;
-                //                 }
-
-                //                 if(numberOfAgentVacuoles !is null and numberOfAgentVacuoles ~= 0
-                //                     and (m_microbeComponent.specialStorageOrganelles[oxytoxyId] == null
-                //                     or m_microbeComponent.specialStorageOrganelles[oxytoxyId] == 0)
-                //                     and this.preys[m_microbeEntityId] == null){
-
-                //                     this.preys[m_microbeEntityId] = m_microbeEntity;
-                //                 }
-                //             } else if(v.length() > 25 or v.length() == 0){
-                //                 this.preys[m_microbeEntityId] = null;
-                //             }
-                //             if(this.preys[m_microbeEntityId] !is null){
-                //                 preyMicrobeComponent = getComponent(this.preys[m_microbeEntityId], MicrobeComponent);
-                //                 if(preyMicrobeComponent.maxHitpoints <= this.preyMaxHitpoints){
-                //                     this.preyMaxHitpoints = preyMicrobeComponent.maxHitpoints;
-                //                     this.p = this.preys[m_microbeEntityId];
-                //                 }
-                //                 this.preycount = this.preycount + 1;
-                //             }
-                //         }
-                //}
     return chosenPrey;
     }
 
@@ -413,30 +373,6 @@ class MicrobeAISystem : ScriptSystem{
                         }
                 }
             }
-                // For getting the predator
-                //     for(predatorEntityId, predatorEntity in pairs (microbes_number)){
-                //         auto predatorMicrobeComponent = getComponent(predatorEntity, MicrobeComponent);
-                //         auto predatorSceneNodeComponent = getComponent(predatorEntity, OgreSceneNodeComponent);
-
-                //         auto vec = (predatorSceneNodeComponent.transform.position -
-                //             position.transform.position);
-                //         if(predatorMicrobeComponent.maxHitpoints > microbeComponent.maxHitpoints
-                //             * 1.5 and vec.length() < 25)
-                //         {
-                //             this.predators[predatorEntityId] = predatorEntity;
-                //         }
-                //         if (predatorMicrobeComponent.specialStorageOrganelles[oxytoxyId] !is null
-                //             and predatorMicrobeComponent.specialStorageOrganelles[oxytoxyId] ~= 0
-                //             and (numberOfAgentVacuoles == null or numberOfAgentVacuoles == 0) and
-                //             vec.length() < 25)
-                //         {
-                //             this.predators[predatorEntityId] = predatorEntity;
-                //         }
-                //         if(vec.length() > 25){
-                //             this.predators[predatorEntityId] = null;
-                //         }
-                //         this.predator = this.predators[predatorEntityId];
-                //     }
     return predator;
     }
 
