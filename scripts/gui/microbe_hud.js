@@ -236,6 +236,11 @@ function onExitToMenuClicked (event)
     document.getElementById("topLevelMenuContainer").style.display = '';
     document.getElementById("topLevelMicrobeStage").style.display = 'none';
     document.getElementById("pauseOverlay").style.display = 'none';
+    if(isInEngine()){
+        //TODO: Delete player
+        //TODO: Delete world
+        //TODO: Start music again
+    } else {}
 }
 
 //! Updates the mouse hover box with stuff
