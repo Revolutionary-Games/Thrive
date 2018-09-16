@@ -55,7 +55,7 @@ class MicrobeEditor{
         };
     }
 
-    // This is called each time the editor is entered so this needs to properly reset state
+    //! This is called each time the editor is entered so this needs to properly reset state
     void init(){
 
         gridSceneNode = hudSystem.world.CreateEntity();
@@ -212,6 +212,30 @@ class MicrobeEditor{
             renderHighlightedOrganelle(6, r+q, -1*q, (organelleRot+300) % 360);
             break;
         }
+
+        // Show the current microbe
+        for(uint i = 0; i < editedMicrobe.organelles.length(); ++i){
+
+            const PlacedOrganelle@ organelle = editedMicrobe.organelles[i];
+
+            const auto basePos = organelle.cartesianPosition;
+
+            // TODO: not sure if this rotation should be here
+            auto hexes = organelle.organelle.getRotatedHexes(organelle.rotation);
+
+            for(uint a = 0; a < hexes.length(); ++a){
+
+                const Float3 pos = Hex::axialToCartesian(hexes[a].q, hexes[a].r) + basePos;
+
+                ObjectID hex = hudSystem.hoverHex[usedHoverHex++];
+                auto node = hudSystem.world.GetComponent_RenderNode(hex);
+                node.Node.setPosition(pos);
+                node.Hidden = false;
+                node.Marked = true;
+            }
+        }
+
+
     }
 
 
@@ -372,7 +396,7 @@ class MicrobeEditor{
     // }
 
 
-  void createNewMicrobe(const string &in){
+    void createNewMicrobe(const string &in){
     mutationPoints = BASE_MUTATION_POINTS;
     // organelleCount = 0;
     EditorAction@ action = EditorAction(0,
