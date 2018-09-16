@@ -409,13 +409,13 @@ class MicrobeSystem : ScriptSystem{
                     Float4(0.2,0.5,1.0,0.5));
             }
 
-            if(microbeComponent.isBeingEngulfed){
+            if(microbeComponent.isBeingEngulfed && microbeComponent.wasBeingEngulfed){
                 //LOG_INFO("doing engulf damage");
                 MicrobeOperations::damage(world,microbeEntity,microbeComponent.maxHitpoints/5.0f/1000.0f*logicTime,
                     "isBeingEngulfed - Microbe.update()s");
                     microbeComponent.wasBeingEngulfed = true;
                 // Else If we were but are no longer, being engulfed
-            } else if(microbeComponent.wasBeingEngulfed){
+            } else if(microbeComponent.wasBeingEngulfed && !microbeComponent.isBeingEngulfed){
                 LOG_INFO("removing engulf effect");
                 microbeComponent.wasBeingEngulfed=false;
                 MicrobeOperations::removeEngulfedEffect(world, microbeEntity);

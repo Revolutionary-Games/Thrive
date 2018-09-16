@@ -1041,11 +1041,10 @@ void removeEngulfedEffect(CellStageWorld@ world, ObjectID microbeEntity){
         world.GetScriptComponentHolder("MicrobeComponent").Find(microbeEntity));
 
 
-    // This kept getting doubled for some reason, so to fix it i just also disable engulfing if you escape being engulfed.
+    // This kept getting doubled for some reason, so i just set it to default
     microbeComponent.movementFactor = 1.0f;
 
 
-    microbeComponent.isCurrentlyEngulfing=false;
     microbeComponent.wasBeingEngulfed = false;
     microbeComponent.isBeingEngulfed = false;
 
