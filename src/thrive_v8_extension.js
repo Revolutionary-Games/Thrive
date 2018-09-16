@@ -23,4 +23,7 @@ var Thrive = {};
     native function killPlayerCellClicked();
     Thrive.killPlayerCellClicked = killPlayerCellClicked;
 
+    native function exitToMenuClicked();
+    Thrive.exitToMenuClicked = exitToMenuClicked;
+
 }());
