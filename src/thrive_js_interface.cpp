@@ -104,6 +104,13 @@ bool
 
         Owner->SendCustomExtensionMessage(message);
         return true;
+    } else if(name == "exitToMenuClicked") {
+        auto message = CefProcessMessage::Create("Custom");
+        auto args = message->GetArgumentList();
+        args->SetString(0, "exitToMenuClicked");
+
+        Owner->SendCustomExtensionMessage(message);
+        return true;
     }
 
     // This might be a bit expensive...
