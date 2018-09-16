@@ -237,9 +237,7 @@ function onExitToMenuClicked (event)
     document.getElementById("topLevelMicrobeStage").style.display = 'none';
     document.getElementById("pauseOverlay").style.display = 'none';
     if(isInEngine()){
-        //TODO: Delete player
-        //TODO: Delete world
-        //TODO: Start music again
+        Thrive.exitToMenuClicked();
     } else {}
 }
 
