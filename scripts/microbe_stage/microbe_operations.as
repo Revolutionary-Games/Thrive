@@ -451,11 +451,16 @@ void toggleEngulfMode(CellStageWorld@ world, ObjectID microbeEntity){
         world.GetScriptComponentHolder("MicrobeComponent").Find(microbeEntity));
 
     // auto soundSourceComponent = world.GetComponent_SoundSourceComponent(microbeEntity);
-    if(microbeComponent.engulfMode){
-        microbeComponent.movementFactor = microbeComponent.movementFactor *
-            ENGULFING_MOVEMENT_DIVISION;
+    if(microbeComponent.engulfMode && !microbeComponent.isBeingEngulfed){
+        microbeComponent.movementFactor = 1.0f;
         // soundSourceComponent.stopSound("microbe-engulfment"); // Possibly comment out.
-    } else {
+    }
+    else  if (microbeComponent.isBeingEngulfed)
+    {
+        microbeComponent.movementFactor = microbeComponent.movementFactor /  ENGULFED_MOVEMENT_DIVISION;
+    }
+    else
+    {
         microbeComponent.movementFactor = microbeComponent.movementFactor /
             ENGULFING_MOVEMENT_DIVISION;
     }
@@ -1035,9 +1040,12 @@ void removeEngulfedEffect(CellStageWorld@ world, ObjectID microbeEntity){
     MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
         world.GetScriptComponentHolder("MicrobeComponent").Find(microbeEntity));
 
-    microbeComponent.movementFactor = microbeComponent.movementFactor *
-        ENGULFED_MOVEMENT_DIVISION;
 
+    // This kept getting doubled for some reason, so to fix it i just also disable engulfing if you escape being engulfed.
+    microbeComponent.movementFactor = 1.0f;
+
+
+    microbeComponent.isCurrentlyEngulfing=false;
     microbeComponent.wasBeingEngulfed = false;
     microbeComponent.isBeingEngulfed = false;
 
@@ -1048,6 +1056,7 @@ void removeEngulfedEffect(CellStageWorld@ world, ObjectID microbeEntity){
     if(hostileMicrobeComponent !is null){
         hostileMicrobeComponent.isCurrentlyEngulfing = false;
     }
+
     microbeComponent.hostileEngulfer=NULL_OBJECT;
 
 }
