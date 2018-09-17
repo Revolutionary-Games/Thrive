@@ -156,6 +156,7 @@ class MicrobeComponent : ScriptComponent, OrganelleContainer{
     bool isBeingEngulfed = false;
     bool wasBeingEngulfed = false;
     ObjectID hostileEngulfer = NULL_OBJECT;
+    AudioSource@ engulfAudio;
 
     // New state variables that MicrobeSystem also uses
     bool in_editor = false;
@@ -404,6 +405,15 @@ class MicrobeSystem : ScriptSystem{
                     LOG_INFO("too little atp, disabling - engulfing");
                     MicrobeOperations::toggleEngulfMode(world, microbeEntity);
                 }
+
+                // Play sound
+                if (@microbeComponent.engulfAudio is null || !microbeComponent.engulfAudio.Get().isPlaying())
+                    {
+                    @microbeComponent.engulfAudio = GetEngine().GetSoundDevice().Play2DSound("Data/Sound/soundeffects/engulfment.ogg",false,true);
+                    microbeComponent.engulfAudio.Get().setVolume(50.0f);
+                    microbeComponent.engulfAudio.Get().play();
+                    }
+
                 // Flash the membrane blue.
                 MicrobeOperations::flashMembraneColour(world, microbeEntity, 1000,
                     Float4(0.2,0.5,1.0,0.5));
