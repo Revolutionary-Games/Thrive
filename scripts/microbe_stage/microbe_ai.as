@@ -282,6 +282,10 @@ class MicrobeAISystem : ScriptSystem{
         Position@ position = components.third;
         ObjectID chosenPrey = NULL_OBJECT;
 
+        CompoundId oxytoxyId = SimulationParameters::compoundRegistry().getTypeId("oxytoxy");
+        int numberOfAgentVacuoles = int(
+                    microbeComponent.specialStorageOrganelles[formatUInt(oxytoxyId)]);
+
         // Retrieve nearest potential prey
         for (uint i = 0; i < allMicrobes.length(); i++)
             {
@@ -292,8 +296,13 @@ class MicrobeAISystem : ScriptSystem{
             // At max aggression add them all
             if (allMicrobes[i] != microbeEntity && (secondMicrobeComponent.speciesName != microbeComponent.speciesName) && !secondMicrobeComponent.dead)
             {
+                // TODO:
+                // I think we should call this and factor it into predator calculations .specialStorageOrganelles[formatUInt(oxytoxyId)])
+                // that way a small cell with alot of toxins still has the courage to attack.
+                // But that may be rather arcane to read through code wise. SO im not sure.
+
                 if ((aiComponent.speciesAggression==MAX_SPECIES_AGRESSION) or
-                    (((microbeComponent.organelles.length()*1.0f)*(aiComponent.speciesAggression/AGRESSION_DIVISOR)) >
+                    ((((numberOfAgentVacuoles+microbeComponent.organelles.length())*1.0f)*(aiComponent.speciesAggression/AGRESSION_DIVISOR)) >
                     (secondMicrobeComponent.organelles.length()*1.0f)))
                     {
                     //You are non-threatening to me
@@ -344,11 +353,14 @@ class MicrobeAISystem : ScriptSystem{
             // Get the microbe component
             MicrobeComponent@ secondMicrobeComponent = cast<MicrobeComponent>(
                 world.GetScriptComponentHolder("MicrobeComponent").Find(allMicrobes[i]));
-
+            // Is this an expensive lookup?, ill come up with a more effieient means of doing this.
+            CompoundId oxytoxyId = SimulationParameters::compoundRegistry().getTypeId("oxytoxy");
+            int numberOfAgentVacuoles = int(
+                secondMicrobeComponent.specialStorageOrganelles[formatUInt(oxytoxyId)]);
             // At max fear add them all
             if (allMicrobes[i] != microbeEntity && (secondMicrobeComponent.speciesName != microbeComponent.speciesName) && !secondMicrobeComponent.dead)
             {
-            if ((aiComponent.speciesFear==MAX_SPECIES_FEAR) or (((secondMicrobeComponent.organelles.length()*1.0f)*(aiComponent.speciesFear/FEAR_DIVISOR)) >
+            if ((aiComponent.speciesFear==MAX_SPECIES_FEAR) or ((((numberOfAgentVacuoles+secondMicrobeComponent.organelles.length())*1.0f)*(aiComponent.speciesFear/FEAR_DIVISOR)) >
             (microbeComponent.organelles.length()*1.0f)))
                 {
                 //You are bigger then me and i am afraid of that
