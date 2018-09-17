@@ -412,11 +412,11 @@ class MicrobeSystem : ScriptSystem{
                     @microbeComponent.engulfAudio = GetEngine().GetSoundDevice().Play2DSound("Data/Sound/soundeffects/engulfment.ogg",false,true);
                     if (microbeComponent.isPlayerMicrobe)
                         {
-                        microbeComponent.engulfAudio.Get().setVolume(50.0f);
+                        microbeComponent.engulfAudio.Get().setVolume(70.0f);
                         }
                     else {
                         // NPC microbes are less loud
-                        microbeComponent.engulfAudio.Get().setVolume(4.0f);
+                        microbeComponent.engulfAudio.Get().setVolume(40.0f);
                     }
                     microbeComponent.engulfAudio.Get().play();
                     }
