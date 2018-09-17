@@ -373,7 +373,6 @@ class MicrobeAISystem : ScriptSystem{
             // Get the nearest one if it exists
             if (aiComponent.predatoryMicrobes.length() > 0 )
             {
-
             Float3 testPosition = world.GetComponent_Position(aiComponent.predatoryMicrobes[0])._Position;
             predator = aiComponent.predatoryMicrobes[0];
 

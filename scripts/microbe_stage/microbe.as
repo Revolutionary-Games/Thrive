@@ -782,21 +782,21 @@ class MicrobeSystem : ScriptSystem{
     // // @param maxAmount
     // // The maximum amount to try to emit
     void emitAgent(ObjectID microbeEntity, CompoundId compoundId, double maxAmount){
-    //     auto microbeComponent = world.GetComponent_MicrobeComponent(microbeEntity, MicrobeComponent);
-    //     auto sceneNodeComponent = world.GetComponent_OgreSceneNodeComponent(microbeEntity, OgreSceneNodeComponent);
+        MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
+            world.GetScriptComponentHolder("MicrobeComponent").Find(microbeEntity));
+        auto sceneNodeComponent = world.GetComponent_RenderNode(microbeEntity);
     //     auto soundSourceComponent = world.GetComponent_SoundSourceComponent(microbeEntity, SoundSourceComponent);
-    //     auto membraneComponent = world.GetComponent_MembraneComponent(microbeEntity, MembraneComponent);
+        auto membraneComponent = world.GetComponent_MembraneComponent(microbeEntity);
 
-    //     // Cooldown code
-    //     if(microbeComponent.agentEmissionCooldown > 0){ return; }
-    //     auto numberOfAgentVacuoles = microbeComponent.specialStorageOrganelles[compoundId];
+    // Cooldown code
+       if(microbeComponent.agentEmissionCooldown > 0){ return; }
+         auto numberOfAgentVacuoles = int (microbeComponent.specialStorageOrganelles[formatUInt(compoundId)]);
 
-    //     // Only shoot if you have agent vacuoles.
-    //     if(numberOfAgentVacuoles == 0 or numberOfAgentVacuoles == 0){ return; }
+    // Only shoot if you have agent vacuoles.
+    if(numberOfAgentVacuoles == 0 or numberOfAgentVacuoles == 0){ return; }
 
-    //     // The cooldown time is inversely proportional to the amount of agent vacuoles.
-    //     microbeComponent.agentEmissionCooldown = AGENT_EMISSION_COOLDOWN /
-    //         numberOfAgentVacuoles;
+    // The cooldown time is inversely proportional to the amount of agent vacuoles.
+    microbeComponent.agentEmissionCooldown = AGENT_EMISSION_COOLDOWN/numberOfAgentVacuoles;
 
     //     if(MicrobeSystem.getCompoundAmount(microbeEntity, compoundId) >
     //         MINIMUM_AGENT_EMISSION_AMOUNT)
