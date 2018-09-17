@@ -362,17 +362,12 @@ ObjectID createToxin(CellStageWorld@ world, Float3 pos)
     // Toxins
     ObjectID toxinEntity = world.CreateEntity();
     //LOG_INFO("toxin spawned at pos x"+ pos.X +"y"+ pos.Y +"z"+ pos.Z);
-
     auto position = world.Create_Position(toxinEntity, pos,Ogre::Quaternion(Ogre::Degree(GetEngine().GetRandom().GetNumber(0, 360)),Ogre::Vector3(0,1,0)));
-
-
     auto renderNode = world.Create_RenderNode(toxinEntity);
     renderNode.Scale = Float3(1, 1, 1);
     renderNode.Marked = true;
     renderNode.Node.setOrientation(Ogre::Quaternion(Ogre::Degree(GetEngine().GetRandom().GetNumber(0, 360)),Ogre::Vector3(0,1,1)));
     renderNode.Node.setPosition(pos);
-
-
     // Ogre::Quaternion(Ogre::Degree(GetEngine().GetRandom().GetNumber(0, 360)),
     //     Ogre::Vector3(0, 1, 0)));
 
@@ -405,9 +400,6 @@ ObjectID createChloroplast(CellStageWorld@ world, Float3 pos)
     renderNode.Marked = true;
     renderNode.Node.setOrientation(Ogre::Quaternion(Ogre::Degree(GetEngine().GetRandom().GetNumber(0, 360)),Ogre::Vector3(0,1,1)));
     renderNode.Node.setPosition(pos);
-
-
-
     auto model = world.Create_Model(chloroplastEntity, renderNode.Node, "chloroplast.mesh");
     // Need to set the tint
     model.GraphicalObject.setCustomParameter(1, Ogre::Vector4(1, 1, 1, 1));

@@ -781,7 +781,7 @@ class MicrobeSystem : ScriptSystem{
     // //
     // // @param maxAmount
     // // The maximum amount to try to emit
-    // void emitAgent(ObjectID microbeEntity, CompoundId compoundId, double maxAmount){
+    void emitAgent(ObjectID microbeEntity, CompoundId compoundId, double maxAmount){
     //     auto microbeComponent = world.GetComponent_MicrobeComponent(microbeEntity, MicrobeComponent);
     //     auto sceneNodeComponent = world.GetComponent_OgreSceneNodeComponent(microbeEntity, OgreSceneNodeComponent);
     //     auto soundSourceComponent = world.GetComponent_SoundSourceComponent(microbeEntity, SoundSourceComponent);
@@ -838,7 +838,7 @@ class MicrobeSystem : ScriptSystem{
     //             sceneNodeComponent.transform.position.y + ynew, direction,
     //             amountToEject * 10);
     //     }
-    // }
+    }
 
     // void transferCompounds(ObjectID fromEntity, ObjectID toEntity){
     //     for(_, compoundID in pairs(SimulationParameters::compoundRegistry().getCompoundList())){
@@ -852,6 +852,7 @@ class MicrobeSystem : ScriptSystem{
     //         }
     //     }
     // }
+
     void divide(ObjectID microbeEntity){
         LOG_INFO("Divide called");
         MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
