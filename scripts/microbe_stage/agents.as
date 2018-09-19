@@ -1,4 +1,4 @@
-const auto AGENT_EMISSION_VELOCITY = 20;
+const auto AGENT_EMISSION_VELOCITY = 1;
 
 
 interface AgentEffect{

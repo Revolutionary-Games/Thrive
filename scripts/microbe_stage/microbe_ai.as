@@ -411,9 +411,13 @@ class MicrobeAISystem : ScriptSystem{
         microbeComponent.facingTargetPoint = aiComponent.targetPosition;
         microbeComponent.movementDirection = Float3(0, 0, -AI_MOVEMENT_SPEED);
         aiComponent.hasTargetPosition = true;
-
+        CompoundId oxytoxyId = SimulationParameters::compoundRegistry().getTypeId("oxytoxy");
         MicrobeComponent@ secondMicrobeComponent = cast<MicrobeComponent>(
             world.GetScriptComponentHolder("MicrobeComponent").Find(prey));
+
+        // Agent vacuoles.
+        int numberOfAgentVacuoles = int(
+                microbeComponent.specialStorageOrganelles[formatUInt(oxytoxyId)]);
 
 
             // Turn off engulf if prey is Dead
@@ -444,7 +448,12 @@ class MicrobeAISystem : ScriptSystem{
                     }
             }
 
-            // TODO Need to make the AI shoot poison, perhaps have a variable for "attack preference", so that we see more variety
+          //  Shoot toxins if able
+          //  seems pretty arbitrary tbh
+            if (numberOfAgentVacuoles > 0 && (position._Position -  aiComponent.targetPosition).LengthSquared() <= 400)
+                    {
+                    MicrobeOperations::emitAgent(world,microbeEntity, oxytoxyId,1.0f);
+                    }
         }
 
     // For self defense (not nessessarily fleeing)

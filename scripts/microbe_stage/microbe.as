@@ -142,7 +142,9 @@ class MicrobeComponent : ScriptComponent, OrganelleContainer{
     float remainingBandwidth = 0.0;
     uint compoundCollectionTimer = EXCESS_COMPOUND_COLLECTION_INTERVAL;
 
+    // This is currnetly bugged and equals a ridiculously large number
     uint agentEmissionCooldown = 0;
+
     // Is this the place where the actual flash duration works?
     // The one in the organelle class doesn't work
     uint flashDuration = 0;
@@ -789,72 +791,6 @@ class MicrobeSystem : ScriptSystem{
                 EXCESS_COMPOUND_COLLECTION_INTERVAL *
                     0.00004  * microbeComponent.maxHitpoints, "atpDamage");
         }
-    }
-
-    // // Drains an agent from the microbes special storage and emits it
-    // //
-    // // @param compoundId
-    // // The compound id of the agent to emit
-    // //
-    // // @param maxAmount
-    // // The maximum amount to try to emit
-    void emitAgent(ObjectID microbeEntity, CompoundId compoundId, double maxAmount){
-        MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
-            world.GetScriptComponentHolder("MicrobeComponent").Find(microbeEntity));
-        auto sceneNodeComponent = world.GetComponent_RenderNode(microbeEntity);
-    //     auto soundSourceComponent = world.GetComponent_SoundSourceComponent(microbeEntity, SoundSourceComponent);
-        auto membraneComponent = world.GetComponent_MembraneComponent(microbeEntity);
-
-    // Cooldown code
-       if(microbeComponent.agentEmissionCooldown > 0){ return; }
-         auto numberOfAgentVacuoles = int (microbeComponent.specialStorageOrganelles[formatUInt(compoundId)]);
-
-    // Only shoot if you have agent vacuoles.
-    if(numberOfAgentVacuoles == 0 or numberOfAgentVacuoles == 0){ return; }
-
-    // The cooldown time is inversely proportional to the amount of agent vacuoles.
-    microbeComponent.agentEmissionCooldown = AGENT_EMISSION_COOLDOWN/numberOfAgentVacuoles;
-
-    //     if(MicrobeSystem.getCompoundAmount(microbeEntity, compoundId) >
-    //         MINIMUM_AGENT_EMISSION_AMOUNT)
-    //     {
-    //         soundSourceComponent.playSound("microbe-release-toxin");
-
-    //         // Calculate the emission angle of the agent emitter
-    //         local organelleX, organelleY = axialToCartesian(0, -1); // The front of the microbe
-    //         auto membraneCoords = membraneComponent.getExternOrganellePos(
-    //             organelleX, organelleY);
-
-    //         auto angle =  math.atan2(organelleY, organelleX);
-    //         if(angle < 0){
-    //             angle = angle + 2*math.pi;
-    //         }
-    //         angle = -(angle * 180/math.pi -90 ) % 360;
-
-    //         // Find the direction the microbe is facing
-    //         auto yAxis = sceneNodeComponent.transform.orientation.yAxis();
-    //         auto microbeAngle = math.atan2(yAxis.x, yAxis.y);
-    //         if(microbeAngle < 0){
-    //             microbeAngle = microbeAngle + 2*math.pi;
-    //         }
-    //         microbeAngle = microbeAngle * 180/math.pi;
-    //         // Take the microbe angle into account so we get world relative degrees
-    //         auto finalAngle = (angle + microbeAngle) % 360;
-
-    //         auto s = math.sin(finalAngle/180*math.pi);
-    //         auto c = math.cos(finalAngle/180*math.pi);
-
-    //         auto xnew = -membraneCoords[1] * c + membraneCoords[2] * s;
-    //         auto ynew = membraneCoords[1] * s + membraneCoords[2] * c;
-
-    //         auto direction = Vector3(xnew, ynew, 0);
-    //         direction.normalise();
-    //         auto amountToEject = MicrobeSystem.takeCompound(microbeEntity,
-    //             compoundId, maxAmount/10.0);
-    //         createAgentCloud(compoundId, sceneNodeComponent.transform.position.x + xnew,
-    //             sceneNodeComponent.transform.position.y + ynew, direction,
-    //             amountToEject * 10);
-    //     }
     }
 
     // void transferCompounds(ObjectID fromEntity, ObjectID toEntity){
