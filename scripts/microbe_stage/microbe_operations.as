@@ -188,6 +188,7 @@ void setupMicrobeHitpoints(CellStageWorld@ world, ObjectID microbeEntity, int he
         world.GetScriptComponentHolder("MicrobeComponent").Find(microbeEntity));
     microbeComponent.maxHitpoints = health;
     microbeComponent.hitpoints = microbeComponent.maxHitpoints;
+    microbeComponent.agentEmissionCooldown=0;
 }
 
 //grabs compounds from template (starter_mcirobes) and stores them)
@@ -443,6 +444,72 @@ void applyMembraneColour(CellStageWorld@ world, ObjectID microbeEntity){
     membraneComponent.setColour(speciesColour);
 }
 
+
+    // // Drains an agent from the microbes special storage and emits it
+    // //
+    // // @param compoundId
+    // // The compound id of the agent to emit
+    // //
+    // // @param maxAmount
+    // // The maximum amount to try to emit
+void emitAgent(CellStageWorld@ world, ObjectID microbeEntity, CompoundId compoundId, double maxAmount){
+    LOG_INFO("ima bout to be firin mai lazer");
+        MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
+            world.GetScriptComponentHolder("MicrobeComponent").Find(microbeEntity));
+    //     auto soundSourceComponent = world.GetComponent_SoundSourceComponent(microbeEntity, SoundSourceComponent);
+        auto membraneComponent = world.GetComponent_MembraneComponent(microbeEntity);
+        Float3 cellPosition = world.GetComponent_Position(microbeEntity)._Position;
+
+    // Cooldown code
+    LOG_INFO(" "+microbeComponent.agentEmissionCooldown);
+
+   // if(microbeComponent.agentEmissionCooldown > 0){ return; }
+    LOG_INFO("ima firin mai lazer failed before agentvacuolenum");
+
+    auto numberOfAgentVacuoles = int (microbeComponent.specialStorageOrganelles[formatUInt(compoundId)]);
+    // Only shoot if you have an agent vacuole.
+    if(numberOfAgentVacuoles == 0){ return; }
+    LOG_INFO("ima firin mai lazer");
+    // The cooldown time is inversely proportional to the amount of agent vacuoles.
+    microbeComponent.agentEmissionCooldown = AGENT_EMISSION_COOLDOWN/numberOfAgentVacuoles;
+
+    if(MicrobeOperations::getCompoundAmount(world, microbeEntity, compoundId) > MINIMUM_AGENT_EMISSION_AMOUNT)
+        {
+        GetEngine().GetSoundDevice().Play2DSoundEffect("Data/Sound/soundeffects/microbe-release-toxin.ogg");
+        // Calculate the emission angle of the agent emitter
+        auto vector = Hex::axialToCartesian(0, -1); // The front of the microbe
+        auto amountToEject = takeCompound(world, microbeEntity,compoundId, maxAmount/10.0);
+        auto xnew = 0;
+        auto ynew = 0;
+        auto vec = ( microbeComponent.facingTargetPoint - cellPosition);
+        auto direction = vec.Normalize();
+        createAgentCloud(world, compoundId, cellPosition, direction,amountToEject * 10.0f);
+        }
+    }
+
+    //    auto angle =  math.atan2(organelleY, organelleX);
+    //if(angle < 0){
+    //    angle = angle + 2*math.pi;
+    //}
+    //angle = -(angle * 180/math.pi -90 ) % 360;
+    // Find the direction the microbe is facing
+    //auto yAxis = sceneNodeComponent.transform.orientation.yAxis();
+    // auto microbeAngle = math.atan2(yAxis.x, yAxis.y);
+    //if(microbeAngle < 0){
+   //     microbeAngle = microbeAngle + 2*math.pi;
+    //}
+    //         microbeAngle = microbeAngle * 180/math.pi;
+    //         // Take the microbe angle into account so we get world relative degrees
+   //          auto finalAngle = (angle + microbeAngle) % 360;
+    //
+    //         auto s = math.sin(finalAngle/180*math.pi);
+    //         auto c = math.cos(finalAngle/180*math.pi);
+    //
+    //         auto xnew = -membraneCoords[1] * c + membraneCoords[2] * s;
+    //         auto ynew = membraneCoords[1] * s + membraneCoords[2] * c;
+    //         auto direction = Vector3(xnew, ynew, 0);
+   //          direction.normalise();
+    //
 
 // Disables or enables engulfmode for a microbe, allowing or
 // disallowing it to absorb other microbes
@@ -1000,7 +1067,7 @@ void kill(CellStageWorld@ world, ObjectID microbeEntity){
             float(compoundsToRelease[keys[i]]));
     }
 
-    //play the death sound
+    // Play the death sound
     GetEngine().GetSoundDevice().Play2DSoundEffect("Data/Sound/soundeffects/microbe-death.ogg");
 
 
