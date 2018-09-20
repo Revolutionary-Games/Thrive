@@ -266,6 +266,8 @@ void createAgentCloud(CellStageWorld@ world, CompoundId compoundId, Float3 pos,
         Ogre::Quaternion(Ogre::Degree(GetEngine().GetRandom().GetNumber(0, 360)),
             Ogre::Vector3(0, 1, 0)));
 
+
+
     auto rigidBody = world.Create_Physics(agentEntity, world, position, null);
 
     rigidBody.SetCollision(world.GetPhysicalWorld().CreateSphere(HEX_SIZE));
@@ -274,7 +276,7 @@ void createAgentCloud(CellStageWorld@ world, CompoundId compoundId, Float3 pos,
 
     rigidBody.CreatePlaneConstraint(world.GetPhysicalWorld(), Float3(0, 1, 0));
 
-    rigidBody.SetMass(0.001);
+    rigidBody.SetMass(1.0);
 
     // TODO: physics property applying here as well
     // rigidBody.properties.friction = 0.4;
@@ -283,6 +285,7 @@ void createAgentCloud(CellStageWorld@ world, CompoundId compoundId, Float3 pos,
     // TODO: impulse or set velocity?
     rigidBody.SetVelocity(normalizedDirection * AGENT_EMISSION_VELOCITY);
 
+    rigidBody.JumpTo(position);
     auto sceneNode = world.Create_RenderNode(agentEntity);
     auto model = world.Create_Model(agentEntity, sceneNode.Node, "oxytoxy.mesh");
     // Need to set the tint
