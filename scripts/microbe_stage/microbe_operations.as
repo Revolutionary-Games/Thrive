@@ -478,7 +478,7 @@ void emitAgent(CellStageWorld@ world, ObjectID microbeEntity, CompoundId compoun
         GetEngine().GetSoundDevice().Play2DSoundEffect("Data/Sound/soundeffects/microbe-release-toxin.ogg");
         // Calculate the emission angle of the agent emitter
          // The front of the microbe
-         Float3 exit = Hex::axialToCartesian(0, -1);
+         Float3 exit = Hex::axialToCartesian(0, 1);
         auto membraneCoords = membraneComponent.GetExternalOrganelle(exit.X, exit.Z);
 
         //Get the distance to eject the agent
@@ -493,11 +493,6 @@ void emitAgent(CellStageWorld@ world, ObjectID microbeEntity, CompoundId compoun
                 }
             }
         }
-
-        //The distance is one hex away from the front of the microbe.
-        //This distance could be precalculated when adding/removing an organelle
-        //for more efficient shooting.
-        auto ejectionDistance = (maxR + 2) * HEX_SIZE;
         auto angle = 180;
         // Find the direction the microbe is facing
         auto yAxis = Ogre::Quaternion(cellPosition._Orientation).yAxis();
@@ -518,33 +513,9 @@ void emitAgent(CellStageWorld@ world, ObjectID microbeEntity, CompoundId compoun
         auto vec = ( microbeComponent.facingTargetPoint - cellPosition._Position);
         auto direction = vec.Normalize();
 
-        createAgentCloud(world, compoundId, cellPosition._Position+(Float3(xnew,ynew,0)*ejectionDistance), direction,amountToEject * 10.0f);
+        createAgentCloud(world, compoundId, cellPosition._Position+(Float3(xnew,0,ynew)), direction,amountToEject * 10.0f);
         }
     }
-
-    //    auto angle =  math.atan2(organelleY, organelleX);
-    //if(angle < 0){
-    //    angle = angle + 2*math.pi;
-    //}
-    //angle = -(angle * 180/math.pi -90 ) % 360;
-    // Find the direction the microbe is facing
-    //auto yAxis = sceneNodeComponent.transform.orientation.yAxis();
-    // auto microbeAngle = math.atan2(yAxis.x, yAxis.y);
-    //if(microbeAngle < 0){
-   //     microbeAngle = microbeAngle + 2*math.pi;
-    //}
-    //         microbeAngle = microbeAngle * 180/math.pi;
-    //         // Take the microbe angle into account so we get world relative degrees
-   //          auto finalAngle = (angle + microbeAngle) % 360;
-    //
-    //         auto s = math.sin(finalAngle/180*math.pi);
-    //         auto c = math.cos(finalAngle/180*math.pi);
-    //
-    //         auto xnew = -membraneCoords[1] * c + membraneCoords[2] * s;
-    //         auto ynew = membraneCoords[1] * s + membraneCoords[2] * c;
-    //         auto direction = Vector3(xnew, ynew, 0);
-   //          direction.normalise();
-    //
 
 // Disables or enables engulfmode for a microbe, allowing or
 // disallowing it to absorb other microbes
