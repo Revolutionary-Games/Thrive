@@ -580,6 +580,14 @@ void
         return;
     }
 }
+
+void
+    ThriveGame::exitToMenuClicked()
+{
+    m_impl->m_cellStage->ClearEntities();
+    LOG_INFO("Back to main menu!");
+}
+
 // ------------------------------------ //
 void
     ThriveGame::onZoomChange(float amount)
