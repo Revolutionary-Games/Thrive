@@ -450,7 +450,7 @@ class MicrobeAISystem : ScriptSystem{
 
           //  Shoot toxins if able
           //  seems pretty arbitrary tbh
-            if (numberOfAgentVacuoles > 0 && (position._Position -  aiComponent.targetPosition).LengthSquared() <= 1000)
+            if (numberOfAgentVacuoles > 0 && (position._Position -  aiComponent.targetPosition).LengthSquared() <= 2000)
                     {
                     MicrobeOperations::emitAgent(world,microbeEntity, oxytoxyId,1.0f);
                     }

@@ -4,15 +4,15 @@
 
 // Global defines
 const auto CLOUD_SPAWN_RADIUS = 75;
-
 const auto POWERUP_SPAWN_RADIUS = 85;
-
 const auto DEFAULT_SPAWN_DENSITY = 1/25000.f;
 
+// Cell Colors
 const auto MIN_COLOR = 0.0f;
 const auto MAX_COLOR = 0.8f;
 const auto MIN_OPACITY = 0.6f;
 const auto MAX_OPACITY = 4.0f;
+
 //not const because we want to change these
 //current atmospheric oxygen percentage in modern times
 auto OXYGEN_PERCENTAGE = 0.21f;
@@ -20,6 +20,7 @@ auto OXYGEN_PERCENTAGE = 0.21f;
 //non-nitrogen-non-oxygen gasses in our atmosphere)
 auto CARBON_DIOXIDE_PERCENTAGE = 0.009f;
 
+// Mutation Variables
 const auto MUTATION_BACTERIA_TO_EUKARYOTE = 1;
 const auto MUTATION_CREATION_RATE = 0.1f;
 const auto MUTATION_DELETION_RATE = 0.1f;
@@ -98,6 +99,9 @@ const float ENGULFING_ATP_COST_SECOND = 1.5;
 
 // The minimum HP ratio between a cell and a possible engulfing victim.
 const float ENGULF_HP_RATIO_REQ = 1.5f;
+
+// Oxytoxy Damage
+const float OXY_TOXY_DAMAGE = 10.0f;
 
 // Cooldown between agent emissions, in milliseconds.
 const uint AGENT_EMISSION_COOLDOWN = 1000;
