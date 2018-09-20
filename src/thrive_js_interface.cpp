@@ -155,6 +155,10 @@ bool
 
         ThriveGame::Get()->killPlayerCellClicked();
         return true;
+    } else if(customType == "exitToMenuClicked") {
+
+        ThriveGame::Get()->exitToMenuClicked();
+        return true;
     }
     // Not ours
     return false;
