@@ -406,7 +406,7 @@ ObjectID createToxin(CellStageWorld@ world, Float3 pos)
     auto rigidBody = world.Create_Physics(toxinEntity, world, position, null);
     rigidBody.SetCollision(world.GetPhysicalWorld().CreateSphere(1));
     rigidBody.CreatePhysicsBody(world.GetPhysicalWorld(),
-        world.GetPhysicalMaterial("floatingOrganelle"));
+        world.GetPhysicalMaterial("agentCollision"));
     rigidBody.CreatePlaneConstraint(world.GetPhysicalWorld(), Float3(0,1,0));
     rigidBody.SetMass(1.0f);
 

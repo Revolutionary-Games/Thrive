@@ -551,7 +551,7 @@ class Species{
     bool isBacteria;
     double aggression = 100.0f;
     double fear = 100.0f;
-    double activity = 400.0f;
+    double activity = 0.0f;
     MEMBRANE_TYPE speciesMembraneType;
     string stringCode;
     int population = INITIAL_POPULATION;
