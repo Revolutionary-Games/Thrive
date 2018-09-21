@@ -29,12 +29,20 @@ const auto MICROBE_SPAWN_RADIUS = 85;
 // Bacteria get massively extra radius so they can spawn in proper colonies and act as landmarks
 const auto BACTERIA_SPAWN_RADIUS = 130;
 
-// Max fear and agression
+// Max fear and agression and activity
 const auto MAX_SPECIES_AGRESSION = 400.0f;
 const auto MAX_SPECIES_FEAR = 400.0f;
+const auto MAX_SPECIES_ACTIVITY = 400.0f;
+
+// Personality Mutation
+const auto MAX_SPECIES_PERSONALITY_MUTATION = 20.0f;
+const auto MIN_SPECIES_PERSONALITY_MUTATION = -20.0f;
+
 // What is divided during fear and aggression calculations in the AI
 const auto AGRESSION_DIVISOR = 100.0f;
 const auto FEAR_DIVISOR = 100.0f;
+const auto ACTIVITY_DIVISOR = 100.0f;
+
 // Cooldown for AI for toggling engulfing
 const uint AI_ENGULF_INTERVAL=300;
 
