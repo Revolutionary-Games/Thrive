@@ -117,7 +117,7 @@ class Species{
 
          LOG_INFO("aggression is:"+aggression);
          LOG_INFO("fear is:"+fear);
-         LOG_INFO("activity is:"+activity);
+         LOG_INFO("lethargicness is:"+activity);
 
             auto stringSize = GetEngine().GetRandom().GetNumber(MIN_INITIAL_LENGTH,
                 MAX_INITIAL_LENGTH);
@@ -191,7 +191,7 @@ class Species{
 
          LOG_INFO("aggression is:"+aggression);
          LOG_INFO("fear is:"+fear);
-         LOG_INFO("activity is:"+activity);
+         LOG_INFO("lethargicness is:"+activity);
 
             // Chance of new color needs to be low
             if (GetEngine().GetRandom().GetNumber(0,100)==1)
@@ -431,7 +431,7 @@ class Species{
 
          LOG_INFO("aggression is:"+aggression);
          LOG_INFO("fear is:"+fear);
-         LOG_INFO("activity is:"+activity);
+         LOG_INFO("lethargicness is:"+activity);
 
         // Bacteria are tiny, start off with a max of 3 hexes (maybe
         // we should start them all off with just one? )
@@ -496,7 +496,7 @@ class Species{
 
          LOG_INFO("aggression is:"+aggression);
          LOG_INFO("fear is:"+fear);
-         LOG_INFO("activity is:"+activity);
+         LOG_INFO("lethargicness is:"+activity);
 
         if (GetEngine().GetRandom().GetNumber(0,100)==1)
         {

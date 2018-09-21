@@ -144,10 +144,10 @@ class MicrobeAISystem : ScriptSystem{
                 predator = getNearestPredatorItem(components,allMicrobes);
 
                 //30 seconds about
-                if (aiComponent.boredom == GetEngine().GetRandom().GetNumber(aiComponent.speciesActivity,1000)){
+                if (aiComponent.boredom == GetEngine().GetRandom().GetNumber(aiComponent.speciesActivity,1000.0f)){
                     // Occassionally you need to reevaluate things
                     aiComponent.boredom = 0;
-                    if (GetEngine().GetRandom().GetNumber(0,400) <=  aiComponent.speciesActivity)
+                    if (GetEngine().GetRandom().GetNumber(0.0f,400.0f) <=  aiComponent.speciesActivity)
                         {
                         //LOG_INFO("gather only");
                         aiComponent.lifeState = PLANTLIKE_STATE;
@@ -189,7 +189,7 @@ class MicrobeAISystem : ScriptSystem{
                             dealWithPredators(components,predator);
                             }
                         else{
-                            if (GetEngine().GetRandom().GetNumber(0,400) <=  aiComponent.speciesActivity)
+                            if (GetEngine().GetRandom().GetNumber(0.0f,400.0f) <=  aiComponent.speciesActivity)
                                 {
                                 //LOG_INFO("gather only");
                                 aiComponent.lifeState = PLANTLIKE_STATE;
@@ -209,7 +209,7 @@ class MicrobeAISystem : ScriptSystem{
                             dealWithPrey(components,prey);
                             }
                         else{
-                            if (GetEngine().GetRandom().GetNumber(0,400) <=  aiComponent.speciesActivity)
+                            if (GetEngine().GetRandom().GetNumber(0.0f,400.0f) <=  aiComponent.speciesActivity)
                                 {
                                 //LOG_INFO("gather only");
                                 aiComponent.lifeState = PLANTLIKE_STATE;
@@ -570,6 +570,12 @@ class MicrobeAISystem : ScriptSystem{
         {
         //LOG_INFO("evaluating");
         MicrobeAIControllerComponent@ aiComponent = components.first;
+       if (GetEngine().GetRandom().GetNumber(0.0f,440.0f) <=  aiComponent.speciesActivity)
+            {
+            aiComponent.lifeState = PLANTLIKE_STATE;
+            aiComponent.boredom = 0;
+            }
+        else {
         if (prey != NULL_OBJECT && predator != NULL_OBJECT)
             {
             //LOG_INFO("Both");
@@ -612,11 +618,13 @@ class MicrobeAISystem : ScriptSystem{
             aiComponent.lifeState = GATHERING_STATE;
             }
         // Every 10 intervals or so
-        else if (GetEngine().GetRandom().GetNumber(0,400) <=  aiComponent.speciesActivity)
+        else if (GetEngine().GetRandom().GetNumber(0.0f,400.0f) <=  aiComponent.speciesActivity)
             {
             //LOG_INFO("gather only");
             aiComponent.lifeState = PLANTLIKE_STATE;
             }
+        }
+
         }
 
     // For doing run and tumble
