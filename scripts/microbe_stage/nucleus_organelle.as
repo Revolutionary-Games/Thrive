@@ -45,7 +45,7 @@ class NucleusOrganelle : OrganelleComponent{
         sceneNode1.Node.removeFromParent();
         microbeNode.Node.addChild(sceneNode1.Node);
 
-        world.SetEntitysParent(microbeEntity, golgi);
+        world.SetEntitysParent(golgi, microbeEntity);
 
         auto sceneNode2 = world.Create_RenderNode(ER);
         auto model2 = world.Create_Model(ER, sceneNode2.Node, "ER.mesh");
@@ -63,7 +63,7 @@ class NucleusOrganelle : OrganelleComponent{
         sceneNode2.Node.removeFromParent();
         microbeNode.Node.addChild(sceneNode2.Node);
 
-        world.SetEntitysParent(microbeEntity, ER);
+        world.SetEntitysParent(ER, microbeEntity);
 
 
         // This does nothing...

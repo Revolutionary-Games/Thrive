@@ -571,6 +571,12 @@ bool
         ANGELSCRIPT_REGISTERFAIL;
     }
 
+    if(engine->RegisterObjectMethod("MembraneComponent",
+           "bool removeSentOrganelle(double x, double y)",
+           asMETHOD(MembraneComponent, removeSentOrganelle),
+           asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
 
 
     // ------------------------------------ //

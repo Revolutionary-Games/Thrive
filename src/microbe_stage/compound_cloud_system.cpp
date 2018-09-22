@@ -475,8 +475,8 @@ void
             position = posEntity.Members._Position;
 
         } catch(const Leviathan::NotFound&) {
-            LOG_WARNING(
-                "CompoundCloudSystem: Run: playerEntity has no position");
+            LOG_WARNING("CompoundCloudSystem: Run: playerEntity(" +
+                        std::to_string(playerEntity) + ") has no position");
         }
     }
 
