@@ -251,12 +251,16 @@ class MicrobeStageHudSystem : ScriptSystem{
         // print("Reproduction Dialog called but currently disabled. Is it needed? Note that the editor button has been enabled")
         //global_activeMicrobeStageHudSystem.rootGUIWindow.getChild("ReproductionPanel").show()
         if(b3 == false){
-            // getComponent("gui_sounds", g_luaEngine.currentGameState, SoundSourceComponent
-            // ).playSound("microbe-pickup-organelle");
-            // this.rootGUIWindow.getChild("editornotification").show();
+
             b3 = true;
+
+            GetEngine().GetSoundDevice().Play2DSoundEffect(
+                "Data/Sound/soundeffects/microbe-pickup-organelle.ogg");
+
+            LOG_INFO("Ready to reproduce!");
+            GenericEvent@ event = GenericEvent("PlayerReadyToEnterEditor");
+            GetEngine().GetEventHandler().CallEvent(event);
         }
-        // this.editorButton.enable();
     }
 
     void suicideButtonClicked(){
@@ -764,7 +768,6 @@ class MicrobeStageHudSystem : ScriptSystem{
 // Wrappers for calling GUI update things from random places
 
 void showReproductionDialog(GameWorld@ world){
-    LOG_INFO("Ready to reproduce!");
     cast<MicrobeStageHudSystem@>(world.GetScriptSystem("MicrobeStageHudSystem")).
         showReproductionDialog();
 }
