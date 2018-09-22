@@ -452,7 +452,6 @@ void applyMembraneColour(CellStageWorld@ world, ObjectID microbeEntity){
     // // @param maxAmount
     // // The maximum amount to try to emit
 void emitAgent(CellStageWorld@ world, ObjectID microbeEntity, CompoundId compoundId, double maxAmount){
-    LOG_INFO("ima bout to be firin mai lazer");
         MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
             world.GetScriptComponentHolder("MicrobeComponent").Find(microbeEntity));
     //     auto soundSourceComponent = world.GetComponent_SoundSourceComponent(microbeEntity, SoundSourceComponent);
@@ -463,12 +462,10 @@ void emitAgent(CellStageWorld@ world, ObjectID microbeEntity, CompoundId compoun
     LOG_INFO(" "+microbeComponent.agentEmissionCooldown);
 
     //if(microbeComponent.agentEmissionCooldown > 0){ return; }
-    LOG_INFO("ima firin mai lazer failed before agentvacuolenum");
 
     auto numberOfAgentVacuoles = int (microbeComponent.specialStorageOrganelles[formatUInt(compoundId)]);
     // Only shoot if you have an agent vacuole.
     if(numberOfAgentVacuoles == 0){ return; }
-    LOG_INFO("ima firin mai lazer");
     // The cooldown time is inversely proportional to the amount of agent vacuoles.
     microbeComponent.agentEmissionCooldown = AGENT_EMISSION_COOLDOWN/numberOfAgentVacuoles;
 
@@ -493,7 +490,11 @@ void emitAgent(CellStageWorld@ world, ObjectID microbeEntity, CompoundId compoun
                 }
             }
         }
-        auto angle = 180;
+        auto angle =  atan2(exit.Z, exit.X);
+            if(angle < 0){
+                 angle = angle + 2*PI;
+            }
+             angle = -(angle * 180/PI-90 ) % 360;
         // Find the direction the microbe is facing
         auto ejectionDistance = (maxR) * HEX_SIZE;
         auto yAxis = Ogre::Quaternion(cellPosition._Orientation).yAxis();

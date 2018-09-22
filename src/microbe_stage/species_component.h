@@ -35,6 +35,7 @@ public:
     std::string epithet;
     double aggression;
     double fear;
+    double activity;
     int32_t population;
     int32_t generation;
 

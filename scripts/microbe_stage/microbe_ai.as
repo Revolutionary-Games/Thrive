@@ -39,6 +39,7 @@ class MicrobeAIControllerComponent : ScriptComponent{
     Float3 direction = Float3(0, 0, 0);
     double speciesAggression = -1.0f;
     double speciesFear = -1.0f;
+    double speciesActivity = -1.0f;
     bool hasTargetPosition = false;
     Float3 targetPosition = Float3(0, 0, 0);
     bool hasSearchedCompoundId = false;
@@ -119,6 +120,10 @@ class MicrobeAISystem : ScriptSystem{
                 {
                 aiComponent.speciesFear = MicrobeOperations::getSpeciesComponent(world, microbeEntity).fear;
                 }
+            if (aiComponent.speciesActivity == -1.0f)
+                {
+                aiComponent.speciesActivity = MicrobeOperations::getSpeciesComponent(world, microbeEntity).activity;
+                }
                 // Were for debugging
                 //LOG_INFO("AI aggression"+aiComponent.speciesAggression);
                 //LOG_INFO("AI fear"+aiComponent.speciesFear);
@@ -139,10 +144,18 @@ class MicrobeAISystem : ScriptSystem{
                 predator = getNearestPredatorItem(components,allMicrobes);
 
                 //30 seconds about
-                if (aiComponent.boredom == GetEngine().GetRandom().GetNumber(100,1000)){
+                if (aiComponent.boredom == GetEngine().GetRandom().GetNumber(aiComponent.speciesActivity,1000.0f)){
                     // Occassionally you need to reevaluate things
                     aiComponent.boredom = 0;
-                    aiComponent.lifeState = NEUTRAL_STATE;
+                    if (GetEngine().GetRandom().GetNumber(0.0f,400.0f) <=  aiComponent.speciesActivity)
+                        {
+                        //LOG_INFO("gather only");
+                        aiComponent.lifeState = PLANTLIKE_STATE;
+                    }
+                    else
+                        {
+                        aiComponent.lifeState = NEUTRAL_STATE;
+                        }
                 }
                 else{
                     aiComponent.boredom++;
@@ -176,8 +189,16 @@ class MicrobeAISystem : ScriptSystem{
                             dealWithPredators(components,predator);
                             }
                         else{
-                            aiComponent.lifeState = NEUTRAL_STATE;
-                            //LOG_INFO("null predator");
+                            if (GetEngine().GetRandom().GetNumber(0.0f,400.0f) <=  aiComponent.speciesActivity)
+                                {
+                                //LOG_INFO("gather only");
+                                aiComponent.lifeState = PLANTLIKE_STATE;
+                                aiComponent.boredom=0;
+                                }
+                            else
+                                {
+                                aiComponent.lifeState = NEUTRAL_STATE;
+                                }
                             }
                         break;
                         }
@@ -188,8 +209,16 @@ class MicrobeAISystem : ScriptSystem{
                             dealWithPrey(components,prey);
                             }
                         else{
-                            aiComponent.lifeState = NEUTRAL_STATE;
-                            //LOG_INFO("null prey");
+                            if (GetEngine().GetRandom().GetNumber(0.0f,400.0f) <=  aiComponent.speciesActivity)
+                                {
+                                //LOG_INFO("gather only");
+                                aiComponent.lifeState = PLANTLIKE_STATE;
+                                aiComponent.boredom=0;
+                                }
+                            else
+                                {
+                                aiComponent.lifeState = NEUTRAL_STATE;
+                                }
                             }
                         break;
                         }
@@ -450,7 +479,7 @@ class MicrobeAISystem : ScriptSystem{
 
           //  Shoot toxins if able
           //  seems pretty arbitrary tbh
-            if (numberOfAgentVacuoles > 0 && (position._Position -  aiComponent.targetPosition).LengthSquared() <= 1000)
+            if (numberOfAgentVacuoles > 0 && (position._Position -  aiComponent.targetPosition).LengthSquared() <= 2000)
                     {
                     MicrobeOperations::emitAgent(world,microbeEntity, oxytoxyId,1.0f);
                     }
@@ -541,6 +570,12 @@ class MicrobeAISystem : ScriptSystem{
         {
         //LOG_INFO("evaluating");
         MicrobeAIControllerComponent@ aiComponent = components.first;
+       if (GetEngine().GetRandom().GetNumber(0.0f,440.0f) <=  aiComponent.speciesActivity)
+            {
+            aiComponent.lifeState = PLANTLIKE_STATE;
+            aiComponent.boredom = 0;
+            }
+        else {
         if (prey != NULL_OBJECT && predator != NULL_OBJECT)
             {
             //LOG_INFO("Both");
@@ -582,6 +617,14 @@ class MicrobeAISystem : ScriptSystem{
             //LOG_INFO("gather only");
             aiComponent.lifeState = GATHERING_STATE;
             }
+        // Every 10 intervals or so
+        else if (GetEngine().GetRandom().GetNumber(0.0f,400.0f) <=  aiComponent.speciesActivity)
+            {
+            //LOG_INFO("gather only");
+            aiComponent.lifeState = PLANTLIKE_STATE;
+            }
+        }
+
         }
 
     // For doing run and tumble
