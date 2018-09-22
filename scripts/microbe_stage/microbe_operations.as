@@ -1000,7 +1000,8 @@ void _applyMicrobePhysicsBodySettings(CellStageWorld@ world, Physics@ rigidBody)
 }
 
 // Kills the microbe, releasing stored compounds into the enviroment
-void kill(CellStageWorld@ world, ObjectID microbeEntity){
+void kill(CellStageWorld@ world, ObjectID microbeEntity)
+{
     MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
         world.GetScriptComponentHolder("MicrobeComponent").Find(microbeEntity));
     auto rigidBodyComponent = world.GetComponent_Physics(microbeEntity);
@@ -1014,65 +1015,65 @@ void kill(CellStageWorld@ world, ObjectID microbeEntity){
         return;
     }
 
-    // Releasing all the agents.
-    auto storageTypes = microbeComponent.specialStorageOrganelles.getKeys();
-    for(uint i = 0; i < storageTypes.length(); ++i){
+    // // Releasing all the agents.
+    // auto storageTypes = microbeComponent.specialStorageOrganelles.getKeys();
+    // for(uint i = 0; i < storageTypes.length(); ++i){
 
-        CompoundId compoundId = parseInt(storageTypes[i]);
+    //     CompoundId compoundId = parseInt(storageTypes[i]);
 
-        auto _amount = getCompoundAmount(world, microbeEntity, compoundId);
-        while(_amount > 0){
-            // Eject up to 3 units per particle
-            auto ejectedAmount = takeCompound(world, microbeEntity, compoundId, 3);
+    //     auto _amount = getCompoundAmount(world, microbeEntity, compoundId);
+    //     while(_amount > 0){
+    //         // Eject up to 3 units per particle
+    //         auto ejectedAmount = takeCompound(world, microbeEntity, compoundId, 3);
 
-            auto direction = Float3(GetEngine().GetRandom().GetNumber(0.0f, 1.0f) * 2 - 1,
-                0, GetEngine().GetRandom().GetNumber(0.0f, 1.0f) * 2 - 1);
-            createAgentCloud(world, compoundId, position._Position, direction, ejectedAmount);
-            _amount = _amount - ejectedAmount;
-        }
-    }
-    dictionary compoundsToRelease;
-    // Eject the compounds that was in the microbe
-    uint64 compoundCount = SimulationParameters::compoundRegistry().getSize();
-    for(uint compoundId = 0; compoundId < compoundCount; ++compoundId){
+    //         auto direction = Float3(GetEngine().GetRandom().GetNumber(0.0f, 1.0f) * 2 - 1,
+    //             0, GetEngine().GetRandom().GetNumber(0.0f, 1.0f) * 2 - 1);
+    //         createAgentCloud(world, compoundId, position._Position, direction, ejectedAmount);
+    //         _amount = _amount - ejectedAmount;
+    //     }
+    // }
+    // dictionary compoundsToRelease;
+    // // Eject the compounds that was in the microbe
+    // uint64 compoundCount = SimulationParameters::compoundRegistry().getSize();
+    // for(uint compoundId = 0; compoundId < compoundCount; ++compoundId){
 
-        auto total = getCompoundAmount(world, microbeEntity, compoundId);
-        auto ejectedAmount = takeCompound(world, microbeEntity,
-            compoundId, total);
-        compoundsToRelease[formatInt(compoundId)] = ejectedAmount;
-    }
+    //     auto total = getCompoundAmount(world, microbeEntity, compoundId);
+    //     auto ejectedAmount = takeCompound(world, microbeEntity,
+    //         compoundId, total);
+    //     compoundsToRelease[formatInt(compoundId)] = ejectedAmount;
+    // }
 
-    // Eject some part of the build cost of all the organelles
-    for(uint i = 0; i < microbeComponent.organelles.length(); ++i){
+    // // Eject some part of the build cost of all the organelles
+    // for(uint i = 0; i < microbeComponent.organelles.length(); ++i){
 
-        auto organelle = microbeComponent.organelles[i];
+    //     auto organelle = microbeComponent.organelles[i];
 
-        auto keys = organelle.organelle.initialComposition.getKeys();
+    //     auto keys = organelle.organelle.initialComposition.getKeys();
 
-        for(uint a = 0; a < keys.length(); ++a){
+    //     for(uint a = 0; a < keys.length(); ++a){
 
-            float amount = float(organelle.organelle.initialComposition[keys[a]]);
+    //         float amount = float(organelle.organelle.initialComposition[keys[a]]);
 
-            auto compoundId = SimulationParameters::compoundRegistry().getTypeId(keys[a]);
+    //         auto compoundId = SimulationParameters::compoundRegistry().getTypeId(keys[a]);
 
-            auto key = formatInt(compoundId);
+    //         auto key = formatInt(compoundId);
 
-            if(!compoundsToRelease.exists(key)){
-                compoundsToRelease[key] = amount * COMPOUND_RELEASE_PERCENTAGE;
-            } else {
-                compoundsToRelease[key] = float(compoundsToRelease[key]) +
-                    amount * COMPOUND_RELEASE_PERCENTAGE;
-            }
-        }
-    }
+    //         if(!compoundsToRelease.exists(key)){
+    //             compoundsToRelease[key] = amount * COMPOUND_RELEASE_PERCENTAGE;
+    //         } else {
+    //             compoundsToRelease[key] = float(compoundsToRelease[key]) +
+    //                 amount * COMPOUND_RELEASE_PERCENTAGE;
+    //         }
+    //     }
+    // }
 
-    // TODO: make the compounds be released inside of the microbe and not in the back.
-    auto keys = compoundsToRelease.getKeys();
-    for(uint i = 0; i < keys.length(); ++i){
+    // // TODO: make the compounds be released inside of the microbe and not in the back.
+    // auto keys = compoundsToRelease.getKeys();
+    // for(uint i = 0; i < keys.length(); ++i){
 
-        ejectCompound(world, microbeEntity, parseInt(keys[i]),
-            float(compoundsToRelease[keys[i]]));
-    }
+    //     ejectCompound(world, microbeEntity, parseInt(keys[i]),
+    //         float(compoundsToRelease[keys[i]]));
+    // }
 
     // Play the death sound
     GetEngine().GetSoundDevice().Play2DSoundEffect("Data/Sound/soundeffects/microbe-death.ogg");
@@ -1094,11 +1095,14 @@ void kill(CellStageWorld@ world, ObjectID microbeEntity){
     microbeComponent.deathTimer = 5000;
     microbeComponent.movementDirection = Float3(0,0,0);
 
-    rigidBodyComponent.ClearVelocity();
+    if(rigidBodyComponent.Body !is null){
+    
+        rigidBodyComponent.ClearVelocity();
 
-    if(!microbeComponent.isPlayerMicrobe){
-        // Destroy the physics state //
-        rigidBodyComponent.Release();
+        if(!microbeComponent.isPlayerMicrobe){
+            // Destroy the physics state //
+            rigidBodyComponent.Release();
+        }
     }
 
     if(microbeComponent.wasBeingEngulfed){
