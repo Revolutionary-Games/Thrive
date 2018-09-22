@@ -172,6 +172,33 @@ void cellHitFloatingOrganelle(GameWorld@ world, ObjectID firstEntity, ObjectID s
     world.QueueDestroyEntity(floatingEntity);
 }
 
+// Cell Hit Oxytoxy
+// We can make this generic using the dictionary in agents.as eventually, but for now all we have is oxytoxy
+void cellHitAgent(GameWorld@ world, ObjectID firstEntity, ObjectID secondEntity){
+
+    LOG_INFO("Cell hit an agaent: object ids: " + firstEntity + " and " +
+        secondEntity);
+
+    // Determine which is the organelle
+    CellStageWorld@ asCellWorld = cast<CellStageWorld>(world);
+
+    auto model = asCellWorld.GetComponent_Model(firstEntity);
+    auto floatingEntity = firstEntity;
+    auto cellEntity = secondEntity;
+
+    // Cell doesn't have a model
+    if(model is null){
+        @model = asCellWorld.GetComponent_Model(secondEntity);
+        floatingEntity = secondEntity;
+        cellEntity = firstEntity;
+    }
+
+    MicrobeOperations::damage(asCellWorld, cellEntity, double(OXY_TOXY_DAMAGE), "toxin");
+
+    world.QueueDestroyEntity(floatingEntity);
+
+}
+
 // SO what should we use this method for?
 void cellOnCellActualContact(GameWorld@ world, ObjectID firstEntity, ObjectID secondEntity){
     // LOG_INFO("Cell hit another cell, thats cool i guess");
@@ -252,8 +279,6 @@ int beingEngulfed(GameWorld@ world, ObjectID firstEntity, ObjectID secondEntity)
 }
 
 
-
-// TODO: This should be moved somewhere else...
 void createAgentCloud(CellStageWorld@ world, CompoundId compoundId, Float3 pos,
     Float3 direction, float amount)
 {
@@ -271,7 +296,7 @@ void createAgentCloud(CellStageWorld@ world, CompoundId compoundId, Float3 pos,
     auto rigidBody = world.Create_Physics(agentEntity, world, position, null);
 
     rigidBody.SetCollision(world.GetPhysicalWorld().CreateSphere(HEX_SIZE));
-    rigidBody.CreatePhysicsBody(world.GetPhysicalWorld());
+    rigidBody.CreatePhysicsBody(world.GetPhysicalWorld(), world.GetPhysicalMaterial("agentCollision"));
     // Agent
 
     rigidBody.CreatePlaneConstraint(world.GetPhysicalWorld(), Float3(0, 1, 0));
@@ -282,12 +307,12 @@ void createAgentCloud(CellStageWorld@ world, CompoundId compoundId, Float3 pos,
     // rigidBody.properties.friction = 0.4;
     // rigidBody.properties.linearDamping = 0.4;
 
-    // TODO: impulse or set velocity?
     rigidBody.SetVelocity(normalizedDirection * AGENT_EMISSION_VELOCITY);
 
     rigidBody.JumpTo(position);
     auto sceneNode = world.Create_RenderNode(agentEntity);
     auto model = world.Create_Model(agentEntity, sceneNode.Node, "oxytoxy.mesh");
+
     // Need to set the tint
     model.GraphicalObject.setCustomParameter(1, Ogre::Vector4(1, 1, 1, 1));
 
@@ -381,7 +406,7 @@ ObjectID createToxin(CellStageWorld@ world, Float3 pos)
     auto rigidBody = world.Create_Physics(toxinEntity, world, position, null);
     rigidBody.SetCollision(world.GetPhysicalWorld().CreateSphere(1));
     rigidBody.CreatePhysicsBody(world.GetPhysicalWorld(),
-        world.GetPhysicalMaterial("floatingOrganelle"));
+        world.GetPhysicalMaterial("agentCollision"));
     rigidBody.CreatePlaneConstraint(world.GetPhysicalWorld(), Float3(0,1,0));
     rigidBody.SetMass(1.0f);
 

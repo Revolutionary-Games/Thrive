@@ -112,9 +112,12 @@ class Species{
                 MAX_SPECIES_AGRESSION);
         this.fear = GetEngine().GetRandom().GetFloat(0.0f,
                 MAX_SPECIES_FEAR);
+        this.activity = GetEngine().GetRandom().GetFloat(0.0f,
+                MAX_SPECIES_ACTIVITY);
 
          LOG_INFO("aggression is:"+aggression);
          LOG_INFO("fear is:"+fear);
+         LOG_INFO("lethargicness is:"+activity);
 
             auto stringSize = GetEngine().GetRandom().GetNumber(MIN_INITIAL_LENGTH,
                 MAX_INITIAL_LENGTH);
@@ -178,11 +181,17 @@ class Species{
             name = randomSpeciesName();
             epithet = generateNameSection();
 
-        // Variables used in AI to determine general behavior
-        this.aggression = GetEngine().GetRandom().GetFloat(0.0f,
-                MAX_SPECIES_AGRESSION);
-        this.fear = GetEngine().GetRandom().GetFloat(0.0f,
-                MAX_SPECIES_FEAR);
+        // Variables used in AI to determine general behavior mutate these
+        this.aggression = this.aggression+GetEngine().GetRandom().GetFloat(MIN_SPECIES_PERSONALITY_MUTATION,
+                MAX_SPECIES_PERSONALITY_MUTATION);
+        this.fear = this.fear+GetEngine().GetRandom().GetFloat(MIN_SPECIES_PERSONALITY_MUTATION,
+                MAX_SPECIES_PERSONALITY_MUTATION);
+        this.activity = this.activity+GetEngine().GetRandom().GetFloat(MIN_SPECIES_PERSONALITY_MUTATION,
+                MAX_SPECIES_PERSONALITY_MUTATION);
+
+         LOG_INFO("aggression is:"+aggression);
+         LOG_INFO("fear is:"+fear);
+         LOG_INFO("lethargicness is:"+activity);
 
             // Chance of new color needs to be low
             if (GetEngine().GetRandom().GetNumber(0,100)==1)
@@ -417,10 +426,12 @@ class Species{
                 MAX_SPECIES_AGRESSION);
         this.fear = GetEngine().GetRandom().GetFloat(0.0f,
                 MAX_SPECIES_FEAR);
+        this.activity = GetEngine().GetRandom().GetFloat(0.0f,
+                MAX_SPECIES_ACTIVITY);
 
          LOG_INFO("aggression is:"+aggression);
          LOG_INFO("fear is:"+fear);
-
+         LOG_INFO("lethargicness is:"+activity);
 
         // Bacteria are tiny, start off with a max of 3 hexes (maybe
         // we should start them all off with just one? )
@@ -475,11 +486,17 @@ class Species{
         name = randomBacteriaName();
         epithet = generateNameSection();
 
-        // Variables used in AI to determine general behavior
-        this.aggression = GetEngine().GetRandom().GetFloat(0.0f,
-                MAX_SPECIES_AGRESSION);
-        this.fear = GetEngine().GetRandom().GetFloat(0.0f,
-                MAX_SPECIES_FEAR);
+        // Variables used in AI to determine general behavior mutate these
+        this.aggression = this.aggression+GetEngine().GetRandom().GetFloat(MIN_SPECIES_PERSONALITY_MUTATION,
+                MAX_SPECIES_PERSONALITY_MUTATION);
+        this.fear = this.fear+GetEngine().GetRandom().GetFloat(MIN_SPECIES_PERSONALITY_MUTATION,
+                MAX_SPECIES_PERSONALITY_MUTATION);
+        this.activity = this.activity+GetEngine().GetRandom().GetFloat(MIN_SPECIES_PERSONALITY_MUTATION,
+                MAX_SPECIES_PERSONALITY_MUTATION);
+
+         LOG_INFO("aggression is:"+aggression);
+         LOG_INFO("fear is:"+fear);
+         LOG_INFO("lethargicness is:"+activity);
 
         if (GetEngine().GetRandom().GetNumber(0,100)==1)
         {
@@ -534,6 +551,7 @@ class Species{
     bool isBacteria;
     double aggression = 100.0f;
     double fear = 100.0f;
+    double activity = 0.0f;
     MEMBRANE_TYPE speciesMembraneType;
     string stringCode;
     int population = INITIAL_POPULATION;
