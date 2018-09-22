@@ -129,10 +129,9 @@ void applyEngulfMode(CellStageWorld@ world, ObjectID entity){
 }
 
 
-void onReturnFromEditor(CellStageWorld@ world){
-    LOG_INFO("TODO: apply the changes and spawn a copy of the player species from "
-        "before the change");
-    //Increase the population by 30 and increase the generation
+void onReturnFromEditor(CellStageWorld@ world)
+{
+    // Increase the population by 30 and increase the generation
     auto playerSpecies = MicrobeOperations::getSpeciesComponent(world, "Default");
     playerSpecies.population += 30;
     ++playerSpecies.generation;
@@ -142,6 +141,22 @@ void onReturnFromEditor(CellStageWorld@ world){
     NamedVars@ vars = event.GetNamedVars();
     vars.AddValue(ScriptSafeVariableBlock("generation", playerSpecies.generation));
     GetEngine().GetEventHandler().CallEvent(event);
+
+    // The editor changes the cell template for the species so we won't have to do that here
+    const auto player = GetThriveGame().playerData().activeCreature();
+    auto pos = world.GetComponent_Position(player);
+
+    assert(pos !is null);
+
+    // Spawn another cell from the player species
+    PlayerSpeciesSpawner factory("Default");
+    auto spawned = factory.factorySpawn(world, pos._Position);
+
+    LOG_WRITE("TODO: the spawned cell from the player species from the editor split will "
+        "never be despawned");
+
+    // Reset the player cell to be the same as the species template
+    // Species::applyTemplate(world, player, playerSpecies);
 }
 
 // TODO: also put these physics callback somewhere
@@ -465,7 +480,7 @@ void setupSpawnSystem(CellStageWorld@ world){
 
         SpawnFactoryFunc@ factory = SpawnFactoryFunc(spawner.factorySpawn);
 
-    LOG_INFO("adding spawn player species: " + name);
+        LOG_INFO("adding spawn player species: " + name);
 
         const auto spawnerId = spawnSystem.addSpawnType(
             factory, DEFAULT_SPAWN_DENSITY, //spawnDensity should depend on population
