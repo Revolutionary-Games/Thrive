@@ -71,6 +71,12 @@ class OrganelleComponentFactory{
 //! This is clearer as to what are valid properties
 class OrganelleParameters{
 
+    //! It might be an AngelScript bug that requires this to be specified.
+    //! \todo try removing at some point
+    OrganelleParameters(){
+        this.name = "invalid";
+    }
+
     OrganelleParameters(const string &in name){
 
         this.name = name;

@@ -786,7 +786,7 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
     void onRemovedFromMicrobe(ObjectID microbe, NewtonCollision@ collisionShape){
 
         LOG_INFO("PlacedOrganelle (" + organelle.name + ") removed from: " + microbeEntity);
-        PrintCallStack();
+        // PrintCallStack();
 
         //iterating on each OrganelleComponent
         for(uint i = 0; i < components.length(); ++i){

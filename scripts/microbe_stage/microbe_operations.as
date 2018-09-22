@@ -1096,15 +1096,12 @@ void kill(CellStageWorld@ world, ObjectID microbeEntity)
     microbeComponent.deathTimer = 5000;
     microbeComponent.movementDirection = Float3(0,0,0);
 
-    // if(rigidBodyComponent.Body !is null){
+    rigidBodyComponent.ClearVelocity();
 
-    //     rigidBodyComponent.ClearVelocity();
-
-    //     if(!microbeComponent.isPlayerMicrobe){
-    //         // Destroy the physics state //
-    //         rigidBodyComponent.Release();
-    //     }
-    // }
+    if(!microbeComponent.isPlayerMicrobe){
+        // Destroy the physics state //
+        rigidBodyComponent.Release();
+    }
 
     if(microbeComponent.wasBeingEngulfed){
         removeEngulfedEffect(world, microbeEntity);
@@ -1112,10 +1109,6 @@ void kill(CellStageWorld@ world, ObjectID microbeEntity)
 
     microbeSceneNode.Hidden = true;
     microbeSceneNode.Marked = true;
-
-    if(!microbeComponent.isPlayerMicrobe){
-        world.QueueDestroyEntity(microbeEntity);
-    }
 }
 
 // TODO: Confirm this method works
