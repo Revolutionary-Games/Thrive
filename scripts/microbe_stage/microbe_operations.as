@@ -92,8 +92,10 @@ PlacedOrganelle@ getOrganelleAt(CellStageWorld@ world, ObjectID microbeEntity, I
 // @note use a more specific version (for example damaged) if available
 //
 // This is responsible for updating the mass of the cell's physics body
-bool removeOrganelle(CellStageWorld@ world, ObjectID microbeEntity, Int2 hex){
+bool removeOrganelle(CellStageWorld@ world, ObjectID microbeEntity, Int2 hex)
+{
     auto organelle = getOrganelleAt(world, microbeEntity, hex);
+
     if(organelle is null){
         return false;
     }
@@ -101,6 +103,7 @@ bool removeOrganelle(CellStageWorld@ world, ObjectID microbeEntity, Int2 hex){
     MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
         world.GetScriptComponentHolder("MicrobeComponent").Find(microbeEntity));
     auto rigidBodyComponent = world.GetComponent_Physics(microbeEntity);
+    auto membraneComponent = world.GetComponent_MembraneComponent(microbeEntity);
 
     for(uint i = 0; i < microbeComponent.organelles.length(); ++i){
 
@@ -115,18 +118,48 @@ bool removeOrganelle(CellStageWorld@ world, ObjectID microbeEntity, Int2 hex){
 
     organelle.onRemovedFromMicrobe(microbeEntity, rigidBodyComponent.Collision);
 
-    // Need to recreate the body
-    if(rigidBodyComponent.Body !is null){
+    // Send the organelles to the membraneComponent so that the membrane can "shrink"
+    // This is always 0?
+    auto localQ = organelle.q - organelle.q;
+    auto localR = organelle.r - organelle.r;
 
-        LOG_INFO("Recreating physics body in removeOrganelle");
-        rigidBodyComponent.CreatePhysicsBody(world.GetPhysicalWorld(),
-            world.GetPhysicalMaterial("cell"));
-        rigidBodyComponent.SetMass(rigidBodyComponent.Mass - organelle.organelle.mass);
-        _applyMicrobePhysicsBodySettings(world, rigidBodyComponent);
+    // I guess this might skip sending organelles that have no hexes? to the membrane
+    if(organelle.organelle.getHex(localQ, localR) !is null){
 
-        // And jump it to the current position
-        rigidBodyComponent.JumpTo(position);
+        auto hexes = organelle.organelle.getHexes();
+        for(uint i = 0; i < hexes.length(); ++i){
+
+            auto hex = hexes[i];
+
+            auto q = hex.q + organelle.q;
+            auto r = hex.r + organelle.r;
+            Float3 membranePoint = Hex::axialToCartesian(q, r);
+
+            // TODO: this is added here to make it impossible for our
+            // caller to forget to call this, and this basically only
+            // once does something and then on next tick the membrane
+            // is initialized again
+            membraneComponent.clear();
+            membraneComponent.removeSentOrganelle(membranePoint.X, membranePoint.Z);
+        }
+
+        // What is this return?
+        // return organelle;
+        return true;
     }
+
+    // // Need to recreate the body
+    // if(rigidBodyComponent.Body !is null){
+
+    //     LOG_INFO("Recreating physics body in removeOrganelle");
+    //     rigidBodyComponent.CreatePhysicsBody(world.GetPhysicalWorld(),
+    //         world.GetPhysicalMaterial("cell"));
+    //     rigidBodyComponent.SetMass(rigidBodyComponent.Mass - organelle.organelle.mass);
+    //     _applyMicrobePhysicsBodySettings(world, rigidBodyComponent);
+
+    //     // And jump it to the current position
+    //     rigidBodyComponent.JumpTo(position);
+    // }
 
     // This refreshing these things could probably be somewhere else...
     microbeComponent.maxBandwidth = microbeComponent.maxBandwidth -
@@ -153,6 +186,8 @@ void respawnPlayer(CellStageWorld@ world){
 
     microbeComponent.dead = false;
     microbeComponent.deathTimer = 0;
+
+    // TODO: the cell template should be reapplied here
 
     // Reset the growth bins of the organelles to full health.
     for(uint i = 0; i < microbeComponent.organelles.length(); ++i){
@@ -688,21 +723,21 @@ bool addOrganelle(CellStageWorld@ world, ObjectID microbeEntity, PlacedOrganelle
 
     collision.CompoundCollisionEndAddRemove();
 
-    // The body is recreated if it existed already
-    if(rigidBodyComponent.Body !is null){
+    // // The body is recreated if it existed already
+    // if(rigidBodyComponent.Body !is null){
 
-        // Need to recreate the body
-        LOG_INFO("Recreating physics body in addOrganelle");
-        rigidBodyComponent.CreatePhysicsBody(world.GetPhysicalWorld(),
-            world.GetPhysicalMaterial("cell"));
+    //     // Need to recreate the body
+    //     LOG_INFO("Recreating physics body in addOrganelle");
+    //     rigidBodyComponent.CreatePhysicsBody(world.GetPhysicalWorld(),
+    //         world.GetPhysicalMaterial("cell"));
 
-        rigidBodyComponent.SetMass(rigidBodyComponent.Mass + organelle.organelle.mass);
+    //     rigidBodyComponent.SetMass(rigidBodyComponent.Mass + organelle.organelle.mass);
 
-        _applyMicrobePhysicsBodySettings(world, rigidBodyComponent);
+    //     _applyMicrobePhysicsBodySettings(world, rigidBodyComponent);
 
-        // And jump it to the current position
-        rigidBodyComponent.JumpTo(position);
-    }
+    //     // And jump it to the current position
+    //     rigidBodyComponent.JumpTo(position);
+    // }
 
     microbeComponent.maxBandwidth = microbeComponent.maxBandwidth +
         BANDWIDTH_PER_ORGANELLE; // Temporary solution for increasing max bandwidth

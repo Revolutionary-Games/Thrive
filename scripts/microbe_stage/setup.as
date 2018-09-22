@@ -155,8 +155,13 @@ void onReturnFromEditor(CellStageWorld@ world)
     LOG_WRITE("TODO: the spawned cell from the player species from the editor split will "
         "never be despawned");
 
+    MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
+        world.GetScriptComponentHolder("MicrobeComponent").Find(player));
+
     // Reset the player cell to be the same as the species template
-    // Species::applyTemplate(world, player, playerSpecies);
+    Species::restoreOrganelleLayout(world, player, microbeComponent, playerSpecies);
+
+    // TODO: the player compound amount should be halved
 }
 
 // TODO: also put these physics callback somewhere
@@ -401,7 +406,6 @@ class PlayerSpeciesSpawner{
 
 ObjectID createToxin(CellStageWorld@ world, Float3 pos)
 {
-
     // Toxins
     ObjectID toxinEntity = world.CreateEntity();
     //LOG_INFO("toxin spawned at pos x"+ pos.X +"y"+ pos.Y +"z"+ pos.Z);

@@ -892,15 +892,17 @@ class MicrobeSystem : ScriptSystem{
     }
 
     // Copies this microbe. The new microbe will not have the stored compounds of this one.
-    void readyToReproduce(ObjectID microbeEntity){
+    void readyToReproduce(ObjectID microbeEntity)
+    {
         MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
             world.GetScriptComponentHolder("MicrobeComponent").Find(microbeEntity));
+
         if(microbeComponent.isPlayerMicrobe){
             showReproductionDialog(world);
             microbeComponent.reproductionStage = 0;
         } else {
-            // Return the first cell to its normal, non duplicated cell arangement.
-            //This crashes for the cell, presumably because removeorganelle
+
+            // Return the first cell to its normal, non duplicated cell arrangement.
             Species::applyTemplate(world, microbeEntity,
                 MicrobeOperations::getSpeciesComponent(world, microbeEntity));
 

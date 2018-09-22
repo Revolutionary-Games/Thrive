@@ -518,6 +518,21 @@ void
     organellePositions.emplace_back(x, y, 0);
 }
 
+bool
+    MembraneComponent::removeSentOrganelle(double x, double y)
+{
+    for(auto iter = organellePositions.begin();
+        iter != organellePositions.end(); ++iter) {
+
+        if(iter->x == x && iter->y == y) {
+            organellePositions.erase(iter);
+            return true;
+        }
+    }
+
+    return false;
+}
+
 void
     MembraneComponent::clear()
 {

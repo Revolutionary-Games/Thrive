@@ -63,6 +63,11 @@ public:
     void
         sendOrganelles(double x, double y);
 
+    //! Removes previously added organelles. This is the only way to get rid of
+    //! them. clear() doesn't clear them
+    bool
+        removeSentOrganelle(double x, double y);
+
     //! Deletes the membrane mesh.
     //!
     //! This needs to be called before modifications take effect

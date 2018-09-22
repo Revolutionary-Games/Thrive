@@ -917,6 +917,8 @@ void restoreOrganelleLayout(CellStageWorld@ world, ObjectID microbeEntity,
     // delete the the previous organelles.
     while(microbeComponent.organelles.length() > 0){
 
+        // TODO: only ones that have been removed should be deleted
+
         auto organelle = microbeComponent.organelles[microbeComponent.organelles.length() - 1];
         auto q = organelle.q;
         auto r = organelle.r;
