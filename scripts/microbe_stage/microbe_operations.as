@@ -490,7 +490,11 @@ void emitAgent(CellStageWorld@ world, ObjectID microbeEntity, CompoundId compoun
                 }
             }
         }
-        auto angle = 180;
+        auto angle =  atan2(exit.Z, exit.X);
+            if(angle < 0){
+                 angle = angle + 2*PI;
+            }
+             angle = -(angle * 180/PI-90 ) % 360;
         // Find the direction the microbe is facing
         auto ejectionDistance = (maxR) * HEX_SIZE;
         auto yAxis = Ogre::Quaternion(cellPosition._Orientation).yAxis();
