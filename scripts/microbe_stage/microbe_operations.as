@@ -129,10 +129,10 @@ bool removeOrganelle(CellStageWorld@ world, ObjectID microbeEntity, Int2 hex)
         auto hexes = organelle.organelle.getHexes();
         for(uint i = 0; i < hexes.length(); ++i){
 
-            auto hex = hexes[i];
+            auto removedHex = hexes[i];
 
-            auto q = hex.q + organelle.q;
-            auto r = hex.r + organelle.r;
+            auto q = removedHex.q + organelle.q;
+            auto r = removedHex.r + organelle.r;
             Float3 membranePoint = Hex::axialToCartesian(q, r);
 
             // TODO: this is added here to make it impossible for our

@@ -444,6 +444,12 @@ class MicrobeSystem : ScriptSystem{
                 MicrobeOperations::respawnPlayer(world);
             } else {
 
+                // Safe destroy before next tick
+                // This is done before removing the organelles as that seems to cause a lot
+                // of null pointer accesses
+                world.QueueDestroyEntity(microbeEntity);
+
+                // Remove organelles from the microbe
                 for(uint i = 0; i < microbeComponent.organelles.length(); ++i){
 
                     // This Collision doesn't really need to be
@@ -453,8 +459,6 @@ class MicrobeSystem : ScriptSystem{
                     microbeComponent.organelles[i].onRemovedFromMicrobe(microbeEntity,
                         physics.Collision);
                 }
-                // Safe destroy before next tick
-                world.QueueDestroyEntity(microbeEntity);
             }
         }
     }
