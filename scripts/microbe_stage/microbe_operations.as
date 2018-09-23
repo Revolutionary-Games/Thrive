@@ -510,7 +510,7 @@ void emitAgent(CellStageWorld@ world, ObjectID microbeEntity, CompoundId compoun
         GetEngine().GetSoundDevice().Play2DSoundEffect("Data/Sound/soundeffects/microbe-release-toxin.ogg");
         // Calculate the emission angle of the agent emitter
          // The front of the microbe
-         Float3 exit = Hex::axialToCartesian(0, 0);
+         Float3 exit = Hex::axialToCartesian(1, 0);
         auto membraneCoords = membraneComponent.GetExternalOrganelle(exit.X, exit.Z);
 
         //Get the distance to eject the agent
@@ -533,7 +533,7 @@ void emitAgent(CellStageWorld@ world, ObjectID microbeEntity, CompoundId compoun
         // Find the direction the microbe is facing
         auto ejectionDistance = (maxR+1) * HEX_SIZE;
         auto yAxis = Ogre::Quaternion(cellPosition._Orientation).yAxis();
-        auto microbeAngle = atan2(yAxis.x, yAxis.z);
+        auto microbeAngle = atan2(yAxis.x,yAxis.z);
         if(microbeAngle < 0){
             microbeAngle = microbeAngle + 2 * PI;
         }
