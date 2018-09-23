@@ -509,9 +509,9 @@ void emitAgent(CellStageWorld@ world, ObjectID microbeEntity, CompoundId compoun
 
         GetEngine().GetSoundDevice().Play2DSoundEffect("Data/Sound/soundeffects/microbe-release-toxin.ogg");
         // Calculate the emission angle of the agent emitter
-         // The front of the microbe
-         Float3 exit = Hex::axialToCartesian(0, 1);
-        auto membraneCoords = membraneComponent.GetExternalOrganelle(exit.X, exit.Z);
+         // The middle of the microbe
+         Float3 exit = Hex::axialToCartesian(0, 0);
+        auto membraneCoords = membraneComponent.GetExternalOrganelle(exit.X, exit.Y);
 
         //Get the distance to eject the agent
         auto maxR = 0;
@@ -525,7 +525,7 @@ void emitAgent(CellStageWorld@ world, ObjectID microbeEntity, CompoundId compoun
                 }
             }
         }
-        auto angle =  atan2(exit.Z, exit.X);
+        auto angle =  atan2(exit.Y, exit.X);
             if(angle < 0){
                  angle = angle + 2*PI;
             }
@@ -533,11 +533,13 @@ void emitAgent(CellStageWorld@ world, ObjectID microbeEntity, CompoundId compoun
         // Find the direction the microbe is facing
         auto ejectionDistance = (maxR) * HEX_SIZE;
         auto yAxis = Ogre::Quaternion(cellPosition._Orientation).yAxis();
-        auto microbeAngle = atan2(yAxis.x, yAxis.y);
+        auto microbeAngle = atan2(yAxis.y, yAxis.x);
+        
         if(microbeAngle < 0){
             microbeAngle = microbeAngle + 2 * PI;
         }
         microbeAngle = microbeAngle * 180 / PI;
+        
         // Take the microbe angle into account so we get world relative degrees
         auto finalAngle = (angle + microbeAngle) % 360;
         auto s = sin(finalAngle/180*PI);
@@ -550,7 +552,7 @@ void emitAgent(CellStageWorld@ world, ObjectID microbeEntity, CompoundId compoun
         auto vec = ( microbeComponent.facingTargetPoint - cellPosition._Position);
         auto direction = vec.Normalize();
 
-        createAgentCloud(world, compoundId, cellPosition._Position-(Float3(xnew*ejectionDistance,0,ynew*ejectionDistance)), direction,amountToEject * 10.0f);
+        createAgentCloud(world, compoundId, cellPosition._Position+(Float3(xnew*ejectionDistance,0,ynew*ejectionDistance)), direction,amountToEject * 10.0f);
         }
     }
 
