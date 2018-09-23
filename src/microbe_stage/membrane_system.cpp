@@ -121,7 +121,8 @@ Ogre::Vector3
         }
     }
 
-    return closestSoFar;
+    // Swap to world coordinates from internal membrane coordinates
+    return Ogre::Vector3(closestSoFar.x, 0, closestSoFar.y);
 }
 
 bool

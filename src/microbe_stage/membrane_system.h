@@ -121,8 +121,11 @@ public:
     void
         absorbCompounds(int amount);
 
-    // Finds the position of external organelles based on its "internal"
-    // location.
+    //! Finds the position of external organelles based on its "internal"
+    //! location.
+    //! \note The returned Vector is in world coordinates (x, 0, z) and not in
+    //! internal membrane coordinates (x, y, 0). This is so that gameplay code
+    //! doesn't have to do the conversion everywhere this is used
     Ogre::Vector3
         GetExternalOrganelle(double x, double y);
 
