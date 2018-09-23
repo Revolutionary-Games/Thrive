@@ -238,6 +238,14 @@ function onExitToMenuClicked(event)
     document.getElementById("pauseOverlay").style.display = 'none';
     if(isInEngine()){
         Thrive.exitToMenuClicked();
+
+        let pause = Boolean(false);
+        let x = null;
+        // Start the menu music
+        Leviathan.Play2DSound("Data/Sound/main-menu-theme-2.ogg", true, pause,
+                              (source) => {
+                                  x = source;
+                              });
     } else {}
 }
 
