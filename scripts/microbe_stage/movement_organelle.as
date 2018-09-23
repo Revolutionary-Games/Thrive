@@ -41,9 +41,11 @@ class MovementOrganelle : OrganelleComponent{
 
         this.force = calculateForce(q, r, this.force.X);
 
-        Float3 organellePos = Hex::axialToCartesian(q, r);
+        this.organellePos = Hex::axialToCartesian(q, r);
         Float3 nucleus = Hex::axialToCartesian(0, 0);
+
         auto delta = nucleus - organellePos;
+
         float angle = atan2(-delta.Z, delta.X);
         if(angle < 0){
             angle = angle + (2 * PI);
@@ -71,15 +73,16 @@ class MovementOrganelle : OrganelleComponent{
         // Don't forget to mark to apply the new animation
         animated.Marked = true;
 
-        // BUG: This is already applied for the player but not generated species
-        auto@ renderNode = organelle.world.GetComponent_RenderNode(organelle.organelleEntity);
+        // TODO: BUG: This is already applied for the player but not generated species
+        auto renderNode = organelle.world.GetComponent_RenderNode(organelle.organelleEntity);
 
-        // This doesnt work properly
-        Float3 exit = nucleus - delta;
-        //auto membraneComponent = organelle.world.GetComponent_MembraneComponent(microbeEntity);
-        //auto membraneCoords = membraneComponent.GetExternalOrganelle(exit.X, exit.Z);
-        //^ that is supposed to position theh organelle properly
+
+        // Set the pos to be "good enough" for now. It will be
+        // properly set to the edge of the membrane on next call to
+        // update
+
         renderNode.Node.setPosition(organellePos);
+
         renderNode.Node.setOrientation(Ogre::Quaternion(Ogre::Degree(angle),
                 Ogre::Vector3(0, 0, 1)));
     }
@@ -160,6 +163,20 @@ class MovementOrganelle : OrganelleComponent{
         int logicTime
     ) override {
 
+        // TODO: find a cleaner way than having to call this every tick
+        // This is because GetExternalOrganelle only works after the membrane has initialized,
+        // which happens on the next tick
+        // This doesnt work properly
+        Float3 nucleus = Hex::axialToCartesian(0, 0);
+        auto delta = nucleus - organellePos;
+        const Float3 exit = nucleus - delta;
+        auto membraneComponent = organelle.world.GetComponent_MembraneComponent(microbeEntity);
+        auto membraneCoords = membraneComponent.GetExternalOrganelle(exit.X, exit.Z);
+
+        auto renderNode = organelle.world.GetComponent_RenderNode(organelle.organelleEntity);
+        renderNode.Node.setPosition(membraneCoords);
+
+
         //Grab components
         MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
             organelle.world.GetScriptComponentHolder("MicrobeComponent").Find(microbeEntity));
@@ -170,6 +187,9 @@ class MovementOrganelle : OrganelleComponent{
         if(force != Float3(0, 0, 0))
             microbeComponent.addMovementForce(force);
     }
+
+    // This is needed to update the positioning on each update
+    private Float3 organellePos;
 
     private Float3 force;
     private float torque;
