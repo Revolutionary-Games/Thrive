@@ -654,6 +654,11 @@ bool
         ANGELSCRIPT_REGISTERFAIL;
     }
 
+    if(engine->RegisterObjectProperty("SpeciesComponent", "double focus",
+           asOFFSET(SpeciesComponent, focus)) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
     if(engine->RegisterObjectProperty("SpeciesComponent", "int32 population",
            asOFFSET(SpeciesComponent, population)) < 0) {
         ANGELSCRIPT_REGISTERFAIL;

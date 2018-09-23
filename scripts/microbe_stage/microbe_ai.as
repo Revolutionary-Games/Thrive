@@ -40,6 +40,7 @@ class MicrobeAIControllerComponent : ScriptComponent{
     double speciesAggression = -1.0f;
     double speciesFear = -1.0f;
     double speciesActivity = -1.0f;
+    double speciesFocus = -1.0f;
     bool hasTargetPosition = false;
     Float3 targetPosition = Float3(0, 0, 0);
     bool hasSearchedCompoundId = false;
@@ -124,10 +125,15 @@ class MicrobeAISystem : ScriptSystem{
                 {
                 aiComponent.speciesActivity = MicrobeOperations::getSpeciesComponent(world, microbeEntity).activity;
                 }
+            if (aiComponent.speciesFocus == -1.0f)
+                {
+                aiComponent.speciesFocus = MicrobeOperations::getSpeciesComponent(world, microbeEntity).focus;
+                }
                 // Were for debugging
                 //LOG_INFO("AI aggression"+aiComponent.speciesAggression);
                 //LOG_INFO("AI fear"+aiComponent.speciesFear);
-
+                //LOG_INFO("AI Focus"+aiComponent.speciesFocus);
+                //LOG_INFO("AI Activity"+aiComponent.speciesActivity);
             while(aiComponent.intervalRemaining > aiComponent.reevalutationInterval) {
                 aiComponent.intervalRemaining -= aiComponent.reevalutationInterval;
                 int numberOfAgentVacuoles = int(
@@ -144,7 +150,7 @@ class MicrobeAISystem : ScriptSystem{
                 predator = getNearestPredatorItem(components,allMicrobes);
 
                 //30 seconds about
-                if (aiComponent.boredom == GetEngine().GetRandom().GetNumber(aiComponent.speciesActivity,1000.0f)){
+                if (aiComponent.boredom == GetEngine().GetRandom().GetNumber(aiComponent.speciesFocus,1000.0f+aiComponent.speciesFocus)){
                     // Occassionally you need to reevaluate things
                     aiComponent.boredom = 0;
                     if (GetEngine().GetRandom().GetNumber(0.0f,400.0f) <=  aiComponent.speciesActivity)
@@ -478,11 +484,20 @@ class MicrobeAISystem : ScriptSystem{
             }
 
           //  Shoot toxins if able
-          //  seems pretty arbitrary tbh
-            if (microbeComponent.hitpoints > 0 && numberOfAgentVacuoles > 0 && (position._Position -  aiComponent.targetPosition).LengthSquared() <= 2000)
+          // There should be AI that prefers shooting over engulfing, etc, not sure how to model
+          // that without a million and one variables perhaps its a mix? Maybe a creature with a focus less then a certain amount simply never attacks that way?
+          // Maybe a cvreature with a specific focuis, only ever shoots and never engulfs? Maybe their letharcgicness impacts that? I just dont want each enemy to feal the same you know.
+          // For now creatures with a focus under 100 will never shoot.
+          //LOG_INFO("Our focus is: "+ aiComponent.speciesFocus);
+          
+          if (aiComponent.speciesFocus >= 100.0f)
+          {
+            if (microbeComponent.hitpoints > 0 && numberOfAgentVacuoles > 0 && 
+                (position._Position -  aiComponent.targetPosition).LengthSquared() <= aiComponent.speciesFocus*10.0f)
                     {
-                    MicrobeOperations::emitAgent(world,microbeEntity, oxytoxyId,1.0f);
+                    MicrobeOperations::emitAgent(world,microbeEntity, oxytoxyId,1.0f,aiComponent.speciesFocus*10.0f);
                     }
+          }
         }
 
     // For self defense (not nessessarily fleeing)
