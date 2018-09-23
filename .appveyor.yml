@@ -23,7 +23,8 @@ test_script:
   - cd build\bin
   - .\ThriveTest ~[xrequired]
 
-artifacts:
-  - path: build/bin
-    name: bin folder
-    type: zip
+# This takes too much space to work
+# artifacts:
+#   - path: build/bin
+#     name: bin folder
+#     type: zip
