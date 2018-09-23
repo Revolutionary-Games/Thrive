@@ -114,11 +114,12 @@ class Species{
                 MAX_SPECIES_FEAR);
         this.activity = GetEngine().GetRandom().GetFloat(0.0f,
                 MAX_SPECIES_ACTIVITY);
-
-         LOG_INFO("aggression is:"+aggression);
-         LOG_INFO("fear is:"+fear);
-         LOG_INFO("lethargicness is:"+activity);
-
+        this.focus = GetEngine().GetRandom().GetFloat(0.0f,
+                MAX_SPECIES_FOCUS);
+         LOG_INFO("Aggression is:"+aggression);
+         LOG_INFO("Fear is:"+fear);
+         LOG_INFO("Lethargicness is:"+activity);
+         LOG_INFO("Focus is:"+focus);
             auto stringSize = GetEngine().GetRandom().GetNumber(MIN_INITIAL_LENGTH,
                 MAX_INITIAL_LENGTH);
 
@@ -188,11 +189,12 @@ class Species{
                 MAX_SPECIES_PERSONALITY_MUTATION);
         this.activity = this.activity+GetEngine().GetRandom().GetFloat(MIN_SPECIES_PERSONALITY_MUTATION,
                 MAX_SPECIES_PERSONALITY_MUTATION);
-
-         LOG_INFO("aggression is:"+aggression);
-         LOG_INFO("fear is:"+fear);
-         LOG_INFO("lethargicness is:"+activity);
-
+        this.focus = this.focus+GetEngine().GetRandom().GetFloat(MIN_SPECIES_PERSONALITY_MUTATION,
+                MAX_SPECIES_PERSONALITY_MUTATION);
+         LOG_INFO("Aggression is:"+aggression);
+         LOG_INFO("Fear is:"+fear);
+         LOG_INFO("Lethargicness is:"+activity);
+         LOG_INFO("Focus is:"+focus);
             // Chance of new color needs to be low
             if (GetEngine().GetRandom().GetNumber(0,100)==1)
             {
@@ -231,7 +233,7 @@ class Species{
 
         templateEntity = Species::createSpecies(forWorld, this.name, organelles, this.colour,
             this.isBacteria, this.speciesMembraneType,
-            DEFAULT_INITIAL_COMPOUNDS, this.aggression, this.fear);
+            DEFAULT_INITIAL_COMPOUNDS, this.aggression, this.fear, this.activity, this.focus);
     }
 
     // Delete a species
@@ -428,11 +430,12 @@ class Species{
                 MAX_SPECIES_FEAR);
         this.activity = GetEngine().GetRandom().GetFloat(0.0f,
                 MAX_SPECIES_ACTIVITY);
-
-         LOG_INFO("aggression is:"+aggression);
-         LOG_INFO("fear is:"+fear);
-         LOG_INFO("lethargicness is:"+activity);
-
+        this.focus = GetEngine().GetRandom().GetFloat(0.0f,
+                MAX_SPECIES_FOCUS);
+         LOG_INFO("Aggression is:"+aggression);
+         LOG_INFO("Fear is:"+fear);
+         LOG_INFO("Lethargicness is:"+activity);
+         LOG_INFO("Focus is:"+focus);
         // Bacteria are tiny, start off with a max of 3 hexes (maybe
         // we should start them all off with just one? )
         auto stringSize = GetEngine().GetRandom().GetNumber(0,2);
@@ -493,10 +496,13 @@ class Species{
                 MAX_SPECIES_PERSONALITY_MUTATION);
         this.activity = this.activity+GetEngine().GetRandom().GetFloat(MIN_SPECIES_PERSONALITY_MUTATION,
                 MAX_SPECIES_PERSONALITY_MUTATION);
+        this.focus = this.focus+GetEngine().GetRandom().GetFloat(MIN_SPECIES_PERSONALITY_MUTATION,
+                MAX_SPECIES_PERSONALITY_MUTATION);
 
-         LOG_INFO("aggression is:"+aggression);
-         LOG_INFO("fear is:"+fear);
-         LOG_INFO("lethargicness is:"+activity);
+         LOG_INFO("Aggression is:"+aggression);
+         LOG_INFO("Fear is:"+fear);
+         LOG_INFO("Lethargicness is:"+activity);
+         LOG_INFO("Focus is:"+focus);
 
         if (GetEngine().GetRandom().GetNumber(0,100)==1)
         {
@@ -552,6 +558,7 @@ class Species{
     double aggression = 100.0f;
     double fear = 100.0f;
     double activity = 0.0f;
+    double focus = 0.0f;
     MEMBRANE_TYPE speciesMembraneType;
     string stringCode;
     int population = INITIAL_POPULATION;
@@ -952,13 +959,13 @@ ObjectID createSpecies(CellStageWorld@ world, const string &in name,
     }
 
     return createSpecies(world, name, convertedOrganelles, fromTemplate.colour, fromTemplate.isBacteria, fromTemplate.speciesMembraneType,
-        fromTemplate.compounds, 100.0f, 100.0f);
+        fromTemplate.compounds, 100.0f, 100.0f, 100.0f, 200.0f);
 }
 
 //! Creates an entity that has all the species stuff on it
 //! AI controlled ones need to be in addition in SpeciesSystem
 ObjectID createSpecies(CellStageWorld@ world, const string &in name,
-    array<PlacedOrganelle@> organelles, Float4 colour, bool isBacteria, MEMBRANE_TYPE speciesMembraneType,  const dictionary &in compounds, double aggression, double fear
+    array<PlacedOrganelle@> organelles, Float4 colour, bool isBacteria, MEMBRANE_TYPE speciesMembraneType,  const dictionary &in compounds, double aggression, double fear, double activity, double focus
 ) {
     ObjectID speciesEntity = world.CreateEntity();
 
@@ -999,7 +1006,8 @@ ObjectID createSpecies(CellStageWorld@ world, const string &in name,
     // we need to know our aggression and fear variables
     speciesComponent.aggression = aggression;
     speciesComponent.fear = fear;
-
+    speciesComponent.activity = activity;
+    speciesComponent.focus = focus;
     // iterates over all compounds, and sets amounts and priorities
     uint64 compoundCount = SimulationParameters::compoundRegistry().getSize();
     for(uint i = 0; i < compoundCount; i++){

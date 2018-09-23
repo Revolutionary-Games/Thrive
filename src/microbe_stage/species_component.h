@@ -36,6 +36,7 @@ public:
     double aggression;
     double fear;
     double activity;
+    double focus;
     int32_t population;
     int32_t generation;
 

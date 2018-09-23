@@ -486,7 +486,7 @@ void applyMembraneColour(CellStageWorld@ world, ObjectID microbeEntity){
     // //
     // // @param maxAmount
     // // The maximum amount to try to emit
-void emitAgent(CellStageWorld@ world, ObjectID microbeEntity, CompoundId compoundId, double maxAmount){
+void emitAgent(CellStageWorld@ world, ObjectID microbeEntity, CompoundId compoundId, double maxAmount, float lifeTime){
         MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
             world.GetScriptComponentHolder("MicrobeComponent").Find(microbeEntity));
     //     auto soundSourceComponent = world.GetComponent_SoundSourceComponent(microbeEntity, SoundSourceComponent);
@@ -550,7 +550,7 @@ void emitAgent(CellStageWorld@ world, ObjectID microbeEntity, CompoundId compoun
         auto vec = ( microbeComponent.facingTargetPoint - cellPosition._Position);
         auto direction = vec.Normalize();
 
-        createAgentCloud(world, compoundId, cellPosition._Position+(Float3(xnew*ejectionDistance,0,ynew*ejectionDistance)), direction,amountToEject * 10.0f);
+        createAgentCloud(world, compoundId, cellPosition._Position+(Float3(xnew*ejectionDistance,0,ynew*ejectionDistance)), direction,amountToEject * 10.0f,lifeTime);
         }
     }
 
@@ -1064,7 +1064,7 @@ void kill(CellStageWorld@ world, ObjectID microbeEntity)
 
             auto direction = Float3(GetEngine().GetRandom().GetNumber(0.0f, 1.0f) * 2 - 1,
                 0, GetEngine().GetRandom().GetNumber(0.0f, 1.0f) * 2 - 1);
-            createAgentCloud(world, compoundId, position._Position, direction, ejectedAmount);
+            createAgentCloud(world, compoundId, position._Position, direction, ejectedAmount, 2000);
             _amount = _amount - ejectedAmount;
         }
     }
