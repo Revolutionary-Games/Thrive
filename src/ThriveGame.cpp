@@ -584,7 +584,20 @@ void
 void
     ThriveGame::exitToMenuClicked()
 {
+    // Unlink window
+    Leviathan::Window* window2 = Engine::GetEngine()->GetWindowEntity();
+    window2->LinkObjects(nullptr);
+
+    // Clear the world
     m_impl->m_cellStage->ClearEntities();
+
+    // Get proper keys setup
+    m_impl->m_menuKeyPresses->setEnabled(true);
+    m_impl->m_cellStageKeys->setEnabled(false);
+
+    // Start the Thrive main theme again
+
+    // Log the successful return to menu
     LOG_INFO("Back to main menu!");
 }
 
