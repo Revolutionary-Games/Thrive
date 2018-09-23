@@ -230,7 +230,7 @@ function onEditorButtonClicked(event){
     readyToEdit = false;
 }
 
-function onExitToMenuClicked (event)
+function onExitToMenuClicked(event)
 {
     //Exit to main menu
     document.getElementById("topLevelMenuContainer").style.display = '';
