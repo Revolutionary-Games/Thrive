@@ -90,7 +90,7 @@ const uint EXCESS_COMPOUND_COLLECTION_INTERVAL = 1000;
 const uint MICROBE_HITPOINTS_PER_ORGANELLE = 10;
 
 // The minimum amount of oxytoxy (or any agent) needed to be able to shoot.
-const float MINIMUM_AGENT_EMISSION_AMOUNT = 0.1;
+const float MINIMUM_AGENT_EMISSION_AMOUNT = 1;
 
 // A sound effect thing for bumping with other cell i assume? Probably unused.
 const float RELATIVE_VELOCITY_TO_BUMP_SOUND = 6.0;

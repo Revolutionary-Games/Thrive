@@ -862,9 +862,6 @@ ObjectID spawnBacteria(CellStageWorld@ world, Float3 pos, const string &in speci
     auto node = world.GetComponent_RenderNode(microbeEntity);
     node.Node.setPosition(pos);
 
-    auto speciesEntity = findSpeciesEntityByName(world, speciesName);
-    auto species = world.GetComponent_SpeciesComponent(speciesEntity);
-
     // Bacteria get scaled to half size
     node.Scale = Float3(0.5, 0.5, 0.5);
     node.Marked = true;
