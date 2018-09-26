@@ -113,22 +113,26 @@ class MicrobeAISystem : ScriptSystem{
             // ai interval
             aiComponent.intervalRemaining += logicTime;
             // Cache fear and aggression as we dont wnat to be calling "getSpecies" every frame for every microbe (maybe its not a big deal)
+            SpeciesComponent@ ourSpecies = MicrobeOperations::getSpeciesComponent(world, microbeEntity);
+            if (ourSpecies !is null)
+            {
             if (aiComponent.speciesAggression == -1.0f)
                 {
-                aiComponent.speciesAggression = MicrobeOperations::getSpeciesComponent(world, microbeEntity).aggression;
+                aiComponent.speciesAggression = ourSpecies.aggression;
                 }
             if (aiComponent.speciesFear == -1.0f)
                 {
-                aiComponent.speciesFear = MicrobeOperations::getSpeciesComponent(world, microbeEntity).fear;
+                aiComponent.speciesFear = ourSpecies.fear;
                 }
             if (aiComponent.speciesActivity == -1.0f)
                 {
-                aiComponent.speciesActivity = MicrobeOperations::getSpeciesComponent(world, microbeEntity).activity;
+                aiComponent.speciesActivity =ourSpecies.activity;
                 }
             if (aiComponent.speciesFocus == -1.0f)
                 {
-                aiComponent.speciesFocus = MicrobeOperations::getSpeciesComponent(world, microbeEntity).focus;
+                aiComponent.speciesFocus = ourSpecies.focus;
                 }
+            }
                 // Were for debugging
                 //LOG_INFO("AI aggression"+aiComponent.speciesAggression);
                 //LOG_INFO("AI fear"+aiComponent.speciesFear);
@@ -489,13 +493,16 @@ class MicrobeAISystem : ScriptSystem{
           // Maybe a cvreature with a specific focuis, only ever shoots and never engulfs? Maybe their letharcgicness impacts that? I just dont want each enemy to feal the same you know.
           // For now creatures with a focus under 100 will never shoot.
           //LOG_INFO("Our focus is: "+ aiComponent.speciesFocus);
-          
+
           if (aiComponent.speciesFocus >= 100.0f)
           {
-            if (microbeComponent.hitpoints > 0 && numberOfAgentVacuoles > 0 && 
+            if (microbeComponent.hitpoints > 0 && numberOfAgentVacuoles > 0 &&
                 (position._Position -  aiComponent.targetPosition).LengthSquared() <= aiComponent.speciesFocus*10.0f)
                     {
-                    MicrobeOperations::emitAgent(world,microbeEntity, oxytoxyId,1.0f,aiComponent.speciesFocus*10.0f);
+                    if (MicrobeOperations::getCompoundAmount(world,microbeEntity,oxytoxyId) >= MINIMUM_AGENT_EMISSION_AMOUNT)
+                        {
+                        MicrobeOperations::emitAgent(world,microbeEntity, oxytoxyId,1.0f,aiComponent.speciesFocus*10.0f);
+                        }
                     }
           }
         }

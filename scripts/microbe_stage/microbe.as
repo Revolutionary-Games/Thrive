@@ -907,10 +907,17 @@ class MicrobeSystem : ScriptSystem{
         } else {
 
             // Return the first cell to its normal, non duplicated cell arrangement.
-            Species::applyTemplate(world, microbeEntity,
-                MicrobeOperations::getSpeciesComponent(world, microbeEntity));
-
-            divide(microbeEntity);
+            if (MicrobeOperations::getSpeciesComponent(world, microbeEntity) !is null)
+                {
+                Species::applyTemplate(world, microbeEntity,
+                    MicrobeOperations::getSpeciesComponent(world, microbeEntity));
+                divide(microbeEntity);
+                }
+            else
+                {
+                // You are extinct so just die okay.
+                MicrobeOperations::kill(world, microbeEntity);
+                }
         }
     }
 
