@@ -114,7 +114,7 @@ const float ENGULF_HP_RATIO_REQ = 1.5f;
 const float OXY_TOXY_DAMAGE = 10.0f;
 
 // Cooldown between agent emissions, in milliseconds.
-const uint AGENT_EMISSION_COOLDOWN = 1000;
+const uint AGENT_EMISSION_COOLDOWN = 2000;
 
 // TODO: move these into gamestate (this is very dirty)
 // must be global
