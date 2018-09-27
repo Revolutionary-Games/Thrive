@@ -223,7 +223,7 @@ void setupMicrobeHitpoints(CellStageWorld@ world, ObjectID microbeEntity, int he
         world.GetScriptComponentHolder("MicrobeComponent").Find(microbeEntity));
     microbeComponent.maxHitpoints = health;
     microbeComponent.hitpoints = microbeComponent.maxHitpoints;
-    microbeComponent.agentEmissionCooldown=0;
+    microbeComponent.agentEmissionCooldown=uint(0);
 }
 
 //grabs compounds from template (starter_mcirobes) and stores them)
@@ -494,15 +494,15 @@ void emitAgent(CellStageWorld@ world, ObjectID microbeEntity, CompoundId compoun
         auto cellPosition = world.GetComponent_Position(microbeEntity);
 
     // Cooldown code
-    LOG_INFO(" "+microbeComponent.agentEmissionCooldown);
+    LOG_INFO("Cooldown "+microbeComponent.agentEmissionCooldown);
 
-    //if(microbeComponent.agentEmissionCooldown > 0){ return; }
+    if(microbeComponent.agentEmissionCooldown > 0){ return; }
 
     auto numberOfAgentVacuoles = int (microbeComponent.specialStorageOrganelles[formatUInt(compoundId)]);
     // Only shoot if you have an agent vacuole.
     if(numberOfAgentVacuoles == 0){ return; }
     // The cooldown time is inversely proportional to the amount of agent vacuoles.
-    microbeComponent.agentEmissionCooldown = AGENT_EMISSION_COOLDOWN/numberOfAgentVacuoles;
+    microbeComponent.agentEmissionCooldown = uint(AGENT_EMISSION_COOLDOWN/numberOfAgentVacuoles);
 
     if(MicrobeOperations::getCompoundAmount(world, microbeEntity, compoundId) > MINIMUM_AGENT_EMISSION_AMOUNT)
         {
