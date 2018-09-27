@@ -501,7 +501,7 @@ class MicrobeAISystem : ScriptSystem{
                     {
                     if (MicrobeOperations::getCompoundAmount(world,microbeEntity,oxytoxyId) >= MINIMUM_AGENT_EMISSION_AMOUNT)
                         {
-                        MicrobeOperations::emitAgent(world,microbeEntity, oxytoxyId,1.0f,aiComponent.speciesFocus*10.0f);
+                        MicrobeOperations::emitAgent(world,microbeEntity, oxytoxyId,10.0f,aiComponent.speciesFocus*10.0f);
                         }
                     }
           }
