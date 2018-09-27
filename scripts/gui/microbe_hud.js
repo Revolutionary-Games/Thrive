@@ -202,6 +202,15 @@ function killPlayerCell(event){
 
     playButtonPressSound();
     Thrive.killPlayerCellClicked();
+
+    //Easter egg code, shows a small message saying "How could you? :(" when you kill yourself
+    document.getElementById("suicideMsg").style.display = 'unset';
+    setTimeout(hideSuicideMsg, 1000);
+}
+
+function hideSuicideMsg()
+{
+    document.getElementById("suicideMsg").style.display = 'none';
 }
 
 function onEditorButtonClicked(event){
