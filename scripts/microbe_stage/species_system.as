@@ -201,7 +201,7 @@ class Species{
         // Subtly mutate color
         if (GetEngine().GetRandom().GetNumber(0,5)==0)
             {
-            this.colour = Float4(colour.W+randomMutationColourChannel(),colour.X+randomMutationColourChannel(),colour.Y+randomMutationColourChannel(), colour.Z+randomMutationOpacity());
+            this.colour = Float4(colour.X+randomMutationColourChannel(),colour.Y+randomMutationColourChannel(),colour.Z+randomMutationColourChannel(), colour.W+randomMutationOpacity());
             }
          LOG_INFO("Aggression is:"+aggression);
          LOG_INFO("Fear is:"+fear);
@@ -214,7 +214,7 @@ class Species{
                 // We can do more fun stuff here later
                 genus = generateNameSection();
                 // New genuses get to double their color change
-            this.colour = Float4(colour.W+randomMutationColourChannel(),colour.X+randomMutationColourChannel(),colour.Y+randomMutationColourChannel(), colour.Z+randomMutationOpacity());
+            this.colour = Float4(colour.X+randomMutationColourChannel(),colour.Y+randomMutationColourChannel(),colour.Z+randomMutationColourChannel(), colour.W+randomMutationOpacity());
             }
 
             this.population = int(floor(parent.population / 2.f));
@@ -510,7 +510,7 @@ class Species{
         // Subtly mutate color
         if (GetEngine().GetRandom().GetNumber(0,5)==0)
             {
-            this.colour = Float4(colour.W+randomMutationColourChannel(),colour.X+randomMutationColourChannel(),colour.Y+randomMutationColourChannel(), colour.Z+randomMutationOpacity());
+            this.colour = Float4(colour.X+randomMutationColourChannel(),colour.Y+randomMutationColourChannel(),colour.Z+randomMutationColourChannel(), colour.W+randomMutationOpacity());
             }
          LOG_INFO("Aggression is:"+aggression);
          LOG_INFO("Fear is:"+fear);
@@ -523,7 +523,7 @@ class Species{
             // We can do more fun stuff here later
             genus = generateNameSection();
             // New genuses get to double color change
-            this.colour = Float4(colour.W+randomMutationColourChannel(),colour.X+randomMutationColourChannel(),colour.Y+randomMutationColourChannel(), colour.Z+randomMutationOpacity());
+            this.colour = Float4(colour.X+randomMutationColourChannel(),colour.Y+randomMutationColourChannel(),colour.Z+randomMutationColourChannel(), colour.W+randomMutationOpacity());
         }
         this.population = int(floor(parent.population / 2.f));
         parent.population = int(ceil(parent.population / 2.f));
