@@ -204,15 +204,15 @@ function killPlayerCell(event){
     Thrive.killPlayerCellClicked();
 
     //Easter egg code, shows a small message saying something from the list of messages when you kill yourself
-    let message = ["How could you?", "Why? :(", "How could you do this to me?"];
-    let x = randomBetween(0, 5);
-    let m = randomBetween(0, 2);
+    let message = ["Do you want to go extinct?","Darwin Award?", "Why? :(", "How could you do this to me?","Thats not quite, 'Thriving'","B..ut...why?","Microbes may not have a nervous system, but thats still not very nice!","And so you explode in a bubble of organic chemicals, never to evolve, never to thrive...","Did you know there is in fact such a thing as 'programmed cell death', its called apoptosis."];
+    let deathEasterEggChance = randomBetween(0, 10);
+    let messageNum = randomBetween(0, message.length-1);
 
-    if (x == 0)
+    if (deathEasterEggChance == 0)
     {
         document.getElementById("suicideMsg").style.display = 'unset';
-        document.getElementById("suicideMsg").textContent = message[m];
-        setTimeout(hideSuicideMsg, 1000);
+        document.getElementById("suicideMsg").textContent = message[messageNum];
+        setTimeout(hideSuicideMsg, 5000);
     }
 }
 
