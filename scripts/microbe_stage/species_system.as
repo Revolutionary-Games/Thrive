@@ -6,6 +6,10 @@ float randomColourChannel(){
     return GetEngine().GetRandom().GetNumber(MIN_COLOR, MAX_COLOR);
 }
 
+float randomMutationColourChannel(){
+    return GetEngine().GetRandom().GetNumber(MIN_COLOR_MUTATION, MAX_COLOR_MUTATION);
+}
+
 float randomOpacity(){
     return GetEngine().GetRandom().GetNumber(MIN_OPACITY, MAX_OPACITY);
 }
@@ -14,6 +18,9 @@ float randomOpacityBacteria(){
     return GetEngine().GetRandom().GetNumber(MIN_OPACITY+1, MAX_OPACITY+1);
 }
 
+float randomMutationOpacity(){
+    return GetEngine().GetRandom().GetNumber(MIN_OPACITY_MUTATION, MAX_OPACITY_MUTATION);
+}
 
 Float4 randomColour(float opaqueness = randomOpacity()){
     return Float4(randomColourChannel(), randomColourChannel(), randomColourChannel(),
@@ -191,6 +198,11 @@ class Species{
                 MAX_SPECIES_PERSONALITY_MUTATION);
         this.focus = this.focus+GetEngine().GetRandom().GetFloat(MIN_SPECIES_PERSONALITY_MUTATION,
                 MAX_SPECIES_PERSONALITY_MUTATION);
+        // Subtly mutate color
+        if (GetEngine().GetRandom().GetNumber(0,5)==0)
+            {
+            this.colour = Float4(colour.W+randomMutationColourChannel(),colour.X+randomMutationColourChannel(),colour.Y+randomMutationColourChannel(), colour.Z+randomMutationOpacity());
+            }
          LOG_INFO("Aggression is:"+aggression);
          LOG_INFO("Fear is:"+fear);
          LOG_INFO("Lethargicness is:"+activity);
@@ -201,18 +213,15 @@ class Species{
                 LOG_INFO("New Genus");
                 // We can do more fun stuff here later
                 genus = generateNameSection();
-                this.colour = randomColour();
+                // New genuses get to double their color change
+            this.colour = Float4(colour.W+randomMutationColourChannel(),colour.X+randomMutationColourChannel(),colour.Y+randomMutationColourChannel(), colour.Z+randomMutationOpacity());
             }
-            else
-            {
-                this.colour = parent.colour;
-            }
+
             this.population = int(floor(parent.population / 2.f));
             parent.population = int(ceil(parent.population / 2.f));
             this.stringCode = Species::mutate(parent.stringCode);
 
             this.speciesMembraneType = MEMBRANE_TYPE::MEMBRANE;
-            this.colour = getRightColourForSpecies();
 
             commonConstructor(world);
 
@@ -498,7 +507,11 @@ class Species{
                 MAX_SPECIES_PERSONALITY_MUTATION);
         this.focus = this.focus+GetEngine().GetRandom().GetFloat(MIN_SPECIES_PERSONALITY_MUTATION,
                 MAX_SPECIES_PERSONALITY_MUTATION);
-
+        // Subtly mutate color
+        if (GetEngine().GetRandom().GetNumber(0,5)==0)
+            {
+            this.colour = Float4(colour.W+randomMutationColourChannel(),colour.X+randomMutationColourChannel(),colour.Y+randomMutationColourChannel(), colour.Z+randomMutationOpacity());
+            }
          LOG_INFO("Aggression is:"+aggression);
          LOG_INFO("Fear is:"+fear);
          LOG_INFO("Lethargicness is:"+activity);
@@ -509,18 +522,14 @@ class Species{
             LOG_INFO("New Genus of bacteria");
             // We can do more fun stuff here later
             genus = generateNameSection();
-            this.colour = randomProkayroteColour();
-        }
-        else
-        {
-            this.colour = parent.colour;
+            // New genuses get to double color change
+            this.colour = Float4(colour.W+randomMutationColourChannel(),colour.X+randomMutationColourChannel(),colour.Y+randomMutationColourChannel(), colour.Z+randomMutationOpacity());
         }
         this.population = int(floor(parent.population / 2.f));
         parent.population = int(ceil(parent.population / 2.f));
 
         this.stringCode = Species::mutateProkaryote(parent.stringCode);
         this.speciesMembraneType = MEMBRANE_TYPE::WALL;
-        this.colour = getRightColourForSpecies();
         commonConstructor(world);
         this.setupBacteriaSpawn(world);
     }

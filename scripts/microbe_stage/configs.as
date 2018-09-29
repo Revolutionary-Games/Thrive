@@ -10,8 +10,16 @@ const auto DEFAULT_SPAWN_DENSITY = 1/25000.f;
 // Cell Colors
 const auto MIN_COLOR = 0.0f;
 const auto MAX_COLOR = 0.9f;
+// Too subtle?
+const auto MIN_COLOR_MUTATION = -0.005f;
+const auto MAX_COLOR_MUTATION = 0.005f;
+
 const auto MIN_OPACITY = 0.8f;
 const auto MAX_OPACITY = 4.0f;
+
+// Min Opacity Mutation
+const auto MIN_OPACITY_MUTATION = -0.01f;
+const auto MAX_OPACITY_MUTATION = 0.01f;
 
 //not const because we want to change these
 //current atmospheric oxygen percentage in modern times
