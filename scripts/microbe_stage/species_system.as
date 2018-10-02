@@ -33,7 +33,6 @@ Float4 randomProkayroteColour(float opaqueness = randomOpacityBacteria()){
 }
 
 string generateNameSection(){
-
     auto prefixCofixList = SimulationParameters::speciesNameController().getPrefixCofix();
     auto prefix_v = SimulationParameters::speciesNameController().getVowelPrefixes();
     auto prefix_c = SimulationParameters::speciesNameController().getConsonantPrefixes();
@@ -445,7 +444,7 @@ class Species{
         // And register new
         LOG_INFO("Registering bacteria to spawn: " + name);
         this.id = forWorld.GetSpawnSystem().addSpawnType(
-            factory, DEFAULT_SPAWN_DENSITY, //spawnDensity should depend on population
+            factory, 1.0f/(STARTING_SPAWN_DENSITY-this.population), //spawnDensity should depend on population
             BACTERIA_SPAWN_RADIUS);
     }
 
@@ -462,7 +461,7 @@ class Species{
         // And register new
         LOG_INFO("Registering species to spawn: " + name);
         this.id = forWorld.GetSpawnSystem().addSpawnType(
-            factory, DEFAULT_SPAWN_DENSITY, //spawnDensity should depend on population
+            factory, 1.0f/(STARTING_SPAWN_DENSITY-this.population), //spawnDensity should depend on population
             MICROBE_SPAWN_RADIUS);
     }
 
@@ -640,11 +639,11 @@ const auto INITIAL_POPULATION = 2000;
 const auto SPECIES_SIM_INTERVAL = 5000;
 
 // If a specie's population goes below this it goes extinct.
-const auto MIN_POP_SIZE = 500;
+const auto MIN_POP_SIZE = 2;
 
 // If a specie's population goes above this it gets split in half and a
 // new mutated species apears. this should be randomized
-const auto MAX_POP_SIZE = 5000;
+const auto MAX_POP_SIZE = 7000;
 
 // The amount of species at the start of the microbe stage (not counting Default/Player)
 const auto INITIAL_SPECIES = 7;

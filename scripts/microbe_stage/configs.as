@@ -6,7 +6,7 @@
 const auto CLOUD_SPAWN_RADIUS = 75;
 const auto POWERUP_SPAWN_RADIUS = 85;
 const auto DEFAULT_SPAWN_DENSITY = 1/25000.f;
-
+const auto STARTING_SPAWN_DENSITY = 30000.0f;
 // Cell Colors
 const auto MIN_COLOR = 0.0f;
 const auto MAX_COLOR = 0.9f;
