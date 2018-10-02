@@ -789,7 +789,6 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
 
         //iterating on each OrganelleComponent
         for(uint i = 0; i < components.length(); ++i){
-
             components[i].onRemovedFromMicrobe(microbeEntity, this /*, q, r*/);
         }
 
