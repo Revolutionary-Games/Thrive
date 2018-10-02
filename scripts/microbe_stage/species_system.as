@@ -591,7 +591,7 @@ class Species{
 const auto INITIAL_POPULATION = 2000;
 
 // How much time does it take for the simulation to update.
-const auto SPECIES_SIM_INTERVAL = 10000;
+const auto SPECIES_SIM_INTERVAL = 5000;
 
 // If a specie's population goes below this it goes extinct.
 const auto MIN_POP_SIZE = 500;
