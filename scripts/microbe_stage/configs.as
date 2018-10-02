@@ -34,8 +34,8 @@ const auto MUTATION_CREATION_RATE = 0.1f;
 const auto MUTATION_DELETION_RATE = 0.1f;
 
 // Spawn Radius
-const auto MICROBE_SPAWN_RADIUS = 100;
-const auto BACTERIA_SPAWN_RADIUS = 100;
+const auto MICROBE_SPAWN_RADIUS = 130;
+const auto BACTERIA_SPAWN_RADIUS = 130;
 
 // Max fear and agression and activity
 const auto MAX_SPECIES_AGRESSION = 400.0f;
