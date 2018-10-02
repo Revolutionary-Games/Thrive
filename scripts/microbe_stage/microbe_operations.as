@@ -527,7 +527,7 @@ void emitAgent(CellStageWorld@ world, ObjectID microbeEntity, CompoundId compoun
             }
              angle = -(angle * 180/PI-90 ) % 360;
         // Find the direction the microbe is facing
-        auto ejectionDistance = (maxR+1.5f) * HEX_SIZE;
+        auto ejectionDistance = (maxR+1.7f) * HEX_SIZE;
         auto yAxis = Ogre::Quaternion(cellPosition._Orientation).yAxis();
         auto microbeAngle = atan2(yAxis.x,yAxis.z);
         if(microbeAngle < 0){
@@ -1056,7 +1056,7 @@ void kill(CellStageWorld@ world, ObjectID microbeEntity)
         auto _amount = getCompoundAmount(world, microbeEntity, compoundId);
         while(_amount > 0){
             // Eject up to 3 units per particle
-            auto ejectedAmount = takeCompound(world, microbeEntity, compoundId, 1);
+            auto ejectedAmount = takeCompound(world, microbeEntity, compoundId, 2);
             auto direction = Float3(GetEngine().GetRandom().GetNumber(0.0f, 1.0f) * 2 - 1,
                 0, GetEngine().GetRandom().GetNumber(0.0f, 1.0f) * 2 - 1);
             createAgentCloud(world, compoundId, position._Position, direction, ejectedAmount, 2000);
