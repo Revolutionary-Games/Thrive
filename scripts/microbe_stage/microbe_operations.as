@@ -821,6 +821,7 @@ ObjectID spawnMicrobe(CellStageWorld@ world, Float3 pos, const string &in specie
     if(species.isBacteria){
         node.Scale = Float3(0.5, 0.5, 0.5);
         node.Marked = true;
+        physics.SetCollision(world.GetPhysicalWorld().CreateSphere(HEX_SIZE));
     }
 
     return microbeEntity;
