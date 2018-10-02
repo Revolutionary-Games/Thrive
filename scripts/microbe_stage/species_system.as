@@ -198,6 +198,8 @@ class Species{
                 MAX_SPECIES_PERSONALITY_MUTATION);
         this.focus = this.focus+GetEngine().GetRandom().GetFloat(MIN_SPECIES_PERSONALITY_MUTATION,
                 MAX_SPECIES_PERSONALITY_MUTATION);
+        // Make sure not over or under our scales
+        cleanPersonality();
         // Subtly mutate color
         if (GetEngine().GetRandom().GetNumber(0,5)==0)
             {
@@ -231,6 +233,46 @@ class Species{
         else
         {
             mutateBacteria(parent,world);
+        }
+    }
+
+    private void cleanPersonality(){
+    // Is there a better way of doing this while keeping it clean?
+    // Aggression
+    if (this.aggression > MAX_SPECIES_AGRESSION)
+        {
+        this.aggression=MAX_SPECIES_AGRESSION;
+        }
+    if (this.aggression < 0.0f)
+        {
+        this.aggression=0;
+        }
+    // Fear
+    if (this.fear > MAX_SPECIES_FEAR)
+        {
+        this.fear=MAX_SPECIES_FEAR;
+        }
+    if (this.fear < 0.0f)
+        {
+        this.fear=0;
+        }
+    // Activity
+    if (this.activity > MAX_SPECIES_ACTIVITY)
+        {
+        this.activity=MAX_SPECIES_ACTIVITY;
+        }
+    if (this.activity < 0.0f)
+        {
+        this.activity=0;
+        }
+    // Focus
+    if (this.focus > MAX_SPECIES_FOCUS)
+        {
+        this.focus=MAX_SPECIES_FOCUS;
+        }
+    if (this.focus < 0.0f)
+        {
+        this.focus=0;
         }
     }
 
@@ -507,6 +549,10 @@ class Species{
                 MAX_SPECIES_PERSONALITY_MUTATION);
         this.focus = this.focus+GetEngine().GetRandom().GetFloat(MIN_SPECIES_PERSONALITY_MUTATION,
                 MAX_SPECIES_PERSONALITY_MUTATION);
+
+        // Make sure not over or under our scales
+        cleanPersonality();
+
         // Subtly mutate color
         if (GetEngine().GetRandom().GetNumber(0,5)==0)
             {
