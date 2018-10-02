@@ -443,21 +443,32 @@ class MicrobeAISystem : ScriptSystem{
         Position@ position = components.third;
         // Tick the engulf tick
         aiComponent.ticksSinceLastToggle+=1;
-        // Chase your prey
-        aiComponent.targetPosition =  world.GetComponent_Position(prey)._Position;
-        auto vec = (aiComponent.targetPosition - position._Position);
-        aiComponent.direction = vec.Normalize();
-        microbeComponent.facingTargetPoint = aiComponent.targetPosition;
-        microbeComponent.movementDirection = Float3(0, 0, -AI_MOVEMENT_SPEED);
-        aiComponent.hasTargetPosition = true;
+        // Required For AI
         CompoundId oxytoxyId = SimulationParameters::compoundRegistry().getTypeId("oxytoxy");
         MicrobeComponent@ secondMicrobeComponent = cast<MicrobeComponent>(
             world.GetScriptComponentHolder("MicrobeComponent").Find(prey));
-
         // Agent vacuoles.
         int numberOfAgentVacuoles = int(
                 microbeComponent.specialStorageOrganelles[formatUInt(oxytoxyId)]);
 
+        // Chase your prey if you dont like acting like a plant
+        // Allows for emergence of Predatory Plants (Like a single cleed version of a venus fly trap)
+        // Creatures with lethargicness of 400 will not actually chase prey, just lie in wait
+        aiComponent.targetPosition =  world.GetComponent_Position(prey)._Position;
+        auto vec = (aiComponent.targetPosition - position._Position);
+        aiComponent.direction = vec.Normalize();
+        microbeComponent.facingTargetPoint = aiComponent.targetPosition;
+        aiComponent.hasTargetPosition = true;
+
+        //Always set target Position, for use later in AI
+        if (aiComponent.speciesAggression+GetEngine().GetRandom().GetNumber(-100.0f,100.0f) > aiComponent.speciesActivity)
+            {
+            microbeComponent.movementDirection = Float3(0, 0, -AI_MOVEMENT_SPEED);
+            }
+            else
+            {
+            microbeComponent.movementDirection = Float3(0, 0, 0);
+            }
 
             // Turn off engulf if prey is Dead
             // This is probabbly not working
