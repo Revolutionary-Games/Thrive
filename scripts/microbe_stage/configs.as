@@ -33,9 +33,9 @@ const auto MUTATION_BACTERIA_TO_EUKARYOTE = 1;
 const auto MUTATION_CREATION_RATE = 0.1f;
 const auto MUTATION_DELETION_RATE = 0.1f;
 
-const auto MICROBE_SPAWN_RADIUS = 85;
-// Bacteria get massively extra radius so they can spawn in proper colonies and act as landmarks
-const auto BACTERIA_SPAWN_RADIUS = 130;
+// Spawn Radius
+const auto MICROBE_SPAWN_RADIUS = 100;
+const auto BACTERIA_SPAWN_RADIUS = 100;
 
 // Max fear and agression and activity
 const auto MAX_SPECIES_AGRESSION = 400.0f;
