@@ -615,7 +615,7 @@ class Species{
     double focus = 0.0f;
     MEMBRANE_TYPE speciesMembraneType;
     string stringCode;
-    int population = INITIAL_POPULATION;
+    int population = GetEngine().GetRandom().GetNumber(600,INITIAL_POPULATION);
     Float4 colour = getRightColourForSpecies();
 
     //! The species entity that has this species' SpeciesComponent
@@ -633,7 +633,7 @@ class Species{
 ////////////////////////////////////////////////////////////////////////////////
 
 // How big is a newly created species's population.
-const auto INITIAL_POPULATION = 2000;
+const auto INITIAL_POPULATION = 3000;
 
 // How much time does it take for the simulation to update.
 const auto SPECIES_SIM_INTERVAL = 5000;
