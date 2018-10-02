@@ -444,7 +444,7 @@ class Species{
         // And register new
         LOG_INFO("Registering bacteria to spawn: " + name);
         this.id = forWorld.GetSpawnSystem().addSpawnType(
-            factory, 1.0f/(STARTING_SPAWN_DENSITY-this.population), //spawnDensity should depend on population
+            factory, 1.0f/(STARTING_SPAWN_DENSITY-(this.population*5)), //spawnDensity should depend on population
             BACTERIA_SPAWN_RADIUS);
     }
 
@@ -461,7 +461,7 @@ class Species{
         // And register new
         LOG_INFO("Registering species to spawn: " + name);
         this.id = forWorld.GetSpawnSystem().addSpawnType(
-            factory, 1.0f/(STARTING_SPAWN_DENSITY-this.population), //spawnDensity should depend on population
+            factory, 1.0f/(STARTING_SPAWN_DENSITY-(this.population*5)), //spawnDensity should depend on population
             MICROBE_SPAWN_RADIUS);
     }
 
@@ -643,7 +643,7 @@ const auto MIN_POP_SIZE = 2;
 
 // If a specie's population goes above this it gets split in half and a
 // new mutated species apears. this should be randomized
-const auto MAX_POP_SIZE = 7000;
+const auto MAX_POP_SIZE = 6000;
 
 // The amount of species at the start of the microbe stage (not counting Default/Player)
 const auto INITIAL_SPECIES = 7;
