@@ -603,7 +603,7 @@ class MicrobeAISystem : ScriptSystem{
         {
         //LOG_INFO("evaluating");
         MicrobeAIControllerComponent@ aiComponent = components.first;
-       if (GetEngine().GetRandom().GetNumber(0.0f,440.0f) <=  aiComponent.speciesActivity)
+       if (GetEngine().GetRandom().GetNumber(0.0f,500.0f) <=  aiComponent.speciesActivity)
             {
             aiComponent.lifeState = PLANTLIKE_STATE;
             aiComponent.boredom = 0;
