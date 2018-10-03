@@ -128,6 +128,13 @@ void applyEngulfMode(CellStageWorld@ world, ObjectID entity){
     MicrobeOperations::toggleEngulfMode(world, entity);
 }
 
+// Player shoot toxin
+void playerShootToxin(CellStageWorld@ world, ObjectID entity){
+    MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
+        world.GetScriptComponentHolder("MicrobeComponent").Find(entity));
+    CompoundId oxytoxyId = SimulationParameters::compoundRegistry().getTypeId("oxytoxy");
+    MicrobeOperations::emitAgent(world,entity, oxytoxyId,10.0f,400*10.0f);
+}
 
 void onReturnFromEditor(CellStageWorld@ world)
 {
