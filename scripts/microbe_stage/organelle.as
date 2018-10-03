@@ -703,9 +703,8 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
         // never changes
         renderNode.Node.setPosition(offset + this.cartesianPosition);
         //maybe instead of changing this here we should do so in the generation routine.
-        renderNode.Node.setOrientation(Ogre::Quaternion(Ogre::Degree(rotation),
-                Ogre::Vector3(0, 1, 1)));
-
+        renderNode.Node.setOrientation(Ogre::Quaternion(Ogre::Degree(90),
+                Ogre::Vector3(1, 0, 0))*Ogre::Quaternion(Ogre::Degree(180),Ogre::Vector3(0, 1, 0))*Ogre::Quaternion(Ogre::Degree(rotation),Ogre::Vector3(0, 0, 1)));
         // Add hex collision shapes
         auto hexes = organelle.getHexes();
 
