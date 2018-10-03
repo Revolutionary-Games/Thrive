@@ -59,6 +59,18 @@ public:
         pressedEngulf = value;
     }
 
+    bool
+        getPressedToxin() const
+    {
+        return pressedToxin;
+    }
+
+    void
+        setPressedToxin(bool value)
+    {
+        pressedToxin = value;
+    }
+
 private:
     //! \brief Handles the movement keys as they need to properly get hte
     //! blocked events \returns True if key matched a movement key (even if down
@@ -69,7 +81,7 @@ private:
 private:
     Leviathan::GKey m_reproduceCheat;
     Leviathan::GKey m_engulfMode;
-
+    Leviathan::GKey m_shoottoxin;
     Leviathan::GKey m_forward;
     Leviathan::GKey m_backwards;
     Leviathan::GKey m_left;
@@ -86,6 +98,7 @@ private:
     bool m_rightActive = false;
 
     bool pressedEngulf = false;
+    bool pressedToxin = false;
 
     //! True when cheat clouds should be spawned all the time
     bool cheatCloudsDown = false;
