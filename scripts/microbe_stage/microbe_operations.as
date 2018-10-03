@@ -821,7 +821,7 @@ ObjectID spawnMicrobe(CellStageWorld@ world, Float3 pos, const string &in specie
     if(species.isBacteria){
         node.Scale = Float3(0.5, 0.5, 0.5);
         node.Marked = true;
-        physics.SetCollision(world.GetPhysicalWorld().CreateSphere(HEX_SIZE));
+        physics.SetCollision(world.GetPhysicalWorld().CreateSphere(HEX_SIZE/2.0f));
     }
 
     return microbeEntity;
@@ -867,6 +867,7 @@ ObjectID spawnBacteria(CellStageWorld@ world, Float3 pos, const string &in speci
     // Bacteria get scaled to half size
     node.Scale = Float3(0.5, 0.5, 0.5);
     node.Marked = true;
+    physics.SetCollision(world.GetPhysicalWorld().CreateSphere(HEX_SIZE/2.0f));
     // Need to set bacteria spawn and it needs to be squared like it is in the spawn system. code, if part of colony but not directly spawned give a spawned component
     if (partOfColony){
     world.Create_SpawnedComponent(microbeEntity,BACTERIA_SPAWN_RADIUS*BACTERIA_SPAWN_RADIUS);
