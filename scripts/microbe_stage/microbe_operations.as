@@ -552,8 +552,8 @@ void emitAgent(CellStageWorld@ world, ObjectID microbeEntity, CompoundId compoun
         auto ynew = membraneCoords.x * s + membraneCoords.z * c;
         // Find the direction the microbe is facing
 
-        auto ejectionDistanceZ = (maxR+1.0f) * HEX_SIZE;
-        auto ejectionDistanceX = (maxQ+1.0f) * HEX_SIZE;
+        auto ejectionDistanceZ = (maxR) * HEX_SIZE;
+        auto ejectionDistanceX = (maxQ) * HEX_SIZE;
         // Take the microbe angle into account so we get world relative degrees
         auto vec = ( microbeComponent.facingTargetPoint - cellPosition._Position);
         auto direction = vec.Normalize();
