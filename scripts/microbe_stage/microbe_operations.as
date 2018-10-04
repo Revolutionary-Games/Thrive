@@ -551,7 +551,7 @@ void emitAgent(CellStageWorld@ world, ObjectID microbeEntity, CompoundId compoun
         auto xnew = -membraneCoords.x * c + membraneCoords.z * s;
         auto ynew = membraneCoords.x * s + membraneCoords.z * c;
         // Find the direction the microbe is facing
-        
+
         auto ejectionDistanceZ = (maxR) * HEX_SIZE;
         auto ejectionDistanceX = (maxQ) * HEX_SIZE;
         // Take the microbe angle into account so we get world relative degrees
@@ -571,7 +571,7 @@ void emitAgent(CellStageWorld@ world, ObjectID microbeEntity, CompoundId compoun
             else {
                 createAgentCloud(world, compoundId, cellPosition._Position+(Float3(xnew*ejectionDistanceX,0,ynew*ejectionDistanceZ)), direction,amountToEject * 10.0f,lifeTime);
             }
-            
+
             // The cooldown time is inversely proportional to the amount of agent vacuoles.
             microbeComponent.agentEmissionCooldown = uint(AGENT_EMISSION_COOLDOWN/numberOfAgentVacuoles);
             }
