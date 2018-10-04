@@ -521,13 +521,23 @@ void emitAgent(CellStageWorld@ world, ObjectID microbeEntity, CompoundId compoun
                 }
             }
         }
-        auto angle =  atan2(exit.Z, exit.X);
+        auto maxQ = 0;
+        for(uint i = 0; i < microbeComponent.organelles.length(); ++i){
+            auto organelle = microbeComponent.organelles[i];
+            auto hexes = organelle.organelle.getHexes();
+            for(uint a = 0; a < hexes.length(); ++a){
+                auto hex = hexes[a];
+                if(hex.q + organelle.q > maxQ){
+                    maxQ = hex.q + organelle.q;
+                }
+            }
+        }
+         auto angle =  atan2(exit.Z, exit.X);
             if(angle < 0){
                  angle = angle + 2*PI;
             }
              angle = -(angle * 180/PI-90 ) % 360;
         // Find the direction the microbe is facing
-        auto ejectionDistance = (maxR+1.7f) * HEX_SIZE;
         auto yAxis = Ogre::Quaternion(cellPosition._Orientation).yAxis();
         auto microbeAngle = atan2(yAxis.x,yAxis.z);
         if(microbeAngle < 0){
@@ -540,15 +550,28 @@ void emitAgent(CellStageWorld@ world, ObjectID microbeEntity, CompoundId compoun
         auto c = cos(finalAngle/180*PI);
         auto xnew = -membraneCoords.x * c + membraneCoords.z * s;
         auto ynew = membraneCoords.x * s + membraneCoords.z * c;
+        // Find the direction the microbe is facing
+        
+        auto ejectionDistanceZ = (maxR) * HEX_SIZE;
+        auto ejectionDistanceX = (maxQ) * HEX_SIZE;
+        // Take the microbe angle into account so we get world relative degrees
+        auto vec = ( microbeComponent.facingTargetPoint - cellPosition._Position);
+        auto direction = vec.Normalize();
 
         auto amountToEject = takeCompound(world, microbeEntity,compoundId, maxAmount/10.0);
 
-        auto vec = ( microbeComponent.facingTargetPoint - cellPosition._Position);
-        auto direction = vec.Normalize();
         if (amountToEject >= MINIMUM_AGENT_EMISSION_AMOUNT)
             {
             GetEngine().GetSoundDevice().Play2DSoundEffect("Data/Sound/soundeffects/microbe-release-toxin.ogg");
-            createAgentCloud(world, compoundId, cellPosition._Position+(Float3(xnew*ejectionDistance,0,ynew*ejectionDistance)), direction,amountToEject * 10.0f,lifeTime);
+            auto playerSpecies = MicrobeOperations::getSpeciesComponent(world, "Default");
+            if (microbeComponent.isPlayerMicrobe || microbeComponent.speciesName == playerSpecies.name)
+                {
+                createAgentCloud(world, compoundId, cellPosition._Position+(Float3(xnew*-ejectionDistanceX,0,ynew*-ejectionDistanceZ)), direction,amountToEject * 10.0f,lifeTime);
+                }
+            else {
+                createAgentCloud(world, compoundId, cellPosition._Position+(Float3(xnew*ejectionDistanceX,0,ynew*ejectionDistanceZ)), direction,amountToEject * 10.0f,lifeTime);
+            }
+            
             // The cooldown time is inversely proportional to the amount of agent vacuoles.
             microbeComponent.agentEmissionCooldown = uint(AGENT_EMISSION_COOLDOWN/numberOfAgentVacuoles);
             }
