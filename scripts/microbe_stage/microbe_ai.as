@@ -480,7 +480,11 @@ class MicrobeAISystem : ScriptSystem{
                     MicrobeOperations::toggleEngulfMode(world, microbeEntity);
                     }
                 //  You got a kill, good job
+            auto playerSpecies = MicrobeOperations::getSpeciesComponent(world, "Default");
+            if (!microbeComponent.isPlayerMicrobe && microbeComponent.speciesName != playerSpecies.name)
+                {
                 MicrobeOperations::alterSpeciesPopulation(world,microbeEntity,50);
+                }
             }
             else
             {
