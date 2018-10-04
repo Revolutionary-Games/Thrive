@@ -480,7 +480,7 @@ class MicrobeAISystem : ScriptSystem{
                     MicrobeOperations::toggleEngulfMode(world, microbeEntity);
                     }
                 //  You got a kill, good job
-                alterSpeciesPopulation(world,microbeEntity,50);
+                MicrobeOperations::alterSpeciesPopulation(world,microbeEntity,50);
             }
             else
             {
