@@ -368,8 +368,8 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
                 components[i].update(microbeEntity, this, logicTime);
             }
         } else {
-
-            LOG_INFO("Tried to update entity of extinct species...");
+            //LOG_INFO("Tried to update entity of extinct species...");
+            //Maybe just kill them here, to prevent spam of "no species found with name X"
         }
     }
 
