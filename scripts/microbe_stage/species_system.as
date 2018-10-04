@@ -14,6 +14,10 @@ float randomOpacity(){
     return GetEngine().GetRandom().GetNumber(MIN_OPACITY, MAX_OPACITY);
 }
 
+float randomOpacityChitin(){
+    return GetEngine().GetRandom().GetNumber(MIN_OPACITY_CHITIN, MAX_OPACITY_CHITIN);
+}
+
 float randomOpacityBacteria(){
     return GetEngine().GetRandom().GetNumber(MIN_OPACITY+1, MAX_OPACITY+1);
 }
@@ -158,8 +162,16 @@ class Species{
                 }
             }
 
-            this.speciesMembraneType = MEMBRANE_TYPE::MEMBRANE;
             this.colour = getRightColourForSpecies();
+
+         if (GetEngine().GetRandom().GetNumber(0,100) < 50)
+            {
+            this.speciesMembraneType = MEMBRANE_TYPE::MEMBRANE;
+            }
+         else {
+               this.speciesMembraneType = MEMBRANE_TYPE::DOUBLEMEMBRANE;
+               this.colour.W = randomOpacityChitin();;
+               }
             commonConstructor(world);
             this.setupSpawn(world);
 
@@ -181,27 +193,28 @@ class Species{
 
     // Creates a mutated version of the species and reduces the species population by half
     Species(Species@ parent, CellStageWorld@ world, bool isBacteria){
-        this.isBacteria=isBacteria;
+        this.isBacteria=parent.isBacteria;
         if (!isBacteria)
         {
             name = randomSpeciesName();
             epithet = generateNameSection();
+            genus = parent.genus;
 
         // Variables used in AI to determine general behavior mutate these
-        this.aggression = this.aggression+GetEngine().GetRandom().GetFloat(MIN_SPECIES_PERSONALITY_MUTATION,
+        this.aggression = parent.aggression+GetEngine().GetRandom().GetFloat(MIN_SPECIES_PERSONALITY_MUTATION,
                 MAX_SPECIES_PERSONALITY_MUTATION);
-        this.fear = this.fear+GetEngine().GetRandom().GetFloat(MIN_SPECIES_PERSONALITY_MUTATION,
+        this.fear = parent.fear+GetEngine().GetRandom().GetFloat(MIN_SPECIES_PERSONALITY_MUTATION,
                 MAX_SPECIES_PERSONALITY_MUTATION);
-        this.activity = this.activity+GetEngine().GetRandom().GetFloat(MIN_SPECIES_PERSONALITY_MUTATION,
+        this.activity = parent.activity+GetEngine().GetRandom().GetFloat(MIN_SPECIES_PERSONALITY_MUTATION,
                 MAX_SPECIES_PERSONALITY_MUTATION);
-        this.focus = this.focus+GetEngine().GetRandom().GetFloat(MIN_SPECIES_PERSONALITY_MUTATION,
+        this.focus = parent.focus+GetEngine().GetRandom().GetFloat(MIN_SPECIES_PERSONALITY_MUTATION,
                 MAX_SPECIES_PERSONALITY_MUTATION);
         // Make sure not over or under our scales
         cleanPersonality();
         // Subtly mutate color
         if (GetEngine().GetRandom().GetNumber(0,5)==0)
             {
-            this.colour = Float4(colour.X+randomMutationColourChannel(),colour.Y+randomMutationColourChannel(),colour.Z+randomMutationColourChannel(), colour.W+randomMutationOpacity());
+            this.colour = Float4(parent.colour.X+randomMutationColourChannel(),parent.colour.Y+randomMutationColourChannel(),parent.colour.Z+randomMutationColourChannel(), parent.colour.W+randomMutationOpacity());
             }
          LOG_INFO("Aggression is:"+aggression);
          LOG_INFO("Fear is:"+fear);
@@ -214,14 +227,14 @@ class Species{
                 // We can do more fun stuff here later
                 genus = generateNameSection();
                 // New genuses get to double their color change
-            this.colour = Float4(colour.X+randomMutationColourChannel(),colour.Y+randomMutationColourChannel(),colour.Z+randomMutationColourChannel(), colour.W+randomMutationOpacity());
+            this.colour = Float4(parent.colour.X+randomMutationColourChannel(),parent.colour.Y+randomMutationColourChannel(),parent.colour.Z+randomMutationColourChannel(), parent.colour.W+randomMutationOpacity());
             }
 
             this.population = int(floor(parent.population / 2.f));
             parent.population = int(ceil(parent.population / 2.f));
             this.stringCode = Species::mutate(parent.stringCode);
 
-            this.speciesMembraneType = MEMBRANE_TYPE::MEMBRANE;
+            this.speciesMembraneType = parent.speciesMembraneType;
 
             commonConstructor(world);
 
@@ -523,29 +536,36 @@ class Species{
             this.stringCode += chosenType;
         }
         // Allow bacteria to sometimes start with a flagella instead of having to evolve it
+        this.colour = getRightColourForSpecies();
         if (GetEngine().GetRandom().GetNumber(1,100) <= bacterialFlagellumChance)
         {
             this.stringCode+=getOrganelleDefinition("flagellum").gene;;
         }
-
-        this.speciesMembraneType = MEMBRANE_TYPE::WALL;
-        this.colour = getRightColourForSpecies();
+        if (GetEngine().GetRandom().GetNumber(0,100) < 50)
+            {
+            this.speciesMembraneType = MEMBRANE_TYPE::WALL;
+            }
+         else {
+              this.speciesMembraneType = MEMBRANE_TYPE::CHITIN;
+              this.colour.W = randomOpacityChitin();
+               }
         commonConstructor(world);
         this.setupBacteriaSpawn(world);
     }
 
     void mutateBacteria(Species@ parent, CellStageWorld@ world){
         name = randomBacteriaName();
+        genus = parent.genus;
         epithet = generateNameSection();
 
         // Variables used in AI to determine general behavior mutate these
-        this.aggression = this.aggression+GetEngine().GetRandom().GetFloat(MIN_SPECIES_PERSONALITY_MUTATION,
+        this.aggression = parent.aggression+GetEngine().GetRandom().GetFloat(MIN_SPECIES_PERSONALITY_MUTATION,
                 MAX_SPECIES_PERSONALITY_MUTATION);
-        this.fear = this.fear+GetEngine().GetRandom().GetFloat(MIN_SPECIES_PERSONALITY_MUTATION,
+        this.fear = parent.fear+GetEngine().GetRandom().GetFloat(MIN_SPECIES_PERSONALITY_MUTATION,
                 MAX_SPECIES_PERSONALITY_MUTATION);
-        this.activity = this.activity+GetEngine().GetRandom().GetFloat(MIN_SPECIES_PERSONALITY_MUTATION,
+        this.activity = parent.activity+GetEngine().GetRandom().GetFloat(MIN_SPECIES_PERSONALITY_MUTATION,
                 MAX_SPECIES_PERSONALITY_MUTATION);
-        this.focus = this.focus+GetEngine().GetRandom().GetFloat(MIN_SPECIES_PERSONALITY_MUTATION,
+        this.focus = parent.focus+GetEngine().GetRandom().GetFloat(MIN_SPECIES_PERSONALITY_MUTATION,
                 MAX_SPECIES_PERSONALITY_MUTATION);
 
         // Make sure not over or under our scales
@@ -554,7 +574,7 @@ class Species{
         // Subtly mutate color
         if (GetEngine().GetRandom().GetNumber(0,5)==0)
             {
-            this.colour = Float4(colour.X+randomMutationColourChannel(),colour.Y+randomMutationColourChannel(),colour.Z+randomMutationColourChannel(), colour.W+randomMutationOpacity());
+            this.colour = Float4(parent.colour.X+randomMutationColourChannel(),parent.colour.Y+randomMutationColourChannel(),parent.colour.Z+randomMutationColourChannel(), parent.colour.W+randomMutationOpacity());
             }
          LOG_INFO("Aggression is:"+aggression);
          LOG_INFO("Fear is:"+fear);
@@ -567,13 +587,13 @@ class Species{
             // We can do more fun stuff here later
             genus = generateNameSection();
             // New genuses get to double color change
-            this.colour = Float4(colour.X+randomMutationColourChannel(),colour.Y+randomMutationColourChannel(),colour.Z+randomMutationColourChannel(), colour.W+randomMutationOpacity());
+            this.colour = Float4(parent.colour.X+randomMutationColourChannel(),parent.colour.Y+randomMutationColourChannel(),parent.colour.Z+randomMutationColourChannel(), parent.colour.W+randomMutationOpacity());
         }
         this.population = int(floor(parent.population / 2.f));
         parent.population = int(ceil(parent.population / 2.f));
 
         this.stringCode = Species::mutateProkaryote(parent.stringCode);
-        this.speciesMembraneType = MEMBRANE_TYPE::WALL;
+        this.speciesMembraneType = parent.speciesMembraneType;
         commonConstructor(world);
         this.setupBacteriaSpawn(world);
     }
