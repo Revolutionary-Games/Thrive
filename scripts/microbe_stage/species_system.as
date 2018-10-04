@@ -616,6 +616,13 @@ class Species{
         this.population += GetEngine().GetRandom().GetNumber(700, 1500);
     }
 
+    int getPopulationFromAutoEvo(){
+        return this.population;
+    }
+
+    void modifyPopulationFromAUtoEvo(int population){
+        this.population+=population;
+    }
     Float4 getRightColourForSpecies(){
         if (isBacteria){
             return randomProkayroteColour();
@@ -833,6 +840,28 @@ class SpeciesSystem : ScriptSystem{
 
     void CreateAndDestroyNodes(){}
 
+    void updatePopulationForSpecies(string speciesName, int num)
+        {
+             auto numberOfSpecies = species.length();
+            for(uint i = 0; i < numberOfSpecies; i++){
+            if (species[i].name == speciesName)
+                {
+                species[i].population+=num;
+                }
+            }
+        }
+
+    int getSpeciesPopulation(string speciesName)
+        {
+            auto numberOfSpecies = species.length();
+            for(uint i = 0; i < numberOfSpecies; i++){
+            if (species[i].name == speciesName)
+                {
+                return species[i].population;
+                }
+            }
+            return -1;
+        }
 
     void resetAutoEvo(){
 
