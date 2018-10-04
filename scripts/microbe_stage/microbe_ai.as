@@ -537,6 +537,11 @@ class MicrobeAISystem : ScriptSystem{
         }
 
     void preyFlee(ObjectID microbeEntity, MicrobeAIControllerComponent@ aiComponent, MicrobeComponent@ microbeComponent, Position@ position){
+            CompoundId oxytoxyId = SimulationParameters::compoundRegistry().getTypeId("oxytoxy");
+            // Agent vacuoles.
+            int numberOfAgentVacuoles = int(
+                microbeComponent.specialStorageOrganelles[formatUInt(oxytoxyId)]);
+
             if (GetEngine().GetRandom().GetNumber(0,100) <= 40)
                 {
                 // Scatter
@@ -595,7 +600,21 @@ class MicrobeAISystem : ScriptSystem{
                 microbeComponent.facingTargetPoint = aiComponent.targetPosition;
                 microbeComponent.movementDirection = Float3(0, 0, -AI_MOVEMENT_SPEED);
                 aiComponent.hasTargetPosition = true;
-            }
+
+           }
+           //Freak out and fire toxins everywhere
+          if (aiComponent.speciesAggression > aiComponent.speciesFear && aiComponent.speciesFocus >= GetEngine().GetRandom().GetNumber(0.0f,400.0f))
+          {
+            if (microbeComponent.hitpoints > 0 && numberOfAgentVacuoles > 0 &&
+                (position._Position -  aiComponent.targetPosition).LengthSquared() <= aiComponent.speciesFocus*10.0f)
+                    {
+                    if (MicrobeOperations::getCompoundAmount(world,microbeEntity,oxytoxyId) >= MINIMUM_AGENT_EMISSION_AMOUNT)
+                        {
+                        MicrobeOperations::emitAgent(world,microbeEntity, oxytoxyId,10.0f,aiComponent.speciesFocus*10.0f);
+                        }
+                    }
+          }
+
         }
 
     // For for firguring out which state to enter
