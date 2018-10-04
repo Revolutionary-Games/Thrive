@@ -1144,7 +1144,11 @@ void kill(CellStageWorld@ world, ObjectID microbeEntity)
 
     LOG_WRITE("TODO: play animation deathAnimModel");
     // deathAnimModel.GraphicalObject.playAnimation("Death", false);
-
+    //subtract population
+    if (!microbeComponent.isPlayerMicrobe && microbeComponent.speciesName != playerSpecies.name)
+        {
+        alterSpeciesPopulation(world,microbeEntity,-5);
+        }
     //deathAnimSceneNode.Node.setPosition(position._Position);
 
     microbeComponent.dead = true;
@@ -1152,6 +1156,7 @@ void kill(CellStageWorld@ world, ObjectID microbeEntity)
     microbeComponent.movementDirection = Float3(0,0,0);
 
     rigidBodyComponent.ClearVelocity();
+
 
     if(!microbeComponent.isPlayerMicrobe){
         // Destroy the physics state //
@@ -1165,6 +1170,15 @@ void kill(CellStageWorld@ world, ObjectID microbeEntity)
     microbeSceneNode.Hidden = true;
     microbeSceneNode.Marked = true;
 }
+
+void alterSpeciesPopulation(CellStageWorld@ world, ObjectID microbeEntity, int populationAlteration)
+    {
+    SpeciesComponent@ ourSpecies = getSpeciesComponent(world, microbeEntity);
+    if (ourSpecies!= null)
+        {
+        ourSpecies.population += populationAlteration;
+        }
+    }
 
 // TODO: Confirm this method works
 void removeEngulfedEffect(CellStageWorld@ world, ObjectID microbeEntity){
