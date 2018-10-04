@@ -421,9 +421,10 @@ class MicrobeSystem : ScriptSystem{
             LOG_INFO("removing engulf effect");
             microbeComponent.wasBeingEngulfed=false;
             //  You escaped, good job
+            auto playerSpecies = MicrobeOperations::getSpeciesComponent(world, "Default");
             if (!microbeComponent.isPlayerMicrobe && microbeComponent.speciesName != playerSpecies.name)
                 {
-                alterSpeciesPopulation(world,microbeEntity,50);
+                MicrobeOperations::alterSpeciesPopulation(world,microbeEntity,50);
                 }
             MicrobeOperations::removeEngulfedEffect(world, microbeEntity);
         }
@@ -913,9 +914,10 @@ class MicrobeSystem : ScriptSystem{
             // Return the first cell to its normal, non duplicated cell arrangement.
             if (MicrobeOperations::getSpeciesComponent(world, microbeEntity) !is null)
                 {
+                 auto playerSpecies = MicrobeOperations::getSpeciesComponent(world, "Default");
                  if (!microbeComponent.isPlayerMicrobe && microbeComponent.speciesName != playerSpecies.name)
                     {
-                    alterSpeciesPopulation(world,microbeEntity,50);
+                    MicrobeOperations::alterSpeciesPopulation(world,microbeEntity,50);
                     }
                 Species::applyTemplate(world, microbeEntity,
                     MicrobeOperations::getSpeciesComponent(world, microbeEntity));

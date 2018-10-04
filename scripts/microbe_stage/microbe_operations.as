@@ -1145,6 +1145,7 @@ void kill(CellStageWorld@ world, ObjectID microbeEntity)
     LOG_WRITE("TODO: play animation deathAnimModel");
     // deathAnimModel.GraphicalObject.playAnimation("Death", false);
     //subtract population
+    auto playerSpecies = MicrobeOperations::getSpeciesComponent(world, "Default");
     if (!microbeComponent.isPlayerMicrobe && microbeComponent.speciesName != playerSpecies.name)
         {
         alterSpeciesPopulation(world,microbeEntity,-5);
@@ -1174,7 +1175,7 @@ void kill(CellStageWorld@ world, ObjectID microbeEntity)
 void alterSpeciesPopulation(CellStageWorld@ world, ObjectID microbeEntity, int populationAlteration)
     {
     SpeciesComponent@ ourSpecies = getSpeciesComponent(world, microbeEntity);
-    if (ourSpecies!= null)
+    if (ourSpecies!is null)
         {
         ourSpecies.population += populationAlteration;
         }
