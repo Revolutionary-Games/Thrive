@@ -204,8 +204,24 @@ void
 
     // Create world if not already created //
     if(!m_impl->m_cellStage) {
-
         LOG_INFO("ThriveGame: startNewGame: Creating new cellstage world");
+        m_impl->m_cellStage =
+            std::dynamic_pointer_cast<CellStageWorld>(engine->CreateWorld(
+                window1, static_cast<int>(THRIVE_WORLD_TYPE::CELL_STAGE)));
+    } else {
+        LOG_INFO("ThriveGame: startNewGame called after already created once: "
+                 "Creating new cellstage world");
+
+        if(!m_impl->m_microbeBackgroundItem) {
+            m_impl->destroyBackgroundItem();
+        }
+        m_impl->m_microbeBackgroundItem = nullptr;
+        m_impl->m_microbeEditorBackgroundItem = nullptr;
+
+        m_impl->m_cellStage->ClearEntities();
+        m_impl->m_cellStage->_ResetSystems();
+        m_impl->m_cellStage->_ResetOrReleaseComponents();
+        m_impl->m_cellStage->Release();
         m_impl->m_cellStage =
             std::dynamic_pointer_cast<CellStageWorld>(engine->CreateWorld(
                 window1, static_cast<int>(THRIVE_WORLD_TYPE::CELL_STAGE)));
@@ -305,14 +321,16 @@ void
         m_impl->m_cellStage->GetScene()->createSceneNode(Ogre::SCENE_STATIC);
 
     // This needs to be manually destroyed later
-    m_impl->m_microbeBackgroundMesh =
-        Leviathan::GeometryHelpers::CreateScreenSpaceQuad(
-            "CellStage_background", -1, -1, 2, 2);
+    if(!m_impl->m_microbeBackgroundMesh) {
+        m_impl->m_microbeBackgroundMesh =
+            Leviathan::GeometryHelpers::CreateScreenSpaceQuad(
+                "CellStage_background", -1, -1, 2, 2);
 
-    m_impl->m_microbeBackgroundSubMesh =
-        m_impl->m_microbeBackgroundMesh->getSubMesh(0);
+        m_impl->m_microbeBackgroundSubMesh =
+            m_impl->m_microbeBackgroundMesh->getSubMesh(0);
 
-    m_impl->m_microbeBackgroundSubMesh->setMaterialName("Background");
+        m_impl->m_microbeBackgroundSubMesh->setMaterialName("Background");
+    }
 
     // Setup render queue for it
     m_impl->m_cellStage->GetScene()->getRenderQueue()->setRenderQueueMode(
@@ -321,7 +339,9 @@ void
     // This now attaches the item as well (as long as the scene node is created)
     // This makes it easier to manage the multiple backgrounds and reattaching
     // them
-    m_impl->createBackgroundItem();
+    if(!m_impl->m_microbeBackgroundItem) {
+        m_impl->createBackgroundItem();
+    }
 
     // Spawn player //
     setup = ScriptRunningSetup("setupPlayer");
