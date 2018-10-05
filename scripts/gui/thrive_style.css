@@ -613,6 +613,26 @@ DisabledButton:hover {
 	display: none;
 }
 
+#loseTextTitle {
+	position: absolute;
+	height: 100px;
+	width: 600px;
+	top: 40%;
+	left: 34%;
+	font-size: 90pt;
+	text-align: center;
+	line-height: 40px;
+}
+
+#loseTextBody {
+	position: absolute;
+	height: 100px;
+	width: 690px;
+	top: 50%;
+	left: 33.5%;
+	font-size: 20pt;
+}
+
 #suicideMsg {
 	position: absolute;
 	height: 100px;
