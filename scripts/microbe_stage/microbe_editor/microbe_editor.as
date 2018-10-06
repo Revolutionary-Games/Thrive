@@ -221,7 +221,8 @@ class MicrobeEditor{
             const auto basePos = organelle.cartesianPosition;
 
             // TODO: not sure if this rotation should be here
-            auto hexes = organelle.organelle.getRotatedHexes(organelle.rotation);
+            // auto hexes = organelle.organelle.getRotatedHexes(organelle.rotation);
+            auto hexes = organelle.organelle.getHexes();
 
             for(uint a = 0; a < hexes.length(); ++a){
 
