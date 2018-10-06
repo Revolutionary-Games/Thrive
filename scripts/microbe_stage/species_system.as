@@ -725,6 +725,28 @@ class SpeciesSystem : ScriptSystem{
             this.timeSinceLastCycle -= SPECIES_SIM_INTERVAL;
 
             // Update population numbers and split/extinct species as needed
+             // Various mass extinction events
+
+            if(species.length() > MAX_SPECIES+MAX_BACTERIA){
+                LOG_INFO("Mass extinction time");
+                // F to pay respects: TODO: add a notification for when this happens
+                doMassExtinction();
+            }
+            // Add some variability, this is a less deterministic mass
+            // Extinction eg, a meteor, etc.
+            if(GetEngine().GetRandom().GetNumber(0,1000) == 1){
+                LOG_INFO("Black swan event");
+                // F to pay respects: TODO: add a notification for when this happens
+                doMassExtinction();
+            }
+
+            // Every 8 steps or so do a cambrian explosion style
+            // Event, this should increase variablility significantly
+            if(GetEngine().GetRandom().GetNumber(0,200) <= 25){
+                LOG_INFO("Cambrian Explosion");
+                // TODO: add a notification for when this happens
+                doCambrianExplosion();
+            }
             auto numberOfSpecies = species.length();
             for(uint i = 0; i < numberOfSpecies; i++){
                 // Traversing the population backwards to avoid
@@ -760,7 +782,7 @@ class SpeciesSystem : ScriptSystem{
 
                 // Reproduction and mutation
                 // TODO:Bacteria should mutate more often then eukaryotes but this is fine for now
-                if(population > MAX_POP_SIZE){
+                if(currentSpecies.population >= MAX_POP_SIZE){
                     auto newSpecies = Species(currentSpecies, world,
                         currentSpecies.isBacteria);
 
@@ -778,7 +800,7 @@ class SpeciesSystem : ScriptSystem{
                 }
 
                 //extinction
-                if(population < MIN_POP_SIZE){
+                if(currentSpecies.population <= MIN_POP_SIZE){
                     LOG_INFO("Species " + currentSpecies.name + " went extinct");
                     currentSpecies.extinguish();
                     species.removeAt(index);
@@ -809,28 +831,6 @@ class SpeciesSystem : ScriptSystem{
                 currentBacteriaAmount++;
             }
 
-            // Various mass extinction events
-
-            if(species.length() > MAX_SPECIES+MAX_BACTERIA){
-                LOG_INFO("Mass extinction time");
-                // F to pay respects: TODO: add a notification for when this happens
-                doMassExtinction();
-            }
-            // Add some variability, this is a less deterministic mass
-            // Extinction eg, a meteor, etc.
-            if(GetEngine().GetRandom().GetNumber(0,1000) == 1){
-                LOG_INFO("Black swan event");
-                // F to pay respects: TODO: add a notification for when this happens
-                doMassExtinction();
-            }
-
-            // Every 8 steps or so do a cambrian explosion style
-            // Event, this should increase variablility significantly
-            if(GetEngine().GetRandom().GetNumber(0,200) <= 25){
-                LOG_INFO("Cambrian Explosion");
-                // TODO: add a notification for when this happens
-                doCambrianExplosion();
-            }
 
 
         }
