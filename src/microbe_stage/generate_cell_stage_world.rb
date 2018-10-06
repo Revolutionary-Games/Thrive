@@ -49,6 +49,8 @@ cellWorld = GameWorldClass.new(
                           # Don't actually call this from other places than CompoundCloudSystem
                           ConstructorInfo.new(
                             [
+                              Variable.new("owner", "CompoundCloudSystem",
+                                           noConst: true),
                               Variable.new("first", "Compound*",
                                            noRef: true),
                               Variable.new("second", "Compound*",
@@ -57,7 +59,7 @@ cellWorld = GameWorldClass.new(
                                            noRef: true),
                               Variable.new("fourth", "Compound*",
                                            noRef: true),
-                            ])],
+                            ], noangelscript: true)],
                         releaseparams: ["GetScene()"]),
     EntityComponent.new("AgentCloudComponent", [ConstructorInfo.new(
                                                   [

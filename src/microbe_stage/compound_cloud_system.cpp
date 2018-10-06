@@ -30,12 +30,14 @@ static std::atomic<int> CloudMeshNumberCounter = {0};
 ////////////////////////////////////////////////////////////////////////////////
 // CompoundCloudComponent
 ////////////////////////////////////////////////////////////////////////////////
-CompoundCloudComponent::CompoundCloudComponent(Compound* first,
+CompoundCloudComponent::CompoundCloudComponent(CompoundCloudSystem& owner,
+    Compound* first,
     Compound* second,
     Compound* third,
     Compound* fourth) :
     Leviathan::Component(TYPE),
-    m_textureName("cloud_" + std::to_string(++CloudTextureNumber))
+    m_textureName("cloud_" + std::to_string(++CloudTextureNumber)),
+    m_owner(owner)
 {
     if(!first)
         throw std::runtime_error(
@@ -76,6 +78,8 @@ CompoundCloudComponent::~CompoundCloudComponent()
 {
     LEVIATHAN_ASSERT(!m_compoundCloudsPlane && !m_sceneNode,
         "CompoundCloudComponent not Released");
+
+    m_owner.cloudReportDestroyed(this);
 }
 
 void
@@ -330,11 +334,11 @@ void
     CompoundCloudSystem::Release(CellStageWorld& world)
 {
     // Make sure all of our entities are destroyed //
+    // Because their destruction callback unregisters them we have to delete
+    // them like this
+    while(!m_managedClouds.empty()) {
 
-    for(auto iter = m_managedClouds.begin(); iter != m_managedClouds.end();
-        ++iter) {
-
-        world.DestroyEntity(iter->first);
+        world.DestroyEntity(m_managedClouds.begin()->first);
     }
 
     // Destroy the shared mesh
@@ -537,7 +541,7 @@ void
                            nullptr;
 
     CompoundCloudComponent& cloud = world.Create_CompoundCloudComponent(
-        entity, first, second, third, fourth);
+        entity, *this, first, second, third, fourth);
 
 
     initializeCloud(cloud, world.GetScene());
@@ -720,7 +724,23 @@ void
 
     cloud.initialized = true;
 }
+// ------------------------------------ //
+void
+    CompoundCloudSystem::cloudReportDestroyed(CompoundCloudComponent* cloud)
+{
+    for(auto iter = m_managedClouds.begin(); iter != m_managedClouds.end();
+        ++iter) {
 
+        if(iter->second == cloud) {
+            m_managedClouds.erase(iter);
+            return;
+        }
+    }
+
+    LOG_WARNING("CompoundCloudSystem: non-registered CompoundCloudComponent "
+                "reported that it was destroyed");
+}
+// ------------------------------------ //
 void
     CompoundCloudSystem::ProcessCloud(CompoundCloudComponent& cloud,
         int renderTime)

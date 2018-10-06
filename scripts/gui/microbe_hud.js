@@ -203,8 +203,16 @@ function killPlayerCell(event){
     playButtonPressSound();
     Thrive.killPlayerCellClicked();
 
-    //Easter egg code, shows a small message saying something from the list of messages when you kill yourself
-    let message = ["Do you want to go extinct?","Darwin Award?", "Why? :(", "How could you do this to me?","Thats not quite, 'Thriving'","B..ut...why?","Microbes may not have a nervous system, but thats still not very nice!","And so you explode in a bubble of organic chemicals, never to evolve, never to thrive...","Did you know there is in fact such a thing as 'programmed cell death', its called apoptosis."];
+    // Easter egg code, shows a small message saying something from the
+    // list of messages when you kill yourself
+    let message = ["Do you want to go extinct?","Darwin Award?", "Why? :(",
+                   "How could you do this to me?","Thats not quite, 'Thriving'","B..ut...why?",
+                   "Microbes may not have a nervous system, but thats still not very nice!",
+                   "And so you explode in a bubble of organic chemicals, never to evolve, " +
+                   "never to thrive...",
+                   "Did you know there is in fact such a thing as 'programmed cell death', " +
+                   "its called apoptosis."];
+    
     let deathEasterEggChance = randomBetween(0, 10);
     let messageNum = randomBetween(0, message.length-1);
 
@@ -232,7 +240,7 @@ function onEditorButtonClicked(event){
     // Fire event
     if(isInEngine()){
 
-        // Fire an event to tell the game to swap to the editor. It
+        // Call a function to tell the game to swap to the editor. It
         // will notify us when it is done
         Thrive.editorButtonClicked();
         
@@ -247,23 +255,20 @@ function onEditorButtonClicked(event){
     readyToEdit = false;
 }
 
+//! Exit to main menu clicked
 function onExitToMenuClicked(event)
 {
-    //Exit to main menu
-    document.getElementById("topLevelMenuContainer").style.display = '';
-    document.getElementById("topLevelMicrobeStage").style.display = 'none';
-    document.getElementById("pauseOverlay").style.display = 'none';
     if(isInEngine()){
-        Thrive.exitToMenuClicked();
 
-        let pause = Boolean(false);
-        let x = null;
-        // Start the menu music
-        Leviathan.Play2DSound("Data/Sound/main-menu-theme-2.ogg", true, pause,
-                              (source) => {
-                                  x = source;
-                              });
-    } else {}
+        // Call a function to tell the game to swap to the editor. It
+        // will notify us when it is done
+        Thrive.exitToMenuClicked();
+        
+    } else {
+
+        // Swap GUI for previewing
+        doExitToMenu();
+    }
 }
 
 //! Updates the mouse hover box with stuff

@@ -59,9 +59,6 @@ public:
     // ------------------------------------ //
     // Player input actions
     void
-        onIntroSkipPressed();
-
-    void
         editorButtonClicked();
 
     void
