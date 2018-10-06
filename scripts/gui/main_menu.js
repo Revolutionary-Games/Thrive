@@ -61,7 +61,7 @@ function runMenuSetup(){
     //
     // Use these to immediately test some specific menu
     //
-    onMicrobeIntroEnded();
+    // onMicrobeIntroEnded();
     // doEnterMicrobeEditor();
 }
 
