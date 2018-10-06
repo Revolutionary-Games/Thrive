@@ -346,6 +346,15 @@ void createAgentCloud(CellStageWorld@ world, CompoundId compoundId, Float3 pos,
     auto timedLifeComponent = world.Create_TimedLifeComponent(agentEntity, int(lifetime));
 }
 
+void resetWorld(CellStageWorld@ world)
+    {
+    // We have to call this so we get a new batch of species and so that everything spawns properly.
+    // I worry that not just creating a whole new world will cause tons of problems later aswell ,
+    // for example when we want new planets and everything, but eh. We can call it all in this method.
+
+    cast<SpeciesSystem>(world.GetScriptSystem("SpeciesSystem")).resetAutoEvo();
+    cast<SpeciesSystem>(world.GetScriptSystem("SpeciesSystem")).createNewEcoSystem();
+    }
 
 
 

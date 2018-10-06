@@ -697,19 +697,8 @@ class SpeciesSystem : ScriptSystem{
         @this.world = cast<CellStageWorld>(w);
         assert(this.world !is null, "SpeciesSystem expected CellStageWorld");
 
-        // This was commented out in the Lua version... TODO: check that this works
-        //can confirtm, it crashes here - Untrustedlife
         // This is needed to actually have AI species in the world
-        for(int i = 0; i < INITIAL_SPECIES; i++){
-            createSpecies();
-            currentEukaryoteAmount++;
-        }
-
-        //generate bacteria aswell
-        for(int i = 0; i < INITIAL_BACTERIA; i++){
-            createBacterium();
-            currentBacteriaAmount++;
-        }
+        createNewEcoSystem();
     }
 
     void Release(){
@@ -871,6 +860,8 @@ class SpeciesSystem : ScriptSystem{
         }
 
         species.resize(0);
+    currentBacteriaAmount = 0;
+    currentEukaryoteAmount = 0;
     }
 
     void doMassExtinction(){
@@ -898,6 +889,19 @@ class SpeciesSystem : ScriptSystem{
         species.insertLast(newSpecies);
     }
 
+    void createNewEcoSystem()
+        {
+        for(int i = 0; i < INITIAL_SPECIES; i++){
+            createSpecies();
+            currentEukaryoteAmount++;
+        }
+
+        //generate bacteria aswell
+        for(int i = 0; i < INITIAL_BACTERIA; i++){
+            createBacterium();
+            currentBacteriaAmount++;
+        }
+        }
     private int timeSinceLastCycle = 0;
     private array<Species@> species;
     private CellStageWorld@ world;
@@ -1263,6 +1267,5 @@ string mutateProkaryote(const string &in stringCode ){
 void resetAutoEvo(CellStageWorld@ world){
     cast<SpeciesSystem>(world.GetScriptSystem("SpeciesSystem")).resetAutoEvo();
 }
-
 }
 

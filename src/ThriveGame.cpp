@@ -188,6 +188,9 @@ void
 void
     ThriveGame::startNewGame()
 {
+    // Used to stop it from clearing entities when rwe restart so species can
+    // spawn.
+    bool restarted = false;
     // To work with instant start, we need to invoke this if we have no cell
     // stage world
     if(!m_postLoadRan) {
@@ -208,6 +211,12 @@ void
         m_impl->m_cellStage =
             std::dynamic_pointer_cast<CellStageWorld>(engine->CreateWorld(
                 window1, static_cast<int>(THRIVE_WORLD_TYPE::CELL_STAGE)));
+    } else {
+        restarted = true;
+        m_impl->m_cellStage->ClearEntities();
+        // We also need to somehow force stop all the music here.
+        LOG_INFO("ThriveGame: startNewGame called after already created once: "
+                 "Creating new cellstage world");
     }
 
     LEVIATHAN_ASSERT(m_impl->m_cellStage, "Cell stage world creation failed");
@@ -227,7 +236,9 @@ void
 
 
     // Clear world //
-    m_impl->m_cellStage->ClearEntities();
+    if(restarted == false) {
+        m_impl->m_cellStage->ClearEntities();
+    }
 
     // TODO: unpause, if it was paused
 
@@ -326,6 +337,16 @@ void
         m_impl->createBackgroundItem();
     }
 
+    // Gen species if this is a restart//
+    if(restarted) {
+        ScriptRunningSetup setup("resetWorld");
+        auto returned =
+            ThriveGame::Get()->getMicrobeScripts()->ExecuteOnModule<void>(
+                setup, false, m_impl->m_cellStage.get());
+
+        if(returned.Result != SCRIPT_RUN_RESULT::Success)
+            LOG_ERROR("Failed to run script side resetWorld");
+    }
     // Spawn player //
     setup = ScriptRunningSetup("setupPlayer");
 
