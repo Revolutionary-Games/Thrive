@@ -496,6 +496,12 @@ class Species{
         // Bacteria are tiny, start off with a max of 3 hexes (maybe
         // we should start them all off with just one? )
         auto stringSize = GetEngine().GetRandom().GetNumber(0,2);
+        if (GetEngine().GetRandom().GetNumber(0,100) <= 10){
+            // Generate an extremely large cell, players never really had enough challenge
+            LOG_INFO("Generating EPIC bacterium");
+            stringSize = GetEngine().GetRandom().GetNumber(3,
+                12);
+         }
         // Bacteria
         // will randomly have 1 of 3 organelles right now, photosynthesizing protiens,
         // respiratory Protiens, or Oxy Toxy Producing Protiens, also pure cytoplasm
