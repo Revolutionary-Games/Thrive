@@ -84,7 +84,7 @@ class MovementOrganelle : OrganelleComponent{
         renderNode.Node.setPosition(organellePos);
 
         renderNode.Node.setOrientation(Ogre::Quaternion(Ogre::Degree(angle),
-                Ogre::Vector3(0, 0, 1)));
+                Ogre::Vector3(0, 1, 1)));
     }
 
     // void MovementOrganelle.load(storage){
@@ -171,11 +171,19 @@ class MovementOrganelle : OrganelleComponent{
         auto delta = nucleus - organellePos;
         const Float3 exit = nucleus - delta;
         auto membraneComponent = organelle.world.GetComponent_MembraneComponent(microbeEntity);
-        auto membraneCoords = membraneComponent.GetExternalOrganelle(exit.X, exit.Z);
+        auto membraneCoords = membraneComponent.GetExternalOrganelle(exit.X, exit.Z);;
+        float angle = atan2(-delta.Z, delta.X);
+        if(angle < 0){
+            angle = angle + (2 * PI);
+        }
+
+        angle = ((angle * 180)/PI - 90) % 360;
 
         auto renderNode = organelle.world.GetComponent_RenderNode(organelle.organelleEntity);
         renderNode.Node.setPosition(membraneCoords);
 
+        renderNode.Node.setOrientation(Ogre::Quaternion(Ogre::Degree(angle),
+                Ogre::Vector3(0, 1, 0))*Ogre::Quaternion(Ogre::Degree(270),Ogre::Vector3(0, 0, 1)));
 
         //Grab components
         MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(

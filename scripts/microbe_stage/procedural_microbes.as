@@ -123,7 +123,7 @@ OrganelleTemplatePlaced@ getPosition(const string &in organelleName,
     for(int j = 0; j <= 5; ++j){
         int rotation = 360 * j / 6;
         if(isValidPlacement(organelleName, q, r, rotation, organelleList)){
-            return OrganelleTemplatePlaced(organelleName, q, r, rotation+180);
+            return OrganelleTemplatePlaced(organelleName, q, r, rotation);
         }
     }
 
@@ -158,7 +158,7 @@ OrganelleTemplatePlaced@ getPosition(const string &in organelleName,
                     int rotation = (360 * j / 6);
 
                     if(isValidPlacement(organelleName, q, r, rotation, organelleList)){
-                        return OrganelleTemplatePlaced(organelleName, q, r, rotation+180);
+                        return OrganelleTemplatePlaced(organelleName, q, r, rotation);
                     }
                 }
             }

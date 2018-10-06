@@ -368,8 +368,8 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
                 components[i].update(microbeEntity, this, logicTime);
             }
         } else {
-
-            LOG_INFO("Tried to update entity of extinct species...");
+            //LOG_INFO("Tried to update entity of extinct species...");
+            //Maybe just kill them here, to prevent spam of "no species found with name X"
         }
     }
 
@@ -703,9 +703,8 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
         // never changes
         renderNode.Node.setPosition(offset + this.cartesianPosition);
         //maybe instead of changing this here we should do so in the generation routine.
-        renderNode.Node.setOrientation(Ogre::Quaternion(Ogre::Degree(rotation),
-                Ogre::Vector3(0, 1, 1)));
-
+        renderNode.Node.setOrientation(Ogre::Quaternion(Ogre::Degree(90),
+                Ogre::Vector3(1, 0, 0))*Ogre::Quaternion(Ogre::Degree(180),Ogre::Vector3(0, 1, 0))*Ogre::Quaternion(Ogre::Degree(rotation),Ogre::Vector3(0, 0, 1)));
         // Add hex collision shapes
         auto hexes = organelle.getHexes();
 
@@ -789,7 +788,6 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
 
         //iterating on each OrganelleComponent
         for(uint i = 0; i < components.length(); ++i){
-
             components[i].onRemovedFromMicrobe(microbeEntity, this /*, q, r*/);
         }
 

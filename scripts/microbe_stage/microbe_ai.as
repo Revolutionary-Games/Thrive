@@ -40,6 +40,7 @@ class MicrobeAIControllerComponent : ScriptComponent{
     double speciesAggression = -1.0f;
     double speciesFear = -1.0f;
     double speciesActivity = -1.0f;
+    double speciesFocus = -1.0f;
     bool hasTargetPosition = false;
     Float3 targetPosition = Float3(0, 0, 0);
     bool hasSearchedCompoundId = false;
@@ -112,22 +113,31 @@ class MicrobeAISystem : ScriptSystem{
             // ai interval
             aiComponent.intervalRemaining += logicTime;
             // Cache fear and aggression as we dont wnat to be calling "getSpecies" every frame for every microbe (maybe its not a big deal)
+            SpeciesComponent@ ourSpecies = MicrobeOperations::getSpeciesComponent(world, microbeEntity);
+            if (ourSpecies !is null)
+            {
             if (aiComponent.speciesAggression == -1.0f)
                 {
-                aiComponent.speciesAggression = MicrobeOperations::getSpeciesComponent(world, microbeEntity).aggression;
+                aiComponent.speciesAggression = ourSpecies.aggression;
                 }
             if (aiComponent.speciesFear == -1.0f)
                 {
-                aiComponent.speciesFear = MicrobeOperations::getSpeciesComponent(world, microbeEntity).fear;
+                aiComponent.speciesFear = ourSpecies.fear;
                 }
             if (aiComponent.speciesActivity == -1.0f)
                 {
-                aiComponent.speciesActivity = MicrobeOperations::getSpeciesComponent(world, microbeEntity).activity;
+                aiComponent.speciesActivity =ourSpecies.activity;
                 }
+            if (aiComponent.speciesFocus == -1.0f)
+                {
+                aiComponent.speciesFocus = ourSpecies.focus;
+                }
+            }
                 // Were for debugging
                 //LOG_INFO("AI aggression"+aiComponent.speciesAggression);
                 //LOG_INFO("AI fear"+aiComponent.speciesFear);
-
+                //LOG_INFO("AI Focus"+aiComponent.speciesFocus);
+                //LOG_INFO("AI Activity"+aiComponent.speciesActivity);
             while(aiComponent.intervalRemaining > aiComponent.reevalutationInterval) {
                 aiComponent.intervalRemaining -= aiComponent.reevalutationInterval;
                 int numberOfAgentVacuoles = int(
@@ -144,7 +154,7 @@ class MicrobeAISystem : ScriptSystem{
                 predator = getNearestPredatorItem(components,allMicrobes);
 
                 //30 seconds about
-                if (aiComponent.boredom == GetEngine().GetRandom().GetNumber(aiComponent.speciesActivity,1000.0f)){
+                if (aiComponent.boredom == GetEngine().GetRandom().GetNumber(aiComponent.speciesFocus,1000.0f+aiComponent.speciesFocus)){
                     // Occassionally you need to reevaluate things
                     aiComponent.boredom = 0;
                     if (GetEngine().GetRandom().GetNumber(0.0f,400.0f) <=  aiComponent.speciesActivity)
@@ -433,21 +443,32 @@ class MicrobeAISystem : ScriptSystem{
         Position@ position = components.third;
         // Tick the engulf tick
         aiComponent.ticksSinceLastToggle+=1;
-        // Chase your prey
-        aiComponent.targetPosition =  world.GetComponent_Position(prey)._Position;
-        auto vec = (aiComponent.targetPosition - position._Position);
-        aiComponent.direction = vec.Normalize();
-        microbeComponent.facingTargetPoint = aiComponent.targetPosition;
-        microbeComponent.movementDirection = Float3(0, 0, -AI_MOVEMENT_SPEED);
-        aiComponent.hasTargetPosition = true;
+        // Required For AI
         CompoundId oxytoxyId = SimulationParameters::compoundRegistry().getTypeId("oxytoxy");
         MicrobeComponent@ secondMicrobeComponent = cast<MicrobeComponent>(
             world.GetScriptComponentHolder("MicrobeComponent").Find(prey));
-
         // Agent vacuoles.
         int numberOfAgentVacuoles = int(
                 microbeComponent.specialStorageOrganelles[formatUInt(oxytoxyId)]);
 
+        // Chase your prey if you dont like acting like a plant
+        // Allows for emergence of Predatory Plants (Like a single cleed version of a venus fly trap)
+        // Creatures with lethargicness of 400 will not actually chase prey, just lie in wait
+        aiComponent.targetPosition =  world.GetComponent_Position(prey)._Position;
+        auto vec = (aiComponent.targetPosition - position._Position);
+        aiComponent.direction = vec.Normalize();
+        microbeComponent.facingTargetPoint = aiComponent.targetPosition;
+        aiComponent.hasTargetPosition = true;
+
+        //Always set target Position, for use later in AI
+        if (aiComponent.speciesAggression+GetEngine().GetRandom().GetNumber(-100.0f,100.0f) > aiComponent.speciesActivity)
+            {
+            microbeComponent.movementDirection = Float3(0, 0, -AI_MOVEMENT_SPEED);
+            }
+            else
+            {
+            microbeComponent.movementDirection = Float3(0, 0, 0);
+            }
 
             // Turn off engulf if prey is Dead
             // This is probabbly not working
@@ -458,6 +479,12 @@ class MicrobeAISystem : ScriptSystem{
                     {
                     MicrobeOperations::toggleEngulfMode(world, microbeEntity);
                     }
+                //  You got a kill, good job
+            auto playerSpecies = MicrobeOperations::getSpeciesComponent(world, "Default");
+            if (!microbeComponent.isPlayerMicrobe && microbeComponent.speciesName != playerSpecies.name)
+                {
+                MicrobeOperations::alterSpeciesPopulation(world,microbeEntity,50);
+                }
             }
             else
             {
@@ -478,11 +505,23 @@ class MicrobeAISystem : ScriptSystem{
             }
 
           //  Shoot toxins if able
-          //  seems pretty arbitrary tbh
-            if (microbeComponent.hitpoints > 0 && numberOfAgentVacuoles > 0 && (position._Position -  aiComponent.targetPosition).LengthSquared() <= 2000)
+          // There should be AI that prefers shooting over engulfing, etc, not sure how to model
+          // that without a million and one variables perhaps its a mix? Maybe a creature with a focus less then a certain amount simply never attacks that way?
+          // Maybe a cvreature with a specific focuis, only ever shoots and never engulfs? Maybe their letharcgicness impacts that? I just dont want each enemy to feal the same you know.
+          // For now creatures with a focus under 100 will never shoot.
+          //LOG_INFO("Our focus is: "+ aiComponent.speciesFocus);
+
+          if (aiComponent.speciesFocus >= 100.0f)
+          {
+            if (microbeComponent.hitpoints > 0 && numberOfAgentVacuoles > 0 &&
+                (position._Position -  aiComponent.targetPosition).LengthSquared() <= aiComponent.speciesFocus*10.0f)
                     {
-                    MicrobeOperations::emitAgent(world,microbeEntity, oxytoxyId,1.0f);
+                    if (MicrobeOperations::getCompoundAmount(world,microbeEntity,oxytoxyId) >= MINIMUM_AGENT_EMISSION_AMOUNT)
+                        {
+                        MicrobeOperations::emitAgent(world,microbeEntity, oxytoxyId,10.0f,aiComponent.speciesFocus*10.0f);
+                        }
                     }
+          }
         }
 
     // For self defense (not nessessarily fleeing)
@@ -504,6 +543,11 @@ class MicrobeAISystem : ScriptSystem{
         }
 
     void preyFlee(ObjectID microbeEntity, MicrobeAIControllerComponent@ aiComponent, MicrobeComponent@ microbeComponent, Position@ position){
+            CompoundId oxytoxyId = SimulationParameters::compoundRegistry().getTypeId("oxytoxy");
+            // Agent vacuoles.
+            int numberOfAgentVacuoles = int(
+                microbeComponent.specialStorageOrganelles[formatUInt(oxytoxyId)]);
+
             if (GetEngine().GetRandom().GetNumber(0,100) <= 40)
                 {
                 // Scatter
@@ -562,7 +606,21 @@ class MicrobeAISystem : ScriptSystem{
                 microbeComponent.facingTargetPoint = aiComponent.targetPosition;
                 microbeComponent.movementDirection = Float3(0, 0, -AI_MOVEMENT_SPEED);
                 aiComponent.hasTargetPosition = true;
-            }
+
+           }
+           //Freak out and fire toxins everywhere
+          if (aiComponent.speciesAggression > aiComponent.speciesFear && aiComponent.speciesFocus >= GetEngine().GetRandom().GetNumber(0.0f,400.0f))
+          {
+            if (microbeComponent.hitpoints > 0 && numberOfAgentVacuoles > 0 &&
+                (position._Position -  aiComponent.targetPosition).LengthSquared() <= aiComponent.speciesFocus*10.0f)
+                    {
+                    if (MicrobeOperations::getCompoundAmount(world,microbeEntity,oxytoxyId) >= MINIMUM_AGENT_EMISSION_AMOUNT)
+                        {
+                        MicrobeOperations::emitAgent(world,microbeEntity, oxytoxyId,10.0f,aiComponent.speciesFocus*10.0f);
+                        }
+                    }
+          }
+
         }
 
     // For for firguring out which state to enter
@@ -570,7 +628,7 @@ class MicrobeAISystem : ScriptSystem{
         {
         //LOG_INFO("evaluating");
         MicrobeAIControllerComponent@ aiComponent = components.first;
-       if (GetEngine().GetRandom().GetNumber(0.0f,440.0f) <=  aiComponent.speciesActivity)
+       if (GetEngine().GetRandom().GetNumber(0.0f,500.0f) <=  aiComponent.speciesActivity)
             {
             aiComponent.lifeState = PLANTLIKE_STATE;
             aiComponent.boredom = 0;

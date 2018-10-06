@@ -6,14 +6,25 @@ float randomColourChannel(){
     return GetEngine().GetRandom().GetNumber(MIN_COLOR, MAX_COLOR);
 }
 
+float randomMutationColourChannel(){
+    return GetEngine().GetRandom().GetNumber(MIN_COLOR_MUTATION, MAX_COLOR_MUTATION);
+}
+
 float randomOpacity(){
     return GetEngine().GetRandom().GetNumber(MIN_OPACITY, MAX_OPACITY);
+}
+
+float randomOpacityChitin(){
+    return GetEngine().GetRandom().GetNumber(MIN_OPACITY_CHITIN, MAX_OPACITY_CHITIN);
 }
 
 float randomOpacityBacteria(){
     return GetEngine().GetRandom().GetNumber(MIN_OPACITY+1, MAX_OPACITY+1);
 }
 
+float randomMutationOpacity(){
+    return GetEngine().GetRandom().GetNumber(MIN_OPACITY_MUTATION, MAX_OPACITY_MUTATION);
+}
 
 Float4 randomColour(float opaqueness = randomOpacity()){
     return Float4(randomColourChannel(), randomColourChannel(), randomColourChannel(),
@@ -26,7 +37,6 @@ Float4 randomProkayroteColour(float opaqueness = randomOpacityBacteria()){
 }
 
 string generateNameSection(){
-
     auto prefixCofixList = SimulationParameters::speciesNameController().getPrefixCofix();
     auto prefix_v = SimulationParameters::speciesNameController().getVowelPrefixes();
     auto prefix_c = SimulationParameters::speciesNameController().getConsonantPrefixes();
@@ -74,10 +84,9 @@ string generateNameSection(){
 
 const dictionary DEFAULT_INITIAL_COMPOUNDS =
     {
-        {"atp", InitialCompound(10,25)},
-        {"glucose", InitialCompound(10,20)},
-        {"ammonia", InitialCompound(10,20)},
-        {"oxytoxy", InitialCompound(1)}
+        {"atp", InitialCompound(10,100)},
+        {"glucose", InitialCompound(10,100)},
+        {"ammonia", InitialCompound(10,100)}
     };
 
 string randomSpeciesName(){
@@ -114,11 +123,12 @@ class Species{
                 MAX_SPECIES_FEAR);
         this.activity = GetEngine().GetRandom().GetFloat(0.0f,
                 MAX_SPECIES_ACTIVITY);
-
-         LOG_INFO("aggression is:"+aggression);
-         LOG_INFO("fear is:"+fear);
-         LOG_INFO("lethargicness is:"+activity);
-
+        this.focus = GetEngine().GetRandom().GetFloat(0.0f,
+                MAX_SPECIES_FOCUS);
+         LOG_INFO("Aggression is:"+aggression);
+         LOG_INFO("Fear is:"+fear);
+         LOG_INFO("Lethargicness is:"+activity);
+         LOG_INFO("Focus is:"+focus);
             auto stringSize = GetEngine().GetRandom().GetNumber(MIN_INITIAL_LENGTH,
                 MAX_INITIAL_LENGTH);
 
@@ -152,8 +162,16 @@ class Species{
                 }
             }
 
-            this.speciesMembraneType = MEMBRANE_TYPE::MEMBRANE;
             this.colour = getRightColourForSpecies();
+
+         if (GetEngine().GetRandom().GetNumber(0,100) < 50)
+            {
+            this.speciesMembraneType = MEMBRANE_TYPE::MEMBRANE;
+            }
+         else {
+               this.speciesMembraneType = MEMBRANE_TYPE::DOUBLEMEMBRANE;
+               this.colour.W = randomOpacityChitin();;
+               }
             commonConstructor(world);
             this.setupSpawn(world);
 
@@ -175,42 +193,48 @@ class Species{
 
     // Creates a mutated version of the species and reduces the species population by half
     Species(Species@ parent, CellStageWorld@ world, bool isBacteria){
-        this.isBacteria=isBacteria;
+        this.isBacteria=parent.isBacteria;
         if (!isBacteria)
         {
             name = randomSpeciesName();
             epithet = generateNameSection();
+            genus = parent.genus;
 
         // Variables used in AI to determine general behavior mutate these
-        this.aggression = this.aggression+GetEngine().GetRandom().GetFloat(MIN_SPECIES_PERSONALITY_MUTATION,
+        this.aggression = parent.aggression+GetEngine().GetRandom().GetFloat(MIN_SPECIES_PERSONALITY_MUTATION,
                 MAX_SPECIES_PERSONALITY_MUTATION);
-        this.fear = this.fear+GetEngine().GetRandom().GetFloat(MIN_SPECIES_PERSONALITY_MUTATION,
+        this.fear = parent.fear+GetEngine().GetRandom().GetFloat(MIN_SPECIES_PERSONALITY_MUTATION,
                 MAX_SPECIES_PERSONALITY_MUTATION);
-        this.activity = this.activity+GetEngine().GetRandom().GetFloat(MIN_SPECIES_PERSONALITY_MUTATION,
+        this.activity = parent.activity+GetEngine().GetRandom().GetFloat(MIN_SPECIES_PERSONALITY_MUTATION,
                 MAX_SPECIES_PERSONALITY_MUTATION);
-
-         LOG_INFO("aggression is:"+aggression);
-         LOG_INFO("fear is:"+fear);
-         LOG_INFO("lethargicness is:"+activity);
-
+        this.focus = parent.focus+GetEngine().GetRandom().GetFloat(MIN_SPECIES_PERSONALITY_MUTATION,
+                MAX_SPECIES_PERSONALITY_MUTATION);
+        // Make sure not over or under our scales
+        cleanPersonality();
+        // Subtly mutate color
+        if (GetEngine().GetRandom().GetNumber(0,5)==0)
+            {
+            this.colour = Float4(parent.colour.X+randomMutationColourChannel(),parent.colour.Y+randomMutationColourChannel(),parent.colour.Z+randomMutationColourChannel(), parent.colour.W+randomMutationOpacity());
+            }
+         LOG_INFO("Aggression is:"+aggression);
+         LOG_INFO("Fear is:"+fear);
+         LOG_INFO("Lethargicness is:"+activity);
+         LOG_INFO("Focus is:"+focus);
             // Chance of new color needs to be low
             if (GetEngine().GetRandom().GetNumber(0,100)==1)
             {
                 LOG_INFO("New Genus");
                 // We can do more fun stuff here later
                 genus = generateNameSection();
-                this.colour = randomColour();
+                // New genuses get to double their color change
+            this.colour = Float4(parent.colour.X+randomMutationColourChannel(),parent.colour.Y+randomMutationColourChannel(),parent.colour.Z+randomMutationColourChannel(), parent.colour.W+randomMutationOpacity());
             }
-            else
-            {
-                this.colour = parent.colour;
-            }
+
             this.population = int(floor(parent.population / 2.f));
             parent.population = int(ceil(parent.population / 2.f));
             this.stringCode = Species::mutate(parent.stringCode);
 
-            this.speciesMembraneType = MEMBRANE_TYPE::MEMBRANE;
-            this.colour = getRightColourForSpecies();
+            this.speciesMembraneType = parent.speciesMembraneType;
 
             commonConstructor(world);
 
@@ -223,6 +247,46 @@ class Species{
         }
     }
 
+    private void cleanPersonality(){
+    // Is there a better way of doing this while keeping it clean?
+    // Aggression
+    if (this.aggression > MAX_SPECIES_AGRESSION)
+        {
+        this.aggression=MAX_SPECIES_AGRESSION;
+        }
+    if (this.aggression < 0.0f)
+        {
+        this.aggression=0;
+        }
+    // Fear
+    if (this.fear > MAX_SPECIES_FEAR)
+        {
+        this.fear=MAX_SPECIES_FEAR;
+        }
+    if (this.fear < 0.0f)
+        {
+        this.fear=0;
+        }
+    // Activity
+    if (this.activity > MAX_SPECIES_ACTIVITY)
+        {
+        this.activity=MAX_SPECIES_ACTIVITY;
+        }
+    if (this.activity < 0.0f)
+        {
+        this.activity=0;
+        }
+    // Focus
+    if (this.focus > MAX_SPECIES_FOCUS)
+        {
+        this.focus=MAX_SPECIES_FOCUS;
+        }
+    if (this.focus < 0.0f)
+        {
+        this.focus=0;
+        }
+    }
+
     private void commonConstructor(CellStageWorld@ world){
 
         @forWorld = world;
@@ -231,7 +295,7 @@ class Species{
 
         templateEntity = Species::createSpecies(forWorld, this.name, organelles, this.colour,
             this.isBacteria, this.speciesMembraneType,
-            DEFAULT_INITIAL_COMPOUNDS, this.aggression, this.fear);
+            DEFAULT_INITIAL_COMPOUNDS, this.aggression, this.fear, this.activity, this.focus);
     }
 
     // Delete a species
@@ -392,7 +456,7 @@ class Species{
         // And register new
         LOG_INFO("Registering bacteria to spawn: " + name);
         this.id = forWorld.GetSpawnSystem().addSpawnType(
-            factory, DEFAULT_SPAWN_DENSITY, //spawnDensity should depend on population
+            factory, 1.0f/(STARTING_SPAWN_DENSITY-(this.population*5)), //spawnDensity should depend on population
             BACTERIA_SPAWN_RADIUS);
     }
 
@@ -409,7 +473,7 @@ class Species{
         // And register new
         LOG_INFO("Registering species to spawn: " + name);
         this.id = forWorld.GetSpawnSystem().addSpawnType(
-            factory, DEFAULT_SPAWN_DENSITY, //spawnDensity should depend on population
+            factory, 1.0f/(STARTING_SPAWN_DENSITY-(this.population*5)), //spawnDensity should depend on population
             MICROBE_SPAWN_RADIUS);
     }
 
@@ -428,11 +492,12 @@ class Species{
                 MAX_SPECIES_FEAR);
         this.activity = GetEngine().GetRandom().GetFloat(0.0f,
                 MAX_SPECIES_ACTIVITY);
-
-         LOG_INFO("aggression is:"+aggression);
-         LOG_INFO("fear is:"+fear);
-         LOG_INFO("lethargicness is:"+activity);
-
+        this.focus = GetEngine().GetRandom().GetFloat(0.0f,
+                MAX_SPECIES_FOCUS);
+         LOG_INFO("Aggression is:"+aggression);
+         LOG_INFO("Fear is:"+fear);
+         LOG_INFO("Lethargicness is:"+activity);
+         LOG_INFO("Focus is:"+focus);
         // Bacteria are tiny, start off with a max of 3 hexes (maybe
         // we should start them all off with just one? )
         auto stringSize = GetEngine().GetRandom().GetNumber(0,2);
@@ -471,50 +536,64 @@ class Species{
             this.stringCode += chosenType;
         }
         // Allow bacteria to sometimes start with a flagella instead of having to evolve it
+        this.colour = getRightColourForSpecies();
         if (GetEngine().GetRandom().GetNumber(1,100) <= bacterialFlagellumChance)
         {
             this.stringCode+=getOrganelleDefinition("flagellum").gene;;
         }
-
-        this.speciesMembraneType = MEMBRANE_TYPE::WALL;
-        this.colour = getRightColourForSpecies();
+        if (GetEngine().GetRandom().GetNumber(0,100) < 50)
+            {
+            this.speciesMembraneType = MEMBRANE_TYPE::WALL;
+            }
+         else {
+              this.speciesMembraneType = MEMBRANE_TYPE::CHITIN;
+              this.colour.W = randomOpacityChitin();
+               }
         commonConstructor(world);
         this.setupBacteriaSpawn(world);
     }
 
     void mutateBacteria(Species@ parent, CellStageWorld@ world){
         name = randomBacteriaName();
+        genus = parent.genus;
         epithet = generateNameSection();
 
         // Variables used in AI to determine general behavior mutate these
-        this.aggression = this.aggression+GetEngine().GetRandom().GetFloat(MIN_SPECIES_PERSONALITY_MUTATION,
+        this.aggression = parent.aggression+GetEngine().GetRandom().GetFloat(MIN_SPECIES_PERSONALITY_MUTATION,
                 MAX_SPECIES_PERSONALITY_MUTATION);
-        this.fear = this.fear+GetEngine().GetRandom().GetFloat(MIN_SPECIES_PERSONALITY_MUTATION,
+        this.fear = parent.fear+GetEngine().GetRandom().GetFloat(MIN_SPECIES_PERSONALITY_MUTATION,
                 MAX_SPECIES_PERSONALITY_MUTATION);
-        this.activity = this.activity+GetEngine().GetRandom().GetFloat(MIN_SPECIES_PERSONALITY_MUTATION,
+        this.activity = parent.activity+GetEngine().GetRandom().GetFloat(MIN_SPECIES_PERSONALITY_MUTATION,
+                MAX_SPECIES_PERSONALITY_MUTATION);
+        this.focus = parent.focus+GetEngine().GetRandom().GetFloat(MIN_SPECIES_PERSONALITY_MUTATION,
                 MAX_SPECIES_PERSONALITY_MUTATION);
 
-         LOG_INFO("aggression is:"+aggression);
-         LOG_INFO("fear is:"+fear);
-         LOG_INFO("lethargicness is:"+activity);
+        // Make sure not over or under our scales
+        cleanPersonality();
+
+        // Subtly mutate color
+        if (GetEngine().GetRandom().GetNumber(0,5)==0)
+            {
+            this.colour = Float4(parent.colour.X+randomMutationColourChannel(),parent.colour.Y+randomMutationColourChannel(),parent.colour.Z+randomMutationColourChannel(), parent.colour.W+randomMutationOpacity());
+            }
+         LOG_INFO("Aggression is:"+aggression);
+         LOG_INFO("Fear is:"+fear);
+         LOG_INFO("Lethargicness is:"+activity);
+         LOG_INFO("Focus is:"+focus);
 
         if (GetEngine().GetRandom().GetNumber(0,100)==1)
         {
             LOG_INFO("New Genus of bacteria");
             // We can do more fun stuff here later
             genus = generateNameSection();
-            this.colour = randomProkayroteColour();
-        }
-        else
-        {
-            this.colour = parent.colour;
+            // New genuses get to double color change
+            this.colour = Float4(parent.colour.X+randomMutationColourChannel(),parent.colour.Y+randomMutationColourChannel(),parent.colour.Z+randomMutationColourChannel(), parent.colour.W+randomMutationOpacity());
         }
         this.population = int(floor(parent.population / 2.f));
         parent.population = int(ceil(parent.population / 2.f));
 
         this.stringCode = Species::mutateProkaryote(parent.stringCode);
-        this.speciesMembraneType = MEMBRANE_TYPE::WALL;
-        this.colour = getRightColourForSpecies();
+        this.speciesMembraneType = parent.speciesMembraneType;
         commonConstructor(world);
         this.setupBacteriaSpawn(world);
     }
@@ -537,6 +616,13 @@ class Species{
         this.population += GetEngine().GetRandom().GetNumber(700, 1500);
     }
 
+    int getPopulationFromAutoEvo(){
+        return this.population;
+    }
+
+    void modifyPopulationFromAUtoEvo(int population){
+        this.population+=population;
+    }
     Float4 getRightColourForSpecies(){
         if (isBacteria){
             return randomProkayroteColour();
@@ -552,9 +638,10 @@ class Species{
     double aggression = 100.0f;
     double fear = 100.0f;
     double activity = 0.0f;
+    double focus = 0.0f;
     MEMBRANE_TYPE speciesMembraneType;
     string stringCode;
-    int population = INITIAL_POPULATION;
+    int population = GetEngine().GetRandom().GetNumber(600,INITIAL_POPULATION);
     Float4 colour = getRightColourForSpecies();
 
     //! The species entity that has this species' SpeciesComponent
@@ -572,17 +659,17 @@ class Species{
 ////////////////////////////////////////////////////////////////////////////////
 
 // How big is a newly created species's population.
-const auto INITIAL_POPULATION = 2000;
+const auto INITIAL_POPULATION = 3000;
 
 // How much time does it take for the simulation to update.
-const auto SPECIES_SIM_INTERVAL = 10000;
+const auto SPECIES_SIM_INTERVAL = 5000;
 
 // If a specie's population goes below this it goes extinct.
-const auto MIN_POP_SIZE = 500;
+const auto MIN_POP_SIZE = 2;
 
 // If a specie's population goes above this it gets split in half and a
 // new mutated species apears. this should be randomized
-const auto MAX_POP_SIZE = 5000;
+const auto MAX_POP_SIZE = 6000;
 
 // The amount of species at the start of the microbe stage (not counting Default/Player)
 const auto INITIAL_SPECIES = 7;
@@ -638,6 +725,28 @@ class SpeciesSystem : ScriptSystem{
             this.timeSinceLastCycle -= SPECIES_SIM_INTERVAL;
 
             // Update population numbers and split/extinct species as needed
+             // Various mass extinction events
+
+            if(species.length() > MAX_SPECIES+MAX_BACTERIA){
+                LOG_INFO("Mass extinction time");
+                // F to pay respects: TODO: add a notification for when this happens
+                doMassExtinction();
+            }
+            // Add some variability, this is a less deterministic mass
+            // Extinction eg, a meteor, etc.
+            if(GetEngine().GetRandom().GetNumber(0,1000) == 1){
+                LOG_INFO("Black swan event");
+                // F to pay respects: TODO: add a notification for when this happens
+                doMassExtinction();
+            }
+
+            // Every 8 steps or so do a cambrian explosion style
+            // Event, this should increase variablility significantly
+            if(GetEngine().GetRandom().GetNumber(0,200) <= 25){
+                LOG_INFO("Cambrian Explosion");
+                // TODO: add a notification for when this happens
+                doCambrianExplosion();
+            }
             auto numberOfSpecies = species.length();
             for(uint i = 0; i < numberOfSpecies; i++){
                 // Traversing the population backwards to avoid
@@ -673,7 +782,7 @@ class SpeciesSystem : ScriptSystem{
 
                 // Reproduction and mutation
                 // TODO:Bacteria should mutate more often then eukaryotes but this is fine for now
-                if(population > MAX_POP_SIZE){
+                if(currentSpecies.population >= MAX_POP_SIZE){
                     auto newSpecies = Species(currentSpecies, world,
                         currentSpecies.isBacteria);
 
@@ -691,7 +800,7 @@ class SpeciesSystem : ScriptSystem{
                 }
 
                 //extinction
-                if(population < MIN_POP_SIZE){
+                if(currentSpecies.population <= MIN_POP_SIZE){
                     LOG_INFO("Species " + currentSpecies.name + " went extinct");
                     currentSpecies.extinguish();
                     species.removeAt(index);
@@ -722,28 +831,6 @@ class SpeciesSystem : ScriptSystem{
                 currentBacteriaAmount++;
             }
 
-            // Various mass extinction events
-
-            if(species.length() > MAX_SPECIES+MAX_BACTERIA){
-                LOG_INFO("Mass extinction time");
-                // F to pay respects: TODO: add a notification for when this happens
-                doMassExtinction();
-            }
-            // Add some variability, this is a less deterministic mass
-            // Extinction eg, a meteor, etc.
-            if(GetEngine().GetRandom().GetNumber(0,1000) == 1){
-                LOG_INFO("Black swan event");
-                // F to pay respects: TODO: add a notification for when this happens
-                doMassExtinction();
-            }
-
-            // Every 8 steps or so do a cambrian explosion style
-            // Event, this should increase variablility significantly
-            if(GetEngine().GetRandom().GetNumber(0,200) <= 25){
-                LOG_INFO("Cambrian Explosion");
-                // TODO: add a notification for when this happens
-                doCambrianExplosion();
-            }
 
 
         }
@@ -753,6 +840,28 @@ class SpeciesSystem : ScriptSystem{
 
     void CreateAndDestroyNodes(){}
 
+    void updatePopulationForSpecies(string speciesName, int num)
+        {
+             auto numberOfSpecies = species.length();
+            for(uint i = 0; i < numberOfSpecies; i++){
+            if (species[i].name == speciesName)
+                {
+                species[i].population+=num;
+                }
+            }
+        }
+
+    int getSpeciesPopulation(string speciesName)
+        {
+            auto numberOfSpecies = species.length();
+            for(uint i = 0; i < numberOfSpecies; i++){
+            if (species[i].name == speciesName)
+                {
+                return species[i].population;
+                }
+            }
+            return -1;
+        }
 
     void resetAutoEvo(){
 
@@ -952,13 +1061,13 @@ ObjectID createSpecies(CellStageWorld@ world, const string &in name,
     }
 
     return createSpecies(world, name, convertedOrganelles, fromTemplate.colour, fromTemplate.isBacteria, fromTemplate.speciesMembraneType,
-        fromTemplate.compounds, 100.0f, 100.0f);
+        fromTemplate.compounds, 100.0f, 100.0f, 100.0f, 200.0f);
 }
 
 //! Creates an entity that has all the species stuff on it
 //! AI controlled ones need to be in addition in SpeciesSystem
 ObjectID createSpecies(CellStageWorld@ world, const string &in name,
-    array<PlacedOrganelle@> organelles, Float4 colour, bool isBacteria, MEMBRANE_TYPE speciesMembraneType,  const dictionary &in compounds, double aggression, double fear
+    array<PlacedOrganelle@> organelles, Float4 colour, bool isBacteria, MEMBRANE_TYPE speciesMembraneType,  const dictionary &in compounds, double aggression, double fear, double activity, double focus
 ) {
     ObjectID speciesEntity = world.CreateEntity();
 
@@ -999,7 +1108,8 @@ ObjectID createSpecies(CellStageWorld@ world, const string &in name,
     // we need to know our aggression and fear variables
     speciesComponent.aggression = aggression;
     speciesComponent.fear = fear;
-
+    speciesComponent.activity = activity;
+    speciesComponent.focus = focus;
     // iterates over all compounds, and sets amounts and priorities
     uint64 compoundCount = SimulationParameters::compoundRegistry().getSize();
     for(uint i = 0; i < compoundCount; i++){

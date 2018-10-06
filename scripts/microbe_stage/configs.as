@@ -6,12 +6,22 @@
 const auto CLOUD_SPAWN_RADIUS = 75;
 const auto POWERUP_SPAWN_RADIUS = 85;
 const auto DEFAULT_SPAWN_DENSITY = 1/25000.f;
-
+const auto STARTING_SPAWN_DENSITY = 50000.0f;
 // Cell Colors
 const auto MIN_COLOR = 0.0f;
 const auto MAX_COLOR = 0.9f;
+// Too subtle?
+const auto MIN_COLOR_MUTATION = -0.005f;
+const auto MAX_COLOR_MUTATION = 0.005f;
+
 const auto MIN_OPACITY = 0.8f;
 const auto MAX_OPACITY = 4.0f;
+
+const auto MIN_OPACITY_CHITIN = 0.4f;
+const auto MAX_OPACITY_CHITIN = 1.2f;
+// Min Opacity Mutation
+const auto MIN_OPACITY_MUTATION = -0.01f;
+const auto MAX_OPACITY_MUTATION = 0.01f;
 
 //not const because we want to change these
 //current atmospheric oxygen percentage in modern times
@@ -25,14 +35,15 @@ const auto MUTATION_BACTERIA_TO_EUKARYOTE = 1;
 const auto MUTATION_CREATION_RATE = 0.1f;
 const auto MUTATION_DELETION_RATE = 0.1f;
 
-const auto MICROBE_SPAWN_RADIUS = 85;
-// Bacteria get massively extra radius so they can spawn in proper colonies and act as landmarks
-const auto BACTERIA_SPAWN_RADIUS = 130;
+// Spawn Radius
+const auto MICROBE_SPAWN_RADIUS = 150;
+const auto BACTERIA_SPAWN_RADIUS = 150;
 
 // Max fear and agression and activity
 const auto MAX_SPECIES_AGRESSION = 400.0f;
 const auto MAX_SPECIES_FEAR = 400.0f;
 const auto MAX_SPECIES_ACTIVITY = 400.0f;
+const auto MAX_SPECIES_FOCUS = 400.0f;
 
 // Personality Mutation
 const auto MAX_SPECIES_PERSONALITY_MUTATION = 20.0f;
@@ -42,6 +53,7 @@ const auto MIN_SPECIES_PERSONALITY_MUTATION = -20.0f;
 const auto AGRESSION_DIVISOR = 100.0f;
 const auto FEAR_DIVISOR = 100.0f;
 const auto ACTIVITY_DIVISOR = 100.0f;
+const auto FOCUS_DIVISOR = 100.0f;
 
 // Cooldown for AI for toggling engulfing
 const uint AI_ENGULF_INTERVAL=300;
@@ -88,7 +100,7 @@ const uint EXCESS_COMPOUND_COLLECTION_INTERVAL = 1000;
 const uint MICROBE_HITPOINTS_PER_ORGANELLE = 10;
 
 // The minimum amount of oxytoxy (or any agent) needed to be able to shoot.
-const float MINIMUM_AGENT_EMISSION_AMOUNT = 0.1;
+const float MINIMUM_AGENT_EMISSION_AMOUNT = 1;
 
 // A sound effect thing for bumping with other cell i assume? Probably unused.
 const float RELATIVE_VELOCITY_TO_BUMP_SOUND = 6.0;
@@ -112,7 +124,7 @@ const float ENGULF_HP_RATIO_REQ = 1.5f;
 const float OXY_TOXY_DAMAGE = 10.0f;
 
 // Cooldown between agent emissions, in milliseconds.
-const uint AGENT_EMISSION_COOLDOWN = 1000;
+const uint AGENT_EMISSION_COOLDOWN = 2000;
 
 // TODO: move these into gamestate (this is very dirty)
 // must be global
@@ -292,10 +304,12 @@ const dictionary STARTER_MICROBES = {
             },
             {
                 OrganelleTemplatePlaced("nucleus", 0, 0, 180),
-                OrganelleTemplatePlaced("mitochondrion", -1, 3, 240),
-                OrganelleTemplatePlaced("vacuole", 1, 2, 0),
-                OrganelleTemplatePlaced("flagellum", 1, 3, 0),
-                OrganelleTemplatePlaced("flagellum", -1, 4, 0)
+                OrganelleTemplatePlaced("mitochondrion", -1, 3, 0),
+                OrganelleTemplatePlaced("chloroplast", -1, 4, 90),
+                OrganelleTemplatePlaced("vacuole", 1, 2, 270),
+                OrganelleTemplatePlaced("oxytoxy", 1, 4, 0),
+                OrganelleTemplatePlaced("flagellum", 1, 5, 0),
+                OrganelleTemplatePlaced("flagellum", -1, 5, 0)
             },
             Float4(1, 1, 1, 1),
             false,

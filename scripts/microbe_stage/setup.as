@@ -128,6 +128,13 @@ void applyEngulfMode(CellStageWorld@ world, ObjectID entity){
     MicrobeOperations::toggleEngulfMode(world, entity);
 }
 
+// Player shoot toxin
+void playerShootToxin(CellStageWorld@ world, ObjectID entity){
+    MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
+        world.GetScriptComponentHolder("MicrobeComponent").Find(entity));
+    CompoundId oxytoxyId = SimulationParameters::compoundRegistry().getTypeId("oxytoxy");
+    MicrobeOperations::emitAgent(world,entity, oxytoxyId,10.0f,400*10.0f);
+}
 
 void onReturnFromEditor(CellStageWorld@ world)
 {
@@ -300,7 +307,7 @@ int beingEngulfed(GameWorld@ world, ObjectID firstEntity, ObjectID secondEntity)
 
 
 void createAgentCloud(CellStageWorld@ world, CompoundId compoundId, Float3 pos,
-    Float3 direction, float amount)
+    Float3 direction, float amount, float lifetime)
 {
     auto normalizedDirection = direction.Normalize();
     auto agentEntity = world.CreateEntity();
@@ -336,7 +343,7 @@ void createAgentCloud(CellStageWorld@ world, CompoundId compoundId, Float3 pos,
     // Need to set the tint
     model.GraphicalObject.setCustomParameter(1, Ogre::Vector4(1, 1, 1, 1));
 
-    auto timedLifeComponent = world.Create_TimedLifeComponent(agentEntity, 2000);
+    auto timedLifeComponent = world.Create_TimedLifeComponent(agentEntity, int(lifetime));
 }
 
 
