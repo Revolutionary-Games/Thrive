@@ -506,7 +506,7 @@ void emitAgent(CellStageWorld@ world, ObjectID microbeEntity, CompoundId compoun
         {
         // Calculate the emission angle of the agent emitter
          // The front of the microbe
-         Float3 exit = Hex::axialToCartesian(1, 0);
+         Float3 exit = Hex::axialToCartesian(0, -1);
         auto membraneCoords = membraneComponent.GetExternalOrganelle(exit.X, exit.Z);
 
         //Get the distance to eject the agent
@@ -552,8 +552,8 @@ void emitAgent(CellStageWorld@ world, ObjectID microbeEntity, CompoundId compoun
         auto ynew = membraneCoords.x * s + membraneCoords.z * c;
         // Find the direction the microbe is facing
 
-        auto ejectionDistanceZ = (maxR) * HEX_SIZE;
-        auto ejectionDistanceX = (maxQ) * HEX_SIZE;
+        auto ejectionDistanceZ = ((maxR+1) * HEX_SIZE/2)+HEX_SIZE;
+        auto ejectionDistanceX = ((maxQ+1) * HEX_SIZE/2)+HEX_SIZE;
         // Take the microbe angle into account so we get world relative degrees
         auto vec = ( microbeComponent.facingTargetPoint - cellPosition._Position);
         auto direction = vec.Normalize();

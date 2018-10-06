@@ -6,6 +6,9 @@
 const auto MIN_INITIAL_LENGTH = 2;
 const auto MAX_INITIAL_LENGTH = 15;
 
+const auto MIN_INITIAL_EPIC_LENGTH = 30;
+const auto MAX_INITIAL_EPIC_LENGTH = 60;
+
 dictionary organelleLetters = {};
 array<string> VALID_ORGANELLES = {};
 array<string> VALID_ORGANELLE_LETTERS = {};
@@ -47,6 +50,7 @@ void setupOrganelleLetters(){
 
 // Returns a random organelle letter
 // TODO: verify that this has a good chance of returning also the last organelle
+// TODO: is there a way to make this run faster?
 string getRandomLetter(bool isBacteria){
     if (!isBacteria)
     {
@@ -73,7 +77,7 @@ string getRandomLetter(bool isBacteria){
     }
 
     // Just in case
-    LOG_WARNING("getRandomLetter: just in case case hit");
+    //LOG_WARNING("getRandomLetter: just in case case hit");
     return getOrganelleDefinition("cytoplasm").gene;
 }
 

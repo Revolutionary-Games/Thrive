@@ -129,8 +129,14 @@ class Species{
          LOG_INFO("Fear is:"+fear);
          LOG_INFO("Lethargicness is:"+activity);
          LOG_INFO("Focus is:"+focus);
-            auto stringSize = GetEngine().GetRandom().GetNumber(MIN_INITIAL_LENGTH,
+         auto stringSize=GetEngine().GetRandom().GetNumber(MIN_INITIAL_LENGTH,
                 MAX_INITIAL_LENGTH);
+         if (GetEngine().GetRandom().GetNumber(0,100) <= 10){
+            // Generate an extremely large cell, players never really had enough challenge
+            LOG_INFO("Generating EPIC cell");
+            stringSize = GetEngine().GetRandom().GetNumber(MIN_INITIAL_EPIC_LENGTH,
+                MAX_INITIAL_EPIC_LENGTH);
+         }
 
             const auto cytoplasmGene = getOrganelleDefinition("cytoplasm").gene;
 
@@ -138,30 +144,19 @@ class Species{
             stringCode = getOrganelleDefinition("nucleus").gene +
                 cytoplasmGene;
 
-            // And then random cytoplasm padding
-            const auto cytoplasmPadding = GetEngine().GetRandom().GetNumber(0, 10);
-
-            for(int i = 0; i < cytoplasmPadding; i++){
-                this.stringCode += cytoplasmGene;
-            }
 
             for(int i = 0; i < stringSize; i++){
                 this.stringCode += getRandomLetter(false);
-
-                // Random cytoplasm padding
-                if(GetEngine().GetRandom().GetNumber(0, 10) > 8){
-
-                    if(GetEngine().GetRandom().GetNumber(0, 1) == 1)
-                        this.stringCode += cytoplasmGene;
-                    if(GetEngine().GetRandom().GetNumber(0, 1) == 1)
-                        this.stringCode += cytoplasmGene;
-                    if(GetEngine().GetRandom().GetNumber(0, 1) == 1)
-                        this.stringCode += cytoplasmGene;
-
-                    this.stringCode += cytoplasmGene;
-                }
             }
 
+            // And then random cytoplasm padding
+            const auto cytoplasmPadding = GetEngine().GetRandom().GetNumber(0, 20);
+            if ( GetEngine().GetRandom().GetNumber(0, 100) <= 25)
+                {
+                for(int i = 0; i < cytoplasmPadding; i++){
+                    this.stringCode.insert(GetEngine().GetRandom().GetNumber(2,stringCode.length()),cytoplasmGene);
+                }
+                }
             this.colour = getRightColourForSpecies();
 
          if (GetEngine().GetRandom().GetNumber(0,100) < 50)
