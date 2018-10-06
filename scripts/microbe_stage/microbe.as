@@ -46,6 +46,7 @@ class MicrobeComponent : ScriptComponent, OrganelleContainer{
         this.speciesName = speciesName;
         this.isPlayerMicrobe = isPlayerMicrobe;
         this.microbeEntity = forEntity;
+        this.agentEmissionCooldown = 0;
 
         // Microbe system update should initialize this component on next tick
     }
@@ -141,9 +142,7 @@ class MicrobeComponent : ScriptComponent, OrganelleContainer{
     float maxBandwidth = 10.0 * BANDWIDTH_PER_ORGANELLE; // wtf is a bandwidth anyway?
     float remainingBandwidth = 0.0;
     uint compoundCollectionTimer = EXCESS_COMPOUND_COLLECTION_INTERVAL;
-
-    // This is currnetly bugged and equals a ridiculously large number
-    uint agentEmissionCooldown = 0;
+    int agentEmissionCooldown = 0;
 
     // Is this the place where the actual flash duration works?
     // The one in the organelle class doesn't work
@@ -280,8 +279,8 @@ class MicrobeSystem : ScriptSystem{
         MicrobeComponent@ microbeComponent = components.second;
 
         // Recalculating agent cooldown time.
-        microbeComponent.agentEmissionCooldown = max(
-            microbeComponent.agentEmissionCooldown - logicTime, 0);
+        microbeComponent.agentEmissionCooldown = int(max(
+            microbeComponent.agentEmissionCooldown - logicTime, 0));
 
         // Calculate storage.
         calculateStorageSpace(microbeEntity);
@@ -421,6 +420,12 @@ class MicrobeSystem : ScriptSystem{
         } else if(microbeComponent.wasBeingEngulfed && !microbeComponent.isBeingEngulfed){
             LOG_INFO("removing engulf effect");
             microbeComponent.wasBeingEngulfed=false;
+            //  You escaped, good job
+            auto playerSpecies = MicrobeOperations::getSpeciesComponent(world, "Default");
+            if (!microbeComponent.isPlayerMicrobe && microbeComponent.speciesName != playerSpecies.name)
+                {
+                MicrobeOperations::alterSpeciesPopulation(world,microbeEntity,50);
+                }
             MicrobeOperations::removeEngulfedEffect(world, microbeEntity);
         }
 
@@ -907,10 +912,22 @@ class MicrobeSystem : ScriptSystem{
         } else {
 
             // Return the first cell to its normal, non duplicated cell arrangement.
-            Species::applyTemplate(world, microbeEntity,
-                MicrobeOperations::getSpeciesComponent(world, microbeEntity));
-
-            divide(microbeEntity);
+            if (MicrobeOperations::getSpeciesComponent(world, microbeEntity) !is null)
+                {
+                 auto playerSpecies = MicrobeOperations::getSpeciesComponent(world, "Default");
+                 if (!microbeComponent.isPlayerMicrobe && microbeComponent.speciesName != playerSpecies.name)
+                    {
+                    MicrobeOperations::alterSpeciesPopulation(world,microbeEntity,50);
+                    }
+                Species::applyTemplate(world, microbeEntity,
+                    MicrobeOperations::getSpeciesComponent(world, microbeEntity));
+                divide(microbeEntity);
+                }
+            else
+                {
+                // You are extinct so just die okay.
+                MicrobeOperations::kill(world, microbeEntity);
+                }
         }
     }
 

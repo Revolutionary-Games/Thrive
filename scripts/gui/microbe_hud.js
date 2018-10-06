@@ -202,6 +202,23 @@ function killPlayerCell(event){
 
     playButtonPressSound();
     Thrive.killPlayerCellClicked();
+
+    //Easter egg code, shows a small message saying something from the list of messages when you kill yourself
+    let message = ["Do you want to go extinct?","Darwin Award?", "Why? :(", "How could you do this to me?","Thats not quite, 'Thriving'","B..ut...why?","Microbes may not have a nervous system, but thats still not very nice!","And so you explode in a bubble of organic chemicals, never to evolve, never to thrive...","Did you know there is in fact such a thing as 'programmed cell death', its called apoptosis."];
+    let deathEasterEggChance = randomBetween(0, 10);
+    let messageNum = randomBetween(0, message.length-1);
+
+    if (deathEasterEggChance == 0)
+    {
+        document.getElementById("suicideMsg").style.display = 'unset';
+        document.getElementById("suicideMsg").textContent = message[messageNum];
+        setTimeout(hideSuicideMsg, 5000);
+    }
+}
+
+function hideSuicideMsg()
+{
+    document.getElementById("suicideMsg").style.display = 'none';
 }
 
 function onEditorButtonClicked(event){
@@ -230,7 +247,7 @@ function onEditorButtonClicked(event){
     readyToEdit = false;
 }
 
-function onExitToMenuClicked (event)
+function onExitToMenuClicked(event)
 {
     //Exit to main menu
     document.getElementById("topLevelMenuContainer").style.display = '';
@@ -238,6 +255,14 @@ function onExitToMenuClicked (event)
     document.getElementById("pauseOverlay").style.display = 'none';
     if(isInEngine()){
         Thrive.exitToMenuClicked();
+
+        let pause = Boolean(false);
+        let x = null;
+        // Start the menu music
+        Leviathan.Play2DSound("Data/Sound/main-menu-theme-2.ogg", true, pause,
+                              (source) => {
+                                  x = source;
+                              });
     } else {}
 }
 

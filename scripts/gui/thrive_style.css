@@ -586,7 +586,8 @@ DisabledButton:hover {
 	left: 600px;
 	font-size:10pt;
 	line-height: 40px;
-	text-indent: 10px;
+	text-indent: 0px;
+    background-image: url("../../Textures/gui/bevel/MediumTwoNormal.png");
 }
 
 #populationCount {
@@ -597,7 +598,7 @@ DisabledButton:hover {
 	left: 680px;
 	font-size:10pt;
 	line-height: 40px;
-	text-indent: 10px;
+	text-indent: 0px;
 }
 
 #winText {
@@ -612,20 +613,55 @@ DisabledButton:hover {
 	display: none;
 }
 
+#loseTextTitle {
+	position: absolute;
+	height: 100px;
+	width: 600px;
+	top: 40%;
+	left: 30%;
+	font-family: thrive;
+	font-size: 90pt;
+	text-align: center;
+	line-height: 40px;
+	color: 	#ff3333;
+	display: none;
+}
+
+#loseTextBody {
+	position: absolute;
+	height: 100px;
+	width: 850px;
+	top: 50%;
+	left: 30%;
+	font-size: 20pt;
+	display: none;
+}
+
+#suicideMsg {
+	position: absolute;
+	height: 100px;
+	width: 750px;
+	top: 96.5%;
+	left: 42%;
+	text-align: center;
+	font-size: 12pt;
+	display: none;
+}
+
 #suicideButton {
 	position: absolute;
 	height: 40px;
 	width: 120px;
 	top: 0px;
 	left: 480px;
-	background-image: url("../../Textures/gui/bevel/MediumTwoNormal.png");
+	background-image: url("../../Textures/gui/bevel/EditPanelHeaderNormal.png");
 	font-size:8pt;
 	line-height: 40px;
 	text-indent: 40px;
 }
 
 #suicideButton:hover {
-	background-image: url("../../Textures/gui/bevel/MediumTwoHover.png");
+	background-image: url("../../Textures/gui/bevel/EditPanelHeaderHover.png");
 }
 
 #suicideIcon {

@@ -525,6 +525,7 @@ bool
     }
 
     ANGELSCRIPT_REGISTER_ENUM_VALUE(MEMBRANE_TYPE, MEMBRANE);
+    ANGELSCRIPT_REGISTER_ENUM_VALUE(MEMBRANE_TYPE, DOUBLEMEMBRANE);
     ANGELSCRIPT_REGISTER_ENUM_VALUE(MEMBRANE_TYPE, WALL);
     ANGELSCRIPT_REGISTER_ENUM_VALUE(MEMBRANE_TYPE, CHITIN);
 
@@ -651,6 +652,11 @@ bool
 
     if(engine->RegisterObjectProperty("SpeciesComponent", "double activity",
            asOFFSET(SpeciesComponent, activity)) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectProperty("SpeciesComponent", "double focus",
+           asOFFSET(SpeciesComponent, focus)) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
     }
 
