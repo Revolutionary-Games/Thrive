@@ -43,7 +43,9 @@ public:
     //! \brief Creates a cloud with the specified compound types and colour
     //!
     //! Set not used ones to null. At least first must be not null
-    CompoundCloudComponent(Compound* first,
+    //! \param owner Needed to report destruction
+    CompoundCloudComponent(CompoundCloudSystem& owner,
+        Compound* first,
         Compound* second,
         Compound* third,
         Compound* fourth);
@@ -194,6 +196,9 @@ protected:
     CompoundId m_compoundId2 = NULL_COMPOUND;
     CompoundId m_compoundId3 = NULL_COMPOUND;
     CompoundId m_compoundId4 = NULL_COMPOUND;
+
+    //! Used to report destruction
+    CompoundCloudSystem& m_owner;
 };
 
 
@@ -202,6 +207,8 @@ protected:
  * @brief Moves the compound clouds.
  */
 class CompoundCloudSystem {
+    friend CompoundCloudComponent;
+
 public:
     /**
      * @brief Constructor
@@ -282,8 +289,15 @@ private:
             size_t rowBytes,
             uint8_t* pDest);
 
+protected:
+    //! \brief Removes deleted clouds from m_managedClouds
+    void
+        cloudReportDestroyed(CompoundCloudComponent* cloud);
+
 private:
     //! This system now spawns these entities when it needs them
+    //! \note Extra care needs to be taken because this is not updated directly
+    //! by the GameWorld when entities are destroyed
     std::unordered_map<ObjectID, CompoundCloudComponent*> m_managedClouds;
 
     //! List of the types that need to be created. These are split every 4 into

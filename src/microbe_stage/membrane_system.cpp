@@ -290,6 +290,10 @@ void
     // species (allowing the same species to share)
     if(!coloredMaterial) {
         Ogre::MaterialPtr baseMaterial = chooseMaterialByType();
+
+        LEVIATHAN_ASSERT(
+            baseMaterial, "Failed to find base material for membrane");
+
         // TODO: find a way for the species to manage this to
         // avoid having tons of materials Maybe Use the species's
         // name instead. and let something like the

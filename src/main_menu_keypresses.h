@@ -28,9 +28,6 @@ public:
     }
 
 private:
-    //! The possible skip keys
-    std::vector<Leviathan::GKey> m_skipKeys;
-
     // Set to false when not in the main menu
     bool m_enabled = true;
 };

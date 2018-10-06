@@ -39,6 +39,12 @@ function runMenuSetup(){
             
         }, () => {});
 
+        // Detect return to menu
+        Leviathan.OnGeneric("ExitedToMenu", (event, vars) => {
+            doExitToMenu();
+        });        
+        
+
         // (this would theoretically work in a browser but would be a bit annoying to work on)
         // Start intro video
         playVideo("../../Videos/intro.mkv", onIntroEnded);
@@ -55,8 +61,32 @@ function runMenuSetup(){
     //
     // Use these to immediately test some specific menu
     //
-    // onMicrobeIntroEnded();
+    onMicrobeIntroEnded();
     // doEnterMicrobeEditor();
+}
+
+function startMenuMusic(restart = true)
+{
+    if(jams && restart){
+
+        // Stop already playing
+        jams.Stop();
+        jams = null;
+    }
+
+    if(!jams){
+        
+        let startPaused = Boolean(menuAlreadySkipped);
+        
+        // Start the menu music
+        Leviathan.Play2DSound("Data/Sound/main-menu-theme-2.ogg", true, startPaused,
+                              (source) => {
+                                  jams = source;
+                              });
+    } else {
+        
+        jams.Play2D();
+    }
 }
 
 //! Handles pressing Escape in the GUI (this will skip videos and
@@ -67,17 +97,11 @@ function onEscapePressed(){
         stopVideo();
 }
 
-function onIntroEnded(){
-
+function onIntroEnded()
+{
     if(isInEngine()){
 
-        let startPaused = Boolean(menuAlreadySkipped);
-
-        // Start the menu music
-        Leviathan.Play2DSound("Data/Sound/main-menu-theme-2.ogg", true, startPaused,
-                              (source) => {
-                                  jams = source;
-                              });
+        startMenuMusic();
     }
 }
 
@@ -124,5 +148,15 @@ function onMicrobeIntroEnded(){
     // And show microbe gui
     document.getElementById("topLevelMicrobeStage").style.display = "block";
     runMicrobeHUDSetup();
+}
+
+//! Called once C++ has finished exiting to menu
+function doExitToMenu()
+{
+    document.getElementById("topLevelMenuContainer").style.display = '';
+    document.getElementById("topLevelMicrobeStage").style.display = 'none';
+    document.getElementById("pauseOverlay").style.display = 'none';
+
+    startMenuMusic(false);
 }
     

@@ -208,23 +208,6 @@ void
         m_impl->m_cellStage =
             std::dynamic_pointer_cast<CellStageWorld>(engine->CreateWorld(
                 window1, static_cast<int>(THRIVE_WORLD_TYPE::CELL_STAGE)));
-    } else {
-        LOG_INFO("ThriveGame: startNewGame called after already created once: "
-                 "Creating new cellstage world");
-
-        if(!m_impl->m_microbeBackgroundItem) {
-            m_impl->destroyBackgroundItem();
-        }
-        m_impl->m_microbeBackgroundItem = nullptr;
-        m_impl->m_microbeEditorBackgroundItem = nullptr;
-
-        m_impl->m_cellStage->ClearEntities();
-        m_impl->m_cellStage->_ResetSystems();
-        m_impl->m_cellStage->_ResetOrReleaseComponents();
-        m_impl->m_cellStage->Release();
-        m_impl->m_cellStage =
-            std::dynamic_pointer_cast<CellStageWorld>(engine->CreateWorld(
-                window1, static_cast<int>(THRIVE_WORLD_TYPE::CELL_STAGE)));
     }
 
     LEVIATHAN_ASSERT(m_impl->m_cellStage, "Cell stage world creation failed");
@@ -237,6 +220,7 @@ void
 
     // And switch the GUI mode to allow key presses through
     Leviathan::GUI::View* view = window1->GetGui()->GetViewByIndex(0);
+
     // Allow running without GUI
     if(view)
         view->SetInputMode(Leviathan::GUI::INPUT_MODE::Gameplay);
@@ -245,7 +229,7 @@ void
     // Clear world //
     m_impl->m_cellStage->ClearEntities();
 
-    // TODO: unfreeze, if was in the background
+    // TODO: unpause, if it was paused
 
     // Main camera that will be attached to the player
     m_cellCamera = Leviathan::ObjectLoader::LoadCamera(*m_impl->m_cellStage,
@@ -312,7 +296,6 @@ void
 
     LOG_INFO("Finished calling setupScriptsForWorld");
 
-    // TODO: move to a new function to reduce clutter here
     // Set background plane //
     // This is needed to be created here for biome.as to work correctly
     // Also this is a manual object and with infinite extent as this isn't
@@ -440,14 +423,6 @@ Leviathan::GameModule*
 }
 // ------------------------------------ //
 void
-    ThriveGame::onIntroSkipPressed()
-{
-    // Fire an event that the GUI handles //
-    Engine::Get()->GetEventHandler()->CallEvent(
-        new Leviathan::GenericEvent("MainMenuIntroSkipEvent"));
-}
-
-void
     ThriveGame::killPlayerCellClicked()
 {
     LOG_INFO("Calling killPlayerCellClicked");
@@ -476,8 +451,6 @@ void
     Leviathan::Engine* engine = Engine::GetEngine();
     Leviathan::Window* window1 = engine->GetWindowEntity();
 
-    // Make the cell world be in the background
-
     // Create an editor world
     LOG_INFO("Entering MicrobeEditor");
 
@@ -501,12 +474,19 @@ void
     // Set the right input handlers active //
     m_impl->m_menuKeyPresses->setEnabled(false);
     m_impl->m_cellStageKeys->setEnabled(false);
-    // TODO: editor hotkeys
+    // // TODO: editor hotkeys. Maybe they should be in the GUI
+
+    // // So using this
+    // // // And switch the GUI mode to allow key presses through
+    // Leviathan::GUI::View* view = window1->GetGui()->GetViewByIndex(0);
+
+    // // Allow running without GUI
+    // if(view)
+    //     view->SetInputMode(Leviathan::GUI::INPUT_MODE::Menu);
+
 
     // Clear world //
     m_impl->m_microbeEditor->ClearEntities();
-
-    // TODO: unfreeze, if was in the background
 
     // Main camera that will be attached to the player
     auto camera = Leviathan::ObjectLoader::LoadCamera(*m_impl->m_microbeEditor,
@@ -576,7 +556,16 @@ void
     // Set the right input handlers active //
     m_impl->m_menuKeyPresses->setEnabled(false);
     m_impl->m_cellStageKeys->setEnabled(true);
-    // TODO: editor hotkeys
+    // // TODO: editor hotkeys. Maybe they should be in the GUI
+
+    // // So using this
+    // // // And switch the GUI mode to allow key presses through
+    // Leviathan::GUI::View* view = window1->GetGui()->GetViewByIndex(0);
+
+    // // Allow running without GUI
+    // if(view)
+    //     view->SetInputMode(Leviathan::GUI::INPUT_MODE::Gameplay);
+
 
     // Run the post editing script
 
@@ -605,8 +594,8 @@ void
     ThriveGame::exitToMenuClicked()
 {
     // Unlink window
-    Leviathan::Window* window2 = Engine::GetEngine()->GetWindowEntity();
-    window2->LinkObjects(nullptr);
+    Leviathan::Window* window1 = Engine::GetEngine()->GetWindowEntity();
+    window1->LinkObjects(nullptr);
 
     // Clear the world
     m_impl->m_cellStage->ClearEntities();
@@ -615,10 +604,16 @@ void
     m_impl->m_menuKeyPresses->setEnabled(true);
     m_impl->m_cellStageKeys->setEnabled(false);
 
-    // Start the Thrive main theme again
+    // And switch the GUI mode to allow key presses through
+    Leviathan::GUI::View* view = window1->GetGui()->GetViewByIndex(0);
 
-    // Log the successful return to menu
-    LOG_INFO("Back to main menu!");
+    // Allow running without GUI
+    if(view)
+        view->SetInputMode(Leviathan::GUI::INPUT_MODE::Menu);
+
+    // Fire an event to switch over the GUI
+    Engine::Get()->GetEventHandler()->CallEvent(
+        new Leviathan::GenericEvent("ExitedToMenu"));
 }
 
 // ------------------------------------ //
@@ -681,19 +676,6 @@ void
         return;
     }
 
-    // try {
-    //     m_impl->m_MicrobeEditorScripts =
-    //         engine->GetGameModuleLoader()->Load("microbe_editor",
-    //         "ThriveGame");
-    // } catch(const Leviathan::Exception& e) {
-
-    //     LOG_ERROR(
-    //         "ThriveGame: microbe_editor module failed to load, exception:");
-    //     e.PrintToLog();
-    //     MarkAsClosing();
-    //     return;
-    // }
-
     LOG_INFO("ThriveGame: script loading succeeded");
 
     if(!scriptSetup()) {
@@ -716,11 +698,10 @@ void
 
     Leviathan::Window* window1 = Engine::GetEngine()->GetWindowEntity();
 
-    // Register custom listener for detecting keypresses for skipping the intro
-    // video
-    // TODO: these need to be disabled when not used
+    // Register utility key presses
     window1->GetInputController()->LinkReceiver(m_impl->m_globalKeyPresses);
 
+    // Register keypresses that will be used in the menu
     window1->GetInputController()->LinkReceiver(m_impl->m_menuKeyPresses);
 
     // Register the player input listener
@@ -915,11 +896,6 @@ void
         m_impl->m_microbeScripts.reset();
     }
 
-    // if(m_impl->m_MicrobeEditorScripts) {
-    //     m_impl->m_MicrobeEditorScripts->ReleaseScript();
-    //     m_impl->m_MicrobeEditorScripts.reset();
-    // }
-
     // All resources that need Ogre or the engine to be available when
     // they are destroyed need to be released here
 
@@ -962,8 +938,6 @@ void
     keyconfigobj->AddKeyIfMissing(guard, "ZoomOut", {"-", "Keypad -"});
 }
 // ------------------------------------ //
-
-
 bool
     ThriveGame::InitLoadCustomScriptTypes(asIScriptEngine* engine)
 {
