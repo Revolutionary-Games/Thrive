@@ -14,8 +14,8 @@ const auto MAX_COLOR = 0.9f;
 const auto MIN_COLOR_MUTATION = -0.005f;
 const auto MAX_COLOR_MUTATION = 0.005f;
 
-const auto MIN_OPACITY = 0.8f;
-const auto MAX_OPACITY = 4.0f;
+const auto MIN_OPACITY = 0.1f;
+const auto MAX_OPACITY = 1.8f;
 
 const auto MIN_OPACITY_CHITIN = 0.4f;
 const auto MAX_OPACITY_CHITIN = 1.2f;
