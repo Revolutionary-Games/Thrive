@@ -248,9 +248,11 @@ int beingEngulfed(GameWorld@ world, ObjectID firstEntity, ObjectID secondEntity)
     // Grab the microbe components
     MicrobeComponent@ firstMicrobeComponent = cast<MicrobeComponent>(
         world.GetScriptComponentHolder("MicrobeComponent").Find(firstEntity));
-
     MicrobeComponent@ secondMicrobeComponent = cast<MicrobeComponent>(
         world.GetScriptComponentHolder("MicrobeComponent").Find(secondEntity));
+    //Check if they were null *because if null the cast failed)
+    if (firstMicrobeComponent !is null && secondMicrobeComponent !is null)
+    {
     // Get microbe sizes here
     int firstMicrobeComponentOrganelles = firstMicrobeComponent.organelles.length();
     int secondMicrobeComponentOrganelles = secondMicrobeComponent.organelles.length();
@@ -301,6 +303,15 @@ int beingEngulfed(GameWorld@ world, ObjectID firstEntity, ObjectID secondEntity)
             shouldCollide = 0;
         }
     }
+    }
+
+    // Check if one is a microbe, and the other is not
+    if ((firstMicrobeComponent !is null || secondMicrobeComponent !is null) && !(firstMicrobeComponent !is null && secondMicrobeComponent !is null))
+        {
+        //LOG_INFO("called toxin callback");
+        cellHitAgent(world,firstEntity,secondEntity);
+        shouldCollide=0;
+        }
 
     return shouldCollide;
 }
@@ -444,7 +455,6 @@ ObjectID createToxin(CellStageWorld@ world, Float3 pos)
         world.GetPhysicalMaterial("agentCollision"));
     rigidBody.CreatePlaneConstraint(world.GetPhysicalWorld(), Float3(0,1,0));
     rigidBody.SetMass(1.0f);
-
 
     rigidBody.JumpTo(position);
 
