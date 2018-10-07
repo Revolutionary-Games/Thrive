@@ -1167,9 +1167,9 @@ void kill(CellStageWorld@ world, ObjectID microbeEntity)
 
 void alterSpeciesPopulation(CellStageWorld@ world, ObjectID microbeEntity, int popChange)
     {
-        MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
-        world.GetScriptComponentHolder("MicrobeComponent").Find(microbeEntity));
-    SpeciesComponent@ ourSpecies =  world.GetComponent_SpeciesComponent(findSpeciesEntityByName(world, microbeComponent.speciesName));
+    MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
+    world.GetScriptComponentHolder("MicrobeComponent").Find(microbeEntity));
+    SpeciesComponent@ ourSpecies = getSpeciesComponent(world, microbeEntity);
     if (ourSpecies!is null)
         {
         //LOG_INFO("Species Population Unaltered: "+cast<SpeciesSystem>(world.GetScriptSystem("SpeciesSystem")).getSpeciesPopulation(microbeComponent.speciesName));
