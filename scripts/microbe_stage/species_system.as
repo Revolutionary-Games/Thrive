@@ -84,9 +84,9 @@ string generateNameSection(){
 
 const dictionary DEFAULT_INITIAL_COMPOUNDS =
     {
-        {"atp", InitialCompound(10,100)},
-        {"glucose", InitialCompound(10,100)},
-        {"ammonia", InitialCompound(10,100)}
+        {"atp", InitialCompound(30,100)},
+        {"glucose", InitialCompound(30,100)},
+        {"ammonia", InitialCompound(30,100)}
     };
 
 string randomSpeciesName(){
