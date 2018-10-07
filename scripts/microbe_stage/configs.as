@@ -56,7 +56,7 @@ const auto ACTIVITY_DIVISOR = 100.0f;
 const auto FOCUS_DIVISOR = 100.0f;
 
 // Cooldown for AI for toggling engulfing
-const uint AI_ENGULF_INTERVAL=300;
+const uint AI_ENGULF_INTERVAL=500;
 
 // The player's name
 const auto PLAYER_NAME = "Player";
