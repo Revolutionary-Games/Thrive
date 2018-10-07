@@ -445,6 +445,8 @@ class MicrobeAISystem : ScriptSystem{
         aiComponent.ticksSinceLastToggle+=1;
         // Required For AI
         CompoundId oxytoxyId = SimulationParameters::compoundRegistry().getTypeId("oxytoxy");
+        CompoundId atpID = SimulationParameters::compoundRegistry().getTypeId("atp");
+
         MicrobeComponent@ secondMicrobeComponent = cast<MicrobeComponent>(
             world.GetScriptComponentHolder("MicrobeComponent").Find(prey));
         // Agent vacuoles.
@@ -489,7 +491,7 @@ class MicrobeAISystem : ScriptSystem{
             else
             {
                 //  Turn on engulfmode if close
-                if ((position._Position -  aiComponent.targetPosition).LengthSquared() <= 300+(microbeComponent.organelles.length()*3.0f)
+                if (((position._Position -  aiComponent.targetPosition).LengthSquared() <= 300+(microbeComponent.organelles.length()*3.0f)) && (MicrobeOperations::getCompoundAmount(world,microbeEntity,atpID) >=  1.0f)
                     && !microbeComponent.engulfMode &&
                     (float(microbeComponent.organelles.length()) > (
                         ENGULF_HP_RATIO_REQ*secondMicrobeComponent.organelles.length())))
