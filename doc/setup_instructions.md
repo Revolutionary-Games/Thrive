@@ -4,13 +4,15 @@ What's this?
 This is the setup instructions for compiling Thrive.
 
 Important Note: If you run into any trouble with the setup scripts, please 
-bring them up on the development slack or open a github issue.
+bring them up on the development discord or open a github issue. 
 
 This tutorial is also in video form for: [Windows](https://www.youtube.com/watch?v=eiQsxKCpOhY) 
     and [Linux (Fedora and Ubuntu)](https://www.youtube.com/watch?v=_ZWBTlIo9W4)
 
 If you are a team member you can ask help on the forums:
     [Private Developer Forums](http://forum.revolutionarygamesstudio.com/)
+
+Otherwise you can ask on our [community discord](https://discordapp.com/invite/FZxDQ4H)
 
 Thank you!
 
@@ -43,7 +45,9 @@ should choose a folder like `~/projects` or `C:/projects`. Also long
 paths don't work on Windows as the setup needs the path in which it is
 ran to be less than 90 characters, so choose run git clone in
 `C:\projects` so that you end up the thrive folder being
-`C:\projects\Thrive`.
+`C:\projects\Thrive`. One additional potential problem is non-English
+characters in the path name, for example if your path includes
+"työpöytä", the setup will fail.
 
 Windows tip: shift right-click in a folder and select "Open command
 prompt here" or "Open powershell here" to open a cmd window to the
