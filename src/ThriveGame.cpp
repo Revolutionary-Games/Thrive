@@ -828,7 +828,6 @@ int
 
     // Grab microbe component
 
-
     // How do i grab the microbe info here and return information from
     // angelscript method? Return 0 for now to test it
     ScriptRunningSetup setup("beingEngulfed");
@@ -898,7 +897,7 @@ void
         .SetCallbacks(nullptr, cellHitFloatingOrganelle);
     // Agents
     cellMaterial->FormPairWith(*agentMaterial)
-        .SetCallbacks(nullptr, cellHitAgent);
+        .SetCallbacks(cellOnCellAABBHitCallback, cellHitAgent);
     // Engulfing
     cellMaterial->FormPairWith(*cellMaterial)
         .SetCallbacks(cellOnCellAABBHitCallback, cellOnCellActualContact);
