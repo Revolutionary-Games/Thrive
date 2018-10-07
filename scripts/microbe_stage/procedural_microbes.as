@@ -9,6 +9,9 @@ const auto MAX_INITIAL_LENGTH = 15;
 const auto MIN_INITIAL_EPIC_LENGTH = 30;
 const auto MAX_INITIAL_EPIC_LENGTH = 70;
 
+const auto MIN_INITIAL_EPIC_BACTERIA_LENGTH = 3;
+const auto MAX_INITIAL_EPIC_BACTERIA_LENGTH = 30;
+
 dictionary organelleLetters = {};
 array<string> VALID_ORGANELLES = {};
 array<string> VALID_ORGANELLE_LETTERS = {};

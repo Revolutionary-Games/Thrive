@@ -499,8 +499,8 @@ class Species{
         if (GetEngine().GetRandom().GetNumber(0,100) <= 10){
             // Generate an extremely large cell, players never really had enough challenge
             LOG_INFO("Generating EPIC bacterium");
-            stringSize = GetEngine().GetRandom().GetNumber(3,
-                12);
+            stringSize = GetEngine().GetRandom().GetNumber(MIN_INITIAL_EPIC_BACTERIA_LENGTH,
+                MAX_INITIAL_EPIC_BACTERIA_LENGTH);
          }
         // Bacteria
         // will randomly have 1 of 3 organelles right now, photosynthesizing protiens,
