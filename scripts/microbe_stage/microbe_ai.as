@@ -489,7 +489,7 @@ class MicrobeAISystem : ScriptSystem{
             else
             {
                 //  Turn on engulfmode if close
-                if ((position._Position -  aiComponent.targetPosition).LengthSquared() <= 300+(microbeComponent.organelles.length()*3)
+                if ((position._Position -  aiComponent.targetPosition).LengthSquared() <= 300+(microbeComponent.organelles.length()*3.0f)
                     && !microbeComponent.engulfMode &&
                     (float(microbeComponent.organelles.length()) > (
                         ENGULF_HP_RATIO_REQ*secondMicrobeComponent.organelles.length())))
@@ -497,7 +497,7 @@ class MicrobeAISystem : ScriptSystem{
                     MicrobeOperations::toggleEngulfMode(world, microbeEntity);
                     aiComponent.ticksSinceLastToggle=0;
                     }
-                else if ((position._Position -  aiComponent.targetPosition).LengthSquared() >= 500+(microbeComponent.organelles.length()*3) && microbeComponent.engulfMode && aiComponent.ticksSinceLastToggle >= AI_ENGULF_INTERVAL)
+                else if ((position._Position -  aiComponent.targetPosition).LengthSquared() >= 500+(microbeComponent.organelles.length()*3.0f) && microbeComponent.engulfMode && aiComponent.ticksSinceLastToggle >= AI_ENGULF_INTERVAL)
                     {
                     MicrobeOperations::toggleEngulfMode(world, microbeEntity);
                     aiComponent.ticksSinceLastToggle=0;
