@@ -472,7 +472,7 @@ class MicrobeAISystem : ScriptSystem{
 
             // Turn off engulf if prey is Dead
             // This is probabbly not working
-            if (secondMicrobeComponent.dead ){
+            if (secondMicrobeComponent.dead == true){
                 aiComponent.hasTargetPosition = false;
                 aiComponent.lifeState = GATHERING_STATE;
                 if (microbeComponent.engulfMode)
