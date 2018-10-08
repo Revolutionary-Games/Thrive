@@ -191,6 +191,15 @@ video {
     left: 42.5%;
 }
 
+.HelpText{
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    font-size:15pt;
+}
+
+
 .MenuButton {
     width: 280px;
     height: 40px;
@@ -540,11 +549,11 @@ DisabledButton:hover {
     margin-top: -200px;
 }
 
-#HelpText, #HelpTextEditor {
+#helpText, #helpTextEditor {
 	/* display:relative; This is the display setting when visible */
 	display:none;
-	width:560px;
-	height:700px;
+	width:100%;
+	height:100%;
     margin-top:60px;
     background-color:rgb(1, 1, 1, 0);
     z-index:2;
@@ -553,6 +562,18 @@ DisabledButton:hover {
 #closeHelp {
 	vertical-align:middle;
 	margin-top:40px;
+	position: relative;
+    margin: 0 auto;
+}
+
+#tipMsg {
+	margin-top:40px;
+	position: absolute;
+    width:100%;
+    text-align:center;
+    left:0px;
+    bottom:30px;
+    color: white;
 }
 
 #pauseButton {
