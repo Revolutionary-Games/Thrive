@@ -116,27 +116,27 @@ class Species{
             name = randomSpeciesName();
             genus = generateNameSection();
             epithet = generateNameSection();
-        // Variables used in AI to determine general behavior
-        this.aggression = GetEngine().GetRandom().GetFloat(0.0f,
+            // Variables used in AI to determine general behavior
+            this.aggression = GetEngine().GetRandom().GetFloat(0.0f,
                 MAX_SPECIES_AGRESSION);
-        this.fear = GetEngine().GetRandom().GetFloat(0.0f,
+            this.fear = GetEngine().GetRandom().GetFloat(0.0f,
                 MAX_SPECIES_FEAR);
-        this.activity = GetEngine().GetRandom().GetFloat(0.0f,
+            this.activity = GetEngine().GetRandom().GetFloat(0.0f,
                 MAX_SPECIES_ACTIVITY);
-        this.focus = GetEngine().GetRandom().GetFloat(0.0f,
+            this.focus = GetEngine().GetRandom().GetFloat(0.0f,
                 MAX_SPECIES_FOCUS);
-         LOG_INFO("Aggression is:"+aggression);
-         LOG_INFO("Fear is:"+fear);
-         LOG_INFO("Lethargicness is:"+activity);
-         LOG_INFO("Focus is:"+focus);
-         auto stringSize=GetEngine().GetRandom().GetNumber(MIN_INITIAL_LENGTH,
+            LOG_INFO("Aggression is:"+aggression);
+            LOG_INFO("Fear is:"+fear);
+            LOG_INFO("Lethargicness is:"+activity);
+            LOG_INFO("Focus is:"+focus);
+            auto stringSize=GetEngine().GetRandom().GetNumber(MIN_INITIAL_LENGTH,
                 MAX_INITIAL_LENGTH);
-         if (GetEngine().GetRandom().GetNumber(0,100) <= 10){
-            // Generate an extremely large cell, players never really had enough challenge
-            LOG_INFO("Generating EPIC cell");
-            stringSize = GetEngine().GetRandom().GetNumber(MIN_INITIAL_EPIC_LENGTH,
-                MAX_INITIAL_EPIC_LENGTH);
-         }
+            if (GetEngine().GetRandom().GetNumber(0,100) <= 10){
+                // Generate an extremely large cell, players never really had enough challenge
+                LOG_INFO("Generating EPIC cell");
+                stringSize = GetEngine().GetRandom().GetNumber(MIN_INITIAL_EPIC_LENGTH,
+                    MAX_INITIAL_EPIC_LENGTH);
+            }
 
             const auto cytoplasmGene = getOrganelleDefinition("cytoplasm").gene;
 
@@ -152,21 +152,21 @@ class Species{
             // And then random cytoplasm padding
             const auto cytoplasmPadding = GetEngine().GetRandom().GetNumber(0, 20);
             if ( GetEngine().GetRandom().GetNumber(0, 100) <= 25)
-                {
+            {
                 for(int i = 0; i < cytoplasmPadding; i++){
                     this.stringCode.insert(GetEngine().GetRandom().GetNumber(2,stringCode.length()),cytoplasmGene);
                 }
-                }
+            }
             this.colour = getRightColourForSpecies();
 
-         if (GetEngine().GetRandom().GetNumber(0,100) < 50)
+            if (GetEngine().GetRandom().GetNumber(0,100) < 50)
             {
-            this.speciesMembraneType = MEMBRANE_TYPE::MEMBRANE;
+                this.speciesMembraneType = MEMBRANE_TYPE::MEMBRANE;
             }
-         else {
-               this.speciesMembraneType = MEMBRANE_TYPE::DOUBLEMEMBRANE;
-               this.colour.W = randomOpacityChitin();;
-               }
+            else {
+                this.speciesMembraneType = MEMBRANE_TYPE::DOUBLEMEMBRANE;
+                this.colour.W = randomOpacityChitin();;
+            }
             commonConstructor(world);
             this.setupSpawn(world);
 
