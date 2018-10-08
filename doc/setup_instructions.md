@@ -25,12 +25,35 @@ Follow the Leviathan Engine Prequisites installation instructions
 [here](https://leviathanengine.com/doc/develop/Documentation/html/dc/d9e/prerequisites.html).
 
 Important: you should read the whole document before starting as many
-common pitfalls and issues have fixes given after later in the document. Also DO
+common pitfalls and issues have fixes given later in the document. Also DO
 NOT SKIP ANY STEPS otherwise you will initially fail and have to clear
 the caches which is the easiest to do by just deleting the entire
 folder and starting again. When you are done with the prerequisites
 page return here instead of continuing to the building Leviathan page
 which is irrelevant for Thrive.
+
+Linters
+-------
+
+Thrive uses automatic formatting of source code to keep style as
+consistent as possible. For this reason you need to install some
+additional tools:
+
+- [Clang](http://releases.llvm.org/download.html). You need at least
+  version 6.0.0. On Linux you can use your OS's package manager if it
+  has a new enough version.
+- [nodejs](https://nodejs.org/en/download/). If you are on Linux you
+  should use your OS's package manager to install nodejs)
+- eslint and stylelint. Install with npm once you have nodejs
+  installed. On Windows: `npm install -g eslint stylelint`. On Linux
+  (you probably need to use `sudo`): `sudo npm install -g eslint
+  stylelint`
+
+When you are getting ready to commit you should run `ruby
+RunCodeFormatting.rb` in order to automatically run all of the
+formatting tools. Make sure that that script doesn't report any errors
+before committing.
+
 
 Building Thrive
 ===============
