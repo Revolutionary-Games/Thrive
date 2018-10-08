@@ -212,7 +212,7 @@ function closeHelp(event){
     {
         document.getElementById("tipMsg").style.display = 'unset';
         document.getElementById("tipMsg").textContent = message[messageNum];
-        setTimeout(hideSuicideMsg, 6000);
+        setTimeout(hideTipMsg, 6000);
     }
     
 }
