@@ -19,7 +19,7 @@ float randomOpacityChitin(){
 }
 
 float randomOpacityBacteria(){
-    return GetEngine().GetRandom().GetNumber(MIN_OPACITY+1, MAX_OPACITY+1);
+    return GetEngine().GetRandom().GetNumber(MIN_OPACITY, MAX_OPACITY+1);
 }
 
 float randomMutationOpacity(){
