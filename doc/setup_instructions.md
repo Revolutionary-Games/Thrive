@@ -44,15 +44,19 @@ additional tools:
   has a new enough version.
 - [nodejs](https://nodejs.org/en/download/). If you are on Linux you
   should use your OS's package manager to install nodejs)
-- eslint and stylelint. Install with npm once you have nodejs
-  installed. On Windows: `npm install -g eslint stylelint`. On Linux
-  (you probably need to use `sudo`): `sudo npm install -g eslint
-  stylelint`
+- eslint (with eslint-plugin-html) and stylelint. Install with npm
+  once you have nodejs installed. On Windows: `npm install -g eslint
+  stylelint eslint-plugin-html`. On Linux (you probably need to use
+  `sudo`): `sudo npm install -g eslint stylelint eslint-plugin-html`
 
 When you are getting ready to commit you should run `ruby
 RunCodeFormatting.rb` in order to automatically run all of the
 formatting tools. Make sure that that script doesn't report any errors
 before committing.
+
+Additionally for local testing you might want to install `npm install
+-g http-server`. You can then run a test web server with `http-server -c-1`
+when ran in the thrive base folder.
 
 
 Building Thrive

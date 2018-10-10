@@ -1,11 +1,14 @@
 // Microbe editor GUI scripts
 "use strict";
 
+import * as common from "./gui_common.mjs";
+import * as microbe_hud from "./microbe_hud.mjs";
+
 let microbeEditorSetup = false;
 let readyToFinishEdit = false;
 
 //! Called to enter the editor view
-function doEnterMicrobeEditor(){
+export function doEnterMicrobeEditor(){
 
     document.getElementById("topLevelMicrobeStage").style.display = "none";
     document.getElementById("topLevelMicrobeEditor").style.display = "block";
@@ -40,7 +43,7 @@ function doEnterMicrobeEditor(){
         document.getElementById("microbeEditorFinishButton").addEventListener(
             "click", onFinishButtonClicked, true);
 
-        if(isInEngine()){
+        if(common.isInEngine()){
 
             // Event for restoring the microbe GUI
             Leviathan.OnGeneric("MicrobeEditorExited", doExitMicrobeEditor);
@@ -50,16 +53,16 @@ function doEnterMicrobeEditor(){
     }
 }
 
-function onResumeClickedEditor(event){
+function onResumeClickedEditor(){
 
-    playButtonPressSound();
+    common.playButtonPressSound();
     let pause = document.getElementById("pauseOverlayEditor");
     pause.style.display = "none";
 }
 
-function openHelpEditor(event){
+function openHelpEditor(){
 
-    playButtonPressSound();
+    common.playButtonPressSound();
 
     let pause = document.getElementById("pauseMenuEditor");
     pause.style.display = "none";
@@ -69,9 +72,9 @@ function openHelpEditor(event){
     
 }
 
-function closeHelpEditor(event){
+function closeHelpEditor(){
 
-    playButtonPressSound();
+    common.playButtonPressSound();
     
     let pause = document.getElementById("pauseMenuEditor");
     pause.style.display = "block";
@@ -81,12 +84,12 @@ function closeHelpEditor(event){
     
 }
 
-function onMenuClickedEditor(event){
+function onMenuClickedEditor(){
 
-    playButtonPressSound();
+    common.playButtonPressSound();
     let pause = document.getElementById("pauseOverlayEditor");
     pause.style.display = "block";
-     let help = document.getElementById("helpTextEditor");
+    let help = document.getElementById("helpTextEditor");
     help.style.display = "none";
 }
 
@@ -104,8 +107,8 @@ function onFinishButtonEnable(){
 
 function quitGameEditor(){
     
-    playButtonPressSound();
-    requireEngine();
+    common.playButtonPressSound();
+    common.requireEngine();
     Leviathan.Quit();
 }
 
@@ -115,10 +118,10 @@ function onFinishButtonClicked(event){
         return false;
     
     event.stopPropagation();
-    playButtonPressSound();
+    common.playButtonPressSound();
     
     // Fire event
-    if(isInEngine()){
+    if(common.isInEngine()){
 
         // Fire an event to tell the game to back to the stage. It
         // will notify us when it is done
@@ -131,7 +134,7 @@ function onFinishButtonClicked(event){
 
         // And re-enable the button
         window.setTimeout(() => {
-            onReadyToEnterEditor();
+            microbe_hud.onReadyToEnterEditor();
         }, 500);
     }
     
