@@ -70,3 +70,11 @@ Find.find('.') do |path|
   abort("\n\nFAILED to format file: " + path) if $?.exitstatus != 0
 end
 
+# JavaScript linting
+system(%{eslint "scripts/gui/**/*.*js" "scripts/gui/**/*.html" --fix})
+abort("\nJavaScript style errors were found.") if $?.exitstatus != 0
+
+# Stylelint for css
+system(%{stylelint scripts/gui/**/*.css scripts/gui/**/*.html --fix})
+abort("\nCSS style errors were found.") if $?.exitstatus != 0
+

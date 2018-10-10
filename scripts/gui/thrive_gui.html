@@ -7,25 +7,20 @@
     
     <link rel="stylesheet" href="thrive_style.css">
     <script src="../../JSVendor/jquery-3.3.1.min.js"></script>
-    <script src="gui_common.js"></script>
-    <script src="main_menu.js"></script>
-    <script src="microbe_hud.js"></script>
-    <script src="microbe_editor.js"></script>
   </head>
   <body>
     
-    <script>
+    <script type="module">
+      import * as common from "./gui_common.mjs";
+      import {runMenuSetup} from "./main_menu.mjs";
+      
       // Document.onload doesn't work here
       $(document).ready(function(){
           // Run setups from the individual scripts
           runMenuSetup();
 
           // Hide the loading logo
-          hideLoadingLogo();
-      
-          if(!isInEngine()){
-              console.log("GUI is not inside Thrive process");
-          }
+          common.hideLoadingLogo();
       });
     </script>
     
@@ -47,7 +42,7 @@
     <div id="topLevelMenuContainer" class="MenuContainer">
       <div class="BackgroundStars"></div>
       <div class="BackgroundPlanet"
-           style="position: absolute; top: 0px; z-index: -2; width: 300px; height: 300px;"></div>
+           style="position: absolute; top: 0; z-index: -2; width: 300px; height: 300px;"></div>
       <div class="Logo"
            style="position: absolute; top: 65px; z-index: -1;"></div>
       
@@ -62,7 +57,7 @@
         <div class="MenuButton" id="quitButton">Exit</div>
       </div>
 
-      <span id="versionNumber" style="position: absolute; right: 0px; bottom: 0px;">
+      <span id="versionNumber" style="position: absolute; right: 0; bottom: 0;">
         JavaScript not loaded...
       </span>
     </div>

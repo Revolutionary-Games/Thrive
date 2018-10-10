@@ -2,17 +2,17 @@
 "use strict";
 
 //! Returns a value between min and max, range: [min, max]
-function randomBetween(min, max){
+export function randomBetween(min, max){
     return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
 //! Returns true if ran in Thrive (Leviathan is available) false if inside a desktop browser
-function isInEngine(){
-    return typeof Leviathan === 'object' && Leviathan !== null;
+export function isInEngine(){
+    return typeof Leviathan === "object" && Leviathan !== null;
 }
 
 //! Shows an alert if isInEngine is false
-function requireEngine(msg){
+export function requireEngine(msg){
     if(!isInEngine()){
 
         alert("This method only works inside Thrive, msg: " + msg);
@@ -20,7 +20,7 @@ function requireEngine(msg){
 }
 
 //! Plays the button press sound effect
-function playButtonPressSound(){
+export function playButtonPressSound(){
 
     if(isInEngine()){
         Leviathan.Play2DSoundEffect("Data/Sound/soundeffects/gui/button-hover-click.ogg");
@@ -28,18 +28,18 @@ function playButtonPressSound(){
 }
 
 //! Hides the loading logo
-function hideLoadingLogo(){
+export function hideLoadingLogo(){
     document.getElementById("loadingLogo").style.display = "none";
 }
 
 //! Shows the loading logo
-function showLoadingLogo(){
+export function showLoadingLogo(){
     document.getElementById("loadingLogo").style.display = "flex";
 }
 
 
 //! Plays a video with the video player
-function playVideo(file, ondone){
+export function playVideo(file, ondone){
 
     document.getElementById("videoPlayer").style.display = "flex";
     let videoElement = document.getElementById("videoPlayersVideo");
@@ -50,19 +50,41 @@ function playVideo(file, ondone){
     // TODO: volume control
     videoElement.volume = 1.0;
 
+    let doneCalled = false;        
+
+    let endCallback = () => {
+
+        // TODO: cool animation
+        document.getElementById("videoPlayer").style.display = "none";
+
+        if(!doneCalled){
+            ondone();
+            doneCalled = true;
+        }
+    };
+
     // Set end event
     $(videoElement).one("ended", function(event){
         event.stopPropagation();
-        
-        // TODO: cool animation
-        document.getElementById("videoPlayer").style.display = "none";
-        
-        ondone();
+
+        endCallback();
+    });
+
+    $(videoElement).one("error", function(event){
+
+        // Ignore empty errors
+        if(event.target.error.code == 4 &&
+           event.target.error.message == "MEDIA_ELEMENT_ERROR: Empty src attribute")
+            return;
+
+        console.error("Play error: ", event);
+
+        endCallback();
     });
 }
 
 //! Stops a video (and triggers the end event)
-function stopVideo(){
+export function stopVideo(){
 
     let videoElement = document.getElementById("videoPlayersVideo");
     
@@ -72,12 +94,12 @@ function stopVideo(){
 }
 
 //! Helper for filling bar backgrounds
-function barHelper(value, max){
+export function barHelper(value, max){
     return (value / max) * 100 + "%";
 }
 
 //! Helper for clearing html node children
-function clearChildren(node){
+export function clearChildren(node){
 
     while(node.hasChildNodes()) {
         node.removeChild(node.lastChild);
@@ -85,7 +107,7 @@ function clearChildren(node){
 }
 
 //! Helper for using native and leviathan js types keys
-function getKeys(obj){
+export function getKeys(obj){
 
     if(obj.keys){
 

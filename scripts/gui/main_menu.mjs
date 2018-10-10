@@ -1,22 +1,25 @@
 // Main menu scripts are here
 "use strict";
 
+import * as common from "./gui_common.mjs";
+import * as microbe_hud from "./microbe_hud.mjs";
+
 let jams = null;
 
 // Pauses the menu music instantly (used for instant start)
 let menuAlreadySkipped = false;
 
 //! Setup callbacks for buttons
-function runMenuSetup(){
+export function runMenuSetup(){
 
     document.getElementById("quitButton").addEventListener("click", (event) => {
         event.stopPropagation();
-        playButtonPressSound();
+        common.playButtonPressSound();
         quitGame();
     }, true);
     document.getElementById("newGameButton").addEventListener("click", (event) => {
         event.stopPropagation();
-        playButtonPressSound();        
+        common.playButtonPressSound();        
         newGame();
     }, true);
 
@@ -30,7 +33,7 @@ function runMenuSetup(){
     }, true);
     
     // Some setup cannot be ran when previewing in a browser
-    if(isInEngine()){
+    if(common.isInEngine()){
         
         // Version number
         Thrive.getVersion((result) => {
@@ -40,14 +43,14 @@ function runMenuSetup(){
         }, () => {});
 
         // Detect return to menu
-        Leviathan.OnGeneric("ExitedToMenu", (event, vars) => {
+        Leviathan.OnGeneric("ExitedToMenu", () => {
             doExitToMenu();
         });        
         
-
-        // (this would theoretically work in a browser but would be a bit annoying to work on)
         // Start intro video
-        playVideo("../../Videos/intro.mkv", onIntroEnded);
+        // TODO: this video file is broken in latest CEF for some reason
+        // common.playVideo("../../Videos/intro.mkv", onIntroEnded);
+        onIntroEnded();
         
     } else {
         document.getElementById("versionNumber").textContent = "Thrive GUI in browser";
@@ -55,7 +58,8 @@ function runMenuSetup(){
         // Background to be black to fix the white text and cursor not showing up well
         document.getElementsByTagName("body")[0].style.background = "black";
 
-        // playVideo("../../assets/videos/intro.mkv", onIntroEnded);
+        // (this would theoretically work in a browser but would be a bit annoying to work on)
+        // common.playVideo("../../Videos/intro.mkv", onIntroEnded);
     }
     
     //
@@ -63,10 +67,14 @@ function runMenuSetup(){
     //
     // onMicrobeIntroEnded();
     // doEnterMicrobeEditor();
+    // onIntroEnded();
 }
 
 function startMenuMusic(restart = true)
 {
+    if(!common.isInEngine())
+        return;
+    
     if(jams && restart){
 
         // Stop already playing
@@ -80,9 +88,9 @@ function startMenuMusic(restart = true)
         
         // Start the menu music
         Leviathan.Play2DSound("Data/Sound/main-menu-theme-2.ogg", true, startPaused,
-                              (source) => {
-                                  jams = source;
-                              });
+            (source) => {
+                jams = source;
+            });
     } else {
         
         jams.Play2D();
@@ -94,26 +102,26 @@ function startMenuMusic(restart = true)
 function onEscapePressed(){
 
     if(!document.getElementById("videoPlayersVideo").ended)
-        stopVideo();
+        common.stopVideo();
 }
 
 function onIntroEnded()
 {
-    if(isInEngine()){
+    if(common.isInEngine()){
 
         startMenuMusic();
     }
 }
 
 function quitGame(){
-    requireEngine();
+    common.requireEngine();
     Leviathan.Quit();
 }
 
 function newGame(){
 
-    if(isInEngine()){
-        playVideo("../../Videos/MicrobeIntro.mkv", onMicrobeIntroEnded);
+    if(common.isInEngine()){
+        common.playVideo("../../Videos/MicrobeIntro.mkv", onMicrobeIntroEnded);
     } else {
         onMicrobeIntroEnded();
     }
@@ -128,11 +136,11 @@ function onMicrobeIntroEnded(){
         jams.Pause();
     }
 
-    if(isInEngine()){
+    if(common.isInEngine()){
 
         // Make sure no video is playing in case we did an immediate start
         if(!document.getElementById("videoPlayersVideo").ended)
-            stopVideo();
+            common.stopVideo();
     
         Thrive.start();
         
@@ -147,15 +155,15 @@ function onMicrobeIntroEnded(){
 
     // And show microbe gui
     document.getElementById("topLevelMicrobeStage").style.display = "block";
-    runMicrobeHUDSetup();
+    microbe_hud.runMicrobeHUDSetup();
 }
 
 //! Called once C++ has finished exiting to menu
-function doExitToMenu()
+export function doExitToMenu()
 {
-    document.getElementById("topLevelMenuContainer").style.display = '';
-    document.getElementById("topLevelMicrobeStage").style.display = 'none';
-    document.getElementById("pauseOverlay").style.display = 'none';
+    document.getElementById("topLevelMenuContainer").style.display = "";
+    document.getElementById("topLevelMicrobeStage").style.display = "none";
+    document.getElementById("pauseOverlay").style.display = "none";
 
     startMenuMusic(false);
 }

@@ -1,13 +1,17 @@
 // JavaScript code to handle updating all the microbe stage stuff
 "use strict";
 
+import * as common from "./gui_common.mjs";
+import {doEnterMicrobeEditor} from "./microbe_editor.mjs";
+import * as main_menu from "./main_menu.mjs";
+
 let microbeHudSetupRan = false;
 
 let readyToEdit = false;
 
 //! Registers all the stuff for this to work. For performance reasons
 //! this should only be called
-function runMicrobeHUDSetup(){
+export function runMicrobeHUDSetup(){
 
     if(microbeHudSetupRan)
         return;
@@ -46,7 +50,7 @@ function runMicrobeHUDSetup(){
     // Editor button is initially disabled
     document.getElementById("microbeToEditorButton").classList.add("DisabledButton");
 
-    if(isInEngine()){
+    if(common.isInEngine()){
 
         // Register for the microbe stage events
         Leviathan.OnGeneric("PlayerCompoundAmounts", (event, vars) => {
@@ -62,8 +66,8 @@ function runMicrobeHUDSetup(){
             updatePopulation(vars.populationAmount);
         });
 		
-		// Event for checking win conditions
-		Leviathan.OnGeneric("CheckWin", (event, vars) => {
+        // Event for checking win conditions
+        Leviathan.OnGeneric("CheckWin", (event, vars) => {
             checkGeneration(vars.generation);
         });
 
@@ -87,31 +91,31 @@ function runMicrobeHUDSetup(){
     } else {
 
         // Update random values to make it prettier to look at
-        let hp = randomBetween(10, 50);
-        let ammonia = randomBetween(0, 50);
-        let glucose = randomBetween(10, 50);
-        let oxytoxy = randomBetween(0, 10);
-        let phosphate = randomBetween(0, 50);
-        let hydrogenSulfide = randomBetween(0, 50);
+        let hp = common.randomBetween(10, 50);
+        let ammonia = common.randomBetween(0, 50);
+        let glucose = common.randomBetween(10, 50);
+        let oxytoxy = common.randomBetween(0, 10);
+        let phosphate = common.randomBetween(0, 50);
+        let hydrogenSulfide = common.randomBetween(0, 50);
         updateMicrobeHUDBars({
-            hitpoints: randomBetween(1, hp),
+            hitpoints: common.randomBetween(1, hp),
             maxHitpoints: hp,
-            compoundATP: randomBetween(10, 100),
+            compoundATP: common.randomBetween(10, 100),
             ATPMax: 100,
-            compoundAmmonia: randomBetween(0, ammonia),
+            compoundAmmonia: common.randomBetween(0, ammonia),
             AmmoniaMax: ammonia,
-            compoundGlucose: randomBetween(0, glucose),
+            compoundGlucose: common.randomBetween(0, glucose),
             GlucoseMax: glucose,
-            compoundOxytoxy: randomBetween(0, oxytoxy),
+            compoundOxytoxy: common.randomBetween(0, oxytoxy),
             OxytoxyMax: oxytoxy,
-            compoundPhosphate: randomBetween(0, phosphate),
+            compoundPhosphate: common.randomBetween(0, phosphate),
             PhosphateMax: phosphate,
-            compoundHydrogenSulfide: randomBetween(0, hydrogenSulfide),
+            compoundHydrogenSulfide: common.randomBetween(0, hydrogenSulfide),
             HydrogenSulfideMax: hydrogenSulfide,
         });
 
         // Pseudo population code
-        updatePopulation(randomBetween(0, 50));
+        updatePopulation(common.randomBetween(0, 50));
 
         // Put some hover stuff
         updateHoverInfo({
@@ -128,22 +132,22 @@ function runMicrobeHUDSetup(){
 // Quit Button
 function quitGameHud(){
     
-    playButtonPressSound();
-    requireEngine();
+    common.playButtonPressSound();
+    common.requireEngine();
     Leviathan.Quit();
 }
 
 //! Enables the editor button
-function onReadyToEnterEditor(){
+export function onReadyToEnterEditor(){
     
     readyToEdit = true;
     document.getElementById("microbeToEditorButton").classList.remove("DisabledButton");
 }
 
 
-function onCompoundPanelClicked(event)
+function onCompoundPanelClicked()
 {
-    playButtonPressSound();
+    common.playButtonPressSound();
     
     $("#compoundsPanel").slideToggle(400, "swing", function(){
         
@@ -158,9 +162,9 @@ function onCompoundPanelClicked(event)
 
 }
 
-function openHelp(event){
+function openHelp(){
 
-    playButtonPressSound();
+    common.playButtonPressSound();
 
     let pause = document.getElementById("pauseMenu");
     pause.style.display = "none";
@@ -170,9 +174,9 @@ function openHelp(event){
     
 }
 
-function closeHelp(event){
+function closeHelp(){
 
-    playButtonPressSound();
+    common.playButtonPressSound();
     
     let pause = document.getElementById("pauseMenu");
     pause.style.display = "block";
@@ -202,15 +206,15 @@ function closeHelp(event){
     "Fun Fact, The Stentor is a ciliate that can stretch itself and catch prey in a kind of trumpet like mouth that draws prey in by generating water currents with cilia.",
     "Fun Fact, The Didinum is a ciliate that hunts paramecia.",
     "Fun Fact, The Ameoba hunts and catches prey with 'legs' made of cytoplasm called pseudopods, eventually we want those in thrive.",
-    "Heres a tip, Watch out for larger cells and large bacteria, its not fun to be digested,  and they will eat you."]
+    "Heres a tip, Watch out for larger cells and large bacteria, its not fun to be digested,  and they will eat you."];
 
     
-    let tipEasterEggChance = randomBetween(0, 5);
-    let messageNum = randomBetween(0, message.length-1);
+    let tipEasterEggChance = common.randomBetween(0, 5);
+    let messageNum = common.randomBetween(0, message.length-1);
 
     if (tipEasterEggChance == 1)
     {
-        document.getElementById("tipMsg").style.display = 'unset';
+        document.getElementById("tipMsg").style.display = "unset";
         document.getElementById("tipMsg").textContent = message[messageNum];
         setTimeout(hideTipMsg, 6000);
     }
@@ -219,46 +223,46 @@ function closeHelp(event){
 
 function hideTipMsg()
 {
-    document.getElementById("tipMsg").style.display = 'none';
+    document.getElementById("tipMsg").style.display = "none";
 }
 
-function onMenuClicked(event){
+function onMenuClicked(){
 
-    playButtonPressSound();
+    common.playButtonPressSound();
     let pause = document.getElementById("pauseOverlay");
     pause.style.display = "block";
     let help = document.getElementById("helpText");
     help.style.display = "none";
 }
 
-function onResumeClicked(event){
+function onResumeClicked(){
 
-    playButtonPressSound();
+    common.playButtonPressSound();
     let pause = document.getElementById("pauseOverlay");
     pause.style.display = "none";
 }
 
-function killPlayerCell(event){
+function killPlayerCell(){
 
-    playButtonPressSound();
+    common.playButtonPressSound();
     Thrive.killPlayerCellClicked();
 
     // Easter egg code, shows a small message saying something from the
     // list of messages when you kill yourself
     let message = ["Do you want to go extinct?","Darwin Award?", "Why? :(",
-                   "How could you do this to me?","Thats not quite, 'Thriving'","B..ut...why?",
-                   "Microbes may not have a nervous system, but thats still not very nice!",
-                   "And so you explode in a bubble of organic chemicals, never to evolve, " +
+        "How could you do this to me?","Thats not quite, 'Thriving'","B..ut...why?",
+        "Microbes may not have a nervous system, but thats still not very nice!",
+        "And so you explode in a bubble of organic chemicals, never to evolve, " +
                    "never to thrive...",
-                   "Did you know there is in fact such a thing as 'programmed cell death', " +
+        "Did you know there is in fact such a thing as 'programmed cell death', " +
                    "its called apoptosis."];
     
-    let deathEasterEggChance = randomBetween(0, 10);
-    let messageNum = randomBetween(0, message.length-1);
+    let deathEasterEggChance = common.randomBetween(0, 10);
+    let messageNum = common.randomBetween(0, message.length-1);
 
     if (deathEasterEggChance == 0)
     {
-        document.getElementById("suicideMsg").style.display = 'unset';
+        document.getElementById("suicideMsg").style.display = "unset";
         document.getElementById("suicideMsg").textContent = message[messageNum];
         setTimeout(hideSuicideMsg, 5000);
     }
@@ -266,7 +270,7 @@ function killPlayerCell(event){
 
 function hideSuicideMsg()
 {
-    document.getElementById("suicideMsg").style.display = 'none';
+    document.getElementById("suicideMsg").style.display = "none";
 }
 
 function onEditorButtonClicked(event){
@@ -275,10 +279,10 @@ function onEditorButtonClicked(event){
         return false;
     
     event.stopPropagation();
-    playButtonPressSound();
+    common.playButtonPressSound();
     
     // Fire event
-    if(isInEngine()){
+    if(common.isInEngine()){
 
         // Call a function to tell the game to swap to the editor. It
         // will notify us when it is done
@@ -296,9 +300,9 @@ function onEditorButtonClicked(event){
 }
 
 //! Exit to main menu clicked
-function onExitToMenuClicked(event)
+function onExitToMenuClicked()
 {
-    if(isInEngine()){
+    if(common.isInEngine()){
 
         // Call a function to tell the game to swap to the editor. It
         // will notify us when it is done
@@ -307,7 +311,7 @@ function onExitToMenuClicked(event)
     } else {
 
         // Swap GUI for previewing
-        doExitToMenu();
+        main_menu.doExitToMenu();
     }
 }
 
@@ -315,7 +319,7 @@ function onExitToMenuClicked(event)
 function updateHoverInfo(vars){
 
     let panel = document.getElementById("mouseHoverPanel");
-    clearChildren(panel);
+    common.clearChildren(panel);
 
     panel.appendChild(document.createTextNode("Stuff at " + vars.mousePos + ":"));
     
@@ -326,7 +330,7 @@ function updateHoverInfo(vars){
         
     } else {
 
-        getKeys(vars).forEach(function(key){
+        common.getKeys(vars).forEach(function(key){
 
             // Skip things that are handled elsewhere
             if(key == "mousePos")
@@ -354,14 +358,14 @@ function checkGeneration (generation){
     //This is set to == because I don't want the wintext to show up after the 15th generation
     //This can be changed by just about anyone if needed very easily
     if(generation == 15){
-        document.getElementById("winText").style.display = 'unset';
+        document.getElementById("winText").style.display = "unset";
         setTimeout(hideWinText, 5000);
     }
 }
 
 //! Supplementry function for checkGeneration that hides the wintext
 function hideWinText (){
-    document.getElementById("winText").style.display = 'none';
+    document.getElementById("winText").style.display = "none";
 }
 
 //! Updates the GUI bars
@@ -372,53 +376,53 @@ function updateMicrobeHUDBars(values){
     document.getElementById("microbeHUDPlayerMaxHitpoints").textContent =
         values.maxHitpoints;
     document.getElementById("microbeHUDPlayerHitpointsBar").style.width =
-        barHelper(values.hitpoints, values.maxHitpoints);
+        common.barHelper(values.hitpoints, values.maxHitpoints);
 
     // TODO: remove this debug code
     document.getElementById("microbeHUDPlayerATP").textContent =
         values.compoundATP.toFixed(1);
 
     // The bars
-     document.getElementById("microbeHUDPlayerATPCompound").textContent =
+    document.getElementById("microbeHUDPlayerATPCompound").textContent =
          values.compoundATP.toFixed(1);
-     document.getElementById("microbeHUDPlayerATPMax").textContent =
+    document.getElementById("microbeHUDPlayerATPMax").textContent =
          values.ATPMax;
-     document.getElementById("microbeHUDPlayerATPBar").style.width =
-         barHelper(values.compoundATP, values.ATPMax);
+    document.getElementById("microbeHUDPlayerATPBar").style.width =
+         common.barHelper(values.compoundATP, values.ATPMax);
 
     document.getElementById("microbeHUDPlayerAmmonia").textContent =
         values.compoundAmmonia.toFixed(1);
     document.getElementById("microbeHUDPlayerAmmoniaMax").textContent =
         values.AmmoniaMax;
     document.getElementById("microbeHUDPlayerAmmoniaBar").style.width =
-        barHelper(values.compoundAmmonia, values.AmmoniaMax);
+        common.barHelper(values.compoundAmmonia, values.AmmoniaMax);
 
     document.getElementById("microbeHUDPlayerPhosphates").textContent =
         values.compoundPhosphate.toFixed(1);
     document.getElementById("microbeHUDPlayerPhosphatesMax").textContent =
         values.PhosphateMax;
     document.getElementById("microbeHUDPlayerPhosphatesBar").style.width =
-        barHelper(values.compoundPhosphate, values.PhosphateMax);
+        common.barHelper(values.compoundPhosphate, values.PhosphateMax);
         
     document.getElementById("microbeHUDPlayerGlucose").textContent =
         values.compoundGlucose.toFixed(1);
     document.getElementById("microbeHUDPlayerGlucoseMax").textContent =
         values.GlucoseMax;
     document.getElementById("microbeHUDPlayerGlucoseBar").style.width =
-        barHelper(values.compoundGlucose, values.GlucoseMax);
+        common.barHelper(values.compoundGlucose, values.GlucoseMax);
 
     document.getElementById("microbeHUDPlayerOxytoxy").textContent =
         values.compoundOxytoxy.toFixed(1);
     document.getElementById("microbeHUDPlayerOxytoxyMax").textContent =
         values.OxytoxyMax;
     document.getElementById("microbeHUDPlayerOxytoxyBar").style.width =
-        barHelper(values.compoundOxytoxy, values.OxytoxyMax);
+        common.barHelper(values.compoundOxytoxy, values.OxytoxyMax);
         
     document.getElementById("microbeHUDPlayerHydrogenSulfide").textContent =
         values.compoundHydrogenSulfide.toFixed(1);
     document.getElementById("microbeHUDPlayerHydrogenSulfideMax").textContent =
         values.HydrogenSulfideMax;
     document.getElementById("microbeHUDPlayerHydrogenSulfideBar").style.width =
-        barHelper(values.compoundHydrogenSulfide, values.HydrogenSulfideMax);
+        common.barHelper(values.compoundHydrogenSulfide, values.HydrogenSulfideMax);
         
 }
