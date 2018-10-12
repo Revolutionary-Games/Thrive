@@ -563,8 +563,6 @@ void
     // shift cloud to the left by half a width so its positioned correctly
     // cloud.m_position.X = cloud.m_position.X - width / 2;
 
-    const auto halfWidth = width * gridSize / 2;
-    const auto halfHeight = height * gridSize / 2;
     // set the position properly
     cloud.m_sceneNode->setPosition(
         cloud.m_position.X, YOffset, cloud.m_position.Z);
@@ -582,6 +580,9 @@ void
         // Ogre::Quaternion(0, sqrt(.5), 1, sqrt(.5))
         Ogre::Quaternion(Ogre::Degree(90), Ogre::Vector3::UNIT_Z) *
         Ogre::Quaternion(Ogre::Degree(45), Ogre::Vector3::UNIT_Y));
+
+    // Was playing with this to see if i could fix issues, i couldnt.
+    // cloud.m_sceneNode->setScale(1.0f, 1.0f, 0.5f);
 
 
     // Set the size of each grid tile and its position.
@@ -809,7 +810,7 @@ void
         for(int i = 0; i < width; i++) {
             // Flipping in y-direction
             // TODO: check is this uint8_t conversion better than clamping
-            int intensity = static_cast<int>(density[i][height - j - 1]);
+            int intensity = static_cast<int>(density[i][(height - j)]);
 
             // TODO: can this be removed as this probably causes some
             // performance concerns by being here
