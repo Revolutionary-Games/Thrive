@@ -828,7 +828,7 @@ void
     CompoundCloudSystem::CreateVelocityField()
 {
     float nxScale = noiseScale;
-    float nyScale = nxScale * float(width) / float(height);
+    float nyScale = noiseScale;
     float x0, y0, x1, y1, n0, n1, nx, ny;
 
     for(int x = 0; x < width; x++) {
