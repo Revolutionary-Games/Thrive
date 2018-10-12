@@ -812,10 +812,6 @@ void
             // TODO: check is this uint8_t conversion better than clamping
             int intensity = static_cast<int>(density[i][(height - j)]);
 
-            // TODO: can this be removed as this probably causes some
-            // performance concerns by being here
-            std::clamp(intensity, 0, 255);
-
             // This can be used to debug the clouds
             // if(index == 1)
             //     intensity += 70;
