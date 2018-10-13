@@ -26,7 +26,7 @@ generator.addInclude "microbe_stage/compound_absorber_system.h"
 generator.addInclude "microbe_stage/microbe_camera_system.h"
 generator.addInclude "microbe_stage/player_microbe_control.h"
 generator.addInclude "microbe_stage/player_hover_info.h"
-
+generator.addInclude "general/properties_component.h"
 generator.addInclude "general/timed_life_system.h"
 
 cellWorld = GameWorldClass.new(
