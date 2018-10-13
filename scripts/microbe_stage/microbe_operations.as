@@ -558,11 +558,11 @@ void emitAgent(CellStageWorld@ world, ObjectID microbeEntity, CompoundId compoun
             GetEngine().GetSoundDevice().Play2DSoundEffect("Data/Sound/soundeffects/microbe-release-toxin.ogg");
         if (abs(minR) < maxR)
             {
-            createAgentCloud(world, compoundId, cellPosition._Position+(Float3(xnew*-ejectionDistanceZ,0,ynew*-ejectionDistanceZ)), direction,amountToEject * 10.0f,lifeTime);
+            createAgentCloud(world, compoundId, cellPosition._Position+(Float3(xnew*-ejectionDistanceZ,0,ynew*-ejectionDistanceZ)), direction,amountToEject * 10.0f,lifeTime,microbeComponent.speciesName);
             }
         else
             {
-            createAgentCloud(world, compoundId, cellPosition._Position+(Float3(xnew*ejectionDistanceZ,0,ynew*ejectionDistanceZ)), direction,amountToEject * 10.0f,lifeTime);
+            createAgentCloud(world, compoundId, cellPosition._Position+(Float3(xnew*ejectionDistanceZ,0,ynew*ejectionDistanceZ)), direction,amountToEject * 10.0f,lifeTime,microbeComponent.speciesName);
             }
 
             // The cooldown time is inversely proportional to the amount of agent vacuoles.
@@ -1077,7 +1077,7 @@ void kill(CellStageWorld@ world, ObjectID microbeEntity)
             auto ejectedAmount = takeCompound(world, microbeEntity, compoundId, 2);
             auto direction = Float3(GetEngine().GetRandom().GetNumber(0.0f, 1.0f) * 2 - 1,
                 0, GetEngine().GetRandom().GetNumber(0.0f, 1.0f) * 2 - 1);
-            createAgentCloud(world, compoundId, position._Position, direction, ejectedAmount, 2000);
+            createAgentCloud(world, compoundId, position._Position, direction, ejectedAmount, 2000, "");
             _amount = _amount - ejectedAmount;
         }
     }
