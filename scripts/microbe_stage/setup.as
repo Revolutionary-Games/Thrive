@@ -319,7 +319,30 @@ int hitAgent(GameWorld@ world, ObjectID firstEntity, ObjectID secondEntity)
         world.GetScriptComponentHolder("MicrobeComponent").Find(firstEntity));
     MicrobeComponent@ secondMicrobeComponent = cast<MicrobeComponent>(
         world.GetScriptComponentHolder("MicrobeComponent").Find(secondEntity));
-
+     CellStageWorld@ asCellWorld = cast<CellStageWorld>(world);
+    PropertiesComponent@ firstPropertiesComponent = asCellWorld.GetComponent_PropertiesComponent(firstEntity);
+    PropertiesComponent@ secondPropertiesComponent = asCellWorld.GetComponent_PropertiesComponent(secondEntity);
+        
+    if (firstPropertiesComponent !is null || secondPropertiesComponent !is null)
+    {
+    LOG_INFO("Property Exists");
+        if (firstPropertiesComponent !is null && secondMicrobeComponent !is null)
+        {
+            if (firstPropertiesComponent.getStringOne()==secondMicrobeComponent.speciesName)
+                {
+                shouldCollide=0;
+                return shouldCollide;
+                }
+        }
+        else if (secondPropertiesComponent !is null && firstMicrobeComponent !is null)
+        {
+            if (secondPropertiesComponent.getStringOne()==firstMicrobeComponent.speciesName)
+                {
+                shouldCollide=0;
+                return shouldCollide;
+                }
+        }
+    }
     // Check if one is a microbe, and the other is not
     if ((firstMicrobeComponent !is null || secondMicrobeComponent !is null) && !(firstMicrobeComponent !is null && secondMicrobeComponent !is null))
         {
@@ -332,7 +355,7 @@ int hitAgent(GameWorld@ world, ObjectID firstEntity, ObjectID secondEntity)
 }
 
 void createAgentCloud(CellStageWorld@ world, CompoundId compoundId, Float3 pos,
-    Float3 direction, float amount, float lifetime)
+    Float3 direction, float amount, float lifetime, string speciesName)
 {
     auto normalizedDirection = direction.Normalize();
     auto agentEntity = world.CreateEntity();
@@ -344,9 +367,14 @@ void createAgentCloud(CellStageWorld@ world, CompoundId compoundId, Float3 pos,
             Ogre::Vector3(0, 1, 0)));
 
 
+            
 
     auto rigidBody = world.Create_Physics(agentEntity, world, position, null);
 
+    
+   auto properties = world.Create_PropertiesComponent(agentEntity);
+   properties.setStringOne(speciesName);
+   
     rigidBody.SetCollision(world.GetPhysicalWorld().CreateSphere(HEX_SIZE));
     rigidBody.CreatePhysicsBody(world.GetPhysicalWorld(), world.GetPhysicalMaterial("agentCollision"));
     // Agent
