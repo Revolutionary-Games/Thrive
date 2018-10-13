@@ -83,6 +83,7 @@ cellWorld = GameWorldClass.new(
                                                    Variable.new("timeToLive", "int",
                                                                 noRef: true),
                                                  ])]),
+    EntityComponent.new("PropertiesComponent", [ConstructorInfo.new([])]),                                
     
   ],
   systems: [

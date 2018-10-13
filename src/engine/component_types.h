@@ -20,6 +20,7 @@ enum class THRIVE_COMPONENT : uint16_t {
     SPAWNED,
     ABSORBER,
     TIMED_LIFE,
+    PROPERTIES,
 
     // TODO: check is this needed for anything
     // INVALID
