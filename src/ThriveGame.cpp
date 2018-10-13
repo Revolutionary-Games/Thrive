@@ -844,6 +844,41 @@ int
     return returned.Value;
 }
 
+
+int
+    agentCallback(const NewtonMaterial* material,
+        const NewtonBody* body0,
+        const NewtonBody* body1,
+        int threadIndex)
+{
+    if(!body0 || !body1)
+        return 1;
+
+    Leviathan::Physics* firstPhysics =
+        static_cast<Leviathan::Physics*>(NewtonBodyGetUserData(body0));
+    Leviathan::Physics* secondPhysics =
+        static_cast<Leviathan::Physics*>(NewtonBodyGetUserData(body1));
+
+    NewtonWorld* world = NewtonBodyGetWorld(body0);
+    Leviathan::PhysicalWorld* physicalWorld =
+        static_cast<Leviathan::PhysicalWorld*>(NewtonWorldGetUserData(world));
+    GameWorld* gameWorld = physicalWorld->GetGameWorld();
+
+	// Now we can do more interetsing things with agents
+    ScriptRunningSetup setup("hitAgent");
+
+    // Causes errors as this has to release
+    auto returned =
+        ThriveGame::Get()->getMicrobeScripts()->ExecuteOnModule<int>(setup,
+            false, gameWorld, firstPhysics->ThisEntity,
+            secondPhysics->ThisEntity);
+
+    if(returned.Result != SCRIPT_RUN_RESULT::Success)
+        LOG_ERROR("Failed to run script side hitAgent");
+
+    return returned.Value;
+}
+
 void
     cellOnCellActualContact(const NewtonJoint* contact,
         dFloat timestep,
@@ -897,7 +932,7 @@ void
         .SetCallbacks(nullptr, cellHitFloatingOrganelle);
     // Agents
     cellMaterial->FormPairWith(*agentMaterial)
-        .SetCallbacks(cellOnCellAABBHitCallback, cellHitAgent);
+        .SetCallbacks(agentCallback, cellHitAgent);
     // Engulfing
     cellMaterial->FormPairWith(*cellMaterial)
         .SetCallbacks(cellOnCellAABBHitCallback, cellOnCellActualContact);
