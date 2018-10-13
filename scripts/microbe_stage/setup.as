@@ -305,6 +305,21 @@ int beingEngulfed(GameWorld@ world, ObjectID firstEntity, ObjectID secondEntity)
     }
     }
 
+    return shouldCollide;
+}
+
+// Returns 0 if you hit an agent and calls the code
+int hitAgent(GameWorld@ world, ObjectID firstEntity, ObjectID secondEntity)
+{
+    int shouldCollide = 1;
+
+
+    // Grab the microbe components
+    MicrobeComponent@ firstMicrobeComponent = cast<MicrobeComponent>(
+        world.GetScriptComponentHolder("MicrobeComponent").Find(firstEntity));
+    MicrobeComponent@ secondMicrobeComponent = cast<MicrobeComponent>(
+        world.GetScriptComponentHolder("MicrobeComponent").Find(secondEntity));
+
     // Check if one is a microbe, and the other is not
     if ((firstMicrobeComponent !is null || secondMicrobeComponent !is null) && !(firstMicrobeComponent !is null && secondMicrobeComponent !is null))
         {
@@ -315,7 +330,6 @@ int beingEngulfed(GameWorld@ world, ObjectID firstEntity, ObjectID secondEntity)
 
     return shouldCollide;
 }
-
 
 void createAgentCloud(CellStageWorld@ world, CompoundId compoundId, Float3 pos,
     Float3 direction, float amount, float lifetime)
