@@ -864,7 +864,7 @@ int
         static_cast<Leviathan::PhysicalWorld*>(NewtonWorldGetUserData(world));
     GameWorld* gameWorld = physicalWorld->GetGameWorld();
 
-	// Now we can do more interetsing things with agents
+    // Now we can do more interetsing things with agents
     ScriptRunningSetup setup("hitAgent");
 
     // Causes errors as this has to release
