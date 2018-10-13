@@ -812,7 +812,29 @@ bool
            engine, "PropertiesComponent", &PropertiesComponentTYPEProxy))
         return false;
 
+    if(engine->RegisterObjectMethod("PropertiesComponent",
+           "void setStringOne(string newString)",
+           asMETHOD(PropertiesComponent, setStringOne), asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
 
+    if(engine->RegisterObjectMethod("PropertiesComponent",
+           "void setStringTwo(string newString)",
+           asMETHOD(PropertiesComponent, setStringTwo), asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectMethod("PropertiesComponent",
+           "string getStringOne()", asMETHOD(PropertiesComponent, getStringOne),
+           asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectMethod("PropertiesComponent",
+           "string getStringTwo()", asMETHOD(PropertiesComponent, getStringTwo),
+           asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
     return true;
 }
 
