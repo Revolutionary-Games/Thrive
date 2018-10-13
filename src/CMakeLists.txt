@@ -14,6 +14,8 @@ set(GROUP_ENGINE
 set(GROUP_GENERAL
   "general/timed_life_system.cpp"
   "general/timed_life_system.h"
+  "general/properties_component.cpp"
+  "general/properties_component.h"
   "general/locked_map.cpp"
   "general/locked_map.h"
   "general/hex.cpp"

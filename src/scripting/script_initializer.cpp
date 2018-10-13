@@ -6,6 +6,7 @@ using namespace thrive;
 #include "engine/player_data.h"
 #include "general/hex.h"
 #include "general/locked_map.h"
+#include "general/properties_component.h"
 #include "general/timed_life_system.h"
 #include "generated/cell_stage_world.h"
 #include "generated/microbe_editor_world.h"
@@ -431,6 +432,8 @@ static uint16_t CompoundAbsorberComponentTYPEProxy =
     static_cast<uint16_t>(CompoundAbsorberComponent::TYPE);
 static uint16_t TimedLifeComponentTYPEProxy =
     static_cast<uint16_t>(TimedLifeComponent::TYPE);
+static uint16_t PropertiesComponentTYPEProxy =
+    static_cast<uint16_t>(PropertiesComponent::TYPE);
 
 //! Helper for bindThriveComponentTypes
 bool
@@ -800,6 +803,14 @@ bool
            engine, "TimedLifeComponent", &TimedLifeComponentTYPEProxy))
         return false;
 
+    if(engine->RegisterObjectType(
+           "PropertiesComponent", 0, asOBJ_REF | asOBJ_NOCOUNT) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(!bindComponentTypeId(
+           engine, "PropertiesComponent", &PropertiesComponentTYPEProxy))
+        return false;
 
 
     return true;
