@@ -374,6 +374,7 @@ void createAgentCloud(CellStageWorld@ world, CompoundId compoundId, Float3 pos,
     
    auto agentProperties = world.Create_AgentProperties(agentEntity);
    agentProperties.setSpeciesName(speciesName);
+   agentProperties.setAgentType("oxytoxy");
    
     rigidBody.SetCollision(world.GetPhysicalWorld().CreateSphere(HEX_SIZE));
     rigidBody.CreatePhysicsBody(world.GetPhysicalWorld(), world.GetPhysicalMaterial("agentCollision"));
