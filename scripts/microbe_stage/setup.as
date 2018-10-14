@@ -174,8 +174,8 @@ void onReturnFromEditor(CellStageWorld@ world)
 // TODO: also put these physics callback somewhere
 void cellHitFloatingOrganelle(GameWorld@ world, ObjectID firstEntity, ObjectID secondEntity){
 
-    LOG_INFO("Cell hit a floating organelle: object ids: " + firstEntity + " and " +
-        secondEntity);
+    //LOG_INFO("Cell hit a floating organelle: object ids: " + firstEntity + " and " +
+    //    secondEntity);
 
     // Determine which is the organelle
     CellStageWorld@ asCellWorld = cast<CellStageWorld>(world);
@@ -203,8 +203,8 @@ void cellHitFloatingOrganelle(GameWorld@ world, ObjectID firstEntity, ObjectID s
 // We can make this generic using the dictionary in agents.as eventually, but for now all we have is oxytoxy
 void cellHitAgent(GameWorld@ world, ObjectID firstEntity, ObjectID secondEntity){
 
-    LOG_INFO("Cell hit an agaent: object ids: " + firstEntity + " and " +
-        secondEntity);
+    //LOG_INFO("Cell hit an agaent: object ids: " + firstEntity + " and " +
+    //    secondEntity);
 
     // Determine which is the organelle
     CellStageWorld@ asCellWorld = cast<CellStageWorld>(world);
