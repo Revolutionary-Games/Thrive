@@ -364,7 +364,7 @@ function checkExtinction(population){
     if(population <= 0){
         document.getElementById("loseTextTitle").style.display = "unset";
         document.getElementById("loseTextBody").style.display = "unset";
-        setTimeout(hideLossText, 5000);
+        setTimeout(hideLossText, 12000);
     }
 }
 
