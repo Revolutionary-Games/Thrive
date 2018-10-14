@@ -320,15 +320,15 @@ int hitAgent(GameWorld@ world, ObjectID firstEntity, ObjectID secondEntity)
     MicrobeComponent@ secondMicrobeComponent = cast<MicrobeComponent>(
         world.GetScriptComponentHolder("MicrobeComponent").Find(secondEntity));
      CellStageWorld@ asCellWorld = cast<CellStageWorld>(world);
-    PropertiesComponent@ firstPropertiesComponent = asCellWorld.GetComponent_PropertiesComponent(firstEntity);
-    PropertiesComponent@ secondPropertiesComponent = asCellWorld.GetComponent_PropertiesComponent(secondEntity);
+    AgentProperties@ firstPropertiesComponent = asCellWorld.GetComponent_AgentProperties(firstEntity);
+    AgentProperties@ secondPropertiesComponent = asCellWorld.GetComponent_AgentProperties(secondEntity);
         
     if (firstPropertiesComponent !is null || secondPropertiesComponent !is null)
     {
     LOG_INFO("Property Exists");
         if (firstPropertiesComponent !is null && secondMicrobeComponent !is null)
         {
-            if (firstPropertiesComponent.getStringOne()==secondMicrobeComponent.speciesName)
+            if (firstPropertiesComponent.getSpeciesName()==secondMicrobeComponent.speciesName)
                 {
                 shouldCollide=0;
                 return shouldCollide;
@@ -336,7 +336,7 @@ int hitAgent(GameWorld@ world, ObjectID firstEntity, ObjectID secondEntity)
         }
         else if (secondPropertiesComponent !is null && firstMicrobeComponent !is null)
         {
-            if (secondPropertiesComponent.getStringOne()==firstMicrobeComponent.speciesName)
+            if (secondPropertiesComponent.getSpeciesName()==firstMicrobeComponent.speciesName)
                 {
                 shouldCollide=0;
                 return shouldCollide;
@@ -372,8 +372,8 @@ void createAgentCloud(CellStageWorld@ world, CompoundId compoundId, Float3 pos,
     auto rigidBody = world.Create_Physics(agentEntity, world, position, null);
 
     
-   auto properties = world.Create_PropertiesComponent(agentEntity);
-   properties.setStringOne(speciesName);
+   auto agentProperties = world.Create_AgentProperties(agentEntity);
+   agentProperties.setSpeciesName(speciesName);
    
     rigidBody.SetCollision(world.GetPhysicalWorld().CreateSphere(HEX_SIZE));
     rigidBody.CreatePhysicsBody(world.GetPhysicalWorld(), world.GetPhysicalMaterial("agentCollision"));

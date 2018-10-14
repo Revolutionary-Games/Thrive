@@ -4,29 +4,29 @@
 
 using namespace thrive;
 
-PropertiesComponent::PropertiesComponent() : Leviathan::Component(TYPE)
+AgentProperties::AgentProperties() : Leviathan::Component(TYPE)
 {
-    string1 = "";
-    string2 = "";
+    speciesName = "";
+    agentType = "";
 }
 
 std::string
-    PropertiesComponent::getStringOne()
+    AgentProperties::getSpeciesName()
 {
-    return this->string1;
+    return this->speciesName;
 }
 std::string
-    PropertiesComponent::getStringTwo()
+    AgentProperties::getAgentType()
 {
-    return this->string2;
+    return this->agentType;
 }
 void
-    PropertiesComponent::setStringOne(std::string newString)
+    AgentProperties::setSpeciesName(std::string newString)
 {
-    this->string1 = newString;
+    this->speciesName = newString;
 }
 void
-    PropertiesComponent::setStringTwo(std::string newString)
+    AgentProperties::setAgentType(std::string newString)
 {
-    this->string2 = newString;
+    this->agentType = newString;
 }
