@@ -834,7 +834,7 @@ void
     float nxScale = noiseScale;
     // "float(width) / float(height)" is the aspect ratio of the cloud.
     // This is 1 if the cloud is a square.
-    float nyScale = nxScale * float(width) / float(height);
+    float nyScale = nxScale * (float(width) / float(height));
     float x0, y0, x1, y1, n0, n1, nx, ny;
 
     for(int x = 0; x < width; x++) {
