@@ -824,15 +824,14 @@ bool
         ANGELSCRIPT_REGISTERFAIL;
     }
 
-    if(engine->RegisterObjectMethod("AgentProperties", "string getSpeciesName()",
-           asMETHOD(AgentProperties, getSpeciesName),
+    if(engine->RegisterObjectMethod("AgentProperties",
+           "string getSpeciesName()", asMETHOD(AgentProperties, getSpeciesName),
            asCALL_THISCALL) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
     }
 
-    if(engine->RegisterObjectMethod("AgentProperties",
-           "string getAgentType()", asMETHOD(AgentProperties, getAgentType),
-           asCALL_THISCALL) < 0) {
+    if(engine->RegisterObjectMethod("AgentProperties", "string getAgentType()",
+           asMETHOD(AgentProperties, getAgentType), asCALL_THISCALL) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
     }
     return true;

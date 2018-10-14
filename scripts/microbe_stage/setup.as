@@ -322,7 +322,7 @@ int hitAgent(GameWorld@ world, ObjectID firstEntity, ObjectID secondEntity)
      CellStageWorld@ asCellWorld = cast<CellStageWorld>(world);
     AgentProperties@ firstPropertiesComponent = asCellWorld.GetComponent_AgentProperties(firstEntity);
     AgentProperties@ secondPropertiesComponent = asCellWorld.GetComponent_AgentProperties(secondEntity);
-        
+
     if (firstPropertiesComponent !is null || secondPropertiesComponent !is null)
     {
         if (firstPropertiesComponent !is null && secondMicrobeComponent !is null)
@@ -366,15 +366,15 @@ void createAgentCloud(CellStageWorld@ world, CompoundId compoundId, Float3 pos,
             Ogre::Vector3(0, 1, 0)));
 
 
-            
+
 
     auto rigidBody = world.Create_Physics(agentEntity, world, position, null);
 
-    
+
    auto agentProperties = world.Create_AgentProperties(agentEntity);
    agentProperties.setSpeciesName(speciesName);
    agentProperties.setAgentType("oxytoxy");
-   
+
     rigidBody.SetCollision(world.GetPhysicalWorld().CreateSphere(HEX_SIZE));
     rigidBody.CreatePhysicsBody(world.GetPhysicalWorld(), world.GetPhysicalMaterial("agentCollision"));
     // Agent
