@@ -432,8 +432,8 @@ static uint16_t CompoundAbsorberComponentTYPEProxy =
     static_cast<uint16_t>(CompoundAbsorberComponent::TYPE);
 static uint16_t TimedLifeComponentTYPEProxy =
     static_cast<uint16_t>(TimedLifeComponent::TYPE);
-static uint16_t PropertiesComponentTYPEProxy =
-    static_cast<uint16_t>(PropertiesComponent::TYPE);
+static uint16_t AgentPropertiesTYPEProxy =
+    static_cast<uint16_t>(AgentProperties::TYPE);
 
 //! Helper for bindThriveComponentTypes
 bool
@@ -804,34 +804,34 @@ bool
         return false;
 
     if(engine->RegisterObjectType(
-           "PropertiesComponent", 0, asOBJ_REF | asOBJ_NOCOUNT) < 0) {
+           "AgentProperties", 0, asOBJ_REF | asOBJ_NOCOUNT) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
     }
 
     if(!bindComponentTypeId(
-           engine, "PropertiesComponent", &PropertiesComponentTYPEProxy))
+           engine, "AgentProperties", &AgentPropertiesTYPEProxy))
         return false;
 
-    if(engine->RegisterObjectMethod("PropertiesComponent",
-           "void setStringOne(string newString)",
-           asMETHOD(PropertiesComponent, setStringOne), asCALL_THISCALL) < 0) {
+    if(engine->RegisterObjectMethod("AgentProperties",
+           "void setSpeciesName(string newString)",
+           asMETHOD(AgentProperties, setSpeciesName), asCALL_THISCALL) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
     }
 
-    if(engine->RegisterObjectMethod("PropertiesComponent",
-           "void setStringTwo(string newString)",
-           asMETHOD(PropertiesComponent, setStringTwo), asCALL_THISCALL) < 0) {
+    if(engine->RegisterObjectMethod("AgentProperties",
+           "void setAgentType(string newString)",
+           asMETHOD(AgentProperties, setAgentType), asCALL_THISCALL) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
     }
 
-    if(engine->RegisterObjectMethod("PropertiesComponent",
-           "string getStringOne()", asMETHOD(PropertiesComponent, getStringOne),
+    if(engine->RegisterObjectMethod("AgentProperties", "string getSpeciesName()",
+           asMETHOD(AgentProperties, getSpeciesName),
            asCALL_THISCALL) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
     }
 
-    if(engine->RegisterObjectMethod("PropertiesComponent",
-           "string getStringTwo()", asMETHOD(PropertiesComponent, getStringTwo),
+    if(engine->RegisterObjectMethod("AgentProperties",
+           "string getAgentType()", asMETHOD(AgentProperties, getAgentType),
            asCALL_THISCALL) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
     }

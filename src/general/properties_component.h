@@ -13,9 +13,9 @@ namespace thrive {
 /**
  * @brief Component for entities we wnat to hold little bits of extra data
  */
-class PropertiesComponent : public Leviathan::Component {
+class AgentProperties : public Leviathan::Component {
 public:
-    PropertiesComponent();
+    AgentProperties();
     // void
     // load(
     //     const StorageContainer& storage
@@ -24,7 +24,7 @@ public:
     // StorageContainer
     // storage() const override;
 
-    REFERENCE_HANDLE_UNCOUNTED_TYPE(PropertiesComponent);
+    REFERENCE_HANDLE_UNCOUNTED_TYPE(AgentProperties);
 
     static constexpr auto TYPE =
         componentTypeConvert(THRIVE_COMPONENT::PROPERTIES);
@@ -33,17 +33,17 @@ public:
     // the most elegant but for what i want i dont think creating a whole array
     // of generic "properties" is a good use of time just yet.
     std::string
-        getStringOne();
+        getSpeciesName();
     std::string
-        getStringTwo();
+        getAgentType();
     void
-        setStringOne(std::string newString);
+        setSpeciesName(std::string newString);
     void
-        setStringTwo(std::string newString);
+        setAgentType(std::string newString);
 
 
 
-    std::string string2;
-    std::string string1;
+    std::string speciesName;
+    std::string agentType;
 };
 } // namespace thrive
