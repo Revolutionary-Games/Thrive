@@ -215,6 +215,14 @@ void respawnPlayer(CellStageWorld@ world){
     //Decrease the population by 10
     auto playerSpecies = MicrobeOperations::getSpeciesComponent(world, "Default");
     playerSpecies.population -= 10;
+
+    //Creates an event that calls the function in javascript that checks extinction events
+    GenericEvent@ checkExtinction = GenericEvent("CheckExtinction");
+    NamedVars@ vars = checkExtinction.GetNamedVars();
+    vars.AddValue(ScriptSafeVariableBlock("population", playerSpecies.population));
+
+    //Calling the above event
+    GetEngine().GetEventHandler().CallEvent(checkExtinction);
 }
 
 
