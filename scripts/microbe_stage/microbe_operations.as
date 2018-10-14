@@ -502,7 +502,7 @@ void emitAgent(CellStageWorld@ world, ObjectID microbeEntity, CompoundId compoun
         auto cellPosition = world.GetComponent_Position(microbeEntity);
 
     // Cooldown code
-    LOG_INFO("Cooldown "+microbeComponent.agentEmissionCooldown);
+    //LOG_INFO("Cooldown "+microbeComponent.agentEmissionCooldown);
 
     if(microbeComponent.agentEmissionCooldown > 0){ return; }
 
@@ -984,7 +984,7 @@ ObjectID _createMicrobeEntity(CellStageWorld@ world, const string &in name, bool
             "' doesn't have a processor component");
         // assert(processor !is null);
     } else {
-    LOG_INFO("Added processor");
+    //LOG_INFO("Added processor");
         compoundBag.setProcessor(processor, microbeComponent.speciesName);
     }
 

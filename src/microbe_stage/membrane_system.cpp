@@ -101,9 +101,11 @@ Ogre::Vector3
 Ogre::Vector3
     MembraneComponent::GetExternalOrganelle(double x, double y)
 {
-    if(vertices2D.empty())
+	// This was causing little regular-interval lag bursts
+    /*if(vertices2D.empty())
         LOG_WARNING("MembraneComponent: GetExternalOrganelle: called before "
                     "membrane is initialized. Returning 0, 0");
+	*/
 
     float organelleAngle = Ogre::Math::ATan2(y, x).valueRadians();
 
