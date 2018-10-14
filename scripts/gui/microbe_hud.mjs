@@ -66,6 +66,11 @@ export function runMicrobeHUDSetup(){
             updatePopulation(vars.populationAmount);
         });
 		
+        // Event for checking extinction
+        Leviathan.OnGeneric("CheckExtinction", (event, vars) => {
+            checkExtinction(vars.population);
+        });
+
         // Event for checking win conditions
         Leviathan.OnGeneric("CheckWin", (event, vars) => {
             checkGeneration(vars.generation);
@@ -354,6 +359,21 @@ function updatePopulation(population){
     population;
 }
 
+//! Checks if the player is extinct
+function checkExtinction(population){
+    if(population <= 0){
+        document.getElementById("loseTextTitle").style.display = "unset";
+        document.getElementById("loseTextBody").style.display = "unset";
+        setTimeout(hideLossText, 5000);
+    }
+}
+
+//! Supplementry function for checkExtinction that hides the extinction text
+function hideLossText(){
+    document.getElementById("loseTextTitle").style.display = "none";
+    document.getElementById("loseTextBody").style.display = "none";
+}
+
 function checkGeneration (generation){
     //This is set to == because I don't want the wintext to show up after the 15th generation
     //This can be changed by just about anyone if needed very easily
@@ -364,7 +384,7 @@ function checkGeneration (generation){
 }
 
 //! Supplementry function for checkGeneration that hides the wintext
-function hideWinText (){
+function hideWinText(){
     document.getElementById("winText").style.display = "none";
 }
 
