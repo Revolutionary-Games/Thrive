@@ -313,7 +313,7 @@ private:
     int width = 120;
     int height = 120;
     //! Should be something like 2, or 0.5 to nicely hit the
-    float gridSize = 2;
+    float gridSize = 2.0f;
 
 
     //! Used to spawn and despawn compound cloud entities when the player
