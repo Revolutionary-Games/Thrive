@@ -325,7 +325,6 @@ int hitAgent(GameWorld@ world, ObjectID firstEntity, ObjectID secondEntity)
         
     if (firstPropertiesComponent !is null || secondPropertiesComponent !is null)
     {
-    LOG_INFO("Property Exists");
         if (firstPropertiesComponent !is null && secondMicrobeComponent !is null)
         {
             if (firstPropertiesComponent.getSpeciesName()==secondMicrobeComponent.speciesName)
