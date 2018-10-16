@@ -1,5 +1,5 @@
 // Common helpers for the GUI to work with
-"use strict";
+
 
 //! Returns a value between min and max, range: [min, max]
 export function randomBetween(min, max){
@@ -42,7 +42,7 @@ export function showLoadingLogo(){
 export function playVideo(file, ondone){
 
     document.getElementById("videoPlayer").style.display = "flex";
-    let videoElement = document.getElementById("videoPlayersVideo");
+    const videoElement = document.getElementById("videoPlayersVideo");
 
     // Start playing as autoplay is on
     videoElement.src = file;
@@ -50,9 +50,9 @@ export function playVideo(file, ondone){
     // TODO: volume control
     videoElement.volume = 1.0;
 
-    let doneCalled = false;        
+    let doneCalled = false;
 
-    let endCallback = () => {
+    const endCallback = () => {
 
         // TODO: cool animation
         document.getElementById("videoPlayer").style.display = "none";
@@ -86,9 +86,9 @@ export function playVideo(file, ondone){
 //! Stops a video (and triggers the end event)
 export function stopVideo(){
 
-    let videoElement = document.getElementById("videoPlayersVideo");
-    
-    let event = new Event("ended");
+    const videoElement = document.getElementById("videoPlayersVideo");
+
+    const event = new Event("ended");
     videoElement.dispatchEvent(event);
     videoElement.src = "";
 }
