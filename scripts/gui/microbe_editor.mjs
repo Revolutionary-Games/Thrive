@@ -1,5 +1,5 @@
 // Microbe editor GUI scripts
-"use strict";
+
 
 import * as common from "./gui_common.mjs";
 import * as microbe_hud from "./microbe_hud.mjs";
@@ -12,26 +12,27 @@ export function doEnterMicrobeEditor(){
 
     document.getElementById("topLevelMicrobeStage").style.display = "none";
     document.getElementById("topLevelMicrobeEditor").style.display = "block";
+
     // Pause Menu Clicked
-    document.getElementById("mainMenuButtonEditor").addEventListener(
-        "click", onMenuClickedEditor, true);
+    document.getElementById("mainMenuButtonEditor").addEventListener("click",
+        onMenuClickedEditor, true);
 
     // Pause Menu closed
-    document.getElementById("resumeButtonEditor").addEventListener(
-        "click", onResumeClickedEditor, true);
-        
+    document.getElementById("resumeButtonEditor").addEventListener("click",
+        onResumeClickedEditor, true);
+
     // Quit Button Clicked
-    document.getElementById("quitButtonEditor").addEventListener(
-        "click", quitGameEditor, true);
-        
+    document.getElementById("quitButtonEditor").addEventListener("click",
+        quitGameEditor, true);
+
     // Help Button Clicked
-    document.getElementById("helpButtonEditor").addEventListener(
-        "click", openHelpEditor, true);
-        
+    document.getElementById("helpButtonEditor").addEventListener("click",
+        openHelpEditor, true);
+
     // Close Help Button Clicked
-    document.getElementById("closeHelpEditor").addEventListener(
-        "click", closeHelpEditor, true);
-        
+    document.getElementById("closeHelpEditor").addEventListener("click",
+        closeHelpEditor, true);
+
     window.setTimeout(() => {
         // Enable finish button
         onFinishButtonEnable();
@@ -40,8 +41,8 @@ export function doEnterMicrobeEditor(){
     // Do setup
     if(!microbeEditorSetup){
 
-        document.getElementById("microbeEditorFinishButton").addEventListener(
-            "click", onFinishButtonClicked, true);
+        document.getElementById("microbeEditorFinishButton").addEventListener("click",
+            onFinishButtonClicked, true);
 
         if(common.isInEngine()){
 
@@ -56,7 +57,7 @@ export function doEnterMicrobeEditor(){
 function onResumeClickedEditor(){
 
     common.playButtonPressSound();
-    let pause = document.getElementById("pauseOverlayEditor");
+    const pause = document.getElementById("pauseOverlayEditor");
     pause.style.display = "none";
 }
 
@@ -64,32 +65,32 @@ function openHelpEditor(){
 
     common.playButtonPressSound();
 
-    let pause = document.getElementById("pauseMenuEditor");
+    const pause = document.getElementById("pauseMenuEditor");
     pause.style.display = "none";
-    
-    let help = document.getElementById("helpTextEditor");
+
+    const help = document.getElementById("helpTextEditor");
     help.style.display = "block";
-    
+
 }
 
 function closeHelpEditor(){
 
     common.playButtonPressSound();
-    
-    let pause = document.getElementById("pauseMenuEditor");
+
+    const pause = document.getElementById("pauseMenuEditor");
     pause.style.display = "block";
-    
-    let help = document.getElementById("helpTextEditor");
+
+    const help = document.getElementById("helpTextEditor");
     help.style.display = "none";
-    
+
 }
 
 function onMenuClickedEditor(){
 
     common.playButtonPressSound();
-    let pause = document.getElementById("pauseOverlayEditor");
+    const pause = document.getElementById("pauseOverlayEditor");
     pause.style.display = "block";
-    let help = document.getElementById("helpTextEditor");
+    const help = document.getElementById("helpTextEditor");
     help.style.display = "none";
 }
 
@@ -106,27 +107,27 @@ function onFinishButtonEnable(){
 }
 
 function quitGameEditor(){
-    
+
     common.playButtonPressSound();
     common.requireEngine();
     Leviathan.Quit();
 }
 
 function onFinishButtonClicked(event){
-    
+
     if(!readyToFinishEdit)
         return false;
-    
+
     event.stopPropagation();
     common.playButtonPressSound();
-    
+
     // Fire event
     if(common.isInEngine()){
 
         // Fire an event to tell the game to back to the stage. It
-        // will notify us when it is done
+        // Will notify us when it is done
         Thrive.finishEditingClicked();
-        
+
     } else {
 
         // Swap GUI for previewing
@@ -137,8 +138,10 @@ function onFinishButtonClicked(event){
             microbe_hud.onReadyToEnterEditor();
         }, 500);
     }
-    
+
     // Disable
     document.getElementById("microbeEditorFinishButton").classList.add("DisabledButton");
     readyToFinishEdit = false;
+
+    return true;
 }
