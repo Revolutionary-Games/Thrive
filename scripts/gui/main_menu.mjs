@@ -48,9 +48,7 @@ export function runMenuSetup(){
         });
 
         // Start intro video
-        // TODO: this video file is broken in latest CEF for some reason
-        // common.playVideo("../../Videos/intro.mkv", onIntroEnded);
-        onIntroEnded();
+        Leviathan.PlayCutscene("Data/Videos/intro.mkv", onIntroEnded, onIntroEnded);
 
     } else {
         document.getElementById("versionNumber").textContent = "Thrive GUI in browser";
@@ -65,9 +63,14 @@ export function runMenuSetup(){
     //
     // Use these to immediately test some specific menu
     //
+
+    // eslint off
+
     // onMicrobeIntroEnded();
     // doEnterMicrobeEditor();
     // onIntroEnded();
+
+    // eslint on
 }
 
 function startMenuMusic(restart = true) {
@@ -99,11 +102,15 @@ function startMenuMusic(restart = true) {
 //! Handles pressing Escape in the GUI (this will unpause the game,
 //! pausing is initiated from c++ key listener)
 function onEscapePressed() {
-    if(!document.getElementById("videoPlayersVideo").ended)
-        common.stopVideo();
+    // TODO: move this to the cutscene player
+    Leviathan.CancelCutscene();
 }
 
-function onIntroEnded() {
+function onIntroEnded(error) {
+
+    if(error)
+        console.error("failed to play intro video: " + error);
+
     if(common.isInEngine()){
 
         startMenuMusic();
@@ -118,13 +125,17 @@ function quitGame(){
 function newGame(){
 
     if(common.isInEngine()){
-        common.playVideo("../../Videos/MicrobeIntro.mkv", onMicrobeIntroEnded);
+        Leviathan.PlayCutscene("Data/Videos/MicrobeIntro.mkv", onMicrobeIntroEnded,
+            onMicrobeIntroEnded);
     } else {
         onMicrobeIntroEnded();
     }
 }
 
-function onMicrobeIntroEnded(){
+function onMicrobeIntroEnded(error){
+
+    if(error)
+        console.error("failed to play microbe intro video: " + error);
 
     menuAlreadySkipped = true;
 
@@ -136,8 +147,7 @@ function onMicrobeIntroEnded(){
     if(common.isInEngine()){
 
         // Make sure no video is playing in case we did an immediate start
-        if(!document.getElementById("videoPlayersVideo").ended)
-            common.stopVideo();
+        Leviathan.CancelCutscene();
 
         Thrive.start();
 

@@ -228,11 +228,11 @@ void
     m_impl->m_cellStageKeys->setEnabled(true);
 
     // And switch the GUI mode to allow key presses through
-    Leviathan::GUI::View* view = window1->GetGui()->GetViewByIndex(0);
+    auto layer = window1->GetGui()->GetLayerByIndex(0);
 
     // Allow running without GUI
-    if(view)
-        view->SetInputMode(Leviathan::GUI::INPUT_MODE::Gameplay);
+    if(layer)
+        layer->SetInputMode(Leviathan::GUI::INPUT_MODE::Gameplay);
 
 
     // Clear world //
@@ -499,7 +499,7 @@ void
 
     // // So using this
     // // // And switch the GUI mode to allow key presses through
-    // Leviathan::GUI::View* view = window1->GetGui()->GetViewByIndex(0);
+    // Leviathan::GUI::View* view = window1->GetGui()->GetLayerByIndex(0);
 
     // // Allow running without GUI
     // if(view)
@@ -581,7 +581,7 @@ void
 
     // // So using this
     // // // And switch the GUI mode to allow key presses through
-    // Leviathan::GUI::View* view = window1->GetGui()->GetViewByIndex(0);
+    // Leviathan::GUI::View* view = window1->GetGui()->GetLayerByIndex(0);
 
     // // Allow running without GUI
     // if(view)
@@ -626,11 +626,11 @@ void
     m_impl->m_cellStageKeys->setEnabled(false);
 
     // And switch the GUI mode to allow key presses through
-    Leviathan::GUI::View* view = window1->GetGui()->GetViewByIndex(0);
+    auto layer = window1->GetGui()->GetLayerByIndex(0);
 
     // Allow running without GUI
-    if(view)
-        view->SetInputMode(Leviathan::GUI::INPUT_MODE::Menu);
+    if(layer)
+        layer->SetInputMode(Leviathan::GUI::INPUT_MODE::Menu);
 
     // Fire an event to switch over the GUI
     Engine::Get()->GetEventHandler()->CallEvent(
