@@ -37,62 +37,6 @@ export function showLoadingLogo(){
     document.getElementById("loadingLogo").style.display = "flex";
 }
 
-
-//! Plays a video with the video player
-export function playVideo(file, ondone){
-
-    document.getElementById("videoPlayer").style.display = "flex";
-    const videoElement = document.getElementById("videoPlayersVideo");
-
-    // Start playing as autoplay is on
-    videoElement.src = file;
-
-    // TODO: volume control
-    videoElement.volume = 1.0;
-
-    let doneCalled = false;
-
-    const endCallback = () => {
-
-        // TODO: cool animation
-        document.getElementById("videoPlayer").style.display = "none";
-
-        if(!doneCalled){
-            ondone();
-            doneCalled = true;
-        }
-    };
-
-    // Set end event
-    $(videoElement).one("ended", function(event){
-        event.stopPropagation();
-
-        endCallback();
-    });
-
-    $(videoElement).one("error", function(event){
-
-        // Ignore empty errors
-        if(event.target.error.code == 4 &&
-           event.target.error.message == "MEDIA_ELEMENT_ERROR: Empty src attribute")
-            return;
-
-        console.error("Play error: ", event);
-
-        endCallback();
-    });
-}
-
-//! Stops a video (and triggers the end event)
-export function stopVideo(){
-
-    const videoElement = document.getElementById("videoPlayersVideo");
-
-    const event = new Event("ended");
-    videoElement.dispatchEvent(event);
-    videoElement.src = "";
-}
-
 //! Helper for filling bar backgrounds
 export function barHelper(value, max){
     return (value / max) * 100 + "%";
