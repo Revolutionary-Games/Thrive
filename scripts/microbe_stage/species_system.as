@@ -709,6 +709,8 @@ class SpeciesSystem : ScriptSystem{
 
     void Run(){
         //LOG_INFO("autoevo running");
+        // Update population numbers and split/extinct species as needed
+
         timeSinceLastCycle++;
         while(this.timeSinceLastCycle > SPECIES_SIM_INTERVAL){
             LOG_INFO("Processing Auto-evo Step");
@@ -722,6 +724,32 @@ class SpeciesSystem : ScriptSystem{
                 ranEventThisStep=true;
                 // TODO: add a notification for when this happens
                 doCambrianExplosion();
+            }
+            // Various mass extinction events
+            // Only run one "big event" per turn
+            if(species.length() > MAX_SPECIES+MAX_BACTERIA && !ranEventThisStep){
+                LOG_INFO("Mass extinction time");
+                // F to pay respects: TODO: add a notification for when this happens
+                ranEventThisStep=true;
+                doMassExtinction();
+            }
+            // Add some variability, this is a less deterministic mass
+            // Extinction eg, a meteor, etc.
+            if(GetEngine().GetRandom().GetNumber(0,1000) == 1 && !ranEventThisStep){
+                LOG_INFO("Black swan event");
+                ranEventThisStep=true;
+                // F to pay respects: TODO: add a notification for when this happens
+                doMassExtinction();
+            }
+
+            // Super extinction event
+            if(GetEngine().GetRandom().GetNumber(0,1000) == 1 && !ranEventThisStep){
+                LOG_INFO("Great Dying");
+                ranEventThisStep=true;
+                // Do mass extinction code then devastate all species, this should extinct quite a few of the ones that arent doing well.
+                //*Shudders*
+                doMassExtinction();
+                doDevestation();
             }
 
             auto numberOfSpecies = species.length();
@@ -821,25 +849,6 @@ class SpeciesSystem : ScriptSystem{
                 }
             }
 
-            // Update population numbers and split/extinct species as needed
-            // Various mass extinction events
-            // Only run one "big event" per turn
-
-            if(species.length() > MAX_SPECIES+MAX_BACTERIA && !ranEventThisStep){
-                LOG_INFO("Mass extinction time");
-                // F to pay respects: TODO: add a notification for when this happens
-                ranEventThisStep=true;
-                doMassExtinction();
-            }
-            // Add some variability, this is a less deterministic mass
-            // Extinction eg, a meteor, etc.
-            if(GetEngine().GetRandom().GetNumber(0,1000) == 1 && !ranEventThisStep){
-                LOG_INFO("Black swan event");
-                ranEventThisStep=true;
-                // F to pay respects: TODO: add a notification for when this happens
-                doMassExtinction();
-            }
-
             // These are kind of arbitray, we should pronbabbly make it less arbitrary
             // New species
             while(currentEukaryoteAmount < MIN_SPECIES){
@@ -903,6 +912,13 @@ class SpeciesSystem : ScriptSystem{
         // This doesnt seem like a powerful event
         for(uint i = 0; i < species.length(); i++){
             species[i].population /= 2;
+        }
+    }
+
+    void doDevestation(){
+        // Devastate all species.
+        for(uint i = 0; i < species.length(); i++){
+            species[i].devestate();
         }
     }
 
