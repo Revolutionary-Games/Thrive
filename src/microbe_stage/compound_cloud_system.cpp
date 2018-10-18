@@ -896,14 +896,14 @@ void
                 dx = x + dt * xVelocity[x][y];
                 dy = y + dt * yVelocity[x][y];
 
-                if(dx < 0.5)
-                    dx = 0.5;
-                if(dx > width - 1.5)
+                if(dx < 0.5f)
+                    dx = 0.5f;
+                if(dx > width - 1.5f)
                     dx = width - 1.5f;
 
-                if(dy < 0.5)
-                    dy = 0.5;
-                if(dy > height - 1.5)
+                if(dy < 0.5f)
+                    dy = 0.5f;
+                if(dy > height - 1.5f)
                     dy = height - 1.5f;
 
                 x0 = static_cast<int>(dx);
@@ -912,9 +912,9 @@ void
                 y1 = y0 + 1;
 
                 s1 = dx - x0;
-                s0 = 1 - s1;
+                s0 = 1.0f - s1;
                 t1 = dy - y0;
-                t0 = 1 - t1;
+                t0 = 1.0f - t1;
 
                 density[x0][y0] += oldDens[x][y] * s0 * t0;
                 density[x0][y1] += oldDens[x][y] * s0 * t1;
