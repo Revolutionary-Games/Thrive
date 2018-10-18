@@ -713,30 +713,17 @@ class SpeciesSystem : ScriptSystem{
         while(this.timeSinceLastCycle > SPECIES_SIM_INTERVAL){
             LOG_INFO("Processing Auto-evo Step");
             this.timeSinceLastCycle -= SPECIES_SIM_INTERVAL;
-
-            // Update population numbers and split/extinct species as needed
-             // Various mass extinction events
-
-            if(species.length() > MAX_SPECIES+MAX_BACTERIA){
-                LOG_INFO("Mass extinction time");
-                // F to pay respects: TODO: add a notification for when this happens
-                doMassExtinction();
-            }
-            // Add some variability, this is a less deterministic mass
-            // Extinction eg, a meteor, etc.
-            if(GetEngine().GetRandom().GetNumber(0,1000) == 1){
-                LOG_INFO("Black swan event");
-                // F to pay respects: TODO: add a notification for when this happens
-                doMassExtinction();
-            }
+            bool ranEventThisStep=false;
 
             // Every 8 steps or so do a cambrian explosion style
             // Event, this should increase variablility significantly
             if(GetEngine().GetRandom().GetNumber(0,200) <= 25){
                 LOG_INFO("Cambrian Explosion");
+                ranEventThisStep=true;
                 // TODO: add a notification for when this happens
                 doCambrianExplosion();
             }
+
             auto numberOfSpecies = species.length();
             for(uint i = 0; i < numberOfSpecies; i++){
                 // Traversing the population backwards to avoid
@@ -746,17 +733,8 @@ class SpeciesSystem : ScriptSystem{
                 currentSpecies.updatePopulation();
                 auto population = currentSpecies.population;
                 LOG_INFO(currentSpecies.name+" "+currentSpecies.population);
+                bool ranSpeciesEvent=false;
 
-                // This is just to shake things up occassionally
-                if ( currentSpecies.population > 0 &&
-                    GetEngine().GetRandom().GetNumber(0,10) <= 2)
-                {
-                    // F to pay respects: TODO: add a notification for when this happens
-                    LOG_INFO(currentSpecies.name + " has been devestated by disease.");
-                    currentSpecies.devestate();
-                    LOG_INFO(currentSpecies.name+" population is now "+
-                        currentSpecies.population);
-                }
 
                 // This is also just to shake things up occassionally
                 // Cambrian Explosion
@@ -768,6 +746,42 @@ class SpeciesSystem : ScriptSystem{
                     currentSpecies.boom();
                     LOG_INFO(currentSpecies.name+" population is now "+
                         currentSpecies.population);
+                    ranSpeciesEvent=true;
+                }
+
+                // This is just to shake things up occassionally
+                if ( currentSpecies.population > 0 &&
+                    GetEngine().GetRandom().GetNumber(0,10) <= 2 && !ranSpeciesEvent)
+                {
+                    // F to pay respects: TODO: add a notification for when this happens
+                    LOG_INFO(currentSpecies.name + " has been devestated by disease.");
+                    currentSpecies.devestate();
+                    LOG_INFO(currentSpecies.name+" population is now "+
+                        currentSpecies.population);
+                    ranSpeciesEvent=true;
+                }
+
+                // 50% chance of splitting off two species instead of one
+                if(GetEngine().GetRandom().GetNumber(0,10) <= 5 && ranSpeciesEvent==false &&
+                currentSpecies.population >= MAX_POP_SIZE){
+                    auto oldPop = currentSpecies.population;
+                    auto newSpecies = Species(currentSpecies, world,
+                        currentSpecies.isBacteria);
+
+                    if (newSpecies.isBacteria)
+                    {
+                        currentBacteriaAmount+=1;
+                    }
+                    else
+                    {
+                        currentEukaryoteAmount+=1;
+                    }
+                    ranSpeciesEvent=true;
+                    species.insertLast(newSpecies);
+                    LOG_INFO("Species " + currentSpecies.name + " split off several species, the first is:" +
+                        newSpecies.name);
+                    // Reset pop so we can split a second time
+                    currentSpecies.population = oldPop;
                 }
 
                 // Reproduction and mutation
@@ -789,7 +803,8 @@ class SpeciesSystem : ScriptSystem{
                         newSpecies.name);
                 }
 
-                //extinction
+
+                // Extinction, thisi s not an event since things with low population need to be killed off.
                 if(currentSpecies.population <= MIN_POP_SIZE){
                     LOG_INFO("Species " + currentSpecies.name + " went extinct");
                     currentSpecies.extinguish();
@@ -804,6 +819,25 @@ class SpeciesSystem : ScriptSystem{
                         currentEukaryoteAmount-=1;
                     }
                 }
+            }
+
+            // Update population numbers and split/extinct species as needed
+            // Various mass extinction events
+            // Only run one "big event" per turn
+
+            if(species.length() > MAX_SPECIES+MAX_BACTERIA && !ranEventThisStep){
+                LOG_INFO("Mass extinction time");
+                // F to pay respects: TODO: add a notification for when this happens
+                ranEventThisStep=true;
+                doMassExtinction();
+            }
+            // Add some variability, this is a less deterministic mass
+            // Extinction eg, a meteor, etc.
+            if(GetEngine().GetRandom().GetNumber(0,1000) == 1 && !ranEventThisStep){
+                LOG_INFO("Black swan event");
+                ranEventThisStep=true;
+                // F to pay respects: TODO: add a notification for when this happens
+                doMassExtinction();
             }
 
             // These are kind of arbitray, we should pronbabbly make it less arbitrary
