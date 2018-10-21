@@ -260,6 +260,10 @@ video {
   background-position: center;
 }
 
+.extinctiontext-container {
+  text-align: center;
+}
+
 /* Cell stage things */
 
 /* Any type of panel like the bottom bar and health window */
@@ -640,27 +644,22 @@ video {
   display: none;
 }
 
-#loseTextTitle {
-  position: absolute;
+#extinctionTitle {
+  width: 800px;
   height: 100px;
-  width: 600px;
-  top: 40%;
-  left: 30%;
+  margin-top: 17%;
   font-family: thrive;
   font-size: 90pt;
-  text-align: center;
-  line-height: 40px;
   color: #f33;
   display: none;
 }
 
-#loseTextBody {
-  position: absolute;
+#extinctionBody {
+  width: 800px;
   height: 100px;
-  width: 850px;
-  top: 50%;
-  left: 30%;
+  margin-top: 0%;
   font-size: 20pt;
+  text-align: left;
   display: none;
 }
 
