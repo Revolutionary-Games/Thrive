@@ -370,16 +370,16 @@ function updatePopulation(population){
 //! Checks if the player is extinct
 function checkExtinction(population){
     if(population <= 0){
-        document.getElementById("loseTextTitle").style.display = "unset";
-        document.getElementById("loseTextBody").style.display = "unset";
-        setTimeout(hideLossText, 12000);
+        document.getElementById("extinctionTitle").style.display = "inline-block";
+        document.getElementById("extinctionBody").style.display = "inline-block";
+        setTimeout(hideExtinctionText, 12000);
     }
 }
 
 //! Supplementry function for checkExtinction that hides the extinction text
-function hideLossText(){
-    document.getElementById("loseTextTitle").style.display = "none";
-    document.getElementById("loseTextBody").style.display = "none";
+function hideExtinctionText(){
+    document.getElementById("extinctionTitle").style.display = "none";
+    document.getElementById("extinctionBody").style.display = "none";
 }
 
 function checkGeneration (generation){
