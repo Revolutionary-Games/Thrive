@@ -159,8 +159,6 @@ void
         throw std::runtime_error(
             "CompoundCloudComponent coordinates out of range");
 
-    LOG_WRITE("Pos things: " + std::to_string(x) + ", " + std::to_string(y));
-
     switch(getSlotForCompound(compound)) {
     case SLOT::FIRST: m_density1[x][y] += dens; break;
     case SLOT::SECOND: m_density2[x][y] += dens; break;
@@ -372,15 +370,8 @@ bool
         float density,
         const Float3& worldPosition)
 {
-    // LOG_INFO("trying to spawn cloud at:" +
-    //          Leviathan::Convert::ToString(worldPosition));
     // Find the target cloud //
     for(auto& cloud : m_managedClouds) {
-
-        // LOG_INFO(
-        //     "Checking cloud: id: " + std::to_string(cloud.first) +
-        //     "pos: " +
-        //     Leviathan::Convert::ToString(cloud.second->m_position));
 
         const auto& pos = cloud.second->m_position;
 
@@ -391,22 +382,10 @@ bool
             if(!cloud.second->handlesCompound(compound))
                 continue;
 
-            //            LOG_INFO("Adding compound: " +
-            //            std::to_string(compound) +
-            //                     " (amount: " + std::to_string(density) + ")
-            //                     to cloud (" + std::to_string(cloud.first) +
-            //                     ") at pos: " + std::to_string(x) + ", " +
-            //                     std::to_string(z) +
-            //                     ", relative pos: " +
-            //                     std::to_string(relativeX) + ", " +
-            //                     std::to_string(relativeZ));
-
             try {
                 auto [x, y] = convertWorldToCloudLocal(pos, worldPosition);
                 cloud.second->addCloud(compound, density, x, y);
 
-                LOG_INFO("Success cloud local stuff: " + std::to_string(x) +
-                         ", " + std::to_string(y));
                 return true;
 
             } catch(const Leviathan::InvalidArgument& e) {
@@ -532,6 +511,20 @@ bool
     return true;
 }
 
+bool
+    CompoundCloudSystem::cloudContainsPositionWithRadius(
+        const Float3& cloudPosition,
+        const Float3& worldPosition,
+        float radius)
+{
+    if(worldPosition.X + radius < cloudPosition.X - CLOUD_WIDTH ||
+        worldPosition.X - radius >= cloudPosition.X + CLOUD_WIDTH ||
+        worldPosition.Z + radius < cloudPosition.Z - CLOUD_HEIGHT ||
+        worldPosition.Z - radius >= cloudPosition.Z + CLOUD_HEIGHT)
+        return false;
+    return true;
+}
+
 std::tuple<size_t, size_t>
     CompoundCloudSystem::convertWorldToCloudLocal(const Float3& cloudPosition,
         const Float3& worldPosition)
@@ -549,6 +542,23 @@ std::tuple<size_t, size_t>
     // Safety check
     if(localX >= CLOUD_SIMULATION_WIDTH || localY >= CLOUD_SIMULATION_HEIGHT)
         throw Leviathan::InvalidArgument("position not within cloud");
+
+    return std::make_tuple(localX, localY);
+}
+
+std::tuple<float, float>
+    CompoundCloudSystem::convertWorldToCloudLocalForGrab(
+        const Float3& cloudPosition,
+        const Float3& worldPosition)
+{
+    const auto topLeftRelative =
+        Float3(worldPosition.X - (cloudPosition.X - CLOUD_WIDTH), 0,
+            worldPosition.Z - (cloudPosition.Z - CLOUD_HEIGHT));
+
+    // Floor is used here because otherwise the last coordinate is wrong
+    // and we don't want our caller to constantly have to call std::floor
+    const auto localX = std::floor(topLeftRelative.X / CLOUD_RESOLUTION);
+    const auto localY = std::floor(topLeftRelative.Z / CLOUD_RESOLUTION);
 
     return std::make_tuple(localX, localY);
 }
@@ -751,7 +761,9 @@ void
     blendblock.mSourceBlendFactor = Ogre::SBF_SOURCE_ALPHA;
     blendblock.mDestBlendFactor = Ogre::SBF_ONE_MINUS_SOURCE_ALPHA;
 
-    // Important for proper blending
+    // Important for proper blending (not sure,
+    // mAlphaToCoverageEnabled seems to be more important as a lot of
+    // stuff breaks without it)
     blendblock.mIsTransparent = true;
 
     pass->setBlendblock(blendblock);
@@ -774,6 +786,7 @@ void
 
     // Position for consistent UVs for the perlin noise texture so that the the
     // texture doesn't suddenly repeat at borders between two cloud entities
+    // TODO: this probably needs adjusting in the shader
     pass->getFragmentProgramParameters()->setNamedConstant(
         "cloudPos", cloud.m_position);
 
