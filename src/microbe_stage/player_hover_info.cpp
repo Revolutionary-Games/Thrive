@@ -47,8 +47,8 @@ void
         "mousePos", new Leviathan::StringBlock(posStr.str())));
 
     // Detect compounds
-    const auto compounds = world.GetCompoundCloudSystem().getAllAvailableAt(
-        lookPoint.X, lookPoint.Z);
+    const auto compounds =
+        world.GetCompoundCloudSystem().getAllAvailableAt(lookPoint);
 
     if(compounds.empty()) {
 

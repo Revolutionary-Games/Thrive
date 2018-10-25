@@ -30,7 +30,6 @@ enum class THRIVE_COMPONENT : uint16_t {
 constexpr inline Leviathan::COMPONENT_TYPE
     componentTypeConvert(THRIVE_COMPONENT value)
 {
-
     return static_cast<Leviathan::COMPONENT_TYPE>(static_cast<uint16_t>(value));
 }
 

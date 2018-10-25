@@ -124,7 +124,6 @@ void
     CompoundAbsorberSystem::Run(CellStageWorld& world,
         std::unordered_map<ObjectID, CompoundCloudComponent*>& clouds)
 {
-
     auto& absorbersIndex = m_absorbers.CachedComponents.GetIndex();
     auto& agentsIndex = m_agents.CachedComponents.GetIndex();
 
@@ -160,91 +159,100 @@ void
             CompoundCloudComponent* compoundCloud = entry.second;
 
             // Skip clouds that are out of range
-            const auto gridSize = compoundCloud->getGridSize();
-            const int halfWidth =
-                static_cast<int>(compoundCloud->getWidth() * gridSize / 2);
-            const int halfHeight =
-                static_cast<int>(compoundCloud->getHeight() * gridSize / 2);
 
-            const auto& cloudPos = compoundCloud->getPosition();
 
-            const auto grabRadius = unadjustedgrabRadius * gridSize;
 
-            const Float3 relative = origin - cloudPos;
+            // const auto gridSize = compoundCloud->getGridSize();
+            // const int halfWidth =
+            //     static_cast<int>(compoundCloud->getWidth() * gridSize / 2);
+            // const int halfHeight =
+            //     static_cast<int>(compoundCloud->getHeight() * gridSize / 2);
 
-            if(relative.X < -halfWidth - grabRadius ||
-                relative.X > halfWidth + grabRadius ||
-                relative.Z < -halfHeight - grabRadius ||
-                relative.Z > halfHeight + grabRadius)
-                continue;
+            // const auto& cloudPos = compoundCloud->getPosition();
 
-            int x_start = (relative.X + halfWidth - grabRadius) / gridSize;
+            // const auto grabRadius = unadjustedgrabRadius * gridSize;
 
-            if(x_start < 0)
-                x_start = 0;
+            // const Float3 relative = origin - cloudPos;
 
-            int x_end = (relative.X + halfWidth + grabRadius) / gridSize;
+            // if(relative.X < -halfWidth - grabRadius ||
+            //     relative.X > halfWidth + grabRadius ||
+            //     relative.Z < -halfHeight - grabRadius ||
+            //     relative.Z > halfHeight + grabRadius)
+            //     continue;
 
-            const auto width = static_cast<int>(compoundCloud->getWidth());
-            if(x_end > width)
-                x_end = width;
+            // int x_start = (relative.X + halfWidth - grabRadius) / gridSize;
 
-            int z_start = (relative.Z + halfHeight - grabRadius) / gridSize;
+            // if(x_start < 0)
+            //     x_start = 0;
 
-            if(z_start < 0)
-                z_start = 0;
+            // int x_end = (relative.X + halfWidth + grabRadius) / gridSize;
 
-            int z_end = (relative.Z + halfHeight + grabRadius) / gridSize;
+            // const auto width = static_cast<int>(compoundCloud->getWidth());
+            // if(x_end > width)
+            //     x_end = width;
 
-            const auto height = static_cast<int>(compoundCloud->getHeight());
-            if(z_end > height)
-                z_end = height;
+            // int z_start = (relative.Z + halfHeight - grabRadius) / gridSize;
 
-            const auto diameter = std::pow(grabRadius, 2);
+            // if(z_start < 0)
+            //     z_start = 0;
 
-            const int cloudSpaceHalfWidth =
-                static_cast<int>(compoundCloud->getWidth() / 2);
-            const int cloudSpaceHalfHeight =
-                static_cast<int>(compoundCloud->getHeight() / 2);
+            // int z_end = (relative.Z + halfHeight + grabRadius) / gridSize;
 
-            // Iterate though all of the points inside the bounding box.
-            for(int x = x_start; x < x_end; x++) {
-                for(int y = z_start; y < z_end; y++) {
+            // const auto height = static_cast<int>(compoundCloud->getHeight());
+            // if(z_end > height)
+            //     z_end = height;
 
-                    // LOG_WRITE(
-                    //     "Pos: " + std::to_string(x) + ", " +
-                    //     std::to_string(y));
+            // const auto diameter = std::pow(grabRadius, 2);
 
-                    // And skip everything outside the circle
-                    if(std::pow(x - cloudSpaceHalfWidth - relative.X, 2) +
-                            std::pow(y - cloudSpaceHalfHeight - relative.Y, 2) >
-                        diameter)
-                        continue;
+            // const int cloudSpaceHalfWidth =
+            //     static_cast<int>(compoundCloud->getWidth() / 2);
+            // const int cloudSpaceHalfHeight =
+            //     static_cast<int>(compoundCloud->getHeight() / 2);
 
-                    // LOG_WRITE("Checking absorb pos: " + std::to_string(x) +
-                    //           ", " + std::to_string(y));
+            // // Iterate though all of the points inside the bounding box.
+            // for(int x = x_start; x < x_end; x++) {
+            //     for(int y = z_start; y < z_end; y++) {
 
-                    // Each cloud has 4 things
-                    static_assert(CLOUDS_IN_ONE == 4,
-                        "Clouds packed into one has changed");
+            //         // LOG_WRITE(
+            //         //     "Pos: " + std::to_string(x) + ", " +
+            //         //     std::to_string(y));
 
-                    // Absorb all the 4 compounds
+            //         // And skip everything outside the circle
+            //         if(std::pow(x - cloudSpaceHalfWidth - relative.X, 2) +
+            //                 std::pow(y - cloudSpaceHalfHeight - relative.Y,
+            //                 2) >
+            //             diameter)
+            //             continue;
 
-                    const auto id1 = compoundCloud->getCompoundId1();
-                    const auto id2 = compoundCloud->getCompoundId2();
-                    const auto id3 = compoundCloud->getCompoundId3();
-                    const auto id4 = compoundCloud->getCompoundId4();
+            //         // LOG_WRITE("Checking absorb pos: " + std::to_string(x)
+            //         +
+            //         //           ", " + std::to_string(y));
 
-                    if(id1 != NULL_COMPOUND && absorber.canAbsorbCompound(id1))
-                        absorbFromCloud(compoundCloud, id1, absorber, x, y);
-                    if(id2 != NULL_COMPOUND && absorber.canAbsorbCompound(id2))
-                        absorbFromCloud(compoundCloud, id2, absorber, x, y);
-                    if(id3 != NULL_COMPOUND && absorber.canAbsorbCompound(id3))
-                        absorbFromCloud(compoundCloud, id3, absorber, x, y);
-                    if(id4 != NULL_COMPOUND && absorber.canAbsorbCompound(id4))
-                        absorbFromCloud(compoundCloud, id4, absorber, x, y);
-                }
-            }
+            //         // Each cloud has 4 things
+            //         static_assert(CLOUDS_IN_ONE == 4,
+            //             "Clouds packed into one has changed");
+
+            //         // Absorb all the 4 compounds
+
+            //         const auto id1 = compoundCloud->getCompoundId1();
+            //         const auto id2 = compoundCloud->getCompoundId2();
+            //         const auto id3 = compoundCloud->getCompoundId3();
+            //         const auto id4 = compoundCloud->getCompoundId4();
+
+            //         if(id1 != NULL_COMPOUND &&
+            //         absorber.canAbsorbCompound(id1))
+            //             absorbFromCloud(compoundCloud, id1, absorber, x, y);
+            //         if(id2 != NULL_COMPOUND &&
+            //         absorber.canAbsorbCompound(id2))
+            //             absorbFromCloud(compoundCloud, id2, absorber, x, y);
+            //         if(id3 != NULL_COMPOUND &&
+            //         absorber.canAbsorbCompound(id3))
+            //             absorbFromCloud(compoundCloud, id3, absorber, x, y);
+            //         if(id4 != NULL_COMPOUND &&
+            //         absorber.canAbsorbCompound(id4))
+            //             absorbFromCloud(compoundCloud, id4, absorber, x, y);
+            //     }
+            // }
         }
 
         // Each membrane absorbs a certain amount of each agent.
