@@ -405,6 +405,13 @@ public:
         cloudContainsPosition(const Float3& cloudPosition,
             const Float3& worldPosition);
 
+    //! \brief Returns true if position with radius around it contains any
+    //! points that are within this cloud
+    static bool
+        cloudContainsPositionWithRadius(const Float3& cloudPosition,
+            const Float3& worldPosition,
+            float radius);
+
     //! \brief Converts a world position to cloud relative position
     //!
     //! This needs to be used for all operations that want to call the methods
@@ -413,6 +420,16 @@ public:
     //! for this cloud
     static std::tuple<size_t, size_t>
         convertWorldToCloudLocal(const Float3& cloudPosition,
+            const Float3& worldPosition);
+
+    //! \brief Converts a world position to cloud local. This version has no
+    //! bounds checking
+    //!
+    //! This is used by the compound absorber as the origin point in it can be
+    //! outside the cloud but due to the radius it can have points within the
+    //! cloud
+    static std::tuple<float, float>
+        convertWorldToCloudLocalForGrab(const Float3& cloudPosition,
             const Float3& worldPosition);
 
 protected:
