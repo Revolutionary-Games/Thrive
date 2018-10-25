@@ -85,7 +85,6 @@ module.exports = {
                 "allowObjectStart": true, "allowArrayStart": true
             }
         ],
-        "linebreak-style": ["error", "unix"],
         "key-spacing": [
             "error",
             { "afterColon": true, "beforeColon": false  }
@@ -148,6 +147,7 @@ module.exports = {
             { "multiline": true }
         ],
         "consistent-this": ["error", "that"],
+        "prefer-rest-params": "error",
         "padding-line-between-statements": [
             "error",
             { blankLine: "always", prev: "*", next: "return" },
