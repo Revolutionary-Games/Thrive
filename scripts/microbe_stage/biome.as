@@ -16,12 +16,12 @@ ObjectID createCompoundCloud(CellStageWorld@ world, CompoundId compound,
     // This is just a sanity check
     //if(compoundTable[compoundName] and compoundTable[compoundName].isCloud)
 
-    // addCloud requires integer arguments
+    // addCloud requires integer arguments. This is not true anymore
     int roundedX = round(x);
     int roundedZ = round(z);
 
     // TODO: this isn't the best way to handle this for max performance
-    world.GetCompoundCloudSystem().addCloud(compound, amount, roundedX, roundedZ);
+    world.GetCompoundCloudSystem().addCloud(compound, amount, Float3(roundedX, 0, roundedZ));
 
     // We don't spawn new entities
     return NULL_OBJECT;

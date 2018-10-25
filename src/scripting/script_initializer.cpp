@@ -1123,19 +1123,22 @@ bool
     }
 
     if(engine->RegisterObjectMethod("CompoundCloudSystem",
-           "bool addCloud(CompoundId compound, float density, int x, int y)",
+           "bool addCloud(CompoundId compound, float density, const Float3 &in "
+           "worldPosition)",
            asMETHOD(CompoundCloudSystem, addCloud), asCALL_THISCALL) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
     }
 
     if(engine->RegisterObjectMethod("CompoundCloudSystem",
-           "int takeCompound(CompoundId compound, int x, int y, float rate)",
+           "int takeCompound(CompoundId compound, const Float3 &in "
+           "worldPosition, float rate)",
            asMETHOD(CompoundCloudSystem, takeCompound), asCALL_THISCALL) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
     }
 
     if(engine->RegisterObjectMethod("CompoundCloudSystem",
-           "int amountAvailable(CompoundId compound, int x, int y, float rate)",
+           "int amountAvailable(CompoundId compound, const Float3 &in "
+           "worldPosition, float rate)",
            asMETHOD(CompoundCloudSystem, takeCompound), asCALL_THISCALL) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
     }
