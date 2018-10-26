@@ -258,6 +258,11 @@ public:
         return m_position;
     }
 
+    //! \brief Moves this cloud to a new position and resets the contents
+    void
+        recycleToPosition(const Float3& newPosition);
+
+
     REFERENCE_HANDLE_UNCOUNTED_TYPE(CompoundCloudComponent);
 
     //! The name of the texture that is made for this cloud
@@ -476,9 +481,16 @@ private:
 
 private:
     //! This system now spawns these entities when it needs them
+    //!
+    //! There are always 9 of these entities at once that get positioned around
+    //! the player when the player moves around
     //! \note Extra care needs to be taken because this is not updated directly
     //! by the GameWorld when entities are destroyed
     std::unordered_map<ObjectID, CompoundCloudComponent*> m_managedClouds;
+
+    //! This is the point in the center of the middle cloud. This is used for
+    //! calculating which clouds to move when the player moves
+    Float3 m_cloudGridCenter = Float3(0, 0, 0);
 
     //! List of the types that need to be created. These are split every 4 into
     //! one cloud
@@ -490,10 +502,6 @@ private:
     // the clouds
     PerlinNoise m_fieldPotential;
     const float m_noiseScale = 5;
-
-    //! Used to spawn and despawn compound cloud entities when the player
-    //! moves
-    Float3 m_lastPosition = Float3(0, 0, 0);
 
     //! The velocity of the fluid.
     //! This is not updated after the initial generation, which isn't probably
