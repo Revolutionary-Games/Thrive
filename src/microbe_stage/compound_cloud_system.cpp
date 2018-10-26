@@ -218,12 +218,6 @@ int
         size_t y,
         float rate)
 {
-    // TODO: this check isn't even very good so it can be removed once this is
-    // debugged
-    if(x >= m_density1.size() || y >= m_density1[0].size())
-        throw std::runtime_error(
-            "CompoundCloudComponent coordinates out of range");
-
     switch(getSlotForCompound(compound)) {
     case SLOT::FIRST: {
         int amountToGive = static_cast<int>(m_density1[x][y] * rate);
@@ -252,13 +246,6 @@ void
         size_t y,
         std::vector<std::tuple<CompoundId, float>>& result)
 {
-    // TODO: this check isn't even very good so it can be removed once this is
-    // debugged
-    if(x >= m_density1.size() || y >= m_density1[0].size())
-        throw std::runtime_error(
-            "CompoundCloudComponent coordinates out of range");
-
-
     if(m_compoundId1 != NULL_COMPOUND) {
         const auto amount = m_density1[x][y];
         if(amount > 0)
@@ -281,6 +268,32 @@ void
         const auto amount = m_density4[x][y];
         if(amount > 0)
             result.emplace_back(m_compoundId4, amount);
+    }
+}
+// ------------------------------------ //
+void
+    CompoundCloudComponent::recycleToPosition(const Float3& newPosition)
+{
+    m_position = newPosition;
+
+    m_sceneNode->setPosition(m_position.X, CLOUD_Y_COORDINATE, m_position.Z);
+
+    // Clear data. Maybe there is a faster way
+    for(size_t x = 0; x < m_density1.size(); ++x) {
+        for(size_t y = 0; y < m_density1[x].size(); ++y) {
+
+            m_density1[x][y] = 0;
+            m_oldDens1[x][y] = 0;
+
+            m_density2[x][y] = 0;
+            m_oldDens2[x][y] = 0;
+
+            m_density3[x][y] = 0;
+            m_oldDens3[x][y] = 0;
+
+            m_density4[x][y] = 0;
+            m_oldDens4[x][y] = 0;
+        }
     }
 }
 
@@ -502,7 +515,6 @@ bool
     CompoundCloudSystem::cloudContainsPosition(const Float3& cloudPosition,
         const Float3& worldPosition)
 {
-
     if(worldPosition.X < cloudPosition.X - CLOUD_WIDTH ||
         worldPosition.X >= cloudPosition.X + CLOUD_WIDTH ||
         worldPosition.Z < cloudPosition.Z - CLOUD_HEIGHT ||
@@ -614,19 +626,171 @@ void
 
         LOG_INFO("CompoundCloudSystem doing initial spawning");
 
+        m_cloudGridCenter = Float3(0, 0, 0);
+
         for(size_t i = 0; i < m_cloudTypes.size(); i += CLOUDS_IN_ONE) {
 
-            _spawnCloud(world, playerPos, i);
-        }
+            // Center
+            _spawnCloud(world, m_cloudGridCenter, i);
 
-        m_lastPosition = playerPos;
+            // Top left
+            _spawnCloud(world,
+                m_cloudGridCenter +
+                    Float3(-CLOUD_WIDTH * 2, 0, -CLOUD_HEIGHT * 2),
+                i);
+
+            // Up
+            _spawnCloud(
+                world, m_cloudGridCenter + Float3(0, 0, -CLOUD_HEIGHT * 2), i);
+
+            // Top right
+            _spawnCloud(world,
+                m_cloudGridCenter +
+                    Float3(CLOUD_WIDTH * 2, 0, -CLOUD_HEIGHT * 2),
+                i);
+
+            // Left
+            _spawnCloud(
+                world, m_cloudGridCenter + Float3(-CLOUD_WIDTH * 2, 0, 0), i);
+
+            // Right
+            _spawnCloud(
+                world, m_cloudGridCenter + Float3(CLOUD_WIDTH * 2, 0, 0), i);
+
+            // Bottom left
+            _spawnCloud(world,
+                m_cloudGridCenter +
+                    Float3(-CLOUD_WIDTH * 2, 0, CLOUD_HEIGHT * 2),
+                i);
+
+            // Down
+            _spawnCloud(
+                world, m_cloudGridCenter + Float3(0, 0, CLOUD_HEIGHT * 2), i);
+
+            // Bottom right
+            _spawnCloud(world,
+                m_cloudGridCenter +
+                    Float3(CLOUD_WIDTH * 2, 0, CLOUD_HEIGHT * 2),
+                i);
+        }
     }
 
-    const auto moved = playerPos - m_lastPosition;
+    const auto moved = playerPos - m_cloudGridCenter;
 
-    // Despawn clouds that are too far away
+    // TODO: because we no longer check if the player has moved at least a bit
+    // it is possible that this gets triggered very often if the player spins
+    // around a cloud edge, but hopefully there isn't a performance problem and
+    // that case can just be ignored.
+    // Z is used here because these are world coordinates
+    if(std::abs(moved.X) > CLOUD_WIDTH || std::abs(moved.Z) > CLOUD_HEIGHT) {
 
-    // And spawn new ones
+        // Calculate the new center
+        if(moved.X < -CLOUD_WIDTH) {
+            m_cloudGridCenter -= Float3(CLOUD_WIDTH * 2, 0, 0);
+        } else if(moved.X > CLOUD_WIDTH) {
+            m_cloudGridCenter += Float3(CLOUD_WIDTH * 2, 0, 0);
+        }
+
+        if(moved.Z < -CLOUD_HEIGHT) {
+            m_cloudGridCenter -= Float3(0, 0, CLOUD_HEIGHT * 2);
+        } else if(moved.Z > CLOUD_HEIGHT) {
+            m_cloudGridCenter += Float3(0, 0, CLOUD_HEIGHT * 2);
+        }
+
+        // Reposition clouds according to the origin
+        // MAX of 9 clouds can ever be repositioned (this is only the case when
+        // respawning)
+        constexpr size_t MAX_FAR_CLOUDS = 9;
+        std::array<CompoundCloudComponent*, MAX_FAR_CLOUDS> tooFarAwayClouds;
+        size_t farAwayIndex = 0;
+
+        for(auto iter = m_managedClouds.begin(); iter != m_managedClouds.end();
+            ++iter) {
+
+            const auto pos = iter->second->m_position;
+
+            const auto distance = m_cloudGridCenter - pos;
+
+            if(std::abs(distance.X) > 3 * CLOUD_WIDTH ||
+                std::abs(distance.Z) > 3 * CLOUD_HEIGHT) {
+
+                if(farAwayIndex >= MAX_FAR_CLOUDS) {
+
+                    LOG_FATAL("CompoundCloudSystem: Logic error in calculating "
+                              "far away clouds that need to move");
+                    break;
+                }
+
+                tooFarAwayClouds[farAwayIndex++] = iter->second;
+            }
+        }
+
+        // Move clouds that are too far away
+        // We check through each position that should have a cloud and move one
+        // where there isn't one
+
+        const Float3 requiredCloudPositions[] = {
+            // Center
+            m_cloudGridCenter,
+
+            // Top left
+            m_cloudGridCenter + Float3(-CLOUD_WIDTH * 2, 0, -CLOUD_HEIGHT * 2),
+
+            // Up
+            m_cloudGridCenter + Float3(0, 0, -CLOUD_HEIGHT * 2),
+
+            // Top right
+            m_cloudGridCenter + Float3(CLOUD_WIDTH * 2, 0, -CLOUD_HEIGHT * 2),
+
+            // Left
+            m_cloudGridCenter + Float3(-CLOUD_WIDTH * 2, 0, 0),
+
+            // Right
+            m_cloudGridCenter + Float3(CLOUD_WIDTH * 2, 0, 0),
+
+            // Bottom left
+            m_cloudGridCenter + Float3(-CLOUD_WIDTH * 2, 0, CLOUD_HEIGHT * 2),
+
+            // Down
+            m_cloudGridCenter + Float3(0, 0, CLOUD_HEIGHT * 2),
+
+            // Bottom right
+            m_cloudGridCenter + Float3(CLOUD_WIDTH * 2, 0, CLOUD_HEIGHT * 2),
+        };
+
+        size_t farAwayRepositionedIndex = 0;
+
+        for(size_t i = 0; i < std::size(requiredCloudPositions); ++i) {
+
+            bool hasCloud = false;
+            const auto& requiredPos = requiredCloudPositions[i];
+
+            for(auto iter = m_managedClouds.begin();
+                iter != m_managedClouds.end(); ++iter) {
+
+                const auto pos = iter->second->m_position;
+
+                // An exact check might work but just to be safe slight
+                // inaccuracy is allowed here
+                if((pos - requiredPos).HAddAbs() < Leviathan::EPSILON) {
+                    hasCloud = true;
+                    break;
+                }
+            }
+
+            if(hasCloud)
+                continue;
+
+            if(farAwayRepositionedIndex >= farAwayIndex) {
+                LOG_FATAL("CompoundCloudSystem: Logic error in moving far "
+                          "clouds (ran out)");
+                break;
+            }
+
+            tooFarAwayClouds[farAwayRepositionedIndex++]->recycleToPosition(
+                requiredPos);
+        }
+    }
 }
 
 void
@@ -651,6 +815,9 @@ void
     CompoundCloudComponent& cloud = world.Create_CompoundCloudComponent(
         entity, *this, first, second, third, fourth);
 
+    // Set correct position
+    // TODO: this should probably be made a constructor parameter
+    cloud.m_position = pos;
 
     initializeCloud(cloud, world.GetScene());
     m_managedClouds[entity] = &cloud;
@@ -701,19 +868,6 @@ void
             std::vector<float>(CLOUD_SIMULATION_HEIGHT, 0));
     }
 
-    // // Testing putting compound at different points
-    // // cloud.m_density1[width / 2][height / 2] = 190;
-    // // cloud.m_density1[width / 2 - 1][height / 2 - 1] = 190;
-    // // cloud.m_density1[width / 2 + 1][height / 2 + 1] = 190;
-    // for(size_t x = 0, y = 0;
-    //     x < CLOUD_SIMULATION_WIDTH && y < CLOUD_SIMULATION_HEIGHT; ++x, ++y)
-    //     { cloud.m_density1[x][y] = 190;
-    // }
-
-    // for(size_t y = 0; y < CLOUD_SIMULATION_HEIGHT; ++y) {
-    //     cloud.m_density1[60][y] = 190;
-    // }
-
     // Create a modified material that uses
     cloud.m_planeMaterial = Ogre::MaterialManager::getSingleton().create(
         cloud.m_textureName + "_material", "Generated");
@@ -762,11 +916,8 @@ void
         pass->getFragmentProgramParameters()->setNamedConstant(
             "cloudColour4", cloud.m_color4);
 
-    // Position for consistent UVs for the perlin noise texture so that the the
-    // texture doesn't suddenly repeat at borders between two cloud entities
-    // TODO: this probably needs adjusting in the shader
-    pass->getFragmentProgramParameters()->setNamedConstant(
-        "cloudPos", cloud.m_position);
+    // The perlin noise texture needs to be tileable. We can't do tricks with
+    // the cloud's position
 
     cloud.m_texture = Ogre::TextureManager::getSingleton().createManual(
         cloud.m_textureName, "Generated", Ogre::TEX_TYPE_2D,
@@ -781,7 +932,6 @@ void
                          OGRE_CLOUD_TEXTURE_BYTES_PER_ELEMENT,
         "Pixel format bytes has changed");
 
-    // TODO: switch to Ogre 2.1 way
     auto pixelBuffer = cloud.m_texture->getBuffer();
     pixelBuffer->lock(Ogre::v1::HardwareBuffer::HBL_DISCARD);
     const Ogre::PixelBox& pixelBox = pixelBuffer->getCurrentLock();
@@ -854,24 +1004,29 @@ void
     CompoundCloudSystem::processCloud(CompoundCloudComponent& cloud,
         int renderTime)
 {
+    // Try to slow things down (doesn't seem to work great)
+    renderTime /= 5;
+
+    // The diffusion rate seems to have a bigger effect
+
     // Compound clouds move from area of high concentration to area of low.
     if(cloud.m_compoundId1 != NULL_COMPOUND) {
-        diffuse(0.01f, cloud.m_oldDens1, cloud.m_density1, renderTime);
+        diffuse(0.0001f, cloud.m_oldDens1, cloud.m_density1, renderTime);
         // Move the compound clouds about the velocity field.
         advect(cloud.m_oldDens1, cloud.m_density1, renderTime);
     }
     if(cloud.m_compoundId2 != NULL_COMPOUND) {
-        diffuse(0.01f, cloud.m_oldDens2, cloud.m_density2, renderTime);
+        diffuse(0.0001f, cloud.m_oldDens2, cloud.m_density2, renderTime);
         // Move the compound clouds about the velocity field.
         advect(cloud.m_oldDens2, cloud.m_density2, renderTime);
     }
     if(cloud.m_compoundId3 != NULL_COMPOUND) {
-        diffuse(0.01f, cloud.m_oldDens3, cloud.m_density3, renderTime);
+        diffuse(0.0001f, cloud.m_oldDens3, cloud.m_density3, renderTime);
         // Move the compound clouds about the velocity field.
         advect(cloud.m_oldDens3, cloud.m_density3, renderTime);
     }
     if(cloud.m_compoundId4 != NULL_COMPOUND) {
-        diffuse(0.01f, cloud.m_oldDens4, cloud.m_density4, renderTime);
+        diffuse(0.0001f, cloud.m_oldDens4, cloud.m_density4, renderTime);
         // Move the compound clouds about the velocity field.
         advect(cloud.m_oldDens4, cloud.m_density4, renderTime);
     }
@@ -999,8 +1154,8 @@ void
 
     // TODO: this is probably the place to move the compounds on the edges into
     // the next cloud (instead of not handling them here)
-    for(int x = 1; x < CLOUD_SIMULATION_WIDTH - 1; x++) {
-        for(int y = 1; y < CLOUD_SIMULATION_HEIGHT - 1; y++) {
+    for(size_t x = 1; x < CLOUD_SIMULATION_WIDTH - 1; x++) {
+        for(size_t y = 1; y < CLOUD_SIMULATION_HEIGHT - 1; y++) {
             if(oldDens[x][y] > 1) {
                 float dx = x + dt * m_xVelocity[x][y];
                 float dy = y + dt * m_yVelocity[x][y];
