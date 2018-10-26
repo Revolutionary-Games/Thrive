@@ -398,10 +398,10 @@ void ejectCompound(CellStageWorld@ world, ObjectID microbeEntity, CompoundId com
     auto ynew = membraneCoords.x * s + membraneCoords.y * c;
 
     auto amountToEject = takeCompound(world, microbeEntity, compoundId,
-        amount/10.0);
+        amount);
     createCompoundCloud(world, compoundId,
         position._Position.X + xnew * ejectionDistance,
-        position._Position.Y + ynew * ejectionDistance,
+        position._Position.Z + ynew * ejectionDistance,
        amountToEject);
 }
 
@@ -1128,8 +1128,8 @@ void kill(CellStageWorld@ world, ObjectID microbeEntity)
     auto keys = compoundsToRelease.getKeys();
     for(uint i = 0; i < keys.length(); ++i){
 
-        //ejectCompound(world, microbeEntity, parseInt(keys[i]),
-        //    float(compoundsToRelease[keys[i]]));
+        ejectCompound(world, microbeEntity, parseInt(keys[i]),
+            float(compoundsToRelease[keys[i]]));
     }
 
     // Play the death sound
