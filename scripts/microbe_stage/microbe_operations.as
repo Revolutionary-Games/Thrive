@@ -431,14 +431,14 @@ void purgeCompounds(CellStageWorld@ world, ObjectID microbeEntity){
             if(amountToEject > 0 && availableCompound-amountToEject >= 0){
                 amountToEject = takeCompound(world, microbeEntity,
                     compoundId, amountToEject);
-                ejectCompound(world, microbeEntity, compoundId, amountToEject);
+                ejectCompound(world, microbeEntity, compoundId, amountToEject-0.1f);
             }
     // If we flagged the second one but we still have some left just get rid of it all
     else if (availableCompound > 0)
     {
         amountToEject = takeCompound(world, microbeEntity,
                     compoundId, availableCompound);
-                ejectCompound(world, microbeEntity, compoundId, amountToEject);
+                ejectCompound(world, microbeEntity, compoundId, amountToEject-0.1f);
     }
     }
     }
