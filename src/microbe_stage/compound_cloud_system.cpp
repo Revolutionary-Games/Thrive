@@ -666,36 +666,14 @@ void
     // Create where the eventually created plane object will be attached
     cloud.m_sceneNode = scene->getRootSceneNode()->createChildSceneNode();
 
-    // Set initial position and the rotation that is preserved
-
-    // shift cloud to the left by half a width so its positioned correctly
-    // cloud.m_position.X = cloud.m_position.X - width / 2;
-
     // set the position properly
     cloud.m_sceneNode->setPosition(
         cloud.m_position.X, CLOUD_Y_COORDINATE, cloud.m_position.Z);
-
-    // Stolen from the old background rotation
-    // Ogre::Quaternion(0, sqrt(0.5), 1, sqrt(0.5)) * 4
-    // 0,45,90,45
-    // Ogre::Quaternion rot;
-    // rot.FromAngleAxis(Ogre::Degree(90),
-    //     Ogre::Vector3(sqrt(0.5), sqrt(0.5), 1).normalisedCopy());
 
     // Because of the way Ogre generates the UVs for a plane we need to rotate
     // the plane to match up with world coordinates
     cloud.m_sceneNode->setOrientation(
         Ogre::Quaternion(Ogre::Degree(90), Ogre::Vector3::UNIT_Y));
-
-    // This isn't fully right so the UVs and the shader compliments this
-    // rotation
-    // cloud.m_sceneNode->setOrientation(
-    //     // Ogre::Quaternion(0, sqrt(.5), 1, sqrt(.5))
-    //     Ogre::Quaternion(Ogre::Degree(90), Ogre::Vector3::UNIT_Z) *
-    //     Ogre::Quaternion(Ogre::Degree(45), Ogre::Vector3::UNIT_Y));
-
-    // Was playing with this to see if i could fix issues, i couldnt.
-    // cloud.m_sceneNode->setScale(1.0f, 1.0f, 0.5f);
 
     // All the densities
     if(cloud.m_compoundId1 != NULL_COMPOUND) {
@@ -878,22 +856,22 @@ void
 {
     // Compound clouds move from area of high concentration to area of low.
     if(cloud.m_compoundId1 != NULL_COMPOUND) {
-        diffuse(.007, cloud.m_oldDens1, cloud.m_density1, renderTime);
+        diffuse(0.01f, cloud.m_oldDens1, cloud.m_density1, renderTime);
         // Move the compound clouds about the velocity field.
         advect(cloud.m_oldDens1, cloud.m_density1, renderTime);
     }
     if(cloud.m_compoundId2 != NULL_COMPOUND) {
-        diffuse(.007, cloud.m_oldDens2, cloud.m_density2, renderTime);
+        diffuse(0.01f, cloud.m_oldDens2, cloud.m_density2, renderTime);
         // Move the compound clouds about the velocity field.
         advect(cloud.m_oldDens2, cloud.m_density2, renderTime);
     }
     if(cloud.m_compoundId3 != NULL_COMPOUND) {
-        diffuse(.007, cloud.m_oldDens3, cloud.m_density3, renderTime);
+        diffuse(0.01f, cloud.m_oldDens3, cloud.m_density3, renderTime);
         // Move the compound clouds about the velocity field.
         advect(cloud.m_oldDens3, cloud.m_density3, renderTime);
     }
     if(cloud.m_compoundId4 != NULL_COMPOUND) {
-        diffuse(.007, cloud.m_oldDens4, cloud.m_density4, renderTime);
+        diffuse(0.01f, cloud.m_oldDens4, cloud.m_density4, renderTime);
         // Move the compound clouds about the velocity field.
         advect(cloud.m_oldDens4, cloud.m_density4, renderTime);
     }
@@ -939,21 +917,18 @@ void
     const auto height = density[0].size();
     for(size_t j = 0; j < height; j++) {
         for(int i = 0; i < density.size(); i++) {
-            // Flipping in y-direction
-            // TODO: check is this uint8_t conversion better than clamping
-            // auto intensity = density[i][(height - j)];
 
-            // // // TODO: can this be removed as this probably causes some
-            // // // performance concerns by being here
-            // std::clamp(intensity, 0.f, 255.f);
+            int intensity = static_cast<int>(density[i][j]);
 
-            // This can be used to debug the clouds
-            // if(index == 1)
-            //     intensity += 70;
-            // if(intensity > 0)
-            //    intensity = 140;
+            // This is the same clamping code as in the old version
+            if(intensity < 0) {
+                intensity = 0;
+            } else if(intensity > 255) {
+                intensity = 255;
+            }
+
             pDest[rowBytes * j + (i * OGRE_CLOUD_TEXTURE_BYTES_PER_ELEMENT) +
-                  index] = static_cast<uint8_t>(density[i][(height - j)]);
+                  index] = static_cast<uint8_t>(intensity);
         }
     }
 }

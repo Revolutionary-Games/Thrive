@@ -109,7 +109,6 @@ bool
         int modifiers,
         bool down)
 {
-
     bool matched = false;
 
     // This could be made easier by just directly manipulating the
@@ -276,6 +275,7 @@ void
                         "applyEngulfMode");
         }
     }
+
     // Fire Toxin
     if(thrive->getPlayerInput()->getPressedToxin()) {
 
@@ -297,7 +297,7 @@ void
 
         LOG_INFO("Spawning cheat cloud");
         world.GetCompoundCloudSystem().addCloud(
-            SimulationParameters::compoundRegistry.getTypeId("glucose"), 1000,
+            SimulationParameters::compoundRegistry.getTypeId("glucose"), 15000,
             lookPoint);
     }
 }
@@ -306,7 +306,6 @@ Float3
     PlayerMicrobeControlSystem::getTargetPoint(
         Leviathan::GameWorld& worldWithCamera)
 {
-
     float x, y;
     Engine::Get()->GetWindowEntity()->GetNormalizedRelativeMouse(x, y);
 
