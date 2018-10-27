@@ -29,7 +29,7 @@ class MicrobeAIControllerComponent : ScriptComponent{
         intervalRemaining = reevalutationInterval;
     }
 
-    int movementRadius = 200;
+    float movementRadius = 2000;
     // That means they evaluate every 10 seconds or so, correct?
     int reevalutationInterval = 1000;
     int intervalRemaining;
@@ -45,6 +45,8 @@ class MicrobeAIControllerComponent : ScriptComponent{
     Float3 targetPosition = Float3(0, 0, 0);
     bool hasSearchedCompoundId = false;
     CompoundId searchedCompoundId;
+    float previousAngle = 0.0f;
+    float compoundDifference=0;
     ObjectID prey = NULL_OBJECT;
     // Prey and predator lists
     array<ObjectID> predatoryMicrobes;
@@ -307,7 +309,8 @@ class MicrobeAISystem : ScriptSystem{
 
             //   }
             }
-            //cache stored compounds for use in the next frame (For Runa nd tumble)
+            //cache stored compounds for use in the next frame (For Run and tumble)
+            aiComponent.compoundDifference = microbeComponent.stored-aiComponent.previousStoredCompounds;
             aiComponent.previousStoredCompounds = microbeComponent.stored;
         }
     }
@@ -660,19 +663,30 @@ class MicrobeAISystem : ScriptSystem{
                     aiComponent.lifeState = FLEEING_STATE;
                     }
                 }
+                // I want gathering to trigger more often so i added this here. Because even with predators and prey around its still important to eat compounds
+                if (GetEngine().GetRandom().GetNumber(0.0f,500.0f) <=  aiComponent.speciesFocus && GetEngine().GetRandom().GetNumber(0,10) <= 2)
+                {
+                 aiComponent.lifeState = GATHERING_STATE;
+                }
             }
         else if (prey != NULL_OBJECT)
             {
             //LOG_INFO("prey only");
             aiComponent.lifeState = PREDATING_STATE;
+
             }
         else if (predator != NULL_OBJECT)
             {
             //LOG_INFO("predator only");
             aiComponent.lifeState = FLEEING_STATE;
+            // I want gathering to trigger more often so i added this here. Because even with predators around you should still graze
+            if (GetEngine().GetRandom().GetNumber(0.0f,500.0f) <=  aiComponent.speciesFocus && GetEngine().GetRandom().GetNumber(0,10) <= 5)
+                {
+                 aiComponent.lifeState = GATHERING_STATE;
+                }
             }
-        // Every 10 intervals or so
-        else if (GetEngine().GetRandom().GetNumber(0,10) == 1)
+        // Every 2 intervals or so
+        else if (GetEngine().GetRandom().GetNumber(0,10) < 8)
             {
             //LOG_INFO("gather only");
             aiComponent.lifeState = GATHERING_STATE;
@@ -684,34 +698,68 @@ class MicrobeAISystem : ScriptSystem{
             aiComponent.lifeState = PLANTLIKE_STATE;
             }
         }
-
         }
 
     // For doing run and tumble
     void doRunAndTumble(MicrobeAISystemCached@ components){
+    // Run and tumble
+    // A biased random walk, they turn more if they are picking up less compounds.
+    // https://www.mit.edu/~kardar/teaching/projects/chemotaxis(AndreaSchmidt)/home.htm
     // Set Components
         ObjectID microbeEntity = components.entity;
         MicrobeAIControllerComponent@ aiComponent = components.first;
         MicrobeComponent@ microbeComponent = components.second;
         Position@ position = components.third;
 
-        if (GetEngine().GetRandom().GetNumber(0,100) <= 10)
+        auto randAngle = aiComponent.previousAngle;
+        auto randDist = aiComponent.movementRadius;
+
+
+         float compoundDifference = aiComponent.compoundDifference;
+
+        // Angle should only change if you havent picked up compounds or picked up less compounds
+        if (compoundDifference < 0 && GetEngine().GetRandom().GetNumber(0,10) < 5)
             {
-            aiComponent.hasTargetPosition = false;
+            randAngle = aiComponent.previousAngle+GetEngine().GetRandom().GetFloat(0.1f,1.0f);
+            aiComponent.previousAngle = randAngle;
+            randDist = GetEngine().GetRandom().GetFloat(200.0f,float(aiComponent.movementRadius));
+            aiComponent.targetPosition = Float3(cos(randAngle) * randDist,0, sin(randAngle)* randDist);
             }
 
-        //make AI move randomly for now
-        if (aiComponent.hasTargetPosition == false)
+        // If last round you had 0, then have a high likelihood of turning
+        if (compoundDifference < AI_COMPOUND_BIAS && GetEngine().GetRandom().GetNumber(0,10) < 9)
             {
-            auto randAngle = GetEngine().GetRandom().GetFloat(0, 2*PI);
-            auto randDist = GetEngine().GetRandom().GetFloat(10,aiComponent.movementRadius);
+            randAngle = aiComponent.previousAngle+GetEngine().GetRandom().GetFloat(1.0f,2.0f);
+            aiComponent.previousAngle = randAngle;
+            randDist = GetEngine().GetRandom().GetFloat(200.0f,float(aiComponent.movementRadius));
             aiComponent.targetPosition = Float3(cos(randAngle) * randDist,0, sin(randAngle)* randDist);
-            auto vec = (aiComponent.targetPosition - position._Position);
-            aiComponent.direction = vec.Normalize();
-            microbeComponent.facingTargetPoint = aiComponent.targetPosition;
-            microbeComponent.movementDirection = Float3(0, 0, -AI_MOVEMENT_SPEED);
-            aiComponent.hasTargetPosition = true;
-        }
+            }
+
+        if (compoundDifference == 0 && GetEngine().GetRandom().GetNumber(0,10) < 9)
+            {
+            randAngle = aiComponent.previousAngle+GetEngine().GetRandom().GetFloat(1.0f,2.0f);
+            aiComponent.previousAngle = randAngle;
+            randDist = GetEngine().GetRandom().GetFloat(200.0f,float(aiComponent.movementRadius));
+            aiComponent.targetPosition = Float3(cos(randAngle) * randDist,0, sin(randAngle)* randDist);
+            }
+
+         // If positive last step you gained compounds
+         if (compoundDifference > 0  && GetEngine().GetRandom().GetNumber(0,10) < 5)
+            {
+            // If found food subtract from angle randomly;
+            randAngle = aiComponent.previousAngle-GetEngine().GetRandom().GetFloat(0.1f,0.3f);
+            aiComponent.previousAngle = randAngle;
+            randDist = GetEngine().GetRandom().GetFloat(200.0f,float(aiComponent.movementRadius));
+            aiComponent.targetPosition = Float3(cos(randAngle) * randDist,0, sin(randAngle)* randDist);
+            }
+
+        // Turn more if not in concentration gradient basiclaly (step is .4 if really no mfood, .3 if less food, .1 if in food)
+        aiComponent.previousAngle = randAngle;
+        auto vec = (aiComponent.targetPosition - position._Position);
+        aiComponent.direction = vec.Normalize();
+        microbeComponent.facingTargetPoint = aiComponent.targetPosition;
+        microbeComponent.movementDirection = Float3(0, 0, -AI_MOVEMENT_SPEED);
+        aiComponent.hasTargetPosition = true;
 
     }
 

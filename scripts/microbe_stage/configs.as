@@ -58,6 +58,8 @@ const auto FOCUS_DIVISOR = 100.0f;
 // Cooldown for AI for toggling engulfing
 const uint AI_ENGULF_INTERVAL=300;
 
+// if you are gaining less then this amount of compound per turn you are much more likely to turn randomly
+const auto AI_COMPOUND_BIAS = -10.0f;
 // The player's name
 const auto PLAYER_NAME = "Player";
 
