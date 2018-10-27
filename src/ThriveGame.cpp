@@ -637,6 +637,15 @@ void
         new Leviathan::GenericEvent("ExitedToMenu"));
 }
 
+void
+    ThriveGame::extinctionOccurred()
+{
+    //Prehaps this method isn't being called?
+    m_impl->m_cellStage->ClearEntities();
+    m_impl->m_menuKeyPresses->setEnabled(true);
+    m_impl->m_cellStageKeys->setEnabled(false);
+}
+
 // ------------------------------------ //
 void
     ThriveGame::onZoomChange(float amount)
