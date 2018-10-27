@@ -311,7 +311,7 @@ class Species{
 
     ObjectID factorySpawn(CellStageWorld@ world, Float3 pos){
 
-        LOG_INFO("New member of species spawned: " + this.name);
+        //LOG_INFO("New member of species spawned: " + this.name);
         return MicrobeOperations::spawnMicrobe(world, pos, this.name,
             // Ai controlled
             true,
@@ -320,7 +320,7 @@ class Species{
     }
 
     ObjectID bacteriaColonySpawn(CellStageWorld@ world, Float3 pos){
-        LOG_INFO("New colony of species spawned: " + this.name);
+        //LOG_INFO("New colony of species spawned: " + this.name);
         Float3 curSpawn = Float3(GetEngine().GetRandom().GetNumber(1,7),0,GetEngine().
             GetRandom().GetNumber(1,7));
         // Three kinds of colonies are supported, line colonies and clump coloniesand Networks
@@ -328,7 +328,7 @@ class Species{
         if (GetEngine().GetRandom().GetNumber(0,4) < 2)
         {
             // Clump
-            for(int i = 0; i < GetEngine().GetRandom().GetNumber(1,5); i++){
+            for(int i = 0; i < GetEngine().GetRandom().GetNumber(MIN_BACTERIAL_COLONY_SIZE,MAX_BACTERIAL_COLONY_SIZE); i++){
                 //dont spawn them on top of each other because it
                 //causes them to bounce around and lag
                 MicrobeOperations::spawnBacteria(world, pos+curSpawn, this.name,true,"",true);
@@ -345,7 +345,7 @@ class Species{
             float linez = GetEngine().GetRandom().GetNumber(-5,5)+GetEngine().GetRandom().
                 GetNumber(-5,5);
 
-            for(int i = 0; i < GetEngine().GetRandom().GetNumber(1,7); i++){
+            for(int i = 0; i < GetEngine().GetRandom().GetNumber(MIN_BACTERIAL_LINE_SIZE,MAX_BACTERIAL_LINE_SIZE); i++){
                 // Dont spawn them on top of each other because it
                 // Causes them to bounce around and lag
                 MicrobeOperations::spawnBacteria(world, pos+curSpawn, this.name,true,"",true);
@@ -363,13 +363,13 @@ class Species{
             bool horizontal = false;
             bool vertical = false;
 
-            for(int i = 0; i < GetEngine().GetRandom().GetNumber(3,10); i++)
+            for(int i = 0; i < GetEngine().GetRandom().GetNumber(MIN_BACTERIAL_COLONY_SIZE,MAX_BACTERIAL_COLONY_SIZE); i++)
             {
                 if (GetEngine().GetRandom().GetNumber(0,4) < 2 && !horizontal)
                 {
                     horizontal=true;
                     vertical=false;
-                    for(int c = 0; c < GetEngine().GetRandom().GetNumber(3,5); ++c){
+                    for(int c = 0; c < GetEngine().GetRandom().GetNumber(MIN_BACTERIAL_LINE_SIZE,MAX_BACTERIAL_LINE_SIZE); ++c){
                         // Dont spawn them on top of each other because
                         // It causes them to bounce around and lag
                         curSpawn.X += GetEngine().GetRandom().GetNumber(5,7);
@@ -382,7 +382,7 @@ class Species{
                 else if (GetEngine().GetRandom().GetNumber(0,4) < 2 && !vertical) {
                     horizontal=false;
                     vertical=true;
-                    for(int c = 0; c < GetEngine().GetRandom().GetNumber(3,5); ++c){
+                    for(int c = 0; c < GetEngine().GetRandom().GetNumber(MIN_BACTERIAL_LINE_SIZE,MAX_BACTERIAL_LINE_SIZE); ++c){
                         // Dont spawn them on top of each other because it
                         // Causes them to bounce around and lag
                         curSpawn.Z += GetEngine().GetRandom().GetNumber(5,7);
@@ -396,7 +396,7 @@ class Species{
                 {
                     horizontal=true;
                     vertical=false;
-                    for(int c = 0; c < GetEngine().GetRandom().GetNumber(3,5); ++c){
+                    for(int c = 0; c < GetEngine().GetRandom().GetNumber(MIN_BACTERIAL_LINE_SIZE,MAX_BACTERIAL_LINE_SIZE); ++c){
                         // Dont spawn them on top of each other because
                         // It causes them to bounce around and lag
                         curSpawn.X -= GetEngine().GetRandom().GetNumber(5,7);
@@ -409,7 +409,7 @@ class Species{
                 else if (GetEngine().GetRandom().GetNumber(0,4) < 2 && !vertical) {
                     horizontal=false;
                     vertical=true;
-                    for(int c = 0; c < GetEngine().GetRandom().GetNumber(3,5); ++c){
+                    for(int c = 0; c < GetEngine().GetRandom().GetNumber(MIN_BACTERIAL_LINE_SIZE,MAX_BACTERIAL_LINE_SIZE); ++c){
                         // Dont spawn them on top of each other because it
                         //causes them to bounce around and lag
                         curSpawn.Z -= GetEngine().GetRandom().GetNumber(5,7);
@@ -423,7 +423,7 @@ class Species{
                     // Diaganol
                     horizontal=false;
                     vertical=false;
-                    for(int c = 0; c < GetEngine().GetRandom().GetNumber(3,5); ++c){
+                    for(int c = 0; c < GetEngine().GetRandom().GetNumber(MIN_BACTERIAL_LINE_SIZE,MAX_BACTERIAL_LINE_SIZE); ++c){
                         // Dont spawn them on top of each other because it
                         // Causes them to bounce around and lag
                         curSpawn.Z += GetEngine().GetRandom().GetNumber(5,7);

@@ -30,7 +30,7 @@ class MicrobeComponent : ScriptComponent, OrganelleContainer{
     //! This detaches all still attached organelles
     //! \todo There might be a more graceful way to do this
     ~MicrobeComponent(){
-        LOG_INFO("MicrobeComponent destroyed: " + microbeEntity);
+        //LOG_INFO("MicrobeComponent destroyed: " + microbeEntity);
 
         for(uint i = 0; i < organelles.length(); ++i){
 
@@ -495,7 +495,6 @@ class MicrobeSystem : ScriptSystem{
 
         // Only add drag if it is over CELL_REQUIRED_DRAG_BEFORE_APPLY
         if(drag.HAddAbs() >= CELL_REQUIRED_DRAG_BEFORE_APPLY){
-
             microbeComponent.queuedMovementForce += drag;
         }
 
@@ -533,7 +532,7 @@ class MicrobeSystem : ScriptSystem{
                 microbeComponent.facingTargetPoint);
             const auto current = pos._Orientation;
             // Slerp 50% of the way each call
-            const auto interpolated = current.Slerp(target, 0.5f);
+            const auto interpolated = current.Slerp(target, 0.2f);
             // const auto interpolated = target;
 
             // Not sure if updating the Position component here does anything
@@ -672,7 +671,7 @@ class MicrobeSystem : ScriptSystem{
         for(uint i = 0; i < organellesToAdd.length(); ++i){
             PlacedOrganelle@ organelle = organellesToAdd[i];
 
-            LOG_INFO("ready to split " + organelle.organelle.name);
+            //LOG_INFO("ready to split " + organelle.organelle.name);
 
             // Mark this organelle as done and return to its normal size.
             organelle.reset();
@@ -789,8 +788,8 @@ class MicrobeSystem : ScriptSystem{
                         {
                             auto newOrganelle = PlacedOrganelle(organelle, q, r, i*60);
 
-                            LOG_INFO("placed " + organelle.organelle.name + " at " +
-                                q + ", " + r);
+                            //LOG_INFO("placed " + organelle.organelle.name + " at " +
+                            //    q + ", " + r);
                             MicrobeOperations::addOrganelle(world, microbeEntity,
                                 newOrganelle);
                             return newOrganelle;
