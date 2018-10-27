@@ -258,8 +258,8 @@ void setupOrganelles(){
     nucleusParameters.prokaryoteChance = 0; // Not randomly generated.
     nucleusParameters.mpCost = 0; //it's not supossed to be purchased.
     nucleusParameters.initialComposition = {
-        {"phosphates", 1},
-        {"ammonia", 1}
+        {"phosphates", 10},
+        {"ammonia", 10}
     };
     nucleusParameters.components = {
         nucleusComponentFactory,
@@ -295,8 +295,8 @@ void setupOrganelles(){
     cytoplasmParameters.prokaryoteChance = 1;
     cytoplasmParameters.mpCost = 5;
     cytoplasmParameters.initialComposition = {
-        {"phosphates", 1},
-        {"ammonia", 1}
+        {"phosphates", 5},
+        {"ammonia", 5}
     };
     cytoplasmParameters.components = {
         processorOrganelleFactory(1.0),
@@ -322,8 +322,8 @@ void setupOrganelles(){
     chloroplastParameters.prokaryoteChance = 0;
     chloroplastParameters.mpCost = 20;
     chloroplastParameters.initialComposition = {
-        {"phosphates", 1},
-        {"ammonia", 1}
+        {"phosphates", 5},
+        {"ammonia", 5}
     };
     chloroplastParameters.components = {
         processorOrganelleFactory(1.0),
@@ -352,8 +352,8 @@ void setupOrganelles(){
     oxytoxyParameters.prokaryoteChance = 0;
     oxytoxyParameters.mpCost = 40;
     oxytoxyParameters.initialComposition = {
-        {"phosphates", 1},
-        {"ammonia", 1}
+        {"phosphates", 5},
+        {"ammonia", 5}
     };
     oxytoxyParameters.components = {
     //this can't hold since it is a vacuole
@@ -380,8 +380,8 @@ void setupOrganelles(){
     mitochondrionParameters.prokaryoteChance = 0;
     mitochondrionParameters.mpCost = 20;
     mitochondrionParameters.initialComposition = {
-        {"phosphates", 1},
-        {"ammonia", 1}
+        {"phosphates", 5},
+        {"ammonia", 5}
     };
     mitochondrionParameters.components = {
         processorOrganelleFactory(1.0f),
@@ -409,8 +409,8 @@ void setupOrganelles(){
     vacuoleParameters.prokaryoteChance = 0;
     vacuoleParameters.mpCost = 15;
     vacuoleParameters.initialComposition = {
-        {"phosphates", 1},
-        {"ammonia", 1}
+        {"phosphates", 5},
+        {"ammonia", 5}
     };
     vacuoleParameters.components = {
         storageOrganelleFactory(25.0f)
@@ -432,8 +432,8 @@ void setupOrganelles(){
     flagellumParameters.prokaryoteChance = 2;
     flagellumParameters.mpCost = 25;
     flagellumParameters.initialComposition = {
-        {"phosphates", 1},
-        {"ammonia", 1}
+        {"phosphates", 5},
+        {"ammonia", 5}
     };
     flagellumParameters.components = {
         movementOrganelleFactory(20, 300),
@@ -458,8 +458,8 @@ void setupOrganelles(){
     chemoplast.prokaryoteChance = 0;
     chemoplast.mpCost = 20;
     chemoplast.initialComposition = {
-        {"phosphates", 1},
-        {"ammonia", 1}
+        {"phosphates", 5},
+        {"ammonia", 5}
     };
     chemoplast.components = {
         processorOrganelleFactory(1.0f),
@@ -487,8 +487,8 @@ void setupOrganelles(){
     nitrogenPlastid.prokaryoteChance = 0;
     nitrogenPlastid.mpCost = 20;
     nitrogenPlastid.initialComposition = {
-        {"phosphates", 1},
-        {"ammonia", 1}
+        {"phosphates", 5},
+        {"ammonia", 5}
     };
     nitrogenPlastid.components = {
         processorOrganelleFactory(1.0f),
@@ -517,8 +517,8 @@ void setupOrganelles(){
     respiratoryProtien.prokaryoteChance = 1;
     respiratoryProtien.mpCost = 20;
     respiratoryProtien.initialComposition = {
-        {"phosphates", 0.05},
-        {"ammonia", 0.05}
+        {"phosphates", 1},
+        {"ammonia", 1}
     };
     respiratoryProtien.components = {
         processorOrganelleFactory(1.0f),
@@ -544,8 +544,8 @@ void setupOrganelles(){
     photosyntheticProtein.prokaryoteChance = 1;
     photosyntheticProtein.mpCost = 20;
     photosyntheticProtein.initialComposition = {
-        {"phosphates", 0.05},
-        {"ammonia", 0.05}
+        {"phosphates", 1},
+        {"ammonia", 1}
     };
     photosyntheticProtein.components = {
         processorOrganelleFactory(1.0f),
@@ -572,8 +572,8 @@ void setupOrganelles(){
     oxytoxyProtein.prokaryoteChance = 1;
     oxytoxyProtein.mpCost = 20;
     oxytoxyProtein.initialComposition = {
-        {"phosphates", 0.05},
-        {"ammonia", 0.05}
+        {"phosphates", 1},
+        {"ammonia", 1}
     };
     oxytoxyProtein.components = {
         agentVacuoleFactory("oxytoxy", "oxytoxySynthesis"),
@@ -602,8 +602,8 @@ void setupOrganelles(){
     chemoSynthisizingProtien.prokaryoteChance = 1;
     chemoSynthisizingProtien.mpCost = 20;
     chemoSynthisizingProtien.initialComposition = {
-        {"phosphates", 0.05},
-        {"ammonia", 0.05}
+        {"phosphates", 1},
+        {"ammonia", 1}
     };
     chemoSynthisizingProtien.components = {
         processorOrganelleFactory(1.0f),
@@ -656,8 +656,8 @@ void setupOrganelles(){
     nitrogenFixationProtien.prokaryoteChance = 1;
     nitrogenFixationProtien.mpCost = 20;
     nitrogenFixationProtien.initialComposition = {
-        {"phosphates", 0.05},
-        {"ammonia", 0.05}
+        {"phosphates", 1},
+        {"ammonia",1}
     };
     nitrogenFixationProtien.components = {
         processorOrganelleFactory(1.0f),

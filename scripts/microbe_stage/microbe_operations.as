@@ -1081,8 +1081,8 @@ void kill(CellStageWorld@ world, ObjectID microbeEntity)
         CompoundId compoundId = parseInt(storageTypes[i]);
         auto _amount = getCompoundAmount(world, microbeEntity, compoundId);
         while(_amount > 0){
-            // Eject up to 3 units per particle
-            auto ejectedAmount = takeCompound(world, microbeEntity, compoundId, 3);
+            // Eject up to 5 units per particle
+            auto ejectedAmount = takeCompound(world, microbeEntity, compoundId, 5);
             auto direction = Float3(GetEngine().GetRandom().GetNumber(0.0f, 1.0f) * 2 - 1,
                 0, GetEngine().GetRandom().GetNumber(0.0f, 1.0f) * 2 - 1);
             createAgentCloud(world, compoundId, position._Position, direction, ejectedAmount, 2000, microbeComponent.speciesName);
