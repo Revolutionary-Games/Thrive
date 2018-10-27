@@ -309,17 +309,15 @@ const dictionary STARTER_MICROBES = {
         MicrobeTemplate(1/14000,
             {
             //for testing
-                {"atp", InitialCompound(95)},
-                {"glucose", InitialCompound(95)}
+                {"atp", InitialCompound(60)},
+                {"glucose", InitialCompound(60)}
             },
             {
                 OrganelleTemplatePlaced("nucleus", 0, 0, 180),
-                OrganelleTemplatePlaced("mitochondrion", -1, 3, 0),
-                OrganelleTemplatePlaced("chloroplast", -1, 4, 90),
-                OrganelleTemplatePlaced("vacuole", 1, 2, 270),
-                OrganelleTemplatePlaced("oxytoxy", 1, 4, 0),
-                OrganelleTemplatePlaced("flagellum", 1, 5, 0),
-                OrganelleTemplatePlaced("flagellum", -1, 5, 0)
+                OrganelleTemplatePlaced("cytoplasm", 1, 2, 0),
+                OrganelleTemplatePlaced("cytoplasm", -1, 2, 0),
+                OrganelleTemplatePlaced("cytoplasm", 0, 1, 0),
+                OrganelleTemplatePlaced("flagellum", 0, 2, 0)
             },
             Float4(1, 1, 1, 1),
             false,
