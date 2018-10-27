@@ -49,6 +49,12 @@ const auto MAX_SPECIES_FOCUS = 400.0f;
 const auto MAX_SPECIES_PERSONALITY_MUTATION = 20.0f;
 const auto MIN_SPECIES_PERSONALITY_MUTATION = -20.0f;
 
+// Bacterial CXOlony configuration
+const auto MIN_BACTERIAL_COLONY_SIZE = 1;
+const auto MAX_BACTERIAL_COLONY_SIZE = 5;
+const auto MIN_BACTERIAL_LINE_SIZE =  3;
+const auto MAX_BACTERIAL_LINE_SIZE = 6;
+
 // What is divided during fear and aggression calculations in the AI
 const auto AGRESSION_DIVISOR = 100.0f;
 const auto FEAR_DIVISOR = 100.0f;
@@ -73,9 +79,9 @@ const auto FLAGELLA_BASE_FORCE = 1.0f;
 const auto CELL_BASE_THRUST = 1.0f;
 //! The drag force is calculated by taking the current velocity and multiplying it by this.
 //! This must be negative!
-const auto CELL_DRAG_MULTIPLIER = -0.2f;
+const auto CELL_DRAG_MULTIPLIER = -0.1f;
 //! If drag is below this it isn't applied to let the cells come to a halt properly
-const auto CELL_REQUIRED_DRAG_BEFORE_APPLY = 0.01f;
+const auto CELL_REQUIRED_DRAG_BEFORE_APPLY = 0.00001f;
 
 // Turning is currently set to be instant to avoid gyrating around the correct heading
 
