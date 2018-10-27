@@ -897,7 +897,7 @@ class MicrobeSystem : ScriptSystem{
         //play the split sound
         GetEngine().GetSoundDevice().Play2DSoundEffect(
             "Data/Sound/soundeffects/reproduction.ogg");
-            
+
         rigidBodyComponent.JumpTo(position);
         rigidBodyComponentCopy.JumpTo(positionCopy);
     }
