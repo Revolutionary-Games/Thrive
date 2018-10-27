@@ -314,6 +314,10 @@ class MicrobeSystem : ScriptSystem{
             }
         }
 
+        //There is an osmoregulation cost
+        auto osmoCost = (ATP_COST_FOR_OSMOREGULATION*microbeComponent.organelles.length())/1000*logicTime;
+        MicrobeOperations::takeCompound(world, microbeEntity,SimulationParameters::compoundRegistry().getTypeId("atp"), osmoCost);
+
         // Flash membrane if something happens.
         if(microbeComponent.flashDuration != 0 &&
             microbeComponent.flashColour != Float4(0, 0, 0, 0)
@@ -358,6 +362,7 @@ class MicrobeSystem : ScriptSystem{
             MicrobeOperations::purgeCompounds(world, microbeEntity);
             atpDamage(microbeEntity);
         }
+
         //	Handle hitpoints
         if((microbeComponent.hitpoints < microbeComponent.maxHitpoints))
         {
@@ -504,6 +509,8 @@ class MicrobeSystem : ScriptSystem{
         microbeComponent.queuedMovementForce += pos._Orientation.RotateVector(
             microbeComponent.movementDirection * CELL_BASE_THRUST);
 
+        // TODO::Base ATP cost for movement
+
         // Update organelles and then apply the movement force that was generated
         for(uint i = 0; i < microbeComponent.organelles.length(); ++i){
             microbeComponent.organelles[i].update(logicTime);
@@ -511,7 +518,6 @@ class MicrobeSystem : ScriptSystem{
 
         // Apply movement
         if(microbeComponent.queuedMovementForce != Float3(0, 0, 0)){
-
             if(physics.Body is null){
 
                 LOG_WARNING(
@@ -521,6 +527,10 @@ class MicrobeSystem : ScriptSystem{
                 // LOG_WRITE("cell thrust: " + microbeComponent.queuedMovementForce.X + ", " +
                 //     microbeComponent.queuedMovementForce.Y + ", " +
                 //     microbeComponent.queuedMovementForce.Z);
+                //There is an movement without flagella cost
+                auto cost = BASE_MOVEMENT_ATP_COST/1000*logicTime;
+                MicrobeOperations::takeCompound(world, microbeEntity,SimulationParameters::compoundRegistry().getTypeId("atp"), cost);
+
                 physics.GiveImpulse(microbeComponent.queuedMovementForce,
                     pos._Position);
             }

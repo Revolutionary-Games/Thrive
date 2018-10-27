@@ -1165,7 +1165,7 @@ ObjectID
             return std::get<0>(tuple);
     }
 
-    LOG_ERROR("findSpeciesEntityByName: no species with name: " + name);
+    // LOG_ERROR("findSpeciesEntityByName: no species with name: " + name);
     return NULL_OBJECT;
 }
 

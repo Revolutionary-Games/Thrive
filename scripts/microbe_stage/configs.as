@@ -66,6 +66,12 @@ const uint AI_ENGULF_INTERVAL=300;
 
 // if you are gaining less then this amount of compound per turn you are much more likely to turn randomly
 const auto AI_COMPOUND_BIAS = -10.0f;
+// Osmoregulation ATP cost
+const auto ATP_COST_FOR_OSMOREGULATION = 0.05f;
+
+// BASE MOVEMENT COST ATP cost
+const auto BASE_MOVEMENT_ATP_COST = 0.2f;
+
 // The player's name
 const auto PLAYER_NAME = "Player";
 
@@ -315,9 +321,7 @@ const dictionary STARTER_MICROBES = {
             {
                 OrganelleTemplatePlaced("nucleus", 0, 0, 180),
                 OrganelleTemplatePlaced("cytoplasm", 1, 2, 0),
-                OrganelleTemplatePlaced("cytoplasm", -1, 2, 0),
-                OrganelleTemplatePlaced("cytoplasm", 0, 1, 0),
-                OrganelleTemplatePlaced("flagellum", 0, 2, 0)
+                OrganelleTemplatePlaced("cytoplasm", -1, 2, 0)
             },
             Float4(1, 1, 1, 1),
             false,
