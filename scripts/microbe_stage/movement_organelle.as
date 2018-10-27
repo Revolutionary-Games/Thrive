@@ -121,8 +121,9 @@ class MovementOrganelle : OrganelleComponent{
 
             this.movingTail = true;
             animated.GetAnimation(0).SpeedFactor = 1.3;
-            // 5 per second per flagella (according to microbe descisions)
-            double energy = abs(5.0f/milliseconds);
+            // 2 per second per flagella (according to microbe descisions)
+            //dropped to 2
+            double energy = abs(FLAGELLA_ENERGY_COST/milliseconds);
 
             auto availableEnergy = MicrobeOperations::takeCompound(organelle.world,
                 microbeEntity, SimulationParameters::compoundRegistry().getTypeId("atp"),

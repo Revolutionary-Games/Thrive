@@ -67,13 +67,15 @@ const auto DEFAULT_HEALTH = 100;
 // Amount of health pers econd regened in percent
 const auto REGENERATION_RATE = 1;
 
-const auto FLAGELLA_BASE_FORCE = 4.0f;
+// Movement stuff
+const auto FLAGELLA_ENERGY_COST = 3.0f;
+const auto FLAGELLA_BASE_FORCE = 1.0f;
 const auto CELL_BASE_THRUST = 1.0f;
 //! The drag force is calculated by taking the current velocity and multiplying it by this.
 //! This must be negative!
-const auto CELL_DRAG_MULTIPLIER = -0.4f;
+const auto CELL_DRAG_MULTIPLIER = -0.2f;
 //! If drag is below this it isn't applied to let the cells come to a halt properly
-const auto CELL_REQUIRED_DRAG_BEFORE_APPLY = 0.001;
+const auto CELL_REQUIRED_DRAG_BEFORE_APPLY = 0.01f;
 
 // Turning is currently set to be instant to avoid gyrating around the correct heading
 
