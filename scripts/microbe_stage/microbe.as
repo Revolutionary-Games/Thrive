@@ -898,6 +898,9 @@ class MicrobeSystem : ScriptSystem{
         //play the split sound
         GetEngine().GetSoundDevice().Play2DSoundEffect(
             "Data/Sound/soundeffects/reproduction.ogg");
+            
+        rigidBodyComponent.JumpTo(position);
+        rigidBodyComponentCopy.JumpTo(positionCopy);
     }
 
     // Copies this microbe. The new microbe will not have the stored compounds of this one.
