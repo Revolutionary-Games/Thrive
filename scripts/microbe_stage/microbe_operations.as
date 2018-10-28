@@ -177,51 +177,51 @@ bool organelleDestroyedByDamage(CellStageWorld@ world, ObjectID microbeEntity, I
 // ------------------------------------ //
 void respawnPlayer(CellStageWorld@ world){
 
-    auto playerEntity = GetThriveGame().playerData().activeCreature();
-
-    MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
-        world.GetScriptComponentHolder("MicrobeComponent").Find(playerEntity));
-    auto rigidBodyComponent = world.GetComponent_Physics(playerEntity);
-    auto sceneNodeComponent = world.GetComponent_RenderNode(playerEntity);
-
-    microbeComponent.dead = false;
-    microbeComponent.deathTimer = 0;
-
-    // TODO: the cell template should be reapplied here
-
-    // Reset the growth bins of the organelles to full health.
-    for(uint i = 0; i < microbeComponent.organelles.length(); ++i){
-        microbeComponent.organelles[i].reset();
-    }
-    setupMicrobeHitpoints(world, playerEntity,DEFAULT_HEALTH);
-    //setup compounds
-    setupMicrobeCompounds(world,playerEntity);
-    // Reset position //
-    rigidBodyComponent.SetPosition(Float3(0, 0, 0), Float4::IdentityQuaternion);
-
-    // The physics body will set the Position on next tick
-
-    // TODO: reset velocity like in the old lua code?
-
-    // This set position is actually useless, but it was in the old lua code
-    // sceneNodeComponent.Node.setPosition(Float3(0, 0, 0));
-    sceneNodeComponent.Hidden = false;
-    sceneNodeComponent.Marked = true;
-
-    setRandomBiome(world);
-    cast<MicrobeStageHudSystem>(world.GetScriptSystem("MicrobeStageHudSystem")).
-        suicideButtonreset();
-
-    //Decrease the population by 10
     auto playerSpecies = MicrobeOperations::getSpeciesComponent(world, "Default");
+    auto playerEntity = GetThriveGame().playerData().activeCreature();
+    if (playerSpecies.population > 10)
+    {
+
+        MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
+        world.GetScriptComponentHolder("MicrobeComponent").Find(playerEntity));
+        auto rigidBodyComponent = world.GetComponent_Physics(playerEntity);
+        auto sceneNodeComponent = world.GetComponent_RenderNode(playerEntity);
+
+        microbeComponent.dead = false;
+        microbeComponent.deathTimer = 0;
+
+        // TODO: the cell template should be reapplied here
+
+        // Reset the growth bins of the organelles to full health.
+        for(uint i = 0; i < microbeComponent.organelles.length(); ++i){
+            microbeComponent.organelles[i].reset();
+        }
+        setupMicrobeHitpoints(world, playerEntity,DEFAULT_HEALTH);
+        //setup compounds
+        setupMicrobeCompounds(world,playerEntity);
+        // Reset position //
+        rigidBodyComponent.SetPosition(Float3(0, 0, 0), Float4::IdentityQuaternion);
+
+        // The physics body will set the Position on next tick
+
+        // TODO: reset velocity like in the old lua code?
+
+        // This set position is actually useless, but it was in the old lua code
+        // sceneNodeComponent.Node.setPosition(Float3(0, 0, 0));
+        sceneNodeComponent.Hidden = false;
+        sceneNodeComponent.Marked = true;
+
+        setRandomBiome(world);
+        cast<MicrobeStageHudSystem>(world.GetScriptSystem("MicrobeStageHudSystem")).
+        suicideButtonreset();
+    }
+    //Decrease the population by 10
     playerSpecies.population -= 10;
 
     //Creates an event that calls the function in javascript that checks extinction events
     GenericEvent@ checkExtinction = GenericEvent("CheckExtinction");
     NamedVars@ vars = checkExtinction.GetNamedVars();
     vars.AddValue(ScriptSafeVariableBlock("population", playerSpecies.population));
-
-    //Calling the above event
     GetEngine().GetEventHandler().CallEvent(checkExtinction);
 }
 
