@@ -260,10 +260,6 @@ video {
   background-position: center;
 }
 
-.extinctiontext-container {
-  text-align: center;
-}
-
 /* Cell stage things */
 
 /* Any type of panel like the bottom bar and health window */
@@ -648,6 +644,7 @@ video {
   width: 800px;
   height: 100px;
   margin-top: 17%;
+  margin-left: calc(50% - 400px);
   font-family: thrive;
   font-size: 90pt;
   color: #f33;
@@ -656,8 +653,9 @@ video {
 
 #extinctionBody {
   width: 800px;
-  height: 100px;
+  height: 120px;
   margin-top: 0%;
+  margin-left: calc(50% - 400px);
   font-size: 20pt;
   text-align: left;
   display: none;
