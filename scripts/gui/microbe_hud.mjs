@@ -372,7 +372,6 @@ function checkExtinction(population){
     if(population <= 0){
         document.getElementById("extinctionTitle").style.display = "inline-block";
         document.getElementById("extinctionBody").style.display = "inline-block";
-        Thrive.extinctionOccurred();
     }
 }
 

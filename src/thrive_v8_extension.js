@@ -26,7 +26,4 @@ var Thrive = {};
     native function exitToMenuClicked();
     Thrive.exitToMenuClicked = exitToMenuClicked;
 
-    native function extinctionOccurred();
-    Thrive.extinctionOccurred = extinctionOccurred;
-
 }());
