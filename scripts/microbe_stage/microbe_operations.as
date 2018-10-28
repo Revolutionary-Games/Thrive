@@ -481,7 +481,7 @@ void flashMembraneColour(CellStageWorld@ world, ObjectID microbeEntity, uint dur
 void applyMembraneColour(CellStageWorld@ world, ObjectID microbeEntity){
     MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
         world.GetScriptComponentHolder("MicrobeComponent").Find(microbeEntity));
-    auto speciesColour =  world.GetComponent_SpeciesComponent(findSpeciesEntityByName(world, microbeComponent.speciesName)).colour;
+    auto speciesColour = microbeComponent.speciesColour;
     auto membraneComponent = world.GetComponent_MembraneComponent(microbeEntity);
     membraneComponent.setColour(speciesColour);
 }

@@ -45,6 +45,11 @@ class MicrobeComponent : ScriptComponent, OrganelleContainer{
 
         this.speciesName = speciesName;
         this.isPlayerMicrobe = isPlayerMicrobe;
+        auto world = GetThriveGame().getCellStage();
+        if ( MicrobeOperations::getSpeciesComponent(world,speciesName) !is null)
+            {
+            this.speciesColour = MicrobeOperations::getSpeciesComponent(world, speciesName).colour;
+            }
         this.microbeEntity = forEntity;
         this.agentEmissionCooldown = 0;
 
@@ -117,6 +122,7 @@ class MicrobeComponent : ScriptComponent, OrganelleContainer{
     float maxHitpoints = DEFAULT_HEALTH;
     bool dead = false;
     uint deathTimer = 0;
+    Float4 speciesColour = Float4(0, 0, 0, 0);
     // Organelles with complete resonsiblity for a specific compound
     // (such as agentvacuoles)
     // Keys are the CompoundId of the agent and the value is int
