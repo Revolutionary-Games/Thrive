@@ -316,7 +316,8 @@ function onEditorButtonClicked(event){
 //! Exit to main menu clicked
 function onExitToMenuClicked() {
     if(common.isInEngine()){
-
+        document.getElementById("extinctionTitle").style.display = "none";
+        document.getElementById("extinctionBody").style.display = "none";
         // Call a function to tell the game to swap to the editor. It
         // Will notify us when it is done
         Thrive.exitToMenuClicked();
