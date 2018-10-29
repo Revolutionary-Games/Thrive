@@ -515,8 +515,6 @@ class MicrobeSystem : ScriptSystem{
         microbeComponent.queuedMovementForce += pos._Orientation.RotateVector(
             microbeComponent.movementDirection * CELL_BASE_THRUST);
 
-        // TODO::Base ATP cost for movement
-
         // Update organelles and then apply the movement force that was generated
         for(uint i = 0; i < microbeComponent.organelles.length(); ++i){
             microbeComponent.organelles[i].update(logicTime);
