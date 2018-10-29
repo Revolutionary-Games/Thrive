@@ -630,13 +630,11 @@ video {
 
 #winText {
   position: absolute;
-  height: 100px;
-  width: 600px;
-  top: 50%;
-  left: 50%;
-  font-size: 100pt;
-  line-height: 40px;
-  text-indent: -300px;
+  height: 200px;
+  width: 1000px;
+  margin-top: 17%;
+  margin-left: calc(50% - 500px);
+  font-size: 180pt;
   display: none;
 }
 
