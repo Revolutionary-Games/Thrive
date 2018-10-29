@@ -431,14 +431,14 @@ void purgeCompounds(CellStageWorld@ world, ObjectID microbeEntity){
             if(amountToEject > 0 && availableCompound-amountToEject >= 0){
                 amountToEject = takeCompound(world, microbeEntity,
                     compoundId, amountToEject);
-                ejectCompound(world, microbeEntity, compoundId, amountToEject-1.0f);
+                //ejectCompound(world, microbeEntity, compoundId, amountToEject-1.0f);
             }
     // If we flagged the second one but we still have some left just get rid of it all
     else if (availableCompound > 0)
     {
         amountToEject = takeCompound(world, microbeEntity,
                     compoundId, availableCompound);
-                ejectCompound(world, microbeEntity, compoundId, amountToEject-1.0f);
+                //ejectCompound(world, microbeEntity, compoundId, amountToEject-1.0f);
     }
     }
     }
@@ -1129,7 +1129,7 @@ void kill(CellStageWorld@ world, ObjectID microbeEntity)
     for(uint i = 0; i < keys.length(); ++i){
 
         ejectCompound(world, microbeEntity, parseInt(keys[i]),
-            float(compoundsToRelease[keys[i]]));
+            float(compoundsToRelease[keys[i]])*10);
     }
 
     // Play the death sound

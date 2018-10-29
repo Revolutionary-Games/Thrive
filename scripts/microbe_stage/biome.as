@@ -35,7 +35,10 @@ class CloudFactory{
     }
 
     ObjectID spawn(CellStageWorld@ world, Float3 pos){
-
+        createCompoundCloud(world, compound, pos.X+2, pos.Z, 0);
+        createCompoundCloud(world, compound, pos.X-2, pos.Z, 0);
+        createCompoundCloud(world, compound, pos.X, pos.Z+2, 0);
+        createCompoundCloud(world, compound, pos.X, pos.Z-2, 0);
         return createCompoundCloud(world, compound, pos.X, pos.Z, 0);
     }
 
@@ -48,7 +51,7 @@ dictionary compoundSpawnTypes;
 void setBiome(uint64 biomeId, CellStageWorld@ world){
     assert(world !is null, "setBiome requires world");
 
-    LOG_INFO("setting biome to: " + biomeId);
+    LOG_INFO("Setting biome to: " + biomeId);
     // Getting the base biome to change to.
     currentBiome = biomeId;
 
