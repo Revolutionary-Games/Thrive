@@ -57,12 +57,11 @@ class MicrobeEditor{
 
     //! This is called each time the editor is entered so this needs to properly reset state
     void init(){
-
         gridSceneNode = hudSystem.world.CreateEntity();
         auto node = hudSystem.world.Create_RenderNode(gridSceneNode);
         node.Scale = Float3(HEX_SIZE, 1, HEX_SIZE);
         node.Marked = true;
-
+        // Does this generate the grid background? How do i move the background grid...?
         auto plane = hudSystem.world.Create_Plane(gridSceneNode, node.Node,
             "EditorGridMaterial", Ogre::Plane(Ogre::Vector3(0, 1, 0), 0), Float2(100, 100),
             // This is the UV coordinates direction
@@ -84,7 +83,6 @@ class MicrobeEditor{
 
         // Reset to cytoplasm if nothing is selected
         if(activeActionName == ""){
-
             LOG_INFO("Selecting cytoplasm");
 
             GenericEvent@ event = GenericEvent("MicrobeEditorOrganelleSelected");
@@ -163,7 +161,6 @@ class MicrobeEditor{
         editedMicrobe.organelles.resize(0);
 
         for(uint i = 0; i < templateOrganelles.length(); ++i){
-
             editedMicrobe.organelles.insertLast(cast<PlacedOrganelle>(templateOrganelles[i]));
         }
 

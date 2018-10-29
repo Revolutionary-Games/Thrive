@@ -18,6 +18,7 @@
 #include <OgreSceneManager.h>
 #include <OgreTechnique.h>
 #include <OgreTextureManager.h>
+#include <Utility/Random.h>
 
 #include <atomic>
 
@@ -1005,28 +1006,28 @@ void
         int renderTime)
 {
     // Try to slow things down (doesn't seem to work great)
-    renderTime /= 5;
+    renderTime /= 10;
 
     // The diffusion rate seems to have a bigger effect
 
     // Compound clouds move from area of high concentration to area of low.
     if(cloud.m_compoundId1 != NULL_COMPOUND) {
-        diffuse(0.00001f, cloud.m_oldDens1, cloud.m_density1, renderTime);
+        diffuse(0.007f, cloud.m_oldDens1, cloud.m_density1, renderTime);
         // Move the compound clouds about the velocity field.
         advect(cloud.m_oldDens1, cloud.m_density1, renderTime);
     }
     if(cloud.m_compoundId2 != NULL_COMPOUND) {
-        diffuse(0.00001f, cloud.m_oldDens2, cloud.m_density2, renderTime);
+        diffuse(0.007f, cloud.m_oldDens2, cloud.m_density2, renderTime);
         // Move the compound clouds about the velocity field.
         advect(cloud.m_oldDens2, cloud.m_density2, renderTime);
     }
     if(cloud.m_compoundId3 != NULL_COMPOUND) {
-        diffuse(0.00001f, cloud.m_oldDens3, cloud.m_density3, renderTime);
+        diffuse(0.007f, cloud.m_oldDens3, cloud.m_density3, renderTime);
         // Move the compound clouds about the velocity field.
         advect(cloud.m_oldDens3, cloud.m_density3, renderTime);
     }
     if(cloud.m_compoundId4 != NULL_COMPOUND) {
-        diffuse(0.00001f, cloud.m_oldDens4, cloud.m_density4, renderTime);
+        diffuse(0.007f, cloud.m_oldDens4, cloud.m_density4, renderTime);
         // Move the compound clouds about the velocity field.
         advect(cloud.m_oldDens4, cloud.m_density4, renderTime);
     }
@@ -1129,7 +1130,6 @@ void
         int dt)
 {
     float a = dt * diffRate;
-
     for(int x = 1; x < CLOUD_SIMULATION_WIDTH - 1; x++) {
         for(int y = 1; y < CLOUD_SIMULATION_HEIGHT - 1; y++) {
             oldDens[x][y] =

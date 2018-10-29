@@ -3,7 +3,7 @@
 #include "organelle.as"
 
 // Global defines
-const auto CLOUD_SPAWN_RADIUS = 75;
+const auto CLOUD_SPAWN_RADIUS = 150;
 const auto POWERUP_SPAWN_RADIUS = 85;
 const auto DEFAULT_SPAWN_DENSITY = 1/25000.f;
 const auto STARTING_SPAWN_DENSITY = 50000.0f;
