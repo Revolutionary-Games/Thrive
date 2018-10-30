@@ -503,7 +503,7 @@ class MicrobeSystem : ScriptSystem{
         const Float3 drag(velocity.X * CELL_DRAG_MULTIPLIER,
             velocity.Y * CELL_DRAG_MULTIPLIER,
             velocity.Z * CELL_DRAG_MULTIPLIER);
-        
+
         // Only add drag if it is over CELL_REQUIRED_DRAG_BEFORE_APPLY
         if(abs(drag.X) >= CELL_REQUIRED_DRAG_BEFORE_APPLY){
             microbeComponent.queuedMovementForce.X += drag.X;
@@ -511,22 +511,22 @@ class MicrobeSystem : ScriptSystem{
         else {
             microbeComponent.queuedMovementForce.X += -velocity.X;
         }
-        
+
         if(abs(drag.Y) >= CELL_REQUIRED_DRAG_BEFORE_APPLY){
             microbeComponent.queuedMovementForce.Y += drag.Y;
         }
         else {
             microbeComponent.queuedMovementForce.Y += -velocity.Y;
         }
-        
+
         if(abs(drag.Z) >= CELL_REQUIRED_DRAG_BEFORE_APPLY){
             microbeComponent.queuedMovementForce.Z += drag.Z;
         }
         else {
             microbeComponent.queuedMovementForce.Z += -velocity.Z;
         }
-       
-            
+
+
         // Add base movement
         // The movementDirection is the player or AI input
         // Rotate the 'thrust' based on our orientation
