@@ -87,7 +87,7 @@ const auto CELL_BASE_THRUST = 1.0f;
 //! This must be negative!
 const auto CELL_DRAG_MULTIPLIER = -0.1f;
 //! If drag is below this it isn't applied to let the cells come to a halt properly
-const auto CELL_REQUIRED_DRAG_BEFORE_APPLY =  1.0f;
+const auto CELL_REQUIRED_DRAG_BEFORE_APPLY =  0.033f;
 
 // Turning is currently set to be instant to avoid gyrating around the correct heading
 
