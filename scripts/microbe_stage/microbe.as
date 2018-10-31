@@ -494,7 +494,7 @@ class MicrobeSystem : ScriptSystem{
         }
 
         // Reset movement
-        microbeComponent.queuedMovementForce = Float3(0, 0, 0);
+        microbeComponent.queuedMovementForce = Float3(0.0f, 0.0f, 0.0f);
 
         // First add drag based on the velocity
         const Float3 velocity = physics.GetVelocity();
@@ -508,21 +508,21 @@ class MicrobeSystem : ScriptSystem{
         if(abs(drag.X) >= CELL_REQUIRED_DRAG_BEFORE_APPLY){
             microbeComponent.queuedMovementForce.X += drag.X;
         }
-        else {
+        else if (abs(velocity.X) >  .001){
             microbeComponent.queuedMovementForce.X += -velocity.X;
         }
 
-        if(abs(drag.Y) >= CELL_REQUIRED_DRAG_BEFORE_APPLY){
-            microbeComponent.queuedMovementForce.Y += drag.Y;
-        }
-        else {
-            microbeComponent.queuedMovementForce.Y += -velocity.Y;
-        }
+        //if(abs(drag.Y) >= CELL_REQUIRED_DRAG_BEFORE_APPLY){
+        //    microbeComponent.queuedMovementForce.Y += drag.Y;
+        //}
+        //else if (abs(velocity.Y) > .001){
+        //    microbeComponent.queuedMovementForce.Y += -velocity.Y;
+        //}
 
         if(abs(drag.Z) >= CELL_REQUIRED_DRAG_BEFORE_APPLY){
             microbeComponent.queuedMovementForce.Z += drag.Z;
         }
-        else {
+        else if (abs(velocity.Z) >  .001){
             microbeComponent.queuedMovementForce.Z += -velocity.Z;
         }
 
@@ -539,14 +539,14 @@ class MicrobeSystem : ScriptSystem{
         }
 
         // Apply movement
-        if(microbeComponent.queuedMovementForce != Float3(0, 0, 0)){
+        if(microbeComponent.queuedMovementForce != Float3(0.0f, 0.0f, 0.0f)){
             if(physics.Body is null){
 
                 LOG_WARNING(
                     "Skipping microbe movement apply for microbe without physics body");
             } else {
 
-                // LOG_WRITE("cell thrust: " + microbeComponent.queuedMovementForce.X + ", " +
+                //LOG_WRITE("cell thrust: " + microbeComponent.queuedMovementForce.X + ", " +
                 //     microbeComponent.queuedMovementForce.Y + ", " +
                 //     microbeComponent.queuedMovementForce.Z);
                 //There is an movement without flagella cost

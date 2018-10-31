@@ -427,18 +427,12 @@ void purgeCompounds(CellStageWorld@ world, ObjectID microbeEntity){
     // Dont remove everything immedately, give it some time so people can see it happening
      double amountToEject = 2;
     double availableCompound = getCompoundAmount(world,microbeEntity, compoundId);
-            // This was also 'amount' so maybe this didn't work either?
-            if(amountToEject > 0 && availableCompound-amountToEject >= 0){
-                amountToEject = takeCompound(world, microbeEntity,
-                    compoundId, amountToEject);
-                //ejectCompound(world, microbeEntity, compoundId, amountToEject-1.0f);
-            }
+    if(amountToEject > 0 && availableCompound-amountToEject >= 0){
+        ejectCompound(world, microbeEntity, compoundId, amountToEject/COMPOUND_PURGE_MODIFIER);
+    }
     // If we flagged the second one but we still have some left just get rid of it all
-    else if (availableCompound > 0)
-    {
-        amountToEject = takeCompound(world, microbeEntity,
-                    compoundId, availableCompound);
-                //ejectCompound(world, microbeEntity, compoundId, amountToEject-1.0f);
+    else if (availableCompound > 0){
+        ejectCompound(world, microbeEntity, compoundId, availableCompound/COMPOUND_PURGE_MODIFIER);
     }
     }
     }
