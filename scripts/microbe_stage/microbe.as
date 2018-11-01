@@ -484,13 +484,10 @@ class MicrobeSystem : ScriptSystem{
                     // updated here, but this keeps us from
                     // changing onRemovedFromMicrobe to allow
                     // skipping it
-                    microbeComponent.organelles[i].onRemovedFromMicrobe(microbeEntity,
-                        physics.Body.Shape);
+                    microbeComponent.organelles[i].onRemovedFromMicrobe(microbeEntity, null);
                 }
             }
         }
-
-        physics.ChangeShape(world.GetPhysicalWorld(), physics.Body.Shape);
     }
 
     private void applyCellMovement(MicrobeSystemCached@ &in components, uint logicTime)
