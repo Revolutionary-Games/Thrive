@@ -2,41 +2,53 @@
 #include "microbe_operations.as"
 #include "procedural_microbes.as"
 
-float randomColourChannel(){
+float randomColourChannel()
+{
     return GetEngine().GetRandom().GetNumber(MIN_COLOR, MAX_COLOR);
 }
 
-float randomMutationColourChannel(){
+float randomMutationColourChannel()
+{
     return GetEngine().GetRandom().GetNumber(MIN_COLOR_MUTATION, MAX_COLOR_MUTATION);
 }
 
-float randomOpacity(){
+float randomOpacity()
+{
     return GetEngine().GetRandom().GetNumber(MIN_OPACITY, MAX_OPACITY);
 }
 
-float randomOpacityChitin(){
+float randomOpacityChitin()
+{
     return GetEngine().GetRandom().GetNumber(MIN_OPACITY_CHITIN, MAX_OPACITY_CHITIN);
 }
 
-float randomOpacityBacteria(){
+float randomOpacityBacteria()
+{
     return GetEngine().GetRandom().GetNumber(MIN_OPACITY, MAX_OPACITY+1);
 }
 
-float randomMutationOpacity(){
+float randomMutationOpacity()
+{
     return GetEngine().GetRandom().GetNumber(MIN_OPACITY_MUTATION, MAX_OPACITY_MUTATION);
 }
 
-Float4 randomColour(float opaqueness = randomOpacity()){
+Float4 randomColour(float opaqueness = randomOpacity())
+{
     return Float4(randomColourChannel(), randomColourChannel(), randomColourChannel(),
         opaqueness);
 }
 
-Float4 randomProkayroteColour(float opaqueness = randomOpacityBacteria()){
+Float4 randomProkayroteColour(float opaqueness = randomOpacityBacteria())
+{
     return Float4(randomColourChannel(), randomColourChannel(), randomColourChannel(),
         opaqueness);
 }
 
-string generateNameSection(){
+string generateNameSection()
+{
+    // TODO: this should be checked very carefully to make sure that
+    // this isn't copying all these lists as that would be quite
+    // inefficient
     auto prefixCofixList = SimulationParameters::speciesNameController().getPrefixCofix();
     auto prefix_v = SimulationParameters::speciesNameController().getVowelPrefixes();
     auto prefix_c = SimulationParameters::speciesNameController().getConsonantPrefixes();
@@ -45,37 +57,45 @@ string generateNameSection(){
     auto suffix = SimulationParameters::speciesNameController().getSuffixes();
     string newName = "";
 
-     if (GetEngine().GetRandom().GetNumber(0,100) >= 10){
+    if (GetEngine().GetRandom().GetNumber(0,100) >= 10){
         if (GetEngine().GetRandom().GetNumber(0,100) >= 45){
             if (GetEngine().GetRandom().GetNumber(0,100) >= 40){
-                string ourPrefix = prefix_v[GetEngine().GetRandom().GetNumber(0,prefix_v.length()-1)];
-                string ourCofix = cofix_v[GetEngine().GetRandom().GetNumber(0,cofix_v.length()-1)];
-                string ourSuffix = suffix[GetEngine().GetRandom().GetNumber(0,suffix.length()-1)];
-                LOG_INFO(ourPrefix+ourCofix+ourSuffix);
+                string ourPrefix = prefix_v[GetEngine().GetRandom().GetNumber(0,
+                        prefix_v.length()-1)];
+                string ourCofix = cofix_v[GetEngine().GetRandom().GetNumber(0,
+                        cofix_v.length()-1)];
+                string ourSuffix = suffix[GetEngine().GetRandom().GetNumber(0,
+                        suffix.length()-1)];
                 newName = ourPrefix+ourCofix+ourSuffix;
             }
             else{
-                string ourPrefix = prefix_v[GetEngine().GetRandom().GetNumber(0,prefix_v.length()-1)];
-                string ourCofix = cofix_c[GetEngine().GetRandom().GetNumber(0,cofix_c.length()-1)];
-                string ourSuffix = suffix[GetEngine().GetRandom().GetNumber(0,suffix.length()-1)];
-                LOG_INFO(ourPrefix+ourCofix+ourSuffix);
+                string ourPrefix = prefix_v[GetEngine().GetRandom().GetNumber(0,
+                        prefix_v.length()-1)];
+                string ourCofix = cofix_c[GetEngine().GetRandom().GetNumber(0,
+                        cofix_c.length()-1)];
+                string ourSuffix = suffix[GetEngine().GetRandom().GetNumber(0,
+                        suffix.length()-1)];
                 newName = ourPrefix+ourCofix+ourSuffix;
             }
-                }
+        }
         else{
-            string ourPrefix = prefix_c[GetEngine().GetRandom().GetNumber(0,prefix_c.length()-1)];
-            string ourCofix = cofix_v[GetEngine().GetRandom().GetNumber(0,cofix_v.length()-1)];
-            string ourSuffix = suffix[GetEngine().GetRandom().GetNumber(0,suffix.length()-1)];
-            LOG_INFO(ourPrefix+ourCofix+ourSuffix);
+            string ourPrefix = prefix_c[GetEngine().GetRandom().GetNumber(0,
+                    prefix_c.length()-1)];
+            string ourCofix = cofix_v[GetEngine().GetRandom().GetNumber(0,
+                    cofix_v.length()-1)];
+            string ourSuffix = suffix[GetEngine().GetRandom().GetNumber(0,
+                    suffix.length()-1)];
             newName = ourPrefix+ourCofix+ourSuffix;
         }
-     }
-     else{
-          string ourPrefixCofix = prefixCofixList[GetEngine().GetRandom().GetNumber(0,prefixCofixList.length()-1)];
-          string ourSuffix = suffix[GetEngine().GetRandom().GetNumber(0,suffix.length()-1)];
-          LOG_INFO(ourPrefixCofix+ourSuffix);
-          newName=ourPrefixCofix+ourSuffix;
-        }
+    }
+    else{
+        string ourPrefixCofix = prefixCofixList[GetEngine().GetRandom().GetNumber(0,
+                prefixCofixList.length()-1)];
+        string ourSuffix = suffix[GetEngine().GetRandom().GetNumber(0,
+                suffix.length()-1)];
+        newName=ourPrefixCofix+ourSuffix;
+    }
+
     // TODO: DO more stuff here to improve names
     // (remove double letters when the prefix ends with and the cofix starts with the same letter
     // Remove weird things that come up like "rc" (Implemented through vowels and consonants)
@@ -89,12 +109,14 @@ const dictionary DEFAULT_INITIAL_COMPOUNDS =
         {"ammonia", InitialCompound(30,100)}
     };
 
-string randomSpeciesName(){
+string randomSpeciesName()
+{
     return "Species_" + formatInt(GetEngine().GetRandom().GetNumber(0, 10000));
 }
 
 // Bacteria also need names
-string randomBacteriaName(){
+string randomBacteriaName()
+{
     return "Bacteria_" + formatInt(GetEngine().GetRandom().GetNumber(0, 10000));
 }
 
@@ -109,13 +131,16 @@ string randomBacteriaName(){
 class Species{
 
     //! Constructor for automatically creating a random species
-    Species(CellStageWorld@ world, bool isBacteria){
-        this.isBacteria=isBacteria;
+    Species(CellStageWorld@ world, bool isBacteria)
+    {
+        this.isBacteria = isBacteria;
+
         if (!isBacteria)
         {
             name = randomSpeciesName();
             genus = generateNameSection();
             epithet = generateNameSection();
+
             // Variables used in AI to determine general behavior
             this.aggression = GetEngine().GetRandom().GetFloat(0.0f,
                 MAX_SPECIES_AGRESSION);
@@ -125,13 +150,10 @@ class Species{
                 MAX_SPECIES_ACTIVITY);
             this.focus = GetEngine().GetRandom().GetFloat(0.0f,
                 MAX_SPECIES_FOCUS);
-            LOG_INFO("Aggression is:"+aggression);
-            LOG_INFO("Fear is:"+fear);
-            LOG_INFO("Lethargicness is:"+activity);
-            LOG_INFO("Focus is:"+focus);
-            auto stringSize=GetEngine().GetRandom().GetNumber(MIN_INITIAL_LENGTH,
+
+            auto stringSize = GetEngine().GetRandom().GetNumber(MIN_INITIAL_LENGTH,
                 MAX_INITIAL_LENGTH);
-            if (GetEngine().GetRandom().GetNumber(0,100) <= 10){
+            if (GetEngine().GetRandom().GetNumber(0, 100) <= 10){
                 // Generate an extremely large cell, players never really had enough challenge
                 LOG_INFO("Generating EPIC cell");
                 stringSize = GetEngine().GetRandom().GetNumber(MIN_INITIAL_EPIC_LENGTH,
@@ -144,19 +166,20 @@ class Species{
             stringCode = getOrganelleDefinition("nucleus").gene +
                 cytoplasmGene;
 
-
             for(int i = 0; i < stringSize; i++){
                 this.stringCode += getRandomLetter(false);
             }
 
             // And then random cytoplasm padding
             const auto cytoplasmPadding = GetEngine().GetRandom().GetNumber(0, 20);
-            if ( GetEngine().GetRandom().GetNumber(0, 100) <= 25)
+            if (GetEngine().GetRandom().GetNumber(0, 100) <= 25)
             {
                 for(int i = 0; i < cytoplasmPadding; i++){
-                    this.stringCode.insert(GetEngine().GetRandom().GetNumber(2,stringCode.length()),cytoplasmGene);
+                    this.stringCode.insert(GetEngine().GetRandom().GetNumber(2,
+                            stringCode.length()), cytoplasmGene);
                 }
             }
+
             this.colour = getRightColourForSpecies();
 
             if (GetEngine().GetRandom().GetNumber(0,100) < 50)
@@ -167,6 +190,7 @@ class Species{
                 this.speciesMembraneType = MEMBRANE_TYPE::DOUBLEMEMBRANE;
                 this.colour.W = randomOpacityChitin();;
             }
+
             commonConstructor(world);
             this.setupSpawn(world);
 
@@ -177,8 +201,8 @@ class Species{
         }
     }
 
-    ~Species(){
-
+    ~Species()
+    {
         if(templateEntity != NULL_OBJECT){
 
             LOG_ERROR("Species object not extinguish()ed before destructor, doing that now");
@@ -187,34 +211,38 @@ class Species{
     }
 
     // Creates a mutated version of the species and reduces the species population by half
-    Species(Species@ parent, CellStageWorld@ world, bool isBacteria){
-        this.isBacteria=parent.isBacteria;
+    Species(Species@ parent, CellStageWorld@ world, bool isBacteria)
+    {
+        this.isBacteria = parent.isBacteria;
+
         if (!isBacteria)
         {
             name = randomSpeciesName();
             epithet = generateNameSection();
             genus = parent.genus;
 
-        // Variables used in AI to determine general behavior mutate these
-        this.aggression = parent.aggression+GetEngine().GetRandom().GetFloat(MIN_SPECIES_PERSONALITY_MUTATION,
-                MAX_SPECIES_PERSONALITY_MUTATION);
-        this.fear = parent.fear+GetEngine().GetRandom().GetFloat(MIN_SPECIES_PERSONALITY_MUTATION,
-                MAX_SPECIES_PERSONALITY_MUTATION);
-        this.activity = parent.activity+GetEngine().GetRandom().GetFloat(MIN_SPECIES_PERSONALITY_MUTATION,
-                MAX_SPECIES_PERSONALITY_MUTATION);
-        this.focus = parent.focus+GetEngine().GetRandom().GetFloat(MIN_SPECIES_PERSONALITY_MUTATION,
-                MAX_SPECIES_PERSONALITY_MUTATION);
-        // Make sure not over or under our scales
-        cleanPersonality();
-        // Subtly mutate color
-        if (GetEngine().GetRandom().GetNumber(0,5)==0)
+            // Variables used in AI to determine general behavior mutate these
+            this.aggression = parent.aggression+GetEngine().GetRandom().GetFloat(
+                MIN_SPECIES_PERSONALITY_MUTATION, MAX_SPECIES_PERSONALITY_MUTATION);
+            this.fear = parent.fear+GetEngine().GetRandom().GetFloat(
+                MIN_SPECIES_PERSONALITY_MUTATION, MAX_SPECIES_PERSONALITY_MUTATION);
+            this.activity = parent.activity+GetEngine().GetRandom().GetFloat(
+                MIN_SPECIES_PERSONALITY_MUTATION, MAX_SPECIES_PERSONALITY_MUTATION);
+            this.focus = parent.focus+GetEngine().GetRandom().GetFloat(
+                MIN_SPECIES_PERSONALITY_MUTATION, MAX_SPECIES_PERSONALITY_MUTATION);
+
+            // Make sure not over or under our scales
+            cleanPersonality();
+
+            // Subtly mutate color
+            if (GetEngine().GetRandom().GetNumber(0,5) == 0)
             {
-            this.colour = Float4(parent.colour.X+randomMutationColourChannel(),parent.colour.Y+randomMutationColourChannel(),parent.colour.Z+randomMutationColourChannel(), parent.colour.W+randomMutationOpacity());
+                this.colour = Float4(parent.colour.X + randomMutationColourChannel(),
+                    parent.colour.Y + randomMutationColourChannel(),
+                    parent.colour.Z + randomMutationColourChannel(),
+                    parent.colour.W + randomMutationOpacity());
             }
-         LOG_INFO("Aggression is:"+aggression);
-         LOG_INFO("Fear is:"+fear);
-         LOG_INFO("Lethargicness is:"+activity);
-         LOG_INFO("Focus is:"+focus);
+
             // Chance of new color needs to be low
             if (GetEngine().GetRandom().GetNumber(0,100)==1)
             {
@@ -222,7 +250,10 @@ class Species{
                 // We can do more fun stuff here later
                 genus = generateNameSection();
                 // New genuses get to double their color change
-            this.colour = Float4(parent.colour.X+randomMutationColourChannel(),parent.colour.Y+randomMutationColourChannel(),parent.colour.Z+randomMutationColourChannel(), parent.colour.W+randomMutationOpacity());
+                this.colour = Float4(parent.colour.X + randomMutationColourChannel(),
+                    parent.colour.Y + randomMutationColourChannel(),
+                    parent.colour.Z + randomMutationColourChannel(),
+                    parent.colour.W + randomMutationOpacity());
             }
 
             this.population = int(floor(parent.population / 2.f));
@@ -242,48 +273,48 @@ class Species{
         }
     }
 
-    private void cleanPersonality(){
-    // Is there a better way of doing this while keeping it clean?
-    // Aggression
-    if (this.aggression > MAX_SPECIES_AGRESSION)
-        {
-        this.aggression=MAX_SPECIES_AGRESSION;
+        private void cleanPersonality(){
+            // Is there a better way of doing this while keeping it clean?
+            // Aggression
+            if (this.aggression > MAX_SPECIES_AGRESSION)
+            {
+                this.aggression=MAX_SPECIES_AGRESSION;
+            }
+            if (this.aggression < 0.0f)
+            {
+                this.aggression=0;
+            }
+            // Fear
+            if (this.fear > MAX_SPECIES_FEAR)
+            {
+                this.fear=MAX_SPECIES_FEAR;
+            }
+            if (this.fear < 0.0f)
+            {
+                this.fear=0;
+            }
+            // Activity
+            if (this.activity > MAX_SPECIES_ACTIVITY)
+            {
+                this.activity=MAX_SPECIES_ACTIVITY;
+            }
+            if (this.activity < 0.0f)
+            {
+                this.activity=0;
+            }
+            // Focus
+            if (this.focus > MAX_SPECIES_FOCUS)
+            {
+                this.focus=MAX_SPECIES_FOCUS;
+            }
+            if (this.focus < 0.0f)
+            {
+                this.focus=0;
+            }
         }
-    if (this.aggression < 0.0f)
-        {
-        this.aggression=0;
-        }
-    // Fear
-    if (this.fear > MAX_SPECIES_FEAR)
-        {
-        this.fear=MAX_SPECIES_FEAR;
-        }
-    if (this.fear < 0.0f)
-        {
-        this.fear=0;
-        }
-    // Activity
-    if (this.activity > MAX_SPECIES_ACTIVITY)
-        {
-        this.activity=MAX_SPECIES_ACTIVITY;
-        }
-    if (this.activity < 0.0f)
-        {
-        this.activity=0;
-        }
-    // Focus
-    if (this.focus > MAX_SPECIES_FOCUS)
-        {
-        this.focus=MAX_SPECIES_FOCUS;
-        }
-    if (this.focus < 0.0f)
-        {
-        this.focus=0;
-        }
-    }
 
-    private void commonConstructor(CellStageWorld@ world){
-
+    private void commonConstructor(CellStageWorld@ world)
+    {
         @forWorld = world;
 
         auto organelles = positionOrganelles(stringCode);
@@ -294,7 +325,8 @@ class Species{
     }
 
     // Delete a species
-    void extinguish(){
+    void extinguish()
+    {
         if(forWorld !is null){
             LOG_INFO("Species " + name + " has been extinguished");
             forWorld.GetSpawnSystem().removeSpawnType(this.id);
@@ -309,48 +341,49 @@ class Species{
         }
     }
 
-    ObjectID factorySpawn(CellStageWorld@ world, Float3 pos){
-
-        //LOG_INFO("New member of species spawned: " + this.name);
+    ObjectID factorySpawn(CellStageWorld@ world, Float3 pos)
+    {
         return MicrobeOperations::spawnMicrobe(world, pos, this.name,
             // Ai controlled
-            true,
-            // No individual name (could be good for debugging)
-            "");
+            true);
     }
 
-    ObjectID bacteriaColonySpawn(CellStageWorld@ world, Float3 pos){
-        //LOG_INFO("New colony of species spawned: " + this.name);
-        Float3 curSpawn = Float3(GetEngine().GetRandom().GetNumber(1,7),0,GetEngine().
-            GetRandom().GetNumber(1,7));
-        // Three kinds of colonies are supported, line colonies and clump coloniesand Networks
+    ObjectID bacteriaColonySpawn(CellStageWorld@ world, Float3 pos)
+    {
+        Float3 curSpawn = Float3(GetEngine().GetRandom().GetNumber(1, 7), 0,
+            GetEngine().GetRandom().GetNumber(1, 7));
 
-        if (GetEngine().GetRandom().GetNumber(0,4) < 2)
+        // Three kinds of colonies are supported, line colonies and clump coloniesand Networks
+        if (GetEngine().GetRandom().GetNumber(0, 4) < 2)
         {
             // Clump
-            for(int i = 0; i < GetEngine().GetRandom().GetNumber(MIN_BACTERIAL_COLONY_SIZE,MAX_BACTERIAL_COLONY_SIZE); i++){
+            for(int i = 0; i < GetEngine().GetRandom().GetNumber(MIN_BACTERIAL_COLONY_SIZE,
+                    MAX_BACTERIAL_COLONY_SIZE); i++){
+
                 //dont spawn them on top of each other because it
                 //causes them to bounce around and lag
-                MicrobeOperations::spawnBacteria(world, pos+curSpawn, this.name,true,"",true);
-                curSpawn = curSpawn + Float3(GetEngine().GetRandom().GetNumber(-7,7),0,
-                    GetEngine().GetRandom().GetNumber(-7,7));
+                MicrobeOperations::spawnBacteria(world, pos + curSpawn, this.name, true, true);
+                curSpawn = curSpawn + Float3(GetEngine().GetRandom().GetNumber(-7, 7), 0,
+                    GetEngine().GetRandom().GetNumber(-7, 7));
             }
         }
         else if (GetEngine().GetRandom().GetNumber(0,30) > 2)
         {
             // Line
             // Allow for many types of line
-            float lineX = GetEngine().GetRandom().GetNumber(-5,5)+GetEngine().GetRandom().
-                GetNumber(-5,5);
-            float linez = GetEngine().GetRandom().GetNumber(-5,5)+GetEngine().GetRandom().
-                GetNumber(-5,5);
+            float lineX = GetEngine().GetRandom().GetNumber(-5, 5) + GetEngine().GetRandom().
+                GetNumber(-5, 5);
+            float linez = GetEngine().GetRandom().GetNumber(-5, 5) + GetEngine().GetRandom().
+                GetNumber(-5, 5);
 
-            for(int i = 0; i < GetEngine().GetRandom().GetNumber(MIN_BACTERIAL_LINE_SIZE,MAX_BACTERIAL_LINE_SIZE); i++){
+            for(int i = 0; i < GetEngine().GetRandom().GetNumber(MIN_BACTERIAL_LINE_SIZE,
+                    MAX_BACTERIAL_LINE_SIZE); i++){
+
                 // Dont spawn them on top of each other because it
                 // Causes them to bounce around and lag
-                MicrobeOperations::spawnBacteria(world, pos+curSpawn, this.name,true,"",true);
-                curSpawn = curSpawn + Float3(lineX+GetEngine().GetRandom().GetNumber(-2,2),
-                    0,linez+GetEngine().GetRandom().GetNumber(-2,2));
+                MicrobeOperations::spawnBacteria(world, pos+curSpawn, this.name, true, true);
+                curSpawn = curSpawn + Float3(lineX + GetEngine().GetRandom().GetNumber(-2, 2),
+                    0, linez + GetEngine().GetRandom().GetNumber(-2, 2));
             }
         }
         else{
@@ -363,20 +396,25 @@ class Species{
             bool horizontal = false;
             bool vertical = false;
 
-            for(int i = 0; i < GetEngine().GetRandom().GetNumber(MIN_BACTERIAL_COLONY_SIZE,MAX_BACTERIAL_COLONY_SIZE); i++)
+            for(int i = 0; i < GetEngine().GetRandom().GetNumber(MIN_BACTERIAL_COLONY_SIZE,
+                    MAX_BACTERIAL_COLONY_SIZE); i++)
             {
-                if (GetEngine().GetRandom().GetNumber(0,4) < 2 && !horizontal)
+                if (GetEngine().GetRandom().GetNumber(0, 4) < 2 && !horizontal)
                 {
-                    horizontal=true;
-                    vertical=false;
-                    for(int c = 0; c < GetEngine().GetRandom().GetNumber(MIN_BACTERIAL_LINE_SIZE,MAX_BACTERIAL_LINE_SIZE); ++c){
+                    horizontal = true;
+                    vertical = false;
+
+                    for(int c = 0; c < GetEngine().GetRandom().GetNumber(
+                            MIN_BACTERIAL_LINE_SIZE, MAX_BACTERIAL_LINE_SIZE); ++c){
+
                         // Dont spawn them on top of each other because
                         // It causes them to bounce around and lag
-                        curSpawn.X += GetEngine().GetRandom().GetNumber(5,7);
+                        curSpawn.X += GetEngine().GetRandom().GetNumber(5, 7);
+
                         // Add a litlle organicness to the look
-                        curSpawn.Z += GetEngine().GetRandom().GetNumber(-2,2);
-                        MicrobeOperations::spawnBacteria(world, pos+curSpawn, this.name, true,
-                            "",true);
+                        curSpawn.Z += GetEngine().GetRandom().GetNumber(-2, 2);
+                        MicrobeOperations::spawnBacteria(world, pos + curSpawn, this.name,
+                            true, true);
                     }
                 }
                 else if (GetEngine().GetRandom().GetNumber(0,4) < 2 && !vertical) {
@@ -388,91 +426,92 @@ class Species{
                         curSpawn.Z += GetEngine().GetRandom().GetNumber(5,7);
                         // Add a litlle organicness to the look
                         curSpawn.X += GetEngine().GetRandom().GetNumber(-2,2);
-                        MicrobeOperations::spawnBacteria(world, pos+curSpawn, this.name,true,"",
+                        MicrobeOperations::spawnBacteria(world, pos+curSpawn, this.name, true,
                             true);
                     }
                 }
-                else if (GetEngine().GetRandom().GetNumber(0,4) < 2 && !horizontal)
+                else if (GetEngine().GetRandom().GetNumber(0, 4) < 2 && !horizontal)
                 {
-                    horizontal=true;
-                    vertical=false;
-                    for(int c = 0; c < GetEngine().GetRandom().GetNumber(MIN_BACTERIAL_LINE_SIZE,MAX_BACTERIAL_LINE_SIZE); ++c){
+                    horizontal = true;
+                    vertical = false;
+
+                    for(int c = 0; c < GetEngine().GetRandom().GetNumber(
+                            MIN_BACTERIAL_LINE_SIZE, MAX_BACTERIAL_LINE_SIZE); ++c){
+
                         // Dont spawn them on top of each other because
                         // It causes them to bounce around and lag
-                        curSpawn.X -= GetEngine().GetRandom().GetNumber(5,7);
+                        curSpawn.X -= GetEngine().GetRandom().GetNumber(5, 7);
                         // Add a litlle organicness to the look
-                        curSpawn.Z -= GetEngine().GetRandom().GetNumber(-2,2);
-                        MicrobeOperations::spawnBacteria(world, pos+curSpawn, this.name, true,
-                            "",true);
+                        curSpawn.Z -= GetEngine().GetRandom().GetNumber(-2, 2);
+                        MicrobeOperations::spawnBacteria(world, pos + curSpawn, this.name,
+                            true, true);
                     }
                 }
-                else if (GetEngine().GetRandom().GetNumber(0,4) < 2 && !vertical) {
-                    horizontal=false;
-                    vertical=true;
-                    for(int c = 0; c < GetEngine().GetRandom().GetNumber(MIN_BACTERIAL_LINE_SIZE,MAX_BACTERIAL_LINE_SIZE); ++c){
+                else if (GetEngine().GetRandom().GetNumber(0, 4) < 2 && !vertical) {
+                    horizontal = false;
+                    vertical = true;
+
+                    for(int c = 0; c < GetEngine().GetRandom().GetNumber(
+                            MIN_BACTERIAL_LINE_SIZE, MAX_BACTERIAL_LINE_SIZE); ++c){
+
                         // Dont spawn them on top of each other because it
                         //causes them to bounce around and lag
-                        curSpawn.Z -= GetEngine().GetRandom().GetNumber(5,7);
+                        curSpawn.Z -= GetEngine().GetRandom().GetNumber(5, 7);
                         //add a litlle organicness to the look
-                        curSpawn.X -= GetEngine().GetRandom().GetNumber(-2,2);
-                        MicrobeOperations::spawnBacteria(world, pos+curSpawn, this.name,true,
-                            "", true);
+                        curSpawn.X -= GetEngine().GetRandom().GetNumber(-2, 2);
+                        MicrobeOperations::spawnBacteria(world, pos+curSpawn, this.name, true,
+                            true);
                     }
                 }
                 else {
-                    // Diaganol
-                    horizontal=false;
-                    vertical=false;
-                    for(int c = 0; c < GetEngine().GetRandom().GetNumber(MIN_BACTERIAL_LINE_SIZE,MAX_BACTERIAL_LINE_SIZE); ++c){
+                    // Diagonal
+                    horizontal = false;
+                    vertical = false;
+
+                    for(int c = 0; c < GetEngine().GetRandom().GetNumber(
+                            MIN_BACTERIAL_LINE_SIZE, MAX_BACTERIAL_LINE_SIZE); ++c){
+
                         // Dont spawn them on top of each other because it
                         // Causes them to bounce around and lag
-                        curSpawn.Z += GetEngine().GetRandom().GetNumber(5,7);
-                        curSpawn.X += GetEngine().GetRandom().GetNumber(5,7);
-                        MicrobeOperations::spawnBacteria(world, pos+curSpawn, this.name,true,
-                            "", true);
+                        curSpawn.Z += GetEngine().GetRandom().GetNumber(5, 7);
+                        curSpawn.X += GetEngine().GetRandom().GetNumber(5, 7);
+                        MicrobeOperations::spawnBacteria(world, pos + curSpawn, this.name,
+                            true, true);
                     }
                 }
             }
         }
 
-        return MicrobeOperations::spawnBacteria(world, pos, this.name,true,"",false);
-
-    }
-
-
-    void setupBacteriaSpawn(CellStageWorld@ world){
-
-        assert(world is forWorld, "Wrong world passed to setupSpawn");
-
-        spawningEnabled = true;
-
-        SpawnFactoryFunc@ factory = SpawnFactoryFunc(this.bacteriaColonySpawn);
-
-        // And register new
-        LOG_INFO("Registering bacteria to spawn: " + name);
-        this.id = forWorld.GetSpawnSystem().addSpawnType(
-            factory, 1.0f/(STARTING_SPAWN_DENSITY-(this.population*5)), //spawnDensity should depend on population
-            BACTERIA_SPAWN_RADIUS);
+        return MicrobeOperations::spawnBacteria(world, pos, this.name, true, false);
     }
 
     // Sets up the spawn of the species
     // This may only be called once. Otherwise old spawn types are left active
-    void setupSpawn(CellStageWorld@ world){
-
+    void setupSpawn(CellStageWorld@ world)
+    {
         assert(world is forWorld, "Wrong world passed to setupSpawn");
 
         spawningEnabled = true;
 
-        SpawnFactoryFunc@ factory = SpawnFactoryFunc(this.factorySpawn);
+        SpawnFactoryFunc@ factory;
+
+        if(this.isBacteria){
+            @factory = SpawnFactoryFunc(this.bacteriaColonySpawn);
+        } else {
+            @factory = SpawnFactoryFunc(this.factorySpawn);
+        }
 
         // And register new
-        LOG_INFO("Registering species to spawn: " + name);
         this.id = forWorld.GetSpawnSystem().addSpawnType(
-            factory, 1.0f/(STARTING_SPAWN_DENSITY-(this.population*5)), //spawnDensity should depend on population
-            MICROBE_SPAWN_RADIUS);
+            factory,
+            // spawnDensity should depend on population
+            // This does now but it also needs to be modified later to match changes
+            1.0f / (STARTING_SPAWN_DENSITY - (this.population * 5)),
+            BACTERIA_SPAWN_RADIUS);
     }
 
-    void generateBacteria(CellStageWorld@ world){
+    void generateBacteria(CellStageWorld@ world)
+    {
         // Chance they spawn with flagella
         int bacterialFlagellumChance = 10;
 
@@ -489,19 +528,17 @@ class Species{
                 MAX_SPECIES_ACTIVITY);
         this.focus = GetEngine().GetRandom().GetFloat(0.0f,
                 MAX_SPECIES_FOCUS);
-         LOG_INFO("Aggression is:"+aggression);
-         LOG_INFO("Fear is:"+fear);
-         LOG_INFO("Lethargicness is:"+activity);
-         LOG_INFO("Focus is:"+focus);
+
         // Bacteria are tiny, start off with a max of 3 hexes (maybe
         // we should start them all off with just one? )
-        auto stringSize = GetEngine().GetRandom().GetNumber(0,2);
-        if (GetEngine().GetRandom().GetNumber(0,100) <= 10){
+        auto stringSize = GetEngine().GetRandom().GetNumber(0, 2);
+        if (GetEngine().GetRandom().GetNumber(0, 100) <= 10){
             // Generate an extremely large cell, players never really had enough challenge
             LOG_INFO("Generating EPIC bacterium");
             stringSize = GetEngine().GetRandom().GetNumber(MIN_INITIAL_EPIC_BACTERIA_LENGTH,
                 MAX_INITIAL_EPIC_BACTERIA_LENGTH);
          }
+
         // Bacteria
         // will randomly have 1 of 3 organelles right now, photosynthesizing protiens,
         // respiratory Protiens, or Oxy Toxy Producing Protiens, also pure cytoplasm
@@ -536,6 +573,7 @@ class Species{
         for(int i = 0; i < stringSize; i++){
             this.stringCode += chosenType;
         }
+
         // Allow bacteria to sometimes start with a flagella instead of having to evolve it
         this.colour = getRightColourForSpecies();
         if (GetEngine().GetRandom().GetNumber(1,100) <= bacterialFlagellumChance)
@@ -543,88 +581,102 @@ class Species{
             this.stringCode+=getOrganelleDefinition("flagellum").gene;;
         }
         if (GetEngine().GetRandom().GetNumber(0,100) < 50)
-            {
+        {
             this.speciesMembraneType = MEMBRANE_TYPE::WALL;
-            }
-         else {
-              this.speciesMembraneType = MEMBRANE_TYPE::CHITIN;
-              this.colour.W = randomOpacityChitin();
-               }
+        }
+        else {
+            this.speciesMembraneType = MEMBRANE_TYPE::CHITIN;
+            this.colour.W = randomOpacityChitin();
+        }
         commonConstructor(world);
-        this.setupBacteriaSpawn(world);
+        this.setupSpawn(world);
     }
 
-    void mutateBacteria(Species@ parent, CellStageWorld@ world){
+    void mutateBacteria(Species@ parent, CellStageWorld@ world)
+    {
         name = randomBacteriaName();
         genus = parent.genus;
         epithet = generateNameSection();
 
         // Variables used in AI to determine general behavior mutate these
-        this.aggression = parent.aggression+GetEngine().GetRandom().GetFloat(MIN_SPECIES_PERSONALITY_MUTATION,
-                MAX_SPECIES_PERSONALITY_MUTATION);
-        this.fear = parent.fear+GetEngine().GetRandom().GetFloat(MIN_SPECIES_PERSONALITY_MUTATION,
-                MAX_SPECIES_PERSONALITY_MUTATION);
-        this.activity = parent.activity+GetEngine().GetRandom().GetFloat(MIN_SPECIES_PERSONALITY_MUTATION,
-                MAX_SPECIES_PERSONALITY_MUTATION);
-        this.focus = parent.focus+GetEngine().GetRandom().GetFloat(MIN_SPECIES_PERSONALITY_MUTATION,
-                MAX_SPECIES_PERSONALITY_MUTATION);
+        this.aggression = parent.aggression+GetEngine().GetRandom().GetFloat(
+            MIN_SPECIES_PERSONALITY_MUTATION, MAX_SPECIES_PERSONALITY_MUTATION);
+        this.fear = parent.fear+GetEngine().GetRandom().GetFloat(
+            MIN_SPECIES_PERSONALITY_MUTATION, MAX_SPECIES_PERSONALITY_MUTATION);
+        this.activity = parent.activity+GetEngine().GetRandom().GetFloat(
+            MIN_SPECIES_PERSONALITY_MUTATION, MAX_SPECIES_PERSONALITY_MUTATION);
+        this.focus = parent.focus+GetEngine().GetRandom().GetFloat(
+            MIN_SPECIES_PERSONALITY_MUTATION, MAX_SPECIES_PERSONALITY_MUTATION);
 
         // Make sure not over or under our scales
         cleanPersonality();
 
         // Subtly mutate color
-        if (GetEngine().GetRandom().GetNumber(0,5)==0)
-            {
-            this.colour = Float4(parent.colour.X+randomMutationColourChannel(),parent.colour.Y+randomMutationColourChannel(),parent.colour.Z+randomMutationColourChannel(), parent.colour.W+randomMutationOpacity());
-            }
-         LOG_INFO("Aggression is:"+aggression);
-         LOG_INFO("Fear is:"+fear);
-         LOG_INFO("Lethargicness is:"+activity);
-         LOG_INFO("Focus is:"+focus);
+        if (GetEngine().GetRandom().GetNumber(0, 5)==0)
+        {
+            this.colour = Float4(parent.colour.X + randomMutationColourChannel(),
+                parent.colour.Y + randomMutationColourChannel(),
+                parent.colour.Z + randomMutationColourChannel(),
+                parent.colour.W + randomMutationOpacity());
+        }
 
-        if (GetEngine().GetRandom().GetNumber(0,100)==1)
+        if (GetEngine().GetRandom().GetNumber(0, 100)==1)
         {
             LOG_INFO("New Genus of bacteria");
+
             // We can do more fun stuff here later
             genus = generateNameSection();
+
             // New genuses get to double color change
-            this.colour = Float4(parent.colour.X+randomMutationColourChannel(),parent.colour.Y+randomMutationColourChannel(),parent.colour.Z+randomMutationColourChannel(), parent.colour.W+randomMutationOpacity());
+            this.colour = Float4(parent.colour.X + randomMutationColourChannel(),
+                parent.colour.Y + randomMutationColourChannel(),
+                parent.colour.Z + randomMutationColourChannel(),
+                parent.colour.W + randomMutationOpacity());
         }
+
         this.population = int(floor(parent.population / 2.f));
         parent.population = int(ceil(parent.population / 2.f));
 
         this.stringCode = Species::mutateProkaryote(parent.stringCode);
         this.speciesMembraneType = parent.speciesMembraneType;
+
         commonConstructor(world);
-        this.setupBacteriaSpawn(world);
+        this.setupSpawn(world);
     }
 
     //! updates the population count of the species
-    void updatePopulation(){
+    void updatePopulation()
+    {
         // Numbers incresed so things happen more often
         this.population += GetEngine().GetRandom().GetNumber(-700, 700);
     }
 
-    void devestate(){
+    void devestate()
+    {
         // Occassionally you just need to take a deadly virus and use
         // it to make things interesting
         this.population += GetEngine().GetRandom().GetNumber(-1500, -700);
     }
 
-    void boom(){
+    void boom()
+    {
         // Occassionally you just need to give a species a nice pat on
         // the back
         this.population += GetEngine().GetRandom().GetNumber(700, 1500);
     }
 
-    int getPopulationFromAutoEvo(){
+    int getPopulationFromAutoEvo()
+    {
         return this.population;
     }
 
-    void modifyPopulationFromAUtoEvo(int population){
+    void modifyPopulationFromAUtoEvo(int population)
+    {
         this.population+=population;
     }
-    Float4 getRightColourForSpecies(){
+
+    Float4 getRightColourForSpecies()
+    {
         if (isBacteria){
             return randomProkayroteColour();
         } else {
@@ -693,8 +745,8 @@ const auto MIN_BACTERIA = 2;
 //! Updates the species's population and creates new ones. And keeps track of Species objects
 class SpeciesSystem : ScriptSystem{
 
-    void Init(GameWorld@ w){
-
+    void Init(GameWorld@ w)
+    {
         @this.world = cast<CellStageWorld>(w);
         assert(this.world !is null, "SpeciesSystem expected CellStageWorld");
 
@@ -702,12 +754,14 @@ class SpeciesSystem : ScriptSystem{
         createNewEcoSystem();
     }
 
-    void Release(){
+    void Release()
+    {
         // Destroy all species to stop complaints that they aren't extinguished
         resetAutoEvo();
     }
 
-    void Run(){
+    void Run()
+    {
         //LOG_INFO("autoevo running");
         // Update population numbers and split/extinct species as needed
 
@@ -719,35 +773,39 @@ class SpeciesSystem : ScriptSystem{
 
             // Every 8 steps or so do a cambrian explosion style
             // Event, this should increase variablility significantly
-            if(GetEngine().GetRandom().GetNumber(0,200) <= 25){
+            if(GetEngine().GetRandom().GetNumber(0, 200) <= 25){
                 LOG_INFO("Cambrian Explosion");
-                ranEventThisStep=true;
+                ranEventThisStep = true;
                 // TODO: add a notification for when this happens
                 doCambrianExplosion();
             }
+
             // Various mass extinction events
             // Only run one "big event" per turn
             if(species.length() > MAX_SPECIES+MAX_BACTERIA && !ranEventThisStep){
+
                 LOG_INFO("Mass extinction time");
                 // F to pay respects: TODO: add a notification for when this happens
-                ranEventThisStep=true;
+                ranEventThisStep = true;
                 doMassExtinction();
             }
+
             // Add some variability, this is a less deterministic mass
             // Extinction eg, a meteor, etc.
-            if(GetEngine().GetRandom().GetNumber(0,1000) == 1 && !ranEventThisStep){
+            if(GetEngine().GetRandom().GetNumber(0, 1000) == 1 && !ranEventThisStep){
                 LOG_INFO("Black swan event");
-                ranEventThisStep=true;
+                ranEventThisStep = true;
                 // F to pay respects: TODO: add a notification for when this happens
                 doMassExtinction();
             }
 
             // Super extinction event
-            if(GetEngine().GetRandom().GetNumber(0,1000) == 1 && !ranEventThisStep){
+            if(GetEngine().GetRandom().GetNumber(0, 1000) == 1 && !ranEventThisStep){
                 LOG_INFO("Great Dying");
-                ranEventThisStep=true;
-                // Do mass extinction code then devastate all species, this should extinct quite a few of the ones that arent doing well.
-                //*Shudders*
+                ranEventThisStep = true;
+                // Do mass extinction code then devastate all species,
+                //this should extinct quite a few of the ones that
+                //arent doing well.  *Shudders*
                 doMassExtinction();
                 doDevestation();
             }
@@ -760,14 +818,15 @@ class SpeciesSystem : ScriptSystem{
                 auto currentSpecies = species[index];
                 currentSpecies.updatePopulation();
                 auto population = currentSpecies.population;
-                LOG_INFO(currentSpecies.name+" "+currentSpecies.population);
-                bool ranSpeciesEvent=false;
+                LOG_INFO(currentSpecies.name + " " + currentSpecies.population);
+
+                bool ranSpeciesEvent = false;
 
 
                 // This is also just to shake things up occassionally
                 // Cambrian Explosion
                 if ( currentSpecies.population > 0 &&
-                    GetEngine().GetRandom().GetNumber(0,10) <= 2)
+                    GetEngine().GetRandom().GetNumber(0, 10) <= 2)
                 {
                     // P to pat back: TODO: add a notification for when this happens
                     LOG_INFO(currentSpecies.name + " is diversifying!");
@@ -779,7 +838,7 @@ class SpeciesSystem : ScriptSystem{
 
                 // This is just to shake things up occassionally
                 if ( currentSpecies.population > 0 &&
-                    GetEngine().GetRandom().GetNumber(0,10) <= 2 && !ranSpeciesEvent)
+                    GetEngine().GetRandom().GetNumber(0, 10) <= 2 && !ranSpeciesEvent)
                 {
                     // F to pay respects: TODO: add a notification for when this happens
                     LOG_INFO(currentSpecies.name + " has been devestated by disease.");
@@ -790,8 +849,9 @@ class SpeciesSystem : ScriptSystem{
                 }
 
                 // 50% chance of splitting off two species instead of one
-                if(GetEngine().GetRandom().GetNumber(0,10) <= 5 && ranSpeciesEvent==false &&
-                currentSpecies.population >= MAX_POP_SIZE){
+                if(GetEngine().GetRandom().GetNumber(0, 10) <= 5 && ranSpeciesEvent == false &&
+                    currentSpecies.population >= MAX_POP_SIZE){
+
                     auto oldPop = currentSpecies.population;
                     auto newSpecies = Species(currentSpecies, world,
                         currentSpecies.isBacteria);
@@ -806,7 +866,8 @@ class SpeciesSystem : ScriptSystem{
                     }
                     ranSpeciesEvent=true;
                     species.insertLast(newSpecies);
-                    LOG_INFO("Species " + currentSpecies.name + " split off several species, the first is:" +
+                    LOG_INFO("Species " + currentSpecies.name +
+                        " split off several species, the first is:" +
                         newSpecies.name);
                     // Reset pop so we can split a second time
                     currentSpecies.population = oldPop;
@@ -832,7 +893,8 @@ class SpeciesSystem : ScriptSystem{
                 }
 
 
-                // Extinction, thisi s not an event since things with low population need to be killed off.
+                // Extinction, thisi s not an event since things with
+                // low population need to be killed off.
                 if(currentSpecies.population <= MIN_POP_SIZE){
                     LOG_INFO("Species " + currentSpecies.name + " went extinct");
                     currentSpecies.extinguish();
@@ -863,9 +925,6 @@ class SpeciesSystem : ScriptSystem{
                 createBacterium();
                 currentBacteriaAmount++;
             }
-
-
-
         }
     }
 
@@ -874,74 +933,79 @@ class SpeciesSystem : ScriptSystem{
     void CreateAndDestroyNodes(){}
 
     void updatePopulationForSpecies(string speciesName, int num)
-        {
-             auto numberOfSpecies = species.length();
-            for(uint i = 0; i < numberOfSpecies; i++){
+    {
+        auto numberOfSpecies = species.length();
+        for(uint i = 0; i < numberOfSpecies; i++){
             if (species[i].name == speciesName)
-                {
+            {
                 species[i].population+=num;
-                }
             }
         }
+    }
 
     int getSpeciesPopulation(string speciesName)
-        {
-            auto numberOfSpecies = species.length();
-            for(uint i = 0; i < numberOfSpecies; i++){
+    {
+        auto numberOfSpecies = species.length();
+        for(uint i = 0; i < numberOfSpecies; i++){
             if (species[i].name == speciesName)
-                {
+            {
                 return species[i].population;
-                }
             }
-            return -1;
         }
+        return -1;
+    }
 
-    void resetAutoEvo(){
-
+    void resetAutoEvo()
+    {
         for(uint i = 0; i < species.length(); i++){
 
             species[i].extinguish();
         }
 
         species.resize(0);
-    currentBacteriaAmount = 0;
-    currentEukaryoteAmount = 0;
+        currentBacteriaAmount = 0;
+        currentEukaryoteAmount = 0;
     }
 
-    void doMassExtinction(){
+    void doMassExtinction()
+    {
         // This doesnt seem like a powerful event
         for(uint i = 0; i < species.length(); i++){
             species[i].population /= 2;
         }
     }
 
-    void doDevestation(){
+    void doDevestation()
+    {
         // Devastate all species.
         for(uint i = 0; i < species.length(); i++){
             species[i].devestate();
         }
     }
 
-    void doCambrianExplosion(){
+    void doCambrianExplosion()
+    {
         for(uint i = 0; i < species.length(); i++){
             species[i].population *= 2;
         }
     }
 
     //! Adds a new AI species
-    private void createSpecies(){
+    private void createSpecies()
+    {
         auto newSpecies = Species(world, false);
         species.insertLast(newSpecies);
     }
 
     //! Adds a new AI bacterium
-    private void createBacterium(){
+    private void createBacterium()
+    {
         auto newSpecies = Species(world, true);
         species.insertLast(newSpecies);
     }
 
     void createNewEcoSystem()
-        {
+    {
         for(int i = 0; i < INITIAL_SPECIES; i++){
             createSpecies();
             currentEukaryoteAmount++;
@@ -952,7 +1016,8 @@ class SpeciesSystem : ScriptSystem{
             createBacterium();
             currentBacteriaAmount++;
         }
-        }
+    }
+
     private int timeSinceLastCycle = 0;
     private array<Species@> species;
     private CellStageWorld@ world;
@@ -964,8 +1029,8 @@ class SpeciesSystem : ScriptSystem{
 //! \param updateSpecies will be modified to match the organelles of the microbe
 // This isnt used anywhere by the way
 void updateSpeciesFromMicrobe(CellStageWorld@ world, ObjectID microbeEntity,
-    SpeciesComponent@ updateSpecies
-) {
+    SpeciesComponent@ updateSpecies)
+{
     MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
         world.GetScriptComponentHolder("MicrobeComponent").Find(microbeEntity));
     auto membraneComponent = world.GetComponent_MembraneComponent(microbeEntity);
@@ -996,8 +1061,8 @@ void updateSpeciesFromMicrobe(CellStageWorld@ world, ObjectID microbeEntity,
 
 // TODO: make sure this is called from somewhere
 void initProcessorComponent(CellStageWorld@ world, ObjectID entity,
-    SpeciesComponent@ speciesComponent
-) {
+    SpeciesComponent@ speciesComponent)
+{
     assert(world.GetComponent_SpeciesComponent(entity) is speciesComponent,
         "Wrong speciesComponent passed to initProcessorComponent");
 
@@ -1046,8 +1111,11 @@ namespace Species{
 // species-specific microbe data like agent codes, for example.
 //! Brief applies template to a microbe entity making sure it has all
 //! the correct organelle components
-void applyTemplate(CellStageWorld@ world, ObjectID microbe, SpeciesComponent@ species){
-
+//! \param editShape if the physics body is not created yet this function can directly
+//! edit the shape without trying to alter the body
+void applyTemplate(CellStageWorld@ world, ObjectID microbe, SpeciesComponent@ species,
+    PhysicsShape@ editShape = null)
+{
     // Fail if the species is not set up
     assert(species.organelles.length() > 0, "Error can't apply uninitialized species " +
         "template: " + species.name);
@@ -1060,7 +1128,7 @@ void applyTemplate(CellStageWorld@ world, ObjectID microbe, SpeciesComponent@ sp
     MicrobeOperations::setMembraneType(world, microbe, species.speciesMembraneType);
     MicrobeOperations::setMembraneColour(world, microbe, species.colour);
 
-    restoreOrganelleLayout(world, microbe, microbeComponent, species);
+    restoreOrganelleLayout(world, microbe, microbeComponent, species, editShape);
 
     // TODO: should the compound amounts be reset before this?
     // Another place where compound amounts are something we need to worry about
@@ -1076,10 +1144,14 @@ void applyTemplate(CellStageWorld@ world, ObjectID microbe, SpeciesComponent@ sp
 }
 
 void restoreOrganelleLayout(CellStageWorld@ world, ObjectID microbeEntity,
-    MicrobeComponent@ microbeComponent, SpeciesComponent@ species
-) {
+    MicrobeComponent@ microbeComponent, SpeciesComponent@ species,
+    PhysicsShape@ editShape = null)
+{
     // delete the the previous organelles.
     while(microbeComponent.organelles.length() > 0){
+
+        assert(editShape is null,
+            "can't directly edit a shape on a cell with existing organelles");
 
         // TODO: only ones that have been removed should be deleted
 
@@ -1096,15 +1168,15 @@ void restoreOrganelleLayout(CellStageWorld@ world, ObjectID microbeEntity,
         PlacedOrganelle@ organelle = PlacedOrganelle(
             cast<PlacedOrganelle>(species.organelles[i]));
 
-        MicrobeOperations::addOrganelle(world, microbeEntity, organelle);
+        MicrobeOperations::addOrganelle(world, microbeEntity, organelle, editShape);
     }
 }
 
 //! Creates a species from the initial template. This doesn't register with SpeciesSystem
 //! because this is (currently) only used for the player's species which isn't managed by it
 ObjectID createSpecies(CellStageWorld@ world, const string &in name,
-    MicrobeTemplate@ fromTemplate
-) {
+    MicrobeTemplate@ fromTemplate)
+{
     array<PlacedOrganelle@> convertedOrganelles;
     for(uint i = 0; i < fromTemplate.organelles.length(); i++){
 
@@ -1115,15 +1187,18 @@ ObjectID createSpecies(CellStageWorld@ world, const string &in name,
                 organelle.rotation));
     }
 
-    return createSpecies(world, name, convertedOrganelles, fromTemplate.colour, fromTemplate.isBacteria, fromTemplate.speciesMembraneType,
+    return createSpecies(world, name, convertedOrganelles, fromTemplate.colour,
+        fromTemplate.isBacteria, fromTemplate.speciesMembraneType,
         fromTemplate.compounds, 100.0f, 100.0f, 100.0f, 200.0f);
 }
 
 //! Creates an entity that has all the species stuff on it
 //! AI controlled ones need to be in addition in SpeciesSystem
 ObjectID createSpecies(CellStageWorld@ world, const string &in name,
-    array<PlacedOrganelle@> organelles, Float4 colour, bool isBacteria, MEMBRANE_TYPE speciesMembraneType,  const dictionary &in compounds, double aggression, double fear, double activity, double focus
-) {
+    array<PlacedOrganelle@> organelles, Float4 colour, bool isBacteria,
+    MEMBRANE_TYPE speciesMembraneType,  const dictionary &in compounds, double aggression,
+    double fear, double activity, double focus)
+{
     ObjectID speciesEntity = world.CreateEntity();
 
     SpeciesComponent@ speciesComponent = world.Create_SpeciesComponent(speciesEntity,
@@ -1158,14 +1233,15 @@ ObjectID createSpecies(CellStageWorld@ world, const string &in name,
 
     speciesComponent.speciesMembraneType = speciesMembraneType;
 
-    //we need to know this is baceria
+    //We need to know this is baceria
     speciesComponent.isBacteria = isBacteria;
-    // we need to know our aggression and fear variables
+    // We need to know our aggression and fear variables
     speciesComponent.aggression = aggression;
     speciesComponent.fear = fear;
     speciesComponent.activity = activity;
     speciesComponent.focus = focus;
-    // iterates over all compounds, and sets amounts and priorities
+
+    // Iterates over all compounds, and sets amounts and priorities
     uint64 compoundCount = SimulationParameters::compoundRegistry().getSize();
     for(uint i = 0; i < compoundCount; i++){
 
@@ -1215,7 +1291,6 @@ ObjectID createSpecies(CellStageWorld@ world, const string &in name,
     }
 
     uint64 processCount = SimulationParameters::bioProcessRegistry().getSize();
-    LOG_INFO(processCount+" is the amount of processes");
     for(uint bioProcessId = 0; bioProcessId < processCount; ++bioProcessId){
         auto processName = SimulationParameters::bioProcessRegistry().getInternalName(
             bioProcessId);
@@ -1226,7 +1301,7 @@ ObjectID createSpecies(CellStageWorld@ world, const string &in name,
                 LOG_ERROR("capacities has invalid value");
                 continue;
             }
-    LOG_INFO(bioProcessId+" has been set");
+
             processorComponent.setCapacity(bioProcessId, capacity);
             // This may be commented out for the reason that the default should be retained
             // } else {
@@ -1239,9 +1314,11 @@ ObjectID createSpecies(CellStageWorld@ world, const string &in name,
 
 
 //! Mutates a species' dna code randomly
-string mutate(const string &in stringCode){
+string mutate(const string &in stringCode)
+{
     // Moving the stringCode to a table to facilitate changes
     string chromosomes = stringCode.substr(2);
+
     // Try to insert a letter at the end of the table.
     if(GetEngine().GetRandom().GetNumber(0.f, 1.f) < MUTATION_CREATION_RATE){
         chromosomes += getRandomLetter(false);
@@ -1253,21 +1330,23 @@ string mutate(const string &in stringCode){
         uint index = stringCode.length() - i - 1;
 
         if(GetEngine().GetRandom().GetNumber(0.f, 1.f) < MUTATION_DELETION_RATE){
-        // Removing the last organelle is pointless, that would kill the creature (also caused errors).
+            // Removing the last organelle is pointless, that would
+            // kill the creature (also caused errors).
             if (index != stringCode.length()-1)
             {
-            chromosomes.erase(index, 1);
+                chromosomes.erase(index, 1);
             }
         }
 
         if(GetEngine().GetRandom().GetNumber(0.f, 1.f) < MUTATION_CREATION_RATE){
-            // There is an error here when we try to insert at the end of the list so use insertlast instead in that case
+            // There is an error here when we try to insert at the end
+            // of the list so use insertlast instead in that case
             if (index != stringCode.length()-1)
             {
-            chromosomes.insert(index, getRandomLetter(false));
+                chromosomes.insert(index, getRandomLetter(false));
             }
             else{
-            chromosomes+=getRandomLetter(false);
+                chromosomes+=getRandomLetter(false);
             }
         }
     }
@@ -1279,13 +1358,16 @@ string mutate(const string &in stringCode){
 }
 
 // Mutate a Bacterium
-string mutateProkaryote(const string &in stringCode ){
+string mutateProkaryote(const string &in stringCode)
+{
     // Moving the stringCode to a table to facilitate changes
     string chromosomes = stringCode;
+
     // Try to insert a letter at the end of the table.
     if(GetEngine().GetRandom().GetNumber(0.f, 1.f) < MUTATION_CREATION_RATE){
         chromosomes += getRandomLetter(true);
     }
+
     // Modifies the rest of the table.
     for(uint i = 0; i < stringCode.length(); i++){
         // Index we are adding or erasing chromosomes at
@@ -1294,18 +1376,19 @@ string mutateProkaryote(const string &in stringCode ){
         if(GetEngine().GetRandom().GetNumber(0.f, 1.f) < MUTATION_DELETION_RATE){
             if (index != stringCode.length()-1)
             {
-            chromosomes.erase(index, 1);
+                chromosomes.erase(index, 1);
             }
         }
 
         if(GetEngine().GetRandom().GetNumber(0.f, 1.f) < MUTATION_CREATION_RATE){
-            // There is an error here when we try to insert at the end of the list so use insertlast instead in that case
+            // There is an error here when we try to insert at the end
+            // of the list so use insertlast instead in that case
             if (index != stringCode.length()-1)
             {
-            chromosomes.insert(index, getRandomLetter(true));
+                chromosomes.insert(index, getRandomLetter(true));
             }
             else{
-            chromosomes+=getRandomLetter(true);
+                chromosomes+=getRandomLetter(true);
             }
         }
     }

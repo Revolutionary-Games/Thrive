@@ -7,8 +7,8 @@
 
 //! Why is this needed? Is it for(the future when we don't want to
 //! absorb everything (or does this skip toxins, which aren't in compound registry)
-void setupAbsorberForAllCompounds(CompoundAbsorberComponent@ absorber){
-
+void setupAbsorberForAllCompounds(CompoundAbsorberComponent@ absorber)
+{
     uint64 compoundCount = SimulationParameters::compoundRegistry().getSize();
     for(uint a = 0; a < compoundCount; ++a){
 
@@ -29,7 +29,8 @@ class MicrobeComponent : ScriptComponent, OrganelleContainer{
 
     //! This detaches all still attached organelles
     //! \todo There might be a more graceful way to do this
-    ~MicrobeComponent(){
+    ~MicrobeComponent()
+    {
         //LOG_INFO("MicrobeComponent destroyed: " + microbeEntity);
 
         for(uint i = 0; i < organelles.length(); ++i){
@@ -41,15 +42,18 @@ class MicrobeComponent : ScriptComponent, OrganelleContainer{
     }
 
     //! This has to be called after creating this
-    void init(ObjectID forEntity, bool isPlayerMicrobe, const string &in speciesName){
+    void init(ObjectID forEntity, bool isPlayerMicrobe, const string &in speciesName)
+    {
 
         this.speciesName = speciesName;
         this.isPlayerMicrobe = isPlayerMicrobe;
         auto world = GetThriveGame().getCellStage();
-        if ( MicrobeOperations::getSpeciesComponent(world,speciesName) !is null)
-            {
-            this.speciesColour = MicrobeOperations::getSpeciesComponent(world, speciesName).colour;
-            }
+        if (MicrobeOperations::getSpeciesComponent(world,speciesName) !is null)
+        {
+            this.speciesColour =
+                MicrobeOperations::getSpeciesComponent(world, speciesName).colour;
+        }
+
         this.microbeEntity = forEntity;
         this.agentEmissionCooldown = 0;
 
@@ -246,7 +250,8 @@ class MicrobeSystem : ScriptSystem{
     }
 
     // Updates the microbe's state
-    void updateMicrobe(MicrobeSystemCached@ components, uint logicTime){
+    void updateMicrobe(MicrobeSystemCached@ components, uint logicTime)
+    {
         auto microbeEntity = components.entity;
 
         if(microbeEntity == -1){
@@ -321,8 +326,10 @@ class MicrobeSystem : ScriptSystem{
         }
 
         //There is an osmoregulation cost
-        auto osmoCost = (ATP_COST_FOR_OSMOREGULATION*microbeComponent.organelles.length())/1000*logicTime;
-        MicrobeOperations::takeCompound(world, microbeEntity,SimulationParameters::compoundRegistry().getTypeId("atp"), osmoCost);
+        auto osmoCost = (ATP_COST_FOR_OSMOREGULATION * microbeComponent.organelles.length()) /
+            1000 * logicTime;
+        MicrobeOperations::takeCompound(world, microbeEntity,
+            SimulationParameters::compoundRegistry().getTypeId("atp"), osmoCost);
 
         // Flash membrane if something happens.
         if(microbeComponent.flashDuration != 0 &&
@@ -429,14 +436,18 @@ class MicrobeSystem : ScriptSystem{
 
             // Else If we were but are no longer, being engulfed
         } else if(microbeComponent.wasBeingEngulfed && !microbeComponent.isBeingEngulfed){
-            LOG_INFO("removing engulf effect");
-            microbeComponent.wasBeingEngulfed=false;
+
+            microbeComponent.wasBeingEngulfed = false;
+
             //  You escaped, good job
+
             auto playerSpecies = MicrobeOperations::getSpeciesComponent(world, "Default");
-            if (!microbeComponent.isPlayerMicrobe && microbeComponent.speciesName != playerSpecies.name)
-                {
+            if (!microbeComponent.isPlayerMicrobe &&
+                microbeComponent.speciesName != playerSpecies.name)
+            {
                 MicrobeOperations::alterSpeciesPopulation(world,microbeEntity,50);
-                }
+            }
+
             MicrobeOperations::removeEngulfedEffect(world, microbeEntity);
         }
 
@@ -455,6 +466,7 @@ class MicrobeSystem : ScriptSystem{
 
         microbeComponent.deathTimer = microbeComponent.deathTimer - logicTime;
         microbeComponent.flashDuration = 0;
+
         if(microbeComponent.deathTimer <= 0){
             if(microbeComponent.isPlayerMicrobe == true){
                 MicrobeOperations::respawnPlayer(world);
@@ -473,10 +485,12 @@ class MicrobeSystem : ScriptSystem{
                     // changing onRemovedFromMicrobe to allow
                     // skipping it
                     microbeComponent.organelles[i].onRemovedFromMicrobe(microbeEntity,
-                        physics.Collision);
+                        physics.Body.Shape);
                 }
             }
         }
+
+        physics.ChangeShape(world.GetPhysicalWorld(), physics.Body.Shape);
     }
 
     private void applyCellMovement(MicrobeSystemCached@ &in components, uint logicTime)
@@ -497,7 +511,11 @@ class MicrobeSystem : ScriptSystem{
         microbeComponent.queuedMovementForce = Float3(0, 0, 0);
 
         // First add drag based on the velocity
-        const Float3 velocity = physics.GetVelocity();
+        const Float3 velocity = physics.Body.GetVelocity();
+
+        // LOG_WRITE("old cell velocity: " + velocity.X + ", " +
+        //     velocity.Y + ", " +
+        //     velocity.Z);
 
         // There should be no Y velocity so it should be zero
         const Float3 drag(velocity.X * CELL_DRAG_MULTIPLIER,
@@ -531,7 +549,8 @@ class MicrobeSystem : ScriptSystem{
         // The movementDirection is the player or AI input
         // Rotate the 'thrust' based on our orientation
         microbeComponent.queuedMovementForce += pos._Orientation.RotateVector(
-            microbeComponent.movementDirection * CELL_BASE_THRUST);
+            microbeComponent.movementDirection * CELL_BASE_THRUST *
+            microbeComponent.movementFactor);
 
         // Update organelles and then apply the movement force that was generated
         for(uint i = 0; i < microbeComponent.organelles.length(); ++i){
@@ -540,6 +559,7 @@ class MicrobeSystem : ScriptSystem{
 
         // Apply movement
         if(microbeComponent.queuedMovementForce != Float3(0, 0, 0)){
+
             if(physics.Body is null){
 
                 LOG_WARNING(
@@ -549,12 +569,27 @@ class MicrobeSystem : ScriptSystem{
                 // LOG_WRITE("cell thrust: " + microbeComponent.queuedMovementForce.X + ", " +
                 //     microbeComponent.queuedMovementForce.Y + ", " +
                 //     microbeComponent.queuedMovementForce.Z);
-                //There is an movement without flagella cost
-                auto cost = BASE_MOVEMENT_ATP_COST/1000*logicTime;
-                MicrobeOperations::takeCompound(world, microbeEntity,SimulationParameters::compoundRegistry().getTypeId("atp"), cost);
 
-                physics.GiveImpulse(microbeComponent.queuedMovementForce,
-                    pos._Position);
+                // There is an movement without flagella cost
+                auto cost = BASE_MOVEMENT_ATP_COST / 1000 * logicTime;
+
+                // TODO: if there isn't enough energy this needs to scale the impulse
+                MicrobeOperations::takeCompound(world, microbeEntity,
+                    SimulationParameters::compoundRegistry().getTypeId("atp"), cost);
+
+                const auto physPos = physics.Body.GetPosition();
+                // LOG_WRITE("cell pos: " + physPos.X + ", " +
+                //     physPos.Y + ", " +
+                //     physPos.Z);
+                physics.Body.GiveImpulse(microbeComponent.queuedMovementForce);
+
+                // Velocity after impulse
+                const Float3 velocity = physics.Body.GetVelocity();
+
+                // LOG_WRITE("velocity after: " + velocity.X + ", " +
+                //     velocity.Y + ", " +
+                //     velocity.Z);
+                // physics.Body.SetVelocity(microbeComponent.queuedMovementForce);
             }
         }
 
@@ -568,13 +603,14 @@ class MicrobeSystem : ScriptSystem{
             // const auto interpolated = target;
 
             // Not sure if updating the Position component here does anything
-            pos._Orientation = interpolated;
-            pos.Marked = true;
+            // The position should not be updated from here
+            // pos._Orientation = interpolated;
+            // pos.Marked = true;
 
             // LOG_WRITE("turn = " + pos._Orientation.X + ", " + pos._Orientation.Y + ", "
             //     + pos._Orientation.Z + ", " + pos._Orientation.W);
 
-            physics.SetOnlyOrientation(interpolated);
+            physics.Body.SetOnlyOrientation(interpolated);
 
             // auto targetDirection = microbeComponent.facingTargetPoint - pos._Position;
             // // TODO: direct multiplication was also used here
@@ -638,9 +674,10 @@ class MicrobeSystem : ScriptSystem{
 
     //! This method handles reproduction for the cell
     //! It makes calls to many other places to achieve this
-    void doReproductionStep(MicrobeSystemCached@ &in components, uint logicTime){
+    void doReproductionStep(MicrobeSystemCached@ &in components, uint logicTime)
+    {
         auto microbeEntity = components.entity;
-        //! Reproduction
+
         MicrobeComponent@ microbeComponent = components.second;
         MembraneComponent@ membraneComponent = components.fifth;
         auto reproductionStageComplete = true;
@@ -737,8 +774,8 @@ class MicrobeSystem : ScriptSystem{
     // ------------------------------------ //
     // Microbe operations only done by this class
     //! Updates the used storage space in a microbe and stores it in the microbe component
-    void calculateStorageSpace(ObjectID microbeEntity){
-
+    void calculateStorageSpace(ObjectID microbeEntity)
+    {
         MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
             world.GetScriptComponentHolder("MicrobeComponent").Find(microbeEntity));
 
@@ -755,8 +792,8 @@ class MicrobeSystem : ScriptSystem{
     //
     // Toggles the absorber on and off depending on the remaining storage
     // capacity of the storage organelles.
-    void updateCompoundAbsorber(ObjectID microbeEntity){
-
+    void updateCompoundAbsorber(ObjectID microbeEntity)
+    {
         MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
             world.GetScriptComponentHolder("MicrobeComponent").Find(microbeEntity));
 
@@ -772,7 +809,8 @@ class MicrobeSystem : ScriptSystem{
         }
     }
 
-    void regenerateBandwidth(ObjectID microbeEntity, int logicTime){
+    void regenerateBandwidth(ObjectID microbeEntity, int logicTime)
+    {
         MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
             world.GetScriptComponentHolder("MicrobeComponent").Find(microbeEntity));
 
@@ -783,7 +821,8 @@ class MicrobeSystem : ScriptSystem{
             microbeComponent.maxBandwidth);
     }
 
-    PlacedOrganelle@ splitOrganelle(ObjectID microbeEntity, PlacedOrganelle@ organelle){
+    PlacedOrganelle@ splitOrganelle(ObjectID microbeEntity, PlacedOrganelle@ organelle)
+    {
         auto q = organelle.q;
         auto r = organelle.r;
 
@@ -820,8 +859,6 @@ class MicrobeSystem : ScriptSystem{
                         {
                             auto newOrganelle = PlacedOrganelle(organelle, q, r, i*60);
 
-                            //LOG_INFO("placed " + organelle.organelle.name + " at " +
-                            //    q + ", " + r);
                             MicrobeOperations::addOrganelle(world, microbeEntity,
                                 newOrganelle);
                             return newOrganelle;
@@ -838,7 +875,8 @@ class MicrobeSystem : ScriptSystem{
 
 
     // Damage the microbe if its too low on ATP.
-    void atpDamage(ObjectID microbeEntity){
+    void atpDamage(ObjectID microbeEntity)
+    {
         MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
             world.GetScriptComponentHolder("MicrobeComponent").Find(microbeEntity));
 
@@ -858,21 +896,8 @@ class MicrobeSystem : ScriptSystem{
         }
     }
 
-    // void transferCompounds(ObjectID fromEntity, ObjectID toEntity){
-    //     for(_, compoundID in pairs(SimulationParameters::compoundRegistry().getCompoundList())){
-    //         auto amount = MicrobeSystem.getCompoundAmount(fromEntity, compoundID);
-
-    //         if(amount != 0){
-    //             // Is it possible that compounds are created or destroyed here as
-    //             // the actual amounts aren't checked (that these functions should return)
-    //             MicrobeSystem.takeCompound(fromEntity, compoundID, amount, false);
-    //             MicrobeSystem.storeCompound(toEntity, compoundID, amount, false);
-    //         }
-    //     }
-    // }
-
-    void divide(ObjectID microbeEntity){
-        LOG_INFO("Divide called");
+    void divide(ObjectID microbeEntity)
+    {
         MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
             world.GetScriptComponentHolder("MicrobeComponent").Find(microbeEntity));
         // auto soundSourceComponent = world.GetComponent_SoundSourceComponent(microbeEntity);
@@ -881,9 +906,7 @@ class MicrobeSystem : ScriptSystem{
         auto rigidBodyComponent = world.GetComponent_Physics(microbeEntity);
 
         // Create the one daughter cell.
-        // The empty string here is the name of the new cell, which could be more descriptive
-        // to set to something based on the original cell
-        auto copyEntity = MicrobeOperations::_createMicrobeEntity(world, "", true,
+        auto copyEntity = MicrobeOperations::_createMicrobeEntity(world, true,
             microbeComponent.speciesName, false);
         MicrobeComponent@ microbeComponentCopy = cast<MicrobeComponent>(
             world.GetScriptComponentHolder("MicrobeComponent").Find(copyEntity));
@@ -934,34 +957,43 @@ class MicrobeSystem : ScriptSystem{
         rigidBodyComponentCopy.JumpTo(positionCopy);
     }
 
-    // Copies this microbe. The new microbe will not have the stored compounds of this one.
+    // Copies this microbe (if this isn't the player). The new microbe
+    // will not have the stored compounds of this one.
     void readyToReproduce(ObjectID microbeEntity)
     {
         MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
             world.GetScriptComponentHolder("MicrobeComponent").Find(microbeEntity));
 
         if(microbeComponent.isPlayerMicrobe){
+
+            // The player doesn't split automatically
             showReproductionDialog(world);
             microbeComponent.reproductionStage = 0;
+
         } else {
 
             // Return the first cell to its normal, non duplicated cell arrangement.
             if (MicrobeOperations::getSpeciesComponent(world, microbeEntity) !is null)
+            {
+                auto playerSpecies = MicrobeOperations::getSpeciesComponent(world, "Default");
+                if (!microbeComponent.isPlayerMicrobe &&
+                    microbeComponent.speciesName != playerSpecies.name)
                 {
-                 auto playerSpecies = MicrobeOperations::getSpeciesComponent(world, "Default");
-                 if (!microbeComponent.isPlayerMicrobe && microbeComponent.speciesName != playerSpecies.name)
-                    {
                     MicrobeOperations::alterSpeciesPopulation(world,microbeEntity,50);
-                    }
+                }
+
                 Species::applyTemplate(world, microbeEntity,
                     MicrobeOperations::getSpeciesComponent(world, microbeEntity));
+
                 divide(microbeEntity);
-                }
-            else
-                {
+
+            } else {
                 // You are extinct so just die okay.
+                // TODO: this isn't optimal and the player might
+                // notice something weird going on. Better to just
+                // infinitely block splitting
                 MicrobeOperations::kill(world, microbeEntity);
-                }
+            }
         }
     }
 

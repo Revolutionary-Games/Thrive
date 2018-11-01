@@ -86,11 +86,9 @@ public:
     void
         CustomizeEnginePostLoad() override;
 
-    //! \brief This registers the physical materials (with callbacks for
-    //! collision detection)
-    void
-        RegisterApplicationPhysicalMaterials(
-            Leviathan::PhysicsMaterialManager* manager) override;
+    //! \brief This creates physics materials for a Thrive world
+    std::unique_ptr<Leviathan::PhysicsMaterialManager>
+        createPhysicsMaterials() const;
 
     void
         EnginePreShutdown() override;
