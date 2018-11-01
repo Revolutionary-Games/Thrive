@@ -69,8 +69,11 @@ const auto AI_COMPOUND_BIAS = -10.0f;
 // Osmoregulation ATP cost
 const auto ATP_COST_FOR_OSMOREGULATION = 0.05f;
 
+//Purge Divisor
+const auto COMPOUND_PURGE_MODIFIER = 2.0f;
+
 // BASE MOVEMENT COST ATP cost
-const auto BASE_MOVEMENT_ATP_COST = 0.2f;
+const auto BASE_MOVEMENT_ATP_COST = 0.5f;
 
 // The player's name
 const auto PLAYER_NAME = "Player";
