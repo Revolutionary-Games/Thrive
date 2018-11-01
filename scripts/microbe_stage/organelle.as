@@ -777,9 +777,13 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
 
         // We can do a quick remove from the destructor
         // Remove our sub collisions //
-        for(uint i = 0; i < _addedCollisions.length(); ++i){
+        // This null check is here because this is called when cels are killed and
+        // the physics bodies are long gone
+        if(collisionShape !is null){
+            for(uint i = 0; i < _addedCollisions.length(); ++i){
 
-            collisionShape.RemoveChildShape(_addedCollisions[i]);
+                collisionShape.RemoveChildShape(_addedCollisions[i]);
+            }
         }
 
         _addedCollisions.resize(0);
