@@ -18,7 +18,7 @@
 #include <GUI/GuiView.h>
 #include <Handlers/ObjectLoader.h>
 #include <Networking/NetworkHandler.h>
-#include <Newton/PhysicsMaterialManager.h>
+#include <Physics/PhysicsMaterialManager.h>
 #include <Rendering/GeometryHelpers.h>
 #include <Script/Bindings/BindHelpers.h>
 #include <Script/Bindings/StandardWorldBindHelper.h>
@@ -210,7 +210,8 @@ void
         LOG_INFO("ThriveGame: startNewGame: Creating new cellstage world");
         m_impl->m_cellStage =
             std::dynamic_pointer_cast<CellStageWorld>(engine->CreateWorld(
-                window1, static_cast<int>(THRIVE_WORLD_TYPE::CELL_STAGE)));
+                window1, static_cast<int>(THRIVE_WORLD_TYPE::CELL_STAGE),
+                createPhysicsMaterials()));
     } else {
         restarted = true;
         m_impl->m_cellStage->ClearEntities();
@@ -482,7 +483,8 @@ void
                  "world");
         m_impl->m_microbeEditor =
             std::dynamic_pointer_cast<MicrobeEditorWorld>(engine->CreateWorld(
-                window1, static_cast<int>(THRIVE_WORLD_TYPE::MICROBE_EDITOR)));
+                window1, static_cast<int>(THRIVE_WORLD_TYPE::MICROBE_EDITOR),
+                createPhysicsMaterials()));
     }
 
     LEVIATHAN_ASSERT(
@@ -738,192 +740,118 @@ void
     }
 }
 
-//! \note This is called from a background thread
 void
-    cellHitAgent(const NewtonJoint* contact, dFloat timestep, int threadIndex)
+    cellHitAgent(Leviathan::PhysicalWorld& physicalWorld,
+        Leviathan::PhysicsBody& first,
+        Leviathan::PhysicsBody& second)
 {
-    NewtonBody* first = NewtonJointGetBody0(contact);
-    NewtonBody* second = NewtonJointGetBody1(contact);
-
-    if(!first || !second)
-        return;
-
-    Leviathan::Physics* firstPhysics =
-        static_cast<Leviathan::Physics*>(NewtonBodyGetUserData(first));
-    Leviathan::Physics* secondPhysics =
-        static_cast<Leviathan::Physics*>(NewtonBodyGetUserData(second));
-
-    NewtonWorld* world = NewtonBodyGetWorld(first);
-    Leviathan::PhysicalWorld* physicalWorld =
-        static_cast<Leviathan::PhysicalWorld*>(NewtonWorldGetUserData(world));
-
-    GameWorld* gameWorld = physicalWorld->GetGameWorld();
+    GameWorld* gameWorld = physicalWorld.GetGameWorld();
 
     ScriptRunningSetup setup("cellHitAgent");
 
     auto result = ThriveGame::Get()->getMicrobeScripts()->ExecuteOnModule<void>(
-        setup, false, gameWorld, firstPhysics->ThisEntity,
-        secondPhysics->ThisEntity);
+        setup, false, gameWorld, first.GetOwningEntity(),
+        second.GetOwningEntity());
 
     if(result.Result != SCRIPT_RUN_RESULT::Success)
         LOG_ERROR("Failed to run script side cellHitAgent");
 }
 
-
-//! \note This is called from a background thread
 void
-    cellHitFloatingOrganelle(const NewtonJoint* contact,
-        dFloat timestep,
-        int threadIndex)
+    cellHitFloatingOrganelle(Leviathan::PhysicalWorld& physicalWorld,
+        Leviathan::PhysicsBody& first,
+        Leviathan::PhysicsBody& second)
 {
-    NewtonBody* first = NewtonJointGetBody0(contact);
-    NewtonBody* second = NewtonJointGetBody1(contact);
-
-    if(!first || !second)
-        return;
-
-    Leviathan::Physics* firstPhysics =
-        static_cast<Leviathan::Physics*>(NewtonBodyGetUserData(first));
-    Leviathan::Physics* secondPhysics =
-        static_cast<Leviathan::Physics*>(NewtonBodyGetUserData(second));
-
-    NewtonWorld* world = NewtonBodyGetWorld(first);
-    Leviathan::PhysicalWorld* physicalWorld =
-        static_cast<Leviathan::PhysicalWorld*>(NewtonWorldGetUserData(world));
-
-    GameWorld* gameWorld = physicalWorld->GetGameWorld();
+    GameWorld* gameWorld = physicalWorld.GetGameWorld();
 
     ScriptRunningSetup setup("cellHitFloatingOrganelle");
 
     auto result = ThriveGame::Get()->getMicrobeScripts()->ExecuteOnModule<void>(
-        setup, false, gameWorld, firstPhysics->ThisEntity,
-        secondPhysics->ThisEntity);
+        setup, false, gameWorld, first.GetOwningEntity(),
+        second.GetOwningEntity());
 
     if(result.Result != SCRIPT_RUN_RESULT::Success)
         LOG_ERROR("Failed to run script side cellHitFloatingOrganelle");
 }
 
-//! \note This is called from a background thread
-//! \todo This should return 0 when either cell is engulfing and apply the
+//! \todo This should return false when either cell is engulfing and apply the
 //! damaging effect
-int
-    cellOnCellAABBHitCallback(const NewtonMaterial* material,
-        const NewtonBody* body0,
-        const NewtonBody* body1,
-        int threadIndex)
+bool
+    cellOnCellAABBHitCallback(Leviathan::PhysicalWorld& physicalWorld,
+        Leviathan::PhysicsBody& first,
+        Leviathan::PhysicsBody& second)
 {
-    // LOG_INFO("Cell on cell AABB overlap");
-    if(!body0 || !body1)
-        return 1;
+    GameWorld* gameWorld = physicalWorld.GetGameWorld();
 
-    Leviathan::Physics* firstPhysics =
-        static_cast<Leviathan::Physics*>(NewtonBodyGetUserData(body0));
-    Leviathan::Physics* secondPhysics =
-        static_cast<Leviathan::Physics*>(NewtonBodyGetUserData(body1));
-
-    NewtonWorld* world = NewtonBodyGetWorld(body0);
-    Leviathan::PhysicalWorld* physicalWorld =
-        static_cast<Leviathan::PhysicalWorld*>(NewtonWorldGetUserData(world));
-    GameWorld* gameWorld = physicalWorld->GetGameWorld();
-
-    // Grab microbe component
-
-    // How do i grab the microbe info here and return information from
-    // angelscript method? Return 0 for now to test it
     ScriptRunningSetup setup("beingEngulfed");
 
     // Causes errors as this has to release
     auto returned =
-        ThriveGame::Get()->getMicrobeScripts()->ExecuteOnModule<int>(setup,
-            false, gameWorld, firstPhysics->ThisEntity,
-            secondPhysics->ThisEntity);
+        ThriveGame::Get()->getMicrobeScripts()->ExecuteOnModule<bool>(setup,
+            false, gameWorld, first.GetOwningEntity(),
+            second.GetOwningEntity());
 
-    if(returned.Result != SCRIPT_RUN_RESULT::Success)
+    if(returned.Result != SCRIPT_RUN_RESULT::Success) {
         LOG_ERROR("Failed to run script side beingEngulfed");
+        return true;
+    }
 
     return returned.Value;
 }
 
 
-int
-    agentCallback(const NewtonMaterial* material,
-        const NewtonBody* body0,
-        const NewtonBody* body1,
-        int threadIndex)
+bool
+    agentCallback(Leviathan::PhysicalWorld& physicalWorld,
+        Leviathan::PhysicsBody& first,
+        Leviathan::PhysicsBody& second)
 {
-    if(!body0 || !body1)
-        return 1;
-
-    Leviathan::Physics* firstPhysics =
-        static_cast<Leviathan::Physics*>(NewtonBodyGetUserData(body0));
-    Leviathan::Physics* secondPhysics =
-        static_cast<Leviathan::Physics*>(NewtonBodyGetUserData(body1));
-
-    NewtonWorld* world = NewtonBodyGetWorld(body0);
-    Leviathan::PhysicalWorld* physicalWorld =
-        static_cast<Leviathan::PhysicalWorld*>(NewtonWorldGetUserData(world));
-    GameWorld* gameWorld = physicalWorld->GetGameWorld();
+    GameWorld* gameWorld = physicalWorld.GetGameWorld();
 
     // Now we can do more interetsing things with agents
     ScriptRunningSetup setup("hitAgent");
 
-    // Causes errors as this has to release
     auto returned =
-        ThriveGame::Get()->getMicrobeScripts()->ExecuteOnModule<int>(setup,
-            false, gameWorld, firstPhysics->ThisEntity,
-            secondPhysics->ThisEntity);
+        ThriveGame::Get()->getMicrobeScripts()->ExecuteOnModule<bool>(setup,
+            false, gameWorld, first.GetOwningEntity(),
+            second.GetOwningEntity());
 
-    if(returned.Result != SCRIPT_RUN_RESULT::Success)
+    if(returned.Result != SCRIPT_RUN_RESULT::Success) {
         LOG_ERROR("Failed to run script side hitAgent");
+        return true;
+    }
 
     return returned.Value;
 }
 
 void
-    cellOnCellActualContact(const NewtonJoint* contact,
-        dFloat timestep,
-        int threadIndex)
+    cellOnCellActualContact(Leviathan::PhysicalWorld& physicalWorld,
+        Leviathan::PhysicsBody& first,
+        Leviathan::PhysicsBody& second)
 {
-    NewtonBody* first = NewtonJointGetBody0(contact);
-    NewtonBody* second = NewtonJointGetBody1(contact);
+    // The anglescript function related to this does nothing
+    // GameWorld* gameWorld = physicalWorld.GetGameWorld();
 
-    if(!first || !second)
-        return;
+    // ScriptRunningSetup setup("cellOnCellActualContact");
 
-    Leviathan::Physics* firstPhysics =
-        static_cast<Leviathan::Physics*>(NewtonBodyGetUserData(first));
-    Leviathan::Physics* secondPhysics =
-        static_cast<Leviathan::Physics*>(NewtonBodyGetUserData(second));
+    // auto result =
+    // ThriveGame::Get()->getMicrobeScripts()->ExecuteOnModule<void>(
+    //     setup, false, gameWorld, first.GetOwningEntity(),
+    //     second.GetOwningEntity());
 
-    NewtonWorld* world = NewtonBodyGetWorld(first);
-    Leviathan::PhysicalWorld* physicalWorld =
-        static_cast<Leviathan::PhysicalWorld*>(NewtonWorldGetUserData(world));
-
-    GameWorld* gameWorld = physicalWorld->GetGameWorld();
-
-    ScriptRunningSetup setup("cellOnCellActualContact");
-
-    auto result = ThriveGame::Get()->getMicrobeScripts()->ExecuteOnModule<void>(
-        setup, false, gameWorld, firstPhysics->ThisEntity,
-        secondPhysics->ThisEntity);
-
-    if(result.Result != SCRIPT_RUN_RESULT::Success)
-        LOG_ERROR("Failed to run script side cellOnCellActualContact");
-    // placeholder code taht runs when a cell is hit
+    // if(result.Result != SCRIPT_RUN_RESULT::Success)
+    //     LOG_ERROR("Failed to run script side cellOnCellActualContact");
 }
 
-//! \brief This registers the physical materials (with callbacks for
-//! collision detection)
-void
-    ThriveGame::RegisterApplicationPhysicalMaterials(
-        Leviathan::PhysicsMaterialManager* manager)
+std::unique_ptr<Leviathan::PhysicsMaterialManager>
+    ThriveGame::createPhysicsMaterials() const
 {
     // Setup materials
-    auto cellMaterial = std::make_shared<Leviathan::PhysicalMaterial>("cell");
+    auto cellMaterial =
+        std::make_unique<Leviathan::PhysicalMaterial>("cell", 1);
     auto floatingOrganelleMaterial =
-        std::make_shared<Leviathan::PhysicalMaterial>("floatingOrganelle");
+        std::make_unique<Leviathan::PhysicalMaterial>("floatingOrganelle", 2);
     auto agentMaterial =
-        std::make_shared<Leviathan::PhysicalMaterial>("agentCollision");
+        std::make_unique<Leviathan::PhysicalMaterial>("agentCollision", 3);
 
     // Set callbacks //
 
@@ -937,9 +865,13 @@ void
     cellMaterial->FormPairWith(*cellMaterial)
         .SetCallbacks(cellOnCellAABBHitCallback, cellOnCellActualContact);
 
-    manager->LoadedMaterialAdd(cellMaterial);
-    manager->LoadedMaterialAdd(floatingOrganelleMaterial);
-    manager->LoadedMaterialAdd(agentMaterial);
+    auto manager = std::make_unique<Leviathan::PhysicsMaterialManager>();
+
+    manager->LoadedMaterialAdd(std::move(cellMaterial));
+    manager->LoadedMaterialAdd(std::move(floatingOrganelleMaterial));
+    manager->LoadedMaterialAdd(std::move(agentMaterial));
+
+    return manager;
 }
 
 void

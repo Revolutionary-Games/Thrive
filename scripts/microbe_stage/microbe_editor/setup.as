@@ -12,7 +12,6 @@ void onEditorEntry(MicrobeEditorWorld@ world){
 
     // The world is cleared by the C++ code so we setup all of our entities again each time
     setupBackground(world);
-    setupSound(world);
 
     // The world already has a created camera in C++ so if it needs to
     // be moved change the position there
@@ -42,41 +41,5 @@ void setupBackground(MicrobeEditorWorld@ world){
     // sceneNode.transform.touch();
     // sceneNode.playAnimation("Stand", true);
     // entity.addComponent(sceneNode);
-}
-
-void setupSound(MicrobeEditorWorld@ world){
-
-    LOG_ERROR("TODO: editor setupSound");
-
-    // auto ambientEntity = Entity("editor_ambience", MicrobeEditorWorld@);
-    // auto soundSource = SoundSourceComponent();
-    // soundSource.autoLoop = true;
-    // soundSource.ambientSoundSource = true;
-    // soundSource.volumeMultiplier = 0.6;
-    // ambientEntity.addComponent(soundSource);
-
-    // //Sound
-    // soundSource.addSound("microbe-editor-theme-1", "microbe-editor-theme-1.ogg");
-    // soundSource.addSound("microbe-editor-theme-2", "microbe-editor-theme-2.ogg");
-    // soundSource.addSound("microbe-editor-theme-3", "microbe-editor-theme-3.ogg");
-    // soundSource.addSound("microbe-editor-theme-4", "microbe-editor-theme-4.ogg");
-    // soundSource.addSound("microbe-editor-theme-5", "microbe-editor-theme-5.ogg");
-    // //Gui effects
-    // auto guiSoundEntity = Entity("gui_sounds", MicrobeEditorWorld@);
-    // soundSource = SoundSourceComponent();
-    // soundSource.ambientSoundSource = true;
-    // soundSource.autoLoop = false;
-    // soundSource.volumeMultiplier = 1.0;
-    // guiSoundEntity.addComponent(soundSource);
-    // //Sound
-    // soundSource.addSound("button-hover-click", "soundeffects/gui/button-hover-click.ogg");
-
-    // auto ambientEntity2 = Entity("editor_ambience2", MicrobeEditorWorld@);
-    // auto soundSource2 = SoundSourceComponent();
-    // soundSource2.volumeMultiplier = 0.1;
-    // soundSource2.ambientSoundSource = true;
-    // soundSource2.addSound("microbe-ambient", "soundeffects/microbe-ambience.ogg");
-    // soundSource2.autoLoop = true;
-    // ambientEntity2.addComponent(soundSource2);
 }
 

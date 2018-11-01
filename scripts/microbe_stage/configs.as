@@ -85,9 +85,9 @@ const auto FLAGELLA_BASE_FORCE = 1.0f;
 const auto CELL_BASE_THRUST = 1.0f;
 //! The drag force is calculated by taking the current velocity and multiplying it by this.
 //! This must be negative!
-const auto CELL_DRAG_MULTIPLIER = -0.1f;
+const auto CELL_DRAG_MULTIPLIER = -0.01f;
 //! If drag is below this it isn't applied to let the cells come to a halt properly
-const auto CELL_REQUIRED_DRAG_BEFORE_APPLY =  0.033f;
+const auto CELL_REQUIRED_DRAG_BEFORE_APPLY =  0.0033f;
 
 // Turning is currently set to be instant to avoid gyrating around the correct heading
 

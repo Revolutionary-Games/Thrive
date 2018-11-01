@@ -12,7 +12,8 @@ namespace MicrobeOperations{
 //
 // @returns amount
 // The amount stored in the microbe's storage oraganelles
-double getCompoundAmount(CellStageWorld@ world, ObjectID microbeEntity, CompoundId compoundId){
+double getCompoundAmount(CellStageWorld@ world, ObjectID microbeEntity, CompoundId compoundId)
+{
     return world.GetComponent_CompoundBagComponent(microbeEntity).
         getCompoundAmount(compoundId);
 }
@@ -20,8 +21,8 @@ double getCompoundAmount(CellStageWorld@ world, ObjectID microbeEntity, Compound
 // Getter for microbe species
 //
 // returns the species component or null if it doesn't have a valid species
-SpeciesComponent@ getSpeciesComponent(CellStageWorld@ world, ObjectID microbeEntity){
-
+SpeciesComponent@ getSpeciesComponent(CellStageWorld@ world, ObjectID microbeEntity)
+{
     MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
         world.GetScriptComponentHolder("MicrobeComponent").Find(microbeEntity));
 
@@ -34,8 +35,8 @@ SpeciesComponent@ getSpeciesComponent(CellStageWorld@ world, ObjectID microbeEnt
 // Getter for microbe species
 //
 // returns the species component or null if species with that name doesn't exist
-SpeciesComponent@ getSpeciesComponent(CellStageWorld@ world, const string &in speciesName){
-
+SpeciesComponent@ getSpeciesComponent(CellStageWorld@ world, const string &in speciesName)
+{
     // This needs to loop all the components and get the matching one
     auto entity = findSpeciesEntityByName(world, speciesName);
 
@@ -47,8 +48,8 @@ SpeciesComponent@ getSpeciesComponent(CellStageWorld@ world, const string &in sp
 // returns the processor component or null if such species doesn't have that component
 // TODO: check what calls this and make it store the species entity id if it also calls
 // getSpeciesComponent to save searching the whole species component index multiple times
-ProcessorComponent@ getProcessorComponent(CellStageWorld@ world, const string &in speciesName){
-
+ProcessorComponent@ getProcessorComponent(CellStageWorld@ world, const string &in speciesName)
+{
     // This needs to loop all the components and get the matching one
     auto entity = findSpeciesEntityByName(world, speciesName);
 
@@ -62,8 +63,8 @@ ProcessorComponent@ getProcessorComponent(CellStageWorld@ world, const string &i
 //
 // @returns organelle
 // The organelle at (q,r) or null if the hex is unoccupied
-PlacedOrganelle@ getOrganelleAt(CellStageWorld@ world, ObjectID microbeEntity, Int2 hex){
-
+PlacedOrganelle@ getOrganelleAt(CellStageWorld@ world, ObjectID microbeEntity, Int2 hex)
+{
     MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
         world.GetScriptComponentHolder("MicrobeComponent").Find(microbeEntity));
 
@@ -116,7 +117,10 @@ bool removeOrganelle(CellStageWorld@ world, ObjectID microbeEntity, Int2 hex)
 
     auto position = world.GetComponent_Position(microbeEntity);
 
-    organelle.onRemovedFromMicrobe(microbeEntity, rigidBodyComponent.Collision);
+    organelle.onRemovedFromMicrobe(microbeEntity, rigidBodyComponent.Body.Shape);
+
+    // TODO: there seriously needs to be some caching here to make this less expensive
+    rigidBodyComponent.ChangeShape(world.GetPhysicalWorld(), rigidBodyComponent.Body.Shape);
 
     // Send the organelles to the membraneComponent so that the membrane can "shrink"
     // This is always 0?
@@ -148,19 +152,6 @@ bool removeOrganelle(CellStageWorld@ world, ObjectID microbeEntity, Int2 hex)
         return true;
     }
 
-    // // Need to recreate the body
-    // if(rigidBodyComponent.Body !is null){
-
-    //     LOG_INFO("Recreating physics body in removeOrganelle");
-    //     rigidBodyComponent.CreatePhysicsBody(world.GetPhysicalWorld(),
-    //         world.GetPhysicalMaterial("cell"));
-    //     rigidBodyComponent.SetMass(rigidBodyComponent.Mass - organelle.organelle.mass);
-    //     _applyMicrobePhysicsBodySettings(world, rigidBodyComponent);
-
-    //     // And jump it to the current position
-    //     rigidBodyComponent.JumpTo(position);
-    // }
-
     // This refreshing these things could probably be somewhere else...
     microbeComponent.maxBandwidth = microbeComponent.maxBandwidth -
         BANDWIDTH_PER_ORGANELLE ; // Temporary solution for decreasing max bandwidth
@@ -170,20 +161,107 @@ bool removeOrganelle(CellStageWorld@ world, ObjectID microbeEntity, Int2 hex)
     return true;
 }
 
-bool organelleDestroyedByDamage(CellStageWorld@ world, ObjectID microbeEntity, Int2 hex){
+// Adds a new organelle
+//
+// The space at (q,r) must not be occupied by another organelle already.
+//
+// @param q,r
+// Offset of the organelle's center relative to the microbe's center in
+// axial coordinates. These are now in the organelle object
+//
+// @param organelle
+// The organelle to add
+//
+// @param editShape If the cell doesn't yet have a physics body the shape can be edited without
+//     worry
+//
+// @return
+//  returns whether the organelle was added
+bool addOrganelle(CellStageWorld@ world, ObjectID microbeEntity, PlacedOrganelle@ organelle,
+    PhysicsShape@ editShape = null)
+{
+    MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
+        world.GetScriptComponentHolder("MicrobeComponent").Find(microbeEntity));
+
+    // Exact coordinate check //
+    // This isn't perfect so that's why it needs to have been checked before that this
+    // place isn't full
+    for(uint i = 0; i < microbeComponent.organelles.length(); ++i){
+        if(microbeComponent.organelles[i].q == organelle.q &&
+            microbeComponent.organelles[i].r == organelle.r)
+        {
+            return false;
+        }
+    }
+
+    auto membraneComponent = world.GetComponent_MembraneComponent(microbeEntity);
+
+    auto position = world.GetComponent_Position(microbeEntity);
+
+    microbeComponent.organelles.insertLast(@organelle);
+
+    // Update collision shape
+    if(editShape !is null){
+        // Initial adding
+        organelle.onAddedToMicrobe(microbeEntity, world, editShape);
+
+    } else {
+        // Adding after cell creation
+        auto rigidBodyComponent = world.GetComponent_Physics(microbeEntity);
+        organelle.onAddedToMicrobe(microbeEntity, world, rigidBodyComponent.Body.Shape);
+
+        // TODO: there seriously needs to be some caching here to make this less expensive
+        rigidBodyComponent.ChangeShape(world.GetPhysicalWorld(),
+            rigidBodyComponent.Body.Shape);
+    }
+
+    microbeComponent.maxBandwidth = microbeComponent.maxBandwidth +
+        BANDWIDTH_PER_ORGANELLE; // Temporary solution for increasing max bandwidth
+    microbeComponent.remainingBandwidth = microbeComponent.maxBandwidth;
+
+    // Send the organelles to the membraneComponent so that the membrane can "grow"
+    // This is always 0?
+    auto localQ = organelle.q - organelle.q;
+    auto localR = organelle.r - organelle.r;
+
+    // I guess this might skip sending organelles that have no hexes? to the membrane
+    if(organelle.organelle.getHex(localQ, localR) !is null){
+
+        auto hexes = organelle.organelle.getHexes();
+        for(uint i = 0; i < hexes.length(); ++i){
+
+            auto hex = hexes[i];
+
+            auto q = hex.q + organelle.q;
+            auto r = hex.r + organelle.r;
+            Float3 membranePoint = Hex::axialToCartesian(q, r);
+            // TODO: this is added here to make it impossible for our
+            // caller to forget to call this, and this basically only
+            // once does something and then on next tick the membrane
+            // is initialized again
+            membraneComponent.clear();
+            membraneComponent.sendOrganelles(membranePoint.X, membranePoint.Z);
+        }
+    }
+
+    return true;
+}
+
+bool organelleDestroyedByDamage(CellStageWorld@ world, ObjectID microbeEntity, Int2 hex)
+{
     return removeOrganelle(world, microbeEntity, hex);
 }
 
 // ------------------------------------ //
-void respawnPlayer(CellStageWorld@ world){
-
+void respawnPlayer(CellStageWorld@ world)
+{
     auto playerSpecies = MicrobeOperations::getSpeciesComponent(world, "Default");
     auto playerEntity = GetThriveGame().playerData().activeCreature();
+
     if (playerSpecies.population > 10)
     {
-
         MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
-        world.GetScriptComponentHolder("MicrobeComponent").Find(playerEntity));
+            world.GetScriptComponentHolder("MicrobeComponent").Find(playerEntity));
         auto rigidBodyComponent = world.GetComponent_Physics(playerEntity);
         auto sceneNodeComponent = world.GetComponent_RenderNode(playerEntity);
 
@@ -196,11 +274,12 @@ void respawnPlayer(CellStageWorld@ world){
         for(uint i = 0; i < microbeComponent.organelles.length(); ++i){
             microbeComponent.organelles[i].reset();
         }
+
         setupMicrobeHitpoints(world, playerEntity,DEFAULT_HEALTH);
-        //setup compounds
+        // Setup compounds
         setupMicrobeCompounds(world,playerEntity);
         // Reset position //
-        rigidBodyComponent.SetPosition(Float3(0, 0, 0), Float4::IdentityQuaternion);
+        rigidBodyComponent.Body.SetPosition(Float3(0, 0, 0), Float4::IdentityQuaternion);
 
         // The physics body will set the Position on next tick
 
@@ -215,10 +294,11 @@ void respawnPlayer(CellStageWorld@ world){
         cast<MicrobeStageHudSystem>(world.GetScriptSystem("MicrobeStageHudSystem")).
         suicideButtonreset();
     }
-    //Decrease the population by 10
+
+    // Decrease the population by 10
     playerSpecies.population -= 10;
 
-    //Creates an event that calls the function in javascript that checks extinction events
+    // Creates an event that calls the function in javascript that checks extinction events
     GenericEvent@ checkExtinction = GenericEvent("CheckExtinction");
     NamedVars@ vars = checkExtinction.GetNamedVars();
     vars.AddValue(ScriptSafeVariableBlock("population", playerSpecies.population));
@@ -226,7 +306,8 @@ void respawnPlayer(CellStageWorld@ world){
 }
 
 
-void setupMicrobeHitpoints(CellStageWorld@ world, ObjectID microbeEntity, int health){
+void setupMicrobeHitpoints(CellStageWorld@ world, ObjectID microbeEntity, int health)
+{
     MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
         world.GetScriptComponentHolder("MicrobeComponent").Find(microbeEntity));
     microbeComponent.maxHitpoints = health;
@@ -235,7 +316,8 @@ void setupMicrobeHitpoints(CellStageWorld@ world, ObjectID microbeEntity, int he
 }
 
 //grabs compounds from template (starter_mcirobes) and stores them)
-void setupMicrobeCompounds(CellStageWorld@ world, ObjectID microbeEntity){
+void setupMicrobeCompounds(CellStageWorld@ world, ObjectID microbeEntity)
+{
     MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
         world.GetScriptComponentHolder("MicrobeComponent").Find(microbeEntity));
                 MicrobeTemplate@ data = cast<MicrobeTemplate@>(STARTER_MICROBES["Default"]);
@@ -243,13 +325,16 @@ void setupMicrobeCompounds(CellStageWorld@ world, ObjectID microbeEntity){
     auto ids = getSpeciesComponent(world, microbeEntity).avgCompoundAmounts.getKeys();
     for(uint i = 0; i < ids.length(); ++i){
         CompoundId compoundId = parseUInt(ids[i]);
-        InitialCompound amount = InitialCompound(getSpeciesComponent(world, microbeEntity).avgCompoundAmounts[ids[i]]);
+        InitialCompound amount = InitialCompound(getSpeciesComponent(world, microbeEntity).
+            avgCompoundAmounts[ids[i]]);
 
         if(amount.amount != 0){
-            MicrobeOperations::storeCompound(world, microbeEntity, compoundId, amount.amount, false);
+            MicrobeOperations::storeCompound(world, microbeEntity, compoundId, amount.amount,
+                false);
         }
     }
 }
+
 // Attempts to obtain an amount of bandwidth for immediate use.
 // This should be in conjunction with most operations ejecting  or absorbing compounds
 // and agents for microbe.
@@ -266,8 +351,8 @@ void setupMicrobeCompounds(CellStageWorld@ world, ObjectID microbeEntity){
 // @return
 //  amount in units avaliable for use.
 float getBandwidth(CellStageWorld@ world, ObjectID microbeEntity, float maxAmount,
-    CompoundId compoundId
-) {
+    CompoundId compoundId)
+{
     MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
         world.GetScriptComponentHolder("MicrobeComponent").Find(microbeEntity));
 
@@ -410,60 +495,43 @@ void ejectCompound(CellStageWorld@ world, ObjectID microbeEntity, CompoundId com
 // you no longer need to dump things because thngs can no longer
 // "take up each others space"  However, it would be weird to store
 // up compounds you dont use, so lets purge those.
-void purgeCompounds(CellStageWorld@ world, ObjectID microbeEntity){
-    //LOG_INFO("Enacting a purge of blue cells (also known as compounds)");
+void purgeCompounds(CellStageWorld@ world, ObjectID microbeEntity)
+{
     MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
         world.GetScriptComponentHolder("MicrobeComponent").Find(microbeEntity));
     auto compoundBag = world.GetComponent_CompoundBagComponent(microbeEntity);
 
     uint64 compoundCount = SimulationParameters::compoundRegistry().getSize();
     for(uint compoundId = 0; compoundId < compoundCount; ++compoundId){
-    // Price is 1 if used, 0 if not
-    auto price = compoundBag.getPrice(compoundId);
-    auto useful = SimulationParameters::compoundRegistry().getTypeData(compoundId).isUseful;
-    //LOG_INFO("ID:"+compoundId+" price:"+price);
-    if (price == 0 && !useful)
-    {
-    // Dont remove everything immedately, give it some time so people can see it happening
-     double amountToEject = 2;
-    double availableCompound = getCompoundAmount(world,microbeEntity, compoundId);
+
+        // Price is 1 if used, 0 if not
+        auto price = compoundBag.getPrice(compoundId);
+        auto useful = SimulationParameters::compoundRegistry().getTypeData(compoundId).
+            isUseful;
+
+        if (price == 0 && !useful)
+        {
+            // Dont remove everything immedately, give it some time so
+            // people can see it happening
+            double amountToEject = 2;
+            double availableCompound = getCompoundAmount(world,microbeEntity, compoundId);
+
             // This was also 'amount' so maybe this didn't work either?
             if(amountToEject > 0 && availableCompound-amountToEject >= 0){
                 amountToEject = takeCompound(world, microbeEntity,
                     compoundId, amountToEject);
                 //ejectCompound(world, microbeEntity, compoundId, amountToEject-1.0f);
             }
-    // If we flagged the second one but we still have some left just get rid of it all
-    else if (availableCompound > 0)
-    {
-        amountToEject = takeCompound(world, microbeEntity,
+            // If we flagged the second one but we still have some left just get rid of it all
+            else if (availableCompound > 0)
+            {
+                amountToEject = takeCompound(world, microbeEntity,
                     compoundId, availableCompound);
                 //ejectCompound(world, microbeEntity, compoundId, amountToEject-1.0f);
-    }
-    }
+            }
+        }
     }
 }
-
-
-// Commented out all calls to this But keeping it in case we want to go back to the old system
-/*void calculateHealthFromOrganelles(CellStageWorld@ world, ObjectID microbeEntity){
-    MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
-        world.GetScriptComponentHolder("MicrobeComponent").Find(microbeEntity));
-    microbeComponent.hitpoints = 0;
-    microbeComponent.maxHitpoints = 0;
-    for(uint i = 0; i < microbeComponent.organelles.length(); ++i){
-        auto organelle = microbeComponent.organelles[i];
-
-        if(organelle.getCompoundBin() < 1.0){
-            microbeComponent.hitpoints += round(organelle.getCompoundBin() *
-                MICROBE_HITPOINTS_PER_ORGANELLE);
-        } else {
-            microbeComponent.hitpoints += MICROBE_HITPOINTS_PER_ORGANELLE;
-        }
-
-        microbeComponent.maxHitpoints += MICROBE_HITPOINTS_PER_ORGANELLE;
-    }
-}*/
 
 void flashMembraneColour(CellStageWorld@ world, ObjectID microbeEntity, uint duration,
     Float4 colour)
@@ -478,7 +546,8 @@ void flashMembraneColour(CellStageWorld@ world, ObjectID microbeEntity, uint dur
 }
 
 // Applies the default membrane colour
-void applyMembraneColour(CellStageWorld@ world, ObjectID microbeEntity){
+void applyMembraneColour(CellStageWorld@ world, ObjectID microbeEntity)
+{
     MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
         world.GetScriptComponentHolder("MicrobeComponent").Find(microbeEntity));
     auto speciesColour = microbeComponent.speciesColour;
@@ -487,34 +556,39 @@ void applyMembraneColour(CellStageWorld@ world, ObjectID microbeEntity){
 }
 
 
-    // // Drains an agent from the microbes special storage and emits it
-    // //
-    // // @param compoundId
-    // // The compound id of the agent to emit
-    // //
-    // // @param maxAmount
-    // // The maximum amount to try to emit
-void emitAgent(CellStageWorld@ world, ObjectID microbeEntity, CompoundId compoundId, double maxAmount, float lifeTime){
-        MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
-            world.GetScriptComponentHolder("MicrobeComponent").Find(microbeEntity));
-    //     auto soundSourceComponent = world.GetComponent_SoundSourceComponent(microbeEntity, SoundSourceComponent);
-        auto membraneComponent = world.GetComponent_MembraneComponent(microbeEntity);
-        auto cellPosition = world.GetComponent_Position(microbeEntity);
+// // Drains an agent from the microbes special storage and emits it
+// //
+// // @param compoundId
+// // The compound id of the agent to emit
+// //
+// // @param maxAmount
+// // The maximum amount to try to emit
+void emitAgent(CellStageWorld@ world, ObjectID microbeEntity, CompoundId compoundId,
+    double maxAmount, float lifeTime)
+{
+    MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
+        world.GetScriptComponentHolder("MicrobeComponent").Find(microbeEntity));
+
+    auto membraneComponent = world.GetComponent_MembraneComponent(microbeEntity);
+    auto cellPosition = world.GetComponent_Position(microbeEntity);
 
     // Cooldown code
-    //LOG_INFO("Cooldown "+microbeComponent.agentEmissionCooldown);
+    if(microbeComponent.agentEmissionCooldown > 0)
+        return;
 
-    if(microbeComponent.agentEmissionCooldown > 0){ return; }
+    auto numberOfAgentVacuoles = int (microbeComponent.specialStorageOrganelles[
+            formatUInt(compoundId)]);
 
-    auto numberOfAgentVacuoles = int (microbeComponent.specialStorageOrganelles[formatUInt(compoundId)]);
     // Only shoot if you have an agent vacuole.
-    if(numberOfAgentVacuoles == 0){ return; }
+    if(numberOfAgentVacuoles == 0)
+        return;
 
-    if(MicrobeOperations::getCompoundAmount(world, microbeEntity, compoundId) > MINIMUM_AGENT_EMISSION_AMOUNT)
-        {
+    if(MicrobeOperations::getCompoundAmount(world, microbeEntity, compoundId) >
+        MINIMUM_AGENT_EMISSION_AMOUNT)
+    {
         // Calculate the emission angle of the agent emitter
-         // The front of the microbe
-         Float3 exit = Hex::axialToCartesian(0, -1);
+        // The front of the microbe
+        Float3 exit = Hex::axialToCartesian(0, -1);
         auto membraneCoords = membraneComponent.GetExternalOrganelle(exit.X, exit.Z);
 
         //Get the distance to eject the agent
@@ -534,11 +608,13 @@ void emitAgent(CellStageWorld@ world, ObjectID microbeEntity, CompoundId compoun
             }
         }
 
-         auto angle =  atan2(exit.Z, exit.X);
-            if(angle < 0){
-                 angle = angle + 2*PI;
-            }
-             angle = -(angle * 180/PI-90 ) % 360;
+        auto angle =  atan2(exit.Z, exit.X);
+        if(angle < 0){
+            angle = angle + 2 * PI;
+        }
+
+        angle = -(angle * 180/PI-90 ) % 360;
+
         // Find the direction the microbe is facing
         auto yAxis = Ogre::Quaternion(cellPosition._Orientation).yAxis();
         auto microbeAngle = atan2(yAxis.x,yAxis.z);
@@ -546,6 +622,7 @@ void emitAgent(CellStageWorld@ world, ObjectID microbeEntity, CompoundId compoun
             microbeAngle = microbeAngle + 2 * PI;
         }
         microbeAngle = microbeAngle * 180 / PI;
+
         // Take the microbe angle into account so we get world relative degrees
         auto finalAngle = (angle + microbeAngle) % 360;
         auto s = sin(finalAngle/180*PI);
@@ -555,6 +632,7 @@ void emitAgent(CellStageWorld@ world, ObjectID microbeEntity, CompoundId compoun
         // Find the direction the microbe is facing
 
         auto ejectionDistanceZ = ((maxR+1) * HEX_SIZE/2)+HEX_SIZE/2;
+
         // Take the microbe angle into account so we get world relative degrees
         auto vec = ( microbeComponent.facingTargetPoint - cellPosition._Position);
         auto direction = vec.Normalize();
@@ -562,26 +640,34 @@ void emitAgent(CellStageWorld@ world, ObjectID microbeEntity, CompoundId compoun
         auto amountToEject = takeCompound(world, microbeEntity,compoundId, maxAmount/10.0);
 
         if (amountToEject >= MINIMUM_AGENT_EMISSION_AMOUNT)
+        {
+            GetEngine().GetSoundDevice().Play2DSoundEffect(
+                "Data/Sound/soundeffects/microbe-release-toxin.ogg");
+
+            if (abs(minR) < maxR)
             {
-            GetEngine().GetSoundDevice().Play2DSoundEffect("Data/Sound/soundeffects/microbe-release-toxin.ogg");
-        if (abs(minR) < maxR)
-            {
-            createAgentCloud(world, compoundId, cellPosition._Position+(Float3(xnew*-ejectionDistanceZ,0,ynew*-ejectionDistanceZ)), direction,amountToEject * 10.0f,lifeTime,microbeComponent.speciesName);
+                createAgentCloud(world, compoundId, cellPosition._Position +
+                    (Float3(xnew * -ejectionDistanceZ, 0, ynew * -ejectionDistanceZ)),
+                    direction, amountToEject * 10.0f, lifeTime, microbeComponent.speciesName);
             }
-        else
+            else
             {
-            createAgentCloud(world, compoundId, cellPosition._Position+(Float3(xnew*ejectionDistanceZ,0,ynew*ejectionDistanceZ)), direction,amountToEject * 10.0f,lifeTime,microbeComponent.speciesName);
+                createAgentCloud(world, compoundId, cellPosition._Position +
+                    (Float3(xnew * ejectionDistanceZ, 0, ynew * ejectionDistanceZ)),
+                    direction, amountToEject * 10.0f, lifeTime, microbeComponent.speciesName);
             }
 
             // The cooldown time is inversely proportional to the amount of agent vacuoles.
-            microbeComponent.agentEmissionCooldown = uint(AGENT_EMISSION_COOLDOWN/numberOfAgentVacuoles);
-            }
+            microbeComponent.agentEmissionCooldown = uint(AGENT_EMISSION_COOLDOWN /
+                numberOfAgentVacuoles);
         }
     }
+}
 
 // Disables or enables engulfmode for a microbe, allowing or
 // disallowing it to absorb other microbes
-void toggleEngulfMode(CellStageWorld@ world, ObjectID microbeEntity){
+void toggleEngulfMode(CellStageWorld@ world, ObjectID microbeEntity)
+{
     MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
         world.GetScriptComponentHolder("MicrobeComponent").Find(microbeEntity));
 
@@ -592,7 +678,8 @@ void toggleEngulfMode(CellStageWorld@ world, ObjectID microbeEntity){
     }
     else  if (microbeComponent.isBeingEngulfed)
     {
-        microbeComponent.movementFactor = microbeComponent.movementFactor /  ENGULFED_MOVEMENT_DIVISION;
+        microbeComponent.movementFactor = microbeComponent.movementFactor /
+            ENGULFED_MOVEMENT_DIVISION;
     }
     else
     {
@@ -623,29 +710,16 @@ void damage(CellStageWorld@ world, ObjectID microbeEntity, double amount, const 
     // auto soundSourceComponent = world.GetComponent_SoundSourceComponent(microbeEntity);
 
     if(damageType == "toxin"){
-    // Play the toxin sound
-    GetEngine().GetSoundDevice().Play2DSoundEffect("Data/Sound/soundeffects/microbe-toxin-damage.ogg");
+        // Play the toxin sound
+        GetEngine().GetSoundDevice().Play2DSoundEffect(
+            "Data/Sound/soundeffects/microbe-toxin-damage.ogg");
     }
-
-    // Choose a random organelle or membrane to damage.
-    // TODO: CHANGE TO USE AGENT CODES FOR DAMAGE.
-   /* int rand = GetEngine().GetRandom().GetNumber(0, int(microbeComponent.maxHitpoints /
-            MICROBE_HITPOINTS_PER_ORGANELLE) - 1);
-    for(uint i = 0; i < microbeComponent.organelles.length(); ++i){
-        // If this is the organelle we have chosen...
-        if(int(i) == rand){
-            // Deplete its health/compoundBin.
-            microbeComponent.organelles[i].damageOrganelle(amount);
-            break;
-        }
-    }
-    */
 
     microbeComponent.hitpoints -= amount;
     // Flash the microbe red
     //LOG_INFO("DAMAGE FLASH");
     flashMembraneColour(world, microbeEntity, 1000,
-                    Float4(1,0,0,0.5));
+        Float4(1,0,0,0.5));
 
     // Find out the amount of health the microbe has.
     if(microbeComponent.hitpoints <= 0.0f){
@@ -661,11 +735,11 @@ void damage(CellStageWorld@ world, ObjectID microbeEntity, double amount, const 
 // We'll probably need a rotation for this, although maybe it should be done in c++ where
 // sets are a thing?
 bool validPlacement(CellStageWorld@ world, ObjectID microbeEntity, const Organelle@ organelle,
-    Int2 posToCheck
-) {
+    Int2 posToCheck)
+{
     auto touching = false;
-    //assert(false, "TODO: should this hex list here be rotated, this doesn't seem to take "
-      //  "a rotation parameter in");
+    //TODO: should this hex list here be rotated, this doesn't seem to
+    //take a rotation parameter in
     auto hexes = organelle.getHexes();
     for(uint i = 0; i < hexes.length(); ++i){
 
@@ -700,112 +774,11 @@ bool validPlacement(CellStageWorld@ world, ObjectID microbeEntity, const Organel
     return touching;
 }
 
-
-// Adds a new organelle
-//
-// The space at (q,r) must not be occupied by another organelle already.
-//
-// @param q,r
-// Offset of the organelle's center relative to the microbe's center in
-// axial coordinates. These are now in the organelle object
-//
-// @param organelle
-// The organelle to add
-//
-// @return
-//  returns whether the organelle was added
-bool addOrganelle(CellStageWorld@ world, ObjectID microbeEntity, PlacedOrganelle@ organelle)
-{
-    MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
-        world.GetScriptComponentHolder("MicrobeComponent").Find(microbeEntity));
-
-    // Exact coordinate check //
-    // This isn't perfect so that's why it needs to have been checked before that this
-    // place isn't full
-    for(uint i = 0; i < microbeComponent.organelles.length(); ++i){
-        if(microbeComponent.organelles[i].q == organelle.q &&
-            microbeComponent.organelles[i].r == organelle.r)
-        {
-            return false;
-        }
-    }
-
-    auto membraneComponent = world.GetComponent_MembraneComponent(microbeEntity);
-    auto rigidBodyComponent = world.GetComponent_Physics(microbeEntity);
-    auto position = world.GetComponent_Position(microbeEntity);
-
-    microbeComponent.organelles.insertLast(@organelle);
-    // Float3 translation = Hex::axialToCartesian(organelle.q, organelle.r);
-
-    // Collision shape
-    // Need to begin update for our physics body as this adds the
-    // hexes of the organelle as a sub collision
-    // This isn't optimal if multiple are added but simplifies calling this
-    NewtonCollision@ collision = rigidBodyComponent.Collision;
-    collision.CompoundCollisionBeginAddRemove();
-
-    organelle.onAddedToMicrobe(microbeEntity, world, collision);
-
-    collision.CompoundCollisionEndAddRemove();
-
-    // // The body is recreated if it existed already
-    // if(rigidBodyComponent.Body !is null){
-
-    //     // Need to recreate the body
-    //     LOG_INFO("Recreating physics body in addOrganelle");
-    //     rigidBodyComponent.CreatePhysicsBody(world.GetPhysicalWorld(),
-    //         world.GetPhysicalMaterial("cell"));
-
-    //     rigidBodyComponent.SetMass(rigidBodyComponent.Mass + organelle.organelle.mass);
-
-    //     _applyMicrobePhysicsBodySettings(world, rigidBodyComponent);
-
-    //     // And jump it to the current position
-    //     rigidBodyComponent.JumpTo(position);
-    // }
-
-    microbeComponent.maxBandwidth = microbeComponent.maxBandwidth +
-        BANDWIDTH_PER_ORGANELLE; // Temporary solution for increasing max bandwidth
-    microbeComponent.remainingBandwidth = microbeComponent.maxBandwidth;
-
-    // Send the organelles to the membraneComponent so that the membrane can "grow"
-    // This is always 0?
-    auto localQ = organelle.q - organelle.q;
-    auto localR = organelle.r - organelle.r;
-
-    // I guess this might skip sending organelles that have no hexes? to the membrane
-    if(organelle.organelle.getHex(localQ, localR) !is null){
-
-        auto hexes = organelle.organelle.getHexes();
-        for(uint i = 0; i < hexes.length(); ++i){
-
-            auto hex = hexes[i];
-
-            auto q = hex.q + organelle.q;
-            auto r = hex.r + organelle.r;
-            Float3 membranePoint = Hex::axialToCartesian(q, r);
-            // TODO: this is added here to make it impossible for our
-            // caller to forget to call this, and this basically only
-            // once does something and then on next tick the membrane
-            // is initialized again
-            membraneComponent.clear();
-            membraneComponent.sendOrganelles(membranePoint.X, membranePoint.Z);
-        }
-
-        // What is this return?
-        // return organelle;
-        return true;
-    }
-
-    return true;
-}
-
-
 // speciesName decides the template to use, while individualName is
 // used for referencing the instance
 ObjectID spawnMicrobe(CellStageWorld@ world, Float3 pos, const string &in speciesName,
-    bool aiControlled, const string &in individualName
-) {
+    bool aiControlled)
+{
     assert(world !is null);
     assert(speciesName != "");
 
@@ -821,7 +794,7 @@ ObjectID spawnMicrobe(CellStageWorld@ world, Float3 pos, const string &in specie
         return NULL_OBJECT;
     }
 
-    auto microbeEntity = _createMicrobeEntity(world, individualName, aiControlled, speciesName,
+    auto microbeEntity = _createMicrobeEntity(world, aiControlled, speciesName,
         // in_editor
         false);
 
@@ -841,19 +814,27 @@ ObjectID spawnMicrobe(CellStageWorld@ world, Float3 pos, const string &in specie
     auto speciesEntity = findSpeciesEntityByName(world, speciesName);
     auto species = world.GetComponent_SpeciesComponent(speciesEntity);
 
+    // TODO: Why is this here with the separate spawnBacteria function existing?
     // Bacteria get scaled to half size
     if(species.isBacteria){
+        // TODO: wow, this is a big hack and no way guarantees that
+        // the physics size matches the rendered size
         node.Scale = Float3(0.5, 0.5, 0.5);
         node.Marked = true;
-        physics.SetCollision(world.GetPhysicalWorld().CreateSphere(HEX_SIZE/2.0f));
+        // This call is also not the cheapest. So would be much better
+        // if the physics generation actually did the right then when
+        // species.isBacteria is true
+        physics.ChangeShape(world.GetPhysicalWorld(),
+            world.GetPhysicalWorld().CreateSphere(HEX_SIZE/2.0f));
     }
 
     return microbeEntity;
 }
 
+// TODO: merge common parts with spawnMicrobe
 ObjectID spawnBacteria(CellStageWorld@ world, Float3 pos, const string &in speciesName,
-    bool aiControlled, const string &in individualName, bool partOfColony
-) {
+    bool aiControlled, bool partOfColony)
+{
     assert(world !is null);
     assert(speciesName != "");
 
@@ -870,7 +851,7 @@ ObjectID spawnBacteria(CellStageWorld@ world, Float3 pos, const string &in speci
         return NULL_OBJECT;
     }
 
-    auto microbeEntity = _createMicrobeEntity(world, individualName, aiControlled, speciesName,
+    auto microbeEntity = _createMicrobeEntity(world, aiControlled, speciesName,
         // in_editor
         false);
 
@@ -880,7 +861,7 @@ ObjectID spawnBacteria(CellStageWorld@ world, Float3 pos, const string &in speci
     microbePos.Marked = true;
 
     auto physics = world.GetComponent_Physics(microbeEntity);
-    physics.SetMass(physics.Mass*10);
+    physics.Body.SetMass(physics.Body.Mass * 10);
     physics.JumpTo(microbePos);
 
     // Try setting the position immediately as well (as otherwise it
@@ -889,25 +870,34 @@ ObjectID spawnBacteria(CellStageWorld@ world, Float3 pos, const string &in speci
     node.Node.setPosition(pos);
 
     // Bacteria get scaled to half size
+    // TODO: wow, this is a big hack and no way guarantees that
+    // the physics size matches the rendered size
     node.Scale = Float3(0.5, 0.5, 0.5);
     node.Marked = true;
-    physics.SetCollision(world.GetPhysicalWorld().CreateSphere(HEX_SIZE/2.0f));
-    // Need to set bacteria spawn and it needs to be squared like it is in the spawn system. code, if part of colony but not directly spawned give a spawned component
+    // This call is also not the cheapest. So would be much better
+    // if the physics generation actually did the right then when
+    // species.isBacteria is true
+    physics.ChangeShape(world.GetPhysicalWorld(),
+        world.GetPhysicalWorld().CreateSphere(HEX_SIZE/2.0f));
+
+    // Need to set bacteria spawn and it needs to be squared like it
+    // is in the spawn system. code, if part of colony but not
+    // directly spawned give a spawned component
     if (partOfColony){
-    world.Create_SpawnedComponent(microbeEntity,BACTERIA_SPAWN_RADIUS*BACTERIA_SPAWN_RADIUS);
+        world.Create_SpawnedComponent(microbeEntity, BACTERIA_SPAWN_RADIUS *
+            BACTERIA_SPAWN_RADIUS);
     }
-    //LOG_WARNING("spawning bacterium radius "+ BACTERIA_SPAWN_RADIUS);
+
     return microbeEntity;
 }
+
 // Creates a new microbe with all required components. Use spawnMicrobe from other
 // code instead of this function
 //
-// @param name
-// The entity's name. If null, the entity will be unnamed.
-//
 // @returns microbe
 // An object of type Microbe
-ObjectID _createMicrobeEntity(CellStageWorld@ world, const string &in name, bool aiControlled,
+// TODO: this should take in the initial position
+ObjectID _createMicrobeEntity(CellStageWorld@ world, bool aiControlled,
     const string &in speciesName, bool in_editor)
 {
     assert(speciesName != "", "Empty species name for create microbe");
@@ -922,13 +912,12 @@ ObjectID _createMicrobeEntity(CellStageWorld@ world, const string &in name, bool
 
     auto position = world.Create_Position(entity, Float3(0, 0, 0), Float4::IdentityQuaternion);
 
-    auto rigidBody = world.Create_Physics(entity, world, position, null);
-    auto collision = world.GetPhysicalWorld().CreateCompoundCollision();
+    auto shape = world.GetPhysicalWorld().CreateCompound();
 
-    rigidBody.SetCollision(collision);
+    auto membraneComponent = world.Create_MembraneComponent(entity,
+        species.speciesMembraneType);
 
-    auto membraneComponent = world.Create_MembraneComponent(entity, species.speciesMembraneType);
-
+    // TODO: movement sound for microbes
     // auto soundComponent = SoundSourceComponent();
     // auto s1 = null;
     // soundComponent.addSound("microbe-release-toxin",
@@ -982,9 +971,8 @@ ObjectID _createMicrobeEntity(CellStageWorld@ world, const string &in name, bool
     if(processor is null){
         LOG_ERROR("Microbe species '" + microbeComponent.speciesName +
             "' doesn't have a processor component");
-        // assert(processor !is null);
     } else {
-    //LOG_INFO("Added processor");
+
         compoundBag.setProcessor(processor, microbeComponent.speciesName);
     }
 
@@ -992,28 +980,12 @@ ObjectID _createMicrobeEntity(CellStageWorld@ world, const string &in name, bool
         assert(false, "Freshly created microbe has organelles in it");
 
     // Apply the template //
-    Species::applyTemplate(world, entity, species);
+    Species::applyTemplate(world, entity, species, shape);
 
     // ------------------------------------ //
     // Initialization logic taken from MicrobeSystem and put here now
     assert(microbeComponent.organelles.length() > 0, "Microbe has no "
         "organelles in initializeMicrobe");
-
-    // We create physics body after adding the organelles as that
-    // requires the physics body to be recreated when any organelle is
-    // added (if the body already exists at that point) so we do it
-    // here after that
-    rigidBody.CreatePhysicsBody(world.GetPhysicalWorld(), world.GetPhysicalMaterial("cell"));
-
-    assert(rigidBody.Body !is null);
-
-    // Allowing the microbe to absorb all the compounds.
-    setupAbsorberForAllCompounds(compoundAbsorberComponent);
-
-    // We don't add the sub collisions here. Instead they are
-    // individually added in addOrganelle, which is not very efficient
-    // rigidBody.Collision.CompoundCollisionBeginAddRemove();
-    // rigidBody.Collision.CompoundCollisionEndAddRemove();
 
     float mass = 0.f;
 
@@ -1029,34 +1001,35 @@ ObjectID _createMicrobeEntity(CellStageWorld@ world, const string &in name, bool
         mass += organelle.organelle.mass;
     }
 
-    rigidBody.SetMass(mass);
+    assert(mass != 0, "creating cell with zero mass");
+
+    // We create physics body after adding the organelles as that
+    // requires the physics body to be recreated when any organelle is
+    // added (if the body already exists at that point) so we do it
+    // here after that
+    auto rigidBody = world.Create_Physics(entity, world, position);
+    rigidBody.CreatePhysicsBody(world.GetPhysicalWorld(), shape, mass,
+        world.GetPhysicalMaterial("cell"));
+
+    assert(rigidBody.Body !is null);
+
+    // Allowing the microbe to absorb all the compounds.
+    setupAbsorberForAllCompounds(compoundAbsorberComponent);
+
     _applyMicrobePhysicsBodySettings(world, rigidBody);
 
     microbeComponent.initialized = true;
     return entity;
 }
 
-void _applyMicrobePhysicsBodySettings(CellStageWorld@ world, Physics@ rigidBody){
-
-    // TODO: apply all these properties
-    rigidBody.SetLinearDamping(0.2);
-    // This is new
-    rigidBody.SetAngularDamping(0.2);
-
-    // rigidBody.properties.friction = 0.2;
-    // rigidBody.properties.mass = 0.0;
-    // rigidBody.properties.linearFactor = Vector3(1, 1, 0);
-    // rigidBody.properties.angularFactor = Vector3(0, 0, 1);
-    // rigidBody.properties.touch();
-
-    // auto reactionHandler = CollisionComponent();
-    // reactionHandler.addCollisionGroup("microbe");
-
-
+void _applyMicrobePhysicsBodySettings(CellStageWorld@ world, Physics@ rigidBody)
+{
     // Constraint to 2d movement
-    if(!rigidBody.CreatePlaneConstraint(world.GetPhysicalWorld(), Float3(0, 1, 0))){
-        LOG_ERROR("Failed to constraint cell to 2d plane");
-    }
+    rigidBody.Body.ConstraintMovementAxises();
+
+    rigidBody.Body.SetDamping(0.2, 0.2);
+
+    rigidBody.Body.SetFriction(0.2);
 }
 
 // Kills the microbe, releasing stored compounds into the enviroment
@@ -1076,6 +1049,10 @@ void kill(CellStageWorld@ world, ObjectID microbeEntity)
     }
 
     // Releasing all the agents.
+    // To not completely deadlock in this there is a maximum of 15 of these created
+    const int maxAgentsToShoot = 15;
+    int createdAgents = 0;
+
     auto storageTypes = microbeComponent.specialStorageOrganelles.getKeys();
     for(uint i = 0; i < storageTypes.length(); ++i){
         CompoundId compoundId = parseInt(storageTypes[i]);
@@ -1085,11 +1062,20 @@ void kill(CellStageWorld@ world, ObjectID microbeEntity)
             auto ejectedAmount = takeCompound(world, microbeEntity, compoundId, 5);
             auto direction = Float3(GetEngine().GetRandom().GetNumber(0.0f, 1.0f) * 2 - 1,
                 0, GetEngine().GetRandom().GetNumber(0.0f, 1.0f) * 2 - 1);
-            createAgentCloud(world, compoundId, position._Position, direction, ejectedAmount, 2000, microbeComponent.speciesName);
+
+            createAgentCloud(world, compoundId, position._Position, direction, ejectedAmount,
+                2000, microbeComponent.speciesName);
+            ++createdAgents;
+
+            if(createdAgents >= maxAgentsToShoot)
+                break;
+
             _amount = _amount - ejectedAmount;
         }
     }
+
     dictionary compoundsToRelease;
+
     // Eject the compounds that was in the microbe
     uint64 compoundCount = SimulationParameters::compoundRegistry().getSize();
     for(uint compoundId = 0; compoundId < compoundCount; ++compoundId){
@@ -1133,7 +1119,8 @@ void kill(CellStageWorld@ world, ObjectID microbeEntity)
     }
 
     // Play the death sound
-    GetEngine().GetSoundDevice().Play2DSoundEffect("Data/Sound/soundeffects/microbe-death.ogg");
+    GetEngine().GetSoundDevice().Play2DSoundEffect(
+        "Data/Sound/soundeffects/microbe-death.ogg");
 
 
     //TODO: Get this working
@@ -1141,28 +1128,30 @@ void kill(CellStageWorld@ world, ObjectID microbeEntity)
     //auto lifeTimeComponent = world.Create_TimedLifeComponent(deathAnimationEntity, 4000);
     //auto deathAnimSceneNode = world.Create_RenderNode(deathAnimationEntity);
     //auto deathAnimModel = world.Create_Model(deathAnimationEntity, deathAnimSceneNode.Node,
-   //     "MicrobeDeath.mesh");
+    //     "MicrobeDeath.mesh");
+    //deathAnimSceneNode.Node.setPosition(position._Position);
 
     LOG_WRITE("TODO: play animation deathAnimModel");
     // deathAnimModel.GraphicalObject.playAnimation("Death", false);
     //subtract population
     auto playerSpecies = MicrobeOperations::getSpeciesComponent(world, "Default");
-    if (!microbeComponent.isPlayerMicrobe && microbeComponent.speciesName != playerSpecies.name)
-        {
+    if (!microbeComponent.isPlayerMicrobe &&
+        microbeComponent.speciesName != playerSpecies.name)
+    {
         alterSpeciesPopulation(world,microbeEntity,-5);
-        }
-    //deathAnimSceneNode.Node.setPosition(position._Position);
+    }
+
 
     microbeComponent.dead = true;
     microbeComponent.deathTimer = 5000;
     microbeComponent.movementDirection = Float3(0,0,0);
 
-    rigidBodyComponent.ClearVelocity();
-
+    if(rigidBodyComponent.Body !is null)
+        rigidBodyComponent.Body.ClearVelocity();
 
     if(!microbeComponent.isPlayerMicrobe){
         // Destroy the physics state //
-        rigidBodyComponent.Release();
+        rigidBodyComponent.Release(world.GetPhysicalWorld());
     }
 
     if(microbeComponent.wasBeingEngulfed){
@@ -1174,20 +1163,20 @@ void kill(CellStageWorld@ world, ObjectID microbeEntity)
 }
 
 void alterSpeciesPopulation(CellStageWorld@ world, ObjectID microbeEntity, int popChange)
-    {
+{
     MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
-    world.GetScriptComponentHolder("MicrobeComponent").Find(microbeEntity));
+        world.GetScriptComponentHolder("MicrobeComponent").Find(microbeEntity));
     SpeciesComponent@ ourSpecies = getSpeciesComponent(world, microbeEntity);
-    if (ourSpecies!is null)
-        {
-        //LOG_INFO("Species Population Unaltered: "+cast<SpeciesSystem>(world.GetScriptSystem("SpeciesSystem")).getSpeciesPopulation(microbeComponent.speciesName));
-        cast<SpeciesSystem>(world.GetScriptSystem("SpeciesSystem")).updatePopulationForSpecies(microbeComponent.speciesName,popChange);
-        }
-        //LOG_INFO("Species Population altered: "+cast<SpeciesSystem>(world.GetScriptSystem("SpeciesSystem")).getSpeciesPopulation(microbeComponent.speciesName));
-    }
 
-// TODO: Confirm this method works
-void removeEngulfedEffect(CellStageWorld@ world, ObjectID microbeEntity){
+    if (ourSpecies !is null)
+    {
+        cast<SpeciesSystem>(world.GetScriptSystem("SpeciesSystem")).
+            updatePopulationForSpecies(microbeComponent.speciesName,popChange);
+    }
+}
+
+void removeEngulfedEffect(CellStageWorld@ world, ObjectID microbeEntity)
+{
     MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
         world.GetScriptComponentHolder("MicrobeComponent").Find(microbeEntity));
 
@@ -1208,17 +1197,18 @@ void removeEngulfedEffect(CellStageWorld@ world, ObjectID microbeEntity){
     }
 
     microbeComponent.hostileEngulfer=NULL_OBJECT;
-
 }
 
 // Sets the colour of the microbe's membrane.
-void setMembraneColour(CellStageWorld@ world, ObjectID microbeEntity, Float4 colour){
+void setMembraneColour(CellStageWorld@ world, ObjectID microbeEntity, Float4 colour)
+{
     auto membraneComponent = world.GetComponent_MembraneComponent(microbeEntity);
     membraneComponent.setColour(colour);
 }
 
 // Sets the type of the microbe's membrane.
-void setMembraneType(CellStageWorld@ world, ObjectID microbeEntity, MEMBRANE_TYPE type){
+void setMembraneType(CellStageWorld@ world, ObjectID microbeEntity, MEMBRANE_TYPE type)
+{
     auto membraneComponent = world.GetComponent_MembraneComponent(microbeEntity);
     membraneComponent.setMembraneType(type);
 }
