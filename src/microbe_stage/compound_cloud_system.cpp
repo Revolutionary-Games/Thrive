@@ -1072,7 +1072,7 @@ void
 {
     const auto height = density[0].size();
     for(size_t j = 0; j < height; j++) {
-        for(int i = 0; i < density.size(); i++) {
+        for(size_t i = 0; i < density.size(); i++) {
 
             int intensity = static_cast<int>(density[i][j]);
 

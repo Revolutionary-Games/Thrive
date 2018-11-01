@@ -43,7 +43,7 @@ additional tools:
   version 6.0.0. On Linux you can use your OS's package manager if it
   has a new enough version.
 - [nodejs](https://nodejs.org/en/download/). If you are on Linux you
-  should use your OS's package manager to install nodejs)
+  should use your OS's package manager to install nodejs.
 - eslint (with eslint-plugin-html) and stylelint. Install with npm
   once you have nodejs installed. On Windows: `npm install -g eslint
   stylelint eslint-plugin-html`. On Linux (you probably need to use
