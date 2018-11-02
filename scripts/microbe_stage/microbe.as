@@ -510,10 +510,6 @@ class MicrobeSystem : ScriptSystem{
         // First add drag based on the velocity
         const Float3 velocity = physics.Body.GetVelocity();
 
-        // LOG_WRITE("old cell velocity: " + velocity.X + ", " +
-        //     velocity.Y + ", " +
-        //     velocity.Z);
-
         // There should be no Y velocity so it should be zero
         const Float3 drag(velocity.X * CELL_DRAG_MULTIPLIER,
             velocity.Y * CELL_DRAG_MULTIPLIER,
@@ -526,13 +522,6 @@ class MicrobeSystem : ScriptSystem{
         else if (abs(velocity.X) >  .001){
             microbeComponent.queuedMovementForce.X += -velocity.X;
         }
-
-        //if(abs(drag.Y) >= CELL_REQUIRED_DRAG_BEFORE_APPLY){
-        //    microbeComponent.queuedMovementForce.Y += drag.Y;
-        //}
-        //else if (abs(velocity.Y) > .001){
-        //    microbeComponent.queuedMovementForce.Y += -velocity.Y;
-        //}
 
         if(abs(drag.Z) >= CELL_REQUIRED_DRAG_BEFORE_APPLY){
             microbeComponent.queuedMovementForce.Z += drag.Z;
@@ -573,19 +562,7 @@ class MicrobeSystem : ScriptSystem{
                 MicrobeOperations::takeCompound(world, microbeEntity,
                     SimulationParameters::compoundRegistry().getTypeId("atp"), cost);
 
-                const auto physPos = physics.Body.GetPosition();
-                // LOG_WRITE("cell pos: " + physPos.X + ", " +
-                //     physPos.Y + ", " +
-                //     physPos.Z);
                 physics.Body.GiveImpulse(microbeComponent.queuedMovementForce);
-
-                // Velocity after impulse
-                const Float3 velocity = physics.Body.GetVelocity();
-
-                // LOG_WRITE("velocity after: " + velocity.X + ", " +
-                //     velocity.Y + ", " +
-                //     velocity.Z);
-                // physics.Body.SetVelocity(microbeComponent.queuedMovementForce);
             }
         }
 
