@@ -120,6 +120,16 @@ setup command with the number being the number of cores you want to
 use, the default is to use all. Note: this may not work for the
 dependencies (and that needs fixing)
 
+### Unsupported Linuxes
+If you are trying to compile on an unsupported Linux OS you should run
+the setup like this:
+
+```
+ruby SetupThrive.rb --no-packagemanager --pretend-linux fedora
+```
+
+Note: you will have to manually install all the required packages.
+
 Done
 ----
 
