@@ -276,8 +276,8 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
     {
         if(microbeEntity != NULL_OBJECT){
 
-            //LOG_ERROR("PlacedOrganelle (" + organelle.name + ") not removed from microbe "
-            //    "before it was destroyed, microbe: " + microbeEntity);
+            LOG_ERROR("PlacedOrganelle (" + organelle.name + ") not removed from microbe "
+                "before it was destroyed, microbe: " + microbeEntity);
         }
     }
 
@@ -767,7 +767,7 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
     //  to fix that if this is needed (currently species are just destroyed so this isn't used)
     void onRemovedFromMicrobe(ObjectID microbe, PhysicsShape@ collisionShape)
     {
-        LOG_INFO("PlacedOrganelle (" + organelle.name + ") removed from: " + microbeEntity);
+        //LOG_INFO("PlacedOrganelle (" + organelle.name + ") removed from: " + microbeEntity);
         // PrintCallStack();
 
         //iterating on each OrganelleComponent
