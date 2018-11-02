@@ -276,8 +276,8 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
     {
         if(microbeEntity != NULL_OBJECT){
 
-            LOG_ERROR("PlacedOrganelle (" + organelle.name + ") not removed from microbe "
-                "before it was destroyed, microbe: " + microbeEntity);
+            //LOG_ERROR("PlacedOrganelle (" + organelle.name + ") not removed from microbe "
+            //    "before it was destroyed, microbe: " + microbeEntity);
         }
     }
 
