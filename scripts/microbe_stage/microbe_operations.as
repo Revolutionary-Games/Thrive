@@ -463,7 +463,7 @@ void ejectCompound(CellStageWorld@ world, ObjectID microbeEntity, CompoundId com
     //The distance is two hexes away from the back of the microbe.
     //This distance could be precalculated when adding/removing an organelle
     //for more efficient pooping.
-    auto ejectionDistance = (maxR + 3) * HEX_SIZE;
+    auto ejectionDistance = (maxR) * HEX_SIZE;
 
     auto angle = 180;
     // Find the direction the microbe is facing
@@ -631,7 +631,7 @@ void emitAgent(CellStageWorld@ world, ObjectID microbeEntity, CompoundId compoun
         auto ynew = membraneCoords.x * s + membraneCoords.z * c;
         // Find the direction the microbe is facing
 
-        auto ejectionDistanceZ = ((maxR+1) * HEX_SIZE/2)+HEX_SIZE/2;
+        auto ejectionDistanceZ = ((maxR) * HEX_SIZE/2)+HEX_SIZE/2;
 
         // Take the microbe angle into account so we get world relative degrees
         auto vec = ( microbeComponent.facingTargetPoint - cellPosition._Position);
@@ -648,13 +648,13 @@ void emitAgent(CellStageWorld@ world, ObjectID microbeEntity, CompoundId compoun
             {
                 createAgentCloud(world, compoundId, cellPosition._Position +
                     (Float3(xnew * -ejectionDistanceZ, 0, ynew * -ejectionDistanceZ)),
-                    direction, amountToEject * 10.0f, lifeTime, microbeComponent.speciesName);
+                    direction, amountToEject, lifeTime, microbeComponent.speciesName);
             }
             else
             {
                 createAgentCloud(world, compoundId, cellPosition._Position +
                     (Float3(xnew * ejectionDistanceZ, 0, ynew * ejectionDistanceZ)),
-                    direction, amountToEject * 10.0f, lifeTime, microbeComponent.speciesName);
+                    direction, amountToEject, lifeTime, microbeComponent.speciesName);
             }
 
             // The cooldown time is inversely proportional to the amount of agent vacuoles.

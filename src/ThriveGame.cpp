@@ -860,7 +860,7 @@ std::unique_ptr<Leviathan::PhysicsMaterialManager>
         .SetCallbacks(nullptr, cellHitFloatingOrganelle);
     // Agents
     cellMaterial->FormPairWith(*agentMaterial)
-        .SetCallbacks(agentCallback, cellHitAgent);
+        .SetCallbacks(agentCallback, nullptr);
     // Engulfing
     cellMaterial->FormPairWith(*cellMaterial)
         .SetCallbacks(cellOnCellAABBHitCallback, cellOnCellActualContact);
