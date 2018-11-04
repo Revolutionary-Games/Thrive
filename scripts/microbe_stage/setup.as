@@ -200,8 +200,17 @@ void cellHitAgent(GameWorld@ world, ObjectID firstEntity, ObjectID secondEntity)
         floatingEntity = secondEntity;
         cellEntity = firstEntity;
     }
+    AgentProperties@ propertiesComponent =
+        asCellWorld.GetComponent_AgentProperties(floatingEntity);
 
-    MicrobeOperations::damage(asCellWorld, cellEntity, double(OXY_TOXY_DAMAGE), "toxin");
+    MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
+        world.GetScriptComponentHolder("MicrobeComponent").Find(cellEntity));
+
+    if (propertiesComponent !is null && microbeComponent !is null){
+        if (propertiesComponent.getSpeciesName() != microbeComponent.speciesName){
+            MicrobeOperations::damage(asCellWorld, cellEntity, double(OXY_TOXY_DAMAGE), "toxin");
+            }
+        }
 
     world.QueueDestroyEntity(floatingEntity);
 }
