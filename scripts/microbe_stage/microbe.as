@@ -920,14 +920,12 @@ class MicrobeSystem : ScriptSystem{
         microbeComponent.reproductionStage = 0;
         microbeComponentCopy.reproductionStage = 0;
 
-        world.Create_SpawnedComponent(copyEntity, MICROBE_SPAWN_RADIUS);
+        world.Create_SpawnedComponent(copyEntity, MICROBE_SPAWN_RADIUS*MICROBE_SPAWN_RADIUS);
 
         //play the split sound
         GetEngine().GetSoundDevice().Play2DSoundEffect(
             "Data/Sound/soundeffects/reproduction.ogg");
 
-        rigidBodyComponent.JumpTo(position);
-        rigidBodyComponentCopy.JumpTo(positionCopy);
     }
 
     // Copies this microbe (if this isn't the player). The new microbe
