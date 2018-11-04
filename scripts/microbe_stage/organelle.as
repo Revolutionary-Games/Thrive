@@ -588,6 +588,10 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
             _needsColourUpdate = true;
 
         } else{
+            // Nucleus isn't scaled
+            if(organelle.hasComponent("NucleusOrganelle"))
+                return;
+
             // Scale the organelle model to reflect the new size.
             // Only if it is different
             const Float3 newScale = Float3(compoundBin, compoundBin, compoundBin) * HEX_SIZE;
@@ -595,7 +599,13 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
             RenderNode@ sceneNode = world.GetComponent_RenderNode(
                 organelleEntity);
 
-            if(sceneNode !is null && newScale != sceneNode.Scale && !organelle.hasComponent("NucleusOrganelle")){
+            if(sceneNode is null){
+
+                LOG_ERROR("Trying to scale organelle that is missing RenderNode component");
+                return;
+            }
+
+            if(newScale != sceneNode.Scale){
                 sceneNode.Scale = newScale;
                 sceneNode.Marked = true;
             }

@@ -1,5 +1,6 @@
 #include "microbe_editor_hud.as"
 #include "microbe_operations.as"
+#include "organelle_placement.as"
 /*
 ////////////////////////////////////////////////////////////////////////////////
 // MicrobeEditor
@@ -16,8 +17,8 @@ funcdef void EditorActionApply(EditorAction@ action, MicrobeEditor@ editor);
 
 class EditorAction{
 
-    EditorAction(int cost, EditorActionApply@ redo, EditorActionApply@ undo){
-
+    EditorAction(int cost, EditorActionApply@ redo, EditorActionApply@ undo)
+    {
         this.cost = cost;
         @this.redo = redo;
         @this.undo = undo;
@@ -26,6 +27,7 @@ class EditorAction{
     int cost;
     EditorActionApply@ redo;
     EditorActionApply@ undo;
+    dictionary data;
 }
 
 funcdef void PlacementFunctionType(const string &in actionName);
@@ -33,13 +35,14 @@ funcdef void PlacementFunctionType(const string &in actionName);
 
 class MicrobeEditor{
 
-    MicrobeEditor(MicrobeEditorHudSystem@ hud){
-
+    MicrobeEditor(MicrobeEditorHudSystem@ hud)
+    {
         @hudSystem = hud;
 
         // Register for organelle changing events
         @eventListener = EventListener(null, OnGenericEventCallback(this.onGeneric));
         eventListener.RegisterForEvent("MicrobeEditorOrganelleSelected");
+        eventListener.RegisterForEvent("MicrobeEditorClicked");
 
         placementFunctions = {
             {"nucleus", PlacementFunctionType(this.createNewMicrobe)},
@@ -56,12 +59,15 @@ class MicrobeEditor{
     }
 
     //! This is called each time the editor is entered so this needs to properly reset state
-    void init(){
+    void init()
+    {
         gridSceneNode = hudSystem.world.CreateEntity();
         auto node = hudSystem.world.Create_RenderNode(gridSceneNode);
         node.Scale = Float3(HEX_SIZE, 1, HEX_SIZE);
+        // Move to line up with the hexes
+        node.Node.setPosition(Float3(0.72f, 0, 0.18f));
         node.Marked = true;
-        // Does this generate the grid background? How do i move the background grid...?
+
         auto plane = hudSystem.world.Create_Plane(gridSceneNode, node.Node,
             "EditorGridMaterial", Ogre::Plane(Ogre::Vector3(0, 1, 0), 0), Float2(100, 100),
             // This is the UV coordinates direction
@@ -94,28 +100,8 @@ class MicrobeEditor{
         }
     }
 
-    void activate(){
-        // auto creatureState = g_luaEngine.getLuaStateFromWrapper(
-        //     Engine.playerData().activeCreatureGamestate());
-
-        // if (creatureState.name == CellStageWorld@.MICROBE.name ||
-        //     creatureState.name == CellStageWorld@.MICROBE_TUTORIAL.name){
-
-        //     //TODO: check to make certain this class is still valid
-        //     auto microbeStageMicrobe = Entity("player", CellStageWorld@.MICROBE.wrapper);
-
-        //     //TODO: find new equivalent of this
-        //     nextMicrobeEntity = Entity(
-        //         g_luaEngine.transferEntityGameState(microbeStageMicrobe.id,
-        //             creatureState.entityManager,
-        //             CellStageWorld@.MICROBE_EDITOR),
-        //         CellStageWorld@.MICROBE_EDITOR.wrapper);
-
-        //     //Transfer the compounds
-        //     MicrobeSystem.initializeMicrobe(nextMicrobeEntity, true);
-        //     MicrobeSystem.transferCompounds(microbeStageMicrobe, nextMicrobeEntity);
-
-        //     nextMicrobeEntity.stealName("working_microbe");
+    void activate()
+    {
         GetThriveGame().playerData().setBool("edited_microbe", true);
 
         const ObjectID microbe = GetThriveGame().playerData().activeCreature();
@@ -155,16 +141,16 @@ class MicrobeEditor{
         // cytoplasm.destroy()
         // }*/
 
+        // Get the species organelles to be edited
         auto@ templateOrganelles = cast<array<SpeciesStoredOrganelleType@>>(
             playerSpecies.organelles);
 
-        editedMicrobe.organelles.resize(0);
-
+        editedMicrobe.resize(0);
         for(uint i = 0; i < templateOrganelles.length(); ++i){
-            editedMicrobe.organelles.insertLast(cast<PlacedOrganelle>(templateOrganelles[i]));
+            editedMicrobe.insertLast(cast<PlacedOrganelle>(templateOrganelles[i]));
         }
 
-        LOG_INFO("Starting microbe editor with: " + editedMicrobe.organelles.length() +
+        LOG_INFO("Starting microbe editor with: " + editedMicrobe.length() +
             " organelles in the microbe");
 
         // /* TODO: fix this for loop as well
@@ -175,8 +161,8 @@ class MicrobeEditor{
         // }*/
     }
 
-    void update(int logicTime){
-
+    void update(int logicTime)
+    {
         // TODO: this is really dirty to call this all the time
         hudSystem.updateMutationPoints();
 
@@ -184,6 +170,9 @@ class MicrobeEditor{
 
         int q, r;
         this.getMouseHex(q, r);
+
+        // Can place stuff at all?
+        isPlacementProbablyValid = isValidPlacement(activeActionName, q, r, organelleRot);
 
         switch (symmetry)
         {
@@ -211,9 +200,9 @@ class MicrobeEditor{
         }
 
         // Show the current microbe
-        for(uint i = 0; i < editedMicrobe.organelles.length(); ++i){
+        for(uint i = 0; i < editedMicrobe.length(); ++i){
 
-            const PlacedOrganelle@ organelle = editedMicrobe.organelles[i];
+            const PlacedOrganelle@ organelle = editedMicrobe[i];
 
             const auto basePos = organelle.cartesianPosition;
 
@@ -221,17 +210,39 @@ class MicrobeEditor{
             // auto hexes = organelle.organelle.getRotatedHexes(organelle.rotation);
             auto hexes = organelle.organelle.getHexes();
 
+            // TODO: Cytoplasm doesn't have any hexes...
             for(uint a = 0; a < hexes.length(); ++a){
 
                 const Float3 pos = Hex::axialToCartesian(hexes[a].q, hexes[a].r) + basePos;
+
+                bool duplicate = false;
+
+                // Skip if there is something here already
+                for(uint alreadyUsed = 0; alreadyUsed < usedHoverHex; ++alreadyUsed){
+                    ObjectID hex = hudSystem.hoverHex[alreadyUsed];
+                    auto node = hudSystem.world.GetComponent_RenderNode(hex);
+                    if(pos == node.Node.getPosition()){
+                        duplicate = true;
+                        break;
+                    }
+                }
+
+                if(duplicate)
+                    continue;
+
+                // LOG_INFO("microbe hex of: " + i + "pos: " + pos.X + ", " + pos.Y + ", " + pos.Z);
 
                 ObjectID hex = hudSystem.hoverHex[usedHoverHex++];
                 auto node = hudSystem.world.GetComponent_RenderNode(hex);
                 node.Node.setPosition(pos);
                 node.Node.setOrientation(Ogre::Quaternion(Ogre::Degree(90),
-                Ogre::Vector3(0, 1, 0))*Ogre::Quaternion(Ogre::Degree(180),Ogre::Vector3(0, 0, 1)));
+                        Ogre::Vector3(0, 1, 0)) * Ogre::Quaternion(Ogre::Degree(180),
+                            Ogre::Vector3(0, 0, 1)));
                 node.Hidden = false;
                 node.Marked = true;
+
+                auto model = hudSystem.world.GetComponent_Model(hex);
+                model.GraphicalObject.setDatablockOrMaterialName("EditorHexMaterial");
             }
         }
 
@@ -239,53 +250,73 @@ class MicrobeEditor{
     }
 
 
-    private void _addOrganelle(PlacedOrganelle@ organelle){
-        enqueueAction(EditorAction(organelle.organelle.mpCost,
-                // redo
-                function(EditorAction@ action, MicrobeEditor@ editor){
-                    LOG_INFO("Redo called");
-                    // sceneNodeComponent = getComponent(currentMicrobeEntity, OgreSceneNodeComponent);
-                /*for(_, hex in pairs(organelle._hexes)){
-                    // Check if there is cytoplasm under this organelle.
-                    auto cytoplasm = MicrobeSystem.getOrganelleAt(this.currentMicrobeEntity, hex.q + q, hex.r + r)
-                    if(cytoplasm){
-                        if(cytoplasm.name == "cytoplasm"){
-                            MicrobeSystem.removeOrganelle(this.currentMicrobeEntity, hex.q + q, hex.r + r)
-                            sceneNodeComponent.transform.touch()
-                            this.organelleCount = this.organelleCount - 1
-                            auto s = encodeAxial(hex.q + q, hex.r + r)
-                            this.occupiedHexes[s].destroy()
-                        }
+    private void _addOrganelle(PlacedOrganelle@ organelle)
+    {
+        EditorAction@ action = EditorAction(organelle.organelle.mpCost,
+            // redo
+            function(EditorAction@ action, MicrobeEditor@ editor){
+
+                PlacedOrganelle@ organelle = cast<PlacedOrganelle>(action.data["organelle"]);
+
+                // Check if there is cytoplasm under this organelle.
+                auto hexes = organelle.organelle.getRotatedHexes(organelle.rotation);
+
+                for(uint i = 0; i < hexes.length(); ++i){
+
+                    int posQ = int(hexes[i].q) + organelle.q;
+                    int posR = int(hexes[i].r) + organelle.r;
+
+                    auto organelleHere = OrganellePlacement::getOrganelleAt(
+                        editor.editedMicrobe, Int2(posQ, posR));
+
+                    if(organelleHere !is null &&
+                        organelleHere.organelle.name != "cytoplasm")
+                    {
+                        LOG_INFO("replaced cytoplasm");
+                        OrganellePlacement::removeOrganelleAt(editor.editedMicrobe,
+                            Int2(posQ, posR));
                     }
-                    createHexComponent(hex.q + q, hex.r + r)
+                }
+
+                LOG_INFO("Placing organelle '" + organelle.organelle.name + "' at: " +
+                    organelle.q + ", " + organelle.r);
+                editor.editedMicrobe.insertLast(organelle);
+            },
+            // undo
+            function(EditorAction@ action, MicrobeEditor@ editor){
+
+                // TODO: this doesn't restore cytoplasm
+
+                LOG_INFO("Undo called");
+                // sceneNodeComponent = getComponent(currentMicrobeEntity, OgreSceneNodeComponent);
+                // MicrobeSystem.removeOrganelle(currentMicrobeEntity, q, r);
+                // sceneNodeComponent.transform.touch();
+                // --editor.organelleCount;
+                /*for(_, hex in pairs(organelle._hexes)){
+                local x, y = axialToCartesian(hex.q + q, hex.r + r)
+                auto s = encodeAxial(hex.q + q, hex.r + r)
+                this.occupiedHexes[s].destroy()
                 }*/
-                    // MicrobeSystem.addOrganelle(currentMicrobeEntity, q, r, rotation, organelle);
-                    // ++editor.organelleCount;
-                },
-                // undo
-                function(EditorAction@ action, MicrobeEditor@ editor){
-                    LOG_INFO("Undo called");
-                    // sceneNodeComponent = getComponent(currentMicrobeEntity, OgreSceneNodeComponent);
-                    // MicrobeSystem.removeOrganelle(currentMicrobeEntity, q, r);
-                    // sceneNodeComponent.transform.touch();
-                    // --editor.organelleCount;
-                    /*for(_, hex in pairs(organelle._hexes)){
-                    local x, y = axialToCartesian(hex.q + q, hex.r + r)
-                    auto s = encodeAxial(hex.q + q, hex.r + r)
-                    this.occupiedHexes[s].destroy()
-                    }*/
-                }));
+            });
+
+        action.data["organelle"] = organelle;
+
+        enqueueAction(action);
     }
 
-    void addOrganelle(const string &in organelleType){
+    void addOrganelle(const string &in organelleType)
+    {
         int q;
         int r;
         getMouseHex(q, r);
 
         if (symmetry == 0){
-            auto organelle = isValidPlacement(organelleType, q, r, organelleRot);
 
-            if (organelle !is null){
+            if (isValidPlacement(organelleType, q, r, organelleRot)){
+
+                auto organelle = PlacedOrganelle(getOrganelleDefinition(organelleType),
+                    q, r, organelleRot);
+
                 if (organelle.organelle.mpCost > mutationPoints){
                     return;
                 }
@@ -293,100 +324,86 @@ class MicrobeEditor{
                 _addOrganelle(organelle);
             }
         }
-        else if (symmetry == 1){
-            //Makes sure that the organelle doesn't overlap on the existing ones.
-            auto organelle = isValidPlacement(organelleType, q, r, organelleRot);
-            if (q != -1 * q || r != r + q){
-                //If two organelles aren't overlapping
+        // else if (symmetry == 1){
+        //     //Makes sure that the organelle doesn't overlap on the existing ones.
+        //     auto organelle = isValidPlacement(organelleType, q, r, organelleRot);
+        //     if (q != -1 * q || r != r + q){
+        //         //If two organelles aren't overlapping
 
-                auto organelle2 = isValidPlacement(organelleType, -1 * q, r + q,
-                    360 + (-1 * organelleRot));
+        //         auto organelle2 = isValidPlacement(organelleType, -1 * q, r + q,
+        //             360 + (-1 * organelleRot));
 
-                //If the organelles were successfully created and have enough MP...
-                if (organelle !is null && organelle2 !is null &&
-                    organelle.organelle.mpCost * 2 <= mutationPoints)
-                {
-                    //Add the organelles to the microbe.
-                    _addOrganelle(organelle);
-                    _addOrganelle(organelle2);
-                }
-            }
-            else{
-                if (organelle !is null && organelle.organelle.mpCost <= mutationPoints){
-                    //Add a organelle to the microbe.
-                    _addOrganelle(organelle);
-                }
-            }
-        }
-        else if (symmetry == 2){
-            auto organelle = isValidPlacement(organelleType, q, r, organelleRot);
-            if (q != -1 * q || r != r + q){ //If two organelles aren't overlapping, none are
-                auto organelle2 = isValidPlacement(organelleType, -1*q, r+q,
-                    360+(-1*organelleRot));
-                auto organelle3 = isValidPlacement(organelleType, -1*q, -1*r,
-                    (organelleRot+180) % 360);
-                auto organelle4 = isValidPlacement(organelleType, q, -1*(r+q),
-                    (540+(-1*organelleRot)) % 360);
+        //         //If the organelles were successfully created and have enough MP...
+        //         if (organelle !is null && organelle2 !is null &&
+        //             organelle.organelle.mpCost * 2 <= mutationPoints)
+        //         {
+        //             //Add the organelles to the microbe.
+        //             _addOrganelle(organelle);
+        //             _addOrganelle(organelle2);
+        //         }
+        //     }
+        //     else{
+        //         if (organelle !is null && organelle.organelle.mpCost <= mutationPoints){
+        //             //Add a organelle to the microbe.
+        //             _addOrganelle(organelle);
+        //         }
+        //     }
+        // }
+        // else if (symmetry == 2){
+        //     auto organelle = isValidPlacement(organelleType, q, r, organelleRot);
+        //     if (q != -1 * q || r != r + q){ //If two organelles aren't overlapping, none are
+        //         auto organelle2 = isValidPlacement(organelleType, -1*q, r+q,
+        //             360+(-1*organelleRot));
+        //         auto organelle3 = isValidPlacement(organelleType, -1*q, -1*r,
+        //             (organelleRot+180) % 360);
+        //         auto organelle4 = isValidPlacement(organelleType, q, -1*(r+q),
+        //             (540+(-1*organelleRot)) % 360);
 
-                if (organelle !is null && organelle2 !is null && organelle3 !is null &&
-                    organelle4 !is null && organelle.organelle.mpCost * 4 <= mutationPoints)
-                {
-                    _addOrganelle(organelle);
-                    _addOrganelle(organelle2);
-                    _addOrganelle(organelle3);
-                    _addOrganelle(organelle4);
-                }
-            } else{
-                if (organelle !is null && organelle.organelle.mpCost <= mutationPoints){
-                    _addOrganelle(organelle);
-                }
-            }
-        }
-        else if (symmetry == 3){
-            auto organelle = isValidPlacement(organelleType, q, r, organelleRot);
-            if (q != -1 * r || r != r + q){ //If two organelles aren't overlapping, none are
-                auto organelle2 = isValidPlacement(organelleType, -1*r, r+q,
-                    (organelleRot+60) % 360);
-                auto organelle3 = isValidPlacement(organelleType, -1*(r+q), q,
-                    (organelleRot+120) % 360);
-                auto organelle4 = isValidPlacement(organelleType, -1*q, -1*r,
-                    (organelleRot+180) % 360);
-                auto organelle5 = isValidPlacement(organelleType, r, -1*(r+q),
-                    (organelleRot+240) % 360);
-                auto organelle6 = isValidPlacement(organelleType, r+q, -1*q,
-                    (organelleRot+300) % 360);
+        //         if (organelle !is null && organelle2 !is null && organelle3 !is null &&
+        //             organelle4 !is null && organelle.organelle.mpCost * 4 <= mutationPoints)
+        //         {
+        //             _addOrganelle(organelle);
+        //             _addOrganelle(organelle2);
+        //             _addOrganelle(organelle3);
+        //             _addOrganelle(organelle4);
+        //         }
+        //     } else{
+        //         if (organelle !is null && organelle.organelle.mpCost <= mutationPoints){
+        //             _addOrganelle(organelle);
+        //         }
+        //     }
+        // }
+        // else if (symmetry == 3){
+        //     auto organelle = isValidPlacement(organelleType, q, r, organelleRot);
+        //     if (q != -1 * r || r != r + q){ //If two organelles aren't overlapping, none are
+        //         auto organelle2 = isValidPlacement(organelleType, -1*r, r+q,
+        //             (organelleRot+60) % 360);
+        //         auto organelle3 = isValidPlacement(organelleType, -1*(r+q), q,
+        //             (organelleRot+120) % 360);
+        //         auto organelle4 = isValidPlacement(organelleType, -1*q, -1*r,
+        //             (organelleRot+180) % 360);
+        //         auto organelle5 = isValidPlacement(organelleType, r, -1*(r+q),
+        //             (organelleRot+240) % 360);
+        //         auto organelle6 = isValidPlacement(organelleType, r+q, -1*q,
+        //             (organelleRot+300) % 360);
 
-                if (organelle !is null && organelle2 !is null && organelle3 !is null &&
-                    organelle4 !is null && organelle5 !is null && organelle6 !is null &&
-                    organelle.organelle.mpCost * 6 <= mutationPoints)
-                {
-                    _addOrganelle(organelle);
-                    _addOrganelle(organelle2);
-                    _addOrganelle(organelle3);
-                    _addOrganelle(organelle4);
-                    _addOrganelle(organelle5);
-                    _addOrganelle(organelle6);
-                }
-            } else{
-                if (organelle !is null && organelle.organelle.mpCost <= mutationPoints){
-                    _addOrganelle(organelle);
-                }
-            }
-        }
-    }
-
-    //TODO.find new equivalents of all these classes
-    void createHexComponent(double q, double r){
-        Hex::axialToCartesian(q, r);
-        int64 s = Hex::encodeAxial(q, r);
-        //occupiedHexes[s] = Entity(g_luaEngine.currentGameState.wrapper)
-        //auto sceneNode = OgreSceneNodeComponent()
-        //sceneNode.transform.position = Vector3(x, y, 0)
-        //sceneNode.transform.touch()
-        //sceneNode.meshName = "hex.mesh"
-        //sceneNode.transform.scale = Vector3(HEX_SIZE, HEX_SIZE, HEX_SIZE)
-        //this.occupiedHexes[s].addComponent(sceneNode)
-        //this.occupiedHexes[s].setVolatile(true)
+        //         if (organelle !is null && organelle2 !is null && organelle3 !is null &&
+        //             organelle4 !is null && organelle5 !is null && organelle6 !is null &&
+        //             organelle.organelle.mpCost * 6 <= mutationPoints)
+        //         {
+        //             _addOrganelle(organelle);
+        //             _addOrganelle(organelle2);
+        //             _addOrganelle(organelle3);
+        //             _addOrganelle(organelle4);
+        //             _addOrganelle(organelle5);
+        //             _addOrganelle(organelle6);
+        //         }
+        //     } else{
+        //         if (organelle !is null && organelle.organelle.mpCost <= mutationPoints){
+        //             _addOrganelle(organelle);
+        //         }
+        //     }
+        // }
     }
 
     // This can only work when creating a new cell so put this inside the new method once done
@@ -395,38 +412,38 @@ class MicrobeEditor{
     //     MicrobeSystem.addOrganelle(currentMicrobeEntity, 0, 0, 0, nucleusOrganelle);
     // }
 
+    void createNewMicrobe(const string &in)
+    {
+        mutationPoints = BASE_MUTATION_POINTS;
+        // organelleCount = 0;
+        EditorAction@ action = EditorAction(0,
+            // redo
+            function(EditorAction@ action, MicrobeEditor@ editor){
+                // auto microbeComponent = getComponent(this.currentMicrobeEntity, MicrobeComponent);
+                // speciesName = microbeComponent.speciesName;
+                // if (currentMicrobeEntity != null){
+                //     currentMicrobeEntity.destroy();
+                // }
+                /*for(_, cytoplasm in pairs(this.occupiedHexes)){
+                cytoplasm.destroy()
+                }*/
 
-    void createNewMicrobe(const string &in){
-    mutationPoints = BASE_MUTATION_POINTS;
-    // organelleCount = 0;
-    EditorAction@ action = EditorAction(0,
-        // redo
-        function(EditorAction@ action, MicrobeEditor@ editor){
-            // auto microbeComponent = getComponent(this.currentMicrobeEntity, MicrobeComponent);
-            // speciesName = microbeComponent.speciesName;
-            // if (currentMicrobeEntity != null){
-            //     currentMicrobeEntity.destroy();
-            // }
-            /*for(_, cytoplasm in pairs(this.occupiedHexes)){
-            cytoplasm.destroy()
-            }*/
-
-            // currentMicrobeEntity = MicrobeSystem.createMicrobeEntity(null, false, 'Editor_Microbe', true);
-            // microbeComponent = getComponent(currentMicrobeEntity, MicrobeComponent);
-            // auto sceneNodeComponent = getComponent(currentMicrobeEntity, OgreSceneNodeComponent);
-            // currentMicrobeEntity.stealName("working_microbe");
-            // sceneNodeComponent.transform.touch();
-            // microbeComponent.speciesName = speciesName;
-            // addNucleus();
-            // /*for(_, organelle in pairs(microbeComponent.organelles)){
-            // for(s, hex in pairs(organelle._hexes)){
-            // this.createHexComponent(hex.q + organelle.position.q, hex.r + organelle.position.r)
-            // }
-            // }*/
-             //activeActionName = "cytoplasm";
-            // Engine.playerData().setActiveCreature(this.currentMicrobeEntity.id, GameState.MICROBE_EDITOR.wrapper);
-        },
-        null);
+                // currentMicrobeEntity = MicrobeSystem.createMicrobeEntity(null, false, 'Editor_Microbe', true);
+                // microbeComponent = getComponent(currentMicrobeEntity, MicrobeComponent);
+                // auto sceneNodeComponent = getComponent(currentMicrobeEntity, OgreSceneNodeComponent);
+                // currentMicrobeEntity.stealName("working_microbe");
+                // sceneNodeComponent.transform.touch();
+                // microbeComponent.speciesName = speciesName;
+                // addNucleus();
+                // /*for(_, organelle in pairs(microbeComponent.organelles)){
+                // for(s, hex in pairs(organelle._hexes)){
+                // this.createHexComponent(hex.q + organelle.position.q, hex.r + organelle.position.r)
+                // }
+                // }*/
+                //activeActionName = "cytoplasm";
+                // Engine.playerData().setActiveCreature(this.currentMicrobeEntity.id, GameState.MICROBE_EDITOR.wrapper);
+            },
+            null);
 
         if (microbeHasBeenInEditor){
 
@@ -513,7 +530,8 @@ class MicrobeEditor{
     // to write things twice.  The cost of the action can also be
     // incorporated into this by making it a member of the parameter
     // table. It will be used automatically.
-    void enqueueAction(EditorAction@ action){
+    void enqueueAction(EditorAction@ action)
+    {
         if(action.cost != 0)
             if(!takeMutationPoints(action.cost))
                 return;
@@ -532,29 +550,32 @@ class MicrobeEditor{
     }
 
     //! \todo Clean this up
-    void getMouseHex(int &out qr, int &out rr){
-
+    void getMouseHex(int &out qr, int &out rr)
+    {
         float x, y;
         GetEngine().GetWindowEntity().GetNormalizedRelativeMouse(x, y);
-
 
         const auto ray = hudSystem.world.CastRayFromCamera(x, y);
 
         float distance;
         bool intersects = ray.intersects(Ogre::Plane(Ogre::Vector3(0, 1, 0), 0), distance);
 
-        //Get the position of the cursor in the plane that the microbes is floating in
+        // Get the position of the cursor in the plane that the microbes is floating in
         const auto rayPoint = ray.getPoint(distance);
 
-        //Convert to the hex the cursor is currently located over.
+        // LOG_WRITE("Mouse point: " + rayPoint.x + ", " + rayPoint.y + ", " + rayPoint.z);
+
+        // Convert to the hex the cursor is currently located over.
 
         //Negating X to compensate for the fact that we are looking at
         //the opposite side of the normal coordinate system
         const auto tmp1 = Hex::cartesianToAxial(rayPoint.x, -1*rayPoint.z);
-        //This requires a conversion to hex cube coordinates and back
-        //for proper rounding.
+
+        // This requires a conversion to hex cube coordinates and back
+        // for proper rounding.
         const auto qrrr = Hex::cubeToAxial(Hex::cubeHexRound(
                 Float3(Hex::axialToCube(tmp1.X, tmp1.Y))));
+
         qr = qrrr.X;
         rr = qrrr.Y;
 
@@ -562,32 +583,51 @@ class MicrobeEditor{
     }
 
 
-    PlacedOrganelle@ isValidPlacement(const string &in organelleType, int q, int r,
+    bool isValidPlacement(const string &in organelleType, int q, int r,
         int rotation)
     {
-        auto newOrganelle = PlacedOrganelle(getOrganelleDefinition(organelleType), q, r,
-            rotation);
+        auto organelle = getOrganelleDefinition(organelleType);
 
         bool empty = true;
         bool touching = false;
-        /*for (s, hex in pairs(OrganelleFactory.checkSize(data))){
-            auto organelle = MicrobeSystem.getOrganelleAt(currentMicrobeEntity, hex.q + q, hex.r + r);
-            if (organelle){
-                if (organelle.name != "cytoplasm"){
-                    empty = false ;
-                }
-            }
-            if  (surroundsOrganelle(hex.q + q, hex.r + r)){
-                touching = true;
-            }
-        }*/
 
-        if (empty && touching){
-            return newOrganelle;
+        Organelle@ toBePlacedOrganelle = getOrganelleDefinition(activeActionName);
+
+        assert(toBePlacedOrganelle !is null, "invalid action name in microbe editor");
+
+        auto hexes = toBePlacedOrganelle.getRotatedHexes(rotation);
+
+        for(uint i = 0; i < hexes.length(); ++i){
+
+            int posQ = int(hexes[i].q) + q;
+            int posR = int(hexes[i].r) + r;
+
+            auto organelleHere = OrganellePlacement::getOrganelleAt(editedMicrobe,
+                Int2(posQ, posR));
+
+            if(organelleHere !is null && organelleHere.organelle.name != "cytoplasm")
+            {
+                return false;
+            }
+
+            // Check touching
+            if(surroundsOrganelle(posQ, posR))
+                touching = true;
         }
-        else {
-            return null;
-        }
+
+        return touching;
+    }
+
+    //! Checks whether the hex at q, r has an organelle in its surroundeing hexes.
+    bool surroundsOrganelle(int q, int r)
+    {
+        return
+            OrganellePlacement::getOrganelleAt(editedMicrobe, Int2(q + 0, r - 1)) !is null ||
+            OrganellePlacement::getOrganelleAt(editedMicrobe, Int2(q + 1, r - 1)) !is null ||
+            OrganellePlacement::getOrganelleAt(editedMicrobe, Int2(q + 1, r + 0)) !is null ||
+            OrganellePlacement::getOrganelleAt(editedMicrobe, Int2(q + 0, r + 1)) !is null ||
+            OrganellePlacement::getOrganelleAt(editedMicrobe, Int2(q - 1, r + 1)) !is null ||
+            OrganellePlacement::getOrganelleAt(editedMicrobe, Int2(q - 1, r + 0)) !is null;
     }
 
     void loadMicrobe(int entityId){
@@ -656,13 +696,15 @@ class MicrobeEditor{
     }
 
     // Don't call directly. Should be used through actions
-    void removeOrganelle(const string &in){
+    void removeOrganelle(const string &in)
+    {
         int q, r;
         getMouseHex(q, r);
         removeOrganelleAt(q,r);
     }
 
-    void removeOrganelleAt(int q, int r){
+    void removeOrganelleAt(int q, int r)
+    {
         // auto organelle = MicrobeSystem.getOrganelleAt(currentMicrobeEntity, q, r);
 
         // //Don't remove nucleus
@@ -700,7 +742,8 @@ class MicrobeEditor{
 
 
     //The first parameter states which sceneNodes to use, starting with "start" and going up 6.
-    void renderHighlightedOrganelle(int start, double q, double r, int rotation){
+    void renderHighlightedOrganelle(int start, double q, double r, int rotation)
+    {
         //Render the hex under the cursor
         dictionary sceneNode = {};
 
@@ -734,8 +777,8 @@ class MicrobeEditor{
 
             for(uint i = 0; i < hexes.length(); ++i){
 
-                double posQ = hexes[i].q + q;
-                double posR = hexes[i].r + r;
+                int posQ = int(hexes[i].q) + q;
+                int posR = int(hexes[i].r) + r;
 
                 const Float3 pos = Hex::axialToCartesian(posQ, posR);
 
@@ -743,9 +786,27 @@ class MicrobeEditor{
                 auto node = hudSystem.world.GetComponent_RenderNode(hex);
                 node.Node.setPosition(pos);
                 node.Node.setOrientation(Ogre::Quaternion(Ogre::Degree(90),
-                Ogre::Vector3(0, 1, 0))*Ogre::Quaternion(Ogre::Degree(180),Ogre::Vector3(0, 0, 1)));
+                        Ogre::Vector3(0, 1, 0)) * Ogre::Quaternion(Ogre::Degree(180),
+                            Ogre::Vector3(0, 0, 1)));
                 node.Hidden = false;
                 node.Marked = true;
+
+                // Detect can it be placed there
+                auto organelleHere = OrganellePlacement::getOrganelleAt(editedMicrobe,
+                    Int2(posQ, posR));
+
+                auto model = hudSystem.world.GetComponent_Model(hex);
+
+                if(isPlacementProbablyValid == false ||
+                    (organelleHere !is null && organelleHere.organelle.name != "cytoplasm"))
+                {
+                    // Invalid place
+                    model.GraphicalObject.setDatablockOrMaterialName(
+                        "EditorHexMaterialInvalid");
+                } else {
+                    model.GraphicalObject.setDatablockOrMaterialName(
+                        "EditorHexMaterial");
+                }
             }
 
 
@@ -779,29 +840,21 @@ class MicrobeEditor{
         }
     }
 
-    //checks whether the hex at q, r has an organelle in its surroundeing hexes.
-    bool surroundsOrganelle(int q, int r){
-    //     return  (MicrobeSystem.getOrganelleAt(currentMicrobeEntity, q + 0, r - 1) ||
-    //     MicrobeSystem.getOrganelleAt(currentMicrobeEntity, q + 1, r - 1) ||
-    // MicrobeSystem.getOrganelleAt(currentMicrobeEntity, q + 1, r + 0) ||
-    // MicrobeSystem.getOrganelleAt(currentMicrobeEntity, q + 0, r + 1) ||
-    // MicrobeSystem.getOrganelleAt(currentMicrobeEntity, q - 1, r + 1) ||
-    // MicrobeSystem.getOrganelleAt(currentMicrobeEntity, q - 1, r + 0));
-        return false;
-    }
-
-    void setActiveAction(const string &in actionName){
+    void setActiveAction(const string &in actionName)
+    {
         activeActionName = actionName;
     }
 
-    void performLocationAction(){
+    void performLocationAction()
+    {
         if (activeActionName.length() > 0){
             auto func = cast<PlacementFunctionType>(placementFunctions[activeActionName]);
             func(activeActionName);
         }
     }
 
-    bool takeMutationPoints(int amount){
+    bool takeMutationPoints(int amount)
+    {
         if (amount <= mutationPoints){
             mutationPoints = mutationPoints - amount;
             return true;
@@ -815,8 +868,8 @@ class MicrobeEditor{
         return mutationPoints;
     }
 
-    int onGeneric(GenericEvent@ event){
-
+    int onGeneric(GenericEvent@ event)
+    {
         auto type = event.GetType();
 
         if(type == "MicrobeEditorOrganelleSelected")
@@ -825,6 +878,19 @@ class MicrobeEditor{
 
             activeActionName = string(vars.GetSingleValueByName("organelle"));
             LOG_INFO("Editor action is now: " + activeActionName);
+            return 1;
+        } else if(type == "MicrobeEditorClicked"){
+
+            NamedVars@ vars = event.GetNamedVars();
+
+            bool secondary = bool(vars.GetSingleValueByName("secondary"));
+
+            if(!secondary){
+                performLocationAction();
+            } else {
+                removeOrganelle("");
+            }
+
             return 1;
         }
 
@@ -835,6 +901,11 @@ class MicrobeEditor{
     //! This is used to keep track of used hover organelles
     private uint usedHoverHex = 0;
 
+    //! This is a global assesment if the currently being placed
+    //! organelle is valid (if not all hover hexes will be shown as
+    //! invalid)
+    bool isPlacementProbablyValid = false;
+
     // where all user actions will  be registered
     private array<EditorAction@> actionHistory;
     // marks the last action that has been done (not undone, but
@@ -843,7 +914,9 @@ class MicrobeEditor{
     private string activeActionName;
     // This is the container that has the edited organelles in it.
     // This is populated when entering and used to update the player's species template on exit
-    private OrganelleContainer editedMicrobe;
+    // TODO: rename to editedMicrobeOrganelles
+    // This is not private because anonymous callbacks want to access this
+    array<PlacedOrganelle@> editedMicrobe;
 
     // private array<SpeciesStoredOrganelleType@> currentOrganelles;
     // private int organelleCount = 0;

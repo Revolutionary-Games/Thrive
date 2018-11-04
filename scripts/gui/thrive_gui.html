@@ -8,7 +8,8 @@
     <link rel="stylesheet" href="thrive_style.css">
     <script src="../../JSVendor/jquery-3.3.1.min.js"></script>
   </head>
-  <body>
+  <!-- This sizing is needed here for the microbe editor click detector to have 100% height -->
+  <body style="width: 100%; height: 100%;">
     
     <script type="module">
       import * as common from "./gui_common.mjs";
@@ -274,7 +275,12 @@ Be wary because your competitors are evolving alongside you.
 
     
     <!-- Microbe editor GUI -->
-    <div id="topLevelMicrobeEditor" style="display: none;">
+    <div id="topLevelMicrobeEditor" style="display: none; height: 100%;">
+
+      <!-- This box is just for detecting pressing the mouse buttons
+           inside the editor and sending an event for doing the placing -->
+      <div id="microbeEditorClickDetector"
+           style="position: relative; width: 100%; height: 100%;"></div>
 	
       <!-- Top left box -->
 	  <div id="MPBox" class="Panel">

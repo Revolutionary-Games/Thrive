@@ -13,26 +13,6 @@ export function doEnterMicrobeEditor(){
     document.getElementById("topLevelMicrobeStage").style.display = "none";
     document.getElementById("topLevelMicrobeEditor").style.display = "block";
 
-    // Pause Menu Clicked
-    document.getElementById("mainMenuButtonEditor").addEventListener("click",
-        onMenuClickedEditor, true);
-
-    // Pause Menu closed
-    document.getElementById("resumeButtonEditor").addEventListener("click",
-        onResumeClickedEditor, true);
-
-    // Quit Button Clicked
-    document.getElementById("quitButtonEditor").addEventListener("click",
-        quitGameEditor, true);
-
-    // Help Button Clicked
-    document.getElementById("helpButtonEditor").addEventListener("click",
-        openHelpEditor, true);
-
-    // Close Help Button Clicked
-    document.getElementById("closeHelpEditor").addEventListener("click",
-        closeHelpEditor, true);
-
     window.setTimeout(() => {
         // Enable finish button
         onFinishButtonEnable();
@@ -41,10 +21,53 @@ export function doEnterMicrobeEditor(){
     // Do setup
     if(!microbeEditorSetup){
 
+        // Pause Menu Clicked
+        document.getElementById("mainMenuButtonEditor").addEventListener("click",
+            onMenuClickedEditor, true);
+
+        // Pause Menu closed
+        document.getElementById("resumeButtonEditor").addEventListener("click",
+            onResumeClickedEditor, true);
+
+        // Quit Button Clicked
+        document.getElementById("quitButtonEditor").addEventListener("click",
+            quitGameEditor, true);
+
+        // Help Button Clicked
+        document.getElementById("helpButtonEditor").addEventListener("click",
+            openHelpEditor, true);
+
+        // Close Help Button Clicked
+        document.getElementById("closeHelpEditor").addEventListener("click",
+            closeHelpEditor, true);
+
+
         document.getElementById("microbeEditorFinishButton").addEventListener("click",
             onFinishButtonClicked, true);
 
         if(common.isInEngine()){
+
+            // The editor area was clicked, do send press to AngelScript
+            document.getElementById("microbeEditorClickDetector").addEventListener("click",
+                (event) => {
+                    event.stopPropagation();
+                    Leviathan.CallGenericEvent("MicrobeEditorClicked", {secondary: false});
+                    return true;
+                }, false);
+
+            document.getElementById("microbeEditorClickDetector").
+                addEventListener("contextmenu",
+                    (event) => {
+                        event.preventDefault();
+                        event.stopPropagation();
+                        Leviathan.CallGenericEvent("MicrobeEditorClicked", {secondary: true});
+                        return true;
+                    }, false);
+
+
+
+            // MicrobeEditorClicked
+
 
             // Event for restoring the microbe GUI
             Leviathan.OnGeneric("MicrobeEditorExited", doExitMicrobeEditor);
