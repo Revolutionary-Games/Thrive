@@ -1,7 +1,8 @@
 // Operations on microbe entities
 #include "biome.as"
-#include "species_system.as"
+#include "organelle_placement.as"
 #include "setup.as"
+#include "species_system.as"
 
 namespace MicrobeOperations{
 
@@ -68,17 +69,7 @@ PlacedOrganelle@ getOrganelleAt(CellStageWorld@ world, ObjectID microbeEntity, I
     MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
         world.GetScriptComponentHolder("MicrobeComponent").Find(microbeEntity));
 
-    for(uint i = 0; i < microbeComponent.organelles.length(); ++i){
-        auto organelle = microbeComponent.organelles[i];
-
-        auto localQ = hex.X - organelle.q;
-        auto localR = hex.Y - organelle.r;
-        if(organelle.organelle.getHex(localQ, localR) !is null){
-            return organelle;
-        }
-    }
-
-    return null;
+    return OrganellePlacement::getOrganelleAt(microbeComponent.organelles, hex);
 }
 
 // Removes the organelle at a hex cell
@@ -106,13 +97,8 @@ bool removeOrganelle(CellStageWorld@ world, ObjectID microbeEntity, Int2 hex)
     auto rigidBodyComponent = world.GetComponent_Physics(microbeEntity);
     auto membraneComponent = world.GetComponent_MembraneComponent(microbeEntity);
 
-    for(uint i = 0; i < microbeComponent.organelles.length(); ++i){
-
-        if(microbeComponent.organelles[i] is organelle){
-
-            microbeComponent.organelles.removeAt(i);
-            break;
-        }
+    if(!OrganellePlacement::removeOrganelleAt(microbeComponent.organelles, hex)){
+        LOG_ERROR("Organelle remove failed (OrganellePlacement::removeOrganelleAt)");
     }
 
     auto position = world.GetComponent_Position(microbeEntity);
@@ -298,6 +284,8 @@ void respawnPlayer(CellStageWorld@ world)
     // Decrease the population by 10
     playerSpecies.population -= 10;
 
+    // TODO: we already check if the player is extinct here. That logic shouldn't
+    // be duplicated in the GUI
     // Creates an event that calls the function in javascript that checks extinction events
     GenericEvent@ checkExtinction = GenericEvent("CheckExtinction");
     NamedVars@ vars = checkExtinction.GetNamedVars();

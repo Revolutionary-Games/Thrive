@@ -13,6 +13,7 @@ o GameModule "microbe_stage"{
         organelle_table.as
         organelle.as
         organelle_component.as
+        organelle_placement.as
         microbe_operations.as
         microbe.as
         species_system.as
@@ -31,7 +32,7 @@ o GameModule "microbe_stage"{
     }
 
     t import{
-        microbe_common
+        // microbe_common
     }
     
     l properties{

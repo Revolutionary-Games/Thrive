@@ -2,7 +2,6 @@
 #include "hex.as"
 #include "microbe_operations.as"
 #include "microbe_stage_hud.as"
-#include "organelle_container.as"
 #include "species_system.as"
 
 //! Why is this needed? Is it for(the future when we don't want to
@@ -25,7 +24,7 @@ void setupAbsorberForAllCompounds(CompoundAbsorberComponent@ absorber)
 // Holds data common to all microbes. You probably shouldn't use this directly,
 // use MicrobeOperations instead.
 ////////////////////////////////////////////////////////////////////////////////
-class MicrobeComponent : ScriptComponent, OrganelleContainer{
+class MicrobeComponent : ScriptComponent{
 
     //! This detaches all still attached organelles
     //! \todo There might be a more graceful way to do this
@@ -127,6 +126,10 @@ class MicrobeComponent : ScriptComponent, OrganelleContainer{
     bool dead = false;
     uint deathTimer = 0;
     Float4 speciesColour = Float4(0, 0, 0, 0);
+
+    // The organelles in this microbe
+    array<PlacedOrganelle@> organelles;
+
     // Organelles with complete resonsiblity for a specific compound
     // (such as agentvacuoles)
     // Keys are the CompoundId of the agent and the value is int
@@ -880,8 +883,8 @@ class MicrobeSystem : ScriptSystem{
 
 
         // Create the one daughter cell.
-        auto copyEntity = MicrobeOperations::spawnMicrobe(world, position._Position, microbeComponent.speciesName,
-        true);
+        auto copyEntity = MicrobeOperations::spawnMicrobe(world, position._Position,
+            microbeComponent.speciesName, true);
 
         // Grab its microbe_component
         MicrobeComponent@ microbeComponentCopy = cast<MicrobeComponent>(
@@ -903,7 +906,7 @@ class MicrobeSystem : ScriptSystem{
 
             if(amount != 0){
                 MicrobeOperations::takeCompound(world, microbeEntity, compoundID,
-                    amount / 2/*, false*/ );
+                    amount / 2 /*, false*/ );
                 // Not sure what the false here means, it wasn't a
                 // parameter in the original lua function so it did
                 // nothing even then?
@@ -915,12 +918,11 @@ class MicrobeSystem : ScriptSystem{
         microbeComponent.reproductionStage = 0;
         microbeComponentCopy.reproductionStage = 0;
 
-        world.Create_SpawnedComponent(copyEntity, MICROBE_SPAWN_RADIUS*MICROBE_SPAWN_RADIUS);
+        world.Create_SpawnedComponent(copyEntity, MICROBE_SPAWN_RADIUS * MICROBE_SPAWN_RADIUS);
 
-        //play the split sound
+        // Play the split sound
         GetEngine().GetSoundDevice().Play2DSoundEffect(
             "Data/Sound/soundeffects/reproduction.ogg");
-
     }
 
     // Copies this microbe (if this isn't the player). The new microbe

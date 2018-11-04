@@ -739,22 +739,24 @@ void
         return;
     }
 }
-
+// ------------------------------------ //
+//! \note This isn't actually called
 void
     cellHitAgent(Leviathan::PhysicalWorld& physicalWorld,
         Leviathan::PhysicsBody& first,
         Leviathan::PhysicsBody& second)
 {
-    GameWorld* gameWorld = physicalWorld.GetGameWorld();
+    // GameWorld* gameWorld = physicalWorld.GetGameWorld();
 
-    ScriptRunningSetup setup("cellHitAgent");
+    // ScriptRunningSetup setup("cellHitAgent");
 
-    auto result = ThriveGame::Get()->getMicrobeScripts()->ExecuteOnModule<void>(
-        setup, false, gameWorld, first.GetOwningEntity(),
-        second.GetOwningEntity());
+    // auto result =
+    // ThriveGame::Get()->getMicrobeScripts()->ExecuteOnModule<void>(
+    //     setup, false, gameWorld, first.GetOwningEntity(),
+    //     second.GetOwningEntity());
 
-    if(result.Result != SCRIPT_RUN_RESULT::Success)
-        LOG_ERROR("Failed to run script side cellHitAgent");
+    // if(result.Result != SCRIPT_RUN_RESULT::Success)
+    //     LOG_ERROR("Failed to run script side cellHitAgent");
 }
 
 void
@@ -822,6 +824,7 @@ bool
 
     return returned.Value;
 }
+
 
 void
     cellOnCellActualContact(Leviathan::PhysicalWorld& physicalWorld,
