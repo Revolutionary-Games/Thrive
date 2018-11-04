@@ -258,8 +258,8 @@ void setupOrganelles(){
     nucleusParameters.prokaryoteChance = 0; // Not randomly generated.
     nucleusParameters.mpCost = 0; //it's not supossed to be purchased.
     nucleusParameters.initialComposition = {
-        {"phosphates", 10},
-        {"ammonia", 10}
+        {"phosphates", 2},
+        {"ammonia", 2}
     };
     nucleusParameters.components = {
         nucleusComponentFactory,
@@ -295,8 +295,8 @@ void setupOrganelles(){
     cytoplasmParameters.prokaryoteChance = 1;
     cytoplasmParameters.mpCost = 5;
     cytoplasmParameters.initialComposition = {
-        {"phosphates", 5},
-        {"ammonia", 5}
+        {"phosphates", 2},
+        {"ammonia", 2}
     };
     cytoplasmParameters.components = {
         processorOrganelleFactory(1.0),
@@ -322,8 +322,8 @@ void setupOrganelles(){
     chloroplastParameters.prokaryoteChance = 0;
     chloroplastParameters.mpCost = 20;
     chloroplastParameters.initialComposition = {
-        {"phosphates", 5},
-        {"ammonia", 5}
+        {"phosphates", 2},
+        {"ammonia", 2}
     };
     chloroplastParameters.components = {
         processorOrganelleFactory(1.0),
@@ -352,8 +352,8 @@ void setupOrganelles(){
     oxytoxyParameters.prokaryoteChance = 0;
     oxytoxyParameters.mpCost = 40;
     oxytoxyParameters.initialComposition = {
-        {"phosphates", 5},
-        {"ammonia", 5}
+        {"phosphates", 2},
+        {"ammonia", 2}
     };
     oxytoxyParameters.components = {
     //this can't hold since it is a vacuole
@@ -380,8 +380,8 @@ void setupOrganelles(){
     mitochondrionParameters.prokaryoteChance = 0;
     mitochondrionParameters.mpCost = 20;
     mitochondrionParameters.initialComposition = {
-        {"phosphates", 5},
-        {"ammonia", 5}
+        {"phosphates", 2},
+        {"ammonia", 2}
     };
     mitochondrionParameters.components = {
         processorOrganelleFactory(1.0f),
@@ -409,8 +409,8 @@ void setupOrganelles(){
     vacuoleParameters.prokaryoteChance = 0;
     vacuoleParameters.mpCost = 15;
     vacuoleParameters.initialComposition = {
-        {"phosphates", 5},
-        {"ammonia", 5}
+        {"phosphates", 2},
+        {"ammonia", 2}
     };
     vacuoleParameters.components = {
         storageOrganelleFactory(25.0f)
@@ -432,8 +432,8 @@ void setupOrganelles(){
     flagellumParameters.prokaryoteChance = 2;
     flagellumParameters.mpCost = 25;
     flagellumParameters.initialComposition = {
-        {"phosphates", 5},
-        {"ammonia", 5}
+        {"phosphates", 2},
+        {"ammonia", 2}
     };
     flagellumParameters.components = {
         movementOrganelleFactory(20, 300),
@@ -487,8 +487,8 @@ void setupOrganelles(){
     nitrogenPlastid.prokaryoteChance = 0;
     nitrogenPlastid.mpCost = 20;
     nitrogenPlastid.initialComposition = {
-        {"phosphates", 5},
-        {"ammonia", 5}
+        {"phosphates", 2},
+        {"ammonia", 2}
     };
     nitrogenPlastid.components = {
         processorOrganelleFactory(1.0f),
