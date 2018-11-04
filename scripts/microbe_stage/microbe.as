@@ -878,25 +878,20 @@ class MicrobeSystem : ScriptSystem{
         auto position = world.GetComponent_Position(microbeEntity);
         auto rigidBodyComponent = world.GetComponent_Physics(microbeEntity);
 
+
         // Create the one daughter cell.
-        auto copyEntity = MicrobeOperations::_createMicrobeEntity(world, true,
-            microbeComponent.speciesName, false);
+        auto copyEntity = MicrobeOperations::spawnMicrobe(world, position._Position, microbeComponent.speciesName,
+        true);
+
+        // Grab its microbe_component
         MicrobeComponent@ microbeComponentCopy = cast<MicrobeComponent>(
             world.GetScriptComponentHolder("MicrobeComponent").Find(copyEntity));
-        auto rigidBodyComponentCopy = world.GetComponent_Physics(copyEntity);
-        auto positionCopy = world.GetComponent_Position(copyEntity);
 
         //Separate the two cells.
-        positionCopy._Position = Float3(position._Position.X -
-            membraneComponent.getCellDimensions() / 2,
-            0, position._Position.Z);
-        rigidBodyComponentCopy.JumpTo(positionCopy);
-
         position._Position = Float3(position._Position.X +
-            membraneComponent.getCellDimensions() / 2,
+            membraneComponent.getCellDimensions(),
             0, position._Position.Z);
         rigidBodyComponent.JumpTo(position);
-
 
         // Split the compounds evenly between the two cells.
         // Will also need to be changed for individual storage
