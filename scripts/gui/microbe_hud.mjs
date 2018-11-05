@@ -219,7 +219,11 @@ function closeHelp(){
         "Fun Fact, The Ameoba hunts and catches prey with 'legs' made of " +
             "cytoplasm called pseudopods, eventually we want those in thrive.",
         "Heres a tip, Watch out for larger cells and large bacteria, " +
-            "it's not fun to be digested,  and they will eat you."
+            "it's not fun to be digested,  and they will eat you.",
+        "Heres a tip, Osmoregulation costs 0.2 ATP per second per organelle your cell has, " +
+            " each empty hex of cytoplasm generates 0.4 ATP per second aswell," +
+            "which means if you are losing ATP due to osmoregulation just add a couple" +
+            " empty hexes cytoplasm or remove some organelles"
     ];
 
 
