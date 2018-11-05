@@ -154,7 +154,21 @@ void onReturnFromEditor(CellStageWorld@ world)
     // Reset the player cell to be the same as the species template
     Species::restoreOrganelleLayout(world, player, microbeComponent, playerSpecies);
 
-    // TODO: the player compound amount should be halved
+    //Reset Players reproduction
+    microbeComponent.reproductionStage=0;
+
+    // Halve the players COmpounds
+     for(uint64 compoundID = 0; compoundID <
+                SimulationParameters::compoundRegistry().getSize(); ++compoundID)
+        {
+            auto amount = MicrobeOperations::getCompoundAmount(world, player,
+                compoundID);
+
+            if(amount != 0){
+                MicrobeOperations::takeCompound(world, player, compoundID,
+                    amount / 2 /*, false*/ );
+            }
+        }
 }
 
 // TODO: also put these physics callback somewhere more sensible (maybe physics_callbacks.as?)

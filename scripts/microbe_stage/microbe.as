@@ -330,7 +330,7 @@ class MicrobeSystem : ScriptSystem{
 
         //There is an osmoregulation cost
         auto osmoCost = (ATP_COST_FOR_OSMOREGULATION * microbeComponent.organelles.length()) /
-            1000 * logicTime;
+            (1000.0f * logicTime);
         MicrobeOperations::takeCompound(world, microbeEntity,
             SimulationParameters::compoundRegistry().getTypeId("atp"), osmoCost);
 
@@ -933,11 +933,9 @@ class MicrobeSystem : ScriptSystem{
             world.GetScriptComponentHolder("MicrobeComponent").Find(microbeEntity));
 
         if(microbeComponent.isPlayerMicrobe){
-
             // The player doesn't split automatically
-            showReproductionDialog(world);
             microbeComponent.reproductionStage = 0;
-
+            showReproductionDialog(world);
         } else {
 
             // Return the first cell to its normal, non duplicated cell arrangement.

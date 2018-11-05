@@ -1,7 +1,8 @@
 // Main menu scripts are here
 import * as common from "./gui_common.mjs";
 import * as microbe_hud from "./microbe_hud.mjs";
-// import {doEnterMicrobeEditor} from "./microbe_editor.mjs";
+
+// Import {doEnterMicrobeEditor} from "./microbe_editor.mjs";
 
 let jams = null;
 
@@ -70,6 +71,7 @@ export function runMenuSetup(){
 
     // Test going to the editor (also uncomment the function call above)
     Thrive.editorButtonClicked();
+
     // For in-browser preview
     // doEnterMicrobeEditor();
 
