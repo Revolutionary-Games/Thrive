@@ -204,16 +204,14 @@ class MicrobeEditor{
 
             const PlacedOrganelle@ organelle = editedMicrobe[i];
 
-            const auto basePos = organelle.cartesianPosition;
-
             // TODO: not sure if this rotation should be here
             // auto hexes = organelle.organelle.getRotatedHexes(organelle.rotation);
             auto hexes = organelle.organelle.getHexes();
 
-            // TODO: Cytoplasm doesn't have any hexes...
             for(uint a = 0; a < hexes.length(); ++a){
 
-                const Float3 pos = Hex::axialToCartesian(hexes[a].q, hexes[a].r) + basePos;
+                const Float3 pos = Hex::axialToCartesian(hexes[a].q + organelle.q,
+                    hexes[a].r + organelle.r);
 
                 bool duplicate = false;
 
@@ -230,8 +228,6 @@ class MicrobeEditor{
                 if(duplicate)
                     continue;
 
-                // LOG_INFO("microbe hex of: " + i + "pos: " + pos.X + ", " + pos.Y + ", " + pos.Z);
-
                 ObjectID hex = hudSystem.hoverHex[usedHoverHex++];
                 auto node = hudSystem.world.GetComponent_RenderNode(hex);
                 node.Node.setPosition(pos);
@@ -245,8 +241,6 @@ class MicrobeEditor{
                 model.GraphicalObject.setDatablockOrMaterialName("EditorHexMaterial");
             }
         }
-
-
     }
 
 
@@ -270,7 +264,7 @@ class MicrobeEditor{
                         editor.editedMicrobe, Int2(posQ, posR));
 
                     if(organelleHere !is null &&
-                        organelleHere.organelle.name != "cytoplasm")
+                        organelleHere.organelle.name == "cytoplasm")
                     {
                         LOG_INFO("replaced cytoplasm");
                         OrganellePlacement::removeOrganelleAt(editor.editedMicrobe,
@@ -299,7 +293,7 @@ class MicrobeEditor{
                 }*/
             });
 
-        action.data["organelle"] = organelle;
+        @action.data["organelle"] = organelle;
 
         enqueueAction(action);
     }
