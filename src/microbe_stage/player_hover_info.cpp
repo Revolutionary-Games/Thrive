@@ -1,13 +1,18 @@
 #include "microbe_stage/player_hover_info.h"
 
+#include "ThriveGame.h"
+#include "engine/player_data.h"
 #include "microbe_stage/compound_cloud_system.h"
+#include "microbe_stage/membrane_system.h"
 #include "microbe_stage/player_microbe_control.h"
 #include "microbe_stage/simulation_parameters.h"
 
 #include "generated/cell_stage_world.h"
 
 #include <Engine.h>
+#include <Entities/ScriptComponentHolder.h>
 #include <Events/EventHandler.h>
+#include <Script/ScriptTypeResolver.h>
 
 #include <iomanip>
 
@@ -71,7 +76,72 @@ void
         }
     }
 
-    // TODO: hovered microbes
+    // Hovered over cells
+    auto hovered = std::make_shared<NamedVariableList>("hoveredCells");
+
+    auto microbeComponents = world.GetScriptComponentHolder("MicrobeComponent");
+
+    // The world will keep this alive (this is released immediately to reduce
+    // chance of leaks)
+    microbeComponents->Release();
+
+    const auto stringType =
+        Leviathan::AngelScriptTypeIDResolver<std::string>::Get(
+            Leviathan::GetCurrentGlobalScriptExecutor());
+
+    // This is used to skip the player
+    auto controlledEntity = ThriveGame::Get()->playerData().activeCreature();
+
+    auto& index = CachedComponents.GetIndex();
+    for(auto iter = index.begin(); iter != index.end(); ++iter) {
+
+        const float distance =
+            (std::get<1>(*iter->second).Members._Position - lookPoint).Length();
+
+        // Find only cells that have the mouse position within their membrane
+        if(distance >
+            std::get<0>(*iter->second).calculateEncompassingCircleRadius())
+            continue;
+
+        // Skip player
+        if(iter->first == controlledEntity)
+            continue;
+
+        // Hovered over this. Find the name of the species
+        auto microbeComponent = microbeComponents->Find(iter->first);
+
+        if(!microbeComponent)
+            continue;
+
+        // We don't store the reference to the object. The holder will keep
+        // the reference alive while we work on it
+        microbeComponent->Release();
+
+        if(microbeComponent->GetPropertyCount() < 1) {
+
+            LOG_ERROR("PlayerHoverInfoSystem: Run: MicrobeComponent object "
+                      "has no properties");
+            continue;
+        }
+
+        if(microbeComponent->GetPropertyTypeId(0) != stringType ||
+            std::strncmp(microbeComponent->GetPropertyName(0), "speciesName",
+                sizeof("speciesName") - 1) != 0) {
+
+            LOG_ERROR(
+                "PlayerHoverInfoSystem: Run: MicrobeComponent object doesn't "
+                "have \"string speciesName\" as the first property");
+            continue;
+        }
+
+        const auto* name = static_cast<std::string*>(
+            microbeComponent->GetAddressOfProperty(0));
+
+        hovered->PushValue(
+            std::make_unique<VariableBlock>(new Leviathan::StringBlock(*name)));
+    }
+
+    vars->Add(hovered);
 
     // TODO: perhaps this could detect any entity that has a Model component as
     // well (cells don't have one so that wouldn't work for them but for things

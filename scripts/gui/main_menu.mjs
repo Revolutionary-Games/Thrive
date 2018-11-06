@@ -2,7 +2,9 @@
 import * as common from "./gui_common.mjs";
 import * as microbe_hud from "./microbe_hud.mjs";
 
-// Import {doEnterMicrobeEditor} from "./microbe_editor.mjs";
+// eslint off
+// import {doEnterMicrobeEditor} from "./microbe_editor.mjs";
+// eslint on
 
 let jams = null;
 
@@ -70,7 +72,7 @@ export function runMenuSetup(){
     onMicrobeIntroEnded();
 
     // Test going to the editor (also uncomment the function call above)
-    Thrive.editorButtonClicked();
+    // Thrive.editorButtonClicked();
 
     // For in-browser preview
     // doEnterMicrobeEditor();

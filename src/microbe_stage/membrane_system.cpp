@@ -151,6 +151,9 @@ bool
 float
     MembraneComponent::calculateEncompassingCircleRadius() const
 {
+    if(m_isEncompassingCircleCalculated)
+        return m_encompassingCircleRadius;
+
     float distanceSquared = 0;
 
     for(const auto& vertex : vertices2D) {
@@ -160,7 +163,10 @@ float
             distanceSquared = currentDistance;
     }
 
-    return std::sqrt(distanceSquared);
+    m_isEncompassingCircleCalculated = true;
+    m_encompassingCircleRadius = std::sqrt(distanceSquared);
+
+    return m_encompassingCircleRadius;
 }
 
 // ------------------------------------ //
@@ -469,6 +475,8 @@ void
 
     // Subdivide();
 
+    // Reset this cached status as new points have just been generated
+    m_isEncompassingCircleCalculated = false;
 
     isInitialized = true;
 }

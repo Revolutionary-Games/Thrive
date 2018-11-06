@@ -43,7 +43,6 @@ class MicrobeComponent : ScriptComponent{
     //! This has to be called after creating this
     void init(ObjectID forEntity, bool isPlayerMicrobe, const string &in speciesName)
     {
-
         this.speciesName = speciesName;
         this.isPlayerMicrobe = isPlayerMicrobe;
         auto world = GetThriveGame().getCellStage();
@@ -118,8 +117,9 @@ class MicrobeComponent : ScriptComponent{
         queuedMovementForce += force;
     }
 
-
+    //! \note This is directly read from C++ and MUST BE the first property
     string speciesName;
+
     // TODO: initialize
     float hitpoints = DEFAULT_HEALTH;
     float maxHitpoints = DEFAULT_HEALTH;
@@ -890,9 +890,9 @@ class MicrobeSystem : ScriptSystem{
         MicrobeComponent@ microbeComponentCopy = cast<MicrobeComponent>(
             world.GetScriptComponentHolder("MicrobeComponent").Find(copyEntity));
 
-        //Separate the two cells.
+        // Separate the two cells.
         position._Position = Float3(position._Position.X +
-            membraneComponent.getCellDimensions(),
+            membraneComponent.calculateEncompassingCircleRadius(),
             0, position._Position.Z);
         rigidBodyComponent.JumpTo(position);
 
