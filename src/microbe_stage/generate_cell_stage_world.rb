@@ -126,7 +126,7 @@ cellWorld = GameWorldClass.new(
                      runtick: {group: 1000, parameters: []}),
     EntitySystem.new("PlayerMicrobeControlSystem", [],
                      runtick: {group: 5, parameters: []}),
-    EntitySystem.new("PlayerHoverInfoSystem", [],
+    EntitySystem.new("PlayerHoverInfoSystem", ["MembraneComponent", "Position"],
                      runtick: {group: 900, parameters: []}),
 
     EntitySystem.new("ProcessSystem", ["CompoundBagComponent", "ProcessorComponent"],

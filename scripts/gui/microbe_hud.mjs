@@ -352,7 +352,7 @@ function updateHoverInfo(vars){
         common.getKeys(vars).forEach(function(key){
 
             // Skip things that are handled elsewhere
-            if(key == "mousePos")
+            if(key == "mousePos" || key == "hoveredCells")
                 return;
 
             // Line breaks between elements
@@ -362,6 +362,21 @@ function updateHoverInfo(vars){
             // Panel.appendChild(document.createTextNode(key + ": " + vars[key]));
             panel.appendChild(document.createTextNode(vars[key]));
         });
+    }
+
+    if(vars.hoveredCells){
+
+        // When there is a single cell under the mouse this isn't an array
+        if(Array.isArray(vars.hoveredCells)){
+            for(const species of vars.hoveredCells){
+
+                panel.appendChild(document.createElement("br"));
+                panel.appendChild(document.createTextNode("Cell of species " + species));
+            }
+        } else {
+            panel.appendChild(document.createElement("br"));
+            panel.appendChild(document.createTextNode("Cell of species " + vars.hoveredCells));
+        }
     }
 
     // Last line break needs to be skipped to avoid an excess empty line

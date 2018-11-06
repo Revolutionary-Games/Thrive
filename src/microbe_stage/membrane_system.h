@@ -2,10 +2,9 @@
 
 #include "engine/component_types.h"
 
-#include "Entities/Component.h"
-#include "Entities/System.h"
-
-#include "Entities/Components.h"
+#include <Entities/Component.h>
+#include <Entities/Components.h>
+#include <Entities/System.h>
 
 #include <OgreColourValue.h>
 #include <OgreItem.h>
@@ -88,8 +87,8 @@ public:
         InitializeCorrectMembrane(size_t writeIndex,
             MembraneVertex* meshVertices);
 
-    // Sees if the given point is inside the membrane.
-    //! note This is quite an expensive method as this loops all the vertices
+    //! Sees if the given point is inside the membrane.
+    //! \note This is quite an expensive method as this loops all the vertices
     bool
         contains(float x, float y);
 
@@ -97,7 +96,6 @@ public:
     //!
     //! Calculates a circle radius that contains all the points (when it is
     //! placed at 0,0 local coordinate)
-    //! \todo Cache this after initialization to increase performance
     float
         calculateEncompassingCircleRadius() const;
 
@@ -108,13 +106,6 @@ public:
     //! filling them with data
     void
         Update(Ogre::SceneManager* scene, Ogre::SceneNode* parentcomponentpos);
-
-    // Returns the length of the bounding membrane "box".
-    int
-        getCellDimensions()
-    {
-        return cellDimensions;
-    }
 
     // Adds absorbed compound to the membrane.
     // These are later queried and added to the vacuoles.
@@ -197,6 +188,11 @@ protected:
     //! Stores the generated 2-Dimensional membrane.
     std::vector<Ogre::Vector3> vertices2D;
 
+    //! Marks if cached encompassing circleradius is calculated
+    mutable bool m_isEncompassingCircleCalculated = false;
+    //! Cached circle radius
+    mutable float m_encompassingCircleRadius;
+
     //! Ogre renderable that holds the mesh
     Ogre::MeshPtr m_mesh;
 
@@ -232,7 +228,6 @@ public:
     void
         Run(GameWorld& world, Ogre::SceneManager* scene)
     {
-
         auto& index = CachedComponents.GetIndex();
         for(auto iter = index.begin(); iter != index.end(); ++iter) {
 

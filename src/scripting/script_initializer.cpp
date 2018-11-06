@@ -556,8 +556,8 @@ bool
     }
 
     if(engine->RegisterObjectMethod("MembraneComponent",
-           "int getCellDimensions()",
-           asMETHOD(MembraneComponent, getCellDimensions),
+           "float calculateEncompassingCircleRadius() const",
+           asMETHOD(MembraneComponent, calculateEncompassingCircleRadius),
            asCALL_THISCALL) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
     }
