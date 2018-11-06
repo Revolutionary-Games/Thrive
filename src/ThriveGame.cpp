@@ -563,6 +563,8 @@ void
     LOG_INFO("Finish editing pressed");
 
     // Fire an event to switch over the GUI
+    // And make the Editor apply current changes to the player Species, the
+    // microbe stage code will apply it to the player cell in onReturnFromEditor
     Engine::Get()->GetEventHandler()->CallEvent(
         new Leviathan::GenericEvent("MicrobeEditorExited"));
 
@@ -787,7 +789,6 @@ bool
 
     ScriptRunningSetup setup("beingEngulfed");
 
-    // Causes errors as this has to release
     auto returned =
         ThriveGame::Get()->getMicrobeScripts()->ExecuteOnModule<bool>(setup,
             false, gameWorld, first.GetOwningEntity(),
