@@ -319,8 +319,8 @@ class Species{
 
         auto organelles = positionOrganelles(stringCode);
 
-        templateEntity = Species::createSpecies(forWorld, this.name, organelles, this.colour,
-            this.isBacteria, this.speciesMembraneType,
+        templateEntity = Species::createSpecies(forWorld, this.name, this.genus, this.epithet,
+            organelles, this.colour, this.isBacteria, this.speciesMembraneType,
             DEFAULT_INITIAL_COMPOUNDS, this.aggression, this.fear, this.activity, this.focus);
     }
 
@@ -1187,22 +1187,26 @@ ObjectID createSpecies(CellStageWorld@ world, const string &in name,
                 organelle.rotation));
     }
 
-    return createSpecies(world, name, convertedOrganelles, fromTemplate.colour,
-        fromTemplate.isBacteria, fromTemplate.speciesMembraneType,
+    return createSpecies(world, name, "Player", "Species", convertedOrganelles,
+        fromTemplate.colour, fromTemplate.isBacteria, fromTemplate.speciesMembraneType,
         fromTemplate.compounds, 100.0f, 100.0f, 100.0f, 200.0f);
 }
 
 //! Creates an entity that has all the species stuff on it
 //! AI controlled ones need to be in addition in SpeciesSystem
-ObjectID createSpecies(CellStageWorld@ world, const string &in name,
-    array<PlacedOrganelle@> organelles, Float4 colour, bool isBacteria,
-    MEMBRANE_TYPE speciesMembraneType,  const dictionary &in compounds, double aggression,
-    double fear, double activity, double focus)
+ObjectID createSpecies(CellStageWorld@ world, const string &in name, const string &in genus,
+    const string &in epithet, array<PlacedOrganelle@> organelles, Float4 colour,
+    bool isBacteria, MEMBRANE_TYPE speciesMembraneType,  const dictionary &in compounds,
+    double aggression, double fear, double activity, double focus)
 {
     ObjectID speciesEntity = world.CreateEntity();
 
     SpeciesComponent@ speciesComponent = world.Create_SpeciesComponent(speciesEntity,
         name);
+
+    speciesComponent.genus = genus;
+    speciesComponent.epithet = epithet;
+
 
     @speciesComponent.avgCompoundAmounts = dictionary();
 

@@ -92,6 +92,8 @@ void
     // This is used to skip the player
     auto controlledEntity = ThriveGame::Get()->playerData().activeCreature();
 
+    const auto& allSpecies = world.GetComponentIndex_SpeciesComponent();
+
     auto& index = CachedComponents.GetIndex();
     for(auto iter = index.begin(); iter != index.end(); ++iter) {
 
@@ -137,8 +139,28 @@ void
         const auto* name = static_cast<std::string*>(
             microbeComponent->GetAddressOfProperty(0));
 
-        hovered->PushValue(
-            std::make_unique<VariableBlock>(new Leviathan::StringBlock(*name)));
+        bool found = false;
+
+        for(const auto& tuple : allSpecies) {
+
+            SpeciesComponent* species = std::get<1>(tuple);
+
+            if(species->name == *name) {
+
+                hovered->PushValue(
+                    std::make_unique<VariableBlock>(new Leviathan::StringBlock(
+                        species->genus + " " + species->epithet)));
+                found = true;
+                break;
+            }
+        }
+
+        if(!found) {
+
+            // If we can't find the species, assume that it is extinct
+            hovered->PushValue(std::make_unique<VariableBlock>(
+                new Leviathan::StringBlock("Extinct(" + *name + ")")));
+        }
     }
 
     vars->Add(hovered);
