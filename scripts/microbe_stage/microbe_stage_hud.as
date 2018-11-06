@@ -205,6 +205,9 @@ class MicrobeStageHudSystem : ScriptSystem{
 
         if(ambienceSounds !is null)
             ambienceSounds.Get().play();
+
+        // This is called when you come back from teh editor, so set reproduction to false
+        reproductionDialogOpened=false;
     }
 
 
@@ -222,7 +225,7 @@ class MicrobeStageHudSystem : ScriptSystem{
         // getComponent("gui_sounds", g_luaEngine.currentGameState, SoundSourceComponent
         // ).playSound("microbe-pickup-organelle");
         // this.rootGUIWindow.getChild("chloroplastUnlockNotification").show();
-        b1 = true;
+        chloroplastNotificationOpened = true;
         // this.rootGUIWindow.getChild("toxinUnlockNotification").hide();
     }
 
@@ -236,7 +239,7 @@ class MicrobeStageHudSystem : ScriptSystem{
         // getComponent("gui_sounds", g_luaEngine.currentGameState, SoundSourceComponent
         // ).playSound("microbe-pickup-organelle");
         // this.rootGUIWindow.getChild("toxinUnlockNotification").show();
-        b2 = true;
+        toxinNotificationEnabled = true;
         //this.rootGUIWindow.getChild("chloroplastUnlockNotification").hide();
     }
 
@@ -250,13 +253,12 @@ class MicrobeStageHudSystem : ScriptSystem{
     void showReproductionDialog(){
         // print("Reproduction Dialog called but currently disabled. Is it needed? Note that the editor button has been enabled")
         //global_activeMicrobeStageHudSystem.rootGUIWindow.getChild("ReproductionPanel").show()
-        if(b3 == false){
+        if(reproductionDialogOpened == false){
 
-            b3 = true;
+            reproductionDialogOpened = true;
 
             GetEngine().GetSoundDevice().Play2DSoundEffect(
                 "Data/Sound/soundeffects/microbe-pickup-organelle.ogg");
-
             LOG_INFO("Ready to reproduce!");
             GenericEvent@ event = GenericEvent("PlayerReadyToEnterEditor");
             GetEngine().GetEventHandler().CallEvent(event);
@@ -311,11 +313,13 @@ class MicrobeStageHudSystem : ScriptSystem{
     int t1 = 0;
     int t2 = 0;
     int t3 = 0;
-    bool b1 = false;
-    bool b2 = false;
-    bool b3 = false;
-    //suicideButton setting up
+    //TODO: These need more informative names
+    bool chloroplastNotificationOpened = false;
+    bool toxinNotificationEnabled = false;
+    bool reproductionDialogOpened = false;
+    // suicideButton setting up
     // really creative naming scheme
+    // TODO: Why? Just Why? Ill be honest im not even sure what these are supposed to do
     bool boolean = false;
     bool boolean2 = false;
     //hints setting up
