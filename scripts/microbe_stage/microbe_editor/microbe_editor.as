@@ -43,6 +43,7 @@ class MicrobeEditor{
         @eventListener = EventListener(null, OnGenericEventCallback(this.onGeneric));
         eventListener.RegisterForEvent("MicrobeEditorOrganelleSelected");
         eventListener.RegisterForEvent("MicrobeEditorClicked");
+        eventListener.RegisterForEvent("MicrobeEditorExited");
 
         placementFunctions = {
             {"nucleus", PlacementFunctionType(this.createNewMicrobe)},
@@ -104,42 +105,17 @@ class MicrobeEditor{
     {
         GetThriveGame().playerData().setBool("edited_microbe", true);
 
-        const ObjectID microbe = GetThriveGame().playerData().activeCreature();
-        CellStageWorld@ world = GetThriveGame().getCellStage();
-
-        assert(world !is null, "world is null");
-        LOG_INFO("Microbe ID is " + microbe);
-
-        // We now just fetch the organelles in the player's creature
-        ScriptComponent@ component = world.GetScriptComponentHolder(
-            "MicrobeComponent").Find(microbe);
-
-        assert(component !is null, "component retrieve failed");
-
-        MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(component);
-
-        assert(microbeComponent !is null, "player MicrobeComponent cast failed");
-
-        // This is failing here
         SpeciesComponent@ playerSpecies = MicrobeOperations::getSpeciesComponent(
-            world, microbeComponent.speciesName);
+            GetThriveGame().getCellStage(), GetThriveGame().playerData().activeCreature());
 
-        assert(playerSpecies !is null, "player creature species is invalid");
-        LOG_INFO(playerSpecies.name);
+        assert(playerSpecies !is null, "didn't find edited species");
+        LOG_INFO("Edited species is " + playerSpecies.name);
 
-
-        //     Engine.playerData().setActiveCreature(nextMicrobeEntity.id,
-        //         CellStageWorld@.MICROBE_EDITOR.wrapper);
-        // }
-
+        // We now just fetch the organelles in the player's species
         mutationPoints = BASE_MUTATION_POINTS;
         actionHistory.resize(0);
 
         actionIndex = 0;
-        // //TODO.fix this for loop
-        // /*for(_, cytoplasm in pairs(occupiedHexes)){
-        // cytoplasm.destroy()
-        // }*/
 
         // Get the species organelles to be edited
         auto@ templateOrganelles = cast<array<SpeciesStoredOrganelleType@>>(
@@ -152,13 +128,6 @@ class MicrobeEditor{
 
         LOG_INFO("Starting microbe editor with: " + editedMicrobe.length() +
             " organelles in the microbe");
-
-        // /* TODO: fix this for loop as well
-        // for(_, organelle in pairs(microbeComponent.organelles)){
-        // for(s, hex in pairs(organelle._hexes)){
-        // this.createHexComponent(hex.q + organelle.position.q, hex.r + organelle.position.r)
-        // }
-        // }*/
     }
 
     void update(int logicTime)
@@ -736,31 +705,9 @@ class MicrobeEditor{
 
 
     //The first parameter states which sceneNodes to use, starting with "start" and going up 6.
-    void renderHighlightedOrganelle(int start, double q, double r, int rotation)
+    void renderHighlightedOrganelle(int start, int q, int r, int rotation)
     {
-        //Render the hex under the cursor
-        dictionary sceneNode = {};
-
-        //TODO: find new equivalents
-        // sceneNode[1] = getComponent(hudSystem.hoverOrganelle[start], OgreSceneNodeComponent);
-        // for (int i = 2; i < 8; i++){
-        //     sceneNode[i] = getComponent(hudSystem.hoverHex[i-1+(start-1)*7],
-        //     OgreSceneNodeComponent);
-        // }
-
         if (activeActionName != ""){
-           /* dictionary oldData = {["name"]=this.activeActionName,
-             ["q"]=-q,
-             ["r"]=-r,
-             ["rotation"]=(180+rotation) % 360};
-             auto hexes = OrganelleFactory.checkSize(oldData);
-             auto colour = ColourValue(2, 0, 0, 0.4);
-             bool touching = false;
-             for(_, hex in ipairs(hexes)){
-                 if(this.surroundsOrganelle(-hex.q + q, -hex.r + r)){
-                     colour = ColourValue(0, 2, 0, 0.4)
-                 }
-           } */
 
             // If not hovering over an organelle render the to-be-placed organelle
             Organelle@ toBePlacedOrganelle = getOrganelleDefinition(activeActionName);
@@ -802,35 +749,6 @@ class MicrobeEditor{
                         "EditorHexMaterial");
                 }
             }
-
-
-
-             // for(_, hex in ipairs(hexes)){
-             //     auto organelle = MicrobeSystem.getOrganelleAt(this.currentMicrobeEntity, -hex.q + q, -hex.r + r)
-             //     if(organelle){
-             //         if(organelle.name ~= "cytoplasm"){
-             //            colour = ColourValue(2, 0, 0, 0.4)
-             //         }
-             //     }
-             // }
-        //if (CEGUIWindow.getWindowUnderMouse().getName() == 'root'){
-
-        //         dictionary newData = {
-        //             ["name"]=activeActionName,
-        //             ["q"]=-q,
-        //             ["r"]=-r,
-        //             ["sceneNode"]=sceneNode,
-        //             ["rotation"]=(180+rotation) % 360,
-        //             ["colour"]=colour
-        //         };
-
-        //         OrganelleFactory.renderOrganelles(newData)
-        //         for (int i = 1; i < 8; i++){
-        //             sceneNode[i].transform.scale = Vector3(HEX_SIZE, HEX_SIZE, HEX_SIZE); //Vector3(1,1,1)
-        //             sceneNode[i].transform.touch();
-        //         }
-        //     }
-        //}
         }
     }
 
@@ -886,6 +804,33 @@ class MicrobeEditor{
             }
 
             return 1;
+
+        } else if(type == "MicrobeEditorExited"){
+
+            LOG_INFO("MicrobeEditor: applying changes to player Species");
+
+            // We need to grab the player's species
+            SpeciesComponent@ playerSpecies = MicrobeOperations::getSpeciesComponent(
+                GetThriveGame().getCellStage(), GetThriveGame().playerData().activeCreature());
+
+            assert(playerSpecies !is null, "didn't find edited species");
+
+            // Apply changes to the species organelles
+            auto@ templateOrganelles = cast<array<SpeciesStoredOrganelleType@>>(
+                playerSpecies.organelles);
+
+            // It is easiest to just replace all
+            array<SpeciesStoredOrganelleType@> newOrganelles;
+
+            for(uint i = 0; i < editedMicrobe.length(); ++i){
+
+                newOrganelles.insertLast(editedMicrobe[i]);
+            }
+
+            templateOrganelles = newOrganelles;
+
+            LOG_INFO("MicrobeEditor: updated organelles for species: " + playerSpecies.name);
+            return 1;
         }
 
         LOG_ERROR("Microbe editor got unknown event: " + type);
@@ -912,9 +857,6 @@ class MicrobeEditor{
     // This is not private because anonymous callbacks want to access this
     array<PlacedOrganelle@> editedMicrobe;
 
-    // private array<SpeciesStoredOrganelleType@> currentOrganelles;
-    // private int organelleCount = 0;
-
     private ObjectID gridSceneNode;
     private bool gridVisible;
     private MicrobeEditorHudSystem@ hudSystem;
@@ -929,7 +871,7 @@ class MicrobeEditor{
 
     //0 is no symmetry, 1 is x-axis symmetry, 2 is 4-way symmetry, and 3 is 6-way symmetry.
     // TODO: change to enum
-    private int symmetry;
+    private int symmetry = 0;
 
     private bool microbeHasBeenInEditor = false;
 
