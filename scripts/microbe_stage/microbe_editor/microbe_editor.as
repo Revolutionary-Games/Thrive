@@ -88,6 +88,7 @@ class MicrobeEditor{
         organelleRot = 0;
         symmetry = 0;
 
+
         // Reset to cytoplasm if nothing is selected
         if(activeActionName == ""){
             LOG_INFO("Selecting cytoplasm");
@@ -132,6 +133,12 @@ class MicrobeEditor{
 
     void update(int logicTime)
     {
+        GenericEvent@ changeMutationPoints = GenericEvent("mutationChange");
+        NamedVars@ vars = changeMutationPoints.GetNamedVars();
+        vars.AddValue(ScriptSafeVariableBlock("mutationPoints",
+                    int(mutationPoints)));
+        GetEngine().GetEventHandler().CallEvent(changeMutationPoints);
+
         // TODO: this is really dirty to call this all the time
         hudSystem.updateMutationPoints();
 

@@ -64,6 +64,11 @@ export function doEnterMicrobeEditor(){
                         return true;
                     }, false);
 
+            // Event for population changes
+            Leviathan.OnGeneric("mutationChange", (event, vars) => {
+                // Apply the new values
+                updateMutationPoints(vars.mutationPoints);
+            });
 
 
             // MicrobeEditorClicked
@@ -75,6 +80,12 @@ export function doEnterMicrobeEditor(){
 
         microbeEditorSetup = true;
     }
+}
+
+//! Updates mutation points in GUI
+function updateMutationPoints(mutationPoints){
+    document.getElementById("microbeHUDPlayerMutationPoints").textContent =
+    mutationPoints;
 }
 
 function onResumeClickedEditor(){
