@@ -64,10 +64,10 @@ export function doEnterMicrobeEditor(){
                         return true;
                     }, false);
 
-            // Event for population changes
+            // Event for Mutation changes
             Leviathan.OnGeneric("mutationChange", (event, vars) => {
                 // Apply the new values
-                updateMutationPoints(vars.mutationPoints);
+                updateMutationPoints(vars.mutationPoints, vars.maxMutationPoints);
             });
 
 
@@ -83,9 +83,13 @@ export function doEnterMicrobeEditor(){
 }
 
 //! Updates mutation points in GUI
-function updateMutationPoints(mutationPoints){
+function updateMutationPoints(mutationPoints, maxMutationPoints){
     document.getElementById("microbeHUDPlayerMutationPoints").textContent =
-    mutationPoints;
+    mutationPoints + "/";
+    document.getElementById("microbeHUDPlayerMaxMutationPoints").textContent =
+    maxMutationPoints;
+    document.getElementById("microbeHUDPlayerMutationPointsBar").style.width =
+         common.barHelper(mutationPoints, maxMutationPoints);
 }
 
 function onResumeClickedEditor(){

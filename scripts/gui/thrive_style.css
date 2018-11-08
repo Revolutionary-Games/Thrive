@@ -127,7 +127,7 @@ video {
 }
 
 .BarValue {
-  position: absolute;
+  position: relative;
   left: 210px;
   top: 10px;
   text-align: right;
@@ -460,6 +460,24 @@ video {
 #microbeHUDPlayerMutationPointsBar {
   background-image: url("../../Textures/gui/bevel/MpBar.png");
   background-color: #7b417e;
+}
+
+#microbeHUDPlayerMaxMutationPoints {
+  position: absolute;
+  left: 0;
+  top: -20px;
+  text-align: center;
+  line-height: 0;
+  font-size: 10pt;
+}
+
+#microbeHUDPlayerMutationPoints {
+  position: absolute;
+  left: -20px;
+  top: -20px;
+  text-align: center;
+  line-height: 0;
+  font-size: 10pt;
 }
 
 #PhosphatesIcon {

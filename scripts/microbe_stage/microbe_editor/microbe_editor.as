@@ -137,6 +137,8 @@ class MicrobeEditor{
         NamedVars@ vars = changeMutationPoints.GetNamedVars();
         vars.AddValue(ScriptSafeVariableBlock("mutationPoints",
                     int(mutationPoints)));
+        vars.AddValue(ScriptSafeVariableBlock("maxMutationPoints",
+                    int(BASE_MUTATION_POINTS)));
         GetEngine().GetEventHandler().CallEvent(changeMutationPoints);
 
         // TODO: this is really dirty to call this all the time
