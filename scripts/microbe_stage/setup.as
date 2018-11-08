@@ -142,6 +142,9 @@ void onReturnFromEditor(CellStageWorld@ world)
     assert(pos !is null);
 
     // Spawn another cell from the player species
+    SpeciesComponent@ ourActualSpecies = MicrobeOperations::getSpeciesComponent(world, player);
+    Species::initProcessorComponent(world,player,ourActualSpecies);
+
     PlayerSpeciesSpawner factory("Default");
     auto spawned = factory.factorySpawn(world, pos._Position);
 
@@ -169,6 +172,7 @@ void onReturnFromEditor(CellStageWorld@ world)
                     amount / 2 /*, false*/ );
             }
         }
+
 }
 
 // TODO: also put these physics callback somewhere more sensible (maybe physics_callbacks.as?)
