@@ -202,7 +202,7 @@ class MicrobeEditorHudSystem : ScriptSystem{
         editor.init();
 
         // This seems really cluttered, there must be a better way.
-        for(int i = 0; i < 42; ++i){
+        for(int i = 0; i < 200; ++i){
 
             ObjectID hex = world.CreateEntity();
             auto node = world.Create_RenderNode(hex);

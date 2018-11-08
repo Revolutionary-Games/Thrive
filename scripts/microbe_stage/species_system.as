@@ -1059,50 +1059,6 @@ void updateSpeciesFromMicrobe(CellStageWorld@ world, ObjectID microbeEntity,
     // TODO: make this update the ProcessorComponent based on microbe thresholds
 }
 
-// TODO: make sure this is called from somewhere
-void initProcessorComponent(CellStageWorld@ world, ObjectID entity,
-    SpeciesComponent@ speciesComponent)
-{
-    assert(world.GetComponent_SpeciesComponent(entity) is speciesComponent,
-        "Wrong speciesComponent passed to initProcessorComponent");
-
-    assert(speciesComponent.organelles.length() > 0, "initProcessorComponent given a "
-        "species that has no organelles");
-
-    auto pc = world.GetComponent_ProcessorComponent(entity);
-
-    if(pc is null){
-
-        @pc = world.Create_ProcessorComponent(entity);
-    }
-
-    dictionary capacities = {};
-    for(uint i = 0; i < speciesComponent.organelles.length(); i++){
-        auto@ processes = cast<PlacedOrganelle>(speciesComponent.organelles[i]).
-            organelle.processes;
-
-        for(uint a = 0; a < processes.length(); ++a){
-
-            auto@ process = processes[a];
-            auto name = process.process.internalName;
-
-            if(!capacities.exists(name)){
-                capacities[name] = 0;
-            }
-
-            auto dictValue = capacities[name];
-            dictValue = float(dictValue) + process.capacity;
-        }
-    }
-
-    uint64 processCount = SimulationParameters::bioProcessRegistry().getSize();
-    for(uint bioProcessID = 0; bioProcessID < processCount; ++bioProcessID){
-        auto name = SimulationParameters::bioProcessRegistry().getInternalName(bioProcessID);
-        if(capacities.exists(name)){
-            pc.setCapacity(bioProcessID, float(capacities[name]));
-        }
-    }
-}
 
 
 namespace Species{
@@ -1169,6 +1125,51 @@ void restoreOrganelleLayout(CellStageWorld@ world, ObjectID microbeEntity,
             cast<PlacedOrganelle>(species.organelles[i]));
 
         MicrobeOperations::addOrganelle(world, microbeEntity, organelle, editShape);
+    }
+}
+
+// TODO: make sure this is called from somewhere
+void initProcessorComponent(CellStageWorld@ world, ObjectID entity,
+    SpeciesComponent@ speciesComponent)
+{
+    assert(world.GetComponent_SpeciesComponent(entity) !is speciesComponent,
+        "Wrong speciesComponent passed to initProcessorComponent");
+
+    assert(speciesComponent.organelles.length() > 0, "initProcessorComponent given a "
+        "species that has no organelles");
+
+    auto pc = world.GetComponent_ProcessorComponent(entity);
+
+    if(pc is null){
+
+        @pc = world.Create_ProcessorComponent(entity);
+    }
+
+    dictionary capacities = {};
+    for(uint i = 0; i < speciesComponent.organelles.length(); i++){
+        auto@ processes = cast<PlacedOrganelle>(speciesComponent.organelles[i]).
+            organelle.processes;
+
+        for(uint a = 0; a < processes.length(); ++a){
+
+            auto@ process = processes[a];
+            auto name = process.process.internalName;
+
+            if(!capacities.exists(name)){
+                capacities[name] = 0;
+            }
+
+            auto dictValue = capacities[name];
+            dictValue = float(dictValue) + process.capacity;
+        }
+    }
+
+    uint64 processCount = SimulationParameters::bioProcessRegistry().getSize();
+    for(uint bioProcessID = 0; bioProcessID < processCount; ++bioProcessID){
+        auto name = SimulationParameters::bioProcessRegistry().getInternalName(bioProcessID);
+        if(capacities.exists(name)){
+            pc.setCapacity(bioProcessID, float(capacities[name]));
+        }
     }
 }
 

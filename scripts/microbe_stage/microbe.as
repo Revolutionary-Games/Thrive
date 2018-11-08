@@ -329,8 +329,8 @@ class MicrobeSystem : ScriptSystem{
         }
 
         //There is an osmoregulation cost
-        auto osmoCost = (ATP_COST_FOR_OSMOREGULATION * microbeComponent.organelles.length()) /
-            (1000.0f * logicTime);
+        auto osmoCost = (pow(microbeComponent.organelles.length(),ATP_COST_FOR_OSMOREGULATION)) /
+            (1000*logicTime);
         MicrobeOperations::takeCompound(world, microbeEntity,
             SimulationParameters::compoundRegistry().getTypeId("atp"), osmoCost);
 
