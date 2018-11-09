@@ -273,7 +273,6 @@ bool beingEngulfed(GameWorld@ world, ObjectID firstEntity, ObjectID secondEntity
                 (ENGULF_HP_RATIO_REQ * secondMicrobeComponentOrganelles) &&
                 firstMicrobeComponent.dead == false && secondMicrobeComponent.dead == false)
             {
-
                 secondMicrobeComponent.isBeingEngulfed = true;
                 secondMicrobeComponent.hostileEngulfer = firstEntity;
                 secondMicrobeComponent.wasBeingEngulfed = true;
@@ -453,6 +452,11 @@ ObjectID createToxin(CellStageWorld@ world, Float3 pos)
     renderNode.Node.setPosition(pos);
     // Ogre::Quaternion(Ogre::Degree(GetEngine().GetRandom().GetNumber(0, 360)),
     //     Ogre::Vector3(0, 1, 0)));
+
+    // Agent
+    auto agentProperties = world.Create_AgentProperties(toxinEntity);
+    agentProperties.setSpeciesName("");
+    agentProperties.setAgentType("oxytoxy");
 
     auto model = world.Create_Model(toxinEntity, renderNode.Node, "oxytoxy.mesh");
     // Need to set the tint
