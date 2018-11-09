@@ -143,7 +143,8 @@ void onReturnFromEditor(CellStageWorld@ world)
 
     // Spawn another cell from the player species
     SpeciesComponent@ ourActualSpecies = MicrobeOperations::getSpeciesComponent(world, player);
-    Species::initProcessorComponent(world,player,ourActualSpecies);
+
+    Species::initProcessorComponent(world, player, ourActualSpecies);
 
     PlayerSpeciesSpawner factory("Default");
     auto spawned = factory.factorySpawn(world, pos._Position);
@@ -157,21 +158,21 @@ void onReturnFromEditor(CellStageWorld@ world)
     // Reset the player cell to be the same as the species template
     Species::restoreOrganelleLayout(world, player, microbeComponent, playerSpecies);
 
-    //Reset Players reproduction
+    // Reset Players reproduction
     microbeComponent.reproductionStage=0;
 
-    // Halve the players COmpounds
-     for(uint64 compoundID = 0; compoundID <
-                SimulationParameters::compoundRegistry().getSize(); ++compoundID)
-        {
-            auto amount = MicrobeOperations::getCompoundAmount(world, player,
-                compoundID);
+    // Halve the players Compounds
+    for(uint64 compoundID = 0; compoundID <
+            SimulationParameters::compoundRegistry().getSize(); ++compoundID)
+    {
+        auto amount = MicrobeOperations::getCompoundAmount(world, player,
+            compoundID);
 
-            if(amount != 0){
-                MicrobeOperations::takeCompound(world, player, compoundID,
-                    amount / 2 /*, false*/ );
-            }
+        if(amount != 0){
+            MicrobeOperations::takeCompound(world, player, compoundID,
+                amount / 2 /*, false*/ );
         }
+    }
 
 }
 
@@ -233,7 +234,6 @@ void cellHitAgent(GameWorld@ world, ObjectID firstEntity, ObjectID secondEntity)
     world.QueueDestroyEntity(floatingEntity);
 }
 
-// SO what should we use this method for?
 void cellOnCellActualContact(GameWorld@ world, ObjectID firstEntity, ObjectID secondEntity)
 {
     // LOG_INFO("Cell hit another cell, thats cool i guess");
@@ -244,7 +244,7 @@ void killPlayerCellClicked(CellStageWorld@ world)
 {
     auto playerEntity = GetThriveGame().playerData().activeCreature();
     //kill it hard
-     MicrobeOperations::damage(world,playerEntity, 9999.0f, "suicide");
+    MicrobeOperations::damage(world, playerEntity, 9999.0f, "suicide");
 }
 
 // Returns false if being engulfed, probabbly also damages the cell being
@@ -258,6 +258,7 @@ bool beingEngulfed(GameWorld@ world, ObjectID firstEntity, ObjectID secondEntity
         world.GetScriptComponentHolder("MicrobeComponent").Find(firstEntity));
     MicrobeComponent@ secondMicrobeComponent = cast<MicrobeComponent>(
         world.GetScriptComponentHolder("MicrobeComponent").Find(secondEntity));
+
     //Check if they were null *because if null the cast failed)
     if (firstMicrobeComponent !is null && secondMicrobeComponent !is null)
     {
