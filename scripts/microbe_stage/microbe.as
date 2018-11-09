@@ -537,9 +537,18 @@ class MicrobeSystem : ScriptSystem{
         // Add base movement
         // The movementDirection is the player or AI input
         // Rotate the 'thrust' based on our orientation
-        microbeComponent.queuedMovementForce += pos._Orientation.RotateVector(
+        // Halve speed if out of ATP
+        if (MicrobeOperations::getCompoundAmount(world, microbeEntity,
+                SimulationParameters::compoundRegistry().getTypeId("atp")) <= 0.1){
+            microbeComponent.queuedMovementForce += pos._Orientation.RotateVector(
+            microbeComponent.movementDirection * (CELL_BASE_THRUST/2.0f) *
+            microbeComponent.movementFactor);
+        }
+        else {
+            microbeComponent.queuedMovementForce += pos._Orientation.RotateVector(
             microbeComponent.movementDirection * CELL_BASE_THRUST *
             microbeComponent.movementFactor);
+        }
 
         // Update organelles and then apply the movement force that was generated
         for(uint i = 0; i < microbeComponent.organelles.length(); ++i){
@@ -857,7 +866,7 @@ class MicrobeSystem : ScriptSystem{
             world.GetScriptComponentHolder("MicrobeComponent").Find(microbeEntity));
 
         if(MicrobeOperations::getCompoundAmount(world, microbeEntity,
-                SimulationParameters::compoundRegistry().getTypeId("atp")) <= 0)
+                SimulationParameters::compoundRegistry().getTypeId("atp")) <= 0.1)
         {
             // TODO: put this on a GUI notification.
             // if(microbeComponent.isPlayerMicrobe and not this.playerAlreadyShownAtpDamage){
