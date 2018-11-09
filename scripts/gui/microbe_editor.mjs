@@ -7,6 +7,60 @@ import * as microbe_hud from "./microbe_hud.mjs";
 let microbeEditorSetup = false;
 let readyToFinishEdit = false;
 
+//! These are all the organelle selection buttons
+const organelleSelectionElements = [
+    {
+        element: document.getElementById("addCytoplasm"),
+        organelle: "cytoplasm"
+    },
+    {
+        element: document.getElementById("addMitochondrion"),
+        organelle: "mitochondrion"
+    },
+    {
+        element: document.getElementById("addChloroplast"),
+        organelle: "chloroplast"
+    },
+
+    // {
+    //     element: document.getElementById("addThermoplast"),
+    //     organelle: "thermoplast"
+    // },
+    {
+        element: document.getElementById("addVacuole"),
+        organelle: "vacuole"
+    },
+    {
+        element: document.getElementById("addToxinVacuole"),
+        organelle: "oxytoxy"
+    },
+
+    // {
+    //     element: document.getElementById("addBioluminescent"),
+    //     organelle: "bioluminescent"
+    // },
+    {
+        element: document.getElementById("addChemoplast"),
+        organelle: "chemoplast"
+    },
+    {
+        element: document.getElementById("addNitrogenFixingPlastid"),
+        organelle: "nitrogenfixingplastid"
+    },
+    {
+        element: document.getElementById("addFlagellum"),
+        organelle: "flagellum"
+    },
+
+    // AddPilus
+    // addCilia
+];
+
+//! Selected organelle label
+const selectedOrganelleListItem = document.createElement("div");
+selectedOrganelleListItem.classList.add("OrganelleSelectedText");
+selectedOrganelleListItem.appendChild(document.createTextNode("Selected"));
+
 //! Called to enter the editor view
 export function doEnterMicrobeEditor(){
 
@@ -41,9 +95,17 @@ export function doEnterMicrobeEditor(){
         document.getElementById("closeHelpEditor").addEventListener("click",
             closeHelpEditor, true);
 
-
         document.getElementById("microbeEditorFinishButton").addEventListener("click",
             onFinishButtonClicked, true);
+
+        // All of the organelle buttons
+        for(const element of organelleSelectionElements){
+
+            element.element.addEventListener("click", (event) => {
+                event.stopPropagation();
+                onSelectNewOrganelle(element.organelle);
+            }, true);
+        }
 
         if(common.isInEngine()){
 
@@ -70,15 +132,56 @@ export function doEnterMicrobeEditor(){
                 updateMutationPoints(vars.mutationPoints, vars.maxMutationPoints);
             });
 
-
-            // MicrobeEditorClicked
-
+            // Event for detecting the active organelle
+            Leviathan.OnGeneric("MicrobeEditorOrganelleSelected", (event, vars) => {
+                updateSelectedOrganelle(vars.organelle);
+            });
 
             // Event for restoring the microbe GUI
             Leviathan.OnGeneric("MicrobeEditorExited", doExitMicrobeEditor);
+
+        } else {
+            updateSelectedOrganelle("cytoplasm");
         }
 
         microbeEditorSetup = true;
+    }
+}
+
+//! Sends organelle selection to the Game
+function onSelectNewOrganelle(organelle){
+
+    if(common.isInEngine()){
+
+        Leviathan.CallGenericEvent("MicrobeEditorOrganelleSelected", {organelle: organelle});
+
+    } else {
+
+        updateSelectedOrganelle(organelle);
+    }
+}
+
+//! Updates the GUI buttons based on selected organelle
+function updateSelectedOrganelle(organelle){
+
+    // Remove the selected text from existing ones
+    for(const element of organelleSelectionElements){
+
+        if(element.element.contains(selectedOrganelleListItem)){
+            element.element.removeChild(selectedOrganelleListItem);
+            break;
+        }
+    }
+
+    // Make all buttons unselected except the one that is now selected
+    for(const element of organelleSelectionElements){
+
+        if(element.organelle === organelle){
+            element.element.classList.add("Selected");
+            element.element.prepend(selectedOrganelleListItem);
+        } else {
+            element.element.classList.remove("Selected");
+        }
     }
 }
 

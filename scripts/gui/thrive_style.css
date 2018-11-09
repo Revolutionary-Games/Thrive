@@ -792,6 +792,14 @@ video {
   text-align: center;
 }
 
+#SymmetryButton.DisabledButton {
+  background-image: url("../../Textures/gui/bevel/SymmetryDisabled.png");
+}
+
+#SymmetryButton.DisabledButton:hover {
+  background-image: url("../../Textures/gui/bevel/SymmetryDisabled.png");
+}
+
 #SymmetryButton:hover {
   background-image: url("../../Textures/gui/bevel/SymmetryHover.png");
 }
@@ -874,6 +882,14 @@ video {
   font-size: 8pt;
   line-height: 40px;
   text-indent: 40px;
+}
+
+#newButton.DisabledButton {
+  background-image: url("../../Textures/gui/bevel/MediumTwoDisabled.png");
+}
+
+#newButton.DisabledButton:hover {
+  background-image: url("../../Textures/gui/bevel/MediumTwoDisabled.png");
 }
 
 #newButton:hover {
@@ -975,12 +991,24 @@ video {
   background-image: url("../../Textures/gui/bevel/OrganelleNormal.png");
 }
 
+.OrganelleListItem.Selected {
+  background-image: url("../../Textures/gui/bevel/OrganelleHover.png");
+}
+
 .OrganelleListItem:hover {
   background-image: url("../../Textures/gui/bevel/OrganelleHover.png");
 }
 
 .OrganelleListItem.DisabledButton {
   background-image: url("../../Textures/gui/bevel/OrganelleDisabled.png");
+}
+
+.OrganelleSelectedText {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  top: 15px;
 }
 
 #CytoplasmIcon {
