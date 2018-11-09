@@ -13,16 +13,14 @@ ThriveNetHandler::ThriveNetHandler() : NetworkClientInterface() {}
 ThriveNetHandler::~ThriveNetHandler() {}
 // ------------------------------------ //
 void
-    ThriveNetHandler::_OnStartApplicationConnect()
+    ThriveNetHandler::_OnProperlyConnected()
 {
-
-    // Send our custom join request packet //
+    LOG_WRITE("TODO: ask to join cell stage world");
 }
 // ------------------------------------ //
 void
     ThriveNetHandler::_OnNewConnectionStatusMessage(const std::string& message)
 {
-
     Engine::Get()->GetEventHandler()->CallEvent(new Leviathan::GenericEvent(
         "ConnectStatusMessage",
         Leviathan::NamedVars(std::shared_ptr<NamedVariableList>(
