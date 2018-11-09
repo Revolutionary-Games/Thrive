@@ -15,9 +15,9 @@ public:
     ThriveNetHandler();
     virtual ~ThriveNetHandler();
 
-    //! \brief Joins the lobby or the match when the connection is confirmed
+    //! \brief This is where we ask to join the cell stage on a server
     void
-        _OnStartApplicationConnect() override;
+        _OnProperlyConnected() override;
 
 protected:
     //! \brief Used to fire GenericEvents to update GUI status

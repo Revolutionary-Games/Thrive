@@ -412,16 +412,32 @@ class MicrobeSystem : ScriptSystem{
                 !microbeComponent.engulfAudio.Get().isPlaying())
             {
                 @microbeComponent.engulfAudio = GetEngine().GetSoundDevice().Play2DSound(
-                    "Data/Sound/soundeffects/engulfment.ogg",false,true);
-                if (microbeComponent.isPlayerMicrobe)
-                {
-                    microbeComponent.engulfAudio.Get().setVolume(70.0f);
+                    "Data/Sound/soundeffects/engulfment.ogg", false, true);
+
+                if(microbeComponent.engulfAudio !is null){
+
+                    if(microbeComponent.engulfAudio.HasInternalSource()){
+
+                        if (microbeComponent.isPlayerMicrobe)
+                        {
+                            microbeComponent.engulfAudio.Get().setVolume(0.70f);
+                        }
+                        else {
+                            // NPC microbes are less loud
+                            microbeComponent.engulfAudio.Get().setVolume(0.40f);
+                        }
+
+                        microbeComponent.engulfAudio.Get().play();
+                    } else {
+
+                        LOG_ERROR("Created engulfment sound player doesn't have internal "
+                            "sound source");
+                        @microbeComponent.engulfAudio = null;
+                    }
+
+                } else {
+                    LOG_ERROR("Failed to create engulfment sound player");
                 }
-                else {
-                    // NPC microbes are less loud
-                    microbeComponent.engulfAudio.Get().setVolume(40.0f);
-                }
-                microbeComponent.engulfAudio.Get().play();
             }
 
             // Flash the membrane blue.
