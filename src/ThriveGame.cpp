@@ -832,18 +832,7 @@ void
         Leviathan::PhysicsBody& first,
         Leviathan::PhysicsBody& second)
 {
-    // The anglescript function related to this does nothing
-    // GameWorld* gameWorld = physicalWorld.GetGameWorld();
-
-    // ScriptRunningSetup setup("cellOnCellActualContact");
-
-    // auto result =
-    // ThriveGame::Get()->getMicrobeScripts()->ExecuteOnModule<void>(
-    //     setup, false, gameWorld, first.GetOwningEntity(),
-    //     second.GetOwningEntity());
-
-    // if(result.Result != SCRIPT_RUN_RESULT::Success)
-    //     LOG_ERROR("Failed to run script side cellOnCellActualContact");
+    // cellOnCellAABBHitCallback(physicalWorld, first, second);
 }
 
 std::unique_ptr<Leviathan::PhysicsMaterialManager>
@@ -867,7 +856,7 @@ std::unique_ptr<Leviathan::PhysicsMaterialManager>
         .SetCallbacks(agentCallback, nullptr);
     // Engulfing
     cellMaterial->FormPairWith(*cellMaterial)
-        .SetCallbacks(cellOnCellAABBHitCallback, cellOnCellActualContact);
+        .SetCallbacks(cellOnCellAABBHitCallback, nullptr);
 
     auto manager = std::make_unique<Leviathan::PhysicsMaterialManager>();
 
