@@ -85,19 +85,6 @@ class MicrobeEditor{
         actionIndex = 0;
         organelleRot = 0;
         symmetry = 0;
-
-
-        // Reset to cytoplasm if nothing is selected
-        if(activeActionName == ""){
-            LOG_INFO("Selecting cytoplasm");
-
-            GenericEvent@ event = GenericEvent("MicrobeEditorOrganelleSelected");
-            NamedVars@ vars = event.GetNamedVars();
-
-            vars.AddValue(ScriptSafeVariableBlock("organelle", "cytoplasm"));
-
-            GetEngine().GetEventHandler().CallEvent(event);
-        }
     }
 
     void activate()
@@ -137,35 +124,37 @@ class MicrobeEditor{
 
         usedHoverHex = 0;
 
-        int q, r;
-        this.getMouseHex(q, r);
+        if(activeActionName != ""){
+            int q, r;
+            this.getMouseHex(q, r);
 
-        // Can place stuff at all?
-        isPlacementProbablyValid = isValidPlacement(activeActionName, q, r, organelleRot);
+            // Can place stuff at all?
+            isPlacementProbablyValid = isValidPlacement(activeActionName, q, r, organelleRot);
 
-        switch (symmetry)
-        {
-        case 0:
-            renderHighlightedOrganelle(1, q, r, organelleRot);
-            break;
-        case 1:
-            renderHighlightedOrganelle(1, q, r, organelleRot);
-            renderHighlightedOrganelle(2, -1*q, r+q, 360+(-1*organelleRot));
-            break;
-        case 2:
-            renderHighlightedOrganelle(1, q, r, organelleRot);
-            renderHighlightedOrganelle(2, -1*q, r+q, 360+(-1*organelleRot));
-            renderHighlightedOrganelle(3, -1*q, -1*r, (organelleRot+180) % 360);
-            renderHighlightedOrganelle(4, q, -1*(r+q), 540+(-1*organelleRot) % 360);
-            break;
-        case 3:
-            renderHighlightedOrganelle(1, q, r, organelleRot);
-            renderHighlightedOrganelle(2, -1*r, r+q, (organelleRot+60) % 360);
-            renderHighlightedOrganelle(3, -1*(r+q), q, (organelleRot+120) % 360);
-            renderHighlightedOrganelle(4, -1*q, -1*r, (organelleRot+180) % 360);
-            renderHighlightedOrganelle(5, r, -1*(r+q), (organelleRot+240) % 360);
-            renderHighlightedOrganelle(6, r+q, -1*q, (organelleRot+300) % 360);
-            break;
+            switch (symmetry)
+            {
+            case 0:
+                renderHighlightedOrganelle(1, q, r, organelleRot);
+                break;
+            case 1:
+                renderHighlightedOrganelle(1, q, r, organelleRot);
+                renderHighlightedOrganelle(2, -1*q, r+q, 360+(-1*organelleRot));
+                break;
+            case 2:
+                renderHighlightedOrganelle(1, q, r, organelleRot);
+                renderHighlightedOrganelle(2, -1*q, r+q, 360+(-1*organelleRot));
+                renderHighlightedOrganelle(3, -1*q, -1*r, (organelleRot+180) % 360);
+                renderHighlightedOrganelle(4, q, -1*(r+q), 540+(-1*organelleRot) % 360);
+                break;
+            case 3:
+                renderHighlightedOrganelle(1, q, r, organelleRot);
+                renderHighlightedOrganelle(2, -1*r, r+q, (organelleRot+60) % 360);
+                renderHighlightedOrganelle(3, -1*(r+q), q, (organelleRot+120) % 360);
+                renderHighlightedOrganelle(4, -1*q, -1*r, (organelleRot+180) % 360);
+                renderHighlightedOrganelle(5, r, -1*(r+q), (organelleRot+240) % 360);
+                renderHighlightedOrganelle(6, r+q, -1*q, (organelleRot+300) % 360);
+                break;
+            }
         }
 
         // Show the current microbe
@@ -568,9 +557,15 @@ class MicrobeEditor{
             auto organelleHere = OrganellePlacement::getOrganelleAt(editedMicrobe,
                 Int2(posQ, posR));
 
-            if(organelleHere !is null && organelleHere.organelle.name != "cytoplasm")
+            if(organelleHere !is null)
             {
-                return false;
+                // Allow replacing cytoplasm (but not with other cytoplasm)
+                if(organelleHere.organelle.name == "cytoplasm" &&
+                    activeActionName != "cytoplasm"){
+
+                } else {
+                    return false;
+                }
             }
 
             // Check touching
