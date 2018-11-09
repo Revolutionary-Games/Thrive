@@ -64,8 +64,8 @@ export function doEnterMicrobeEditor(){
                         return true;
                     }, false);
 
-            // Event for Mutation changes
-            Leviathan.OnGeneric("mutationChange", (event, vars) => {
+            // Event for mutation point amount
+            Leviathan.OnGeneric("MutationPointsUpdated", (event, vars) => {
                 // Apply the new values
                 updateMutationPoints(vars.mutationPoints, vars.maxMutationPoints);
             });

@@ -6,6 +6,7 @@ const array<string> MICROBE_EDITOR_AMBIENT_TRACKS = {
     "microbe-editor-theme-4", "microbe-editor-theme-5"
 };
 
+const int BASE_MUTATION_POINTS = 100;
 
 
 class MicrobeEditorHudSystem : ScriptSystem{
@@ -243,7 +244,8 @@ class MicrobeEditorHudSystem : ScriptSystem{
         GenericEvent@ event = GenericEvent("MutationPointsUpdated");
         NamedVars@ vars = event.GetNamedVars();
 
-        vars.AddValue(ScriptSafeVariableBlock("mp", editor.getMutationPoints()));
+        vars.AddValue(ScriptSafeVariableBlock("mutationPoints", editor.getMutationPoints()));
+        vars.AddValue(ScriptSafeVariableBlock("maxMutationPoints", BASE_MUTATION_POINTS));
 
         GetEngine().GetEventHandler().CallEvent(event);
     }
