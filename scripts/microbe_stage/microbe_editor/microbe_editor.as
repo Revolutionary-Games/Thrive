@@ -114,6 +114,18 @@ class MicrobeEditor{
 
         LOG_INFO("Starting microbe editor with: " + editedMicrobe.length() +
             " organelles in the microbe");
+
+        // Reset to cytoplasm if nothing is selected
+        if(activeActionName == ""){
+            LOG_INFO("Selecting cytoplasm");
+
+            GenericEvent@ event = GenericEvent("MicrobeEditorOrganelleSelected");
+            NamedVars@ vars = event.GetNamedVars();
+
+            vars.AddValue(ScriptSafeVariableBlock("organelle", "cytoplasm"));
+
+            GetEngine().GetEventHandler().CallEvent(event);
+        }
     }
 
     void update(int logicTime)
