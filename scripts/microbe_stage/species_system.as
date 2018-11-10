@@ -506,7 +506,7 @@ class Species{
             factory,
             // spawnDensity should depend on population
             // This does now but it also needs to be modified later to match changes
-            1.0f / (STARTING_SPAWN_DENSITY - (this.population * 5)),
+            1.0f / (STARTING_SPAWN_DENSITY - (min(MAX_SPAWN_DENSITY, this.population * 5))),
             BACTERIA_SPAWN_RADIUS);
     }
 

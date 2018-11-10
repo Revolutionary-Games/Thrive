@@ -415,7 +415,7 @@ class MicrobeAISystem : ScriptSystem{
             auto playerSpecies = MicrobeOperations::getSpeciesComponent(world, "Default");
             if (!microbeComponent.isPlayerMicrobe && microbeComponent.speciesName != playerSpecies.name)
                 {
-                MicrobeOperations::alterSpeciesPopulation(world,microbeEntity,50);
+                MicrobeOperations::alterSpeciesPopulation(world,microbeEntity,CREATURE_KILL_POPULATION_GAIN);
                 }
             }
             else
