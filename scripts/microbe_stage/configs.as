@@ -150,9 +150,9 @@ const uint AGENT_EMISSION_COOLDOWN = 2000;
 
 //Auto Evo Values
 const int CREATURE_DEATH_POPULATION_LOSS = -60;
-const uint CREATURE_KILL_POPULATION_GAIN = 50;
-const uint CREATURE_REPRODUCE_POPULATION_GAIN = 50;
-const uint CREATURE_ESCAPE_POPULATION_GAIN = 50;
+const int CREATURE_KILL_POPULATION_GAIN = 50;
+const int CREATURE_REPRODUCE_POPULATION_GAIN = 50;
+const int CREATURE_ESCAPE_POPULATION_GAIN = 50;
 
 // TODO: move these into gamestate (this is very dirty)
 // must be global
