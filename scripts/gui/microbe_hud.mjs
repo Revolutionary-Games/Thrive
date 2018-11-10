@@ -9,8 +9,8 @@ let microbeHudSetupRan = false;
 
 let readyToEdit = false;
 
-//! Registers all the stuff for this to work. For performance reasons
-//! this should only be called
+//! Registers all the stuff for this to work.
+//! This makes sure it does something only once
 export function runMicrobeHUDSetup(){
 
     if(microbeHudSetupRan)

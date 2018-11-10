@@ -4,7 +4,6 @@
 import * as common from "./gui_common.mjs";
 import * as microbe_hud from "./microbe_hud.mjs";
 
-let microbeEditorSetup = false;
 let readyToFinishEdit = false;
 
 //! These are all the organelle selection buttons
@@ -61,6 +60,78 @@ const selectedOrganelleListItem = document.createElement("div");
 selectedOrganelleListItem.classList.add("OrganelleSelectedText");
 selectedOrganelleListItem.appendChild(document.createTextNode("Selected"));
 
+//! Setup for editor callbacks
+export function setupMicrobeEditor(){
+    // Pause Menu Clicked
+    document.getElementById("mainMenuButtonEditor").addEventListener("click",
+        onMenuClickedEditor, true);
+
+    // Pause Menu closed
+    document.getElementById("resumeButtonEditor").addEventListener("click",
+        onResumeClickedEditor, true);
+
+    // Quit Button Clicked
+    document.getElementById("quitButtonEditor").addEventListener("click",
+        quitGameEditor, true);
+
+    // Help Button Clicked
+    document.getElementById("helpButtonEditor").addEventListener("click",
+        openHelpEditor, true);
+
+    // Close Help Button Clicked
+    document.getElementById("closeHelpEditor").addEventListener("click",
+        closeHelpEditor, true);
+
+    document.getElementById("microbeEditorFinishButton").addEventListener("click",
+        onFinishButtonClicked, true);
+
+    // All of the organelle buttons
+    for(const element of organelleSelectionElements){
+
+        element.element.addEventListener("click", (event) => {
+            event.stopPropagation();
+            onSelectNewOrganelle(element.organelle);
+        }, true);
+    }
+
+    if(common.isInEngine()){
+
+        // The editor area was clicked, do send press to AngelScript
+        document.getElementById("microbeEditorClickDetector").addEventListener("click",
+            (event) => {
+                event.stopPropagation();
+                Leviathan.CallGenericEvent("MicrobeEditorClicked", {secondary: false});
+                return true;
+            }, false);
+
+        document.getElementById("microbeEditorClickDetector").
+            addEventListener("contextmenu",
+                (event) => {
+                    event.preventDefault();
+                    event.stopPropagation();
+                    Leviathan.CallGenericEvent("MicrobeEditorClicked", {secondary: true});
+                    return true;
+                }, false);
+
+        // Event for mutation point amount
+        Leviathan.OnGeneric("MutationPointsUpdated", (event, vars) => {
+            // Apply the new values
+            updateMutationPoints(vars.mutationPoints, vars.maxMutationPoints);
+        });
+
+        // Event for detecting the active organelle
+        Leviathan.OnGeneric("MicrobeEditorOrganelleSelected", (event, vars) => {
+            updateSelectedOrganelle(vars.organelle);
+        });
+
+        // Event for restoring the microbe GUI
+        Leviathan.OnGeneric("MicrobeEditorExited", doExitMicrobeEditor);
+
+    } else {
+        updateSelectedOrganelle("cytoplasm");
+    }
+}
+
 //! Called to enter the editor view
 export function doEnterMicrobeEditor(){
 
@@ -71,81 +142,6 @@ export function doEnterMicrobeEditor(){
         // Enable finish button
         onFinishButtonEnable();
     }, 500);
-
-    // Do setup
-    if(!microbeEditorSetup){
-
-        // Pause Menu Clicked
-        document.getElementById("mainMenuButtonEditor").addEventListener("click",
-            onMenuClickedEditor, true);
-
-        // Pause Menu closed
-        document.getElementById("resumeButtonEditor").addEventListener("click",
-            onResumeClickedEditor, true);
-
-        // Quit Button Clicked
-        document.getElementById("quitButtonEditor").addEventListener("click",
-            quitGameEditor, true);
-
-        // Help Button Clicked
-        document.getElementById("helpButtonEditor").addEventListener("click",
-            openHelpEditor, true);
-
-        // Close Help Button Clicked
-        document.getElementById("closeHelpEditor").addEventListener("click",
-            closeHelpEditor, true);
-
-        document.getElementById("microbeEditorFinishButton").addEventListener("click",
-            onFinishButtonClicked, true);
-
-        // All of the organelle buttons
-        for(const element of organelleSelectionElements){
-
-            element.element.addEventListener("click", (event) => {
-                event.stopPropagation();
-                onSelectNewOrganelle(element.organelle);
-            }, true);
-        }
-
-        if(common.isInEngine()){
-
-            // The editor area was clicked, do send press to AngelScript
-            document.getElementById("microbeEditorClickDetector").addEventListener("click",
-                (event) => {
-                    event.stopPropagation();
-                    Leviathan.CallGenericEvent("MicrobeEditorClicked", {secondary: false});
-                    return true;
-                }, false);
-
-            document.getElementById("microbeEditorClickDetector").
-                addEventListener("contextmenu",
-                    (event) => {
-                        event.preventDefault();
-                        event.stopPropagation();
-                        Leviathan.CallGenericEvent("MicrobeEditorClicked", {secondary: true});
-                        return true;
-                    }, false);
-
-            // Event for mutation point amount
-            Leviathan.OnGeneric("MutationPointsUpdated", (event, vars) => {
-                // Apply the new values
-                updateMutationPoints(vars.mutationPoints, vars.maxMutationPoints);
-            });
-
-            // Event for detecting the active organelle
-            Leviathan.OnGeneric("MicrobeEditorOrganelleSelected", (event, vars) => {
-                updateSelectedOrganelle(vars.organelle);
-            });
-
-            // Event for restoring the microbe GUI
-            Leviathan.OnGeneric("MicrobeEditorExited", doExitMicrobeEditor);
-
-        } else {
-            updateSelectedOrganelle("cytoplasm");
-        }
-
-        microbeEditorSetup = true;
-    }
 }
 
 //! Sends organelle selection to the Game
