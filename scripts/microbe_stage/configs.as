@@ -7,6 +7,8 @@ const auto CLOUD_SPAWN_RADIUS = 150;
 const auto POWERUP_SPAWN_RADIUS = 85;
 const auto DEFAULT_SPAWN_DENSITY = 1/25000.f;
 const auto STARTING_SPAWN_DENSITY = 50000.0f;
+const auto MAX_SPAWN_DENSITY = 25000.0f;
+
 // Cell Colors
 const auto MIN_COLOR = 0.0f;
 const auto MAX_COLOR = 0.9f;
@@ -145,6 +147,12 @@ const float OXY_TOXY_DAMAGE = 10.0f;
 
 // Cooldown between agent emissions, in milliseconds.
 const uint AGENT_EMISSION_COOLDOWN = 2000;
+
+//Auto Evo Values
+const uint CREATURE_DEATH_POPULATION_LOSS = -60;
+const uint CREATURE_KILL_POPULATION_GAIN = 50;
+const uint CREATURE_REPRODUCE_POPULATION_GAIN = 50;
+const uint CREATURE_ESCAPE_POPULATION_GAIN = 50;
 
 // TODO: move these into gamestate (this is very dirty)
 // must be global

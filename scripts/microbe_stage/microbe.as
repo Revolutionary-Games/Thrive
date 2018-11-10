@@ -464,7 +464,7 @@ class MicrobeSystem : ScriptSystem{
             if (!microbeComponent.isPlayerMicrobe &&
                 microbeComponent.speciesName != playerSpecies.name)
             {
-                MicrobeOperations::alterSpeciesPopulation(world,microbeEntity,50);
+                MicrobeOperations::alterSpeciesPopulation(world,microbeEntity,CREATURE_ESCAPE_POPULATION_GAIN);
             }
 
             MicrobeOperations::removeEngulfedEffect(world, microbeEntity);
@@ -970,7 +970,7 @@ class MicrobeSystem : ScriptSystem{
                 if (!microbeComponent.isPlayerMicrobe &&
                     microbeComponent.speciesName != playerSpecies.name)
                 {
-                    MicrobeOperations::alterSpeciesPopulation(world,microbeEntity,50);
+                    MicrobeOperations::alterSpeciesPopulation(world,microbeEntity,CREATURE_REPRODUCE_POPULATION_GAIN);
                 }
 
                 Species::applyTemplate(world, microbeEntity,

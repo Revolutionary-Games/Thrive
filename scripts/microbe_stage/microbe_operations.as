@@ -1126,7 +1126,7 @@ void kill(CellStageWorld@ world, ObjectID microbeEntity)
     if (!microbeComponent.isPlayerMicrobe &&
         microbeComponent.speciesName != playerSpecies.name)
     {
-        alterSpeciesPopulation(world,microbeEntity,-5);
+        alterSpeciesPopulation(world,microbeEntity,CREATURE_DEATH_POPULATION_LOSS);
     }
 
 
