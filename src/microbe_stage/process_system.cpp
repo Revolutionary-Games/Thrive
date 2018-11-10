@@ -67,6 +67,7 @@ CompoundBagComponent::CompoundBagComponent() : Leviathan::Component(TYPE)
         compounds[id].price = INITIAL_COMPOUND_PRICE;
         compounds[id].uninflatedPrice = INITIAL_COMPOUND_PRICE;
         compounds[id].demand = INITIAL_COMPOUND_DEMAND;
+        compounds[id].usedLastTime = INITIAL_COMPOUND_PRICE;
     }
 }
 
@@ -175,6 +176,12 @@ double
     CompoundBagComponent::getPrice(CompoundId compoundId)
 {
     return compounds[compoundId].price;
+}
+
+double
+    CompoundBagComponent::getUsedLastTime(CompoundId compoundId)
+{
+    return compounds[compoundId].usedLastTime;
 }
 
 double
@@ -315,6 +322,9 @@ void
         for(auto& compound : bag.compounds) {
             CompoundData& compoundData = compound.second;
             compoundData.amount = std::max(compoundData.amount, 0.0);
+            // That way we always have a running tally of what process was set
+            // to what despite clearing the price every run cycle
+            compoundData.usedLastTime = compoundData.price;
         }
     }
 }

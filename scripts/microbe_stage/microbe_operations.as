@@ -493,7 +493,7 @@ void purgeCompounds(CellStageWorld@ world, ObjectID microbeEntity)
     for(uint compoundId = 0; compoundId < compoundCount; ++compoundId){
 
         // Price is 1 if used, 0 if not
-        auto price = compoundBag.getPrice(compoundId);
+        auto price = compoundBag.getUsedLastTime(compoundId);
         auto useful = SimulationParameters::compoundRegistry().getTypeData(compoundId).
             isUseful;
 
