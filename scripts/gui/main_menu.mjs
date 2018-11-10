@@ -1,6 +1,7 @@
 // Main menu scripts are here
 import * as common from "./gui_common.mjs";
 import * as microbe_hud from "./microbe_hud.mjs";
+import {setupMicrobeEditor} from "./microbe_editor.mjs";
 
 // eslint off
 // import {doEnterMicrobeEditor} from "./microbe_editor.mjs";
@@ -61,6 +62,11 @@ export function runMenuSetup(){
         // (this would theoretically work in a browser but would be a bit annoying to work on)
         // common.playVideo("../../Videos/intro.mkv", onIntroEnded);
     }
+
+    // This is ran immediately because this needs to register
+    // callbacks that will be called before finishing entering the
+    // editor
+    setupMicrobeEditor();
 
     //
     // Use these to immediately test some specific menu
