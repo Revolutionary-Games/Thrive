@@ -677,6 +677,15 @@ video {
   display: none;
 }
 
+#extinctionBackground {
+  width: 100%;
+  height: 300px;
+  margin-top: -20%;
+  opacity: 0.2;
+  background-color: #A9A9A9;
+  display: none;
+}
+
 #suicideMsg {
   position: absolute;
   height: 100px;
