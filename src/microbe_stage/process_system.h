@@ -69,6 +69,7 @@ struct CompoundData {
     double amount;
     double uninflatedPrice;
     double price;
+    double usedLastTime;
     double demand;
     double priceReductionPerUnit;
     double breakEvenPoint;
@@ -108,6 +109,8 @@ public:
     double getPrice(CompoundId);
 
     double getDemand(CompoundId);
+
+    double getUsedLastTime(CompoundId);
 
     double
         takeCompound(CompoundId, double); // remove up to a certain amount of
