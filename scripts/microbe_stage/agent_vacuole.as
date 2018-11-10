@@ -30,13 +30,13 @@ class AgentVacuole : OrganelleComponent{
         MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
             organelle.world.GetScriptComponentHolder("MicrobeComponent").Find(microbeEntity));
 
-        LOG_INFO("Agent vacuole added to microbe: " + microbeEntity + ", type:" + compound);
-
         if(!microbeComponent.specialStorageOrganelles.exists(compound)){
             microbeComponent.specialStorageOrganelles[compound] = 1;
         } else {
             auto value = microbeComponent.specialStorageOrganelles[compound];
-            value = int(value) + 1;
+            // This needs to be applied like this otherwise it doesn't actually
+            // apply the change
+            microbeComponent.specialStorageOrganelles[compound] = int(value) + 1;
         }
     }
 
@@ -48,8 +48,10 @@ class AgentVacuole : OrganelleComponent{
 
         MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
             organelle.world.GetScriptComponentHolder("MicrobeComponent").Find(microbeEntity));
+
         auto value = microbeComponent.specialStorageOrganelles[compound];
-        value = int(value) - 1;
+        // This needs to be applied like this otherwise it doesn't actually apply the change
+        microbeComponent.specialStorageOrganelles[compound] = int(value) - 1;
     }
 
     // void AgentVacuole.storage(){
