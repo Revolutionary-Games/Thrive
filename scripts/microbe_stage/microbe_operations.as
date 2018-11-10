@@ -576,8 +576,10 @@ void emitAgent(CellStageWorld@ world, ObjectID microbeEntity, CompoundId compoun
             formatUInt(compoundId)]);
 
     // Only shoot if you have an agent vacuole.
-    if(numberOfAgentVacuoles == 0)
+    if(numberOfAgentVacuoles == 0){
+        // LOG_WARNING("Cell tries to shoot without agent vacuole");
         return;
+    }
 
     if(MicrobeOperations::getCompoundAmount(world, microbeEntity, compoundId) >
         MINIMUM_AGENT_EMISSION_AMOUNT)
