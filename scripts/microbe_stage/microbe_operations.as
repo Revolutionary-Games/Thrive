@@ -33,6 +33,14 @@ SpeciesComponent@ getSpeciesComponent(CellStageWorld@ world, ObjectID microbeEnt
     return world.GetComponent_SpeciesComponent(entity);
 }
 
+MicrobeComponent@ getPlayerMicrobe(CellStageWorld@ world)
+{
+    auto playerMicrobe = GetThriveGame().playerData().activeCreature();
+    MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
+        world.GetScriptComponentHolder("MicrobeComponent").Find(playerMicrobe));
+    return microbeComponent;
+}
+
 // Getter for microbe species
 //
 // returns the species component or null if species with that name doesn't exist

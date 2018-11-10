@@ -368,6 +368,19 @@ class MicrobeEditor{
         //         }
         //     }
         // }
+        MicrobeComponent@ playerMicrobe = MicrobeOperations::getPlayerMicrobe(GetThriveGame().getCellStage());
+        // Do toxin logic since it wasnt being ran for some reason which was preventing player toxins from working
+        if (organelleType == "oxytoxy")
+        {
+            auto compound = formatUInt(
+                SimulationParameters::compoundRegistry().getTypeId(organelleType));
+            if(!playerMicrobe.specialStorageOrganelles.exists(compound)){
+                playerMicrobe.specialStorageOrganelles[compound] = 1;
+            } else {
+            auto value = playerMicrobe.specialStorageOrganelles[compound];
+            value = int(value) + 1;
+            }
+        }
     }
 
     // This can only work when creating a new cell so put this inside the new method once done
