@@ -119,7 +119,7 @@ void playerShootToxin(CellStageWorld@ world, ObjectID entity)
     MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
         world.GetScriptComponentHolder("MicrobeComponent").Find(entity));
     CompoundId oxytoxyId = SimulationParameters::compoundRegistry().getTypeId("oxytoxy");
-    MicrobeOperations::emitAgent(world,entity, oxytoxyId,10.0f,400*10.0f);
+    MicrobeOperations::emitAgent(world, entity, oxytoxyId, 10.0f, 400*10.0f);
 }
 
 void onReturnFromEditor(CellStageWorld@ world)
@@ -159,7 +159,7 @@ void onReturnFromEditor(CellStageWorld@ world)
     Species::restoreOrganelleLayout(world, player, microbeComponent, playerSpecies);
 
     // Reset Players reproduction
-    microbeComponent.reproductionStage=0;
+    microbeComponent.reproductionStage = 0;
 
     // Halve the players Compounds
     for(uint64 compoundID = 0; compoundID <

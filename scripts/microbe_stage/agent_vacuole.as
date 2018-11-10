@@ -30,6 +30,8 @@ class AgentVacuole : OrganelleComponent{
         MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
             organelle.world.GetScriptComponentHolder("MicrobeComponent").Find(microbeEntity));
 
+        LOG_INFO("Agent vacuole added to microbe: " + microbeEntity + ", type:" + compound);
+
         if(!microbeComponent.specialStorageOrganelles.exists(compound)){
             microbeComponent.specialStorageOrganelles[compound] = 1;
         } else {
