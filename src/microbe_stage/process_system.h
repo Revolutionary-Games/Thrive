@@ -55,6 +55,8 @@ public:
     std::unordered_map<BioProcessId, double> process_capacities;
     void
         setCapacity(BioProcessId id, double capacity);
+    double
+        getCapacity(BioProcessId id);
 
     REFERENCE_HANDLE_UNCOUNTED_TYPE(ProcessorComponent);
 

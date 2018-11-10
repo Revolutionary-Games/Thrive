@@ -50,6 +50,12 @@ void
     this->process_capacities[id] = capacity;
 }
 
+double
+    ProcessorComponent::getCapacity(BioProcessId id)
+{
+    return this->process_capacities[id];
+}
+
 CompoundBagComponent::CompoundBagComponent() : Leviathan::Component(TYPE)
 {
     storageSpace = 0;
