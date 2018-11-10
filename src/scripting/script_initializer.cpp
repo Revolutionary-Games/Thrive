@@ -476,6 +476,12 @@ bool
         ANGELSCRIPT_REGISTERFAIL;
     }
 
+    if(engine->RegisterObjectMethod("ProcessorComponent",
+           "double getCapacity(BioProcessId id)",
+           asMETHOD(ProcessorComponent, getCapacity), asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
     // ------------------------------------ //
     if(engine->RegisterObjectType(
            "SpawnedComponent", 0, asOBJ_REF | asOBJ_NOCOUNT) < 0) {

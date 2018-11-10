@@ -1128,7 +1128,6 @@ void restoreOrganelleLayout(CellStageWorld@ world, ObjectID microbeEntity,
     }
 }
 
-// TODO: make sure this is called from somewhere
 void initProcessorComponent(CellStageWorld@ world, ObjectID entity,
     SpeciesComponent@ speciesComponent)
 {
@@ -1137,38 +1136,56 @@ void initProcessorComponent(CellStageWorld@ world, ObjectID entity,
 
     assert(speciesComponent.organelles.length() > 0, "initProcessorComponent given a "
         "species that has no organelles");
+    auto speciesEntity = findSpeciesEntityByName(world, speciesComponent.name);
 
-    auto pc = world.GetComponent_ProcessorComponent(entity);
+    ProcessorComponent@ processorComponent = world.GetComponent_ProcessorComponent(
+        speciesEntity);
 
-    if(pc is null){
-
-        @pc = world.Create_ProcessorComponent(entity);
-    }
-
-    dictionary capacities = {};
+    dictionary capacities;
     for(uint i = 0; i < speciesComponent.organelles.length(); i++){
-        auto@ processes = cast<PlacedOrganelle>(speciesComponent.organelles[i]).
-            organelle.processes;
 
-        for(uint a = 0; a < processes.length(); ++a){
+        const Organelle@ organelleDefinition = cast<PlacedOrganelle>(speciesComponent.organelles[i]).organelle;
+        if(organelleDefinition is null){
 
-            auto@ process = processes[a];
-            auto name = process.process.internalName;
+            LOG_ERROR("Organelle table has a null organelle in it, position: " + i +
+                "', that was added to a species entity");
+            continue;
+        }
 
-            if(!capacities.exists(name)){
-                capacities[name] = 0;
+        for(uint processNumber = 0;
+            processNumber < organelleDefinition.processes.length(); ++processNumber)
+        {
+            // This name needs to match the one in bioProcessRegistry
+            TweakedProcess@ process = organelleDefinition.processes[processNumber];
+
+            if(!capacities.exists(process.process.internalName)){
+                capacities[process.process.internalName] = 0;
             }
 
-            auto dictValue = capacities[name];
-            dictValue = float(dictValue) + process.capacity;
+            // Here the second capacities[process.name] was initially capacities[process]
+            // but the processes are just strings inside the Organelle class
+            capacities[process.process.internalName] = float(capacities[
+                    process.process.internalName]) +
+                process.capacity;
         }
     }
 
     uint64 processCount = SimulationParameters::bioProcessRegistry().getSize();
-    for(uint bioProcessID = 0; bioProcessID < processCount; ++bioProcessID){
-        auto name = SimulationParameters::bioProcessRegistry().getInternalName(bioProcessID);
-        if(capacities.exists(name)){
-            pc.setCapacity(bioProcessID, float(capacities[name]));
+    for(uint bioProcessId = 0; bioProcessId < processCount; ++bioProcessId){
+        auto processName = SimulationParameters::bioProcessRegistry().getInternalName(
+            bioProcessId);
+
+        if(capacities.exists(processName)){
+            float capacity;
+            if(!capacities.get(processName, capacity)){
+                LOG_ERROR("capacities has invalid value");
+                continue;
+            }
+
+            processorComponent.setCapacity(bioProcessId, capacity);
+            // This may be commented out for the reason that the default should be retained
+            // } else {
+            // processorComponent.setCapacity(bioProcessId, 0)
         }
     }
 }
