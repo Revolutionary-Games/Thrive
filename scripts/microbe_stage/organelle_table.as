@@ -350,7 +350,7 @@ void setupOrganelles(){
     oxytoxyParameters.mesh = "oxytoxy.mesh";
     oxytoxyParameters.chanceToCreate = 1;
     oxytoxyParameters.prokaryoteChance = 0;
-    oxytoxyParameters.mpCost = 40;
+    oxytoxyParameters.mpCost = 80;
     oxytoxyParameters.initialComposition = {
         {"phosphates", 2},
         {"ammonia", 2}
@@ -378,7 +378,7 @@ void setupOrganelles(){
     mitochondrionParameters.mesh = "mitochondrion.mesh";
     mitochondrionParameters.chanceToCreate = 3;
     mitochondrionParameters.prokaryoteChance = 0;
-    mitochondrionParameters.mpCost = 20;
+    mitochondrionParameters.mpCost = 40;
     mitochondrionParameters.initialComposition = {
         {"phosphates", 2},
         {"ammonia", 2}
@@ -407,7 +407,7 @@ void setupOrganelles(){
     vacuoleParameters.mesh = "vacuole.mesh";
     vacuoleParameters.chanceToCreate = 3;
     vacuoleParameters.prokaryoteChance = 0;
-    vacuoleParameters.mpCost = 15;
+    vacuoleParameters.mpCost = 30;
     vacuoleParameters.initialComposition = {
         {"phosphates", 2},
         {"ammonia", 2}
@@ -430,7 +430,7 @@ void setupOrganelles(){
     flagellumParameters.mesh = "flagellum.mesh";
     flagellumParameters.chanceToCreate = 6;
     flagellumParameters.prokaryoteChance = 2;
-    flagellumParameters.mpCost = 25;
+    flagellumParameters.mpCost = 50;
     flagellumParameters.initialComposition = {
         {"phosphates", 2},
         {"ammonia", 2}
@@ -456,7 +456,7 @@ void setupOrganelles(){
     chemoplast.mesh = "AgentVacuole.mesh";
     chemoplast.chanceToCreate = 1;
     chemoplast.prokaryoteChance = 0;
-    chemoplast.mpCost = 20;
+    chemoplast.mpCost = 40;
     chemoplast.initialComposition = {
         {"phosphates", 5},
         {"ammonia", 5}
@@ -485,7 +485,7 @@ void setupOrganelles(){
     nitrogenPlastid.mesh = "vacuole.mesh";
     nitrogenPlastid.chanceToCreate = 1;
     nitrogenPlastid.prokaryoteChance = 0;
-    nitrogenPlastid.mpCost = 20;
+    nitrogenPlastid.mpCost = 40;
     nitrogenPlastid.initialComposition = {
         {"phosphates", 2},
         {"ammonia", 2}
@@ -515,7 +515,7 @@ void setupOrganelles(){
     respiratoryProtien.mesh = "mitochondrion.mesh";
     respiratoryProtien.chanceToCreate = 0;
     respiratoryProtien.prokaryoteChance = 1;
-    respiratoryProtien.mpCost = 20;
+    respiratoryProtien.mpCost = 40;
     respiratoryProtien.initialComposition = {
         {"phosphates", 1},
         {"ammonia", 1}
@@ -542,7 +542,7 @@ void setupOrganelles(){
     photosyntheticProtein.mesh = "chloroplast.mesh";
     photosyntheticProtein.chanceToCreate = 0;
     photosyntheticProtein.prokaryoteChance = 1;
-    photosyntheticProtein.mpCost = 20;
+    photosyntheticProtein.mpCost = 40;
     photosyntheticProtein.initialComposition = {
         {"phosphates", 1},
         {"ammonia", 1}
@@ -570,7 +570,7 @@ void setupOrganelles(){
     oxytoxyProtein.mesh = "oxytoxy.mesh";
     oxytoxyProtein.chanceToCreate = 0;
     oxytoxyProtein.prokaryoteChance = 1;
-    oxytoxyProtein.mpCost = 20;
+    oxytoxyProtein.mpCost = 40;
     oxytoxyProtein.initialComposition = {
         {"phosphates", 1},
         {"ammonia", 1}
@@ -600,7 +600,7 @@ void setupOrganelles(){
     chemoSynthisizingProtien.mesh = "AgentVacuole.mesh";
     chemoSynthisizingProtien.chanceToCreate = 0;
     chemoSynthisizingProtien.prokaryoteChance = 1;
-    chemoSynthisizingProtien.mpCost = 20;
+    chemoSynthisizingProtien.mpCost = 40;
     chemoSynthisizingProtien.initialComposition = {
         {"phosphates", 1},
         {"ammonia", 1}
@@ -628,7 +628,7 @@ void setupOrganelles(){
     protoplasmParameters.mesh = ""; //it's an empty hex
     protoplasmParameters.chanceToCreate = 0;
     protoplasmParameters.prokaryoteChance = 1;
-    protoplasmParameters.mpCost = 5;
+    protoplasmParameters.mpCost = 10;
     protoplasmParameters.initialComposition = {
         {"phosphates", 1},
         {"ammonia", 1}
@@ -654,7 +654,7 @@ void setupOrganelles(){
     nitrogenFixationProtien.mesh = "vacuole.mesh";
     nitrogenFixationProtien.chanceToCreate = 0;
     nitrogenFixationProtien.prokaryoteChance = 1;
-    nitrogenFixationProtien.mpCost = 20;
+    nitrogenFixationProtien.mpCost = 40;
     nitrogenFixationProtien.initialComposition = {
         {"phosphates", 1},
         {"ammonia",1}

@@ -1078,7 +1078,7 @@ void kill(CellStageWorld@ world, ObjectID microbeEntity)
     uint64 compoundCount = SimulationParameters::compoundRegistry().getSize();
     for(uint compoundId = 0; compoundId < compoundCount; ++compoundId){
 
-        auto total = getCompoundAmount(world, microbeEntity, compoundId);
+        auto total = getCompoundAmount(world, microbeEntity, compoundId)*COMPOUND_RELEASE_PERCENTAGE;
         auto ejectedAmount = takeCompound(world, microbeEntity,
             compoundId, total);
         compoundsToRelease[formatInt(compoundId)] = ejectedAmount;
@@ -1111,9 +1111,8 @@ void kill(CellStageWorld@ world, ObjectID microbeEntity)
     // TODO: make the compounds be released inside of the microbe and not in the back.
     auto keys = compoundsToRelease.getKeys();
     for(uint i = 0; i < keys.length(); ++i){
-
         ejectCompound(world, microbeEntity, parseInt(keys[i]),
-            float(compoundsToRelease[keys[i]])*5);
+            float(compoundsToRelease[keys[i]]));
     }
 
     // Play the death sound
