@@ -832,7 +832,19 @@ void
         Leviathan::PhysicsBody& first,
         Leviathan::PhysicsBody& second)
 {
-    // cellOnCellAABBHitCallback(physicalWorld, first, second);
+    // This will call a script that pulls cells in towards engulfers
+    GameWorld* gameWorld = physicalWorld.GetGameWorld();
+
+    ScriptRunningSetup setup("cellOnCellActualContact");
+
+    auto returned =
+        ThriveGame::Get()->getMicrobeScripts()->ExecuteOnModule<void>(setup,
+            false, gameWorld, first.GetOwningEntity(),
+            second.GetOwningEntity());
+
+    if(returned.Result != SCRIPT_RUN_RESULT::Success) {
+        LOG_ERROR("Failed to run script side beingEngulfed");
+    }
 }
 
 std::unique_ptr<Leviathan::PhysicsMaterialManager>
@@ -856,7 +868,7 @@ std::unique_ptr<Leviathan::PhysicsMaterialManager>
         .SetCallbacks(agentCallback, nullptr);
     // Engulfing
     cellMaterial->FormPairWith(*cellMaterial)
-        .SetCallbacks(cellOnCellAABBHitCallback, nullptr);
+        .SetCallbacks(cellOnCellAABBHitCallback, cellOnCellActualContact);
 
     auto manager = std::make_unique<Leviathan::PhysicsMaterialManager>();
 
