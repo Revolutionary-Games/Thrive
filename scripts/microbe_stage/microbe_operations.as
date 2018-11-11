@@ -1113,7 +1113,7 @@ void kill(CellStageWorld@ world, ObjectID microbeEntity)
     for(uint i = 0; i < keys.length(); ++i){
 
         ejectCompound(world, microbeEntity, parseInt(keys[i]),
-            float(compoundsToRelease[keys[i]])*10);
+            float(compoundsToRelease[keys[i]])*5);
     }
 
     // Play the death sound
