@@ -450,6 +450,7 @@ class MicrobeSystem : ScriptSystem{
             MicrobeOperations::damage(world,microbeEntity, microbeComponent.maxHitpoints / 5.0f
                 / 1000.0f * logicTime,
                 "isBeingEngulfed - Microbe.update()s");
+            microbeComponent.movementFactor =  microbeComponent.movementFactor/ENGULFED_MOVEMENT_DIVISION;
             microbeComponent.wasBeingEngulfed = true;
             // Else If we were but are no longer, being engulfed
         } else if(microbeComponent.wasBeingEngulfed && !microbeComponent.isBeingEngulfed){
@@ -457,7 +458,6 @@ class MicrobeSystem : ScriptSystem{
             microbeComponent.wasBeingEngulfed = false;
 
             //  You escaped, good job
-
             auto playerSpecies = MicrobeOperations::getSpeciesComponent(world, "Default");
             if (!microbeComponent.isPlayerMicrobe &&
                 microbeComponent.speciesName != playerSpecies.name)
@@ -468,9 +468,26 @@ class MicrobeSystem : ScriptSystem{
             MicrobeOperations::removeEngulfedEffect(world, microbeEntity);
         }
 
+        // Check whether we should not be being engulfed anymore
+        if (microbeComponent.hostileEngulfer != NULL_OBJECT){
+            auto predatorPosition = world.GetComponent_Position(microbeComponent.hostileEngulfer);
+            auto ourPosition = world.GetComponent_Position(microbeEntity);
+             MicrobeComponent@ hostileMicrobeComponent = cast<MicrobeComponent>(
+                world.GetScriptComponentHolder("MicrobeComponent").Find(microbeComponent.hostileEngulfer));
+            if ((hostileMicrobeComponent is null) || (!hostileMicrobeComponent.isCurrentlyEngulfing) ||
+            (hostileMicrobeComponent.dead) || (ourPosition._Position -  predatorPosition._Position).LengthSquared() >=
+            ((hostileMicrobeComponent.organelles.length()+3)*HEX_SIZE)+10){
+                microbeComponent.hostileEngulfer = NULL_OBJECT;
+                microbeComponent.isBeingEngulfed = false;
+                }
+        }
+        else {
+            microbeComponent.hostileEngulfer = NULL_OBJECT;
+            microbeComponent.isBeingEngulfed = false;
+        }
+
         applyCellMovement(components, logicTime);
 
-        microbeComponent.isBeingEngulfed = false;
         compoundAbsorberComponent.setAbsorbtionCapacity(microbeComponent.capacity);
     }
 
