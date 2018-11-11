@@ -236,7 +236,41 @@ void cellHitAgent(GameWorld@ world, ObjectID firstEntity, ObjectID secondEntity)
 
 void cellOnCellActualContact(GameWorld@ world, ObjectID firstEntity, ObjectID secondEntity)
 {
-    // LOG_INFO("Cell hit another cell, thats cool i guess");
+    //We ar egoing to cheat here and set variables when you hit something, and hopefully the AABB will take care of the rest
+    // Grab the microbe components
+    MicrobeComponent@ firstMicrobeComponent = cast<MicrobeComponent>(
+        world.GetScriptComponentHolder("MicrobeComponent").Find(firstEntity));
+    MicrobeComponent@ secondMicrobeComponent = cast<MicrobeComponent>(
+        world.GetScriptComponentHolder("MicrobeComponent").Find(secondEntity));
+    //Check if they were null *because if null the cast failed)
+    if (firstMicrobeComponent !is null && secondMicrobeComponent !is null)
+    {
+        // Get microbe sizes here
+        int firstMicrobeComponentOrganelles = firstMicrobeComponent.organelles.length();
+        int secondMicrobeComponentOrganelles = secondMicrobeComponent.organelles.length();
+        if (firstMicrobeComponent.engulfMode)
+        {
+            if(firstMicrobeComponentOrganelles >
+                (ENGULF_HP_RATIO_REQ * secondMicrobeComponentOrganelles) &&
+                firstMicrobeComponent.dead == false && secondMicrobeComponent.dead == false)
+            {
+                secondMicrobeComponent.isBeingEngulfed = true;
+                secondMicrobeComponent.hostileEngulfer = firstEntity;
+                secondMicrobeComponent.wasBeingEngulfed = true;
+            }
+        }
+        if (secondMicrobeComponent.engulfMode)
+        {
+            if(secondMicrobeComponentOrganelles >
+                (ENGULF_HP_RATIO_REQ * firstMicrobeComponentOrganelles) &&
+                secondMicrobeComponent.dead == false && firstMicrobeComponent.dead == false)
+            {
+                firstMicrobeComponent.isBeingEngulfed = true;
+                firstMicrobeComponent.hostileEngulfer = secondEntity;
+                firstMicrobeComponent.wasBeingEngulfed = true;
+            }
+        }
+    }
 }
 
 // Targets player cell and kills it (For suicide button)
@@ -251,55 +285,58 @@ void killPlayerCellClicked(CellStageWorld@ world)
 // engulfed, we should probabbly check cell size and such here aswell.
 bool beingEngulfed(GameWorld@ world, ObjectID firstEntity, ObjectID secondEntity)
 {
-    bool shouldCollide = true;
+    bool shouldCollide = false;
 
     // Grab the microbe components
     MicrobeComponent@ firstMicrobeComponent = cast<MicrobeComponent>(
         world.GetScriptComponentHolder("MicrobeComponent").Find(firstEntity));
     MicrobeComponent@ secondMicrobeComponent = cast<MicrobeComponent>(
         world.GetScriptComponentHolder("MicrobeComponent").Find(secondEntity));
-
     //Check if they were null *because if null the cast failed)
     if (firstMicrobeComponent !is null && secondMicrobeComponent !is null)
     {
         // Get microbe sizes here
         int firstMicrobeComponentOrganelles = firstMicrobeComponent.organelles.length();
         int secondMicrobeComponentOrganelles = secondMicrobeComponent.organelles.length();
-
         // If either cell is engulfing we need to do things
+        //return false;
+        //LOG_INFO(""+firstMicrobeComponent.engulfMode);
+       // LOG_INFO(""+secondMicrobeComponent.engulfMode);
         if (firstMicrobeComponent.engulfMode)
         {
-            if(firstMicrobeComponent.engulfMode && firstMicrobeComponentOrganelles >
+            if(firstMicrobeComponentOrganelles >
                 (ENGULF_HP_RATIO_REQ * secondMicrobeComponentOrganelles) &&
                 firstMicrobeComponent.dead == false && secondMicrobeComponent.dead == false)
             {
+                secondMicrobeComponent.movementFactor =  secondMicrobeComponent.movementFactor/ENGULFED_MOVEMENT_DIVISION;
                 secondMicrobeComponent.isBeingEngulfed = true;
                 secondMicrobeComponent.hostileEngulfer = firstEntity;
                 secondMicrobeComponent.wasBeingEngulfed = true;
                 firstMicrobeComponent.isCurrentlyEngulfing = true;
-                shouldCollide = false;
+                return false;
             }
         }
-
-        // Looks like it doenst work sometimes if i dont check the second
-        // one aswell, so i have to, theres gotta be a way to improve this
         if (secondMicrobeComponent.engulfMode)
         {
-            if(secondMicrobeComponent.engulfMode && secondMicrobeComponentOrganelles >
+            if(secondMicrobeComponentOrganelles >
                 (ENGULF_HP_RATIO_REQ * firstMicrobeComponentOrganelles) &&
                 secondMicrobeComponent.dead == false && firstMicrobeComponent.dead == false)
             {
-
+                firstMicrobeComponent.movementFactor =  firstMicrobeComponent.movementFactor/ENGULFED_MOVEMENT_DIVISION;
                 firstMicrobeComponent.isBeingEngulfed = true;
                 firstMicrobeComponent.hostileEngulfer = secondEntity;
                 firstMicrobeComponent.wasBeingEngulfed = true;
                 secondMicrobeComponent.isCurrentlyEngulfing = true;
-                shouldCollide = false;
+                return false;
             }
+        }
+
+        if (secondMicrobeComponent.hostileEngulfer == firstEntity || firstMicrobeComponent.hostileEngulfer == secondEntity) {
+            return false;
         }
     }
 
-    return shouldCollide;
+    return true;
 }
 
 // Returns false if you hit an agent and calls the hit effect code

@@ -45,6 +45,12 @@ class MicrobeComponent : ScriptComponent{
     {
         this.speciesName = speciesName;
         this.isPlayerMicrobe = isPlayerMicrobe;
+        this.engulfMode = false;
+        this.isBeingEngulfed = false;
+        this.hostileEngulfer = NULL_OBJECT;
+        this.wasBeingEngulfed = false;
+        this.isCurrentlyEngulfing = false;
+        this.dead = false;
         auto world = GetThriveGame().getCellStage();
         if (MicrobeOperations::getSpeciesComponent(world,speciesName) !is null)
         {
@@ -450,7 +456,6 @@ class MicrobeSystem : ScriptSystem{
             MicrobeOperations::damage(world,microbeEntity, microbeComponent.maxHitpoints / 5.0f
                 / 1000.0f * logicTime,
                 "isBeingEngulfed - Microbe.update()s");
-            microbeComponent.movementFactor =  microbeComponent.movementFactor/ENGULFED_MOVEMENT_DIVISION;
             microbeComponent.wasBeingEngulfed = true;
             // Else If we were but are no longer, being engulfed
         } else if(microbeComponent.wasBeingEngulfed && !microbeComponent.isBeingEngulfed){
@@ -474,9 +479,9 @@ class MicrobeSystem : ScriptSystem{
             auto ourPosition = world.GetComponent_Position(microbeEntity);
              MicrobeComponent@ hostileMicrobeComponent = cast<MicrobeComponent>(
                 world.GetScriptComponentHolder("MicrobeComponent").Find(microbeComponent.hostileEngulfer));
-            if ((hostileMicrobeComponent is null) || (!hostileMicrobeComponent.isCurrentlyEngulfing) ||
+            if ((hostileMicrobeComponent is null) || (!hostileMicrobeComponent.engulfMode) ||
             (hostileMicrobeComponent.dead) || (ourPosition._Position -  predatorPosition._Position).LengthSquared() >=
-            ((hostileMicrobeComponent.organelles.length()+3)*HEX_SIZE)+10){
+            ((hostileMicrobeComponent.organelles.length()+3)*HEX_SIZE)+50){
                 microbeComponent.hostileEngulfer = NULL_OBJECT;
                 microbeComponent.isBeingEngulfed = false;
                 }
