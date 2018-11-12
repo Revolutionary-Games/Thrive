@@ -1181,7 +1181,7 @@ void initProcessorComponent(CellStageWorld@ world, ObjectID entity,
                 LOG_ERROR("capacities has invalid value");
                 continue;
             }
-
+            LOG_INFO("Process: "+processName+" Capacity: "+capacity);
             processorComponent.setCapacity(bioProcessId, capacity);
             // This may be commented out for the reason that the default should be retained
             // } else {

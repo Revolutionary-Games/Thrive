@@ -297,6 +297,7 @@ class MicrobeSystem : ScriptSystem{
         CompoundAbsorberComponent@ compoundAbsorberComponent = components.first;
         CompoundBagComponent@ compoundBag = components.sixth;
         MicrobeComponent@ microbeComponent = components.second;
+        //LOG_INFO(""+logicTime);
 
         // Recalculating agent cooldown time.
         microbeComponent.agentEmissionCooldown = int(max(
@@ -333,12 +334,6 @@ class MicrobeSystem : ScriptSystem{
                     min(microbeComponent.capacity,amount), true);
             }
         }
-
-        //There is an osmoregulation cost
-        auto osmoCost = (pow(microbeComponent.organelles.length(),ATP_COST_FOR_OSMOREGULATION)) /
-            (1000*logicTime);
-        MicrobeOperations::takeCompound(world, microbeEntity,
-            SimulationParameters::compoundRegistry().getTypeId("atp"), osmoCost);
 
         // Flash membrane if something happens.
         if(microbeComponent.flashDuration != 0 &&
@@ -391,7 +386,7 @@ class MicrobeSystem : ScriptSystem{
             if(MicrobeOperations::getCompoundAmount(world, microbeEntity,
                     SimulationParameters::compoundRegistry().getTypeId("atp")) > 0)
             {
-                microbeComponent.hitpoints += (REGENERATION_RATE/1000.0*logicTime);
+                microbeComponent.hitpoints += (REGENERATION_RATE/logicTime);
                 if (microbeComponent.hitpoints > microbeComponent.maxHitpoints)
                 {
                     microbeComponent.hitpoints =  microbeComponent.maxHitpoints;
@@ -403,7 +398,7 @@ class MicrobeSystem : ScriptSystem{
 
         if(microbeComponent.engulfMode){
             // Drain atp
-            auto cost = ENGULFING_ATP_COST_SECOND/1000*logicTime;
+            auto cost = ENGULFING_ATP_COST_SECOND/logicTime;
 
             if(MicrobeOperations::takeCompound(world, microbeEntity,
                     SimulationParameters::compoundRegistry().getTypeId("atp"), cost) <
@@ -454,7 +449,7 @@ class MicrobeSystem : ScriptSystem{
         if(microbeComponent.isBeingEngulfed){
             //LOG_INFO("doing engulf damage");
             MicrobeOperations::damage(world,microbeEntity, microbeComponent.maxHitpoints / 5.0f
-                / 1000.0f * logicTime,
+                / logicTime,
                 "isBeingEngulfed - Microbe.update()s");
             microbeComponent.wasBeingEngulfed = true;
             // Else If we were but are no longer, being engulfed
@@ -489,6 +484,25 @@ class MicrobeSystem : ScriptSystem{
         else {
             microbeComponent.hostileEngulfer = NULL_OBJECT;
             microbeComponent.isBeingEngulfed = false;
+        }
+
+        //There is an osmoregulation cost
+        //This is per second logic time is the amount of ticks per second.
+        //TODO:It seems to happen no matter what (even if it takes away less atp then you generate per second),
+        //we should probably make it take into account the amount of atp being generated so resources arent wasted
+        //for now made it not take away if your atp amount is equal to your capacity
+        auto osmoCost = (pow(microbeComponent.organelles.length(),ATP_COST_FOR_OSMOREGULATION)) /
+            (logicTime);
+        //auto osmoCost = (microbeComponent.organelles.length()*2)/logicTime;
+        double atpAmount = MicrobeOperations::getCompoundAmount(world, microbeEntity,SimulationParameters::compoundRegistry().getTypeId("atp"));
+
+        if (atpAmount >= osmoCost && atpAmount < microbeComponent.capacity-0.2){
+            MicrobeOperations::takeCompound(world, microbeEntity,
+                SimulationParameters::compoundRegistry().getTypeId("atp"), osmoCost);
+        }
+        else if (atpAmount < microbeComponent.capacity-0.2){
+            MicrobeOperations::takeCompound(world, microbeEntity,
+                SimulationParameters::compoundRegistry().getTypeId("atp"), atpAmount);
         }
 
         applyCellMovement(components, logicTime);
