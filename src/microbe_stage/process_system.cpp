@@ -222,8 +222,8 @@ void
             BioProcessId processId = process.first;
             double processCapacity = process.second;
 
-            double processLimitCapacity = processCapacity * logicTime;
-
+            // Processes are now every second
+            double processLimitCapacity = logicTime;
             // This should not do anything if the cell has no room to hold the
             // new compounds and it shouldn't just keep draining compounds if
             // you lack the stuff you need to Do your processes
@@ -244,7 +244,8 @@ void
                 CompoundId inputId = input.first;
                 // Set price of used compounds to 1, we dont want to purge those
                 bag.compounds[inputId].price = 1;
-                double inputRemoved = input.second / processLimitCapacity;
+                double inputRemoved =
+                    ((input.second * processCapacity) / (processLimitCapacity));
                 if(bag.compounds[inputId].amount < inputRemoved) {
                     canDoProcess = false;
                 }
@@ -260,8 +261,9 @@ void
                     CompoundId outputId = output.first;
                     // For now lets assume compounds we produce are also useful
                     bag.compounds[outputId].price = 1;
-                    // How do we stop this from purging ammonia and phosphate?
-                    double outputAdded = output.second / processLimitCapacity;
+                    double outputAdded = ((output.second * processCapacity) /
+                                          (processLimitCapacity));
+
                     if(bag.getCompoundAmount(outputId) + outputAdded >
                         bag.storageSpace) {
                         canDoProcess = false;
@@ -281,7 +283,6 @@ void
                     CompoundId outputId = output.first;
                     // For now lets assume compounds we produce are also useful
                     bag.compounds[outputId].price = 1;
-                    // How do we stop this from purging ammonia and phosphate?
                 }
             }
             // Only carry out this process if you have all the required
@@ -295,7 +296,8 @@ void
                                             .getTypeData(processId)
                                             .inputs) {
                     CompoundId inputId = input.first;
-                    double inputRemoved = input.second / processLimitCapacity;
+                    double inputRemoved = ((input.second * processCapacity) /
+                                           (processLimitCapacity));
                     if(bag.compounds[inputId].amount >= inputRemoved) {
                         processed = true;
                         bag.compounds[inputId].amount -= inputRemoved;
@@ -312,7 +314,8 @@ void
                             .outputs) {
                         CompoundId outputId = output.first;
                         double outputGenerated =
-                            output.second / processLimitCapacity;
+                            ((output.second * processCapacity) /
+                                (processLimitCapacity));
                         bag.compounds[outputId].amount += outputGenerated;
                     }
                 }
