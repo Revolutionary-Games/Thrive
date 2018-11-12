@@ -656,33 +656,31 @@ video {
   display: none;
 }
 
+#extinctionContainer {
+  width: 100%;
+  height: 240px;
+  margin-top: 17%;
+  background-color: rgba(60, 60, 60, .2);
+  display: none;
+}
+
 #extinctionTitle {
   width: 800px;
   height: 100px;
-  margin-top: 17%;
-  margin-left: calc(50% - 400px);
   font-family: thrive;
   font-size: 90pt;
   color: #f33;
+  margin-left: calc(50% - 400px);
+  margin-top: 1%;
   display: none;
 }
 
 #extinctionBody {
   width: 800px;
   height: 120px;
-  margin-top: 0%;
-  margin-left: calc(50% - 400px);
   font-size: 20pt;
   text-align: left;
-  display: none;
-}
-
-#extinctionBackground {
-  width: 100%;
-  height: 300px;
-  margin-top: -20%;
-  opacity: 0.2;
-  background-color: #a9a9a9;
+  margin-left: calc(50% - 400px);
   display: none;
 }
 
