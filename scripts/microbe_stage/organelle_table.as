@@ -293,7 +293,7 @@ void setupOrganelles(){
     cytoplasmParameters.mesh = ""; //it's an empty hex
     cytoplasmParameters.chanceToCreate = 1;
     cytoplasmParameters.prokaryoteChance = 1;
-    cytoplasmParameters.mpCost = 5;
+    cytoplasmParameters.mpCost = 10;
     cytoplasmParameters.initialComposition = {
         {"phosphates", 2},
         {"ammonia", 2}
@@ -320,7 +320,7 @@ void setupOrganelles(){
     chloroplastParameters.mesh = "chloroplast.mesh";
     chloroplastParameters.chanceToCreate = 1;
     chloroplastParameters.prokaryoteChance = 0;
-    chloroplastParameters.mpCost = 20;
+    chloroplastParameters.mpCost = 40;
     chloroplastParameters.initialComposition = {
         {"phosphates", 2},
         {"ammonia", 2}
@@ -430,7 +430,7 @@ void setupOrganelles(){
     flagellumParameters.mesh = "flagellum.mesh";
     flagellumParameters.chanceToCreate = 6;
     flagellumParameters.prokaryoteChance = 2;
-    flagellumParameters.mpCost = 50;
+    flagellumParameters.mpCost = 30;
     flagellumParameters.initialComposition = {
         {"phosphates", 2},
         {"ammonia", 2}
