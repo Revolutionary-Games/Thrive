@@ -522,7 +522,7 @@ class MicrobeEditor{
         const auto ray = hudSystem.world.CastRayFromCamera(x, y);
 
         float distance;
-        bool intersects = ray.intersects(Ogre::Plane(Ogre::Vector3(0, 1, 0), 0), distance);
+        bool intersects = ray.intersects(Ogre::Plane(Ogre::Vector3(0, 1, 0), 0),distance);
 
         // Get the position of the cursor in the plane that the microbes is floating in
         const auto rayPoint = ray.getPoint(distance);
@@ -533,8 +533,25 @@ class MicrobeEditor{
 
         //Negating X to compensate for the fact that we are looking at
         //the opposite side of the normal coordinate system
-        const auto tmp1 = Hex::cartesianToAxial(rayPoint.x, -1*rayPoint.z);
-
+        
+        float hexOffsetX;
+        float hexOffsetY;
+        
+        if (rayPoint.z <0){
+            hexOffsetY = -(HEX_SIZE/2);
+            }
+        else {
+            hexOffsetY = (HEX_SIZE/2);
+        }
+        if (rayPoint.x <0){
+            hexOffsetX = -(HEX_SIZE/2);
+            }
+        else {
+            hexOffsetX = (HEX_SIZE/2);
+        }
+        
+        const auto tmp1 = Hex::cartesianToAxial(rayPoint.x+hexOffsetX, -1*(rayPoint.z+hexOffsetY));
+        
         // This requires a conversion to hex cube coordinates and back
         // for proper rounding.
         const auto qrrr = Hex::cubeToAxial(Hex::cubeHexRound(
