@@ -69,7 +69,7 @@ const uint AI_ENGULF_INTERVAL=300;
 // if you are gaining less then this amount of compound per turn you are much more likely to turn randomly
 const auto AI_COMPOUND_BIAS = -10.0f;
 // Osmoregulation ATP cost
-const auto ATP_COST_FOR_OSMOREGULATION = 1.6f;
+const auto ATP_COST_FOR_OSMOREGULATION = 1.2f;
 
 //Purge Divisor
 const auto COMPOUND_PURGE_MODIFIER = 2.0f;
@@ -86,7 +86,7 @@ const auto DEFAULT_HEALTH = 100;
 const auto REGENERATION_RATE = 1;
 
 // Movement stuff
-const auto FLAGELLA_ENERGY_COST = 3.0f;
+const auto FLAGELLA_ENERGY_COST = 0.5f;
 const auto FLAGELLA_BASE_FORCE = 0.5f;
 const auto CELL_BASE_THRUST = 1.4f;
 //! The drag force is calculated by taking the current velocity and multiplying it by this.
