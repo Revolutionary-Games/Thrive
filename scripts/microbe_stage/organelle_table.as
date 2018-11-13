@@ -453,7 +453,7 @@ void setupOrganelles(){
     chemoplast.mass = 0.1;
     chemoplast.gene = "C";
     //TODO: They need their model
-    chemoplast.mesh = "AgentVacuole.mesh";
+    chemoplast.mesh = "mitochondrion.mesh";
     chemoplast.chanceToCreate = 1;
     chemoplast.prokaryoteChance = 0;
     chemoplast.mpCost = 40;
@@ -597,7 +597,7 @@ void setupOrganelles(){
 
     chemoSynthisizingProtien.mass = 0.1;
     chemoSynthisizingProtien.gene = "c";
-    chemoSynthisizingProtien.mesh = "AgentVacuole.mesh";
+    chemoSynthisizingProtien.mesh = "mitochondrion.mesh";
     chemoSynthisizingProtien.chanceToCreate = 0;
     chemoSynthisizingProtien.prokaryoteChance = 1;
     chemoSynthisizingProtien.mpCost = 40;
