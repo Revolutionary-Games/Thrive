@@ -181,10 +181,12 @@ class MovementOrganelle : OrganelleComponent{
         angle = ((angle * 180)/PI - 90) % 360;
 
         auto renderNode = organelle.world.GetComponent_RenderNode(organelle.organelleEntity);
-        renderNode.Node.setPosition(membraneCoords);
-
-        renderNode.Node.setOrientation(Ogre::Quaternion(Ogre::Degree(angle),
+        if (renderNode !is null)
+            {
+            renderNode.Node.setPosition(membraneCoords);
+            renderNode.Node.setOrientation(Ogre::Quaternion(Ogre::Degree(angle),
                 Ogre::Vector3(0, 1, 0))*Ogre::Quaternion(Ogre::Degree(270),Ogre::Vector3(0, 0, 1)));
+            }
 
         //Grab components
         MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
