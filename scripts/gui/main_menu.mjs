@@ -139,7 +139,9 @@ function quitGame(){
 }
 
 function newGame(){
-
+    if(jams){
+        jams.Pause();
+    }
     if(common.isInEngine()){
         Leviathan.PlayCutscene("Data/Videos/MicrobeIntro.mkv", onMicrobeIntroEnded,
             onMicrobeIntroEnded);
