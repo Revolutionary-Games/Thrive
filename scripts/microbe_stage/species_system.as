@@ -718,7 +718,7 @@ const auto INITIAL_POPULATION = 3000;
 const auto SPECIES_SIM_INTERVAL = 5000;
 
 // If a specie's population goes below this it goes extinct.
-const auto MIN_POP_SIZE = 2;
+const auto MIN_POP_SIZE = 500;
 
 // If a specie's population goes above this it gets split in half and a
 // new mutated species apears. this should be randomized
@@ -852,6 +852,9 @@ class SpeciesSystem : ScriptSystem{
                 if(GetEngine().GetRandom().GetNumber(0, 10) <= 5 && ranSpeciesEvent == false &&
                     currentSpecies.population >= MAX_POP_SIZE){
 
+                    // To prevent ridiculous population numbers
+                    currentSpecies.population=MAX_POP_SIZE;
+
                     auto oldPop = currentSpecies.population;
                     auto newSpecies = Species(currentSpecies, world,
                         currentSpecies.isBacteria);
@@ -874,8 +877,11 @@ class SpeciesSystem : ScriptSystem{
                 }
 
                 // Reproduction and mutation
-                // TODO:Bacteria should mutate more often then eukaryotes but this is fine for now
                 if(currentSpecies.population >= MAX_POP_SIZE){
+
+                    // To prevent ridiculous population numbers
+                    currentSpecies.population=MAX_POP_SIZE;
+
                     auto newSpecies = Species(currentSpecies, world,
                         currentSpecies.isBacteria);
 
@@ -893,7 +899,7 @@ class SpeciesSystem : ScriptSystem{
                 }
 
 
-                // Extinction, thisi s not an event since things with
+                // Extinction, this is not an event since things with
                 // low population need to be killed off.
                 if(currentSpecies.population <= MIN_POP_SIZE){
                     LOG_INFO("Species " + currentSpecies.name + " went extinct");
