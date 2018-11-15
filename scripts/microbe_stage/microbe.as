@@ -491,8 +491,7 @@ class MicrobeSystem : ScriptSystem{
         //TODO:It seems to happen no matter what (even if it takes away less atp then you generate per second),
         //we should probably make it take into account the amount of atp being generated so resources arent wasted
         //for now made it not take away if your atp amount is equal to your capacity
-        auto osmoCost = (pow(microbeComponent.organelles.length(),ATP_COST_FOR_OSMOREGULATION)) /
-            (logicTime);
+        auto osmoCost = (microbeComponent.organelles.length()*ATP_COST_FOR_OSMOREGULATION)/(logicTime);
         //auto osmoCost = (microbeComponent.organelles.length()*2)/logicTime;
         double atpAmount = MicrobeOperations::getCompoundAmount(world, microbeEntity,SimulationParameters::compoundRegistry().getTypeId("atp"));
 
@@ -618,7 +617,7 @@ class MicrobeSystem : ScriptSystem{
                 //     microbeComponent.queuedMovementForce.Z);
 
                 // There is an movement without flagella cost
-                auto cost = BASE_MOVEMENT_ATP_COST / 1000 * logicTime;
+                auto cost = (BASE_MOVEMENT_ATP_COST*microbeComponent.organelles.length())/logicTime;
 
                 // TODO: if there isn't enough energy this needs to scale the impulse
                 MicrobeOperations::takeCompound(world, microbeEntity,
