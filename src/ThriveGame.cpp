@@ -91,6 +91,7 @@ public:
         m_microbeBackgroundItem->setRenderQueueGroup(1);
 
         // Editor version
+		// WHy does this have both a editor and microbe stage part to it, if its called every time you enter the editor...? This may be our culprit instead.
         if(m_microbeEditor) {
             m_microbeEditorBackgroundItem =
                 m_microbeEditor->GetScene()->createItem(
@@ -525,16 +526,25 @@ void
     m_impl->m_microbeEditor->SetCamera(camera);
 
     // Background
-    m_impl->m_editorBackgroundRenderNode =
-        m_impl->m_microbeEditor->GetScene()->createSceneNode(
-            Ogre::SCENE_STATIC);
-
-    // Setup render queue for it
-    m_impl->m_microbeEditor->GetScene()->getRenderQueue()->setRenderQueueMode(
-        1, Ogre::RenderQueue::FAST);
-
-    // This also attaches it
-    m_impl->createBackgroundItem();
+    // This is called every time we enter the editor, and i think this may be our
+    // "locking" culprit, that or some interaction between this and the
+    // background switching when you die in the microbe stage bit. (One other possibility would be that when we switch bakcground materials it doesnt offload)
+    // Perhaps this just needs to be deleted when you exit the editor??
+    //***
+	// Ill add an if statement here and see what happens
+	if (!m_impl->m_editorBackgroundRenderNode)
+	{
+        m_impl->m_editorBackgroundRenderNode =
+            m_impl->m_microbeEditor->GetScene()->createSceneNode(
+                Ogre::SCENE_STATIC);
+        // Setup render queue for it
+        m_impl->m_microbeEditor->GetScene()
+            ->getRenderQueue()
+            ->setRenderQueueMode(1, Ogre::RenderQueue::FAST);
+        // This also attaches it
+        m_impl->createBackgroundItem();
+        //***
+	}
 
     // Let the script do setup //
     // This registers all the script defined systems to run and be
@@ -656,7 +666,6 @@ void
 {
     LOG_INFO("Setting microbe background to: " + material);
     m_impl->m_microbeBackgroundSubMesh->setMaterialName(material);
-
     m_impl->createBackgroundItem();
 }
 
