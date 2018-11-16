@@ -563,9 +563,9 @@ class MicrobeSystem : ScriptSystem{
         const Float3 velocity = physics.Body.GetVelocity();
 
         // There should be no Y velocity so it should be zero
-        const Float3 drag(velocity.X * CELL_DRAG_MULTIPLIER,
-            velocity.Y * CELL_DRAG_MULTIPLIER,
-            velocity.Z * CELL_DRAG_MULTIPLIER);
+        const Float3 drag(velocity.X * (CELL_DRAG_MULTIPLIER+(CELL_SIZE_DRAG_MULTIPLIER*microbeComponent.organelles.length())),
+            velocity.Y * (CELL_DRAG_MULTIPLIER+(CELL_SIZE_DRAG_MULTIPLIER*microbeComponent.organelles.length())),
+            velocity.Z * (CELL_DRAG_MULTIPLIER+(CELL_SIZE_DRAG_MULTIPLIER*microbeComponent.organelles.length())));
 
         // Only add drag if it is over CELL_REQUIRED_DRAG_BEFORE_APPLY
         if(abs(drag.X) >= CELL_REQUIRED_DRAG_BEFORE_APPLY){
