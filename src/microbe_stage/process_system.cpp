@@ -231,11 +231,10 @@ void
             // Can your cell do the process without waste?
             bool canDoProcess = true;
 
-			//If capcity is 0 dont do it
-			if (processCapacity != 0)
-			{
+            // If capcity is 0 dont do it
+            if(processCapacity != 0) {
 
-				// Loop through to make sure you can follow through with your
+                // Loop through to make sure you can follow through with your
                 // whole process so nothing gets wasted as that would be
                 // frusterating, its two more for loops, yes but it should only
                 // really be looping at max two or three times anyway. also make
@@ -330,7 +329,7 @@ void
                         }
                     }
                 }
-			}
+            }
         }
         // Making sure the compound amount is not negative.
         for(auto& compound : bag.compounds) {

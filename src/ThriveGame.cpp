@@ -91,7 +91,8 @@ public:
         m_microbeBackgroundItem->setRenderQueueGroup(1);
 
         // Editor version
-		// We only checked the first background item before we did this. Not the editor one.
+        // We only checked the first background item before we did this. Not the
+        // editor one.
         if(m_microbeEditor) {
             if(!m_microbeEditorBackgroundItem) {
                 m_microbeEditorBackgroundItem =
