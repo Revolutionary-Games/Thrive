@@ -1189,10 +1189,10 @@ void initProcessorComponent(CellStageWorld@ world, ObjectID entity,
             }
             LOG_INFO("Process: "+processName+" Capacity: "+capacity);
             processorComponent.setCapacity(bioProcessId, capacity);
-            // This may be commented out for the reason that the default should be retained
-            // } else {
-            // processorComponent.setCapacity(bioProcessId, 0)
-        }
+             } else {
+             //Better to be safe then sorry, there is a difference between the c++ species and the angelscript one so.
+             processorComponent.setCapacity(bioProcessId, 0);
+            }
     }
 }
 
@@ -1331,9 +1331,9 @@ ObjectID createSpecies(CellStageWorld@ world, const string &in name, const strin
             }
 
             processorComponent.setCapacity(bioProcessId, capacity);
-            // This may be commented out for the reason that the default should be retained
-            // } else {
-            // processorComponent.setCapacity(bioProcessId, 0)
+             } else {
+             // Better to be safe than sorry
+             processorComponent.setCapacity(bioProcessId, 0);
         }
     }
 
