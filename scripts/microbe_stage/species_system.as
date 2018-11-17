@@ -1165,12 +1165,12 @@ void initProcessorComponent(CellStageWorld@ world, ObjectID entity,
             TweakedProcess@ process = organelleDefinition.processes[processNumber];
 
             if(!capacities.exists(process.process.internalName)){
-                capacities[process.process.internalName] = 0;
+                capacities[process.process.internalName] = double(0.0f);
             }
 
             // Here the second capacities[process.name] was initially capacities[process]
             // but the processes are just strings inside the Organelle class
-            capacities[process.process.internalName] = float(capacities[
+            capacities[process.process.internalName] = double(capacities[
                     process.process.internalName]) +
                 process.capacity;
         }
@@ -1182,16 +1182,18 @@ void initProcessorComponent(CellStageWorld@ world, ObjectID entity,
             bioProcessId);
 
         if(capacities.exists(processName)){
-            float capacity;
+            double capacity;
             if(!capacities.get(processName, capacity)){
                 LOG_ERROR("capacities has invalid value");
                 continue;
             }
             LOG_INFO("Process: "+processName+" Capacity: "+capacity);
             processorComponent.setCapacity(bioProcessId, capacity);
-             } else {
+        } else {
+            //if it doesnt exist:
+            capacities.set(processName,double(0.0f));
              //Better to be safe then sorry, there is a difference between the c++ species and the angelscript one so.
-             processorComponent.setCapacity(bioProcessId, 0);
+             processorComponent.setCapacity(bioProcessId, 0.0f);
             }
     }
 }
@@ -1307,14 +1309,13 @@ ObjectID createSpecies(CellStageWorld@ world, const string &in name, const strin
             TweakedProcess@ process = organelleDefinition.processes[processNumber];
 
             if(!capacities.exists(process.process.internalName)){
-                capacities[process.process.internalName] = 0;
+                capacities[process.process.internalName] = double(0.0f);
             }
 
             // Here the second capacities[process.name] was initially capacities[process]
             // but the processes are just strings inside the Organelle class
-            capacities[process.process.internalName] = float(capacities[
-                    process.process.internalName]) +
-                process.capacity;
+            capacities[process.process.internalName] = double(capacities[
+                    process.process.internalName]) + process.capacity;
         }
     }
 
@@ -1324,16 +1325,17 @@ ObjectID createSpecies(CellStageWorld@ world, const string &in name, const strin
             bioProcessId);
 
         if(capacities.exists(processName)){
-            float capacity;
+            double capacity;
             if(!capacities.get(processName, capacity)){
                 LOG_ERROR("capacities has invalid value");
                 continue;
             }
-
             processorComponent.setCapacity(bioProcessId, capacity);
-             } else {
-             // Better to be safe than sorry
-             processorComponent.setCapacity(bioProcessId, 0);
+        } else {
+        //if it doesnt exist:
+        capacities.set(processName,double(0.0f));
+        // Better to be safe than sorry
+         processorComponent.setCapacity(bioProcessId, 0.0f);
         }
     }
 
