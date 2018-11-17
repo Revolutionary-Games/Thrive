@@ -140,12 +140,13 @@ void onReturnFromEditor(CellStageWorld@ world)
     auto pos = world.GetComponent_Position(player);
 
     assert(pos !is null);
-
+    
     // Spawn another cell from the player species
     SpeciesComponent@ ourActualSpecies = MicrobeOperations::getSpeciesComponent(world, player);
-
+    
+    // Call this before creating the clone.
     Species::initProcessorComponent(world, player, ourActualSpecies);
-
+    
     PlayerSpeciesSpawner factory("Default");
     auto spawned = factory.factorySpawn(world, pos._Position);
 
