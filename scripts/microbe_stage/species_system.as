@@ -1166,6 +1166,9 @@ void initProcessorComponent(CellStageWorld@ world, ObjectID entity,
 
             if(!capacities.exists(process.process.internalName)){
                 capacities[process.process.internalName] = double(0.0f);
+            auto processId = SimulationParameters::bioProcessRegistry().getTypeId(
+            process.process.internalName);
+                processorComponent.setCapacity(processId, 0.0f);
             }
 
             // Here the second capacities[process.name] was initially capacities[process]
@@ -1310,6 +1313,9 @@ ObjectID createSpecies(CellStageWorld@ world, const string &in name, const strin
 
             if(!capacities.exists(process.process.internalName)){
                 capacities[process.process.internalName] = double(0.0f);
+            auto processId = SimulationParameters::bioProcessRegistry().getTypeId(
+            process.process.internalName);
+                processorComponent.setCapacity(processId, 0.0f);
             }
 
             // Here the second capacities[process.name] was initially capacities[process]
