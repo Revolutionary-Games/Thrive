@@ -482,10 +482,10 @@ void setupOrganelles(){
     nitrogenPlastid.mass = 0.1;
     nitrogenPlastid.gene = "I";
     //TODO: They need their model
-    nitrogenPlastid.mesh = "vacuole.mesh";
+    nitrogenPlastid.mesh = "nitrogenplastid.mesh";
     nitrogenPlastid.chanceToCreate = 1;
     nitrogenPlastid.prokaryoteChance = 0;
-    nitrogenPlastid.mpCost = 40;
+    nitrogenPlastid.mpCost = 20;
     nitrogenPlastid.initialComposition = {
         {"phosphates", 2},
         {"ammonia", 2}
@@ -651,7 +651,7 @@ void setupOrganelles(){
 
     nitrogenFixationProtien.mass = 0.1;
     nitrogenFixationProtien.gene = "i";
-    nitrogenFixationProtien.mesh = "vacuole.mesh";
+    nitrogenFixationProtien.mesh = "nitrogenplastid.mesh";
     nitrogenFixationProtien.chanceToCreate = 0;
     nitrogenFixationProtien.prokaryoteChance = 1;
     nitrogenFixationProtien.mpCost = 40;
