@@ -91,15 +91,17 @@ public:
         m_microbeBackgroundItem->setRenderQueueGroup(1);
 
         // Editor version
-		// WHy does this have both a editor and microbe stage part to it, if its called every time you enter the editor...? This may be our culprit instead.
+		// We only checked the first background item before we did this. Not the editor one.
         if(m_microbeEditor) {
-            m_microbeEditorBackgroundItem =
-                m_microbeEditor->GetScene()->createItem(
-                    m_microbeBackgroundMesh, Ogre::SCENE_STATIC);
-            m_microbeEditorBackgroundItem->setCastShadows(false);
+            if(!m_microbeEditorBackgroundItem) {
+                m_microbeEditorBackgroundItem =
+                    m_microbeEditor->GetScene()->createItem(
+                        m_microbeBackgroundMesh, Ogre::SCENE_STATIC);
+                m_microbeEditorBackgroundItem->setCastShadows(false);
 
-            // Need to edit the render queue and add it to an early one
-            m_microbeEditorBackgroundItem->setRenderQueueGroup(1);
+                // Need to edit the render queue and add it to an early one
+                m_microbeEditorBackgroundItem->setRenderQueueGroup(1);
+            }
         }
 
         // Re-attach if the nodes exist
@@ -526,14 +528,8 @@ void
     m_impl->m_microbeEditor->SetCamera(camera);
 
     // Background
-    // This is called every time we enter the editor, and i think this may be our
-    // "locking" culprit, that or some interaction between this and the
-    // background switching when you die in the microbe stage bit. (One other possibility would be that when we switch bakcground materials it doesnt offload)
-    // Perhaps this just needs to be deleted when you exit the editor??
-    //***
-	// Ill add an if statement here and see what happens
-	if (!m_impl->m_editorBackgroundRenderNode)
-	{
+    // Ill add an if statement here and see what happens
+    if(!m_impl->m_editorBackgroundRenderNode) {
         m_impl->m_editorBackgroundRenderNode =
             m_impl->m_microbeEditor->GetScene()->createSceneNode(
                 Ogre::SCENE_STATIC);
@@ -543,8 +539,7 @@ void
             ->setRenderQueueMode(1, Ogre::RenderQueue::FAST);
         // This also attaches it
         m_impl->createBackgroundItem();
-        //***
-	}
+    }
 
     // Let the script do setup //
     // This registers all the script defined systems to run and be
