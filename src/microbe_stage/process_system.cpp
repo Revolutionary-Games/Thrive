@@ -232,7 +232,7 @@ void
             bool canDoProcess = true;
 
             // If capcity is 0 dont do it
-            if(processCapacity != 0) {
+            if(processCapacity != 0.0f) {
 
                 // Loop through to make sure you can follow through with your
                 // whole process so nothing gets wasted as that would be
