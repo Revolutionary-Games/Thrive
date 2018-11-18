@@ -63,7 +63,8 @@ public:
 
         if(m_microbeEditorBackgroundMesh) {
 
-            Ogre::MeshManager::getSingleton().remove(m_microbeEditorBackgroundMesh);
+            Ogre::MeshManager::getSingleton().remove(
+                m_microbeEditorBackgroundMesh);
             m_microbeEditorBackgroundMesh.reset();
             m_microbeEditorBackgroundSubMesh = nullptr;
         }
@@ -224,7 +225,8 @@ void
         m_impl->m_cellStage =
             std::dynamic_pointer_cast<CellStageWorld>(engine->CreateWorld(
                 window1, static_cast<int>(THRIVE_WORLD_TYPE::CELL_STAGE),
-                createPhysicsMaterials()));
+                createPhysicsMaterials(),
+                Leviathan::WorldNetworkSettings::GetSettingsForClient()));
     } else {
         restarted = true;
         m_impl->m_cellStage->ClearEntities();
@@ -339,8 +341,8 @@ void
 
         m_impl->m_microbeBackgroundSubMesh->setMaterialName("Background");
     }
-	//This also needs to be manually destroyed later.
-	 if(!m_impl->m_microbeEditorBackgroundMesh) {
+    // This also needs to be manually destroyed later.
+    if(!m_impl->m_microbeEditorBackgroundMesh) {
         m_impl->m_microbeEditorBackgroundMesh =
             Leviathan::GeometryHelpers::CreateScreenSpaceQuad(
                 "Editor_background", -1, -1, 2, 2);
@@ -507,7 +509,8 @@ void
         m_impl->m_microbeEditor =
             std::dynamic_pointer_cast<MicrobeEditorWorld>(engine->CreateWorld(
                 window1, static_cast<int>(THRIVE_WORLD_TYPE::MICROBE_EDITOR),
-                createPhysicsMaterials()));
+                createPhysicsMaterials(),
+                Leviathan::WorldNetworkSettings::GetSettingsForClient()));
     }
 
     LEVIATHAN_ASSERT(
