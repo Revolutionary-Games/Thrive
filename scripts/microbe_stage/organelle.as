@@ -6,7 +6,8 @@ const auto GROWTH_SPEED_MULTILPIER = 0.5f / 1000;
 
 // Percentage of the compounds that compose the organelle released
 // upon death (between 0.0 and 1.0).
-const auto COMPOUND_RELEASE_PERCENTAGE = 0.5f;
+const auto COMPOUND_MAKEUP_RELEASE_PERCENTAGE = 0.25f;
+const auto COMPOUND_RELEASE_PERCENTAGE = 0.1f;
 
 
 //! \todo Replace with Int2

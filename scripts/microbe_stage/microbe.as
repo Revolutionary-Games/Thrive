@@ -384,7 +384,7 @@ class MicrobeSystem : ScriptSystem{
         if((microbeComponent.hitpoints < microbeComponent.maxHitpoints))
         {
             if(MicrobeOperations::getCompoundAmount(world, microbeEntity,
-                    SimulationParameters::compoundRegistry().getTypeId("atp")) > 0)
+                    SimulationParameters::compoundRegistry().getTypeId("atp")) >= 1.0f)
             {
                 microbeComponent.hitpoints += (REGENERATION_RATE/logicTime);
                 if (microbeComponent.hitpoints > microbeComponent.maxHitpoints)
@@ -409,8 +409,8 @@ class MicrobeSystem : ScriptSystem{
             }
 
             // Play sound
-            if (@microbeComponent.engulfAudio is null ||
-                !microbeComponent.engulfAudio.Get().isPlaying())
+            if (microbeComponent.isPlayerMicrobe &&  (@microbeComponent.engulfAudio is null ||
+                !microbeComponent.engulfAudio.Get().isPlaying()))
             {
                 @microbeComponent.engulfAudio = GetEngine().GetSoundDevice().Play2DSound(
                     "Data/Sound/soundeffects/engulfment.ogg", false, true);
@@ -421,13 +421,8 @@ class MicrobeSystem : ScriptSystem{
 
                         if (microbeComponent.isPlayerMicrobe)
                         {
-                            microbeComponent.engulfAudio.Get().setVolume(0.70f);
+                            microbeComponent.engulfAudio.Get().setVolume(1.0f);
                         }
-                        else {
-                            // NPC microbes are less loud
-                            microbeComponent.engulfAudio.Get().setVolume(0.40f);
-                        }
-
                         microbeComponent.engulfAudio.Get().play();
                     } else {
 
@@ -448,8 +443,7 @@ class MicrobeSystem : ScriptSystem{
 
         if(microbeComponent.isBeingEngulfed){
             //LOG_INFO("doing engulf damage");
-            MicrobeOperations::damage(world,microbeEntity, microbeComponent.maxHitpoints / 5.0f
-                / logicTime,
+            MicrobeOperations::damage(world,microbeEntity,ENGULF_DAMAGE/logicTime,
                 "isBeingEngulfed - Microbe.update()s");
             microbeComponent.wasBeingEngulfed = true;
             // Else If we were but are no longer, being engulfed
@@ -915,7 +909,7 @@ class MicrobeSystem : ScriptSystem{
             world.GetScriptComponentHolder("MicrobeComponent").Find(microbeEntity));
 
         if(MicrobeOperations::getCompoundAmount(world, microbeEntity,
-                SimulationParameters::compoundRegistry().getTypeId("atp")) <= 0.1)
+                SimulationParameters::compoundRegistry().getTypeId("atp")) < 1.0f)
         {
             // TODO: put this on a GUI notification.
             // if(microbeComponent.isPlayerMicrobe and not this.playerAlreadyShownAtpDamage){
