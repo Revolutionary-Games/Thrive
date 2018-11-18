@@ -16,6 +16,8 @@ generator.addInclude "Generated/StandardWorld.h"
 # Needs script include for basic world functionality
 generator.addInclude "Script/ScriptTypeResolver.h"
 
+generator.addInclude "thrive_world_factory.h"
+
 generator.addInclude "microbe_stage/membrane_system.h"
 generator.addInclude "microbe_stage/compound_cloud_system.h"
 generator.addInclude "microbe_stage/process_system.h"
@@ -156,6 +158,7 @@ END
                        ),  
 )
 
+cellWorld.WorldType = "static_cast<int32_t>(thrive::THRIVE_WORLD_TYPE::CELL_STAGE)"
 cellWorld.base "Leviathan::StandardWorld"
 
 generator.add cellWorld
