@@ -1059,33 +1059,30 @@ void kill(CellStageWorld@ world, ObjectID microbeEntity)
         auto ejectedAmount = takeCompound(world, microbeEntity,
             compoundId, total);
         compoundsToRelease[formatInt(compoundId)] = ejectedAmount;
+        //LOG_INFO("Releaseing resource of "+  ejectedAmount);
     }
 
     // Eject some part of the build cost of all the organelles
     for(uint i = 0; i < microbeComponent.organelles.length(); ++i){
 
         auto organelle = microbeComponent.organelles[i];
-
         auto keys = organelle.organelle.initialComposition.getKeys();
-
+        
         for(uint a = 0; a < keys.length(); ++a){
-
             float amount = float(organelle.organelle.initialComposition[keys[a]]);
-
             auto compoundId = SimulationParameters::compoundRegistry().getTypeId(keys[a]);
-
             auto key = formatInt(compoundId);
-
+            
             if(!compoundsToRelease.exists(key)){
-                compoundsToRelease[key] = amount * COMPOUND_RELEASE_PERCENTAGE;
+                compoundsToRelease[key] = amount * COMPOUND_MAKEUP_RELEASE_PERCENTAGE;
             } else {
                 compoundsToRelease[key] = float(compoundsToRelease[key]) +
-                    amount * COMPOUND_RELEASE_PERCENTAGE;
+                    (amount * COMPOUND_MAKEUP_RELEASE_PERCENTAGE);
+                    //LOG_INFO("Releaseing build cost of "+ (amount * COMPOUND_MAKEUP_RELEASE_PERCENTAGE));
             }
         }
     }
 
-    // TODO: make the compounds be released inside of the microbe and not in the back.
     auto keys = compoundsToRelease.getKeys();
     for(uint i = 0; i < keys.length(); ++i){
         ejectCompound(world, microbeEntity, parseInt(keys[i]),

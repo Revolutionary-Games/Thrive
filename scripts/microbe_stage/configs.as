@@ -85,7 +85,6 @@ const auto DEFAULT_HEALTH = 100;
 // Amount of health pers econd regened in percent
 const auto REGENERATION_RATE = 1.0f;
 
-
 // Movement stuff
 const auto FLAGELLA_ENERGY_COST = 7.0f;
 const auto FLAGELLA_BASE_FORCE = 0.5f;
@@ -143,6 +142,9 @@ const float ENGULFING_ATP_COST_SECOND = 1.5;
 
 // The minimum HP ratio between a cell and a possible engulfing victim.
 const float ENGULF_HP_RATIO_REQ = 1.5f;
+
+// The amount of hp per second of damage
+const float ENGULF_DAMAGE = 80.0f;
 
 // Oxytoxy Damage
 const float OXY_TOXY_DAMAGE = 10.0f;
