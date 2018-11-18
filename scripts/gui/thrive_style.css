@@ -626,23 +626,22 @@ video {
 #populationText {
   position: absolute;
   height: 40px;
-  width: 120px;
+  width: 150px;
   top: 0;
   left: 600px;
   font-size: 10pt;
   line-height: 40px;
-  text-indent: 0;
+  background-image: url("../../Textures/gui/bevel/LongTwoNormal.png");
 }
 
 #populationCount {
   position: absolute;
   height: 40px;
-  width: 120px;
+  width: 150px;
   top: 0;
   left: 680px;
   font-size: 10pt;
   line-height: 40px;
-  text-indent: 0;
 }
 
 #winText {
