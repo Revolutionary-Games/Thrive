@@ -17,10 +17,12 @@ generator.addInclude "Generated/StandardWorld.h"
 # Needs script include for basic world functionality
 generator.addInclude "Script/ScriptTypeResolver.h"
 
+generator.addInclude "thrive_world_factory.h"
+
 # generator.addInclude "microbe_stage/membrane_system.h"
 generator.addInclude "microbe_stage/species_component.h"
 
-cellWorld = GameWorldClass.new(
+editorWorld = GameWorldClass.new(
   "MicrobeEditorWorld", componentTypes: [
     EntityComponent.new("SpeciesComponent", [ConstructorInfo.new(
                                                [
@@ -51,9 +53,10 @@ END
                        ),  
 )
 
-cellWorld.base "Leviathan::StandardWorld"
+editorWorld.WorldType = "static_cast<int32_t>(thrive::THRIVE_WORLD_TYPE::MICROBE_EDITOR)"
+editorWorld.base "Leviathan::StandardWorld"
 
-generator.add cellWorld
+generator.add editorWorld
 
 
 
@@ -64,7 +67,7 @@ generator.run
 bindGenerator = Generator.new ARGV[1], bareOutput: true
 
 
-bindGenerator.add OutputText.new(cellWorld.genAngelScriptBindings)
+bindGenerator.add OutputText.new(editorWorld.genAngelScriptBindings)
 
 
 bindGenerator.run
