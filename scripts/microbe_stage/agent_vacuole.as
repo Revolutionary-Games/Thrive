@@ -9,7 +9,7 @@ class AgentVacuole : OrganelleComponent{
     //
     // @param compound
     //  The agent this organelle produces.
-    // 
+    //
     // @param process
     //  The process that creates the agent this organelle produces.
     AgentVacuole(const string &in compound, const string &in process){
@@ -26,7 +26,7 @@ class AgentVacuole : OrganelleComponent{
         int q, int r, int rotation,
         PlacedOrganelle@ organelle
     ) override {
-        
+
         MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
             organelle.world.GetScriptComponentHolder("MicrobeComponent").Find(microbeEntity));
 
@@ -34,7 +34,9 @@ class AgentVacuole : OrganelleComponent{
             microbeComponent.specialStorageOrganelles[compound] = 1;
         } else {
             auto value = microbeComponent.specialStorageOrganelles[compound];
-            value = int(value) + 1;
+            // This needs to be applied like this otherwise it doesn't actually
+            // apply the change
+            microbeComponent.specialStorageOrganelles[compound] = int(value) + 1;
         }
     }
 
@@ -43,11 +45,13 @@ class AgentVacuole : OrganelleComponent{
         ObjectID microbeEntity,
         PlacedOrganelle@ organelle
     ) override {
-        
+
         MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
             organelle.world.GetScriptComponentHolder("MicrobeComponent").Find(microbeEntity));
+
         auto value = microbeComponent.specialStorageOrganelles[compound];
-        value = int(value) - 1;
+        // This needs to be applied like this otherwise it doesn't actually apply the change
+        microbeComponent.specialStorageOrganelles[compound] = int(value) - 1;
     }
 
     // void AgentVacuole.storage(){

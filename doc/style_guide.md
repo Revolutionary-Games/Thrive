@@ -210,17 +210,18 @@ Git
   can review it. Chances are that during this review, there will still be
   issues to be resolved before the branch can be merged into master.
 
-- To keep master's commit history clean, your commits in the feature
-  branch will have to be "squashed" into one single (or at least very
-  few) commit.  This can be done from the Github accept pull request
-  button, hit the arrow to the right side and select "merge and
-  squash". If doing squashing manually it is a good idea to keep the
-  other commit messages inside the new commit's message for future
-  reference.
+- To keep master's commit history somewhat clean, your commits in the
+  feature branch will be "squashed" into a single commit. This can be
+  done (take note people accepting pull requests) from the Github
+  accept pull request button, hit the arrow to the right side and
+  select "merge and squash". Bigger feature branches that are dozens
+  of commits from multiple people will be merged normally to attribute
+  all of the authors on Github feeds.
 
-- For maintainers: When manually squashing GitHub requires a merge commit to recognize the merging
-  of a pull request. A "git merge --squash" does not create a merge commit and
-  will leave the pull request's branch "dangling". To make GitHub properly
-  reflect the merge, follow the procedure outlined in the previous bullet
-  point, then click the "Merge Pull Request" button on GitHub (or do a 
-  normal "git merge".
+- For maintainers: When manually squashing GitHub (which is something
+  you should avoid) requires a merge commit to recognize the merging
+  of a pull request. A "git merge --squash" does not create a merge
+  commit and will leave the pull request's branch "dangling". To make
+  GitHub properly reflect the merge, follow the procedure outlined in
+  the previous bullet point, then click the "Merge Pull Request"
+  button on GitHub (or do a normal "git merge".

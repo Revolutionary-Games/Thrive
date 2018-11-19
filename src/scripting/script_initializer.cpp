@@ -1,1134 +1,1329 @@
-#include "scripting/script_initializer.h"
-
-#include "engine/engine.h"
-#include "engine/rng.h"
-#include "game.h"
-#include "scripting/luajit.h"
-#include "scripting/wrapper_classes.h"
-#include "scripting/script_entity_filter.h"
-#include "engine/rolling_grid.h"
-
-
-
-#include "engine/entity_manager.h"
-#include "engine/component.h"
-#include "engine/component_factory.h"
-#include "engine/engine.h"
-#include "engine/entity.h"
-#include "engine/game_state.h"
-#include "engine/serialization.h"
-#include "engine/system.h"
-#include "engine/touchable.h"
-#include "engine/player_data.h"
-#include "engine/rng.h"
-
-#include "bullet/bullet_ogre_conversion.h"
-#include "bullet/bullet_to_ogre_system.h"
-#include "bullet/collision_filter.h"
-#include "bullet/collision_shape.h"
-#include "bullet/collision_system.h"
-#include "bullet/debug_drawing.h"
-#include "bullet/rigid_body_system.h"
-#include "bullet/update_physics_system.h"
-#include "bullet/physical_world.h"
-
-#include <utility>
-#include <btBulletCollisionCommon.h>
-#include <memory>
-#include <OgreVector3.h>
-
-#include "gui/script_wrappers.h"
-#include "general/timed_life_system.h"
-#include "general/locked_map.h"
-#include "general/powerup_system.h"
-#include "general/quick_save_system.h"
-#include "general/hex.h"
-
-#include "gui/CEGUIWindow.h"
-#include "gui/CEGUIVideoPlayer.h"
-
-#include "ogre/camera_system.h"
-#include "ogre/colour_material.h"
-#include "ogre/keyboard.h"
-#include "ogre/light_system.h"
-#include "ogre/mouse.h"
-#include "ogre/render_system.h"
-#include "ogre/scene_node_system.h"
-#include "ogre/sky_system.h"
-
-#include "ogre/workspace_system.h"
-
-
-#include <OgreAxisAlignedBox.h>
-#include <OgreColourValue.h>
-#include <OgreMath.h>
-#include <OgreMatrix3.h>
-#include <OgreMaterialManager.h>
-#include <OgreMaterial.h>
-#include <OgreTechnique.h>
-#include <OgreRay.h>
-#include <OgreSceneManager.h>
-#include <OgreSphere.h>
-#include <OgreVector3.h>
-#include <OgreSubEntity.h>
-#include <OgreEntity.h>
-#include <OgreSubMesh.h>
-
-#include <string>
-
-#include "microbe_stage/compound.h"
-#include "microbe_stage/compound_absorber_system.h"
-#include "microbe_stage/compound_emitter_system.h"
-#include "microbe_stage/compound_registry.h"
-#include "microbe_stage/bio_process_registry.h"
-#include "microbe_stage/membrane_system.h"
-#include "microbe_stage/microbe_camera_system.h"
-#include "microbe_stage/compound_cloud_system.h"
-#include "microbe_stage/process_system.h"
-#include "microbe_stage/spawn_system.h"
-#include "microbe_stage/agent_cloud_system.h"
-#include "microbe_stage/species_component.h"
-
-
-#include "sound/sound_source_system.h"
-
-
-#include <forward_list>
-#include <iostream>
+#include "script_initializer.h"
 
 using namespace thrive;
+// ------------------------------------ //
 
-/**
-* @brief Fills a stringstream with the lua callstack
-*/
-void readLuaCallstack(lua_State* L, lua_Debug &d, std::stringstream &traceback);
+#include "engine/player_data.h"
+#include "general/hex.h"
+#include "general/locked_map.h"
+#include "general/properties_component.h"
+#include "general/timed_life_system.h"
+#include "generated/cell_stage_world.h"
+#include "generated/microbe_editor_world.h"
+#include "microbe_stage/player_microbe_control.h"
+#include "microbe_stage/simulation_parameters.h"
+#include "microbe_stage/species_name_controller.h"
 
-void readLuaCallstack(lua_State* L, lua_Debug &d, std::stringstream &traceback){
+#include "ThriveGame.h"
 
-    for (
-        // Starting at 0 always prints [C]:-1 so we start at 1 to get
-        // the first actual stack frame
-        int stacklevel = 1;
-        lua_getstack(L, stacklevel, &d);
-        stacklevel++
-    ) {
-        if(lua_getinfo(L, "Sln", &d) == 0){
 
-            traceback << "    " << "error getting stack frame" << std::endl;
-            continue;
+#include "Script/Bindings/BindHelpers.h"
+#include "Script/Bindings/StandardWorldBindHelper.h"
+#include "Script/ScriptExecutor.h"
+
+
+bool
+    registerLockedMap(asIScriptEngine* engine)
+{
+    if(engine->RegisterObjectType("LockedMap", 0, asOBJ_REF | asOBJ_NOCOUNT) <
+        0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectMethod("LockedMap",
+           "void addLock(string lockName)", asMETHOD(LockedMap, addLock),
+           asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectMethod("LockedMap",
+           "bool isLocked(string conceptName)", asMETHOD(LockedMap, isLocked),
+           asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectMethod("LockedMap",
+           "void unlock(string conceptName)", asMETHOD(LockedMap, unlock),
+           asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    return true;
+}
+
+bool
+    registerPlayerData(asIScriptEngine* engine)
+{
+
+    if(engine->RegisterObjectType("PlayerData", 0, asOBJ_REF | asOBJ_NOCOUNT) <
+        0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectMethod("PlayerData", "LockedMap& lockedMap()",
+           asMETHOD(PlayerData, lockedMap), asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectMethod("PlayerData", "ObjectID activeCreature()",
+           asMETHOD(PlayerData, activeCreature), asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectMethod("PlayerData",
+           "void setActiveCreature(ObjectID creatureId)",
+           asMETHOD(PlayerData, setActiveCreature), asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectMethod("PlayerData",
+           "bool isBoolSet(const string &in key) const",
+           asMETHOD(PlayerData, isBoolSet), asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectMethod("PlayerData",
+           "void setBool(const string &in key, bool value)",
+           asMETHOD(PlayerData, setBool), asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    return true;
+}
+
+//! Wrapper for TJsonRegistry::getSize
+template<class RegistryT>
+uint64_t
+    getSizeWrapper(RegistryT* self)
+{
+
+    return static_cast<uint64_t>(self->getSize());
+}
+
+//! Wrapper for TJsonRegistry::getTypeData
+template<class RegistryT, class ReturnedT>
+const ReturnedT*
+    getTypeDataWrapper(RegistryT* self, uint64_t id)
+{
+
+    return &self->getTypeData(id);
+}
+
+//! Helper for registerSimulationDataAndJsons
+template<class RegistryT, class ReturnedT>
+bool
+    registerJsonRegistry(asIScriptEngine* engine,
+        const char* classname,
+        const std::string& returnedTypeName)
+{
+    if(engine->RegisterObjectType(classname, 0, asOBJ_REF | asOBJ_NOCOUNT) <
+        0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectMethod(classname, "uint64 getSize()",
+           asFUNCTION(getSizeWrapper<RegistryT>), asCALL_CDECL_OBJFIRST) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectMethod(classname,
+           ("const " + returnedTypeName + "@ getTypeData(uint64 id)").c_str(),
+           asFUNCTION((getTypeDataWrapper<RegistryT, ReturnedT>)),
+           asCALL_CDECL_OBJFIRST) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    ANGELSCRIPT_ASSUMED_SIZE_T;
+    if(engine->RegisterObjectMethod(classname,
+           "uint64 getTypeId(const string &in internalName)",
+           asMETHOD(RegistryT, getTypeId), asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    ANGELSCRIPT_ASSUMED_SIZE_T;
+    if(engine->RegisterObjectMethod(classname,
+           "const string& getInternalName(uint64 id)",
+           asMETHOD(RegistryT, getInternalName), asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    return true;
+}
+
+//! Helper for registerJsonregistryHeldTypes
+template<class RegistryT>
+bool
+    registerRegistryHeldHelperBases(asIScriptEngine* engine,
+        const char* classname)
+{
+    if(engine->RegisterObjectType(classname, 0, asOBJ_REF | asOBJ_NOCOUNT) <
+        0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    ANGELSCRIPT_ASSUMED_SIZE_T;
+    if(engine->RegisterObjectProperty(
+           classname, "uint64 id", asOFFSET(RegistryT, id)) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectProperty(classname, "string displayName",
+           asOFFSET(RegistryT, displayName)) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectProperty(classname, "const string internalName",
+           asOFFSET(RegistryT, internalName)) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    return true;
+}
+
+bool
+    registerJsonRegistryHeldTypes(asIScriptEngine* engine)
+{
+
+    if(!registerRegistryHeldHelperBases<Compound>(engine, "Compound"))
+        return false;
+
+    if(!registerRegistryHeldHelperBases<Compound>(engine, "BioProcess"))
+        return false;
+
+    if(!registerRegistryHeldHelperBases<Compound>(engine, "Biome"))
+        return false;
+
+    // Compound specific properties //
+    // ------------------------------------ //
+    // Compound
+    if(engine->RegisterObjectProperty(
+           "Compound", "double volume", asOFFSET(Compound, volume)) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectProperty(
+           "Compound", "bool isCloud", asOFFSET(Compound, isCloud)) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectProperty(
+           "Compound", "bool isUseful", asOFFSET(Compound, isUseful)) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectProperty("Compound", "Ogre::ColourValue colour",
+           asOFFSET(Compound, colour)) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    // ------------------------------------ //
+    // Biome
+    // define colors for sunglight here aswell
+    if(engine->RegisterObjectProperty("Biome",
+           "Ogre::ColourValue specularColors",
+           asOFFSET(Biome, specularColors)) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+    if(engine->RegisterObjectProperty("Biome",
+           "Ogre::ColourValue diffuseColors",
+           asOFFSET(Biome, diffuseColors)) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+    if(engine->RegisterObjectProperty("Biome", "float oxygenPercentage",
+           asOFFSET(Biome, oxygenPercentage)) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+    if(engine->RegisterObjectProperty("Biome", "float carbonDioxidePercentage",
+           asOFFSET(Biome, carbonDioxidePercentage)) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectProperty("Biome", "const string background",
+           asOFFSET(Biome, background)) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectType(
+           "BiomeCompoundData", 0, asOBJ_REF | asOBJ_NOCOUNT) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    ANGELSCRIPT_ASSUMED_SIZE_T;
+    if(engine->RegisterObjectMethod("Biome",
+           "const BiomeCompoundData& getCompound(uint64 type) const",
+           asMETHOD(Biome, getCompound), asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    ANGELSCRIPT_ASSUMED_SIZE_T;
+    if(engine->RegisterObjectMethod("Biome",
+           "array<uint64>@ getCompoundKeys() const",
+           asMETHOD(Biome, getCompoundKeys), asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectProperty("BiomeCompoundData", "uint amount",
+           asOFFSET(BiomeCompoundData, amount)) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectProperty("BiomeCompoundData", "double density",
+           asOFFSET(BiomeCompoundData, density)) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    return true;
+}
+
+// Wrappers for registerSimulationDataAndJsons
+
+SpeciesNameController*
+    getNameWrapper()
+{
+
+    return &SimulationParameters::speciesNameController;
+}
+
+TJsonRegistry<Compound>*
+    getCompoundRegistryWrapper()
+{
+
+    return &SimulationParameters::compoundRegistry;
+}
+
+TJsonRegistry<BioProcess>*
+    getBioProcessRegistryWrapper()
+{
+
+    return &SimulationParameters::bioProcessRegistry;
+}
+
+TJsonRegistry<Biome>*
+    getBiomeRegistryWrapper()
+{
+
+    return &SimulationParameters::biomeRegistry;
+}
+
+bool
+    registerSimulationDataAndJsons(asIScriptEngine* engine)
+{
+
+    if(engine->RegisterObjectType(
+           "SimulationParameters", 0, asOBJ_REF | asOBJ_NOCOUNT) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(!registerJsonRegistryHeldTypes(engine))
+        return false;
+
+    if(engine->RegisterObjectType(
+           "SpeciesNameController", 0, asOBJ_REF | asOBJ_NOCOUNT) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectMethod("SpeciesNameController",
+           "array<string>@ getVowelPrefixes()",
+           asMETHOD(SpeciesNameController, getVowelPrefixes),
+           asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectMethod("SpeciesNameController",
+           "array<string>@ getConsonantPrefixes()",
+           asMETHOD(SpeciesNameController, getConsonantPrefixes),
+           asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectMethod("SpeciesNameController",
+           "array<string>@ getVowelCofixes()",
+           asMETHOD(SpeciesNameController, getVowelCofixes),
+           asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectMethod("SpeciesNameController",
+           "array<string>@ getConsonantCofixes()",
+           asMETHOD(SpeciesNameController, getConsonantCofixes),
+           asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectMethod("SpeciesNameController",
+           "array<string>@ getSuffixes()",
+           asMETHOD(SpeciesNameController, getSuffixes), asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectMethod("SpeciesNameController",
+           "array<string>@ getPrefixCofix()",
+           asMETHOD(SpeciesNameController, getPrefixCofix),
+           asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(!registerJsonRegistry<TJsonRegistry<Compound>, Compound>(
+           engine, "TJsonRegistryCompound", "Compound")) {
+        return false;
+    }
+
+    if(!registerJsonRegistry<TJsonRegistry<BioProcess>, BioProcess>(
+           engine, "TJsonRegistryBioProcess", "BioProcess")) {
+        return false;
+    }
+
+    if(!registerJsonRegistry<TJsonRegistry<Biome>, Biome>(
+           engine, "TJsonRegistryBiome", "Biome")) {
+        return false;
+    }
+
+
+    if(engine->SetDefaultNamespace("SimulationParameters") < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterGlobalFunction(
+           "SpeciesNameController@ speciesNameController()",
+           asFUNCTION(getNameWrapper), asCALL_CDECL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterGlobalFunction(
+           "TJsonRegistryCompound@ compoundRegistry()",
+           asFUNCTION(getCompoundRegistryWrapper), asCALL_CDECL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterGlobalFunction(
+           "TJsonRegistryBioProcess@ bioProcessRegistry()",
+           asFUNCTION(getBioProcessRegistryWrapper), asCALL_CDECL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterGlobalFunction("TJsonRegistryBiome@ biomeRegistry()",
+           asFUNCTION(getBiomeRegistryWrapper), asCALL_CDECL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->SetDefaultNamespace("") < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    return true;
+}
+
+
+static uint16_t ProcessorComponentTYPEProxy =
+    static_cast<uint16_t>(ProcessorComponent::TYPE);
+static uint16_t SpawnedComponentTYPEProxy =
+    static_cast<uint16_t>(SpawnedComponent::TYPE);
+static uint16_t AgentCloudComponentTYPEProxy =
+    static_cast<uint16_t>(AgentCloudComponent::TYPE);
+static uint16_t CompoundCloudComponentTYPEProxy =
+    static_cast<uint16_t>(CompoundCloudComponent::TYPE);
+static uint16_t MembraneComponentTYPEProxy =
+    static_cast<uint16_t>(MembraneComponent::TYPE);
+static uint16_t SpeciesComponentTYPEProxy =
+    static_cast<uint16_t>(SpeciesComponent::TYPE);
+static uint16_t CompoundBagComponentTYPEProxy =
+    static_cast<uint16_t>(CompoundBagComponent::TYPE);
+static uint16_t CompoundAbsorberComponentTYPEProxy =
+    static_cast<uint16_t>(CompoundAbsorberComponent::TYPE);
+static uint16_t TimedLifeComponentTYPEProxy =
+    static_cast<uint16_t>(TimedLifeComponent::TYPE);
+static uint16_t AgentPropertiesTYPEProxy =
+    static_cast<uint16_t>(AgentProperties::TYPE);
+
+//! Helper for bindThriveComponentTypes
+bool
+    bindComponentTypeId(asIScriptEngine* engine,
+        const char* name,
+        uint16_t* value)
+{
+    if(engine->SetDefaultNamespace(name) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterGlobalProperty("const uint16 TYPE", value) < 0) {
+
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->SetDefaultNamespace("") < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    return true;
+}
+
+bool
+    bindThriveComponentTypes(asIScriptEngine* engine)
+{
+
+    if(engine->RegisterObjectType(
+           "ProcessorComponent", 0, asOBJ_REF | asOBJ_NOCOUNT) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(!bindComponentTypeId(
+           engine, "ProcessorComponent", &ProcessorComponentTYPEProxy))
+        return false;
+
+    if(engine->RegisterObjectMethod("ProcessorComponent",
+           "void setCapacity(BioProcessId id, double capacity)",
+           asMETHOD(ProcessorComponent, setCapacity), asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectMethod("ProcessorComponent",
+           "double getCapacity(BioProcessId id)",
+           asMETHOD(ProcessorComponent, getCapacity), asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    // ------------------------------------ //
+    if(engine->RegisterObjectType(
+           "SpawnedComponent", 0, asOBJ_REF | asOBJ_NOCOUNT) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(!bindComponentTypeId(
+           engine, "SpawnedComponent", &SpawnedComponentTYPEProxy))
+        return false;
+
+    // ------------------------------------ //
+    if(engine->RegisterObjectType(
+           "AgentCloudComponent", 0, asOBJ_REF | asOBJ_NOCOUNT) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(!bindComponentTypeId(
+           engine, "AgentCloudComponent", &AgentCloudComponentTYPEProxy))
+        return false;
+
+    // ------------------------------------ //
+    if(engine->RegisterObjectType(
+           "CompoundCloudComponent", 0, asOBJ_REF | asOBJ_NOCOUNT) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(!bindComponentTypeId(
+           engine, "CompoundCloudComponent", &CompoundCloudComponentTYPEProxy))
+        return false;
+
+    // ------------------------------------ //
+    if(engine->RegisterObjectType(
+           "MembraneComponent", 0, asOBJ_REF | asOBJ_NOCOUNT) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(!bindComponentTypeId(
+           engine, "MembraneComponent", &MembraneComponentTYPEProxy))
+        return false;
+
+    if(engine->RegisterObjectMethod("MembraneComponent",
+           "void setColour(const Float4 &in colour)",
+           asMETHOD(MembraneComponent, setColour), asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+
+    if(engine->RegisterEnum("MEMBRANE_TYPE") < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    ANGELSCRIPT_REGISTER_ENUM_VALUE(MEMBRANE_TYPE, MEMBRANE);
+    ANGELSCRIPT_REGISTER_ENUM_VALUE(MEMBRANE_TYPE, DOUBLEMEMBRANE);
+    ANGELSCRIPT_REGISTER_ENUM_VALUE(MEMBRANE_TYPE, WALL);
+    ANGELSCRIPT_REGISTER_ENUM_VALUE(MEMBRANE_TYPE, CHITIN);
+
+    if(engine->RegisterObjectMethod("MembraneComponent",
+           "MEMBRANE_TYPE getMembraneType() const",
+           asMETHOD(MembraneComponent, getMembraneType), asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectMethod("MembraneComponent",
+           "void setMembraneType(MEMBRANE_TYPE type)",
+           asMETHOD(MembraneComponent, setMembraneType), asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectMethod("MembraneComponent",
+           "Float4 getColour() const", asMETHOD(MembraneComponent, getColour),
+           asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectMethod("MembraneComponent", "void clear()",
+           asMETHOD(MembraneComponent, clear), asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectMethod("MembraneComponent",
+           "float calculateEncompassingCircleRadius() const",
+           asMETHOD(MembraneComponent, calculateEncompassingCircleRadius),
+           asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectMethod("MembraneComponent",
+           "Ogre::Vector3 GetExternalOrganelle(double x, double y)",
+           asMETHOD(MembraneComponent, GetExternalOrganelle),
+           asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectMethod("MembraneComponent",
+           "void sendOrganelles(double x, double y)",
+           asMETHOD(MembraneComponent, sendOrganelles), asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectMethod("MembraneComponent",
+           "bool removeSentOrganelle(double x, double y)",
+           asMETHOD(MembraneComponent, removeSentOrganelle),
+           asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+
+    // ------------------------------------ //
+
+    if(engine->RegisterObjectType(
+           "SpeciesComponent", 0, asOBJ_REF | asOBJ_NOCOUNT) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(!bindComponentTypeId(
+           engine, "SpeciesComponent", &SpeciesComponentTYPEProxy))
+        return false;
+
+    // A bit hacky
+    if(engine->RegisterInterface("SpeciesStoredOrganelleType") < 0) {
+
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectProperty("SpeciesComponent",
+           "array<SpeciesStoredOrganelleType@>@ organelles",
+           asOFFSET(SpeciesComponent, organelles)) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectProperty("SpeciesComponent",
+           "dictionary@ avgCompoundAmounts",
+           asOFFSET(SpeciesComponent, avgCompoundAmounts)) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectProperty("SpeciesComponent",
+           "MEMBRANE_TYPE speciesMembraneType",
+           asOFFSET(SpeciesComponent, speciesMembraneType)) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectProperty("SpeciesComponent", "Float4 colour",
+           asOFFSET(SpeciesComponent, colour)) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectProperty("SpeciesComponent", "string name",
+           asOFFSET(SpeciesComponent, name)) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectProperty("SpeciesComponent", "string genus",
+           asOFFSET(SpeciesComponent, genus)) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectProperty("SpeciesComponent", "string epithet",
+           asOFFSET(SpeciesComponent, epithet)) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectProperty("SpeciesComponent", "bool isBacteria",
+           asOFFSET(SpeciesComponent, isBacteria)) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectProperty("SpeciesComponent", "double aggression",
+           asOFFSET(SpeciesComponent, aggression)) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectProperty("SpeciesComponent", "double fear",
+           asOFFSET(SpeciesComponent, fear)) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectProperty("SpeciesComponent", "double activity",
+           asOFFSET(SpeciesComponent, activity)) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectProperty("SpeciesComponent", "double focus",
+           asOFFSET(SpeciesComponent, focus)) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectProperty("SpeciesComponent", "int32 population",
+           asOFFSET(SpeciesComponent, population)) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectProperty("SpeciesComponent", "int32 generation",
+           asOFFSET(SpeciesComponent, generation)) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    // ------------------------------------ //
+
+    if(engine->RegisterObjectType(
+           "CompoundBagComponent", 0, asOBJ_REF | asOBJ_NOCOUNT) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(!bindComponentTypeId(
+           engine, "CompoundBagComponent", &CompoundBagComponentTYPEProxy))
+        return false;
+
+    if(engine->RegisterObjectMethod("CompoundBagComponent",
+           "double getCompoundAmount(CompoundId compound)",
+           asMETHOD(CompoundBagComponent, getCompoundAmount),
+           asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectMethod("CompoundBagComponent",
+           "double takeCompound(CompoundId compound, double to_take)",
+           asMETHOD(CompoundBagComponent, takeCompound), asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectMethod("CompoundBagComponent",
+           "void giveCompound(CompoundId compound, double amount)",
+           asMETHOD(CompoundBagComponent, giveCompound), asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectMethod("CompoundBagComponent",
+           "double getPrice(CompoundId compound)",
+           asMETHOD(CompoundBagComponent, getPrice), asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectMethod("CompoundBagComponent",
+           "double getUsedLastTime(CompoundId compound)",
+           asMETHOD(CompoundBagComponent, getUsedLastTime),
+           asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectMethod("CompoundBagComponent",
+           "double getDemand(CompoundId compound)",
+           asMETHOD(CompoundBagComponent, getDemand), asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectMethod("CompoundBagComponent",
+           "void setProcessor(ProcessorComponent@ processor, const string &in "
+           "speciesName)",
+           asMETHOD(CompoundBagComponent, setProcessor), asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectProperty("CompoundBagComponent",
+           "double storageSpace",
+           asOFFSET(CompoundBagComponent, storageSpace)) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectProperty("CompoundBagComponent",
+           "double storageSpaceOccupied",
+           asOFFSET(CompoundBagComponent, storageSpaceOccupied)) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectProperty("CompoundBagComponent",
+           "string speciesName",
+           asOFFSET(CompoundBagComponent, speciesName)) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    // ------------------------------------ //
+    // CompoundAbsorberComponent
+    if(engine->RegisterObjectType(
+           "CompoundAbsorberComponent", 0, asOBJ_REF | asOBJ_NOCOUNT) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(!bindComponentTypeId(engine, "CompoundAbsorberComponent",
+           &CompoundAbsorberComponentTYPEProxy))
+        return false;
+
+    if(engine->RegisterObjectMethod("CompoundAbsorberComponent",
+           "void enable()", asMETHOD(CompoundAbsorberComponent, enable),
+           asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectMethod("CompoundAbsorberComponent",
+           "void disable()", asMETHOD(CompoundAbsorberComponent, disable),
+           asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+
+    if(engine->RegisterObjectMethod("CompoundAbsorberComponent",
+           "array<CompoundId>@ getAbsorbedCompounds()",
+           asMETHOD(CompoundAbsorberComponent, getAbsorbedCompounds),
+           asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+
+    if(engine->RegisterObjectMethod("CompoundAbsorberComponent",
+           "float absorbedCompoundAmount(CompoundId compound)",
+           asMETHOD(CompoundAbsorberComponent, absorbedCompoundAmount),
+           asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectMethod("CompoundAbsorberComponent",
+           "void setAbsorbtionCapacity(double capacity)",
+           asMETHOD(CompoundAbsorberComponent, setAbsorbtionCapacity),
+           asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectMethod("CompoundAbsorberComponent",
+           "void setCanAbsorbCompound(CompoundId id, bool canAbsorb)",
+           asMETHOD(CompoundAbsorberComponent, setCanAbsorbCompound),
+           asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    // ------------------------------------ //
+    if(engine->RegisterObjectType(
+           "TimedLifeComponent", 0, asOBJ_REF | asOBJ_NOCOUNT) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(!bindComponentTypeId(
+           engine, "TimedLifeComponent", &TimedLifeComponentTYPEProxy))
+        return false;
+
+    if(engine->RegisterObjectType(
+           "AgentProperties", 0, asOBJ_REF | asOBJ_NOCOUNT) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(!bindComponentTypeId(
+           engine, "AgentProperties", &AgentPropertiesTYPEProxy))
+        return false;
+
+    if(engine->RegisterObjectMethod("AgentProperties",
+           "void setSpeciesName(string newString)",
+           asMETHOD(AgentProperties, setSpeciesName), asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectMethod("AgentProperties",
+           "void setAgentType(string newString)",
+           asMETHOD(AgentProperties, setAgentType), asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectMethod("AgentProperties",
+           "string getSpeciesName()", asMETHOD(AgentProperties, getSpeciesName),
+           asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectMethod("AgentProperties", "string getAgentType()",
+           asMETHOD(AgentProperties, getAgentType), asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+    return true;
+}
+
+template<class WorldType>
+bool
+    bindCellStageMethods(asIScriptEngine* engine, const char* classname)
+{
+
+    if(!Leviathan::BindStandardWorldMethods<CellStageWorld>(engine, classname))
+        return false;
+
+#include "generated/cell_stage_bindings.h"
+
+    ANGLESCRIPT_BASE_CLASS_CASTS_NO_REF(Leviathan::StandardWorld,
+        "StandardWorld", CellStageWorld, "CellStageWorld");
+
+    return true;
+}
+
+template<class WorldType>
+bool
+    bindMicrobeEditorMethods(asIScriptEngine* engine, const char* classname)
+{
+
+    if(!Leviathan::BindStandardWorldMethods<MicrobeEditorWorld>(
+           engine, classname))
+        return false;
+
+#include "generated/microbe_editor_bindings.h"
+
+    ANGLESCRIPT_BASE_CLASS_CASTS_NO_REF(Leviathan::StandardWorld,
+        "StandardWorld", CellStageWorld, "MicrobeEditorWorld");
+
+    return true;
+}
+
+bool
+    registerHexFunctions(asIScriptEngine* engine)
+{
+
+    // This doesn't need to be restored if we fail //
+    if(engine->SetDefaultNamespace("Hex") < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterGlobalFunction("double getHexSize()",
+           asFUNCTION(Hex::getHexSize), asCALL_CDECL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterGlobalFunction(
+           "Float3 axialToCartesian(double q, double r)",
+           asFUNCTIONPR(Hex::axialToCartesian, (double q, double r), Float3),
+           asCALL_CDECL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterGlobalFunction(
+           "Float3 axialToCartesian(const Int2 &in hex)",
+           asFUNCTIONPR(Hex::axialToCartesian, (const Int2& hex), Float3),
+           asCALL_CDECL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+
+    if(engine->RegisterGlobalFunction(
+           "Int2 cartesianToAxial(double x, double z)",
+           asFUNCTIONPR(Hex::cartesianToAxial, (double x, double z), Int2),
+           asCALL_CDECL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterGlobalFunction(
+           "Int2 cartesianToAxial(const Float3 &in coordinates)",
+           asFUNCTIONPR(
+               Hex::cartesianToAxial, (const Float3& coordinates), Int2),
+           asCALL_CDECL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+
+    if(engine->RegisterGlobalFunction("Int3 axialToCube(double q, double r)",
+           asFUNCTIONPR(Hex::axialToCube, (double q, double r), Int3),
+           asCALL_CDECL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterGlobalFunction("Int3 axialToCube(const Int2 &in hex)",
+           asFUNCTIONPR(Hex::axialToCube, (const Int2& hex), Int3),
+           asCALL_CDECL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+
+    if(engine->RegisterGlobalFunction(
+           "Int2 cubeToAxial(double x, double y, double z)",
+           asFUNCTIONPR(Hex::cubeToAxial, (double x, double y, double z), Int2),
+           asCALL_CDECL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterGlobalFunction("Int2 cubeToAxial(const Int3 &in hex)",
+           asFUNCTIONPR(Hex::cubeToAxial, (const Int3& hex), Int2),
+           asCALL_CDECL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+
+    if(engine->RegisterGlobalFunction(
+           "Int3 cubeHexRound(double x, double y, double z)",
+           asFUNCTIONPR(
+               Hex::cubeHexRound, (double x, double y, double z), Int3),
+           asCALL_CDECL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+
+    if(engine->RegisterGlobalFunction("Int3 cubeHexRound(const Float3 &in hex)",
+           asFUNCTIONPR(Hex::cubeHexRound, (const Float3& hex), Int3),
+           asCALL_CDECL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+
+    if(engine->RegisterGlobalFunction("int64 encodeAxial(double q, double r)",
+           asFUNCTIONPR(Hex::encodeAxial, (double q, double r), int64_t),
+           asCALL_CDECL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterGlobalFunction("int64 encodeAxial(const Int2 &in hex)",
+           asFUNCTIONPR(Hex::encodeAxial, (const Int2& hex), int64_t),
+           asCALL_CDECL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterGlobalFunction("Int2 decodeAxial(int64 s)",
+           asFUNCTIONPR(Hex::decodeAxial, (int64_t s), Int2),
+           asCALL_CDECL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+
+    if(engine->RegisterGlobalFunction("Int2 rotateAxial(double q, double r)",
+           asFUNCTIONPR(Hex::rotateAxial, (double q, double r), Int2),
+           asCALL_CDECL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterGlobalFunction("Int2 rotateAxial(const Int2 &in hex)",
+           asFUNCTIONPR(Hex::rotateAxial, (const Int2& hex), Int2),
+           asCALL_CDECL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+
+    if(engine->RegisterGlobalFunction(
+           "Int2 rotateAxialNTimes(double q0, double r0, "
+           "uint32 n)",
+           asFUNCTIONPR(Hex::rotateAxialNTimes,
+               (double q0, double r0, uint32_t n), Int2),
+           asCALL_CDECL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterGlobalFunction(
+           "Int2 rotateAxialNTimes(const Int2 &in hex, uint32 n)",
+           asFUNCTIONPR(
+               Hex::rotateAxialNTimes, (const Int2& hex, uint32_t n), Int2),
+           asCALL_CDECL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+
+    if(engine->RegisterGlobalFunction(
+           "Int2 flipHorizontally(double q, double r)",
+           asFUNCTIONPR(Hex::flipHorizontally, (double q, double r), Int2),
+           asCALL_CDECL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterGlobalFunction(
+           "Int2 flipHorizontally(const Int2 &in hex)",
+           asFUNCTIONPR(Hex::flipHorizontally, (const Int2& hex), Int2),
+           asCALL_CDECL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+
+
+    if(engine->SetDefaultNamespace("") < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    return true;
+}
+
+class ScriptSpawnerWrapper {
+public:
+    //! \note Caller must have incremented ref count already on func
+    ScriptSpawnerWrapper(asIScriptFunction* func) : m_func(func)
+    {
+
+        if(!m_func)
+            throw std::runtime_error("no func given for ScriptSpawnerWrapper");
+    }
+
+    ~ScriptSpawnerWrapper()
+    {
+
+        m_func->Release();
+    }
+
+    ObjectID
+        run(CellStageWorld& world, Float3 pos)
+    {
+
+        ScriptRunningSetup setup;
+        auto result = Leviathan::ScriptExecutor::Get()->RunScript<ObjectID>(
+            m_func, nullptr, setup, &world, pos);
+
+        if(result.Result != SCRIPT_RUN_RESULT::Success) {
+
+            LOG_ERROR("Failed to run Wrapped SpawnSystem function");
+            // This makes the spawn system just ignore the return value
+            return NULL_OBJECT;
         }
 
-        traceback << "    " << d.short_src << ":" << d.currentline;
-
-        if (d.name != nullptr) {
-            traceback << " (" << d.namewhat << " " << d.name << ")";
-        }
-        traceback << std::endl;
-    }
-}
-
-/**
-* @brief Thrive lua panic handler
-*/
-int thriveLuaPanic(lua_State* L);
-
-int thriveLuaPanic(lua_State* L){
-
-    std::string err = "An unexpected error occurred and forced the lua state to call atpanic";
-
-    if(lua_isstring(L, -1)){
-
-        const char* message = lua_tostring(L, -1);
-        std::string err = message;
-        lua_pop(L, 1);
+        return result.Value;
     }
 
-    lua_Debug d;
-    std::stringstream traceback;
-    // Error message
-    traceback << err << ":" << std::endl;
-
-    readLuaCallstack(L, d, traceback);
-
-    // TODO: check if we should push this string and is throwing from here a good idea
-    // looks like throwing from here is a good idea
-    //lua_pushstring(L, traceback.str().c_str());
-
-    // Print error //
-
-    std::cout << "Lua panic! " << traceback.str() << std::endl;
-    throw sol::error(traceback.str());
-    return 1;
-}
-
-
-
-/**
-* @brief Thrive lua error handler
-*/
-// This definition is required
-std::string thriveLuaOnError(sol::this_state lua, std::string err);
-
-std::string thriveLuaOnError(sol::this_state lua, std::string err){
-
-    lua_State* L = sol::state_view(lua).lua_state();
-
-    //const char* message = lua_tostring(L, -1);
-    //std::string err = message ? message :
-    //    "An unexpected error occurred and forced the lua state to call atpanic";
-    //lua_pop(L, 1);
-
-    if(err.empty())
-        err = "An unexpected error occurred and forced the lua state to call onerror";
-
-    lua_Debug d;
-    std::stringstream traceback;
-    // Error message
-    traceback << err << ":" << std::endl;
-
-    // Stacktrace
-    readLuaCallstack(L, d, traceback);
-
-    // Print error //
-    std::cout << "Lua error detected! " << traceback.str() << std::endl;
-
-    // Return as the error code
-    return traceback.str();
-}
-
-
-//! \brief Binds all classes usable from Lua
-//!
-//! Needs to be called after global variables are bound.
-//! \exception std::runtime_error if fails
-void bindClassesToLua(sol::state &lua);
-
-// Forward declare some binding functions
-static void listboxItemBindings(sol::state &lua);
-static void itemEntryluaBindings(sol::state &lua);
-static void ogreLuaBindings(sol::state &lua);
-
-void thrive::initializeLua(sol::state &lua){
-
-    // Open lua modules //
-    // see: http://www.lua.org/manual/5.3/manual.html#6 for documentation
-    // about what these modules do
-    lua.open_libraries(
-        sol::lib::base,
-        sol::lib::jit,
-
-        sol::lib::debug,
-        sol::lib::coroutine,
-        sol::lib::string,
-        sol::lib::math,
-        sol::lib::table,
-        sol::lib::package,
-        sol::lib::io,
-        sol::lib::os
-
-        // These aren't currently used
-        // sol::lib::bit32,
-        // sol::lib::ffi
-    );
-
-    lua.set_panic(&thriveLuaPanic);
-
-    // Class type registering //
-    bindClassesToLua(lua);
-
-    // Global objects //
-    lua["Engine"] = &(Game::instance().engine());
-    lua["rng"] = &(Game::instance().engine().rng());
-
-    // Bind a custom traceback printer
-    // Could probably also be print(debug.traceback())
-    lua["thrivePanic"] = thriveLuaOnError;
-}
-
-void bindClassesToLua(sol::state &lua){
-
-    // Engine bindings
-    {
-        StorageContainer::luaBindings(lua);
-        StorageList::luaBindings(lua);
-
-        System::luaBindings(lua);
-        Component::luaBindings(lua);
-        ComponentWrapper::luaBindings(lua);
-        ComponentFactory::luaBindings(lua);
-
-        EntityManager::luaBindings(lua);
-        Entity::luaBindings(lua);
-
-        Touchable::luaBindings(lua);
-        GameStateData::luaBindings(lua);
-        RNG::luaBindings(lua);
-        PlayerData::luaBindings(lua);
-
-
-        ScriptEntityFilter::luaBindings(lua);
-
-        Engine::luaBindings(lua);
-        Game::luaBindings(lua);
-
-    }
-
-    // General bindings
-    {
-        // Components
-        TimedLifeComponent::luaBindings(lua);
-        LockedMap::luaBindings(lua);
-        PowerupComponent::luaBindings(lua);
-        // Systems
-        TimedLifeSystem::luaBindings(lua);
-        PowerupSystem::luaBindings(lua);
-        QuickSaveSystem::luaBindings(lua);
-        // Other
-        Hex::luaBindings(lua);
-    }
-
-    // Ogre bindings
-    ogreLuaBindings(lua);
-
-    // Bullet bindings
-    {
-        // Shapes
-        CollisionShape::luaBindings(lua);
-        BoxShape::luaBindings(lua);
-        CapsuleShape::luaBindings(lua);
-        CompoundShape::luaBindings(lua);
-        ConeShape::luaBindings(lua);
-        CylinderShape::luaBindings(lua);
-        EmptyShape::luaBindings(lua);
-        SphereShape::luaBindings(lua);
-        // Components
-        RigidBodyComponent::luaBindings(lua);
-        CollisionComponent::luaBindings(lua);
-        // Systems
-        BulletToOgreSystem::luaBindings(lua);
-        RigidBodyInputSystem::luaBindings(lua);
-        RigidBodyOutputSystem::luaBindings(lua);
-        BulletDebugDrawSystem::luaBindings(lua);
-        UpdatePhysicsSystem::luaBindings(lua);
-        CollisionSystem::luaBindings(lua);
-        // Other
-        PhysicalWorld::luaBindings(lua);
-        CollisionFilter::luaBindings(lua);
-        Collision::luaBindings(lua);
-    }
-
-    // Script bindings
-    {
-
-    }
-
-    // Microbe stage bindings
-    {
-        // Components
-        CompoundComponent::luaBindings(lua);
-        ProcessorComponent::luaBindings(lua);
-        CompoundBagComponent::luaBindings(lua);
-        CompoundAbsorberComponent::luaBindings(lua);
-        CompoundEmitterComponent::luaBindings(lua);
-        TimedCompoundEmitterComponent::luaBindings(lua);
-        MembraneComponent::luaBindings(lua);
-        CompoundCloudComponent::luaBindings(lua);
-        AgentCloudComponent::luaBindings(lua);
-        SpeciesComponent::luaBindings(lua);
-        SpawnedComponent::luaBindings(lua);
-        // Systems
-        CompoundMovementSystem::luaBindings(lua);
-        CompoundAbsorberSystem::luaBindings(lua);
-        CompoundEmitterSystem::luaBindings(lua);
-        MembraneSystem::luaBindings(lua);
-        MicrobeCameraSystem::luaBindings(lua);
-        CompoundCloudSystem::luaBindings(lua);
-        ProcessSystem::luaBindings(lua);
-        AgentCloudSystem::luaBindings(lua);
-        SpawnSystem::luaBindings(lua);
-        // Other
-        CompoundRegistry::luaBindings(lua);
-        BioProcessRegistry::luaBindings(lua);
-    }
-
-    // Gui bindings
-    {
-        // Other
-        listboxItemBindings(lua);
-        itemEntryluaBindings(lua);
-        CEGUIWindow::luaBindings(lua);
-        CEGUIVideoPlayer::luaBindings(lua);
-
-        StandardItemWrapper::luaBindings(lua);
-    }
-
-    // Sound bindings
-    {
-        Sound::luaBindings(lua);
-        SoundSourceSystem::luaBindings(lua);
-        SoundSourceComponent::luaBindings(lua);
-    }
-
-    RollingGrid::luaBindings(lua);
-}
-
-
-
-static void ListboxItem_setColour(
-    CEGUI::ListboxTextItem &self,
-    float r,
-    float g,
-    float b
-) {
-    self.setTextColours(CEGUI::Colour(r,g,b));
-}
-
-static void ListboxItem_setText(
-    CEGUI::ListboxTextItem &self,
-    const std::string& text
-) {
-    self.setText(text);
-}
-
-static void listboxItemBindings(sol::state &lua) {
-
-    lua.new_usertype<CEGUI::ListboxTextItem>("ListboxItem",
-
-        sol::constructors<sol::types<const std::string&>>(),
-
-        "setTextColours", &ListboxItem_setColour,
-        "setText", &ListboxItem_setText
-    );
-}
-
-static void ItemEntry_setText(
-    CEGUI::ItemEntry &self,
-    const std::string& text
-) {
-    self.setText(text);
-}
-
-static bool ItemEntry_isSelected(
-    CEGUI::ItemEntry &self
-) {
-    return self.isSelected();
-}
-
-static void ItemEntry_select(
-    CEGUI::ItemEntry &self
-) {
-    self.select();
-}
-
-static void ItemEntry_deselect(
-    CEGUI::ItemEntry &self
-) {
-    self.deselect();
-}
-
-static void ItemEntry_setSelectable(
-    CEGUI::ItemEntry &self,
-    bool setting
-) {
-    self.setSelectable(setting);
-}
-
-static void itemEntryluaBindings(sol::state &lua){
-
-    lua.new_usertype<CEGUI::ItemEntry>("ItemEntry",
-
-        sol::constructors<sol::types<const std::string&, const std::string&>>(),
-
-        "isSelected", &ItemEntry_isSelected,
-        "select", &ItemEntry_select,
-        "deselect", &ItemEntry_deselect,
-        "setSelectable", &ItemEntry_setSelectable,
-        "setText", &ItemEntry_setText
-    );
-}
-
-static void axisAlignedBoxBindings(sol::state &lua) {
-
-    using namespace Ogre;
-
-    lua.new_usertype<Ogre::AxisAlignedBox>("BoxShape",
-
-        sol::constructors<sol::types<>, sol::types<Ogre::AxisAlignedBox::Extent>,
-        sol::types<const Ogre::Vector3&, const Ogre::Vector3&>, sol::types<
-        Ogre::Real, Ogre::Real, Ogre::Real,
-        Ogre::Real, Ogre::Real, Ogre::Real >>(),
-
-        sol::meta_function::equal_to, &Ogre::AxisAlignedBox::operator==,
-
-        "Extent", sol::var(lua.create_table_with(
-                "EXTENT_NULL", Ogre::AxisAlignedBox::EXTENT_NULL,
-                "EXTENT_FINITE", Ogre::AxisAlignedBox::EXTENT_FINITE,
-                "EXTENT_INFINITE", Ogre::AxisAlignedBox::EXTENT_INFINITE
-            )),
-
-        "CornerEnum", sol::var(lua.create_table_with(
-                "FAR_LEFT_BOTTOM", Ogre::AxisAlignedBox::FAR_LEFT_BOTTOM,
-                "FAR_LEFT_TOP", Ogre::AxisAlignedBox::FAR_LEFT_TOP,
-                "FAR_RIGHT_TOP", Ogre::AxisAlignedBox::FAR_RIGHT_TOP,
-                "FAR_RIGHT_BOTTOM", Ogre::AxisAlignedBox::FAR_RIGHT_BOTTOM,
-                "NEAR_RIGHT_BOTTOM", Ogre::AxisAlignedBox::NEAR_RIGHT_BOTTOM,
-                "NEAR_LEFT_BOTTOM", Ogre::AxisAlignedBox::NEAR_LEFT_BOTTOM,
-                "NEAR_LEFT_TOP", Ogre::AxisAlignedBox::NEAR_LEFT_TOP,
-                "NEAR_RIGHT_TOP", Ogre::AxisAlignedBox::NEAR_RIGHT_TOP
-            )),
-
-        "getMinimum",
-            static_cast<const Vector3& (AxisAlignedBox::*) () const>(
-                &AxisAlignedBox::getMinimum),
-
-        "getMaximum",
-            static_cast<const Vector3& (AxisAlignedBox::*) () const>(
-                &AxisAlignedBox::getMaximum),
-
-        "setMinimum", sol::overload(
-            static_cast<void (AxisAlignedBox::*) (const Vector3&)>(
-                &AxisAlignedBox::setMinimum),
-            static_cast<void (AxisAlignedBox::*) (Real, Real, Real)>(
-                &AxisAlignedBox::setMinimum)),
-
-        "setMinimumX", &AxisAlignedBox::setMinimumX,
-        "setMinimumY", &AxisAlignedBox::setMinimumY,
-        "setMinimumZ", &AxisAlignedBox::setMinimumZ,
-
-        "setMaximum", sol::overload(
-            static_cast<void (AxisAlignedBox::*) (const Vector3&)>(
-                &AxisAlignedBox::setMaximum),
-            static_cast<void (AxisAlignedBox::*) (Real, Real, Real)>(
-                &AxisAlignedBox::setMaximum)),
-
-        "setMaximumX", &AxisAlignedBox::setMaximumX,
-        "setMaximumY", &AxisAlignedBox::setMaximumY,
-        "setMaximumZ", &AxisAlignedBox::setMaximumZ,
-        "setExtents", sol::overload(
-            static_cast<void (AxisAlignedBox::*) (const Vector3&,
-                const Vector3&)>(&AxisAlignedBox::setExtents),
-            static_cast<void (AxisAlignedBox::*) (Real, Real, Real, Real, Real,
-                Real)>(&AxisAlignedBox::setExtents)),
-
-        "getCorner", &AxisAlignedBox::getCorner,
-        "merge", sol::overload(
-            static_cast<void (AxisAlignedBox::*) (const AxisAlignedBox&)>(
-                &AxisAlignedBox::merge),
-            static_cast<void (AxisAlignedBox::*) (const Vector3&)>(
-                &AxisAlignedBox::merge)),
-
-        "setNull", &AxisAlignedBox::setNull,
-        "isNull", &AxisAlignedBox::isNull,
-        "isFinite", &AxisAlignedBox::isFinite,
-        "setInfinite", &AxisAlignedBox::setInfinite,
-        "isInfinite", &AxisAlignedBox::isInfinite,
-        "intersects", sol::overload(
-            static_cast<bool (AxisAlignedBox::*) (const AxisAlignedBox&) const>(
-                &AxisAlignedBox::intersects),
-            static_cast<bool (AxisAlignedBox::*) (const Sphere&) const>(
-                &AxisAlignedBox::intersects),
-            static_cast<bool (AxisAlignedBox::*) (const Plane&) const>(
-                &AxisAlignedBox::intersects),
-            static_cast<bool (AxisAlignedBox::*) (const Vector3&) const>(
-                &AxisAlignedBox::intersects)),
-
-        "intersection", &AxisAlignedBox::intersection,
-        "volume", &AxisAlignedBox::volume,
-        "scale", &AxisAlignedBox::scale,
-
-        "getCenter", &AxisAlignedBox::getCenter,
-        "getSize", &AxisAlignedBox::getSize,
-        "getHalfSize", &AxisAlignedBox::getHalfSize,
-        "contains", sol::overload(
-            static_cast<bool (AxisAlignedBox::*) (const Vector3&) const>(
-                &AxisAlignedBox::contains),
-            static_cast<bool (AxisAlignedBox::*) (const AxisAlignedBox&) const>(
-                &AxisAlignedBox::contains)),
-
-        "distance", &AxisAlignedBox::distance
-    );
-}
-
-static void colourValueBindings(sol::state &lua) {
-
-    using namespace Ogre;
-
-    lua.new_usertype<ColourValue>("ColourValue",
-
-        sol::constructors<sol::types<float, float, float, float>>(),
-
-        sol::meta_function::equal_to, &ColourValue::operator==,
-
-        sol::meta_function::addition, &ColourValue::operator+,
-
-
-        sol::meta_function::multiplication, sol::overload(
-            static_cast<ColourValue (ColourValue::*)(const ColourValue&) const>(
-                &ColourValue::operator*),
-            static_cast<ColourValue (ColourValue::*)(const float) const>(
-                &ColourValue::operator*)
-        ),
-
-        sol::meta_function::subtraction, &ColourValue::operator-,
-
-        sol::call_constructor, [](float r, float g, float b, float a){
-
-            return Ogre::ColourValue(r, g, b, a);
-
+    asIScriptFunction* m_func;
+};
+
+SpawnerTypeId
+    addSpawnTypeProxy(SpawnSystem* self,
+        asIScriptFunction* func,
+        double spawnDensity,
+        double spawnRadius)
+{
+    auto wrapper = std::make_shared<ScriptSpawnerWrapper>(func);
+
+    return self->addSpawnType(
+        [=](CellStageWorld& world, Float3 pos) -> ObjectID {
+            return wrapper->run(world, pos);
         },
-
-        "saturate", &ColourValue::saturate,
-        "setHSB", &ColourValue::setHSB,
-        "getHSB", &ColourValue::getHSB,
-
-        "r", &ColourValue::r,
-        "g", &ColourValue::g,
-        "b", &ColourValue::b,
-        "a", &ColourValue::a
-    );
+        spawnDensity, spawnRadius);
 }
 
-static void degreeBindings(sol::state &lua) {
+bool
+    bindScriptAccessibleSystems(asIScriptEngine* engine)
+{
 
-     lua.new_usertype<Ogre::Degree>("Degree",
+    // ------------------------------------ //
+    // SpawnSystem
+    if(engine->RegisterFuncdef(
+           "ObjectID SpawnFactoryFunc(CellStageWorld@ world, Float3 pos)") <
+        0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
 
-         sol::constructors<sol::types<Ogre::Real>, sol::types<const Ogre::Radian&>>(),
+    if(engine->RegisterObjectType("SpawnSystem", 0, asOBJ_REF | asOBJ_NOCOUNT) <
+        0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
 
-         sol::meta_function::equal_to, &Ogre::Degree::operator==,
+    if(engine->RegisterObjectMethod("SpawnSystem",
+           "void removeSpawnType(SpawnerTypeId spawnId)",
+           asMETHOD(SpawnSystem, removeSpawnType), asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
 
-         sol::meta_function::less_than, &Ogre::Degree::operator<,
-
-         sol::meta_function::addition, static_cast<Ogre::Degree (Ogre::Degree::*)(
-             const Ogre::Degree&) const>(&Ogre::Degree::operator+),
-
-         sol::meta_function::subtraction, static_cast<Ogre::Degree (Ogre::Degree::*)(
-             const Ogre::Degree&) const>(&Ogre::Degree::operator-),
-
-         sol::meta_function::multiplication, sol::overload(
-             static_cast<Ogre::Degree (Ogre::Degree::*)(const Ogre::Degree&) const>(
-                 &Ogre::Degree::operator*),
-             static_cast<Ogre::Degree (Ogre::Degree::*)(const Ogre::Real) const>(
-                 &Ogre::Degree::operator*)
-         ),
-
-         sol::meta_function::division, &Ogre::Degree::operator/,
-
-         // Support for table call syntax
-         sol::call_constructor, [](Ogre::Real val){
-
-             return Ogre::Degree(val);
-
-         },
-
-         "valueDegrees", &Ogre::Degree::valueDegrees
-     );
-}
+    if(engine->RegisterObjectMethod("SpawnSystem",
+           "SpawnerTypeId addSpawnType(SpawnFactoryFunc@ factory, double "
+           "spawnDensity, "
+           "double spawnRadius)",
+           asFUNCTION(addSpawnTypeProxy), asCALL_CDECL_OBJFIRST) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
 
 
-static void
-    SubEntity_setColour(
-        Ogre::SubEntity &self,
-        const Ogre::ColourValue& colour
-    ) {
-    auto material = thrive::getColourMaterial(colour);
-    self.setMaterial(material);
-}
+    // ------------------------------------ //
+    // CompoundCloudSystem
+    if(engine->RegisterObjectType(
+           "CompoundCloudSystem", 0, asOBJ_REF | asOBJ_NOCOUNT) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
 
-static void
-    Entity_setColour(
-        Ogre::Entity &self,
-        const Ogre::ColourValue& colour
-    ) {
-    auto material = thrive::getColourMaterial(colour);
-    self.setMaterial(material);
-}
+    if(engine->RegisterObjectMethod("CompoundCloudSystem",
+           "bool addCloud(CompoundId compound, float density, const Float3 &in "
+           "worldPosition)",
+           asMETHOD(CompoundCloudSystem, addCloud), asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
 
-static void
-    SubEntity_setMaterial(
-        Ogre::SubEntity &self,
-        const Ogre::String& name
-    ) {
-    Ogre::MaterialManager& manager = Ogre::MaterialManager::getSingleton();
-    Ogre::MaterialPtr material = manager.getByName(
-        name
-    );
-    self.setMaterial(material);
-}
+    if(engine->RegisterObjectMethod("CompoundCloudSystem",
+           "int takeCompound(CompoundId compound, const Float3 &in "
+           "worldPosition, float rate)",
+           asMETHOD(CompoundCloudSystem, takeCompound), asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
 
-static void
-    Entity_setMaterial(
-        Ogre::Entity &self,
-        const Ogre::String& name
-    ) {
-    Ogre::MaterialManager& manager = Ogre::MaterialManager::getSingleton();
-    Ogre::MaterialPtr material = manager.getByName(
-        name
-    );
-    self.setMaterial(material);
-}
+    if(engine->RegisterObjectMethod("CompoundCloudSystem",
+           "int amountAvailable(CompoundId compound, const Float3 &in "
+           "worldPosition, float rate)",
+           asMETHOD(CompoundCloudSystem, takeCompound), asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
 
-static void
-    SubEntity_tintColour(
-        Ogre::SubEntity &self,
-        const Ogre::String& groupName,
-        const Ogre::String& materialName,
-        const Ogre::ColourValue& colour
-    ) {
-    Ogre::MaterialPtr baseMaterial = Ogre::MaterialManager::getSingleton().getByName(materialName);
-    Ogre::MaterialPtr materialPtr = baseMaterial->clone(groupName);
-    materialPtr->compile();
-    Ogre::TextureUnitState* ptus = materialPtr->getTechnique(0)->getPass(0)->getTextureUnitState(0);
-    ptus->setColourOperationEx(Ogre::LBX_MODULATE, Ogre::LBS_MANUAL, Ogre::LBS_TEXTURE, colour);
-    self.setMaterial(materialPtr);
-}
-
-static void
-    Entity_tintColour(
-        Ogre::Entity &self,
-        const Ogre::String& materialName,
-        const Ogre::ColourValue& colour
-    ) {
-    Ogre::MaterialPtr baseMaterial = Ogre::MaterialManager::getSingleton().getByName(materialName);
-    Ogre::MaterialPtr materialPtr = baseMaterial->clone(materialName + std::to_string(static_cast<int>(colour.r*256))
-        + std::to_string(static_cast<int>(colour.g*256)) + std::to_string(static_cast<int>(colour.b*256)));
-    materialPtr->compile();
-    Ogre::TextureUnitState* ptus = materialPtr->getTechnique(0)->getPass(0)->getTextureUnitState(0);
-    ptus->setAlphaOperation(Ogre::LBX_MODULATE, Ogre::LBS_MANUAL, Ogre::LBS_TEXTURE, colour.a);
-    ptus->setColourOperationEx(Ogre::LBX_MODULATE, Ogre::LBS_MANUAL, Ogre::LBS_TEXTURE, colour);
-    self.setMaterial(materialPtr);
-}
-
-static int clonedIndex = 0;
-
-static void
-    Entity_cloneMaterial(
-        Ogre::Entity &self,
-        const Ogre::String& materialName
-    ) {
-    Ogre::MaterialPtr baseMaterial = Ogre::MaterialManager::getSingleton().getByName(materialName);
-    Ogre::MaterialPtr materialPtr = baseMaterial->clone(materialName + std::to_string(clonedIndex));
-    materialPtr->compile();
-    self.setMaterialName(materialName + std::to_string(clonedIndex));
-    clonedIndex++;
-}
-
-static void
-    Entity_setMaterialColour(
-        Ogre::Entity &self,
-        //const String& materialName,
-        const Ogre::ColourValue& colour
-    ) {
-    //Ogre::MaterialPtr baseMaterial = Ogre::MaterialManager::getSingleton().getByName(materialName);
-    //Ogre::MaterialPtr materialPtr = baseMaterial->clone(materialName + std::to_string(clonedIndex));
-    //materialPtr->compile();
-    //self.setMaterialName(materialName + std::to_string(clonedIndex));
-    //clonedIndex++;
-
-    Ogre::SubMesh* sub = self.getMesh()->getSubMesh(0);
-    Ogre::MaterialPtr materialPtr = Ogre::MaterialManager::getSingleton().getByName(sub->getMaterialName());
-    Ogre::TextureUnitState* ptus = materialPtr->getTechnique(0)->getPass(0)->getTextureUnitState(0);
-    ptus->setColourOperationEx(Ogre::LBX_MODULATE, Ogre::LBS_MANUAL, Ogre::LBS_TEXTURE, colour);
-    ptus->setAlphaOperation(Ogre::LBX_MODULATE, Ogre::LBS_MANUAL, Ogre::LBS_TEXTURE, colour.a);
-    //self.setMaterial(materialPtr);
-}
-
-static void ogreEntityBindings(sol::state &lua) {
-
-    lua.new_usertype<Ogre::SubEntity>("OgreSubEntity",
-
-        "setColour", &SubEntity_setColour,
-        "setMaterial", &SubEntity_setMaterial,
-        "tintColour", &SubEntity_tintColour
-    );
-
-    lua.new_usertype<Ogre::Entity>("OgreEntity",
-
-        "getSubEntity", static_cast<Ogre::SubEntity*(Ogre::Entity::*)(const Ogre::String&)>(
-            &Ogre::Entity::getSubEntity),
-        "getNumSubEntities", &Ogre::Entity::getNumSubEntities,
-        "setColour", &Entity_setColour,
-        "setMaterial", &Entity_setMaterial,
-        "cloneMaterial", &Entity_cloneMaterial,
-        "setMaterialColour", &Entity_setMaterialColour,
-        "tintColour", &Entity_tintColour
-    );
-
-    lua.new_usertype<Ogre::MovableObject>("MovableObject",
-
-        sol::base_classes, sol::bases<Ogre::Entity>()
-    );
-}
-
-static void matrix3Bindings(sol::state &lua) {
-
-    using namespace Ogre;
-
-    lua.new_usertype<Ogre::Matrix3>("Matrix3",
-
-        sol::constructors<sol::types<>, sol::types<
-        Ogre::Real, Ogre::Real, Ogre::Real,
-        Ogre::Real, Ogre::Real, Ogre::Real,
-        Ogre::Real, Ogre::Real, Ogre::Real>>(),
-
-        sol::meta_function::equal_to, &Ogre::Matrix3::operator==,
-
-        sol::meta_function::addition, &Ogre::Matrix3::operator+,
-
-        sol::meta_function::subtraction, static_cast<Ogre::Matrix3 (Ogre::Matrix3::*)(
-            const Ogre::Matrix3&) const>(&Ogre::Matrix3::operator-),
-
-        sol::meta_function::multiplication, sol::overload(
-            static_cast<Ogre::Matrix3 (Ogre::Matrix3::*)(const Ogre::Matrix3&) const>(
-                &Ogre::Matrix3::operator*),
-            static_cast<Ogre::Matrix3 (Ogre::Matrix3::*)(const Ogre::Real) const>(
-                &Ogre::Matrix3::operator*),
-            static_cast<Ogre::Vector3 (Ogre::Matrix3::*)(const Ogre::Vector3&) const>(
-                &Ogre::Matrix3::operator*)
-        ),
-
-        "GetColumn", &Matrix3::GetColumn,
-        "SetColumn", &Matrix3::SetColumn,
-        "FromAxes", &Matrix3::FromAxes,
-        "Transpose", &Matrix3::Transpose,
-        "Inverse",
-        static_cast<bool(Matrix3::*)(Matrix3&, Real) const>(&Matrix3::Inverse),
-
-        "Determinant", &Matrix3::Determinant,
-        "SingularValueDecomposition", &Matrix3::SingularValueDecomposition,
-        "SingularValueComposition", &Matrix3::SingularValueComposition,
-        "Orthonormalize", &Matrix3::Orthonormalize,
-        "QDUDecomposition", &Matrix3::QDUDecomposition,
-        "SpectralNorm", &Matrix3::SpectralNorm,
-        "ToAngleAxis", static_cast<void(Matrix3::*)(Vector3&, Radian&) const>(
-            &Matrix3::ToAngleAxis),
-
-        "FromAngleAxis", &Matrix3::FromAngleAxis,
-        "ToEulerAnglesXYZ", &Matrix3::ToEulerAnglesXYZ,
-        "ToEulerAnglesXZY", &Matrix3::ToEulerAnglesXZY,
-        "ToEulerAnglesYXZ", &Matrix3::ToEulerAnglesYXZ,
-        "ToEulerAnglesYZX", &Matrix3::ToEulerAnglesYZX,
-        "ToEulerAnglesZXY", &Matrix3::ToEulerAnglesZXY,
-        "ToEulerAnglesZYX", &Matrix3::ToEulerAnglesZYX,
-        "FromEulerAnglesXYZ", &Matrix3::FromEulerAnglesXYZ,
-        "FromEulerAnglesXZY", &Matrix3::FromEulerAnglesXZY,
-        "FromEulerAnglesYXZ", &Matrix3::FromEulerAnglesYXZ,
-        "FromEulerAnglesYZX", &Matrix3::FromEulerAnglesYZX,
-        "FromEulerAnglesZXY", &Matrix3::FromEulerAnglesZXY,
-        "FromEulerAnglesZYX", &Matrix3::FromEulerAnglesZYX,
-        "hasScale", &Matrix3::hasScale
-    );
-}
-
-static void planeBindings(sol::state &lua) {
-
-    using namespace Ogre;
-
-    lua.new_usertype<Ogre::Plane>("Plane",
-
-        sol::constructors<sol::types<>, sol::types<const Vector3&, Real>,
-        sol::types<Real, Real, Real, Real>, sol::types<const Vector3&, const Vector3&>,
-        sol::types<const Vector3&, const Vector3&, const Vector3&>>(),
-
-        //sol::meta_function::equal_to, &Ogre::Plane::operator==,
-
-        "Side", sol::var(lua.create_table_with(
-                "NO_SIDE", Plane::NO_SIDE,
-                "POSITIVE_SIDE", Plane::POSITIVE_SIDE,
-                "NEGATIVE_SIDE", Plane::NEGATIVE_SIDE,
-                "BOTH_SIDE", Plane::BOTH_SIDE
-            )),
-
-        "getSide", sol::overload(
-            static_cast<Plane::Side (Plane::*) (const Vector3&) const>(&Plane::getSide),
-            static_cast<Plane::Side (Plane::*) (const AxisAlignedBox&) const>(&Plane::getSide),
-            static_cast<Plane::Side (Plane::*) (const Vector3&, const Vector3&) const>(
-                &Plane::getSide)
-        ),
-
-        "getDistance", &Plane::getDistance,
-
-        "redefine", sol::overload(
-            static_cast<void (Plane::*) (const Vector3&, const Vector3&)>(&Plane::redefine),
-            static_cast<void (Plane::*) (const Vector3&, const Vector3&, const Vector3&)>(
-                &Plane::redefine)
-        ),
-
-        "projectVector", &Plane::projectVector,
-        "normalise", &Plane::normalise,
-        "normal", &Plane::normal,
-        "d", &Plane::d
-    );
-}
-
-static void quaternionBindings(sol::state &lua) {
-
-    using namespace Ogre;
-
-    lua.new_usertype<Ogre::Quaternion>("Quaternion",
-
-        sol::constructors<sol::types<>, sol::types<const Matrix3&>,
-        sol::types<Real, Real, Real, Real>, sol::types<const Radian&, const Vector3&>,
-        sol::types<const Vector3&, const Vector3&, const Vector3&>>(),
-
-        //sol::meta_function::equal_to, &Ogre::Quaternion::operator==,
-
-        sol::meta_function::addition, &Ogre::Quaternion::operator+,
-
-        sol::meta_function::subtraction, static_cast<Ogre::Quaternion (Ogre::Quaternion::*)(
-            const Ogre::Quaternion&) const>(&Ogre::Quaternion::operator-),
-
-        sol::meta_function::multiplication, sol::overload(
-            static_cast<Ogre::Quaternion (Ogre::Quaternion::*)(const Ogre::Quaternion&) const>(
-                &Ogre::Quaternion::operator*),
-            static_cast<Ogre::Quaternion (Ogre::Quaternion::*)(const Ogre::Real) const>(
-                &Ogre::Quaternion::operator*),
-            static_cast<Ogre::Vector3 (Ogre::Quaternion::*)(const Ogre::Vector3&) const>(
-                &Ogre::Quaternion::operator*)
-        ),
-
-        "FromRotationMatrix", &Quaternion::FromRotationMatrix,
-        "ToRotationMatrix", &Quaternion::ToRotationMatrix,
-        "FromAngleAxis", &Quaternion::FromAngleAxis,
-        "ToAngleAxis", static_cast<void(Quaternion::*)(Radian&, Vector3&) const>(
-            &Quaternion::ToAngleAxis),
-        "FromAxes", static_cast<void(Quaternion::*)(const Vector3&, const Vector3&,
-            const Vector3&)>(&Quaternion::FromAxes),
-        "ToAxes", static_cast<void(Quaternion::*)(Vector3&, Vector3&, Vector3&) const>(
-            &Quaternion::ToAxes),
-        "xAxis", &Quaternion::xAxis,
-        "yAxis", &Quaternion::yAxis,
-        "zAxis", &Quaternion::zAxis,
-        "Dot", &Quaternion::Dot,
-        "Norm", &Quaternion::Norm,
-        "normalise", &Quaternion::normalise,
-        "Inverse", &Quaternion::Inverse,
-        "UnitInverse", &Quaternion::UnitInverse,
-        "Exp", &Quaternion::Exp,
-        "Log", &Quaternion::Log,
-        "getRoll", &Quaternion::getRoll,
-        "getPitch", &Quaternion::getPitch,
-        "getYaw", &Quaternion::getYaw,
-        "equals", &Quaternion::equals,
-        "isNaN", &Quaternion::isNaN
-    );
+    return true;
 }
 
 
-static void radianBindings(sol::state &lua) {
+//! \todo This might be good to also be available to other c++ files
+ObjectID
+    findSpeciesEntityByName(CellStageWorld* world, const std::string& name)
+{
 
-    using namespace Ogre;
+    if(!world || name.empty())
+        return NULL_OBJECT;
 
-    lua.new_usertype<Ogre::Radian>("Radian",
+    const auto& allSpecies = world->GetComponentIndex_SpeciesComponent();
 
-        sol::constructors<sol::types<Real>, sol::types<const Degree&>>(),
+    for(const auto& tuple : allSpecies) {
 
-        //sol::meta_function::equal_to, &Ogre::Radian::operator==,
+        SpeciesComponent* species = std::get<1>(tuple);
 
-        sol::meta_function::less_than, &Ogre::Radian::operator<,
+        if(species->name == name)
+            return std::get<0>(tuple);
+    }
 
-        sol::meta_function::addition, static_cast<Ogre::Radian (Ogre::Radian::*)(
-            const Ogre::Radian&) const>(&Ogre::Radian::operator+),
-
-        sol::meta_function::subtraction, static_cast<Ogre::Radian (Ogre::Radian::*)(
-            const Ogre::Radian&) const>(&Ogre::Radian::operator-),
-
-        sol::meta_function::multiplication, sol::overload(
-            static_cast<Ogre::Radian (Ogre::Radian::*)(const Ogre::Radian&) const>(
-                &Ogre::Radian::operator*),
-            static_cast<Ogre::Radian (Ogre::Radian::*)(const Ogre::Real) const>(
-                &Ogre::Radian::operator*)
-        ),
-
-        sol::meta_function::division, static_cast<Ogre::Radian (Ogre::Radian::*)(
-            const Ogre::Real) const>(&Ogre::Radian::operator/),
-
-
-        // Support for table call syntax
-        sol::call_constructor, [](Ogre::Real val){
-
-            return Ogre::Radian(val);
-
-        },
-
-        "valueDegrees", &Radian::valueDegrees,
-        "valueRadians", &Radian::valueRadians,
-        "valueAngleUnits", &Radian::valueAngleUnits
-    );
-}
-
-static void rayBindings(sol::state &lua) {
-
-    using namespace Ogre;
-
-    lua.new_usertype<Ogre::Ray>("Ray",
-
-        sol::constructors<sol::types<>, sol::types<const Vector3&, const Vector3&>>(),
-
-        sol::meta_function::multiplication, static_cast<Ogre::Vector3 (Ogre::Ray::*)(
-            Ogre::Real) const>(&Ogre::Ray::operator*),
-
-        "setOrigin", &Ray::setOrigin,
-        "getOrigin", &Ray::getOrigin,
-        "setDirection", &Ray::setDirection,
-        "getDirection", &Ray::getDirection,
-        "getPoint", &Ray::getPoint,
-        // returns a tuple now
-        "intersects", static_cast<std::pair<bool, Ogre::Real> (Ogre::Ray::*)(
-            const Ogre::Plane&) const>(&Ray::intersects)
-        );
+    // LOG_ERROR("findSpeciesEntityByName: no species with name: " + name);
+    return NULL_OBJECT;
 }
 
 
-static void sceneManagerBindings(sol::state &lua) {
+bool
+    thrive::registerThriveScriptTypes(asIScriptEngine* engine)
+{
+    if(!registerLockedMap(engine))
+        return false;
 
-    using namespace Ogre;
+    if(engine->RegisterTypedef("CompoundId", "uint16") < 0) {
 
-    lua.new_usertype<Ogre::SceneManager>("SceneManager",
+        ANGELSCRIPT_REGISTERFAIL;
+    }
 
-        "PrefabType", sol::var(lua.create_table_with(
-                "PT_PLANE", SceneManager::PT_PLANE,
-                "PT_CUBE", SceneManager::PT_CUBE,
-                "PT_SPHERE", SceneManager::PT_SPHERE
-            )),
+    if(engine->RegisterTypedef("BioProcessId", "uint16") < 0) {
 
-        "setAmbientLight", &SceneManager::setAmbientLight
-    );
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterTypedef("SpawnerTypeId", "uint32") < 0) {
+
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectType(
+           "CellStageWorld", 0, asOBJ_REF | asOBJ_NOCOUNT) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectType(
+           "MicrobeEditorWorld", 0, asOBJ_REF | asOBJ_NOCOUNT) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(!bindThriveComponentTypes(engine))
+        return false;
+
+    if(!bindScriptAccessibleSystems(engine))
+        return false;
+
+    if(!registerPlayerData(engine))
+        return false;
+
+    if(!registerSimulationDataAndJsons(engine))
+        return false;
+
+    if(!registerHexFunctions(engine))
+        return false;
+
+    if(engine->RegisterObjectType("ThriveGame", 0, asOBJ_REF | asOBJ_NOCOUNT) <
+        0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterGlobalFunction("ThriveGame@ GetThriveGame()",
+           asFUNCTION(ThriveGame::Get), asCALL_CDECL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    ANGLESCRIPT_BASE_CLASS_CASTS_NO_REF(
+        LeviathanApplication, "LeviathanApplication", ThriveGame, "ThriveGame");
+
+    if(engine->RegisterObjectMethod("ThriveGame", "PlayerData& playerData()",
+           asMETHOD(ThriveGame, playerData), asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    // if(engine->RegisterObjectMethod("ThriveGame",
+    //         "SoundPlayer@ getGuiSoundPlayer()",
+    //         asMETHOD(ThriveGame, getGuiSoundPlayer),
+    //         asCALL_THISCALL) < 0)
+    // {
+    //     ANGELSCRIPT_REGISTERFAIL;
+    // }
+
+
+    if(engine->RegisterObjectMethod("ThriveGame", "void startNewGame()",
+           asMETHOD(ThriveGame, startNewGame), asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectMethod("ThriveGame",
+           "void loadSaveGame(const string &in saveFile)",
+           asMETHOD(ThriveGame, loadSaveGame), asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectMethod("ThriveGame",
+           "void saveGame(const string &in saveFile)",
+           asMETHOD(ThriveGame, saveGame), asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectMethod("ThriveGame",
+           "void setBackgroundMaterial(const string &in material)",
+           asMETHOD(ThriveGame, setBackgroundMaterial), asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectMethod("ThriveGame", "void editorButtonClicked()",
+           asMETHOD(ThriveGame, editorButtonClicked), asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectMethod("ThriveGame",
+           "void killPlayerCellClicked()",
+           asMETHOD(ThriveGame, killPlayerCellClicked), asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectMethod("ThriveGame", "void finishEditingClicked()",
+           asMETHOD(ThriveGame, finishEditingClicked), asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    // if(engine->RegisterObjectMethod("Client",
+    //         "bool Connect(const string &in address, string &out
+    //         errormessage)", asMETHODPR(Client, Connect, (const std::string&,
+    //         std::string&), bool), asCALL_THISCALL) < 0)
+    // {
+    //     ANGELSCRIPT_REGISTERFAIL;
+    // }
+
+
+
+    if(!bindCellStageMethods<CellStageWorld>(engine, "CellStageWorld"))
+        return false;
+
+    if(!bindMicrobeEditorMethods<MicrobeEditorWorld>(
+           engine, "MicrobeEditorWorld"))
+        return false;
+
+    if(engine->RegisterObjectMethod("ThriveGame",
+           "CellStageWorld@ getCellStage()", asMETHOD(ThriveGame, getCellStage),
+           asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterGlobalFunction(
+           "ObjectID findSpeciesEntityByName(CellStageWorld@ world, "
+           "const string &in name)",
+           asFUNCTION(findSpeciesEntityByName), asCALL_CDECL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    return true;
 }
-
-static void sphereBindings(sol::state &lua) {
-
-    using namespace Ogre;
-
-    lua.new_usertype<Ogre::Sphere>("Sphere",
-
-        sol::constructors<sol::types<>, sol::types<const Vector3&, Real>>(),
-
-        "getRadius", &Sphere::getRadius,
-        "setRadius", &Sphere::setRadius,
-        "getCenter", &Sphere::getCenter,
-        "setCenter", &Sphere::setCenter,
-
-        "intersects", sol::overload(
-            static_cast<bool (Sphere::*)(const Sphere&) const>(&Sphere::intersects),
-            static_cast<bool (Sphere::*)(const AxisAlignedBox&) const>(&Sphere::intersects),
-            static_cast<bool (Sphere::*)(const Plane&) const>(&Sphere::intersects),
-            static_cast<bool (Sphere::*)(const Vector3&) const>(&Sphere::intersects)
-        ),
-
-        "merge", &Sphere::merge
-    );
-}
-
-static void vector3Bindings(sol::state &lua) {
-
-    using namespace Ogre;
-
-    lua.new_usertype<Ogre::Vector3>("Vector3",
-
-        sol::constructors<sol::types<>, sol::types<const Real, const Real, const Real>>(),
-
-        //sol::meta_function::equal_to, &Ogre::Vector3::operator==,
-
-        sol::meta_function::less_than, &Ogre::Vector3::operator <,
-
-        sol::meta_function::addition, static_cast<Ogre::Vector3 (Ogre::Vector3::*)(
-            const Ogre::Vector3&) const>(&Ogre::Vector3::operator+),
-
-        sol::meta_function::subtraction, static_cast<Ogre::Vector3 (Ogre::Vector3::*)(
-            const Ogre::Vector3&) const>(&Ogre::Vector3::operator-),
-
-        sol::meta_function::multiplication, sol::overload(
-            static_cast<Ogre::Vector3 (Ogre::Vector3::*)(const Ogre::Vector3&) const>(
-                &Ogre::Vector3::operator*),
-            static_cast<Ogre::Vector3 (Ogre::Vector3::*)(const Ogre::Real) const>(
-                &Ogre::Vector3::operator*),
-            [](const Ogre::Real f, const Ogre::Vector3 &vec) -> Ogre::Vector3{
-
-                return f * vec;
-            }
-        ),
-
-
-        sol::meta_function::division, sol::overload(
-            static_cast<Ogre::Vector3 (Ogre::Vector3::*)(const Ogre::Vector3&) const>(
-                &Ogre::Vector3::operator/),
-            static_cast<Ogre::Vector3 (Ogre::Vector3::*)(const Ogre::Real) const>(
-                &Ogre::Vector3::operator/)
-        ),
-
-        // Support for table call syntax
-        sol::call_constructor, [](const Ogre::Real x, const Ogre::Real y, const Ogre::Real z){
-
-            return Ogre::Vector3(x, y, z);
-
-        },
-
-        //.def(tostring(self))
-
-        "x", &Vector3::x,
-        "y", &Vector3::y,
-        "z", &Vector3::z,
-
-        "length", &Vector3::length,
-        "squaredLength", &Vector3::squaredLength,
-        "distance", &Vector3::distance,
-        "squaredDistance", &Vector3::squaredDistance,
-        "dotProduct", &Vector3::dotProduct,
-        "absDotProduct", &Vector3::absDotProduct,
-        "normalise", &Vector3::normalise,
-        "crossProduct", &Vector3::crossProduct,
-        "midPoint", &Vector3::midPoint,
-        "makeFloor", &Vector3::makeFloor,
-        "makeCeil", &Vector3::makeCeil,
-        "perpendicular", &Vector3::perpendicular,
-        "randomDeviant", &Vector3::randomDeviant,
-        "angleBetween", &Vector3::angleBetween,
-        "getRotationTo", &Vector3::getRotationTo,
-        "isZeroLength", &Vector3::isZeroLength,
-        "normalisedCopy", &Vector3::normalisedCopy,
-        "reflect", &Vector3::reflect,
-        "positionEquals", &Vector3::positionEquals,
-        "positionCloses", &Vector3::positionCloses,
-        "directionEquals", &Vector3::directionEquals,
-        "isNaN", &Vector3::isNaN,
-        "primaryAxis", &Vector3::primaryAxis
-    );
-}
-
-static void ogreLuaBindings(sol::state &lua){
-
-    // Math
-    axisAlignedBoxBindings(lua);
-    colourValueBindings(lua);
-    degreeBindings(lua);
-    matrix3Bindings(lua);
-    planeBindings(lua);
-    quaternionBindings(lua);
-    radianBindings(lua);
-    rayBindings(lua);
-    sphereBindings(lua);
-    vector3Bindings(lua);
-    // Scene Manager
-    sceneManagerBindings(lua);
-    ogreEntityBindings(lua);
-    // Components
-    OgreCameraComponent::luaBindings(lua);
-    OgreLightComponent::luaBindings(lua);
-    OgreSceneNodeComponent::luaBindings(lua);
-    SkyPlaneComponent::luaBindings(lua);
-    OgreWorkspaceComponent::luaBindings(lua);
-    // Systems
-    OgreAddSceneNodeSystem::luaBindings(lua);
-    OgreCameraSystem::luaBindings(lua);
-    OgreLightSystem::luaBindings(lua);
-    OgreRemoveSceneNodeSystem::luaBindings(lua);
-    OgreUpdateSceneNodeSystem::luaBindings(lua);
-    thrive::RenderSystem::luaBindings(lua); // Fully qualified because of Ogre::RenderSystem
-    SkySystem::luaBindings(lua);
-    OgreWorkspaceSystem::luaBindings(lua);
-    // Other
-    Keyboard::luaBindings(lua);
-    Mouse::luaBindings(lua);
-}
-
-

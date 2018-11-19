@@ -3,14 +3,26 @@
 #include "hex.as"
 
 // Limits the size of the initial stringCodes
-const auto MIN_INITIAL_LENGTH = 5;
+const auto MIN_INITIAL_LENGTH = 2;
 const auto MAX_INITIAL_LENGTH = 15;
-float MAX_CHANCE_SCORE = 0;
+
+const auto MIN_INITIAL_EPIC_LENGTH = 30;
+const auto MAX_INITIAL_EPIC_LENGTH = 70;
+
+const auto MIN_INITIAL_EPIC_BACTERIA_LENGTH = 3;
+const auto MAX_INITIAL_EPIC_BACTERIA_LENGTH = 30;
 
 dictionary organelleLetters = {};
 array<string> VALID_ORGANELLES = {};
 array<string> VALID_ORGANELLE_LETTERS = {};
 array<float> VALID_ORGANELLE_CHANCES = {};
+array<float> VALID_PROKARYOTE_ORGANELLE_CHANCES = {};
+
+// These have to be global to work or we need a place to put them that
+// isnt global note the eukaryote one is old, so this is how this was
+// already programmed
+float maxEukaryoteScore = 0;
+float maxProkaryoteScore = 0;
 
 //! Called from setupOrganelles
 void setupOrganelleLetters(){
@@ -21,38 +33,54 @@ void setupOrganelleLetters(){
 
         auto organelleName = keys[i];
         auto organelleInfo = getOrganelleDefinition(organelleName);
-        
+
         // Getting the organelle letters from the organelle table.
         organelleLetters[organelleInfo.gene] = organelleName;
-        
+
         if(!organelleInfo.hasComponent(nucleusComponentFactory.name)){
-            
+
             VALID_ORGANELLES.insertLast(organelleName);
             VALID_ORGANELLE_CHANCES.insertLast(organelleInfo.chanceToCreate);
+            VALID_PROKARYOTE_ORGANELLE_CHANCES.insertLast(organelleInfo.prokaryoteChance);
             VALID_ORGANELLE_LETTERS.insertLast(organelleInfo.gene);
-            
-            // Getting the max chance score for the roulette selection.
-            MAX_CHANCE_SCORE += organelleInfo.chanceToCreate;
+
+        // Getting the max chance score for the roulette selection.
+        maxEukaryoteScore += organelleInfo.chanceToCreate;
+        maxProkaryoteScore += organelleInfo.prokaryoteChance;
         }
     }
 }
 
 // Returns a random organelle letter
 // TODO: verify that this has a good chance of returning also the last organelle
-string getRandomLetter(){
-    float i = GetEngine().GetRandom().GetNumber(0.f, MAX_CHANCE_SCORE);
+// TODO: is there a way to make this run faster?
+string getRandomLetter(bool isBacteria){
+    if (!isBacteria)
+    {
+        float i = GetEngine().GetRandom().GetNumber(0.f, maxEukaryoteScore);
+        for(uint index = 0; index < VALID_ORGANELLES.length(); ++index){
 
-    for(uint index = 0; index < VALID_ORGANELLES.length(); ++index){
+            i -= VALID_ORGANELLE_CHANCES[index];
 
-        i -= VALID_ORGANELLE_CHANCES[index];
-        
-        if(i <= 0){
-            return VALID_ORGANELLE_LETTERS[index];
+            if(i <= 0){
+                return VALID_ORGANELLE_LETTERS[index];
+            }
         }
     }
-    
+    else
+    {
+        float i = GetEngine().GetRandom().GetNumber(0.f, maxProkaryoteScore);
+        for(uint index = 0; index < VALID_ORGANELLES.length(); ++index){
+            i -= VALID_PROKARYOTE_ORGANELLE_CHANCES[index];
+
+            if(i <= 0){
+                return VALID_ORGANELLE_LETTERS[index];
+            }
+        }
+    }
+
     // Just in case
-    LOG_WARNING("getRandomLetter: just in case case hit");
+    //LOG_WARNING("getRandomLetter: just in case case hit");
     return getOrganelleDefinition("cytoplasm").gene;
 }
 
@@ -86,7 +114,7 @@ bool isValidPlacement(const string &in organelleName, int q, int r, int rotation
             }
         }
     }
-    
+
     return true;
 }
 
@@ -102,7 +130,7 @@ OrganelleTemplatePlaced@ getPosition(const string &in organelleName,
     for(int j = 0; j <= 5; ++j){
         int rotation = 360 * j / 6;
         if(isValidPlacement(organelleName, q, r, rotation, organelleList)){
-            return OrganelleTemplatePlaced(organelleName, q, r, rotation+180);
+            return OrganelleTemplatePlaced(organelleName, q, r, rotation);
         }
     }
 
@@ -115,6 +143,7 @@ OrganelleTemplatePlaced@ getPosition(const string &in organelleName,
 
     // Spiral search for space for the organelle
     int radius = 1;
+
     while(true){
         //Moves into the ring of radius "radius" and center the old organelle
         Int2 radiusOffset = Int2(HEX_NEIGHBOUR_OFFSET[
@@ -132,17 +161,19 @@ OrganelleTemplatePlaced@ getPosition(const string &in organelleName,
 
                 //Checks every possible rotation value.
                 for(int j = 0; j <= 5; ++j){
-                    
+
                     int rotation = (360 * j / 6);
+
                     if(isValidPlacement(organelleName, q, r, rotation, organelleList)){
-                        return OrganelleTemplatePlaced(organelleName, q, r, rotation+180);
+                        return OrganelleTemplatePlaced(organelleName, q, r, rotation);
                     }
                 }
             }
         }
+
         ++radius;
     }
-    
+
     return null;
 }
 
@@ -160,7 +191,7 @@ array<PlacedOrganelle@>@ positionOrganelles(const string &in stringCode){
         const auto letter = CharacterToString(stringCode[i]);
         // LOG_WRITE(formatUInt(i) + ": " + letter);
         string name = string(organelleLetters[letter]);
-		//this places the nucleous
+        //this places the nucleous
         if(i == 0){
 
             @pos = OrganelleTemplatePlaced(name, 0, 0, 180);

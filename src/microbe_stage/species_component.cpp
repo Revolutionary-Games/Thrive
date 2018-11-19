@@ -9,7 +9,8 @@ using namespace thrive;
 unsigned int SpeciesComponent::SPECIES_NUM = 0;
 
 SpeciesComponent::SpeciesComponent(const std::string& _name) :
-    Leviathan::Component(TYPE), colour(1, 0, 1, 1), name(_name)
+    Leviathan::Component(TYPE), colour(1, 0, 1, 1), name(_name), population(50),
+    generation(0)
 {
     if(name == "") {
         name = "noname" + std::to_string(SPECIES_NUM);

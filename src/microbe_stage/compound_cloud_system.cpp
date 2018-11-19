@@ -6,6 +6,8 @@
 #include "engine/player_data.h"
 #include "generated/cell_stage_world.h"
 
+#include <Rendering/GeometryHelpers.h>
+
 #include <OgreHardwarePixelBuffer.h>
 #include <OgreMaterialManager.h>
 #include <OgreMesh2.h>
@@ -16,12 +18,12 @@
 #include <OgreSceneManager.h>
 #include <OgreTechnique.h>
 #include <OgreTextureManager.h>
+#include <Utility/Random.h>
 
 #include <atomic>
 
 using namespace thrive;
 
-constexpr auto YOffset = -1;
 constexpr auto OGRE_CLOUD_TEXTURE_BYTES_PER_ELEMENT = 4;
 
 static std::atomic<int> CloudTextureNumber = {0};
@@ -30,12 +32,14 @@ static std::atomic<int> CloudMeshNumberCounter = {0};
 ////////////////////////////////////////////////////////////////////////////////
 // CompoundCloudComponent
 ////////////////////////////////////////////////////////////////////////////////
-CompoundCloudComponent::CompoundCloudComponent(Compound* first,
+CompoundCloudComponent::CompoundCloudComponent(CompoundCloudSystem& owner,
+    Compound* first,
     Compound* second,
     Compound* third,
     Compound* fourth) :
     Leviathan::Component(TYPE),
-    m_textureName("cloud_" + std::to_string(++CloudTextureNumber))
+    m_textureName("cloud_" + std::to_string(++CloudTextureNumber)),
+    m_owner(owner)
 {
     if(!first)
         throw std::runtime_error(
@@ -76,6 +80,8 @@ CompoundCloudComponent::~CompoundCloudComponent()
 {
     LEVIATHAN_ASSERT(!m_compoundCloudsPlane && !m_sceneNode,
         "CompoundCloudComponent not Released");
+
+    m_owner.cloudReportDestroyed(this);
 }
 
 void
@@ -93,9 +99,9 @@ void
         m_sceneNode = nullptr;
     }
 
-    if(initialized) {
+    if(m_initialized) {
 
-        initialized = false;
+        m_initialized = false;
     }
 
     // And material
@@ -148,13 +154,11 @@ void
         size_t x,
         size_t y)
 {
-    if(x >= width || y >= height)
+    // TODO: this check isn't even very good so it can be removed once this is
+    // debugged
+    if(x >= m_density1.size() || y >= m_density1[0].size())
         throw std::runtime_error(
             "CompoundCloudComponent coordinates out of range");
-
-    LOG_WRITE("Pos things: " + std::to_string(x) + ", " + std::to_string(y) +
-              " width: " + std::to_string(width) +
-              " height: " + std::to_string(height));
 
     switch(getSlotForCompound(compound)) {
     case SLOT::FIRST: m_density1[x][y] += dens; break;
@@ -170,13 +174,9 @@ int
         size_t y,
         float rate)
 {
-    if(x >= width || y >= height)
-        throw std::runtime_error(
-            "CompoundCloudComponent coordinates out of range");
-
     switch(getSlotForCompound(compound)) {
     case SLOT::FIRST: {
-        int amountToGive = static_cast<int>(m_density1[x][y]) * rate;
+        int amountToGive = static_cast<int>(m_density1[x][y] * rate);
         m_density1[x][y] -= amountToGive;
         if(m_density1[x][y] < 1)
             m_density1[x][y] = 0;
@@ -184,7 +184,7 @@ int
         return amountToGive;
     }
     case SLOT::SECOND: {
-        int amountToGive = static_cast<int>(m_density2[x][y]) * rate;
+        int amountToGive = static_cast<int>(m_density2[x][y] * rate);
         m_density2[x][y] -= amountToGive;
         if(m_density2[x][y] < 1)
             m_density2[x][y] = 0;
@@ -192,7 +192,7 @@ int
         return amountToGive;
     }
     case SLOT::THIRD: {
-        int amountToGive = static_cast<int>(m_density3[x][y]) * rate;
+        int amountToGive = static_cast<int>(m_density3[x][y] * rate);
         m_density3[x][y] -= amountToGive;
         if(m_density3[x][y] < 1)
             m_density3[x][y] = 0;
@@ -200,7 +200,7 @@ int
         return amountToGive;
     }
     case SLOT::FOURTH: {
-        int amountToGive = static_cast<int>(m_density4[x][y]) * rate;
+        int amountToGive = static_cast<int>(m_density4[x][y] * rate);
         m_density4[x][y] -= amountToGive;
         if(m_density4[x][y] < 1)
             m_density4[x][y] = 0;
@@ -219,25 +219,21 @@ int
         size_t y,
         float rate)
 {
-    if(x >= width || y >= height)
-        throw std::runtime_error(
-            "CompoundCloudComponent coordinates out of range");
-
     switch(getSlotForCompound(compound)) {
     case SLOT::FIRST: {
-        int amountToGive = static_cast<int>(m_density1[x][y]) * rate;
+        int amountToGive = static_cast<int>(m_density1[x][y] * rate);
         return amountToGive;
     }
     case SLOT::SECOND: {
-        int amountToGive = static_cast<int>(m_density2[x][y]) * rate;
+        int amountToGive = static_cast<int>(m_density2[x][y] * rate);
         return amountToGive;
     }
     case SLOT::THIRD: {
-        int amountToGive = static_cast<int>(m_density3[x][y]) * rate;
+        int amountToGive = static_cast<int>(m_density3[x][y] * rate);
         return amountToGive;
     }
     case SLOT::FOURTH: {
-        int amountToGive = static_cast<int>(m_density4[x][y]) * rate;
+        int amountToGive = static_cast<int>(m_density4[x][y] * rate);
         return amountToGive;
     }
     }
@@ -246,14 +242,71 @@ int
     return -1;
 }
 
+void
+    CompoundCloudComponent::getCompoundsAt(size_t x,
+        size_t y,
+        std::vector<std::tuple<CompoundId, float>>& result)
+{
+    if(m_compoundId1 != NULL_COMPOUND) {
+        const auto amount = m_density1[x][y];
+        if(amount > 0)
+            result.emplace_back(m_compoundId1, amount);
+    }
+
+    if(m_compoundId2 != NULL_COMPOUND) {
+        const auto amount = m_density2[x][y];
+        if(amount > 0)
+            result.emplace_back(m_compoundId2, amount);
+    }
+
+    if(m_compoundId3 != NULL_COMPOUND) {
+        const auto amount = m_density3[x][y];
+        if(amount > 0)
+            result.emplace_back(m_compoundId3, amount);
+    }
+
+    if(m_compoundId4 != NULL_COMPOUND) {
+        const auto amount = m_density4[x][y];
+        if(amount > 0)
+            result.emplace_back(m_compoundId4, amount);
+    }
+}
+// ------------------------------------ //
+void
+    CompoundCloudComponent::recycleToPosition(const Float3& newPosition)
+{
+    m_position = newPosition;
+
+    m_sceneNode->setPosition(m_position.X, CLOUD_Y_COORDINATE, m_position.Z);
+
+    // Clear data. Maybe there is a faster way
+    for(size_t x = 0; x < m_density1.size(); ++x) {
+        for(size_t y = 0; y < m_density1[x].size(); ++y) {
+
+            m_density1[x][y] = 0;
+            m_oldDens1[x][y] = 0;
+
+            m_density2[x][y] = 0;
+            m_oldDens2[x][y] = 0;
+
+            m_density3[x][y] = 0;
+            m_oldDens3[x][y] = 0;
+
+            m_density4[x][y] = 0;
+            m_oldDens4[x][y] = 0;
+        }
+    }
+}
+
 ////////////////////////////////////////////////////////////////////////////////
 // CompoundCloudSystem
 ////////////////////////////////////////////////////////////////////////////////
 CompoundCloudSystem::CompoundCloudSystem() :
-    xVelocity(width, std::vector<float>(height, 0)),
-    yVelocity(width, std::vector<float>(height, 0))
-{
-}
+    m_xVelocity(CLOUD_SIMULATION_WIDTH,
+        std::vector<float>(CLOUD_SIMULATION_HEIGHT, 0)),
+    m_yVelocity(CLOUD_SIMULATION_WIDTH,
+        std::vector<float>(CLOUD_SIMULATION_HEIGHT, 0))
+{}
 
 CompoundCloudSystem::~CompoundCloudSystem() {}
 
@@ -262,11 +315,12 @@ void
 {
     // Use the curl of a Perlin noise field to create a turbulent velocity
     // field.
-    CreateVelocityField();
+    createVelocityField();
+
 
     // Create a background plane on which the fluid clouds will be drawn.
-    // Ogre::Plane plane(Ogre::Vector3::UNIT_Z, -1.0);
-    Ogre::Plane plane(1, 1, 1, 1);
+    Ogre::Plane plane(Ogre::Vector3::UNIT_Y, 1.0);
+    // Ogre::Plane plane(1, 1, 1, 1);
 
     const auto meshName =
         "CompoundCloudSystem_Plane_" + std::to_string(++CloudMeshNumberCounter);
@@ -274,9 +328,9 @@ void
     const auto mesh =
         Ogre::v1::MeshManager::getSingleton().createPlane(meshName + "_v1",
             Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME, plane,
-            width * gridSize, height * gridSize, 1, 1,
-            // Normals
-            true, 1, 1.0f, 1.0f, Ogre::Vector3::UNIT_Y,
+            CLOUD_X_EXTENT, CLOUD_Y_EXTENT, 1, 1,
+            // Normals. These are required for import to V2 to work
+            true, 1, 1.0f, 1.0f, Ogre::Vector3::UNIT_X,
             Ogre::v1::HardwareBuffer::HBU_STATIC_WRITE_ONLY,
             Ogre::v1::HardwareBuffer::HBU_STATIC_WRITE_ONLY, false, false);
 
@@ -289,6 +343,10 @@ void
 
     Ogre::v1::MeshManager::getSingleton().remove(mesh);
 
+    // This crashes when used with RenderDoc and doesn't render anything
+    // m_planeMesh = Leviathan::GeometryHelpers::CreateXZPlane(
+    //     meshName, CLOUD_WIDTH, CLOUD_HEIGHT);
+
     // Need to edit the render queue (for when the item is created)
     world.GetScene()->getRenderQueue()->setRenderQueueMode(
         2, Ogre::RenderQueue::FAST);
@@ -298,11 +356,11 @@ void
     CompoundCloudSystem::Release(CellStageWorld& world)
 {
     // Make sure all of our entities are destroyed //
+    // Because their destruction callback unregisters them we have to delete
+    // them like this
+    while(!m_managedClouds.empty()) {
 
-    for(auto iter = m_managedClouds.begin(); iter != m_managedClouds.end();
-        ++iter) {
-
-        world.DestroyEntity(iter->first);
+        world.DestroyEntity(m_managedClouds.begin()->first);
     }
 
     // Destroy the shared mesh
@@ -324,37 +382,33 @@ void
 bool
     CompoundCloudSystem::addCloud(CompoundId compound,
         float density,
-        float x,
-        float z)
+        const Float3& worldPosition)
 {
-    // TODO: store these
-    const auto halfWidth = width * gridSize / 2;
-    const auto halfHeight = height * gridSize / 2;
-
     // Find the target cloud //
     for(auto& cloud : m_managedClouds) {
 
         const auto& pos = cloud.second->m_position;
 
-        const float relativeX = (x - (pos.X - halfWidth)) / gridSize;
-        const float relativeZ = (z - (pos.Z - halfHeight)) / gridSize;
-
-        if(relativeX >= 0 && relativeX <= width && relativeZ >= 0 &&
-            relativeZ <= height) {
+        if(cloudContainsPosition(pos, worldPosition)) {
             // Within cloud
 
             // Skip wrong types
             if(!cloud.second->handlesCompound(compound))
                 continue;
 
-            LOG_INFO("Adding compound: " + std::to_string(compound) +
-                     " (amount: " + std::to_string(density) + ") to cloud (" +
-                     std::to_string(cloud.first) + ") at pos: " +
-                     std::to_string(x) + ", " + std::to_string(z) +
-                     ", relative pos: " + std::to_string(relativeX) + ", " +
-                     std::to_string(relativeZ));
+            try {
+                auto [x, y] = convertWorldToCloudLocal(pos, worldPosition);
+                cloud.second->addCloud(compound, density, x, y);
 
-            cloud.second->addCloud(compound, density, relativeX, relativeZ);
+                return true;
+
+            } catch(const Leviathan::InvalidArgument& e) {
+                LOG_ERROR("CompoundCloudSystem: can't place cloud because the "
+                          "cloud math is "
+                          "wrong, exception:");
+                e.PrintToLog();
+                return false;
+            }
         }
     }
 
@@ -364,21 +418,162 @@ bool
 //! \param rate should be less than one.
 float
     CompoundCloudSystem::takeCompound(CompoundId compound,
-        float x,
-        float z,
+        const Float3& worldPosition,
         float rate)
 {
+    for(auto& cloud : m_managedClouds) {
+
+        const auto& pos = cloud.second->m_position;
+
+        if(cloudContainsPosition(pos, worldPosition)) {
+            // Within cloud
+
+            // Skip wrong types
+            if(!cloud.second->handlesCompound(compound))
+                continue;
+
+            try {
+                auto [x, y] = convertWorldToCloudLocal(pos, worldPosition);
+                return cloud.second->takeCompound(compound, x, y, rate);
+
+            } catch(const Leviathan::InvalidArgument& e) {
+                LOG_ERROR(
+                    "CompoundCloudSystem: can't take from cloud because the "
+                    "cloud math is "
+                    "wrong, exception:");
+                e.PrintToLog();
+                return false;
+            }
+        }
+    }
+
     return 0;
 }
 
 //! \param rate should be less than one.
 float
     CompoundCloudSystem::amountAvailable(CompoundId compound,
-        float x,
-        float z,
+        const Float3& worldPosition,
         float rate)
 {
+    for(auto& cloud : m_managedClouds) {
+
+        const auto& pos = cloud.second->m_position;
+
+        if(cloudContainsPosition(pos, worldPosition)) {
+            // Within cloud
+
+            // Skip wrong types
+            if(!cloud.second->handlesCompound(compound))
+                continue;
+
+            try {
+                auto [x, y] = convertWorldToCloudLocal(pos, worldPosition);
+                return cloud.second->amountAvailable(compound, x, y, rate);
+
+            } catch(const Leviathan::InvalidArgument& e) {
+                LOG_ERROR(
+                    "CompoundCloudSystem: can't get available compounds "
+                    "from cloud because the cloud math is wrong, exception:");
+                e.PrintToLog();
+                return false;
+            }
+        }
+    }
+
     return 0;
+}
+
+std::vector<std::tuple<CompoundId, float>>
+    CompoundCloudSystem::getAllAvailableAt(const Float3& worldPosition)
+{
+    std::vector<std::tuple<CompoundId, float>> result;
+
+    for(auto& cloud : m_managedClouds) {
+
+        const auto& pos = cloud.second->m_position;
+
+        if(cloudContainsPosition(pos, worldPosition)) {
+            // Within cloud
+
+            try {
+                auto [x, y] = convertWorldToCloudLocal(pos, worldPosition);
+                cloud.second->getCompoundsAt(x, y, result);
+
+            } catch(const Leviathan::InvalidArgument& e) {
+                LOG_ERROR(
+                    "CompoundCloudSystem: can't get available compounds "
+                    "from cloud because the cloud math is wrong, exception:");
+                e.PrintToLog();
+            }
+        }
+    }
+
+    return result;
+}
+// ------------------------------------ //
+bool
+    CompoundCloudSystem::cloudContainsPosition(const Float3& cloudPosition,
+        const Float3& worldPosition)
+{
+    if(worldPosition.X < cloudPosition.X - CLOUD_WIDTH ||
+        worldPosition.X >= cloudPosition.X + CLOUD_WIDTH ||
+        worldPosition.Z < cloudPosition.Z - CLOUD_HEIGHT ||
+        worldPosition.Z >= cloudPosition.Z + CLOUD_HEIGHT)
+        return false;
+    return true;
+}
+
+bool
+    CompoundCloudSystem::cloudContainsPositionWithRadius(
+        const Float3& cloudPosition,
+        const Float3& worldPosition,
+        float radius)
+{
+    if(worldPosition.X + radius < cloudPosition.X - CLOUD_WIDTH ||
+        worldPosition.X - radius >= cloudPosition.X + CLOUD_WIDTH ||
+        worldPosition.Z + radius < cloudPosition.Z - CLOUD_HEIGHT ||
+        worldPosition.Z - radius >= cloudPosition.Z + CLOUD_HEIGHT)
+        return false;
+    return true;
+}
+
+std::tuple<size_t, size_t>
+    CompoundCloudSystem::convertWorldToCloudLocal(const Float3& cloudPosition,
+        const Float3& worldPosition)
+{
+    const auto topLeftRelative =
+        Float3(worldPosition.X - (cloudPosition.X - CLOUD_WIDTH), 0,
+            worldPosition.Z - (cloudPosition.Z - CLOUD_HEIGHT));
+
+    // Floor is used here because otherwise the last coordinate is wrong
+    const auto localX =
+        static_cast<size_t>(std::floor(topLeftRelative.X / CLOUD_RESOLUTION));
+    const auto localY =
+        static_cast<size_t>(std::floor(topLeftRelative.Z / CLOUD_RESOLUTION));
+
+    // Safety check
+    if(localX >= CLOUD_SIMULATION_WIDTH || localY >= CLOUD_SIMULATION_HEIGHT)
+        throw Leviathan::InvalidArgument("position not within cloud");
+
+    return std::make_tuple(localX, localY);
+}
+
+std::tuple<float, float>
+    CompoundCloudSystem::convertWorldToCloudLocalForGrab(
+        const Float3& cloudPosition,
+        const Float3& worldPosition)
+{
+    const auto topLeftRelative =
+        Float3(worldPosition.X - (cloudPosition.X - CLOUD_WIDTH), 0,
+            worldPosition.Z - (cloudPosition.Z - CLOUD_HEIGHT));
+
+    // Floor is used here because otherwise the last coordinate is wrong
+    // and we don't want our caller to constantly have to call std::floor
+    const auto localX = std::floor(topLeftRelative.X / CLOUD_RESOLUTION);
+    const auto localY = std::floor(topLeftRelative.Z / CLOUD_RESOLUTION);
+
+    return std::make_tuple(localX, localY);
 }
 
 // ------------------------------------ //
@@ -405,8 +600,8 @@ void
             position = posEntity.Members._Position;
 
         } catch(const Leviathan::NotFound&) {
-            LOG_WARNING(
-                "CompoundCloudSystem: Run: playerEntity has no position");
+            LOG_WARNING("CompoundCloudSystem: Run: playerEntity(" +
+                        std::to_string(playerEntity) + ") has no position");
         }
     }
 
@@ -414,12 +609,12 @@ void
 
     for(auto& value : m_managedClouds) {
 
-        if(!value.second->initialized) {
+        if(!value.second->m_initialized) {
             LEVIATHAN_ASSERT(false, "CompoundCloudSystem spawned a cloud that "
                                     "it didn't initialize");
         }
 
-        ProcessCloud(*value.second, renderTime);
+        processCloud(*value.second, renderTime);
     }
 }
 
@@ -432,19 +627,171 @@ void
 
         LOG_INFO("CompoundCloudSystem doing initial spawning");
 
+        m_cloudGridCenter = Float3(0, 0, 0);
+
         for(size_t i = 0; i < m_cloudTypes.size(); i += CLOUDS_IN_ONE) {
 
-            _spawnCloud(world, playerPos, i);
-        }
+            // Center
+            _spawnCloud(world, m_cloudGridCenter, i);
 
-        m_lastPosition = playerPos;
+            // Top left
+            _spawnCloud(world,
+                m_cloudGridCenter +
+                    Float3(-CLOUD_WIDTH * 2, 0, -CLOUD_HEIGHT * 2),
+                i);
+
+            // Up
+            _spawnCloud(
+                world, m_cloudGridCenter + Float3(0, 0, -CLOUD_HEIGHT * 2), i);
+
+            // Top right
+            _spawnCloud(world,
+                m_cloudGridCenter +
+                    Float3(CLOUD_WIDTH * 2, 0, -CLOUD_HEIGHT * 2),
+                i);
+
+            // Left
+            _spawnCloud(
+                world, m_cloudGridCenter + Float3(-CLOUD_WIDTH * 2, 0, 0), i);
+
+            // Right
+            _spawnCloud(
+                world, m_cloudGridCenter + Float3(CLOUD_WIDTH * 2, 0, 0), i);
+
+            // Bottom left
+            _spawnCloud(world,
+                m_cloudGridCenter +
+                    Float3(-CLOUD_WIDTH * 2, 0, CLOUD_HEIGHT * 2),
+                i);
+
+            // Down
+            _spawnCloud(
+                world, m_cloudGridCenter + Float3(0, 0, CLOUD_HEIGHT * 2), i);
+
+            // Bottom right
+            _spawnCloud(world,
+                m_cloudGridCenter +
+                    Float3(CLOUD_WIDTH * 2, 0, CLOUD_HEIGHT * 2),
+                i);
+        }
     }
 
-    const auto moved = playerPos - m_lastPosition;
+    const auto moved = playerPos - m_cloudGridCenter;
 
-    // Despawn clouds that are too far away
+    // TODO: because we no longer check if the player has moved at least a bit
+    // it is possible that this gets triggered very often if the player spins
+    // around a cloud edge, but hopefully there isn't a performance problem and
+    // that case can just be ignored.
+    // Z is used here because these are world coordinates
+    if(std::abs(moved.X) > CLOUD_WIDTH || std::abs(moved.Z) > CLOUD_HEIGHT) {
 
-    // And spawn new ones
+        // Calculate the new center
+        if(moved.X < -CLOUD_WIDTH) {
+            m_cloudGridCenter -= Float3(CLOUD_WIDTH * 2, 0, 0);
+        } else if(moved.X > CLOUD_WIDTH) {
+            m_cloudGridCenter += Float3(CLOUD_WIDTH * 2, 0, 0);
+        }
+
+        if(moved.Z < -CLOUD_HEIGHT) {
+            m_cloudGridCenter -= Float3(0, 0, CLOUD_HEIGHT * 2);
+        } else if(moved.Z > CLOUD_HEIGHT) {
+            m_cloudGridCenter += Float3(0, 0, CLOUD_HEIGHT * 2);
+        }
+
+        // Reposition clouds according to the origin
+        // MAX of 9 clouds can ever be repositioned (this is only the case when
+        // respawning)
+        constexpr size_t MAX_FAR_CLOUDS = 9;
+        std::array<CompoundCloudComponent*, MAX_FAR_CLOUDS> tooFarAwayClouds;
+        size_t farAwayIndex = 0;
+
+        for(auto iter = m_managedClouds.begin(); iter != m_managedClouds.end();
+            ++iter) {
+
+            const auto pos = iter->second->m_position;
+
+            const auto distance = m_cloudGridCenter - pos;
+
+            if(std::abs(distance.X) > 3 * CLOUD_WIDTH ||
+                std::abs(distance.Z) > 3 * CLOUD_HEIGHT) {
+
+                if(farAwayIndex >= MAX_FAR_CLOUDS) {
+
+                    LOG_FATAL("CompoundCloudSystem: Logic error in calculating "
+                              "far away clouds that need to move");
+                    break;
+                }
+
+                tooFarAwayClouds[farAwayIndex++] = iter->second;
+            }
+        }
+
+        // Move clouds that are too far away
+        // We check through each position that should have a cloud and move one
+        // where there isn't one
+
+        const Float3 requiredCloudPositions[] = {
+            // Center
+            m_cloudGridCenter,
+
+            // Top left
+            m_cloudGridCenter + Float3(-CLOUD_WIDTH * 2, 0, -CLOUD_HEIGHT * 2),
+
+            // Up
+            m_cloudGridCenter + Float3(0, 0, -CLOUD_HEIGHT * 2),
+
+            // Top right
+            m_cloudGridCenter + Float3(CLOUD_WIDTH * 2, 0, -CLOUD_HEIGHT * 2),
+
+            // Left
+            m_cloudGridCenter + Float3(-CLOUD_WIDTH * 2, 0, 0),
+
+            // Right
+            m_cloudGridCenter + Float3(CLOUD_WIDTH * 2, 0, 0),
+
+            // Bottom left
+            m_cloudGridCenter + Float3(-CLOUD_WIDTH * 2, 0, CLOUD_HEIGHT * 2),
+
+            // Down
+            m_cloudGridCenter + Float3(0, 0, CLOUD_HEIGHT * 2),
+
+            // Bottom right
+            m_cloudGridCenter + Float3(CLOUD_WIDTH * 2, 0, CLOUD_HEIGHT * 2),
+        };
+
+        size_t farAwayRepositionedIndex = 0;
+
+        for(size_t i = 0; i < std::size(requiredCloudPositions); ++i) {
+
+            bool hasCloud = false;
+            const auto& requiredPos = requiredCloudPositions[i];
+
+            for(auto iter = m_managedClouds.begin();
+                iter != m_managedClouds.end(); ++iter) {
+
+                const auto pos = iter->second->m_position;
+
+                // An exact check might work but just to be safe slight
+                // inaccuracy is allowed here
+                if((pos - requiredPos).HAddAbs() < Leviathan::EPSILON) {
+                    hasCloud = true;
+                    break;
+                }
+            }
+
+            if(hasCloud)
+                continue;
+
+            if(farAwayRepositionedIndex >= farAwayIndex) {
+                LOG_FATAL("CompoundCloudSystem: Logic error in moving far "
+                          "clouds (ran out)");
+                break;
+            }
+
+            tooFarAwayClouds[farAwayRepositionedIndex++]->recycleToPosition(
+                requiredPos);
+        }
+    }
 }
 
 void
@@ -467,8 +814,11 @@ void
                            nullptr;
 
     CompoundCloudComponent& cloud = world.Create_CompoundCloudComponent(
-        entity, first, second, third, fourth);
+        entity, *this, first, second, third, fourth);
 
+    // Set correct position
+    // TODO: this should probably be made a constructor parameter
+    cloud.m_position = pos;
 
     initializeCloud(cloud, world.GetScene());
     m_managedClouds[entity] = &cloud;
@@ -484,51 +834,42 @@ void
     // Create where the eventually created plane object will be attached
     cloud.m_sceneNode = scene->getRootSceneNode()->createChildSceneNode();
 
-    // Set initial position and the rotation that is preserved
-
-    // shift cloud to the left by half a width so its positioned correctly
-    // cloud.m_position.X = cloud.m_position.X - width / 2;
-
     // set the position properly
     cloud.m_sceneNode->setPosition(
-        cloud.m_position.X, YOffset, cloud.m_position.Z);
+        cloud.m_position.X, CLOUD_Y_COORDINATE, cloud.m_position.Z);
 
-    // Stolen from the old background rotation
+    // Because of the way Ogre generates the UVs for a plane we need to rotate
+    // the plane to match up with world coordinates
     cloud.m_sceneNode->setOrientation(
-        Ogre::Quaternion(Ogre::Degree(90), Ogre::Vector3::UNIT_Z) *
-        Ogre::Quaternion(Ogre::Degree(45), Ogre::Vector3::UNIT_Y));
-
-    // Set the size of each grid tile and its position.
-    cloud.width = width;
-    cloud.height = height;
-    cloud.gridSize = gridSize;
+        Ogre::Quaternion(Ogre::Degree(90), Ogre::Vector3::UNIT_Y));
 
     // All the densities
     if(cloud.m_compoundId1 != NULL_COMPOUND) {
-        cloud.m_density1.resize(width, std::vector<float>(height, 0));
-        cloud.m_oldDens1.resize(width, std::vector<float>(height, 0));
+        cloud.m_density1.resize(CLOUD_SIMULATION_WIDTH,
+            std::vector<float>(CLOUD_SIMULATION_HEIGHT, 0));
+        cloud.m_oldDens1.resize(CLOUD_SIMULATION_WIDTH,
+            std::vector<float>(CLOUD_SIMULATION_HEIGHT, 0));
     }
     if(cloud.m_compoundId2 != NULL_COMPOUND) {
-        cloud.m_density2.resize(width, std::vector<float>(height, 0));
-        cloud.m_oldDens2.resize(width, std::vector<float>(height, 0));
+        cloud.m_density2.resize(CLOUD_SIMULATION_WIDTH,
+            std::vector<float>(CLOUD_SIMULATION_HEIGHT, 0));
+        cloud.m_oldDens2.resize(CLOUD_SIMULATION_WIDTH,
+            std::vector<float>(CLOUD_SIMULATION_HEIGHT, 0));
     }
     if(cloud.m_compoundId3 != NULL_COMPOUND) {
-        cloud.m_density3.resize(width, std::vector<float>(height, 0));
-        cloud.m_oldDens3.resize(width, std::vector<float>(height, 0));
+        cloud.m_density3.resize(CLOUD_SIMULATION_WIDTH,
+            std::vector<float>(CLOUD_SIMULATION_HEIGHT, 0));
+        cloud.m_oldDens3.resize(CLOUD_SIMULATION_WIDTH,
+            std::vector<float>(CLOUD_SIMULATION_HEIGHT, 0));
     }
     if(cloud.m_compoundId4 != NULL_COMPOUND) {
-        cloud.m_density4.resize(width, std::vector<float>(height, 0));
-        cloud.m_oldDens4.resize(width, std::vector<float>(height, 0));
+        cloud.m_density4.resize(CLOUD_SIMULATION_WIDTH,
+            std::vector<float>(CLOUD_SIMULATION_HEIGHT, 0));
+        cloud.m_oldDens4.resize(CLOUD_SIMULATION_WIDTH,
+            std::vector<float>(CLOUD_SIMULATION_HEIGHT, 0));
     }
 
-    // Testing putting compound at different points
-    // cloud.m_density1[width / 2][height / 2] = 190;
-    // cloud.m_density1[width / 2 - 1][height / 2 - 1] = 190;
-    // cloud.m_density1[width / 2 + 1][height / 2 + 1] = 190;
-
-
-    // Modifies the material to draw this compound cloud in addition to the
-    // others.
+    // Create a modified material that uses
     cloud.m_planeMaterial = Ogre::MaterialManager::getSingleton().create(
         cloud.m_textureName + "_material", "Generated");
 
@@ -542,7 +883,7 @@ void
 
     // Set blendblock
     Ogre::HlmsBlendblock blendblock;
-    // blendblock.mAlphaToCoverageEnabled = false;
+    blendblock.mAlphaToCoverageEnabled = true;
 
     // This is the old setting
     // pass->setSceneBlending(Ogre::SBT_TRANSPARENT_ALPHA);
@@ -552,6 +893,11 @@ void
 
     blendblock.mSourceBlendFactor = Ogre::SBF_SOURCE_ALPHA;
     blendblock.mDestBlendFactor = Ogre::SBF_ONE_MINUS_SOURCE_ALPHA;
+
+    // Important for proper blending (not sure,
+    // mAlphaToCoverageEnabled seems to be more important as a lot of
+    // stuff breaks without it)
+    blendblock.mIsTransparent = true;
 
     pass->setBlendblock(blendblock);
     pass->setVertexProgram("CompoundCloud_VS");
@@ -571,24 +917,22 @@ void
         pass->getFragmentProgramParameters()->setNamedConstant(
             "cloudColour4", cloud.m_color4);
 
-    // Position for consistent UVs
-    pass->getFragmentProgramParameters()->setNamedConstant(
-        "cloudPos", cloud.m_position);
-
-    cloud.m_planeMaterial->compile();
+    // The perlin noise texture needs to be tileable. We can't do tricks with
+    // the cloud's position
 
     cloud.m_texture = Ogre::TextureManager::getSingleton().createManual(
-        cloud.m_textureName, "Generated", Ogre::TEX_TYPE_2D, width, height, 0,
-        Ogre::PF_BYTE_RGBA, Ogre::TU_DYNAMIC_WRITE_ONLY_DISCARDABLE, nullptr
+        cloud.m_textureName, "Generated", Ogre::TEX_TYPE_2D,
+        CLOUD_SIMULATION_WIDTH, CLOUD_SIMULATION_HEIGHT, 0, Ogre::PF_BYTE_RGBA,
+        Ogre::TU_DYNAMIC_WRITE_ONLY_DISCARDABLE,
+        nullptr
         // Gamma correction
-        // , true
-    );
+        ,
+        true);
 
     LEVIATHAN_ASSERT(Ogre::PixelUtil::getNumElemBytes(Ogre::PF_BYTE_RGBA) ==
                          OGRE_CLOUD_TEXTURE_BYTES_PER_ELEMENT,
         "Pixel format bytes has changed");
 
-    // TODO: switch to Ogre 2.1 way
     auto pixelBuffer = cloud.m_texture->getBuffer();
     pixelBuffer->lock(Ogre::v1::HardwareBuffer::HBL_DISCARD);
     const Ogre::PixelBox& pixelBox = pixelBuffer->getCurrentLock();
@@ -599,19 +943,28 @@ void
 
     // Unlock the pixel buffer
     pixelBuffer->unlock();
-    pass->createTextureUnitState()->setTexture(cloud.m_texture);
+    // Make sure it wraps to make the borders also look good
+    // TODO: check is this needed. This is absolutely needed for the perlin
+    // noise but probably not for the cloud densities. So it is easier to keep
+    // this for now
+    Ogre::HlmsSamplerblock wrappedBlock;
+    wrappedBlock.setAddressingMode(Ogre::TextureAddressingMode::TAM_WRAP);
+
+    auto* densityState = pass->createTextureUnitState();
+    densityState->setTexture(cloud.m_texture);
+    // densityState->setTextureName("TestImageThing.png");
+    densityState->setSamplerblock(wrappedBlock);
 
     Ogre::TexturePtr texturePtr =
         Ogre::TextureManager::getSingleton().load("PerlinNoise.jpg",
             Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
     auto* noiseState = pass->createTextureUnitState();
     noiseState->setTexture(texturePtr);
-    Ogre::HlmsSamplerblock wrappedBlock;
 
-    // Make sure it wraps to make the borders also look good
-    // TODO: check is this needed
-    wrappedBlock.setAddressingMode(Ogre::TextureAddressingMode::TAM_WRAP);
     noiseState->setSamplerblock(wrappedBlock);
+
+    // Maybe compiling this here is the best place
+    cloud.m_planeMaterial->compile();
 
     // Needs to create a plane instance on which the material is used on
     cloud.m_compoundCloudsPlane = scene->createItem(m_planeMesh);
@@ -624,39 +977,57 @@ void
     cloud.m_sceneNode->attachObject(cloud.m_compoundCloudsPlane);
 
     // This loads the material first time this is called. This needs
-    // to be called AFTER the first compound cloud has been created
+    // to be called AFTER the first compound cloud has been created. We are
+    // currently initializing one so it is fine
     cloud.m_compoundCloudsPlane->setMaterialName(
         cloud.m_planeMaterial->getName());
 
-    // TODO: check if this approach could be used to use a single material for
-    // all clouds cloudsPlane->getSubItem(0)->setCustomParameter(1, offset);
-
-    cloud.initialized = true;
+    cloud.m_initialized = true;
 }
-
+// ------------------------------------ //
 void
-    CompoundCloudSystem::ProcessCloud(CompoundCloudComponent& cloud,
+    CompoundCloudSystem::cloudReportDestroyed(CompoundCloudComponent* cloud)
+{
+    for(auto iter = m_managedClouds.begin(); iter != m_managedClouds.end();
+        ++iter) {
+
+        if(iter->second == cloud) {
+            m_managedClouds.erase(iter);
+            return;
+        }
+    }
+
+    LOG_WARNING("CompoundCloudSystem: non-registered CompoundCloudComponent "
+                "reported that it was destroyed");
+}
+// ------------------------------------ //
+void
+    CompoundCloudSystem::processCloud(CompoundCloudComponent& cloud,
         int renderTime)
 {
-    // diffusing appears to work fine
+    // Try to slow things down (doesn't seem to work great)
+    renderTime /= 10;
+
+    // The diffusion rate seems to have a bigger effect
+
     // Compound clouds move from area of high concentration to area of low.
     if(cloud.m_compoundId1 != NULL_COMPOUND) {
-        diffuse(.007, cloud.m_oldDens1, cloud.m_density1, renderTime);
+        diffuse(0.007f, cloud.m_oldDens1, cloud.m_density1, renderTime);
         // Move the compound clouds about the velocity field.
         advect(cloud.m_oldDens1, cloud.m_density1, renderTime);
     }
     if(cloud.m_compoundId2 != NULL_COMPOUND) {
-        diffuse(.007, cloud.m_oldDens2, cloud.m_density2, renderTime);
+        diffuse(0.007f, cloud.m_oldDens2, cloud.m_density2, renderTime);
         // Move the compound clouds about the velocity field.
         advect(cloud.m_oldDens2, cloud.m_density2, renderTime);
     }
     if(cloud.m_compoundId3 != NULL_COMPOUND) {
-        diffuse(.007, cloud.m_oldDens3, cloud.m_density3, renderTime);
+        diffuse(0.007f, cloud.m_oldDens3, cloud.m_density3, renderTime);
         // Move the compound clouds about the velocity field.
         advect(cloud.m_oldDens3, cloud.m_density3, renderTime);
     }
     if(cloud.m_compoundId4 != NULL_COMPOUND) {
-        diffuse(.007, cloud.m_oldDens4, cloud.m_density4, renderTime);
+        diffuse(0.007f, cloud.m_oldDens4, cloud.m_density4, renderTime);
         // Move the compound clouds about the velocity field.
         advect(cloud.m_oldDens4, cloud.m_density4, renderTime);
     }
@@ -666,13 +1037,12 @@ void
 
     pixelBuffer->lock(Ogre::v1::HardwareBuffer::HBL_DISCARD);
     const Ogre::PixelBox& pixelBox = pixelBuffer->getCurrentLock();
-    uint8_t* pDest = static_cast<uint8_t*>(pixelBox.data);
+    auto* pDest = static_cast<uint8_t*>(pixelBox.data);
 
     const size_t rowBytes =
         pixelBox.rowPitch * OGRE_CLOUD_TEXTURE_BYTES_PER_ELEMENT;
 
     // Copy the density vector into the buffer.
-
 
     // This is probably branch predictor friendly to move each bunch of pixels
     // separately
@@ -680,8 +1050,10 @@ void
     // First channel
     if(cloud.m_compoundId1 != NULL_COMPOUND)
         fillCloudChannel(cloud.m_density1, 0, rowBytes, pDest);
+    // Second
     if(cloud.m_compoundId2 != NULL_COMPOUND)
         fillCloudChannel(cloud.m_density2, 1, rowBytes, pDest);
+    // Etc.
     if(cloud.m_compoundId3 != NULL_COMPOUND)
         fillCloudChannel(cloud.m_density3, 2, rowBytes, pDest);
     if(cloud.m_compoundId4 != NULL_COMPOUND)
@@ -698,51 +1070,55 @@ void
         size_t rowBytes,
         uint8_t* pDest)
 {
-    for(int j = 0; j < height; j++) {
-        for(int i = 0; i < width; i++) {
-            // Flipping in y-direction
-            // TODO: check is this uint8_t conversion better than clamping
-            int intensity = static_cast<int>(density[i][height - j - 1]);
+    const auto height = density[0].size();
+    for(size_t j = 0; j < height; j++) {
+        for(size_t i = 0; i < density.size(); i++) {
 
-            // TODO: can this be removed as this probably causes some
-            // performance concerns by being here
-            std::clamp(intensity, 0, 255);
+            int intensity = static_cast<int>(density[i][j]);
 
-            // This can be used to debug the clouds
-            // if(index == 1)
-            //     intensity += 70;
-            // if(intensity > 0)
-            //    intensity = 140;
+            // This is the same clamping code as in the old version
+            if(intensity < 0) {
+                intensity = 0;
+            } else if(intensity > 255) {
+                intensity = 255;
+            }
+
             pDest[rowBytes * j + (i * OGRE_CLOUD_TEXTURE_BYTES_PER_ELEMENT) +
-                  index] = intensity;
+                  index] = static_cast<uint8_t>(intensity);
         }
     }
 }
 
 
 void
-    CompoundCloudSystem::CreateVelocityField()
+    CompoundCloudSystem::createVelocityField()
 {
-    float nxScale = noiseScale;
-    float nyScale = nxScale * float(width) / float(height);
-    float x0, y0, x1, y1, n0, n1, nx, ny;
+    const float nxScale = m_noiseScale;
+    // "float(CLOUD_SIMULATION_WIDTH) / float(CLOUD_SIMULATION_HEIGHT)" is the
+    // aspect ratio of the cloud. This is 1 if the cloud is a square.
+    const float nyScale = nxScale * (float(CLOUD_SIMULATION_WIDTH) /
+                                        float(CLOUD_SIMULATION_HEIGHT));
 
-    for(int x = 0; x < width; x++) {
-        for(int y = 0; y < height; y++) {
-            x0 = (float(x - 1) / float(width)) * nxScale;
-            y0 = (float(y - 1) / float(height)) * nyScale;
-            x1 = (float(x + 1) / float(width)) * nxScale;
-            y1 = (float(y + 1) / float(height)) * nyScale;
+    for(int x = 0; x < CLOUD_SIMULATION_WIDTH; x++) {
+        for(int y = 0; y < CLOUD_SIMULATION_HEIGHT; y++) {
+            const float x0 =
+                (float(x - 1) / float(CLOUD_SIMULATION_WIDTH)) * nxScale;
+            const float y0 =
+                (float(y - 1) / float(CLOUD_SIMULATION_HEIGHT)) * nyScale;
+            const float x1 =
+                (float(x + 1) / float(CLOUD_SIMULATION_WIDTH)) * nxScale;
+            const float y1 =
+                (float(y + 1) / float(CLOUD_SIMULATION_HEIGHT)) * nyScale;
 
-            n0 = fieldPotential.noise(x0, y0, 0);
-            n1 = fieldPotential.noise(x1, y0, 0);
-            ny = n0 - n1;
-            n0 = fieldPotential.noise(x0, y0, 0);
-            n1 = fieldPotential.noise(x0, y1, 0);
-            nx = n1 - n0;
+            float n0 = m_fieldPotential.noise(x0, y0, 0);
+            float n1 = m_fieldPotential.noise(x1, y0, 0);
+            const float ny = n0 - n1;
+            n0 = m_fieldPotential.noise(x0, y0, 0);
+            n1 = m_fieldPotential.noise(x0, y1, 0);
+            const float nx = n1 - n0;
 
-            xVelocity[x][y] = nx / 2;
-            yVelocity[x][y] = ny / 2;
+            m_xVelocity[x][y] = nx / 2;
+            m_yVelocity[x][y] = ny / 2;
         }
     }
 }
@@ -754,9 +1130,8 @@ void
         int dt)
 {
     float a = dt * diffRate;
-
-    for(int x = 1; x < width - 1; x++) {
-        for(int y = 1; y < height - 1; y++) {
+    for(int x = 1; x < CLOUD_SIMULATION_WIDTH - 1; x++) {
+        for(int y = 1; y < CLOUD_SIMULATION_HEIGHT - 1; y++) {
             oldDens[x][y] =
                 (density[x][y] +
                     a * (oldDens[x - 1][y] + oldDens[x + 1][y] +
@@ -771,40 +1146,39 @@ void
         std::vector<std::vector<float>>& density,
         int dt)
 {
-    for(int x = 0; x < width; x++) {
-        for(int y = 0; y < height; y++) {
+    for(int x = 0; x < CLOUD_SIMULATION_WIDTH; x++) {
+        for(int y = 0; y < CLOUD_SIMULATION_HEIGHT; y++) {
             density[x][y] = 0;
         }
     }
 
-    float dx, dy;
-    int x0, x1, y0, y1;
-    float s1, s0, t1, t0;
-    for(int x = 1; x < width - 1; x++) {
-        for(int y = 1; y < height - 1; y++) {
+    // TODO: this is probably the place to move the compounds on the edges into
+    // the next cloud (instead of not handling them here)
+    for(size_t x = 1; x < CLOUD_SIMULATION_WIDTH - 1; x++) {
+        for(size_t y = 1; y < CLOUD_SIMULATION_HEIGHT - 1; y++) {
             if(oldDens[x][y] > 1) {
-                dx = x + dt * xVelocity[x][y];
-                dy = y + dt * yVelocity[x][y];
+                float dx = x + dt * m_xVelocity[x][y];
+                float dy = y + dt * m_yVelocity[x][y];
 
-                if(dx < 0.5)
-                    dx = 0.5;
-                if(dx > width - 1.5)
-                    dx = width - 1.5f;
+                if(dx < 0.5f)
+                    dx = 0.5f;
+                if(dx > CLOUD_SIMULATION_WIDTH - 1.5f)
+                    dx = CLOUD_SIMULATION_WIDTH - 1.5f;
 
-                if(dy < 0.5)
-                    dy = 0.5;
-                if(dy > height - 1.5)
-                    dy = height - 1.5f;
+                if(dy < 0.5f)
+                    dy = 0.5f;
+                if(dy > CLOUD_SIMULATION_HEIGHT - 1.5f)
+                    dy = CLOUD_SIMULATION_HEIGHT - 1.5f;
 
-                x0 = static_cast<int>(dx);
-                x1 = x0 + 1;
-                y0 = static_cast<int>(dy);
-                y1 = y0 + 1;
+                const int x0 = static_cast<int>(dx);
+                const int x1 = x0 + 1;
+                const int y0 = static_cast<int>(dy);
+                const int y1 = y0 + 1;
 
-                s1 = dx - x0;
-                s0 = 1 - s1;
-                t1 = dy - y0;
-                t0 = 1 - t1;
+                float s1 = dx - x0;
+                float s0 = 1.0f - s1;
+                float t1 = dy - y0;
+                float t0 = 1.0f - t1;
 
                 density[x0][y0] += oldDens[x][y] * s0 * t0;
                 density[x0][y1] += oldDens[x][y] * s0 * t1;

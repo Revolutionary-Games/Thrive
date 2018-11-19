@@ -7,11 +7,14 @@
 
 bool global_if_already_displayed = false;
 
-const array<string> AMBIENT_TRACKS = {
+const array<string> MICROBE_MUSIC_TRACKS = {
     "microbe-theme-1",
     // This doesn't exist //
     /*"microbe-theme-2",*/ "microbe-theme-3", "microbe-theme-4",
     "microbe-theme-5", "microbe-theme-6", "microbe-theme-7"
+};
+const array<string> MICROBE_AMBIENT_TRACKS = {
+    "microbe-ambience", "microbe-ambience2"
 };
 
 //! Updates the hud with relevant information from the player cell
@@ -22,8 +25,8 @@ class MicrobeStageHudSystem : ScriptSystem{
         @this.World = cast<CellStageWorld>(world);
 
         assert(this.World !is null, "MicrobeStageHudSystem didn't get proper world");
-		
-					
+
+
         // global_activeMicrobeStageHudSystem = self; // Global reference for event handlers
 
         // TODO: this is probably supposed to be in the Run method so that once the player
@@ -40,7 +43,7 @@ class MicrobeStageHudSystem : ScriptSystem{
         // Engine.resumeGame();
         // This updates the microbe stage pause menu load button
         this.updateLoadButton();
-    
+
         this.chloroplastNotificationdisable();
         this.toxinNotificationdisable();
         this.editornotificationdisable();
@@ -49,56 +52,48 @@ class MicrobeStageHudSystem : ScriptSystem{
         this.atpId = SimulationParameters::compoundRegistry().getTypeId("atp");
         this.atpVolume = SimulationParameters::compoundRegistry().getTypeData(
             this.atpId).volume;
-		
-		this.oxygenId = SimulationParameters::compoundRegistry().getTypeId("oxygen");
-        this.oxygenVolume = SimulationParameters::compoundRegistry().getTypeData(
-            this.oxygenId).volume; 
-		
-		this.aminoacidsId = SimulationParameters::compoundRegistry().getTypeId("aminoacids");
-        this.aminoacidsVolume = SimulationParameters::compoundRegistry().getTypeData(
-            this.aminoacidsId).volume; 
-		
-		this.ammoniaId = SimulationParameters::compoundRegistry().getTypeId("ammonia");
+
+        this.ammoniaId = SimulationParameters::compoundRegistry().getTypeId("ammonia");
         this.ammoniaVolume = SimulationParameters::compoundRegistry().getTypeData(
-            this.ammoniaId).volume; 
-		
-		this.glucoseId = SimulationParameters::compoundRegistry().getTypeId("glucose");
+            this.ammoniaId).volume;
+
+        this.glucoseId = SimulationParameters::compoundRegistry().getTypeId("glucose");
         this.glucoseVolume = SimulationParameters::compoundRegistry().getTypeData(
-            this.glucoseId).volume; 
-		
-		this.co2Id = SimulationParameters::compoundRegistry().getTypeId("co2");
-        this.co2Volume = SimulationParameters::compoundRegistry().getTypeData(
-            this.co2Id).volume; 
-			
-		this.fattyacidsId = SimulationParameters::compoundRegistry().getTypeId("fattyacids");
-        this.fattyacidsVolume = SimulationParameters::compoundRegistry().getTypeData(
-            this.fattyacidsId).volume; 
-			
-		this.oxytoxyId = SimulationParameters::compoundRegistry().getTypeId("oxytoxy");
+            this.glucoseId).volume;
+
+
+        this.oxytoxyId = SimulationParameters::compoundRegistry().getTypeId("oxytoxy");
         this.oxytoxyVolume = SimulationParameters::compoundRegistry().getTypeData(
-            this.oxytoxyId).volume; 
-			
+            this.oxytoxyId).volume;
+
+        this.phosphateId = SimulationParameters::compoundRegistry().getTypeId("phosphates");
+        this.phosphateVolume = SimulationParameters::compoundRegistry().getTypeData(
+            this.phosphateId).volume;
+
+        this.hydrogenSulfideId = SimulationParameters::compoundRegistry().getTypeId("hydrogensulfide");
+        this.hydrogenSulfideVolume = SimulationParameters::compoundRegistry().getTypeData(
+            this.hydrogenSulfideId).volume;
+
     }
 
-	void handleAmbientSound()
+    void handleAmbientSound()
     {
-		//randomize ambient sounds out of all available sounds
+        //randomize ambient sounds out of all available sounds
         // The isPlaying check will start a new track when the previous ends
-		if (@ambienceSounds is null || !ambienceSounds.Get().isPlaying())
+        if (@ambienceSounds is null || !ambienceSounds.Get().isPlaying())
         {
-			@ambienceSounds = _playRandomMicrobeAmbience();
+            @ambienceSounds = _playRandomMicrobeMusic();
             ambienceSounds.Get().play();
         }
-		
-		//play ambient track alongside music and loop it (its meant to be played alongside)
-		if (@ambientTrack is null || !ambientTrack.Get().isPlaying())
+
+        //play ambient track alongside music and loop it (its meant to be played alongside)
+        if (@ambientTrack is null || !ambientTrack.Get().isPlaying())
         {
-			@ambientTrack =  GetEngine().GetSoundDevice().Play2DSound("Data/Sound/soundeffects/microbe-ambience.ogg", false, true);
-			ambientTrack.Get().setVolume(0.5);
+            @ambientTrack = _playRandomMicrobeAmbience();
             ambientTrack.Get().play();
         }
     }
-		
+
     void Release(){
 
     }
@@ -111,80 +106,73 @@ class MicrobeStageHudSystem : ScriptSystem{
         if(player != NULL_OBJECT){
 
             auto bag = World.GetComponent_CompoundBagComponent(player);
+            auto playerSpecies = MicrobeOperations::getSpeciesComponent(World, "Default");
             MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
                 World.GetScriptComponentHolder("MicrobeComponent").Find(player));
 
             GenericEvent@ event = GenericEvent("PlayerCompoundAmounts");
+            GenericEvent@ changePopulation = GenericEvent("PopulationChange");
             NamedVars@ vars = event.GetNamedVars();
+            NamedVars@ populationVars = changePopulation.GetNamedVars();
 
             // Write data
             vars.AddValue(ScriptSafeVariableBlock("hitpoints",
                     int(microbeComponent.hitpoints)));
-            vars.AddValue(ScriptSafeVariableBlock("hitpointsMax",
+            vars.AddValue(ScriptSafeVariableBlock("maxHitpoints",
                     int(microbeComponent.maxHitpoints)));
-            
+            populationVars.AddValue(ScriptSafeVariableBlock("populationAmount", playerSpecies.population));
+
             if(bag is null){
 
                 LOG_ERROR("Player activeCreature has no compound bag");
 
             } else {
 
+                const auto phosphateAmount = bag.getCompoundAmount(phosphateId);
+                const auto maxPhosphate = microbeComponent.capacity;
+
+                const auto hydrogenSulfideAmount = bag.getCompoundAmount(hydrogenSulfideId);
+                const auto maxHydrogenSulfide = microbeComponent.capacity;
+
                 const auto atpAmount = bag.getCompoundAmount(atpId);
-                const auto maxATP = microbeComponent.capacity / atpVolume;
-				
-				const auto oxygenAmount = bag.getCompoundAmount(oxygenId);
-                const auto maxOxygen = microbeComponent.capacity / oxygenVolume;
-				
-				const auto aminoacidsAmount = bag.getCompoundAmount(aminoacidsId);
-                const auto maxAminoacids = microbeComponent.capacity / aminoacidsVolume;
-				
-				const auto ammoniaAmount = bag.getCompoundAmount(ammoniaId);
-                const auto maxAmmonia = microbeComponent.capacity / ammoniaVolume;
-				
-				const auto glucoseAmount = bag.getCompoundAmount(glucoseId);
-                const auto maxGlucose = microbeComponent.capacity / glucoseVolume;
-				
-				const auto co2Amount = bag.getCompoundAmount(co2Id);
-                const auto maxCo2 = microbeComponent.capacity / co2Volume;
-				
-				const auto fattyacidsAmount = bag.getCompoundAmount(fattyacidsId);
-                const auto maxFattyacids = microbeComponent.capacity / fattyacidsVolume;
-				
-				const auto oxytoxyAmount = bag.getCompoundAmount(oxytoxyId);
-                const auto maxOxytoxy = microbeComponent.capacity / oxytoxyVolume;
-                
+                const auto maxATP = microbeComponent.capacity;
+
+                const auto ammoniaAmount = bag.getCompoundAmount(ammoniaId);
+                const auto maxAmmonia = microbeComponent.capacity;
+
+                const auto glucoseAmount = bag.getCompoundAmount(glucoseId);
+                const auto maxGlucose = microbeComponent.capacity;
+
+                const auto oxytoxyAmount = bag.getCompoundAmount(oxytoxyId);
+                const auto maxOxytoxy = microbeComponent.capacity;
+
                 // Write data
+                vars.AddValue(ScriptSafeVariableBlock("compoundPhosphate", phosphateAmount));
+                vars.AddValue(ScriptSafeVariableBlock("PhosphateMax", maxPhosphate));
+
+                vars.AddValue(ScriptSafeVariableBlock("compoundHydrogenSulfide", hydrogenSulfideAmount));
+                vars.AddValue(ScriptSafeVariableBlock("HydrogenSulfideMax", maxHydrogenSulfide));
+
                 vars.AddValue(ScriptSafeVariableBlock("compoundATP", atpAmount));
                 vars.AddValue(ScriptSafeVariableBlock("ATPMax", maxATP));
-                
-				vars.AddValue(ScriptSafeVariableBlock("compoundOxygen", oxygenAmount));
-                vars.AddValue(ScriptSafeVariableBlock("OxygenMax", maxOxygen)); 
-				
-				vars.AddValue(ScriptSafeVariableBlock("compoundAminoacids", aminoacidsAmount));
-                vars.AddValue(ScriptSafeVariableBlock("AminoacidsMax", maxAminoacids)); 
-				
-				vars.AddValue(ScriptSafeVariableBlock("compoundAmmonia", ammoniaAmount));
-                vars.AddValue(ScriptSafeVariableBlock("AmmoniaMax", maxAmmonia)); 
-				
-				vars.AddValue(ScriptSafeVariableBlock("compoundGlucose", glucoseAmount));
-                vars.AddValue(ScriptSafeVariableBlock("GlucoseMax", maxGlucose)); 
 
-				vars.AddValue(ScriptSafeVariableBlock("compoundCo2", co2Amount));
-                vars.AddValue(ScriptSafeVariableBlock("Co2Max", maxCo2)); 
+                vars.AddValue(ScriptSafeVariableBlock("compoundAmmonia", ammoniaAmount));
+                vars.AddValue(ScriptSafeVariableBlock("AmmoniaMax", maxAmmonia));
 
-				vars.AddValue(ScriptSafeVariableBlock("compoundFattyacids", fattyacidsAmount));
-                vars.AddValue(ScriptSafeVariableBlock("FattyacidsMax", maxFattyacids)); 
-				
-				vars.AddValue(ScriptSafeVariableBlock("compoundOxytoxy", oxytoxyAmount));
-                vars.AddValue(ScriptSafeVariableBlock("OxytoxyMax", maxOxytoxy)); 
+                vars.AddValue(ScriptSafeVariableBlock("compoundGlucose", glucoseAmount));
+                vars.AddValue(ScriptSafeVariableBlock("GlucoseMax", maxGlucose));
+
+                vars.AddValue(ScriptSafeVariableBlock("compoundOxytoxy", oxytoxyAmount));
+                vars.AddValue(ScriptSafeVariableBlock("OxytoxyMax", maxOxytoxy));
             }
-            
+
             // Fire it off so that the GUI scripts will get it and update the GUI state
             GetEngine().GetEventHandler().CallEvent(event);
+            GetEngine().GetEventHandler().CallEvent(changePopulation);
         }
-		
-		//since this is ran every step this is a good place to do music code
-		handleAmbientSound();
+
+        //since this is ran every step this is a good place to do music code
+        handleAmbientSound();
     }
 
     // Nodes not used
@@ -196,27 +184,30 @@ class MicrobeStageHudSystem : ScriptSystem{
 
     //! This stops sound while the cell stage world isn't active
     void Suspend(){
-        
-        LOG_INFO("Suspeding microbe stage background sounds");
-        
+
+        LOG_INFO("Suspending microbe stage background sounds");
+
         // Pause to allow resuming
         if(ambientTrack !is null)
             ambientTrack.Get().pause();
-        
-        if(ambienceSounds !is null)        
-            ambienceSounds.Get().pause();        
+
+        if(ambienceSounds !is null)
+            ambienceSounds.Get().pause();
     }
 
     //! This resumes sound when the cell stage world is active again
     void Resume(){
 
         LOG_INFO("Resuming microbe stage background sounds");
-        
+
         if(ambientTrack !is null)
             ambientTrack.Get().play();
-        
-        if(ambienceSounds !is null)        
+
+        if(ambienceSounds !is null)
             ambienceSounds.Get().play();
+
+        // This is called when you come back from teh editor, so set reproduction to false
+        reproductionDialogOpened=false;
     }
 
 
@@ -234,7 +225,7 @@ class MicrobeStageHudSystem : ScriptSystem{
         // getComponent("gui_sounds", g_luaEngine.currentGameState, SoundSourceComponent
         // ).playSound("microbe-pickup-organelle");
         // this.rootGUIWindow.getChild("chloroplastUnlockNotification").show();
-        b1 = true;
+        chloroplastNotificationOpened = true;
         // this.rootGUIWindow.getChild("toxinUnlockNotification").hide();
     }
 
@@ -248,7 +239,7 @@ class MicrobeStageHudSystem : ScriptSystem{
         // getComponent("gui_sounds", g_luaEngine.currentGameState, SoundSourceComponent
         // ).playSound("microbe-pickup-organelle");
         // this.rootGUIWindow.getChild("toxinUnlockNotification").show();
-        b2 = true;
+        toxinNotificationEnabled = true;
         //this.rootGUIWindow.getChild("chloroplastUnlockNotification").hide();
     }
 
@@ -262,13 +253,16 @@ class MicrobeStageHudSystem : ScriptSystem{
     void showReproductionDialog(){
         // print("Reproduction Dialog called but currently disabled. Is it needed? Note that the editor button has been enabled")
         //global_activeMicrobeStageHudSystem.rootGUIWindow.getChild("ReproductionPanel").show()
-        if(b3 == false){
-            // getComponent("gui_sounds", g_luaEngine.currentGameState, SoundSourceComponent
-            // ).playSound("microbe-pickup-organelle");
-            // this.rootGUIWindow.getChild("editornotification").show();
-            b3 = true;
+        if(reproductionDialogOpened == false){
+
+            reproductionDialogOpened = true;
+
+            GetEngine().GetSoundDevice().Play2DSoundEffect(
+                "Data/Sound/soundeffects/microbe-pickup-organelle.ogg");
+            LOG_INFO("Ready to reproduce!");
+            GenericEvent@ event = GenericEvent("PlayerReadyToEnterEditor");
+            GetEngine().GetEventHandler().CallEvent(event);
         }
-        // this.editorButton.enable();
     }
 
     void suicideButtonClicked(){
@@ -284,12 +278,28 @@ class MicrobeStageHudSystem : ScriptSystem{
         boolean2 = false;
     }
 
-    private AudioSource@ _playRandomMicrobeAmbience(){
-        
+    private AudioSource@ _playRandomMicrobeMusic(){
+
         AudioSource@ audio = GetEngine().GetSoundDevice().Play2DSound("Data/Sound/" +
-            AMBIENT_TRACKS[GetEngine().GetRandom().GetNumber(0,
-                    AMBIENT_TRACKS.length() - 1)] + ".ogg", false, true);
-        
+            MICROBE_MUSIC_TRACKS[GetEngine().GetRandom().GetNumber(0,
+                    MICROBE_MUSIC_TRACKS.length() - 1)] + ".ogg", false, true);
+
+        if (audio is null)
+        {
+            LOG_ERROR("Failed to create ambience music source");
+        }
+
+        return audio;
+    }
+
+        private AudioSource@ _playRandomMicrobeAmbience(){
+    string track = MICROBE_AMBIENT_TRACKS[GetEngine().GetRandom().GetNumber(0,
+                    MICROBE_AMBIENT_TRACKS.length() - 1)] + ".ogg";
+        AudioSource@ audio = GetEngine().GetSoundDevice().Play2DSound("Data/Sound/soundeffects/" +track, false, true);
+    if (track == "microbe-ambience2.ogg")
+    {
+    audio.Get().setVolume(0.25);
+    }
         if (audio is null)
         {
             LOG_ERROR("Failed to create ambience sound source");
@@ -297,18 +307,19 @@ class MicrobeStageHudSystem : ScriptSystem{
 
         return audio;
     }
-
     private CellStageWorld@ World;
 
 
     int t1 = 0;
     int t2 = 0;
     int t3 = 0;
-    bool b1 = false;
-    bool b2 = false;
-    bool b3 = false;
-    //suicideButton setting up
+    //TODO: These need more informative names
+    bool chloroplastNotificationOpened = false;
+    bool toxinNotificationEnabled = false;
+    bool reproductionDialogOpened = false;
+    // suicideButton setting up
     // really creative naming scheme
+    // TODO: Why? Just Why? Ill be honest im not even sure what these are supposed to do
     bool boolean = false;
     bool boolean2 = false;
     //hints setting up
@@ -317,7 +328,8 @@ class MicrobeStageHudSystem : ScriptSystem{
     bool atpHint = false;
     bool glucoseHint = false;
     bool ammoniaHint = false;
-    bool oxygenHint = false;
+    bool phosphateHint = false;
+    bool hydrogenSulfideHint = false;
     bool toxinHint = false;
     bool chloroplastHint = false;
     dictionary activeHints = {};
@@ -333,7 +345,6 @@ class MicrobeStageHudSystem : ScriptSystem{
     int glucoseNeeded = 0;
     int atpNeeded = 0;
     int ammoniaNeeded = 0;
-    int oxygenNeeded = 0;
     int chloroplastNeeded = 0;
     int toxinNeeded = 0;
 
@@ -346,32 +357,27 @@ class MicrobeStageHudSystem : ScriptSystem{
 
     //instantiate our ambient music source
     AudioSource@ ambienceSounds;
-	//plays alongside music
+    //plays alongside music
     AudioSource@ ambientTrack;
-	
+
+    CompoundId phosphateId;
+    float phosphateVolume;
+
+    CompoundId hydrogenSulfideId;
+    float hydrogenSulfideVolume;
+
     CompoundId atpId;
     float atpVolume;
-	
-	CompoundId oxygenId;
-    float oxygenVolume;
-	
-	CompoundId aminoacidsId;
-    float aminoacidsVolume;
-	
-	CompoundId ammoniaId;
+
+    CompoundId ammoniaId;
     float ammoniaVolume;
-	
-	CompoundId glucoseId;
+
+    CompoundId glucoseId;
     float glucoseVolume;
-	
-	CompoundId co2Id;
-    float co2Volume;
-	
-	CompoundId fattyacidsId;
-    float fattyacidsVolume;
-	
-	CompoundId oxytoxyId;
+
+    CompoundId oxytoxyId;
     float oxytoxyVolume;
+
 }
 
 
@@ -389,7 +395,7 @@ class MicrobeStageHudSystem : ScriptSystem{
 // this.loadDown = loadDown
 // }
 
-     
+
 // void HudSystem.init(gameState){
 //     this.rootGUIWindow =  gameState.rootGUIWindow();
 
@@ -437,14 +443,14 @@ class MicrobeStageHudSystem : ScriptSystem{
 //     auto microbeComponent = getComponent(player, MicrobeComponent);
 //     auto soundSourceComponent = getComponent(player, SoundSourceComponent);
 
-//     
+//
 //     auto playerSpecies = MicrobeSystem.getSpeciesComponent(player);
 //     //notification setting up
 //     if(b1 == true and t1 < 300){
 //         t1 = t1 + 2;
 //         if(hintsPanelOpned == true){
 //             this.hintsButtonClicked();
-//         }        
+//         }
 //         if(t1 == 300){
 //             global_activeMicrobeStageHudSystem.chloroplastNotificationdisable();
 //             this.hintsButtonClicked();
@@ -455,7 +461,7 @@ class MicrobeStageHudSystem : ScriptSystem{
 //         t2 = t2 + 2;
 //         if(hintsPanelOpned == true){
 //             this.hintsButtonClicked();
-//         }        
+//         }
 //         if(t2 == 300){
 //             global_activeMicrobeStageHudSystem.toxinNotificationdisable();
 //             this.hintsButtonClicked();
@@ -466,15 +472,15 @@ class MicrobeStageHudSystem : ScriptSystem{
 //         t3 = t3 + 2;
 //         if(hintsPanelOpned == true){
 //             this.hintsButtonClicked();
-//         }        
+//         }
 //         if(t3 == 300){
 //             global_activeMicrobeStageHudSystem.editornotificationdisable();
 //         }
 //     }
 
-//     //suicideButton setting up 
+//     //suicideButton setting up
 //     auto atp = MicrobeSystem.getCompoundAmount(player, CompoundRegistry.getCompoundId("atp"));
-//     if(atp == 0 and boolean2 == false){ 
+//     if(atp == 0 and boolean2 == false){
 //         this.rootGUIWindow.getChild("SuicideButton").enable();
 //     } else if(atp > 0 or boolean2 == true){
 //             global_activeMicrobeStageHudSystem.suicideButtondisable();
@@ -509,8 +515,8 @@ class MicrobeStageHudSystem : ScriptSystem{
 //             currentHint = currentHint + 1;
 //         }
 //     }
-    
-//     if(atp < 15 and atpHint == false and AHO == false){ 
+
+//     if(atp < 15 and atpHint == false and AHO == false){
 //         activeHints["atpHint"] = hintN + 1;
 //         hintN = activeHints["atpHint"];
 //         AHO = true;
@@ -524,7 +530,7 @@ class MicrobeStageHudSystem : ScriptSystem{
 //         }
 //     }
 
-//     if(glucose < 1 and glucoseHint == false and GHO == false){ 
+//     if(glucose < 1 and glucoseHint == false and GHO == false){
 //         activeHints["glucoseHint"] = hintN + 1;
 //         hintN = activeHints["glucoseHint"];
 //         GHO = true;
@@ -537,8 +543,8 @@ class MicrobeStageHudSystem : ScriptSystem{
 //             currentHint = currentHint + 1;
 //         }
 //     }
-            
-//     if(ammonia < 1 and ammoniaHint == false and AMHO == false){ 
+
+//     if(ammonia < 1 and ammoniaHint == false and AMHO == false){
 //         activeHints["ammoniaHint"] = hintN + 1;
 //         hintN = activeHints["ammoniaHint"];
 //         AMHO = true;
@@ -551,8 +557,8 @@ class MicrobeStageHudSystem : ScriptSystem{
 //             currentHint = currentHint + 1;
 //         }
 //     }
-            
-//     if(oxygen < 1 and oxygenHint == false and OHO == false){ 
+
+//     if(oxygen < 1 and oxygenHint == false and OHO == false){
 //         activeHints["oxygenHint"] = hintN + 1;
 //         hintN = activeHints["oxygenHint"];
 //         OHO = true;
@@ -566,7 +572,7 @@ class MicrobeStageHudSystem : ScriptSystem{
 //         }
 //     }
 
-//     if(toxin_Organelle_Number < 3 and toxinHint == false and THO == false){ 
+//     if(toxin_Organelle_Number < 3 and toxinHint == false and THO == false){
 //         activeHints["toxinHint"] = hintN + 1;
 //         hintN = activeHints["toxinHint"];
 //         THO = true;
@@ -579,8 +585,8 @@ class MicrobeStageHudSystem : ScriptSystem{
 //             currentHint = currentHint + 1;
 //         }
 //     }
-            
-//     if(chloroplast_Organelle_Number < 3 and chloroplastHint == false and CHO == false){ 
+
+//     if(chloroplast_Organelle_Number < 3 and chloroplastHint == false and CHO == false){
 //         activeHints["chloroplastHint"] = hintN + 1;
 //         hintN = activeHints["chloroplastHint"];
 //         CHO = true;
@@ -600,43 +606,43 @@ class MicrobeStageHudSystem : ScriptSystem{
 //             "HelpText").setText(
 //                 "Your cell is damaged! Collect ammonia and glucose to make amino acids, which can heal it.");
 //     }
-            
+
 //     if(atpHint == true){
 //         this.rootGUIWindow.getChild("HintsPanel").getChild("HelpText").setText(
 //             "You're running short of ATP! ATP is used to move and engulf. Get " .. atpNeeded .. " to be safe!"
 //         );
 //     }
-            
+
 //     if(glucoseHint == true){
 //         this.rootGUIWindow.getChild("HintsPanel").getChild("HelpText").setText(
 //             "You need more glucose! It's used to make ATP and amino acids. Collect " .. glucoseNeeded .. " to be safe."
 //         );
 //     }
-            
+
 //     if(ammoniaHint == true){
 //         this.rootGUIWindow.getChild("HintsPanel").getChild("HelpText").setText(
 //             "You have little ammonia, used to make amino acids to heal and reproduce. Get " .. ammoniaNeeded .. " more."
 //         );
 //     }
-            
+
 //     if(oxygenHint == true){
 //         this.rootGUIWindow.getChild("HintsPanel").getChild("HelpText").setText(
 //             "You need oxygen to produce ATP and OxyToxy. Collect " .. oxygenNeeded .. " oxygen to do this!"
 //         );
 //     }
-            
+
 //     if(chloroplastHint == true){
 //         this.rootGUIWindow.getChild("HintsPanel").getChild("HelpText").setText(
 //             "Pick " .. chloroplastNeeded .. " green blobs to unlock Chloroplasts, which transform CO2 into glucose and oxygen."
 //         );
 //     }
-            
+
 //     if(toxinHint == true){
 //         this.rootGUIWindow.getChild("HintsPanel").getChild("HelpText").setText(
 //             "Collect " .. toxinNeeded .. " blue blobs to unlock Toxin Vacuoles, used to shoot harmful agents at other cells."
 //         );
 //     }
-            
+
 //     for(hintnam,hintnum in pairs(activeHints)){
 //         if(hintnum == currentHint){
 //             if(hintnam == "atpHint"){
@@ -662,19 +668,19 @@ class MicrobeStageHudSystem : ScriptSystem{
 //             } else {
 //                 ammoniaHint = false;
 //             }
-                                            
+
 //             if(hintnam == "oxygenHint"){
 //                 oxygenHint = true;
 //             } else {
 //                 oxygenHint = false;
 //             }
-                                            
+
 //             if(hintnam == "chloroplastHint"){
 //                 chloroplastHint = true;
 //             } else {
 //                 chloroplastHint = false;
 //             }
-                                            
+
 //             if(hintnam == "toxinHint"){
 //                 toxinHint = true;
 //             } else {
@@ -725,12 +731,12 @@ class MicrobeStageHudSystem : ScriptSystem{
 //     if((Engine.keyboard.wasKeyPressed(KEYCODE.KC_G))){
 //         MicrobeSystem.toggleEngulfMode(player);
 //     }
-            
-            
+
+
 //     // Changing the camera height according to the player input.
 //     // Now in the c++ system
 //     // auto offset = getComponent(CAMERA_NAME, this.gameState, OgreCameraComponent).properties.offset;
-                                    
+
 //     // if(Engine.mouse.scrollChange() ~= 0){
 //     //     this.scrollChange = this.scrollChange + Engine.mouse.scrollChange() * CAMERA_VERTICAL_SPEED;
 //     // } else if(keyCombo(kmp.plus) or keyCombo(kmp.add)){
@@ -739,7 +745,7 @@ class MicrobeStageHudSystem : ScriptSystem{
 //     //     this.scrollChange = this.scrollChange + 5;
 //     // }
 
-                                    
+
 //     // auto newZVal = offset.z;
 //     // if(this.scrollChange >= 1){
 //     //     newZVal = newZVal + 2.5;
@@ -748,15 +754,15 @@ class MicrobeStageHudSystem : ScriptSystem{
 //     //     newZVal = newZVal - 2.5;
 //     //     this.scrollChange = this.scrollChange + 1;
 //     // }
-    
+
 //     // if(newZVal < CAMERA_MIN_HEIGHT){
-//     //     newZVal = CAMERA_MIN_HEIGHT; 
+//     //     newZVal = CAMERA_MIN_HEIGHT;
 //     //     this.scrollChange = 0;
 //     // } else if(newZVal > CAMERA_MAX_HEIGHT){
 //     //     newZVal = CAMERA_MAX_HEIGHT;
 //     //     this.scrollChange = 0;
 //     // }
-    
+
 //     // offset.z = newZVal;
 // }
 
@@ -766,7 +772,6 @@ class MicrobeStageHudSystem : ScriptSystem{
 // Wrappers for calling GUI update things from random places
 
 void showReproductionDialog(GameWorld@ world){
-
     cast<MicrobeStageHudSystem@>(world.GetScriptSystem("MicrobeStageHudSystem")).
         showReproductionDialog();
 }
@@ -901,7 +906,7 @@ void showMessage(const string &in msg){
 // void HudSystem.editorButtonClicked(){
 //     auto player = Entity("player", this.gameState.wrapper);
 //     // Return the first cell to its normal, non duplicated cell arangement.
-//     SpeciesSystem.restoreOrganelleLayout(player, MicrobeSystem.getSpeciesComponent(player)); 
+//     SpeciesSystem.restoreOrganelleLayout(player, MicrobeSystem.getSpeciesComponent(player));
 
 //     getComponent("gui_sounds", this.gameState, SoundSourceComponent).playSound("button-hover-click");
 //     this.editorButton.disable();

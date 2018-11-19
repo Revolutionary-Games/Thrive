@@ -6,7 +6,8 @@ const auto GROWTH_SPEED_MULTILPIER = 0.5f / 1000;
 
 // Percentage of the compounds that compose the organelle released
 // upon death (between 0.0 and 1.0).
-const auto COMPOUND_RELEASE_PERCENTAGE = 0.3f;
+const auto COMPOUND_MAKEUP_RELEASE_PERCENTAGE = 0.25f;
+const auto COMPOUND_RELEASE_PERCENTAGE = 0.1f;
 
 
 //! \todo Replace with Int2
@@ -27,13 +28,15 @@ class Hex{
 //! that this class used to have)
 class Organelle{
 
-    Organelle(const OrganelleParameters &in parameters){
-
+    Organelle(const OrganelleParameters &in parameters)
+    {
         _name = parameters.name;
         mass = parameters.mass;
         mesh = parameters.mesh;
         gene = parameters.gene;
         chanceToCreate = parameters.chanceToCreate;
+        prokaryoteChance = parameters.prokaryoteChance;
+        mpCost = parameters.mpCost;
 
         initialComposition = parameters.initialComposition;
         components = parameters.components;
@@ -59,14 +62,15 @@ class Organelle{
         calculateCost(initialComposition);
     }
 
-    ~Organelle(){
+    ~Organelle()
+    {
 
     }
 
-    protected void calculateCost(dictionary composition){
-
+    protected void calculateCost(dictionary composition)
+    {
         organelleCost = 0;
-        
+
         auto keys = composition.getKeys();
 
         for(uint i = 0; i < keys.length(); ++i){
@@ -79,7 +83,7 @@ class Organelle{
                 LOG_ERROR("Invalid value in calculateCost composition");
                 continue;
             }
-            
+
             // compoundsLeft[compoundName] = amount;
             initialComposition[compoundName] = amount;
             organelleCost += amount;
@@ -94,11 +98,12 @@ class Organelle{
     // @returns success
     //  True if the hex could be added, false if there already is a hex at (q,r)
     // @note This needs to be done only once when this class is instantiated
-    protected bool addHex(int q, int r){
+    protected bool addHex(int q, int r)
+    {
         int64 s = Hex::encodeAxial(q, r);
         if(hexes.exists(formatInt(s)))
             return false;
-        
+
         Hex@ hex = Hex(q, r);
 
         @hexes[formatInt(s)] = hex;
@@ -112,7 +117,8 @@ class Organelle{
     //
     // @returns hex
     //  The hex at (q, r) or nil if there's no hex at that position
-    Hex@ getHex(int q, int r) const{
+    Hex@ getHex(int q, int r) const
+    {
         int64 s = Hex::encodeAxial(q, r);
         Hex@ hex;
 
@@ -121,10 +127,10 @@ class Organelle{
         return null;
     }
 
-    array<Hex@>@ getHexes() const{
-        
+    array<Hex@>@ getHexes() const
+    {
         array<Hex@>@ result = array<Hex@>();
-        
+
         auto keys = hexes.getKeys();
         for(uint i = 0; i < keys.length(); ++i){
 
@@ -136,12 +142,12 @@ class Organelle{
 
     //! \returns The hexes but rotated (rotation degrees)
     //! \todo Should this and the normal getHexes return handles to arrays
-    array<Hex@>@ getRotatedHexes(int rotation) const{
-
+    array<Hex@>@ getRotatedHexes(int rotation) const
+    {
         array<Hex@>@ result = array<Hex@>();
 
         int times = rotation / 60;
-        
+
         auto keys = hexes.getKeys();
         for(uint i = 0; i < keys.length(); ++i){
 
@@ -154,42 +160,24 @@ class Organelle{
         return result;
     }
 
-    Float3 calculateCenterOffset() const{
+    Float3 calculateCenterOffset() const
+    {
         int count = 0;
 
         Float3 offset = Float3(0, 0, 0);
 
         auto keys = hexes.getKeys();
         for(uint i = 0; i < keys.length(); ++i){
-            
+
             ++count;
 
             auto hex = cast<Hex@>(hexes[keys[i]]);
             offset += Hex::axialToCartesian(hex.q, hex.r);
         }
-        
+
         offset /= count;
         return offset;
     }
-
-    // // Removes a hex from this organelle
-    // //
-    // // @param q,r
-    // //  Axial coordinates of the hex to remove
-    // //
-    // // @returns success
-    // //  True if the hex could be removed, false if there's no hex at (q,r)
-    // function Organelle.removeHex(q, r)
-    //     assert(not self.microbeEntity, "Cannot change organelle shape while it is in a microbe")
-    //     local s = encodeAxial(q, r)
-    //     local hex = table.remove(self._hexes, s)
-    //     if hex {
-    //         self.collisionShape.removeChildShape(hex.collisionShape)
-    //         return true
-    //         else
-    //             return false
-    //                 }
-    // }
 
     bool hasComponent(const string &in name) const{
 
@@ -214,7 +202,7 @@ class Organelle{
     private string _name;
     float mass;
     string gene;
-    
+
     array<OrganelleComponentFactory@> components;
     private dictionary hexes;
 
@@ -234,6 +222,10 @@ class Organelle{
 
     //! Chance of randomly generating this (used by procedural_microbes.as)
     float chanceToCreate = 0.0;
+    float prokaryoteChance = 0.0;
+
+    //! Cost in mutation points
+    int mpCost = 0;
 }
 
 enum ORGANELLE_HEALTH{
@@ -249,8 +241,8 @@ enum ORGANELLE_HEALTH{
 //! microbe
 class PlacedOrganelle : SpeciesStoredOrganelleType{
 
-    PlacedOrganelle(Organelle@ organelle, int q, int r, int rotation){
-
+    PlacedOrganelle(Organelle@ organelle, int q, int r, int rotation)
+    {
         @this._organelle = organelle;
         this.q = q;
         this.r = r;
@@ -260,8 +252,8 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
     }
 
     //! Takes type from another PlacedOrganelle
-    PlacedOrganelle(PlacedOrganelle@ typefromother, int q, int r, int rotation){
-
+    PlacedOrganelle(PlacedOrganelle@ typefromother, int q, int r, int rotation)
+    {
         @this._organelle = typefromother._organelle;
         this.q = q;
         this.r = r;
@@ -271,8 +263,8 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
     }
 
     //! Takes everything that's sensible to copy from another PlacedOrganelle
-    PlacedOrganelle(PlacedOrganelle@ other){
-
+    PlacedOrganelle(PlacedOrganelle@ other)
+    {
         @this._organelle = other._organelle;
         this.q = other.q;
         this.r = other.r;
@@ -281,8 +273,8 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
         _commonConstructor();
     }
 
-    ~PlacedOrganelle(){
-
+    ~PlacedOrganelle()
+    {
         if(microbeEntity != NULL_OBJECT){
 
             LOG_ERROR("PlacedOrganelle (" + organelle.name + ") not removed from microbe "
@@ -290,8 +282,8 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
         }
     }
 
-    private void _commonConstructor(){
-
+    private void _commonConstructor()
+    {
         // Sanity check
         if(_organelle is null)
             assert(false, "PlacedOrganelle created with null Organelle");
@@ -304,11 +296,11 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
             components.insertLast(organelle.components[i].factory());
         }
 
-        compoundsLeft = organelle.initialComposition;        
+        compoundsLeft = organelle.initialComposition;
     }
 
-    void resetHealth(){
-
+    void resetHealth()
+    {
         // Copy //
         composition = _organelle.initialComposition;
     }
@@ -320,26 +312,26 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
     //
     // @param logicTime
     //  The time since the last call to update()
-    void update(int logicTime){
-        if(flashDuration >= 0){
-            
+    void update(int logicTime)
+    {
+        auto species = MicrobeOperations::getSpeciesComponent(world,
+            microbeEntity);
+        if(flashDuration > 0 && species !is null){
             flashDuration -= logicTime;
             // Use organelle.world to get the MicrobeSystem
-            Float4 speciesColour = MicrobeOperations::getSpeciesComponent(world,
-                microbeEntity).colour;
-
+            Float4 speciesColour = species.colour;
             Float4 colour;
-            
+
             // How frequent it flashes, would be nice to update the
             // flash function to have this variable
             if(flashDuration % 600 < 300){
-                
                 colour = flashColour;
-                
+                LOG_INFO("Flashed Organelle");
+                LOG_INFO(""+flashDuration);
             } else {
                 colour = speciesColour;
             }
-        
+
             if(flashDuration <= 0){
                 flashDuration = 0;
                 colour = speciesColour;
@@ -351,48 +343,52 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
         }
 
         // If the organelle is supposed to be another color.
-        if(_needsColourUpdate){
+        if(_needsColourUpdate && species !is null){
             // This method doesn't actually apply the colour so I have
             // no clue how the flashing works
             updateColour();
         }
 
         // Update each OrganelleComponent
-        for(uint i = 0; i < components.length(); ++i){
-            components[i].update(microbeEntity, this, logicTime);
+        if (species !is null){
+            for(uint i = 0; i < components.length(); ++i){
+                components[i].update(microbeEntity, this, logicTime);
+            }
+        } else {
+            //LOG_INFO("Tried to update entity of extinct species...");
+            //Maybe just kill them here, to prevent spam of "no species found with name X"
         }
     }
 
-	protected Float4 calculateHSLForOrganelle(Float4 oldColour)
-		{
-		//get hue satraution and brightness for the colour
-		Ogre::Real saturation = 0;
-		Ogre::Real brightness = 0;
-		Ogre::Real hue = 0;
-		
-		//convert from float to colour
-		Ogre::ColourValue newColour = Ogre::ColourValue(oldColour);
-		
+    protected Float4 calculateHSLForOrganelle(Float4 oldColour)
+    {
+        //get hue satraution and brightness for the colour
+        Ogre::Real saturation = 0;
+        Ogre::Real brightness = 0;
+        Ogre::Real hue = 0;
 
-		newColour.getHSB(hue, saturation, brightness);
-	    newColour.setHSB(hue, saturation*2, brightness);
-				
-		//return the new colour as a float4
-		return Float4(newColour);
-		}
-		
-    protected void updateColour(){
-		
-        if(organelleEntity == NULL_OBJECT || microbeEntity == NULL_OBJECT)
+        //convert from float to colour
+        Ogre::ColourValue newColour = Ogre::ColourValue(oldColour);
+
+
+        newColour.getHSB(hue, saturation, brightness);
+        newColour.setHSB(hue, saturation*2, brightness);
+
+        //return the new colour as a float4
+        return Float4(newColour);
+    }
+
+    protected void updateColour()
+    {
+        if(organelleEntity == NULL_OBJECT)
             return;
 
-		auto model = world.GetComponent_Model(organelleEntity);
+        auto model = world.GetComponent_Model(organelleEntity);
 
         if(model !is null){
-
             // TODO: clean up this check
             if(organelle.mesh != "flagellum.mesh"){
-            
+
                 this.colourTint = calculateHSLForOrganelle(this.colourTint);
                 this.flashColour = calculateHSLForOrganelle(this.flashColour);
 
@@ -401,12 +397,13 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
                 );
             }
         }
-        
+
         _needsColourUpdate = false;
     }
 
     // Returns the meaning of compoundBin value
-    ORGANELLE_HEALTH getHealth(){
+    ORGANELLE_HEALTH getHealth()
+    {
         if(compoundBin <= ORGANELLE_HEALTH::DEAD)
             return ORGANELLE_HEALTH::DEAD;
         if(compoundBin < ORGANELLE_HEALTH::CAN_DIVIDE)
@@ -414,13 +411,16 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
         return ORGANELLE_HEALTH::CAN_DIVIDE;
     }
 
+    // This doesnt seem ideal
     //! \returns compoundBin
-    float getCompoundBin(){
+    float getCompoundBin()
+    {
         return compoundBin;
     }
 
     // Gives organelles more compounds
-    void growOrganelle(CompoundBagComponent@ compoundBagComponent, int logicTime){
+    void growOrganelle(CompoundBagComponent@ compoundBagComponent, int logicTime)
+    {
         // Finds the total number of needed compounds.
         float sum = 0.0;
 
@@ -437,11 +437,11 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
                     LOG_ERROR("Invalid type in compoundsLeft");
                     continue;
                 }
-                    
+
                 sum += amount;
             }
         }
-    
+
         // If sum is 0, we either have no compounds, in which case we
         // cannot grow the organelle, or the organelle is ready to
         // split (i.e. compoundBin = 2), in which case we wait for the
@@ -456,14 +456,14 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
         for(uint i = 0; i < compoundKeys.length(); ++i){
 
             const auto compoundName = compoundKeys[i];
-            
+
             float amount;
             if(!compoundsLeft.get(compoundName, amount)){
 
                 LOG_ERROR("Invalid type in compoundsLeft");
                 continue;
-            }            
-            
+            }
+
             if(id - amount < 0){
 
                 // The random number is from this compound, so attempt to take it.
@@ -479,12 +479,12 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
                 id -= amount;
             }
         }
-        
+
         // Calculate the new growth value.
         recalculateBin();
     }
 
-    void damageOrganelle(float damageAmount){
+    /*void damageOrganelle(float damageAmount){
         // Flash the organelle that was damaged.
         flashOrganelle(3000, Float4(1, 0.2, 0.2, 1));
 
@@ -498,17 +498,17 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
             (organelle.organelleCost / totalLeft);
 
         scaleCompoundsLeft(damageFactor);
-        
+
         recalculateBin();
-    }
+    }*/
 
-    private void scaleCompoundsLeft(float scaleFactor){
-
+    private void scaleCompoundsLeft(float scaleFactor)
+    {
         auto compoundKeys = compoundsLeft.getKeys();
         for(uint i = 0; i < compoundKeys.length(); ++i){
             float amount;
             if(!compoundsLeft.get(compoundKeys[i], amount)){
-                
+
                 LOG_ERROR("Invalid type in compoundsLeft");
                 continue;
             }
@@ -518,13 +518,13 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
     }
 
     // Calculates total number of compounds left until this organelle can divide
-    float calculateCompoundsLeft() const{
-
+    float calculateCompoundsLeft() const
+    {
         float totalLeft = 0;
-        
+
         auto compoundKeys = compoundsLeft.getKeys();
         for(uint i = 0; i < compoundKeys.length(); ++i){
-        
+
             float amount;
             if(!compoundsLeft.get(compoundKeys[i], amount)){
 
@@ -538,10 +538,11 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
         return totalLeft;
     }
 
-    private void recalculateBin(){
+    private void recalculateBin()
+    {
         // Calculate the new growth growth
         float totalCompoundsLeft = calculateCompoundsLeft();
-    
+
         compoundBin = 2.0 - totalCompoundsLeft / organelle.organelleCost;
 
         // If the organelle is damaged...
@@ -554,20 +555,20 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
                     // Calls different method for possible sound and effects
                     MicrobeOperations::organelleDestroyedByDamage(world,
                         microbeEntity, {q, r});
-                    
+
                     // Notify the organelle the sister organelle it is no longer split.
                     sisterOrganelle.wasSplit = false;
                     return;
-                    
+
                 } else {
                     // If it is a primary organelle, make sure that
                     // it's compound bin is not less than 0.
                     compoundBin = 0.0;
-                    
+
                     scaleCompoundsLeft(2);
                 }
             }
-            
+
             // Scale the model at a slower rate (so that 0.0 is half size).
             // Nucleus isn't scaled
             // TODO: This isn't the cheapest call so maybe this should be cached
@@ -586,17 +587,26 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
             // Darken the color. Will be updated on next call of update()
             colourTint = Float4((1.0 + compoundBin)/2, compoundBin, compoundBin, 1);
             _needsColourUpdate = true;
-            
+
         } else{
+            // Nucleus isn't scaled
+            if(organelle.hasComponent("NucleusOrganelle"))
+                return;
+
             // Scale the organelle model to reflect the new size.
             // Only if it is different
             const Float3 newScale = Float3(compoundBin, compoundBin, compoundBin) * HEX_SIZE;
 
             RenderNode@ sceneNode = world.GetComponent_RenderNode(
                 organelleEntity);
-            
-            if(newScale != sceneNode.Scale){
 
+            if(sceneNode is null){
+
+                LOG_ERROR("Trying to scale organelle that is missing RenderNode component");
+                return;
+            }
+
+            if(newScale != sceneNode.Scale){
                 sceneNode.Scale = newScale;
                 sceneNode.Marked = true;
             }
@@ -604,7 +614,8 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
     }
 
     // Resets the state. Used after dividing?
-    void reset(){
+    void reset()
+    {
         // Return the compound bin to its original state
         this.compoundBin = 1.0;
 
@@ -616,10 +627,10 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
         // the correct scale
         RenderNode@ sceneNode = world.GetComponent_RenderNode(
             organelleEntity);
-        
+
         sceneNode.Scale = Float3(1, 1, 1) * HEX_SIZE;
         sceneNode.Marked = true;
-        
+
         // If it was split from a primary organelle, destroy it.
         if(isDuplicate){
             MicrobeOperations::removeOrganelle(world, microbeEntity,
@@ -628,14 +639,6 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
             wasSplit = false;
         }
     }
-
-
-    // // Is this used? This will be quite difficult to do afterwards the Organelle
-    // // creates its collision (could be handled by a flag to onAddedToMicrobe to not
-    // // create physics
-    // function Organelle.removePhysics()
-    //     this.collisionShape.clear()
-    //     }
 
 
     // Called by a microbe when this organelle has been added to it
@@ -650,8 +653,8 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
     // @note This is quite an expensive method as this creates a new entity with
     //  multiple components
     void onAddedToMicrobe(ObjectID microbe, CellStageWorld@ world,
-        NewtonCollision@ collisionShape
-    ) {
+        PhysicsShape@ collisionShape)
+    {
         if(microbeEntity != NULL_OBJECT){
 
             // It would be a huge mess to handle this here so we don't bother.
@@ -663,7 +666,7 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
         @this.world = world;
 
         assert(this.world !is null, "trying to create placed organelle without world");
-        
+
         microbeEntity = microbe;
 
         // Our coordinates are already set when this is called
@@ -676,12 +679,12 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
 
         // Automatically destroyed if the parent is destroyed
         world.SetEntitysParent(organelleEntity, microbeEntity);
-        
+
         // Change the colour of this species to be tinted by the membrane.
         auto species = MicrobeOperations::getSpeciesComponent(world, microbeEntity);
-        
+
         flashColour = species.colour;
-        
+
         _needsColourUpdate = true;
 
         Float3 offset = organelle.calculateCenterOffset();
@@ -689,13 +692,14 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
         auto renderNode = world.Create_RenderNode(organelleEntity);
         renderNode.Scale = Float3(HEX_SIZE, HEX_SIZE, HEX_SIZE);
         renderNode.Marked = true;
-        // The position system sets the position of this TODO: for
-        // performance reasons we could it set here directly as it
-        // never changes
+        // For performance reasons we set the position here directly
+        // instead of with the position system
         renderNode.Node.setPosition(offset + this.cartesianPosition);
-		//maybe instead of changing this here we should do so in the generation routine.
-        renderNode.Node.setOrientation(Ogre::Quaternion(Ogre::Degree(rotation),
-                Ogre::Vector3(0, 1, 1)));
+        //maybe instead of changing this here we should do so in the generation routine.
+        renderNode.Node.setOrientation(Ogre::Quaternion(Ogre::Degree(90),
+                Ogre::Vector3(1, 0, 0)) * Ogre::Quaternion(Ogre::Degree(180),
+                    Ogre::Vector3(0, 1, 0)) * Ogre::Quaternion(Ogre::Degree(rotation),
+                        Ogre::Vector3(0, 0, 1)));
 
         // Add hex collision shapes
         auto hexes = organelle.getHexes();
@@ -710,20 +714,21 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
             // Create the matrix with the offset
             Ogre::Matrix4 hexFinalOffset(translation);
 
-            NewtonCollision@ hexCollision = world.GetPhysicalWorld().CreateSphere(
-                HEX_SIZE * 2, hexFinalOffset);
+            PhysicsShape@ hexCollision = world.GetPhysicalWorld().CreateSphere(HEX_SIZE * 2);
 
-            _addedCollisions.insertLast(@hexCollision);
-            
-            collisionShape.CompoundCollisionAddSubCollision(hexCollision);
+            if(hexCollision is null)
+                assert(false, "Failed to create Sphere for hex");
+
+            collisionShape.AddChildShape(hexCollision, translation);
+            _addedCollisions.insertLast(hexCollision);
         }
-        
+
 
         auto parentRenderNode = world.GetComponent_RenderNode(
             microbeEntity);
         renderNode.Node.removeFromParent();
         parentRenderNode.Node.addChild(renderNode.Node);
-        
+
         //Adding a mesh for the organelle.
         if(organelle.mesh != ""){
             auto model = world.Create_Model(organelleEntity, renderNode.Node, organelle.mesh);
@@ -768,28 +773,32 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
     //
     // @param microbe
     //  The organelle's previous owner
-    void onRemovedFromMicrobe(ObjectID microbe, NewtonCollision@ collisionShape){
+    // @todo This actually crashes the game in
+    //  collisionShape.CompoundCollisionRemoveSubCollision so someone should figure out how
+    //  to fix that if this is needed (currently species are just destroyed so this isn't used)
+    void onRemovedFromMicrobe(ObjectID microbe, PhysicsShape@ collisionShape)
+    {
+        //LOG_INFO("PlacedOrganelle (" + organelle.name + ") removed from: " + microbeEntity);
+        // PrintCallStack();
 
-        LOG_INFO("PlacedOrganelle (" + organelle.name + ") removed from: " + microbeEntity);
-        
         //iterating on each OrganelleComponent
         for(uint i = 0; i < components.length(); ++i){
-
             components[i].onRemovedFromMicrobe(microbeEntity, this /*, q, r*/);
         }
 
         // We can do a quick remove from the destructor
-        collisionShape.CompoundCollisionBeginAddRemove();
-
         // Remove our sub collisions //
-        for(uint i = 0; i < _addedCollisions.length(); ++i){
+        // This null check is here because this is called when cels are killed and
+        // the physics bodies are long gone
+        if(collisionShape !is null){
+            for(uint i = 0; i < _addedCollisions.length(); ++i){
 
-            collisionShape.CompoundCollisionRemoveSubCollision(_addedCollisions[i]);
+                collisionShape.RemoveChildShape(_addedCollisions[i]);
+            }
         }
 
-        collisionShape.CompoundCollisionEndAddRemove();
         _addedCollisions.resize(0);
-        
+
         world.QueueDestroyEntity(organelleEntity);
         organelleEntity = NULL_OBJECT;
         microbeEntity = NULL_OBJECT;
@@ -800,8 +809,7 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
     void flashOrganelle(float duration, Float4 colour){
         if(flashDuration > 0)
             return;
-
-        // LOG_WARNING("flashOrganelle called on PlacedOrganelle but it doesn't work");
+        LOG_WARNING("flashOrganelle called on PlacedOrganelle but it doesn't work");
         flashColour = colour;
         flashDuration = duration;
     }
@@ -814,7 +822,7 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
     }
 
     // ------------------------------------ //
-    
+
     const Organelle@ organelle {
         get const{
             return _organelle;
@@ -822,7 +830,7 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
     }
 
     private Organelle@ _organelle;
-    
+
     // q and r are radial coordinates instead of cartesian
     // Could use the class AxialCoordinates here
     int q;
@@ -834,10 +842,10 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
 
     // Whether or not this organelle has already divided.
     bool wasSplit = false;
-    
+
     // If this organelle is a duplicate of another organelle caused by splitting.
     bool isDuplicate = false;
-    
+
     // The "Health Bar" of the organelle constrained to [0, 2],
     // ORGANELLE_HEALTH tells what different ranges mean
     float compoundBin = ORGANELLE_HEALTH::ALIVE;
@@ -854,9 +862,9 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
 
     ObjectID microbeEntity = NULL_OBJECT;
     ObjectID organelleEntity = NULL_OBJECT;
-    
+
     // This is the world in which the entities for this organelle exists
-    CellStageWorld@ world;    
+    CellStageWorld@ world;
 
     // TODO: fix this
     float flashDuration = 0;
@@ -872,48 +880,10 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
     PlacedOrganelle@ sisterOrganelle = null;
 
     // Used for removing the added sub collisions when we are removed from a microbe
-    private array<NewtonCollision@> _addedCollisions;
+    private array<PhysicsShape@> _addedCollisions;
 
     bool _needsColourUpdate = false;
 }
-
-
-// These aren't used in favor of similar approach to before where one class is customized
-// with different parameters
-// class Nucleus : Organelle{
-
-//     Nucleus(){
-
-//         super("nucleus");
-//     }
-// }
-
-// class Mitochondrion : Organelle{
-
-//     Mitochondrion(){
-
-//         super("mitochondrion");
-//     }
-// }
-
-// class Vacuole : Organelle{
-
-//     Vacuole(){
-
-//         super("vacuole");
-//     }
-// }
-
-// class Flagellum : Organelle{
-
-//     Flagellum(){
-
-//         super("flagellum");
-//     }
-// }
-
-
-
 
 // // Loading stored organelles
 // function Organelle.loadOrganelle(storage){
@@ -935,7 +905,7 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
 //     this.position.q = storage.get("q", 0);
 //     this.position.r = storage.get("r", 0);
 //     this.rotation = storage.get("rotation", 0);
-    
+
 //     local organelleInfo = organelleTable[this.name];
 //     //adding all of the components.
 //     for(componentName, _ in pairs(organelleInfo.components)){
@@ -982,13 +952,13 @@ class EditorPlacedOrganelle{
 
     //! The actual placed organelle for type checking and moving it around
     PlacedOrganelle@ organelle;
-    
+
     string name = "remove";
 
     int rotation = 0;
 
     // Cached Hexes for performance
-    array<Hex@>@ hexes; 
+    array<Hex@>@ hexes;
 }
 
 // TODO: could we just use normal organelles that are inactive and add
@@ -1004,19 +974,19 @@ class OrganelleHexDrawer{
 
         // Wouldn't it be easier to just use normal PlacedOrganelle and just move it around
         assert(false, "TODO: use actual PlacedOrganelles to position things");
-        
+
         // //Getting the list hexes occupied by this organelle.
         // if(data.hexes is null){
 
-        //     // The list needs to be rotated //            
+        //     // The list needs to be rotated //
         //     int times = data.rotation / 60;
 
         //     //getting the hex table of the organelle rotated by the angle
         //     @data.hexes = rotateHexListNTimes(organelle.getHexes(), times);
         // }
-        
+
         // occupiedHexList = OrganelleFactory.checkSize(data);
-            
+
         // //Used to get the average x and y values.
         // float xSum = 0;
         // float ySum = 0;
@@ -1027,15 +997,15 @@ class OrganelleHexDrawer{
         // // TODO: verify the above claims
 
         // Float2 organelleXY = Hex::axialToCartesian(data.q, data.r);
-        
+
         // uint i = 2;
         // for(uint listIndex = 0; listIndex < data.hexes.length(); ++listIndex){
 
         //     const Hex@ hex = data.hexes[listIndex];
-            
-            
+
+
         //     Float2 hexXY = Hex::axialToCartesian(hex.q, hex.r);
-            
+
         //     float x = organelleXY.X + hexX;
         //     float y = organelleYY.Y + hexY;
         //     xSum = xSum + x;
@@ -1053,7 +1023,7 @@ class OrganelleHexDrawer{
 
         //     // Create missing components to place the mesh in etc.
         //     if(world.GetComponent_
-            
+
         //     data.sceneNode[1].meshName = mesh;
         //     data.sceneNode[1].transform.position = Vector3(-xAverage, -yAverage, 0);
         //     data.sceneNode[1].transform.orientation = Quaternion.new(

@@ -16,6 +16,8 @@ generator.addInclude "Generated/StandardWorld.h"
 # Needs script include for basic world functionality
 generator.addInclude "Script/ScriptTypeResolver.h"
 
+generator.addInclude "thrive_world_factory.h"
+
 generator.addInclude "microbe_stage/membrane_system.h"
 generator.addInclude "microbe_stage/compound_cloud_system.h"
 generator.addInclude "microbe_stage/process_system.h"
@@ -25,7 +27,8 @@ generator.addInclude "microbe_stage/agent_cloud_system.h"
 generator.addInclude "microbe_stage/compound_absorber_system.h"
 generator.addInclude "microbe_stage/microbe_camera_system.h"
 generator.addInclude "microbe_stage/player_microbe_control.h"
-
+generator.addInclude "microbe_stage/player_hover_info.h"
+generator.addInclude "general/properties_component.h"
 generator.addInclude "general/timed_life_system.h"
 
 cellWorld = GameWorldClass.new(
@@ -38,13 +41,18 @@ cellWorld = GameWorldClass.new(
                                             ])]),
     EntityComponent.new("MembraneComponent", [ConstructorInfo.new(
                                          [
+											Variable.new("type", "MEMBRANE_TYPE",
+                                           noRef: true),
                                            #Variable.new("GetScene()", "",
                                            #             nonMethodParam: true),
-                                         ])], releaseparams: ["GetScene()"]),
+                                         ])], 
+										 releaseparams: ["GetScene()"]),
     EntityComponent.new("CompoundCloudComponent", [
                           # Don't actually call this from other places than CompoundCloudSystem
                           ConstructorInfo.new(
                             [
+                              Variable.new("owner", "CompoundCloudSystem",
+                                           noConst: true),
                               Variable.new("first", "Compound*",
                                            noRef: true),
                               Variable.new("second", "Compound*",
@@ -53,7 +61,7 @@ cellWorld = GameWorldClass.new(
                                            noRef: true),
                               Variable.new("fourth", "Compound*",
                                            noRef: true),
-                            ])],
+                            ], noangelscript: true)],
                         releaseparams: ["GetScene()"]),
     EntityComponent.new("AgentCloudComponent", [ConstructorInfo.new(
                                                   [
@@ -77,6 +85,7 @@ cellWorld = GameWorldClass.new(
                                                    Variable.new("timeToLive", "int",
                                                                 noRef: true),
                                                  ])]),
+    EntityComponent.new("AgentProperties", [ConstructorInfo.new([])]),                                
     
   ],
   systems: [
@@ -118,7 +127,9 @@ cellWorld = GameWorldClass.new(
     EntitySystem.new("MicrobeCameraSystem", [],
                      runtick: {group: 1000, parameters: []}),
     EntitySystem.new("PlayerMicrobeControlSystem", [],
-                     runtick: {group: 5, parameters: []}),    
+                     runtick: {group: 5, parameters: []}),
+    EntitySystem.new("PlayerHoverInfoSystem", ["MembraneComponent", "Position"],
+                     runtick: {group: 900, parameters: []}),
 
     EntitySystem.new("ProcessSystem", ["CompoundBagComponent", "ProcessorComponent"],
                      runtick: {group: 10, parameters: []}),
@@ -147,6 +158,7 @@ END
                        ),  
 )
 
+cellWorld.WorldType = "static_cast<int32_t>(thrive::THRIVE_WORLD_TYPE::CELL_STAGE)"
 cellWorld.base "Leviathan::StandardWorld"
 
 generator.add cellWorld

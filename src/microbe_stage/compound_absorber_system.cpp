@@ -19,8 +19,7 @@ using namespace thrive;
 
 CompoundAbsorberComponent::CompoundAbsorberComponent() :
     Leviathan::Component(TYPE)
-{
-}
+{}
 
 float
     CompoundAbsorberComponent::absorbedCompoundAmount(CompoundId id) const
@@ -125,7 +124,6 @@ void
     CompoundAbsorberSystem::Run(CellStageWorld& world,
         std::unordered_map<ObjectID, CompoundCloudComponent*>& clouds)
 {
-
     auto& absorbersIndex = m_absorbers.CachedComponents.GetIndex();
     auto& agentsIndex = m_agents.CachedComponents.GetIndex();
 
@@ -148,12 +146,18 @@ void
         // Find the position of the cell.
         const Float3 origin = sceneNode.Members._Position;
 
-        const auto unadjustedgrabRadius =
-            membrane.calculateEncompassingCircleRadius();
+        // This version is used for world coordinate calculations
+        const auto grabRadius = membrane.calculateEncompassingCircleRadius();
+
+        // This version is used when working with cloud local coordinates
+        const auto localGrabRadius = grabRadius / CLOUD_RESOLUTION;
 
         // Skip if not initialized //
-        if(unadjustedgrabRadius < 1)
+        if(grabRadius < 1)
             continue;
+
+        const auto localGrabRadiusSquared =
+            std::pow(grabRadius / CLOUD_RESOLUTION, 2);
 
         // Each membrane absorbs a certain amount of each compound.
         for(auto& entry : clouds) {
@@ -161,93 +165,82 @@ void
             CompoundCloudComponent* compoundCloud = entry.second;
 
             // Skip clouds that are out of range
-            const auto gridSize = compoundCloud->getGridSize();
-            const int halfWidth =
-                static_cast<int>(compoundCloud->getWidth() * gridSize / 2);
-            const int halfHeight =
-                static_cast<int>(compoundCloud->getHeight() * gridSize / 2);
-
-            const auto& cloudPos = compoundCloud->getPosition();
-
-            const auto grabRadius = unadjustedgrabRadius * gridSize;
-
-            const Float3 relative = origin - cloudPos;
-
-            if(relative.X < -halfWidth - grabRadius ||
-                relative.X > halfWidth + grabRadius ||
-                relative.Z < -halfHeight - grabRadius ||
-                relative.Z > halfHeight + grabRadius)
+            if(!CompoundCloudSystem::cloudContainsPositionWithRadius(
+                   compoundCloud->m_position, origin, grabRadius))
                 continue;
 
-            int x_start = (relative.X + halfWidth - grabRadius) / gridSize;
+            auto [cloudRelativeX, cloudRelativeY] =
+                CompoundCloudSystem::convertWorldToCloudLocalForGrab(
+                    compoundCloud->m_position, origin);
 
-            if(x_start < 0)
-                x_start = 0;
+            // Calculate all circle positions and grab from all the valid
+            // positions
 
-            int x_end = (relative.X + halfWidth + grabRadius) / gridSize;
+            // For simplicity all points within a bounding box around the
+            // relative origin point is calculated and that is restricted by
+            // checking if the point is within the circle before grabbing
+            // TODO: maybe it would be worth it to switch to integers here (they
+            // are already floored in convertWorldToCloudLocalForGrab)
+            for(float x = cloudRelativeX - localGrabRadius;
+                x <= cloudRelativeX + localGrabRadius; x += 1) {
+                for(float y = cloudRelativeY - localGrabRadius;
+                    y <= cloudRelativeY + localGrabRadius; y += 1) {
 
-            const auto width = static_cast<int>(compoundCloud->getWidth());
-            if(x_end > width)
-                x_end = width;
-
-            int z_start = (relative.Z + halfHeight - grabRadius) / gridSize;
-
-            if(z_start < 0)
-                z_start = 0;
-
-            int z_end = (relative.Z + halfHeight + grabRadius) / gridSize;
-
-            const auto height = static_cast<int>(compoundCloud->getHeight());
-            if(z_end > height)
-                z_end = height;
-
-            const auto diameter = std::pow(grabRadius, 2);
-
-            const int cloudSpaceHalfWidth =
-                static_cast<int>(compoundCloud->getWidth() / 2);
-            const int cloudSpaceHalfHeight =
-                static_cast<int>(compoundCloud->getHeight() / 2);
-
-            // Iterate though all of the points inside the bounding box.
-            for(int x = x_start; x < x_end; x++) {
-                for(int y = z_start; y < z_end; y++) {
-
-                    // LOG_WRITE(
-                    //     "Pos: " + std::to_string(x) + ", " +
-                    //     std::to_string(y));
-
-                    // And skip everything outside the circle
-                    if(std::pow(x - cloudSpaceHalfWidth - relative.X, 2) +
-                            std::pow(y - cloudSpaceHalfHeight - relative.Y, 2) >
-                        diameter)
+                    // Negative coordinates are always outside the cloud area
+                    if(x < 0 || y < 0)
                         continue;
 
-                    // LOG_WRITE("Checking absorb pos: " + std::to_string(x) +
-                    //           ", " + std::to_string(y));
+                    // Circle check
+                    if(std::pow(x - cloudRelativeX, 2) +
+                            std::pow(y - cloudRelativeY, 2) >
+                        localGrabRadiusSquared) {
+                        // Not in it
+                        continue;
+                    }
 
-                    // Each cloud has 4 things
-                    static_assert(CLOUDS_IN_ONE == 4,
-                        "Clouds packed into one has changed");
+                    // Then just need to check that it is within the cloud
+                    const size_t localX = static_cast<size_t>(x);
+                    const size_t localY = static_cast<size_t>(y);
 
-                    // Absorb all the 4 compounds
+                    if(localX < CLOUD_SIMULATION_WIDTH &&
+                        localY < CLOUD_SIMULATION_HEIGHT) {
 
-                    const auto id1 = compoundCloud->getCompoundId1();
-                    const auto id2 = compoundCloud->getCompoundId2();
-                    const auto id3 = compoundCloud->getCompoundId3();
-                    const auto id4 = compoundCloud->getCompoundId4();
+                        // Found a valid position
 
-                    if(id1 != NULL_COMPOUND && absorber.canAbsorbCompound(id1))
-                        absorbFromCloud(compoundCloud, id1, absorber, x, y);
-                    if(id2 != NULL_COMPOUND && absorber.canAbsorbCompound(id2))
-                        absorbFromCloud(compoundCloud, id2, absorber, x, y);
-                    if(id3 != NULL_COMPOUND && absorber.canAbsorbCompound(id3))
-                        absorbFromCloud(compoundCloud, id3, absorber, x, y);
-                    if(id4 != NULL_COMPOUND && absorber.canAbsorbCompound(id4))
-                        absorbFromCloud(compoundCloud, id4, absorber, x, y);
+                        // LOG_WRITE("Checking absorb pos: " + std::to_string(x)
+                        // +
+                        //           ", " + std::to_string(y));
+
+                        // Each cloud has 4 things
+                        static_assert(CLOUDS_IN_ONE == 4,
+                            "Clouds packed into one has changed");
+
+                        // Absorb all of the 4 compounds that can be in a cloud
+                        // entity
+
+                        const auto id1 = compoundCloud->getCompoundId1();
+                        const auto id2 = compoundCloud->getCompoundId2();
+                        const auto id3 = compoundCloud->getCompoundId3();
+                        const auto id4 = compoundCloud->getCompoundId4();
+
+                        if(id1 != NULL_COMPOUND &&
+                            absorber.canAbsorbCompound(id1))
+                            absorbFromCloud(compoundCloud, id1, absorber, x, y);
+                        if(id2 != NULL_COMPOUND &&
+                            absorber.canAbsorbCompound(id2))
+                            absorbFromCloud(compoundCloud, id2, absorber, x, y);
+                        if(id3 != NULL_COMPOUND &&
+                            absorber.canAbsorbCompound(id3))
+                            absorbFromCloud(compoundCloud, id3, absorber, x, y);
+                        if(id4 != NULL_COMPOUND &&
+                            absorber.canAbsorbCompound(id4))
+                            absorbFromCloud(compoundCloud, id4, absorber, x, y);
+                    }
                 }
             }
         }
 
+        // This will be used once agents are made into clouds
         // Each membrane absorbs a certain amount of each agent.
         // TODO: agent absorption from a cloud (this would probably work very
         // similarly as the normal compounds instead of like this (currently the
@@ -311,7 +304,7 @@ void
         //           " at (cloud local): " + std::to_string(x) + ", " +
         //           std::to_string(y) + " amount: " + std::to_string(amount));
         absorber.m_absorbedCompounds[id] +=
-            compoundCloud->takeCompound(id, x, y, .2) / 5000.0f;
+            compoundCloud->takeCompound(id, x, y, .2) / 20000.0f;
     }
     // Absorb .2 (third parameter) of the available
     // compounds.

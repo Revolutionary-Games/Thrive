@@ -55,6 +55,13 @@ def parseExtraArgs
   
   $svnUser = ARGV[0]
   ARGV.shift
+
+  # Handle provided password
+  if $svnUser.count ':'
+    split = $svnUser.split ':'
+    $svnUser = split[0]
+    $svnPassword = split[1]
+  end
   
 end
 
@@ -63,12 +70,15 @@ require_relative 'RubySetupSystem/Libraries/SetupLeviathan.rb'
 
 if !$svnUser
   $svnUser = "thrive"
+  $svnPassword = "thrive"
 end
 
 WantedURL = "https://#{$svnUser}@boostslair.com/svn/thrive_assets"
 
 leviathan = Leviathan.new(
-  version: "develop",
+  # Use this if you always want the latest commit
+  # version: "develop",
+  version: "75a69e7167176791df9a12d40cbd6d9558788e3c",
   # Doesn't actually work, but leviathan doesn't install with sudo by
   # default, or install at all for that matter
   noInstallSudo: true
@@ -107,10 +117,28 @@ Dir.chdir(ProjectDir) do
 
   info "Checking assets"
 
+  isInteractive = $stdout.isatty
+
+  puts "Interactive mode is: " + isInteractive.to_s
+
   if not File.exist? "assets"
     
     info "Getting assets"
-    system(["svn", "checkout", "--username", $svnUser, WantedURL, "assets"].join(' '))
+
+    params = ["svn", "checkout", "--username", $svnUser]
+
+    if !isInteractive
+      params.push "--non-interactive"
+    end
+
+    if $svnPassword
+      params.push("--password", $svnPassword)
+    end
+    
+    params.push(WantedURL, "assets")
+
+    system(*params)
+
     if $?.exitstatus != 0
       onError "Failed to get thrive assets repository"
     end
@@ -123,7 +151,11 @@ Dir.chdir(ProjectDir) do
 
       verifySVNUrl(WantedURL)
 
-      system "svn up"
+      if $svnPassword
+        system("svn", "up", "--username", $svnUser, "--password", $svnPassword)
+      else
+        system "svn up"
+      end
       onError "Failed to update thrive assets" if $?.exitstatus > 0
       
     end
@@ -158,7 +190,6 @@ end
 
 # Symlink the textures and fonts from assets to make local previewing of the GUI easier
 if OS.windows?
-  # These need to run in cmd as admin, for some reason
   info "Creating junctions for assets to be referenced from gui " +
        "html without running cmake every time"
   runSystemSafe "cmd", "/c", "mklink", "/J",
@@ -167,6 +198,10 @@ if OS.windows?
   runSystemSafe "cmd", "/c", "mklink", "/J",
                 convertPathToWindows(File.join(ProjectDir, "Fonts")),
                 convertPathToWindows(File.join(ProjectDir, "assets", "fonts"))
+  runSystemSafe "cmd", "/c", "mklink", "/J",
+                convertPathToWindows(File.join(ProjectDir, "JSVendor")),
+                convertPathToWindows(File.join(ProjectDir, "ThirdParty/Leviathan/bin/Data",
+                                               "JSVendor"))  
 else
   if !File.exists? File.join(ProjectDir, "Textures")
     FileUtils.ln_sf File.join(ProjectDir, "assets", "textures"),
@@ -176,6 +211,11 @@ else
   if !File.exists? File.join(ProjectDir, "Fonts")
     FileUtils.ln_sf File.join(ProjectDir, "assets", "fonts"),
                     File.join(ProjectDir, "Fonts")
+  end
+
+  if !File.exists? File.join(ProjectDir, "JSVendor")
+    FileUtils.ln_sf File.join(ProjectDir, "ThirdParty/Leviathan/bin/Data", "JSVendor"),
+                    File.join(ProjectDir, "JSVendor")
   end
 end
 

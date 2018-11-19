@@ -29,10 +29,9 @@ using namespace thrive;
 // SpawnedComponent
 ////////////////////////////////////////////////////////////////////////////////
 
-SpawnedComponent::SpawnedComponent(
-    double newSpawnRadiusSqr
-) : Leviathan::Component(TYPE),
-    spawnRadiusSqr(newSpawnRadiusSqr) {}
+SpawnedComponent::SpawnedComponent(double newSpawnRadiusSqr) :
+    Leviathan::Component(TYPE), spawnRadiusSqr(newSpawnRadiusSqr)
+{}
 
 // void
 // SpawnedComponent::load(
@@ -78,52 +77,54 @@ struct SpawnSystem::Implementation {
 // }
 
 SpawnerTypeId
-SpawnSystem::addSpawnType(
-    std::function<ObjectID(CellStageWorld&, Float3)> factoryFunction,
-    double spawnDensity,
-    double spawnRadius
-) {
+    SpawnSystem::addSpawnType(
+        std::function<ObjectID(CellStageWorld&, Float3)> factoryFunction,
+        double spawnDensity,
+        double spawnRadius)
+{
     SpawnType newSpawnType;
     newSpawnType.factoryFunction = factoryFunction;
     newSpawnType.spawnRadius = spawnRadius;
     newSpawnType.spawnRadiusSqr = std::pow(spawnRadius, 2);
-    newSpawnType.spawnFrequency = spawnDensity * newSpawnType.spawnRadiusSqr * 4;
+    newSpawnType.spawnFrequency =
+        spawnDensity * newSpawnType.spawnRadiusSqr * 4;
     newSpawnType.id = m_impl->nextId;
     m_impl->nextId++;
     m_impl->spawnTypes[newSpawnType.id] = newSpawnType;
     return newSpawnType.id;
 }
 
-void SpawnSystem::removeSpawnType(SpawnerTypeId spawnId) {
+void
+    SpawnSystem::removeSpawnType(SpawnerTypeId spawnId)
+{
     m_impl->spawnTypes.erase(spawnId);
 }
 
-void SpawnSystem::Release(){
+void
+    SpawnSystem::Release()
+{
     m_impl->spawnTypes.clear();
     m_impl->previousPlayerPosition = Float3(0, 0, 0);
     m_impl->timeSinceLastUpdate = 0;
 }
 // ------------------------------------ //
 
-SpawnSystem::SpawnSystem()
-  : m_impl(new Implementation())
-{
-}
+SpawnSystem::SpawnSystem() : m_impl(new Implementation()) {}
 
 SpawnSystem::~SpawnSystem() {}
 
 void
-SpawnSystem::Run(
-    CellStageWorld &world
-) {
+    SpawnSystem::Run(CellStageWorld& world)
+{
     m_impl->timeSinceLastUpdate += Leviathan::TICKSPEED;
-    
+
     while(m_impl->timeSinceLastUpdate > SPAWN_INTERVAL) {
         m_impl->timeSinceLastUpdate -= SPAWN_INTERVAL;
 
-        
+
         // Getting the player position.
-        auto controlledEntity = ThriveGame::Get()->playerData().activeCreature();
+        auto controlledEntity =
+            ThriveGame::Get()->playerData().activeCreature();
 
         // Skip if no player entity //
         if(controlledEntity == NULL_OBJECT)
@@ -131,42 +132,45 @@ SpawnSystem::Run(
 
         Float3 playerPosition;
 
-        try{
+        try {
 
-            playerPosition = world.GetComponent_Position(controlledEntity).Members._Position;
-            
-        } catch(const Leviathan::NotFound &e){
+            playerPosition =
+                world.GetComponent_Position(controlledEntity).Members._Position;
 
-            LOG_WARNING("SpawnSystem: no Position component in activeCreature, exception:");
+        } catch(const Leviathan::NotFound& e) {
+
+            LOG_WARNING("SpawnSystem: no Position component in activeCreature, "
+                        "exception:");
             e.PrintToLog();
             return;
         }
 
         // Remove the y-position from player position
         playerPosition.Y = 0;
-		int entitiesDeleted = 0;
+        int entitiesDeleted = 0;
         // Despawn entities.
         for(const auto& entry : CachedComponents.GetIndex()) {
-			//delete a max of two entities per step to reduce lag from deleting tons of entities at once
-			if (entitiesDeleted < 2)
-			{
-				SpawnedComponent& spawnedComponent = std::get<0>(*entry.second);
-				const Float3 spawnedEntityPosition = std::get<1>(*entry.second).Members._Position;
-				float squaredDistance = (playerPosition - spawnedEntityPosition).LengthSquared();
-				// If the entity is too far away from the player, despawn it.
-				if (squaredDistance > spawnedComponent.spawnRadiusSqr) {
-					entitiesDeleted++;
-					world.QueueDestroyEntity(entry.first);
-				}
-			}
-			else {
-				//get out of loop if you hit max
-				break;
-			}
+            // delete a max of two entities per step to reduce lag from deleting
+            // tons of entities at once
+            if(entitiesDeleted < 2) {
+                SpawnedComponent& spawnedComponent = std::get<0>(*entry.second);
+                const Float3 spawnedEntityPosition =
+                    std::get<1>(*entry.second).Members._Position;
+                float squaredDistance =
+                    (playerPosition - spawnedEntityPosition).LengthSquared();
+                // If the entity is too far away from the player, despawn it.
+                if(squaredDistance > spawnedComponent.spawnRadiusSqr) {
+                    entitiesDeleted++;
+                    world.QueueDestroyEntity(entry.first);
+                }
+            } else {
+                // get out of loop if you hit max
+                break;
+            }
         }
 
         Leviathan::Random* random = Leviathan::Random::Get();
-        
+
         // Spawn new entities.
         for(auto& st : m_impl->spawnTypes) {
             /*
@@ -185,11 +189,11 @@ SpawnSystem::Run(
             to spawn the given entity.
             */
             SpawnType& spawnType = st.second;
-            unsigned numAttempts = std::max(int(spawnType.spawnFrequency * 2), 1);
-            for(unsigned i = 0; i < numAttempts; i++){
+            unsigned numAttempts =
+                std::max(int(spawnType.spawnFrequency * 2), 1);
+            for(unsigned i = 0; i < numAttempts; i++) {
                 if(random->GetNumber(0.0f, numAttempts) <
-                    spawnType.spawnFrequency)
-                {
+                    spawnType.spawnFrequency) {
                     /*
                     First condition passed. Choose a location for the entity.
 
@@ -199,37 +203,42 @@ SpawnSystem::Run(
                     will fail the second condition, so entities still only
                     spawn within the spawning region.
                     */
-                    float distanceX = random->GetNumber(static_cast<float>(
-                            -spawnType.spawnRadius), spawnType.spawnRadius);
-                    float distanceZ = random->GetNumber(static_cast<float>(
-                            -spawnType.spawnRadius), spawnType.spawnRadius);
+                    float distanceX = random->GetNumber(
+                        static_cast<float>(-spawnType.spawnRadius),
+                        spawnType.spawnRadius);
+                    float distanceZ = random->GetNumber(
+                        static_cast<float>(-spawnType.spawnRadius),
+                        spawnType.spawnRadius);
 
                     // Distance from the player.
                     Float3 displacement(distanceX, 0, distanceZ);
                     float squaredDistance = displacement.LengthSquared();
 
-                    // Distance from the location of the player in the previous spawn cycle.
-                    Float3 previousDisplacement = displacement + playerPosition -
+                    // Distance from the location of the player in the previous
+                    // spawn cycle.
+                    Float3 previousDisplacement =
+                        displacement + playerPosition -
                         m_impl->previousPlayerPosition;
-                    float previousSquaredDistance = previousDisplacement.LengthSquared();
+                    float previousSquaredDistance =
+                        previousDisplacement.LengthSquared();
 
                     if(squaredDistance <= spawnType.spawnRadiusSqr &&
-                        previousSquaredDistance > spawnType.spawnRadiusSqr)
-                    {
+                        previousSquaredDistance > spawnType.spawnRadiusSqr) {
                         // Second condition passed. Spawn the entity.
-                        ObjectID spawnedEntity = spawnType.factoryFunction(world,
-                            playerPosition + displacement);
+                        ObjectID spawnedEntity = spawnType.factoryFunction(
+                            world, playerPosition + displacement);
 
                         // Giving the new entity a spawn component.
                         if(spawnedEntity != NULL_OBJECT) {
 
-                            try{
-                                world.Create_SpawnedComponent(spawnedEntity,
-                                    spawnType.spawnRadiusSqr);
-                            } catch(const Leviathan::Exception &e){
+                            try {
+                                world.Create_SpawnedComponent(
+                                    spawnedEntity, spawnType.spawnRadiusSqr);
+                            } catch(const Leviathan::Exception& e) {
 
-                                LOG_ERROR("SpawnSystem failed to add SpawnedComponent, "
-                                    "exception:");
+                                LOG_ERROR("SpawnSystem failed to add "
+                                          "SpawnedComponent, "
+                                          "exception:");
                                 e.PrintToLog();
                             }
                         }

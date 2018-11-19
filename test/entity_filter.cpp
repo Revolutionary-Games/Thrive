@@ -8,15 +8,14 @@
 
 using namespace thrive;
 
-TEST(EntityFilter, Initialization) {
+TEST(EntityFilter, Initialization)
+{
     EntityManager entityManager;
     // Add component
     EntityId entityId = entityManager.generateNewId();
-    entityManager.addComponent(
-        entityId,
-        make_unique<TestComponent<0>>()
-    );
-    EXPECT_TRUE(nullptr != entityManager.getComponent(entityId, TestComponent<0>::TYPE_ID));
+    entityManager.addComponent(entityId, make_unique<TestComponent<0>>());
+    EXPECT_TRUE(nullptr != entityManager.getComponent(
+                               entityId, TestComponent<0>::TYPE_ID));
     // Set up filter
     EntityFilter<TestComponent<0>> filter;
     filter.setEntityManager(&entityManager);
@@ -26,26 +25,21 @@ TEST(EntityFilter, Initialization) {
     EXPECT_EQ(1, filteredEntities.size());
 }
 
-TEST(EntityFilter, Single) {
+TEST(EntityFilter, Single)
+{
     EntityManager entityManager;
     // Set up filter
     EntityFilter<TestComponent<0>> filter;
     filter.setEntityManager(&entityManager);
     // Add component
     EntityId entityId = entityManager.generateNewId();
-    entityManager.addComponent(
-        entityId,
-        make_unique<TestComponent<0>>()
-    );
+    entityManager.addComponent(entityId, make_unique<TestComponent<0>>());
     // Check filter
     auto filteredEntities = filter.entities();
     EXPECT_EQ(1, filteredEntities.count(entityId));
     EXPECT_EQ(1, filteredEntities.size());
     // Remove component
-    entityManager.removeComponent(
-        entityId,
-        TestComponent<0>::TYPE_ID
-    );
+    entityManager.removeComponent(entityId, TestComponent<0>::TYPE_ID);
     entityManager.processRemovals();
     // Check filter
     filteredEntities = filter.entities();
@@ -54,40 +48,29 @@ TEST(EntityFilter, Single) {
 }
 
 
-TEST(EntityFilter, Multiple) {
+TEST(EntityFilter, Multiple)
+{
     EntityManager entityManager;
     // Set up filter
-    EntityFilter<
-        TestComponent<0>,
-        TestComponent<1>
-    > filter;
+    EntityFilter<TestComponent<0>, TestComponent<1>> filter;
     filter.setEntityManager(&entityManager);
     auto filteredEntities = filter.entities();
     // Add first component
     EntityId entityId = entityManager.generateNewId();
-    entityManager.addComponent(
-        entityId,
-        make_unique<TestComponent<0>>()
-    );
+    entityManager.addComponent(entityId, make_unique<TestComponent<0>>());
     // Check filter
     filteredEntities = filter.entities();
     // Add first component
     EXPECT_EQ(0, filteredEntities.count(entityId));
     EXPECT_EQ(0, filteredEntities.size());
     // Add second component
-    entityManager.addComponent(
-        entityId,
-        make_unique<TestComponent<1>>()
-    );
+    entityManager.addComponent(entityId, make_unique<TestComponent<1>>());
     // Check filter
     filteredEntities = filter.entities();
     EXPECT_EQ(1, filteredEntities.count(entityId));
     EXPECT_EQ(1, filteredEntities.size());
     // Remove component
-    entityManager.removeComponent(
-        entityId,
-        TestComponent<1>::TYPE_ID
-    );
+    entityManager.removeComponent(entityId, TestComponent<1>::TYPE_ID);
     entityManager.processRemovals();
     // Check filter
     filteredEntities = filter.entities();
@@ -96,22 +79,18 @@ TEST(EntityFilter, Multiple) {
 }
 
 
-TEST(EntityFilter, Optional) {
+TEST(EntityFilter, Optional)
+{
     EntityManager entityManager;
-    using TestFilter = EntityFilter<
-        TestComponent<0>,
-        Optional<TestComponent<1>>
-    >;
+    using TestFilter =
+        EntityFilter<TestComponent<0>, Optional<TestComponent<1>>>;
     // Set up filter
     TestFilter filter;
     filter.setEntityManager(&entityManager);
     TestFilter::EntityMap filteredEntities = filter.entities();
     // Add first component
     EntityId entityId = entityManager.generateNewId();
-    entityManager.addComponent(
-        entityId,
-        make_unique<TestComponent<0>>()
-    );
+    entityManager.addComponent(entityId, make_unique<TestComponent<0>>());
     // Check filter
     filteredEntities = filter.entities();
     EXPECT_EQ(1, filteredEntities.count(entityId));
@@ -121,10 +100,7 @@ TEST(EntityFilter, Optional) {
     EXPECT_TRUE(std::get<0>(group) != nullptr);
     EXPECT_TRUE(std::get<1>(group) == nullptr);
     // Add second component
-    entityManager.addComponent(
-        entityId,
-        make_unique<TestComponent<1>>()
-    );
+    entityManager.addComponent(entityId, make_unique<TestComponent<1>>());
     // Check filter
     filteredEntities = filter.entities();
     EXPECT_EQ(1, filteredEntities.count(entityId));
@@ -134,10 +110,7 @@ TEST(EntityFilter, Optional) {
     EXPECT_TRUE(std::get<0>(group) != nullptr);
     EXPECT_TRUE(std::get<1>(group) != nullptr);
     // Remove component
-    entityManager.removeComponent(
-        entityId,
-        TestComponent<1>::TYPE_ID
-    );
+    entityManager.removeComponent(entityId, TestComponent<1>::TYPE_ID);
     entityManager.processRemovals();
     // Check filter
     filteredEntities = filter.entities();
@@ -149,21 +122,17 @@ TEST(EntityFilter, Optional) {
 }
 
 
-TEST(EntityFilter, OptionalOnly) {
+TEST(EntityFilter, OptionalOnly)
+{
     EntityManager entityManager;
-    using TestFilter = EntityFilter<
-        Optional<TestComponent<0>>
-    >;
+    using TestFilter = EntityFilter<Optional<TestComponent<0>>>;
     // Set up filter
     TestFilter filter;
     filter.setEntityManager(&entityManager);
     TestFilter::EntityMap filteredEntities = filter.entities();
     // Add first component
     EntityId entityId = entityManager.generateNewId();
-    entityManager.addComponent(
-        entityId,
-        make_unique<TestComponent<0>>()
-    );
+    entityManager.addComponent(entityId, make_unique<TestComponent<0>>());
     // Check filter
     filteredEntities = filter.entities();
     EXPECT_EQ(1, filteredEntities.count(entityId));
@@ -172,10 +141,7 @@ TEST(EntityFilter, OptionalOnly) {
     TestFilter::ComponentGroup group = filteredEntities[entityId];
     EXPECT_TRUE(std::get<0>(group) != nullptr);
     // Remove component
-    entityManager.removeComponent(
-        entityId,
-        TestComponent<0>::TYPE_ID
-    );
+    entityManager.removeComponent(entityId, TestComponent<0>::TYPE_ID);
     entityManager.processRemovals();
     // Check filter
     filteredEntities = filter.entities();
@@ -184,31 +150,22 @@ TEST(EntityFilter, OptionalOnly) {
 }
 
 
-TEST(EntityFilter, Record) {
+TEST(EntityFilter, Record)
+{
     EntityManager entityManager;
-    using TestFilter = EntityFilter<
-        TestComponent<0>
-    >;
+    using TestFilter = EntityFilter<TestComponent<0>>;
     // Set up filter
     TestFilter filter(true);
     filter.setEntityManager(&entityManager);
     TestFilter::EntityMap filteredEntities = filter.entities();
     // Add first component
     EntityId entityId = entityManager.generateNewId();
-    entityManager.addComponent(
-        entityId,
-        make_unique<TestComponent<0>>()
-    );
+    entityManager.addComponent(entityId, make_unique<TestComponent<0>>());
     // Check added entities
     EXPECT_EQ(1, filter.addedEntities().count(entityId));
     // Remove component
-    entityManager.removeComponent(
-        entityId,
-        TestComponent<0>::TYPE_ID
-    );
+    entityManager.removeComponent(entityId, TestComponent<0>::TYPE_ID);
     entityManager.processRemovals();
     // Check removed entities
     EXPECT_EQ(0, filter.removedEntities().count(entityId));
 }
-
-

@@ -4,10 +4,15 @@ What's this?
 This is the setup instructions for compiling Thrive.
 
 Important Note: If you run into any trouble with the setup scripts, please 
-bring them up on the development slack or open a github issue.
+bring them up on the development discord or open a github issue. 
+
+This tutorial is also in video form for: [Windows](https://www.youtube.com/watch?v=eiQsxKCpOhY) 
+    and [Linux (Fedora and Ubuntu)](https://www.youtube.com/watch?v=_ZWBTlIo9W4)
 
 If you are a team member you can ask help on the forums:
     [Private Developer Forums](http://forum.revolutionarygamesstudio.com/)
+
+Otherwise you can ask on our [community discord](https://discordapp.com/invite/FZxDQ4H)
 
 Thank you!
 
@@ -20,12 +25,39 @@ Follow the Leviathan Engine Prequisites installation instructions
 [here](https://leviathanengine.com/doc/develop/Documentation/html/dc/d9e/prerequisites.html).
 
 Important: you should read the whole document before starting as many
-common pitfalls and issues have fixes given after later in the document. Also DO
+common pitfalls and issues have fixes given later in the document. Also DO
 NOT SKIP ANY STEPS otherwise you will initially fail and have to clear
 the caches which is the easiest to do by just deleting the entire
 folder and starting again. When you are done with the prerequisites
 page return here instead of continuing to the building Leviathan page
 which is irrelevant for Thrive.
+
+Linters
+-------
+
+Thrive uses automatic formatting of source code to keep style as
+consistent as possible. For this reason you need to install some
+additional tools:
+
+- [Clang](http://releases.llvm.org/download.html). You need at least
+  version 6.0.0. On Linux you can use your OS's package manager if it
+  has a new enough version.
+- [nodejs](https://nodejs.org/en/download/). If you are on Linux you
+  should use your OS's package manager to install nodejs.
+- eslint (with eslint-plugin-html) and stylelint. Install with npm
+  once you have nodejs installed. On Windows: `npm install -g eslint
+  stylelint eslint-plugin-html`. On Linux (you probably need to use
+  `sudo`): `sudo npm install -g eslint stylelint eslint-plugin-html`
+
+When you are getting ready to commit you should run `ruby
+RunCodeFormatting.rb` in order to automatically run all of the
+formatting tools. Make sure that that script doesn't report any errors
+before committing.
+
+Additionally for local testing you might want to install `npm install
+-g http-server`. You can then run a test web server with `http-server -c-1`
+when ran in the thrive base folder.
+
 
 Building Thrive
 ===============
@@ -40,7 +72,9 @@ should choose a folder like `~/projects` or `C:/projects`. Also long
 paths don't work on Windows as the setup needs the path in which it is
 ran to be less than 90 characters, so choose run git clone in
 `C:\projects` so that you end up the thrive folder being
-`C:\projects\Thrive`.
+`C:\projects\Thrive`. One additional potential problem is non-English
+characters in the path name, for example if your path includes
+"työpöytä", the setup will fail.
 
 Windows tip: shift right-click in a folder and select "Open command
 prompt here" or "Open powershell here" to open a cmd window to the
@@ -85,6 +119,16 @@ dedicate all of your CPU. To do this add `-j 2` to the end of the
 setup command with the number being the number of cores you want to
 use, the default is to use all. Note: this may not work for the
 dependencies (and that needs fixing)
+
+### Unsupported Linuxes
+If you are trying to compile on an unsupported Linux OS you should run
+the setup like this:
+
+```
+ruby SetupThrive.rb --no-packagemanager --pretend-linux fedora
+```
+
+Note: you will have to manually install all the required packages.
 
 Done
 ----
