@@ -685,10 +685,10 @@ void
     LOG_INFO("Setting microbe background to: " + material);
     m_impl->m_microbeBackgroundSubMesh->setMaterialName(material);
 
-	//If the banana background re-appears after this change, we will make it just use the default blue background. SO just comment this out then.
+    // If the banana background re-appears after this change, we will make it
+    // just use the default blue background. SO just comment this out then.
     m_impl->m_microbeEditorBackgroundSubMesh->setMaterialName(material);
     m_impl->createBackgroundItem();
-
 }
 
 // ------------------------------------ //
