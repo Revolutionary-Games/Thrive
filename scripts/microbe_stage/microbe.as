@@ -582,7 +582,7 @@ class MicrobeSystem : ScriptSystem{
         // Rotate the 'thrust' based on our orientation
         // Halve speed if out of ATP
         if (MicrobeOperations::getCompoundAmount(world, microbeEntity,
-                SimulationParameters::compoundRegistry().getTypeId("atp")) <= 0.1){
+                SimulationParameters::compoundRegistry().getTypeId("atp")) <= 1.0){
             microbeComponent.queuedMovementForce += pos._Orientation.RotateVector(
             microbeComponent.movementDirection * (CELL_BASE_THRUST/2.0f) *
             microbeComponent.movementFactor);

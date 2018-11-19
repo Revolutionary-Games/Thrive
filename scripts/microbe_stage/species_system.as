@@ -44,6 +44,111 @@ Float4 randomProkayroteColour(float opaqueness = randomOpacityBacteria())
         opaqueness);
 }
 
+
+string mutateWord(string name){
+    string vowels = "aeiou";
+    string consonants = "bcdfghjklmnpqrstvwxyz";
+    bool changed=false;
+    string newName = name;
+    int changeLimit = 4;
+    int changes=0;
+    //Ignore the first letter and last letter
+    for(uint i = 1; i < newName.length()-1; i++){
+        // Index we are adding or erasing chromosomes at
+        bool isVowel=false;
+        uint index = newName.length() - i - 1;
+        // Are we a vowel or are we a consonant?
+        if (vowels.findFirst(newName.substr(index,1)) < 0){
+           isVowel=true;
+        }
+        //30 percent chance replace
+        if(GetEngine().GetRandom().GetNumber(0,20) <= 6 && changes <= changeLimit){
+             newName.erase(index, 1);
+             changes++;
+             changed=true;
+             if (isVowel){
+                int newVowel = GetEngine().GetRandom().GetNumber(0,vowels.length()-1);
+                newName.insert(index, vowels.substr(newVowel, 1));
+             }
+             else {
+                int newConsonant = GetEngine().GetRandom().GetNumber(0,consonants.length()-1);
+                newName.insert(index, consonants.substr(newConsonant, 1));
+             }
+                
+        }
+        //10 percent chance new syllable
+        if(GetEngine().GetRandom().GetNumber(0,20) <= 2  && changes <= changeLimit){
+             string original = newName.substr(index, 1);
+             newName.erase(index, 1);
+             changed=true;
+             changes++;
+             if (!isVowel){
+                int newVowel;
+                int newConsonant;
+                string newSyllable;
+                switch (GetEngine().GetRandom().GetNumber(0,5))
+                    {
+                    case 0:
+                    newVowel = GetEngine().GetRandom().GetNumber(0,vowels.length()-1);
+                    newConsonant = GetEngine().GetRandom().GetNumber(0,consonants.length()-1);
+                    newSyllable= ""+vowels.substr(newVowel, 1)+consonants.substr(newConsonant, 1);
+                    newName.insert(index, newSyllable);
+                    break;
+                    case 1:
+                    newVowel = GetEngine().GetRandom().GetNumber(0,vowels.length()-1);
+                    newConsonant = GetEngine().GetRandom().GetNumber(0,consonants.length()-1);
+                    newSyllable = ""+consonants.substr(newConsonant, 1)+vowels.substr(newVowel, 1);
+                    newName.insert(index, newSyllable);
+                    break;
+                    case 2:
+                    newConsonant = GetEngine().GetRandom().GetNumber(0,consonants.length()-1);
+                    newSyllable= ""+original+consonants.substr(newConsonant, 1);
+                    newName.insert(index, newSyllable);
+                    break;
+                    case 3:
+                    newConsonant = GetEngine().GetRandom().GetNumber(0,consonants.length()-1);
+                    newSyllable = ""+consonants.substr(newConsonant, 1)+original;
+                    newName.insert(index, newSyllable);
+                    break;
+                    case 4:
+                    newVowel = GetEngine().GetRandom().GetNumber(0,vowels.length()-1);
+                    newConsonant = GetEngine().GetRandom().GetNumber(0,consonants.length()-1);
+                    newSyllable = original+consonants.substr(newConsonant, 1)+vowels.substr(newVowel, 1);
+                    newName.insert(index, newSyllable);
+                    break;
+                    case 5:
+                    newVowel = GetEngine().GetRandom().GetNumber(0,vowels.length()-1);
+                    newConsonant = GetEngine().GetRandom().GetNumber(0,consonants.length()-1);
+                    newSyllable = vowels.substr(newVowel, 1)+consonants.substr(newConsonant, 1)+original;
+                    newName.insert(index, newSyllable);
+                    break;
+                    }
+             }
+             else {
+                if(GetEngine().GetRandom().GetNumber(0,20) <= 2){
+                int newConsonant = GetEngine().GetRandom().GetNumber(0,consonants.length()-1);
+                int newVowel = GetEngine().GetRandom().GetNumber(0,vowels.length()-1);
+                string newSyllable = ""+consonants.substr(newConsonant, 1)+vowels.substr(newVowel, 1)+original;
+                newName.insert(index, newSyllable);
+                }
+                else {
+                int newConsonant = GetEngine().GetRandom().GetNumber(0,consonants.length()-1);
+                int newVowel = GetEngine().GetRandom().GetNumber(0,vowels.length()-1);
+                string newSyllable = ""+original+vowels.substr(newVowel, 1)+consonants.substr(newConsonant, 1);
+                newName.insert(index, newSyllable);
+                }
+             }
+        }
+    }
+    // Our base case
+    if (!changed){
+        //We didnt change our word at all, try again recursviely until we do
+        return mutateWord(name);
+    }
+    LOG_INFO("Mutating Name:"+name +" to new name:"+newName);
+    return newName;
+}
+
 string generateNameSection()
 {
     // TODO: this should be checked very carefully to make sure that
@@ -55,45 +160,81 @@ string generateNameSection()
     auto cofix_v = SimulationParameters::speciesNameController().getVowelCofixes();
     auto cofix_c = SimulationParameters::speciesNameController().getConsonantCofixes();
     auto suffix = SimulationParameters::speciesNameController().getSuffixes();
+    
     string newName = "";
-
+    string ourPrefix="";
+    string ourSuffix="";
+    string ourFirstSuffix="";
+    string ourCofix="";
+    string ourPrefixCofix="";
+    
     if (GetEngine().GetRandom().GetNumber(0,100) >= 10){
-        if (GetEngine().GetRandom().GetNumber(0,100) >= 45){
-            if (GetEngine().GetRandom().GetNumber(0,100) >= 40){
-                string ourPrefix = prefix_v[GetEngine().GetRandom().GetNumber(0,
-                        prefix_v.length()-1)];
-                string ourCofix = cofix_v[GetEngine().GetRandom().GetNumber(0,
-                        cofix_v.length()-1)];
-                string ourSuffix = suffix[GetEngine().GetRandom().GetNumber(0,
-                        suffix.length()-1)];
-                newName = ourPrefix+ourCofix+ourSuffix;
-            }
-            else{
-                string ourPrefix = prefix_v[GetEngine().GetRandom().GetNumber(0,
-                        prefix_v.length()-1)];
-                string ourCofix = cofix_c[GetEngine().GetRandom().GetNumber(0,
-                        cofix_c.length()-1)];
-                string ourSuffix = suffix[GetEngine().GetRandom().GetNumber(0,
-                        suffix.length()-1)];
-                newName = ourPrefix+ourCofix+ourSuffix;
-            }
-        }
-        else{
-            string ourPrefix = prefix_c[GetEngine().GetRandom().GetNumber(0,
+        switch (GetEngine().GetRandom().GetNumber(0,2))
+        {
+        case 0:
+            ourPrefix = prefix_v[GetEngine().GetRandom().GetNumber(0,
+                prefix_v.length()-1)];
+            ourCofix = cofix_c[GetEngine().GetRandom().GetNumber(0,
+                cofix_c.length()-1)];
+            ourSuffix = suffix[GetEngine().GetRandom().GetNumber(0,
+                suffix.length()-1)];
+            newName = ourPrefix+ourCofix+ourSuffix;
+            break;
+        case 1:
+            ourPrefix = prefix_c[GetEngine().GetRandom().GetNumber(0,
                     prefix_c.length()-1)];
-            string ourCofix = cofix_v[GetEngine().GetRandom().GetNumber(0,
+            ourCofix = cofix_v[GetEngine().GetRandom().GetNumber(0,
                     cofix_v.length()-1)];
-            string ourSuffix = suffix[GetEngine().GetRandom().GetNumber(0,
+            ourSuffix = suffix[GetEngine().GetRandom().GetNumber(0,
                     suffix.length()-1)];
             newName = ourPrefix+ourCofix+ourSuffix;
+            break;
+        case 2:
+            ourPrefix = prefix_v[GetEngine().GetRandom().GetNumber(0,
+                    prefix_v.length()-1)];
+            ourCofix = cofix_v[GetEngine().GetRandom().GetNumber(0,
+                    cofix_v.length()-1)];
+            ourSuffix = suffix[GetEngine().GetRandom().GetNumber(0,
+                    suffix.length()-1)];
+            newName = ourPrefix+ourCofix+ourSuffix;
+            break;
         }
     }
     else{
-        string ourPrefixCofix = prefixCofixList[GetEngine().GetRandom().GetNumber(0,
+        //Developer Easter Eggs and really silly long names here
+        //Our own version of wigglesoworthia for example
+        switch (GetEngine().GetRandom().GetNumber(0,2))
+        {
+        case 0:
+            ourPrefix = prefix_v[GetEngine().GetRandom().GetNumber(0,
+                    prefix_v.length()-1)];
+            ourCofix = cofix_v[GetEngine().GetRandom().GetNumber(0,
+                    cofix_v.length()-1)];
+            ourFirstSuffix = suffix[GetEngine().GetRandom().GetNumber(0,
+                    suffix.length()-1)];
+            ourSuffix = suffix[GetEngine().GetRandom().GetNumber(0,
+                    suffix.length()-1)];
+            newName = ourPrefix+ourFirstSuffix+ourCofix+ourSuffix;
+            break;
+        case 1:
+            ourPrefix = prefix_c[GetEngine().GetRandom().GetNumber(0,
+                    prefix_c.length()-1)];
+            ourCofix = cofix_c[GetEngine().GetRandom().GetNumber(0,
+                    cofix_c.length()-1)];
+            ourFirstSuffix = suffix[GetEngine().GetRandom().GetNumber(0,
+                    suffix.length()-1)];
+            ourSuffix = suffix[GetEngine().GetRandom().GetNumber(0,
+                    suffix.length()-1)];
+            newName = ourPrefix+ourFirstSuffix+ourCofix+ourSuffix;
+            break;
+        case 2:
+            ourPrefixCofix = prefixCofixList[GetEngine().GetRandom().GetNumber(0,
                 prefixCofixList.length()-1)];
-        string ourSuffix = suffix[GetEngine().GetRandom().GetNumber(0,
+            ourSuffix = suffix[GetEngine().GetRandom().GetNumber(0,
                 suffix.length()-1)];
-        newName=ourPrefixCofix+ourSuffix;
+            newName=ourPrefixCofix+ourSuffix;
+            break;
+        }
     }
 
     // TODO: DO more stuff here to improve names
@@ -218,7 +359,13 @@ class Species{
         if (!isBacteria)
         {
             name = randomSpeciesName();
+            //Mutate the epithet
+            if (GetEngine().GetRandom().GetNumber(0, 10) < 8){
+                epithet = mutateWord(parent.epithet);
+            }
+            else {
             epithet = generateNameSection();
+             }
             genus = parent.genus;
 
             // Variables used in AI to determine general behavior mutate these
@@ -248,7 +395,12 @@ class Species{
             {
                 LOG_INFO("New Genus");
                 // We can do more fun stuff here later
-                genus = generateNameSection();
+                if (GetEngine().GetRandom().GetNumber(0, 10) < 8){
+                    genus = mutateWord(parent.genus);
+                }
+                else {
+                    genus = generateNameSection();
+                }
                 // New genuses get to double their color change
                 this.colour = Float4(parent.colour.X + randomMutationColourChannel(),
                     parent.colour.Y + randomMutationColourChannel(),
@@ -596,7 +748,14 @@ class Species{
     {
         name = randomBacteriaName();
         genus = parent.genus;
-        epithet = generateNameSection();
+        //Mutate the epithet
+        if (GetEngine().GetRandom().GetNumber(0, 10) < 8){
+            epithet = mutateWord(parent.epithet);
+        }
+        else {
+            epithet = generateNameSection();
+        }
+
 
         // Variables used in AI to determine general behavior mutate these
         this.aggression = parent.aggression+GetEngine().GetRandom().GetFloat(
@@ -625,7 +784,13 @@ class Species{
             LOG_INFO("New Genus of bacteria");
 
             // We can do more fun stuff here later
-            genus = generateNameSection();
+            //Mutate the genus
+            if (GetEngine().GetRandom().GetNumber(0, 10) < 8){
+                genus = mutateWord(parent.genus);
+            }
+            else {
+                genus = generateNameSection();
+            }
 
             // New genuses get to double color change
             this.colour = Float4(parent.colour.X + randomMutationColourChannel(),
