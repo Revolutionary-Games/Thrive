@@ -58,7 +58,7 @@ string mutateWord(string name){
         bool isVowel=false;
         uint index = newName.length() - i - 1;
         // Are we a vowel or are we a consonant?
-        if (vowels.findFirst(newName.substr(index,1)) < 0){
+        if (vowels.findFirst(newName.substr(index,1)) >= 0){
            isVowel=true;
         }
         //30 percent chance replace
