@@ -7,7 +7,6 @@ TJsonRegistry<BioProcess> SimulationParameters::bioProcessRegistry;
 TJsonRegistry<Biome> SimulationParameters::biomeRegistry;
 // TJsonRegistry<OrganelleType> SimulationParameters::organelleRegistry;
 TJsonRegistry<Species> SimulationParameters::speciesRegistry;
-TJsonRegistry<BacteriaType> SimulationParameters::bacteriaRegistry;
 SpeciesNameController SimulationParameters::speciesNameController;
 std::unordered_map<size_t, unsigned int>
     SimulationParameters::newSpeciesStartingCompounds;
@@ -26,8 +25,6 @@ void
     // TJsonRegistry<OrganelleType>("./Data/Scripts/SimulationParameters/MicrobeStage/Organelles.json");
     SimulationParameters::speciesRegistry = TJsonRegistry<Species>(
         "./Data/Scripts/SimulationParameters/MicrobeStage/Species.json");
-    SimulationParameters::bacteriaRegistry = TJsonRegistry<BacteriaType>(
-        "./Data/Scripts/SimulationParameters/MicrobeStage/Bacteria.json");
 
     SimulationParameters::speciesNameController = SpeciesNameController(
         "./Data/Scripts/SimulationParameters/MicrobeStage/SpeciesNames.json");
@@ -41,7 +38,15 @@ void
                                          "MicrobeStage/StartingCompounds.json' "
                                          "failed to load!");
     Json::Value rootElement;
-    jsonFile >> rootElement;
+    try {
+        jsonFile >> rootElement;
+    } catch(const Json::RuntimeError& e) {
+        LOG_ERROR(
+            std::string("Syntax error in json file: StartingCompounds.json") +
+            ", description: " + std::string(e.what()));
+        throw e;
+    }
+
     // TODO: add some sort of validation of the receiving JSON file, otherwise
     // it fails silently and makes the screen go black.
     jsonFile.close();

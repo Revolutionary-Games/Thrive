@@ -9,7 +9,6 @@
 #include "Application/KeyConfiguration.h"
 #include "Events/EventHandler.h"
 #include "GUI/GuiManager.h"
-#include "Script/ScriptExecutor.h"
 
 namespace thrive {
 
@@ -60,13 +59,22 @@ public:
     // ------------------------------------ //
     // Player input actions
     void
-        onIntroSkipPressed();
-
-    void
         editorButtonClicked();
 
     void
         finishEditingClicked();
+
+    void
+        killPlayerCellClicked();
+
+    void
+        exitToMenuClicked();
+
+    //! \param amount The amount the camera is moved. Positive moves away
+    //! \todo Needs to detect the active camera system. Now always sends to the
+    //! cell stage camera system
+    void
+        onZoomChange(float amount);
 
     // ------------------------------------ //
     // Hooking into the engine, and overridden methods from base application
@@ -78,11 +86,9 @@ public:
     void
         CustomizeEnginePostLoad() override;
 
-    //! \brief This registers the physical materials (with callbacks for
-    //! collision detection)
-    void
-        RegisterApplicationPhysicalMaterials(
-            Leviathan::PhysicsMaterialManager* manager) override;
+    //! \brief This creates physics materials for a Thrive world
+    std::unique_ptr<Leviathan::PhysicsMaterialManager>
+        createPhysicsMaterials() const;
 
     void
         EnginePreShutdown() override;

@@ -13,6 +13,7 @@ o GameModule "microbe_stage"{
         organelle_table.as
         organelle.as
         organelle_component.as
+        organelle_placement.as
         microbe_operations.as
         microbe.as
         species_system.as
@@ -23,8 +24,15 @@ o GameModule "microbe_stage"{
 
         microbe_stage_hud.as
 
-        // TODO: move to a new module
-        ../script_system.as
+        // This would maybe ideally be a separate module but there needs to be a lot
+        // of untangling to allow proper sharing of the parts that are used by both
+        microbe_editor/microbe_editor.as
+        microbe_editor/microbe_editor_hud.as
+        microbe_editor/setup.as
+    }
+
+    t import{
+        // microbe_common
     }
     
     l properties{

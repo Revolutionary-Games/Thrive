@@ -10,8 +10,8 @@ class StorageOrganelle : OrganelleComponent{
 
         this.capacity = capacity;
     }
-    
-    // See organelle_component.lua for more information about the 
+
+    // See organelle_component.lua for more information about the
     // organelle component methods and the arguments they receive.
 
     // void StorageOrganelle.load(storage){
@@ -34,7 +34,7 @@ class StorageOrganelle : OrganelleComponent{
 
         MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
             organelle.world.GetScriptComponentHolder("MicrobeComponent").Find(microbeEntity));
-        
+
         microbeComponent.capacity += this.capacity;
     }
 
@@ -46,7 +46,7 @@ class StorageOrganelle : OrganelleComponent{
     ) override {
         MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
             organelle.world.GetScriptComponentHolder("MicrobeComponent").Find(microbeEntity));
-        
+
         microbeComponent.capacity -= this.capacity;
     }
 

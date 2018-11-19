@@ -10,31 +10,43 @@ double Hex::hexSize = DEFAULT_HEX_SIZE;
 //     Hex::hexSize = newSize;
 // }
 
-double Hex::getHexSize() {
+double
+    Hex::getHexSize()
+{
     return Hex::hexSize;
 }
 
-Float3 Hex::axialToCartesian(double q, double r) {
-    double x = q * Hex::hexSize * 3.0/2.0;
-    double z = Hex::hexSize * std::sqrt(3) * (r + q/2.0);
+Float3
+    Hex::axialToCartesian(double q, double r)
+{
+    double x = q * Hex::hexSize * 3.0 / 2.0;
+    double z = Hex::hexSize * std::sqrt(3) * (r + q / 2.0);
     return Float3(x, 0, z);
 }
 
-Int2 Hex::cartesianToAxial(double x, double z) {
-    double q = x * (2.0/3.0) / Hex::hexSize;
-    double r = z / (Hex::hexSize * std::sqrt(3)) - q/2.0;
+Int2
+    Hex::cartesianToAxial(double x, double z)
+{
+    double q = x * (2.0 / 3.0) / Hex::hexSize;
+    double r = z / (Hex::hexSize * std::sqrt(3)) - q / 2.0;
     return Int2(q, r);
 }
 
-Int3 Hex::axialToCube(double q, double r) {
+Int3
+    Hex::axialToCube(double q, double r)
+{
     return Int3(q, r, -(q + r));
 }
 
-Int2 Hex::cubeToAxial(double x, double y, double z) {
+Int2
+    Hex::cubeToAxial(double x, double y, double z)
+{
     return Int2(x, z);
 }
 
-Int3 Hex::cubeHexRound(double x, double y, double z) {
+Int3
+    Hex::cubeHexRound(double x, double y, double z)
+{
     double rx = round(x);
     double ry = round(y);
     double rz = round(z);
@@ -55,24 +67,35 @@ Int3 Hex::cubeHexRound(double x, double y, double z) {
     return Int3(rx, ry, rz);
 }
 
-int64_t Hex::encodeAxial(double q, double r) {
+int64_t
+    Hex::encodeAxial(double q, double r)
+{
     if(std::abs(q) >= ENCODE_AXIAL_OFFSET || std::abs(r) >= ENCODE_AXIAL_OFFSET)
-           LEVIATHAN_ASSERT(false, "Coordinates out of range, q and r need to be smaller than ENCODE_AXIAL_OFFSET");
+        LEVIATHAN_ASSERT(false, "Coordinates out of range, q and r need to be "
+                                "smaller than ENCODE_AXIAL_OFFSET");
 
-    return (q + ENCODE_AXIAL_OFFSET) * ENCODE_AXIAL_SHIFT + r + ENCODE_AXIAL_OFFSET;
+    return (q + ENCODE_AXIAL_OFFSET) * ENCODE_AXIAL_SHIFT + r +
+           ENCODE_AXIAL_OFFSET;
 }
 
-Int2 Hex::decodeAxial(int64_t s) {
+Int2
+    Hex::decodeAxial(int64_t s)
+{
     int r = (s % ENCODE_AXIAL_SHIFT) - ENCODE_AXIAL_OFFSET;
-    int q = (s - r - ENCODE_AXIAL_OFFSET) / ENCODE_AXIAL_SHIFT - ENCODE_AXIAL_OFFSET;
+    int q = (s - r - ENCODE_AXIAL_OFFSET) / ENCODE_AXIAL_SHIFT -
+            ENCODE_AXIAL_OFFSET;
     return Int2(q, r);
 }
 
-Int2 Hex::rotateAxial(double q, double r) {
+Int2
+    Hex::rotateAxial(double q, double r)
+{
     return Int2(-r, q + r);
 }
 
-Int2 Hex::rotateAxialNTimes(double q0, double r0, uint32_t n) {
+Int2
+    Hex::rotateAxialNTimes(double q0, double r0, uint32_t n)
+{
     Int2 result(q0, r0);
 
     for(uint32_t i = 0; i < n % 6; i++)
@@ -81,44 +104,64 @@ Int2 Hex::rotateAxialNTimes(double q0, double r0, uint32_t n) {
     return result;
 }
 
-Int2 Hex::flipHorizontally(double q, double r) {
+Int2
+    Hex::flipHorizontally(double q, double r)
+{
     return Int2(-q, q + r);
 }
 
 // The Vector3 versions of the functions just unpack
 // the vector and call the normal functions.
-Float3 Hex::axialToCartesian(const Int2 &hex) {
+Float3
+    Hex::axialToCartesian(const Int2& hex)
+{
     return Hex::axialToCartesian(hex.X, hex.Y);
 }
 
-Int2 Hex::cartesianToAxial(const Float3 &hex) {
+Int2
+    Hex::cartesianToAxial(const Float3& hex)
+{
     return Hex::cartesianToAxial(hex.X, hex.Z);
 }
 
-Int3 Hex::axialToCube(const Int2 &hex) {
+Int3
+    Hex::axialToCube(const Int2& hex)
+{
     return Hex::axialToCube(hex.X, hex.Y);
 }
 
-Int2 Hex::cubeToAxial(const Int3 &hex) {
+Int2
+    Hex::cubeToAxial(const Int3& hex)
+{
     return Hex::cubeToAxial(hex.X, hex.Y, hex.Z);
 }
 
-Int3 Hex::cubeHexRound(const Float3 &hex) {
+Int3
+    Hex::cubeHexRound(const Float3& hex)
+{
     return Hex::cubeHexRound(hex.X, hex.Y, hex.Z);
 }
 
-int64_t Hex::encodeAxial(const Int2 &hex) {
+int64_t
+    Hex::encodeAxial(const Int2& hex)
+{
     return Hex::encodeAxial(hex.X, hex.Y);
 }
 
-Int2 Hex::rotateAxial(const Int2 &hex) {
+Int2
+    Hex::rotateAxial(const Int2& hex)
+{
     return Hex::rotateAxial(hex.X, hex.Y);
 }
 
-Int2 Hex::rotateAxialNTimes(const Int2 &hex, uint32_t n) {
+Int2
+    Hex::rotateAxialNTimes(const Int2& hex, uint32_t n)
+{
     return Hex::rotateAxialNTimes(hex.X, hex.Y, n);
 }
 
-Int2 Hex::flipHorizontally(const Int2 &hex) {
+Int2
+    Hex::flipHorizontally(const Int2& hex)
+{
     return Hex::flipHorizontally(hex.X, hex.Y);
 }

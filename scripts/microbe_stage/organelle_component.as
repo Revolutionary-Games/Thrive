@@ -9,7 +9,7 @@ abstract class OrganelleComponent{
     OrganelleComponent(){
 
     }
-    
+
     // Event handler for an organelle added to a microbe.
     //
     // @param microbe
@@ -45,7 +45,7 @@ abstract class OrganelleComponent{
     // These aren't passed, at least not when the microbe is dying so they are now removed
     // from here as well
     // @param organelle
-    //  MUST BE THE SAME ORGANELLE this was added to 
+    //  MUST BE THE SAME ORGANELLE this was added to
     void
     onRemovedFromMicrobe(
         ObjectID microbeEntity,
@@ -71,7 +71,7 @@ abstract class OrganelleComponent{
         PlacedOrganelle@ organelle,
         int logicTime
     ) {
-        
+
     }
 
     // // Function for saving organelle information.
@@ -84,20 +84,12 @@ abstract class OrganelleComponent{
     // }
 
     // // Function for loading organelle information.
-    // // 
+    // //
     // // @param storage
     // //  The StorageContainer object that has the organelle information
     // //  (the one saved in OrganelleComponent:storage()).
     // void OrganelleComponent:load(StorageContainer@ storage){
-        
+
     // }
 }
-
-            
-
-
-
-
-
-
 

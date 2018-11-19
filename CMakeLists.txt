@@ -100,8 +100,8 @@ link_directories("${LEVIATHAN_SRC}/build/bin")
 
 # Version
 set(PROGRAM_VERSION_STABLE 0)
-set(PROGRAM_VERSION_MAJOR 0)
-set(PROGRAM_VERSION_MINOR 4)
+set(PROGRAM_VERSION_MAJOR 4)
+set(PROGRAM_VERSION_MINOR 0)
 set(PROGRAM_VERSION_PATCH 0)
 
 set(PROGRAM_VERSION_STR ${PROGRAM_VERSION_STABLE}.${PROGRAM_VERSION_MAJOR}.${PROGRAM_VERSION_MINOR}.${PROGRAM_VERSION_PATCH})
@@ -143,6 +143,10 @@ set_property(DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}" PROPERTY
 # Copy script files to the bin folder
 file(GLOB THRIVE_SCRIPTS "scripts/*")
 file(COPY ${THRIVE_SCRIPTS} DESTINATION "${PROJECT_BINARY_DIR}/bin/Data/Scripts")
+
+# Copy javascript libraries
+file(GLOB THRIVE_VENDOR_SCRIPTS "assets/jsvendor/*")
+file(COPY ${THRIVE_VENDOR_SCRIPTS} DESTINATION "${PROJECT_BINARY_DIR}/bin/Data/jsvendor")
 
 # Copy other data assets
 file(GLOB THRIVE_LOOKNFEEL "assets/gui/looknfeel/*")

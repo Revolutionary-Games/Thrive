@@ -11,75 +11,51 @@
         }
     },
 
-    "oxygen": {
-        "name": "Oxygen",
-        "volume": 1,
-        "isCloud": true,
-        "isUseful": false,
-        "colour": {
-            "r": 0.235,
-            "g": 0.627,
-            "b": 0.705
-        }
-    },
-
-    "aminoacids": {
-        "name": "Amino acids",
-        "volume": 1,
-        "isCloud": true,
-        "isUseful": true,
-        "colour": {
-            "r": 1.0,
-            "g": 0.588,
-            "b": 0.784
-        }
-    },
-
     "ammonia": {
         "name": "Ammonia",
         "volume": 1,
         "isCloud": true,
-        "isUseful": false,
+        "isUseful": true,
         "colour": {
-            "r": 1.0,
-            "g": 0.862,
-            "b": 0.196
+            "r": 0.6,
+            "g": 0.7,
+            "b": 0.2
         }
     },
 
+    "phosphates": {
+        "name": "Phosphates",
+        "volume": 1,
+        "isCloud": true,
+        "isUseful": true,
+        "colour": {
+            "r": 0.7,
+            "g": 0,
+            "b": 0.7
+        }
+    },
+
+    "hydrogensulfide": {
+        "name": "Hydrogen Sulfide",
+        "volume": 1,
+        "isCloud": true,
+        "isUseful": false,
+        "colour": {
+            "r": 1.0,
+            "g": 0.4,
+            "b": 0.1
+        }
+    },
+    
     "glucose": {
         "name": "Glucose",
         "volume": 1,
         "isCloud": true,
         "isUseful": false,
         "colour": {
-            "r": 0.588,
-            "g": 0.666,
-            "b": 0.706
-        }
-    },
-
-    "co2": {
-        "name": "CO2",
-        "volume": 1,
-        "isCloud": true,
-        "isUseful": false,
-        "colour": {
-            "r": 0.235,
-            "g": 0.627,
-            "b": 0.705
-        }
-    },
-
-    "fattyacids": {
-        "name": "Fatty acids",
-        "volume": 1,
-        "isCloud": false,
-        "isUseful": false,
-        "colour": {
-            "r": 0.078,
-            "g": 0.196,
-            "b": 0.392
+            "r": 0.9,
+            "g": 0.9,
+            "b": 0.9
         }
     },
 

@@ -2,10 +2,9 @@
 
 #include "engine/component_types.h"
 
-#include "Entities/Component.h"
-#include "Entities/System.h"
-
-#include "Entities/Components.h"
+#include <Entities/Component.h>
+#include <Entities/Components.h>
+#include <Entities/System.h>
 
 #include <OgreColourValue.h>
 #include <OgreItem.h>
@@ -13,6 +12,9 @@
 #include <atomic>
 
 namespace thrive {
+
+// enumerable for membrane type
+enum class MEMBRANE_TYPE { MEMBRANE, WALL, CHITIN, DOUBLEMEMBRANE };
 
 /**
  * @brief Adds a membrane to an entity
@@ -28,8 +30,21 @@ class MembraneComponent : public Leviathan::Component {
     };
 
 public:
-    MembraneComponent();
-	virtual ~MembraneComponent();
+    MembraneComponent(MEMBRANE_TYPE type);
+    virtual ~MembraneComponent();
+
+
+
+    // Holder for membrane type
+    MEMBRANE_TYPE membraneType;
+
+    // This does not take affect without resetting this membrane as only that
+    // causes the mesh to actually be re-generated.
+    void
+        setMembraneType(MEMBRANE_TYPE type);
+
+    MEMBRANE_TYPE
+    getMembraneType();
 
     void
         Release(Ogre::SceneManager* scene);
@@ -47,9 +62,15 @@ public:
     void
         sendOrganelles(double x, double y);
 
+    //! Removes previously added organelles. This is the only way to get rid of
+    //! them. clear() doesn't clear them
+    bool
+        removeSentOrganelle(double x, double y);
+
     //! Deletes the membrane mesh.
     //!
     //! This needs to be called before modifications take effect
+    //! \version 0.4.0 Now this only marks this for clearing
     void
         clear();
 
@@ -62,8 +83,12 @@ public:
     virtual void
         DrawMembrane();
 
-    // Sees if the given point is inside the membrane.
-    //! note This is quite an expensive method as this loops all the vertices
+    size_t
+        InitializeCorrectMembrane(size_t writeIndex,
+            MembraneVertex* meshVertices);
+
+    //! Sees if the given point is inside the membrane.
+    //! \note This is quite an expensive method as this loops all the vertices
     bool
         contains(float x, float y);
 
@@ -71,7 +96,6 @@ public:
     //!
     //! Calculates a circle radius that contains all the points (when it is
     //! placed at 0,0 local coordinate)
-    //! \todo Cache this after initialization to increase performance
     float
         calculateEncompassingCircleRadius() const;
 
@@ -83,20 +107,16 @@ public:
     void
         Update(Ogre::SceneManager* scene, Ogre::SceneNode* parentcomponentpos);
 
-    // Returns the length of the bounding membrane "box".
-    int
-        getCellDimensions()
-    {
-        return cellDimensions;
-    }
-
     // Adds absorbed compound to the membrane.
     // These are later queried and added to the vacuoles.
     void
         absorbCompounds(int amount);
 
-    // Finds the position of external organelles based on its "internal"
-    // location.
+    //! Finds the position of external organelles based on its "internal"
+    //! location.
+    //! \note The returned Vector is in world coordinates (x, 0, z) and not in
+    //! internal membrane coordinates (x, y, 0). This is so that gameplay code
+    //! doesn't have to do the conversion everywhere this is used
     Ogre::Vector3
         GetExternalOrganelle(double x, double y);
 
@@ -115,62 +135,87 @@ public:
     static constexpr auto TYPE =
         componentTypeConvert(THRIVE_COMPONENT::MEMBRANE);
 
+    /*
+    code for generic things
+    */
+
+    Ogre::MaterialPtr
+        chooseMaterialByType();
+
+    void
+        DrawCorrectMembrane();
+
+    // Cell Wall COde
+    // Creates the 2D points in the membrane by looking at the positions of the
+    // organelles.
+    virtual void
+        DrawCellWall();
+
+    virtual Ogre::Vector3
+        GetMovementForCellWall(Ogre::Vector3 target,
+            Ogre::Vector3 closestOrganelle);
+
 protected:
     //! Called on first Update
-    void Initialize();
+    void
+        Initialize();
+
+    void
+        releaseOgreResourcesForClear(Ogre::SceneManager* scene);
+
+    //! When this should be recreated this is true. So that clearing will be
+    //! done
+    bool clearNeeded = false;
 
     //! So it seems that the membrane should be generated just once when the
     //! geometry is changed so when this is true Update does nothing
     bool isInitialized = false;
-	// Stores the positions of the organelles.
-	std::vector<Ogre::Vector3> organellePositions;
+    // Stores the positions of the organelles.
+    std::vector<Ogre::Vector3> organellePositions;
 
-	// The colour of the membrane.
-	// still broken
-	Ogre::ColourValue colour;
+    //! The colour of the membrane.
+    Ogre::ColourValue colour;
 
-	// The length in pixels of a side of the square that bounds the membrane.
-	// Half the side length of the original square that is compressed to make
-	// the membrane.
-	int cellDimensions = 10;
-	// Amount of segments on one side of the above described square.
-	// The amount of points on the side of the membrane.
-	int membraneResolution = 10;
-	// Stores the generated 2-Dimensional membrane.
-	std::vector<Ogre::Vector3> vertices2D;
+    //! The length in pixels of a side of the square that bounds the membrane.
+    //! Half the side length of the original square that is compressed to make
+    //! the membrane.
+    int cellDimensions = 10;
 
-	// Ogre renderable that holds the mesh
-	Ogre::MeshPtr m_mesh;
-	// The submesh that actually holds our vertex and index buffers
-	Ogre::SubMesh* m_subMesh = nullptr;
+    //! Amount of segments on one side of the above described square.
+    //! The amount of points on the side of the membrane.
+    int membraneResolution = 10;
 
-	//! Actual object that is attached to a scenenode
-	Ogre::Item* m_item = nullptr;
+    //! Stores the generated 2-Dimensional membrane.
+    std::vector<Ogre::Vector3> vertices2D;
 
-	Ogre::VertexBufferPacked* m_vertexBuffer = nullptr;
+    //! Marks if cached encompassing circleradius is calculated
+    mutable bool m_isEncompassingCircleCalculated = false;
+    //! Cached circle radius
+    mutable float m_encompassingCircleRadius;
 
-	//! A material created from the base material that can be colored
-	//! \todo It would be better to share this between all cells of a species
-	Ogre::MaterialPtr coloredMaterial;
-	// Ogre::MaterialPtr speciesMaterial;
+    //! Ogre renderable that holds the mesh
+    Ogre::MeshPtr m_mesh;
 
-	static std::atomic<int> membraneNumber;
+    //! The submesh that actually holds our vertex and index buffers
+    Ogre::SubMesh* m_subMesh = nullptr;
 
-	// The amount of compounds stored in the membrane.
-	int compoundAmount = 0;
+    //! Actual object that is attached to a scenenode
+    Ogre::Item* m_item = nullptr;
+
+    //! A material created from the base material that can be colored
+    //! \todo It would be better to share this between all cells of a species
+    Ogre::MaterialPtr coloredMaterial;
+    // Ogre::MaterialPtr speciesMaterial;
+
+    //! For unique name generation
+    static std::atomic<int> membraneNumber;
+
+    //! The amount of compounds stored in the membrane.
+    int compoundAmount = 0;
+
 private:
 };
 
-class CellWallComponent : public MembraneComponent {
-	public:
-    CellWallComponent();
-	~CellWallComponent();
-	void DrawMembrane();
-	virtual Ogre::Vector3
-		GetMovement(Ogre::Vector3 target, Ogre::Vector3 closestOrganelle);
-	protected:
-    private:
-};
 
 /**
  * @brief Handles entities with MembraneComponent
@@ -183,7 +228,6 @@ public:
     void
         Run(GameWorld& world, Ogre::SceneManager* scene)
     {
-
         auto& index = CachedComponents.GetIndex();
         for(auto iter = index.begin(); iter != index.end(); ++iter) {
 

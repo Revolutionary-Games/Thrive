@@ -7,10 +7,10 @@
 #include <Entities/System.h>
 //#include <Entities/Components.h>
 
-#include <vector>
 #include <unordered_map>
+#include <vector>
 
-namespace Leviathan{
+namespace Leviathan {
 class GameWorld;
 }
 
@@ -41,8 +41,8 @@ class CellStageWorld;
 class ProcessorComponent : public Leviathan::Component {
 
 public:
-	ProcessorComponent();
-	/*
+    ProcessorComponent();
+    /*
     void
     load(
         const StorageContainer& storage
@@ -50,15 +50,18 @@ public:
 
     StorageContainer
     storage() const override;
-	*/
+    */
 
     std::unordered_map<BioProcessId, double> process_capacities;
     void
-    setCapacity(BioProcessId id, double capacity);
+        setCapacity(BioProcessId id, double capacity);
+    double
+        getCapacity(BioProcessId id);
 
     REFERENCE_HANDLE_UNCOUNTED_TYPE(ProcessorComponent);
 
-    static constexpr auto TYPE = componentTypeConvert(THRIVE_COMPONENT::PROCESSOR);
+    static constexpr auto TYPE =
+        componentTypeConvert(THRIVE_COMPONENT::PROCESSOR);
 };
 
 // Helper structure to store the economic information of the compounds.
@@ -66,17 +69,19 @@ struct CompoundData {
     double amount;
     double uninflatedPrice;
     double price;
+    double usedLastTime;
     double demand;
     double priceReductionPerUnit;
     double breakEvenPoint;
 };
 
-//! \todo This component depends on an instance of processor so that needs registering
+//! \todo This component depends on an instance of processor so that needs
+//! registering
 class CompoundBagComponent : public Leviathan::Component {
 public:
     CompoundBagComponent();
 
-	/*
+    /*
     void
     load(
         const StorageContainer& storage
@@ -84,7 +89,7 @@ public:
 
     StorageContainer
     storage() const override;
-	*/
+    */
 
     double storageSpace;
     double storageSpaceOccupied;
@@ -93,83 +98,71 @@ public:
     std::unordered_map<CompoundId, CompoundData> compounds;
 
     void
-    setProcessor(ProcessorComponent* processor, const std::string& speciesName);
+        setProcessor(ProcessorComponent* processor,
+            const std::string& speciesName);
+
+    double getCompoundAmount(CompoundId);
 
     double
-    getCompoundAmount(CompoundId);
+        getStorageSpaceUsed() const;
+
+    double getPrice(CompoundId);
+
+    double getDemand(CompoundId);
+
+    double getUsedLastTime(CompoundId);
 
     double
-    getStorageSpaceUsed() const;
-
-    double
-    getPrice(CompoundId);
-
-    double
-    getDemand(CompoundId);
-
-    double
-    takeCompound(CompoundId, double); // remove up to a certain amount of compound, returning how much was removed
+        takeCompound(CompoundId, double); // remove up to a certain amount of
+                                          // compound, returning how much was
+                                          // removed
 
     void
-    giveCompound(CompoundId, double);
+        giveCompound(CompoundId, double);
 
     REFERENCE_HANDLE_UNCOUNTED_TYPE(CompoundBagComponent);
 
-    static constexpr auto TYPE = componentTypeConvert(THRIVE_COMPONENT::COMPOUND_BAG);
+    static constexpr auto TYPE =
+        componentTypeConvert(THRIVE_COMPONENT::COMPOUND_BAG);
 };
 
-class ProcessSystem : public Leviathan::System<std::tuple<CompoundBagComponent&,
-                                                   ProcessorComponent&>>
-{
+class ProcessSystem
+    : public Leviathan::System<
+          std::tuple<CompoundBagComponent&, ProcessorComponent&>> {
 public:
-   /**
-   * @brief Updates the system
-   */
+    /**
+     * @brief Updates the system
+     */
     void
-    Run(
-        GameWorld &world
-    );
+        Run(GameWorld& world);
 
     void
-    CreateNodes(
-        const std::vector<std::tuple<CompoundBagComponent*, ObjectID>> &firstdata,
-        const std::vector<std::tuple<ProcessorComponent*, ObjectID>> &seconddata,
-        const ComponentHolder<CompoundBagComponent> &firstholder,
-        const ComponentHolder<ProcessorComponent> &secondholder
-    ) {
-        TupleCachedComponentCollectionHelper(CachedComponents, firstdata, seconddata,
-            firstholder, secondholder);
+        CreateNodes(
+            const std::vector<std::tuple<CompoundBagComponent*, ObjectID>>&
+                firstdata,
+            const std::vector<std::tuple<ProcessorComponent*, ObjectID>>&
+                seconddata,
+            const ComponentHolder<CompoundBagComponent>& firstholder,
+            const ComponentHolder<ProcessorComponent>& secondholder)
+    {
+        TupleCachedComponentCollectionHelper(
+            CachedComponents, firstdata, seconddata, firstholder, secondholder);
     }
-    
+
     void
-    DestroyNodes(
-        const std::vector<std::tuple<CompoundBagComponent*, ObjectID>> &firstdata,
-        const std::vector<std::tuple<ProcessorComponent*, ObjectID>> &seconddata
-    ) {
+        DestroyNodes(
+            const std::vector<std::tuple<CompoundBagComponent*, ObjectID>>&
+                firstdata,
+            const std::vector<std::tuple<ProcessorComponent*, ObjectID>>&
+                seconddata)
+    {
         CachedComponents.RemoveBasedOnKeyTupleList(firstdata);
         CachedComponents.RemoveBasedOnKeyTupleList(seconddata);
-    }    
-    
+    }
+
 protected:
-
-    // Methods from the old Implemementation class //
-    double _demandSofteningFunction(double processCapacity);
-    double _calculatePrice(double oldPrice, double supply, double demand);
-    double _spaceSofteningFunction(double availableSpace, double requiredSpace);
-
-    std::map<double, CompoundId>
-    _getBreakEvenPointMap(BioProcessId processId, CompoundBagComponent &bag);
-
-    double _getOptimalProcessRate(
-        BioProcessId processId,
-        CompoundBagComponent &bag,
-        bool considersSpaceLimitations,
-        double availableSpace
-    );
-    
 private:
-
     static constexpr double TIME_SCALING_FACTOR = 1000;
 };
 
-}
+} // namespace thrive

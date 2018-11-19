@@ -4,36 +4,40 @@
         "background": "Background",
 		"colors":{
 		    "specularColors": {
-            "r": 0.98,
-            "g": 1,
-            "b": 0.95
+                "r": 0.98,
+                "g": 0.7,
+                "b": 0.75
 			},
 		    "diffuseColors": {
-            "r": 1,
-            "g": 1,
-            "b": 1
+                "r": 1.0,
+                "g": 0.9,
+                "b": 0.9
 			}
 		},
-		
+        
+		"oxygenPercentage": 0.21,
+		"carbonDioxidePercentage": 0.09,
+		"averageTemperature": 8,
+        
         "compounds": {
-            "oxygen": {
-                "amount": 32500,
-                "density": 0.0002
-            },
-
-            "co2": {
-                "amount": 32500,
-                "density": 0.0002
-            },
-
             "ammonia": {
-                "amount": 32500,
-                "density": 0.0002
+                "amount": 300000,
+                "density": 0.00002
             },
 
             "glucose": {
-                "amount": 32500,
-                "density": 0.0002
+                "amount": 350000,
+                "density": 0.00002
+            },
+            
+            "phosphates": {
+                "amount": 300000,
+                "density": 0.00002
+            },
+
+            "hydrogensulfide": {
+                "amount": 325000,
+                "density": 0.00002
             }
         }
     },
@@ -43,74 +47,122 @@
         "background": "Background_Vent",
 		"colors":{
 		    "specularColors": {
-            "r": 0.98,
-            "g": 0.7,
-            "b": 0.75
+                "r": 0.98,
+                "g": 0.7,
+                "b": 0.75
 			},
 		    "diffuseColors": {
-            "r": 1.0,
-            "g": 0.9,
-            "b": 0.9
+                "r": 1.0,
+                "g": 0.9,
+                "b": 0.9
 			}
 		},
-		
+        
+		"oxygenPercentage": 0.21,
+		"carbonDioxidePercentage": 0.09,
+		"averageTemperature": 98,
+        
         "compounds": {
-            "oxygen": {
-                "amount": 30000,
-                "density": 0.0002
-            },
-
-            "co2": {
-                "amount": 75000,
-                "density": 0.0002
-            },
-
             "ammonia": {
-                "amount": 42500,
-                "density": 0.0002
+                "amount": 300000,
+                "density": 0.00002
             },
 
             "glucose": {
-                "amount": 32500,
-                "density": 0.0002
+                "amount": 350000,
+                "density": 0.00002
+            },
+            
+            "phosphates": {
+                "amount": 300000,
+                "density": 0.00002
+            },
+
+            "hydrogensulfide": {
+                "amount": 325000,
+                "density": 0.00002
             }
         }
     },
+    "tidepool": {
+        "name": "Tidepool",
+        "background": "Background_Tidepool",
+		"colors":{
+		    "specularColors": {
+                "r": 0.98,
+                "g": 0.7,
+                "b": 0.75
+			},
+		    "diffuseColors": {
+                "r": 1.0,
+                "g": 0.9,
+                "b": 0.9
+			}
+		},
+        
+		"oxygenPercentage": 0.21,
+		"carbonDioxidePercentage": 0.09,
+		"averageTemperature": 23,
+        
+        "compounds": {
+            "ammonia": {
+                "amount": 300000,
+                "density": 0.00002
+            },
 
+            "glucose": {
+                "amount": 350000,
+                "density": 0.00002
+            },
+            
+            "phosphates": {
+                "amount": 300000,
+                "density": 0.00002
+            },
+
+            "hydrogensulfide": {
+                "amount": 325000,
+                "density": 0.00002
+            }
+        }
+    },
     "abyss": {
         "name": "Abyss",
         "background": "Background_Abyss",
 		"colors":{
 		    "specularColors": {
-            "r": 0.48,
-            "g": 0.5,
-            "b": 0.95
+                "r": 0.98,
+                "g": 0.7,
+                "b": 0.75
 			},
 		    "diffuseColors": {
-            "r": 0.5,
-            "g": 0.5,
-            "b": 0.5
+                "r": 1.0,
+                "g": 0.9,
+                "b": 0.9
 			}
 		},
+		"oxygenPercentage": 0.21,
+		"carbonDioxidePercentage": 0.09,
+		"averageTemperature": 2,
         "compounds": {
-            "oxygen": {
-                "amount": 25000,
-                "density": 0.0002
-            },
-
-            "co2": {
-                "amount": 35000,
-                "density": 0.0002
-            },
-
             "ammonia": {
-                "amount": 35000,
-                "density": 0.0002
+                "amount": 300000,
+                "density": 0.00002
             },
 
             "glucose": {
-                "amount": 40000,
-                "density": 0.0002
+                "amount": 350000,
+                "density": 0.00002
+            },
+            
+            "phosphates": {
+                "amount": 300000,
+                "density": 0.00002
+            },
+
+            "hydrogensulfide": {
+                "amount": 325000,
+                "density": 0.00002
             }
         }
     },
@@ -120,36 +172,122 @@
         "background": "Background_Shallow",
 		"colors":{
 		    "specularColors": {
-            "r": 0.68,
-            "g": 1.0,
-            "b": 0.65
+                "r": 0.98,
+                "g": 0.7,
+                "b": 0.75
 			},
 		    "diffuseColors": {
-            "r": 0.60,
-            "g": 1.0,
-            "b": 0.60
+                "r": 1.0,
+                "g": 0.9,
+                "b": 0.9
 			}
 		},
-		
+		"oxygenPercentage": 0.21,
+		"carbonDioxidePercentage": 0.09,
+		"averageTemperature": 17,
         "compounds": {
-            "oxygen": {
-                "amount": 50000,
-                "density": 0.0002
-            },
-
-            "co2": {
-                "amount": 35000,
-                "density": 0.0002
-            },
-
             "ammonia": {
-                "amount": 30000,
-                "density": 0.0002
+                "amount": 300000,
+                "density": 0.00002
             },
 
             "glucose": {
-                "amount": 35000,
-                "density": 0.0002
+                "amount": 350000,
+                "density": 0.00002
+            },
+            
+            "phosphates": {
+                "amount": 300000,
+                "density": 0.00002
+            },
+
+            "hydrogensulfide": {
+                "amount": 325000,
+                "density": 0.00002
+            }
+        }
+    },
+	
+	"underwater_cave": {
+        "name": "UnderwaterCave",
+        "background": "Background_Cave",
+		"colors":{
+		    "specularColors": {
+                "r": 0.98,
+                "g": 0.7,
+                "b": 0.75
+			},
+		    "diffuseColors": {
+                "r": 1.0,
+                "g": 0.9,
+                "b": 0.9
+			}
+		},
+		"oxygenPercentage": 0.21,
+		"carbonDioxidePercentage": 0.09,
+		"averageTemperature": 23,
+        "compounds": {
+            "ammonia": {
+                "amount": 300000,
+                "density": 0.00002
+            },
+
+            "glucose": {
+                "amount": 350000,
+                "density": 0.00002
+            },
+            
+            "phosphates": {
+                "amount": 300000,
+                "density": 0.00002
+            },
+
+            "hydrogensulfide": {
+                "amount": 325000,
+                "density": 0.00002
+            }
+        }
+    },
+	
+	"ice_shelf": {
+        "name": "IceShelf",
+        "background": "Background_Iceshelf",
+		"colors":{
+		    "specularColors": {
+                "r": 0.98,
+                "g": 0.7,
+                "b": 0.75
+			},
+		    "diffuseColors": {
+                "r": 1.0,
+                "g": 0.9,
+                "b": 0.9
+			}
+		},
+        
+		"oxygenPercentage": 0.21,
+		"carbonDioxidePercentage": 0.09,
+		"averageTemperature": -1,
+        
+        "compounds": {
+            "ammonia": {
+                "amount": 300000,
+                "density": 0.00002
+            },
+
+            "glucose": {
+                "amount": 350000,
+                "density": 0.00002
+            },
+            
+            "phosphates": {
+                "amount": 300000,
+                "density": 0.00002
+            },
+
+            "hydrogensulfide": {
+                "amount": 325000,
+                "density": 0.00002
             }
         }
     }

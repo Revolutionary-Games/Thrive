@@ -1,0 +1,30 @@
+version: 1.0.{build}-{branch}
+
+environment:
+  BOOST_ROOT: C:/Libraries/boost_1_66_0
+  PATH: C:\Ruby25-x64\bin;$(PATH);C:\cygwin64\bin
+
+image:
+  - Visual Studio 2017
+
+platform: x64
+
+cache:
+  - ThirdParty
+  - assets
+
+install:
+  - gem install os colorize rubyzip json sha3
+
+build_script:
+  - ruby SetupThrive.rb --precompiled thrive:thrive
+
+test_script:
+  - cd build\bin
+  - .\ThriveTest ~[xrequired]
+
+# This takes too much space to work
+# artifacts:
+#   - path: build/bin
+#     name: bin folder
+#     type: zip

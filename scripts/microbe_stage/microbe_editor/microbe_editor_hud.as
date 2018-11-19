@@ -1,41 +1,30 @@
 #include "microbe_editor.as"
 
+
+const array<string> MICROBE_EDITOR_AMBIENT_TRACKS = {
+    "microbe-editor-theme-1","microbe-editor-theme-2", "microbe-editor-theme-3",
+    "microbe-editor-theme-4", "microbe-editor-theme-5"
+};
+
+const int BASE_MUTATION_POINTS = 100;
+
+
 class MicrobeEditorHudSystem : ScriptSystem{
 
     void Init(GameWorld@ w){
 
-        @this.world = cast<MicrobeEditorWorld>(w);
+        @this._world = cast<MicrobeEditorWorld>(w);
 
         assert(this.world !is null, "MicrobeEditorHudSystem didn't get proper world");
 
         @editor = MicrobeEditor(this);
-        editor.init();
 
-    //     // This seems really cluttered, there must be a better way.
-    //     for(i=1, 42){
-    //         this.hoverHex[i] = Entity("hover-hex" .. i, gameState.wrapper);
-    //         auto sceneNode = OgreSceneNodeComponent();
-    //         sceneNode.transform.position = Vector3(0,0,0);
-    //         sceneNode.transform.touch();
-    //         sceneNode.meshName = "hex.mesh";
-    //         sceneNode.transform.scale = Vector3(HEX_SIZE, HEX_SIZE, HEX_SIZE);
-    //         this.hoverHex[i]:addComponent(sceneNode);
-    //     }
-    //     for(i=1, 6){
-    //         this.hoverOrganelle[i] = Entity("hover-organelle" .. i, gameState.wrapper); 
-    //         auto sceneNode = OgreSceneNodeComponent();
-    //         sceneNode.transform.position = Vector3(0,0,0);
-    //         sceneNode.transform.touch();
-    //         sceneNode.transform.scale = Vector3(HEX_SIZE, HEX_SIZE, HEX_SIZE);
-    //         this.hoverOrganelle[i]:addComponent(sceneNode);
-    //     }
-    
 
     //     auto root = this.gameState.guiWindow;
     //     this.mpLabel = root.getChild("MpPanel"):getChild("MpBar"):getChild("NumberLabel");
     //     this.mpProgressBar = root.getChild("MpPanel"):getChild("MpBar");
-    //     this.mpProgressBar.setProperty("ThriveGeneric/MpBar", "FillImage"); 
-    
+    //     this.mpProgressBar.setProperty("ThriveGeneric/MpBar", "FillImage");
+
     //     auto nucleusButton = root.getChild("NewButton");
     //     auto flagellumButton = root.getChild("EditPanel"):getChild("StructurePanel"):getChild("StructureScroll"):getChild("AddFlagellum");
     //     auto cytoplasmButton = root.getChild("EditPanel"):getChild("StructurePanel"):getChild("StructureScroll"):getChild("AddCytoplasm");
@@ -43,7 +32,7 @@ class MicrobeEditorHudSystem : ScriptSystem{
     //     auto vacuoleButton = root.getChild("EditPanel"):getChild("StructurePanel"):getChild("StructureScroll"):getChild("AddVacuole");
     //     auto toxinButton = root.getChild("EditPanel"):getChild("StructurePanel"):getChild("StructureScroll"):getChild("AddToxinVacuole");
     //     auto chloroplastButton = root.getChild("EditPanel"):getChild("StructurePanel"):getChild("StructureScroll"):getChild("AddChloroplast");
-    
+
     //     this.organelleButtons["nucleus"] = nucleusButton;
     //     this.organelleButtons["flagellum"] = flagellumButton;
     //     this.organelleButtons["cytoplasm"] = cytoplasmButton;
@@ -52,7 +41,7 @@ class MicrobeEditorHudSystem : ScriptSystem{
     //     this.organelleButtons["vacuole"] = vacuoleButton;
     //     this.organelleButtons["Toxin"] = toxinButton;
     //     this.activeButton = null;
-    
+
     //     // nucleusButton.registerEventHandler("Clicked", function() this.nucleusClicked() });
     //     // flagellumButton.registerEventHandler("Clicked", function() this.flagellumClicked() });
     //     // cytoplasmButton.registerEventHandler("Clicked", function() this.cytoplasmClicked() });
@@ -60,7 +49,7 @@ class MicrobeEditorHudSystem : ScriptSystem{
     //     // chloroplastButton.registerEventHandler("Clicked", function() this.chloroplastClicked() });
     //     // vacuoleButton.registerEventHandler("Clicked", function() this.vacuoleClicked() });
     //     // toxinButton.registerEventHandler("Clicked", function() this.toxinClicked() });
-    
+
     //     // this.saveLoadPanel = root.getChild("SaveLoadPanel")
     //     // this.creationsListbox = this.saveLoadPanel.getChild("SavedCreations")
     //     this.undoButton = root.getChild("UndoButton");
@@ -79,7 +68,7 @@ class MicrobeEditorHudSystem : ScriptSystem{
     //     // root.getChild("PauseMenu"):getChild("QuitButton"):registerEventHandler("Clicked", function() this.quitButtonClicked() });
     //     //root.getChild("SaveMicrobeButton"):registerEventHandler("Clicked", function() this.saveCreationClicked() })
     //     //root.getChild("LoadMicrobeButton"):registerEventHandler("Clicked", function() this.loadCreationClicked() })
-        
+
     //     this.helpPanel = root.getChild("PauseMenu"):getChild("HelpPanel");
     //     root.getChild("PauseMenu"):getChild("HelpButton"):registerEventHandler("Clicked", function() this.helpButtonClicked() });
 
@@ -92,6 +81,8 @@ class MicrobeEditorHudSystem : ScriptSystem{
     // // }
     // // this.nameLabel.setText(name); //]]
 
+
+        LOG_WRITE("TODO: lock locked organelles");
         // for(typeName,button in pairs(global_activeMicrobeEditorHudSystem.organelleButtons)){
         //     print(typeName);
         //     if(Engine.playerData():lockedMap():isLocked(typeName)){
@@ -99,156 +90,282 @@ class MicrobeEditorHudSystem : ScriptSystem{
         //     } else {
         //         button.enable();
         //     }
-        // } 
+        // }
     }
-    
-    void Release(){
-        
-    }
-    
-    void Run(){
 
+
+    private AudioSource@ _playRandomEditorAmbience()
+    {
+        AudioSource@ audio = GetEngine().GetSoundDevice().Play2DSound("Data/Sound/" +
+            MICROBE_EDITOR_AMBIENT_TRACKS[GetEngine().GetRandom().GetNumber(0, MICROBE_EDITOR_AMBIENT_TRACKS.length() - 1)] +
+            ".ogg", false, true);
+
+        if (audio is null)
+        {
+            LOG_ERROR("Failed to create ambience sound source");
+        }
+
+        return audio;
+    }
+
+
+    void handleAmbientSound()
+    {
+        //randomize ambient sounds out of all available sounds
+        // The isPlaying check will start a new track when the previous ends
+        if (@ambienceSounds is null || !ambienceSounds.Get().isPlaying())
+        {
+            @ambienceSounds = _playRandomEditorAmbience();
+            ambienceSounds.Get().play();
+        }
+    }
+
+    //for stoppiong the music when you leave the editor
+    void Suspend()
+    {
+        LOG_INFO("Suspending microbe editor background sounds");
+        if(ambienceSounds !is null)
+            ambienceSounds.Get().pause();
+    }
+
+    void Release()
+    {
+
+    }
+
+    int counter = 0;
+
+    void Run()
+    {
         int logicTime = TICKSPEED;
+        ++counter;
+
+        // Ogre::Quaternion rot(Float4(GetEngine().GetRandom().GetNumber(0.f, 1.f),
+        //         GetEngine().GetRandom().GetNumber(0.f, 1.f),
+        //         GetEngine().GetRandom().GetNumber(0.f, 1.f),
+        //         GetEngine().GetRandom().GetNumber(0.f, 1.f)).Normalize());
+
+        // We move all the hexes and the hover hexes to 0,0,0 so that
+        // the editor is free to replace them wherever
+        // TODO: it would be way better if we didn't have to do this
+        for(uint i = 0; i < hoverHex.length(); ++i){
+
+            auto node = world.GetComponent_RenderNode(hoverHex[i]);
+            node.Node.setPosition(Float3(0, 0, 0));
+
+
+
+            // LOG_WRITE("This stuff: " + rot.w + ", " + rot.x + ", " + rot.y + ", " + rot.z);
+            // Ogre::Quaternion rot(Ogre::Degree(counter), Ogre::Vector3(0, 1, 0));
+            // Ogre::Quaternion rot = Ogre::Quaternion(Ogre::Degree(-90), Ogre::Vector3::UNIT_Z) *
+            //     Ogre::Quaternion(Ogre::Degree(-45), Ogre::Vector3::UNIT_Y);
+            // Ogre::Quaternion rot = Ogre::Quaternion(
+            //     Ogre::Degree(counter), Ogre::Vector3::UNIT_X) *
+            //     Ogre::Quaternion(Ogre::Degree(counter), Ogre::Vector3::UNIT_Z) *
+            //     Ogre::Quaternion(Ogre::Degree(counter), Ogre::Vector3::UNIT_Y);
+
+
+            Ogre::Quaternion rot(0.40118, 0.791809, 0.431951, 0.0381477);
+
+            node.Node.setOrientation(rot);
+            node.Hidden = true;
+            node.Marked = true;
+        }
+
+        for(uint i = 0; i < hoverOrganelle.length(); ++i){
+            auto node = world.GetComponent_RenderNode(hoverOrganelle[i]);
+            node.Node.setPosition(Float3(0, 0, 0));
+            node.Hidden = true;
+            node.Marked = true;
+        }
+
         this.editor.update(logicTime);
-        
-        // for(i=1, 42){
-        //     auto sceneNode = getComponent(this.hoverHex[i], OgreSceneNodeComponent);
-        //     sceneNode.transform.position = Vector3(0,0,0);
-        //     sceneNode.transform.scale = Vector3(0,0,0);
-        //     sceneNode.transform.touch();
-        // }
-        // for(i=1, 6){
-        //     auto sceneNode = getComponent(this.hoverOrganelle[i], OgreSceneNodeComponent);
-        //     sceneNode.transform.position = Vector3(0,0,0);
-        //     sceneNode.transform.scale = Vector3(0,0,0);
-        //     sceneNode.transform.touch();
-        // }
 
-        // // This is totally the wrong place to have this
-        // // Handle input
-        // if(Engine.mouse.wasButtonPressed(Mouse.MB_Left)){
-        //     this.editor.performLocationAction();
-        // }
-        // if(Engine.mouse.wasButtonPressed(Mouse.MB_Right)){
-        //     this.removeClicked();
-        //     this.editor.performLocationAction();
-        // }
-        // if(keyCombo(kmp.togglemenu)){
-        //     this.menuButtonClicked();
-        // } else if(keyCombo(kmp.newmicrobe)){
-        //     // These global event handlers are defined in microbe_editor_hud.lua
-        //     this.nucleusClicked();
-        // } else if(keyCombo(kmp.redo)){
-        //     this.editor.redo();
-        // } else if(keyCombo(kmp.remove)){
-        //     this.removeClicked();
-        //     this.editor.performLocationAction();
-        // } else if(keyCombo(kmp.undo)){
-        //     this.editor.undo();
-        // } else if(keyCombo(kmp.vacuole)){
-        //     this.vacuoleClicked();
-        //     this.editor.performLocationAction();
-        // } else if(keyCombo(kmp.oxytoxyvacuole)){
-        //     if(not Engine.playerData():lockedMap():isLocked("Toxin")){
-        //         this.toxinClicked();
-        //         this.editor.performLocationAction();
-        //     }
-        // } else if(keyCombo(kmp.flagellum)){
-        //     this.flagellumClicked();
-        //     this.editor.performLocationAction();
-        // } else if(keyCombo(kmp.mitochondrion)){
-        //     this.mitochondriaClicked();  
-        //     this.editor.performLocationAction();
-        //     //} else if(Engine.keyboard.wasKeyPressed(Keyboard.KC_A) and this.editor.currentMicrobe !is null){
-        //     //    this.aminoSynthesizerClicked()
-        //     //    this.editor.performLocationAction()
-        // } else if(keyCombo(kmp.chloroplast)){
-        //     if(not Engine.playerData():lockedMap():isLocked("Chloroplast")){
-        //         this.chloroplastClicked();
-        //         this.editor.performLocationAction();
-        //     }
-        // } else if(keyCombo(kmp.togglegrid)){
-        //     if(this.editor.gridVisible){
-        //         this.editor.gridSceneNode.visible = false;
-        //         this.editor.gridVisible = false;
-        //     } else {
-        //         this.editor.gridSceneNode.visible = true;
-        //         this.editor.gridVisible = true;
-        //     }
-        // } else if(keyCombo(kmp.gotostage)){
-        //     playClicked();
-        // } else if(keyCombo(kmp.rename)){
-        //     this.updateMicrobeName();
-        // }
-    
-        // if(Engine.keyboard.wasKeyPressed(KEYCODE.KC_LEFT) or
-        //     Engine.keyboard.wasKeyPressed(KEYCODE.KC_A)){
-        
-        //     this.editor.organelleRot = (this.editor.organelleRot + 60)%360;
-        // }
-        // if(Engine.keyboard.wasKeyPressed(KEYCODE.KC_RIGHT) or
-        //     Engine.keyboard.wasKeyPressed(KEYCODE.KC_D)){
-        
-        //     this.editor.organelleRot = (this.editor.organelleRot - 60)%360;
-        // }
-	
-        // if(Engine.keyboard.isKeyDown(KEYCODE.KC_LSHIFT)){ 
-        //     properties = getComponent(CAMERA_NAME .. 3, this.gameState, OgreCameraComponent).properties;
-        //     newFovY = properties.fovY + Degree(Engine.mouse.scrollChange()/10);
-        //     if(newFovY < Degree(10)){
-        //         newFovY = Degree(10);
-        //     } else if(newFovY > Degree(120)){
-        //         newFovY = Degree(120);
-        //     }
-        //     properties.fovY = newFovY;
-        //     properties.touch();
-        // } else {
-            
-        // }
+        //since this is ran every step this is a good place to do music code
+        handleAmbientSound();
     }
-    
+
     // Nodes not used
-    void Clear(){
-    }
-    
-    void CreateAndDestroyNodes(){
+    void Clear() {}
+    void CreateAndDestroyNodes() {}
+
+
+    // Called when the editor is entered. Performs initialization again to make sure the
+    // editor works the same on each time it is entered
+    void setupHUDAfterEditorEntry()
+    {
+        // Let go of old resources
+        hoverHex.resize(0);
+        hoverOrganelle.resize(0);
+
+
+        // Prepare for a new edit
+        editor.init();
+
+        // This seems really cluttered, there must be a better way.
+        for(int i = 0; i < 200; ++i){
+
+            ObjectID hex = world.CreateEntity();
+            auto node = world.Create_RenderNode(hex);
+            // auto pos = world.Create_Position(hex, Float3(0, 0, 0), Float4::IdentityQuaternion);
+            world.Create_Model(hex, node.Node, "hex.mesh");
+            // world.Create_Model(hex, node.Node, "nucleus.mesh");
+            node.Scale = Float3(HEX_SIZE, HEX_SIZE, HEX_SIZE);
+            node.Marked = true;
+            node.Node.setPosition(Ogre::Vector3(0, 0, 0));
+            // node.Node.setOrientation(Ogre::Quaternion(Ogre::Degree(-90), Ogre::Vector3(0, 1, 0)));
+            hoverHex.insertLast(hex);
+        }
+
+        for(int i = 0; i < 6; ++i){
+            ObjectID hex = world.CreateEntity();
+            auto node = world.Create_RenderNode(hex);
+            node.Scale = Float3(HEX_SIZE, HEX_SIZE, HEX_SIZE);
+            node.Marked = true;
+            node.Node.setPosition(Ogre::Vector3(0, 0, 0));
+            hoverOrganelle.insertLast(hex);
+        }
+
+        editor.activate();
     }
 
-    private MicrobeEditor@ editor = null;
-    private MicrobeEditorWorld@ world;
-    
-    // // Scene nodes for the organelle cursors for symmetry.
-    // this.hoverHex = {};
-    // this.hoverOrganelle = {};
-        
-    // this.saveLoadPanel = null;    
+    void setActiveAction(const string &in actionName)
+    {
+        this.editor.setActiveAction(actionName);
+
+        if(actionName == "nucleus"){
+            // For now we simply create a new microbe with the nucleus button
+            this.editor.performLocationAction();
+        }
+    }
+
+    void updateMutationPoints()
+    {
+        GenericEvent@ event = GenericEvent("MutationPointsUpdated");
+        NamedVars@ vars = event.GetNamedVars();
+
+        vars.AddValue(ScriptSafeVariableBlock("mutationPoints", editor.getMutationPoints()));
+        vars.AddValue(ScriptSafeVariableBlock("maxMutationPoints", BASE_MUTATION_POINTS));
+
+        GetEngine().GetEventHandler().CallEvent(event);
+    }
+
+    MicrobeEditorWorld@ world
+    {
+        get
+        {
+            return _world;
+        }
+    }
+
+    private AudioSource@ ambienceSounds;
+    MicrobeEditor@ editor = null;
+    private MicrobeEditorWorld@ _world;
+
+    // TODO: it isn't very clean that the editor directly touches these
+    array<ObjectID> hoverHex;
+    // Scene nodes for the organelle cursors for symmetry.
+    array<ObjectID> hoverOrganelle;
+
+    // this.saveLoadPanel = null;
     // this.creationsListbox = null;
-    // this.creationFileMap = {} // Map from player creation name to filepath
+
+    // Map from player creation name to filepath
+    dictionary creationFileMap;
+
     // this.activeButton = null; // stores button, not name
-    // this.helpPanelOpen = false;
-    // this.menuOpen = false;
+    bool helpPanelOpen = false;
+    bool menuOpen = false;
 }
+
+// Callbacks from the key handlers
+// if(Engine.mouse.wasButtonPressed(Mouse.MB_Left)){
+//     this.editor.performLocationAction();
+// }
+// if(Engine.mouse.wasButtonPressed(Mouse.MB_Right)){
+//     this.removeClicked();
+//     this.editor.performLocationAction();
+// }
+// if(keyCombo(kmp.togglemenu)){
+//     this.menuButtonClicked();
+// } else if(keyCombo(kmp.newmicrobe)){
+//     // These global event handlers are defined in microbe_editor_hud.lua
+//     this.nucleusClicked();
+// } else if(keyCombo(kmp.redo)){
+//     this.editor.redo();
+// } else if(keyCombo(kmp.remove)){
+//     this.removeClicked();
+//     this.editor.performLocationAction();
+// } else if(keyCombo(kmp.undo)){
+//     this.editor.undo();
+// } else if(keyCombo(kmp.vacuole)){
+//     this.vacuoleClicked();
+//     this.editor.performLocationAction();
+// } else if(keyCombo(kmp.oxytoxyvacuole)){
+//     if(not Engine.playerData():lockedMap():isLocked("Toxin")){
+//         this.toxinClicked();
+//         this.editor.performLocationAction();
+//     }
+// } else if(keyCombo(kmp.flagellum)){
+//     this.flagellumClicked();
+//     this.editor.performLocationAction();
+// } else if(keyCombo(kmp.mitochondrion)){
+//     this.mitochondriaClicked();
+//     this.editor.performLocationAction();
+//     //} else if(Engine.keyboard.wasKeyPressed(Keyboard.KC_A) and this.editor.currentMicrobe !is null){
+//     //    this.aminoSynthesizerClicked()
+//     //    this.editor.performLocationAction()
+// } else if(keyCombo(kmp.chloroplast)){
+//     if(not Engine.playerData():lockedMap():isLocked("Chloroplast")){
+//         this.chloroplastClicked();
+//         this.editor.performLocationAction();
+//     }
+// } else if(keyCombo(kmp.togglegrid)){
+//     if(this.editor.gridVisible){
+//         this.editor.gridSceneNode.visible = false;
+//         this.editor.gridVisible = false;
+//     } else {
+//         this.editor.gridSceneNode.visible = true;
+//         this.editor.gridVisible = true;
+//     }
+// } else if(keyCombo(kmp.gotostage)){
+//     playClicked();
+// } else if(keyCombo(kmp.rename)){
+//     this.updateMicrobeName();
+// }
+
+// if(Engine.keyboard.wasKeyPressed(KEYCODE.KC_LEFT) or
+//     Engine.keyboard.wasKeyPressed(KEYCODE.KC_A)){
+
+//     this.editor.organelleRot = (this.editor.organelleRot + 60)%360;
+// }
+// if(Engine.keyboard.wasKeyPressed(KEYCODE.KC_RIGHT) or
+//     Engine.keyboard.wasKeyPressed(KEYCODE.KC_D)){
+
+//     this.editor.organelleRot = (this.editor.organelleRot - 60)%360;
+// }
+
+// if(Engine.keyboard.isKeyDown(KEYCODE.KC_LSHIFT)){
+//     properties = getComponent(CAMERA_NAME .. 3, this.gameState, OgreCameraComponent).properties;
+//     newFovY = properties.fovY + Degree(Engine.mouse.scrollChange()/10);
+//     if(newFovY < Degree(10)){
+//         newFovY = Degree(10);
+//     } else if(newFovY > Degree(120)){
+//         newFovY = Degree(120);
+//     }
+//     properties.fovY = newFovY;
+//     properties.touch();
+// } else {
+
+// }
+
+
 
 // void MicrobeEditorHudSystem.loadmicrobeSelectionChanged(){
 //     getComponent("gui_sounds", g_luaEngine.currentGameState, SoundSourceComponent
 //     ):playSound("button-hover-click")
 // }
 
-// void MicrobeEditorHudSystem.setActiveAction(actionName){
-//     this.editor.setActiveAction(actionName)
-//     if(actionName == "nucleus"){
-//         // For now we simply create a new microbe with the nucleus button
-//         this.editor.performLocationAction()
-//     }
-// end
-
-
-// void MicrobeEditorHudSystem.update(renderTime, logicTime){
-
-// void MicrobeEditorHudSystem.updateMutationPoints() {
-//     this.mpProgressBar.progressbarSetProgress(this.editor.mutationPoints/50)
-//     this.mpLabel.setText("" .. this.editor.mutationPoints)
-// }
 
 // ////////////////////////////////////////////////////////////////-
 // // Event handlers //////////////////////////////////////////////-
@@ -315,84 +432,7 @@ class MicrobeEditorHudSystem : ScriptSystem{
 //     this.helpOpen = not this.helpOpen
 // }
 
-// void MicrobeEditorHudSystem.nucleusClicked(){
-//     if(this.activeButton !is null){
-//         this.activeButton.enable()
-//     }
-//     this.setActiveAction("nucleus")
-// }
 
-// void MicrobeEditorHudSystem.flagellumClicked(){
-//     if(this.activeButton !is null){
-//         this.activeButton.enable()
-//     }
-//     this.activeButton = this.organelleButtons["flagellum"]
-//     this.activeButton.disable()
-//     this.setActiveAction("flagellum")
-// }
-
-// void MicrobeEditorHudSystem.cytoplasmClicked(){
-//     if(this.activeButton !is null){
-//         this.activeButton.enable()
-//     }
-//     this.activeButton = this.organelleButtons["cytoplasm"]
-//     this.activeButton.disable()
-//     this.setActiveAction("cytoplasm")
-// }
-
-// void MicrobeEditorHudSystem.mitochondriaClicked(){
-//     if(this.activeButton !is null){
-//         this.activeButton.enable()
-//     }
-//     this.activeButton = this.organelleButtons["mitochondrion"]
-//     this.activeButton.disable()
-//     this.setActiveAction("mitochondrion")
-// }
-
-// void MicrobeEditorHudSystem.chloroplastClicked(){
-//     if(this.activeButton !is null){
-//         this.activeButton.enable()
-//     }
-//     this.activeButton = this.organelleButtons["chloroplast"]
-//     this.activeButton.disable()
-//     this.setActiveAction("chloroplast")
-// }
-
-// void MicrobeEditorHudSystem.aminoSynthesizerClicked(){
-//     if(this.activeButton !is null){
-//         this.activeButton.enable()
-//     }
-//     this.activeButton = this.organelleButtons["aminosynthesizer"]
-//     this.activeButton.disable()
-//     this.setActiveAction("aminosynthesizer")
-// }
-
-// void MicrobeEditorHudSystem.vacuoleClicked(){
-//     if(this.activeButton !is null){
-//         this.activeButton.enable()
-//     }
-//     this.activeButton = this.organelleButtons["vacuole"]
-//     this.activeButton.disable()
-//     this.setActiveAction("vacuole")
-// }
-
-// void MicrobeEditorHudSystem.toxinClicked(){
-//     if(this.activeButton !is null){
-//         this.activeButton.enable()
-//     }
-//     this.activeButton = this.organelleButtons["Toxin"]
-//     this.activeButton.disable()
-//     this.setActiveAction("oxytoxy")
-// }
-
-
-// void MicrobeEditorHudSystem.removeClicked(){
-//     if(this.activeButton !is null){
-//         this.activeButton.enable()
-//     }
-//     this.activeButton = null
-//     this.setActiveAction("remove")
-// }
 
 // void MicrobeEditorHudSystem.rootSaveCreationClicked(){
 //     getComponent("gui_sounds", g_luaEngine.currentGameState, SoundSourceComponent
@@ -451,7 +491,7 @@ class MicrobeEditorHudSystem : ScriptSystem{
 //     getComponent("gui_sounds", g_luaEngine.currentGameState, SoundSourceComponent
 //     ):playSound("button-hover-click")
 // 	item = this.creationsListbox.listWidgetGetFirstSelectedItemText()
-//     if(this.creationFileMap[item] !is null){ 
+//     if(this.creationFileMap[item] !is null){
 //         entity = Engine.loadCreation(this.creationFileMap[item])
 // 		this.updateMicrobeName(Microbe(Entity(entity), true).microbe.speciesName)
 //         this.editor.loadMicrobe(entity)
@@ -463,9 +503,9 @@ class MicrobeEditorHudSystem : ScriptSystem{
 // // useful debug functions
 
 // void MicrobeEditorHudSystem.loadByName(name){
-//     if(string.find(name, ".microbe")){ 
-//         print("note, you don't need to add the .microbe extension") 
-//     } else 
+//     if(string.find(name, ".microbe")){
+//         print("note, you don't need to add the .microbe extension")
+//     } else
 //         name = name..".microbe"
 //     }
 //     name, _ = string.gsub(name, "%s+", "_")
@@ -487,7 +527,7 @@ class MicrobeEditorHudSystem : ScriptSystem{
 
 // void MicrobeEditorHudSystem.changeSymmetry(){
 //     this.editor.symmetry = (this.editor.symmetry+1)%4
-    
+
 //     if(this.editor.symmetry == 0){
 //         this.symmetryButton.getChild("2xSymmetry"):hide()
 //         this.symmetryButton.getChild("4xSymmetry"):hide()

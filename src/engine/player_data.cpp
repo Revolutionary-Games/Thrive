@@ -14,11 +14,7 @@ using namespace thrive;
 
 struct PlayerData::Implementation {
 
-    Implementation(
-        std::string playerName
-    ) : m_playerName(playerName)
-    {
-    }
+    Implementation(std::string playerName) : m_playerName(playerName) {}
 
     ObjectID m_activeCreature = NULL_OBJECT;
 
@@ -27,56 +23,49 @@ struct PlayerData::Implementation {
     LockedMap m_lockedMap;
 
     std::unordered_set<std::string> m_boolSet;
-
 };
 
-PlayerData::PlayerData(
-    std::string name
-) : m_impl(new Implementation(name)) {
+PlayerData::PlayerData(std::string name) : m_impl(new Implementation(name)) {}
 
-}
-
-PlayerData::~PlayerData(){}
+PlayerData::~PlayerData() {}
 
 const std::string&
-PlayerData::playerName(){
+    PlayerData::playerName()
+{
     return m_impl->m_playerName;
 }
 
 LockedMap&
-PlayerData::lockedMap(){
+    PlayerData::lockedMap()
+{
     return m_impl->m_lockedMap;
 }
 
 ObjectID
-PlayerData::activeCreature(){
+    PlayerData::activeCreature()
+{
     return m_impl->m_activeCreature;
 }
 
 void
-PlayerData::setActiveCreature(
-    ObjectID creatureId
-){
+    PlayerData::setActiveCreature(ObjectID creatureId)
+{
     LOG_INFO("Active player creature is now: " + std::to_string(creatureId));
     m_impl->m_activeCreature = creatureId;
 }
 
 bool
-PlayerData::isBoolSet(
-    std::string key
-) const {
+    PlayerData::isBoolSet(const std::string& key) const
+{
     return (m_impl->m_boolSet.find(key) != m_impl->m_boolSet.end());
 }
 
 void
-PlayerData::setBool(
-    std::string key,
-    bool value
-) {
-    if (value){
+    PlayerData::setBool(const std::string& key, bool value)
+{
+    if(value) {
         m_impl->m_boolSet.emplace(key);
-    }
-    else {
+    } else {
         m_impl->m_boolSet.erase(key);
     }
 }
@@ -87,13 +76,15 @@ PlayerData::setBool(
 // ) {
 
 //     if(!m_impl->m_activeCreatureGamestate)
-//         throw std::runtime_error("PlayerData.activeCreatureGamestate is null in 'load'");
-    
-    
+//         throw std::runtime_error("PlayerData.activeCreatureGamestate is null
+//         in 'load'");
+
+
 //     m_impl->m_playerName = storage.get<std::string>("playerName");
-//     StorageContainer lockedMapStorage = storage.get<StorageContainer>("lockedMap");
-//     //This isn't the prettiest way to do it, but we need to reobtain a reference to the players creature
-//     DEBUG_BREAK;
+//     StorageContainer lockedMapStorage =
+//     storage.get<StorageContainer>("lockedMap");
+//     //This isn't the prettiest way to do it, but we need to reobtain a
+//     reference to the players creature DEBUG_BREAK;
 //     // m_impl->m_activeCreature = Entity(m_impl->m_playerName,
 //     //     m_impl->m_activeCreatureGamestate).id();
 //     StorageList boolValues = storage.get<StorageList>("boolValues");
