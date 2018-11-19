@@ -125,7 +125,7 @@ string mutateWord(string name){
                     }
              }
              else {
-                if(GetEngine().GetRandom().GetNumber(0,20) <= 2){
+                if(GetEngine().GetRandom().GetNumber(0,20) <= 10){
                 int newConsonant = GetEngine().GetRandom().GetNumber(0,consonants.length()-1);
                 int newVowel = GetEngine().GetRandom().GetNumber(0,vowels.length()-1);
                 string newSyllable = ""+consonants.substr(newConsonant, 1)+vowels.substr(newVowel, 1)+original;
