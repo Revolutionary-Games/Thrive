@@ -74,7 +74,7 @@ string mutateWord(string name){
                 int newConsonant = GetEngine().GetRandom().GetNumber(0,consonants.length()-1);
                 newName.insert(index, consonants.substr(newConsonant, 1));
              }
-                
+
         }
         //10 percent chance new syllable
         if(GetEngine().GetRandom().GetNumber(0,20) <= 2  && changes <= changeLimit){
@@ -160,14 +160,14 @@ string generateNameSection()
     auto cofix_v = SimulationParameters::speciesNameController().getVowelCofixes();
     auto cofix_c = SimulationParameters::speciesNameController().getConsonantCofixes();
     auto suffix = SimulationParameters::speciesNameController().getSuffixes();
-    
+
     string newName = "";
     string ourPrefix="";
     string ourSuffix="";
     string ourFirstSuffix="";
     string ourCofix="";
     string ourPrefixCofix="";
-    
+
     if (GetEngine().GetRandom().GetNumber(0,100) >= 10){
         switch (GetEngine().GetRandom().GetNumber(0,2))
         {

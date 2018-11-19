@@ -1067,12 +1067,12 @@ void kill(CellStageWorld@ world, ObjectID microbeEntity)
 
         auto organelle = microbeComponent.organelles[i];
         auto keys = organelle.organelle.initialComposition.getKeys();
-        
+
         for(uint a = 0; a < keys.length(); ++a){
             float amount = float(organelle.organelle.initialComposition[keys[a]]);
             auto compoundId = SimulationParameters::compoundRegistry().getTypeId(keys[a]);
             auto key = formatInt(compoundId);
-            
+
             if(!compoundsToRelease.exists(key)){
                 compoundsToRelease[key] = amount * COMPOUND_MAKEUP_RELEASE_PERCENTAGE;
             } else {
