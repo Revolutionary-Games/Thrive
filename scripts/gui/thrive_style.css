@@ -584,13 +584,15 @@ video {
   z-index: 2;
 }
 
-#closeHelp {
+#closeHelp,
+#closeHelpEditor {
   vertical-align: middle;
   position: relative;
   margin: 0 auto;
 }
 
-#tipMsg {
+#tipMsg,
+#tipMsgEditor {
   margin-top: 40px;
   position: absolute;
   width: 100%;

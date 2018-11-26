@@ -207,6 +207,36 @@ function openHelpEditor(){
 
     const help = document.getElementById("helpTextEditor");
     help.style.display = "block";
+    
+    // Easter egg code, shows a small message saying something from the
+    // List of messages when you open up the help menu
+    const message = [
+        "Fun Fact, The Didinium  and Paramecium are a textbook example of a " +
+            "predator prey relationship" +
+            " that has been studied for decades, now are you the Didinium, or the " +
+            "Paramecium? Predator, or Prey?",
+        "Heres a tip, toxins can be used to knock other toxins away from you " +
+            "if you are quick enough.",
+        "Heres a tip, Osmoregulation costs 1 ATP per second per organelle your cell has, " +
+            " each empty hex of cytoplasm generates 4 ATP per second aswell," +
+            "which means if you are losing ATP due to osmoregulation just add a couple" +
+            " empty hexes cytoplasm or remove some organelles.",
+        "Heres a Tip, You generate exactly 14 atp per second per mitochondria.",
+        "Heres a Tip, You generate exactly 2 glucose per second per chemoplast, as long as you have at least 1 hydrogen sulfide to convert.",
+        "Thrive is meant as a simulation of an alien planet, therefore it makes sense that most creatures you find will be related to one "+
+        "or two other species due to evolution happening around you, see if you can identify them!",
+        "One of the first playable game-play prototypes was made by our awesome programmer, untrustedlife!"
+    ];
+
+
+    const tipEasterEggChance = common.randomBetween(0, 5);
+    const messageNum = common.randomBetween(0, message.length - 1);
+
+    if (tipEasterEggChance == 1) {
+        document.getElementById("tipMsgEditor").style.display = "unset";
+        document.getElementById("tipMsgEditor").textContent = message[messageNum];
+        setTimeout(hideTipMsg, 6000);
+    }
 
 }
 
@@ -248,6 +278,10 @@ function quitGameEditor(){
     common.playButtonPressSound();
     common.requireEngine();
     Leviathan.Quit();
+}
+
+function hideTipMsg() {
+    document.getElementById("tipMsgEditor").style.display = "none";
 }
 
 function onFinishButtonClicked(event){
