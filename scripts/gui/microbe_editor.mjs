@@ -74,6 +74,10 @@ export function setupMicrobeEditor(){
     document.getElementById("quitButtonEditor").addEventListener("click",
         quitGameEditor, true);
 
+    // Quit Button Clicked
+    document.getElementById("exitToMenuButtonEditor").addEventListener("click",
+        onExitToMenuClickedEditor, true);
+
     // Help Button Clicked
     document.getElementById("helpButtonEditor").addEventListener("click",
         openHelpEditor, true);
@@ -196,6 +200,14 @@ function onResumeClickedEditor(){
     common.playButtonPressSound();
     const pause = document.getElementById("pauseOverlayEditor");
     pause.style.display = "none";
+}
+
+function onExitToMenuClickedEditor(){
+    if(common.isInEngine()){
+        Thrive.exitToMenuClicked();
+    } else {
+        main_menu.doExitToMenu();
+    }
 }
 
 function openHelpEditor(){

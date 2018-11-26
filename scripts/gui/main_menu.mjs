@@ -186,6 +186,7 @@ function onMicrobeIntroEnded(error){
 //! Called once C++ has finished exiting to menu
 export function doExitToMenu() {
     document.getElementById("topLevelMenuContainer").style.display = "";
+    document.getElementById("topLevelMicrobeEditor").style.display = "none";
     document.getElementById("topLevelMicrobeStage").style.display = "none";
     document.getElementById("pauseOverlay").style.display = "none";
 
