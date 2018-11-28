@@ -19,13 +19,21 @@ double getCompoundAmount(CellStageWorld@ world, ObjectID microbeEntity, Compound
         getCompoundAmount(compoundId);
 }
 
+// Getter for generic microbe component
+//
+// Returns handle to the microbe component with a given ID
+MicrobeComponent@ getMicrobeComponent(CellStageWorld@ world, ObjectID microbeEntity)
+{
+ return cast<MicrobeComponent>(world.GetScriptComponentHolder("MicrobeComponent")
+    .Find(microbeEntity));
+}
+
 // Getter for microbe species
 //
 // returns the species component or null if it doesn't have a valid species
 SpeciesComponent@ getSpeciesComponent(CellStageWorld@ world, ObjectID microbeEntity)
 {
-    MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
-        world.GetScriptComponentHolder("MicrobeComponent").Find(microbeEntity));
+    MicrobeComponent@ microbeComponent = getMicrobeComponent(world, microbeEntity);
 
     // This needs to loop all the components and get the matching one
     auto entity = findSpeciesEntityByName(world, microbeComponent.speciesName);
@@ -36,8 +44,7 @@ SpeciesComponent@ getSpeciesComponent(CellStageWorld@ world, ObjectID microbeEnt
 MicrobeComponent@ getPlayerMicrobe(CellStageWorld@ world)
 {
     auto playerMicrobe = GetThriveGame().playerData().activeCreature();
-    MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
-        world.GetScriptComponentHolder("MicrobeComponent").Find(playerMicrobe));
+    MicrobeComponent@ microbeComponent = getMicrobeComponent(world, playerMicrobe);
     return microbeComponent;
 }
 
@@ -74,8 +81,7 @@ ProcessorComponent@ getProcessorComponent(CellStageWorld@ world, const string &i
 // The organelle at (q,r) or null if the hex is unoccupied
 PlacedOrganelle@ getOrganelleAt(CellStageWorld@ world, ObjectID microbeEntity, Int2 hex)
 {
-    MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
-        world.GetScriptComponentHolder("MicrobeComponent").Find(microbeEntity));
+    MicrobeComponent@ microbeComponent = getMicrobeComponent(world, microbeEntity);
 
     return OrganellePlacement::getOrganelleAt(microbeComponent.organelles, hex);
 }
