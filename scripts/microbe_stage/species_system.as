@@ -210,16 +210,17 @@ string generateNameSection()
     else{
         //Developer Easter Eggs and really silly long names here
         //Our own version of wigglesoworthia for example
-        switch (GetEngine().GetRandom().GetNumber(0,2))
+        switch (GetEngine().GetRandom().GetNumber(0,3))
         {
         case 0:
+        case 1:
             ourPrefixCofix = prefixCofixList[GetEngine().GetRandom().GetNumber(0,
                 prefixCofixList.length()-1)];
             ourSuffix = suffix[GetEngine().GetRandom().GetNumber(0,
                 suffix.length()-1)];
             newName=ourPrefixCofix+ourSuffix;
             break;
-        case 1:
+        case 2:
             ourPrefix = prefix_v[GetEngine().GetRandom().GetNumber(0,
                 prefix_v.length()-1)];
             ourCofix = cofix_c[GetEngine().GetRandom().GetNumber(0,
@@ -228,7 +229,7 @@ string generateNameSection()
                 suffix.length()-1)];
             newName = ourPrefix+ourCofix+ourSuffix;
             break;
-        case 2:
+        case 3:
             ourPrefix = prefix_c[GetEngine().GetRandom().GetNumber(0,
                     prefix_c.length()-1)];
             ourCofix = cofix_v[GetEngine().GetRandom().GetNumber(0,
