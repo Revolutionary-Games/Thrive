@@ -357,6 +357,18 @@ bool
     }
 
     if(engine->RegisterObjectMethod("SpeciesNameController",
+           "array<string>@ getConsonantSuffixes()",
+           asMETHOD(SpeciesNameController, getConsonantSuffixes), asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectMethod("SpeciesNameController",
+           "array<string>@ getVowelSuffixes()",
+           asMETHOD(SpeciesNameController, getVowelSuffixes), asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectMethod("SpeciesNameController",
            "array<string>@ getPrefixCofix()",
            asMETHOD(SpeciesNameController, getPrefixCofix),
            asCALL_THISCALL) < 0) {

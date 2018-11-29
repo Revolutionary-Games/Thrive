@@ -160,6 +160,8 @@ string generateNameSection()
     auto cofix_v = SimulationParameters::speciesNameController().getVowelCofixes();
     auto cofix_c = SimulationParameters::speciesNameController().getConsonantCofixes();
     auto suffix = SimulationParameters::speciesNameController().getSuffixes();
+    auto suffix_c = SimulationParameters::speciesNameController().getConsonantSuffixes();
+    auto suffix_v = SimulationParameters::speciesNameController().getVowelSuffixes();
 
     string newName = "";
     string ourPrefix="";
@@ -169,33 +171,38 @@ string generateNameSection()
     string ourPrefixCofix="";
 
     if (GetEngine().GetRandom().GetNumber(0,100) >= 10){
-        switch (GetEngine().GetRandom().GetNumber(0,2))
+        switch (GetEngine().GetRandom().GetNumber(0,3))
         {
         case 0:
+            ourPrefix = prefix_c[GetEngine().GetRandom().GetNumber(0,
+                    prefix_c.length()-1)];
+            ourSuffix = suffix_v[GetEngine().GetRandom().GetNumber(0,
+                    suffix_v.length()-1)];
+            newName = ourPrefix+ourSuffix;
+            break;
+        case 1:
+            ourPrefix = prefix_v[GetEngine().GetRandom().GetNumber(0,
+                    prefix_v.length()-1)];
+            ourSuffix = suffix_c[GetEngine().GetRandom().GetNumber(0,
+                    suffix_c.length()-1)];
+            newName = ourPrefix+ourSuffix;
+            break;
+        case 2:
             ourPrefix = prefix_v[GetEngine().GetRandom().GetNumber(0,
                 prefix_v.length()-1)];
             ourCofix = cofix_c[GetEngine().GetRandom().GetNumber(0,
                 cofix_c.length()-1)];
-            ourSuffix = suffix[GetEngine().GetRandom().GetNumber(0,
-                suffix.length()-1)];
+            ourSuffix = suffix_v[GetEngine().GetRandom().GetNumber(0,
+                suffix_v.length()-1)];
             newName = ourPrefix+ourCofix+ourSuffix;
             break;
-        case 1:
+        case 3:
             ourPrefix = prefix_c[GetEngine().GetRandom().GetNumber(0,
                     prefix_c.length()-1)];
             ourCofix = cofix_v[GetEngine().GetRandom().GetNumber(0,
                     cofix_v.length()-1)];
-            ourSuffix = suffix[GetEngine().GetRandom().GetNumber(0,
-                    suffix.length()-1)];
-            newName = ourPrefix+ourCofix+ourSuffix;
-            break;
-        case 2:
-            ourPrefix = prefix_v[GetEngine().GetRandom().GetNumber(0,
-                    prefix_v.length()-1)];
-            ourCofix = cofix_v[GetEngine().GetRandom().GetNumber(0,
-                    cofix_v.length()-1)];
-            ourSuffix = suffix[GetEngine().GetRandom().GetNumber(0,
-                    suffix.length()-1)];
+            ourSuffix = suffix_c[GetEngine().GetRandom().GetNumber(0,
+                    suffix_c.length()-1)];
             newName = ourPrefix+ourCofix+ourSuffix;
             break;
         }
@@ -210,10 +217,10 @@ string generateNameSection()
                     prefix_v.length()-1)];
             ourCofix = cofix_v[GetEngine().GetRandom().GetNumber(0,
                     cofix_v.length()-1)];
-            ourFirstSuffix = suffix[GetEngine().GetRandom().GetNumber(0,
-                    suffix.length()-1)];
-            ourSuffix = suffix[GetEngine().GetRandom().GetNumber(0,
-                    suffix.length()-1)];
+            ourFirstSuffix = suffix_c[GetEngine().GetRandom().GetNumber(0,
+                    suffix_c.length()-1)];
+            ourSuffix = suffix_c[GetEngine().GetRandom().GetNumber(0,
+                    suffix_c.length()-1)];
             newName = ourPrefix+ourFirstSuffix+ourCofix+ourSuffix;
             break;
         case 1:
@@ -221,10 +228,10 @@ string generateNameSection()
                     prefix_c.length()-1)];
             ourCofix = cofix_c[GetEngine().GetRandom().GetNumber(0,
                     cofix_c.length()-1)];
-            ourFirstSuffix = suffix[GetEngine().GetRandom().GetNumber(0,
-                    suffix.length()-1)];
-            ourSuffix = suffix[GetEngine().GetRandom().GetNumber(0,
-                    suffix.length()-1)];
+            ourFirstSuffix = suffix_v[GetEngine().GetRandom().GetNumber(0,
+                    suffix_v.length()-1)];
+            ourSuffix = suffix_v[GetEngine().GetRandom().GetNumber(0,
+                    suffix_v.length()-1)];
             newName = ourPrefix+ourFirstSuffix+ourCofix+ourSuffix;
             break;
         case 2:

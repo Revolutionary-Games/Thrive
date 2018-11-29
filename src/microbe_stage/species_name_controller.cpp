@@ -48,8 +48,20 @@ SpeciesNameController::SpeciesNameController(std::string jsonFilePath)
     for(Json::Value::ArrayIndex i = 0; i < rootElement["cofixes_c"].size(); i++)
         cofixes_c.push_back(rootElement["cofixes_c"][i].asString());
 
-    for(Json::Value::ArrayIndex i = 0; i < rootElement["suffixes"].size(); i++)
-        suffixes.push_back(rootElement["suffixes"][i].asString());
+    for(Json::Value::ArrayIndex i = 0; i < rootElement["suffixes_c"].size(); i++)
+        suffixes.push_back(rootElement["suffixes_c"][i].asString());
+
+    for(Json::Value::ArrayIndex i = 0; i < rootElement["suffixes_v"].size();
+        i++)
+        suffixes.push_back(rootElement["suffixes_v"][i].asString());
+
+	for(Json::Value::ArrayIndex i = 0; i < rootElement["suffixes_c"].size();
+        i++)
+        suffixes_c.push_back(rootElement["suffixes_c"][i].asString());
+
+    for(Json::Value::ArrayIndex i = 0; i < rootElement["suffixes_v"].size();
+        i++)
+        suffixes_v.push_back(rootElement["suffixes_v"][i].asString());
 
     // TODO: add some sort of validation of the receiving JSON file, otherwise
     // it fails silently and makes the screen go black.
@@ -94,6 +106,22 @@ CScriptArray*
     // Method taken from Leviathan::ConvertVectorToASArray
     return Leviathan::ConvertIteratorToASArray(std::begin(suffixes),
         std::end(suffixes), Leviathan::ScriptExecutor::Get()->GetASEngine());
+}
+
+CScriptArray*
+    SpeciesNameController::getVowelSuffixes()
+{
+    // Method taken from Leviathan::ConvertVectorToASArray
+    return Leviathan::ConvertIteratorToASArray(std::begin(suffixes_v),
+        std::end(suffixes_v), Leviathan::ScriptExecutor::Get()->GetASEngine());
+}
+
+CScriptArray*
+    SpeciesNameController::getConsonantSuffixes()
+{
+    // Method taken from Leviathan::ConvertVectorToASArray
+    return Leviathan::ConvertIteratorToASArray(std::begin(suffixes_c),
+        std::end(suffixes_c), Leviathan::ScriptExecutor::Get()->GetASEngine());
 }
 
 CScriptArray*

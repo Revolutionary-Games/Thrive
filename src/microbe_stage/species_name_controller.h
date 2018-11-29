@@ -15,6 +15,8 @@ public:
     std::vector<std::string> cofixes_v;
     std::vector<std::string> cofixes_c;
     std::vector<std::string> suffixes;
+    std::vector<std::string> suffixes_c;
+    std::vector<std::string> suffixes_v;
 
     CScriptArray*
         getVowelPrefixes();
@@ -30,6 +32,12 @@ public:
 
     CScriptArray*
         getSuffixes();
+
+    CScriptArray*
+        getConsonantSuffixes();
+
+    CScriptArray*
+        getVowelSuffixes();
 
     CScriptArray*
         getPrefixCofix();
