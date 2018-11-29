@@ -53,7 +53,7 @@ void
         if(cameraPos.Members._Position != targetPos) {
 
             cameraPos.Members._Position =
-                lerp(cameraPos.Members._Position, targetPos, CAMERA_FLOW);
+                cameraPos.Members._Position.Lerp(targetPos, CAMERA_FLOW);
             cameraPos.Marked = true;
         }
 
