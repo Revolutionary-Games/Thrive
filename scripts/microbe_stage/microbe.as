@@ -405,7 +405,7 @@ class MicrobeSystem : ScriptSystem{
                 cost - 0.001)
             {
                 LOG_INFO("too little atp, disabling - engulfing");
-                MicrobeOperations::toggleEngulfMode(world, microbeEntity);
+                MicrobeOperations::toggleEngulfMode(microbeComponent);
             }
 
             // Play sound

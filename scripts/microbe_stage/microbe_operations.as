@@ -106,8 +106,7 @@ bool removeOrganelle(CellStageWorld@ world, ObjectID microbeEntity, Int2 hex)
         return false;
     }
 
-    MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
-        world.GetScriptComponentHolder("MicrobeComponent").Find(microbeEntity));
+    MicrobeComponent@ microbeComponent = getMicrobeComponent(world, microbeEntity);
     auto rigidBodyComponent = world.GetComponent_Physics(microbeEntity);
     auto membraneComponent = world.GetComponent_MembraneComponent(microbeEntity);
 
@@ -260,8 +259,7 @@ void respawnPlayer(CellStageWorld@ world)
 
     if (playerSpecies.population > 10)
     {
-        MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
-            world.GetScriptComponentHolder("MicrobeComponent").Find(playerEntity));
+        MicrobeComponent@ microbeComponent = getMicrobeComponent(world, playerEntity);
         auto rigidBodyComponent = world.GetComponent_Physics(playerEntity);
         auto sceneNodeComponent = world.GetComponent_RenderNode(playerEntity);
 
@@ -310,8 +308,12 @@ void respawnPlayer(CellStageWorld@ world)
 
 void setupMicrobeHitpoints(CellStageWorld@ world, ObjectID microbeEntity, int health)
 {
-    MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
-        world.GetScriptComponentHolder("MicrobeComponent").Find(microbeEntity));
+    MicrobeComponent@ microbeComponent = getMicrobeComponent(world, microbeEntity);
+    setupMicrobeHitpoints(microbeComponent, health);
+}
+
+void setupMicrobeHitpoints(MicrobeComponent@ microbeComponent, int health)
+{
     microbeComponent.maxHitpoints = health;
     microbeComponent.hitpoints = microbeComponent.maxHitpoints;
     microbeComponent.agentEmissionCooldown=uint(0);
@@ -337,6 +339,14 @@ void setupMicrobeCompounds(CellStageWorld@ world, ObjectID microbeEntity)
     }
 }
 
+// Default version of getBandwidth that takes an ObjectID paramater
+float getBandwidth(CellStageWorld@ world, ObjectID microbeEntity, float maxAmount,
+    CompoundId compoundId)
+{
+    MicrobeComponent@ microbeComponent = getMicrobeComponent(world, microbeEntity);
+	return getBandwidth(microbeComponent, maxAmount, compoundId);
+}
+
 // Attempts to obtain an amount of bandwidth for immediate use.
 // This should be in conjunction with most operations ejecting  or absorbing compounds
 // and agents for microbe.
@@ -352,12 +362,9 @@ void setupMicrobeCompounds(CellStageWorld@ world, ObjectID microbeEntity)
 //
 // @return
 //  amount in units avaliable for use.
-float getBandwidth(CellStageWorld@ world, ObjectID microbeEntity, float maxAmount,
+float getBandwidth(MicrobeComponent@ microbeComponent, float maxAmount,
     CompoundId compoundId)
 {
-    MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
-        world.GetScriptComponentHolder("MicrobeComponent").Find(microbeEntity));
-
     auto compoundVolume = SimulationParameters::compoundRegistry().getTypeData(
         compoundId).volume;
 
@@ -387,8 +394,7 @@ float getBandwidth(CellStageWorld@ world, ObjectID microbeEntity, float maxAmoun
 float storeCompound(CellStageWorld@ world, ObjectID microbeEntity, CompoundId compoundId,
     double amount, bool bandwidthLimited)
 {
-    MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
-        world.GetScriptComponentHolder("MicrobeComponent").Find(microbeEntity));
+    MicrobeComponent@ microbeComponent = getMicrobeComponent(world, microbeEntity);
     auto storedAmount = amount;
 
     if(bandwidthLimited){
@@ -645,13 +651,17 @@ void emitAgent(CellStageWorld@ world, ObjectID microbeEntity, CompoundId compoun
     }
 }
 
-// Disables or enables engulfmode for a microbe, allowing or
-// disallowing it to absorb other microbes
+// Default version of toggleEngulfMode that takes ObjectID
 void toggleEngulfMode(CellStageWorld@ world, ObjectID microbeEntity)
 {
-    MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
-        world.GetScriptComponentHolder("MicrobeComponent").Find(microbeEntity));
+    MicrobeComponent@ microbeComponent = getMicrobeComponent(world, microbeEntity);
+	toggleEngulfMode(microbeComponent);
+}
 
+// Disables or enables engulfmode for a microbe, allowing or
+// disallowing it to absorb other microbes
+void toggleEngulfMode(MicrobeComponent@ microbeComponent)
+{
     // auto soundSourceComponent = world.GetComponent_SoundSourceComponent(microbeEntity);
     if(microbeComponent.engulfMode && !microbeComponent.isBeingEngulfed){
         microbeComponent.movementFactor = 1.0f;
@@ -686,8 +696,7 @@ void damage(CellStageWorld@ world, ObjectID microbeEntity, double amount, const 
         assert(false, "Can't deal negative damage. Use MicrobeOperations::heal instead");
     }
 
-    MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
-        world.GetScriptComponentHolder("MicrobeComponent").Find(microbeEntity));
+    MicrobeComponent@ microbeComponent = getMicrobeComponent(world, microbeEntity);
     // auto soundSourceComponent = world.GetComponent_SoundSourceComponent(microbeEntity);
 
     if(damageType == "toxin"){
@@ -1115,7 +1124,7 @@ void kill(CellStageWorld@ world, ObjectID microbeEntity)
     if (!microbeComponent.isPlayerMicrobe &&
         microbeComponent.speciesName != playerSpecies.name)
     {
-        alterSpeciesPopulation(world,microbeEntity,CREATURE_DEATH_POPULATION_LOSS);
+        alterSpeciesPopulation(world, microbeEntity, CREATURE_DEATH_POPULATION_LOSS);
     }
 
 
@@ -1139,35 +1148,41 @@ void kill(CellStageWorld@ world, ObjectID microbeEntity)
     microbeSceneNode.Marked = true;
 }
 
+// Default version of alterSpeciesPopulation that takes an ObjectID
 void alterSpeciesPopulation(CellStageWorld@ world, ObjectID microbeEntity, int popChange)
 {
-    MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
-        world.GetScriptComponentHolder("MicrobeComponent").Find(microbeEntity));
-    SpeciesComponent@ ourSpecies = getSpeciesComponent(world, microbeEntity);
+    MicrobeComponent@ microbeComponent = getMicrobeComponent(world, microbeEntity);
+	SpeciesComponent@ ourSpecies = getSpeciesComponent(world, microbeEntity);
+	alterSpeciesPopulation(world, ourSpecies, microbeComponent, popChange);
+}
 
+void alterSpeciesPopulation(CellStageWorld@ world,
+                            SpeciesComponent@ ourSpecies,
+                            MicrobeComponent@ microbeComponent,
+							int popChange)
+{   
     if (ourSpecies !is null)
     {
         cast<SpeciesSystem>(world.GetScriptSystem("SpeciesSystem")).
             updatePopulationForSpecies(microbeComponent.speciesName,popChange);
     }
-}
+} 
 
+// Default version of removeEngulfedEffect
 void removeEngulfedEffect(CellStageWorld@ world, ObjectID microbeEntity)
 {
-    MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
-        world.GetScriptComponentHolder("MicrobeComponent").Find(microbeEntity));
+    MicrobeComponent@ microbeComponent = getMicrobeComponent(world, microbeEntity);
+    MicrobeComponent@ hostileMicrobeComponent = getMicrobeComponent(world, microbeComponent.hostileEngulfer);
+	removeEngulfedEffect(microbeComponent, hostileMicrobeComponent);
+}
 
-
+void removeEngulfedEffect(MicrobeComponent@ microbeComponent, MicrobeComponent@ hostileMicrobeComponent)
+{
     // This kept getting doubled for some reason, so i just set it to default
     microbeComponent.movementFactor = 1.0f;
 
-
     microbeComponent.wasBeingEngulfed = false;
     microbeComponent.isBeingEngulfed = false;
-
-    MicrobeComponent@ hostileMicrobeComponent = cast<MicrobeComponent>(
-        world.GetScriptComponentHolder("MicrobeComponent").Find(
-            microbeComponent.hostileEngulfer));
 
     if(hostileMicrobeComponent !is null){
         hostileMicrobeComponent.isCurrentlyEngulfing = false;
@@ -1190,5 +1205,5 @@ void setMembraneType(CellStageWorld@ world, ObjectID microbeEntity, MEMBRANE_TYP
     membraneComponent.setMembraneType(type);
 }
 
-}
+}//Namespace MicrobeOperations
 
