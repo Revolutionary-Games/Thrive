@@ -44,8 +44,7 @@ SpeciesComponent@ getSpeciesComponent(CellStageWorld@ world, ObjectID microbeEnt
 MicrobeComponent@ getPlayerMicrobe(CellStageWorld@ world)
 {
     auto playerMicrobe = GetThriveGame().playerData().activeCreature();
-    MicrobeComponent@ microbeComponent = getMicrobeComponent(world, playerMicrobe);
-    return microbeComponent;
+    return getMicrobeComponent(world, playerMicrobe);
 }
 
 // Getter for microbe species
@@ -82,7 +81,6 @@ ProcessorComponent@ getProcessorComponent(CellStageWorld@ world, const string &i
 PlacedOrganelle@ getOrganelleAt(CellStageWorld@ world, ObjectID microbeEntity, Int2 hex)
 {
     MicrobeComponent@ microbeComponent = getMicrobeComponent(world, microbeEntity);
-
     return OrganellePlacement::getOrganelleAt(microbeComponent.organelles, hex);
 }
 
@@ -273,7 +271,7 @@ void respawnPlayer(CellStageWorld@ world)
             microbeComponent.organelles[i].reset();
         }
 
-        setupMicrobeHitpoints(world, playerEntity,DEFAULT_HEALTH);
+        setupMicrobeHitpoints(microbeComponent, DEFAULT_HEALTH);
         // Setup compounds
         setupMicrobeCompounds(world,playerEntity);
         // Reset position //
@@ -322,8 +320,7 @@ void setupMicrobeHitpoints(MicrobeComponent@ microbeComponent, int health)
 //grabs compounds from template (starter_mcirobes) and stores them)
 void setupMicrobeCompounds(CellStageWorld@ world, ObjectID microbeEntity)
 {
-    MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
-        world.GetScriptComponentHolder("MicrobeComponent").Find(microbeEntity));
+    MicrobeComponent@ microbeComponent = getMicrobeComponent(world, microbeEntity);
                 MicrobeTemplate@ data = cast<MicrobeTemplate@>(STARTER_MICROBES["Default"]);
 
     auto ids = getSpeciesComponent(world, microbeEntity).avgCompoundAmounts.getKeys();
@@ -351,7 +348,7 @@ float getBandwidth(CellStageWorld@ world, ObjectID microbeEntity, float maxAmoun
 // This should be in conjunction with most operations ejecting  or absorbing compounds
 // and agents for microbe.
 //
-// @param maicrobeEntity
+// @param microbeEntity
 // The entity of the microbe to get the bandwidth from.
 //
 // @param maxAmount
@@ -398,7 +395,7 @@ float storeCompound(CellStageWorld@ world, ObjectID microbeEntity, CompoundId co
     auto storedAmount = amount;
 
     if(bandwidthLimited){
-        storedAmount = getBandwidth(world, microbeEntity, amount, compoundId);
+        storedAmount = getBandwidth(microbeComponent, amount, compoundId);
     }
     //min it by capcity, so you cant go over capcity, maybe we dont need a bunch of variables
     storedAmount = min(storedAmount, microbeComponent.capacity);
@@ -413,6 +410,15 @@ float storeCompound(CellStageWorld@ world, ObjectID microbeEntity, CompoundId co
     return amount - storedAmount;
 }
 
+// Default Version of takeCompound that takes ObjectID
+double takeCompound(CellStageWorld@ world, ObjectID microbeEntity, CompoundId compoundId,
+    double maxAmount)
+{
+    MicrobeComponent@ microbeComponent = getMicrobeComponent(world, microbeEntity);
+	auto compoundBag = world.GetComponent_CompoundBagComponent(microbeEntity);
+	return takeCompound(microbeComponent, compoundBag, compoundId, maxAmount);
+}
+
 // Removes compounds from the microbe's storage organelles
 //
 // @param compoundId
@@ -423,13 +429,11 @@ float storeCompound(CellStageWorld@ world, ObjectID microbeEntity, CompoundId co
 //
 // @returns amount
 // The amount that was actually taken, between 0.0 and maxAmount.
-double takeCompound(CellStageWorld@ world, ObjectID microbeEntity, CompoundId compoundId,
+double takeCompound(MicrobeComponent@ microbeComponent, CompoundBagComponent@ compoundBag, CompoundId compoundId,
     double maxAmount)
 {
-    MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
-        world.GetScriptComponentHolder("MicrobeComponent").Find(microbeEntity));
-    auto takenAmount = world.GetComponent_CompoundBagComponent(microbeEntity).
-        takeCompound(compoundId, maxAmount);
+    
+    auto takenAmount = compoundBag.takeCompound(compoundId, maxAmount);
 
     microbeComponent.stored = microbeComponent.stored - takenAmount;
     return takenAmount;
@@ -498,17 +502,21 @@ void ejectCompound(CellStageWorld@ world, ObjectID microbeEntity, CompoundId com
        amountToEject);
 }
 
+// Default version of purgeCompounds that takes ObjectID
+void purgeCompounds(CellStageWorld@ world, ObjectID microbeEntity)
+{
+    MicrobeComponent@ microbeComponent = getMicrobeComponent(world, microbeEntity);
+	auto compoundBag = world.GetComponent_CompoundBagComponent(microbeEntity);
+	purgeCompounds(microbeComponent, compoundBag);
+}
+
 // Since we have individual storage now we dont need this
 // (its functionally useless from a gameplay perspective since
 // you no longer need to dump things because thngs can no longer
 // "take up each others space"  However, it would be weird to store
 // up compounds you dont use, so lets purge those.
-void purgeCompounds(CellStageWorld@ world, ObjectID microbeEntity)
+void purgeCompounds(MicrobeComponent@ microbeComponent, CompoundBagComponent@ compoundBag)
 {
-    MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
-        world.GetScriptComponentHolder("MicrobeComponent").Find(microbeEntity));
-    auto compoundBag = world.GetComponent_CompoundBagComponent(microbeEntity);
-
     uint64 compoundCount = SimulationParameters::compoundRegistry().getSize();
     for(uint compoundId = 0; compoundId < compoundCount; ++compoundId){
 
@@ -522,18 +530,20 @@ void purgeCompounds(CellStageWorld@ world, ObjectID microbeEntity)
             // Dont remove everything immedately, give it some time so
             // people can see it happening
             double amountToEject = 2;
-            double availableCompound = getCompoundAmount(world,microbeEntity, compoundId);
+			// Since we have a handle to the compoundBag component, skip calling the getCompoundAmount
+			// in the microbe operations namespace
+            double availableCompound = compoundBag.getCompoundAmount(compoundId);
 
             // This was also 'amount' so maybe this didn't work either?
             if(amountToEject > 0 && availableCompound-amountToEject >= 0){
-                amountToEject = takeCompound(world, microbeEntity,
+                amountToEject = takeCompound(microbeComponent, compoundBag,
                     compoundId, amountToEject);
                 //ejectCompound(world, microbeEntity, compoundId, amountToEject-1.0f);
             }
             // If we flagged the second one but we still have some left just get rid of it all
             else if (availableCompound > 0)
             {
-                amountToEject = takeCompound(world, microbeEntity,
+                amountToEject = takeCompound(microbeComponent, compoundBag,
                     compoundId, availableCompound);
                 //ejectCompound(world, microbeEntity, compoundId, amountToEject-1.0f);
             }
@@ -544,8 +554,7 @@ void purgeCompounds(CellStageWorld@ world, ObjectID microbeEntity)
 void flashMembraneColour(CellStageWorld@ world, ObjectID microbeEntity, uint duration,
     Float4 colour)
 {
-    MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
-        world.GetScriptComponentHolder("MicrobeComponent").Find(microbeEntity));
+    MicrobeComponent@ microbeComponent = getMicrobeComponent(world, microbeEntity);
 
     if(microbeComponent.flashDuration <= 0){
         microbeComponent.flashColour = colour;
@@ -556,8 +565,7 @@ void flashMembraneColour(CellStageWorld@ world, ObjectID microbeEntity, uint dur
 // Applies the default membrane colour
 void applyMembraneColour(CellStageWorld@ world, ObjectID microbeEntity)
 {
-    MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
-        world.GetScriptComponentHolder("MicrobeComponent").Find(microbeEntity));
+    MicrobeComponent@ microbeComponent = getMicrobeComponent(world, microbeEntity);
     auto speciesColour = microbeComponent.speciesColour;
     auto membraneComponent = world.GetComponent_MembraneComponent(microbeEntity);
     membraneComponent.setColour(speciesColour);
@@ -574,8 +582,7 @@ void applyMembraneColour(CellStageWorld@ world, ObjectID microbeEntity)
 void emitAgent(CellStageWorld@ world, ObjectID microbeEntity, CompoundId compoundId,
     double maxAmount, float lifeTime)
 {
-    MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
-        world.GetScriptComponentHolder("MicrobeComponent").Find(microbeEntity));
+    MicrobeComponent@ microbeComponent = getMicrobeComponent(world, microbeEntity);
 
     auto membraneComponent = world.GetComponent_MembraneComponent(microbeEntity);
     auto cellPosition = world.GetComponent_Position(microbeEntity);
