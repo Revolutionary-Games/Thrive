@@ -391,7 +391,7 @@ class Species{
                 this.colour = Float4(parent.colour.X + randomMutationColourChannel(),
                     parent.colour.Y + randomMutationColourChannel(),
                     parent.colour.Z + randomMutationColourChannel(),
-                    parent.colour.W + randomMutationOpacity());
+                    parent.colour.W + randomMutationColourChannel());
             }
 
             // Chance of new color needs to be low
@@ -409,7 +409,7 @@ class Species{
                 this.colour = Float4(parent.colour.X + randomMutationColourChannel(),
                     parent.colour.Y + randomMutationColourChannel(),
                     parent.colour.Z + randomMutationColourChannel(),
-                    parent.colour.W + randomMutationOpacity());
+                    parent.colour.W + randomMutationColourChannel());
             }
 
             this.population = int(floor(parent.population / 2.f));
@@ -780,7 +780,7 @@ class Species{
             this.colour = Float4(parent.colour.X + randomMutationColourChannel(),
                 parent.colour.Y + randomMutationColourChannel(),
                 parent.colour.Z + randomMutationColourChannel(),
-                parent.colour.W + randomMutationOpacity());
+                parent.colour.W + randomMutationColourChannel());
         }
 
         if (GetEngine().GetRandom().GetNumber(0, 100)==1)
@@ -800,7 +800,7 @@ class Species{
             this.colour = Float4(parent.colour.X + randomMutationColourChannel(),
                 parent.colour.Y + randomMutationColourChannel(),
                 parent.colour.Z + randomMutationColourChannel(),
-                parent.colour.W + randomMutationOpacity());
+                parent.colour.W + randomMutationColourChannel());
         }
 
         this.population = int(floor(parent.population / 2.f));
