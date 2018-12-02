@@ -37,6 +37,8 @@ const auto MUTATION_BACTERIA_TO_EUKARYOTE = 1;
 const auto MUTATION_CREATION_RATE = 0.1f;
 const auto MUTATION_DELETION_RATE = 0.1f;
 
+//Removal cost
+const auto ORGANELLE_REMOVE_COST = 10;
 // Spawn Radius
 const auto MICROBE_SPAWN_RADIUS = 150;
 const auto BACTERIA_SPAWN_RADIUS = 150;
