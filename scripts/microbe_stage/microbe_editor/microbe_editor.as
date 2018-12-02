@@ -694,7 +694,8 @@ class MicrobeEditor{
     {       
         auto organelleHere = OrganellePlacement::getOrganelleAt(editedMicrobe,
                 Int2(q, r));
-
+        PlacedOrganelle@ organelle = cast<PlacedOrganelle>(organelleHere);
+        
         if(organelleHere !is null){
             // Allow replacing cytoplasm (but not with other cytoplasm)
             if(!(organelleHere.organelle.name == "nucleus")) {
@@ -702,14 +703,39 @@ class MicrobeEditor{
                 // redo We need data about the organelle we removed, and the location so we can "redo" it
                  function(EditorAction@ action, MicrobeEditor@ editor){
                     LOG_INFO("Redo called");
-                    //OrganellePlacement::removeOrganelleAt(editedMicrobe,Int2(q, r));  
+                    int q = int(action.data["q"]);
+                    int r = int(action.data["r"]);
+                   OrganellePlacement::removeOrganelleAt(editor.editedMicrobe,Int2(q, r));  
                 },
                 // undo
                 function(EditorAction@ action, MicrobeEditor@ editor){
                     LOG_INFO("Undo called");
+                    PlacedOrganelle@ organelle = cast<PlacedOrganelle>(action.data["organelle"]);
+
+                    // Check if there is cytoplasm under this organelle.
+                    auto hexes = organelle.organelle.getRotatedHexes(organelle.rotation);
+                    for(uint i = 0; i < hexes.length(); ++i){
+                        int posQ = int(hexes[i].q) + organelle.q;
+                        int posR = int(hexes[i].r) + organelle.r;
+                        auto organelleHere = OrganellePlacement::getOrganelleAt(
+                            editor.editedMicrobe, Int2(posQ, posR));
+                        if(organelleHere !is null &&
+                            organelleHere.organelle.name == "cytoplasm"){
+                            LOG_INFO("replaced cytoplasm");
+                            OrganellePlacement::removeOrganelleAt(editor.editedMicrobe,
+                                Int2(posQ, posR));
+                            }
+                    }
+                    LOG_INFO("Placing organelle '" + organelle.organelle.name + "' at: " +
+                        organelle.q + ", " + organelle.r);
+                    editor.editedMicrobe.insertLast(organelle);
                 });
+                // Give the action access to some data
+                action.data["organelle"] = organelle;
+                action.data["q"] = q;
+                action.data["r"] = r;
+                
                 enqueueAction(action);
-                OrganellePlacement::removeOrganelleAt(editedMicrobe,Int2(q, r)); 
                 }
             }
     }
