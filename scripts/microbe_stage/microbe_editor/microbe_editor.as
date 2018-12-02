@@ -691,9 +691,27 @@ class MicrobeEditor{
     }
 
     void removeOrganelleAt(int q, int r)
-    {
-        OrganellePlacement::removeOrganelleAt(editedMicrobe,
-                            Int2(q, r));
+    {       
+        auto organelleHere = OrganellePlacement::getOrganelleAt(editedMicrobe,
+                Int2(q, r));
+
+        if(organelleHere !is null){
+            // Allow replacing cytoplasm (but not with other cytoplasm)
+            if(!(organelleHere.organelle.name == "nucleus")) {
+                EditorAction@ action = EditorAction(ORGANELLE_REMOVE_COST,
+                // redo We need data about the organelle we removed, and the location so we can "redo" it
+                 function(EditorAction@ action, MicrobeEditor@ editor){
+                    LOG_INFO("Redo called");
+                    //OrganellePlacement::removeOrganelleAt(editedMicrobe,Int2(q, r));  
+                },
+                // undo
+                function(EditorAction@ action, MicrobeEditor@ editor){
+                    LOG_INFO("Undo called");
+                });
+                enqueueAction(action);
+                OrganellePlacement::removeOrganelleAt(editedMicrobe,Int2(q, r)); 
+                }
+            }
     }
 
 
