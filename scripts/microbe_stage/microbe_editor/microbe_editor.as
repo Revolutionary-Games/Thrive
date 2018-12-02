@@ -692,39 +692,8 @@ class MicrobeEditor{
 
     void removeOrganelleAt(int q, int r)
     {
-        // auto organelle = MicrobeSystem.getOrganelleAt(currentMicrobeEntity, q, r);
-
-        // //Don't remove nucleus
-        // if(organelle is null || organelle.organelle.name == "nucleus")
-        //     return;
-
-        // /*for(_, hex in pairs(organelle._hexes)){
-        // auto s = encodeAxial(hex.q + organelle.position.q, hex.r + organelle.position.r)
-        // occupiedHexes[s].destroy()
-        // }*/
-        // auto storage = organelle.storage();
-        // enqueueAction(EditorAction(10,
-        //         // redo
-        //         function(EditorAction@ action, MicrobeEditor@ editor){
-        //             MicrobeSystem.removeOrganelle(this.currentMicrobeEntity, storage.get("q", 0), storage.get("r", 0));
-        //             auto sceneNodeComponent = getComponent(this.currentMicrobeEntity, OgreSceneNodeComponent);
-        //             sceneNodeComponent.transform.touch();
-        //             organelleCount = organelleCount - 1;
-        //             /*for(_, cytoplasm in pairs(organelle._hexes)){
-        //             auto s = encodeAxial(cytoplasm.q + storage.get("q", 0), cytoplasm.r + storage.get("r", 0));
-        //             occupiedHexes[s].destroy();
-        //             }*/;
-        //         },
-        //         // undo
-        //         function(EditorAction@ action, MicrobeEditor@ editor){
-        //             auto organelle = Organelle.loadOrganelle(storage);
-        //             MicrobeSystem.addOrganelle(currentMicrobeEntity, storage.get("q", 0), storage.get("r", 0), storage.get("rotation", 0), organelle);
-        //             /*for(_, hex in pairs(organelle._hexes)){
-        //             createHexComponent(hex.q + storage.get("q", 0), hex.r + storage.get("r", 0));
-        //             }*/
-        //             organelleCount = organelleCount + 1;
-        //         }
-        //     ));
+        OrganellePlacement::removeOrganelleAt(editedMicrobe,
+                            Int2(q, r));
     }
 
 
