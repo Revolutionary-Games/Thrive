@@ -401,7 +401,7 @@ void createAgentCloud(CellStageWorld@ world, CompoundId compoundId, Float3 pos,
             Ogre::Vector3(0, 1, 0)));
 
 
-    auto rigidBody = world.Create_Physics(agentEntity, world, position);
+    auto rigidBody = world.Create_Physics(agentEntity, position);
 
     // Agent
     auto agentProperties = world.Create_AgentProperties(agentEntity);
@@ -487,7 +487,7 @@ ObjectID createToxin(CellStageWorld@ world, Float3 pos)
     // Need to set the tint
     model.GraphicalObject.setCustomParameter(1, Ogre::Vector4(1, 1, 1, 1));
 
-    auto rigidBody = world.Create_Physics(toxinEntity, world, position);
+    auto rigidBody = world.Create_Physics(toxinEntity, position);
     auto body = rigidBody.CreatePhysicsBody(world.GetPhysicalWorld(),
         world.GetPhysicalWorld().CreateSphere(1), 1,
         world.GetPhysicalMaterial("agentCollision"));
@@ -519,7 +519,7 @@ ObjectID createChloroplast(CellStageWorld@ world, Float3 pos)
     // Need to set the tint
     model.GraphicalObject.setCustomParameter(1, Ogre::Vector4(1, 1, 1, 1));
 
-    auto rigidBody = world.Create_Physics(chloroplastEntity, world, position);
+    auto rigidBody = world.Create_Physics(chloroplastEntity, position);
     auto body = rigidBody.CreatePhysicsBody(world.GetPhysicalWorld(),
         world.GetPhysicalWorld().CreateSphere(1), 1,
         world.GetPhysicalMaterial("floatingOrganelle"));

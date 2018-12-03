@@ -982,7 +982,7 @@ ObjectID _createMicrobeEntity(CellStageWorld@ world, bool aiControlled,
     // requires the physics body to be recreated when any organelle is
     // added (if the body already exists at that point) so we do it
     // here after that
-    auto rigidBody = world.Create_Physics(entity, world, position);
+    auto rigidBody = world.Create_Physics(entity, position);
     rigidBody.CreatePhysicsBody(world.GetPhysicalWorld(), shape, mass,
         world.GetPhysicalMaterial("cell"));
 

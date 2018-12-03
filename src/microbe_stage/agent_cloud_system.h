@@ -40,6 +40,23 @@ public:
     /// The color of the compound cloud.
     Ogre::ColourValue color;
 
+    // Helpers for networking
+    inline auto
+        getRed() const
+    {
+        return color.r;
+    }
+    inline auto
+        getGreen() const
+    {
+        return color.g;
+    }
+    inline auto
+        getBlue() const
+    {
+        return color.b;
+    }
+
     /**
      * @brief The compound id.
      */
