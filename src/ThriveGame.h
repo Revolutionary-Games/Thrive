@@ -3,6 +3,7 @@
 #pragma once
 // ------------------------------------ //
 //! \file \note This file needs to be named like it is currently
+#include "thrive_common.h"
 
 #include "Application/ClientApplication.h"
 #include "Application/GameConfiguration.h"
@@ -20,12 +21,9 @@ class PlayerData;
 
 class PlayerMicrobeControl;
 
-// class BioProcess;
-// class Biome;
-
 //! This is the main thrive class that is created in main.cpp and then handles
 //! running the engine and the event loop
-class ThriveGame : public Leviathan::ClientApplication {
+class ThriveGame : public Leviathan::ClientApplication, public ThriveCommon {
     class Implementation;
 
 public:
@@ -49,9 +47,6 @@ public:
 
     PlayerMicrobeControl*
         getPlayerInput();
-
-    Leviathan::GameModule*
-        getMicrobeScripts();
 
     void
         setBackgroundMaterial(const std::string& material);
@@ -86,10 +81,6 @@ public:
     void
         CustomizeEnginePostLoad() override;
 
-    //! \brief This creates physics materials for a Thrive world
-    std::unique_ptr<Leviathan::PhysicsMaterialManager>
-        createPhysicsMaterials() const;
-
     void
         EnginePreShutdown() override;
 
@@ -113,11 +104,6 @@ public:
     bool
         InitLoadCustomScriptTypes(asIScriptEngine* engine) override;
 
-private:
-    //! \brief Calls initialization methods for scripts
-    bool
-        scriptSetup();
-
 protected:
     Leviathan::NetworkInterface*
         _GetApplicationPacketHandler() override;
@@ -125,7 +111,7 @@ protected:
         _ShutdownApplicationPacketHandler() override;
 
 private:
-    std::unique_ptr<ThriveNetHandler> Network;
+    std::unique_ptr<ThriveNetHandler> m_network;
 
     ObjectID m_cellCamera = 0;
 

@@ -14,7 +14,6 @@
 #include "thrive_world_factory.h"
 
 
-#include <Addons/GameModuleLoader.h>
 #include <GUI/GuiView.h>
 #include <Handlers/ObjectLoader.h>
 #include <Networking/NetworkHandler.h>
@@ -130,14 +129,6 @@ public:
     std::shared_ptr<CellStageWorld> m_cellStage;
     std::shared_ptr<MicrobeEditorWorld> m_microbeEditor;
 
-    // This contains all the microbe_stage AngelScript code
-    Leviathan::GameModule::pointer m_microbeScripts;
-
-    // This is "temporarily" merged with the microbe scripts as this needs to
-    // share some types
-    // // This contains all the microbe_editor AngelScript code
-    // Leviathan::GameModule::pointer m_MicrobeEditorScripts;
-
     //! This is the background object of the cell stage
     Ogre::MeshPtr m_microbeBackgroundMesh;
     Ogre::SubMesh* m_microbeBackgroundSubMesh;
@@ -188,15 +179,15 @@ ThriveGame* ThriveGame::StaticGame = nullptr;
 Leviathan::NetworkInterface*
     ThriveGame::_GetApplicationPacketHandler()
 {
-    if(!Network)
-        Network = std::make_unique<ThriveNetHandler>();
-    return Network.get();
+    if(!m_network)
+        m_network = std::make_unique<ThriveNetHandler>();
+    return m_network.get();
 }
 
 void
     ThriveGame::_ShutdownApplicationPacketHandler()
 {
-    Network.reset();
+    m_network.reset();
 }
 // ------------------------------------ //
 void
@@ -276,7 +267,7 @@ void
 
     // Setup compound clouds //
 
-    // This is needed for the compound clouds to work in generale
+    // This is needed for the compound clouds to work in general
     const auto compoundCount = SimulationParameters::compoundRegistry.getSize();
 
     LEVIATHAN_ASSERT(SimulationParameters::compoundRegistry.getSize() > 0,
@@ -303,14 +294,14 @@ void
     // Let the script do setup //
     // This registers all the script defined systems to run and be
     // available from the world
-    LEVIATHAN_ASSERT(m_impl->m_microbeScripts, "microbe scripts not loaded");
+    LEVIATHAN_ASSERT(getMicrobeScripts(), "microbe scripts not loaded");
 
     LOG_INFO("Calling world setup script setupScriptsForWorld");
 
     ScriptRunningSetup setup;
     setup.SetEntrypoint("setupScriptsForWorld");
 
-    auto result = m_impl->m_microbeScripts->ExecuteOnModule<void>(
+    auto result = getMicrobeScripts()->ExecuteOnModule<void>(
         setup, false, m_impl->m_cellStage.get());
 
     if(result.Result != SCRIPT_RUN_RESULT::Success) {
@@ -376,7 +367,7 @@ void
     // Spawn player //
     setup = ScriptRunningSetup("setupPlayer");
 
-    result = m_impl->m_microbeScripts->ExecuteOnModule<void>(
+    result = getMicrobeScripts()->ExecuteOnModule<void>(
         setup, false, m_impl->m_cellStage.get());
 
     if(result.Result != SCRIPT_RUN_RESULT::Success) {
@@ -407,44 +398,6 @@ void
     //(the script will disable the tutorial etc)
 }
 // ------------------------------------ //
-bool
-    ThriveGame::scriptSetup()
-{
-    LOG_INFO("Calling global setup script setupProcesses");
-
-    ScriptRunningSetup setup("setupProcesses");
-
-    auto result = m_impl->m_microbeScripts->ExecuteOnModule<void>(setup, false);
-
-    if(result.Result != SCRIPT_RUN_RESULT::Success) {
-
-        LOG_ERROR(
-            "Failed to run script setup function: " + setup.Entryfunction);
-        return false;
-    }
-
-    LOG_INFO("Finished calling the above setup script");
-
-    LOG_INFO("Calling global setup script setupOrganelles");
-
-    setup = ScriptRunningSetup("setupOrganelles");
-
-    result = m_impl->m_microbeScripts->ExecuteOnModule<void>(setup, false);
-
-    if(result.Result != SCRIPT_RUN_RESULT::Success) {
-
-        LOG_ERROR(
-            "Failed to run script setup function: " + setup.Entryfunction);
-        return false;
-    }
-
-    LOG_INFO("Finished calling the above setup script");
-
-
-    LOG_INFO("Finished calling script setup");
-    return true;
-}
-// ------------------------------------ //
 CellStageWorld*
     ThriveGame::getCellStage()
 {
@@ -462,12 +415,6 @@ PlayerMicrobeControl*
 {
     return m_impl->m_cellStageKeys.get();
 }
-
-Leviathan::GameModule*
-    ThriveGame::getMicrobeScripts()
-{
-    return m_impl->m_microbeScripts.get();
-}
 // ------------------------------------ //
 void
     ThriveGame::killPlayerCellClicked()
@@ -476,7 +423,7 @@ void
 
     ScriptRunningSetup setup = ScriptRunningSetup("killPlayerCellClicked");
 
-    auto result = m_impl->m_microbeScripts->ExecuteOnModule<void>(
+    auto result = getMicrobeScripts()->ExecuteOnModule<void>(
         setup, false, m_impl->m_cellStage.get());
 
     if(result.Result != SCRIPT_RUN_RESULT::Success) {
@@ -574,7 +521,7 @@ void
 
     ScriptRunningSetup setup("onEditorEntry");
 
-    auto result = m_impl->m_microbeScripts->ExecuteOnModule<void>(
+    auto result = getMicrobeScripts()->ExecuteOnModule<void>(
         setup, false, m_impl->m_microbeEditor.get());
 
     if(result.Result != SCRIPT_RUN_RESULT::Success) {
@@ -625,14 +572,13 @@ void
     // Let the script do setup //
     // This registers all the script defined systems to run and be
     // available from the world
-    LEVIATHAN_ASSERT(
-        m_impl->m_microbeScripts, "microbe stage scripts not loaded");
+    LEVIATHAN_ASSERT(getMicrobeScripts(), "microbe stage scripts not loaded");
 
     LOG_INFO("Calling return from editor script, onReturnFromEditor");
 
     ScriptRunningSetup setup("onReturnFromEditor");
 
-    auto result = m_impl->m_microbeScripts->ExecuteOnModule<void>(
+    auto result = getMicrobeScripts()->ExecuteOnModule<void>(
         setup, false, m_impl->m_cellStage.get());
 
     if(result.Result != SCRIPT_RUN_RESULT::Success) {
@@ -711,28 +657,12 @@ void
         return;
     }
 
-    // Load json data //
-    SimulationParameters::init();
+    if(!loadScriptsAndConfigs()) {
 
-    // Load scripts
-    LOG_INFO("ThriveGame: loading main scripts");
-
-    // TODO: should these load failures be fatal errors (process would exit
-    // immediately)
-
-    try {
-        m_impl->m_microbeScripts =
-            engine->GetGameModuleLoader()->Load("microbe_stage", "ThriveGame");
-    } catch(const Leviathan::Exception& e) {
-
-        LOG_ERROR(
-            "ThriveGame: microbe_stage module failed to load, exception:");
-        e.PrintToLog();
+        LOG_ERROR("Failed to load init data, quitting");
         MarkAsClosing();
         return;
     }
-
-    LOG_INFO("ThriveGame: script loading succeeded");
 
     if(!scriptSetup()) {
 
@@ -773,151 +703,11 @@ void
     }
 }
 // ------------------------------------ //
-//! \note This isn't actually called
-void
-    cellHitAgent(Leviathan::PhysicalWorld& physicalWorld,
-        Leviathan::PhysicsBody& first,
-        Leviathan::PhysicsBody& second)
-{
-    // GameWorld* gameWorld = physicalWorld.GetGameWorld();
-
-    // ScriptRunningSetup setup("cellHitAgent");
-
-    // auto result =
-    // ThriveGame::Get()->getMicrobeScripts()->ExecuteOnModule<void>(
-    //     setup, false, gameWorld, first.GetOwningEntity(),
-    //     second.GetOwningEntity());
-
-    // if(result.Result != SCRIPT_RUN_RESULT::Success)
-    //     LOG_ERROR("Failed to run script side cellHitAgent");
-}
-
-void
-    cellHitFloatingOrganelle(Leviathan::PhysicalWorld& physicalWorld,
-        Leviathan::PhysicsBody& first,
-        Leviathan::PhysicsBody& second)
-{
-    GameWorld* gameWorld = physicalWorld.GetGameWorld();
-
-    ScriptRunningSetup setup("cellHitFloatingOrganelle");
-
-    auto result = ThriveGame::Get()->getMicrobeScripts()->ExecuteOnModule<void>(
-        setup, false, gameWorld, first.GetOwningEntity(),
-        second.GetOwningEntity());
-
-    if(result.Result != SCRIPT_RUN_RESULT::Success)
-        LOG_ERROR("Failed to run script side cellHitFloatingOrganelle");
-}
-
-//! \todo This should return false when either cell is engulfing and apply the
-//! damaging effect
-bool
-    cellOnCellAABBHitCallback(Leviathan::PhysicalWorld& physicalWorld,
-        Leviathan::PhysicsBody& first,
-        Leviathan::PhysicsBody& second)
-{
-    GameWorld* gameWorld = physicalWorld.GetGameWorld();
-
-    ScriptRunningSetup setup("beingEngulfed");
-
-    auto returned =
-        ThriveGame::Get()->getMicrobeScripts()->ExecuteOnModule<bool>(setup,
-            false, gameWorld, first.GetOwningEntity(),
-            second.GetOwningEntity());
-
-    if(returned.Result != SCRIPT_RUN_RESULT::Success) {
-        LOG_ERROR("Failed to run script side beingEngulfed");
-        return true;
-    }
-
-    return returned.Value;
-}
-
-
-bool
-    agentCallback(Leviathan::PhysicalWorld& physicalWorld,
-        Leviathan::PhysicsBody& first,
-        Leviathan::PhysicsBody& second)
-{
-    GameWorld* gameWorld = physicalWorld.GetGameWorld();
-
-    // Now we can do more interetsing things with agents
-    ScriptRunningSetup setup("hitAgent");
-
-    auto returned =
-        ThriveGame::Get()->getMicrobeScripts()->ExecuteOnModule<bool>(setup,
-            false, gameWorld, first.GetOwningEntity(),
-            second.GetOwningEntity());
-
-    if(returned.Result != SCRIPT_RUN_RESULT::Success) {
-        LOG_ERROR("Failed to run script side hitAgent");
-        return true;
-    }
-
-    return returned.Value;
-}
-
-
-void
-    cellOnCellActualContact(Leviathan::PhysicalWorld& physicalWorld,
-        Leviathan::PhysicsBody& first,
-        Leviathan::PhysicsBody& second)
-{
-    // This will call a script that pulls cells in towards engulfers
-    GameWorld* gameWorld = physicalWorld.GetGameWorld();
-
-    ScriptRunningSetup setup("cellOnCellActualContact");
-
-    auto returned =
-        ThriveGame::Get()->getMicrobeScripts()->ExecuteOnModule<void>(setup,
-            false, gameWorld, first.GetOwningEntity(),
-            second.GetOwningEntity());
-
-    if(returned.Result != SCRIPT_RUN_RESULT::Success) {
-        LOG_ERROR("Failed to run script side beingEngulfed");
-    }
-}
-
-std::unique_ptr<Leviathan::PhysicsMaterialManager>
-    ThriveGame::createPhysicsMaterials() const
-{
-    // Setup materials
-    auto cellMaterial =
-        std::make_unique<Leviathan::PhysicalMaterial>("cell", 1);
-    auto floatingOrganelleMaterial =
-        std::make_unique<Leviathan::PhysicalMaterial>("floatingOrganelle", 2);
-    auto agentMaterial =
-        std::make_unique<Leviathan::PhysicalMaterial>("agentCollision", 3);
-
-    // Set callbacks //
-
-    // Floating organelles
-    cellMaterial->FormPairWith(*floatingOrganelleMaterial)
-        .SetCallbacks(nullptr, cellHitFloatingOrganelle);
-    // Agents
-    cellMaterial->FormPairWith(*agentMaterial)
-        .SetCallbacks(agentCallback, nullptr);
-    // Engulfing
-    cellMaterial->FormPairWith(*cellMaterial)
-        .SetCallbacks(cellOnCellAABBHitCallback, cellOnCellActualContact);
-
-    auto manager = std::make_unique<Leviathan::PhysicsMaterialManager>();
-
-    manager->LoadedMaterialAdd(std::move(cellMaterial));
-    manager->LoadedMaterialAdd(std::move(floatingOrganelleMaterial));
-    manager->LoadedMaterialAdd(std::move(agentMaterial));
-
-    return manager;
-}
-
 void
     ThriveGame::EnginePreShutdown()
 {
     // Shutdown scripting first to allow it to still do anything it wants //
-    if(m_impl->m_microbeScripts) {
-        m_impl->m_microbeScripts->ReleaseScript();
-        m_impl->m_microbeScripts.reset();
-    }
+    releaseScripts();
 
     // All resources that need Ogre or the engine to be available when
     // they are destroyed need to be released here
