@@ -1013,19 +1013,17 @@ void kill(CellStageWorld@ world, ObjectID microbeEntity)
     MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
         world.GetScriptComponentHolder("MicrobeComponent").Find(microbeEntity));
     auto rigidBodyComponent = world.GetComponent_Physics(microbeEntity);
-    // auto soundSourceComponent = world.GetComponent_SoundSourceComponent(microbeEntity);
     auto microbeSceneNode = world.GetComponent_RenderNode(microbeEntity);
     auto position = world.GetComponent_Position(microbeEntity);
 
-    // Hacky but meh.
     if(microbeComponent.dead){
         LOG_ERROR("Trying to kill a dead microbe");
         return;
     }
 
     // Releasing all the agents.
-    // To not completely deadlock in this there is a maximum of 15 of these created
-    const int maxAgentsToShoot = 15;
+    // To not completely deadlock in this there is a maximum of 5 of these created
+    const int maxAgentsToShoot = 5;
     int createdAgents = 0;
 
     auto storageTypes = microbeComponent.specialStorageOrganelles.getKeys();
@@ -1045,7 +1043,7 @@ void kill(CellStageWorld@ world, ObjectID microbeEntity)
             if(createdAgents >= maxAgentsToShoot)
                 break;
 
-            _amount = _amount - ejectedAmount;
+            _amount -= ejectedAmount;
         }
     }
 
@@ -1058,41 +1056,24 @@ void kill(CellStageWorld@ world, ObjectID microbeEntity)
         auto total = getCompoundAmount(world, microbeEntity, compoundId)*COMPOUND_RELEASE_PERCENTAGE;
         auto ejectedAmount = takeCompound(world, microbeEntity,
             compoundId, total);
-        compoundsToRelease[formatInt(compoundId)] = ejectedAmount;
-        //LOG_INFO("Releaseing resource of "+  ejectedAmount);
+        ejectCompound(world, microbeEntity,compoundId, ejectedAmount);
     }
 
     // Eject some part of the build cost of all the organelles
     for(uint i = 0; i < microbeComponent.organelles.length(); ++i){
-
         auto organelle = microbeComponent.organelles[i];
         auto keys = organelle.organelle.initialComposition.getKeys();
-
         for(uint a = 0; a < keys.length(); ++a){
             float amount = float(organelle.organelle.initialComposition[keys[a]]);
             auto compoundId = SimulationParameters::compoundRegistry().getTypeId(keys[a]);
-            auto key = formatInt(compoundId);
-
-            if(!compoundsToRelease.exists(key)){
-                compoundsToRelease[key] = amount * COMPOUND_MAKEUP_RELEASE_PERCENTAGE;
-            } else {
-                compoundsToRelease[key] = float(compoundsToRelease[key]) +
-                    (amount * COMPOUND_MAKEUP_RELEASE_PERCENTAGE);
-                    //LOG_INFO("Releaseing build cost of "+ (amount * COMPOUND_MAKEUP_RELEASE_PERCENTAGE));
-            }
+            auto ejectedAmount = amount * COMPOUND_MAKEUP_RELEASE_PERCENTAGE;
+            ejectCompound(world, microbeEntity,compoundId, ejectedAmount);
         }
-    }
-
-    auto keys = compoundsToRelease.getKeys();
-    for(uint i = 0; i < keys.length(); ++i){
-        ejectCompound(world, microbeEntity, parseInt(keys[i]),
-            float(compoundsToRelease[keys[i]]));
     }
 
     // Play the death sound
     GetEngine().GetSoundDevice().Play2DSoundEffect(
         "Data/Sound/soundeffects/microbe-death.ogg");
-
 
     //TODO: Get this working
     //auto deathAnimationEntity = world.CreateEntity();
