@@ -17,6 +17,14 @@ void setupScriptsForWorld(CellStageWorld@ world)
     setupSpawnSystem(world);
 }
 
+//! Server variant of setupScriptsForWorld
+void setupScriptsForWorld_Server(CellStageWorld@ world)
+{
+    setupSpecies(world);
+    setupSystemsForWorld_Server(world);
+    // setupSpawnSystem_Server(world);
+}
+
 // This function should be the entry point for all player initial-species generation
 // For now, it can go through the XML and instantiate all the species, but later this
 // would be all procedural.
@@ -71,6 +79,23 @@ void setupSystemsForWorld(CellStageWorld@ world)
     // Add any new systems and component types that are defined in scripts here
     world.RegisterScriptSystem("MicrobeSystem", MicrobeSystem());
     world.RegisterScriptSystem("MicrobeStageHudSystem", MicrobeStageHudSystem());
+    world.RegisterScriptSystem("SpeciesSystem", SpeciesSystem());
+    world.RegisterScriptSystem("MicrobeAISystem", MicrobeAISystem());
+}
+
+//! Server variant of setupSystemsForWorld
+void setupSystemsForWorld_Server(CellStageWorld@ world)
+{
+    // Fail if compound registry is empty //
+    assert(SimulationParameters::compoundRegistry().getSize() > 0,
+        "Compound registry is empty");
+
+    world.RegisterScriptComponentType("MicrobeComponent", @MicrobeComponentFactory);
+    world.RegisterScriptComponentType("MicrobeAIControllerComponent",
+        @MicrobeAIControllerComponentFactory);
+
+    // Add any new systems and component types that are defined in scripts here
+    world.RegisterScriptSystem("MicrobeSystem", MicrobeSystem());
     world.RegisterScriptSystem("SpeciesSystem", SpeciesSystem());
     world.RegisterScriptSystem("MicrobeAISystem", MicrobeAISystem());
 }

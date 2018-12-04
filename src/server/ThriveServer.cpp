@@ -39,14 +39,6 @@ public:
     std::shared_ptr<CellStageWorld> m_cellStage;
     // std::shared_ptr<MicrobeEditorWorld> m_microbeEditor;
 
-    // This contains all the microbe_stage AngelScript code
-    Leviathan::GameModule::pointer m_microbeScripts;
-
-    // This is "temporarily" merged with the microbe scripts as this needs to
-    // share some types
-    // // This contains all the microbe_editor AngelScript code
-    // Leviathan::GameModule::pointer m_MicrobeEditorScripts;
-
     // std::shared_ptr<PlayerMicrobeControl> m_cellStageKeys;
 };
 
@@ -64,7 +56,7 @@ ThriveServer::~ThriveServer()
 std::string
     ThriveServer::GenerateWindowTitle()
 {
-    return "Thrive " GAME_VERSIONS;
+    return "Thrive Server " GAME_VERSIONS;
 }
 
 ThriveServer*
@@ -137,14 +129,14 @@ void
     // Let the script do setup //
     // This registers all the script defined systems to run and be
     // available from the world
-    LEVIATHAN_ASSERT(m_impl->m_microbeScripts, "microbe scripts not loaded");
+    LEVIATHAN_ASSERT(getMicrobeScripts(), "microbe scripts not loaded");
 
     LOG_INFO("Calling world setup script setupScriptsForWorld_Server");
 
     ScriptRunningSetup setup;
     setup.SetEntrypoint("setupScriptsForWorld_Server");
 
-    auto result = m_impl->m_microbeScripts->ExecuteOnModule<void>(
+    auto result = getMicrobeScripts()->ExecuteOnModule<void>(
         setup, false, m_impl->m_cellStage.get());
 
     if(result.Result != SCRIPT_RUN_RESULT::Success) {
@@ -160,7 +152,7 @@ void
     // // Spawn player //
     // setup = ScriptRunningSetup("setupPlayer");
 
-    // result = m_impl->m_microbeScripts->ExecuteOnModule<void>(
+    // result = getMicrobeScripts()->ExecuteOnModule<void>(
     //     setup, false, m_impl->m_cellStage.get());
 
     // if(result.Result != SCRIPT_RUN_RESULT::Success) {
