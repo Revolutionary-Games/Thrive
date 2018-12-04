@@ -512,7 +512,7 @@ void setupOrganelles(){
 
     respiratoryProtien.mass = 0.1;
     respiratoryProtien.gene = "m";
-    respiratoryProtien.mesh = "mitochondrion.mesh";
+    respiratoryProtien.mesh = "respiratoryProteins.mesh";
     respiratoryProtien.chanceToCreate = 0;
     respiratoryProtien.prokaryoteChance = 1;
     respiratoryProtien.mpCost = 40;
@@ -539,7 +539,7 @@ void setupOrganelles(){
 
     photosyntheticProtein.mass = 0.1;
     photosyntheticProtein.gene = "h";
-    photosyntheticProtein.mesh = "chloroplast.mesh";
+    photosyntheticProtein.mesh = "respiratoryProteins.mesh";
     photosyntheticProtein.chanceToCreate = 0;
     photosyntheticProtein.prokaryoteChance = 1;
     photosyntheticProtein.mpCost = 40;
@@ -597,7 +597,7 @@ void setupOrganelles(){
 
     chemoSynthisizingProtien.mass = 0.1;
     chemoSynthisizingProtien.gene = "c";
-    chemoSynthisizingProtien.mesh = "chemoplast.mesh";
+    chemoSynthisizingProtien.mesh = "respiratoryProteins.mesh";
     chemoSynthisizingProtien.chanceToCreate = 0;
     chemoSynthisizingProtien.prokaryoteChance = 1;
     chemoSynthisizingProtien.mpCost = 40;
