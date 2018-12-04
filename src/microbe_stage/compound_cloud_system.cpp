@@ -277,7 +277,10 @@ void
 {
     m_position = newPosition;
 
-    m_sceneNode->setPosition(m_position.X, CLOUD_Y_COORDINATE, m_position.Z);
+    // This check is for non-graphical mode
+    if(m_sceneNode)
+        m_sceneNode->setPosition(
+            m_position.X, CLOUD_Y_COORDINATE, m_position.Z);
 
     // Clear data. Maybe there is a faster way
     for(size_t x = 0; x < m_density1.size(); ++x) {
@@ -317,6 +320,9 @@ void
     // field.
     createVelocityField();
 
+    // Skip if no graphics
+    if(!Ogre::Root::getSingletonPtr())
+        return;
 
     // Create a background plane on which the fluid clouds will be drawn.
     Ogre::Plane plane(Ogre::Vector3::UNIT_Y, 1.0);
@@ -362,6 +368,10 @@ void
 
         world.DestroyEntity(m_managedClouds.begin()->first);
     }
+
+    // Skip if no graphics
+    if(!Ogre::Root::getSingletonPtr())
+        return;
 
     // Destroy the shared mesh
     Ogre::MeshManager::getSingleton().remove(m_planeMesh);
@@ -831,18 +841,6 @@ void
 {
     LOG_INFO("Initializing a new compound cloud entity");
 
-    // Create where the eventually created plane object will be attached
-    cloud.m_sceneNode = scene->getRootSceneNode()->createChildSceneNode();
-
-    // set the position properly
-    cloud.m_sceneNode->setPosition(
-        cloud.m_position.X, CLOUD_Y_COORDINATE, cloud.m_position.Z);
-
-    // Because of the way Ogre generates the UVs for a plane we need to rotate
-    // the plane to match up with world coordinates
-    cloud.m_sceneNode->setOrientation(
-        Ogre::Quaternion(Ogre::Degree(90), Ogre::Vector3::UNIT_Y));
-
     // All the densities
     if(cloud.m_compoundId1 != NULL_COMPOUND) {
         cloud.m_density1.resize(CLOUD_SIMULATION_WIDTH,
@@ -868,6 +866,24 @@ void
         cloud.m_oldDens4.resize(CLOUD_SIMULATION_WIDTH,
             std::vector<float>(CLOUD_SIMULATION_HEIGHT, 0));
     }
+
+    cloud.m_initialized = true;
+
+    // Skip if no graphics
+    if(!Ogre::Root::getSingletonPtr())
+        return;
+
+    // Create where the eventually created plane object will be attached
+    cloud.m_sceneNode = scene->getRootSceneNode()->createChildSceneNode();
+
+    // set the position properly
+    cloud.m_sceneNode->setPosition(
+        cloud.m_position.X, CLOUD_Y_COORDINATE, cloud.m_position.Z);
+
+    // Because of the way Ogre generates the UVs for a plane we need to rotate
+    // the plane to match up with world coordinates
+    cloud.m_sceneNode->setOrientation(
+        Ogre::Quaternion(Ogre::Degree(90), Ogre::Vector3::UNIT_Y));
 
     // Create a modified material that uses
     cloud.m_planeMaterial = Ogre::MaterialManager::getSingleton().create(
@@ -981,8 +997,6 @@ void
     // currently initializing one so it is fine
     cloud.m_compoundCloudsPlane->setMaterialName(
         cloud.m_planeMaterial->getName());
-
-    cloud.m_initialized = true;
 }
 // ------------------------------------ //
 void
@@ -1031,6 +1045,10 @@ void
         // Move the compound clouds about the velocity field.
         advect(cloud.m_oldDens4, cloud.m_density4, renderTime);
     }
+
+    // No graphics check
+    if(!cloud.m_texture)
+        return;
 
     // Store the pixel data in a hardware buffer for quick access.
     auto pixelBuffer = cloud.m_texture->getBuffer();
