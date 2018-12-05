@@ -170,7 +170,7 @@ function openHelp(){
 
     const help = document.getElementById("helpText");
     help.style.display = "block";
-    
+
     // Easter egg code, shows a small message saying something from the
     // List of messages when you open up the help menu
     // TODO: Can we perhaps move this to json?
@@ -212,7 +212,7 @@ function openHelp(){
             " each empty hex of cytoplasm generates 4 ATP per second aswell," +
             "which means if you are losing ATP due to osmoregulation just add a couple" +
             " empty hexes cytoplasm or remove some organelles",
-        "Fun Fact, Thrive is meant as a simulation of an alien planet, therefore it makes sense that most creatures you find will be related to one "+
+        "Fun Fact, Thrive is meant as a simulation of an alien planet, therefore it makes sense that most creatures you find will be related to one " +
         "or two other species due to evolution happening around you, see if you can identify them!",
         "Fun Fact, One of the first playable game-play prototypes was made by our awesome programmer, untrustedlife!"
     ];

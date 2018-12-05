@@ -48,14 +48,15 @@ SpeciesNameController::SpeciesNameController(std::string jsonFilePath)
     for(Json::Value::ArrayIndex i = 0; i < rootElement["cofixes_c"].size(); i++)
         cofixes_c.push_back(rootElement["cofixes_c"][i].asString());
 
-    for(Json::Value::ArrayIndex i = 0; i < rootElement["suffixes_c"].size(); i++)
+    for(Json::Value::ArrayIndex i = 0; i < rootElement["suffixes_c"].size();
+        i++)
         suffixes.push_back(rootElement["suffixes_c"][i].asString());
 
     for(Json::Value::ArrayIndex i = 0; i < rootElement["suffixes_v"].size();
         i++)
         suffixes.push_back(rootElement["suffixes_v"][i].asString());
 
-	for(Json::Value::ArrayIndex i = 0; i < rootElement["suffixes_c"].size();
+    for(Json::Value::ArrayIndex i = 0; i < rootElement["suffixes_c"].size();
         i++)
         suffixes_c.push_back(rootElement["suffixes_c"][i].asString());
 
