@@ -623,6 +623,100 @@ void
         m_impl->m_cellStage->GetMicrobeCameraSystem().changeCameraOffset(
             amount);
 }
+// ------------------------------------ //
+void
+    ThriveGame::connectToServer(const std::string& url)
+{
+    LOG_INFO("Connecting to server at: " + url);
+
+    if(m_network->IsConnected()) {
+        disconnectFromServer(
+            false, "Disconnect by user, joining another server");
+    }
+
+    auto connection = m_network->GetOwner()->OpenConnectionTo(url);
+
+    if(!connection) {
+
+        Leviathan::GenericEvent::pointer event =
+            new Leviathan::GenericEvent("ConnectStatusMessage");
+
+        auto vars = event->GetVariables();
+
+        vars->Add(std::make_shared<NamedVariableList>(
+            "show", new Leviathan::BoolBlock(true)));
+        vars->Add(std::make_shared<NamedVariableList>("message",
+            new Leviathan::StringBlock("Invalid address specified")));
+
+        Engine::Get()->GetEventHandler()->CallEvent(event.detach());
+
+    } else {
+
+        if(!m_network->JoinServer(connection)) {
+
+            Leviathan::GenericEvent::pointer event =
+                new Leviathan::GenericEvent("ConnectStatusMessage");
+
+            auto vars = event->GetVariables();
+
+            vars->Add(std::make_shared<NamedVariableList>(
+                "show", new Leviathan::BoolBlock(true)));
+            vars->Add(std::make_shared<NamedVariableList>("message",
+                new Leviathan::StringBlock(
+                    "Unknown error from JoinServer (try disconnecting?)")));
+
+            Engine::Get()->GetEventHandler()->CallEvent(event.detach());
+            return;
+        }
+
+        Leviathan::GenericEvent::pointer event =
+            new Leviathan::GenericEvent("ConnectStatusMessage");
+
+        auto vars = event->GetVariables();
+
+        vars->Add(std::make_shared<NamedVariableList>(
+            "show", new Leviathan::BoolBlock(true)));
+        vars->Add(std::make_shared<NamedVariableList>(
+            "server", new Leviathan::StringBlock(url)));
+        vars->Add(std::make_shared<NamedVariableList>(
+            "message", new Leviathan::StringBlock("Opening connection")));
+
+        Engine::Get()->GetEventHandler()->CallEvent(event.detach());
+    }
+}
+
+void
+    ThriveGame::disconnectFromServer(bool userInitiated,
+        const std::string& reason)
+{
+    LOG_INFO("Initiating disconnect from server");
+    m_network->DisconnectFromServer(reason);
+
+    if(!userInitiated) {
+        Leviathan::GenericEvent::pointer event =
+            new Leviathan::GenericEvent("ConnectStatusMessage");
+
+        auto vars = event->GetVariables();
+
+        vars->Add(std::make_shared<NamedVariableList>(
+            "show", new Leviathan::BoolBlock(true)));
+        vars->Add(std::make_shared<NamedVariableList>(
+            "message", new Leviathan::StringBlock("Disconnected: " + reason)));
+
+        Engine::Get()->GetEventHandler()->CallEvent(event.detach());
+    } else {
+        Leviathan::GenericEvent::pointer event =
+            new Leviathan::GenericEvent("ConnectStatusMessage");
+
+        auto vars = event->GetVariables();
+
+        // This hides it
+        vars->Add(std::make_shared<NamedVariableList>(
+            "show", new Leviathan::BoolBlock(false)));
+
+        Engine::Get()->GetEventHandler()->CallEvent(event.detach());
+    }
+}
 
 // ------------------------------------ //
 void
