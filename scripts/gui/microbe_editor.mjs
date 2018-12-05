@@ -2,6 +2,7 @@
 
 
 import * as common from "./gui_common.mjs";
+import * as main_menu from "./main_menu.mjs";
 import * as microbe_hud from "./microbe_hud.mjs";
 
 let readyToFinishEdit = false;
@@ -234,10 +235,14 @@ function openHelpEditor(){
             "which means if you are losing ATP due to osmoregulation just add a couple" +
             " empty hexes cytoplasm or remove some organelles.",
         "Heres a Tip, You generate exactly 14 atp per second per mitochondria.",
-        "Heres a Tip, You generate exactly 2 glucose per second per chemoplast, as long as you have at least 1 hydrogen sulfide to convert.",
-        "Thrive is meant as a simulation of an alien planet, therefore it makes sense that most creatures you find will be related to one " +
-        "or two other species due to evolution happening around you, see if you can identify them!",
-        "One of the first playable game-play prototypes was made by our awesome programmer, untrustedlife!"
+        "Heres a Tip, You generate exactly 2 glucose per second per chemoplast," +
+            "as long as you have at least 1 hydrogen sulfide to convert.",
+        "Thrive is meant as a simulation of an alien planet, therefore it makes " +
+            "sense that most creatures you find will be related to one " +
+        "or two other species due to evolution happening around you, see if you can " +
+        "identify them!",
+        "One of the first playable game-play prototypes was made by our awesome programmer," +
+        " untrustedlife!"
     ];
 
 
