@@ -508,31 +508,31 @@ void setupOrganelles(){
 
     // ------------------------------------ //
     // Respiratory Protien
-    auto respiratoryProtien = OrganelleParameters("respiartoryProteins");
+    auto respiratoryProtein = OrganelleParameters("respiartoryProteins");
 
-    respiratoryProtien.mass = 0.1;
-    respiratoryProtien.gene = "m";
-    respiratoryProtien.mesh = "respiratoryProteins.mesh";
-    respiratoryProtien.chanceToCreate = 0;
-    respiratoryProtien.prokaryoteChance = 1;
-    respiratoryProtien.mpCost = 40;
-    respiratoryProtien.initialComposition = {
+    respiratoryProtein.mass = 0.1;
+    respiratoryProtein.gene = "m";
+    respiratoryProtein.mesh = "respiratoryProteins.mesh";
+    respiratoryProtein.chanceToCreate = 0;
+    respiratoryProtein.prokaryoteChance = 1;
+    respiratoryProtein.mpCost = 40;
+    respiratoryProtein.initialComposition = {
         {"phosphates", 1},
         {"ammonia", 1}
     };
-    respiratoryProtien.components = {
+    respiratoryProtein.components = {
         processorOrganelleFactory(1.0f),
         storageOrganelleFactory(25.0f)
     };
-    respiratoryProtien.processes = {
+    respiratoryProtein.processes = {
         TweakedProcess("respiration", 1),
         TweakedProcess("glycolosis", 1)
     };
-    respiratoryProtien.hexes = {
+    respiratoryProtein.hexes = {
         Int2(0, 0),
     };
 
-    _addOrganelleToTable(Organelle(respiratoryProtien));
+    _addOrganelleToTable(Organelle(respiratoryProtein));
 
     // Photosynthetic Protien
     auto photosyntheticProtein = OrganelleParameters("photosyntheticProteins");
