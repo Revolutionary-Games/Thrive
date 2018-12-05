@@ -71,6 +71,17 @@ public:
     void
         onZoomChange(float amount);
 
+
+    // ------------------------------------ //
+    //! \brief Begins connecting to server at url
+    void
+        connectToServer(const std::string& url);
+
+    //! \brief Disconnects from current server
+    void
+        disconnectFromServer(bool userInitiated,
+            const std::string& reason = "Disconnect by user");
+
     // ------------------------------------ //
     // Hooking into the engine, and overridden methods from base application
     // etc.

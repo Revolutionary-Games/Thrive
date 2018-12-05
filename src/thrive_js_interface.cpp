@@ -111,6 +111,28 @@ bool
 
         Owner->SendCustomExtensionMessage(message);
         return true;
+    } else if(name == "connectToServer") {
+
+        if(arguments.size() < 1 || !arguments[0]->IsString()) {
+            // Invalid arguments //
+            exception = "Invalid arguments passed, expected: string";
+            return true;
+        }
+
+        auto message = CefProcessMessage::Create("Custom");
+        auto args = message->GetArgumentList();
+        args->SetString(0, "connectToServer");
+        args->SetString(1, arguments[0]->GetStringValue());
+
+        Owner->SendCustomExtensionMessage(message);
+        return true;
+    } else if(name == "disconnectFromServer") {
+        auto message = CefProcessMessage::Create("Custom");
+        auto args = message->GetArgumentList();
+        args->SetString(0, "disconnectFromServer");
+
+        Owner->SendCustomExtensionMessage(message);
+        return true;
     }
 
     // This might be a bit expensive...
@@ -159,7 +181,16 @@ bool
 
         ThriveGame::Get()->exitToMenuClicked();
         return true;
+    } else if(customType == "connectToServer") {
+
+        ThriveGame::Get()->connectToServer(args->GetString(1));
+        return true;
+    } else if(customType == "disconnectFromServer") {
+
+        ThriveGame::Get()->disconnectFromServer(true);
+        return true;
     }
+
     // Not ours
     return false;
 }
