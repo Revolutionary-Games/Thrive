@@ -691,11 +691,11 @@ class MicrobeEditor{
     }
 
     void removeOrganelleAt(int q, int r)
-    {       
+    {
         auto organelleHere = OrganellePlacement::getOrganelleAt(editedMicrobe,
                 Int2(q, r));
         PlacedOrganelle@ organelle = cast<PlacedOrganelle>(organelleHere);
-        
+
         if(organelleHere !is null){
             // Allow replacing cytoplasm (but not with other cytoplasm)
             if(!(organelleHere.organelle.name == "nucleus")) {
@@ -705,7 +705,7 @@ class MicrobeEditor{
                     LOG_INFO("Redo called");
                     int q = int(action.data["q"]);
                     int r = int(action.data["r"]);
-                   OrganellePlacement::removeOrganelleAt(editor.editedMicrobe,Int2(q, r));  
+                   OrganellePlacement::removeOrganelleAt(editor.editedMicrobe,Int2(q, r));
                 },
                 // undo
                 function(EditorAction@ action, MicrobeEditor@ editor){
@@ -734,7 +734,7 @@ class MicrobeEditor{
                 action.data["organelle"] = organelle;
                 action.data["q"] = q;
                 action.data["r"] = r;
-                
+
                 enqueueAction(action);
                 }
             }
