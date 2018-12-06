@@ -6,6 +6,7 @@ import * as main_menu from "./main_menu.mjs";
 import * as microbe_hud from "./microbe_hud.mjs";
 
 let readyToFinishEdit = false;
+let symmetry = 0;
 
 //! These are all the organelle selection buttons
 const organelleSelectionElements = [
@@ -87,8 +88,13 @@ export function setupMicrobeEditor(){
     document.getElementById("closeHelpEditor").addEventListener("click",
         closeHelpEditor, true);
 
+    // Finish button clicked
     document.getElementById("microbeEditorFinishButton").addEventListener("click",
         onFinishButtonClicked, true);
+
+    // Symmetry Button Clicked
+    document.getElementById("SymmetryButton").addEventListener("click",
+        onSymmetryClicked, true);
 
     // All of the organelle buttons
     for(const element of organelleSelectionElements){
@@ -299,6 +305,28 @@ function quitGameEditor(){
 
 function hideTipMsg() {
     document.getElementById("tipMsgEditor").style.display = "none";
+}
+
+function onSymmetryClicked(event){
+    common.playButtonPressSound();
+    if (symmetry == 3) {
+        document.getElementById("SymmetryIcon").style.backgroundImage = "url()";
+        symmetry = 0;
+    } else if (symmetry == 0) {
+        document.getElementById("SymmetryIcon").style.backgroundImage = "url(../../Textures" +
+        "/gui/bevel/2xSymmetry.png)";
+        symmetry = 1;
+    } else if (symmetry == 1) {
+        document.getElementById("SymmetryIcon").style.backgroundImage = "url(../../Textures" +
+        "/gui/bevel/4xSymmetry.png)";
+        symmetry = 2;
+    } else if (symmetry == 2) {
+        document.getElementById("SymmetryIcon").style.backgroundImage = "url(../../Textures" +
+        "/gui/bevel/6xSymmetry.png)";
+        symmetry = 3;
+    }
+
+    event.stopPropagation();
 }
 
 function onFinishButtonClicked(event){
