@@ -326,6 +326,9 @@ function onSymmetryClicked(event){
         symmetry = 3;
     }
 
+    // I should make teh editor and the javascript use the same exact variable
+    Leviathan.CallGenericEvent("SymmetryClicked", {symmetry: symmetry});
+
     event.stopPropagation();
 }
 
