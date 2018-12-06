@@ -273,101 +273,131 @@ class MicrobeEditor{
         int q;
         int r;
         getMouseHex(q, r);
+        switch (symmetry)
+            {
+            case 0: {
+                if (isValidPlacement(organelleType, q, r, organelleRot)){
+                    auto organelle = PlacedOrganelle(getOrganelleDefinition(organelleType),
+                        q, r, organelleRot);
 
-        if (symmetry == 0){
+                    if (organelle.organelle.mpCost > mutationPoints){
+                        return;
+                    }
 
-            if (isValidPlacement(organelleType, q, r, organelleRot)){
-
-                auto organelle = PlacedOrganelle(getOrganelleDefinition(organelleType),
-                    q, r, organelleRot);
-
-                if (organelle.organelle.mpCost > mutationPoints){
-                    return;
+                    _addOrganelle(organelle);
                 }
-
-                _addOrganelle(organelle);
             }
-        }
-        // else if (symmetry == 1){
-        //     //Makes sure that the organelle doesn't overlap on the existing ones.
-        //     auto organelle = isValidPlacement(organelleType, q, r, organelleRot);
-        //     if (q != -1 * q || r != r + q){
-        //         //If two organelles aren't overlapping
+            break;
+            case 1: {
+                if (isValidPlacement(organelleType, q, r, organelleRot)){
+                    auto organelle = PlacedOrganelle(getOrganelleDefinition(organelleType),
+                        q, r, organelleRot);
 
-        //         auto organelle2 = isValidPlacement(organelleType, -1 * q, r + q,
-        //             360 + (-1 * organelleRot));
+                    if (organelle.organelle.mpCost > mutationPoints){
+                        return;
+                    }
+            //     auto organelle = isValidPlacement(organelleType, q, r, organelleRot);
+            //     if (q != -1 * q || r != r + q){
+            //         //If two organelles aren't overlapping
 
-        //         //If the organelles were successfully created and have enough MP...
-        //         if (organelle !is null && organelle2 !is null &&
-        //             organelle.organelle.mpCost * 2 <= mutationPoints)
-        //         {
-        //             //Add the organelles to the microbe.
-        //             _addOrganelle(organelle);
-        //             _addOrganelle(organelle2);
-        //         }
-        //     }
-        //     else{
-        //         if (organelle !is null && organelle.organelle.mpCost <= mutationPoints){
-        //             //Add a organelle to the microbe.
-        //             _addOrganelle(organelle);
-        //         }
-        //     }
-        // }
-        // else if (symmetry == 2){
-        //     auto organelle = isValidPlacement(organelleType, q, r, organelleRot);
-        //     if (q != -1 * q || r != r + q){ //If two organelles aren't overlapping, none are
-        //         auto organelle2 = isValidPlacement(organelleType, -1*q, r+q,
-        //             360+(-1*organelleRot));
-        //         auto organelle3 = isValidPlacement(organelleType, -1*q, -1*r,
-        //             (organelleRot+180) % 360);
-        //         auto organelle4 = isValidPlacement(organelleType, q, -1*(r+q),
-        //             (540+(-1*organelleRot)) % 360);
+            //         auto organelle2 = isValidPlacement(organelleType, -1 * q, r + q,
+            //             360 + (-1 * organelleRot));
 
-        //         if (organelle !is null && organelle2 !is null && organelle3 !is null &&
-        //             organelle4 !is null && organelle.organelle.mpCost * 4 <= mutationPoints)
-        //         {
-        //             _addOrganelle(organelle);
-        //             _addOrganelle(organelle2);
-        //             _addOrganelle(organelle3);
-        //             _addOrganelle(organelle4);
-        //         }
-        //     } else{
-        //         if (organelle !is null && organelle.organelle.mpCost <= mutationPoints){
-        //             _addOrganelle(organelle);
-        //         }
-        //     }
-        // }
-        // else if (symmetry == 3){
-        //     auto organelle = isValidPlacement(organelleType, q, r, organelleRot);
-        //     if (q != -1 * r || r != r + q){ //If two organelles aren't overlapping, none are
-        //         auto organelle2 = isValidPlacement(organelleType, -1*r, r+q,
-        //             (organelleRot+60) % 360);
-        //         auto organelle3 = isValidPlacement(organelleType, -1*(r+q), q,
-        //             (organelleRot+120) % 360);
-        //         auto organelle4 = isValidPlacement(organelleType, -1*q, -1*r,
-        //             (organelleRot+180) % 360);
-        //         auto organelle5 = isValidPlacement(organelleType, r, -1*(r+q),
-        //             (organelleRot+240) % 360);
-        //         auto organelle6 = isValidPlacement(organelleType, r+q, -1*q,
-        //             (organelleRot+300) % 360);
+            //         //If the organelles were successfully created and have enough MP...
+            //         if (organelle !is null && organelle2 !is null &&
+            //             organelle.organelle.mpCost * 2 <= mutationPoints)
+            //         {
+            //             //Add the organelles to the microbe.
+            //             _addOrganelle(organelle);
+            //             _addOrganelle(organelle2);
+            //         }
+            //     }
+            //     else{
+            //         if (organelle !is null && organelle.organelle.mpCost <= mutationPoints){
+            //             //Add a organelle to the microbe.
+            //             _addOrganelle(organelle);
+            //         }
+            //     }
 
-        //         if (organelle !is null && organelle2 !is null && organelle3 !is null &&
-        //             organelle4 !is null && organelle5 !is null && organelle6 !is null &&
-        //             organelle.organelle.mpCost * 6 <= mutationPoints)
-        //         {
-        //             _addOrganelle(organelle);
-        //             _addOrganelle(organelle2);
-        //             _addOrganelle(organelle3);
-        //             _addOrganelle(organelle4);
-        //             _addOrganelle(organelle5);
-        //             _addOrganelle(organelle6);
-        //         }
-        //     } else{
-        //         if (organelle !is null && organelle.organelle.mpCost <= mutationPoints){
-        //             _addOrganelle(organelle);
-        //         }
-        //     }
-        // }
+                    _addOrganelle(organelle);
+                }
+            }
+            break;
+            case 2: {
+                if (isValidPlacement(organelleType, q, r, organelleRot)){
+                    auto organelle = PlacedOrganelle(getOrganelleDefinition(organelleType),
+                        q, r, organelleRot);
+
+                    if (organelle.organelle.mpCost > mutationPoints){
+                        return;
+                    }
+            //     auto organelle = isValidPlacement(organelleType, q, r, organelleRot);
+            //     if (q != -1 * q || r != r + q){ //If two organelles aren't overlapping, none are
+            //         auto organelle2 = isValidPlacement(organelleType, -1*q, r+q,
+            //             360+(-1*organelleRot));
+            //         auto organelle3 = isValidPlacement(organelleType, -1*q, -1*r,
+            //             (organelleRot+180) % 360);
+            //         auto organelle4 = isValidPlacement(organelleType, q, -1*(r+q),
+            //             (540+(-1*organelleRot)) % 360);
+            //         if (organelle !is null && organelle2 !is null && organelle3 !is null &&
+            //             organelle4 !is null && organelle.organelle.mpCost * 4 <= mutationPoints)
+            //         {
+            //             _addOrganelle(organelle);
+            //             _addOrganelle(organelle2);
+            //             _addOrganelle(organelle3);
+            //             _addOrganelle(organelle4);
+            //         }
+            //     } else{
+            //         if (organelle !is null && organelle.organelle.mpCost <= mutationPoints){
+            //             _addOrganelle(organelle);
+            //         }
+            //     }
+                    _addOrganelle(organelle);
+                }
+            }
+            break;
+            case 3: {
+                if (isValidPlacement(organelleType, q, r, organelleRot)){
+                    auto organelle = PlacedOrganelle(getOrganelleDefinition(organelleType),
+                        q, r, organelleRot);
+
+                    if (organelle.organelle.mpCost > mutationPoints){
+                        return;
+                    }
+            //     auto organelle = isValidPlacement(organelleType, q, r, organelleRot);
+            //     if (q != -1 * r || r != r + q){ //If two organelles aren't overlapping, none are
+            //         auto organelle2 = isValidPlacement(organelleType, -1*r, r+q,
+            //             (organelleRot+60) % 360);
+            //         auto organelle3 = isValidPlacement(organelleType, -1*(r+q), q,
+            //             (organelleRot+120) % 360);
+            //         auto organelle4 = isValidPlacement(organelleType, -1*q, -1*r,
+            //             (organelleRot+180) % 360);
+            //         auto organelle5 = isValidPlacement(organelleType, r, -1*(r+q),
+            //             (organelleRot+240) % 360);
+            //         auto organelle6 = isValidPlacement(organelleType, r+q, -1*q,
+            //             (organelleRot+300) % 360);
+
+            //         if (organelle !is null && organelle2 !is null && organelle3 !is null &&
+            //             organelle4 !is null && organelle5 !is null && organelle6 !is null &&
+            //             organelle.organelle.mpCost * 6 <= mutationPoints)
+            //         {
+            //             _addOrganelle(organelle);
+            //             _addOrganelle(organelle2);
+            //             _addOrganelle(organelle3);
+            //             _addOrganelle(organelle4);
+            //             _addOrganelle(organelle5);
+            //             _addOrganelle(organelle6);
+            //         }
+            //     } else{
+            //         if (organelle !is null && organelle.organelle.mpCost <= mutationPoints){
+            //             _addOrganelle(organelle);
+            //         }
+            //     }
+                    _addOrganelle(organelle);
+                }
+            }
+            break;
+            }
     }
 
     // This can only work when creating a new cell so put this inside the new method once done
