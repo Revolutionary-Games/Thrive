@@ -297,14 +297,16 @@ class MicrobeEditor{
                     }
                     _addOrganelle(organelle);
                  }
-                if (isValidPlacement(organelleType,-1*q, r+q, 360+(-1*organelleRot))){
-                    auto organelle2 = PlacedOrganelle(getOrganelleDefinition(organelleType),
-                        -1*q, r+q, 360+(-1*organelleRot));
-                    if (organelle2.organelle.mpCost > mutationPoints){
-                        return;
+                if ((q != -1 * q || r != r + q)){
+                    if (isValidPlacement(organelleType,-1*q, r+q, 360+(-1*organelleRot))){
+                        auto organelle2 = PlacedOrganelle(getOrganelleDefinition(organelleType),
+                            -1*q, r+q, 360+(-1*organelleRot));
+                        if (organelle2.organelle.mpCost > mutationPoints){
+                            return;
+                        }
+                        _addOrganelle(organelle2);
                     }
-                    _addOrganelle(organelle2);
-                 }
+                }
             }
             break;
             case 2: {
@@ -317,6 +319,7 @@ class MicrobeEditor{
                     }
                     _addOrganelle(organelle);
                 }
+                if ((q != -1 * q || r != r + q)){
                 if (isValidPlacement(organelleType,-1*q, r+q, 360+(-1*organelleRot))){
                     auto organelle2 = PlacedOrganelle(getOrganelleDefinition(organelleType),
                         -1*q, r+q, 360+(-1*organelleRot));
@@ -342,6 +345,7 @@ class MicrobeEditor{
                     }
                     _addOrganelle(organelle4);
                  }
+                 }
             }
             break;
             case 3: {
@@ -354,6 +358,7 @@ class MicrobeEditor{
                     }
                     _addOrganelle(organelle);
                 }
+                if ((q != -1 * q || r != r + q)){
                 if (isValidPlacement(organelleType, -1*r, r+q,(organelleRot+60) % 360)){
                     auto organelle2 = PlacedOrganelle(getOrganelleDefinition(organelleType),
                         -1*r, r+q,(organelleRot+60) % 360);
@@ -393,6 +398,7 @@ class MicrobeEditor{
                         return;
                     }
                     _addOrganelle(organelle6);
+                 }
                  }
             }
             break;
