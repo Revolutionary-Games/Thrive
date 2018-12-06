@@ -599,9 +599,10 @@ void emitAgent(CellStageWorld@ world, ObjectID microbeEntity, CompoundId compoun
         // LOG_WARNING("Cell tries to shoot without agent vacuole");
         return;
     }
-
-    if(MicrobeOperations::getCompoundAmount(world, microbeEntity, compoundId) >
-        MINIMUM_AGENT_EMISSION_AMOUNT){
+	
+    auto compoundBag = world.GetComponent_CompoundBagComponent(microbeEntity);
+    if(compoundBag.getCompoundAmount(compoundId) > MINIMUM_AGENT_EMISSION_AMOUNT)
+	    {
         // The front of the microbe
         Float3 exit = Hex::axialToCartesian(0, 1);
         auto membraneCoords = membraneComponent.GetExternalOrganelle(exit.X, exit.Z);
@@ -640,7 +641,7 @@ void emitAgent(CellStageWorld@ world, ObjectID microbeEntity, CompoundId compoun
         auto vec = ( microbeComponent.facingTargetPoint - cellPosition._Position);
         auto direction = vec.Normalize();
 
-        auto amountToEject = takeCompound(world, microbeEntity,compoundId, maxAmount/10.0);
+        auto amountToEject = takeCompound(microbeComponent, compoundBag, compoundId, maxAmount/10.0);
 
         if (amountToEject >= MINIMUM_AGENT_EMISSION_AMOUNT)
         {
@@ -1032,8 +1033,7 @@ void _applyMicrobePhysicsBodySettings(CellStageWorld@ world, Physics@ rigidBody)
 // Kills the microbe, releasing stored compounds into the enviroment
 void kill(CellStageWorld@ world, ObjectID microbeEntity)
 {
-    MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
-        world.GetScriptComponentHolder("MicrobeComponent").Find(microbeEntity));
+    MicrobeComponent@ microbeComponent = getMicrobeComponent(world, microbeEntity);
     auto rigidBodyComponent = world.GetComponent_Physics(microbeEntity);
     // auto soundSourceComponent = world.GetComponent_SoundSourceComponent(microbeEntity);
     auto microbeSceneNode = world.GetComponent_RenderNode(microbeEntity);
