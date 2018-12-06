@@ -40,6 +40,7 @@ class MicrobeEditor{
         // Register for organelle changing events
         @eventListener = EventListener(null, OnGenericEventCallback(this.onGeneric));
         eventListener.RegisterForEvent("MicrobeEditorOrganelleSelected");
+        eventListener.RegisterForEvent("SymmetryClicked");
         eventListener.RegisterForEvent("MicrobeEditorClicked");
         eventListener.RegisterForEvent("MicrobeEditorExited");
 
@@ -273,8 +274,7 @@ class MicrobeEditor{
         int q;
         int r;
         getMouseHex(q, r);
-        switch (symmetry)
-            {
+        switch (symmetry){
             case 0: {
                 if (isValidPlacement(organelleType, q, r, organelleRot)){
                     auto organelle = PlacedOrganelle(getOrganelleDefinition(organelleType),
@@ -292,35 +292,19 @@ class MicrobeEditor{
                 if (isValidPlacement(organelleType, q, r, organelleRot)){
                     auto organelle = PlacedOrganelle(getOrganelleDefinition(organelleType),
                         q, r, organelleRot);
-
                     if (organelle.organelle.mpCost > mutationPoints){
                         return;
                     }
-            //     auto organelle = isValidPlacement(organelleType, q, r, organelleRot);
-            //     if (q != -1 * q || r != r + q){
-            //         //If two organelles aren't overlapping
-
-            //         auto organelle2 = isValidPlacement(organelleType, -1 * q, r + q,
-            //             360 + (-1 * organelleRot));
-
-            //         //If the organelles were successfully created and have enough MP...
-            //         if (organelle !is null && organelle2 !is null &&
-            //             organelle.organelle.mpCost * 2 <= mutationPoints)
-            //         {
-            //             //Add the organelles to the microbe.
-            //             _addOrganelle(organelle);
-            //             _addOrganelle(organelle2);
-            //         }
-            //     }
-            //     else{
-            //         if (organelle !is null && organelle.organelle.mpCost <= mutationPoints){
-            //             //Add a organelle to the microbe.
-            //             _addOrganelle(organelle);
-            //         }
-            //     }
-
                     _addOrganelle(organelle);
-                }
+                 }
+                if (isValidPlacement(organelleType,-1*q, r+q, 360+(-1*organelleRot))){
+                    auto organelle2 = PlacedOrganelle(getOrganelleDefinition(organelleType),
+                        -1*q, r+q, 360+(-1*organelleRot));
+                    if (organelle2.organelle.mpCost > mutationPoints){
+                        return;
+                    }
+                    _addOrganelle(organelle2);
+                 }
             }
             break;
             case 2: {
@@ -331,29 +315,33 @@ class MicrobeEditor{
                     if (organelle.organelle.mpCost > mutationPoints){
                         return;
                     }
-            //     auto organelle = isValidPlacement(organelleType, q, r, organelleRot);
-            //     if (q != -1 * q || r != r + q){ //If two organelles aren't overlapping, none are
-            //         auto organelle2 = isValidPlacement(organelleType, -1*q, r+q,
-            //             360+(-1*organelleRot));
-            //         auto organelle3 = isValidPlacement(organelleType, -1*q, -1*r,
-            //             (organelleRot+180) % 360);
-            //         auto organelle4 = isValidPlacement(organelleType, q, -1*(r+q),
-            //             (540+(-1*organelleRot)) % 360);
-            //         if (organelle !is null && organelle2 !is null && organelle3 !is null &&
-            //             organelle4 !is null && organelle.organelle.mpCost * 4 <= mutationPoints)
-            //         {
-            //             _addOrganelle(organelle);
-            //             _addOrganelle(organelle2);
-            //             _addOrganelle(organelle3);
-            //             _addOrganelle(organelle4);
-            //         }
-            //     } else{
-            //         if (organelle !is null && organelle.organelle.mpCost <= mutationPoints){
-            //             _addOrganelle(organelle);
-            //         }
-            //     }
                     _addOrganelle(organelle);
                 }
+                if (isValidPlacement(organelleType,-1*q, r+q, 360+(-1*organelleRot))){
+                    auto organelle2 = PlacedOrganelle(getOrganelleDefinition(organelleType),
+                        -1*q, r+q, 360+(-1*organelleRot));
+                    if (organelle2.organelle.mpCost > mutationPoints){
+                        return;
+                    }
+                    _addOrganelle(organelle2);
+                 }
+                if (isValidPlacement(organelleType, -1*q, -1*r,(organelleRot+180) % 360)){
+                    auto organelle3 = PlacedOrganelle(getOrganelleDefinition(organelleType),
+                        -1*q, -1*r,(organelleRot+180) % 360);
+                    if (organelle3.organelle.mpCost > mutationPoints){
+                        return;
+                    }
+                    _addOrganelle(organelle3);
+                 }
+                if (isValidPlacement(organelleType, q, -1*(r+q),
+                    (540+(-1*organelleRot)) % 360)){
+                    auto organelle4 = PlacedOrganelle(getOrganelleDefinition(organelleType),
+                        q, -1*(r+q),(540+(-1*organelleRot)) % 360);
+                    if (organelle4.organelle.mpCost > mutationPoints){
+                        return;
+                    }
+                    _addOrganelle(organelle4);
+                 }
             }
             break;
             case 3: {
@@ -364,47 +352,58 @@ class MicrobeEditor{
                     if (organelle.organelle.mpCost > mutationPoints){
                         return;
                     }
-            //     auto organelle = isValidPlacement(organelleType, q, r, organelleRot);
-            //     if (q != -1 * r || r != r + q){ //If two organelles aren't overlapping, none are
-            //         auto organelle2 = isValidPlacement(organelleType, -1*r, r+q,
-            //             (organelleRot+60) % 360);
-            //         auto organelle3 = isValidPlacement(organelleType, -1*(r+q), q,
-            //             (organelleRot+120) % 360);
-            //         auto organelle4 = isValidPlacement(organelleType, -1*q, -1*r,
-            //             (organelleRot+180) % 360);
-            //         auto organelle5 = isValidPlacement(organelleType, r, -1*(r+q),
-            //             (organelleRot+240) % 360);
-            //         auto organelle6 = isValidPlacement(organelleType, r+q, -1*q,
-            //             (organelleRot+300) % 360);
-
-            //         if (organelle !is null && organelle2 !is null && organelle3 !is null &&
-            //             organelle4 !is null && organelle5 !is null && organelle6 !is null &&
-            //             organelle.organelle.mpCost * 6 <= mutationPoints)
-            //         {
-            //             _addOrganelle(organelle);
-            //             _addOrganelle(organelle2);
-            //             _addOrganelle(organelle3);
-            //             _addOrganelle(organelle4);
-            //             _addOrganelle(organelle5);
-            //             _addOrganelle(organelle6);
-            //         }
-            //     } else{
-            //         if (organelle !is null && organelle.organelle.mpCost <= mutationPoints){
-            //             _addOrganelle(organelle);
-            //         }
-            //     }
                     _addOrganelle(organelle);
                 }
+                if (isValidPlacement(organelleType, -1*r, r+q,(organelleRot+60) % 360)){
+                    auto organelle2 = PlacedOrganelle(getOrganelleDefinition(organelleType),
+                        -1*r, r+q,(organelleRot+60) % 360);
+                    if (organelle2.organelle.mpCost > mutationPoints){
+                        return;
+                    }
+                    _addOrganelle(organelle2);
+                 }
+                if (isValidPlacement(organelleType, -1*(r+q), q,(organelleRot+120) % 360)){
+                    auto organelle3 = PlacedOrganelle(getOrganelleDefinition(organelleType),
+                         -1*(r+q), q,(organelleRot+120) % 360);
+                    if (organelle3.organelle.mpCost > mutationPoints){
+                        return;
+                    }
+                    _addOrganelle(organelle3);
+                 }
+                if (isValidPlacement(organelleType, -1*q, -1*r,(organelleRot+180) % 360)){
+                    auto organelle4 = PlacedOrganelle(getOrganelleDefinition(organelleType),
+                        -1*q, -1*r,(organelleRot+180) % 360);
+                    if (organelle4.organelle.mpCost > mutationPoints){
+                        return;
+                    }
+                    _addOrganelle(organelle4);
+                 }
+                if (isValidPlacement(organelleType, r, -1*(r+q),(organelleRot+240) % 360)){
+                    auto organelle5 = PlacedOrganelle(getOrganelleDefinition(organelleType),
+                        r, -1*(r+q),(organelleRot+240) % 360);
+                    if (organelle5.organelle.mpCost > mutationPoints){
+                        return;
+                    }
+                    _addOrganelle(organelle5);
+                 }
+                if (isValidPlacement(organelleType, r+q, -1*q,(organelleRot+300) % 360)){
+                    auto organelle6 = PlacedOrganelle(getOrganelleDefinition(organelleType),
+                        r+q, -1*q,(organelleRot+300) % 360);
+                    if (organelle6.organelle.mpCost > mutationPoints){
+                        return;
+                    }
+                    _addOrganelle(organelle6);
+                 }
             }
             break;
-            }
+        }
     }
 
     // This can only work when creating a new cell so put this inside the new method once done
-    // void addNucleus(){
+    void addNucleus(){
     //     auto nucleusOrganelle = OrganelleFactory.makeOrganelle({["name"]="nucleus", ["q"]=0, ["r"]=0, ["rotation"]=0});
     //     MicrobeSystem.addOrganelle(currentMicrobeEntity, 0, 0, 0, nucleusOrganelle);
-    // }
+    }
 
     void createNewMicrobe(const string &in)
     {
@@ -897,6 +896,11 @@ class MicrobeEditor{
             templateOrganelles = newOrganelles;
 
             LOG_INFO("MicrobeEditor: updated organelles for species: " + playerSpecies.name);
+            return 1;
+        } else if (type == "SymmetryClicked"){
+            //Set Variable
+            NamedVars@ vars = event.GetNamedVars();
+            symmetry = int(vars.GetSingleValueByName("symmetry"));
             return 1;
         }
 
