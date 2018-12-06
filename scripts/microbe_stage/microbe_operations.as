@@ -1051,12 +1051,10 @@ void kill(CellStageWorld@ world, ObjectID microbeEntity)
 
     // Eject the compounds that was in the microbe
     uint64 compoundCount = SimulationParameters::compoundRegistry().getSize();
-    for(uint compoundId = 0; compoundId < compoundCount; ++compoundId){
 
+    for(uint compoundId = 0; compoundId < compoundCount; ++compoundId){
         auto total = getCompoundAmount(world, microbeEntity, compoundId)*COMPOUND_RELEASE_PERCENTAGE;
-        auto ejectedAmount = takeCompound(world, microbeEntity,
-            compoundId, total);
-        ejectCompound(world, microbeEntity,compoundId, ejectedAmount);
+        compoundsToRelease[formatInt(compoundId)] = total * COMPOUND_RELEASE_PERCENTAGE;
     }
 
     // Eject some part of the build cost of all the organelles
@@ -1066,9 +1064,22 @@ void kill(CellStageWorld@ world, ObjectID microbeEntity)
         for(uint a = 0; a < keys.length(); ++a){
             float amount = float(organelle.organelle.initialComposition[keys[a]]);
             auto compoundId = SimulationParameters::compoundRegistry().getTypeId(keys[a]);
-            auto ejectedAmount = amount * COMPOUND_MAKEUP_RELEASE_PERCENTAGE;
-            ejectCompound(world, microbeEntity,compoundId, ejectedAmount);
+            auto key = formatInt(compoundId);
+            if(!compoundsToRelease.exists(key)){
+                compoundsToRelease[key] = amount * COMPOUND_MAKEUP_RELEASE_PERCENTAGE;
+            } else {
+                compoundsToRelease[key] = float(compoundsToRelease[key]) +
+                    (amount * COMPOUND_MAKEUP_RELEASE_PERCENTAGE);
+            }
         }
+    }
+    auto keys = compoundsToRelease.getKeys();
+    for(uint i = 0; i < keys.length(); ++i){
+        if (float(compoundsToRelease[keys[i]]) > 0.0f)
+            {
+            ejectCompound(world, microbeEntity, parseInt(keys[i]),
+                float(compoundsToRelease[keys[i]]));
+            }
     }
 
     // Play the death sound
@@ -1083,7 +1094,7 @@ void kill(CellStageWorld@ world, ObjectID microbeEntity)
     //     "MicrobeDeath.mesh");
     //deathAnimSceneNode.Node.setPosition(position._Position);
 
-    LOG_WRITE("TODO: play animation deathAnimModel");
+    //LOG_WRITE("TODO: play animation deathAnimModel");
     // deathAnimModel.GraphicalObject.playAnimation("Death", false);
     //subtract population
     auto playerSpecies = MicrobeOperations::getSpeciesComponent(world, "Default");
