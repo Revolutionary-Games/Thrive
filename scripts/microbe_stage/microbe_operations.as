@@ -341,7 +341,7 @@ float getBandwidth(CellStageWorld@ world, ObjectID microbeEntity, float maxAmoun
     CompoundId compoundId)
 {
     MicrobeComponent@ microbeComponent = getMicrobeComponent(world, microbeEntity);
-	return getBandwidth(microbeComponent, maxAmount, compoundId);
+    return getBandwidth(microbeComponent, maxAmount, compoundId);
 }
 
 // Attempts to obtain an amount of bandwidth for immediate use.
@@ -415,8 +415,8 @@ double takeCompound(CellStageWorld@ world, ObjectID microbeEntity, CompoundId co
     double maxAmount)
 {
     MicrobeComponent@ microbeComponent = getMicrobeComponent(world, microbeEntity);
-	auto compoundBag = world.GetComponent_CompoundBagComponent(microbeEntity);
-	return takeCompound(microbeComponent, compoundBag, compoundId, maxAmount);
+    auto compoundBag = world.GetComponent_CompoundBagComponent(microbeEntity);
+    return takeCompound(microbeComponent, compoundBag, compoundId, maxAmount);
 }
 
 // Removes compounds from the microbe's storage organelles
@@ -431,10 +431,8 @@ double takeCompound(CellStageWorld@ world, ObjectID microbeEntity, CompoundId co
 // The amount that was actually taken, between 0.0 and maxAmount.
 double takeCompound(MicrobeComponent@ microbeComponent, CompoundBagComponent@ compoundBag, CompoundId compoundId,
     double maxAmount)
-{
-    
+{ 
     auto takenAmount = compoundBag.takeCompound(compoundId, maxAmount);
-
     microbeComponent.stored = microbeComponent.stored - takenAmount;
     return takenAmount;
 }
@@ -506,8 +504,8 @@ void ejectCompound(CellStageWorld@ world, ObjectID microbeEntity, CompoundId com
 void purgeCompounds(CellStageWorld@ world, ObjectID microbeEntity)
 {
     MicrobeComponent@ microbeComponent = getMicrobeComponent(world, microbeEntity);
-	auto compoundBag = world.GetComponent_CompoundBagComponent(microbeEntity);
-	purgeCompounds(microbeComponent, compoundBag);
+    auto compoundBag = world.GetComponent_CompoundBagComponent(microbeEntity);
+    purgeCompounds(microbeComponent, compoundBag);
 }
 
 // Since we have individual storage now we dont need this
@@ -530,8 +528,8 @@ void purgeCompounds(MicrobeComponent@ microbeComponent, CompoundBagComponent@ co
             // Dont remove everything immedately, give it some time so
             // people can see it happening
             double amountToEject = 2;
-			// Since we have a handle to the compoundBag component, skip calling the getCompoundAmount
-			// in the microbe operations namespace
+            // Since we have a handle to the compoundBag component, skip calling the getCompoundAmount
+            // in the microbe operations namespace
             double availableCompound = compoundBag.getCompoundAmount(compoundId);
 
             // This was also 'amount' so maybe this didn't work either?
@@ -648,7 +646,7 @@ void emitAgent(CellStageWorld@ world, ObjectID microbeEntity, CompoundId compoun
             GetEngine().GetSoundDevice().Play2DSoundEffect(
                 "Data/Sound/soundeffects/microbe-release-toxin.ogg");
 
-             createAgentCloud(world, compoundId, cellPosition._Position+Float3(xnew*ejectionDistance,0,ynew*ejectionDistance),
+            createAgentCloud(world, compoundId, cellPosition._Position+Float3(xnew*ejectionDistance,0,ynew*ejectionDistance),
                     direction, amountToEject, lifeTime, microbeComponent.speciesName);
 
 
@@ -663,7 +661,7 @@ void emitAgent(CellStageWorld@ world, ObjectID microbeEntity, CompoundId compoun
 void toggleEngulfMode(CellStageWorld@ world, ObjectID microbeEntity)
 {
     MicrobeComponent@ microbeComponent = getMicrobeComponent(world, microbeEntity);
-	toggleEngulfMode(microbeComponent);
+    toggleEngulfMode(microbeComponent);
 }
 
 // Disables or enables engulfmode for a microbe, allowing or
@@ -1159,14 +1157,14 @@ void kill(CellStageWorld@ world, ObjectID microbeEntity)
 void alterSpeciesPopulation(CellStageWorld@ world, ObjectID microbeEntity, int popChange)
 {
     MicrobeComponent@ microbeComponent = getMicrobeComponent(world, microbeEntity);
-	SpeciesComponent@ ourSpecies = getSpeciesComponent(world, microbeEntity);
-	alterSpeciesPopulation(world, ourSpecies, microbeComponent, popChange);
+    SpeciesComponent@ ourSpecies = getSpeciesComponent(world, microbeEntity);
+    alterSpeciesPopulation(world, ourSpecies, microbeComponent, popChange);
 }
 
 void alterSpeciesPopulation(CellStageWorld@ world,
                             SpeciesComponent@ ourSpecies,
                             MicrobeComponent@ microbeComponent,
-							int popChange)
+                            int popChange)
 {   
     if (ourSpecies !is null)
     {
@@ -1180,14 +1178,13 @@ void removeEngulfedEffect(CellStageWorld@ world, ObjectID microbeEntity)
 {
     MicrobeComponent@ microbeComponent = getMicrobeComponent(world, microbeEntity);
     MicrobeComponent@ hostileMicrobeComponent = getMicrobeComponent(world, microbeComponent.hostileEngulfer);
-	removeEngulfedEffect(microbeComponent, hostileMicrobeComponent);
+    removeEngulfedEffect(microbeComponent, hostileMicrobeComponent);
 }
 
 void removeEngulfedEffect(MicrobeComponent@ microbeComponent, MicrobeComponent@ hostileMicrobeComponent)
 {
     // This kept getting doubled for some reason, so i just set it to default
     microbeComponent.movementFactor = 1.0f;
-
     microbeComponent.wasBeingEngulfed = false;
     microbeComponent.isBeingEngulfed = false;
 
