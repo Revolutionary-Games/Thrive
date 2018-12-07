@@ -1083,7 +1083,7 @@ void kill(CellStageWorld@ world, ObjectID microbeEntity)
                 float(compoundsToRelease[formatUInt(compoundID)]) > 0.0f)
             {
             //Earlier we added all of the keys to the list by ID,in order,  so this is fine
-            LOG_INFO("Releasing "+float(compoundsToRelease[formatUInt(compoundID)]));
+            //LOG_INFO("Releasing "+float(compoundsToRelease[formatUInt(compoundID)]));
             if (SimulationParameters::compoundRegistry().getTypeData(compoundID).isCloud)
                 {
                 ejectCompound(world, microbeEntity, uint64(compoundID),float(compoundsToRelease[formatUInt(compoundID)]));
