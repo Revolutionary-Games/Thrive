@@ -720,9 +720,51 @@ class MicrobeEditor{
     // Don't call directly. Should be used through actions
     void removeOrganelle(const string &in)
     {
-        int q, r;
-        getMouseHex(q, r);
-        removeOrganelleAt(q,r);
+        switch (symmetry){
+            case 0: {
+                int q, r;
+                getMouseHex(q, r);
+                removeOrganelleAt(q,r);
+            }
+            break;
+            case 1: {
+                int q, r;
+                getMouseHex(q, r);
+                removeOrganelleAt(q,r);
+
+                if ((q != -1 * q || r != r + q)){
+                    removeOrganelleAt(-1*q, r+q);
+                }
+            }
+            break;
+            case 2: {
+                int q, r;
+                getMouseHex(q, r);
+                removeOrganelleAt(q,r);
+
+                if ((q != -1 * q || r != r + q)){
+                    removeOrganelleAt(-1*q, r+q);
+                    removeOrganelleAt(-1*q, -1*r);
+                    removeOrganelleAt(q, -1*(r+q));
+                }
+            }
+            break;
+            case 3: {
+                int q, r;
+                getMouseHex(q, r);
+                removeOrganelleAt(q,r);
+
+                if ((q != -1 * q || r != r + q)){
+                    removeOrganelleAt(-1*r, r+q);
+                    removeOrganelleAt(-1*(r+q), q);
+                    removeOrganelleAt(-1*q, -1*r);
+                    removeOrganelleAt(r, -1*(r+q));
+                    removeOrganelleAt(r, -1*(r+q));
+                    removeOrganelleAt(r+q, -1*q);
+                 }
+            }
+            break;
+        }
     }
 
     void removeOrganelleAt(int q, int r)
