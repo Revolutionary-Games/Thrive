@@ -174,10 +174,7 @@ class MicrobeEditor{
         for(uint i = 0; i < editedMicrobe.length(); ++i){
 
             const PlacedOrganelle@ organelle = editedMicrobe[i];
-
-            // TODO: not sure if this rotation should be here
-            // auto hexes = organelle.organelle.getRotatedHexes(organelle.rotation);
-            auto hexes = organelle.organelle.getHexes();
+            auto hexes = organelle.organelle.getRotatedHexes(organelle.rotation);
 
             for(uint a = 0; a < hexes.length(); ++a){
 
