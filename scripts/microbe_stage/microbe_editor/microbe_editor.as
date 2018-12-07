@@ -766,7 +766,7 @@ class MicrobeEditor{
                     editor.editedMicrobe.insertLast(organelle);
                 });
                 // Give the action access to some data
-                action.data["organelle"] = organelle;
+                @action.data["organelle"] = organelle;
                 action.data["q"] = q;
                 action.data["r"] = r;
 
