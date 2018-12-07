@@ -612,8 +612,8 @@ class MicrobeEditor{
 
         for(uint i = 0; i < hexes.length(); ++i){
 
-            int posQ = int(hexes[i].q) + q;
-            int posR = int(hexes[i].r) + r;
+            int posQ = int(hexes[i].q+q);
+            int posR = int(hexes[i].r+r);
 
             auto organelleHere = OrganellePlacement::getOrganelleAt(editedMicrobe,
                 Int2(posQ, posR));
