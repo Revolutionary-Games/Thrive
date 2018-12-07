@@ -478,9 +478,8 @@ void ejectCompound(CellStageWorld@ world, ObjectID microbeEntity, CompoundId com
     auto xnew = -membraneCoords.x * c + membraneCoords.y * s;
     auto ynew = membraneCoords.x * s + membraneCoords.y * c;
 
-    auto amountToEject = takeCompound(world, microbeEntity, compoundId,
-        amount);
-    createCompoundCloud(world, compoundId,
+    auto amountToEject = amount*10000;
+    createCompoundCloud(world, uint64(compoundId),
         position._Position.X + xnew * ejectionDistance,
         position._Position.Z + ynew * ejectionDistance,
        amountToEject);
@@ -516,14 +515,14 @@ void purgeCompounds(CellStageWorld@ world, ObjectID microbeEntity)
             if(amountToEject > 0 && availableCompound-amountToEject >= 0){
                 amountToEject = takeCompound(world, microbeEntity,
                     compoundId, amountToEject);
-                //ejectCompound(world, microbeEntity, compoundId, amountToEject-1.0f);
+                ejectCompound(world, microbeEntity, compoundId, amountToEject-1.0f);
             }
             // If we flagged the second one but we still have some left just get rid of it all
             else if (availableCompound > 0)
             {
                 amountToEject = takeCompound(world, microbeEntity,
                     compoundId, availableCompound);
-                //ejectCompound(world, microbeEntity, compoundId, amountToEject-1.0f);
+                ejectCompound(world, microbeEntity, compoundId, amountToEject-1.0f);
             }
         }
     }
@@ -1054,7 +1053,8 @@ void kill(CellStageWorld@ world, ObjectID microbeEntity)
 
     for(uint compoundId = 0; compoundId < compoundCount; ++compoundId){
         auto total = getCompoundAmount(world, microbeEntity, compoundId)*COMPOUND_RELEASE_PERCENTAGE;
-        compoundsToRelease[formatInt(compoundId)] = total * COMPOUND_RELEASE_PERCENTAGE;
+        compoundsToRelease[formatInt(compoundId)] = float(total);
+        //LOG_INFO(""+float(compoundsToRelease[formatInt(compoundId)]));
     }
 
     // Eject some part of the build cost of all the organelles
@@ -1073,14 +1073,23 @@ void kill(CellStageWorld@ world, ObjectID microbeEntity)
             }
         }
     }
-    auto keys = compoundsToRelease.getKeys();
-    for(uint i = 0; i < keys.length(); ++i){
-        if (float(compoundsToRelease[keys[i]]) > 0.0f)
+    // They were added in order already so looping through this other thing is fine
+    for(uint64 compoundID = 0; compoundID <
+                SimulationParameters::compoundRegistry().getSize(); ++compoundID)
+        {
+            //LOG_INFO(""+float(compoundsToRelease[formatInt(compoundID)]));
+            //LOG_INFO(""+float(compoundsToRelease[formatUInt(compoundID)]));
+           if (SimulationParameters::compoundRegistry().getTypeData(compoundID).isCloud &&
+                float(compoundsToRelease[formatUInt(compoundID)]) > 0.0f)
             {
-            ejectCompound(world, microbeEntity, parseInt(keys[i]),
-                float(compoundsToRelease[keys[i]]));
+            //Earlier we added all of the keys to the list by ID,in order,  so this is fine
+            LOG_INFO("Releasing "+float(compoundsToRelease[formatUInt(compoundID)]));
+            if (SimulationParameters::compoundRegistry().getTypeData(compoundID).isCloud)
+                {
+                ejectCompound(world, microbeEntity, uint64(compoundID),float(compoundsToRelease[formatUInt(compoundID)]));
+                }
             }
-    }
+        }
 
     // Play the death sound
     GetEngine().GetSoundDevice().Play2DSoundEffect(
