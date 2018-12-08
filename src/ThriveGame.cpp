@@ -74,13 +74,16 @@ public:
     {
         if(m_microbeBackgroundItem) {
 
-            m_cellStage->GetScene()->destroyItem(m_microbeBackgroundItem);
+            if(m_cellStage)
+                m_cellStage->GetScene()->destroyItem(m_microbeBackgroundItem);
             m_microbeBackgroundItem = nullptr;
         }
 
         if(m_microbeEditorBackgroundItem) {
-            m_microbeEditor->GetScene()->destroyItem(
-                m_microbeEditorBackgroundItem);
+
+            if(m_microbeEditor)
+                m_microbeEditor->GetScene()->destroyItem(
+                    m_microbeEditorBackgroundItem);
             m_microbeEditorBackgroundItem = nullptr;
         }
     }
@@ -89,6 +92,9 @@ public:
         createBackgroundItem()
     {
         destroyBackgroundItem();
+
+        LEVIATHAN_ASSERT(
+            m_cellStage, "Trying to create background item before world");
 
         m_microbeBackgroundItem = m_cellStage->GetScene()->createItem(
             m_microbeBackgroundMesh, Ogre::SCENE_STATIC);
@@ -596,8 +602,16 @@ void
     Leviathan::Window* window1 = Engine::GetEngine()->GetWindowEntity();
     window1->LinkObjects(nullptr);
 
-    // Clear the world
-    m_impl->m_cellStage->ClearEntities();
+    // Disconnect
+    if(m_network->IsConnected()) {
+
+        disconnectFromServer(true);
+
+    } else {
+
+        // Clear the world
+        m_impl->m_cellStage->ClearEntities();
+    }
 
     // Get proper keys setup
     m_impl->m_menuKeyPresses->setEnabled(true);
@@ -692,6 +706,20 @@ void
     LOG_INFO("Initiating disconnect from server");
     m_network->DisconnectFromServer(reason);
 
+    // If we had managed to enter a game then needs to do this
+    if(m_impl->m_cellStage) {
+
+        exitToMenuClicked();
+
+        m_impl->destroyBackgroundItem();
+
+        if(m_impl->m_cellStage) {
+            m_impl->m_cellStage->Release();
+        }
+
+        m_impl->m_cellStage.reset();
+    }
+
     if(!userInitiated) {
         Leviathan::GenericEvent::pointer event =
             new Leviathan::GenericEvent("ConnectStatusMessage");
@@ -716,6 +744,149 @@ void
 
         Engine::Get()->GetEventHandler()->CallEvent(event.detach());
     }
+}
+// ------------------------------------ //
+void
+    ThriveGame::reportJoinedServerWorld(std::shared_ptr<GameWorld> world)
+{
+    LEVIATHAN_ASSERT(
+        world->GetType() == static_cast<int>(THRIVE_WORLD_TYPE::CELL_STAGE),
+        "unexpected world type");
+
+    // TODO: fix
+    if(m_impl->m_cellStage) {
+
+        LOG_ERROR("double join happened, ignoring, TODO: FIX");
+        return;
+    }
+
+    LEVIATHAN_ASSERT(!m_impl->m_cellStage, "double join happened");
+
+    LOG_INFO("ThriveGame: client received world, moving to cell stage");
+
+    auto casted = std::dynamic_pointer_cast<CellStageWorld>(world);
+    m_impl->m_cellStage = casted;
+
+    // Hide the join status dialog
+    {
+        Leviathan::GenericEvent::pointer event =
+            new Leviathan::GenericEvent("ConnectStatusMessage");
+
+        auto vars = event->GetVariables();
+
+        // This hides it
+        vars->Add(std::make_shared<NamedVariableList>(
+            "show", new Leviathan::BoolBlock(false)));
+
+        Engine::Get()->GetEventHandler()->CallEvent(event.detach());
+    }
+
+    // Notify GUI to switch to the cell stage GUI
+    Engine::Get()->GetEventHandler()->CallEvent(
+        new Leviathan::GenericEvent("MicrobeStageEnteredClient"));
+
+    Leviathan::Window* window1 = Engine::GetEngine()->GetWindowEntity();
+
+    window1->LinkObjects(m_impl->m_cellStage);
+
+    // Set the right input handlers active //
+    m_impl->m_menuKeyPresses->setEnabled(false);
+    m_impl->m_cellStageKeys->setEnabled(true);
+
+    // And switch the GUI mode to allow key presses through
+    auto layer = window1->GetGui()->GetLayerByIndex(0);
+
+    // Allow running without GUI
+    if(layer)
+        layer->SetInputMode(Leviathan::GUI::INPUT_MODE::Gameplay);
+
+    // Main camera that will be attached to the player
+    m_cellCamera = Leviathan::ObjectLoader::LoadCamera(*m_impl->m_cellStage,
+        Float3(0, 15, 0),
+        Ogre::Quaternion(Ogre::Degree(-90), Ogre::Vector3::UNIT_X));
+
+    // Link the camera to the camera control system
+    m_impl->m_cellStage->GetMicrobeCameraSystem().setCameraEntity(m_cellCamera);
+
+    // TODO: attach a ligth to the camera
+    // -- Light
+    //     local light = OgreLightComponent.new()
+    //     light:setRange(200)
+    //     entity:addComponent(light)
+
+    m_impl->m_cellStage->SetCamera(m_cellCamera);
+
+    // Setup compound clouds //
+
+    // This is needed for the compound clouds to work in general
+    LEVIATHAN_ASSERT(SimulationParameters::compoundRegistry.getSize() > 0,
+        "compound registry is empty when creating cloud entities for them");
+
+    // Let the script do setup //
+    // This registers all the script defined systems to run and be
+    // available from the world
+    LEVIATHAN_ASSERT(getMicrobeScripts(), "microbe scripts not loaded");
+
+    LOG_INFO("Calling world setup script setupScriptsForWorld_Client");
+
+    ScriptRunningSetup setup;
+    setup.SetEntrypoint("setupScriptsForWorld_Client");
+
+    auto result = getMicrobeScripts()->ExecuteOnModule<void>(
+        setup, false, m_impl->m_cellStage.get());
+
+    if(result.Result != SCRIPT_RUN_RESULT::Success) {
+
+        LOG_ERROR(
+            "Failed to run script setup function: " + setup.Entryfunction);
+        MarkAsClosing();
+        return;
+    }
+
+    LOG_INFO("Finished calling setupScriptsForWorld");
+
+    // Set background plane //
+    // This is needed to be created here for biome.as to work correctly
+    // Also this is a manual object and with infinite extent as this isn't
+    // perspective projected in the shader
+    m_impl->m_backgroundRenderNode =
+        m_impl->m_cellStage->GetScene()->createSceneNode(Ogre::SCENE_STATIC);
+
+    // This needs to be manually destroyed later
+    if(!m_impl->m_microbeBackgroundMesh) {
+        m_impl->m_microbeBackgroundMesh =
+            Leviathan::GeometryHelpers::CreateScreenSpaceQuad(
+                "CellStage_background", -1, -1, 2, 2);
+
+        m_impl->m_microbeBackgroundSubMesh =
+            m_impl->m_microbeBackgroundMesh->getSubMesh(0);
+
+        m_impl->m_microbeBackgroundSubMesh->setMaterialName("Background");
+    }
+    // This also needs to be manually destroyed later.
+    if(!m_impl->m_microbeEditorBackgroundMesh) {
+        m_impl->m_microbeEditorBackgroundMesh =
+            Leviathan::GeometryHelpers::CreateScreenSpaceQuad(
+                "Editor_background", -1, -1, 2, 2);
+
+        m_impl->m_microbeEditorBackgroundSubMesh =
+            m_impl->m_microbeEditorBackgroundMesh->getSubMesh(0);
+
+        m_impl->m_microbeEditorBackgroundSubMesh->setMaterialName("Background");
+    }
+    // Setup render queue for it
+    m_impl->m_cellStage->GetScene()->getRenderQueue()->setRenderQueueMode(
+        1, Ogre::RenderQueue::FAST);
+
+    // This now attaches the item as well (as long as the scene node is created)
+    // This makes it easier to manage the multiple backgrounds and reattaching
+    // them
+    if(!m_impl->m_microbeBackgroundItem) {
+        m_impl->createBackgroundItem();
+    }
+
+    // We handle spawning cells when the server tells us and we setup our
+    // control when we receive a notification of a direct control entity
 }
 
 // ------------------------------------ //

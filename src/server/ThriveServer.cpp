@@ -60,7 +60,7 @@ std::string
 }
 
 ThriveServer*
-    ThriveServer::Get()
+    ThriveServer::get()
 {
     return staticInstance;
 }
@@ -160,12 +160,22 @@ void
     //     LOG_ERROR("Failed to spawn player!");
     //     return;
     // }
+
+    // Allow players joining
+    m_network->SetServerAllowPlayers(true);
+    m_network->SetServerStatus(Leviathan::SERVER_STATUS::Running);
 }
 // ------------------------------------ //
 CellStageWorld*
     ThriveServer::getCellStage()
 {
     return m_impl->m_cellStage.get();
+}
+
+std::shared_ptr<CellStageWorld>
+    ThriveServer::getCellStageShared()
+{
+    return m_impl->m_cellStage;
 }
 // ------------------------------------ //
 void

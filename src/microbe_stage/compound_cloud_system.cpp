@@ -590,6 +590,9 @@ std::tuple<float, float>
 void
     CompoundCloudSystem::Run(CellStageWorld& world)
 {
+    if(!world.GetNetworkSettings().IsAuthoritative)
+        return;
+
     const int renderTime = Leviathan::TICKSPEED;
 
     auto playerEntity = ThriveGame::instance()->playerData().activeCreature();
