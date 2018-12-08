@@ -428,10 +428,10 @@ double takeCompound(CellStageWorld@ world, ObjectID microbeEntity, CompoundId co
 // The maximum amount to take
 //
 // @returns amount
-// The amount that was actually taken, between 0.0 and maxAmount.
-double takeCompound(MicrobeComponent@ microbeComponent, CompoundBagComponent@ compoundBag, CompoundId compoundId,
-    double maxAmount)
-{ 
+// The amount that was actually taken, between 0.0 and maxAmount
+double takeCompound(MicrobeComponent@ microbeComponent, CompoundBagComponent@ compoundBag,
+    CompoundId compoundId, double maxAmount)
+{
     auto takenAmount = compoundBag.takeCompound(compoundId, maxAmount);
     microbeComponent.stored = microbeComponent.stored - takenAmount;
     return takenAmount;
@@ -600,7 +600,7 @@ void emitAgent(CellStageWorld@ world, ObjectID microbeEntity, CompoundId compoun
 	
     auto compoundBag = world.GetComponent_CompoundBagComponent(microbeEntity);
     if(compoundBag.getCompoundAmount(compoundId) > MINIMUM_AGENT_EMISSION_AMOUNT)
-	    {
+        {
         // The front of the microbe
         Float3 exit = Hex::axialToCartesian(0, 1);
         auto membraneCoords = membraneComponent.GetExternalOrganelle(exit.X, exit.Z);
@@ -1165,13 +1165,13 @@ void alterSpeciesPopulation(CellStageWorld@ world,
                             SpeciesComponent@ ourSpecies,
                             MicrobeComponent@ microbeComponent,
                             int popChange)
-{   
+{
     if (ourSpecies !is null)
     {
         cast<SpeciesSystem>(world.GetScriptSystem("SpeciesSystem")).
             updatePopulationForSpecies(microbeComponent.speciesName,popChange);
     }
-} 
+}
 
 // Default version of removeEngulfedEffect
 void removeEngulfedEffect(CellStageWorld@ world, ObjectID microbeEntity)
