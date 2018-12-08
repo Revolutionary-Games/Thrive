@@ -1,10 +1,12 @@
 // ------------------------------------ //
 #include "thrive_net_handler.h"
 
-#include "GUI/GuiManager.h"
+#include "ThriveGame.h"
 
-#include "Engine.h"
-#include "Events/EventHandler.h"
+#include <Engine.h>
+#include <Events/EventHandler.h>
+#include <GUI/GuiManager.h>
+#include <Physics/PhysicsMaterialManager.h>
 
 using namespace thrive;
 // ------------------------------------ //
@@ -15,23 +17,39 @@ ThriveNetHandler::~ThriveNetHandler() {}
 void
     ThriveNetHandler::_OnProperlyConnected()
 {
-    LOG_WRITE("TODO: ask to join cell stage world");
+    DoJoinDefaultWorld();
 }
 // ------------------------------------ //
 void
     ThriveNetHandler::_OnNewConnectionStatusMessage(const std::string& message)
 {
-    Engine::Get()->GetEventHandler()->CallEvent(new Leviathan::GenericEvent(
-        "ConnectStatusMessage",
-        Leviathan::NamedVars(std::shared_ptr<NamedVariableList>(
-            new NamedVariableList("Message", new VariableBlock(message))))));
+    Leviathan::GenericEvent::pointer event =
+        new Leviathan::GenericEvent("ConnectStatusMessage");
+
+    auto vars = event->GetVariables();
+
+    vars->Add(std::make_shared<NamedVariableList>(
+        "show", new Leviathan::BoolBlock(true)));
+    vars->Add(std::make_shared<NamedVariableList>(
+        "message", new Leviathan::StringBlock(message)));
+
+    Engine::Get()->GetEventHandler()->CallEvent(event.detach());
 }
 // ------------------------------------ //
 void
     ThriveNetHandler::_OnDisconnectFromServer(const std::string& reasonstring,
         bool donebyus)
+{}
+// ------------------------------------ //
+std::shared_ptr<Leviathan::PhysicsMaterialManager>
+    ThriveNetHandler::GetPhysicsMaterialsForReceivedWorld(int32_t worldtype,
+        const std::string& extraoptions)
 {
-    // Enable the connection screen to display this message //
-    // Engine::Get()->GetWindowEntity()->GetGUI()->SetCollectionState("ConnectionScreen",
-    // true);
+    return ThriveGame::Get()->createPhysicsMaterials();
+}
+
+void
+    ThriveNetHandler::_OnWorldJoined(std::shared_ptr<GameWorld> world)
+{
+    ThriveGame::Get()->reportJoinedServerWorld(world);
 }

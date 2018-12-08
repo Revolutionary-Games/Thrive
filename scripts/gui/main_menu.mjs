@@ -27,40 +27,47 @@ export function runMenuSetup(){
     }, true);
     document.getElementById("extrasButton").addEventListener("click", (event) => {
         event.stopPropagation();
+        common.playButtonPressSound();
         $("#mainMenu").slideUp("fast", () => {
             $("#extrasMenu").slideDown("fast");
         });
     }, true);
     document.getElementById("backFromExtras").addEventListener("click", (event) => {
         event.stopPropagation();
+        common.playButtonPressSound();
         $("#extrasMenu").slideUp("fast", () => {
             $("#mainMenu").slideDown("fast");
         });
     }, true);
     document.getElementById("toMultiplayerProtoButton").addEventListener("click", (event) => {
         event.stopPropagation();
+        common.playButtonPressSound();
         $("#extrasMenu").slideUp("fast", () => {
             $("#serverConnectingMenu").slideDown("fast");
         });
     }, true);
     document.getElementById("backFromConnecting").addEventListener("click", (event) => {
         event.stopPropagation();
+        common.playButtonPressSound();
         $("#serverConnectingMenu").slideUp("fast", () => {
             $("#extrasMenu").slideDown("fast");
         });
     }, true);
     document.getElementById("backFromConnecting").addEventListener("click", (event) => {
         event.stopPropagation();
+        common.playButtonPressSound();
         $("#serverConnectingMenu").slideUp("fast", () => {
             $("#extrasMenu").slideDown("fast");
         });
     }, true);
     document.getElementById("connectToServerButton").addEventListener("click", (event) => {
         event.stopPropagation();
+        common.playButtonPressSound();
         connectToSelectedServerURL();
     }, true);
     document.getElementById("disconnectFromServer").addEventListener("click", (event) => {
         event.stopPropagation();
+        common.playButtonPressSound();
         disconnectFromCurrentServer();
     }, true);
 
@@ -87,6 +94,10 @@ export function runMenuSetup(){
         // Detect return to menu
         Leviathan.OnGeneric("ExitedToMenu", () => {
             doExitToMenu();
+        });
+
+        Leviathan.OnGeneric("MicrobeStageEnteredClient", () => {
+            switchToMicrobeHUD();
         });
 
         // Server status message display
@@ -223,6 +234,8 @@ function disconnectFromCurrentServer(){
 
         handleConnectionStatusEvent({show: false});
     }
+
+    // ThriveGame handles moving back to the menu GUI
 }
 
 function handleConnectionStatusEvent(event){
@@ -244,11 +257,6 @@ function onMicrobeIntroEnded(error){
 
     menuAlreadySkipped = true;
 
-    if(jams){
-
-        jams.Pause();
-    }
-
     if(common.isInEngine()){
 
         // Make sure no video is playing in case we did an immediate start
@@ -259,6 +267,17 @@ function onMicrobeIntroEnded(error){
     } else {
 
         // Show the microbe GUI anyway for testing purposes
+    }
+
+    switchToMicrobeHUD();
+}
+
+function switchToMicrobeHUD(){
+
+    // Stop menu music
+    if(jams){
+
+        jams.Pause();
     }
 
     // Hide main menu

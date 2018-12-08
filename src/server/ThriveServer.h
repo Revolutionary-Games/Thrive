@@ -29,6 +29,10 @@ public:
     CellStageWorld*
         getCellStage();
 
+    std::shared_ptr<CellStageWorld>
+        getCellStageShared();
+
+
     // ------------------------------------ //
     // Hooking into the engine, and overridden methods from base application
     // etc.
@@ -54,7 +58,7 @@ public:
             KeyConfiguration* keyconfigobj);
 
     static ThriveServer*
-        Get();
+        get();
 
     bool
         InitLoadCustomScriptTypes(asIScriptEngine* engine) override;

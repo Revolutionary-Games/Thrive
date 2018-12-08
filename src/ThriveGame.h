@@ -82,6 +82,10 @@ public:
         disconnectFromServer(bool userInitiated,
             const std::string& reason = "Disconnect by user");
 
+    //! \brief Called from the net handler when we have joined a world
+    void
+        reportJoinedServerWorld(std::shared_ptr<GameWorld> world);
+
     // ------------------------------------ //
     // Hooking into the engine, and overridden methods from base application
     // etc.

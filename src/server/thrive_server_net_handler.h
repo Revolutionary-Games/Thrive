@@ -15,8 +15,8 @@ public:
     ThriveServerNetHandler();
     virtual ~ThriveServerNetHandler();
 
-
-
 protected:
+    std::shared_ptr<GameWorld>
+        _GetWorldForJoinTarget(const std::string& options) override;
 };
 } // namespace thrive
